@@ -6,7 +6,7 @@ import agents from "@/data/agents.json";
 import quests from "@/data/quests.json";
 import currentQuests from "@/data/current-quests.json";
 
-export const dynamic = "force-dynamic";
+export const dynamic = "force-static";
 
 export default function Dashboard() {
   const activeCount = agents.filter((a) => a.status === "active").length;
@@ -33,10 +33,10 @@ export default function Dashboard() {
           <div className="flex items-center gap-3">
             <div className="flex items-center gap-1.5 text-xs text-white/30">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-              <span>Live</span>
+              <span>Updated every 15min</span>
             </div>
             <a
-              href="/api/agents"
+              href="#"
               target="_blank"
               className="text-xs text-white/30 hover:text-white/60 transition-colors font-mono border border-white/[0.06] px-2 py-1 rounded-lg hover:border-white/[0.12]"
             >
@@ -118,9 +118,9 @@ export default function Dashboard() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/20">
           <span>Agent Orchestration Dashboard</span>
           <div className="flex items-center gap-4 font-mono">
-            <a href="/api/agents" target="_blank" className="hover:text-white/40 transition-colors">GET /api/agents</a>
-            <a href="/api/quests" target="_blank" className="hover:text-white/40 transition-colors">GET /api/quests</a>
-            <a href="/api/current-quests" target="_blank" className="hover:text-white/40 transition-colors">GET /api/current-quests</a>
+            <a href="#" target="_blank" className="hover:text-white/40 transition-colors">GET /api/agents</a>
+            
+            
           </div>
         </div>
       </footer>
