@@ -1,46 +1,46 @@
 [
   {
-    "id": "cqst-001",
-    "title": "Summarize academic papers on LLM reasoning",
-    "agentId": "agt-001",
-    "agentName": "Aria",
+    "id": "rq-001",
+    "title": "Market research: AI agent cost-tracker SaaS opportunity",
+    "agentId": "researcher",
+    "agentName": "Researcher",
     "status": "running",
     "priority": "high",
-    "startedAt": "2026-03-06T12:20:00Z",
-    "progress": 68,
-    "tags": ["research", "llm"]
+    "startedAt": "2026-03-06T18:30:00Z",
+    "progress": 10,
+    "tags": ["research", "saas", "revenue"]
   },
   {
-    "id": "cqst-002",
-    "title": "Migrate dashboard API to Next.js App Router",
-    "agentId": "agt-002",
-    "agentName": "Bolt",
-    "status": "running",
-    "priority": "high",
-    "startedAt": "2026-03-06T12:15:00Z",
-    "progress": 42,
-    "tags": ["code", "nextjs"]
-  },
-  {
-    "id": "cqst-003",
-    "title": "Parse and normalize 120k transaction records",
-    "agentId": "agt-004",
-    "agentName": "Delta",
+    "id": "rq-002",
+    "title": "Identify top 20 competitor pricing pages for agent tools",
+    "agentId": "researcher",
+    "agentName": "Researcher",
     "status": "running",
     "priority": "medium",
-    "startedAt": "2026-03-06T12:30:00Z",
-    "progress": 81,
-    "tags": ["data", "etl"]
+    "startedAt": "2026-03-06T18:30:00Z",
+    "progress": 5,
+    "tags": ["competitive-intel", "pricing"]
   },
   {
-    "id": "cqst-004",
-    "title": "Route research sub-tasks to Aria and Delta",
-    "agentId": "agt-006",
-    "agentName": "Flux",
+    "id": "rq-003",
+    "title": "Draft landing page copy for cost-tracker product",
+    "agentId": "marketer",
+    "agentName": "Marketer",
     "status": "running",
-    "priority": "critical",
-    "startedAt": "2026-03-06T12:10:00Z",
-    "progress": 55,
-    "tags": ["orchestration"]
+    "priority": "medium",
+    "startedAt": "2026-03-06T18:35:00Z",
+    "progress": 0,
+    "tags": ["content", "landing-page"]
+  },
+  {
+    "id": "rq-004",
+    "title": "Research ClawHub premium skill marketplace opportunity",
+    "agentId": "sales",
+    "agentName": "Sales",
+    "status": "running",
+    "priority": "high",
+    "startedAt": "2026-03-06T18:35:00Z",
+    "progress": 0,
+    "tags": ["market-fit", "clawhub"]
   }
 ]
