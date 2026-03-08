@@ -8,6 +8,7 @@ const express = require('express');
 const cors = require('cors');
 const fs = require('fs');
 const path = require('path');
+const rateLimit = require('express-rate-limit');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -16,13 +17,31 @@ const AGENTS_FILE = path.join(DATA_DIR, 'agents.json');
 
 app.use(cors());
 app.use(express.json());
+
+// ─── Rate Limiting ──────────────────────────────────────────────────────────────
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100,
+  standardHeaders: true,
+  legacyHeaders: false,
+  handler: (req, res) => {
+    const retryAfter = Math.ceil((req.rateLimit.resetTime - Date.now()) / 1000);
+    res.set('Retry-After', retryAfter);
+    res.status(429).json({ error: 'Too Many Requests', retryAfter });
+  },
+});
+app.use(limiter);
+
 app.use(express.static(path.join(__dirname, 'out')));
 app.use('/data', express.static(DATA_DIR));
 
 // ─── Auth ───────────────────────────────────────────────────────────────────────
-const API_KEY = process.env.API_KEY || null;
+const API_KEY = process.env.API_KEY;
+if (!API_KEY) {
+  console.error('[fatal] API_KEY environment variable is not set. Exiting.');
+  process.exit(1);
+}
 function requireApiKey(req, res, next) {
-  if (!API_KEY) return next();
   const key = req.headers['x-api-key'];
   if (!key || key !== API_KEY) {
     return res.status(401).json({ error: 'Unauthorized', hint: 'Set X-API-Key header' });
@@ -231,7 +250,7 @@ const API_DOCS = {
   info: {
     title: 'Agent Dashboard API',
     version: '1.0.0',
-    description: 'REST API for managing and monitoring AI agents. Agents report status, receive commands, and can be queried by operators or other AI systems. Write endpoints require an X-API-Key header when the server is started with API_KEY env var set.',
+    description: 'REST API for managing and monitoring AI agents. Agents report status, receive commands, and can be queried by operators or other AI systems. POST endpoints always require an X-API-Key header. GET endpoints are public. Rate limited to 100 requests per 15 minutes per IP.',
   },
   servers: [
     { url: 'http://localhost:3001', description: 'Local server' },
@@ -242,7 +261,7 @@ const API_DOCS = {
         type: 'apiKey',
         in: 'header',
         name: 'X-API-Key',
-        description: 'Required for write operations when the server has API_KEY env var set. If API_KEY is not configured, all requests are public.',
+        description: 'Required for all POST operations. GET endpoints are public.',
       },
     },
     schemas: {
@@ -675,7 +694,7 @@ function buildDocsHtml(docs) {
   </header>
   <div class="auth-box">
     <h3>&#128273; Authentication</h3>
-    <p>Write operations require an <code>X-API-Key</code> header when the server is started with <code>API_KEY</code> env var set. GET endpoints are always public.</p>
+    <p>All POST endpoints require an <code>X-API-Key</code> header. GET endpoints are always public. Rate limited to 100 requests per 15 minutes per IP (429 Too Many Requests when exceeded).</p>
     <pre style="margin-top:0.6rem">X-API-Key: YOUR_API_KEY</pre>
   </div>
   <h2>Endpoints</h2>
@@ -703,10 +722,12 @@ loadData();
 app.listen(PORT, () => {
   console.log(`\n🔴 Agent Dashboard API running on http://localhost:${PORT}`);
   console.log(`   Agents: ${AGENT_NAMES.join(', ')}`);
+  console.log(`   API Key: ${API_KEY}`);
+  console.log(`   Rate limit: 100 req / 15 min per IP`);
   console.log(`   Endpoints:`);
   console.log(`     GET  /api/agents`);
   console.log(`     GET  /api/agent/:name`);
-  console.log(`     POST /api/agent/:name/status`);
-  console.log(`     POST /api/agent/:name/command`);
+  console.log(`     POST /api/agent/:name/status  [auth]`);
+  console.log(`     POST /api/agent/:name/command [auth]`);
   console.log(`     GET  /api/agent/:name/commands\n`);
 });

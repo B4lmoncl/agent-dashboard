@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  api:
+    build: .
+    ports:
+      - "3001:3001"
+    environment:
+      - PORT=3001
+      - API_KEY=Khqun0gODzP22z9RKRW5n0iEJmQli52
+    volumes:
+      - ./public/data:/app/public/data
+    restart: unless-stopped
