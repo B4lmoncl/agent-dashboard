@@ -3,7 +3,7 @@
 interface Agent {
   id: string;
   name: string;
-  status: "active" | "idle" | "error";
+  status: "active" | "idle" | "error" | "working" | "thinking" | "online";
   lastUpdate: string | null;
   currentTask: string | null;
   results?: { title: string; success: boolean; timestamp: string }[];
@@ -17,10 +17,13 @@ interface Agent {
   lastSeen?: string;
 }
 
-const statusConfig = {
-  active: { label: "Active", color: "#22c55e", glow: "rgba(34,197,94,0.2)" },
-  idle: { label: "Idle", color: "#eab308", glow: "rgba(234,179,8,0.15)" },
-  error: { label: "Error", color: "#ff4444", glow: "rgba(255,68,68,0.2)" },
+const statusConfig: Record<string, { label: string; color: string; glow: string }> = {
+  active:   { label: "Active",   color: "#22c55e", glow: "rgba(34,197,94,0.2)" },
+  online:   { label: "Online",   color: "#22c55e", glow: "rgba(34,197,94,0.2)" },
+  working:  { label: "Working",  color: "#ff6633", glow: "rgba(255,102,51,0.25)" },
+  thinking: { label: "Thinking", color: "#a78bfa", glow: "rgba(167,139,250,0.25)" },
+  idle:     { label: "Idle",     color: "#eab308", glow: "rgba(234,179,8,0.15)" },
+  error:    { label: "Error",    color: "#ff4444", glow: "rgba(255,68,68,0.2)" },
 };
 
 const agentMeta: Record<string, { avatar: string; color: string; role: string }> = {
@@ -29,6 +32,7 @@ const agentMeta: Record<string, { avatar: string; color: string; role: string }>
   echo:  { avatar: "EC", color: "#ef4444", role: "Sales" },
   pixel: { avatar: "PX", color: "#f59e0b", role: "Marketer" },
   atlas: { avatar: "AT", color: "#6366f1", role: "Researcher" },
+  lyra:  { avatar: "LY", color: "#e879f9", role: "AI Orchestrator" },
 };
 
 export default function AgentCard({ agent }: { agent: Agent }) {
@@ -51,7 +55,7 @@ export default function AgentCard({ agent }: { agent: Agent }) {
     <div
       className="group relative rounded-2xl p-5 transition-all duration-200"
       style={{
-        background: "#111111",
+        background: "#181818",
         border: "1px solid rgba(255,68,68,0.15)",
         boxShadow: agent.status === "active" ? `0 0 20px ${st.glow}` : "none",
       }}
@@ -92,7 +96,7 @@ export default function AgentCard({ agent }: { agent: Agent }) {
       </div>
       <div className="relative mt-3">
         {agent.currentTask ? (
-          <p className="text-xs px-3 py-2 rounded-lg" style={{ color: "rgba(255,255,255,0.6)", background: "rgba(255,68,68,0.06)", border: "1px solid rgba(255,68,68,0.12)" }}>
+          <p className="text-xs px-3 py-2 rounded-lg" style={{ color: "rgba(255,255,255,0.7)", background: "rgba(255,68,68,0.08)", border: "1px solid rgba(255,68,68,0.15)" }}>
             ▶ {agent.currentTask}
           </p>
         ) : agent.description ? (

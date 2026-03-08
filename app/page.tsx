@@ -8,7 +8,7 @@ import StatBar from "@/components/StatBar";
 interface Agent {
   id: string;
   name: string;
-  status: "active" | "idle" | "error";
+  status: "active" | "idle" | "error" | "working" | "thinking" | "online";
   lastUpdate: string | null;
   currentTask: string | null;
   results?: { title: string; success: boolean; timestamp: string }[];
@@ -69,6 +69,7 @@ export default function Dashboard() {
   const [quests, setQuests] = useState<Quest[]>([]);
   const [loading, setLoading] = useState(true);
   const [lastRefresh, setLastRefresh] = useState<Date | null>(null);
+  const [secondsAgo, setSecondsAgo] = useState(0);
   const [apiLive, setApiLive] = useState(false);
 
   const refresh = useCallback(async () => {
@@ -85,29 +86,41 @@ export default function Dashboard() {
 
   useEffect(() => {
     refresh();
-    const interval = setInterval(refresh, 30_000);
+    const interval = setInterval(refresh, 8_000);
     return () => clearInterval(interval);
   }, [refresh]);
 
-  const activeCount = agents.filter((a) => a.status === "active").length;
+  // Tick "seconds ago" counter every second
+  useEffect(() => {
+    const tick = setInterval(() => {
+      if (lastRefresh) {
+        setSecondsAgo(Math.floor((Date.now() - lastRefresh.getTime()) / 1000));
+      }
+    }, 1000);
+    return () => clearInterval(tick);
+  }, [lastRefresh]);
+
+  const activeCount = agents.filter((a) => ["active", "working", "thinking", "online"].includes(a.status)).length;
   const idleCount = agents.filter((a) => a.status === "idle").length;
   const errorCount = agents.filter((a) => a.status === "error").length;
   const runningQuests = quests.filter((q) => q.status === "running");
   const pendingQuests = quests.filter((q) => q.status === "pending");
   const doneQuests = quests.filter((q) => q.status === "completed" || q.status === "failed");
 
-  const timeStr = lastRefresh
-    ? lastRefresh.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", second: "2-digit" })
+  const lastUpdatedStr = lastRefresh
+    ? secondsAgo < 5
+      ? "just now"
+      : `${secondsAgo}s ago`
     : "—";
 
   return (
-    <div className="min-h-screen" style={{ background: "#0a0a0a", color: "#e8e8e8" }}>
+    <div className="min-h-screen" style={{ background: "#0d0d0d", color: "#e8e8e8" }}>
       {/* Header */}
       <header
         className="sticky top-0 z-40 backdrop-blur-xl"
         style={{
-          background: "rgba(10,10,10,0.92)",
-          borderBottom: "1px solid rgba(255,68,68,0.15)",
+          background: "rgba(14,14,14,0.95)",
+          borderBottom: "1px solid rgba(255,68,68,0.18)",
         }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
@@ -140,18 +153,13 @@ export default function Dashboard() {
               />
               <span>{apiLive ? "API Live" : "Static"}</span>
             </div>
-            <div className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.25)" }}>
-              {timeStr}
+            <div className="text-xs font-mono flex items-center gap-1.5" style={{ color: "rgba(255,255,255,0.3)" }}>
+              <span
+                className="w-1.5 h-1.5 rounded-full inline-block animate-pulse"
+                style={{ background: "rgba(255,102,51,0.6)" }}
+              />
+              <span>Updated {lastUpdatedStr}</span>
             </div>
-            <button
-              onClick={refresh}
-              className="text-xs px-3 py-1.5 rounded transition-all"
-              style={{ color: "#ff4444", border: "1px solid rgba(255,68,68,0.3)", background: "rgba(255,68,68,0.05)" }}
-              onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(255,68,68,0.12)")}
-              onMouseLeave={(e) => (e.currentTarget.style.background = "rgba(255,68,68,0.05)")}
-            >
-              Refresh
-            </button>
           </div>
         </div>
       </header>
@@ -278,7 +286,7 @@ function SectionHeader({ title, count, sub, dot }: { title: string; count: numbe
 
 function EmptyState({ message, sub }: { message: string; sub?: string }) {
   return (
-    <div className="rounded-2xl p-8 text-center" style={{ background: "#111111", border: "1px solid rgba(255,255,255,0.05)" }}>
+    <div className="rounded-2xl p-8 text-center" style={{ background: "#181818", border: "1px solid rgba(255,255,255,0.07)" }}>
       <p className="text-sm" style={{ color: "rgba(255,255,255,0.25)" }}>{message}</p>
       {sub && <p className="text-xs mt-1.5 font-mono" style={{ color: "rgba(255,68,68,0.3)" }}>{sub}</p>}
     </div>
@@ -289,7 +297,7 @@ function SkeletonCard({ height = 120 }: { height?: number }) {
   return (
     <div
       className="rounded-2xl animate-pulse"
-      style={{ background: "#111111", border: "1px solid rgba(255,255,255,0.04)", height }}
+      style={{ background: "#181818", border: "1px solid rgba(255,255,255,0.06)", height }}
     />
   );
 }

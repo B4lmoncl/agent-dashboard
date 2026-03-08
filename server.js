@@ -21,7 +21,11 @@ app.use(express.static(path.join(__dirname, 'out')));
 app.use('/data', express.static(DATA_DIR));
 
 // ─── In-memory store ───────────────────────────────────────────────────────────
-const AGENT_NAMES = ['nova', 'hex', 'echo', 'pixel', 'atlas'];
+const AGENT_NAMES = ['nova', 'hex', 'echo', 'pixel', 'atlas', 'lyra'];
+
+const AGENT_META = {
+  lyra: { role: 'AI Orchestrator', description: 'OpenClaw AI — coordinates agents, builds systems, and manages infrastructure.', color: '#e879f9', avatar: 'LY' },
+};
 
 let store = {
   agents: {},
@@ -31,6 +35,7 @@ let store = {
 function initStore() {
   // Seed agent registry
   for (const name of AGENT_NAMES) {
+    const meta = AGENT_META[name] || {};
     store.agents[name] = {
       id: name,
       name: name.charAt(0).toUpperCase() + name.slice(1),
@@ -39,6 +44,7 @@ function initStore() {
       currentTask: null,
       results: [],
       commands: [],
+      ...meta,
     };
   }
 }
@@ -92,8 +98,8 @@ app.post('/api/agent/:name/status', (req, res) => {
   if (!store.agents[name]) {
     return res.status(404).json({ error: `Unknown agent: ${name}` });
   }
-  const { status, currentTask, metadata } = req.body;
-  const validStatuses = ['active', 'idle', 'error'];
+  const { status, currentTask, lastUpdate, metadata } = req.body;
+  const validStatuses = ['active', 'idle', 'error', 'working', 'thinking', 'online'];
   if (status && !validStatuses.includes(status)) {
     return res.status(400).json({ error: `Invalid status. Use: ${validStatuses.join(', ')}` });
   }
@@ -101,7 +107,8 @@ app.post('/api/agent/:name/status', (req, res) => {
   if (status) agent.status = status;
   if (currentTask !== undefined) agent.currentTask = currentTask;
   if (metadata) agent.metadata = { ...agent.metadata, ...metadata };
-  agent.lastUpdate = now();
+  // Allow agent to provide its own timestamp (Unix epoch or ISO string)
+  agent.lastUpdate = lastUpdate ? new Date(typeof lastUpdate === 'number' ? lastUpdate * 1000 : lastUpdate).toISOString() : now();
   saveData();
   console.log(`[${name}] status → ${agent.status}${agent.currentTask ? ` | ${agent.currentTask}` : ''}`);
   res.json({ ok: true, agent: sanitizeAgent(agent) });
@@ -260,6 +267,31 @@ app.delete('/api/quest/:id', (req, res) => {
 
 app.get('/api/health', (req, res) => {
   res.json({ ok: true, agents: AGENT_NAMES.length, quests: store.quests.length, time: now() });
+});
+
+// POST /api/agent/:name/register — auto-register a new agent if not known
+app.post('/api/agent/:name/register', (req, res) => {
+  const name = req.params.name.toLowerCase();
+  if (!store.agents[name]) {
+    const { role, description, color, avatar } = req.body;
+    store.agents[name] = {
+      id: name,
+      name: name.charAt(0).toUpperCase() + name.slice(1),
+      status: 'idle',
+      lastUpdate: null,
+      currentTask: null,
+      results: [],
+      commands: [],
+      role: role || 'Agent',
+      description: description || '',
+      color: color || '#666',
+      avatar: avatar || name.slice(0, 2).toUpperCase(),
+    };
+    AGENT_NAMES.push(name);
+    saveData();
+    console.log(`[register] new agent: ${name}`);
+  }
+  res.json({ ok: true, agent: sanitizeAgent(store.agents[name]) });
 });
 
 // Serve index.html for non-API routes (SPA fallback)
