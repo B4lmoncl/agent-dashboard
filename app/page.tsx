@@ -163,7 +163,7 @@ export default function Dashboard() {
       maxOpacity: Math.random() * 0.35 + 0.08,
     });
 
-    const particles: Particle[] = Array.from({ length: 40 }, () => createParticle(true));
+    const particles: Particle[] = Array.from({ length: 48 }, () => createParticle(true));
     let animId: number;
 
     const animate = () => {

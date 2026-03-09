@@ -356,7 +356,7 @@ checkConnection();
     };
   }
 
-  const COUNT = 50;
+  const COUNT = 60;
   const particles = Array.from({ length: COUNT }, () => createEmber(true));
 
   function animate() {
