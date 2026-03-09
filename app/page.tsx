@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import AgentCard from "@/components/AgentCard";
 import StatBar from "@/components/StatBar";
 
@@ -107,6 +107,28 @@ function timeAgo(iso: string): string {
   return `${Math.floor(h / 24)}d ago`;
 }
 
+function useCountUp(target: number, decimals = 0, duration = 1000): string {
+  const [display, setDisplay] = useState("0");
+  const prevRef = useRef(-1);
+  const rafRef = useRef<number | null>(null);
+  useEffect(() => {
+    if (prevRef.current === target) return;
+    const from = prevRef.current < 0 ? 0 : prevRef.current;
+    prevRef.current = target;
+    if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    const t0 = performance.now();
+    function tick(now: number) {
+      const p = Math.min((now - t0) / duration, 1);
+      const eased = 1 - (1 - p) ** 3;
+      setDisplay((from + (target - from) * eased).toFixed(decimals));
+      if (p < 1) rafRef.current = requestAnimationFrame(tick);
+    }
+    rafRef.current = requestAnimationFrame(tick);
+    return () => { if (rafRef.current) cancelAnimationFrame(rafRef.current); };
+  }, [target, decimals, duration]);
+  return display;
+}
+
 export default function Dashboard() {
   const [agents, setAgents] = useState<Agent[]>([]);
   const [quests, setQuests] = useState<QuestsData>({ open: [], inProgress: [], completed: [] });
@@ -159,6 +181,13 @@ export default function Dashboard() {
   const totalJobs = agents.reduce((sum, a) => sum + (a.jobsCompleted ?? 0), 0);
   const needsAttention = agents.filter((a) => a.health === "needs_checkin" || a.health === "broken").length;
 
+  const animAgents   = useCountUp(agents.length, 0);
+  const animWorking  = useCountUp(workingCount, 0);
+  const animIdle     = useCountUp(idleCount, 0);
+  const animJobs     = useCountUp(totalJobs, 0);
+  const animRevenue  = useCountUp(totalRevenue, 2);
+  const animActive   = useCountUp(activeCount, 0);
+
   const lastUpdatedStr = lastRefresh
     ? secondsAgo < 5 ? "just now" : `${secondsAgo}s ago`
     : "—";
@@ -173,7 +202,7 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="min-h-screen" style={{ background: "#1a1a1a", color: "#e8e8e8" }}>
+    <div className="min-h-screen" style={{ background: "transparent", color: "#e8e8e8" }}>
       {/* Header */}
       <header
         className="sticky top-0 z-40 backdrop-blur-xl"
@@ -215,7 +244,7 @@ export default function Dashboard() {
                 className="w-1.5 h-1.5 rounded-full inline-block"
                 style={{
                   background: apiLive ? "#22c55e" : "rgba(255,255,255,0.15)",
-                  boxShadow: apiLive ? "0 0 6px #22c55e" : "none",
+                  animation: apiLive ? "pulse-online 2s ease-in-out infinite" : "none",
                 }}
               />
               {apiLive ? "API Live" : "Static"}
@@ -245,24 +274,24 @@ export default function Dashboard() {
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
           <StatBar
             label="Agents"
-            value={loading ? "—" : agents.length}
-            sub={`${activeCount} online`}
+            value={loading ? "—" : animAgents}
+            sub={`${animActive} online`}
           />
           <StatBar
             label="Working"
-            value={loading ? "—" : workingCount}
-            sub={`${idleCount} idle`}
+            value={loading ? "—" : animWorking}
+            sub={`${animIdle} idle`}
             accent="#ff6633"
           />
           <StatBar
             label="Jobs Done"
-            value={loading ? "—" : totalJobs}
+            value={loading ? "—" : animJobs}
             sub="all agents"
             accent="rgba(255,255,255,0.6)"
           />
           <StatBar
             label="Revenue"
-            value={loading ? "—" : `$${totalRevenue.toFixed(2)}`}
+            value={loading ? "—" : `$${animRevenue}`}
             sub="total generated"
             accent="#22c55e"
           />
@@ -284,15 +313,15 @@ export default function Dashboard() {
               </div>
               <div className="flex items-center gap-3 text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>
                 <span className="flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: "#4ade80" }} />
+                  <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: "#4ade80", animation: "pulse-online 2s ease-in-out infinite" }} />
                   Online
                 </span>
                 <span className="flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: "#ff6b00", boxShadow: "0 0 5px #ff6b0080", animation: "pulse 1.2s ease-in-out infinite" }} />
+                  <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: "#ff6b00", animation: "pulse-working 1.5s ease-in-out infinite" }} />
                   Working
                 </span>
                 <span className="flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: "#facc15" }} />
+                  <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: "#facc15", animation: "pulse-idle 3s ease-in-out infinite" }} />
                   Idle
                 </span>
                 <span className="flex items-center gap-1.5">
@@ -536,14 +565,14 @@ function QuestCard({ quest }: { quest: Quest }) {
         background: "#252525",
         border: `1px solid ${isInProgress ? "rgba(139,92,246,0.25)" : "rgba(255,255,255,0.07)"}`,
         transform: "translateY(0)",
-        transition: "border-color 0.15s, box-shadow 0.15s, transform 0.15s",
+        transition: "border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease",
       }}
       onClick={() => setExpanded(v => !v)}
       onMouseEnter={(e) => {
         const el = e.currentTarget as HTMLDivElement;
         el.style.borderColor = isInProgress ? "rgba(139,92,246,0.5)" : "rgba(255,255,255,0.18)";
-        el.style.boxShadow = isInProgress ? "0 4px 16px rgba(139,92,246,0.12)" : "0 4px 16px rgba(0,0,0,0.25)";
-        el.style.transform = "translateY(-1px)";
+        el.style.boxShadow = isInProgress ? "0 8px 24px rgba(139,92,246,0.2)" : "0 8px 24px rgba(255,68,68,0.2)";
+        el.style.transform = "translateY(-2px)";
       }}
       onMouseLeave={(e) => {
         const el = e.currentTarget as HTMLDivElement;

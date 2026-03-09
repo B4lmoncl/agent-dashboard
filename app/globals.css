@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0d0d0d;
+  --background: #0b0d11;
   --foreground: #e8e8e8;
   --accent: #ff4444;
 }
@@ -12,7 +12,9 @@
 }
 
 body {
-  background: var(--background);
+  background: linear-gradient(180deg, #0b0d11 0%, #1a0f1a 50%, #0b0d11 100%);
+  background-size: 100% 200%;
+  animation: gradient-shift 20s ease infinite;
   color: var(--foreground);
   -webkit-font-smoothing: antialiased;
 }
@@ -25,4 +27,36 @@ body {
 @keyframes pulse {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.5; }
+}
+
+@keyframes pulse-online {
+  0%, 100% { opacity: 1; box-shadow: 0 0 4px #4ade80; }
+  50% { opacity: 0.6; box-shadow: 0 0 12px #4ade80; }
+}
+
+@keyframes pulse-working {
+  0%, 100% { opacity: 1; box-shadow: 0 0 4px #ff6b00; }
+  50% { opacity: 0.7; box-shadow: 0 0 10px #ff6b00; }
+}
+
+@keyframes pulse-idle {
+  0%, 100% { opacity: 1; box-shadow: 0 0 4px #facc15; }
+  50% { opacity: 0.5; box-shadow: 0 0 8px #facc15; }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.shimmer {
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.08) 50%, transparent 100%);
+  background-size: 200% 100%;
+  animation: shimmer 0.8s ease-in-out;
+  border-radius: 2px;
+}
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 0%; }
+  50% { background-position: 0% 100%; }
 }

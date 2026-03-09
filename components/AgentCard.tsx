@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
+
 interface Agent {
   id: string;
   name: string;
@@ -26,6 +28,28 @@ interface Quest {
   status: "open" | "in_progress" | "completed";
 }
 
+function useCountUp(target: number, decimals = 0, duration = 1000): string {
+  const [display, setDisplay] = useState("0");
+  const prevRef = useRef(-1);
+  const rafRef = useRef<number | null>(null);
+  useEffect(() => {
+    if (prevRef.current === target) return;
+    const from = prevRef.current < 0 ? 0 : prevRef.current;
+    prevRef.current = target;
+    if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    const t0 = performance.now();
+    function tick(now: number) {
+      const p = Math.min((now - t0) / duration, 1);
+      const eased = 1 - (1 - p) ** 3;
+      setDisplay((from + (target - from) * eased).toFixed(decimals));
+      if (p < 1) rafRef.current = requestAnimationFrame(tick);
+    }
+    rafRef.current = requestAnimationFrame(tick);
+    return () => { if (rafRef.current) cancelAnimationFrame(rafRef.current); };
+  }, [target, decimals, duration]);
+  return display;
+}
+
 function formatDuration(seconds: number): string {
   if (!seconds || seconds <= 0) return "—";
   const h = Math.floor(seconds / 3600);
@@ -39,6 +63,13 @@ const statusConfig: Record<string, { label: string; color: string; dot: string }
   working: { label: "Working", color: "#ff6b00", dot: "#ff6b00" },
   idle:    { label: "Idle",    color: "#facc15", dot: "#facc15" },
   offline: { label: "Offline", color: "rgba(255,255,255,0.25)", dot: "rgba(255,255,255,0.2)" },
+};
+
+const statusDotAnim: Record<string, string> = {
+  online:  "pulse-online 2s ease-in-out infinite",
+  working: "pulse-working 1.5s ease-in-out infinite",
+  idle:    "pulse-idle 3s ease-in-out infinite",
+  offline: "none",
 };
 
 const healthConfig: Record<string, { label: string; color: string; bg: string; pulse?: boolean }> = {
@@ -76,6 +107,44 @@ export default function AgentCard({ agent, activeQuests = [], isWide = false }: 
   const description = agent.description ?? meta.description ?? meta.role;
   const needsCheckin = agent.health === "needs_checkin";
   const isActive = agent.status === "online" || agent.status === "working";
+
+  // CountUp animations for numeric metrics
+  const animJobs    = useCountUp(agent.jobsCompleted ?? 0, 0);
+  const animQuests  = useCountUp(agent.questsCompleted ?? 0, 0);
+  const animRevenue = useCountUp(agent.revenue ?? 0, 2);
+
+  // Shimmer on value change (skip initial mount)
+  const prevJobsRef    = useRef(agent.jobsCompleted);
+  const prevQuestsRef  = useRef(agent.questsCompleted ?? 0);
+  const prevRevenueRef = useRef(agent.revenue);
+  const [shimmerJobs,    setShimmerJobs]    = useState(false);
+  const [shimmerQuests,  setShimmerQuests]  = useState(false);
+  const [shimmerRevenue, setShimmerRevenue] = useState(false);
+
+  useEffect(() => {
+    if (prevJobsRef.current === agent.jobsCompleted) return;
+    prevJobsRef.current = agent.jobsCompleted;
+    setShimmerJobs(true);
+    const t = setTimeout(() => setShimmerJobs(false), 800);
+    return () => clearTimeout(t);
+  }, [agent.jobsCompleted]);
+
+  useEffect(() => {
+    const q = agent.questsCompleted ?? 0;
+    if (prevQuestsRef.current === q) return;
+    prevQuestsRef.current = q;
+    setShimmerQuests(true);
+    const t = setTimeout(() => setShimmerQuests(false), 800);
+    return () => clearTimeout(t);
+  }, [agent.questsCompleted]);
+
+  useEffect(() => {
+    if (prevRevenueRef.current === agent.revenue) return;
+    prevRevenueRef.current = agent.revenue;
+    setShimmerRevenue(true);
+    const t = setTimeout(() => setShimmerRevenue(false), 800);
+    return () => clearTimeout(t);
+  }, [agent.revenue]);
 
   return (
     <div
@@ -140,8 +209,7 @@ export default function AgentCard({ agent, activeQuests = [], isWide = false }: 
                 className="w-2 h-2 rounded-full inline-block"
                 style={{
                   background: st.dot,
-                  boxShadow: isActive ? `0 0 7px ${st.dot}, 0 0 14px ${st.dot}60` : "none",
-                  animation: agent.status === "working" ? "pulse 1.2s ease-in-out infinite" : "none",
+                  animation: statusDotAnim[agent.status] ?? "none",
                 }}
               />
               {st.label}
@@ -160,18 +228,20 @@ export default function AgentCard({ agent, activeQuests = [], isWide = false }: 
           value={agent.status === "working" || agent.currentJobDuration > 0 ? formatDuration(agent.currentJobDuration) : "—"}
           highlight={agent.status === "working"}
         />
-        <MetricRow label="Jobs Completed" value={String(agent.jobsCompleted ?? 0)} />
+        <MetricRow label="Jobs Completed" value={animJobs} shimmer={shimmerJobs} />
         <MetricRow
           label="Quests Completed"
-          value={String(agent.questsCompleted ?? 0)}
+          value={animQuests}
           highlight={(agent.questsCompleted ?? 0) > 0}
           highlightColor="#8b5cf6"
+          shimmer={shimmerQuests}
         />
         <MetricRow
           label="Revenue"
-          value={`$${(agent.revenue ?? 0).toFixed(2)}`}
+          value={`$${animRevenue}`}
           highlight={(agent.revenue ?? 0) > 0}
           highlightColor="#22c55e"
+          shimmer={shimmerRevenue}
         />
       </div>
 
@@ -224,17 +294,19 @@ function MetricRow({
   value,
   highlight = false,
   highlightColor = "#ff6633",
+  shimmer = false,
 }: {
   label: string;
   value: string;
   highlight?: boolean;
   highlightColor?: string;
+  shimmer?: boolean;
 }) {
   return (
     <div className="flex items-center justify-between">
       <span className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>{label}</span>
       <span
-        className="text-xs font-medium font-mono"
+        className={`text-xs font-medium font-mono${shimmer ? " shimmer" : ""}`}
         style={{ color: highlight ? highlightColor : "rgba(255,255,255,0.7)" }}
       >
         {value}

@@ -27,6 +27,20 @@ try {
   APP_VERSION = pkg.version || '1.0.0';
 } catch (_) { /* ignore */ }
 
+// ─── Connection status ────────────────────────────────────────────────────────
+async function checkConnection() {
+  const { API_BASE } = loadConfig();
+  const base = API_BASE || DEFAULT_SERVER;
+  const dot = document.getElementById('connection-dot');
+  if (!dot) return;
+  try {
+    const r = await fetch(`${base}/api/health`, { signal: AbortSignal.timeout(2000) });
+    dot.classList.toggle('connected', r.ok);
+  } catch (_) {
+    dot.classList.remove('connected');
+  }
+}
+
 // ─── DOM refs ────────────────────────────────────────────────────────────────
 const form        = document.getElementById('quest-form');
 const submitBtn   = document.getElementById('submit-btn');
@@ -86,6 +100,7 @@ saveBtn.addEventListener('click', () => {
   saveConfig(server, apiKey);
   aboutServerEl.textContent = server;
   showMessage('Settings saved!');
+  checkConnection();
   setTimeout(() => switchTab('quest'), 1200);
 });
 
@@ -136,6 +151,9 @@ form.addEventListener('submit', async (e) => {
       form.reset();
       document.getElementById('priority').value = 'medium';
       document.querySelectorAll('.category-cb').forEach(cb => { cb.checked = false; });
+      // Success shimmer on form
+      form.classList.add('form-shimmer');
+      setTimeout(() => form.classList.remove('form-shimmer'), 800);
     } else {
       const err = await resp.json().catch(() => ({}));
       showMessage(`Error ${resp.status}: ${err.error || resp.statusText}`, true);
@@ -194,3 +212,5 @@ if (!isConfigured()) {
 } else {
   switchTab('quest');
 }
+
+checkConnection();
