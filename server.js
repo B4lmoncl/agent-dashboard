@@ -8,6 +8,7 @@ const express = require('express');
 const cors = require('cors');
 const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto');
 const rateLimit = require('express-rate-limit');
 
 const app = express();
@@ -15,6 +16,7 @@ const PORT = process.env.PORT || 3001;
 const DATA_DIR = path.join(__dirname, 'public', 'data');
 const AGENTS_FILE = path.join(DATA_DIR, 'agents.json');
 const QUESTS_FILE = path.join(DATA_DIR, 'quests.json');
+const KEYS_FILE   = path.join(DATA_DIR, 'keys.json');
 
 app.use(cors());
 app.use(express.json());
@@ -52,6 +54,45 @@ function requireApiKey(req, res, next) {
   const key = req.headers['x-api-key'];
   if (!key || !validApiKeys.has(key)) {
     return res.status(401).json({ error: 'Unauthorized', hint: 'Set X-API-Key header' });
+  }
+  next();
+}
+
+// ─── Admin Key Management ───────────────────────────────────────────────────────
+let managedKeys = []; // [{ key, label, created }]
+
+function loadManagedKeys() {
+  try {
+    if (fs.existsSync(KEYS_FILE)) {
+      const raw = JSON.parse(fs.readFileSync(KEYS_FILE, 'utf8'));
+      if (Array.isArray(raw)) {
+        managedKeys = raw;
+        for (const k of managedKeys) validApiKeys.add(k.key);
+      }
+    }
+  } catch (_) {}
+}
+
+function saveManagedKeys() {
+  try {
+    if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
+    fs.writeFileSync(KEYS_FILE, JSON.stringify(managedKeys, null, 2));
+  } catch (_) {}
+}
+
+function getMasterKey() {
+  const envKeys = [
+    ...(process.env.API_KEYS ? process.env.API_KEYS.split(',').map(k => k.trim()).filter(Boolean) : []),
+    ...(process.env.API_KEY ? [process.env.API_KEY.trim()] : []),
+  ];
+  return envKeys[0] || '';
+}
+
+function requireMasterKey(req, res, next) {
+  const key = req.headers['x-api-key'];
+  const master = getMasterKey();
+  if (!key || !master || key !== master) {
+    return res.status(401).json({ error: 'Master key required' });
   }
   next();
 }
@@ -138,6 +179,9 @@ function loadQuests() {
           if (q.createdBy === undefined) q.createdBy = 'unknown';
           if (q.type === undefined) q.type = 'development';
           if (q.parentQuestId === undefined) q.parentQuestId = null;
+          if (q.recurrence === undefined) q.recurrence = null;
+          if (q.streak === undefined) q.streak = 0;
+          if (q.lastCompletedAt === undefined) q.lastCompletedAt = null;
           return q;
         });
       }
@@ -339,17 +383,21 @@ app.get('/api/health', (req, res) => {
 
 // POST /api/quest — create a new quest
 app.post('/api/quest', requireApiKey, (req, res) => {
-  const { title, description, priority, category, categories, product, humanInputRequired, createdBy, type, parentQuestId } = req.body;
+  const { title, description, priority, category, categories, product, humanInputRequired, createdBy, type, parentQuestId, recurrence } = req.body;
   if (!title) return res.status(400).json({ error: 'title is required' });
   const validPriorities = ['low', 'medium', 'high'];
   const validCategories = ['Coding', 'Research', 'Content', 'Sales', 'Infrastructure', 'Bug Fix', 'Feature'];
   const validProducts = ['Dashboard', 'Companion App', 'Infrastructure', 'Other'];
   const validTypes = ['development', 'personal', 'learning', 'social'];
+  const validRecurrences = ['daily', 'weekly', 'monthly'];
   if (priority && !validPriorities.includes(priority)) {
     return res.status(400).json({ error: `Invalid priority. Use: ${validPriorities.join(', ')}` });
   }
   if (type && !validTypes.includes(type)) {
     return res.status(400).json({ error: `Invalid type. Use: ${validTypes.join(', ')}` });
+  }
+  if (recurrence && !validRecurrences.includes(recurrence)) {
+    return res.status(400).json({ error: `Invalid recurrence. Use: ${validRecurrences.join(', ')}` });
   }
   // Normalize: support both category (string, backward compat) and categories (array)
   let resolvedCategories = [];
@@ -391,6 +439,9 @@ app.post('/api/quest', requireApiKey, (req, res) => {
     completedBy: null,
     completedAt: null,
     parentQuestId: parentQuestId || null,
+    recurrence: validRecurrences.includes(recurrence) ? recurrence : null,
+    streak: 0,
+    lastCompletedAt: null,
   };
   quests.push(quest);
   saveQuests();
@@ -422,6 +473,10 @@ app.post('/api/quest/:id/complete', requireApiKey, (req, res) => {
   quest.status = 'completed';
   quest.completedBy = agentId;
   quest.completedAt = now();
+  if (quest.recurrence) {
+    quest.streak = (quest.streak || 0) + 1;
+    quest.lastCompletedAt = now();
+  }
   saveQuests();
   // Increment questsCompleted and award XP
   const agentKey = agentId.toLowerCase();
@@ -578,6 +633,68 @@ app.get('/api/leaderboard', (req, res) => {
     .sort((a, b) => b.xp - a.xp || b.questsCompleted - a.questsCompleted)
     .map((a, i) => ({ ...a, rank: i + 1 }));
   res.json(ranked);
+});
+
+// GET /api/quests/reset-recurring — reset completed recurring quests based on interval
+app.get('/api/quests/reset-recurring', (req, res) => {
+  const nowMs = Date.now();
+  const INTERVAL_MS = { daily: 24*3600*1000, weekly: 7*24*3600*1000, monthly: 30*24*3600*1000 };
+  let resetCount = 0;
+  for (const q of quests) {
+    if (q.status !== 'completed' || !q.recurrence) continue;
+    const interval = INTERVAL_MS[q.recurrence];
+    if (!interval) continue;
+    const lastDone = q.lastCompletedAt ? new Date(q.lastCompletedAt).getTime() : 0;
+    if (nowMs - lastDone >= interval) {
+      q.status = 'open';
+      q.claimedBy = null;
+      q.completedBy = null;
+      q.completedAt = null;
+      resetCount++;
+    }
+  }
+  if (resetCount > 0) saveQuests();
+  console.log(`[recurring] reset ${resetCount} recurring quest(s)`);
+  res.json({ ok: true, reset: resetCount });
+});
+
+// GET /api/admin/keys
+app.get('/api/admin/keys', requireMasterKey, (req, res) => {
+  const master = getMasterKey();
+  const allKeys = [
+    { key: master, label: 'Master Key', created: null, isMaster: true },
+    ...managedKeys.map(k => ({ ...k, isMaster: false })),
+  ];
+  res.json(allKeys.map(k => ({ ...k, masked: k.key.slice(0, 4) + '****' + k.key.slice(-4) })));
+});
+
+// POST /api/admin/keys
+app.post('/api/admin/keys', requireMasterKey, (req, res) => {
+  const { label } = req.body;
+  const newKey = crypto.randomBytes(16).toString('hex');
+  const entry = { key: newKey, label: label || `Key ${managedKeys.length + 1}`, created: now() };
+  managedKeys.push(entry);
+  validApiKeys.add(newKey);
+  saveManagedKeys();
+  console.log(`[admin] new key created: ${entry.label}`);
+  res.json({ ok: true, key: newKey, masked: newKey.slice(0, 4) + '****' + newKey.slice(-4), label: entry.label });
+});
+
+// DELETE /api/admin/keys/:key
+app.delete('/api/admin/keys/:key', requireMasterKey, (req, res) => {
+  const keyParam = req.params.key;
+  if (keyParam === getMasterKey()) {
+    return res.status(400).json({ error: 'Cannot revoke master key' });
+  }
+  const before = managedKeys.length;
+  managedKeys = managedKeys.filter(k => k.key !== keyParam);
+  if (managedKeys.length < before) {
+    validApiKeys.delete(keyParam);
+    saveManagedKeys();
+    console.log(`[admin] key revoked`);
+    return res.json({ ok: true });
+  }
+  res.status(404).json({ error: 'Key not found' });
 });
 
 // GET /api/agent/:name/quests — get agent's active quests
@@ -1247,6 +1364,7 @@ app.get('*', (req, res) => {
 initStore();
 loadData();
 loadQuests();
+loadManagedKeys();
 
 app.listen(PORT, () => {
   console.log(`\n🔴 Agent Dashboard API running on http://localhost:${PORT}`);

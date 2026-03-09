@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Quick Forge</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #1a1a1a;
+      color: #e8e8e8;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 13px;
+      padding: 16px;
+    }
+    header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+    header h1 {
+      font-size: 14px;
+      font-weight: 700;
+      color: #ff8c44;
+    }
+    .field {
+      margin-bottom: 10px;
+    }
+    label {
+      display: block;
+      font-size: 11px;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    input, textarea, select {
+      width: 100%;
+      background: #252525;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 6px;
+      color: #e8e8e8;
+      font-size: 13px;
+      padding: 7px 10px;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    input:focus, textarea:focus, select:focus {
+      border-color: rgba(255,140,68,0.5);
+    }
+    textarea { resize: vertical; min-height: 60px; }
+    select option { background: #252525; }
+    .row {
+      display: flex;
+      gap: 8px;
+    }
+    .row .field { flex: 1; }
+    button#submit-btn {
+      width: 100%;
+      padding: 10px;
+      background: linear-gradient(135deg, #ff6b00, #ff4500);
+      border: none;
+      border-radius: 8px;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 6px;
+      letter-spacing: 0.03em;
+      transition: opacity 0.15s;
+    }
+    button#submit-btn:hover { opacity: 0.85; }
+    button#submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    #message {
+      margin-top: 8px;
+      font-size: 12px;
+      padding: 6px 10px;
+      border-radius: 6px;
+      display: none;
+    }
+    #message.success { background: rgba(34,197,94,0.15); color: #22c55e; border: 1px solid rgba(34,197,94,0.3); display: block; }
+    #message.error   { background: rgba(239,68,68,0.12);  color: #ef4444; border: 1px solid rgba(239,68,68,0.25); display: block; }
+  </style>
+</head>
+<body>
+  <header>
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ff8c44" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="7" y="2" width="7" height="4" rx="1"/>
+      <line x1="10.5" y1="6" x2="10.5" y2="11"/>
+      <path d="M6 18V13h12v5"/>
+      <path d="M3 18h18v2a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-2z"/>
+      <path d="M18 13l3-2"/>
+    </svg>
+    <h1>Quick Forge</h1>
+  </header>
+
+  <form id="qf-form">
+    <div class="field">
+      <label for="qf-title">Quest Title *</label>
+      <input type="text" id="qf-title" placeholder="What needs to be done?" maxlength="120" required autofocus />
+    </div>
+
+    <div class="field">
+      <label for="qf-desc">Description</label>
+      <textarea id="qf-desc" placeholder="Details…" rows="3" maxlength="500"></textarea>
+    </div>
+
+    <div class="row">
+      <div class="field">
+        <label for="qf-priority">Priority</label>
+        <select id="qf-priority">
+          <option value="low">Low</option>
+          <option value="medium" selected>Medium</option>
+          <option value="high">High</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="qf-recurrence">Recurrence</label>
+        <select id="qf-recurrence">
+          <option value="">None</option>
+          <option value="daily">Daily</option>
+          <option value="weekly">Weekly</option>
+          <option value="monthly">Monthly</option>
+        </select>
+      </div>
+    </div>
+
+    <button type="submit" id="submit-btn">⚒ Forge Quest</button>
+  </form>
+
+  <div id="message"></div>
+
+  <script>
+    const DEFAULT_SERVER = 'http://187.77.139.247:3001';
+
+    function loadConfig() {
+      return {
+        API_BASE: localStorage.getItem('cfg_server') || '',
+        API_KEY:  localStorage.getItem('cfg_apikey') || '',
+      };
+    }
+
+    const form     = document.getElementById('qf-form');
+    const submitBtn = document.getElementById('submit-btn');
+    const msgEl    = document.getElementById('message');
+
+    function showMsg(text, isError = false) {
+      msgEl.textContent = text;
+      msgEl.className = isError ? 'error' : 'success';
+      setTimeout(() => { msgEl.className = ''; msgEl.textContent = ''; }, 3500);
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const { API_BASE, API_KEY } = loadConfig();
+      const base = API_BASE || DEFAULT_SERVER;
+      const title      = document.getElementById('qf-title').value.trim();
+      const description = document.getElementById('qf-desc').value.trim();
+      const priority   = document.getElementById('qf-priority').value;
+      const recurrence = document.getElementById('qf-recurrence').value || undefined;
+
+      if (!title) return;
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Forging…';
+
+      try {
+        const resp = await fetch(`${base}/api/quest`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'X-API-Key': API_KEY },
+          body: JSON.stringify({ title, description, priority, recurrence, createdBy: 'leon', type: 'development' }),
+        });
+
+        if (resp.ok) {
+          showMsg('Quest forged! ⚒');
+          form.reset();
+          document.getElementById('qf-priority').value = 'medium';
+          // Notify main process
+          try { const { ipcRenderer } = require('electron'); ipcRenderer.invoke('quest-created'); } catch (_) {}
+        } else {
+          const err = await resp.json().catch(() => ({}));
+          showMsg(`Error: ${err.error || resp.statusText}`, true);
+        }
+      } catch (err) {
+        showMsg(`Network error: ${err.message}`, true);
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = '⚒ Forge Quest';
+      }
+    });
+  </script>
+</body>
+</html>
