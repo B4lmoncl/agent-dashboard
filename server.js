@@ -234,6 +234,15 @@ const ACHIEVEMENT_CATALOGUE = [
   { id: 'lightning',    name: 'Lightning Hands',      icon: '⚡', desc: 'Complete 3 quests in one day',     category: 'speed',     trigger: (u) => (u._todayCount || 0) >= 3  },
   // Variety
   { id: 'all_trades',   name: 'Jack of All Trades',   icon: '🎯', desc: 'Complete all quest types',         category: 'variety',   trigger: (u) => (u._completedTypes || new Set()).size >= 5 },
+  // Boss Battles
+  { id: 'boss_slayer',  name: 'Boss Slayer',          icon: '🐉', desc: 'Defeat your first Boss Battle',    category: 'boss',      trigger: (u) => (u._bossDefeated || false) },
+  // Companions
+  { id: 'ember_sprite', name: 'Ember Sprite',         icon: '🔮', desc: 'Complete 10 development quests',   category: 'companion', trigger: (u) => (u._devCount || 0) >= 10 },
+  { id: 'lore_owl',     name: 'Lore Owl',             icon: '🦉', desc: 'Complete 5 learning quests',       category: 'companion', trigger: (u) => (u._learningCount || 0) >= 5 },
+  { id: 'gear_golem',   name: 'Gear Golem',           icon: '🤖', desc: 'Reach Knight level (300 XP)',       category: 'companion', trigger: (u) => (u.xp || 0) >= 300 },
+  // Challenges
+  { id: 'challenge_coder',  name: 'Code Sprinter',    icon: '💻', desc: 'Complete the 30-Day Code Sprint',  category: 'challenge', trigger: (u) => (u._challengesCompleted || []).includes('code_sprint') },
+  { id: 'challenge_learner',name: 'Marathon Learner', icon: '📖', desc: 'Complete the Learning Marathon',   category: 'challenge', trigger: (u) => (u._challengesCompleted || []).includes('learning_marathon') },
 ];
 
 function checkAndAwardAchievements(userId) {
@@ -311,7 +320,11 @@ function onQuestCompletedByUser(userId, quest) {
   const xpMulti = getXpMultiplier(userId);
   const gear = getUserGear(userId);
   const gearBonus = 1 + (gear.xpBonus || 0) / 100;
-  u.xp = (u.xp || 0) + Math.round(xpBase * xpMulti * gearBonus);
+  // Companion XP buff: +2% per unlocked companion
+  const companionIds = ['ember_sprite', 'lore_owl', 'gear_golem'];
+  const earnedIds = new Set((u.earnedAchievements || []).map(a => a.id));
+  const companionBonus = 1 + 0.02 * companionIds.filter(id => earnedIds.has(id)).length;
+  u.xp = (u.xp || 0) + Math.round(xpBase * xpMulti * gearBonus * companionBonus);
   updateUserStreak(userId);
   awardUserGold(userId, quest.priority, u.streakDays);
   updateUserForgeTemp(userId, quest.priority);
@@ -325,9 +338,22 @@ function onQuestCompletedByUser(userId, quest) {
     u._allCompletedTypes.push(quest.type || 'development');
   }
   u._completedTypes = new Set(u._allCompletedTypes);
+  // Track per-type counts for companions
+  u._devCount = (u._devCount || 0) + ((quest.type === 'development' || !quest.type) ? 1 : 0);
+  u._learningCount = (u._learningCount || 0) + (quest.type === 'learning' ? 1 : 0);
+  // Check boss parent — if all sub-quests complete, mark boss defeated
+  if (quest.parentQuestId) {
+    const parent = quests.find(q => q.id === quest.parentQuestId);
+    if (parent && parent.type === 'boss') {
+      const children = quests.filter(q => q.parentQuestId === parent.id);
+      const allDone = children.every(c => c.status === 'completed' || c.id === quest.id);
+      if (allDone) u._bossDefeated = true;
+    }
+  }
   const newAchs = checkAndAwardAchievements(userId);
   delete u._todayCount;
   delete u._completedTypes;
+  delete u._bossDefeated;
   saveUsers();
   return newAchs;
 }
@@ -1727,6 +1753,101 @@ app.post('/api/shop/buy', requireApiKey, (req, res) => {
   saveUsers();
   console.log(`[shop] ${uid} bought "${item.name}" for ${item.cost} gold`);
   res.json({ ok: true, item, remainingGold: u.gold });
+});
+
+// ─── Forge Challenges ────────────────────────────────────────────────────────
+const FORGE_CHALLENGES = [
+  {
+    id: 'code_sprint',
+    name: '30-Day Code Sprint',
+    icon: '💻',
+    desc: 'Write code every day for 30 days. Daily development quest auto-created.',
+    quests: [
+      { title: 'Code Sprint Day', type: 'development', recurrence: 'daily', priority: 'medium' },
+    ],
+    achievement: 'challenge_coder',
+  },
+  {
+    id: 'learning_marathon',
+    name: 'Learning Marathon',
+    icon: '📖',
+    desc: '4 weeks of focused learning. Weekly learning quest auto-created.',
+    quests: [
+      { title: 'Learning Marathon Session', type: 'learning', recurrence: 'weekly', priority: 'medium' },
+    ],
+    achievement: 'challenge_learner',
+  },
+  {
+    id: 'clean_slate',
+    name: 'Clean Slate',
+    icon: '✨',
+    desc: 'Daily personal quest for 2 weeks. Build positive habits.',
+    quests: [
+      { title: 'Clean Slate Daily Habit', type: 'personal', recurrence: 'daily', priority: 'low' },
+    ],
+    achievement: null,
+  },
+];
+
+// GET /api/challenges — list challenge templates
+app.get('/api/challenges', (req, res) => {
+  // For each challenge, include list of participants (users who joined)
+  const result = FORGE_CHALLENGES.map(c => ({
+    ...c,
+    participants: Object.values(users)
+      .filter(u => (u.joinedChallenges || []).includes(c.id))
+      .map(u => ({ id: u.id, name: u.name, avatar: u.avatar, color: u.color })),
+  }));
+  res.json(result);
+});
+
+// POST /api/challenges/join — join a challenge (auto-creates recurring quests)
+app.post('/api/challenges/join', requireApiKey, (req, res) => {
+  const { userId, challengeId } = req.body;
+  if (!userId || !challengeId) return res.status(400).json({ error: 'userId and challengeId required' });
+  const uid = userId.toLowerCase();
+  const u = users[uid];
+  if (!u) return res.status(404).json({ error: 'User not found' });
+  const challenge = FORGE_CHALLENGES.find(c => c.id === challengeId);
+  if (!challenge) return res.status(404).json({ error: 'Challenge not found' });
+  u.joinedChallenges = u.joinedChallenges || [];
+  if (u.joinedChallenges.includes(challengeId)) {
+    return res.status(409).json({ error: 'Already joined this challenge' });
+  }
+  u.joinedChallenges.push(challengeId);
+  // Auto-create the challenge quests for this user
+  const created = [];
+  for (const qTemplate of challenge.quests) {
+    const q = {
+      id: `quest-${Date.now()}-${Math.random().toString(36).slice(2,6)}`,
+      title: `${qTemplate.title} (${u.name})`,
+      description: `Part of challenge: ${challenge.name}`,
+      priority: qTemplate.priority || 'medium',
+      type: qTemplate.type || 'development',
+      categories: [],
+      product: null,
+      humanInputRequired: false,
+      createdBy: uid,
+      status: 'open',
+      createdAt: now(),
+      claimedBy: null,
+      completedBy: null,
+      completedAt: null,
+      parentQuestId: null,
+      recurrence: qTemplate.recurrence || null,
+      streak: 0,
+      lastCompletedAt: null,
+      proof: null,
+      checklist: null,
+      challengeId,
+    };
+    quests.push(q);
+    created.push(q);
+  }
+  saveUsers();
+  saveQuests();
+  console.log(`[challenge] ${uid} joined "${challenge.name}"`);
+  res.json({ ok: true, challenge: challenge.name, questsCreated: created.length });
 });
 
 // POST /api/forge/temp-decay — decay forgeTemp for users who missed recurring quests

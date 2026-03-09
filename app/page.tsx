@@ -28,7 +28,7 @@ interface Quest {
   title: string;
   description: string;
   priority: "low" | "medium" | "high";
-  type?: "development" | "personal" | "learning" | "social";
+  type?: "development" | "personal" | "learning" | "fitness" | "social" | "boss";
   category: string | null;
   categories: string[];
   product: string | null;
@@ -129,6 +129,7 @@ const typeConfig: Record<string, { label: string; icon: string; color: string; b
   learning:    { label: "Learn",    icon: "📚", color: "#3b82f6", bg: "rgba(59,130,246,0.1)",  border: "rgba(59,130,246,0.3)"  },
   fitness:     { label: "Fitness",  icon: "💪", color: "#f97316", bg: "rgba(249,115,22,0.1)",  border: "rgba(249,115,22,0.3)"  },
   social:      { label: "Social",   icon: "❤️", color: "#ec4899", bg: "rgba(236,72,153,0.1)",  border: "rgba(236,72,153,0.3)"  },
+  boss:        { label: "Boss",     icon: "🐉", color: "#ef4444", bg: "rgba(239,68,68,0.15)",  border: "rgba(239,68,68,0.5)"   },
 };
 
 async function fetchAgents(): Promise<Agent[]> {
@@ -964,6 +965,11 @@ export default function Dashboard() {
           </section>
         )}
 
+        {/* Forge Challenges */}
+        {dashView === "ops" && reviewApiKey && (
+          <ForgeChallengesPanel users={users} reviewApiKey={reviewApiKey} onRefresh={refresh} />
+        )}
+
         {/* AI Smart Suggestions */}
         {(dashView === "ops" || dashView === "leaderboard") && (
           <SmartSuggestionsPanel quests={quests} agents={agents} />
@@ -1152,6 +1158,114 @@ export default function Dashboard() {
       {/* Guide Modal */}
       {guideOpen && <GuideModal onClose={() => setGuideOpen(false)} />}
     </div>
+  );
+}
+
+// ─── Forge Challenges Panel ──────────────────────────────────────────────────
+
+interface ForgeChallengeTemplate {
+  id: string;
+  name: string;
+  icon: string;
+  desc: string;
+  participants: { id: string; name: string; avatar: string; color: string }[];
+}
+
+function ForgeChallengesPanel({ users, reviewApiKey, onRefresh }: {
+  users: User[];
+  reviewApiKey: string;
+  onRefresh: () => void;
+}) {
+  const [challenges, setChallenges] = useState<ForgeChallengeTemplate[]>([]);
+  const [joining, setJoining] = useState<string | null>(null);
+  const [joinUserId, setJoinUserId] = useState<string>(() => users[0]?.id ?? "");
+
+  useEffect(() => {
+    fetch("/api/challenges").then(r => r.ok ? r.json() : []).then(setChallenges).catch(() => {});
+  }, [users]);
+
+  const handleJoin = async (challengeId: string) => {
+    if (!joinUserId) return;
+    setJoining(challengeId);
+    try {
+      await fetch("/api/challenges/join", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "X-API-Key": reviewApiKey },
+        body: JSON.stringify({ userId: joinUserId, challengeId }),
+      });
+      const updated = await fetch("/api/challenges").then(r => r.ok ? r.json() : challenges);
+      setChallenges(updated);
+      onRefresh();
+    } catch { /* ignore */ } finally {
+      setJoining(null);
+    }
+  };
+
+  if (challenges.length === 0) return null;
+
+  return (
+    <section className="mb-6">
+      <div className="flex items-center gap-2 mb-3">
+        <h2 className="text-xs font-semibold uppercase tracking-widest" style={{ color: "#f97316" }}>
+          ⚡ Forge Challenges
+        </h2>
+        <span className="text-xs px-1.5 py-0.5 rounded font-mono" style={{ background: "rgba(249,115,22,0.12)", color: "#f97316", border: "1px solid rgba(249,115,22,0.3)" }}>
+          {challenges.length}
+        </span>
+        {users.length > 1 && (
+          <select
+            value={joinUserId}
+            onChange={e => setJoinUserId(e.target.value)}
+            className="ml-auto text-xs px-2 py-0.5 rounded"
+            style={{ background: "#1a1a1a", border: "1px solid rgba(255,255,255,0.1)", color: "#e8e8e8", outline: "none" }}
+          >
+            {users.map(u => <option key={u.id} value={u.id}>{u.name}</option>)}
+          </select>
+        )}
+      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        {challenges.map(c => {
+          const joined = users.find(u => u.id === joinUserId) && c.participants.some(p => p.id === joinUserId);
+          return (
+            <div
+              key={c.id}
+              className="rounded-xl p-4"
+              style={{ background: joined ? "rgba(249,115,22,0.08)" : "#252525", border: `1px solid ${joined ? "rgba(249,115,22,0.4)" : "rgba(255,255,255,0.07)"}` }}
+            >
+              <div className="flex items-start gap-3 mb-2">
+                <span className="text-2xl flex-shrink-0">{c.icon}</span>
+                <div className="flex-1 min-w-0">
+                  <p className="text-xs font-bold" style={{ color: "#f0f0f0" }}>{c.name}</p>
+                  <p className="text-xs mt-0.5 leading-relaxed" style={{ color: "rgba(255,255,255,0.4)" }}>{c.desc}</p>
+                </div>
+              </div>
+              {c.participants.length > 0 && (
+                <div className="flex items-center gap-1 mb-2 flex-wrap">
+                  {c.participants.map(p => (
+                    <span key={p.id} className="text-xs px-1.5 py-0.5 rounded" style={{ background: `${p.color}20`, color: p.color, border: `1px solid ${p.color}40` }}>
+                      {p.name}
+                    </span>
+                  ))}
+                </div>
+              )}
+              <button
+                onClick={() => handleJoin(c.id)}
+                disabled={!!joined || joining === c.id}
+                className="w-full text-xs py-1.5 rounded-lg font-semibold"
+                style={{
+                  background: joined ? "rgba(34,197,94,0.12)" : joining === c.id ? "rgba(255,255,255,0.04)" : "rgba(249,115,22,0.15)",
+                  color: joined ? "#22c55e" : joining === c.id ? "rgba(255,255,255,0.3)" : "#f97316",
+                  border: `1px solid ${joined ? "rgba(34,197,94,0.3)" : "rgba(249,115,22,0.35)"}`,
+                  cursor: joined ? "default" : "pointer",
+                }}
+              >
+                {joined ? "✓ Joined" : joining === c.id ? "Joining…" : "⚡ Join Challenge"}
+              </button>
+            </div>
+          );
+        })}
+      </div>
+    </section>
   );
 }
 
@@ -1647,32 +1761,59 @@ function EpicQuestCard({ quest, selected, onToggle }: { quest: Quest; selected?:
                 {expanded ? "▲" : "▼"}
               </span>
             </div>
-            {/* Progress bar */}
+            {/* Progress bar / Boss HP bar */}
             {progress && progress.total > 0 && (
               <div className="mt-2">
-                <div className="flex items-center justify-between mb-1">
-                  <span className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>
-                    {progress.completed}/{progress.total} sub-quests
-                  </span>
-                  <span className="text-xs font-mono" style={{ color: progressPct === 100 ? "#22c55e" : "rgba(255,165,0,0.7)" }}>
-                    {Math.round(progressPct)}%
-                  </span>
-                </div>
-                <div className="w-full rounded-full" style={{ height: 4, background: "rgba(255,255,255,0.06)" }}>
-                  <div
-                    className="rounded-full"
-                    style={{
-                      height: 4,
-                      width: `${progressPct}%`,
-                      background: progressPct === 0
-                        ? "#ef4444"
-                        : progressPct === 100
-                          ? "#22c55e"
-                          : `linear-gradient(90deg, #ef4444 0%, #f59e0b ${Math.round(progressPct * 0.8)}%, #22c55e 100%)`,
-                      transition: "width 0.4s ease",
-                    }}
-                  />
-                </div>
+                {quest.type === "boss" ? (
+                  <>
+                    <div className="flex items-center justify-between mb-1">
+                      <span className="text-xs font-semibold" style={{ color: "#ef4444" }}>
+                        🐉 Boss HP
+                      </span>
+                      <span className="text-xs font-mono" style={{ color: progressPct === 100 ? "#22c55e" : "#ef4444" }}>
+                        {progressPct === 100 ? "DEFEATED!" : `${Math.round(100 - progressPct)}% HP`}
+                      </span>
+                    </div>
+                    <div className="w-full rounded-full" style={{ height: 6, background: "rgba(255,255,255,0.06)" }}>
+                      <div
+                        className="rounded-full transition-all duration-700"
+                        style={{
+                          height: 6,
+                          width: `${Math.max(0, 100 - progressPct)}%`,
+                          background: progressPct >= 70 ? "#22c55e" : progressPct >= 40 ? "#f59e0b" : "linear-gradient(90deg, #ef4444, #ff6b00)",
+                          boxShadow: progressPct < 40 ? "0 0 8px rgba(239,68,68,0.6)" : "none",
+                        }}
+                      />
+                    </div>
+                    <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.3)" }}>{progress.completed}/{progress.total} sub-quests dealt damage</p>
+                  </>
+                ) : (
+                  <>
+                    <div className="flex items-center justify-between mb-1">
+                      <span className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>
+                        {progress.completed}/{progress.total} sub-quests
+                      </span>
+                      <span className="text-xs font-mono" style={{ color: progressPct === 100 ? "#22c55e" : "rgba(255,165,0,0.7)" }}>
+                        {Math.round(progressPct)}%
+                      </span>
+                    </div>
+                    <div className="w-full rounded-full" style={{ height: 4, background: "rgba(255,255,255,0.06)" }}>
+                      <div
+                        className="rounded-full"
+                        style={{
+                          height: 4,
+                          width: `${progressPct}%`,
+                          background: progressPct === 0
+                            ? "#ef4444"
+                            : progressPct === 100
+                              ? "#22c55e"
+                              : `linear-gradient(90deg, #ef4444 0%, #f59e0b ${Math.round(progressPct * 0.8)}%, #22c55e 100%)`,
+                          transition: "width 0.4s ease",
+                        }}
+                      />
+                    </div>
+                  </>
+                )}
               </div>
             )}
             <div className="flex items-center gap-1.5 mt-1.5 flex-wrap">
@@ -1844,10 +1985,38 @@ function UserCard({ user, onShopOpen }: { user: User; onShopOpen?: (userId: stri
         );
       })()}
 
+      {/* Companions */}
+      {(() => {
+        const COMPANION_IDS = ["ember_sprite", "lore_owl", "gear_golem"];
+        const COMPANION_META: Record<string, { icon: string; name: string }> = {
+          ember_sprite: { icon: "🔮", name: "Ember Sprite" },
+          lore_owl:     { icon: "🦉", name: "Lore Owl" },
+          gear_golem:   { icon: "🤖", name: "Gear Golem" },
+        };
+        const companions = achs.filter(a => COMPANION_IDS.includes(a.id));
+        if (companions.length === 0) return null;
+        return (
+          <div className="mt-2 flex items-center gap-1.5">
+            <span className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>Companions:</span>
+            {companions.map(c => (
+              <span
+                key={c.id}
+                className="text-sm"
+                title={`${COMPANION_META[c.id]?.name ?? c.name} (+2% XP)`}
+                style={{ cursor: "default" }}
+              >
+                {COMPANION_META[c.id]?.icon ?? c.icon}
+              </span>
+            ))}
+            <span className="text-xs ml-auto" style={{ color: "rgba(99,102,241,0.5)" }}>+{companions.length * 2}% XP</span>
+          </div>
+        );
+      })()}
+
       {/* Achievement badges */}
       {achs.length > 0 && (
         <div className="flex flex-wrap gap-1 mt-2">
-          {achs.slice(-6).map(a => (
+          {achs.filter(a => !["ember_sprite","lore_owl","gear_golem"].includes(a.id)).slice(-6).map(a => (
             <span
               key={a.id}
               className="text-sm"
