@@ -13,6 +13,8 @@ interface Agent {
   questsCompleted?: number;
   revenue: number;
   xp?: number;
+  gold?: number;
+  streakDays?: number;
   health: "ok" | "needs_checkin" | "broken" | "stale";
   lastUpdate: string | null;
   role?: string;
@@ -220,7 +222,18 @@ export default function AgentCard({ agent, activeQuests = [], isWide = false }: 
         </div>
         <div className="flex-1 min-w-0">
           <div className="flex items-center justify-between gap-2">
-            <h3 className="font-semibold text-sm truncate" style={{ color: "#f0f0f0" }}>{agent.name}</h3>
+            <div className="flex items-center gap-1.5 min-w-0">
+              <h3 className="font-semibold text-sm truncate" style={{ color: "#f0f0f0" }}>{agent.name}</h3>
+              {(agent.streakDays ?? 0) > 0 && (
+                <span
+                  className="text-xs font-bold flex-shrink-0"
+                  style={{ color: (agent.streakDays ?? 0) >= 30 ? "#ef4444" : (agent.streakDays ?? 0) >= 7 ? "#f59e0b" : "#fb923c" }}
+                  title={`${agent.streakDays} day streak`}
+                >
+                  🔥{agent.streakDays}
+                </span>
+              )}
+            </div>
             <div
               className="flex items-center gap-1.5 flex-shrink-0 px-2 py-0.5 rounded-full text-xs font-medium"
               style={{ background: `${st.dot}15`, border: `1px solid ${st.dot}40`, color: st.color }}
@@ -263,6 +276,14 @@ export default function AgentCard({ agent, activeQuests = [], isWide = false }: 
           highlightColor="#22c55e"
           shimmer={shimmerRevenue}
         />
+        {(agent.gold ?? 0) > 0 && (
+          <MetricRow
+            label="Gold"
+            value={`🪙 ${agent.gold}`}
+            highlight={true}
+            highlightColor="#f59e0b"
+          />
+        )}
       </div>
 
       {/* Health badge */}
@@ -351,10 +372,10 @@ function MetricRow({
   shimmer?: boolean;
 }) {
   return (
-    <div className="flex items-center justify-between">
-      <span className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>{label}</span>
+    <div className="flex items-center justify-between gap-2">
+      <span className="text-xs flex-1 min-w-0 truncate" style={{ color: "rgba(255,255,255,0.35)" }}>{label}</span>
       <span
-        className={`text-xs font-medium font-mono${shimmer ? " shimmer" : ""}`}
+        className={`text-xs font-medium font-mono flex-shrink-0${shimmer ? " shimmer" : ""}`}
         style={{ color: highlight ? highlightColor : "rgba(255,255,255,0.7)" }}
       >
         {value}

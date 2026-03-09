@@ -126,10 +126,11 @@
         <div class="field">
           <label>Type <span class="optional">(optional)</span></label>
           <select id="quest-type" class="product-select">
-            <option value="development" selected>Development</option>
-            <option value="personal">Personal</option>
-            <option value="learning">Learning</option>
-            <option value="social">Social</option>
+            <option value="development" selected>⚙ Development</option>
+            <option value="personal">🏠 Personal</option>
+            <option value="learning">📚 Learning</option>
+            <option value="fitness">💪 Fitness</option>
+            <option value="social">❤️ Social</option>
           </select>
         </div>
 
@@ -183,6 +184,12 @@
             <option value="weekly" selected>Weekly</option>
             <option value="monthly">Monthly</option>
           </select>
+        </div>
+
+        <!-- Checklist — shown for recurring quests -->
+        <div id="checklist-section" class="field" style="display:none">
+          <label>Checklist <span class="optional">(one item per line)</span></label>
+          <textarea id="checklist-items" placeholder="e.g.&#10;Buy milk&#10;Clean kitchen&#10;Take out trash" rows="4" maxlength="1000"></textarea>
         </div>
 
         <label class="human-input-row">

@@ -216,12 +216,146 @@ function sanitizeAgent(agent) {
   return { ...safe, pendingCommands: (commands || []).filter(c => c.status === 'pending').length };
 }
 
-const XP_BY_PRIORITY = { high: 30, medium: 20, low: 10 };
+const XP_BY_PRIORITY  = { high: 30, medium: 20, low: 10 };
+const GOLD_BY_PRIORITY = { high: 50, medium: 25, low: 10 };
+const TEMP_BY_PRIORITY = { high: 15, medium: 10, low: 5 };
+
+// ─── Achievements catalogue ─────────────────────────────────────────────────
+const ACHIEVEMENT_CATALOGUE = [
+  // Milestones
+  { id: 'first_quest',  name: 'First Quest',        icon: '⚔',  desc: 'Complete your first quest',        category: 'milestone', trigger: (u) => (u.questsCompleted || 0) >= 1   },
+  { id: 'apprentice',   name: 'Apprentice',           icon: '📜', desc: 'Complete 10 quests',               category: 'milestone', trigger: (u) => (u.questsCompleted || 0) >= 10  },
+  { id: 'knight',       name: 'Knight',               icon: '🛡',  desc: 'Complete 50 quests',              category: 'milestone', trigger: (u) => (u.questsCompleted || 0) >= 50  },
+  { id: 'legend',       name: 'Legend',               icon: '👑', desc: 'Complete 100 quests',              category: 'milestone', trigger: (u) => (u.questsCompleted || 0) >= 100 },
+  // Streaks
+  { id: 'week_warrior', name: 'Week Warrior',         icon: '🔥', desc: '7-day quest streak',               category: 'streak',    trigger: (u) => (u.streakDays || 0) >= 7   },
+  { id: 'monthly_champ',name: 'Monthly Champion',     icon: '💎', desc: '30-day quest streak',              category: 'streak',    trigger: (u) => (u.streakDays || 0) >= 30  },
+  // Speed
+  { id: 'lightning',    name: 'Lightning Hands',      icon: '⚡', desc: 'Complete 3 quests in one day',     category: 'speed',     trigger: (u) => (u._todayCount || 0) >= 3  },
+  // Variety
+  { id: 'all_trades',   name: 'Jack of All Trades',   icon: '🎯', desc: 'Complete all quest types',         category: 'variety',   trigger: (u) => (u._completedTypes || new Set()).size >= 5 },
+];
+
+function checkAndAwardAchievements(userId) {
+  const u = users[userId];
+  if (!u) return [];
+  u.earnedAchievements = u.earnedAchievements || [];
+  const earned = new Set(u.earnedAchievements.map(a => a.id));
+  const newOnes = [];
+  for (const ach of ACHIEVEMENT_CATALOGUE) {
+    if (!earned.has(ach.id) && ach.trigger(u)) {
+      const entry = { id: ach.id, name: ach.name, icon: ach.icon, desc: ach.desc, category: ach.category, earnedAt: now() };
+      u.earnedAchievements.push(entry);
+      newOnes.push(entry);
+    }
+  }
+  return newOnes;
+}
+
+// Today date string YYYY-MM-DD
+function todayStr() { return new Date().toISOString().slice(0, 10); }
+
+function updateUserStreak(userId) {
+  const u = users[userId];
+  if (!u) return;
+  const today = todayStr();
+  if (u.streakLastDate === today) return; // already counted today
+  const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
+  if (u.streakLastDate === yesterday) {
+    u.streakDays = (u.streakDays || 0) + 1;
+  } else {
+    u.streakDays = 1;
+  }
+  u.streakLastDate = today;
+}
+
+function awardUserGold(userId, priority, streakDays) {
+  const u = users[userId];
+  if (!u) return;
+  const base = GOLD_BY_PRIORITY[priority] || 10;
+  const multiplier = Math.min(1 + (streakDays || 0) * 0.1, 3);
+  u.gold = (u.gold || 0) + Math.round(base * multiplier);
+}
+
+function updateUserForgeTemp(userId, priority) {
+  const u = users[userId];
+  if (!u) return;
+  const recovery = TEMP_BY_PRIORITY[priority] || 5;
+  u.forgeTemp = Math.min(100, (u.forgeTemp ?? 100) + recovery);
+}
+
+function getXpMultiplier(userId) {
+  const u = users[userId];
+  if (!u) return 1;
+  const temp = u.forgeTemp ?? 100;
+  return temp === 0 ? 0.5 : 1;
+}
+
+// Track today's quest completions per user (in-memory, resets on restart)
+const todayCompletions = {}; // userId → { date, count, types: Set }
+
+function recordUserCompletion(userId, questType) {
+  const today = todayStr();
+  if (!todayCompletions[userId] || todayCompletions[userId].date !== today) {
+    todayCompletions[userId] = { date: today, count: 0, types: new Set() };
+  }
+  todayCompletions[userId].count++;
+  todayCompletions[userId].types.add(questType || 'development');
+}
+
+function onQuestCompletedByUser(userId, quest) {
+  const u = users[userId];
+  if (!u) return [];
+  u.questsCompleted = (u.questsCompleted || 0) + 1;
+  const xpBase = XP_BY_PRIORITY[quest.priority] || 10;
+  const xpMulti = getXpMultiplier(userId);
+  u.xp = (u.xp || 0) + Math.round(xpBase * xpMulti);
+  updateUserStreak(userId);
+  awardUserGold(userId, quest.priority, u.streakDays);
+  updateUserForgeTemp(userId, quest.priority);
+  recordUserCompletion(userId, quest.type);
+  // Update temp _todayCount and _completedTypes for achievement checks
+  const tc = todayCompletions[userId];
+  u._todayCount = tc ? tc.count : 0;
+  // accumulate completed types across all time
+  u._allCompletedTypes = u._allCompletedTypes || [];
+  if (!(u._allCompletedTypes.includes(quest.type || 'development'))) {
+    u._allCompletedTypes.push(quest.type || 'development');
+  }
+  u._completedTypes = new Set(u._allCompletedTypes);
+  const newAchs = checkAndAwardAchievements(userId);
+  delete u._todayCount;
+  delete u._completedTypes;
+  saveUsers();
+  return newAchs;
+}
 
 function awardXP(agentKey, priority) {
   if (!agentKey || !store.agents[agentKey]) return;
   const xp = XP_BY_PRIORITY[priority] || 10;
   store.agents[agentKey].xp = (store.agents[agentKey].xp || 0) + xp;
+}
+
+function updateAgentStreak(agentKey) {
+  const agent = store.agents[agentKey];
+  if (!agent) return;
+  const today = todayStr();
+  if (agent.streakLastDate === today) return;
+  const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
+  if (agent.streakLastDate === yesterday) {
+    agent.streakDays = (agent.streakDays || 0) + 1;
+  } else {
+    agent.streakDays = 1;
+  }
+  agent.streakLastDate = today;
+}
+
+function awardAgentGold(agentKey, priority, streakDays) {
+  const agent = store.agents[agentKey];
+  if (!agent) return;
+  const base = GOLD_BY_PRIORITY[priority] || 10;
+  const multiplier = Math.min(1 + (streakDays || 0) * 0.1, 3);
+  agent.gold = (agent.gold || 0) + Math.round(base * multiplier);
 }
 
 // ─── Agent API ─────────────────────────────────────────────────────────────────
@@ -391,7 +525,7 @@ app.post('/api/quest', requireApiKey, (req, res) => {
   const validPriorities = ['low', 'medium', 'high'];
   const validCategories = ['Coding', 'Research', 'Content', 'Sales', 'Infrastructure', 'Bug Fix', 'Feature'];
   const validProducts = ['Dashboard', 'Companion App', 'Infrastructure', 'Other'];
-  const validTypes = ['development', 'personal', 'learning', 'social'];
+  const validTypes = ['development', 'personal', 'learning', 'social', 'fitness'];
   const validRecurrences = ['daily', 'weekly', 'monthly'];
   if (priority && !validPriorities.includes(priority)) {
     return res.status(400).json({ error: `Invalid priority. Use: ${validPriorities.join(', ')}` });
@@ -454,6 +588,36 @@ app.post('/api/quest', requireApiKey, (req, res) => {
   res.json({ ok: true, quest });
 });
 
+// PATCH /api/quest/:id/checklist — update checklist items on a quest
+// Body: { items: [{ text: string, done: boolean }] }
+app.patch('/api/quest/:id/checklist', requireApiKey, (req, res) => {
+  const quest = quests.find(q => q.id === req.params.id);
+  if (!quest) return res.status(404).json({ error: 'Quest not found' });
+  const { items } = req.body;
+  if (!Array.isArray(items)) return res.status(400).json({ error: 'items must be an array' });
+  quest.checklist = items.map(i => ({ text: String(i.text || ''), done: !!i.done }));
+  saveQuests();
+  res.json({ ok: true, checklist: quest.checklist });
+});
+
+// POST /api/quests/household-rotate — rotate auto_assign for recurring household quests
+// Cycles through the provided assignees list and assigns the next person
+app.post('/api/quests/household-rotate', requireApiKey, (req, res) => {
+  const { assignees } = req.body; // e.g. ["leon", "user2"]
+  if (!Array.isArray(assignees) || assignees.length === 0) {
+    return res.status(400).json({ error: 'assignees must be a non-empty array' });
+  }
+  const household = quests.filter(q => q.recurrence && q.status === 'open' && !q.claimedBy);
+  let rotated = 0;
+  household.forEach((q, i) => {
+    q.claimedBy = assignees[i % assignees.length];
+    q.status = 'in_progress';
+    rotated++;
+  });
+  if (rotated > 0) saveQuests();
+  res.json({ ok: true, rotated });
+});
+
 // POST /api/quest/:id/claim — agent claims a quest
 app.post('/api/quest/:id/claim', requireApiKey, (req, res) => {
   const quest = quests.find(q => q.id === req.params.id);
@@ -483,15 +647,20 @@ app.post('/api/quest/:id/complete', requireApiKey, (req, res) => {
     quest.lastCompletedAt = now();
   }
   saveQuests();
-  // Increment questsCompleted and award XP
   const agentKey = agentId.toLowerCase();
-  if (store.agents[agentKey]) {
+  let newAchievements = [];
+  // Award to user if exists, otherwise to agent
+  if (users[agentKey]) {
+    newAchievements = onQuestCompletedByUser(agentKey, quest);
+  } else if (store.agents[agentKey]) {
     store.agents[agentKey].questsCompleted = (store.agents[agentKey].questsCompleted || 0) + 1;
     awardXP(agentKey, quest.priority);
+    awardAgentGold(agentKey, quest.priority, store.agents[agentKey].streakDays);
+    updateAgentStreak(agentKey);
     saveData();
   }
   console.log(`[quest] ${quest.id} completed by ${agentId}`);
-  res.json({ ok: true, quest });
+  res.json({ ok: true, quest, newAchievements });
 });
 
 // POST /api/quest/:id/unclaim — agent unclaims a quest
@@ -600,12 +769,17 @@ app.patch('/api/quests/:id/complete', requireApiKey, (req, res) => {
   quest.completedAt = now();
   saveQuests();
   const agentKey2 = (completedBy || '').toLowerCase();
-  if (store.agents[agentKey2]) {
+  let newAchievements = [];
+  if (users[agentKey2]) {
+    newAchievements = onQuestCompletedByUser(agentKey2, quest);
+  } else if (store.agents[agentKey2]) {
     store.agents[agentKey2].questsCompleted = (store.agents[agentKey2].questsCompleted || 0) + 1;
     awardXP(agentKey2, quest.priority);
+    awardAgentGold(agentKey2, quest.priority, store.agents[agentKey2].streakDays);
+    updateAgentStreak(agentKey2);
     saveData();
   }
-  res.json({ success: true, message: 'Quest completed', quest });
+  res.json({ success: true, message: 'Quest completed', quest, newAchievements });
 });
 
 // POST /api/quests/bulk-update — update status of multiple quests at once
@@ -1382,6 +1556,15 @@ function loadUsers() {
   if (!users['leon']) {
     users['leon'] = { id: 'leon', name: 'Leon', avatar: 'L', color: '#f59e0b', xp: 0, questsCompleted: 0, achievements: [], createdAt: now() };
   }
+  // Init new fields for all users
+  for (const u of Object.values(users)) {
+    if (u.streakDays    === undefined) u.streakDays    = 0;
+    if (u.streakLastDate=== undefined) u.streakLastDate= null;
+    if (u.forgeTemp     === undefined) u.forgeTemp     = 100;
+    if (u.gold          === undefined) u.gold          = 0;
+    if (!u.earnedAchievements)         u.earnedAchievements = [];
+    if (!u._allCompletedTypes)         u._allCompletedTypes = [];
+  }
 }
 
 function saveUsers() {
@@ -1408,7 +1591,7 @@ app.post('/api/users/:id/register', requireApiKey, (req, res) => {
   const id = req.params.id.toLowerCase();
   const { name, avatar, color } = req.body;
   if (!users[id]) {
-    users[id] = { id, name: name || id, avatar: avatar || id[0].toUpperCase(), color: color || '#f59e0b', xp: 0, questsCompleted: 0, achievements: [], createdAt: now() };
+    users[id] = { id, name: name || id, avatar: avatar || id[0].toUpperCase(), color: color || '#f59e0b', xp: 0, questsCompleted: 0, achievements: [], earnedAchievements: [], streakDays: 0, streakLastDate: null, forgeTemp: 100, gold: 0, _allCompletedTypes: [], createdAt: now() };
   } else {
     if (name) users[id].name = name;
     if (avatar) users[id].avatar = avatar;
@@ -1430,6 +1613,81 @@ app.post('/api/users/:id/award-xp', requireApiKey, (req, res) => {
   }
   saveUsers();
   res.json({ ok: true, xp: users[id].xp });
+});
+
+// GET /api/streaks — get streak info for all users and agents
+app.get('/api/streaks', (req, res) => {
+  const userStreaks = Object.values(users).map(u => ({
+    id: u.id, name: u.name, type: 'user',
+    streakDays: u.streakDays || 0, streakLastDate: u.streakLastDate || null,
+  }));
+  const agentStreaks = Object.values(store.agents).map(a => ({
+    id: a.id, name: a.name, type: 'agent',
+    streakDays: a.streakDays || 0, streakLastDate: a.streakLastDate || null,
+  }));
+  res.json([...userStreaks, ...agentStreaks].sort((a, b) => b.streakDays - a.streakDays));
+});
+
+// GET /api/achievements — list all achievement definitions
+app.get('/api/achievements', (req, res) => {
+  res.json(ACHIEVEMENT_CATALOGUE.map(a => ({ id: a.id, name: a.name, icon: a.icon, desc: a.desc, category: a.category })));
+});
+
+// GET /api/users/:id/achievements — get earned achievements for a user
+app.get('/api/users/:id/achievements', (req, res) => {
+  const u = users[req.params.id.toLowerCase()];
+  if (!u) return res.status(404).json({ error: 'User not found' });
+  res.json(u.earnedAchievements || []);
+});
+
+// ─── Shop ────────────────────────────────────────────────────────────────────
+const SHOP_ITEMS = [
+  { id: 'gaming_1h',   name: '1h Gaming',      cost: 100, icon: '🎮', desc: '1 hour of guilt-free gaming' },
+  { id: 'snack_break', name: 'Snack Break',     cost: 25,  icon: '🍕', desc: 'Treat yourself to a snack' },
+  { id: 'day_off',     name: 'Day Off Quest',   cost: 500, icon: '🏖', desc: 'Skip one day of recurring quests' },
+  { id: 'movie_night', name: 'Movie Night',     cost: 150, icon: '🎬', desc: 'Evening off for a movie' },
+  { id: 'sleep_in',    name: 'Sleep In',        cost: 75,  icon: '😴', desc: 'Extra hour of sleep, guilt-free' },
+];
+
+// GET /api/shop — list available shop items
+app.get('/api/shop', (req, res) => {
+  res.json(SHOP_ITEMS);
+});
+
+// POST /api/shop/buy — purchase a reward
+app.post('/api/shop/buy', requireApiKey, (req, res) => {
+  const { userId, itemId } = req.body;
+  if (!userId || !itemId) return res.status(400).json({ error: 'userId and itemId are required' });
+  const uid = userId.toLowerCase();
+  const u = users[uid];
+  if (!u) return res.status(404).json({ error: 'User not found' });
+  const item = SHOP_ITEMS.find(i => i.id === itemId);
+  if (!item) return res.status(404).json({ error: 'Item not found' });
+  if ((u.gold || 0) < item.cost) return res.status(400).json({ error: `Insufficient gold. Need ${item.cost}, have ${u.gold || 0}` });
+  u.gold -= item.cost;
+  u.purchases = u.purchases || [];
+  u.purchases.push({ itemId: item.id, name: item.name, cost: item.cost, at: now() });
+  saveUsers();
+  console.log(`[shop] ${uid} bought "${item.name}" for ${item.cost} gold`);
+  res.json({ ok: true, item, remainingGold: u.gold });
+});
+
+// POST /api/forge/temp-decay — decay forgeTemp for users who missed recurring quests
+// Call this from a cron or trigger manually
+app.post('/api/forge/temp-decay', requireApiKey, (req, res) => {
+  const today = todayStr();
+  let decayed = 0;
+  for (const u of Object.values(users)) {
+    if (!u.streakLastDate || u.streakLastDate === today) continue;
+    const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
+    if (u.streakLastDate !== yesterday) {
+      // missed at least one day
+      u.forgeTemp = Math.max(0, (u.forgeTemp ?? 100) - 10);
+      decayed++;
+    }
+  }
+  if (decayed > 0) saveUsers();
+  res.json({ ok: true, decayed });
 });
 
 // Serve index.html for non-API routes (SPA fallback)

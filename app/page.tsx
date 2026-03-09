@@ -14,6 +14,9 @@ interface Agent {
   jobsCompleted: number;
   questsCompleted?: number;
   revenue: number;
+  xp?: number;
+  gold?: number;
+  streakDays?: number;
   health: "ok" | "needs_checkin" | "broken" | "stale";
   lastUpdate: string | null;
   role?: string;
@@ -46,6 +49,15 @@ interface Quest {
   checklist?: { text: string; done: boolean }[] | null;
 }
 
+interface EarnedAchievement {
+  id: string;
+  name: string;
+  icon: string;
+  desc: string;
+  category: string;
+  earnedAt: string;
+}
+
 interface User {
   id: string;
   name: string;
@@ -54,6 +66,11 @@ interface User {
   xp: number;
   questsCompleted: number;
   achievements?: { reason: string; xp: number; at: string }[];
+  earnedAchievements?: EarnedAchievement[];
+  streakDays?: number;
+  streakLastDate?: string | null;
+  forgeTemp?: number;
+  gold?: number;
   createdAt?: string;
 }
 
@@ -88,11 +105,12 @@ const productConfig: Record<string, { color: string; bg: string }> = {
   "Other":          { color: "#9ca3af", bg: "rgba(156,163,175,0.1)" },
 };
 
-const typeConfig: Record<string, { label: string; color: string; bg: string; border: string }> = {
-  development: { label: "Dev",      color: "#8b5cf6", bg: "rgba(139,92,246,0.1)",  border: "rgba(139,92,246,0.3)"  },
-  personal:    { label: "Personal", color: "#22c55e", bg: "rgba(34,197,94,0.1)",   border: "rgba(34,197,94,0.3)"   },
-  learning:    { label: "Learn",    color: "#3b82f6", bg: "rgba(59,130,246,0.1)",  border: "rgba(59,130,246,0.3)"  },
-  social:      { label: "Social",   color: "#ec4899", bg: "rgba(236,72,153,0.1)",  border: "rgba(236,72,153,0.3)"  },
+const typeConfig: Record<string, { label: string; icon: string; color: string; bg: string; border: string }> = {
+  development: { label: "Dev",      icon: "⚙",  color: "#8b5cf6", bg: "rgba(139,92,246,0.1)",  border: "rgba(139,92,246,0.3)"  },
+  personal:    { label: "Personal", icon: "🏠", color: "#22c55e", bg: "rgba(34,197,94,0.1)",   border: "rgba(34,197,94,0.3)"   },
+  learning:    { label: "Learn",    icon: "📚", color: "#3b82f6", bg: "rgba(59,130,246,0.1)",  border: "rgba(59,130,246,0.3)"  },
+  fitness:     { label: "Fitness",  icon: "💪", color: "#f97316", bg: "rgba(249,115,22,0.1)",  border: "rgba(249,115,22,0.3)"  },
+  social:      { label: "Social",   icon: "❤️", color: "#ec4899", bg: "rgba(236,72,153,0.1)",  border: "rgba(236,72,153,0.3)"  },
 };
 
 async function fetchAgents(): Promise<Agent[]> {
@@ -190,6 +208,8 @@ export default function Dashboard() {
   const [bulkLoading, setBulkLoading] = useState(false);
   const [typeFilter, setTypeFilter] = useState<string>("all");
   const [dashView, setDashView] = useState<"ops" | "campaign">("ops");
+  const [shopUserId, setShopUserId] = useState<string | null>(null);
+  const [toast, setToast] = useState<EarnedAchievement | null>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   // Particle system — white dust drifting upward
@@ -330,6 +350,19 @@ export default function Dashboard() {
       setBulkLoading(false);
     }
   }, [reviewApiKey, selectedIds, refresh]);
+
+  const handleShopBuy = useCallback(async (itemId: string) => {
+    const key = reviewApiKey;
+    if (!key || !shopUserId) return;
+    try {
+      const r = await fetch("/api/shop/buy", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "X-API-Key": key },
+        body: JSON.stringify({ userId: shopUserId, itemId }),
+      });
+      if (r.ok) { setShopUserId(null); await refresh(); }
+    } catch { /* ignore */ }
+  }, [reviewApiKey, shopUserId, refresh]);
 
   useEffect(() => {
     refresh();
@@ -523,7 +556,27 @@ export default function Dashboard() {
         )}
 
         {/* Agent Roster + Quest Board */}
-        {dashView === "ops" && <div className="flex flex-col lg:flex-row gap-6 items-start">
+        {dashView === "ops" && (
+          <div>
+
+          {/* User Cards (Household Gamification) */}
+          {users.length > 0 && (
+            <section className="mb-6">
+              <div className="flex items-center gap-3 mb-3">
+                <h2 className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.3)" }}>
+                  Players
+                </h2>
+                <span className="text-xs px-1.5 py-0.5 rounded font-mono" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.25)" }}>
+                  {users.length}
+                </span>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+                {users.map(u => <UserCard key={u.id} user={u} onShopOpen={reviewApiKey ? setShopUserId : undefined} />)}
+              </div>
+            </section>
+          )}
+
+          <div className="flex flex-col lg:flex-row gap-6 items-start">
 
           {/* Agent Roster */}
           <section className="flex-1 min-w-0">
@@ -580,23 +633,6 @@ export default function Dashboard() {
             )}
           </section>
 
-          {/* User Cards (Household Gamification) */}
-          {users.length > 0 && (
-            <section className="mb-6">
-              <div className="flex items-center gap-3 mb-3">
-                <h2 className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.3)" }}>
-                  Players
-                </h2>
-                <span className="text-xs px-1.5 py-0.5 rounded font-mono" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.25)" }}>
-                  {users.length}
-                </span>
-              </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
-                {users.map(u => <UserCard key={u.id} user={u} />)}
-              </div>
-            </section>
-          )}
-
           {/* Quest Board */}
           <aside className="w-full lg:w-80 flex-shrink-0">
             <div className="mb-3">
@@ -623,7 +659,7 @@ export default function Dashboard() {
               </div>
               {/* Type filter tabs */}
               <div className="flex gap-1 flex-wrap mb-2">
-                {(["all", "development", "personal", "learning", "social"] as const).map(t => {
+                {(["all", "development", "personal", "learning", "fitness", "social"] as const).map(t => {
                   const cfg = t === "all" ? null : typeConfig[t];
                   const isActive = typeFilter === t;
                   return (
@@ -637,7 +673,7 @@ export default function Dashboard() {
                         border: `1px solid ${isActive ? (cfg ? cfg.border : "rgba(255,255,255,0.2)") : "rgba(255,255,255,0.07)"}`,
                       }}
                     >
-                      {t === "all" ? "All" : cfg!.label}
+                      {t === "all" ? "All" : `${cfg!.icon} ${cfg!.label}`}
                     </button>
                   );
                 })}
@@ -684,7 +720,9 @@ export default function Dashboard() {
               )}
             </div>
           </aside>
-        </div>}
+          </div>
+          </div>
+        )}
 
         {/* Review Board — Agent Suggestions */}
         {quests.suggested.length > 0 && (
@@ -917,6 +955,24 @@ export default function Dashboard() {
           </div>
         </div>
       </footer>
+
+      {/* Shop Modal */}
+      {shopUserId && (() => {
+        const u = users.find(x => x.id === shopUserId);
+        if (!u) return null;
+        return (
+          <ShopModal
+            userId={u.id}
+            userName={u.name}
+            gold={u.gold ?? 0}
+            onClose={() => setShopUserId(null)}
+            onBuy={handleShopBuy}
+          />
+        );
+      })()}
+
+      {/* Achievement Toast */}
+      {toast && <AchievementToast achievement={toast} onClose={() => setToast(null)} />}
     </div>
   );
 }
@@ -1143,7 +1199,7 @@ function TypeBadge({ type }: { type?: string }) {
       className="text-xs px-1.5 py-0.5 rounded flex-shrink-0"
       style={{ color: cfg.color, background: cfg.bg, border: `1px solid ${cfg.border}` }}
     >
-      {cfg.label}
+      {cfg.icon} {cfg.label}
     </span>
   );
 }
@@ -1471,16 +1527,24 @@ function getUserXpProgress(xp: number) {
   return (xp - l.min) / (l.max - l.min + 1);
 }
 
-function UserCard({ user }: { user: User }) {
+function UserCard({ user, onShopOpen }: { user: User; onShopOpen?: (userId: string) => void }) {
   const xp = user.xp ?? 0;
   const lvl = getUserLevel(xp);
   const progress = getUserXpProgress(xp);
   const nextLvl = USER_LEVELS[USER_LEVELS.indexOf(lvl) + 1];
+  const streak = user.streakDays ?? 0;
+  const temp = user.forgeTemp ?? 100;
+  const gold = user.gold ?? 0;
+  const achs = user.earnedAchievements ?? [];
+  const tempColor = temp >= 60 ? "#22c55e" : temp >= 30 ? "#f59e0b" : "#ef4444";
+  const xpMalus = temp === 0;
+
   return (
     <div
       className="rounded-xl p-4"
       style={{ background: "#252525", border: `1px solid ${lvl.color}30`, boxShadow: `0 0 16px ${lvl.color}10` }}
     >
+      {/* Header */}
       <div className="flex items-center gap-3 mb-3">
         <div
           className="w-12 h-12 rounded-2xl flex items-center justify-center font-black text-lg flex-shrink-0"
@@ -1489,32 +1553,176 @@ function UserCard({ user }: { user: User }) {
           {user.avatar}
         </div>
         <div className="flex-1 min-w-0">
-          <p className="text-sm font-semibold" style={{ color: "#f0f0f0" }}>{user.name}</p>
+          <div className="flex items-center gap-2">
+            <p className="text-sm font-semibold" style={{ color: "#f0f0f0" }}>{user.name}</p>
+            {streak > 0 && (
+              <span
+                className="text-xs font-bold flex items-center gap-0.5"
+                style={{ color: streak >= 30 ? "#ef4444" : streak >= 7 ? "#f59e0b" : "#fb923c" }}
+                title={`${streak} day streak!`}
+              >
+                🔥{streak}
+              </span>
+            )}
+          </div>
           <p className="text-xs font-semibold" style={{ color: lvl.color }}>{lvl.name}</p>
         </div>
-        <span
-          className="text-xs px-1.5 py-0.5 rounded font-semibold"
-          style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.35)", border: "1px solid rgba(255,255,255,0.08)" }}
-        >
-          👤 User
-        </span>
+        {/* Gold + Shop */}
+        <div className="flex flex-col items-end gap-1">
+          <span className="text-xs font-mono font-bold" style={{ color: "#f59e0b" }} title="Gold">🪙 {gold}</span>
+          {onShopOpen && (
+            <button
+              onClick={() => onShopOpen(user.id)}
+              className="text-xs px-1.5 py-0.5 rounded"
+              style={{ background: "rgba(245,158,11,0.12)", color: "#f59e0b", border: "1px solid rgba(245,158,11,0.3)" }}
+            >
+              Shop
+            </button>
+          )}
+        </div>
       </div>
+
+      {/* Metrics */}
       <div className="space-y-1.5 mb-3">
         <div className="flex items-center justify-between">
-          <span className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>Quests Completed</span>
+          <span className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>Quests</span>
           <span className="text-xs font-mono font-medium" style={{ color: "#8b5cf6" }}>{user.questsCompleted ?? 0}</span>
         </div>
         <div className="flex items-center justify-between">
-          <span className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>XP</span>
-          <span className="text-xs font-mono font-medium" style={{ color: lvl.color }}>{xp} XP{nextLvl ? ` / ${nextLvl.min}` : " — MAX"}</span>
+          <span className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>XP{xpMalus ? " ⚠ −50%" : ""}</span>
+          <span className="text-xs font-mono font-medium" style={{ color: xpMalus ? "#ef4444" : lvl.color }}>{xp}{nextLvl ? ` / ${nextLvl.min}` : " MAX"}</span>
         </div>
       </div>
-      <div className="rounded-full overflow-hidden" style={{ height: 4, background: "rgba(255,255,255,0.07)" }}>
+
+      {/* XP Bar */}
+      <div className="rounded-full overflow-hidden mb-2" style={{ height: 4, background: "rgba(255,255,255,0.07)" }}>
         <div
           className="h-full rounded-full transition-all duration-700"
           style={{ width: `${Math.round(progress * 100)}%`, background: `linear-gradient(90deg, ${lvl.color}99, ${lvl.color})`, boxShadow: `0 0 6px ${lvl.color}80` }}
         />
       </div>
+
+      {/* Forge Temperature */}
+      <div className="mb-2">
+        <div className="flex items-center justify-between mb-1">
+          <span className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>
+            Forge Temp {temp < 30 ? "⚠ Cooling!" : ""}
+          </span>
+          <span className="text-xs font-mono" style={{ color: tempColor }}>{temp}%</span>
+        </div>
+        <div className="rounded-full overflow-hidden" style={{ height: 3, background: "rgba(255,255,255,0.07)" }}>
+          <div
+            className="h-full rounded-full transition-all duration-700"
+            style={{ width: `${temp}%`, background: `linear-gradient(90deg, ${tempColor}99, ${tempColor})`, boxShadow: `0 0 5px ${tempColor}60` }}
+          />
+        </div>
+      </div>
+
+      {/* Achievement badges */}
+      {achs.length > 0 && (
+        <div className="flex flex-wrap gap-1 mt-2">
+          {achs.slice(-6).map(a => (
+            <span
+              key={a.id}
+              className="text-sm"
+              title={`${a.name}: ${a.desc}`}
+              style={{ cursor: "default" }}
+            >
+              {a.icon}
+            </span>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ─── Shop Modal ───────────────────────────────────────────────────────────────
+interface ShopItem { id: string; name: string; cost: number; icon: string; desc: string; }
+
+function ShopModal({ userId, userName, gold, onClose, onBuy }: {
+  userId: string;
+  userName: string;
+  gold: number;
+  onClose: () => void;
+  onBuy: (itemId: string) => void;
+}) {
+  const ITEMS: ShopItem[] = [
+    { id: "gaming_1h",   name: "1h Gaming",    cost: 100, icon: "🎮", desc: "1 hour of guilt-free gaming" },
+    { id: "snack_break", name: "Snack Break",   cost: 25,  icon: "🍕", desc: "Treat yourself to a snack" },
+    { id: "day_off",     name: "Day Off Quest", cost: 500, icon: "🏖", desc: "Skip one day of recurring quests" },
+    { id: "movie_night", name: "Movie Night",   cost: 150, icon: "🎬", desc: "Evening off for a movie" },
+    { id: "sleep_in",    name: "Sleep In",      cost: 75,  icon: "😴", desc: "Extra hour of sleep, guilt-free" },
+  ];
+  return (
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center p-4"
+      style={{ background: "rgba(0,0,0,0.7)" }}
+      onClick={onClose}
+    >
+      <div
+        className="rounded-2xl p-5 w-full max-w-sm"
+        style={{ background: "#1e1e1e", border: "1px solid rgba(245,158,11,0.3)", boxShadow: "0 0 40px rgba(245,158,11,0.1)" }}
+        onClick={e => e.stopPropagation()}
+      >
+        <div className="flex items-center justify-between mb-4">
+          <div>
+            <h3 className="text-sm font-bold" style={{ color: "#f0f0f0" }}>⚒ Forge Shop</h3>
+            <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>{userName} · 🪙 {gold} gold</p>
+          </div>
+          <button onClick={onClose} style={{ color: "rgba(255,255,255,0.3)" }}>✕</button>
+        </div>
+        <div className="space-y-2">
+          {ITEMS.map(item => (
+            <div
+              key={item.id}
+              className="flex items-center gap-3 p-3 rounded-xl"
+              style={{ background: "#252525", border: "1px solid rgba(255,255,255,0.07)" }}
+            >
+              <span className="text-xl flex-shrink-0">{item.icon}</span>
+              <div className="flex-1 min-w-0">
+                <p className="text-xs font-semibold" style={{ color: "#f0f0f0" }}>{item.name}</p>
+                <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>{item.desc}</p>
+              </div>
+              <button
+                onClick={() => onBuy(item.id)}
+                disabled={gold < item.cost}
+                className="text-xs px-2.5 py-1 rounded-lg font-semibold flex-shrink-0"
+                style={{
+                  background: gold >= item.cost ? "rgba(245,158,11,0.2)" : "rgba(255,255,255,0.04)",
+                  color: gold >= item.cost ? "#f59e0b" : "rgba(255,255,255,0.2)",
+                  border: `1px solid ${gold >= item.cost ? "rgba(245,158,11,0.4)" : "rgba(255,255,255,0.08)"}`,
+                  cursor: gold >= item.cost ? "pointer" : "not-allowed",
+                }}
+              >
+                🪙 {item.cost}
+              </button>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ─── Achievement Toast ────────────────────────────────────────────────────────
+function AchievementToast({ achievement, onClose }: { achievement: EarnedAchievement; onClose: () => void }) {
+  useEffect(() => {
+    const t = setTimeout(onClose, 5000);
+    return () => clearTimeout(t);
+  }, [onClose]);
+  return (
+    <div
+      className="fixed bottom-20 right-6 z-50 rounded-xl px-4 py-3 flex items-center gap-3 shadow-2xl"
+      style={{ background: "#252525", border: "1px solid rgba(245,158,11,0.5)", boxShadow: "0 8px 32px rgba(245,158,11,0.2)", maxWidth: 300 }}
+    >
+      <span className="text-2xl flex-shrink-0">{achievement.icon}</span>
+      <div className="flex-1 min-w-0">
+        <p className="text-xs font-bold" style={{ color: "#f59e0b" }}>Achievement Unlocked!</p>
+        <p className="text-sm font-semibold" style={{ color: "#f0f0f0" }}>{achievement.name}</p>
+        <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>{achievement.desc}</p>
+      </div>
+      <button onClick={onClose} style={{ color: "rgba(255,255,255,0.3)" }}>✕</button>
     </div>
   );
 }
