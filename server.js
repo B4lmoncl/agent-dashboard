@@ -183,6 +183,8 @@ function loadQuests() {
           if (q.recurrence === undefined) q.recurrence = null;
           if (q.streak === undefined) q.streak = 0;
           if (q.lastCompletedAt === undefined) q.lastCompletedAt = null;
+          if (q.proof === undefined) q.proof = null;
+          if (q.checklist === undefined) q.checklist = null;
           return q;
         });
       }
@@ -384,7 +386,7 @@ app.get('/api/health', (req, res) => {
 
 // POST /api/quest — create a new quest
 app.post('/api/quest', requireApiKey, (req, res) => {
-  const { title, description, priority, category, categories, product, humanInputRequired, createdBy, type, parentQuestId, recurrence } = req.body;
+  const { title, description, priority, category, categories, product, humanInputRequired, createdBy, type, parentQuestId, recurrence, proof } = req.body;
   if (!title) return res.status(400).json({ error: 'title is required' });
   const validPriorities = ['low', 'medium', 'high'];
   const validCategories = ['Coding', 'Research', 'Content', 'Sales', 'Infrastructure', 'Bug Fix', 'Feature'];
@@ -443,6 +445,8 @@ app.post('/api/quest', requireApiKey, (req, res) => {
     recurrence: validRecurrences.includes(recurrence) ? recurrence : null,
     streak: 0,
     lastCompletedAt: null,
+    proof: proof || null,
+    checklist: null,
   };
   quests.push(quest);
   saveQuests();
@@ -556,16 +560,29 @@ app.post('/api/quest/:id/reject', requireApiKey, (req, res) => {
   res.json({ ok: true, quest });
 });
 
-// PATCH /api/quest/:id — update priority of a suggested quest
+// PATCH /api/quest/:id — update quest fields (priority, proof, title, description, etc.)
 app.patch('/api/quest/:id', requireApiKey, (req, res) => {
   const quest = quests.find(q => q.id === req.params.id);
   if (!quest) return res.status(404).json({ error: 'Quest not found' });
-  if (quest.status !== 'suggested') return res.status(409).json({ error: 'Can only update priority of suggested quests' });
-  const { priority } = req.body;
-  if (!['low', 'medium', 'high'].includes(priority)) return res.status(400).json({ error: 'Invalid priority. Use: low, medium, high' });
-  quest.priority = priority;
+  const { priority, proof, title, description, status } = req.body;
+  if (priority !== undefined) {
+    if (!['low', 'medium', 'high'].includes(priority)) return res.status(400).json({ error: 'Invalid priority' });
+    quest.priority = priority;
+  }
+  if (proof !== undefined) quest.proof = proof;
+  if (title !== undefined) quest.title = title;
+  if (description !== undefined) quest.description = description;
+  if (status !== undefined) {
+    const validStatuses = ['open', 'in_progress', 'completed', 'suggested', 'rejected'];
+    if (!validStatuses.includes(status)) return res.status(400).json({ error: 'Invalid status' });
+    const wasCompleted = quest.status === 'completed';
+    quest.status = status;
+    if (status === 'completed' && !wasCompleted) {
+      quest.completedAt = quest.completedAt || now();
+      if (quest.claimedBy) awardXP(quest.claimedBy.toLowerCase(), quest.priority);
+    }
+  }
   saveQuests();
-  console.log(`[quest] ${quest.id} priority updated → ${priority}`);
   res.json({ ok: true, quest });
 });
 

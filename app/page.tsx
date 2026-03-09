@@ -42,6 +42,7 @@ interface Quest {
   children?: Quest[];
   progress?: { completed: number; total: number };
   recurrence?: string | null;
+  proof?: string | null;
 }
 
 interface User {
@@ -1000,6 +1001,14 @@ function CompletedQuestRow({ quest, isLast }: { quest: Quest; isLast: boolean })
             {cats.map(c => <CategoryBadge key={c} category={c} />)}
             {quest.product && <ProductBadge product={quest.product} />}
           </div>
+          {quest.proof && (
+            <div className="mt-2 p-2 rounded" style={{ background: "rgba(59,130,246,0.06)", border: "1px solid rgba(59,130,246,0.15)" }}>
+              <p className="text-xs font-semibold mb-1" style={{ color: "rgba(59,130,246,0.7)" }}>📖 Learning Proof</p>
+              <p className="text-xs leading-relaxed whitespace-pre-wrap" style={{ color: "rgba(255,255,255,0.4)" }}>
+                {quest.proof.length > 300 ? quest.proof.slice(0, 297) + "…" : quest.proof}
+              </p>
+            </div>
+          )}
           <p className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>
             Completed {quest.completedAt ? timeAgo(quest.completedAt) : "—"} · by {quest.completedBy}
           </p>

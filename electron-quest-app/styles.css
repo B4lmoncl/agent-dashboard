@@ -639,6 +639,16 @@ button[type="submit"]:disabled,
 .product-select:focus { border-color: rgba(255,107,0,0.4); }
 .product-select option { background: #1a1a1a; color: rgba(255,255,255,0.8); }
 
+/* ─── Learning templates ─────────────────────────────────────────────── */
+.learning-templates { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin-top: 6px; }
+.learning-template-label { font-size: 10px; color: rgba(255,255,255,0.25); text-transform: uppercase; letter-spacing: 0.06em; }
+.learning-tpl-btn {
+  font-size: 10px; padding: 3px 8px; border-radius: 5px; cursor: pointer;
+  background: rgba(59,130,246,0.08); color: rgba(59,130,246,0.7);
+  border: 1px solid rgba(59,130,246,0.2); transition: background 0.15s;
+}
+.learning-tpl-btn:hover { background: rgba(59,130,246,0.2); color: #60a5fa; }
+
 /* ─── Admin Panel ───────────────────────────────────────────────────── */
 .admin-keys-list { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
 .admin-key-row {

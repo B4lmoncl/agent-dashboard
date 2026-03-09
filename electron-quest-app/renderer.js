@@ -155,6 +155,33 @@ async function fetchDashboardVersion() {
   }
 }
 
+// ─── Learning Proof visibility + templates ────────────────────────────────────
+const questTypeEl      = document.getElementById('quest-type');
+const proofSection     = document.getElementById('learning-proof-section');
+const LEARNING_TEMPLATES = {
+  networking: `## Topic\n\n## Key Concepts\n- \n- \n\n## Resources\n- \n\n## Notes\n`,
+  coding:     `## Feature / API\n\n## What I Learned\n- \n- \n\n## Code Snippet\n\`\`\`\n\`\`\`\n\n## Source\n`,
+  general:    `## Subject\n\n## Summary\n\n## Takeaways\n- \n\n## Links\n- `,
+};
+
+function updateProofVisibility() {
+  if (!questTypeEl || !proofSection) return;
+  proofSection.style.display = questTypeEl.value === 'learning' ? 'flex' : 'none';
+}
+
+if (questTypeEl) {
+  questTypeEl.addEventListener('change', updateProofVisibility);
+  updateProofVisibility();
+}
+
+document.querySelectorAll('.learning-tpl-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const tpl = btn.dataset.tpl;
+    const el = document.getElementById('learning-proof');
+    if (el && LEARNING_TEMPLATES[tpl]) el.value = LEARNING_TEMPLATES[tpl];
+  });
+});
+
 // ─── Save settings ────────────────────────────────────────────────────────────
 saveBtn.addEventListener('click', () => {
   const server = cfgServer.value.trim().replace(/\/$/, '') || DEFAULT_SERVER;
@@ -200,6 +227,7 @@ form.addEventListener('submit', async (e) => {
   const parentQuestId    = document.getElementById('parent-quest').value || undefined;
   const isRecurring      = document.getElementById('recurring')?.checked;
   const recurrence       = isRecurring ? (document.getElementById('recurrence')?.value || 'weekly') : undefined;
+  const proof            = questType === 'learning' ? (document.getElementById('learning-proof')?.value.trim() || undefined) : undefined;
 
   // Collect checked categories
   const checkedBoxes = document.querySelectorAll('.category-cb:checked');
@@ -218,7 +246,7 @@ form.addEventListener('submit', async (e) => {
         'Content-Type': 'application/json',
         'X-API-Key': API_KEY,
       },
-      body: JSON.stringify({ title, description, priority, category, categories, humanInputRequired, product: document.getElementById('product').value || undefined, createdBy: 'leon', type: questType, parentQuestId, recurrence }),
+      body: JSON.stringify({ title, description, priority, category, categories, humanInputRequired, product: document.getElementById('product').value || undefined, createdBy: 'leon', type: questType, parentQuestId, recurrence, proof }),
     });
 
     if (resp.ok) {
@@ -231,6 +259,9 @@ form.addEventListener('submit', async (e) => {
       document.getElementById('parent-quest').value = '';
       document.querySelectorAll('.category-cb').forEach(cb => { cb.checked = false; });
       if (recurringConfig) recurringConfig.style.display = 'none';
+      if (proofSection) proofSection.style.display = 'none';
+      const proofEl = document.getElementById('learning-proof');
+      if (proofEl) proofEl.value = '';
       // Success shimmer on form
       form.classList.add('form-shimmer');
       setTimeout(() => form.classList.remove('form-shimmer'), 800);

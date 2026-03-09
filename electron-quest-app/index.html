@@ -133,6 +133,23 @@
           </select>
         </div>
 
+        <!-- Proof field — visible only for learning quests -->
+        <div id="learning-proof-section" class="field" style="display:none">
+          <label>Learning Proof <span class="optional">(notes, links, screenshots)</span></label>
+          <textarea
+            id="learning-proof"
+            placeholder="What did you learn? Add notes, links, or references…"
+            rows="3"
+            maxlength="2000"
+          ></textarea>
+          <div id="learning-templates" class="learning-templates">
+            <span class="learning-template-label">Templates:</span>
+            <button type="button" class="learning-tpl-btn" data-tpl="networking">Networking</button>
+            <button type="button" class="learning-tpl-btn" data-tpl="coding">Coding</button>
+            <button type="button" class="learning-tpl-btn" data-tpl="general">General</button>
+          </div>
+        </div>
+
         <div class="field">
           <label>Product <span class="optional">(optional)</span></label>
           <select id="product" class="product-select">
