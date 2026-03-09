@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain, Tray, Menu, Notification, nativeImage } = require('electron');
+const { app, BrowserWindow, ipcMain, Tray, Menu, Notification, nativeImage, shell } = require('electron');
 const path = require('path');
 const os   = require('os');
 const fs   = require('fs');
@@ -86,41 +86,87 @@ function createQuickForgeWindow() {
   quickForgeWindow.on('closed', () => { quickForgeWindow = null; });
 }
 
+// ─── Fetch last 5 open quests for tray menu ───────────────────────────────────
+function fetchRecentQuests(serverBase) {
+  return new Promise((resolve) => {
+    const mod = serverBase.startsWith('https') ? https : http;
+    const req = mod.get(`${serverBase}/api/quests`, { headers: {} }, (res) => {
+      let data = '';
+      res.on('data', chunk => { data += chunk; });
+      res.on('end', () => {
+        try {
+          const json = JSON.parse(data);
+          const open = (json.open || []).slice(0, 5);
+          resolve(open);
+        } catch (_) { resolve([]); }
+      });
+    });
+    req.on('error', () => resolve([]));
+    req.setTimeout(2000, () => { req.destroy(); resolve([]); });
+  });
+}
+
 // ─── System Tray ─────────────────────────────────────────────────────────────
+async function rebuildTrayMenu() {
+  if (!tray) return;
+  const server = appConfig.server || 'http://187.77.139.247:3001';
+  const recentQuests = await fetchRecentQuests(server);
+
+  const recentItems = recentQuests.length > 0
+    ? [
+        { label: '— Recent Quests —', enabled: false },
+        ...recentQuests.map(q => ({
+          label: q.title.length > 45 ? q.title.slice(0, 42) + '…' : q.title,
+          enabled: false,
+        })),
+        { type: 'separator' },
+      ]
+    : [];
+
+  const contextMenu = Menu.buildFromTemplate([
+    {
+      label: '⚒ Quick Forge',
+      click: () => createQuickForgeWindow(),
+    },
+    {
+      label: 'Show Quest Forge',
+      click: () => { if (mainWindow) { mainWindow.show(); mainWindow.focus(); } },
+    },
+    {
+      label: '🏰 Open Quest Hall',
+      click: () => shell.openExternal(server),
+    },
+    { type: 'separator' },
+    ...recentItems,
+    {
+      label: 'Quit',
+      click: () => { app.isQuitting = true; app.quit(); },
+    },
+  ]);
+
+  tray.setContextMenu(contextMenu);
+}
+
 function setupTray() {
   try {
     const icon = createTrayIcon();
     tray = new Tray(icon);
     tray.setToolTip('Quest Forge — The Guild');
 
-    const contextMenu = Menu.buildFromTemplate([
-      {
-        label: 'Show Quest Forge',
-        click: () => { if (mainWindow) { mainWindow.show(); mainWindow.focus(); } },
-      },
-      {
-        label: '⚒ Quick Forge',
-        click: () => createQuickForgeWindow(),
-      },
-      { type: 'separator' },
-      {
-        label: 'Quit',
-        click: () => { app.isQuitting = true; app.quit(); },
-      },
-    ]);
-
-    tray.setContextMenu(contextMenu);
-
-    tray.on('click', () => {
-      if (mainWindow) {
-        if (mainWindow.isVisible()) mainWindow.hide();
-        else { mainWindow.show(); mainWindow.focus(); }
-      }
-    });
+    // Left-click opens Quick Forge popup
+    tray.on('click', () => createQuickForgeWindow());
 
     tray.on('double-click', () => {
       if (mainWindow) { mainWindow.show(); mainWindow.focus(); }
     });
+
+    // Refresh context menu when right-clicked (before showing)
+    tray.on('right-click', () => rebuildTrayMenu());
+
+    rebuildTrayMenu();
+
+    // Refresh menu every 2 minutes
+    setInterval(rebuildTrayMenu, 120_000);
   } catch (err) {
     console.warn('[tray] Failed to create tray:', err.message);
   }

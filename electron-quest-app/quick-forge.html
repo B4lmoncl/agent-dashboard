@@ -5,8 +5,29 @@
   <title>Quick Forge</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    @keyframes ember-glow {
+      0%, 100% { opacity: 1; box-shadow: 0 0 0 2px #ff6b0044, 0 0 18px #ff6b0033, 0 0 40px #ff450020; }
+      50% { opacity: 0.85; box-shadow: 0 0 0 2px #ff8c4466, 0 0 28px #ff6b0055, 0 0 60px #ff450035; }
+    }
+    @keyframes spark {
+      0%   { opacity: 0; transform: translate(0, 0) scale(1); }
+      50%  { opacity: 0.9; }
+      100% { opacity: 0; transform: translate(var(--sx), var(--sy)) scale(0.3); }
+    }
+    html { position: relative; }
+    html::before {
+      content: '';
+      position: fixed; inset: 0; pointer-events: none; z-index: 999;
+      border-radius: 6px;
+      animation: ember-glow 2.4s ease-in-out infinite;
+    }
+    .spark {
+      position: fixed; width: 3px; height: 3px; border-radius: 50%;
+      background: #ff8c44; pointer-events: none; z-index: 1000;
+      animation: spark 0.7s ease-out forwards;
+    }
     body {
-      background: #1a1a1a;
+      background: linear-gradient(160deg, #1e1512 0%, #1a1a1a 40%, #121018 100%);
       color: #e8e8e8;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       font-size: 13px;
@@ -186,6 +207,28 @@
       } finally {
         submitBtn.disabled = false;
         submitBtn.textContent = '⚒ Forge Quest';
+      }
+    });
+  </script>
+  <script>
+    // ─── Spark burst on submit ────────────────────────────────────────────────
+    document.getElementById('qf-form').addEventListener('submit', () => {
+      const btn = document.getElementById('submit-btn');
+      const rect = btn.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      for (let i = 0; i < 12; i++) {
+        const spark = document.createElement('div');
+        spark.className = 'spark';
+        const angle = (i / 12) * Math.PI * 2;
+        const dist = 30 + Math.random() * 40;
+        spark.style.left = cx + 'px';
+        spark.style.top  = cy + 'px';
+        spark.style.setProperty('--sx', `${Math.cos(angle) * dist}px`);
+        spark.style.setProperty('--sy', `${Math.sin(angle) * dist}px`);
+        spark.style.background = Math.random() > 0.5 ? '#ff8c44' : '#ffcc44';
+        document.body.appendChild(spark);
+        setTimeout(() => spark.remove(), 700);
       }
     });
   </script>
