@@ -11,9 +11,7 @@ interface Agent {
   platform: string | null;
   uptime: number;
   currentJobDuration: number;
-  jobsCompleted: number;
   questsCompleted?: number;
-  revenue: number;
   xp?: number;
   gold?: number;
   streakDays?: number;
@@ -72,6 +70,17 @@ interface User {
   forgeTemp?: number;
   gold?: number;
   createdAt?: string;
+}
+
+interface LeaderboardEntry {
+  rank: number;
+  id: string;
+  name: string;
+  avatar?: string;
+  color?: string;
+  role?: string;
+  xp: number;
+  questsCompleted: number;
 }
 
 interface QuestsData {
@@ -155,6 +164,14 @@ async function fetchUsers(): Promise<User[]> {
   return [];
 }
 
+async function fetchLeaderboard(): Promise<LeaderboardEntry[]> {
+  try {
+    const r = await fetch(`/api/leaderboard`, { signal: AbortSignal.timeout(2000) });
+    if (r.ok) return r.json();
+  } catch { /* ignore */ }
+  return [];
+}
+
 function timeAgo(iso: string): string {
   const diff = Date.now() - new Date(iso).getTime();
   const m = Math.floor(diff / 60000);
@@ -196,6 +213,7 @@ export default function Dashboard() {
   const [secondsAgo, setSecondsAgo] = useState(0);
   const [apiLive, setApiLive] = useState(false);
   const [completedOpen, setCompletedOpen] = useState(false);
+  const [completedSearch, setCompletedSearch] = useState("");
   const [rejectedOpen, setRejectedOpen] = useState(false);
   const [searchFilter, setSearchFilter] = useState("");
   const [sortMode, setSortMode] = useState<"newest" | "priority">("newest");
@@ -206,10 +224,12 @@ export default function Dashboard() {
   const [reviewKeyInput, setReviewKeyInput] = useState("");
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
   const [bulkLoading, setBulkLoading] = useState(false);
+  const [reviewComments, setReviewComments] = useState<Record<string, string>>({});
   const [typeFilter, setTypeFilter] = useState<string>("all");
-  const [dashView, setDashView] = useState<"ops" | "campaign">("ops");
+  const [dashView, setDashView] = useState<"ops" | "campaign" | "leaderboard">("ops");
   const [shopUserId, setShopUserId] = useState<string | null>(null);
   const [toast, setToast] = useState<EarnedAchievement | null>(null);
+  const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>([]);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   // Particle system — white dust drifting upward
@@ -266,7 +286,7 @@ export default function Dashboard() {
   }, []);
 
   const refresh = useCallback(async () => {
-    const [a, q, u] = await Promise.all([fetchAgents(), fetchQuests(), fetchUsers()]);
+    const [a, q, u, lb] = await Promise.all([fetchAgents(), fetchQuests(), fetchUsers(), fetchLeaderboard()]);
     // Lyra always first, then online/working agents, then rest
     const statusOrder: Record<string, number> = { working: 0, online: 1, idle: 2, offline: 3 };
     const sorted = [...a].sort((x, y) => {
@@ -280,6 +300,7 @@ export default function Dashboard() {
     setAgents(sorted);
     setQuests(q);
     setUsers(u);
+    if (lb.length > 0) setLeaderboard(lb);
     try {
       const r = await fetch(`/api/health`, { signal: AbortSignal.timeout(1500) });
       setApiLive(r.ok);
@@ -292,21 +313,37 @@ export default function Dashboard() {
     setLastRefresh(new Date());
   }, []);
 
-  const handleApprove = useCallback(async (id: string) => {
+  const handleApprove = useCallback(async (id: string, comment?: string) => {
     const key = reviewApiKey;
     if (!key) return;
     try {
-      const r = await fetch(`/api/quest/${id}/approve`, { method: "POST", headers: { "X-API-Key": key } });
-      if (r.ok) await refresh();
+      const body = comment ? JSON.stringify({ comment }) : undefined;
+      const r = await fetch(`/api/quest/${id}/approve`, {
+        method: "POST",
+        headers: { "X-API-Key": key, ...(body ? { "Content-Type": "application/json" } : {}) },
+        body,
+      });
+      if (r.ok) {
+        setReviewComments(prev => { const next = { ...prev }; delete next[id]; return next; });
+        await refresh();
+      }
     } catch { /* ignore */ }
   }, [reviewApiKey, refresh]);
 
-  const handleReject = useCallback(async (id: string) => {
+  const handleReject = useCallback(async (id: string, comment?: string) => {
     const key = reviewApiKey;
     if (!key) return;
     try {
-      const r = await fetch(`/api/quest/${id}/reject`, { method: "POST", headers: { "X-API-Key": key } });
-      if (r.ok) await refresh();
+      const body = comment ? JSON.stringify({ comment }) : undefined;
+      const r = await fetch(`/api/quest/${id}/reject`, {
+        method: "POST",
+        headers: { "X-API-Key": key, ...(body ? { "Content-Type": "application/json" } : {}) },
+        body,
+      });
+      if (r.ok) {
+        setReviewComments(prev => { const next = { ...prev }; delete next[id]; return next; });
+        await refresh();
+      }
     } catch { /* ignore */ }
   }, [reviewApiKey, refresh]);
 
@@ -377,19 +414,19 @@ export default function Dashboard() {
     return () => clearInterval(tick);
   }, [lastRefresh]);
 
-  const activeCount = agents.filter((a) => a.status === "online" || a.status === "working").length;
-  const workingCount = agents.filter((a) => a.status === "working").length;
-  const idleCount = agents.filter((a) => a.status === "idle").length;
-  const totalRevenue = agents.reduce((sum, a) => sum + (a.revenue ?? 0), 0);
-  const totalJobs = agents.reduce((sum, a) => sum + (a.jobsCompleted ?? 0), 0);
   const needsAttention = agents.filter((a) => a.health === "needs_checkin" || a.health === "broken").length;
 
-  const animAgents   = useCountUp(agents.length, 0);
-  const animWorking  = useCountUp(workingCount, 0);
-  const animIdle     = useCountUp(idleCount, 0);
-  const animJobs     = useCountUp(totalJobs, 0);
-  const animRevenue  = useCountUp(totalRevenue, 2);
-  const animActive   = useCountUp(activeCount, 0);
+  // Gamification stats
+  const longestStreak = Math.max(0, ...agents.map(a => a.streakDays ?? 0), ...users.map(u => u.streakDays ?? 0));
+  const activeQuestsCount = quests.inProgress.length;
+  const openQuestsCount = quests.open.length;
+  const completedQuestsCount = quests.completed.length;
+  const guildGold = agents.reduce((s, a) => s + (a.gold ?? 0), 0) + users.reduce((s, u) => s + (u.gold ?? 0), 0);
+
+  const animStreak    = useCountUp(longestStreak, 0);
+  const animActive    = useCountUp(activeQuestsCount, 0);
+  const animCompleted = useCountUp(completedQuestsCount, 0);
+  const animGold      = useCountUp(guildGold, 0);
 
   const lastUpdatedStr = lastRefresh
     ? secondsAgo < 5 ? "just now" : `${secondsAgo}s ago`
@@ -496,49 +533,51 @@ export default function Dashboard() {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 py-8 space-y-8" style={{ position: "relative", zIndex: 1 }}>
         <div>
           <h1 className="text-xl font-bold" style={{ color: "#f0f0f0" }}>
-            Operations Center
+            Quest Hall
           </h1>
           <p className="text-sm mt-1" style={{ color: "rgba(255,255,255,0.3)" }}>
-            Live agent guild command center
+            The Forge burns bright
           </p>
         </div>
 
         {/* Stats */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
           <StatBar
-            label="Agents"
-            value={loading ? "—" : animAgents}
-            sub={`${animActive} online`}
+            label="🔥 Forge Streak"
+            value={loading ? "—" : `${animStreak}d`}
+            sub="longest active"
+            accent="#f97316"
           />
           <StatBar
-            label="Working"
-            value={loading ? "—" : animWorking}
-            sub={`${animIdle} idle`}
-            accent="#ff6633"
+            label="⚔️ Active Quests"
+            value={loading ? "—" : animActive}
+            sub={`${openQuestsCount} open`}
+            accent="#ef4444"
           />
           <StatBar
-            label="Jobs Done"
-            value={loading ? "—" : animJobs}
-            sub="all agents"
-            accent="rgba(255,255,255,0.6)"
-          />
-          <StatBar
-            label="Revenue"
-            value={loading ? "—" : `$${animRevenue}`}
-            sub="total generated"
+            label="✅ Quests Completed"
+            value={loading ? "—" : animCompleted}
+            sub="all time"
             accent="#22c55e"
+          />
+          <StatBar
+            label="🪙 Guild Gold"
+            value={loading ? "—" : animGold}
+            sub="total earned"
+            accent="#eab308"
           />
         </div>
 
         {/* View toggle */}
         <div className="flex gap-1" style={{ background: "#111", borderRadius: 8, padding: 3, display: "inline-flex" }}>
           {[
-            { key: "ops",      label: "⚔ Operations" },
-            { key: "campaign", label: "🐉 Campaign" },
+            { key: "ops",         label: "⚔ Operations" },
+            { key: "leaderboard", label: "🏆 Leaderboard" },
+            { key: "campaign",    label: "🐉 Campaign" },
           ].map(v => (
             <button
               key={v.key}
-              onClick={() => setDashView(v.key as "ops" | "campaign")}
+              onClick={() => setDashView(v.key as "ops" | "campaign" | "leaderboard")}
               className="text-xs font-semibold px-3 py-1.5 rounded transition-all"
               style={{
                 background: dashView === v.key ? "#252525" : "transparent",
@@ -549,6 +588,11 @@ export default function Dashboard() {
             </button>
           ))}
         </div>
+
+        {/* Leaderboard View */}
+        {dashView === "leaderboard" && (
+          <LeaderboardView entries={leaderboard} agents={agents} />
+        )}
 
         {/* Campaign View */}
         {dashView === "campaign" && (
@@ -628,7 +672,7 @@ export default function Dashboard() {
             ) : (
               <EmptyState
                 message="No agents have checked in yet."
-                sub={`POST /api/agent/:name/status  →  { status, platform, uptime, jobsCompleted, revenue, health }`}
+                sub={`POST /api/agent/:name/status  →  { status, platform, uptime, questsCompleted, health }`}
               />
             )}
           </section>
@@ -784,10 +828,19 @@ export default function Dashboard() {
                             </span>
                           )}
                         </div>
+                        {/* Annotation field */}
+                        <input
+                          type="text"
+                          value={reviewComments[q.id] ?? ""}
+                          onChange={e => setReviewComments(prev => ({ ...prev, [q.id]: e.target.value }))}
+                          placeholder="Add a comment (optional)…"
+                          className="mt-2 w-full text-xs px-2 py-1.5 rounded"
+                          style={{ background: "#1a1a1a", border: "1px solid rgba(255,255,255,0.08)", color: "#e8e8e8", outline: "none" }}
+                        />
                       </div>
-                      <div className="flex gap-1.5 flex-shrink-0">
+                      <div className="flex flex-col gap-1.5 flex-shrink-0">
                         <button
-                          onClick={() => handleApprove(q.id)}
+                          onClick={() => handleApprove(q.id, reviewComments[q.id])}
                           className="px-2.5 py-1.5 rounded-lg text-xs font-medium transition-all"
                           style={{ background: "rgba(34,197,94,0.15)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.3)" }}
                           onMouseEnter={e => { (e.target as HTMLElement).style.background = "rgba(34,197,94,0.3)"; }}
@@ -796,7 +849,7 @@ export default function Dashboard() {
                           ✓ Approve
                         </button>
                         <button
-                          onClick={() => handleReject(q.id)}
+                          onClick={() => handleReject(q.id, reviewComments[q.id])}
                           className="px-2.5 py-1.5 rounded-lg text-xs font-medium transition-all"
                           style={{ background: "rgba(239,68,68,0.1)", color: "rgba(239,68,68,0.7)", border: "1px solid rgba(239,68,68,0.2)" }}
                           onMouseEnter={e => { (e.target as HTMLElement).style.background = "rgba(239,68,68,0.25)"; }}
@@ -814,7 +867,7 @@ export default function Dashboard() {
         )}
 
         {/* AI Smart Suggestions */}
-        {dashView === "ops" && (
+        {(dashView === "ops" || dashView === "leaderboard") && (
           <SmartSuggestionsPanel quests={quests} agents={agents} />
         )}
 
@@ -856,7 +909,7 @@ export default function Dashboard() {
           </section>
         )}
 
-        {/* Completed Quests Log */}
+        {/* Completed Quests Log — Quest Journal */}
         {(quests.completed.length > 0 || !loading) && (
           <section>
             <button
@@ -864,7 +917,7 @@ export default function Dashboard() {
               className="flex items-center gap-2 mb-3 w-full text-left"
             >
               <h2 className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.4)" }}>
-                Completed Quests
+                📖 Quest Journal
               </h2>
               <span className="text-xs px-1.5 py-0.5 rounded font-mono" style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.3)" }}>
                 {quests.completed.length}
@@ -875,20 +928,42 @@ export default function Dashboard() {
             </button>
 
             {completedOpen && (
-              <div className="rounded-xl overflow-hidden" style={{ background: "#1e1e1e", border: "1px solid rgba(255,255,255,0.06)" }}>
-                {quests.completed.length === 0 ? (
-                  <p className="text-xs p-4 text-center" style={{ color: "rgba(255,255,255,0.2)" }}>No completed quests yet</p>
-                ) : (
-                  <div>
-                    {quests.completed.map((q, i) => (
-                      <CompletedQuestRow
-                        key={q.id}
-                        quest={q}
-                        isLast={i === quests.completed.length - 1}
-                      />
-                    ))}
-                  </div>
-                )}
+              <div>
+                <input
+                  type="text"
+                  value={completedSearch}
+                  onChange={e => setCompletedSearch(e.target.value)}
+                  placeholder="Search completed quests…"
+                  className="w-full text-xs px-3 py-2 rounded-lg mb-2"
+                  style={{ background: "#1e1e1e", border: "1px solid rgba(255,255,255,0.08)", color: "#e8e8e8", outline: "none" }}
+                />
+                <div className="rounded-xl overflow-hidden" style={{ background: "#1e1e1e", border: "1px solid rgba(255,255,255,0.06)" }}>
+                  {quests.completed.length === 0 ? (
+                    <p className="text-xs p-4 text-center" style={{ color: "rgba(255,255,255,0.2)" }}>No completed quests yet</p>
+                  ) : (() => {
+                    const filtered = completedSearch
+                      ? quests.completed.filter(q =>
+                          q.title.toLowerCase().includes(completedSearch.toLowerCase()) ||
+                          (q.description ?? "").toLowerCase().includes(completedSearch.toLowerCase()) ||
+                          (q.completedBy ?? "").toLowerCase().includes(completedSearch.toLowerCase())
+                        )
+                      : quests.completed;
+                    if (filtered.length === 0) return (
+                      <p className="text-xs p-4 text-center" style={{ color: "rgba(255,255,255,0.2)" }}>No quests match &ldquo;{completedSearch}&rdquo;</p>
+                    );
+                    return (
+                      <div>
+                        {filtered.map((q, i) => (
+                          <CompletedQuestRow
+                            key={q.id}
+                            quest={q}
+                            isLast={i === filtered.length - 1}
+                          />
+                        ))}
+                      </div>
+                    );
+                  })()}
+                </div>
               </div>
             )}
           </section>
@@ -1742,6 +1817,136 @@ function SkeletonCard() {
       className="rounded-xl animate-pulse"
       style={{ background: "#252525", border: "1px solid rgba(255,255,255,0.05)", height: 260 }}
     />
+  );
+}
+
+// ─── Leaderboard View ─────────────────────────────────────────────────────────
+const LB_LEVELS = [
+  { name: "Novice",     min: 0,   color: "#9ca3af" },
+  { name: "Apprentice", min: 100, color: "#22c55e" },
+  { name: "Knight",     min: 300, color: "#3b82f6" },
+  { name: "Archmage",   min: 600, color: "#a855f7" },
+];
+function getLbLevel(xp: number) { return LB_LEVELS.findLast(l => xp >= l.min) ?? LB_LEVELS[0]; }
+
+const agentMetaLb: Record<string, { avatar: string; color: string }> = {
+  nova:  { avatar: "NO", color: "#8b5cf6" },
+  hex:   { avatar: "HX", color: "#10b981" },
+  echo:  { avatar: "EC", color: "#ef4444" },
+  pixel: { avatar: "PX", color: "#f59e0b" },
+  atlas: { avatar: "AT", color: "#6366f1" },
+  lyra:  { avatar: "✦",  color: "#e879f9" },
+  forge: { avatar: "⚒",  color: "#f59e0b" },
+};
+
+const rankMedal = ["🥇", "🥈", "🥉"];
+
+function LeaderboardView({ entries, agents }: { entries: LeaderboardEntry[]; agents: Agent[] }) {
+  // Merge API entries with live agent data for freshest XP
+  const merged: LeaderboardEntry[] = entries.length > 0 ? entries : agents.map((a, i) => ({
+    rank: i + 1,
+    id: a.id,
+    name: a.name,
+    avatar: a.avatar,
+    color: a.color,
+    xp: a.xp ?? 0,
+    questsCompleted: a.questsCompleted ?? 0,
+  })).sort((a, b) => b.xp - a.xp || b.questsCompleted - a.questsCompleted).map((e, i) => ({ ...e, rank: i + 1 }));
+
+  if (merged.length === 0) {
+    return (
+      <div className="rounded-xl p-8 text-center" style={{ background: "#252525", border: "1px solid rgba(255,255,255,0.06)" }}>
+        <p className="text-sm" style={{ color: "rgba(255,255,255,0.2)" }}>No agents registered yet.</p>
+      </div>
+    );
+  }
+
+  const top3 = merged.slice(0, 3);
+  const rest = merged.slice(3);
+  const maxXp = merged[0]?.xp ?? 1;
+
+  return (
+    <div className="space-y-6">
+      {/* Podium */}
+      <div className="flex items-end justify-center gap-4">
+        {[top3[1], top3[0], top3[2]].filter(Boolean).map((entry, podiumIdx) => {
+          const podiumOrder = [1, 0, 2]; // 2nd, 1st, 3rd
+          const rank = podiumOrder[podiumIdx] + 1;
+          const heights = ["h-24", "h-32", "h-20"];
+          const meta = agentMetaLb[entry.id?.toLowerCase()] ?? { avatar: entry.avatar ?? entry.id?.slice(0,2).toUpperCase() ?? "??", color: entry.color ?? "#666" };
+          const color = entry.color ?? meta.color;
+          const lvl = getLbLevel(entry.xp);
+          return (
+            <div key={entry.id} className="flex flex-col items-center gap-2" style={{ minWidth: 90 }}>
+              <div className="text-lg">{rankMedal[rank - 1] ?? rank}</div>
+              <div
+                className="w-14 h-14 rounded-2xl flex items-center justify-center font-black text-white text-xl flex-shrink-0"
+                style={{ background: `linear-gradient(135deg, ${color}, ${color}99)`, boxShadow: `0 6px 20px ${color}60` }}
+              >
+                {entry.avatar ?? meta.avatar}
+              </div>
+              <div className="text-center">
+                <p className="text-xs font-bold" style={{ color: "#f0f0f0" }}>{entry.name}</p>
+                <p className="text-xs" style={{ color: lvl.color }}>{lvl.name}</p>
+                <p className="text-xs font-mono font-bold mt-0.5" style={{ color: "#a855f7" }}>{entry.xp} XP</p>
+              </div>
+              <div
+                className={`w-full rounded-t-lg flex items-center justify-center ${heights[podiumIdx]}`}
+                style={{ background: `linear-gradient(180deg, ${color}20 0%, ${color}08 100%)`, border: `1px solid ${color}30`, borderBottom: "none" }}
+              >
+                <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.3)" }}>#{rank}</span>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Full table */}
+      <div className="rounded-xl overflow-hidden" style={{ background: "#1e1e1e", border: "1px solid rgba(255,255,255,0.07)" }}>
+        <div className="grid px-4 py-2" style={{ gridTemplateColumns: "40px 1fr 80px 80px 80px", color: "rgba(255,255,255,0.3)", fontSize: 11, borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+          <span>#</span><span>Agent</span><span className="text-right">Level</span><span className="text-right">XP</span><span className="text-right">Quests</span>
+        </div>
+        {merged.map((entry) => {
+          const meta = agentMetaLb[entry.id?.toLowerCase()] ?? { avatar: entry.avatar ?? entry.id?.slice(0,2).toUpperCase() ?? "??", color: entry.color ?? "#666" };
+          const color = entry.color ?? meta.color;
+          const lvl = getLbLevel(entry.xp);
+          const barPct = maxXp > 0 ? (entry.xp / maxXp) * 100 : 0;
+          const isTop = entry.rank <= 3;
+          return (
+            <div
+              key={entry.id}
+              className="grid px-4 py-3 items-center"
+              style={{
+                gridTemplateColumns: "40px 1fr 80px 80px 80px",
+                borderBottom: "1px solid rgba(255,255,255,0.04)",
+                background: isTop ? `${color}08` : "transparent",
+              }}
+            >
+              <span className="text-sm font-bold" style={{ color: entry.rank <= 3 ? ["#f59e0b","#9ca3af","#cd7f32"][entry.rank-1] : "rgba(255,255,255,0.25)" }}>
+                {entry.rank <= 3 ? rankMedal[entry.rank - 1] : `#${entry.rank}`}
+              </span>
+              <div className="flex items-center gap-2 min-w-0">
+                <div
+                  className="w-8 h-8 rounded-lg flex items-center justify-center font-bold text-xs flex-shrink-0"
+                  style={{ background: `linear-gradient(135deg, ${color}, ${color}99)`, color: "#fff" }}
+                >
+                  {entry.avatar ?? meta.avatar}
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-xs font-semibold truncate" style={{ color: "#f0f0f0" }}>{entry.name}</p>
+                  <div className="mt-0.5 rounded-full overflow-hidden" style={{ height: 2, background: "rgba(255,255,255,0.06)" }}>
+                    <div className="h-full rounded-full" style={{ width: `${barPct}%`, background: `linear-gradient(90deg, ${color}80, ${color})` }} />
+                  </div>
+                </div>
+              </div>
+              <span className="text-right text-xs font-semibold" style={{ color: lvl.color }}>{lvl.name}</span>
+              <span className="text-right text-xs font-mono font-bold" style={{ color: "#a855f7" }}>{entry.xp}</span>
+              <span className="text-right text-xs font-mono" style={{ color: "rgba(255,255,255,0.5)" }}>{entry.questsCompleted}</span>
+            </div>
+          );
+        })}
+      </div>
+    </div>
   );
 }
 

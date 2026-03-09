@@ -9,9 +9,7 @@ interface Agent {
   platform: string | null;
   uptime: number; // seconds
   currentJobDuration: number; // seconds
-  jobsCompleted: number;
   questsCompleted?: number;
-  revenue: number;
   xp?: number;
   gold?: number;
   streakDays?: number;
@@ -131,25 +129,11 @@ export default function AgentCard({ agent, activeQuests = [], isWide = false }: 
   const isActive = agent.status === "online" || agent.status === "working";
 
   // CountUp animations for numeric metrics
-  const animJobs    = useCountUp(agent.jobsCompleted ?? 0, 0);
   const animQuests  = useCountUp(agent.questsCompleted ?? 0, 0);
-  const animRevenue = useCountUp(agent.revenue ?? 0, 2);
 
   // Shimmer on value change (skip initial mount)
-  const prevJobsRef    = useRef(agent.jobsCompleted);
   const prevQuestsRef  = useRef(agent.questsCompleted ?? 0);
-  const prevRevenueRef = useRef(agent.revenue);
-  const [shimmerJobs,    setShimmerJobs]    = useState(false);
   const [shimmerQuests,  setShimmerQuests]  = useState(false);
-  const [shimmerRevenue, setShimmerRevenue] = useState(false);
-
-  useEffect(() => {
-    if (prevJobsRef.current === agent.jobsCompleted) return;
-    prevJobsRef.current = agent.jobsCompleted;
-    setShimmerJobs(true);
-    const t = setTimeout(() => setShimmerJobs(false), 800);
-    return () => clearTimeout(t);
-  }, [agent.jobsCompleted]);
 
   useEffect(() => {
     const q = agent.questsCompleted ?? 0;
@@ -159,14 +143,6 @@ export default function AgentCard({ agent, activeQuests = [], isWide = false }: 
     const t = setTimeout(() => setShimmerQuests(false), 800);
     return () => clearTimeout(t);
   }, [agent.questsCompleted]);
-
-  useEffect(() => {
-    if (prevRevenueRef.current === agent.revenue) return;
-    prevRevenueRef.current = agent.revenue;
-    setShimmerRevenue(true);
-    const t = setTimeout(() => setShimmerRevenue(false), 800);
-    return () => clearTimeout(t);
-  }, [agent.revenue]);
 
   return (
     <div
@@ -257,24 +233,16 @@ export default function AgentCard({ agent, activeQuests = [], isWide = false }: 
         <MetricRow label="Platform" value={agent.platform ?? "—"} />
         <MetricRow label="Uptime" value={formatDuration(agent.uptime)} />
         <MetricRow
-          label="Current Job"
+          label="Current Quest"
           value={agent.status === "working" || agent.currentJobDuration > 0 ? formatDuration(agent.currentJobDuration) : "—"}
           highlight={agent.status === "working"}
         />
-        <MetricRow label="Jobs Completed" value={animJobs} shimmer={shimmerJobs} />
         <MetricRow
           label="Quests Completed"
           value={animQuests}
           highlight={(agent.questsCompleted ?? 0) > 0}
           highlightColor="#8b5cf6"
           shimmer={shimmerQuests}
-        />
-        <MetricRow
-          label="Revenue"
-          value={`$${animRevenue}`}
-          highlight={(agent.revenue ?? 0) > 0}
-          highlightColor="#22c55e"
-          shimmer={shimmerRevenue}
         />
         {(agent.gold ?? 0) > 0 && (
           <MetricRow
