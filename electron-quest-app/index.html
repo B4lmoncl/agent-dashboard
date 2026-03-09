@@ -150,6 +150,23 @@
           </select>
         </div>
 
+        <label class="human-input-row recurring-row">
+          <input type="checkbox" id="recurring" />
+          <span class="human-input-label">
+            <span class="human-icon">🔁</span>
+            Recurring Quest
+          </span>
+        </label>
+
+        <div id="recurring-config" class="field" style="display:none">
+          <label>Schedule</label>
+          <select id="recurrence" class="product-select">
+            <option value="daily">Daily</option>
+            <option value="weekly" selected>Weekly</option>
+            <option value="monthly">Monthly</option>
+          </select>
+        </div>
+
         <label class="human-input-row">
           <input type="checkbox" id="human-input" />
           <span class="human-input-label">

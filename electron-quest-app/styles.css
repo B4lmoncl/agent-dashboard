@@ -601,6 +601,18 @@ button[type="submit"]:disabled,
 .rejected-title { font-size: 11px; color: rgba(255,255,255,0.2); text-decoration: line-through; flex: 1; }
 .rejected-by { font-size: 10px; color: rgba(255,255,255,0.15); }
 
+/* ─── Recurring row ─────────────────────────────────────────────────── */
+.recurring-row:has(input:checked) {
+  background: rgba(99,102,241,0.08);
+  border-color: rgba(99,102,241,0.3);
+}
+.recurring-row:has(input:checked) .human-input-label {
+  color: #818cf8;
+}
+.recurring-row input[type="checkbox"] {
+  accent-color: #6366f1;
+}
+
 /* ─── Product select ────────────────────────────────────────────────── */
 .product-select {
   width: 100%; padding: 8px 10px; border-radius: 6px; font-size: 13px;

@@ -140,6 +140,15 @@ function showMessage(text, isError = false) {
   }, 4000);
 }
 
+// ─── Recurring toggle visibility ──────────────────────────────────────────────
+const recurringCb     = document.getElementById('recurring');
+const recurringConfig = document.getElementById('recurring-config');
+if (recurringCb && recurringConfig) {
+  recurringCb.addEventListener('change', () => {
+    recurringConfig.style.display = recurringCb.checked ? 'flex' : 'none';
+  });
+}
+
 // ─── Quest form submit ────────────────────────────────────────────────────────
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -153,6 +162,8 @@ form.addEventListener('submit', async (e) => {
   const humanInputRequired = document.getElementById('human-input').checked;
   const questType        = document.getElementById('quest-type').value || 'development';
   const parentQuestId    = document.getElementById('parent-quest').value || undefined;
+  const isRecurring      = document.getElementById('recurring')?.checked;
+  const recurrence       = isRecurring ? (document.getElementById('recurrence')?.value || 'weekly') : undefined;
 
   // Collect checked categories
   const checkedBoxes = document.querySelectorAll('.category-cb:checked');
@@ -171,7 +182,7 @@ form.addEventListener('submit', async (e) => {
         'Content-Type': 'application/json',
         'X-API-Key': API_KEY,
       },
-      body: JSON.stringify({ title, description, priority, category, categories, humanInputRequired, product: document.getElementById('product').value || undefined, createdBy: 'leon', type: questType, parentQuestId }),
+      body: JSON.stringify({ title, description, priority, category, categories, humanInputRequired, product: document.getElementById('product').value || undefined, createdBy: 'leon', type: questType, parentQuestId, recurrence }),
     });
 
     if (resp.ok) {
@@ -182,6 +193,7 @@ form.addEventListener('submit', async (e) => {
       document.getElementById('quest-type').value = 'development';
       document.getElementById('parent-quest').value = '';
       document.querySelectorAll('.category-cb').forEach(cb => { cb.checked = false; });
+      if (recurringConfig) recurringConfig.style.display = 'none';
       // Success shimmer on form
       form.classList.add('form-shimmer');
       setTimeout(() => form.classList.remove('form-shimmer'), 800);
