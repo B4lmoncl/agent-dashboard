@@ -1,3 +1,15 @@
+// ─── Sound system ─────────────────────────────────────────────────────────────
+let sounds = null;
+try {
+  const path = require('path');
+  sounds = require(path.join(__dirname, 'sounds.js'));
+  // Restore persisted settings
+  const savedMute   = localStorage.getItem('snd_mute');
+  const savedVolume = localStorage.getItem('snd_volume');
+  if (savedMute === '1') sounds.setSoundEnabled(false);
+  if (savedVolume !== null) sounds.setVolume(parseFloat(savedVolume));
+} catch (_) {}
+
 // ─── Config (localStorage) ───────────────────────────────────────────────────
 const DEFAULT_SERVER = 'http://187.77.139.247:3001';
 
@@ -104,6 +116,27 @@ function populateSettingsFields() {
   appVersionEl.textContent = `v${APP_VERSION}`;
   aboutServerEl.textContent = API_BASE || DEFAULT_SERVER;
   fetchDashboardVersion();
+  // Sound controls
+  const muteCb  = document.getElementById('snd-mute');
+  const volEl   = document.getElementById('snd-volume');
+  const muteLabel = document.getElementById('snd-mute-label');
+  if (muteCb && sounds) {
+    muteCb.checked = !sounds.isSoundEnabled();
+    if (muteLabel) muteLabel.textContent = sounds.isSoundEnabled() ? 'On' : 'Off';
+    muteCb.onchange = () => {
+      sounds.setSoundEnabled(!muteCb.checked);
+      localStorage.setItem('snd_mute', muteCb.checked ? '1' : '0');
+      if (muteLabel) muteLabel.textContent = muteCb.checked ? 'Off' : 'On';
+    };
+  }
+  if (volEl && sounds) {
+    volEl.value = Math.round(sounds.getVolume() * 100);
+    volEl.oninput = () => {
+      const v = parseInt(volEl.value, 10) / 100;
+      sounds.setVolume(v);
+      localStorage.setItem('snd_volume', v);
+    };
+  }
 }
 
 async function fetchDashboardVersion() {
@@ -128,6 +161,7 @@ saveBtn.addEventListener('click', () => {
   const apiKey = cfgApiKey.value.trim();
   saveConfig(server, apiKey);
   aboutServerEl.textContent = server;
+  sounds?.playSyncZisch();
   showMessage('Settings saved!');
   checkConnection();
   setTimeout(() => switchTab('quest'), 1200);
@@ -188,6 +222,7 @@ form.addEventListener('submit', async (e) => {
     });
 
     if (resp.ok) {
+      sounds?.playForgeHammer();
       const data = await resp.json();
       showMessage(`Quest posted! ID: ${data.quest.id}`);
       form.reset();
@@ -200,10 +235,12 @@ form.addEventListener('submit', async (e) => {
       form.classList.add('form-shimmer');
       setTimeout(() => form.classList.remove('form-shimmer'), 800);
     } else {
+      sounds?.playErrorScratch();
       const err = await resp.json().catch(() => ({}));
       showMessage(`Error ${resp.status}: ${err.error || resp.statusText}`, true);
     }
   } catch (err) {
+    sounds?.playErrorScratch();
     showMessage(`Network error: ${err.message}`, true);
   } finally {
     submitBtn.disabled = false;

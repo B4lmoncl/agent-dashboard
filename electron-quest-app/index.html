@@ -249,6 +249,22 @@
       </div>
 
       <div class="settings-section about-section">
+        <h3 class="settings-title">Sound</h3>
+        <div class="about-row">
+          <span class="about-label">Sound Effects</span>
+          <label class="sound-toggle" title="Mute/unmute sounds">
+            <input type="checkbox" id="snd-mute" />
+            <span class="sound-toggle-track"></span>
+            <span class="sound-toggle-label" id="snd-mute-label">On</span>
+          </label>
+        </div>
+        <div class="about-row" id="snd-volume-row">
+          <span class="about-label">Volume</span>
+          <input type="range" id="snd-volume" min="0" max="100" value="100" style="width:100px;accent-color:#ff6b00" />
+        </div>
+      </div>
+
+      <div class="settings-section about-section">
         <h3 class="settings-title">About</h3>
         <div class="about-row">
           <span class="about-label">App Version</span>
