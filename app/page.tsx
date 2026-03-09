@@ -31,6 +31,7 @@ interface Quest {
   categories: string[];
   product: string | null;
   humanInputRequired: boolean;
+  createdBy?: string;
   status: "open" | "in_progress" | "completed";
   createdAt: string;
   claimedBy: string | null;
@@ -552,6 +553,18 @@ function HumanInputBadge() {
   );
 }
 
+function AgentBadge({ name }: { name: string }) {
+  const label = name.charAt(0).toUpperCase() + name.slice(1);
+  return (
+    <span
+      className="text-xs px-1.5 py-0.5 rounded flex-shrink-0"
+      style={{ color: "#a78bfa", background: "rgba(167,139,250,0.1)", border: "1px solid rgba(167,139,250,0.25)" }}
+    >
+      🤖 {label}
+    </span>
+  );
+}
+
 function CompletedQuestRow({ quest, isLast }: { quest: Quest; isLast: boolean }) {
   const [expanded, setExpanded] = useState(false);
   const cats = quest.categories?.length ? quest.categories : (quest.category ? [quest.category] : []);
@@ -652,6 +665,9 @@ function QuestCard({ quest }: { quest: Quest }) {
           <div className="flex items-center gap-2">
             <p className="text-xs font-medium truncate flex-1" style={{ color: "#e8e8e8" }}>{quest.title}</p>
             {quest.humanInputRequired && <HumanInputBadge />}
+            {quest.createdBy && quest.createdBy !== "leon" && quest.createdBy !== "unknown" && (
+              <AgentBadge name={quest.createdBy} />
+            )}
             <PriorityBadge priority={quest.priority} />
           </div>
           <div className="flex items-center gap-1.5 mt-1 flex-wrap">

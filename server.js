@@ -134,6 +134,7 @@ function loadQuests() {
           }
           if (q.product === undefined) q.product = null;
           if (q.humanInputRequired === undefined) q.humanInputRequired = false;
+          if (q.createdBy === undefined) q.createdBy = 'unknown';
           return q;
         });
       }
@@ -321,7 +322,7 @@ app.get('/api/health', (req, res) => {
 
 // POST /api/quest — create a new quest
 app.post('/api/quest', requireApiKey, (req, res) => {
-  const { title, description, priority, category, categories, product, humanInputRequired } = req.body;
+  const { title, description, priority, category, categories, product, humanInputRequired, createdBy } = req.body;
   if (!title) return res.status(400).json({ error: 'title is required' });
   const validPriorities = ['low', 'medium', 'high'];
   const validCategories = ['Coding', 'Research', 'Content', 'Sales', 'Infrastructure', 'Bug Fix', 'Feature'];
@@ -352,6 +353,7 @@ app.post('/api/quest', requireApiKey, (req, res) => {
     categories: resolvedCategories,
     product: product || null,
     humanInputRequired: humanInputRequired === true || humanInputRequired === 'true',
+    createdBy: typeof createdBy === 'string' && createdBy.trim() ? createdBy.trim() : 'unknown',
     status: 'open',
     createdAt: now(),
     claimedBy: null,
@@ -516,6 +518,7 @@ const API_DOCS = {
           categories:         { type: 'array',   items: { type: 'string', enum: ['Coding','Research','Content','Sales','Infrastructure','Bug Fix','Feature'] }, example: ['Research','Coding'], description: 'Array of categories. Replaces the old category field. Send category (string) for backward compat.' },
           product:            { type: 'string',  nullable: true, enum: ['Dashboard','Companion App','Infrastructure','Other'], example: 'Dashboard', description: 'Optional product this quest belongs to.' },
           humanInputRequired: { type: 'boolean', example: false, description: 'If true, this quest requires human input and agents should not claim it alone.' },
+          createdBy:          { type: 'string',  example: 'forge', description: 'Identifier of who created the quest. Use agent names (forge, lyra, pixel) for agent-generated quests, or a human name. Defaults to "unknown".' },
           status:             { type: 'string',  enum: ['open','in_progress','completed'], example: 'open' },
           createdAt:          { type: 'string',  format: 'date-time' },
           claimedBy:          { type: 'string',  nullable: true, example: 'atlas' },
@@ -813,9 +816,10 @@ const API_DOCS = {
                   category:           { type: 'string', enum: ['Coding','Research','Content','Sales','Infrastructure','Bug Fix','Feature'], example: 'Research', description: 'Backward compat: single category string. Converted to categories array internally.' },
                   product:            { type: 'string', enum: ['Dashboard','Companion App','Infrastructure','Other'], example: 'Dashboard', description: 'Optional product this quest belongs to.' },
                   humanInputRequired: { type: 'boolean', example: false, description: 'Set true if this quest requires human input. Agents will avoid claiming it.' },
+                  createdBy:          { type: 'string', example: 'forge', description: 'Optional. Who created this quest. Use agent names for agent-generated quests. Defaults to "unknown".' },
                 },
               },
-              example: { title: 'Analyze Q1 sales data', description: 'Identify top opportunities.', priority: 'high', categories: ['Research'], product: 'Dashboard', humanInputRequired: false },
+              example: { title: 'Analyze Q1 sales data', description: 'Identify top opportunities.', priority: 'high', categories: ['Research'], product: 'Dashboard', humanInputRequired: false, createdBy: 'forge' },
             },
           },
         },
