@@ -188,6 +188,7 @@ export default function Dashboard() {
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
   const [bulkLoading, setBulkLoading] = useState(false);
   const [typeFilter, setTypeFilter] = useState<string>("all");
+  const [dashView, setDashView] = useState<"ops" | "campaign">("ops");
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   // Particle system — white dust drifting upward
@@ -495,8 +496,33 @@ export default function Dashboard() {
           />
         </div>
 
+        {/* View toggle */}
+        <div className="flex gap-1" style={{ background: "#111", borderRadius: 8, padding: 3, display: "inline-flex" }}>
+          {[
+            { key: "ops",      label: "⚔ Operations" },
+            { key: "campaign", label: "🐉 Campaign" },
+          ].map(v => (
+            <button
+              key={v.key}
+              onClick={() => setDashView(v.key as "ops" | "campaign")}
+              className="text-xs font-semibold px-3 py-1.5 rounded transition-all"
+              style={{
+                background: dashView === v.key ? "#252525" : "transparent",
+                color: dashView === v.key ? "#f0f0f0" : "rgba(255,255,255,0.3)",
+              }}
+            >
+              {v.label}
+            </button>
+          ))}
+        </div>
+
+        {/* Campaign View */}
+        {dashView === "campaign" && (
+          <CampaignView agents={agents} quests={quests} users={users} />
+        )}
+
         {/* Agent Roster + Quest Board */}
-        <div className="flex flex-col lg:flex-row gap-6 items-start">
+        {dashView === "ops" && <div className="flex flex-col lg:flex-row gap-6 items-start">
 
           {/* Agent Roster */}
           <section className="flex-1 min-w-0">
@@ -657,7 +683,7 @@ export default function Dashboard() {
               )}
             </div>
           </aside>
-        </div>
+        </div>}
 
         {/* Review Board — Agent Suggestions */}
         {quests.suggested.length > 0 && (
@@ -1313,5 +1339,120 @@ function SkeletonCard() {
       className="rounded-xl animate-pulse"
       style={{ background: "#252525", border: "1px solid rgba(255,255,255,0.05)", height: 260 }}
     />
+  );
+}
+
+// ─── D&D Campaign View ────────────────────────────────────────────────────────
+function CampaignView({ agents, quests, users }: { agents: Agent[]; quests: QuestsData; users: User[] }) {
+  const allQuests = [...quests.open, ...quests.inProgress, ...quests.completed];
+  const sessions  = allQuests.filter(q => q.type === "social").slice(0, 10);
+  const plotHooks = quests.open.filter(q => q.type !== "social").slice(0, 8);
+  const npcAgents = agents.filter(a => a.status !== "offline");
+
+  return (
+    <div className="space-y-8">
+      <div className="rounded-2xl p-6" style={{ background: "linear-gradient(135deg, #1a0d2e 0%, #0d1a1a 100%)", border: "1px solid rgba(139,92,246,0.3)", boxShadow: "0 0 40px rgba(139,92,246,0.1)" }}>
+        <div className="flex items-center gap-3 mb-2">
+          <span style={{ fontSize: 28 }}>🐉</span>
+          <div>
+            <h2 className="text-lg font-bold" style={{ color: "#e9d5ff" }}>The Guild Chronicle</h2>
+            <p className="text-xs" style={{ color: "rgba(167,139,250,0.6)" }}>Fantasy RPG overlay — agents are NPCs, quests are adventures</p>
+          </div>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {/* Active NPCs */}
+        <div>
+          <h3 className="text-xs font-semibold uppercase tracking-widest mb-3" style={{ color: "rgba(167,139,250,0.7)" }}>⚔ Active NPCs</h3>
+          <div className="space-y-2">
+            {npcAgents.length === 0 && <p className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>No NPCs online</p>}
+            {npcAgents.map(a => {
+              const agentMeta: Record<string, { avatar: string; color: string }> = {
+                nova: { avatar: "NO", color: "#8b5cf6" }, hex: { avatar: "HX", color: "#10b981" },
+                echo: { avatar: "EC", color: "#ef4444" }, pixel: { avatar: "PX", color: "#f59e0b" },
+                atlas: { avatar: "AT", color: "#6366f1" }, lyra: { avatar: "✦", color: "#e879f9" },
+                forge: { avatar: "⚒", color: "#f59e0b" },
+              };
+              const meta = agentMeta[a.id?.toLowerCase()] ?? { avatar: a.id?.slice(0, 2).toUpperCase() ?? "??", color: a.color ?? "#666" };
+              const color = a.color ?? meta.color;
+              return (
+                <div key={a.id} className="flex items-center gap-2 p-2 rounded-lg" style={{ background: "rgba(139,92,246,0.07)", border: "1px solid rgba(139,92,246,0.15)" }}>
+                  <div className="w-8 h-8 rounded-lg flex items-center justify-center font-bold text-xs flex-shrink-0" style={{ background: `linear-gradient(135deg, ${color}, ${color}99)`, color: "#fff" }}>
+                    {a.avatar ?? meta.avatar}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-xs font-semibold truncate" style={{ color: "#e9d5ff" }}>{a.name}</p>
+                    <p className="text-xs truncate" style={{ color: "rgba(167,139,250,0.5)" }}>{a.role ?? "NPC"}</p>
+                  </div>
+                  <span className="text-xs px-1.5 py-0.5 rounded" style={{ background: a.status === "working" ? "rgba(16,185,129,0.15)" : "rgba(139,92,246,0.1)", color: a.status === "working" ? "#34d399" : "rgba(167,139,250,0.7)", border: `1px solid ${a.status === "working" ? "rgba(16,185,129,0.3)" : "rgba(139,92,246,0.2)"}` }}>
+                    {a.status === "working" ? "On Quest" : a.status}
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Plot Hooks (open quests) */}
+        <div>
+          <h3 className="text-xs font-semibold uppercase tracking-widest mb-3" style={{ color: "rgba(251,191,36,0.7)" }}>📜 Plot Hooks</h3>
+          <div className="space-y-2">
+            {plotHooks.length === 0 && <p className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>No plot hooks available</p>}
+            {plotHooks.map(q => (
+              <div key={q.id} className="p-2.5 rounded-lg" style={{ background: "rgba(251,191,36,0.05)", border: "1px solid rgba(251,191,36,0.15)" }}>
+                <div className="flex items-start gap-2">
+                  <span className="text-xs flex-shrink-0 mt-0.5" style={{ color: "rgba(251,191,36,0.7)" }}>◆</span>
+                  <p className="text-xs font-medium" style={{ color: "#fde68a" }}>{q.title}</p>
+                </div>
+                {q.description && <p className="text-xs mt-1 leading-relaxed" style={{ color: "rgba(253,230,138,0.4)" }}>{q.description.slice(0, 80)}{q.description.length > 80 ? "…" : ""}</p>}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Sessions (social quests + completed) */}
+        <div>
+          <h3 className="text-xs font-semibold uppercase tracking-widest mb-3" style={{ color: "rgba(52,211,153,0.7)" }}>📅 Session Log</h3>
+          <div className="space-y-2">
+            {sessions.length === 0 && <p className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>No sessions logged yet. Create a quest with type &quot;Social&quot;.</p>}
+            {sessions.map(q => (
+              <div key={q.id} className="p-2.5 rounded-lg" style={{ background: "rgba(52,211,153,0.05)", border: "1px solid rgba(52,211,153,0.15)" }}>
+                <div className="flex items-center gap-2">
+                  <span className="text-xs" style={{ color: q.status === "completed" ? "#34d399" : "rgba(52,211,153,0.5)" }}>
+                    {q.status === "completed" ? "✓" : "◌"}
+                  </span>
+                  <p className="text-xs font-medium flex-1 truncate" style={{ color: "#a7f3d0" }}>{q.title}</p>
+                  <span className="text-xs" style={{ color: "rgba(52,211,153,0.4)" }}>{timeAgo(q.createdAt)}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Party Members (users) */}
+          {users.length > 0 && (
+            <div className="mt-4">
+              <h4 className="text-xs font-semibold uppercase tracking-widest mb-2" style={{ color: "rgba(252,165,165,0.7)" }}>🧙 Party</h4>
+              <div className="space-y-2">
+                {users.map(u => {
+                  const lvl = getUserLevel(u.xp ?? 0);
+                  return (
+                    <div key={u.id} className="flex items-center gap-2 p-2 rounded-lg" style={{ background: "rgba(252,165,165,0.05)", border: "1px solid rgba(252,165,165,0.1)" }}>
+                      <div className="w-7 h-7 rounded-lg flex items-center justify-center font-bold text-xs flex-shrink-0" style={{ background: `linear-gradient(135deg, ${u.color}, ${u.color}99)`, color: "#fff" }}>
+                        {u.avatar}
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-xs font-semibold" style={{ color: "#fca5a5" }}>{u.name}</p>
+                        <p className="text-xs" style={{ color: lvl.color }}>{lvl.name} · {u.xp ?? 0} XP</p>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
   );
 }
