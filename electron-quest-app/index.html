@@ -10,17 +10,34 @@
   <canvas id="particle-canvas"></canvas>
   <div class="app">
     <header>
-      <div class="logo">OC</div>
+      <div class="logo">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+          <!-- Scroll body -->
+          <rect x="5" y="4" width="14" height="17" rx="2"/>
+          <!-- Left curl top -->
+          <path d="M5 4 C5 2 3 2 3 4 L3 6 C3 8 5 8 5 6"/>
+          <!-- Left curl bottom -->
+          <path d="M5 20 C5 22 3 22 3 20 L3 18 C3 16 5 16 5 18"/>
+          <!-- Text lines -->
+          <line x1="8" y1="10" x2="16" y2="10"/>
+          <line x1="8" y1="13" x2="16" y2="13"/>
+          <line x1="8" y1="16" x2="13" y2="16"/>
+        </svg>
+      </div>
       <div class="header-text">
         <h1 style="display:flex;align-items:center;gap:7px;">
           Quest Forge
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ff8c44" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;opacity:0.85">
-            <!-- Anvil top -->
-            <path d="M3 17h18v2a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-2z"/>
+            <!-- Hammer head -->
+            <rect x="7" y="2" width="7" height="4" rx="1"/>
+            <!-- Hammer handle -->
+            <line x1="10.5" y1="6" x2="10.5" y2="11"/>
             <!-- Anvil body -->
-            <path d="M6 17V11h12v6"/>
+            <path d="M6 18V13h12v5"/>
+            <!-- Anvil top plate -->
+            <path d="M3 18h18v2a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-2z"/>
             <!-- Anvil horn -->
-            <path d="M18 11h2a1 1 0 0 0 .94-1.34l-1-3A1 1 0 0 0 19 6H8L6 11"/>
+            <path d="M18 13l3-2"/>
           </svg>
         </h1>
         <p class="subtitle">Post a quest to Quest Hall</p>
