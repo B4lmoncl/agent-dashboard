@@ -204,11 +204,14 @@ function showMessage(text, isError = false) {
 }
 
 // ─── Recurring toggle visibility ──────────────────────────────────────────────
-const recurringCb     = document.getElementById('recurring');
-const recurringConfig = document.getElementById('recurring-config');
-if (recurringCb && recurringConfig) {
+const recurringCb       = document.getElementById('recurring');
+const recurringConfig   = document.getElementById('recurring-config');
+const checklistSection  = document.getElementById('checklist-section');
+if (recurringCb) {
   recurringCb.addEventListener('change', () => {
-    recurringConfig.style.display = recurringCb.checked ? 'flex' : 'none';
+    const on = recurringCb.checked;
+    if (recurringConfig)  recurringConfig.style.display  = on ? 'flex' : 'none';
+    if (checklistSection) checklistSection.style.display = on ? 'flex' : 'none';
   });
 }
 
@@ -228,6 +231,9 @@ form.addEventListener('submit', async (e) => {
   const isRecurring      = document.getElementById('recurring')?.checked;
   const recurrence       = isRecurring ? (document.getElementById('recurrence')?.value || 'weekly') : undefined;
   const proof            = questType === 'learning' ? (document.getElementById('learning-proof')?.value.trim() || undefined) : undefined;
+  const checklistRaw     = isRecurring ? (document.getElementById('checklist-items')?.value || '') : '';
+  const checklist        = checklistRaw.split('\n').map(s => s.trim()).filter(Boolean).map(text => ({ text, done: false }));
+  const checklistPayload = checklist.length ? checklist : undefined;
 
   // Collect checked categories
   const checkedBoxes = document.querySelectorAll('.category-cb:checked');
@@ -246,7 +252,7 @@ form.addEventListener('submit', async (e) => {
         'Content-Type': 'application/json',
         'X-API-Key': API_KEY,
       },
-      body: JSON.stringify({ title, description, priority, category, categories, humanInputRequired, product: document.getElementById('product').value || undefined, createdBy: 'leon', type: questType, parentQuestId, recurrence, proof }),
+      body: JSON.stringify({ title, description, priority, category, categories, humanInputRequired, product: document.getElementById('product').value || undefined, createdBy: 'leon', type: questType, parentQuestId, recurrence, proof, checklist: checklistPayload }),
     });
 
     if (resp.ok) {
@@ -258,7 +264,10 @@ form.addEventListener('submit', async (e) => {
       document.getElementById('quest-type').value = 'development';
       document.getElementById('parent-quest').value = '';
       document.querySelectorAll('.category-cb').forEach(cb => { cb.checked = false; });
-      if (recurringConfig) recurringConfig.style.display = 'none';
+      if (recurringConfig)  recurringConfig.style.display  = 'none';
+      if (checklistSection) checklistSection.style.display = 'none';
+      const checklistEl = document.getElementById('checklist-items');
+      if (checklistEl) checklistEl.value = '';
       if (proofSection) proofSection.style.display = 'none';
       const proofEl = document.getElementById('learning-proof');
       if (proofEl) proofEl.value = '';
