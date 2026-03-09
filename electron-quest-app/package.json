@@ -1,7 +1,7 @@
 {
-  "name": "quest-poster",
-  "version": "1.0.0",
-  "description": "Post quests to the Agent Dashboard",
+  "name": "quest-forge",
+  "version": "1.1.0",
+  "description": "Post quests to Quest Hall",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
@@ -11,8 +11,15 @@
     "build:linux": "electron-builder --linux"
   },
   "build": {
-    "appId": "com.openclaw.quest-poster",
-    "productName": "Quest Poster",
+    "appId": "com.openclaw.quest-forge",
+    "productName": "Quest Forge",
+    "files": [
+      "main.js",
+      "renderer.js",
+      "index.html",
+      "styles.css",
+      "package.json"
+    ],
     "directories": {
       "output": "dist"
     },
@@ -21,15 +28,20 @@
         { "target": "nsis",     "arch": ["x64"] },
         { "target": "portable", "arch": ["x64"] }
       ],
-      "icon": "assets/icon.ico"
+      "artifactName": "${productName}-Setup-${version}.${ext}"
+    },
+    "nsis": {
+      "oneClick": true,
+      "allowToChangeInstallationDirectory": false,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Quest Forge"
     },
     "mac": {
-      "target": "dmg",
-      "icon": "assets/icon.icns"
+      "target": "dmg"
     },
     "linux": {
-      "target": "AppImage",
-      "icon": "assets/icon.png"
+      "target": "AppImage"
     }
   },
   "keywords": [],

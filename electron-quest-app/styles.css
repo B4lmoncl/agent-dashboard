@@ -10,6 +10,8 @@ body {
   color: #e8e8e8;
   -webkit-font-smoothing: antialiased;
   user-select: none;
+  overflow-y: auto;
+  height: 100vh;
 }
 
 .app {
@@ -296,6 +298,140 @@ button[type="submit"]:disabled,
   background: rgba(239, 68, 68, 0.1);
   border: 1px solid rgba(239, 68, 68, 0.3);
   color: #ef4444;
+}
+
+/* ─── Category checkboxes ──────────────────────────────────────────────────── */
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 5px;
+}
+
+.category-option {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 10px;
+  background: #252525;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 7px;
+  cursor: pointer;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.55);
+  transition: background 0.12s, border-color 0.12s, color 0.12s;
+  user-select: none;
+}
+
+.category-option:hover {
+  background: #2d2d2d;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.category-option input[type="checkbox"] {
+  width: 13px;
+  height: 13px;
+  flex-shrink: 0;
+  accent-color: #ff4444;
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+.category-option:has(input:checked) {
+  background: rgba(255, 68, 68, 0.1);
+  border-color: rgba(255, 68, 68, 0.35);
+  color: #f0f0f0;
+}
+
+/* ─── Human Input Required ─────────────────────────────────────────────────── */
+.human-input-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  background: #252525;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.12s, border-color 0.12s;
+  user-select: none;
+}
+
+.human-input-row:hover {
+  background: #2d2d2d;
+}
+
+.human-input-row:has(input:checked) {
+  background: rgba(245, 158, 11, 0.08);
+  border-color: rgba(245, 158, 11, 0.3);
+}
+
+.human-input-row input[type="checkbox"] {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  accent-color: #f59e0b;
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+.human-input-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.55);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.human-input-row:has(input:checked) .human-input-label {
+  color: #f59e0b;
+}
+
+.human-icon {
+  font-size: 13px;
+}
+
+/* ─── Secondary button ─────────────────────────────────────────────────────── */
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  width: 100%;
+  font-family: inherit;
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.09);
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.btn-secondary:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ─── Update message ────────────────────────────────────────────────────────── */
+.update-msg {
+  font-size: 11px;
+  margin-top: 6px;
+  line-height: 1.4;
+  min-height: 0;
+}
+
+.update-msg.update-available {
+  color: #f59e0b;
+}
+
+.update-msg.update-ok {
+  color: #22c55e;
 }
 
 /* ─── Scrollbar ────────────────────────────────────────────────────────────── */

@@ -35,9 +35,9 @@ function formatDuration(seconds: number): string {
 }
 
 const statusConfig: Record<string, { label: string; color: string; dot: string }> = {
-  online:  { label: "Online",  color: "#22c55e", dot: "#22c55e" },
-  working: { label: "Working", color: "#ff6633", dot: "#ff6633" },
-  idle:    { label: "Idle",    color: "#eab308", dot: "#eab308" },
+  online:  { label: "Online",  color: "#4ade80", dot: "#4ade80" },
+  working: { label: "Working", color: "#ff6b00", dot: "#ff6b00" },
+  idle:    { label: "Idle",    color: "#facc15", dot: "#facc15" },
   offline: { label: "Offline", color: "rgba(255,255,255,0.25)", dot: "rgba(255,255,255,0.2)" },
 };
 
@@ -84,23 +84,50 @@ export default function AgentCard({ agent, activeQuests = [], isWide = false }: 
         background: "#252525",
         border: `1px solid ${needsCheckin ? "rgba(245,158,11,0.35)" : isActive ? "rgba(255,68,68,0.2)" : "rgba(255,255,255,0.06)"}`,
         boxShadow: needsCheckin ? "0 0 20px rgba(245,158,11,0.1)" : isActive ? "0 0 20px rgba(255,68,68,0.06)" : "none",
+        transform: "translateY(0)",
+        transition: "border 0.2s, box-shadow 0.2s, transform 0.15s",
       }}
       onMouseEnter={(e) => {
-        (e.currentTarget as HTMLDivElement).style.border = needsCheckin ? "1px solid rgba(245,158,11,0.6)" : "1px solid rgba(255,68,68,0.35)";
-        (e.currentTarget as HTMLDivElement).style.boxShadow = needsCheckin ? "0 0 24px rgba(245,158,11,0.15)" : "0 0 24px rgba(255,68,68,0.1)";
+        const el = e.currentTarget as HTMLDivElement;
+        el.style.border = needsCheckin ? "1px solid rgba(245,158,11,0.7)" : "1px solid rgba(255,68,68,0.45)";
+        el.style.boxShadow = needsCheckin ? "0 8px 32px rgba(245,158,11,0.2)" : "0 8px 32px rgba(255,68,68,0.18)";
+        el.style.transform = "translateY(-3px)";
       }}
       onMouseLeave={(e) => {
-        (e.currentTarget as HTMLDivElement).style.border = `1px solid ${needsCheckin ? "rgba(245,158,11,0.35)" : isActive ? "rgba(255,68,68,0.2)" : "rgba(255,255,255,0.06)"}`;
-        (e.currentTarget as HTMLDivElement).style.boxShadow = needsCheckin ? "0 0 20px rgba(245,158,11,0.1)" : isActive ? "0 0 20px rgba(255,68,68,0.06)" : "none";
+        const el = e.currentTarget as HTMLDivElement;
+        el.style.border = `1px solid ${needsCheckin ? "rgba(245,158,11,0.35)" : isActive ? "rgba(255,68,68,0.2)" : "rgba(255,255,255,0.06)"}`;
+        el.style.boxShadow = needsCheckin ? "0 0 20px rgba(245,158,11,0.1)" : isActive ? "0 0 20px rgba(255,68,68,0.06)" : "none";
+        el.style.transform = "translateY(0)";
       }}
     >
       {/* Header row: avatar + name + status badge */}
       <div className="flex items-center gap-3">
         <div
-          className="flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center text-xs font-bold text-white"
-          style={{ background: `linear-gradient(135deg, ${color}cc, ${color}66)`, boxShadow: `0 2px 10px ${color}30` }}
+          className="flex-shrink-0 relative"
+          style={{ width: isWide ? 72 : 58, height: isWide ? 72 : 58 }}
         >
-          {avatar}
+          {/* Outer glow ring for active agents */}
+          {isActive && (
+            <div
+              className="absolute inset-0 rounded-2xl"
+              style={{
+                boxShadow: `0 0 0 2px ${color}70, 0 0 20px ${color}55`,
+                borderRadius: isWide ? 18 : 14,
+                animation: agent.status === "working" ? "pulse 2s ease-in-out infinite" : "none",
+              }}
+            />
+          )}
+          <div
+            className="w-full h-full rounded-2xl flex items-center justify-center font-black text-white"
+            style={{
+              background: `linear-gradient(135deg, ${color}, ${color}99)`,
+              boxShadow: `0 6px 20px ${color}50`,
+              fontSize: isWide ? 20 : 15,
+              letterSpacing: "0.06em",
+            }}
+          >
+            {avatar}
+          </div>
         </div>
         <div className="flex-1 min-w-0">
           <div className="flex items-center justify-between gap-2">
@@ -110,11 +137,11 @@ export default function AgentCard({ agent, activeQuests = [], isWide = false }: 
               style={{ background: `${st.dot}15`, border: `1px solid ${st.dot}40`, color: st.color }}
             >
               <span
-                className="w-1.5 h-1.5 rounded-full inline-block"
+                className="w-2 h-2 rounded-full inline-block"
                 style={{
                   background: st.dot,
-                  boxShadow: isActive ? `0 0 5px ${st.dot}` : "none",
-                  animation: agent.status === "working" ? "pulse 1.5s ease-in-out infinite" : "none",
+                  boxShadow: isActive ? `0 0 7px ${st.dot}, 0 0 14px ${st.dot}60` : "none",
+                  animation: agent.status === "working" ? "pulse 1.2s ease-in-out infinite" : "none",
                 }}
               />
               {st.label}

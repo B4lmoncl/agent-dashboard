@@ -191,7 +191,7 @@ export default function Dashboard() {
               OC
             </div>
             <span className="font-semibold text-sm tracking-tight" style={{ color: "#e8e8e8" }}>
-              Agent Dashboard
+              Quest Hall
             </span>
             <span
               className="text-xs font-mono px-2 py-0.5 rounded"
@@ -284,15 +284,15 @@ export default function Dashboard() {
               </div>
               <div className="flex items-center gap-3 text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>
                 <span className="flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: "#22c55e" }} />
+                  <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: "#4ade80" }} />
                   Online
                 </span>
                 <span className="flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: "#ff6633" }} />
+                  <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: "#ff6b00", boxShadow: "0 0 5px #ff6b0080", animation: "pulse 1.2s ease-in-out infinite" }} />
                   Working
                 </span>
                 <span className="flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: "#eab308" }} />
+                  <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: "#facc15" }} />
                   Idle
                 </span>
                 <span className="flex items-center gap-1.5">
@@ -410,7 +410,7 @@ export default function Dashboard() {
           style={{ color: "rgba(255,255,255,0.15)" }}
         >
           <div className="flex items-center gap-3">
-            <span>OpenClaw · Agent Dashboard · Revenue Team</span>
+            <span>OpenClaw · Quest Hall · Revenue Team</span>
             {versions && (
               <span style={{ color: "rgba(255,255,255,0.25)" }}>
                 Dashboard v{versions.dashboard} | Companion App v{versions.app}
@@ -531,17 +531,25 @@ function QuestCard({ quest }: { quest: Quest }) {
 
   return (
     <div
-      className="rounded-lg p-3 cursor-pointer transition-all duration-150"
+      className="rounded-lg p-3 cursor-pointer"
       style={{
         background: "#252525",
         border: `1px solid ${isInProgress ? "rgba(139,92,246,0.25)" : "rgba(255,255,255,0.07)"}`,
+        transform: "translateY(0)",
+        transition: "border-color 0.15s, box-shadow 0.15s, transform 0.15s",
       }}
       onClick={() => setExpanded(v => !v)}
       onMouseEnter={(e) => {
-        (e.currentTarget as HTMLDivElement).style.borderColor = isInProgress ? "rgba(139,92,246,0.45)" : "rgba(255,255,255,0.15)";
+        const el = e.currentTarget as HTMLDivElement;
+        el.style.borderColor = isInProgress ? "rgba(139,92,246,0.5)" : "rgba(255,255,255,0.18)";
+        el.style.boxShadow = isInProgress ? "0 4px 16px rgba(139,92,246,0.12)" : "0 4px 16px rgba(0,0,0,0.25)";
+        el.style.transform = "translateY(-1px)";
       }}
       onMouseLeave={(e) => {
-        (e.currentTarget as HTMLDivElement).style.borderColor = isInProgress ? "rgba(139,92,246,0.25)" : "rgba(255,255,255,0.07)";
+        const el = e.currentTarget as HTMLDivElement;
+        el.style.borderColor = isInProgress ? "rgba(139,92,246,0.25)" : "rgba(255,255,255,0.07)";
+        el.style.boxShadow = "none";
+        el.style.transform = "translateY(0)";
       }}
     >
       <div className="flex items-start gap-2">

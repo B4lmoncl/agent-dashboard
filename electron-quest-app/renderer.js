@@ -1,5 +1,3 @@
-const { app } = require('electron').remote || require('@electron/remote') || {};
-
 // ─── Config (localStorage) ───────────────────────────────────────────────────
 const DEFAULT_SERVER = 'http://187.77.139.247:3001';
 
@@ -107,10 +105,15 @@ form.addEventListener('submit', async (e) => {
   const { API_BASE, API_KEY } = loadConfig();
   const base = API_BASE || DEFAULT_SERVER;
 
-  const title       = document.getElementById('title').value.trim();
-  const description = document.getElementById('description').value.trim();
-  const priority    = document.getElementById('priority').value;
-  const category    = document.getElementById('category').value || undefined;
+  const title            = document.getElementById('title').value.trim();
+  const description      = document.getElementById('description').value.trim();
+  const priority         = document.getElementById('priority').value;
+  const humanInputRequired = document.getElementById('human-input').checked;
+
+  // Collect checked categories
+  const checkedBoxes = document.querySelectorAll('.category-cb:checked');
+  const categories   = Array.from(checkedBoxes).map(cb => cb.value);
+  const category     = categories[0] || undefined;
 
   if (!title) return;
 
@@ -124,7 +127,7 @@ form.addEventListener('submit', async (e) => {
         'Content-Type': 'application/json',
         'X-API-Key': API_KEY,
       },
-      body: JSON.stringify({ title, description, priority, category }),
+      body: JSON.stringify({ title, description, priority, category, categories, humanInputRequired }),
     });
 
     if (resp.ok) {
@@ -132,7 +135,7 @@ form.addEventListener('submit', async (e) => {
       showMessage(`Quest posted! ID: ${data.quest.id}`);
       form.reset();
       document.getElementById('priority').value = 'medium';
-      document.getElementById('category').value = '';
+      document.querySelectorAll('.category-cb').forEach(cb => { cb.checked = false; });
     } else {
       const err = await resp.json().catch(() => ({}));
       showMessage(`Error ${resp.status}: ${err.error || resp.statusText}`, true);
@@ -141,9 +144,49 @@ form.addEventListener('submit', async (e) => {
     showMessage(`Network error: ${err.message}`, true);
   } finally {
     submitBtn.disabled = false;
-    submitBtn.textContent = 'Quest Posten';
+    submitBtn.textContent = 'Post Quest';
   }
 });
+
+// ─── Auto-update check ────────────────────────────────────────────────────────
+const GITHUB_REPO = 'b4lmoncl/agent-dashboard';
+const updateBtn  = document.getElementById('check-update-btn');
+const updateMsgEl = document.getElementById('update-message');
+
+if (updateBtn) {
+  updateBtn.addEventListener('click', async () => {
+    updateBtn.disabled = true;
+    updateBtn.textContent = 'Checking…';
+    if (updateMsgEl) { updateMsgEl.textContent = ''; updateMsgEl.className = ''; }
+    try {
+      const r = await fetch(
+        `https://api.github.com/repos/${GITHUB_REPO}/releases/latest`,
+        { headers: { 'User-Agent': 'quest-forge-app' }, signal: AbortSignal.timeout(5000) }
+      );
+      if (r.ok) {
+        const data = await r.json();
+        const latest = (data.tag_name || '').replace(/^v/, '');
+        if (latest && latest !== APP_VERSION) {
+          if (updateMsgEl) {
+            updateMsgEl.textContent = `v${latest} available! Download at github.com/${GITHUB_REPO}/releases`;
+            updateMsgEl.className = 'update-available';
+          }
+        } else if (latest) {
+          if (updateMsgEl) { updateMsgEl.textContent = 'You\'re up to date!'; updateMsgEl.className = 'update-ok'; }
+        } else {
+          if (updateMsgEl) { updateMsgEl.textContent = 'Could not parse version.'; updateMsgEl.className = 'update-ok'; }
+        }
+      } else {
+        if (updateMsgEl) { updateMsgEl.textContent = 'No releases found.'; updateMsgEl.className = 'update-ok'; }
+      }
+    } catch (_) {
+      if (updateMsgEl) { updateMsgEl.textContent = 'Could not reach GitHub.'; updateMsgEl.className = 'update-ok'; }
+    } finally {
+      updateBtn.disabled = false;
+      updateBtn.textContent = 'Check for Updates';
+    }
+  });
+}
 
 // ─── Init: show settings on first run if not configured ───────────────────────
 if (!isConfigured()) {

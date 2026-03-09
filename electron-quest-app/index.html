@@ -11,8 +11,8 @@
     <header>
       <div class="logo">OC</div>
       <div class="header-text">
-        <h1>Quest Poster</h1>
-        <p class="subtitle">Post a quest to the Agent Dashboard</p>
+        <h1>Quest Forge</h1>
+        <p class="subtitle">Post a quest to Quest Hall</p>
       </div>
       <div class="header-actions">
         <button class="icon-btn" id="settings-btn" title="Settings">⚙</button>
@@ -44,37 +44,63 @@
           <textarea
             id="description"
             placeholder="What needs to be done and why…"
-            rows="4"
+            rows="3"
             maxlength="1000"
           ></textarea>
         </div>
 
-        <div class="field-row">
-          <div class="field">
-            <label for="priority">Priority</label>
-            <select id="priority">
-              <option value="low">Low</option>
-              <option value="medium" selected>Medium</option>
-              <option value="high">High</option>
-            </select>
-          </div>
+        <div class="field">
+          <label for="priority">Priority</label>
+          <select id="priority">
+            <option value="low">Low</option>
+            <option value="medium" selected>Medium</option>
+            <option value="high">High</option>
+          </select>
+        </div>
 
-          <div class="field">
-            <label for="category">Category <span class="optional">(optional)</span></label>
-            <select id="category">
-              <option value="">— None —</option>
-              <option value="Coding">Coding</option>
-              <option value="Research">Research</option>
-              <option value="Content">Content</option>
-              <option value="Sales">Sales</option>
-              <option value="Infrastructure">Infrastructure</option>
-              <option value="Bug Fix">Bug Fix</option>
-              <option value="Feature">Feature</option>
-            </select>
+        <div class="field">
+          <label>Categories <span class="optional">(optional, multi-select)</span></label>
+          <div class="categories-grid">
+            <label class="category-option">
+              <input type="checkbox" class="category-cb" value="Coding" />
+              <span>Coding</span>
+            </label>
+            <label class="category-option">
+              <input type="checkbox" class="category-cb" value="Research" />
+              <span>Research</span>
+            </label>
+            <label class="category-option">
+              <input type="checkbox" class="category-cb" value="Content" />
+              <span>Content</span>
+            </label>
+            <label class="category-option">
+              <input type="checkbox" class="category-cb" value="Sales" />
+              <span>Sales</span>
+            </label>
+            <label class="category-option">
+              <input type="checkbox" class="category-cb" value="Infrastructure" />
+              <span>Infrastructure</span>
+            </label>
+            <label class="category-option">
+              <input type="checkbox" class="category-cb" value="Bug Fix" />
+              <span>Bug Fix</span>
+            </label>
+            <label class="category-option">
+              <input type="checkbox" class="category-cb" value="Feature" />
+              <span>Feature</span>
+            </label>
           </div>
         </div>
 
-        <button type="submit" id="submit-btn">Quest Posten</button>
+        <label class="human-input-row">
+          <input type="checkbox" id="human-input" />
+          <span class="human-input-label">
+            <span class="human-icon">👤</span>
+            Human Input Required (needs Leon)
+          </span>
+        </label>
+
+        <button type="submit" id="submit-btn">Post Quest</button>
       </form>
     </div>
 
@@ -115,6 +141,8 @@
           <span class="about-label">Server</span>
           <span class="about-value" id="about-server" style="font-size:10px">—</span>
         </div>
+        <button id="check-update-btn" class="btn-secondary" style="margin-top:6px">Check for Updates</button>
+        <div id="update-message" class="update-msg"></div>
       </div>
     </div>
 

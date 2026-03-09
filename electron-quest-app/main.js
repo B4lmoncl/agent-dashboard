@@ -4,11 +4,11 @@ const path = require('path');
 function createWindow() {
   const win = new BrowserWindow({
     width: 420,
-    height: 660,
+    height: 720,
     minWidth: 360,
-    minHeight: 500,
+    minHeight: 540,
     resizable: true,
-    title: 'Quest Poster',
+    title: 'Quest Forge',
     backgroundColor: '#1a1a1a',
     webPreferences: {
       nodeIntegration: true,
