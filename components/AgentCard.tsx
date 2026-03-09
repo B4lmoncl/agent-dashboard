@@ -91,7 +91,7 @@ const agentMeta: Record<string, { avatar: string; color: string; role: string; d
   echo:  { avatar: "EC", color: "#ef4444", role: "Sales",           description: "Bold sales closer. Charm offensive." },
   pixel: { avatar: "PX", color: "#f59e0b", role: "Marketer",        description: "Creative marketer. Eye for aesthetics." },
   atlas: { avatar: "AT", color: "#6366f1", role: "Researcher",      description: "Deep researcher. Pattern finder." },
-  lyra:  { avatar: "LY", color: "#e879f9", role: "AI Orchestrator", description: "AI Orchestrator. Team lead. Gets shit done." },
+  lyra:  { avatar: "✦", color: "#e879f9", role: "AI Orchestrator", description: "AI Orchestrator. Team lead. Gets shit done." },
 };
 
 export default function AgentCard({ agent, activeQuests = [], isWide = false }: { agent: Agent; activeQuests?: Quest[]; isWide?: boolean }) {
@@ -191,8 +191,8 @@ export default function AgentCard({ agent, activeQuests = [], isWide = false }: 
             style={{
               background: `linear-gradient(135deg, ${color}, ${color}99)`,
               boxShadow: `0 6px 20px ${color}50`,
-              fontSize: isWide ? 20 : 15,
-              letterSpacing: "0.06em",
+              fontSize: avatar.length === 1 ? (isWide ? 30 : 24) : (isWide ? 20 : 15),
+              letterSpacing: avatar.length === 1 ? "0" : "0.06em",
             }}
           >
             {avatar}
