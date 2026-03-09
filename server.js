@@ -455,6 +455,19 @@ app.post('/api/quest/:id/reject', requireApiKey, (req, res) => {
   res.json({ ok: true, quest });
 });
 
+// PATCH /api/quest/:id — update priority of a suggested quest
+app.patch('/api/quest/:id', requireApiKey, (req, res) => {
+  const quest = quests.find(q => q.id === req.params.id);
+  if (!quest) return res.status(404).json({ error: 'Quest not found' });
+  if (quest.status !== 'suggested') return res.status(409).json({ error: 'Can only update priority of suggested quests' });
+  const { priority } = req.body;
+  if (!['low', 'medium', 'high'].includes(priority)) return res.status(400).json({ error: 'Invalid priority. Use: low, medium, high' });
+  quest.priority = priority;
+  saveQuests();
+  console.log(`[quest] ${quest.id} priority updated → ${priority}`);
+  res.json({ ok: true, quest });
+});
+
 // PATCH /api/quests/:id/complete — mark a quest as completed
 app.patch('/api/quests/:id/complete', requireApiKey, (req, res) => {
   const { id } = req.params;

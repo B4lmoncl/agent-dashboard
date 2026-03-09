@@ -367,7 +367,7 @@ async function loadReviewQuests() {
         card.className = 'review-card';
         card.innerHTML = `
           <div class="review-card-header">
-            <span class="review-priority" style="background:${PRIORITY_COLORS[q.priority] || '#666'}"></span>
+            <button class="btn-priority" data-id="${q.id}" data-priority="${q.priority}" style="background:${PRIORITY_COLORS[q.priority]||'#666'}" title="Click to change priority">${q.priority}</button>
             <span class="review-title">${escapeHtml(q.title)}</span>
             <span class="review-by">by ${escapeHtml(q.createdBy || 'unknown')}</span>
           </div>
@@ -384,6 +384,17 @@ async function loadReviewQuests() {
         listEl.appendChild(card);
       });
 
+      listEl.querySelectorAll('.btn-priority').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const cycle = ['low', 'medium', 'high'];
+          const cur = btn.dataset.priority;
+          const next = cycle[(cycle.indexOf(cur) + 1) % 3];
+          btn.dataset.priority = next;
+          btn.style.background = PRIORITY_COLORS[next];
+          btn.textContent = next;
+          reviewChangePriority(btn.dataset.id, next);
+        });
+      });
       listEl.querySelectorAll('.btn-approve').forEach(btn => {
         btn.addEventListener('click', () => reviewAction(btn.dataset.id, 'approve'));
       });
@@ -409,6 +420,24 @@ async function loadReviewQuests() {
   } catch (err) {
     if (loadingEl) loadingEl.style.display = 'none';
     if (emptyEl) { emptyEl.classList.remove('hidden'); emptyEl.querySelector('p').textContent = `Error: ${err.message}`; }
+  }
+}
+
+async function reviewChangePriority(questId, priority) {
+  const { API_BASE, API_KEY } = loadConfig();
+  const base = API_BASE || DEFAULT_SERVER;
+  try {
+    const r = await fetch(`${base}/api/quest/${questId}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json', 'X-API-Key': API_KEY },
+      body: JSON.stringify({ priority }),
+    });
+    if (!r.ok) {
+      const err = await r.json().catch(() => ({}));
+      showMessage(`Error: ${err.error || r.statusText}`, true);
+    }
+  } catch (err) {
+    showMessage(`Network error: ${err.message}`, true);
   }
 }
 

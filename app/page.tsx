@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useCallback, useRef } from "react";
+import { useEffect, useState, useCallback, useRef, useMemo } from "react";
 import AgentCard from "@/components/AgentCard";
 import StatBar from "@/components/StatBar";
 
@@ -145,6 +145,8 @@ export default function Dashboard() {
   const [apiLive, setApiLive] = useState(false);
   const [completedOpen, setCompletedOpen] = useState(false);
   const [rejectedOpen, setRejectedOpen] = useState(false);
+  const [searchFilter, setSearchFilter] = useState("");
+  const [sortMode, setSortMode] = useState<"newest" | "priority">("newest");
   const [versions, setVersions] = useState<{ dashboard: string; app: string } | null>(null);
   const [reviewApiKey, setReviewApiKey] = useState<string>(() => {
     try { return localStorage.getItem("dash_api_key") || ""; } catch { return ""; }
@@ -249,6 +251,22 @@ export default function Dashboard() {
     } catch { /* ignore */ }
   }, [reviewApiKey, refresh]);
 
+  const handleChangePriority = useCallback(async (id: string, priority: Quest["priority"]) => {
+    const key = reviewApiKey;
+    if (!key) return;
+    try {
+      await fetch(`/api/quest/${id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json", "X-API-Key": key },
+        body: JSON.stringify({ priority }),
+      });
+      setQuests(prev => ({
+        ...prev,
+        suggested: prev.suggested.map(q => q.id === id ? { ...q, priority } : q),
+      }));
+    } catch { /* ignore */ }
+  }, [reviewApiKey]);
+
   useEffect(() => {
     refresh();
     const interval = setInterval(refresh, 8_000);
@@ -279,6 +297,20 @@ export default function Dashboard() {
   const lastUpdatedStr = lastRefresh
     ? secondsAgo < 5 ? "just now" : `${secondsAgo}s ago`
     : "—";
+
+  // Quest search + sort
+  const priorityOrder: Record<string, number> = { high: 0, medium: 1, low: 2 };
+  const applyFilter = useCallback((qs: Quest[]) => {
+    if (!searchFilter) return qs;
+    const s = searchFilter.toLowerCase();
+    return qs.filter(q => q.title.toLowerCase().includes(s) || (q.description || "").toLowerCase().includes(s));
+  }, [searchFilter]);
+  const applySort = useCallback((qs: Quest[]) => {
+    if (sortMode === "newest") return qs;
+    return [...qs].sort((a, b) => (priorityOrder[a.priority] ?? 1) - (priorityOrder[b.priority] ?? 1));
+  }, [sortMode]);
+  const visibleOpen = useMemo(() => applySort(applyFilter(quests.open)), [quests.open, applyFilter, applySort]);
+  const visibleInProgress = useMemo(() => applySort(applyFilter(quests.inProgress)), [quests.inProgress, applyFilter, applySort]);
 
   // Build per-agent quest map
   const agentQuestMap: Record<string, Quest[]> = {};
@@ -459,13 +491,36 @@ export default function Dashboard() {
 
           {/* Quest Board */}
           <aside className="w-full lg:w-80 flex-shrink-0">
-            <div className="mb-4">
-              <h2 className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.4)" }}>
-                Quest Board
-              </h2>
-              <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.25)" }}>
-                {quests.open.length} open · {quests.inProgress.length} in progress
-              </p>
+            <div className="mb-3">
+              <div className="flex items-center justify-between mb-2">
+                <div>
+                  <h2 className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.4)" }}>
+                    Quest Board
+                  </h2>
+                  <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.25)" }}>
+                    {visibleOpen.length} open · {visibleInProgress.length} in progress
+                  </p>
+                </div>
+                <button
+                  onClick={() => setSortMode(s => s === "newest" ? "priority" : "newest")}
+                  className="text-xs px-2 py-1 rounded"
+                  style={{
+                    background: sortMode === "priority" ? "rgba(255,102,51,0.15)" : "rgba(255,255,255,0.05)",
+                    color: sortMode === "priority" ? "#ff6633" : "rgba(255,255,255,0.3)",
+                    border: `1px solid ${sortMode === "priority" ? "rgba(255,102,51,0.3)" : "rgba(255,255,255,0.08)"}`,
+                  }}
+                >
+                  {sortMode === "newest" ? "⇅ Newest" : "⇅ Priority"}
+                </button>
+              </div>
+              <input
+                type="text"
+                value={searchFilter}
+                onChange={e => setSearchFilter(e.target.value)}
+                placeholder="Search quests…"
+                className="w-full text-xs px-2 py-1.5 rounded"
+                style={{ background: "#1e1e1e", border: "1px solid rgba(255,255,255,0.08)", color: "#e8e8e8", outline: "none" }}
+              />
             </div>
 
             <div className="space-y-2">
@@ -473,23 +528,23 @@ export default function Dashboard() {
                 [1, 2, 3].map(i => (
                   <div key={i} className="h-20 rounded-lg animate-pulse" style={{ background: "#252525", border: "1px solid rgba(255,255,255,0.05)" }} />
                 ))
-              ) : quests.open.length === 0 ? (
+              ) : visibleOpen.length === 0 && visibleInProgress.length === 0 ? (
                 <div className="rounded-xl p-5 text-center" style={{ background: "#252525", border: "1px solid rgba(255,255,255,0.06)" }}>
-                  <p className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>No open quests</p>
-                  <p className="text-xs mt-1 font-mono" style={{ color: "rgba(255,68,68,0.3)" }}>POST /api/quest</p>
+                  <p className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>{searchFilter ? "No quests match your search" : "No open quests"}</p>
+                  {!searchFilter && <p className="text-xs mt-1 font-mono" style={{ color: "rgba(255,68,68,0.3)" }}>POST /api/quest</p>}
                 </div>
               ) : (
-                quests.open.map(q => <QuestCard key={q.id} quest={q} />)
+                visibleOpen.map(q => <QuestCard key={q.id} quest={q} />)
               )}
 
-              {quests.inProgress.length > 0 && (
+              {visibleInProgress.length > 0 && (
                 <>
                   <div className="pt-2 pb-1">
                     <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.25)" }}>
                       In Progress
                     </span>
                   </div>
-                  {quests.inProgress.map(q => <QuestCard key={q.id} quest={q} />)}
+                  {visibleInProgress.map(q => <QuestCard key={q.id} quest={q} />)}
                 </>
               )}
             </div>
@@ -535,7 +590,11 @@ export default function Dashboard() {
                     <div className="flex items-start justify-between gap-3">
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 mb-1">
-                          <PriorityBadge priority={q.priority} />
+                          <ClickablePriorityBadge priority={q.priority} onClick={() => {
+                            const cycle: Quest["priority"][] = ["low", "medium", "high"];
+                            const next = cycle[(cycle.indexOf(q.priority) + 1) % 3];
+                            handleChangePriority(q.id, next);
+                          }} />
                           <h3 className="text-sm font-medium truncate" style={{ color: "rgba(255,255,255,0.85)" }}>{q.title}</h3>
                         </div>
                         {q.description && (
@@ -787,6 +846,20 @@ function PriorityBadge({ priority }: { priority: Quest["priority"] }) {
     >
       {cfg.label}
     </span>
+  );
+}
+
+function ClickablePriorityBadge({ priority, onClick }: { priority: Quest["priority"]; onClick: () => void }) {
+  const cfg = priorityConfig[priority] ?? priorityConfig.medium;
+  return (
+    <button
+      onClick={e => { e.stopPropagation(); onClick(); }}
+      title="Click to cycle priority"
+      className="text-xs px-1.5 py-0.5 rounded font-semibold flex-shrink-0"
+      style={{ color: cfg.color, background: cfg.bg, border: `1px solid ${cfg.border}`, cursor: "pointer" }}
+    >
+      {cfg.label} ↑
+    </button>
   );
 }
 
