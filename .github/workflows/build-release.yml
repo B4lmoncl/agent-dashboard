@@ -26,6 +26,8 @@ jobs:
 
       - name: Build Electron app
         working-directory: electron-quest-app
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npx electron-builder --win portable
 
       - name: Upload Release Asset
