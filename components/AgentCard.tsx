@@ -25,7 +25,7 @@ interface Quest {
   id: string;
   title: string;
   priority: "low" | "medium" | "high";
-  status: "open" | "in_progress" | "completed";
+  status: "open" | "in_progress" | "completed" | "suggested" | "rejected";
 }
 
 function useCountUp(target: number, decimals = 0, duration = 1000): string {

@@ -32,7 +32,7 @@ interface Quest {
   product: string | null;
   humanInputRequired: boolean;
   createdBy?: string;
-  status: "open" | "in_progress" | "completed";
+  status: "open" | "in_progress" | "completed" | "suggested" | "rejected";
   createdAt: string;
   claimedBy: string | null;
   completedBy: string | null;
@@ -43,6 +43,8 @@ interface QuestsData {
   open: Quest[];
   inProgress: Quest[];
   completed: Quest[];
+  suggested: Quest[];
+  rejected: Quest[];
 }
 
 const priorityConfig = {
@@ -84,18 +86,22 @@ async function fetchAgents(): Promise<Agent[]> {
 }
 
 async function fetchQuests(): Promise<QuestsData> {
+  const empty: QuestsData = { open: [], inProgress: [], completed: [], suggested: [], rejected: [] };
   try {
     const r = await fetch(`/api/quests`, { signal: AbortSignal.timeout(2000) });
-    if (r.ok) return r.json();
+    if (r.ok) {
+      const data = await r.json();
+      return { ...empty, ...data };
+    }
   } catch { /* ignore */ }
   try {
     const r = await fetch(`/data/quests.json`);
     if (r.ok) {
       const data = await r.json();
-      return data && !Array.isArray(data) ? data : { open: [], inProgress: [], completed: [] };
+      return data && !Array.isArray(data) ? { ...empty, ...data } : empty;
     }
   } catch { /* ignore */ }
-  return { open: [], inProgress: [], completed: [] };
+  return empty;
 }
 
 function timeAgo(iso: string): string {
@@ -132,13 +138,18 @@ function useCountUp(target: number, decimals = 0, duration = 1000): string {
 
 export default function Dashboard() {
   const [agents, setAgents] = useState<Agent[]>([]);
-  const [quests, setQuests] = useState<QuestsData>({ open: [], inProgress: [], completed: [] });
+  const [quests, setQuests] = useState<QuestsData>({ open: [], inProgress: [], completed: [], suggested: [], rejected: [] });
   const [loading, setLoading] = useState(true);
   const [lastRefresh, setLastRefresh] = useState<Date | null>(null);
   const [secondsAgo, setSecondsAgo] = useState(0);
   const [apiLive, setApiLive] = useState(false);
   const [completedOpen, setCompletedOpen] = useState(false);
+  const [rejectedOpen, setRejectedOpen] = useState(false);
   const [versions, setVersions] = useState<{ dashboard: string; app: string } | null>(null);
+  const [reviewApiKey, setReviewApiKey] = useState<string>(() => {
+    try { return localStorage.getItem("dash_api_key") || ""; } catch { return ""; }
+  });
+  const [reviewKeyInput, setReviewKeyInput] = useState("");
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   // Particle system — white dust drifting upward
@@ -215,6 +226,24 @@ export default function Dashboard() {
     setLoading(false);
     setLastRefresh(new Date());
   }, []);
+
+  const handleApprove = useCallback(async (id: string) => {
+    const key = reviewApiKey;
+    if (!key) return;
+    try {
+      const r = await fetch(`/api/quest/${id}/approve`, { method: "POST", headers: { "X-API-Key": key } });
+      if (r.ok) await refresh();
+    } catch { /* ignore */ }
+  }, [reviewApiKey, refresh]);
+
+  const handleReject = useCallback(async (id: string) => {
+    const key = reviewApiKey;
+    if (!key) return;
+    try {
+      const r = await fetch(`/api/quest/${id}/reject`, { method: "POST", headers: { "X-API-Key": key } });
+      if (r.ok) await refresh();
+    } catch { /* ignore */ }
+  }, [reviewApiKey, refresh]);
 
   useEffect(() => {
     refresh();
@@ -298,6 +327,14 @@ export default function Dashboard() {
                 style={{ color: "#f59e0b", background: "rgba(245,158,11,0.1)", border: "1px solid rgba(245,158,11,0.2)" }}
               >
                 {needsAttention} need attention
+              </div>
+            )}
+            {quests.suggested.length > 0 && (
+              <div
+                className="text-xs px-2 py-0.5 rounded font-semibold"
+                style={{ color: "#f59e0b", background: "rgba(245,158,11,0.12)", border: "1px solid rgba(245,158,11,0.35)" }}
+              >
+                ✦ {quests.suggested.length} to review
               </div>
             )}
             <div className="flex items-center gap-2 text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>
@@ -454,6 +491,129 @@ export default function Dashboard() {
             </div>
           </aside>
         </div>
+
+        {/* Review Board — Agent Suggestions */}
+        {quests.suggested.length > 0 && (
+          <section className="mb-6">
+            <div className="flex items-center gap-2 mb-3">
+              <h2 className="text-xs font-semibold uppercase tracking-widest" style={{ color: "#f59e0b" }}>
+                ✦ Review Board
+              </h2>
+              <span className="text-xs px-1.5 py-0.5 rounded font-mono" style={{ background: "rgba(245,158,11,0.12)", color: "#f59e0b", border: "1px solid rgba(245,158,11,0.3)" }}>
+                {quests.suggested.length}
+              </span>
+            </div>
+            {!reviewApiKey ? (
+              <div className="rounded-xl p-4" style={{ background: "#252525", border: "1px solid rgba(245,158,11,0.2)" }}>
+                <p className="text-xs mb-2" style={{ color: "rgba(255,255,255,0.4)" }}>Enter API key to review quests:</p>
+                <div className="flex gap-2">
+                  <input
+                    type="password"
+                    value={reviewKeyInput}
+                    onChange={e => setReviewKeyInput(e.target.value)}
+                    placeholder="API Key"
+                    className="flex-1 text-xs px-2 py-1 rounded"
+                    style={{ background: "#1a1a1a", border: "1px solid rgba(255,255,255,0.1)", color: "#fff", outline: "none" }}
+                  />
+                  <button
+                    onClick={() => { localStorage.setItem("dash_api_key", reviewKeyInput); setReviewApiKey(reviewKeyInput); }}
+                    className="text-xs px-3 py-1 rounded font-medium"
+                    style={{ background: "rgba(245,158,11,0.2)", color: "#f59e0b", border: "1px solid rgba(245,158,11,0.4)" }}
+                  >
+                    Save
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <div className="space-y-2">
+                {quests.suggested.map(q => (
+                  <div key={q.id} className="rounded-xl p-4" style={{ background: "#252525", border: "1px solid rgba(245,158,11,0.25)", boxShadow: "0 0 12px rgba(245,158,11,0.06)" }}>
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2 mb-1">
+                          <PriorityBadge priority={q.priority} />
+                          <h3 className="text-sm font-medium truncate" style={{ color: "rgba(255,255,255,0.85)" }}>{q.title}</h3>
+                        </div>
+                        {q.description && (
+                          <p className="text-xs leading-relaxed mb-2" style={{ color: "rgba(255,255,255,0.4)" }}>{q.description}</p>
+                        )}
+                        <div className="flex items-center gap-2 flex-wrap">
+                          {(q.categories?.length ? q.categories : (q.category ? [q.category] : [])).map(c => (
+                            <CategoryBadge key={c} category={c} />
+                          ))}
+                          {q.product && <ProductBadge product={q.product} />}
+                          {q.createdBy && (
+                            <span className="text-xs px-1.5 py-0.5 rounded" style={{ background: "rgba(245,158,11,0.1)", color: "rgba(245,158,11,0.7)", border: "1px solid rgba(245,158,11,0.2)" }}>
+                              by {q.createdBy}
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                      <div className="flex gap-1.5 flex-shrink-0">
+                        <button
+                          onClick={() => handleApprove(q.id)}
+                          className="px-2.5 py-1.5 rounded-lg text-xs font-medium transition-all"
+                          style={{ background: "rgba(34,197,94,0.15)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.3)" }}
+                          onMouseEnter={e => { (e.target as HTMLElement).style.background = "rgba(34,197,94,0.3)"; }}
+                          onMouseLeave={e => { (e.target as HTMLElement).style.background = "rgba(34,197,94,0.15)"; }}
+                        >
+                          ✓ Approve
+                        </button>
+                        <button
+                          onClick={() => handleReject(q.id)}
+                          className="px-2.5 py-1.5 rounded-lg text-xs font-medium transition-all"
+                          style={{ background: "rgba(239,68,68,0.1)", color: "rgba(239,68,68,0.7)", border: "1px solid rgba(239,68,68,0.2)" }}
+                          onMouseEnter={e => { (e.target as HTMLElement).style.background = "rgba(239,68,68,0.25)"; }}
+                          onMouseLeave={e => { (e.target as HTMLElement).style.background = "rgba(239,68,68,0.1)"; }}
+                        >
+                          ✕ Reject
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </section>
+        )}
+
+        {/* Rejected Quests (Mülleimer) */}
+        {quests.rejected.length > 0 && (
+          <section className="mb-6">
+            <button
+              onClick={() => setRejectedOpen(v => !v)}
+              className="flex items-center gap-2 mb-3 w-full text-left"
+            >
+              <h2 className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.2)" }}>
+                🗑 Rejected
+              </h2>
+              <span className="text-xs px-1.5 py-0.5 rounded font-mono" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.2)" }}>
+                {quests.rejected.length}
+              </span>
+              <span className="ml-auto text-xs" style={{ color: "rgba(255,255,255,0.15)" }}>
+                {rejectedOpen ? "▲" : "▼"}
+              </span>
+            </button>
+            {rejectedOpen && (
+              <div className="rounded-xl overflow-hidden" style={{ background: "#1e1e1e", border: "1px solid rgba(255,255,255,0.04)" }}>
+                {quests.rejected.map((q, i) => (
+                  <div
+                    key={q.id}
+                    className="px-4 py-3 flex items-center gap-3"
+                    style={{ borderBottom: i === quests.rejected.length - 1 ? "none" : "1px solid rgba(255,255,255,0.03)" }}
+                  >
+                    <span className="text-xs flex-shrink-0" style={{ color: "rgba(239,68,68,0.4)" }}>✕</span>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-xs truncate" style={{ color: "rgba(255,255,255,0.25)", textDecoration: "line-through" }}>{q.title}</p>
+                      <span className="text-xs" style={{ color: "rgba(255,255,255,0.15)" }}>by {q.createdBy ?? "unknown"}</span>
+                    </div>
+                    <PriorityBadge priority={q.priority} />
+                  </div>
+                ))}
+              </div>
+            )}
+          </section>
+        )}
 
         {/* Completed Quests Log */}
         {(quests.completed.length > 0 || !loading) && (

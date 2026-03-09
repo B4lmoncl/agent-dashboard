@@ -51,6 +51,7 @@
     <!-- Tab bar -->
     <div class="tabs">
       <button class="tab active" data-tab="quest">Post Quest</button>
+      <button class="tab" data-tab="review">Review <span id="review-badge" class="review-badge" style="display:none">0</span></button>
       <button class="tab" data-tab="settings">Settings</button>
     </div>
 
@@ -121,6 +122,17 @@
           </div>
         </div>
 
+        <div class="field">
+          <label>Product <span class="optional">(optional)</span></label>
+          <select id="product" class="product-select">
+            <option value="">— None —</option>
+            <option value="Dashboard">Dashboard</option>
+            <option value="Companion App">Companion App</option>
+            <option value="Infrastructure">Infrastructure</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
         <label class="human-input-row">
           <input type="checkbox" id="human-input" />
           <span class="human-input-label">
@@ -131,6 +143,20 @@
 
         <button type="submit" id="submit-btn">Post Quest</button>
       </form>
+    </div>
+
+    <!-- Review tab -->
+    <div id="tab-review" class="tab-content hidden">
+      <div id="review-loading" class="review-loading">Loading suggestions...</div>
+      <div id="review-list" class="review-list"></div>
+      <div id="review-empty" class="review-empty hidden">
+        <p>No quest suggestions to review.</p>
+        <p class="review-empty-sub">Agents will post ideas here for your approval.</p>
+      </div>
+      <div id="rejected-section" class="rejected-section hidden">
+        <button id="rejected-toggle" class="rejected-toggle">🗑 Rejected <span id="rejected-count">0</span></button>
+        <div id="rejected-list" class="rejected-list hidden"></div>
+      </div>
     </div>
 
     <!-- Settings tab -->

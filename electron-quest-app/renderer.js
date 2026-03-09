@@ -56,12 +56,16 @@ const appVersionEl      = document.getElementById('app-version');
 const dashVersionEl     = document.getElementById('dashboard-version');
 const aboutServerEl     = document.getElementById('about-server');
 
+const tabReview  = document.getElementById('tab-review');
+
 // ─── Tab switching ────────────────────────────────────────────────────────────
 function switchTab(name) {
   tabBtns.forEach(b => b.classList.toggle('active', b.dataset.tab === name));
   tabQuest.classList.toggle('hidden', name !== 'quest');
+  tabReview.classList.toggle('hidden', name !== 'review');
   tabSettings.classList.toggle('hidden', name !== 'settings');
   if (name === 'settings') populateSettingsFields();
+  if (name === 'review') loadReviewQuests();
 }
 
 tabBtns.forEach(b => b.addEventListener('click', () => switchTab(b.dataset.tab)));
@@ -142,7 +146,7 @@ form.addEventListener('submit', async (e) => {
         'Content-Type': 'application/json',
         'X-API-Key': API_KEY,
       },
-      body: JSON.stringify({ title, description, priority, category, categories, humanInputRequired }),
+      body: JSON.stringify({ title, description, priority, category, categories, humanInputRequired, product: document.getElementById('product').value || undefined }),
     });
 
     if (resp.ok) {
@@ -321,6 +325,142 @@ if (!isConfigured()) {
 }
 
 checkConnection();
+
+// ─── Review Board ─────────────────────────────────────────────────────────────
+const PRIORITY_COLORS = { high: '#ef4444', medium: '#eab308', low: '#22c55e' };
+
+async function loadReviewQuests() {
+  const { API_BASE, API_KEY } = loadConfig();
+  const base = API_BASE || DEFAULT_SERVER;
+  const listEl = document.getElementById('review-list');
+  const emptyEl = document.getElementById('review-empty');
+  const loadingEl = document.getElementById('review-loading');
+  const rejectedSection = document.getElementById('rejected-section');
+  const rejectedList = document.getElementById('rejected-list');
+  const rejectedCount = document.getElementById('rejected-count');
+  const badge = document.getElementById('review-badge');
+
+  if (loadingEl) loadingEl.style.display = 'block';
+  if (listEl) listEl.innerHTML = '';
+  if (emptyEl) emptyEl.classList.add('hidden');
+
+  try {
+    const r = await fetch(`${base}/api/quests`, { signal: AbortSignal.timeout(3000) });
+    if (!r.ok) throw new Error(`HTTP ${r.status}`);
+    const data = await r.json();
+    const suggested = data.suggested || [];
+    const rejected = data.rejected || [];
+
+    if (loadingEl) loadingEl.style.display = 'none';
+
+    // Update badge
+    if (badge) {
+      badge.textContent = suggested.length;
+      badge.style.display = suggested.length > 0 ? 'inline-block' : 'none';
+    }
+
+    if (suggested.length === 0) {
+      if (emptyEl) emptyEl.classList.remove('hidden');
+    } else {
+      suggested.forEach(q => {
+        const card = document.createElement('div');
+        card.className = 'review-card';
+        card.innerHTML = `
+          <div class="review-card-header">
+            <span class="review-priority" style="background:${PRIORITY_COLORS[q.priority] || '#666'}"></span>
+            <span class="review-title">${escapeHtml(q.title)}</span>
+            <span class="review-by">by ${escapeHtml(q.createdBy || 'unknown')}</span>
+          </div>
+          ${q.description ? `<p class="review-desc">${escapeHtml(q.description)}</p>` : ''}
+          <div class="review-meta">
+            ${(q.categories || []).map(c => `<span class="review-tag">${escapeHtml(c)}</span>`).join('')}
+            ${q.product ? `<span class="review-product">${escapeHtml(q.product)}</span>` : ''}
+          </div>
+          <div class="review-actions">
+            <button class="btn-approve" data-id="${q.id}">✓ Approve</button>
+            <button class="btn-reject" data-id="${q.id}">✕ Reject</button>
+          </div>
+        `;
+        listEl.appendChild(card);
+      });
+
+      listEl.querySelectorAll('.btn-approve').forEach(btn => {
+        btn.addEventListener('click', () => reviewAction(btn.dataset.id, 'approve'));
+      });
+      listEl.querySelectorAll('.btn-reject').forEach(btn => {
+        btn.addEventListener('click', () => reviewAction(btn.dataset.id, 'reject'));
+      });
+    }
+
+    // Rejected section
+    if (rejected.length > 0) {
+      rejectedSection.classList.remove('hidden');
+      rejectedCount.textContent = rejected.length;
+      rejectedList.innerHTML = rejected.map(q => `
+        <div class="rejected-item">
+          <span class="rejected-x">✕</span>
+          <span class="rejected-title">${escapeHtml(q.title)}</span>
+          <span class="rejected-by">by ${escapeHtml(q.createdBy || 'unknown')}</span>
+        </div>
+      `).join('');
+    } else {
+      rejectedSection.classList.add('hidden');
+    }
+  } catch (err) {
+    if (loadingEl) loadingEl.style.display = 'none';
+    if (emptyEl) { emptyEl.classList.remove('hidden'); emptyEl.querySelector('p').textContent = `Error: ${err.message}`; }
+  }
+}
+
+async function reviewAction(questId, action) {
+  const { API_BASE, API_KEY } = loadConfig();
+  const base = API_BASE || DEFAULT_SERVER;
+  try {
+    const r = await fetch(`${base}/api/quest/${questId}/${action}`, {
+      method: 'POST',
+      headers: { 'X-API-Key': API_KEY },
+    });
+    if (r.ok) {
+      showMessage(action === 'approve' ? 'Quest approved! ✓' : 'Quest rejected.');
+      loadReviewQuests();
+    } else {
+      const err = await r.json().catch(() => ({}));
+      showMessage(`Error: ${err.error || r.statusText}`, true);
+    }
+  } catch (err) {
+    showMessage(`Network error: ${err.message}`, true);
+  }
+}
+
+function escapeHtml(str) {
+  const d = document.createElement('div');
+  d.textContent = str;
+  return d.innerHTML;
+}
+
+// Rejected toggle
+const rejectedToggle = document.getElementById('rejected-toggle');
+if (rejectedToggle) {
+  rejectedToggle.addEventListener('click', () => {
+    const list = document.getElementById('rejected-list');
+    list.classList.toggle('hidden');
+  });
+}
+
+// Refresh review badge periodically
+setInterval(async () => {
+  const { API_BASE } = loadConfig();
+  const base = API_BASE || DEFAULT_SERVER;
+  try {
+    const r = await fetch(`${base}/api/quests`, { signal: AbortSignal.timeout(2000) });
+    if (r.ok) {
+      const data = await r.json();
+      const badge = document.getElementById('review-badge');
+      const count = (data.suggested || []).length;
+      if (badge) { badge.textContent = count; badge.style.display = count > 0 ? 'inline-block' : 'none'; }
+    }
+  } catch (_) {}
+}, 15000);
 
 // ─── Ember particle system ────────────────────────────────────────────────────
 (function initEmbers() {

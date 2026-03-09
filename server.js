@@ -345,6 +345,10 @@ app.post('/api/quest', requireApiKey, (req, res) => {
   if (product && !validProducts.includes(product)) {
     return res.status(400).json({ error: `Invalid product. Use: ${validProducts.join(', ')}` });
   }
+  const resolvedCreatedBy = typeof createdBy === 'string' && createdBy.trim() ? createdBy.trim() : 'unknown';
+  // Agent-created quests go to 'suggested' for human review; human-created stay 'open'
+  const HUMAN_CREATORS = ['leon', 'unknown'];
+  const isAgentCreated = !HUMAN_CREATORS.includes(resolvedCreatedBy.toLowerCase());
   const quest = {
     id: `quest-${Date.now()}`,
     title,
@@ -353,8 +357,8 @@ app.post('/api/quest', requireApiKey, (req, res) => {
     categories: resolvedCategories,
     product: product || null,
     humanInputRequired: humanInputRequired === true || humanInputRequired === 'true',
-    createdBy: typeof createdBy === 'string' && createdBy.trim() ? createdBy.trim() : 'unknown',
-    status: 'open',
+    createdBy: resolvedCreatedBy,
+    status: isAgentCreated ? 'suggested' : 'open',
     createdAt: now(),
     claimedBy: null,
     completedBy: null,
@@ -423,7 +427,31 @@ app.get('/api/quests', (req, res) => {
     open:       quests.filter(q => q.status === 'open'),
     inProgress: quests.filter(q => q.status === 'in_progress'),
     completed:  quests.filter(q => q.status === 'completed'),
+    suggested:  quests.filter(q => q.status === 'suggested'),
+    rejected:   quests.filter(q => q.status === 'rejected'),
   });
+});
+
+// POST /api/quest/:id/approve — approve a suggested quest → open
+app.post('/api/quest/:id/approve', requireApiKey, (req, res) => {
+  const quest = quests.find(q => q.id === req.params.id);
+  if (!quest) return res.status(404).json({ error: 'Quest not found' });
+  if (quest.status !== 'suggested') return res.status(409).json({ error: `Quest is not in suggested state (current: ${quest.status})` });
+  quest.status = 'open';
+  saveQuests();
+  console.log(`[quest] ${quest.id} approved → open`);
+  res.json({ ok: true, quest });
+});
+
+// POST /api/quest/:id/reject — reject any non-completed quest → rejected
+app.post('/api/quest/:id/reject', requireApiKey, (req, res) => {
+  const quest = quests.find(q => q.id === req.params.id);
+  if (!quest) return res.status(404).json({ error: 'Quest not found' });
+  if (quest.status === 'completed') return res.status(409).json({ error: 'Cannot reject a completed quest' });
+  quest.status = 'rejected';
+  saveQuests();
+  console.log(`[quest] ${quest.id} rejected`);
+  res.json({ ok: true, quest });
 });
 
 // PATCH /api/quests/:id/complete — mark a quest as completed
@@ -519,7 +547,7 @@ const API_DOCS = {
           product:            { type: 'string',  nullable: true, enum: ['Dashboard','Companion App','Infrastructure','Other'], example: 'Dashboard', description: 'Optional product this quest belongs to.' },
           humanInputRequired: { type: 'boolean', example: false, description: 'If true, this quest requires human input and agents should not claim it alone.' },
           createdBy:          { type: 'string',  example: 'forge', description: 'Identifier of who created the quest. Use agent names (forge, lyra, pixel) for agent-generated quests, or a human name. Defaults to "unknown".' },
-          status:             { type: 'string',  enum: ['open','in_progress','completed'], example: 'open' },
+          status:             { type: 'string',  enum: ['open','in_progress','completed','suggested','rejected'], example: 'open', description: 'suggested=agent-created, pending human review; rejected=human rejected; open=ready for agents' },
           createdAt:          { type: 'string',  format: 'date-time' },
           claimedBy:          { type: 'string',  nullable: true, example: 'atlas' },
           completedBy:        { type: 'string',  nullable: true, example: 'atlas' },
@@ -835,7 +863,7 @@ const API_DOCS = {
     '/api/quests': {
       get: {
         summary: 'List all quests',
-        description: 'Returns quests grouped by status: open, inProgress, completed.',
+        description: 'Returns quests grouped by status: open, inProgress, completed, suggested (agent-created, pending review), rejected.',
         operationId: 'listQuests',
         tags: ['Quests'],
         responses: {
@@ -843,7 +871,13 @@ const API_DOCS = {
             description: 'Quests grouped by status',
             content: {
               'application/json': {
-                schema: { type: 'object', properties: { open: { type: 'array', items: { $ref: '#/components/schemas/Quest' } }, inProgress: { type: 'array', items: { $ref: '#/components/schemas/Quest' } }, completed: { type: 'array', items: { $ref: '#/components/schemas/Quest' } } } },
+                schema: { type: 'object', properties: {
+                  open:       { type: 'array', items: { $ref: '#/components/schemas/Quest' } },
+                  inProgress: { type: 'array', items: { $ref: '#/components/schemas/Quest' } },
+                  completed:  { type: 'array', items: { $ref: '#/components/schemas/Quest' } },
+                  suggested:  { type: 'array', items: { $ref: '#/components/schemas/Quest' }, description: 'Agent-created quests pending human review' },
+                  rejected:   { type: 'array', items: { $ref: '#/components/schemas/Quest' }, description: 'Quests rejected by human reviewer' },
+                } },
               },
             },
           },
