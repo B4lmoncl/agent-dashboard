@@ -63,5 +63,34 @@
   "setBonus": {
     "3of6": { "allStatsPercent": 5, "label": "3/6 ✨" },
     "6of6": { "allStatsPercent": 10, "label": "6/6 KOMPLETT 🔥", "glowEffect": true }
-  }
+  },
+  "namedSets": [
+    {
+      "id": "ilse-collection",
+      "name": "Oma Ilses Kollektion",
+      "rarity": "rare",
+      "pieces": ["ilse-scarf"],
+      "description": "Für die ganz Fleißigen sammelt Oma Ilse noch mehr…",
+      "partialBonus": {},
+      "fullBonus": { "ausdauer": 3, "label": "Omas Segen: +3 Ausdauer" }
+    },
+    {
+      "id": "wanderer-set",
+      "name": "Wanderer-Sammlung",
+      "rarity": "epic",
+      "pieces": ["karim-compass", "tanaka-headband", "finnegan-lute"],
+      "description": "Gesammelt von den seltensten Reisenden der Welt.",
+      "partialBonus": { "2": { "glueck": 3, "label": "Fernweh: +3 Glück" } },
+      "fullBonus": { "allStats": 5, "label": "Weltenbummler: +5 auf alle Stats" }
+    },
+    {
+      "id": "nature-set",
+      "name": "Naturläufer-Sammlung",
+      "rarity": "rare",
+      "pieces": ["mirael-pendant"],
+      "description": "Ausrüstung der Waldwächterin — für alle die den Wald lieben.",
+      "partialBonus": {},
+      "fullBonus": { "ausdauer": 4, "label": "Waldgeist: +4 Ausdauer" }
+    }
+  ]
 }

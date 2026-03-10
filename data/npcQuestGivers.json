@@ -1,0 +1,170 @@
+{
+  "givers": [
+    {
+      "id": "oma-ilse",
+      "name": "Oma Ilse",
+      "emoji": "👵",
+      "title": "Die freundliche Nachbarin",
+      "description": "Eine warmherzige alte Dame die immer Kekse dabei hat.",
+      "stayDays": 3,
+      "cooldownDays": 14,
+      "questChain": [
+        {
+          "title": "🍪 Oma Ilses Kekse",
+          "description": "Oma Ilse hat Kekse gebacken! Bring sie ihrem Enkel. (Mach einen 20-Minuten Spaziergang)",
+          "type": "social",
+          "priority": "medium",
+          "rewards": { "xp": 25, "gold": 10 }
+        },
+        {
+          "title": "📖 Oma Ilses Geschichten",
+          "description": "Oma Ilse erzählt von früher. Du hörst zu, weil du nett bist. (Informiere dich 20 Minuten über ein Geschichtsthema deiner Wahl)",
+          "type": "personal",
+          "priority": "low",
+          "rewards": { "xp": 30, "gold": 15 }
+        }
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": { "id": "ilse-scarf", "name": "Selbstgestrickter Schal", "emoji": "🧣", "rarity": "rare", "stats": { "ausdauer": 3, "glueck": 2 }, "slot": "amulet", "desc": "Von Oma Ilse persönlich gestrickt. Riecht nach Keksen und Nostalgie." }
+      }
+    },
+    {
+      "id": "wandering-merchant",
+      "name": "Karim der Wanderhändler",
+      "emoji": "🧔",
+      "title": "Reisender Kaufmann aus fernen Landen",
+      "description": "Ein geheimnisvoller Händler der seltene Waren aus der ganzen Welt mitbringt.",
+      "stayDays": 2,
+      "cooldownDays": 21,
+      "questChain": [
+        {
+          "title": "📦 Karims Lieferung",
+          "description": "Karim braucht Hilfe beim Sortieren seiner Waren. (Räume deinen Schreibtisch oder ein Regal auf)",
+          "type": "personal",
+          "priority": "low",
+          "rewards": { "xp": 20, "gold": 25 }
+        },
+        {
+          "title": "🗺️ Karims Geheimnis",
+          "description": "Karim erzählt von einer fernen Stadt. (Recherchiere 15 Minuten über eine Stadt die du noch nie besucht hast)",
+          "type": "personal",
+          "priority": "low",
+          "rewards": { "xp": 25, "gold": 20 }
+        },
+        {
+          "title": "🤝 Ein fairer Handel",
+          "description": "Karim bietet einen Tausch an — hilf einem Freund oder Kollegen bei etwas. (Tu jemandem einen Gefallen)",
+          "type": "social",
+          "priority": "medium",
+          "rewards": { "xp": 35, "gold": 15 }
+        }
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": { "id": "karim-compass", "name": "Karims Goldener Kompass", "emoji": "🧭", "rarity": "epic", "stats": { "glueck": 5, "weisheit": 3 }, "slot": "amulet", "desc": "Zeigt immer in die richtige Richtung. Meistens." }
+      }
+    },
+    {
+      "id": "dojo-master",
+      "name": "Meister Tanaka",
+      "emoji": "🥋",
+      "title": "Wandernder Kampfkunst-Meister",
+      "description": "Ein alter Meister der seine Weisheit mit würdigen Schülern teilt.",
+      "stayDays": 3,
+      "cooldownDays": 18,
+      "questChain": [
+        {
+          "title": "🧘 Die erste Lektion",
+          "description": "Meister Tanaka sagt: 'Zuerst lernst du Geduld.' (Meditiere oder stretche 10 Minuten)",
+          "type": "fitness",
+          "priority": "low",
+          "rewards": { "xp": 20, "gold": 10 }
+        },
+        {
+          "title": "💪 Die Prüfung des Körpers",
+          "description": "'Stärke kommt von Disziplin, nicht von Wünschen.' (Mach ein 30-Minuten Workout)",
+          "type": "fitness",
+          "priority": "medium",
+          "rewards": { "xp": 35, "gold": 15 }
+        },
+        {
+          "title": "🧠 Die Prüfung des Geistes",
+          "description": "'Wahrer Kampf findet im Kopf statt.' (Lerne 30 Minuten etwas Neues — egal was)",
+          "type": "learning",
+          "priority": "medium",
+          "rewards": { "xp": 35, "gold": 15 }
+        }
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": { "id": "tanaka-headband", "name": "Tanakas Stirnband", "emoji": "🎌", "rarity": "epic", "stats": { "kraft": 4, "weisheit": 4 }, "slot": "helm", "desc": "Getragen von Generationen von Meisterschülern. Es flüstert: 'Du kannst mehr.'" }
+      }
+    },
+    {
+      "id": "forest-witch",
+      "name": "Mirael die Waldwächterin",
+      "emoji": "🧙‍♀️",
+      "title": "Kräuterkundige aus dem Nebelwald",
+      "description": "Eine mysteriöse Frau die Heilmittel aus seltenen Pflanzen braut.",
+      "stayDays": 2,
+      "cooldownDays": 20,
+      "questChain": [
+        {
+          "title": "🌿 Kräuter sammeln",
+          "description": "Mirael braucht frische Zutaten. (Geh 15 Minuten an die frische Luft — Wald, Park oder Garten)",
+          "type": "fitness",
+          "priority": "low",
+          "rewards": { "xp": 20, "gold": 10 }
+        },
+        {
+          "title": "🍵 Der Heiltrank",
+          "description": "Mirael zeigt dir ein altes Rezept. (Koche dir einen gesunden Tee oder Smoothie)",
+          "type": "personal",
+          "priority": "low",
+          "rewards": { "xp": 25, "gold": 15 }
+        }
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": { "id": "mirael-pendant", "name": "Miraels Naturstein", "emoji": "💚", "rarity": "rare", "stats": { "ausdauer": 4, "glueck": 1 }, "slot": "amulet", "desc": "Pulsiert sanft im Rhythmus des Waldes. Beruhigt den Geist." }
+      }
+    },
+    {
+      "id": "bard",
+      "name": "Finnegan der Barde",
+      "emoji": "🎵",
+      "title": "Wandernder Geschichtenerzähler",
+      "description": "Ein charismatischer Barde der überall Freunde findet.",
+      "stayDays": 3,
+      "cooldownDays": 16,
+      "questChain": [
+        {
+          "title": "🎶 Das Lied der Freundschaft",
+          "description": "Finnegan sagt: 'Musik verbindet!' (Schick einem Freund ein Lied das du magst)",
+          "type": "social",
+          "priority": "low",
+          "rewards": { "xp": 20, "gold": 10 }
+        },
+        {
+          "title": "📝 Die eigene Geschichte",
+          "description": "'Jeder hat eine Geschichte die erzählt werden will.' (Schreib 10 Minuten — Tagebuch, kreativ, egal was)",
+          "type": "personal",
+          "priority": "low",
+          "rewards": { "xp": 25, "gold": 15 }
+        },
+        {
+          "title": "🎭 Der große Auftritt",
+          "description": "'Trau dich!' (Tu heute etwas außerhalb deiner Komfortzone — egal wie klein)",
+          "type": "social",
+          "priority": "medium",
+          "rewards": { "xp": 40, "gold": 20 }
+        }
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": { "id": "finnegan-lute", "name": "Finnegans Silberlaute", "emoji": "🎸", "rarity": "epic", "stats": { "glueck": 6, "kraft": 2 }, "slot": "weapon", "desc": "Klingt wie ein Sommertag. Wer sie hört, fühlt sich tapferer." }
+      }
+    }
+  ]
+}
