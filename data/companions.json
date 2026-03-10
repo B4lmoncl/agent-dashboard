@@ -1,0 +1,15 @@
+{
+  "realTemplates": {
+    "cat":     { "emoji": "🐱", "careQuests": ["feed", "play", "cuddle"] },
+    "dog":     { "emoji": "🐕", "careQuests": ["walk", "feed", "training"] },
+    "hamster": { "emoji": "🐹", "careQuests": ["feed", "clean_cage"] },
+    "bird":    { "emoji": "🐦", "careQuests": ["feed", "sing"] },
+    "other":   { "emoji": "🐾", "careQuests": ["feed", "care"] }
+  },
+  "virtualTemplates": {
+    "dragon":  { "emoji": "🐲", "name": "Ember",  "desc": "Ein feuriger Drache der dich motiviert" },
+    "owl":     { "emoji": "🦉", "name": "Sage",   "desc": "Eine weise Eule die dich beim Lernen begleitet" },
+    "phoenix": { "emoji": "🔥", "name": "Blaze",  "desc": "Ein Phoenix der aus jeder Niederlage stärker aufsteht" },
+    "wolf":    { "emoji": "🐺", "name": "Shadow", "desc": "Ein treuer Wolf der immer an deiner Seite steht" }
+  }
+}
