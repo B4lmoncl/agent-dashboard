@@ -20,6 +20,9 @@ const KEYS_FILE            = path.join(DATA_DIR, 'keys.json');
 const USERS_FILE           = path.join(DATA_DIR, 'users.json');
 const CAMPAIGNS_FILE       = path.join(DATA_DIR, 'campaigns.json');
 const PLAYER_PROGRESS_FILE = path.join(DATA_DIR, 'playerProgress.json');
+const QUEST_CATALOG_FILE   = path.join(DATA_DIR, 'questCatalog.json');
+const CLASSES_FILE         = path.join(DATA_DIR, 'classes.json');
+const ROADMAP_FILE         = path.join(DATA_DIR, 'roadmap.json');
 
 // Quest types that are tracked per-player (not shared/global)
 const PLAYER_QUEST_TYPES = ['personal', 'learning', 'fitness', 'social', 'relationship-coop'];
@@ -356,6 +359,82 @@ function saveCampaigns() {
   } catch (e) {
     console.warn('[campaigns] Failed to persist campaigns:', e.message);
   }
+}
+
+// ─── Quest Catalog store ─────────────────────────────────────────────────────
+let questCatalog = { meta: { totalTemplates: 0, byCategory: { generic: 0, classQuest: 0, chainQuest: 0, companionQuest: 0 }, byClass: {}, lastUpdated: new Date().toISOString() }, templates: [] };
+
+function loadQuestCatalog() {
+  try {
+    if (fs.existsSync(QUEST_CATALOG_FILE)) {
+      const raw = JSON.parse(fs.readFileSync(QUEST_CATALOG_FILE, 'utf8'));
+      if (raw && raw.templates) questCatalog = raw;
+    } else {
+      saveQuestCatalog();
+    }
+  } catch (e) { console.warn('[catalog] Failed to load:', e.message); }
+}
+
+function saveQuestCatalog() {
+  try {
+    if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
+    fs.writeFileSync(QUEST_CATALOG_FILE, JSON.stringify(questCatalog, null, 2));
+  } catch (e) { console.warn('[catalog] Failed to persist:', e.message); }
+}
+
+function rebuildCatalogMeta() {
+  const t = questCatalog.templates;
+  questCatalog.meta.totalTemplates = t.length;
+  questCatalog.meta.byCategory = { generic: 0, classQuest: 0, chainQuest: 0, companionQuest: 0 };
+  questCatalog.meta.byClass = {};
+  for (const tpl of t) {
+    const cat = tpl.category || 'generic';
+    questCatalog.meta.byCategory[cat] = (questCatalog.meta.byCategory[cat] || 0) + 1;
+    if (tpl.classId) questCatalog.meta.byClass[tpl.classId] = (questCatalog.meta.byClass[tpl.classId] || 0) + 1;
+  }
+  questCatalog.meta.lastUpdated = new Date().toISOString();
+}
+
+// ─── Classes store ────────────────────────────────────────────────────────────
+let classesData = { classes: [] };
+
+function loadClasses() {
+  try {
+    if (fs.existsSync(CLASSES_FILE)) {
+      const raw = JSON.parse(fs.readFileSync(CLASSES_FILE, 'utf8'));
+      if (raw && Array.isArray(raw.classes)) classesData = raw;
+    } else {
+      saveClasses();
+    }
+  } catch (e) { console.warn('[classes] Failed to load:', e.message); }
+}
+
+function saveClasses() {
+  try {
+    if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
+    fs.writeFileSync(CLASSES_FILE, JSON.stringify(classesData, null, 2));
+  } catch (e) { console.warn('[classes] Failed to persist:', e.message); }
+}
+
+// ─── Roadmap store ────────────────────────────────────────────────────────────
+let roadmapData = [];
+
+function loadRoadmap() {
+  try {
+    if (fs.existsSync(ROADMAP_FILE)) {
+      const raw = JSON.parse(fs.readFileSync(ROADMAP_FILE, 'utf8'));
+      if (Array.isArray(raw)) roadmapData = raw;
+    } else {
+      saveRoadmap();
+    }
+  } catch (e) { console.warn('[roadmap] Failed to load:', e.message); }
+}
+
+function saveRoadmap() {
+  try {
+    if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
+    fs.writeFileSync(ROADMAP_FILE, JSON.stringify(roadmapData, null, 2));
+  } catch (e) { console.warn('[roadmap] Failed to persist:', e.message); }
 }
 
 // Auto-create campaigns from quests that share parentQuestId chains
@@ -902,6 +981,29 @@ app.post('/api/quest', requireApiKey, (req, res) => {
   };
   quests.push(quest);
   saveQuests();
+  // Auto-add template entry to catalog
+  try {
+    const tpl = {
+      id: `tpl-${quest.id}`,
+      title: quest.title,
+      description: quest.description || '',
+      type: quest.type,
+      category: quest.parentQuestId ? 'chainQuest' : (quest.skills && quest.skills.length > 0 ? 'classQuest' : 'generic'),
+      classId: quest.skills && quest.skills.length > 0 ? quest.skills[0] : null,
+      minLevel: quest.minLevel || 1,
+      chainId: quest.parentQuestId || null,
+      chainOrder: null,
+      difficulty: quest.priority === 'high' ? 'advanced' : quest.priority === 'medium' ? 'intermediate' : 'starter',
+      estimatedTime: null,
+      rewards: { xp: XP_BY_PRIORITY[quest.priority] || 10, gold: 0 },
+      tags: quest.skills || [],
+      createdBy: quest.createdBy,
+      createdAt: quest.createdAt,
+    };
+    questCatalog.templates.push(tpl);
+    rebuildCatalogMeta();
+    saveQuestCatalog();
+  } catch (_) {}
   console.log(`[quest] created: ${quest.id} — "${title}"`);
   res.json({ ok: true, quest });
 });
@@ -2902,6 +3004,185 @@ app.post('/api/forge/temp-decay', requireApiKey, (req, res) => {
   res.json({ ok: true, decayed });
 });
 
+// ─── Quest Catalog API ────────────────────────────────────────────────────────
+
+// GET /api/catalog — full catalog with meta
+app.get('/api/catalog', (req, res) => {
+  rebuildCatalogMeta();
+  res.json(questCatalog);
+});
+
+// GET /api/catalog/stats — just meta stats
+app.get('/api/catalog/stats', (req, res) => {
+  rebuildCatalogMeta();
+  res.json(questCatalog.meta);
+});
+
+// POST /api/catalog/template — add new template [auth]
+app.post('/api/catalog/template', requireApiKey, (req, res) => {
+  const { title, description, type, category, classId, minLevel, chainId, chainOrder, difficulty, estimatedTime, rewards, tags, createdBy } = req.body;
+  if (!title) return res.status(400).json({ error: 'title is required' });
+  const validCategories = ['generic', 'classQuest', 'chainQuest', 'companionQuest'];
+  const validDifficulties = ['starter', 'intermediate', 'advanced', 'expert'];
+  const tpl = {
+    id: `tpl-${Date.now()}`,
+    title,
+    description: description || '',
+    type: type || 'development',
+    category: validCategories.includes(category) ? category : 'generic',
+    classId: classId || null,
+    minLevel: typeof minLevel === 'number' ? minLevel : 1,
+    chainId: chainId || null,
+    chainOrder: typeof chainOrder === 'number' ? chainOrder : null,
+    difficulty: validDifficulties.includes(difficulty) ? difficulty : 'starter',
+    estimatedTime: estimatedTime || null,
+    rewards: rewards || { xp: 0, gold: 0 },
+    tags: Array.isArray(tags) ? tags : [],
+    createdBy: createdBy || 'unknown',
+    createdAt: now(),
+  };
+  questCatalog.templates.push(tpl);
+  rebuildCatalogMeta();
+  saveQuestCatalog();
+  res.json({ ok: true, template: tpl });
+});
+
+// ─── Classes API ──────────────────────────────────────────────────────────────
+
+// GET /api/classes — all active classes
+app.get('/api/classes', (req, res) => {
+  res.json(classesData.classes.filter(c => c.status === 'active'));
+});
+
+// GET /api/classes/pending — pending classes [admin]
+app.get('/api/classes/pending', requireMasterKey, (req, res) => {
+  res.json(classesData.classes.filter(c => c.status === 'pending'));
+});
+
+// GET /api/classes/:id — single class with skill tree + quests
+app.get('/api/classes/:id', (req, res) => {
+  const cls = classesData.classes.find(c => c.id === req.params.id);
+  if (!cls) return res.status(404).json({ error: 'Class not found' });
+  const classQuests = quests.filter(q => q.skills && q.skills.includes(cls.id));
+  res.json({ ...cls, quests: classQuests });
+});
+
+// POST /api/classes — submit new class (status: pending) [auth]
+app.post('/api/classes', requireApiKey, (req, res) => {
+  const { name, icon, fantasy, description, realWorld, tiers, skillTree, achievements, createdBy } = req.body;
+  if (!name) return res.status(400).json({ error: 'name is required' });
+  const cls = {
+    id: `class-${Date.now()}`,
+    name,
+    icon: icon || '⚔️',
+    fantasy: fantasy || name,
+    description: description || '',
+    realWorld: realWorld || '',
+    tiers: Array.isArray(tiers) ? tiers : [],
+    skillTree: Array.isArray(skillTree) ? skillTree : [],
+    achievements: Array.isArray(achievements) ? achievements : [],
+    status: 'pending',
+    createdBy: createdBy || 'unknown',
+    createdAt: now(),
+    playerCount: 0,
+  };
+  classesData.classes.push(cls);
+  saveClasses();
+  res.json({ ok: true, class: cls });
+});
+
+// PATCH /api/classes/:id — update class [admin]
+app.patch('/api/classes/:id', requireMasterKey, (req, res) => {
+  const cls = classesData.classes.find(c => c.id === req.params.id);
+  if (!cls) return res.status(404).json({ error: 'Class not found' });
+  const allowed = ['name', 'icon', 'fantasy', 'description', 'realWorld', 'tiers', 'skillTree', 'achievements', 'status', 'playerCount'];
+  for (const key of allowed) {
+    if (req.body[key] !== undefined) cls[key] = req.body[key];
+  }
+  saveClasses();
+  res.json({ ok: true, class: cls });
+});
+
+// ─── Roadmap API ──────────────────────────────────────────────────────────────
+
+// GET /api/roadmap — all items
+app.get('/api/roadmap', (req, res) => {
+  res.json(roadmapData);
+});
+
+// POST /api/roadmap — add item [admin]
+app.post('/api/roadmap', requireMasterKey, (req, res) => {
+  const { title, desc, status, eta, category } = req.body;
+  if (!title) return res.status(400).json({ error: 'title is required' });
+  const validStatuses = ['planned', 'in_progress', 'done'];
+  const item = {
+    id: `r${Date.now()}`,
+    title,
+    desc: desc || '',
+    status: validStatuses.includes(status) ? status : 'planned',
+    eta: eta || '',
+    category: category || 'feature',
+  };
+  roadmapData.push(item);
+  saveRoadmap();
+  res.json({ ok: true, item });
+});
+
+// PATCH /api/roadmap/:id — update item [admin]
+app.patch('/api/roadmap/:id', requireMasterKey, (req, res) => {
+  const item = roadmapData.find(r => r.id === req.params.id);
+  if (!item) return res.status(404).json({ error: 'Roadmap item not found' });
+  const allowed = ['title', 'desc', 'status', 'eta', 'category'];
+  for (const key of allowed) {
+    if (req.body[key] !== undefined) item[key] = req.body[key];
+  }
+  saveRoadmap();
+  res.json({ ok: true, item });
+});
+
+// ─── Stats API ────────────────────────────────────────────────────────────────
+
+// GET /api/stats/content — aggregate content stats
+app.get('/api/stats/content', (req, res) => {
+  rebuildCatalogMeta();
+  const totalQuests = quests.length;
+  const byType = {};
+  for (const q of quests) {
+    const t = q.type || 'development';
+    byType[t] = (byType[t] || 0) + 1;
+  }
+  const totalPlayers = Object.keys(users).length;
+  const totalCampaigns = campaigns.length;
+  const totalClasses = classesData.classes.length;
+  const activeClasses = classesData.classes.filter(c => c.status === 'active').length;
+  const pendingClasses = classesData.classes.filter(c => c.status === 'pending').length;
+
+  // Balance check: min/max quests per class
+  const questsPerClass = {};
+  for (const q of quests) {
+    if (q.skills) for (const s of q.skills) {
+      questsPerClass[s] = (questsPerClass[s] || 0) + 1;
+    }
+  }
+  const classCounts = Object.values(questsPerClass);
+  const balanceCheck = classCounts.length > 0
+    ? { min: Math.min(...classCounts), max: Math.max(...classCounts) }
+    : { min: 0, max: 0 };
+
+  res.json({
+    totalQuests,
+    byType,
+    totalPlayers,
+    totalCampaigns,
+    totalClasses,
+    activeClasses,
+    pendingClasses,
+    catalogTemplates: questCatalog.meta.totalTemplates,
+    catalogByCategory: questCatalog.meta.byCategory,
+    balanceCheck,
+  });
+});
+
 // Serve index.html for non-API routes (SPA fallback)
 app.get('*', (req, res) => {
   const indexPath = path.join(__dirname, 'out', 'index.html');
@@ -2921,6 +3202,9 @@ autoCreateCampaigns();
 loadManagedKeys();
 loadUsers();
 loadPlayerProgress();
+loadQuestCatalog();
+loadClasses();
+loadRoadmap();
 
 app.listen(PORT, () => {
   console.log(`\n🔴 Agent Dashboard API running on http://localhost:${PORT}`);
