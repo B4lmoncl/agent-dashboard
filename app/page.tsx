@@ -28,7 +28,7 @@ interface Quest {
   title: string;
   description: string;
   priority: "low" | "medium" | "high";
-  type?: "development" | "personal" | "learning" | "fitness" | "social" | "boss";
+  type?: "development" | "personal" | "learning" | "fitness" | "social" | "boss" | "relationship-coop";
   category: string | null;
   categories: string[];
   product: string | null;
@@ -46,6 +46,12 @@ interface Quest {
   proof?: string | null;
   checklist?: { text: string; done: boolean }[] | null;
   nextQuestTemplate?: { title: string; description?: string | null; type?: string; priority?: string } | null;
+  coopPartners?: string[] | null;
+  coopClaimed?: string[];
+  coopCompletions?: string[];
+  skills?: string[];
+  lore?: string | null;
+  chapter?: string | null;
 }
 
 interface EarnedAchievement {
@@ -131,6 +137,7 @@ const typeConfig: Record<string, { label: string; icon: string; color: string; b
   fitness:     { label: "Fitness",  icon: "💪", color: "#f97316", bg: "rgba(249,115,22,0.1)",  border: "rgba(249,115,22,0.3)"  },
   social:      { label: "Social",   icon: "❤️", color: "#ec4899", bg: "rgba(236,72,153,0.1)",  border: "rgba(236,72,153,0.3)"  },
   boss:        { label: "Boss",     icon: "🐉", color: "#ef4444", bg: "rgba(239,68,68,0.15)",  border: "rgba(239,68,68,0.5)"   },
+  "relationship-coop": { label: "Co-op", icon: "💞", color: "#f43f5e", bg: "rgba(244,63,94,0.12)", border: "rgba(244,63,94,0.4)" },
 };
 
 async function fetchAgents(): Promise<Agent[]> {
@@ -245,7 +252,7 @@ export default function Dashboard() {
   const [bulkLoading, setBulkLoading] = useState(false);
   const [reviewComments, setReviewComments] = useState<Record<string, string>>({});
   const [typeFilter, setTypeFilter] = useState<string>("all");
-  const [dashView, setDashView] = useState<"ops" | "campaign" | "leaderboard" | "honors">("ops");
+  const [dashView, setDashView] = useState<"ops" | "campaign" | "leaderboard" | "honors" | "season">("ops");
   const [shopUserId, setShopUserId] = useState<string | null>(null);
   const [toast, setToast] = useState<EarnedAchievement | null>(null);
   const [flavorToast, setFlavorToast] = useState<{ message: string; icon: string; sub?: string } | null>(null);
@@ -309,7 +316,7 @@ export default function Dashboard() {
         if (p.y < -4) particles[i] = createParticle();
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255,255,255,${p.opacity.toFixed(3)})`;
+        ctx.fillStyle = `${CURRENT_SEASON.particle}${p.opacity.toFixed(3)})`;
         ctx.fill();
       }
       animId = requestAnimationFrame(animate);
@@ -451,6 +458,34 @@ export default function Dashboard() {
     } catch { /* ignore */ }
   }, [reviewApiKey, playerName, refresh]);
 
+  const handleCoopClaim = useCallback(async (questId: string) => {
+    const key = reviewApiKey;
+    const pName = playerName;
+    if (!key || !pName) return;
+    try {
+      const r = await fetch(`/api/quest/${questId}/coop-claim`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "X-API-Key": key },
+        body: JSON.stringify({ userId: pName }),
+      });
+      if (r.ok) await refresh();
+    } catch { /* ignore */ }
+  }, [reviewApiKey, playerName, refresh]);
+
+  const handleCoopComplete = useCallback(async (questId: string) => {
+    const key = reviewApiKey;
+    const pName = playerName;
+    if (!key || !pName) return;
+    try {
+      const r = await fetch(`/api/quest/${questId}/coop-complete`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "X-API-Key": key },
+        body: JSON.stringify({ userId: pName }),
+      });
+      if (r.ok) await refresh();
+    } catch { /* ignore */ }
+  }, [reviewApiKey, playerName, refresh]);
+
   const handleComplete = useCallback(async (questId: string, questTitle: string) => {
     const key = reviewApiKey;
     const pName = playerName;
@@ -467,6 +502,20 @@ export default function Dashboard() {
         if (data.chainQuestTemplate) {
           setChainOffer({ template: data.chainQuestTemplate, parentTitle: questTitle });
         }
+        // Show flavor feedback on completion
+        const currentUser = users.find(u => u.id === pName.toLowerCase() || u.name.toLowerCase() === pName.toLowerCase());
+        const streak = currentUser?.streakDays ?? 0;
+        const FLAVOR_MESSAGES = [
+          { message: "Quest slain!", icon: "⚔️" },
+          { message: "Like a pro!", icon: "💫" },
+          { message: "Clutch finish!", icon: "🎯" },
+          { message: "Well played!", icon: "🎮" },
+          { message: "The Forge burns bright!", icon: "🔥" },
+        ];
+        let flavor = FLAVOR_MESSAGES[Math.floor(Math.random() * FLAVOR_MESSAGES.length)];
+        if (streak >= 30) flavor = { message: "Legendary streak!", icon: "👑" };
+        else if (streak >= 7) flavor = { message: "Streak master!", icon: "🔥" };
+        setFlavorToast({ ...flavor, sub: questTitle.length > 40 ? questTitle.slice(0, 40) + "…" : questTitle });
         await refresh();
       }
     } catch { /* ignore */ }
@@ -600,6 +649,13 @@ export default function Dashboard() {
               style={{ color: "#ff4444", background: "rgba(255,68,68,0.08)", border: "1px solid rgba(255,68,68,0.18)" }}
             >
               The Guild
+            </span>
+            <span
+              className="text-xs px-2 py-0.5 rounded font-medium"
+              style={{ color: CURRENT_SEASON.color, background: CURRENT_SEASON.bg, border: `1px solid ${CURRENT_SEASON.color}40` }}
+              title={`Current Season: ${CURRENT_SEASON.name}`}
+            >
+              {CURRENT_SEASON.icon} {CURRENT_SEASON.name}
             </span>
           </div>
 
@@ -769,10 +825,11 @@ export default function Dashboard() {
             { key: "leaderboard", label: "🏆 Leaderboard" },
             { key: "honors",      label: "🏅 Honors" },
             { key: "campaign",    label: "🐉 Campaign" },
+            { key: "season",      label: `${CURRENT_SEASON.icon} Season` },
           ].map(v => (
             <button
               key={v.key}
-              onClick={() => setDashView(v.key as "ops" | "campaign" | "leaderboard" | "honors")}
+              onClick={() => setDashView(v.key as "ops" | "campaign" | "leaderboard" | "honors" | "season")}
               className="text-xs font-semibold px-3 py-1.5 rounded transition-all"
               style={{
                 background: dashView === v.key ? "#252525" : "transparent",
@@ -797,6 +854,11 @@ export default function Dashboard() {
         {/* Campaign View */}
         {dashView === "campaign" && (
           <CampaignView agents={agents} quests={quests} users={users} />
+        )}
+
+        {/* Season & Battle Pass View */}
+        {dashView === "season" && (
+          <BattlePassView users={users} quests={quests} />
         )}
 
         {/* Agent Roster + Quest Board */}
@@ -844,6 +906,8 @@ export default function Dashboard() {
                       onClaim={reviewApiKey && playerName ? handleClaim : undefined}
                       onUnclaim={reviewApiKey && playerName ? handleUnclaim : undefined}
                       onComplete={reviewApiKey && playerName ? handleComplete : undefined}
+                      onCoopClaim={reviewApiKey && playerName ? handleCoopClaim : undefined}
+                      onCoopComplete={reviewApiKey && playerName ? handleCoopComplete : undefined}
                       playerName={playerName}
                     />
                   ))}
@@ -1024,6 +1088,8 @@ export default function Dashboard() {
                             onClaim={reviewApiKey && playerName ? handleClaim : undefined}
                             onUnclaim={reviewApiKey && playerName ? handleUnclaim : undefined}
                             onComplete={reviewApiKey && playerName ? handleComplete : undefined}
+                            onCoopClaim={reviewApiKey && playerName ? handleCoopClaim : undefined}
+                            onCoopComplete={reviewApiKey && playerName ? handleCoopComplete : undefined}
                             playerName={playerName} />
                       )}
                     </>
@@ -1054,6 +1120,8 @@ export default function Dashboard() {
                             onClaim={reviewApiKey && playerName ? handleClaim : undefined}
                             onUnclaim={reviewApiKey && playerName ? handleUnclaim : undefined}
                             onComplete={reviewApiKey && playerName ? handleComplete : undefined}
+                            onCoopClaim={reviewApiKey && playerName ? handleCoopClaim : undefined}
+                            onCoopComplete={reviewApiKey && playerName ? handleCoopComplete : undefined}
                             playerName={playerName} />
                       )}
                     </>
@@ -1170,6 +1238,21 @@ export default function Dashboard() {
         {/* Thoughtful Hero */}
         {dashView === "ops" && (
           <ThoughtfulHeroPanel quests={quests} reviewApiKey={reviewApiKey} onRefresh={refresh} />
+        )}
+
+        {/* Relationship Raid Boss — Co-op Quests */}
+        {dashView === "ops" && reviewApiKey && (
+          <RelationshipCoopPanel users={users} reviewApiKey={reviewApiKey} onRefresh={refresh} />
+        )}
+
+        {/* CV Builder */}
+        {dashView === "ops" && (
+          <CVBuilderPanel quests={quests} users={users} playerName={playerName} />
+        )}
+
+        {/* Dobbie's Demands — NPC Quests */}
+        {dashView === "ops" && reviewApiKey && (
+          <DobbieQuestPanel reviewApiKey={reviewApiKey} onRefresh={refresh} />
         )}
 
         {/* AI Smart Suggestions */}
@@ -1356,6 +1439,9 @@ export default function Dashboard() {
 
       {/* Achievement Toast */}
       {toast && <AchievementToast achievement={toast} onClose={() => setToast(null)} />}
+
+      {/* Flavor Toast */}
+      {flavorToast && <FlavorToast toast={flavorToast} onClose={() => setFlavorToast(null)} />}
 
       {/* Chain Quest Toast */}
       {chainOffer && (
@@ -1732,6 +1818,301 @@ function buildSuggestions(quests: QuestsData, agents: Agent[]): Suggestion[] {
   }
 
   return suggestions;
+}
+
+// ─── Relationship Co-op Panel ─────────────────────────────────────────────────
+
+const COOP_TEMPLATES = [
+  { id: "weekend_trip", title: "Plan Weekend Trip Together", description: "Research destinations, agree on dates, book accommodation.", icon: "✈️" },
+  { id: "cook_dinner", title: "Cook Dinner as a Team", description: "Choose a recipe together, shop ingredients, cook and enjoy.", icon: "🍳" },
+  { id: "watch_movie", title: "Movie Night Both Wanted", description: "Pick a movie you've both been wanting to watch, make popcorn.", icon: "🎬" },
+  { id: "workout_together", title: "Workout Session Together", description: "Go for a run, gym session, or home workout — both complete it.", icon: "💪" },
+  { id: "digital_detox", title: "1-Hour Digital Detox Together", description: "Both put phones away, spend quality time without screens.", icon: "🌿" },
+];
+
+function RelationshipCoopPanel({ users, reviewApiKey, onRefresh }: {
+  users: User[];
+  reviewApiKey: string;
+  onRefresh: () => void;
+}) {
+  const [partner1, setPartner1] = useState("");
+  const [partner2, setPartner2] = useState("");
+  const [creating, setCreating] = useState<string | null>(null);
+  const [success, setSuccess] = useState<string | null>(null);
+
+  const userIds = users.map(u => u.id);
+
+  const createCoopQuest = async (template: (typeof COOP_TEMPLATES)[0]) => {
+    if (!reviewApiKey || !partner1 || !partner2) return;
+    setCreating(template.id);
+    try {
+      const res = await fetch("/api/quest", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "X-API-Key": reviewApiKey },
+        body: JSON.stringify({
+          title: template.title,
+          description: template.description,
+          priority: "medium",
+          type: "relationship-coop",
+          createdBy: "leon",
+          coopPartners: [partner1.toLowerCase(), partner2.toLowerCase()],
+        }),
+      });
+      if (res.ok) {
+        setSuccess(template.id);
+        setTimeout(() => setSuccess(null), 3000);
+        onRefresh();
+      }
+    } catch { /* ignore */ } finally { setCreating(null); }
+  };
+
+  return (
+    <section className="mb-6">
+      <div className="flex items-center gap-2 mb-3">
+        <h2 className="text-xs font-semibold uppercase tracking-widest" style={{ color: "#f43f5e" }}>
+          💞 Relationship Raid Boss
+        </h2>
+        <span className="text-xs px-1.5 py-0.5 rounded font-mono" style={{ background: "rgba(244,63,94,0.12)", color: "#f43f5e", border: "1px solid rgba(244,63,94,0.3)" }}>
+          Co-op Quests
+        </span>
+      </div>
+      <div className="rounded-xl p-4 mb-3" style={{ background: "#252525", border: "1px solid rgba(244,63,94,0.2)" }}>
+        <p className="text-xs mb-3" style={{ color: "rgba(255,255,255,0.4)" }}>
+          Co-op quests require both partners to complete their part. Shared XP reward on success!
+        </p>
+        <div className="flex gap-2 flex-wrap">
+          <div className="flex flex-col gap-1">
+            <label className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>Partner 1</label>
+            <select value={partner1} onChange={e => setPartner1(e.target.value)} className="text-xs px-2 py-1.5 rounded" style={{ background: "#1a1a1a", border: "1px solid rgba(255,255,255,0.1)", color: "#e8e8e8" }}>
+              <option value="">Select player…</option>
+              {userIds.map(id => <option key={id} value={id}>{id}</option>)}
+            </select>
+          </div>
+          <div className="flex flex-col gap-1">
+            <label className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>Partner 2</label>
+            <select value={partner2} onChange={e => setPartner2(e.target.value)} className="text-xs px-2 py-1.5 rounded" style={{ background: "#1a1a1a", border: "1px solid rgba(255,255,255,0.1)", color: "#e8e8e8" }}>
+              <option value="">Select player…</option>
+              {userIds.map(id => <option key={id} value={id}>{id}</option>)}
+            </select>
+          </div>
+        </div>
+      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+        {COOP_TEMPLATES.map(t => {
+          const isCreating = creating === t.id;
+          const isDone = success === t.id;
+          const canCreate = !!(partner1 && partner2 && partner1 !== partner2);
+          return (
+            <div key={t.id} className="rounded-xl p-4" style={{ background: "#252525", border: "1px solid rgba(244,63,94,0.15)" }}>
+              <div className="flex items-center gap-2 mb-2">
+                <span className="text-xl flex-shrink-0">{t.icon}</span>
+                <p className="text-xs font-bold" style={{ color: "#f0f0f0" }}>{t.title}</p>
+              </div>
+              <p className="text-xs mb-3 leading-relaxed" style={{ color: "rgba(255,255,255,0.35)" }}>{t.description}</p>
+              {reviewApiKey ? (
+                <button
+                  onClick={() => createCoopQuest(t)}
+                  disabled={!canCreate || !!creating}
+                  className="action-btn w-full text-xs py-1.5 rounded-lg font-semibold"
+                  style={{ background: isDone ? "rgba(34,197,94,0.15)" : canCreate ? "rgba(244,63,94,0.15)" : "rgba(255,255,255,0.04)", color: isDone ? "#22c55e" : canCreate ? "#f43f5e" : "rgba(255,255,255,0.2)", border: `1px solid ${isDone ? "rgba(34,197,94,0.3)" : "rgba(244,63,94,0.3)"}`, cursor: canCreate ? "pointer" : "not-allowed" }}
+                >
+                  {isDone ? "✓ Co-op Quest Created!" : isCreating ? "Creating…" : canCreate ? "💞 Create Co-op Quest" : "Select both partners first"}
+                </button>
+              ) : (
+                <p className="text-xs text-center" style={{ color: "rgba(255,255,255,0.2)" }}>Login to create</p>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </section>
+  );
+}
+
+// ─── CV Builder Panel ─────────────────────────────────────────────────────────
+
+interface CVData {
+  skills: { name: string; count: number; lastEarned: string | null; quests: { id: string; title: string; completedAt: string }[] }[];
+  certifications: { title: string; earnedAt: string; questId: string }[];
+  totalLearningQuests: number;
+}
+
+function CVBuilderPanel({ quests, users, playerName }: { quests: QuestsData; users: User[]; playerName: string }) {
+  const [cvData, setCvData] = useState<CVData | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [activeUser, setActiveUser] = useState(playerName || "");
+
+  const loadCV = async (userId: string) => {
+    if (!userId) return;
+    setLoading(true);
+    try {
+      const r = await fetch(`/api/cv-export?userId=${encodeURIComponent(userId)}`);
+      if (r.ok) {
+        const data = await r.json();
+        setCvData(data);
+        setOpen(true);
+      }
+    } catch { /* ignore */ } finally { setLoading(false); }
+  };
+
+  const completedLearning = quests.completed.filter(q => q.type === "learning").length;
+  const allLearning = [...quests.open, ...quests.inProgress, ...quests.completed].filter(q => q.type === "learning").length;
+
+  return (
+    <section className="mb-6">
+      <div className="flex items-center gap-2 mb-3">
+        <button onClick={() => setOpen(v => !v)} className="flex items-center gap-2">
+          <h2 className="text-xs font-semibold uppercase tracking-widest" style={{ color: "#60a5fa" }}>📋 CV Builder</h2>
+          <span className="text-xs px-1.5 py-0.5 rounded font-mono" style={{ background: "rgba(96,165,250,0.12)", color: "#60a5fa", border: "1px solid rgba(96,165,250,0.3)" }}>
+            {completedLearning} skills tracked
+          </span>
+          <span className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>{open ? "▲" : "▼"}</span>
+        </button>
+        <div className="ml-auto flex items-center gap-2">
+          <select value={activeUser} onChange={e => setActiveUser(e.target.value)} className="text-xs px-2 py-1 rounded" style={{ background: "#1a1a1a", border: "1px solid rgba(255,255,255,0.1)", color: "#e8e8e8" }}>
+            <option value="">All players</option>
+            {users.map(u => <option key={u.id} value={u.id}>{u.name}</option>)}
+          </select>
+          <button onClick={() => loadCV(activeUser || "")} disabled={loading} className="text-xs px-3 py-1 rounded font-medium" style={{ background: "rgba(96,165,250,0.12)", color: "#60a5fa", border: "1px solid rgba(96,165,250,0.3)" }}>
+            {loading ? "Loading…" : "Generate CV"}
+          </button>
+        </div>
+      </div>
+      {open && cvData && (
+        <div className="rounded-xl p-4" style={{ background: "#252525", border: "1px solid rgba(96,165,250,0.2)" }}>
+          <div className="flex items-center justify-between mb-4">
+            <p className="text-sm font-semibold" style={{ color: "#f0f0f0" }}>{activeUser ? `${activeUser}'s Skill Profile` : "All Players Skill Profile"}</p>
+            <span className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>{cvData.totalLearningQuests} learning quests completed</span>
+          </div>
+          {cvData.skills.length === 0 ? (
+            <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>No completed learning quests yet. Start a quest chain in the Learning Workshop!</p>
+          ) : (
+            <>
+              <h3 className="text-xs font-semibold uppercase tracking-widest mb-2" style={{ color: "rgba(96,165,250,0.7)" }}>Skills Acquired</h3>
+              <div className="flex flex-wrap gap-2 mb-4">
+                {cvData.skills.map(skill => (
+                  <div key={skill.name} className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg" style={{ background: "rgba(96,165,250,0.08)", border: "1px solid rgba(96,165,250,0.2)" }}>
+                    <span className="text-xs font-medium" style={{ color: "#e8e8e8" }}>{skill.name}</span>
+                    {skill.count > 1 && <span className="text-xs font-mono px-1 rounded" style={{ background: "rgba(96,165,250,0.2)", color: "#60a5fa" }}>×{skill.count}</span>}
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
+          {cvData.certifications.length > 0 && (
+            <>
+              <h3 className="text-xs font-semibold uppercase tracking-widest mb-2" style={{ color: "rgba(251,191,36,0.7)" }}>Certifications</h3>
+              <div className="space-y-1">
+                {cvData.certifications.map((cert, i) => (
+                  <div key={i} className="flex items-center gap-2 text-xs">
+                    <span style={{ color: "#fbbf24" }}>🏆</span>
+                    <span style={{ color: "#e8e8e8" }}>{cert.title}</span>
+                    {cert.earnedAt && <span style={{ color: "rgba(255,255,255,0.3)" }}>{new Date(cert.earnedAt).toLocaleDateString()}</span>}
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
+        </div>
+      )}
+      {!open && allLearning > 0 && (
+        <div className="flex gap-2 flex-wrap">
+          {quests.completed.filter(q => q.type === "learning").slice(0, 6).map(q => (
+            <div key={q.id} className="flex items-center gap-1.5 px-2 py-1 rounded-lg" style={{ background: "rgba(96,165,250,0.06)", border: "1px solid rgba(96,165,250,0.15)" }}>
+              <span className="text-xs" style={{ color: "rgba(96,165,250,0.6)" }}>✓</span>
+              <span className="text-xs" style={{ color: "rgba(255,255,255,0.5)" }}>{q.title}</span>
+            </div>
+          ))}
+        </div>
+      )}
+    </section>
+  );
+}
+
+// ─── Dobbie's Demands — NPC Quest Panel ──────────────────────────────────────
+
+const DOBBIE_QUESTS = [
+  { id: "feed_dobbie", title: "Feed Dobbie Before 18:00", description: "His Highness demands his meal on time. No excuses.", icon: "🥫", priority: "high" as const },
+  { id: "clean_litter", title: "Clean the Litter Box", description: "The sacred ritual must be performed. Dobbie demands cleanliness.", icon: "🧹", priority: "medium" as const },
+  { id: "pet_dobbie", title: "Pet Dobbie for 5 Minutes", description: "Five minutes of undivided attention. The minimum acceptable tribute.", icon: "😸", priority: "low" as const },
+  { id: "play_time", title: "Interactive Play Session", description: "10 minutes with the wand toy. Dobbie requires stimulation.", icon: "🎾", priority: "low" as const },
+  { id: "window_watch", title: "Open Window for Bird Watching", description: "Allow access to the window ledge for prime bird surveillance.", icon: "🐦", priority: "low" as const },
+];
+
+function DobbieQuestPanel({ reviewApiKey, onRefresh }: { reviewApiKey: string; onRefresh: () => void }) {
+  const [creating, setCreating] = useState<string | null>(null);
+  const [success, setSuccess] = useState<string | null>(null);
+
+  const createDobbieQuest = async (q: (typeof DOBBIE_QUESTS)[0]) => {
+    if (!reviewApiKey) return;
+    setCreating(q.id);
+    try {
+      const res = await fetch("/api/quest", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "X-API-Key": reviewApiKey },
+        body: JSON.stringify({
+          title: q.title,
+          description: q.description,
+          priority: q.priority,
+          type: "personal",
+          createdBy: "dobbie",
+          recurrence: "daily",
+        }),
+      });
+      if (res.ok) {
+        setSuccess(q.id);
+        setTimeout(() => setSuccess(null), 3000);
+        onRefresh();
+      }
+    } catch { /* ignore */ } finally { setCreating(null); }
+  };
+
+  return (
+    <section className="mb-6">
+      <div className="flex items-center gap-2 mb-3">
+        <h2 className="text-xs font-semibold uppercase tracking-widest" style={{ color: "#ff6b9d" }}>
+          🐱 Dobbie&apos;s Demands
+        </h2>
+        <span className="text-xs px-1.5 py-0.5 rounded font-mono" style={{ background: "rgba(255,107,157,0.12)", color: "#ff6b9d", border: "1px solid rgba(255,107,157,0.3)" }}>
+          NPC Quest Giver
+        </span>
+      </div>
+      <div className="rounded-xl p-3 mb-3 flex items-center gap-3" style={{ background: "rgba(255,107,157,0.06)", border: "1px solid rgba(255,107,157,0.2)" }}>
+        <span className="text-3xl flex-shrink-0">🐱</span>
+        <div>
+          <p className="text-xs font-semibold" style={{ color: "#ff6b9d" }}>Dobbie — Cat Overlord</p>
+          <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.4)" }}>His requests are not optional. Resistance is futile. All quests are daily.</p>
+        </div>
+      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+        {DOBBIE_QUESTS.map(q => {
+          const isCreating = creating === q.id;
+          const isDone = success === q.id;
+          return (
+            <div key={q.id} className="rounded-xl p-4" style={{ background: "#252525", border: "1px solid rgba(255,107,157,0.15)" }}>
+              <div className="flex items-center gap-2 mb-2">
+                <span className="text-xl flex-shrink-0">{q.icon}</span>
+                <div className="flex-1 min-w-0">
+                  <p className="text-xs font-bold truncate" style={{ color: "#f0f0f0" }}>{q.title}</p>
+                  <span className="text-xs" style={{ color: q.priority === "high" ? "#ef4444" : q.priority === "medium" ? "#f59e0b" : "#22c55e" }}>{q.priority}</span>
+                </div>
+              </div>
+              <p className="text-xs mb-3 leading-relaxed" style={{ color: "rgba(255,255,255,0.35)" }}>{q.description}</p>
+              <button
+                onClick={() => createDobbieQuest(q)}
+                disabled={!!creating}
+                className="action-btn w-full text-xs py-1.5 rounded-lg font-semibold"
+                style={{ background: isDone ? "rgba(34,197,94,0.15)" : "rgba(255,107,157,0.15)", color: isDone ? "#22c55e" : "#ff6b9d", border: `1px solid ${isDone ? "rgba(34,197,94,0.3)" : "rgba(255,107,157,0.3)"}` }}
+              >
+                {isDone ? "✓ Quest Issued!" : isCreating ? "Issuing…" : "🐱 Issue Quest"}
+              </button>
+            </div>
+          );
+        })}
+      </div>
+    </section>
+  );
 }
 
 function SmartSuggestionsPanel({ quests, agents }: { quests: QuestsData; agents: Agent[] }) {
@@ -2210,16 +2591,35 @@ function TypeBadge({ type }: { type?: string }) {
   );
 }
 
-function AgentBadge({ name }: { name: string }) {
-  const label = name.charAt(0).toUpperCase() + name.slice(1);
+const NPC_CONFIG: Record<string, { avatar: string; color: string }> = {
+  dobbie: { avatar: "🐱", color: "#ff6b9d" },
+};
+
+function CreatorBadge({ name }: { name: string }) {
+  const npc = NPC_CONFIG[name.toLowerCase()];
+  if (npc) {
+    return (
+      <span
+        className="text-xs px-1.5 py-0.5 rounded flex-shrink-0"
+        style={{ color: npc.color, background: `${npc.color}18`, border: `1px solid ${npc.color}50` }}
+        title={`Quest from ${name}`}
+      >
+        {npc.avatar} {name.charAt(0).toUpperCase() + name.slice(1)}
+      </span>
+    );
+  }
   return (
     <span
       className="text-xs px-1.5 py-0.5 rounded flex-shrink-0"
       style={{ color: "#a78bfa", background: "rgba(167,139,250,0.1)", border: "1px solid rgba(167,139,250,0.25)" }}
     >
-      🤖 {label}
+      🤖 {name.charAt(0).toUpperCase() + name.slice(1)}
     </span>
   );
+}
+
+function AgentBadge({ name }: { name: string }) {
+  return <CreatorBadge name={name} />;
 }
 
 function RecurringBadge({ recurrence }: { recurrence: string }) {
@@ -2282,6 +2682,11 @@ function CompletedQuestRow({ quest, isLast }: { quest: Quest; isLast: boolean })
               </p>
             </div>
           )}
+          {quest.lore && (
+            <p className="text-xs italic" style={{ color: "rgba(167,139,250,0.5)", borderLeft: "2px solid rgba(139,92,246,0.2)", paddingLeft: "8px" }}>
+              ✨ {quest.lore}
+            </p>
+          )}
           <p className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>
             Completed {quest.completedAt ? timeAgo(quest.completedAt) : "—"} · by {quest.completedBy}
           </p>
@@ -2317,19 +2722,28 @@ function ClickablePriorityBadge({ priority, onClick }: { priority: Quest["priori
   );
 }
 
-function QuestCard({ quest, selected, onToggle, onClaim, onUnclaim, onComplete, playerName }: {
+function QuestCard({ quest, selected, onToggle, onClaim, onUnclaim, onComplete, onCoopClaim, onCoopComplete, playerName }: {
   quest: Quest;
   selected?: boolean;
   onToggle?: (id: string) => void;
   onClaim?: (id: string) => void;
   onUnclaim?: (id: string) => void;
   onComplete?: (id: string, title: string) => void;
+  onCoopClaim?: (id: string) => void;
+  onCoopComplete?: (id: string) => void;
   playerName?: string;
 }) {
   const [expanded, setExpanded] = useState(false);
   const isInProgress = quest.status === "in_progress";
   const cats = quest.categories?.length ? quest.categories : (quest.category ? [quest.category] : []);
   const isClaimedByMe = playerName && quest.claimedBy?.toLowerCase() === playerName.toLowerCase();
+  const isCoop = quest.type === "relationship-coop";
+  const coopPartners = quest.coopPartners ?? [];
+  const coopClaimed = quest.coopClaimed ?? [];
+  const coopCompletions = quest.coopCompletions ?? [];
+  const isCoopPartner = playerName ? coopPartners.includes(playerName.toLowerCase()) : false;
+  const hasCoopClaimed = playerName ? coopClaimed.includes(playerName.toLowerCase()) : false;
+  const hasCoopCompleted = playerName ? coopCompletions.includes(playerName.toLowerCase()) : false;
 
   return (
     <div
@@ -2387,12 +2801,38 @@ function QuestCard({ quest, selected, onToggle, onClaim, onUnclaim, onComplete, 
             {quest.recurrence && <RecurringBadge recurrence={quest.recurrence} />}
             {cats.map(c => <CategoryBadge key={c} category={c} />)}
             {quest.product && <ProductBadge product={quest.product} />}
-            {isInProgress && quest.claimedBy && (
+            {isInProgress && quest.claimedBy && !isCoop && (
               <span className="text-xs" style={{ color: "rgba(139,92,246,0.7)" }}>→ {quest.claimedBy}</span>
             )}
           </div>
+          {isCoop && coopPartners.length > 0 && (
+            <div className="mt-1.5 flex items-center gap-1.5 flex-wrap">
+              {coopPartners.map(p => {
+                const done = coopCompletions.includes(p);
+                const claimed = coopClaimed.includes(p);
+                return (
+                  <span key={p} className="text-xs px-1.5 py-0.5 rounded flex items-center gap-1"
+                    style={{ background: done ? "rgba(34,197,94,0.1)" : claimed ? "rgba(244,63,94,0.1)" : "rgba(255,255,255,0.05)", color: done ? "#22c55e" : claimed ? "#f43f5e" : "rgba(255,255,255,0.3)", border: `1px solid ${done ? "rgba(34,197,94,0.3)" : claimed ? "rgba(244,63,94,0.3)" : "rgba(255,255,255,0.1)"}` }}
+                  >
+                    {done ? "✓" : claimed ? "⚔" : "○"} {p}
+                  </span>
+                );
+              })}
+              <span className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>{coopCompletions.length}/{coopPartners.length} done</span>
+            </div>
+          )}
           {expanded && quest.description && (
             <p className="text-xs mt-2 leading-relaxed" style={{ color: "rgba(255,255,255,0.45)" }}>{quest.description}</p>
+          )}
+          {expanded && quest.lore && (
+            <p className="text-xs mt-1.5 leading-relaxed italic" style={{ color: "rgba(167,139,250,0.6)", borderLeft: "2px solid rgba(139,92,246,0.25)", paddingLeft: "8px" }}>
+              ✨ {quest.lore}
+            </p>
+          )}
+          {expanded && quest.chapter && (
+            <span className="inline-flex text-xs mt-1 px-1.5 py-0.5 rounded" style={{ color: "rgba(251,191,36,0.7)", background: "rgba(251,191,36,0.06)", border: "1px solid rgba(251,191,36,0.15)" }}>
+              📖 {quest.chapter}
+            </span>
           )}
           {expanded && quest.checklist && quest.checklist.length > 0 && (
             <div className="mt-2 space-y-1">
@@ -2406,34 +2846,23 @@ function QuestCard({ quest, selected, onToggle, onClaim, onUnclaim, onComplete, 
           )}
           <div className="flex items-center justify-between mt-1">
             <p className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>{timeAgo(quest.createdAt)}</p>
-            {/* Claim / Unclaim */}
-            {onClaim && quest.status === "open" && (
-              <button
-                onClick={e => { e.stopPropagation(); onClaim(quest.id); }}
-                className="text-xs px-2 py-0.5 rounded font-medium"
-                style={{ background: "rgba(34,197,94,0.12)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.3)" }}
-              >
-                ⚔ Claim
-              </button>
-            )}
-            {onUnclaim && isClaimedByMe && (
-              <button
-                onClick={e => { e.stopPropagation(); onUnclaim(quest.id); }}
-                className="text-xs px-2 py-0.5 rounded font-medium"
-                style={{ background: "rgba(239,68,68,0.1)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.25)" }}
-              >
-                ✕ Unclaim
-              </button>
-            )}
-            {onComplete && isClaimedByMe && (
-              <button
-                onClick={e => { e.stopPropagation(); onComplete(quest.id, quest.title); }}
-                className="text-xs px-2 py-0.5 rounded font-medium"
-                style={{ background: "rgba(251,191,36,0.12)", color: "#fbbf24", border: "1px solid rgba(251,191,36,0.3)" }}
-              >
-                ✓ Done
-              </button>
-            )}
+            <div className="flex items-center gap-1.5">
+              {!isCoop && onClaim && quest.status === "open" && (
+                <button onClick={e => { e.stopPropagation(); onClaim(quest.id); }} className="text-xs px-2 py-0.5 rounded font-medium" style={{ background: "rgba(34,197,94,0.12)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.3)" }}>⚔ Claim</button>
+              )}
+              {!isCoop && onUnclaim && isClaimedByMe && (
+                <button onClick={e => { e.stopPropagation(); onUnclaim(quest.id); }} className="text-xs px-2 py-0.5 rounded font-medium" style={{ background: "rgba(239,68,68,0.1)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.25)" }}>✕ Unclaim</button>
+              )}
+              {!isCoop && onComplete && isClaimedByMe && (
+                <button onClick={e => { e.stopPropagation(); onComplete(quest.id, quest.title); }} className="text-xs px-2 py-0.5 rounded font-medium" style={{ background: "rgba(251,191,36,0.12)", color: "#fbbf24", border: "1px solid rgba(251,191,36,0.3)" }}>✓ Done</button>
+              )}
+              {isCoop && isCoopPartner && !hasCoopClaimed && quest.status !== "completed" && onCoopClaim && (
+                <button onClick={e => { e.stopPropagation(); onCoopClaim(quest.id); }} className="text-xs px-2 py-0.5 rounded font-medium" style={{ background: "rgba(244,63,94,0.12)", color: "#f43f5e", border: "1px solid rgba(244,63,94,0.3)" }}>💞 Join</button>
+              )}
+              {isCoop && isCoopPartner && hasCoopClaimed && !hasCoopCompleted && quest.status !== "completed" && onCoopComplete && (
+                <button onClick={e => { e.stopPropagation(); onCoopComplete(quest.id); }} className="text-xs px-2 py-0.5 rounded font-medium" style={{ background: "rgba(34,197,94,0.12)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.3)" }}>✓ My Part Done</button>
+              )}
+            </div>
           </div>
         </div>
       </div>
@@ -2585,6 +3014,16 @@ function EpicQuestCard({ quest, selected, onToggle }: { quest: Quest; selected?:
   );
 }
 
+// ─── Season helpers ──────────────────────────────────────────────────────────
+function getSeason() {
+  const m = new Date().getMonth(); // 0=Jan
+  if (m >= 2 && m <= 4) return { name: "Spring", icon: "🌸", color: "#ec4899", bg: "rgba(236,72,153,0.1)", particle: "rgba(255,182,193," };
+  if (m >= 5 && m <= 7) return { name: "Summer", icon: "☀️", color: "#f59e0b", bg: "rgba(245,158,11,0.1)", particle: "rgba(255,220,100," };
+  if (m >= 8 && m <= 10) return { name: "Autumn", icon: "🍂", color: "#f97316", bg: "rgba(249,115,22,0.1)", particle: "rgba(255,140,50," };
+  return { name: "Winter", icon: "❄️", color: "#60a5fa", bg: "rgba(96,165,250,0.1)", particle: "rgba(180,220,255," };
+}
+const CURRENT_SEASON = getSeason();
+
 // ─── XP helpers (shared with UserCard) ──────────────────────────────────────
 const USER_LEVELS = [
   { name: "Novice",     min: 0,   max: 99,  color: "#9ca3af" },
@@ -2678,14 +3117,14 @@ function UserCard({ user, onShopOpen }: { user: User; onShopOpen?: (userId: stri
       <div className="mb-2">
         <div className="flex items-center justify-between mb-1">
           <span className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>
-            Forge Temp {temp < 30 ? "⚠ Cooling!" : ""}
+            Forge Temp {temp < 30 ? "⚠ Cooling!" : CURRENT_SEASON.icon}
           </span>
           <span className="text-xs font-mono" style={{ color: tempColor }}>{temp}%</span>
         </div>
         <div className="rounded-full overflow-hidden" style={{ height: 3, background: "rgba(255,255,255,0.07)" }}>
           <div
             className="h-full rounded-full transition-all duration-700"
-            style={{ width: `${temp}%`, background: `linear-gradient(90deg, ${tempColor}99, ${tempColor})`, boxShadow: `0 0 5px ${tempColor}60` }}
+            style={{ width: `${temp}%`, background: `linear-gradient(90deg, ${tempColor}99, ${CURRENT_SEASON.color})`, boxShadow: `0 0 5px ${tempColor}60` }}
           />
         </div>
       </div>
@@ -2709,7 +3148,7 @@ function UserCard({ user, onShopOpen }: { user: User; onShopOpen?: (userId: stri
         );
       })()}
 
-      {/* Companions */}
+      {/* Companions with Moods */}
       {(() => {
         const COMPANION_IDS = ["ember_sprite", "lore_owl", "gear_golem"];
         const COMPANION_META: Record<string, { icon: string; name: string }> = {
@@ -2719,20 +3158,32 @@ function UserCard({ user, onShopOpen }: { user: User; onShopOpen?: (userId: stri
         };
         const companions = achs.filter(a => COMPANION_IDS.includes(a.id));
         if (companions.length === 0) return null;
+        // Companion mood based on streak
+        const mood = streak >= 7 ? { emoji: "😊", label: "happy", anim: "animate-bounce", tip: "Happy! Keep the streak going!" }
+                   : streak >= 3 ? { emoji: "😐", label: "neutral", anim: "", tip: "Neutral. Complete quests to cheer them up!" }
+                   : { emoji: "😔", label: "sad", anim: "animate-pulse", tip: "Sad. No recent quests — your companions miss you!" };
         return (
-          <div className="mt-2 flex items-center gap-1.5">
-            <span className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>Companions:</span>
-            {companions.map(c => (
-              <span
-                key={c.id}
-                className="text-sm"
-                title={`${COMPANION_META[c.id]?.name ?? c.name} (+2% XP)`}
-                style={{ cursor: "default" }}
-              >
-                {COMPANION_META[c.id]?.icon ?? c.icon}
+          <div className="mt-2">
+            <div className="flex items-center gap-1.5 mb-0.5">
+              <span className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>Companions:</span>
+              {companions.map(c => (
+                <span
+                  key={c.id}
+                  className={"text-sm " + mood.anim}
+                  title={`${COMPANION_META[c.id]?.name ?? c.name} (+2% XP) — ${mood.tip}`}
+                  style={{ cursor: "default" }}
+                >
+                  {COMPANION_META[c.id]?.icon ?? c.icon}
+                </span>
+              ))}
+              <span className="text-xs ml-auto" style={{ color: "rgba(99,102,241,0.5)" }}>+{companions.length * 2}% XP</span>
+            </div>
+            <div className="flex items-center gap-1">
+              <span className="text-xs" title={mood.tip}>{mood.emoji}</span>
+              <span className="text-xs" style={{ color: mood.label === "happy" ? "#22c55e" : mood.label === "sad" ? "#ef4444" : "rgba(255,255,255,0.25)" }}>
+                {mood.label === "happy" ? "Companions are happy!" : mood.label === "sad" ? "Companions need attention" : "Companions are fine"}
               </span>
-            ))}
-            <span className="text-xs ml-auto" style={{ color: "rgba(99,102,241,0.5)" }}>+{companions.length * 2}% XP</span>
+            </div>
           </div>
         );
       })()}
@@ -2953,6 +3404,27 @@ function AchievementToast({ achievement, onClose }: { achievement: EarnedAchieve
         <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>{achievement.desc}</p>
       </div>
       <button onClick={onClose} style={{ color: "rgba(255,255,255,0.3)" }}>✕</button>
+    </div>
+  );
+}
+
+// ─── Flavor Toast ─────────────────────────────────────────────────────────────
+function FlavorToast({ toast, onClose }: { toast: { message: string; icon: string; sub?: string }; onClose: () => void }) {
+  useEffect(() => {
+    const t = setTimeout(onClose, 3000);
+    return () => clearTimeout(t);
+  }, [onClose]);
+  return (
+    <div
+      className="fixed bottom-6 right-6 z-50 rounded-xl px-4 py-3 flex items-center gap-3 shadow-2xl"
+      style={{ background: "#1e2a1e", border: "1px solid rgba(34,197,94,0.4)", boxShadow: "0 8px 32px rgba(34,197,94,0.15)", maxWidth: 280 }}
+    >
+      <span className="text-2xl flex-shrink-0">{toast.icon}</span>
+      <div className="flex-1 min-w-0">
+        <p className="text-sm font-bold" style={{ color: "#22c55e" }}>{toast.message}</p>
+        {toast.sub && <p className="text-xs mt-0.5 truncate" style={{ color: "rgba(255,255,255,0.35)" }}>{toast.sub}</p>}
+      </div>
+      <button onClick={onClose} style={{ color: "rgba(255,255,255,0.3)", flexShrink: 0 }}>✕</button>
     </div>
   );
 }
@@ -3355,6 +3827,134 @@ function HonorsView({ catalogue, users }: { catalogue: AchievementDef[]; users: 
           );
         })
       )}
+    </div>
+  );
+}
+
+// ─── Battle Pass / Season View ───────────────────────────────────────────────
+const SEASON_START_MONTHS: Record<string, number> = { Winter: 11, Spring: 2, Summer: 5, Autumn: 8 };
+const BATTLE_PASS_LEVELS = [
+  { level: 1,  xp: 0,   reward: "🗡 Iron Pick",         premium: false },
+  { level: 2,  xp: 30,  reward: "🪙 +50 Bonus Gold",     premium: false },
+  { level: 3,  xp: 70,  reward: "📜 Lore Scroll (Cosmetic)", premium: false },
+  { level: 4,  xp: 120, reward: "⚒ Forge Boost +5%",    premium: true  },
+  { level: 5,  xp: 180, reward: "🔥 Streak Shield",       premium: false },
+  { level: 6,  xp: 250, reward: "🎯 Daily Quest Bonus",   premium: true  },
+  { level: 7,  xp: 330, reward: "🧭 Season Title: Wanderer", premium: false },
+  { level: 8,  xp: 420, reward: "💎 Premium Gear Token",  premium: true  },
+  { level: 9,  xp: 520, reward: "🌟 Seasonal Companion",  premium: false },
+  { level: 10, xp: 630, reward: "👑 Season Champion Title", premium: true },
+];
+
+function BattlePassView({ users, quests }: { users: User[]; quests: QuestsData }) {
+  const season = CURRENT_SEASON;
+  const now = new Date();
+  const seasonMonth = SEASON_START_MONTHS[season.name] ?? now.getMonth();
+  const seasonYear = season.name === "Winter" && now.getMonth() < 3 ? now.getFullYear() - 1 : now.getFullYear();
+  const seasonStart = new Date(seasonYear, seasonMonth, 1);
+  const nextSeasonMonth = (seasonMonth + 3) % 12;
+  const nextSeasonYear = nextSeasonMonth < seasonMonth ? seasonYear + 1 : seasonYear;
+  const seasonEnd = new Date(nextSeasonYear, nextSeasonMonth, 1);
+  const progressPct = Math.min(100, Math.round(((now.getTime() - seasonStart.getTime()) / (seasonEnd.getTime() - seasonStart.getTime())) * 100));
+
+  // Compute season XP per user (XP earned since seasonStart, approximated from quest completions)
+  const seasonCompleted = quests.completed.filter(q => q.completedAt && new Date(q.completedAt) >= seasonStart);
+  const XP_MAP: Record<string, number> = { high: 30, medium: 20, low: 10 };
+  const userSeasonXp: Record<string, number> = {};
+  for (const q of seasonCompleted) {
+    const uid = (q.completedBy || "").toLowerCase();
+    if (uid) userSeasonXp[uid] = (userSeasonXp[uid] ?? 0) + (XP_MAP[q.priority] ?? 10);
+  }
+
+  const getBattlePassLevel = (xp: number) => {
+    let lvl = BATTLE_PASS_LEVELS[0];
+    for (const l of BATTLE_PASS_LEVELS) { if (xp >= l.xp) lvl = l; }
+    return lvl;
+  };
+  const nextLevel = (xp: number) => BATTLE_PASS_LEVELS.find(l => l.xp > xp) ?? null;
+
+  return (
+    <div className="space-y-6">
+      {/* Season header */}
+      <div className="rounded-2xl p-5" style={{ background: `linear-gradient(135deg, #1a1a1a 0%, ${season.color}18 100%)`, border: `1px solid ${season.color}40`, boxShadow: `0 0 40px ${season.color}0a` }}>
+        <div className="flex items-center gap-3 mb-3">
+          <span style={{ fontSize: 32 }}>{season.icon}</span>
+          <div className="flex-1">
+            <h2 className="text-lg font-bold" style={{ color: "#f0f0f0" }}>{season.name} Season {seasonYear}</h2>
+            <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>
+              {seasonStart.toLocaleDateString()} – {seasonEnd.toLocaleDateString()} · {100 - progressPct}% remaining
+            </p>
+          </div>
+          <div className="text-right">
+            <p className="text-xs font-semibold" style={{ color: season.color }}>{seasonCompleted.length} quests this season</p>
+          </div>
+        </div>
+        <div className="rounded-full overflow-hidden" style={{ height: 6, background: "rgba(255,255,255,0.06)" }}>
+          <div className="h-full rounded-full transition-all duration-700" style={{ width: `${progressPct}%`, background: `linear-gradient(90deg, ${season.color}80, ${season.color})` }} />
+        </div>
+        <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.25)" }}>Season Progress {progressPct}%</p>
+      </div>
+
+      {/* Player Battle Pass tracks */}
+      {users.length > 0 && (
+        <div>
+          <h3 className="text-xs font-semibold uppercase tracking-widest mb-3" style={{ color: "rgba(255,255,255,0.3)" }}>Player Tracks</h3>
+          <div className="space-y-4">
+            {users.map(u => {
+              const sXp = userSeasonXp[u.id.toLowerCase()] ?? 0;
+              const lvl = getBattlePassLevel(sXp);
+              const nxt = nextLevel(sXp);
+              const barPct = nxt ? Math.min(100, Math.round(((sXp - lvl.xp) / (nxt.xp - lvl.xp)) * 100)) : 100;
+              return (
+                <div key={u.id} className="rounded-xl p-4" style={{ background: "#252525", border: `1px solid ${u.color}30` }}>
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="w-8 h-8 rounded-xl flex items-center justify-center font-black text-sm flex-shrink-0" style={{ background: `linear-gradient(135deg, ${u.color}, ${u.color}80)`, color: "#fff" }}>
+                      {u.avatar}
+                    </div>
+                    <div className="flex-1">
+                      <p className="text-sm font-semibold" style={{ color: "#f0f0f0" }}>{u.name}</p>
+                      <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>Level {lvl.level} · {sXp} Season XP{nxt ? ` / ${nxt.xp} to L${nxt.level}` : " MAX"}</p>
+                    </div>
+                    <span className="text-xs px-2 py-0.5 rounded font-semibold" style={{ background: `${season.color}18`, color: season.color, border: `1px solid ${season.color}40` }}>
+                      L{lvl.level}
+                    </span>
+                  </div>
+                  <div className="rounded-full overflow-hidden mb-2" style={{ height: 4, background: "rgba(255,255,255,0.07)" }}>
+                    <div className="h-full rounded-full" style={{ width: `${barPct}%`, background: `linear-gradient(90deg, ${season.color}80, ${season.color})` }} />
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
+      {/* Battle Pass reward track */}
+      <div>
+        <h3 className="text-xs font-semibold uppercase tracking-widest mb-3" style={{ color: "rgba(255,255,255,0.3)" }}>Battle Pass Rewards</h3>
+        <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
+          {BATTLE_PASS_LEVELS.map(l => {
+            const highestUserXp = Math.max(0, ...users.map(u => userSeasonXp[(u.id || "").toLowerCase()] ?? 0));
+            const unlocked = highestUserXp >= l.xp;
+            return (
+              <div
+                key={l.level}
+                className="rounded-xl p-3 text-center"
+                style={{
+                  background: unlocked ? `${season.color}12` : "#252525",
+                  border: `1px solid ${unlocked ? season.color + "50" : "rgba(255,255,255,0.07)"}`,
+                  opacity: unlocked ? 1 : 0.5,
+                }}
+              >
+                <p className="text-xs font-bold mb-1" style={{ color: unlocked ? season.color : "rgba(255,255,255,0.3)" }}>L{l.level}</p>
+                <p className="text-xs" style={{ color: unlocked ? "#f0f0f0" : "rgba(255,255,255,0.4)" }}>{l.reward}</p>
+                {l.premium && <p className="text-xs mt-1 font-semibold" style={{ color: "#f59e0b" }}>★ Premium</p>}
+                <p className="text-xs mt-1 font-mono" style={{ color: "rgba(255,255,255,0.2)" }}>{l.xp} XP</p>
+              </div>
+            );
+          })}
+        </div>
+      </div>
     </div>
   );
 }

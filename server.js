@@ -562,7 +562,7 @@ app.get('/api/health', (req, res) => {
 
 // POST /api/quest — create a new quest
 app.post('/api/quest', requireApiKey, (req, res) => {
-  const { title, description, priority, category, categories, product, humanInputRequired, createdBy, type, parentQuestId, recurrence, proof, nextQuestTemplate, coopPartners, skills } = req.body;
+  const { title, description, priority, category, categories, product, humanInputRequired, createdBy, type, parentQuestId, recurrence, proof, nextQuestTemplate, coopPartners, skills, lore, chapter } = req.body;
   if (!title) return res.status(400).json({ error: 'title is required' });
   const validPriorities = ['low', 'medium', 'high'];
   const validCategories = ['Coding', 'Research', 'Content', 'Sales', 'Infrastructure', 'Bug Fix', 'Feature'];
@@ -644,6 +644,8 @@ app.post('/api/quest', requireApiKey, (req, res) => {
     coopClaimed: [],
     coopCompletions: [],
     skills: Array.isArray(skills) ? skills.map(s => String(s).trim()).filter(Boolean) : [],
+    lore: typeof lore === 'string' && lore.trim() ? lore.trim() : null,
+    chapter: typeof chapter === 'string' && chapter.trim() ? chapter.trim() : null,
   };
   quests.push(quest);
   saveQuests();
@@ -1766,6 +1768,37 @@ app.get('/api/users/:id/achievements', (req, res) => {
   const u = users[req.params.id.toLowerCase()];
   if (!u) return res.status(404).json({ error: 'User not found' });
   res.json(u.earnedAchievements || []);
+});
+
+// GET /api/cv-export — export skills/certs from completed learning quests
+app.get('/api/cv-export', (req, res) => {
+  const { userId } = req.query;
+  const learningQuests = quests.filter(q =>
+    q.type === 'learning' &&
+    q.status === 'completed' &&
+    (!userId || q.completedBy === userId || (q.claimedBy && q.claimedBy.toLowerCase() === userId.toLowerCase()))
+  );
+  const skillMap = {};
+  for (const q of learningQuests) {
+    const questSkills = Array.isArray(q.skills) && q.skills.length > 0 ? q.skills : [q.title];
+    for (const skill of questSkills) {
+      if (!skillMap[skill]) skillMap[skill] = { count: 0, quests: [] };
+      skillMap[skill].count++;
+      skillMap[skill].quests.push({ id: q.id, title: q.title, completedAt: q.completedAt });
+    }
+  }
+  const skills = Object.entries(skillMap)
+    .map(([name, data]) => ({ name, count: data.count, lastEarned: data.quests[data.quests.length - 1]?.completedAt || null, quests: data.quests }))
+    .sort((a, b) => b.count - a.count);
+  const certifications = learningQuests
+    .filter(q => q.title && q.title.toLowerCase().includes('cert'))
+    .map(q => ({ title: q.title, earnedAt: q.completedAt, questId: q.id }));
+  res.json({ userId: userId || 'all', skills, certifications, totalLearningQuests: learningQuests.length, generatedAt: now() });
+});
+
+// GET /api/npcs — list all NPC profiles
+app.get('/api/npcs', (req, res) => {
+  res.json(Object.entries(NPC_META).map(([id, meta]) => ({ id, ...meta })));
 });
 
 // ─── Shop ────────────────────────────────────────────────────────────────────
