@@ -52,6 +52,8 @@ interface Quest {
   skills?: string[];
   lore?: string | null;
   chapter?: string | null;
+  minLevel?: number;
+  playerStatus?: "open" | "in_progress" | "completed" | "locked";
 }
 
 interface EarnedAchievement {
@@ -135,6 +137,7 @@ interface QuestsData {
   completed: Quest[];
   suggested: Quest[];
   rejected: Quest[];
+  locked?: Quest[];
 }
 
 const priorityConfig = {
@@ -185,10 +188,11 @@ async function fetchAgents(): Promise<Agent[]> {
   return [];
 }
 
-async function fetchQuests(): Promise<QuestsData> {
-  const empty: QuestsData = { open: [], inProgress: [], completed: [], suggested: [], rejected: [] };
+async function fetchQuests(playerName?: string): Promise<QuestsData> {
+  const empty: QuestsData = { open: [], inProgress: [], completed: [], suggested: [], rejected: [], locked: [] };
   try {
-    const r = await fetch(`/api/quests`, { signal: AbortSignal.timeout(2000) });
+    const url = playerName ? `/api/quests?player=${encodeURIComponent(playerName)}` : `/api/quests`;
+    const r = await fetch(url, { signal: AbortSignal.timeout(2000) });
     if (r.ok) {
       const data = await r.json();
       return { ...empty, ...data };
@@ -410,7 +414,7 @@ export default function Dashboard() {
   }, []);
 
   const refresh = useCallback(async () => {
-    const [a, q, u, lb, ac, camps] = await Promise.all([fetchAgents(), fetchQuests(), fetchUsers(), fetchLeaderboard(), fetchAchievementCatalogue(), fetchCampaigns()]);
+    const [a, q, u, lb, ac, camps] = await Promise.all([fetchAgents(), fetchQuests(playerName || undefined), fetchUsers(), fetchLeaderboard(), fetchAchievementCatalogue(), fetchCampaigns()]);
     // Lyra always first, then online/working agents, then rest
     const statusOrder: Record<string, number> = { working: 0, online: 1, idle: 2, offline: 3 };
     const sorted = [...a].sort((x, y) => {
@@ -437,7 +441,7 @@ export default function Dashboard() {
     } catch { /* ignore */ }
     setLoading(false);
     setLastRefresh(new Date());
-  }, []);
+  }, [playerName]);
 
   const handleApprove = useCallback(async (id: string, comment?: string) => {
     const key = reviewApiKey;
@@ -698,6 +702,19 @@ export default function Dashboard() {
   const playerTypes = ["personal", "learning", "fitness", "social", "relationship-coop"];
   const playerActiveQuests = quests.inProgress.filter(q => playerTypes.includes(q.type ?? "") && q.claimedBy?.toLowerCase() === (playerName || "").toLowerCase());
   const playerCompletedQuests = quests.completed.filter(q => playerTypes.includes(q.type ?? "") && q.completedBy?.toLowerCase() === (playerName || "").toLowerCase());
+
+  // Level info for logged-in player
+  const LEVEL_XP = [0,50,120,200,300,420,560,720,900,1100,1350,1650,2000,2400,2850,3350,3900,4500,5150,5850,6700,7600,8600,9700,10900,12200,13600,15100,16700,18400];
+  const LEVEL_TITLES = ["Forge Initiate","Anvil Striker","Coal Tender","Iron Apprentice","Flame Keeper","Bronze Shaper","Steel Crafter","Glyph Carver","Rune Binder","Ironclad Journeyman","Forge Adept","Silver Tempered","Ember Warden","Mithral Seeker","Flame Warden","Knight of the Forge","Obsidian Blade","Ashbound Knight","Dawnsteel Sentinel","Ironforged Champion","Void Temperer","Stormhammer","Skyforgeling","Dragon Tempered","Master Artificer","Grandmaster Smith","Forge Sovereign","Mythic Hammerborn","Legendary Smelter","Archmage of the Forge"];
+  function getPlayerLevelInfo(xp: number) {
+    let lvl = 0;
+    for (let i = 0; i < LEVEL_XP.length; i++) { if (xp >= LEVEL_XP[i]) lvl = i; else break; }
+    const nextXp = LEVEL_XP[lvl + 1] ?? null;
+    const progress = nextXp ? Math.min(1, (xp - LEVEL_XP[lvl]) / (nextXp - LEVEL_XP[lvl])) : 1;
+    return { level: lvl + 1, title: LEVEL_TITLES[lvl] ?? "Archmage of the Forge", xp, nextXp, progress };
+  }
+  const playerXp = loggedInUser?.xp ?? 0;
+  const playerLevelInfo = getPlayerLevelInfo(playerXp);
   const playerStreak = loggedInUser?.streakDays ?? 0;
   const playerGold = loggedInUser?.gold ?? 0;
 
@@ -1080,6 +1097,27 @@ export default function Dashboard() {
           />
         </div>
 
+        {/* Level progress bar — shown when logged in */}
+        {playerName && loggedInUser && (
+          <div className="rounded-xl px-4 py-3" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)" }}>
+            <div className="flex items-center justify-between mb-1.5">
+              <div className="flex items-center gap-2">
+                <span className="text-xs font-bold" style={{ color: "#a78bfa" }}>Lv.{playerLevelInfo.level}</span>
+                <span className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>{playerLevelInfo.title}</span>
+              </div>
+              <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.25)" }}>
+                {playerXp} {playerLevelInfo.nextXp ? `/ ${playerLevelInfo.nextXp} XP` : "XP (max)"}
+              </span>
+            </div>
+            <div className="h-1.5 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.07)" }}>
+              <div
+                className="h-full rounded-full transition-all duration-700"
+                style={{ width: `${(playerLevelInfo.progress * 100).toFixed(1)}%`, background: "linear-gradient(90deg, #7c3aed, #a78bfa)" }}
+              />
+            </div>
+          </div>
+        )}
+
         {/* View toggle */}
         <div className="flex gap-1 flex-wrap" style={{ background: "#111", borderRadius: 8, padding: 3, display: "inline-flex" }}>
           {[
@@ -1301,6 +1339,28 @@ export default function Dashboard() {
                             )}
                           </>
                         )}
+                      </>
+                    )}
+
+                    {/* Locked quests teaser — shown when logged in and level-gated quests exist */}
+                    {playerName && (quests.locked ?? []).length > 0 && (
+                      <>
+                        <div className="flex items-center gap-2 pt-2 pb-0.5">
+                          <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.2)" }}>🔒 Locked</span>
+                          <span className="text-xs px-1 rounded font-mono" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.15)" }}>{(quests.locked ?? []).length}</span>
+                        </div>
+                        {(quests.locked ?? []).map(q => (
+                          <div key={q.id} className="rounded-lg px-3 py-2.5 flex items-center gap-3" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)", opacity: 0.5 }}>
+                            <span className="text-base">🔒</span>
+                            <div className="flex-1 min-w-0">
+                              <p className="text-xs font-medium truncate" style={{ color: "rgba(255,255,255,0.4)" }}>{q.title}</p>
+                              <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.2)" }}>Unlocks at Level {q.minLevel ?? 1}</p>
+                            </div>
+                            <span className="text-xs px-1.5 py-0.5 rounded font-mono shrink-0" style={{ background: "rgba(139,92,246,0.08)", color: "rgba(139,92,246,0.35)", border: "1px solid rgba(139,92,246,0.15)" }}>
+                              Lv.{q.minLevel ?? 1}
+                            </span>
+                          </div>
+                        ))}
                       </>
                     )}
                   </div>

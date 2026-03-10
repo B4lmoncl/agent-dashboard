@@ -14,11 +14,15 @@ const rateLimit = require('express-rate-limit');
 const app = express();
 const PORT = process.env.PORT || 3001;
 const DATA_DIR = path.join(__dirname, 'public', 'data');
-const AGENTS_FILE = path.join(DATA_DIR, 'agents.json');
-const QUESTS_FILE = path.join(DATA_DIR, 'quests.json');
-const KEYS_FILE       = path.join(DATA_DIR, 'keys.json');
-const USERS_FILE      = path.join(DATA_DIR, 'users.json');
-const CAMPAIGNS_FILE  = path.join(DATA_DIR, 'campaigns.json');
+const AGENTS_FILE          = path.join(DATA_DIR, 'agents.json');
+const QUESTS_FILE          = path.join(DATA_DIR, 'quests.json');
+const KEYS_FILE            = path.join(DATA_DIR, 'keys.json');
+const USERS_FILE           = path.join(DATA_DIR, 'users.json');
+const CAMPAIGNS_FILE       = path.join(DATA_DIR, 'campaigns.json');
+const PLAYER_PROGRESS_FILE = path.join(DATA_DIR, 'playerProgress.json');
+
+// Quest types that are tracked per-player (not shared/global)
+const PLAYER_QUEST_TYPES = ['personal', 'learning', 'fitness', 'social', 'relationship-coop'];
 
 app.use(cors());
 app.use(express.json());
@@ -315,6 +319,7 @@ function loadQuests() {
           if (q.coopClaimed === undefined) q.coopClaimed = [];
           if (q.coopCompletions === undefined) q.coopCompletions = [];
           if (q.skills === undefined) q.skills = [];
+          if (q.minLevel === undefined) q.minLevel = 1;
           return q;
         });
       }
@@ -804,7 +809,7 @@ app.get('/api/health', (req, res) => {
 
 // POST /api/quest — create a new quest
 app.post('/api/quest', requireApiKey, (req, res) => {
-  const { title, description, priority, category, categories, product, humanInputRequired, createdBy, type, parentQuestId, recurrence, proof, nextQuestTemplate, coopPartners, skills, lore, chapter, suggest } = req.body;
+  const { title, description, priority, category, categories, product, humanInputRequired, createdBy, type, parentQuestId, recurrence, proof, nextQuestTemplate, coopPartners, skills, lore, chapter, suggest, minLevel } = req.body;
   if (!title) return res.status(400).json({ error: 'title is required' });
   const validPriorities = ['low', 'medium', 'high'];
   const validCategories = ['Coding', 'Research', 'Content', 'Sales', 'Infrastructure', 'Bug Fix', 'Feature'];
@@ -893,6 +898,7 @@ app.post('/api/quest', requireApiKey, (req, res) => {
     skills: Array.isArray(skills) ? skills.map(s => String(s).trim()).filter(Boolean) : [],
     lore: typeof lore === 'string' && lore.trim() ? lore.trim() : null,
     chapter: typeof chapter === 'string' && chapter.trim() ? chapter.trim() : null,
+    minLevel: (typeof minLevel === 'number' && minLevel >= 1) ? Math.floor(minLevel) : 1,
   };
   quests.push(quest);
   saveQuests();
@@ -930,13 +936,31 @@ app.post('/api/quests/household-rotate', requireApiKey, (req, res) => {
   res.json({ ok: true, rotated });
 });
 
-// POST /api/quest/:id/claim — agent claims a quest
+// POST /api/quest/:id/claim — agent/player claims a quest
 app.post('/api/quest/:id/claim', requireApiKey, (req, res) => {
   const quest = quests.find(q => q.id === req.params.id);
   if (!quest) return res.status(404).json({ error: 'Quest not found' });
-  if (quest.status !== 'open') return res.status(409).json({ error: `Quest is already ${quest.status}` });
   const { agentId } = req.body;
   if (!agentId) return res.status(400).json({ error: 'agentId is required' });
+  const agentKey = agentId.toLowerCase();
+
+  // Player quest types use per-player tracking
+  if (PLAYER_QUEST_TYPES.includes(quest.type) && users[agentKey]) {
+    const pp = getPlayerProgress(agentKey);
+    if (pp.completedQuests && pp.completedQuests[quest.id]) {
+      return res.status(409).json({ error: 'Quest already completed by this player' });
+    }
+    if (pp.claimedQuests.includes(quest.id)) {
+      return res.status(409).json({ error: 'Quest already claimed by this player' });
+    }
+    pp.claimedQuests.push(quest.id);
+    savePlayerProgress();
+    console.log(`[quest] ${quest.id} claimed (per-player) by ${agentKey}`);
+    return res.json({ ok: true, quest: { ...quest, status: 'in_progress', claimedBy: agentKey } });
+  }
+
+  // Dev quests / non-player users: global shared state
+  if (quest.status !== 'open') return res.status(409).json({ error: `Quest is already ${quest.status}` });
   quest.status = 'in_progress';
   quest.claimedBy = agentId;
   saveQuests();
@@ -948,9 +972,37 @@ app.post('/api/quest/:id/claim', requireApiKey, (req, res) => {
 app.post('/api/quest/:id/complete', requireApiKey, (req, res) => {
   const quest = quests.find(q => q.id === req.params.id);
   if (!quest) return res.status(404).json({ error: 'Quest not found' });
-  if (quest.status === 'completed') return res.status(409).json({ error: 'Quest already completed' });
   const { agentId } = req.body;
   if (!agentId) return res.status(400).json({ error: 'agentId is required' });
+  const agentKey = agentId.toLowerCase();
+
+  // Player quest types: per-player completion (quest stays globally open for others)
+  if (PLAYER_QUEST_TYPES.includes(quest.type) && users[agentKey]) {
+    const pp = getPlayerProgress(agentKey);
+    if (pp.completedQuests && pp.completedQuests[quest.id]) {
+      return res.status(409).json({ error: 'Quest already completed by this player' });
+    }
+    const completedAt = now();
+    pp.completedQuests[quest.id] = { at: completedAt, proof: quest.proof || null };
+    pp.claimedQuests = (pp.claimedQuests || []).filter(id => id !== quest.id);
+    // Track recurrence streak per player (in playerProgress)
+    if (quest.recurrence) {
+      pp.recurringStreak = pp.recurringStreak || {};
+      pp.recurringStreak[quest.id] = (pp.recurringStreak[quest.id] || 0) + 1;
+    }
+    savePlayerProgress();
+    const newAchievements = onQuestCompletedByUser(agentKey, quest);
+    console.log(`[quest] ${quest.id} completed (per-player) by ${agentKey}`);
+    return res.json({
+      ok: true,
+      quest: { ...quest, status: 'completed', completedBy: agentKey, completedAt },
+      newAchievements,
+      chainQuestTemplate: quest.nextQuestTemplate || null,
+    });
+  }
+
+  // Dev quests / non-player users: global shared state
+  if (quest.status === 'completed') return res.status(409).json({ error: 'Quest already completed' });
   quest.status = 'completed';
   quest.completedBy = agentId;
   quest.completedAt = now();
@@ -959,9 +1011,7 @@ app.post('/api/quest/:id/complete', requireApiKey, (req, res) => {
     quest.lastCompletedAt = now();
   }
   saveQuests();
-  const agentKey = agentId.toLowerCase();
   let newAchievements = [];
-  // Award to user if exists, otherwise to agent
   if (users[agentKey]) {
     newAchievements = onQuestCompletedByUser(agentKey, quest);
   } else if (store.agents[agentKey]) {
@@ -975,12 +1025,27 @@ app.post('/api/quest/:id/complete', requireApiKey, (req, res) => {
   res.json({ ok: true, quest, newAchievements, chainQuestTemplate: quest.nextQuestTemplate || null });
 });
 
-// POST /api/quest/:id/unclaim — agent unclaims a quest
+// POST /api/quest/:id/unclaim — agent/player unclaims a quest
 app.post('/api/quest/:id/unclaim', requireApiKey, (req, res) => {
   const quest = quests.find(q => q.id === req.params.id);
   if (!quest) return res.status(404).json({ error: 'Quest not found' });
   const { agentId } = req.body;
   if (!agentId) return res.status(400).json({ error: 'agentId is required' });
+  const agentKey = agentId.toLowerCase();
+
+  // Player quest types use per-player tracking
+  if (PLAYER_QUEST_TYPES.includes(quest.type) && users[agentKey]) {
+    const pp = getPlayerProgress(agentKey);
+    if (!pp.claimedQuests.includes(quest.id)) {
+      return res.status(409).json({ error: 'Quest not claimed by this player' });
+    }
+    pp.claimedQuests = pp.claimedQuests.filter(id => id !== quest.id);
+    savePlayerProgress();
+    console.log(`[quest] ${quest.id} unclaimed (per-player) by ${agentKey}`);
+    return res.json({ ok: true, quest: { ...quest, status: 'open', claimedBy: null } });
+  }
+
+  // Dev quests / non-player users: global shared state
   if (quest.claimedBy !== agentId) {
     return res.status(409).json({ error: `Quest not claimed by this agent` });
   }
@@ -1050,9 +1115,10 @@ app.post('/api/quest/:id/coop-complete', requireApiKey, (req, res) => {
 });
 
 // GET /api/quests — list all quests grouped by status
+// ?player=X  → overlays per-player state for player quest types + applies minLevel filtering
 app.get('/api/quests', (req, res) => {
-  const typeFilter = req.query.type;
-  // Exclude quests that belong to a campaign
+  const typeFilter  = req.query.type;
+  const playerParam = req.query.player ? String(req.query.player).toLowerCase() : null;
   const allCampaignQuestIds = new Set(campaigns.flatMap(c => c.questIds));
 
   function enrichEpics(list) {
@@ -1064,10 +1130,62 @@ app.get('/api/quests', (req, res) => {
     });
   }
 
-  function filterAndEnrich(statusFilter) {
-    let list = quests.filter(q => q.status === statusFilter && !q.parentQuestId && !allCampaignQuestIds.has(q.id));
+  function filterAndEnrich(statusFilter, sourceList) {
+    const src = sourceList || quests;
+    let list = src.filter(q => q.status === statusFilter && !q.parentQuestId && !allCampaignQuestIds.has(q.id));
     if (typeFilter) list = list.filter(q => q.type === typeFilter);
     return enrichEpics(list);
+  }
+
+  if (playerParam) {
+    const userRecord = users[playerParam];
+    const playerXp   = userRecord ? (userRecord.xp || 0) : 0;
+    const playerLevel = getLevelInfo(playerXp).level;
+    const pp = getPlayerProgress(playerParam);
+    const completedIds = new Set(Object.keys(pp.completedQuests || {}));
+    const claimedIds   = new Set(pp.claimedQuests || []);
+
+    // Partition quests into player-type vs dev-type
+    const allTopLevel = quests.filter(q => !q.parentQuestId && !allCampaignQuestIds.has(q.id));
+    const playerTypeQuests = allTopLevel.filter(q => PLAYER_QUEST_TYPES.includes(q.type || 'development'));
+    const devTypeQuests    = allTopLevel.filter(q => !PLAYER_QUEST_TYPES.includes(q.type || 'development'));
+
+    // Apply per-player status overlay to player quest types
+    const openPlayer       = [];
+    const inProgressPlayer = [];
+    const completedPlayer  = [];
+    const lockedPlayer     = [];
+
+    for (const q of playerTypeQuests) {
+      if (typeFilter && q.type !== typeFilter) continue;
+      // Skip suggested/rejected (not visible to players)
+      if (q.status === 'suggested' || q.status === 'rejected') continue;
+
+      const minLvl = q.minLevel || 1;
+      if (playerLevel < minLvl) {
+        lockedPlayer.push({ ...q, playerStatus: 'locked' });
+        continue;
+      }
+      if (completedIds.has(q.id)) {
+        const record = pp.completedQuests[q.id] || {};
+        completedPlayer.push({ ...q, status: 'completed', completedBy: playerParam, completedAt: record.at || null, claimedBy: playerParam });
+      } else if (claimedIds.has(q.id)) {
+        inProgressPlayer.push({ ...q, status: 'in_progress', claimedBy: playerParam });
+      } else {
+        openPlayer.push({ ...q, status: 'open', claimedBy: null, completedBy: null });
+      }
+    }
+
+    // Dev quest types use global status as-is
+    return res.json({
+      open:       [...enrichEpics(openPlayer),       ...filterAndEnrich('open',        devTypeQuests)],
+      inProgress: [...enrichEpics(inProgressPlayer), ...filterAndEnrich('in_progress', devTypeQuests)],
+      completed:  [...enrichEpics(completedPlayer),  ...filterAndEnrich('completed',   devTypeQuests)],
+      suggested:  filterAndEnrich('suggested', devTypeQuests),
+      rejected:   filterAndEnrich('rejected',  devTypeQuests),
+      // Show up to 3 locked quests as teaser, sorted by minLevel ascending
+      locked: lockedPlayer.sort((a, b) => (a.minLevel || 1) - (b.minLevel || 1)).slice(0, 3),
+    });
   }
 
   res.json({
@@ -2061,6 +2179,49 @@ function saveUsers() {
   } catch (e) { console.warn('[users] Failed to save:', e.message); }
 }
 
+// ─── Player Progress Store ────────────────────────────────────────────────────
+// Per-player quest state: { [playerId]: { completedQuests: {[questId]: {at, proof}}, claimedQuests: [questId] } }
+let playerProgress = {};
+
+function loadPlayerProgress() {
+  if (fs.existsSync(PLAYER_PROGRESS_FILE)) {
+    try {
+      const raw = JSON.parse(fs.readFileSync(PLAYER_PROGRESS_FILE, 'utf8'));
+      if (raw && typeof raw === 'object') playerProgress = raw;
+    } catch (e) { console.warn('[playerProgress] Failed to load:', e.message); }
+  } else {
+    // Migration: seed from existing completedBy on player-type quests
+    for (const q of quests) {
+      if (!PLAYER_QUEST_TYPES.includes(q.type)) continue;
+      if (q.completedBy && q.status === 'completed') {
+        const uid = q.completedBy.toLowerCase();
+        if (!playerProgress[uid]) playerProgress[uid] = { completedQuests: {}, claimedQuests: [] };
+        playerProgress[uid].completedQuests[q.id] = { at: q.completedAt || now(), proof: q.proof || null };
+      }
+    }
+    savePlayerProgress();
+    console.log('[playerProgress] Migrated from existing quests');
+  }
+  // Ensure all user entries have the right shape
+  for (const uid of Object.keys(playerProgress)) {
+    if (!playerProgress[uid].completedQuests) playerProgress[uid].completedQuests = {};
+    if (!Array.isArray(playerProgress[uid].claimedQuests)) playerProgress[uid].claimedQuests = [];
+  }
+}
+
+function savePlayerProgress() {
+  try {
+    if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
+    fs.writeFileSync(PLAYER_PROGRESS_FILE, JSON.stringify(playerProgress, null, 2));
+  } catch (e) { console.warn('[playerProgress] Failed to save:', e.message); }
+}
+
+function getPlayerProgress(playerId) {
+  const uid = playerId.toLowerCase();
+  if (!playerProgress[uid]) playerProgress[uid] = { completedQuests: {}, claimedQuests: [] };
+  return playerProgress[uid];
+}
+
 // GET /api/users
 app.get('/api/users', (req, res) => {
   res.json(Object.values(users));
@@ -2214,6 +2375,28 @@ app.post('/api/register', (req, res) => {
   saveUsers();
   console.log(`[register] new player: ${trimmedName} (${finalId})`);
   res.json({ name: trimmedName, apiKey, userId: finalId });
+});
+
+// GET /api/player/:name — get player progress (level, xp, gold, quest counts, claimed)
+app.get('/api/player/:name', (req, res) => {
+  const uid = req.params.name.toLowerCase();
+  const userRecord = users[uid];
+  if (!userRecord) return res.status(404).json({ error: 'Player not found' });
+  const pp = getPlayerProgress(uid);
+  const levelInfo = getLevelInfo(userRecord.xp || 0);
+  res.json({
+    id: uid,
+    name: userRecord.name,
+    level: levelInfo.level,
+    levelTitle: levelInfo.title,
+    xp: userRecord.xp || 0,
+    nextXp: levelInfo.nextXp,
+    levelProgress: levelInfo.progress,
+    gold: userRecord.gold || 0,
+    completedQuestsCount: Object.keys(pp.completedQuests || {}).length,
+    claimedQuests: pp.claimedQuests || [],
+    streakDays: userRecord.streakDays || 0,
+  });
 });
 
 // GET /api/users/:id/achievements — get earned achievements for a user
@@ -2737,6 +2920,7 @@ loadCampaigns();
 autoCreateCampaigns();
 loadManagedKeys();
 loadUsers();
+loadPlayerProgress();
 
 app.listen(PORT, () => {
   console.log(`\n🔴 Agent Dashboard API running on http://localhost:${PORT}`);
