@@ -113,7 +113,8 @@ const AGENT_META = {
 
 // ─── NPC Catalogue ──────────────────────────────────────────────────────────
 const NPC_META = {
-  dobbie: { avatar: '🐱', color: '#ff6b9d', role: 'Cat Overlord', description: 'Dobbie the demanding house cat. His requests are not optional. Resistance is futile.' },
+  dobbie:       { avatar: '🐱', color: '#ff6b9d', role: 'Cat Overlord', description: 'Dobbie the demanding house cat. His requests are not optional. Resistance is futile.' },
+  'npc-dobbie': { avatar: '🐱', color: '#ff6b9d', role: 'Cat Overlord', description: 'Dobbie the demanding house cat. His requests are not optional. Resistance is futile.' },
 };
 const NPC_NAMES = Object.keys(NPC_META);
 

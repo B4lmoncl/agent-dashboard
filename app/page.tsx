@@ -1989,14 +1989,47 @@ function CVBuilderPanel({ quests, users, playerName }: { quests: QuestsData; use
             <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>No completed learning quests yet. Start a quest chain in the Learning Workshop!</p>
           ) : (
             <>
-              <h3 className="text-xs font-semibold uppercase tracking-widest mb-2" style={{ color: "rgba(96,165,250,0.7)" }}>Skills Acquired</h3>
-              <div className="flex flex-wrap gap-2 mb-4">
-                {cvData.skills.map(skill => (
-                  <div key={skill.name} className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg" style={{ background: "rgba(96,165,250,0.08)", border: "1px solid rgba(96,165,250,0.2)" }}>
-                    <span className="text-xs font-medium" style={{ color: "#e8e8e8" }}>{skill.name}</span>
-                    {skill.count > 1 && <span className="text-xs font-mono px-1 rounded" style={{ background: "rgba(96,165,250,0.2)", color: "#60a5fa" }}>×{skill.count}</span>}
-                  </div>
-                ))}
+              <h3 className="text-xs font-semibold uppercase tracking-widest mb-3" style={{ color: "rgba(96,165,250,0.7)" }}>Skill Tree</h3>
+              <div className="space-y-2 mb-4">
+                {cvData.skills.map(skill => {
+                  // Tier thresholds: 1=Novice, 3=Apprentice, 6=Skilled, 10=Expert
+                  const tiers = [
+                    { label: "Novice",     icon: "🌱", min: 1,  max: 2,  color: "#22c55e" },
+                    { label: "Apprentice", icon: "📗", min: 3,  max: 5,  color: "#60a5fa" },
+                    { label: "Skilled",    icon: "⚔",  min: 6,  max: 9,  color: "#a78bfa" },
+                    { label: "Expert",     icon: "👑", min: 10, max: 999, color: "#fbbf24" },
+                  ];
+                  const tier = tiers.findLast(t => skill.count >= t.min) ?? tiers[0];
+                  const nextTier = tiers[tiers.indexOf(tier) + 1];
+                  const progressInTier = nextTier
+                    ? ((skill.count - tier.min) / (nextTier.min - tier.min)) * 100
+                    : 100;
+                  return (
+                    <div key={skill.name} className="rounded-lg px-3 py-2" style={{ background: "rgba(96,165,250,0.05)", border: "1px solid rgba(96,165,250,0.12)" }}>
+                      <div className="flex items-center justify-between mb-1">
+                        <div className="flex items-center gap-1.5">
+                          <span className="text-sm">{tier.icon}</span>
+                          <span className="text-xs font-medium" style={{ color: "#e8e8e8" }}>{skill.name}</span>
+                        </div>
+                        <div className="flex items-center gap-1.5">
+                          <span className="text-xs font-semibold" style={{ color: tier.color }}>{tier.label}</span>
+                          <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.25)" }}>×{skill.count}</span>
+                        </div>
+                      </div>
+                      <div className="h-1 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.07)" }}>
+                        <div
+                          className="h-full rounded-full transition-all duration-500"
+                          style={{ width: `${progressInTier}%`, background: tier.color, opacity: 0.7 }}
+                        />
+                      </div>
+                      {nextTier && (
+                        <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.2)" }}>
+                          {nextTier.min - skill.count} more to {nextTier.label}
+                        </p>
+                      )}
+                    </div>
+                  );
+                })}
               </div>
             </>
           )}
@@ -2040,9 +2073,18 @@ const DOBBIE_QUESTS = [
   { id: "window_watch", title: "Open Window for Bird Watching", description: "Allow access to the window ledge for prime bird surveillance.", icon: "🐦", priority: "low" as const },
 ];
 
+const DOBBIE_MOODS = [
+  { mood: "😸 Content", color: "#22c55e", quote: "You may proceed. I am… temporarily satisfied." },
+  { mood: "😾 Demanding", color: "#f59e0b", quote: "This is taking far too long. My patience wears thin, human." },
+  { mood: "😤 Annoyed", color: "#ef4444", quote: "UNACCEPTABLE. The litter box remains unattended. Consequences incoming." },
+  { mood: "😻 Affectionate", color: "#ff6b9d", quote: "Fine. You may pet me. BRIEFLY. Do not read into this." },
+  { mood: "🙄 Unimpressed", color: "#a78bfa", quote: "You call that a play session? I've seen dust motes with more energy." },
+];
+
 function DobbieQuestPanel({ reviewApiKey, onRefresh }: { reviewApiKey: string; onRefresh: () => void }) {
   const [creating, setCreating] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
+  const dobbieMood = DOBBIE_MOODS[Math.floor(Date.now() / (1000 * 60 * 60 * 4)) % DOBBIE_MOODS.length];
 
   const createDobbieQuest = async (q: (typeof DOBBIE_QUESTS)[0]) => {
     if (!reviewApiKey) return;
@@ -2080,9 +2122,12 @@ function DobbieQuestPanel({ reviewApiKey, onRefresh }: { reviewApiKey: string; o
       </div>
       <div className="rounded-xl p-3 mb-3 flex items-center gap-3" style={{ background: "rgba(255,107,157,0.06)", border: "1px solid rgba(255,107,157,0.2)" }}>
         <span className="text-3xl flex-shrink-0">🐱</span>
-        <div>
-          <p className="text-xs font-semibold" style={{ color: "#ff6b9d" }}>Dobbie — Cat Overlord</p>
-          <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.4)" }}>His requests are not optional. Resistance is futile. All quests are daily.</p>
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center gap-2">
+            <p className="text-xs font-semibold" style={{ color: "#ff6b9d" }}>Dobbie — Cat Overlord</p>
+            <span className="text-xs px-1.5 py-0.5 rounded font-medium" style={{ color: dobbieMood.color, background: `${dobbieMood.color}18`, border: `1px solid ${dobbieMood.color}40` }}>{dobbieMood.mood}</span>
+          </div>
+          <p className="text-xs mt-0.5 italic" style={{ color: "rgba(255,255,255,0.35)" }}>&ldquo;{dobbieMood.quote}&rdquo;</p>
         </div>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
@@ -2592,7 +2637,8 @@ function TypeBadge({ type }: { type?: string }) {
 }
 
 const NPC_CONFIG: Record<string, { avatar: string; color: string }> = {
-  dobbie: { avatar: "🐱", color: "#ff6b9d" },
+  dobbie:     { avatar: "🐱", color: "#ff6b9d" },
+  "npc-dobbie": { avatar: "🐱", color: "#ff6b9d" },
 };
 
 function CreatorBadge({ name }: { name: string }) {
@@ -2806,19 +2852,37 @@ function QuestCard({ quest, selected, onToggle, onClaim, onUnclaim, onComplete, 
             )}
           </div>
           {isCoop && coopPartners.length > 0 && (
-            <div className="mt-1.5 flex items-center gap-1.5 flex-wrap">
-              {coopPartners.map(p => {
-                const done = coopCompletions.includes(p);
-                const claimed = coopClaimed.includes(p);
-                return (
-                  <span key={p} className="text-xs px-1.5 py-0.5 rounded flex items-center gap-1"
-                    style={{ background: done ? "rgba(34,197,94,0.1)" : claimed ? "rgba(244,63,94,0.1)" : "rgba(255,255,255,0.05)", color: done ? "#22c55e" : claimed ? "#f43f5e" : "rgba(255,255,255,0.3)", border: `1px solid ${done ? "rgba(34,197,94,0.3)" : claimed ? "rgba(244,63,94,0.3)" : "rgba(255,255,255,0.1)"}` }}
-                  >
-                    {done ? "✓" : claimed ? "⚔" : "○"} {p}
-                  </span>
-                );
-              })}
-              <span className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>{coopCompletions.length}/{coopPartners.length} done</span>
+            <div className="mt-2">
+              {/* Raid HP bar — decreases as partners complete */}
+              <div className="flex items-center gap-2 mb-1.5">
+                <span className="text-xs font-semibold" style={{ color: "#f43f5e" }}>💞 Raid HP</span>
+                <div className="flex-1 h-2 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.07)" }}>
+                  <div
+                    className="h-full rounded-full transition-all duration-700"
+                    style={{
+                      width: `${Math.max(0, 100 - (coopCompletions.length / coopPartners.length) * 100)}%`,
+                      background: coopCompletions.length === coopPartners.length
+                        ? "rgba(34,197,94,0.5)"
+                        : "linear-gradient(90deg, #f43f5e, #fb7185)",
+                      boxShadow: coopCompletions.length < coopPartners.length ? "0 0 6px rgba(244,63,94,0.5)" : "none",
+                    }}
+                  />
+                </div>
+                <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.2)" }}>{coopCompletions.length}/{coopPartners.length}</span>
+              </div>
+              <div className="flex items-center gap-1.5 flex-wrap">
+                {coopPartners.map(p => {
+                  const done = coopCompletions.includes(p);
+                  const claimed = coopClaimed.includes(p);
+                  return (
+                    <span key={p} className="text-xs px-1.5 py-0.5 rounded flex items-center gap-1"
+                      style={{ background: done ? "rgba(34,197,94,0.1)" : claimed ? "rgba(244,63,94,0.1)" : "rgba(255,255,255,0.05)", color: done ? "#22c55e" : claimed ? "#f43f5e" : "rgba(255,255,255,0.3)", border: `1px solid ${done ? "rgba(34,197,94,0.3)" : claimed ? "rgba(244,63,94,0.3)" : "rgba(255,255,255,0.1)"}` }}
+                    >
+                      {done ? "✓" : claimed ? "⚔" : "○"} {p}
+                    </span>
+                  );
+                })}
+              </div>
             </div>
           )}
           {expanded && quest.description && (
