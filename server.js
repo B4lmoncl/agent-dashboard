@@ -111,6 +111,12 @@ const AGENT_META = {
   forge: { avatar: '⚒', color: '#f59e0b', role: 'Idea Smith', description: 'Silent craftsman' },
 };
 
+// ─── NPC Catalogue ──────────────────────────────────────────────────────────
+const NPC_META = {
+  dobbie: { avatar: '🐱', color: '#ff6b9d', role: 'Cat Overlord', description: 'Dobbie the demanding house cat. His requests are not optional. Resistance is futile.' },
+};
+const NPC_NAMES = Object.keys(NPC_META);
+
 let store = { agents: {} };
 
 // ─── Quest store ────────────────────────────────────────────────────────────────
@@ -185,6 +191,10 @@ function loadQuests() {
           if (q.lastCompletedAt === undefined) q.lastCompletedAt = null;
           if (q.proof === undefined) q.proof = null;
           if (q.checklist === undefined) q.checklist = null;
+          if (q.coopPartners === undefined) q.coopPartners = null;
+          if (q.coopClaimed === undefined) q.coopClaimed = [];
+          if (q.coopCompletions === undefined) q.coopCompletions = [];
+          if (q.skills === undefined) q.skills = [];
           return q;
         });
       }
@@ -552,13 +562,14 @@ app.get('/api/health', (req, res) => {
 
 // POST /api/quest — create a new quest
 app.post('/api/quest', requireApiKey, (req, res) => {
-  const { title, description, priority, category, categories, product, humanInputRequired, createdBy, type, parentQuestId, recurrence, proof } = req.body;
+  const { title, description, priority, category, categories, product, humanInputRequired, createdBy, type, parentQuestId, recurrence, proof, nextQuestTemplate, coopPartners, skills } = req.body;
   if (!title) return res.status(400).json({ error: 'title is required' });
   const validPriorities = ['low', 'medium', 'high'];
   const validCategories = ['Coding', 'Research', 'Content', 'Sales', 'Infrastructure', 'Bug Fix', 'Feature'];
   const validProducts = ['Dashboard', 'Companion App', 'Infrastructure', 'Other'];
-  const validTypes = ['development', 'personal', 'learning', 'social', 'fitness', 'boss'];
+  const validTypes = ['development', 'personal', 'learning', 'social', 'fitness', 'boss', 'relationship-coop'];
   const validRecurrences = ['daily', 'weekly', 'monthly'];
+  const PLAYER_QUEST_TYPES = ['personal', 'learning', 'fitness', 'social', 'relationship-coop'];
   if (priority && !validPriorities.includes(priority)) {
     return res.status(400).json({ error: `Invalid priority. Use: ${validPriorities.join(', ')}` });
   }
@@ -590,19 +601,34 @@ app.post('/api/quest', requireApiKey, (req, res) => {
   }
   const resolvedCreatedBy = typeof createdBy === 'string' && createdBy.trim() ? createdBy.trim() : 'unknown';
   // Agent-created quests go to 'suggested' for human review; human-created stay 'open'
-  const HUMAN_CREATORS = ['leon', 'unknown'];
+  // Player quest types (personal/learning/fitness/social) always bypass review → 'open'
+  const HUMAN_CREATORS = ['leon', 'unknown', ...NPC_NAMES];
   const isAgentCreated = !HUMAN_CREATORS.includes(resolvedCreatedBy.toLowerCase());
+  const resolvedType = type || 'development';
+  const isPlayerQuestType = PLAYER_QUEST_TYPES.includes(resolvedType);
+  const questStatus = (isPlayerQuestType || !isAgentCreated) ? 'open' : 'suggested';
+  // Validate nextQuestTemplate if provided
+  let resolvedNextQuestTemplate = null;
+  if (nextQuestTemplate && typeof nextQuestTemplate === 'object') {
+    resolvedNextQuestTemplate = {
+      title: String(nextQuestTemplate.title || '').trim() || null,
+      description: String(nextQuestTemplate.description || '').trim() || null,
+      type: validTypes.includes(nextQuestTemplate.type) ? nextQuestTemplate.type : resolvedType,
+      priority: validPriorities.includes(nextQuestTemplate.priority) ? nextQuestTemplate.priority : (priority || 'medium'),
+    };
+    if (!resolvedNextQuestTemplate.title) resolvedNextQuestTemplate = null;
+  }
   const quest = {
     id: `quest-${Date.now()}`,
     title,
     description: description || '',
     priority: priority || 'medium',
-    type: type || 'development',
+    type: resolvedType,
     categories: resolvedCategories,
     product: product || null,
     humanInputRequired: humanInputRequired === true || humanInputRequired === 'true',
     createdBy: resolvedCreatedBy,
-    status: isAgentCreated ? 'suggested' : 'open',
+    status: questStatus,
     createdAt: now(),
     claimedBy: null,
     completedBy: null,
@@ -613,6 +639,11 @@ app.post('/api/quest', requireApiKey, (req, res) => {
     lastCompletedAt: null,
     proof: proof || null,
     checklist: null,
+    nextQuestTemplate: resolvedNextQuestTemplate,
+    coopPartners: Array.isArray(coopPartners) && coopPartners.length > 0 ? coopPartners.slice(0, 2).map(p => String(p).toLowerCase()) : null,
+    coopClaimed: [],
+    coopCompletions: [],
+    skills: Array.isArray(skills) ? skills.map(s => String(s).trim()).filter(Boolean) : [],
   };
   quests.push(quest);
   saveQuests();
@@ -692,7 +723,7 @@ app.post('/api/quest/:id/complete', requireApiKey, (req, res) => {
     saveData();
   }
   console.log(`[quest] ${quest.id} completed by ${agentId}`);
-  res.json({ ok: true, quest, newAchievements });
+  res.json({ ok: true, quest, newAchievements, chainQuestTemplate: quest.nextQuestTemplate || null });
 });
 
 // POST /api/quest/:id/unclaim — agent unclaims a quest
@@ -709,6 +740,64 @@ app.post('/api/quest/:id/unclaim', requireApiKey, (req, res) => {
   saveQuests();
   console.log(`[quest] ${quest.id} unclaimed by ${agentId}`);
   res.json({ ok: true, quest });
+});
+
+// POST /api/quest/:id/coop-claim — player claims their part of a co-op quest
+app.post('/api/quest/:id/coop-claim', requireApiKey, (req, res) => {
+  const quest = quests.find(q => q.id === req.params.id);
+  if (!quest) return res.status(404).json({ error: 'Quest not found' });
+  if (quest.type !== 'relationship-coop') return res.status(400).json({ error: 'Not a co-op quest' });
+  const { userId } = req.body;
+  if (!userId) return res.status(400).json({ error: 'userId is required' });
+  const uid = userId.toLowerCase();
+  if (quest.coopPartners && !quest.coopPartners.includes(uid)) {
+    return res.status(403).json({ error: 'User is not a co-op partner for this quest' });
+  }
+  quest.coopClaimed = quest.coopClaimed || [];
+  if (quest.coopClaimed.includes(uid)) {
+    return res.status(409).json({ error: 'Already claimed by this user' });
+  }
+  quest.coopClaimed.push(uid);
+  if (quest.status === 'open') {
+    quest.status = 'in_progress';
+    quest.claimedBy = uid;
+  }
+  saveQuests();
+  console.log(`[coop] ${quest.id} co-claimed by ${uid}`);
+  res.json({ ok: true, quest });
+});
+
+// POST /api/quest/:id/coop-complete — player marks their part as done
+app.post('/api/quest/:id/coop-complete', requireApiKey, (req, res) => {
+  const quest = quests.find(q => q.id === req.params.id);
+  if (!quest) return res.status(404).json({ error: 'Quest not found' });
+  if (quest.type !== 'relationship-coop') return res.status(400).json({ error: 'Not a co-op quest' });
+  const { userId } = req.body;
+  if (!userId) return res.status(400).json({ error: 'userId is required' });
+  const uid = userId.toLowerCase();
+  quest.coopCompletions = quest.coopCompletions || [];
+  if (quest.coopCompletions.includes(uid)) {
+    return res.status(409).json({ error: 'Already marked complete by this user' });
+  }
+  quest.coopCompletions.push(uid);
+  // Check if all partners have completed
+  const partners = quest.coopPartners || quest.coopClaimed || [];
+  const allDone = partners.length > 0 && partners.every(p => quest.coopCompletions.includes(p));
+  let newAchievements = [];
+  if (allDone) {
+    quest.status = 'completed';
+    quest.completedAt = now();
+    quest.completedBy = quest.coopCompletions.join('+');
+    for (const partnerId of partners) {
+      if (users[partnerId]) {
+        const achs = onQuestCompletedByUser(partnerId, quest);
+        newAchievements = [...newAchievements, ...achs];
+      }
+    }
+  }
+  saveQuests();
+  console.log(`[coop] ${quest.id} part completed by ${uid} — allDone: ${allDone}`);
+  res.json({ ok: true, quest, allDone, newAchievements });
 });
 
 // GET /api/quests — list all quests grouped by status

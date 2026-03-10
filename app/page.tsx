@@ -45,6 +45,7 @@ interface Quest {
   recurrence?: string | null;
   proof?: string | null;
   checklist?: { text: string; done: boolean }[] | null;
+  nextQuestTemplate?: { title: string; description?: string | null; type?: string; priority?: string } | null;
 }
 
 interface EarnedAchievement {
@@ -247,6 +248,14 @@ export default function Dashboard() {
   const [dashView, setDashView] = useState<"ops" | "campaign" | "leaderboard" | "honors">("ops");
   const [shopUserId, setShopUserId] = useState<string | null>(null);
   const [toast, setToast] = useState<EarnedAchievement | null>(null);
+  const [flavorToast, setFlavorToast] = useState<{ message: string; icon: string; sub?: string } | null>(null);
+  const [chainOffer, setChainOffer] = useState<{ template: { title: string; description?: string | null; type?: string; priority?: string }; parentTitle: string } | null>(null);
+  const [openSectionCollapsed, setOpenSectionCollapsed] = useState<boolean>(() => {
+    try { return localStorage.getItem("qb_open_collapsed") === "true"; } catch { return false; }
+  });
+  const [inProgressSectionCollapsed, setInProgressSectionCollapsed] = useState<boolean>(() => {
+    try { return localStorage.getItem("qb_inprogress_collapsed") === "true"; } catch { return false; }
+  });
   const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>([]);
   const [achievementCatalogue, setAchievementCatalogue] = useState<AchievementDef[]>([]);
   const [playerName, setPlayerName] = useState<string>(() => {
@@ -441,6 +450,41 @@ export default function Dashboard() {
       if (r.ok) await refresh();
     } catch { /* ignore */ }
   }, [reviewApiKey, playerName, refresh]);
+
+  const handleComplete = useCallback(async (questId: string, questTitle: string) => {
+    const key = reviewApiKey;
+    const pName = playerName;
+    if (!key || !pName) return;
+    try {
+      const r = await fetch(`/api/quest/${questId}/complete`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "X-API-Key": key },
+        body: JSON.stringify({ agentId: pName }),
+      });
+      if (r.ok) {
+        const data = await r.json();
+        if (data.newAchievements?.length > 0) setToast(data.newAchievements[0]);
+        if (data.chainQuestTemplate) {
+          setChainOffer({ template: data.chainQuestTemplate, parentTitle: questTitle });
+        }
+        await refresh();
+      }
+    } catch { /* ignore */ }
+  }, [reviewApiKey, playerName, refresh]);
+
+  const handleChainAccept = useCallback(async () => {
+    const key = reviewApiKey;
+    if (!key || !chainOffer) return;
+    try {
+      await fetch("/api/quest", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "X-API-Key": key },
+        body: JSON.stringify({ ...chainOffer.template, createdBy: playerName || "unknown" }),
+      });
+      setChainOffer(null);
+      await refresh();
+    } catch { /* ignore */ }
+  }, [reviewApiKey, chainOffer, playerName, refresh]);
 
   const handleShopBuy = useCallback(async (itemId: string) => {
     const key = reviewApiKey;
@@ -776,6 +820,38 @@ export default function Dashboard() {
             </section>
           )}
 
+          {/* Player Quest Board — player-type quests (personal/learning/fitness/social) */}
+          {(() => {
+            const playerTypes = ["personal", "learning", "fitness", "social"];
+            const playerOpen = [...quests.open, ...quests.inProgress].filter(q => playerTypes.includes(q.type ?? ""));
+            if (playerOpen.length === 0) return null;
+            return (
+              <section className="mb-6">
+                <div className="flex items-center gap-3 mb-3">
+                  <h2 className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.4)" }}>
+                    🎮 Player Board
+                  </h2>
+                  <span className="text-xs px-1.5 py-0.5 rounded font-mono" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.25)" }}>
+                    {playerOpen.length}
+                  </span>
+                  <span className="text-xs ml-auto" style={{ color: "rgba(255,255,255,0.2)" }}>Personal · Learning · Fitness · Social</span>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
+                  {playerOpen.map(q => (
+                    <QuestCard
+                      key={q.id}
+                      quest={q}
+                      onClaim={reviewApiKey && playerName ? handleClaim : undefined}
+                      onUnclaim={reviewApiKey && playerName ? handleUnclaim : undefined}
+                      onComplete={reviewApiKey && playerName ? handleComplete : undefined}
+                      playerName={playerName}
+                    />
+                  ))}
+                </div>
+              </section>
+            );
+          })()}
+
           <div className="flex flex-col lg:flex-row gap-6 items-start">
 
           {/* Agent Roster */}
@@ -845,17 +921,40 @@ export default function Dashboard() {
                     {visibleOpen.length} open · {visibleInProgress.length} in progress
                   </p>
                 </div>
-                <button
-                  onClick={() => setSortMode(s => s === "newest" ? "priority" : "newest")}
-                  className="text-xs px-2 py-1 rounded"
-                  style={{
-                    background: sortMode === "priority" ? "rgba(255,102,51,0.15)" : "rgba(255,255,255,0.05)",
-                    color: sortMode === "priority" ? "#ff6633" : "rgba(255,255,255,0.3)",
-                    border: `1px solid ${sortMode === "priority" ? "rgba(255,102,51,0.3)" : "rgba(255,255,255,0.08)"}`,
-                  }}
-                >
-                  {sortMode === "newest" ? "⇅ Newest" : "⇅ Priority"}
-                </button>
+                <div className="flex items-center gap-1">
+                  <button
+                    onClick={() => {
+                      const allCollapsed = openSectionCollapsed && inProgressSectionCollapsed;
+                      const next = !allCollapsed;
+                      setOpenSectionCollapsed(next);
+                      setInProgressSectionCollapsed(next);
+                      try {
+                        localStorage.setItem("qb_open_collapsed", String(next));
+                        localStorage.setItem("qb_inprogress_collapsed", String(next));
+                      } catch { /* ignore */ }
+                    }}
+                    className="text-xs px-2 py-1 rounded"
+                    style={{
+                      background: "rgba(255,255,255,0.04)",
+                      color: "rgba(255,255,255,0.25)",
+                      border: "1px solid rgba(255,255,255,0.07)",
+                    }}
+                    title="Collapse / Expand All"
+                  >
+                    {openSectionCollapsed && inProgressSectionCollapsed ? "⊞" : "⊟"}
+                  </button>
+                  <button
+                    onClick={() => setSortMode(s => s === "newest" ? "priority" : "newest")}
+                    className="text-xs px-2 py-1 rounded"
+                    style={{
+                      background: sortMode === "priority" ? "rgba(255,102,51,0.15)" : "rgba(255,255,255,0.05)",
+                      color: sortMode === "priority" ? "#ff6633" : "rgba(255,255,255,0.3)",
+                      border: `1px solid ${sortMode === "priority" ? "rgba(255,102,51,0.3)" : "rgba(255,255,255,0.08)"}`,
+                    }}
+                  >
+                    {sortMode === "newest" ? "⇅ Newest" : "⇅ Priority"}
+                  </button>
+                </div>
               </div>
               {/* Type filter tabs */}
               <div className="flex gap-1 flex-wrap mb-2">
@@ -899,28 +998,65 @@ export default function Dashboard() {
                   {!searchFilter && <p className="text-xs mt-1 font-mono" style={{ color: "rgba(255,68,68,0.3)" }}>POST /api/quest</p>}
                 </div>
               ) : (
-                visibleOpen.map(q => q.children && q.children.length > 0
-                  ? <EpicQuestCard key={q.id} quest={q} selected={selectedIds.has(q.id)} onToggle={reviewApiKey ? toggleSelect : undefined} />
-                  : <QuestCard key={q.id} quest={q} selected={selectedIds.has(q.id)} onToggle={reviewApiKey ? toggleSelect : undefined}
-                      onClaim={reviewApiKey && playerName ? handleClaim : undefined}
-                      onUnclaim={reviewApiKey && playerName ? handleUnclaim : undefined}
-                      playerName={playerName} />
-                )
-              )}
-
-              {visibleInProgress.length > 0 && (
                 <>
-                  <div className="pt-2 pb-1">
-                    <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.25)" }}>
-                      In Progress
-                    </span>
-                  </div>
-                  {visibleInProgress.map(q => q.children && q.children.length > 0
-                    ? <EpicQuestCard key={q.id} quest={q} selected={selectedIds.has(q.id)} onToggle={reviewApiKey ? toggleSelect : undefined} />
-                    : <QuestCard key={q.id} quest={q} selected={selectedIds.has(q.id)} onToggle={reviewApiKey ? toggleSelect : undefined}
-                        onClaim={reviewApiKey && playerName ? handleClaim : undefined}
-                        onUnclaim={reviewApiKey && playerName ? handleUnclaim : undefined}
-                        playerName={playerName} />
+                  {/* Open section — collapsible */}
+                  {visibleOpen.length > 0 && (
+                    <>
+                      <button
+                        onClick={() => {
+                          const next = !openSectionCollapsed;
+                          setOpenSectionCollapsed(next);
+                          try { localStorage.setItem("qb_open_collapsed", String(next)); } catch { /* ignore */ }
+                        }}
+                        className="flex items-center gap-2 w-full text-left pt-1 pb-0.5"
+                      >
+                        <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.3)" }}>
+                          Open
+                        </span>
+                        <span className="text-xs px-1 rounded font-mono" style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.2)" }}>
+                          {visibleOpen.length}
+                        </span>
+                        <span className="ml-auto text-xs" style={{ color: "rgba(255,255,255,0.15)" }}>{openSectionCollapsed ? "▼" : "▲"}</span>
+                      </button>
+                      {!openSectionCollapsed && visibleOpen.map(q => q.children && q.children.length > 0
+                        ? <EpicQuestCard key={q.id} quest={q} selected={selectedIds.has(q.id)} onToggle={reviewApiKey ? toggleSelect : undefined} />
+                        : <QuestCard key={q.id} quest={q} selected={selectedIds.has(q.id)} onToggle={reviewApiKey ? toggleSelect : undefined}
+                            onClaim={reviewApiKey && playerName ? handleClaim : undefined}
+                            onUnclaim={reviewApiKey && playerName ? handleUnclaim : undefined}
+                            onComplete={reviewApiKey && playerName ? handleComplete : undefined}
+                            playerName={playerName} />
+                      )}
+                    </>
+                  )}
+
+                  {/* In Progress section — collapsible */}
+                  {visibleInProgress.length > 0 && (
+                    <>
+                      <button
+                        onClick={() => {
+                          const next = !inProgressSectionCollapsed;
+                          setInProgressSectionCollapsed(next);
+                          try { localStorage.setItem("qb_inprogress_collapsed", String(next)); } catch { /* ignore */ }
+                        }}
+                        className="flex items-center gap-2 w-full text-left pt-2 pb-0.5"
+                      >
+                        <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.25)" }}>
+                          In Progress
+                        </span>
+                        <span className="text-xs px-1 rounded font-mono" style={{ background: "rgba(139,92,246,0.08)", color: "rgba(139,92,246,0.5)" }}>
+                          {visibleInProgress.length}
+                        </span>
+                        <span className="ml-auto text-xs" style={{ color: "rgba(255,255,255,0.15)" }}>{inProgressSectionCollapsed ? "▼" : "▲"}</span>
+                      </button>
+                      {!inProgressSectionCollapsed && visibleInProgress.map(q => q.children && q.children.length > 0
+                        ? <EpicQuestCard key={q.id} quest={q} selected={selectedIds.has(q.id)} onToggle={reviewApiKey ? toggleSelect : undefined} />
+                        : <QuestCard key={q.id} quest={q} selected={selectedIds.has(q.id)} onToggle={reviewApiKey ? toggleSelect : undefined}
+                            onClaim={reviewApiKey && playerName ? handleClaim : undefined}
+                            onUnclaim={reviewApiKey && playerName ? handleUnclaim : undefined}
+                            onComplete={reviewApiKey && playerName ? handleComplete : undefined}
+                            playerName={playerName} />
+                      )}
+                    </>
                   )}
                 </>
               )}
@@ -1220,6 +1356,16 @@ export default function Dashboard() {
 
       {/* Achievement Toast */}
       {toast && <AchievementToast achievement={toast} onClose={() => setToast(null)} />}
+
+      {/* Chain Quest Toast */}
+      {chainOffer && (
+        <ChainQuestToast
+          parentTitle={chainOffer.parentTitle}
+          template={chainOffer.template}
+          onAccept={handleChainAccept}
+          onDismiss={() => setChainOffer(null)}
+        />
+      )}
 
       {/* Guide Modal */}
       {guideOpen && <GuideModal onClose={() => setGuideOpen(false)} />}
@@ -2171,12 +2317,13 @@ function ClickablePriorityBadge({ priority, onClick }: { priority: Quest["priori
   );
 }
 
-function QuestCard({ quest, selected, onToggle, onClaim, onUnclaim, playerName }: {
+function QuestCard({ quest, selected, onToggle, onClaim, onUnclaim, onComplete, playerName }: {
   quest: Quest;
   selected?: boolean;
   onToggle?: (id: string) => void;
   onClaim?: (id: string) => void;
   onUnclaim?: (id: string) => void;
+  onComplete?: (id: string, title: string) => void;
   playerName?: string;
 }) {
   const [expanded, setExpanded] = useState(false);
@@ -2276,6 +2423,15 @@ function QuestCard({ quest, selected, onToggle, onClaim, onUnclaim, playerName }
                 style={{ background: "rgba(239,68,68,0.1)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.25)" }}
               >
                 ✕ Unclaim
+              </button>
+            )}
+            {onComplete && isClaimedByMe && (
+              <button
+                onClick={e => { e.stopPropagation(); onComplete(quest.id, quest.title); }}
+                className="text-xs px-2 py-0.5 rounded font-medium"
+                style={{ background: "rgba(251,191,36,0.12)", color: "#fbbf24", border: "1px solid rgba(251,191,36,0.3)" }}
+              >
+                ✓ Done
               </button>
             )}
           </div>
@@ -2727,6 +2883,59 @@ function ShopModal({ userId, userName, gold, currentGear, onClose, onBuy, onGear
 }
 
 // ─── Achievement Toast ────────────────────────────────────────────────────────
+function ChainQuestToast({ parentTitle, template, onAccept, onDismiss }: {
+  parentTitle: string;
+  template: { title: string; description?: string | null; type?: string; priority?: string };
+  onAccept: () => void;
+  onDismiss: () => void;
+}) {
+  const typeCfg = template.type ? (typeConfig[template.type] ?? null) : null;
+  return (
+    <div
+      className="fixed bottom-36 right-6 z-50 rounded-xl px-4 py-3 shadow-2xl"
+      style={{ background: "#252525", border: "1px solid rgba(139,92,246,0.5)", boxShadow: "0 8px 32px rgba(139,92,246,0.2)", maxWidth: 320 }}
+    >
+      <div className="flex items-start gap-3">
+        <span className="text-2xl flex-shrink-0">⛓</span>
+        <div className="flex-1 min-w-0">
+          <p className="text-xs font-bold mb-0.5" style={{ color: "#a78bfa" }}>Quest Chain Available!</p>
+          <p className="text-xs mb-1" style={{ color: "rgba(255,255,255,0.4)" }}>
+            Completed: <span style={{ color: "rgba(255,255,255,0.6)" }}>{parentTitle}</span>
+          </p>
+          <p className="text-sm font-semibold mb-1" style={{ color: "#e8e8e8" }}>{template.title}</p>
+          {template.description && (
+            <p className="text-xs mb-2" style={{ color: "rgba(255,255,255,0.35)" }}>{template.description}</p>
+          )}
+          <div className="flex items-center gap-1 mb-3">
+            {typeCfg && (
+              <span className="text-xs px-1.5 py-0.5 rounded" style={{ background: typeCfg.bg, color: typeCfg.color, border: `1px solid ${typeCfg.border}` }}>
+                {typeCfg.icon} {typeCfg.label}
+              </span>
+            )}
+          </div>
+          <div className="flex gap-2">
+            <button
+              onClick={onAccept}
+              className="flex-1 text-xs px-3 py-1.5 rounded font-medium"
+              style={{ background: "rgba(139,92,246,0.2)", color: "#a78bfa", border: "1px solid rgba(139,92,246,0.4)" }}
+            >
+              ⚔ Accept Quest
+            </button>
+            <button
+              onClick={onDismiss}
+              className="text-xs px-2 py-1.5 rounded"
+              style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.3)", border: "1px solid rgba(255,255,255,0.08)" }}
+            >
+              Skip
+            </button>
+          </div>
+        </div>
+        <button onClick={onDismiss} style={{ color: "rgba(255,255,255,0.3)", flexShrink: 0 }}>✕</button>
+      </div>
+    </div>
+  );
+}
+
 function AchievementToast({ achievement, onClose }: { achievement: EarnedAchievement; onClose: () => void }) {
   useEffect(() => {
     const t = setTimeout(onClose, 5000);
