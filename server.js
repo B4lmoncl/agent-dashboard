@@ -23,9 +23,10 @@ const PLAYER_PROGRESS_FILE = path.join(DATA_DIR, 'playerProgress.json');
 const QUEST_CATALOG_FILE   = path.join(DATA_DIR, 'questCatalog.json');
 const CLASSES_FILE         = path.join(DATA_DIR, 'classes.json');
 const ROADMAP_FILE         = path.join(DATA_DIR, 'roadmap.json');
+const COMPANIONS_FILE      = path.join(DATA_DIR, 'companions.json');
 
 // Quest types that are tracked per-player (not shared/global)
-const PLAYER_QUEST_TYPES = ['personal', 'learning', 'fitness', 'social', 'relationship-coop'];
+const PLAYER_QUEST_TYPES = ['personal', 'learning', 'fitness', 'social', 'relationship-coop', 'companion'];
 
 app.use(cors());
 app.use(express.json());
@@ -906,6 +907,138 @@ function saveClasses() {
   } catch (e) { console.warn('[classes] Failed to persist:', e.message); }
 }
 
+// ─── Companions store ─────────────────────────────────────────────────────────
+let companionsData = { realTemplates: {}, virtualTemplates: {}, careQuestTemplates: {}, bondLevels: [] };
+
+function loadCompanionsData() {
+  try {
+    if (fs.existsSync(COMPANIONS_FILE)) {
+      const raw = JSON.parse(fs.readFileSync(COMPANIONS_FILE, 'utf8'));
+      if (raw) companionsData = raw;
+    }
+  } catch (e) { console.warn('[companions] Failed to load:', e.message); }
+}
+
+// ─── Bond level helpers ───────────────────────────────────────────────────────
+const BOND_LEVELS = [
+  { level: 1,  title: 'Stranger',      minXp: 0   },
+  { level: 2,  title: 'Acquaintance',  minXp: 10  },
+  { level: 3,  title: 'Friend',        minXp: 25  },
+  { level: 4,  title: 'Close Friend',  minXp: 50  },
+  { level: 5,  title: 'Best Friend',   minXp: 80  },
+  { level: 6,  title: 'Soulmate',      minXp: 120 },
+  { level: 7,  title: 'Legendary I',   minXp: 200 },
+  { level: 8,  title: 'Legendary II',  minXp: 300 },
+  { level: 9,  title: 'Legendary III', minXp: 450 },
+  { level: 10, title: 'Legendary IV',  minXp: 666 },
+];
+
+function getBondLevel(bondXp) {
+  const xp = bondXp || 0;
+  let current = BOND_LEVELS[0];
+  for (const bl of BOND_LEVELS) {
+    if (xp >= bl.minXp) current = bl;
+    else break;
+  }
+  const nextIdx = BOND_LEVELS.indexOf(current) + 1;
+  const next = BOND_LEVELS[nextIdx] || null;
+  return {
+    level: current.level,
+    title: current.title,
+    xp,
+    minXp: current.minXp,
+    nextXp: next ? next.minXp : current.minXp,
+    progress: next ? Math.min(1, (xp - current.minXp) / (next.minXp - current.minXp)) : 1,
+  };
+}
+
+// ─── Companion quest creation helper ─────────────────────────────────────────
+function createCompanionQuestsForUser(userId) {
+  const u = users[userId];
+  if (!u || !u.companion) return;
+  const companion = u.companion;
+  const name = companion.name;
+
+  if (companion.isReal) {
+    const species = companion.species || companion.type;
+    const speciesData = companionsData.realTemplates[species] || companionsData.realTemplates.other || { careQuests: ['feed', 'care'] };
+    const careQuestIds = speciesData.careQuests || ['feed'];
+    for (let i = 0; i < careQuestIds.length; i++) {
+      const careId = careQuestIds[i];
+      const tpl = companionsData.careQuestTemplates[careId];
+      if (!tpl) continue;
+      const title = tpl.title.replace(/\{name\}/g, name);
+      const desc  = tpl.desc.replace(/\{name\}/g, name);
+      quests.push({
+        id: `quest-${Date.now()}-${i}-${careId}`,
+        title,
+        description: desc,
+        priority: 'medium',
+        type: 'companion',
+        categories: [],
+        product: null,
+        humanInputRequired: false,
+        createdBy: 'system',
+        status: 'open',
+        createdAt: now(),
+        claimedBy: userId,
+        completedBy: null,
+        completedAt: null,
+        parentQuestId: null,
+        recurrence: tpl.recurrence || 'daily',
+        streak: 0,
+        lore: null,
+        chapter: null,
+        nextQuestTemplate: null,
+        coopPartners: null,
+        skills: null,
+        minLevel: null,
+        proof: null,
+        companionCareType: careId,
+        companionOwnerId: userId,
+      });
+    }
+  } else {
+    const personality = (companionsData.virtualTemplates[companion.type] || {}).personality || 'loyal';
+    const msgs = {
+      fierce:    `${companion.emoji} ${name} fordert dich heraus: Erledige 3 Quests heute!`,
+      wise:      `${companion.emoji} ${name} empfiehlt: Lerne heute etwas Neues`,
+      resilient: `${companion.emoji} ${name} erinnert dich: Nach jedem Rückschlag stärker aufstehen`,
+      loyal:     `${companion.emoji} ${name} wartet auf dich: Zeit für deine tägliche Routine`,
+      clever:    `${companion.emoji} ${name} schlägt vor: Finde einen kreativeren Weg`,
+      strong:    `${companion.emoji} ${name} sagt: Du bist stärker als du denkst. Mach Sport!`,
+    };
+    quests.push({
+      id: `quest-${Date.now()}-companion`,
+      title: msgs[personality] || `${companion.emoji} ${name}: Bleib auf Kurs!`,
+      description: `Dein Begleiter ${name} begleitet dich auf deinem Weg.`,
+      priority: 'medium',
+      type: 'companion',
+      categories: [],
+      product: null,
+      humanInputRequired: false,
+      createdBy: 'system',
+      status: 'open',
+      createdAt: now(),
+      claimedBy: userId,
+      completedBy: null,
+      completedAt: null,
+      parentQuestId: null,
+      recurrence: 'daily',
+      streak: 0,
+      lore: null,
+      chapter: null,
+      nextQuestTemplate: null,
+      coopPartners: null,
+      skills: null,
+      minLevel: null,
+      proof: null,
+      companionOwnerId: userId,
+    });
+  }
+  saveQuests();
+}
+
 // ─── Roadmap store ────────────────────────────────────────────────────────────
 let roadmapData = [];
 
@@ -1104,6 +1237,11 @@ function updateUserStreak(userId) {
     u.streakDays = 1;
   }
   u.streakLastDate = today;
+  // Bond XP for maintaining streak
+  if (u.companion) {
+    u.companion.bondXp = (u.companion.bondXp || 0) + 0.25;
+    u.companion.bondLevel = getBondLevel(u.companion.bondXp).level;
+  }
 }
 
 function awardUserGold(userId, priority, streakDays) {
@@ -1148,11 +1286,19 @@ function onQuestCompletedByUser(userId, quest) {
   const xpMulti = getXpMultiplier(userId);
   const gear = getUserGear(userId);
   const gearBonus = 1 + (gear.xpBonus || 0) / 100;
-  // Companion XP buff: +2% per unlocked companion
+  // Companion XP buff: +2% per unlocked forge companion
   const companionIds = ['ember_sprite', 'lore_owl', 'gear_golem'];
   const earnedIds = new Set((u.earnedAchievements || []).map(a => a.id));
   const companionBonus = 1 + 0.02 * companionIds.filter(id => earnedIds.has(id)).length;
-  u.xp = (u.xp || 0) + Math.round(xpBase * xpMulti * gearBonus * companionBonus);
+  // Bond level XP bonus: +1% per bond level above 1 (max +9%)
+  const bondBonus = 1 + 0.01 * Math.max(0, (u.companion?.bondLevel ?? 1) - 1);
+  u.xp = (u.xp || 0) + Math.round(xpBase * xpMulti * gearBonus * companionBonus * bondBonus);
+  // Award bond XP for completing a companion quest
+  if (quest.type === 'companion' && u.companion) {
+    u.companion.bondXp = (u.companion.bondXp || 0) + 1;
+    u.companion.bondLevel = getBondLevel(u.companion.bondXp).level;
+    u._companionQuestCount = (u._companionQuestCount || 0) + 1;
+  }
   updateUserStreak(userId);
   awardUserGold(userId, quest.priority, u.streakDays);
   updateUserForgeTemp(userId, quest.priority);
@@ -1383,9 +1529,9 @@ app.post('/api/quest', requireApiKey, (req, res) => {
   const validPriorities = ['low', 'medium', 'high'];
   const validCategories = ['Coding', 'Research', 'Content', 'Sales', 'Infrastructure', 'Bug Fix', 'Feature'];
   const validProducts = ['Dashboard', 'Companion App', 'Infrastructure', 'Other'];
-  const validTypes = ['development', 'personal', 'learning', 'social', 'fitness', 'boss', 'relationship-coop'];
+  const validTypes = ['development', 'personal', 'learning', 'social', 'fitness', 'boss', 'relationship-coop', 'companion'];
   const validRecurrences = ['daily', 'weekly', 'monthly'];
-  const PLAYER_QUEST_TYPES = ['personal', 'learning', 'fitness', 'social', 'relationship-coop'];
+  const PLAYER_QUEST_TYPES = ['personal', 'learning', 'fitness', 'social', 'relationship-coop', 'companion'];
   if (priority && !validPriorities.includes(priority)) {
     return res.status(400).json({ error: `Invalid priority. Use: ${validPriorities.join(', ')}` });
   }
@@ -2979,7 +3125,14 @@ app.post('/api/register', (req, res) => {
     classId: resolvedClassId,
     classPending,
     classPendingNotified: false,
-    companion: companion || null,
+    companion: companion ? {
+      ...companion,
+      bondXp: 0,
+      bondLevel: 1,
+      lastPetted: null,
+      petCountToday: 0,
+      petDateStr: null,
+    } : null,
   };
   // Add to managed keys
   const entry = { key: apiKey, label: `Player: ${trimmedName}`, created: now() };
@@ -2987,7 +3140,11 @@ app.post('/api/register', (req, res) => {
   validApiKeys.add(apiKey);
   saveManagedKeys();
   saveUsers();
-  console.log(`[register] new player: ${trimmedName} (${finalId}) class=${resolvedClassId || 'none'}`);
+  // Auto-create companion quests if companion provided
+  if (companion) {
+    createCompanionQuestsForUser(finalId);
+  }
+  console.log(`[register] new player: ${trimmedName} (${finalId}) class=${resolvedClassId || 'none'} companion=${companion ? companion.name : 'none'}`);
   res.json({ name: trimmedName, apiKey, userId: finalId });
 });
 
@@ -3048,6 +3205,41 @@ app.get('/api/users/:id/achievements', (req, res) => {
   const u = users[req.params.id.toLowerCase()];
   if (!u) return res.status(404).json({ error: 'User not found' });
   res.json(u.earnedAchievements || []);
+});
+
+// GET /api/player/:name/companion — get companion details + quests
+app.get('/api/player/:name/companion', (req, res) => {
+  const uid = req.params.name.toLowerCase();
+  const u = users[uid];
+  if (!u) return res.status(404).json({ error: 'Player not found' });
+  if (!u.companion) return res.json({ companion: null, quests: [] });
+  const bondInfo = getBondLevel(u.companion.bondXp || 0);
+  const companionQuests = quests.filter(q => q.type === 'companion' && q.companionOwnerId === uid && q.status !== 'rejected');
+  res.json({ companion: { ...u.companion, bondInfo }, quests: companionQuests });
+});
+
+// POST /api/player/:name/companion/pet — pet the companion (bond XP + mood boost, max 2×/day)
+app.post('/api/player/:name/companion/pet', requireApiKey, (req, res) => {
+  const uid = req.params.name.toLowerCase();
+  const u = users[uid];
+  if (!u) return res.status(404).json({ error: 'Player not found' });
+  if (!u.companion) return res.status(404).json({ error: 'No companion' });
+
+  const today = todayStr();
+  if (u.companion.petDateStr !== today) {
+    u.companion.petCountToday = 0;
+    u.companion.petDateStr = today;
+  }
+  if ((u.companion.petCountToday || 0) >= 2) {
+    return res.status(429).json({ error: 'Already petted 2x today', nextPetAvailable: 'tomorrow' });
+  }
+  u.companion.petCountToday = (u.companion.petCountToday || 0) + 1;
+  u.companion.lastPetted = now();
+  u.companion.bondXp = (u.companion.bondXp || 0) + 0.5;
+  u.companion.bondLevel = getBondLevel(u.companion.bondXp).level;
+  saveUsers();
+  const bondInfo = getBondLevel(u.companion.bondXp);
+  res.json({ success: true, companion: { ...u.companion, bondInfo }, petsToday: u.companion.petCountToday });
 });
 
 // GET /api/cv-export — export skills/certs from completed learning quests
@@ -3747,6 +3939,7 @@ loadPlayerProgress();
 loadQuestCatalog();
 seedQuestCatalog();
 loadClasses();
+loadCompanionsData();
 loadRoadmap();
 
 app.listen(PORT, () => {

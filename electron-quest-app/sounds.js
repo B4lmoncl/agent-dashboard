@@ -13,8 +13,8 @@ function getCtx() {
 }
 
 /**
- * Amboss-Schlag — metallic hammer impact sound for quest created.
- * Two oscillators: sawtooth (body) + white noise burst (attack transient).
+ * Amboss-Schlag — short metallic hammer strike for quest submit.
+ * Noise burst → low-pass filter → quick decay = clean metallic "clang".
  */
 function playForgeHammer() {
   if (!soundEnabled) return;
@@ -23,45 +23,41 @@ function playForgeHammer() {
 
   const t = ctx.currentTime;
 
-  // Metallic body — sawtooth with pitch drop
-  const osc1 = ctx.createOscillator();
-  const gain1 = ctx.createGain();
-  osc1.type = 'sawtooth';
-  osc1.frequency.setValueAtTime(280, t);
-  osc1.frequency.exponentialRampToValueAtTime(55, t + 0.25);
-  gain1.gain.setValueAtTime(0.28, t);
-  gain1.gain.exponentialRampToValueAtTime(0.001, t + 0.28);
-  osc1.connect(gain1);
-  gain1.connect(ctx.destination);
-  osc1.start(t);
-  osc1.stop(t + 0.3);
-
-  // High-pitched clang overtone
-  const osc2 = ctx.createOscillator();
-  const gain2 = ctx.createGain();
-  osc2.type = 'square';
-  osc2.frequency.setValueAtTime(560, t);
-  osc2.frequency.exponentialRampToValueAtTime(110, t + 0.12);
-  gain2.gain.setValueAtTime(0.15, t);
-  gain2.gain.exponentialRampToValueAtTime(0.001, t + 0.15);
-  osc2.connect(gain2);
-  gain2.connect(ctx.destination);
-  osc2.start(t);
-  osc2.stop(t + 0.18);
-
-  // Attack noise burst
-  const bufSize = ctx.sampleRate * 0.04;
+  // Primary strike: noise burst through low-pass → sharp metallic transient
+  const bufSize = ctx.sampleRate * 0.06;
   const noiseBuffer = ctx.createBuffer(1, bufSize, ctx.sampleRate);
   const data = noiseBuffer.getChannelData(0);
-  for (let i = 0; i < bufSize; i++) data[i] = (Math.random() * 2 - 1) * 0.4;
+  for (let i = 0; i < bufSize; i++) data[i] = Math.random() * 2 - 1;
   const noise = ctx.createBufferSource();
   noise.buffer = noiseBuffer;
-  const noiseGain = ctx.createGain();
-  noiseGain.gain.setValueAtTime(0.25, t);
-  noiseGain.gain.exponentialRampToValueAtTime(0.001, t + 0.04);
-  noise.connect(noiseGain);
-  noiseGain.connect(ctx.destination);
+
+  const lpf = ctx.createBiquadFilter();
+  lpf.type = 'lowpass';
+  lpf.frequency.setValueAtTime(2800, t);
+  lpf.frequency.exponentialRampToValueAtTime(300, t + 0.05);
+  lpf.Q.value = 4;
+
+  const strikeGain = ctx.createGain();
+  strikeGain.gain.setValueAtTime(0.5 * volume, t);
+  strikeGain.gain.exponentialRampToValueAtTime(0.001, t + 0.07);
+
+  noise.connect(lpf);
+  lpf.connect(strikeGain);
+  strikeGain.connect(ctx.destination);
   noise.start(t);
+
+  // Ring-out: short sine tone for metallic resonance
+  const osc = ctx.createOscillator();
+  const oscGain = ctx.createGain();
+  osc.type = 'sine';
+  osc.frequency.setValueAtTime(420, t);
+  osc.frequency.exponentialRampToValueAtTime(180, t + 0.18);
+  oscGain.gain.setValueAtTime(0.18 * volume, t);
+  oscGain.gain.exponentialRampToValueAtTime(0.001, t + 0.2);
+  osc.connect(oscGain);
+  oscGain.connect(ctx.destination);
+  osc.start(t);
+  osc.stop(t + 0.22);
 }
 
 /**

@@ -28,22 +28,26 @@ interface OnboardingWizardProps {
 }
 
 const VIRTUAL_COMPANIONS = [
-  { type: "dragon",  emoji: "🐲", name: "Ember",  desc: "Ein feuriger Drache der dich motiviert" },
-  { type: "owl",     emoji: "🦉", name: "Sage",   desc: "Eine weise Eule die dich beim Lernen begleitet" },
-  { type: "phoenix", emoji: "🔥", name: "Blaze",  desc: "Ein Phoenix der aus jeder Niederlage stärker aufsteht" },
-  { type: "wolf",    emoji: "🐺", name: "Shadow", desc: "Ein treuer Wolf der immer an deiner Seite steht" },
+  { type: "dragon",  emoji: "🐲", name: "Ember",  desc: "Ein feuriger Drache der dich antreibt",            personality: "fierce",    trait: "Fordernd",  questHint: "Erledige 3 Quests täglich!" },
+  { type: "owl",     emoji: "🦉", name: "Sage",   desc: "Eine weise Eule die dich beim Lernen begleitet",   personality: "wise",      trait: "Weise",     questHint: "Lerne jeden Tag etwas Neues" },
+  { type: "phoenix", emoji: "🔥", name: "Blaze",  desc: "Ein Phoenix der aus jeder Niederlage aufsteht",    personality: "resilient", trait: "Resilient", questHint: "Nach jedem Rückschlag stärker" },
+  { type: "wolf",    emoji: "🐺", name: "Shadow", desc: "Ein treuer Wolf der immer an deiner Seite steht",  personality: "loyal",     trait: "Treu",      questHint: "Tägliche Routine einhalten" },
+  { type: "fox",     emoji: "🦊", name: "Trick",  desc: "Ein schlauer Fuchs der kreative Lösungen findet",  personality: "clever",    trait: "Clever",    questHint: "Finde einen kreativeren Weg" },
+  { type: "bear",    emoji: "🐻", name: "Bjorn",  desc: "Ein starker Bär der dich durch harte Zeiten trägt",personality: "strong",    trait: "Stark",     questHint: "Sport und Kraft quests" },
 ];
 
 const PET_SPECIES = [
-  { value: "cat",     label: "Katze 🐱" },
-  { value: "dog",     label: "Hund 🐕" },
-  { value: "hamster", label: "Hamster 🐹" },
-  { value: "bird",    label: "Vogel 🐦" },
-  { value: "other",   label: "Andere 🐾" },
+  { value: "cat",     label: "Katze 🐱",   carePreview: ["Füttern", "Spielen", "Kuscheln", "Tierarzt-Check"] },
+  { value: "dog",     label: "Hund 🐕",    carePreview: ["Gassi gehen", "Füttern", "Training", "Pflegen", "Tierarzt-Check"] },
+  { value: "hamster", label: "Hamster 🐹", carePreview: ["Füttern", "Käfig reinigen", "Spielen"] },
+  { value: "bird",    label: "Vogel 🐦",   carePreview: ["Füttern", "Singen", "Käfig reinigen"] },
+  { value: "fish",    label: "Fisch 🐟",   carePreview: ["Füttern", "Aquarium reinigen"] },
+  { value: "rabbit",  label: "Hase 🐰",    carePreview: ["Füttern", "Spielen", "Pflegen"] },
+  { value: "other",   label: "Andere 🐾",  carePreview: ["Füttern", "Pflegen"] },
 ];
 
 const PET_EMOJI: Record<string, string> = {
-  cat: "🐱", dog: "🐕", hamster: "🐹", bird: "🐦", other: "🐾",
+  cat: "🐱", dog: "🐕", hamster: "🐹", bird: "🐦", fish: "🐟", rabbit: "🐰", other: "🐾",
 };
 
 export default function OnboardingWizard({ onComplete, onClose }: OnboardingWizardProps) {
@@ -519,6 +523,25 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
                     autoFocus
                   />
                 </div>
+                {/* Care quest preview */}
+                {(() => {
+                  const speciesData = PET_SPECIES.find(s => s.value === petSpecies);
+                  return speciesData ? (
+                    <div className="rounded-xl p-3" style={{ background: "rgba(255,107,157,0.06)", border: "1px solid rgba(255,107,157,0.18)" }}>
+                      <p className="text-xs font-semibold mb-1.5" style={{ color: "#ff6b9d" }}>
+                        📋 Deine Pflegequests {petName ? `für ${petName}` : ""}
+                      </p>
+                      <div className="flex flex-wrap gap-1">
+                        {speciesData.carePreview.map(q => (
+                          <span key={q} className="text-xs px-1.5 py-0.5 rounded-full" style={{ background: "rgba(255,107,157,0.1)", color: "rgba(255,255,255,0.6)", border: "1px solid rgba(255,107,157,0.2)" }}>
+                            {q}
+                          </span>
+                        ))}
+                      </div>
+                      <p className="text-xs mt-1.5" style={{ color: "rgba(255,255,255,0.3)" }}>Diese Quests werden täglich/wöchentlich für dich erstellt.</p>
+                    </div>
+                  ) : null;
+                })()}
               </div>
             )}
 
@@ -526,22 +549,44 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
             {hasRealPet === false && (
               <div className="space-y-3">
                 <div className="grid grid-cols-2 gap-2">
-                  {VIRTUAL_COMPANIONS.map(vc => (
-                    <button
-                      key={vc.type}
-                      onClick={() => { setVirtualCompanionType(vc.type); setVirtualCompanionName(vc.name); }}
-                      className="p-3 rounded-xl text-left transition-all"
-                      style={{
-                        background: virtualCompanionType === vc.type ? "rgba(167,139,250,0.1)" : "rgba(255,255,255,0.03)",
-                        border: `1px solid ${virtualCompanionType === vc.type ? "rgba(167,139,250,0.5)" : "rgba(255,255,255,0.08)"}`,
-                      }}
-                    >
-                      <div className="text-2xl mb-1">{vc.emoji}</div>
-                      <p className="text-xs font-semibold" style={{ color: "#f0f0f0" }}>{vc.name}</p>
-                      <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.35)" }}>{vc.desc}</p>
-                    </button>
-                  ))}
+                  {VIRTUAL_COMPANIONS.map(vc => {
+                    const selected = virtualCompanionType === vc.type;
+                    return (
+                      <button
+                        key={vc.type}
+                        onClick={() => { setVirtualCompanionType(vc.type); setVirtualCompanionName(vc.name); }}
+                        className="p-3 rounded-xl text-left transition-all"
+                        style={{
+                          background: selected ? "rgba(167,139,250,0.1)" : "rgba(255,255,255,0.03)",
+                          border: `1px solid ${selected ? "rgba(167,139,250,0.5)" : "rgba(255,255,255,0.08)"}`,
+                        }}
+                      >
+                        <div className="flex items-center gap-1.5 mb-1">
+                          <span className="text-2xl">{vc.emoji}</span>
+                          <span className="text-xs px-1.5 py-0.5 rounded-full font-semibold" style={{ background: "rgba(167,139,250,0.12)", color: "#a78bfa", fontSize: 10 }}>{vc.trait}</span>
+                        </div>
+                        <p className="text-xs font-semibold" style={{ color: "#f0f0f0" }}>{vc.name}</p>
+                        <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.35)" }}>{vc.desc}</p>
+                        {selected && (
+                          <p className="text-xs mt-1.5 italic" style={{ color: "rgba(167,139,250,0.7)" }}>
+                            💬 &ldquo;{vc.questHint}&rdquo;
+                          </p>
+                        )}
+                      </button>
+                    );
+                  })}
                 </div>
+                {virtualCompanionType && (() => {
+                  const vc = VIRTUAL_COMPANIONS.find(v => v.type === virtualCompanionType);
+                  return (
+                    <div className="rounded-xl p-3 space-y-2" style={{ background: "rgba(167,139,250,0.07)", border: "1px solid rgba(167,139,250,0.2)" }}>
+                      <p className="text-xs font-semibold" style={{ color: "#a78bfa" }}>📋 Quests die generiert werden</p>
+                      <p className="text-xs" style={{ color: "rgba(255,255,255,0.5)" }}>
+                        {vc?.emoji} {virtualCompanionName || vc?.name} wird täglich eine motivierende Quest für dich erstellen, basierend auf seinem Charakter.
+                      </p>
+                    </div>
+                  );
+                })()}
                 {virtualCompanionType && (
                   <div>
                     <label className="text-xs font-semibold mb-1.5 block" style={{ color: "rgba(255,255,255,0.5)" }}>Name deines Begleiters</label>
