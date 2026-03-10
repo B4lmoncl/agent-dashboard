@@ -16,8 +16,9 @@ const PORT = process.env.PORT || 3001;
 const DATA_DIR = path.join(__dirname, 'public', 'data');
 const AGENTS_FILE = path.join(DATA_DIR, 'agents.json');
 const QUESTS_FILE = path.join(DATA_DIR, 'quests.json');
-const KEYS_FILE   = path.join(DATA_DIR, 'keys.json');
-const USERS_FILE  = path.join(DATA_DIR, 'users.json');
+const KEYS_FILE       = path.join(DATA_DIR, 'keys.json');
+const USERS_FILE      = path.join(DATA_DIR, 'users.json');
+const CAMPAIGNS_FILE  = path.join(DATA_DIR, 'campaigns.json');
 
 app.use(cors());
 app.use(express.json());
@@ -123,6 +124,9 @@ let store = { agents: {} };
 // ─── Quest store ────────────────────────────────────────────────────────────────
 let quests = [];
 
+// ─── Campaign store ──────────────────────────────────────────────────────────────
+let campaigns = [];
+
 function initStore() {
   for (const name of AGENT_NAMES) {
     const meta = AGENT_META[name] || {};
@@ -211,6 +215,86 @@ function saveQuests() {
     fs.writeFileSync(QUESTS_FILE, JSON.stringify(quests, null, 2));
   } catch (e) {
     console.warn('[quests] Failed to persist quests:', e.message);
+  }
+}
+
+function loadCampaigns() {
+  try {
+    if (fs.existsSync(CAMPAIGNS_FILE)) {
+      const raw = JSON.parse(fs.readFileSync(CAMPAIGNS_FILE, 'utf8'));
+      if (Array.isArray(raw)) campaigns = raw;
+    }
+  } catch (e) {
+    console.warn('[campaigns] Failed to load campaigns:', e.message);
+  }
+}
+
+function saveCampaigns() {
+  try {
+    if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
+    fs.writeFileSync(CAMPAIGNS_FILE, JSON.stringify(campaigns, null, 2));
+  } catch (e) {
+    console.warn('[campaigns] Failed to persist campaigns:', e.message);
+  }
+}
+
+// Auto-create campaigns from quests that share parentQuestId chains
+function autoCreateCampaigns() {
+  const allCampaignQuestIds = new Set(campaigns.flatMap(c => c.questIds));
+  // Find root quests (no parentQuestId) that have children not yet in a campaign
+  const orphanedChildIds = quests
+    .filter(q => q.parentQuestId && !allCampaignQuestIds.has(q.id))
+    .map(q => q.id);
+  if (orphanedChildIds.length === 0) return;
+
+  // Group by chain root
+  const chains = {};
+  for (const q of quests) {
+    if (!q.parentQuestId) continue;
+    if (allCampaignQuestIds.has(q.id)) continue;
+    // Walk up to root
+    let rootId = q.parentQuestId;
+    let parent = quests.find(p => p.id === q.parentQuestId);
+    while (parent && parent.parentQuestId) {
+      rootId = parent.parentQuestId;
+      parent = quests.find(p => p.id === parent.parentQuestId);
+    }
+    if (!chains[rootId]) chains[rootId] = new Set();
+    chains[rootId].add(q.id);
+  }
+
+  let created = 0;
+  for (const [rootId, childSet] of Object.entries(chains)) {
+    if (allCampaignQuestIds.has(rootId)) continue;
+    const rootQuest = quests.find(q => q.id === rootId);
+    if (!rootQuest) continue;
+    const childIds = Array.from(childSet).sort((a, b) => {
+      const qa = quests.find(q => q.id === a);
+      const qb = quests.find(q => q.id === b);
+      return new Date(qa?.createdAt || 0) - new Date(qb?.createdAt || 0);
+    });
+    const allIds = [rootId, ...childIds];
+    const bossQuest = allIds.map(id => quests.find(q => q.id === id)).find(q => q?.type === 'boss');
+    const icon = bossQuest ? '🐉' : rootQuest.type === 'learning' ? '📚' : rootQuest.type === 'fitness' ? '💪' : '⚔️';
+    const campaign = {
+      id: `campaign-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
+      title: rootQuest.chapter || rootQuest.title,
+      description: rootQuest.description || '',
+      icon,
+      lore: rootQuest.lore || '',
+      createdBy: rootQuest.createdBy || 'system',
+      createdAt: now(),
+      status: 'active',
+      questIds: allIds,
+      bossQuestId: bossQuest?.id || null,
+      rewards: { xp: 0, gold: 0, title: '' },
+    };
+    campaigns.push(campaign);
+    created++;
+  }
+  if (created > 0) {
+    saveCampaigns();
+    console.log(`[campaigns] Auto-created ${created} campaign(s) from quest chains`);
   }
 }
 
@@ -806,6 +890,8 @@ app.post('/api/quest/:id/coop-complete', requireApiKey, (req, res) => {
 // GET /api/quests — list all quests grouped by status
 app.get('/api/quests', (req, res) => {
   const typeFilter = req.query.type;
+  // Exclude quests that belong to a campaign
+  const allCampaignQuestIds = new Set(campaigns.flatMap(c => c.questIds));
 
   function enrichEpics(list) {
     return list.map(q => {
@@ -817,7 +903,7 @@ app.get('/api/quests', (req, res) => {
   }
 
   function filterAndEnrich(statusFilter) {
-    let list = quests.filter(q => q.status === statusFilter && !q.parentQuestId);
+    let list = quests.filter(q => q.status === statusFilter && !q.parentQuestId && !allCampaignQuestIds.has(q.id));
     if (typeFilter) list = list.filter(q => q.type === typeFilter);
     return enrichEpics(list);
   }
@@ -1018,6 +1104,109 @@ app.delete('/api/admin/keys/:key', requireMasterKey, (req, res) => {
     return res.json({ ok: true });
   }
   res.status(404).json({ error: 'Key not found' });
+});
+
+// ─── Campaign Endpoints ──────────────────────────────────────────────────────────
+
+// GET /api/campaigns — list all campaigns with enriched quest details
+app.get('/api/campaigns', (req, res) => {
+  const enriched = campaigns.map(c => {
+    const questDetails = c.questIds.map(id => {
+      const q = quests.find(q => q.id === id);
+      if (!q) return { id, title: '(deleted)', status: 'deleted' };
+      return { id: q.id, title: q.title, status: q.status, priority: q.priority, type: q.type,
+               completedBy: q.completedBy, completedAt: q.completedAt, claimedBy: q.claimedBy,
+               lore: q.lore || null, description: q.description };
+    });
+    const completed = questDetails.filter(q => q.status === 'completed').length;
+    return { ...c, quests: questDetails, progress: { completed, total: questDetails.length } };
+  });
+  res.json(enriched);
+});
+
+// POST /api/campaigns — create a campaign
+app.post('/api/campaigns', requireApiKey, (req, res) => {
+  const { title, description, icon, lore, createdBy, questIds, bossQuestId, rewards } = req.body;
+  if (!title || !String(title).trim()) return res.status(400).json({ error: 'title required' });
+  const campaign = {
+    id: `campaign-${Date.now()}`,
+    title: String(title).trim(),
+    description: String(description || '').trim(),
+    icon: icon || '⚔️',
+    lore: String(lore || '').trim(),
+    createdBy: createdBy || 'unknown',
+    createdAt: now(),
+    status: 'active',
+    questIds: Array.isArray(questIds) ? questIds.filter(id => quests.find(q => q.id === id)) : [],
+    bossQuestId: bossQuestId || null,
+    rewards: { xp: Number(rewards?.xp) || 0, gold: Number(rewards?.gold) || 0, title: rewards?.title || '' },
+  };
+  campaigns.push(campaign);
+  saveCampaigns();
+  console.log(`[campaigns] Created: ${campaign.id} "${campaign.title}"`);
+  res.status(201).json(campaign);
+});
+
+// GET /api/campaigns/:id — single campaign with full quest details
+app.get('/api/campaigns/:id', (req, res) => {
+  const campaign = campaigns.find(c => c.id === req.params.id);
+  if (!campaign) return res.status(404).json({ error: 'Campaign not found' });
+  const questDetails = campaign.questIds.map(id => {
+    const q = quests.find(q => q.id === id);
+    return q || { id, title: '(deleted)', status: 'deleted' };
+  });
+  const completed = questDetails.filter(q => q.status === 'completed').length;
+  res.json({ ...campaign, quests: questDetails, progress: { completed, total: questDetails.length } });
+});
+
+// PATCH /api/campaigns/:id — update campaign fields
+app.patch('/api/campaigns/:id', requireApiKey, (req, res) => {
+  const campaign = campaigns.find(c => c.id === req.params.id);
+  if (!campaign) return res.status(404).json({ error: 'Campaign not found' });
+  const { title, description, icon, lore, status, bossQuestId, rewards, questIds } = req.body;
+  if (title !== undefined) campaign.title = String(title).trim();
+  if (description !== undefined) campaign.description = String(description);
+  if (icon !== undefined) campaign.icon = icon;
+  if (lore !== undefined) campaign.lore = String(lore);
+  if (status !== undefined && ['active', 'completed', 'archived'].includes(status)) campaign.status = status;
+  if (bossQuestId !== undefined) campaign.bossQuestId = bossQuestId || null;
+  if (rewards !== undefined) campaign.rewards = { ...campaign.rewards, ...rewards };
+  if (questIds !== undefined && Array.isArray(questIds)) campaign.questIds = questIds;
+  saveCampaigns();
+  res.json({ ok: true, campaign });
+});
+
+// DELETE /api/campaigns/:id — delete a campaign
+app.delete('/api/campaigns/:id', requireApiKey, (req, res) => {
+  const idx = campaigns.findIndex(c => c.id === req.params.id);
+  if (idx === -1) return res.status(404).json({ error: 'Campaign not found' });
+  campaigns.splice(idx, 1);
+  saveCampaigns();
+  res.json({ ok: true });
+});
+
+// POST /api/campaigns/:id/add-quest — add a quest to a campaign
+app.post('/api/campaigns/:id/add-quest', requireApiKey, (req, res) => {
+  const campaign = campaigns.find(c => c.id === req.params.id);
+  if (!campaign) return res.status(404).json({ error: 'Campaign not found' });
+  const { questId } = req.body;
+  if (!questId) return res.status(400).json({ error: 'questId required' });
+  if (!quests.find(q => q.id === questId)) return res.status(404).json({ error: 'Quest not found' });
+  if (!campaign.questIds.includes(questId)) campaign.questIds.push(questId);
+  saveCampaigns();
+  res.json({ ok: true, campaign });
+});
+
+// POST /api/campaigns/:id/remove-quest — remove a quest from a campaign
+app.post('/api/campaigns/:id/remove-quest', requireApiKey, (req, res) => {
+  const campaign = campaigns.find(c => c.id === req.params.id);
+  if (!campaign) return res.status(404).json({ error: 'Campaign not found' });
+  const { questId } = req.body;
+  if (!questId) return res.status(400).json({ error: 'questId required' });
+  campaign.questIds = campaign.questIds.filter(id => id !== questId);
+  if (campaign.bossQuestId === questId) campaign.bossQuestId = null;
+  saveCampaigns();
+  res.json({ ok: true, campaign });
 });
 
 // GET /api/agent/:name/quests — get agent's active quests
@@ -2281,6 +2470,8 @@ app.get('*', (req, res) => {
 initStore();
 loadData();
 loadQuests();
+loadCampaigns();
+autoCreateCampaigns();
 loadManagedKeys();
 loadUsers();
 

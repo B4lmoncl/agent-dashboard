@@ -80,6 +80,35 @@ interface User {
   createdAt?: string;
 }
 
+interface CampaignQuest {
+  id: string;
+  title: string;
+  status: string;
+  priority?: string;
+  type?: string;
+  completedBy?: string | null;
+  completedAt?: string | null;
+  claimedBy?: string | null;
+  lore?: string | null;
+  description?: string;
+}
+
+interface Campaign {
+  id: string;
+  title: string;
+  description: string;
+  icon: string;
+  lore: string;
+  createdBy: string;
+  createdAt: string;
+  status: "active" | "completed" | "archived";
+  questIds: string[];
+  bossQuestId: string | null;
+  rewards: { xp: number; gold: number; title: string };
+  quests?: CampaignQuest[];
+  progress?: { completed: number; total: number };
+}
+
 interface AchievementDef {
   id: string;
   name: string;
@@ -182,6 +211,14 @@ async function fetchUsers(): Promise<User[]> {
   return [];
 }
 
+async function fetchCampaigns(): Promise<Campaign[]> {
+  try {
+    const r = await fetch(`/api/campaigns`, { signal: AbortSignal.timeout(2000) });
+    if (r.ok) return r.json();
+  } catch { /* ignore */ }
+  return [];
+}
+
 async function fetchLeaderboard(): Promise<LeaderboardEntry[]> {
   try {
     const r = await fetch(`/api/leaderboard`, { signal: AbortSignal.timeout(2000) });
@@ -270,6 +307,7 @@ export default function Dashboard() {
   });
   const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>([]);
   const [achievementCatalogue, setAchievementCatalogue] = useState<AchievementDef[]>([]);
+  const [campaigns, setCampaigns] = useState<Campaign[]>([]);
   const [playerName, setPlayerName] = useState<string>(() => {
     try { return localStorage.getItem("dash_player_name") || ""; } catch { return ""; }
   });
@@ -334,7 +372,7 @@ export default function Dashboard() {
   }, []);
 
   const refresh = useCallback(async () => {
-    const [a, q, u, lb, ac] = await Promise.all([fetchAgents(), fetchQuests(), fetchUsers(), fetchLeaderboard(), fetchAchievementCatalogue()]);
+    const [a, q, u, lb, ac, camps] = await Promise.all([fetchAgents(), fetchQuests(), fetchUsers(), fetchLeaderboard(), fetchAchievementCatalogue(), fetchCampaigns()]);
     // Lyra always first, then online/working agents, then rest
     const statusOrder: Record<string, number> = { working: 0, online: 1, idle: 2, offline: 3 };
     const sorted = [...a].sort((x, y) => {
@@ -350,6 +388,7 @@ export default function Dashboard() {
     setUsers(u);
     if (lb.length > 0) setLeaderboard(lb);
     if (ac.length > 0) setAchievementCatalogue(ac);
+    setCampaigns(camps);
     try {
       const r = await fetch(`/api/health`, { signal: AbortSignal.timeout(1500) });
       setApiLive(r.ok);
@@ -949,7 +988,7 @@ export default function Dashboard() {
 
         {/* Campaign View */}
         {dashView === "campaign" && (
-          <CampaignView agents={agents} quests={quests} users={users} />
+          <CampaignHub campaigns={campaigns} quests={quests} reviewApiKey={reviewApiKey} onRefresh={refresh} />
         )}
 
         {/* Season & Battle Pass View */}
@@ -4150,117 +4189,387 @@ function BattlePassView({ users, quests }: { users: User[]; quests: QuestsData }
   );
 }
 
-// ─── D&D Campaign View ────────────────────────────────────────────────────────
-function CampaignView({ agents, quests, users }: { agents: Agent[]; quests: QuestsData; users: User[] }) {
-  const allQuests = [...quests.open, ...quests.inProgress, ...quests.completed];
-  const sessions  = allQuests.filter(q => q.type === "social").slice(0, 10);
-  const plotHooks = quests.open.filter(q => q.type !== "social").slice(0, 8);
-  const npcAgents = agents.filter(a => a.status !== "offline");
+// ─── Campaign Hub ──────────────────────────────────────────────────────────────
+const CAMPAIGN_ICONS = ["⚔️","🛡️","🐉","📚","💀","🗡️","🏰","🌋","🌊","🔮","🌿","👑","⚡","🔥","🌟","💎"];
 
-  return (
-    <div className="space-y-8">
-      <div className="rounded-2xl p-6" style={{ background: "linear-gradient(135deg, #1a0d2e 0%, #0d1a1a 100%)", border: "1px solid rgba(139,92,246,0.3)", boxShadow: "0 0 40px rgba(139,92,246,0.1)" }}>
-        <div className="flex items-center gap-3 mb-2">
-          <span style={{ fontSize: 28 }}>🐉</span>
-          <div>
-            <h2 className="text-lg font-bold" style={{ color: "#e9d5ff" }}>The Guild Chronicle</h2>
-            <p className="text-xs" style={{ color: "rgba(167,139,250,0.6)" }}>Fantasy RPG overlay — agents are NPCs, quests are adventures</p>
+function CampaignHub({ campaigns, quests, reviewApiKey, onRefresh }: {
+  campaigns: Campaign[];
+  quests: QuestsData;
+  reviewApiKey: string;
+  onRefresh: () => void;
+}) {
+  const [expandedId, setExpandedId] = useState<string | null>(null);
+  const [createOpen, setCreateOpen] = useState(false);
+  const [form, setForm] = useState({ title: "", description: "", icon: "⚔️", lore: "", bossQuestId: "", rewardXp: "", rewardGold: "", rewardTitle: "" });
+  const [selectedQuestIds, setSelectedQuestIds] = useState<string[]>([]);
+  const [submitting, setSubmitting] = useState(false);
+  const [deleteConfirm, setDeleteConfirm] = useState<string | null>(null);
+
+  const expandedCampaign = campaigns.find(c => c.id === expandedId);
+  const allAvailableQuests = [...quests.open, ...quests.inProgress];
+
+  const getQuestNode = (q: CampaignQuest, isBoss: boolean, isCurrentQuest: boolean, idx: number) => {
+    const isDone = q.status === "completed";
+    const isDeleted = q.status === "deleted";
+    const isUpcoming = !isDone && !isCurrentQuest;
+    let nodeColor = isDone ? "#10b981" : isCurrentQuest ? "#a78bfa" : "rgba(255,255,255,0.15)";
+    let borderColor = isDone ? "rgba(16,185,129,0.4)" : isCurrentQuest ? "rgba(167,139,250,0.5)" : "rgba(255,255,255,0.08)";
+    let bg = isDone ? "rgba(16,185,129,0.06)" : isCurrentQuest ? "rgba(139,92,246,0.12)" : "rgba(255,255,255,0.02)";
+    if (isBoss && !isDone) { nodeColor = "#ef4444"; borderColor = "rgba(239,68,68,0.5)"; bg = "rgba(239,68,68,0.1)"; }
+
+    return (
+      <div key={q.id} className="flex gap-3">
+        {/* Timeline spine */}
+        <div className="flex flex-col items-center flex-shrink-0" style={{ width: 32 }}>
+          <div className="w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 z-10"
+            style={{ background: isDone ? "rgba(16,185,129,0.2)" : isBoss && !isDone ? "rgba(239,68,68,0.2)" : isCurrentQuest ? "rgba(139,92,246,0.2)" : "rgba(255,255,255,0.05)", border: `2px solid ${nodeColor}`, color: nodeColor }}>
+            {isDone ? "✓" : isBoss ? "👑" : isCurrentQuest ? "▶" : String(idx + 1)}
+          </div>
+          <div className="flex-1 w-px mt-1" style={{ background: "rgba(139,92,246,0.2)", minHeight: 12 }} />
+        </div>
+        {/* Quest card */}
+        <div className="flex-1 mb-2 rounded-xl p-3" style={{ background: bg, border: `1px solid ${borderColor}`, opacity: isUpcoming && !isBoss ? 0.6 : 1, boxShadow: isBoss && !isDone ? "0 0 20px rgba(239,68,68,0.15)" : isCurrentQuest ? "0 0 16px rgba(139,92,246,0.15)" : "none" }}>
+          <div className="flex items-start gap-2">
+            <div className="flex-1 min-w-0">
+              <div className="flex items-center gap-2 flex-wrap">
+                {isBoss && <span className="text-xs px-1.5 py-0.5 rounded font-bold" style={{ background: "rgba(239,68,68,0.2)", color: "#f87171", border: "1px solid rgba(239,68,68,0.4)" }}>BOSS</span>}
+                {isCurrentQuest && !isDone && <span className="text-xs px-1.5 py-0.5 rounded font-bold" style={{ background: "rgba(167,139,250,0.2)", color: "#c4b5fd", border: "1px solid rgba(167,139,250,0.4)" }}>CURRENT</span>}
+                <p className="text-sm font-semibold" style={{ color: isDone ? "rgba(255,255,255,0.5)" : isBoss ? "#fca5a5" : isCurrentQuest ? "#e9d5ff" : "rgba(255,255,255,0.5)" }}>{q.title}</p>
+              </div>
+              {q.lore && <p className="text-xs mt-1 italic" style={{ color: "rgba(167,139,250,0.6)" }}>{q.lore}</p>}
+              {isDone && q.completedBy && (
+                <p className="text-xs mt-1" style={{ color: "rgba(16,185,129,0.7)" }}>✓ Completed by {q.completedBy}{q.completedAt ? ` · ${timeAgo(q.completedAt)}` : ""}</p>
+              )}
+              {!isDone && q.claimedBy && (
+                <p className="text-xs mt-1" style={{ color: "rgba(167,139,250,0.6)" }}>⚡ Claimed by {q.claimedBy}</p>
+              )}
+              {isDeleted && <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.3)" }}>(quest deleted)</p>}
+            </div>
+            {q.priority && (
+              <span className="text-xs px-1.5 py-0.5 rounded flex-shrink-0" style={{ background: priorityConfig[q.priority as keyof typeof priorityConfig]?.bg ?? "rgba(255,255,255,0.05)", color: priorityConfig[q.priority as keyof typeof priorityConfig]?.color ?? "#aaa", border: `1px solid ${priorityConfig[q.priority as keyof typeof priorityConfig]?.border ?? "transparent"}` }}>
+                {priorityConfig[q.priority as keyof typeof priorityConfig]?.label ?? q.priority}
+              </span>
+            )}
           </div>
         </div>
       </div>
+    );
+  };
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Active NPCs */}
+  const handleCreate = async () => {
+    if (!form.title.trim() || !reviewApiKey) return;
+    setSubmitting(true);
+    try {
+      const r = await fetch("/api/campaigns", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "X-API-Key": reviewApiKey },
+        body: JSON.stringify({
+          title: form.title.trim(),
+          description: form.description.trim(),
+          icon: form.icon,
+          lore: form.lore.trim(),
+          questIds: selectedQuestIds,
+          bossQuestId: form.bossQuestId || null,
+          rewards: { xp: Number(form.rewardXp) || 0, gold: Number(form.rewardGold) || 0, title: form.rewardTitle },
+        }),
+      });
+      if (r.ok) {
+        setCreateOpen(false);
+        setForm({ title: "", description: "", icon: "⚔️", lore: "", bossQuestId: "", rewardXp: "", rewardGold: "", rewardTitle: "" });
+        setSelectedQuestIds([]);
+        onRefresh();
+      }
+    } catch { /* ignore */ }
+    setSubmitting(false);
+  };
+
+  const handleDelete = async (id: string) => {
+    if (!reviewApiKey) return;
+    try {
+      await fetch(`/api/campaigns/${id}`, { method: "DELETE", headers: { "X-API-Key": reviewApiKey } });
+      setDeleteConfirm(null);
+      if (expandedId === id) setExpandedId(null);
+      onRefresh();
+    } catch { /* ignore */ }
+  };
+
+  const statusColors: Record<string, { color: string; bg: string; border: string; label: string }> = {
+    active:    { color: "#a78bfa", bg: "rgba(139,92,246,0.15)", border: "rgba(139,92,246,0.3)", label: "Active" },
+    completed: { color: "#34d399", bg: "rgba(16,185,129,0.15)", border: "rgba(16,185,129,0.3)", label: "Victory!" },
+    archived:  { color: "#9ca3af", bg: "rgba(156,163,175,0.1)", border: "rgba(156,163,175,0.2)", label: "Archived" },
+  };
+
+  // ── Expanded campaign timeline view ──────────────────────────────────────────
+  if (expandedId && expandedCampaign) {
+    const cq = expandedCampaign.quests ?? [];
+    const firstIncompleteIdx = cq.findIndex(q => q.status !== "completed");
+    const completedCount = expandedCampaign.progress?.completed ?? 0;
+    const totalCount = expandedCampaign.progress?.total ?? cq.length;
+    const pct = totalCount > 0 ? Math.round((completedCount / totalCount) * 100) : 0;
+    const isVictory = expandedCampaign.status === "completed" || completedCount === totalCount && totalCount > 0;
+
+    return (
+      <div className="space-y-6">
+        {/* Back button + header */}
         <div>
-          <h3 className="text-xs font-semibold uppercase tracking-widest mb-3" style={{ color: "rgba(167,139,250,0.7)" }}>⚔ Active NPCs</h3>
-          <div className="space-y-2">
-            {npcAgents.length === 0 && <p className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>No NPCs online</p>}
-            {npcAgents.map(a => {
-              const agentMeta: Record<string, { avatar: string; color: string }> = {
-                nova: { avatar: "NO", color: "#8b5cf6" }, hex: { avatar: "HX", color: "#10b981" },
-                echo: { avatar: "EC", color: "#ef4444" }, pixel: { avatar: "PX", color: "#f59e0b" },
-                atlas: { avatar: "AT", color: "#6366f1" }, lyra: { avatar: "✦", color: "#e879f9" },
-                forge: { avatar: "⚒", color: "#f59e0b" },
-              };
-              const meta = agentMeta[a.id?.toLowerCase()] ?? { avatar: a.id?.slice(0, 2).toUpperCase() ?? "??", color: a.color ?? "#666" };
-              const color = a.color ?? meta.color;
-              return (
-                <div key={a.id} className="flex items-center gap-2 p-2 rounded-lg" style={{ background: "rgba(139,92,246,0.07)", border: "1px solid rgba(139,92,246,0.15)" }}>
-                  <div className="w-8 h-8 rounded-lg flex items-center justify-center font-bold text-xs flex-shrink-0" style={{ background: `linear-gradient(135deg, ${color}, ${color}99)`, color: "#fff" }}>
-                    {a.avatar ?? meta.avatar}
+          <button onClick={() => setExpandedId(null)} className="flex items-center gap-2 text-xs mb-4 transition-opacity hover:opacity-100" style={{ color: "rgba(167,139,250,0.7)", opacity: 0.8 }}>
+            ← Back to Campaigns
+          </button>
+          <div className="rounded-2xl p-6 relative overflow-hidden" style={{ background: "linear-gradient(135deg, #1a0d2e 0%, #0d1017 100%)", border: "1px solid rgba(139,92,246,0.3)", boxShadow: "0 0 40px rgba(139,92,246,0.1)" }}>
+            {isVictory && (
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none" style={{ opacity: 0.06 }}>
+                <span style={{ fontSize: 200 }}>🏆</span>
+              </div>
+            )}
+            <div className="relative">
+              <div className="flex items-start gap-4">
+                <span style={{ fontSize: 40 }}>{expandedCampaign.icon}</span>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-3 flex-wrap mb-1">
+                    <h2 className="text-xl font-bold" style={{ color: "#e9d5ff" }}>{expandedCampaign.title}</h2>
+                    {isVictory && <span className="text-sm px-2 py-0.5 rounded font-bold" style={{ background: "rgba(251,191,36,0.2)", color: "#fbbf24", border: "1px solid rgba(251,191,36,0.4)" }}>🏆 VICTORY</span>}
+                    {!isVictory && <span className="text-xs px-2 py-0.5 rounded" style={statusColors[expandedCampaign.status] ?? statusColors.active}>{statusColors[expandedCampaign.status]?.label ?? expandedCampaign.status}</span>}
                   </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-xs font-semibold truncate" style={{ color: "#e9d5ff" }}>{a.name}</p>
-                    <p className="text-xs truncate" style={{ color: "rgba(167,139,250,0.5)" }}>{a.role ?? "NPC"}</p>
+                  {expandedCampaign.lore && <p className="text-sm italic mb-2" style={{ color: "rgba(167,139,250,0.7)" }}>&quot;{expandedCampaign.lore}&quot;</p>}
+                  {expandedCampaign.description && <p className="text-xs mb-3" style={{ color: "rgba(255,255,255,0.5)" }}>{expandedCampaign.description}</p>}
+                  {/* Progress bar */}
+                  <div className="flex items-center gap-3">
+                    <div className="flex-1 rounded-full overflow-hidden" style={{ height: 6, background: "rgba(255,255,255,0.08)" }}>
+                      <div className="h-full rounded-full transition-all" style={{ width: `${pct}%`, background: isVictory ? "linear-gradient(90deg,#fbbf24,#f59e0b)" : "linear-gradient(90deg,#8b5cf6,#a78bfa)" }} />
+                    </div>
+                    <span className="text-xs font-semibold flex-shrink-0" style={{ color: isVictory ? "#fbbf24" : "#a78bfa" }}>{completedCount}/{totalCount} · {pct}%</span>
                   </div>
-                  <span className="text-xs px-1.5 py-0.5 rounded" style={{ background: a.status === "working" ? "rgba(16,185,129,0.15)" : "rgba(139,92,246,0.1)", color: a.status === "working" ? "#34d399" : "rgba(167,139,250,0.7)", border: `1px solid ${a.status === "working" ? "rgba(16,185,129,0.3)" : "rgba(139,92,246,0.2)"}` }}>
-                    {a.status === "working" ? "On Quest" : a.status}
-                  </span>
                 </div>
-              );
+              </div>
+              {/* Rewards */}
+              {(expandedCampaign.rewards.xp > 0 || expandedCampaign.rewards.gold > 0 || expandedCampaign.rewards.title) && (
+                <div className="mt-4 flex items-center gap-3 flex-wrap">
+                  <span className="text-xs" style={{ color: "rgba(167,139,250,0.5)" }}>Completion Rewards:</span>
+                  {expandedCampaign.rewards.xp > 0 && <span className="text-xs px-2 py-0.5 rounded" style={{ background: "rgba(99,102,241,0.15)", color: "#818cf8", border: "1px solid rgba(99,102,241,0.25)" }}>+{expandedCampaign.rewards.xp} XP</span>}
+                  {expandedCampaign.rewards.gold > 0 && <span className="text-xs px-2 py-0.5 rounded" style={{ background: "rgba(251,191,36,0.12)", color: "#fbbf24", border: "1px solid rgba(251,191,36,0.25)" }}>🪙 {expandedCampaign.rewards.gold}</span>}
+                  {expandedCampaign.rewards.title && <span className="text-xs px-2 py-0.5 rounded" style={{ background: "rgba(232,121,249,0.1)", color: "#e879f9", border: "1px solid rgba(232,121,249,0.25)" }}>🏅 &quot;{expandedCampaign.rewards.title}&quot;</span>}
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+
+        {/* Quest Chain Timeline */}
+        <div>
+          <h3 className="text-xs font-semibold uppercase tracking-widest mb-4" style={{ color: "rgba(167,139,250,0.6)" }}>Quest Chain</h3>
+          {cq.length === 0 && <p className="text-sm" style={{ color: "rgba(255,255,255,0.25)" }}>No quests in this campaign yet.</p>}
+          <div>
+            {cq.map((q, idx) => {
+              const isBoss = q.id === expandedCampaign.bossQuestId;
+              const isCurrentQuest = !isBoss && idx === firstIncompleteIdx;
+              return getQuestNode(q, isBoss, isCurrentQuest, idx);
             })}
           </div>
         </div>
+      </div>
+    );
+  }
 
-        {/* Plot Hooks (open quests) */}
-        <div>
-          <h3 className="text-xs font-semibold uppercase tracking-widest mb-3" style={{ color: "rgba(251,191,36,0.7)" }}>📜 Plot Hooks</h3>
-          <div className="space-y-2">
-            {plotHooks.length === 0 && <p className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>No plot hooks available</p>}
-            {plotHooks.map(q => (
-              <div key={q.id} className="p-2.5 rounded-lg" style={{ background: "rgba(251,191,36,0.05)", border: "1px solid rgba(251,191,36,0.15)" }}>
-                <div className="flex items-start gap-2">
-                  <span className="text-xs flex-shrink-0 mt-0.5" style={{ color: "rgba(251,191,36,0.7)" }}>◆</span>
-                  <p className="text-xs font-medium" style={{ color: "#fde68a" }}>{q.title}</p>
-                </div>
-                {q.description && <p className="text-xs mt-1 leading-relaxed" style={{ color: "rgba(253,230,138,0.4)" }}>{q.description.slice(0, 80)}{q.description.length > 80 ? "…" : ""}</p>}
-              </div>
-            ))}
+  // ── Campaign cards grid ──────────────────────────────────────────────────────
+  return (
+    <div className="space-y-6">
+      {/* Header */}
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <span style={{ fontSize: 28 }}>🐉</span>
+          <div>
+            <h2 className="text-lg font-bold" style={{ color: "#e9d5ff" }}>Campaign Hub</h2>
+            <p className="text-xs" style={{ color: "rgba(167,139,250,0.5)" }}>Long-form quest chains and story arcs</p>
           </div>
         </div>
+        <button
+          onClick={() => setCreateOpen(true)}
+          className="text-xs font-semibold px-3 py-1.5 rounded-lg transition-all"
+          style={{ background: "rgba(139,92,246,0.2)", color: "#c4b5fd", border: "1px solid rgba(139,92,246,0.4)" }}
+        >
+          + New Campaign
+        </button>
+      </div>
 
-        {/* Sessions (social quests + completed) */}
-        <div>
-          <h3 className="text-xs font-semibold uppercase tracking-widest mb-3" style={{ color: "rgba(52,211,153,0.7)" }}>📅 Session Log</h3>
-          <div className="space-y-2">
-            {sessions.length === 0 && <p className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>No sessions logged yet. Create a quest with type &quot;Social&quot;.</p>}
-            {sessions.map(q => (
-              <div key={q.id} className="p-2.5 rounded-lg" style={{ background: "rgba(52,211,153,0.05)", border: "1px solid rgba(52,211,153,0.15)" }}>
-                <div className="flex items-center gap-2">
-                  <span className="text-xs" style={{ color: q.status === "completed" ? "#34d399" : "rgba(52,211,153,0.5)" }}>
-                    {q.status === "completed" ? "✓" : "◌"}
-                  </span>
-                  <p className="text-xs font-medium flex-1 truncate" style={{ color: "#a7f3d0" }}>{q.title}</p>
-                  <span className="text-xs" style={{ color: "rgba(52,211,153,0.4)" }}>{timeAgo(q.createdAt)}</span>
+      {/* Empty state */}
+      {campaigns.length === 0 && (
+        <div className="text-center py-20" style={{ color: "rgba(255,255,255,0.2)" }}>
+          <div style={{ fontSize: 48, marginBottom: 12 }}>🐉</div>
+          <p className="text-sm font-semibold mb-1" style={{ color: "rgba(255,255,255,0.3)" }}>No active campaigns</p>
+          <p className="text-xs">Start a quest chain to begin your saga!</p>
+        </div>
+      )}
+
+      {/* Campaign grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+        {campaigns.map(c => {
+          const completed = c.progress?.completed ?? 0;
+          const total = c.progress?.total ?? 0;
+          const pct = total > 0 ? Math.round((completed / total) * 100) : 0;
+          const isVictory = c.status === "completed" || (completed === total && total > 0);
+          const sc = statusColors[c.status] ?? statusColors.active;
+          const bossInChain = c.quests?.find(q => q.id === c.bossQuestId);
+          return (
+            <div
+              key={c.id}
+              className="rounded-2xl p-4 cursor-pointer transition-all hover:scale-[1.01]"
+              style={{ background: "linear-gradient(135deg, rgba(26,13,46,0.8) 0%, rgba(13,16,23,0.8) 100%)", border: `1px solid ${isVictory ? "rgba(251,191,36,0.35)" : "rgba(139,92,246,0.25)"}`, boxShadow: isVictory ? "0 0 20px rgba(251,191,36,0.1)" : "0 0 20px rgba(139,92,246,0.05)" }}
+              onClick={() => setExpandedId(c.id)}
+            >
+              <div className="flex items-start gap-3 mb-3">
+                <span style={{ fontSize: 28, flexShrink: 0 }}>{c.icon}</span>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2 flex-wrap mb-0.5">
+                    <p className="text-sm font-bold truncate" style={{ color: "#e9d5ff" }}>{c.title}</p>
+                    {isVictory
+                      ? <span className="text-xs px-1.5 py-0.5 rounded font-bold flex-shrink-0" style={{ background: "rgba(251,191,36,0.2)", color: "#fbbf24", border: "1px solid rgba(251,191,36,0.35)" }}>🏆</span>
+                      : <span className="text-xs px-1.5 py-0.5 rounded flex-shrink-0" style={sc}>{sc.label}</span>
+                    }
+                  </div>
+                  {c.description && <p className="text-xs leading-relaxed" style={{ color: "rgba(255,255,255,0.35)" }}>{c.description.slice(0, 80)}{c.description.length > 80 ? "…" : ""}</p>}
                 </div>
               </div>
-            ))}
-          </div>
 
-          {/* Party Members (users) */}
-          {users.length > 0 && (
-            <div className="mt-4">
-              <h4 className="text-xs font-semibold uppercase tracking-widest mb-2" style={{ color: "rgba(252,165,165,0.7)" }}>🧙 Party</h4>
-              <div className="space-y-2">
-                {users.map(u => {
-                  const lvl = getUserLevel(u.xp ?? 0);
-                  return (
-                    <div key={u.id} className="flex items-center gap-2 p-2 rounded-lg" style={{ background: "rgba(252,165,165,0.05)", border: "1px solid rgba(252,165,165,0.1)" }}>
-                      <div className="w-7 h-7 rounded-lg flex items-center justify-center font-bold text-xs flex-shrink-0" style={{ background: `linear-gradient(135deg, ${u.color}, ${u.color}99)`, color: "#fff" }}>
-                        {u.avatar}
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <p className="text-xs font-semibold" style={{ color: "#fca5a5" }}>{u.name}</p>
-                        <p className="text-xs" style={{ color: lvl.color }}>{lvl.name} · {u.xp ?? 0} XP</p>
-                      </div>
+              {/* Progress bar */}
+              <div className="mb-2">
+                <div className="flex items-center justify-between mb-1">
+                  <span className="text-xs" style={{ color: "rgba(167,139,250,0.6)" }}>{completed}/{total} Quests</span>
+                  <span className="text-xs font-semibold" style={{ color: isVictory ? "#fbbf24" : "#a78bfa" }}>{pct}%</span>
+                </div>
+                <div className="rounded-full overflow-hidden" style={{ height: 4, background: "rgba(255,255,255,0.07)" }}>
+                  <div className="h-full rounded-full transition-all" style={{ width: `${pct}%`, background: isVictory ? "linear-gradient(90deg,#fbbf24,#f59e0b)" : "linear-gradient(90deg,#7c3aed,#a78bfa)" }} />
+                </div>
+              </div>
+
+              {/* Boss quest teaser */}
+              {bossInChain && (
+                <div className="flex items-center gap-1.5 mt-2">
+                  <span className="text-xs" style={{ color: bossInChain.status === "completed" ? "#34d399" : "rgba(239,68,68,0.8)" }}>
+                    {bossInChain.status === "completed" ? "👑 Boss slain" : `👑 Boss: ${bossInChain.title.slice(0, 30)}${bossInChain.title.length > 30 ? "…" : ""}`}
+                  </span>
+                </div>
+              )}
+
+              {/* Lore snippet */}
+              {c.lore && <p className="text-xs mt-2 italic" style={{ color: "rgba(167,139,250,0.4)" }}>&quot;{c.lore.slice(0, 60)}{c.lore.length > 60 ? "…" : ""}&quot;</p>}
+
+              {/* Delete button */}
+              {deleteConfirm === c.id ? (
+                <div className="flex gap-2 mt-3" onClick={e => e.stopPropagation()}>
+                  <button className="text-xs px-2 py-1 rounded" style={{ background: "rgba(239,68,68,0.2)", color: "#f87171", border: "1px solid rgba(239,68,68,0.3)" }} onClick={() => handleDelete(c.id)}>Confirm delete</button>
+                  <button className="text-xs px-2 py-1 rounded" style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.4)" }} onClick={() => setDeleteConfirm(null)}>Cancel</button>
+                </div>
+              ) : (
+                reviewApiKey && (
+                  <button className="text-xs mt-3 opacity-30 hover:opacity-70 transition-opacity" style={{ color: "#f87171" }}
+                    onClick={e => { e.stopPropagation(); setDeleteConfirm(c.id); }}>
+                    Delete
+                  </button>
+                )
+              )}
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Create Campaign Modal */}
+      {createOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: "rgba(0,0,0,0.7)" }} onClick={() => setCreateOpen(false)}>
+          <div className="rounded-2xl p-6 w-full max-w-lg max-h-[90vh] overflow-y-auto" style={{ background: "#0d1017", border: "1px solid rgba(139,92,246,0.4)", boxShadow: "0 0 60px rgba(139,92,246,0.2)" }} onClick={e => e.stopPropagation()}>
+            <h3 className="text-base font-bold mb-4" style={{ color: "#e9d5ff" }}>New Campaign</h3>
+            <div className="space-y-3">
+              {/* Icon picker */}
+              <div>
+                <p className="text-xs mb-1.5" style={{ color: "rgba(167,139,250,0.7)" }}>Icon</p>
+                <div className="flex flex-wrap gap-1">
+                  {CAMPAIGN_ICONS.map(ic => (
+                    <button key={ic} onClick={() => setForm(f => ({ ...f, icon: ic }))} className="w-8 h-8 rounded text-base flex items-center justify-center transition-all"
+                      style={{ background: form.icon === ic ? "rgba(139,92,246,0.3)" : "rgba(255,255,255,0.04)", border: form.icon === ic ? "1px solid rgba(139,92,246,0.6)" : "1px solid rgba(255,255,255,0.06)" }}>
+                      {ic}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <p className="text-xs mb-1" style={{ color: "rgba(167,139,250,0.7)" }}>Title *</p>
+                <input value={form.title} onChange={e => setForm(f => ({ ...f, title: e.target.value }))} placeholder="Campaign name…"
+                  className="w-full rounded-lg px-3 py-2 text-sm outline-none" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(139,92,246,0.25)", color: "#e9d5ff" }} />
+              </div>
+
+              <div>
+                <p className="text-xs mb-1" style={{ color: "rgba(167,139,250,0.7)" }}>Description</p>
+                <input value={form.description} onChange={e => setForm(f => ({ ...f, description: e.target.value }))} placeholder="Short description…"
+                  className="w-full rounded-lg px-3 py-2 text-sm outline-none" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(139,92,246,0.25)", color: "#e9d5ff" }} />
+              </div>
+
+              <div>
+                <p className="text-xs mb-1" style={{ color: "rgba(167,139,250,0.7)" }}>Lore / Flavor Text</p>
+                <textarea value={form.lore} onChange={e => setForm(f => ({ ...f, lore: e.target.value }))} placeholder="The ancient scrolls speak of…"
+                  rows={2} className="w-full rounded-lg px-3 py-2 text-sm outline-none resize-none" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(139,92,246,0.25)", color: "#e9d5ff" }} />
+              </div>
+
+              {/* Quest selector */}
+              {allAvailableQuests.length > 0 && (
+                <div>
+                  <p className="text-xs mb-1.5" style={{ color: "rgba(167,139,250,0.7)" }}>Add Quests ({selectedQuestIds.length} selected)</p>
+                  <div className="rounded-lg overflow-hidden" style={{ border: "1px solid rgba(139,92,246,0.2)", maxHeight: 160, overflowY: "auto" }}>
+                    {allAvailableQuests.map(q => {
+                      const sel = selectedQuestIds.includes(q.id);
+                      return (
+                        <button key={q.id} onClick={() => setSelectedQuestIds(prev => sel ? prev.filter(id => id !== q.id) : [...prev, q.id])}
+                          className="w-full flex items-center gap-2 px-3 py-2 text-left transition-colors"
+                          style={{ background: sel ? "rgba(139,92,246,0.12)" : "transparent", borderBottom: "1px solid rgba(255,255,255,0.04)" }}>
+                          <span className="text-xs" style={{ color: sel ? "#a78bfa" : "rgba(255,255,255,0.25)" }}>{sel ? "☑" : "☐"}</span>
+                          <span className="text-xs truncate" style={{ color: sel ? "#e9d5ff" : "rgba(255,255,255,0.5)" }}>{q.title}</span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                  {selectedQuestIds.length > 0 && (
+                    <div className="mt-2">
+                      <p className="text-xs mb-1" style={{ color: "rgba(167,139,250,0.6)" }}>Boss Quest (optional)</p>
+                      <select value={form.bossQuestId} onChange={e => setForm(f => ({ ...f, bossQuestId: e.target.value }))}
+                        className="w-full rounded-lg px-3 py-2 text-xs outline-none" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(139,92,246,0.25)", color: "#e9d5ff" }}>
+                        <option value="">None</option>
+                        {selectedQuestIds.map(id => {
+                          const q = allAvailableQuests.find(q => q.id === id);
+                          return q ? <option key={id} value={id}>{q.title}</option> : null;
+                        })}
+                      </select>
                     </div>
-                  );
-                })}
+                  )}
+                </div>
+              )}
+
+              {/* Rewards */}
+              <div>
+                <p className="text-xs mb-1.5" style={{ color: "rgba(167,139,250,0.7)" }}>Completion Rewards</p>
+                <div className="grid grid-cols-3 gap-2">
+                  <input type="number" value={form.rewardXp} onChange={e => setForm(f => ({ ...f, rewardXp: e.target.value }))} placeholder="XP"
+                    className="rounded-lg px-3 py-2 text-xs outline-none" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(139,92,246,0.2)", color: "#e9d5ff" }} />
+                  <input type="number" value={form.rewardGold} onChange={e => setForm(f => ({ ...f, rewardGold: e.target.value }))} placeholder="Gold"
+                    className="rounded-lg px-3 py-2 text-xs outline-none" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(139,92,246,0.2)", color: "#e9d5ff" }} />
+                  <input value={form.rewardTitle} onChange={e => setForm(f => ({ ...f, rewardTitle: e.target.value }))} placeholder="Title"
+                    className="rounded-lg px-3 py-2 text-xs outline-none" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(139,92,246,0.2)", color: "#e9d5ff" }} />
+                </div>
+              </div>
+
+              <div className="flex gap-2 pt-2">
+                <button onClick={handleCreate} disabled={!form.title.trim() || submitting || !reviewApiKey}
+                  className="flex-1 py-2 rounded-lg text-sm font-semibold transition-all"
+                  style={{ background: form.title.trim() && reviewApiKey ? "rgba(139,92,246,0.4)" : "rgba(139,92,246,0.1)", color: form.title.trim() && reviewApiKey ? "#e9d5ff" : "rgba(167,139,250,0.3)", border: "1px solid rgba(139,92,246,0.4)" }}>
+                  {submitting ? "Creating…" : !reviewApiKey ? "API key required" : "Create Campaign"}
+                </button>
+                <button onClick={() => setCreateOpen(false)} className="px-4 py-2 rounded-lg text-sm transition-all"
+                  style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.4)", border: "1px solid rgba(255,255,255,0.08)" }}>
+                  Cancel
+                </button>
               </div>
             </div>
-          )}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }
