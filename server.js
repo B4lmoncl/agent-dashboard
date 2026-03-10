@@ -4736,6 +4736,113 @@ app.get('/api/changelog', async (req, res) => {
   res.json(changelogCache);
 });
 
+// GET /api/player/:name/character — full character screen data
+app.get('/api/player/:name/character', (req, res) => {
+  const uid = req.params.name.toLowerCase();
+  const u = users[uid];
+  if (!u) return res.status(404).json({ error: 'Player not found' });
+
+  const xp = u.xp || 0;
+  const lvlInfo = getLevelInfo(xp);
+  const xpProgress = lvlInfo.nextXp
+    ? Math.min(1, (xp - lvlInfo.xpRequired) / (lvlInfo.nextXp - lvlInfo.xpRequired))
+    : 1;
+
+  // Stats with and without set bonus
+  const equippedIds = Object.values(u.equipment || {}).filter(Boolean);
+  let baseStats = { kraft: 0, ausdauer: 0, weisheit: 0, glueck: 0 };
+  const equippedItems = [];
+  for (const itemId of equippedIds) {
+    const item = FULL_GEAR_ITEMS.find(g => g.id === itemId);
+    if (item) {
+      equippedItems.push(item);
+      for (const [stat, val] of Object.entries(item.stats)) {
+        baseStats[stat] = (baseStats[stat] || 0) + val;
+      }
+    }
+  }
+  const fullStats = getUserStats(uid);
+
+  // Set bonus info
+  let setBonusInfo = null;
+  const setCount = {};
+  for (const item of equippedItems) {
+    setCount[item.setId] = (setCount[item.setId] || 0) + 1;
+  }
+  for (const [setId, count] of Object.entries(setCount)) {
+    const sb = SET_BONUSES[setId];
+    if (sb && count >= 3) {
+      setBonusInfo = { name: sb.name, count, total: 6 };
+      break;
+    }
+  }
+
+  // Class tier
+  let classTier = null;
+  if (u.classId) {
+    const classData = store.classes ? store.classes.find(c => c.id === u.classId) : null;
+    if (classData && classData.tiers) {
+      const tier = [...classData.tiers].reverse().find(t => xp >= t.minXp);
+      if (tier) classTier = tier.title;
+    }
+  }
+
+  // Inventory — all owned gear items
+  const inventoryIds = u.inventory || [];
+  const inventoryItems = inventoryIds.map(id => {
+    const item = FULL_GEAR_ITEMS.find(g => g.id === id);
+    if (!item) return null;
+    return { id: item.id, slot: item.slot, name: item.name, emoji: item.emoji, tier: item.tier, minLevel: item.minLevel };
+  }).filter(Boolean);
+
+  // Also add equipped items to inventory if not already there
+  for (const item of equippedItems) {
+    if (!inventoryItems.find(i => i.id === item.id)) {
+      inventoryItems.push({ id: item.id, slot: item.slot, name: item.name, emoji: item.emoji, tier: item.tier, minLevel: item.minLevel });
+    }
+  }
+
+  // Companion
+  const companion = u.companion ? {
+    name: u.companion.name,
+    emoji: u.companion.emoji,
+    bondLevel: u.companion.bondLevel || 0,
+  } : null;
+
+  res.json({
+    name: u.name || uid,
+    level: lvlInfo.level,
+    xp,
+    xpToNext: lvlInfo.nextXp,
+    xpProgress,
+    title: lvlInfo.title,
+    classId: u.classId || null,
+    classTier,
+    companion,
+    equipment: u.equipment || {},
+    stats: { kraft: fullStats.kraft || 0, ausdauer: fullStats.ausdauer || 0, weisheit: fullStats.weisheit || 0, glueck: fullStats.glueck || 0 },
+    baseStats,
+    inventory: inventoryItems,
+    forgeTemp: Math.round((u.forgeTemp || 0) * 100),
+    season: 'spring',
+    setBonusInfo,
+  });
+});
+
+// POST /api/player/:name/unequip/:slot [auth]
+app.post('/api/player/:name/unequip/:slot', requireApiKey, (req, res) => {
+  const uid = req.params.name.toLowerCase();
+  const u = users[uid];
+  if (!u) return res.status(404).json({ error: 'Player not found' });
+  const slot = req.params.slot;
+  if (!EQUIPMENT_SLOTS.includes(slot)) return res.status(400).json({ error: 'Invalid slot' });
+  if (!u.equipment) u.equipment = {};
+  delete u.equipment[slot];
+  saveUsers();
+  const stats = getUserStats(uid);
+  res.json({ ok: true, equipment: u.equipment, stats });
+});
+
 // Serve index.html for non-API routes (SPA fallback)
 app.get('*', (req, res) => {
   const indexPath = path.join(__dirname, 'out', 'index.html');

@@ -419,7 +419,7 @@ export default function Dashboard() {
   const [bulkLoading, setBulkLoading] = useState(false);
   const [reviewComments, setReviewComments] = useState<Record<string, string>>({});
   const [typeFilter, setTypeFilter] = useState<string>("all");
-  const [dashView, setDashView] = useState<"questBoard" | "npcBoard" | "klassenquests" | "campaign" | "leaderboard" | "honors" | "season" | "shop" | "roadmap" | "changelog">("questBoard");
+  const [dashView, setDashView] = useState<"questBoard" | "npcBoard" | "klassenquests" | "character" | "campaign" | "leaderboard" | "honors" | "season" | "shop" | "roadmap" | "changelog">("questBoard");
   const [lbSubTab, setLbSubTab] = useState<"agents" | "players">("players");
   const [createQuestOpen, setCreateQuestOpen] = useState(false);
   const [questBoardAgentOpen, setQuestBoardAgentOpen] = useState(false);
@@ -1332,6 +1332,7 @@ export default function Dashboard() {
           {[
             { key: "questBoard",    label: "⚔ Quest Board",     tutorialKey: "quest-board-tab" },
             { key: "klassenquests", label: "🎓 Klassenquests",  tutorialKey: null },
+            ...(playerName ? [{ key: "character", label: "🧙 Character", tutorialKey: null }] : []),
             { key: "npcBoard",      label: "🤖 NPC Quest Board", tutorialKey: "npc-board-tab" },
             { key: "leaderboard", label: "🏆 Leaderboard",     tutorialKey: "leaderboard-tab" },
             { key: "honors",      label: "🏅 Honors",          tutorialKey: null },
@@ -1938,6 +1939,11 @@ export default function Dashboard() {
             </div>
             <CVBuilderPanel quests={quests} users={users} playerName={playerName} />
           </div>
+        )}
+
+        {/* ── CHARACTER TAB ── */}
+        {dashView === "character" && playerName && (
+          <CharacterView playerName={playerName} apiKey={reviewApiKey} users={users} classesList={classesList} />
         )}
 
         {/* ── NPC QUEST BOARD (Agent Tab) ── */}
@@ -6621,6 +6627,454 @@ interface RoadmapItem {
   status: "planned" | "in_progress" | "done";
   eta: string;
   category: string;
+}
+
+// ─── CharacterView ────────────────────────────────────────────────────────────
+
+interface CharacterData {
+  name: string;
+  level: number;
+  xp: number;
+  xpToNext: number | null;
+  title: string;
+  classId: string | null;
+  classTier: string | null;
+  classFantasy: string | null;
+  classIcon: string | null;
+  companion: { name: string; emoji: string; bondLevel: number } | null;
+  equipment: Record<string, string | null>;
+  stats: { kraft: number; ausdauer: number; weisheit: number; glueck: number; _setBonus?: number };
+  baseStats: { kraft: number; ausdauer: number; weisheit: number; glueck: number };
+  inventory: { id: string; slot: string; name: string; emoji: string; tier: number; minLevel: number }[];
+  forgeTemp: number;
+  season: string;
+  setBonusInfo: { name: string; count: number; total: number } | null;
+  xpProgress: number;
+}
+
+const RARITY_BORDER: Record<number, string> = {
+  1: "#9ca3af",  // white/grey
+  2: "#22c55e",  // green
+  3: "#3b82f6",  // blue
+  4: "#a855f7",  // purple
+  5: "#f97316",  // orange
+};
+
+const EQUIP_SLOT_LABELS: { slot: string; emoji: string; label: string }[] = [
+  { slot: "helm",   emoji: "🪖", label: "Helm" },
+  { slot: "weapon", emoji: "⚔️", label: "Waffe" },
+  { slot: "shield", emoji: "🛡️", label: "Schild" },
+  { slot: "armor",  emoji: "🧥", label: "Rüstung" },
+  { slot: "amulet", emoji: "📿", label: "Amulett" },
+  { slot: "boots",  emoji: "👢", label: "Stiefel" },
+];
+
+function CharacterView({ playerName, apiKey, users, classesList }: { playerName: string; apiKey: string; users: User[]; classesList: ClassDef[] }) {
+  const [charData, setCharData] = useState<CharacterData | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [equipping, setEquipping] = useState<string | null>(null);
+  const [unequipping, setUnequipping] = useState<string | null>(null);
+
+  const petals = useMemo(() => Array.from({ length: 20 }, (_, i) => ({
+    id: i,
+    left: `${(i * 5.1 + 3) % 100}%`,
+    delay: `${(i * 0.41) % 8}s`,
+    duration: `${6 + (i * 0.37) % 4}s`,
+  })), []);
+
+  const fetchChar = useCallback(async () => {
+    try {
+      const r = await fetch(`/api/player/${encodeURIComponent(playerName)}/character`);
+      if (r.ok) setCharData(await r.json());
+    } catch { /* ignore */ }
+    setLoading(false);
+  }, [playerName]);
+
+  useEffect(() => { fetchChar(); }, [fetchChar]);
+
+  const handleEquip = async (itemId: string) => {
+    if (!apiKey) return;
+    setEquipping(itemId);
+    try {
+      await fetch(`/api/player/${encodeURIComponent(playerName)}/equip/${itemId}`, {
+        method: "POST",
+        headers: { "x-api-key": apiKey },
+      });
+      await fetchChar();
+    } finally { setEquipping(null); }
+  };
+
+  const handleUnequip = async (slot: string) => {
+    if (!apiKey) return;
+    setUnequipping(slot);
+    try {
+      await fetch(`/api/player/${encodeURIComponent(playerName)}/unequip/${slot}`, {
+        method: "POST",
+        headers: { "x-api-key": apiKey },
+      });
+      await fetchChar();
+    } finally { setUnequipping(null); }
+  };
+
+  const loggedInUser = users.find(u => u.name.toLowerCase() === playerName.toLowerCase());
+  const cls = charData?.classId ? classesList.find(c => c.id === charData.classId) : null;
+
+  return (
+    <div className="relative overflow-hidden rounded-2xl" style={{ minHeight: 520 }}>
+      {/* ── Layer 1: Sky gradient ── */}
+      <div
+        className="absolute inset-0"
+        style={{ background: "linear-gradient(180deg, #fce4ec 0%, #f8bbd0 30%, #e1bee7 60%, #bbdefb 100%)" }}
+      />
+
+      {/* ── Layer 2: Torii Gate (CSS-only pixel art) ── */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none" style={{ zIndex: 1 }}>
+        <div style={{ position: "relative", width: 200, height: 250, marginTop: 20 }}>
+          {/* Top curved beam */}
+          <div style={{
+            position: "absolute", top: 0, left: -16, right: -16, height: 22,
+            background: "#c62828", borderRadius: "50% 50% 0 0 / 60% 60% 0 0",
+            boxShadow: "0 3px 8px rgba(0,0,0,0.3)",
+          }} />
+          {/* Second horizontal beam */}
+          <div style={{
+            position: "absolute", top: 30, left: 0, right: 0, height: 16,
+            background: "#d32f2f", borderRadius: 3,
+            boxShadow: "0 2px 6px rgba(0,0,0,0.25)",
+          }} />
+          {/* Left pillar */}
+          <div style={{
+            position: "absolute", top: 30, left: 16, width: 20, height: 220,
+            background: "linear-gradient(180deg, #d32f2f 0%, #b71c1c 100%)",
+            borderRadius: "3px 3px 6px 6px",
+            boxShadow: "2px 0 8px rgba(0,0,0,0.2)",
+          }} />
+          {/* Right pillar */}
+          <div style={{
+            position: "absolute", top: 30, right: 16, width: 20, height: 220,
+            background: "linear-gradient(180deg, #d32f2f 0%, #b71c1c 100%)",
+            borderRadius: "3px 3px 6px 6px",
+            boxShadow: "-2px 0 8px rgba(0,0,0,0.2)",
+          }} />
+          {/* Shadow under gate */}
+          <div style={{
+            position: "absolute", bottom: -8, left: 8, right: 8, height: 12,
+            background: "rgba(0,0,0,0.15)", borderRadius: "50%", filter: "blur(6px)",
+          }} />
+        </div>
+      </div>
+
+      {/* ── Layer 3: Cherry blossom branches ── */}
+      {/* Left branch */}
+      <div className="cherry-branch absolute pointer-events-none" style={{ top: -10, left: -20, zIndex: 2 }}>
+        <div style={{ position: "relative", width: 180, height: 200 }}>
+          <div style={{ position: "absolute", top: 20, left: 30, width: 120, height: 10, background: "#5d4037", borderRadius: "0 50% 50% 0", transform: "rotate(20deg)" }} />
+          <div style={{ position: "absolute", top: 50, left: 60, width: 80, height: 8, background: "#5d4037", borderRadius: "0 50% 50% 0", transform: "rotate(35deg)" }} />
+          <div style={{ position: "absolute", top: 10, left: 80, width: 60, height: 7, background: "#5d4037", borderRadius: "50%", transform: "rotate(-15deg)" }} />
+          {[{x:35,y:15},{x:80,y:5},{x:120,y:25},{x:60,y:48},{x:95,y:55},{x:130,y:30},{x:50,y:30},{x:110,y:10},{x:145,y:40},{x:70,y:62},{x:40,y:60},{x:100,y:35}].map((p, i) => (
+            <div key={i} style={{ position: "absolute", left: p.x, top: p.y, width: 10, height: 10, background: "#f48fb1", borderRadius: "50% 0 50% 0", opacity: 0.85 }} />
+          ))}
+        </div>
+      </div>
+      {/* Right branch */}
+      <div className="cherry-branch absolute pointer-events-none" style={{ top: -10, right: -20, zIndex: 2, animationDelay: "2s" }}>
+        <div style={{ position: "relative", width: 180, height: 200, transform: "scaleX(-1)" }}>
+          <div style={{ position: "absolute", top: 20, left: 30, width: 120, height: 10, background: "#5d4037", borderRadius: "0 50% 50% 0", transform: "rotate(20deg)" }} />
+          <div style={{ position: "absolute", top: 50, left: 60, width: 80, height: 8, background: "#5d4037", borderRadius: "0 50% 50% 0", transform: "rotate(35deg)" }} />
+          <div style={{ position: "absolute", top: 10, left: 80, width: 60, height: 7, background: "#5d4037", borderRadius: "50%", transform: "rotate(-15deg)" }} />
+          {[{x:35,y:15},{x:80,y:5},{x:120,y:25},{x:60,y:48},{x:95,y:55},{x:130,y:30},{x:50,y:30},{x:110,y:10},{x:145,y:40},{x:70,y:62},{x:40,y:60},{x:100,y:35}].map((p, i) => (
+            <div key={i} style={{ position: "absolute", left: p.x, top: p.y, width: 10, height: 10, background: "#f48fb1", borderRadius: "50% 0 50% 0", opacity: 0.85 }} />
+          ))}
+        </div>
+      </div>
+
+      {/* ── Layer 4: Falling petals ── */}
+      {petals.map(p => (
+        <div
+          key={p.id}
+          className="petal"
+          style={{ left: p.left, animationDelay: p.delay, animationDuration: p.duration, zIndex: 3 }}
+        />
+      ))}
+
+      {/* ── Layer 5: Ground ── */}
+      <div
+        className="absolute bottom-0 left-0 right-0 pointer-events-none"
+        style={{ height: 60, background: "linear-gradient(0deg, #4a3728 0%, #5d4037 20%, transparent 100%)", zIndex: 2 }}
+      />
+
+      {/* ── Main 3-column layout ── */}
+      <div className="relative flex gap-3 p-4" style={{ zIndex: 4, minHeight: 460 }}>
+
+        {/* LEFT: Inventory Panel */}
+        <div
+          className="flex-shrink-0 rounded-xl p-3 overflow-y-auto"
+          style={{ width: 250, background: "rgba(0,0,0,0.75)", border: "1px solid rgba(255,255,255,0.1)", maxHeight: 440 }}
+        >
+          <p className="text-xs font-bold uppercase tracking-wider mb-3" style={{ color: "rgba(255,255,255,0.5)" }}>⚔ Ausrüstung</p>
+
+          {/* Equipment Slots */}
+          <div className="space-y-1.5 mb-4">
+            {EQUIP_SLOT_LABELS.map(({ slot, emoji, label }) => {
+              const equippedItemId = charData?.equipment[slot];
+              const item = equippedItemId
+                ? charData?.inventory.find(i => i.id === equippedItemId) ?? null
+                : null;
+              const borderColor = item ? (RARITY_BORDER[item.tier] ?? "#9ca3af") : "rgba(255,255,255,0.1)";
+              return (
+                <div
+                  key={slot}
+                  className="flex items-center gap-2 px-2 py-1.5 rounded-lg"
+                  style={{ background: "rgba(255,255,255,0.04)", border: `1px solid ${borderColor}` }}
+                >
+                  <span className="text-sm w-5 text-center">{emoji}</span>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-xs font-medium truncate" style={{ color: item ? "#e8e8e8" : "rgba(255,255,255,0.3)" }}>
+                      {item ? `${item.emoji} ${item.name}` : <span style={{ color: "rgba(255,255,255,0.2)" }}>Leer</span>}
+                    </p>
+                    <p className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>{label}</p>
+                  </div>
+                  {item && (
+                    <button
+                      onClick={() => handleUnequip(slot)}
+                      disabled={unequipping === slot}
+                      className="text-xs px-1.5 py-0.5 rounded"
+                      style={{ background: "rgba(239,68,68,0.15)", color: "#f87171", border: "1px solid rgba(239,68,68,0.2)", cursor: "pointer" }}
+                    >
+                      {unequipping === slot ? "…" : "−"}
+                    </button>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Divider */}
+          <div style={{ borderTop: "1px solid rgba(255,255,255,0.08)", marginBottom: 10 }} />
+          <p className="text-xs font-bold uppercase tracking-wider mb-2" style={{ color: "rgba(255,255,255,0.35)" }}>🎒 Inventar</p>
+
+          {loading && <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>Lädt...</p>}
+          {!loading && charData && (() => {
+            const equippedIds = new Set(Object.values(charData.equipment).filter(Boolean));
+            const unequipped = charData.inventory.filter(i => !equippedIds.has(i.id));
+            if (unequipped.length === 0) return (
+              <p className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>Keine Gegenstände im Inventar.</p>
+            );
+            return (
+              <div className="space-y-1.5">
+                {unequipped.map(item => {
+                  const locked = item.minLevel > charData.level;
+                  const bc = RARITY_BORDER[item.tier] ?? "#9ca3af";
+                  return (
+                    <div
+                      key={item.id}
+                      className="flex items-center gap-2 px-2 py-1.5 rounded-lg"
+                      style={{ background: "rgba(255,255,255,0.03)", border: `1px solid ${locked ? "rgba(255,255,255,0.08)" : bc}`, opacity: locked ? 0.5 : 1 }}
+                    >
+                      <span className="text-sm">{item.emoji}</span>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-xs font-medium truncate" style={{ color: locked ? "rgba(255,255,255,0.3)" : "#e8e8e8" }}>
+                          {locked ? `🔒 Lv.${item.minLevel}` : item.name}
+                        </p>
+                      </div>
+                      {!locked && (
+                        <button
+                          onClick={() => handleEquip(item.id)}
+                          disabled={equipping === item.id}
+                          className="text-xs px-1.5 py-0.5 rounded"
+                          style={{ background: "rgba(34,197,94,0.15)", color: "#4ade80", border: "1px solid rgba(34,197,94,0.2)", cursor: "pointer" }}
+                        >
+                          {equipping === item.id ? "…" : "+"}
+                        </button>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            );
+          })()}
+        </div>
+
+        {/* CENTER: Character Area */}
+        <div className="flex-1 flex flex-col items-center justify-center relative" style={{ minHeight: 360 }}>
+          {/* Hero silhouette placeholder */}
+          <div className="hero-silhouette flex flex-col items-center gap-3">
+            <svg width="90" height="160" viewBox="0 0 90 160" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ filter: "drop-shadow(0 4px 16px rgba(0,0,0,0.5))" }}>
+              {/* Head */}
+              <ellipse cx="45" cy="22" rx="16" ry="18" fill="rgba(80,80,100,0.7)" />
+              {/* Body */}
+              <rect x="28" y="40" width="34" height="52" rx="8" fill="rgba(70,70,90,0.7)" />
+              {/* Left arm */}
+              <rect x="10" y="42" width="16" height="42" rx="7" fill="rgba(75,75,95,0.7)" transform="rotate(-5 18 63)" />
+              {/* Right arm */}
+              <rect x="64" y="42" width="16" height="42" rx="7" fill="rgba(75,75,95,0.7)" transform="rotate(5 72 63)" />
+              {/* Left leg */}
+              <rect x="27" y="90" width="16" height="56" rx="7" fill="rgba(65,65,85,0.7)" transform="rotate(-3 35 118)" />
+              {/* Right leg */}
+              <rect x="47" y="90" width="16" height="56" rx="7" fill="rgba(65,65,85,0.7)" transform="rotate(3 55 118)" />
+              {/* Glow */}
+              <ellipse cx="45" cy="22" rx="16" ry="18" fill="none" stroke="rgba(167,139,250,0.3)" strokeWidth="1.5" />
+            </svg>
+
+            {/* Companion placeholder */}
+            {charData?.companion && (
+              <div
+                className="flex items-center gap-2 px-3 py-1.5 rounded-xl"
+                style={{ background: "rgba(0,0,0,0.55)", border: "1px solid rgba(255,255,255,0.15)" }}
+              >
+                <span className="text-xl">{charData.companion.emoji}</span>
+                <div>
+                  <p className="text-xs font-semibold" style={{ color: "#e8e8e8" }}>{charData.companion.name}</p>
+                  <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>
+                    {"❤️".repeat(Math.min(charData.companion.bondLevel, 5))}
+                  </p>
+                </div>
+              </div>
+            )}
+
+            <p
+              className="text-sm font-semibold text-center px-4"
+              style={{ color: "rgba(255,255,255,0.45)", animation: "pulse 3s ease-in-out infinite", textShadow: "0 1px 8px rgba(0,0,0,0.6)" }}
+            >
+              Dein Held erwacht bald...
+            </p>
+          </div>
+        </div>
+
+        {/* RIGHT: Stats Panel */}
+        <div
+          className="flex-shrink-0 rounded-xl p-3"
+          style={{ width: 250, background: "rgba(0,0,0,0.75)", border: "1px solid rgba(255,255,255,0.1)" }}
+        >
+          <p className="text-xs font-bold uppercase tracking-wider mb-3" style={{ color: "rgba(255,255,255,0.5)" }}>📊 Stats</p>
+
+          {loading && <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>Lädt...</p>}
+          {!loading && charData && (() => {
+            const { kraft, ausdauer, weisheit, glueck } = charData.stats;
+            const base = charData.baseStats;
+            const statRows = [
+              { icon: "⚔️", label: "Kraft",    val: kraft,    base: base.kraft },
+              { icon: "🛡️", label: "Ausdauer", val: ausdauer, base: base.ausdauer },
+              { icon: "🧠", label: "Weisheit", val: weisheit, base: base.weisheit },
+              { icon: "🍀", label: "Glück",    val: glueck,   base: base.glueck },
+            ];
+            return (
+              <>
+                <div className="space-y-2 mb-4">
+                  {statRows.map(s => {
+                    const bonus = s.val - s.base;
+                    return (
+                      <div key={s.label} className="flex items-center gap-2">
+                        <span className="text-sm w-5 text-center">{s.icon}</span>
+                        <span className="text-xs flex-1" style={{ color: "rgba(255,255,255,0.65)" }}>{s.label}</span>
+                        <span className="text-xs font-mono font-bold" style={{ color: "#e8e8e8" }}>{s.val}</span>
+                        {bonus > 0 && (
+                          <span className="text-xs font-mono" style={{ color: "#4ade80" }}>(+{bonus})</span>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+
+                {/* Set Bonus */}
+                {charData.setBonusInfo && (
+                  <div className="mb-3 px-2 py-1.5 rounded-lg" style={{ background: "rgba(167,139,250,0.1)", border: "1px solid rgba(167,139,250,0.25)" }}>
+                    <p className="text-xs font-semibold" style={{ color: "#a78bfa" }}>
+                      {charData.setBonusInfo.name} {charData.setBonusInfo.count}/{charData.setBonusInfo.total}
+                      {charData.setBonusInfo.count >= charData.setBonusInfo.total ? " 🔥" : " ✨"}
+                    </p>
+                  </div>
+                )}
+
+                {/* Level bar */}
+                <div className="mb-3">
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="text-xs font-bold" style={{ color: "#a78bfa" }}>Lv.{charData.level}</span>
+                    <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.3)" }}>
+                      {charData.xp}{charData.xpToNext ? ` / ${charData.xpToNext}` : ""} XP
+                    </span>
+                  </div>
+                  <div className="rounded-full overflow-hidden" style={{ height: 5, background: "rgba(255,255,255,0.07)" }}>
+                    <div
+                      className="h-full rounded-full"
+                      style={{ width: `${(charData.xpProgress * 100).toFixed(1)}%`, background: "linear-gradient(90deg, #7c3aed, #a78bfa)" }}
+                    />
+                  </div>
+                  <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.3)" }}>{charData.title}</p>
+                </div>
+
+                {/* Class */}
+                {cls && (
+                  <div className="mb-3 px-2 py-1.5 rounded-lg" style={{ background: "rgba(167,139,250,0.06)", border: "1px solid rgba(167,139,250,0.15)" }}>
+                    <div className="flex items-center gap-2">
+                      <span className="text-base">{cls.icon}</span>
+                      <div>
+                        <p className="text-xs font-semibold" style={{ color: "#c4b5fd" }}>{cls.fantasy}</p>
+                        {charData.classTier && <p className="text-xs" style={{ color: "rgba(167,139,250,0.5)" }}>{charData.classTier}</p>}
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* Forge Temp */}
+                <div>
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>🔥 Forge Temp</span>
+                    <span className="text-xs font-mono" style={{ color: charData.forgeTemp >= 70 ? "#f97316" : charData.forgeTemp >= 40 ? "#facc15" : "#9ca3af" }}>
+                      {charData.forgeTemp}%
+                    </span>
+                  </div>
+                  <div className="rounded-full overflow-hidden" style={{ height: 3, background: "rgba(255,255,255,0.07)" }}>
+                    <div
+                      className="h-full rounded-full"
+                      style={{
+                        width: `${charData.forgeTemp}%`,
+                        background: charData.forgeTemp >= 70 ? "linear-gradient(90deg, #ea580c, #f97316)" : charData.forgeTemp >= 40 ? "linear-gradient(90deg, #ca8a04, #facc15)" : "linear-gradient(90deg, #374151, #6b7280)",
+                      }}
+                    />
+                  </div>
+                </div>
+              </>
+            );
+          })()}
+        </div>
+      </div>
+
+      {/* ── Bottom Info Bar ── */}
+      <div
+        className="relative flex items-center gap-4 px-4 py-3"
+        style={{ zIndex: 5, background: "rgba(0,0,0,0.82)", borderTop: "1px solid rgba(255,255,255,0.08)" }}
+      >
+        {/* Left: name + title */}
+        <div className="flex-1 min-w-0">
+          <p className="text-sm font-bold truncate" style={{ color: "#e8e8e8" }}>{playerName}</p>
+          {charData && <p className="text-xs truncate" style={{ color: "rgba(255,255,255,0.35)" }}>{charData.title}</p>}
+        </div>
+        {/* Center: class */}
+        {cls && (
+          <div className="flex items-center gap-2 shrink-0">
+            <span className="text-lg">{cls.icon}</span>
+            <div className="text-center">
+              <p className="text-xs font-semibold" style={{ color: "#c4b5fd" }}>{cls.fantasy}</p>
+              {charData?.classTier && <p className="text-xs" style={{ color: "rgba(167,139,250,0.45)" }}>{charData.classTier}</p>}
+            </div>
+          </div>
+        )}
+        {/* Right: companion + bond */}
+        {charData?.companion && (
+          <div className="flex items-center gap-2 shrink-0">
+            <span className="text-xl">{charData.companion.emoji}</span>
+            <div>
+              <p className="text-xs font-semibold" style={{ color: "rgba(255,255,255,0.7)" }}>{charData.companion.name}</p>
+              <p className="text-xs" style={{ color: "#f48fb1" }}>
+                {"❤️".repeat(Math.min(charData.companion.bondLevel, 5))}
+              </p>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
 }
 
 const ROADMAP_STATUS_CONFIG: Record<string, { label: string; color: string; bg: string; border: string; dot: string }> = {
