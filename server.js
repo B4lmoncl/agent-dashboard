@@ -1404,9 +1404,32 @@ function onQuestCompletedByUser(userId, quest) {
   delete u._todayCount;
   delete u._completedTypes;
   delete u._bossDefeated;
-  // Loot drop (25% for quests)
+  // Loot drop — level-scaled
+  const { level: playerLevel } = getLevelInfo(u.xp || 0);
   const pityGuaranteed = checkLootPity(userId);
-  const droppedLoot = rollLoot(pityGuaranteed ? 1 : 0.25);
+  const isBossQuest = quest.type === 'boss' || (quest.parentQuestId && (() => {
+    const parent = quests.find(q => q.id === quest.parentQuestId);
+    return parent && parent.type === 'boss';
+  })());
+  let dropChance = pityGuaranteed ? 1 : 0.25;
+  let forcedMinRarity = null;
+  if (isBossQuest) {
+    dropChance = 1; // guaranteed drop on boss quests
+    if (playerLevel >= 25 && Math.random() < 0.10) forcedMinRarity = 'legendary';
+    else if (playerLevel >= 15 && Math.random() < 0.50) forcedMinRarity = 'epic';
+    else forcedMinRarity = 'rare';
+  }
+  let droppedLoot = null;
+  if (forcedMinRarity) {
+    // Guaranteed minimum rarity — pick from that tier directly
+    const pool = (lootTables[forcedMinRarity] || lootTables.rare || []).filter(item => (item.minLevel || 1) <= playerLevel);
+    if (pool.length > 0) {
+      const item = pool[Math.floor(Math.random() * pool.length)];
+      droppedLoot = { ...item, rarity: forcedMinRarity, rarityColor: RARITY_COLORS[forcedMinRarity] };
+    }
+  } else {
+    droppedLoot = rollLoot(dropChance, playerLevel);
+  }
   if (droppedLoot) {
     resetLootPity(userId);
     addLootToInventory(userId, droppedLoot);
@@ -1458,17 +1481,42 @@ const RARITY_COLORS = {
   legendary: '#f97316',
 };
 
-function rollLoot(dropChance) {
+const RARITY_ORDER = ['common', 'uncommon', 'rare', 'epic', 'legendary'];
+
+function getMaxRarity(playerLevel) {
+  if (playerLevel >= 25) return 'legendary';
+  if (playerLevel >= 17) return 'epic';
+  if (playerLevel >= 9)  return 'rare';
+  return 'uncommon';
+}
+
+function rollLoot(dropChance, playerLevel = 1) {
   if (Math.random() > dropChance) return null;
-  const roll = Math.random() * 100;
+  const maxRarity = getMaxRarity(playerLevel);
+  const maxIdx = RARITY_ORDER.indexOf(maxRarity);
+  // Build filtered weights (only rarities up to maxRarity)
+  const filteredWeights = {};
+  let total = 0;
+  for (const [r, w] of Object.entries(RARITY_WEIGHTS)) {
+    if (RARITY_ORDER.indexOf(r) <= maxIdx) {
+      filteredWeights[r] = w;
+      total += w;
+    }
+  }
+  const roll = Math.random() * total;
   let cumulative = 0;
   let rarity = 'common';
-  for (const [r, w] of Object.entries(RARITY_WEIGHTS)) {
+  for (const [r, w] of Object.entries(filteredWeights)) {
     cumulative += w;
     if (roll < cumulative) { rarity = r; break; }
   }
-  const pool = lootTables[rarity] || lootTables.common;
-  if (!pool || pool.length === 0) return null;
+  const pool = (lootTables[rarity] || lootTables.common).filter(item => (item.minLevel || 1) <= playerLevel);
+  if (!pool || pool.length === 0) {
+    const fallback = (lootTables.common || []);
+    if (fallback.length === 0) return null;
+    const item = fallback[Math.floor(Math.random() * fallback.length)];
+    return { ...item, rarity: 'common', rarityColor: RARITY_COLORS['common'] };
+  }
   const item = pool[Math.floor(Math.random() * pool.length)];
   return { ...item, rarity, rarityColor: RARITY_COLORS[rarity] };
 }
@@ -4401,7 +4449,8 @@ app.post('/api/rituals/:id/complete', requireApiKey, (req, res) => {
 
     // Loot drop (10% chance + GLÜ bonus)
     const dropBonus = getUserDropBonus(uid);
-    const dropped = rollLoot(0.10 + dropBonus);
+    const { level: ritualPlayerLevel } = getLevelInfo(u.xp || 0);
+    const dropped = rollLoot(0.10 + dropBonus, ritualPlayerLevel);
     if (dropped) {
       resetLootPity(uid);
       addLootToInventory(uid, dropped);
@@ -4483,7 +4532,8 @@ app.post('/api/habits/:id/score', requireApiKey, (req, res) => {
     u.xp = (u.xp || 0) + 3;
     // Loot drop (5% chance)
     const dropBonus = getUserDropBonus(uid);
-    const dropped = rollLoot(0.05 + dropBonus);
+    const { level: habitPlayerLevel } = getLevelInfo(u.xp || 0);
+    const dropped = rollLoot(0.05 + dropBonus, habitPlayerLevel);
     if (dropped) {
       resetLootPity(uid);
       addLootToInventory(uid, dropped);

@@ -419,7 +419,7 @@ export default function Dashboard() {
   const [bulkLoading, setBulkLoading] = useState(false);
   const [reviewComments, setReviewComments] = useState<Record<string, string>>({});
   const [typeFilter, setTypeFilter] = useState<string>("all");
-  const [dashView, setDashView] = useState<"questBoard" | "npcBoard" | "campaign" | "leaderboard" | "honors" | "season" | "shop" | "roadmap" | "changelog">("questBoard");
+  const [dashView, setDashView] = useState<"questBoard" | "npcBoard" | "klassenquests" | "campaign" | "leaderboard" | "honors" | "season" | "shop" | "roadmap" | "changelog">("questBoard");
   const [lbSubTab, setLbSubTab] = useState<"agents" | "players">("players");
   const [createQuestOpen, setCreateQuestOpen] = useState(false);
   const [questBoardAgentOpen, setQuestBoardAgentOpen] = useState(false);
@@ -1330,8 +1330,9 @@ export default function Dashboard() {
         {/* View toggle */}
         <div className="flex gap-1 flex-wrap" style={{ background: "#111", borderRadius: 8, padding: 3, display: "inline-flex" }}>
           {[
-            { key: "questBoard",  label: "⚔ Quest Board",     tutorialKey: "quest-board-tab" },
-            { key: "npcBoard",    label: "🤖 NPC Quest Board", tutorialKey: "npc-board-tab" },
+            { key: "questBoard",    label: "⚔ Quest Board",     tutorialKey: "quest-board-tab" },
+            { key: "klassenquests", label: "🎓 Klassenquests",  tutorialKey: null },
+            { key: "npcBoard",      label: "🤖 NPC Quest Board", tutorialKey: "npc-board-tab" },
             { key: "leaderboard", label: "🏆 Leaderboard",     tutorialKey: "leaderboard-tab" },
             { key: "honors",      label: "🏅 Honors",          tutorialKey: null },
             { key: "campaign",    label: "🐉 Campaign",        tutorialKey: "campaign-tab" },
@@ -1516,10 +1517,12 @@ export default function Dashboard() {
                 </section>
               )}
 
-              {/* Companions Widget */}
-              <div className="mb-5">
-                <CompanionsWidget user={loggedInUser} streak={playerStreak} playerName={playerName} apiKey={reviewApiKey} onDobbieClick={() => { setDashView("npcBoard"); setNpcBoardFilter("dobbie"); }} onUserRefresh={refresh} />
-              </div>
+              {/* Companions Widget — only for logged-in players */}
+              {playerName && (
+                <div className="mb-5">
+                  <CompanionsWidget user={loggedInUser} streak={playerStreak} playerName={playerName} apiKey={reviewApiKey} onDobbieClick={() => { setDashView("npcBoard"); setNpcBoardFilter("dobbie"); }} onUserRefresh={refresh} />
+                </div>
+              )}
 
               {/* Quest Board — player types only */}
               <div>
@@ -1531,7 +1534,11 @@ export default function Dashboard() {
                           <h2 className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.4)" }}>⚔ Quest Board</h2>
                           <InfoTooltip text="Your personal quest board. Claim quests to start them, complete them to earn XP and Gold. Filter by type to find what interests you." />
                         </div>
-                        <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.25)" }}>{playerVisibleOpen.length} open · {playerVisibleInProgress.length} in progress</p>
+                        <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.25)" }}>
+                          {playerName
+                            ? `${playerVisibleOpen.length} verfügbar · ${playerVisibleInProgress.length} in Bearbeitung`
+                            : "Logge dich ein · 0 verfügbar"}
+                        </p>
                       </div>
                       <div className="flex items-center gap-1">
                         {(isAdmin || !playerName) && (
@@ -1918,26 +1925,20 @@ export default function Dashboard() {
                 </aside>
               </div>
 
-              {/* Klassenquests — collapsible, bottom of Quest Board */}
-              <div className="mt-6">
-                <button
-                  onClick={() => setCvBuilderOpen(v => !v)}
-                  className="flex items-center gap-2 w-full text-left px-3 py-2 rounded-lg"
-                  style={{ background: "rgba(96,165,250,0.06)", border: "1px solid rgba(96,165,250,0.15)" }}
-                >
-                  <span className="text-xs font-semibold" style={{ color: "#60a5fa" }}>🎓 Klassenquests</span>
-                  <span className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>Klassen-Fortschritt und Skill Tree</span>
-                  <span className="ml-auto text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>{cvBuilderOpen ? "▲" : "▼"}</span>
-                </button>
-                {cvBuilderOpen && (
-                  <div className="mt-2">
-                    <CVBuilderPanel quests={quests} users={users} playerName={playerName} />
-                  </div>
-                )}
-              </div>
             </div>
           );
         })()}
+
+        {/* ── KLASSENQUESTS TAB ── */}
+        {dashView === "klassenquests" && (
+          <div>
+            <div className="flex items-center gap-2 mb-4">
+              <h2 className="text-xs font-semibold uppercase tracking-widest" style={{ color: "#60a5fa" }}>🎓 Klassenquests</h2>
+              <span className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>Klassen-Fortschritt und Skill Tree</span>
+            </div>
+            <CVBuilderPanel quests={quests} users={users} playerName={playerName} />
+          </div>
+        )}
 
         {/* ── NPC QUEST BOARD (Agent Tab) ── */}
         {dashView === "npcBoard" && (() => {
@@ -2091,7 +2092,7 @@ export default function Dashboard() {
                     </section>
                   )}
                   <SmartSuggestionsPanel quests={quests} agents={agents} />
-                  {reviewApiKey && (
+                  {isAdmin && reviewApiKey && (
                     <div className="rounded-xl overflow-hidden" style={{ background: "rgba(255,107,157,0.04)", border: "1px solid rgba(255,107,157,0.2)" }}>
                       <button
                         onClick={() => setDobbieOpen(v => !v)}
