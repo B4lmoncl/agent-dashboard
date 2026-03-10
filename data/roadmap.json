@@ -1,0 +1,6 @@
+[
+  { "id": "r1", "title": "Klassensystem",      "desc": "Karrierepfade als RPG-Klassen",         "status": "in_progress", "eta": "März 2026",  "category": "core"           },
+  { "id": "r2", "title": "Companion System v2", "desc": "Eigenen Companion erstellen",           "status": "planned",     "eta": "April 2026", "category": "feature"        },
+  { "id": "r3", "title": "Character Creator",   "desc": "RPG-Style Onboarding",                  "status": "planned",     "eta": "März 2026",  "category": "core"           },
+  { "id": "r4", "title": "Quest Katalog",       "desc": "Skalierbarer Quest-Pool mit Metriken",  "status": "in_progress", "eta": "März 2026",  "category": "infrastructure" }
+]
