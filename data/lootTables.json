@@ -3,29 +3,39 @@
     { "id": "gold-small", "name": "Beutel mit Münzen", "emoji": "💰", "minLevel": 1, "effect": { "type": "gold", "amount": 15 } },
     { "id": "xp-small", "name": "Erfahrungskristall", "emoji": "💎", "minLevel": 1, "effect": { "type": "xp", "amount": 10 } },
     { "id": "companion-snack", "name": "Companion-Leckerli", "emoji": "🦴", "minLevel": 1, "effect": { "type": "bond", "amount": 1 } },
-    { "id": "repair-kit-s", "name": "Kleines Reparaturkit", "emoji": "🔧", "minLevel": 1, "effect": { "type": "armor", "amount": 5 } }
+    { "id": "repair-kit-s", "name": "Kleines Reparaturkit", "emoji": "🔧", "minLevel": 1, "effect": { "type": "armor", "amount": 5 } },
+    { "id": "bandage", "name": "Verband", "emoji": "🩹", "minLevel": 1, "effect": { "type": "armor", "amount": 3 } },
+    { "id": "apple", "name": "Frischer Apfel", "emoji": "🍎", "minLevel": 1, "effect": { "type": "xp", "amount": 5 } }
   ],
   "uncommon": [
     { "id": "gold-medium", "name": "Truhe mit Gold", "emoji": "📦", "minLevel": 1, "effect": { "type": "gold", "amount": 50 } },
     { "id": "xp-scroll", "name": "Schriftrolle der Erfahrung", "emoji": "📜", "minLevel": 1, "effect": { "type": "xp_boost", "amount": 25, "duration": "3_tasks" } },
     { "id": "companion-toy", "name": "Companion-Spielzeug", "emoji": "🧸", "minLevel": 1, "effect": { "type": "bond", "amount": 3 } },
-    { "id": "streak-shield", "name": "Streak-Schutzschild", "emoji": "🛡️", "minLevel": 1, "effect": { "type": "streak_shield", "amount": 1 } }
+    { "id": "streak-shield", "name": "Streak-Schutzschild", "emoji": "🛡️", "minLevel": 1, "effect": { "type": "streak_shield", "amount": 1 } },
+    { "id": "lucky-coin", "name": "Glücksmünze", "emoji": "🪙", "minLevel": 1, "effect": { "type": "gold", "amount": 75 } },
+    { "id": "training-manual", "name": "Trainingshandbuch", "emoji": "📖", "minLevel": 5, "effect": { "type": "xp_boost", "amount": 15, "duration": "5_tasks" } }
   ],
   "rare": [
     { "id": "gold-large", "name": "Schatzkiste", "emoji": "🏆", "minLevel": 9, "effect": { "type": "gold", "amount": 150 } },
     { "id": "gear-random", "name": "Mysteriöse Ausrüstung", "emoji": "⚔️", "minLevel": 9, "effect": { "type": "random_gear" } },
     { "id": "companion-egg", "name": "Mysteriöses Ei", "emoji": "🥚", "minLevel": 9, "effect": { "type": "companion_egg" } },
-    { "id": "streak-shield-x3", "name": "Legendäres Streak-Schild", "emoji": "🛡️✨", "minLevel": 9, "effect": { "type": "streak_shield", "amount": 3 } }
+    { "id": "streak-shield-x3", "name": "Legendäres Streak-Schild", "emoji": "🛡️✨", "minLevel": 9, "effect": { "type": "streak_shield", "amount": 3 } },
+    { "id": "sakura-petal", "name": "Ewige Kirschblüte", "emoji": "🌸", "minLevel": 9, "effect": { "type": "cosmetic", "cosmetic": "sakura_aura" } },
+    { "id": "forge-ember", "name": "Schmiedeglut", "emoji": "🔥", "minLevel": 9, "effect": { "type": "forge_temp", "amount": 30 } }
   ],
   "epic": [
     { "id": "gold-huge", "name": "Drachenhort", "emoji": "🐉💰", "minLevel": 17, "effect": { "type": "gold", "amount": 500 } },
     { "id": "gear-upgrade", "name": "Schmiedehammer der Meister", "emoji": "🔨✨", "minLevel": 17, "effect": { "type": "gear_next_tier" } },
     { "id": "second-chance", "name": "Stein der zweiten Chance", "emoji": "💫", "minLevel": 17, "effect": { "type": "undo_missed_ritual" } },
-    { "id": "xp-mega", "name": "Arkaner Fokuskristall", "emoji": "🔮", "minLevel": 17, "effect": { "type": "xp_boost", "amount": 50, "duration": "24h" } }
+    { "id": "xp-mega", "name": "Arkaner Fokuskristall", "emoji": "🔮", "minLevel": 17, "effect": { "type": "xp_boost", "amount": 50, "duration": "24h" } },
+    { "id": "dragon-scale", "name": "Drachenschuppe", "emoji": "🐲", "minLevel": 17, "effect": { "type": "random_gear_epic" } },
+    { "id": "time-crystal", "name": "Zeitkristall", "emoji": "⏳", "minLevel": 17, "effect": { "type": "streak_shield", "amount": 2 } }
   ],
   "legendary": [
     { "id": "named-weapon", "name": "Klinge des Frühaufstehers", "emoji": "⚔️🌅", "minLevel": 25, "effect": { "type": "named_gear" } },
     { "id": "guild-blessing", "name": "Segen der Gilde", "emoji": "✨👥", "minLevel": 25, "effect": { "type": "team_buff", "amount": 25, "duration": "24h" } },
-    { "id": "legendary-title", "name": "Titel: Glückskind", "emoji": "👑", "minLevel": 25, "effect": { "type": "title", "title": "Glückskind" } }
+    { "id": "legendary-title", "name": "Titel: Glückskind", "emoji": "👑", "minLevel": 25, "effect": { "type": "title", "title": "Glückskind" } },
+    { "id": "world-key", "name": "Schlüssel der Welten", "emoji": "🗝️", "minLevel": 25, "effect": { "type": "unlock_secret_quest" } },
+    { "id": "phoenix-feather", "name": "Phoenixfeder", "emoji": "🪶", "minLevel": 25, "effect": { "type": "revive", "desc": "Einmalig: Nächster Streak-Verlust wird komplett verhindert" } }
   ]
 }
