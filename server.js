@@ -557,7 +557,7 @@ app.post('/api/quest', requireApiKey, (req, res) => {
   const validPriorities = ['low', 'medium', 'high'];
   const validCategories = ['Coding', 'Research', 'Content', 'Sales', 'Infrastructure', 'Bug Fix', 'Feature'];
   const validProducts = ['Dashboard', 'Companion App', 'Infrastructure', 'Other'];
-  const validTypes = ['development', 'personal', 'learning', 'social', 'fitness'];
+  const validTypes = ['development', 'personal', 'learning', 'social', 'fitness', 'boss'];
   const validRecurrences = ['daily', 'weekly', 'monthly'];
   if (priority && !validPriorities.includes(priority)) {
     return res.status(400).json({ error: `Invalid priority. Use: ${validPriorities.join(', ')}` });
@@ -1757,6 +1757,174 @@ app.post('/api/shop/buy', requireApiKey, (req, res) => {
   saveUsers();
   console.log(`[shop] ${uid} bought "${item.name}" for ${item.cost} gold`);
   res.json({ ok: true, item, remainingGold: u.gold });
+});
+
+// ─── Personal Life Quest Templates ───────────────────────────────────────────
+const PERSONAL_QUEST_TEMPLATES = [
+  {
+    id: 'morning_ritual',
+    name: 'Morning Ritual',
+    icon: '🌅',
+    desc: 'Daily morning checklist to start the day strong. Streak tracking built in.',
+    type: 'personal',
+    priority: 'medium',
+    recurrence: 'daily',
+    checklist: [
+      { text: 'Wake up on time', done: false },
+      { text: 'Drink a glass of water', done: false },
+      { text: 'Morning stretch / movement', done: false },
+      { text: 'Cold shower or freshen up', done: false },
+      { text: 'Review the day\'s goals', done: false },
+    ],
+  },
+  {
+    id: 'warrior_training',
+    name: 'Warrior Training',
+    icon: '💪',
+    desc: 'Gym session quest. Log workout type, sets, reps, and weight. Rest days count too.',
+    type: 'fitness',
+    priority: 'high',
+    recurrence: null,
+    checklist: [
+      { text: 'Warm up (10 min)', done: false },
+      { text: 'Main workout (strength / cardio)', done: false },
+      { text: 'Log weights & reps in notes', done: false },
+      { text: 'Cool down & stretch', done: false },
+      { text: 'Track progress vs last session', done: false },
+    ],
+  },
+  {
+    id: 'network_sage',
+    name: 'Path of the Network Sage',
+    icon: '🌐',
+    desc: 'AirIT learning path study session — Fortinet, Cisco, SD-WAN, MPLS, or BGP.',
+    type: 'learning',
+    priority: 'high',
+    recurrence: null,
+    checklist: [
+      { text: 'Choose topic (Fortinet / Cisco / SD-WAN / MPLS / BGP)', done: false },
+      { text: 'Study module or hands-on lab (45+ min)', done: false },
+      { text: 'Take notes / make flashcards', done: false },
+      { text: 'Test yourself with quiz or lab scenario', done: false },
+    ],
+  },
+  {
+    id: 'daily_deep_dive',
+    name: 'Daily Deep Dive',
+    icon: '🧠',
+    desc: '30-minute focused learning session. One topic, no distractions, full concentration.',
+    type: 'learning',
+    priority: 'medium',
+    recurrence: 'daily',
+    checklist: [
+      { text: 'Pick one topic', done: false },
+      { text: 'Set timer for 30 minutes', done: false },
+      { text: 'Focus session — no distractions', done: false },
+      { text: 'Write 3 key takeaways', done: false },
+    ],
+  },
+  {
+    id: 'cert_quest',
+    name: 'Certification Quest',
+    icon: '📜',
+    desc: 'Exam prep session. Track study hours, mock exams, and certification deadline.',
+    type: 'learning',
+    priority: 'high',
+    recurrence: null,
+    checklist: [
+      { text: 'Review exam objectives', done: false },
+      { text: 'Study session (1+ hour)', done: false },
+      { text: 'Complete practice questions / mock exam', done: false },
+      { text: 'Log study hours', done: false },
+      { text: 'Update progress toward exam deadline', done: false },
+    ],
+  },
+  {
+    id: 'date_night',
+    name: 'Date Night Quest',
+    icon: '❤️',
+    desc: 'Quality time with your partner. Plan something special — connection matters.',
+    type: 'social',
+    priority: 'medium',
+    recurrence: 'weekly',
+    checklist: [
+      { text: 'Plan activity or location', done: false },
+      { text: 'No phones during time together', done: false },
+      { text: 'Cook or go out for a meal', done: false },
+      { text: 'Reflect on one good thing about the week', done: false },
+    ],
+  },
+  {
+    id: 'weekly_raid',
+    name: 'Weekly Raid Planning',
+    icon: '🗺️',
+    desc: 'Weekly review and planning session. Strategize the week ahead like a raid leader.',
+    type: 'personal',
+    priority: 'high',
+    recurrence: 'weekly',
+    checklist: [
+      { text: 'Review last week\'s wins and misses', done: false },
+      { text: 'Update quest board / to-do list', done: false },
+      { text: 'Set top 3 priorities for the week', done: false },
+      { text: 'Block time for deep work', done: false },
+      { text: 'Check on recurring quests & streaks', done: false },
+    ],
+  },
+  {
+    id: 'rest_recovery',
+    name: 'Rest & Recovery',
+    icon: '🌙',
+    desc: 'Sleep and recovery quest. Target 7–9 hours. Track wind-down routine.',
+    type: 'fitness',
+    priority: 'medium',
+    recurrence: 'daily',
+    checklist: [
+      { text: 'No screens 30 min before bed', done: false },
+      { text: 'Wind-down routine (reading / meditation)', done: false },
+      { text: 'Sleep by target time', done: false },
+      { text: 'Log sleep hours on wake-up', done: false },
+    ],
+  },
+];
+
+// GET /api/personal-templates — list personal life quest templates
+app.get('/api/personal-templates', (req, res) => {
+  res.json(PERSONAL_QUEST_TEMPLATES);
+});
+
+// POST /api/personal-templates/spawn — create a quest from a personal template
+app.post('/api/personal-templates/spawn', requireApiKey, (req, res) => {
+  const { templateId, createdBy, claimedBy } = req.body;
+  if (!templateId) return res.status(400).json({ error: 'templateId required' });
+  const template = PERSONAL_QUEST_TEMPLATES.find(t => t.id === templateId);
+  if (!template) return res.status(404).json({ error: `Template not found: ${templateId}` });
+  const resolvedCreatedBy = createdBy || 'leon';
+  const quest = {
+    id: `quest-${Date.now()}`,
+    title: template.name,
+    description: template.desc,
+    priority: template.priority,
+    type: template.type,
+    categories: [],
+    product: null,
+    humanInputRequired: false,
+    createdBy: resolvedCreatedBy,
+    status: 'open',
+    createdAt: now(),
+    claimedBy: claimedBy || null,
+    completedBy: null,
+    completedAt: null,
+    parentQuestId: null,
+    recurrence: template.recurrence || null,
+    streak: 0,
+    lastCompletedAt: null,
+    proof: null,
+    checklist: template.checklist ? template.checklist.map(item => ({ ...item, done: false })) : null,
+  };
+  quests.push(quest);
+  saveQuests();
+  console.log(`[personal-template] spawned: ${quest.id} — "${quest.title}" (${templateId})`);
+  res.json({ ok: true, quest });
 });
 
 // ─── Forge Challenges ────────────────────────────────────────────────────────

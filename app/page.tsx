@@ -1011,6 +1011,11 @@ export default function Dashboard() {
           </section>
         )}
 
+        {/* Personal Life Quests */}
+        {dashView === "ops" && reviewApiKey && (
+          <PersonalQuestPanel reviewApiKey={reviewApiKey} onRefresh={refresh} />
+        )}
+
         {/* Forge Challenges */}
         {dashView === "ops" && reviewApiKey && (
           <ForgeChallengesPanel users={users} reviewApiKey={reviewApiKey} onRefresh={refresh} />
@@ -1204,6 +1209,143 @@ export default function Dashboard() {
       {/* Guide Modal */}
       {guideOpen && <GuideModal onClose={() => setGuideOpen(false)} />}
     </div>
+  );
+}
+
+// ─── Personal Quest Panel ────────────────────────────────────────────────────
+
+interface PersonalTemplate {
+  id: string;
+  name: string;
+  icon: string;
+  desc: string;
+  type: string;
+  priority: "low" | "medium" | "high";
+  recurrence: string | null;
+  checklist: { text: string; done: boolean }[] | null;
+}
+
+function PersonalQuestPanel({ reviewApiKey, onRefresh }: {
+  reviewApiKey: string;
+  onRefresh: () => void;
+}) {
+  const [templates, setTemplates] = useState<PersonalTemplate[]>([]);
+  const [spawning, setSpawning] = useState<string | null>(null);
+  const [spawned, setSpawned] = useState<Set<string>>(new Set());
+  const [collapsed, setCollapsed] = useState(false);
+
+  useEffect(() => {
+    fetch("/api/personal-templates").then(r => r.ok ? r.json() : []).then(setTemplates).catch(() => {});
+  }, []);
+
+  const handleSpawn = async (templateId: string) => {
+    setSpawning(templateId);
+    try {
+      const r = await fetch("/api/personal-templates/spawn", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "X-API-Key": reviewApiKey },
+        body: JSON.stringify({ templateId, createdBy: "leon" }),
+      });
+      if (r.ok) {
+        setSpawned(prev => new Set(prev).add(templateId));
+        onRefresh();
+      }
+    } catch { /* ignore */ } finally {
+      setSpawning(null);
+    }
+  };
+
+  if (templates.length === 0) return null;
+
+  const typeColors: Record<string, { color: string; bg: string; border: string }> = {
+    personal:    { color: "#22c55e", bg: "rgba(34,197,94,0.1)",   border: "rgba(34,197,94,0.3)"   },
+    learning:    { color: "#3b82f6", bg: "rgba(59,130,246,0.1)",  border: "rgba(59,130,246,0.3)"  },
+    fitness:     { color: "#f97316", bg: "rgba(249,115,22,0.1)",  border: "rgba(249,115,22,0.3)"  },
+    social:      { color: "#ec4899", bg: "rgba(236,72,153,0.1)",  border: "rgba(236,72,153,0.3)"  },
+  };
+  const typeIcons: Record<string, string> = { personal: "🏠", learning: "📚", fitness: "💪", social: "❤️" };
+  const priorityBadge: Record<string, string> = { high: "#ef4444", medium: "#eab308", low: "#22c55e" };
+
+  return (
+    <section className="mb-6">
+      <button
+        onClick={() => setCollapsed(c => !c)}
+        className="flex items-center gap-2 mb-3 w-full text-left"
+      >
+        <h2 className="text-xs font-semibold uppercase tracking-widest" style={{ color: "#a78bfa" }}>
+          🧬 Personal Life Quests
+        </h2>
+        <span className="text-xs px-1.5 py-0.5 rounded font-mono" style={{ background: "rgba(167,139,250,0.12)", color: "#a78bfa", border: "1px solid rgba(167,139,250,0.3)" }}>
+          {templates.length}
+        </span>
+        <span className="ml-auto text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>
+          {collapsed ? "▸" : "▾"}
+        </span>
+      </button>
+      {!collapsed && (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+          {templates.map(t => {
+            const tc = typeColors[t.type] ?? { color: "#9ca3af", bg: "rgba(156,163,175,0.1)", border: "rgba(156,163,175,0.3)" };
+            const isSpawned = spawned.has(t.id);
+            const isSpawning = spawning === t.id;
+            return (
+              <div
+                key={t.id}
+                className="rounded-xl p-4 flex flex-col gap-2"
+                style={{ background: isSpawned ? tc.bg : "#252525", border: `1px solid ${isSpawned ? tc.border : "rgba(255,255,255,0.07)"}` }}
+              >
+                <div className="flex items-start gap-2">
+                  <span className="text-2xl flex-shrink-0">{t.icon}</span>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-xs font-bold leading-tight" style={{ color: "#f0f0f0" }}>{t.name}</p>
+                    <div className="flex items-center gap-1.5 mt-1 flex-wrap">
+                      <span className="text-xs px-1.5 py-0.5 rounded" style={{ background: tc.bg, color: tc.color, border: `1px solid ${tc.border}` }}>
+                        {typeIcons[t.type]} {t.type}
+                      </span>
+                      {t.recurrence && (
+                        <span className="text-xs px-1.5 py-0.5 rounded" style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.4)", border: "1px solid rgba(255,255,255,0.08)" }}>
+                          🔁 {t.recurrence}
+                        </span>
+                      )}
+                      <span className="text-xs px-1 py-0.5 rounded font-mono" style={{ color: priorityBadge[t.priority], background: `${priorityBadge[t.priority]}18` }}>
+                        {t.priority}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <p className="text-xs leading-relaxed" style={{ color: "rgba(255,255,255,0.38)" }}>{t.desc}</p>
+                {t.checklist && (
+                  <ul className="space-y-0.5">
+                    {t.checklist.slice(0, 3).map((item, i) => (
+                      <li key={i} className="text-xs flex items-center gap-1.5" style={{ color: "rgba(255,255,255,0.3)" }}>
+                        <span className="w-1 h-1 rounded-full flex-shrink-0" style={{ background: tc.color }} />
+                        {item.text}
+                      </li>
+                    ))}
+                    {t.checklist.length > 3 && (
+                      <li className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>+{t.checklist.length - 3} more steps</li>
+                    )}
+                  </ul>
+                )}
+                <button
+                  onClick={() => handleSpawn(t.id)}
+                  disabled={isSpawned || isSpawning}
+                  className="mt-auto w-full text-xs py-1.5 rounded-lg font-semibold"
+                  style={{
+                    background: isSpawned ? `${tc.color}20` : isSpawning ? "rgba(255,255,255,0.04)" : "rgba(167,139,250,0.15)",
+                    color: isSpawned ? tc.color : isSpawning ? "rgba(255,255,255,0.3)" : "#a78bfa",
+                    border: `1px solid ${isSpawned ? tc.border : "rgba(167,139,250,0.35)"}`,
+                    cursor: isSpawned ? "default" : "pointer",
+                  }}
+                >
+                  {isSpawned ? "✓ Quest Added" : isSpawning ? "Adding…" : "＋ Add to Quest Board"}
+                </button>
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </section>
   );
 }
 
