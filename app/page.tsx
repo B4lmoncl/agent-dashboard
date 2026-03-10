@@ -55,6 +55,7 @@ interface Quest {
   chapter?: string | null;
   minLevel?: number;
   playerStatus?: "open" | "in_progress" | "completed" | "locked";
+  rewards?: { xp: number; gold: number };
 }
 
 interface NpcQuestEntry {
@@ -460,6 +461,8 @@ export default function Dashboard() {
   const [inProgressSectionCollapsed, setInProgressSectionCollapsed] = useState<boolean>(() => {
     try { return localStorage.getItem("qb_inprogress_collapsed") === "true"; } catch { return false; }
   });
+  const [devOpenCollapsed, setDevOpenCollapsed] = useState(true);
+  const [devInProgressCollapsed, setDevInProgressCollapsed] = useState(true);
   const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>([]);
   const [achievementCatalogue, setAchievementCatalogue] = useState<AchievementDef[]>([]);
   const [campaigns, setCampaigns] = useState<Campaign[]>([]);
@@ -1640,16 +1643,20 @@ export default function Dashboard() {
                               <span className="text-xs px-1 rounded font-mono" style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.2)" }}>{playerVisibleOpen.length}</span>
                               <span className="ml-auto text-xs" style={{ color: "rgba(255,255,255,0.15)" }}>{openSectionCollapsed ? "▼" : "▲"}</span>
                             </button>
-                            {!openSectionCollapsed && playerVisibleOpen.map(q =>
-                              q.children && q.children.length > 0
-                                ? <EpicQuestCard key={q.id} quest={q} selected={selectedIds.has(q.id)} onToggle={reviewApiKey ? toggleSelect : undefined} />
-                                : <QuestCard key={q.id} quest={q} selected={selectedIds.has(q.id)} onToggle={reviewApiKey ? toggleSelect : undefined}
-                                    onClaim={reviewApiKey && playerName ? handleClaim : undefined}
-                                    onUnclaim={reviewApiKey && playerName ? handleUnclaim : undefined}
-                                    onComplete={reviewApiKey && playerName ? handleComplete : undefined}
-                                    onCoopClaim={reviewApiKey && playerName ? handleCoopClaim : undefined}
-                                    onCoopComplete={reviewApiKey && playerName ? handleCoopComplete : undefined}
-                                    playerName={playerName} />
+                            {!openSectionCollapsed && (
+                              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))", gap: 16, marginTop: 4 }}>
+                                {playerVisibleOpen.map(q =>
+                                  q.children && q.children.length > 0
+                                    ? <EpicQuestCard key={q.id} quest={q} selected={selectedIds.has(q.id)} onToggle={reviewApiKey ? toggleSelect : undefined} />
+                                    : <QuestCard key={q.id} quest={q} selected={selectedIds.has(q.id)} onToggle={reviewApiKey ? toggleSelect : undefined}
+                                        onClaim={reviewApiKey && playerName ? handleClaim : undefined}
+                                        onUnclaim={reviewApiKey && playerName ? handleUnclaim : undefined}
+                                        onComplete={reviewApiKey && playerName ? handleComplete : undefined}
+                                        onCoopClaim={reviewApiKey && playerName ? handleCoopClaim : undefined}
+                                        onCoopComplete={reviewApiKey && playerName ? handleCoopComplete : undefined}
+                                        playerName={playerName} gridMode />
+                                )}
+                              </div>
                             )}
                           </>
                         )}
@@ -1660,16 +1667,20 @@ export default function Dashboard() {
                               <span className="text-xs px-1 rounded font-mono" style={{ background: "rgba(139,92,246,0.08)", color: "rgba(139,92,246,0.5)" }}>{playerVisibleInProgress.length}</span>
                               <span className="ml-auto text-xs" style={{ color: "rgba(255,255,255,0.15)" }}>{inProgressSectionCollapsed ? "▼" : "▲"}</span>
                             </button>
-                            {!inProgressSectionCollapsed && playerVisibleInProgress.map(q =>
-                              q.children && q.children.length > 0
-                                ? <EpicQuestCard key={q.id} quest={q} selected={selectedIds.has(q.id)} onToggle={reviewApiKey ? toggleSelect : undefined} />
-                                : <QuestCard key={q.id} quest={q} selected={selectedIds.has(q.id)} onToggle={reviewApiKey ? toggleSelect : undefined}
-                                    onClaim={reviewApiKey && playerName ? handleClaim : undefined}
-                                    onUnclaim={reviewApiKey && playerName ? handleUnclaim : undefined}
-                                    onComplete={reviewApiKey && playerName ? handleComplete : undefined}
-                                    onCoopClaim={reviewApiKey && playerName ? handleCoopClaim : undefined}
-                                    onCoopComplete={reviewApiKey && playerName ? handleCoopComplete : undefined}
-                                    playerName={playerName} />
+                            {!inProgressSectionCollapsed && (
+                              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))", gap: 16, marginTop: 4 }}>
+                                {playerVisibleInProgress.map(q =>
+                                  q.children && q.children.length > 0
+                                    ? <EpicQuestCard key={q.id} quest={q} selected={selectedIds.has(q.id)} onToggle={reviewApiKey ? toggleSelect : undefined} />
+                                    : <QuestCard key={q.id} quest={q} selected={selectedIds.has(q.id)} onToggle={reviewApiKey ? toggleSelect : undefined}
+                                        onClaim={reviewApiKey && playerName ? handleClaim : undefined}
+                                        onUnclaim={reviewApiKey && playerName ? handleUnclaim : undefined}
+                                        onComplete={reviewApiKey && playerName ? handleComplete : undefined}
+                                        onCoopClaim={reviewApiKey && playerName ? handleCoopClaim : undefined}
+                                        onCoopComplete={reviewApiKey && playerName ? handleCoopComplete : undefined}
+                                        playerName={playerName} gridMode />
+                                )}
+                              </div>
                             )}
                           </>
                         )}
@@ -2040,11 +2051,12 @@ export default function Dashboard() {
                       <>
                         {devVisibleOpen.length > 0 && (
                           <>
-                            <div className="flex items-center gap-2 pt-1 pb-0.5">
+                            <button onClick={() => setDevOpenCollapsed(v => !v)} className="flex items-center gap-2 w-full text-left pt-1 pb-0.5">
                               <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.3)" }}>Open</span>
                               <span className="text-xs px-1 rounded font-mono" style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.2)" }}>{devVisibleOpen.length}</span>
-                            </div>
-                            {devVisibleOpen.map(q =>
+                              <span className="ml-auto text-xs" style={{ color: "rgba(255,255,255,0.15)" }}>{devOpenCollapsed ? "►" : "▼"}</span>
+                            </button>
+                            {!devOpenCollapsed && devVisibleOpen.map(q =>
                               q.children && q.children.length > 0
                                 ? <EpicQuestCard key={q.id} quest={q} selected={selectedIds.has(q.id)} onToggle={reviewApiKey ? toggleSelect : undefined} />
                                 : <QuestCard key={q.id} quest={q} selected={selectedIds.has(q.id)} onToggle={reviewApiKey ? toggleSelect : undefined} playerName={playerName} />
@@ -2053,11 +2065,12 @@ export default function Dashboard() {
                         )}
                         {devVisibleInProgress.length > 0 && (
                           <>
-                            <div className="flex items-center gap-2 pt-2 pb-0.5">
+                            <button onClick={() => setDevInProgressCollapsed(v => !v)} className="flex items-center gap-2 w-full text-left pt-2 pb-0.5">
                               <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.25)" }}>In Progress</span>
                               <span className="text-xs px-1 rounded font-mono" style={{ background: "rgba(139,92,246,0.08)", color: "rgba(139,92,246,0.5)" }}>{devVisibleInProgress.length}</span>
-                            </div>
-                            {devVisibleInProgress.map(q =>
+                              <span className="ml-auto text-xs" style={{ color: "rgba(255,255,255,0.15)" }}>{devInProgressCollapsed ? "►" : "▼"}</span>
+                            </button>
+                            {!devInProgressCollapsed && devVisibleInProgress.map(q =>
                               q.children && q.children.length > 0
                                 ? <EpicQuestCard key={q.id} quest={q} selected={selectedIds.has(q.id)} onToggle={reviewApiKey ? toggleSelect : undefined} />
                                 : <QuestCard key={q.id} quest={q} selected={selectedIds.has(q.id)} onToggle={reviewApiKey ? toggleSelect : undefined} playerName={playerName} />
@@ -4257,7 +4270,16 @@ function ClickablePriorityBadge({ priority, onClick }: { priority: Quest["priori
   );
 }
 
-function QuestCard({ quest, selected, onToggle, onClaim, onUnclaim, onComplete, onCoopClaim, onCoopComplete, playerName }: {
+const QUEST_BOARD_FLAVORS = [
+  "Gefunden am schwarzen Brett",
+  "Ein Flüstern im Wind",
+  "Die Gilde bittet um Hilfe",
+  "Eine alte Schriftrolle",
+  "Ein dringender Auftrag",
+  "Vom Schicksal bestimmt",
+];
+
+function QuestCard({ quest, selected, onToggle, onClaim, onUnclaim, onComplete, onCoopClaim, onCoopComplete, playerName, gridMode }: {
   quest: Quest;
   selected?: boolean;
   onToggle?: (id: string) => void;
@@ -4267,18 +4289,117 @@ function QuestCard({ quest, selected, onToggle, onClaim, onUnclaim, onComplete, 
   onCoopClaim?: (id: string) => void;
   onCoopComplete?: (id: string) => void;
   playerName?: string;
+  gridMode?: boolean;
 }) {
   const [expanded, setExpanded] = useState(false);
   const isInProgress = quest.status === "in_progress";
   const cats = quest.categories?.length ? quest.categories : (quest.category ? [quest.category] : []);
   const isClaimedByMe = playerName && quest.claimedBy?.toLowerCase() === playerName.toLowerCase();
   const isCoop = quest.type === "relationship-coop";
+  const flavorText = QUEST_BOARD_FLAVORS[
+    Math.abs((quest.id.charCodeAt(0) ?? 0) + (quest.id.charCodeAt(quest.id.length - 1) ?? 0)) % QUEST_BOARD_FLAVORS.length
+  ];
   const coopPartners = quest.coopPartners ?? [];
   const coopClaimed = quest.coopClaimed ?? [];
   const coopCompletions = quest.coopCompletions ?? [];
   const isCoopPartner = playerName ? coopPartners.includes(playerName.toLowerCase()) : false;
   const hasCoopClaimed = playerName ? coopClaimed.includes(playerName.toLowerCase()) : false;
   const hasCoopCompleted = playerName ? coopCompletions.includes(playerName.toLowerCase()) : false;
+
+  if (gridMode) {
+    const typeCfg = typeConfig[quest.type ?? "personal"] ?? typeConfig.personal;
+    return (
+      <div
+        className="rounded-xl flex flex-col cursor-pointer"
+        style={{
+          background: selected ? "rgba(255,102,51,0.06)" : "#252525",
+          border: `1px solid ${selected ? "rgba(255,102,51,0.4)" : isInProgress ? "rgba(139,92,246,0.3)" : "rgba(255,255,255,0.08)"}`,
+          transition: "border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease",
+          transform: "translateY(0)",
+          minHeight: 140,
+        }}
+        onClick={() => setExpanded(v => !v)}
+        onMouseEnter={(e) => {
+          const el = e.currentTarget as HTMLDivElement;
+          el.style.borderColor = isInProgress ? "rgba(139,92,246,0.5)" : "rgba(255,215,0,0.3)";
+          el.style.boxShadow = "0 8px 24px rgba(0,0,0,0.4)";
+          el.style.transform = "translateY(-2px)";
+        }}
+        onMouseLeave={(e) => {
+          const el = e.currentTarget as HTMLDivElement;
+          el.style.borderColor = selected ? "rgba(255,102,51,0.4)" : isInProgress ? "rgba(139,92,246,0.3)" : "rgba(255,255,255,0.08)";
+          el.style.boxShadow = "none";
+          el.style.transform = "translateY(0)";
+        }}
+      >
+        {/* Card body */}
+        <div className="p-3 flex-1">
+          <div className="flex items-start gap-2 mb-1.5">
+            <span className="text-base flex-shrink-0" style={{ lineHeight: 1.2 }}>{typeCfg.icon}</span>
+            <p className="text-sm font-semibold leading-snug" style={{ color: "#e8e8e8" }}>{quest.title}</p>
+          </div>
+          {quest.description && (
+            <p className="text-xs leading-relaxed mb-2" style={{
+              color: "rgba(255,255,255,0.4)",
+              overflow: "hidden",
+              display: "-webkit-box",
+              WebkitLineClamp: 2,
+              WebkitBoxOrient: "vertical",
+            }}>
+              {quest.description}
+            </p>
+          )}
+          <p className="text-xs italic" style={{ color: "rgba(255,255,255,0.25)" }}>{flavorText}</p>
+        </div>
+        {/* Card footer */}
+        <div className="px-3 pb-3 flex items-center justify-between gap-2" onClick={e => e.stopPropagation()}>
+          <div className="flex items-center gap-2">
+            {(quest.rewards?.xp ?? 0) > 0 && (
+              <span className="text-xs font-mono" style={{ color: "#a78bfa" }}>✨ {quest.rewards!.xp} XP</span>
+            )}
+            {(quest.rewards?.gold ?? 0) > 0 && (
+              <span className="text-xs font-mono" style={{ color: "#fbbf24" }}>🪙 {quest.rewards!.gold}</span>
+            )}
+          </div>
+          <div className="flex items-center gap-1.5 flex-shrink-0">
+            {!isCoop && onClaim && quest.status === "open" && (
+              <button
+                onClick={e => { e.stopPropagation(); onClaim(quest.id); }}
+                className="quest-claim-btn"
+                style={{
+                  background: "linear-gradient(180deg, #2a2a2a, #1a1a1a)",
+                  border: "2px solid #FFD700",
+                  color: "#FFD700",
+                  fontSize: 14,
+                  fontWeight: 600,
+                  padding: "8px 20px",
+                  borderRadius: 8,
+                  cursor: "pointer",
+                  transition: "background 0.15s, color 0.15s, transform 0.1s",
+                }}
+                onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.background = "#FFD700"; (e.currentTarget as HTMLButtonElement).style.color = "#1a1a1a"; }}
+                onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.background = "linear-gradient(180deg, #2a2a2a, #1a1a1a)"; (e.currentTarget as HTMLButtonElement).style.color = "#FFD700"; }}
+                onMouseDown={e => { (e.currentTarget as HTMLButtonElement).style.transform = "scale(0.95)"; }}
+                onMouseUp={e => { (e.currentTarget as HTMLButtonElement).style.transform = "scale(1)"; }}
+              >⚔ Claim</button>
+            )}
+            {!isCoop && onUnclaim && isClaimedByMe && (
+              <button onClick={e => { e.stopPropagation(); onUnclaim(quest.id); }} className="text-xs px-2 py-0.5 rounded font-medium" style={{ background: "rgba(239,68,68,0.1)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.25)" }}>✕ Unclaim</button>
+            )}
+            {!isCoop && onComplete && isClaimedByMe && (
+              <button onClick={e => { e.stopPropagation(); onComplete(quest.id, quest.title); }} className="text-xs px-2 py-0.5 rounded font-medium" style={{ background: "rgba(251,191,36,0.12)", color: "#fbbf24", border: "1px solid rgba(251,191,36,0.3)" }}>✓ Done</button>
+            )}
+            {isCoop && isCoopPartner && !hasCoopClaimed && quest.status !== "completed" && onCoopClaim && (
+              <button onClick={e => { e.stopPropagation(); onCoopClaim(quest.id); }} className="text-xs px-2 py-0.5 rounded font-medium" style={{ background: "rgba(244,63,94,0.12)", color: "#f43f5e", border: "1px solid rgba(244,63,94,0.3)" }}>💞 Join</button>
+            )}
+            {isCoop && isCoopPartner && hasCoopClaimed && !hasCoopCompleted && quest.status !== "completed" && onCoopComplete && (
+              <button onClick={e => { e.stopPropagation(); onCoopComplete(quest.id); }} className="text-xs px-2 py-0.5 rounded font-medium" style={{ background: "rgba(34,197,94,0.12)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.3)" }}>✓ My Part Done</button>
+            )}
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div
@@ -6171,9 +6292,19 @@ function InfoTooltip({ text, align = "left" }: { text: string; align?: "left" | 
     <div ref={ref} className="relative inline-flex items-center" style={{ lineHeight: 1 }}>
       <button
         onClick={e => { e.stopPropagation(); setOpen(o => !o); }}
-        style={{ color: "rgba(255,255,255,0.22)", cursor: "pointer", padding: "0 2px", fontSize: 11, lineHeight: 1 }}
+        style={{
+          width: 20, height: 20, borderRadius: "50%",
+          border: "2px solid rgba(255,215,0,0.5)",
+          background: "rgba(255,215,0,0.1)",
+          color: "#FFD700",
+          fontFamily: "Georgia, serif",
+          fontSize: 12, fontWeight: "bold",
+          cursor: "pointer",
+          display: "inline-flex", alignItems: "center", justifyContent: "center",
+          padding: 0, lineHeight: 1, flexShrink: 0,
+        }}
         title="Info"
-      >ℹ️</button>
+      >?</button>
       {open && (
         <div
           className="absolute rounded-xl p-3 text-xs leading-relaxed"
@@ -7303,10 +7434,10 @@ function CharacterView({ playerName, apiKey, users, classesList }: { playerName:
             const { kraft, ausdauer, weisheit, glueck } = charData.stats;
             const base = charData.baseStats;
             const statRows = [
-              { icon: "⚔️", label: "Kraft",    val: kraft,    base: base.kraft },
-              { icon: "🛡️", label: "Ausdauer", val: ausdauer, base: base.ausdauer },
-              { icon: "🧠", label: "Weisheit", val: weisheit, base: base.weisheit },
-              { icon: "🍀", label: "Glück",    val: glueck,   base: base.glueck },
+              { icon: "⚔️", label: "Kraft",    val: kraft,    base: base.kraft,    tooltip: "KRA · Bonus-XP aus Quests" },
+              { icon: "🛡️", label: "Ausdauer", val: ausdauer, base: base.ausdauer, tooltip: "AUS · Reduziert Streak-Strafe" },
+              { icon: "🧠", label: "Weisheit", val: weisheit, base: base.weisheit, tooltip: "WEI · Bonus-Fokuspunkte" },
+              { icon: "🍀", label: "Glück",    val: glueck,   base: base.glueck,   tooltip: "GLÜ · Bessere Loot-Chancen" },
             ];
             return (
               <>
@@ -7314,7 +7445,7 @@ function CharacterView({ playerName, apiKey, users, classesList }: { playerName:
                   {statRows.map(s => {
                     const bonus = s.val - s.base;
                     return (
-                      <div key={s.label} className="flex items-center gap-2">
+                      <div key={s.label} className="flex items-center gap-2" title={s.tooltip}>
                         <span className="text-sm w-5 text-center">{s.icon}</span>
                         <span className="text-xs flex-1" style={{ color: "rgba(255,255,255,0.65)" }}>{s.label}</span>
                         <span className="text-xs font-mono font-bold" style={{ color: "#e8e8e8" }}>{s.val}</span>
@@ -7511,9 +7642,9 @@ function RoadmapView({ isAdmin, reviewApiKey }: { isAdmin: boolean; reviewApiKey
             onClick={() => setStatusFilter(null)}
             className="text-xs px-2 py-0.5 rounded"
             style={{
-              color: statusFilter === null ? "#f0f0f0" : "rgba(255,255,255,0.35)",
-              background: statusFilter === null ? "rgba(255,255,255,0.1)" : "transparent",
-              border: `1px solid ${statusFilter === null ? "rgba(255,255,255,0.2)" : "transparent"}`,
+              color: statusFilter === null ? "#FFD700" : "rgba(255,255,255,0.35)",
+              background: statusFilter === null ? "rgba(255,215,0,0.08)" : "transparent",
+              border: `1px solid ${statusFilter === null ? "rgba(255,215,0,0.5)" : "transparent"}`,
             }}
           >
             All
@@ -7524,9 +7655,9 @@ function RoadmapView({ isAdmin, reviewApiKey }: { isAdmin: boolean; reviewApiKey
               onClick={() => setStatusFilter(statusFilter === k ? null : k)}
               className="text-xs px-2 py-0.5 rounded"
               style={{
-                color: statusFilter === k ? v.color : "rgba(255,255,255,0.35)",
-                background: statusFilter === k ? v.bg : "transparent",
-                border: `1px solid ${statusFilter === k ? v.border : "transparent"}`,
+                color: statusFilter === k ? "#FFD700" : "rgba(255,255,255,0.35)",
+                background: statusFilter === k ? "rgba(255,215,0,0.08)" : "transparent",
+                border: `1px solid ${statusFilter === k ? "rgba(255,215,0,0.5)" : "transparent"}`,
               }}
             >
               {v.dot} {v.label}
