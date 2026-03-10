@@ -3,6 +3,7 @@
 import { useEffect, useState, useCallback, useRef, useMemo } from "react";
 import AgentCard from "@/components/AgentCard";
 import StatBar from "@/components/StatBar";
+import OnboardingWizard from "@/components/OnboardingWizard";
 
 interface Agent {
   id: string;
@@ -80,6 +81,12 @@ interface User {
   gold?: number;
   gear?: string;
   createdAt?: string;
+  // Onboarding fields
+  classId?: string | null;
+  classPending?: boolean;
+  companion?: { type: string; name: string; emoji: string; isReal: boolean; species?: string } | null;
+  age?: number | null;
+  goals?: string | null;
 }
 
 interface CampaignQuest {
@@ -118,6 +125,19 @@ interface AchievementDef {
   desc: string;
   category: string;
   hidden?: boolean;
+}
+
+interface ClassDef {
+  id: string;
+  name: string;
+  icon: string;
+  fantasy: string;
+  description: string;
+  realWorld: string;
+  status: string;
+  playerCount?: number;
+  tiers?: { level: number; title: string; minXp: number }[];
+  skillTree?: { id: string; name: string; icon: string }[];
 }
 
 interface LeaderboardEntry {
@@ -346,6 +366,9 @@ export default function Dashboard() {
   const [cvBuilderOpen, setCvBuilderOpen] = useState(false);
   const [showTutorial, setShowTutorial] = useState(false);
   const [tutorialStep, setTutorialStep] = useState(0);
+  const [onboardingOpen, setOnboardingOpen] = useState(false);
+  const [classesList, setClassesList] = useState<ClassDef[]>([]);
+  const [classActivatedNotif, setClassActivatedNotif] = useState<{ className: string; classIcon: string; classDescription: string } | null>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   // Particle system — white dust drifting upward
@@ -655,6 +678,14 @@ export default function Dashboard() {
     return () => clearInterval(interval);
   }, [refresh]);
 
+  // Fetch class list once on mount
+  useEffect(() => {
+    fetch("/api/classes")
+      .then(r => r.ok ? r.json() : [])
+      .then(setClassesList)
+      .catch(() => {});
+  }, []);
+
   useEffect(() => {
     const tick = setInterval(() => {
       if (lastRefresh) setSecondsAgo(Math.floor((Date.now() - lastRefresh.getTime()) / 1000));
@@ -694,6 +725,25 @@ export default function Dashboard() {
     setTutorialStep(0);
     setShowTutorial(true);
   };
+
+  // Check for class-activation notification on login
+  useEffect(() => {
+    if (!playerName || !reviewApiKey) return;
+    const check = async () => {
+      try {
+        const r = await fetch(`/api/player/${encodeURIComponent(playerName.toLowerCase())}/notifications`, {
+          headers: { "x-api-key": reviewApiKey },
+        });
+        if (!r.ok) return;
+        const data = await r.json();
+        const classNotif = data.notifications?.find((n: { type: string }) => n.type === "class_activated");
+        if (classNotif) {
+          setClassActivatedNotif({ className: classNotif.className, classIcon: classNotif.classIcon, classDescription: classNotif.classDescription });
+        }
+      } catch { /* ignore */ }
+    };
+    check();
+  }, [playerName, reviewApiKey]);
 
   const needsAttention = agents.filter((a) => a.health === "needs_checkin" || a.health === "broken").length;
 
@@ -932,7 +982,7 @@ export default function Dashboard() {
                               Sign In
                             </button>
                             <button
-                              onClick={() => { setRegisterOpen(true); setLoginError(""); setRegisterNewKey(""); }}
+                              onClick={() => { setLoginOpen(false); setOnboardingOpen(true); }}
                               className="text-xs px-3 py-1 rounded font-medium"
                               style={{ background: "rgba(34,197,94,0.15)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.3)" }}
                             >
@@ -1234,7 +1284,7 @@ export default function Dashboard() {
                     <span className="text-xs px-1.5 py-0.5 rounded font-mono" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.25)" }}>{users.length}</span>
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
-                    {users.map(u => <UserCard key={u.id} user={u} />)}
+                    {users.map(u => <UserCard key={u.id} user={u} classes={classesList} />)}
                   </div>
                 </section>
               )}
@@ -1786,6 +1836,60 @@ export default function Dashboard() {
       {/* Tutorial Overlay */}
       {showTutorial && (
         <TutorialOverlay step={tutorialStep} onNext={handleTutorialNext} onSkip={handleTutorialSkip} />
+      )}
+
+      {/* Onboarding Wizard */}
+      {onboardingOpen && (
+        <OnboardingWizard
+          onClose={() => setOnboardingOpen(false)}
+          onComplete={async ({ name: newName, apiKey }) => {
+            setOnboardingOpen(false);
+            localStorage.setItem("dash_api_key", apiKey);
+            localStorage.setItem("dash_player_name", newName);
+            setPlayerName(newName);
+            setReviewApiKey(apiKey);
+            setIsAdmin(false);
+            await createStarterQuestsIfNew(newName, apiKey);
+            await refresh();
+            setShowTutorial(true);
+            setTutorialStep(0);
+          }}
+        />
+      )}
+
+      {/* Class Activation Notification */}
+      {classActivatedNotif && (
+        <div
+          className="fixed inset-0 z-[90] flex items-center justify-center p-4"
+          style={{ background: "rgba(0,0,0,0.75)" }}
+          onClick={() => setClassActivatedNotif(null)}
+        >
+          <div
+            className="w-full max-w-sm rounded-2xl p-6 space-y-4"
+            style={{ background: "#1a1a1a", border: "1px solid rgba(167,139,250,0.4)", boxShadow: "0 0 60px rgba(139,92,246,0.2)" }}
+            onClick={e => e.stopPropagation()}
+          >
+            <div className="text-center space-y-1">
+              <div className="text-4xl">🎉</div>
+              <h2 className="text-base font-bold" style={{ color: "#f0f0f0" }}>
+                Dein Klassenpfad steht bereit!
+              </h2>
+              <p className="text-sm font-semibold" style={{ color: "#a78bfa" }}>
+                {classActivatedNotif.classIcon} Willkommen auf dem {classActivatedNotif.className}!
+              </p>
+            </div>
+            <p className="text-xs text-center" style={{ color: "rgba(255,255,255,0.5)" }}>
+              {classActivatedNotif.classDescription}
+            </p>
+            <button
+              onClick={() => setClassActivatedNotif(null)}
+              className="w-full py-2.5 rounded-xl font-semibold text-sm"
+              style={{ background: "linear-gradient(135deg, #7c3aed, #a78bfa)", color: "#fff" }}
+            >
+              Los geht&apos;s! 🔥
+            </button>
+          </div>
+        </div>
       )}
 
       {/* Create Quest Modal */}
@@ -3693,7 +3797,7 @@ function getForgeTempInfo(temp: number): { statusMessage: string; actionSuggesti
   };
 }
 
-function UserCard({ user }: { user: User }) {
+function UserCard({ user, classes = [] }: { user: User; classes?: ClassDef[] }) {
   const xp = user.xp ?? 0;
   const lvl = getUserLevel(xp);
   const progress = getUserXpProgress(xp);
@@ -3797,6 +3901,52 @@ function UserCard({ user }: { user: User }) {
             <span className="text-sm">{g.icon}</span>
             <span className="text-xs font-semibold" style={{ color: "#818cf8" }}>{g.name}</span>
             <span className="text-xs ml-auto" style={{ color: "rgba(99,102,241,0.6)" }}>+{g.bonus}% XP</span>
+          </div>
+        );
+      })()}
+
+      {/* Class Badge */}
+      {user.classId && (() => {
+        const cls = classes.find(c => c.id === user.classId);
+        if (user.classPending && !cls) {
+          // Class is pending (not yet active)
+          return (
+            <div
+              className="mt-2 flex items-center gap-1.5 px-2 py-1 rounded-lg"
+              style={{ background: "rgba(245,158,11,0.07)", border: "1px solid rgba(245,158,11,0.2)" }}
+            >
+              <span className="text-sm" style={{ animation: "pulse-online 1.5s ease-in-out infinite" }}>⚒️</span>
+              <span className="text-xs font-semibold" style={{ color: "rgba(245,158,11,0.7)" }}>Klasse wird geschmiedet...</span>
+            </div>
+          );
+        }
+        if (cls) {
+          const tier = cls.tiers ? [...cls.tiers].reverse().find(t => (user.xp ?? 0) >= t.minXp) : null;
+          return (
+            <div
+              className="mt-2 flex items-center gap-1.5 px-2 py-1 rounded-lg"
+              style={{ background: "rgba(167,139,250,0.07)", border: "1px solid rgba(167,139,250,0.2)" }}
+            >
+              <span className="text-sm">{cls.icon}</span>
+              <span className="text-xs font-semibold" style={{ color: "#a78bfa" }}>{cls.fantasy}</span>
+              {tier && <span className="text-xs ml-auto" style={{ color: "rgba(167,139,250,0.55)" }}>{tier.title}</span>}
+            </div>
+          );
+        }
+        return null;
+      })()}
+
+      {/* Companion Badge */}
+      {user.companion && (() => {
+        const c = user.companion!;
+        return (
+          <div
+            className="mt-2 flex items-center gap-1.5 px-2 py-1 rounded-lg"
+            style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)" }}
+          >
+            <span className="text-sm">{c.emoji}</span>
+            <span className="text-xs font-semibold" style={{ color: "rgba(255,255,255,0.5)" }}>{c.name}</span>
+            {c.isReal && <span className="text-xs ml-auto" style={{ color: "rgba(255,255,255,0.25)" }}>🐾 Haustier</span>}
           </div>
         );
       })()}
@@ -4246,7 +4396,7 @@ function LeaderboardView({ entries, agents, mode = "agents", users = [] }: { ent
 
 // ─── Guide Modal ─────────────────────────────────────────────────────────────
 function GuideModal({ onClose, onRestartTutorial }: { onClose: () => void; onRestartTutorial?: () => void }) {
-  const [tab, setTab] = useState<"quests" | "xp" | "forge" | "achievements">("quests");
+  const [tab, setTab] = useState<"quests" | "xp" | "forge" | "achievements" | "start">("quests");
   return (
     <div
       className="fixed inset-0 z-50 flex items-center justify-center p-4"
@@ -4279,8 +4429,9 @@ function GuideModal({ onClose, onRestartTutorial }: { onClose: () => void; onRes
         </div>
 
         {/* Tabs */}
-        <div className="flex border-b" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
+        <div className="flex border-b overflow-x-auto" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
           {([
+            { key: "start", label: "🧭 Start" },
             { key: "quests", label: "⚔ Quests" },
             { key: "xp", label: "⭐ XP & Levels" },
             { key: "forge", label: "🔥 Forge" },
@@ -4302,6 +4453,39 @@ function GuideModal({ onClose, onRestartTutorial }: { onClose: () => void; onRes
         </div>
 
         <div className="p-5 space-y-4 text-xs" style={{ color: "rgba(255,255,255,0.7)", lineHeight: 1.7 }}>
+          {tab === "start" && (
+            <>
+              <GuideSection icon="🧭" title="Registrierung">
+                Klicke auf <strong>Login → Register</strong> in der Kopfleiste. Der <strong>Charakter-Creator</strong> führt dich in 5 Schritten durch die Erstellung deines Helden:
+                <ol className="space-y-1 mt-1 ml-2" style={{ listStyleType: "decimal" }}>
+                  <li><span style={{ color: "#f0f0f0" }}>Name</span> — Wähle deinen Heldennamen.</li>
+                  <li><span style={{ color: "#f0f0f0" }}>Über dich</span> — Optionales Alter und Ziele (helfen bei Quest-Vorschlägen).</li>
+                  <li><span style={{ color: "#f0f0f0" }}>Klasse</span> — Wähle deinen Berufspfad oder reiche eine neue Klasse ein.</li>
+                  <li><span style={{ color: "#f0f0f0" }}>Begleiter</span> — Haustier oder virtueller Begleiter.</li>
+                  <li><span style={{ color: "#f0f0f0" }}>API-Key</span> — Dein einzigartiger Login-Schlüssel. Sicher aufbewahren!</li>
+                </ol>
+              </GuideSection>
+              <GuideSection icon="⚔️" title="Klassen">
+                Klassen definieren deinen Berufspfad und geben dir passende Quests.
+                <ul className="space-y-1 mt-1">
+                  <li>• Wähle eine <span style={{ color: "#a78bfa" }}>aktive Klasse</span> aus der Liste — sie ist sofort verfügbar.</li>
+                  <li>• Keine passende Klasse? <span style={{ color: "#f59e0b" }}>Eigene Klasse einreichen</span> — ein Admin schmiedet sie für dich.</li>
+                  <li>• Während deine Klasse geschmiedet wird, siehst du <span style={{ color: "#f59e0b" }}>⚒️ Klasse wird geschmiedet...</span> auf deiner Spielerkarte.</li>
+                  <li>• Sobald die Klasse fertig ist, erhältst du beim nächsten Login eine Benachrichtigung.</li>
+                </ul>
+              </GuideSection>
+              <GuideSection icon="🐾" title="Begleiter">
+                <ul className="space-y-1 mt-1">
+                  <li><span style={{ color: "#f0f0f0" }}>🐾 Haustier</span> — Gib deinem echten Tier einen Platz in der Quest Hall. Es bekommt Pflege-Quests (Füttern, Spielen, etc.).</li>
+                  <li><span style={{ color: "#f0f0f0" }}>🐲 Drache</span> — Feuriger Motivations-Begleiter.</li>
+                  <li><span style={{ color: "#f0f0f0" }}>🦉 Eule</span> — Weiser Lern-Begleiter.</li>
+                  <li><span style={{ color: "#f0f0f0" }}>🔥 Phoenix</span> — Steht nach jeder Niederlage wieder auf.</li>
+                  <li><span style={{ color: "#f0f0f0" }}>🐺 Wolf</span> — Treuer Begleiter der immer an deiner Seite steht.</li>
+                </ul>
+                <p className="mt-1.5" style={{ color: "rgba(255,255,255,0.4)" }}>Dein Begleiter erscheint auf deiner Spielerkarte und motiviert dich durch Quests.</p>
+              </GuideSection>
+            </>
+          )}
           {tab === "quests" && (
             <>
               <GuideSection icon="🗺" title="Quest Hall Structure">

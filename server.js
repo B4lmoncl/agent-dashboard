@@ -2441,7 +2441,7 @@ app.post('/api/auth/login', (req, res) => {
 
 // POST /api/register — register a new player
 app.post('/api/register', (req, res) => {
-  const { name } = req.body;
+  const { name, age, goals, classId, companion } = req.body;
   if (!name || !String(name).trim()) return res.status(400).json({ error: 'name is required' });
   const trimmedName = String(name).trim();
   const nameLower = trimmedName.toLowerCase();
@@ -2452,6 +2452,21 @@ app.post('/api/register', (req, res) => {
   const apiKey = crypto.randomBytes(16).toString('hex');
   const userId = nameLower.replace(/\s+/g, '_');
   const finalId = users[userId] ? `${userId}_${Date.now()}` : userId;
+
+  // Resolve classId — check if it exists and is active or pending
+  let resolvedClassId = null;
+  let classPending = false;
+  if (classId) {
+    const cls = classesData.classes.find(c => c.id === classId);
+    if (cls) {
+      resolvedClassId = cls.id;
+      classPending = cls.status === 'pending';
+      // Increment playerCount for the class
+      cls.playerCount = (cls.playerCount || 0) + 1;
+      saveClasses();
+    }
+  }
+
   users[finalId] = {
     id: finalId,
     name: trimmedName,
@@ -2468,6 +2483,13 @@ app.post('/api/register', (req, res) => {
     apiKey,
     _allCompletedTypes: [],
     createdAt: now(),
+    // Extended onboarding fields
+    age: age ? parseInt(age, 10) : null,
+    goals: goals || null,
+    classId: resolvedClassId,
+    classPending,
+    classPendingNotified: false,
+    companion: companion || null,
   };
   // Add to managed keys
   const entry = { key: apiKey, label: `Player: ${trimmedName}`, created: now() };
@@ -2475,7 +2497,7 @@ app.post('/api/register', (req, res) => {
   validApiKeys.add(apiKey);
   saveManagedKeys();
   saveUsers();
-  console.log(`[register] new player: ${trimmedName} (${finalId})`);
+  console.log(`[register] new player: ${trimmedName} (${finalId}) class=${resolvedClassId || 'none'}`);
   res.json({ name: trimmedName, apiKey, userId: finalId });
 });
 
@@ -2499,6 +2521,36 @@ app.get('/api/player/:name', (req, res) => {
     claimedQuests: pp.claimedQuests || [],
     streakDays: userRecord.streakDays || 0,
   });
+});
+
+// GET /api/player/:name/notifications — check for pending class-activation notifications
+app.get('/api/player/:name/notifications', requireApiKey, (req, res) => {
+  const uid = req.params.name.toLowerCase();
+  const userRecord = users[uid];
+  if (!userRecord) return res.status(404).json({ error: 'Player not found' });
+
+  const notifications = [];
+
+  // Check if player had a pending class that is now active
+  if (userRecord.classId && userRecord.classPending && !userRecord.classPendingNotified) {
+    const cls = classesData.classes.find(c => c.id === userRecord.classId);
+    if (cls && cls.status === 'active') {
+      notifications.push({
+        type: 'class_activated',
+        classId: cls.id,
+        className: cls.fantasy,
+        classIcon: cls.icon,
+        classDescription: cls.description,
+        skillTree: cls.skillTree || [],
+      });
+      // Mark as notified
+      userRecord.classPending = false;
+      userRecord.classPendingNotified = true;
+      saveUsers();
+    }
+  }
+
+  res.json({ notifications });
 });
 
 // GET /api/users/:id/achievements — get earned achievements for a user
