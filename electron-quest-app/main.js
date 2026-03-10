@@ -6,6 +6,13 @@ const http  = require('http');
 const https = require('https');
 const { spawn } = require('child_process');
 
+// ─── Error logging ────────────────────────────────────────────────────────────
+process.on('uncaughtException', (err) => {
+  console.error('[uncaughtException]', err);
+  const logPath = require('path').join(require('os').tmpdir(), 'quest-forge-error.log');
+  require('fs').appendFileSync(logPath, `[${new Date().toISOString()}] ${err.stack || err}\n`);
+});
+
 let mainWindow      = null;
 let quickForgeWindow = null;
 let tray            = null;
