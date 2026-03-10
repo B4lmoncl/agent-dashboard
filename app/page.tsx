@@ -446,7 +446,6 @@ export default function Dashboard() {
   const [reviewComments, setReviewComments] = useState<Record<string, string>>({});
   const [typeFilter, setTypeFilter] = useState<string>("all");
   const [dashView, setDashView] = useState<"questBoard" | "npcBoard" | "klassenquests" | "character" | "campaign" | "leaderboard" | "honors" | "season" | "shop" | "roadmap" | "changelog">("questBoard");
-  const [lbSubTab, setLbSubTab] = useState<"agents" | "players">("players");
   const [createQuestOpen, setCreateQuestOpen] = useState(false);
   const [questBoardAgentOpen, setQuestBoardAgentOpen] = useState(false);
   const [npcAgentRosterOpen, setNpcAgentRosterOpen] = useState(true);
@@ -486,21 +485,17 @@ export default function Dashboard() {
   const [rituals, setRituals] = useState<Ritual[]>([]);
   const [habits, setHabits] = useState<Habit[]>([]);
   const [lootDrop, setLootDrop] = useState<LootItem | null>(null);
-  const [questBoardTab, setQuestBoardTab] = useState<"auftraege" | "rituale" | "gewohnheiten">("auftraege");
+  const [questBoardTab, setQuestBoardTab] = useState<"auftraege" | "rituale" | "anti-rituale">("auftraege");
   const [createRitualOpen, setCreateRitualOpen] = useState(false);
   const [newRitualTitle, setNewRitualTitle] = useState("");
   const [newRitualSchedule, setNewRitualSchedule] = useState("daily");
-  const [createHabitOpen, setCreateHabitOpen] = useState(false);
-  const [newHabitTitle, setNewHabitTitle] = useState("");
-  const [newHabitPositive, setNewHabitPositive] = useState(true);
-  const [newHabitNegative, setNewHabitNegative] = useState(false);
   const [changelog, setChangelog] = useState<ChangelogEntry[]>([]);
   const [changelogLoading, setChangelogLoading] = useState(false);
   const [poolRefreshing, setPoolRefreshing] = useState(false);
   const [npcBoardFilter, setNpcBoardFilter] = useState<string | null>(null);
   const [activeNpcs, setActiveNpcs] = useState<ActiveNpc[]>([]);
   const [infoOverlayOpen, setInfoOverlayOpen] = useState(false);
-  const [infoOverlayTab, setInfoOverlayTab] = useState<"roadmap" | "changelog" | "guide" | "tutorial">("roadmap");
+  const [infoOverlayTab, setInfoOverlayTab] = useState<"roadmap" | "changelog" | "guide">("roadmap");
 
   // Particle system — white dust drifting upward
   useEffect(() => {
@@ -1026,12 +1021,7 @@ export default function Dashboard() {
               onClick={() => { setDashView("questBoard"); window.scrollTo({ top: 0, behavior: "smooth" }); }}
               title="Home — Quest Hall"
             >
-              <div
-                className="w-7 h-7 rounded-lg flex items-center justify-center text-white font-black text-xs"
-                style={{ background: "linear-gradient(135deg, #ff4444, #cc2200)", boxShadow: "0 0 12px rgba(255,68,68,0.35)" }}
-              >
-                OC
-              </div>
+              <span className="text-xl leading-none" style={{ lineHeight: 1 }}>🏰</span>
               <span className="font-semibold text-sm tracking-tight" style={{ color: "#e8e8e8" }}>
                 Quest Hall
               </span>
@@ -1053,27 +1043,21 @@ export default function Dashboard() {
 
           <div className="flex items-center gap-4">
             <button
-              onClick={() => { setInfoOverlayTab("tutorial"); setInfoOverlayOpen(true); }}
-              className="text-xs px-2 py-0.5 rounded"
-              style={{ color: "rgba(255,255,255,0.4)", background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}
-              title="Restart Tutorial"
-            >
-              🎓 Tutorial
-            </button>
-            <button
               onClick={() => { setInfoOverlayTab("guide"); setInfoOverlayOpen(true); }}
-              className="text-xs px-2 py-0.5 rounded"
+              className="btn-interactive text-xs px-2 py-0.5 rounded"
               style={{ color: "rgba(255,255,255,0.4)", background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}
+              title="Info, Guide & Tutorial"
             >
-              📖 Guide
+              📜 Info
             </button>
             {/* Login / User area */}
             <div className="relative" data-tutorial="login-btn">
               {reviewApiKey && playerName ? (
                 <div className="flex items-center gap-1.5">
-                  <span className="text-xs px-2 py-0.5 rounded" style={{ color: "#a78bfa", background: "rgba(139,92,246,0.1)", border: "1px solid rgba(139,92,246,0.25)" }}>
-                    👤 {playerName}
-                  </span>
+                  <div className="w-5 h-5 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0" style={{ background: `linear-gradient(135deg, ${loggedInUser?.color ?? "#a78bfa"}, ${loggedInUser?.color ?? "#a78bfa"}88)`, color: "#fff" }}>
+                    {playerName.slice(0, 1).toUpperCase()}
+                  </div>
+                  <span className="text-xs font-medium" style={{ color: "rgba(255,255,255,0.75)" }}>{playerName}</span>
                   <button
                     onClick={() => {
                       localStorage.removeItem("dash_api_key");
@@ -1084,8 +1068,8 @@ export default function Dashboard() {
                       setReviewKeyInput("");
                       setIsAdmin(false);
                     }}
-                    className="text-xs px-1.5 py-0.5 rounded"
-                    style={{ color: "rgba(255,255,255,0.3)", background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}
+                    className="text-xs rounded"
+                    style={{ color: "rgba(255,255,255,0.25)", background: "none", border: "none", lineHeight: 1, padding: "0 2px" }}
                     title="Logout"
                   >
                     ×
@@ -1282,22 +1266,13 @@ export default function Dashboard() {
                 className="w-1.5 h-1.5 rounded-full inline-block animate-pulse"
                 style={{ background: "rgba(255,102,51,0.5)" }}
               />
-              Updated {lastUpdatedStr}
+              Updated <span style={{ display: "inline-block", minWidth: "4rem" }}>{lastUpdatedStr}</span>
             </div>
           </div>
         </div>
       </header>
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 py-8 space-y-8" style={{ position: "relative", zIndex: 1 }}>
-        <div>
-          <h1 className="text-xl font-bold" style={{ color: "#f0f0f0" }}>
-            Quest Hall
-          </h1>
-          <p className="text-sm mt-1" style={{ color: "rgba(255,255,255,0.3)" }}>
-            The Forge burns bright
-          </p>
-        </div>
-
         {/* Stats — Player-specific */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3" data-tutorial="stat-cards">
           {!playerName && !loading && (
@@ -1386,33 +1361,14 @@ export default function Dashboard() {
           ))}
         </div>
 
-        {/* Leaderboard View with Agent/Player sub-tabs */}
+        {/* Leaderboard View — Players only */}
         {dashView === "leaderboard" && (
           <div className="space-y-4">
             <div className="flex items-center gap-2">
               <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.35)" }}>🏆 Leaderboard</span>
-              <InfoTooltip text="Rankings based on XP earned. Compete with other players and agents! Switch between Players and Agents tabs to see separate boards." />
+              <InfoTooltip text="Rankings based on XP earned. Compete with other players!" />
             </div>
-            <div className="flex gap-1" style={{ background: "#111", borderRadius: 8, padding: 3, display: "inline-flex" }}>
-              {[
-                { key: "players", label: "👤 Players" },
-                { key: "agents",  label: "🤖 Agents" },
-              ].map(t => (
-                <button
-                  key={t.key}
-                  onClick={() => setLbSubTab(t.key as "agents" | "players")}
-                  className="btn-interactive text-xs font-semibold px-3 py-1.5 rounded transition-all"
-                  style={{
-                    background: lbSubTab === t.key ? "#252525" : "transparent",
-                    color: lbSubTab === t.key ? "#f0f0f0" : "rgba(255,255,255,0.3)",
-                  }}
-                >
-                  {t.label}
-                </button>
-              ))}
-            </div>
-            {lbSubTab === "agents" && <LeaderboardView entries={leaderboard} agents={agents} mode="agents" />}
-            {lbSubTab === "players" && <LeaderboardView entries={leaderboard} agents={agents} mode="players" users={users} />}
+            <LeaderboardView entries={leaderboard} agents={agents} mode="players" users={users} />
           </div>
         )}
 
@@ -1639,13 +1595,13 @@ export default function Dashboard() {
                   {/* Board Sub-Tabs */}
                   <div className="flex gap-1 mb-3">
                     {[
-                      { key: "auftraege",     label: "📜 Aufträge" },
-                      { key: "rituale",       label: "🔁 Rituale" },
-                      { key: "gewohnheiten",  label: "⚡ Gewohnheiten" },
+                      { key: "auftraege",    label: "📜 Aufträge" },
+                      { key: "rituale",      label: "🔁 Rituale" },
+                      { key: "anti-rituale", label: "🚫 Anti-Rituale" },
                     ].map(tab => (
                       <button
                         key={tab.key}
-                        onClick={() => setQuestBoardTab(tab.key as "auftraege" | "rituale" | "gewohnheiten")}
+                        onClick={() => setQuestBoardTab(tab.key as "auftraege" | "rituale" | "anti-rituale")}
                         className="text-xs px-3 py-1.5 rounded-lg font-medium transition-all"
                         style={{
                           background: questBoardTab === tab.key ? "rgba(167,139,250,0.2)" : "rgba(255,255,255,0.04)",
@@ -1858,100 +1814,9 @@ export default function Dashboard() {
                     </div>
                   )}
 
-                  {/* ── Gewohnheiten Tab ── */}
-                  {questBoardTab === "gewohnheiten" && (
-                    <div>
-                      <div className="flex items-center justify-between mb-3">
-                        <h3 className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.4)" }}>⚡ Gewohnheiten</h3>
-                        {playerName && reviewApiKey && (
-                          <button onClick={() => setCreateHabitOpen(true)} className="text-xs px-2 py-1 rounded font-semibold"
-                            style={{ background: "rgba(245,158,11,0.12)", color: "#f59e0b", border: "1px solid rgba(245,158,11,0.3)" }}>
-                            ＋ Gewohnheit erstellen
-                          </button>
-                        )}
-                      </div>
-                      {habits.filter(h => h.playerId === playerName?.toLowerCase()).length === 0 ? (
-                        <div className="rounded-xl p-5 text-center" style={{ background: "#252525", border: "1px solid rgba(255,255,255,0.06)" }}>
-                          <p className="text-xs mb-2" style={{ color: "rgba(255,255,255,0.25)" }}>Keine Gewohnheiten. Verfolge gute Gewohnheiten und schlechte Angewohnheiten!</p>
-                        </div>
-                      ) : (
-                        <div className="space-y-2">
-                          {habits.filter(h => h.playerId === playerName?.toLowerCase()).map(habit => {
-                            const colorMap: Record<string, string> = { red: '#ef4444', orange: '#f97316', yellow: '#eab308', gray: '#6b7280', green: '#22c55e', blue: '#3b82f6' };
-                            const c = colorMap[habit.color] || '#6b7280';
-                            return (
-                              <div key={habit.id} className="rounded-xl p-3" style={{ background: "#252525", border: `1px solid rgba(255,255,255,0.07)` }}>
-                                <div className="flex items-center gap-3">
-                                  <div className="w-2 h-10 rounded-full shrink-0" style={{ background: c }} />
-                                  <div className="flex-1 min-w-0">
-                                    <div className="text-sm font-medium" style={{ color: "#e8e8e8" }}>{habit.title}</div>
-                                    <div className="text-xs mt-0.5" style={{ color: c }}>Score: {habit.score > 0 ? '+' : ''}{habit.score}</div>
-                                  </div>
-                                  <div className="flex items-center gap-1">
-                                    {habit.positive && (
-                                      <button
-                                        onClick={async () => {
-                                          if (!reviewApiKey) return;
-                                          const r = await fetch(`/api/habits/${habit.id}/score`, { method: 'POST', headers: { 'Content-Type': 'application/json', 'x-api-key': reviewApiKey }, body: JSON.stringify({ direction: 'up', playerId: playerName }) });
-                                          const data = await r.json();
-                                          if (data.ok) {
-                                            fetchHabits(playerName!).then(setHabits);
-                                            if (data.lootDrop) setLootDrop(data.lootDrop);
-                                            refresh();
-                                          }
-                                        }}
-                                        className="w-8 h-8 rounded-lg text-sm font-bold flex items-center justify-center transition-all"
-                                        style={{ background: "rgba(34,197,94,0.15)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.3)" }}
-                                      >+</button>
-                                    )}
-                                    {habit.negative && (
-                                      <button
-                                        onClick={async () => {
-                                          if (!reviewApiKey) return;
-                                          await fetch(`/api/habits/${habit.id}/score`, { method: 'POST', headers: { 'Content-Type': 'application/json', 'x-api-key': reviewApiKey }, body: JSON.stringify({ direction: 'down', playerId: playerName }) });
-                                          fetchHabits(playerName!).then(setHabits);
-                                        }}
-                                        className="w-8 h-8 rounded-lg text-sm font-bold flex items-center justify-center transition-all"
-                                        style={{ background: "rgba(239,68,68,0.15)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.3)" }}
-                                      >−</button>
-                                    )}
-                                  </div>
-                                </div>
-                              </div>
-                            );
-                          })}
-                        </div>
-                      )}
-                      {/* Create Habit Modal */}
-                      {createHabitOpen && (
-                        <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: "rgba(0,0,0,0.7)" }}>
-                          <div className="w-full max-w-sm rounded-2xl p-5" style={{ background: "#1a1a1a", border: "1px solid rgba(255,255,255,0.1)" }}>
-                            <h3 className="text-sm font-semibold mb-4" style={{ color: "#e8e8e8" }}>⚡ Neue Gewohnheit</h3>
-                            <input value={newHabitTitle} onChange={e => setNewHabitTitle(e.target.value)} placeholder="Titel..." className="w-full text-sm px-3 py-2 rounded-lg mb-3" style={{ background: "#252525", border: "1px solid rgba(255,255,255,0.1)", color: "#e8e8e8", outline: "none" }} />
-                            <div className="flex gap-3 mb-4">
-                              <label className="flex items-center gap-2 text-sm cursor-pointer" style={{ color: "rgba(255,255,255,0.6)" }}>
-                                <input type="checkbox" checked={newHabitPositive} onChange={e => setNewHabitPositive(e.target.checked)} />
-                                ＋ Positiv
-                              </label>
-                              <label className="flex items-center gap-2 text-sm cursor-pointer" style={{ color: "rgba(255,255,255,0.6)" }}>
-                                <input type="checkbox" checked={newHabitNegative} onChange={e => setNewHabitNegative(e.target.checked)} />
-                                − Negativ
-                              </label>
-                            </div>
-                            <div className="flex gap-2">
-                              <button onClick={() => setCreateHabitOpen(false)} className="flex-1 text-sm py-2 rounded-lg" style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.4)", border: "1px solid rgba(255,255,255,0.1)" }}>Abbrechen</button>
-                              <button onClick={async () => {
-                                if (!newHabitTitle.trim() || !reviewApiKey || !playerName) return;
-                                await fetch('/api/habits', { method: 'POST', headers: { 'Content-Type': 'application/json', 'x-api-key': reviewApiKey }, body: JSON.stringify({ title: newHabitTitle.trim(), positive: newHabitPositive, negative: newHabitNegative, playerId: playerName }) });
-                                setNewHabitTitle("");
-                                setCreateHabitOpen(false);
-                                fetchHabits(playerName).then(setHabits);
-                              }} className="flex-1 text-sm py-2 rounded-lg font-semibold" style={{ background: "rgba(245,158,11,0.2)", color: "#f59e0b", border: "1px solid rgba(245,158,11,0.4)" }}>Erstellen</button>
-                            </div>
-                          </div>
-                        </div>
-                      )}
-                    </div>
+                  {/* ── Anti-Rituale Tab ── */}
+                  {questBoardTab === "anti-rituale" && (
+                    <AntiRitualePanel playerName={playerName} reviewApiKey={reviewApiKey} />
                   )}
 
                 </aside>
@@ -2463,18 +2328,10 @@ export default function Dashboard() {
           style={{ color: "rgba(255,255,255,0.15)" }}
         >
           <div className="flex items-center gap-3">
-            <span>OpenClaw · Quest Hall · The Guild</span>
-            {versions && (
-              <span style={{ color: "rgba(255,255,255,0.25)" }}>
-                Dashboard v{versions.dashboard} | Companion App v{versions.app}
-              </span>
-            )}
+            <span>🏰 Quest Hall · The Guild</span>
+            <span style={{ color: "rgba(255,255,255,0.2)" }}>v1.5.0</span>
           </div>
-          <div className="flex items-center gap-4" style={{ color: "rgba(255,68,68,0.35)" }}>
-            <span>GET /api/quests</span>
-            <span>POST /api/quest</span>
-            <span>GET /api/agents</span>
-          </div>
+          <span>© 2026 OpenClaw</span>
         </div>
       </footer>
 
@@ -2566,7 +2423,6 @@ export default function Dashboard() {
                   { key: "roadmap",   label: "🗺️ Roadmap" },
                   { key: "changelog", label: "📋 Changelog" },
                   { key: "guide",     label: "📖 Guide" },
-                  { key: "tutorial",  label: "❓ Tutorial" },
                 ].map(t => (
                   <button
                     key={t.key}
@@ -2660,17 +2516,6 @@ export default function Dashboard() {
               )}
               {infoOverlayTab === "guide" && (
                 <GuideContent onRestartTutorial={() => { handleRestartTutorial(); setInfoOverlayOpen(false); }} />
-              )}
-              {infoOverlayTab === "tutorial" && (
-                <div className="space-y-4 p-2">
-                  <p className="text-sm" style={{ color: "rgba(255,255,255,0.6)" }}>Das interaktive Tutorial führt dich durch die wichtigsten Funktionen der Quest Hall.</p>
-                  <button
-                    onClick={() => { handleRestartTutorial(); setInfoOverlayOpen(false); }}
-                    style={{ background: "rgba(139,92,246,0.2)", color: "#a78bfa", border: "1px solid rgba(139,92,246,0.4)", padding: "0.5rem 1rem", borderRadius: 8, cursor: "pointer", fontSize: 13 }}
-                  >
-                    🎓 Tutorial neu starten
-                  </button>
-                </div>
               )}
             </div>
           </div>
@@ -3176,6 +3021,193 @@ function ForgeChallengesPanel({ users, reviewApiKey, onRefresh }: {
   );
 }
 
+// ─── Anti-Rituale Panel ───────────────────────────────────────────────────────
+
+interface AntiRitual {
+  id: string;
+  title: string;
+  isAntiRitual: boolean;
+  cleanDays: number;
+  lastViolated: string | null;
+  playerId: string;
+  milestones?: number[];
+  createdAt: string;
+}
+
+const ANTI_RITUAL_MILESTONES = [
+  { days: 7,   badge: "🌱", label: "1 Woche clean!" },
+  { days: 14,  badge: "🥈", label: "2 Wochen stark!" },
+  { days: 21,  badge: "⚡", label: "21 Tage — The Habit Breaks!" },
+  { days: 30,  badge: "🏅", label: "1 Monat stark!" },
+  { days: 60,  badge: "💎", label: "60 Tage — Diamond Will!" },
+  { days: 90,  badge: "👑", label: "90 Tage — Unbreakable!" },
+];
+
+function getAntiRitualMood(days: number) {
+  if (days >= 90) return { msg: "Legendary restraint. The Guild bows before you.", color: "#f59e0b" };
+  if (days >= 30) return { msg: "One month strong. The urge has lost its hold.", color: "#a78bfa" };
+  if (days >= 14) return { msg: "Two weeks clean. The streak grows in power.", color: "#60a5fa" };
+  if (days >= 7)  return { msg: "A week without. The forge grows hotter.", color: "#22c55e" };
+  if (days >= 1)  return { msg: "You resisted yesterday. Keep going.", color: "#f97316" };
+  return { msg: "Day zero. Every journey starts here.", color: "rgba(255,255,255,0.4)" };
+}
+
+function AntiRitualePanel({ playerName, reviewApiKey }: { playerName: string; reviewApiKey: string }) {
+  const [antiRituals, setAntiRituals] = useState<AntiRitual[]>([]);
+  const [createOpen, setCreateOpen] = useState(false);
+  const [newTitle, setNewTitle] = useState("");
+
+  const loadAntiRituals = useCallback(async () => {
+    if (!playerName) return;
+    try {
+      const r = await fetch(`/api/rituals?player=${encodeURIComponent(playerName)}&type=anti`);
+      if (r.ok) {
+        const all = await r.json() as (Ritual & { isAntiRitual?: boolean; cleanDays?: number; lastViolated?: string | null })[];
+        setAntiRituals(all.filter(r => r.isAntiRitual).map(r => ({
+          id: r.id, title: r.title, isAntiRitual: true,
+          cleanDays: r.cleanDays ?? r.streak ?? 0,
+          lastViolated: r.lastViolated ?? null,
+          playerId: r.playerId,
+          createdAt: r.lastCompleted ?? new Date().toISOString(),
+        })));
+      }
+    } catch { /* ignore */ }
+  }, [playerName]);
+
+  useEffect(() => { loadAntiRituals(); }, [loadAntiRituals]);
+
+  const markViolated = async (id: string) => {
+    if (!reviewApiKey || !playerName) return;
+    try {
+      await fetch(`/api/rituals/${id}/violate`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "x-api-key": reviewApiKey },
+        body: JSON.stringify({ playerId: playerName }),
+      });
+      loadAntiRituals();
+    } catch { /* ignore */ }
+  };
+
+  const createAntiRitual = async () => {
+    if (!newTitle.trim() || !reviewApiKey || !playerName) return;
+    try {
+      await fetch("/api/rituals", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "x-api-key": reviewApiKey },
+        body: JSON.stringify({
+          title: newTitle.trim(),
+          schedule: { type: "daily" },
+          playerId: playerName,
+          createdBy: playerName,
+          isAntiRitual: true,
+        }),
+      });
+      setNewTitle("");
+      setCreateOpen(false);
+      loadAntiRituals();
+    } catch { /* ignore */ }
+  };
+
+  const getStreakBadge = (days: number) =>
+    [...ANTI_RITUAL_MILESTONES].reverse().find(m => days >= m.days) ?? null;
+
+  return (
+    <div>
+      <div className="flex items-center justify-between mb-3">
+        <h3 className="text-xs font-semibold uppercase tracking-widest flex items-center gap-1.5" style={{ color: "rgba(255,255,255,0.4)" }}>
+          🚫 Anti-Rituale
+          <span className="text-xs font-normal normal-case" style={{ color: "rgba(255,255,255,0.25)" }}>— track what you don&apos;t do</span>
+        </h3>
+        {playerName && reviewApiKey && (
+          <button onClick={() => setCreateOpen(true)} className="text-xs px-2 py-1 rounded font-semibold"
+            style={{ background: "rgba(239,68,68,0.1)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.25)" }}>
+            ＋ Add
+          </button>
+        )}
+      </div>
+
+      {antiRituals.length === 0 ? (
+        <div className="rounded-xl p-5 text-center" style={{ background: "#252525", border: "1px solid rgba(255,255,255,0.06)" }}>
+          <p className="text-2xl mb-2">🚫</p>
+          <p className="text-xs font-semibold mb-1" style={{ color: "rgba(255,255,255,0.4)" }}>Keine Anti-Rituale</p>
+          <p className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>Track how long you avoid a bad habit. Days clean = streak power.</p>
+        </div>
+      ) : (
+        <div className="space-y-2">
+          {antiRituals.map(ar => {
+            const days = ar.cleanDays;
+            const mood = getAntiRitualMood(days);
+            const badge = getStreakBadge(days);
+            const nextMilestone = ANTI_RITUAL_MILESTONES.find(m => days < m.days);
+            const streakBorderColor = days >= 90 ? "#f59e0b" : days >= 30 ? "#a78bfa" : days >= 7 ? "#22c55e" : "rgba(255,255,255,0.1)";
+            const streakGlow = days >= 30 ? `0 0 12px ${streakBorderColor}30` : "none";
+            return (
+              <div key={ar.id} className="rounded-xl p-3" style={{
+                background: "#252525",
+                border: `1px solid ${streakBorderColor}`,
+                boxShadow: streakGlow,
+              }}>
+                <div className="flex items-start justify-between gap-2">
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2 mb-1">
+                      <span className="text-sm font-semibold" style={{ color: "#e8e8e8" }}>{ar.title}</span>
+                      {badge && <span className="text-sm" title={badge.label}>{badge.badge}</span>}
+                    </div>
+                    <p className="text-xs mb-1.5" style={{ color: mood.color }}>{mood.msg}</p>
+                    <div className="flex items-center gap-3 text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>
+                      <span className="font-bold" style={{ color: mood.color }}>🛡 {days} days clean</span>
+                      {nextMilestone && <span>→ {nextMilestone.badge} in {nextMilestone.days - days}d</span>}
+                    </div>
+                    {nextMilestone && (
+                      <div className="mt-2">
+                        <div className="h-1 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.07)" }}>
+                          <div className="h-full rounded-full transition-all" style={{
+                            width: `${(days / nextMilestone.days) * 100}%`,
+                            background: `linear-gradient(90deg, ${mood.color}80, ${mood.color})`,
+                          }} />
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                  <button
+                    onClick={() => markViolated(ar.id)}
+                    disabled={!reviewApiKey}
+                    className="text-xs px-2 py-1 rounded shrink-0 transition-all"
+                    style={{ background: "rgba(239,68,68,0.08)", color: "rgba(239,68,68,0.5)", border: "1px solid rgba(239,68,68,0.2)" }}
+                    title="Ich hab's gemacht... Streak reset."
+                  >
+                    😔 Slip
+                  </button>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
+
+      {createOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: "rgba(0,0,0,0.7)" }}>
+          <div className="w-full max-w-sm rounded-2xl p-5" style={{ background: "#1a1a1a", border: "1px solid rgba(239,68,68,0.2)" }}>
+            <h3 className="text-sm font-semibold mb-1" style={{ color: "#e8e8e8" }}>🚫 Neues Anti-Ritual</h3>
+            <p className="text-xs mb-4" style={{ color: "rgba(255,255,255,0.35)" }}>Was vermeidest du? Track, wie lange du es schaffst.</p>
+            <input
+              value={newTitle}
+              onChange={e => setNewTitle(e.target.value)}
+              placeholder="z.B. Soziale Medien nicht checken..."
+              className="w-full text-sm px-3 py-2 rounded-lg mb-4"
+              style={{ background: "#252525", border: "1px solid rgba(255,255,255,0.1)", color: "#e8e8e8", outline: "none" }}
+            />
+            <div className="flex gap-2">
+              <button onClick={() => setCreateOpen(false)} className="flex-1 text-sm py-2 rounded-lg" style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.4)", border: "1px solid rgba(255,255,255,0.1)" }}>Abbrechen</button>
+              <button onClick={createAntiRitual} className="flex-1 text-sm py-2 rounded-lg font-semibold" style={{ background: "rgba(239,68,68,0.15)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.3)" }}>Erstellen</button>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
 // ─── Smart Suggestions Panel ──────────────────────────────────────────────────
 
 interface Suggestion {
@@ -3442,13 +3474,6 @@ function CVBuilderPanel({ quests, users, playerName }: { quests: QuestsData; use
           <span className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>{open ? "▲" : "▼"}</span>
         </button>
         <div className="ml-auto flex items-center gap-2">
-          <select value={activeUser} onChange={e => setActiveUser(e.target.value)} className="text-xs px-2 py-1 rounded" style={{ background: "#1a1a1a", border: "1px solid rgba(255,255,255,0.1)", color: "#e8e8e8" }}>
-            <option value="">All players</option>
-            {users.map(u => <option key={u.id} value={u.id}>{u.name}</option>)}
-          </select>
-          <button onClick={() => loadCV(activeUser || "")} disabled={loading} className="text-xs px-3 py-1 rounded font-medium" style={{ background: "rgba(96,165,250,0.12)", color: "#60a5fa", border: "1px solid rgba(96,165,250,0.3)" }}>
-            {loading ? "Loading…" : "Generate CV"}
-          </button>
         </div>
       </div>
       {open && cvData && (
@@ -3584,14 +3609,6 @@ function DobbieQuestPanel({ reviewApiKey, onRefresh }: { reviewApiKey: string; o
 
   return (
     <section className="mb-6">
-      <div className="flex items-center gap-2 mb-3">
-        <h2 className="text-xs font-semibold uppercase tracking-widest" style={{ color: "#ff6b9d" }}>
-          🐱 Dobbie&apos;s Demands
-        </h2>
-        <span className="text-xs px-1.5 py-0.5 rounded font-mono" style={{ background: "rgba(255,107,157,0.12)", color: "#ff6b9d", border: "1px solid rgba(255,107,157,0.3)" }}>
-          NPC Quest Giver
-        </span>
-      </div>
       <div className="rounded-xl p-3 mb-3 flex items-center gap-3" style={{ background: "rgba(255,107,157,0.06)", border: "1px solid rgba(255,107,157,0.2)" }}>
         <span className="text-3xl flex-shrink-0">🐱</span>
         <div className="flex-1 min-w-0">
@@ -3622,7 +3639,7 @@ function DobbieQuestPanel({ reviewApiKey, onRefresh }: { reviewApiKey: string; o
                 className="action-btn w-full text-xs py-1.5 rounded-lg font-semibold"
                 style={{ background: isDone ? "rgba(34,197,94,0.15)" : "rgba(255,107,157,0.15)", color: isDone ? "#22c55e" : "#ff6b9d", border: `1px solid ${isDone ? "rgba(34,197,94,0.3)" : "rgba(255,107,157,0.3)"}` }}
               >
-                {isDone ? "✓ Quest Issued!" : isCreating ? "Issuing…" : "🐱 Issue Quest"}
+                {isDone ? "✓ Accepted!" : isCreating ? "Accepting…" : "🐱 Accept Quest"}
               </button>
             </div>
           );
@@ -4648,10 +4665,12 @@ function UserCard({ user, classes = [] }: { user: User; classes?: ClassDef[] }) 
   const nextLvlEntry = GUILD_LEVELS[lvl.level]; // level is 1-based, array idx = level
   const isMilestoneLevel = lvl.level === 10 || lvl.level === 20 || lvl.level === 30;
   const streak = user.streakDays ?? 0;
-  const temp = user.forgeTemp ?? 0;
+  const temp = Math.min(user.forgeTemp ?? 0, 100);
   const gold = user.gold ?? 0;
   const achs = user.earnedAchievements ?? [];
-  const tempColor = temp >= 60 ? "#22c55e" : temp >= 30 ? "#f59e0b" : "#ef4444";
+  const tempIcon = temp <= 33 ? "🔴" : temp <= 66 ? "🟠" : "🔵";
+  const tempColor = temp <= 33 ? "#ef4444" : temp <= 66 ? "#f97316" : "#60a5fa";
+  const goldMultiplier = (1 + (temp / 100) * 0.5).toFixed(1);
   const xpMalus = temp === 0;
   const forgeInfo = getForgeTempInfo(temp);
 
@@ -4718,14 +4737,16 @@ function UserCard({ user, classes = [] }: { user: User; classes?: ClassDef[] }) 
       {/* Forge Temperature */}
       <div className="mb-2" title={forgeInfo.tooltipText}>
         <div className="flex items-center justify-between mb-0.5">
-          <span className="text-xs font-medium" style={{ color: tempColor }}>{forgeInfo.statusMessage}</span>
-          <span className="text-xs font-mono" style={{ color: tempColor }}>{temp}%</span>
+          <span className="text-xs font-medium flex items-center gap-1" style={{ color: tempColor }}>
+            {tempIcon} {temp}% <span style={{ color: "rgba(255,255,255,0.3)", fontWeight: 400 }}>|</span> <span style={{ color: "#f59e0b" }}>💰 {goldMultiplier}x</span>
+          </span>
+          <span className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>Forge Temp</span>
         </div>
         <p className="text-xs mb-1" style={{ color: "rgba(255,255,255,0.3)" }}>{forgeInfo.actionSuggestion}</p>
         <div className="rounded-full overflow-hidden" style={{ height: 3, background: "rgba(255,255,255,0.07)" }}>
           <div
             className="h-full rounded-full transition-all duration-700"
-            style={{ width: `${temp}%`, background: `linear-gradient(90deg, ${tempColor}99, ${CURRENT_SEASON.color})`, boxShadow: `0 0 5px ${tempColor}60` }}
+            style={{ width: `${temp}%`, background: `linear-gradient(90deg, ${tempColor}99, ${tempColor})`, boxShadow: `0 0 5px ${tempColor}60` }}
           />
         </div>
       </div>
@@ -5639,7 +5660,6 @@ function BattlePassView({ users, quests }: { users: User[]; quests: QuestsData }
   const nextSeasonMonth = (seasonMonth + 3) % 12;
   const nextSeasonYear = nextSeasonMonth < seasonMonth ? seasonYear + 1 : seasonYear;
   const seasonEnd = new Date(nextSeasonYear, nextSeasonMonth, 1);
-  const progressPct = Math.min(100, Math.round(((now.getTime() - seasonStart.getTime()) / (seasonEnd.getTime() - seasonStart.getTime())) * 100));
 
   // Compute season XP per user (XP earned since seasonStart, approximated from quest completions)
   const seasonCompleted = quests.completed.filter(q => q.completedAt && new Date(q.completedAt) >= seasonStart);
@@ -5649,6 +5669,10 @@ function BattlePassView({ users, quests }: { users: User[]; quests: QuestsData }
     const uid = (q.completedBy || "").toLowerCase();
     if (uid) userSeasonXp[uid] = (userSeasonXp[uid] ?? 0) + (XP_MAP[q.priority] ?? 10);
   }
+  // XP-based season progress: use best player's progress vs max battle pass XP
+  const maxBattlePassXp = BATTLE_PASS_LEVELS[BATTLE_PASS_LEVELS.length - 1]?.xp || 630;
+  const topSeasonXp = Math.max(0, ...Object.values(userSeasonXp), 0);
+  const progressPct = Math.min(100, Math.round((topSeasonXp / Math.max(1, maxBattlePassXp)) * 100));
 
   const getBattlePassLevel = (xp: number) => {
     let lvl = BATTLE_PASS_LEVELS[0];
@@ -5666,7 +5690,7 @@ function BattlePassView({ users, quests }: { users: User[]; quests: QuestsData }
           <div className="flex-1">
             <h2 className="text-lg font-bold" style={{ color: "#f0f0f0" }}>{season.name} Season {seasonYear}</h2>
             <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>
-              {seasonStart.toLocaleDateString()} – {seasonEnd.toLocaleDateString()} · {100 - progressPct}% remaining
+              {seasonStart.toLocaleDateString()} – {seasonEnd.toLocaleDateString()}
             </p>
           </div>
           <div className="text-right">
@@ -5676,7 +5700,7 @@ function BattlePassView({ users, quests }: { users: User[]; quests: QuestsData }
         <div className="rounded-full overflow-hidden" style={{ height: 6, background: "rgba(255,255,255,0.06)" }}>
           <div className="h-full rounded-full transition-all duration-700" style={{ width: `${progressPct}%`, background: `linear-gradient(90deg, ${season.color}80, ${season.color})` }} />
         </div>
-        <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.25)" }}>Season Progress {progressPct}%</p>
+        <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.25)" }}>Season XP Progress {progressPct}% · {topSeasonXp}/{maxBattlePassXp} XP</p>
       </div>
 
       {/* Player Battle Pass tracks */}
@@ -7427,6 +7451,7 @@ const ROADMAP_STATUS_CONFIG: Record<string, { label: string; color: string; bg: 
 function RoadmapView({ isAdmin, reviewApiKey }: { isAdmin: boolean; reviewApiKey: string }) {
   const [items, setItems] = useState<RoadmapItem[]>([]);
   const [expanded, setExpanded] = useState<string | null>(null);
+  const [statusFilter, setStatusFilter] = useState<string | null>(null);
   const [addOpen, setAddOpen] = useState(false);
   const [newTitle, setNewTitle] = useState("");
   const [newDesc, setNewDesc] = useState("");
@@ -7479,11 +7504,33 @@ function RoadmapView({ isAdmin, reviewApiKey }: { isAdmin: boolean; reviewApiKey
 
   return (
     <div className="space-y-4">
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-3 flex-wrap">
         <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.35)" }}>🗺️ Roadmap</span>
-        <div className="flex items-center gap-2 text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>
+        <div className="flex items-center gap-1 flex-wrap">
+          <button
+            onClick={() => setStatusFilter(null)}
+            className="text-xs px-2 py-0.5 rounded"
+            style={{
+              color: statusFilter === null ? "#f0f0f0" : "rgba(255,255,255,0.35)",
+              background: statusFilter === null ? "rgba(255,255,255,0.1)" : "transparent",
+              border: `1px solid ${statusFilter === null ? "rgba(255,255,255,0.2)" : "transparent"}`,
+            }}
+          >
+            All
+          </button>
           {Object.entries(ROADMAP_STATUS_CONFIG).map(([k, v]) => (
-            <span key={k}>{v.dot} {v.label}</span>
+            <button
+              key={k}
+              onClick={() => setStatusFilter(statusFilter === k ? null : k)}
+              className="text-xs px-2 py-0.5 rounded"
+              style={{
+                color: statusFilter === k ? v.color : "rgba(255,255,255,0.35)",
+                background: statusFilter === k ? v.bg : "transparent",
+                border: `1px solid ${statusFilter === k ? v.border : "transparent"}`,
+              }}
+            >
+              {v.dot} {v.label}
+            </button>
           ))}
         </div>
         {isAdmin && (
@@ -7522,11 +7569,14 @@ function RoadmapView({ isAdmin, reviewApiKey }: { isAdmin: boolean; reviewApiKey
         </div>
       )}
 
-      {sortedCategories.map(cat => (
+      {sortedCategories.map(cat => {
+        const catItems = statusFilter ? byCategory[cat].filter(i => i.status === statusFilter) : byCategory[cat];
+        if (catItems.length === 0) return null;
+        return (
         <div key={cat}>
           <p className="text-xs font-semibold uppercase tracking-widest mb-2" style={{ color: "rgba(255,255,255,0.25)" }}>{cat}</p>
           <div className="space-y-2">
-            {byCategory[cat].map(item => {
+            {catItems.map(item => {
               const cfg = ROADMAP_STATUS_CONFIG[item.status] ?? ROADMAP_STATUS_CONFIG.planned;
               const isOpen = expanded === item.id;
               return (
@@ -7578,7 +7628,8 @@ function RoadmapView({ isAdmin, reviewApiKey }: { isAdmin: boolean; reviewApiKey
             })}
           </div>
         </div>
-      ))}
+        );
+      })}
 
       {items.length === 0 && (
         <div className="flex flex-col items-center py-12" style={{ color: "rgba(255,255,255,0.3)" }}>
