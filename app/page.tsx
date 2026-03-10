@@ -252,7 +252,12 @@ export default function Dashboard() {
   const [bulkLoading, setBulkLoading] = useState(false);
   const [reviewComments, setReviewComments] = useState<Record<string, string>>({});
   const [typeFilter, setTypeFilter] = useState<string>("all");
-  const [dashView, setDashView] = useState<"ops" | "campaign" | "leaderboard" | "honors" | "season">("ops");
+  const [dashView, setDashView] = useState<"questBoard" | "npcBoard" | "campaign" | "leaderboard" | "honors" | "season">("questBoard");
+  const [lbSubTab, setLbSubTab] = useState<"agents" | "players">("players");
+  const [createQuestOpen, setCreateQuestOpen] = useState(false);
+  const [questBoardAgentOpen, setQuestBoardAgentOpen] = useState(false);
+  const [npcAgentRosterOpen, setNpcAgentRosterOpen] = useState(true);
+  const [dobbieOpen, setDobbieOpen] = useState(false);
   const [shopUserId, setShopUserId] = useState<string | null>(null);
   const [toast, setToast] = useState<EarnedAchievement | null>(null);
   const [flavorToast, setFlavorToast] = useState<{ message: string; icon: string; sub?: string } | null>(null);
@@ -576,17 +581,23 @@ export default function Dashboard() {
 
   const needsAttention = agents.filter((a) => a.health === "needs_checkin" || a.health === "broken").length;
 
-  // Gamification stats
-  const longestStreak = Math.max(0, ...agents.map(a => a.streakDays ?? 0), ...users.map(u => u.streakDays ?? 0));
-  const activeQuestsCount = quests.inProgress.length;
-  const openQuestsCount = quests.open.length;
-  const completedQuestsCount = quests.completed.length;
-  const guildGold = agents.reduce((s, a) => s + (a.gold ?? 0), 0) + users.reduce((s, u) => s + (u.gold ?? 0), 0);
+  // Player-specific stats (logged-in player)
+  const loggedInUser = playerName ? users.find(u => u.id.toLowerCase() === playerName.toLowerCase() || u.name.toLowerCase() === playerName.toLowerCase()) : null;
+  const playerTypes = ["personal", "learning", "fitness", "social", "relationship-coop"];
+  const playerActiveQuests = quests.inProgress.filter(q => playerTypes.includes(q.type ?? "") && q.claimedBy?.toLowerCase() === (playerName || "").toLowerCase());
+  const playerCompletedQuests = quests.completed.filter(q => playerTypes.includes(q.type ?? "") && q.completedBy?.toLowerCase() === (playerName || "").toLowerCase());
+  const playerStreak = loggedInUser?.streakDays ?? 0;
+  const playerGold = loggedInUser?.gold ?? 0;
 
-  const animStreak    = useCountUp(longestStreak, 0);
-  const animActive    = useCountUp(activeQuestsCount, 0);
-  const animCompleted = useCountUp(completedQuestsCount, 0);
-  const animGold      = useCountUp(guildGold, 0);
+  const playerActiveCount = playerActiveQuests.length;
+  const playerCompletedCount = playerCompletedQuests.length;
+
+  const openQuestsCount = quests.open.length;
+
+  const animStreak    = useCountUp(playerStreak, 0);
+  const animActive    = useCountUp(playerActiveCount, 0);
+  const animCompleted = useCountUp(playerCompletedCount, 0);
+  const animGold      = useCountUp(playerGold, 0);
 
   const lastUpdatedStr = lastRefresh
     ? secondsAgo < 5 ? "just now" : `${secondsAgo}s ago`
@@ -607,6 +618,18 @@ export default function Dashboard() {
   }, [sortMode]);
   const visibleOpen = useMemo(() => applySort(applyFilter(quests.open)), [quests.open, applyFilter, applySort]);
   const visibleInProgress = useMemo(() => applySort(applyFilter(quests.inProgress)), [quests.inProgress, applyFilter, applySort]);
+
+  // NPC board — dev-only filtered quests
+  const devOpen = useMemo(() => applySort(quests.open.filter(q => (q.type ?? "development") === "development").filter(q => {
+    if (!searchFilter) return true;
+    const s = searchFilter.toLowerCase();
+    return q.title.toLowerCase().includes(s) || (q.description || "").toLowerCase().includes(s);
+  })), [quests.open, searchFilter, applySort]);
+  const devInProgress = useMemo(() => applySort(quests.inProgress.filter(q => (q.type ?? "development") === "development").filter(q => {
+    if (!searchFilter) return true;
+    const s = searchFilter.toLowerCase();
+    return q.title.toLowerCase().includes(s) || (q.description || "").toLowerCase().includes(s);
+  })), [quests.inProgress, searchFilter, applySort]);
 
   // Build per-agent quest map
   const agentQuestMap: Record<string, Quest[]> = {};
@@ -790,38 +813,46 @@ export default function Dashboard() {
           </p>
         </div>
 
-        {/* Stats */}
+        {/* Stats — Player-specific */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          {!playerName && !loading && (
+            <div className="col-span-2 sm:col-span-4 rounded-xl p-3 text-center" style={{ background: "rgba(167,139,250,0.06)", border: "1px solid rgba(167,139,250,0.2)" }}>
+              <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>
+                🔑 <button onClick={() => setLoginOpen(true)} className="underline" style={{ color: "#a78bfa" }}>Log in</button> to see your personal stats
+              </p>
+            </div>
+          )}
           <StatBar
             label="🔥 Forge Streak"
-            value={loading ? "—" : `${animStreak}d`}
-            sub="longest active"
+            value={loading ? "—" : playerName ? `${animStreak}d` : "—"}
+            sub={playerName ? "your streak" : "login to view"}
             accent="#f97316"
           />
           <StatBar
             label="⚔️ Active Quests"
-            value={loading ? "—" : animActive}
-            sub={`${openQuestsCount} open`}
+            value={loading ? "—" : playerName ? animActive : "—"}
+            sub={playerName ? `${openQuestsCount} open total` : "login to view"}
             accent="#ef4444"
           />
           <StatBar
             label="✅ Quests Completed"
-            value={loading ? "—" : animCompleted}
-            sub="all time"
+            value={loading ? "—" : playerName ? animCompleted : "—"}
+            sub={playerName ? "your completions" : "login to view"}
             accent="#22c55e"
           />
           <StatBar
-            label="🪙 Guild Gold"
-            value={loading ? "—" : animGold}
-            sub="total earned"
+            label="🪙 Your Gold"
+            value={loading ? "—" : playerName ? animGold : "—"}
+            sub={playerName ? "your earnings" : "login to view"}
             accent="#eab308"
           />
         </div>
 
         {/* View toggle */}
-        <div className="flex gap-1" style={{ background: "#111", borderRadius: 8, padding: 3, display: "inline-flex" }}>
+        <div className="flex gap-1 flex-wrap" style={{ background: "#111", borderRadius: 8, padding: 3, display: "inline-flex" }}>
           {[
-            { key: "ops",         label: "⚔ Operations" },
+            { key: "questBoard",  label: "⚔ Quest Board" },
+            { key: "npcBoard",    label: "🤖 NPC Quest Board" },
             { key: "leaderboard", label: "🏆 Leaderboard" },
             { key: "honors",      label: "🏅 Honors" },
             { key: "campaign",    label: "🐉 Campaign" },
@@ -829,8 +860,8 @@ export default function Dashboard() {
           ].map(v => (
             <button
               key={v.key}
-              onClick={() => setDashView(v.key as "ops" | "campaign" | "leaderboard" | "honors" | "season")}
-              className="text-xs font-semibold px-3 py-1.5 rounded transition-all"
+              onClick={() => setDashView(v.key as typeof dashView)}
+              className="btn-interactive text-xs font-semibold px-3 py-1.5 rounded transition-all"
               style={{
                 background: dashView === v.key ? "#252525" : "transparent",
                 color: dashView === v.key ? "#f0f0f0" : "rgba(255,255,255,0.3)",
@@ -841,14 +872,35 @@ export default function Dashboard() {
           ))}
         </div>
 
-        {/* Leaderboard View */}
+        {/* Leaderboard View with Agent/Player sub-tabs */}
         {dashView === "leaderboard" && (
-          <LeaderboardView entries={leaderboard} agents={agents} />
+          <div className="space-y-4">
+            <div className="flex gap-1" style={{ background: "#111", borderRadius: 8, padding: 3, display: "inline-flex" }}>
+              {[
+                { key: "players", label: "👤 Players" },
+                { key: "agents",  label: "🤖 Agents" },
+              ].map(t => (
+                <button
+                  key={t.key}
+                  onClick={() => setLbSubTab(t.key as "agents" | "players")}
+                  className="btn-interactive text-xs font-semibold px-3 py-1.5 rounded transition-all"
+                  style={{
+                    background: lbSubTab === t.key ? "#252525" : "transparent",
+                    color: lbSubTab === t.key ? "#f0f0f0" : "rgba(255,255,255,0.3)",
+                  }}
+                >
+                  {t.label}
+                </button>
+              ))}
+            </div>
+            {lbSubTab === "agents" && <LeaderboardView entries={leaderboard} agents={agents} mode="agents" />}
+            {lbSubTab === "players" && <LeaderboardView entries={leaderboard} agents={agents} mode="players" users={users} />}
+          </div>
         )}
 
-        {/* Honors View */}
+        {/* Honors View — Player-specific */}
         {dashView === "honors" && (
-          <HonorsView catalogue={achievementCatalogue} users={users} />
+          <HonorsView catalogue={achievementCatalogue} users={users} playerName={playerName} quests={quests} reviewApiKey={reviewApiKey} />
         )}
 
         {/* Campaign View */}
@@ -861,402 +913,334 @@ export default function Dashboard() {
           <BattlePassView users={users} quests={quests} />
         )}
 
-        {/* Agent Roster + Quest Board */}
-        {dashView === "ops" && (
-          <div>
-
-          {/* User Cards (Household Gamification) */}
-          {users.length > 0 && (
-            <section className="mb-6">
-              <div className="flex items-center gap-3 mb-3">
-                <h2 className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.3)" }}>
-                  Players
-                </h2>
-                <span className="text-xs px-1.5 py-0.5 rounded font-mono" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.25)" }}>
-                  {users.length}
-                </span>
-              </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
-                {users.map(u => <UserCard key={u.id} user={u} onShopOpen={reviewApiKey ? setShopUserId : undefined} />)}
-              </div>
-            </section>
-          )}
-
-          {/* Player Quest Board — player-type quests (personal/learning/fitness/social) */}
-          {(() => {
-            const playerTypes = ["personal", "learning", "fitness", "social"];
-            const playerOpen = [...quests.open, ...quests.inProgress].filter(q => playerTypes.includes(q.type ?? ""));
-            if (playerOpen.length === 0) return null;
-            return (
-              <section className="mb-6">
-                <div className="flex items-center gap-3 mb-3">
-                  <h2 className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.4)" }}>
-                    🎮 Player Board
-                  </h2>
-                  <span className="text-xs px-1.5 py-0.5 rounded font-mono" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.25)" }}>
-                    {playerOpen.length}
-                  </span>
-                  <span className="text-xs ml-auto" style={{ color: "rgba(255,255,255,0.2)" }}>Personal · Learning · Fitness · Social</span>
-                </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
-                  {playerOpen.map(q => (
-                    <QuestCard
-                      key={q.id}
-                      quest={q}
-                      onClaim={reviewApiKey && playerName ? handleClaim : undefined}
-                      onUnclaim={reviewApiKey && playerName ? handleUnclaim : undefined}
-                      onComplete={reviewApiKey && playerName ? handleComplete : undefined}
-                      onCoopClaim={reviewApiKey && playerName ? handleCoopClaim : undefined}
-                      onCoopComplete={reviewApiKey && playerName ? handleCoopComplete : undefined}
-                      playerName={playerName}
-                    />
-                  ))}
-                </div>
-              </section>
-            );
-          })()}
-
-          <div className="flex flex-col lg:flex-row gap-6 items-start">
-
-          {/* Agent Roster */}
-          <section className="flex-1 min-w-0">
-            <div className="flex items-center justify-between mb-4">
-              <div>
-                <h2 className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.4)" }}>
-                  Agent Roster
-                </h2>
-                <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.25)" }}>
-                  {loading ? "Loading…" : agents.length > 0 ? `${agents.length} agents registered` : "Waiting for agents to check in"}
-                </p>
-              </div>
-              <div className="flex items-center gap-3 text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>
-                <span className="flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: "#4ade80", animation: "pulse-online 2s ease-in-out infinite" }} />
-                  Online
-                </span>
-                <span className="flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: "#ff6b00", animation: "pulse-working 1.5s ease-in-out infinite" }} />
-                  Working
-                </span>
-                <span className="flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: "#facc15", animation: "pulse-idle 3s ease-in-out infinite" }} />
-                  Idle
-                </span>
-                <span className="flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: "rgba(255,255,255,0.2)" }} />
-                  Offline
-                </span>
-              </div>
-            </div>
-
-            {loading ? (
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {[1, 2, 3, 4, 5, 6].map((i) => <SkeletonCard key={i} />)}
-              </div>
-            ) : agents.length > 0 ? (
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {agents.map((agent) => (
-                  <div key={agent.id} className={agent.id === "lyra" ? "col-span-1 sm:col-span-2" : ""}>
-                    <AgentCard
-                      agent={agent}
-                      activeQuests={agentQuestMap[agent.id] ?? []}
-                      isWide={agent.id === "lyra"}
-                    />
+        {/* ── QUEST BOARD (Player Tab) ── */}
+        {dashView === "questBoard" && (() => {
+          const playerQuestTypes = ["personal", "learning", "fitness", "social", "relationship-coop"];
+          const playerVisibleOpen = applySort(applyFilter(quests.open.filter(q => playerQuestTypes.includes(q.type ?? ""))));
+          const playerVisibleInProgress = applySort(applyFilter(quests.inProgress.filter(q => playerQuestTypes.includes(q.type ?? ""))));
+          return (
+            <div>
+              {/* Player Cards */}
+              {users.length > 0 && (
+                <section className="mb-6">
+                  <div className="flex items-center gap-3 mb-3">
+                    <h2 className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.3)" }}>Players</h2>
+                    <span className="text-xs px-1.5 py-0.5 rounded font-mono" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.25)" }}>{users.length}</span>
                   </div>
-                ))}
-              </div>
-            ) : (
-              <EmptyState
-                message="No agents have checked in yet."
-                sub={`POST /api/agent/:name/status  →  { status, platform, uptime, questsCompleted, health }`}
-              />
-            )}
-          </section>
-
-          {/* Quest Board */}
-          <aside className="w-full lg:w-80 flex-shrink-0">
-            <div className="mb-3">
-              <div className="flex items-center justify-between mb-2">
-                <div>
-                  <h2 className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.4)" }}>
-                    Quest Board
-                  </h2>
-                  <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.25)" }}>
-                    {visibleOpen.length} open · {visibleInProgress.length} in progress
-                  </p>
-                </div>
-                <div className="flex items-center gap-1">
-                  <button
-                    onClick={() => {
-                      const allCollapsed = openSectionCollapsed && inProgressSectionCollapsed;
-                      const next = !allCollapsed;
-                      setOpenSectionCollapsed(next);
-                      setInProgressSectionCollapsed(next);
-                      try {
-                        localStorage.setItem("qb_open_collapsed", String(next));
-                        localStorage.setItem("qb_inprogress_collapsed", String(next));
-                      } catch { /* ignore */ }
-                    }}
-                    className="text-xs px-2 py-1 rounded"
-                    style={{
-                      background: "rgba(255,255,255,0.04)",
-                      color: "rgba(255,255,255,0.25)",
-                      border: "1px solid rgba(255,255,255,0.07)",
-                    }}
-                    title="Collapse / Expand All"
-                  >
-                    {openSectionCollapsed && inProgressSectionCollapsed ? "⊞" : "⊟"}
-                  </button>
-                  <button
-                    onClick={() => setSortMode(s => s === "newest" ? "priority" : "newest")}
-                    className="text-xs px-2 py-1 rounded"
-                    style={{
-                      background: sortMode === "priority" ? "rgba(255,102,51,0.15)" : "rgba(255,255,255,0.05)",
-                      color: sortMode === "priority" ? "#ff6633" : "rgba(255,255,255,0.3)",
-                      border: `1px solid ${sortMode === "priority" ? "rgba(255,102,51,0.3)" : "rgba(255,255,255,0.08)"}`,
-                    }}
-                  >
-                    {sortMode === "newest" ? "⇅ Newest" : "⇅ Priority"}
-                  </button>
-                </div>
-              </div>
-              {/* Type filter tabs */}
-              <div className="flex gap-1 flex-wrap mb-2">
-                {(["all", "development", "personal", "learning", "fitness", "social"] as const).map(t => {
-                  const cfg = t === "all" ? null : typeConfig[t];
-                  const isActive = typeFilter === t;
-                  return (
-                    <button
-                      key={t}
-                      onClick={() => setTypeFilter(t)}
-                      className="text-xs px-2 py-0.5 rounded"
-                      style={{
-                        background: isActive ? (cfg ? cfg.bg : "rgba(255,255,255,0.1)") : "rgba(255,255,255,0.03)",
-                        color: isActive ? (cfg ? cfg.color : "#e8e8e8") : "rgba(255,255,255,0.3)",
-                        border: `1px solid ${isActive ? (cfg ? cfg.border : "rgba(255,255,255,0.2)") : "rgba(255,255,255,0.07)"}`,
-                      }}
-                    >
-                      {t === "all" ? "All" : `${cfg!.icon} ${cfg!.label}`}
-                    </button>
-                  );
-                })}
-              </div>
-              <input
-                type="text"
-                value={searchFilter}
-                onChange={e => setSearchFilter(e.target.value)}
-                placeholder="Search quests…"
-                className="w-full text-xs px-2 py-1.5 rounded"
-                style={{ background: "#1e1e1e", border: "1px solid rgba(255,255,255,0.08)", color: "#e8e8e8", outline: "none" }}
-              />
-            </div>
-
-            <div className="space-y-2">
-              {loading ? (
-                [1, 2, 3].map(i => (
-                  <div key={i} className="h-20 rounded-lg animate-pulse" style={{ background: "#252525", border: "1px solid rgba(255,255,255,0.05)" }} />
-                ))
-              ) : visibleOpen.length === 0 && visibleInProgress.length === 0 ? (
-                <div className="rounded-xl p-5 text-center" style={{ background: "#252525", border: "1px solid rgba(255,255,255,0.06)" }}>
-                  <p className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>{searchFilter ? "No quests match your search" : "No open quests"}</p>
-                  {!searchFilter && <p className="text-xs mt-1 font-mono" style={{ color: "rgba(255,68,68,0.3)" }}>POST /api/quest</p>}
-                </div>
-              ) : (
-                <>
-                  {/* Open section — collapsible */}
-                  {visibleOpen.length > 0 && (
-                    <>
-                      <button
-                        onClick={() => {
-                          const next = !openSectionCollapsed;
-                          setOpenSectionCollapsed(next);
-                          try { localStorage.setItem("qb_open_collapsed", String(next)); } catch { /* ignore */ }
-                        }}
-                        className="flex items-center gap-2 w-full text-left pt-1 pb-0.5"
-                      >
-                        <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.3)" }}>
-                          Open
-                        </span>
-                        <span className="text-xs px-1 rounded font-mono" style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.2)" }}>
-                          {visibleOpen.length}
-                        </span>
-                        <span className="ml-auto text-xs" style={{ color: "rgba(255,255,255,0.15)" }}>{openSectionCollapsed ? "▼" : "▲"}</span>
-                      </button>
-                      {!openSectionCollapsed && visibleOpen.map(q => q.children && q.children.length > 0
-                        ? <EpicQuestCard key={q.id} quest={q} selected={selectedIds.has(q.id)} onToggle={reviewApiKey ? toggleSelect : undefined} />
-                        : <QuestCard key={q.id} quest={q} selected={selectedIds.has(q.id)} onToggle={reviewApiKey ? toggleSelect : undefined}
-                            onClaim={reviewApiKey && playerName ? handleClaim : undefined}
-                            onUnclaim={reviewApiKey && playerName ? handleUnclaim : undefined}
-                            onComplete={reviewApiKey && playerName ? handleComplete : undefined}
-                            onCoopClaim={reviewApiKey && playerName ? handleCoopClaim : undefined}
-                            onCoopComplete={reviewApiKey && playerName ? handleCoopComplete : undefined}
-                            playerName={playerName} />
-                      )}
-                    </>
-                  )}
-
-                  {/* In Progress section — collapsible */}
-                  {visibleInProgress.length > 0 && (
-                    <>
-                      <button
-                        onClick={() => {
-                          const next = !inProgressSectionCollapsed;
-                          setInProgressSectionCollapsed(next);
-                          try { localStorage.setItem("qb_inprogress_collapsed", String(next)); } catch { /* ignore */ }
-                        }}
-                        className="flex items-center gap-2 w-full text-left pt-2 pb-0.5"
-                      >
-                        <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.25)" }}>
-                          In Progress
-                        </span>
-                        <span className="text-xs px-1 rounded font-mono" style={{ background: "rgba(139,92,246,0.08)", color: "rgba(139,92,246,0.5)" }}>
-                          {visibleInProgress.length}
-                        </span>
-                        <span className="ml-auto text-xs" style={{ color: "rgba(255,255,255,0.15)" }}>{inProgressSectionCollapsed ? "▼" : "▲"}</span>
-                      </button>
-                      {!inProgressSectionCollapsed && visibleInProgress.map(q => q.children && q.children.length > 0
-                        ? <EpicQuestCard key={q.id} quest={q} selected={selectedIds.has(q.id)} onToggle={reviewApiKey ? toggleSelect : undefined} />
-                        : <QuestCard key={q.id} quest={q} selected={selectedIds.has(q.id)} onToggle={reviewApiKey ? toggleSelect : undefined}
-                            onClaim={reviewApiKey && playerName ? handleClaim : undefined}
-                            onUnclaim={reviewApiKey && playerName ? handleUnclaim : undefined}
-                            onComplete={reviewApiKey && playerName ? handleComplete : undefined}
-                            onCoopClaim={reviewApiKey && playerName ? handleCoopClaim : undefined}
-                            onCoopComplete={reviewApiKey && playerName ? handleCoopComplete : undefined}
-                            playerName={playerName} />
-                      )}
-                    </>
-                  )}
-                </>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+                    {users.map(u => <UserCard key={u.id} user={u} onShopOpen={reviewApiKey ? setShopUserId : undefined} />)}
+                  </div>
+                </section>
               )}
-            </div>
-          </aside>
-          </div>
-          </div>
-        )}
 
-        {/* Review Board — Agent Suggestions */}
-        {quests.suggested.length > 0 && (
-          <section className="mb-6">
-            <div className="flex items-center gap-2 mb-3">
-              <h2 className="text-xs font-semibold uppercase tracking-widest" style={{ color: "#f59e0b" }}>
-                ✦ Review Board
-              </h2>
-              <span className="text-xs px-1.5 py-0.5 rounded font-mono" style={{ background: "rgba(245,158,11,0.12)", color: "#f59e0b", border: "1px solid rgba(245,158,11,0.3)" }}>
-                {quests.suggested.length}
-              </span>
-            </div>
-            {!reviewApiKey ? (
-              <div className="rounded-xl p-3" style={{ background: "#252525", border: "1px solid rgba(245,158,11,0.2)" }}>
-                <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>🔑 Log in (header) to review and approve quests.</p>
-              </div>
-            ) : (
-              <div className="space-y-2">
-                {quests.suggested.map(q => (
-                  <div key={q.id} className="rounded-xl p-4" style={{ background: "#252525", border: "1px solid rgba(245,158,11,0.25)", boxShadow: "0 0 12px rgba(245,158,11,0.06)" }}>
-                    <div className="flex items-start justify-between gap-3">
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-2 mb-1">
-                          <ClickablePriorityBadge priority={q.priority} onClick={() => {
-                            const cycle: Quest["priority"][] = ["low", "medium", "high"];
-                            const next = cycle[(cycle.indexOf(q.priority) + 1) % 3];
-                            handleChangePriority(q.id, next);
-                          }} />
-                          <h3 className="text-sm font-medium truncate" style={{ color: "rgba(255,255,255,0.85)" }}>{q.title}</h3>
-                        </div>
-                        {q.description && (
-                          <p className="text-xs leading-relaxed mb-2" style={{ color: "rgba(255,255,255,0.4)" }}>{q.description}</p>
+              <div className="flex flex-col lg:flex-row gap-6 items-start">
+                {/* Left: Collapsible Agent Roster */}
+                <div className="w-full lg:flex-shrink-0" style={{ width: questBoardAgentOpen ? undefined : undefined }}>
+                  <div className="rounded-xl overflow-hidden" style={{ background: "#1e1e1e", border: "1px solid rgba(255,255,255,0.06)" }}>
+                    <button
+                      onClick={() => setQuestBoardAgentOpen(v => !v)}
+                      className="flex items-center gap-2 w-full px-3 py-2.5 text-left"
+                    >
+                      <h2 className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.35)" }}>🤖 Agent Roster</h2>
+                      <span className="text-xs px-1.5 py-0.5 rounded font-mono" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.2)" }}>
+                        {agents.filter(a => a.status !== "offline").length} online
+                      </span>
+                      <span className="ml-auto text-xs" style={{ color: "rgba(255,255,255,0.15)" }}>{questBoardAgentOpen ? "▲" : "▼"}</span>
+                    </button>
+                    {questBoardAgentOpen && (
+                      <div className="px-3 pb-3" style={{ borderTop: "1px solid rgba(255,255,255,0.04)" }}>
+                        {loading ? (
+                          <div className="space-y-2 pt-3">{[1,2,3].map(i => <div key={i} className="h-14 rounded-lg animate-pulse" style={{ background: "#252525" }} />)}</div>
+                        ) : agents.length === 0 ? (
+                          <p className="text-xs pt-3" style={{ color: "rgba(255,255,255,0.2)" }}>No agents have checked in yet.</p>
+                        ) : (
+                          <div className="space-y-2 pt-3">
+                            {agents.map(agent => (
+                              <AgentCard key={agent.id} agent={agent} activeQuests={agentQuestMap[agent.id] ?? []} isWide={false} />
+                            ))}
+                          </div>
                         )}
-                        <div className="flex items-center gap-2 flex-wrap">
-                          {(q.categories?.length ? q.categories : (q.category ? [q.category] : [])).map(c => (
-                            <CategoryBadge key={c} category={c} />
-                          ))}
-                          {q.product && <ProductBadge product={q.product} />}
-                          {q.createdBy && (
-                            <span className="text-xs px-1.5 py-0.5 rounded" style={{ background: "rgba(245,158,11,0.1)", color: "rgba(245,158,11,0.7)", border: "1px solid rgba(245,158,11,0.2)" }}>
-                              by {q.createdBy}
-                            </span>
-                          )}
-                        </div>
-                        {/* Annotation field */}
-                        <input
-                          type="text"
-                          value={reviewComments[q.id] ?? ""}
-                          onChange={e => setReviewComments(prev => ({ ...prev, [q.id]: e.target.value }))}
-                          placeholder="Add a comment (optional)…"
-                          className="mt-2 w-full text-xs px-2 py-1.5 rounded"
-                          style={{ background: "#1a1a1a", border: "1px solid rgba(255,255,255,0.08)", color: "#e8e8e8", outline: "none" }}
-                        />
                       </div>
-                      <div className="flex flex-col gap-1.5 flex-shrink-0">
+                    )}
+                  </div>
+                </div>
+
+                {/* Right: Quest Board Sidebar — player types only */}
+                <aside className="w-full lg:flex-1 lg:max-w-sm flex-shrink-0">
+                  <div className="mb-3">
+                    <div className="flex items-center justify-between mb-2">
+                      <div>
+                        <h2 className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.4)" }}>⚔ Quest Board</h2>
+                        <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.25)" }}>{playerVisibleOpen.length} open · {playerVisibleInProgress.length} in progress</p>
+                      </div>
+                      <div className="flex items-center gap-1">
                         <button
-                          onClick={() => handleApprove(q.id, reviewComments[q.id])}
-                          className="px-2.5 py-1.5 rounded-lg text-xs font-medium transition-all"
-                          style={{ background: "rgba(34,197,94,0.15)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.3)" }}
-                          onMouseEnter={e => { (e.target as HTMLElement).style.background = "rgba(34,197,94,0.3)"; }}
-                          onMouseLeave={e => { (e.target as HTMLElement).style.background = "rgba(34,197,94,0.15)"; }}
+                          onClick={() => setCreateQuestOpen(true)}
+                          className="btn-interactive text-xs px-2 py-1 rounded font-semibold"
+                          style={{ background: "rgba(167,139,250,0.12)", color: "#a78bfa", border: "1px solid rgba(167,139,250,0.3)" }}
+                          title="Create Quest"
                         >
-                          ✓ Approve
+                          ＋ Create
                         </button>
                         <button
-                          onClick={() => handleReject(q.id, reviewComments[q.id])}
-                          className="px-2.5 py-1.5 rounded-lg text-xs font-medium transition-all"
-                          style={{ background: "rgba(239,68,68,0.1)", color: "rgba(239,68,68,0.7)", border: "1px solid rgba(239,68,68,0.2)" }}
-                          onMouseEnter={e => { (e.target as HTMLElement).style.background = "rgba(239,68,68,0.25)"; }}
-                          onMouseLeave={e => { (e.target as HTMLElement).style.background = "rgba(239,68,68,0.1)"; }}
+                          onClick={() => {
+                            const allCollapsed = openSectionCollapsed && inProgressSectionCollapsed;
+                            const next = !allCollapsed;
+                            setOpenSectionCollapsed(next);
+                            setInProgressSectionCollapsed(next);
+                            try { localStorage.setItem("qb_open_collapsed", String(next)); localStorage.setItem("qb_inprogress_collapsed", String(next)); } catch { /* ignore */ }
+                          }}
+                          className="text-xs px-2 py-1 rounded"
+                          style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.25)", border: "1px solid rgba(255,255,255,0.07)" }}
+                          title="Collapse / Expand All"
                         >
-                          ✕ Reject
+                          {openSectionCollapsed && inProgressSectionCollapsed ? "⊞" : "⊟"}
+                        </button>
+                        <button
+                          onClick={() => setSortMode(s => s === "newest" ? "priority" : "newest")}
+                          className="text-xs px-2 py-1 rounded"
+                          style={{ background: sortMode === "priority" ? "rgba(255,102,51,0.15)" : "rgba(255,255,255,0.05)", color: sortMode === "priority" ? "#ff6633" : "rgba(255,255,255,0.3)", border: `1px solid ${sortMode === "priority" ? "rgba(255,102,51,0.3)" : "rgba(255,255,255,0.08)"}` }}
+                        >
+                          {sortMode === "newest" ? "⇅ Newest" : "⇅ Priority"}
                         </button>
                       </div>
                     </div>
+                    {/* Type filter — player types only */}
+                    <div className="flex gap-1 flex-wrap mb-2">
+                      {(["all", "personal", "learning", "fitness", "social", "relationship-coop"] as const).map(t => {
+                        const cfg = t === "all" ? null : typeConfig[t];
+                        const isActive = typeFilter === t;
+                        return (
+                          <button key={t} onClick={() => setTypeFilter(t)} className="text-xs px-2 py-0.5 rounded"
+                            style={{ background: isActive ? (cfg ? cfg.bg : "rgba(255,255,255,0.1)") : "rgba(255,255,255,0.03)", color: isActive ? (cfg ? cfg.color : "#e8e8e8") : "rgba(255,255,255,0.3)", border: `1px solid ${isActive ? (cfg ? cfg.border : "rgba(255,255,255,0.2)") : "rgba(255,255,255,0.07)"}` }}>
+                            {t === "all" ? "All" : `${cfg!.icon} ${cfg!.label}`}
+                          </button>
+                        );
+                      })}
+                    </div>
+                    <input type="text" value={searchFilter} onChange={e => setSearchFilter(e.target.value)} placeholder="Search quests…" className="w-full text-xs px-2 py-1.5 rounded" style={{ background: "#1e1e1e", border: "1px solid rgba(255,255,255,0.08)", color: "#e8e8e8", outline: "none" }} />
                   </div>
-                ))}
+
+                  <div className="space-y-2">
+                    {loading ? [1,2,3].map(i => <div key={i} className="h-20 rounded-lg animate-pulse" style={{ background: "#252525", border: "1px solid rgba(255,255,255,0.05)" }} />) :
+                    playerVisibleOpen.length === 0 && playerVisibleInProgress.length === 0 ? (
+                      <div className="rounded-xl p-5 text-center" style={{ background: "#252525", border: "1px solid rgba(255,255,255,0.06)" }}>
+                        <p className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>{searchFilter ? "No quests match your search" : "No player quests open"}</p>
+                        {!searchFilter && <button onClick={() => setCreateQuestOpen(true)} className="btn-interactive text-xs mt-2 px-3 py-1 rounded" style={{ background: "rgba(167,139,250,0.12)", color: "#a78bfa", border: "1px solid rgba(167,139,250,0.3)" }}>＋ Create Quest</button>}
+                      </div>
+                    ) : (
+                      <>
+                        {playerVisibleOpen.length > 0 && (
+                          <>
+                            <button onClick={() => { const next = !openSectionCollapsed; setOpenSectionCollapsed(next); try { localStorage.setItem("qb_open_collapsed", String(next)); } catch { /* ignore */ } }} className="flex items-center gap-2 w-full text-left pt-1 pb-0.5">
+                              <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.3)" }}>Open</span>
+                              <span className="text-xs px-1 rounded font-mono" style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.2)" }}>{playerVisibleOpen.length}</span>
+                              <span className="ml-auto text-xs" style={{ color: "rgba(255,255,255,0.15)" }}>{openSectionCollapsed ? "▼" : "▲"}</span>
+                            </button>
+                            {!openSectionCollapsed && playerVisibleOpen.map(q =>
+                              q.children && q.children.length > 0
+                                ? <EpicQuestCard key={q.id} quest={q} selected={selectedIds.has(q.id)} onToggle={reviewApiKey ? toggleSelect : undefined} />
+                                : <QuestCard key={q.id} quest={q} selected={selectedIds.has(q.id)} onToggle={reviewApiKey ? toggleSelect : undefined}
+                                    onClaim={reviewApiKey && playerName ? handleClaim : undefined}
+                                    onUnclaim={reviewApiKey && playerName ? handleUnclaim : undefined}
+                                    onComplete={reviewApiKey && playerName ? handleComplete : undefined}
+                                    onCoopClaim={reviewApiKey && playerName ? handleCoopClaim : undefined}
+                                    onCoopComplete={reviewApiKey && playerName ? handleCoopComplete : undefined}
+                                    playerName={playerName} />
+                            )}
+                          </>
+                        )}
+                        {playerVisibleInProgress.length > 0 && (
+                          <>
+                            <button onClick={() => { const next = !inProgressSectionCollapsed; setInProgressSectionCollapsed(next); try { localStorage.setItem("qb_inprogress_collapsed", String(next)); } catch { /* ignore */ } }} className="flex items-center gap-2 w-full text-left pt-2 pb-0.5">
+                              <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.25)" }}>In Progress</span>
+                              <span className="text-xs px-1 rounded font-mono" style={{ background: "rgba(139,92,246,0.08)", color: "rgba(139,92,246,0.5)" }}>{playerVisibleInProgress.length}</span>
+                              <span className="ml-auto text-xs" style={{ color: "rgba(255,255,255,0.15)" }}>{inProgressSectionCollapsed ? "▼" : "▲"}</span>
+                            </button>
+                            {!inProgressSectionCollapsed && playerVisibleInProgress.map(q =>
+                              q.children && q.children.length > 0
+                                ? <EpicQuestCard key={q.id} quest={q} selected={selectedIds.has(q.id)} onToggle={reviewApiKey ? toggleSelect : undefined} />
+                                : <QuestCard key={q.id} quest={q} selected={selectedIds.has(q.id)} onToggle={reviewApiKey ? toggleSelect : undefined}
+                                    onClaim={reviewApiKey && playerName ? handleClaim : undefined}
+                                    onUnclaim={reviewApiKey && playerName ? handleUnclaim : undefined}
+                                    onComplete={reviewApiKey && playerName ? handleComplete : undefined}
+                                    onCoopClaim={reviewApiKey && playerName ? handleCoopClaim : undefined}
+                                    onCoopComplete={reviewApiKey && playerName ? handleCoopComplete : undefined}
+                                    playerName={playerName} />
+                            )}
+                          </>
+                        )}
+                      </>
+                    )}
+                  </div>
+                </aside>
               </div>
-            )}
-          </section>
-        )}
+            </div>
+          );
+        })()}
 
-        {/* Personal Life Quests */}
-        {dashView === "ops" && reviewApiKey && (
-          <PersonalQuestPanel reviewApiKey={reviewApiKey} onRefresh={refresh} />
-        )}
+        {/* ── NPC QUEST BOARD (Agent Tab) ── */}
+        {dashView === "npcBoard" && (() => {
+          const devVisibleOpen = applySort(applyFilter(quests.open.filter(q => (q.type ?? "development") === "development")));
+          const devVisibleInProgress = applySort(applyFilter(quests.inProgress.filter(q => (q.type ?? "development") === "development")));
+          return (
+            <div className="space-y-6">
+              {/* Agent Roster — collapsible */}
+              <section>
+                <button
+                  onClick={() => setNpcAgentRosterOpen(v => !v)}
+                  className="flex items-center justify-between w-full mb-3"
+                >
+                  <div className="flex items-center gap-3">
+                    <h2 className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.4)" }}>Agent Roster</h2>
+                    <p className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>{loading ? "Loading…" : agents.length > 0 ? `${agents.length} agents registered` : "Waiting for agents to check in"}</p>
+                    <div className="flex items-center gap-3 text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>
+                      <span className="flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: "#4ade80", animation: "pulse-online 2s ease-in-out infinite" }} />Online</span>
+                      <span className="flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: "#ff6b00", animation: "pulse-working 1.5s ease-in-out infinite" }} />Working</span>
+                      <span className="flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: "#facc15", animation: "pulse-idle 3s ease-in-out infinite" }} />Idle</span>
+                    </div>
+                  </div>
+                  <span className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>{npcAgentRosterOpen ? "▲" : "▼"}</span>
+                </button>
+                {npcAgentRosterOpen && (loading ? (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">{[1,2,3,4,5,6].map(i => <SkeletonCard key={i} />)}</div>
+                ) : agents.length > 0 ? (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {agents.map(agent => (
+                      <div key={agent.id} className={agent.id === "lyra" ? "col-span-1 sm:col-span-2" : ""}>
+                        <AgentCard agent={agent} activeQuests={agentQuestMap[agent.id] ?? []} isWide={agent.id === "lyra"} />
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <EmptyState message="No agents have checked in yet." sub="POST /api/agent/:name/status  →  { status, platform, uptime, questsCompleted, health }" />
+                ))}
+              </section>
 
-        {/* Forge Challenges */}
-        {dashView === "ops" && reviewApiKey && (
-          <ForgeChallengesPanel users={users} reviewApiKey={reviewApiKey} onRefresh={refresh} />
-        )}
+              {/* NPC Quest Board (dev type only) + Review Board side-by-side */}
+              <div className="flex flex-col lg:flex-row gap-6 items-start">
+                <aside className="w-full lg:w-80 flex-shrink-0">
+                  <div className="mb-3">
+                    <div className="flex items-center justify-between mb-2">
+                      <div>
+                        <h2 className="text-xs font-semibold uppercase tracking-widest" style={{ color: "#8b5cf6" }}>⚙ NPC Quest Board</h2>
+                        <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.25)" }}>{devVisibleOpen.length} open · {devVisibleInProgress.length} in progress</p>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <button onClick={() => setSortMode(s => s === "newest" ? "priority" : "newest")} className="text-xs px-2 py-1 rounded" style={{ background: sortMode === "priority" ? "rgba(255,102,51,0.15)" : "rgba(255,255,255,0.05)", color: sortMode === "priority" ? "#ff6633" : "rgba(255,255,255,0.3)", border: `1px solid ${sortMode === "priority" ? "rgba(255,102,51,0.3)" : "rgba(255,255,255,0.08)"}` }}>
+                          {sortMode === "newest" ? "⇅ Newest" : "⇅ Priority"}
+                        </button>
+                      </div>
+                    </div>
+                    <input type="text" value={searchFilter} onChange={e => setSearchFilter(e.target.value)} placeholder="Search agent quests…" className="w-full text-xs px-2 py-1.5 rounded" style={{ background: "#1e1e1e", border: "1px solid rgba(255,255,255,0.08)", color: "#e8e8e8", outline: "none" }} />
+                  </div>
+                  <div className="space-y-2">
+                    {loading ? [1,2,3].map(i => <div key={i} className="h-20 rounded-lg animate-pulse" style={{ background: "#252525", border: "1px solid rgba(255,255,255,0.05)" }} />) :
+                    devVisibleOpen.length === 0 && devVisibleInProgress.length === 0 ? (
+                      <div className="rounded-xl p-5 text-center" style={{ background: "#252525", border: "1px solid rgba(255,255,255,0.06)" }}>
+                        <p className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>{searchFilter ? "No quests match" : "No development quests"}</p>
+                      </div>
+                    ) : (
+                      <>
+                        {devVisibleOpen.length > 0 && (
+                          <>
+                            <div className="flex items-center gap-2 pt-1 pb-0.5">
+                              <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.3)" }}>Open</span>
+                              <span className="text-xs px-1 rounded font-mono" style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.2)" }}>{devVisibleOpen.length}</span>
+                            </div>
+                            {devVisibleOpen.map(q =>
+                              q.children && q.children.length > 0
+                                ? <EpicQuestCard key={q.id} quest={q} selected={selectedIds.has(q.id)} onToggle={reviewApiKey ? toggleSelect : undefined} />
+                                : <QuestCard key={q.id} quest={q} selected={selectedIds.has(q.id)} onToggle={reviewApiKey ? toggleSelect : undefined} playerName={playerName} />
+                            )}
+                          </>
+                        )}
+                        {devVisibleInProgress.length > 0 && (
+                          <>
+                            <div className="flex items-center gap-2 pt-2 pb-0.5">
+                              <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.25)" }}>In Progress</span>
+                              <span className="text-xs px-1 rounded font-mono" style={{ background: "rgba(139,92,246,0.08)", color: "rgba(139,92,246,0.5)" }}>{devVisibleInProgress.length}</span>
+                            </div>
+                            {devVisibleInProgress.map(q =>
+                              q.children && q.children.length > 0
+                                ? <EpicQuestCard key={q.id} quest={q} selected={selectedIds.has(q.id)} onToggle={reviewApiKey ? toggleSelect : undefined} />
+                                : <QuestCard key={q.id} quest={q} selected={selectedIds.has(q.id)} onToggle={reviewApiKey ? toggleSelect : undefined} playerName={playerName} />
+                            )}
+                          </>
+                        )}
+                      </>
+                    )}
+                  </div>
+                </aside>
 
-        {/* Learning Workshop */}
-        {dashView === "ops" && (
-          <LearningQuestPanel quests={quests} reviewApiKey={reviewApiKey} onRefresh={refresh} />
-        )}
+                {/* Review Board — NPC tab only */}
+                <div className="flex-1 min-w-0">
+                  {quests.suggested.length > 0 && (
+                    <section className="mb-6">
+                      <div className="flex items-center gap-2 mb-3">
+                        <h2 className="text-xs font-semibold uppercase tracking-widest" style={{ color: "#f59e0b" }}>✦ Review Board</h2>
+                        <span className="text-xs px-1.5 py-0.5 rounded font-mono" style={{ background: "rgba(245,158,11,0.12)", color: "#f59e0b", border: "1px solid rgba(245,158,11,0.3)" }}>{quests.suggested.length}</span>
+                      </div>
+                      {!reviewApiKey ? (
+                        <div className="rounded-xl p-3" style={{ background: "#252525", border: "1px solid rgba(245,158,11,0.2)" }}>
+                          <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>🔑 Log in to review and approve quests.</p>
+                        </div>
+                      ) : (
+                        <div className="space-y-2">
+                          {quests.suggested.map(q => (
+                            <div key={q.id} className="rounded-xl p-4" style={{ background: "#252525", border: "1px solid rgba(245,158,11,0.25)", boxShadow: "0 0 12px rgba(245,158,11,0.06)" }}>
+                              <div className="flex items-start justify-between gap-3">
+                                <div className="flex-1 min-w-0">
+                                  <div className="flex items-center gap-2 mb-1">
+                                    <ClickablePriorityBadge priority={q.priority} onClick={() => { const cycle: Quest["priority"][] = ["low","medium","high"]; const next = cycle[(cycle.indexOf(q.priority)+1)%3]; handleChangePriority(q.id, next); }} />
+                                    <h3 className="text-sm font-medium truncate" style={{ color: "rgba(255,255,255,0.85)" }}>{q.title}</h3>
+                                  </div>
+                                  {q.description && <p className="text-xs leading-relaxed mb-2" style={{ color: "rgba(255,255,255,0.4)" }}>{q.description}</p>}
+                                  <div className="flex items-center gap-2 flex-wrap">
+                                    {(q.categories?.length ? q.categories : (q.category ? [q.category] : [])).map(c => <CategoryBadge key={c} category={c} />)}
+                                    {q.product && <ProductBadge product={q.product} />}
+                                    {q.createdBy && <span className="text-xs px-1.5 py-0.5 rounded" style={{ background: "rgba(245,158,11,0.1)", color: "rgba(245,158,11,0.7)", border: "1px solid rgba(245,158,11,0.2)" }}>by {q.createdBy}</span>}
+                                  </div>
+                                  <input type="text" value={reviewComments[q.id] ?? ""} onChange={e => setReviewComments(prev => ({ ...prev, [q.id]: e.target.value }))} placeholder="Add a comment (optional)…" className="mt-2 w-full text-xs px-2 py-1.5 rounded" style={{ background: "#1a1a1a", border: "1px solid rgba(255,255,255,0.08)", color: "#e8e8e8", outline: "none" }} />
+                                </div>
+                                <div className="flex flex-col gap-1.5 flex-shrink-0">
+                                  <button onClick={() => handleApprove(q.id, reviewComments[q.id])} className="action-btn btn-approve px-2.5 py-1.5 rounded-lg text-xs font-medium" style={{ background: "rgba(34,197,94,0.15)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.3)" }}>✓ Approve</button>
+                                  <button onClick={() => handleReject(q.id, reviewComments[q.id])} className="action-btn btn-danger px-2.5 py-1.5 rounded-lg text-xs font-medium" style={{ background: "rgba(239,68,68,0.1)", color: "rgba(239,68,68,0.7)", border: "1px solid rgba(239,68,68,0.2)" }}>✕ Reject</button>
+                                </div>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </section>
+                  )}
+                  <SmartSuggestionsPanel quests={quests} agents={agents} />
+                  {reviewApiKey && (
+                    <div className="rounded-xl overflow-hidden" style={{ background: "rgba(255,107,157,0.04)", border: "1px solid rgba(255,107,157,0.2)" }}>
+                      <button
+                        onClick={() => setDobbieOpen(v => !v)}
+                        className="flex items-center gap-2 w-full px-4 py-2.5 text-left"
+                      >
+                        <span className="text-sm">🐱</span>
+                        <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: "#ff6b9d" }}>Dobbie&apos;s Demands</span>
+                        <span className="text-xs px-1.5 py-0.5 rounded font-mono ml-1" style={{ background: "rgba(255,107,157,0.12)", color: "#ff6b9d", border: "1px solid rgba(255,107,157,0.25)" }}>NPC</span>
+                        <span className="ml-auto text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>{dobbieOpen ? "▲" : "▼"}</span>
+                      </button>
+                      {dobbieOpen && (
+                        <div style={{ borderTop: "1px solid rgba(255,107,157,0.15)" }}>
+                          <DobbieQuestPanel reviewApiKey={reviewApiKey} onRefresh={refresh} />
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          );
+        })()}
 
-        {/* Household Board */}
-        {dashView === "ops" && (
-          <HouseholdQuestBoard quests={quests} users={users} reviewApiKey={reviewApiKey} onRefresh={refresh} />
-        )}
-
-        {/* Thoughtful Hero */}
-        {dashView === "ops" && (
-          <ThoughtfulHeroPanel quests={quests} reviewApiKey={reviewApiKey} onRefresh={refresh} />
-        )}
-
-        {/* Relationship Raid Boss — Co-op Quests */}
-        {dashView === "ops" && reviewApiKey && (
-          <RelationshipCoopPanel users={users} reviewApiKey={reviewApiKey} onRefresh={refresh} />
-        )}
-
-        {/* CV Builder */}
-        {dashView === "ops" && (
-          <CVBuilderPanel quests={quests} users={users} playerName={playerName} />
-        )}
-
-        {/* Dobbie's Demands — NPC Quests */}
-        {dashView === "ops" && reviewApiKey && (
-          <DobbieQuestPanel reviewApiKey={reviewApiKey} onRefresh={refresh} />
-        )}
-
-        {/* AI Smart Suggestions */}
-        {(dashView === "ops" || dashView === "leaderboard") && (
+        {/* AI Smart Suggestions — also on leaderboard */}
+        {dashView === "leaderboard" && (
           <SmartSuggestionsPanel quests={quests} agents={agents} />
         )}
 
@@ -1455,6 +1439,64 @@ export default function Dashboard() {
 
       {/* Guide Modal */}
       {guideOpen && <GuideModal onClose={() => setGuideOpen(false)} />}
+
+      {/* Create Quest Modal */}
+      {createQuestOpen && (
+        <CreateQuestModal
+          quests={quests}
+          users={users}
+          reviewApiKey={reviewApiKey}
+          onRefresh={refresh}
+          onClose={() => setCreateQuestOpen(false)}
+        />
+      )}
+    </div>
+  );
+}
+
+// ─── Create Quest Modal ──────────────────────────────────────────────────────
+function CreateQuestModal({ quests, users, reviewApiKey, onRefresh, onClose }: {
+  quests: QuestsData;
+  users: User[];
+  reviewApiKey: string;
+  onRefresh: () => void;
+  onClose: () => void;
+}) {
+  const [tab, setTab] = useState<"personal" | "learning" | "household" | "social" | "coop" | "challenges">("personal");
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: "rgba(0,0,0,0.75)" }} onClick={onClose}>
+      <div className="rounded-2xl w-full max-w-2xl overflow-hidden" style={{ background: "#1a1a1a", border: "1px solid rgba(167,139,250,0.3)", boxShadow: "0 0 60px rgba(139,92,246,0.15)", maxHeight: "90vh", overflowY: "auto" }} onClick={e => e.stopPropagation()}>
+        <div className="flex items-center justify-between p-4 border-b" style={{ borderColor: "rgba(255,255,255,0.08)" }}>
+          <div>
+            <h2 className="text-sm font-bold" style={{ color: "#f0f0f0" }}>+ Create Quest</h2>
+            <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>Choose a template or start from scratch</p>
+          </div>
+          <button onClick={onClose} style={{ color: "rgba(255,255,255,0.3)", fontSize: 16 }}>x</button>
+        </div>
+        <div className="flex border-b overflow-x-auto" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
+          {([
+            { key: "personal",   label: "Personal" },
+            { key: "learning",   label: "Learning" },
+            { key: "household",  label: "Household" },
+            { key: "social",     label: "Social" },
+            { key: "coop",       label: "Co-op" },
+            { key: "challenges", label: "⚡ Challenges" },
+          ] as { key: typeof tab; label: string }[]).map(t => (
+            <button key={t.key} onClick={() => setTab(t.key)} className="flex-1 py-2.5 text-xs font-semibold transition-colors whitespace-nowrap px-2"
+              style={{ color: tab === t.key ? "#a78bfa" : "rgba(255,255,255,0.3)", background: tab === t.key ? "rgba(167,139,250,0.08)" : "transparent", borderBottom: tab === t.key ? "2px solid #a78bfa" : "2px solid transparent" }}>
+              {t.label}
+            </button>
+          ))}
+        </div>
+        <div className="p-4">
+          {tab === "personal" && <PersonalQuestPanel reviewApiKey={reviewApiKey} onRefresh={onRefresh} />}
+          {tab === "learning" && <LearningQuestPanel quests={quests} reviewApiKey={reviewApiKey} onRefresh={onRefresh} />}
+          {tab === "household" && <HouseholdQuestBoard quests={quests} users={users} reviewApiKey={reviewApiKey} onRefresh={onRefresh} />}
+          {tab === "social" && <ThoughtfulHeroPanel quests={quests} reviewApiKey={reviewApiKey} onRefresh={onRefresh} />}
+          {tab === "coop" && <RelationshipCoopPanel users={users} reviewApiKey={reviewApiKey} onRefresh={onRefresh} />}
+          {tab === "challenges" && <ForgeChallengesPanel users={users} reviewApiKey={reviewApiKey} onRefresh={onRefresh} />}
+        </div>
+      </div>
     </div>
   );
 }
@@ -3532,22 +3574,36 @@ const agentMetaLb: Record<string, { avatar: string; color: string }> = {
 
 const rankMedal = ["🥇", "🥈", "🥉"];
 
-function LeaderboardView({ entries, agents }: { entries: LeaderboardEntry[]; agents: Agent[] }) {
-  // Merge API entries with live agent data for freshest XP
-  const merged: LeaderboardEntry[] = entries.length > 0 ? entries : agents.map((a, i) => ({
-    rank: i + 1,
-    id: a.id,
-    name: a.name,
-    avatar: a.avatar,
-    color: a.color,
-    xp: a.xp ?? 0,
-    questsCompleted: a.questsCompleted ?? 0,
-  })).sort((a, b) => b.xp - a.xp || b.questsCompleted - a.questsCompleted).map((e, i) => ({ ...e, rank: i + 1 }));
+function LeaderboardView({ entries, agents, mode = "agents", users = [] }: { entries: LeaderboardEntry[]; agents: Agent[]; mode?: "agents" | "players"; users?: User[] }) {
+  // For players mode: build leaderboard from users
+  // For agents mode: use entries/agents as before
+  let merged: LeaderboardEntry[];
+  if (mode === "players") {
+    merged = users.map((u, i) => ({
+      rank: i + 1,
+      id: u.id,
+      name: u.name,
+      avatar: u.avatar,
+      color: u.color,
+      xp: u.xp ?? 0,
+      questsCompleted: u.questsCompleted ?? 0,
+    })).sort((a, b) => b.xp - a.xp || b.questsCompleted - a.questsCompleted).map((e, i) => ({ ...e, rank: i + 1 }));
+  } else {
+    merged = entries.length > 0 ? entries : agents.map((a, i) => ({
+      rank: i + 1,
+      id: a.id,
+      name: a.name,
+      avatar: a.avatar,
+      color: a.color,
+      xp: a.xp ?? 0,
+      questsCompleted: a.questsCompleted ?? 0,
+    })).sort((a, b) => b.xp - a.xp || b.questsCompleted - a.questsCompleted).map((e, i) => ({ ...e, rank: i + 1 }));
+  }
 
   if (merged.length === 0) {
     return (
       <div className="rounded-xl p-8 text-center" style={{ background: "#252525", border: "1px solid rgba(255,255,255,0.06)" }}>
-        <p className="text-sm" style={{ color: "rgba(255,255,255,0.2)" }}>No agents registered yet.</p>
+        <p className="text-sm" style={{ color: "rgba(255,255,255,0.2)" }}>{mode === "players" ? "No players registered yet." : "No agents registered yet."}</p>
       </div>
     );
   }
@@ -3595,7 +3651,7 @@ function LeaderboardView({ entries, agents }: { entries: LeaderboardEntry[]; age
       {/* Full table */}
       <div className="rounded-xl overflow-hidden" style={{ background: "#1e1e1e", border: "1px solid rgba(255,255,255,0.07)" }}>
         <div className="grid px-4 py-2" style={{ gridTemplateColumns: "40px 1fr 80px 80px 80px", color: "rgba(255,255,255,0.3)", fontSize: 11, borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
-          <span>#</span><span>Agent</span><span className="text-right">Level</span><span className="text-right">XP</span><span className="text-right">Quests</span>
+          <span>#</span><span>{mode === "players" ? "Player" : "Agent"}</span><span className="text-right">Level</span><span className="text-right">XP</span><span className="text-right">Quests</span>
         </div>
         {merged.map((entry) => {
           const meta = agentMetaLb[entry.id?.toLowerCase()] ?? { avatar: entry.avatar ?? entry.id?.slice(0,2).toUpperCase() ?? "??", color: entry.color ?? "#666" };
@@ -3689,14 +3745,32 @@ function GuideModal({ onClose }: { onClose: () => void }) {
         <div className="p-5 space-y-4 text-xs" style={{ color: "rgba(255,255,255,0.7)", lineHeight: 1.7 }}>
           {tab === "quests" && (
             <>
-              <GuideSection icon="⚔" title="Quest Types">
+              <GuideSection icon="🗺" title="Quest Hall Structure">
                 <ul className="space-y-1 mt-1">
-                  <li><span style={{ color: "#8b5cf6" }}>⚙ Development</span> — Coding, features, bugs</li>
-                  <li><span style={{ color: "#22c55e" }}>🏠 Personal</span> — Household chores, errands</li>
-                  <li><span style={{ color: "#3b82f6" }}>📚 Learning</span> — Study, courses, reading (requires proof)</li>
-                  <li><span style={{ color: "#f97316" }}>💪 Fitness</span> — Workouts, sports, health</li>
-                  <li><span style={{ color: "#ec4899" }}>❤️ Social</span> — Thoughtful gestures, dates, quality time</li>
+                  <li><span style={{ color: "#f0f0f0" }}>⚔ Quest Board</span> — Player quests (personal, learning, fitness, social, co-op). Claim and complete directly — no review needed.</li>
+                  <li><span style={{ color: "#a78bfa" }}>🤖 NPC Quest Board</span> — Development quests created and completed by agents. Includes Review Board for approving agent suggestions.</li>
+                  <li><span style={{ color: "#f59e0b" }}>🏆 Leaderboard</span> — Ranks players and agents separately with an Agent/Player toggle.</li>
+                  <li><span style={{ color: "#f59e0b" }}>🏅 Honors</span> — Your personal achievements. Log in to see your progress highlighted.</li>
+                  <li><span style={{ color: "#8b5cf6" }}>🐉 Campaign</span> — Fantasy RPG overlay with agents as NPCs and quests as adventures.</li>
+                  <li><span style={{ color: CURRENT_SEASON.color }}>{CURRENT_SEASON.icon} Season</span> — Battle Pass rewards track for the current season.</li>
                 </ul>
+              </GuideSection>
+              <GuideSection icon="⚔" title="Player Quest Types">
+                <ul className="space-y-1 mt-1">
+                  <li><span style={{ color: "#22c55e" }}>🏠 Personal</span> — Household chores, errands, life admin</li>
+                  <li><span style={{ color: "#3b82f6" }}>📚 Learning</span> — Study, courses, reading (requires proof)</li>
+                  <li><span style={{ color: "#f97316" }}>💪 Fitness</span> — Workouts, sports, health goals</li>
+                  <li><span style={{ color: "#ec4899" }}>❤️ Social</span> — Thoughtful gestures, dates, quality time</li>
+                  <li><span style={{ color: "#f43f5e" }}>💞 Co-op</span> — Partner quests requiring both to complete</li>
+                </ul>
+                <p className="mt-1.5" style={{ color: "rgba(255,255,255,0.4)" }}>Player quests go directly open → claimed → done. No agent review required.</p>
+              </GuideSection>
+              <GuideSection icon="🤖" title="NPC / Development Quests">
+                <p>Development quests are created by agents (or Leon) and implemented exclusively by agents. They appear in the NPC Quest Board tab.</p>
+                <p className="mt-1">The Review Board (in NPC tab) lets logged-in users approve or reject agent-suggested quests before they become active.</p>
+              </GuideSection>
+              <GuideSection icon="🔑" title="Login">
+                Click <strong>Login</strong> in the header. Enter your name and API key. Once logged in, the stat cards show YOUR stats, and the Quest Board shows Claim / Complete buttons. Your achievements in Honors are highlighted.
               </GuideSection>
               <GuideSection icon="🎯" title="Quest Priorities">
                 <ul className="space-y-1 mt-1">
@@ -3704,15 +3778,6 @@ function GuideModal({ onClose }: { onClose: () => void }) {
                   <li><span style={{ color: "#eab308" }}>Medium</span> — 20 XP · 25 Gold</li>
                   <li><span style={{ color: "#22c55e" }}>Low</span> — 10 XP · 10 Gold</li>
                 </ul>
-              </GuideSection>
-              <GuideSection icon="🔁" title="Recurring Quests">
-                Quests can be set to repeat daily, weekly, or monthly. They auto-reset after the interval. Great for habits and household tasks.
-              </GuideSection>
-              <GuideSection icon="🔍" title="Learning Proof">
-                When completing a learning quest, attach proof: notes, links, or a screenshot URL. This appears in your Quest Journal.
-              </GuideSection>
-              <GuideSection icon="⚔" title="Claiming Quests">
-                Enter your name and API key in the Review Board section to unlock Claim buttons on open quests. Claiming moves a quest to In Progress and assigns it to you.
               </GuideSection>
             </>
           )}
@@ -3778,7 +3843,7 @@ function GuideModal({ onClose }: { onClose: () => void }) {
           {tab === "achievements" && (
             <>
               <GuideSection icon="🏅" title="Achievements">
-                Achievements are automatically awarded when you hit milestones. Check the <strong>🏅 Honors</strong> tab to see all achievements and who earned them.
+                Achievements are automatically awarded when you hit milestones. They are <strong>per-player</strong> — tied to your login name. Check the <strong>🏅 Honors</strong> tab to see all achievements; when logged in, your earned achievements are highlighted with a gold border.
               </GuideSection>
               <GuideSection icon="📋" title="Achievement List">
                 <div className="space-y-1 mt-1">
@@ -3820,8 +3885,12 @@ function GuideSection({ icon, title, children }: { icon: string; title: string; 
 }
 
 // ─── Honors / Achievements Gallery View ──────────────────────────────────────
-function HonorsView({ catalogue, users }: { catalogue: AchievementDef[]; users: User[] }) {
+function HonorsView({ catalogue, users, playerName = "", quests, reviewApiKey = "" }: { catalogue: AchievementDef[]; users: User[]; playerName?: string; quests?: QuestsData; reviewApiKey?: string }) {
+  const emptyQuests: QuestsData = { open: [], inProgress: [], completed: [], suggested: [], rejected: [] };
+  const q = quests ?? emptyQuests;
   const categories = Array.from(new Set(catalogue.map(a => a.category)));
+  const loggedInUser = playerName ? users.find(u => u.id.toLowerCase() === playerName.toLowerCase() || u.name.toLowerCase() === playerName.toLowerCase()) : null;
+  const playerEarnedIds = new Set((loggedInUser?.earnedAchievements ?? []).map(a => a.id));
 
   return (
     <div className="space-y-6">
@@ -3830,9 +3899,16 @@ function HonorsView({ catalogue, users }: { catalogue: AchievementDef[]; users: 
           <span style={{ fontSize: 28 }}>🏅</span>
           <div>
             <h2 className="text-lg font-bold" style={{ color: "#fef3c7" }}>Hall of Honors</h2>
-            <p className="text-xs" style={{ color: "rgba(253,230,138,0.5)" }}>Achievements earned across all players</p>
+            <p className="text-xs" style={{ color: "rgba(253,230,138,0.5)" }}>
+              {loggedInUser ? `${loggedInUser.name} — ${playerEarnedIds.size} achievement${playerEarnedIds.size !== 1 ? "s" : ""} earned` : "Log in to track your achievements"}
+            </p>
           </div>
         </div>
+        {!playerName && (
+          <p className="text-xs mt-1.5 px-1" style={{ color: "rgba(255,255,255,0.3)" }}>
+            🔑 Log in via the header to see your personal achievements highlighted.
+          </p>
+        )}
       </div>
 
       {catalogue.length === 0 ? (
@@ -3852,21 +3928,28 @@ function HonorsView({ catalogue, users }: { catalogue: AchievementDef[]; users: 
                   const earners = users.filter(u =>
                     (u.earnedAchievements ?? []).some(e => e.id === ach.id)
                   );
-                  const earned = earners.length > 0;
+                  const myEarned = playerEarnedIds.has(ach.id);
+                  const anyEarned = earners.length > 0;
+                  // If logged in, highlight player's own; otherwise show all
+                  const highlight = playerName ? myEarned : anyEarned;
                   return (
                     <div
                       key={ach.id}
                       className="rounded-xl p-3"
                       style={{
-                        background: earned ? "rgba(245,158,11,0.08)" : "#252525",
-                        border: `1px solid ${earned ? "rgba(245,158,11,0.3)" : "rgba(255,255,255,0.06)"}`,
-                        opacity: earned ? 1 : 0.5,
+                        background: myEarned ? "rgba(245,158,11,0.12)" : anyEarned ? "rgba(245,158,11,0.04)" : "#252525",
+                        border: `1px solid ${myEarned ? "rgba(245,158,11,0.5)" : anyEarned ? "rgba(245,158,11,0.2)" : "rgba(255,255,255,0.06)"}`,
+                        opacity: highlight || (!playerName && anyEarned) ? 1 : 0.45,
+                        boxShadow: myEarned ? "0 0 14px rgba(245,158,11,0.12)" : "none",
                       }}
                     >
                       <div className="flex items-start gap-2.5">
-                        <span className="text-2xl flex-shrink-0" style={{ filter: earned ? "none" : "grayscale(1)" }}>{ach.icon}</span>
+                        <span className="text-2xl flex-shrink-0" style={{ filter: highlight || (!playerName && anyEarned) ? "none" : "grayscale(1)" }}>{ach.icon}</span>
                         <div className="flex-1 min-w-0">
-                          <p className="text-xs font-semibold" style={{ color: earned ? "#f0f0f0" : "rgba(255,255,255,0.4)" }}>{ach.name}</p>
+                          <div className="flex items-center gap-1.5">
+                            <p className="text-xs font-semibold" style={{ color: highlight ? "#f0f0f0" : "rgba(255,255,255,0.4)" }}>{ach.name}</p>
+                            {myEarned && <span className="text-xs" style={{ color: "#f59e0b" }}>✓ Yours</span>}
+                          </div>
                           <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.3)" }}>{ach.desc}</p>
                           {earners.length > 0 && (
                             <div className="flex flex-wrap gap-1 mt-1.5">
@@ -3874,7 +3957,7 @@ function HonorsView({ catalogue, users }: { catalogue: AchievementDef[]; users: 
                                 <span
                                   key={u.id}
                                   className="text-xs px-1.5 py-0.5 rounded"
-                                  style={{ background: `${u.color}20`, color: u.color, border: `1px solid ${u.color}40` }}
+                                  style={{ background: `${u.color}20`, color: u.color, border: `1px solid ${u.color}40`, fontWeight: u.id.toLowerCase() === playerName.toLowerCase() || u.name.toLowerCase() === playerName.toLowerCase() ? 700 : 400 }}
                                 >
                                   {u.name}
                                 </span>
@@ -3891,6 +3974,15 @@ function HonorsView({ catalogue, users }: { catalogue: AchievementDef[]; users: 
           );
         })
       )}
+
+      {/* CV / Skill Tree — accessible from Honors */}
+      <div>
+        <div className="flex items-center gap-2 mb-3">
+          <h3 className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(96,165,250,0.7)" }}>📋 CV &amp; Skill Tree</h3>
+          <span className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>Track your learning progress</span>
+        </div>
+        <CVBuilderPanel quests={q} users={users} playerName={playerName} />
+      </div>
     </div>
   );
 }

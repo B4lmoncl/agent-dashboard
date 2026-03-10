@@ -94,6 +94,19 @@ body {
   100% { opacity: 0; transform: translateY(-28px) scale(0.5); }
 }
 
+/* ─── Interactive button — nav tabs, header buttons ─────────────────────── */
+.btn-interactive {
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  cursor: pointer;
+}
+.btn-interactive:hover:not(:disabled) {
+  transform: scale(1.03);
+  box-shadow: 0 0 12px rgba(255, 68, 68, 0.3);
+}
+.btn-interactive:active:not(:disabled) {
+  transform: scale(0.95);
+}
+
 /* Base action button — apply to interactive buttons for hover/click effects */
 .action-btn {
   transition: transform 0.14s ease, box-shadow 0.14s ease, background-color 0.14s ease, border-color 0.14s ease, opacity 0.14s ease;
@@ -112,6 +125,28 @@ body {
   opacity: 0.5;
 }
 
+/* ─── Ripple on click ────────────────────────────────────────────────────────── */
+@keyframes ripple-spread {
+  0%   { transform: translate(-50%, -50%) scale(0); opacity: 0.5; }
+  100% { transform: translate(-50%, -50%) scale(4); opacity: 0; }
+}
+
+.action-btn::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.18);
+  transform: translate(-50%, -50%) scale(0);
+  pointer-events: none;
+}
+.action-btn:active:not(:disabled)::after {
+  animation: ripple-spread 0.45s ease-out forwards;
+}
+
 /* Approve / complete button glow */
 .btn-approve:hover:not(:disabled) {
   animation: btn-glow-green 1.2s ease infinite;
@@ -125,3 +160,4 @@ body {
 .btn-social:hover:not(:disabled) {
   animation: btn-glow-pink 1.2s ease infinite;
 }
+
