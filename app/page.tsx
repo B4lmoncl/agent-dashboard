@@ -933,40 +933,9 @@ export default function Dashboard() {
                 </section>
               )}
 
-              <div className="flex flex-col lg:flex-row gap-6 items-start">
-                {/* Left: Collapsible Agent Roster */}
-                <div className="w-full lg:flex-shrink-0" style={{ width: questBoardAgentOpen ? undefined : undefined }}>
-                  <div className="rounded-xl overflow-hidden" style={{ background: "#1e1e1e", border: "1px solid rgba(255,255,255,0.06)" }}>
-                    <button
-                      onClick={() => setQuestBoardAgentOpen(v => !v)}
-                      className="flex items-center gap-2 w-full px-3 py-2.5 text-left"
-                    >
-                      <h2 className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.35)" }}>🤖 Agent Roster</h2>
-                      <span className="text-xs px-1.5 py-0.5 rounded font-mono" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.2)" }}>
-                        {agents.filter(a => a.status !== "offline").length} online
-                      </span>
-                      <span className="ml-auto text-xs" style={{ color: "rgba(255,255,255,0.15)" }}>{questBoardAgentOpen ? "▲" : "▼"}</span>
-                    </button>
-                    {questBoardAgentOpen && (
-                      <div className="px-3 pb-3" style={{ borderTop: "1px solid rgba(255,255,255,0.04)" }}>
-                        {loading ? (
-                          <div className="space-y-2 pt-3">{[1,2,3].map(i => <div key={i} className="h-14 rounded-lg animate-pulse" style={{ background: "#252525" }} />)}</div>
-                        ) : agents.length === 0 ? (
-                          <p className="text-xs pt-3" style={{ color: "rgba(255,255,255,0.2)" }}>No agents have checked in yet.</p>
-                        ) : (
-                          <div className="space-y-2 pt-3">
-                            {agents.map(agent => (
-                              <AgentCard key={agent.id} agent={agent} activeQuests={agentQuestMap[agent.id] ?? []} isWide={false} />
-                            ))}
-                          </div>
-                        )}
-                      </div>
-                    )}
-                  </div>
-                </div>
-
-                {/* Right: Quest Board Sidebar — player types only */}
-                <aside className="w-full lg:flex-1 lg:max-w-sm flex-shrink-0">
+              {/* Quest Board — player types only */}
+              <div>
+                <aside className="w-full">
                   <div className="mb-3">
                     <div className="flex items-center justify-between mb-2">
                       <div>
@@ -1085,14 +1054,14 @@ export default function Dashboard() {
           const devVisibleInProgress = applySort(applyFilter(quests.inProgress.filter(q => (q.type ?? "development") === "development")));
           return (
             <div className="space-y-6">
-              {/* Agent Roster — collapsible */}
+              {/* NPC Roster — collapsible */}
               <section>
                 <button
                   onClick={() => setNpcAgentRosterOpen(v => !v)}
                   className="flex items-center justify-between w-full mb-3"
                 >
                   <div className="flex items-center gap-3">
-                    <h2 className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.4)" }}>Agent Roster</h2>
+                    <h2 className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.4)" }}>NPC Roster</h2>
                     <p className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>{loading ? "Loading…" : agents.length > 0 ? `${agents.length} agents registered` : "Waiting for agents to check in"}</p>
                     <div className="flex items-center gap-3 text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>
                       <span className="flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: "#4ade80", animation: "pulse-online 2s ease-in-out infinite" }} />Online</span>
