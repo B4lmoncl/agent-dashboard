@@ -164,6 +164,38 @@ interface QuestsData {
   locked?: Quest[];
 }
 
+interface Ritual {
+  id: string;
+  title: string;
+  description: string;
+  schedule: { type: string; days?: string[] };
+  difficulty: string;
+  rewards: { xp: number; gold: number };
+  streak: number;
+  lastCompleted: string | null;
+  playerId: string;
+}
+
+interface Habit {
+  id: string;
+  title: string;
+  positive: boolean;
+  negative: boolean;
+  color: string;
+  score: number;
+  playerId: string;
+}
+
+interface LootItem {
+  id: string;
+  itemId?: string;
+  name: string;
+  emoji: string;
+  rarity: string;
+  rarityColor: string;
+  effect: { type: string; amount?: number };
+}
+
 const priorityConfig = {
   low:    { label: "Low",    color: "#22c55e", bg: "rgba(34,197,94,0.12)",   border: "rgba(34,197,94,0.3)"   },
   medium: { label: "Med",   color: "#eab308", bg: "rgba(234,179,8,0.12)",   border: "rgba(234,179,8,0.3)"   },
@@ -196,6 +228,17 @@ const typeConfig: Record<string, { label: string; icon: string; color: string; b
   boss:        { label: "Boss",     icon: "🐉", color: "#ef4444", bg: "rgba(239,68,68,0.15)",  border: "rgba(239,68,68,0.5)"   },
   "relationship-coop": { label: "Co-op", icon: "💞", color: "#f43f5e", bg: "rgba(244,63,94,0.12)", border: "rgba(244,63,94,0.4)" },
 };
+
+const STREAK_MILESTONES_CLIENT = [
+  { days: 7,   badge: '🥉', label: 'Bronze' },
+  { days: 14,  badge: '🎁', label: '2-Wochen' },
+  { days: 21,  badge: '🥈', label: 'Silber' },
+  { days: 30,  badge: '📅', label: 'Monat' },
+  { days: 60,  badge: '🥇', label: 'Gold' },
+  { days: 90,  badge: '🗿', label: 'Unerschütterlich' },
+  { days: 180, badge: '💎', label: 'Diamond' },
+  { days: 365, badge: '🟠', label: 'Legendary' },
+];
 
 async function fetchAgents(): Promise<Agent[]> {
   try {
@@ -259,6 +302,22 @@ async function fetchLeaderboard(): Promise<LeaderboardEntry[]> {
 async function fetchAchievementCatalogue(): Promise<AchievementDef[]> {
   try {
     const r = await fetch(`/api/achievements`, { signal: AbortSignal.timeout(2000) });
+    if (r.ok) return r.json();
+  } catch { /* ignore */ }
+  return [];
+}
+
+async function fetchRituals(playerName: string): Promise<Ritual[]> {
+  try {
+    const r = await fetch(`/api/rituals?player=${encodeURIComponent(playerName)}`, { signal: AbortSignal.timeout(2000) });
+    if (r.ok) return r.json();
+  } catch { /* ignore */ }
+  return [];
+}
+
+async function fetchHabits(playerName: string): Promise<Habit[]> {
+  try {
+    const r = await fetch(`/api/habits?player=${encodeURIComponent(playerName)}`, { signal: AbortSignal.timeout(2000) });
     if (r.ok) return r.json();
   } catch { /* ignore */ }
   return [];
@@ -374,6 +433,17 @@ export default function Dashboard() {
   const [classesList, setClassesList] = useState<ClassDef[]>([]);
   const [classActivatedNotif, setClassActivatedNotif] = useState<{ className: string; classIcon: string; classDescription: string } | null>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [rituals, setRituals] = useState<Ritual[]>([]);
+  const [habits, setHabits] = useState<Habit[]>([]);
+  const [lootDrop, setLootDrop] = useState<LootItem | null>(null);
+  const [questBoardTab, setQuestBoardTab] = useState<"auftraege" | "rituale" | "gewohnheiten">("auftraege");
+  const [createRitualOpen, setCreateRitualOpen] = useState(false);
+  const [newRitualTitle, setNewRitualTitle] = useState("");
+  const [newRitualSchedule, setNewRitualSchedule] = useState("daily");
+  const [createHabitOpen, setCreateHabitOpen] = useState(false);
+  const [newHabitTitle, setNewHabitTitle] = useState("");
+  const [newHabitPositive, setNewHabitPositive] = useState(true);
+  const [newHabitNegative, setNewHabitNegative] = useState(false);
 
   // Particle system — white dust drifting upward
   useEffect(() => {
@@ -458,6 +528,10 @@ export default function Dashboard() {
     if (lb.length > 0) setLeaderboard(lb);
     if (ac.length > 0) setAchievementCatalogue(ac);
     setCampaigns(camps);
+    if (playerName) {
+      fetchRituals(playerName).then(setRituals);
+      fetchHabits(playerName).then(setHabits);
+    }
     try {
       const r = await fetch(`/api/health`, { signal: AbortSignal.timeout(1500) });
       setApiLive(r.ok);
@@ -616,6 +690,9 @@ export default function Dashboard() {
         if (data.newAchievements?.length > 0) setToast(data.newAchievements[0]);
         if (data.chainQuestTemplate) {
           setChainOffer({ template: data.chainQuestTemplate, parentTitle: questTitle });
+        }
+        if (data.lootDrop) {
+          setLootDrop(data.lootDrop);
         }
         // Show flavor feedback on completion
         const currentUser = users.find(u => u.id === pName.toLowerCase() || u.name.toLowerCase() === pName.toLowerCase());
@@ -1363,7 +1440,29 @@ export default function Dashboard() {
                     <input type="text" value={searchFilter} onChange={e => setSearchFilter(e.target.value)} placeholder="Search quests…" className="w-full text-xs px-2 py-1.5 rounded" style={{ background: "#1e1e1e", border: "1px solid rgba(255,255,255,0.08)", color: "#e8e8e8", outline: "none" }} />
                   </div>
 
-                  <div className="space-y-2">
+                  {/* Board Sub-Tabs */}
+                  <div className="flex gap-1 mb-3">
+                    {[
+                      { key: "auftraege",     label: "📜 Aufträge" },
+                      { key: "rituale",       label: "🔁 Rituale" },
+                      { key: "gewohnheiten",  label: "⚡ Gewohnheiten" },
+                    ].map(tab => (
+                      <button
+                        key={tab.key}
+                        onClick={() => setQuestBoardTab(tab.key as "auftraege" | "rituale" | "gewohnheiten")}
+                        className="text-xs px-3 py-1.5 rounded-lg font-medium transition-all"
+                        style={{
+                          background: questBoardTab === tab.key ? "rgba(167,139,250,0.2)" : "rgba(255,255,255,0.04)",
+                          color: questBoardTab === tab.key ? "#a78bfa" : "rgba(255,255,255,0.4)",
+                          border: `1px solid ${questBoardTab === tab.key ? "rgba(167,139,250,0.4)" : "rgba(255,255,255,0.08)"}`,
+                        }}
+                      >
+                        {tab.label}
+                      </button>
+                    ))}
+                  </div>
+
+                  {questBoardTab === "auftraege" && <div className="space-y-2">
                     {loading ? [1,2,3].map(i => <div key={i} className="h-20 rounded-lg animate-pulse" style={{ background: "#252525", border: "1px solid rgba(255,255,255,0.05)" }} />) :
                     playerVisibleOpen.length === 0 && playerVisibleInProgress.length === 0 ? (
                       <div className="rounded-xl p-5 text-center" style={{ background: "#252525", border: "1px solid rgba(255,255,255,0.06)" }}>
@@ -1436,7 +1535,219 @@ export default function Dashboard() {
                         ))}
                       </>
                     )}
-                  </div>
+                  </div>}
+
+                  {/* ── Rituale Tab ── */}
+                  {questBoardTab === "rituale" && (
+                    <div>
+                      <div className="flex items-center justify-between mb-3">
+                        <h3 className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.4)" }}>🔁 Rituale</h3>
+                        {playerName && reviewApiKey && (
+                          <button onClick={() => setCreateRitualOpen(true)} className="text-xs px-2 py-1 rounded font-semibold"
+                            style={{ background: "rgba(167,139,250,0.12)", color: "#a78bfa", border: "1px solid rgba(167,139,250,0.3)" }}>
+                            ＋ Ritual erstellen
+                          </button>
+                        )}
+                      </div>
+                      {rituals.filter(r => r.playerId === playerName?.toLowerCase()).length === 0 ? (
+                        <div className="rounded-xl p-5 text-center" style={{ background: "#252525", border: "1px solid rgba(255,255,255,0.06)" }}>
+                          <p className="text-xs mb-2" style={{ color: "rgba(255,255,255,0.25)" }}>Keine Rituale. Erstelle deinen ersten täglichen Ritual!</p>
+                        </div>
+                      ) : (
+                        <div className="space-y-2">
+                          {rituals.filter(r => r.playerId === playerName?.toLowerCase()).map(ritual => {
+                            const today = new Date().toISOString().slice(0, 10);
+                            const doneToday = ritual.lastCompleted === today;
+                            const milestone = STREAK_MILESTONES_CLIENT.reduce<{days:number;badge:string;label:string}|null>((acc, m) => ritual.streak >= m.days ? m : acc, null);
+                            const nextMilestone = STREAK_MILESTONES_CLIENT.find(m => ritual.streak < m.days);
+                            const progress = nextMilestone ? (ritual.streak / nextMilestone.days) * 100 : 100;
+                            return (
+                              <div key={ritual.id} className="rounded-xl p-3" style={{
+                                background: doneToday ? "rgba(34,197,94,0.06)" : "#252525",
+                                border: `1px solid ${doneToday ? "rgba(34,197,94,0.2)" : "rgba(255,255,255,0.07)"}`,
+                                opacity: doneToday ? 0.8 : 1,
+                              }}>
+                                <div className="flex items-start justify-between gap-2">
+                                  <div className="flex-1 min-w-0">
+                                    <div className="flex items-center gap-2 mb-1">
+                                      <span className="text-sm font-medium truncate" style={{ color: doneToday ? "rgba(255,255,255,0.4)" : "#e8e8e8", textDecoration: doneToday ? "line-through" : "none" }}>{ritual.title}</span>
+                                      {milestone && <span className="text-xs">{milestone.badge}</span>}
+                                    </div>
+                                    <div className="flex items-center gap-3 text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>
+                                      <span>🔗 {ritual.streak} Tage</span>
+                                      <span>{ritual.schedule.type === 'daily' ? 'täglich' : ritual.schedule.days?.join(', ')}</span>
+                                      <span>{ritual.rewards.xp} XP · {ritual.rewards.gold} Gold</span>
+                                    </div>
+                                    {nextMilestone && (
+                                      <div className="mt-2">
+                                        <div className="flex items-center justify-between text-xs mb-1" style={{ color: "rgba(255,255,255,0.25)" }}>
+                                          <span>Nächstes Ziel: {nextMilestone.badge} {nextMilestone.label}</span>
+                                          <span>{ritual.streak}/{nextMilestone.days}</span>
+                                        </div>
+                                        <div className="h-1 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.08)" }}>
+                                          <div className="h-full rounded-full transition-all" style={{ width: `${progress}%`, background: "rgba(167,139,250,0.6)" }} />
+                                        </div>
+                                      </div>
+                                    )}
+                                  </div>
+                                  <button
+                                    disabled={doneToday || !reviewApiKey}
+                                    onClick={async () => {
+                                      if (!reviewApiKey || !playerName) return;
+                                      try {
+                                        const r = await fetch(`/api/rituals/${ritual.id}/complete`, {
+                                          method: 'POST',
+                                          headers: { 'Content-Type': 'application/json', 'x-api-key': reviewApiKey },
+                                          body: JSON.stringify({ playerId: playerName }),
+                                        });
+                                        const data = await r.json();
+                                        if (data.ok) {
+                                          fetchRituals(playerName).then(setRituals);
+                                          if (data.lootDrop) setLootDrop(data.lootDrop);
+                                          if (data.milestoneDrop) setLootDrop(data.milestoneDrop);
+                                          refresh();
+                                        }
+                                      } catch { /* ignore */ }
+                                    }}
+                                    className="text-xs px-2.5 py-1.5 rounded-lg font-medium shrink-0 transition-all"
+                                    style={{
+                                      background: doneToday ? "rgba(34,197,94,0.08)" : "rgba(167,139,250,0.15)",
+                                      color: doneToday ? "rgba(34,197,94,0.5)" : "#a78bfa",
+                                      border: `1px solid ${doneToday ? "rgba(34,197,94,0.2)" : "rgba(167,139,250,0.3)"}`,
+                                      cursor: doneToday ? 'default' : 'pointer',
+                                    }}
+                                  >
+                                    {doneToday ? "✓ Erledigt" : "Abhaken"}
+                                  </button>
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      )}
+                      {/* Create Ritual Modal */}
+                      {createRitualOpen && (
+                        <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: "rgba(0,0,0,0.7)" }}>
+                          <div className="w-full max-w-sm rounded-2xl p-5" style={{ background: "#1a1a1a", border: "1px solid rgba(255,255,255,0.1)" }}>
+                            <h3 className="text-sm font-semibold mb-4" style={{ color: "#e8e8e8" }}>🔁 Neues Ritual</h3>
+                            <input value={newRitualTitle} onChange={e => setNewRitualTitle(e.target.value)} placeholder="Titel..." className="w-full text-sm px-3 py-2 rounded-lg mb-3" style={{ background: "#252525", border: "1px solid rgba(255,255,255,0.1)", color: "#e8e8e8", outline: "none" }} />
+                            <select value={newRitualSchedule} onChange={e => setNewRitualSchedule(e.target.value)} className="w-full text-sm px-3 py-2 rounded-lg mb-4" style={{ background: "#252525", border: "1px solid rgba(255,255,255,0.1)", color: "#e8e8e8", outline: "none" }}>
+                              <option value="daily">Täglich</option>
+                              <option value="weekdays">Werktags (Mo-Fr)</option>
+                              <option value="weekly">Wöchentlich</option>
+                            </select>
+                            <div className="flex gap-2">
+                              <button onClick={() => setCreateRitualOpen(false)} className="flex-1 text-sm py-2 rounded-lg" style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.4)", border: "1px solid rgba(255,255,255,0.1)" }}>Abbrechen</button>
+                              <button onClick={async () => {
+                                if (!newRitualTitle.trim() || !reviewApiKey || !playerName) return;
+                                await fetch('/api/rituals', { method: 'POST', headers: { 'Content-Type': 'application/json', 'x-api-key': reviewApiKey }, body: JSON.stringify({ title: newRitualTitle.trim(), schedule: { type: newRitualSchedule }, playerId: playerName, createdBy: playerName }) });
+                                setNewRitualTitle("");
+                                setCreateRitualOpen(false);
+                                fetchRituals(playerName).then(setRituals);
+                              }} className="flex-1 text-sm py-2 rounded-lg font-semibold" style={{ background: "rgba(167,139,250,0.2)", color: "#a78bfa", border: "1px solid rgba(167,139,250,0.4)" }}>Erstellen</button>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  )}
+
+                  {/* ── Gewohnheiten Tab ── */}
+                  {questBoardTab === "gewohnheiten" && (
+                    <div>
+                      <div className="flex items-center justify-between mb-3">
+                        <h3 className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.4)" }}>⚡ Gewohnheiten</h3>
+                        {playerName && reviewApiKey && (
+                          <button onClick={() => setCreateHabitOpen(true)} className="text-xs px-2 py-1 rounded font-semibold"
+                            style={{ background: "rgba(245,158,11,0.12)", color: "#f59e0b", border: "1px solid rgba(245,158,11,0.3)" }}>
+                            ＋ Gewohnheit erstellen
+                          </button>
+                        )}
+                      </div>
+                      {habits.filter(h => h.playerId === playerName?.toLowerCase()).length === 0 ? (
+                        <div className="rounded-xl p-5 text-center" style={{ background: "#252525", border: "1px solid rgba(255,255,255,0.06)" }}>
+                          <p className="text-xs mb-2" style={{ color: "rgba(255,255,255,0.25)" }}>Keine Gewohnheiten. Verfolge gute Gewohnheiten und schlechte Angewohnheiten!</p>
+                        </div>
+                      ) : (
+                        <div className="space-y-2">
+                          {habits.filter(h => h.playerId === playerName?.toLowerCase()).map(habit => {
+                            const colorMap: Record<string, string> = { red: '#ef4444', orange: '#f97316', yellow: '#eab308', gray: '#6b7280', green: '#22c55e', blue: '#3b82f6' };
+                            const c = colorMap[habit.color] || '#6b7280';
+                            return (
+                              <div key={habit.id} className="rounded-xl p-3" style={{ background: "#252525", border: `1px solid rgba(255,255,255,0.07)` }}>
+                                <div className="flex items-center gap-3">
+                                  <div className="w-2 h-10 rounded-full shrink-0" style={{ background: c }} />
+                                  <div className="flex-1 min-w-0">
+                                    <div className="text-sm font-medium" style={{ color: "#e8e8e8" }}>{habit.title}</div>
+                                    <div className="text-xs mt-0.5" style={{ color: c }}>Score: {habit.score > 0 ? '+' : ''}{habit.score}</div>
+                                  </div>
+                                  <div className="flex items-center gap-1">
+                                    {habit.positive && (
+                                      <button
+                                        onClick={async () => {
+                                          if (!reviewApiKey) return;
+                                          const r = await fetch(`/api/habits/${habit.id}/score`, { method: 'POST', headers: { 'Content-Type': 'application/json', 'x-api-key': reviewApiKey }, body: JSON.stringify({ direction: 'up', playerId: playerName }) });
+                                          const data = await r.json();
+                                          if (data.ok) {
+                                            fetchHabits(playerName!).then(setHabits);
+                                            if (data.lootDrop) setLootDrop(data.lootDrop);
+                                            refresh();
+                                          }
+                                        }}
+                                        className="w-8 h-8 rounded-lg text-sm font-bold flex items-center justify-center transition-all"
+                                        style={{ background: "rgba(34,197,94,0.15)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.3)" }}
+                                      >+</button>
+                                    )}
+                                    {habit.negative && (
+                                      <button
+                                        onClick={async () => {
+                                          if (!reviewApiKey) return;
+                                          await fetch(`/api/habits/${habit.id}/score`, { method: 'POST', headers: { 'Content-Type': 'application/json', 'x-api-key': reviewApiKey }, body: JSON.stringify({ direction: 'down', playerId: playerName }) });
+                                          fetchHabits(playerName!).then(setHabits);
+                                        }}
+                                        className="w-8 h-8 rounded-lg text-sm font-bold flex items-center justify-center transition-all"
+                                        style={{ background: "rgba(239,68,68,0.15)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.3)" }}
+                                      >−</button>
+                                    )}
+                                  </div>
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      )}
+                      {/* Create Habit Modal */}
+                      {createHabitOpen && (
+                        <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: "rgba(0,0,0,0.7)" }}>
+                          <div className="w-full max-w-sm rounded-2xl p-5" style={{ background: "#1a1a1a", border: "1px solid rgba(255,255,255,0.1)" }}>
+                            <h3 className="text-sm font-semibold mb-4" style={{ color: "#e8e8e8" }}>⚡ Neue Gewohnheit</h3>
+                            <input value={newHabitTitle} onChange={e => setNewHabitTitle(e.target.value)} placeholder="Titel..." className="w-full text-sm px-3 py-2 rounded-lg mb-3" style={{ background: "#252525", border: "1px solid rgba(255,255,255,0.1)", color: "#e8e8e8", outline: "none" }} />
+                            <div className="flex gap-3 mb-4">
+                              <label className="flex items-center gap-2 text-sm cursor-pointer" style={{ color: "rgba(255,255,255,0.6)" }}>
+                                <input type="checkbox" checked={newHabitPositive} onChange={e => setNewHabitPositive(e.target.checked)} />
+                                ＋ Positiv
+                              </label>
+                              <label className="flex items-center gap-2 text-sm cursor-pointer" style={{ color: "rgba(255,255,255,0.6)" }}>
+                                <input type="checkbox" checked={newHabitNegative} onChange={e => setNewHabitNegative(e.target.checked)} />
+                                − Negativ
+                              </label>
+                            </div>
+                            <div className="flex gap-2">
+                              <button onClick={() => setCreateHabitOpen(false)} className="flex-1 text-sm py-2 rounded-lg" style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.4)", border: "1px solid rgba(255,255,255,0.1)" }}>Abbrechen</button>
+                              <button onClick={async () => {
+                                if (!newHabitTitle.trim() || !reviewApiKey || !playerName) return;
+                                await fetch('/api/habits', { method: 'POST', headers: { 'Content-Type': 'application/json', 'x-api-key': reviewApiKey }, body: JSON.stringify({ title: newHabitTitle.trim(), positive: newHabitPositive, negative: newHabitNegative, playerId: playerName }) });
+                                setNewHabitTitle("");
+                                setCreateHabitOpen(false);
+                                fetchHabits(playerName).then(setHabits);
+                              }} className="flex-1 text-sm py-2 rounded-lg font-semibold" style={{ background: "rgba(245,158,11,0.2)", color: "#f59e0b", border: "1px solid rgba(245,158,11,0.4)" }}>Erstellen</button>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  )}
+
                 </aside>
               </div>
 
@@ -1765,6 +2076,30 @@ export default function Dashboard() {
           >
             ✕
           </button>
+        </div>
+      )}
+
+      {/* Loot Drop Notification */}
+      {lootDrop && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4" style={{ background: "rgba(0,0,0,0.8)" }}
+          onClick={() => setLootDrop(null)}>
+          <div className="w-full max-w-xs rounded-2xl p-6 text-center" style={{ background: "#1a1a1a", border: `2px solid ${lootDrop.rarityColor}`, boxShadow: `0 0 30px ${lootDrop.rarityColor}55` }}
+            onClick={e => e.stopPropagation()}>
+            <div className="text-5xl mb-3" style={{ filter: `drop-shadow(0 0 12px ${lootDrop.rarityColor})` }}>{lootDrop.emoji}</div>
+            <div className="text-xs font-bold uppercase tracking-widest mb-1" style={{ color: lootDrop.rarityColor }}>{lootDrop.rarity}</div>
+            <div className="text-base font-bold mb-2" style={{ color: "#e8e8e8" }}>{lootDrop.name}</div>
+            {lootDrop.effect?.amount && (
+              <div className="text-xs mb-4" style={{ color: "rgba(255,255,255,0.5)" }}>
+                {lootDrop.effect.type === 'gold' && `＋${lootDrop.effect.amount} Gold`}
+                {lootDrop.effect.type === 'xp' && `＋${lootDrop.effect.amount} XP`}
+                {lootDrop.effect.type === 'streak_shield' && `＋${lootDrop.effect.amount} Streak-Schutzschild`}
+                {lootDrop.effect.type === 'bond' && `＋${lootDrop.effect.amount} Bond XP`}
+              </div>
+            )}
+            <button onClick={() => setLootDrop(null)} className="w-full py-2.5 rounded-xl text-sm font-semibold" style={{ background: `${lootDrop.rarityColor}22`, color: lootDrop.rarityColor, border: `1px solid ${lootDrop.rarityColor}55` }}>
+              Einsammeln ✓
+            </button>
+          </div>
         </div>
       )}
 

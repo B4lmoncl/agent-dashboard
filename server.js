@@ -24,6 +24,9 @@ const QUEST_CATALOG_FILE   = path.join(DATA_DIR, 'questCatalog.json');
 const CLASSES_FILE         = path.join(DATA_DIR, 'classes.json');
 const ROADMAP_FILE         = path.join(DATA_DIR, 'roadmap.json');
 const COMPANIONS_FILE      = path.join(DATA_DIR, 'companions.json');
+const RITUALS_FILE         = path.join(DATA_DIR, 'rituals.json');
+const HABITS_FILE          = path.join(DATA_DIR, 'habits.json');
+const LOOT_TABLES_FILE     = path.join(DATA_DIR, 'lootTables.json');
 
 // Quest types that are tracked per-player (not shared/global)
 const PLAYER_QUEST_TYPES = ['personal', 'learning', 'fitness', 'social', 'relationship-coop', 'companion'];
@@ -250,6 +253,10 @@ let quests = [];
 // ─── Campaign store ──────────────────────────────────────────────────────────────
 let campaigns = [];
 
+let rituals = [];
+let habits = [];
+let lootTables = { common: [], uncommon: [], rare: [], epic: [], legendary: [] };
+
 function initStore() {
   for (const name of AGENT_NAMES) {
     const meta = AGENT_META[name] || {};
@@ -360,6 +367,51 @@ function saveCampaigns() {
   } catch (e) {
     console.warn('[campaigns] Failed to persist campaigns:', e.message);
   }
+}
+
+function loadRituals() {
+  try {
+    if (fs.existsSync(RITUALS_FILE)) {
+      const raw = JSON.parse(fs.readFileSync(RITUALS_FILE, 'utf8'));
+      if (raw && Array.isArray(raw.rituals)) rituals = raw.rituals;
+    } else {
+      saveRituals();
+    }
+  } catch (e) { console.warn('[rituals] Failed to load:', e.message); }
+}
+
+function saveRituals() {
+  try {
+    if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
+    fs.writeFileSync(RITUALS_FILE, JSON.stringify({ rituals }, null, 2));
+  } catch (e) { console.warn('[rituals] Failed to save:', e.message); }
+}
+
+function loadHabits() {
+  try {
+    if (fs.existsSync(HABITS_FILE)) {
+      const raw = JSON.parse(fs.readFileSync(HABITS_FILE, 'utf8'));
+      if (raw && Array.isArray(raw.habits)) habits = raw.habits;
+    } else {
+      saveHabits();
+    }
+  } catch (e) { console.warn('[habits] Failed to load:', e.message); }
+}
+
+function saveHabits() {
+  try {
+    if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
+    fs.writeFileSync(HABITS_FILE, JSON.stringify({ habits }, null, 2));
+  } catch (e) { console.warn('[habits] Failed to save:', e.message); }
+}
+
+function loadLootTables() {
+  try {
+    if (fs.existsSync(LOOT_TABLES_FILE)) {
+      const raw = JSON.parse(fs.readFileSync(LOOT_TABLES_FILE, 'utf8'));
+      if (raw) lootTables = raw;
+    }
+  } catch (e) { console.warn('[loot] Failed to load:', e.message); }
 }
 
 // ─── Quest Catalog store ─────────────────────────────────────────────────────
@@ -1330,8 +1382,208 @@ function onQuestCompletedByUser(userId, quest) {
   delete u._todayCount;
   delete u._completedTypes;
   delete u._bossDefeated;
+  // Loot drop (25% for quests)
+  const pityGuaranteed = checkLootPity(userId);
+  const droppedLoot = rollLoot(pityGuaranteed ? 1 : 0.25);
+  if (droppedLoot) {
+    resetLootPity(userId);
+    addLootToInventory(userId, droppedLoot);
+    u._lastLoot = droppedLoot;
+  }
   saveUsers();
   return newAchs;
+}
+
+// ─── Streak Milestones ────────────────────────────────────────────────────────
+const STREAK_MILESTONES = [
+  { days: 7,   badge: '🥉', label: 'Bronze',           xpBonus: 5,  lootTier: null },
+  { days: 14,  badge: '🎁', label: '2-Wochen',         xpBonus: 0,  lootTier: 'uncommon' },
+  { days: 21,  badge: '🥈', label: 'Silber',           xpBonus: 10, lootTier: null },
+  { days: 30,  badge: '📅', label: 'Monat',            xpBonus: 0,  lootTier: 'rare' },
+  { days: 60,  badge: '🥇', label: 'Gold',             xpBonus: 15, lootTier: null },
+  { days: 90,  badge: '🗿', label: 'Unerschütterlich', xpBonus: 0,  lootTier: 'epic' },
+  { days: 180, badge: '💎', label: 'Diamond',          xpBonus: 25, lootTier: null },
+  { days: 365, badge: '🟠', label: 'Legendary',        xpBonus: 0,  lootTier: 'legendary' },
+];
+
+function getStreakMilestone(streak) {
+  let current = null;
+  for (const m of STREAK_MILESTONES) {
+    if (streak >= m.days) current = m;
+  }
+  return current;
+}
+
+function getNextStreakMilestone(streak) {
+  for (const m of STREAK_MILESTONES) {
+    if (streak < m.days) return m;
+  }
+  return null;
+}
+
+function getStreakXpBonus(streak) {
+  const m = getStreakMilestone(streak);
+  return m ? m.xpBonus / 100 : 0;
+}
+
+// ─── Loot System ─────────────────────────────────────────────────────────────
+const RARITY_WEIGHTS = { common: 60, uncommon: 25, rare: 10, epic: 4, legendary: 1 };
+const RARITY_COLORS = {
+  common:    '#9ca3af',
+  uncommon:  '#22c55e',
+  rare:      '#3b82f6',
+  epic:      '#a855f7',
+  legendary: '#f97316',
+};
+
+function rollLoot(dropChance) {
+  if (Math.random() > dropChance) return null;
+  const roll = Math.random() * 100;
+  let cumulative = 0;
+  let rarity = 'common';
+  for (const [r, w] of Object.entries(RARITY_WEIGHTS)) {
+    cumulative += w;
+    if (roll < cumulative) { rarity = r; break; }
+  }
+  const pool = lootTables[rarity] || lootTables.common;
+  if (!pool || pool.length === 0) return null;
+  const item = pool[Math.floor(Math.random() * pool.length)];
+  return { ...item, rarity, rarityColor: RARITY_COLORS[rarity] };
+}
+
+function addLootToInventory(userId, lootItem) {
+  const u = users[userId];
+  if (!u || !lootItem) return;
+  if (!u.inventory) u.inventory = [];
+  const entry = {
+    id: `inv-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
+    itemId: lootItem.id,
+    name: lootItem.name,
+    emoji: lootItem.emoji,
+    rarity: lootItem.rarity,
+    rarityColor: lootItem.rarityColor,
+    effect: lootItem.effect,
+    obtainedAt: now(),
+  };
+  u.inventory.push(entry);
+  // Apply immediate effects
+  if (lootItem.effect.type === 'gold') u.gold = (u.gold || 0) + lootItem.effect.amount;
+  if (lootItem.effect.type === 'xp') u.xp = (u.xp || 0) + lootItem.effect.amount;
+  if (lootItem.effect.type === 'streak_shield') {
+    u.streakShields = Math.min(3, (u.streakShields || 0) + lootItem.effect.amount);
+    // Remove from inventory (consumed immediately)
+    u.inventory = u.inventory.filter(i => i.id !== entry.id);
+  }
+  if (lootItem.effect.type === 'bond' && u.companion) {
+    u.companion.bondXp = (u.companion.bondXp || 0) + lootItem.effect.amount;
+    u.companion.bondLevel = getBondLevel(u.companion.bondXp).level;
+  }
+  saveUsers();
+  return entry;
+}
+
+// Pity counter: track tasks without loot drops per user
+function checkLootPity(userId) {
+  const u = users[userId];
+  if (!u) return false;
+  u._lootPity = (u._lootPity || 0) + 1;
+  if (u._lootPity >= 5) {
+    u._lootPity = 0;
+    return true; // guaranteed drop
+  }
+  return false;
+}
+
+function resetLootPity(userId) {
+  const u = users[userId];
+  if (u) u._lootPity = 0;
+}
+
+// ─── Full Equipment System (6 slots, 4 stats) ────────────────────────────────
+const EQUIPMENT_SLOTS = ['weapon', 'shield', 'helm', 'armor', 'amulet', 'boots'];
+
+const FULL_GEAR_ITEMS = [
+  // Tier 1 — Abenteurer-Set (Level 1-8)
+  { id: 'wood-sword',    slot: 'weapon', tier: 1, name: 'Holzschwert',      emoji: '⚔️', cost: 50,  minLevel: 1, stats: { kraft: 2 },                  setId: 'adventurer' },
+  { id: 'wood-shield',   slot: 'shield', tier: 1, name: 'Holzschild',       emoji: '🛡️', cost: 50,  minLevel: 1, stats: { ausdauer: 2 },               setId: 'adventurer' },
+  { id: 'leather-helm',  slot: 'helm',   tier: 1, name: 'Lederkappe',       emoji: '🪖', cost: 50,  minLevel: 1, stats: { weisheit: 1 },               setId: 'adventurer' },
+  { id: 'leather-armor', slot: 'armor',  tier: 1, name: 'Lederrüstung',     emoji: '🧥', cost: 75,  minLevel: 1, stats: { ausdauer: 1, kraft: 1 },     setId: 'adventurer' },
+  { id: 'copper-chain',  slot: 'amulet', tier: 1, name: 'Kupferkette',      emoji: '📿', cost: 50,  minLevel: 1, stats: { glueck: 2 },                 setId: 'adventurer' },
+  { id: 'travel-boots',  slot: 'boots',  tier: 1, name: 'Wanderstiefel',    emoji: '👢', cost: 50,  minLevel: 1, stats: { glueck: 1 },                 setId: 'adventurer' },
+  // Tier 2 — Veteranen-Set (Level 9-16)
+  { id: 'steel-sword',   slot: 'weapon', tier: 2, name: 'Stahlschwert',     emoji: '⚔️', cost: 200, minLevel: 9,  stats: { kraft: 4, ausdauer: 1 },    setId: 'veteran' },
+  { id: 'iron-shield',   slot: 'shield', tier: 2, name: 'Eisenschild',      emoji: '🛡️', cost: 200, minLevel: 9,  stats: { ausdauer: 4 },              setId: 'veteran' },
+  { id: 'chain-helm',    slot: 'helm',   tier: 2, name: 'Kettenhaube',      emoji: '🪖', cost: 200, minLevel: 9,  stats: { weisheit: 3, ausdauer: 1 }, setId: 'veteran' },
+  { id: 'chain-armor',   slot: 'armor',  tier: 2, name: 'Kettenhemd',       emoji: '🧥', cost: 300, minLevel: 9,  stats: { ausdauer: 3, kraft: 2 },    setId: 'veteran' },
+  { id: 'silver-amulet', slot: 'amulet', tier: 2, name: 'Silberamulett',    emoji: '📿', cost: 200, minLevel: 9,  stats: { glueck: 4 },                setId: 'veteran' },
+  { id: 'iron-boots',    slot: 'boots',  tier: 2, name: 'Eisenstiefel',     emoji: '👢', cost: 200, minLevel: 9,  stats: { glueck: 2, ausdauer: 1 },   setId: 'veteran' },
+  // Tier 3 — Meister-Set (Level 17-24)
+  { id: 'rune-sword',    slot: 'weapon', tier: 3, name: 'Runenschwert',     emoji: '⚔️', cost: 500, minLevel: 17, stats: { kraft: 7, weisheit: 2 },    setId: 'master' },
+  { id: 'dragon-scale',  slot: 'shield', tier: 3, name: 'Drachenschuppe',   emoji: '🛡️', cost: 500, minLevel: 17, stats: { ausdauer: 6, kraft: 2 },    setId: 'master' },
+  { id: 'arcane-helm',   slot: 'helm',   tier: 3, name: 'Arkanistenhaube',  emoji: '🪖', cost: 500, minLevel: 17, stats: { weisheit: 6, glueck: 1 },   setId: 'master' },
+  { id: 'mythril-armor', slot: 'armor',  tier: 3, name: 'Mythril-Rüstung',  emoji: '🧥', cost: 700, minLevel: 17, stats: { ausdauer: 5, kraft: 3, weisheit: 1 }, setId: 'master' },
+  { id: 'gold-medallion',slot: 'amulet', tier: 3, name: 'Gold-Medaillon',   emoji: '📿', cost: 500, minLevel: 17, stats: { glueck: 6, weisheit: 1 },   setId: 'master' },
+  { id: 'wind-boots',    slot: 'boots',  tier: 3, name: 'Windläufer-Stiefel',emoji:'👢', cost: 500, minLevel: 17, stats: { glueck: 4, kraft: 2 },      setId: 'master' },
+  // Tier 4 — Legendäres Set (Level 25-30)
+  { id: 'dawn-blade',    slot: 'weapon', tier: 4, name: 'Klinge der Morgenröte',    emoji: '⚔️', cost: 1000, minLevel: 25, stats: { kraft: 10, weisheit: 4, glueck: 2 }, setId: 'legendary' },
+  { id: 'aegis-shield',  slot: 'shield', tier: 4, name: 'Aegis des Unbesiegbaren',  emoji: '🛡️', cost: 1000, minLevel: 25, stats: { ausdauer: 10, kraft: 3 }, setId: 'legendary' },
+  { id: 'wise-crown',    slot: 'helm',   tier: 4, name: 'Krone der Weisen',          emoji: '🪖', cost: 1000, minLevel: 25, stats: { weisheit: 10, glueck: 3 }, setId: 'legendary' },
+  { id: 'dragon-armor',  slot: 'armor',  tier: 4, name: 'Drachenblut-Panzer',       emoji: '🧥', cost: 1500, minLevel: 25, stats: { ausdauer: 8, kraft: 5, weisheit: 2 }, setId: 'legendary' },
+  { id: 'luck-heart',    slot: 'amulet', tier: 4, name: 'Herz des Glücks',           emoji: '📿', cost: 1000, minLevel: 25, stats: { glueck: 10, weisheit: 2 }, setId: 'legendary' },
+  { id: 'world-boots',   slot: 'boots',  tier: 4, name: 'Stiefel des Weltenwanderers', emoji: '👢', cost: 1000, minLevel: 25, stats: { glueck: 6, kraft: 4, ausdauer: 2 }, setId: 'legendary' },
+];
+
+const SET_BONUSES = {
+  adventurer: { name: 'Abenteurer-Set', tier: 1 },
+  veteran:    { name: 'Veteranen-Set',  tier: 2 },
+  master:     { name: 'Meister-Set',    tier: 3 },
+  legendary:  { name: 'Legendäres Set', tier: 4 },
+};
+
+function getUserEquipment(userId) {
+  const u = users[userId];
+  if (!u) return {};
+  return u.equipment || {};
+}
+
+function getUserStats(userId) {
+  const u = users[userId];
+  if (!u) return { kraft: 0, ausdauer: 0, weisheit: 0, glueck: 0 };
+  const equipped = u.equipment || {};
+  let stats = { kraft: 0, ausdauer: 0, weisheit: 0, glueck: 0 };
+  const equippedItems = [];
+  for (const itemId of Object.values(equipped)) {
+    const item = FULL_GEAR_ITEMS.find(g => g.id === itemId);
+    if (item) {
+      equippedItems.push(item);
+      for (const [stat, val] of Object.entries(item.stats)) {
+        stats[stat] = (stats[stat] || 0) + val;
+      }
+    }
+  }
+  // Set bonus check
+  const setCount = {};
+  for (const item of equippedItems) {
+    setCount[item.setId] = (setCount[item.setId] || 0) + 1;
+  }
+  let setBonus = 1.0;
+  for (const [setId, count] of Object.entries(setCount)) {
+    if (count >= 6) setBonus = Math.max(setBonus, 1.10);
+    else if (count >= 3) setBonus = Math.max(setBonus, 1.05);
+  }
+  if (setBonus > 1.0) {
+    for (const stat of Object.keys(stats)) {
+      stats[stat] = Math.round(stats[stat] * setBonus);
+    }
+    stats._setBonus = setBonus;
+  }
+  return stats;
+}
+
+// GLÜ stat increases loot drop chance by 0.5% per point (max +12%)
+function getUserDropBonus(userId) {
+  const stats = getUserStats(userId);
+  return Math.min(0.12, (stats.glueck || 0) * 0.005);
 }
 
 function awardXP(agentKey, priority) {
@@ -1730,11 +1982,14 @@ app.post('/api/quest/:id/complete', requireApiKey, (req, res) => {
     }
     savePlayerProgress();
     const newAchievements = onQuestCompletedByUser(agentKey, quest);
+    const lootDrop = users[agentKey]?._lastLoot || null;
+    if (users[agentKey]) delete users[agentKey]._lastLoot;
     console.log(`[quest] ${quest.id} completed (per-player) by ${agentKey}`);
     return res.json({
       ok: true,
       quest: { ...quest, status: 'completed', completedBy: agentKey, completedAt },
       newAchievements,
+      lootDrop,
       chainQuestTemplate: quest.nextQuestTemplate || null,
     });
   }
@@ -1759,8 +2014,10 @@ app.post('/api/quest/:id/complete', requireApiKey, (req, res) => {
     updateAgentStreak(agentKey);
     saveData();
   }
+  const lootDrop = users[agentKey]?._lastLoot || null;
+  if (users[agentKey]) delete users[agentKey]._lastLoot;
   console.log(`[quest] ${quest.id} completed by ${agentId}`);
-  res.json({ ok: true, quest, newAchievements, chainQuestTemplate: quest.nextQuestTemplate || null });
+  res.json({ ok: true, quest, newAchievements, lootDrop, chainQuestTemplate: quest.nextQuestTemplate || null });
 });
 
 // POST /api/quest/:id/unclaim — agent/player unclaims a quest
@@ -3874,6 +4131,278 @@ app.patch('/api/roadmap/:id', requireMasterKey, (req, res) => {
   res.json({ ok: true, item });
 });
 
+// ─── Rituale API ──────────────────────────────────────────────────────────────
+
+// GET /api/rituals?player=X
+app.get('/api/rituals', (req, res) => {
+  const { player } = req.query;
+  if (player) {
+    return res.json(rituals.filter(r => r.playerId === player.toLowerCase()));
+  }
+  res.json(rituals);
+});
+
+// POST /api/rituals — create ritual [auth]
+app.post('/api/rituals', requireApiKey, (req, res) => {
+  const { title, description, schedule, difficulty, rewards, playerId, createdBy } = req.body;
+  if (!title) return res.status(400).json({ error: 'title is required' });
+  if (!playerId) return res.status(400).json({ error: 'playerId is required' });
+  const ritual = {
+    id: `ritual-${Date.now()}`,
+    title,
+    description: description || '',
+    schedule: schedule || { type: 'daily' },
+    difficulty: difficulty || 'medium',
+    rewards: rewards || { xp: 15, gold: 5 },
+    streak: 0,
+    lastCompleted: null,
+    missedDays: 0,
+    createdBy: createdBy || playerId,
+    playerId: playerId.toLowerCase(),
+    createdAt: now(),
+  };
+  rituals.push(ritual);
+  saveRituals();
+  res.json({ ok: true, ritual });
+});
+
+// POST /api/rituals/:id/complete — mark done today [auth]
+app.post('/api/rituals/:id/complete', requireApiKey, (req, res) => {
+  const { playerId } = req.body;
+  const ritual = rituals.find(r => r.id === req.params.id);
+  if (!ritual) return res.status(404).json({ error: 'Ritual not found' });
+  if (!playerId) return res.status(400).json({ error: 'playerId is required' });
+
+  const today = todayStr();
+  if (ritual.lastCompleted === today) {
+    return res.status(409).json({ error: 'Ritual already completed today' });
+  }
+
+  // Streak logic: was it done yesterday?
+  const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
+  if (ritual.lastCompleted === yesterday) {
+    ritual.streak = (ritual.streak || 0) + 1;
+  } else if (!ritual.lastCompleted) {
+    ritual.streak = 1;
+  } else {
+    // Missed days
+    const lastDate = new Date(ritual.lastCompleted);
+    const daysMissed = Math.floor((Date.now() - lastDate.getTime()) / 86400000) - 1;
+    if (daysMissed === 1) {
+      ritual.streak = Math.max(0, (ritual.streak || 0) - 3);
+    } else if (daysMissed === 2) {
+      ritual.streak = Math.max(0, (ritual.streak || 0) - 7);
+    } else {
+      ritual.streak = 0;
+    }
+  }
+  ritual.lastCompleted = today;
+  ritual.missedDays = 0;
+
+  // Award XP/gold to player
+  const uid = playerId.toLowerCase();
+  const u = users[uid];
+  let newAchievements = [];
+  let lootDrop = null;
+  let milestoneDrop = null;
+
+  if (u) {
+    const streakBonus = getStreakXpBonus(ritual.streak);
+    const xpAmount = Math.round((ritual.rewards.xp || 15) * (1 + streakBonus));
+    u.xp = (u.xp || 0) + xpAmount;
+    u.gold = (u.gold || 0) + (ritual.rewards.gold || 5);
+
+    // Milestone check
+    const prevStreak = ritual.streak - 1;
+    for (const m of STREAK_MILESTONES) {
+      if (ritual.streak === m.days && prevStreak < m.days) {
+        if (m.lootTier) {
+          const pool = lootTables[m.lootTier] || [];
+          if (pool.length > 0) {
+            milestoneDrop = { ...pool[Math.floor(Math.random() * pool.length)], rarity: m.lootTier, rarityColor: RARITY_COLORS[m.lootTier] };
+            addLootToInventory(uid, milestoneDrop);
+          }
+        }
+      }
+    }
+
+    // Loot drop (10% chance + GLÜ bonus)
+    const dropBonus = getUserDropBonus(uid);
+    const dropped = rollLoot(0.10 + dropBonus);
+    if (dropped) {
+      resetLootPity(uid);
+      addLootToInventory(uid, dropped);
+      lootDrop = dropped;
+    }
+
+    newAchievements = checkAndAwardAchievements(uid);
+    saveUsers();
+  }
+  saveRituals();
+
+  res.json({ ok: true, ritual, newAchievements, lootDrop, milestoneDrop });
+});
+
+// DELETE /api/rituals/:id [auth]
+app.delete('/api/rituals/:id', requireApiKey, (req, res) => {
+  const idx = rituals.findIndex(r => r.id === req.params.id);
+  if (idx === -1) return res.status(404).json({ error: 'Ritual not found' });
+  rituals.splice(idx, 1);
+  saveRituals();
+  res.json({ ok: true });
+});
+
+// ─── Gewohnheiten API ─────────────────────────────────────────────────────────
+
+// GET /api/habits?player=X
+app.get('/api/habits', (req, res) => {
+  const { player } = req.query;
+  if (player) {
+    return res.json(habits.filter(h => h.playerId === player.toLowerCase()));
+  }
+  res.json(habits);
+});
+
+// POST /api/habits — create habit [auth]
+app.post('/api/habits', requireApiKey, (req, res) => {
+  const { title, positive, negative, playerId } = req.body;
+  if (!title) return res.status(400).json({ error: 'title is required' });
+  if (!playerId) return res.status(400).json({ error: 'playerId is required' });
+  const habit = {
+    id: `habit-${Date.now()}`,
+    title,
+    positive: positive !== false,
+    negative: negative === true,
+    color: 'gray',
+    score: 0,
+    playerId: playerId.toLowerCase(),
+    createdAt: now(),
+  };
+  habits.push(habit);
+  saveHabits();
+  res.json({ ok: true, habit });
+});
+
+// POST /api/habits/:id/score — score +1 or -1 [auth]
+app.post('/api/habits/:id/score', requireApiKey, (req, res) => {
+  const { direction, playerId } = req.body;
+  const habit = habits.find(h => h.id === req.params.id);
+  if (!habit) return res.status(404).json({ error: 'Habit not found' });
+  if (!['up', 'down'].includes(direction)) return res.status(400).json({ error: 'direction must be up or down' });
+
+  if (direction === 'up') habit.score = (habit.score || 0) + 1;
+  else habit.score = (habit.score || 0) - 1;
+
+  // Color based on score: negative scores → red/orange, positive → yellow/green/blue
+  const s = habit.score;
+  if (s <= -5)      habit.color = 'red';
+  else if (s <= -2) habit.color = 'orange';
+  else if (s === 0) habit.color = 'gray';
+  else if (s <= 3)  habit.color = 'yellow';
+  else if (s <= 8)  habit.color = 'green';
+  else              habit.color = 'blue';
+
+  let lootDrop = null;
+  const uid = (playerId || '').toLowerCase();
+  const u = users[uid];
+  if (u && direction === 'up') {
+    // Award small XP for positive habit
+    u.xp = (u.xp || 0) + 3;
+    // Loot drop (5% chance)
+    const dropBonus = getUserDropBonus(uid);
+    const dropped = rollLoot(0.05 + dropBonus);
+    if (dropped) {
+      resetLootPity(uid);
+      addLootToInventory(uid, dropped);
+      lootDrop = dropped;
+    }
+    saveUsers();
+  }
+  saveHabits();
+  res.json({ ok: true, habit, lootDrop });
+});
+
+// DELETE /api/habits/:id [auth]
+app.delete('/api/habits/:id', requireApiKey, (req, res) => {
+  const idx = habits.findIndex(h => h.id === req.params.id);
+  if (idx === -1) return res.status(404).json({ error: 'Habit not found' });
+  habits.splice(idx, 1);
+  saveHabits();
+  res.json({ ok: true });
+});
+
+// ─── Inventory API ────────────────────────────────────────────────────────────
+
+// GET /api/player/:name/inventory
+app.get('/api/player/:name/inventory', (req, res) => {
+  const uid = req.params.name.toLowerCase();
+  const u = users[uid];
+  if (!u) return res.status(404).json({ error: 'Player not found' });
+  res.json({ inventory: u.inventory || [], streakShields: u.streakShields || 0 });
+});
+
+// POST /api/player/:name/inventory/use/:itemId [auth]
+app.post('/api/player/:name/inventory/use/:itemId', requireApiKey, (req, res) => {
+  const uid = req.params.name.toLowerCase();
+  const u = users[uid];
+  if (!u) return res.status(404).json({ error: 'Player not found' });
+  const item = (u.inventory || []).find(i => i.id === req.params.itemId);
+  if (!item) return res.status(404).json({ error: 'Item not found in inventory' });
+  u.inventory = u.inventory.filter(i => i.id !== item.id);
+  saveUsers();
+  res.json({ ok: true, item });
+});
+
+// ─── Full Equipment API ───────────────────────────────────────────────────────
+
+// GET /api/shop/equipment — gear items for player's level
+app.get('/api/shop/equipment', (req, res) => {
+  const { player } = req.query;
+  if (player) {
+    const u = users[player.toLowerCase()];
+    const playerXp = u ? (u.xp || 0) : 0;
+    const { level } = getLevelInfo(playerXp);
+    return res.json(FULL_GEAR_ITEMS.filter(g => g.minLevel <= level));
+  }
+  res.json(FULL_GEAR_ITEMS);
+});
+
+// POST /api/player/:name/equip/:itemId [auth]
+app.post('/api/player/:name/equip/:itemId', requireApiKey, (req, res) => {
+  const uid = req.params.name.toLowerCase();
+  const u = users[uid];
+  if (!u) return res.status(404).json({ error: 'Player not found' });
+  const item = FULL_GEAR_ITEMS.find(g => g.id === req.params.itemId);
+  if (!item) return res.status(404).json({ error: 'Gear item not found' });
+
+  const { level } = getLevelInfo(u.xp || 0);
+  if (level < item.minLevel) return res.status(400).json({ error: `Requires level ${item.minLevel}` });
+  if ((u.gold || 0) < item.cost) return res.status(400).json({ error: `Insufficient gold. Need ${item.cost}, have ${u.gold || 0}` });
+
+  if (!u.equipment) u.equipment = {};
+  // Check if already equipped
+  if (u.equipment[item.slot] === item.id) return res.status(409).json({ error: 'Already equipped' });
+  u.gold -= item.cost;
+  u.equipment[item.slot] = item.id;
+
+  // Add to purchases
+  if (!u.purchases) u.purchases = [];
+  u.purchases.push({ type: 'equipment', item: item.id, cost: item.cost, at: now() });
+
+  const stats = getUserStats(uid);
+  saveUsers();
+  res.json({ ok: true, equipment: u.equipment, stats, gold: u.gold });
+});
+
+// GET /api/player/:name/stats — player's current stats from equipment
+app.get('/api/player/:name/stats', (req, res) => {
+  const uid = req.params.name.toLowerCase();
+  if (!users[uid]) return res.status(404).json({ error: 'Player not found' });
+  const stats = getUserStats(uid);
+  const equipment = getUserEquipment(uid);
+  res.json({ stats, equipment });
+});
+
 // ─── Stats API ────────────────────────────────────────────────────────────────
 
 // GET /api/stats/content — aggregate content stats
@@ -3941,6 +4470,9 @@ seedQuestCatalog();
 loadClasses();
 loadCompanionsData();
 loadRoadmap();
+loadRituals();
+loadHabits();
+loadLootTables();
 
 app.listen(PORT, () => {
   console.log(`\n🔴 Agent Dashboard API running on http://localhost:${PORT}`);
