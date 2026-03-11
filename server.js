@@ -656,7 +656,7 @@ function seedQuestCatalog() {
   const gld = { starter: 10, intermediate: 20, advanced: 30, expert: 50 };
   const pri = { starter: 'low', intermediate: 'medium', advanced: 'high', expert: 'high' };
 
-  const tpl = (id, title, description, type, category, classId, minLevel, difficulty, estimatedTime, rewards, tags, chainId, chainOrder, recurrence, lore) => ({
+  const tpl = (id, title, description, type, category, classId, minLevel, difficulty, estimatedTime, rewards, tags, chainId, chainOrder, recurrence, lore, requiresRelationship) => ({
     id,
     title,
     description,
@@ -672,6 +672,7 @@ function seedQuestCatalog() {
     tags: tags || [],
     recurrence: recurrence || null,
     lore: lore || null,
+    requiresRelationship: requiresRelationship || false,
     createdBy: 'system',
     createdAt: BASE,
   });
@@ -1087,6 +1088,39 @@ function seedQuestCatalog() {
       'Lerne heute bewusst einen neuen Menschen kennen: Nachbar, Kollege, Mitglied eines Vereins. Stelle echte Fragen, höre zu. Jeder Mensch hat eine Geschichte.',
       'social', 'generic', null, 4, 'intermediate', '1h',
       { xp: 25, gold: 20 }, ['networking', 'connection']),
+
+    // ═══════════════════════════════════════════════════════════════════════
+    // RELATIONSHIP — Couple Quests (requiresRelationship: true)
+    // ═══════════════════════════════════════════════════════════════════════
+    tpl('tpl-rel-01',
+      '💑 Date Night planen — Ein Abend nur für euch',
+      'Plant und verbringt einen gemeinsamen Abend: Restaurant, Kino, Spaziergang, oder gemütlich zu Hause mit Kerzen und eurem Lieblingsessen. Qualitätszeit stärkt jede Beziehung.',
+      'social', 'generic', null, 1, 'starter', '3h',
+      { xp: 20, gold: 15 }, ['connection', 'relationship'], null, null, null, null, true),
+
+    tpl('tpl-rel-02',
+      '💌 Brief oder Karte schreiben — Worte die bleiben',
+      'Schreibe deinem Partner einen handgeschriebenen Brief oder eine Karte. Keine digitale Nachricht — echte Tinte auf echtem Papier. Erkläre was du an ihm/ihr schätzt.',
+      'social', 'generic', null, 1, 'starter', '30min',
+      { xp: 15, gold: 10 }, ['connection', 'relationship'], null, null, null, null, true),
+
+    tpl('tpl-rel-03',
+      '🍳 Gemeinsam kochen — Paarzeit in der Küche',
+      'Kocht zusammen ein neues Rezept das ihr noch nie ausprobiert habt. Die Küche ist ein magischer Ort — gemeinsam kochen schafft Nähe und geteilte Erinnerungen.',
+      'social', 'generic', null, 1, 'starter', '1.5h',
+      { xp: 20, gold: 15 }, ['connection', 'relationship'], null, null, 'weekly', null, true),
+
+    tpl('tpl-rel-04',
+      '🤝 Monatliches Beziehungs-Check-in — Wie geht es uns?',
+      'Nehmt euch 30 Minuten Zeit für ein offenes Gespräch über eure Beziehung: Was läuft gut? Was könnte besser sein? Was wünscht ihr euch? Ehrlichkeit ist das Fundament.',
+      'social', 'generic', null, 2, 'starter', '30min',
+      { xp: 25, gold: 20 }, ['connection', 'relationship'], null, null, 'monthly', null, true),
+
+    tpl('tpl-rel-05',
+      '🏃 Paar-Workout — Gemeinsam stärker werden',
+      'Macht zusammen Sport: Joggen, Gym, Yoga, Fahrrad fahren oder Spaziergang. Gemeinsamer Sport schafft Verbindung und gegenseitige Motivation.',
+      'fitness', 'generic', null, 1, 'starter', '1h',
+      { xp: 20, gold: 15 }, ['fitness', 'relationship'], null, null, 'weekly', null, true),
   ];
 
   questCatalog.templates = templates;
@@ -1125,6 +1159,8 @@ function seedQuestCatalog() {
       lore: t.lore || null,
       chapter: t.chainId || null,
       minLevel: t.minLevel || 1,
+      classRequired: t.classId || null,
+      requiresRelationship: t.requiresRelationship || false,
     };
   });
   quests.push(...seedQuests);
@@ -2092,7 +2128,7 @@ app.get('/api/health', (req, res) => {
 
 // POST /api/quest — create a new quest
 app.post('/api/quest', requireApiKey, (req, res) => {
-  const { title, description, priority, category, categories, product, humanInputRequired, createdBy, type, parentQuestId, recurrence, proof, nextQuestTemplate, coopPartners, skills, lore, chapter, suggest, minLevel } = req.body;
+  const { title, description, priority, category, categories, product, humanInputRequired, createdBy, type, parentQuestId, recurrence, proof, nextQuestTemplate, coopPartners, skills, lore, chapter, suggest, minLevel, classRequired, requiresRelationship } = req.body;
   if (!title) return res.status(400).json({ error: 'title is required' });
   const validPriorities = ['low', 'medium', 'high'];
   const validCategories = ['Coding', 'Research', 'Content', 'Sales', 'Infrastructure', 'Bug Fix', 'Feature'];
@@ -2182,6 +2218,8 @@ app.post('/api/quest', requireApiKey, (req, res) => {
     lore: typeof lore === 'string' && lore.trim() ? lore.trim() : null,
     chapter: typeof chapter === 'string' && chapter.trim() ? chapter.trim() : null,
     minLevel: (typeof minLevel === 'number' && minLevel >= 1) ? Math.floor(minLevel) : 1,
+    classRequired: classRequired || null,
+    requiresRelationship: requiresRelationship === true || requiresRelationship === 'true',
   };
   quests.push(quest);
   saveQuests();
@@ -3796,7 +3834,7 @@ app.post('/api/auth/login', (req, res) => {
 
 // POST /api/register — register a new player
 app.post('/api/register', (req, res) => {
-  const { name, age, goals, classId, companion } = req.body;
+  const { name, age, goals, classId, companion, relationshipStatus, partnerName } = req.body;
   if (!name || !String(name).trim()) return res.status(400).json({ error: 'name is required' });
   const trimmedName = String(name).trim();
   const nameLower = trimmedName.toLowerCase();
@@ -3841,6 +3879,8 @@ app.post('/api/register', (req, res) => {
     // Extended onboarding fields
     age: age ? parseInt(age, 10) : null,
     goals: goals || null,
+    relationshipStatus: (['single', 'relationship', 'married', 'complicated', 'other'].includes(relationshipStatus)) ? relationshipStatus : 'single',
+    partnerName: partnerName || null,
     classId: resolvedClassId,
     classPending,
     classPendingNotified: false,
@@ -3865,6 +3905,22 @@ app.post('/api/register', (req, res) => {
   }
   console.log(`[register] new player: ${trimmedName} (${finalId}) class=${resolvedClassId || 'none'} companion=${companion ? companion.name : 'none'}`);
   res.json({ name: trimmedName, apiKey, userId: finalId });
+});
+
+// PATCH /api/player/:name/profile — update profile settings [auth]
+app.patch('/api/player/:name/profile', requireApiKey, (req, res) => {
+  const uid = req.params.name.toLowerCase();
+  const u = users[uid];
+  if (!u) return res.status(404).json({ error: 'Player not found' });
+  const { relationshipStatus, partnerName } = req.body;
+  const validStatuses = ['single', 'relationship', 'married', 'complicated', 'other'];
+  if (relationshipStatus !== undefined) {
+    if (!validStatuses.includes(relationshipStatus)) return res.status(400).json({ error: 'Invalid status' });
+    u.relationshipStatus = relationshipStatus;
+  }
+  if (partnerName !== undefined) u.partnerName = partnerName || null;
+  saveUsers();
+  res.json({ ok: true, relationshipStatus: u.relationshipStatus || 'single', partnerName: u.partnerName || null });
 });
 
 // GET /api/player/:name — get player progress (level, xp, gold, quest counts, claimed)
@@ -5073,13 +5129,13 @@ app.get('/api/player/:name/character', (req, res) => {
   const inventoryItems = inventoryIds.map(id => {
     const item = FULL_GEAR_ITEMS.find(g => g.id === id);
     if (!item) return null;
-    return { id: item.id, slot: item.slot, name: item.name, emoji: item.emoji, tier: item.tier, minLevel: item.minLevel };
+    return { id: item.id, slot: item.slot, name: item.name, emoji: item.emoji, tier: item.tier, minLevel: item.minLevel, stats: item.stats || {}, rarity: item.rarity || 'common' };
   }).filter(Boolean);
 
   // Also add equipped items to inventory if not already there
   for (const item of equippedItems) {
     if (!inventoryItems.find(i => i.id === item.id)) {
-      inventoryItems.push({ id: item.id, slot: item.slot, name: item.name, emoji: item.emoji, tier: item.tier, minLevel: item.minLevel });
+      inventoryItems.push({ id: item.id, slot: item.slot, name: item.name, emoji: item.emoji, tier: item.tier, minLevel: item.minLevel, stats: item.stats || {}, rarity: item.rarity || 'common' });
     }
   }
 
@@ -5099,12 +5155,16 @@ app.get('/api/player/:name/character', (req, res) => {
     title: lvlInfo.title,
     classId: u.classId || null,
     classTier,
+    classFantasy: u.classId && store.classes ? (store.classes.find(c => c.id === u.classId)?.fantasy ?? null) : null,
+    classIcon: u.classId && store.classes ? (store.classes.find(c => c.id === u.classId)?.icon ?? null) : null,
+    relationshipStatus: u.relationshipStatus || 'single',
+    partnerName: u.partnerName || null,
     companion,
     equipment: u.equipment || {},
     stats: { kraft: fullStats.kraft || 0, ausdauer: fullStats.ausdauer || 0, weisheit: fullStats.weisheit || 0, glueck: fullStats.glueck || 0 },
     baseStats,
     inventory: inventoryItems,
-    forgeTemp: Math.round((u.forgeTemp || 0) * 100),
+    forgeTemp: Math.min(100, Math.round(u.forgeTemp || 0)),
     season: 'spring',
     setBonusInfo,
     namedSetBonuses,
