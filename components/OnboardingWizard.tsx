@@ -69,14 +69,18 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
   const [customClassSubmitted, setCustomClassSubmitted] = useState(false);
   const [showClassTutorial, setShowClassTutorial] = useState(false);
 
-  // Step 3 fields
+  // Step 3 relationship fields
+  const [relationshipStatus, setRelationshipStatus] = useState<string>("single");
+  const [partnerName, setPartnerName] = useState("");
+
+  // Step 4 (companion) fields
   const [hasRealPet, setHasRealPet] = useState<boolean | null>(null);
   const [petSpecies, setPetSpecies] = useState("cat");
   const [petName, setPetName] = useState("");
   const [virtualCompanionType, setVirtualCompanionType] = useState<string | null>(null);
   const [virtualCompanionName, setVirtualCompanionName] = useState("");
 
-  // Step 4 result
+  // Step 5 result
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [generatedKey, setGeneratedKey] = useState("");
@@ -166,6 +170,8 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
           goals: goals.trim() || null,
           classId: selectedClassId || null,
           companion,
+          relationshipStatus,
+          partnerName: partnerName.trim() || null,
         }),
       });
       const data = await r.json();
@@ -175,7 +181,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
         return;
       }
       setGeneratedKey(data.apiKey);
-      setStep(4);
+      setStep(5);
     } catch {
       setError("Verbindungsfehler. Bitte versuche es erneut.");
     }
@@ -248,7 +254,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
       >
         {/* Step indicator dots */}
         <div className="flex items-center justify-center gap-2 pt-5 pb-1">
-          {[0, 1, 2, 3, 4].map(i => (
+          {[0, 1, 2, 3, 4, 5].map(i => (
             <div
               key={i}
               className="rounded-full transition-all duration-300"
@@ -475,8 +481,58 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
           </div>
         )}
 
-        {/* ── Step 3: Companion ── */}
+        {/* ── Step 3: Relationship Status ── */}
         {step === 3 && (
+          <div className="p-6 space-y-5">
+            <div>
+              <h2 className="text-lg font-bold" style={{ color: "#f0f0f0" }}>Beziehungsstatus</h2>
+              <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.4)" }}>Optional — hilft uns, passende Quests für dich zu erstellen.</p>
+            </div>
+
+            <div className="space-y-2">
+              {[
+                { value: "single",        label: "💔 Single" },
+                { value: "relationship",  label: "💑 In einer Beziehung" },
+                { value: "married",       label: "💍 Verheiratet" },
+                { value: "complicated",   label: "🤷 Es ist kompliziert" },
+                { value: "other",         label: "✨ Andere" },
+              ].map(opt => (
+                <button
+                  key={opt.value}
+                  onClick={() => setRelationshipStatus(opt.value)}
+                  className="w-full text-left px-4 py-2.5 rounded-xl text-sm font-medium"
+                  style={{
+                    background: relationshipStatus === opt.value ? "rgba(167,139,250,0.1)" : "rgba(255,255,255,0.03)",
+                    border: `1px solid ${relationshipStatus === opt.value ? "rgba(167,139,250,0.5)" : "rgba(255,255,255,0.08)"}`,
+                    color: relationshipStatus === opt.value ? "#a78bfa" : "rgba(255,255,255,0.6)",
+                  }}
+                >
+                  {opt.label}
+                </button>
+              ))}
+            </div>
+
+            {(relationshipStatus !== "single") && (
+              <div>
+                <label className="text-xs font-semibold mb-1.5 block" style={{ color: "rgba(255,255,255,0.5)" }}>Name deines Partners / deiner Partnerin (optional)</label>
+                <input
+                  style={inputStyle}
+                  value={partnerName}
+                  onChange={e => setPartnerName(e.target.value)}
+                  placeholder="z.B. Alex, Maria, Sam..."
+                />
+              </div>
+            )}
+
+            <div className="flex justify-between">
+              <button onClick={() => setStep(2)} style={btnSecondary}>← Zurück</button>
+              <button onClick={() => setStep(4)} style={btnPrimary}>Weiter →</button>
+            </div>
+          </div>
+        )}
+
+        {/* ── Step 4: Companion ── */}
+        {step === 4 && (
           <div className="p-6 space-y-4">
             <div>
               <h2 className="text-lg font-bold" style={{ color: "#f0f0f0" }}>Wähle deinen Begleiter</h2>
@@ -604,7 +660,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
             {error && <p className="text-xs" style={{ color: "#ef4444" }}>{error}</p>}
 
             <div className="flex justify-between">
-              <button onClick={() => setStep(2)} style={btnSecondary}>← Zurück</button>
+              <button onClick={() => setStep(3)} style={btnSecondary}>← Zurück</button>
               <button
                 onClick={handleFinalSubmit}
                 disabled={!canProceedStep3 || loading}
@@ -616,8 +672,8 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
           </div>
         )}
 
-        {/* ── Step 4: Summary + API key ── */}
-        {step === 4 && (
+        {/* ── Step 5: Summary + API key ── */}
+        {step === 5 && (
           <div className="p-6 space-y-5">
             <div className="text-center space-y-1">
               <div className="text-4xl">🔥</div>
@@ -649,6 +705,13 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
                     : virtualCompanionType
                       ? `${VIRTUAL_COMPANIONS.find(v => v.type === virtualCompanionType)?.emoji ?? ""} ${virtualCompanionName}`
                       : "—"}
+                </span>
+              </div>
+              <div className="flex justify-between text-xs">
+                <span style={{ color: "rgba(255,255,255,0.4)" }}>Status</span>
+                <span style={{ color: "#f0f0f0", fontWeight: 600 }}>
+                  {relationshipStatus === "single" ? "💔 Single" : relationshipStatus === "relationship" ? "💑 In einer Beziehung" : relationshipStatus === "married" ? "💍 Verheiratet" : relationshipStatus === "complicated" ? "🤷 Kompliziert" : "✨ Andere"}
+                  {partnerName && ` (${partnerName})`}
                 </span>
               </div>
             </div>

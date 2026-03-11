@@ -7462,6 +7462,98 @@ function PixelCharacter({ appearance = {}, equipment = {}, companion = null }: P
   );
 }
 
+// ─── ProfileSettingsModal ─────────────────────────────────────────────────────
+
+function ProfileSettingsModal({ playerName, apiKey, initialStatus, initialPartnerName, onClose, onSaved }: {
+  playerName: string;
+  apiKey: string;
+  initialStatus: string;
+  initialPartnerName: string;
+  onClose: () => void;
+  onSaved: () => void;
+}) {
+  const [status, setStatus] = useState(initialStatus);
+  const [partner, setPartner] = useState(initialPartnerName);
+  const [saving, setSaving] = useState(false);
+
+  const handleSave = async () => {
+    setSaving(true);
+    try {
+      await fetch(`/api/player/${encodeURIComponent(playerName)}/profile`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json", "x-api-key": apiKey },
+        body: JSON.stringify({ relationshipStatus: status, partnerName: partner.trim() || null }),
+      });
+      await onSaved();
+      onClose();
+    } finally { setSaving(false); }
+  };
+
+  return (
+    <div className="fixed inset-0 z-[110] flex items-center justify-center p-4" style={{ background: "rgba(0,0,0,0.85)" }} onClick={onClose}>
+      <div
+        className="w-full max-w-sm rounded-2xl p-6 space-y-5"
+        style={{ background: "#1a1a1a", border: "1px solid rgba(167,139,250,0.3)", boxShadow: "0 0 60px rgba(139,92,246,0.15)" }}
+        onClick={e => e.stopPropagation()}
+      >
+        <div>
+          <h2 className="text-base font-bold" style={{ color: "#f0f0f0" }}>⚙ Profil-Einstellungen</h2>
+          <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.4)" }}>Beziehungsstatus und weitere Einstellungen</p>
+        </div>
+
+        <div className="space-y-2">
+          <label className="text-xs font-semibold block" style={{ color: "rgba(255,255,255,0.5)" }}>Beziehungsstatus</label>
+          {[
+            { value: "single",       label: "💔 Single" },
+            { value: "relationship", label: "💑 In einer Beziehung" },
+            { value: "married",      label: "💍 Verheiratet" },
+            { value: "complicated",  label: "🤷 Es ist kompliziert" },
+            { value: "other",        label: "✨ Andere" },
+          ].map(opt => (
+            <button
+              key={opt.value}
+              onClick={() => setStatus(opt.value)}
+              className="w-full text-left px-3 py-2 rounded-lg text-sm"
+              style={{
+                background: status === opt.value ? "rgba(167,139,250,0.1)" : "rgba(255,255,255,0.03)",
+                border: `1px solid ${status === opt.value ? "rgba(167,139,250,0.4)" : "rgba(255,255,255,0.07)"}`,
+                color: status === opt.value ? "#a78bfa" : "rgba(255,255,255,0.55)",
+              }}
+            >{opt.label}</button>
+          ))}
+        </div>
+
+        {status !== "single" && (
+          <div>
+            <label className="text-xs font-semibold mb-1.5 block" style={{ color: "rgba(255,255,255,0.5)" }}>Name des Partners / der Partnerin</label>
+            <input
+              value={partner}
+              onChange={e => setPartner(e.target.value)}
+              placeholder="z.B. Alex, Maria..."
+              className="w-full text-xs px-3 py-2 rounded-lg"
+              style={{ background: "#141414", border: "1px solid rgba(255,255,255,0.12)", color: "#f0f0f0", outline: "none", borderRadius: 8 }}
+            />
+          </div>
+        )}
+
+        <div className="flex gap-2">
+          <button
+            onClick={onClose}
+            className="flex-1 py-2 rounded-xl text-xs"
+            style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.4)", border: "1px solid rgba(255,255,255,0.08)" }}
+          >Abbrechen</button>
+          <button
+            onClick={handleSave}
+            disabled={saving}
+            className="flex-1 py-2 rounded-xl text-xs font-semibold"
+            style={{ background: "linear-gradient(135deg, #7c3aed, #a78bfa)", color: "#fff" }}
+          >{saving ? "…" : "Speichern"}</button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ─── CharacterView ────────────────────────────────────────────────────────────
 
 interface CharacterData {
@@ -7932,7 +8024,15 @@ function CharacterView({ playerName, apiKey, users, classesList }: { playerName:
       >
         {/* Left: name + title */}
         <div className="flex-1 min-w-0">
-          <p className="text-sm font-bold truncate" style={{ color: "#e8e8e8" }}>{playerName}</p>
+          <div className="flex items-center gap-1">
+            <p className="text-sm font-bold truncate" style={{ color: "#e8e8e8" }}>{playerName}</p>
+            <button
+              onClick={() => setProfileSettingsOpen(true)}
+              className="text-xs px-1.5 py-0.5 rounded-lg ml-2"
+              title="Profil-Einstellungen"
+              style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.4)", border: "1px solid rgba(255,255,255,0.1)", cursor: "pointer" }}
+            >⚙</button>
+          </div>
           {charData && <p className="text-xs truncate" style={{ color: "rgba(255,255,255,0.35)" }}>{charData.title}</p>}
         </div>
         {/* Center: class */}
@@ -7958,6 +8058,18 @@ function CharacterView({ playerName, apiKey, users, classesList }: { playerName:
           </div>
         )}
       </div>
+
+      {/* Profile Settings Modal */}
+      {profileSettingsOpen && (
+        <ProfileSettingsModal
+          playerName={playerName}
+          apiKey={apiKey}
+          initialStatus={charData?.relationshipStatus ?? "single"}
+          initialPartnerName={charData?.partnerName ?? ""}
+          onClose={() => setProfileSettingsOpen(false)}
+          onSaved={fetchChar}
+        />
+      )}
     </div>
   );
 }
