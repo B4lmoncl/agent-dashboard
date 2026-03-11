@@ -1485,17 +1485,17 @@ function getXpMultiplier(userId) {
 }
 
 // Dynamic per-player forgeTemp: based on completed quests in last 24h
+// Uses playerProgress (completedQuests) since completed quests are removed from quest pool
 // 0 quests=0%, 1=20%, 2=40%, 3=60%, 5+=80%, 8+=100%
 function calcDynamicForgeTemp(userId) {
   const now24h = Date.now() - 24 * 3600 * 1000;
   const playerName = userId.toLowerCase();
+  const pp = playerProgress[playerName];
   let count = 0;
-  for (const q of quests) {
-    if (q.status === 'completed' && q.completedAt) {
-      const completor = (q.completedBy || '').toLowerCase();
-      if (completor === playerName && new Date(q.completedAt).getTime() >= now24h) {
-        count++;
-      }
+  if (pp && pp.completedQuests) {
+    for (const [qid, info] of Object.entries(pp.completedQuests)) {
+      const at = info.at ? new Date(info.at).getTime() : 0;
+      if (at >= now24h) count++;
     }
   }
   if (count >= 8) return 100;
