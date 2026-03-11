@@ -1029,7 +1029,7 @@ export default function Dashboard() {
               onClick={() => { setDashView("questBoard"); window.scrollTo({ top: 0, behavior: "smooth" }); }}
               title="Home — Quest Hall"
             >
-              <span className="text-xl leading-none" style={{ lineHeight: 1 }}>🏰</span>
+              <span className="text-xl leading-none" style={{ lineHeight: 1 }}>⚔️🏰</span>
               <span className="font-semibold text-sm tracking-tight" style={{ color: "#e8e8e8" }}>
                 Quest Hall
               </span>
@@ -1061,12 +1061,9 @@ export default function Dashboard() {
             {/* Login / User area */}
             <div className="relative" data-tutorial="login-btn">
               {reviewApiKey && playerName ? (
-                <div className="flex items-center gap-1.5">
-                  <div className="w-5 h-5 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0" style={{ background: `linear-gradient(135deg, ${loggedInUser?.color ?? "#a78bfa"}, ${loggedInUser?.color ?? "#a78bfa"}88)`, color: "#fff" }}>
-                    {playerName.slice(0, 1).toUpperCase()}
-                  </div>
-                  <span className="text-xs font-medium" style={{ color: "rgba(255,255,255,0.75)" }}>{playerName}</span>
+                <div className="flex items-center gap-2">
                   <button
+                    title={`${playerName} — Klicken zum Ausloggen`}
                     onClick={() => {
                       localStorage.removeItem("dash_api_key");
                       localStorage.removeItem("dash_player_name");
@@ -1076,11 +1073,17 @@ export default function Dashboard() {
                       setReviewKeyInput("");
                       setIsAdmin(false);
                     }}
-                    className="text-xs rounded"
-                    style={{ color: "rgba(255,255,255,0.25)", background: "none", border: "none", lineHeight: 1, padding: "0 2px" }}
-                    title="Logout"
+                    className="flex items-center justify-center font-bold flex-shrink-0"
+                    style={{
+                      width: 32, height: 32, borderRadius: "50%",
+                      background: `linear-gradient(135deg, ${loggedInUser?.color ?? "#a78bfa"}, ${loggedInUser?.color ?? "#a78bfa"}88)`,
+                      color: "#fff", fontSize: 13,
+                      border: `2px solid ${loggedInUser?.color ?? "#a78bfa"}60`,
+                      boxShadow: `0 2px 8px ${loggedInUser?.color ?? "#a78bfa"}40`,
+                      cursor: "pointer",
+                    }}
                   >
-                    ×
+                    {playerName.slice(0, 1).toUpperCase()}
                   </button>
                 </div>
               ) : (
@@ -1752,7 +1755,9 @@ export default function Dashboard() {
                                       {milestone && <span className="text-xs">{milestone.badge}</span>}
                                     </div>
                                     <div className="flex items-center gap-3 text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>
-                                      <span>🔗 {ritual.streak} Tage</span>
+                                      <span style={{ color: ritual.streak >= 21 ? "#818cf8" : ritual.streak >= 7 ? "#f97316" : "#ef4444", fontWeight: ritual.streak > 0 ? 600 : 400 }}>
+                                        {ritual.streak >= 21 ? "🔮" : ritual.streak >= 7 ? "🔥" : "🔴"} {ritual.streak} Tage
+                                      </span>
                                       <span>{ritual.schedule.type === 'daily' ? 'täglich' : ritual.schedule.days?.join(', ')}</span>
                                       <span>{ritual.rewards.xp} XP · {ritual.rewards.gold} Gold</span>
                                     </div>
@@ -1884,13 +1889,57 @@ export default function Dashboard() {
                 const rarityColors: Record<string, string> = { common: "#9ca3af", uncommon: "#22c55e", rare: "#60a5fa", epic: "#a78bfa", legendary: "#f59e0b" };
                 const rarityStars: Record<string, string> = { common: "★", uncommon: "★★", rare: "★★★", epic: "★★★★", legendary: "★★★★★" };
                 return (
-                  <section>
+                  <section style={{ maxWidth: 1000, margin: "0 auto" }}>
                     <div className="flex items-center gap-2 mb-4">
                       <h2 className="text-xs font-semibold uppercase tracking-widest" style={{ color: "#f59e0b" }}>🏰 Wandernde Besucher</h2>
                       {activeNpcs.length > 0 && (
                         <span className="text-xs px-1.5 py-0.5 rounded font-mono" style={{ background: "rgba(245,158,11,0.1)", color: "#f59e0b", border: "1px solid rgba(245,158,11,0.2)" }}>{activeNpcs.length}</span>
                       )}
                     </div>
+                    {/* Lyra — Permanente NPC */}
+                    {(() => {
+                      const lyraQuests = quests.open.filter(q => (q.createdBy ?? "").toLowerCase() === "lyra").concat(quests.inProgress.filter(q => (q.createdBy ?? "").toLowerCase() === "lyra"));
+                      return (
+                        <div className="mb-6">
+                          <div className="flex items-center gap-2 mb-3">
+                            <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: "#f59e0b" }}>✨ Permanent</span>
+                          </div>
+                          <div className="flex justify-center">
+                            <button
+                              onClick={() => setSelectedNpc({ id: "lyra-permanent", name: "Die Sternenwächterin", title: "Hüterin der Quests", rarity: "legendary", emoji: "✨", greeting: "Hüterin der Quests. Geschmiedet im Sternenlicht.", questChain: lyraQuests.map(q => ({ ...q, status: q.status as "open" | "in_progress" | "completed" | "claimed" })), hoursLeft: 9999, daysLeft: 999, portrait: undefined, finalReward: undefined } as unknown as ActiveNpc)}
+                              style={{ background: "none", border: "none", cursor: "pointer", padding: 0 }}
+                            >
+                              <div className="flex flex-col items-center gap-2">
+                                <div
+                                  className="relative rounded-lg overflow-hidden flex-shrink-0"
+                                  style={{
+                                    width: 160, height: 160,
+                                    border: "3px solid #FFD700",
+                                    boxShadow: "0 0 24px rgba(255,215,0,0.5), 0 0 48px rgba(255,215,0,0.2)",
+                                    position: "relative",
+                                  }}
+                                  onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.boxShadow = "0 0 36px rgba(255,215,0,0.8), 0 0 64px rgba(255,215,0,0.35)"; }}
+                                  onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.boxShadow = "0 0 24px rgba(255,215,0,0.5), 0 0 48px rgba(255,215,0,0.2)"; }}
+                                >
+                                  <div className="w-full h-full flex items-center justify-center" style={{ background: "linear-gradient(135deg, #1a1a2e, #2d1b69)", fontSize: 64 }}>✨</div>
+                                  {/* Star particles */}
+                                  {["10%,15%","80%,20%","20%,75%","70%,80%","50%,10%","5%,55%","90%,50%"].map((pos, i) => (
+                                    <span key={i} style={{ position: "absolute", left: pos.split(",")[0], top: pos.split(",")[1], fontSize: 10, opacity: 0.7, animation: `star-float-${i % 3} ${2 + i * 0.4}s ease-in-out infinite`, pointerEvents: "none" }}>✦</span>
+                                  ))}
+                                  {/* Golden corner shine */}
+                                  <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg, rgba(255,215,0,0.12) 0%, transparent 50%, rgba(255,215,0,0.08) 100%)", pointerEvents: "none" }} />
+                                </div>
+                                <div className="text-center" style={{ maxWidth: 160 }}>
+                                  <p className="text-xs font-bold" style={{ color: "#FFD700" }}>Die Sternenwächterin</p>
+                                  <p className="text-xs mt-0.5" style={{ color: "#f59e0b", fontSize: 10 }}>★★★★★ Legendär</p>
+                                  <p className="text-xs mt-0.5" style={{ color: "rgba(255,215,0,0.5)", fontSize: 10 }}>Permanent · Immer hier</p>
+                                </div>
+                              </div>
+                            </button>
+                          </div>
+                        </div>
+                      );
+                    })()}
                     {activeNpcs.length === 0 ? (
                       <div className="rounded-xl px-4 py-6 text-center" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
                         <p className="text-sm italic" style={{ color: "rgba(255,255,255,0.25)" }}>Die Halle ist still heute...</p>
@@ -1898,7 +1947,7 @@ export default function Dashboard() {
                       </div>
                     ) : (
                       <>
-                        <div className="flex flex-wrap gap-5 mb-2">
+                        <div className="flex flex-wrap justify-center gap-6 mb-2">
                           {activeNpcs.map(npc => {
                             const urgent = npc.hoursLeft <= 24;
                             const rc = rarityColors[npc.rarity] ?? "#9ca3af";
@@ -1913,7 +1962,7 @@ export default function Dashboard() {
                                 <div
                                   className="relative rounded-lg overflow-hidden flex-shrink-0"
                                   style={{
-                                    width: 128, height: 128,
+                                    width: 148, height: 148,
                                     border: `2px solid ${urgent ? "rgba(239,68,68,0.5)" : `${rc}40`}`,
                                     boxShadow: `0 0 0 0 ${rc}`,
                                     transition: "box-shadow 0.2s ease",
@@ -1925,12 +1974,12 @@ export default function Dashboard() {
                                     <img
                                       src={npc.portrait}
                                       alt={npc.name}
-                                      width={128}
-                                      height={128}
+                                      width={148}
+                                      height={148}
                                       style={{ imageRendering: "pixelated", display: "block", width: "100%", height: "100%", objectFit: "cover" }}
                                     />
                                   ) : (
-                                    <div className="w-full h-full flex items-center justify-center" style={{ background: "rgba(255,255,255,0.04)", fontSize: 48 }}>
+                                    <div className="w-full h-full flex items-center justify-center" style={{ background: "rgba(255,255,255,0.04)", fontSize: 56 }}>
                                       {npc.emoji}
                                     </div>
                                   )}
@@ -1945,12 +1994,13 @@ export default function Dashboard() {
                                     </div>
                                   )}
                                 </div>
-                                <div className="text-center" style={{ maxWidth: 128 }}>
+                                <div className="text-center" style={{ maxWidth: 148 }}>
                                   <p className="text-xs font-semibold leading-tight" style={{ color: "#e8e8e8" }}>{npc.name}</p>
                                   <p className="text-xs mt-0.5" style={{ color: rc, fontSize: 10 }}>{rarityStars[npc.rarity] ?? "★"}</p>
                                   {!allDone && (
-                                    <p className="text-xs mt-0.5" style={{ color: urgent ? "#ef4444" : "rgba(255,255,255,0.3)", fontSize: 10 }}>
-                                      ⏱ {urgent ? `${npc.hoursLeft}h` : `${npc.daysLeft}d`} übrig
+                                    <p className="text-xs mt-0.5 flex items-center gap-1" style={{ color: urgent ? "#ef4444" : "rgba(255,255,255,0.3)", fontSize: 10 }}>
+                                      Verweilt noch {urgent ? `${npc.hoursLeft}h` : `${npc.daysLeft}d`}
+                                      <span title="Wandernde NPCs besuchen die Gildenhalle für begrenzte Zeit. Schau regelmäßig vorbei!" style={{ cursor: "help", color: "rgba(255,255,255,0.3)", borderRadius: "50%", border: "1px solid rgba(255,255,255,0.2)", width: 12, height: 12, display: "inline-flex", alignItems: "center", justifyContent: "center", fontSize: 8, fontWeight: 700, flexShrink: 0 }}>?</span>
                                     </p>
                                   )}
                                   {allDone && (
@@ -1984,7 +2034,7 @@ export default function Dashboard() {
                     style={{ background: "rgba(0,0,0,0.82)" }}
                     onClick={e => { if (e.target === e.currentTarget) setSelectedNpc(null); }}
                   >
-                    <div className="relative w-full max-w-md rounded-xl overflow-hidden" style={{ background: "#1a1a2e", border: `2px solid rgba(255,215,0,0.25)`, maxHeight: "90vh", overflowY: "auto" }}>
+                    <div className="relative w-full max-w-xl rounded-xl overflow-hidden" style={{ background: "#1a1a2e", border: `2px solid rgba(255,215,0,0.25)`, maxHeight: "90vh", overflowY: "auto" }}>
                       {/* Close */}
                       <button
                         onClick={() => setSelectedNpc(null)}
@@ -2005,9 +2055,11 @@ export default function Dashboard() {
                           <p className="text-sm font-bold leading-tight" style={{ color: "#f0f0f0" }}>{npc.name}</p>
                           <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.35)" }}>{npc.title}</p>
                           <p className="text-xs mt-1 font-semibold" style={{ color: rc }}>{rarityStars[npc.rarity] ?? npc.rarity}</p>
-                          <p className="text-xs mt-1" style={{ color: npc.hoursLeft <= 24 ? "#ef4444" : "rgba(255,255,255,0.3)" }}>
-                            {npc.hoursLeft <= 24 ? `⏰ Noch ${npc.hoursLeft}h!` : `⏳ Noch ${npc.daysLeft} Tag${npc.daysLeft !== 1 ? "e" : ""}`}
-                          </p>
+                          {!(npc as ActiveNpc & { permanent?: boolean }).permanent && (
+                            <p className="text-xs mt-1" style={{ color: npc.hoursLeft <= 24 ? "#ef4444" : "rgba(255,255,255,0.3)" }}>
+                              {npc.hoursLeft <= 24 ? `⏰ Verweilt noch ${npc.hoursLeft}h!` : `Verweilt noch ${npc.daysLeft} Tag${npc.daysLeft !== 1 ? "en" : ""}`}
+                            </p>
+                          )}
                         </div>
                       </div>
 
@@ -2086,67 +2138,6 @@ export default function Dashboard() {
                   </div>
                 );
               })()}
-
-              {/* NPC Roster — collapsible, shows only Lyra */}
-              <section>
-                <button
-                  onClick={() => setNpcAgentRosterOpen(v => !v)}
-                  className="flex items-center justify-between w-full mb-3"
-                >
-                  <div className="flex items-center gap-3">
-                    <h2 className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.4)" }}>NPC Roster</h2>
-                    <p className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>{loading ? "Loading…" : npcAgents.length > 0 ? `${npcAgents.length} NPC quest giver` : "Waiting for Lyra to check in"}</p>
-                    <div className="flex items-center gap-3 text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>
-                      <span className="flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: "#4ade80", animation: "pulse-online 2s ease-in-out infinite" }} />Online</span>
-                      <span className="flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: "#ff6b00", animation: "pulse-working 1.5s ease-in-out infinite" }} />Working</span>
-                      <span className="flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: "#facc15", animation: "pulse-idle 3s ease-in-out infinite" }} />Idle</span>
-                    </div>
-                  </div>
-                  <span className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>{npcAgentRosterOpen ? "▲" : "▼"}</span>
-                </button>
-                {npcAgentRosterOpen && (loading ? (
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">{[1].map(i => <SkeletonCard key={i} />)}</div>
-                ) : (
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    {npcAgents.map(agent => (
-                      <div key={agent.id} className="col-span-1 sm:col-span-2">
-                        <AgentCard agent={agent} activeQuests={agentQuestMap[agent.id] ?? []} isWide={true} />
-                      </div>
-                    ))}
-                    {npcAgents.length === 0 && (
-                      <div className="col-span-1 sm:col-span-2">
-                        <EmptyState message="Lyra has not checked in yet." sub="POST /api/agent/lyra/status  →  { status, platform, uptime, questsCompleted, health }" />
-                      </div>
-                    )}
-                    {/* Companion as NPC quest giver — only when logged in */}
-                    {playerName && loggedInUser?.companion && (
-                      <div
-                        className="col-span-1 sm:col-span-2 rounded-xl p-4 cursor-pointer"
-                        style={{ background: "rgba(255,107,157,0.05)", border: "1px solid rgba(255,107,157,0.2)" }}
-                        onClick={() => setNpcBoardFilter("dobbie")}
-                      >
-                        <div className="flex items-center gap-3">
-                          <span className="text-3xl flex-shrink-0">{loggedInUser.companion.emoji}</span>
-                          <div className="flex-1 min-w-0">
-                            <div className="flex items-center gap-2 flex-wrap">
-                              <p className="text-xs font-semibold" style={{ color: "#ff6b9d" }}>{loggedInUser.companion.name}</p>
-                              <span className="text-xs px-1.5 py-0.5 rounded font-mono" style={{ background: "rgba(255,107,157,0.12)", color: "#ff6b9d", border: "1px solid rgba(255,107,157,0.25)" }}>
-                                {loggedInUser.companion.isReal ? "Begleiter-NPC" : "Virtueller Begleiter"}
-                              </span>
-                            </div>
-                            <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.3)" }}>
-                              {loggedInUser.companion.isReal ? "Kümmere dich um deinen Begleiter — Pflegequests verfügbar" : "Motivationsquests von deinem Begleiter"}
-                            </p>
-                          </div>
-                          <span className="text-xs px-2 py-1 rounded-lg font-semibold" style={{ background: "rgba(255,107,157,0.15)", color: "#ff6b9d", border: "1px solid rgba(255,107,157,0.3)" }}>
-                            Quests →
-                          </span>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </section>
 
               {/* NPC Quest Board (dev type only) + Review Board side-by-side */}
               <div className="flex flex-col lg:flex-row gap-6 items-start">
@@ -2273,11 +2264,6 @@ export default function Dashboard() {
             </div>
           );
         })()}
-
-        {/* AI Smart Suggestions — also on leaderboard */}
-        {dashView === "leaderboard" && (
-          <SmartSuggestionsPanel quests={quests} agents={agents} />
-        )}
 
         {/* Rejected Quests (Mülleimer) — only on NPC board */}
         {dashView === "npcBoard" && quests.rejected.length > 0 && (
@@ -2462,16 +2448,9 @@ export default function Dashboard() {
         </div>
       )}
 
-      <footer className="mt-12 py-6" style={{ borderTop: "1px solid rgba(255,68,68,0.07)", position: "relative", zIndex: 1 }}>
-        <div
-          className="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs font-mono"
-          style={{ color: "rgba(255,255,255,0.15)" }}
-        >
-          <div className="flex items-center gap-3">
-            <span>🏰 Quest Hall · The Guild</span>
-            <span style={{ color: "rgba(255,255,255,0.2)" }}>v1.5.0</span>
-          </div>
-          <span>© 2026 OpenClaw</span>
+      <footer className="mt-12 py-4" style={{ borderTop: "1px solid rgba(255,68,68,0.07)", position: "relative", zIndex: 1 }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-center text-xs font-mono" style={{ color: "rgba(255,255,255,0.15)" }}>
+          <span>⚔️🏰 Quest Hall v1.5.0</span>
         </div>
       </footer>
 
@@ -3759,12 +3738,12 @@ function DobbieQuestPanel({ reviewApiKey, onRefresh }: { reviewApiKey: string; o
           <p className="text-xs mt-0.5 italic" style={{ color: "rgba(255,255,255,0.35)" }}>&ldquo;{dobbieMood.quote}&rdquo;</p>
         </div>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3" style={{ alignItems: "stretch" }}>
         {DOBBIE_QUESTS.map(q => {
           const isCreating = creating === q.id;
           const isDone = success === q.id;
           return (
-            <div key={q.id} className="rounded-xl p-4" style={{ background: "#252525", border: "1px solid rgba(255,107,157,0.15)" }}>
+            <div key={q.id} className="rounded-xl p-4 flex flex-col" style={{ background: "#252525", border: "1px solid rgba(255,107,157,0.15)" }}>
               <div className="flex items-center gap-2 mb-2">
                 <span className="text-xl flex-shrink-0">{q.icon}</span>
                 <div className="flex-1 min-w-0">
@@ -3772,7 +3751,7 @@ function DobbieQuestPanel({ reviewApiKey, onRefresh }: { reviewApiKey: string; o
                   <span className="text-xs" style={{ color: q.priority === "high" ? "#ef4444" : q.priority === "medium" ? "#f59e0b" : "#22c55e" }}>{q.priority}</span>
                 </div>
               </div>
-              <p className="text-xs mb-3 leading-relaxed" style={{ color: "rgba(255,255,255,0.35)" }}>{q.description}</p>
+              <p className="text-xs mb-3 leading-relaxed flex-1" style={{ color: "rgba(255,255,255,0.35)" }}>{q.description}</p>
               <button
                 onClick={() => createDobbieQuest(q)}
                 disabled={!!creating}
@@ -4265,9 +4244,11 @@ function TypeBadge({ type }: { type?: string }) {
   );
 }
 
-const NPC_CONFIG: Record<string, { avatar: string; color: string }> = {
-  dobbie:     { avatar: "🐱", color: "#ff6b9d" },
+const NPC_CONFIG: Record<string, { avatar: string; color: string; label?: string }> = {
+  dobbie:       { avatar: "🐱", color: "#ff6b9d" },
   "npc-dobbie": { avatar: "🐱", color: "#ff6b9d" },
+  system:       { avatar: "📋", color: "#94a3b8", label: "Gefunden am schwarzen Brett" },
+  lyra:         { avatar: "✨", color: "#e879f9", label: "Von der Sternenwächterin" },
 };
 
 function CreatorBadge({ name }: { name: string }) {
@@ -4279,7 +4260,7 @@ function CreatorBadge({ name }: { name: string }) {
         style={{ color: npc.color, background: `${npc.color}18`, border: `1px solid ${npc.color}50` }}
         title={`Quest from ${name}`}
       >
-        {npc.avatar} {name.charAt(0).toUpperCase() + name.slice(1)}
+        {npc.avatar} {npc.label ?? (name.charAt(0).toUpperCase() + name.slice(1))}
       </span>
     );
   }
@@ -4649,7 +4630,7 @@ function QuestCard({ quest, selected, onToggle, onClaim, onUnclaim, onComplete, 
             <p className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>{timeAgo(quest.createdAt)}</p>
             <div className="flex items-center gap-1.5">
               {!isCoop && onClaim && quest.status === "open" && (
-                <button onClick={e => { e.stopPropagation(); onClaim(quest.id); }} className="text-xs px-2 py-0.5 rounded font-medium" style={{ background: "rgba(34,197,94,0.12)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.3)" }}>⚔ Claim</button>
+                <button onClick={e => { e.stopPropagation(); onClaim(quest.id); }} className="text-xs px-3 py-1 rounded-lg font-semibold" style={{ background: "linear-gradient(180deg, #2a2a2a, #1a1a1a)", color: "#FFD700", border: "2px solid #FFD700" }}>⚔ Claim</button>
               )}
               {!isCoop && onUnclaim && isClaimedByMe && (
                 <button onClick={e => { e.stopPropagation(); onUnclaim(quest.id); }} className="text-xs px-2 py-0.5 rounded font-medium" style={{ background: "rgba(239,68,68,0.1)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.25)" }}>✕ Unclaim</button>
@@ -5432,9 +5413,9 @@ function LeaderboardView({ entries, agents, mode = "agents", users = [] }: { ent
       {/* Podium */}
       <div className="flex items-end justify-center gap-4">
         {[top3[1], top3[0], top3[2]].filter(Boolean).map((entry, podiumIdx) => {
-          const podiumOrder = [1, 0, 2]; // 2nd, 1st, 3rd
-          const rank = podiumOrder[podiumIdx] + 1;
-          const heights = ["h-24", "h-32", "h-20"];
+          const rank = entry.rank;
+          const heights: Record<number, string> = { 1: "h-32", 2: "h-24", 3: "h-20" };
+          const podiumHeightClass = heights[rank] ?? "h-16";
           const meta = agentMetaLb[entry.id?.toLowerCase()] ?? { avatar: entry.avatar ?? entry.id?.slice(0,2).toUpperCase() ?? "??", color: entry.color ?? "#666" };
           const color = entry.color ?? meta.color;
           const lvl = getLbLevel(entry.xp);
@@ -5453,7 +5434,7 @@ function LeaderboardView({ entries, agents, mode = "agents", users = [] }: { ent
                 <p className="text-xs font-mono font-bold mt-0.5" style={{ color: "#a855f7" }}>{entry.xp} XP</p>
               </div>
               <div
-                className={`w-full rounded-t-lg flex items-center justify-center ${heights[podiumIdx]}`}
+                className={`w-full rounded-t-lg flex items-center justify-center ${podiumHeightClass}`}
                 style={{ background: `linear-gradient(180deg, ${color}20 0%, ${color}08 100%)`, border: `1px solid ${color}30`, borderBottom: "none" }}
               >
                 <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.3)" }}>#{rank}</span>
