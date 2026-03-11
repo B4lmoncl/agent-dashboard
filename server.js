@@ -31,6 +31,22 @@ const GEAR_TEMPLATES_FILE  = path.join(DATA_DIR, 'gearTemplates.json');
 const NPC_GIVERS_FILE      = path.join(DATA_DIR, 'npcQuestGivers.json');
 const NPC_STATE_FILE       = path.join(DATA_DIR, 'npcState.json');
 const APP_STATE_FILE       = path.join(DATA_DIR, 'appState.json');
+// ─── Config / template data files ────────────────────────────────────────────
+const GAME_CONFIG_FILE   = path.join(DATA_DIR, 'gameConfig.json');
+const LEVELS_FILE        = path.join(DATA_DIR, 'levels.json');
+const CAMPAIGN_NPCS_FILE = path.join(DATA_DIR, 'campaignNpcs.json');
+const QUEST_FLAVOR_FILE  = path.join(DATA_DIR, 'questFlavor.json');
+
+// ─── Sync JSON load helper (used for config files at startup) ─────────────────
+function tryLoadJsonSync(file, fallback) {
+  try {
+    if (fs.existsSync(file)) return JSON.parse(fs.readFileSync(file, 'utf8'));
+  } catch (e) { console.warn(`[config] Failed to load ${path.basename(file)}: ${e.message}`); }
+  return fallback;
+}
+
+// ─── Game config (economy, loot) — loaded once at startup ────────────────────
+const _gameConfig = tryLoadJsonSync(GAME_CONFIG_FILE, {});
 
 // Quest types that are tracked per-player (not shared/global)
 const PLAYER_QUEST_TYPES = ['personal', 'learning', 'fitness', 'social', 'relationship-coop', 'companion'];
@@ -41,97 +57,14 @@ app.use(express.json());
 // ─── Admin Key (hardcoded fallback) ─────────────────────────────────────────
 const ADMIN_KEY = '608f596d4b64d994b1f1624256f00549';
 
-// ─── Quest Flavor Text ───────────────────────────────────────────────────────
-const QUEST_FLAVOR = {
-  development: {
-    completionMessage: "⚒️ **PROTOCOL FORGED.** The anvil cools and your creation hums with power. Another artifact added to the Guild vault. The Forge Masters nod in approval — your craft grows sharper with every strike.",
-    streakBonus: {
-      "3":  "🔥 3-day Forge Streak! The anvil hasn't cooled in days. You're entering a state the old smiths called *The Endless Heat*.",
-      "7":  "⚒️🔥 7-day Forge Streak! The Guild speaks your name in whispers. They call you Ironhand — one who never lets the fire die.",
-      "14": "🌋 14-day Forge Streak! You've transcended mortal crafting. The Forge itself bends to your will. Legendary Artificer status unlocked.",
-      "30": "💎⚒️ 30-day Forge Streak! The Council of Master Smiths has no choice but to acknowledge a new peer. You are now part of the living legend of the Guild.",
-    },
-  },
-  learning: {
-    completionMessage: "📜 **KNOWLEDGE ACQUIRED.** The Archive glows as a new understanding etches itself into your mind. You feel the subtle shift — you are not who you were when you opened that first page. The Guild's Lorekeepers record your advancement.",
-    streakBonus: {
-      "3":  "📖 3-day Study Streak! The candles in the Archive burn for you alone. Your mind sharpens like a blade on the whetstone of knowledge.",
-      "7":  "🧠📖 7-day Study Streak! The Lorekeepers have taken notice. They've started leaving rare texts on your desk — they see potential for mastery.",
-      "14": "🌟 14-day Study Streak! You've entered the Scholar's Flow. Concepts that once seemed like foreign runes now read like your mother tongue.",
-      "30": "👁️📜 30-day Study Streak! The Grand Lorekeeper has granted you a key to the Restricted Section. Few have ever earned this honor. Your intellect is now a Guild-tier weapon.",
-    },
-  },
-  personal: {
-    completionMessage: "🏰 **DOMAIN SECURED.** Your quarters are fortified, your supplies restocked, your chaos tamed. It's invisible work, but the Guild knows — operational readiness is what wins wars. Respect earned where it matters most: in the foundation.",
-    streakBonus: {
-      "3":  "🧱 3-day Upkeep Streak! Your domain runs like a well-oiled siege engine. Consistency is the unsexy superpower, and you're wielding it.",
-      "7":  "🏰🧱 7-day Upkeep Streak! The Guild Quartermaster is impressed. Your personal operations are running at peak efficiency. Others are starting to ask how you do it.",
-      "14": "⚙️ 14-day Upkeep Streak! You've built something rare — sustainable order from chaos. The Guild promotes you to Keeper of the Inner Sanctum.",
-      "30": "👑🏰 30-day Upkeep Streak! A full month of unbroken discipline. Your domain is a fortress others aspire to. The Guild whispers of a new rank: Sovereign of the Hearth.",
-    },
-  },
-  fitness: {
-    completionMessage: "⚔️ **TRIAL SURVIVED.** You walked into the Arena and walked out stronger. Muscles forged, limits pushed, weakness burned away. The Warrior's Path demands everything, and today you paid the toll. The Guild salutes your iron will.",
-    streakBonus: {
-      "3":  "💪 3-day Arena Streak! Your body is beginning to remember what it was built for. The soreness is just your weakness leaving — the old warriors called it *The Shedding*.",
-      "7":  "⚔️💪 7-day Arena Streak! A full week in the Arena. The other warriors have stopped underestimating you. Your discipline echoes through the training halls like war drums.",
-      "14": "🔱 14-day Arena Streak! Two weeks of unbroken combat training. The Arena Masters have inscribed your name on the Wall of Perseverance. Your body is becoming a weapon of Guild legend.",
-      "30": "🏆⚔️ 30-day Arena Streak! Thirty days. THIRTY. The Arena has tested you with everything it has, and you are still standing. The Guild bestows upon you the title: Ironforged Champion.",
-    },
-  },
-  social: {
-    completionMessage: "🤝 **ALLIANCE STRENGTHENED.** The bonds between you and your allies grow deeper. In the quiet moments between battles, these are the connections that keep a warrior whole. The Guild knows: the strongest fighters are the ones with something worth fighting for.",
-    streakBonus: {
-      "3":  "💬 3-day Alliance Streak! You're showing up for your people consistently. Trust compounds quietly, but its power is immense. Your inner circle feels it.",
-      "7":  "🤝💬 7-day Alliance Streak! A full week of tending your alliances. The bonds are visibly stronger now. Your people know they can count on you — that's rarer than legendary loot.",
-      "14": "🛡️ 14-day Alliance Streak! Two weeks of dedicated connection. Your allies would ride into battle for you without hesitation. The Guild calls this *Unbreakable Accord*.",
-      "30": "👑🤝 30-day Alliance Streak! Thirty days of showing up for the people who matter. You've built something most adventurers never achieve — a true Fellowship. The Guild honors you as Warden of the Inner Circle.",
-    },
-  },
-};
+// ─── Quest Flavor Text (loaded from questFlavor.json) ────────────────────────
+const QUEST_FLAVOR = tryLoadJsonSync(QUEST_FLAVOR_FILE, {});
 
-// ─── Campaign NPCs ───────────────────────────────────────────────────────────
-const CAMPAIGN_NPCS = [
-  { id: "npc_001", name: "Brenna Ironledger",   role: "Quest Hall Guildmaster",                   race: "Dwarf",    alignment: "Lawful Neutral" },
-  { id: "npc_002", name: "Silas Dawnmantle",    role: "Mysterious Stranger / Wandering Lorekeeper", race: "Half-Elf", alignment: "Chaotic Good"  },
-  { id: "npc_003", name: "Marta Hearthwine",    role: "Tavern Owner & Helpful Ally",              race: "Human",    alignment: "Neutral Good"   },
-  { id: "npc_004", name: "Vex",                 role: "Morally Gray Information Broker / Rival",  race: "Tiefling", alignment: "True Neutral"   },
-  { id: "npc_005", name: "Old Korrin",          role: "Retired Adventurer / Guild Mentor",        race: "Goliath",  alignment: "Neutral Good"   },
-];
+// ─── Campaign NPCs (loaded from campaignNpcs.json) ───────────────────────────
+const CAMPAIGN_NPCS = tryLoadJsonSync(CAMPAIGN_NPCS_FILE, []);
 
-// ─── Level System ────────────────────────────────────────────────────────────
-const LEVELS = [
-  { level: 1,  title: "Forge Initiate",       xpRequired: 0     },
-  { level: 2,  title: "Anvil Striker",         xpRequired: 50    },
-  { level: 3,  title: "Coal Tender",           xpRequired: 120   },
-  { level: 4,  title: "Iron Apprentice",       xpRequired: 200   },
-  { level: 5,  title: "Flame Keeper",          xpRequired: 300   },
-  { level: 6,  title: "Bronze Shaper",         xpRequired: 420   },
-  { level: 7,  title: "Steel Crafter",         xpRequired: 560   },
-  { level: 8,  title: "Glyph Carver",          xpRequired: 720   },
-  { level: 9,  title: "Rune Binder",           xpRequired: 900   },
-  { level: 10, title: "Ironclad Journeyman",   xpRequired: 1100  },
-  { level: 11, title: "Forge Adept",           xpRequired: 1350  },
-  { level: 12, title: "Silver Tempered",       xpRequired: 1650  },
-  { level: 13, title: "Ember Warden",          xpRequired: 2000  },
-  { level: 14, title: "Mithral Seeker",        xpRequired: 2400  },
-  { level: 15, title: "Flame Warden",          xpRequired: 2850  },
-  { level: 16, title: "Knight of the Forge",   xpRequired: 3350  },
-  { level: 17, title: "Obsidian Blade",        xpRequired: 3900  },
-  { level: 18, title: "Ashbound Knight",       xpRequired: 4500  },
-  { level: 19, title: "Dawnsteel Sentinel",    xpRequired: 5150  },
-  { level: 20, title: "Ironforged Champion",   xpRequired: 5850  },
-  { level: 21, title: "Void Temperer",         xpRequired: 6700  },
-  { level: 22, title: "Stormhammer",           xpRequired: 7600  },
-  { level: 23, title: "Skyforgeling",          xpRequired: 8600  },
-  { level: 24, title: "Dragon Tempered",       xpRequired: 9700  },
-  { level: 25, title: "Master Artificer",      xpRequired: 10900 },
-  { level: 26, title: "Grandmaster Smith",     xpRequired: 12200 },
-  { level: 27, title: "Forge Sovereign",       xpRequired: 13600 },
-  { level: 28, title: "Mythic Hammerborn",     xpRequired: 15100 },
-  { level: 29, title: "Legendary Smelter",     xpRequired: 16700 },
-  { level: 30, title: "Archmage of the Forge", xpRequired: 18400 },
-];
+// ─── Level System (loaded from levels.json) ──────────────────────────────────
+const LEVELS = tryLoadJsonSync(LEVELS_FILE, []);
 
 function getLevelInfo(xp) {
   let current = LEVELS[0];
@@ -1201,13 +1134,20 @@ function loadCompanionsData() {
   try {
     if (fs.existsSync(COMPANIONS_FILE)) {
       const raw = JSON.parse(fs.readFileSync(COMPANIONS_FILE, 'utf8'));
-      if (raw) companionsData = raw;
+      if (raw) {
+        companionsData = raw;
+        // Single source of truth: use bondLevels from companions.json
+        if (Array.isArray(raw.bondLevels) && raw.bondLevels.length > 0) {
+          BOND_LEVELS = raw.bondLevels;
+        }
+      }
     }
   } catch (e) { console.warn('[companions] Failed to load:', e.message); }
 }
 
-// ─── Bond level helpers ───────────────────────────────────────────────────────
-const BOND_LEVELS = [
+// ─── Bond level helpers (single source of truth: companions.json bondLevels) ──
+// Populated by loadCompanionsData() — do not edit here, edit companions.json instead
+let BOND_LEVELS = [
   { level: 1,  title: 'Stranger',      minXp: 0   },
   { level: 2,  title: 'Acquaintance',  minXp: 10  },
   { level: 3,  title: 'Friend',        minXp: 25  },
@@ -1218,7 +1158,7 @@ const BOND_LEVELS = [
   { level: 8,  title: 'Legendary II',  minXp: 300 },
   { level: 9,  title: 'Legendary III', minXp: 450 },
   { level: 10, title: 'Legendary IV',  minXp: 666 },
-];
+]; // fallback until companions.json is loaded
 
 function getBondLevel(bondXp) {
   const xp = bondXp || 0;
@@ -1420,13 +1360,14 @@ function sanitizeAgent(agent) {
   return { ...safe, pendingCommands: (commands || []).filter(c => c.status === 'pending').length };
 }
 
-const XP_BY_PRIORITY  = { high: 30, medium: 20, low: 10 };
-const GOLD_BY_PRIORITY = { high: [20, 30], medium: [12, 20], low: [6, 12] };
+// ─── Economy constants (from gameConfig.json) ────────────────────────────────
+const XP_BY_PRIORITY   = _gameConfig.xpByPriority   || { high: 30, medium: 20, low: 10 };
+const GOLD_BY_PRIORITY = _gameConfig.goldByPriority  || { high: [20, 30], medium: [12, 20], low: [6, 12] };
 function randGold(priority) {
   const [min, max] = GOLD_BY_PRIORITY[priority] || [6, 12];
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-const TEMP_BY_PRIORITY = { high: 15, medium: 10, low: 5 };
+const TEMP_BY_PRIORITY = _gameConfig.tempByPriority  || { high: 15, medium: 10, low: 5 };
 
 // ─── Achievement flavor text descriptions (updated) ─────────────────────────
 const ACHIEVEMENT_FLAVOR = {
@@ -1674,8 +1615,8 @@ function onQuestCompletedByUser(userId, quest) {
   return newAchs;
 }
 
-// ─── Streak Milestones ────────────────────────────────────────────────────────
-const STREAK_MILESTONES = [
+// ─── Streak Milestones (from gameConfig.json) ────────────────────────────────
+const STREAK_MILESTONES = _gameConfig.streakMilestones || [
   { days: 7,   badge: '🥉', label: 'Bronze',           xpBonus: 5,  lootTier: null },
   { days: 14,  badge: '🎁', label: '2-Wochen',         xpBonus: 0,  lootTier: 'uncommon' },
   { days: 21,  badge: '🥈', label: 'Silber',           xpBonus: 10, lootTier: null },
@@ -1706,17 +1647,16 @@ function getStreakXpBonus(streak) {
   return m ? m.xpBonus / 100 : 0;
 }
 
-// ─── Loot System ─────────────────────────────────────────────────────────────
-const RARITY_WEIGHTS = { common: 60, uncommon: 25, rare: 10, epic: 4, legendary: 1 };
-const RARITY_COLORS = {
+// ─── Loot System (from gameConfig.json) ──────────────────────────────────────
+const RARITY_WEIGHTS = _gameConfig.rarityWeights || { common: 60, uncommon: 25, rare: 10, epic: 4, legendary: 1 };
+const RARITY_COLORS  = _gameConfig.rarityColors  || {
   common:    '#9ca3af',
   uncommon:  '#22c55e',
   rare:      '#3b82f6',
   epic:      '#a855f7',
   legendary: '#f97316',
 };
-
-const RARITY_ORDER = ['common', 'uncommon', 'rare', 'epic', 'legendary'];
+const RARITY_ORDER = _gameConfig.rarityOrder || ['common', 'uncommon', 'rare', 'epic', 'legendary'];
 
 function getMaxRarity(playerLevel) {
   if (playerLevel >= 25) return 'legendary';
@@ -1824,8 +1764,8 @@ function resetLootPity(userId) {
   if (u) u._lootPity = 0;
 }
 
-// ─── Full Equipment System (6 slots, 4 stats) ────────────────────────────────
-const EQUIPMENT_SLOTS = ['weapon', 'shield', 'helm', 'armor', 'amulet', 'boots'];
+// ─── Full Equipment System (slots from gameConfig.json) ──────────────────────
+const EQUIPMENT_SLOTS = _gameConfig.equipmentSlots || ['weapon', 'shield', 'helm', 'armor', 'amulet', 'boots'];
 
 const FULL_GEAR_ITEMS = [
   // Tier 1 — Abenteurer-Set (Level 1-8)
@@ -2680,6 +2620,88 @@ app.post('/api/quests/bulk-update', requireApiKey, (req, res) => {
   if (updated.length > 0) { saveQuests(); saveData(); }
   console.log(`[bulk-update] status=${status} updated=${updated.length} notFound=${notFound.length}`);
   res.json({ ok: true, updated, notFound });
+});
+
+// POST /api/quests/import — bulk create quests from a JSON array (Batch API pipeline)
+// Body: { quests: [ { title, description, priority, type, ... }, ... ] }
+// Returns: { created: [...ids], skipped: number, errors: [...] }
+app.post('/api/quests/import', requireApiKey, (req, res) => {
+  const incoming = req.body.quests;
+  if (!Array.isArray(incoming) || incoming.length === 0) {
+    return res.status(400).json({ error: 'Body must contain a non-empty "quests" array' });
+  }
+  const VALID_TYPES     = ['development', 'personal', 'learning', 'fitness', 'social', 'boss', 'companion', 'relationship-coop'];
+  const VALID_PRIORITIES = ['low', 'medium', 'high'];
+  const created = [];
+  const errors  = [];
+  let skipped   = 0;
+
+  for (const [i, q] of incoming.entries()) {
+    if (!q.title || typeof q.title !== 'string') {
+      errors.push({ index: i, reason: 'Missing or invalid title' });
+      continue;
+    }
+    const type     = VALID_TYPES.includes(q.type)       ? q.type     : 'development';
+    const priority = VALID_PRIORITIES.includes(q.priority) ? q.priority : 'medium';
+    // Dedup guard: skip if a quest with identical title + type already exists and is open/in_progress
+    const isDuplicate = quests.some(
+      ex => ex.title === q.title.trim() && ex.type === type && ['open','in_progress'].includes(ex.status)
+    );
+    if (isDuplicate) { skipped++; continue; }
+
+    const id = `quest-import-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+    quests.push({
+      id,
+      title:              q.title.trim(),
+      description:        q.description || '',
+      priority,
+      type,
+      categories:         Array.isArray(q.categories) ? q.categories : [],
+      product:            q.product    || null,
+      humanInputRequired: q.humanInputRequired ?? false,
+      createdBy:          q.createdBy  || 'import',
+      status:             'open',
+      createdAt:          now(),
+      claimedBy:          q.claimedBy  || null,
+      completedBy:        null,
+      completedAt:        null,
+      parentQuestId:      q.parentQuestId || null,
+      recurrence:         q.recurrence   || null,
+      streak:             0,
+      lore:               q.lore         || null,
+      flavor:             q.flavor       || null,
+      rewards:            q.rewards      || null,
+      chapter:            q.chapter      || null,
+      nextQuestTemplate:  q.nextQuestTemplate || null,
+      coopPartners:       q.coopPartners || null,
+      skills:             q.skills       || null,
+      minLevel:           q.minLevel     || null,
+      classRequired:      q.classRequired || null,
+      proof:              null,
+      checklist:          Array.isArray(q.checklist) ? q.checklist : null,
+    });
+    created.push(id);
+  }
+
+  if (created.length > 0) saveQuests();
+  console.log(`[import] created=${created.length} skipped=${skipped} errors=${errors.length}`);
+  res.json({ ok: true, created, skipped, errors });
+});
+
+// GET /api/config — expose game constants to frontend (no auth required)
+app.get('/api/config', (req, res) => {
+  res.json({
+    xpByPriority:    XP_BY_PRIORITY,
+    goldByPriority:  GOLD_BY_PRIORITY,
+    tempByPriority:  TEMP_BY_PRIORITY,
+    streakMilestones: STREAK_MILESTONES,
+    rarityWeights:   RARITY_WEIGHTS,
+    rarityColors:    RARITY_COLORS,
+    rarityOrder:     RARITY_ORDER,
+    equipmentSlots:  EQUIPMENT_SLOTS,
+    levels:          LEVELS,
+    playerQuestTypes: PLAYER_QUEST_TYPES,
+  });
 });
 
 // GET /api/leaderboard — returns combined leaderboard

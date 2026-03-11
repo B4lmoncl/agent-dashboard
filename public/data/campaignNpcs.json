@@ -1,0 +1,7 @@
+[
+  { "id": "npc_001", "name": "Brenna Ironledger",  "role": "Quest Hall Guildmaster",                    "race": "Dwarf",    "alignment": "Lawful Neutral" },
+  { "id": "npc_002", "name": "Silas Dawnmantle",   "role": "Mysterious Stranger / Wandering Lorekeeper", "race": "Half-Elf", "alignment": "Chaotic Good"   },
+  { "id": "npc_003", "name": "Marta Hearthwine",   "role": "Tavern Owner & Helpful Ally",               "race": "Human",    "alignment": "Neutral Good"   },
+  { "id": "npc_004", "name": "Vex",                "role": "Morally Gray Information Broker / Rival",   "race": "Tiefling", "alignment": "True Neutral"   },
+  { "id": "npc_005", "name": "Old Korrin",         "role": "Retired Adventurer / Guild Mentor",         "race": "Goliath",  "alignment": "Neutral Good"   }
+]
