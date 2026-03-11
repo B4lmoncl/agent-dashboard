@@ -980,10 +980,19 @@ export default function Dashboard() {
   const applyFilter = useCallback((qs: Quest[]) => {
     let result = qs;
     if (typeFilter !== "all") result = result.filter(q => (q.type ?? "development") === typeFilter);
+    // Class-specific quest filter
+    if (playerName) {
+      const currentUser = users.find(u => u.name.toLowerCase() === playerName.toLowerCase());
+      const playerClassId = currentUser?.classId ?? null;
+      result = result.filter(q => !q.classRequired || q.classRequired === playerClassId);
+      // Relationship quest filter
+      const relStatus = currentUser?.relationshipStatus ?? "single";
+      result = result.filter(q => !q.requiresRelationship || relStatus !== "single");
+    }
     if (!searchFilter) return result;
     const s = searchFilter.toLowerCase();
     return result.filter(q => q.title.toLowerCase().includes(s) || (q.description || "").toLowerCase().includes(s));
-  }, [searchFilter, typeFilter]);
+  }, [searchFilter, typeFilter, playerName, users]);
   const applySort = useCallback((qs: Quest[]) => {
     if (sortMode === "newest") return qs;
     return [...qs].sort((a, b) => (priorityOrder[a.priority] ?? 1) - (priorityOrder[b.priority] ?? 1));
@@ -2232,7 +2241,29 @@ export default function Dashboard() {
                 );
               })()}
 
-              {/* NPC Quest Board (dev type only) + Review Board side-by-side */}
+              {/* ── Von der Sternenwächterin ── */}
+              {(lyraQuestsOpen.length > 0 || lyraQuestsInProgress.length > 0) && (
+                <section style={{ maxWidth: 1000, margin: "0 auto" }}>
+                  <div className="flex items-center gap-2 mb-3">
+                    <h2 className="text-xs font-semibold uppercase tracking-widest" style={{ color: "#c084fc" }}>✦ Aufträge der Sternenwächterin</h2>
+                    <span className="text-xs px-1.5 py-0.5 rounded font-mono" style={{ background: "rgba(192,132,252,0.1)", color: "#c084fc", border: "1px solid rgba(192,132,252,0.2)" }}>{lyraQuestsOpen.length + lyraQuestsInProgress.length}</span>
+                  </div>
+                  <div className="space-y-2 mb-2">
+                    {lyraQuestsOpen.map(q =>
+                      q.children && q.children.length > 0
+                        ? <EpicQuestCard key={q.id} quest={q} selected={selectedIds.has(q.id)} onToggle={reviewApiKey ? toggleSelect : undefined} />
+                        : <QuestCard key={q.id} quest={q} selected={selectedIds.has(q.id)} onToggle={reviewApiKey ? toggleSelect : undefined} playerName={playerName} />
+                    )}
+                    {lyraQuestsInProgress.map(q =>
+                      q.children && q.children.length > 0
+                        ? <EpicQuestCard key={q.id} quest={q} selected={selectedIds.has(q.id)} onToggle={reviewApiKey ? toggleSelect : undefined} />
+                        : <QuestCard key={q.id} quest={q} selected={selectedIds.has(q.id)} onToggle={reviewApiKey ? toggleSelect : undefined} playerName={playerName} />
+                    )}
+                  </div>
+                </section>
+              )}
+
+                            {/* NPC Quest Board (dev type only) + Review Board side-by-side */}
               <div className="flex flex-col lg:flex-row gap-6 items-start">
                 <aside className="w-full lg:w-80 flex-shrink-0">
                   <div className="mb-3">
