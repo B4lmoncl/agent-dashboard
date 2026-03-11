@@ -25,6 +25,7 @@ import { CompanionsWidget } from "@/components/CompanionsWidget";
 import { RoadmapView } from "@/components/RoadmapView";
 import { InfoTooltip } from "@/components/InfoTooltip";
 import { WandererRest } from "@/components/WandererRest";
+import GuildHallBackground from "@/components/GuildHallBackground";
 import type {
   Agent, Quest, NpcQuestChainEntry, ActiveNpc, EarnedAchievement,
   User, CampaignQuest, Campaign, AchievementDef, ClassDef, LeaderboardEntry,
@@ -103,7 +104,6 @@ export default function Dashboard() {
   const [onboardingOpen, setOnboardingOpen] = useState(false);
   const [classesList, setClassesList] = useState<ClassDef[]>([]);
   const [classActivatedNotif, setClassActivatedNotif] = useState<{ className: string; classIcon: string; classDescription: string } | null>(null);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
   const [rituals, setRituals] = useState<Ritual[]>([]);
   const [habits, setHabits] = useState<Habit[]>([]);
   const [lootDrop, setLootDrop] = useState<LootItem | null>(null);
@@ -135,58 +135,6 @@ export default function Dashboard() {
     return () => document.removeEventListener("mousedown", handler);
   }, [settingsPopupOpen]);
 
-  // Particle system — white dust drifting upward
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    const resize = () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; };
-    resize();
-    window.addEventListener("resize", resize);
-
-    type Particle = { x: number; y: number; size: number; speedY: number; speedX: number; opacity: number; maxOpacity: number };
-
-    const createParticle = (randomY = false): Particle => ({
-      x: Math.random() * canvas.width,
-      y: randomY ? Math.random() * canvas.height : canvas.height + 4,
-      size: Math.random() * 1.5 + 0.4,
-      speedY: -(Math.random() * 0.25 + 0.08),
-      speedX: (Math.random() - 0.5) * 0.18,
-      opacity: 0,
-      maxOpacity: Math.random() * 0.35 + 0.08,
-    });
-
-    const particles: Particle[] = Array.from({ length: 48 }, () => createParticle(true));
-    let animId: number;
-
-    const animate = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      for (let i = 0; i < particles.length; i++) {
-        const p = particles[i];
-        p.y += p.speedY;
-        p.x += p.speedX;
-        const fade = canvas.height * 0.18;
-        if (p.y > canvas.height - fade) {
-          p.opacity = p.maxOpacity * ((canvas.height - p.y) / fade);
-        } else if (p.y < fade) {
-          p.opacity = p.maxOpacity * (p.y / fade);
-        } else {
-          p.opacity = p.maxOpacity;
-        }
-        if (p.y < -4) particles[i] = createParticle();
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = `${CURRENT_SEASON.particle}${p.opacity.toFixed(3)})`;
-        ctx.fill();
-      }
-      animId = requestAnimationFrame(animate);
-    };
-    animate();
-
-    return () => { cancelAnimationFrame(animId); window.removeEventListener("resize", resize); };
-  }, []);
 
   // ─── apiFetch wrapper ─────────────────────────────────────────────────────
   const [apiError, setApiError] = useState<string | null>(null);
@@ -646,10 +594,7 @@ export default function Dashboard() {
 
   return (
     <div className="min-h-screen" style={{ background: "transparent", color: "#e8e8e8", position: "relative" }}>
-      <canvas
-        ref={canvasRef}
-        style={{ position: "fixed", top: 0, left: 0, width: "100%", height: "100%", pointerEvents: "none", zIndex: 0 }}
-      />
+      <GuildHallBackground />
       {/* Header */}
       <header
         className="sticky top-0 z-40 backdrop-blur-xl"
