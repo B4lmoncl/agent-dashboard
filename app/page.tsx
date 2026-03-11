@@ -1206,10 +1206,10 @@ export default function Dashboard() {
                 </section>
               )}
 
-              {/* Companions Widget — only for logged-in players */}
+              {/* Companions Widget — compact Dobbie peek, full experience at the Hearth */}
               {playerName && (
                 <div className="mb-5">
-                  <CompanionsWidget user={loggedInUser} streak={playerStreak} playerName={playerName} apiKey={reviewApiKey} onDobbieClick={() => { setDashView("npcBoard"); setNpcBoardFilter("dobbie"); }} onUserRefresh={refresh} />
+                  <CompanionsWidget user={loggedInUser} streak={playerStreak} playerName={playerName} apiKey={reviewApiKey} onDobbieClick={() => { setDashView("npcBoard"); setNpcBoardFilter(null); }} onUserRefresh={refresh} compact />
                 </div>
               )}
 
@@ -1619,6 +1619,9 @@ export default function Dashboard() {
               lyraQuestsOpen={lyraQuestsOpen}
               lyraQuestsInProgress={lyraQuestsInProgress}
               lyraAllQuests={lyraAllQuests}
+              hearthUser={loggedInUser}
+              hearthStreak={playerStreak}
+              hearthApiKey={reviewApiKey}
             />
           );
           const rarityColors: Record<string, string> = { common: "#9ca3af", uncommon: "#22c55e", rare: "#60a5fa", epic: "#a78bfa", legendary: "#f59e0b" };

@@ -1,11 +1,12 @@
 "use client";
 
-import type { Quest, ActiveNpc, QuestsData } from "@/app/types";
+import type { Quest, ActiveNpc, QuestsData, User } from "@/app/types";
 import {
   EpicQuestCard, QuestCard, DobbieQuestPanel,
   ClickablePriorityBadge, CategoryBadge, ProductBadge, PriorityBadge,
 } from "@/components/QuestBoard";
 import { InfoTooltip } from "@/components/InfoTooltip";
+import { CompanionsWidget } from "@/components/CompanionsWidget";
 
 interface WandererRestProps {
   npcBoardFilter: string | null;
@@ -41,6 +42,10 @@ interface WandererRestProps {
   lyraQuestsOpen: Quest[];
   lyraQuestsInProgress: Quest[];
   lyraAllQuests: Quest[];
+  // Companion Hearth
+  hearthUser?: User | null;
+  hearthStreak?: number;
+  hearthApiKey?: string;
 }
 
 const rarityColors: Record<string, string> = { common: "#9ca3af", uncommon: "#22c55e", rare: "#60a5fa", epic: "#a78bfa", legendary: "#f59e0b" };
@@ -61,6 +66,7 @@ export function WandererRest({
   loading, quests, playerName, refresh,
   devVisibleOpen, devVisibleInProgress,
   lyraQuestsOpen, lyraQuestsInProgress, lyraAllQuests,
+  hearthUser, hearthStreak, hearthApiKey,
 }: WandererRestProps) {
   return (
     <div className="space-y-6">
@@ -163,9 +169,41 @@ export function WandererRest({
           <h2 className="text-xs font-semibold uppercase tracking-widest" style={{ color: "#f472b6" }}>🔥 The Companion Hearth</h2>
           <p className="text-xs mt-0.5 italic" style={{ color: "rgba(255,255,255,0.3)" }}>Even heroes need someone to come home to</p>
         </div>
-        <div className="rounded-xl px-4 py-5 text-center" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
-          <p className="text-sm italic" style={{ color: "rgba(255,255,255,0.2)" }}>Your companion rests by the fire...</p>
-        </div>
+        {hearthUser || playerName ? (
+          <div
+            className="rounded-xl p-4"
+            style={{
+              background: "linear-gradient(135deg, rgba(120,53,15,0.18) 0%, rgba(180,83,9,0.12) 50%, rgba(120,53,15,0.18) 100%)",
+              border: "1px solid rgba(251,146,60,0.25)",
+              boxShadow: "0 0 30px rgba(251,146,60,0.06), inset 0 0 40px rgba(120,53,15,0.08)",
+            }}
+          >
+            {/* Hearth glow header */}
+            <div className="flex items-center gap-2 mb-3">
+              <span className="text-base">🔥</span>
+              <span className="text-xs italic" style={{ color: "rgba(251,191,36,0.5)" }}>The fire crackles warmly...</span>
+            </div>
+            <CompanionsWidget
+              user={hearthUser}
+              streak={hearthStreak ?? 0}
+              playerName={playerName}
+              apiKey={hearthApiKey}
+              onUserRefresh={refresh}
+            />
+          </div>
+        ) : (
+          <div
+            className="rounded-xl px-4 py-8 text-center"
+            style={{
+              background: "linear-gradient(135deg, rgba(120,53,15,0.10) 0%, rgba(180,83,9,0.07) 100%)",
+              border: "1px solid rgba(251,146,60,0.12)",
+            }}
+          >
+            <p className="text-2xl mb-2">🐱</p>
+            <p className="text-sm italic" style={{ color: "rgba(255,255,255,0.2)" }}>Your companion rests by the fire...</p>
+            <p className="text-xs mt-1" style={{ color: "rgba(251,191,36,0.25)" }}>Log in to see Dobbie</p>
+          </div>
+        )}
       </section>
 
       {/* ── SECTION 3: The Starweaver's Chamber Portal (BOTTOM) ── */}

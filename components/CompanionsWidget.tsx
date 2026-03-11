@@ -21,13 +21,14 @@ const DOBBIE_QUOTES = [
   "Purring softly while judging your quest log.",
 ];
 
-export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieClick, onUserRefresh }: {
+export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieClick, onUserRefresh, compact }: {
   user: User | null | undefined;
   streak: number;
   playerName?: string;
   apiKey?: string;
   onDobbieClick?: () => void;
   onUserRefresh?: () => void;
+  compact?: boolean;
 }) {
   const [quoteIdx] = useState(() => Math.floor(Math.random() * DOBBIE_QUOTES.length));
   const [petting, setPetting] = useState(false);
@@ -92,6 +93,28 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
     } catch { setPetError("Error"); setTimeout(() => setPetError(""), 3000); }
     setPetting(false);
   };
+
+  // Compact mode: only Dobbie row (mood + quote), used in Quest Board sidebar
+  if (compact) {
+    return (
+      <div
+        className="rounded-lg px-2 py-1.5 flex items-center gap-2"
+        style={{ background: "rgba(255,107,157,0.04)", border: "1px solid rgba(255,107,157,0.12)", cursor: onDobbieClick ? "pointer" : "default" }}
+        onClick={onDobbieClick}
+        title={onDobbieClick ? "Click to visit Dobbie at the Hearth" : undefined}
+      >
+        <span className={`text-base flex-shrink-0 ${mood.anim}`} title={mood.tip}>🐱</span>
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center gap-1.5 flex-wrap">
+            <span className="text-xs font-semibold" style={{ color: "#ff6b9d" }}>Dobbie</span>
+            <span className="text-xs" style={{ color: mood.color }}>{mood.emoji} {mood.label}</span>
+          </div>
+          <p className="text-xs truncate" style={{ color: "rgba(255,255,255,0.3)" }}>{DOBBIE_QUOTES[quoteIdx]}</p>
+        </div>
+        {onDobbieClick && <span className="text-xs flex-shrink-0" style={{ color: "rgba(255,107,157,0.4)" }}>→</span>}
+      </div>
+    );
+  }
 
   return (
     <div
