@@ -510,7 +510,20 @@ export default function Dashboard() {
   const [infoOverlayOpen, setInfoOverlayOpen] = useState(false);
   const [infoOverlayTab, setInfoOverlayTab] = useState<"roadmap" | "changelog" | "guide">("roadmap");
   const [settingsPopupOpen, setSettingsPopupOpen] = useState(false);
+  const settingsPopupRef = useRef<HTMLDivElement>(null);
   const [questDetailModal, setQuestDetailModal] = useState<Quest | null>(null);
+
+  // Settings popup — click-outside to close
+  useEffect(() => {
+    if (!settingsPopupOpen) return;
+    const handler = (e: MouseEvent) => {
+      if (settingsPopupRef.current && !settingsPopupRef.current.contains(e.target as Node)) {
+        setSettingsPopupOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, [settingsPopupOpen]);
 
   // Particle system — white dust drifting upward
   useEffect(() => {
@@ -1079,11 +1092,11 @@ export default function Dashboard() {
             {/* Login / User area */}
             <div className="relative" data-tutorial="login-btn">
               {reviewApiKey && playerName ? (
-                <div className="flex items-center gap-2">
+                <div ref={settingsPopupRef} className="flex items-center gap-2">
                   <button
                     title={`${playerName} — Einstellungen`}
                     onClick={() => setSettingsPopupOpen(v => !v)}
-                    className="flex items-center justify-center font-bold flex-shrink-0"
+                    className="btn-interactive flex items-center justify-center font-bold flex-shrink-0"
                     style={{
                       width: 32, height: 32, borderRadius: "50%",
                       background: `linear-gradient(135deg, ${loggedInUser?.color ?? "#a78bfa"}, ${loggedInUser?.color ?? "#a78bfa"}88)`,
@@ -1096,8 +1109,6 @@ export default function Dashboard() {
                     {playerName.slice(0, 1).toUpperCase()}
                   </button>
                   {settingsPopupOpen && (
-                    <>
-                      <div className="fixed inset-0 z-40" onClick={() => setSettingsPopupOpen(false)} />
                       <div className="absolute right-0 top-9 z-50 rounded-xl shadow-xl flex flex-col" style={{ background: "#1e1e1e", border: "1px solid rgba(255,255,255,0.1)", minWidth: 200, overflow: "hidden" }}>
                         {/* Profile */}
                         <div className="px-4 py-3" style={{ borderBottom: "1px solid rgba(255,255,255,0.07)" }}>
@@ -1139,14 +1150,13 @@ export default function Dashboard() {
                           ⏏ Logout
                         </button>
                       </div>
-                    </>
                   )}
                 </div>
               ) : (
                 <>
                   <button
                     onClick={() => setLoginOpen(v => !v)}
-                    className="text-xs px-2 py-0.5 rounded"
+                    className="btn-interactive text-xs px-2 py-0.5 rounded"
                     style={{ color: "rgba(255,255,255,0.4)", background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}
                   >
                     🔑 Login
@@ -1662,7 +1672,7 @@ export default function Dashboard() {
                         const cfg = t === "all" ? null : typeConfig[t];
                         const isActive = typeFilter === t;
                         return (
-                          <button key={t} onClick={() => setTypeFilter(t)} className="text-xs px-2 py-0.5 rounded"
+                          <button key={t} onClick={() => setTypeFilter(t)} className="btn-interactive text-xs px-2 py-0.5 rounded"
                             style={{ background: isActive ? (cfg ? cfg.bg : "rgba(255,255,255,0.1)") : "rgba(255,255,255,0.03)", color: isActive ? (cfg ? cfg.color : "#e8e8e8") : "rgba(255,255,255,0.3)", border: `1px solid ${isActive ? (cfg ? cfg.border : "rgba(255,255,255,0.2)") : "rgba(255,255,255,0.07)"}` }}>
                             {t === "all" ? "All" : `${cfg!.icon} ${cfg!.label}`}
                           </button>
@@ -1682,7 +1692,7 @@ export default function Dashboard() {
                       <button
                         key={tab.key}
                         onClick={() => setQuestBoardTab(tab.key as "auftraege" | "rituale" | "anti-rituale")}
-                        className="text-xs px-3 py-1.5 rounded-lg font-medium transition-all"
+                        className="btn-interactive text-xs px-3 py-1.5 rounded-lg font-medium transition-all"
                         style={{
                           background: questBoardTab === tab.key ? "rgba(167,139,250,0.2)" : "rgba(255,255,255,0.04)",
                           color: questBoardTab === tab.key ? "#a78bfa" : "rgba(255,255,255,0.4)",
