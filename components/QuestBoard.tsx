@@ -21,25 +21,34 @@ export function CreateQuestModal({ quests, users, reviewApiKey, onRefresh, onClo
   const [tab, setTab] = useState<"personal" | "learning" | "household" | "social" | "coop" | "challenges">("personal");
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: "rgba(0,0,0,0.75)" }} onClick={onClose}>
-      <div className="rounded-2xl w-full max-w-2xl overflow-hidden" style={{ background: "#1a1a1a", border: "1px solid rgba(167,139,250,0.3)", boxShadow: "0 0 60px rgba(139,92,246,0.15)", maxHeight: "90vh", overflowY: "auto" }} onClick={e => e.stopPropagation()}>
-        <div className="flex items-center justify-between p-4 border-b" style={{ borderColor: "rgba(255,255,255,0.08)" }}>
+      <div className="rounded-2xl w-full max-w-2xl overflow-hidden" style={{ background: "linear-gradient(160deg, #221c12 0%, #1a1509 60%, #1e190e 100%)", border: "1px solid rgba(180,140,70,0.35)", boxShadow: "0 0 60px rgba(139,92,246,0.12), 0 0 30px rgba(180,140,70,0.08)", maxHeight: "90vh", overflowY: "auto" }} onClick={e => e.stopPropagation()}>
+        <div className="flex items-center justify-between p-4 border-b" style={{ borderColor: "rgba(180,140,70,0.15)" }}>
           <div>
-            <h2 className="text-sm font-bold" style={{ color: "#f0f0f0" }}>+ Create Quest</h2>
-            <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>Choose a template or start from scratch</p>
+            <h2 className="text-sm font-bold" style={{ color: "#e8d5a3" }}>📜 Quest Board</h2>
+            <p className="text-xs" style={{ color: "rgba(200,170,100,0.4)" }}>Choose a template or start from scratch</p>
           </div>
-          <button onClick={onClose} style={{ color: "rgba(255,255,255,0.3)", fontSize: 16 }}>x</button>
+          <button onClick={onClose} style={{ color: "rgba(200,170,100,0.4)", fontSize: 16 }}>✕</button>
         </div>
-        <div className="flex border-b overflow-x-auto" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
+        <div className="flex border-b overflow-x-auto" style={{ borderColor: "rgba(180,140,70,0.15)" }}>
           {([
-            { key: "personal",   label: "Personal" },
-            { key: "learning",   label: "Learning" },
-            { key: "household",  label: "Household" },
-            { key: "social",     label: "Social" },
-            { key: "coop",       label: "Co-op" },
+            { key: "personal",   label: "🏠 Personal" },
+            { key: "learning",   label: "📚 Learning" },
+            { key: "household",  label: "🏡 Household" },
+            { key: "social",     label: "💛 Social" },
+            { key: "coop",       label: "🤝 Co-op" },
             { key: "challenges", label: "⚡ Challenges" },
           ] as { key: typeof tab; label: string }[]).map(t => (
-            <button key={t.key} onClick={() => setTab(t.key)} className="flex-1 py-2.5 text-xs font-semibold transition-colors whitespace-nowrap px-2"
-              style={{ color: tab === t.key ? "#a78bfa" : "rgba(255,255,255,0.3)", background: tab === t.key ? "rgba(167,139,250,0.08)" : "transparent", borderBottom: tab === t.key ? "2px solid #a78bfa" : "2px solid transparent" }}>
+            <button key={t.key} onClick={() => setTab(t.key)} className="flex-1 py-2.5 text-xs font-semibold transition-all whitespace-nowrap px-2"
+              style={{
+                color: tab === t.key ? "#e8d5a3" : "rgba(200,170,100,0.35)",
+                background: tab === t.key ? "linear-gradient(180deg, #2c2318 0%, #231d13 100%)" : "transparent",
+                borderBottom: tab === t.key ? "2px solid rgba(180,140,70,0.6)" : "2px solid transparent",
+                borderTop: tab === t.key ? "1px solid rgba(180,140,70,0.3)" : "1px solid transparent",
+                borderLeft: tab === t.key ? "1px solid rgba(180,140,70,0.2)" : "1px solid transparent",
+                borderRight: tab === t.key ? "1px solid rgba(180,140,70,0.2)" : "1px solid transparent",
+                marginBottom: tab === t.key ? -1 : 0,
+                borderRadius: tab === t.key ? "4px 4px 0 0" : 0,
+              }}>
               {t.label}
             </button>
           ))}
@@ -1244,12 +1253,22 @@ export function HumanInputBadge() {
 export function TypeBadge({ type }: { type?: string }) {
   const cfg = typeConfig[type ?? "development"] ?? typeConfig.development;
   if (!type || type === "development") return null;
+  const iconSrc = `/images/icons/cat-${type}.png`;
   return (
     <span
-      className="text-xs px-1.5 py-0.5 rounded flex-shrink-0"
+      className="text-xs px-1.5 py-0.5 rounded flex-shrink-0 inline-flex items-center gap-1"
       style={{ color: cfg.color, background: cfg.bg, border: `1px solid ${cfg.border}` }}
     >
-      {cfg.icon} {cfg.label}
+      <img
+        src={iconSrc}
+        alt=""
+        width={14}
+        height={14}
+        style={{ imageRendering: "pixelated", display: "inline" }}
+        onError={(e) => { e.currentTarget.style.display = "none"; (e.currentTarget.nextElementSibling as HTMLElement | null)?.style && ((e.currentTarget.nextElementSibling as HTMLElement).style.display = "inline"); }}
+      />
+      <span style={{ display: "none" }}>{cfg.icon}</span>
+      {cfg.label}
     </span>
   );
 }
@@ -1432,19 +1451,19 @@ export function QuestCard({ quest, selected, onToggle, onClaim, onUnclaim, onCom
   const isCoopPartner = playerName ? coopPartners.includes(playerName.toLowerCase()) : false;
   const hasCoopClaimed = playerName ? coopClaimed.includes(playerName.toLowerCase()) : false;
   const hasCoopCompleted = playerName ? coopCompletions.includes(playerName.toLowerCase()) : false;
+  const rarity = getQuestRarity(quest);
+  const rarityColor = RARITY_COLORS[rarity] ?? "#9ca3af";
+  const isLegendary = rarity === "legendary";
 
   if (gridMode) {
     const typeCfg = typeConfig[quest.type ?? "personal"] ?? typeConfig.personal;
-    const rarity = getQuestRarity(quest);
-    const rarityColor = RARITY_COLORS[rarity] ?? "#9ca3af";
-    const isLegendary = rarity === "legendary";
     return (
       <div
-        className="rounded-xl flex flex-col cursor-pointer"
+        className="rounded-xl flex flex-col cursor-pointer relative overflow-hidden"
         style={{
-          background: "#252525",
-          border: `2px solid ${rarityColor}55`,
-          boxShadow: isLegendary ? `0 0 12px ${rarityColor}30` : "none",
+          background: "linear-gradient(160deg, #2c2318 0%, #1e1912 55%, #241e16 100%)",
+          border: `2px solid ${rarityColor}88`,
+          boxShadow: `0 0 ${isLegendary ? 16 : 6}px ${rarityColor}${isLegendary ? "44" : "1a"}`,
           transition: "border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease",
           transform: "translateY(0)",
           minHeight: 110,
@@ -1453,37 +1472,39 @@ export function QuestCard({ quest, selected, onToggle, onClaim, onUnclaim, onCom
         onMouseEnter={(e) => {
           const el = e.currentTarget as HTMLDivElement;
           el.style.borderColor = `${rarityColor}cc`;
-          el.style.boxShadow = isLegendary ? `0 0 20px ${rarityColor}50` : `0 4px 16px rgba(0,0,0,0.4)`;
+          el.style.boxShadow = `0 6px 20px ${rarityColor}40, 0 0 ${isLegendary ? 24 : 12}px ${rarityColor}30`;
           el.style.transform = "translateY(-2px)";
         }}
         onMouseLeave={(e) => {
           const el = e.currentTarget as HTMLDivElement;
-          el.style.borderColor = `${rarityColor}55`;
-          el.style.boxShadow = isLegendary ? `0 0 12px ${rarityColor}30` : "none";
+          el.style.borderColor = `${rarityColor}88`;
+          el.style.boxShadow = `0 0 ${isLegendary ? 16 : 6}px ${rarityColor}${isLegendary ? "44" : "1a"}`;
           el.style.transform = "translateY(0)";
         }}
       >
         {/* Rarity top strip */}
-        <div style={{ height: 3, background: `linear-gradient(90deg, transparent, ${rarityColor}99, transparent)`, borderRadius: "10px 10px 0 0" }} />
+        <div style={{ height: 3, background: `linear-gradient(90deg, transparent, ${rarityColor}bb, transparent)`, borderRadius: "10px 10px 0 0" }} />
+        {/* Rarity gem — top right corner */}
+        <div style={{ position: "absolute", top: 10, right: 10, width: 8, height: 8, borderRadius: "50%", background: rarityColor, boxShadow: `0 0 7px ${rarityColor}`, opacity: 0.88 }} />
         {/* Card body */}
         <div className="p-3 flex-1">
           <div className="flex items-start gap-2 mb-1.5">
             <span className="text-base flex-shrink-0" style={{ lineHeight: 1.2 }}>{typeCfg.icon}</span>
-            <p className="text-sm font-semibold leading-snug" style={{ color: isInProgress ? "#c4b5fd" : "#e8e8e8" }}>{quest.title}</p>
+            <p className="text-sm font-semibold leading-snug" style={{ color: isInProgress ? "#c4b5fd" : "#e8d5a3" }}>{quest.title}</p>
           </div>
-          <p className="text-xs italic" style={{ color: "rgba(255,255,255,0.22)" }}>{flavorText}</p>
+          <p className="text-xs italic" style={{ color: "rgba(220,185,120,0.35)" }}>{flavorText}</p>
         </div>
-        {/* Card footer — rewards only */}
+        {/* Card footer — rewards */}
         <div className="px-3 pb-2.5 flex items-center justify-between gap-2">
           <div className="flex items-center gap-2">
             {(quest.rewards?.xp ?? 0) > 0 && (
-              <span className="text-xs font-mono" style={{ color: "#a78bfa" }}>✨ {quest.rewards!.xp} XP</span>
+              <span className="text-xs font-mono" style={{ color: "#b39ddb" }}>⭐ {quest.rewards!.xp}</span>
             )}
             {(quest.rewards?.gold ?? 0) > 0 && (
               <span className="text-xs font-mono" style={{ color: "#fbbf24" }}>🪙 {quest.rewards!.gold}</span>
             )}
           </div>
-          <span className="text-xs font-mono" style={{ color: `${rarityColor}99`, fontSize: 10 }}>{rarity}</span>
+          <span className="text-xs uppercase font-mono" style={{ color: `${rarityColor}aa`, fontSize: 9, letterSpacing: "0.06em" }}>{rarity}</span>
         </div>
       </div>
     );
@@ -1491,27 +1512,30 @@ export function QuestCard({ quest, selected, onToggle, onClaim, onUnclaim, onCom
 
   return (
     <div
-      className="rounded-lg p-3 cursor-pointer"
+      className="rounded-lg p-3 cursor-pointer relative overflow-hidden"
       style={{
-        background: selected ? "rgba(255,102,51,0.06)" : "#252525",
-        border: `1px solid ${selected ? "rgba(255,102,51,0.4)" : isInProgress ? "rgba(139,92,246,0.25)" : "rgba(255,255,255,0.07)"}`,
+        background: selected ? "linear-gradient(160deg, #2e2010 0%, #1e1a10 100%)" : "linear-gradient(160deg, #2a2016 0%, #1c1810 60%, #221d14 100%)",
+        border: `1px solid ${selected ? "rgba(255,102,51,0.6)" : isInProgress ? `${rarityColor}55` : `${rarityColor}44`}`,
+        boxShadow: isInProgress ? `0 0 10px ${rarityColor}22` : isLegendary ? `0 0 12px ${rarityColor}30` : "none",
         transform: "translateY(0)",
         transition: "border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease",
       }}
       onClick={() => setExpanded(v => !v)}
       onMouseEnter={(e) => {
         const el = e.currentTarget as HTMLDivElement;
-        el.style.borderColor = selected ? "rgba(255,102,51,0.6)" : isInProgress ? "rgba(139,92,246,0.5)" : "rgba(255,255,255,0.18)";
-        el.style.boxShadow = isInProgress ? "0 8px 24px rgba(139,92,246,0.2)" : "0 8px 24px rgba(255,68,68,0.2)";
-        el.style.transform = "translateY(-2px)";
+        el.style.borderColor = selected ? "rgba(255,102,51,0.8)" : `${rarityColor}88`;
+        el.style.boxShadow = `0 6px 18px ${rarityColor}30`;
+        el.style.transform = "translateY(-1px)";
       }}
       onMouseLeave={(e) => {
         const el = e.currentTarget as HTMLDivElement;
-        el.style.borderColor = selected ? "rgba(255,102,51,0.4)" : isInProgress ? "rgba(139,92,246,0.25)" : "rgba(255,255,255,0.07)";
-        el.style.boxShadow = "none";
+        el.style.borderColor = selected ? "rgba(255,102,51,0.6)" : isInProgress ? `${rarityColor}55` : `${rarityColor}44`;
+        el.style.boxShadow = isInProgress ? `0 0 10px ${rarityColor}22` : isLegendary ? `0 0 12px ${rarityColor}30` : "none";
         el.style.transform = "translateY(0)";
       }}
     >
+      {/* Rarity left accent line */}
+      <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: 3, background: `linear-gradient(180deg, ${rarityColor}cc, ${rarityColor}44)`, borderRadius: "8px 0 0 8px" }} />
       <div className="flex items-start gap-2">
         {onToggle && (
           <button
@@ -1533,7 +1557,7 @@ export function QuestCard({ quest, selected, onToggle, onClaim, onUnclaim, onCom
         )}
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2">
-            <p className="text-xs font-medium truncate flex-1" style={{ color: "#e8e8e8" }}>{quest.title}</p>
+            <p className="text-xs font-medium truncate flex-1" style={{ color: "#e8d5a3" }}>{quest.title}</p>
             {quest.humanInputRequired && <HumanInputBadge />}
             {quest.createdBy && quest.createdBy !== "leon" && quest.createdBy !== "unknown" && (
               <AgentBadge name={quest.createdBy} />
@@ -1583,8 +1607,9 @@ export function QuestCard({ quest, selected, onToggle, onClaim, onUnclaim, onCom
               </div>
             </div>
           )}
+          {!expanded && <p className="text-xs mt-0.5 italic truncate" style={{ color: "rgba(220,185,120,0.28)" }}>{flavorText}</p>}
           {expanded && quest.description && (
-            <p className="text-xs mt-2 leading-relaxed" style={{ color: "rgba(255,255,255,0.45)" }}>{quest.description}</p>
+            <p className="text-xs mt-2 leading-relaxed" style={{ color: "rgba(220,195,140,0.6)", fontStyle: "italic", borderLeft: `2px solid ${rarityColor}44`, paddingLeft: 8 }}>{quest.description}</p>
           )}
           {expanded && quest.lore && (
             <p className="text-xs mt-1.5 leading-relaxed italic" style={{ color: "rgba(167,139,250,0.6)", borderLeft: "2px solid rgba(139,92,246,0.25)", paddingLeft: "8px" }}>
@@ -1610,7 +1635,7 @@ export function QuestCard({ quest, selected, onToggle, onClaim, onUnclaim, onCom
             <p className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>{timeAgo(quest.createdAt)}</p>
             <div className="flex items-center gap-1.5">
               {!isCoop && onClaim && quest.status === "open" && (
-                <button onClick={e => { e.stopPropagation(); onClaim(quest.id); }} className="text-xs px-3 py-1 rounded-lg font-semibold" style={{ background: "linear-gradient(180deg, #2a2a2a, #1a1a1a)", color: "#FFD700", border: "2px solid #FFD700" }}>⚔ Claim</button>
+                <button onClick={e => { e.stopPropagation(); onClaim(quest.id); }} className="text-xs font-bold" style={{ background: "radial-gradient(circle at 40% 35%, #c0392b, #7b1a10)", color: "#ffd6a5", border: "2px solid #8b2010", borderRadius: "50%", width: 32, height: 32, display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 2px 8px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,180,100,0.2)", flexShrink: 0, padding: 0 }} title="Claim quest">⚔</button>
               )}
               {!isCoop && onUnclaim && isClaimedByMe && (
                 <button onClick={e => { e.stopPropagation(); onUnclaim(quest.id); }} className="text-xs px-2 py-0.5 rounded font-medium" style={{ background: "rgba(239,68,68,0.1)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.25)" }}>✕ Unclaim</button>
