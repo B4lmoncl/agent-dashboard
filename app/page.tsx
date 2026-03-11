@@ -670,7 +670,7 @@ export default function Dashboard() {
               onClick={() => { setDashView("questBoard"); window.scrollTo({ top: 0, behavior: "smooth" }); }}
               title="Home — Quest Hall"
             >
-              <img src="/guild-gate.png" alt="Quest Hall" className="h-8 w-8" style={{ imageRendering: "pixelated", display: "block" }} />
+              <img src="/guild-gate.png" alt="Quest Hall" className="h-12 w-12" style={{ imageRendering: "pixelated", display: "block" }} />
               <span className="font-semibold text-sm tracking-tight" style={{ color: "#e8e8e8" }}>
                 Quest Hall
               </span>
@@ -1751,9 +1751,9 @@ export default function Dashboard() {
                   ))}
                   <div className="relative flex items-center gap-6 px-6 py-6" style={{ zIndex: 1 }}>
                     {/* Portal arch / gate icon */}
-                    <div className="flex-shrink-0 flex items-center justify-center" style={{ width: 80, height: 80 }}>
+                    <div className="flex-shrink-0 flex items-center justify-center" style={{ width: 110, height: 110 }}>
                       <div style={{
-                        width: 64, height: 64,
+                        width: 96, height: 96,
                         borderRadius: "50% 50% 0 0",
                         border: "3px solid #FFD700",
                         boxShadow: "0 0 20px rgba(255,215,0,0.6), inset 0 0 20px rgba(100,60,200,0.3)",
@@ -1767,8 +1767,8 @@ export default function Dashboard() {
                         <img
                           src="/images/npcs/starweaver-final.png"
                           alt="The Starweaver"
-                          width={60}
-                          height={60}
+                          width={96}
+                          height={96}
                           style={{ imageRendering: "pixelated", display: "block", width: "100%", height: "100%", objectFit: "cover", opacity: 0.85 }}
                           onError={e => { (e.target as HTMLImageElement).style.display = "none"; const fb = (e.target as HTMLImageElement).nextElementSibling as HTMLElement; if (fb) fb.style.display = "flex"; }}
                         />

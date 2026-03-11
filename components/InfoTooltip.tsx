@@ -20,12 +20,12 @@ export function InfoTooltip({ text, align = "left" }: { text: string; align?: "l
       <button
         onClick={e => { e.stopPropagation(); setOpen(o => !o); }}
         style={{
-          width: 20, height: 20, borderRadius: "50%",
-          border: "2px solid rgba(255,215,0,0.5)",
+          width: 16, height: 16, borderRadius: "50%",
+          border: "1.5px solid rgba(255,215,0,0.5)",
           background: "rgba(255,215,0,0.1)",
           color: "#FFD700",
           fontFamily: "Georgia, serif",
-          fontSize: 12, fontWeight: "bold",
+          fontSize: 9, fontWeight: "bold",
           cursor: "pointer",
           display: "inline-flex", alignItems: "center", justifyContent: "center",
           padding: 0, lineHeight: 1, flexShrink: 0,
