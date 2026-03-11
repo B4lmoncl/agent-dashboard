@@ -286,18 +286,13 @@ export default function GuildHallBackground() {
         }}
       />
 
-      {/* Layer 2 — Guild Hall (bottom-anchored, max 280px tall) */}
+      {/* Layer 2 — Guild Hall (fullscreen background) */}
       <div
         style={{
           position: "fixed",
-          bottom: 0, left: 0,
-          width: "100%",
+          inset: 0,
           pointerEvents: "none",
           zIndex: 0,
-          display: "flex",
-          justifyContent: "center",
-          maskImage: "linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 60%, transparent 100%)",
-          WebkitMaskImage: "linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 60%, transparent 100%)",
         }}
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -305,14 +300,12 @@ export default function GuildHallBackground() {
           src="/images/guild-hall-bg.png"
           alt=""
           style={{
-            display: "block",
             width: "100%",
-            maxWidth: "960px",
-            maxHeight: "280px",
-            objectFit: "contain",
-            objectPosition: "bottom",
+            height: "100%",
+            objectFit: "cover",
+            objectPosition: "center bottom",
             imageRendering: "pixelated",
-            opacity: 0.4,
+            opacity: 0.35,
             userSelect: "none",
           }}
         />
