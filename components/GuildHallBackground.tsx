@@ -308,7 +308,7 @@ export default function GuildHallBackground() {
             maxWidth: "1200px",
             height: "auto",
             imageRendering: "pixelated",
-            opacity: 0.3,
+            opacity: 0.5,
             userSelect: "none",
           }}
         />
