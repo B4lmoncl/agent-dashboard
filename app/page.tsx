@@ -1029,7 +1029,7 @@ export default function Dashboard() {
               onClick={() => { setDashView("questBoard"); window.scrollTo({ top: 0, behavior: "smooth" }); }}
               title="Home — Quest Hall"
             >
-              <span className="text-xl leading-none" style={{ lineHeight: 1 }}>⚔️🏰</span>
+              <img src="/guild-gate.png" alt="Quest Hall" className="h-8 w-8" style={{ imageRendering: "pixelated" }} />
               <span className="font-semibold text-sm tracking-tight" style={{ color: "#e8e8e8" }}>
                 Quest Hall
               </span>
