@@ -2220,6 +2220,7 @@ app.post('/api/quest', requireApiKey, (req, res) => {
     minLevel: (typeof minLevel === 'number' && minLevel >= 1) ? Math.floor(minLevel) : 1,
     classRequired: classRequired || null,
     requiresRelationship: requiresRelationship === true || requiresRelationship === 'true',
+    rewards: { xp: XP_BY_PRIORITY[priority || 'medium'] || 10, gold: randGold(priority || 'medium') },
   };
   quests.push(quest);
   saveQuests();

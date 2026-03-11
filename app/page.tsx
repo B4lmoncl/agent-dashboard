@@ -1717,7 +1717,6 @@ export default function Dashboard() {
                           <>
                             <button onClick={() => { const next = !openSectionCollapsed; setOpenSectionCollapsed(next); try { localStorage.setItem("qb_open_collapsed", String(next)); } catch { /* ignore */ } }} className="flex items-center gap-2 w-full text-left pt-1 pb-0.5">
                               <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.3)" }}>Open</span>
-                              <span className="text-xs px-1 rounded font-mono" style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.2)" }}>{boardOpen.length}{levelFiltered.length > 6 ? ` / ${levelFiltered.length}` : ""}</span>
                               <span className="ml-auto text-xs" style={{ color: "rgba(255,255,255,0.15)" }}>{openSectionCollapsed ? "▼" : "▲"}</span>
                             </button>
                             {!openSectionCollapsed && (
@@ -2631,22 +2630,27 @@ export default function Dashboard() {
                   </div>
                 )}
                 {/* Rewards */}
-                {((q.rewards?.xp ?? 0) > 0 || (q.rewards?.gold ?? 0) > 0) && (
-                  <div className="flex items-center gap-4 pt-1">
-                    {(q.rewards?.xp ?? 0) > 0 && (
-                      <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg" style={{ background: "rgba(167,139,250,0.08)", border: "1px solid rgba(167,139,250,0.2)" }}>
-                        <span style={{ fontSize: 14 }}>⭐</span>
-                        <span className="text-sm font-mono font-bold" style={{ color: "#a78bfa" }}>{q.rewards!.xp} XP</span>
+                {(() => {
+                  const XP_FALLBACK: Record<string, number> = { high: 30, medium: 20, low: 10 };
+                  const GOLD_FALLBACK: Record<string, number> = { high: 25, medium: 15, low: 9 };
+                  const displayXp = (q.rewards?.xp != null && q.rewards.xp > 0) ? q.rewards.xp : (XP_FALLBACK[q.priority] ?? 10);
+                  const displayGold = (q.rewards?.gold != null && q.rewards.gold > 0) ? q.rewards.gold : (GOLD_FALLBACK[q.priority] ?? 9);
+                  return (
+                    <div>
+                      <p className="text-xs font-semibold uppercase tracking-widest mb-2" style={{ color: "rgba(255,255,255,0.25)" }}>Belohnung</p>
+                      <div className="flex items-center gap-3">
+                        <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg" style={{ background: "rgba(251,191,36,0.08)", border: "1px solid rgba(251,191,36,0.2)" }}>
+                          <span style={{ fontSize: 14 }}>🪙</span>
+                          <span className="text-sm font-mono font-bold" style={{ color: "#fbbf24" }}>{displayGold} Gold</span>
+                        </div>
+                        <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg" style={{ background: "rgba(167,139,250,0.08)", border: "1px solid rgba(167,139,250,0.2)" }}>
+                          <span style={{ fontSize: 14 }}>⭐</span>
+                          <span className="text-sm font-mono font-bold" style={{ color: "#a78bfa" }}>{displayXp} XP</span>
+                        </div>
                       </div>
-                    )}
-                    {(q.rewards?.gold ?? 0) > 0 && (
-                      <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg" style={{ background: "rgba(251,191,36,0.08)", border: "1px solid rgba(251,191,36,0.2)" }}>
-                        <span style={{ fontSize: 14 }}>🪙</span>
-                        <span className="text-sm font-mono font-bold" style={{ color: "#fbbf24" }}>{q.rewards!.gold} Gold</span>
-                      </div>
-                    )}
-                  </div>
-                )}
+                    </div>
+                  );
+                })()}
                 {q.claimedBy && !isClaimedByMe && (
                   <p className="text-xs" style={{ color: "rgba(139,92,246,0.7)" }}>→ Beansprucht von {q.claimedBy}</p>
                 )}
