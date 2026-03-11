@@ -2263,7 +2263,7 @@ export default function Dashboard() {
                 </section>
               )}
 
-                            {/* NPC Quest Board (dev type only) + Review Board side-by-side */}
+              {/* NPC Quest Board (dev type only) + Review Board side-by-side */}
               <div className="flex flex-col lg:flex-row gap-6 items-start">
                 <aside className="w-full lg:w-80 flex-shrink-0">
                   <div className="mb-3">
@@ -7479,12 +7479,14 @@ interface CharacterData {
   equipment: Record<string, string | null>;
   stats: { kraft: number; ausdauer: number; weisheit: number; glueck: number; _setBonus?: number };
   baseStats: { kraft: number; ausdauer: number; weisheit: number; glueck: number };
-  inventory: { id: string; slot: string; name: string; emoji: string; tier: number; minLevel: number }[];
+  inventory: { id: string; slot: string; name: string; emoji: string; tier: number; minLevel: number; stats: Record<string, number>; rarity: string }[];
   forgeTemp: number;
   season: string;
   setBonusInfo: { name: string; count: number; total: number } | null;
   namedSetBonuses?: { id: string; name: string; rarity: string; count: number; total: number; isComplete: boolean; activeLabel: string | null }[];
   xpProgress: number;
+  relationshipStatus?: string;
+  partnerName?: string | null;
 }
 
 const RARITY_BORDER: Record<number, string> = {
@@ -7509,6 +7511,8 @@ function CharacterView({ playerName, apiKey, users, classesList }: { playerName:
   const [loading, setLoading] = useState(true);
   const [equipping, setEquipping] = useState<string | null>(null);
   const [unequipping, setUnequipping] = useState<string | null>(null);
+  const [selectedItem, setSelectedItem] = useState<string | null>(null);
+  const [profileSettingsOpen, setProfileSettingsOpen] = useState(false);
 
   const petals = useMemo(() => Array.from({ length: 20 }, (_, i) => ({
     id: i,
@@ -7695,37 +7699,100 @@ function CharacterView({ playerName, apiKey, users, classesList }: { playerName:
             if (unequipped.length === 0) return (
               <p className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>Keine Gegenstände im Inventar.</p>
             );
+            const selected = selectedItem ? unequipped.find(i => i.id === selectedItem) ?? null : null;
+            const equippedInSlot = selected
+              ? charData.inventory.find(i => i.id === charData.equipment[selected.slot]) ?? null
+              : null;
             return (
-              <div className="space-y-1.5">
-                {unequipped.map(item => {
-                  const locked = item.minLevel > charData.level;
-                  const bc = RARITY_BORDER[item.tier] ?? "#9ca3af";
-                  return (
-                    <div
-                      key={item.id}
-                      className="flex items-center gap-2 px-2 py-1.5 rounded-lg"
-                      style={{ background: "rgba(255,255,255,0.03)", border: `1px solid ${locked ? "rgba(255,255,255,0.08)" : bc}`, opacity: locked ? 0.5 : 1 }}
-                    >
-                      <span className="text-sm">{item.emoji}</span>
-                      <div className="flex-1 min-w-0">
-                        <p className="text-xs font-medium truncate" style={{ color: locked ? "rgba(255,255,255,0.3)" : "#e8e8e8" }}>
-                          {locked ? `🔒 Lv.${item.minLevel}` : item.name}
+              <>
+                {/* Grid */}
+                <div className="grid grid-cols-3 gap-1.5 mb-2">
+                  {unequipped.map(item => {
+                    const locked = item.minLevel > charData.level;
+                    const bc = RARITY_BORDER[item.tier] ?? "#9ca3af";
+                    const isSelected = selectedItem === item.id;
+                    return (
+                      <button
+                        key={item.id}
+                        onClick={() => setSelectedItem(isSelected ? null : item.id)}
+                        className="flex flex-col items-center justify-center p-1.5 rounded-lg text-center transition-all"
+                        style={{
+                          background: isSelected ? "rgba(167,139,250,0.12)" : "rgba(255,255,255,0.03)",
+                          border: `1px solid ${isSelected ? "rgba(167,139,250,0.5)" : locked ? "rgba(255,255,255,0.06)" : bc}`,
+                          opacity: locked ? 0.45 : 1,
+                          cursor: "pointer",
+                        }}
+                        title={locked ? `Lv.${item.minLevel} benötigt` : item.name}
+                      >
+                        <span className="text-lg">{item.emoji}</span>
+                        <p className="text-xs mt-0.5 truncate w-full" style={{ fontSize: 9, color: locked ? "rgba(255,255,255,0.3)" : "#e8e8e8" }}>
+                          {locked ? `🔒${item.minLevel}` : item.name.split(" ").slice(-1)[0]}
+                        </p>
+                      </button>
+                    );
+                  })}
+                </div>
+
+                {/* Item detail panel */}
+                {selected && (
+                  <div
+                    className="rounded-xl p-3 space-y-2"
+                    style={{ background: "rgba(0,0,0,0.5)", border: `1px solid ${RARITY_BORDER[selected.tier] ?? "#9ca3af"}50` }}
+                  >
+                    <div className="flex items-center gap-2">
+                      <span className="text-2xl">{selected.emoji}</span>
+                      <div>
+                        <p className="text-xs font-semibold" style={{ color: "#e8e8e8" }}>{selected.name}</p>
+                        <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>
+                          Tier {selected.tier} · {selected.rarity}
+                          {selected.minLevel > 1 && ` · Lv.${selected.minLevel}+`}
                         </p>
                       </div>
-                      {!locked && (
-                        <button
-                          onClick={() => handleEquip(item.id)}
-                          disabled={equipping === item.id}
-                          className="text-xs px-1.5 py-0.5 rounded"
-                          style={{ background: "rgba(34,197,94,0.15)", color: "#4ade80", border: "1px solid rgba(34,197,94,0.2)", cursor: "pointer" }}
-                        >
-                          {equipping === item.id ? "…" : "+"}
-                        </button>
-                      )}
                     </div>
-                  );
-                })}
-              </div>
+
+                    {/* Stat comparison */}
+                    {Object.keys(selected.stats).length > 0 && (
+                      <div className="space-y-0.5">
+                        {Object.entries(selected.stats).map(([stat, val]) => {
+                          const equippedVal = (equippedInSlot?.stats?.[stat] ?? 0) as number;
+                          const diff = (val as number) - equippedVal;
+                          const statLabel: Record<string, string> = { kraft: "⚔ Kraft", ausdauer: "🛡 Ausdauer", weisheit: "🧠 Weisheit", glueck: "🍀 Glück" };
+                          return (
+                            <div key={stat} className="flex items-center justify-between text-xs">
+                              <span style={{ color: "rgba(255,255,255,0.5)" }}>{statLabel[stat] ?? stat}</span>
+                              <span style={{ color: "#e8e8e8" }} className="font-mono">
+                                +{val as number}
+                                {equippedInSlot && diff !== 0 && (
+                                  <span className="ml-1 text-xs" style={{ color: diff > 0 ? "#4ade80" : "#f87171" }}>
+                                    ({diff > 0 ? `↑+${diff}` : `↓${diff}`})
+                                  </span>
+                                )}
+                              </span>
+                            </div>
+                          );
+                        })}
+                        {equippedInSlot && (
+                          <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.3)" }}>
+                            Vergleich mit: {equippedInSlot.emoji} {equippedInSlot.name}
+                          </p>
+                        )}
+                      </div>
+                    )}
+
+                    {/* Equip button */}
+                    {selected.minLevel <= charData.level && (
+                      <button
+                        onClick={() => { handleEquip(selected.id); setSelectedItem(null); }}
+                        disabled={equipping === selected.id}
+                        className="w-full py-1.5 rounded-lg text-xs font-semibold"
+                        style={{ background: "rgba(34,197,94,0.15)", color: "#4ade80", border: "1px solid rgba(34,197,94,0.2)", cursor: "pointer" }}
+                      >
+                        {equipping === selected.id ? "…" : "⚔ Ausrüsten"}
+                      </button>
+                    )}
+                  </div>
+                )}
+              </>
             );
           })()}
         </div>
