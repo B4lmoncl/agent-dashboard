@@ -1734,6 +1734,24 @@ export default function Dashboard() {
                     <p className="text-sm italic" style={{ color: "rgba(255,255,255,0.2)" }}>Your companion rests by the fire...</p>
                   </div>
                 )}
+                {reviewApiKey && (
+                  <div className="mt-4 rounded-xl overflow-hidden" style={{ background: "rgba(255,107,157,0.04)", border: "1px solid rgba(255,107,157,0.2)" }}>
+                    <button
+                      onClick={() => setDobbieOpen(v => !v)}
+                      className="flex items-center gap-2 w-full px-4 py-2.5 text-left"
+                    >
+                      <span className="text-sm">🐱</span>
+                      <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: "#ff6b9d" }}>Dobbie&apos;s Demands</span>
+                      <span className="text-xs px-1.5 py-0.5 rounded font-mono ml-1" style={{ background: "rgba(255,107,157,0.12)", color: "#ff6b9d", border: "1px solid rgba(255,107,157,0.25)" }}>NPC</span>
+                      <span className="ml-auto text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>{dobbieOpen ? "▲" : "▼"}</span>
+                    </button>
+                    {dobbieOpen && (
+                      <div style={{ borderTop: "1px solid rgba(255,107,157,0.15)" }}>
+                        <DobbieQuestPanel reviewApiKey={reviewApiKey} onRefresh={refresh} />
+                      </div>
+                    )}
+                  </div>
+                )}
               </section>
 
               {/* ── SECTION 3: The Starweaver's Chamber Portal (BOTTOM) ── */}
@@ -1758,9 +1776,9 @@ export default function Dashboard() {
                   ))}
                   <div className="relative flex items-center gap-6 px-8 py-8" style={{ zIndex: 1 }}>
                     {/* Portal arch / gate icon */}
-                    <div className="flex-shrink-0 flex items-center justify-center" style={{ width: 160, height: 160 }}>
+                    <div className="flex-shrink-0 flex items-center justify-center" style={{ width: 180, height: 180 }}>
                       <div style={{
-                        width: 144, height: 144,
+                        width: 160, height: 160,
                         borderRadius: "50%",
                         border: "3px solid #FFD700",
                         boxShadow: "0 0 20px rgba(255,215,0,0.6), inset 0 0 20px rgba(100,60,200,0.3)",
@@ -1774,8 +1792,8 @@ export default function Dashboard() {
                         <img
                           src="/images/npcs/starweaver-final.png"
                           alt="The Starweaver"
-                          width={144}
-                          height={144}
+                          width={160}
+                          height={160}
                           style={{ imageRendering: "pixelated", display: "block", width: "100%", height: "100%", objectFit: "cover", opacity: 0.85 }}
                           onError={e => { (e.target as HTMLImageElement).style.display = "none"; const fb = (e.target as HTMLImageElement).nextElementSibling as HTMLElement; if (fb) fb.style.display = "flex"; }}
                         />
