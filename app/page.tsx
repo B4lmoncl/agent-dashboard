@@ -1752,7 +1752,7 @@ export default function Dashboard() {
                   {["8%,15%","15%,70%","25%,30%","35%,80%","45%,20%","55%,65%","65%,35%","75%,75%","85%,25%","92%,55%","50%,90%","30%,10%","60%,50%","10%,45%","90%,30%"].map((pos, i) => (
                     <span key={i} style={{ position: "absolute", left: pos.split(",")[0], top: pos.split(",")[1], fontSize: i % 3 === 0 ? 10 : 8, opacity: 0.2 + (i % 4) * 0.1, animation: `star-float-${i % 3} ${2 + i * 0.3}s ease-in-out infinite`, pointerEvents: "none", color: "#c4b5fd", zIndex: 0 }}>✦</span>
                   ))}
-                  <div className="relative flex items-center gap-6 px-6 py-6" style={{ zIndex: 1 }}>
+                  <div className="relative flex items-center gap-6 px-8 py-8" style={{ zIndex: 1 }}>
                     {/* Portal arch / gate icon */}
                     <div className="flex-shrink-0 flex items-center justify-center" style={{ width: 140, height: 140 }}>
                       <div style={{
@@ -1782,8 +1782,8 @@ export default function Dashboard() {
                     {/* Text */}
                     <div className="flex-1 text-left">
                       <p className="text-xs font-semibold uppercase tracking-widest mb-1" style={{ color: "rgba(255,215,0,0.5)", letterSpacing: "0.15em" }}>✦ Enter the Chamber</p>
-                      <p className="text-xl font-bold" style={{ color: "#FFD700", textShadow: "0 0 20px rgba(255,215,0,0.45)" }}>The Starweaver&apos;s Chamber</p>
-                      <p className="text-xs mt-1 italic" style={{ color: "rgba(192,169,255,0.6)" }}>Step through — if she deems you worthy</p>
+                      <p className="text-2xl font-bold" style={{ color: "#FFD700", textShadow: "0 0 20px rgba(255,215,0,0.45)" }}>The Starweaver&apos;s Chamber</p>
+                      <p className="text-sm mt-1.5 italic" style={{ color: "rgba(192,169,255,0.6)" }}>Step through — if she deems you worthy</p>
                       {lyraAllQuests.length > 0 && (
                         <p className="text-xs mt-2" style={{ color: "rgba(255,215,0,0.4)" }}>✦ {lyraAllQuests.length} active quest{lyraAllQuests.length !== 1 ? "s" : ""} await</p>
                       )}
