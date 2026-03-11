@@ -4,246 +4,13 @@ import { useEffect, useState, useCallback, useRef, useMemo } from "react";
 import AgentCard from "@/components/AgentCard";
 import StatBar from "@/components/StatBar";
 import OnboardingWizard from "@/components/OnboardingWizard";
-
-interface Agent {
-  id: string;
-  name: string;
-  status: "online" | "working" | "idle" | "offline";
-  platform: string | null;
-  uptime: number;
-  currentJobDuration: number;
-  questsCompleted?: number;
-  xp?: number;
-  gold?: number;
-  streakDays?: number;
-  health: "ok" | "needs_checkin" | "broken" | "stale";
-  lastUpdate: string | null;
-  role?: string;
-  avatar?: string;
-  color?: string;
-  pendingCommands?: number;
-}
-
-interface Quest {
-  id: string;
-  title: string;
-  description: string;
-  priority: "low" | "medium" | "high";
-  type?: "development" | "personal" | "learning" | "fitness" | "social" | "boss" | "relationship-coop";
-  category: string | null;
-  categories: string[];
-  product: string | null;
-  humanInputRequired: boolean;
-  createdBy?: string;
-  status: "open" | "in_progress" | "completed" | "suggested" | "rejected";
-  createdAt: string;
-  claimedBy: string | null;
-  completedBy: string | null;
-  completedAt: string | null;
-  parentQuestId?: string | null;
-  children?: Quest[];
-  progress?: { completed: number; total: number };
-  recurrence?: string | null;
-  proof?: string | null;
-  checklist?: { text: string; done: boolean }[] | null;
-  nextQuestTemplate?: { title: string; description?: string | null; type?: string; priority?: string } | null;
-  coopPartners?: string[] | null;
-  coopClaimed?: string[];
-  coopCompletions?: string[];
-  skills?: string[];
-  lore?: string | null;
-  chapter?: string | null;
-  minLevel?: number;
-  classRequired?: string | null;
-  requiresRelationship?: boolean;
-  playerStatus?: "open" | "in_progress" | "completed" | "locked";
-  rewards?: { xp: number; gold: number };
-  rarity?: "common" | "uncommon" | "rare" | "epic" | "legendary";
-}
-
-interface NpcQuestChainEntry {
-  questId: string;
-  title: string;
-  description: string;
-  type: string;
-  priority: string;
-  status: string;
-  claimedBy: string | null;
-  completedBy: string | null;
-  rewards: { xp: number; gold: number };
-  position: number;
-}
-
-interface ActiveNpc {
-  id: string;
-  name: string;
-  emoji: string;
-  title: string;
-  description: string;
-  portrait: string | null;
-  greeting: string | null;
-  rarity: string;
-  arrivedAt: string;
-  expiresAt: string;
-  daysLeft: number;
-  hoursLeft: number;
-  finalReward: { type: string; item: { id: string; name: string; emoji: string; rarity: string; desc: string } } | null;
-  questChain: NpcQuestChainEntry[];
-}
-
-interface EarnedAchievement {
-  id: string;
-  name: string;
-  icon: string;
-  desc: string;
-  category: string;
-  earnedAt: string;
-}
-
-interface User {
-  id: string;
-  name: string;
-  avatar: string;
-  color: string;
-  xp: number;
-  questsCompleted: number;
-  achievements?: { reason: string; xp: number; at: string }[];
-  earnedAchievements?: EarnedAchievement[];
-  streakDays?: number;
-  streakLastDate?: string | null;
-  forgeTemp?: number;
-  gold?: number;
-  gear?: string;
-  createdAt?: string;
-  // Onboarding fields
-  classId?: string | null;
-  classPending?: boolean;
-  companion?: {
-    type: string; name: string; emoji: string; isReal: boolean; species?: string;
-    bondLevel?: number; bondXp?: number; lastPetted?: string | null;
-    petCountToday?: number; petDateStr?: string | null;
-  } | null;
-  age?: number | null;
-  goals?: string | null;
-  relationshipStatus?: string;
-  partnerName?: string | null;
-}
-
-interface CampaignQuest {
-  id: string;
-  title: string;
-  status: string;
-  priority?: string;
-  type?: string;
-  completedBy?: string | null;
-  completedAt?: string | null;
-  claimedBy?: string | null;
-  lore?: string | null;
-  description?: string;
-}
-
-interface Campaign {
-  id: string;
-  title: string;
-  description: string;
-  icon: string;
-  lore: string;
-  createdBy: string;
-  createdAt: string;
-  status: "active" | "completed" | "archived";
-  questIds: string[];
-  bossQuestId: string | null;
-  rewards: { xp: number; gold: number; title: string };
-  quests?: CampaignQuest[];
-  progress?: { completed: number; total: number };
-}
-
-interface AchievementDef {
-  id: string;
-  name: string;
-  icon: string;
-  desc: string;
-  category: string;
-  hidden?: boolean;
-}
-
-interface ClassDef {
-  id: string;
-  name: string;
-  icon: string;
-  fantasy: string;
-  description: string;
-  realWorld: string;
-  status: string;
-  playerCount?: number;
-  tiers?: { level: number; title: string; minXp: number }[];
-  skillTree?: { id: string; name: string; icon: string }[];
-}
-
-interface LeaderboardEntry {
-  rank: number;
-  id: string;
-  name: string;
-  avatar?: string;
-  color?: string;
-  role?: string;
-  xp: number;
-  questsCompleted: number;
-}
-
-interface QuestsData {
-  open: Quest[];
-  inProgress: Quest[];
-  completed: Quest[];
-  suggested: Quest[];
-  rejected: Quest[];
-  locked?: Quest[];
-}
-
-interface Ritual {
-  id: string;
-  title: string;
-  description: string;
-  schedule: { type: string; days?: string[] };
-  difficulty: string;
-  rewards: { xp: number; gold: number };
-  streak: number;
-  lastCompleted: string | null;
-  playerId: string;
-}
-
-interface Habit {
-  id: string;
-  title: string;
-  positive: boolean;
-  negative: boolean;
-  color: string;
-  score: number;
-  playerId: string;
-}
-
-interface LootItem {
-  id: string;
-  itemId?: string;
-  name: string;
-  emoji: string;
-  rarity: string;
-  rarityColor: string;
-  effect: { type: string; amount?: number };
-}
-
-interface ChangelogCommit {
-  sha: string;
-  type: string;
-  message: string;
-  author: string;
-  url: string | null;
-}
-
-interface ChangelogEntry {
-  date: string;
-  commits: ChangelogCommit[];
-}
+import type {
+  Agent, Quest, NpcQuestChainEntry, ActiveNpc, EarnedAchievement,
+  User, CampaignQuest, Campaign, AchievementDef, ClassDef, LeaderboardEntry,
+  QuestsData, Ritual, Habit, LootItem, ChangelogCommit, ChangelogEntry,
+  PersonalTemplate, ForgeChallengeTemplate, AntiRitual, Suggestion, CVData,
+  ShopItem, RoadmapItem, PixelCharacterProps, CharacterData,
+} from "@/app/types";
 
 const priorityConfig = {
   low:    { label: "Low",    color: "#22c55e", bg: "rgba(34,197,94,0.12)",   border: "rgba(34,197,94,0.3)"   },
@@ -3198,17 +2965,6 @@ function CreateQuestModal({ quests, users, reviewApiKey, onRefresh, onClose }: {
 
 // ─── Personal Quest Panel ────────────────────────────────────────────────────
 
-interface PersonalTemplate {
-  id: string;
-  name: string;
-  icon: string;
-  desc: string;
-  type: string;
-  priority: "low" | "medium" | "high";
-  recurrence: string | null;
-  checklist: { text: string; done: boolean }[] | null;
-}
-
 function PersonalQuestPanel({ reviewApiKey, onRefresh }: {
   reviewApiKey: string;
   onRefresh: () => void;
@@ -3335,14 +3091,6 @@ function PersonalQuestPanel({ reviewApiKey, onRefresh }: {
 
 // ─── Forge Challenges Panel ──────────────────────────────────────────────────
 
-interface ForgeChallengeTemplate {
-  id: string;
-  name: string;
-  icon: string;
-  desc: string;
-  participants: { id: string; name: string; avatar: string; color: string }[];
-}
-
 function ForgeChallengesPanel({ users, reviewApiKey, onRefresh }: {
   users: User[];
   reviewApiKey: string;
@@ -3442,17 +3190,6 @@ function ForgeChallengesPanel({ users, reviewApiKey, onRefresh }: {
 }
 
 // ─── Anti-Rituale Panel ───────────────────────────────────────────────────────
-
-interface AntiRitual {
-  id: string;
-  title: string;
-  isAntiRitual: boolean;
-  cleanDays: number;
-  lastViolated: string | null;
-  playerId: string;
-  milestones?: number[];
-  createdAt: string;
-}
 
 const ANTI_RITUAL_MILESTONES = [
   { days: 7,   badge: "🌱", label: "1 Woche clean!" },
@@ -3650,15 +3387,6 @@ function AntiRitualePanel({ playerName, reviewApiKey }: { playerName: string; re
 }
 
 // ─── Smart Suggestions Panel ──────────────────────────────────────────────────
-
-interface Suggestion {
-  id: string;
-  icon: string;
-  title: string;
-  body: string;
-  accent: string;
-  accentBg: string;
-}
 
 function buildSuggestions(quests: QuestsData, agents: Agent[]): Suggestion[] {
   const suggestions: Suggestion[] = [];
@@ -3875,12 +3603,6 @@ function RelationshipCoopPanel({ users, reviewApiKey, onRefresh }: {
 }
 
 // ─── Klassenquests Panel ──────────────────────────────────────────────────────
-
-interface CVData {
-  skills: { name: string; count: number; lastEarned: string | null; quests: { id: string; title: string; completedAt: string }[] }[];
-  certifications: { title: string; earnedAt: string; questId: string }[];
-  totalLearningQuests: number;
-}
 
 function CVBuilderPanel({ quests, users, playerName }: { quests: QuestsData; users: User[]; playerName: string }) {
   const [cvData, setCvData] = useState<CVData | null>(null);
@@ -5407,8 +5129,6 @@ function UserCard({ user, classes = [] }: { user: User; classes?: ClassDef[] }) 
 }
 
 // ─── Shop Modal ───────────────────────────────────────────────────────────────
-interface ShopItem { id: string; name: string; cost: number; icon: string; desc: string; }
-
 const GEAR_TIERS_CLIENT = [
   { id: "worn",       name: "Worn Tools",       cost: 0,    tier: 0, xpBonus: 0,  icon: "🔨", desc: "Starting gear. No bonus." },
   { id: "sturdy",     name: "Sturdy Tools",     cost: 100,  tier: 1, xpBonus: 5,  icon: "⚒",  desc: "+5% XP on all quests" },
@@ -7340,22 +7060,8 @@ function ShopView({ users, playerName, reviewApiKey, onBuy, onGearBuy, onOpenSho
 }
 
 // ─── Roadmap View ─────────────────────────────────────────────────────────────
-interface RoadmapItem {
-  id: string;
-  title: string;
-  desc: string;
-  status: "planned" | "in_progress" | "done";
-  eta: string;
-  category: string;
-}
 
 // ─── PixelCharacter Canvas Component ─────────────────────────────────────────
-
-interface PixelCharacterProps {
-  appearance?: { skinColor?: string; hairStyle?: string; hairColor?: string };
-  equipment?: Record<string, string | null>;
-  companion?: { name: string; emoji: string } | null;
-}
 
 function PixelCharacter({ appearance = {}, equipment = {}, companion = null }: PixelCharacterProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -7651,31 +7357,6 @@ function ProfileSettingsModal({ playerName, apiKey, initialStatus, initialPartne
 }
 
 // ─── CharacterView ────────────────────────────────────────────────────────────
-
-interface CharacterData {
-  name: string;
-  level: number;
-  xp: number;
-  xpToNext: number | null;
-  title: string;
-  classId: string | null;
-  classTier: string | null;
-  classFantasy: string | null;
-  classIcon: string | null;
-  companion: { name: string; emoji: string; bondLevel: number } | null;
-  appearance?: { skinColor?: string; hairStyle?: string; hairColor?: string };
-  equipment: Record<string, string | null>;
-  stats: { kraft: number; ausdauer: number; weisheit: number; glueck: number; _setBonus?: number };
-  baseStats: { kraft: number; ausdauer: number; weisheit: number; glueck: number };
-  inventory: { id: string; slot: string; name: string; emoji: string; tier: number; minLevel: number; stats: Record<string, number>; rarity: string }[];
-  forgeTemp: number;
-  season: string;
-  setBonusInfo: { name: string; count: number; total: number } | null;
-  namedSetBonuses?: { id: string; name: string; rarity: string; count: number; total: number; isComplete: boolean; activeLabel: string | null }[];
-  xpProgress: number;
-  relationshipStatus?: string;
-  partnerName?: string | null;
-}
 
 const RARITY_BORDER: Record<number, string> = {
   1: "#9ca3af",  // white/grey
