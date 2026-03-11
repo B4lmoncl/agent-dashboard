@@ -1,0 +1,66 @@
+{
+  "_comment": "Game economy, loot, and progression constants. Edit here — no code changes needed.",
+
+  "xpByPriority": {
+    "high":   30,
+    "medium": 20,
+    "low":    10
+  },
+
+  "goldByPriority": {
+    "high":   [20, 30],
+    "medium": [12, 20],
+    "low":    [6,  12]
+  },
+
+  "tempByPriority": {
+    "high":   15,
+    "medium": 10,
+    "low":    5
+  },
+
+  "streakMilestones": [
+    { "days": 7,   "badge": "🥉", "label": "Bronze",           "xpBonus": 5,  "lootTier": null        },
+    { "days": 14,  "badge": "🎁", "label": "2-Wochen",         "xpBonus": 0,  "lootTier": "uncommon"  },
+    { "days": 21,  "badge": "🥈", "label": "Silber",           "xpBonus": 10, "lootTier": null        },
+    { "days": 30,  "badge": "📅", "label": "Monat",            "xpBonus": 0,  "lootTier": "rare"      },
+    { "days": 60,  "badge": "🥇", "label": "Gold",             "xpBonus": 15, "lootTier": null        },
+    { "days": 90,  "badge": "🗿", "label": "Unerschütterlich", "xpBonus": 0,  "lootTier": "epic"      },
+    { "days": 180, "badge": "💎", "label": "Diamond",          "xpBonus": 25, "lootTier": null        },
+    { "days": 365, "badge": "🟠", "label": "Legendary",        "xpBonus": 0,  "lootTier": "legendary" }
+  ],
+
+  "rarityWeights": {
+    "common":    60,
+    "uncommon":  25,
+    "rare":      10,
+    "epic":       4,
+    "legendary":  1
+  },
+
+  "rarityColors": {
+    "common":    "#9ca3af",
+    "uncommon":  "#22c55e",
+    "rare":      "#3b82f6",
+    "epic":      "#a855f7",
+    "legendary": "#f97316"
+  },
+
+  "rarityOrder": ["common", "uncommon", "rare", "epic", "legendary"],
+
+  "rarityLevelThresholds": {
+    "legendary": 25,
+    "epic":      17,
+    "rare":       9
+  },
+
+  "equipmentSlots": ["weapon", "shield", "helm", "armor", "amulet", "boots"],
+
+  "lootPityThreshold": 5,
+
+  "dropChanceByPriority": {
+    "high":   0.5,
+    "medium": 0.35,
+    "low":    0.2
+  }
+}
