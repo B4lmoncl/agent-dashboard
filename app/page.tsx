@@ -977,7 +977,7 @@ export default function Dashboard() {
   const playerActiveCount = playerActiveQuests.length;
   const playerCompletedCount = playerCompletedQuests.length;
 
-  const openQuestsCount = quests.open.length;
+  const openQuestsCount = quests.open.filter(q => playerTypes.includes(q.type ?? "")).length;
 
   const animStreak    = useCountUp(playerStreak, 0);
   const animActive    = useCountUp(playerActiveCount, 0);
@@ -1369,7 +1369,7 @@ export default function Dashboard() {
           <StatBar
             label="⚔️ Active Quests"
             value={loading ? "—" : playerName ? animActive : "—"}
-            sub={playerName ? `${openQuestsCount} open total` : "login to view"}
+            sub={playerName ? `${openQuestsCount} open` : "login to view"}
             accent="#ef4444"
             tooltip={<InfoTooltip text="Quests you've claimed and are currently working on." />}
           />
@@ -5582,9 +5582,11 @@ function AchievementToast({ achievement, onClose }: { achievement: EarnedAchieve
     return () => clearTimeout(t);
   }, [onClose]);
   return (
+    <div className="fixed inset-0 z-[120] flex items-center justify-center p-4" style={{ background: "rgba(0,0,0,0.55)", pointerEvents: "auto" }} onClick={onClose}>
     <div
-      className="fixed bottom-20 right-6 z-50 rounded-xl px-4 py-3 flex items-center gap-3 shadow-2xl"
-      style={{ background: "#252525", border: "1px solid rgba(245,158,11,0.5)", boxShadow: "0 8px 32px rgba(245,158,11,0.2)", maxWidth: 300 }}
+      className="rounded-xl px-6 py-5 flex items-center gap-4 shadow-2xl"
+      style={{ background: "#252525", border: "1px solid rgba(245,158,11,0.5)", boxShadow: "0 8px 48px rgba(245,158,11,0.3)", maxWidth: 360, pointerEvents: "auto" }}
+      onClick={e => e.stopPropagation()}
     >
       <span className="text-2xl flex-shrink-0">{achievement.icon}</span>
       <div className="flex-1 min-w-0">
@@ -5593,6 +5595,7 @@ function AchievementToast({ achievement, onClose }: { achievement: EarnedAchieve
         <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>{achievement.desc}</p>
       </div>
       <button onClick={onClose} style={{ color: "rgba(255,255,255,0.3)" }}>✕</button>
+    </div>
     </div>
   );
 }
@@ -5605,7 +5608,7 @@ function FlavorToast({ toast, onClose }: { toast: { message: string; icon: strin
   }, [onClose]);
   return (
     <div
-      className="fixed bottom-6 right-6 z-50 rounded-xl px-4 py-3 flex items-center gap-3 shadow-2xl"
+      className="fixed bottom-6 right-6 z-[110] rounded-xl px-4 py-3 flex items-center gap-3 shadow-2xl"
       style={{ background: "#1e2a1e", border: "1px solid rgba(34,197,94,0.4)", boxShadow: "0 8px 32px rgba(34,197,94,0.15)", maxWidth: 280 }}
     >
       <span className="text-2xl flex-shrink-0">{toast.icon}</span>

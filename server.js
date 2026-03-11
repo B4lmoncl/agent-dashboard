@@ -1163,7 +1163,9 @@ function seedQuestCatalog() {
       requiresRelationship: t.requiresRelationship || false,
     };
   });
-  quests.push(...seedQuests);
+  const existingIds = new Set(quests.map(q => q.id));
+  const newSeeds = seedQuests.filter(s => !existingIds.has(s.id));
+  quests.push(...newSeeds);
   saveQuests();
 
   const classCount   = templates.filter(t => t.classId).length;
