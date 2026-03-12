@@ -535,10 +535,16 @@ function rotateNpcs() {
           coopClaimed: [],
           coopCompletions: [],
           skills: [],
-          lore: null,
+          lore: qt.lore || null,
           chapter: null,
           minLevel: 1,
           npcGiverId: giver.id,
+          npcName: giver.name,
+          npcRarity: giver.rarity,
+          flavorText: qt.flavorText || null,
+          chainIndex: chain.indexOf(qt),
+          chainTotal: chain.length,
+          rarity: giver.rarity,
           npcRewards: qt.rewards || { xp: 20, gold: 10 },
         };
         quests.push(quest);

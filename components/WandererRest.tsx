@@ -439,7 +439,18 @@ export function WandererRest({
                           <span className="text-xs font-semibold" style={{ color: "#f59e0b" }}>🎁 +{currentQuest.rewards?.xp ?? 0} XP</span>
                           <span className="text-xs" style={{ color: "rgba(255,193,7,0.6)" }}>+{currentQuest.rewards?.gold ?? 0} 🪙</span>
                           {(currentQuest.status === "claimed" || currentQuest.status === "in_progress") && (
-                            <span className="text-xs px-2 py-0.5 rounded font-semibold ml-auto" style={{ background: "rgba(96,165,250,0.15)", color: "#60a5fa", border: "1px solid rgba(96,165,250,0.3)" }}>⚔ Active</span>
+                            <div className="flex items-center gap-2 ml-auto">
+                              <span className="text-xs px-2 py-0.5 rounded font-semibold" style={{ background: "rgba(96,165,250,0.15)", color: "#60a5fa", border: "1px solid rgba(96,165,250,0.3)" }}>⚔ Active</span>
+                              {handleUnclaim && playerName && currentQuest.claimedBy?.toLowerCase() === playerName.toLowerCase() && (
+                                <button
+                                  onClick={(e) => { e.stopPropagation(); handleUnclaim(currentQuest.questId); }}
+                                  className="text-xs px-2 py-0.5 rounded font-semibold"
+                                  style={{ background: "rgba(239,68,68,0.12)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.3)", cursor: "pointer" }}
+                                  onMouseEnter={e => { (e.currentTarget).style.background = "rgba(239,68,68,0.25)"; }}
+                                  onMouseLeave={e => { (e.currentTarget).style.background = "rgba(239,68,68,0.12)"; }}
+                                >✕ Unclaim</button>
+                              )}
+                            </div>
                           )}
                           {currentQuest.status === "open" && handleClaim && playerName && (
                             <button

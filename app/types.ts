@@ -52,6 +52,12 @@ export interface Quest {
   playerStatus?: "open" | "in_progress" | "completed" | "locked";
   rewards?: { xp: number; gold: number };
   rarity?: "common" | "uncommon" | "rare" | "epic" | "legendary";
+  npcGiverId?: string | null;
+  npcName?: string | null;
+  npcRarity?: string | null;
+  flavorText?: string | null;
+  chainIndex?: number | null;
+  chainTotal?: number | null;
 }
 
 export interface NpcQuestChainEntry {

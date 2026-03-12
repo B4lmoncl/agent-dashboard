@@ -1603,9 +1603,11 @@ export function QuestCard({ quest, selected, onToggle, onClaim, onUnclaim, onCom
   const cats = quest.categories?.length ? quest.categories : (quest.category ? [quest.category] : []);
   const isClaimedByMe = playerName && quest.claimedBy?.toLowerCase() === playerName.toLowerCase();
   const isCoop = quest.type === "relationship-coop";
-  const flavorText = QUEST_BOARD_FLAVORS[
-    Math.abs((quest.id.charCodeAt(0) ?? 0) + (quest.id.charCodeAt(quest.id.length - 1) ?? 0)) % QUEST_BOARD_FLAVORS.length
-  ];
+  const flavorText = quest.npcGiverId
+    ? (quest.flavorText || `Quest von ${quest.npcName || "NPC"} · ${(quest.chainIndex ?? 0) + 1}/${quest.chainTotal ?? 1}`)
+    : QUEST_BOARD_FLAVORS[
+        Math.abs((quest.id.charCodeAt(0) ?? 0) + (quest.id.charCodeAt(quest.id.length - 1) ?? 0)) % QUEST_BOARD_FLAVORS.length
+      ];
   const coopPartners = quest.coopPartners ?? [];
   const coopClaimed = quest.coopClaimed ?? [];
   const coopCompletions = quest.coopCompletions ?? [];
@@ -1664,7 +1666,13 @@ export function QuestCard({ quest, selected, onToggle, onClaim, onUnclaim, onCom
             </span>
             <p className="text-sm font-semibold leading-snug" style={{ color: isInProgress ? "#c4b5fd" : "#e8d5a3" }}>{quest.title}</p>
           </div>
-          <p className="text-xs italic" style={{ color: "rgba(220,185,120,0.35)" }}>{flavorText}</p>
+          {quest.npcGiverId ? (
+            <p className="text-xs font-semibold" style={{ color: RARITY_COLORS[quest.npcRarity ?? "common"] ?? "#9ca3af", opacity: 0.85 }}>
+              {quest.npcName || "NPC"} · {quest.lore || `${(quest.chainIndex ?? 0) + 1}/${quest.chainTotal ?? 1}`}
+            </p>
+          ) : (
+            <p className="text-xs italic" style={{ color: "rgba(220,185,120,0.35)" }}>{flavorText}</p>
+          )}
         </div>
         {/* Card footer — rewards */}
         <div className="px-3 pb-2.5 flex items-center justify-between gap-2">
@@ -1780,7 +1788,13 @@ export function QuestCard({ quest, selected, onToggle, onClaim, onUnclaim, onCom
               </div>
             </div>
           )}
-          {!expanded && <p className="text-xs mt-0.5 italic truncate" style={{ color: "rgba(220,185,120,0.28)" }}>{flavorText}</p>}
+          {!expanded && quest.npcGiverId ? (
+            <p className="text-xs mt-0.5 font-semibold truncate" style={{ color: RARITY_COLORS[quest.npcRarity ?? "common"] ?? "#9ca3af", opacity: 0.8 }}>
+              {quest.npcName || "NPC"} · {quest.lore || `${(quest.chainIndex ?? 0) + 1}/${quest.chainTotal ?? 1}`}
+            </p>
+          ) : !expanded ? (
+            <p className="text-xs mt-0.5 italic truncate" style={{ color: "rgba(220,185,120,0.28)" }}>{flavorText}</p>
+          ) : null}
           {expanded && quest.description && (
             <p className="text-xs mt-2 leading-relaxed" style={{ color: "rgba(220,195,140,0.6)", fontStyle: "italic", borderLeft: `2px solid ${rarityColor}44`, paddingLeft: 8 }}>{quest.description}</p>
           )}
