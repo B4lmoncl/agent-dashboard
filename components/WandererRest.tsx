@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import type { Quest, ActiveNpc, QuestsData, User } from "@/app/types";
 import {
   EpicQuestCard, QuestCard, DobbieQuestPanel,
@@ -73,6 +74,13 @@ export function WandererRest({
   hearthUser, hearthStreak, hearthApiKey,
   handleClaim, handleUnclaim, handleComplete,
 }: WandererRestProps) {
+  // Sync selectedNpc with fresh data when activeNpcs updates (e.g. after claim/complete)
+  useEffect(() => {
+    if (!selectedNpc || selectedNpc.id === "lyra-permanent") return;
+    const fresh = activeNpcs.find(n => n.id === selectedNpc.id);
+    if (fresh) setSelectedNpc(fresh);
+  }, [activeNpcs]); // eslint-disable-line react-hooks/exhaustive-deps
+
   return (
     <div className="space-y-6">
       {/* Dobbie filter banner */}
@@ -186,8 +194,15 @@ export function WandererRest({
         )}
       </section>
 
+      {/* ── Divider: Wanderers ↔ Companion Hearth ── */}
+      <div style={{ maxWidth: 1000, margin: "0 auto", marginTop: 48, display: "flex", alignItems: "center", gap: 12 }}>
+        <div style={{ flex: 1, height: 1, background: "linear-gradient(90deg, transparent, rgba(251,146,60,0.2), transparent)" }} />
+        <span style={{ fontSize: 10, color: "rgba(251,146,60,0.3)", letterSpacing: "0.15em", textTransform: "uppercase" }}>✦ Hearth ✦</span>
+        <div style={{ flex: 1, height: 1, background: "linear-gradient(90deg, transparent, rgba(251,146,60,0.2), transparent)" }} />
+      </div>
+
       {/* ── SECTION 2: The Companion Hearth (MIDDLE) ── */}
-      <section data-feedback-id="companion-hearth" className="mb-8" style={{ maxWidth: 1000, margin: "0 auto" }}>
+      <section data-feedback-id="companion-hearth" className="mb-8" style={{ maxWidth: 1000, margin: "0 auto", marginTop: 24 }}>
         <div className="mb-3">
           <h2 className="text-xs font-semibold uppercase tracking-widest" style={{ color: "#f472b6" }}>🔥 The Companion Hearth</h2>
           <p className="text-xs mt-0.5 italic" style={{ color: "rgba(255,255,255,0.3)" }}>Even heroes need someone to come home to</p>
@@ -243,8 +258,15 @@ export function WandererRest({
         )}
       </section>
 
+      {/* ── Divider: Companion Hearth ↔ Starweaver ── */}
+      <div style={{ maxWidth: 1000, margin: "0 auto", marginTop: 48, display: "flex", alignItems: "center", gap: 12 }}>
+        <div style={{ flex: 1, height: 1, background: "linear-gradient(90deg, transparent, rgba(255,215,0,0.15), transparent)" }} />
+        <span style={{ fontSize: 10, color: "rgba(255,215,0,0.25)", letterSpacing: "0.15em", textTransform: "uppercase" }}>✦ Chamber ✦</span>
+        <div style={{ flex: 1, height: 1, background: "linear-gradient(90deg, transparent, rgba(255,215,0,0.15), transparent)" }} />
+      </div>
+
       {/* ── SECTION 3: The Starweaver's Chamber Portal (BOTTOM) ── */}
-      <section data-feedback-id="starweaver-portal" style={{ maxWidth: 1000, margin: "0 auto" }}>
+      <section data-feedback-id="starweaver-portal" style={{ maxWidth: 1000, margin: "0 auto", marginTop: 24 }}>
         <button
           onClick={() => setSelectedNpc({ id: "lyra-permanent", name: "The Starweaver", title: "Guardian of Quests", rarity: "legendary", emoji: "✨", greeting: "Guardian of Quests. Forged in starlight.", questChain: lyraAllQuests.map(q => ({ ...q, status: q.status as "open" | "in_progress" | "completed" | "claimed" })), hoursLeft: 9999, daysLeft: 999, portrait: "/images/npcs/starweaver-final.png", finalReward: undefined } as unknown as ActiveNpc)}
           className="w-full relative overflow-hidden rounded-2xl"
@@ -322,7 +344,7 @@ export function WandererRest({
             style={{ background: "rgba(0,0,0,0.82)" }}
             onClick={e => { if (e.target === e.currentTarget) setSelectedNpc(null); }}
           >
-            <div className="relative w-full max-w-xl rounded-xl overflow-hidden" style={{ background: isStarweaver ? "linear-gradient(135deg, #0a0a1e 0%, #120830 100%)" : "#1a1a2e", border: `2px solid ${isStarweaver ? "rgba(255,215,0,0.3)" : `${rc}40`}`, maxHeight: "90vh", overflowY: "auto" }}>
+            <div className="relative w-full rounded-xl overflow-hidden" style={{ background: isStarweaver ? "linear-gradient(135deg, #0a0a1e 0%, #120830 100%)" : "#1a1a2e", border: `2px solid ${isStarweaver ? "rgba(255,215,0,0.3)" : `${rc}40`}`, maxHeight: "90vh", overflowY: "auto", maxWidth: isStarweaver ? 680 : 520 }}>
               {/* Close */}
               <button
                 onClick={() => setSelectedNpc(null)}
@@ -340,9 +362,9 @@ export function WandererRest({
 
               {/* NPC Header */}
               <div className="relative px-5 pt-5 pb-4 flex items-start gap-4" style={{ borderBottom: "1px solid rgba(255,255,255,0.07)", zIndex: 1 }}>
-                <div className="flex-shrink-0 rounded-lg overflow-hidden" style={{ width: 96, height: 96, border: `2px solid ${isStarweaver ? "rgba(255,215,0,0.5)" : `${rc}50`}`, boxShadow: isStarweaver ? "0 0 20px rgba(255,215,0,0.3)" : "none" }}>
+                <div className="flex-shrink-0 rounded-lg overflow-hidden" style={{ width: isStarweaver ? 128 : 96, height: isStarweaver ? 128 : 96, border: `2px solid ${isStarweaver ? "rgba(255,215,0,0.5)" : `${rc}50`}`, boxShadow: isStarweaver ? "0 0 24px rgba(255,215,0,0.35), 0 0 8px rgba(100,60,200,0.3)" : "none" }}>
                   {npc.portrait ? (
-                    <img src={npc.portrait} alt={npc.name} width={96} height={96} style={{ imageRendering: "pixelated", display: "block", width: "100%", height: "100%", objectFit: "cover" }} />
+                    <img src={npc.portrait} alt={npc.name} width={isStarweaver ? 128 : 96} height={isStarweaver ? 128 : 96} style={{ imageRendering: "pixelated", display: "block", width: "100%", height: "100%", objectFit: "cover" }} />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center" style={{ background: "rgba(255,255,255,0.04)", fontSize: 40 }}>{npc.emoji}</div>
                   )}
@@ -421,7 +443,11 @@ export function WandererRest({
                           )}
                           {currentQuest.status === "open" && handleClaim && playerName && (
                             <button
-                              onClick={(e) => { e.stopPropagation(); handleClaim(currentQuest.questId); }}
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                // TODO: companion-accepted quests should appear in the Great Hall quest board under "In Progress"
+                                handleClaim(currentQuest.questId);
+                              }}
                               className="text-xs px-3 py-1 rounded-lg font-semibold ml-auto"
                               style={{ background: "rgba(245,158,11,0.2)", color: "#f59e0b", border: "1px solid rgba(245,158,11,0.4)", cursor: "pointer", transition: "all 0.2s" }}
                               onMouseEnter={e => { (e.currentTarget).style.background = "rgba(245,158,11,0.35)"; }}
@@ -483,7 +509,32 @@ export function WandererRest({
                   )}
                 </div>
               )}
-              {isStarweaver && <div className="pb-4" />}
+              {isStarweaver && (
+                <div className="relative px-5 pt-3 pb-5" style={{ zIndex: 1 }}>
+                  {/* Future feature placeholders — coming soon */}
+                  <p className="text-xs font-semibold uppercase tracking-widest mb-3" style={{ color: "rgba(255,215,0,0.25)", letterSpacing: "0.12em" }}>✦ Coming Soon</p>
+                  <div className="space-y-2">
+                    {[
+                      { icon: "📜", label: "Special Requests", sub: "Coming soon" },
+                      { icon: "🔮", label: "Prophecies",        sub: "Coming soon" },
+                      { icon: "⚔", label: "Legendary Quests",  sub: "Coming soon" },
+                    ].map(({ icon, label, sub }) => (
+                      <div
+                        key={label}
+                        className="flex items-center gap-3 rounded-lg px-3 py-2.5"
+                        style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)", opacity: 0.45, cursor: "not-allowed" }}
+                      >
+                        <span style={{ fontSize: 16, filter: "grayscale(0.7)" }}>{icon}</span>
+                        <div>
+                          <p className="text-xs font-semibold" style={{ color: "rgba(255,255,255,0.45)" }}>{label}</p>
+                          <p className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>{sub}</p>
+                        </div>
+                        <span className="ml-auto text-xs px-1.5 py-0.5 rounded" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.2)", border: "1px solid rgba(255,255,255,0.07)" }}>Soon</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         );

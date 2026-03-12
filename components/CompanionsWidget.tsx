@@ -202,8 +202,13 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
 
       {/* Dobbie — clickable, switches to NPC Quest Board */}
       <div
-        className="flex items-center gap-2 mb-1.5 rounded-lg px-1 py-0.5 transition-all"
-        style={{ cursor: onDobbieClick ? "pointer" : "default", background: "transparent" }}
+        className="flex items-center gap-2 mb-1.5 rounded-lg px-2 py-2 transition-all"
+        style={{
+          cursor: onDobbieClick ? "pointer" : "default",
+          background: "linear-gradient(135deg, rgba(30,15,5,0.55) 0%, rgba(50,20,10,0.45) 100%)",
+          border: "1px solid rgba(255,107,157,0.2)",
+          minHeight: 52,
+        }}
         onClick={onDobbieClick}
         title={onDobbieClick ? "Click to open Dobbie's Quest Board" : undefined}
       >
@@ -222,7 +227,13 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
       {earnedCompanions.map(c => {
         const meta = COMPANION_META_ALL[c.id];
         return (
-          <div key={c.id} className="flex items-center gap-2 mb-1">
+          <div key={c.id} className="flex items-center gap-2 mb-1.5 rounded-lg px-2 py-1.5"
+            style={{
+              background: "linear-gradient(135deg, rgba(10,8,25,0.55) 0%, rgba(20,10,40,0.45) 100%)",
+              border: "1px solid rgba(167,139,250,0.2)",
+              minHeight: 40,
+            }}
+          >
             <span className={`text-base ${mood.label === "Happy" || mood.label === "Ecstatic" ? "animate-bounce" : ""}`} title={`${meta?.name} — ${mood.tip}`}>{meta?.icon ?? c.icon}</span>
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-1.5">
