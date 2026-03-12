@@ -234,130 +234,205 @@ export function WandererRest({
         {/* Frame Preview 1: Dark Oak Wood */}
         <div style={{ marginBottom: 32 }}>
           <p style={{ color: "rgba(255,255,255,0.3)", fontSize: 11, marginBottom: 8 }}>1 — Dark Oak Wood</p>
-          <div style={{
-            borderImage: "url('/images/ui-frames/frame-wood.png') 24 stretch",
-            borderWidth: 24,
-            borderStyle: "solid",
-            imageRendering: "pixelated" as const,
-            background: "linear-gradient(180deg, #1a1510 0%, #0d0a08 100%)",
-            padding: 16,
-          }}>
-            <div style={{ fontVariant: "small-caps", color: "#d4c4a0", fontSize: 13, fontWeight: 600, marginBottom: 12 }}>
-              {petName ?? "Companion"}&apos;s Demands
-            </div>
-            {[
-              { title: `Feed ${petName ?? "Companion"} Before 18:00`, xp: 5, gold: 2 },
-              { title: "Clean the Litter Box", xp: 5, gold: 3 },
-            ].map((q, i) => (
-              <div key={i} style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)", borderRadius: 3, padding: "10px 12px", marginBottom: 6 }}>
-                <p style={{ color: "#e0d8cc", fontSize: 13, fontWeight: 500 }}>{q.title}</p>
-                <p style={{ color: "rgba(255,255,255,0.35)", fontSize: 11, marginTop: 2 }}>{q.xp} XP · {q.gold} Gold</p>
+          <div style={{ position: "relative", padding: 0 }}>
+            <img
+              src="/images/ui-frames/frame-wood.png"
+              alt=""
+              style={{
+                position: "absolute",
+                inset: 0,
+                width: "100%",
+                height: "100%",
+                imageRendering: "pixelated",
+                pointerEvents: "none",
+                zIndex: 1,
+              }}
+            />
+            <div style={{
+              position: "relative",
+              zIndex: 2,
+              margin: 20,
+              padding: 16,
+              background: "linear-gradient(180deg, #1a1510 0%, #0d0a08 100%)",
+              borderRadius: 2,
+            }}>
+              <div style={{ fontVariant: "small-caps", color: "#d4c4a0", fontSize: 13, fontWeight: 600, marginBottom: 12 }}>
+                {petName ?? "Companion"}&apos;s Demands
               </div>
-            ))}
+              {[
+                { title: `Feed ${petName ?? "Companion"} Before 18:00`, xp: 5, gold: 2 },
+                { title: "Clean the Litter Box", xp: 5, gold: 3 },
+              ].map((q, i) => (
+                <div key={i} style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)", borderRadius: 3, padding: "10px 12px", marginBottom: 6 }}>
+                  <p style={{ color: "#e0d8cc", fontSize: 13, fontWeight: 500 }}>{q.title}</p>
+                  <p style={{ color: "rgba(255,255,255,0.35)", fontSize: 11, marginTop: 2 }}>{q.xp} XP · {q.gold} Gold</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
         {/* Frame Preview 2: Dungeon Stone */}
         <div style={{ marginBottom: 32 }}>
           <p style={{ color: "rgba(255,255,255,0.3)", fontSize: 11, marginBottom: 8 }}>2 — Dungeon Stone</p>
-          <div style={{
-            borderImage: "url('/images/ui-frames/frame-stone.png') 24 stretch",
-            borderWidth: 24,
-            borderStyle: "solid",
-            imageRendering: "pixelated" as const,
-            background: "linear-gradient(180deg, #121518 0%, #0a0c0f 100%)",
-            padding: 16,
-          }}>
-            <div style={{ fontVariant: "small-caps", color: "#b0b8c4", fontSize: 13, fontWeight: 600, marginBottom: 12 }}>
-              {petName ?? "Companion"}&apos;s Demands
-            </div>
-            {[
-              { title: `Feed ${petName ?? "Companion"} Before 18:00`, xp: 5, gold: 2 },
-              { title: "Clean the Litter Box", xp: 5, gold: 3 },
-            ].map((q, i) => (
-              <div key={i} style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)", borderRadius: 3, padding: "10px 12px", marginBottom: 6 }}>
-                <p style={{ color: "#c8ccd4", fontSize: 13, fontWeight: 500 }}>{q.title}</p>
-                <p style={{ color: "rgba(255,255,255,0.35)", fontSize: 11, marginTop: 2 }}>{q.xp} XP · {q.gold} Gold</p>
+          <div style={{ position: "relative", padding: 0 }}>
+            <img
+              src="/images/ui-frames/frame-stone.png"
+              alt=""
+              style={{
+                position: "absolute",
+                inset: 0,
+                width: "100%",
+                height: "100%",
+                imageRendering: "pixelated",
+                pointerEvents: "none",
+                zIndex: 1,
+              }}
+            />
+            <div style={{
+              position: "relative",
+              zIndex: 2,
+              margin: 20,
+              padding: 16,
+              background: "linear-gradient(180deg, #121518 0%, #0a0c0f 100%)",
+              borderRadius: 2,
+            }}>
+              <div style={{ fontVariant: "small-caps", color: "#b0b8c4", fontSize: 13, fontWeight: 600, marginBottom: 12 }}>
+                {petName ?? "Companion"}&apos;s Demands
               </div>
-            ))}
+              {[
+                { title: `Feed ${petName ?? "Companion"} Before 18:00`, xp: 5, gold: 2 },
+                { title: "Clean the Litter Box", xp: 5, gold: 3 },
+              ].map((q, i) => (
+                <div key={i} style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)", borderRadius: 3, padding: "10px 12px", marginBottom: 6 }}>
+                  <p style={{ color: "#c8ccd4", fontSize: 13, fontWeight: 500 }}>{q.title}</p>
+                  <p style={{ color: "rgba(255,255,255,0.35)", fontSize: 11, marginTop: 2 }}>{q.xp} XP · {q.gold} Gold</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
         {/* Frame Preview 3: Old Parchment */}
         <div style={{ marginBottom: 32 }}>
           <p style={{ color: "rgba(255,255,255,0.3)", fontSize: 11, marginBottom: 8 }}>3 — Old Parchment</p>
-          <div style={{
-            borderImage: "url('/images/ui-frames/frame-parchment.png') 24 stretch",
-            borderWidth: 24,
-            borderStyle: "solid",
-            imageRendering: "pixelated" as const,
-            background: "linear-gradient(180deg, #1a1610 0%, #12100c 100%)",
-            padding: 16,
-          }}>
-            <div style={{ fontVariant: "small-caps", color: "#c8b88c", fontSize: 13, fontWeight: 600, marginBottom: 12 }}>
-              {petName ?? "Companion"}&apos;s Demands
-            </div>
-            {[
-              { title: `Feed ${petName ?? "Companion"} Before 18:00`, xp: 5, gold: 2 },
-              { title: "Clean the Litter Box", xp: 5, gold: 3 },
-            ].map((q, i) => (
-              <div key={i} style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)", borderRadius: 3, padding: "10px 12px", marginBottom: 6 }}>
-                <p style={{ color: "#d8ccb0", fontSize: 13, fontWeight: 500 }}>{q.title}</p>
-                <p style={{ color: "rgba(255,255,255,0.35)", fontSize: 11, marginTop: 2 }}>{q.xp} XP · {q.gold} Gold</p>
+          <div style={{ position: "relative", padding: 0 }}>
+            <img
+              src="/images/ui-frames/frame-parchment.png"
+              alt=""
+              style={{
+                position: "absolute",
+                inset: 0,
+                width: "100%",
+                height: "100%",
+                imageRendering: "pixelated",
+                pointerEvents: "none",
+                zIndex: 1,
+              }}
+            />
+            <div style={{
+              position: "relative",
+              zIndex: 2,
+              margin: 20,
+              padding: 16,
+              background: "linear-gradient(180deg, #1a1610 0%, #12100c 100%)",
+              borderRadius: 2,
+            }}>
+              <div style={{ fontVariant: "small-caps", color: "#c8b88c", fontSize: 13, fontWeight: 600, marginBottom: 12 }}>
+                {petName ?? "Companion"}&apos;s Demands
               </div>
-            ))}
+              {[
+                { title: `Feed ${petName ?? "Companion"} Before 18:00`, xp: 5, gold: 2 },
+                { title: "Clean the Litter Box", xp: 5, gold: 3 },
+              ].map((q, i) => (
+                <div key={i} style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)", borderRadius: 3, padding: "10px 12px", marginBottom: 6 }}>
+                  <p style={{ color: "#d8ccb0", fontSize: 13, fontWeight: 500 }}>{q.title}</p>
+                  <p style={{ color: "rgba(255,255,255,0.35)", fontSize: 11, marginTop: 2 }}>{q.xp} XP · {q.gold} Gold</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
         {/* Frame Preview 4: Royal Gold */}
         <div style={{ marginBottom: 32 }}>
           <p style={{ color: "rgba(255,255,255,0.3)", fontSize: 11, marginBottom: 8 }}>4 — Royal Gold</p>
-          <div style={{
-            borderImage: "url('/images/ui-frames/frame-ornate-gold.png') 24 stretch",
-            borderWidth: 24,
-            borderStyle: "solid",
-            imageRendering: "pixelated" as const,
-            background: "linear-gradient(180deg, #1a1508 0%, #0d0a05 100%)",
-            padding: 16,
-          }}>
-            <div style={{ fontVariant: "small-caps", color: "#e0c870", fontSize: 13, fontWeight: 600, marginBottom: 12 }}>
-              {petName ?? "Companion"}&apos;s Demands
-            </div>
-            {[
-              { title: `Feed ${petName ?? "Companion"} Before 18:00`, xp: 5, gold: 2 },
-              { title: "Clean the Litter Box", xp: 5, gold: 3 },
-            ].map((q, i) => (
-              <div key={i} style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)", borderRadius: 3, padding: "10px 12px", marginBottom: 6 }}>
-                <p style={{ color: "#e8dcc0", fontSize: 13, fontWeight: 500 }}>{q.title}</p>
-                <p style={{ color: "rgba(255,255,255,0.35)", fontSize: 11, marginTop: 2 }}>{q.xp} XP · {q.gold} Gold</p>
+          <div style={{ position: "relative", padding: 0 }}>
+            <img
+              src="/images/ui-frames/frame-ornate-gold.png"
+              alt=""
+              style={{
+                position: "absolute",
+                inset: 0,
+                width: "100%",
+                height: "100%",
+                imageRendering: "pixelated",
+                pointerEvents: "none",
+                zIndex: 1,
+              }}
+            />
+            <div style={{
+              position: "relative",
+              zIndex: 2,
+              margin: 20,
+              padding: 16,
+              background: "linear-gradient(180deg, #1a1508 0%, #0d0a05 100%)",
+              borderRadius: 2,
+            }}>
+              <div style={{ fontVariant: "small-caps", color: "#e0c870", fontSize: 13, fontWeight: 600, marginBottom: 12 }}>
+                {petName ?? "Companion"}&apos;s Demands
               </div>
-            ))}
+              {[
+                { title: `Feed ${petName ?? "Companion"} Before 18:00`, xp: 5, gold: 2 },
+                { title: "Clean the Litter Box", xp: 5, gold: 3 },
+              ].map((q, i) => (
+                <div key={i} style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)", borderRadius: 3, padding: "10px 12px", marginBottom: 6 }}>
+                  <p style={{ color: "#e8dcc0", fontSize: 13, fontWeight: 500 }}>{q.title}</p>
+                  <p style={{ color: "rgba(255,255,255,0.35)", fontSize: 11, marginTop: 2 }}>{q.xp} XP · {q.gold} Gold</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
         {/* Frame Preview 5: Iron & Rivets */}
         <div style={{ marginBottom: 32 }}>
           <p style={{ color: "rgba(255,255,255,0.3)", fontSize: 11, marginBottom: 8 }}>5 — Iron & Rivets</p>
-          <div style={{
-            borderImage: "url('/images/ui-frames/frame-iron.png') 24 stretch",
-            borderWidth: 24,
-            borderStyle: "solid",
-            imageRendering: "pixelated" as const,
-            background: "linear-gradient(180deg, #141418 0%, #0a0a0f 100%)",
-            padding: 16,
-          }}>
-            <div style={{ fontVariant: "small-caps", color: "#a0a8b4", fontSize: 13, fontWeight: 600, marginBottom: 12 }}>
-              {petName ?? "Companion"}&apos;s Demands
-            </div>
-            {[
-              { title: `Feed ${petName ?? "Companion"} Before 18:00`, xp: 5, gold: 2 },
-              { title: "Clean the Litter Box", xp: 5, gold: 3 },
-            ].map((q, i) => (
-              <div key={i} style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)", borderRadius: 3, padding: "10px 12px", marginBottom: 6 }}>
-                <p style={{ color: "#c4c8d0", fontSize: 13, fontWeight: 500 }}>{q.title}</p>
-                <p style={{ color: "rgba(255,255,255,0.35)", fontSize: 11, marginTop: 2 }}>{q.xp} XP · {q.gold} Gold</p>
+          <div style={{ position: "relative", padding: 0 }}>
+            <img
+              src="/images/ui-frames/frame-iron.png"
+              alt=""
+              style={{
+                position: "absolute",
+                inset: 0,
+                width: "100%",
+                height: "100%",
+                imageRendering: "pixelated",
+                pointerEvents: "none",
+                zIndex: 1,
+              }}
+            />
+            <div style={{
+              position: "relative",
+              zIndex: 2,
+              margin: 20,
+              padding: 16,
+              background: "linear-gradient(180deg, #141418 0%, #0a0a0f 100%)",
+              borderRadius: 2,
+            }}>
+              <div style={{ fontVariant: "small-caps", color: "#a0a8b4", fontSize: 13, fontWeight: 600, marginBottom: 12 }}>
+                {petName ?? "Companion"}&apos;s Demands
               </div>
-            ))}
+              {[
+                { title: `Feed ${petName ?? "Companion"} Before 18:00`, xp: 5, gold: 2 },
+                { title: "Clean the Litter Box", xp: 5, gold: 3 },
+              ].map((q, i) => (
+                <div key={i} style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)", borderRadius: 3, padding: "10px 12px", marginBottom: 6 }}>
+                  <p style={{ color: "#c4c8d0", fontSize: 13, fontWeight: 500 }}>{q.title}</p>
+                  <p style={{ color: "rgba(255,255,255,0.35)", fontSize: 11, marginTop: 2 }}>{q.xp} XP · {q.gold} Gold</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
