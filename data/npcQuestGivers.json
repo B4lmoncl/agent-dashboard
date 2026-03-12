@@ -11,21 +11,55 @@
       "description": "Eine warmherzige alte Dame die immer Kekse dabei hat.",
       "stayDays": 3,
       "cooldownDays": 14,
-      "questChain": [
-        {
-          "title": "🍪 Oma Ilses Kekse",
-          "description": "Oma Ilse hat Kekse gebacken! Bring sie ihrem Enkel. (Mach einen 20-Minuten Spaziergang)",
-          "type": "social",
-          "priority": "medium",
-          "rewards": { "xp": 25, "gold": 10 }
-        },
-        {
-          "title": "📖 Oma Ilses Geschichten",
-          "description": "Oma Ilse erzählt von früher. Du hörst zu, weil du nett bist. (Informiere dich 20 Minuten über ein Geschichtsthema deiner Wahl)",
-          "type": "personal",
-          "priority": "low",
-          "rewards": { "xp": 30, "gold": 15 }
-        }
+      "questChains": [
+        [
+          {
+            "title": "🍪 Oma Ilses Kekse",
+            "description": "Oma Ilse hat Kekse gebacken! Bring sie ihrem Enkel. (Mach einen 20-Minuten Spaziergang)",
+            "type": "social",
+            "priority": "medium",
+            "rewards": { "xp": 25, "gold": 10 }
+          },
+          {
+            "title": "📖 Oma Ilses Geschichten",
+            "description": "Oma Ilse erzählt von früher. Du hörst zu, weil du nett bist. (Informiere dich 20 Minuten über ein Geschichtsthema deiner Wahl)",
+            "type": "personal",
+            "priority": "low",
+            "rewards": { "xp": 30, "gold": 15 }
+          }
+        ],
+        [
+          {
+            "title": "🥣 Oma Ilses Rezept",
+            "description": "Oma Ilse möchte ein altes Familienrezept weitergeben. (Koche heute etwas von Grund auf — kein Fertiggericht!)",
+            "type": "personal",
+            "priority": "low",
+            "rewards": { "xp": 20, "gold": 10 }
+          },
+          {
+            "title": "🧹 Frühjahrsputz",
+            "description": "'Ein aufgeräumtes Heim, ein aufgeräumter Geist', sagt Oma Ilse. (Räume einen Bereich deiner Wohnung gründlich auf — 20 Minuten)",
+            "type": "personal",
+            "priority": "medium",
+            "rewards": { "xp": 30, "gold": 15 }
+          }
+        ],
+        [
+          {
+            "title": "🌸 Omas Garten",
+            "description": "Oma Ilse zeigt dir ihre Lieblingsblumen. (Geh heute in einen Park oder Garten und beobachte die Natur für 15 Minuten)",
+            "type": "fitness",
+            "priority": "low",
+            "rewards": { "xp": 20, "gold": 10 }
+          },
+          {
+            "title": "💌 Ein Brief an jemanden",
+            "description": "'Schreib einem Menschen dem du dankbar bist', sagt Oma Ilse. (Schreibe eine Nachricht oder einen Brief an jemanden den du schätzt)",
+            "type": "social",
+            "priority": "medium",
+            "rewards": { "xp": 35, "gold": 20 }
+          }
+        ]
       ],
       "finalReward": {
         "type": "unique_item",
@@ -43,28 +77,69 @@
       "description": "Ein geheimnisvoller Händler der seltene Waren aus der ganzen Welt mitbringt.",
       "stayDays": 2,
       "cooldownDays": 21,
-      "questChain": [
-        {
-          "title": "📦 Karims Lieferung",
-          "description": "Karim braucht Hilfe beim Sortieren seiner Waren. (Räume deinen Schreibtisch oder ein Regal auf)",
-          "type": "personal",
-          "priority": "low",
-          "rewards": { "xp": 20, "gold": 25 }
-        },
-        {
-          "title": "🗺️ Karims Geheimnis",
-          "description": "Karim erzählt von einer fernen Stadt. (Recherchiere 15 Minuten über eine Stadt die du noch nie besucht hast)",
-          "type": "personal",
-          "priority": "low",
-          "rewards": { "xp": 25, "gold": 20 }
-        },
-        {
-          "title": "🤝 Ein fairer Handel",
-          "description": "Karim bietet einen Tausch an — hilf einem Freund oder Kollegen bei etwas. (Tu jemandem einen Gefallen)",
-          "type": "social",
-          "priority": "medium",
-          "rewards": { "xp": 35, "gold": 15 }
-        }
+      "questChains": [
+        [
+          {
+            "title": "📦 Karims Lieferung",
+            "description": "Karim braucht Hilfe beim Sortieren seiner Waren. (Räume deinen Schreibtisch oder ein Regal auf)",
+            "type": "personal",
+            "priority": "low",
+            "rewards": { "xp": 20, "gold": 25 }
+          },
+          {
+            "title": "🗺️ Karims Geheimnis",
+            "description": "Karim erzählt von einer fernen Stadt. (Recherchiere 15 Minuten über eine Stadt die du noch nie besucht hast)",
+            "type": "personal",
+            "priority": "low",
+            "rewards": { "xp": 25, "gold": 20 }
+          },
+          {
+            "title": "🤝 Ein fairer Handel",
+            "description": "Karim bietet einen Tausch an — hilf einem Freund oder Kollegen bei etwas. (Tu jemandem einen Gefallen)",
+            "type": "social",
+            "priority": "medium",
+            "rewards": { "xp": 35, "gold": 15 }
+          }
+        ],
+        [
+          {
+            "title": "💰 Marktanalyse",
+            "description": "Karim sagt: 'Wer den Markt kennt, gewinnt.' (Vergleiche heute Preise oder Optionen für etwas das du kaufen willst — 15 Minuten Recherche)",
+            "type": "learning",
+            "priority": "low",
+            "rewards": { "xp": 20, "gold": 25 }
+          },
+          {
+            "title": "🛤️ Die Handelsroute",
+            "description": "Karim plant seine nächste Reise. (Plane etwas — eine Aufgabe, ein Projekt, einen Ausflug — und schreib es auf)",
+            "type": "personal",
+            "priority": "medium",
+            "rewards": { "xp": 35, "gold": 20 }
+          }
+        ],
+        [
+          {
+            "title": "🌍 Kulturen der Welt",
+            "description": "Karim hat viele Länder bereist. (Lerne 20 Minuten über eine andere Kultur — Essen, Sprache, Traditionen)",
+            "type": "learning",
+            "priority": "low",
+            "rewards": { "xp": 25, "gold": 20 }
+          },
+          {
+            "title": "📊 Das Angebot",
+            "description": "'Ein guter Händler kennt seinen Wert.' (Erledige heute eine Aufgabe die du schon lange aufgeschoben hast)",
+            "type": "personal",
+            "priority": "medium",
+            "rewards": { "xp": 30, "gold": 25 }
+          },
+          {
+            "title": "🎁 Das Geschenk",
+            "description": "Karim verschenkt etwas aus seiner Sammlung. (Gib heute jemandem etwas — Zeit, Hilfe, oder ein kleines Geschenk)",
+            "type": "social",
+            "priority": "medium",
+            "rewards": { "xp": 35, "gold": 15 }
+          }
+        ]
       ],
       "finalReward": {
         "type": "unique_item",
@@ -82,28 +157,69 @@
       "description": "Ein alter Meister der seine Weisheit mit würdigen Schülern teilt.",
       "stayDays": 3,
       "cooldownDays": 18,
-      "questChain": [
-        {
-          "title": "🧘 Die erste Lektion",
-          "description": "Meister Tanaka sagt: 'Zuerst lernst du Geduld.' (Meditiere oder stretche 10 Minuten)",
-          "type": "fitness",
-          "priority": "low",
-          "rewards": { "xp": 20, "gold": 10 }
-        },
-        {
-          "title": "💪 Die Prüfung des Körpers",
-          "description": "'Stärke kommt von Disziplin, nicht von Wünschen.' (Mach ein 30-Minuten Workout)",
-          "type": "fitness",
-          "priority": "medium",
-          "rewards": { "xp": 35, "gold": 15 }
-        },
-        {
-          "title": "🧠 Die Prüfung des Geistes",
-          "description": "'Wahrer Kampf findet im Kopf statt.' (Lerne 30 Minuten etwas Neues — egal was)",
-          "type": "learning",
-          "priority": "medium",
-          "rewards": { "xp": 35, "gold": 15 }
-        }
+      "questChains": [
+        [
+          {
+            "title": "🧘 Die erste Lektion",
+            "description": "Meister Tanaka sagt: 'Zuerst lernst du Geduld.' (Meditiere oder stretche 10 Minuten)",
+            "type": "fitness",
+            "priority": "low",
+            "rewards": { "xp": 20, "gold": 10 }
+          },
+          {
+            "title": "💪 Die Prüfung des Körpers",
+            "description": "'Stärke kommt von Disziplin, nicht von Wünschen.' (Mach ein 30-Minuten Workout)",
+            "type": "fitness",
+            "priority": "medium",
+            "rewards": { "xp": 35, "gold": 15 }
+          },
+          {
+            "title": "🧠 Die Prüfung des Geistes",
+            "description": "'Wahrer Kampf findet im Kopf statt.' (Lerne 30 Minuten etwas Neues — egal was)",
+            "type": "learning",
+            "priority": "medium",
+            "rewards": { "xp": 35, "gold": 15 }
+          }
+        ],
+        [
+          {
+            "title": "🌬️ Der Atem",
+            "description": "Tanaka sagt: 'Kontrolle beginnt beim Atem.' (Übe 10 Minuten Atemübungen oder Box-Breathing)",
+            "type": "fitness",
+            "priority": "low",
+            "rewards": { "xp": 20, "gold": 10 }
+          },
+          {
+            "title": "⚖️ Die Balance",
+            "description": "'Gleichgewicht ist die Basis aller Stärke.' (Mach eine 20-Minuten Yoga- oder Gleichgewichtsübung)",
+            "type": "fitness",
+            "priority": "medium",
+            "rewards": { "xp": 30, "gold": 15 }
+          },
+          {
+            "title": "🎯 Der Fokus",
+            "description": "'Lenke all deine Kraft auf einen Punkt.' (Arbeite 45 Minuten ohne Unterbrechung an einer wichtigen Aufgabe)",
+            "type": "personal",
+            "priority": "high",
+            "rewards": { "xp": 45, "gold": 20 }
+          }
+        ],
+        [
+          {
+            "title": "🌅 Der frühe Vogel",
+            "description": "Tanaka steht immer mit der Sonne auf. (Stehe morgen früh auf und beginne den Tag mit Bewegung — 15 Minuten)",
+            "type": "fitness",
+            "priority": "medium",
+            "rewards": { "xp": 25, "gold": 10 }
+          },
+          {
+            "title": "🥊 Die Technik",
+            "description": "'Wiederholung ist der Meister.' (Übe eine Fähigkeit bewusst — 30 Minuten intensives Üben)",
+            "type": "learning",
+            "priority": "medium",
+            "rewards": { "xp": 35, "gold": 15 }
+          }
+        ]
       ],
       "finalReward": {
         "type": "unique_item",
@@ -121,21 +237,62 @@
       "description": "Eine mysteriöse Frau die Heilmittel aus seltenen Pflanzen braut.",
       "stayDays": 2,
       "cooldownDays": 20,
-      "questChain": [
-        {
-          "title": "🌿 Kräuter sammeln",
-          "description": "Mirael braucht frische Zutaten. (Geh 15 Minuten an die frische Luft — Wald, Park oder Garten)",
-          "type": "fitness",
-          "priority": "low",
-          "rewards": { "xp": 20, "gold": 10 }
-        },
-        {
-          "title": "🍵 Der Heiltrank",
-          "description": "Mirael zeigt dir ein altes Rezept. (Koche dir einen gesunden Tee oder Smoothie)",
-          "type": "personal",
-          "priority": "low",
-          "rewards": { "xp": 25, "gold": 15 }
-        }
+      "questChains": [
+        [
+          {
+            "title": "🌿 Kräuter sammeln",
+            "description": "Mirael braucht frische Zutaten. (Geh 15 Minuten an die frische Luft — Wald, Park oder Garten)",
+            "type": "fitness",
+            "priority": "low",
+            "rewards": { "xp": 20, "gold": 10 }
+          },
+          {
+            "title": "🍵 Der Heiltrank",
+            "description": "Mirael zeigt dir ein altes Rezept. (Koche dir einen gesunden Tee oder Smoothie)",
+            "type": "personal",
+            "priority": "low",
+            "rewards": { "xp": 25, "gold": 15 }
+          }
+        ],
+        [
+          {
+            "title": "🌙 Mondlicht-Meditation",
+            "description": "Mirael flüstert: 'Der Mond heilt was das Licht nicht kann.' (Meditiere heute Abend 15 Minuten im Dunkeln oder bei Kerzenlicht)",
+            "type": "personal",
+            "priority": "low",
+            "rewards": { "xp": 20, "gold": 10 }
+          },
+          {
+            "title": "🍄 Die verborgenen Zutaten",
+            "description": "'Manche Heilmittel verstecken sich.' (Recherchiere 20 Minuten über Naturheilkunde oder Ernährung)",
+            "type": "learning",
+            "priority": "low",
+            "rewards": { "xp": 25, "gold": 15 }
+          },
+          {
+            "title": "🔮 Das Ritual",
+            "description": "Mirael übergibt dir eine alte Praktik. (Etabliere eine neue gesunde Gewohnheit für heute — Trinken, Schlafen, Bewegung)",
+            "type": "personal",
+            "priority": "medium",
+            "rewards": { "xp": 35, "gold": 20 }
+          }
+        ],
+        [
+          {
+            "title": "🌳 Baumgespräch",
+            "description": "'Hör dem Wald zu', sagt Mirael. (Verbring 20 Minuten draußen ohne Handy — einfach da sein)",
+            "type": "fitness",
+            "priority": "low",
+            "rewards": { "xp": 20, "gold": 10 }
+          },
+          {
+            "title": "💊 Körperpflege",
+            "description": "'Der Körper ist dein Tempel.' (Schlafe heute mindestens 7 Stunden oder mach eine Entspannungsübung vor dem Schlafen)",
+            "type": "personal",
+            "priority": "medium",
+            "rewards": { "xp": 30, "gold": 15 }
+          }
+        ]
       ],
       "finalReward": {
         "type": "unique_item",
@@ -153,28 +310,69 @@
       "description": "Ein charismatischer Barde der überall Freunde findet.",
       "stayDays": 3,
       "cooldownDays": 16,
-      "questChain": [
-        {
-          "title": "🎶 Das Lied der Freundschaft",
-          "description": "Finnegan sagt: 'Musik verbindet!' (Schick einem Freund ein Lied das du magst)",
-          "type": "social",
-          "priority": "low",
-          "rewards": { "xp": 20, "gold": 10 }
-        },
-        {
-          "title": "📝 Die eigene Geschichte",
-          "description": "'Jeder hat eine Geschichte die erzählt werden will.' (Schreib 10 Minuten — Tagebuch, kreativ, egal was)",
-          "type": "personal",
-          "priority": "low",
-          "rewards": { "xp": 25, "gold": 15 }
-        },
-        {
-          "title": "🎭 Der große Auftritt",
-          "description": "'Trau dich!' (Tu heute etwas außerhalb deiner Komfortzone — egal wie klein)",
-          "type": "social",
-          "priority": "medium",
-          "rewards": { "xp": 40, "gold": 20 }
-        }
+      "questChains": [
+        [
+          {
+            "title": "🎶 Das Lied der Freundschaft",
+            "description": "Finnegan sagt: 'Musik verbindet!' (Schick einem Freund ein Lied das du magst)",
+            "type": "social",
+            "priority": "low",
+            "rewards": { "xp": 20, "gold": 10 }
+          },
+          {
+            "title": "📝 Die eigene Geschichte",
+            "description": "'Jeder hat eine Geschichte die erzählt werden will.' (Schreib 10 Minuten — Tagebuch, kreativ, egal was)",
+            "type": "personal",
+            "priority": "low",
+            "rewards": { "xp": 25, "gold": 15 }
+          },
+          {
+            "title": "🎭 Der große Auftritt",
+            "description": "'Trau dich!' (Tu heute etwas außerhalb deiner Komfortzone — egal wie klein)",
+            "type": "social",
+            "priority": "medium",
+            "rewards": { "xp": 40, "gold": 20 }
+          }
+        ],
+        [
+          {
+            "title": "🎸 Die Melodie",
+            "description": "Finnegan lehrt dich einen Akkord. (Höre heute ein Album bewusst durch — kein Multitasking, nur Musik)",
+            "type": "personal",
+            "priority": "low",
+            "rewards": { "xp": 20, "gold": 10 }
+          },
+          {
+            "title": "🖋️ Das Gedicht",
+            "description": "'Worte sind Magie', flüstert Finnegan. (Schreibe ein kurzes Gedicht oder einen kreativen Text — 5 Strophen reichen)",
+            "type": "personal",
+            "priority": "low",
+            "rewards": { "xp": 30, "gold": 15 }
+          }
+        ],
+        [
+          {
+            "title": "👂 Der Zuhörer",
+            "description": "Finnegan sagt: 'Ein guter Barde hört zuerst zu.' (Ruf heute jemanden an den du lange nicht gesprochen hast)",
+            "type": "social",
+            "priority": "medium",
+            "rewards": { "xp": 25, "gold": 15 }
+          },
+          {
+            "title": "🌟 Die Inspiration",
+            "description": "'Kunst entsteht überall.' (Besuche heute etwas Inspirierendes — Museum, Konzert, Kunstwerk online, oder ein Buch)",
+            "type": "learning",
+            "priority": "low",
+            "rewards": { "xp": 25, "gold": 10 }
+          },
+          {
+            "title": "🎪 Das Finale",
+            "description": "Finnegans größte Show beginnt! (Teile heute etwas das du erschaffen hast — Code, Kunst, Kochen — mit jemandem)",
+            "type": "social",
+            "priority": "high",
+            "rewards": { "xp": 45, "gold": 25 }
+          }
+        ]
       ],
       "finalReward": {
         "type": "unique_item",
@@ -192,28 +390,69 @@
       "description": "Eine legendäre Seherin, deren Prophezeiungen immer einzutreffen scheinen.",
       "stayDays": 1,
       "cooldownDays": 30,
-      "questChain": [
-        {
-          "title": "🔭 Das Himmelszeichen",
-          "description": "Lyra sagt: 'Schau nach oben.' (Beobachte heute Nacht den Himmel — oder lerne 20 Minuten über Astronomie)",
-          "type": "learning",
-          "priority": "medium",
-          "rewards": { "xp": 40, "gold": 20 }
-        },
-        {
-          "title": "✍️ Die Prophezeiung",
-          "description": "'Schreibe deine Träume auf.' (Führe heute ein Tagebucheintrag über deine Ziele — mindestens 10 Minuten)",
-          "type": "personal",
-          "priority": "high",
-          "rewards": { "xp": 50, "gold": 25 }
-        },
-        {
-          "title": "🌌 Das Sternenbild",
-          "description": "'Verbinde die Punkte.' (Mach einen großen Schritt auf ein langfristiges Ziel zu — egal was es ist)",
-          "type": "personal",
-          "priority": "high",
-          "rewards": { "xp": 60, "gold": 30 }
-        }
+      "questChains": [
+        [
+          {
+            "title": "🔭 Das Himmelszeichen",
+            "description": "Lyra sagt: 'Schau nach oben.' (Beobachte heute Nacht den Himmel — oder lerne 20 Minuten über Astronomie)",
+            "type": "learning",
+            "priority": "medium",
+            "rewards": { "xp": 40, "gold": 20 }
+          },
+          {
+            "title": "✍️ Die Prophezeiung",
+            "description": "'Schreibe deine Träume auf.' (Führe heute ein Tagebucheintrag über deine Ziele — mindestens 10 Minuten)",
+            "type": "personal",
+            "priority": "high",
+            "rewards": { "xp": 50, "gold": 25 }
+          },
+          {
+            "title": "🌌 Das Sternenbild",
+            "description": "'Verbinde die Punkte.' (Mach einen großen Schritt auf ein langfristiges Ziel zu — egal was es ist)",
+            "type": "personal",
+            "priority": "high",
+            "rewards": { "xp": 60, "gold": 30 }
+          }
+        ],
+        [
+          {
+            "title": "🌠 Sternschnuppe",
+            "description": "Die Sternenwächterin flüstert: 'Wünsche sind Wegweiser.' (Schreibe 3 konkrete Ziele auf die du in diesem Monat erreichen willst)",
+            "type": "personal",
+            "priority": "high",
+            "rewards": { "xp": 45, "gold": 20 }
+          },
+          {
+            "title": "🪐 Die Kosmische Ordnung",
+            "description": "'Alles hat seinen Platz im Universum.' (Bringe Ordnung in einen Bereich deines Lebens — digital oder physisch — 30 Minuten)",
+            "type": "personal",
+            "priority": "medium",
+            "rewards": { "xp": 50, "gold": 25 }
+          }
+        ],
+        [
+          {
+            "title": "💫 Das Omen",
+            "description": "'Ein Zeichen liegt in allem.' (Meditiere 15 Minuten und reflektiere über eine wichtige Entscheidung)",
+            "type": "personal",
+            "priority": "medium",
+            "rewards": { "xp": 40, "gold": 20 }
+          },
+          {
+            "title": "🌙 Mondphase",
+            "description": "Die Sternenwächterin zeigt dir die Mondkarte. (Lerne 20 Minuten über Psychologie, Philosophie oder Selbstreflexion)",
+            "type": "learning",
+            "priority": "medium",
+            "rewards": { "xp": 45, "gold": 20 }
+          },
+          {
+            "title": "⭐ Das Erbe der Sterne",
+            "description": "'Du bist aus Sternenstaub gemacht — vergiss das nicht.' (Tue heute etwas das du in einem Jahr noch stolz sein wirst)",
+            "type": "personal",
+            "priority": "high",
+            "rewards": { "xp": 65, "gold": 35 }
+          }
+        ]
       ],
       "finalReward": {
         "type": "unique_item",
