@@ -1360,7 +1360,7 @@ export default function Dashboard() {
                           border: `1px solid ${questBoardTab === tab.key ? "rgba(167,139,250,0.4)" : "rgba(255,255,255,0.08)"}`,
                         }}
                       >
-                        <img src={tab.iconSrc} alt="" width={28} height={28}
+                        <img src={tab.iconSrc} alt="" width={42} height={42}
                           style={{ imageRendering: "pixelated" }}
                           onError={(e) => { e.currentTarget.style.display = "none"; const next = e.currentTarget.nextElementSibling as HTMLElement; if (next) next.style.display = "inline"; }} />
                         <span style={{ display: "none" }}>{tab.fallback}</span>
@@ -1494,7 +1494,7 @@ export default function Dashboard() {
                           <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.2)" }}>🔒 Locked</span>
                           <span className="text-xs px-1 rounded font-mono" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.15)" }}>{(quests.locked ?? []).length}</span>
                         </div>
-                        {(quests.locked ?? []).map(q => (
+                        {applySort(quests.locked ?? []).map(q => (
                           <div key={q.id} className="rounded-lg px-3 py-2.5 flex items-center gap-3" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)", opacity: 0.5 }}>
                             <span className="text-base">🔒</span>
                             <div className="flex-1 min-w-0">
