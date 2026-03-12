@@ -122,6 +122,7 @@ export default function Dashboard() {
   const [settingsPopupOpen, setSettingsPopupOpen] = useState(false);
   const settingsPopupRef = useRef<HTMLDivElement>(null);
   const [questDetailModal, setQuestDetailModal] = useState<Quest | null>(null);
+  const [currenciesOpen, setCurrenciesOpen] = useState(false);
 
   // Settings popup — click-outside to close
   useEffect(() => {
@@ -532,6 +533,17 @@ export default function Dashboard() {
   const playerStreak = loggedInUser?.streakDays ?? 0;
   const playerGold = loggedInUser?.gold ?? 0;
 
+  // Forge: count quests completed by the player in the last 24h
+  const now24h = Date.now() - 24 * 3600 * 1000;
+  const forgeQuestsToday = quests.completed.filter(q =>
+    playerName &&
+    (q.completedBy ?? "").toLowerCase() === playerName.toLowerCase() &&
+    q.completedAt && new Date(q.completedAt).getTime() > now24h
+  ).length;
+  const forgeTemp = Math.min(loggedInUser?.forgeTemp ?? 0, 100);
+  const forgeTempColor = forgeTemp === 0 ? "#ef4444" : forgeTemp <= 33 ? "#f97316" : forgeTemp <= 66 ? "#eab308" : forgeTemp <= 89 ? "#22c55e" : "#60a5fa";
+  const forgeTempLabel = forgeTemp === 0 ? "Cold" : forgeTemp <= 20 ? "Lukewarm" : forgeTemp <= 40 ? "Warming" : forgeTemp <= 60 ? "Hot" : forgeTemp <= 80 ? "Blazing" : "White-hot";
+
   const playerActiveCount = playerActiveQuests.length;
   const playerCompletedCount = playerCompletedQuests.length;
 
@@ -615,24 +627,19 @@ export default function Dashboard() {
               onClick={() => { setDashView("questBoard"); window.scrollTo({ top: 0, behavior: "smooth" }); }}
               title="Home — Quest Hall"
             >
-              <img src="/guild-gate.png" alt="Quest Hall" className="h-14 w-14" style={{ imageRendering: "pixelated", display: "block" }} />
+              <img src="/guild-gate.png" alt="Quest Hall" className="h-20 w-20" style={{ imageRendering: "pixelated", display: "block" }} />
               <span className="font-semibold text-sm tracking-tight" style={{ color: "#e8e8e8" }}>
                 Quest Hall
               </span>
             </button>
-            <span
-              className="text-xs font-mono px-2 py-0.5 rounded"
-              style={{ color: "#ff4444", background: "rgba(255,68,68,0.08)", border: "1px solid rgba(255,68,68,0.18)" }}
-            >
-              The Guild
-            </span>
-            <span
-              className="text-xs px-2 py-0.5 rounded font-medium"
-              style={{ color: CURRENT_SEASON.color, background: CURRENT_SEASON.bg, border: `1px solid ${CURRENT_SEASON.color}40` }}
-              title={`Current Season: ${CURRENT_SEASON.name}`}
+            <button
+              className="text-xs px-2 py-0.5 rounded font-medium btn-interactive"
+              style={{ color: CURRENT_SEASON.color, background: CURRENT_SEASON.bg, border: `1px solid ${CURRENT_SEASON.color}40`, cursor: "pointer" }}
+              title={`Current Season: ${CURRENT_SEASON.name} — click to view Season tab`}
+              onClick={() => setDashView("season")}
             >
               {CURRENT_SEASON.icon} {CURRENT_SEASON.name}
-            </span>
+            </button>
           </div>
 
           <div className="flex items-center gap-4">
@@ -906,9 +913,9 @@ export default function Dashboard() {
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 py-8 space-y-8" style={{ position: "relative", zIndex: 2, background: "rgba(11,13,17,0.75)", borderRadius: 16, backdropFilter: "blur(8px)", marginTop: 8 }}>
         {/* Stats — Player-specific */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3" data-tutorial="stat-cards">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3" data-tutorial="stat-cards">
           {!playerName && !loading && (
-            <div className="col-span-2 sm:col-span-4 rounded-xl p-3 text-center" style={{ background: "rgba(167,139,250,0.06)", border: "1px solid rgba(167,139,250,0.2)" }}>
+            <div className="col-span-1 sm:col-span-3 rounded-xl p-3 text-center" style={{ background: "rgba(167,139,250,0.06)", border: "1px solid rgba(167,139,250,0.2)" }}>
               <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>
                 🔑 <button onClick={() => setLoginOpen(true)} className="underline" style={{ color: "#a78bfa" }}>Log in</button> to see your personal stats
               </p>
@@ -936,32 +943,155 @@ export default function Dashboard() {
             accent="#22c55e"
             tooltip={<InfoTooltip text="Total quests you've finished. Each one earns XP toward your next level." />}
           />
-          <StatBar
-            label="🪙 Your Gold"
-            value={loading ? "—" : playerName ? animGold : "—"}
-            sub={playerName ? "your earnings" : "login to view"}
-            accent="#eab308"
-            tooltip={<InfoTooltip align="right" text="Currency earned from quests. Spend it in the Shop on rewards!" />}
-          />
         </div>
 
-        {/* Level progress bar — shown when logged in */}
+        {/* Player Card — shown when logged in */}
         {playerName && loggedInUser && (
-          <div className="rounded-xl px-4 py-3" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)" }}>
-            <div className="flex items-center justify-between mb-1.5">
-              <div className="flex items-center gap-2">
-                <span className="text-xs font-bold" style={{ color: "#a78bfa" }}>Lv.{playerLevelInfo.level}</span>
-                <span className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>{playerLevelInfo.title}</span>
+          <div className="rounded-xl p-4" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.09)" }}>
+            <div className="flex items-center gap-4">
+              {/* Portrait */}
+              <div className="relative flex-shrink-0">
+                <img
+                  src="/images/portraits/hero-male.png"
+                  alt={playerName}
+                  className="w-14 h-14 rounded-xl object-cover"
+                  style={{ imageRendering: "pixelated", border: `2px solid ${loggedInUser.color ?? "#a78bfa"}50` }}
+                  onError={e => {
+                    const img = e.currentTarget as HTMLImageElement;
+                    img.style.display = "none";
+                    const fallback = img.nextElementSibling as HTMLElement;
+                    if (fallback) fallback.style.display = "flex";
+                  }}
+                />
+                <div
+                  className="w-14 h-14 rounded-xl items-center justify-center font-black text-xl flex-shrink-0"
+                  style={{ display: "none", background: `linear-gradient(135deg, ${loggedInUser.color ?? "#a78bfa"}, ${loggedInUser.color ?? "#a78bfa"}99)`, color: "#fff", border: `2px solid ${loggedInUser.color ?? "#a78bfa"}50` }}
+                >
+                  {playerName.slice(0, 1).toUpperCase()}
+                </div>
               </div>
-              <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.25)" }}>
-                {playerXp} {playerLevelInfo.nextXp ? `/ ${playerLevelInfo.nextXp} XP` : "XP (max)"}
-              </span>
+
+              {/* Name + level + XP bar */}
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center gap-2 mb-0.5">
+                  <p className="text-sm font-bold" style={{ color: "#f0f0f0" }}>{playerName}</p>
+                  {loggedInUser.classId && (
+                    <span className="text-xs px-1.5 py-0.5 rounded font-medium" style={{ color: "rgba(255,255,255,0.4)", background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)" }}>
+                      {loggedInUser.classId}
+                    </span>
+                  )}
+                </div>
+                <p className="text-xs mb-1.5" style={{ color: "#a78bfa" }}>Lv.{playerLevelInfo.level} · {playerLevelInfo.title}</p>
+                {/* XP progress bar */}
+                <div className="h-1.5 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.07)" }}>
+                  <div
+                    className="h-full rounded-full transition-all duration-700"
+                    style={{ width: `${(playerLevelInfo.progress * 100).toFixed(1)}%`, background: "linear-gradient(90deg, #7c3aed, #a78bfa)" }}
+                  />
+                </div>
+                <p className="text-xs mt-1 font-mono" style={{ color: "rgba(255,255,255,0.2)" }}>
+                  {playerXp} {playerLevelInfo.nextXp ? `/ ${playerLevelInfo.nextXp} XP` : "(max)"}
+                </p>
+              </div>
+
+              {/* Right side: Gold + Forge + Currencies */}
+              <div className="flex flex-col items-end gap-2 flex-shrink-0">
+                {/* Gold */}
+                <div className="flex items-center gap-1.5">
+                  <span className="text-sm">💰</span>
+                  <span className="text-sm font-mono font-bold" style={{ color: "#f59e0b" }}>{animGold}</span>
+                  <button
+                    onClick={() => setCurrenciesOpen(true)}
+                    className="btn-interactive text-xs px-2 py-0.5 rounded ml-1"
+                    style={{ color: "rgba(255,255,255,0.35)", background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}
+                    title="View all currencies"
+                  >
+                    Currencies
+                  </button>
+                </div>
+
+                {/* Forge Temperature */}
+                <div className="relative group">
+                  <div className="flex items-center gap-1.5 cursor-help">
+                    <span className="text-xs font-medium" style={{ color: forgeTempColor }}>
+                      🔥 {forgeTemp}%
+                    </span>
+                    <span className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>{forgeTempLabel}</span>
+                    <span className="text-xs px-1 py-0.5 rounded font-mono" style={{ color: "rgba(255,255,255,0.25)", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.07)" }}>
+                      {forgeQuestsToday}/8
+                    </span>
+                    <span className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>❓</span>
+                  </div>
+                  {/* Forge bar */}
+                  <div className="mt-1 rounded-full overflow-hidden" style={{ height: 3, background: "rgba(255,255,255,0.06)", width: 120 }}>
+                    <div
+                      className="h-full rounded-full transition-all duration-700"
+                      style={{ width: `${forgeTemp}%`, background: `linear-gradient(90deg, ${forgeTempColor}80, ${forgeTempColor})`, boxShadow: forgeTemp > 60 ? `0 0 6px ${forgeTempColor}80` : "none" }}
+                    />
+                  </div>
+                  {/* Tooltip */}
+                  <div
+                    className="absolute right-0 bottom-8 z-50 rounded-xl p-3 text-xs leading-relaxed pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity"
+                    style={{ background: "#1a1a1a", border: "1px solid rgba(255,255,255,0.12)", minWidth: 260, boxShadow: "0 8px 32px rgba(0,0,0,0.6)" }}
+                  >
+                    <p className="font-semibold mb-1.5" style={{ color: "#f0f0f0" }}>The Deepforge</p>
+                    <p className="mb-2" style={{ color: "rgba(255,255,255,0.5)" }}>
+                      The Deepforge burns hotter with each quest you complete.
+                    </p>
+                    <div className="space-y-0.5 mb-2">
+                      {[
+                        { q: "0 quests", t: "0%", note: "Cold — XP ×0.5" },
+                        { q: "1 quest",  t: "20%", note: "" },
+                        { q: "2 quests", t: "40%", note: "" },
+                        { q: "3 quests", t: "60%", note: "" },
+                        { q: "5+ quests", t: "80%", note: "" },
+                        { q: "8+ quests", t: "100%", note: "White-hot!" },
+                      ].map(row => (
+                        <div key={row.q} className="flex gap-2">
+                          <span style={{ color: "rgba(255,255,255,0.35)", minWidth: 72 }}>{row.q}</span>
+                          <span style={{ color: "#f97316" }}>{row.t}</span>
+                          {row.note && <span style={{ color: "#a78bfa" }}>{row.note}</span>}
+                        </div>
+                      ))}
+                    </div>
+                    <p style={{ color: "rgba(255,255,255,0.4)" }}>
+                      Keep the forge burning to maximize your XP gains!
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div className="h-1.5 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.07)" }}>
-              <div
-                className="h-full rounded-full transition-all duration-700"
-                style={{ width: `${(playerLevelInfo.progress * 100).toFixed(1)}%`, background: "linear-gradient(90deg, #7c3aed, #a78bfa)" }}
-              />
+          </div>
+        )}
+
+        {/* Currencies Modal */}
+        {currenciesOpen && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: "rgba(0,0,0,0.7)" }}
+            onClick={() => setCurrenciesOpen(false)}>
+            <div className="w-full max-w-xs rounded-2xl p-5" style={{ background: "#1a1a1a", border: "1px solid rgba(255,255,255,0.1)" }}
+              onClick={e => e.stopPropagation()}>
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-sm font-semibold" style={{ color: "#e8e8e8" }}>Currencies</h3>
+                <button onClick={() => setCurrenciesOpen(false)} style={{ color: "rgba(255,255,255,0.4)", background: "none", border: "none", cursor: "pointer", fontSize: 18 }}>×</button>
+              </div>
+              <div className="space-y-2">
+                {[
+                  { icon: "💰", name: "Gold", value: animGold, color: "#f59e0b", desc: "Earned from quests. Spend in the Deepforge." },
+                  { icon: "✨", name: "Astralium", value: 0, color: "#818cf8", desc: "Coming soon — rare cosmic currency." },
+                  { icon: "🔮", name: "Runensplitter", value: 0, color: "#a78bfa", desc: "Coming soon — used for enchantments." },
+                ].map(c => (
+                  <div key={c.name} className="flex items-center gap-3 rounded-xl px-3 py-2.5" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)" }}>
+                    <span style={{ fontSize: 20 }}>{c.icon}</span>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-xs font-semibold" style={{ color: c.color }}>{c.name}</p>
+                      <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>{c.desc}</p>
+                    </div>
+                    <span className="text-sm font-mono font-bold" style={{ color: c.value === 0 && c.name !== "Gold" ? "rgba(255,255,255,0.2)" : c.color }}>
+                      {c.value === 0 && c.name !== "Gold" ? "—" : c.value}
+                    </span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         )}
@@ -974,7 +1104,7 @@ export default function Dashboard() {
             { key: "klassenquests", label: "🎓 The Arcanum",  tutorialKey: null },
             ...(playerName ? [{ key: "character", label: "🧙 Character", tutorialKey: null }] : []),
             { key: "npcBoard",      label: "🏕 The Wanderer's Rest", tutorialKey: "npc-board-tab" },
-            { key: "leaderboard", label: "🏆 Leaderboard",     tutorialKey: "leaderboard-tab" },
+            { key: "leaderboard", label: "🏆 The Proving Grounds", tutorialKey: "leaderboard-tab" },
             { key: "honors",      label: "🏅 Honors",          tutorialKey: null },
             { key: "campaign",    label: "🔭 The Observatory",        tutorialKey: "campaign-tab" },
             { key: "season",      label: `${CURRENT_SEASON.icon} Season`, tutorialKey: "season-tab" },
@@ -995,13 +1125,22 @@ export default function Dashboard() {
           ))}
         </div>
 
-        {/* Leaderboard View — Players only */}
+        {/* The Proving Grounds — Leaderboard + Player Cards */}
         {dashView === "leaderboard" && (
-          <div className="space-y-4">
+          <div className="space-y-6">
             <div className="flex items-center gap-2">
-              <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.35)" }}>🏆 Leaderboard</span>
-              <InfoTooltip text="Rankings based on XP earned. Compete with other players!" />
+              <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.35)" }}>🏆 The Proving Grounds</span>
+              <InfoTooltip text="Rankings based on XP earned. Compete with other players to claim glory!" />
             </div>
+            {/* Player cards */}
+            {users.filter(u => !agents.some(a => a.id === u.id)).length > 0 && (
+              <div>
+                <h3 className="text-xs font-semibold uppercase tracking-widest mb-3" style={{ color: "rgba(255,255,255,0.25)" }}>Adventurers</h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 mb-6">
+                  {users.filter(u => !agents.some(a => a.id === u.id)).map(u => <UserCard key={u.id} user={u} classes={classesList} />)}
+                </div>
+              </div>
+            )}
             <LeaderboardView entries={leaderboard} agents={agents} mode="players" users={users} />
           </div>
         )}
@@ -1140,18 +1279,6 @@ export default function Dashboard() {
           })();
           return (
             <div>
-              {/* Player Cards */}
-              {users.length > 0 && (
-                <section className="mb-6">
-                  <div className="flex items-center gap-3 mb-3">
-                    <h2 className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.3)" }}>Players</h2>
-                    <span className="text-xs px-1.5 py-0.5 rounded font-mono" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.25)" }}>{users.length}</span>
-                  </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
-                    {users.map(u => <UserCard key={u.id} user={u} classes={classesList} />)}
-                  </div>
-                </section>
-              )}
 
               {/* Companions Widget — compact Dobbie peek, full experience at the Hearth */}
               {playerName && (
@@ -1962,22 +2089,6 @@ export default function Dashboard() {
 
       {/* Guide Modal (legacy fallback) */}
       {guideOpen && <GuideModal onClose={() => setGuideOpen(false)} onRestartTutorial={handleRestartTutorial} />}
-
-      {/* Floating Info Button */}
-      <button
-        onClick={() => setInfoOverlayOpen(true)}
-        style={{
-          position: "fixed", bottom: "1.5rem", right: "1.5rem",
-          zIndex: 50, width: 44, height: 44, borderRadius: "50%",
-          background: "rgba(30,30,30,0.95)", border: "1px solid rgba(255,255,255,0.15)",
-          color: "rgba(255,255,255,0.6)", fontSize: 20, cursor: "pointer",
-          display: "flex", alignItems: "center", justifyContent: "center",
-          boxShadow: "0 4px 20px rgba(0,0,0,0.4)",
-        }}
-        title="Info, Roadmap & Changelog"
-      >
-        ℹ️
-      </button>
 
       {/* Info Overlay */}
       {infoOverlayOpen && (
