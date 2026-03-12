@@ -629,7 +629,7 @@ export default function Dashboard() {
               onClick={() => { setDashView("questBoard"); window.scrollTo({ top: 0, behavior: "smooth" }); }}
               title="Home — Quest Hall"
             >
-              <img src="/guild-gate.png" alt="Quest Hall" className="h-20 w-20" style={{ imageRendering: "pixelated", display: "block", marginBottom: "-8px" }} />
+              <img src="/guild-gate.png" alt="Quest Hall" className="h-20 w-20" style={{ imageRendering: "pixelated", display: "block", marginBottom: "-8px", marginTop: "4px" }} />
               <span className="font-semibold text-sm tracking-tight" style={{ color: "#e8e8e8" }}>
                 Quest Hall
               </span>
@@ -663,14 +663,15 @@ export default function Dashboard() {
                     className="btn-interactive flex items-center justify-center font-bold flex-shrink-0"
                     style={{
                       width: 32, height: 32, borderRadius: "50%",
-                      background: `linear-gradient(135deg, ${loggedInUser?.color ?? "#a78bfa"}, ${loggedInUser?.color ?? "#a78bfa"}88)`,
-                      color: "#fff", fontSize: 13,
+                      overflow: "hidden",
                       border: `2px solid ${loggedInUser?.color ?? "#a78bfa"}60`,
                       boxShadow: `0 2px 8px ${loggedInUser?.color ?? "#a78bfa"}40`,
                       cursor: "pointer",
+                      padding: 0,
                     }}
                   >
-                    {playerName.slice(0, 1).toUpperCase()}
+                    <img src="/images/portraits/hero-male.png" alt={playerName} style={{ width: "100%", height: "100%", objectFit: "cover", imageRendering: "pixelated" }} onError={e => { (e.currentTarget as HTMLImageElement).style.display = "none"; (e.currentTarget.nextElementSibling as HTMLElement).style.display = "flex"; }} />
+                    <div style={{ display: "none", width: "100%", height: "100%", alignItems: "center", justifyContent: "center", background: `linear-gradient(135deg, ${loggedInUser?.color ?? "#a78bfa"}, ${loggedInUser?.color ?? "#a78bfa"}88)`, color: "#fff", fontSize: 13, fontWeight: "bold" }}>{playerName.slice(0, 1).toUpperCase()}</div>
                   </button>
                   {settingsPopupOpen && (
                       <div className="absolute right-0 top-9 z-50 rounded-xl shadow-xl flex flex-col" style={{ background: "#1e1e1e", border: "1px solid rgba(255,255,255,0.1)", minWidth: 200, overflow: "hidden" }}>
