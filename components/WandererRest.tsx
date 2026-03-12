@@ -18,8 +18,8 @@ interface WandererRestProps {
   reviewApiKey: string;
   selectedIds: Set<string>;
   toggleSelect: (id: string) => void;
-  sortMode: "newest" | "priority";
-  setSortMode: (fn: (s: "newest" | "priority") => "newest" | "priority") => void;
+  sortMode: "rarity" | "newest";
+  setSortMode: (fn: (s: "rarity" | "newest") => "rarity" | "newest") => void;
   searchFilter: string;
   setSearchFilter: (v: string) => void;
   devOpenCollapsed: boolean;
@@ -477,8 +477,8 @@ export function WandererRest({
                   <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.25)" }}>{devVisibleOpen.length} open · {devVisibleInProgress.length} in progress</p>
                 </div>
                 <div className="flex items-center gap-1">
-                  <button onClick={() => setSortMode(s => s === "newest" ? "priority" : "newest")} className="text-xs px-2 py-1 rounded" style={{ background: sortMode === "priority" ? "rgba(255,102,51,0.15)" : "rgba(255,255,255,0.05)", color: sortMode === "priority" ? "#ff6633" : "rgba(255,255,255,0.3)", border: `1px solid ${sortMode === "priority" ? "rgba(255,102,51,0.3)" : "rgba(255,255,255,0.08)"}` }}>
-                    {sortMode === "newest" ? "⇅ Newest" : "⇅ Priority"}
+                  <button onClick={() => setSortMode(s => s === "rarity" ? "newest" : "rarity")} className="text-xs px-2 py-1 rounded" style={{ background: sortMode === "rarity" ? "rgba(167,139,250,0.15)" : "rgba(255,255,255,0.05)", color: sortMode === "rarity" ? "#a78bfa" : "rgba(255,255,255,0.3)", border: `1px solid ${sortMode === "rarity" ? "rgba(167,139,250,0.3)" : "rgba(255,255,255,0.08)"}` }}>
+                    {sortMode === "rarity" ? "⇅ Rarity" : "⇅ Newest"}
                   </button>
                 </div>
               </div>

@@ -44,6 +44,8 @@ import {
   priorityConfig, categoryConfig, productConfig, typeConfig, STREAK_MILESTONES_CLIENT,
 } from "@/app/config";
 
+const RARITY_ORDER: Record<string, number> = { legendary: 0, epic: 1, rare: 2, uncommon: 3, common: 4 };
+
 export default function Dashboard() {
   const [agents, setAgents] = useState<Agent[]>([]);
   const [users, setUsers] = useState<User[]>([]);
@@ -56,7 +58,7 @@ export default function Dashboard() {
   const [completedSearch, setCompletedSearch] = useState("");
   const [rejectedOpen, setRejectedOpen] = useState(false);
   const [searchFilter, setSearchFilter] = useState("");
-  const [sortMode, setSortMode] = useState<"newest" | "priority">("newest");
+  const [sortMode, setSortMode] = useState<"rarity" | "newest">("rarity");
   const [versions, setVersions] = useState<{ dashboard: string; app: string } | null>(null);
   const [reviewApiKey, setReviewApiKey] = useState<string>(() => {
     try { return localStorage.getItem("dash_api_key") || ""; } catch { return ""; }
@@ -561,7 +563,6 @@ export default function Dashboard() {
     : "—";
 
   // Quest search + sort + type filter
-  const priorityOrder: Record<string, number> = { high: 0, medium: 1, low: 2 };
   const applyFilter = useCallback((qs: Quest[]) => {
     let result = qs;
     if (typeFilter !== "all") result = result.filter(q => (q.type ?? "development") === typeFilter);
@@ -580,7 +581,7 @@ export default function Dashboard() {
   }, [searchFilter, typeFilter, playerName, users]);
   const applySort = useCallback((qs: Quest[]) => {
     if (sortMode === "newest") return qs;
-    return [...qs].sort((a, b) => (priorityOrder[a.priority] ?? 1) - (priorityOrder[b.priority] ?? 1));
+    return [...qs].sort((a, b) => (RARITY_ORDER[getQuestRarity(a)] ?? 4) - (RARITY_ORDER[getQuestRarity(b)] ?? 4));
   }, [sortMode]);
   const visibleOpen = useMemo(() => applySort(applyFilter(quests.open)), [quests.open, applyFilter, applySort]);
   const visibleInProgress = useMemo(() => applySort(applyFilter(quests.inProgress)), [quests.inProgress, applyFilter, applySort]);
@@ -1327,7 +1328,7 @@ export default function Dashboard() {
                           <button
                             onClick={handlePoolRefresh}
                             disabled={poolRefreshing}
-                            className="btn-interactive px-2 py-1 rounded inline-flex items-center gap-1.5"
+                            className="btn-interactive px-2 py-1 rounded"
                             style={{ background: "rgba(59,130,246,0.12)", color: "#60a5fa", border: "1px solid rgba(59,130,246,0.3)", opacity: poolRefreshing ? 0.6 : 1 }}
                             title="Refresh quest pool (1x per hour)"
                           >
@@ -1336,64 +1337,18 @@ export default function Dashboard() {
                             ) : (
                               <img src="/images/icons/ui-quest-scroll.png" alt="" width={24} height={24} style={{ imageRendering: "pixelated" }} onError={e => (e.currentTarget.style.display = "none")} />
                             )}
-                            <span className="text-xs font-semibold">New Quests</span>
                           </button>
                         )}
-                        <button
-                          onClick={() => {
-                            const allCollapsed = openSectionCollapsed && inProgressSectionCollapsed;
-                            const next = !allCollapsed;
-                            setOpenSectionCollapsed(next);
-                            setInProgressSectionCollapsed(next);
-                            try { localStorage.setItem("qb_open_collapsed", String(next)); localStorage.setItem("qb_inprogress_collapsed", String(next)); } catch { /* ignore */ }
-                          }}
-                          className="text-xs px-2 py-1 rounded"
-                          style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.25)", border: "1px solid rgba(255,255,255,0.07)" }}
-                          title="Collapse / Expand All"
-                        >
-                          {openSectionCollapsed && inProgressSectionCollapsed ? "⊞" : "⊟"}
-                        </button>
-                        <button
-                          onClick={() => setSortMode(s => s === "newest" ? "priority" : "newest")}
-                          className="text-xs px-2 py-1 rounded"
-                          style={{ background: sortMode === "priority" ? "rgba(255,102,51,0.15)" : "rgba(255,255,255,0.05)", color: sortMode === "priority" ? "#ff6633" : "rgba(255,255,255,0.3)", border: `1px solid ${sortMode === "priority" ? "rgba(255,102,51,0.3)" : "rgba(255,255,255,0.08)"}` }}
-                        >
-                          {sortMode === "newest" ? "⇅ Newest" : "⇅ Priority"}
-                        </button>
                       </div>
                     </div>
-                    {/* Type filter — player types only */}
-                    <div className="flex gap-1 flex-wrap mb-2" data-tutorial="quest-filters">
-                      {(["all", "personal", "learning", "fitness", "social", "relationship-coop"] as const).map(t => {
-                        const cfg = t === "all" ? null : typeConfig[t];
-                        const isActive = typeFilter === t;
-                        // Map type key to pixel art icon filename
-                        const iconFile = t === "relationship-coop" ? "coop" : t;
-                        return (
-                          <button key={t} onClick={() => setTypeFilter(t)} className="btn-interactive text-sm px-2 py-0.5 rounded inline-flex items-center gap-1.5"
-                            style={{ background: isActive ? (cfg ? cfg.bg : "rgba(255,255,255,0.1)") : "rgba(255,255,255,0.03)", color: isActive ? (cfg ? cfg.color : "#e8e8e8") : "rgba(255,255,255,0.3)", border: `1px solid ${isActive ? (cfg ? cfg.border : "rgba(255,255,255,0.2)") : "rgba(255,255,255,0.07)"}` }}>
-                            {t === "all" ? "All" : (
-                              <>
-                                <img src={`/images/icons/cat-${iconFile}.png`} alt="" width={28} height={28}
-                                  style={{ imageRendering: "pixelated" }}
-                                  onError={(e) => { e.currentTarget.style.display = "none"; const next = e.currentTarget.nextElementSibling as HTMLElement; if (next) next.style.display = "inline"; }} />
-                                <span style={{ display: "none" }}>{cfg!.icon}</span>
-                                {cfg!.label}
-                              </>
-                            )}
-                          </button>
-                        );
-                      })}
-                    </div>
-                    <input type="text" value={searchFilter} onChange={e => setSearchFilter(e.target.value)} placeholder="Search quests…" className="w-full text-xs px-2 py-1.5 rounded" style={{ background: "#1e1e1e", border: "1px solid rgba(255,255,255,0.08)", color: "#e8e8e8", outline: "none" }} />
                   </div>
 
                   {/* Board Sub-Tabs */}
                   <div className="flex gap-1 mb-3">
                     {[
-                      { key: "auftraege",    label: "Quests",  iconSrc: "/images/icons/ui-quest-scroll.png",  fallback: "📜" },
-                      { key: "rituale",      label: "Rituals", iconSrc: "/images/icons/ui-ritual-rune.png",   fallback: "🔁" },
-                      { key: "anti-rituale", label: "Vows",    iconSrc: "/images/icons/ui-vow-sword.png",     fallback: "⚔️" },
+                      { key: "auftraege",    label: "Quest Board",     iconSrc: "/images/icons/ui-quest-scroll.png",  fallback: "📜" },
+                      { key: "rituale",      label: "Ritual Chamber",  iconSrc: "/images/icons/ui-ritual-rune.png",   fallback: "🔁" },
+                      { key: "anti-rituale", label: "Vow Shrine",      iconSrc: "/images/icons/ui-vow-sword.png",     fallback: "⚔️" },
                     ].map(tab => (
                       <button
                         key={tab.key}
@@ -1415,6 +1370,53 @@ export default function Dashboard() {
                   </div>
 
                   {questBoardTab === "auftraege" && <div className="space-y-2">
+                    {/* Category filters — Quest Board only */}
+                    <div className="flex gap-1 flex-wrap mb-2" data-tutorial="quest-filters">
+                      {(["all", "personal", "learning", "fitness", "social", "relationship-coop"] as const).map(t => {
+                        const cfg = t === "all" ? null : typeConfig[t];
+                        const isActive = typeFilter === t;
+                        const iconFile = t === "relationship-coop" ? "coop" : t;
+                        return (
+                          <button key={t} onClick={() => setTypeFilter(t)} className="btn-interactive text-sm px-2 py-0.5 rounded inline-flex items-center gap-1.5"
+                            style={{ background: isActive ? (cfg ? cfg.bg : "rgba(255,255,255,0.1)") : "rgba(255,255,255,0.03)", color: isActive ? (cfg ? cfg.color : "#e8e8e8") : "rgba(255,255,255,0.3)", border: `1px solid ${isActive ? (cfg ? cfg.border : "rgba(255,255,255,0.2)") : "rgba(255,255,255,0.07)"}` }}>
+                            {t === "all" ? "All" : (
+                              <>
+                                <img src={`/images/icons/cat-${iconFile}.png`} alt="" width={28} height={28}
+                                  style={{ imageRendering: "pixelated" }}
+                                  onError={(e) => { e.currentTarget.style.display = "none"; const next = e.currentTarget.nextElementSibling as HTMLElement; if (next) next.style.display = "inline"; }} />
+                                <span style={{ display: "none" }}>{cfg!.icon}</span>
+                                {cfg!.label}
+                              </>
+                            )}
+                          </button>
+                        );
+                      })}
+                    </div>
+                    {/* Search + Sort row */}
+                    <div className="flex gap-1 mb-2">
+                      <input type="text" value={searchFilter} onChange={e => setSearchFilter(e.target.value)} placeholder="Search quests…" className="flex-1 text-xs px-2 py-1.5 rounded" style={{ background: "#1e1e1e", border: "1px solid rgba(255,255,255,0.08)", color: "#e8e8e8", outline: "none" }} />
+                      <button
+                        onClick={() => setSortMode(s => s === "rarity" ? "newest" : "rarity")}
+                        className="text-xs px-2 py-1.5 rounded shrink-0"
+                        style={{ background: sortMode === "rarity" ? "rgba(167,139,250,0.15)" : "rgba(255,255,255,0.05)", color: sortMode === "rarity" ? "#a78bfa" : "rgba(255,255,255,0.3)", border: `1px solid ${sortMode === "rarity" ? "rgba(167,139,250,0.3)" : "rgba(255,255,255,0.08)"}` }}
+                      >
+                        {sortMode === "rarity" ? "⇅ Rarity" : "⇅ Newest"}
+                      </button>
+                      <button
+                        onClick={() => {
+                          const allCollapsed = openSectionCollapsed && inProgressSectionCollapsed;
+                          const next = !allCollapsed;
+                          setOpenSectionCollapsed(next);
+                          setInProgressSectionCollapsed(next);
+                          try { localStorage.setItem("qb_open_collapsed", String(next)); localStorage.setItem("qb_inprogress_collapsed", String(next)); } catch { /* ignore */ }
+                        }}
+                        className="text-xs px-2 py-1.5 rounded shrink-0"
+                        style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.25)", border: "1px solid rgba(255,255,255,0.07)" }}
+                        title="Collapse / Expand All"
+                      >
+                        {openSectionCollapsed && inProgressSectionCollapsed ? "⊞" : "⊟"}
+                      </button>
+                    </div>
                     {!playerName && !loading ? (
                       <div className="rounded-xl p-8 text-center" style={{ background: "#252525", border: "1px solid rgba(255,255,255,0.06)" }}>
                         <p className="text-base mb-2">⚔️</p>
