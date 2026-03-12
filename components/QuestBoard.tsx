@@ -158,9 +158,6 @@ export function PersonalQuestPanel({ reviewApiKey, onRefresh }: {
                           {t.recurrence}
                         </span>
                       )}
-                      <span className="text-xs px-1 py-0.5 rounded font-mono" style={{ color: priorityBadge[t.priority], background: `${priorityBadge[t.priority]}18` }}>
-                        {t.priority}
-                      </span>
                     </div>
                   </div>
                 </div>
@@ -928,7 +925,6 @@ export function DobbieQuestPanel({ reviewApiKey, onRefresh, playerName }: { revi
                 <span className="text-xl flex-shrink-0">{q.icon}</span>
                 <div className="flex-1 min-w-0">
                   <p className="text-xs font-bold truncate" style={{ color: "#f0f0f0" }}>{q.title}</p>
-                  <span className="text-xs" style={{ color: q.priority === "high" ? "#ef4444" : q.priority === "medium" ? "#f59e0b" : "#22c55e" }}>{q.priority}</span>
                 </div>
               </div>
               <p className="text-xs mb-3 leading-relaxed flex-1" style={{ color: "rgba(255,255,255,0.35)" }}>{q.description}</p>
@@ -1668,7 +1664,7 @@ export function QuestCard({ quest, selected, onToggle, onClaim, onUnclaim, onCom
           </div>
           {quest.npcGiverId ? (
             <p className="text-xs font-semibold" style={{ color: RARITY_COLORS[quest.npcRarity ?? "common"] ?? "#9ca3af", opacity: 0.85 }}>
-              {quest.npcName || "NPC"} · {quest.lore || `${(quest.chainIndex ?? 0) + 1}/${quest.chainTotal ?? 1}`}
+              {quest.npcName || "NPC"}{(quest.chainTotal ?? 1) > 1 ? ` · ${(quest.chainIndex ?? 0) + 1}/${quest.chainTotal}` : ""}
             </p>
           ) : (
             <p className="text-xs italic" style={{ color: "rgba(220,185,120,0.35)" }}>{flavorText}</p>
@@ -1743,7 +1739,6 @@ export function QuestCard({ quest, selected, onToggle, onClaim, onUnclaim, onCom
             {quest.createdBy && quest.createdBy !== "leon" && quest.createdBy !== "unknown" && (
               <AgentBadge name={quest.createdBy} />
             )}
-            <PriorityBadge priority={quest.priority} />
           </div>
           <div className="flex items-center gap-1.5 mt-1 flex-wrap">
             <TypeBadge type={quest.type} />
@@ -1790,7 +1785,7 @@ export function QuestCard({ quest, selected, onToggle, onClaim, onUnclaim, onCom
           )}
           {!expanded && quest.npcGiverId ? (
             <p className="text-xs mt-0.5 font-semibold truncate" style={{ color: RARITY_COLORS[quest.npcRarity ?? "common"] ?? "#9ca3af", opacity: 0.8 }}>
-              {quest.npcName || "NPC"} · {quest.lore || `${(quest.chainIndex ?? 0) + 1}/${quest.chainTotal ?? 1}`}
+              {quest.npcName || "NPC"}{(quest.chainTotal ?? 1) > 1 ? ` · ${(quest.chainIndex ?? 0) + 1}/${quest.chainTotal}` : ""}
             </p>
           ) : !expanded ? (
             <p className="text-xs mt-0.5 italic truncate" style={{ color: "rgba(220,185,120,0.28)" }}>{flavorText}</p>
@@ -1883,7 +1878,6 @@ export function EpicQuestCard({ quest, selected, onToggle }: { quest: Quest; sel
               <span className="text-xs flex-shrink-0" style={{ color: "rgba(255,165,0,0.7)" }}>◆</span>
               <p className="text-xs font-semibold truncate flex-1" style={{ color: "#e8e8e8" }}>{quest.title}</p>
               {quest.humanInputRequired && <HumanInputBadge />}
-              <PriorityBadge priority={quest.priority} />
               <span className="text-xs flex-shrink-0" style={{ color: "rgba(255,255,255,0.2)" }}>
                 {expanded ? "▲" : "▼"}
               </span>
@@ -1976,7 +1970,6 @@ export function EpicQuestCard({ quest, selected, onToggle }: { quest: Quest; sel
               >
                 {child.title}
               </p>
-              <PriorityBadge priority={child.priority} />
               {child.claimedBy && (
                 <span className="text-xs flex-shrink-0" style={{ color: "rgba(139,92,246,0.6)" }}>{child.claimedBy}</span>
               )}

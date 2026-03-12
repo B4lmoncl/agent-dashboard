@@ -2105,12 +2105,12 @@ export default function Dashboard() {
                     development:        "Der Code ist die neue Magie — und du bist der Zauberer. Erschaffe etwas Bleibendes.",
                     boss:               "Eine dunkle Macht erhebt sich. Nur die Mutigsten können bestehen. Rüste dich gut.",
                   };
-                  const flavorText = q.flavorText || q.lore || FLAVOR_BY_TYPE[q.type ?? "personal"] || "Eine Herausforderung wartet. Beweise dein Können.";
+                  const flavorText = q.flavorText || FLAVOR_BY_TYPE[q.type ?? "personal"] || "Eine Herausforderung wartet. Beweise dein Können.";
                   return (
                     <>
                       {q.npcGiverId && (
                         <p className="text-xs font-semibold mb-1" style={{ color: RARITY_COLORS[q.npcRarity ?? "common"] ?? "#9ca3af" }}>
-                          {q.npcName} · Kette {(q.chainIndex ?? 0) + 1}/{q.chainTotal ?? 1}
+                          {q.npcName}{(q.chainTotal ?? 1) > 1 ? ` · Kette ${(q.chainIndex ?? 0) + 1}/${q.chainTotal}` : ""}
                         </p>
                       )}
                       <p className="text-sm italic leading-relaxed" style={{ color: "rgba(255,255,255,0.38)" }}>
