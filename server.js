@@ -4396,45 +4396,71 @@ app.get('/api/auth/check', (req, res) => {
   return res.json({ isAdmin, name: user ? user.name : null, userId: user ? user.id : null, valid: true });
 });
 
-// POST /api/auth/login — validate name + apiKey
-app.post('/api/auth/login', (req, res) => {
-  const { name, apiKey } = req.body;
-  if (!name || !apiKey) return res.status(400).json({ success: false, error: 'name and apiKey required' });
-  const master = getMasterKey();
-  const isAdmin = (apiKey === master) || (apiKey === ADMIN_KEY);
-  // Check against managed keys / master key
-  if (!validApiKeys.has(apiKey)) {
-    return res.json({ success: false, error: 'Invalid name or key' });
-  }
-  // Find user by name and matching apiKey
+// POST /api/auth/login — validate name + password (returns apiKey for internal use)
+app.post('/api/auth/login', async (req, res) => {
+  const { name, password } = req.body;
+  if (!name || !password) return res.status(400).json({ success: false, error: 'Name and password required' });
+
+  const bcrypt = require('bcryptjs');
   const nameLower = name.toLowerCase();
-  const user = Object.values(users).find(u =>
-    u.name.toLowerCase() === nameLower && u.apiKey === apiKey
-  );
-  if (!user && !isAdmin) {
-    // Allow admin to log in with any valid name if key is master/admin
-    return res.json({ success: false, error: 'Invalid name or key' });
+  const user = Object.values(users).find(u => u.name.toLowerCase() === nameLower);
+
+  if (!user) return res.json({ success: false, error: 'Invalid name or password' });
+
+  // Support both new password login and legacy API-key-as-password login
+  if (user.passwordHash) {
+    const match = await bcrypt.compare(password, user.passwordHash);
+    if (!match) return res.json({ success: false, error: 'Invalid name or password' });
+  } else {
+    // Legacy: user has no password yet, check if password matches apiKey
+    if (password !== user.apiKey) return res.json({ success: false, error: 'Invalid name or password' });
   }
-  const foundUser = user || Object.values(users).find(u => u.name.toLowerCase() === nameLower);
+
+  const master = getMasterKey();
+  const isAdmin = (user.apiKey === master) || (user.apiKey === ADMIN_KEY);
+
   return res.json({
     success: true,
-    userId: foundUser ? foundUser.id : nameLower,
-    name: foundUser ? foundUser.name : name,
+    apiKey: user.apiKey,
+    userId: user.id,
+    name: user.name,
     isAdmin,
   });
 });
 
+// POST /api/auth/set-password — migration: set password for existing user
+app.post('/api/auth/set-password', async (req, res) => {
+  const key = req.headers['x-api-key'];
+  if (!key) return res.status(401).json({ error: 'Unauthorized' });
+
+  const user = Object.values(users).find(u => u.apiKey === key);
+  if (!user) return res.status(401).json({ error: 'Invalid key' });
+
+  const { password } = req.body;
+  if (!password || password.length < 6) return res.status(400).json({ error: 'Password must be at least 6 characters' });
+
+  const bcrypt = require('bcryptjs');
+  user.passwordHash = await bcrypt.hash(password, 10);
+  saveUsers();
+
+  return res.json({ success: true, message: 'Password set' });
+});
+
 // POST /api/register — register a new player
-app.post('/api/register', (req, res) => {
-  const { name, age, goals, classId, companion, relationshipStatus, partnerName } = req.body;
+app.post('/api/register', async (req, res) => {
+  const { name, password, age, goals, classId, companion, relationshipStatus, partnerName } = req.body;
   if (!name || !String(name).trim()) return res.status(400).json({ error: 'name is required' });
+  if (!password) return res.status(400).json({ error: 'password is required' });
+  if (password.length < 6) return res.status(400).json({ error: 'Password must be at least 6 characters' });
   const trimmedName = String(name).trim();
   const nameLower = trimmedName.toLowerCase();
   // Check if name already taken
   const existing = Object.values(users).find(u => u.name.toLowerCase() === nameLower);
   if (existing) return res.status(409).json({ error: 'Name already taken' });
-  // Generate API key
+  // Generate API key + hash password
+  const bcrypt = require('bcryptjs');
   const apiKey = crypto.randomBytes(16).toString('hex');
+  const hashedPassword = await bcrypt.hash(password, 10);
   const userId = nameLower.replace(/\s+/g, '_');
   const finalId = users[userId] ? `${userId}_${Date.now()}` : userId;
 
@@ -4466,6 +4492,7 @@ app.post('/api/register', (req, res) => {
     forgeTemp: 100,
     gold: 0,
     apiKey,
+    passwordHash: hashedPassword,
     _allCompletedTypes: [],
     createdAt: now(),
     // Extended onboarding fields

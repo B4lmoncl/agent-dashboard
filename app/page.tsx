@@ -118,8 +118,10 @@ export default function Dashboard() {
   const [loginError, setLoginError] = useState("");
   const [registerOpen, setRegisterOpen] = useState(false);
   const [registerName, setRegisterName] = useState("");
+  const [registerPassword, setRegisterPassword] = useState("");
+  const [registerPasswordConfirm, setRegisterPasswordConfirm] = useState("");
   const [registerError, setRegisterError] = useState("");
-  const [registerNewKey, setRegisterNewKey] = useState("");
+  const [registerSuccess, setRegisterSuccess] = useState(false);
   const [cvBuilderOpen, setCvBuilderOpen] = useState(false);
   const [showTutorial, setShowTutorial] = useState(false);
   const [tutorialStep, setTutorialStep] = useState(0);
@@ -800,7 +802,7 @@ export default function Dashboard() {
                             type="password"
                             value={reviewKeyInput}
                             onChange={e => setReviewKeyInput(e.target.value)}
-                            placeholder="API Key"
+                            placeholder="Password"
                             className="text-xs px-2 py-1 rounded"
                             style={{ background: "#141414", border: "1px solid rgba(255,255,255,0.1)", color: "#fff", outline: "none" }}
                             onKeyDown={async e => {
@@ -808,18 +810,18 @@ export default function Dashboard() {
                                 const r = await fetch("/api/auth/login", {
                                   method: "POST",
                                   headers: { "Content-Type": "application/json" },
-                                  body: JSON.stringify({ name: playerNameInput, apiKey: reviewKeyInput }),
+                                  body: JSON.stringify({ name: playerNameInput, password: reviewKeyInput }),
                                 });
                                 const data = await r.json();
                                 if (data.success) {
-                                  localStorage.setItem("dash_api_key", reviewKeyInput);
+                                  localStorage.setItem("dash_api_key", data.apiKey);
                                   localStorage.setItem("dash_player_name", data.name);
                                   setPlayerName(data.name);
-                                  setReviewApiKey(reviewKeyInput);
+                                  setReviewApiKey(data.apiKey);
                                   setIsAdmin(data.isAdmin);
                                   setLoginOpen(false);
                                   setLoginError("");
-                                  createStarterQuestsIfNew(data.name, reviewKeyInput).then(() => refresh());
+                                  createStarterQuestsIfNew(data.name, data.apiKey).then(() => refresh());
                                 } else {
                                   setLoginError(data.error || "Invalid credentials");
                                 }
@@ -834,18 +836,18 @@ export default function Dashboard() {
                                 const r = await fetch("/api/auth/login", {
                                   method: "POST",
                                   headers: { "Content-Type": "application/json" },
-                                  body: JSON.stringify({ name: playerNameInput, apiKey: reviewKeyInput }),
+                                  body: JSON.stringify({ name: playerNameInput, password: reviewKeyInput }),
                                 });
                                 const data = await r.json();
                                 if (data.success) {
-                                  localStorage.setItem("dash_api_key", reviewKeyInput);
+                                  localStorage.setItem("dash_api_key", data.apiKey);
                                   localStorage.setItem("dash_player_name", data.name);
                                   setPlayerName(data.name);
-                                  setReviewApiKey(reviewKeyInput);
+                                  setReviewApiKey(data.apiKey);
                                   setIsAdmin(data.isAdmin);
                                   setLoginOpen(false);
                                   setLoginError("");
-                                  createStarterQuestsIfNew(data.name, reviewKeyInput).then(() => refresh());
+                                  createStarterQuestsIfNew(data.name, data.apiKey).then(() => refresh());
                                 } else {
                                   setLoginError(data.error || "Invalid credentials");
                                 }
@@ -864,15 +866,12 @@ export default function Dashboard() {
                             </button>
                           </div>
                         </>
-                      ) : registerNewKey ? (
+                      ) : registerSuccess ? (
                         <div className="flex flex-col gap-2">
                           <p className="text-xs font-semibold" style={{ color: "#22c55e" }}>Account Created!</p>
-                          <p className="text-xs" style={{ color: "rgba(255,255,255,0.5)" }}>Copy your API key — it won&apos;t be shown again:</p>
-                          <div className="flex items-center gap-1">
-                            <code className="text-xs flex-1 px-2 py-1 rounded font-mono" style={{ background: "#141414", color: "#a78bfa", border: "1px solid rgba(139,92,246,0.3)", wordBreak: "break-all" }}>{registerNewKey}</code>
-                          </div>
+                          <p className="text-xs" style={{ color: "rgba(255,255,255,0.5)" }}>You are now logged in.</p>
                           <button
-                            onClick={() => { setRegisterOpen(false); setRegisterNewKey(""); setLoginOpen(false); }}
+                            onClick={() => { setRegisterOpen(false); setRegisterSuccess(false); setLoginOpen(false); }}
                             className="text-xs px-3 py-1 rounded font-medium"
                             style={{ background: "rgba(139,92,246,0.2)", color: "#a78bfa", border: "1px solid rgba(139,92,246,0.4)" }}
                           >
@@ -890,25 +889,45 @@ export default function Dashboard() {
                             className="text-xs px-2 py-1 rounded"
                             style={{ background: "#141414", border: "1px solid rgba(255,255,255,0.1)", color: "#fff", outline: "none" }}
                           />
+                          <input
+                            type="password"
+                            value={registerPassword}
+                            onChange={e => setRegisterPassword(e.target.value)}
+                            placeholder="Password (min 6 chars)"
+                            className="text-xs px-2 py-1 rounded"
+                            style={{ background: "#141414", border: "1px solid rgba(255,255,255,0.1)", color: "#fff", outline: "none" }}
+                          />
+                          <input
+                            type="password"
+                            value={registerPasswordConfirm}
+                            onChange={e => setRegisterPasswordConfirm(e.target.value)}
+                            placeholder="Confirm password"
+                            className="text-xs px-2 py-1 rounded"
+                            style={{ background: "#141414", border: "1px solid rgba(255,255,255,0.1)", color: "#fff", outline: "none" }}
+                          />
                           {registerError && <p className="text-xs" style={{ color: "#ef4444" }}>{registerError}</p>}
                           <div className="flex gap-1">
                             <button
                               onClick={async () => {
                                 if (!registerName.trim()) return;
+                                if (registerPassword.length < 6) { setRegisterError("Password must be at least 6 characters"); return; }
+                                if (registerPassword !== registerPasswordConfirm) { setRegisterError("Passwords do not match"); return; }
                                 const r = await fetch("/api/register", {
                                   method: "POST",
                                   headers: { "Content-Type": "application/json" },
-                                  body: JSON.stringify({ name: registerName.trim() }),
+                                  body: JSON.stringify({ name: registerName.trim(), password: registerPassword }),
                                 });
                                 const data = await r.json();
                                 if (r.ok) {
-                                  setRegisterNewKey(data.apiKey);
+                                  setRegisterSuccess(true);
                                   localStorage.setItem("dash_api_key", data.apiKey);
                                   localStorage.setItem("dash_player_name", data.name);
                                   setPlayerName(data.name);
                                   setReviewApiKey(data.apiKey);
                                   setIsAdmin(false);
                                   setRegisterError("");
+                                  setRegisterPassword("");
+                                  setRegisterPasswordConfirm("");
                                   await createStarterQuestsIfNew(data.name, data.apiKey);
                                   await refresh();
                                 } else {
@@ -921,7 +940,7 @@ export default function Dashboard() {
                               Create
                             </button>
                             <button
-                              onClick={() => { setRegisterOpen(false); setRegisterError(""); }}
+                              onClick={() => { setRegisterOpen(false); setRegisterError(""); setRegisterPassword(""); setRegisterPasswordConfirm(""); }}
                               className="text-xs px-2 py-1 rounded"
                               style={{ color: "rgba(255,255,255,0.3)", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}
                             >

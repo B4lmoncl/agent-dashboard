@@ -80,11 +80,14 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
   const [virtualCompanionType, setVirtualCompanionType] = useState<string | null>(null);
   const [virtualCompanionName, setVirtualCompanionName] = useState("");
 
+  // Step 0 password fields
+  const [password, setPassword] = useState("");
+  const [passwordConfirm, setPasswordConfirm] = useState("");
+
   // Step 5 result
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [generatedKey, setGeneratedKey] = useState("");
-  const [keyCopied, setKeyCopied] = useState(false);
 
   useEffect(() => {
     fetch("/api/classes")
@@ -94,7 +97,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
   }, []);
 
   const selectedClass = classes.find(c => c.id === selectedClassId);
-  const canProceedStep0 = name.trim().length >= 2;
+  const canProceedStep0 = name.trim().length >= 2 && password.length >= 6 && password === passwordConfirm;
   const canProceedStep2 = selectedClassId !== null || customClassSubmitted;
   const canProceedStep3 = hasRealPet === true
     ? petName.trim().length >= 1
@@ -166,6 +169,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name: name.trim(),
+          password,
           age: age ? parseInt(age, 10) : null,
           goals: goals.trim() || null,
           classId: selectedClassId || null,
@@ -188,18 +192,6 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
     setLoading(false);
   };
 
-  const handleCopyKey = () => {
-    navigator.clipboard.writeText(generatedKey).catch(() => {
-      const el = document.createElement("textarea");
-      el.value = generatedKey;
-      document.body.appendChild(el);
-      el.select();
-      document.execCommand("copy");
-      document.body.removeChild(el);
-    });
-    setKeyCopied(true);
-    setTimeout(() => setKeyCopied(false), 2000);
-  };
 
   const handleDone = () => {
     onComplete({
@@ -279,16 +271,41 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
               <h2 className="text-lg font-bold" style={{ color: "#f0f0f0" }}>Willkommen in der Quest Hall!</h2>
               <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>Dein Abenteuer beginnt hier. Wie sollen wir dich nennen?</p>
             </div>
-            <div>
-              <label className="text-xs font-semibold mb-1.5 block" style={{ color: "rgba(255,255,255,0.5)" }}>Dein Name</label>
-              <input
-                style={inputStyle}
-                value={name}
-                onChange={e => setName(e.target.value)}
-                placeholder="z.B. Luna, Marco, Aria..."
-                autoFocus
-                onKeyDown={e => { if (e.key === "Enter" && canProceedStep0) setStep(1); }}
-              />
+            <div className="space-y-3">
+              <div>
+                <label className="text-xs font-semibold mb-1.5 block" style={{ color: "rgba(255,255,255,0.5)" }}>Dein Name</label>
+                <input
+                  style={inputStyle}
+                  value={name}
+                  onChange={e => setName(e.target.value)}
+                  placeholder="z.B. Luna, Marco, Aria..."
+                  autoFocus
+                />
+              </div>
+              <div>
+                <label className="text-xs font-semibold mb-1.5 block" style={{ color: "rgba(255,255,255,0.5)" }}>Passwort</label>
+                <input
+                  type="password"
+                  style={inputStyle}
+                  value={password}
+                  onChange={e => setPassword(e.target.value)}
+                  placeholder="Min. 6 Zeichen"
+                />
+              </div>
+              <div>
+                <label className="text-xs font-semibold mb-1.5 block" style={{ color: "rgba(255,255,255,0.5)" }}>Passwort wiederholen</label>
+                <input
+                  type="password"
+                  style={inputStyle}
+                  value={passwordConfirm}
+                  onChange={e => setPasswordConfirm(e.target.value)}
+                  placeholder="Passwort best\u00e4tigen"
+                  onKeyDown={e => { if (e.key === "Enter" && canProceedStep0) setStep(1); }}
+                />
+                {password && passwordConfirm && password !== passwordConfirm && (
+                  <p className="text-xs mt-1" style={{ color: "#ef4444" }}>Passw\u00f6rter stimmen nicht \u00fcberein</p>
+                )}
+              </div>
             </div>
             <div className="flex justify-between items-center">
               <button onClick={onClose} style={btnSecondary}>Abbrechen</button>
@@ -716,26 +733,8 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
               </div>
             </div>
 
-            {/* API key display */}
-            <div className="space-y-2">
-              <p className="text-xs font-semibold" style={{ color: "#f59e0b" }}>⚠️ Dein API-Key — einmalig angezeigt!</p>
-              <div className="rounded-lg p-3" style={{ background: "#141414", border: "1px solid rgba(245,158,11,0.3)" }}>
-                <code className="text-xs font-mono break-all" style={{ color: "#fbbf24" }}>{generatedKey}</code>
-              </div>
-              <button
-                onClick={handleCopyKey}
-                className="w-full py-2 rounded-lg text-xs font-semibold"
-                style={{
-                  background: keyCopied ? "rgba(34,197,94,0.12)" : "rgba(245,158,11,0.1)",
-                  color: keyCopied ? "#22c55e" : "#f59e0b",
-                  border: `1px solid ${keyCopied ? "rgba(34,197,94,0.3)" : "rgba(245,158,11,0.3)"}`,
-                }}
-              >
-                {keyCopied ? "✓ Kopiert!" : "📋 Key kopieren"}
-              </button>
-              <p className="text-xs text-center" style={{ color: "rgba(255,255,255,0.3)" }}>
-                Bewahre diesen Key sicher auf! Du brauchst ihn zum Einloggen.
-              </p>
+            <div className="rounded-xl p-3 text-center" style={{ background: "rgba(34,197,94,0.08)", border: "1px solid rgba(34,197,94,0.2)" }}>
+              <p className="text-xs" style={{ color: "#22c55e" }}>Du bist jetzt eingeloggt. Dein Passwort ist sicher gespeichert.</p>
             </div>
 
             <button
