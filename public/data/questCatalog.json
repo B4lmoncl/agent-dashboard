@@ -1,14 +1,86 @@
 {
   "meta": {
-    "totalTemplates": 0,
+    "totalTemplates": 5,
     "byCategory": {
       "generic": 0,
       "classQuest": 0,
       "chainQuest": 0,
-      "companionQuest": 0
+      "companionQuest": 5
     },
     "byClass": {},
-    "lastUpdated": "2026-03-10T12:00:00Z"
+    "lastUpdated": "2026-03-12T12:00:00Z"
   },
-  "templates": []
+  "templates": [
+    {
+      "id": "companion-feed-01",
+      "title": "Feed {companionName} Before 18:00",
+      "description": "His Highness demands his meal on time. No excuses.",
+      "type": "personal",
+      "category": "companion",
+      "rarity": "companion",
+      "createdBy": "companion",
+      "icon": "\ud83e\udd6b",
+      "priority": "high",
+      "rewards": { "xp": 30, "gold": 20 },
+      "recurrence": "daily",
+      "timeLimit": "18:00",
+      "tags": ["companion", "care"]
+    },
+    {
+      "id": "companion-litter-01",
+      "title": "Clean the Litter Box",
+      "description": "The sacred ritual must be performed. {companionName} demands cleanliness.",
+      "type": "personal",
+      "category": "companion",
+      "rarity": "companion",
+      "createdBy": "companion",
+      "icon": "\ud83e\uddf9",
+      "priority": "medium",
+      "rewards": { "xp": 20, "gold": 12 },
+      "recurrence": "daily",
+      "tags": ["companion", "care"]
+    },
+    {
+      "id": "companion-pet-01",
+      "title": "Pet {companionName} for 5 Minutes",
+      "description": "Five minutes of undivided attention. The minimum acceptable tribute.",
+      "type": "personal",
+      "category": "companion",
+      "rarity": "companion",
+      "createdBy": "companion",
+      "icon": "\ud83d\ude3b",
+      "priority": "low",
+      "rewards": { "xp": 10, "gold": 6 },
+      "recurrence": "daily",
+      "tags": ["companion", "bonding"]
+    },
+    {
+      "id": "companion-play-01",
+      "title": "Interactive Play Session",
+      "description": "10 minutes with the wand toy. {companionName} requires stimulation.",
+      "type": "personal",
+      "category": "companion",
+      "rarity": "companion",
+      "createdBy": "companion",
+      "icon": "\ud83c\udfbe",
+      "priority": "low",
+      "rewards": { "xp": 10, "gold": 6 },
+      "recurrence": "daily",
+      "tags": ["companion", "play"]
+    },
+    {
+      "id": "companion-window-01",
+      "title": "Open Window for Bird Watching",
+      "description": "Allow access to the window ledge for prime bird surveillance.",
+      "type": "personal",
+      "category": "companion",
+      "rarity": "companion",
+      "createdBy": "companion",
+      "icon": "\ud83d\udc26",
+      "priority": "low",
+      "rewards": { "xp": 10, "gold": 6 },
+      "recurrence": "daily",
+      "tags": ["companion", "enrichment"]
+    }
+  ]
 }
