@@ -1672,7 +1672,7 @@ export default function Dashboard() {
                             <div className="relative flex items-end" style={{ maxWidth: 820, width: "100%" }} onClick={e => e.stopPropagation()}>
 
                               {/* ── Seraine Portrait (hidden on small screens) ── */}
-                              <div className="hidden md:flex items-end" style={{ marginRight: -44, width: 220, flexShrink: 0, pointerEvents: "none", zIndex: 10, background: "none", border: "none", padding: 0 }}>
+                              <div className="hidden md:block" style={{ position: "absolute", left: -160, top: "50%", transform: "translateY(-50%)", width: 180, pointerEvents: "none", zIndex: 10 }}>
                                 <img src="/images/portraits/npc-seraine.png" alt="Seraine Ashwell" width={256} height={384} style={{ imageRendering: "pixelated", width: "100%", height: "auto", display: "block", filter: newRitualBloodPact ? "drop-shadow(0 0 22px rgba(239,68,68,0.65))" : "drop-shadow(0 0 22px rgba(245,158,11,0.55))", transition: "filter 0.5s ease" }} />
                               </div>
 

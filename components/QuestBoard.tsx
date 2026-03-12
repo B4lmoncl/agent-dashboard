@@ -593,7 +593,7 @@ export function AntiRitualePanel({ playerName, reviewApiKey }: { playerName: str
               </div>
 
               {/* ── Vael Portrait (hidden on small screens) ── */}
-              <div className="hidden md:flex items-end" style={{ marginLeft: -44, width: 220, flexShrink: 0, pointerEvents: "none", zIndex: 10, background: "none", border: "none", padding: 0 }}>
+              <div className="hidden md:block" style={{ position: "absolute", right: -160, top: "50%", transform: "translateY(-50%)", width: 180, pointerEvents: "none", zIndex: 10 }}>
                 <img src="/images/portraits/npc-vael.png" alt="Vael the Silent" width={256} height={384} style={{ imageRendering: "pixelated", width: "100%", height: "auto", display: "block", filter: newVowBloodPact ? "drop-shadow(0 0 22px rgba(99,102,241,0.8))" : "drop-shadow(0 0 18px rgba(99,102,241,0.45))", transition: "filter 0.5s ease" }} />
               </div>
             </div>
