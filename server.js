@@ -844,12 +844,56 @@ function trySpawnNpcs(now) {
   }
 }
 
+/** Check companion quests with timeLimit and fail expired ones */
+function checkCompanionQuestTimeLimits() {
+  const nowMs = Date.now();
+  let changed = false;
+  for (const q of quests) {
+    if (q.rarity !== 'companion') continue;
+    if (q.status !== 'open' && q.status !== 'in_progress') continue;
+    if (!q.timeLimit) continue;
+    // Parse timeLimit (e.g. "18:00") as Europe/Berlin time for the quest's creation date
+    const [hours, minutes] = q.timeLimit.split(':').map(Number);
+    if (isNaN(hours) || isNaN(minutes)) continue;
+    // Use the quest's creation date (not today) so yesterday's quests also fail
+    const questDate = q.createdAt ? q.createdAt.slice(0, 10) : getTodayBerlin();
+    // Build a Date object for the timeLimit in Europe/Berlin
+    // Create date string and parse in Berlin timezone
+    const berlinStr = `${questDate}T${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:00`;
+    const berlinFormatter = new Intl.DateTimeFormat('en-US', {
+      timeZone: TIMEZONE, year: 'numeric', month: '2-digit', day: '2-digit',
+      hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false,
+    });
+    // Approximate: compute offset by comparing UTC format vs Berlin format for that moment
+    // Simpler approach: create date at midnight UTC on questDate, add hours/minutes, then adjust
+    const utcGuess = new Date(`${questDate}T${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:00Z`);
+    // Get Berlin offset: format a known date in Berlin and compare
+    const refDate = new Date(questDate + 'T12:00:00Z');
+    const berlinParts = new Intl.DateTimeFormat('en-GB', {
+      timeZone: TIMEZONE, year: 'numeric', month: '2-digit', day: '2-digit',
+      hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false,
+    }).formatToParts(refDate);
+    const bH = parseInt(berlinParts.find(p => p.type === 'hour').value);
+    const offsetHours = bH - 12; // Berlin is UTC+1 or UTC+2
+    const timeLimitMs = utcGuess.getTime() - offsetHours * 3600000;
+    if (nowMs > timeLimitMs) {
+      q.status = 'failed';
+      q.failReason = 'time_expired';
+      q.failedAt = new Date().toISOString();
+      changed = true;
+      console.log(`[Companion] Quest "${q.title}" (${q.id}) failed — timeLimit ${q.timeLimit} expired`);
+    }
+  }
+  if (changed) saveQuests();
+}
+
 /** Main NPC rotation check — called on startup and every 30 minutes */
 function checkNpcRotation() {
   const now = new Date();
   console.log(`[npc] Rotation check at ${now.toISOString()} — ${npcState.activeNpcs.length} active`);
   processNpcDepartures(now);
   trySpawnNpcs(now);
+  checkCompanionQuestTimeLimits();
   npcState.lastRotationCheck = now.toISOString();
   npcState.lastRotation = now.toISOString();
   saveNpcState();
@@ -2561,6 +2605,24 @@ app.post('/api/quest/:id/claim', requireApiKey, (req, res) => {
   res.json({ ok: true, quest });
 });
 
+// Chain quest auto-unlock: when a quest with chainId+chainOrder completes, unlock next step
+function unlockNextChainQuest(completedQuest) {
+  const chainId = completedQuest.chainId || completedQuest.chapter;
+  const chainOrder = completedQuest.chainOrder;
+  if (!chainId || typeof chainOrder !== 'number') return;
+  const nextOrder = chainOrder + 1;
+  const nextQuest = quests.find(q =>
+    (q.chainId === chainId || q.chapter === chainId) &&
+    q.chainOrder === nextOrder &&
+    q.status === 'locked'
+  );
+  if (nextQuest) {
+    nextQuest.status = 'open';
+    saveQuests();
+    console.log(`[Chain] Unlocked quest ${nextQuest.id} (${chainId} step ${nextOrder})`);
+  }
+}
+
 // POST /api/quest/:id/complete — mark quest as done
 app.post('/api/quest/:id/complete', requireApiKey, (req, res) => {
   const quest = quests.find(q => q.id === req.params.id);
@@ -2583,6 +2645,7 @@ app.post('/api/quest/:id/complete', requireApiKey, (req, res) => {
       if (nextQuest && nextQuest.status === 'locked') nextQuest.status = 'open';
     }
     saveQuests();
+    unlockNextChainQuest(quest);
     const newAchievements = users[agentKey] ? onQuestCompletedByUser(agentKey, quest) : [];
     const lootDrop = users[agentKey]?._lastLoot || null;
     if (users[agentKey]) delete users[agentKey]._lastLoot;
@@ -2605,6 +2668,7 @@ app.post('/api/quest/:id/complete', requireApiKey, (req, res) => {
       pp.recurringStreak[quest.id] = (pp.recurringStreak[quest.id] || 0) + 1;
     }
     savePlayerProgress();
+    unlockNextChainQuest(quest);
     const newAchievements = onQuestCompletedByUser(agentKey, quest);
     const lootDrop = users[agentKey]?._lastLoot || null;
     if (users[agentKey]) delete users[agentKey]._lastLoot;
@@ -2628,6 +2692,7 @@ app.post('/api/quest/:id/complete', requireApiKey, (req, res) => {
     quest.lastCompletedAt = now();
   }
   saveQuests();
+  unlockNextChainQuest(quest);
   let newAchievements = [];
   if (users[agentKey]) {
     newAchievements = onQuestCompletedByUser(agentKey, quest);
@@ -2800,7 +2865,7 @@ app.get('/api/quests', (req, res) => {
       }
 
       const minLvl = q.minLevel || 1;
-      if (playerLevel < minLvl) {
+      if (playerLevel + 3 < minLvl) {
         lockedPlayer.push({ ...q, playerStatus: 'locked' });
         continue;
       }

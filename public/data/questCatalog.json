@@ -1,8 +1,8 @@
 {
   "meta": {
-    "totalTemplates": 5,
+    "totalTemplates": 10,
     "byCategory": {
-      "generic": 0,
+      "generic": 5,
       "classQuest": 0,
       "chainQuest": 0,
       "companionQuest": 5
@@ -81,6 +81,57 @@
       "rewards": { "xp": 10, "gold": 6 },
       "recurrence": "daily",
       "tags": ["companion", "enrichment"]
+    },
+    {
+      "id": "tpl-lvl-test-01",
+      "title": "Apprentice's First Step",
+      "description": "A simple task for beginners.",
+      "type": "personal",
+      "category": "generic",
+      "minLevel": 1,
+      "difficulty": "starter",
+      "rewards": { "xp": 5, "gold": 3 }
+    },
+    {
+      "id": "tpl-lvl-test-05",
+      "title": "The Journeyman's Trial",
+      "description": "Prove you've grown beyond the basics.",
+      "type": "personal",
+      "category": "generic",
+      "minLevel": 5,
+      "difficulty": "normal",
+      "rewards": { "xp": 15, "gold": 10 }
+    },
+    {
+      "id": "tpl-lvl-test-10",
+      "title": "Veteran's Challenge",
+      "description": "Only experienced adventurers dare attempt this.",
+      "type": "fitness",
+      "category": "generic",
+      "minLevel": 10,
+      "difficulty": "hard",
+      "rewards": { "xp": 30, "gold": 20 }
+    },
+    {
+      "id": "tpl-lvl-test-15",
+      "title": "Master's Gauntlet",
+      "description": "The masters of the hall whisper about this trial.",
+      "type": "boss",
+      "category": "generic",
+      "minLevel": 15,
+      "difficulty": "hard",
+      "rewards": { "xp": 50, "gold": 35 }
+    },
+    {
+      "id": "tpl-lvl-test-20",
+      "title": "The Legendary Ordeal",
+      "description": "Few return. Fewer succeed. None forget.",
+      "type": "boss",
+      "category": "generic",
+      "minLevel": 20,
+      "rarity": "legendary",
+      "difficulty": "legendary",
+      "rewards": { "xp": 100, "gold": 75 }
     }
   ]
 }

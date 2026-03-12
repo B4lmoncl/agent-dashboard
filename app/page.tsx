@@ -1333,7 +1333,16 @@ export default function Dashboard() {
           const playerVisibleInProgress = applySort(applyFilter(quests.inProgress.filter(q => playerQuestTypes.includes(q.type ?? "") && !isCompanionQuest(q))));
           // Cap open quests: filter by player level, exclude already claimed, then pick up to 6 (stable by date seed)
           const inProgressIds = new Set(playerVisibleInProgress.map(q => q.id));
-          const levelFiltered = playerVisibleOpen.filter(q => (!q.minLevel || q.minLevel <= playerLevelInfo.level) && !inProgressIds.has(q.id));
+          const levelFiltered = playerVisibleOpen.filter(q => {
+            if (inProgressIds.has(q.id)) return false;
+            // NPC and companion quests always visible
+            if (q.npcGiverId || q.rarity === "companion") return true;
+            // No level req = visible to all
+            if (!q.minLevel) return true;
+            // Show quests up to 3 levels above player (stretch goals), hide if way above
+            if (q.minLevel > playerLevelInfo.level + 3) return false;
+            return true;
+          });
           const boardSeed = Math.floor(Date.now() / (24 * 3600 * 1000)); // changes daily
           const boardOpen = applySort(levelFiltered.length <= 6 ? levelFiltered : (() => {
             const arr = [...levelFiltered];
