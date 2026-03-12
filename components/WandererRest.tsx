@@ -303,7 +303,7 @@ export function WandererRest({
             style={{ background: "rgba(0,0,0,0.82)" }}
             onClick={e => { if (e.target === e.currentTarget) setSelectedNpc(null); }}
           >
-            <div className="relative w-full rounded-xl overflow-hidden" style={{ background: isStarweaver ? "linear-gradient(135deg, #0a0a1e 0%, #120830 100%)" : `linear-gradient(135deg, rgba(${rarityRgb[npc.rarity] ?? "196,204,216"},0.08), rgba(${rarityRgb[npc.rarity] ?? "196,204,216"},0.03))`, border: `2px solid ${isStarweaver ? "rgba(255,215,0,0.3)" : `rgba(${rarityRgb[npc.rarity] ?? "196,204,216"},0.5)`}`, boxShadow: isStarweaver ? undefined : `0 0 20px rgba(${rarityRgb[npc.rarity] ?? "196,204,216"},0.1)`, maxHeight: "90vh", overflowY: "auto", maxWidth: isStarweaver ? 680 : 520 }}>
+            <div className="relative w-full rounded-xl overflow-hidden" style={{ background: isStarweaver ? "linear-gradient(135deg, #0a0a1e 0%, #120830 100%)" : `linear-gradient(135deg, rgba(${rarityRgb[npc.rarity] ?? "196,204,216"},0.03), rgba(${rarityRgb[npc.rarity] ?? "196,204,216"},0.01))`, border: `2px solid ${isStarweaver ? "rgba(255,215,0,0.3)" : `rgba(${rarityRgb[npc.rarity] ?? "196,204,216"},0.5)`}`, boxShadow: isStarweaver ? undefined : `0 0 20px rgba(${rarityRgb[npc.rarity] ?? "196,204,216"},0.1)`, maxHeight: "90vh", overflowY: "auto", maxWidth: isStarweaver ? 680 : 520 }}>
               {/* Close */}
               <button
                 onClick={() => setSelectedNpc(null)}
