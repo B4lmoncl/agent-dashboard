@@ -132,7 +132,7 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
         style={{
           background: "linear-gradient(135deg, rgba(255,107,157,0.06), rgba(255,107,157,0.02))",
           border: "1px solid rgba(255,107,157,0.2)",
-          borderLeft: "3px solid #ff6b9d",
+          borderLeft: "3px solid #2a2a3e",
           cursor: onDobbieClick ? "pointer" : "default",
         }}
         onClick={onDobbieClick}
@@ -213,7 +213,7 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
                     <div className="flex flex-col items-center gap-0.5 relative">
                       <button onClick={handlePet} disabled={petting} className="text-xs px-2.5 py-1 rounded-lg font-semibold transition-all" style={{
                         background: heartAnim ? "linear-gradient(135deg, rgba(255,107,157,0.3), rgba(255,107,157,0.15))" : "linear-gradient(135deg, rgba(255,107,157,0.12), rgba(255,107,157,0.06))",
-                        color: "#ff6b9d", border: "1px solid rgba(255,107,157,0.3)",
+                        color: "#a78bfa", border: "1px solid rgba(167,139,250,0.3)",
                         boxShadow: heartAnim ? "0 0 12px rgba(255,107,157,0.3)" : "0 0 6px rgba(255,107,157,0.1)",
                         cursor: petting ? "wait" : "pointer",
                       }} title="Pet your companion (+0.5 bond XP, max 2x/day)">
@@ -275,7 +275,7 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
                                   width: 24, height: 24, borderRadius: "50%",
                                   border: done ? "1.5px solid #4ade80" : "1.5px solid rgba(255,107,157,0.4)",
                                   background: done ? "rgba(34,197,94,0.15)" : "rgba(255,107,157,0.08)",
-                                  color: done ? "#4ade80" : "#ff6b9d",
+                                  color: done ? "#4ade80" : "#a78bfa",
                                   cursor: completingId ? "wait" : "pointer",
                                   display: "flex", alignItems: "center", justifyContent: "center",
                                   fontSize: "0.7rem", fontWeight: 700, flexShrink: 0,
@@ -294,7 +294,7 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
                                 onMouseLeave={e => {
                                   const btn = e.currentTarget as HTMLButtonElement;
                                   btn.style.background = done ? "rgba(34,197,94,0.15)" : "rgba(255,107,157,0.08)";
-                                  btn.style.color = done ? "#4ade80" : "#ff6b9d";
+                                  btn.style.color = done ? "#4ade80" : "#a78bfa";
                                   btn.style.border = done ? "1.5px solid #4ade80" : "1.5px solid rgba(255,107,157,0.4)";
                                   btn.style.boxShadow = "0 0 6px rgba(255,107,157,0.1)";
                                   btn.style.transform = "scale(1)";

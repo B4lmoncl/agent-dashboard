@@ -47,6 +47,9 @@ interface WandererRestProps {
   handleClaim?: (questId: string) => void;
   handleUnclaim?: (questId: string) => void;
   handleComplete?: (questId: string, questTitle: string) => void;
+  // For mood unification
+  streak?: number;
+  user?: { companion?: { bondLevel?: number; lastPetted?: string | null } | null } | null;
 }
 
 const rarityColors: Record<string, string> = { common: "#c4ccd8", uncommon: "#4ade80", rare: "#60a5fa", epic: "#c084fc", legendary: "#fbbf24" };
@@ -69,6 +72,7 @@ export function WandererRest({
   devVisibleOpen, devVisibleInProgress,
   lyraQuestsOpen, lyraQuestsInProgress, lyraAllQuests,
   handleClaim, handleUnclaim, handleComplete,
+  streak, user,
 }: WandererRestProps) {
   // Sync selectedNpc with fresh data when activeNpcs updates (e.g. after claim/complete)
   useEffect(() => {
@@ -94,8 +98,7 @@ export function WandererRest({
     <div className="space-y-6">
       {/* Dobbie filter banner */}
       {npcBoardFilter === "dobbie" && (
-        <div className="rounded-xl px-4 py-3 flex items-center gap-3" style={{ background: "rgba(255,107,157,0.07)", border: "1px solid rgba(255,107,157,0.2)" }}>
-          <span className="text-lg">🐱</span>
+        <div className="rounded-xl px-4 py-3 flex items-center gap-3" style={{ background: "rgba(255,107,157,0.07)", border: "1px solid #2a2a3e" }}>
           <div className="flex-1">
             <p className="text-xs font-semibold" style={{ color: "#ff6b9d" }}>{petName ?? "Companion"}&apos;s Demands</p>
             <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>{petName ?? "Your companion"} sent you here. Check {petName ?? "Companion"}&apos;s Demands below!</p>
@@ -224,7 +227,7 @@ export function WandererRest({
                 style={{ width: 128, height: 160, imageRendering: "pixelated", borderRadius: 4, border: "2px solid rgba(255,107,157,0.4)", boxShadow: "0 0 12px rgba(255,107,157,0.15)", flexShrink: 0 }}
               />
               <div style={{ flex: 1, minWidth: 0 }}>
-                <DobbieQuestPanel reviewApiKey={reviewApiKey} onRefresh={refresh} playerName={playerName} petName={petName} quests={quests} />
+                <DobbieQuestPanel reviewApiKey={reviewApiKey} onRefresh={refresh} playerName={playerName} petName={petName} quests={quests} streak={streak} user={user} />
               </div>
             </div>
           </div>
@@ -646,7 +649,7 @@ export function WandererRest({
                       style={{ width: 128, height: 160, imageRendering: "pixelated", borderRadius: 4, border: "2px solid rgba(255,107,157,0.4)", boxShadow: "0 0 12px rgba(255,107,157,0.15)", flexShrink: 0 }}
                     />
                     <div style={{ flex: 1, minWidth: 0 }}>
-                      <DobbieQuestPanel reviewApiKey={reviewApiKey} onRefresh={refresh} playerName={playerName} petName={petName} quests={quests} />
+                      <DobbieQuestPanel reviewApiKey={reviewApiKey} onRefresh={refresh} playerName={playerName} petName={petName} quests={quests} streak={streak} user={user} />
                     </div>
                   </div>
                 </div>

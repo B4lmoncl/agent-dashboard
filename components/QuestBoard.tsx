@@ -860,27 +860,44 @@ export function RelationshipCoopPanel({ users, reviewApiKey, onRefresh }: {
 // ─── Dobbie's Demands — NPC Quest Panel ──────────────────────────────────────
 
 const DOBBIE_QUESTS = [
-  { id: "feed_dobbie", title: "Feed Dobbie Before 18:00", description: "His Highness demands his meal on time. No excuses.", icon: "🥫", priority: "high" as const },
-  { id: "clean_litter", title: "Clean the Litter Box", description: "The sacred ritual must be performed. Dobbie demands cleanliness.", icon: "🧹", priority: "medium" as const },
-  { id: "pet_dobbie", title: "Pet Dobbie for 5 Minutes", description: "Five minutes of undivided attention. The minimum acceptable tribute.", icon: "😸", priority: "low" as const },
-  { id: "play_time", title: "Interactive Play Session", description: "10 minutes with the wand toy. Dobbie requires stimulation.", icon: "🎾", priority: "low" as const },
-  { id: "window_watch", title: "Open Window for Bird Watching", description: "Allow access to the window ledge for prime bird surveillance.", icon: "🐦", priority: "low" as const },
+  { id: "feed_dobbie", title: "Feed Dobbie Before 18:00", description: "His Highness demands his meal on time. No excuses.", priority: "high" as const },
+  { id: "clean_litter", title: "Clean the Litter Box", description: "The sacred ritual must be performed. Dobbie demands cleanliness.", priority: "medium" as const },
+  { id: "pet_dobbie", title: "Pet Dobbie for 5 Minutes", description: "Five minutes of undivided attention. The minimum acceptable tribute.", priority: "low" as const },
+  { id: "play_time", title: "Interactive Play Session", description: "10 minutes with the wand toy. Dobbie requires stimulation.", priority: "low" as const },
+  { id: "window_watch", title: "Open Window for Bird Watching", description: "Allow access to the window ledge for prime bird surveillance.", priority: "low" as const },
 ];
 
-const DOBBIE_MOODS = [
-  { mood: "Content", color: "#22c55e", quote: "You may proceed. I am… temporarily satisfied." },
-  { mood: "Demanding", color: "#f59e0b", quote: "This is taking far too long. My patience wears thin, human." },
-  { mood: "Annoyed", color: "#ef4444", quote: "UNACCEPTABLE. The litter box remains unattended. Consequences incoming." },
-  { mood: "Affectionate", color: "#ff6b9d", quote: "Fine. You may pet me. BRIEFLY. Do not read into this." },
-  { mood: "Unimpressed", color: "#a78bfa", quote: "You call that a play session? I've seen dust motes with more energy." },
-];
+const DOBBIE_MOOD_QUOTES: Record<string, string> = {
+  Sleeping: "Zzz... Do not disturb. Consequences will be severe.",
+  Ecstatic: "Fine. You may pet me. BRIEFLY. Do not read into this.",
+  Happy: "You may proceed. I am... temporarily satisfied.",
+  Neutral: "This is taking far too long. My patience wears thin, human.",
+  Neglected: "UNACCEPTABLE. The litter box remains unattended. Consequences incoming.",
+  Sad: "You call that a play session? I've seen dust motes with more energy.",
+};
 
-export function DobbieQuestPanel({ reviewApiKey, onRefresh, playerName, petName, quests }: { reviewApiKey: string; onRefresh: () => void; playerName?: string; petName?: string; quests?: { inProgress: Quest[] } }) {
+function computeCompanionMood(streak: number, user?: { companion?: { bondLevel?: number; lastPetted?: string | null } | null } | null): { label: string; color: string; quote: string; anim: string } {
+  const hour = new Date().getHours();
+  const isSleeping = hour >= 23 || hour < 7;
+  const bondLevel = user?.companion?.bondLevel ?? 1;
+  const lastPetted = user?.companion?.lastPetted;
+  const hoursSincePet = lastPetted ? (Date.now() - new Date(lastPetted).getTime()) / 3_600_000 : Infinity;
+  const petRecent = hoursSincePet < 24;
+
+  if (isSleeping) return { label: "Sleeping", color: "#818cf8", quote: DOBBIE_MOOD_QUOTES.Sleeping, anim: "" };
+  if (streak >= 7 && petRecent && bondLevel >= 5) return { label: "Ecstatic", color: "#f472b6", quote: DOBBIE_MOOD_QUOTES.Ecstatic, anim: "animate-bounce" };
+  if (streak >= 7 && petRecent) return { label: "Happy", color: "#22c55e", quote: DOBBIE_MOOD_QUOTES.Happy, anim: "animate-bounce" };
+  if (streak >= 3 || petRecent) return { label: "Neutral", color: "#f59e0b", quote: DOBBIE_MOOD_QUOTES.Neutral, anim: "" };
+  if (!petRecent && hoursSincePet > 72) return { label: "Neglected", color: "#dc2626", quote: DOBBIE_MOOD_QUOTES.Neglected, anim: "animate-pulse" };
+  return { label: "Sad", color: "#ef4444", quote: DOBBIE_MOOD_QUOTES.Sad, anim: "animate-pulse" };
+}
+
+export function DobbieQuestPanel({ reviewApiKey, onRefresh, playerName, petName, quests, streak, user }: { reviewApiKey: string; onRefresh: () => void; playerName?: string; petName?: string; quests?: { inProgress: Quest[] }; streak?: number; user?: { companion?: { bondLevel?: number; lastPetted?: string | null } | null } | null }) {
   const [creating, setCreating] = useState<string | null>(null);
   const [completing, setCompleting] = useState<string | null>(null);
   // Map<templateId, questId> for newly accepted quests this session
   const [justAccepted, setJustAccepted] = useState<Map<string, string>>(() => new Map());
-  const dobbieMood = DOBBIE_MOODS[Math.floor(Date.now() / (1000 * 60 * 60 * 4)) % DOBBIE_MOODS.length];
+  const dobbieMood = computeCompanionMood(streak ?? 0, user);
 
   // Derive Map<templateId, questId> for all active Dobbie quests
   const activeQuestMap = useMemo(() => {
@@ -910,7 +927,7 @@ export function DobbieQuestPanel({ reviewApiKey, onRefresh, playerName, petName,
           type: "personal",
           createdBy: "dobbie",
           recurrence: "daily",
-          rarity: "uncommon",
+          rarity: "companion",
         }),
       });
       if (res.ok) {
@@ -947,82 +964,55 @@ export function DobbieQuestPanel({ reviewApiKey, onRefresh, playerName, petName,
   };
 
   return (
-    <section className="mb-6" style={{
-      background: "#0c0e14",
-      border: "2px solid #2a2a3e",
-      boxShadow: "inset 2px 2px 0 #0a0b10, inset -2px -2px 0 #141620, 0 0 0 5px #0c0e14, 0 0 0 7px #1e2030, 0 4px 16px rgba(0,0,0,0.7), 0 0 15px rgba(255,107,157,0.04)",
-      borderRadius: "2px",
-      overflow: "visible",
-      margin: "8px",
-      padding: "16px",
-    }}>
-      <div className="flex gap-4">
-        {/* Portrait left */}
-        <img
-          src="/images/portraits/companion-dobbie.png"
-          alt={petName ?? "Companion"}
-          style={{
-            width: 128,
-            height: 160,
-            imageRendering: "pixelated",
-            border: "2px solid rgba(255,107,157,0.4)",
-            borderRadius: "2px",
-            flexShrink: 0,
-            objectFit: "cover",
-          }}
-        />
-        {/* Content right */}
-        <div className="flex-1 min-w-0">
-          <div className="flex items-center justify-between mb-1">
-            <p className="text-xs font-semibold" style={{ color: "#ff6b9d" }}>{petName ?? "Companion"}&apos;s Demands</p>
-            <span className="text-xs px-1.5 py-0.5 rounded font-medium" style={{ color: dobbieMood.color, background: `${dobbieMood.color}18`, border: `1px solid ${dobbieMood.color}40` }}>{dobbieMood.mood}</span>
-          </div>
-          <p className="text-xs mb-3 italic" style={{ color: "rgba(255,255,255,0.35)" }}>&ldquo;{dobbieMood.quote}&rdquo;</p>
-          <div className="grid grid-cols-2 gap-2">
-            {DOBBIE_QUESTS.map(q => {
-              const isCreating = creating === q.id;
-              const isCompleting = completing === q.id;
-              const isActive = activeQuestMap.has(q.id);
-              return (
-                <div key={q.id} className="p-3 flex flex-col" style={{
-                  background: "#0e1018",
-                  border: "1px solid #1a1c28",
-                  borderTop: "1px solid rgba(255,107,157,0.25)",
-                  borderRadius: "2px",
-                }}>
-                  <p className="text-xs font-bold truncate mb-1" style={{ color: "#f0f0f0" }}>{q.title}</p>
-                  <p className="text-xs mb-2 leading-relaxed flex-1" style={{ color: "rgba(255,255,255,0.35)" }}>{q.description}</p>
-                  {isActive ? (
-                    <div className="flex gap-2">
-                      <div className="flex-1 text-center text-xs py-1.5 rounded font-semibold" style={{ background: "rgba(96,165,250,0.12)", color: "#60a5fa", border: "1px solid rgba(96,165,250,0.3)" }}>
-                        Active
-                      </div>
-                      <button
-                        onClick={() => completeDobbieQuest(q.id)}
-                        disabled={isCompleting}
-                        className="action-btn text-xs px-3 py-1.5 rounded font-semibold"
-                        style={{ background: "rgba(34,197,94,0.12)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.3)" }}
-                      >
-                        {isCompleting ? "..." : "Done"}
-                      </button>
-                    </div>
-                  ) : (
-                    <button
-                      onClick={() => createDobbieQuest(q)}
-                      disabled={!!creating}
-                      className="action-btn w-full text-xs py-1.5 rounded font-semibold"
-                      style={{ background: "rgba(255,107,157,0.12)", color: "#ff6b9d", border: "1px solid rgba(255,107,157,0.3)" }}
-                    >
-                      {isCreating ? "Accepting..." : "Accept Quest"}
-                    </button>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-        </div>
+    <div>
+      <div className="flex items-center justify-between mb-1">
+        <p className="text-xs font-semibold" style={{ color: "#ff6b9d" }}>{petName ?? "Companion"}&apos;s Demands</p>
+        <span className="text-xs px-1.5 py-0.5 rounded font-medium" style={{ color: dobbieMood.color, background: `${dobbieMood.color}18`, border: `1px solid ${dobbieMood.color}40` }}>{dobbieMood.label}</span>
       </div>
-    </section>
+      <p className="text-xs mb-3 italic" style={{ color: "rgba(255,255,255,0.35)" }}>&ldquo;{dobbieMood.quote}&rdquo;</p>
+      <div className="grid grid-cols-2 gap-2">
+        {DOBBIE_QUESTS.map(q => {
+          const isCreating = creating === q.id;
+          const isCompleting = completing === q.id;
+          const isActive = activeQuestMap.has(q.id);
+          return (
+            <div key={q.id} className="p-3 flex flex-col" style={{
+              background: "#0e1018",
+              border: "1px solid #1a1c28",
+              borderTop: "1px solid rgba(255,107,157,0.15)",
+              borderRadius: "2px",
+            }}>
+              <p className="text-xs font-bold truncate mb-1" style={{ color: "#f0f0f0" }}>{q.title}</p>
+              <p className="text-xs mb-2 leading-relaxed flex-1" style={{ color: "rgba(255,255,255,0.35)" }}>{q.description}</p>
+              {isActive ? (
+                <div className="flex gap-2">
+                  <div className="flex-1 text-center text-xs py-1.5 rounded font-semibold" style={{ background: "rgba(96,165,250,0.12)", color: "#60a5fa", border: "1px solid rgba(96,165,250,0.3)" }}>
+                    Active
+                  </div>
+                  <button
+                    onClick={() => completeDobbieQuest(q.id)}
+                    disabled={isCompleting}
+                    className="action-btn text-xs px-3 py-1.5 rounded font-semibold"
+                    style={{ background: "rgba(34,197,94,0.12)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.3)" }}
+                  >
+                    {isCompleting ? "..." : "Done"}
+                  </button>
+                </div>
+              ) : (
+                <button
+                  onClick={() => createDobbieQuest(q)}
+                  disabled={!!creating}
+                  className="action-btn w-full text-xs py-1.5 rounded font-semibold"
+                  style={{ background: "rgba(96,165,250,0.12)", color: "#60a5fa", border: "1px solid rgba(96,165,250,0.3)" }}
+                >
+                  {isCreating ? "Accepting..." : "Accept Quest"}
+                </button>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </div>
   );
 }
 

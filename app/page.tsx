@@ -1982,6 +1982,8 @@ export default function Dashboard() {
               handleClaim={handleClaim}
               handleUnclaim={handleUnclaim}
               handleComplete={handleComplete}
+              streak={playerStreak}
+              user={loggedInUser}
             />
           );
         })()}
