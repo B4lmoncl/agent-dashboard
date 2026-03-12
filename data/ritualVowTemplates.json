@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0",
+  "ritualTiers": {
+    "aetherbond": [
+      { "name": "Spark", "days": 7, "icon": null, "color": "#f59e0b" },
+      { "name": "Flame", "days": 21, "icon": null, "color": "#ef4444" },
+      { "name": "Ember", "days": 60, "icon": null, "color": "#a855f7" },
+      { "name": "Crucible", "days": 180, "icon": null, "color": "#6366f1" },
+      { "name": "Eternity", "days": 365, "icon": null, "color": "#fbbf24" }
+    ],
+    "bloodPact": [
+      { "name": "Spark", "days": 7, "multiplier": 1.5, "penalty": "streak_reset" },
+      { "name": "Flame", "days": 21, "multiplier": 1.5, "penalty": "streak_reset" },
+      { "name": "Ember", "days": 60, "multiplier": 2.0, "penalty": "gold_loss" },
+      { "name": "Crucible", "days": 180, "multiplier": 2.0, "penalty": "gold_loss" },
+      { "name": "Eternity", "days": 365, "multiplier": 3.0, "penalty": "level_loss" }
+    ]
+  },
+  "vowCategories": ["health", "productivity", "social", "learning", "personal"],
+  "ritualCategories": ["fitness", "learning", "mindfulness", "social", "creative"],
+  "frequencies": ["daily", "weekly", "on_trigger"]
+}

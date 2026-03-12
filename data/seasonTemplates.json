@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0",
+  "seasons": [
+    {
+      "id": "spring-2026",
+      "name": "Sakura's Awakening",
+      "theme": "spring",
+      "startDate": "2026-03-01",
+      "endDate": "2026-05-31",
+      "colors": {
+        "primary": "#f472b6",
+        "secondary": "#fbcfe8",
+        "accent": "#be185d",
+        "background": "#fce4ec"
+      },
+      "background": "/images/bg-character-spring.png",
+      "tiers": [
+        { "level": 1, "name": "Blossom", "xpRequired": 0, "reward": null },
+        { "level": 2, "name": "Petal", "xpRequired": 100, "reward": null },
+        { "level": 3, "name": "Bloom", "xpRequired": 250, "reward": null },
+        { "level": 4, "name": "Garden", "xpRequired": 500, "reward": null },
+        { "level": 5, "name": "Hanami", "xpRequired": 800, "reward": null },
+        { "level": 6, "name": "Sakura Storm", "xpRequired": 1200, "reward": null },
+        { "level": 7, "name": "Cherry Warden", "xpRequired": 1800, "reward": null },
+        { "level": 8, "name": "Blossom Knight", "xpRequired": 2500, "reward": null },
+        { "level": 9, "name": "Petal Sovereign", "xpRequired": 3500, "reward": null },
+        { "level": 10, "name": "Cherry Crown", "xpRequired": 5000, "reward": null }
+      ],
+      "quests": []
+    }
+  ]
+}
