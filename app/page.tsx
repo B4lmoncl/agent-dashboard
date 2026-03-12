@@ -1091,9 +1091,9 @@ export default function Dashboard() {
                     className="absolute right-0 top-full mt-1 rounded-xl p-3 text-xs leading-relaxed pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity"
                     style={{ background: "#1a1a1a", border: "1px solid rgba(255,255,255,0.12)", minWidth: 260, boxShadow: "0 8px 32px rgba(0,0,0,0.6)", zIndex: 100 }}
                   >
-                    <p className="font-semibold mb-1.5" style={{ color: "#f0f0f0" }}>The Deepforge</p>
+                    <p className="font-semibold mb-1.5" style={{ color: "#f0f0f0" }}>The Bazaar</p>
                     <p className="mb-2" style={{ color: "rgba(255,255,255,0.5)" }}>
-                      The Deepforge burns hotter with each quest you complete.
+                      The Bazaar burns hotter with each quest you complete.
                     </p>
                     <div className="space-y-0.5 mb-2">
                       {[
@@ -1133,7 +1133,7 @@ export default function Dashboard() {
               </div>
               <div className="space-y-2">
                 {[
-                  { icon: "×", name: "Gold", value: animGold, color: "#f59e0b", desc: "Earned from quests. Spend in the Deepforge." },
+                  { icon: "×", name: "Gold", value: animGold, color: "#f59e0b", desc: "Earned from quests. Spend in the Bazaar." },
                   { icon: "×", name: "Astralium", value: 0, color: "#818cf8", desc: "Coming soon — rare cosmic currency." },
                   { icon: "×", name: "Runensplitter", value: 0, color: "#a78bfa", desc: "Coming soon — used for enchantments." },
                 ].map(c => (
@@ -1165,7 +1165,7 @@ export default function Dashboard() {
             { key: "honors",      label: "Honors",          tutorialKey: null },
             { key: "campaign",    label: "The Observatory",        tutorialKey: "campaign-tab" },
             { key: "season",      label: `${CURRENT_SEASON.icon} Season`, tutorialKey: "season-tab" },
-            { key: "shop",        label: "The Deepforge",            tutorialKey: null },
+            { key: "shop",        label: "The Bazaar",               tutorialKey: null },
           ].map(v => (
             <button
               key={v.key}

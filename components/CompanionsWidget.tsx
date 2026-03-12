@@ -35,6 +35,30 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
   const [petting, setPetting] = useState(false);
   const [heartAnim, setHeartAnim] = useState(false);
   const [petError, setPetError] = useState("");
+  const [completedIds, setCompletedIds] = useState<Set<string>>(new Set());
+  const [completingId, setCompletingId] = useState<string | null>(null);
+  const [questToast, setQuestToast] = useState<string | null>(null);
+
+  const handleCompleteQuest = async (questId: string, questTitle: string) => {
+    if (!apiKey || completingId) return;
+    setCompletingId(questId);
+    try {
+      const r = await fetch(`/api/quest/${questId}/complete`, {
+        method: "POST",
+        headers: { "x-api-key": apiKey },
+      });
+      if (r.ok) {
+        setCompletedIds(prev => new Set([...prev, questId]));
+        setQuestToast(`✓ "${questTitle.length > 32 ? questTitle.slice(0, 32) + "…" : questTitle}" completed!`);
+        setTimeout(() => setQuestToast(null), 2500);
+        setTimeout(() => {
+          setCompletedIds(prev => { const s = new Set(prev); s.delete(questId); return s; });
+          if (onUserRefresh) onUserRefresh();
+        }, 2000);
+      }
+    } catch { /* silent */ }
+    setCompletingId(null);
+  };
 
   const earnedCompanions = (user?.earnedAchievements ?? []).filter(a => COMPANION_IDS_ALL.includes(a.id));
 
@@ -227,14 +251,43 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
 
       {/* Active Dobbie quests */}
       {dobbieQuests && dobbieQuests.length > 0 && (
-        <div className="mb-1.5 space-y-1 pl-1">
-          {dobbieQuests.map(q => (
-            <div key={q.id} className="flex items-center gap-1.5 rounded-lg px-2 py-1" style={{ background: "rgba(255,107,157,0.06)", border: "1px solid rgba(255,107,157,0.15)" }}>
-              <span className="text-xs flex-shrink-0" style={{ color: "#60a5fa" }}>⚔</span>
-              <span className="text-xs truncate flex-1" style={{ color: "rgba(255,255,255,0.55)" }}>{q.title}</span>
-              <span className="text-xs flex-shrink-0 font-semibold" style={{ color: "#ff6b9d" }}>+{q.rewards?.xp ?? 0} XP</span>
+        <div className="mb-1.5 space-y-1 pl-1" style={{ maxWidth: 500 }}>
+          {questToast && (
+            <div className="rounded px-2 py-1 text-xs font-semibold mb-1" style={{ background: "rgba(34,197,94,0.15)", border: "1px solid rgba(34,197,94,0.3)", color: "#4ade80" }}>
+              {questToast}
             </div>
-          ))}
+          )}
+          {dobbieQuests.filter(q => !completedIds.has(q.id)).map(q => {
+            const done = completedIds.has(q.id);
+            return (
+              <div key={q.id} className="flex items-center gap-1.5 rounded px-1.5 py-0.5" style={{ background: "rgba(255,107,157,0.06)", border: "1px solid rgba(255,107,157,0.15)", opacity: done ? 0.5 : 1 }}>
+                {/* Complete button */}
+                {apiKey && (
+                  <button
+                    onClick={() => handleCompleteQuest(q.id, q.title)}
+                    disabled={!!completingId || done}
+                    title="Mark quest complete"
+                    style={{
+                      width: 18, height: 18, borderRadius: "50%",
+                      border: done ? "1.5px solid #4ade80" : "1.5px solid rgba(255,255,255,0.2)",
+                      background: done ? "rgba(34,197,94,0.15)" : "transparent",
+                      color: done ? "#4ade80" : "rgba(255,255,255,0.35)",
+                      cursor: completingId ? "wait" : "pointer",
+                      display: "flex", alignItems: "center", justifyContent: "center",
+                      fontSize: "0.65rem", fontWeight: 700, flexShrink: 0,
+                      transition: "all 0.2s",
+                    }}
+                    onMouseEnter={e => { if (!done) (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 0 6px rgba(34,197,94,0.5)"; }}
+                    onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.boxShadow = "none"; }}
+                  >
+                    ✓
+                  </button>
+                )}
+                <span className="truncate flex-1" style={{ fontSize: "0.8rem", color: done ? "rgba(255,255,255,0.3)" : "rgba(255,255,255,0.55)", textDecoration: done ? "line-through" : "none" }}>{q.title}</span>
+                <span className="flex-shrink-0 font-semibold" style={{ fontSize: "0.8rem", color: "#ff6b9d" }}>+{q.rewards?.xp ?? 0} XP</span>
+              </div>
+            );
+          })}
         </div>
       )}
 
