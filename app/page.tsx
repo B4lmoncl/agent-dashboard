@@ -614,7 +614,9 @@ export default function Dashboard() {
         style={{
           position: "relative",
           zIndex: 40,
-          background: "rgba(26,26,26,0.97)",
+          background: "rgba(26,26,26,0.75)",
+          backdropFilter: "blur(12px)",
+          WebkitBackdropFilter: "blur(12px)",
           borderBottom: "1px solid rgba(255,68,68,0.15)",
           overflow: "visible",
         }}
