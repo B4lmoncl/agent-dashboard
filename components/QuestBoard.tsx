@@ -1581,6 +1581,19 @@ export const RARITY_COLORS: Record<string, string> = {
   legendary: "#FFD700",
 };
 
+function ChainDots({ chainIndex, chainTotal, color }: { chainIndex: number; chainTotal: number; color: string }) {
+  if (chainTotal <= 1) return null;
+  return (
+    <span style={{ fontSize: 8, letterSpacing: "0.15em", marginLeft: 4 }}>
+      {Array.from({ length: chainTotal }, (_, i) => (
+        <span key={i} style={{ color, opacity: i < chainIndex ? 0.8 : i === chainIndex ? 1 : 0.3 }}>
+          {i < chainIndex ? "●" : i === chainIndex ? "◐" : "○"}
+        </span>
+      ))}
+    </span>
+  );
+}
+
 export function QuestCard({ quest, selected, onToggle, onClaim, onUnclaim, onComplete, onCoopClaim, onCoopComplete, playerName, gridMode, onDetails }: {
   quest: Quest;
   selected?: boolean;
@@ -1600,7 +1613,7 @@ export function QuestCard({ quest, selected, onToggle, onClaim, onUnclaim, onCom
   const isClaimedByMe = playerName && quest.claimedBy?.toLowerCase() === playerName.toLowerCase();
   const isCoop = quest.type === "relationship-coop";
   const flavorText = quest.npcGiverId
-    ? (quest.flavorText || `Quest von ${quest.npcName || "NPC"} · ${(quest.chainIndex ?? 0) + 1}/${quest.chainTotal ?? 1}`)
+    ? (quest.flavorText || `Quest von ${quest.npcName || "NPC"}`)
     : QUEST_BOARD_FLAVORS[
         Math.abs((quest.id.charCodeAt(0) ?? 0) + (quest.id.charCodeAt(quest.id.length - 1) ?? 0)) % QUEST_BOARD_FLAVORS.length
       ];
@@ -1664,7 +1677,7 @@ export function QuestCard({ quest, selected, onToggle, onClaim, onUnclaim, onCom
           </div>
           {quest.npcGiverId ? (
             <p className="text-xs font-semibold" style={{ color: RARITY_COLORS[quest.npcRarity ?? "common"] ?? "#9ca3af", opacity: 0.85 }}>
-              {quest.npcName || "NPC"}{(quest.chainTotal ?? 1) > 1 ? ` · ${(quest.chainIndex ?? 0) + 1}/${quest.chainTotal}` : ""}
+              {quest.npcName || "NPC"}{(quest.chainTotal ?? 1) > 1 && <ChainDots chainIndex={quest.chainIndex ?? 0} chainTotal={quest.chainTotal!} color={RARITY_COLORS[quest.npcRarity ?? "common"] ?? "#f59e0b"} />}
             </p>
           ) : (
             <p className="text-xs italic" style={{ color: "rgba(220,185,120,0.35)" }}>{flavorText}</p>
@@ -1785,7 +1798,7 @@ export function QuestCard({ quest, selected, onToggle, onClaim, onUnclaim, onCom
           )}
           {!expanded && quest.npcGiverId ? (
             <p className="text-xs mt-0.5 font-semibold truncate" style={{ color: RARITY_COLORS[quest.npcRarity ?? "common"] ?? "#9ca3af", opacity: 0.8 }}>
-              {quest.npcName || "NPC"}{(quest.chainTotal ?? 1) > 1 ? ` · ${(quest.chainIndex ?? 0) + 1}/${quest.chainTotal}` : ""}
+              {quest.npcName || "NPC"}{(quest.chainTotal ?? 1) > 1 && <ChainDots chainIndex={quest.chainIndex ?? 0} chainTotal={quest.chainTotal!} color={RARITY_COLORS[quest.npcRarity ?? "common"] ?? "#f59e0b"} />}
             </p>
           ) : !expanded ? (
             <p className="text-xs mt-0.5 italic truncate" style={{ color: "rgba(220,185,120,0.28)" }}>{flavorText}</p>
