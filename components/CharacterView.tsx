@@ -371,11 +371,22 @@ export default function CharacterView({ playerName, apiKey, users, classesList }
   const cls = charData?.classId ? classesList.find(c => c.id === charData.classId) : null;
 
   return (
-    <div className="relative overflow-hidden rounded-2xl" style={{ minHeight: 520 }}>
-      {/* ── Layer 1: Sky gradient ── */}
+    <div
+      className="relative overflow-hidden rounded-2xl"
+      style={{
+        minHeight: 520,
+        backgroundImage: "url('/images/bg-character-spring.png')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        imageRendering: "pixelated" as any,
+        backgroundColor: "#fce4ec",
+      }}
+    >
+      {/* ── Layer 1: Dark overlay for readability ── */}
       <div
         className="absolute inset-0"
-        style={{ background: "linear-gradient(180deg, #fce4ec 0%, #f8bbd0 30%, #e1bee7 60%, #bbdefb 100%)" }}
+        style={{ background: "rgba(11,13,17,0.6)", pointerEvents: "none" }}
       />
 
       {/* ── Layer 2: Torii Gate (CSS-only pixel art) ── */}
