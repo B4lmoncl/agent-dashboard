@@ -532,10 +532,63 @@ function assignRarity(template) {
   return 'common';
 }
 
+function getTemplateWeight(template, playerLevel) {
+  const questLevel = template.minLevel || 1;
+  const diff = questLevel - playerLevel;
+
+  // Sweet spot: quests at player level to +3 above → highest weight
+  if (diff >= 0 && diff <= 3) return 3.0;
+
+  // Slightly below (0 to -3) → normal weight
+  if (diff >= -3 && diff < 0) return 2.0;
+
+  // Moderately below (-4 to -7) → reduced
+  if (diff >= -7 && diff < -3) return 0.8;
+
+  // Way below (-8+) → rare but not zero
+  if (diff < -7) return 0.2;
+
+  // Above +3 → mostly filtered by visibility, but just in case
+  if (diff > 3) return 0.1;
+
+  return 1.0;
+}
+
+function weightedShuffle(items, weightFn, rng) {
+  // Weighted random selection without replacement
+  const result = [];
+  const pool = items.map(item => ({ item, weight: weightFn(item) }));
+  while (pool.length > 0) {
+    const totalWeight = pool.reduce((sum, e) => sum + e.weight, 0);
+    let roll = rng() * totalWeight;
+    let idx = 0;
+    for (let i = 0; i < pool.length; i++) {
+      roll -= pool[i].weight;
+      if (roll <= 0) { idx = i; break; }
+    }
+    result.push(pool[idx].item);
+    pool.splice(idx, 1);
+  }
+  return result;
+}
+
+function getHighestPlayerLevel() {
+  const allUsers = Object.values(users);
+  if (allUsers.length === 0) return 1;
+  let maxLevel = 1;
+  for (const u of allUsers) {
+    const lvl = getLevelInfo(u.xp || 0).level;
+    if (lvl > maxLevel) maxLevel = lvl;
+  }
+  return maxLevel;
+}
+
 function selectDailyQuests(templates, opts) {
   const { count, typeDistribution, previousIds, daySeed } = opts;
   let seed = daySeed;
   const rng = () => { seed++; return seededRandom(seed); };
+
+  const playerLevel = getHighestPlayerLevel();
 
   // Group templates by type
   const byType = {};
@@ -547,27 +600,31 @@ function selectDailyQuests(templates, opts) {
 
   const selected = [];
   const usedIds = new Set();
+  const prevSet = new Set(previousIds || []);
 
-  // Fill each type quota
+  // Fill each type quota with level-weighted selection
   for (const [type, quota] of Object.entries(typeDistribution)) {
     const pool = (byType[type] || []).filter(t => !usedIds.has(t.id));
-    // Deprioritize templates that were in yesterday's set
-    const prevSet = new Set(previousIds || []);
     const fresh = pool.filter(t => !prevSet.has(t.id));
     const stale = pool.filter(t => prevSet.has(t.id));
 
-    // Shuffle fresh first, then stale as fallback
-    const shuffled = [...fresh.sort(() => rng() - 0.5), ...stale.sort(() => rng() - 0.5)];
-    for (const t of shuffled.slice(0, quota)) {
+    // Weighted shuffle within fresh and stale, fresh first
+    const weightFn = (t) => getTemplateWeight(t, playerLevel);
+    const sortedFresh = weightedShuffle(fresh, weightFn, rng);
+    const sortedStale = weightedShuffle(stale, weightFn, rng);
+    const ordered = [...sortedFresh, ...sortedStale];
+
+    for (const t of ordered.slice(0, quota)) {
       selected.push(t);
       usedIds.add(t.id);
     }
   }
 
-  // Fill remaining slots if under count
+  // Fill remaining slots if under count (also level-weighted)
   const remaining = templates.filter(t => !usedIds.has(t.id));
-  remaining.sort(() => rng() - 0.5);
-  for (const t of remaining) {
+  const weightFn = (t) => getTemplateWeight(t, playerLevel);
+  const weightedRemaining = weightedShuffle(remaining, weightFn, rng);
+  for (const t of weightedRemaining) {
     if (selected.length >= count) break;
     selected.push(t);
     usedIds.add(t.id);
