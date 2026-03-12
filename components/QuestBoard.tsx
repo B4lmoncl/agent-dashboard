@@ -302,6 +302,22 @@ export function ForgeChallengesPanel({ users, reviewApiKey, onRefresh }: {
 
 // ─── Anti-Rituale Panel ───────────────────────────────────────────────────────
 
+const COMMITMENT_TIERS_VOW = [
+  { id: "none",     label: "None",     days: 0,   color: "rgba(255,255,255,0.25)", bonusGold: 0,  bonusXp: 0,  flavorShort: "Kein Versprechen" },
+  { id: "spark",    label: "Spark",    days: 7,   color: "#94a3b8",                bonusGold: 3,  bonusXp: 5,  flavorShort: "Erster Funken" },
+  { id: "flame",    label: "Flame",    days: 21,  color: "#6366f1",                bonusGold: 7,  bonusXp: 10, flavorShort: "Entsagung formt sich" },
+  { id: "ember",    label: "Ember",    days: 60,  color: "#818cf8",                bonusGold: 13, bonusXp: 20, flavorShort: "Tief verwurzelt" },
+  { id: "crucible", label: "Crucible", days: 180, color: "#c7d2fe",                bonusGold: 20, bonusXp: 35, flavorShort: "Stahl der Seele" },
+  { id: "eternity", label: "Eternity", days: 365, color: "#e0e7ff",                bonusGold: 30, bonusXp: 50, flavorShort: "Ewige Entsagung" },
+];
+
+function getVaelSpeech(commitment: string, bloodPact: boolean): string {
+  if (bloodPact) return "Blut. So sei es.";
+  if (commitment === "eternity") return "Ein Jahr Entsagung. Wenige bestehen.";
+  if (commitment === "none") return "";
+  return "...Sprich deinen Schwur.";
+}
+
 const ANTI_RITUAL_MILESTONES = [
   { days: 7,   badge: "🌱", label: "1 Woche clean!" },
   { days: 14,  badge: "🥈", label: "2 Wochen stark!" },
@@ -315,6 +331,9 @@ export function AntiRitualePanel({ playerName, reviewApiKey }: { playerName: str
   const [antiRituals, setAntiRituals] = useState<AntiRitual[]>([]);
   const [createOpen, setCreateOpen] = useState(false);
   const [newTitle, setNewTitle] = useState("");
+  const [newVowCategory, setNewVowCategory] = useState("personal");
+  const [newVowCommitment, setNewVowCommitment] = useState("none");
+  const [newVowBloodPact, setNewVowBloodPact] = useState(false);
   const [deleteConfirmId, setDeleteConfirmId] = useState<string | null>(null);
 
   const loadAntiRituals = useCallback(async () => {
@@ -351,6 +370,7 @@ export function AntiRitualePanel({ playerName, reviewApiKey }: { playerName: str
   const createAntiRitual = async () => {
     if (!newTitle.trim() || !reviewApiKey || !playerName) return;
     try {
+      const tier = COMMITMENT_TIERS_VOW.find(t => t.id === newVowCommitment)!;
       await fetch("/api/rituals", {
         method: "POST",
         headers: { "Content-Type": "application/json", "x-api-key": reviewApiKey },
@@ -360,9 +380,15 @@ export function AntiRitualePanel({ playerName, reviewApiKey }: { playerName: str
           playerId: playerName,
           createdBy: playerName,
           isAntiRitual: true,
+          category: newVowCategory,
+          commitment: newVowCommitment,
+          commitmentDays: tier.days,
+          bloodPact: newVowBloodPact,
         }),
       });
       setNewTitle("");
+      setNewVowCommitment("none");
+      setNewVowBloodPact(false);
       setCreateOpen(false);
       loadAntiRituals();
     } catch { /* ignore */ }
@@ -457,34 +483,117 @@ export function AntiRitualePanel({ playerName, reviewApiKey }: { playerName: str
         </div>
       )}
 
-      {createOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: "rgba(0,0,0,0.75)" }} onClick={() => setCreateOpen(false)}>
-          <div className="w-full max-w-sm rounded-2xl overflow-hidden" style={{ background: "linear-gradient(160deg, #2c2318 0%, #1e1912 100%)", border: "1px solid rgba(239,68,68,0.35)", boxShadow: "0 0 40px rgba(239,68,68,0.08)" }} onClick={e => e.stopPropagation()}>
-            <div className="flex items-center gap-3 px-5 pt-5 pb-3 border-b" style={{ borderColor: "rgba(239,68,68,0.15)" }}>
-              <img src="/images/icons/ui-vow-sword.png" alt="" width={32} height={32} style={{ imageRendering: "pixelated" }} onError={e => (e.currentTarget.style.display = "none")} />
-              <div>
-                <h3 className="text-sm font-bold" style={{ color: "#e8d5a3" }}>⚔️ Swear a New Vow</h3>
-                <p className="text-xs" style={{ color: "rgba(200,170,100,0.45)" }}>Bind yourself to what you shall not do.</p>
+      {createOpen && (() => {
+        const closeVowModal = () => { setCreateOpen(false); setNewTitle(""); setNewVowCommitment("none"); setNewVowBloodPact(false); };
+        const vaelSpeech = getVaelSpeech(newVowCommitment, newVowBloodPact);
+        const tierData = COMMITMENT_TIERS_VOW.find(t => t.id === newVowCommitment)!;
+        const bonusGold = tierData.bonusGold * (newVowBloodPact ? 3 : 1);
+        const bonusXp = tierData.bonusXp * (newVowBloodPact ? 3 : 1);
+        return (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: "rgba(0,0,0,0.88)" }} onClick={closeVowModal}>
+            {/* Outer wrapper: flex so portrait overlaps right edge */}
+            <div className="relative flex items-end" style={{ maxWidth: 820, width: "100%" }} onClick={e => e.stopPropagation()}>
+
+              {/* ── Modal Panel (65% width) ── */}
+              <div style={{ flex: "0 0 65%", minWidth: 0, borderRadius: "1rem", overflow: "hidden", background: newVowBloodPact ? "linear-gradient(160deg, #1a1a2e 0%, #0f0f1e 100%)" : "linear-gradient(160deg, #1e1c2c 0%, #141220 100%)", border: `1px solid ${newVowBloodPact ? "rgba(99,102,241,0.6)" : "rgba(99,102,241,0.3)"}`, boxShadow: newVowBloodPact ? "0 0 60px rgba(99,102,241,0.14)" : "0 0 40px rgba(99,102,241,0.07)", transition: "all 0.4s ease" }}>
+
+                {/* NPC Speech */}
+                <div style={{ background: "rgba(99,102,241,0.06)", borderBottom: "1px solid rgba(99,102,241,0.12)", padding: "10px 18px", minHeight: 38 }}>
+                  {vaelSpeech ? (
+                    <p className="npc-speech-text text-xs italic" key={`vael-${newVowBloodPact}-${newVowCommitment}`} style={{ color: "#a5b4fc", lineHeight: 1.5 }}>
+                      „{vaelSpeech}"
+                    </p>
+                  ) : (
+                    <p className="text-xs italic" style={{ color: "rgba(165,180,252,0.25)" }}>...</p>
+                  )}
+                </div>
+
+                {/* Header */}
+                <div className="flex items-center gap-3 px-5 pt-4 pb-3 border-b" style={{ borderColor: "rgba(99,102,241,0.12)" }}>
+                  <img src="/images/icons/ui-vow-sword.png" alt="" width={28} height={28} style={{ imageRendering: "pixelated" }} onError={e => (e.currentTarget.style.display = "none")} />
+                  <div>
+                    <h3 className="text-sm font-bold" style={{ color: "#e2e8f0" }}>⚔️ Schwur ablegen</h3>
+                    <p className="text-xs" style={{ color: "rgba(165,180,252,0.4)" }}>Vael the Silent — Vow Shrine</p>
+                  </div>
+                </div>
+
+                {/* Form */}
+                <div className="p-5 space-y-4" style={{ maxHeight: "58vh", overflowY: "auto" }}>
+
+                  {/* Name */}
+                  <div>
+                    <label className="text-xs font-semibold mb-1.5 block" style={{ color: "rgba(165,180,252,0.55)" }}>Was schwörst du ab?</label>
+                    <input value={newTitle} onChange={e => setNewTitle(e.target.value)} placeholder="z.B. Kein Social Media vor dem Mittag..." className="w-full text-sm px-3 py-2.5 rounded-lg" style={{ background: "rgba(0,0,0,0.35)", border: "1px solid rgba(99,102,241,0.3)", color: "#e2e8f0", outline: "none" }} onKeyDown={e => e.key === "Enter" && createAntiRitual()} autoFocus />
+                  </div>
+
+                  {/* Category + Frequency */}
+                  <div className="grid grid-cols-2 gap-3">
+                    <div>
+                      <label className="text-xs font-semibold mb-1.5 block" style={{ color: "rgba(165,180,252,0.55)" }}>Kategorie</label>
+                      <select value={newVowCategory} onChange={e => setNewVowCategory(e.target.value)} className="w-full text-sm px-3 py-2 rounded-lg" style={{ background: "rgba(0,0,0,0.4)", border: "1px solid rgba(99,102,241,0.2)", color: "#e2e8f0", outline: "none" }}>
+                        <option value="fitness">⚔️ Fitness</option>
+                        <option value="learning">📚 Learning</option>
+                        <option value="personal">✨ Personal</option>
+                        <option value="social">🤝 Social</option>
+                        <option value="creative">🎨 Creative</option>
+                        <option value="wellness">🌿 Wellness</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label className="text-xs font-semibold mb-1.5 block" style={{ color: "rgba(165,180,252,0.55)" }}>Frequenz</label>
+                      <div className="flex gap-1.5">
+                        {[{ v: "daily", label: "Täglich" }, { v: "triggered", label: "Bei Reiz" }].map(({ v, label }) => (
+                          <button key={v} onClick={() => {}} className="flex-1 text-xs py-2 rounded-lg font-medium" style={{ background: v === "daily" ? "rgba(99,102,241,0.18)" : "rgba(0,0,0,0.25)", color: v === "daily" ? "#818cf8" : "rgba(165,180,252,0.35)", border: `1px solid ${v === "daily" ? "rgba(99,102,241,0.4)" : "rgba(99,102,241,0.1)"}` }}>{label}</button>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Aetherbond Commitment */}
+                  <div>
+                    <label className="text-xs font-semibold mb-2 block" style={{ color: "rgba(165,180,252,0.55)" }}>⚗️ Aetherbond</label>
+                    <div className="grid grid-cols-3 gap-1.5">
+                      {COMMITMENT_TIERS_VOW.map(tier => (
+                        <button key={tier.id} onClick={() => setNewVowCommitment(tier.id)} className="text-left p-2 rounded-lg transition-all" style={{ background: newVowCommitment === tier.id ? `${tier.color}1a` : "rgba(0,0,0,0.2)", border: `1px solid ${newVowCommitment === tier.id ? tier.color : "rgba(255,255,255,0.07)"}`, boxShadow: newVowCommitment === tier.id ? `0 0 10px ${tier.color}44` : "none" }}>
+                          <div className="text-xs font-bold" style={{ color: newVowCommitment === tier.id ? tier.color : "rgba(255,255,255,0.5)" }}>{tier.label}</div>
+                          <div style={{ fontSize: "0.6rem", color: "rgba(255,255,255,0.28)", marginTop: 2 }}>{tier.days > 0 ? `${tier.days}d` : "—"}</div>
+                          <div style={{ fontSize: "0.6rem", color: "rgba(255,255,255,0.2)", lineHeight: 1.3 }}>{tier.flavorShort}</div>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Blood Pact Toggle */}
+                  <div>
+                    <button onClick={() => setNewVowBloodPact(p => !p)} className={`w-full py-2.5 px-4 rounded-xl font-semibold text-sm transition-all ${newVowBloodPact ? "blood-pact-active-indigo" : ""}`} style={{ background: newVowBloodPact ? "rgba(99,102,241,0.2)" : "rgba(255,255,255,0.04)", color: newVowBloodPact ? "#818cf8" : "rgba(255,255,255,0.25)", border: `1px solid ${newVowBloodPact ? "rgba(99,102,241,0.6)" : "rgba(255,255,255,0.1)"}`, transition: "color 0.3s, background 0.3s, border 0.3s" }}>
+                      🩸 {newVowBloodPact ? "Blutpakt besiegelt" : "Blutpakt besiegeln"}
+                    </button>
+                    {newVowBloodPact && <p className="text-xs mt-1.5 text-center" style={{ color: "rgba(99,102,241,0.8)" }}>⚠️ Blutpakt: Scheitern = alle Belohnungen verfallen.</p>}
+                  </div>
+
+                  {/* Reward Preview */}
+                  <div className="rounded-lg p-3" style={{ background: "rgba(0,0,0,0.2)", border: "1px solid rgba(99,102,241,0.12)" }}>
+                    <p className="text-xs font-semibold mb-1.5" style={{ color: "rgba(165,180,252,0.4)" }}>Vorschau Belohnungen</p>
+                    <p className="text-xs" style={{ color: "rgba(165,180,252,0.65)" }}>Täglich: <span style={{ color: "#818cf8" }}>5 🪙</span> · <span style={{ color: "#a78bfa" }}>10 XP</span></p>
+                    {tierData.id !== "none" && <p className="text-xs mt-0.5" style={{ color: "rgba(165,180,252,0.65)" }}>Bindungsbonus: <span style={{ color: "#818cf8" }}>+{bonusGold} 🪙</span> · <span style={{ color: "#a78bfa" }}>+{bonusXp} XP</span>{newVowBloodPact && <span style={{ color: "#6366f1", fontWeight: "bold" }}> ×3</span>}</p>}
+                  </div>
+
+                  {/* Buttons */}
+                  <div className="flex gap-2 pt-1">
+                    <button onClick={closeVowModal} className="text-sm py-2.5 px-5 rounded-xl" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(165,180,252,0.35)", border: "1px solid rgba(255,255,255,0.08)" }}>Zurücktreten</button>
+                    <button onClick={createAntiRitual} className="flex-1 text-sm py-2.5 rounded-xl font-bold" style={{ background: "rgba(67,56,202,0.3)", color: "#a5b4fc", border: "1px solid rgba(99,102,241,0.55)" }}>⚔️ Schwur leisten</button>
+                  </div>
+                </div>
               </div>
-            </div>
-            <div className="p-5">
-              <input
-                value={newTitle}
-                onChange={e => setNewTitle(e.target.value)}
-                placeholder="e.g. No social media before noon..."
-                className="w-full text-sm px-3 py-2.5 rounded-lg mb-4"
-                style={{ background: "rgba(0,0,0,0.3)", border: "1px solid rgba(239,68,68,0.3)", color: "#e8d5a3", outline: "none" }}
-                onKeyDown={e => e.key === "Enter" && createAntiRitual()}
-                autoFocus
-              />
-              <div className="flex gap-2">
-                <button onClick={() => setCreateOpen(false)} className="flex-1 text-sm py-2 rounded-lg" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(200,170,100,0.4)", border: "1px solid rgba(255,255,255,0.08)" }}>Cancel</button>
-                <button onClick={createAntiRitual} className="flex-1 text-sm py-2 rounded-lg font-semibold" style={{ background: "rgba(239,68,68,0.18)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.4)" }}>⚔️ Swear Vow</button>
+
+              {/* ── Vael Portrait (hidden on small screens) ── */}
+              <div className="hidden md:flex items-end" style={{ marginLeft: -44, width: 220, flexShrink: 0, pointerEvents: "none", zIndex: 10 }}>
+                <img src="/images/portraits/npc-vael.png" alt="Vael the Silent" style={{ imageRendering: "pixelated", width: "100%", filter: newVowBloodPact ? "drop-shadow(0 0 22px rgba(99,102,241,0.8))" : "drop-shadow(0 0 18px rgba(99,102,241,0.45))", transition: "filter 0.5s ease" }} />
               </div>
             </div>
           </div>
-        </div>
-      )}
+        );
+      })()}
 
       {/* Delete Confirm Modal */}
       {deleteConfirmId && (
