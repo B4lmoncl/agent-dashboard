@@ -49,7 +49,8 @@ interface WandererRestProps {
   handleComplete?: (questId: string, questTitle: string) => void;
 }
 
-const rarityColors: Record<string, string> = { common: "#9ca3af", uncommon: "#22c55e", rare: "#60a5fa", epic: "#a78bfa", legendary: "#f59e0b" };
+const rarityColors: Record<string, string> = { common: "#c4ccd8", uncommon: "#4ade80", rare: "#60a5fa", epic: "#c084fc", legendary: "#fbbf24" };
+const rarityRgb: Record<string, string> = { common: "196,204,216", uncommon: "74,222,128", rare: "96,165,250", epic: "192,132,252", legendary: "251,191,36" };
 const rarityStars: Record<string, string> = { common: "★", uncommon: "★★", rare: "★★★", epic: "★★★★", legendary: "★★★★★" };
 
 export function WandererRest({
@@ -128,7 +129,7 @@ export function WandererRest({
                       className="relative rounded-lg overflow-hidden flex-shrink-0"
                       style={{
                         width: 148, height: 148,
-                        border: `2px solid ${urgent ? "rgba(245,158,11,0.65)" : `${rc}40`}`,
+                        border: `3px solid ${urgent ? "rgba(245,158,11,0.65)" : `${rc}60`}`,
                         boxShadow: urgent ? "0 0 14px 3px rgba(245,158,11,0.22)" : `0 0 0 0 ${rc}`,
                         transition: "box-shadow 0.2s ease",
                         animation: urgent && hasOpenQuests ? "pulse-amber-border 1.8s ease-in-out infinite" : undefined,
@@ -288,7 +289,7 @@ export function WandererRest({
       {/* ── NPC Speech Bubble Modal ── */}
       {selectedNpc && (() => {
         const npc = selectedNpc;
-        const rarityColorsModal: Record<string, string> = { common: "#9ca3af", uncommon: "#22c55e", rare: "#60a5fa", epic: "#a78bfa", legendary: "#f59e0b" };
+        const rarityColorsModal: Record<string, string> = { common: "#c4ccd8", uncommon: "#4ade80", rare: "#60a5fa", epic: "#c084fc", legendary: "#fbbf24" };
         const rarityStarsModal: Record<string, string> = { common: "★ Common", uncommon: "★★ Uncommon", rare: "★★★ Rare", epic: "★★★★ Epic", legendary: "★★★★★ Legendary" };
         const rc = rarityColorsModal[npc.rarity] ?? "#9ca3af";
         const allDone = npc.questChain.length > 0 && npc.questChain.every(q => q.status === "completed");
@@ -302,7 +303,7 @@ export function WandererRest({
             style={{ background: "rgba(0,0,0,0.82)" }}
             onClick={e => { if (e.target === e.currentTarget) setSelectedNpc(null); }}
           >
-            <div className="relative w-full rounded-xl overflow-hidden" style={{ background: isStarweaver ? "linear-gradient(135deg, #0a0a1e 0%, #120830 100%)" : "#1a1a2e", border: `2px solid ${isStarweaver ? "rgba(255,215,0,0.3)" : `${rc}40`}`, maxHeight: "90vh", overflowY: "auto", maxWidth: isStarweaver ? 680 : 520 }}>
+            <div className="relative w-full rounded-xl overflow-hidden" style={{ background: isStarweaver ? "linear-gradient(135deg, #0a0a1e 0%, #120830 100%)" : `linear-gradient(135deg, rgba(${rarityRgb[npc.rarity] ?? "196,204,216"},0.08), rgba(${rarityRgb[npc.rarity] ?? "196,204,216"},0.03))`, border: `2px solid ${isStarweaver ? "rgba(255,215,0,0.3)" : `rgba(${rarityRgb[npc.rarity] ?? "196,204,216"},0.5)`}`, boxShadow: isStarweaver ? undefined : `0 0 20px rgba(${rarityRgb[npc.rarity] ?? "196,204,216"},0.1)`, maxHeight: "90vh", overflowY: "auto", maxWidth: isStarweaver ? 680 : 520 }}>
               {/* Close */}
               <button
                 onClick={() => setSelectedNpc(null)}
@@ -320,7 +321,7 @@ export function WandererRest({
 
               {/* NPC Header */}
               <div className="relative px-5 pt-5 pb-4 flex items-start gap-4" style={{ borderBottom: "1px solid rgba(255,255,255,0.07)", zIndex: 1 }}>
-                <div className="flex-shrink-0 rounded-lg overflow-hidden" style={{ width: isStarweaver ? 128 : 96, height: isStarweaver ? 128 : 96, border: `2px solid ${isStarweaver ? "rgba(255,215,0,0.5)" : `${rc}50`}`, boxShadow: isStarweaver ? "0 0 24px rgba(255,215,0,0.35), 0 0 8px rgba(100,60,200,0.3)" : "none" }}>
+                <div className="flex-shrink-0 rounded-lg overflow-hidden" style={{ width: isStarweaver ? 128 : 96, height: isStarweaver ? 128 : 96, border: `3px solid ${isStarweaver ? "rgba(255,215,0,0.5)" : `rgba(${rarityRgb[npc.rarity] ?? "196,204,216"},0.6)`}`, boxShadow: isStarweaver ? "0 0 24px rgba(255,215,0,0.35), 0 0 8px rgba(100,60,200,0.3)" : `0 0 12px rgba(${rarityRgb[npc.rarity] ?? "196,204,216"},0.25)` }}>
                   {npc.portrait ? (
                     <img src={npc.portrait} alt={npc.name} width={isStarweaver ? 128 : 96} height={isStarweaver ? 128 : 96} style={{ imageRendering: "pixelated", display: "block", width: "100%", height: "100%", objectFit: "cover" }} />
                   ) : (
@@ -328,7 +329,7 @@ export function WandererRest({
                   )}
                 </div>
                 <div className="flex-1 min-w-0 pt-1">
-                  <p className="text-sm font-bold leading-tight" style={{ color: isStarweaver ? "#FFD700" : "#f0f0f0", textShadow: isStarweaver ? "0 0 12px rgba(255,215,0,0.4)" : "none" }}>{npc.name}</p>
+                  <p className="text-sm font-bold leading-tight" style={{ color: isStarweaver ? "#FFD700" : "#f0f0f0", textShadow: isStarweaver ? "0 0 12px rgba(255,215,0,0.4)" : `0 0 10px rgba(${rarityRgb[npc.rarity] ?? "196,204,216"},0.4)` }}>{npc.name}</p>
                   <p className="text-xs mt-0.5" style={{ color: isStarweaver ? "rgba(255,215,0,0.5)" : "rgba(255,255,255,0.35)" }}>{npc.title}</p>
                   <p className="text-xs mt-1 font-semibold" style={{ color: rc }}>{rarityStarsModal[npc.rarity] ?? npc.rarity}</p>
                   {!isStarweaver && !(npc as ActiveNpc & { permanent?: boolean }).permanent && (
