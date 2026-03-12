@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { createPortal } from "react-dom";
 import type { Quest, ActiveNpc, QuestsData } from "@/app/types";
 import {
   EpicQuestCard, QuestCard, DobbieQuestPanel,
@@ -295,7 +296,7 @@ export function WandererRest({
         const completedCount = npc.questChain.filter(q => q.status === "completed").length;
         const totalCount = npc.questChain.length;
         const isStarweaver = npc.id === "lyra-permanent";
-        return (
+        return createPortal(
           <div
             className="fixed inset-0 z-50 flex items-center justify-center p-4"
             style={{ background: "rgba(0,0,0,0.82)" }}
@@ -507,7 +508,7 @@ export function WandererRest({
               )}
             </div>
           </div>
-        );
+        , document.body);
       })()}
 
       {/* Admin-only: NPC Quest Board (dev type) + Review Board */}
