@@ -200,20 +200,30 @@ export function WandererRest({
 
       {/* ── Dobbie's Demands ── */}
       {playerName && (
-        <div className="rounded-xl overflow-hidden mt-8" style={{ maxWidth: 1000, margin: "32px auto 0", background: "rgba(255,107,157,0.04)", border: "1px solid rgba(255,107,157,0.2)" }}>
+        <div className="rounded-xl overflow-hidden mt-8" style={{
+          maxWidth: 1000, margin: "32px auto 0",
+          background: "linear-gradient(180deg, rgba(255,107,157,0.04) 0%, rgba(20,10,30,0.8) 100%)",
+          border: "2px solid rgba(255,107,157,0.15)",
+          boxShadow: "inset 0 0 30px rgba(255,107,157,0.03), 0 4px 20px rgba(0,0,0,0.3)",
+        }}>
+          {/* Ornate top strip */}
+          <div style={{ height: 3, background: "linear-gradient(90deg, transparent, #ff6b9d88, rgba(255,215,0,0.3), #ff6b9d88, transparent)" }} />
           <button
             onClick={() => setDobbieOpen(v => !v)}
-            className="flex items-center gap-2 w-full px-4 py-2.5 text-left"
+            className="flex items-center gap-2.5 w-full px-4 py-3 text-left"
+            style={{ borderLeft: "3px solid #ff6b9d" }}
           >
-            <span className="text-sm">🐱</span>
-            <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: "#ff6b9d" }}>{petName ?? "Companion"}&apos;s Demands</span>
-            <span className="ml-auto text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>{dobbieOpen ? "▲" : "▼"}</span>
+            <span className="text-lg" style={{ filter: "drop-shadow(0 0 5px rgba(255,107,157,0.35))" }}>🐱</span>
+            <span className="text-xs" style={{ color: "rgba(255,107,157,0.5)" }}>🐾</span>
+            <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: "#ff6b9d", textShadow: "0 0 8px rgba(255,107,157,0.2)" }}>{petName ?? "Companion"}&apos;s Demands</span>
+            <span className="ml-auto text-xs" style={{ color: "rgba(255,107,157,0.35)" }}>{dobbieOpen ? "▲" : "▼"}</span>
           </button>
           {dobbieOpen && (
-            <div style={{ borderTop: "1px solid rgba(255,107,157,0.15)" }}>
+            <div style={{ borderTop: "1px solid rgba(255,107,157,0.12)" }}>
               <DobbieQuestPanel reviewApiKey={reviewApiKey} onRefresh={refresh} playerName={playerName} petName={petName} quests={quests} />
             </div>
           )}
+          <div style={{ height: 2, background: "linear-gradient(90deg, transparent, rgba(255,107,157,0.2), transparent)" }} />
         </div>
       )}
 
@@ -616,21 +626,29 @@ export function WandererRest({
               </section>
             )}
             {reviewApiKey && (
-              <div className="rounded-xl overflow-hidden" style={{ background: "rgba(255,107,157,0.04)", border: "1px solid rgba(255,107,157,0.2)" }}>
+              <div className="rounded-xl overflow-hidden" style={{
+                background: "linear-gradient(180deg, rgba(255,107,157,0.04) 0%, rgba(20,10,30,0.8) 100%)",
+                border: "2px solid rgba(255,107,157,0.15)",
+                boxShadow: "inset 0 0 30px rgba(255,107,157,0.03), 0 4px 20px rgba(0,0,0,0.3)",
+              }}>
+                <div style={{ height: 3, background: "linear-gradient(90deg, transparent, #ff6b9d88, rgba(255,215,0,0.3), #ff6b9d88, transparent)" }} />
                 <button
                   onClick={() => setDobbieOpen(v => !v)}
-                  className="flex items-center gap-2 w-full px-4 py-2.5 text-left"
+                  className="flex items-center gap-2.5 w-full px-4 py-3 text-left"
+                  style={{ borderLeft: "3px solid #ff6b9d" }}
                 >
-                  <span className="text-sm">🐱</span>
-                  <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: "#ff6b9d" }}>{petName ?? "Companion"}&apos;s Demands</span>
-                  <span className="text-xs px-1.5 py-0.5 rounded font-mono ml-1" style={{ background: "rgba(255,107,157,0.12)", color: "#ff6b9d", border: "1px solid rgba(255,107,157,0.25)" }}>NPC</span>
-                  <span className="ml-auto text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>{dobbieOpen ? "▲" : "▼"}</span>
+                  <span className="text-lg" style={{ filter: "drop-shadow(0 0 5px rgba(255,107,157,0.35))" }}>🐱</span>
+                  <span className="text-xs" style={{ color: "rgba(255,107,157,0.5)" }}>🐾</span>
+                  <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: "#ff6b9d", textShadow: "0 0 8px rgba(255,107,157,0.2)" }}>{petName ?? "Companion"}&apos;s Demands</span>
+                  <span className="text-xs px-1.5 py-0.5 rounded-lg font-mono ml-1" style={{ background: "rgba(255,107,157,0.08)", color: "rgba(255,107,157,0.6)", border: "1px solid rgba(255,107,157,0.2)" }}>NPC</span>
+                  <span className="ml-auto text-xs" style={{ color: "rgba(255,107,157,0.35)" }}>{dobbieOpen ? "▲" : "▼"}</span>
                 </button>
                 {dobbieOpen && (
-                  <div style={{ borderTop: "1px solid rgba(255,107,157,0.15)" }}>
+                  <div style={{ borderTop: "1px solid rgba(255,107,157,0.12)" }}>
                     <DobbieQuestPanel reviewApiKey={reviewApiKey} onRefresh={refresh} playerName={playerName} petName={petName} quests={quests} />
                   </div>
                 )}
+                <div style={{ height: 2, background: "linear-gradient(90deg, transparent, rgba(255,107,157,0.2), transparent)" }} />
               </div>
             )}
           </div>
