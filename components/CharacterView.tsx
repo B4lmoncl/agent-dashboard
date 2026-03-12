@@ -325,11 +325,16 @@ export default function CharacterView({ playerName, apiKey, users, classesList }
   const [selectedItem, setSelectedItem] = useState<string | null>(null);
   const [profileSettingsOpen, setProfileSettingsOpen] = useState(false);
 
-  const petals = useMemo(() => Array.from({ length: 20 }, (_, i) => ({
+  const PETAL_COUNT = 35;
+  const petals = useMemo(() => Array.from({ length: PETAL_COUNT }, (_, i) => ({
     id: i,
-    left: `${(i * 5.1 + 3) % 100}%`,
-    delay: `${(i * 0.41) % 8}s`,
-    duration: `${6 + (i * 0.37) % 4}s`,
+    image: `/images/petals/petal-${String((i % 12) + 1).padStart(2, '0')}.png`,
+    left: Math.random() * 100,
+    delay: Math.random() * 15,
+    duration: 10 + Math.random() * 15,
+    size: 12 + Math.random() * 16,
+    drift: -30 + Math.random() * 60,
+    rotation: Math.random() * 360,
   })), []);
 
   const fetchChar = useCallback(async () => {
@@ -381,83 +386,36 @@ export default function CharacterView({ playerName, apiKey, users, classesList }
         backgroundRepeat: "no-repeat",
         imageRendering: "pixelated" as any,
         backgroundColor: "#fce4ec",
+        filter: "brightness(1.3)",
       }}
     >
       {/* ── Layer 1: Dark overlay for readability ── */}
       <div
         className="absolute inset-0"
-        style={{ background: "rgba(11,13,17,0.6)", pointerEvents: "none" }}
+        style={{ background: "rgba(11,13,17,0.45)", pointerEvents: "none" }}
       />
 
-      {/* ── Layer 2: Torii Gate (CSS-only pixel art) ── */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none" style={{ zIndex: 1 }}>
-        <div style={{ position: "relative", width: 200, height: 250, marginTop: 20 }}>
-          {/* Top curved beam */}
-          <div style={{
-            position: "absolute", top: 0, left: -16, right: -16, height: 22,
-            background: "#c62828", borderRadius: "50% 50% 0 0 / 60% 60% 0 0",
-            boxShadow: "0 3px 8px rgba(0,0,0,0.3)",
-          }} />
-          {/* Second horizontal beam */}
-          <div style={{
-            position: "absolute", top: 30, left: 0, right: 0, height: 16,
-            background: "#d32f2f", borderRadius: 3,
-            boxShadow: "0 2px 6px rgba(0,0,0,0.25)",
-          }} />
-          {/* Left pillar */}
-          <div style={{
-            position: "absolute", top: 30, left: 16, width: 20, height: 220,
-            background: "linear-gradient(180deg, #d32f2f 0%, #b71c1c 100%)",
-            borderRadius: "3px 3px 6px 6px",
-            boxShadow: "2px 0 8px rgba(0,0,0,0.2)",
-          }} />
-          {/* Right pillar */}
-          <div style={{
-            position: "absolute", top: 30, right: 16, width: 20, height: 220,
-            background: "linear-gradient(180deg, #d32f2f 0%, #b71c1c 100%)",
-            borderRadius: "3px 3px 6px 6px",
-            boxShadow: "-2px 0 8px rgba(0,0,0,0.2)",
-          }} />
-          {/* Shadow under gate */}
-          <div style={{
-            position: "absolute", bottom: -8, left: 8, right: 8, height: 12,
-            background: "rgba(0,0,0,0.15)", borderRadius: "50%", filter: "blur(6px)",
-          }} />
-        </div>
+      {/* ── Petal Rain ── */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none" style={{ zIndex: 2 }}>
+        {petals.map(p => (
+          <div
+            key={p.id}
+            style={{
+              position: "absolute",
+              top: 0,
+              left: `${p.left}%`,
+              width: p.size,
+              height: p.size,
+              animation: `petalFall ${p.duration}s ${p.delay}s infinite linear`,
+              "--drift": `${p.drift}px`,
+              pointerEvents: "none",
+              imageRendering: "pixelated",
+            } as React.CSSProperties}
+          >
+            <img src={p.image} alt="" style={{ width: "100%", height: "100%", imageRendering: "pixelated" }} />
+          </div>
+        ))}
       </div>
-
-      {/* ── Layer 3: Cherry blossom branches ── */}
-      {/* Left branch */}
-      <div className="cherry-branch absolute pointer-events-none" style={{ top: -10, left: -20, zIndex: 2 }}>
-        <div style={{ position: "relative", width: 180, height: 200 }}>
-          <div style={{ position: "absolute", top: 20, left: 30, width: 120, height: 10, background: "#5d4037", borderRadius: "0 50% 50% 0", transform: "rotate(20deg)" }} />
-          <div style={{ position: "absolute", top: 50, left: 60, width: 80, height: 8, background: "#5d4037", borderRadius: "0 50% 50% 0", transform: "rotate(35deg)" }} />
-          <div style={{ position: "absolute", top: 10, left: 80, width: 60, height: 7, background: "#5d4037", borderRadius: "50%", transform: "rotate(-15deg)" }} />
-          {[{x:35,y:15},{x:80,y:5},{x:120,y:25},{x:60,y:48},{x:95,y:55},{x:130,y:30},{x:50,y:30},{x:110,y:10},{x:145,y:40},{x:70,y:62},{x:40,y:60},{x:100,y:35}].map((p, i) => (
-            <div key={i} style={{ position: "absolute", left: p.x, top: p.y, width: 10, height: 10, background: "#f48fb1", borderRadius: "50% 0 50% 0", opacity: 0.85 }} />
-          ))}
-        </div>
-      </div>
-      {/* Right branch */}
-      <div className="cherry-branch absolute pointer-events-none" style={{ top: -10, right: -20, zIndex: 2, animationDelay: "2s" }}>
-        <div style={{ position: "relative", width: 180, height: 200, transform: "scaleX(-1)" }}>
-          <div style={{ position: "absolute", top: 20, left: 30, width: 120, height: 10, background: "#5d4037", borderRadius: "0 50% 50% 0", transform: "rotate(20deg)" }} />
-          <div style={{ position: "absolute", top: 50, left: 60, width: 80, height: 8, background: "#5d4037", borderRadius: "0 50% 50% 0", transform: "rotate(35deg)" }} />
-          <div style={{ position: "absolute", top: 10, left: 80, width: 60, height: 7, background: "#5d4037", borderRadius: "50%", transform: "rotate(-15deg)" }} />
-          {[{x:35,y:15},{x:80,y:5},{x:120,y:25},{x:60,y:48},{x:95,y:55},{x:130,y:30},{x:50,y:30},{x:110,y:10},{x:145,y:40},{x:70,y:62},{x:40,y:60},{x:100,y:35}].map((p, i) => (
-            <div key={i} style={{ position: "absolute", left: p.x, top: p.y, width: 10, height: 10, background: "#f48fb1", borderRadius: "50% 0 50% 0", opacity: 0.85 }} />
-          ))}
-        </div>
-      </div>
-
-      {/* ── Layer 4: Falling petals ── */}
-      {petals.map(p => (
-        <div
-          key={p.id}
-          className="petal"
-          style={{ left: p.left, animationDelay: p.delay, animationDuration: p.duration, zIndex: 3 }}
-        />
-      ))}
 
       {/* ── Layer 5: Ground ── */}
       <div
