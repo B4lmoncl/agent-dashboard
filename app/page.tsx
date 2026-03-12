@@ -111,6 +111,7 @@ export default function Dashboard() {
   const [createRitualOpen, setCreateRitualOpen] = useState(false);
   const [newRitualTitle, setNewRitualTitle] = useState("");
   const [newRitualSchedule, setNewRitualSchedule] = useState("daily");
+  const [deleteRitualConfirmId, setDeleteRitualConfirmId] = useState<string | null>(null);
   const [changelog, setChangelog] = useState<ChangelogEntry[]>([]);
   const [changelogLoading, setChangelogLoading] = useState(false);
   const [poolRefreshing, setPoolRefreshing] = useState(false);
@@ -1118,7 +1119,7 @@ export default function Dashboard() {
             <button
               key={v.key}
               onClick={() => setDashView(v.key as typeof dashView)}
-              className="btn-interactive text-xs font-semibold px-3 py-1.5 rounded transition-all"
+              className="btn-interactive text-sm font-semibold px-3 py-1.5 rounded transition-all"
               style={{
                 background: dashView === v.key ? "#252525" : "transparent",
                 color: dashView === v.key ? "#f0f0f0" : "rgba(255,255,255,0.3)",
@@ -1326,11 +1327,16 @@ export default function Dashboard() {
                           <button
                             onClick={handlePoolRefresh}
                             disabled={poolRefreshing}
-                            className="btn-interactive text-xs px-2 py-1 rounded font-semibold"
+                            className="btn-interactive px-2 py-1 rounded inline-flex items-center gap-1.5"
                             style={{ background: "rgba(59,130,246,0.12)", color: "#60a5fa", border: "1px solid rgba(59,130,246,0.3)", opacity: poolRefreshing ? 0.6 : 1 }}
                             title="Refresh quest pool (1x per hour)"
                           >
-                            {poolRefreshing ? "⏳" : "🔄"} Neue Quests
+                            {poolRefreshing ? (
+                              <span className="text-sm">⏳</span>
+                            ) : (
+                              <img src="/images/icons/ui-quest-scroll.png" alt="" width={24} height={24} style={{ imageRendering: "pixelated" }} onError={e => (e.currentTarget.style.display = "none")} />
+                            )}
+                            <span className="text-xs font-semibold">New Quests</span>
                           </button>
                         )}
                         <button
@@ -1364,11 +1370,11 @@ export default function Dashboard() {
                         // Map type key to pixel art icon filename
                         const iconFile = t === "relationship-coop" ? "coop" : t;
                         return (
-                          <button key={t} onClick={() => setTypeFilter(t)} className="btn-interactive text-xs px-2 py-0.5 rounded inline-flex items-center gap-1"
+                          <button key={t} onClick={() => setTypeFilter(t)} className="btn-interactive text-sm px-2 py-0.5 rounded inline-flex items-center gap-1.5"
                             style={{ background: isActive ? (cfg ? cfg.bg : "rgba(255,255,255,0.1)") : "rgba(255,255,255,0.03)", color: isActive ? (cfg ? cfg.color : "#e8e8e8") : "rgba(255,255,255,0.3)", border: `1px solid ${isActive ? (cfg ? cfg.border : "rgba(255,255,255,0.2)") : "rgba(255,255,255,0.07)"}` }}>
                             {t === "all" ? "All" : (
                               <>
-                                <img src={`/images/icons/cat-${iconFile}.png`} alt="" width={14} height={14}
+                                <img src={`/images/icons/cat-${iconFile}.png`} alt="" width={28} height={28}
                                   style={{ imageRendering: "pixelated" }}
                                   onError={(e) => { e.currentTarget.style.display = "none"; const next = e.currentTarget.nextElementSibling as HTMLElement; if (next) next.style.display = "inline"; }} />
                                 <span style={{ display: "none" }}>{cfg!.icon}</span>
@@ -1392,14 +1398,14 @@ export default function Dashboard() {
                       <button
                         key={tab.key}
                         onClick={() => setQuestBoardTab(tab.key as "auftraege" | "rituale" | "anti-rituale")}
-                        className="btn-interactive text-xs px-3 py-1.5 rounded-lg font-medium transition-all inline-flex items-center gap-1.5"
+                        className="btn-interactive text-sm px-3 py-1.5 rounded-lg font-medium transition-all inline-flex items-center gap-1.5"
                         style={{
                           background: questBoardTab === tab.key ? "rgba(167,139,250,0.2)" : "rgba(255,255,255,0.04)",
                           color: questBoardTab === tab.key ? "#a78bfa" : "rgba(255,255,255,0.4)",
                           border: `1px solid ${questBoardTab === tab.key ? "rgba(167,139,250,0.4)" : "rgba(255,255,255,0.08)"}`,
                         }}
                       >
-                        <img src={tab.iconSrc} alt="" width={14} height={14}
+                        <img src={tab.iconSrc} alt="" width={28} height={28}
                           style={{ imageRendering: "pixelated" }}
                           onError={(e) => { e.currentTarget.style.display = "none"; const next = e.currentTarget.nextElementSibling as HTMLElement; if (next) next.style.display = "inline"; }} />
                         <span style={{ display: "none" }}>{tab.fallback}</span>
@@ -1423,7 +1429,7 @@ export default function Dashboard() {
                     boardOpen.length === 0 && playerVisibleInProgress.length === 0 ? (
                       <div className="rounded-xl p-5 text-center" style={{ background: "#252525", border: "1px solid rgba(255,255,255,0.06)" }}>
                         <p className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>{searchFilter ? "No quests match your search" : "No player quests open"}</p>
-                        {!searchFilter && playerName && reviewApiKey && <button onClick={handlePoolRefresh} className="btn-interactive text-xs mt-2 px-3 py-1 rounded" style={{ background: "rgba(59,130,246,0.12)", color: "#60a5fa", border: "1px solid rgba(59,130,246,0.3)" }}>🔄 Neue Quests laden</button>}
+                        {!searchFilter && playerName && reviewApiKey && <button onClick={handlePoolRefresh} className="btn-interactive mt-2 px-3 py-1 rounded inline-flex items-center gap-1.5" style={{ background: "rgba(59,130,246,0.12)", color: "#60a5fa", border: "1px solid rgba(59,130,246,0.3)" }}><img src="/images/icons/ui-quest-scroll.png" alt="" width={20} height={20} style={{ imageRendering: "pixelated" }} onError={e => (e.currentTarget.style.display = "none")} /><span className="text-xs font-semibold">Load Quests</span></button>}
                       </div>
                     ) : (
                       <>
@@ -1589,16 +1595,7 @@ export default function Dashboard() {
                                     </button>
                                     {reviewApiKey && (
                                       <button
-                                        onClick={async () => {
-                                          if (!window.confirm("Ritual wirklich löschen?")) return;
-                                          try {
-                                            await fetch(`/api/rituals/${ritual.id}`, {
-                                              method: 'DELETE',
-                                              headers: { 'x-api-key': reviewApiKey },
-                                            });
-                                            if (playerName) fetchRituals(playerName).then(setRituals);
-                                          } catch { /* ignore */ }
-                                        }}
+                                        onClick={() => setDeleteRitualConfirmId(ritual.id)}
                                         className="text-xs px-2 py-1.5 rounded-lg transition-all"
                                         style={{ background: "rgba(239,68,68,0.08)", color: "rgba(239,68,68,0.5)", border: "1px solid rgba(239,68,68,0.15)", cursor: 'pointer' }}
                                         title="Ritual löschen"
@@ -1613,26 +1610,53 @@ export default function Dashboard() {
                           })}
                         </div>
                       )}
-                      {/* Create Ritual Modal */}
+                      {/* Create Ritual Modal — Fantasy style */}
                       {createRitualOpen && (
-                        <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: "rgba(0,0,0,0.7)" }}>
-                          <div className="w-full max-w-sm rounded-2xl p-5" style={{ background: "#1a1a1a", border: "1px solid rgba(255,255,255,0.1)" }}>
-                            <h3 className="text-sm font-semibold mb-4" style={{ color: "#e8e8e8" }}>🔁 Neues Ritual</h3>
-                            <input value={newRitualTitle} onChange={e => setNewRitualTitle(e.target.value)} placeholder="Titel..." className="w-full text-sm px-3 py-2 rounded-lg mb-3" style={{ background: "#252525", border: "1px solid rgba(255,255,255,0.1)", color: "#e8e8e8", outline: "none" }} />
-                            <select value={newRitualSchedule} onChange={e => setNewRitualSchedule(e.target.value)} className="w-full text-sm px-3 py-2 rounded-lg mb-4" style={{ background: "#252525", border: "1px solid rgba(255,255,255,0.1)", color: "#e8e8e8", outline: "none" }}>
-                              <option value="daily">Täglich</option>
-                              <option value="weekdays">Werktags (Mo-Fr)</option>
-                              <option value="weekly">Wöchentlich</option>
-                            </select>
-                            <div className="flex gap-2">
-                              <button onClick={() => setCreateRitualOpen(false)} className="flex-1 text-sm py-2 rounded-lg" style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.4)", border: "1px solid rgba(255,255,255,0.1)" }}>Abbrechen</button>
-                              <button onClick={async () => {
-                                if (!newRitualTitle.trim() || !reviewApiKey || !playerName) return;
-                                await fetch('/api/rituals', { method: 'POST', headers: { 'Content-Type': 'application/json', 'x-api-key': reviewApiKey }, body: JSON.stringify({ title: newRitualTitle.trim(), schedule: { type: newRitualSchedule }, playerId: playerName, createdBy: playerName }) });
-                                setNewRitualTitle("");
-                                setCreateRitualOpen(false);
-                                fetchRituals(playerName).then(setRituals);
-                              }} className="flex-1 text-sm py-2 rounded-lg font-semibold" style={{ background: "rgba(167,139,250,0.2)", color: "#a78bfa", border: "1px solid rgba(167,139,250,0.4)" }}>Erstellen</button>
+                        <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: "rgba(0,0,0,0.75)" }} onClick={() => setCreateRitualOpen(false)}>
+                          <div className="w-full max-w-sm rounded-2xl overflow-hidden" style={{ background: "linear-gradient(160deg, #2c2318 0%, #1e1912 100%)", border: "1px solid rgba(245,158,11,0.3)", boxShadow: "0 0 40px rgba(167,139,250,0.08)" }} onClick={e => e.stopPropagation()}>
+                            <div className="flex items-center gap-3 px-5 pt-5 pb-3 border-b" style={{ borderColor: "rgba(245,158,11,0.15)" }}>
+                              <img src="/images/icons/ui-ritual-rune.png" alt="" width={32} height={32} style={{ imageRendering: "pixelated" }} onError={e => (e.currentTarget.style.display = "none")} />
+                              <div>
+                                <h3 className="text-sm font-bold" style={{ color: "#e8d5a3" }}>🔁 Forge a New Rite</h3>
+                                <p className="text-xs" style={{ color: "rgba(200,170,100,0.45)" }}>Inscribe a daily ritual into your legend.</p>
+                              </div>
+                            </div>
+                            <div className="p-5 space-y-3">
+                              <input
+                                value={newRitualTitle}
+                                onChange={e => setNewRitualTitle(e.target.value)}
+                                placeholder="Name your ritual..."
+                                className="w-full text-sm px-3 py-2.5 rounded-lg"
+                                style={{ background: "rgba(0,0,0,0.3)", border: "1px solid rgba(245,158,11,0.25)", color: "#e8d5a3", outline: "none" }}
+                                onKeyDown={e => e.key === "Enter" && (async () => {
+                                  if (!newRitualTitle.trim() || !reviewApiKey || !playerName) return;
+                                  await fetch('/api/rituals', { method: 'POST', headers: { 'Content-Type': 'application/json', 'x-api-key': reviewApiKey }, body: JSON.stringify({ title: newRitualTitle.trim(), schedule: { type: newRitualSchedule }, playerId: playerName, createdBy: playerName }) });
+                                  setNewRitualTitle("");
+                                  setCreateRitualOpen(false);
+                                  fetchRituals(playerName).then(setRituals);
+                                })()}
+                                autoFocus
+                              />
+                              <select
+                                value={newRitualSchedule}
+                                onChange={e => setNewRitualSchedule(e.target.value)}
+                                className="w-full text-sm px-3 py-2.5 rounded-lg"
+                                style={{ background: "rgba(0,0,0,0.3)", border: "1px solid rgba(245,158,11,0.25)", color: "#e8d5a3", outline: "none" }}
+                              >
+                                <option value="daily">Daily</option>
+                                <option value="weekdays">Weekdays (Mon–Fri)</option>
+                                <option value="weekly">Weekly</option>
+                              </select>
+                              <div className="flex gap-2 pt-1">
+                                <button onClick={() => setCreateRitualOpen(false)} className="flex-1 text-sm py-2 rounded-lg" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(200,170,100,0.4)", border: "1px solid rgba(255,255,255,0.08)" }}>Cancel</button>
+                                <button onClick={async () => {
+                                  if (!newRitualTitle.trim() || !reviewApiKey || !playerName) return;
+                                  await fetch('/api/rituals', { method: 'POST', headers: { 'Content-Type': 'application/json', 'x-api-key': reviewApiKey }, body: JSON.stringify({ title: newRitualTitle.trim(), schedule: { type: newRitualSchedule }, playerId: playerName, createdBy: playerName }) });
+                                  setNewRitualTitle("");
+                                  setCreateRitualOpen(false);
+                                  fetchRituals(playerName).then(setRituals);
+                                }} className="flex-1 text-sm py-2 rounded-lg font-semibold" style={{ background: "rgba(245,158,11,0.18)", color: "#f59e0b", border: "1px solid rgba(245,158,11,0.4)" }}>✨ Forge Ritual</button>
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -1646,6 +1670,36 @@ export default function Dashboard() {
                   )}
 
                 </aside>
+
+                {/* Delete Ritual Confirm Modal */}
+                {deleteRitualConfirmId && (
+                  <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: "rgba(0,0,0,0.75)" }} onClick={() => setDeleteRitualConfirmId(null)}>
+                    <div className="w-full max-w-xs rounded-2xl overflow-hidden" style={{ background: "linear-gradient(160deg, #2c2318 0%, #1e1912 100%)", border: "1px solid rgba(239,68,68,0.35)", boxShadow: "0 0 40px rgba(239,68,68,0.1)" }} onClick={e => e.stopPropagation()}>
+                      <div className="p-5 text-center">
+                        <p className="text-2xl mb-3">🔁</p>
+                        <p className="text-sm font-bold mb-1" style={{ color: "#e8d5a3" }}>Break this Ritual?</p>
+                        <p className="text-xs mb-5" style={{ color: "rgba(200,170,100,0.45)" }}>Are you sure you want to shatter this daily rite?</p>
+                        <div className="flex gap-2">
+                          <button onClick={() => setDeleteRitualConfirmId(null)} className="flex-1 text-sm py-2 rounded-lg font-medium" style={{ background: "rgba(255,255,255,0.05)", color: "rgba(200,170,100,0.5)", border: "1px solid rgba(255,255,255,0.1)" }}>Keep It</button>
+                          <button
+                            onClick={async () => {
+                              const id = deleteRitualConfirmId;
+                              setDeleteRitualConfirmId(null);
+                              try {
+                                await fetch(`/api/rituals/${id}`, { method: 'DELETE', headers: { 'x-api-key': reviewApiKey } });
+                                if (playerName) fetchRituals(playerName).then(setRituals);
+                              } catch { /* ignore */ }
+                            }}
+                            className="flex-1 text-sm py-2 rounded-lg font-semibold"
+                            style={{ background: "rgba(239,68,68,0.18)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.4)" }}
+                          >
+                            🗑 Break Ritual
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
 
               {/* Smart Suggestions — player quest board only */}

@@ -38,7 +38,7 @@ export function CreateQuestModal({ quests, users, reviewApiKey, onRefresh, onClo
             { key: "coop",       label: "Co-op",      iconSrc: "/images/icons/cat-coop.png",      fallback: "🤝" },
             { key: "challenges", label: "Challenges", iconSrc: "",                                fallback: "⚡" /* TODO: no pixel art icon yet */ },
           ] as { key: typeof tab; label: string; iconSrc: string; fallback: string }[]).map(t => (
-            <button key={t.key} onClick={() => setTab(t.key)} className="flex-1 py-2.5 text-xs font-semibold transition-all whitespace-nowrap px-2 inline-flex items-center justify-center gap-1"
+            <button key={t.key} onClick={() => setTab(t.key)} className="flex-1 py-2.5 text-sm font-semibold transition-all whitespace-nowrap px-2 inline-flex items-center justify-center gap-1"
               style={{
                 color: tab === t.key ? "#e8d5a3" : "rgba(200,170,100,0.35)",
                 background: tab === t.key ? "linear-gradient(180deg, #2c2318 0%, #231d13 100%)" : "transparent",
@@ -51,7 +51,7 @@ export function CreateQuestModal({ quests, users, reviewApiKey, onRefresh, onClo
               }}>
               {t.iconSrc ? (
                 <>
-                  <img src={t.iconSrc} alt="" width={14} height={14}
+                  <img src={t.iconSrc} alt="" width={28} height={28}
                     style={{ imageRendering: "pixelated" }}
                     onError={(e) => { e.currentTarget.style.display = "none"; const next = e.currentTarget.nextElementSibling as HTMLElement; if (next) next.style.display = "inline"; }} />
                   <span style={{ display: "none" }}>{t.fallback}</span>
@@ -315,6 +315,7 @@ export function AntiRitualePanel({ playerName, reviewApiKey }: { playerName: str
   const [antiRituals, setAntiRituals] = useState<AntiRitual[]>([]);
   const [createOpen, setCreateOpen] = useState(false);
   const [newTitle, setNewTitle] = useState("");
+  const [deleteConfirmId, setDeleteConfirmId] = useState<string | null>(null);
 
   const loadAntiRituals = useCallback(async () => {
     if (!playerName) return;
@@ -388,7 +389,7 @@ export function AntiRitualePanel({ playerName, reviewApiKey }: { playerName: str
       {antiRituals.length === 0 ? (
         <div className="rounded-xl p-5 text-center" style={{ background: "#252525", border: "1px solid rgba(255,255,255,0.06)" }}>
           <p className="text-2xl mb-2">🚫</p>
-          <p className="text-xs font-semibold mb-1" style={{ color: "rgba(255,255,255,0.4)" }}>Keine Anti-Rituale</p>
+          <p className="text-xs font-semibold mb-1" style={{ color: "rgba(255,255,255,0.4)" }}>No vows sworn yet</p>
           <p className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>Track how long you avoid a bad habit. Days clean = streak power.</p>
         </div>
       ) : (
@@ -440,16 +441,7 @@ export function AntiRitualePanel({ playerName, reviewApiKey }: { playerName: str
                     </button>
                     {reviewApiKey && (
                       <button
-                        onClick={async () => {
-                          if (!window.confirm("Ritual wirklich löschen?")) return;
-                          try {
-                            await fetch(`/api/rituals/${ar.id}`, {
-                              method: 'DELETE',
-                              headers: { 'x-api-key': reviewApiKey },
-                            });
-                            loadAntiRituals();
-                          } catch { /* ignore */ }
-                        }}
+                        onClick={() => setDeleteConfirmId(ar.id)}
                         className="text-xs px-2 py-1 rounded transition-all"
                         style={{ background: "rgba(239,68,68,0.06)", color: "rgba(239,68,68,0.4)", border: "1px solid rgba(239,68,68,0.12)", cursor: 'pointer' }}
                         title="Vow löschen"
@@ -466,20 +458,59 @@ export function AntiRitualePanel({ playerName, reviewApiKey }: { playerName: str
       )}
 
       {createOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: "rgba(0,0,0,0.7)" }}>
-          <div className="w-full max-w-sm rounded-2xl p-5" style={{ background: "#1a1a1a", border: "1px solid rgba(239,68,68,0.2)" }}>
-            <h3 className="text-sm font-semibold mb-1" style={{ color: "#e8e8e8" }}>🚫 Neues Anti-Ritual</h3>
-            <p className="text-xs mb-4" style={{ color: "rgba(255,255,255,0.35)" }}>Was vermeidest du? Track, wie lange du es schaffst.</p>
-            <input
-              value={newTitle}
-              onChange={e => setNewTitle(e.target.value)}
-              placeholder="z.B. Soziale Medien nicht checken..."
-              className="w-full text-sm px-3 py-2 rounded-lg mb-4"
-              style={{ background: "#252525", border: "1px solid rgba(255,255,255,0.1)", color: "#e8e8e8", outline: "none" }}
-            />
-            <div className="flex gap-2">
-              <button onClick={() => setCreateOpen(false)} className="flex-1 text-sm py-2 rounded-lg" style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.4)", border: "1px solid rgba(255,255,255,0.1)" }}>Abbrechen</button>
-              <button onClick={createAntiRitual} className="flex-1 text-sm py-2 rounded-lg font-semibold" style={{ background: "rgba(239,68,68,0.15)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.3)" }}>Erstellen</button>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: "rgba(0,0,0,0.75)" }} onClick={() => setCreateOpen(false)}>
+          <div className="w-full max-w-sm rounded-2xl overflow-hidden" style={{ background: "linear-gradient(160deg, #2c2318 0%, #1e1912 100%)", border: "1px solid rgba(239,68,68,0.35)", boxShadow: "0 0 40px rgba(239,68,68,0.08)" }} onClick={e => e.stopPropagation()}>
+            <div className="flex items-center gap-3 px-5 pt-5 pb-3 border-b" style={{ borderColor: "rgba(239,68,68,0.15)" }}>
+              <img src="/images/icons/ui-vow-sword.png" alt="" width={32} height={32} style={{ imageRendering: "pixelated" }} onError={e => (e.currentTarget.style.display = "none")} />
+              <div>
+                <h3 className="text-sm font-bold" style={{ color: "#e8d5a3" }}>⚔️ Swear a New Vow</h3>
+                <p className="text-xs" style={{ color: "rgba(200,170,100,0.45)" }}>Bind yourself to what you shall not do.</p>
+              </div>
+            </div>
+            <div className="p-5">
+              <input
+                value={newTitle}
+                onChange={e => setNewTitle(e.target.value)}
+                placeholder="e.g. No social media before noon..."
+                className="w-full text-sm px-3 py-2.5 rounded-lg mb-4"
+                style={{ background: "rgba(0,0,0,0.3)", border: "1px solid rgba(239,68,68,0.3)", color: "#e8d5a3", outline: "none" }}
+                onKeyDown={e => e.key === "Enter" && createAntiRitual()}
+                autoFocus
+              />
+              <div className="flex gap-2">
+                <button onClick={() => setCreateOpen(false)} className="flex-1 text-sm py-2 rounded-lg" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(200,170,100,0.4)", border: "1px solid rgba(255,255,255,0.08)" }}>Cancel</button>
+                <button onClick={createAntiRitual} className="flex-1 text-sm py-2 rounded-lg font-semibold" style={{ background: "rgba(239,68,68,0.18)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.4)" }}>⚔️ Swear Vow</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Delete Confirm Modal */}
+      {deleteConfirmId && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: "rgba(0,0,0,0.75)" }} onClick={() => setDeleteConfirmId(null)}>
+          <div className="w-full max-w-xs rounded-2xl overflow-hidden" style={{ background: "linear-gradient(160deg, #2c2318 0%, #1e1912 100%)", border: "1px solid rgba(239,68,68,0.35)", boxShadow: "0 0 40px rgba(239,68,68,0.1)" }} onClick={e => e.stopPropagation()}>
+            <div className="p-5 text-center">
+              <p className="text-2xl mb-3">⚔️</p>
+              <p className="text-sm font-bold mb-1" style={{ color: "#e8d5a3" }}>Abandon this Vow?</p>
+              <p className="text-xs mb-5" style={{ color: "rgba(200,170,100,0.45)" }}>Are you sure you want to forsake this sworn vow?</p>
+              <div className="flex gap-2">
+                <button onClick={() => setDeleteConfirmId(null)} className="flex-1 text-sm py-2 rounded-lg font-medium" style={{ background: "rgba(255,255,255,0.05)", color: "rgba(200,170,100,0.5)", border: "1px solid rgba(255,255,255,0.1)" }}>Keep It</button>
+                <button
+                  onClick={async () => {
+                    const id = deleteConfirmId;
+                    setDeleteConfirmId(null);
+                    try {
+                      await fetch(`/api/rituals/${id}`, { method: "DELETE", headers: { "x-api-key": reviewApiKey } });
+                      loadAntiRituals();
+                    } catch { /* ignore */ }
+                  }}
+                  className="flex-1 text-sm py-2 rounded-lg font-semibold"
+                  style={{ background: "rgba(239,68,68,0.18)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.4)" }}
+                >
+                  🗑 Abandon Vow
+                </button>
+              </div>
             </div>
           </div>
         </div>
