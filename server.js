@@ -719,6 +719,9 @@ function dailyQuestRotation() {
   saveRotationState();
 
   console.log(`[Daily Rotation] ${newQuests.length} new quests generated, ${kept.length} kept (${removed} old open system quests removed)`);
+
+  // NPC spawns happen at midnight alongside daily quest rotation
+  midnightNpcSpawn();
 }
 
 function scheduleDailyRotation() {
@@ -813,19 +816,32 @@ function processNpcDepartures(now) {
   if (questsChanged) saveQuests();
 }
 
-/** Try to spawn new NPCs into empty slots (30% chance per slot, weighted rarity) */
-function trySpawnNpcs(now, isStartup = false) {
+/** Diminishing spawn multiplier based on active NPC count */
+function getSpawnMultiplier(activeCount) {
+  if (activeCount <= 3) return 1.0;
+  if (activeCount === 4) return 0.7;
+  if (activeCount === 5) return 0.4;
+  if (activeCount === 6) return 0.2;
+  return 0; // max 7, no more
+}
+
+/** Try to spawn new NPCs (called at midnight or startup) */
+function trySpawnNpcs(now) {
   const currentActive = npcState.activeNpcs.length;
   if (currentActive >= NPC_MAX_ACTIVE) return;
 
-  // Cap spawns per cycle: fresh start (no state file) → max 2, otherwise max 1
-  const maxSpawnThisCycle = (isStartup && !npcStateFileExisted) ? 2 : 1;
+  // Cap spawns per cycle: max 2 new arrivals
+  const maxSpawnThisCycle = 2;
   let spawned = 0;
 
   const activeIds = new Set(npcState.activeNpcs.map(a => a.giverId));
 
-  for (let i = currentActive; i < NPC_MAX_ACTIVE && spawned < maxSpawnThisCycle; i++) {
-    if (Math.random() > NPC_SPAWN_CHANCE) continue;
+  for (let slot = 0; slot < maxSpawnThisCycle; slot++) {
+    if (npcState.activeNpcs.length + spawned >= NPC_MAX_ACTIVE) break;
+    // First NPC: 80% base chance, second: 30% base × diminishing multiplier
+    const baseChance = slot === 0 ? 0.80 : 0.30;
+    const multiplier = getSpawnMultiplier(currentActive + spawned);
+    if (Math.random() > baseChance * multiplier) continue;
 
     const candidates = npcGivers.givers.filter(g => {
       if (NPC_PERMANENT_IDS.has(g.id)) return false;
@@ -908,6 +924,59 @@ function trySpawnNpcs(now, isStartup = false) {
   }
 }
 
+/** Force-spawn 1 NPC (common/uncommon) — guarantees tavern is never empty */
+function forceSpawnMinimumNpc(now) {
+  if (npcState.activeNpcs.length > 0) return;
+  const activeIds = new Set(npcState.activeNpcs.map(a => a.giverId));
+  const candidates = npcGivers.givers.filter(g => {
+    if (NPC_PERMANENT_IDS.has(g.id)) return false;
+    if (activeIds.has(g.id)) return false;
+    if (g.rarity !== 'common' && g.rarity !== 'uncommon') return false;
+    const cooldownUntil = npcState.cooldowns[g.id];
+    if (cooldownUntil && Date.now() < new Date(cooldownUntil).getTime()) return false;
+    return true;
+  });
+  if (!candidates.length) {
+    // Fallback: allow any non-permanent NPC regardless of rarity/cooldown
+    const fallback = npcGivers.givers.filter(g => !NPC_PERMANENT_IDS.has(g.id) && !activeIds.has(g.id));
+    if (fallback.length) candidates.push(...fallback);
+  }
+  const giver = weightedRandomNpc(candidates);
+  if (!giver) return;
+
+  const baseDepartureMs = (giver.departureDurationHours || (giver.stayDays || 3) * 24) * 3600000;
+  const jitteredMs = baseDepartureMs * (0.8 + Math.random() * 0.4);
+  const arrivedAt = now.toISOString();
+  const departureTime = new Date(Date.now() + jitteredMs).toISOString();
+
+  const chains = giver.questChains || (giver.questChain ? [giver.questChain] : [[]]);
+  const chain = chains[Math.floor(Math.random() * chains.length)];
+  const questIds = [];
+  for (const qt of chain) {
+    const quest = {
+      id: `quest-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
+      title: qt.title, description: qt.description || '', priority: qt.priority || 'medium',
+      type: qt.type || 'personal', categories: [], product: null, humanInputRequired: false,
+      createdBy: giver.id, status: questIds.length === 0 ? 'open' : 'locked',
+      createdAt: arrivedAt, claimedBy: null, completedBy: null, completedAt: null,
+      parentQuestId: null, recurrence: null, streak: 0, lastCompletedAt: null,
+      proof: null, checklist: null, nextQuestTemplate: null, coopPartners: null,
+      coopClaimed: [], coopCompletions: [], skills: [], lore: qt.lore || null,
+      chapter: null, minLevel: 1, npcGiverId: giver.id, npcName: giver.name,
+      npcRarity: giver.rarity, flavorText: qt.flavorText || null,
+      chainIndex: chain.indexOf(qt), chainTotal: chain.length,
+      rarity: giver.rarity, npcRewards: qt.rewards || { xp: 20, gold: 10 },
+    };
+    quests.push(quest);
+    questIds.push(quest.id);
+  }
+  npcState.npcQuestIds[giver.id] = questIds;
+  saveQuests();
+
+  npcState.activeNpcs.push({ giverId: giver.id, arrivedAt, departureTime, expiresAt: departureTime, questChainIndex: chains.indexOf(chain) });
+  console.log(`[npc] Force-spawned ${giver.name} (tavern was empty)`);
+}
+
 /** Check companion quests with timeLimit and fail expired ones */
 function checkCompanionQuestTimeLimits() {
   const nowMs = Date.now();
@@ -951,23 +1020,47 @@ function checkCompanionQuestTimeLimits() {
   if (changed) saveQuests();
 }
 
-/** Main NPC rotation check — called on startup and every 30 minutes */
-let npcRotationFirstRun = true;
-function checkNpcRotation() {
+/** NPC departure check — runs every 30 minutes, handles departures only (no spawns) */
+function checkNpcDepartures() {
   const now = new Date();
-  const isStartup = npcRotationFirstRun;
-  npcRotationFirstRun = false;
-  console.log(`[npc] Rotation check at ${now.toISOString()} — ${npcState.activeNpcs.length} active${isStartup ? ' (startup)' : ''}`);
+  console.log(`[npc] Departure check at ${now.toISOString()} — ${npcState.activeNpcs.length} active`);
   processNpcDepartures(now);
-  trySpawnNpcs(now, isStartup);
   checkCompanionQuestTimeLimits();
+  // Guarantee: tavern should never be empty
+  forceSpawnMinimumNpc(now);
   npcState.lastRotationCheck = now.toISOString();
+  saveNpcState();
+}
+
+/** Midnight NPC spawn — called from dailyQuestRotation at midnight Berlin time */
+function midnightNpcSpawn() {
+  const now = new Date();
+  console.log(`[npc] Midnight spawn at ${now.toISOString()} — ${npcState.activeNpcs.length} active`);
+  processNpcDepartures(now);
+  trySpawnNpcs(now);
+  // Guarantee: tavern should never be empty
+  forceSpawnMinimumNpc(now);
   npcState.lastRotation = now.toISOString();
+  npcState.lastRotationCheck = now.toISOString();
+  saveNpcState();
+}
+
+/** Startup NPC check — restore state, force-spawn if empty */
+function startupNpcCheck() {
+  const now = new Date();
+  console.log(`[npc] Startup check — ${npcState.activeNpcs.length} active`);
+  processNpcDepartures(now);
+  if (npcState.activeNpcs.length === 0) {
+    // Fresh start or all departed: spawn 1-2
+    trySpawnNpcs(now);
+    forceSpawnMinimumNpc(now);
+  }
+  npcState.lastRotationCheck = now.toISOString();
   saveNpcState();
 }
 
 // Alias so POST /api/npcs/rotate still works
-function rotateNpcs() { checkNpcRotation(); }
+function rotateNpcs() { midnightNpcSpawn(); }
 
 // ─── Quest Catalog store ─────────────────────────────────────────────────────
 let questCatalog = { meta: { totalTemplates: 0, byCategory: { generic: 0, classQuest: 0, chainQuest: 0, companionQuest: 0 }, byClass: {}, lastUpdated: new Date().toISOString() }, templates: [] };
@@ -5843,8 +5936,8 @@ loadNpcGivers();
 loadNpcState();
 loadAppState();
 loadFeedback();
-rotateNpcs();
-setInterval(checkNpcRotation, NPC_ROTATION_MS);
+startupNpcCheck();
+setInterval(checkNpcDepartures, NPC_ROTATION_MS);
 checkAndRunDailyRotation();
 
 // Version tracking
