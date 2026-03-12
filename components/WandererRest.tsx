@@ -331,7 +331,7 @@ export function WandererRest({
 
               {/* NPC Header */}
               <div className="relative px-5 pt-5 pb-4 flex items-start gap-4" style={{ borderBottom: "1px solid rgba(255,255,255,0.07)", zIndex: 1 }}>
-                <div className="flex-shrink-0 rounded-lg overflow-hidden" style={{ width: isStarweaver ? 128 : 96, height: isStarweaver ? 128 : 96, border: `3px solid ${isStarweaver ? "rgba(255,215,0,0.5)" : `rgba(${rarityRgb[npc.rarity] ?? "196,204,216"},0.6)`}`, boxShadow: isStarweaver ? "0 0 24px rgba(255,215,0,0.35), 0 0 8px rgba(100,60,200,0.3)" : `0 0 12px rgba(${rarityRgb[npc.rarity] ?? "196,204,216"},0.25)` }}>
+                <div className="flex-shrink-0 rounded-lg overflow-hidden" style={{ width: isStarweaver ? 128 : 96, height: isStarweaver ? 128 : 96, background: "#0a0a15", border: `3px solid ${isStarweaver ? "rgba(255,215,0,0.5)" : `rgba(${rarityRgb[npc.rarity] ?? "196,204,216"},0.6)`}`, boxShadow: isStarweaver ? "0 0 24px rgba(255,215,0,0.35), 0 0 8px rgba(100,60,200,0.3)" : `0 0 12px rgba(${rarityRgb[npc.rarity] ?? "196,204,216"},0.25)` }}>
                   {npc.portrait ? (
                     <img src={npc.portrait} alt={npc.name} width={isStarweaver ? 128 : 96} height={isStarweaver ? 128 : 96} style={{ imageRendering: "pixelated", display: "block", width: "100%", height: "100%", objectFit: "cover" }} />
                   ) : (
