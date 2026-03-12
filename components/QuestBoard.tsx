@@ -463,22 +463,21 @@ export function AntiRitualePanel({ playerName, reviewApiKey }: { playerName: str
       {/* ── Top flex row: Portrait left, content right ── */}
       <div className="flex gap-4 mb-4" style={{ alignItems: "flex-start" }}>
         {/* Portrait column with speech bubble */}
-        <div className="flex-none" style={{ width: 130 }}>
-          <img src="/images/portraits/npc-vael.png" alt="Vael the Silent" width={256} height={384} style={{ imageRendering: "pixelated", width: "100%", height: "auto", display: "block", filter: "drop-shadow(0 0 14px rgba(99,102,241,0.4))", borderRadius: 4 }} />
-          <div style={{ marginTop: 8, background: "rgba(99,102,241,0.06)", border: "1px solid rgba(99,102,241,0.22)", borderRadius: 6, padding: "8px 10px", position: "relative" }}>
-            <div style={{ position: "absolute", top: -6, left: "50%", transform: "translateX(-50%)", width: 0, height: 0, borderLeft: "6px solid transparent", borderRight: "6px solid transparent", borderBottom: "6px solid rgba(99,102,241,0.22)" }} />
-            <p style={{ fontSize: "0.62rem", fontStyle: "italic", color: "#a5b4fc", lineHeight: 1.5, margin: 0 }}>„Sprich. Oder schweig. Beides hat Gewicht."</p>
+        <div className="flex-none" style={{ width: 195 }}>
+          <img src="/images/portraits/npc-vael.png" alt="Vael the Silent" width={256} height={384} style={{ imageRendering: "pixelated", width: "100%", height: "auto", display: "block", filter: "drop-shadow(0 0 14px rgba(99,102,241,0.4))", borderRadius: "4px 4px 0 0", pointerEvents: "none" }} />
+          <div style={{ background: "rgba(8,8,20,0.9)", border: "1px solid rgba(99,102,241,0.35)", borderTop: "none", borderRadius: "0 0 8px 8px", padding: "8px 10px" }}>
+            <p style={{ fontSize: "0.65rem", fontStyle: "italic", color: "#a5b4fc", lineHeight: 1.5, margin: 0 }}>„Sprich. Oder schweig. Beides hat Gewicht."</p>
           </div>
         </div>
         {/* Right: title + create button + first 2 cards */}
         <div className="flex-1 min-w-0">
           <div className="flex items-center justify-between mb-3">
             <div>
-              <h3 className="text-xs font-semibold uppercase tracking-widest" style={{ color: "#818cf8" }}>
+              <h3 className="font-bold uppercase tracking-widest" style={{ color: "#818cf8", fontSize: "1.125rem" }}>
                 Vow Shrine
-                <span className="text-xs font-normal normal-case ml-2" style={{ color: "rgba(165,180,252,0.35)" }}>— track what you don&apos;t do</span>
+                <span className="font-normal normal-case ml-2" style={{ color: "rgba(165,180,252,0.35)", fontSize: "0.75rem" }}>— track what you don&apos;t do</span>
               </h3>
-              <p className="text-xs" style={{ color: "rgba(99,102,241,0.45)", fontSize: "0.6rem" }}>Vael the Silent</p>
+              <p style={{ color: "rgba(99,102,241,0.6)", fontSize: "1rem", fontWeight: 600, marginTop: 2 }}>Vael the Silent</p>
             </div>
             {playerName && reviewApiKey && (
               <button onClick={() => setCreateOpen(true)} className="action-btn text-xs px-3 py-1.5 rounded-lg font-semibold"
@@ -514,7 +513,15 @@ export function AntiRitualePanel({ playerName, reviewApiKey }: { playerName: str
         const bonusXp = tierData.bonusXp * (newVowBloodPact ? 3 : 1);
         return (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: "rgba(0,0,0,0.88)" }} onClick={closeVowModal}>
-            <div style={{ maxWidth: 520, width: "100%", borderRadius: "1rem", background: newVowBloodPact ? "linear-gradient(160deg, #1a1a2e 0%, #0f0f1e 100%)" : "linear-gradient(160deg, #1e1c2c 0%, #141220 100%)", border: `1px solid ${newVowBloodPact ? "rgba(99,102,241,0.6)" : "rgba(99,102,241,0.3)"}`, boxShadow: newVowBloodPact ? "0 0 60px rgba(99,102,241,0.14)" : "0 0 40px rgba(99,102,241,0.07)", transition: "all 0.4s ease" }} onClick={e => e.stopPropagation()}>
+            <div style={{ position: "relative" }} onClick={e => e.stopPropagation()}>
+              {/* NPC Portrait — absolute right of modal, hidden on mobile */}
+              <div className="hidden md:flex flex-col" style={{ position: "absolute", left: "calc(100% + 16px)", top: 0, width: 200 }}>
+                <img src="/images/portraits/npc-vael.png" alt="Vael the Silent" width={256} height={384} style={{ imageRendering: "pixelated", width: "100%", height: "auto", display: "block", filter: "drop-shadow(0 0 14px rgba(99,102,241,0.45))", borderRadius: "8px 8px 0 0", pointerEvents: "none" }} />
+                <div style={{ background: "rgba(8,8,20,0.92)", border: "1px solid rgba(99,102,241,0.4)", borderTop: "none", borderRadius: "0 0 8px 8px", padding: "10px 12px" }}>
+                  <p style={{ fontSize: "0.65rem", fontStyle: "italic", color: "#a5b4fc", lineHeight: 1.5, margin: 0 }}>{getVaelSpeech(newVowCommitment, newVowBloodPact)}</p>
+                </div>
+              </div>
+            <div style={{ maxWidth: 520, width: "100%", borderRadius: "1rem", background: newVowBloodPact ? "linear-gradient(160deg, #1a1a2e 0%, #0f0f1e 100%)" : "linear-gradient(160deg, #1e1c2c 0%, #141220 100%)", border: `1px solid ${newVowBloodPact ? "rgba(99,102,241,0.6)" : "rgba(99,102,241,0.3)"}`, boxShadow: newVowBloodPact ? "0 0 60px rgba(99,102,241,0.14)" : "0 0 40px rgba(99,102,241,0.07)", transition: "all 0.4s ease" }}>
               {/* Header */}
               <div className="flex items-center gap-3 px-5 pt-4 pb-3 border-b" style={{ borderColor: "rgba(99,102,241,0.12)" }}>
                 <img src="/images/icons/ui-vow-sword.png" alt="" width={28} height={28} style={{ imageRendering: "pixelated" }} onError={e => (e.currentTarget.style.display = "none")} />
@@ -522,6 +529,10 @@ export function AntiRitualePanel({ playerName, reviewApiKey }: { playerName: str
                   <h3 className="text-sm font-bold" style={{ color: "#e2e8f0" }}>Swear a Vow</h3>
                   <p className="text-xs" style={{ color: "rgba(165,180,252,0.4)" }}>Vael the Silent — Vow Shrine</p>
                 </div>
+              </div>
+              {/* Mobile-only speech */}
+              <div className="md:hidden px-5 py-2.5" style={{ borderBottom: "1px solid rgba(99,102,241,0.1)", background: "rgba(8,8,20,0.4)" }}>
+                <p style={{ fontSize: "0.65rem", fontStyle: "italic", color: "#a5b4fc", lineHeight: 1.5, margin: 0 }}>{getVaelSpeech(newVowCommitment, newVowBloodPact)}</p>
               </div>
               {/* Form */}
               <div className="p-5 space-y-4" style={{ paddingBottom: "1.75rem" }}>
@@ -578,6 +589,7 @@ export function AntiRitualePanel({ playerName, reviewApiKey }: { playerName: str
                   <button onClick={createAntiRitual} className="action-btn flex-1 text-sm py-2.5 rounded-xl font-bold" style={{ background: "rgba(67,56,202,0.32)", color: "#a5b4fc", border: "1px solid rgba(99,102,241,0.6)", boxShadow: "0 0 16px rgba(99,102,241,0.12)" }}>Seal Vow</button>
                 </div>
               </div>
+            </div>
             </div>
           </div>
         );

@@ -267,16 +267,16 @@ body {
 
 /* ─── Ritual section + Vow section tinting ───────────────────────────────── */
 .section-ritual {
-  background: rgba(245,158,11,0.04);
-  border: 1px solid rgba(245,158,11,0.1);
+  background: rgba(245,158,11,0.06);
+  border: 1px solid rgba(245,158,11,0.15);
   border-radius: 1rem;
-  padding: 12px;
+  padding: 14px;
 }
 .section-vow {
-  background: rgba(99,102,241,0.04);
-  border: 1px solid rgba(99,102,241,0.1);
+  background: rgba(99,102,241,0.06);
+  border: 1px solid rgba(99,102,241,0.15);
   border-radius: 1rem;
-  padding: 12px;
+  padding: 14px;
 }
 
 @keyframes blood-pact-pulse {
