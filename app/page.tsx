@@ -167,7 +167,7 @@ export default function Dashboard() {
   const apiFetch = useCallback(async (url: string, options?: RequestInit): Promise<Response> => {
     const r = await fetch(url, options);
     if (r.status === 429) {
-      const msg = "⚒️ Zu viel geschmiedet! Der Amboss muss erst abkühlen. Warte kurz vor dem Einreichen neuer Quests.";
+      const msg = "Zu viel geschmiedet! Der Amboss muss erst abkühlen. Warte kurz vor dem Einreichen neuer Quests.";
       setApiError(msg);
       throw new Error(msg);
     }
@@ -366,15 +366,15 @@ export default function Dashboard() {
         const currentUser = users.find(u => u.id === pName.toLowerCase() || u.name.toLowerCase() === pName.toLowerCase());
         const streak = currentUser?.streakDays ?? 0;
         const FLAVOR_MESSAGES = [
-          { message: "Quest slain!", icon: "⚔️" },
-          { message: "Like a pro!", icon: "💫" },
-          { message: "Clutch finish!", icon: "🎯" },
-          { message: "Well played!", icon: "🎮" },
-          { message: "The Forge burns bright!", icon: "🔥" },
+          { message: "Quest slain!", icon: "×" },
+          { message: "Like a pro!", icon: "×" },
+          { message: "Clutch finish!", icon: "×" },
+          { message: "Well played!", icon: "×" },
+          { message: "The Forge burns bright!", icon: "×" },
         ];
         let flavor = FLAVOR_MESSAGES[Math.floor(Math.random() * FLAVOR_MESSAGES.length)];
-        if (streak >= 30) flavor = { message: "Legendary streak!", icon: "👑" };
-        else if (streak >= 7) flavor = { message: "Streak master!", icon: "🔥" };
+        if (streak >= 30) flavor = { message: "Legendary streak!", icon: "×" };
+        else if (streak >= 7) flavor = { message: "Streak master!", icon: "×" };
         setFlavorToast({ ...flavor, sub: questTitle.length > 40 ? questTitle.slice(0, 40) + "…" : questTitle });
         await refresh();
       }
@@ -568,7 +568,7 @@ export default function Dashboard() {
   const forgeTemp = Math.min(loggedInUser?.forgeTemp ?? 0, 100);
   const forgeTempColor = forgeTemp === 0 ? "#4a4a4a" : forgeTemp <= 20 ? "#8b0000" : forgeTemp <= 40 ? "#ff4500" : forgeTemp <= 60 ? "#ff8c00" : forgeTemp <= 80 ? "#ffa500" : "#00bfff";
   const forgeTempLabel = forgeTemp === 0 ? "Cold" : forgeTemp <= 20 ? "Smoldering" : forgeTemp <= 40 ? "Warming" : forgeTemp <= 60 ? "Burning" : forgeTemp <= 80 ? "Blazing" : "White-hot";
-  const forgeTempIcon = forgeTemp === 0 ? "🪨" : forgeTemp <= 20 ? "🔥" : forgeTemp <= 40 ? "🔥" : forgeTemp <= 60 ? "💛" : forgeTemp <= 80 ? "⚡" : "💎";
+  const forgeTempIcon = forgeTemp === 0 ? "×" : forgeTemp <= 20 ? "×" : forgeTemp <= 40 ? "×" : forgeTemp <= 60 ? "×" : forgeTemp <= 80 ? "×" : "×";
 
   const playerActiveCount = playerActiveQuests.length;
   const playerCompletedCount = playerCompletedQuests.length;
@@ -680,7 +680,7 @@ export default function Dashboard() {
               style={{ color: "rgba(255,255,255,0.4)", background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}
               title="Info, Guide & Tutorial"
             >
-              📜 Info
+              Info
             </button>
             {/* Login / User area */}
             <div className="relative" data-tutorial="login-btn" data-feedback-id="header.login-badge">
@@ -721,7 +721,7 @@ export default function Dashboard() {
                           className="flex items-center gap-2 px-4 py-2.5 text-xs text-left"
                           style={{ color: "rgba(255,255,255,0.5)", background: "none", border: "none", cursor: "not-allowed", opacity: 0.5 }}
                         >
-                          ⚙ Einstellungen <span style={{ fontSize: 10, color: "rgba(255,255,255,0.25)" }}>(bald)</span>
+                          Einstellungen <span style={{ fontSize: 10, color: "rgba(255,255,255,0.25)" }}>(bald)</span>
                         </button>
                         <div style={{ height: 1, background: "rgba(255,255,255,0.07)", margin: "0 12px" }} />
                         {/* Logout */}
@@ -741,7 +741,7 @@ export default function Dashboard() {
                             setSettingsPopupOpen(false);
                           }}
                         >
-                          ⏏ Logout
+                          Logout
                         </button>
                       </div>
                   )}
@@ -753,7 +753,7 @@ export default function Dashboard() {
                     className="btn-interactive text-xs px-2 py-0.5 rounded"
                     style={{ color: "rgba(255,255,255,0.4)", background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}
                   >
-                    🔑 Login
+                    Login
                   </button>
                   {loginOpen && (
                     <div className="absolute right-0 top-7 z-50 rounded-xl p-3 shadow-xl flex flex-col gap-2" style={{ background: "#1e1e1e", border: "1px solid rgba(139,92,246,0.3)", minWidth: "220px" }}>
@@ -919,7 +919,7 @@ export default function Dashboard() {
                 className="text-xs px-2 py-0.5 rounded font-semibold"
                 style={{ color: "#f59e0b", background: "rgba(245,158,11,0.12)", border: "1px solid rgba(245,158,11,0.35)" }}
               >
-                ✦ {quests.suggested.length} to review
+                {quests.suggested.length} to review
               </div>
             )}
             <div className="flex items-center gap-2 text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>
@@ -949,14 +949,14 @@ export default function Dashboard() {
           {!playerName && !loading && (
             <div className="col-span-1 sm:col-span-3 rounded-xl p-3 text-center" style={{ background: "rgba(167,139,250,0.06)", border: "1px solid rgba(167,139,250,0.2)" }}>
               <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>
-                🔑 <button onClick={() => setLoginOpen(true)} className="underline" style={{ color: "#a78bfa" }}>Log in</button> to see your personal stats
+                <button onClick={() => setLoginOpen(true)} className="underline" style={{ color: "#a78bfa" }}>Log in</button> to see your personal stats
               </p>
             </div>
           )}
           {/* TODO: replace 🔥⚔️✅🪙 with pixel art icons once ui-forge/ui-sword/ui-check/reward-gold assets exist */}
           <div data-feedback-id="stats.forge-temp">
           <StatBar
-            label="🔥 Forge Streak"
+            label="Forge Streak"
             value={loading ? "—" : playerName ? `${animStreak}d` : "—"}
             sub={playerName ? "your streak" : "login to view"}
             accent="#f97316"
@@ -965,7 +965,7 @@ export default function Dashboard() {
           </div>
           <div data-feedback-id="stats.active-quests">
           <StatBar
-            label="⚔️ Active Quests"
+            label="Active Quests"
             value={loading ? "—" : playerName ? animActive : "—"}
             sub={playerName ? `${openQuestsCount} open` : "login to view"}
             accent="#ef4444"
@@ -974,7 +974,7 @@ export default function Dashboard() {
           </div>
           <div data-feedback-id="stats.completed">
           <StatBar
-            label="✅ Quests Completed"
+            label="Quests Completed"
             value={loading ? "—" : playerName ? animCompleted : "—"}
             sub={playerName ? "your completions" : "login to view"}
             accent="#22c55e"
@@ -1036,7 +1036,7 @@ export default function Dashboard() {
               <div className="flex flex-col items-end gap-2 flex-shrink-0">
                 {/* Gold */}
                 <div className="flex items-center gap-1.5">
-                  <span className="text-sm">💰</span>
+                  <img src="/images/icons/reward-gold.png" width={16} height={16} style={{ imageRendering: "pixelated", verticalAlign: "middle" }} />
                   <span className="text-sm font-mono font-bold" style={{ color: "#f59e0b" }}>{animGold}</span>
                   <button
                     data-feedback-id="player-card.currencies"
@@ -1059,7 +1059,7 @@ export default function Dashboard() {
                     <span className="text-xs px-1 py-0.5 rounded font-mono" style={{ color: "rgba(255,255,255,0.25)", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.07)" }}>
                       {forgeQuestsToday}/8
                     </span>
-                    <span className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>❓</span>
+                    <span className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>?</span>
                   </div>
                   {/* Forge bar */}
                   <div className="mt-1 rounded-full overflow-hidden" style={{ height: 3, background: "rgba(255,255,255,0.06)", width: 120 }}>
@@ -1115,9 +1115,9 @@ export default function Dashboard() {
               </div>
               <div className="space-y-2">
                 {[
-                  { icon: "💰", name: "Gold", value: animGold, color: "#f59e0b", desc: "Earned from quests. Spend in the Deepforge." },
-                  { icon: "✨", name: "Astralium", value: 0, color: "#818cf8", desc: "Coming soon — rare cosmic currency." },
-                  { icon: "🔮", name: "Runensplitter", value: 0, color: "#a78bfa", desc: "Coming soon — used for enchantments." },
+                  { icon: "×", name: "Gold", value: animGold, color: "#f59e0b", desc: "Earned from quests. Spend in the Deepforge." },
+                  { icon: "×", name: "Astralium", value: 0, color: "#818cf8", desc: "Coming soon — rare cosmic currency." },
+                  { icon: "×", name: "Runensplitter", value: 0, color: "#a78bfa", desc: "Coming soon — used for enchantments." },
                 ].map(c => (
                   <div key={c.name} className="flex items-center gap-3 rounded-xl px-3 py-2.5" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)" }}>
                     <span style={{ fontSize: 20 }}>{c.icon}</span>
@@ -1139,15 +1139,15 @@ export default function Dashboard() {
         {/* TODO: replace nav-tab emojis (⚔🎓🧙🏕🏆🏅🔭🔥) with pixel art once ui-nav-* assets exist */}
         <div className="flex gap-1 flex-wrap" style={{ background: "#111", borderRadius: 8, padding: 3, display: "inline-flex" }}>
           {[
-            { key: "questBoard",    label: "⚔ The Great Hall",     tutorialKey: "quest-board-tab" },
-            { key: "klassenquests", label: "🎓 The Arcanum",  tutorialKey: null },
-            ...(playerName ? [{ key: "character", label: "🧙 Character", tutorialKey: null }] : []),
-            { key: "npcBoard",      label: "🏕 The Wanderer's Rest", tutorialKey: "npc-board-tab" },
-            { key: "leaderboard", label: "🏆 The Proving Grounds", tutorialKey: "leaderboard-tab" },
-            { key: "honors",      label: "🏅 Honors",          tutorialKey: null },
-            { key: "campaign",    label: "🔭 The Observatory",        tutorialKey: "campaign-tab" },
+            { key: "questBoard",    label: "The Great Hall",     tutorialKey: "quest-board-tab" },
+            { key: "klassenquests", label: "The Arcanum",  tutorialKey: null },
+            ...(playerName ? [{ key: "character", label: "Character", tutorialKey: null }] : []),
+            { key: "npcBoard",      label: "The Wanderer's Rest", tutorialKey: "npc-board-tab" },
+            { key: "leaderboard", label: "The Proving Grounds", tutorialKey: "leaderboard-tab" },
+            { key: "honors",      label: "Honors",          tutorialKey: null },
+            { key: "campaign",    label: "The Observatory",        tutorialKey: "campaign-tab" },
             { key: "season",      label: `${CURRENT_SEASON.icon} Season`, tutorialKey: "season-tab" },
-            { key: "shop",        label: "🔥 The Deepforge",            tutorialKey: null },
+            { key: "shop",        label: "The Deepforge",            tutorialKey: null },
           ].map(v => (
             <button
               key={v.key}
@@ -1169,7 +1169,7 @@ export default function Dashboard() {
         {dashView === "leaderboard" && (
           <div className="space-y-6">
             <div className="flex items-center gap-2">
-              <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.35)" }}>🏆 The Proving Grounds</span>
+              <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.35)" }}>The Proving Grounds</span>
               <InfoTooltip text="Rankings based on XP earned. Compete with other players to claim glory!" />
             </div>
             {/* Player cards */}
@@ -1194,7 +1194,7 @@ export default function Dashboard() {
         {dashView === "campaign" && (
           <div className="space-y-3">
             <div className="flex items-center gap-2">
-              <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.35)" }}>🐉 Campaign</span>
+              <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.35)" }}>Campaign</span>
               <InfoTooltip text="Long-term quest chains and story arcs. Complete all quests in a campaign to earn special rewards!" />
             </div>
             <CampaignHub campaigns={campaigns} quests={quests} reviewApiKey={reviewApiKey} onRefresh={refresh} />
@@ -1233,7 +1233,7 @@ export default function Dashboard() {
         {dashView === "changelog" && (
           <div className="space-y-3">
             <div className="flex items-center gap-2">
-              <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.35)" }}>📋 Changelog</span>
+              <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.35)" }}>Changelog</span>
               <span className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>— recent commits from GitHub</span>
             </div>
             {changelogLoading && (
@@ -1252,11 +1252,11 @@ export default function Dashboard() {
                 </div>
                 {entry.commits.map((c, i) => {
                   const typeStyle: Record<string, { badge: string; color: string; bg: string }> = {
-                    feat:     { badge: "🟢 feat",     color: "#4ade80", bg: "rgba(74,222,128,0.1)"  },
-                    fix:      { badge: "🔧 fix",      color: "#f59e0b", bg: "rgba(245,158,11,0.1)"  },
-                    chore:    { badge: "⚙️ chore",    color: "#6b7280", bg: "rgba(107,114,128,0.1)" },
-                    docs:     { badge: "📝 docs",     color: "#60a5fa", bg: "rgba(96,165,250,0.1)"  },
-                    refactor: { badge: "♻️ refactor", color: "#a78bfa", bg: "rgba(167,139,250,0.1)" },
+                    feat:     { badge: "feat",     color: "#4ade80", bg: "rgba(74,222,128,0.1)"  },
+                    fix:      { badge: "fix",      color: "#f59e0b", bg: "rgba(245,158,11,0.1)"  },
+                    chore:    { badge: "chore",    color: "#6b7280", bg: "rgba(107,114,128,0.1)" },
+                    docs:     { badge: "docs",     color: "#60a5fa", bg: "rgba(96,165,250,0.1)"  },
+                    refactor: { badge: "refactor", color: "#a78bfa", bg: "rgba(167,139,250,0.1)" },
                   };
                   const ts = typeStyle[c.type] || { badge: c.type, color: "#9ca3af", bg: "rgba(156,163,175,0.1)" };
                   return (
@@ -1307,7 +1307,7 @@ export default function Dashboard() {
           const inProgressIds = new Set(playerVisibleInProgress.map(q => q.id));
           const levelFiltered = playerVisibleOpen.filter(q => (!q.minLevel || q.minLevel <= playerLevelInfo.level) && !inProgressIds.has(q.id));
           const boardSeed = Math.floor(Date.now() / (24 * 3600 * 1000)); // changes daily
-          const boardOpen = levelFiltered.length <= 6 ? levelFiltered : (() => {
+          const boardOpen = applySort(levelFiltered.length <= 6 ? levelFiltered : (() => {
             const arr = [...levelFiltered];
             let s = boardSeed;
             for (let i = arr.length - 1; i > 0; i--) {
@@ -1316,7 +1316,7 @@ export default function Dashboard() {
               [arr[i], arr[j]] = [arr[j], arr[i]];
             }
             return arr.slice(0, 6);
-          })();
+          })());
           return (
             <div>
 
@@ -1334,7 +1334,7 @@ export default function Dashboard() {
                     <div className="flex items-center justify-between mb-2">
                       <div>
                         <div className="flex items-center gap-1.5">
-                          <h2 className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.4)" }}>⚔ Quest Board</h2>
+                          <h2 className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.4)" }}>Quest Board</h2>
                           <InfoTooltip text="Your personal quest board. Claim quests to start them, complete them to earn XP and Gold. Filter by type to find what interests you." />
                         </div>
                         <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.25)" }}>
@@ -1454,11 +1454,11 @@ export default function Dashboard() {
                     </div>
                     {!playerName && !loading ? (
                       <div className="rounded-xl p-8 text-center" style={{ background: "#252525", border: "1px solid rgba(255,255,255,0.06)" }}>
-                        <p className="text-base mb-2">⚔️</p>
+                        <p className="text-base mb-2">×</p>
                         <p className="text-sm font-semibold mb-1" style={{ color: "rgba(255,255,255,0.5)" }}>Logge dich ein um deine Quests zu sehen</p>
                         <p className="text-xs mb-3" style={{ color: "rgba(255,255,255,0.25)" }}>Dein persönlicher Quest-Pool wartet auf dich!</p>
                         <button onClick={() => setLoginOpen(true)} className="text-xs px-4 py-1.5 rounded font-semibold" style={{ background: "rgba(167,139,250,0.18)", color: "#a78bfa", border: "1px solid rgba(167,139,250,0.4)" }}>
-                          🔑 Login
+                          Login
                         </button>
                       </div>
                     ) :
@@ -1526,12 +1526,12 @@ export default function Dashboard() {
                     {playerName && (quests.locked ?? []).length > 0 && (
                       <>
                         <div data-feedback-id="quest-board.locked" className="flex items-center gap-2 pt-2 pb-0.5">
-                          <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.2)" }}>🔒 Locked</span>
+                          <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.2)" }}>Locked</span>
                           <span className="text-xs px-1 rounded font-mono" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.15)" }}>{(quests.locked ?? []).length}</span>
                         </div>
                         {applySort(quests.locked ?? []).map(q => (
                           <div key={q.id} className="rounded-lg px-3 py-2.5 flex items-center gap-3" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)", opacity: 0.5 }}>
-                            <span className="text-base">🔒</span>
+                            <span className="text-base">×</span>
                             <div className="flex-1 min-w-0">
                               <p className="text-xs font-medium truncate" style={{ color: "rgba(255,255,255,0.4)" }}>{q.title}</p>
                               <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.2)" }}>Unlocks at Level {q.minLevel ?? 1}</p>
@@ -1549,10 +1549,16 @@ export default function Dashboard() {
                   {questBoardTab === "rituale" && (
                     <div data-feedback-id="ritual-chamber">
                       <div className="flex items-center justify-between mb-3">
-                        <h3 className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.4)" }}>🔁 Rituals</h3>
+                        <div className="flex items-center gap-2">
+                          <img src="/images/portraits/npc-seraine.png" alt="" width={28} height={42} style={{ imageRendering: "pixelated", borderRadius: 4, border: "1px solid rgba(245,158,11,0.3)", flexShrink: 0 }} />
+                          <div>
+                            <h3 className="text-xs font-semibold uppercase tracking-widest" style={{ color: "#f59e0b" }}>Ritual Chamber</h3>
+                            <p className="text-xs" style={{ color: "rgba(245,158,11,0.4)", fontSize: "0.6rem" }}>Seraine Ashwell</p>
+                          </div>
+                        </div>
                         {playerName && reviewApiKey && (
-                          <button onClick={() => setCreateRitualOpen(true)} className="text-xs px-2 py-1 rounded font-semibold"
-                            style={{ background: "rgba(167,139,250,0.12)", color: "#a78bfa", border: "1px solid rgba(167,139,250,0.3)" }}>
+                          <button onClick={() => setCreateRitualOpen(true)} className="action-btn text-xs px-3 py-1.5 rounded-lg font-semibold"
+                            style={{ background: "rgba(245,158,11,0.14)", color: "#f59e0b", border: "1px solid rgba(245,158,11,0.35)", boxShadow: "0 0 10px rgba(245,158,11,0.08)" }}>
                             ＋ Ritual erstellen
                           </button>
                         )}
@@ -1583,7 +1589,7 @@ export default function Dashboard() {
                                     </div>
                                     <div className="flex items-center gap-3 text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>
                                       <span style={{ color: ritual.streak >= 21 ? "#818cf8" : ritual.streak >= 7 ? "#f97316" : "#ef4444", fontWeight: ritual.streak > 0 ? 600 : 400 }}>
-                                        {ritual.streak >= 21 ? "🔮" : ritual.streak >= 7 ? "🔥" : "🔴"} {ritual.streak} Tage
+                                        × {ritual.streak} Tage
                                       </span>
                                       <span>{ritual.schedule.type === 'daily' ? 'täglich' : ritual.schedule.days?.join(', ')}</span>
                                       <span>{ritual.rewards.xp} XP · {ritual.rewards.gold} Gold</span>
@@ -1637,7 +1643,7 @@ export default function Dashboard() {
                                         style={{ background: "rgba(239,68,68,0.08)", color: "rgba(239,68,68,0.5)", border: "1px solid rgba(239,68,68,0.15)", cursor: 'pointer' }}
                                         title="Ritual löschen"
                                       >
-                                        🗑️
+                                        ×
                                       </button>
                                     )}
                                   </div>
@@ -1669,8 +1675,8 @@ export default function Dashboard() {
                               <div style={{ flex: "0 0 65%", minWidth: 0, borderRadius: "1rem", overflow: "hidden", background: newRitualBloodPact ? "linear-gradient(160deg, #2c1a1a 0%, #1e1010 100%)" : "linear-gradient(160deg, #2c2318 0%, #1e1912 100%)", border: `1px solid ${newRitualBloodPact ? "rgba(239,68,68,0.45)" : "rgba(245,158,11,0.3)"}`, boxShadow: newRitualBloodPact ? "0 0 60px rgba(239,68,68,0.12)" : "0 0 40px rgba(167,139,250,0.08)", transition: "all 0.4s ease" }}>
 
                                 {/* NPC Speech */}
-                                <div style={{ background: "rgba(245,158,11,0.05)", borderBottom: "1px solid rgba(245,158,11,0.1)", padding: "10px 18px" }}>
-                                  <p className="npc-speech-text text-xs italic" key={`seraine-${newRitualBloodPact}-${newRitualCommitment}`} style={{ color: "#c9a46a", lineHeight: 1.5 }}>
+                                <div style={{ background: "rgba(245,158,11,0.05)", borderBottom: "1px solid rgba(245,158,11,0.1)", padding: "16px 20px" }}>
+                                  <p className="npc-speech-text text-xs italic" key={`seraine-${newRitualBloodPact}-${newRitualCommitment}`} style={{ color: "#c9a46a", lineHeight: 1.7, fontSize: "0.7rem" }}>
                                     „{getSeraineSpeech(newRitualCommitment, newRitualBloodPact)}"
                                   </p>
                                 </div>
@@ -1679,7 +1685,7 @@ export default function Dashboard() {
                                 <div className="flex items-center gap-3 px-5 pt-4 pb-3 border-b" style={{ borderColor: "rgba(245,158,11,0.12)" }}>
                                   <img src="/images/icons/ui-ritual-rune.png" alt="" width={28} height={28} style={{ imageRendering: "pixelated" }} onError={e => (e.currentTarget.style.display = "none")} />
                                   <div>
-                                    <h3 className="text-sm font-bold" style={{ color: "#e8d5a3" }}>🔁 Forge a New Rite</h3>
+                                    <h3 className="text-sm font-bold" style={{ color: "#e8d5a3" }}><img src="/images/icons/ui-ritual-rune.png" alt="" width={20} height={20} style={{ imageRendering: "pixelated", verticalAlign: "middle", marginRight: 6 }} />Forge a New Rite</h3>
                                     <p className="text-xs" style={{ color: "rgba(200,170,100,0.4)" }}>Seraine Ashwell — Ritual Chamber</p>
                                   </div>
                                 </div>
@@ -1698,19 +1704,19 @@ export default function Dashboard() {
                                     <div>
                                       <label className="text-xs font-semibold mb-1.5 block" style={{ color: "rgba(200,170,100,0.55)" }}>Kategorie</label>
                                       <select value={newRitualCategory} onChange={e => setNewRitualCategory(e.target.value)} className="w-full text-sm px-3 py-2 rounded-lg" style={{ background: "rgba(0,0,0,0.35)", border: "1px solid rgba(245,158,11,0.2)", color: "#e8d5a3", outline: "none" }}>
-                                        <option value="fitness">⚔️ Fitness</option>
-                                        <option value="learning">📚 Learning</option>
-                                        <option value="personal">✨ Personal</option>
-                                        <option value="social">🤝 Social</option>
-                                        <option value="creative">🎨 Creative</option>
-                                        <option value="wellness">🌿 Wellness</option>
+                                        <option value="fitness">Fitness</option>
+                                        <option value="learning">Learning</option>
+                                        <option value="personal">Personal</option>
+                                        <option value="social">Social</option>
+                                        <option value="creative">Creative</option>
+                                        <option value="wellness">Wellness</option>
                                       </select>
                                     </div>
                                     <div>
                                       <label className="text-xs font-semibold mb-1.5 block" style={{ color: "rgba(200,170,100,0.55)" }}>Frequenz</label>
                                       <div className="flex gap-1.5">
                                         {[{ v: "daily", label: "Täglich" }, { v: "weekly", label: "Wöchentlich" }].map(({ v, label }) => (
-                                          <button key={v} onClick={() => setNewRitualSchedule(v)} className="flex-1 text-xs py-2 rounded-lg font-medium transition-all" style={{ background: newRitualSchedule === v ? "rgba(245,158,11,0.2)" : "rgba(0,0,0,0.25)", color: newRitualSchedule === v ? "#f59e0b" : "rgba(200,170,100,0.4)", border: `1px solid ${newRitualSchedule === v ? "rgba(245,158,11,0.45)" : "rgba(245,158,11,0.1)"}` }}>{label}</button>
+                                          <button key={v} onClick={() => setNewRitualSchedule(v)} className="ritual-freq-btn flex-1 text-xs py-2 rounded-lg font-medium" style={{ background: newRitualSchedule === v ? "rgba(245,158,11,0.2)" : "rgba(0,0,0,0.25)", color: newRitualSchedule === v ? "#f59e0b" : "rgba(200,170,100,0.4)", border: `1px solid ${newRitualSchedule === v ? "rgba(245,158,11,0.45)" : "rgba(245,158,11,0.1)"}` }}>{label}</button>
                                         ))}
                                       </div>
                                     </div>
@@ -1718,10 +1724,10 @@ export default function Dashboard() {
 
                                   {/* Aetherbond Commitment */}
                                   <div>
-                                    <label className="text-xs font-semibold mb-2 block" style={{ color: "rgba(200,170,100,0.55)" }}>⚗️ Aetherbond</label>
+                                    <label className="text-xs font-semibold mb-2 block" style={{ color: "rgba(200,170,100,0.55)" }}>Aetherbond</label>
                                     <div className="grid grid-cols-3 gap-1.5">
                                       {COMMITMENT_TIERS.map(tier => (
-                                        <button key={tier.id} onClick={() => setNewRitualCommitment(tier.id)} className="text-left p-2 rounded-lg transition-all" style={{ background: newRitualCommitment === tier.id ? `${tier.color}22` : "rgba(0,0,0,0.2)", border: `1px solid ${newRitualCommitment === tier.id ? tier.color : "rgba(255,255,255,0.07)"}`, boxShadow: newRitualCommitment === tier.id ? `0 0 10px ${tier.color}44` : "none" }}>
+                                        <button key={tier.id} onClick={() => setNewRitualCommitment(tier.id)} className="ritual-tier-btn text-left p-2 rounded-lg" style={{ background: newRitualCommitment === tier.id ? `${tier.color}22` : "rgba(0,0,0,0.2)", border: `1px solid ${newRitualCommitment === tier.id ? tier.color : "rgba(255,255,255,0.07)"}`, boxShadow: newRitualCommitment === tier.id ? `0 0 12px ${tier.color}55` : "none" }}>
                                           <div className="text-xs font-bold" style={{ color: newRitualCommitment === tier.id ? tier.color : "rgba(255,255,255,0.55)" }}>{tier.label}</div>
                                           <div style={{ fontSize: "0.6rem", color: "rgba(255,255,255,0.28)", marginTop: 2 }}>{tier.days > 0 ? `${tier.days}d` : "—"}</div>
                                           <div style={{ fontSize: "0.6rem", color: "rgba(255,255,255,0.22)", lineHeight: 1.3 }}>{tier.flavorShort}</div>
@@ -1733,29 +1739,29 @@ export default function Dashboard() {
                                   {/* Blood Pact Toggle */}
                                   <div>
                                     <button onClick={() => setNewRitualBloodPact(p => !p)} className={`w-full py-2.5 px-4 rounded-xl font-semibold text-sm transition-all ${newRitualBloodPact ? "blood-pact-active" : ""}`} style={{ background: newRitualBloodPact ? "rgba(239,68,68,0.18)" : "rgba(255,255,255,0.04)", color: newRitualBloodPact ? "#ef4444" : "rgba(255,255,255,0.28)", border: `1px solid ${newRitualBloodPact ? "rgba(239,68,68,0.5)" : "rgba(255,255,255,0.1)"}`, transition: "color 0.3s, background 0.3s, border 0.3s" }}>
-                                      🩸 {newRitualBloodPact ? "Blutpakt besiegelt" : "Blutpakt besiegeln"}
+                                      {newRitualBloodPact ? "Blutpakt besiegelt" : "Blutpakt besiegeln"}
                                     </button>
-                                    {newRitualBloodPact && <p className="text-xs mt-1.5 text-center" style={{ color: "rgba(239,68,68,0.7)" }}>⚠️ Blutpakt: Scheitern = alle Belohnungen verfallen.</p>}
+                                    {newRitualBloodPact && <p className="text-xs mt-1.5 text-center" style={{ color: "rgba(239,68,68,0.7)" }}>! Blutpakt: Scheitern = alle Belohnungen verfallen.</p>}
                                   </div>
 
                                   {/* Reward Preview */}
                                   <div className="rounded-lg p-3" style={{ background: "rgba(0,0,0,0.2)", border: "1px solid rgba(245,158,11,0.1)" }}>
                                     <p className="text-xs font-semibold mb-1.5" style={{ color: "rgba(200,170,100,0.45)" }}>Vorschau Belohnungen</p>
-                                    <p className="text-xs" style={{ color: "rgba(200,170,100,0.65)" }}>Täglich: <span style={{ color: "#f59e0b" }}>5 🪙</span> · <span style={{ color: "#a78bfa" }}>10 XP</span></p>
-                                    {tierData.id !== "none" && <p className="text-xs mt-0.5" style={{ color: "rgba(200,170,100,0.65)" }}>Bindungsbonus: <span style={{ color: "#f59e0b" }}>+{bonusGold} 🪙</span> · <span style={{ color: "#a78bfa" }}>+{bonusXp} XP</span>{newRitualBloodPact && <span style={{ color: "#ef4444", fontWeight: "bold" }}> ×3</span>}</p>}
+                                    <p className="text-xs" style={{ color: "rgba(200,170,100,0.65)" }}>Täglich: <span style={{ color: "#f59e0b" }}>5 <img src="/images/icons/reward-gold.png" width={14} height={14} style={{ imageRendering: "pixelated", verticalAlign: "middle" }} /></span> · <span style={{ color: "#a78bfa" }}>10 XP</span></p>
+                                    {tierData.id !== "none" && <p className="text-xs mt-0.5" style={{ color: "rgba(200,170,100,0.65)" }}>Bindungsbonus: <span style={{ color: "#f59e0b" }}>+{bonusGold} <img src="/images/icons/reward-gold.png" width={14} height={14} style={{ imageRendering: "pixelated", verticalAlign: "middle" }} /></span> · <span style={{ color: "#a78bfa" }}>+{bonusXp} XP</span>{newRitualBloodPact && <span style={{ color: "#ef4444", fontWeight: "bold" }}> ×3</span>}</p>}
                                   </div>
 
                                   {/* Buttons */}
                                   <div className="flex gap-2 pt-1">
-                                    <button onClick={closeRitualModal} className="text-sm py-2.5 px-5 rounded-xl" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(200,170,100,0.38)", border: "1px solid rgba(255,255,255,0.08)" }}>Abbrechen</button>
-                                    <button onClick={submitRitual} className="flex-1 text-sm py-2.5 rounded-xl font-bold" style={{ background: "rgba(245,158,11,0.2)", color: "#f59e0b", border: "1px solid rgba(245,158,11,0.5)" }}>✨ Ritual schmieden</button>
+                                    <button onClick={closeRitualModal} className="action-btn text-sm py-2.5 px-5 rounded-xl" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(200,170,100,0.38)", border: "1px solid rgba(255,255,255,0.08)" }}>Abbrechen</button>
+                                    <button onClick={submitRitual} className="action-btn flex-1 text-sm py-2.5 rounded-xl font-bold" style={{ background: "rgba(245,158,11,0.22)", color: "#f59e0b", border: "1px solid rgba(245,158,11,0.55)", boxShadow: "0 0 16px rgba(245,158,11,0.12)" }}>Ritual schmieden</button>
                                   </div>
                                 </div>
                               </div>
 
                               {/* ── Seraine Portrait (hidden on small screens) ── */}
                               <div className="hidden md:flex items-end" style={{ marginLeft: -44, width: 220, flexShrink: 0, pointerEvents: "none", zIndex: 10 }}>
-                                <img src="/images/portraits/npc-seraine.png" alt="Seraine Ashwell" style={{ imageRendering: "pixelated", width: "100%", filter: newRitualBloodPact ? "drop-shadow(0 0 22px rgba(239,68,68,0.65))" : "drop-shadow(0 0 22px rgba(245,158,11,0.55))", transition: "filter 0.5s ease" }} />
+                                <img src="/images/portraits/npc-seraine.png" alt="Seraine Ashwell" width={256} height={384} style={{ imageRendering: "pixelated", width: "100%", height: "auto", display: "block", filter: newRitualBloodPact ? "drop-shadow(0 0 22px rgba(239,68,68,0.65))" : "drop-shadow(0 0 22px rgba(245,158,11,0.55))", transition: "filter 0.5s ease" }} />
                               </div>
                             </div>
                           </div>
@@ -1778,7 +1784,7 @@ export default function Dashboard() {
                   <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: "rgba(0,0,0,0.75)" }} onClick={() => setDeleteRitualConfirmId(null)}>
                     <div className="w-full max-w-xs rounded-2xl overflow-hidden" style={{ background: "linear-gradient(160deg, #2c2318 0%, #1e1912 100%)", border: "1px solid rgba(239,68,68,0.35)", boxShadow: "0 0 40px rgba(239,68,68,0.1)" }} onClick={e => e.stopPropagation()}>
                       <div className="p-5 text-center">
-                        <p className="text-2xl mb-3">🔁</p>
+                        <p className="text-2xl mb-3">×</p>
                         <p className="text-sm font-bold mb-1" style={{ color: "#e8d5a3" }}>Break this Ritual?</p>
                         <p className="text-xs mb-5" style={{ color: "rgba(200,170,100,0.45)" }}>Are you sure you want to shatter this daily rite?</p>
                         <div className="flex gap-2">
@@ -1795,7 +1801,7 @@ export default function Dashboard() {
                             className="flex-1 text-sm py-2 rounded-lg font-semibold"
                             style={{ background: "rgba(239,68,68,0.18)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.4)" }}
                           >
-                            🗑 Break Ritual
+                            Break Ritual
                           </button>
                         </div>
                       </div>
@@ -1814,7 +1820,7 @@ export default function Dashboard() {
         {dashView === "klassenquests" && (
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <h2 className="text-xs font-semibold uppercase tracking-widest" style={{ color: "#60a5fa" }}>🎓 Klassenquests</h2>
+              <h2 className="text-xs font-semibold uppercase tracking-widest" style={{ color: "#60a5fa" }}>Klassenquests</h2>
               <span className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>Klassen-Fortschritt und Skill Tree</span>
             </div>
             <CVBuilderPanel quests={quests} users={users} playerName={playerName} />
@@ -1886,7 +1892,7 @@ export default function Dashboard() {
               className="flex items-center gap-2 mb-3 w-full text-left"
             >
               <h2 className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.2)" }}>
-                🗑 Rejected
+                Rejected
               </h2>
               <span className="text-xs px-1.5 py-0.5 rounded font-mono" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.2)" }}>
                 {quests.rejected.length}
@@ -1941,7 +1947,7 @@ export default function Dashboard() {
                 className="flex items-center gap-2 mb-3 w-full text-left"
               >
                 <h2 className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.4)" }}>
-                  📖 {dashView === "npcBoard" ? "NPC Quest Log" : "Quest Journal"}
+                  {dashView === "npcBoard" ? "NPC Quest Log" : "Quest Journal"}
                 </h2>
                 <span className="text-xs px-1.5 py-0.5 rounded font-mono" style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.3)" }}>
                   {journalQuests.length}
@@ -2131,11 +2137,11 @@ export default function Dashboard() {
                       <p className="text-xs font-semibold uppercase tracking-widest mb-2" style={{ color: "rgba(255,255,255,0.25)" }}>Belohnung</p>
                       <div className="flex items-center gap-3">
                         <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg" style={{ background: "rgba(251,191,36,0.08)", border: "1px solid rgba(251,191,36,0.2)" }}>
-                          <span style={{ fontSize: 14 }}>🪙</span>
+                          <img src="/images/icons/reward-gold.png" width={16} height={16} style={{ imageRendering: "pixelated", verticalAlign: "middle" }} />
                           <span className="text-sm font-mono font-bold" style={{ color: "#fbbf24" }}>{displayGold} Gold</span>
                         </div>
                         <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg" style={{ background: "rgba(167,139,250,0.08)", border: "1px solid rgba(167,139,250,0.2)" }}>
-                          <span style={{ fontSize: 14 }}>⭐</span>
+                          <img src="/images/icons/reward-xp.png" width={16} height={16} style={{ imageRendering: "pixelated", verticalAlign: "middle" }} />
                           <span className="text-sm font-mono font-bold" style={{ color: "#a78bfa" }}>{displayXp} XP</span>
                         </div>
                       </div>
@@ -2154,7 +2160,7 @@ export default function Dashboard() {
                     style={{ background: "linear-gradient(180deg, #2a2a2a, #1a1a1a)", border: "2px solid #FFD700", color: "#FFD700", fontSize: 14, fontWeight: 700, padding: "10px 28px", borderRadius: 8, cursor: "pointer", transition: "background 0.15s, color 0.15s" }}
                     onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.background = "#FFD700"; (e.currentTarget as HTMLButtonElement).style.color = "#1a1a1a"; }}
                     onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.background = "linear-gradient(180deg, #2a2a2a, #1a1a1a)"; (e.currentTarget as HTMLButtonElement).style.color = "#FFD700"; }}
-                  >⚔ Claim Quest</button>
+                  >Claim Quest</button>
                 )}
                 {!isCoop && reviewApiKey && playerName && isClaimedByMe && (
                   <>
@@ -2163,7 +2169,7 @@ export default function Dashboard() {
                   </>
                 )}
                 {isCoop && isCoopPartner && !hasCoopClaimed && q.status !== "completed" && reviewApiKey && playerName && (
-                  <button onClick={() => { handleCoopClaim(q.id); setQuestDetailModal(null); }} className="text-sm px-4 py-1.5 rounded font-semibold" style={{ background: "rgba(244,63,94,0.12)", color: "#f43f5e", border: "1px solid rgba(244,63,94,0.3)", cursor: "pointer" }}>💞 Join Coop</button>
+                  <button onClick={() => { handleCoopClaim(q.id); setQuestDetailModal(null); }} className="text-sm px-4 py-1.5 rounded font-semibold" style={{ background: "rgba(244,63,94,0.12)", color: "#f43f5e", border: "1px solid rgba(244,63,94,0.3)", cursor: "pointer" }}>Join Coop</button>
                 )}
                 {isCoop && isCoopPartner && hasCoopClaimed && !hasCoopCompleted && q.status !== "completed" && reviewApiKey && playerName && (
                   <button onClick={() => { handleCoopComplete(q.id); setQuestDetailModal(null); }} className="text-sm px-4 py-1.5 rounded font-semibold" style={{ background: "rgba(34,197,94,0.12)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.3)", cursor: "pointer" }}>✓ My Part Done</button>
@@ -2200,7 +2206,7 @@ export default function Dashboard() {
 
       <footer data-feedback-id="footer" className="mt-12 py-4" style={{ borderTop: "1px solid rgba(255,68,68,0.07)", position: "relative", zIndex: 2 }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-center gap-3 text-xs font-mono" style={{ color: "rgba(255,255,255,0.15)" }}>
-          <span>⚔️🏰 Quest Hall v1.5.0</span>
+          <span>Quest Hall v1.5.0</span>
           <span style={{ color: "rgba(255,255,255,0.08)" }}>·</span>
           <button
             data-feedback-id="footer.alpha-button"
@@ -2247,7 +2253,7 @@ export default function Dashboard() {
           className="fixed top-16 left-1/2 z-50 flex items-center gap-3 px-4 py-3 rounded-xl shadow-2xl"
           style={{ transform: "translateX(-50%)", background: "#1a1a1a", border: "1px solid rgba(239,68,68,0.5)", maxWidth: "90vw" }}
         >
-          <span className="text-sm">⚒️</span>
+          <span className="text-sm">×</span>
           <p className="text-xs" style={{ color: "#ef4444" }}>{apiError}</p>
           <button onClick={() => setApiError(null)} className="text-xs ml-2" style={{ color: "rgba(255,255,255,0.3)" }}>✕</button>
         </div>
@@ -2293,9 +2299,9 @@ export default function Dashboard() {
             <div style={{ padding: "1rem 1.25rem 0", borderBottom: "1px solid rgba(255,255,255,0.07)", display: "flex", alignItems: "center", gap: 8 }}>
               <div style={{ display: "flex", gap: 4, flex: 1 }}>
                 {[
-                  { key: "roadmap",   label: "🗺️ Roadmap" },
-                  { key: "changelog", label: "📋 Changelog" },
-                  { key: "guide",     label: "📖 Guide" },
+                  { key: "roadmap",   label: "Roadmap" },
+                  { key: "changelog", label: "Changelog" },
+                  { key: "guide",     label: "Guide" },
                 ].map(t => (
                   <button
                     key={t.key}
@@ -2324,7 +2330,7 @@ export default function Dashboard() {
               {infoOverlayTab === "changelog" && (
                 <div className="space-y-3">
                   <div className="flex items-center gap-2">
-                    <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.35)" }}>📋 Changelog</span>
+                    <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.35)" }}>Changelog</span>
                     <span className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>— recent commits from GitHub</span>
                   </div>
                   {changelogLoading && (
@@ -2343,11 +2349,11 @@ export default function Dashboard() {
                       </div>
                       {entry.commits.map((c, i) => {
                         const typeStyle: Record<string, { badge: string; color: string; bg: string }> = {
-                          feat:     { badge: "🟢 feat",     color: "#4ade80", bg: "rgba(74,222,128,0.1)"  },
-                          fix:      { badge: "🔧 fix",      color: "#f59e0b", bg: "rgba(245,158,11,0.1)"  },
-                          chore:    { badge: "⚙️ chore",    color: "#6b7280", bg: "rgba(107,114,128,0.1)" },
-                          docs:     { badge: "📝 docs",     color: "#60a5fa", bg: "rgba(96,165,250,0.1)"  },
-                          refactor: { badge: "♻️ refactor", color: "#a78bfa", bg: "rgba(167,139,250,0.1)" },
+                          feat:     { badge: "feat",     color: "#4ade80", bg: "rgba(74,222,128,0.1)"  },
+                          fix:      { badge: "fix",      color: "#f59e0b", bg: "rgba(245,158,11,0.1)"  },
+                          chore:    { badge: "chore",    color: "#6b7280", bg: "rgba(107,114,128,0.1)" },
+                          docs:     { badge: "docs",     color: "#60a5fa", bg: "rgba(96,165,250,0.1)"  },
+                          refactor: { badge: "refactor", color: "#a78bfa", bg: "rgba(167,139,250,0.1)" },
                         };
                         const ts = typeStyle[c.type] || { badge: c.type, color: "#9ca3af", bg: "rgba(156,163,175,0.1)" };
                         return (
@@ -2439,7 +2445,7 @@ export default function Dashboard() {
             onClick={e => e.stopPropagation()}
           >
             <div className="text-center space-y-1">
-              <div className="text-4xl">🎉</div>
+              <div className="text-4xl">×</div>
               <h2 className="text-base font-bold" style={{ color: "#f0f0f0" }}>
                 Dein Klassenpfad steht bereit!
               </h2>
@@ -2455,7 +2461,7 @@ export default function Dashboard() {
               className="w-full py-2.5 rounded-xl font-semibold text-sm"
               style={{ background: "linear-gradient(135deg, #7c3aed, #a78bfa)", color: "#fff" }}
             >
-              Los geht&apos;s! 🔥
+              Los geht&apos;s!
             </button>
           </div>
         </div>
@@ -2521,21 +2527,21 @@ function SuggestQuestButton({ reviewApiKey, playerName, onRefresh }: {
         style={{ background: "rgba(34,197,94,0.12)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.3)" }}
         title="Suggest a Quest"
       >
-        💡 Suggest
+        Suggest
       </button>
       {open && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: "rgba(0,0,0,0.75)" }} onClick={() => setOpen(false)}>
           <div className="rounded-2xl w-full max-w-md" style={{ background: "#1a1a1a", border: "1px solid rgba(34,197,94,0.3)", boxShadow: "0 0 40px rgba(34,197,94,0.1)" }} onClick={e => e.stopPropagation()}>
             <div className="flex items-center justify-between p-4 border-b" style={{ borderColor: "rgba(255,255,255,0.08)" }}>
               <div>
-                <h2 className="text-sm font-bold" style={{ color: "#f0f0f0" }}>💡 Suggest a Quest</h2>
+                <h2 className="text-sm font-bold" style={{ color: "#f0f0f0" }}>Suggest a Quest</h2>
                 <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.3)" }}>Your suggestion goes to the admin for review</p>
               </div>
               <button onClick={() => setOpen(false)} style={{ color: "rgba(255,255,255,0.3)", fontSize: 16 }}>×</button>
             </div>
             {done ? (
               <div className="p-6 text-center">
-                <p className="text-2xl mb-2">⚔️</p>
+                <p className="text-2xl mb-2">×</p>
                 <p className="text-sm font-semibold" style={{ color: "#22c55e" }}>Quest Suggested!</p>
                 <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.4)" }}>Awaiting admin review</p>
               </div>
@@ -2573,10 +2579,10 @@ function SuggestQuestButton({ reviewApiKey, playerName, onRefresh }: {
                       className="w-full text-xs px-2 py-1.5 rounded"
                       style={{ background: "#141414", border: "1px solid rgba(255,255,255,0.12)", color: "#fff", outline: "none" }}
                     >
-                      <option value="personal">🏠 Personal</option>
-                      <option value="learning">📚 Learning</option>
-                      <option value="fitness">💪 Fitness</option>
-                      <option value="social">❤️ Social</option>
+                      <option value="personal">Personal</option>
+                      <option value="learning">Learning</option>
+                      <option value="fitness">Fitness</option>
+                      <option value="social">Social</option>
                     </select>
                   </div>
                   <div>

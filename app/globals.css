@@ -205,6 +205,28 @@ body {
   animation: btn-glow-pink 1.2s ease infinite;
 }
 
+/* ─── Ritual / Vow tier cards & frequency buttons ───────────────────────── */
+.ritual-tier-btn {
+  transition: filter 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+  cursor: pointer;
+}
+.ritual-tier-btn:hover {
+  filter: brightness(1.25);
+  transform: translateY(-1px);
+}
+.ritual-tier-btn:active {
+  transform: scale(0.96);
+}
+
+.ritual-freq-btn {
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease, transform 0.12s ease;
+  cursor: pointer;
+}
+.ritual-freq-btn:hover {
+  filter: brightness(1.2);
+  transform: translateY(-1px);
+}
+
 /* ─── NPC Modals — Ritual Chamber & Vow Shrine ──────────────────────────── */
 @keyframes npc-speech-in {
   0%   { opacity: 0; transform: translateY(5px); }
