@@ -1635,17 +1635,17 @@ export default function Dashboard() {
                         {/* ── Top flex row: Portrait left, content right ── */}
                         <div className="flex gap-4 mb-4" style={{ alignItems: "flex-start" }}>
                           {/* Portrait column with speech bubble */}
-                          <div className="flex-none" style={{ width: 195 }}>
-                            <img src="/images/portraits/npc-seraine.png" alt="Seraine Ashwell" width={256} height={384} style={{ imageRendering: "pixelated", width: "100%", height: "auto", display: "block", filter: "drop-shadow(0 0 14px rgba(245,158,11,0.35))", borderRadius: "4px 4px 0 0", pointerEvents: "none" }} />
+                          <div className="flex-none" style={{ width: 195, overflow: "visible" }}>
+                            <img src="/images/portraits/npc-seraine.png?v=3" alt="Seraine Ashwell" width={256} height={384} style={{ imageRendering: "pixelated", width: "100%", height: "auto", display: "block", filter: "drop-shadow(0 0 14px rgba(245,158,11,0.35))", borderRadius: "4px 4px 0 0", pointerEvents: "none" }} />
                             <div style={{ background: "rgba(25,17,5,0.88)", border: "1px solid rgba(245,158,11,0.3)", borderTop: "none", borderRadius: "0 0 8px 8px", padding: "8px 10px" }}>
-                              <p style={{ fontSize: "0.65rem", fontStyle: "italic", color: "#c9a46a", lineHeight: 1.5, margin: 0 }}>„Jedes Feuer beginnt mit einem Funken. Deins auch."</p>
+                              <p style={{ fontSize: "0.8rem", fontStyle: "italic", color: "#c9a46a", lineHeight: 1.5, margin: 0 }}>„Jedes Feuer beginnt mit einem Funken. Deins auch."</p>
                             </div>
                           </div>
                           {/* Right: title + create button + first 2 cards */}
                           <div className="flex-1 min-w-0">
                             <div className="flex items-center justify-between mb-3">
                               <div>
-                                <h3 className="font-bold uppercase tracking-widest" style={{ color: "#f59e0b", fontSize: "1.125rem" }}>Ritual Chamber</h3>
+                                <h3 className="font-bold uppercase tracking-widest" style={{ color: "#f59e0b", fontSize: "1rem" }}>Ritual Chamber</h3>
                                 <p style={{ color: "rgba(245,158,11,0.6)", fontSize: "1rem", fontWeight: 600, marginTop: 2 }}>Seraine Ashwell</p>
                               </div>
                               {playerName && reviewApiKey && (
@@ -1689,13 +1689,13 @@ export default function Dashboard() {
                             <div data-feedback-id="ritual-chamber.create-modal" className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: "rgba(0,0,0,0.85)" }} onClick={closeRitualModal}>
                               <div style={{ position: "relative" }} onClick={e => e.stopPropagation()}>
                                 {/* NPC Portrait — absolute left of modal, hidden on mobile */}
-                                <div className="hidden md:flex flex-col" style={{ position: "absolute", right: "calc(100% + 16px)", top: 0, width: 200 }}>
-                                  <img src="/images/portraits/npc-seraine.png" alt="Seraine Ashwell" width={256} height={384} style={{ imageRendering: "pixelated", width: "100%", height: "auto", display: "block", filter: "drop-shadow(0 0 14px rgba(245,158,11,0.4))", borderRadius: "8px 8px 0 0", pointerEvents: "none" }} />
+                                <div className="hidden md:flex flex-col" style={{ position: "absolute", right: "calc(100% + 16px)", top: "50%", transform: "translateY(-50%)", width: 200, overflow: "visible" }}>
+                                  <img src="/images/portraits/npc-seraine.png?v=3" alt="Seraine Ashwell" width={256} height={384} style={{ imageRendering: "pixelated", width: "100%", height: "auto", display: "block", filter: "drop-shadow(0 0 14px rgba(245,158,11,0.4))", borderRadius: "8px 8px 0 0", pointerEvents: "none" }} />
                                   <div style={{ background: "rgba(25,17,5,0.92)", border: "1px solid rgba(245,158,11,0.4)", borderTop: "none", borderRadius: "0 0 8px 8px", padding: "10px 12px" }}>
-                                    <p style={{ fontSize: "0.65rem", fontStyle: "italic", color: "#c9a46a", lineHeight: 1.5, margin: 0 }}>{getSeraineSpeech(newRitualCommitment, newRitualBloodPact)}</p>
+                                    <p style={{ fontSize: "0.8rem", fontStyle: "italic", color: "#c9a46a", lineHeight: 1.5, margin: 0 }}>{getSeraineSpeech(newRitualCommitment, newRitualBloodPact)}</p>
                                   </div>
                                 </div>
-                              <div style={{ maxWidth: 520, width: "100%", borderRadius: "1rem", background: newRitualBloodPact ? "linear-gradient(160deg, #2c1a1a 0%, #1e1010 100%)" : "linear-gradient(160deg, #2c2318 0%, #1e1912 100%)", border: `1px solid ${newRitualBloodPact ? "rgba(239,68,68,0.45)" : "rgba(245,158,11,0.3)"}`, boxShadow: newRitualBloodPact ? "0 0 60px rgba(239,68,68,0.12)" : "0 0 40px rgba(167,139,250,0.08)", transition: "all 0.4s ease" }}>
+                              <div style={{ maxWidth: 640, width: "100%", borderRadius: "1rem", background: newRitualBloodPact ? "linear-gradient(160deg, #2c1a1a 0%, #1e1010 100%)" : "linear-gradient(160deg, #2c2318 0%, #1e1912 100%)", border: `1px solid ${newRitualBloodPact ? "rgba(239,68,68,0.45)" : "rgba(245,158,11,0.3)"}`, boxShadow: newRitualBloodPact ? "0 0 60px rgba(239,68,68,0.12)" : "0 0 40px rgba(167,139,250,0.08)", transition: "all 0.4s ease" }}>
                                 {/* Header */}
                                 <div className="flex items-center gap-3 px-5 pt-4 pb-3 border-b" style={{ borderColor: "rgba(245,158,11,0.12)" }}>
                                   <img src="/images/icons/ui-ritual-rune.png" alt="" width={28} height={28} style={{ imageRendering: "pixelated" }} onError={e => (e.currentTarget.style.display = "none")} />
@@ -1706,7 +1706,7 @@ export default function Dashboard() {
                                 </div>
                                 {/* Mobile-only speech */}
                                 <div className="md:hidden px-5 py-2.5" style={{ borderBottom: "1px solid rgba(245,158,11,0.1)", background: "rgba(25,17,5,0.4)" }}>
-                                  <p style={{ fontSize: "0.65rem", fontStyle: "italic", color: "#c9a46a", lineHeight: 1.5, margin: 0 }}>{getSeraineSpeech(newRitualCommitment, newRitualBloodPact)}</p>
+                                  <p style={{ fontSize: "0.8rem", fontStyle: "italic", color: "#c9a46a", lineHeight: 1.5, margin: 0 }}>{getSeraineSpeech(newRitualCommitment, newRitualBloodPact)}</p>
                                 </div>
                                 {/* Form */}
                                 <div className="p-5 space-y-4" style={{ paddingBottom: "1.75rem" }}>
