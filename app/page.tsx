@@ -137,6 +137,15 @@ export default function Dashboard() {
   const [newRitualCommitment, setNewRitualCommitment] = useState("none");
   const [newRitualBloodPact, setNewRitualBloodPact] = useState(false);
   const [deleteRitualConfirmId, setDeleteRitualConfirmId] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!createRitualOpen) return;
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === "Escape") { setCreateRitualOpen(false); setNewRitualTitle(""); setNewRitualCommitment("none"); setNewRitualBloodPact(false); }
+    };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, [createRitualOpen]);
   const [changelog, setChangelog] = useState<ChangelogEntry[]>([]);
   const [changelogLoading, setChangelogLoading] = useState(false);
   const [poolRefreshing, setPoolRefreshing] = useState(false);
@@ -1723,6 +1732,7 @@ export default function Dashboard() {
                                     <h3 className="text-sm font-bold" style={{ color: "#e8d5a3" }}><img src="/images/icons/ui-ritual-rune.png" alt="" width={20} height={20} style={{ imageRendering: "pixelated", verticalAlign: "middle", marginRight: 6 }} />Forge a New Rite</h3>
                                     <p className="text-xs" style={{ color: "rgba(200,170,100,0.4)" }}>Seraine Ashwell — Ritual Chamber</p>
                                   </div>
+                                  <button onClick={closeRitualModal} style={{ marginLeft: "auto", width: 28, height: 28, borderRadius: "50%", background: "rgba(255,255,255,0.07)", border: "none", color: "rgba(255,255,255,0.45)", fontSize: 16, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }} onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.filter = "brightness(1.6)"; }} onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.filter = ""; }}>×</button>
                                 </div>
                                 {/* Mobile-only speech */}
                                 <div className="md:hidden px-5 py-2.5" style={{ borderBottom: "1px solid rgba(245,158,11,0.1)", background: "rgba(25,17,5,0.4)" }}>
@@ -1737,7 +1747,7 @@ export default function Dashboard() {
                                   <div className="grid grid-cols-2 gap-3">
                                     <div>
                                       <label className="text-xs font-semibold mb-1.5 block" style={{ color: "rgba(200,170,100,0.55)" }}>Category</label>
-                                      <select value={newRitualCategory} onChange={e => setNewRitualCategory(e.target.value)} className="w-full text-sm px-3 py-2 rounded-lg" style={{ background: "rgba(0,0,0,0.35)", border: "1px solid rgba(245,158,11,0.2)", color: "#e8d5a3", outline: "none" }}>
+                                      <select value={newRitualCategory} onChange={e => setNewRitualCategory(e.target.value)} className="w-full text-sm rounded-lg" style={{ background: "#1a1a2e", border: "1px solid rgba(245,158,11,0.3)", color: "#f0f0f0", outline: "none", padding: "8px 12px", borderRadius: 8, appearance: "none", cursor: "pointer" }}>
                                         <option value="fitness">Fitness</option>
                                         <option value="learning">Learning</option>
                                         <option value="personal">Personal</option>

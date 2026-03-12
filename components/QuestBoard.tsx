@@ -312,7 +312,7 @@ const COMMITMENT_TIERS_VOW = [
 function getVaelSpeech(commitment: string, bloodPact: boolean): string {
   if (bloodPact) return "Blut. So sei es.";
   if (commitment === "eternity") return "Ein Jahr Entsagung. Wenige bestehen.";
-  if (commitment === "none") return "";
+  if (commitment === "none") return "A vow without end... bold choice, adventurer.";
   return "...Sprich deinen Schwur.";
 }
 
@@ -332,7 +332,17 @@ export function AntiRitualePanel({ playerName, reviewApiKey }: { playerName: str
   const [newVowCategory, setNewVowCategory] = useState("personal");
   const [newVowCommitment, setNewVowCommitment] = useState("none");
   const [newVowBloodPact, setNewVowBloodPact] = useState(false);
+  const [newVowFrequency, setNewVowFrequency] = useState("daily");
   const [deleteConfirmId, setDeleteConfirmId] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!createOpen) return;
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === "Escape") { setCreateOpen(false); setNewTitle(""); setNewVowCommitment("none"); setNewVowBloodPact(false); }
+    };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, [createOpen]);
 
   const loadAntiRituals = useCallback(async () => {
     if (!playerName) return;
@@ -528,6 +538,7 @@ export function AntiRitualePanel({ playerName, reviewApiKey }: { playerName: str
                   <h3 className="text-sm font-bold" style={{ color: "#e2e8f0" }}>Swear a Vow</h3>
                   <p className="text-xs" style={{ color: "rgba(165,180,252,0.4)" }}>Vael the Silent — Vow Shrine</p>
                 </div>
+                <button onClick={closeVowModal} style={{ marginLeft: "auto", width: 28, height: 28, borderRadius: "50%", background: "rgba(255,255,255,0.07)", border: "none", color: "rgba(255,255,255,0.45)", fontSize: 16, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }} onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.filter = "brightness(1.6)"; }} onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.filter = ""; }}>×</button>
               </div>
               {/* Mobile-only speech */}
               <div className="md:hidden px-5 py-2.5" style={{ borderBottom: "1px solid rgba(99,102,241,0.1)", background: "rgba(8,8,20,0.4)" }}>
@@ -542,7 +553,7 @@ export function AntiRitualePanel({ playerName, reviewApiKey }: { playerName: str
                 <div className="grid grid-cols-2 gap-3">
                   <div>
                     <label className="text-xs font-semibold mb-1.5 block" style={{ color: "rgba(165,180,252,0.55)" }}>Category</label>
-                    <select value={newVowCategory} onChange={e => setNewVowCategory(e.target.value)} className="w-full text-sm px-3 py-2 rounded-lg" style={{ background: "rgba(0,0,0,0.4)", border: "1px solid rgba(99,102,241,0.2)", color: "#e2e8f0", outline: "none" }}>
+                    <select value={newVowCategory} onChange={e => setNewVowCategory(e.target.value)} className="w-full text-sm rounded-lg" style={{ background: "#1a1a2e", border: "1px solid rgba(99,102,241,0.3)", color: "#f0f0f0", outline: "none", padding: "8px 12px", borderRadius: 8, appearance: "none", cursor: "pointer" }}>
                       <option value="fitness">Fitness</option>
                       <option value="learning">Learning</option>
                       <option value="personal">Personal</option>
@@ -555,7 +566,7 @@ export function AntiRitualePanel({ playerName, reviewApiKey }: { playerName: str
                     <label className="text-xs font-semibold mb-1.5 block" style={{ color: "rgba(165,180,252,0.55)" }}>Frequency</label>
                     <div className="flex gap-1.5">
                       {[{ v: "daily", label: "Daily" }, { v: "triggered", label: "On Trigger" }].map(({ v, label }) => (
-                        <button key={v} onClick={() => {}} className="ritual-freq-btn flex-1 text-xs py-2 rounded-lg font-medium" style={{ background: v === "daily" ? "rgba(99,102,241,0.18)" : "rgba(0,0,0,0.25)", color: v === "daily" ? "#818cf8" : "rgba(165,180,252,0.35)", border: `1px solid ${v === "daily" ? "rgba(99,102,241,0.4)" : "rgba(99,102,241,0.1)"}` }}>{label}</button>
+                        <button key={v} onClick={() => setNewVowFrequency(v)} className="ritual-freq-btn flex-1 text-xs py-2 rounded-lg font-medium" style={{ background: newVowFrequency === v ? "rgba(99,102,241,0.18)" : "rgba(0,0,0,0.25)", color: newVowFrequency === v ? "#818cf8" : "rgba(165,180,252,0.35)", border: `1px solid ${newVowFrequency === v ? "rgba(99,102,241,0.4)" : "rgba(99,102,241,0.1)"}` }}>{label}</button>
                       ))}
                     </div>
                   </div>
@@ -1716,8 +1727,8 @@ export function QuestCard({ quest, selected, onToggle, onClaim, onUnclaim, onCom
               <img
                 src={`/images/icons/cat-${quest.type === "relationship-coop" ? "coop" : quest.type}.png`}
                 alt=""
-                width={18}
-                height={18}
+                width={27}
+                height={27}
                 style={{ imageRendering: "pixelated" }}
                 onError={(e) => { e.currentTarget.style.display = "none"; const next = e.currentTarget.nextElementSibling as HTMLElement; if (next) next.style.display = "inline"; }}
               />
