@@ -595,11 +595,12 @@ function BannerPullModal({
 }
 
 // ─── Main GachaView ──────────────────────────────────────────────────────────
-export default function GachaView({ users, playerName, reviewApiKey, onRefresh }: {
+export default function GachaView({ users, playerName, reviewApiKey, onRefresh, onPullComplete }: {
   users: User[];
   playerName: string;
   reviewApiKey: string;
   onRefresh?: () => void;
+  onPullComplete?: (items: any[]) => void;
 }) {
   const [banners, setBanners] = useState<GachaBanner[]>([]);
   const [pity, setPity] = useState<GachaPityInfo | null>(null);
@@ -683,7 +684,7 @@ export default function GachaView({ users, playerName, reviewApiKey, onRefresh }
     return (
       <div className="space-y-4">
         <div className="text-center py-16 space-y-3">
-          <img src="/images/icons/vault-of-fate.png" alt="" style={{ width: 48, height: 48, imageRendering: "auto", margin: "0 auto", display: "block" }} />
+          <img src="/images/icons/vault-of-fate.png" alt="" style={{ width: 96, height: 96, imageRendering: "auto", margin: "0 auto", display: "block", filter: "drop-shadow(0 0 12px rgba(167,139,250,0.6)) drop-shadow(0 0 30px rgba(167,139,250,0.3))" }} />
           <p className="text-base font-semibold" style={{ color: "rgba(255,255,255,0.5)" }}>The Vault of Fate</p>
           <p className="text-sm italic max-w-md mx-auto" style={{ color: "rgba(255,255,255,0.25)" }}>
             A circular chamber with a single, floating astrolabe at its center. Sign in to step before the Wheel of Stars.
@@ -700,7 +701,7 @@ export default function GachaView({ users, playerName, reviewApiKey, onRefresh }
         <GachaPull
           results={pullResults}
           mode={pullMode}
-          onClose={() => setPullResults(null)}
+          onClose={() => { if (pullResults && onPullComplete) onPullComplete(pullResults); setPullResults(null); }}
         />
       )}
 
@@ -713,12 +714,18 @@ export default function GachaView({ users, playerName, reviewApiKey, onRefresh }
         border: "1px solid rgba(167,139,250,0.15)",
         boxShadow: "0 0 60px rgba(167,139,250,0.05)",
       }}>
+        <div className="flex flex-col items-center text-center mb-2">
+          <div style={{ animation: "vault-fate-glow 3s ease-in-out infinite alternate" }}>
+            <img src="/images/icons/vault-of-fate.png" alt="" style={{
+              width: 96, height: 96, imageRendering: "auto", display: "block", margin: "0 auto",
+              filter: "drop-shadow(0 0 12px rgba(167,139,250,0.6)) drop-shadow(0 0 30px rgba(167,139,250,0.3))",
+            }} />
+          </div>
+          <h2 className="text-xl font-bold mt-3" style={{ color: "#e8e8e8" }}>The Vault of Fate</h2>
+        </div>
         <div className="flex items-start justify-between gap-4">
           <div>
-            <h2 className="text-lg font-bold flex items-center gap-2" style={{ color: "#e8e8e8" }}>
-              <img src="/images/icons/vault-of-fate.png" alt="" style={{ width: 28, height: 28, imageRendering: "auto", display: "inline-block", verticalAlign: "middle" }} /> The Vault of Fate
-            </h2>
-            <p className="text-xs italic mt-2 max-w-2xl leading-relaxed" style={{ color: "rgba(255,255,255,0.3)" }}>
+            <p className="text-xs italic mt-1 max-w-2xl leading-relaxed mx-auto text-center" style={{ color: "rgba(255,255,255,0.3)" }}>
               A circular chamber with a single, floating astrolabe structure at its center: the Wheel of Stars.
               Here, heroes draw items, companions, and artifacts from the Aetherstream. The Vault remembers every pull — and rewards persistence.
             </p>

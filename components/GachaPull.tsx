@@ -39,12 +39,14 @@ function useScreenShake(active: boolean) {
 // ─── Charge Orb with 12 inward energy particles (neutral color) ─────────────
 function ChargeOrb({ durationMs }: { durationMs: number }) {
   const particles = useMemo(() =>
-    Array.from({ length: 12 }, (_, i) => {
-      const angle = (i / 12) * 360 + (Math.random() * 20 - 10);
-      const startDist = 140 + Math.random() * 60;
-      const size = 3 + Math.random() * 3;
-      const delay = Math.random() * 1.5;
-      const dur = 1.8 + Math.random() * 1.2;
+    Array.from({ length: 24 }, (_, i) => {
+      const angle = (i / 24) * 360 + (Math.random() * 20 - 10);
+      const startDist = 200 + Math.random() * 100;
+      const size = 2 + Math.random() * 4;
+      // Earlier particles have more delay, later ones less — accelerating spawn
+      const wave = i / 24;
+      const delay = (1 - wave) * 2.5 + Math.random() * 0.5;
+      const dur = 1.2 + Math.random() * 0.8;
       return { angle, startDist, size, delay, dur, id: i };
     }), []);
 
@@ -92,7 +94,7 @@ function BurstParticles({ rarity, count = 20 }: { rarity: string; count?: number
   const particles = useMemo(() =>
     Array.from({ length: count }, (_, i) => {
       const angle = (i / count) * 360;
-      const distance = 60 + Math.random() * 100;
+      const distance = 100 + Math.random() * 180;
       const size = 2 + Math.random() * 4;
       const delay = Math.random() * 0.3;
       const duration = 0.6 + Math.random() * 0.8;
@@ -252,13 +254,17 @@ function SinglePullReveal({ result, onDone }: { result: GachaPullResult; onDone:
           {/* Nehmen button with pulse */}
           <button
             onClick={onDone}
-            className="text-sm px-5 py-2.5 rounded-lg font-semibold mt-2"
+            className="text-sm px-6 py-2.5 rounded-lg font-semibold mt-2 transition-all duration-200 hover:scale-105 active:scale-95"
             style={{
-              background: "rgba(255,255,255,0.1)",
-              color: "rgba(255,255,255,0.7)",
-              border: "1px solid rgba(255,255,255,0.2)",
+              background: "linear-gradient(135deg, rgba(129,140,248,0.25) 0%, rgba(167,139,250,0.2) 100%)",
+              color: "rgba(255,255,255,0.85)",
+              border: "1px solid rgba(129,140,248,0.4)",
+              boxShadow: "0 0 15px rgba(129,140,248,0.15)",
               animation: "gacha-weiter-pulse 2s ease-in-out infinite",
+              cursor: "pointer",
             }}
+            onMouseEnter={(e) => { e.currentTarget.style.background = "linear-gradient(135deg, rgba(129,140,248,0.4) 0%, rgba(167,139,250,0.35) 100%)"; e.currentTarget.style.boxShadow = "0 0 25px rgba(129,140,248,0.3)"; }}
+            onMouseLeave={(e) => { e.currentTarget.style.background = "linear-gradient(135deg, rgba(129,140,248,0.25) 0%, rgba(167,139,250,0.2) 100%)"; e.currentTarget.style.boxShadow = "0 0 15px rgba(129,140,248,0.15)"; }}
           >
             Nehmen
           </button>
@@ -351,13 +357,17 @@ function MultiPullReveal({ results, onDone }: { results: GachaPullResult[]; onDo
           {/* Nehmen button */}
           <button
             onClick={handleNehmen}
-            className="text-sm px-5 py-2.5 rounded-lg font-semibold mt-2"
+            className="text-sm px-6 py-2.5 rounded-lg font-semibold mt-2 transition-all duration-200 hover:scale-105 active:scale-95"
             style={{
-              background: "rgba(255,255,255,0.1)",
-              color: "rgba(255,255,255,0.7)",
-              border: "1px solid rgba(255,255,255,0.2)",
+              background: "linear-gradient(135deg, rgba(129,140,248,0.25) 0%, rgba(167,139,250,0.2) 100%)",
+              color: "rgba(255,255,255,0.85)",
+              border: "1px solid rgba(129,140,248,0.4)",
+              boxShadow: "0 0 15px rgba(129,140,248,0.15)",
               animation: "gacha-weiter-pulse 2s ease-in-out infinite",
+              cursor: "pointer",
             }}
+            onMouseEnter={(e) => { e.currentTarget.style.background = "linear-gradient(135deg, rgba(129,140,248,0.4) 0%, rgba(167,139,250,0.35) 100%)"; e.currentTarget.style.boxShadow = "0 0 25px rgba(129,140,248,0.3)"; }}
+            onMouseLeave={(e) => { e.currentTarget.style.background = "linear-gradient(135deg, rgba(129,140,248,0.25) 0%, rgba(167,139,250,0.2) 100%)"; e.currentTarget.style.boxShadow = "0 0 15px rgba(129,140,248,0.15)"; }}
           >
             Nehmen
           </button>

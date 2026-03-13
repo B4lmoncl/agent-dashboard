@@ -1352,6 +1352,7 @@ export default function Dashboard() {
             playerName={playerName}
             reviewApiKey={reviewApiKey}
             onRefresh={refresh}
+            onPullComplete={(items) => addToast({ type: "flavor", message: items.length > 1 ? `${items.length} items collected!` : `${items[0]?.item?.name || "Item"} collected!`, icon: "pull", sub: "Vault of Fate" })}
           />
         )}
 
