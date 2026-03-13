@@ -61,8 +61,8 @@
     { "id": "t4-oracle", "name": "Orakel-Auge", "slot": "amulet", "tier": 4, "reqLevel": 29, "rarity": "legendary", "stats": { "glueck": 15, "weisheit": 8 }, "price": 0, "shopHidden": true, "desc": "Sieht die Zukunft. Manchmal ist das ein Fluch." }
   ],
   "setBonus": {
-    "3of6": { "allStatsPercent": 5, "label": "3/6 ✨" },
-    "6of6": { "allStatsPercent": 10, "label": "6/6 KOMPLETT 🔥", "glowEffect": true }
+    "3of6": { "allStatsPercent": 5, "label": "3/6 x" },
+    "6of6": { "allStatsPercent": 10, "label": "6/6 KOMPLETT x", "glowEffect": true }
   },
   "namedSets": [
     {

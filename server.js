@@ -383,7 +383,7 @@ function loadLootTables() {
 }
 
 // Slot → emoji mapping for gear template items
-const SLOT_EMOJI = { weapon: '⚔️', shield: '🛡️', helm: '🪖', armor: '🧥', amulet: '📿', boots: '👢' };
+const SLOT_EMOJI = { weapon: 'x', shield: 'x', helm: 'x', armor: 'x', amulet: 'x', boots: 'x' };
 
 function loadGearTemplates() {
   try {
@@ -400,7 +400,7 @@ function loadGearTemplates() {
             slot: item.slot,
             tier: item.tier,
             name: item.name,
-            emoji: SLOT_EMOJI[item.slot] || '🎒',
+            emoji: SLOT_EMOJI[item.slot] || 'x',
             cost: item.price || 0,
             minLevel: item.reqLevel || 1,
             stats: item.stats || {},
