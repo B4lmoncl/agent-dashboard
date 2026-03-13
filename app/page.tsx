@@ -1221,9 +1221,12 @@ export default function Dashboard() {
               </div>
               <div className="space-y-2">
                 {[
-                  { icon: "×", name: "Gold", value: animGold, color: "#f59e0b", desc: "Earned from quests. Spend in the Bazaar." },
-                  { icon: "×", name: "Astralium", value: 0, color: "#818cf8", desc: "Coming soon — rare cosmic currency." },
-                  { icon: "×", name: "Runensplitter", value: 0, color: "#a78bfa", desc: "Coming soon — used for enchantments." },
+                  { icon: "🪙", name: "Gold", key: "gold" as const, value: loggedInUser?.currencies?.gold ?? animGold, color: "#f59e0b", desc: "Hauptwährung. Verdient durch Quests." },
+                  { icon: "⭐", name: "Sternenstaub", key: "stardust" as const, value: loggedInUser?.currencies?.stardust ?? 0, color: "#818cf8", desc: "Premium-Währung. Level-Ups & Achievements." },
+                  { icon: "🔥", name: "Essenz", key: "essenz" as const, value: loggedInUser?.currencies?.essenz ?? 0, color: "#ef4444", desc: "Streak-Währung. Tägliche Beständigkeit." },
+                  { icon: "💎", name: "Runensplitter", key: "runensplitter" as const, value: loggedInUser?.currencies?.runensplitter ?? 0, color: "#a78bfa", desc: "Gacha-Pulls & Quest-Belohnungen." },
+                  { icon: "🤝", name: "Gildentaler", key: "gildentaler" as const, value: loggedInUser?.currencies?.gildentaler ?? 0, color: "#10b981", desc: "Social/Coop-Quests." },
+                  { icon: "🌙", name: "Mondstaub", key: "mondstaub" as const, value: loggedInUser?.currencies?.mondstaub ?? 0, color: "#c084fc", desc: "Event-limitiert. Sehr selten." },
                 ].map(c => (
                   <div key={c.name} className="flex items-center gap-3 rounded-xl px-3 py-2.5" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)" }}>
                     <span style={{ fontSize: 20 }}>{c.icon}</span>
@@ -1231,8 +1234,8 @@ export default function Dashboard() {
                       <p className="text-xs font-semibold" style={{ color: c.color }}>{c.name}</p>
                       <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>{c.desc}</p>
                     </div>
-                    <span className="text-sm font-mono font-bold" style={{ color: c.value === 0 && c.name !== "Gold" ? "rgba(255,255,255,0.2)" : c.color }}>
-                      {c.value === 0 && c.name !== "Gold" ? "—" : c.value}
+                    <span className="text-sm font-mono font-bold" style={{ color: c.value === 0 && c.key !== "gold" ? "rgba(255,255,255,0.2)" : c.color }}>
+                      {c.value === 0 && c.key !== "gold" ? "—" : c.value}
                     </span>
                   </div>
                 ))}

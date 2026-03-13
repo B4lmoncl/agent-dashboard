@@ -22,6 +22,7 @@ const {
   loadCompanionsData, loadRoadmap, loadRituals, loadHabits,
   loadLootTables, loadGearTemplates, loadNpcGivers, loadNpcState,
   loadAppState, loadFeedback,
+  loadCurrencyTemplates, loadGachaPool, loadBannerTemplates, loadGachaState,
   saveAppState,
 } = require('./lib/state');
 const { autoCreateCampaigns } = require('./lib/helpers');
@@ -77,6 +78,8 @@ app.use(require('./routes/campaigns'));
 app.use(require('./routes/users'));
 app.use(require('./routes/players'));
 app.use(require('./routes/shop'));
+app.use(require('./routes/currency'));
+app.use(require('./routes/gacha'));
 app.use(require('./routes/integrations'));
 app.use(require('./routes/game'));
 app.use(require('./routes/habits-inventory'));
@@ -111,6 +114,10 @@ loadNpcGivers();
 loadNpcState();
 loadAppState();
 loadFeedback();
+loadCurrencyTemplates();
+loadGachaPool();
+loadBannerTemplates();
+loadGachaState();
 
 // NPC & rotation systems
 startupNpcCheck();

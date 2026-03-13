@@ -113,6 +113,14 @@ export interface User {
   streakLastDate?: string | null;
   forgeTemp?: number;
   gold?: number;
+  currencies?: {
+    gold: number;
+    stardust: number;
+    essenz: number;
+    runensplitter: number;
+    gildentaler: number;
+    mondstaub: number;
+  };
   gear?: string;
   createdAt?: string;
   // Onboarding fields
@@ -308,6 +316,56 @@ export interface CVData {
 }
 
 export interface ShopItem { id: string; name: string; cost: number; icon: string; desc: string; }
+
+export interface GachaItem {
+  id: string;
+  name: string;
+  rarity: "common" | "uncommon" | "rare" | "epic" | "legendary";
+  type: "weapon" | "armor" | "consumable" | "gacha";
+  emoji: string;
+  stats?: Record<string, number>;
+  effect?: string;
+  desc: string;
+}
+
+export interface GachaPullResult {
+  item: GachaItem;
+  isNew: boolean;
+  isDuplicate: boolean;
+  duplicateRefund?: number;
+  pityCounter: number;
+  epicPityCounter: number;
+}
+
+export interface GachaBanner {
+  id: string;
+  name: string;
+  type: "standard" | "featured";
+  currency: string;
+  costSingle: number;
+  cost10: number;
+  featuredItems: string[];
+  pool: GachaItem[];
+  active: boolean;
+  lore: string;
+}
+
+export interface GachaPityInfo {
+  pityCounter: number;
+  epicPityCounter: number;
+  guaranteed5050: boolean;
+  hardPity: number;
+  softPityStart: number;
+  epicPity: number;
+}
+
+export interface CurrencyTemplate {
+  id: string;
+  name: string;
+  emoji: string;
+  color: string;
+  description: string;
+}
 
 export interface RoadmapItem {
   id: string;
