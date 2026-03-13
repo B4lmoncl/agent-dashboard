@@ -408,13 +408,13 @@ function BannerPullModal({
         {isFeatured && (
           <div className="pointer-events-none" style={{
             position: "absolute",
-            left: "-60%",
-            top: "-40%",
-            width: "220%",
-            height: "180%",
+            left: "-70%",
+            top: "-60%",
+            width: "240%",
+            height: "220%",
             zIndex: 0,
-            maskImage: "radial-gradient(ellipse 60% 55% at 50% 48%, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.45) 45%, rgba(0,0,0,0.12) 70%, transparent 88%)",
-            WebkitMaskImage: "radial-gradient(ellipse 60% 55% at 50% 48%, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.45) 45%, rgba(0,0,0,0.12) 70%, transparent 88%)",
+            maskImage: "radial-gradient(ellipse 75% 70% at 50% 48%, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.45) 50%, rgba(0,0,0,0.12) 72%, transparent 90%)",
+            WebkitMaskImage: "radial-gradient(ellipse 75% 70% at 50% 48%, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.45) 50%, rgba(0,0,0,0.12) 72%, transparent 90%)",
           }}>
             <svg width="0" height="0" style={{ position: "absolute" }}>
               <defs>
@@ -433,7 +433,7 @@ function BannerPullModal({
             <svg style={{
               position: "absolute", left: "-80%", top: "-40%", width: "260%", height: "180%",
               opacity: 0.8,
-              animation: "fogDrift1 14s ease-in-out infinite alternate",
+              animation: "fogDrift1 18s ease-in-out infinite alternate",
               willChange: "transform",
             }}>
               <rect width="100%" height="100%" filter={`url(#${fogId}-modal-a)`} />
@@ -441,7 +441,7 @@ function BannerPullModal({
             <svg style={{
               position: "absolute", left: "-70%", top: "-35%", width: "240%", height: "170%",
               opacity: 0.65,
-              animation: "fogDrift2 18s ease-in-out infinite alternate-reverse",
+              animation: "fogDrift2 24s ease-in-out infinite alternate-reverse",
               willChange: "transform",
             }}>
               <rect width="100%" height="100%" filter={`url(#${fogId}-modal-b)`} />
