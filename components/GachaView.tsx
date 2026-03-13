@@ -127,13 +127,12 @@ function BannerPreviewCard({
         <div className="absolute bottom-0 right-0 overflow-hidden pointer-events-none" style={{
           width: 140,
           height: 180,
-          maskImage: "linear-gradient(to top, rgba(0,0,0,0.9) 30%, rgba(0,0,0,0.6) 70%, transparent 100%)",
-          WebkitMaskImage: "linear-gradient(to top, rgba(0,0,0,0.9) 30%, rgba(0,0,0,0.6) 70%, transparent 100%)",
+          maskImage: "linear-gradient(to top, rgba(0,0,0,0.95) 20%, rgba(0,0,0,0.8) 75%, rgba(0,0,0,0.3) 95%, transparent 100%)",
+          WebkitMaskImage: "linear-gradient(to top, rgba(0,0,0,0.95) 20%, rgba(0,0,0,0.8) 75%, rgba(0,0,0,0.3) 95%, transparent 100%)",
         }}>
           <img
             src={portraitSrc}
             alt=""
-            className="transition-transform duration-500 group-hover:scale-105"
             style={{
               imageRendering: "pixelated",
               width: "100%",
