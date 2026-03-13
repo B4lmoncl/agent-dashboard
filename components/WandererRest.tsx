@@ -49,7 +49,70 @@ interface WandererRestProps {
   handleComplete?: (questId: string, questTitle: string) => void;
   // For mood unification
   streak?: number;
-  user?: { companion?: { bondLevel?: number; lastPetted?: string | null } | null } | null;
+  user?: { companion?: { bondLevel?: number; lastPetted?: string | null; type?: string; emoji?: string; name?: string } | null } | null;
+}
+
+// Companion type color mapping (same as CompanionsWidget)
+const COMPANION_COLORS_WR: Record<string, { accent: string; accentRgb: string; border: string }> = {
+  cat:     { accent: "#ff6b9d", accentRgb: "255,107,157", border: "rgba(255,107,157,0.4)" },
+  dog:     { accent: "#c4873b", accentRgb: "196,135,59",  border: "rgba(196,135,59,0.4)" },
+  hamster: { accent: "#f5a623", accentRgb: "245,166,35",  border: "rgba(245,166,35,0.4)" },
+  bird:    { accent: "#4ade80", accentRgb: "74,222,128",   border: "rgba(74,222,128,0.4)" },
+  fish:    { accent: "#60a5fa", accentRgb: "96,165,250",   border: "rgba(96,165,250,0.4)" },
+  rabbit:  { accent: "#e879f9", accentRgb: "232,121,249",  border: "rgba(232,121,249,0.4)" },
+  dragon:  { accent: "#ef4444", accentRgb: "239,68,68",    border: "rgba(239,68,68,0.4)" },
+  owl:     { accent: "#a78bfa", accentRgb: "167,139,250",  border: "rgba(167,139,250,0.4)" },
+  phoenix: { accent: "#f97316", accentRgb: "249,115,22",   border: "rgba(249,115,22,0.4)" },
+  wolf:    { accent: "#64748b", accentRgb: "100,116,139",  border: "rgba(100,116,139,0.4)" },
+  fox:     { accent: "#fb923c", accentRgb: "251,146,60",   border: "rgba(251,146,60,0.4)" },
+  bear:    { accent: "#92400e", accentRgb: "146,64,14",    border: "rgba(146,64,14,0.4)" },
+};
+const DEFAULT_CC = { accent: "#00bcd4", accentRgb: "0,188,212", border: "rgba(0,188,212,0.4)" };
+function getCC(type?: string) { return type ? (COMPANION_COLORS_WR[type] ?? DEFAULT_CC) : COMPANION_COLORS_WR.cat; }
+
+function CompanionHearthPanel({ petName, companionType, companionEmoji, reviewApiKey, onRefresh, playerName, quests, streak, user }: {
+  petName?: string; companionType?: string; companionEmoji?: string;
+  reviewApiKey: string; onRefresh: () => void; playerName: string;
+  quests: QuestsData; streak?: number;
+  user?: WandererRestProps["user"];
+}) {
+  const cc = getCC(companionType);
+  const isDobbiePortrait = companionType === "cat" && petName?.toLowerCase() === "dobbie";
+  return (
+    <div style={{ maxWidth: 1000, margin: "32px auto 0", padding: 8 }}>
+      <div style={{
+        background: "#0c0e14",
+        border: "2px solid #2a2a3e",
+        boxShadow: `inset 2px 2px 0 #0a0b10, inset -2px -2px 0 #141620, 0 0 0 5px #0c0e14, 0 0 0 7px #1e2030, 0 4px 16px rgba(0,0,0,0.7), 0 0 15px rgba(${cc.accentRgb},0.04)`,
+        borderRadius: 2, overflow: "visible",
+      }}>
+        <div style={{ display: "flex", gap: 16, padding: 16 }}>
+          {isDobbiePortrait ? (
+            <img
+              src="/images/portraits/companion-dobbie.png"
+              alt={petName ?? "Companion"}
+              style={{ width: 128, height: 160, imageRendering: "pixelated", borderRadius: 4, border: `2px solid ${cc.border}`, boxShadow: `0 0 12px rgba(${cc.accentRgb},0.15)`, flexShrink: 0 }}
+            />
+          ) : (
+            <div style={{
+              width: 128, height: 160, borderRadius: 4,
+              border: `2px solid ${cc.border}`,
+              boxShadow: `0 0 12px rgba(${cc.accentRgb},0.15)`,
+              flexShrink: 0,
+              background: `linear-gradient(135deg, rgba(${cc.accentRgb},0.08), rgba(${cc.accentRgb},0.02))`,
+              display: "flex", alignItems: "center", justifyContent: "center",
+              fontSize: 48, color: cc.accent,
+            }}>
+              {companionEmoji || "x"}
+            </div>
+          )}
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <DobbieQuestPanel reviewApiKey={reviewApiKey} onRefresh={onRefresh} playerName={playerName} petName={petName} quests={quests} streak={streak} user={user} />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 const rarityColors: Record<string, string> = { common: "#c4ccd8", uncommon: "#4ade80", rare: "#60a5fa", epic: "#c084fc", legendary: "#fbbf24" };
@@ -219,32 +282,19 @@ export function WandererRest({
         </div>
       )}
 
-      {/* ── Dobbie's Demands — Dungeon Vault ── */}
+      {/* ── Companion's Demands — Dungeon Vault ── */}
       {playerName && (
-        <div style={{
-          maxWidth: 1000, margin: "32px auto 0", padding: 8,
-        }}>
-          <div style={{
-            background: "#0c0e14",
-            border: "2px solid #2a2a3e",
-            
-            boxShadow: "inset 2px 2px 0 #0a0b10, inset -2px -2px 0 #141620, 0 0 0 5px #0c0e14, 0 0 0 7px #1e2030, 0 4px 16px rgba(0,0,0,0.7), 0 0 15px rgba(255,107,157,0.04)",
-            borderRadius: 2,
-            overflow: "visible",
-          }}>
-            {/* Portrait + Content layout */}
-            <div style={{ display: "flex", gap: 16, padding: 16 }}>
-              <img
-                src="/images/portraits/companion-dobbie.png"
-                alt={petName ?? "Companion"}
-                style={{ width: 128, height: 160, imageRendering: "pixelated", borderRadius: 4, border: "2px solid rgba(255,107,157,0.4)", boxShadow: "0 0 12px rgba(255,107,157,0.15)", flexShrink: 0 }}
-              />
-              <div style={{ flex: 1, minWidth: 0 }}>
-                <DobbieQuestPanel reviewApiKey={reviewApiKey} onRefresh={refresh} playerName={playerName} petName={petName} quests={quests} streak={streak} user={user} />
-              </div>
-            </div>
-          </div>
-        </div>
+        <CompanionHearthPanel
+          petName={petName}
+          companionType={user?.companion?.type}
+          companionEmoji={user?.companion?.emoji}
+          reviewApiKey={reviewApiKey}
+          onRefresh={refresh}
+          playerName={playerName}
+          quests={quests}
+          streak={streak}
+          user={user}
+        />
       )}
 
       {/* ── Divider: Dobbie's Demands ↔ Starweaver ── */}

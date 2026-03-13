@@ -15,13 +15,78 @@ const COMPANION_META_ALL: Record<string, { name: string; quote: string }> = {
   lore_owl:     { name: "Lore Owl",     quote: "Knowledge is power, adventurer." },
   gear_golem:   { name: "Gear Golem",   quote: "Efficiency is the path to glory." },
 };
-const DOBBIE_QUOTES = [
-  "Dobbie demands a quest! ...and also a snack.",
-  "Mrow. The Forge grows cold without quests.",
-  "Dobbie approves of your progress. Now pet me.",
-  "Have you tried completing more quests? Dobbie has opinions.",
-  "Purring softly while judging your quest log.",
-];
+// Companion quotes by type category
+const COMPANION_QUOTES: Record<string, string[]> = {
+  cat: [
+    "{name} demands a quest! ...and also a snack.",
+    "Mrow. The Forge grows cold without quests.",
+    "{name} approves of your progress. Now pet me.",
+    "Have you tried completing more quests? {name} has opinions.",
+    "Purring softly while judging your quest log.",
+  ],
+  dog: [
+    "{name} wags tail excitedly! Quest time!",
+    "{name} fetches your quest list. Good boy!",
+    "Woof! {name} believes in you!",
+    "{name} sits patiently, waiting for your next quest.",
+    "{name} tilts head. More quests, please?",
+  ],
+  digital: [
+    "{name} hums with energy. Ready for action!",
+    "{name} scans the horizon for new challenges.",
+    "Systems online. {name} awaits your command.",
+    "{name} calculates optimal quest order...",
+    "{name} pulses with anticipation. Let's go!",
+  ],
+  default: [
+    "{name} watches you with bright eyes.",
+    "{name} nudges you gently. Quest time!",
+    "{name} waits patiently for your next move.",
+    "Your companion {name} is ready for adventure!",
+    "{name} chirps encouragingly.",
+  ],
+};
+
+const REAL_PET_TYPES = new Set(["cat", "dog", "hamster", "bird", "fish", "rabbit", "other"]);
+
+// Per-type accent colors for the companion panel
+const COMPANION_COLORS: Record<string, { accent: string; accentRgb: string; border: string }> = {
+  cat:     { accent: "#ff6b9d", accentRgb: "255,107,157", border: "rgba(255,107,157,0.4)" },
+  dog:     { accent: "#c4873b", accentRgb: "196,135,59",  border: "rgba(196,135,59,0.4)" },
+  hamster: { accent: "#f5a623", accentRgb: "245,166,35",  border: "rgba(245,166,35,0.4)" },
+  bird:    { accent: "#4ade80", accentRgb: "74,222,128",   border: "rgba(74,222,128,0.4)" },
+  fish:    { accent: "#60a5fa", accentRgb: "96,165,250",   border: "rgba(96,165,250,0.4)" },
+  rabbit:  { accent: "#e879f9", accentRgb: "232,121,249",  border: "rgba(232,121,249,0.4)" },
+  dragon:  { accent: "#ef4444", accentRgb: "239,68,68",    border: "rgba(239,68,68,0.4)" },
+  owl:     { accent: "#a78bfa", accentRgb: "167,139,250",  border: "rgba(167,139,250,0.4)" },
+  phoenix: { accent: "#f97316", accentRgb: "249,115,22",   border: "rgba(249,115,22,0.4)" },
+  wolf:    { accent: "#64748b", accentRgb: "100,116,139",  border: "rgba(100,116,139,0.4)" },
+  fox:     { accent: "#fb923c", accentRgb: "251,146,60",   border: "rgba(251,146,60,0.4)" },
+  bear:    { accent: "#92400e", accentRgb: "146,64,14",    border: "rgba(146,64,14,0.4)" },
+};
+const DEFAULT_COMPANION_COLOR = { accent: "#00bcd4", accentRgb: "0,188,212", border: "rgba(0,188,212,0.4)" };
+
+function getCompanionColor(type?: string) {
+  if (!type) return COMPANION_COLORS.cat;
+  return COMPANION_COLORS[type] ?? DEFAULT_COMPANION_COLOR;
+}
+
+// Portrait path helper: falls back to "x" placeholder per type
+const COMPANION_PORTRAIT_FALLBACK: Record<string, string> = {
+  cat: "x", dog: "x", hamster: "x", bird: "x", fish: "x", rabbit: "x",
+  dragon: "x", owl: "x", phoenix: "x", wolf: "x", fox: "x", bear: "x",
+};
+
+function getCompanionQuotes(companionType?: string, companionName?: string): string[] {
+  const name = companionName ?? "Companion";
+  let category = "default";
+  if (companionType === "cat") category = "cat";
+  else if (companionType === "dog") category = "dog";
+  else if (companionType && !REAL_PET_TYPES.has(companionType)) category = "digital";
+  else if (companionType === "hamster" || companionType === "bird" || companionType === "fish" || companionType === "rabbit") category = "default";
+  const templates = COMPANION_QUOTES[category] ?? COMPANION_QUOTES.default;
+  return templates.map(t => t.replace(/\{name\}/g, name));
+}
 
 export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieClick, onUserRefresh, compact, dobbieQuests }: {
   user: User | null | undefined;
@@ -33,7 +98,9 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
   compact?: boolean;
   dobbieQuests?: Quest[];
 }) {
-  const [quoteIdx] = useState(() => Math.floor(Math.random() * DOBBIE_QUOTES.length));
+  const companionType = user?.companion?.type;
+  const companionQuotes = getCompanionQuotes(companionType, user?.companion?.name);
+  const [quoteIdx] = useState(() => Math.floor(Math.random() * 5));
   const [petting, setPetting] = useState(false);
   const [heartAnim, setHeartAnim] = useState(false);
   const [petError, setPetError] = useState("");
@@ -122,28 +189,29 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
     setPetting(false);
   };
 
-  const companionName = user?.companion?.name ?? "Dobbie";
+  const companionName = user?.companion?.name ?? "Companion";
+  const cColor = getCompanionColor(companionType);
 
-  // Compact mode: only Dobbie row (mood + quote), used in Quest Board sidebar
+  // Compact mode: companion row (mood + quote), used in Quest Board sidebar
   if (compact) {
     return (
       <div
         className="rounded-lg px-2 py-1.5 flex items-center gap-2"
         style={{
-          background: "linear-gradient(135deg, rgba(255,107,157,0.06), rgba(255,107,157,0.02))",
-          border: "1px solid rgba(255,107,157,0.2)",
+          background: `linear-gradient(135deg, rgba(${cColor.accentRgb},0.06), rgba(${cColor.accentRgb},0.02))`,
+          border: `1px solid rgba(${cColor.accentRgb},0.2)`,
           borderLeft: "3px solid #2a2a3e",
           cursor: onDobbieClick ? "pointer" : "default",
         }}
         onClick={onDobbieClick}
         title={onDobbieClick ? `Click to visit ${companionName} at the Hearth` : undefined}
       >
-        <span className={`text-xs font-bold flex-shrink-0 ${mood.anim}`} title={mood.tip} style={{ color: "#ff6b9d" }}>{companionName}</span>
+        <span className={`text-xs font-bold flex-shrink-0 ${mood.anim}`} title={mood.tip} style={{ color: cColor.accent }}>{companionName}</span>
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-1.5 flex-wrap">
             <span className="text-xs" style={{ color: mood.color }}>{mood.label}</span>
           </div>
-          <p className="text-xs truncate italic" style={{ color: "rgba(220,185,120,0.4)" }}>{DOBBIE_QUOTES[quoteIdx]}</p>
+          <p className="text-xs truncate italic" style={{ color: "rgba(220,185,120,0.4)" }}>{companionQuotes[quoteIdx % companionQuotes.length]}</p>
         </div>
       </div>
     );
@@ -155,25 +223,39 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
         style={{
           background: "#0c0e14",
           border: "2px solid #2a2a3e",
-          boxShadow: "inset 2px 2px 0 #0a0b10, inset -2px -2px 0 #141620, 0 0 0 5px #0c0e14, 0 0 0 7px #1e2030, 0 4px 16px rgba(0,0,0,0.7), 0 0 15px rgba(255,107,157,0.04)",
+          boxShadow: `inset 2px 2px 0 #0a0b10, inset -2px -2px 0 #141620, 0 0 0 5px #0c0e14, 0 0 0 7px #1e2030, 0 4px 16px rgba(0,0,0,0.7), 0 0 15px rgba(${cColor.accentRgb},0.04)`,
           borderRadius: 2,
           overflow: "visible",
         }}
       >
         {/* Portrait + Content layout */}
         <div style={{ display: "flex", gap: 16, padding: 16 }}>
-          {/* Left: Portrait */}
-          <img
-            src="/images/portraits/companion-dobbie.png"
-            alt={companionName}
-            style={{ width: 128, height: 160, imageRendering: "pixelated", borderRadius: 4, border: "2px solid rgba(255,107,157,0.4)", boxShadow: "0 0 12px rgba(255,107,157,0.15)", flexShrink: 0 }}
-          />
+          {/* Left: Portrait — uses specific portrait if available, otherwise type-based fallback */}
+          {companionType === "cat" && companionName?.toLowerCase() === "dobbie" ? (
+            <img
+              src="/images/portraits/companion-dobbie.png"
+              alt={companionName}
+              style={{ width: 128, height: 160, imageRendering: "pixelated", borderRadius: 4, border: `2px solid ${cColor.border}`, boxShadow: `0 0 12px rgba(${cColor.accentRgb},0.15)`, flexShrink: 0 }}
+            />
+          ) : (
+            <div style={{
+              width: 128, height: 160, borderRadius: 4,
+              border: `2px solid ${cColor.border}`,
+              boxShadow: `0 0 12px rgba(${cColor.accentRgb},0.15)`,
+              flexShrink: 0,
+              background: `linear-gradient(135deg, rgba(${cColor.accentRgb},0.08), rgba(${cColor.accentRgb},0.02))`,
+              display: "flex", alignItems: "center", justifyContent: "center",
+              fontSize: 48, color: cColor.accent,
+            }}>
+              {user?.companion?.emoji || COMPANION_PORTRAIT_FALLBACK[companionType ?? ""] || "x"}
+            </div>
+          )}
 
           {/* Right: Name + Mood + Content */}
           <div style={{ flex: 1, minWidth: 0 }}>
             {/* Title + mood on same line */}
             <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", marginBottom: 4 }}>
-              <span style={{ color: "#ff6b9d", fontWeight: 600, fontSize: 14 }}>
+              <span style={{ color: cColor.accent, fontWeight: 600, fontSize: 14 }}>
                 {companionName}&apos;s Demands
               </span>
               <span className={mood.anim} title={mood.tip} style={{ color: mood.color, fontSize: 12, flexShrink: 0 }}>
@@ -183,7 +265,7 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
 
             {/* Flavor text / quote */}
             <p style={{ color: "rgba(255,255,255,0.3)", fontSize: 11, fontStyle: "italic", marginBottom: 12 }}>
-              &ldquo;{DOBBIE_QUOTES[quoteIdx]}&rdquo;
+              &ldquo;{companionQuotes[quoteIdx % companionQuotes.length]}&rdquo;
             </p>
 
             {/* Player companion bond info */}
@@ -192,7 +274,7 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
                 background: "#0e1018",
                 border: "1px solid #1a1c28",
                 boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.02)",
-                borderTop: "1px solid rgba(255,107,157,0.25)",
+                borderTop: `1px solid rgba(${cColor.accentRgb},0.25)`,
                 borderRadius: 2,
                 padding: "8px 10px",
                 marginBottom: 10,
@@ -202,11 +284,11 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
                     <div className="flex items-center gap-1.5 flex-wrap">
                       <span className="text-xs font-bold" style={{ color: "#f0e0d0" }}>{user.companion.name}</span>
                       <span className="text-xs italic" style={{ color: "rgba(220,185,120,0.4)" }}>{user.companion.isReal ? "Real Pet" : "Virtual"}</span>
-                      <span className="text-xs" style={{ color: "rgba(255,107,157,0.65)" }}>Bond Lv.{bondLevel} — {bondTitle}</span>
-                      {bondXpBonus > 0 && <span className="text-xs" style={{ color: "rgba(255,107,157,0.45)" }}>+{bondXpBonus}% XP</span>}
+                      <span className="text-xs" style={{ color: `rgba(${cColor.accentRgb},0.65)` }}>Bond Lv.{bondLevel} — {bondTitle}</span>
+                      {bondXpBonus > 0 && <span className="text-xs" style={{ color: `rgba(${cColor.accentRgb},0.45)` }}>+{bondXpBonus}% XP</span>}
                     </div>
-                    <div className="mt-1 rounded-full overflow-hidden" style={{ height: 4, background: "rgba(255,107,157,0.1)" }}>
-                      <div className="h-full rounded-full transition-all duration-500" style={{ width: `${bondProgress * 100}%`, background: "linear-gradient(90deg, #ff6b9d, #ff9ec7)" }} />
+                    <div className="mt-1 rounded-full overflow-hidden" style={{ height: 4, background: `rgba(${cColor.accentRgb},0.1)` }}>
+                      <div className="h-full rounded-full transition-all duration-500" style={{ width: `${bondProgress * 100}%`, background: `linear-gradient(90deg, ${cColor.accent}, ${cColor.accent}99)` }} />
                     </div>
                   </div>
                   {playerName && apiKey && (
