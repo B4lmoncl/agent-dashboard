@@ -18,7 +18,9 @@ export function UserCard({ user, classes = [] }: { user: User; classes?: ClassDe
   const temp = Math.min(user.forgeTemp ?? 0, 100);
   const gold = user.gold ?? 0;
   const achs = user.earnedAchievements ?? [];
-  const tempIcon = temp <= 33 ? "x" : temp <= 66 ? "x" : "x";
+  const tempIcons = { cold: "/images/icons/temp-cold.png", warm: "/images/icons/temp-warm.png", hot: "/images/icons/temp-hot.png" };
+  const tempKey = temp <= 33 ? "cold" : temp <= 66 ? "warm" : "hot";
+  const tempIcon = tempKey;
   const tempColor = temp <= 33 ? "#ef4444" : temp <= 66 ? "#f97316" : "#60a5fa";
   const goldMultiplier = (1 + (temp / 100) * 0.5).toFixed(1);
   const xpMalus = temp === 0;
@@ -164,16 +166,16 @@ export function UserCard({ user, classes = [] }: { user: User; classes?: ClassDe
       {(() => {
         const COMPANION_IDS = ["ember_sprite", "lore_owl", "gear_golem"];
         const COMPANION_META: Record<string, { icon: string; name: string }> = {
-          ember_sprite: { icon: "x", name: "Ember Sprite" },
-          lore_owl:     { icon: "x", name: "Lore Owl" },
-          gear_golem:   { icon: "x", name: "Gear Golem" },
+          ember_sprite: { icon: "/images/icons/mini-ember-sprite.png", name: "Ember Sprite" },
+          lore_owl:     { icon: "/images/icons/mini-lore-owl.png", name: "Lore Owl" },
+          gear_golem:   { icon: "/images/icons/mini-gear-golem.png", name: "Gear Golem" },
         };
         const companions = achs.filter(a => COMPANION_IDS.includes(a.id));
         if (companions.length === 0) return null;
         // Companion mood based on streak
-        const mood = streak >= 7 ? { emoji: "x", label: "happy", anim: "animate-bounce", tip: "Happy! Keep the streak going!" }
-                   : streak >= 3 ? { emoji: "x", label: "neutral", anim: "", tip: "Neutral. Complete quests to cheer them up!" }
-                   : { emoji: "x", label: "sad", anim: "animate-pulse", tip: "Sad. No recent quests — your companions miss you!" };
+        const mood = streak >= 7 ? { emoji: "/images/icons/mood-happy.png", label: "happy", anim: "animate-bounce", tip: "Happy! Keep the streak going!" }
+                   : streak >= 3 ? { emoji: "/images/icons/mood-neutral.png", label: "neutral", anim: "", tip: "Neutral. Complete quests to cheer them up!" }
+                   : { emoji: "/images/icons/mood-sad.png", label: "sad", anim: "animate-pulse", tip: "Sad. No recent quests — your companions miss you!" };
         return (
           <div className="mt-2">
             <div className="flex items-center gap-1.5 mb-0.5">

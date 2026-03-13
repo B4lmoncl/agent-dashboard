@@ -1153,7 +1153,7 @@ export default function Dashboard() {
                     { emoji: "x", key: "mondstaub" as const, value: Number(loggedInUser?.currencies?.mondstaub ?? 0), color: "#c084fc", iconSrc: "/images/icons/currency-mondstaub.png" },
                   ].map(c => (
                     <div key={c.key} className="flex items-center gap-1 cursor-pointer" onClick={() => setCurrenciesOpen(true)} title={c.key}>
-                      {(c as any).iconSrc ? <img src={(c as any).iconSrc} alt="" width={20} height={20} style={{ imageRendering: "pixelated" }} /> : <span style={{ fontSize: 18 }}>{c.emoji}</span>}
+                      {(c as any).iconSrc ? <img src={(c as any).iconSrc} alt="" width={20} height={20} style={{ imageRendering: "auto" }} /> : <span style={{ fontSize: 18 }}>{c.emoji}</span>}
                       <span className="text-base font-mono font-black" style={{ color: c.value > 0 ? c.color : "rgba(255,255,255,0.15)" }}>
                         {c.value}
                       </span>
@@ -1235,7 +1235,7 @@ export default function Dashboard() {
                   { icon: "x", name: "Moondust", key: "mondstaub" as const, value: loggedInUser?.currencies?.mondstaub ?? 0, color: "#c084fc", desc: "Event-limited. Extremely rare.", iconSrc: "/images/icons/currency-mondstaub.png" },
                 ].map(c => (
                   <div key={c.name} className="flex items-center gap-3 rounded-xl px-3 py-2.5" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)" }}>
-                    {(c as any).iconSrc ? <img src={(c as any).iconSrc} alt="" width={22} height={22} style={{ imageRendering: "pixelated" }} /> : <span style={{ fontSize: 20 }}>{c.icon}</span>}
+                    {(c as any).iconSrc ? <img src={(c as any).iconSrc} alt="" width={22} height={22} style={{ imageRendering: "auto" }} /> : <span style={{ fontSize: 20 }}>{c.icon}</span>}
                     <div className="flex-1 min-w-0">
                       <p className="text-xs font-semibold" style={{ color: c.color }}>{c.name}</p>
                       <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>{c.desc}</p>

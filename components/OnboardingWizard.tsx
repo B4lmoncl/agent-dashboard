@@ -29,9 +29,9 @@ interface OnboardingWizardProps {
 }
 
 const VIRTUAL_COMPANIONS = [
-  { type: "dragon",  emoji: "x", name: "Ember",  desc: "Ein feuriger Drache der dich antreibt",            personality: "fierce",    trait: "Fordernd",  questHint: "Erledige 3 Quests täglich!" },
-  { type: "owl",     emoji: "x", name: "Sage",   desc: "Eine weise Eule die dich beim Lernen begleitet",   personality: "wise",      trait: "Weise",     questHint: "Lerne jeden Tag etwas Neues" },
-  { type: "phoenix", emoji: "x", name: "Blaze",  desc: "Ein Phoenix der aus jeder Niederlage aufsteht",    personality: "resilient", trait: "Resilient", questHint: "Nach jedem Rückschlag stärker" },
+  { type: "dragon", emoji: "x", iconSrc: "/images/icons/companion-dragon.png", name: "Ember",  desc: "Ein feuriger Drache der dich antreibt",            personality: "fierce",    trait: "Fordernd",  questHint: "Erledige 3 Quests täglich!" },
+  { type: "owl", emoji: "x", iconSrc: "/images/icons/companion-owl.png", name: "Sage",   desc: "Eine weise Eule die dich beim Lernen begleitet",   personality: "wise",      trait: "Weise",     questHint: "Lerne jeden Tag etwas Neues" },
+  { type: "phoenix", emoji: "x", iconSrc: "/images/icons/companion-phoenix.png", name: "Blaze",  desc: "Ein Phoenix der aus jeder Niederlage aufsteht",    personality: "resilient", trait: "Resilient", questHint: "Nach jedem Rückschlag stärker" },
   { type: "wolf",    emoji: "x", name: "Shadow", desc: "Ein treuer Wolf der immer an deiner Seite steht",  personality: "loyal",     trait: "Treu",      questHint: "Tägliche Routine einhalten" },
   { type: "fox",     emoji: "x", name: "Trick",  desc: "Ein schlauer Fuchs der kreative Lösungen findet",  personality: "clever",    trait: "Clever",    questHint: "Finde einen kreativeren Weg" },
   { type: "bear",    emoji: "x", name: "Bjorn",  desc: "Ein starker Bär der dich durch harte Zeiten trägt",personality: "strong",    trait: "Stark",     questHint: "Sport und Kraft quests" },
