@@ -346,28 +346,28 @@ function BannerPullModal({
           <defs>
             <filter id={`${btnFogId}-a`} x="-25%" y="-25%" width="150%" height="150%">
               <feTurbulence type="fractalNoise" baseFrequency="0.012 0.016" numOctaves={2} seed={seed1} stitchTiles="stitch" result="noise" />
-              <feColorMatrix in="noise" type="matrix" values={`0 0 0 0 ${isFeatured ? "0.35" : "0.28"}  0 0 0 0 ${isFeatured ? "0.18" : "0.22"}  0 0 0 0 ${isFeatured ? "0.55" : "0.6"}  0 0 0 0.6 0`} />
+              <feColorMatrix in="noise" type="matrix" values={`0 0 0 0 ${isFeatured ? "0.35" : "0.28"}  0 0 0 0 ${isFeatured ? "0.18" : "0.22"}  0 0 0 0 ${isFeatured ? "0.55" : "0.6"}  0 0 0 0.35 0`} />
               <feGaussianBlur stdDeviation="6" />
             </filter>
             <filter id={`${btnFogId}-b`} x="-25%" y="-25%" width="150%" height="150%">
               <feTurbulence type="fractalNoise" baseFrequency="0.016 0.008" numOctaves={2} seed={seed2} stitchTiles="stitch" result="noise" />
-              <feColorMatrix in="noise" type="matrix" values={`0 0 0 0 ${isFeatured ? "0.3" : "0.22"}  0 0 0 0 ${isFeatured ? "0.15" : "0.2"}  0 0 0 0 ${isFeatured ? "0.6" : "0.65"}  0 0 0 0.45 0`} />
+              <feColorMatrix in="noise" type="matrix" values={`0 0 0 0 ${isFeatured ? "0.3" : "0.22"}  0 0 0 0 ${isFeatured ? "0.15" : "0.2"}  0 0 0 0 ${isFeatured ? "0.6" : "0.65"}  0 0 0 0.25 0`} />
               <feGaussianBlur stdDeviation="8" />
             </filter>
           </defs>
         </svg>
         <svg style={{
           position: "absolute", left: "-60%", top: "-30%", width: "220%", height: "160%",
-          opacity: 0.6, zIndex: 0, pointerEvents: "none",
-          animation: "fogDrift1 8s ease-in-out infinite",
+          opacity: 0.3, zIndex: 0, pointerEvents: "none",
+          animation: "fogDrift1 16s ease-in-out infinite",
           willChange: "transform",
         }}>
           <rect width="100%" height="100%" filter={`url(#${btnFogId}-a)`} />
         </svg>
         <svg style={{
           position: "absolute", left: "-50%", top: "-20%", width: "200%", height: "140%",
-          opacity: 0.5, zIndex: 0, pointerEvents: "none",
-          animation: "fogDrift2 10s ease-in-out infinite",
+          opacity: 0.2, zIndex: 0, pointerEvents: "none",
+          animation: "fogDrift2 20s ease-in-out infinite",
           willChange: "transform",
         }}>
           <rect width="100%" height="100%" filter={`url(#${btnFogId}-b)`} />
