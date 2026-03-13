@@ -523,6 +523,12 @@ export default function Dashboard() {
   }, [purchaseToast]);
 
   useEffect(() => {
+    if (!flavorToast) return;
+    const t = setTimeout(() => setFlavorToast(null), 4000);
+    return () => clearTimeout(t);
+  }, [flavorToast]);
+
+  useEffect(() => {
     refresh();
     const interval = setInterval(refresh, 8_000);
     return () => clearInterval(interval);
@@ -1243,6 +1249,7 @@ export default function Dashboard() {
             { key: "questBoard",    label: "The Great Hall",     tutorialKey: "quest-board-tab" },
             { key: "klassenquests", label: "The Arcanum",  tutorialKey: null },
             ...(playerName ? [{ key: "character", label: "Character", tutorialKey: null }] : []),
+            { key: "_divider_companion", label: "Companion Hearth", tutorialKey: null, isDivider: true },
             { key: "npcBoard",      label: "The Wanderer's Rest", tutorialKey: "npc-board-tab" },
             { key: "leaderboard", label: "The Proving Grounds", tutorialKey: "leaderboard-tab" },
             { key: "honors",      label: "Honors",          tutorialKey: null },
@@ -1250,6 +1257,11 @@ export default function Dashboard() {
             { key: "season",      label: `${CURRENT_SEASON.icon} Season`, tutorialKey: "season-tab" },
             { key: "shop",        label: "The Bazaar",               tutorialKey: null },
           ].map(v => (
+            "isDivider" in v && v.isDivider ? (
+              <span key={v.key} className="text-xs font-semibold uppercase tracking-widest px-2 py-1.5 flex items-center" style={{ color: "rgba(255,215,0,0.5)", letterSpacing: "0.1em", pointerEvents: "none" }}>
+                ✦ {v.label}
+              </span>
+            ) : (
             <button
               key={v.key}
               data-feedback-id={`nav.tab.${v.key}`}
@@ -1263,6 +1275,7 @@ export default function Dashboard() {
             >
               {v.label}
             </button>
+            )
           ))}
         </div>
 
