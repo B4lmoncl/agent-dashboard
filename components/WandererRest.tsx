@@ -261,7 +261,7 @@ export function WandererRest({
                         </p>
                       )}
                       {allDone && (
-                        <p className="text-xs mt-0.5" style={{ color: "#22c55e", fontSize: 10 }}>x Completed</p>
+                        <p className="text-xs mt-0.5" style={{ color: "#22c55e", fontSize: 10 }}>Completed</p>
                       )}
                     </div>
                   </button>

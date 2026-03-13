@@ -291,7 +291,7 @@ export const TUTORIAL_STEPS = [
   {
     key: "claim-hint",
     title: "Claim Quests",
-    desc: "See a quest you want? Click x Claim to take it on! Complete it when done to earn XP and Gold.",
+    desc: "See a quest you want? Click Claim to take it on! Complete it when done to earn XP and Gold.",
     target: null,
     position: "center" as const,
   },

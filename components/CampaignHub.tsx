@@ -54,10 +54,10 @@ export default function CampaignHub({ campaigns, quests, reviewApiKey, onRefresh
               </div>
               {q.lore && <p className="text-xs mt-1 italic" style={{ color: "rgba(167,139,250,0.6)" }}>{q.lore}</p>}
               {isDone && q.completedBy && (
-                <p className="text-xs mt-1" style={{ color: "rgba(16,185,129,0.7)" }}>x Completed by {q.completedBy}{q.completedAt ? ` · ${timeAgo(q.completedAt)}` : ""}</p>
+                <p className="text-xs mt-1" style={{ color: "rgba(16,185,129,0.7)" }}>Completed by {q.completedBy}{q.completedAt ? ` · ${timeAgo(q.completedAt)}` : ""}</p>
               )}
               {!isDone && q.claimedBy && (
-                <p className="text-xs mt-1" style={{ color: "rgba(167,139,250,0.6)" }}>x Claimed by {q.claimedBy}</p>
+                <p className="text-xs mt-1" style={{ color: "rgba(167,139,250,0.6)" }}>Claimed by {q.claimedBy}</p>
               )}
               {isDeleted && <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.3)" }}>(quest deleted)</p>}
             </div>

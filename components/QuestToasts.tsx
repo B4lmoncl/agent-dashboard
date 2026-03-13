@@ -45,7 +45,7 @@ export function ChainQuestToast({ parentTitle, template, onAccept, onDismiss }: 
               className="flex-1 text-xs px-3 py-1.5 rounded font-medium"
               style={{ background: "rgba(139,92,246,0.2)", color: "#a78bfa", border: "1px solid rgba(139,92,246,0.4)" }}
             >
-              x Accept Quest
+              Accept Quest
             </button>
             <button
               onClick={onDismiss}

@@ -55,10 +55,10 @@ app.use(limiter);
 // Static files
 // Static files with caching headers
 app.use('/_next/static', express.static(path.join(__dirname, 'out', '_next', 'static'), {
-  maxAge: '1y', immutable: true,
+  maxAge: '1y', etag: true,
 }));
-app.use('/images', express.static(path.join(__dirname, 'out', 'images'), {
-  maxAge: '7d', immutable: true,
+app.use('/images', express.static(path.join(__dirname, 'public', 'images'), {
+  maxAge: '1h', etag: true,
 }));
 app.use(express.static(path.join(__dirname, 'out'), { maxAge: '1h' }));
 app.use('/data', express.static(path.join(__dirname, 'public', 'data')));
