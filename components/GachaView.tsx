@@ -702,6 +702,7 @@ export default function GachaView({ users, playerName, reviewApiKey, onRefresh, 
           results={pullResults}
           mode={pullMode}
           onClose={() => { if (pullResults && onPullComplete) onPullComplete(pullResults); setPullResults(null); }}
+          onCollect={(name) => {}}
         />
       )}
 
@@ -739,22 +740,19 @@ export default function GachaView({ users, playerName, reviewApiKey, onRefresh, 
             Item Pool
           </button>
         </div>
-        {/* Icon + Title + Lore */}
-        <div className="flex items-center gap-5">
+        {/* Icon + Title vertically centered, Flavor below */}
+        <div className="flex items-center gap-5 mb-3">
           <div className="flex-shrink-0" style={{ animation: "vault-fate-glow 3s ease-in-out infinite alternate" }}>
             <img src="/images/icons/vault-of-fate.png" alt="" style={{
               width: 128, height: 128, imageRendering: "auto", display: "block",
               filter: "drop-shadow(0 0 20px rgba(167,139,250,0.7)) drop-shadow(0 0 50px rgba(167,139,250,0.4)) drop-shadow(0 0 80px rgba(167,139,250,0.2))",
             }} />
           </div>
-          <div>
-            <h2 className="text-xl font-bold" style={{ color: "#e8e8e8" }}>The Vault of Fate</h2>
-            <p className="text-xs italic mt-2 max-w-md leading-relaxed" style={{ color: "rgba(255,255,255,0.3)" }}>
-              A circular chamber with a single, floating astrolabe structure at its center: the Wheel of Stars.
-              Here, heroes draw items, companions, and artifacts from the Aetherstream. The Vault remembers every pull — and rewards persistence.
-            </p>
-          </div>
+          <h2 className="text-xl font-bold" style={{ color: "#e8e8e8" }}>The Vault of Fate</h2>
         </div>
+        <p className="text-xs italic leading-relaxed max-w-xl" style={{ color: "rgba(255,255,255,0.3)" }}>
+          A circular chamber with a single, floating astrolabe structure at its center: the Wheel of Stars. Here, heroes draw items, companions, and artifacts from the Aetherstream. The Vault remembers every pull — and rewards persistence.
+        </p>
       </div>
 
       {/* Banner Preview Cards — atmospheric, click to open */}

@@ -204,7 +204,7 @@ function ItemRevealCard({ result }: { result: GachaPullResult }) {
 
 // ─── Single Pull Animation ───────────────────────────────────────────────────
 // ALL rarities: 7s total — charge 5.5s, flash 0.3s, reveal 1.2s
-function SinglePullReveal({ result, onDone }: { result: GachaPullResult; onDone: () => void }) {
+function SinglePullReveal({ result, onDone }: { result: GachaPullResult; onDone: () => void; onCollect?: (item: string) => void }) {
   const [phase, setPhase] = useState<"charge" | "flash" | "reveal">("charge");
   const rarity = result.item.rarity;
   const cfg = RARITY_CONFIG[rarity] || RARITY_CONFIG.common;
@@ -276,7 +276,7 @@ function SinglePullReveal({ result, onDone }: { result: GachaPullResult; onDone:
 
 // ─── Multi Pull (10×) — Sequential HSR-style reveals ────────────────────────
 // 8s charge, flash shows BEST rarity, then sequential item reveals
-function MultiPullReveal({ results, onDone }: { results: GachaPullResult[]; onDone: () => void }) {
+function MultiPullReveal({ results, onDone }: { results: GachaPullResult[]; onDone: () => void; onCollect?: (item: string) => void }) {
   const [phase, setPhase] = useState<"charge" | "flash" | "sequential" | "summary">("charge");
   const [currentIdx, setCurrentIdx] = useState(0);
 
@@ -304,6 +304,17 @@ function MultiPullReveal({ results, onDone }: { results: GachaPullResult[]; onDo
     return () => { clearTimeout(t1); clearTimeout(t2); };
   }, []);
 
+  // ESC = skip to summary (take all)
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        if (phase === "sequential") setPhase("summary");
+      }
+    };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, [phase]);
+
   const handleNehmen = useCallback(() => {
     if (currentIdx < shuffledResults.length - 1) {
       setCurrentIdx(prev => prev + 1);
@@ -315,7 +326,7 @@ function MultiPullReveal({ results, onDone }: { results: GachaPullResult[]; onDo
   const currentResult = shuffledResults[currentIdx];
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4" style={{ background: "rgba(0,0,0,0.9)" }}>
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4" style={{ background: "rgba(0,0,0,0.9)" }} onClick={() => { if (phase === "sequential") handleNehmen(); }}>
       {/* Skip button */}
       <button
         onClick={onDone}
@@ -527,10 +538,12 @@ export default function GachaPull({
   results,
   mode,
   onClose,
+  onCollect,
 }: {
   results: GachaPullResult[];
   mode: "single" | "multi";
   onClose: () => void;
+  onCollect?: (name: string) => void;
 }) {
   return (
     <ModalPortal>
