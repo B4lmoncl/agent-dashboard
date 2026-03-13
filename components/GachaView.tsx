@@ -750,7 +750,7 @@ export default function GachaView({ users, playerName, reviewApiKey, onRefresh, 
           </div>
           <h2 className="text-xl font-bold" style={{ color: "#e8e8e8" }}>The Vault of Fate</h2>
         </div>
-        <p className="text-xs italic leading-relaxed max-w-xl" style={{ color: "rgba(255,255,255,0.3)" }}>
+        <p className="text-xs italic leading-relaxed max-w-2xl" style={{ color: "rgba(255,255,255,0.3)" }}>
           A circular chamber with a single, floating astrolabe structure at its center: the Wheel of Stars. Here, heroes draw items, companions, and artifacts from the Aetherstream. The Vault remembers every pull — and rewards persistence.
         </p>
       </div>

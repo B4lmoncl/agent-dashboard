@@ -435,3 +435,8 @@ body {
   cursor: not-allowed;
 }
 
+
+@keyframes vault-fate-glow {
+  0% { filter: drop-shadow(0 0 15px rgba(167,139,250,0.5)) drop-shadow(0 0 40px rgba(167,139,250,0.25)); }
+  100% { filter: drop-shadow(0 0 30px rgba(167,139,250,0.8)) drop-shadow(0 0 70px rgba(167,139,250,0.5)) drop-shadow(0 0 100px rgba(167,139,250,0.25)); }
+}
