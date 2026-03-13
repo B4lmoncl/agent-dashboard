@@ -168,7 +168,7 @@ function BannerPreviewCard({
             opacity: 0.7,
             maskImage: "linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0.2) 80%, transparent 95%)",
             WebkitMaskImage: "linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0.2) 80%, transparent 95%)",
-            animation: "fogDrift1 20s ease-in-out infinite alternate",
+            animation: "fogDrift1 40s ease-in-out infinite alternate",
             willChange: "transform",
           }}>
             <rect width="100%" height="100%" filter={`url(#${fogId}-a)`} />
@@ -179,7 +179,7 @@ function BannerPreviewCard({
             opacity: 0.5,
             maskImage: "linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 45%, rgba(0,0,0,0.15) 75%, transparent 90%)",
             WebkitMaskImage: "linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 45%, rgba(0,0,0,0.15) 75%, transparent 90%)",
-            animation: "fogDrift2 25s ease-in-out infinite alternate-reverse",
+            animation: "fogDrift2 50s ease-in-out infinite alternate-reverse",
             willChange: "transform",
           }}>
             <rect width="100%" height="100%" filter={`url(#${fogId}-b)`} />
