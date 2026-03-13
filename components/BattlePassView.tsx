@@ -5,16 +5,16 @@ import { CURRENT_SEASON } from "@/app/utils";
 
 const SEASON_START_MONTHS: Record<string, number> = { Winter: 11, Spring: 2, Summer: 5, Autumn: 8 };
 const BATTLE_PASS_LEVELS = [
-  { level: 1,  xp: 0,   reward: "🗡 Iron Pick",         premium: false },
-  { level: 2,  xp: 30,  reward: "🪙 +50 Bonus Gold",     premium: false },
-  { level: 3,  xp: 70,  reward: "📜 Lore Scroll (Cosmetic)", premium: false },
-  { level: 4,  xp: 120, reward: "⚒ Forge Boost +5%",    premium: true  },
-  { level: 5,  xp: 180, reward: "🔥 Streak Shield",       premium: false },
-  { level: 6,  xp: 250, reward: "🎯 Daily Quest Bonus",   premium: true  },
-  { level: 7,  xp: 330, reward: "🧭 Season Title: Wanderer", premium: false },
-  { level: 8,  xp: 420, reward: "💎 Premium Gear Token",  premium: true  },
-  { level: 9,  xp: 520, reward: "🌟 Seasonal Companion",  premium: false },
-  { level: 10, xp: 630, reward: "👑 Season Champion Title", premium: true },
+  { level: 1,  xp: 0,   reward: "x Iron Pick",         premium: false },
+  { level: 2,  xp: 30,  reward: "x +50 Bonus Gold",     premium: false },
+  { level: 3,  xp: 70,  reward: "x Lore Scroll (Cosmetic)", premium: false },
+  { level: 4,  xp: 120, reward: "x Forge Boost +5%",    premium: true  },
+  { level: 5,  xp: 180, reward: "x Streak Shield",       premium: false },
+  { level: 6,  xp: 250, reward: "x Daily Quest Bonus",   premium: true  },
+  { level: 7,  xp: 330, reward: "x Season Title: Wanderer", premium: false },
+  { level: 8,  xp: 420, reward: "x Premium Gear Token",  premium: true  },
+  { level: 9,  xp: 520, reward: "x Seasonal Companion",  premium: false },
+  { level: 10, xp: 630, reward: "x Season Champion Title", premium: true },
 ];
 
 export default function BattlePassView({ users, quests }: { users: User[]; quests: QuestsData }) {

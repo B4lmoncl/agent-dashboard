@@ -101,7 +101,7 @@ export default function FeedbackModal({ elementPath, playerName, onClose }: Feed
               <div>
                 <label className="text-xs mb-2 block" style={{ color: "rgba(255,255,255,0.4)" }}>Type</label>
                 <div className="flex gap-2">
-                  {([["bug", "🐛 Bug"], ["feedback", "💡 Suggestion"]] as const).map(([val, label]) => (
+                  {([["bug", "x Bug"], ["feedback", "x Suggestion"]] as const).map(([val, label]) => (
                     <button
                       key={val}
                       onClick={() => setType(val)}
@@ -173,7 +173,7 @@ export default function FeedbackModal({ elementPath, playerName, onClose }: Feed
                     cursor: submitting || !text.trim() ? "not-allowed" : "pointer",
                   }}
                 >
-                  {submitting ? "Submitting…" : "Submit ⚔"}
+                  {submitting ? "Submitting…" : "Submit x"}
                 </button>
               </div>
             </>

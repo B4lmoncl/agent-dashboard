@@ -11,7 +11,7 @@ export default function HonorsView({ catalogue, users, playerName = "" }: { cata
     <div className="space-y-6">
       <div className="rounded-2xl p-5" style={{ background: "linear-gradient(135deg, #1a1208 0%, #1a1a1a 100%)", border: "1px solid rgba(245,158,11,0.3)", boxShadow: "0 0 40px rgba(245,158,11,0.07)" }}>
         <div className="flex items-center gap-3 mb-1">
-          <span style={{ fontSize: 28 }}>🏅</span>
+          <span style={{ fontSize: 28 }}>x</span>
           <div>
             <h2 className="text-lg font-bold" style={{ color: "#fef3c7" }}>Hall of Honors</h2>
             <p className="text-xs" style={{ color: "rgba(253,230,138,0.5)" }}>
@@ -21,7 +21,7 @@ export default function HonorsView({ catalogue, users, playerName = "" }: { cata
         </div>
         {!playerName && (
           <p className="text-xs mt-1.5 px-1" style={{ color: "rgba(255,255,255,0.3)" }}>
-            🔑 Log in via the header to see your personal achievements highlighted.
+            x Log in via the header to see your personal achievements highlighted.
           </p>
         )}
       </div>
@@ -41,7 +41,7 @@ export default function HonorsView({ catalogue, users, playerName = "" }: { cata
           return (
             <div key={cat}>
               <h3 className="text-xs font-semibold uppercase tracking-widest mb-3" style={{ color: cat === "hidden" ? "rgba(138,43,226,0.7)" : "rgba(255,255,255,0.3)" }}>
-                {cat === "hidden" ? "🌑 Secret Achievements" : cat}
+                {cat === "hidden" ? "x Secret Achievements" : cat}
               </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
                 {visibleAchs.map(ach => {
@@ -61,7 +61,7 @@ export default function HonorsView({ catalogue, users, playerName = "" }: { cata
                         style={{ background: "#1a1a1a", border: "1px solid rgba(138,43,226,0.2)", opacity: 0.6 }}
                       >
                         <div className="flex items-start gap-2.5">
-                          <span className="text-2xl flex-shrink-0" style={{ filter: "grayscale(1)" }}>❓</span>
+                          <span className="text-2xl flex-shrink-0" style={{ filter: "grayscale(1)" }}>x</span>
                           <div className="flex-1 min-w-0">
                             <p className="text-xs font-semibold" style={{ color: "rgba(255,255,255,0.25)" }}>??? Hidden Achievement</p>
                             <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.15)" }}>Unlock to reveal...</p>

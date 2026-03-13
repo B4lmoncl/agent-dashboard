@@ -93,7 +93,7 @@ const statusDotAnim: Record<string, string> = {
 
 const healthConfig: Record<string, { label: string; color: string; bg: string; pulse?: boolean }> = {
   ok:            { label: "Health: OK",           color: "#22c55e", bg: "rgba(34,197,94,0.08)"   },
-  needs_checkin: { label: "⚠ Needs Check-In",     color: "#f59e0b", bg: "rgba(245,158,11,0.12)", pulse: true },
+  needs_checkin: { label: "x Needs Check-In",     color: "#f59e0b", bg: "rgba(245,158,11,0.12)", pulse: true },
   broken:        { label: "✕ Broken",              color: "#ff4444", bg: "rgba(255,68,68,0.12)"   },
   stale:         { label: "Health: Stale",         color: "#6b7280", bg: "rgba(107,114,128,0.1)"  },
 };
@@ -110,8 +110,8 @@ const agentMeta: Record<string, { avatar: string; color: string; role: string; d
   echo:  { avatar: "EC", color: "#ef4444", role: "Sales",           description: "Bold sales closer. Charm offensive." },
   pixel: { avatar: "PX", color: "#f59e0b", role: "Marketer",        description: "Creative marketer. Eye for aesthetics." },
   atlas: { avatar: "AT", color: "#6366f1", role: "Researcher",      description: "Deep researcher. Pattern finder." },
-  lyra:  { avatar: "✦", color: "#e879f9", role: "Die Sternenwächterin", description: "Die leuchtende Strategin. Geschmiedet im Sternenlicht, gehärtet im Chaos. ✨" },
-  forge: { avatar: "⚒", color: "#f59e0b", role: "Idea Smith", description: "Feature ideation. Hammers out quest suggestions." },
+  lyra:  { avatar: "✦", color: "#e879f9", role: "Die Sternenwächterin", description: "Die leuchtende Strategin. Geschmiedet im Sternenlicht, gehärtet im Chaos. x" },
+  forge: { avatar: "x", color: "#f59e0b", role: "Idea Smith", description: "Feature ideation. Hammers out quest suggestions." },
 };
 
 export default function AgentCard({ agent, activeQuests = [], isWide = false }: { agent: Agent; activeQuests?: Quest[]; isWide?: boolean }) {
@@ -206,7 +206,7 @@ export default function AgentCard({ agent, activeQuests = [], isWide = false }: 
                   style={{ color: (agent.streakDays ?? 0) >= 30 ? "#ef4444" : (agent.streakDays ?? 0) >= 7 ? "#f59e0b" : "#fb923c" }}
                   title={`${agent.streakDays} day streak`}
                 >
-                  🔥{agent.streakDays}
+                  x{agent.streakDays}
                 </span>
               )}
             </div>
@@ -247,7 +247,7 @@ export default function AgentCard({ agent, activeQuests = [], isWide = false }: 
         {(agent.gold ?? 0) > 0 && (
           <MetricRow
             label="Gold"
-            value={`🪙 ${agent.gold}`}
+            value={`x ${agent.gold}`}
             highlight={true}
             highlightColor="#f59e0b"
           />

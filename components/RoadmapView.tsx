@@ -4,9 +4,9 @@ import { useState, useEffect } from "react";
 import type { RoadmapItem } from "@/app/types";
 
 const ROADMAP_STATUS_CONFIG: Record<string, { label: string; color: string; bg: string; border: string; dot: string }> = {
-  done:        { label: "Done",        color: "#22c55e", bg: "rgba(34,197,94,0.12)",   border: "rgba(34,197,94,0.3)",   dot: "🟢" },
-  in_progress: { label: "In Progress", color: "#3b82f6", bg: "rgba(59,130,246,0.12)",  border: "rgba(59,130,246,0.3)",  dot: "🔵" },
-  planned:     { label: "Planned",     color: "#9ca3af", bg: "rgba(156,163,175,0.08)", border: "rgba(156,163,175,0.2)", dot: "⚪" },
+  done:        { label: "Done",        color: "#22c55e", bg: "rgba(34,197,94,0.12)",   border: "rgba(34,197,94,0.3)",   dot: "x" },
+  in_progress: { label: "In Progress", color: "#3b82f6", bg: "rgba(59,130,246,0.12)",  border: "rgba(59,130,246,0.3)",  dot: "x" },
+  planned:     { label: "Planned",     color: "#9ca3af", bg: "rgba(156,163,175,0.08)", border: "rgba(156,163,175,0.2)", dot: "x" },
 };
 
 export function RoadmapView({ isAdmin, reviewApiKey }: { isAdmin: boolean; reviewApiKey: string }) {
@@ -66,7 +66,7 @@ export function RoadmapView({ isAdmin, reviewApiKey }: { isAdmin: boolean; revie
   return (
     <div className="space-y-4">
       <div className="flex items-center gap-3 flex-wrap">
-        <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.35)" }}>🗺️ Roadmap</span>
+        <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.35)" }}>x Roadmap</span>
         <div className="flex items-center gap-1 flex-wrap">
           <button
             onClick={() => setStatusFilter(null)}
@@ -194,7 +194,7 @@ export function RoadmapView({ isAdmin, reviewApiKey }: { isAdmin: boolean; revie
 
       {items.length === 0 && (
         <div className="flex flex-col items-center py-12" style={{ color: "rgba(255,255,255,0.3)" }}>
-          <span className="text-3xl mb-2">🗺️</span>
+          <span className="text-3xl mb-2">x</span>
           <p className="text-xs">No roadmap items yet.</p>
         </div>
       )}

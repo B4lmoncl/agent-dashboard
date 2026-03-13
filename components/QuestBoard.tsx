@@ -32,12 +32,12 @@ export function CreateQuestModal({ quests, users, reviewApiKey, onRefresh, onClo
         </div>
         <div className="flex border-b overflow-x-auto" style={{ borderColor: "rgba(180,140,70,0.15)" }}>
           {([
-            { key: "personal",   label: "Personal",   iconSrc: "/images/icons/cat-personal.png",  fallback: "🏠" },
-            { key: "learning",   label: "Learning",   iconSrc: "/images/icons/cat-learning.png",  fallback: "📚" },
-            { key: "household",  label: "Household",  iconSrc: "/images/icons/cat-personal.png",  fallback: "🏡" },
-            { key: "social",     label: "Social",     iconSrc: "/images/icons/cat-social.png",    fallback: "💛" },
-            { key: "coop",       label: "Co-op",      iconSrc: "/images/icons/cat-coop.png",      fallback: "🤝" },
-            { key: "challenges", label: "Challenges", iconSrc: "",                                fallback: "⚡" /* TODO: no pixel art icon yet */ },
+            { key: "personal",   label: "Personal",   iconSrc: "/images/icons/cat-personal.png",  fallback: "x" },
+            { key: "learning",   label: "Learning",   iconSrc: "/images/icons/cat-learning.png",  fallback: "x" },
+            { key: "household",  label: "Household",  iconSrc: "/images/icons/cat-personal.png",  fallback: "x" },
+            { key: "social",     label: "Social",     iconSrc: "/images/icons/cat-social.png",    fallback: "x" },
+            { key: "coop",       label: "Co-op",      iconSrc: "/images/icons/cat-coop.png",      fallback: "x" },
+            { key: "challenges", label: "Challenges", iconSrc: "",                                fallback: "x" /* TODO: no pixel art icon yet */ },
           ] as { key: typeof tab; label: string; iconSrc: string; fallback: string }[]).map(t => (
             <button key={t.key} onClick={() => setTab(t.key)} className="flex-1 py-2.5 text-sm font-semibold transition-all whitespace-nowrap px-2 inline-flex items-center justify-center gap-1"
               style={{
@@ -661,7 +661,7 @@ function buildSuggestions(quests: QuestsData, agents: Agent[]): Suggestion[] {
     if (staleDays >= 7) {
       suggestions.push({
         id: `stale-${epic.id}`,
-        icon: "🕸",
+        icon: "x",
         title: `Epic "${epic.title}" is stale`,
         body: `No sub-quest activity for ${staleDays} days. Consider breaking it down or reassigning.`,
         accent: "#f59e0b",
@@ -678,7 +678,7 @@ function buildSuggestions(quests: QuestsData, agents: Agent[]): Suggestion[] {
     if (age >= windowDays) {
       suggestions.push({
         id: `recurring-${q.id}`,
-        icon: "🔁",
+        icon: "x",
         title: `Recurring quest overdue: "${q.title}"`,
         body: `Scheduled ${q.recurrence} — created ${Math.floor(age)}d ago with no completion recorded.`,
         accent: "#6366f1",
@@ -692,7 +692,7 @@ function buildSuggestions(quests: QuestsData, agents: Agent[]): Suggestion[] {
   if (highOpen.length >= 3) {
     suggestions.push({
       id: "high-pile",
-      icon: "🔥",
+      icon: "x",
       title: `${highOpen.length} high-priority quests unclaimed`,
       body: `High-value work is piling up: ${highOpen.slice(0, 2).map(q => `"${q.title}"`).join(", ")}${highOpen.length > 2 ? ` +${highOpen.length - 2} more` : ""}. Consider assigning them.`,
       accent: "#ef4444",
@@ -726,7 +726,7 @@ function buildSuggestions(quests: QuestsData, agents: Agent[]): Suggestion[] {
   if (idleAgents.length > 0 && quests.open.length > 0) {
     suggestions.push({
       id: "idle-agents",
-      icon: "💤",
+      icon: "x",
       title: `${idleAgents.length} agent${idleAgents.length > 1 ? "s" : ""} idle with ${quests.open.length} open quest${quests.open.length > 1 ? "s" : ""}`,
       body: `${idleAgents.map(a => a.name).join(", ")} ${idleAgents.length > 1 ? "are" : "is"} idle. There are open quests waiting to be claimed.`,
       accent: "#22c55e",
@@ -739,7 +739,7 @@ function buildSuggestions(quests: QuestsData, agents: Agent[]): Suggestion[] {
   if (!hasLearning && quests.open.length >= 3) {
     suggestions.push({
       id: "no-learning",
-      icon: "📚",
+      icon: "x",
       title: "No learning quests active",
       body: "Knowledge capture is missing from the queue. Consider adding a learning quest to build team knowledge.",
       accent: "#3b82f6",
@@ -753,11 +753,11 @@ function buildSuggestions(quests: QuestsData, agents: Agent[]): Suggestion[] {
 // ─── Relationship Co-op Panel ─────────────────────────────────────────────────
 
 const COOP_TEMPLATES = [
-  { id: "weekend_trip", title: "Plan Weekend Trip Together", description: "Research destinations, agree on dates, book accommodation.", icon: "✈️" },
-  { id: "cook_dinner", title: "Cook Dinner as a Team", description: "Choose a recipe together, shop ingredients, cook and enjoy.", icon: "🍳" },
-  { id: "watch_movie", title: "Movie Night Both Wanted", description: "Pick a movie you've both been wanting to watch, make popcorn.", icon: "🎬" },
-  { id: "workout_together", title: "Workout Session Together", description: "Go for a run, gym session, or home workout — both complete it.", icon: "💪" },
-  { id: "digital_detox", title: "1-Hour Digital Detox Together", description: "Both put phones away, spend quality time without screens.", icon: "🌿" },
+  { id: "weekend_trip", title: "Plan Weekend Trip Together", description: "Research destinations, agree on dates, book accommodation.", icon: "x" },
+  { id: "cook_dinner", title: "Cook Dinner as a Team", description: "Choose a recipe together, shop ingredients, cook and enjoy.", icon: "x" },
+  { id: "watch_movie", title: "Movie Night Both Wanted", description: "Pick a movie you've both been wanting to watch, make popcorn.", icon: "x" },
+  { id: "workout_together", title: "Workout Session Together", description: "Go for a run, gym session, or home workout — both complete it.", icon: "x" },
+  { id: "digital_detox", title: "1-Hour Digital Detox Together", description: "Both put phones away, spend quality time without screens.", icon: "x" },
 ];
 
 export function RelationshipCoopPanel({ users, reviewApiKey, onRefresh }: {
@@ -1089,25 +1089,25 @@ const LEARNING_TEMPLATES = [
   {
     id: "js_mastery",
     name: "JavaScript Mastery",
-    icon: "💛",
+    icon: "x",
     steps: ["Read MDN fundamentals", "Complete 5 coding exercises", "Build a mini project", "Write what you learned (proof)"],
   },
   {
     id: "design_system",
     name: "Design System Study",
-    icon: "🎨",
+    icon: "x",
     steps: ["Study color theory & typography", "Analyze 3 design systems", "Create a component sketch", "Document findings (proof)"],
   },
   {
     id: "habit_reading",
     name: "Daily 10-Page Reading",
-    icon: "📖",
+    icon: "x",
     steps: ["Choose your book", "Read 10 pages", "Take margin notes", "Share 1 key insight (proof)"],
   },
   {
     id: "language",
     name: "Language Practice",
-    icon: "🌍",
+    icon: "x",
     steps: ["30 min Duolingo/Anki", "Learn 5 new vocab words", "Practice 1 conversation", "Journal in target language (proof)"],
   },
 ];
@@ -1358,12 +1358,12 @@ export function HouseholdQuestBoard({ quests, users, reviewApiKey, onRefresh }: 
 // ─── Thoughtful Hero Panel ─────────────────────────────────────────────────────
 
 const THOUGHTFUL_PROMPTS = [
-  { icon: "🎁", title: "Gift Idea Reminder",  desc: "Note a gift idea for someone special",                 priority: "low"    as Quest["priority"] },
-  { icon: "📞", title: "Call Reminder",        desc: "Schedule a call with someone you care about",          priority: "medium" as Quest["priority"] },
-  { icon: "🌹", title: "Plan Date Night",      desc: "Plan a special date or quality time together",         priority: "high"   as Quest["priority"] },
-  { icon: "💌", title: "Send a Kind Message",  desc: "Reach out and say something thoughtful",               priority: "low"    as Quest["priority"] },
-  { icon: "🥂", title: "Celebrate Someone",    desc: "Celebrate an achievement or milestone in their life",  priority: "medium" as Quest["priority"] },
-  { icon: "🤝", title: "Check In",             desc: "Check in on a friend or family member",                priority: "low"    as Quest["priority"] },
+  { icon: "x", title: "Gift Idea Reminder",  desc: "Note a gift idea for someone special",                 priority: "low"    as Quest["priority"] },
+  { icon: "x", title: "Call Reminder",        desc: "Schedule a call with someone you care about",          priority: "medium" as Quest["priority"] },
+  { icon: "x", title: "Plan Date Night",      desc: "Plan a special date or quality time together",         priority: "high"   as Quest["priority"] },
+  { icon: "x", title: "Send a Kind Message",  desc: "Reach out and say something thoughtful",               priority: "low"    as Quest["priority"] },
+  { icon: "x", title: "Celebrate Someone",    desc: "Celebrate an achievement or milestone in their life",  priority: "medium" as Quest["priority"] },
+  { icon: "x", title: "Check In",             desc: "Check in on a friend or family member",                priority: "low"    as Quest["priority"] },
 ];
 
 export function ThoughtfulHeroPanel({ quests, reviewApiKey, onRefresh }: {
@@ -1507,10 +1507,10 @@ export function TypeBadge({ type }: { type?: string }) {
 }
 
 const NPC_CONFIG: Record<string, { avatar: string; color: string; label?: string }> = {
-  dobbie:       { avatar: "🐱", color: "#ff6b9d" },
-  "npc-dobbie": { avatar: "🐱", color: "#ff6b9d" },
-  system:       { avatar: "📋", color: "#94a3b8", label: "Gefunden am schwarzen Brett" },
-  lyra:         { avatar: "✨", color: "#e879f9", label: "Von der Sternenwächterin" },
+  dobbie:       { avatar: "x", color: "#ff6b9d" },
+  "npc-dobbie": { avatar: "x", color: "#ff6b9d" },
+  system:       { avatar: "x", color: "#94a3b8", label: "Gefunden am schwarzen Brett" },
+  lyra:         { avatar: "x", color: "#e879f9", label: "Von der Sternenwächterin" },
 };
 
 export function CreatorBadge({ name }: { name: string }) {
@@ -1531,7 +1531,7 @@ export function CreatorBadge({ name }: { name: string }) {
       className="text-xs px-1.5 py-0.5 rounded flex-shrink-0"
       style={{ color: "#a78bfa", background: "rgba(167,139,250,0.1)", border: "1px solid rgba(167,139,250,0.25)" }}
     >
-      🤖 {name.charAt(0).toUpperCase() + name.slice(1)}
+      x {name.charAt(0).toUpperCase() + name.slice(1)}
     </span>
   );
 }
@@ -1547,7 +1547,7 @@ export function RecurringBadge({ recurrence }: { recurrence: string }) {
       style={{ color: "#6366f1", background: "rgba(99,102,241,0.1)", border: "1px solid rgba(99,102,241,0.25)" }}
       title={`Recurring: ${recurrence}`}
     >
-      🔁 {recurrence}
+      x {recurrence}
     </span>
   );
 }
@@ -1571,7 +1571,7 @@ export function CompletedQuestRow({ quest, isLast }: { quest: Quest; isLast: boo
               by <span style={{ color: "rgba(255,255,255,0.35)" }}>{quest.completedBy}</span>
             </span>
             {quest.humanInputRequired && (
-              <span className="text-xs" style={{ color: "rgba(245,158,11,0.6)" }}>👤</span>
+              <span className="text-xs" style={{ color: "rgba(245,158,11,0.6)" }}>x</span>
             )}
           </div>
         </div>
@@ -1594,7 +1594,7 @@ export function CompletedQuestRow({ quest, isLast }: { quest: Quest; isLast: boo
           </div>
           {quest.proof && (
             <div className="mt-2 p-2 rounded" style={{ background: "rgba(59,130,246,0.06)", border: "1px solid rgba(59,130,246,0.15)" }}>
-              <p className="text-xs font-semibold mb-1" style={{ color: "rgba(59,130,246,0.7)" }}>📖 Learning Proof</p>
+              <p className="text-xs font-semibold mb-1" style={{ color: "rgba(59,130,246,0.7)" }}>x Learning Proof</p>
               <p className="text-xs leading-relaxed whitespace-pre-wrap" style={{ color: "rgba(255,255,255,0.4)" }}>
                 {quest.proof.length > 300 ? quest.proof.slice(0, 297) + "…" : quest.proof}
               </p>
@@ -1602,7 +1602,7 @@ export function CompletedQuestRow({ quest, isLast }: { quest: Quest; isLast: boo
           )}
           {quest.lore && (
             <p className="text-xs italic" style={{ color: "rgba(167,139,250,0.5)", borderLeft: "2px solid rgba(139,92,246,0.2)", paddingLeft: "8px" }}>
-              ✨ {quest.lore}
+              x {quest.lore}
             </p>
           )}
           <p className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>
@@ -1770,7 +1770,7 @@ export function QuestCard({ quest, selected, onToggle, onClaim, onUnclaim, onCom
           <div className="flex items-center gap-2">
             {(quest.chainTotal ?? 1) > 1 && <ChainDots chainIndex={quest.chainIndex ?? 0} chainTotal={quest.chainTotal!} color={RARITY_COLORS[quest.npcRarity ?? "common"] ?? "#f59e0b"} />}
             <span className="font-mono" style={{ fontSize: "0.7rem", color: "rgba(179,157,219,0.75)" }}>{quest.rewards?.xp ?? 0} XP</span>
-            <span className="font-mono" style={{ fontSize: "0.7rem", color: "rgba(251,191,36,0.75)" }}>🪙 {quest.rewards?.gold ?? 0}</span>
+            <span className="font-mono" style={{ fontSize: "0.7rem", color: "rgba(251,191,36,0.75)" }}>x {quest.rewards?.gold ?? 0}</span>
           </div>
           <span className="text-xs uppercase font-mono" style={{ color: `${rarityColor}aa`, fontSize: 9, letterSpacing: "0.06em" }}>{rarity}</span>
         </div>
@@ -1845,7 +1845,7 @@ export function QuestCard({ quest, selected, onToggle, onClaim, onUnclaim, onCom
             <div className="mt-2">
               {/* Raid HP bar — decreases as partners complete */}
               <div className="flex items-center gap-2 mb-1.5">
-                <span className="text-xs font-semibold" style={{ color: "#f43f5e" }}>💞 Raid HP</span>
+                <span className="text-xs font-semibold" style={{ color: "#f43f5e" }}>x Raid HP</span>
                 <div className="flex-1 h-2 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.07)" }}>
                   <div
                     className="h-full rounded-full transition-all duration-700"
@@ -1892,12 +1892,12 @@ export function QuestCard({ quest, selected, onToggle, onClaim, onUnclaim, onCom
           )}
           {expanded && quest.lore && (
             <p className="text-xs mt-1.5 leading-relaxed italic" style={{ color: "rgba(167,139,250,0.6)", borderLeft: "2px solid rgba(139,92,246,0.25)", paddingLeft: "8px" }}>
-              ✨ {quest.lore}
+              x {quest.lore}
             </p>
           )}
           {expanded && quest.chapter && (
             <span className="inline-flex text-xs mt-1 px-1.5 py-0.5 rounded" style={{ color: "rgba(251,191,36,0.7)", background: "rgba(251,191,36,0.06)", border: "1px solid rgba(251,191,36,0.15)" }}>
-              📖 {quest.chapter}
+              x {quest.chapter}
             </span>
           )}
           {expanded && quest.checklist && quest.checklist.length > 0 && (
@@ -1914,12 +1914,12 @@ export function QuestCard({ quest, selected, onToggle, onClaim, onUnclaim, onCom
             <div className="flex items-center gap-2">
               {(quest.chainTotal ?? 1) > 1 && <ChainDots chainIndex={quest.chainIndex ?? 0} chainTotal={quest.chainTotal!} color={RARITY_COLORS[quest.npcRarity ?? "common"] ?? "#f59e0b"} />}
               <span style={{ fontSize: "0.7rem", color: "rgba(179,157,219,0.6)" }}>{quest.rewards?.xp ?? 0} XP</span>
-              <span style={{ fontSize: "0.7rem", color: "rgba(251,191,36,0.6)" }}>🪙 {quest.rewards?.gold ?? 0}</span>
+              <span style={{ fontSize: "0.7rem", color: "rgba(251,191,36,0.6)" }}>x {quest.rewards?.gold ?? 0}</span>
               <p className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>{timeAgo(quest.createdAt)}</p>
             </div>
             <div className="flex items-center gap-1.5">
               {!isCoop && onClaim && quest.status === "open" && (
-                <button onClick={e => { e.stopPropagation(); onClaim(quest.id); }} className="text-xs font-bold" style={{ background: "radial-gradient(circle at 40% 35%, #c0392b, #7b1a10)", color: "#ffd6a5", border: "2px solid #8b2010", borderRadius: "50%", width: 32, height: 32, display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 2px 8px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,180,100,0.2)", flexShrink: 0, padding: 0 }} title="Claim quest">⚔</button>
+                <button onClick={e => { e.stopPropagation(); onClaim(quest.id); }} className="text-xs font-bold" style={{ background: "radial-gradient(circle at 40% 35%, #c0392b, #7b1a10)", color: "#ffd6a5", border: "2px solid #8b2010", borderRadius: "50%", width: 32, height: 32, display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 2px 8px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,180,100,0.2)", flexShrink: 0, padding: 0 }} title="Claim quest">x</button>
               )}
               {!isCoop && onUnclaim && isClaimedByMe && (
                 <button onClick={e => { e.stopPropagation(); onUnclaim(quest.id); }} className="text-xs px-2 py-0.5 rounded font-medium" style={{ background: "rgba(239,68,68,0.1)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.25)" }}>✕ Unclaim</button>
@@ -1928,7 +1928,7 @@ export function QuestCard({ quest, selected, onToggle, onClaim, onUnclaim, onCom
                 <button onClick={e => { e.stopPropagation(); onComplete(quest.id, quest.title); }} className="text-xs px-2 py-0.5 rounded font-medium" style={{ background: "rgba(251,191,36,0.12)", color: "#fbbf24", border: "1px solid rgba(251,191,36,0.3)" }}>✓ Done</button>
               )}
               {isCoop && isCoopPartner && !hasCoopClaimed && quest.status !== "completed" && onCoopClaim && (
-                <button onClick={e => { e.stopPropagation(); onCoopClaim(quest.id); }} className="text-xs px-2 py-0.5 rounded font-medium" style={{ background: "rgba(244,63,94,0.12)", color: "#f43f5e", border: "1px solid rgba(244,63,94,0.3)" }}>💞 Join</button>
+                <button onClick={e => { e.stopPropagation(); onCoopClaim(quest.id); }} className="text-xs px-2 py-0.5 rounded font-medium" style={{ background: "rgba(244,63,94,0.12)", color: "#f43f5e", border: "1px solid rgba(244,63,94,0.3)" }}>x Join</button>
               )}
               {isCoop && isCoopPartner && hasCoopClaimed && !hasCoopCompleted && quest.status !== "completed" && onCoopComplete && (
                 <button onClick={e => { e.stopPropagation(); onCoopComplete(quest.id); }} className="text-xs px-2 py-0.5 rounded font-medium" style={{ background: "rgba(34,197,94,0.12)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.3)" }}>✓ My Part Done</button>
@@ -1991,7 +1991,7 @@ export function EpicQuestCard({ quest, selected, onToggle }: { quest: Quest; sel
                   <>
                     <div className="flex items-center justify-between mb-1">
                       <span className="text-xs font-semibold" style={{ color: "#ef4444" }}>
-                        🐉 Boss HP
+                        x Boss HP
                       </span>
                       <span className="text-xs font-mono" style={{ color: progressPct === 100 ? "#22c55e" : "#ef4444" }}>
                         {progressPct === 100 ? "DEFEATED!" : `${Math.round(100 - progressPct)}% HP`}
@@ -2093,7 +2093,7 @@ export function UserCard({ user, classes = [] }: { user: User; classes?: ClassDe
   const temp = Math.min(user.forgeTemp ?? 0, 100);
   const gold = user.gold ?? 0;
   const achs = user.earnedAchievements ?? [];
-  const tempIcon = temp <= 33 ? "🔴" : temp <= 66 ? "🟠" : "🔵";
+  const tempIcon = temp <= 33 ? "x" : temp <= 66 ? "x" : "x";
   const tempColor = temp <= 33 ? "#ef4444" : temp <= 66 ? "#f97316" : "#60a5fa";
   const goldMultiplier = (1 + (temp / 100) * 0.5).toFixed(1);
   const xpMalus = temp === 0;
@@ -2125,7 +2125,7 @@ export function UserCard({ user, classes = [] }: { user: User; classes?: ClassDe
                 style={{ color: streak >= 30 ? "#ef4444" : streak >= 7 ? "#f59e0b" : "#fb923c" }}
                 title={`${streak} day streak!`}
               >
-                🔥{streak}
+                x{streak}
               </span>
             )}
           </div>
@@ -2135,7 +2135,7 @@ export function UserCard({ user, classes = [] }: { user: User; classes?: ClassDe
         </div>
         {/* Gold */}
         <div className="flex flex-col items-end gap-1">
-          <span className="text-xs font-mono font-bold" style={{ color: "#f59e0b" }} title="Gold">🪙 {gold}</span>
+          <span className="text-xs font-mono font-bold" style={{ color: "#f59e0b" }} title="Gold">x {gold}</span>
         </div>
       </div>
 
@@ -2163,7 +2163,7 @@ export function UserCard({ user, classes = [] }: { user: User; classes?: ClassDe
       <div className="mb-2" title={forgeInfo.tooltipText}>
         <div className="flex items-center justify-between mb-0.5">
           <span className="text-xs font-medium flex items-center gap-1" style={{ color: tempColor }}>
-            {tempIcon} {temp}% <span style={{ color: "rgba(255,255,255,0.3)", fontWeight: 400 }}>|</span> <span style={{ color: "#f59e0b" }}>💰 {goldMultiplier}x</span>
+            {tempIcon} {temp}% <span style={{ color: "rgba(255,255,255,0.3)", fontWeight: 400 }}>|</span> <span style={{ color: "#f59e0b" }}>x {goldMultiplier}x</span>
           </span>
           <span className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>Forge Temp</span>
         </div>
@@ -2179,10 +2179,10 @@ export function UserCard({ user, classes = [] }: { user: User; classes?: ClassDe
       {/* Gear badge */}
       {user.gear && user.gear !== "worn" && (() => {
         const GEAR_ICONS: Record<string, { icon: string; name: string; bonus: number }> = {
-          sturdy:     { icon: "⚒",  name: "Sturdy Tools",     bonus: 5  },
-          masterwork: { icon: "🛠",  name: "Masterwork Tools", bonus: 10 },
-          legendary:  { icon: "⚙",  name: "Legendary Tools",  bonus: 15 },
-          mythic:     { icon: "🔱", name: "Mythic Forge",     bonus: 25 },
+          sturdy:     { icon: "x",  name: "Sturdy Tools",     bonus: 5  },
+          masterwork: { icon: "x",  name: "Masterwork Tools", bonus: 10 },
+          legendary:  { icon: "x",  name: "Legendary Tools",  bonus: 15 },
+          mythic:     { icon: "x", name: "Mythic Forge",     bonus: 25 },
         };
         const g = GEAR_ICONS[user.gear];
         if (!g) return null;
@@ -2205,7 +2205,7 @@ export function UserCard({ user, classes = [] }: { user: User; classes?: ClassDe
               className="mt-2 flex items-center gap-1.5 px-2 py-1 rounded-lg"
               style={{ background: "rgba(245,158,11,0.07)", border: "1px solid rgba(245,158,11,0.2)" }}
             >
-              <span className="text-sm" style={{ animation: "pulse-online 1.5s ease-in-out infinite" }}>⚒️</span>
+              <span className="text-sm" style={{ animation: "pulse-online 1.5s ease-in-out infinite" }}>x</span>
               <span className="text-xs font-semibold" style={{ color: "rgba(245,158,11,0.7)" }}>Klasse wird geschmiedet...</span>
             </div>
           );
@@ -2236,7 +2236,7 @@ export function UserCard({ user, classes = [] }: { user: User; classes?: ClassDe
           >
             <span className="text-sm">{c.emoji}</span>
             <span className="text-xs font-semibold" style={{ color: "rgba(255,255,255,0.5)" }}>{c.name}</span>
-            {c.isReal && <span className="text-xs ml-auto" style={{ color: "rgba(255,255,255,0.25)" }}>🐾 Haustier</span>}
+            {c.isReal && <span className="text-xs ml-auto" style={{ color: "rgba(255,255,255,0.25)" }}>x Haustier</span>}
           </div>
         );
       })()}
@@ -2245,16 +2245,16 @@ export function UserCard({ user, classes = [] }: { user: User; classes?: ClassDe
       {(() => {
         const COMPANION_IDS = ["ember_sprite", "lore_owl", "gear_golem"];
         const COMPANION_META: Record<string, { icon: string; name: string }> = {
-          ember_sprite: { icon: "🔮", name: "Ember Sprite" },
-          lore_owl:     { icon: "🦉", name: "Lore Owl" },
-          gear_golem:   { icon: "🤖", name: "Gear Golem" },
+          ember_sprite: { icon: "x", name: "Ember Sprite" },
+          lore_owl:     { icon: "x", name: "Lore Owl" },
+          gear_golem:   { icon: "x", name: "Gear Golem" },
         };
         const companions = achs.filter(a => COMPANION_IDS.includes(a.id));
         if (companions.length === 0) return null;
         // Companion mood based on streak
-        const mood = streak >= 7 ? { emoji: "😊", label: "happy", anim: "animate-bounce", tip: "Happy! Keep the streak going!" }
-                   : streak >= 3 ? { emoji: "😐", label: "neutral", anim: "", tip: "Neutral. Complete quests to cheer them up!" }
-                   : { emoji: "😔", label: "sad", anim: "animate-pulse", tip: "Sad. No recent quests — your companions miss you!" };
+        const mood = streak >= 7 ? { emoji: "x", label: "happy", anim: "animate-bounce", tip: "Happy! Keep the streak going!" }
+                   : streak >= 3 ? { emoji: "x", label: "neutral", anim: "", tip: "Neutral. Complete quests to cheer them up!" }
+                   : { emoji: "x", label: "sad", anim: "animate-pulse", tip: "Sad. No recent quests — your companions miss you!" };
         return (
           <div className="mt-2">
             <div className="flex items-center gap-1.5 mb-0.5">
@@ -2302,11 +2302,11 @@ export function UserCard({ user, classes = [] }: { user: User; classes?: ClassDe
 
 // ─── Shop Modal ───────────────────────────────────────────────────────────────
 const GEAR_TIERS_CLIENT = [
-  { id: "worn",       name: "Worn Tools",       cost: 0,    tier: 0, xpBonus: 0,  icon: "🔨", desc: "Starting gear. No bonus." },
-  { id: "sturdy",     name: "Sturdy Tools",     cost: 100,  tier: 1, xpBonus: 5,  icon: "⚒",  desc: "+5% XP on all quests" },
-  { id: "masterwork", name: "Masterwork Tools", cost: 300,  tier: 2, xpBonus: 10, icon: "🛠",  desc: "+10% XP on all quests" },
-  { id: "legendary",  name: "Legendary Tools",  cost: 700,  tier: 3, xpBonus: 15, icon: "⚙",  desc: "+15% XP on all quests" },
-  { id: "mythic",     name: "Mythic Forge",     cost: 1500, tier: 4, xpBonus: 25, icon: "🔱", desc: "+25% XP on all quests" },
+  { id: "worn",       name: "Worn Tools",       cost: 0,    tier: 0, xpBonus: 0,  icon: "x", desc: "Starting gear. No bonus." },
+  { id: "sturdy",     name: "Sturdy Tools",     cost: 100,  tier: 1, xpBonus: 5,  icon: "x",  desc: "+5% XP on all quests" },
+  { id: "masterwork", name: "Masterwork Tools", cost: 300,  tier: 2, xpBonus: 10, icon: "x",  desc: "+10% XP on all quests" },
+  { id: "legendary",  name: "Legendary Tools",  cost: 700,  tier: 3, xpBonus: 15, icon: "x",  desc: "+15% XP on all quests" },
+  { id: "mythic",     name: "Mythic Forge",     cost: 1500, tier: 4, xpBonus: 25, icon: "x", desc: "+25% XP on all quests" },
 ];
 
 export function ShopModal({ userId, userName, gold, currentGear, onClose, onBuy, onGearBuy }: {
@@ -2319,11 +2319,11 @@ export function ShopModal({ userId, userName, gold, currentGear, onClose, onBuy,
   onGearBuy?: (userId: string, gearId: string) => void;
 }) {
   const ITEMS: ShopItem[] = [
-    { id: "gaming_1h",   name: "1h Gaming",    cost: 100, icon: "🎮", desc: "1 hour of guilt-free gaming" },
-    { id: "snack_break", name: "Snack Break",   cost: 25,  icon: "🍕", desc: "Treat yourself to a snack" },
-    { id: "day_off",     name: "Day Off Quest", cost: 500, icon: "🏖", desc: "Skip one day of recurring quests" },
-    { id: "movie_night", name: "Movie Night",   cost: 150, icon: "🎬", desc: "Evening off for a movie" },
-    { id: "sleep_in",    name: "Sleep In",      cost: 75,  icon: "😴", desc: "Extra hour of sleep, guilt-free" },
+    { id: "gaming_1h",   name: "1h Gaming",    cost: 100, icon: "x", desc: "1 hour of guilt-free gaming" },
+    { id: "snack_break", name: "Snack Break",   cost: 25,  icon: "x", desc: "Treat yourself to a snack" },
+    { id: "day_off",     name: "Day Off Quest", cost: 500, icon: "x", desc: "Skip one day of recurring quests" },
+    { id: "movie_night", name: "Movie Night",   cost: 150, icon: "x", desc: "Evening off for a movie" },
+    { id: "sleep_in",    name: "Sleep In",      cost: 75,  icon: "x", desc: "Extra hour of sleep, guilt-free" },
   ];
   return (
     <div
@@ -2339,7 +2339,7 @@ export function ShopModal({ userId, userName, gold, currentGear, onClose, onBuy,
         <div className="flex items-center justify-between mb-4">
           <div>
             <h3 className="text-sm font-bold" style={{ color: "#f0f0f0" }}>⚒ Forge Shop</h3>
-            <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>{userName} · 🪙 {gold} gold</p>
+            <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>{userName} · x {gold} gold</p>
           </div>
           <button onClick={onClose} style={{ color: "rgba(255,255,255,0.3)" }}>✕</button>
         </div>
@@ -2365,7 +2365,7 @@ export function ShopModal({ userId, userName, gold, currentGear, onClose, onBuy,
                   border: `1px solid ${gold >= item.cost ? "rgba(245,158,11,0.4)" : "rgba(255,255,255,0.08)"}`,
                 }}
               >
-                🪙 {item.cost}
+                x {item.cost}
               </button>
             </div>
           ))}
@@ -2408,7 +2408,7 @@ export function ShopModal({ userId, userName, gold, currentGear, onClose, onBuy,
                           border: `1px solid ${canBuy ? "rgba(99,102,241,0.4)" : "rgba(255,255,255,0.08)"}`,
                         }}
                       >
-                        🪙 {gear.cost}
+                        x {gear.cost}
                       </button>
                     )}
                   </div>
@@ -2459,7 +2459,7 @@ export function ChainQuestToast({ parentTitle, template, onAccept, onDismiss }: 
               className="flex-1 text-xs px-3 py-1.5 rounded font-medium"
               style={{ background: "rgba(139,92,246,0.2)", color: "#a78bfa", border: "1px solid rgba(139,92,246,0.4)" }}
             >
-              ⚔ Accept Quest
+              x Accept Quest
             </button>
             <button
               onClick={onDismiss}

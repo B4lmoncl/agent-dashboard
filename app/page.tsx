@@ -1474,7 +1474,7 @@ export default function Dashboard() {
                             title="Refresh quest pool (1x per hour)"
                           >
                             {poolRefreshing ? (
-                              <span className="text-sm">⏳</span>
+                              <span className="text-sm">x</span>
                             ) : (
                               <img src="/images/icons/ui-quest-scroll.png" alt="" width={24} height={24} style={{ imageRendering: "pixelated" }} onError={e => (e.currentTarget.style.display = "none")} />
                             )}
@@ -1487,9 +1487,9 @@ export default function Dashboard() {
                   {/* Board Sub-Tabs */}
                   <div className="flex gap-1 mb-3">
                     {[
-                      { key: "auftraege",    label: "Quest Board",     iconSrc: "/images/icons/ui-quest-scroll.png",  fallback: "📜" },
-                      { key: "rituale",      label: "Ritual Chamber",  iconSrc: "/images/icons/ui-ritual-rune.png",   fallback: "🔁" },
-                      { key: "anti-rituale", label: "Vow Shrine",      iconSrc: "/images/icons/ui-vow-sword.png",     fallback: "⚔️" },
+                      { key: "auftraege",    label: "Quest Board",     iconSrc: "/images/icons/ui-quest-scroll.png",  fallback: "x" },
+                      { key: "rituale",      label: "Ritual Chamber",  iconSrc: "/images/icons/ui-ritual-rune.png",   fallback: "x" },
+                      { key: "anti-rituale", label: "Vow Shrine",      iconSrc: "/images/icons/ui-vow-sword.png",     fallback: "x" },
                     ].map(tab => (
                       <button
                         key={tab.key}
@@ -2407,7 +2407,7 @@ export default function Dashboard() {
           className="purchase-toast fixed z-[150] flex items-center gap-2 px-4 py-3 rounded-xl shadow-2xl"
           style={{ bottom: "24px", right: "24px", background: "#1a1a1a", border: "1px solid rgba(245,158,11,0.5)", boxShadow: "0 8px 32px rgba(0,0,0,0.6)", maxWidth: "280px" }}
         >
-          <span style={{ fontSize: "16px" }}>🪙</span>
+          <span style={{ fontSize: "16px" }}>x</span>
           <span className="text-sm font-semibold" style={{ color: "#f0f0f0" }}>{purchaseToast}</span>
         </div>
       )}

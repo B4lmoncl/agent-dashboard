@@ -13,7 +13,7 @@ const agentMetaLb: Record<string, { avatar: string; color: string }> = {
   forge: { avatar: "⚒",  color: "#f59e0b" },
 };
 
-const rankMedal = ["🥇", "🥈", "🥉"];
+const rankMedal = ["x", "x", "x"];
 
 export default function LeaderboardView({ entries, agents, mode = "agents", users = [] }: { entries: LeaderboardEntry[]; agents: Agent[]; mode?: "agents" | "players"; users?: User[] }) {
   // For players mode: build leaderboard from users (registered players only, exclude agent IDs)

@@ -28,26 +28,26 @@ interface OnboardingWizardProps {
 }
 
 const VIRTUAL_COMPANIONS = [
-  { type: "dragon",  emoji: "🐲", name: "Ember",  desc: "Ein feuriger Drache der dich antreibt",            personality: "fierce",    trait: "Fordernd",  questHint: "Erledige 3 Quests täglich!" },
-  { type: "owl",     emoji: "🦉", name: "Sage",   desc: "Eine weise Eule die dich beim Lernen begleitet",   personality: "wise",      trait: "Weise",     questHint: "Lerne jeden Tag etwas Neues" },
-  { type: "phoenix", emoji: "🔥", name: "Blaze",  desc: "Ein Phoenix der aus jeder Niederlage aufsteht",    personality: "resilient", trait: "Resilient", questHint: "Nach jedem Rückschlag stärker" },
-  { type: "wolf",    emoji: "🐺", name: "Shadow", desc: "Ein treuer Wolf der immer an deiner Seite steht",  personality: "loyal",     trait: "Treu",      questHint: "Tägliche Routine einhalten" },
-  { type: "fox",     emoji: "🦊", name: "Trick",  desc: "Ein schlauer Fuchs der kreative Lösungen findet",  personality: "clever",    trait: "Clever",    questHint: "Finde einen kreativeren Weg" },
-  { type: "bear",    emoji: "🐻", name: "Bjorn",  desc: "Ein starker Bär der dich durch harte Zeiten trägt",personality: "strong",    trait: "Stark",     questHint: "Sport und Kraft quests" },
+  { type: "dragon",  emoji: "x", name: "Ember",  desc: "Ein feuriger Drache der dich antreibt",            personality: "fierce",    trait: "Fordernd",  questHint: "Erledige 3 Quests täglich!" },
+  { type: "owl",     emoji: "x", name: "Sage",   desc: "Eine weise Eule die dich beim Lernen begleitet",   personality: "wise",      trait: "Weise",     questHint: "Lerne jeden Tag etwas Neues" },
+  { type: "phoenix", emoji: "x", name: "Blaze",  desc: "Ein Phoenix der aus jeder Niederlage aufsteht",    personality: "resilient", trait: "Resilient", questHint: "Nach jedem Rückschlag stärker" },
+  { type: "wolf",    emoji: "x", name: "Shadow", desc: "Ein treuer Wolf der immer an deiner Seite steht",  personality: "loyal",     trait: "Treu",      questHint: "Tägliche Routine einhalten" },
+  { type: "fox",     emoji: "x", name: "Trick",  desc: "Ein schlauer Fuchs der kreative Lösungen findet",  personality: "clever",    trait: "Clever",    questHint: "Finde einen kreativeren Weg" },
+  { type: "bear",    emoji: "x", name: "Bjorn",  desc: "Ein starker Bär der dich durch harte Zeiten trägt",personality: "strong",    trait: "Stark",     questHint: "Sport und Kraft quests" },
 ];
 
 const PET_SPECIES = [
-  { value: "cat",     label: "Katze 🐱",   carePreview: ["Füttern", "Spielen", "Kuscheln", "Tierarzt-Check"] },
-  { value: "dog",     label: "Hund 🐕",    carePreview: ["Gassi gehen", "Füttern", "Training", "Pflegen", "Tierarzt-Check"] },
-  { value: "hamster", label: "Hamster 🐹", carePreview: ["Füttern", "Käfig reinigen", "Spielen"] },
-  { value: "bird",    label: "Vogel 🐦",   carePreview: ["Füttern", "Singen", "Käfig reinigen"] },
-  { value: "fish",    label: "Fisch 🐟",   carePreview: ["Füttern", "Aquarium reinigen"] },
-  { value: "rabbit",  label: "Hase 🐰",    carePreview: ["Füttern", "Spielen", "Pflegen"] },
-  { value: "other",   label: "Andere 🐾",  carePreview: ["Füttern", "Pflegen"] },
+  { value: "cat",     label: "Katze x",   carePreview: ["Füttern", "Spielen", "Kuscheln", "Tierarzt-Check"] },
+  { value: "dog",     label: "Hund x",    carePreview: ["Gassi gehen", "Füttern", "Training", "Pflegen", "Tierarzt-Check"] },
+  { value: "hamster", label: "Hamster x", carePreview: ["Füttern", "Käfig reinigen", "Spielen"] },
+  { value: "bird",    label: "Vogel x",   carePreview: ["Füttern", "Singen", "Käfig reinigen"] },
+  { value: "fish",    label: "Fisch x",   carePreview: ["Füttern", "Aquarium reinigen"] },
+  { value: "rabbit",  label: "Hase x",    carePreview: ["Füttern", "Spielen", "Pflegen"] },
+  { value: "other",   label: "Andere x",  carePreview: ["Füttern", "Pflegen"] },
 ];
 
 const PET_EMOJI: Record<string, string> = {
-  cat: "🐱", dog: "🐕", hamster: "🐹", bird: "🐦", fish: "🐟", rabbit: "🐰", other: "🐾",
+  cat: "x", dog: "x", hamster: "x", bird: "x", fish: "x", rabbit: "x", other: "x",
 };
 
 export default function OnboardingWizard({ onComplete, onClose }: OnboardingWizardProps) {
@@ -150,7 +150,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
         companion = {
           type: petSpecies,
           name: petName.trim(),
-          emoji: PET_EMOJI[petSpecies] ?? "🐾",
+          emoji: PET_EMOJI[petSpecies] ?? "x",
           isReal: true,
           species: petSpecies,
         };
@@ -159,7 +159,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
         companion = {
           type: virtualCompanionType,
           name: virtualCompanionName.trim() || vc?.name || virtualCompanionType,
-          emoji: vc?.emoji ?? "🐲",
+          emoji: vc?.emoji ?? "x",
           isReal: false,
         };
       }
@@ -267,7 +267,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
         {step === 0 && (
           <div className="p-6 space-y-5">
             <div className="text-center space-y-1">
-              <div className="text-4xl">⚒️</div>
+              <div className="text-4xl">x</div>
               <h2 className="text-lg font-bold" style={{ color: "#f0f0f0" }}>Willkommen in der Quest Hall!</h2>
               <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>Dein Abenteuer beginnt hier. Wie sollen wir dich nennen?</p>
             </div>
@@ -437,7 +437,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
             {/* Custom class form */}
             {showCustomClass && !customClassSubmitted && (
               <div className="rounded-xl p-4 space-y-3" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.1)" }}>
-                <p className="text-xs font-semibold" style={{ color: "#a78bfa" }}>✏️ Klasse einreichen</p>
+                <p className="text-xs font-semibold" style={{ color: "#a78bfa" }}>x Klasse einreichen</p>
                 <div>
                   <label className="text-xs mb-1 block" style={{ color: "rgba(255,255,255,0.4)" }}>Was machst du beruflich?</label>
                   <textarea
@@ -480,7 +480,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
             {customClassSubmitted && (
               <div className="rounded-xl p-3" style={{ background: "rgba(245,158,11,0.07)", border: "1px solid rgba(245,158,11,0.25)" }}>
                 <p className="text-xs" style={{ color: "#f59e0b" }}>
-                  ⚒️ Deine Klasse wird geschmiedet! Du kannst schon loslegen — dein Klassenpfad wird dir zur Verfügung gestellt sobald er fertig ist.
+                  x Deine Klasse wird geschmiedet! Du kannst schon loslegen — dein Klassenpfad wird dir zur Verfügung gestellt sobald er fertig ist.
                 </p>
               </div>
             )}
@@ -508,11 +508,11 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
 
             <div className="space-y-2">
               {[
-                { value: "single",        label: "💔 Single" },
-                { value: "relationship",  label: "💑 In einer Beziehung" },
-                { value: "married",       label: "💍 Verheiratet" },
-                { value: "complicated",   label: "🤷 Es ist kompliziert" },
-                { value: "other",         label: "✨ Andere" },
+                { value: "single",        label: "x Single" },
+                { value: "relationship",  label: "x In einer Beziehung" },
+                { value: "married",       label: "x Verheiratet" },
+                { value: "complicated",   label: "x Es ist kompliziert" },
+                { value: "other",         label: "x Andere" },
               ].map(opt => (
                 <button
                   key={opt.value}
@@ -559,8 +559,8 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
             {/* Real pet toggle */}
             <div className="flex gap-2">
               {[
-                { v: true,  label: "🐾 Ich habe ein Haustier" },
-                { v: false, label: "✨ Virtueller Begleiter" },
+                { v: true,  label: "x Ich habe ein Haustier" },
+                { v: false, label: "x Virtueller Begleiter" },
               ].map(opt => (
                 <button
                   key={String(opt.v)}
@@ -602,7 +602,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
                   return speciesData ? (
                     <div className="rounded-xl p-3" style={{ background: "rgba(255,107,157,0.06)", border: "1px solid rgba(255,107,157,0.18)" }}>
                       <p className="text-xs font-semibold mb-1.5" style={{ color: "#ff6b9d" }}>
-                        📋 Deine Pflegequests {petName ? `für ${petName}` : ""}
+                        x Deine Pflegequests {petName ? `für ${petName}` : ""}
                       </p>
                       <div className="flex flex-wrap gap-1">
                         {speciesData.carePreview.map(q => (
@@ -642,7 +642,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
                         <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.35)" }}>{vc.desc}</p>
                         {selected && (
                           <p className="text-xs mt-1.5 italic" style={{ color: "rgba(167,139,250,0.7)" }}>
-                            💬 &ldquo;{vc.questHint}&rdquo;
+                            x &ldquo;{vc.questHint}&rdquo;
                           </p>
                         )}
                       </button>
@@ -653,7 +653,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
                   const vc = VIRTUAL_COMPANIONS.find(v => v.type === virtualCompanionType);
                   return (
                     <div className="rounded-xl p-3 space-y-2" style={{ background: "rgba(167,139,250,0.07)", border: "1px solid rgba(167,139,250,0.2)" }}>
-                      <p className="text-xs font-semibold" style={{ color: "#a78bfa" }}>📋 Quests die generiert werden</p>
+                      <p className="text-xs font-semibold" style={{ color: "#a78bfa" }}>x Quests die generiert werden</p>
                       <p className="text-xs" style={{ color: "rgba(255,255,255,0.5)" }}>
                         {vc?.emoji} {virtualCompanionName || vc?.name} wird täglich eine motivierende Quest für dich erstellen, basierend auf seinem Charakter.
                       </p>
@@ -683,7 +683,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
                 disabled={!canProceedStep3 || loading}
                 style={canProceedStep3 && !loading ? btnPrimary : btnDisabled}
               >
-                {loading ? "⚒️ Wird geschmiedet..." : "Weiter →"}
+                {loading ? "x Wird geschmiedet..." : "Weiter →"}
               </button>
             </div>
           </div>
@@ -693,7 +693,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
         {step === 5 && (
           <div className="p-6 space-y-5">
             <div className="text-center space-y-1">
-              <div className="text-4xl">🔥</div>
+              <div className="text-4xl">x</div>
               <h2 className="text-lg font-bold" style={{ color: "#f0f0f0" }}>Dein Abenteuer beginnt!</h2>
               <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>Dein Held wurde in den Büchern der Quest Hall verewigt.</p>
             </div>
@@ -710,7 +710,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
                   {selectedClass
                     ? `${selectedClass.icon} ${selectedClass.fantasy}`
                     : customClassSubmitted
-                      ? "⚒️ Wird geschmiedet..."
+                      ? "x Wird geschmiedet..."
                       : "—"}
                 </span>
               </div>
@@ -718,7 +718,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
                 <span style={{ color: "rgba(255,255,255,0.4)" }}>Begleiter</span>
                 <span style={{ color: "#f0f0f0", fontWeight: 600 }}>
                   {hasRealPet
-                    ? `${PET_EMOJI[petSpecies] ?? "🐾"} ${petName}`
+                    ? `${PET_EMOJI[petSpecies] ?? "x"} ${petName}`
                     : virtualCompanionType
                       ? `${VIRTUAL_COMPANIONS.find(v => v.type === virtualCompanionType)?.emoji ?? ""} ${virtualCompanionName}`
                       : "—"}
@@ -727,7 +727,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
               <div className="flex justify-between text-xs">
                 <span style={{ color: "rgba(255,255,255,0.4)" }}>Status</span>
                 <span style={{ color: "#f0f0f0", fontWeight: 600 }}>
-                  {relationshipStatus === "single" ? "💔 Single" : relationshipStatus === "relationship" ? "💑 In einer Beziehung" : relationshipStatus === "married" ? "💍 Verheiratet" : relationshipStatus === "complicated" ? "🤷 Kompliziert" : "✨ Andere"}
+                  {relationshipStatus === "single" ? "x Single" : relationshipStatus === "relationship" ? "x In einer Beziehung" : relationshipStatus === "married" ? "x Verheiratet" : relationshipStatus === "complicated" ? "x Kompliziert" : "x Andere"}
                   {partnerName && ` (${partnerName})`}
                 </span>
               </div>
@@ -742,7 +742,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
               className="w-full py-3 rounded-xl font-bold text-sm"
               style={{ background: "linear-gradient(135deg, #7c3aed, #a78bfa)", color: "#fff", boxShadow: "0 4px 20px rgba(139,92,246,0.3)" }}
             >
-              Los geht&apos;s! 🔥
+              Los geht&apos;s! x
             </button>
           </div>
         )}

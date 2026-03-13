@@ -29,7 +29,7 @@ export default function CVBuilderPanel({ quests, users, playerName }: { quests: 
     <section className="mb-6">
       <div className="flex items-center gap-2 mb-3">
         <button onClick={() => setOpen(v => !v)} className="flex items-center gap-2">
-          <h2 className="text-xs font-semibold uppercase tracking-widest" style={{ color: "#60a5fa" }}>🎓 Klassenquests</h2>
+          <h2 className="text-xs font-semibold uppercase tracking-widest" style={{ color: "#60a5fa" }}>x Klassenquests</h2>
           <span className="text-xs px-1.5 py-0.5 rounded font-mono" style={{ background: "rgba(96,165,250,0.12)", color: "#60a5fa", border: "1px solid rgba(96,165,250,0.3)" }}>
             {completedLearning} skills tracked
           </span>
@@ -52,10 +52,10 @@ export default function CVBuilderPanel({ quests, users, playerName }: { quests: 
               <div className="space-y-2 mb-4">
                 {cvData.skills.map(skill => {
                   const tiers = [
-                    { label: "Novice",     icon: "🌱", min: 1,  max: 2,  color: "#22c55e" },
-                    { label: "Apprentice", icon: "📗", min: 3,  max: 5,  color: "#60a5fa" },
-                    { label: "Skilled",    icon: "⚔",  min: 6,  max: 9,  color: "#a78bfa" },
-                    { label: "Expert",     icon: "👑", min: 10, max: 999, color: "#fbbf24" },
+                    { label: "Novice",     icon: "x", min: 1,  max: 2,  color: "#22c55e" },
+                    { label: "Apprentice", icon: "x", min: 3,  max: 5,  color: "#60a5fa" },
+                    { label: "Skilled",    icon: "x",  min: 6,  max: 9,  color: "#a78bfa" },
+                    { label: "Expert",     icon: "x", min: 10, max: 999, color: "#fbbf24" },
                   ];
                   const tier = tiers.findLast(t => skill.count >= t.min) ?? tiers[0];
                   const nextTier = tiers[tiers.indexOf(tier) + 1];
@@ -97,7 +97,7 @@ export default function CVBuilderPanel({ quests, users, playerName }: { quests: 
               <div className="space-y-1">
                 {cvData.certifications.map((cert, i) => (
                   <div key={i} className="flex items-center gap-2 text-xs">
-                    <span style={{ color: "#fbbf24" }}>🏆</span>
+                    <span style={{ color: "#fbbf24" }}>x</span>
                     <span style={{ color: "#e8e8e8" }}>{cert.title}</span>
                     {cert.earnedAt && <span style={{ color: "rgba(255,255,255,0.3)" }}>{new Date(cert.earnedAt).toLocaleDateString()}</span>}
                   </div>

@@ -6,7 +6,7 @@ import { timeAgo } from "@/app/utils";
 import { priorityConfig } from "@/app/config";
 
 // ─── Campaign Hub ──────────────────────────────────────────────────────────────
-const CAMPAIGN_ICONS = ["⚔️","🛡️","🐉","📚","💀","🗡️","🏰","🌋","🌊","🔮","🌿","👑","⚡","🔥","🌟","💎"];
+const CAMPAIGN_ICONS = ["x","x","x","x","x","x","x","x","x","x","x","x","x","x","x","x"];
 
 export default function CampaignHub({ campaigns, quests, reviewApiKey, onRefresh }: {
   campaigns: Campaign[];
@@ -16,7 +16,7 @@ export default function CampaignHub({ campaigns, quests, reviewApiKey, onRefresh
 }) {
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [createOpen, setCreateOpen] = useState(false);
-  const [form, setForm] = useState({ title: "", description: "", icon: "⚔️", lore: "", bossQuestId: "", rewardXp: "", rewardGold: "", rewardTitle: "" });
+  const [form, setForm] = useState({ title: "", description: "", icon: "x", lore: "", bossQuestId: "", rewardXp: "", rewardGold: "", rewardTitle: "" });
   const [selectedQuestIds, setSelectedQuestIds] = useState<string[]>([]);
   const [submitting, setSubmitting] = useState(false);
   const [deleteConfirm, setDeleteConfirm] = useState<string | null>(null);
@@ -39,7 +39,7 @@ export default function CampaignHub({ campaigns, quests, reviewApiKey, onRefresh
         <div className="flex flex-col items-center flex-shrink-0" style={{ width: 32 }}>
           <div className="w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 z-10"
             style={{ background: isDone ? "rgba(16,185,129,0.2)" : isBoss && !isDone ? "rgba(239,68,68,0.2)" : isCurrentQuest ? "rgba(139,92,246,0.2)" : "rgba(255,255,255,0.05)", border: `2px solid ${nodeColor}`, color: nodeColor }}>
-            {isDone ? "✓" : isBoss ? "👑" : isCurrentQuest ? "▶" : String(idx + 1)}
+            {isDone ? "✓" : isBoss ? "x" : isCurrentQuest ? "▶" : String(idx + 1)}
           </div>
           <div className="flex-1 w-px mt-1" style={{ background: "rgba(139,92,246,0.2)", minHeight: 12 }} />
         </div>
@@ -57,7 +57,7 @@ export default function CampaignHub({ campaigns, quests, reviewApiKey, onRefresh
                 <p className="text-xs mt-1" style={{ color: "rgba(16,185,129,0.7)" }}>✓ Completed by {q.completedBy}{q.completedAt ? ` · ${timeAgo(q.completedAt)}` : ""}</p>
               )}
               {!isDone && q.claimedBy && (
-                <p className="text-xs mt-1" style={{ color: "rgba(167,139,250,0.6)" }}>⚡ Claimed by {q.claimedBy}</p>
+                <p className="text-xs mt-1" style={{ color: "rgba(167,139,250,0.6)" }}>x Claimed by {q.claimedBy}</p>
               )}
               {isDeleted && <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.3)" }}>(quest deleted)</p>}
             </div>
@@ -91,7 +91,7 @@ export default function CampaignHub({ campaigns, quests, reviewApiKey, onRefresh
       });
       if (r.ok) {
         setCreateOpen(false);
-        setForm({ title: "", description: "", icon: "⚔️", lore: "", bossQuestId: "", rewardXp: "", rewardGold: "", rewardTitle: "" });
+        setForm({ title: "", description: "", icon: "x", lore: "", bossQuestId: "", rewardXp: "", rewardGold: "", rewardTitle: "" });
         setSelectedQuestIds([]);
         onRefresh();
       }
@@ -134,7 +134,7 @@ export default function CampaignHub({ campaigns, quests, reviewApiKey, onRefresh
           <div className="rounded-2xl p-6 relative overflow-hidden" style={{ background: "linear-gradient(135deg, #1a0d2e 0%, #0d1017 100%)", border: "1px solid rgba(139,92,246,0.3)", boxShadow: "0 0 40px rgba(139,92,246,0.1)" }}>
             {isVictory && (
               <div className="absolute inset-0 flex items-center justify-center pointer-events-none" style={{ opacity: 0.06 }}>
-                <span style={{ fontSize: 200 }}>🏆</span>
+                <span style={{ fontSize: 200 }}>x</span>
               </div>
             )}
             <div className="relative">
@@ -143,7 +143,7 @@ export default function CampaignHub({ campaigns, quests, reviewApiKey, onRefresh
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-3 flex-wrap mb-1">
                     <h2 className="text-xl font-bold" style={{ color: "#e9d5ff" }}>{expandedCampaign.title}</h2>
-                    {isVictory && <span className="text-sm px-2 py-0.5 rounded font-bold" style={{ background: "rgba(251,191,36,0.2)", color: "#fbbf24", border: "1px solid rgba(251,191,36,0.4)" }}>🏆 VICTORY</span>}
+                    {isVictory && <span className="text-sm px-2 py-0.5 rounded font-bold" style={{ background: "rgba(251,191,36,0.2)", color: "#fbbf24", border: "1px solid rgba(251,191,36,0.4)" }}>x VICTORY</span>}
                     {!isVictory && <span className="text-xs px-2 py-0.5 rounded" style={statusColors[expandedCampaign.status] ?? statusColors.active}>{statusColors[expandedCampaign.status]?.label ?? expandedCampaign.status}</span>}
                   </div>
                   {expandedCampaign.lore && <p className="text-sm italic mb-2" style={{ color: "rgba(167,139,250,0.7)" }}>&quot;{expandedCampaign.lore}&quot;</p>}
@@ -162,8 +162,8 @@ export default function CampaignHub({ campaigns, quests, reviewApiKey, onRefresh
                 <div className="mt-4 flex items-center gap-3 flex-wrap">
                   <span className="text-xs" style={{ color: "rgba(167,139,250,0.5)" }}>Completion Rewards:</span>
                   {expandedCampaign.rewards.xp > 0 && <span className="text-xs px-2 py-0.5 rounded" style={{ background: "rgba(99,102,241,0.15)", color: "#818cf8", border: "1px solid rgba(99,102,241,0.25)" }}>+{expandedCampaign.rewards.xp} XP</span>}
-                  {expandedCampaign.rewards.gold > 0 && <span className="text-xs px-2 py-0.5 rounded" style={{ background: "rgba(251,191,36,0.12)", color: "#fbbf24", border: "1px solid rgba(251,191,36,0.25)" }}>🪙 {expandedCampaign.rewards.gold}</span>}
-                  {expandedCampaign.rewards.title && <span className="text-xs px-2 py-0.5 rounded" style={{ background: "rgba(232,121,249,0.1)", color: "#e879f9", border: "1px solid rgba(232,121,249,0.25)" }}>🏅 &quot;{expandedCampaign.rewards.title}&quot;</span>}
+                  {expandedCampaign.rewards.gold > 0 && <span className="text-xs px-2 py-0.5 rounded" style={{ background: "rgba(251,191,36,0.12)", color: "#fbbf24", border: "1px solid rgba(251,191,36,0.25)" }}>x {expandedCampaign.rewards.gold}</span>}
+                  {expandedCampaign.rewards.title && <span className="text-xs px-2 py-0.5 rounded" style={{ background: "rgba(232,121,249,0.1)", color: "#e879f9", border: "1px solid rgba(232,121,249,0.25)" }}>x &quot;{expandedCampaign.rewards.title}&quot;</span>}
                 </div>
               )}
             </div>
@@ -192,7 +192,7 @@ export default function CampaignHub({ campaigns, quests, reviewApiKey, onRefresh
       {/* Header */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <span style={{ fontSize: 28 }}>🐉</span>
+          <span style={{ fontSize: 28 }}>x</span>
           <div>
             <h2 className="text-lg font-bold" style={{ color: "#e9d5ff" }}>Campaign Hub</h2>
             <p className="text-xs" style={{ color: "rgba(167,139,250,0.5)" }}>Long-form quest chains and story arcs</p>
@@ -210,7 +210,7 @@ export default function CampaignHub({ campaigns, quests, reviewApiKey, onRefresh
       {/* Empty state */}
       {campaigns.length === 0 && (
         <div className="text-center py-20" style={{ color: "rgba(255,255,255,0.2)" }}>
-          <div style={{ fontSize: 48, marginBottom: 12 }}>🐉</div>
+          <div style={{ fontSize: 48, marginBottom: 12 }}>x</div>
           <p className="text-sm font-semibold mb-1" style={{ color: "rgba(255,255,255,0.3)" }}>No active campaigns</p>
           <p className="text-xs">Start a quest chain to begin your saga!</p>
         </div>
@@ -238,7 +238,7 @@ export default function CampaignHub({ campaigns, quests, reviewApiKey, onRefresh
                   <div className="flex items-center gap-2 flex-wrap mb-0.5">
                     <p className="text-sm font-bold truncate" style={{ color: "#e9d5ff" }}>{c.title}</p>
                     {isVictory
-                      ? <span className="text-xs px-1.5 py-0.5 rounded font-bold flex-shrink-0" style={{ background: "rgba(251,191,36,0.2)", color: "#fbbf24", border: "1px solid rgba(251,191,36,0.35)" }}>🏆</span>
+                      ? <span className="text-xs px-1.5 py-0.5 rounded font-bold flex-shrink-0" style={{ background: "rgba(251,191,36,0.2)", color: "#fbbf24", border: "1px solid rgba(251,191,36,0.35)" }}>x</span>
                       : <span className="text-xs px-1.5 py-0.5 rounded flex-shrink-0" style={sc}>{sc.label}</span>
                     }
                   </div>
@@ -261,7 +261,7 @@ export default function CampaignHub({ campaigns, quests, reviewApiKey, onRefresh
               {bossInChain && (
                 <div className="flex items-center gap-1.5 mt-2">
                   <span className="text-xs" style={{ color: bossInChain.status === "completed" ? "#34d399" : "rgba(239,68,68,0.8)" }}>
-                    {bossInChain.status === "completed" ? "👑 Boss slain" : `👑 Boss: ${bossInChain.title.slice(0, 30)}${bossInChain.title.length > 30 ? "…" : ""}`}
+                    {bossInChain.status === "completed" ? "x Boss slain" : `x Boss: ${bossInChain.title.slice(0, 30)}${bossInChain.title.length > 30 ? "…" : ""}`}
                   </span>
                 </div>
               )}

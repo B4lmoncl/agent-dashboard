@@ -110,12 +110,12 @@ export function WandererRest({
       {/* ── SECTION 1: Wandering Visitors (TOP) ── */}
       <section data-feedback-id="wanderers-rest" className="mb-8" style={{ maxWidth: 1000, margin: "0 auto" }}>
         <div className="mb-4">
-          <h2 className="text-sm font-bold uppercase tracking-widest" style={{ color: "#f59e0b" }}>🏰 The Wanderer&apos;s Rest</h2>
+          <h2 className="text-sm font-bold uppercase tracking-widest" style={{ color: "#f59e0b" }}>x The Wanderer&apos;s Rest</h2>
           <p className="text-xs mt-0.5 italic" style={{ color: "rgba(255,255,255,0.3)" }}>They come. They go. They always return.</p>
         </div>
         {activeNpcs.length === 0 ? (
           <div className="rounded-xl px-4 py-8 text-center" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
-            <p className="text-sm italic" style={{ color: "rgba(255,255,255,0.25)" }}>The hall is quiet... for now. 🌙</p>
+            <p className="text-sm italic" style={{ color: "rgba(255,255,255,0.25)" }}>The hall is quiet... for now. x</p>
           </div>
         ) : (
           <>
@@ -165,7 +165,7 @@ export function WandererRest({
                       )}
                       {urgent && !allDone && (
                         <div className="absolute bottom-0 left-0 right-0 py-0.5 text-center" style={{ background: "rgba(245,158,11,0.85)", fontSize: 9, fontWeight: 700, color: "#fff", letterSpacing: 1 }}>
-                          ⏰ {npc.hoursLeft}H LEFT
+                          x {npc.hoursLeft}H LEFT
                         </div>
                       )}
                       {/* Gold pulsing dot for NPCs with unclaimed open quests */}
@@ -244,7 +244,7 @@ export function WandererRest({
       {/* ── SECTION 3: The Starweaver's Chamber Portal (BOTTOM) ── */}
       <section data-feedback-id="starweaver-portal" style={{ maxWidth: 1000, margin: "0 auto", marginTop: 24 }}>
         <button
-          onClick={() => setSelectedNpc({ id: "lyra-permanent", name: "The Starweaver", title: "Guardian of Quests", rarity: "legendary", emoji: "✨", greeting: "Guardian of Quests. Forged in starlight.", questChain: lyraAllQuests.map(q => ({ ...q, status: q.status as "open" | "in_progress" | "completed" | "claimed" })), hoursLeft: 9999, daysLeft: 999, portrait: "/images/npcs/starweaver-final.png", finalReward: undefined } as unknown as ActiveNpc)}
+          onClick={() => setSelectedNpc({ id: "lyra-permanent", name: "The Starweaver", title: "Guardian of Quests", rarity: "legendary", emoji: "x", greeting: "Guardian of Quests. Forged in starlight.", questChain: lyraAllQuests.map(q => ({ ...q, status: q.status as "open" | "in_progress" | "completed" | "claimed" })), hoursLeft: 9999, daysLeft: 999, portrait: "/images/npcs/starweaver-final.png", finalReward: undefined } as unknown as ActiveNpc)}
           className="w-full relative overflow-hidden rounded-2xl"
           style={{
             background: "linear-gradient(135deg, #0a0a1e 0%, #1a0a3e 50%, #0d1a3a 100%)",
@@ -284,7 +284,7 @@ export function WandererRest({
                   style={{ imageRendering: "pixelated", display: "block", width: "100%", height: "100%", objectFit: "cover", opacity: 0.85 }}
                   onError={e => { (e.target as HTMLImageElement).style.display = "none"; const fb = (e.target as HTMLImageElement).nextElementSibling as HTMLElement; if (fb) fb.style.display = "flex"; }}
                 />
-                <div style={{ display: "none", position: "absolute", inset: 0, alignItems: "center", justifyContent: "center", fontSize: 32 }}>✨</div>
+                <div style={{ display: "none", position: "absolute", inset: 0, alignItems: "center", justifyContent: "center", fontSize: 32 }}>x</div>
                 <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(255,215,0,0.08) 0%, transparent 60%)", pointerEvents: "none" }} />
               </div>
             </div>
@@ -351,7 +351,7 @@ export function WandererRest({
                   <p className="text-xs mt-1 font-semibold" style={{ color: rc }}>{rarityStarsModal[npc.rarity] ?? npc.rarity}</p>
                   {!isStarweaver && !(npc as ActiveNpc & { permanent?: boolean }).permanent && (
                     <p className="text-xs mt-1" style={{ color: npc.hoursLeft <= 24 ? "#f59e0b" : "rgba(255,255,255,0.3)" }}>
-                      {npc.hoursLeft <= 24 ? `⏰ Departs in ${npc.hoursLeft}h!` : `Departs in ${npc.daysLeft} day${npc.daysLeft !== 1 ? "s" : ""}`}
+                      {npc.hoursLeft <= 24 ? `x Departs in ${npc.hoursLeft}h!` : `Departs in ${npc.daysLeft} day${npc.daysLeft !== 1 ? "s" : ""}`}
                     </p>
                   )}
                   {isStarweaver && (
@@ -363,7 +363,7 @@ export function WandererRest({
               {/* Greeting / Speech bubble */}
               {npc.greeting && (
                 <div className="relative mx-5 mt-4 px-4 py-3 rounded-xl" style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", zIndex: 1 }}>
-                  <p className="text-xs italic leading-relaxed" style={{ color: "rgba(255,255,255,0.65)" }}>💬 &ldquo;{npc.greeting}&rdquo;</p>
+                  <p className="text-xs italic leading-relaxed" style={{ color: "rgba(255,255,255,0.65)" }}>x &ldquo;{npc.greeting}&rdquo;</p>
                 </div>
               )}
 
@@ -394,7 +394,7 @@ export function WandererRest({
                 <div className="px-5 pt-4 pb-5">
                   {allDone ? (
                     <div className="text-center py-4">
-                      <p className="text-2xl mb-2">🎉</p>
+                      <p className="text-2xl mb-2">x</p>
                       <p className="text-sm font-bold" style={{ color: "#22c55e" }}>All quests completed!</p>
                       <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.4)" }}>Well done, brave adventurer.</p>
                     </div>
@@ -402,7 +402,7 @@ export function WandererRest({
                     <>
                       <div className="flex items-center justify-between mb-2">
                         <p className="text-xs font-semibold uppercase tracking-wide" style={{ color: "rgba(255,255,255,0.3)" }}>
-                          📜 Quest {currentQuest.position}/{totalCount}
+                          x Quest {currentQuest.position}/{totalCount}
                         </p>
                         {completedCount > 0 && (
                           <p className="text-xs" style={{ color: "#22c55e" }}>{completedCount} completed ✓</p>
@@ -415,8 +415,8 @@ export function WandererRest({
                         )}
                         <p className="text-xs mt-1.5 leading-relaxed" style={{ color: "rgba(255,255,255,0.5)" }}>{currentQuest.description}</p>
                         <div className="flex items-center gap-3 mt-3">
-                          <span className="text-xs font-semibold" style={{ color: "#f59e0b" }}>🎁 +{currentQuest.rewards?.xp ?? 0} XP</span>
-                          <span className="text-xs" style={{ color: "rgba(255,193,7,0.6)" }}>+{currentQuest.rewards?.gold ?? 0} 🪙</span>
+                          <span className="text-xs font-semibold" style={{ color: "#f59e0b" }}>x +{currentQuest.rewards?.xp ?? 0} XP</span>
+                          <span className="text-xs" style={{ color: "rgba(255,193,7,0.6)" }}>+{currentQuest.rewards?.gold ?? 0} x</span>
                           {(currentQuest.status === "claimed" || currentQuest.status === "in_progress") && (
                             <div className="flex items-center gap-2 ml-auto">
                               <span className="text-xs px-2 py-0.5 rounded font-semibold" style={{ background: "rgba(96,165,250,0.15)", color: "#60a5fa", border: "1px solid rgba(96,165,250,0.3)" }}>⚔ Active</span>
@@ -468,7 +468,7 @@ export function WandererRest({
                             key={q.questId}
                             style={{ fontSize: 9, opacity: 0.3, lineHeight: 1, display: "inline-block" }}
                             title={`Quest ${q.position}: ${q.title} (locked)`}
-                          >🔒</span>
+                          >x</span>
                         ) : (
                           <div
                             key={q.questId}
@@ -490,7 +490,7 @@ export function WandererRest({
                     <div className="mt-4 px-4 py-3 rounded-xl flex items-start gap-3" style={{ background: "rgba(255,215,0,0.04)", border: "1px solid rgba(255,215,0,0.12)" }}>
                       <span className="text-lg flex-shrink-0 mt-0.5">{npc.finalReward.item.emoji}</span>
                       <div className="flex-1 min-w-0">
-                        <p className="text-xs font-semibold" style={{ color: "rgba(255,215,0,0.7)" }}>💎 Chain Reward</p>
+                        <p className="text-xs font-semibold" style={{ color: "rgba(255,215,0,0.7)" }}>x Chain Reward</p>
                         <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.5)" }}>{npc.finalReward.item.name}</p>
                         <p className="text-xs mt-0.5 italic" style={{ color: "rgba(255,255,255,0.25)" }}>{npc.finalReward.item.desc}</p>
                       </div>
@@ -504,8 +504,8 @@ export function WandererRest({
                   <p className="text-xs font-semibold uppercase tracking-widest mb-3" style={{ color: "rgba(255,215,0,0.25)", letterSpacing: "0.12em" }}>✦ Coming Soon</p>
                   <div className="space-y-2">
                     {[
-                      { icon: "📜", label: "Special Requests", sub: "Coming soon" },
-                      { icon: "🔮", label: "Prophecies",        sub: "Coming soon" },
+                      { icon: "x", label: "Special Requests", sub: "Coming soon" },
+                      { icon: "x", label: "Prophecies",        sub: "Coming soon" },
                       { icon: "⚔", label: "Legendary Quests",  sub: "Coming soon" },
                     ].map(({ icon, label, sub }) => (
                       <div
@@ -601,7 +601,7 @@ export function WandererRest({
                 </div>
                 {!reviewApiKey ? (
                   <div className="rounded-xl p-3" style={{ background: "#252525", border: "1px solid rgba(245,158,11,0.2)" }}>
-                    <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>🔑 Log in to review and approve quests.</p>
+                    <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>x Log in to review and approve quests.</p>
                   </div>
                 ) : (
                   <div className="space-y-2">

@@ -241,18 +241,18 @@ function ProfileSettingsModal({ playerName, apiKey, initialStatus, initialPartne
         onClick={e => e.stopPropagation()}
       >
         <div>
-          <h2 className="text-base font-bold" style={{ color: "#f0f0f0" }}>⚙ Profil-Einstellungen</h2>
+          <h2 className="text-base font-bold" style={{ color: "#f0f0f0" }}>x Profil-Einstellungen</h2>
           <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.4)" }}>Beziehungsstatus und weitere Einstellungen</p>
         </div>
 
         <div className="space-y-2">
           <label className="text-xs font-semibold block" style={{ color: "rgba(255,255,255,0.5)" }}>Beziehungsstatus</label>
           {[
-            { value: "single",       label: "💔 Single" },
-            { value: "relationship", label: "💑 In einer Beziehung" },
-            { value: "married",      label: "💍 Verheiratet" },
-            { value: "complicated",  label: "🤷 Es ist kompliziert" },
-            { value: "other",        label: "✨ Andere" },
+            { value: "single",       label: "x Single" },
+            { value: "relationship", label: "x In einer Beziehung" },
+            { value: "married",      label: "x Verheiratet" },
+            { value: "complicated",  label: "x Es ist kompliziert" },
+            { value: "other",        label: "x Andere" },
           ].map(opt => (
             <button
               key={opt.value}
@@ -309,12 +309,12 @@ const RARITY_BORDER: Record<number, string> = {
 };
 
 const EQUIP_SLOT_LABELS: { slot: string; emoji: string; label: string }[] = [
-  { slot: "helm",   emoji: "🪖", label: "Helm" },
-  { slot: "weapon", emoji: "⚔️", label: "Waffe" },
-  { slot: "shield", emoji: "🛡️", label: "Schild" },
-  { slot: "armor",  emoji: "🧥", label: "Rüstung" },
-  { slot: "amulet", emoji: "📿", label: "Amulett" },
-  { slot: "boots",  emoji: "👢", label: "Stiefel" },
+  { slot: "helm",   emoji: "x", label: "Helm" },
+  { slot: "weapon", emoji: "x", label: "Waffe" },
+  { slot: "shield", emoji: "x", label: "Schild" },
+  { slot: "armor",  emoji: "x", label: "Rüstung" },
+  { slot: "amulet", emoji: "x", label: "Amulett" },
+  { slot: "boots",  emoji: "x", label: "Stiefel" },
 ];
 
 export default function CharacterView({ playerName, apiKey, users, classesList }: { playerName: string; apiKey: string; users: User[]; classesList: ClassDef[] }) {
@@ -433,7 +433,7 @@ export default function CharacterView({ playerName, apiKey, users, classesList }
           className="flex-shrink-0 rounded-xl p-3 overflow-y-auto"
           style={{ width: 250, background: "rgba(0,0,0,0.75)", border: "1px solid rgba(255,255,255,0.1)", maxHeight: 440 }}
         >
-          <p className="text-xs font-bold uppercase tracking-wider mb-3" style={{ color: "rgba(255,255,255,0.5)" }}>⚔ Ausrüstung</p>
+          <p className="text-xs font-bold uppercase tracking-wider mb-3" style={{ color: "rgba(255,255,255,0.5)" }}>x Ausrüstung</p>
 
           {/* Equipment Slots */}
           <div className="space-y-1.5 mb-4">
@@ -473,7 +473,7 @@ export default function CharacterView({ playerName, apiKey, users, classesList }
 
           {/* Divider */}
           <div style={{ borderTop: "1px solid rgba(255,255,255,0.08)", marginBottom: 10 }} />
-          <p className="text-xs font-bold uppercase tracking-wider mb-2" style={{ color: "rgba(255,255,255,0.35)" }}>🎒 Inventar</p>
+          <p className="text-xs font-bold uppercase tracking-wider mb-2" style={{ color: "rgba(255,255,255,0.35)" }}>x Inventar</p>
 
           {loading && <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>Lädt...</p>}
           {!loading && charData && (() => {
@@ -509,7 +509,7 @@ export default function CharacterView({ playerName, apiKey, users, classesList }
                       >
                         <span className="text-lg">{item.emoji}</span>
                         <p className="text-xs mt-0.5 truncate w-full" style={{ fontSize: 9, color: locked ? "rgba(255,255,255,0.3)" : "#e8e8e8" }}>
-                          {locked ? `🔒${item.minLevel}` : item.name.split(" ").slice(-1)[0]}
+                          {locked ? `x${item.minLevel}` : item.name.split(" ").slice(-1)[0]}
                         </p>
                       </button>
                     );
@@ -539,7 +539,7 @@ export default function CharacterView({ playerName, apiKey, users, classesList }
                         {Object.entries(selected.stats).map(([stat, val]) => {
                           const equippedVal = (equippedInSlot?.stats?.[stat] ?? 0) as number;
                           const diff = (val as number) - equippedVal;
-                          const statLabel: Record<string, string> = { kraft: "⚔ Kraft", ausdauer: "🛡 Ausdauer", weisheit: "🧠 Weisheit", glueck: "🍀 Glück" };
+                          const statLabel: Record<string, string> = { kraft: "x Kraft", ausdauer: "x Ausdauer", weisheit: "x Weisheit", glueck: "x Glück" };
                           return (
                             <div key={stat} className="flex items-center justify-between text-xs">
                               <span style={{ color: "rgba(255,255,255,0.5)" }}>{statLabel[stat] ?? stat}</span>
@@ -570,7 +570,7 @@ export default function CharacterView({ playerName, apiKey, users, classesList }
                         className="w-full py-1.5 rounded-lg text-xs font-semibold"
                         style={{ background: "rgba(34,197,94,0.15)", color: "#4ade80", border: "1px solid rgba(34,197,94,0.2)", cursor: "pointer" }}
                       >
-                        {equipping === selected.id ? "…" : "⚔ Ausrüsten"}
+                        {equipping === selected.id ? "…" : "x Ausrüsten"}
                       </button>
                     )}
                   </div>
@@ -584,7 +584,7 @@ export default function CharacterView({ playerName, apiKey, users, classesList }
         <div className="flex-1 flex flex-col items-center justify-center relative" style={{ minHeight: 360 }}>
           <div className="flex flex-col items-center justify-center gap-3" style={{ minHeight: 200 }}>
             <div className="flex items-center justify-center" style={{ width: 160, height: 160, borderRadius: 16, background: "rgba(167,139,250,0.06)", border: "2px dashed rgba(167,139,250,0.2)" }}>
-              <span className="text-4xl" style={{ opacity: 0.3 }}>⚔️</span>
+              <span className="text-4xl" style={{ opacity: 0.3 }}>x</span>
             </div>
             <p className="text-sm font-bold" style={{ color: "rgba(167,139,250,0.5)" }}>Hero Spawning...</p>
             <p className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>Pixel art coming soon</p>
@@ -596,17 +596,17 @@ export default function CharacterView({ playerName, apiKey, users, classesList }
           className="flex-shrink-0 rounded-xl p-3"
           style={{ width: 250, background: "rgba(0,0,0,0.75)", border: "1px solid rgba(255,255,255,0.1)" }}
         >
-          <p className="text-xs font-bold uppercase tracking-wider mb-3" style={{ color: "rgba(255,255,255,0.5)" }}>📊 Stats</p>
+          <p className="text-xs font-bold uppercase tracking-wider mb-3" style={{ color: "rgba(255,255,255,0.5)" }}>x Stats</p>
 
           {loading && <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>Lädt...</p>}
           {!loading && charData && (() => {
             const { kraft, ausdauer, weisheit, glueck } = charData.stats;
             const base = charData.baseStats;
             const statRows = [
-              { icon: "⚔️", label: "Kraft",    val: kraft,    base: base.kraft,    tooltip: "KRA · Bonus-XP aus Quests" },
-              { icon: "🛡️", label: "Ausdauer", val: ausdauer, base: base.ausdauer, tooltip: "AUS · Reduziert Streak-Strafe" },
-              { icon: "🧠", label: "Weisheit", val: weisheit, base: base.weisheit, tooltip: "WEI · Bonus-Fokuspunkte" },
-              { icon: "🍀", label: "Glück",    val: glueck,   base: base.glueck,   tooltip: "GLÜ · Bessere Loot-Chancen" },
+              { icon: "x", label: "Kraft",    val: kraft,    base: base.kraft,    tooltip: "KRA · Bonus-XP aus Quests" },
+              { icon: "x", label: "Ausdauer", val: ausdauer, base: base.ausdauer, tooltip: "AUS · Reduziert Streak-Strafe" },
+              { icon: "x", label: "Weisheit", val: weisheit, base: base.weisheit, tooltip: "WEI · Bonus-Fokuspunkte" },
+              { icon: "x", label: "Glück",    val: glueck,   base: base.glueck,   tooltip: "GLÜ · Bessere Loot-Chancen" },
             ];
             return (
               <>
@@ -631,7 +631,7 @@ export default function CharacterView({ playerName, apiKey, users, classesList }
                   <div className="mb-3 px-2 py-1.5 rounded-lg" style={{ background: "rgba(167,139,250,0.1)", border: "1px solid rgba(167,139,250,0.25)" }}>
                     <p className="text-xs font-semibold" style={{ color: "#a78bfa" }}>
                       {charData.setBonusInfo.name} {charData.setBonusInfo.count}/{charData.setBonusInfo.total}
-                      {charData.setBonusInfo.count >= charData.setBonusInfo.total ? " 🔥" : " ✨"}
+                      {charData.setBonusInfo.count >= charData.setBonusInfo.total ? " x" : " x"}
                     </p>
                   </div>
                 )}
@@ -643,7 +643,7 @@ export default function CharacterView({ playerName, apiKey, users, classesList }
                     <div key={ns.id} className="mb-2 px-2 py-1.5 rounded-lg" style={{ background: `${c}10`, border: `1px solid ${c}30` }}>
                       <div className="flex items-center justify-between">
                         <p className="text-xs font-semibold" style={{ color: c }}>
-                          {ns.name} {ns.count}/{ns.total} {ns.isComplete ? "🔥" : "✨"}
+                          {ns.name} {ns.count}/{ns.total} {ns.isComplete ? "x" : "x"}
                         </p>
                       </div>
                       {ns.activeLabel && <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.4)" }}>{ns.activeLabel}</p>}
@@ -684,7 +684,7 @@ export default function CharacterView({ playerName, apiKey, users, classesList }
                 {/* Forge Temp */}
                 <div>
                   <div className="flex items-center justify-between mb-1">
-                    <span className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>🔥 Forge Temp</span>
+                    <span className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>x Forge Temp</span>
                     <span className="text-xs font-mono" style={{ color: charData.forgeTemp >= 70 ? "#f97316" : charData.forgeTemp >= 40 ? "#facc15" : "#9ca3af" }}>
                       {charData.forgeTemp}%
                     </span>
@@ -719,7 +719,7 @@ export default function CharacterView({ playerName, apiKey, users, classesList }
               className="text-xs px-1.5 py-0.5 rounded-lg ml-2"
               title="Profil-Einstellungen"
               style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.4)", border: "1px solid rgba(255,255,255,0.1)", cursor: "pointer" }}
-            >⚙</button>
+            >x</button>
           </div>
           {charData && <p className="text-xs truncate" style={{ color: "rgba(255,255,255,0.35)" }}>{charData.title}</p>}
         </div>
@@ -740,7 +740,7 @@ export default function CharacterView({ playerName, apiKey, users, classesList }
             <div>
               <p className="text-xs font-semibold" style={{ color: "rgba(255,255,255,0.7)" }}>{charData.companion.name}</p>
               <p className="text-xs" style={{ color: "#f48fb1" }}>
-                {"❤️".repeat(Math.min(charData.companion.bondLevel, 5))}
+                {"x".repeat(Math.min(charData.companion.bondLevel, 5))}
               </p>
             </div>
           </div>
