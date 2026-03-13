@@ -139,6 +139,7 @@ function ItemRevealCard({ result }: { result: GachaPullResult }) {
         background: `linear-gradient(135deg, #1a1a1a 0%, ${cfg.bg} 100%)`,
         border: `2px solid ${cfg.border}`,
         boxShadow: `0 0 40px ${cfg.glow}, 0 0 80px ${cfg.glow}, inset 0 0 20px ${cfg.bg}`,
+        animation: "gacha-card-glow-pulse 2.5s ease-in-out infinite alternate",
       }}
     >
       {/* Prominent rarity label */}
@@ -546,8 +547,8 @@ const GACHA_STYLES = `
 }
 
 @keyframes gacha-card-glow-pulse {
-  0% { filter: brightness(1); }
-  100% { filter: brightness(1.15); }
+  0% { filter: brightness(1) drop-shadow(0 0 0px transparent); transform: scale(1); }
+  100% { filter: brightness(1.12) drop-shadow(0 0 15px rgba(255,255,255,0.1)); transform: scale(1.01); }
 }
 @keyframes gacha-weiter-pulse {
   0%, 100% { box-shadow: 0 0 0 0 rgba(255,255,255,0.15); }
