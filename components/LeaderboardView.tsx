@@ -9,7 +9,7 @@ const agentMetaLb: Record<string, { avatar: string; color: string }> = {
   echo:  { avatar: "EC", color: "#ef4444" },
   pixel: { avatar: "PX", color: "#f59e0b" },
   atlas: { avatar: "AT", color: "#6366f1" },
-  lyra:  { avatar: "✦",  color: "#e879f9" },
+  lyra:  { avatar: "x",  color: "#e879f9" },
   forge: { avatar: "x",  color: "#f59e0b" },
 };
 

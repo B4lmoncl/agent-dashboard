@@ -39,7 +39,7 @@ export function ShopModal({ userId, userName, gold, currentGear, onClose, onBuy,
             <h3 className="text-sm font-bold" style={{ color: "#f0f0f0" }}>x Forge Shop</h3>
             <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>{userName} · x {gold} gold</p>
           </div>
-          <button onClick={onClose} style={{ color: "rgba(255,255,255,0.3)" }}>✕</button>
+          <button onClick={onClose} style={{ color: "rgba(255,255,255,0.3)" }}>x</button>
         </div>
         <div className="space-y-2 max-h-96 overflow-y-auto" style={{ overscrollBehavior: "contain" }}>
           {ITEMS.map(item => (
@@ -91,7 +91,7 @@ export function ShopModal({ userId, userName, gold, currentGear, onClose, onBuy,
                     <span className="text-xl flex-shrink-0">{gear.icon}</span>
                     <div className="flex-1 min-w-0">
                       <p className="text-xs font-semibold" style={{ color: owned ? "#818cf8" : "#f0f0f0" }}>
-                        {gear.name} {owned ? "✓" : ""}
+                        {gear.name} {owned ? "x" : ""}
                       </p>
                       <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>{gear.desc}</p>
                     </div>

@@ -25,7 +25,7 @@ export function CreateQuestModal({ quests, users, reviewApiKey, onRefresh, onClo
             <h2 className="text-sm font-bold" style={{ color: "#e8d5a3" }}>Quest Board</h2>
             <p className="text-xs" style={{ color: "rgba(200,170,100,0.4)" }}>Choose a template or start from scratch</p>
           </div>
-          <button onClick={onClose} style={{ color: "rgba(200,170,100,0.4)", fontSize: 16 }}>✕</button>
+          <button onClick={onClose} style={{ color: "rgba(200,170,100,0.4)", fontSize: 16 }}>x</button>
         </div>
         <div className="flex border-b overflow-x-auto" style={{ borderColor: "rgba(180,140,70,0.15)" }}>
           {([
@@ -184,7 +184,7 @@ export function PersonalQuestPanel({ reviewApiKey, onRefresh }: {
                     cursor: isSpawned ? "default" : "pointer",
                   }}
                 >
-                  {isSpawned ? "✓ Quest Added" : isSpawning ? "Adding…" : "＋ Add to Quest Board"}
+                  {isSpawned ? "x Quest Added" : isSpawning ? "Adding…" : "＋ Add to Quest Board"}
                 </button>
               </div>
             );
@@ -285,7 +285,7 @@ export function ForgeChallengesPanel({ users, reviewApiKey, onRefresh }: {
                   cursor: joined ? "default" : "pointer",
                 }}
               >
-                {joined ? "✓ Joined" : joining === c.id ? "Joining…" : "Join Challenge"}
+                {joined ? "x Joined" : joining === c.id ? "Joining…" : "Join Challenge"}
               </button>
             </div>
           );
@@ -391,7 +391,7 @@ export function RelationshipCoopPanel({ users, reviewApiKey, onRefresh }: {
                   className="action-btn w-full text-xs py-1.5 rounded-lg font-semibold"
                   style={{ background: isDone ? "rgba(34,197,94,0.15)" : canCreate ? "rgba(244,63,94,0.15)" : "rgba(255,255,255,0.04)", color: isDone ? "#22c55e" : canCreate ? "#f43f5e" : "rgba(255,255,255,0.2)", border: `1px solid ${isDone ? "rgba(34,197,94,0.3)" : "rgba(244,63,94,0.3)"}`, cursor: canCreate ? "pointer" : "not-allowed" }}
                 >
-                  {isDone ? "✓ Co-op Quest Created!" : isCreating ? "Creating…" : canCreate ? "Create Co-op Quest" : "Select both partners first"}
+                  {isDone ? "x Co-op Quest Created!" : isCreating ? "Creating…" : canCreate ? "Create Co-op Quest" : "Select both partners first"}
                 </button>
               ) : (
                 <p className="text-xs text-center" style={{ color: "rgba(255,255,255,0.2)" }}>Login to create</p>
@@ -536,7 +536,7 @@ export function LearningQuestPanel({ quests, reviewApiKey, onRefresh }: {
                     border: `1px solid ${isDone ? "rgba(34,197,94,0.3)" : "rgba(59,130,246,0.3)"}`,
                   }}
                 >
-                  {isDone ? "✓ Quest Chain Created!" : isCreating ? "Creating…" : "Start Quest Chain"}
+                  {isDone ? "x Quest Chain Created!" : isCreating ? "Creating…" : "Start Quest Chain"}
                 </button>
               ) : (
                 <p className="text-xs text-center" style={{ color: "rgba(255,255,255,0.2)" }}>Login to create</p>

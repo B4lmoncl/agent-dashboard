@@ -29,7 +29,7 @@ router.post('/api/campaigns', requireApiKey, (req, res) => {
     id: `campaign-${Date.now()}`,
     title: String(title).trim(),
     description: String(description || '').trim(),
-    icon: icon || '⚔️',
+    icon: icon || 'xx',
     lore: String(lore || '').trim(),
     createdBy: createdBy || 'unknown',
     createdAt: now(),

@@ -232,7 +232,7 @@ export function AntiRitualePanel({ playerName, reviewApiKey }: { playerName: str
                   onMouseEnter={e => { if (!vowDoneToday) { (e.currentTarget as HTMLButtonElement).style.background = "rgba(99,102,241,0.25)"; (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(99,102,241,0.55)"; (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 0 10px rgba(99,102,241,0.2)"; }}}
                   onMouseLeave={e => { if (!vowDoneToday) { (e.currentTarget as HTMLButtonElement).style.background = "rgba(99,102,241,0.12)"; (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(99,102,241,0.3)"; (e.currentTarget as HTMLButtonElement).style.boxShadow = "none"; }}}
                 >
-                  {vowDoneToday ? "✓ Clean" : "Abhaken"}
+                  {vowDoneToday ? "x Clean" : "Abhaken"}
                 </button>
                 <button
                   onClick={() => { setSlipAnimId(ar.id); markViolated(ar.id); setTimeout(() => setSlipAnimId(null), 400); }}
@@ -652,7 +652,7 @@ export function buildSuggestions(quests: QuestsData, agents: Agent[]): Suggestio
       const cfg = typeConfig[dominant[0]];
       suggestions.push({
         id: "type-imbalance",
-        icon: "⚖",
+        icon: "x",
         title: `Quest type imbalance: ${Math.round((dominant[1] / quests.open.length) * 100)}% ${cfg?.label ?? dominant[0]}`,
         body: `${dominant[1]} of ${quests.open.length} open quests are ${dominant[0]}. Consider diversifying with personal, learning, or social quests.`,
         accent: cfg?.color ?? "#9ca3af",
@@ -889,7 +889,7 @@ export function SmartSuggestionsPanel({ quests, agents }: { quests: QuestsData; 
                 style={{ color: "rgba(255,255,255,0.2)", background: "rgba(255,255,255,0.04)" }}
                 title="Dismiss"
               >
-                ✕
+                x
               </button>
             </div>
           ))}

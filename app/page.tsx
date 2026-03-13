@@ -1266,7 +1266,7 @@ export default function Dashboard() {
           ].map(v => (
             "isDivider" in v && v.isDivider ? (
               <span key={v.key} className="text-xs font-semibold uppercase tracking-widest px-2 py-1.5 flex items-center" style={{ color: "rgba(255,215,0,0.5)", letterSpacing: "0.1em", pointerEvents: "none" }}>
-                ✦ {v.label}
+                x {v.label}
               </span>
             ) : (
             <button
@@ -1801,7 +1801,7 @@ export default function Dashboard() {
                                     onMouseEnter={e => { if (!doneToday) { (e.currentTarget as HTMLButtonElement).style.background = "rgba(167,139,250,0.28)"; (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(167,139,250,0.55)"; (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 0 10px rgba(167,139,250,0.2)"; } }}
                                     onMouseLeave={e => { if (!doneToday) { (e.currentTarget as HTMLButtonElement).style.background = "rgba(167,139,250,0.15)"; (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(167,139,250,0.3)"; (e.currentTarget as HTMLButtonElement).style.boxShadow = "none"; } }}
                                   >
-                                    {doneToday ? "✓ Erledigt" : "Abhaken"}
+                                    {doneToday ? "x Erledigt" : "Abhaken"}
                                   </button>
                                   {reviewApiKey && !ritual.bloodPact && (
                                     <button
@@ -2238,7 +2238,7 @@ export default function Dashboard() {
                     className="px-4 py-3 flex items-center gap-3"
                     style={{ borderBottom: i === quests.rejected.length - 1 ? "none" : "1px solid rgba(255,255,255,0.03)" }}
                   >
-                    <span className="text-xs flex-shrink-0" style={{ color: "rgba(239,68,68,0.4)" }}>✕</span>
+                    <span className="text-xs flex-shrink-0" style={{ color: "rgba(239,68,68,0.4)" }}>x</span>
                     <div className="flex-1 min-w-0">
                       <p className="text-xs truncate" style={{ color: "rgba(255,255,255,0.25)", textDecoration: "line-through" }}>{q.title}</p>
                       <span className="text-xs" style={{ color: "rgba(255,255,255,0.15)" }}>by {q.createdBy ?? "unknown"}</span>
@@ -2367,7 +2367,7 @@ export default function Dashboard() {
             className="text-xs px-2 py-1 rounded-lg ml-1"
             style={{ color: "rgba(255,255,255,0.3)", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}
           >
-            ✕
+            x
           </button>
         </div>
       )}
@@ -2471,7 +2471,7 @@ export default function Dashboard() {
                 {/* Ornamental divider */}
                 <div className="flex items-center gap-2" style={{ color: "rgba(255,255,255,0.12)" }}>
                   <span style={{ flex: 1, height: 1, background: "rgba(255,255,255,0.07)", display: "block" }} />
-                  <span style={{ fontSize: 11, letterSpacing: 4 }}>✦✦✦</span>
+                  <span style={{ fontSize: 11, letterSpacing: 4 }}>xxx</span>
                   <span style={{ flex: 1, height: 1, background: "rgba(255,255,255,0.07)", display: "block" }} />
                 </div>
                 {/* Task / Aufgabe */}
@@ -2519,15 +2519,15 @@ export default function Dashboard() {
                 )}
                 {!isCoop && reviewApiKey && playerName && isClaimedByMe && (
                   <>
-                    <button onClick={() => { handleUnclaim(q.id); setQuestDetailModal(null); }} className="text-xs px-3 py-1.5 rounded font-medium" style={{ background: "rgba(239,68,68,0.1)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.25)", cursor: "pointer" }}>✕ Unclaim</button>
-                    <button onClick={() => { handleComplete(q.id, q.title); setQuestDetailModal(null); }} className="text-sm px-4 py-1.5 rounded font-semibold" style={{ background: "rgba(251,191,36,0.15)", color: "#fbbf24", border: "1px solid rgba(251,191,36,0.35)", cursor: "pointer" }}>✓ Abgeschlossen</button>
+                    <button onClick={() => { handleUnclaim(q.id); setQuestDetailModal(null); }} className="text-xs px-3 py-1.5 rounded font-medium" style={{ background: "rgba(239,68,68,0.1)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.25)", cursor: "pointer" }}>x Unclaim</button>
+                    <button onClick={() => { handleComplete(q.id, q.title); setQuestDetailModal(null); }} className="text-sm px-4 py-1.5 rounded font-semibold" style={{ background: "rgba(251,191,36,0.15)", color: "#fbbf24", border: "1px solid rgba(251,191,36,0.35)", cursor: "pointer" }}>x Abgeschlossen</button>
                   </>
                 )}
                 {isCoop && isCoopPartner && !hasCoopClaimed && q.status !== "completed" && reviewApiKey && playerName && (
                   <button onClick={() => { handleCoopClaim(q.id); setQuestDetailModal(null); }} className="text-sm px-4 py-1.5 rounded font-semibold" style={{ background: "rgba(244,63,94,0.12)", color: "#f43f5e", border: "1px solid rgba(244,63,94,0.3)", cursor: "pointer" }}>Join Coop</button>
                 )}
                 {isCoop && isCoopPartner && hasCoopClaimed && !hasCoopCompleted && q.status !== "completed" && reviewApiKey && playerName && (
-                  <button onClick={() => { handleCoopComplete(q.id); setQuestDetailModal(null); }} className="text-sm px-4 py-1.5 rounded font-semibold" style={{ background: "rgba(34,197,94,0.12)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.3)", cursor: "pointer" }}>✓ My Part Done</button>
+                  <button onClick={() => { handleCoopComplete(q.id); setQuestDetailModal(null); }} className="text-sm px-4 py-1.5 rounded font-semibold" style={{ background: "rgba(34,197,94,0.12)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.3)", cursor: "pointer" }}>x My Part Done</button>
                 )}
               </div>
             </div>
@@ -2558,7 +2558,7 @@ export default function Dashboard() {
               className="shop-buy-btn w-full py-2.5 rounded-xl text-sm font-semibold"
               style={{ background: `${lootDrop.rarityColor}22`, color: lootDrop.rarityColor, border: `1px solid ${lootDrop.rarityColor}55` }}
             >
-              Einsammeln ✓
+              Einsammeln x
             </button>
           </div>
         </div>
@@ -2615,7 +2615,7 @@ export default function Dashboard() {
         >
           <span className="text-sm">×</span>
           <p className="text-xs" style={{ color: "#ef4444" }}>{apiError}</p>
-          <button onClick={() => setApiError(null)} className="text-xs ml-2" style={{ color: "rgba(255,255,255,0.3)" }}>✕</button>
+          <button onClick={() => setApiError(null)} className="text-xs ml-2" style={{ color: "rgba(255,255,255,0.3)" }}>x</button>
         </div>
       )}
 

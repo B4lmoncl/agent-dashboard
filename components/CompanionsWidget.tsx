@@ -302,7 +302,7 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
                                 onMouseDown={e => { (e.currentTarget as HTMLButtonElement).style.transform = "scale(0.95)"; }}
                                 onMouseUp={e => { (e.currentTarget as HTMLButtonElement).style.transform = "scale(1)"; }}
                               >
-                                ✓
+                                x
                               </button>
                             )}
                           </div>

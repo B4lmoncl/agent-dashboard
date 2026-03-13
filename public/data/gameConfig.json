@@ -20,14 +20,14 @@
   },
 
   "streakMilestones": [
-    { "days": 7,   "badge": "🥉", "label": "Bronze",           "xpBonus": 5,  "lootTier": null        },
-    { "days": 14,  "badge": "🎁", "label": "2-Wochen",         "xpBonus": 0,  "lootTier": "uncommon"  },
-    { "days": 21,  "badge": "🥈", "label": "Silber",           "xpBonus": 10, "lootTier": null        },
-    { "days": 30,  "badge": "📅", "label": "Monat",            "xpBonus": 0,  "lootTier": "rare"      },
-    { "days": 60,  "badge": "🥇", "label": "Gold",             "xpBonus": 15, "lootTier": null        },
-    { "days": 90,  "badge": "🗿", "label": "Unerschütterlich", "xpBonus": 0,  "lootTier": "epic"      },
-    { "days": 180, "badge": "💎", "label": "Diamond",          "xpBonus": 25, "lootTier": null        },
-    { "days": 365, "badge": "🟠", "label": "Legendary",        "xpBonus": 0,  "lootTier": "legendary" }
+    { "days": 7,   "badge": "x", "label": "Bronze",           "xpBonus": 5,  "lootTier": null        },
+    { "days": 14,  "badge": "x", "label": "2-Wochen",         "xpBonus": 0,  "lootTier": "uncommon"  },
+    { "days": 21,  "badge": "x", "label": "Silber",           "xpBonus": 10, "lootTier": null        },
+    { "days": 30,  "badge": "x", "label": "Monat",            "xpBonus": 0,  "lootTier": "rare"      },
+    { "days": 60,  "badge": "x", "label": "Gold",             "xpBonus": 15, "lootTier": null        },
+    { "days": 90,  "badge": "x", "label": "Unerschütterlich", "xpBonus": 0,  "lootTier": "epic"      },
+    { "days": 180, "badge": "x", "label": "Diamond",          "xpBonus": 25, "lootTier": null        },
+    { "days": 365, "badge": "x", "label": "Legendary",        "xpBonus": 0,  "lootTier": "legendary" }
   ],
 
   "rarityWeights": {

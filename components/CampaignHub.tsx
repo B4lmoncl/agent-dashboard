@@ -39,7 +39,7 @@ export default function CampaignHub({ campaigns, quests, reviewApiKey, onRefresh
         <div className="flex flex-col items-center flex-shrink-0" style={{ width: 32 }}>
           <div className="w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 z-10"
             style={{ background: isDone ? "rgba(16,185,129,0.2)" : isBoss && !isDone ? "rgba(239,68,68,0.2)" : isCurrentQuest ? "rgba(139,92,246,0.2)" : "rgba(255,255,255,0.05)", border: `2px solid ${nodeColor}`, color: nodeColor }}>
-            {isDone ? "✓" : isBoss ? "x" : isCurrentQuest ? "▶" : String(idx + 1)}
+            {isDone ? "x" : isBoss ? "x" : isCurrentQuest ? "x" : String(idx + 1)}
           </div>
           <div className="flex-1 w-px mt-1" style={{ background: "rgba(139,92,246,0.2)", minHeight: 12 }} />
         </div>
@@ -54,7 +54,7 @@ export default function CampaignHub({ campaigns, quests, reviewApiKey, onRefresh
               </div>
               {q.lore && <p className="text-xs mt-1 italic" style={{ color: "rgba(167,139,250,0.6)" }}>{q.lore}</p>}
               {isDone && q.completedBy && (
-                <p className="text-xs mt-1" style={{ color: "rgba(16,185,129,0.7)" }}>✓ Completed by {q.completedBy}{q.completedAt ? ` · ${timeAgo(q.completedAt)}` : ""}</p>
+                <p className="text-xs mt-1" style={{ color: "rgba(16,185,129,0.7)" }}>x Completed by {q.completedBy}{q.completedAt ? ` · ${timeAgo(q.completedAt)}` : ""}</p>
               )}
               {!isDone && q.claimedBy && (
                 <p className="text-xs mt-1" style={{ color: "rgba(167,139,250,0.6)" }}>x Claimed by {q.claimedBy}</p>

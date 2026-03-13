@@ -125,7 +125,7 @@ export default function BattlePassView({ users, quests }: { users: User[]; quest
               >
                 <p className="text-xs font-bold mb-1" style={{ color: unlocked ? season.color : "rgba(255,255,255,0.3)" }}>L{l.level}</p>
                 <p className="text-xs" style={{ color: unlocked ? "#f0f0f0" : "rgba(255,255,255,0.4)" }}>{l.reward}</p>
-                {l.premium && <p className="text-xs mt-1 font-semibold" style={{ color: "#f59e0b" }}>★ Premium</p>}
+                {l.premium && <p className="text-xs mt-1 font-semibold" style={{ color: "#f59e0b" }}>x Premium</p>}
                 <p className="text-xs mt-1 font-mono" style={{ color: "rgba(255,255,255,0.2)" }}>{l.xp} XP</p>
               </div>
             );

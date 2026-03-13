@@ -93,7 +93,7 @@ export default function ShopView({ users, playerName, reviewApiKey, onBuy, onGea
                 <span className="text-2xl flex-shrink-0">{gear.icon}</span>
                 <div className="flex-1 min-w-0">
                   <p className="text-xs font-semibold" style={{ color: owned ? "#a78bfa" : "#f0f0f0" }}>
-                    {gear.name} {owned && "✓"}
+                    {gear.name} {owned && "x"}
                   </p>
                   <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>{gear.desc}</p>
                 </div>

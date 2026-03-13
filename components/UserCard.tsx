@@ -55,7 +55,7 @@ export function UserCard({ user, classes = [] }: { user: User; classes?: ClassDe
             )}
           </div>
           <p className="text-xs font-semibold" style={{ color: lvl.color }}>
-            {isMilestoneLevel && "✦ "}Lv {lvl.level}: {lvl.title}
+            {isMilestoneLevel && "x "}Lv {lvl.level}: {lvl.title}
           </p>
         </div>
         {/* Gold */}
@@ -71,7 +71,7 @@ export function UserCard({ user, classes = [] }: { user: User; classes?: ClassDe
           <span className="text-xs font-mono font-medium" style={{ color: "#8b5cf6" }}>{user.questsCompleted ?? 0}</span>
         </div>
         <div className="flex items-center justify-between">
-          <span className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>XP{xpMalus ? " ⚠ −50%" : ""}</span>
+          <span className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>XP{xpMalus ? " x −50%" : ""}</span>
           <span className="text-xs font-mono font-medium" style={{ color: xpMalus ? "#ef4444" : lvl.color }}>{xp}{nextLvlEntry ? ` / ${nextLvlEntry.xpRequired}` : " MAX"}</span>
         </div>
       </div>

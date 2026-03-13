@@ -1,47 +1,47 @@
 {
   "development": {
-    "completionMessage": "⚒️ **PROTOCOL FORGED.** The anvil cools and your creation hums with power. Another artifact added to the Guild vault. The Forge Masters nod in approval — your craft grows sharper with every strike.",
+    "completionMessage": "xx **PROTOCOL FORGED.** The anvil cools and your creation hums with power. Another artifact added to the Guild vault. The Forge Masters nod in approval — your craft grows sharper with every strike.",
     "streakBonus": {
-      "3":  "🔥 3-day Forge Streak! The anvil hasn't cooled in days. You're entering a state the old smiths called *The Endless Heat*.",
-      "7":  "⚒️🔥 7-day Forge Streak! The Guild speaks your name in whispers. They call you Ironhand — one who never lets the fire die.",
-      "14": "🌋 14-day Forge Streak! You've transcended mortal crafting. The Forge itself bends to your will. Legendary Artificer status unlocked.",
-      "30": "💎⚒️ 30-day Forge Streak! The Council of Master Smiths has no choice but to acknowledge a new peer. You are now part of the living legend of the Guild."
+      "3":  "x 3-day Forge Streak! The anvil hasn't cooled in days. You're entering a state the old smiths called *The Endless Heat*.",
+      "7":  "xxx 7-day Forge Streak! The Guild speaks your name in whispers. They call you Ironhand — one who never lets the fire die.",
+      "14": "x 14-day Forge Streak! You've transcended mortal crafting. The Forge itself bends to your will. Legendary Artificer status unlocked.",
+      "30": "xxx 30-day Forge Streak! The Council of Master Smiths has no choice but to acknowledge a new peer. You are now part of the living legend of the Guild."
     }
   },
   "learning": {
-    "completionMessage": "📜 **KNOWLEDGE ACQUIRED.** The Archive glows as a new understanding etches itself into your mind. You feel the subtle shift — you are not who you were when you opened that first page. The Guild's Lorekeepers record your advancement.",
+    "completionMessage": "x **KNOWLEDGE ACQUIRED.** The Archive glows as a new understanding etches itself into your mind. You feel the subtle shift — you are not who you were when you opened that first page. The Guild's Lorekeepers record your advancement.",
     "streakBonus": {
-      "3":  "📖 3-day Study Streak! The candles in the Archive burn for you alone. Your mind sharpens like a blade on the whetstone of knowledge.",
-      "7":  "🧠📖 7-day Study Streak! The Lorekeepers have taken notice. They've started leaving rare texts on your desk — they see potential for mastery.",
-      "14": "🌟 14-day Study Streak! You've entered the Scholar's Flow. Concepts that once seemed like foreign runes now read like your mother tongue.",
-      "30": "👁️📜 30-day Study Streak! The Grand Lorekeeper has granted you a key to the Restricted Section. Few have ever earned this honor. Your intellect is now a Guild-tier weapon."
+      "3":  "x 3-day Study Streak! The candles in the Archive burn for you alone. Your mind sharpens like a blade on the whetstone of knowledge.",
+      "7":  "xx 7-day Study Streak! The Lorekeepers have taken notice. They've started leaving rare texts on your desk — they see potential for mastery.",
+      "14": "x 14-day Study Streak! You've entered the Scholar's Flow. Concepts that once seemed like foreign runes now read like your mother tongue.",
+      "30": "xxx 30-day Study Streak! The Grand Lorekeeper has granted you a key to the Restricted Section. Few have ever earned this honor. Your intellect is now a Guild-tier weapon."
     }
   },
   "personal": {
-    "completionMessage": "🏰 **DOMAIN SECURED.** Your quarters are fortified, your supplies restocked, your chaos tamed. It's invisible work, but the Guild knows — operational readiness is what wins wars. Respect earned where it matters most: in the foundation.",
+    "completionMessage": "x **DOMAIN SECURED.** Your quarters are fortified, your supplies restocked, your chaos tamed. It's invisible work, but the Guild knows — operational readiness is what wins wars. Respect earned where it matters most: in the foundation.",
     "streakBonus": {
-      "3":  "🧱 3-day Upkeep Streak! Your domain runs like a well-oiled siege engine. Consistency is the unsexy superpower, and you're wielding it.",
-      "7":  "🏰🧱 7-day Upkeep Streak! The Guild Quartermaster is impressed. Your personal operations are running at peak efficiency. Others are starting to ask how you do it.",
-      "14": "⚙️ 14-day Upkeep Streak! You've built something rare — sustainable order from chaos. The Guild promotes you to Keeper of the Inner Sanctum.",
-      "30": "👑🏰 30-day Upkeep Streak! A full month of unbroken discipline. Your domain is a fortress others aspire to. The Guild whispers of a new rank: Sovereign of the Hearth."
+      "3":  "x 3-day Upkeep Streak! Your domain runs like a well-oiled siege engine. Consistency is the unsexy superpower, and you're wielding it.",
+      "7":  "xx 7-day Upkeep Streak! The Guild Quartermaster is impressed. Your personal operations are running at peak efficiency. Others are starting to ask how you do it.",
+      "14": "xx 14-day Upkeep Streak! You've built something rare — sustainable order from chaos. The Guild promotes you to Keeper of the Inner Sanctum.",
+      "30": "xx 30-day Upkeep Streak! A full month of unbroken discipline. Your domain is a fortress others aspire to. The Guild whispers of a new rank: Sovereign of the Hearth."
     }
   },
   "fitness": {
-    "completionMessage": "⚔️ **TRIAL SURVIVED.** You walked into the Arena and walked out stronger. Muscles forged, limits pushed, weakness burned away. The Warrior's Path demands everything, and today you paid the toll. The Guild salutes your iron will.",
+    "completionMessage": "xx **TRIAL SURVIVED.** You walked into the Arena and walked out stronger. Muscles forged, limits pushed, weakness burned away. The Warrior's Path demands everything, and today you paid the toll. The Guild salutes your iron will.",
     "streakBonus": {
-      "3":  "💪 3-day Arena Streak! Your body is beginning to remember what it was built for. The soreness is just your weakness leaving — the old warriors called it *The Shedding*.",
-      "7":  "⚔️💪 7-day Arena Streak! A full week in the Arena. The other warriors have stopped underestimating you. Your discipline echoes through the training halls like war drums.",
-      "14": "🔱 14-day Arena Streak! Two weeks of unbroken combat training. The Arena Masters have inscribed your name on the Wall of Perseverance. Your body is becoming a weapon of Guild legend.",
-      "30": "🏆⚔️ 30-day Arena Streak! Thirty days. THIRTY. The Arena has tested you with everything it has, and you are still standing. The Guild bestows upon you the title: Ironforged Champion."
+      "3":  "x 3-day Arena Streak! Your body is beginning to remember what it was built for. The soreness is just your weakness leaving — the old warriors called it *The Shedding*.",
+      "7":  "xxx 7-day Arena Streak! A full week in the Arena. The other warriors have stopped underestimating you. Your discipline echoes through the training halls like war drums.",
+      "14": "x 14-day Arena Streak! Two weeks of unbroken combat training. The Arena Masters have inscribed your name on the Wall of Perseverance. Your body is becoming a weapon of Guild legend.",
+      "30": "xxx 30-day Arena Streak! Thirty days. THIRTY. The Arena has tested you with everything it has, and you are still standing. The Guild bestows upon you the title: Ironforged Champion."
     }
   },
   "social": {
-    "completionMessage": "🤝 **ALLIANCE STRENGTHENED.** The bonds between you and your allies grow deeper. In the quiet moments between battles, these are the connections that keep a warrior whole. The Guild knows: the strongest fighters are the ones with something worth fighting for.",
+    "completionMessage": "x **ALLIANCE STRENGTHENED.** The bonds between you and your allies grow deeper. In the quiet moments between battles, these are the connections that keep a warrior whole. The Guild knows: the strongest fighters are the ones with something worth fighting for.",
     "streakBonus": {
-      "3":  "💬 3-day Alliance Streak! You're showing up for your people consistently. Trust compounds quietly, but its power is immense. Your inner circle feels it.",
-      "7":  "🤝💬 7-day Alliance Streak! A full week of tending your alliances. The bonds are visibly stronger now. Your people know they can count on you — that's rarer than legendary loot.",
-      "14": "🛡️ 14-day Alliance Streak! Two weeks of dedicated connection. Your allies would ride into battle for you without hesitation. The Guild calls this *Unbreakable Accord*.",
-      "30": "👑🤝 30-day Alliance Streak! Thirty days of showing up for the people who matter. You've built something most adventurers never achieve — a true Fellowship. The Guild honors you as Warden of the Inner Circle."
+      "3":  "x 3-day Alliance Streak! You're showing up for your people consistently. Trust compounds quietly, but its power is immense. Your inner circle feels it.",
+      "7":  "xx 7-day Alliance Streak! A full week of tending your alliances. The bonds are visibly stronger now. Your people know they can count on you — that's rarer than legendary loot.",
+      "14": "xx 14-day Alliance Streak! Two weeks of dedicated connection. Your allies would ride into battle for you without hesitation. The Guild calls this *Unbreakable Accord*.",
+      "30": "xx 30-day Alliance Streak! Thirty days of showing up for the people who matter. You've built something most adventurers never achieve — a true Fellowship. The Guild honors you as Warden of the Inner Circle."
     }
   }
 }

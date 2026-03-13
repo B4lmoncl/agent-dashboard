@@ -50,7 +50,7 @@ export function InfoTooltip({ text, align = "left" }: { text: string; align?: "l
           <button
             onClick={() => setOpen(false)}
             style={{ position: "absolute", top: 6, right: 8, color: "rgba(255,255,255,0.3)", fontSize: 12, lineHeight: 1 }}
-          >✕</button>
+          >x</button>
           <p className="pr-5">{text}</p>
         </div>
       )}

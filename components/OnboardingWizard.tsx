@@ -396,7 +396,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
                       </div>
                       <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.4)" }}>{cls.realWorld}</p>
                     </div>
-                    {selectedClassId === cls.id && <span className="text-base" style={{ color: "#a78bfa" }}>✓</span>}
+                    {selectedClassId === cls.id && <span className="text-base" style={{ color: "#a78bfa" }}>x</span>}
                   </div>
                 </button>
               ))}

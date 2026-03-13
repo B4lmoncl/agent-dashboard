@@ -112,7 +112,7 @@ export default function CVBuilderPanel({ quests, users, playerName }: { quests: 
         <div className="flex gap-2 flex-wrap">
           {quests.completed.filter(q => q.type === "learning" && !q.npcGiverId && !q.npcName).slice(0, 6).map(q => (
             <div key={q.id} className="flex items-center gap-1.5 px-2 py-1 rounded-lg" style={{ background: "rgba(96,165,250,0.06)", border: "1px solid rgba(96,165,250,0.15)" }}>
-              <span className="text-xs" style={{ color: "rgba(96,165,250,0.6)" }}>✓</span>
+              <span className="text-xs" style={{ color: "rgba(96,165,250,0.6)" }}>x</span>
               <span className="text-xs" style={{ color: "rgba(255,255,255,0.5)" }}>{q.title}</span>
             </div>
           ))}

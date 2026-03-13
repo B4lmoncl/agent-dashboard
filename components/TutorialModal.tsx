@@ -242,7 +242,7 @@ export function GuideModal({ onClose, onRestartTutorial }: { onClose: () => void
             <h2 className="text-sm font-bold" style={{ color: "#f0f0f0" }}>x Player Guide</h2>
             <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>Everything you need to know</p>
           </div>
-          <button onClick={onClose} style={{ color: "rgba(255,255,255,0.3)", fontSize: 16, background: "none", border: "none", cursor: "pointer" }}>✕</button>
+          <button onClick={onClose} style={{ color: "rgba(255,255,255,0.3)", fontSize: 16, background: "none", border: "none", cursor: "pointer" }}>x</button>
         </div>
         <GuideContent onRestartTutorial={onRestartTutorial} />
       </div>
@@ -475,7 +475,7 @@ export function TutorialOverlay({ step, onNext, onSkip }: { step: number; onNext
             className="action-btn text-xs px-2 py-0.5 rounded font-medium"
             style={{ color: "rgba(255,255,255,0.55)", background: "rgba(255,255,255,0.07)", border: "1px solid rgba(255,255,255,0.12)", flexShrink: 0 }}
             title="Skip tutorial (ESC)"
-          >✕ Skip</button>
+          >x Skip</button>
         </div>
         <p className="text-xs leading-relaxed mb-3" style={{ color: "rgba(255,255,255,0.6)" }}>{stepDef.desc}</p>
         <div className="flex items-center justify-end gap-2">

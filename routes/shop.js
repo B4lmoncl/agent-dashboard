@@ -8,20 +8,20 @@ const { requireApiKey } = require('../lib/middleware');
 
 // ─── Shop ────────────────────────────────────────────────────────────────────
 const SHOP_ITEMS = [
-  { id: 'gaming_1h',   name: '1h Gaming',      cost: 100, icon: '🎮', desc: '1 hour of guilt-free gaming' },
-  { id: 'snack_break', name: 'Snack Break',     cost: 25,  icon: '🍕', desc: 'Treat yourself to a snack' },
-  { id: 'day_off',     name: 'Day Off Quest',   cost: 500, icon: '🏖', desc: 'Skip one day of recurring quests' },
-  { id: 'movie_night', name: 'Movie Night',     cost: 150, icon: '🎬', desc: 'Evening off for a movie' },
-  { id: 'sleep_in',    name: 'Sleep In',        cost: 75,  icon: '😴', desc: 'Extra hour of sleep, guilt-free' },
+  { id: 'gaming_1h',   name: '1h Gaming',      cost: 100, icon: 'x', desc: '1 hour of guilt-free gaming' },
+  { id: 'snack_break', name: 'Snack Break',     cost: 25,  icon: 'x', desc: 'Treat yourself to a snack' },
+  { id: 'day_off',     name: 'Day Off Quest',   cost: 500, icon: 'x', desc: 'Skip one day of recurring quests' },
+  { id: 'movie_night', name: 'Movie Night',     cost: 150, icon: 'x', desc: 'Evening off for a movie' },
+  { id: 'sleep_in',    name: 'Sleep In',        cost: 75,  icon: 'x', desc: 'Extra hour of sleep, guilt-free' },
 ];
 
 // ─── Gear / Workshop Tools ───────────────────────────────────────────────────
 const GEAR_TIERS = [
-  { id: 'worn',       name: 'Worn Tools',       cost: 0,    tier: 0, xpBonus: 0,  icon: '🔨', desc: 'Starting gear. No bonus.' },
-  { id: 'sturdy',     name: 'Sturdy Tools',     cost: 100,  tier: 1, xpBonus: 5,  icon: '⚒',  desc: '+5% XP on all quests' },
-  { id: 'masterwork', name: 'Masterwork Tools', cost: 300,  tier: 2, xpBonus: 10, icon: '🛠',  desc: '+10% XP on all quests' },
-  { id: 'legendary',  name: 'Legendary Tools',  cost: 700,  tier: 3, xpBonus: 15, icon: '⚙',  desc: '+15% XP on all quests' },
-  { id: 'mythic',     name: 'Mythic Forge',     cost: 1500, tier: 4, xpBonus: 25, icon: '🔱', desc: '+25% XP on all quests' },
+  { id: 'worn',       name: 'Worn Tools',       cost: 0,    tier: 0, xpBonus: 0,  icon: 'x', desc: 'Starting gear. No bonus.' },
+  { id: 'sturdy',     name: 'Sturdy Tools',     cost: 100,  tier: 1, xpBonus: 5,  icon: 'x',  desc: '+5% XP on all quests' },
+  { id: 'masterwork', name: 'Masterwork Tools', cost: 300,  tier: 2, xpBonus: 10, icon: 'x',  desc: '+10% XP on all quests' },
+  { id: 'legendary',  name: 'Legendary Tools',  cost: 700,  tier: 3, xpBonus: 15, icon: 'x',  desc: '+15% XP on all quests' },
+  { id: 'mythic',     name: 'Mythic Forge',     cost: 1500, tier: 4, xpBonus: 25, icon: 'x', desc: '+25% XP on all quests' },
 ];
 
 // ─── Personal Life Quest Templates ───────────────────────────────────────────
@@ -29,7 +29,7 @@ const PERSONAL_QUEST_TEMPLATES = [
   {
     id: 'morning_ritual',
     name: 'Morning Ritual',
-    icon: '🌅',
+    icon: 'x',
     desc: 'Daily morning checklist to start the day strong. Streak tracking built in.',
     type: 'personal',
     priority: 'medium',
@@ -45,7 +45,7 @@ const PERSONAL_QUEST_TEMPLATES = [
   {
     id: 'warrior_training',
     name: 'Warrior Training',
-    icon: '💪',
+    icon: 'x',
     desc: 'Gym session quest. Log workout type, sets, reps, and weight. Rest days count too.',
     type: 'fitness',
     priority: 'high',
@@ -61,7 +61,7 @@ const PERSONAL_QUEST_TEMPLATES = [
   {
     id: 'network_sage',
     name: 'Path of the Network Sage',
-    icon: '🌐',
+    icon: 'x',
     desc: 'AirIT learning path study session — Fortinet, Cisco, SD-WAN, MPLS, or BGP.',
     type: 'learning',
     priority: 'high',
@@ -76,7 +76,7 @@ const PERSONAL_QUEST_TEMPLATES = [
   {
     id: 'daily_deep_dive',
     name: 'Daily Deep Dive',
-    icon: '🧠',
+    icon: 'x',
     desc: '30-minute focused learning session. One topic, no distractions, full concentration.',
     type: 'learning',
     priority: 'medium',
@@ -91,7 +91,7 @@ const PERSONAL_QUEST_TEMPLATES = [
   {
     id: 'cert_quest',
     name: 'Certification Quest',
-    icon: '📜',
+    icon: 'x',
     desc: 'Exam prep session. Track study hours, mock exams, and certification deadline.',
     type: 'learning',
     priority: 'high',
@@ -107,7 +107,7 @@ const PERSONAL_QUEST_TEMPLATES = [
   {
     id: 'date_night',
     name: 'Date Night Quest',
-    icon: '❤️',
+    icon: 'xx',
     desc: 'Quality time with your partner. Plan something special — connection matters.',
     type: 'social',
     priority: 'medium',
@@ -122,7 +122,7 @@ const PERSONAL_QUEST_TEMPLATES = [
   {
     id: 'weekly_raid',
     name: 'Weekly Raid Planning',
-    icon: '🗺️',
+    icon: 'xx',
     desc: 'Weekly review and planning session. Strategize the week ahead like a raid leader.',
     type: 'personal',
     priority: 'high',
@@ -138,7 +138,7 @@ const PERSONAL_QUEST_TEMPLATES = [
   {
     id: 'rest_recovery',
     name: 'Rest & Recovery',
-    icon: '🌙',
+    icon: 'x',
     desc: 'Sleep and recovery quest. Target 7–9 hours. Track wind-down routine.',
     type: 'fitness',
     priority: 'medium',
@@ -157,7 +157,7 @@ const FORGE_CHALLENGES = [
   {
     id: 'code_sprint',
     name: '30-Day Code Sprint',
-    icon: '💻',
+    icon: 'x',
     desc: 'Write code every day for 30 days. Daily development quest auto-created.',
     quests: [
       { title: 'Code Sprint Day', type: 'development', recurrence: 'daily', priority: 'medium' },
@@ -167,7 +167,7 @@ const FORGE_CHALLENGES = [
   {
     id: 'learning_marathon',
     name: 'Learning Marathon',
-    icon: '📖',
+    icon: 'x',
     desc: '4 weeks of focused learning. Weekly learning quest auto-created.',
     quests: [
       { title: 'Learning Marathon Session', type: 'learning', recurrence: 'weekly', priority: 'medium' },
@@ -177,7 +177,7 @@ const FORGE_CHALLENGES = [
   {
     id: 'clean_slate',
     name: 'Clean Slate',
-    icon: '✨',
+    icon: 'x',
     desc: 'Daily personal quest for 2 weeks. Build positive habits.',
     quests: [
       { title: 'Clean Slate Daily Habit', type: 'personal', recurrence: 'daily', priority: 'low' },

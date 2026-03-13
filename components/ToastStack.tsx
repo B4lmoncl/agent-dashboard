@@ -62,7 +62,7 @@ function FlavorToastContent({ toast, onClose }: { toast: { message: string; icon
         <p className="text-sm font-bold" style={{ color: "#22c55e" }}>{toast.message}</p>
         {toast.sub && <p className="text-xs mt-0.5 truncate" style={{ color: "rgba(255,255,255,0.35)" }}>{toast.sub}</p>}
       </div>
-      <button onClick={onClose} style={{ color: "rgba(255,255,255,0.3)", flexShrink: 0 }}>✕</button>
+      <button onClick={onClose} style={{ color: "rgba(255,255,255,0.3)", flexShrink: 0 }}>x</button>
     </div>
   );
 }
@@ -79,7 +79,7 @@ function AchievementToastContent({ achievement, onClose }: { achievement: Earned
         <p className="text-sm font-semibold" style={{ color: "#f0f0f0" }}>{achievement.name}</p>
         <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>{achievement.desc}</p>
       </div>
-      <button onClick={onClose} style={{ color: "rgba(255,255,255,0.3)" }}>✕</button>
+      <button onClick={onClose} style={{ color: "rgba(255,255,255,0.3)" }}>x</button>
     </div>
   );
 }
@@ -97,7 +97,7 @@ function ChainToastContent({ parentTitle, template, onAccept, onClose }: {
       style={{ background: "#252525", border: "1px solid rgba(139,92,246,0.5)", boxShadow: "0 8px 32px rgba(139,92,246,0.2)", maxWidth: 320, width: "100%" }}
     >
       <div className="flex items-start gap-3">
-        <span className="text-2xl flex-shrink-0">⛓</span>
+        <span className="text-2xl flex-shrink-0">x</span>
         <div className="flex-1 min-w-0">
           <p className="text-xs font-bold mb-0.5" style={{ color: "#a78bfa" }}>Quest Chain Available!</p>
           <p className="text-xs mb-1" style={{ color: "rgba(255,255,255,0.4)" }}>
@@ -131,7 +131,7 @@ function ChainToastContent({ parentTitle, template, onAccept, onClose }: {
             </button>
           </div>
         </div>
-        <button onClick={onClose} style={{ color: "rgba(255,255,255,0.3)", flexShrink: 0 }}>✕</button>
+        <button onClick={onClose} style={{ color: "rgba(255,255,255,0.3)", flexShrink: 0 }}>x</button>
       </div>
     </div>
   );
@@ -145,7 +145,7 @@ function PurchaseToastContent({ message, onClose }: { message: string; onClose: 
     >
       <span style={{ fontSize: "16px" }}>x</span>
       <span className="text-sm font-semibold" style={{ color: "#f0f0f0" }}>{message}</span>
-      <button onClick={onClose} className="ml-auto" style={{ color: "rgba(255,255,255,0.3)", flexShrink: 0 }}>✕</button>
+      <button onClick={onClose} className="ml-auto" style={{ color: "rgba(255,255,255,0.3)", flexShrink: 0 }}>x</button>
     </div>
   );
 }

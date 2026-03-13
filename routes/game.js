@@ -38,7 +38,7 @@ router.post('/api/classes', requireApiKey, (req, res) => {
   const cls = {
     id: `class-${Date.now()}`,
     name,
-    icon: icon || '⚔️',
+    icon: icon || 'xx',
     fantasy: fantasy || name,
     description: description || '',
     realWorld: realWorld || '',
