@@ -10,7 +10,7 @@
       "maxChainsPerVisit": 1,
       "greeting": "Komm näher, Kind. Oma Ilse hat etwas für dich...",
       "name": "Oma Ilse",
-      "emoji": "x",
+      "emoji": null,
       "title": "Die Kräuterfrau",
       "description": "Eine warmherzige alte Dame die immer Kekse dabei hat.",
       "stayDays": 3,
@@ -100,7 +100,7 @@
         "item": {
           "id": "ilse-scarf",
           "name": "Selbstgestrickter Schal",
-          "emoji": "x",
+          "emoji": null,
           "rarity": "rare",
           "stats": {
             "ausdauer": 3,
@@ -121,7 +121,7 @@
       "maxChainsPerVisit": 1,
       "greeting": "Psst! Ich habe Waren aus fernen Landen...",
       "name": "Karim der Wanderhändler",
-      "emoji": "x",
+      "emoji": null,
       "title": "Reisender Kaufmann aus fernen Landen",
       "description": "Ein geheimnisvoller Händler der seltene Waren aus der ganzen Welt mitbringt.",
       "stayDays": 2,
@@ -235,7 +235,7 @@
         "item": {
           "id": "karim-compass",
           "name": "Karims Goldener Kompass",
-          "emoji": "x",
+          "emoji": null,
           "rarity": "epic",
           "stats": {
             "glueck": 5,
@@ -256,7 +256,7 @@
       "maxChainsPerVisit": 1,
       "greeting": "Disziplin beginnt mit dem ersten Schritt.",
       "name": "Meister Tanaka",
-      "emoji": "x",
+      "emoji": null,
       "title": "Wandernder Kampfkunst-Meister",
       "description": "Ein alter Meister der seine Weisheit mit würdigen Schülern teilt.",
       "stayDays": 3,
@@ -370,7 +370,7 @@
         "item": {
           "id": "tanaka-headband",
           "name": "Tanakas Stirnband",
-          "emoji": "x",
+          "emoji": null,
           "rarity": "epic",
           "stats": {
             "kraft": 4,
@@ -391,7 +391,7 @@
       "maxChainsPerVisit": 1,
       "greeting": "Der Wald hat mir von dir erzählt...",
       "name": "Mirael die Waldwächterin",
-      "emoji": "x",
+      "emoji": null,
       "title": "Kräuterkundige aus dem Nebelwald",
       "description": "Eine mysteriöse Frau die Heilmittel aus seltenen Pflanzen braut.",
       "stayDays": 2,
@@ -493,7 +493,7 @@
         "item": {
           "id": "mirael-pendant",
           "name": "Miraels Naturstein",
-          "emoji": "x",
+          "emoji": null,
           "rarity": "rare",
           "stats": {
             "ausdauer": 4,
@@ -514,7 +514,7 @@
       "maxChainsPerVisit": 1,
       "greeting": "x Eine Geschichte für ein Lied, ein Lied für eine Geschichte! x",
       "name": "Finnegan der Barde",
-      "emoji": "x",
+      "emoji": null,
       "title": "Wandernder Geschichtenerzähler",
       "description": "Ein charismatischer Barde der überall Freunde findet.",
       "stayDays": 3,
@@ -628,7 +628,7 @@
         "item": {
           "id": "finnegan-lute",
           "name": "Finnegans Silberlaute",
-          "emoji": "x",
+          "emoji": null,
           "rarity": "epic",
           "stats": {
             "glueck": 6,

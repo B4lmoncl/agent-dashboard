@@ -5,7 +5,7 @@
       "name": "Klinge des Aetherstroms",
       "rarity": "legendary",
       "type": "weapon",
-      "emoji": "x",
+      "emoji": null,
       "stats": { "kraft": 15, "ausdauer": 5, "weisheit": 5, "glueck": 5 },
       "effect": "xp_boost_10",
       "desc": "Eine Klinge, geschmiedet im reinsten Aetherstrom. Ihr Glühen pulsiert im Takt des Schicksals."
@@ -15,7 +15,7 @@
       "name": "Mantel der Sternenwächterin",
       "rarity": "legendary",
       "type": "armor",
-      "emoji": "x",
+      "emoji": null,
       "stats": { "ausdauer": 20, "weisheit": 5, "glueck": 5 },
       "effect": "xp_boost_10",
       "desc": "Gewoben aus dem Licht sterbender Sterne. Wer ihn trägt, spürt die Wärme vergangener Zeitalter."
@@ -25,7 +25,7 @@
       "name": "Phönixfeder",
       "rarity": "legendary",
       "type": "consumable",
-      "emoji": "x",
+      "emoji": null,
       "stats": {},
       "effect": "streak_recovery_100",
       "desc": "Die letzte Feder eines wiedergeborenen Phönix. Stellt einen gebrochenen Streak vollständig wieder her."
@@ -35,7 +35,7 @@
       "name": "Schild des Eisernen Willens",
       "rarity": "epic",
       "type": "armor",
-      "emoji": "x",
+      "emoji": null,
       "stats": { "ausdauer": 12, "kraft": 3 },
       "effect": null,
       "desc": "Geschmiedet im Herzen eines erloschenen Vulkans. Unbeugsam wie der Wille seines Trägers."
@@ -45,7 +45,7 @@
       "name": "Stab der Erkenntnis",
       "rarity": "epic",
       "type": "weapon",
-      "emoji": "x",
+      "emoji": null,
       "stats": { "weisheit": 10, "glueck": 3 },
       "effect": "xp_boost_5",
       "desc": "Ein Stab aus uraltem Weltenholz. Sein Kristall flüstert vergessenes Wissen."
@@ -55,7 +55,7 @@
       "name": "Goldene Schriftrolle",
       "rarity": "epic",
       "type": "consumable",
-      "emoji": "x",
+      "emoji": null,
       "stats": {},
       "effect": "gold_2x_24h",
       "desc": "Entrollt enthüllt sie die Geheimnisse des Goldenen Zeitalters. 2x Gold für 24 Stunden."
@@ -65,7 +65,7 @@
       "name": "Essenz-Magnet",
       "rarity": "epic",
       "type": "consumable",
-      "emoji": "x",
+      "emoji": null,
       "stats": {},
       "effect": "essenz_boost_48h",
       "desc": "Ein pulsierender Kristall, der die Essenz der Beständigkeit anzieht. +Essenz für 48h."
@@ -75,7 +75,7 @@
       "name": "Abenteurerklinge",
       "rarity": "rare",
       "type": "weapon",
-      "emoji": "x",
+      "emoji": null,
       "stats": { "kraft": 8, "glueck": 1 },
       "effect": null,
       "desc": "Die Standardwaffe eines erfahrenen Abenteurers. Zuverlässig und scharf."
@@ -85,7 +85,7 @@
       "name": "Wanderermantel",
       "rarity": "rare",
       "type": "armor",
-      "emoji": "x",
+      "emoji": null,
       "stats": { "ausdauer": 6, "weisheit": 2 },
       "effect": null,
       "desc": "Ein wettergegerbter Mantel, der schon tausend Meilen gesehen hat."
@@ -95,7 +95,7 @@
       "name": "Glücksklee",
       "rarity": "rare",
       "type": "consumable",
-      "emoji": "x",
+      "emoji": null,
       "stats": {},
       "effect": "rarity_boost_15",
       "desc": "Ein vierblättriges Kleeblatt aus dem Feengarten. +15% Rarity-Boost für 1 Quest."
@@ -105,7 +105,7 @@
       "name": "Schatzkompass",
       "rarity": "rare",
       "type": "consumable",
-      "emoji": "x",
+      "emoji": null,
       "stats": {},
       "effect": "gold_boost_next",
       "desc": "Zeigt immer in Richtung des nächsten Schatzes. Bonus-Gold bei der nächsten Quest."
@@ -115,7 +115,7 @@
       "name": "Mitleids-Katalysator",
       "rarity": "rare",
       "type": "gacha",
-      "emoji": "x",
+      "emoji": null,
       "stats": {},
       "effect": "pity_minus_5",
       "desc": "Ein schimmernder Katalysator, der das Schicksal beeinflusst. Pity-Counter -5."
@@ -125,7 +125,7 @@
       "name": "Eisenschwert",
       "rarity": "uncommon",
       "type": "weapon",
-      "emoji": "x",
+      "emoji": null,
       "stats": { "kraft": 4 },
       "effect": null,
       "desc": "Ein solides Schwert aus gehärtetem Eisen. Nichts Besonderes, aber zuverlässig."
@@ -135,7 +135,7 @@
       "name": "Lederschultern",
       "rarity": "uncommon",
       "type": "armor",
-      "emoji": "x",
+      "emoji": null,
       "stats": { "ausdauer": 3 },
       "effect": null,
       "desc": "Robuste Lederschultern, die so manchen Hieb abgefangen haben."
@@ -145,7 +145,7 @@
       "name": "Kleine Erinnerungssplitter",
       "rarity": "uncommon",
       "type": "consumable",
-      "emoji": "x",
+      "emoji": null,
       "stats": {},
       "effect": "streak_recovery_50",
       "desc": "Splitter einer vergessenen Erinnerung. Stellt 50% eines gebrochenen Streaks wieder her."
@@ -155,7 +155,7 @@
       "name": "Sanduhr der Gnade",
       "rarity": "uncommon",
       "type": "consumable",
-      "emoji": "x",
+      "emoji": null,
       "stats": {},
       "effect": "quest_timer_24h",
       "desc": "Die Zeit steht still — nur für einen Moment. +24h Quest-Timer."
@@ -165,7 +165,7 @@
       "name": "Rostiger Dolch",
       "rarity": "common",
       "type": "weapon",
-      "emoji": "x",
+      "emoji": null,
       "stats": { "kraft": 2 },
       "effect": null,
       "desc": "Ein alter, rostiger Dolch. Besser als nichts."
@@ -175,7 +175,7 @@
       "name": "Flickenumhang",
       "rarity": "common",
       "type": "armor",
-      "emoji": "x",
+      "emoji": null,
       "stats": { "ausdauer": 1 },
       "effect": null,
       "desc": "Ein mehrfach geflickter Umhang. Er hält immerhin den Wind ab."
@@ -185,7 +185,7 @@
       "name": "Heiltrank",
       "rarity": "common",
       "type": "consumable",
-      "emoji": "x",
+      "emoji": null,
       "stats": {},
       "effect": "small_heal",
       "desc": "Ein einfacher Heiltrank. Schmeckt nach Kräutern und Hoffnung."

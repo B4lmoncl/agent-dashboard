@@ -8,7 +8,7 @@
     "cost10": 90,
     "featuredItems": [],
     "active": true,
-    "icon": "x",
+    "icon": "/images/icons/ui-ritual-rune.png",
     "lore": "The ancient portal of the Guild opens. Each turn of the Wheel reveals an artifact drawn from the depths of the Aether. What will fate whisper to you?",
     "dropRates": {
       "legendary": "1.6%",
@@ -27,7 +27,7 @@
     "cost10": 90,
     "featuredItems": ["klinge-aetherstrom"],
     "active": true,
-    "icon": "x",
+    "icon": "/images/icons/currency-stardust.png",
     "lore": "Starlight pierces the darkness. Within its glow lie the mightiest artifacts of the Guild. Only the worthy shall wield them.",
     "dropRates": {
       "legendary": "1.6% (50/50 Featured)",
