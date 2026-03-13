@@ -5356,6 +5356,19 @@ app.post('/api/rituals/:id/complete', requireApiKey, (req, res) => {
   ritual.lastCompleted = today;
   ritual.missedDays = 0;
 
+  // Track longest streak and completion history
+  if (!ritual.longestStreak || ritual.streak > ritual.longestStreak) {
+    ritual.longestStreak = ritual.streak;
+  }
+  if (!ritual.completedDates) ritual.completedDates = [];
+  if (!ritual.completedDates.includes(today)) {
+    ritual.completedDates.push(today);
+    // Keep only last 90 days to avoid bloat
+    if (ritual.completedDates.length > 90) {
+      ritual.completedDates = ritual.completedDates.slice(-90);
+    }
+  }
+
   // Award XP/gold to player
   const uid = playerId.toLowerCase();
   const u = users[uid];

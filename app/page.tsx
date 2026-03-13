@@ -1677,6 +1677,13 @@ export default function Dashboard() {
                       const milestone = STREAK_MILESTONES_CLIENT.reduce<{days:number;badge:string;label:string}|null>((acc, m) => ritual.streak >= m.days ? m : acc, null);
                       const nextMilestone = STREAK_MILESTONES_CLIENT.find(m => ritual.streak < m.days);
                       const progress = nextMilestone ? (ritual.streak / nextMilestone.days) * 100 : 100;
+                      const longestStreak = ritual.longestStreak ?? ritual.streak;
+                      const lastCompletedFormatted = ritual.lastCompleted
+                        ? new Date(ritual.lastCompleted + "T12:00:00").toLocaleDateString("de-DE", { day: "2-digit", month: "short" })
+                        : null;
+                      // Flame intensity based on streak
+                      const flameColor = ritual.streak >= 30 ? "#f59e0b" : ritual.streak >= 14 ? "#f97316" : ritual.streak >= 7 ? "#ef4444" : "rgba(255,255,255,0.25)";
+                      const flameGlow = ritual.streak >= 7 ? `0 0 8px ${flameColor}44` : "none";
                       return (
                         <div key={ritual.id} className="rounded-xl p-3" style={{
                           background: doneToday ? "rgba(34,197,94,0.06)" : "#252525",
@@ -1686,13 +1693,28 @@ export default function Dashboard() {
                           <div className="flex items-start justify-between gap-2">
                             <div className="flex-1 min-w-0">
                               <div className="flex items-center gap-2 mb-1">
+                                {/* Streak flame counter */}
+                                <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-xs font-bold" style={{ color: flameColor, background: `${flameColor}12`, border: `1px solid ${flameColor}30`, boxShadow: flameGlow, fontSize: 11 }}>
+                                  <span style={{ fontSize: 13 }}>{ritual.streak >= 7 ? "\uD83D\uDD25" : "\u2728"}</span>
+                                  {ritual.streak}
+                                </span>
                                 <span className="text-sm font-medium truncate" style={{ color: doneToday ? "rgba(255,255,255,0.4)" : "#e8e8e8", textDecoration: doneToday ? "line-through" : "none" }}>{ritual.title}</span>
                                 {milestone && <span className="text-xs">{milestone.badge}</span>}
                               </div>
-                              <div className="flex items-center gap-3 text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>
-                                <span style={{ color: ritual.streak >= 21 ? "#818cf8" : ritual.streak >= 7 ? "#f97316" : "#ef4444", fontWeight: ritual.streak > 0 ? 600 : 400 }}>
-                                  × {ritual.streak} Tage
+                              <div className="flex items-center gap-3 text-xs flex-wrap" style={{ color: "rgba(255,255,255,0.35)" }}>
+                                <span style={{ color: ritual.streak >= 21 ? "#818cf8" : ritual.streak >= 7 ? "#f97316" : "rgba(255,255,255,0.35)" }}>
+                                  {ritual.streak} Tage Streak
                                 </span>
+                                {longestStreak > 0 && (
+                                  <span title="Longest streak" style={{ color: "rgba(245,158,11,0.5)" }}>
+                                    Best: {longestStreak}
+                                  </span>
+                                )}
+                                {lastCompletedFormatted && (
+                                  <span title="Last completed" style={{ color: "rgba(255,255,255,0.2)" }}>
+                                    {doneToday ? "Heute" : lastCompletedFormatted}
+                                  </span>
+                                )}
                                 <span>{ritual.schedule.type === 'daily' ? 'täglich' : ritual.schedule.days?.join(', ')}</span>
                                 <span>{ritual.rewards.xp} XP · {ritual.rewards.gold} Gold</span>
                               </div>

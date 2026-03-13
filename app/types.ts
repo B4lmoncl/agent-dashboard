@@ -208,6 +208,8 @@ export interface Ritual {
   difficulty: string;
   rewards: { xp: number; gold: number };
   streak: number;
+  longestStreak?: number;
+  completedDates?: string[];
   lastCompleted: string | null;
   playerId: string;
 }
