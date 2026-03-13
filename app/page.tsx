@@ -1245,7 +1245,6 @@ export default function Dashboard() {
             { key: "questBoard",    label: "The Great Hall",     tutorialKey: "quest-board-tab" },
             { key: "klassenquests", label: "The Arcanum",  tutorialKey: null },
             ...(playerName ? [{ key: "character", label: "Character", tutorialKey: null }] : []),
-            { key: "_divider_companion", label: "Companion Hearth", tutorialKey: null, isDivider: true },
             { key: "npcBoard",      label: "The Wanderer's Rest", tutorialKey: "npc-board-tab" },
             { key: "leaderboard", label: "The Proving Grounds", tutorialKey: "leaderboard-tab" },
             { key: "honors",      label: "Honors",          tutorialKey: null },
