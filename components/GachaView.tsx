@@ -182,7 +182,7 @@ function BannerPreviewCard({
 
       {/* Character portrait with arch frame — bottom right */}
       {portraitSrc && (
-        <div className="absolute -bottom-1 right-2 pointer-events-none" style={{ width: 120, height: 160, zIndex: 2 }}>
+        <div className="absolute -bottom-1 right-1 pointer-events-none" style={{ width: 145, height: 195, zIndex: 2 }}>
           {/* Glow behind frame */}
           <div style={{
             position: "absolute", inset: -6,
