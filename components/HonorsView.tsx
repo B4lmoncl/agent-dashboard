@@ -43,12 +43,12 @@ export default function HonorsView({ catalogue, users, playerName = "" }: { cata
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="rounded-2xl p-5" style={{ background: "linear-gradient(135deg, #1a1208 0%, #1a1a1a 100%)", border: "1px solid rgba(245,158,11,0.3)", boxShadow: "0 0 40px rgba(245,158,11,0.07)" }}>
+      <div className="rounded-2xl p-5" style={{ background: "linear-gradient(135deg, #110d04 0%, #0f0f0f 100%)", border: "1px solid rgba(245,158,11,0.18)", boxShadow: "0 0 30px rgba(245,158,11,0.04)" }}>
         <div className="flex items-center gap-3 mb-1">
           <span style={{ fontSize: 28 }}>x</span>
           <div>
-            <h2 className="text-lg font-bold" style={{ color: "#fef3c7" }}>Hall of Honors</h2>
-            <p className="text-xs" style={{ color: "rgba(253,230,138,0.5)" }}>
+            <h2 className="text-lg font-bold" style={{ color: "#d4a64a" }}>Hall of Honors</h2>
+            <p className="text-xs" style={{ color: "rgba(212,166,74,0.4)" }}>
               {loggedInUser ? `${loggedInUser.name} — ${playerEarnedIds.size} / ${catalogue.length} achievements` : "Log in to track your achievements"}
             </p>
           </div>
@@ -56,20 +56,20 @@ export default function HonorsView({ catalogue, users, playerName = "" }: { cata
         {/* Progress bar */}
         {loggedInUser && catalogue.length > 0 && (
           <div className="mt-3">
-            <div className="h-2 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.06)" }}>
-              <div className="h-full rounded-full transition-all duration-700" style={{ width: `${(playerEarnedIds.size / catalogue.length) * 100}%`, background: "linear-gradient(90deg, #f59e0b, #fbbf24)" }} />
+            <div className="h-2 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.04)" }}>
+              <div className="h-full rounded-full transition-all duration-700" style={{ width: `${(playerEarnedIds.size / catalogue.length) * 100}%`, background: "linear-gradient(90deg, #a07020, #c49530)" }} />
             </div>
           </div>
         )}
         {!playerName && (
-          <p className="text-xs mt-1.5 px-1" style={{ color: "rgba(255,255,255,0.3)" }}>
+          <p className="text-xs mt-1.5 px-1" style={{ color: "rgba(255,255,255,0.2)" }}>
             Log in via the header to see your personal achievements highlighted.
           </p>
         )}
       </div>
 
       {catalogue.length === 0 ? (
-        <div className="rounded-xl p-8 text-center" style={{ background: "#252525", border: "1px solid rgba(255,255,255,0.06)" }}>
+        <div className="rounded-xl p-8 text-center" style={{ background: "#151515", border: "1px solid rgba(255,255,255,0.04)" }}>
           <p className="text-sm" style={{ color: "rgba(255,255,255,0.2)" }}>No achievements data. Connect to the API.</p>
         </div>
       ) : (
@@ -107,7 +107,7 @@ export default function HonorsView({ catalogue, users, playerName = "" }: { cata
                       <div
                         key={ach.id}
                         className="rounded-xl overflow-hidden"
-                        style={{ background: "#1a1a1a", border: "2px solid rgba(138,43,226,0.15)", opacity: 0.5 }}
+                        style={{ background: "#111111", border: "2px solid rgba(138,43,226,0.1)", opacity: 0.5 }}
                       >
                         <div className="h-1" style={{ background: "rgba(138,43,226,0.3)" }} />
                         <div className="p-3.5 flex items-center gap-3">
@@ -125,16 +125,16 @@ export default function HonorsView({ catalogue, users, playerName = "" }: { cata
 
                   // Trophy case frame colors
                   const frameColor = myEarned
-                    ? (isHidden ? "rgba(138,43,226,0.6)" : "rgba(245,158,11,0.5)")
-                    : "rgba(255,255,255,0.06)";
+                    ? (isHidden ? "rgba(138,43,226,0.4)" : "rgba(245,158,11,0.3)")
+                    : "rgba(255,255,255,0.04)";
                   const frameShadow = myEarned
-                    ? (isHidden ? "0 0 20px rgba(138,43,226,0.2), inset 0 0 20px rgba(138,43,226,0.05)" : "0 0 20px rgba(245,158,11,0.15), inset 0 0 20px rgba(245,158,11,0.03)")
+                    ? (isHidden ? "0 0 14px rgba(138,43,226,0.12), inset 0 0 14px rgba(138,43,226,0.03)" : "0 0 14px rgba(245,158,11,0.08), inset 0 0 14px rgba(245,158,11,0.02)")
                     : "none";
                   const bgColor = myEarned
-                    ? (isHidden ? "linear-gradient(160deg, rgba(138,43,226,0.12) 0%, rgba(20,10,30,0.9) 100%)" : "linear-gradient(160deg, rgba(40,30,10,0.95) 0%, rgba(25,20,10,0.9) 100%)")
+                    ? (isHidden ? "linear-gradient(160deg, rgba(138,43,226,0.08) 0%, rgba(12,8,18,0.95) 100%)" : "linear-gradient(160deg, rgba(25,20,8,0.95) 0%, rgba(14,12,8,0.95) 100%)")
                     : anyEarned
-                      ? "linear-gradient(160deg, rgba(30,25,15,0.6) 0%, #1e1e1e 100%)"
-                      : "#1e1e1e";
+                      ? "linear-gradient(160deg, rgba(20,17,10,0.6) 0%, #131313 100%)"
+                      : "#131313";
 
                   return (
                     <div
@@ -157,7 +157,7 @@ export default function HonorsView({ catalogue, users, playerName = "" }: { cata
                           <div
                             className="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0"
                             style={{
-                              background: myEarned ? (isHidden ? "rgba(138,43,226,0.15)" : "rgba(245,158,11,0.12)") : "rgba(255,255,255,0.03)",
+                              background: myEarned ? (isHidden ? "rgba(138,43,226,0.1)" : "rgba(245,158,11,0.08)") : "rgba(255,255,255,0.02)",
                               border: `1px solid ${myEarned ? (isHidden ? "rgba(138,43,226,0.4)" : "rgba(245,158,11,0.3)") : "rgba(255,255,255,0.06)"}`,
                               boxShadow: myEarned ? `inset 0 0 12px ${isHidden ? "rgba(138,43,226,0.15)" : "rgba(245,158,11,0.1)"}` : "none",
                             }}
@@ -181,7 +181,7 @@ export default function HonorsView({ catalogue, users, playerName = "" }: { cata
                               {rarity.label.toUpperCase()}
                             </span>
                             <span className="text-xs" style={{ color: "rgba(255,255,255,0.15)", fontSize: 10 }}>
-                              {earnerCount}/{totalUsers} earned
+                              {totalUsers > 0 ? Math.round((earnerCount / totalUsers) * 100) : 0}% aller Spieler
                             </span>
                           </div>
                           {myEarned && myEarnedData?.earnedAt && (
