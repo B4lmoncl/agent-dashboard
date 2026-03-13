@@ -2044,7 +2044,7 @@ export default function Dashboard() {
                                       body: JSON.stringify({ newCommitment: selectedTier.id, newCommitmentDays: selectedTier.days }),
                                     });
                                     closeExtend();
-                                    if (playerName) fetchRituals(playerName).then(setRituals);
+                                    if (playerName) { const updated = await fetchRituals(playerName); setRituals(updated); }
                                   } catch { /* ignore */ }
                                 }}
                                 className="flex-1 text-sm py-2.5 rounded-xl font-bold"

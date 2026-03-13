@@ -353,7 +353,7 @@ export function AntiRitualePanel({ playerName, reviewApiKey }: { playerName: str
   const loadAntiRituals = useCallback(async () => {
     if (!playerName) return;
     try {
-      const r = await fetch(`/api/rituals?player=${encodeURIComponent(playerName)}&type=anti`);
+      const r = await fetch(`/api/rituals?player=${encodeURIComponent(playerName)}&type=anti`, { cache: "no-store" });
       if (r.ok) {
         const all = await r.json() as (Ritual & { isAntiRitual?: boolean; cleanDays?: number; lastViolated?: string | null })[];
         setAntiRituals(all.filter(r => r.isAntiRitual).map(r => ({
