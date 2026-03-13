@@ -10,6 +10,7 @@ import CVBuilderPanel from "@/components/CVBuilderPanel";
 import BattlePassView from "@/components/BattlePassView";
 import CampaignHub from "@/components/CampaignHub";
 import ShopView from "@/components/ShopView";
+import GachaView from "@/components/GachaView";
 import CharacterView from "@/components/CharacterView";
 import { GuideModal, GuideContent, TutorialOverlay, TUTORIAL_STEPS } from "@/components/TutorialModal";
 import {
@@ -88,7 +89,7 @@ export default function Dashboard() {
   const [bulkLoading, setBulkLoading] = useState(false);
   const [reviewComments, setReviewComments] = useState<Record<string, string>>({});
   const [typeFilter, setTypeFilter] = useState<string>("all");
-  const [dashView, setDashView] = useState<"questBoard" | "npcBoard" | "klassenquests" | "character" | "campaign" | "leaderboard" | "honors" | "season" | "shop" | "roadmap" | "changelog">("questBoard");
+  const [dashView, setDashView] = useState<"questBoard" | "npcBoard" | "klassenquests" | "character" | "campaign" | "leaderboard" | "honors" | "season" | "shop" | "gacha" | "roadmap" | "changelog">("questBoard");
   const [createQuestOpen, setCreateQuestOpen] = useState(false);
   const [questBoardAgentOpen, setQuestBoardAgentOpen] = useState(false);
   const [npcAgentRosterOpen, setNpcAgentRosterOpen] = useState(true);
@@ -1138,21 +1139,25 @@ export default function Dashboard() {
                 </p>
               </div>
 
-              {/* Right side: Gold + Forge + Currencies */}
+              {/* Right side: Currencies + Forge */}
               <div className="flex flex-col items-end gap-2 flex-shrink-0">
-                {/* Gold */}
-                <div className="flex items-center gap-1.5">
-                  <img src="/images/icons/reward-gold.png" width={16} height={16} style={{ imageRendering: "pixelated", verticalAlign: "middle" }} />
-                  <span className="text-sm font-mono font-bold" style={{ color: "#f59e0b" }}>{animGold}</span>
-                  <button
-                    data-feedback-id="player-card.currencies"
-                    onClick={() => setCurrenciesOpen(true)}
-                    className="btn-interactive text-xs px-2 py-0.5 rounded ml-1"
-                    style={{ color: "rgba(255,255,255,0.35)", background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}
-                    title="View all currencies"
-                  >
-                    Currencies
-                  </button>
+                {/* Currency bar — prominent like HSR/Genshin */}
+                <div className="flex items-center gap-3 rounded-xl px-3 py-2" style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}>
+                  {[
+                    { emoji: "🪙", key: "gold" as const, value: Number(loggedInUser?.currencies?.gold ?? animGold), color: "#f59e0b" },
+                    { emoji: "⭐", key: "stardust" as const, value: Number(loggedInUser?.currencies?.stardust ?? 0), color: "#818cf8" },
+                    { emoji: "💎", key: "runensplitter" as const, value: Number(loggedInUser?.currencies?.runensplitter ?? 0), color: "#a78bfa" },
+                    { emoji: "🔥", key: "essenz" as const, value: Number(loggedInUser?.currencies?.essenz ?? 0), color: "#ef4444" },
+                    { emoji: "🤝", key: "gildentaler" as const, value: Number(loggedInUser?.currencies?.gildentaler ?? 0), color: "#10b981" },
+                    { emoji: "🌙", key: "mondstaub" as const, value: Number(loggedInUser?.currencies?.mondstaub ?? 0), color: "#c084fc" },
+                  ].map(c => (
+                    <div key={c.key} className="flex items-center gap-1 cursor-pointer" onClick={() => setCurrenciesOpen(true)} title={c.key}>
+                      <span style={{ fontSize: 18 }}>{c.emoji}</span>
+                      <span className="text-base font-mono font-black" style={{ color: c.value > 0 ? c.color : "rgba(255,255,255,0.15)" }}>
+                        {c.value}
+                      </span>
+                    </div>
+                  ))}
                 </div>
 
                 {/* Forge Temperature */}
@@ -1221,12 +1226,12 @@ export default function Dashboard() {
               </div>
               <div className="space-y-2">
                 {[
-                  { icon: "🪙", name: "Gold", key: "gold" as const, value: loggedInUser?.currencies?.gold ?? animGold, color: "#f59e0b", desc: "Hauptwährung. Verdient durch Quests." },
-                  { icon: "⭐", name: "Sternenstaub", key: "stardust" as const, value: loggedInUser?.currencies?.stardust ?? 0, color: "#818cf8", desc: "Premium-Währung. Level-Ups & Achievements." },
-                  { icon: "🔥", name: "Essenz", key: "essenz" as const, value: loggedInUser?.currencies?.essenz ?? 0, color: "#ef4444", desc: "Streak-Währung. Tägliche Beständigkeit." },
-                  { icon: "💎", name: "Runensplitter", key: "runensplitter" as const, value: loggedInUser?.currencies?.runensplitter ?? 0, color: "#a78bfa", desc: "Gacha-Pulls & Quest-Belohnungen." },
-                  { icon: "🤝", name: "Gildentaler", key: "gildentaler" as const, value: loggedInUser?.currencies?.gildentaler ?? 0, color: "#10b981", desc: "Social/Coop-Quests." },
-                  { icon: "🌙", name: "Mondstaub", key: "mondstaub" as const, value: loggedInUser?.currencies?.mondstaub ?? 0, color: "#c084fc", desc: "Event-limitiert. Sehr selten." },
+                  { icon: "🪙", name: "Gold", key: "gold" as const, value: loggedInUser?.currencies?.gold ?? animGold, color: "#f59e0b", desc: "Primary currency. Earned through quests." },
+                  { icon: "⭐", name: "Stardust", key: "stardust" as const, value: loggedInUser?.currencies?.stardust ?? 0, color: "#818cf8", desc: "Premium currency. Level-ups & achievements." },
+                  { icon: "🔥", name: "Essence", key: "essenz" as const, value: loggedInUser?.currencies?.essenz ?? 0, color: "#ef4444", desc: "Streak currency. Daily consistency." },
+                  { icon: "💎", name: "Rune Shards", key: "runensplitter" as const, value: loggedInUser?.currencies?.runensplitter ?? 0, color: "#a78bfa", desc: "Gacha pulls & quest rewards." },
+                  { icon: "🤝", name: "Guild Coins", key: "gildentaler" as const, value: loggedInUser?.currencies?.gildentaler ?? 0, color: "#10b981", desc: "Social & co-op quests." },
+                  { icon: "🌙", name: "Moondust", key: "mondstaub" as const, value: loggedInUser?.currencies?.mondstaub ?? 0, color: "#c084fc", desc: "Event-limited. Extremely rare." },
                 ].map(c => (
                   <div key={c.name} className="flex items-center gap-3 rounded-xl px-3 py-2.5" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)" }}>
                     <span style={{ fontSize: 20 }}>{c.icon}</span>
@@ -1254,6 +1259,7 @@ export default function Dashboard() {
             { key: "klassenquests", label: "The Arcanum",  tutorialKey: null },
             ...(playerName ? [{ key: "character", label: "Character", tutorialKey: null }] : []),
             { key: "shop",        label: "The Bazaar",               tutorialKey: null },
+            { key: "gacha",       label: "Vault of Fate",            tutorialKey: null },
             { key: "leaderboard", label: "The Proving Grounds", tutorialKey: "leaderboard-tab" },
             { key: "honors",      label: "Hall of Honors",  tutorialKey: null },
             { key: "season",      label: `${CURRENT_SEASON.icon} Season`, tutorialKey: "season-tab" },
@@ -1335,6 +1341,15 @@ export default function Dashboard() {
             reviewApiKey={reviewApiKey}
             onBuy={handleShopBuy}
             onGearBuy={handleGearBuy}
+          />
+        )}
+
+        {/* ── VAULT OF FATE (GACHA) TAB ── */}
+        {dashView === "gacha" && (
+          <GachaView
+            users={users}
+            playerName={playerName}
+            reviewApiKey={reviewApiKey}
             onRefresh={refresh}
           />
         )}

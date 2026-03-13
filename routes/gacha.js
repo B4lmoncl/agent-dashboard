@@ -184,7 +184,7 @@ router.get('/api/gacha/pool', (req, res) => {
 // GET /api/gacha/pity/:playerId — pity info
 router.get('/api/gacha/pity/:playerId', (req, res) => {
   const uid = req.params.playerId.toLowerCase();
-  if (!state.users[uid]) return res.status(404).json({ error: 'Spieler nicht gefunden' });
+  if (!state.users[uid]) return res.status(404).json({ error: 'Player not found' });
   const gs = getPlayerGachaState(uid);
   res.json({
     pityCounter: gs.pityCounter,
@@ -199,7 +199,7 @@ router.get('/api/gacha/pity/:playerId', (req, res) => {
 // GET /api/gacha/history/:playerId — pull history
 router.get('/api/gacha/history/:playerId', (req, res) => {
   const uid = req.params.playerId.toLowerCase();
-  if (!state.users[uid]) return res.status(404).json({ error: 'Spieler nicht gefunden' });
+  if (!state.users[uid]) return res.status(404).json({ error: 'Player not found' });
   const gs = getPlayerGachaState(uid);
   res.json({ history: gs.history || [] });
 });
@@ -207,23 +207,23 @@ router.get('/api/gacha/history/:playerId', (req, res) => {
 // POST /api/gacha/pull — single pull
 router.post('/api/gacha/pull', requireApiKey, (req, res) => {
   const { playerId, bannerId } = req.body;
-  if (!playerId || !bannerId) return res.status(400).json({ error: 'playerId und bannerId erforderlich' });
+  if (!playerId || !bannerId) return res.status(400).json({ error: 'playerId and bannerId required' });
   const uid = playerId.toLowerCase();
   const u = state.users[uid];
-  if (!u) return res.status(404).json({ error: 'Spieler nicht gefunden' });
+  if (!u) return res.status(404).json({ error: 'Player not found' });
 
   const banner = state.bannerTemplates.find(b => b.id === bannerId && b.active !== false);
-  if (!banner) return res.status(404).json({ error: 'Banner nicht gefunden oder inaktiv' });
+  if (!banner) return res.status(404).json({ error: 'Banner not found or inactive' });
 
   const currency = banner.currency || 'runensplitter';
   const cost = banner.costSingle || 10;
 
   if (!spendCurrency(uid, currency, cost)) {
-    return res.status(400).json({ error: `Nicht genug ${currency}. Brauchst ${cost}` });
+    return res.status(400).json({ error: `Not enough ${currency}. Need ${cost}` });
   }
 
   const result = executePull(uid, banner);
-  if (!result) return res.status(500).json({ error: 'Pull fehlgeschlagen — Pool leer?' });
+  if (!result) return res.status(500).json({ error: 'Pull failed — pool empty?' });
 
   const { saveUsers } = require('../lib/state');
   saveUsers();
@@ -236,19 +236,19 @@ router.post('/api/gacha/pull', requireApiKey, (req, res) => {
 // POST /api/gacha/pull10 — 10-pull (costs 90 instead of 100, guaranteed min 1 epic)
 router.post('/api/gacha/pull10', requireApiKey, (req, res) => {
   const { playerId, bannerId } = req.body;
-  if (!playerId || !bannerId) return res.status(400).json({ error: 'playerId und bannerId erforderlich' });
+  if (!playerId || !bannerId) return res.status(400).json({ error: 'playerId and bannerId required' });
   const uid = playerId.toLowerCase();
   const u = state.users[uid];
-  if (!u) return res.status(404).json({ error: 'Spieler nicht gefunden' });
+  if (!u) return res.status(404).json({ error: 'Player not found' });
 
   const banner = state.bannerTemplates.find(b => b.id === bannerId && b.active !== false);
-  if (!banner) return res.status(404).json({ error: 'Banner nicht gefunden oder inaktiv' });
+  if (!banner) return res.status(404).json({ error: 'Banner not found or inactive' });
 
   const currency = banner.currency || 'runensplitter';
   const cost = banner.cost10 || 90;
 
   if (!spendCurrency(uid, currency, cost)) {
-    return res.status(400).json({ error: `Nicht genug ${currency}. Brauchst ${cost}` });
+    return res.status(400).json({ error: `Not enough ${currency}. Need ${cost}` });
   }
 
   const results = [];

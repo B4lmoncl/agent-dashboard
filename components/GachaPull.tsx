@@ -5,11 +5,11 @@ import type { GachaPullResult, GachaItem } from "@/app/types";
 
 // ─── Rarity config ────────────────────────────────────────────────────────────
 const RARITY_CONFIG: Record<string, { color: string; glow: string; bg: string; label: string; border: string }> = {
-  common:    { color: "#9ca3af", glow: "rgba(156,163,175,0.3)", bg: "rgba(156,163,175,0.08)", label: "Gewöhnlich", border: "rgba(156,163,175,0.3)" },
-  uncommon:  { color: "#22c55e", glow: "rgba(34,197,94,0.4)",   bg: "rgba(34,197,94,0.08)",  label: "Ungewöhnlich", border: "rgba(34,197,94,0.4)" },
-  rare:      { color: "#3b82f6", glow: "rgba(59,130,246,0.5)",  bg: "rgba(59,130,246,0.10)", label: "Selten", border: "rgba(59,130,246,0.5)" },
-  epic:      { color: "#a855f7", glow: "rgba(168,85,247,0.6)",  bg: "rgba(168,85,247,0.12)", label: "Episch", border: "rgba(168,85,247,0.6)" },
-  legendary: { color: "#f97316", glow: "rgba(249,115,22,0.7)",  bg: "rgba(249,115,22,0.15)", label: "Legendär", border: "rgba(249,115,22,0.7)" },
+  common:    { color: "#9ca3af", glow: "rgba(156,163,175,0.3)", bg: "rgba(156,163,175,0.08)", label: "Common", border: "rgba(156,163,175,0.3)" },
+  uncommon:  { color: "#22c55e", glow: "rgba(34,197,94,0.4)",   bg: "rgba(34,197,94,0.08)",  label: "Uncommon", border: "rgba(34,197,94,0.4)" },
+  rare:      { color: "#3b82f6", glow: "rgba(59,130,246,0.5)",  bg: "rgba(59,130,246,0.10)", label: "Rare", border: "rgba(59,130,246,0.5)" },
+  epic:      { color: "#a855f7", glow: "rgba(168,85,247,0.6)",  bg: "rgba(168,85,247,0.12)", label: "Epic", border: "rgba(168,85,247,0.6)" },
+  legendary: { color: "#f97316", glow: "rgba(249,115,22,0.7)",  bg: "rgba(249,115,22,0.15)", label: "Legendary", border: "rgba(249,115,22,0.7)" },
 };
 
 const RARITY_ORDER = ["common", "uncommon", "rare", "epic", "legendary"];

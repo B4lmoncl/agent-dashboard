@@ -1,7 +1,7 @@
 [
   {
-    "id": "arkanes-schicksal",
-    "name": "Arkanes Schicksal",
+    "id": "wheel-of-stars",
+    "name": "Wheel of Stars",
     "type": "standard",
     "currency": "runensplitter",
     "costSingle": 10,
@@ -9,7 +9,7 @@
     "featuredItems": [],
     "active": true,
     "icon": "🔮",
-    "lore": "Das uralte Portal der Gilde öffnet sich. Jeder Zug am Schicksalsfaden offenbart einen Gegenstand aus den Tiefen des Äthers. Was wird das Schicksal dir zuflüstern?",
+    "lore": "The ancient portal of the Guild opens. Each turn of the Wheel reveals an artifact drawn from the depths of the Aether. What will fate whisper to you?",
     "dropRates": {
       "legendary": "1.6%",
       "epic": "13%",
@@ -19,8 +19,8 @@
     }
   },
   {
-    "id": "sternenlicht",
-    "name": "Sternenlicht",
+    "id": "astral-radiance",
+    "name": "Astral Radiance",
     "type": "featured",
     "currency": "stardust",
     "costSingle": 10,
@@ -28,7 +28,7 @@
     "featuredItems": ["klinge-aetherstrom"],
     "active": true,
     "icon": "✨",
-    "lore": "Das Sternenlicht durchbricht die Dunkelheit. In seinem Glanz verbergen sich die mächtigsten Artefakte der Gilde. Nur die Würdigsten werden sie führen.",
+    "lore": "Starlight pierces the darkness. Within its glow lie the mightiest artifacts of the Guild. Only the worthy shall wield them.",
     "dropRates": {
       "legendary": "1.6% (50/50 Featured)",
       "epic": "13%",
