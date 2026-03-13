@@ -270,6 +270,7 @@ export interface AntiRitual {
   isAntiRitual: boolean;
   cleanDays: number;
   lastViolated: string | null;
+  lastCompleted: string | null;
   playerId: string;
   milestones?: number[];
   createdAt: string;

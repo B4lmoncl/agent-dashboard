@@ -356,6 +356,7 @@ export function AntiRitualePanel({ playerName, reviewApiKey }: { playerName: str
           id: r.id, title: r.title, isAntiRitual: true,
           cleanDays: r.cleanDays ?? r.streak ?? 0,
           lastViolated: r.lastViolated ?? null,
+          lastCompleted: r.lastCompleted ?? null,
           playerId: r.playerId,
           createdAt: r.lastCompleted ?? new Date().toISOString(),
         })));
@@ -412,6 +413,7 @@ export function AntiRitualePanel({ playerName, reviewApiKey }: { playerName: str
 
   const renderVowCard = (ar: AntiRitual) => {
     const days = ar.cleanDays;
+    const vowDoneToday = ar.lastCompleted === new Date().toISOString().slice(0, 10);
     const mood = getAntiRitualMood(days);
     const badge = getStreakBadge(days);
     const nextMilestone = ANTI_RITUAL_MILESTONES.find(m => days < m.days);
@@ -448,7 +450,7 @@ export function AntiRitualePanel({ playerName, reviewApiKey }: { playerName: str
           <div className="flex items-center gap-1 shrink-0">
             <button
               onClick={async () => {
-                if (!reviewApiKey || !playerName) return;
+                if (!reviewApiKey || !playerName || vowDoneToday) return;
                 try {
                   const r = await fetch(`/api/rituals/${ar.id}/complete`, {
                     method: "POST",
@@ -459,14 +461,19 @@ export function AntiRitualePanel({ playerName, reviewApiKey }: { playerName: str
                   if (data.ok) loadAntiRituals();
                 } catch { /* ignore */ }
               }}
-              disabled={!reviewApiKey}
+              disabled={vowDoneToday || !reviewApiKey}
               className="text-xs px-2 py-1 rounded transition-all"
-              style={{ background: "rgba(99,102,241,0.12)", color: "#818cf8", border: "1px solid rgba(99,102,241,0.3)" }}
-              title="Clean day — mark complete"
-              onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(99,102,241,0.25)"; (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(99,102,241,0.55)"; (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 0 10px rgba(99,102,241,0.2)"; }}
-              onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(99,102,241,0.12)"; (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(99,102,241,0.3)"; (e.currentTarget as HTMLButtonElement).style.boxShadow = "none"; }}
+              style={{
+                background: vowDoneToday ? "rgba(34,197,94,0.08)" : "rgba(99,102,241,0.12)",
+                color: vowDoneToday ? "rgba(34,197,94,0.5)" : "#818cf8",
+                border: `1px solid ${vowDoneToday ? "rgba(34,197,94,0.2)" : "rgba(99,102,241,0.3)"}`,
+                cursor: vowDoneToday ? "default" : "pointer",
+              }}
+              title={vowDoneToday ? "Already completed today" : "Clean day — mark complete"}
+              onMouseEnter={e => { if (!vowDoneToday) { (e.currentTarget as HTMLButtonElement).style.background = "rgba(99,102,241,0.25)"; (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(99,102,241,0.55)"; (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 0 10px rgba(99,102,241,0.2)"; }}}
+              onMouseLeave={e => { if (!vowDoneToday) { (e.currentTarget as HTMLButtonElement).style.background = "rgba(99,102,241,0.12)"; (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(99,102,241,0.3)"; (e.currentTarget as HTMLButtonElement).style.boxShadow = "none"; }}}
             >
-              Abhaken
+              {vowDoneToday ? "✓ Clean" : "Abhaken"}
             </button>
             <button
               onClick={() => markViolated(ar.id)}
