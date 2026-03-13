@@ -1,7 +1,7 @@
 [
   {
     "id": "quest-1773396838945-kx5m",
-    "title": "x Omas Garten",
+    "title": "Omas Garten",
     "description": "Oma Ilse zeigt dir ihre Lieblingsblumen. (Geh heute in einen Park oder Garten und beobachte die Natur für 15 Minuten)",
     "priority": "low",
     "type": "fitness",
@@ -46,7 +46,7 @@
   },
   {
     "id": "quest-1773396838945-80ih",
-    "title": "x Ein Brief an jemanden",
+    "title": "Ein Brief an jemanden",
     "description": "'Schreib einem Menschen dem du dankbar bist', sagt Oma Ilse. (Schreibe eine Nachricht oder einen Brief an jemanden den du schätzt)",
     "priority": "medium",
     "type": "social",
@@ -91,7 +91,7 @@
   },
   {
     "id": "quest-1773396838946-3mfm",
-    "title": "x Die Melodie",
+    "title": "Die Melodie",
     "description": "Finnegan lehrt dich einen Akkord. (Höre heute ein Album bewusst durch — kein Multitasking, nur Musik)",
     "priority": "low",
     "type": "personal",
@@ -136,7 +136,7 @@
   },
   {
     "id": "quest-1773396838946-hzkk",
-    "title": "x Das Gedicht",
+    "title": "Das Gedicht",
     "description": "'Worte sind Magie', flüstert Finnegan. (Schreibe ein kurzes Gedicht oder einen kreativen Text — 5 Strophen reichen)",
     "priority": "low",
     "type": "personal",
@@ -361,7 +361,7 @@
   },
   {
     "id": "quest-1773396838962-ota2",
-    "title": "x Der Atem",
+    "title": "Der Atem",
     "description": "Tanaka sagt: 'Kontrolle beginnt beim Atem.' (Übe 10 Minuten Atemübungen oder Box-Breathing)",
     "priority": "low",
     "type": "fitness",
@@ -406,7 +406,7 @@
   },
   {
     "id": "quest-1773396838962-2hel",
-    "title": "x Die Balance",
+    "title": "Die Balance",
     "description": "'Gleichgewicht ist die Basis aller Stärke.' (Mach eine 20-Minuten Yoga- oder Gleichgewichtsübung)",
     "priority": "medium",
     "type": "fitness",
@@ -451,7 +451,7 @@
   },
   {
     "id": "quest-1773396838962-yn6t",
-    "title": "x Der Fokus",
+    "title": "Der Fokus",
     "description": "'Lenke all deine Kraft auf einen Punkt.' (Arbeite 45 Minuten ohne Unterbrechung an einer wichtigen Aufgabe)",
     "priority": "high",
     "type": "personal",
