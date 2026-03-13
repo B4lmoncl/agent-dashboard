@@ -92,12 +92,14 @@ body {
   50% { transform: translateY(-6px) rotate(-12deg); opacity: 0.55; }
 }
 @keyframes fogDrift1 {
-  0%   { transform: translate(0%, 0%) scale(1); }
-  100% { transform: translate(33%, -1%) scale(1.01); }
+  0%   { transform: translate(-15%, 5%) scale(1.05); }
+  50%  { transform: translate(20%, -3%) scale(0.98); }
+  100% { transform: translate(-15%, 5%) scale(1.05); }
 }
 @keyframes fogDrift2 {
-  0%   { transform: translate(0%, 1%) scale(1.01); }
-  100% { transform: translate(25%, -1%) scale(0.99); }
+  0%   { transform: translate(15%, -5%) scale(0.97); }
+  50%  { transform: translate(-20%, 3%) scale(1.03); }
+  100% { transform: translate(15%, -5%) scale(0.97); }
 }
 @keyframes banner-glow-pulse {
   0%, 100% { opacity: 0.4; }

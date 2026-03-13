@@ -169,7 +169,7 @@ function ItemRevealCard({ result }: { result: GachaPullResult }) {
 
       {/* Stats */}
       {result.item.stats && Object.keys(result.item.stats).length > 0 && (
-        <div className="flex gap-2 flex-wrap justify-center">
+        <div className="flex gap-3 flex-wrap justify-center">
           {Object.entries(result.item.stats).filter(([, v]) => v > 0).map(([stat, val]) => (
             <span key={stat} className="text-[11px] font-mono px-2 py-0.5 rounded"
               style={{ color: "#e8e8e8", background: "rgba(255,255,255,0.06)" }}>
@@ -193,7 +193,7 @@ function ItemRevealCard({ result }: { result: GachaPullResult }) {
 
       {/* NEW badge */}
       {result.isNew && (
-        <div className="absolute -top-2 -right-2 text-[10px] font-bold px-2 py-0.5 rounded-full"
+        <div className="absolute -top-2 -right-2 text-xs font-bold px-2 py-0.5 rounded-full"
           style={{ background: "#22c55e", color: "#000" }}>
           NEU!
         </div>
@@ -377,12 +377,12 @@ function MultiPullReveal({ results, onDone }: { results: GachaPullResult[]; onDo
       {/* Summary after all items revealed */}
       {phase === "summary" && (
         <div className="flex flex-col items-center gap-4 w-full max-w-2xl">
-          <h2 className="text-sm font-bold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.5)" }}>
-            10× Arkaner Zug — Zusammenfassung
+          <h2 className="text-base font-bold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.5)" }}>
+            10× Arcane Pull — Zusammenfassung
           </h2>
 
           {/* Card grid */}
-          <div className="grid grid-cols-5 gap-2 w-full">
+          <div className="grid grid-cols-5 gap-3 w-full">
             {shuffledResults.map((result, i) => {
               const cfg = RARITY_CONFIG[result.item.rarity] || RARITY_CONFIG.common;
               const isLeg = result.item.rarity === "legendary";
@@ -403,7 +403,7 @@ function MultiPullReveal({ results, onDone }: { results: GachaPullResult[]; onDo
                   }}>
                     {result.item.emoji}
                   </span>
-                  <p className="text-[9px] sm:text-[10px] font-semibold text-center leading-tight" style={{ color: cfg.color }}>
+                  <p className="text-[9px] sm:text-xs font-semibold text-center leading-tight" style={{ color: cfg.color }}>
                     {result.item.name}
                   </p>
                   <span className="text-[8px] uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.3)" }}>

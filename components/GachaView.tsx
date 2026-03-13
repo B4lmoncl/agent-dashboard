@@ -153,7 +153,7 @@ function BannerPreviewCard({
               <filter id={`${fogId}-a`} x="0%" y="0%" width="100%" height="100%">
                 <feTurbulence type="fractalNoise" baseFrequency="0.008 0.012" numOctaves={2} seed={42} stitchTiles="stitch" result="noise" />
                 <feColorMatrix in="noise" type="matrix" values="0 0 0 0 0.35  0 0 0 0 0.18  0 0 0 0 0.55  0 0 0 0.55 0" />
-                <feGaussianBlur stdDeviation="4" />
+                <feGaussianBlur stdDeviation="8" />
               </filter>
               <filter id={`${fogId}-b`} x="0%" y="0%" width="100%" height="100%">
                 <feTurbulence type="fractalNoise" baseFrequency="0.012 0.006" numOctaves={2} seed={137} stitchTiles="stitch" result="noise" />
@@ -344,30 +344,30 @@ function BannerPullModal({
       <>
         <svg width="0" height="0" style={{ position: "absolute" }}>
           <defs>
-            <filter id={`${btnFogId}-a`} x="0%" y="0%" width="100%" height="100%">
-              <feTurbulence type="fractalNoise" baseFrequency="0.015 0.02" numOctaves={2} seed={seed1} stitchTiles="stitch" result="noise" />
-              <feColorMatrix in="noise" type="matrix" values={`0 0 0 0 ${isFeatured ? "0.35" : "0.28"}  0 0 0 0 ${isFeatured ? "0.18" : "0.22"}  0 0 0 0 ${isFeatured ? "0.55" : "0.6"}  0 0 0 0.45 0`} />
-              <feGaussianBlur stdDeviation="3" />
+            <filter id={`${btnFogId}-a`} x="-25%" y="-25%" width="150%" height="150%">
+              <feTurbulence type="fractalNoise" baseFrequency="0.012 0.016" numOctaves={2} seed={seed1} stitchTiles="stitch" result="noise" />
+              <feColorMatrix in="noise" type="matrix" values={`0 0 0 0 ${isFeatured ? "0.35" : "0.28"}  0 0 0 0 ${isFeatured ? "0.18" : "0.22"}  0 0 0 0 ${isFeatured ? "0.55" : "0.6"}  0 0 0 0.6 0`} />
+              <feGaussianBlur stdDeviation="6" />
             </filter>
-            <filter id={`${btnFogId}-b`} x="0%" y="0%" width="100%" height="100%">
-              <feTurbulence type="fractalNoise" baseFrequency="0.02 0.01" numOctaves={2} seed={seed2} stitchTiles="stitch" result="noise" />
-              <feColorMatrix in="noise" type="matrix" values={`0 0 0 0 ${isFeatured ? "0.3" : "0.22"}  0 0 0 0 ${isFeatured ? "0.15" : "0.2"}  0 0 0 0 ${isFeatured ? "0.6" : "0.65"}  0 0 0 0.3 0`} />
-              <feGaussianBlur stdDeviation="4" />
+            <filter id={`${btnFogId}-b`} x="-25%" y="-25%" width="150%" height="150%">
+              <feTurbulence type="fractalNoise" baseFrequency="0.016 0.008" numOctaves={2} seed={seed2} stitchTiles="stitch" result="noise" />
+              <feColorMatrix in="noise" type="matrix" values={`0 0 0 0 ${isFeatured ? "0.3" : "0.22"}  0 0 0 0 ${isFeatured ? "0.15" : "0.2"}  0 0 0 0 ${isFeatured ? "0.6" : "0.65"}  0 0 0 0.45 0`} />
+              <feGaussianBlur stdDeviation="8" />
             </filter>
           </defs>
         </svg>
         <svg style={{
-          position: "absolute", left: "-50%", top: "-20%", width: "200%", height: "140%",
-          opacity: 0.55, zIndex: 0, pointerEvents: "none",
-          animation: "fogDrift1 6s ease-in-out infinite alternate",
+          position: "absolute", left: "-60%", top: "-30%", width: "220%", height: "160%",
+          opacity: 0.6, zIndex: 0, pointerEvents: "none",
+          animation: "fogDrift1 8s ease-in-out infinite",
           willChange: "transform",
         }}>
           <rect width="100%" height="100%" filter={`url(#${btnFogId}-a)`} />
         </svg>
         <svg style={{
-          position: "absolute", left: "-30%", top: "-10%", width: "180%", height: "120%",
-          opacity: 0.4, zIndex: 0, pointerEvents: "none",
-          animation: "fogDrift2 8s ease-in-out infinite alternate-reverse",
+          position: "absolute", left: "-50%", top: "-20%", width: "200%", height: "140%",
+          opacity: 0.5, zIndex: 0, pointerEvents: "none",
+          animation: "fogDrift2 10s ease-in-out infinite",
           willChange: "transform",
         }}>
           <rect width="100%" height="100%" filter={`url(#${btnFogId}-b)`} />
@@ -400,7 +400,7 @@ function BannerPullModal({
             pointerEvents: "none",
             zIndex: 0,
             opacity: 0, animation: `${runeAnimations[i % runeAnimations.length]} ${4 + i * 0.6}s ease-in-out infinite both`,
-            animationDelay: `${i * 0.02}s`,
+            animationDelay: `${i < 5 ? 0 : (i - 5) * 0.15}s`,
           }}>{runeSymbols[i]}</span>
         ))}
 
