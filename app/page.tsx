@@ -134,6 +134,7 @@ export default function Dashboard() {
   const [questBoardTab, setQuestBoardTab] = useState<"auftraege" | "rituale" | "anti-rituale">("auftraege");
   const [createRitualOpen, setCreateRitualOpen] = useState(false);
   const [newRitualTitle, setNewRitualTitle] = useState("");
+  const [ritualNameError, setRitualNameError] = useState(false);
   const [newRitualSchedule, setNewRitualSchedule] = useState("daily");
   const [newRitualCategory, setNewRitualCategory] = useState("personal");
   const [newRitualCommitment, setNewRitualCommitment] = useState("none");
@@ -161,6 +162,14 @@ export default function Dashboard() {
   const [questDetailModal, setQuestDetailModal] = useState<Quest | null>(null);
   const [currenciesOpen, setCurrenciesOpen] = useState(false);
   const [feedbackMode, setFeedbackMode] = useState(false);
+
+  // Quest detail modal — ESC to close
+  useEffect(() => {
+    if (!questDetailModal) return;
+    const handler = (e: KeyboardEvent) => { if (e.key === "Escape") setQuestDetailModal(null); };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, [questDetailModal]);
 
   // Settings popup — click-outside to close
   useEffect(() => {
@@ -1773,9 +1782,10 @@ export default function Dashboard() {
                         )}
                         {/* Create Ritual Modal — simplified, no portrait */}
                         {createRitualOpen && (() => {
-                          const closeRitualModal = () => { setCreateRitualOpen(false); setNewRitualTitle(""); setNewRitualCommitment("none"); setNewRitualBloodPact(false); };
+                          const closeRitualModal = () => { setCreateRitualOpen(false); setNewRitualTitle(""); setRitualNameError(false); setNewRitualCommitment("none"); setNewRitualBloodPact(false); };
                           const submitRitual = async () => {
-                            if (!newRitualTitle.trim() || !reviewApiKey || !playerName) return;
+                            if (!newRitualTitle.trim()) { setRitualNameError(true); return; }
+                            if (!reviewApiKey || !playerName) return;
                             const tier = COMMITMENT_TIERS.find(t => t.id === newRitualCommitment)!;
                             await fetch('/api/rituals', { method: 'POST', headers: { 'Content-Type': 'application/json', 'x-api-key': reviewApiKey }, body: JSON.stringify({ title: newRitualTitle.trim(), schedule: { type: newRitualSchedule }, playerId: playerName, createdBy: playerName, category: newRitualCategory, commitment: newRitualCommitment, commitmentDays: tier.days, bloodPact: newRitualBloodPact }) });
                             closeRitualModal();
@@ -1813,7 +1823,8 @@ export default function Dashboard() {
                                 <div className="p-5 space-y-4" style={{ paddingBottom: "1.75rem" }}>
                                   <div>
                                     <label className="text-xs font-semibold mb-1.5 block" style={{ color: "rgba(200,170,100,0.55)" }}>Ritual Name</label>
-                                    <input value={newRitualTitle} onChange={e => setNewRitualTitle(e.target.value)} placeholder="Name your ritual..." className="w-full text-sm px-3 py-2.5 rounded-lg" style={{ background: "rgba(0,0,0,0.3)", border: "1px solid rgba(245,158,11,0.25)", color: "#e8d5a3", outline: "none" }} onKeyDown={e => e.key === "Enter" && submitRitual()} autoFocus />
+                                    <input value={newRitualTitle} onChange={e => { setNewRitualTitle(e.target.value); if (ritualNameError) setRitualNameError(false); }} placeholder="Name your ritual..." className="w-full text-sm px-3 py-2.5 rounded-lg" style={{ background: "rgba(0,0,0,0.3)", border: ritualNameError ? "1px solid #ef4444" : "1px solid rgba(245,158,11,0.25)", color: "#e8d5a3", outline: "none" }} onKeyDown={e => e.key === "Enter" && submitRitual()} autoFocus />
+                                    {ritualNameError && <p style={{ color: "#ef4444", fontSize: "0.7rem", marginTop: 4 }}>Please enter a ritual name</p>}
                                   </div>
                                   <div className="grid grid-cols-2 gap-3">
                                     <div>
