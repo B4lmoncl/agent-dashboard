@@ -1352,7 +1352,7 @@ export default function Dashboard() {
             playerName={playerName}
             reviewApiKey={reviewApiKey}
             onRefresh={refresh}
-            onPullComplete={(items) => { items.forEach((item: any, i: number) => { setTimeout(() => addToast({ type: "flavor", message: `${item.item?.name || "Item"} collected!`, icon: "pull", sub: item.item?.rarity || "common" }), i * 300); }); }}
+            onPullComplete={(items) => { items.forEach((item: any, i: number) => { setTimeout(() => addToast({ type: "flavor", message: `${item.item?.name || "Item"} collected!`, icon: "pull", sub: item.item?.rarity || "common" }), i * 50); }); }}
           />
         )}
 

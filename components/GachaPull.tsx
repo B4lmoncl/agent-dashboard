@@ -331,7 +331,7 @@ function MultiPullReveal({ results, onDone }: { results: GachaPullResult[]; onDo
   }, [phase, onDone]);
 
   const handleNehmen = useCallback(() => {
-    const nextIdx = currentIdx + 3;
+    const nextIdx = currentIdx + 1;
     if (nextIdx < shuffledResults.length) {
       setCurrentIdx(nextIdx);
     } else {
@@ -477,13 +477,17 @@ function MultiPullReveal({ results, onDone }: { results: GachaPullResult[]; onDo
 
           <button
             onClick={onDone}
-            className="text-sm px-5 py-2.5 rounded-lg font-semibold"
+            className="text-sm px-6 py-2.5 rounded-lg font-semibold transition-all duration-200 hover:scale-105 active:scale-95"
             style={{
-              background: "rgba(255,255,255,0.1)",
-              color: "rgba(255,255,255,0.7)",
-              border: "1px solid rgba(255,255,255,0.2)",
+              background: "linear-gradient(135deg, rgba(129,140,248,0.25) 0%, rgba(167,139,250,0.2) 100%)",
+              color: "rgba(255,255,255,0.85)",
+              border: "1px solid rgba(129,140,248,0.4)",
+              boxShadow: "0 0 15px rgba(129,140,248,0.15)",
               animation: "gacha-weiter-pulse 2s ease-in-out infinite",
+              cursor: "pointer",
             }}
+            onMouseEnter={(e) => { e.currentTarget.style.boxShadow = "0 0 25px rgba(129,140,248,0.3)"; e.currentTarget.style.background = "linear-gradient(135deg, rgba(129,140,248,0.4) 0%, rgba(167,139,250,0.35) 100%)"; }}
+            onMouseLeave={(e) => { e.currentTarget.style.boxShadow = "0 0 15px rgba(129,140,248,0.15)"; e.currentTarget.style.background = "linear-gradient(135deg, rgba(129,140,248,0.25) 0%, rgba(167,139,250,0.2) 100%)"; }}
           >
             Nehmen
           </button>
@@ -541,6 +545,10 @@ const GACHA_STYLES = `
   30%, 70% { transform: translateX(4px) translateY(-2px); }
 }
 
+@keyframes gacha-card-glow-pulse {
+  0% { filter: brightness(1); }
+  100% { filter: brightness(1.15); }
+}
 @keyframes gacha-weiter-pulse {
   0%, 100% { box-shadow: 0 0 0 0 rgba(255,255,255,0.15); }
   50% { box-shadow: 0 0 12px 2px rgba(255,255,255,0.1); }
