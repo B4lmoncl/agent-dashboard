@@ -1250,7 +1250,7 @@ export default function Dashboard() {
             ...(playerName ? [{ key: "character", label: "Character", tutorialKey: null }] : []),
             { key: "npcBoard",      label: "The Wanderer's Rest", tutorialKey: "npc-board-tab" },
             { key: "leaderboard", label: "The Proving Grounds", tutorialKey: "leaderboard-tab" },
-            { key: "honors",      label: "Honors",          tutorialKey: null },
+            { key: "honors",      label: "Hall of Honors",  tutorialKey: null },
             { key: "campaign",    label: "The Observatory",        tutorialKey: "campaign-tab" },
             { key: "season",      label: `${CURRENT_SEASON.icon} Season`, tutorialKey: "season-tab" },
             { key: "shop",        label: "The Bazaar",               tutorialKey: null },
