@@ -2406,7 +2406,7 @@ export default function Dashboard() {
                             color: meets ? "#22c55e" : "#ef4444",
                             background: meets ? "rgba(34,197,94,0.1)" : "rgba(239,68,68,0.1)",
                             border: `1px solid ${meets ? "rgba(34,197,94,0.3)" : "rgba(239,68,68,0.3)"}`,
-                          }}>Min. Level {q.minLevel}</span>
+                          }}>Level {q.minLevel}</span>
                         );
                       })()}
                     </div>
