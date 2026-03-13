@@ -152,12 +152,12 @@ function BannerPreviewCard({
             <defs>
               <filter id={`${fogId}-a`} x="0%" y="0%" width="100%" height="100%">
                 <feTurbulence type="fractalNoise" baseFrequency="0.008 0.012" numOctaves={2} seed={42} stitchTiles="stitch" result="noise" />
-                <feColorMatrix in="noise" type="matrix" values="0 0 0 0 0.35  0 0 0 0 0.18  0 0 0 0 0.55  0 0 0 0.55 0" />
+                <feColorMatrix in="noise" type="matrix" values="0 0 0 0 0.35  0 0 0 0 0.18  0 0 0 0 0.55  0 0 0 0.8 0" />
                 <feGaussianBlur stdDeviation="12" />
               </filter>
               <filter id={`${fogId}-b`} x="0%" y="0%" width="100%" height="100%">
                 <feTurbulence type="fractalNoise" baseFrequency="0.012 0.006" numOctaves={2} seed={137} stitchTiles="stitch" result="noise" />
-                <feColorMatrix in="noise" type="matrix" values="0 0 0 0 0.28  0 0 0 0 0.15  0 0 0 0 0.6  0 0 0 0.45 0" />
+                <feColorMatrix in="noise" type="matrix" values="0 0 0 0 0.28  0 0 0 0 0.15  0 0 0 0 0.6  0 0 0 0.7 0" />
                 <feGaussianBlur stdDeviation="10" />
               </filter>
             </defs>
@@ -410,8 +410,8 @@ function BannerPullModal({
             zIndex: 0,
             overflow: "hidden",
             borderRadius: "1rem",
-            maskImage: "radial-gradient(ellipse 95% 90% at 48% 50%, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.5) 55%, transparent 82%)",
-            WebkitMaskImage: "radial-gradient(ellipse 95% 90% at 48% 50%, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.5) 55%, transparent 82%)",
+            maskImage: "none",
+            WebkitMaskImage: "none",
           }}>
             <svg width="0" height="0" style={{ position: "absolute" }}>
               <defs>
@@ -429,7 +429,7 @@ function BannerPullModal({
             </svg>
             <svg style={{
               position: "absolute", left: "-70%", top: "-30%", width: "240%", height: "160%",
-              opacity: 0.8,
+              opacity: 1.0,
               animation: "fogDrift1 22s ease-in-out infinite alternate",
               willChange: "transform",
             }}>
@@ -437,7 +437,7 @@ function BannerPullModal({
             </svg>
             <svg style={{
               position: "absolute", left: "-60%", top: "-25%", width: "220%", height: "150%",
-              opacity: 0.65,
+              opacity: 0.9,
               animation: "fogDrift2 28s ease-in-out infinite alternate-reverse",
               willChange: "transform",
             }}>
