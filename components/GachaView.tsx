@@ -399,7 +399,7 @@ function BannerPullModal({
             textShadow: "0 0 8px rgba(129,140,248,0.5)",
             pointerEvents: "none",
             zIndex: 0,
-            animation: `${runeAnimations[i % runeAnimations.length]} ${4 + i * 0.6}s ease-in-out infinite`,
+            opacity: 0, animation: `${runeAnimations[i % runeAnimations.length]} ${4 + i * 0.6}s ease-in-out infinite both`,
             animationDelay: `${i * 0.35}s`,
           }}>{runeSymbols[i]}</span>
         ))}
@@ -445,22 +445,22 @@ function BannerPullModal({
                 }}>
                   {isFeatured ? "Featured Banner" : "Standard Banner"}
                 </span>
-                <h3 className="text-lg font-bold mt-2" style={{ color: "#f0ece4" }}>{banner.name}</h3>
+                <div className="flex items-center gap-2 mt-2">
+                  <h3 className="text-lg font-bold" style={{ color: "#f0ece4" }}>{banner.name}</h3>
+                  <button
+                    onClick={() => setShowInfo(v => !v)}
+                    className="w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold flex-shrink-0"
+                    style={{
+                      color: showInfo ? "#fff" : "rgba(255,255,255,0.4)",
+                      background: showInfo ? accentColor + "40" : "rgba(255,255,255,0.06)",
+                      border: "1px solid " + (showInfo ? accentColor + "60" : "rgba(255,255,255,0.12)"),
+                      cursor: "pointer",
+                    }}
+                  >?</button>
+                </div>
               </div>
-              <div className="flex items-center gap-1.5">
-                {/* Info toggle button */}
-                <button
-                  onClick={() => setShowInfo(v => !v)}
-                  className="w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold"
-                  style={{
-                    color: showInfo ? "#fff" : "rgba(255,255,255,0.45)",
-                    background: showInfo ? `${accentColor}40` : "rgba(255,255,255,0.06)",
-                    border: `1px solid ${showInfo ? `${accentColor}60` : "rgba(255,255,255,0.12)"}`,
-                    cursor: "pointer",
-                  }}
-                >?</button>
-                <button onClick={onClose} className="text-lg" style={{ color: "rgba(255,255,255,0.3)", background: "none", border: "none", cursor: "pointer" }}>✕</button>
-              </div>
+              {/* Close button - absolute top right */}
+                <button onClick={onClose} className="absolute top-3 right-3 w-7 h-7 rounded-full flex items-center justify-center text-sm" style={{ color: "rgba(255,255,255,0.5)", background: "rgba(0,0,0,0.5)", border: "1px solid rgba(255,255,255,0.15)", cursor: "pointer", zIndex: 10 }}>✕</button>
             </div>
             <p className="text-xs italic leading-relaxed mb-4" style={{ color: "rgba(255,255,255,0.25)", maxWidth: portraitSrc ? "55%" : undefined }}>
               {banner.lore}

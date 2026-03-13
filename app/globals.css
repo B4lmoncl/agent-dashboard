@@ -105,17 +105,17 @@ body {
 }
 
 @keyframes gacha-rune-up {
-  0% { transform: translateY(0) rotate(0deg); opacity: 0.35; }
+  0% { transform: translateY(0) rotate(0deg); opacity: 0; } 15% { opacity: 0.4; }
   60% { opacity: 0.6; }
   100% { transform: translateY(-80px) rotate(20deg); opacity: 0; }
 }
 @keyframes gacha-rune-up-left {
-  0% { transform: translate(0, 0) rotate(0deg); opacity: 0.3; }
+  0% { transform: translate(0, 0) rotate(0deg); opacity: 0; } 15% { opacity: 0.35; }
   60% { opacity: 0.55; }
   100% { transform: translate(-40px, -70px) rotate(-15deg); opacity: 0; }
 }
 @keyframes gacha-rune-up-right {
-  0% { transform: translate(0, 0) rotate(0deg); opacity: 0.3; }
+  0% { transform: translate(0, 0) rotate(0deg); opacity: 0; } 15% { opacity: 0.35; }
   60% { opacity: 0.55; }
   100% { transform: translate(40px, -70px) rotate(15deg); opacity: 0; }
 }
