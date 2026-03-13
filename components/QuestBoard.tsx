@@ -4,7 +4,7 @@
  *   QuestBadges.tsx    — badge components (CategoryBadge, TypeBadge, etc.)
  *   QuestCards.tsx     — QuestCard, EpicQuestCard, CompletedQuestRow
  *   QuestModals.tsx    — CreateQuestModal + quest creation panels
- *   QuestNpcPanels.tsx — AntiRitualePanel, DobbieQuestPanel, SmartSuggestionsPanel
+ *   QuestPanels.tsx    — AntiRitualePanel, DobbieQuestPanel, SmartSuggestionsPanel
  *   UserCard.tsx          — UserCard component
  *   ShopModal.tsx         — ShopModal component
  *   QuestToasts.tsx       — ChainQuestToast, AchievementToast, FlavorToast, EmptyState, SkeletonCard
@@ -47,7 +47,7 @@ export {
   AntiRitualePanel,
   DobbieQuestPanel,
   SmartSuggestionsPanel,
-} from "./QuestNpcPanels";
+} from "./QuestPanels";
 
 // ─── UserCard ─────────────────────────────────────────────────────────────────
 export { UserCard } from "./UserCard";

@@ -118,7 +118,6 @@ components/*.tsx             ← UI renders from API responses + JSON imports
 ```
 
 The frontend also imports some JSON files directly for client-side rendering:
-- `components/QuestNpcPanels.tsx` ← `dobbieCompanion.json`
 - `components/QuestPanels.tsx` ← `dobbieCompanion.json`
 - `components/ShopView.tsx` ← `shopItems.json`
 - `components/ShopModal.tsx` ← `shopItems.json`
