@@ -638,6 +638,181 @@
           "desc": "Klingt wie ein Sommertag. Wer sie hört, fühlt sich tapferer."
         }
       }
+    },
+    {
+      "id": "bruder-tomas",
+      "name": "Bruder Tomas",
+      "emoji": "",
+      "title": "Wandernder Moench",
+      "description": "Ein stiller Moench der durch Disziplin Kraft findet.",
+      "portrait": "/images/npcs/bruder-tomas.png",
+      "greeting": "Stille ist die erste Lektion...",
+      "rarity": "rare",
+      "departureDurationHours": 72,
+      "questChains": [
+        [
+          {
+            "title": "Morgenmeditation",
+            "description": "Beginne den Tag mit 5 Minuten Stille.",
+            "type": "personal",
+            "flavorText": "Der erste Schritt zur Meisterschaft ist Stille.",
+            "rewards": {
+              "xp": 20,
+              "gold": 10
+            }
+          },
+          {
+            "title": "Koerperliche Disziplin",
+            "description": "30 Minuten fokussiertes Training.",
+            "type": "fitness",
+            "flavorText": "Der Koerper ist der Tempel des Geistes.",
+            "rewards": {
+              "xp": 30,
+              "gold": 15
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "zara-funkenwind",
+      "name": "Zara Funkenwind",
+      "emoji": "",
+      "title": "Wandernde Alchemistin",
+      "description": "Eine experimentierfreudige Alchemistin.",
+      "portrait": "/images/npcs/zara-funkenwind.png",
+      "greeting": "Hast du schon mal Mondstaub destilliert?",
+      "rarity": "epic",
+      "departureDurationHours": 48,
+      "questChains": [
+        [
+          {
+            "title": "Zutaten sammeln",
+            "description": "Finde und dokumentiere 3 neue Ressourcen.",
+            "type": "learning",
+            "flavorText": "Jede Zutat erzaehlt eine Geschichte.",
+            "rewards": {
+              "xp": 25,
+              "gold": 15
+            }
+          },
+          {
+            "title": "Das Experiment",
+            "description": "Probiere etwas Neues aus.",
+            "type": "personal",
+            "flavorText": "Fehler sind die besten Lehrer!",
+            "rewards": {
+              "xp": 35,
+              "gold": 20
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "alter-henrik",
+      "name": "Alter Henrik",
+      "emoji": "",
+      "title": "Weiser Eremit",
+      "description": "Ein alter Eremit der die Geheimnisse des Waldes kennt.",
+      "portrait": "/images/npcs/alter-henrik.png",
+      "greeting": "Die Baeume fluestern heute lauter als sonst...",
+      "rarity": "rare",
+      "departureDurationHours": 72,
+      "questChains": [
+        [
+          {
+            "title": "Waldspaziergang",
+            "description": "20 Minuten draussen in der Natur verbringen.",
+            "type": "fitness",
+            "flavorText": "Die Natur heilt was der Verstand nicht kann.",
+            "rewards": {
+              "xp": 20,
+              "gold": 10
+            }
+          },
+          {
+            "title": "Altes Wissen",
+            "description": "Lerne etwas ueber ein Thema das dich interessiert.",
+            "type": "learning",
+            "flavorText": "Wissen ist der Schatz der Alten.",
+            "rewards": {
+              "xp": 30,
+              "gold": 15
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "lumi",
+      "name": "Lumi",
+      "emoji": "",
+      "title": "Irrlichter-Fuehrerin",
+      "description": "Ein geheimnisvolles Wesen aus Licht.",
+      "portrait": "/images/npcs/lumi.png",
+      "greeting": "*flimmert aufgeregt*",
+      "rarity": "legendary",
+      "departureDurationHours": 24,
+      "questChains": [
+        [
+          {
+            "title": "Nachteulen-Ritual",
+            "description": "Erledige eine Aufgabe nach 20 Uhr.",
+            "type": "personal",
+            "flavorText": "Die besten Ideen kommen bei Mondschein.",
+            "rewards": {
+              "xp": 40,
+              "gold": 25
+            }
+          },
+          {
+            "title": "Sternenbeobachtung",
+            "description": "Nimm dir 10 Minuten um nachzudenken.",
+            "type": "personal",
+            "flavorText": "In der Stille findest du Antworten.",
+            "rewards": {
+              "xp": 30,
+              "gold": 20
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "rogar-amboss",
+      "name": "Rogar Amboss",
+      "emoji": "",
+      "title": "Zwergischer Schmied",
+      "description": "Ein grimmiger Schmied der nur die haertesten Aufgaben respektiert.",
+      "portrait": "/images/npcs/rogar-amboss.png",
+      "greeting": "Bist du hier um zu arbeiten oder zu plaudern?",
+      "rarity": "epic",
+      "departureDurationHours": 48,
+      "questChains": [
+        [
+          {
+            "title": "Schwere Arbeit",
+            "description": "Erledige eine anspruchsvolle Aufgabe.",
+            "type": "personal",
+            "flavorText": "Stahl wird nur im Feuer gehaertet.",
+            "rewards": {
+              "xp": 35,
+              "gold": 20
+            }
+          },
+          {
+            "title": "Meisterwerk",
+            "description": "Erstelle oder verbessere etwas.",
+            "type": "personal",
+            "flavorText": "Ein Meisterwerk braucht Schweiss und Geduld.",
+            "rewards": {
+              "xp": 45,
+              "gold": 25
+            }
+          }
+        ]
+      ]
     }
   ]
 }
