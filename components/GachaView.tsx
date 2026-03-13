@@ -466,10 +466,9 @@ function BannerPullModal({
             <div className="text-right">
               <p className="text-[10px] uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.35)", textAlign: "right" }}>Your Balance</p>
               <div className="flex items-center justify-end gap-2">
-                <p className="text-sm font-mono font-bold" style={{ color: balance > 0 ? ci.color : "rgba(255,255,255,0.2)" }}>{balance}</p>
                 <button
                   onClick={() => setShowInfo(v => !v)}
-                  className="w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0"
+                  className="w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold flex-shrink-0"
                   style={{
                     color: showInfo ? "#fff" : "rgba(255,255,255,0.45)",
                     background: showInfo ? accentColor + "40" : "rgba(255,255,255,0.06)",
@@ -477,6 +476,7 @@ function BannerPullModal({
                     cursor: "pointer",
                   }}
                 >?</button>
+                <p className="text-sm font-mono font-bold" style={{ color: balance > 0 ? ci.color : "rgba(255,255,255,0.2)" }}>{balance}</p>
               </div>
             </div>
           </div>
