@@ -76,7 +76,10 @@ export async function fetchAchievementCatalogue(): Promise<AchievementDef[]> {
 export async function fetchRituals(playerName: string): Promise<Ritual[]> {
   try {
     const r = await fetch(`/api/rituals?player=${encodeURIComponent(playerName)}`, { signal: AbortSignal.timeout(2000) });
-    if (r.ok) return r.json();
+    if (r.ok) {
+      const all: Ritual[] = await r.json();
+      return all.filter(r => !('isAntiRitual' in r && (r as any).isAntiRitual));
+    }
   } catch { /* ignore */ }
   return [];
 }
