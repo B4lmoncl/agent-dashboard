@@ -99,7 +99,7 @@ All data files live in `public/data/`. The backend loads them on startup via `li
 | `habits.json` | Habit tracking |
 | `rituals.json` | Active rituals |
 | `appState.json` | App-level state |
-| `achievements.json` | Earned achievements |
+| `achievementTemplates.json` | Earned achievements |
 
 ## Frontend Config
 

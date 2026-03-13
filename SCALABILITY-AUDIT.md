@@ -71,7 +71,7 @@ The app has solid bones but is hitting natural monolith limits. `server.js` (~52
 | FULL_GEAR_ITEMS (24) | Hardcoded | Still in server.js 🔴 |
 
 **Remaining P1 items:**
-- Extract `ACHIEVEMENT_CATALOGUE` to `public/data/achievements.json`
+- Extract `ACHIEVEMENT_CATALOGUE` to `public/data/achievementTemplates.json`
 - Extract `FULL_GEAR_ITEMS` inline block into `gearTemplates.json` (consolidate IDs)
 
 ### Seasons & Campaigns
@@ -213,7 +213,7 @@ All implemented in this session (no behavioral changes, pure extraction):
 ## Remaining Backlog
 
 ### P1 — Do Soon
-- [ ] Extract `ACHIEVEMENT_CATALOGUE` (28 entries) to `public/data/achievements.json`
+- [ ] Extract `ACHIEVEMENT_CATALOGUE` (28 entries) to `public/data/achievementTemplates.json`
 - [ ] Consolidate `FULL_GEAR_ITEMS` inline block into `gearTemplates.json`
 - [ ] Add write-queue / claim-lock to prevent race conditions
 - [ ] Add `POST /api/admin/config/reload` for hot-reload without restart

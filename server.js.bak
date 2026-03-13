@@ -38,7 +38,7 @@ const GAME_CONFIG_FILE   = path.join(DATA_DIR, 'gameConfig.json');
 const LEVELS_FILE        = path.join(DATA_DIR, 'levels.json');
 const CAMPAIGN_NPCS_FILE = path.join(DATA_DIR, 'campaignNpcs.json');
 const QUEST_FLAVOR_FILE  = path.join(DATA_DIR, 'questFlavor.json');
-const ACHIEVEMENTS_FILE  = path.join(DATA_DIR, 'achievements.json');
+const ACHIEVEMENTS_FILE  = path.join(DATA_DIR, 'achievementTemplates.json');
 
 // ─── Sync JSON load helper (used for config files at startup) ─────────────────
 function tryLoadJsonSync(file, fallback) {
@@ -1903,7 +1903,7 @@ const ACHIEVEMENT_FLAVOR = {
 };
 
 // ─── Achievements catalogue ─────────────────────────────────────────────────
-// Static metadata loaded from achievements.json; triggers defined here
+// Static metadata loaded from achievementTemplates.json; triggers defined here
 const ACHIEVEMENT_TRIGGERS = {
   'first_quest':       (u) => (u.questsCompleted || 0) >= 1,
   'apprentice':        (u) => (u.questsCompleted || 0) >= 10,
