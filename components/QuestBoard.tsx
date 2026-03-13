@@ -752,20 +752,20 @@ export function AntiRitualePanel({ playerName, reviewApiKey }: { playerName: str
               <div className="hidden md:flex flex-col" style={{ position: "absolute", right: -185, top: "50%", transform: "translateY(-50%)", width: 200, overflow: "visible" }}>
                 <img src="/images/portraits/npc-vael.png?v=3" alt="Vael the Silent" width={256} height={384} style={{ imageRendering: "pixelated", width: "100%", height: "auto", display: "block", filter: "drop-shadow(0 0 18px rgba(99,102,241,0.5))", borderRadius: "8px 8px 0 0", pointerEvents: "none" }} />
                 <div style={{ background: "rgba(8,8,20,0.92)", border: "1px solid rgba(99,102,241,0.4)", borderTop: "none", borderRadius: "0 0 8px 8px", padding: "10px 12px" }}>
-                  <p style={{ fontSize: "0.8rem", fontStyle: "italic", color: "#a5b4fc", lineHeight: 1.5, margin: 0 }}>&ldquo;Your resolve deepens. The vow grows stronger.&rdquo;</p>
+                  <p style={{ fontSize: "0.8rem", fontStyle: "italic", color: "#a5b4fc", lineHeight: 1.5, margin: 0 }}>&ldquo;Dein Wille vertieft sich. Der Schwur wird stärker.&rdquo;</p>
                 </div>
               </div>
               <div style={{ maxWidth: 480, width: "100%", borderRadius: "1rem", background: "linear-gradient(160deg, #1e1c2c 0%, #141220 100%)", border: "1px solid rgba(99,102,241,0.3)", boxShadow: "0 0 40px rgba(99,102,241,0.07)" }}>
                 <div className="flex items-center gap-3 px-5 pt-4 pb-3 border-b" style={{ borderColor: "rgba(99,102,241,0.12)" }}>
                   <div>
-                    <h3 className="text-sm font-bold" style={{ color: "#e2e8f0" }}>Extend Vow: {vowToExtend.title}</h3>
-                    <p className="text-xs" style={{ color: "rgba(165,180,252,0.4)" }}>Current: {COMMITMENT_TIERS_VOW.find(t => t.id === (vowToExtend.commitment ?? "none"))?.label ?? "None"} ({currentDays}d)</p>
+                    <h3 className="text-sm font-bold" style={{ color: "#e2e8f0" }}>Schwur verlängern: {vowToExtend.title}</h3>
+                    <p className="text-xs" style={{ color: "rgba(165,180,252,0.4)" }}>Aktuell: {COMMITMENT_TIERS_VOW.find(t => t.id === (vowToExtend.commitment ?? "none"))?.label ?? "Keine"} ({currentDays}d)</p>
                   </div>
                   <button onClick={closeExtend} style={{ marginLeft: "auto", width: 28, height: 28, borderRadius: "50%", background: "rgba(255,255,255,0.07)", border: "none", color: "rgba(255,255,255,0.45)", fontSize: 16, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>×</button>
                 </div>
                 <div className="p-5 space-y-4">
                   <div>
-                    <label className="text-xs font-semibold mb-2 block" style={{ color: "rgba(165,180,252,0.55)" }}>New Aetherbond (must be longer)</label>
+                    <label className="text-xs font-semibold mb-2 block" style={{ color: "rgba(165,180,252,0.55)" }}>Neuer Ätherbund (muss länger sein)</label>
                     <div className="grid grid-cols-3 gap-1.5">
                       {COMMITMENT_TIERS_VOW.filter(tier => tier.days > currentDays).map(tier => (
                         <button key={tier.id} onClick={() => setExtendCommitment(tier.id)} className="text-left p-2 rounded-lg" style={{ background: extendCommitment === tier.id ? `${tier.color}1a` : "rgba(0,0,0,0.2)", border: `1px solid ${extendCommitment === tier.id ? tier.color : "rgba(255,255,255,0.07)"}`, boxShadow: extendCommitment === tier.id ? `0 0 12px ${tier.color}55` : "none" }}>
@@ -776,7 +776,7 @@ export function AntiRitualePanel({ playerName, reviewApiKey }: { playerName: str
                     </div>
                   </div>
                   <div className="flex gap-2 pt-1">
-                    <button onClick={closeExtend} className="text-sm py-2.5 px-5 rounded-xl" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(165,180,252,0.35)", border: "1px solid rgba(255,255,255,0.08)" }}>Cancel</button>
+                    <button onClick={closeExtend} className="text-sm py-2.5 px-5 rounded-xl" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(165,180,252,0.35)", border: "1px solid rgba(255,255,255,0.08)" }}>Abbrechen</button>
                     <button
                       disabled={!canExtend}
                       onClick={async () => {
@@ -794,7 +794,7 @@ export function AntiRitualePanel({ playerName, reviewApiKey }: { playerName: str
                       className="flex-1 text-sm py-2.5 rounded-xl font-bold"
                       style={{ background: canExtend ? "rgba(67,56,202,0.32)" : "rgba(255,255,255,0.04)", color: canExtend ? "#a5b4fc" : "rgba(255,255,255,0.2)", border: `1px solid ${canExtend ? "rgba(99,102,241,0.6)" : "rgba(255,255,255,0.08)"}`, cursor: canExtend ? "pointer" : "not-allowed" }}
                     >
-                      Extend Vow
+                      Schwur verlängern
                     </button>
                   </div>
                 </div>
