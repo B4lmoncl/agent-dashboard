@@ -98,7 +98,7 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
   compact?: boolean;
   dobbieQuests?: Quest[];
 }) {
-  const companionType = user?.companion?.type;
+  const companionType = user?.companion?.type || user?.companion?.species;
   const companionQuotes = getCompanionQuotes(companionType, user?.companion?.name);
   const [quoteIdx] = useState(() => Math.floor(Math.random() * 5));
   const [petting, setPetting] = useState(false);
