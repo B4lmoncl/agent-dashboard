@@ -175,7 +175,7 @@ export function WandererRest({
         <div className="mb-4">
           <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
             <div style={{ flex: 1, height: 1, background: "linear-gradient(90deg, transparent, rgba(255,215,0,0.25), transparent)" }} />
-            <span style={{ fontSize: "0.85rem", color: "rgba(255,215,0,0.6)", letterSpacing: "0.15em", textTransform: "uppercase" }}>x The Wanderer&apos;s Rest x</span>
+            <span style={{ fontSize: "0.85rem", color: "rgba(255,215,0,0.6)", letterSpacing: "0.15em", textTransform: "uppercase" }}>◆ The Wanderer's Rest ◆</span>
             <div style={{ flex: 1, height: 1, background: "linear-gradient(90deg, transparent, rgba(255,215,0,0.25), transparent)" }} />
           </div>
           <p className="text-xs mt-2 italic text-center" style={{ color: "rgba(255,255,255,0.3)" }}>They come. They go. They always return.</p>
@@ -222,7 +222,7 @@ export function WandererRest({
                         />
                       ) : (
                         <div className="w-full h-full flex items-center justify-center" style={{ background: "rgba(255,255,255,0.04)", fontSize: 56 }}>
-                          {npc.emoji}
+                          {npc.emoji && npc.emoji !== "x" && npc.emoji !== "" ? npc.emoji : null}
                         </div>
                       )}
                       {allDone && (
@@ -389,7 +389,7 @@ export function WandererRest({
                 onClick={() => setSelectedNpc(null)}
                 className="absolute top-3 right-3 z-10 flex items-center justify-center rounded-full"
                 style={{ width: 28, height: 28, background: "rgba(255,255,255,0.07)", border: "1px solid rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.5)", cursor: "pointer", fontSize: 14 }}
-              >x</button>
+              >✕</button>
 
               {isStarweaver && (
                 <>
@@ -405,7 +405,7 @@ export function WandererRest({
                   {npc.portrait ? (
                     <img src={npc.portrait} alt={npc.name} width={isStarweaver ? 128 : 96} height={isStarweaver ? 128 : 96} style={{ imageRendering: "pixelated", display: "block", width: "100%", height: "100%", objectFit: "cover" }} />
                   ) : (
-                    <div className="w-full h-full flex items-center justify-center" style={{ background: "rgba(255,255,255,0.04)", fontSize: 40 }}>{npc.emoji}</div>
+                    <div className="w-full h-full flex items-center justify-center" style={{ background: "rgba(255,255,255,0.04)", fontSize: 40 }}>{npc.emoji && npc.emoji !== "x" && npc.emoji !== "" ? npc.emoji : null}</div>
                   )}
                 </div>
                 <div className="flex-1 min-w-0 pt-1">
@@ -478,8 +478,8 @@ export function WandererRest({
                         )}
                         <p className="text-xs mt-1.5 leading-relaxed" style={{ color: "rgba(255,255,255,0.5)" }}>{currentQuest.description}</p>
                         <div className="flex items-center gap-3 mt-3">
-                          <span className="text-xs font-semibold" style={{ color: "#f59e0b" }}>x +{currentQuest.rewards?.xp ?? 0} XP</span>
-                          <span className="text-xs" style={{ color: "rgba(255,193,7,0.6)" }}>+{currentQuest.rewards?.gold ?? 0} x</span>
+                          <span className="text-xs font-semibold" style={{ color: "#f59e0b" }}>⭐ +{currentQuest.rewards?.xp ?? 0} XP</span>
+                          <span className="text-xs" style={{ color: "rgba(255,193,7,0.6)" }}>+{currentQuest.rewards?.gold ?? 0}g</span>
                           {(currentQuest.status === "claimed" || currentQuest.status === "in_progress") && (
                             <div className="flex items-center gap-2 ml-auto">
                               <span className="text-xs px-2 py-0.5 rounded font-semibold" style={{ background: "rgba(96,165,250,0.15)", color: "#60a5fa", border: "1px solid rgba(96,165,250,0.3)" }}>x Active</span>
@@ -556,7 +556,7 @@ export function WandererRest({
                     <div className="mt-4 px-4 py-3 rounded-xl flex items-start gap-3" style={{ background: "rgba(255,215,0,0.04)", border: "1px solid rgba(255,215,0,0.12)" }}>
                       <span className="text-lg flex-shrink-0 mt-0.5">{npc.finalReward.item.emoji}</span>
                       <div className="flex-1 min-w-0">
-                        <p className="text-xs font-semibold" style={{ color: "rgba(255,215,0,0.7)" }}>x Chain Reward</p>
+                        <p className="text-xs font-semibold" style={{ color: "rgba(255,215,0,0.7)" }}>🏆 Chain Reward</p>
                         <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.5)" }}>{npc.finalReward.item.name}</p>
                         <p className="text-xs mt-0.5 italic" style={{ color: "rgba(255,255,255,0.25)" }}>{npc.finalReward.item.desc}</p>
                       </div>

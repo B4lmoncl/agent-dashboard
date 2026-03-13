@@ -75,17 +75,17 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                 <ul className="space-y-1 mt-1">
                   <li>• Wähle eine <span style={{ color: "#a78bfa" }}>aktive Klasse</span> aus der Liste — sie ist sofort verfügbar.</li>
                   <li>• Keine passende Klasse? <span style={{ color: "#f59e0b" }}>Eigene Klasse einreichen</span> — ein Admin schmiedet sie für dich.</li>
-                  <li>• Während deine Klasse geschmiedet wird, siehst du <span style={{ color: "#f59e0b" }}>x Klasse wird geschmiedet...</span> auf deiner Spielerkarte.</li>
+                  <li>• Während deine Klasse geschmiedet wird, siehst du <span style={{ color: "#f59e0b" }}>⚒️ Klasse wird geschmiedet...</span> auf deiner Spielerkarte.</li>
                   <li>• Sobald die Klasse fertig ist, erhältst du beim nächsten Login eine Benachrichtigung.</li>
                 </ul>
               </GuideSection>
               <GuideSection icon="" title="Begleiter">
                 <ul className="space-y-1 mt-1">
-                  <li><span style={{ color: "#f0f0f0" }}>x Haustier</span> — Gib deinem echten Tier einen Platz in der Quest Hall. Es bekommt Pflege-Quests (Füttern, Spielen, etc.).</li>
-                  <li><span style={{ color: "#f0f0f0" }}>x Drache</span> — Feuriger Motivations-Begleiter.</li>
-                  <li><span style={{ color: "#f0f0f0" }}>x Eule</span> — Weiser Lern-Begleiter.</li>
-                  <li><span style={{ color: "#f0f0f0" }}>x Phoenix</span> — Steht nach jeder Niederlage wieder auf.</li>
-                  <li><span style={{ color: "#f0f0f0" }}>x Wolf</span> — Treuer Begleiter der immer an deiner Seite steht.</li>
+                  <li><span style={{ color: "#f0f0f0" }}>🐾 Haustier</span> — Gib deinem echten Tier einen Platz in der Quest Hall. Es bekommt Pflege-Quests (Füttern, Spielen, etc.).</li>
+                  <li><span style={{ color: "#f0f0f0" }}>🐉 Drache</span> — Feuriger Motivations-Begleiter.</li>
+                  <li><span style={{ color: "#f0f0f0" }}>🦉 Eule</span> — Weiser Lern-Begleiter.</li>
+                  <li><span style={{ color: "#f0f0f0" }}>🔥 Phoenix</span> — Steht nach jeder Niederlage wieder auf.</li>
+                  <li><span style={{ color: "#f0f0f0" }}>🐺 Wolf</span> — Treuer Begleiter der immer an deiner Seite steht.</li>
                 </ul>
                 <p className="mt-1.5" style={{ color: "rgba(255,255,255,0.4)" }}>Dein Begleiter erscheint auf deiner Spielerkarte und motiviert dich durch Quests.</p>
               </GuideSection>
@@ -95,21 +95,21 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
             <>
               <GuideSection icon="" title="Quest Hall Structure">
                 <ul className="space-y-1 mt-1">
-                  <li><span style={{ color: "#f0f0f0" }}>x Quest Board</span> — Player quests (personal, learning, fitness, social, co-op). Claim and complete directly — no review needed.</li>
-                  <li><span style={{ color: "#a78bfa" }}>x NPC Quest Board</span> — Development quests created and completed by agents. Includes Review Board for approving agent suggestions.</li>
-                  <li><span style={{ color: "#f59e0b" }}>x Leaderboard</span> — Ranks players and agents separately with an Agent/Player toggle.</li>
-                  <li><span style={{ color: "#f59e0b" }}>x Honors</span> — Your personal achievements. Log in to see your progress highlighted.</li>
-                  <li><span style={{ color: "#8b5cf6" }}>x Campaign</span> — Fantasy RPG overlay with agents as NPCs and quests as adventures.</li>
+                  <li><span style={{ color: "#f0f0f0" }}>📋 Quest Board</span> — Player quests (personal, learning, fitness, social, co-op). Claim and complete directly — no review needed.</li>
+                  <li><span style={{ color: "#a78bfa" }}>🗺️ NPC Quest Board</span> — Development quests created and completed by agents. Includes Review Board for approving agent suggestions.</li>
+                  <li><span style={{ color: "#f59e0b" }}>🏆 Leaderboard</span> — Ranks players and agents separately with an Agent/Player toggle.</li>
+                  <li><span style={{ color: "#f59e0b" }}>🎖️ Honors</span> — Your personal achievements. Log in to see your progress highlighted.</li>
+                  <li><span style={{ color: "#8b5cf6" }}>⚔️ Campaign</span> — Fantasy RPG overlay with agents as NPCs and quests as adventures.</li>
                   <li><span style={{ color: CURRENT_SEASON.color }}>{CURRENT_SEASON.icon} Season</span> — Battle Pass rewards track for the current season.</li>
                 </ul>
               </GuideSection>
               <GuideSection icon="" title="Player Quest Types">
                 <ul className="space-y-1 mt-1">
-                  <li><span style={{ color: "#22c55e" }}>x Personal</span> — Household chores, errands, life admin</li>
-                  <li><span style={{ color: "#3b82f6" }}>x Learning</span> — Study, courses, reading (requires proof)</li>
-                  <li><span style={{ color: "#f97316" }}>x Fitness</span> — Workouts, sports, health goals</li>
-                  <li><span style={{ color: "#ec4899" }}>x Social</span> — Thoughtful gestures, dates, quality time</li>
-                  <li><span style={{ color: "#f43f5e" }}>x Co-op</span> — Partner quests requiring both to complete</li>
+                  <li><span style={{ color: "#22c55e" }}>🟢 Personal</span> — Household chores, errands, life admin</li>
+                  <li><span style={{ color: "#3b82f6" }}>🔵 Learning</span> — Study, courses, reading (requires proof)</li>
+                  <li><span style={{ color: "#f97316" }}>🟠 Fitness</span> — Workouts, sports, health goals</li>
+                  <li><span style={{ color: "#ec4899" }}>🩷 Social</span> — Thoughtful gestures, dates, quality time</li>
+                  <li><span style={{ color: "#f43f5e" }}>❤️ Co-op</span> — Partner quests requiring both to complete</li>
                 </ul>
                 <p className="mt-1.5" style={{ color: "rgba(255,255,255,0.4)" }}>Player quests go directly open → claimed → done. No agent review required.</p>
               </GuideSection>
@@ -178,9 +178,9 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
               <GuideSection icon="" title="Streaks">
                 Complete at least one quest each day to maintain your streak. Longer streaks increase your Gold multiplier (up to 3× at 20+ days). Streak milestones unlock achievements.
                 <div className="space-y-1 mt-1">
-                  <div>x <span style={{ color: "#fb923c" }}>Active</span> — 1–6 days</div>
-                  <div>x <span style={{ color: "#f59e0b" }}>Hot</span> — 7–29 days</div>
-                  <div>x <span style={{ color: "#ef4444" }}>Blazing</span> — 30+ days</div>
+                  <div>🔥 <span style={{ color: "#fb923c" }}>Active</span> — 1–6 days</div>
+                  <div>🔥 <span style={{ color: "#f59e0b" }}>Hot</span> — 7–29 days</div>
+                  <div>🔥 <span style={{ color: "#ef4444" }}>Blazing</span> — 30+ days</div>
                 </div>
               </GuideSection>
               <GuideSection icon="" title="Forge Shop">
@@ -191,7 +191,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
           {tab === "achievements" && (
             <>
               <GuideSection icon="" title="Achievements">
-                Achievements are automatically awarded when you hit milestones. They are <strong>per-player</strong> — tied to your login name. Check the <strong>x Honors</strong> tab to see all achievements; when logged in, your earned achievements are highlighted with a gold border.
+                Achievements are automatically awarded when you hit milestones. They are <strong>per-player</strong> — tied to your login name. Check the <strong>🎖️ Honors</strong> tab to see all achievements; when logged in, your earned achievements are highlighted with a gold border.
               </GuideSection>
               <GuideSection icon="" title="Achievement List">
                 <div className="space-y-1 mt-1">

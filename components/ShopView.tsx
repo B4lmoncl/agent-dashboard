@@ -54,7 +54,7 @@ export default function ShopView({ users, playerName, reviewApiKey, onBuy, onGea
                 className="flex items-center gap-3 p-3 rounded-xl"
                 style={{ background: "#1e1e1e", border: "1px solid rgba(255,255,255,0.07)" }}
               >
-                <span className="text-2xl flex-shrink-0">{item.icon}</span>
+                {item.icon && item.icon.startsWith("/") ? <img src={item.icon} alt="" style={{ width: 40, height: 40, imageRendering: "auto" }} /> : <span className="text-2xl flex-shrink-0">{item.icon}</span>}
                 <div className="flex-1 min-w-0">
                   <p className="text-xs font-semibold" style={{ color: "#f0f0f0" }}>{item.name}</p>
                   <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>{item.desc}</p>
@@ -90,7 +90,7 @@ export default function ShopView({ users, playerName, reviewApiKey, onBuy, onGea
                 className="flex items-center gap-3 p-3 rounded-xl"
                 style={{ background: "#1e1e1e", border: `1px solid ${owned ? "rgba(99,102,241,0.3)" : "rgba(255,255,255,0.07)"}` }}
               >
-                <span className="text-2xl flex-shrink-0">{gear.icon}</span>
+                {gear.icon && gear.icon.startsWith("/") ? <img src={gear.icon} alt="" style={{ width: 40, height: 40, imageRendering: "auto" }} /> : <span className="text-2xl flex-shrink-0">{gear.icon}</span>}
                 <div className="flex-1 min-w-0">
                   <p className="text-xs font-semibold" style={{ color: owned ? "#a78bfa" : "#f0f0f0" }}>
                     {gear.name} {owned && "x"}
