@@ -7,7 +7,7 @@
       "type": "personal",
       "difficulty": "starter",
       "category": "personal",
-      "flavor": "\"Der Morgen gehört den Mutigen. Oder zumindest denen, die aufstehen.\" — Oma Ilse",
+      "flavor": "Die Halle ist am stillsten kurz vor Sonnenaufgang. Manche sagen, das ist der Moment in dem sie träumt.",
       "rewards": {
         "xp": 15,
         "gold": 8
@@ -33,7 +33,7 @@
       "type": "personal",
       "difficulty": "starter",
       "category": "personal",
-      "flavor": "\"Die Sterne erinnern sich an jeden Helden. Aber es schadet nicht, selbst mitzuschreiben.\" — Lyra",
+      "flavor": "Im Archiv der Sternenwächterin stehen Tausende von Namen. Sie hat keinen einzigen vergessen. Hast du deinen Tag schon aufgeschrieben?",
       "rewards": {
         "xp": 15,
         "gold": 10
@@ -46,7 +46,7 @@
       "type": "personal",
       "difficulty": "intermediate",
       "category": "personal",
-      "flavor": "\"Manchmal muss man die Kristallkugel weglegen um klar zu sehen.\" — Alter Henrik",
+      "flavor": "\"Die Kristallkugel zeigt dir alles. Außer das, was direkt vor deiner Nase liegt.\" — Alter Henrik",
       "rewards": {
         "xp": 25,
         "gold": 15
@@ -59,7 +59,7 @@
       "type": "personal",
       "difficulty": "starter",
       "category": "personal",
-      "flavor": "\"Ordnung im Äußeren schafft Ordnung im Inneren. Oder zumindest findet man seine Schlüssel.\" — Bruder Tomas",
+      "flavor": "Ordnung im Äußeren, Ordnung im Inneren. Oder zumindest findet man seine Schlüssel. Bruder Tomas behauptet beides, beweisen kann er nur Letzteres.",
       "rewards": {
         "xp": 20,
         "gold": 12
@@ -72,7 +72,7 @@
       "type": "personal",
       "difficulty": "intermediate",
       "category": "personal",
-      "flavor": "\"Die mächtigsten Zauber wirken im Schlaf. Frag nicht warum — schlaf einfach.\" — Mirael",
+      "flavor": "Die mächtigsten Zauber wirken im Schlaf. Das ist keine Metapher — die Bibliothek reorganisiert sich tatsächlich nachts. Du solltest das auch tun.",
       "rewards": {
         "xp": 25,
         "gold": 15
@@ -85,7 +85,7 @@
       "type": "personal",
       "difficulty": "intermediate",
       "category": "personal",
-      "flavor": "\"Jedes Rezept ist ein Zauberspruch. Die Zutaten sind deine Komponenten.\" — Zara Funkenwind",
+      "flavor": "\"Jedes Rezept ist ein Zauberspruch. Die Zutaten sind deine Komponenten. Und nein, Fertignudeln zählen nicht als Transmutation.\" — Zara Funkenwind",
       "rewards": {
         "xp": 25,
         "gold": 15
@@ -98,7 +98,7 @@
       "type": "personal",
       "difficulty": "starter",
       "category": "personal",
-      "flavor": "\"Ungelesene Briefe sind wie unerledigte Flüche. Sie stapeln sich.\" — Karim",
+      "flavor": "Ungelesene Briefe stapeln sich im Postturm der Gilde. Der letzte Held der sie ignoriert hat, wurde unter einer Lawine aus Mahnbescheiden begraben. Bürokratie kennt keine Gnade.",
       "rewards": {
         "xp": 20,
         "gold": 10
@@ -111,7 +111,7 @@
       "type": "personal",
       "difficulty": "starter",
       "category": "personal",
-      "flavor": "\"Worte sind die billigste Magie und die mächtigste.\" — Finnegan",
+      "flavor": "Worte sind die billigste Magie und die mächtigste. Finnegan hat mal ein ganzes Dorf mit einem einzigen Satz zum Weinen gebracht. Zugegeben, es war eine Beleidigung.",
       "rewards": {
         "xp": 15,
         "gold": 8
@@ -124,7 +124,7 @@
       "type": "personal",
       "difficulty": "intermediate",
       "category": "personal",
-      "flavor": "\"Der Unterschied zwischen Held und Bettvorleger? Ein einziger Moment am Morgen.\" — Rogar Amboss",
+      "flavor": "Der wichtigste Schritt ist immer der nächste. Besonders wenn er aus dem Bett führt.",
       "rewards": {
         "xp": 20,
         "gold": 12
@@ -137,7 +137,7 @@
       "type": "personal",
       "difficulty": "starter",
       "category": "personal",
-      "flavor": "\"Wer sein Gold nicht zählt, wird von seinem Gold gezählt.\" — Karim",
+      "flavor": "\"Wer sein Gold nicht zählt, wird von seinem Gold gezählt.\" — Karim, während er zum dritten Mal nachzählt",
       "rewards": {
         "xp": 15,
         "gold": 10
@@ -150,7 +150,7 @@
       "type": "personal",
       "difficulty": "starter",
       "category": "personal",
-      "flavor": "\"Loslassen ist die schwerste Disziplin. Und die befreiendste.\" — Bruder Tomas",
+      "flavor": "Loslassen ist die schwerste Disziplin. Bruder Tomas predigt das seit dreißig Jahren und hat trotzdem noch die Sandalen von seiner Aufnahmeprüfung.",
       "rewards": {
         "xp": 20,
         "gold": 10
@@ -163,7 +163,7 @@
       "type": "personal",
       "difficulty": "starter",
       "category": "personal",
-      "flavor": "\"Ein Plan überlebt selten den ersten Kontakt. Aber ohne Plan überlebt man gar nichts.\" — Meister Tanaka",
+      "flavor": "Ein Plan überlebt selten den ersten Kontakt mit dem Morgen. Aber ohne Plan überlebt man gar nichts. Meister Tanaka hat übrigens sieben Backup-Pläne. Für den Dienstag.",
       "rewards": {
         "xp": 15,
         "gold": 8
@@ -176,7 +176,7 @@
       "type": "personal",
       "difficulty": "intermediate",
       "category": "personal",
-      "flavor": "\"Verzicht ist keine Schwäche. Verzicht ist die Klinge die man an sich selbst schärft.\" — Rogar Amboss",
+      "flavor": "Die Alchemisten-Gilde hat bewiesen, dass Zucker nach Sonnenuntergang seine kristalline Struktur verändert. In Wahrheit wollten sie nur die Kekse für sich.",
       "rewards": {
         "xp": 20,
         "gold": 12
@@ -189,7 +189,7 @@
       "type": "personal",
       "difficulty": "intermediate",
       "category": "personal",
-      "flavor": "\"Die größten Abenteuer finden zwischen den Zeilen statt.\" — Finnegan",
+      "flavor": "Die größten Abenteuer finden zwischen den Zeilen statt. Manche auch zwischen den Mahlzeiten, aber die sind schwerer aufzuschreiben.",
       "rewards": {
         "xp": 25,
         "gold": 15
@@ -202,7 +202,7 @@
       "type": "fitness",
       "difficulty": "intermediate",
       "category": "fitness",
-      "flavor": "\"Die Beine tragen dich weiter als der Kopf glaubt.\" — Alter Henrik",
+      "flavor": "Die Sterne verblassen am Morgen. Aber wer früh genug läuft, sieht sie noch grüßen.",
       "rewards": {
         "xp": 30,
         "gold": 15
@@ -215,7 +215,7 @@
       "type": "fitness",
       "difficulty": "intermediate",
       "category": "fitness",
-      "flavor": "\"Jeder Schritt ist ein Vers in deinem Lied.\" — Finnegan",
+      "flavor": "Jeder Schritt ist ein Vers in deinem Lied. Finnegan behauptet, seine besten Balladen entstehen bei Schritt zwölftausend. Ab Schritt dreizehntausend wird es experimentell.",
       "rewards": {
         "xp": 25,
         "gold": 15
@@ -228,7 +228,7 @@
       "type": "fitness",
       "difficulty": "starter",
       "category": "fitness",
-      "flavor": "\"Der Boden ist dein Gegner. Drück ihn weg.\" — Rogar Amboss",
+      "flavor": "\"Der Boden ist dein Gegner. Drück ihn weg.\" — Rogar Amboss, der das auch über Türen, Felsen und einmal über einen Bären gesagt hat",
       "rewards": {
         "xp": 20,
         "gold": 10
@@ -241,7 +241,7 @@
       "type": "fitness",
       "difficulty": "starter",
       "category": "fitness",
-      "flavor": "\"Ein biegsamer Baum bricht nicht im Sturm.\" — Meister Tanaka",
+      "flavor": "Ein biegsamer Baum bricht nicht im Sturm. Ein biegsamer Held bricht sich nicht beim Bücken. Beides unterschätzt.",
       "rewards": {
         "xp": 15,
         "gold": 8
@@ -254,7 +254,7 @@
       "type": "fitness",
       "difficulty": "advanced",
       "category": "fitness",
-      "flavor": "\"Stahl wird im Feuer gehärtet. Du auch.\" — Rogar Amboss",
+      "flavor": "Stahl wird im Feuer gehärtet. Du auch. Rogar Amboss hat diese Worte über die Eingangstür seiner Schmiede gemeißelt. Und über die Ausgangstür. Für den Fall, dass man flüchten will.",
       "rewards": {
         "xp": 40,
         "gold": 25
@@ -267,7 +267,7 @@
       "type": "fitness",
       "difficulty": "starter",
       "category": "fitness",
-      "flavor": "\"Die besten Gedanken kommen auf leisen Sohlen.\" — Bruder Tomas",
+      "flavor": "Die besten Gedanken kommen auf leisen Sohlen. Oder gar nicht — aber dann hat man wenigstens frische Luft.",
       "rewards": {
         "xp": 20,
         "gold": 10
@@ -280,7 +280,7 @@
       "type": "fitness",
       "difficulty": "starter",
       "category": "fitness",
-      "flavor": "\"Wer den Turm bezwingen will, muss jede Stufe ehren.\" — Oma Ilse",
+      "flavor": "\"Wer den Turm bezwingen will, muss jede Stufe ehren.\" — Oma Ilse, die den Aufzug nimmt seit die Keksdose im dritten Stock steht",
       "rewards": {
         "xp": 15,
         "gold": 8
@@ -293,7 +293,7 @@
       "type": "fitness",
       "difficulty": "intermediate",
       "category": "fitness",
-      "flavor": "\"Das Eis fragt nicht ob du bereit bist. Sei es trotzdem.\" — Lumi",
+      "flavor": "Das Eis fragt nicht ob du bereit bist. Sei es trotzdem. Lumi lacht über Kälte. Aber Lumi ist auch... Lumi.",
       "rewards": {
         "xp": 25,
         "gold": 15
@@ -306,7 +306,7 @@
       "type": "fitness",
       "difficulty": "intermediate",
       "category": "fitness",
-      "flavor": "\"Stillstand ist manchmal die größte Bewegung.\" — Meister Tanaka",
+      "flavor": "Stillstand ist manchmal die größte Bewegung. Das klingt wie etwas das Meister Tanaka sagen würde. Hat er auch. Dreimal. Während er selbst plankte.",
       "rewards": {
         "xp": 25,
         "gold": 12
@@ -319,7 +319,7 @@
       "type": "fitness",
       "difficulty": "intermediate",
       "category": "fitness",
-      "flavor": "\"Der Wind ist kein Gegner. Er ist ein Tanzpartner.\" — Zara Funkenwind",
+      "flavor": "\"Der Wind ist kein Gegner. Er ist ein Tanzpartner.\" — Zara Funkenwind, die auch mal einen Tornado umarmt hat. Nur einmal.",
       "rewards": {
         "xp": 30,
         "gold": 15
@@ -332,7 +332,7 @@
       "type": "fitness",
       "difficulty": "starter",
       "category": "fitness",
-      "flavor": "\"Die letzte Stunde des Tages gehört dem Krieger in dir.\" — Rogar Amboss",
+      "flavor": "Die letzte Stunde des Tages gehört dem Krieger in dir. Oder dem Sofa. Es ist deine Entscheidung, aber die Halle merkt sich beides.",
       "rewards": {
         "xp": 25,
         "gold": 12
@@ -345,7 +345,7 @@
       "type": "fitness",
       "difficulty": "starter",
       "category": "fitness",
-      "flavor": "\"Wasser ist flüssige Magie. Die meisten vergessen es einfach.\" — Mirael",
+      "flavor": "Wasser ist flüssige Magie. Die meisten vergessen es einfach. Mirael hat einen Brunnen der ewige Jugend verspricht. Es ist nur Wasser. Aber es funktioniert.",
       "rewards": {
         "xp": 15,
         "gold": 8
@@ -358,7 +358,7 @@
       "type": "learning",
       "difficulty": "intermediate",
       "category": "learning",
-      "flavor": "\"Wissen ist der einzige Schatz der schwerer wird je mehr man trägt — und trotzdem leichter.\" — Alter Henrik",
+      "flavor": "Wissen ist der einzige Schatz der schwerer wird je mehr man trägt — und trotzdem leichter. Das Archiv hat heute neue Regale aufgestellt. Jemand muss sie füllen.",
       "rewards": {
         "xp": 30,
         "gold": 15
@@ -371,7 +371,7 @@
       "type": "learning",
       "difficulty": "starter",
       "category": "learning",
-      "flavor": "\"Bücher sind Portale. Manche führen in Welten, manche führen zu dir selbst.\" — Finnegan",
+      "flavor": "Bücher sind Portale. Manche führen in Welten, manche führen zu dir selbst. Die Bibliothek hat einen eigenen Willen. Und schlechte Laune, wenn man Seiten knickt.",
       "rewards": {
         "xp": 20,
         "gold": 10
@@ -384,7 +384,7 @@
       "type": "learning",
       "difficulty": "intermediate",
       "category": "learning",
-      "flavor": "\"Was nicht geschrieben steht, hat nie stattgefunden.\" — Lyra",
+      "flavor": "Was nicht geschrieben steht, hat nie stattgefunden. — Lyras erstes Gesetz. Das zweite ist: Wer es aufschreibt, findet es auch wieder.",
       "rewards": {
         "xp": 25,
         "gold": 15
@@ -397,7 +397,7 @@
       "type": "learning",
       "difficulty": "intermediate",
       "category": "learning",
-      "flavor": "\"Der Anfänger sieht tausend Möglichkeiten. Der Meister auch — aber er hat die falschen schon aussortiert.\" — Meister Tanaka",
+      "flavor": "Der Anfänger sieht tausend Möglichkeiten. Der Meister auch — aber er hat die falschen schon aussortiert. Fang an, der Rest kommt beim Machen.",
       "rewards": {
         "xp": 30,
         "gold": 18
@@ -410,7 +410,7 @@
       "type": "learning",
       "difficulty": "starter",
       "category": "learning",
-      "flavor": "\"Manchmal ist Zuhören mächtiger als jeder Zauberspruch.\" — Bruder Tomas",
+      "flavor": "Manchmal ist Zuhören mächtiger als jeder Zauberspruch. Bruder Tomas schweigt seit vierzig Jahren beruflich und hat trotzdem mehr gelernt als die meisten.",
       "rewards": {
         "xp": 20,
         "gold": 10
@@ -423,7 +423,7 @@
       "type": "learning",
       "difficulty": "intermediate",
       "category": "learning",
-      "flavor": "\"Wiederholung ist keine Langeweile. Wiederholung ist der Pfad zur Meisterschaft.\" — Meister Tanaka",
+      "flavor": "Wiederholung ist keine Langeweile. Wiederholung ist der Pfad zur Meisterschaft. Oder zum Wahnsinn. Die Grenze ist fließend, sagt Meister Tanaka.",
       "rewards": {
         "xp": 25,
         "gold": 12
@@ -436,7 +436,7 @@
       "type": "learning",
       "difficulty": "advanced",
       "category": "learning",
-      "flavor": "\"Ein Siegel beweist nicht Wissen. Es beweist Ausdauer.\" — Rogar Amboss",
+      "flavor": "Ein Siegel beweist nicht Wissen. Es beweist Ausdauer. Und dass man Formulare ausfüllen kann. Die Gilde ist da sehr gründlich.",
       "rewards": {
         "xp": 40,
         "gold": 25
@@ -449,7 +449,7 @@
       "type": "learning",
       "difficulty": "starter",
       "category": "learning",
-      "flavor": "\"Wer eine neue Sprache lernt, gewinnt eine neue Seele.\" — Karim",
+      "flavor": "\"Wer eine neue Sprache lernt, gewinnt eine neue Seele.\" — Karim, der in zwölf Sprachen handeln kann und in jeder einzelnen zu teuer verkauft",
       "rewards": {
         "xp": 20,
         "gold": 10
@@ -462,7 +462,7 @@
       "type": "learning",
       "difficulty": "intermediate",
       "category": "learning",
-      "flavor": "\"Code ist Poesie die Maschinen verstehen. Schreib ein gutes Gedicht.\" — Lyra",
+      "flavor": "Code ist Poesie die Maschinen verstehen. Schreib ein gutes Gedicht. Oder zumindest eins das kompiliert.",
       "rewards": {
         "xp": 30,
         "gold": 15
@@ -475,7 +475,7 @@
       "type": "learning",
       "difficulty": "starter",
       "category": "learning",
-      "flavor": "\"Die Wahrheit versteckt sich nie in der Überschrift.\" — Alter Henrik",
+      "flavor": "Die Wahrheit versteckt sich nie in der Überschrift. Alter Henrik liest drei Zeitungen am Tag. Alle von letzter Woche. Er sagt, erst mit Abstand erkennt man die Muster.",
       "rewards": {
         "xp": 15,
         "gold": 8
@@ -488,7 +488,7 @@
       "type": "learning",
       "difficulty": "starter",
       "category": "learning",
-      "flavor": "\"Rohmaterial ist nichts wert. Erst die Destillation macht Gold.\" — Zara Funkenwind",
+      "flavor": "Rohmaterial ist nichts wert. Erst die Destillation macht Gold. Zara Funkenwind sagt das über Erze. Aber es gilt auch für Notizen.",
       "rewards": {
         "xp": 20,
         "gold": 10
@@ -501,7 +501,7 @@
       "type": "learning",
       "difficulty": "advanced",
       "category": "learning",
-      "flavor": "\"Wer nicht erklären kann, hat nicht verstanden.\" — Meister Tanaka",
+      "flavor": "\"Wer nicht erklären kann, hat nicht verstanden.\" — Meister Tanaka, bevor er zwanzig Minuten braucht um zu erklären warum Einfachheit wichtig ist",
       "rewards": {
         "xp": 35,
         "gold": 20
@@ -514,7 +514,7 @@
       "type": "social",
       "difficulty": "intermediate",
       "category": "social",
-      "flavor": "\"Freundschaften sind wie Feuer. Man muss sie füttern oder sie erlöschen.\" — Finnegan",
+      "flavor": "Freundschaften sind wie Feuer. Man muss sie füttern oder sie erlöschen. Finnegan hat das mal in einem Lied verarbeitet. Es waren sechs Strophen. Alle traurig. Dann hat er angerufen.",
       "rewards": {
         "xp": 25,
         "gold": 15
@@ -527,7 +527,7 @@
       "type": "social",
       "difficulty": "starter",
       "category": "social",
-      "flavor": "\"Die besten Geschichten werden bei vollem Teller erzählt.\" — Oma Ilse",
+      "flavor": "\"Die besten Geschichten werden bei vollem Teller erzählt.\" — Oma Ilse, die grundsätzlich keine Geschichte ohne Kekse anfängt",
       "rewards": {
         "xp": 20,
         "gold": 12
@@ -540,7 +540,7 @@
       "type": "social",
       "difficulty": "starter",
       "category": "social",
-      "flavor": "\"Wer gibt ohne zu zählen, bekommt ohne zu bitten.\" — Bruder Tomas",
+      "flavor": "Wer gibt ohne zu zählen, bekommt ohne zu bitten. Das ist entweder tiefe Weisheit oder schlechte Buchführung. Bruder Tomas sagt: beides.",
       "rewards": {
         "xp": 20,
         "gold": 10
@@ -553,7 +553,7 @@
       "type": "social",
       "difficulty": "starter",
       "category": "social",
-      "flavor": "\"Manchmal braucht jemand nur einen einzigen Satz um den Tag zu überstehen.\" — Lumi",
+      "flavor": "Manchmal braucht jemand nur einen einzigen Satz um den Tag zu überstehen. Lumi leuchtet heller wenn jemand lächelt. Das ist keine Metapher.",
       "rewards": {
         "xp": 15,
         "gold": 8
@@ -566,7 +566,7 @@
       "type": "social",
       "difficulty": "intermediate",
       "category": "social",
-      "flavor": "\"Gemeinsame Schritte wiegen schwerer als gemeinsame Worte.\" — Alter Henrik",
+      "flavor": "Gemeinsame Schritte wiegen schwerer als gemeinsame Worte. Der Pfad durch den Nebelhain ist am schönsten zu zweit. Auch wenn man sich verläuft. Besonders dann.",
       "rewards": {
         "xp": 25,
         "gold": 15
@@ -579,7 +579,7 @@
       "type": "social",
       "difficulty": "advanced",
       "category": "social",
-      "flavor": "\"Der Spiegel zeigt nicht was du sehen willst. Dafür ist er ehrlich.\" — Mirael",
+      "flavor": "Der Spiegel zeigt nicht was du sehen willst. Dafür ist er ehrlich. Mirael hat einen der die Wahrheit spricht. Niemand besucht ihn freiwillig.",
       "rewards": {
         "xp": 30,
         "gold": 18
@@ -592,7 +592,7 @@
       "type": "social",
       "difficulty": "starter",
       "category": "social",
-      "flavor": "\"Blut mag dicker sein als Wasser. Aber Liebe ist dicker als beides.\" — Oma Ilse",
+      "flavor": "Manche Bande sind älter als jeder Eid. Stärker als jeder Schwur. Und hartnäckiger als Oma Ilses Nachfragen ob man genug isst.",
       "rewards": {
         "xp": 20,
         "gold": 10
@@ -605,7 +605,7 @@
       "type": "social",
       "difficulty": "intermediate",
       "category": "social",
-      "flavor": "\"Jeder Fremde ist ein Buch das du noch nicht aufgeschlagen hast.\" — Karim",
+      "flavor": "Jeder Fremde ist ein Buch das du noch nicht aufgeschlagen hast. Karim hat so sein halbes Imperium aufgebaut. Die andere Hälfte durch hartnäckiges Feilschen.",
       "rewards": {
         "xp": 25,
         "gold": 15
@@ -618,7 +618,7 @@
       "type": "boss",
       "difficulty": "expert",
       "category": "boss",
-      "flavor": "\"Die größten Schlachten werden in der Stille gewonnen.\" — Meister Tanaka",
+      "flavor": "Die größten Schlachten werden in der Stille gewonnen. Stärke vor Schwäche. Reise vor Ziel. Und vier Stunden Fokus vor allem anderen.",
       "rewards": {
         "xp": 60,
         "gold": 40
@@ -631,7 +631,7 @@
       "type": "boss",
       "difficulty": "expert",
       "category": "boss",
-      "flavor": "\"Mut ist nicht die Abwesenheit von Angst. Mut ist der erste Schritt trotz Angst.\" — Rogar Amboss",
+      "flavor": "Mut ist nicht die Abwesenheit von Angst. Mut ist der erste Schritt trotzdem. Hinter der Grenze wartet etwas. Es wartet schon lange.",
       "rewards": {
         "xp": 50,
         "gold": 35
@@ -644,7 +644,7 @@
       "type": "boss",
       "difficulty": "expert",
       "category": "boss",
-      "flavor": "\"Halbfertige Werke sind Gräber ungelebter Ideen.\" — Lyra",
+      "flavor": "Halbfertige Werke sind Gräber ungelebter Ideen. Die Halle hat zu viele davon gesehen. Dieses hier verdient ein Ende. Ein richtiges.",
       "rewards": {
         "xp": 55,
         "gold": 35
