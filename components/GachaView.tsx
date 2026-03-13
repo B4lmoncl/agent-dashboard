@@ -100,17 +100,23 @@ function BannerPreviewCard({
   const glowColor = isFeatured ? "rgba(129,140,248,0.15)" : "rgba(167,139,250,0.12)";
   const portraitSrc = BANNER_PORTRAITS[banner.type];
 
-  // Rune symbols for Thalos (standard banner)
-  const runeSymbols = ["ᚱ", "ᛏ", "ᚨ", "ᛉ", "ᚹ", "ᛗ", "ᚲ", "ᛊ"];
-  const runePositions = ["8%,12%", "75%,8%", "15%,45%", "82%,52%", "5%,78%", "70%,82%", "45%,6%", "55%,88%"];
+  // Rune symbols for Thalos (standard banner) — lots of floating runes
+  const runeSymbols = ["ᚱ", "ᛏ", "ᚨ", "ᛉ", "ᚹ", "ᛗ", "ᚲ", "ᛊ", "ᛃ", "ᛈ", "ᛚ", "ᛞ", "ᚦ", "ᚷ", "ᛒ"];
+  const runePositions = [
+    "6%,8%", "78%,5%", "12%,35%", "85%,40%", "3%,65%", "72%,75%", "42%,4%", "55%,90%",
+    "25%,18%", "62%,22%", "35%,55%", "90%,15%", "18%,82%", "50%,42%", "68%,60%",
+  ];
 
-  // Nebula blobs for Nyxara (featured banner)
-  const nebulaPositions = [
-    { left: "10%", top: "15%", size: 60, color: "rgba(129,140,248,0.15)" },
-    { left: "65%", top: "5%", size: 80, color: "rgba(168,85,247,0.12)" },
-    { left: "30%", top: "70%", size: 50, color: "rgba(129,140,248,0.1)" },
-    { left: "80%", top: "65%", size: 70, color: "rgba(192,132,252,0.1)" },
-    { left: "5%", top: "50%", size: 45, color: "rgba(139,92,246,0.08)" },
+  // Nebula wisps for Nyxara (featured banner) — elongated fog shapes
+  const nebulaWisps = [
+    { left: "-5%", top: "10%", w: 160, h: 40, color: "rgba(129,140,248,0.2)", anim: 0, dur: 8 },
+    { left: "30%", top: "30%", w: 180, h: 35, color: "rgba(168,85,247,0.18)", anim: 1, dur: 10 },
+    { left: "50%", top: "55%", w: 140, h: 50, color: "rgba(139,92,246,0.15)", anim: 2, dur: 7 },
+    { left: "10%", top: "70%", w: 200, h: 30, color: "rgba(192,132,252,0.16)", anim: 3, dur: 9 },
+    { left: "60%", top: "15%", w: 120, h: 45, color: "rgba(129,140,248,0.12)", anim: 0, dur: 11 },
+    { left: "-10%", top: "45%", w: 170, h: 55, color: "rgba(168,85,247,0.14)", anim: 2, dur: 8.5 },
+    { left: "40%", top: "80%", w: 150, h: 35, color: "rgba(139,92,246,0.1)", anim: 1, dur: 12 },
+    { left: "70%", top: "40%", w: 130, h: 40, color: "rgba(192,132,252,0.13)", anim: 3, dur: 9.5 },
   ];
 
   return (
@@ -146,17 +152,18 @@ function BannerPreviewCard({
           textShadow: "0 0 6px rgba(167,139,250,0.4)",
         }}>{runeSymbols[i]}</span>
       ))}
-      {isFeatured && nebulaPositions.map((blob, i) => (
+      {isFeatured && nebulaWisps.map((wisp, i) => (
         <div key={`nebula-${i}`} style={{
           position: "absolute",
-          left: blob.left,
-          top: blob.top,
-          width: blob.size,
-          height: blob.size,
+          left: wisp.left,
+          top: wisp.top,
+          width: wisp.w,
+          height: wisp.h,
           borderRadius: "50%",
-          background: `radial-gradient(circle, ${blob.color}, transparent 70%)`,
-          animation: `nebula-pulse-${i % 3} ${4 + i * 0.7}s ease-in-out infinite`,
-          animationDelay: `${i * 0.6}s`,
+          background: `radial-gradient(ellipse at center, ${wisp.color}, transparent 65%)`,
+          filter: "blur(8px)",
+          animation: `nebula-drift-${wisp.anim} ${wisp.dur}s ease-in-out infinite`,
+          animationDelay: `${i * 1.2}s`,
           pointerEvents: "none",
           zIndex: 0,
         }} />
