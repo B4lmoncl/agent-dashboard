@@ -5,7 +5,7 @@
   { "id": "r4", "title": "Quest Katalog",       "desc": "Skalierbarer Quest-Pool mit Metriken",  "status": "in_progress", "eta": "März 2026",  "category": "infrastructure" },
   {
     "id": "r5",
-    "title": "⚔️ Kampagnen-System v2",
+    "title": "xx Kampagnen-System v2",
     "desc": "Vorgefertigte Quest-Chains als lange Kampagnen wählen und durchspielen. Legendäre Belohnungen, Wochen-lange Herausforderungen, thematisch zusammenhängende Quests.",
     "status": "planned",
     "eta": "April 2026",

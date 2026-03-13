@@ -3,7 +3,7 @@
     {
       "id": "network-sage",
       "name": "Path of the Network Sage",
-      "icon": "🛡️",
+      "icon": "xx",
       "fantasy": "Network Sage",
       "description": "Beherrsche die Kunst der Netzwerke, Firewalls und digitalen Verteidigung.",
       "realWorld": "IT / Netzwerk / Systemintegration",
@@ -16,13 +16,13 @@
         { "level": 25, "title": "Network Sage",           "minXp": 12000 }
       ],
       "skillTree": [
-        { "id": "switching", "name": "Switching", "icon": "🔀", "maxLevel": 5 },
-        { "id": "firewalls", "name": "Firewalls", "icon": "🛡️", "maxLevel": 5 },
-        { "id": "vpn",       "name": "VPN/SSL",   "icon": "🔐", "maxLevel": 3 }
+        { "id": "switching", "name": "Switching", "icon": "x", "maxLevel": 5 },
+        { "id": "firewalls", "name": "Firewalls", "icon": "xx", "maxLevel": 5 },
+        { "id": "vpn",       "name": "VPN/SSL",   "icon": "x", "maxLevel": 3 }
       ],
       "achievements": [
-        { "id": "first-firewall",    "name": "First Firewall Rule", "icon": "🔥", "hidden": false, "desc": "Complete your first firewall quest" },
-        { "id": "nse-completionist", "name": "NSE Completionist",   "icon": "🎓", "hidden": true,  "desc": "Complete all NSE certifications" }
+        { "id": "first-firewall",    "name": "First Firewall Rule", "icon": "x", "hidden": false, "desc": "Complete your first firewall quest" },
+        { "id": "nse-completionist", "name": "NSE Completionist",   "icon": "x", "hidden": true,  "desc": "Complete all NSE certifications" }
       ],
       "status": "active",
       "createdBy": "lyra",
