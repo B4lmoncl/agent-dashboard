@@ -159,8 +159,8 @@ export function WandererRest({
                         </div>
                       )}
                       {allDone && (
-                        <div className="absolute inset-0 flex items-center justify-center" style={{ background: "rgba(34,197,94,0.15)" }}>
-                          <span style={{ fontSize: 36 }}>✓</span>
+                        <div className="absolute inset-0" style={{ background: "rgba(34,197,94,0.15)" }}>
+                          <span className="absolute" style={{ top: 4, right: 4, fontSize: 18, color: "#22c55e", fontWeight: 700, lineHeight: 1 }}>✓</span>
                         </div>
                       )}
                       {urgent && !allDone && (
