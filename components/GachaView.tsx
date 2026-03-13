@@ -153,31 +153,33 @@ function BannerPreviewCard({
               <filter id={`${fogId}-a`} x="0%" y="0%" width="100%" height="100%">
                 <feTurbulence type="fractalNoise" baseFrequency="0.008 0.012" numOctaves={2} seed={42} stitchTiles="stitch" result="noise" />
                 <feColorMatrix in="noise" type="matrix" values="0 0 0 0 0.35  0 0 0 0 0.18  0 0 0 0 0.55  0 0 0 0.55 0" />
+                <feGaussianBlur stdDeviation="4" />
               </filter>
               <filter id={`${fogId}-b`} x="0%" y="0%" width="100%" height="100%">
                 <feTurbulence type="fractalNoise" baseFrequency="0.012 0.006" numOctaves={2} seed={137} stitchTiles="stitch" result="noise" />
                 <feColorMatrix in="noise" type="matrix" values="0 0 0 0 0.28  0 0 0 0 0.15  0 0 0 0 0.6  0 0 0 0.45 0" />
+                <feGaussianBlur stdDeviation="6" />
               </filter>
             </defs>
           </svg>
           {/* Layer 1: GPU-accelerated transform only (filter is static) */}
           <svg style={{
-            position: "absolute", left: "-15%", bottom: "-5%", width: "130%", height: "105%",
+            position: "absolute", left: "-100%", bottom: "-5%", width: "300%", height: "105%",
             opacity: 0.7,
             maskImage: "linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0.2) 80%, transparent 95%)",
             WebkitMaskImage: "linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0.2) 80%, transparent 95%)",
-            animation: "fogDrift1 12s ease-in-out infinite alternate",
+            animation: "fogDrift1 20s linear infinite",
             willChange: "transform",
           }}>
             <rect width="100%" height="100%" filter={`url(#${fogId}-a)`} />
           </svg>
           {/* Layer 2 */}
           <svg style={{
-            position: "absolute", left: "-10%", bottom: "-5%", width: "120%", height: "100%",
+            position: "absolute", left: "-80%", bottom: "-5%", width: "260%", height: "100%",
             opacity: 0.5,
             maskImage: "linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 45%, rgba(0,0,0,0.15) 75%, transparent 90%)",
             WebkitMaskImage: "linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 45%, rgba(0,0,0,0.15) 75%, transparent 90%)",
-            animation: "fogDrift2 15s ease-in-out infinite alternate-reverse",
+            animation: "fogDrift2 25s linear infinite",
             willChange: "transform",
           }}>
             <rect width="100%" height="100%" filter={`url(#${fogId}-b)`} />
