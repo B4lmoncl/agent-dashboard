@@ -5286,7 +5286,7 @@ app.get('/api/rituals', (req, res) => {
 
 // POST /api/rituals — create ritual [auth]
 app.post('/api/rituals', requireApiKey, (req, res) => {
-  const { title, description, schedule, difficulty, rewards, playerId, createdBy } = req.body;
+  const { title, description, schedule, difficulty, rewards, playerId, createdBy, isAntiRitual, category, commitment, commitmentDays, bloodPact } = req.body;
   if (!title) return res.status(400).json({ error: 'title is required' });
   if (!playerId) return res.status(400).json({ error: 'playerId is required' });
   const ritual = {
@@ -5302,6 +5302,7 @@ app.post('/api/rituals', requireApiKey, (req, res) => {
     createdBy: createdBy || playerId,
     playerId: playerId.toLowerCase(),
     createdAt: now(),
+    ...(isAntiRitual ? { isAntiRitual: true, category, commitment, commitmentDays, bloodPact, cleanDays: 0, lastViolated: null } : {}),
   };
   rituals.push(ritual);
   saveRituals();
