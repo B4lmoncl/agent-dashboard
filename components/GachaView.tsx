@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import type { User, GachaPullResult, GachaBanner, GachaPityInfo } from "@/app/types";
 import GachaPull, { RARITY_CONFIG } from "./GachaPull";
 import { ModalOverlay } from "./ModalPortal";
@@ -108,16 +108,8 @@ function BannerPreviewCard({
   ];
 
   // Nebula wisps for Nyxara (featured banner) — elongated fog shapes
-  const nebulaWisps = [
-    { left: "-5%", top: "10%", w: 160, h: 40, color: "rgba(129,140,248,0.2)", anim: 0, dur: 8 },
-    { left: "30%", top: "30%", w: 180, h: 35, color: "rgba(168,85,247,0.18)", anim: 1, dur: 10 },
-    { left: "50%", top: "55%", w: 140, h: 50, color: "rgba(139,92,246,0.15)", anim: 2, dur: 7 },
-    { left: "10%", top: "70%", w: 200, h: 30, color: "rgba(192,132,252,0.16)", anim: 3, dur: 9 },
-    { left: "60%", top: "15%", w: 120, h: 45, color: "rgba(129,140,248,0.12)", anim: 0, dur: 11 },
-    { left: "-10%", top: "45%", w: 170, h: 55, color: "rgba(168,85,247,0.14)", anim: 2, dur: 8.5 },
-    { left: "40%", top: "80%", w: 150, h: 35, color: "rgba(139,92,246,0.1)", anim: 1, dur: 12 },
-    { left: "70%", top: "40%", w: 130, h: 40, color: "rgba(192,132,252,0.13)", anim: 3, dur: 9.5 },
-  ];
+  // SVG fog filter IDs (unique per banner instance)
+  const fogId = useRef(`fog-${Math.random().toString(36).slice(2, 8)}`).current;
 
   return (
     <button
@@ -152,22 +144,39 @@ function BannerPreviewCard({
           textShadow: "0 0 6px rgba(129,140,248,0.4)",
         }}>{runeSymbols[i]}</span>
       ))}
-      {isFeatured && nebulaWisps.map((wisp, i) => (
-        <div key={`nebula-${i}`} style={{
-          position: "absolute",
-          left: wisp.left,
-          top: wisp.top,
-          width: wisp.w,
-          height: wisp.h,
-          borderRadius: "50%",
-          background: `radial-gradient(ellipse at center, ${wisp.color}, transparent 65%)`,
-          filter: "blur(8px)",
-          animation: `nebula-drift-${wisp.anim} ${wisp.dur}s ease-in-out infinite`,
-          animationDelay: `${i * 1.2}s`,
-          pointerEvents: "none",
-          zIndex: 0,
-        }} />
-      ))}
+      {isFeatured && (
+        <div className="absolute inset-0 overflow-hidden rounded-2xl pointer-events-none" style={{ zIndex: 0 }}>
+          {/* Hidden SVG filter definitions */}
+          <svg width="0" height="0" style={{ position: "absolute" }}>
+            <defs>
+              <filter id={`${fogId}-a`} x="-20%" y="-20%" width="140%" height="140%">
+                <feTurbulence type="fractalNoise" baseFrequency="0.006 0.009" numOctaves={3} seed={42} stitchTiles="stitch" result="noise" />
+                <feColorMatrix in="noise" type="matrix" values="0 0 0 0 0.35  0 0 0 0 0.18  0 0 0 0 0.55  0 0 0 0.6 0" />
+                <feGaussianBlur stdDeviation="6" />
+              </filter>
+              <filter id={`${fogId}-b`} x="-20%" y="-20%" width="140%" height="140%">
+                <feTurbulence type="fractalNoise" baseFrequency="0.008 0.005" numOctaves={2} seed={137} stitchTiles="stitch" result="noise" />
+                <feColorMatrix in="noise" type="matrix" values="0 0 0 0 0.28  0 0 0 0 0.15  0 0 0 0 0.65  0 0 0 0.5 0" />
+                <feGaussianBlur stdDeviation="10" />
+              </filter>
+            </defs>
+          </svg>
+          {/* Layer 1: Slow drift */}
+          <div style={{
+            position: "absolute", inset: "-20%", width: "140%", height: "140%",
+            opacity: 0.35,
+            filter: `url(#${fogId}-a)`,
+            animation: "fogDrift1 25s ease-in-out infinite alternate",
+          }} />
+          {/* Layer 2: Counter drift */}
+          <div style={{
+            position: "absolute", inset: "-20%", width: "140%", height: "140%",
+            opacity: 0.25,
+            filter: `url(#${fogId}-b)`,
+            animation: "fogDrift2 30s ease-in-out infinite alternate-reverse",
+          }} />
+        </div>
+      )}
 
       {/* Subtle animated glow overlay on hover */}
       <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{
