@@ -312,7 +312,7 @@ const COMMITMENT_TIERS_VOW = [
 function getVaelSpeech(commitment: string, bloodPact: boolean): string {
   if (bloodPact) return "Blut. So sei es.";
   if (commitment === "eternity") return "Ein Jahr Entsagung. Wenige bestehen.";
-  if (commitment === "none") return "A vow without end... bold choice, adventurer.";
+  if (commitment === "none") return "Ein Schwur ohne Ende... mutiger Schritt, Abenteurer.";
   return "...Sprich deinen Schwur.";
 }
 
