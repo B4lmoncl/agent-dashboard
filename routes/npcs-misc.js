@@ -44,19 +44,17 @@ router.get('/api/npcs/active', (req, res) => {
         questChain: questIds.map((qid, idx) => {
           const q = npcQuests.find(x => x.id === qid);
           if (!q) return null;
-          // Per-player status overlay: if player specified, use their progress
-          let status = q.status;
-          let claimedBy = q.claimedBy;
-          let completedBy = q.completedBy;
+          // Per-player status overlay
+          let status, claimedBy, completedBy;
           if (playerNpcQuests) {
+            // Player is logged in: use their per-player progress
             const playerStatus = playerNpcQuests[qid];
             if (playerStatus) {
               status = playerStatus.status;
               claimedBy = playerStatus.status === 'in_progress' ? playerParam : (playerStatus.completedBy || null);
               completedBy = playerStatus.completedBy || null;
             } else {
-              // Player hasn't interacted with this quest — show as open if chain allows
-              // Check if previous quest in chain is completed by this player
+              // Player hasn't interacted — show as open if chain allows
               if (idx > 0) {
                 const prevQid = questIds[idx - 1];
                 const prevStatus = playerNpcQuests[prevQid];
@@ -67,6 +65,11 @@ router.get('/api/npcs/active', (req, res) => {
               claimedBy = null;
               completedBy = null;
             }
+          } else {
+            // No player logged in: show chain-order template status, no personal data
+            status = idx === 0 ? 'open' : 'locked';
+            claimedBy = null;
+            completedBy = null;
           }
           return {
             questId: q.id,

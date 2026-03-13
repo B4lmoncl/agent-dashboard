@@ -494,6 +494,9 @@ export function WandererRest({
                               )}
                             </div>
                           )}
+                          {currentQuest.status === "open" && !playerName && (
+                            <p className="text-xs italic ml-auto" style={{ color: "rgba(255,215,0,0.4)" }}>Log in to accept quests</p>
+                          )}
                           {currentQuest.status === "open" && handleClaim && playerName && (
                             <button
                               onClick={(e) => {
