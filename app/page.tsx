@@ -1533,7 +1533,9 @@ export default function Dashboard() {
                             style={{ background: isActive ? (cfg ? cfg.bg : npcStyle ? npcStyle.bg : "rgba(255,255,255,0.1)") : "rgba(255,255,255,0.03)", color: isActive ? (cfg ? cfg.color : npcStyle ? npcStyle.color : "#e8e8e8") : "rgba(255,255,255,0.3)", border: `1px solid ${isActive ? (cfg ? cfg.border : npcStyle ? npcStyle.border : "rgba(255,255,255,0.2)") : "rgba(255,255,255,0.07)"}` }}>
                             {t === "all" ? "All" : t === "npc" ? (
                               <>
-                                <span style={{ fontSize: 14 }}>🧙</span>
+                                <img src="/images/icons/cat-npc.png" alt="" width={28} height={28}
+                                  style={{ imageRendering: "pixelated" }}
+                                  onError={(e) => { e.currentTarget.style.display = "none"; }} />
                                 NPC
                               </>
                             ) : (

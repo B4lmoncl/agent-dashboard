@@ -1803,6 +1803,9 @@ export function QuestCard({ quest, selected, onToggle, onClaim, onUnclaim, onCom
         {/* Card footer — rewards */}
         <div className="px-3 pb-2.5 flex items-center justify-between gap-2">
           <div className="flex items-center gap-2">
+            {quest.npcGiverId && (
+              <span className="font-bold uppercase" style={{ fontSize: 9, letterSpacing: "0.05em", color: "#e879f9", background: "rgba(232,121,249,0.08)", border: "1px solid rgba(232,121,249,0.25)", padding: "1px 4px", borderRadius: 3 }}>NPC</span>
+            )}
             {(quest.chainTotal ?? 1) > 1 && <ChainDots chainIndex={quest.chainIndex ?? 0} chainTotal={quest.chainTotal!} color={RARITY_COLORS[quest.npcRarity ?? "common"] ?? "#f59e0b"} />}
             <span className="font-mono" style={{ fontSize: "0.7rem", color: "rgba(179,157,219,0.75)" }}>{(quest.rewards?.xp != null && quest.rewards.xp > 0) ? quest.rewards.xp : ({ high: 30, medium: 20, low: 10 }[quest.priority] ?? 10)} XP</span>
             <span className="font-mono" style={{ fontSize: "0.7rem", color: "rgba(251,191,36,0.75)" }}>x {(quest.rewards?.gold != null && quest.rewards.gold > 0) ? quest.rewards.gold : ({ high: 25, medium: 15, low: 9 }[quest.priority] ?? 9)}</span>
@@ -1971,6 +1974,9 @@ export function QuestCard({ quest, selected, onToggle, onClaim, onUnclaim, onCom
           )}
           <div className="flex items-center justify-between mt-1">
             <div className="flex items-center gap-2">
+              {quest.npcGiverId && (
+                <span className="text-xs px-1 py-0.5 rounded font-bold uppercase" style={{ fontSize: 9, letterSpacing: "0.05em", color: "#e879f9", background: "rgba(232,121,249,0.08)", border: "1px solid rgba(232,121,249,0.25)" }}>NPC</span>
+              )}
               {(quest.chainTotal ?? 1) > 1 && <ChainDots chainIndex={quest.chainIndex ?? 0} chainTotal={quest.chainTotal!} color={RARITY_COLORS[quest.npcRarity ?? "common"] ?? "#f59e0b"} />}
               <span style={{ fontSize: "0.7rem", color: "rgba(179,157,219,0.6)" }}>{(quest.rewards?.xp != null && quest.rewards.xp > 0) ? quest.rewards.xp : ({ high: 30, medium: 20, low: 10 }[quest.priority] ?? 10)} XP</span>
               <span style={{ fontSize: "0.7rem", color: "rgba(251,191,36,0.6)" }}>x {(quest.rewards?.gold != null && quest.rewards.gold > 0) ? quest.rewards.gold : ({ high: 25, medium: 15, low: 9 }[quest.priority] ?? 9)}</span>
