@@ -61,6 +61,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
   // Step 1 fields
   const [age, setAge] = useState("");
   const [goals, setGoals] = useState("");
+  const [pronouns, setPronouns] = useState<string | null>(null);
 
   // Step 2 fields
   const [classes, setClasses] = useState<ClassDef[]>([]);
@@ -174,6 +175,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
           password,
           age: age ? parseInt(age, 10) : null,
           goals: goals.trim() || null,
+          pronouns: pronouns || null,
           classId: selectedClassId || null,
           companion,
           relationshipStatus,
@@ -341,6 +343,31 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
                 min={5}
                 max={120}
               />
+            </div>
+            <div>
+              <label className="text-xs font-semibold mb-1.5 block" style={{ color: "rgba(255,255,255,0.5)" }}>Pronomen (optional)</label>
+              <div className="flex flex-wrap gap-1.5">
+                {[
+                  { value: "he/him", label: "He/Him" },
+                  { value: "she/her", label: "She/Her" },
+                  { value: "they/them", label: "They/Them" },
+                  { value: "other", label: "Other" },
+                  { value: "prefer_not_to_say", label: "Prefer not to say" },
+                ].map(opt => (
+                  <button
+                    key={opt.value}
+                    onClick={() => setPronouns(pronouns === opt.value ? null : opt.value)}
+                    className="text-xs px-2.5 py-1.5 rounded-lg"
+                    style={{
+                      background: pronouns === opt.value ? "rgba(167,139,250,0.12)" : "rgba(255,255,255,0.04)",
+                      color: pronouns === opt.value ? "#a78bfa" : "rgba(255,255,255,0.5)",
+                      border: `1px solid ${pronouns === opt.value ? "rgba(167,139,250,0.4)" : "rgba(255,255,255,0.08)"}`,
+                    }}
+                  >
+                    {opt.label}
+                  </button>
+                ))}
+              </div>
             </div>
             <div>
               <label className="text-xs font-semibold mb-1.5 block" style={{ color: "rgba(255,255,255,0.5)" }}>Was willst du erreichen?</label>
@@ -707,6 +734,12 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
                 <span style={{ color: "rgba(255,255,255,0.4)" }}>Name</span>
                 <span style={{ color: "#f0f0f0", fontWeight: 600 }}>{name}</span>
               </div>
+              {pronouns && (
+                <div className="flex justify-between text-xs">
+                  <span style={{ color: "rgba(255,255,255,0.4)" }}>Pronomen</span>
+                  <span style={{ color: "#f0f0f0", fontWeight: 600 }}>{pronouns === "prefer_not_to_say" ? "—" : pronouns}</span>
+                </div>
+              )}
               <div className="flex justify-between text-xs">
                 <span style={{ color: "rgba(255,255,255,0.4)" }}>Klasse</span>
                 <span style={{ color: "#a78bfa", fontWeight: 600 }}>

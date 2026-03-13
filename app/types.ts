@@ -135,6 +135,7 @@ export interface User {
   goals?: string | null;
   relationshipStatus?: string;
   partnerName?: string | null;
+  pronouns?: string | null;
 }
 
 export interface CampaignQuest {

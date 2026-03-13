@@ -152,7 +152,7 @@ router.post('/api/auth/set-password', async (req, res) => {
 
 // POST /api/register — register a new player
 router.post('/api/register', async (req, res) => {
-  const { name, password, age, goals, classId, companion, relationshipStatus, partnerName } = req.body;
+  const { name, password, age, goals, pronouns, classId, companion, relationshipStatus, partnerName } = req.body;
   if (!name || !String(name).trim()) return res.status(400).json({ error: 'name is required' });
   if (!password) return res.status(400).json({ error: 'password is required' });
   if (password.length < 6) return res.status(400).json({ error: 'Password must be at least 6 characters' });
@@ -205,6 +205,7 @@ router.post('/api/register', async (req, res) => {
     goals: goals || null,
     relationshipStatus: (['single', 'relationship', 'married', 'complicated', 'other'].includes(relationshipStatus)) ? relationshipStatus : 'single',
     partnerName: partnerName || null,
+    pronouns: (['he/him', 'she/her', 'they/them', 'other', 'prefer_not_to_say'].includes(pronouns)) ? pronouns : null,
     classId: resolvedClassId,
     classPending,
     classPendingNotified: false,
