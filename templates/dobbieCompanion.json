@@ -1,0 +1,17 @@
+{
+  "quests": [
+    { "id": "feed_dobbie", "title": "Feed Dobbie Before 18:00", "description": "His Highness demands his meal on time. No excuses.", "priority": "high" },
+    { "id": "clean_litter", "title": "Clean the Litter Box", "description": "The sacred ritual must be performed. Dobbie demands cleanliness.", "priority": "medium" },
+    { "id": "pet_dobbie", "title": "Pet Dobbie for 5 Minutes", "description": "Five minutes of undivided attention. The minimum acceptable tribute.", "priority": "low" },
+    { "id": "play_time", "title": "Interactive Play Session", "description": "10 minutes with the wand toy. Dobbie requires stimulation.", "priority": "low" },
+    { "id": "window_watch", "title": "Open Window for Bird Watching", "description": "Allow access to the window ledge for prime bird surveillance.", "priority": "low" }
+  ],
+  "moodQuotes": {
+    "Sleeping": "Zzz... Do not disturb. Consequences will be severe.",
+    "Ecstatic": "Fine. You may pet me. BRIEFLY. Do not read into this.",
+    "Happy": "You may proceed. I am... temporarily satisfied.",
+    "Neutral": "This is taking far too long. My patience wears thin, human.",
+    "Neglected": "UNACCEPTABLE. The litter box remains unattended. Consequences incoming.",
+    "Sad": "You call that a play session? I've seen dust motes with more energy."
+  }
+}

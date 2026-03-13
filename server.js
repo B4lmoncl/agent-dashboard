@@ -16,7 +16,7 @@ const rateLimit = require('express-rate-limit');
 // ─── Shared modules ──────────────────────────────────────────────────────────
 const {
   state, AGENT_NAMES, NPC_ROTATION_MS,
-  ensureDataDir,
+  ensureDataDir, ensureTemplateFiles,
   initStore, loadData, loadQuests, loadCampaigns, loadManagedKeys,
   loadUsers, loadPlayerProgress, loadQuestCatalog, loadClasses,
   loadCompanionsData, loadRoadmap, loadRituals, loadHabits,
@@ -25,7 +25,7 @@ const {
   loadCurrencyTemplates, loadGachaPool, loadBannerTemplates, loadGachaState,
   saveAppState,
 } = require('./lib/state');
-const { autoCreateCampaigns } = require('./lib/helpers');
+const { autoCreateCampaigns, initAchievementCatalogue } = require('./lib/helpers');
 const { startupNpcCheck, checkPeriodicTasks } = require('./lib/npc-engine');
 const { checkAndRunDailyRotation } = require('./lib/rotation');
 const { seedQuestCatalog } = require('./lib/quest-catalog');
@@ -87,6 +87,7 @@ app.use(require('./routes/npcs-misc'));  // Must be last (has SPA fallback catch
 
 // ─── Boot sequence ───────────────────────────────────────────────────────────
 ensureDataDir();
+ensureTemplateFiles();
 initStore();
 loadData();
 loadQuests();
@@ -114,6 +115,7 @@ loadNpcGivers();
 loadNpcState();
 loadAppState();
 loadFeedback();
+initAchievementCatalogue();
 loadCurrencyTemplates();
 loadGachaPool();
 loadBannerTemplates();

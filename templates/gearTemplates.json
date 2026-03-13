@@ -1,0 +1,96 @@
+{
+  "tiers": [
+    { "id": 1, "name": "Abenteurer", "minLevel": 1, "maxLevel": 8, "color": "#8D6E63" },
+    { "id": 2, "name": "Veteranen", "minLevel": 9, "maxLevel": 16, "color": "#78909C" },
+    { "id": 3, "name": "Meister", "minLevel": 17, "maxLevel": 24, "color": "#FFD54F" },
+    { "id": 4, "name": "Legendär", "minLevel": 25, "maxLevel": 30, "color": "#7C4DFF" }
+  ],
+  "items": [
+    { "id": "t1-sword", "name": "Holzschwert", "slot": "weapon", "tier": 1, "reqLevel": 1, "rarity": "common", "stats": { "kraft": 2 }, "price": 50, "desc": "Ein einfaches Schwert aus Eichenholz. Jeder Held fängt klein an." },
+    { "id": "t1-dagger", "name": "Rostiger Dolch", "slot": "weapon", "tier": 1, "reqLevel": 1, "rarity": "common", "stats": { "kraft": 1, "glueck": 1 }, "price": 40, "desc": "Rostig, aber scharf genug." },
+    { "id": "t1-staff", "name": "Wanderstab", "slot": "weapon", "tier": 1, "reqLevel": 3, "rarity": "uncommon", "stats": { "weisheit": 2, "kraft": 1 }, "price": 75, "desc": "Ein knorriger Stab der nach Abenteuer riecht." },
+    { "id": "t1-axe", "name": "Holzfälleraxt", "slot": "weapon", "tier": 1, "reqLevel": 5, "rarity": "uncommon", "stats": { "kraft": 3 }, "price": 90, "desc": "Eigentlich zum Holzhacken. Eigentlich." },
+    { "id": "t1-shield", "name": "Holzschild", "slot": "shield", "tier": 1, "reqLevel": 1, "rarity": "common", "stats": { "ausdauer": 2 }, "price": 50, "desc": "Splittert leicht, aber besser als nichts." },
+    { "id": "t1-buckler", "name": "Leder-Buckler", "slot": "shield", "tier": 1, "reqLevel": 4, "rarity": "uncommon", "stats": { "ausdauer": 2, "glueck": 1 }, "price": 80, "desc": "Klein, wendig, zuverlässig." },
+    { "id": "t1-helm", "name": "Lederkappe", "slot": "helm", "tier": 1, "reqLevel": 1, "rarity": "common", "stats": { "weisheit": 1 }, "price": 40, "desc": "Schützt vor Regen. Und manchmal vor Schwertern." },
+    { "id": "t1-hood", "name": "Diebeskaputze", "slot": "helm", "tier": 1, "reqLevel": 3, "rarity": "uncommon", "stats": { "glueck": 2 }, "price": 60, "desc": "Sieht verdächtig aus, bringt aber Glück." },
+    { "id": "t1-armor", "name": "Lederrüstung", "slot": "armor", "tier": 1, "reqLevel": 1, "rarity": "common", "stats": { "ausdauer": 1, "kraft": 1 }, "price": 60, "desc": "Riecht nach Abenteuer. Und nach Leder." },
+    { "id": "t1-tunic", "name": "Verstärkte Tunika", "slot": "armor", "tier": 1, "reqLevel": 5, "rarity": "uncommon", "stats": { "ausdauer": 2, "kraft": 1 }, "price": 100, "desc": "Mit Metallplättchen verstärkt. Sieht cool aus." },
+    { "id": "t1-amulet", "name": "Kupferkette", "slot": "amulet", "tier": 1, "reqLevel": 1, "rarity": "common", "stats": { "glueck": 2 }, "price": 45, "desc": "Grün angelaufen, aber irgendwie charmant." },
+    { "id": "t1-charm", "name": "Glücksbringer", "slot": "amulet", "tier": 1, "reqLevel": 3, "rarity": "uncommon", "stats": { "glueck": 3 }, "price": 70, "desc": "Ein Hasenpfötchen. Der Hase hatte weniger Glück." },
+    { "id": "t1-boots", "name": "Wanderstiefel", "slot": "boots", "tier": 1, "reqLevel": 1, "rarity": "common", "stats": { "glueck": 1 }, "price": 35, "desc": "Bequem genug für tausend Meilen." },
+    { "id": "t1-sandals", "name": "Schnelle Sandalen", "slot": "boots", "tier": 1, "reqLevel": 4, "rarity": "uncommon", "stats": { "glueck": 1, "kraft": 1 }, "price": 65, "desc": "Luftig und erstaunlich schnell." },
+
+    { "id": "t2-sword", "name": "Stahlschwert", "slot": "weapon", "tier": 2, "reqLevel": 9, "rarity": "uncommon", "stats": { "kraft": 4, "ausdauer": 1 }, "price": 200, "desc": "Geschmiedet in der Hitze hunderter Kämpfe." },
+    { "id": "t2-katana", "name": "Ostwind-Klinge", "slot": "weapon", "tier": 2, "reqLevel": 11, "rarity": "rare", "stats": { "kraft": 5, "glueck": 1 }, "price": 300, "desc": "Eine Klinge aus dem fernen Osten. Schnell wie der Wind." },
+    { "id": "t2-hammer", "name": "Kriegshammer", "slot": "weapon", "tier": 2, "reqLevel": 13, "rarity": "rare", "stats": { "kraft": 6 }, "price": 350, "desc": "Schwer. Effektiv. Kein Schnickschnack." },
+    { "id": "t2-shield", "name": "Eisenschild", "slot": "shield", "tier": 2, "reqLevel": 9, "rarity": "uncommon", "stats": { "ausdauer": 4 }, "price": 220, "desc": "Hält mehr aus als dein Wille." },
+    { "id": "t2-tower", "name": "Turmschild", "slot": "shield", "tier": 2, "reqLevel": 12, "rarity": "rare", "stats": { "ausdauer": 5, "kraft": 1 }, "price": 320, "desc": "Dahinter passt ein ganzer Held." },
+    { "id": "t2-helm", "name": "Kettenhaube", "slot": "helm", "tier": 2, "reqLevel": 9, "rarity": "uncommon", "stats": { "weisheit": 3, "ausdauer": 1 }, "price": 200, "desc": "Kalt im Winter, heiß im Sommer, immer nützlich." },
+    { "id": "t2-circlet", "name": "Silberner Reif", "slot": "helm", "tier": 2, "reqLevel": 12, "rarity": "rare", "stats": { "weisheit": 4, "glueck": 1 }, "price": 280, "desc": "Strahlt eine ruhige Autorität aus." },
+    { "id": "t2-armor", "name": "Kettenhemd", "slot": "armor", "tier": 2, "reqLevel": 9, "rarity": "uncommon", "stats": { "ausdauer": 3, "kraft": 2 }, "price": 250, "desc": "Tausend kleine Ringe, ein großer Schutz." },
+    { "id": "t2-brigandine", "name": "Brigantine", "slot": "armor", "tier": 2, "reqLevel": 14, "rarity": "rare", "stats": { "ausdauer": 4, "kraft": 2, "glueck": 1 }, "price": 400, "desc": "Stahlplatten unter Leder. Das Beste aus beiden Welten." },
+    { "id": "t2-amulet", "name": "Silberamulett", "slot": "amulet", "tier": 2, "reqLevel": 9, "rarity": "uncommon", "stats": { "glueck": 4 }, "price": 180, "desc": "Glänzt im Mondlicht wie ein gutes Omen." },
+    { "id": "t2-pendant", "name": "Runenstein-Anhänger", "slot": "amulet", "tier": 2, "reqLevel": 13, "rarity": "rare", "stats": { "glueck": 3, "weisheit": 2 }, "price": 300, "desc": "Alte Runen flüstern vergessenes Wissen." },
+    { "id": "t2-boots", "name": "Eisenbeschlagene Stiefel", "slot": "boots", "tier": 2, "reqLevel": 9, "rarity": "uncommon", "stats": { "glueck": 2, "ausdauer": 1 }, "price": 190, "desc": "Klingen am Boden? Kein Problem." },
+    { "id": "t2-strider", "name": "Waldläufer-Stiefel", "slot": "boots", "tier": 2, "reqLevel": 12, "rarity": "rare", "stats": { "glueck": 3, "kraft": 1 }, "price": 270, "desc": "Lautlos durch den Wald. Wie ein Schatten." },
+
+    { "id": "t3-sword", "name": "Runenschwert", "slot": "weapon", "tier": 3, "reqLevel": 17, "rarity": "rare", "stats": { "kraft": 7, "weisheit": 2 }, "price": 500, "desc": "Gravierte Runen leuchten bei Gefahr." },
+    { "id": "t3-lance", "name": "Drachentöter-Lanze", "slot": "weapon", "tier": 3, "reqLevel": 19, "rarity": "epic", "stats": { "kraft": 9, "ausdauer": 2 }, "price": 700, "desc": "Geschmiedet um Drachen zu erlegen. Noch unbenutzt." },
+    { "id": "t3-wand", "name": "Arkaner Fokus", "slot": "weapon", "tier": 3, "reqLevel": 20, "rarity": "epic", "stats": { "weisheit": 8, "kraft": 3 }, "price": 750, "desc": "Pulsiert mit roher magischer Energie." },
+    { "id": "t3-shield", "name": "Drachenschuppe", "slot": "shield", "tier": 3, "reqLevel": 17, "rarity": "rare", "stats": { "ausdauer": 6, "kraft": 2 }, "price": 550, "desc": "Von einem echten Drachen. Er vermisst sie nicht mehr." },
+    { "id": "t3-barrier", "name": "Magische Barriere", "slot": "shield", "tier": 3, "reqLevel": 21, "rarity": "epic", "stats": { "ausdauer": 7, "weisheit": 2 }, "price": 700, "desc": "Ein Schild aus reiner Energie. Beeindruckend." },
+    { "id": "t3-helm", "name": "Arkanistenhaube", "slot": "helm", "tier": 3, "reqLevel": 17, "rarity": "rare", "stats": { "weisheit": 6, "glueck": 1 }, "price": 500, "desc": "Wissen fließt durch den Stoff." },
+    { "id": "t3-crown", "name": "Krone des Strategen", "slot": "helm", "tier": 3, "reqLevel": 22, "rarity": "epic", "stats": { "weisheit": 7, "kraft": 2, "glueck": 1 }, "price": 800, "desc": "Wer sie trägt, sieht drei Züge voraus." },
+    { "id": "t3-armor", "name": "Mythril-Rüstung", "slot": "armor", "tier": 3, "reqLevel": 17, "rarity": "rare", "stats": { "ausdauer": 5, "kraft": 3, "weisheit": 1 }, "price": 600, "desc": "Leicht wie Seide, hart wie Stahl." },
+    { "id": "t3-plate", "name": "Runengeschmiedeter Harnisch", "slot": "armor", "tier": 3, "reqLevel": 22, "rarity": "epic", "stats": { "ausdauer": 7, "kraft": 3, "weisheit": 2 }, "price": 900, "desc": "Jede Platte trägt eine Schutzrune." },
+    { "id": "t3-amulet", "name": "Goldenes Medaillon", "slot": "amulet", "tier": 3, "reqLevel": 17, "rarity": "rare", "stats": { "glueck": 6, "weisheit": 1 }, "price": 500, "desc": "Enthält das Portrait eines vergessenen Helden." },
+    { "id": "t3-eye", "name": "Auge des Sehers", "slot": "amulet", "tier": 3, "reqLevel": 21, "rarity": "epic", "stats": { "glueck": 5, "weisheit": 4 }, "price": 750, "desc": "Sieht was andere nicht sehen können." },
+    { "id": "t3-boots", "name": "Windläufer-Stiefel", "slot": "boots", "tier": 3, "reqLevel": 17, "rarity": "rare", "stats": { "glueck": 4, "kraft": 2 }, "price": 480, "desc": "Der Wind selbst trägt deine Schritte." },
+    { "id": "t3-shadow", "name": "Schattenspringer", "slot": "boots", "tier": 3, "reqLevel": 22, "rarity": "epic", "stats": { "glueck": 5, "kraft": 3, "ausdauer": 1 }, "price": 720, "desc": "Zwischen den Schatten wandeln. Lautlos." },
+
+    { "id": "t4-dawn", "name": "Klinge der Morgenröte", "slot": "weapon", "tier": 4, "reqLevel": 25, "rarity": "legendary", "stats": { "kraft": 10, "weisheit": 4, "glueck": 2 }, "price": 2000, "desc": "Geschmiedet im ersten Licht der Welt. Wärmt die Seele." },
+    { "id": "t4-void", "name": "Klinge der Leere", "slot": "weapon", "tier": 4, "reqLevel": 28, "rarity": "legendary", "stats": { "kraft": 12, "ausdauer": 3, "glueck": 3 }, "price": 3000, "desc": "Absorbiert das Licht um sich herum. Furchteinflößend." },
+    { "id": "t4-aegis", "name": "Aegis des Unbesiegbaren", "slot": "shield", "tier": 4, "reqLevel": 25, "rarity": "legendary", "stats": { "ausdauer": 10, "kraft": 3 }, "price": 2000, "desc": "Kein Schwert, kein Zauber, kein Gott durchdringt diesen Schild." },
+    { "id": "t4-crown", "name": "Krone der Weisen", "slot": "helm", "tier": 4, "reqLevel": 25, "rarity": "legendary", "stats": { "weisheit": 10, "glueck": 3 }, "price": 2000, "desc": "Getragen von den größten Denkern aller Zeiten." },
+    { "id": "t4-armor", "name": "Drachenblut-Panzer", "slot": "armor", "tier": 4, "reqLevel": 25, "rarity": "legendary", "stats": { "ausdauer": 8, "kraft": 5, "weisheit": 2 }, "price": 2500, "desc": "Im Blut eines uralten Drachen gehärtet. Unzerstörbar." },
+    { "id": "t4-heart", "name": "Herz des Glücks", "slot": "amulet", "tier": 4, "reqLevel": 25, "rarity": "legendary", "stats": { "glueck": 10, "weisheit": 2 }, "price": 2000, "desc": "Pulsiert mit dem Glück aller die es je trugen." },
+    { "id": "t4-boots", "name": "Stiefel des Weltenwanderers", "slot": "boots", "tier": 4, "reqLevel": 25, "rarity": "legendary", "stats": { "glueck": 6, "kraft": 4, "ausdauer": 2 }, "price": 2000, "desc": "Haben jeden Kontinent bereist. Jede Dimension." },
+    { "id": "t4-excalibur", "name": "Excalibur", "slot": "weapon", "tier": 4, "reqLevel": 27, "rarity": "legendary", "stats": { "kraft": 15, "weisheit": 5, "ausdauer": 5, "glueck": 5 }, "price": 0, "shopHidden": true, "desc": "Die Klinge der Legenden. Kann nicht gekauft werden — nur verdient." },
+    { "id": "t4-phoenix", "name": "Phoenix-Mantel", "slot": "armor", "tier": 4, "reqLevel": 28, "rarity": "legendary", "stats": { "ausdauer": 12, "kraft": 6, "weisheit": 4 }, "price": 0, "shopHidden": true, "desc": "Aus den Federn eines Phoenix gewebt. Wer fällt, steht wieder auf." },
+    { "id": "t4-oracle", "name": "Orakel-Auge", "slot": "amulet", "tier": 4, "reqLevel": 29, "rarity": "legendary", "stats": { "glueck": 15, "weisheit": 8 }, "price": 0, "shopHidden": true, "desc": "Sieht die Zukunft. Manchmal ist das ein Fluch." }
+  ],
+  "setBonus": {
+    "3of6": { "allStatsPercent": 5, "label": "3/6 x" },
+    "6of6": { "allStatsPercent": 10, "label": "6/6 KOMPLETT x", "glowEffect": true }
+  },
+  "namedSets": [
+    {
+      "id": "ilse-collection",
+      "name": "Oma Ilses Kollektion",
+      "rarity": "rare",
+      "pieces": ["ilse-scarf"],
+      "description": "Für die ganz Fleißigen sammelt Oma Ilse noch mehr…",
+      "partialBonus": {},
+      "fullBonus": { "ausdauer": 3, "label": "Omas Segen: +3 Ausdauer" }
+    },
+    {
+      "id": "wanderer-set",
+      "name": "Wanderer-Sammlung",
+      "rarity": "epic",
+      "pieces": ["karim-compass", "tanaka-headband", "finnegan-lute"],
+      "description": "Gesammelt von den seltensten Reisenden der Welt.",
+      "partialBonus": { "2": { "glueck": 3, "label": "Fernweh: +3 Glück" } },
+      "fullBonus": { "allStats": 5, "label": "Weltenbummler: +5 auf alle Stats" }
+    },
+    {
+      "id": "nature-set",
+      "name": "Naturläufer-Sammlung",
+      "rarity": "rare",
+      "pieces": ["mirael-pendant"],
+      "description": "Ausrüstung der Waldwächterin — für alle die den Wald lieben.",
+      "partialBonus": {},
+      "fullBonus": { "ausdauer": 4, "label": "Waldgeist: +4 Ausdauer" }
+    }
+  ]
+}

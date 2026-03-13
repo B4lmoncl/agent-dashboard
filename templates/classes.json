@@ -1,0 +1,33 @@
+{
+  "classes": [
+    {
+      "id": "network-sage",
+      "name": "Path of the Network Sage",
+      "icon": "🛡️",
+      "fantasy": "Network Sage",
+      "description": "Beherrsche die Kunst der Netzwerke, Firewalls und digitalen Verteidigung.",
+      "realWorld": "IT / Netzwerk / Systemintegration",
+      "tiers": [
+        { "level": 1,  "title": "Cable Apprentice",      "minXp": 0     },
+        { "level": 5,  "title": "Switch Acolyte",         "minXp": 500   },
+        { "level": 10, "title": "Firewall Warden",        "minXp": 1500  },
+        { "level": 15, "title": "Network Sentinel",       "minXp": 3500  },
+        { "level": 20, "title": "Infrastructure Archmage","minXp": 7000  },
+        { "level": 25, "title": "Network Sage",           "minXp": 12000 }
+      ],
+      "skillTree": [
+        { "id": "switching", "name": "Switching", "icon": "🔀", "maxLevel": 5 },
+        { "id": "firewalls", "name": "Firewalls", "icon": "🛡️", "maxLevel": 5 },
+        { "id": "vpn",       "name": "VPN/SSL",   "icon": "🔐", "maxLevel": 3 }
+      ],
+      "achievements": [
+        { "id": "first-firewall",    "name": "First Firewall Rule", "icon": "🔥", "hidden": false, "desc": "Complete your first firewall quest" },
+        { "id": "nse-completionist", "name": "NSE Completionist",   "icon": "🎓", "hidden": true,  "desc": "Complete all NSE certifications" }
+      ],
+      "status": "active",
+      "createdBy": "lyra",
+      "createdAt": "2026-03-10T12:00:00Z",
+      "playerCount": 1
+    }
+  ]
+}

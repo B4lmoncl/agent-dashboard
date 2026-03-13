@@ -1,0 +1,643 @@
+{
+  "givers": [
+    {
+      "id": "oma-ilse",
+      "portrait": "/images/npcs/oma-ilse.png",
+      "rarity": "common",
+      "spawnWeight": 50,
+      "cooldownHours": 48,
+      "departureDurationHours": 72,
+      "maxChainsPerVisit": 1,
+      "greeting": "Komm näher, Kind. Oma Ilse hat etwas für dich...",
+      "name": "Oma Ilse",
+      "emoji": "x",
+      "title": "Die Kräuterfrau",
+      "description": "Eine warmherzige alte Dame die immer Kekse dabei hat.",
+      "stayDays": 3,
+      "cooldownDays": 14,
+      "questChains": [
+        [
+          {
+            "title": "x Oma Ilses Kekse",
+            "description": "Oma Ilse hat Kekse gebacken! Bring sie ihrem Enkel. (Mach einen 20-Minuten Spaziergang)",
+            "type": "social",
+            "priority": "medium",
+            "flavorText": "\"Meine Kekse sind das Beste in der ganzen Stadt, Kindchen!\" — Oma Ilse",
+            "lore": "Quest von Oma Ilse · Kette 1/3 · 1/2",
+            "rewards": {
+              "xp": 25,
+              "gold": 10
+            }
+          },
+          {
+            "title": "x Oma Ilses Geschichten",
+            "description": "Oma Ilse erzählt von früher. Du hörst zu, weil du nett bist. (Informiere dich 20 Minuten über ein Geschichtsthema deiner Wahl)",
+            "type": "personal",
+            "priority": "low",
+            "flavorText": "\"Weißt du, früher war alles anders — aber manche Dinge waren besser.\" — Oma Ilse",
+            "lore": "Quest von Oma Ilse · Kette 1/3 · 2/2",
+            "rewards": {
+              "xp": 30,
+              "gold": 15
+            }
+          }
+        ],
+        [
+          {
+            "title": "x Oma Ilses Rezept",
+            "description": "Oma Ilse möchte ein altes Familienrezept weitergeben. (Koche heute etwas von Grund auf — kein Fertiggericht!)",
+            "type": "personal",
+            "priority": "low",
+            "flavorText": "\"Dieses Rezept hab ich von meiner Großmutter — und jetzt geb ich es dir weiter.\" — Oma Ilse",
+            "lore": "Quest von Oma Ilse · Kette 2/3 · 1/2",
+            "rewards": {
+              "xp": 20,
+              "gold": 10
+            }
+          },
+          {
+            "title": "x Frühjahrsputz",
+            "description": "'Ein aufgeräumtes Heim, ein aufgeräumter Geist', sagt Oma Ilse. (Räume einen Bereich deiner Wohnung gründlich auf — 20 Minuten)",
+            "type": "personal",
+            "priority": "medium",
+            "flavorText": "\"Ein sauberes Heim ist ein glückliches Heim, mein Kind.\" — Oma Ilse",
+            "lore": "Quest von Oma Ilse · Kette 2/3 · 2/2",
+            "rewards": {
+              "xp": 30,
+              "gold": 15
+            }
+          }
+        ],
+        [
+          {
+            "title": "x Omas Garten",
+            "description": "Oma Ilse zeigt dir ihre Lieblingsblumen. (Geh heute in einen Park oder Garten und beobachte die Natur für 15 Minuten)",
+            "type": "fitness",
+            "priority": "low",
+            "flavorText": "\"Sieh nur, wie die Rosen blühen! Die Natur heilt jede Seele.\" — Oma Ilse",
+            "lore": "Quest von Oma Ilse · Kette 3/3 · 1/2",
+            "rewards": {
+              "xp": 20,
+              "gold": 10
+            }
+          },
+          {
+            "title": "x Ein Brief an jemanden",
+            "description": "'Schreib einem Menschen dem du dankbar bist', sagt Oma Ilse. (Schreibe eine Nachricht oder einen Brief an jemanden den du schätzt)",
+            "type": "social",
+            "priority": "medium",
+            "flavorText": "\"Worte aus dem Herzen — die schönsten Geschenke kosten nichts.\" — Oma Ilse",
+            "lore": "Quest von Oma Ilse · Kette 3/3 · 2/2",
+            "rewards": {
+              "xp": 35,
+              "gold": 20
+            }
+          }
+        ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "ilse-scarf",
+          "name": "Selbstgestrickter Schal",
+          "emoji": "x",
+          "rarity": "rare",
+          "stats": {
+            "ausdauer": 3,
+            "glueck": 2
+          },
+          "slot": "amulet",
+          "desc": "Von Oma Ilse persönlich gestrickt. Riecht nach Keksen und Nostalgie."
+        }
+      }
+    },
+    {
+      "id": "wandering-merchant",
+      "portrait": "/images/npcs/karim-merchant.png",
+      "rarity": "rare",
+      "spawnWeight": 15,
+      "cooldownHours": 72,
+      "departureDurationHours": 48,
+      "maxChainsPerVisit": 1,
+      "greeting": "Psst! Ich habe Waren aus fernen Landen...",
+      "name": "Karim der Wanderhändler",
+      "emoji": "x",
+      "title": "Reisender Kaufmann aus fernen Landen",
+      "description": "Ein geheimnisvoller Händler der seltene Waren aus der ganzen Welt mitbringt.",
+      "stayDays": 2,
+      "cooldownDays": 21,
+      "questChains": [
+        [
+          {
+            "title": "x Karims Lieferung",
+            "description": "Karim braucht Hilfe beim Sortieren seiner Waren. (Räume deinen Schreibtisch oder ein Regal auf)",
+            "type": "personal",
+            "priority": "low",
+            "flavorText": "\"Ordnung ist das halbe Leben — und für einen Händler ist sie alles.\" — Karim",
+            "lore": "Quest von Karim der Wanderhändler · Kette 1/3 · 1/3",
+            "rewards": {
+              "xp": 20,
+              "gold": 25
+            }
+          },
+          {
+            "title": "x Karims Geheimnis",
+            "description": "Karim erzählt von einer fernen Stadt. (Recherchiere 15 Minuten über eine Stadt die du noch nie besucht hast)",
+            "type": "personal",
+            "priority": "low",
+            "flavorText": "\"Ich habe Städte gesehen, die du dir nicht vorstellen kannst — lass mich dir erzählen...\" — Karim",
+            "lore": "Quest von Karim der Wanderhändler · Kette 1/3 · 2/3",
+            "rewards": {
+              "xp": 25,
+              "gold": 20
+            }
+          },
+          {
+            "title": "x Ein fairer Handel",
+            "description": "Karim bietet einen Tausch an — hilf einem Freund oder Kollegen bei etwas. (Tu jemandem einen Gefallen)",
+            "type": "social",
+            "priority": "medium",
+            "flavorText": "\"Ein fairer Tausch lässt beide Seiten lächeln. Das ist das Geheimnis des Handels.\" — Karim",
+            "lore": "Quest von Karim der Wanderhändler · Kette 1/3 · 3/3",
+            "rewards": {
+              "xp": 35,
+              "gold": 15
+            }
+          }
+        ],
+        [
+          {
+            "title": "x Marktanalyse",
+            "description": "Karim sagt: 'Wer den Markt kennt, gewinnt.' (Vergleiche heute Preise oder Optionen für etwas das du kaufen willst — 15 Minuten Recherche)",
+            "type": "learning",
+            "priority": "low",
+            "flavorText": "\"Wissen ist die wertvollste Ware die ich kenne — und sie ist kostenlos.\" — Karim",
+            "lore": "Quest von Karim der Wanderhändler · Kette 2/3 · 1/2",
+            "rewards": {
+              "xp": 20,
+              "gold": 25
+            }
+          },
+          {
+            "title": "x Die Handelsroute",
+            "description": "Karim plant seine nächste Reise. (Plane etwas — eine Aufgabe, ein Projekt, einen Ausflug — und schreib es auf)",
+            "type": "personal",
+            "priority": "medium",
+            "flavorText": "\"Jede große Reise beginnt mit einem einzigen Plan auf Pergament.\" — Karim",
+            "lore": "Quest von Karim der Wanderhändler · Kette 2/3 · 2/2",
+            "rewards": {
+              "xp": 35,
+              "gold": 20
+            }
+          }
+        ],
+        [
+          {
+            "title": "x Kulturen der Welt",
+            "description": "Karim hat viele Länder bereist. (Lerne 20 Minuten über eine andere Kultur — Essen, Sprache, Traditionen)",
+            "type": "learning",
+            "priority": "low",
+            "flavorText": "\"Ich habe in hundert Städten gegessen — jede Küche erzählt eine Geschichte.\" — Karim",
+            "lore": "Quest von Karim der Wanderhändler · Kette 3/3 · 1/3",
+            "rewards": {
+              "xp": 25,
+              "gold": 20
+            }
+          },
+          {
+            "title": "x Das Angebot",
+            "description": "'Ein guter Händler kennt seinen Wert.' (Erledige heute eine Aufgabe die du schon lange aufgeschoben hast)",
+            "type": "personal",
+            "priority": "medium",
+            "flavorText": "\"Aufgeschoben ist nicht aufgehoben — aber irgendwann wird die Schuld fällig.\" — Karim",
+            "lore": "Quest von Karim der Wanderhändler · Kette 3/3 · 2/3",
+            "rewards": {
+              "xp": 30,
+              "gold": 25
+            }
+          },
+          {
+            "title": "x Das Geschenk",
+            "description": "Karim verschenkt etwas aus seiner Sammlung. (Gib heute jemandem etwas — Zeit, Hilfe, oder ein kleines Geschenk)",
+            "type": "social",
+            "priority": "medium",
+            "flavorText": "\"Das wertvollste Gut ist das, das du anderen gibst. Ich habe das auf meinen Reisen gelernt.\" — Karim",
+            "lore": "Quest von Karim der Wanderhändler · Kette 3/3 · 3/3",
+            "rewards": {
+              "xp": 35,
+              "gold": 15
+            }
+          }
+        ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "karim-compass",
+          "name": "Karims Goldener Kompass",
+          "emoji": "x",
+          "rarity": "epic",
+          "stats": {
+            "glueck": 5,
+            "weisheit": 3
+          },
+          "slot": "amulet",
+          "desc": "Zeigt immer in die richtige Richtung. Meistens."
+        }
+      }
+    },
+    {
+      "id": "dojo-master",
+      "portrait": "/images/npcs/meister-tanaka.png",
+      "rarity": "epic",
+      "spawnWeight": 8,
+      "cooldownHours": 96,
+      "departureDurationHours": 72,
+      "maxChainsPerVisit": 1,
+      "greeting": "Disziplin beginnt mit dem ersten Schritt.",
+      "name": "Meister Tanaka",
+      "emoji": "x",
+      "title": "Wandernder Kampfkunst-Meister",
+      "description": "Ein alter Meister der seine Weisheit mit würdigen Schülern teilt.",
+      "stayDays": 3,
+      "cooldownDays": 18,
+      "questChains": [
+        [
+          {
+            "title": "x Die erste Lektion",
+            "description": "Meister Tanaka sagt: 'Zuerst lernst du Geduld.' (Meditiere oder stretche 10 Minuten)",
+            "type": "fitness",
+            "priority": "low",
+            "flavorText": "\"Der Geist, der nicht zur Ruhe kommt, kann keine Stärke entwickeln.\" — Meister Tanaka",
+            "lore": "Quest von Meister Tanaka · Kette 1/3 · 1/3",
+            "rewards": {
+              "xp": 20,
+              "gold": 10
+            }
+          },
+          {
+            "title": "x Die Prüfung des Körpers",
+            "description": "'Stärke kommt von Disziplin, nicht von Wünschen.' (Mach ein 30-Minuten Workout)",
+            "type": "fitness",
+            "priority": "medium",
+            "flavorText": "\"Der Körper ist das Werkzeug des Geistes. Schärfe es täglich.\" — Meister Tanaka",
+            "lore": "Quest von Meister Tanaka · Kette 1/3 · 2/3",
+            "rewards": {
+              "xp": 35,
+              "gold": 15
+            }
+          },
+          {
+            "title": "x Die Prüfung des Geistes",
+            "description": "'Wahrer Kampf findet im Kopf statt.' (Lerne 30 Minuten etwas Neues — egal was)",
+            "type": "learning",
+            "priority": "medium",
+            "flavorText": "\"Wer nur den Körper trainiert, hat die Hälfte vergessen. Lerne, was du nicht kennst.\" — Meister Tanaka",
+            "lore": "Quest von Meister Tanaka · Kette 1/3 · 3/3",
+            "rewards": {
+              "xp": 35,
+              "gold": 15
+            }
+          }
+        ],
+        [
+          {
+            "title": "x Der Atem",
+            "description": "Tanaka sagt: 'Kontrolle beginnt beim Atem.' (Übe 10 Minuten Atemübungen oder Box-Breathing)",
+            "type": "fitness",
+            "priority": "low",
+            "flavorText": "\"Beherrsche den Atem — und du beherrschst den Moment.\" — Meister Tanaka",
+            "lore": "Quest von Meister Tanaka · Kette 2/3 · 1/3",
+            "rewards": {
+              "xp": 20,
+              "gold": 10
+            }
+          },
+          {
+            "title": "x Die Balance",
+            "description": "'Gleichgewicht ist die Basis aller Stärke.' (Mach eine 20-Minuten Yoga- oder Gleichgewichtsübung)",
+            "type": "fitness",
+            "priority": "medium",
+            "flavorText": "\"Ein Baum ohne Wurzeln fällt beim ersten Sturm. Finde dein Gleichgewicht.\" — Meister Tanaka",
+            "lore": "Quest von Meister Tanaka · Kette 2/3 · 2/3",
+            "rewards": {
+              "xp": 30,
+              "gold": 15
+            }
+          },
+          {
+            "title": "x Der Fokus",
+            "description": "'Lenke all deine Kraft auf einen Punkt.' (Arbeite 45 Minuten ohne Unterbrechung an einer wichtigen Aufgabe)",
+            "type": "personal",
+            "priority": "high",
+            "flavorText": "\"Tausend halbherzige Schläge brechen keinen Stein. Ein einziger gezielter schon.\" — Meister Tanaka",
+            "lore": "Quest von Meister Tanaka · Kette 2/3 · 3/3",
+            "rewards": {
+              "xp": 45,
+              "gold": 20
+            }
+          }
+        ],
+        [
+          {
+            "title": "x Der frühe Vogel",
+            "description": "Tanaka steht immer mit der Sonne auf. (Stehe morgen früh auf und beginne den Tag mit Bewegung — 15 Minuten)",
+            "type": "fitness",
+            "priority": "medium",
+            "flavorText": "\"Der Morgen gehört dem, der ihn verdient hat. Steh auf, bevor die Welt wach ist.\" — Meister Tanaka",
+            "lore": "Quest von Meister Tanaka · Kette 3/3 · 1/2",
+            "rewards": {
+              "xp": 25,
+              "gold": 10
+            }
+          },
+          {
+            "title": "x Die Technik",
+            "description": "'Wiederholung ist der Meister.' (Übe eine Fähigkeit bewusst — 30 Minuten intensives Üben)",
+            "type": "learning",
+            "priority": "medium",
+            "flavorText": "\"Ich habe dieselbe Bewegung zehntausend Mal gemacht — und lerne sie noch immer.\" — Meister Tanaka",
+            "lore": "Quest von Meister Tanaka · Kette 3/3 · 2/2",
+            "rewards": {
+              "xp": 35,
+              "gold": 15
+            }
+          }
+        ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "tanaka-headband",
+          "name": "Tanakas Stirnband",
+          "emoji": "x",
+          "rarity": "epic",
+          "stats": {
+            "kraft": 4,
+            "weisheit": 4
+          },
+          "slot": "helm",
+          "desc": "Getragen von Generationen von Meisterschülern. Es flüstert: 'Du kannst mehr.'"
+        }
+      }
+    },
+    {
+      "id": "forest-witch",
+      "portrait": "/images/npcs/mirael-witch.png",
+      "rarity": "rare",
+      "spawnWeight": 15,
+      "cooldownHours": 72,
+      "departureDurationHours": 48,
+      "maxChainsPerVisit": 1,
+      "greeting": "Der Wald hat mir von dir erzählt...",
+      "name": "Mirael die Waldwächterin",
+      "emoji": "x",
+      "title": "Kräuterkundige aus dem Nebelwald",
+      "description": "Eine mysteriöse Frau die Heilmittel aus seltenen Pflanzen braut.",
+      "stayDays": 2,
+      "cooldownDays": 20,
+      "questChains": [
+        [
+          {
+            "title": "x Kräuter sammeln",
+            "description": "Mirael braucht frische Zutaten. (Geh 15 Minuten an die frische Luft — Wald, Park oder Garten)",
+            "type": "fitness",
+            "priority": "low",
+            "flavorText": "\"Die Erde spricht zu denen, die zuhören. Geh hinaus und lausche.\" — Mirael",
+            "lore": "Quest von Mirael die Waldwächterin · Kette 1/3 · 1/2",
+            "rewards": {
+              "xp": 20,
+              "gold": 10
+            }
+          },
+          {
+            "title": "x Der Heiltrank",
+            "description": "Mirael zeigt dir ein altes Rezept. (Koche dir einen gesunden Tee oder Smoothie)",
+            "type": "personal",
+            "priority": "low",
+            "flavorText": "\"Jede Pflanze trägt eine Medizin in sich — man muss nur wissen, wie man fragt.\" — Mirael",
+            "lore": "Quest von Mirael die Waldwächterin · Kette 1/3 · 2/2",
+            "rewards": {
+              "xp": 25,
+              "gold": 15
+            }
+          }
+        ],
+        [
+          {
+            "title": "x Mondlicht-Meditation",
+            "description": "Mirael flüstert: 'Der Mond heilt was das Licht nicht kann.' (Meditiere heute Abend 15 Minuten im Dunkeln oder bei Kerzenlicht)",
+            "type": "personal",
+            "priority": "low",
+            "flavorText": "\"In der Stille der Nacht findest du, was der Tag dir verbirgt.\" — Mirael",
+            "lore": "Quest von Mirael die Waldwächterin · Kette 2/3 · 1/3",
+            "rewards": {
+              "xp": 20,
+              "gold": 10
+            }
+          },
+          {
+            "title": "x Die verborgenen Zutaten",
+            "description": "'Manche Heilmittel verstecken sich.' (Recherchiere 20 Minuten über Naturheilkunde oder Ernährung)",
+            "type": "learning",
+            "priority": "low",
+            "flavorText": "\"Das wertvollste Kraut wächst nicht im Garten — es wächst dort, wo niemand sucht.\" — Mirael",
+            "lore": "Quest von Mirael die Waldwächterin · Kette 2/3 · 2/3",
+            "rewards": {
+              "xp": 25,
+              "gold": 15
+            }
+          },
+          {
+            "title": "x Das Ritual",
+            "description": "Mirael übergibt dir eine alte Praktik. (Etabliere eine neue gesunde Gewohnheit für heute — Trinken, Schlafen, Bewegung)",
+            "type": "personal",
+            "priority": "medium",
+            "flavorText": "\"Ein Ritual ist kein Zauber — es ist Disziplin, die wie Magie wirkt.\" — Mirael",
+            "lore": "Quest von Mirael die Waldwächterin · Kette 2/3 · 3/3",
+            "rewards": {
+              "xp": 35,
+              "gold": 20
+            }
+          }
+        ],
+        [
+          {
+            "title": "x Baumgespräch",
+            "description": "'Hör dem Wald zu', sagt Mirael. (Verbring 20 Minuten draußen ohne Handy — einfach da sein)",
+            "type": "fitness",
+            "priority": "low",
+            "flavorText": "\"Ein alter Baum hat mehr gesehen als du dir vorstellen kannst. Sitz bei ihm und schweig.\" — Mirael",
+            "lore": "Quest von Mirael die Waldwächterin · Kette 3/3 · 1/2",
+            "rewards": {
+              "xp": 20,
+              "gold": 10
+            }
+          },
+          {
+            "title": "x Körperpflege",
+            "description": "'Der Körper ist dein Tempel.' (Schlafe heute mindestens 7 Stunden oder mach eine Entspannungsübung vor dem Schlafen)",
+            "type": "personal",
+            "priority": "medium",
+            "flavorText": "\"Wer seinen Körper nicht pflegt, vergeudet das kostbarste Gefäß, das ihm gegeben wurde.\" — Mirael",
+            "lore": "Quest von Mirael die Waldwächterin · Kette 3/3 · 2/2",
+            "rewards": {
+              "xp": 30,
+              "gold": 15
+            }
+          }
+        ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "mirael-pendant",
+          "name": "Miraels Naturstein",
+          "emoji": "x",
+          "rarity": "rare",
+          "stats": {
+            "ausdauer": 4,
+            "glueck": 1
+          },
+          "slot": "amulet",
+          "desc": "Pulsiert sanft im Rhythmus des Waldes. Beruhigt den Geist."
+        }
+      }
+    },
+    {
+      "id": "bard",
+      "portrait": "/images/npcs/finnegan-bard.png",
+      "rarity": "common",
+      "spawnWeight": 50,
+      "cooldownHours": 48,
+      "departureDurationHours": 72,
+      "maxChainsPerVisit": 1,
+      "greeting": "x Eine Geschichte für ein Lied, ein Lied für eine Geschichte! x",
+      "name": "Finnegan der Barde",
+      "emoji": "x",
+      "title": "Wandernder Geschichtenerzähler",
+      "description": "Ein charismatischer Barde der überall Freunde findet.",
+      "stayDays": 3,
+      "cooldownDays": 16,
+      "questChains": [
+        [
+          {
+            "title": "x Das Lied der Freundschaft",
+            "description": "Finnegan sagt: 'Musik verbindet!' (Schick einem Freund ein Lied das du magst)",
+            "type": "social",
+            "priority": "low",
+            "flavorText": "\"Ein Lied ist ein Geschenk, das man teilen muss — sonst verliert es seinen Klang!\" — Finnegan",
+            "lore": "Quest von Finnegan der Barde · Kette 1/3 · 1/3",
+            "rewards": {
+              "xp": 20,
+              "gold": 10
+            }
+          },
+          {
+            "title": "x Die eigene Geschichte",
+            "description": "'Jeder hat eine Geschichte die erzählt werden will.' (Schreib 10 Minuten — Tagebuch, kreativ, egal was)",
+            "type": "personal",
+            "priority": "low",
+            "flavorText": "\"Ich habe tausend Geschichten gehört — aber deine kenne ich noch nicht. Schreib sie auf!\" — Finnegan",
+            "lore": "Quest von Finnegan der Barde · Kette 1/3 · 2/3",
+            "rewards": {
+              "xp": 25,
+              "gold": 15
+            }
+          },
+          {
+            "title": "x Der große Auftritt",
+            "description": "'Trau dich!' (Tu heute etwas außerhalb deiner Komfortzone — egal wie klein)",
+            "type": "social",
+            "priority": "medium",
+            "flavorText": "\"Das Publikum wartet! Und weißt du was? Es ist auf deiner Seite — man muss nur anfangen.\" — Finnegan",
+            "lore": "Quest von Finnegan der Barde · Kette 1/3 · 3/3",
+            "rewards": {
+              "xp": 40,
+              "gold": 20
+            }
+          }
+        ],
+        [
+          {
+            "title": "x Die Melodie",
+            "description": "Finnegan lehrt dich einen Akkord. (Höre heute ein Album bewusst durch — kein Multitasking, nur Musik)",
+            "type": "personal",
+            "priority": "low",
+            "flavorText": "\"Musik, die man wirklich hört, verändert etwas in einem. Probier es aus!\" — Finnegan",
+            "lore": "Quest von Finnegan der Barde · Kette 2/3 · 1/2",
+            "rewards": {
+              "xp": 20,
+              "gold": 10
+            }
+          },
+          {
+            "title": "x Das Gedicht",
+            "description": "'Worte sind Magie', flüstert Finnegan. (Schreibe ein kurzes Gedicht oder einen kreativen Text — 5 Strophen reichen)",
+            "type": "personal",
+            "priority": "low",
+            "flavorText": "\"Jedes Wort das du schreibst, bleibt irgendwo im Universum — schreib also schöne Worte!\" — Finnegan",
+            "lore": "Quest von Finnegan der Barde · Kette 2/3 · 2/2",
+            "rewards": {
+              "xp": 30,
+              "gold": 15
+            }
+          }
+        ],
+        [
+          {
+            "title": "x Der Zuhörer",
+            "description": "Finnegan sagt: 'Ein guter Barde hört zuerst zu.' (Ruf heute jemanden an den du lange nicht gesprochen hast)",
+            "type": "social",
+            "priority": "medium",
+            "flavorText": "\"Die besten Geschichten bekommt man nicht, wenn man redet — sondern wenn man zuhört.\" — Finnegan",
+            "lore": "Quest von Finnegan der Barde · Kette 3/3 · 1/3",
+            "rewards": {
+              "xp": 25,
+              "gold": 15
+            }
+          },
+          {
+            "title": "x Die Inspiration",
+            "description": "'Kunst entsteht überall.' (Besuche heute etwas Inspirierendes — Museum, Konzert, Kunstwerk online, oder ein Buch)",
+            "type": "learning",
+            "priority": "low",
+            "flavorText": "\"Inspiration ist keine Laune — sie ist ein Muskel. Trainiere ihn täglich!\" — Finnegan",
+            "lore": "Quest von Finnegan der Barde · Kette 3/3 · 2/3",
+            "rewards": {
+              "xp": 25,
+              "gold": 10
+            }
+          },
+          {
+            "title": "x Das Finale",
+            "description": "Finnegans größte Show beginnt! (Teile heute etwas das du erschaffen hast — Code, Kunst, Kochen — mit jemandem)",
+            "type": "social",
+            "priority": "high",
+            "flavorText": "\"Und nun — das Finale! Zeig der Welt was du erschaffen hast. Sie wartet darauf!\" — Finnegan",
+            "lore": "Quest von Finnegan der Barde · Kette 3/3 · 3/3",
+            "rewards": {
+              "xp": 45,
+              "gold": 25
+            }
+          }
+        ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "finnegan-lute",
+          "name": "Finnegans Silberlaute",
+          "emoji": "x",
+          "rarity": "epic",
+          "stats": {
+            "glueck": 6,
+            "kraft": 2
+          },
+          "slot": "weapon",
+          "desc": "Klingt wie ein Sommertag. Wer sie hört, fühlt sich tapferer."
+        }
+      }
+    }
+  ]
+}

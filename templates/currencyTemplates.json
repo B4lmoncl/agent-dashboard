@@ -1,0 +1,94 @@
+{
+  "currencies": [
+    {
+      "id": "gold",
+      "name": "Gold",
+      "emoji": "🪙",
+      "color": "#f59e0b",
+      "description": "Die Hauptwährung der Gilde. Verdient durch Quests und Rituale.",
+      "earnMethods": ["quest_completion", "ritual_streak", "loot_drops", "achievements"],
+      "spendTargets": ["shop_rewards", "gear_upgrades"],
+      "weeklyEarnRate": "50-200",
+      "convertible": true
+    },
+    {
+      "id": "stardust",
+      "name": "Sternenstaub",
+      "emoji": "⭐",
+      "color": "#818cf8",
+      "description": "Premium-Sekundärwährung. Verdient durch Übererfüllung, Achievements und Level-Ups.",
+      "earnMethods": ["level_up", "achievement_earned", "overperformance", "daily_login"],
+      "spendTargets": ["featured_banner_pulls", "special_items"],
+      "weeklyEarnRate": "10-40",
+      "convertible": true
+    },
+    {
+      "id": "essenz",
+      "name": "Essenz der Beständigkeit",
+      "emoji": "🔥",
+      "color": "#ef4444",
+      "description": "Die Flamme der Disziplin. Verdient durch Streak-Tage.",
+      "earnMethods": ["streak_days", "streak_milestones"],
+      "spendTargets": ["streak_shields", "forge_boosts"],
+      "weeklyEarnRate": "7-21",
+      "convertible": false
+    },
+    {
+      "id": "runensplitter",
+      "name": "Runensplitter",
+      "emoji": "💎",
+      "color": "#a78bfa",
+      "description": "Gacha-Pull-Währung. Verdient durch Login, Quests und Duplikat-Recycling.",
+      "earnMethods": ["daily_login", "quest_rewards", "duplicate_recycling", "weekly_bonus"],
+      "spendTargets": ["standard_banner_pulls"],
+      "weeklyEarnRate": "30-80",
+      "convertible": true
+    },
+    {
+      "id": "gildentaler",
+      "name": "Gildentaler",
+      "emoji": "🤝",
+      "color": "#10b981",
+      "description": "Social/Coop-Währung. Verdient durch Coop-Quests und NPC-Gildenaufträge.",
+      "earnMethods": ["coop_quests", "npc_guild_quests", "social_quests"],
+      "spendTargets": ["guild_items", "social_boosts"],
+      "weeklyEarnRate": "5-20",
+      "convertible": true
+    },
+    {
+      "id": "mondstaub",
+      "name": "Mondstaub",
+      "emoji": "🌙",
+      "color": "#c084fc",
+      "description": "Event-limitierte Währung. Nur durch spezielle Events und seltene Achievements.",
+      "earnMethods": ["special_events", "rare_achievements", "seasonal_rewards"],
+      "spendTargets": ["event_items", "limited_banners"],
+      "weeklyEarnRate": "0-5",
+      "convertible": false
+    }
+  ],
+  "conversionRules": {
+    "taxRate": 0.20,
+    "allowedPairs": [
+      { "from": "gold", "to": "runensplitter", "rate": 5 },
+      { "from": "stardust", "to": "runensplitter", "rate": 2 },
+      { "from": "runensplitter", "to": "gold", "rate": 0.15 },
+      { "from": "gold", "to": "gildentaler", "rate": 3 },
+      { "from": "gildentaler", "to": "gold", "rate": 0.25 }
+    ]
+  },
+  "dailyLoginReward": {
+    "runensplitter": 5,
+    "stardust": 2
+  },
+  "streakRewards": {
+    "essenzPerDay": 3,
+    "milestoneBonuses": {
+      "7": { "essenz": 10, "runensplitter": 15 },
+      "14": { "essenz": 20, "runensplitter": 25 },
+      "30": { "essenz": 50, "runensplitter": 50, "stardust": 10 },
+      "60": { "essenz": 100, "mondstaub": 5 },
+      "90": { "essenz": 200, "mondstaub": 10, "stardust": 30 }
+    }
+  }
+}
