@@ -1,0 +1,40 @@
+[
+  {
+    "id": "arkanes-schicksal",
+    "name": "Arkanes Schicksal",
+    "type": "standard",
+    "currency": "runensplitter",
+    "costSingle": 10,
+    "cost10": 90,
+    "featuredItems": [],
+    "active": true,
+    "icon": "🔮",
+    "lore": "Das uralte Portal der Gilde öffnet sich. Jeder Zug am Schicksalsfaden offenbart einen Gegenstand aus den Tiefen des Äthers. Was wird das Schicksal dir zuflüstern?",
+    "dropRates": {
+      "legendary": "1.6%",
+      "epic": "13%",
+      "rare": "35%",
+      "uncommon": "40%",
+      "common": "10.4%"
+    }
+  },
+  {
+    "id": "sternenlicht",
+    "name": "Sternenlicht",
+    "type": "featured",
+    "currency": "stardust",
+    "costSingle": 10,
+    "cost10": 90,
+    "featuredItems": ["klinge-aetherstrom"],
+    "active": true,
+    "icon": "✨",
+    "lore": "Das Sternenlicht durchbricht die Dunkelheit. In seinem Glanz verbergen sich die mächtigsten Artefakte der Gilde. Nur die Würdigsten werden sie führen.",
+    "dropRates": {
+      "legendary": "1.6% (50/50 Featured)",
+      "epic": "13%",
+      "rare": "35%",
+      "uncommon": "40%",
+      "common": "10.4%"
+    }
+  }
+]
