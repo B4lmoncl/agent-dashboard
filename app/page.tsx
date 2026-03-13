@@ -135,6 +135,7 @@ export default function Dashboard() {
   const [createRitualOpen, setCreateRitualOpen] = useState(false);
   const [newRitualTitle, setNewRitualTitle] = useState("");
   const [ritualNameError, setRitualNameError] = useState(false);
+  const [ritualCommitmentError, setRitualCommitmentError] = useState(false);
   const [newRitualSchedule, setNewRitualSchedule] = useState("daily");
   const [newRitualCategory, setNewRitualCategory] = useState("personal");
   const [newRitualCommitment, setNewRitualCommitment] = useState("none");
@@ -1720,6 +1721,8 @@ export default function Dashboard() {
                                   border: `1px solid ${doneToday ? "rgba(34,197,94,0.2)" : "rgba(167,139,250,0.3)"}`,
                                   cursor: doneToday ? 'default' : 'pointer',
                                 }}
+                                onMouseEnter={e => { if (!doneToday) { (e.currentTarget as HTMLButtonElement).style.background = "rgba(167,139,250,0.28)"; (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(167,139,250,0.55)"; (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 0 10px rgba(167,139,250,0.2)"; } }}
+                                onMouseLeave={e => { if (!doneToday) { (e.currentTarget as HTMLButtonElement).style.background = "rgba(167,139,250,0.15)"; (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(167,139,250,0.3)"; (e.currentTarget as HTMLButtonElement).style.boxShadow = "none"; } }}
                               >
                                 {doneToday ? "✓ Erledigt" : "Abhaken"}
                               </button>
@@ -1782,9 +1785,10 @@ export default function Dashboard() {
                         )}
                         {/* Create Ritual Modal — simplified, no portrait */}
                         {createRitualOpen && (() => {
-                          const closeRitualModal = () => { setCreateRitualOpen(false); setNewRitualTitle(""); setRitualNameError(false); setNewRitualCommitment("none"); setNewRitualBloodPact(false); };
+                          const closeRitualModal = () => { setCreateRitualOpen(false); setNewRitualTitle(""); setRitualNameError(false); setRitualCommitmentError(false); setNewRitualCommitment("none"); setNewRitualBloodPact(false); };
                           const submitRitual = async () => {
                             if (!newRitualTitle.trim()) { setRitualNameError(true); return; }
+                            if (newRitualCommitment === "none") { setRitualCommitmentError(true); return; }
                             if (!reviewApiKey || !playerName) return;
                             const tier = COMMITMENT_TIERS.find(t => t.id === newRitualCommitment)!;
                             await fetch('/api/rituals', { method: 'POST', headers: { 'Content-Type': 'application/json', 'x-api-key': reviewApiKey }, body: JSON.stringify({ title: newRitualTitle.trim(), schedule: { type: newRitualSchedule }, playerId: playerName, createdBy: playerName, category: newRitualCategory, commitment: newRitualCommitment, commitmentDays: tier.days, bloodPact: newRitualBloodPact }) });
@@ -1849,15 +1853,16 @@ export default function Dashboard() {
                                   </div>
                                   <div>
                                     <label className="text-xs font-semibold mb-2 block" style={{ color: "rgba(200,170,100,0.55)" }}>Aetherbond</label>
-                                    <div className="grid grid-cols-3 gap-1.5">
+                                    <div className="grid grid-cols-3 gap-1.5" style={ritualCommitmentError ? { border: "1px solid #ef4444", borderRadius: 8, padding: 2 } : {}}>
                                       {COMMITMENT_TIERS.map(tier => (
-                                        <button key={tier.id} onClick={() => setNewRitualCommitment(tier.id)} className="ritual-tier-btn text-left p-2 rounded-lg" style={{ background: newRitualCommitment === tier.id ? `${tier.color}22` : "rgba(0,0,0,0.2)", border: `1px solid ${newRitualCommitment === tier.id ? tier.color : "rgba(255,255,255,0.07)"}`, boxShadow: newRitualCommitment === tier.id ? `0 0 12px ${tier.color}55` : "none" }}>
+                                        <button key={tier.id} onClick={() => { setNewRitualCommitment(tier.id); if (ritualCommitmentError) setRitualCommitmentError(false); }} className="ritual-tier-btn text-left p-2 rounded-lg" style={{ background: newRitualCommitment === tier.id ? `${tier.color}22` : "rgba(0,0,0,0.2)", border: `1px solid ${newRitualCommitment === tier.id ? tier.color : "rgba(255,255,255,0.07)"}`, boxShadow: newRitualCommitment === tier.id ? `0 0 12px ${tier.color}55` : "none" }}>
                                           <div className="text-xs font-bold" style={{ color: newRitualCommitment === tier.id ? tier.color : "rgba(255,255,255,0.55)" }}>{tier.label}</div>
                                           <div style={{ fontSize: "0.6rem", color: "rgba(255,255,255,0.28)", marginTop: 2 }}>{tier.days > 0 ? `${tier.days}d` : "—"}</div>
                                           <div style={{ fontSize: "0.6rem", color: "rgba(255,255,255,0.22)", lineHeight: 1.3 }}>{tier.flavorShort}</div>
                                         </button>
                                       ))}
                                     </div>
+                                    {ritualCommitmentError && <p style={{ color: "#ef4444", fontSize: "0.7rem", marginTop: 4 }}>Choose a commitment duration</p>}
                                   </div>
                                   <div>
                                     <button onClick={() => setNewRitualBloodPact(p => !p)} className={`action-btn w-full py-2.5 px-4 rounded-xl font-semibold text-sm ${newRitualBloodPact ? "blood-pact-active" : ""}`} style={{ background: newRitualBloodPact ? "rgba(239,68,68,0.18)" : "rgba(255,255,255,0.04)", color: newRitualBloodPact ? "#ef4444" : "rgba(255,255,255,0.28)", border: `1px solid ${newRitualBloodPact ? "rgba(239,68,68,0.5)" : "rgba(255,255,255,0.1)"}`, transition: "color 0.3s, background 0.3s, border 0.3s" }}>

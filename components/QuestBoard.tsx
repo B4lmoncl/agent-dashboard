@@ -334,6 +334,7 @@ export function AntiRitualePanel({ playerName, reviewApiKey }: { playerName: str
   const [newVowBloodPact, setNewVowBloodPact] = useState(false);
   const [newVowFrequency, setNewVowFrequency] = useState("daily");
   const [vowNameError, setVowNameError] = useState(false);
+  const [vowCommitmentError, setVowCommitmentError] = useState(false);
   const [deleteConfirmId, setDeleteConfirmId] = useState<string | null>(null);
 
   useEffect(() => {
@@ -378,6 +379,7 @@ export function AntiRitualePanel({ playerName, reviewApiKey }: { playerName: str
 
   const createAntiRitual = async () => {
     if (!newTitle.trim()) { setVowNameError(true); return; }
+    if (newVowCommitment === "none") { setVowCommitmentError(true); return; }
     if (!reviewApiKey || !playerName) return;
     try {
       const tier = COMMITMENT_TIERS_VOW.find(t => t.id === newVowCommitment)!;
@@ -444,6 +446,28 @@ export function AntiRitualePanel({ playerName, reviewApiKey }: { playerName: str
             )}
           </div>
           <div className="flex items-center gap-1 shrink-0">
+            <button
+              onClick={async () => {
+                if (!reviewApiKey || !playerName) return;
+                try {
+                  const r = await fetch(`/api/rituals/${ar.id}/complete`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json", "x-api-key": reviewApiKey },
+                    body: JSON.stringify({ playerId: playerName }),
+                  });
+                  const data = await r.json();
+                  if (data.ok) loadAntiRituals();
+                } catch { /* ignore */ }
+              }}
+              disabled={!reviewApiKey}
+              className="text-xs px-2 py-1 rounded transition-all"
+              style={{ background: "rgba(99,102,241,0.12)", color: "#818cf8", border: "1px solid rgba(99,102,241,0.3)" }}
+              title="Clean day — mark complete"
+              onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(99,102,241,0.25)"; (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(99,102,241,0.55)"; (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 0 10px rgba(99,102,241,0.2)"; }}
+              onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(99,102,241,0.12)"; (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(99,102,241,0.3)"; (e.currentTarget as HTMLButtonElement).style.boxShadow = "none"; }}
+            >
+              Abhaken
+            </button>
             <button
               onClick={() => markViolated(ar.id)}
               disabled={!reviewApiKey}
@@ -518,7 +542,7 @@ export function AntiRitualePanel({ playerName, reviewApiKey }: { playerName: str
       )}
 
       {createOpen && (() => {
-        const closeVowModal = () => { setCreateOpen(false); setNewTitle(""); setNewVowCommitment("none"); setNewVowBloodPact(false); };
+        const closeVowModal = () => { setCreateOpen(false); setNewTitle(""); setNewVowCommitment("none"); setNewVowBloodPact(false); setVowCommitmentError(false); };
         const tierData = COMMITMENT_TIERS_VOW.find(t => t.id === newVowCommitment)!;
         const bonusGold = tierData.bonusGold * (newVowBloodPact ? 3 : 1);
         const bonusXp = tierData.bonusXp * (newVowBloodPact ? 3 : 1);
@@ -577,15 +601,16 @@ export function AntiRitualePanel({ playerName, reviewApiKey }: { playerName: str
                 </div>
                 <div>
                   <label className="text-xs font-semibold mb-2 block" style={{ color: "rgba(165,180,252,0.55)" }}>Aetherbond</label>
-                  <div className="grid grid-cols-3 gap-1.5">
+                  <div className="grid grid-cols-3 gap-1.5" style={vowCommitmentError ? { border: "1px solid #ef4444", borderRadius: 8, padding: 2 } : {}}>
                     {COMMITMENT_TIERS_VOW.map(tier => (
-                      <button key={tier.id} onClick={() => setNewVowCommitment(tier.id)} className="ritual-tier-btn text-left p-2 rounded-lg" style={{ background: newVowCommitment === tier.id ? `${tier.color}1a` : "rgba(0,0,0,0.2)", border: `1px solid ${newVowCommitment === tier.id ? tier.color : "rgba(255,255,255,0.07)"}`, boxShadow: newVowCommitment === tier.id ? `0 0 12px ${tier.color}55` : "none" }}>
+                      <button key={tier.id} onClick={() => { setNewVowCommitment(tier.id); if (vowCommitmentError) setVowCommitmentError(false); }} className="ritual-tier-btn text-left p-2 rounded-lg" style={{ background: newVowCommitment === tier.id ? `${tier.color}1a` : "rgba(0,0,0,0.2)", border: `1px solid ${newVowCommitment === tier.id ? tier.color : "rgba(255,255,255,0.07)"}`, boxShadow: newVowCommitment === tier.id ? `0 0 12px ${tier.color}55` : "none" }}>
                         <div className="text-xs font-bold" style={{ color: newVowCommitment === tier.id ? tier.color : "rgba(255,255,255,0.5)" }}>{tier.label}</div>
                         <div style={{ fontSize: "0.6rem", color: "rgba(255,255,255,0.28)", marginTop: 2 }}>{tier.days > 0 ? `${tier.days}d` : "—"}</div>
                         <div style={{ fontSize: "0.6rem", color: "rgba(255,255,255,0.2)", lineHeight: 1.3 }}>{tier.flavorShort}</div>
                       </button>
                     ))}
                   </div>
+                  {vowCommitmentError && <p style={{ color: "#ef4444", fontSize: "0.7rem", marginTop: 4 }}>Choose a commitment duration</p>}
                 </div>
                 <div>
                   <button onClick={() => setNewVowBloodPact(p => !p)} className={`action-btn w-full py-2.5 px-4 rounded-xl font-semibold text-sm ${newVowBloodPact ? "blood-pact-active-indigo" : ""}`} style={{ background: newVowBloodPact ? "rgba(99,102,241,0.2)" : "rgba(255,255,255,0.04)", color: newVowBloodPact ? "#818cf8" : "rgba(255,255,255,0.25)", border: `1px solid ${newVowBloodPact ? "rgba(99,102,241,0.6)" : "rgba(255,255,255,0.1)"}`, transition: "color 0.3s, background 0.3s, border 0.3s" }}>
