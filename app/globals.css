@@ -92,17 +92,14 @@ body {
   50% { transform: translateY(-6px) rotate(-12deg); opacity: 0.55; }
 }
 @keyframes fogDrift1 {
-  0%   { transform: translate(0%, 0%) scale(1); }
-  25%  { transform: translate(5%, -3%) scale(1.03); }
-  50%  { transform: translate(-2%, 2%) scale(0.97); }
-  75%  { transform: translate(4%, -1%) scale(1.02); }
-  100% { transform: translate(-3%, 3%) scale(1.01); }
+  0%   { transform: translate(-4%, 1%) scale(1); }
+  50%  { transform: translate(4%, -1%) scale(1.03); }
+  100% { transform: translate(-4%, 1%) scale(1); }
 }
 @keyframes fogDrift2 {
-  0%   { transform: translate(0%, 0%) scale(1.03); }
-  33%  { transform: translate(-5%, 2%) scale(0.97); }
-  66%  { transform: translate(3%, -2%) scale(1.01); }
-  100% { transform: translate(-1%, 1%) scale(0.99); }
+  0%   { transform: translate(-2%, 0%) scale(1.02); }
+  50%  { transform: translate(5%, -2%) scale(0.98); }
+  100% { transform: translate(-2%, 0%) scale(1.02); }
 }
 @keyframes banner-glow-pulse {
   0%, 100% { opacity: 0.4; }
