@@ -6,9 +6,15 @@
       "rarity": "legendary",
       "type": "weapon",
       "emoji": null,
-      "stats": { "kraft": 15, "ausdauer": 5, "weisheit": 5, "glueck": 5 },
+      "stats": {
+        "kraft": 15,
+        "ausdauer": 5,
+        "weisheit": 5,
+        "glueck": 5
+      },
       "effect": "xp_boost_10",
-      "desc": "Eine Klinge, geschmiedet im reinsten Aetherstrom. Ihr Glühen pulsiert im Takt des Schicksals."
+      "desc": "Eine Klinge, geschmiedet im reinsten Aetherstrom. Ihr Glühen pulsiert im Takt des Schicksals.",
+      "icon": "/images/icons/gacha-klinge-aetherstrom.png"
     },
     {
       "id": "mantel-sternenwaechter",
@@ -16,9 +22,14 @@
       "rarity": "legendary",
       "type": "armor",
       "emoji": null,
-      "stats": { "ausdauer": 20, "weisheit": 5, "glueck": 5 },
+      "stats": {
+        "ausdauer": 20,
+        "weisheit": 5,
+        "glueck": 5
+      },
       "effect": "xp_boost_10",
-      "desc": "Gewoben aus dem Licht sterbender Sterne. Wer ihn trägt, spürt die Wärme vergangener Zeitalter."
+      "desc": "Gewoben aus dem Licht sterbender Sterne. Wer ihn trägt, spürt die Wärme vergangener Zeitalter.",
+      "icon": "/images/icons/gacha-mantel-sternenwaechter.png"
     },
     {
       "id": "phoenixfeder",
@@ -28,7 +39,8 @@
       "emoji": null,
       "stats": {},
       "effect": "streak_recovery_100",
-      "desc": "Die letzte Feder eines wiedergeborenen Phönix. Stellt einen gebrochenen Streak vollständig wieder her."
+      "desc": "Die letzte Feder eines wiedergeborenen Phönix. Stellt einen gebrochenen Streak vollständig wieder her.",
+      "icon": "/images/icons/gacha-phoenixfeder.png"
     },
     {
       "id": "schild-eiserner-wille",
@@ -36,9 +48,13 @@
       "rarity": "epic",
       "type": "armor",
       "emoji": null,
-      "stats": { "ausdauer": 12, "kraft": 3 },
+      "stats": {
+        "ausdauer": 12,
+        "kraft": 3
+      },
       "effect": null,
-      "desc": "Geschmiedet im Herzen eines erloschenen Vulkans. Unbeugsam wie der Wille seines Trägers."
+      "desc": "Geschmiedet im Herzen eines erloschenen Vulkans. Unbeugsam wie der Wille seines Trägers.",
+      "icon": "/images/icons/gacha-schild-eiserner-wille.png"
     },
     {
       "id": "stab-erkenntnis",
@@ -46,9 +62,13 @@
       "rarity": "epic",
       "type": "weapon",
       "emoji": null,
-      "stats": { "weisheit": 10, "glueck": 3 },
+      "stats": {
+        "weisheit": 10,
+        "glueck": 3
+      },
       "effect": "xp_boost_5",
-      "desc": "Ein Stab aus uraltem Weltenholz. Sein Kristall flüstert vergessenes Wissen."
+      "desc": "Ein Stab aus uraltem Weltenholz. Sein Kristall flüstert vergessenes Wissen.",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png"
     },
     {
       "id": "goldene-schriftrolle",
@@ -58,7 +78,8 @@
       "emoji": null,
       "stats": {},
       "effect": "gold_2x_24h",
-      "desc": "Entrollt enthüllt sie die Geheimnisse des Goldenen Zeitalters. 2x Gold für 24 Stunden."
+      "desc": "Entrollt enthüllt sie die Geheimnisse des Goldenen Zeitalters. 2x Gold für 24 Stunden.",
+      "icon": "/images/icons/gacha-goldene-schriftrolle.png"
     },
     {
       "id": "essenz-magnet",
@@ -68,7 +89,8 @@
       "emoji": null,
       "stats": {},
       "effect": "essenz_boost_48h",
-      "desc": "Ein pulsierender Kristall, der die Essenz der Beständigkeit anzieht. +Essenz für 48h."
+      "desc": "Ein pulsierender Kristall, der die Essenz der Beständigkeit anzieht. +Essenz für 48h.",
+      "icon": "/images/icons/gacha-essenz-magnet.png"
     },
     {
       "id": "abenteuerklinge",
@@ -76,9 +98,13 @@
       "rarity": "rare",
       "type": "weapon",
       "emoji": null,
-      "stats": { "kraft": 8, "glueck": 1 },
+      "stats": {
+        "kraft": 8,
+        "glueck": 1
+      },
       "effect": null,
-      "desc": "Die Standardwaffe eines erfahrenen Abenteurers. Zuverlässig und scharf."
+      "desc": "Die Standardwaffe eines erfahrenen Abenteurers. Zuverlässig und scharf.",
+      "icon": "/images/icons/gacha-abenteuerklinge.png"
     },
     {
       "id": "wanderermantel",
@@ -86,9 +112,13 @@
       "rarity": "rare",
       "type": "armor",
       "emoji": null,
-      "stats": { "ausdauer": 6, "weisheit": 2 },
+      "stats": {
+        "ausdauer": 6,
+        "weisheit": 2
+      },
       "effect": null,
-      "desc": "Ein wettergegerbter Mantel, der schon tausend Meilen gesehen hat."
+      "desc": "Ein wettergegerbter Mantel, der schon tausend Meilen gesehen hat.",
+      "icon": "/images/icons/gacha-wanderermantel.png"
     },
     {
       "id": "gluecksklee",
@@ -98,7 +128,8 @@
       "emoji": null,
       "stats": {},
       "effect": "rarity_boost_15",
-      "desc": "Ein vierblättriges Kleeblatt aus dem Feengarten. +15% Rarity-Boost für 1 Quest."
+      "desc": "Ein vierblättriges Kleeblatt aus dem Feengarten. +15% Rarity-Boost für 1 Quest.",
+      "icon": "/images/icons/gacha-gluecksklee.png"
     },
     {
       "id": "schatzkompass",
@@ -108,7 +139,8 @@
       "emoji": null,
       "stats": {},
       "effect": "gold_boost_next",
-      "desc": "Zeigt immer in Richtung des nächsten Schatzes. Bonus-Gold bei der nächsten Quest."
+      "desc": "Zeigt immer in Richtung des nächsten Schatzes. Bonus-Gold bei der nächsten Quest.",
+      "icon": "/images/icons/gacha-schatzkompass.png"
     },
     {
       "id": "mitleids-katalysator",
@@ -118,7 +150,8 @@
       "emoji": null,
       "stats": {},
       "effect": "pity_minus_5",
-      "desc": "Ein schimmernder Katalysator, der das Schicksal beeinflusst. Pity-Counter -5."
+      "desc": "Ein schimmernder Katalysator, der das Schicksal beeinflusst. Pity-Counter -5.",
+      "icon": "/images/icons/gacha-mitleids-katalysator.png"
     },
     {
       "id": "eisenschwert",
@@ -126,9 +159,12 @@
       "rarity": "uncommon",
       "type": "weapon",
       "emoji": null,
-      "stats": { "kraft": 4 },
+      "stats": {
+        "kraft": 4
+      },
       "effect": null,
-      "desc": "Ein solides Schwert aus gehärtetem Eisen. Nichts Besonderes, aber zuverlässig."
+      "desc": "Ein solides Schwert aus gehärtetem Eisen. Nichts Besonderes, aber zuverlässig.",
+      "icon": "/images/icons/gacha-eisenschwert.png"
     },
     {
       "id": "lederschultern",
@@ -136,9 +172,12 @@
       "rarity": "uncommon",
       "type": "armor",
       "emoji": null,
-      "stats": { "ausdauer": 3 },
+      "stats": {
+        "ausdauer": 3
+      },
       "effect": null,
-      "desc": "Robuste Lederschultern, die so manchen Hieb abgefangen haben."
+      "desc": "Robuste Lederschultern, die so manchen Hieb abgefangen haben.",
+      "icon": "/images/icons/gacha-lederschultern.png"
     },
     {
       "id": "kleine-erinnerungssplitter",
@@ -148,7 +187,8 @@
       "emoji": null,
       "stats": {},
       "effect": "streak_recovery_50",
-      "desc": "Splitter einer vergessenen Erinnerung. Stellt 50% eines gebrochenen Streaks wieder her."
+      "desc": "Splitter einer vergessenen Erinnerung. Stellt 50% eines gebrochenen Streaks wieder her.",
+      "icon": "/images/icons/gacha-kleine-erinnerungssplitter.png"
     },
     {
       "id": "sanduhr-gnade",
@@ -158,7 +198,8 @@
       "emoji": null,
       "stats": {},
       "effect": "quest_timer_24h",
-      "desc": "Die Zeit steht still — nur für einen Moment. +24h Quest-Timer."
+      "desc": "Die Zeit steht still — nur für einen Moment. +24h Quest-Timer.",
+      "icon": "/images/icons/gacha-sanduhr-gnade.png"
     },
     {
       "id": "rostiger-dolch",
@@ -166,9 +207,12 @@
       "rarity": "common",
       "type": "weapon",
       "emoji": null,
-      "stats": { "kraft": 2 },
+      "stats": {
+        "kraft": 2
+      },
       "effect": null,
-      "desc": "Ein alter, rostiger Dolch. Besser als nichts."
+      "desc": "Ein alter, rostiger Dolch. Besser als nichts.",
+      "icon": "/images/icons/gacha-rostiger-dolch.png"
     },
     {
       "id": "flickenumhang",
@@ -176,9 +220,12 @@
       "rarity": "common",
       "type": "armor",
       "emoji": null,
-      "stats": { "ausdauer": 1 },
+      "stats": {
+        "ausdauer": 1
+      },
       "effect": null,
-      "desc": "Ein mehrfach geflickter Umhang. Er hält immerhin den Wind ab."
+      "desc": "Ein mehrfach geflickter Umhang. Er hält immerhin den Wind ab.",
+      "icon": "/images/icons/gacha-flickenumhang.png"
     },
     {
       "id": "heiltrank",
@@ -188,7 +235,8 @@
       "emoji": null,
       "stats": {},
       "effect": "small_heal",
-      "desc": "Ein einfacher Heiltrank. Schmeckt nach Kräutern und Hoffnung."
+      "desc": "Ein einfacher Heiltrank. Schmeckt nach Kräutern und Hoffnung.",
+      "icon": "/images/icons/gacha-heiltrank.png"
     }
   ],
   "featuredPool": []

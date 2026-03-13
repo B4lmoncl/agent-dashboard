@@ -1,132 +1,654 @@
 {
-  "meta": {
-    "totalTemplates": 10,
-    "byCategory": {
-      "generic": 5,
-      "classQuest": 0,
-      "chainQuest": 0,
-      "companionQuest": 5
-    },
-    "byClass": {},
-    "lastUpdated": "2026-03-12T12:00:00Z"
-  },
   "templates": [
     {
-      "id": "companion-feed-01",
-      "title": "Feed {companionName} Before 18:00",
-      "description": "His Highness demands his meal on time. No excuses.",
+      "id": "p-morgenritual",
+      "title": "Morgenritual",
+      "description": "Steh auf, trink Wasser, streck dich. Kein Handy für die ersten 15 Minuten.",
       "type": "personal",
-      "category": "companion",
-      "rarity": "companion",
-      "createdBy": "companion",
-      "priority": "high",
-      "rewards": { "xp": 30, "gold": 20 },
-      "recurrence": "daily",
-      "timeLimit": "18:00",
-      "tags": ["companion", "care"]
-    },
-    {
-      "id": "companion-litter-01",
-      "title": "Clean the Litter Box",
-      "description": "The sacred ritual must be performed. {companionName} demands cleanliness.",
-      "type": "personal",
-      "category": "companion",
-      "rarity": "companion",
-      "createdBy": "companion",
-      "priority": "medium",
-      "rewards": { "xp": 20, "gold": 12 },
-      "recurrence": "daily",
-      "tags": ["companion", "care"]
-    },
-    {
-      "id": "companion-pet-01",
-      "title": "Pet {companionName} for 5 Minutes",
-      "description": "Five minutes of undivided attention. The minimum acceptable tribute.",
-      "type": "personal",
-      "category": "companion",
-      "rarity": "companion",
-      "createdBy": "companion",
-      "priority": "low",
-      "rewards": { "xp": 10, "gold": 6 },
-      "recurrence": "daily",
-      "tags": ["companion", "bonding"]
-    },
-    {
-      "id": "companion-play-01",
-      "title": "Interactive Play Session",
-      "description": "10 minutes with the wand toy. {companionName} requires stimulation.",
-      "type": "personal",
-      "category": "companion",
-      "rarity": "companion",
-      "createdBy": "companion",
-      "priority": "low",
-      "rewards": { "xp": 10, "gold": 6 },
-      "recurrence": "daily",
-      "tags": ["companion", "play"]
-    },
-    {
-      "id": "companion-window-01",
-      "title": "Open Window for Bird Watching",
-      "description": "Allow access to the window ledge for prime bird surveillance.",
-      "type": "personal",
-      "category": "companion",
-      "rarity": "companion",
-      "createdBy": "companion",
-      "priority": "low",
-      "rewards": { "xp": 10, "gold": 6 },
-      "recurrence": "daily",
-      "tags": ["companion", "enrichment"]
-    },
-    {
-      "id": "tpl-lvl-test-01",
-      "title": "Apprentice's First Step",
-      "description": "A simple task for beginners.",
-      "type": "personal",
-      "category": "generic",
-      "minLevel": 1,
       "difficulty": "starter",
-      "rewards": { "xp": 5, "gold": 3 }
+      "category": "personal",
+      "flavor": "\"Der Morgen gehört den Mutigen. Oder zumindest denen, die aufstehen.\" — Oma Ilse",
+      "rewards": {
+        "xp": 15,
+        "gold": 8
+      }
     },
     {
-      "id": "tpl-lvl-test-05",
-      "title": "The Journeyman's Trial",
-      "description": "Prove you've grown beyond the basics.",
+      "id": "p-ohne-trank",
+      "title": "Ohne den Trank",
+      "description": "Ein Tag ohne Koffein. Ja, wirklich. Die Kopfschmerzen sind Teil der Prüfung.",
       "type": "personal",
-      "category": "generic",
-      "minLevel": 5,
-      "difficulty": "normal",
-      "rewards": { "xp": 15, "gold": 10 }
+      "difficulty": "intermediate",
+      "category": "personal",
+      "flavor": "\"Der stille Trank hat seine Tücken. Wer ihn meistert, meistert sich selbst.\" — Meister Tanaka",
+      "rewards": {
+        "xp": 25,
+        "gold": 18
+      }
     },
     {
-      "id": "tpl-lvl-test-10",
-      "title": "Veteran's Challenge",
-      "description": "Only experienced adventurers dare attempt this.",
+      "id": "p-chronik",
+      "title": "Chronik des Tages",
+      "description": "Schreib drei Dinge auf die heute gut liefen. Kein Zynismus erlaubt.",
+      "type": "personal",
+      "difficulty": "starter",
+      "category": "personal",
+      "flavor": "\"Die Sterne erinnern sich an jeden Helden. Aber es schadet nicht, selbst mitzuschreiben.\" — Lyra",
+      "rewards": {
+        "xp": 15,
+        "gold": 10
+      }
+    },
+    {
+      "id": "p-digital-detox",
+      "title": "Digitale Stille",
+      "description": "2 Stunden ohne Social Media. Die Welt dreht sich trotzdem weiter, versprochen.",
+      "type": "personal",
+      "difficulty": "intermediate",
+      "category": "personal",
+      "flavor": "\"Manchmal muss man die Kristallkugel weglegen um klar zu sehen.\" — Alter Henrik",
+      "rewards": {
+        "xp": 25,
+        "gold": 15
+      }
+    },
+    {
+      "id": "p-aufraeum",
+      "title": "Die Große Reinigung",
+      "description": "Räum deinen Schreibtisch auf. Komplett. Keine Ausreden.",
+      "type": "personal",
+      "difficulty": "starter",
+      "category": "personal",
+      "flavor": "\"Ordnung im Äußeren schafft Ordnung im Inneren. Oder zumindest findet man seine Schlüssel.\" — Bruder Tomas",
+      "rewards": {
+        "xp": 20,
+        "gold": 12
+      }
+    },
+    {
+      "id": "p-frueh-ins-bett",
+      "title": "Frühwächters Eid",
+      "description": "Vor 22:30 im Bett. Nicht am Handy. Einfach schlafen.",
+      "type": "personal",
+      "difficulty": "intermediate",
+      "category": "personal",
+      "flavor": "\"Die mächtigsten Zauber wirken im Schlaf. Frag nicht warum — schlaf einfach.\" — Mirael",
+      "rewards": {
+        "xp": 25,
+        "gold": 15
+      }
+    },
+    {
+      "id": "p-kochen",
+      "title": "Der Alchemistenkessel",
+      "description": "Koch dir etwas Richtiges. Kein Fertiggericht, kein Lieferdienst.",
+      "type": "personal",
+      "difficulty": "intermediate",
+      "category": "personal",
+      "flavor": "\"Jedes Rezept ist ein Zauberspruch. Die Zutaten sind deine Komponenten.\" — Zara Funkenwind",
+      "rewards": {
+        "xp": 25,
+        "gold": 15
+      }
+    },
+    {
+      "id": "p-mail-inbox",
+      "title": "Postberg-Bezwinger",
+      "description": "Räum deine Inbox auf. Alles unter 2 Minuten sofort beantworten, Rest archivieren.",
+      "type": "personal",
+      "difficulty": "starter",
+      "category": "personal",
+      "flavor": "\"Ungelesene Briefe sind wie unerledigte Flüche. Sie stapeln sich.\" — Karim",
+      "rewards": {
+        "xp": 20,
+        "gold": 10
+      }
+    },
+    {
+      "id": "p-dankbarkeit",
+      "title": "Drei Sterne",
+      "description": "Sag drei Menschen heute etwas Nettes. Ehrlich gemeint, nicht pflichtmäßig.",
+      "type": "personal",
+      "difficulty": "starter",
+      "category": "personal",
+      "flavor": "\"Worte sind die billigste Magie und die mächtigste.\" — Finnegan",
+      "rewards": {
+        "xp": 15,
+        "gold": 8
+      }
+    },
+    {
+      "id": "p-no-snooze",
+      "title": "Kein Aufschub",
+      "description": "Steh beim ersten Wecker auf. Kein Snooze. Kein 'noch 5 Minuten'.",
+      "type": "personal",
+      "difficulty": "intermediate",
+      "category": "personal",
+      "flavor": "\"Der Unterschied zwischen Held und Bettvorleger? Ein einziger Moment am Morgen.\" — Rogar Amboss",
+      "rewards": {
+        "xp": 20,
+        "gold": 12
+      }
+    },
+    {
+      "id": "p-budget",
+      "title": "Gold zählen",
+      "description": "Check deine Finanzen. Was kam rein, was ging raus diese Woche?",
+      "type": "personal",
+      "difficulty": "starter",
+      "category": "personal",
+      "flavor": "\"Wer sein Gold nicht zählt, wird von seinem Gold gezählt.\" — Karim",
+      "rewards": {
+        "xp": 15,
+        "gold": 10
+      }
+    },
+    {
+      "id": "p-wardrobe",
+      "title": "Ausmisten",
+      "description": "Finde 5 Dinge in deiner Wohnung die du nicht mehr brauchst. Weg damit.",
+      "type": "personal",
+      "difficulty": "starter",
+      "category": "personal",
+      "flavor": "\"Loslassen ist die schwerste Disziplin. Und die befreiendste.\" — Bruder Tomas",
+      "rewards": {
+        "xp": 20,
+        "gold": 10
+      }
+    },
+    {
+      "id": "p-planen",
+      "title": "Der Stratege",
+      "description": "Plan deinen morgigen Tag. Was willst du schaffen? Schreib es auf.",
+      "type": "personal",
+      "difficulty": "starter",
+      "category": "personal",
+      "flavor": "\"Ein Plan überlebt selten den ersten Kontakt. Aber ohne Plan überlebt man gar nichts.\" — Meister Tanaka",
+      "rewards": {
+        "xp": 15,
+        "gold": 8
+      }
+    },
+    {
+      "id": "p-kein-nachtisch",
+      "title": "Eiserne Disziplin",
+      "description": "Kein Zucker nach 18 Uhr. Der Süßkram kann warten.",
+      "type": "personal",
+      "difficulty": "intermediate",
+      "category": "personal",
+      "flavor": "\"Verzicht ist keine Schwäche. Verzicht ist die Klinge die man an sich selbst schärft.\" — Rogar Amboss",
+      "rewards": {
+        "xp": 20,
+        "gold": 12
+      }
+    },
+    {
+      "id": "p-tagebuch",
+      "title": "Wanderers Logbuch",
+      "description": "Schreib mindestens 200 Wörter über deinen Tag. Ungefiltert, ehrlich.",
+      "type": "personal",
+      "difficulty": "intermediate",
+      "category": "personal",
+      "flavor": "\"Die größten Abenteuer finden zwischen den Zeilen statt.\" — Finnegan",
+      "rewards": {
+        "xp": 25,
+        "gold": 15
+      }
+    },
+    {
+      "id": "f-morgenlauf",
+      "title": "Morgenlauf",
+      "description": "20 Minuten laufen bevor du mit dem Tag anfängst. Egal wie schnell.",
       "type": "fitness",
-      "category": "generic",
-      "minLevel": 10,
-      "difficulty": "hard",
-      "rewards": { "xp": 30, "gold": 20 }
+      "difficulty": "intermediate",
+      "category": "fitness",
+      "flavor": "\"Die Beine tragen dich weiter als der Kopf glaubt.\" — Alter Henrik",
+      "rewards": {
+        "xp": 30,
+        "gold": 15
+      }
     },
     {
-      "id": "tpl-lvl-test-15",
-      "title": "Master's Gauntlet",
-      "description": "The masters of the hall whisper about this trial.",
-      "type": "boss",
-      "category": "generic",
-      "minLevel": 15,
-      "difficulty": "hard",
-      "rewards": { "xp": 50, "gold": 35 }
+      "id": "f-10k-schritte",
+      "title": "10.000 Schritte",
+      "description": "Sammle heute 10.000 Schritte. Zählt alles — Treppen, Spaziergänge, Herumlaufen.",
+      "type": "fitness",
+      "difficulty": "intermediate",
+      "category": "fitness",
+      "flavor": "\"Jeder Schritt ist ein Vers in deinem Lied.\" — Finnegan",
+      "rewards": {
+        "xp": 25,
+        "gold": 15
+      }
     },
     {
-      "id": "tpl-lvl-test-20",
-      "title": "The Legendary Ordeal",
-      "description": "Few return. Fewer succeed. None forget.",
+      "id": "f-liegestuetzen",
+      "title": "Bodenkampf",
+      "description": "3 Sätze Liegestützen. So viele wie gehen. Kein Schummeln.",
+      "type": "fitness",
+      "difficulty": "starter",
+      "category": "fitness",
+      "flavor": "\"Der Boden ist dein Gegner. Drück ihn weg.\" — Rogar Amboss",
+      "rewards": {
+        "xp": 20,
+        "gold": 10
+      }
+    },
+    {
+      "id": "f-stretching",
+      "title": "Geschmeidigkeit",
+      "description": "15 Minuten Stretching oder Yoga. Dein Rücken wird es dir danken.",
+      "type": "fitness",
+      "difficulty": "starter",
+      "category": "fitness",
+      "flavor": "\"Ein biegsamer Baum bricht nicht im Sturm.\" — Meister Tanaka",
+      "rewards": {
+        "xp": 15,
+        "gold": 8
+      }
+    },
+    {
+      "id": "f-gym",
+      "title": "Schmiede des Körpers",
+      "description": "Ab ins Gym. Vollständiges Workout, mindestens 45 Minuten.",
+      "type": "fitness",
+      "difficulty": "advanced",
+      "category": "fitness",
+      "flavor": "\"Stahl wird im Feuer gehärtet. Du auch.\" — Rogar Amboss",
+      "rewards": {
+        "xp": 40,
+        "gold": 25
+      }
+    },
+    {
+      "id": "f-spaziergang",
+      "title": "Der stille Pfad",
+      "description": "30 Minuten spazieren. Ohne Handy. Nur du und die Welt.",
+      "type": "fitness",
+      "difficulty": "starter",
+      "category": "fitness",
+      "flavor": "\"Die besten Gedanken kommen auf leisen Sohlen.\" — Bruder Tomas",
+      "rewards": {
+        "xp": 20,
+        "gold": 10
+      }
+    },
+    {
+      "id": "f-treppen",
+      "title": "Turmbesteigung",
+      "description": "Nimm heute jede Treppe statt den Aufzug. Ausnahmslos.",
+      "type": "fitness",
+      "difficulty": "starter",
+      "category": "fitness",
+      "flavor": "\"Wer den Turm bezwingen will, muss jede Stufe ehren.\" — Oma Ilse",
+      "rewards": {
+        "xp": 15,
+        "gold": 8
+      }
+    },
+    {
+      "id": "f-kalt-duschen",
+      "title": "Frostprüfung",
+      "description": "Kalt duschen. Mindestens 30 Sekunden. Schreien ist erlaubt.",
+      "type": "fitness",
+      "difficulty": "intermediate",
+      "category": "fitness",
+      "flavor": "\"Das Eis fragt nicht ob du bereit bist. Sei es trotzdem.\" — Lumi",
+      "rewards": {
+        "xp": 25,
+        "gold": 15
+      }
+    },
+    {
+      "id": "f-plank",
+      "title": "Die Unbewegliche Mauer",
+      "description": "Plank halten. 3 Durchgänge, jeweils so lange wie möglich.",
+      "type": "fitness",
+      "difficulty": "intermediate",
+      "category": "fitness",
+      "flavor": "\"Stillstand ist manchmal die größte Bewegung.\" — Meister Tanaka",
+      "rewards": {
+        "xp": 25,
+        "gold": 12
+      }
+    },
+    {
+      "id": "f-radfahren",
+      "title": "Windreiter",
+      "description": "Fahr heute Fahrrad statt Auto oder Bahn. Egal wohin.",
+      "type": "fitness",
+      "difficulty": "intermediate",
+      "category": "fitness",
+      "flavor": "\"Der Wind ist kein Gegner. Er ist ein Tanzpartner.\" — Zara Funkenwind",
+      "rewards": {
+        "xp": 30,
+        "gold": 15
+      }
+    },
+    {
+      "id": "f-abend-workout",
+      "title": "Abendschmiede",
+      "description": "Abend-Workout: 20 Minuten Bodyweight. Kein Equipment nötig.",
+      "type": "fitness",
+      "difficulty": "starter",
+      "category": "fitness",
+      "flavor": "\"Die letzte Stunde des Tages gehört dem Krieger in dir.\" — Rogar Amboss",
+      "rewards": {
+        "xp": 25,
+        "gold": 12
+      }
+    },
+    {
+      "id": "f-wassertrinken",
+      "title": "Quell der Stärke",
+      "description": "Trink heute mindestens 2 Liter Wasser. Kaffee zählt nicht.",
+      "type": "fitness",
+      "difficulty": "starter",
+      "category": "fitness",
+      "flavor": "\"Wasser ist flüssige Magie. Die meisten vergessen es einfach.\" — Mirael",
+      "rewards": {
+        "xp": 15,
+        "gold": 8
+      }
+    },
+    {
+      "id": "l-30min-lernen",
+      "title": "Wissensjäger",
+      "description": "30 Minuten fokussiert etwas Neues lernen. Kein YouTube-Rabbit-Hole.",
+      "type": "learning",
+      "difficulty": "intermediate",
+      "category": "learning",
+      "flavor": "\"Wissen ist der einzige Schatz der schwerer wird je mehr man trägt — und trotzdem leichter.\" — Alter Henrik",
+      "rewards": {
+        "xp": 30,
+        "gold": 15
+      }
+    },
+    {
+      "id": "l-buch-lesen",
+      "title": "Buchstabenzauber",
+      "description": "Lies 30 Minuten in einem Buch. Papier oder E-Reader, kein Social Media.",
+      "type": "learning",
+      "difficulty": "starter",
+      "category": "learning",
+      "flavor": "\"Bücher sind Portale. Manche führen in Welten, manche führen zu dir selbst.\" — Finnegan",
+      "rewards": {
+        "xp": 20,
+        "gold": 10
+      }
+    },
+    {
+      "id": "l-doku",
+      "title": "Chronistenarbeit",
+      "description": "Dokumentiere etwas das du gelernt hast. Wiki, Notiz, Blog — Hauptsache aufgeschrieben.",
+      "type": "learning",
+      "difficulty": "intermediate",
+      "category": "learning",
+      "flavor": "\"Was nicht geschrieben steht, hat nie stattgefunden.\" — Lyra",
+      "rewards": {
+        "xp": 25,
+        "gold": 15
+      }
+    },
+    {
+      "id": "l-tutorial",
+      "title": "Lehrlings Übung",
+      "description": "Folge einem Tutorial zu einer Technologie die du noch nicht kennst.",
+      "type": "learning",
+      "difficulty": "intermediate",
+      "category": "learning",
+      "flavor": "\"Der Anfänger sieht tausend Möglichkeiten. Der Meister auch — aber er hat die falschen schon aussortiert.\" — Meister Tanaka",
+      "rewards": {
+        "xp": 30,
+        "gold": 18
+      }
+    },
+    {
+      "id": "l-podcast",
+      "title": "Stimmen des Wissens",
+      "description": "Hör einen Fachpodcast oder Hörbuch. Mindestens 30 Minuten.",
+      "type": "learning",
+      "difficulty": "starter",
+      "category": "learning",
+      "flavor": "\"Manchmal ist Zuhören mächtiger als jeder Zauberspruch.\" — Bruder Tomas",
+      "rewards": {
+        "xp": 20,
+        "gold": 10
+      }
+    },
+    {
+      "id": "l-flashcards",
+      "title": "Gedächtnispalast",
+      "description": "Erstelle oder reviewe 20 Karteikarten zu einem Thema deiner Wahl.",
+      "type": "learning",
+      "difficulty": "intermediate",
+      "category": "learning",
+      "flavor": "\"Wiederholung ist keine Langeweile. Wiederholung ist der Pfad zur Meisterschaft.\" — Meister Tanaka",
+      "rewards": {
+        "xp": 25,
+        "gold": 12
+      }
+    },
+    {
+      "id": "l-zertifikat",
+      "title": "Siegel des Gelehrten",
+      "description": "Arbeite an einer Zertifizierung oder einem Online-Kurs. Mindestens 1 Modul.",
+      "type": "learning",
+      "difficulty": "advanced",
+      "category": "learning",
+      "flavor": "\"Ein Siegel beweist nicht Wissen. Es beweist Ausdauer.\" — Rogar Amboss",
+      "rewards": {
+        "xp": 40,
+        "gold": 25
+      }
+    },
+    {
+      "id": "l-sprache",
+      "title": "Fremde Zungen",
+      "description": "15 Minuten Sprachübung. Duolingo, Anki, oder echte Konversation.",
+      "type": "learning",
+      "difficulty": "starter",
+      "category": "learning",
+      "flavor": "\"Wer eine neue Sprache lernt, gewinnt eine neue Seele.\" — Karim",
+      "rewards": {
+        "xp": 20,
+        "gold": 10
+      }
+    },
+    {
+      "id": "l-code-kata",
+      "title": "Code-Kata",
+      "description": "Löse ein Coding-Problem auf LeetCode, Codewars oder ähnlich.",
+      "type": "learning",
+      "difficulty": "intermediate",
+      "category": "learning",
+      "flavor": "\"Code ist Poesie die Maschinen verstehen. Schreib ein gutes Gedicht.\" — Lyra",
+      "rewards": {
+        "xp": 30,
+        "gold": 15
+      }
+    },
+    {
+      "id": "l-news",
+      "title": "Weltenbote",
+      "description": "Lies einen langen Fachartikel statt nur Headlines zu scannen.",
+      "type": "learning",
+      "difficulty": "starter",
+      "category": "learning",
+      "flavor": "\"Die Wahrheit versteckt sich nie in der Überschrift.\" — Alter Henrik",
+      "rewards": {
+        "xp": 15,
+        "gold": 8
+      }
+    },
+    {
+      "id": "l-notizen",
+      "title": "Essenz destillieren",
+      "description": "Geh deine Notizen der letzten Woche durch. Fasse zusammen was wichtig war.",
+      "type": "learning",
+      "difficulty": "starter",
+      "category": "learning",
+      "flavor": "\"Rohmaterial ist nichts wert. Erst die Destillation macht Gold.\" — Zara Funkenwind",
+      "rewards": {
+        "xp": 20,
+        "gold": 10
+      }
+    },
+    {
+      "id": "l-erklaeren",
+      "title": "Lehrmeisters Prüfung",
+      "description": "Erkläre jemandem ein Konzept das du gut kennst. Feynman-Methode.",
+      "type": "learning",
+      "difficulty": "advanced",
+      "category": "learning",
+      "flavor": "\"Wer nicht erklären kann, hat nicht verstanden.\" — Meister Tanaka",
+      "rewards": {
+        "xp": 35,
+        "gold": 20
+      }
+    },
+    {
+      "id": "s-freund-anrufen",
+      "title": "Alte Bande",
+      "description": "Ruf einen Freund an den du länger nicht gehört hast. Kein Chat, Anruf.",
+      "type": "social",
+      "difficulty": "intermediate",
+      "category": "social",
+      "flavor": "\"Freundschaften sind wie Feuer. Man muss sie füttern oder sie erlöschen.\" — Finnegan",
+      "rewards": {
+        "xp": 25,
+        "gold": 15
+      }
+    },
+    {
+      "id": "s-gemeinsam-essen",
+      "title": "Tafelrunde",
+      "description": "Iss heute mit jemandem zusammen. Kein Handy am Tisch.",
+      "type": "social",
+      "difficulty": "starter",
+      "category": "social",
+      "flavor": "\"Die besten Geschichten werden bei vollem Teller erzählt.\" — Oma Ilse",
+      "rewards": {
+        "xp": 20,
+        "gold": 12
+      }
+    },
+    {
+      "id": "s-hilfe",
+      "title": "Helfende Hand",
+      "description": "Hilf jemandem heute bei etwas. Ungefragt, ohne Gegenleistung.",
+      "type": "social",
+      "difficulty": "starter",
+      "category": "social",
+      "flavor": "\"Wer gibt ohne zu zählen, bekommt ohne zu bitten.\" — Bruder Tomas",
+      "rewards": {
+        "xp": 20,
+        "gold": 10
+      }
+    },
+    {
+      "id": "s-nachricht",
+      "title": "Lichtbotschaft",
+      "description": "Schreib jemandem eine ehrliche Nachricht warum du froh bist dass es ihn gibt.",
+      "type": "social",
+      "difficulty": "starter",
+      "category": "social",
+      "flavor": "\"Manchmal braucht jemand nur einen einzigen Satz um den Tag zu überstehen.\" — Lumi",
+      "rewards": {
+        "xp": 15,
+        "gold": 8
+      }
+    },
+    {
+      "id": "s-spaziergang-date",
+      "title": "Wandergefährte",
+      "description": "Geh mit jemandem spazieren. Reden, nicht scrollen.",
+      "type": "social",
+      "difficulty": "intermediate",
+      "category": "social",
+      "flavor": "\"Gemeinsame Schritte wiegen schwerer als gemeinsame Worte.\" — Alter Henrik",
+      "rewards": {
+        "xp": 25,
+        "gold": 15
+      }
+    },
+    {
+      "id": "s-feedback",
+      "title": "Ehrenspiegel",
+      "description": "Frag jemanden nach ehrlichem Feedback zu etwas das dir wichtig ist.",
+      "type": "social",
+      "difficulty": "advanced",
+      "category": "social",
+      "flavor": "\"Der Spiegel zeigt nicht was du sehen willst. Dafür ist er ehrlich.\" — Mirael",
+      "rewards": {
+        "xp": 30,
+        "gold": 18
+      }
+    },
+    {
+      "id": "s-familie",
+      "title": "Familienbande",
+      "description": "Ruf deine Familie an oder besuch sie. Auch 10 Minuten zählen.",
+      "type": "social",
+      "difficulty": "starter",
+      "category": "social",
+      "flavor": "\"Blut mag dicker sein als Wasser. Aber Liebe ist dicker als beides.\" — Oma Ilse",
+      "rewards": {
+        "xp": 20,
+        "gold": 10
+      }
+    },
+    {
+      "id": "s-netzwerken",
+      "title": "Neue Wege",
+      "description": "Sprich mit jemandem Neuem. Auf der Arbeit, online, oder im echten Leben.",
+      "type": "social",
+      "difficulty": "intermediate",
+      "category": "social",
+      "flavor": "\"Jeder Fremde ist ein Buch das du noch nicht aufgeschlagen hast.\" — Karim",
+      "rewards": {
+        "xp": 25,
+        "gold": 15
+      }
+    },
+    {
+      "id": "b-deep-work",
+      "title": "Deep Work Marathon",
+      "description": "4 Stunden Deep Work. Kein Social Media, keine Ablenkung. Fokus pur.",
       "type": "boss",
-      "category": "generic",
-      "minLevel": 20,
-      "rarity": "legendary",
-      "difficulty": "legendary",
-      "rewards": { "xp": 100, "gold": 75 }
+      "difficulty": "expert",
+      "category": "boss",
+      "flavor": "\"Die größten Schlachten werden in der Stille gewonnen.\" — Meister Tanaka",
+      "rewards": {
+        "xp": 60,
+        "gold": 40
+      }
+    },
+    {
+      "id": "b-comfort-zone",
+      "title": "Jenseits der Grenze",
+      "description": "Tu heute etwas das dir Angst macht. Etwas das du seit Wochen aufschiebst.",
+      "type": "boss",
+      "difficulty": "expert",
+      "category": "boss",
+      "flavor": "\"Mut ist nicht die Abwesenheit von Angst. Mut ist der erste Schritt trotz Angst.\" — Rogar Amboss",
+      "rewards": {
+        "xp": 50,
+        "gold": 35
+      }
+    },
+    {
+      "id": "b-projekt",
+      "title": "Das Meisterwerk",
+      "description": "Arbeite mindestens 3 Stunden an deinem wichtigsten Projekt. Keine Nebensachen.",
+      "type": "boss",
+      "difficulty": "expert",
+      "category": "boss",
+      "flavor": "\"Halbfertige Werke sind Gräber ungelebter Ideen.\" — Lyra",
+      "rewards": {
+        "xp": 55,
+        "gold": 35
+      }
     }
   ]
 }
