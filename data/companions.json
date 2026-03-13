@@ -1,33 +1,33 @@
 {
   "realTemplates": {
-    "cat":     { "emoji": "x", "careQuests": ["feed", "play", "cuddle", "vet_check"] },
-    "dog":     { "emoji": "x", "careQuests": ["walk", "feed", "training", "grooming", "vet_check"] },
-    "hamster": { "emoji": "x", "careQuests": ["feed", "clean_cage", "play"] },
-    "bird":    { "emoji": "x", "careQuests": ["feed", "sing", "clean_cage"] },
-    "fish":    { "emoji": "x", "careQuests": ["feed", "clean_tank"] },
-    "rabbit":  { "emoji": "x", "careQuests": ["feed", "play", "grooming"] },
-    "other":   { "emoji": "x", "careQuests": ["feed", "care"] }
+    "cat":     { "emoji": "🐱", "careQuests": ["feed", "play", "cuddle", "vet_check"] },
+    "dog":     { "emoji": "🐶", "careQuests": ["walk", "feed", "training", "grooming", "vet_check"] },
+    "hamster": { "emoji": "🐹", "careQuests": ["feed", "clean_cage", "play"] },
+    "bird":    { "emoji": "🐦", "careQuests": ["feed", "sing", "clean_cage"] },
+    "fish":    { "emoji": "🐟", "careQuests": ["feed", "clean_tank"] },
+    "rabbit":  { "emoji": "🐰", "careQuests": ["feed", "play", "grooming"] },
+    "other":   { "emoji": "🐾", "careQuests": ["feed", "care"] }
   },
   "virtualTemplates": {
-    "dragon":  { "emoji": "x", "name": "Ember",  "desc": "Ein feuriger Drache der dich antreibt",                        "personality": "fierce" },
-    "owl":     { "emoji": "x", "name": "Sage",   "desc": "Eine weise Eule die dich beim Lernen begleitet",               "personality": "wise" },
-    "phoenix": { "emoji": "x", "name": "Blaze",  "desc": "Ein Phoenix der aus jeder Niederlage stärker aufsteht",        "personality": "resilient" },
-    "wolf":    { "emoji": "x", "name": "Shadow", "desc": "Ein treuer Wolf der immer an deiner Seite steht",              "personality": "loyal" },
-    "fox":     { "emoji": "x", "name": "Trick",  "desc": "Ein schlauer Fuchs der kreative Lösungen findet",             "personality": "clever" },
-    "bear":    { "emoji": "x", "name": "Bjorn",  "desc": "Ein starker Bär der dich durch harte Zeiten trägt",           "personality": "strong" }
+    "dragon":  { "emoji": "🐉", "name": "Ember",  "desc": "Ein feuriger Drache der dich antreibt",                        "personality": "fierce" },
+    "owl":     { "emoji": "🦉", "name": "Sage",   "desc": "Eine weise Eule die dich beim Lernen begleitet",               "personality": "wise" },
+    "phoenix": { "emoji": "🔥", "name": "Blaze",  "desc": "Ein Phoenix der aus jeder Niederlage stärker aufsteht",        "personality": "resilient" },
+    "wolf":    { "emoji": "🐺", "name": "Shadow", "desc": "Ein treuer Wolf der immer an deiner Seite steht",              "personality": "loyal" },
+    "fox":     { "emoji": "🦊", "name": "Trick",  "desc": "Ein schlauer Fuchs der kreative Lösungen findet",             "personality": "clever" },
+    "bear":    { "emoji": "🐻", "name": "Bjorn",  "desc": "Ein starker Bär der dich durch harte Zeiten trägt",           "personality": "strong" }
   },
   "careQuestTemplates": {
-    "feed":       { "title": "{name} füttern x",                      "desc": "Vergiss nicht, {name} braucht Futter!",                              "recurrence": "daily",   "xp": 5,  "gold": 2 },
-    "walk":       { "title": "Gassi gehen mit {name} x",               "desc": "Frische Luft tut euch beiden gut!",                                  "recurrence": "daily",   "xp": 10, "gold": 3 },
-    "play":       { "title": "Mit {name} spielen x",                   "desc": "Quality Time mit deinem Begleiter!",                                 "recurrence": "daily",   "xp": 5,  "gold": 2 },
-    "training":   { "title": "{name} trainieren x",                    "desc": "Übung macht den Meister — auch für {name}!",                         "recurrence": "weekly",  "xp": 15, "gold": 5 },
-    "grooming":   { "title": "{name} pflegen x",                       "desc": "Ein gepflegter Begleiter ist ein glücklicher Begleiter.",             "recurrence": "weekly",  "xp": 10, "gold": 3 },
-    "cuddle":     { "title": "Kuschelzeit mit {name} x",               "desc": "Manchmal braucht man einfach Nähe.",                                 "recurrence": "daily",   "xp": 5,  "gold": 2 },
-    "vet_check":  { "title": "Tierarzt-Check für {name} x",            "desc": "Regelmäßige Checks halten {name} gesund.",                           "recurrence": "monthly", "xp": 25, "gold": 10 },
-    "clean_cage": { "title": "{name}s Zuhause sauber machen x",        "desc": "Ein sauberes Heim für einen glücklichen Freund.",                    "recurrence": "weekly",  "xp": 10, "gold": 3 },
-    "clean_tank": { "title": "Aquarium für {name} reinigen x",         "desc": "Klares Wasser, glücklicher Fisch!",                                  "recurrence": "weekly",  "xp": 10, "gold": 3 },
-    "sing":       { "title": "Mit {name} singen x",                    "desc": "{name} liebt es wenn du singst!",                                    "recurrence": "daily",   "xp": 5,  "gold": 2 },
-    "care":       { "title": "Für {name} sorgen x",                    "desc": "Deinem Begleiter geht es besser wenn du für ihn sorgst.",            "recurrence": "daily",   "xp": 5,  "gold": 2 }
+    "feed":       { "title": "{name} füttern",                        "desc": "Vergiss nicht, {name} braucht Futter!",                              "recurrence": "daily",   "xp": 5,  "gold": 2 },
+    "walk":       { "title": "Gassi gehen mit {name}",                "desc": "Frische Luft tut euch beiden gut!",                                  "recurrence": "daily",   "xp": 10, "gold": 3 },
+    "play":       { "title": "Mit {name} spielen",                    "desc": "Quality Time mit deinem Begleiter!",                                 "recurrence": "daily",   "xp": 5,  "gold": 2 },
+    "training":   { "title": "{name} trainieren",                     "desc": "Übung macht den Meister — auch für {name}!",                         "recurrence": "weekly",  "xp": 15, "gold": 5 },
+    "grooming":   { "title": "{name} pflegen",                        "desc": "Ein gepflegter Begleiter ist ein glücklicher Begleiter.",             "recurrence": "weekly",  "xp": 10, "gold": 3 },
+    "cuddle":     { "title": "Kuschelzeit mit {name}",                "desc": "Manchmal braucht man einfach Nähe.",                                 "recurrence": "daily",   "xp": 5,  "gold": 2 },
+    "vet_check":  { "title": "Tierarzt-Check für {name}",             "desc": "Regelmäßige Checks halten {name} gesund.",                           "recurrence": "monthly", "xp": 25, "gold": 10 },
+    "clean_cage": { "title": "{name}s Zuhause sauber machen",         "desc": "Ein sauberes Heim für einen glücklichen Freund.",                    "recurrence": "weekly",  "xp": 10, "gold": 3 },
+    "clean_tank": { "title": "Aquarium für {name} reinigen",          "desc": "Klares Wasser, glücklicher Fisch!",                                  "recurrence": "weekly",  "xp": 10, "gold": 3 },
+    "sing":       { "title": "Mit {name} singen",                     "desc": "{name} liebt es wenn du singst!",                                    "recurrence": "daily",   "xp": 5,  "gold": 2 },
+    "care":       { "title": "Für {name} sorgen",                     "desc": "Deinem Begleiter geht es besser wenn du für ihn sorgst.",            "recurrence": "daily",   "xp": 5,  "gold": 2 }
   },
   "bondLevels": [
     { "level": 1,  "title": "Stranger",      "minXp": 0   },
