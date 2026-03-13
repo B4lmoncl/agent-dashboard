@@ -340,6 +340,7 @@ export interface GachaPullResult {
 export interface GachaBanner {
   id: string;
   name: string;
+  icon: string;
   type: "standard" | "featured";
   currency: string;
   costSingle: number;
@@ -348,6 +349,8 @@ export interface GachaBanner {
   pool: GachaItem[];
   active: boolean;
   lore: string;
+  poolSize?: number;
+  dropRates?: Record<string, string>;
 }
 
 export interface GachaPityInfo {

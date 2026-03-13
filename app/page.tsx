@@ -1249,14 +1249,14 @@ export default function Dashboard() {
         <div className="flex gap-1 flex-wrap" style={{ background: "#111", borderRadius: 8, padding: 3, display: "inline-flex" }}>
           {[
             { key: "questBoard",    label: "The Great Hall",     tutorialKey: "quest-board-tab" },
+            { key: "npcBoard",      label: "The Wanderer's Rest", tutorialKey: "npc-board-tab" },
+            { key: "campaign",    label: "The Observatory",        tutorialKey: "campaign-tab" },
             { key: "klassenquests", label: "The Arcanum",  tutorialKey: null },
             ...(playerName ? [{ key: "character", label: "Character", tutorialKey: null }] : []),
-            { key: "npcBoard",      label: "The Wanderer's Rest", tutorialKey: "npc-board-tab" },
+            { key: "shop",        label: "The Bazaar",               tutorialKey: null },
             { key: "leaderboard", label: "The Proving Grounds", tutorialKey: "leaderboard-tab" },
             { key: "honors",      label: "Hall of Honors",  tutorialKey: null },
-            { key: "campaign",    label: "The Observatory",        tutorialKey: "campaign-tab" },
             { key: "season",      label: `${CURRENT_SEASON.icon} Season`, tutorialKey: "season-tab" },
-            { key: "shop",        label: "The Bazaar",               tutorialKey: null },
           ].map(v => (
             "isDivider" in v && v.isDivider ? (
               <span key={v.key} className="text-xs font-semibold uppercase tracking-widest px-2 py-1.5 flex items-center" style={{ color: "rgba(255,215,0,0.5)", letterSpacing: "0.1em", pointerEvents: "none" }}>
@@ -1335,6 +1335,7 @@ export default function Dashboard() {
             reviewApiKey={reviewApiKey}
             onBuy={handleShopBuy}
             onGearBuy={handleGearBuy}
+            onRefresh={refresh}
           />
         )}
 
