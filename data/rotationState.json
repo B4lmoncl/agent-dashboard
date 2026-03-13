@@ -1,5 +1,11 @@
 {
-  "lastDailyRotation": null,
-  "questSeed": 0,
-  "previousQuestTemplateIds": []
+  "lastDailyRotation": "2026-03-13",
+  "questSeed": 1161725345,
+  "previousQuestTemplateIds": [
+    "tpl-lvl-test-01",
+    "tpl-lvl-test-05",
+    "tpl-lvl-test-10",
+    "tpl-lvl-test-20",
+    "tpl-lvl-test-15"
+  ]
 }
