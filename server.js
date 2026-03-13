@@ -902,6 +902,7 @@ function trySpawnNpcs(now) {
         chainIndex: chain.indexOf(qt),
         chainTotal: chain.length,
         rarity: giver.rarity,
+        rewards: qt.rewards || { xp: 20, gold: 10 },
         npcRewards: qt.rewards || { xp: 20, gold: 10 },
       };
       quests.push(quest);
@@ -965,7 +966,7 @@ function forceSpawnMinimumNpc(now) {
       chapter: null, minLevel: 1, npcGiverId: giver.id, npcName: giver.name,
       npcRarity: giver.rarity, flavorText: qt.flavorText || null,
       chainIndex: chain.indexOf(qt), chainTotal: chain.length,
-      rarity: giver.rarity, npcRewards: qt.rewards || { xp: 20, gold: 10 },
+      rarity: giver.rarity, rewards: qt.rewards || { xp: 20, gold: 10 }, npcRewards: qt.rewards || { xp: 20, gold: 10 },
     };
     quests.push(quest);
     questIds.push(quest.id);
