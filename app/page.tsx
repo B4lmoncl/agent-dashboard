@@ -21,6 +21,7 @@ import {
   ChainQuestToast, AchievementToast, FlavorToast, EmptyState, SkeletonCard,
   UserCard, ShopModal, RARITY_COLORS,
 } from "@/components/QuestBoard";
+import { ToastStack, useToastStack } from "@/components/ToastStack";
 import { CompanionsWidget } from "@/components/CompanionsWidget";
 import { RoadmapView } from "@/components/RoadmapView";
 import { InfoTooltip } from "@/components/InfoTooltip";
@@ -93,9 +94,12 @@ export default function Dashboard() {
   const [npcAgentRosterOpen, setNpcAgentRosterOpen] = useState(true);
   const [dobbieOpen, setDobbieOpen] = useState(false);
   const [shopUserId, setShopUserId] = useState<string | null>(null);
-  const [toast, setToast] = useState<EarnedAchievement | null>(null);
-  const [flavorToast, setFlavorToast] = useState<{ message: string; icon: string; sub?: string } | null>(null);
-  const [purchaseToast, setPurchaseToast] = useState<string | null>(null);
+  // Toast stack system (replaces individual toast states)
+  const { toasts, addToast, removeToast } = useToastStack();
+  // Compat setters that push into the unified toast stack
+  const setToast = useCallback((a: EarnedAchievement | null) => { if (a) addToast({ type: "achievement", achievement: a }); }, [addToast]);
+  const setFlavorToast = useCallback((t: { message: string; icon: string; sub?: string } | null) => { if (t) addToast({ type: "flavor", ...t }); }, [addToast]);
+  const setPurchaseToast = useCallback((msg: string | null) => { if (msg) addToast({ type: "purchase", message: msg }); }, [addToast]);
   const [chainOffer, setChainOffer] = useState<{ template: { title: string; description?: string | null; type?: string; priority?: string }; parentTitle: string } | null>(null);
   const [openSectionCollapsed, setOpenSectionCollapsed] = useState<boolean>(() => {
     try { return localStorage.getItem("qb_open_collapsed") === "true"; } catch { return false; }
@@ -516,17 +520,7 @@ export default function Dashboard() {
     } catch { /* ignore */ }
   }, [reviewApiKey, refresh]);
 
-  useEffect(() => {
-    if (!purchaseToast) return;
-    const t = setTimeout(() => setPurchaseToast(null), 3000);
-    return () => clearTimeout(t);
-  }, [purchaseToast]);
-
-  useEffect(() => {
-    if (!flavorToast) return;
-    const t = setTimeout(() => setFlavorToast(null), 4000);
-    return () => clearTimeout(t);
-  }, [flavorToast]);
+  // Toast auto-dismiss is handled by ToastStack
 
   useEffect(() => {
     refresh();
@@ -2413,24 +2407,10 @@ export default function Dashboard() {
         </div>
       )}
 
-      {/* Achievement Toast */}
-      {toast && <AchievementToast achievement={toast} onClose={() => setToast(null)} />}
+      {/* Unified Toast Stack */}
+      <ToastStack toasts={toasts} onRemove={removeToast} />
 
-      {/* Flavor Toast */}
-      {flavorToast && <FlavorToast toast={flavorToast} onClose={() => setFlavorToast(null)} />}
-
-      {/* Purchase / Loot Toast */}
-      {purchaseToast && (
-        <div
-          className="purchase-toast fixed z-[150] flex items-center gap-2 px-4 py-3 rounded-xl shadow-2xl"
-          style={{ bottom: "24px", right: "24px", background: "#1a1a1a", border: "1px solid rgba(245,158,11,0.5)", boxShadow: "0 8px 32px rgba(0,0,0,0.6)", maxWidth: "280px" }}
-        >
-          <span style={{ fontSize: "16px" }}>x</span>
-          <span className="text-sm font-semibold" style={{ color: "#f0f0f0" }}>{purchaseToast}</span>
-        </div>
-      )}
-
-      {/* Chain Quest Toast */}
+      {/* Chain Quest Toast (interactive, still separate for accept handling) */}
       {chainOffer && (
         <ChainQuestToast
           parentTitle={chainOffer.parentTitle}
