@@ -359,7 +359,7 @@ function BannerPullModal({
         <svg style={{
           position: "absolute", left: "-80%", top: "-40%", width: "260%", height: "180%",
           opacity: 0.35, zIndex: 0, pointerEvents: "none",
-          animation: "fogDrift1 10s ease-in-out infinite",
+          animation: "fogDrift1 12s ease-in-out infinite alternate",
           willChange: "transform",
         }}>
           <rect width="100%" height="100%" filter={`url(#${btnFogId}-a)`} />
@@ -367,7 +367,7 @@ function BannerPullModal({
         <svg style={{
           position: "absolute", left: "-70%", top: "-30%", width: "240%", height: "160%",
           opacity: 0.28, zIndex: 0, pointerEvents: "none",
-          animation: "fogDrift2 13s ease-in-out infinite",
+          animation: "fogDrift2 15s ease-in-out infinite alternate-reverse",
           willChange: "transform",
         }}>
           <rect width="100%" height="100%" filter={`url(#${btnFogId}-b)`} />
