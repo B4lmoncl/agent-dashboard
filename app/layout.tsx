@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Quest Hall — OpenClaw Agent Team",
-  description: "Live operations center for the OpenClaw AI agent team: Nova, Hex, Echo, Pixel, Atlas, Lyra.",
+  title: "Quest Hall",
+  description: "Quest Hall — Dein Abenteuer wartet.",
 };
 
 export default function RootLayout({
