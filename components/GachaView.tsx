@@ -708,51 +708,51 @@ export default function GachaView({ users, playerName, reviewApiKey, onRefresh, 
       {/* Info modal */}
       {infoOpen && <GachaInfoModal onClose={closeInfo} />}
 
-      {/* Lore Header */}
-      <div className="rounded-2xl p-5" style={{
+      {/* Lore Header — icon left, buttons top-right */}
+      <div className="rounded-2xl p-5 relative" style={{
         background: "linear-gradient(135deg, rgba(20,16,42,0.8) 0%, rgba(15,15,26,0.9) 100%)",
         border: "1px solid rgba(167,139,250,0.15)",
         boxShadow: "0 0 60px rgba(167,139,250,0.05)",
       }}>
-        <div className="flex flex-col items-center text-center mb-2">
-          <div style={{ animation: "vault-fate-glow 3s ease-in-out infinite alternate" }}>
+        {/* Top-right buttons */}
+        <div className="absolute top-4 right-4 flex items-center gap-2">
+          <button
+            onClick={() => setInfoOpen(true)}
+            className="btn-interactive text-sm w-8 h-8 rounded-full flex items-center justify-center"
+            style={{ color: "rgba(255,255,255,0.5)", background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.12)" }}
+            title="How does the Wheel of Stars work?"
+          >
+            ?
+          </button>
+          <button
+            onClick={loadHistory}
+            className="btn-interactive text-xs px-3 py-1.5 rounded-lg"
+            style={{ color: "rgba(255,255,255,0.4)", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}
+          >
+            Pull History
+          </button>
+          <button
+            onClick={() => setPoolOpen(true)}
+            className="btn-interactive text-xs px-3 py-1.5 rounded-lg"
+            style={{ color: "rgba(255,255,255,0.4)", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}
+          >
+            Item Pool
+          </button>
+        </div>
+        {/* Icon + Title + Lore */}
+        <div className="flex items-center gap-5">
+          <div className="flex-shrink-0" style={{ animation: "vault-fate-glow 3s ease-in-out infinite alternate" }}>
             <img src="/images/icons/vault-of-fate.png" alt="" style={{
-              width: 96, height: 96, imageRendering: "auto", display: "block", margin: "0 auto",
-              filter: "drop-shadow(0 0 12px rgba(167,139,250,0.6)) drop-shadow(0 0 30px rgba(167,139,250,0.3))",
+              width: 128, height: 128, imageRendering: "auto", display: "block",
+              filter: "drop-shadow(0 0 20px rgba(167,139,250,0.7)) drop-shadow(0 0 50px rgba(167,139,250,0.4)) drop-shadow(0 0 80px rgba(167,139,250,0.2))",
             }} />
           </div>
-          <h2 className="text-xl font-bold mt-3" style={{ color: "#e8e8e8" }}>The Vault of Fate</h2>
-        </div>
-        <div className="flex items-start justify-between gap-4">
           <div>
-            <p className="text-xs italic mt-1 max-w-2xl leading-relaxed mx-auto text-center" style={{ color: "rgba(255,255,255,0.3)" }}>
+            <h2 className="text-xl font-bold" style={{ color: "#e8e8e8" }}>The Vault of Fate</h2>
+            <p className="text-xs italic mt-2 max-w-md leading-relaxed" style={{ color: "rgba(255,255,255,0.3)" }}>
               A circular chamber with a single, floating astrolabe structure at its center: the Wheel of Stars.
               Here, heroes draw items, companions, and artifacts from the Aetherstream. The Vault remembers every pull — and rewards persistence.
             </p>
-          </div>
-          <div className="flex items-center gap-2 flex-shrink-0">
-            <button
-              onClick={() => setInfoOpen(true)}
-              className="btn-interactive text-sm w-8 h-8 rounded-full flex items-center justify-center"
-              style={{ color: "rgba(255,255,255,0.5)", background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.12)" }}
-              title="How does the Wheel of Stars work?"
-            >
-              ?
-            </button>
-            <button
-              onClick={loadHistory}
-              className="btn-interactive text-xs px-3 py-1.5 rounded-lg"
-              style={{ color: "rgba(255,255,255,0.4)", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}
-            >
-              Pull History
-            </button>
-            <button
-              onClick={() => setPoolOpen(true)}
-              className="btn-interactive text-xs px-3 py-1.5 rounded-lg"
-              style={{ color: "rgba(255,255,255,0.4)", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}
-            >
-              Item Pool
-            </button>
           </div>
         </div>
       </div>
