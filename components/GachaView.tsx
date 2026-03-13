@@ -400,7 +400,7 @@ function BannerPullModal({
             pointerEvents: "none",
             zIndex: 0,
             opacity: 0, animation: `${runeAnimations[i % runeAnimations.length]} ${4 + i * 0.6}s ease-in-out infinite both`,
-            animationDelay: `${i * 0.35}s`,
+            animationDelay: `${i * 0.08}s`,
           }}>{runeSymbols[i]}</span>
         ))}
 
@@ -445,19 +445,7 @@ function BannerPullModal({
                 }}>
                   {isFeatured ? "Featured Banner" : "Standard Banner"}
                 </span>
-                <div className="flex items-center gap-2 mt-2">
-                  <h3 className="text-lg font-bold" style={{ color: "#f0ece4" }}>{banner.name}</h3>
-                  <button
-                    onClick={() => setShowInfo(v => !v)}
-                    className="w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold flex-shrink-0"
-                    style={{
-                      color: showInfo ? "#fff" : "rgba(255,255,255,0.4)",
-                      background: showInfo ? accentColor + "40" : "rgba(255,255,255,0.06)",
-                      border: "1px solid " + (showInfo ? accentColor + "60" : "rgba(255,255,255,0.12)"),
-                      cursor: "pointer",
-                    }}
-                  >?</button>
-                </div>
+                <h3 className="text-lg font-bold mt-2" style={{ color: "#f0ece4" }}>{banner.name}</h3>
               </div>
               {/* Close button - absolute top right */}
                 <button onClick={onClose} className="absolute top-3 right-3 w-7 h-7 rounded-full flex items-center justify-center text-sm" style={{ color: "rgba(255,255,255,0.5)", background: "rgba(0,0,0,0.5)", border: "1px solid rgba(255,255,255,0.15)", cursor: "pointer", zIndex: 10 }}>✕</button>
@@ -477,7 +465,19 @@ function BannerPullModal({
             </div>
             <div className="text-right">
               <p className="text-[10px] uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.35)" }}>Your balance</p>
-              <p className="text-sm font-mono font-bold" style={{ color: balance > 0 ? ci.color : "rgba(255,255,255,0.2)" }}>{balance}</p>
+              <div className="flex items-center gap-2">
+                <p className="text-sm font-mono font-bold" style={{ color: balance > 0 ? ci.color : "rgba(255,255,255,0.2)" }}>{balance}</p>
+                <button
+                  onClick={() => setShowInfo(v => !v)}
+                  className="w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold flex-shrink-0"
+                  style={{
+                    color: showInfo ? "#fff" : "rgba(255,255,255,0.45)",
+                    background: showInfo ? accentColor + "40" : "rgba(255,255,255,0.06)",
+                    border: "1px solid " + (showInfo ? accentColor + "60" : "rgba(255,255,255,0.12)"),
+                    cursor: "pointer",
+                  }}
+                >?</button>
+              </div>
             </div>
           </div>
 
@@ -493,46 +493,34 @@ function BannerPullModal({
 
           {/* Click-toggle info panel (pity + drop rates) */}
           {showInfo && (
-            <div className="rounded-xl px-3 py-3 space-y-3" style={{ background: "rgba(255,255,255,0.03)", border: `1px solid ${accentColor}30` }}>
-              {/* Pity info */}
-              {pity && (
-                <div className="flex gap-2 flex-wrap">
-                  <div className="flex items-center gap-1.5 rounded-lg px-2.5 py-1.5" style={{ background: "rgba(249,115,22,0.08)", border: "1px solid rgba(249,115,22,0.2)" }}>
-                    <span className="text-[10px] uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.4)" }}>Pity</span>
-                    <span className="text-xs font-mono font-bold" style={{ color: inSoftPity ? "#f97316" : "rgba(255,255,255,0.5)" }}>
-                      {pity.pityCounter}/50
-                    </span>
-                    {inSoftPity && <span className="text-[9px] px-1 rounded" style={{ background: "rgba(249,115,22,0.2)", color: "#f97316" }}>SOFT PITY</span>}
-                  </div>
-                  <div className="flex items-center gap-1.5 rounded-lg px-2.5 py-1.5" style={{ background: "rgba(168,85,247,0.08)", border: "1px solid rgba(168,85,247,0.2)" }}>
-                    <span className="text-[10px] uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.4)" }}>Epic</span>
-                    <span className="text-xs font-mono font-bold" style={{ color: "#a855f7" }}>
-                      {pity.epicPityCounter}/10
-                    </span>
-                  </div>
-                  {pity.guaranteed5050 && (
-                    <div className="flex items-center gap-1 rounded-lg px-2.5 py-1.5" style={{ background: "rgba(34,197,94,0.08)", border: "1px solid rgba(34,197,94,0.2)" }}>
-                      <span className="text-[10px] font-semibold" style={{ color: "#22c55e" }}>Next Legendary = Featured!</span>
-                    </div>
-                  )}
-                </div>
-              )}
-              <p className="text-[10px]" style={{ color: "rgba(255,255,255,0.3)" }}>
-                {pullsTilLegendary} pulls until guaranteed Legendary
-              </p>
-              {/* Drop rate badges */}
-              <div className="flex gap-1.5 flex-wrap">
-                {[
-                  { label: "Legendary", rate: "1.6%", color: "#f97316" },
-                  { label: "Epic", rate: "13%", color: "#a855f7" },
-                  { label: "Rare", rate: "35%", color: "#3b82f6" },
-                  { label: "Uncommon", rate: "40%", color: "#22c55e" },
-                  { label: "Common", rate: "10.4%", color: "#9ca3af" },
-                ].map(r => (
-                  <span key={r.label} className="text-[9px] font-mono px-1.5 py-0.5 rounded" style={{ color: r.color, background: `${r.color}15`, border: `1px solid ${r.color}30` }}>
-                    {r.label} {r.rate}
-                  </span>
-                ))}
+            <div className="rounded-xl px-4 py-3 space-y-3" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)" }}>
+              <div>
+                <p className="text-xs font-bold mb-1.5" style={{ color: "#e0e0e0" }}>Pity System</p>
+                {pity ? (
+                  <>
+                    <p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>
+                      <span className="font-semibold" style={{ color: "#f97316" }}>Legendary: {pity.pityCounter}/50</span>
+                      {"  "}
+                      <span className="font-semibold" style={{ color: "#a855f7" }}>Epic: {pity.epicPityCounter}/10</span>
+                    </p>
+                    <p className="text-[10px] mt-1" style={{ color: "rgba(255,255,255,0.35)" }}>
+                      {50 - pity.pityCounter} pulls until guaranteed Legendary
+                      {pity.pityCounter >= 35 && <span style={{ color: "#f97316" }}> — Soft Pity active!</span>}
+                      {pity.guaranteed5050 && <span style={{ color: "#22c55e" }}> — Next Legendary = Featured!</span>}
+                    </p>
+                  </>
+                ) : (
+                  <p className="text-[10px]" style={{ color: "rgba(255,255,255,0.35)" }}>Pull to start tracking pity</p>
+                )}
+              </div>
+              <div>
+                <p className="text-xs font-bold mb-1.5" style={{ color: "#e0e0e0" }}>Drop Rates</p>
+                <p className="text-[11px] leading-relaxed" style={{ color: "rgba(255,255,255,0.5)" }}>
+                  <span style={{ color: "#f97316" }}>Legendary 1.6%</span>{" · "}<span style={{ color: "#a855f7" }}>Epic 13%</span>{" · "}<span style={{ color: "#3b82f6" }}>Rare 35%</span>{" · "}<span style={{ color: "#22c55e" }}>Uncommon 40%</span>{" · "}<span style={{ color: "#9ca3af" }}>Common 10.4%</span>
+                </p>
+                <p className="text-[10px] mt-1.5" style={{ color: "rgba(255,255,255,0.3)" }}>
+                  Soft pity starts at pull 35 — legendary chance increases with each pull. Hard pity at 50 guarantees a legendary item.
+                </p>
               </div>
             </div>
           )}
