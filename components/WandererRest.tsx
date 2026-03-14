@@ -149,6 +149,8 @@ export function WandererRest({
     if (chainChanged) setSelectedNpc(fresh);
   }, [activeNpcs, selectedNpc, setSelectedNpc]);
 
+  const [npcInfoOpen, setNpcInfoOpen] = useState(false);
+
   // ESC key closes NPC popup
   useEffect(() => {
     if (!selectedNpc) return;
@@ -177,12 +179,20 @@ export function WandererRest({
             <div style={{ flex: 1, height: 1, background: "linear-gradient(90deg, transparent, rgba(255,215,0,0.25), transparent)" }} />
             <span style={{ fontSize: "0.85rem", color: "rgba(255,215,0,0.6)", letterSpacing: "0.15em", textTransform: "uppercase" }}>◆ The Wanderer's Rest ◆</span>
             <div style={{ flex: 1, height: 1, background: "linear-gradient(90deg, transparent, rgba(255,215,0,0.25), transparent)" }} />
+            <span
+              data-feedback-id="wanderers-rest.info"
+              onClick={() => setNpcInfoOpen(true)}
+              style={{ cursor: "pointer", color: "rgba(255,215,0,0.45)", borderRadius: "50%", border: "1px solid rgba(255,215,0,0.3)", width: 18, height: 18, display: "inline-flex", alignItems: "center", justifyContent: "center", fontSize: 10, fontWeight: 700, flexShrink: 0, transition: "color 0.2s, border-color 0.2s" }}
+              onMouseEnter={e => { (e.target as HTMLElement).style.color = "rgba(255,215,0,0.8)"; (e.target as HTMLElement).style.borderColor = "rgba(255,215,0,0.6)"; }}
+              onMouseLeave={e => { (e.target as HTMLElement).style.color = "rgba(255,215,0,0.45)"; (e.target as HTMLElement).style.borderColor = "rgba(255,215,0,0.3)"; }}
+              title="Was ist das?"
+            >?</span>
           </div>
           <p className="text-xs mt-2 italic text-center" style={{ color: "rgba(255,255,255,0.3)" }}>They come. They go. They always return.</p>
         </div>
         {activeNpcs.length === 0 ? (
           <div className="rounded-xl px-4 py-8 text-center" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
-            <p className="text-sm italic" style={{ color: "rgba(255,255,255,0.25)" }}>The hall is quiet... for now. x</p>
+            <p className="text-sm italic" style={{ color: "rgba(255,255,255,0.25)" }}>The hall is quiet... for now.</p>
           </div>
         ) : (
           <>
@@ -252,12 +262,8 @@ export function WandererRest({
                       <p className="text-xs font-semibold leading-tight" style={{ color: "#e8e8e8" }}>{npc.name}</p>
                       <p className="text-xs mt-0.5" style={{ color: rc, fontSize: 10 }}>{rarityStars[npc.rarity] ?? "●"}</p>
                       {!allDone && (
-                        <p className="text-xs mt-0.5 flex items-center gap-1" style={{ color: urgent ? "#f59e0b" : "rgba(255,255,255,0.3)", fontSize: 10 }}>
+                        <p className="text-xs mt-0.5" style={{ color: urgent ? "#f59e0b" : "rgba(255,255,255,0.3)", fontSize: 10 }}>
                           Departs in {urgent ? `${npc.hoursLeft}h` : `${npc.daysLeft}d`}
-                          <span
-                            onClick={e => { e.stopPropagation(); setSelectedNpc(npc); }}
-                            style={{ cursor: "pointer", color: "rgba(255,255,255,0.4)", borderRadius: "50%", border: "1px solid rgba(255,255,255,0.25)", width: 12, height: 12, display: "inline-flex", alignItems: "center", justifyContent: "center", fontSize: 8, fontWeight: 700, flexShrink: 0 }}
-                          >?</span>
                         </p>
                       )}
                       {allDone && (
@@ -272,6 +278,40 @@ export function WandererRest({
           </>
         )}
       </section>
+
+      {/* ── NPC Info Popup ── */}
+      {npcInfoOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: "rgba(0,0,0,0.75)" }} onClick={() => setNpcInfoOpen(false)}>
+          <div className="rounded-2xl w-full max-w-md overflow-hidden" style={{ background: "#1a1a1a", border: "1px solid rgba(255,215,0,0.3)", boxShadow: "0 0 60px rgba(255,200,0,0.1)", maxHeight: "85vh", overflowY: "auto" }} onClick={e => e.stopPropagation()}>
+            <div className="flex items-center justify-between p-4 border-b" style={{ borderColor: "rgba(255,255,255,0.08)" }}>
+              <h2 className="text-sm font-bold" style={{ color: "#FFD700" }}>The Wanderer&apos;s Rest</h2>
+              <button onClick={() => setNpcInfoOpen(false)} style={{ color: "rgba(255,255,255,0.3)", fontSize: 16, background: "none", border: "none", cursor: "pointer" }}>×</button>
+            </div>
+            <div className="p-5 space-y-4 text-xs" style={{ color: "rgba(255,255,255,0.6)", lineHeight: 1.7 }}>
+              <p>Reisende NPCs besuchen die Quest Hall — jeder mit eigenen Quest-Ketten und Persönlichkeit.</p>
+              <div className="rounded-xl p-3" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
+                <p className="font-semibold mb-1.5" style={{ color: "#f0f0f0" }}>Wie es funktioniert</p>
+                <ul className="space-y-1">
+                  <li>• NPCs kommen und gehen — sie bleiben <span style={{ color: "#f59e0b" }}>2-4 Tage</span>, dann ziehen sie weiter.</li>
+                  <li>• Jeder NPC hat <span style={{ color: "#a78bfa" }}>mehrere Quest-Ketten</span> mit aufeinander aufbauenden Aufgaben.</li>
+                  <li>• Die letzte Quest einer Kette gibt ein <span style={{ color: "#fbbf24" }}>einzigartiges Item</span>.</li>
+                  <li>• Schließe Quests ab bevor der NPC aufbricht!</li>
+                </ul>
+              </div>
+              <div className="rounded-xl p-3" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
+                <p className="font-semibold mb-1.5" style={{ color: "#f0f0f0" }}>NPC Raritäten</p>
+                <div className="space-y-1">
+                  <div className="flex items-center gap-2"><span style={{ color: "#9ca3af" }}>★ Common</span><span>— 2-3 Ketten, gemütliches Tempo</span></div>
+                  <div className="flex items-center gap-2"><span style={{ color: "#3b82f6" }}>★★★ Rare</span><span>— 3 Ketten, 6-8 Quests</span></div>
+                  <div className="flex items-center gap-2"><span style={{ color: "#a855f7" }}>★★★★ Epic</span><span>— 3 Ketten, 8-10 Quests</span></div>
+                  <div className="flex items-center gap-2"><span style={{ color: "#f59e0b" }}>★★★★★ Legendary</span><span>— 3 Ketten, 10-12 Quests, epische Items</span></div>
+                </div>
+              </div>
+              <p style={{ color: "rgba(255,255,255,0.35)", fontStyle: "italic" }}>Verpasste Quests kommen erst zurück wenn der NPC erneut vorbeischaut.</p>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* ── Companion Hearth separator ── */}
       {playerName && (

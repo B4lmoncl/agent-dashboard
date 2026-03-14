@@ -23,7 +23,7 @@ function getCurrencyInfo(key: string) {
 function GachaInfoModal({ onClose }: { onClose: () => void }) {
   return (
     <ModalOverlay isOpen onClose={onClose} zIndex={60}>
-      <div className="w-full max-w-lg max-h-[80vh] rounded-2xl p-6 overflow-y-auto" style={{ background: "linear-gradient(180deg, #1a1020 0%, #12121c 100%)", border: "1px solid rgba(167,139,250,0.25)", boxShadow: "0 0 60px rgba(167,139,250,0.1)", overscrollBehavior: "contain" }}>
+      <div data-feedback-id="gacha-view.info-modal" className="w-full max-w-lg max-h-[80vh] rounded-2xl p-6 overflow-y-auto" style={{ background: "linear-gradient(180deg, #1a1020 0%, #12121c 100%)", border: "1px solid rgba(167,139,250,0.25)", boxShadow: "0 0 60px rgba(167,139,250,0.1)", overscrollBehavior: "contain" }}>
         <div className="flex items-center justify-between mb-5">
           <h3 className="text-base font-bold flex items-center gap-2" style={{ color: "#e8e8e8" }}>
             <span style={{ fontSize: 20 }}>★</span> How the Wheel of Stars Works
@@ -114,6 +114,7 @@ function BannerPreviewCard({
 
   return (
     <button
+      data-feedback-id={`gacha-view.banner.${banner.id}`}
       onClick={onClick}
       className="flex-1 min-w-[280px] rounded-2xl p-6 text-left transition-all duration-300 group relative overflow-hidden"
       style={{
@@ -382,7 +383,7 @@ function BannerPullModal({
 
   return (
     <ModalOverlay isOpen onClose={onClose} zIndex={55}>
-      <div className="w-full max-w-lg rounded-2xl relative" style={{
+      <div data-feedback-id="gacha-view.banner-modal" className="w-full max-w-lg rounded-2xl relative" style={{
         overflow: "visible",
         background: `linear-gradient(160deg, ${isFeatured ? "#1c1328" : "#16123a"} 0%, #0f0f1a 100%)`,
         border: `1px solid ${isFeatured ? "rgba(167,139,250,0.2)" : "rgba(129,140,248,0.25)"}`,
@@ -503,7 +504,7 @@ function BannerPullModal({
 
         <div className="px-5 pb-5 space-y-4">
           {/* Cost / Balance */}
-          <div className="flex items-center gap-3 rounded-xl px-3 py-2" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
+          <div data-feedback-id="gacha-view.banner-modal.cost-row" className="flex items-center gap-3 rounded-xl px-3 py-2" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
             <div className="flex-1">
               <p className="text-[10px] uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.35)" }}>Cost per pull</p>
               <p className="text-sm font-mono font-bold" style={{ color: ci.color }}>{banner.costSingle} {ci.label}</p>
@@ -528,7 +529,7 @@ function BannerPullModal({
 
           {/* Featured items */}
           {isFeatured && featuredItemNames.length > 0 && (
-            <div className="rounded-xl px-3 py-2" style={{ background: "rgba(129,140,248,0.06)", border: "1px solid rgba(129,140,248,0.15)" }}>
+            <div data-feedback-id="gacha-view.banner-modal.featured-items" className="rounded-xl px-3 py-2" style={{ background: "rgba(129,140,248,0.06)", border: "1px solid rgba(129,140,248,0.15)" }}>
               <p className="text-[10px] uppercase tracking-wider mb-1" style={{ color: "#818cf8" }}>Featured Items</p>
               <p className="text-xs font-semibold" style={{ color: "rgba(255,255,255,0.5)" }}>
                 {featuredItemNames.join(", ")}
@@ -538,7 +539,7 @@ function BannerPullModal({
 
           {/* Click-toggle info panel (pity + drop rates) */}
           {showInfo && (
-            <div className="rounded-xl px-4 py-3 space-y-3" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)" }}>
+            <div data-feedback-id="gacha-view.banner-modal.pity-panel" className="rounded-xl px-4 py-3 space-y-3" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)" }}>
               <div>
                 <p className="text-xs font-bold mb-1.5" style={{ color: "#e0e0e0" }}>Pity System</p>
                 {pity ? (
@@ -574,6 +575,7 @@ function BannerPullModal({
           <div className="flex gap-3 items-stretch flex-wrap">
             {/* 1× Pull */}
             <button
+              data-feedback-id="gacha-view.banner-modal.pull-1x"
               onClick={() => onPull(banner.id, 1)}
               disabled={!canPull1 || pulling}
               className="rounded-xl flex-1 min-w-[140px] transition-all group/btn"
@@ -604,6 +606,7 @@ function BannerPullModal({
             </button>
             {/* 10× Pull */}
             <button
+              data-feedback-id="gacha-view.banner-modal.pull-10x"
               onClick={() => onPull(banner.id, 10)}
               disabled={!canPull10 || pulling}
               className="rounded-xl flex-1 min-w-[140px] transition-all group/btn"
@@ -755,7 +758,7 @@ export default function GachaView({ users, playerName, reviewApiKey, onRefresh, 
       {infoOpen && <GachaInfoModal onClose={closeInfo} />}
 
       {/* Lore Header — icon left, buttons top-right */}
-      <div className="rounded-2xl p-5 relative" style={{
+      <div data-feedback-id="gacha-view.header" className="rounded-2xl p-5 relative" style={{
         background: "linear-gradient(135deg, rgba(20,16,42,0.8) 0%, rgba(15,15,26,0.9) 100%)",
         border: "1px solid rgba(167,139,250,0.15)",
         boxShadow: "0 0 60px rgba(167,139,250,0.05)",
@@ -763,6 +766,7 @@ export default function GachaView({ users, playerName, reviewApiKey, onRefresh, 
         {/* Top-right buttons */}
         <div className="absolute top-4 right-4 flex items-center gap-2">
           <button
+            data-feedback-id="gacha-view.info-btn"
             onClick={() => setInfoOpen(true)}
             className="btn-interactive text-sm w-8 h-8 rounded-full flex items-center justify-center"
             style={{ color: "rgba(255,255,255,0.5)", background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.12)" }}
@@ -771,6 +775,7 @@ export default function GachaView({ users, playerName, reviewApiKey, onRefresh, 
             ?
           </button>
           <button
+            data-feedback-id="gacha-view.history-btn"
             onClick={loadHistory}
             className="btn-interactive text-xs px-3 py-1.5 rounded-lg"
             style={{ color: "rgba(255,255,255,0.4)", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}
@@ -778,6 +783,7 @@ export default function GachaView({ users, playerName, reviewApiKey, onRefresh, 
             Pull History
           </button>
           <button
+            data-feedback-id="gacha-view.pool-btn"
             onClick={() => setPoolOpen(true)}
             className="btn-interactive text-xs px-3 py-1.5 rounded-lg"
             style={{ color: "rgba(255,255,255,0.4)", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}
@@ -801,7 +807,7 @@ export default function GachaView({ users, playerName, reviewApiKey, onRefresh, 
       </div>
 
       {/* Banner Preview Cards — atmospheric, click to open */}
-      <div className="flex gap-4 flex-wrap">
+      <div data-feedback-id="gacha-view.banners" className="flex gap-4 flex-wrap">
         {banners.map(b => (
           <BannerPreviewCard
             key={b.id}
@@ -832,7 +838,7 @@ export default function GachaView({ users, playerName, reviewApiKey, onRefresh, 
 
       {/* History modal */}
       <ModalOverlay isOpen={historyOpen} onClose={closeHistory}>
-        <div className="w-full max-w-2xl max-h-[70vh] rounded-2xl p-5 overflow-y-auto" style={{ background: "#1a1a1a", border: "1px solid rgba(255,255,255,0.1)", overscrollBehavior: "contain" }}>
+        <div data-feedback-id="gacha-view.history-modal" className="w-full max-w-2xl max-h-[70vh] rounded-2xl p-5 overflow-y-auto" style={{ background: "#1a1a1a", border: "1px solid rgba(255,255,255,0.1)", overscrollBehavior: "contain" }}>
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-sm font-semibold" style={{ color: "#e8e8e8" }}>Pull History (last 50)</h3>
             <button onClick={closeHistory} style={{ color: "rgba(255,255,255,0.4)", background: "none", border: "none", cursor: "pointer", fontSize: 18 }}>✕</button>
@@ -859,7 +865,7 @@ export default function GachaView({ users, playerName, reviewApiKey, onRefresh, 
 
       {/* Pool info modal */}
       <ModalOverlay isOpen={poolOpen && !!poolInfo} onClose={closePool}>
-        <div className="w-full max-h-[88vh] rounded-2xl p-7 overflow-y-auto" style={{ maxWidth: "1500px", background: "linear-gradient(180deg, #0f1729 0%, #1a1028 40%, #0f1729 100%)", border: "1px solid rgba(255,255,255,0.1)", overscrollBehavior: "contain" }}>
+        <div data-feedback-id="gacha-view.pool-modal" className="w-full max-h-[88vh] rounded-2xl p-7 overflow-y-auto" style={{ maxWidth: "1500px", background: "linear-gradient(180deg, #0f1729 0%, #1a1028 40%, #0f1729 100%)", border: "1px solid rgba(255,255,255,0.1)", overscrollBehavior: "contain" }}>
           <div className="flex items-center justify-between mb-5">
             <h3 className="text-base font-bold uppercase tracking-wider" style={{ color: "rgba(167,139,250,0.7)" }}>Item Pool</h3>
             <button onClick={closePool} style={{ color: "rgba(255,255,255,0.4)", background: "none", border: "none", cursor: "pointer", fontSize: 18 }}>✕</button>

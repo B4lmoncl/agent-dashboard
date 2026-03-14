@@ -237,12 +237,14 @@ function SinglePullReveal({ result, onDone }: { result: GachaPullResult; onDone:
 
   return (
     <div
+      data-feedback-id="gacha-pull.single"
       className="fixed inset-0 z-[100] flex items-center justify-center"
       style={{ background: "rgba(0,0,0,0.85)" }}
       onClick={() => { if (phase === "reveal") onDone(); }}
     >
       {/* Skip button */}
       <button
+        data-feedback-id="gacha-pull.single.skip"
         onClick={onDone}
         className="absolute top-4 right-4 text-xs px-3 py-1.5 rounded-lg z-[110]"
         style={{ background: "rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.5)", border: "1px solid rgba(255,255,255,0.15)" }}
@@ -275,6 +277,7 @@ function SinglePullReveal({ result, onDone }: { result: GachaPullResult; onDone:
 
           {/* Nehmen button with pulse */}
           <button
+            data-feedback-id="gacha-pull.single.collect"
             onClick={onDone}
             className="text-sm px-6 py-2.5 rounded-lg font-semibold mt-2 transition-all duration-200 hover:scale-105 active:scale-95"
             style={{
@@ -352,6 +355,7 @@ function MultiPullReveal({ results, onDone }: { results: GachaPullResult[]; onDo
 
   return (
     <div
+      data-feedback-id="gacha-pull.multi"
       className="fixed inset-0 z-[100] flex items-center justify-center p-4"
       style={{ background: "rgba(0,0,0,0.9)" }}
       onClick={() => {
@@ -361,6 +365,7 @@ function MultiPullReveal({ results, onDone }: { results: GachaPullResult[]; onDo
     >
       {/* Skip button */}
       <button
+        data-feedback-id="gacha-pull.multi.skip"
         onClick={onDone}
         className="absolute top-4 right-4 text-xs px-3 py-1.5 rounded-lg z-[110]"
         style={{ background: "rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.5)", border: "1px solid rgba(255,255,255,0.15)" }}
@@ -399,6 +404,7 @@ function MultiPullReveal({ results, onDone }: { results: GachaPullResult[]; onDo
 
           {/* Nehmen button */}
           <button
+            data-feedback-id="gacha-pull.multi.collect"
             onClick={handleNehmen}
             className="text-sm px-6 py-2.5 rounded-lg font-semibold mt-2 transition-all duration-200 hover:scale-105 active:scale-95"
             style={{
@@ -422,7 +428,7 @@ function MultiPullReveal({ results, onDone }: { results: GachaPullResult[]; onDo
 
       {/* Summary after all items revealed */}
       {phase === "summary" && (
-        <div className="flex flex-col items-center gap-5 w-full max-w-3xl" onClick={(e) => e.stopPropagation()}>
+        <div data-feedback-id="gacha-pull.multi.summary" className="flex flex-col items-center gap-5 w-full max-w-3xl" onClick={(e) => e.stopPropagation()}>
           <h2 className="text-lg font-bold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.5)" }}>
             10× Arcane Pull — Zusammenfassung
           </h2>
@@ -491,6 +497,7 @@ function MultiPullReveal({ results, onDone }: { results: GachaPullResult[]; onDo
           </div>
 
           <button
+            data-feedback-id="gacha-pull.multi.summary.collect"
             onClick={onDone}
             className="text-sm px-6 py-2.5 rounded-lg font-semibold transition-all duration-200 hover:scale-105 active:scale-95"
             style={{

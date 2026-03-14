@@ -6,10 +6,10 @@ import { CURRENT_SEASON } from "@/app/utils";
 
 // ─── GuideSection ─────────────────────────────────────────────────────────────
 
-export function GuideSection({ icon, title, children }: { icon: string; title: string; children: React.ReactNode }) {
+export function GuideSection({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div className="rounded-xl p-3" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
-      <p className="font-semibold mb-1.5" style={{ color: "#f0f0f0" }}>{icon} {title}</p>
+      <p className="font-semibold mb-1.5" style={{ color: "#f0f0f0" }}>{title}</p>
       <div style={{ color: "rgba(255,255,255,0.55)" }}>{children}</div>
     </div>
   );
@@ -18,16 +18,18 @@ export function GuideSection({ icon, title, children }: { icon: string; title: s
 // ─── GuideContent ─────────────────────────────────────────────────────────────
 
 export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => void }) {
-  const [tab, setTab] = useState<"quests" | "xp" | "forge" | "achievements" | "start">("start");
+  const [tab, setTab] = useState<"start" | "quests" | "npcs" | "gacha" | "rituale" | "xpgold" | "achievements">("start");
   return (
     <div>
       {/* Tabs */}
       <div className="flex border-b overflow-x-auto mb-0" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
         {([
-          { key: "start", label: "Start" },
-          { key: "quests", label: "Quests" },
-          { key: "xp", label: "XP & Levels" },
-          { key: "forge", label: "Forge" },
+          { key: "start",        label: "Start" },
+          { key: "quests",       label: "Quests" },
+          { key: "npcs",         label: "NPCs" },
+          { key: "gacha",        label: "Gacha" },
+          { key: "rituale",      label: "Rituale" },
+          { key: "xpgold",       label: "XP & Gold" },
           { key: "achievements", label: "Achievements" },
         ] as { key: typeof tab; label: string }[]).map(t => (
           <button
@@ -60,7 +62,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
       <div className="p-5 space-y-4 text-xs" style={{ color: "rgba(255,255,255,0.7)", lineHeight: 1.7 }}>
           {tab === "start" && (
             <>
-              <GuideSection icon="" title="Registrierung">
+              <GuideSection title="Registrierung">
                 Klicke auf <strong>Login → Register</strong> in der Kopfleiste. Der <strong>Charakter-Creator</strong> führt dich in 5 Schritten durch die Erstellung deines Helden:
                 <ol className="space-y-1 mt-1 ml-2" style={{ listStyleType: "decimal" }}>
                   <li><span style={{ color: "#f0f0f0" }}>Name</span> — Wähle deinen Heldennamen.</li>
@@ -70,150 +72,158 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                   <li><span style={{ color: "#f0f0f0" }}>API-Key</span> — Dein einzigartiger Login-Schlüssel. Sicher aufbewahren!</li>
                 </ol>
               </GuideSection>
-              <GuideSection icon="" title="Klassen">
+              <GuideSection title="Klassen">
                 Klassen definieren deinen Berufspfad und geben dir passende Quests.
                 <ul className="space-y-1 mt-1">
                   <li>• Wähle eine <span style={{ color: "#a78bfa" }}>aktive Klasse</span> aus der Liste — sie ist sofort verfügbar.</li>
                   <li>• Keine passende Klasse? <span style={{ color: "#f59e0b" }}>Eigene Klasse einreichen</span> — ein Admin schmiedet sie für dich.</li>
-                  <li>• Während deine Klasse geschmiedet wird, siehst du <span style={{ color: "#f59e0b" }}>Klasse wird geschmiedet...</span> auf deiner Spielerkarte.</li>
-                  <li>• Sobald die Klasse fertig ist, erhältst du beim nächsten Login eine Benachrichtigung.</li>
                 </ul>
               </GuideSection>
-              <GuideSection icon="" title="Begleiter">
+              <GuideSection title="Begleiter">
+                Dein Begleiter erscheint auf deiner Spielerkarte und motiviert dich.
                 <ul className="space-y-1 mt-1">
-                  <li><span style={{ color: "#f0f0f0" }}>Haustier</span> — Gib deinem echten Tier einen Platz in der Quest Hall. Es bekommt Pflege-Quests (Füttern, Spielen, etc.).</li>
+                  <li><span style={{ color: "#f0f0f0" }}>Haustier</span> — Dein echtes Tier bekommt Pflege-Quests.</li>
                   <li><span style={{ color: "#f0f0f0" }}>Drache</span> — Feuriger Motivations-Begleiter.</li>
                   <li><span style={{ color: "#f0f0f0" }}>Eule</span> — Weiser Lern-Begleiter.</li>
                   <li><span style={{ color: "#f0f0f0" }}>Phoenix</span> — Steht nach jeder Niederlage wieder auf.</li>
-                  <li><span style={{ color: "#f0f0f0" }}>Wolf</span> — Treuer Begleiter der immer an deiner Seite steht.</li>
+                  <li><span style={{ color: "#f0f0f0" }}>Wolf</span> — Treuer Begleiter an deiner Seite.</li>
                 </ul>
-                <p className="mt-1.5" style={{ color: "rgba(255,255,255,0.4)" }}>Dein Begleiter erscheint auf deiner Spielerkarte und motiviert dich durch Quests.</p>
               </GuideSection>
             </>
           )}
           {tab === "quests" && (
             <>
-              <GuideSection icon="" title="Quest Hall Structure">
+              <GuideSection title="Quest Board">
+                Das Quest Board ist dein Auftragszettel. Quests werden nach Schwierigkeit und Typ sortiert.
                 <ul className="space-y-1 mt-1">
-                  <li><span style={{ color: "#f0f0f0" }}>Quest Board</span> — Player quests (personal, learning, fitness, social, co-op). Claim and complete directly — no review needed.</li>
-                  <li><span style={{ color: "#a78bfa" }}>NPC Quest Board</span> — Development quests created and completed by agents. Includes Review Board for approving agent suggestions.</li>
-                  <li><span style={{ color: "#f59e0b" }}>Leaderboard</span> — Ranks players and agents separately with an Agent/Player toggle.</li>
-                  <li><span style={{ color: "#f59e0b" }}>Honors</span> — Your personal achievements. Log in to see your progress highlighted.</li>
-                  <li><span style={{ color: "#8b5cf6" }}>Campaign</span> — Fantasy RPG overlay with agents as NPCs and quests as adventures.</li>
-                  <li><span style={{ color: CURRENT_SEASON.color }}>{CURRENT_SEASON.icon} Season</span> — Battle Pass rewards track for the current season.</li>
+                  <li>• <span style={{ color: "#f0f0f0" }}>Aufträge</span> — Offene Quests die du annehmen kannst.</li>
+                  <li>• <span style={{ color: "#f0f0f0" }}>In Bearbeitung</span> — Quests die du gerade machst.</li>
+                  <li>• <span style={{ color: "#f0f0f0" }}>Abgeschlossen</span> — Erledigte Quests (bleiben 24h sichtbar).</li>
                 </ul>
               </GuideSection>
-              <GuideSection icon="" title="Player Quest Types">
+              <GuideSection title="Quest-Typen">
                 <ul className="space-y-1 mt-1">
-                  <li><span style={{ color: "#22c55e" }}>Personal</span> — Household chores, errands, life admin</li>
-                  <li><span style={{ color: "#3b82f6" }}>Learning</span> — Study, courses, reading (requires proof)</li>
-                  <li><span style={{ color: "#f97316" }}>Fitness</span> — Workouts, sports, health goals</li>
-                  <li><span style={{ color: "#ec4899" }}>Social</span> — Thoughtful gestures, dates, quality time</li>
-                  <li><span style={{ color: "#f43f5e" }}>Co-op</span> — Partner quests requiring both to complete</li>
+                  <li><span style={{ color: "#22c55e" }}>Personal (grün)</span> — Haushalt, Alltag, persönliche Ziele</li>
+                  <li><span style={{ color: "#3b82f6" }}>Learning (blau)</span> — Lernen, Lesen, Weiterbildung</li>
+                  <li><span style={{ color: "#f97316" }}>Fitness (orange)</span> — Training, Sport, Gesundheit</li>
+                  <li><span style={{ color: "#ec4899" }}>Social (pink)</span> — Freunde treffen, Kontakte pflegen</li>
                 </ul>
-                <p className="mt-1.5" style={{ color: "rgba(255,255,255,0.4)" }}>Player quests go directly open → claimed → done. No agent review required.</p>
               </GuideSection>
-              <GuideSection icon="" title="NPC / Development Quests">
-                <p>Development quests are created by agents (or Leon) and implemented exclusively by agents. They appear in the NPC Quest Board tab.</p>
-                <p className="mt-1">The Review Board (in NPC tab) lets logged-in users approve or reject agent-suggested quests before they become active.</p>
-              </GuideSection>
-              <GuideSection icon="" title="Login">
-                Click <strong>Login</strong> in the header. Enter your name and API key. Once logged in, the stat cards show YOUR stats, and the Quest Board shows Claim / Complete buttons. Your achievements in Honors are highlighted.
-              </GuideSection>
-              <GuideSection icon="" title="Quest Priorities">
+              <GuideSection title="Schwierigkeit & Rarity">
+                Quests haben eine Schwierigkeit die ihrer Rarity entspricht:
                 <ul className="space-y-1 mt-1">
-                  <li><span style={{ color: "#ef4444" }}>High</span> — 30 XP · 50 Gold</li>
-                  <li><span style={{ color: "#eab308" }}>Medium</span> — 20 XP · 25 Gold</li>
-                  <li><span style={{ color: "#22c55e" }}>Low</span> — 10 XP · 10 Gold</li>
+                  <li><span style={{ color: "#9ca3af" }}>Common (grau)</span> — Starter-Quests, schnell erledigt</li>
+                  <li><span style={{ color: "#22c55e" }}>Uncommon (grün)</span> — Mittlere Herausforderung</li>
+                  <li><span style={{ color: "#3b82f6" }}>Rare (blau)</span> — Anspruchsvoll, bessere Belohnungen</li>
+                  <li><span style={{ color: "#a855f7" }}>Epic (lila)</span> — Mehrtägige Aufgaben, starke Rewards</li>
                 </ul>
+              </GuideSection>
+              <GuideSection title="Quest annehmen">
+                Klicke auf eine Quest → &quot;Annehmen&quot;. Nach Abschluss → &quot;Abschließen&quot;. XP und Gold werden sofort gutgeschrieben.
               </GuideSection>
             </>
           )}
-          {tab === "xp" && (
+          {tab === "npcs" && (
             <>
-              <GuideSection icon="" title="XP & Levels">
-                <div className="space-y-2 mt-1">
-                  {[
-                    { name: "Novice",     range: "0 – 99 XP",     color: "#9ca3af" },
-                    { name: "Apprentice", range: "100 – 299 XP",  color: "#22c55e" },
-                    { name: "Knight",     range: "300 – 599 XP",  color: "#3b82f6" },
-                    { name: "Archmage",   range: "600+ XP",       color: "#a855f7" },
-                  ].map(l => (
-                    <div key={l.name} className="flex items-center gap-2">
-                      <span className="w-16 text-xs font-semibold" style={{ color: l.color }}>{l.name}</span>
-                      <span style={{ color: "rgba(255,255,255,0.4)" }}>{l.range}</span>
-                    </div>
-                  ))}
-                </div>
+              <GuideSection title="Wanderer's Rest">
+                Im Wanderer&apos;s Rest tauchen reisende NPCs auf — jeder mit eigenen Quest-Ketten und Persönlichkeit.
               </GuideSection>
-              <GuideSection icon="" title="Gold">
-                Earn gold by completing quests. Gold is multiplied by your streak (up to 3×). Spend it in the Forge Shop on rewards like Gaming time, Snack breaks, or Days Off.
+              <GuideSection title="Wie es funktioniert">
+                <ul className="space-y-1 mt-1">
+                  <li>• NPCs kommen und gehen — sie bleiben 2-4 Tage, dann ziehen sie weiter.</li>
+                  <li>• Jeder NPC hat mehrere Quest-Ketten mit aufeinander aufbauenden Aufgaben.</li>
+                  <li>• Quest-Ketten werden schwieriger und die Belohnungen besser.</li>
+                  <li>• Der letzte Quest einer Kette gibt ein einzigartiges Item als Belohnung.</li>
+                </ul>
               </GuideSection>
-              <GuideSection icon="" title="Workshop Gear">
-                <p>Upgrade your Workshop Tools to earn more XP per quest:</p>
-                <div className="space-y-1 mt-1">
-                  {[
-                    { icon: "", name: "Worn Tools",       bonus: "+0%",  cost: "Free" },
-                    { icon: "",  name: "Sturdy Tools",     bonus: "+5%",  cost: "100g" },
-                    { icon: "",  name: "Masterwork Tools", bonus: "+10%", cost: "300g" },
-                    { icon: "",  name: "Legendary Tools",  bonus: "+15%", cost: "700g" },
-                    { icon: "", name: "Mythic Forge",     bonus: "+25%", cost: "1500g" },
-                  ].map(g => (
-                    <div key={g.name} className="flex items-center gap-2">
-                      <span>{g.icon}</span>
-                      <span className="flex-1">{g.name}</span>
-                      <span style={{ color: "#22c55e" }}>{g.bonus}</span>
-                      <span style={{ color: "#f59e0b" }}>{g.cost}</span>
-                    </div>
-                  ))}
-                </div>
+              <GuideSection title="NPC Raritäten">
+                <ul className="space-y-1 mt-1">
+                  <li><span style={{ color: "#9ca3af" }}>Common</span> — 2-3 Ketten, einfache Aufgaben, gemütliches Tempo</li>
+                  <li><span style={{ color: "#3b82f6" }}>Rare</span> — 3 Ketten, 6-8 Quests, anspruchsvoller</li>
+                  <li><span style={{ color: "#a855f7" }}>Epic</span> — 3 Ketten, 8-10 Quests, starke Belohnungen</li>
+                  <li><span style={{ color: "#f59e0b" }}>Legendary</span> — 3 Ketten, 10-12 Quests, epische Story und Legendary Items</li>
+                </ul>
+                <p className="mt-1.5" style={{ color: "rgba(255,255,255,0.4)" }}>Tipp: Schließe NPC-Quests ab bevor der NPC wieder aufbricht! Verpasste Quests kommen erst zurück wenn der NPC erneut vorbeischaut.</p>
               </GuideSection>
             </>
           )}
-          {tab === "forge" && (
+          {tab === "gacha" && (
             <>
-              <GuideSection icon="" title="Forge Temperature">
-                Your Forge Temperature (0–100%) shows how active you are. Complete quests to heat it up. If it drops to 0%, you suffer a <span style={{ color: "#ef4444" }}>50% XP penalty</span>. Keep the forge burning!
+              <GuideSection title="Das Sternentor">
+                Am Sternentor kannst du Items ziehen — Ausrüstung, Tränke und seltene Artefakte.
               </GuideSection>
-              <GuideSection icon="" title="Streaks">
-                Complete at least one quest each day to maintain your streak. Longer streaks increase your Gold multiplier (up to 3× at 20+ days). Streak milestones unlock achievements.
-                <div className="space-y-1 mt-1">
-                  <div>• <span style={{ color: "#fb923c" }}>Active</span> — 1–6 days</div>
-                  <div>• <span style={{ color: "#f59e0b" }}>Hot</span> — 7–29 days</div>
-                  <div>• <span style={{ color: "#ef4444" }}>Blazing</span> — 30+ days</div>
-                </div>
+              <GuideSection title="Wie es funktioniert">
+                <ul className="space-y-1 mt-1">
+                  <li>• Ein Pull kostet 100 Gold.</li>
+                  <li>• Jedes Item hat eine Rarity: Common, Uncommon, Rare, Epic oder Legendary.</li>
+                  <li>• Das Pity-System garantiert nach einer bestimmten Anzahl Pulls ein seltenes Item.</li>
+                </ul>
               </GuideSection>
-              <GuideSection icon="" title="Forge Shop">
-                Spend your gold on real-world rewards. Open the Shop from your Player Card (requires API key). All purchases are tracked so you can redeem them.
+              <GuideSection title="Item Pool">
+                Klicke auf &quot;Item Pool&quot; um alle verfügbaren Items zu sehen, sortiert nach Rarity. Epic und Legendary Items leuchten besonders.
+              </GuideSection>
+              <GuideSection title="Inventar">
+                Gezogene Items landen in deinem Inventar auf dem Charakter-Screen.
+              </GuideSection>
+            </>
+          )}
+          {tab === "rituale" && (
+            <>
+              <GuideSection title="Tägliche Rituale">
+                Rituale sind wiederkehrende Aufgaben die du jeden Tag erledigst. Sie bauen Streaks auf und geben tägliche XP und Gold.
+              </GuideSection>
+              <GuideSection title="Rituale erstellen">
+                Klicke auf &quot;Neues Ritual&quot; und gib einen Namen und optional eine Beschreibung ein. Rituale tracken automatisch deinen Streak.
+              </GuideSection>
+              <GuideSection title="Streak-Badges">
+                Je länger dein Streak, desto besser dein Badge:
+                <ul className="space-y-1 mt-1">
+                  <li>• <span style={{ color: "#cd7f32" }}>Bronze</span> (7 Tage)</li>
+                  <li>• <span style={{ color: "#9ca3af" }}>Silber</span> (21 Tage)</li>
+                  <li>• <span style={{ color: "#f59e0b" }}>Gold</span> (60 Tage)</li>
+                  <li>• <span style={{ color: "#6b7280" }}>Titan</span> (90 Tage)</li>
+                  <li>• <span style={{ color: "#67e8f9" }}>Diamond</span> (180 Tage)</li>
+                  <li>• <span style={{ color: "#a855f7" }}>Legend</span> (365 Tage)</li>
+                </ul>
+              </GuideSection>
+              <GuideSection title="Gelübde">
+                Gelübde sind langfristige Versprechen an dich selbst. Sie erscheinen im Shrine of Vows und erinnern dich an deine großen Ziele.
+              </GuideSection>
+            </>
+          )}
+          {tab === "xpgold" && (
+            <>
+              <GuideSection title="XP & Level">
+                Jede abgeschlossene Quest gibt XP. Mit genug XP steigst du im Level auf.
+              </GuideSection>
+              <GuideSection title="Gold">
+                Gold bekommst du für Quests, Rituale und NPC-Aufträge. Ausgeben kannst du es:
+                <ul className="space-y-1 mt-1">
+                  <li>• Im Forge Shop — echte Belohnungen einlösen</li>
+                  <li>• Am Sternentor — Gacha Pulls</li>
+                  <li>• (Bald) Im Bazaar — Items verkaufen</li>
+                </ul>
+              </GuideSection>
+              <GuideSection title="Forge-Temperatur">
+                Deine Forge-Temperatur zeigt wie aktiv du bist (0-100%). Erledige Quests um sie hochzuhalten. Bei 0% bekommst du eine <span style={{ color: "#ef4444" }}>XP-Strafe</span>.
+              </GuideSection>
+              <GuideSection title="Streaks">
+                Erledige jeden Tag mindestens eine Quest oder ein Ritual um deinen Streak zu halten. Längere Streaks erhöhen deinen Gold-Multiplikator.
               </GuideSection>
             </>
           )}
           {tab === "achievements" && (
             <>
-              <GuideSection icon="" title="Achievements">
-                Achievements are automatically awarded when you hit milestones. They are <strong>per-player</strong> — tied to your login name. Check the <strong>Honors</strong> tab to see all achievements; when logged in, your earned achievements are highlighted with a gold border.
+              <GuideSection title="Honors">
+                Im Honors-Tab findest du alle Achievements. Sie werden automatisch freigeschaltet wenn du Meilensteine erreichst.
               </GuideSection>
-              <GuideSection icon="" title="Achievement List">
-                <div className="space-y-1 mt-1">
-                  {[
-                    { icon: "", name: "First Quest",         desc: "Complete your first quest" },
-                    { icon: "", name: "Apprentice",           desc: "Complete 10 quests" },
-                    { icon: "", name: "Knight",               desc: "Complete 50 quests" },
-                    { icon: "", name: "Legend",               desc: "Complete 100 quests" },
-                    { icon: "", name: "Week Warrior",         desc: "7-day quest streak" },
-                    { icon: "", name: "Monthly Champion",     desc: "30-day quest streak" },
-                    { icon: "", name: "Lightning Hands",      desc: "Complete 3 quests in one day" },
-                    { icon: "", name: "Jack of All Trades",   desc: "Complete all 5 quest types" },
-                  ].map(a => (
-                    <div key={a.name} className="flex items-center gap-2">
-                      <span className="text-base w-5 flex-shrink-0">{a.icon}</span>
-                      <div>
-                        <span className="font-semibold" style={{ color: "#f0f0f0" }}>{a.name}</span>
-                        <span className="ml-2" style={{ color: "rgba(255,255,255,0.4)" }}>{a.desc}</span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
+              <GuideSection title="Kategorien">
+                <ul className="space-y-1 mt-1">
+                  <li>• Quest-Meilensteine (erste Quest, 10, 50, 100...)</li>
+                  <li>• Streak-Achievements (7 Tage, 30 Tage, 90 Tage...)</li>
+                  <li>• Spezial-Achievements (alle Quest-Typen, Speed-Runs, Easter Eggs...)</li>
+                </ul>
+                <p className="mt-1.5" style={{ color: "rgba(255,255,255,0.4)" }}>Eingeloggt siehst du welche Achievements du schon hast (goldener Rahmen).</p>
               </GuideSection>
             </>
           )}
@@ -255,85 +265,78 @@ export function GuideModal({ onClose, onRestartTutorial }: { onClose: () => void
 export const TUTORIAL_STEPS = [
   {
     key: "welcome",
-    title: "Welcome to Quest Hall!",
-    desc: "Let me show you around. It'll only take a minute.",
+    title: "Willkommen in der Quest Hall!",
+    desc: "Lass mich dir kurz zeigen wie alles funktioniert. Dauert nur eine Minute.",
     target: null,
     position: "center" as const,
   },
   {
     key: "stat-cards",
-    title: "Your Stats",
-    desc: "These are your stats — Forge Streak, Active Quests, Quests Completed, and Gold. Log in to see your personal numbers.",
+    title: "Deine Stats",
+    desc: "Forge-Temperatur, aktive Quests, abgeschlossene Quests und Gold. Logge dich ein um deine persönlichen Werte zu sehen.",
     target: "stat-cards",
     position: "bottom" as const,
   },
   {
     key: "quest-board-tab",
     title: "Quest Board",
-    desc: "This is YOUR quest board. Personal quests, learning, fitness, social — all yours to claim and complete.",
+    desc: "Hier findest du deine Quests — Personal, Learning, Fitness und Social. Nimm an was dich motiviert!",
     target: "quest-board-tab",
     position: "bottom" as const,
   },
   {
-    key: "npc-board-tab",
-    title: "NPC Quest Board",
-    desc: "Agent quests live here. The NPCs (AI agents) work on development tasks — you can review their work too.",
+    key: "npcs",
+    title: "NPCs & Wanderer's Rest",
+    desc: "Reisende NPCs bringen eigene Quest-Ketten mit. Schließe sie ab bevor der NPC weiterzieht!",
     target: "npc-board-tab",
     position: "bottom" as const,
   },
   {
     key: "quest-filters",
-    title: "Quest Filters",
-    desc: "Filter quests by type — Personal, Learning, Fitness, Social, or Co-op. Find what you need fast.",
+    title: "Filter & Suche",
+    desc: "Filtere Quests nach Typ oder suche nach Stichwörtern. So findest du schnell was zu dir passt.",
     target: "quest-filters",
     position: "bottom" as const,
   },
   {
     key: "claim-hint",
-    title: "Claim Quests",
-    desc: "See a quest you want? Click Claim to take it on! Complete it when done to earn XP and Gold.",
+    title: "Quests annehmen",
+    desc: "Klick auf eine Quest und dann auf Annehmen. Nach Abschluss auf Abschließen — XP und Gold kommen sofort.",
     target: null,
     position: "center" as const,
   },
   {
     key: "login-btn",
-    title: "Log In",
-    desc: "Log in with your name and API key to claim quests, earn XP, and track your personal stats. Don't have a key yet? No worries — click Register to create a free account!",
+    title: "Einloggen",
+    desc: "Logge dich mit Name und API-Key ein um Quests anzunehmen und Fortschritt zu tracken. Noch kein Account? Klick auf Register!",
     target: "login-btn",
     position: "bottom" as const,
   },
   {
-    key: "companions",
-    title: "Companions",
-    desc: "Companions join your journey and grant XP bonuses. Keep your streak going to keep them happy!",
-    target: "companions-widget",
-    position: "top" as const,
+    key: "gacha",
+    title: "Das Sternentor",
+    desc: "Ziehe Items am Sternentor — Ausrüstung, Tränke und seltene Artefakte. Pity-System inklusive!",
+    target: null,
+    position: "center" as const,
   },
   {
     key: "leaderboard-tab",
-    title: "Leaderboard",
-    desc: "Compete with other players and agents. Rise through the ranks to claim the top spot!",
+    title: "Rangliste",
+    desc: "Wer hat die meisten Quests? Die längsten Streaks? Schau in die Rangliste!",
     target: "leaderboard-tab",
     position: "bottom" as const,
   },
   {
-    key: "campaign-tab",
-    title: "Campaign",
-    desc: "Long quest chains and story arcs live here. Embark on epic adventures with your party.",
-    target: "campaign-tab",
-    position: "bottom" as const,
-  },
-  {
-    key: "season-tab",
-    title: "Season & Battle Pass",
-    desc: "Each season brings a Battle Pass with exclusive rewards. Complete quests to level it up!",
-    target: "season-tab",
-    position: "bottom" as const,
+    key: "honors",
+    title: "Honors & Achievements",
+    desc: "Schalte Achievements frei indem du Meilensteine erreichst. Deine Trophäensammlung!",
+    target: null,
+    position: "center" as const,
   },
   {
     key: "done",
-    title: "You're Ready, Adventurer!",
-    desc: "The Forge awaits. Go forth, complete quests, and earn glory for the Guild!",
+    title: "Bereit, Wanderer!",
+    desc: "Die Halle wartet auf dich. Nimm deine erste Quest an und zeig was du kannst!",
     target: null,
     position: "center" as const,
   },
