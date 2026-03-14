@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback, useMemo, useRef } from "react";
+import { createPortal } from "react-dom";
 import type { User, CharacterData, ClassDef, PixelCharacterProps } from "@/app/types";
 
 // ─── PixelCharacter Canvas Component ─────────────────────────────────────────
@@ -487,7 +488,7 @@ function InventorySlot({ item, level, onEquip }: {
           : <span style={{ fontSize: 14, color: RARITY_COLORS[item.rarity] || "#9ca3af", lineHeight: 1 }}>◆</span>
         }
       </button>
-      {hovered && <InventoryTooltip item={item} mousePosRef={mousePosRef} />}
+      {hovered && createPortal(<InventoryTooltip item={item} mousePosRef={mousePosRef} />, document.body)}
     </>
   );
 }
@@ -564,20 +565,27 @@ export default function CharacterView({ playerName, apiKey, users, classesList }
     <div
       className="relative overflow-hidden rounded-t-2xl"
       style={{
-        height: 520,
-        backgroundImage: "url('/images/bg-character-spring.png')",
-        backgroundSize: "cover",
-        backgroundPosition: "bottom center",
-        backgroundRepeat: "no-repeat",
-        imageRendering: "auto" as any,
+        minHeight: 520,
         backgroundColor: "#fce4ec",
-        filter: "brightness(1.3)",
       }}
     >
+      {/* ── Background image (brightness applied only here, not on parent) ── */}
+      <div
+        className="absolute inset-0"
+        style={{
+          backgroundImage: "url('/images/bg-character-spring.png')",
+          backgroundSize: "cover",
+          backgroundPosition: "bottom center",
+          backgroundRepeat: "no-repeat",
+          imageRendering: "auto" as any,
+          filter: "brightness(1.3)",
+          pointerEvents: "none",
+        }}
+      />
       {/* ── Layer 1: Dark overlay for readability ── */}
       <div
         className="absolute inset-0"
-        style={{ background: "rgba(11,13,17,0.45)", pointerEvents: "none" }}
+        style={{ background: "rgba(11,13,17,0.45)", pointerEvents: "none", zIndex: 1 }}
       />
 
       {/* ── Petal Rain ── */}
