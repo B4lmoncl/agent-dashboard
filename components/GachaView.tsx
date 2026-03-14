@@ -859,7 +859,7 @@ export default function GachaView({ users, playerName, reviewApiKey, onRefresh, 
 
       {/* Pool info modal */}
       <ModalOverlay isOpen={poolOpen && !!poolInfo} onClose={closePool}>
-        <div className="w-full max-h-[88vh] rounded-2xl p-7 overflow-y-auto" style={{ maxWidth: "1100px", background: "linear-gradient(180deg, #0f1729 0%, #1a1028 40%, #0f1729 100%)", border: "1px solid rgba(255,255,255,0.1)", overscrollBehavior: "contain" }}>
+        <div className="w-full max-h-[88vh] rounded-2xl p-7 overflow-y-auto" style={{ maxWidth: "1200px", background: "linear-gradient(180deg, #0f1729 0%, #1a1028 40%, #0f1729 100%)", border: "1px solid rgba(255,255,255,0.1)", overscrollBehavior: "contain" }}>
           <div className="flex items-center justify-between mb-5">
             <h3 className="text-base font-bold uppercase tracking-wider" style={{ color: "rgba(167,139,250,0.7)" }}>Item Pool</h3>
             <button onClick={closePool} style={{ color: "rgba(255,255,255,0.4)", background: "none", border: "none", cursor: "pointer", fontSize: 18 }}>✕</button>
@@ -875,7 +875,7 @@ export default function GachaView({ users, playerName, reviewApiKey, onRefresh, 
                   <div key={rarity}>
                     <p className="text-sm font-bold uppercase tracking-wider mb-1" style={{ color: cfg.color }}>{cfg.label} ({items.length})</p>
                     <div className="h-px mb-3" style={{ background: `linear-gradient(90deg, ${cfg.border}, transparent)` }} />
-                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                    <div className="grid gap-3" style={{ gridTemplateColumns: "repeat(3, 1fr)" }}>
                       {items.map(item => (
                         <div
                           key={item.id}
