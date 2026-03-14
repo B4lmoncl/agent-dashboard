@@ -170,7 +170,7 @@ export function AntiRitualePanel({ playerName, reviewApiKey }: { playerName: str
             <div className="flex items-center gap-3 text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>
               <span className="font-bold" style={{ color: mood.color }}>{days} Tage beständig</span>
               {longestStreak > 0 && <span title="Längste Serie" style={{ color: "rgba(245,158,11,0.5)" }}>Rekord: {longestStreak}</span>}
-              {nextMilestone && <span>→ {nextMilestone.label} in {nextMilestone.days - days}d</span>}
+              {nextMilestone && <span>→ {nextMilestone.badge} in {nextMilestone.days - days}d</span>}
             </div>
             {nextMilestone && (
               <div className="mt-2">

@@ -1764,7 +1764,7 @@ export default function Dashboard() {
                               {nextMilestone && (
                                 <div className="mt-2">
                                   <div className="flex items-center justify-between text-xs mb-1" style={{ color: "rgba(255,255,255,0.25)" }}>
-                                    <span>Nächstes Ziel in {nextMilestone.days - ritual.streak} Tagen: {nextMilestone.label}</span>
+                                    <span>Nächstes Ziel in {nextMilestone.days - ritual.streak}d: <span style={{ color: nextMilestone.label === "Bronze" ? "#cd7f32" : nextMilestone.label === "Silber" ? "#c0c0c0" : nextMilestone.label === "Gold" ? "#ffd700" : nextMilestone.label === "Diamond" ? "#b9f2ff" : "#a78bfa", fontWeight: 700 }}>{nextMilestone.label}</span></span>
                                     <span>{ritual.streak}/{nextMilestone.days}</span>
                                   </div>
                                   <div className="h-1 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.08)" }}>
