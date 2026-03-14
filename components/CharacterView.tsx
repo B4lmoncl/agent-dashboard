@@ -653,7 +653,7 @@ export default function CharacterView({ playerName, apiKey, users, classesList }
           </div>
         </div>
 
-        {/* RIGHT: Stats / Ausrüstung Panel */}
+        {/* RIGHT: Stats / Gear Panel */}
         <div
           className="flex-shrink-0 rounded-xl p-3 overflow-y-auto"
           style={{ width: 250, background: "rgba(0,0,0,0.75)", border: "1px solid rgba(255,255,255,0.1)", maxHeight: 440 }}
@@ -672,12 +672,12 @@ export default function CharacterView({ playerName, apiKey, users, classesList }
                   cursor: "pointer",
                 }}
               >
-                {tab === "stats" ? "Stats" : "Ausrüstung"}
+                {tab === "stats" ? "Stats" : "Gear"}
               </button>
             ))}
           </div>
 
-          {/* Ausrüstung tab */}
+          {/* Gear tab */}
           {rightTab === "ausrustung" && (
             <div className="space-y-1.5">
               {EQUIP_SLOT_LABELS.map(({ slot, iconSrc, label }) => {
@@ -692,13 +692,13 @@ export default function CharacterView({ playerName, apiKey, users, classesList }
                     className="flex items-center gap-2 px-2 py-1.5 rounded-lg"
                     style={{ background: "rgba(255,255,255,0.04)", border: `1px solid ${borderColor}` }}
                   >
-                    <span className="w-5 flex items-center justify-center">
-                      {iconSrc ? <img src={iconSrc} alt={label} width={16} height={16} style={{ imageRendering: "auto" }} /> : null}
+                    <span className="flex items-center justify-center" style={{ width: 40, height: 40, flexShrink: 0 }}>
+                      {iconSrc ? <img src={iconSrc} alt={label} width={40} height={40} style={{ imageRendering: "auto" }} /> : null}
                     </span>
                     <div className="flex-1 min-w-0">
                       <p className="text-xs font-medium truncate" style={{ color: item ? "#e8e8e8" : "rgba(255,255,255,0.3)" }}>
                         {item
-                          ? <span className="inline-flex items-center gap-1">{item.icon ? <img src={item.icon} alt="" width={14} height={14} style={{ imageRendering: "auto" }} /> : <span style={{ color: RARITY_COLORS[item.rarity] || "#9ca3af" }}>◆</span>} {item.name}</span>
+                          ? <span className="inline-flex items-center gap-1">{item.icon ? <img src={item.icon} alt="" width={36} height={36} style={{ imageRendering: "auto" }} /> : <span style={{ color: RARITY_COLORS[item.rarity] || "#9ca3af" }}>◆</span>} {item.name}</span>
                           : <span style={{ color: "rgba(255,255,255,0.2)" }}>Leer</span>}
                       </p>
                       <p className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>{label}</p>
