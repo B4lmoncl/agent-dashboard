@@ -348,28 +348,38 @@ const RARITY_BORDER_30: Record<string, string> = {
 
 type InventoryItem = CharacterData["inventory"][number];
 
-function InventoryTooltip({ item, mousePos }: { item: InventoryItem; mousePos: { x: number; y: number } }) {
+function InventoryTooltip({ item, mousePosRef }: { item: InventoryItem; mousePosRef: React.RefObject<{ x: number; y: number }> }) {
   const ref = useRef<HTMLDivElement>(null);
   const rarityColor = RARITY_COLORS[item.rarity] || "#9ca3af";
   const hasStats = item.stats && Object.keys(item.stats).length > 0;
 
-  // Position: top-left corner of tooltip at cursor
-  const th = 300;
-  let left = mousePos.x + 16;
-  let top = mousePos.y;
-  if (typeof window !== "undefined") {
-    const tw = 340;
-    if (left + tw > window.innerWidth - 8) left = mousePos.x - tw - 8;
-    if (top + th > window.innerHeight - 8) top = window.innerHeight - th - 8;
-    if (top < 4) top = 4;
-    if (left < 4) left = 4;
-  }
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    let raf = 0;
+    const update = () => {
+      const pos = mousePosRef.current;
+      if (!pos) { raf = requestAnimationFrame(update); return; }
+      const tw = 340;
+      const th = el.offsetHeight || 300;
+      let left = pos.x + 12;
+      let top = pos.y + 12;
+      if (left + tw > window.innerWidth - 8) left = pos.x - tw - 8;
+      if (top + th > window.innerHeight - 8) top = window.innerHeight - th - 8;
+      if (top < 4) top = 4;
+      if (left < 4) left = 4;
+      el.style.transform = `translate(${left}px, ${top}px)`;
+      raf = requestAnimationFrame(update);
+    };
+    raf = requestAnimationFrame(update);
+    return () => cancelAnimationFrame(raf);
+  }, [mousePosRef]);
 
   return (
     <div
       ref={ref}
       className="fixed z-[200] pointer-events-none"
-      style={{ left, top, minWidth: 260, maxWidth: 340 }}
+      style={{ left: 0, top: 0, minWidth: 260, maxWidth: 340, willChange: "transform" }}
     >
       <div
         className="rounded-lg p-3 space-y-2"
@@ -430,7 +440,7 @@ function InventorySlot({ item, level, onEquip }: {
   onEquip: (id: string) => void;
 }) {
   const [hovered, setHovered] = useState(false);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const mousePosRef = useRef({ x: 0, y: 0 });
 
   if (!item) {
     return (
@@ -454,8 +464,8 @@ function InventorySlot({ item, level, onEquip }: {
     <>
       <button
         onClick={() => !locked && onEquip(item.id)}
-        onMouseEnter={(e) => { setHovered(true); setMousePos({ x: e.clientX, y: e.clientY }); }}
-        onMouseMove={(e) => setMousePos({ x: e.clientX, y: e.clientY })}
+        onMouseEnter={(e) => { mousePosRef.current = { x: e.clientX, y: e.clientY }; setHovered(true); }}
+        onMouseMove={(e) => { mousePosRef.current = { x: e.clientX, y: e.clientY }; }}
         onMouseLeave={() => setHovered(false)}
         style={{
           width: 56,
@@ -477,7 +487,7 @@ function InventorySlot({ item, level, onEquip }: {
           : <span style={{ fontSize: 14, color: RARITY_COLORS[item.rarity] || "#9ca3af", lineHeight: 1 }}>◆</span>
         }
       </button>
-      {hovered && <InventoryTooltip item={item} mousePos={mousePos} />}
+      {hovered && <InventoryTooltip item={item} mousePosRef={mousePosRef} />}
     </>
   );
 }
@@ -554,10 +564,10 @@ export default function CharacterView({ playerName, apiKey, users, classesList }
     <div
       className="relative overflow-hidden rounded-t-2xl"
       style={{
-        minHeight: 520,
+        height: 520,
         backgroundImage: "url('/images/bg-character-spring.png')",
         backgroundSize: "cover",
-        backgroundPosition: "center",
+        backgroundPosition: "bottom center",
         backgroundRepeat: "no-repeat",
         imageRendering: "auto" as any,
         backgroundColor: "#fce4ec",
@@ -601,12 +611,12 @@ export default function CharacterView({ playerName, apiKey, users, classesList }
       />
 
       {/* ── Main 3-column layout ── */}
-      <div className="relative flex gap-3 p-4" style={{ zIndex: 4, minHeight: 460 }}>
+      <div className="relative flex gap-3 p-4" style={{ zIndex: 4, height: "calc(100% - 0px)", minHeight: 0 }}>
 
         {/* LEFT: Inventory Panel */}
         <div
           className="flex-shrink-0 rounded-xl p-2 overflow-y-auto"
-          style={{ width: 362, background: "rgba(0,0,0,0.75)", border: "1px solid rgba(255,255,255,0.1)", maxHeight: "80vh", paddingRight: 10 }}
+          style={{ width: 362, background: "rgba(0,0,0,0.75)", border: "1px solid rgba(255,255,255,0.1)", minHeight: 0, paddingRight: 12 }}
         >
           <p className="text-xs font-bold uppercase tracking-wider mb-3" style={{ color: "rgba(255,255,255,0.5)" }}>Inventar</p>
 
@@ -652,7 +662,7 @@ export default function CharacterView({ playerName, apiKey, users, classesList }
         {/* RIGHT: Stats / Gear Panel */}
         <div
           className="flex-shrink-0 rounded-xl p-3 overflow-y-auto"
-          style={{ width: 250, background: "rgba(0,0,0,0.75)", border: "1px solid rgba(255,255,255,0.1)", maxHeight: "80vh" }}
+          style={{ width: 250, background: "rgba(0,0,0,0.75)", border: "1px solid rgba(255,255,255,0.1)", minHeight: 0 }}
         >
           {/* Tab toggle */}
           <div className="flex gap-1 mb-3">
