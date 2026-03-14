@@ -1387,6 +1387,606 @@
         "flavor": "Die besten Feste in der Halle haben nie mit dem Essen angefangen. Sondern mit dem Kochen.",
         "difficulty": "advanced"
       }
+    },
+    {
+      "id": "p-schattengang",
+      "template": "board-quest",
+      "title": "Schattengang",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Geh 20 Minuten spazieren. Kein Ziel, keine Musik, nur du und die Welt.",
+        "flavor": "Die Wanderer der alten Zeit nannten es Schattengang — ein Marsch ohne Ankunft. Manche fanden sich dabei selbst.",
+        "difficulty": "starter"
+      }
+    },
+    {
+      "id": "p-brief-an-gestern",
+      "template": "board-quest",
+      "title": "Brief an Gestern",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Schreib einen kurzen Brief an dein gestrigen Ich. Was hast du gelernt?",
+        "flavor": "Die Chronisten der Halle sagen: Wer sein Gestern versteht, formt sein Morgen.",
+        "difficulty": "starter"
+      }
+    },
+    {
+      "id": "p-digitaler-aetherschnitt",
+      "template": "board-quest",
+      "title": "Digitaler Ätherschnitt",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Lösche 3 Apps die du seit Wochen nicht benutzt hast. Platz schaffen = Macht gewinnen.",
+        "flavor": "Der Aetherstrom fließt besser wenn keine Blockaden im Weg sind. Gilt für Magie. Gilt für Handys.",
+        "difficulty": "starter"
+      }
+    },
+    {
+      "id": "p-drei-dinge",
+      "template": "board-quest",
+      "title": "Die Drei Dinge",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Schreib drei Dinge auf für die du heute dankbar bist. Keine Wiederholungen von gestern.",
+        "flavor": "Dankbarkeit ist die stärkste Magie die keine Kosten hat.",
+        "difficulty": "starter"
+      }
+    },
+    {
+      "id": "p-spiegel",
+      "template": "board-quest",
+      "title": "Der Spiegel lügt nicht",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Steh 2 Minuten vor dem Spiegel und sag dir etwas Freundliches. Laut.",
+        "flavor": "Die Helden der Chroniken hatten keine Selbstzweifel? Lüge. Sie hatten nur gelernt damit umzugehen.",
+        "difficulty": "intermediate"
+      }
+    },
+    {
+      "id": "p-abendritual",
+      "template": "board-quest",
+      "title": "Abendritual der Wanderer",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "30 Minuten vor dem Schlafengehen: Kein Bildschirm. Buch, Musik, oder Stille.",
+        "flavor": "Die Halle schläft nie ganz. Aber sie flüstert leiser nach Mitternacht.",
+        "difficulty": "intermediate"
+      }
+    },
+    {
+      "id": "p-chaos-ordnung",
+      "template": "board-quest",
+      "title": "Aus Chaos wird Ordnung",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Räum einen Ort auf der dich seit Tagen nervt. Schreibtisch, Schublade, Desktop.",
+        "flavor": "Ordnung ist keine Tugend der Pedanten. Es ist Magie für Erschöpfte.",
+        "difficulty": "intermediate"
+      }
+    },
+    {
+      "id": "p-grenzen",
+      "template": "board-quest",
+      "title": "Grenzen ziehen",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Sag heute zu einer Sache Nein die du sonst aus Höflichkeit zugesagt hättest.",
+        "flavor": "Nein ist ein vollständiger Satz. Helden die das lernen, überleben länger.",
+        "difficulty": "intermediate"
+      }
+    },
+    {
+      "id": "p-deep-work",
+      "template": "board-quest",
+      "title": "Deep Work — 2 Stunden",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "2 Stunden fokussierte Arbeit. Kein Chat, keine Tabs, keine Ablenkung.",
+        "flavor": "Die Meister der Halle nennen es Flow. Die Bibliothek nennt es Trance. Du nennst es Produktivität.",
+        "difficulty": "intermediate"
+      }
+    },
+    {
+      "id": "p-selbstkritik",
+      "template": "board-quest",
+      "title": "Selbstkritik ablegen",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Wenn deine innere Stimme heute gemein wird — unterbrich sie. Laut. Sag 'Stopp'.",
+        "flavor": "Dein schlimmster Feind sitzt zwischen deinen Ohren. Zeit ihn rauszuwerfen.",
+        "difficulty": "intermediate"
+      }
+    },
+    {
+      "id": "p-bucket-list",
+      "template": "board-quest",
+      "title": "Bucket List — Ein Eintrag",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Schreib eine Sache auf deine Bucket List. Dann google wie viel es kosten würde.",
+        "flavor": "Träume ohne Recherche bleiben Träume. Wanderer planen ihre Routen.",
+        "difficulty": "intermediate"
+      }
+    },
+    {
+      "id": "p-fear-setting",
+      "template": "board-quest",
+      "title": "Fear Setting",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Schreib deine größte aktuelle Angst auf. Dann: Was ist das schlimmste das passieren kann? Wie wahrscheinlich? Was würdest du dann tun?",
+        "flavor": "Die Dunkelheit hat weniger Macht wenn man ihr ins Gesicht sieht.",
+        "difficulty": "advanced"
+      }
+    },
+    {
+      "id": "p-dopamin-detox",
+      "template": "board-quest",
+      "title": "Dopamin-Detox",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Einen ganzen Tag: Kein Social Media, kein Streaming, keine Snacks. Nur basics.",
+        "flavor": "Der Aetherstrom kann süchtig machen. Selbst die Weisesten müssen ab und zu fasten.",
+        "difficulty": "advanced"
+      }
+    },
+    {
+      "id": "p-fehler-log",
+      "template": "board-quest",
+      "title": "Fehler-Log der Woche",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Schreib 3 Fehler auf die du diese Woche gemacht hast. Dann: Was hast du daraus gelernt?",
+        "flavor": "Scheitern ist der Preis des Lernens. Wer nicht zahlt, wächst nicht.",
+        "difficulty": "advanced"
+      }
+    },
+    {
+      "id": "p-legacy",
+      "template": "board-quest",
+      "title": "Legacy-Quest",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Schreib in einem Absatz: Was sollen Leute in 10 Jahren über dich sagen?",
+        "flavor": "Die Sterne erinnern sich. Aber nicht automatisch. Du musst ihnen etwas geben das es wert ist.",
+        "difficulty": "expert"
+      }
+    },
+    {
+      "id": "l-wiki-deep-dive",
+      "template": "board-quest",
+      "title": "Wiki Deep Dive",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Such dir ein Wikipedia-Thema das dich interessiert. Lies 30 Minuten. Folge den Links.",
+        "flavor": "Die Bibliothek hat unendliche Räume. Aber die besten Schätze findet wer einfach losgeht.",
+        "difficulty": "starter"
+      }
+    },
+    {
+      "id": "l-neue-sprache",
+      "template": "board-quest",
+      "title": "Neue Sprache — 15 Min",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Lern 5 neue Wörter in einer Sprache die du nicht sprichst. Duolingo, YouTube, egal.",
+        "flavor": "Jede Sprache ist ein Fenster in eine andere Welt. Öffne eins.",
+        "difficulty": "starter"
+      }
+    },
+    {
+      "id": "l-how-it-works",
+      "template": "board-quest",
+      "title": "How It Works",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Such dir etwas Alltägliches (Kühlschrank, WLAN, Kaffee) und google wie es funktioniert. 20 Min.",
+        "flavor": "Wissen beginnt mit Neugier. Und Neugier beginnt mit 'Warum?'",
+        "difficulty": "starter"
+      }
+    },
+    {
+      "id": "l-tutorial-folgen",
+      "template": "board-quest",
+      "title": "Tutorial-Quest",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Folge einem Tutorial zu etwas das du noch nie gemacht hast. Code, Rezept, DIY.",
+        "flavor": "Die Meister der Halle waren alle mal Lehrlinge. Der Unterschied? Sie haben angefangen.",
+        "difficulty": "intermediate"
+      }
+    },
+    {
+      "id": "l-buch-kapitel",
+      "template": "board-quest",
+      "title": "Ein Kapitel Weisheit",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Lies ein Kapitel aus einem Sachbuch. Kein Roman, keine Artikel. Ein richtiges Buch.",
+        "flavor": "Die Bibliothek flüstert: Wer liest, lebt tausend Leben. Wer nicht liest, nur eins.",
+        "difficulty": "intermediate"
+      }
+    },
+    {
+      "id": "l-erklaer-es",
+      "template": "board-quest",
+      "title": "Erkläre es mir",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Lern etwas Neues und erkläre es dann jemandem. Laut. Als ob die Person 10 Jahre alt wäre.",
+        "flavor": "Wissen das du nicht weitergeben kannst, hast du nicht wirklich verstanden.",
+        "difficulty": "intermediate"
+      }
+    },
+    {
+      "id": "l-fehler-verstehen",
+      "template": "board-quest",
+      "title": "Den Fehler verstehen",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Nimm einen Fehler den du gemacht hast (Code, Arbeit, Leben) und recherchiere warum das passiert ist.",
+        "flavor": "Fehler sind Lehrer. Dumm ist nur wer nicht zuhört.",
+        "difficulty": "intermediate"
+      }
+    },
+    {
+      "id": "l-geschichte",
+      "template": "board-quest",
+      "title": "Geschichte einer Sache",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Such dir ein Objekt in deiner Nähe. Recherchiere seine Geschichte. Wer hat es erfunden? Warum?",
+        "flavor": "Alles hat eine Geschichte. Selbst die langweiligsten Dinge.",
+        "difficulty": "intermediate"
+      }
+    },
+    {
+      "id": "l-speed-read",
+      "template": "board-quest",
+      "title": "Speed Reading — Test",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Lies einen langen Artikel (2000+ Wörter) und miss deine Zeit. Dann fass ihn in 3 Sätzen zusammen.",
+        "flavor": "Die Chronisten lesen schneller als das Auge folgen kann. Übung macht Meister.",
+        "difficulty": "advanced"
+      }
+    },
+    {
+      "id": "l-skill-tree",
+      "template": "board-quest",
+      "title": "Skill Tree Research",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Wähle eine Fähigkeit die du lernen willst. Erstelle einen Lernplan: Was brauchst du? Wie lange? Welche Ressourcen?",
+        "flavor": "Jeder Meister begann mit einem Plan. Oder einem Traum und viel Sturheit.",
+        "difficulty": "advanced"
+      }
+    },
+    {
+      "id": "l-reverse-engineer",
+      "template": "board-quest",
+      "title": "Reverse Engineering",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Nimm etwas das du bewunderst (Code, Design, Text) und analysiere wie es gemacht wurde. Schritt für Schritt.",
+        "flavor": "Die besten Lektionen verstecken sich in fremden Werken.",
+        "difficulty": "advanced"
+      }
+    },
+    {
+      "id": "l-meta-learning",
+      "template": "board-quest",
+      "title": "Meta-Learning Session",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Lies über Lerntechniken (Feynman, Spaced Repetition, Memory Palace). Probiere eine aus.",
+        "flavor": "Lernen zu lernen ist die mächtigste Fähigkeit überhaupt. Die Halle lehrt sie nur den Mutigen.",
+        "difficulty": "expert"
+      }
+    },
+    {
+      "id": "f-dehnen",
+      "template": "board-quest",
+      "title": "Morgen-Dehnung",
+      "type": "fitness",
+      "category": "fitness",
+      "vars": {
+        "description": "10 Minuten Dehnung. Nacken, Rücken, Beine. YouTube hilft.",
+        "flavor": "Dein Körper ist deine Rüstung. Pflege sie.",
+        "difficulty": "starter"
+      }
+    },
+    {
+      "id": "f-spaziergang",
+      "template": "board-quest",
+      "title": "Spaziergang 5000",
+      "type": "fitness",
+      "category": "fitness",
+      "vars": {
+        "description": "5000 Schritte heute. Zählt dein Handy automatisch.",
+        "flavor": "Die alten Wanderer sagten: Bewegung ist Leben. Stillstand ist... naja.",
+        "difficulty": "starter"
+      }
+    },
+    {
+      "id": "f-treppe",
+      "template": "board-quest",
+      "title": "Treppen statt Aufzug",
+      "type": "fitness",
+      "category": "fitness",
+      "vars": {
+        "description": "Heute nur Treppen. Kein Aufzug, keine Rolltreppe. Deine Beine werden fluchen.",
+        "flavor": "Kleine Siege summieren sich. Frag die Helden der zweiten Ära.",
+        "difficulty": "starter"
+      }
+    },
+    {
+      "id": "f-push-ups",
+      "template": "board-quest",
+      "title": "Push-Up Challenge",
+      "type": "fitness",
+      "category": "fitness",
+      "vars": {
+        "description": "20 Push-Ups am Stück. Knie-Variante zählt auch.",
+        "flavor": "Kraft kommt nicht über Nacht. Aber sie kommt.",
+        "difficulty": "intermediate"
+      }
+    },
+    {
+      "id": "f-plank",
+      "template": "board-quest",
+      "title": "Plank — 2 Minuten",
+      "type": "fitness",
+      "category": "fitness",
+      "vars": {
+        "description": "2 Minuten Plank halten. Am Stück oder in Sets, deine Wahl.",
+        "flavor": "Stabilität ist unterschätzt. Im Kampf. Im Leben. Im Plank.",
+        "difficulty": "intermediate"
+      }
+    },
+    {
+      "id": "f-wasser",
+      "template": "board-quest",
+      "title": "Hydration-Quest",
+      "type": "fitness",
+      "category": "fitness",
+      "vars": {
+        "description": "2 Liter Wasser heute. Kein Saft, kein Tee. Nur Wasser.",
+        "flavor": "Der Aetherstrom fließt besser wenn der Körper nicht austrocknet.",
+        "difficulty": "intermediate"
+      }
+    },
+    {
+      "id": "f-workout",
+      "template": "board-quest",
+      "title": "Volle Trainingseinheit",
+      "type": "fitness",
+      "category": "fitness",
+      "vars": {
+        "description": "30 Minuten Workout. Gym, Hometraining, Joggen — Hauptsache Schweiß.",
+        "flavor": "Die Schmiede formt nicht nur Stahl. Auch Helden.",
+        "difficulty": "intermediate"
+      }
+    },
+    {
+      "id": "f-cold-shower",
+      "template": "board-quest",
+      "title": "Kalte Dusche",
+      "type": "fitness",
+      "category": "fitness",
+      "vars": {
+        "description": "Dusch kalt. 2 Minuten minimum. Atmen nicht vergessen.",
+        "flavor": "Die Krieger der Nordberge schwören drauf. Du wirst es hassen. Und dann lieben.",
+        "difficulty": "advanced"
+      }
+    },
+    {
+      "id": "f-no-sugar",
+      "template": "board-quest",
+      "title": "Ohne Zucker",
+      "type": "fitness",
+      "category": "fitness",
+      "vars": {
+        "description": "Ein Tag ohne extra Zucker. Keine Süßigkeiten, keine Softdrinks, kein versteckter Zucker.",
+        "flavor": "Zucker ist ein Fluch der wie ein Segen schmeckt.",
+        "difficulty": "advanced"
+      }
+    },
+    {
+      "id": "f-beast-mode",
+      "template": "board-quest",
+      "title": "Beast Mode",
+      "type": "fitness",
+      "category": "fitness",
+      "vars": {
+        "description": "60 Minuten intensives Training. Kraft + Cardio. Alles geben.",
+        "flavor": "Die Arena fordert Blut, Schweiß, und Tränen. Du bringst alle drei mit.",
+        "difficulty": "expert"
+      }
+    },
+    {
+      "id": "s-nachricht",
+      "template": "board-quest",
+      "title": "Unerwartete Nachricht",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Schreib jemandem dem du länger nicht geschrieben hast. Keine Erwartung, nur 'Hey, dachte an dich'.",
+        "flavor": "Brücken bauen ist leichter als sie zu reparieren.",
+        "difficulty": "starter"
+      }
+    },
+    {
+      "id": "s-kompliment",
+      "template": "board-quest",
+      "title": "Echtes Kompliment",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Gib heute jemandem ein ehrliches Kompliment. Nicht oberflächlich. Meine es.",
+        "flavor": "Worte können heilen. Helden wissen das.",
+        "difficulty": "starter"
+      }
+    },
+    {
+      "id": "s-anruf",
+      "template": "board-quest",
+      "title": "Anruf statt Text",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Ruf jemanden an statt zu texten. 10 Minuten minimum.",
+        "flavor": "Stimmen tragen mehr als Buchstaben. Das wussten schon die Barden.",
+        "difficulty": "intermediate"
+      }
+    },
+    {
+      "id": "s-hilfe-anbieten",
+      "template": "board-quest",
+      "title": "Hilfe anbieten",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Frag jemanden: 'Kann ich dir bei etwas helfen?' Und meine es ernst.",
+        "flavor": "Kein Held wandert allein. Und keiner sollte es müssen.",
+        "difficulty": "intermediate"
+      }
+    },
+    {
+      "id": "s-entschuldigung",
+      "template": "board-quest",
+      "title": "Die Entschuldigung",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Wenn du jemandem etwas schuldig bist: Entschuldige dich. Heute. Richtig.",
+        "flavor": "Stolz ist die schwerste Rüstung. Manchmal muss man sie ablegen.",
+        "difficulty": "intermediate"
+      }
+    },
+    {
+      "id": "s-plaene-machen",
+      "template": "board-quest",
+      "title": "Pläne schmieden",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Mach konkrete Pläne mit jemandem. Datum, Uhrzeit, Ort. Kein 'irgendwann mal'.",
+        "flavor": "Irgendwann ist der Feind von Jetzt. Helden leben im Jetzt.",
+        "difficulty": "intermediate"
+      }
+    },
+    {
+      "id": "s-danke-sagen",
+      "template": "board-quest",
+      "title": "Danke sagen",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Danke jemandem für etwas das er vor Wochen getan hat. Spezifisch sein.",
+        "flavor": "Dankbarkeit verjährt nicht. Die Sterne vergessen nicht.",
+        "difficulty": "advanced"
+      }
+    },
+    {
+      "id": "s-conflict-resolution",
+      "template": "board-quest",
+      "title": "Konflikt klären",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Wenn es einen ungelösten Konflikt gibt: Sprich ihn an. Ruhig, klar, ohne Angriff.",
+        "flavor": "Die größten Schlachten finden nicht auf dem Feld statt. Sondern im Gespräch danach.",
+        "difficulty": "expert"
+      }
+    },
+    {
+      "id": "boss-perfect-day",
+      "template": "board-quest",
+      "title": "Der Perfekte Tag",
+      "type": "boss",
+      "category": "boss",
+      "vars": {
+        "description": "Heute läuft alles nach Plan. Morgenroutine, Training, Arbeit, Social, Abend. Kein Ausrutscher.",
+        "flavor": "Perfektion ist nicht das Ziel. Aber einmal zu sehen wie sie aussieht... das ist Gold wert.",
+        "difficulty": "intermediate"
+      }
+    },
+    {
+      "id": "boss-deep-focus",
+      "template": "board-quest",
+      "title": "Deep Focus — 4 Stunden",
+      "type": "boss",
+      "category": "boss",
+      "vars": {
+        "description": "4 Stunden am Stück an einem wichtigen Projekt. Kein Handy, kein Chat, keine Pausen außer Bio.",
+        "flavor": "Die Meister der Halle nennen es Trance. Du wirst es Flow nennen. Die Chroniken nennen es Legende.",
+        "difficulty": "advanced"
+      }
+    },
+    {
+      "id": "boss-triple-threat",
+      "template": "board-quest",
+      "title": "Triple Threat",
+      "type": "boss",
+      "category": "boss",
+      "vars": {
+        "description": "Heute: Lerne etwas Neues, trainiere deinen Körper, tue etwas für jemand anderen. Alles drei.",
+        "flavor": "Körper, Geist, Seele. Die drei Säulen der Helden. Heute baust du alle.",
+        "difficulty": "advanced"
+      }
+    },
+    {
+      "id": "boss-week-perfect",
+      "template": "board-quest",
+      "title": "Die Perfekte Woche",
+      "type": "boss",
+      "category": "boss",
+      "vars": {
+        "description": "7 Tage Streak: Jeden Tag Training, Learning, Social. Kein Tag wird übersprungen.",
+        "flavor": "Legenden werden nicht an einem Tag geschmiedet. Sondern an sieben. Und dann noch einmal.",
+        "difficulty": "expert"
+      }
+    },
+    {
+      "id": "boss-30-day",
+      "template": "board-quest",
+      "title": "30-Tage-Challenge",
+      "type": "boss",
+      "category": "boss",
+      "vars": {
+        "description": "Wähle eine Gewohnheit. 30 Tage lang, jeden Tag. Dokumentiere deinen Progress.",
+        "flavor": "Die Chronisten schreiben: Helden fallen nicht. Sie entscheiden sich einfach jeden Tag aufs Neue aufzustehen.",
+        "difficulty": "expert"
+      }
     }
   ]
 }
