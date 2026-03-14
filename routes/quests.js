@@ -542,25 +542,9 @@ router.get('/api/quests', (req, res) => {
       }
     }
 
-    // Filter open player quests to the active pool (fill if empty)
-    let poolFilteredOpen = openPlayer;
-    if (POOL_TYPES.some(t => !typeFilter || typeFilter === t)) {
-      // Ensure pool is populated
-      if (!pp.activeQuestPool || pp.activeQuestPool.length === 0) {
-        pp.activeQuestPool = buildQuestPool(playerParam, playerLevel);
-        savePlayerProgress();
-      } else {
-        // Remove stale IDs from pool
-        const validIds = new Set(state.quests.filter(q => q.status === 'open' || q.status === 'in_progress').map(q => q.id));
-        pp.activeQuestPool = pp.activeQuestPool.filter(id => validIds.has(id));
-        if (pp.activeQuestPool.length < 3) {
-          pp.activeQuestPool = buildQuestPool(playerParam, playerLevel);
-          savePlayerProgress();
-        }
-      }
-      const poolSet = new Set(pp.activeQuestPool);
-      poolFilteredOpen = openPlayer.filter(q => poolSet.has(q.id));
-    }
+    // Show ALL open quests — no pool filtering
+    // Daily rotation already controls how many quests exist (18/day)
+    const poolFilteredOpen = openPlayer;
 
     // Dev quest types use global status as-is
     return res.json({
@@ -619,6 +603,8 @@ router.patch('/api/quest/:id', requireApiKey, (req, res) => {
   if (proof !== undefined) quest.proof = proof;
   if (title !== undefined) quest.title = title;
   if (description !== undefined) quest.description = description;
+  if (req.body.flavorText !== undefined) quest.flavorText = req.body.flavorText;
+  if (req.body.lore !== undefined) quest.lore = req.body.lore;
   if (claimedBy !== undefined) {
     quest.claimedBy = claimedBy;
     if (claimedBy && quest.status === 'open') quest.status = 'in_progress';
