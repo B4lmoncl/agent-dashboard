@@ -8,10 +8,7 @@
       "difficulty": "starter",
       "category": "personal",
       "flavor": "Die Halle ist am stillsten kurz vor Sonnenaufgang. Manche sagen, das ist der Moment in dem sie träumt.",
-      "rewards": {
-        "xp": 15,
-        "gold": 8
-      }
+      "template": "board-quest"
     },
     {
       "id": "p-ohne-trank",
@@ -24,7 +21,8 @@
       "rewards": {
         "xp": 25,
         "gold": 18
-      }
+      },
+      "template": "board-quest"
     },
     {
       "id": "p-chronik",
@@ -37,7 +35,8 @@
       "rewards": {
         "xp": 15,
         "gold": 10
-      }
+      },
+      "template": "board-quest"
     },
     {
       "id": "p-digital-detox",
@@ -48,10 +47,7 @@
       "category": "personal",
       "flavor": "\"Die Kristallkugel zeigt dir alles. Außer das, was direkt vor deiner Nase liegt.\" — Alter Henrik",
       "flavorText": "\"Die Kristallkugel zeigt dir alles. Außer das, was direkt vor deiner Nase liegt.\" — Alter Henrik",
-      "rewards": {
-        "xp": 25,
-        "gold": 15
-      }
+      "template": "board-quest"
     },
     {
       "id": "p-aufraeum",
@@ -64,7 +60,8 @@
       "rewards": {
         "xp": 20,
         "gold": 12
-      }
+      },
+      "template": "board-quest"
     },
     {
       "id": "p-frueh-ins-bett",
@@ -74,10 +71,7 @@
       "difficulty": "intermediate",
       "category": "personal",
       "flavor": "Die mächtigsten Zauber wirken im Schlaf. Das ist keine Metapher — die Bibliothek reorganisiert sich tatsächlich nachts. Du solltest das auch tun.",
-      "rewards": {
-        "xp": 25,
-        "gold": 15
-      }
+      "template": "board-quest"
     },
     {
       "id": "p-kochen",
@@ -88,10 +82,7 @@
       "category": "personal",
       "flavor": "\"Jedes Rezept ist ein Zauberspruch. Die Zutaten sind deine Komponenten. Und nein, Fertignudeln zählen nicht als Transmutation.\" — Zara Funkenwind",
       "flavorText": "\"Jedes Rezept ist ein Zauberspruch. Die Zutaten sind deine Komponenten. Und nein, Fertignudeln zählen nicht als Transmutation.\" — Zara Funkenwind",
-      "rewards": {
-        "xp": 25,
-        "gold": 15
-      }
+      "template": "board-quest"
     },
     {
       "id": "p-mail-inbox",
@@ -104,7 +95,8 @@
       "rewards": {
         "xp": 20,
         "gold": 10
-      }
+      },
+      "template": "board-quest"
     },
     {
       "id": "p-dankbarkeit",
@@ -115,10 +107,7 @@
       "category": "personal",
       "flavor": "Worte sind die billigste Magie und die mächtigste. Finnegan hat mal ein ganzes Dorf mit einem einzigen Satz zum Weinen gebracht. Zugegeben, es war eine Beleidigung.",
       "flavorText": "Worte sind die billigste Magie und die mächtigste. Finnegan hat mal ein ganzes Dorf mit einem einzigen Satz zum Weinen gebracht. Zugegeben, es war eine Beleidigung.",
-      "rewards": {
-        "xp": 15,
-        "gold": 8
-      }
+      "template": "board-quest"
     },
     {
       "id": "p-no-snooze",
@@ -132,7 +121,8 @@
       "rewards": {
         "xp": 20,
         "gold": 12
-      }
+      },
+      "template": "board-quest"
     },
     {
       "id": "p-budget",
@@ -145,7 +135,8 @@
       "rewards": {
         "xp": 15,
         "gold": 10
-      }
+      },
+      "template": "board-quest"
     },
     {
       "id": "p-wardrobe",
@@ -158,7 +149,8 @@
       "rewards": {
         "xp": 20,
         "gold": 10
-      }
+      },
+      "template": "board-quest"
     },
     {
       "id": "p-planen",
@@ -168,10 +160,7 @@
       "difficulty": "starter",
       "category": "personal",
       "flavor": "Ein Plan überlebt selten den ersten Kontakt mit dem Morgen. Aber ohne Plan überlebt man gar nichts. Meister Tanaka hat übrigens sieben Backup-Pläne. Für den Dienstag.",
-      "rewards": {
-        "xp": 15,
-        "gold": 8
-      }
+      "template": "board-quest"
     },
     {
       "id": "p-kein-nachtisch",
@@ -184,7 +173,8 @@
       "rewards": {
         "xp": 20,
         "gold": 12
-      }
+      },
+      "template": "board-quest"
     },
     {
       "id": "p-tagebuch",
@@ -194,10 +184,7 @@
       "difficulty": "intermediate",
       "category": "personal",
       "flavor": "Die größten Abenteuer finden zwischen den Zeilen statt. Manche auch zwischen den Mahlzeiten, aber die sind schwerer aufzuschreiben.",
-      "rewards": {
-        "xp": 25,
-        "gold": 15
-      }
+      "template": "board-quest"
     },
     {
       "id": "f-morgenlauf",
@@ -211,7 +198,8 @@
       "rewards": {
         "xp": 30,
         "gold": 15
-      }
+      },
+      "template": "board-quest"
     },
     {
       "id": "f-10k-schritte",
@@ -221,10 +209,7 @@
       "difficulty": "intermediate",
       "category": "fitness",
       "flavor": "Jeder Schritt ist ein Vers in deinem Lied. Finnegan behauptet, seine besten Balladen entstehen bei Schritt zwölftausend. Ab Schritt dreizehntausend wird es experimentell.",
-      "rewards": {
-        "xp": 25,
-        "gold": 15
-      }
+      "template": "board-quest"
     },
     {
       "id": "f-liegestuetzen",
@@ -237,7 +222,8 @@
       "rewards": {
         "xp": 20,
         "gold": 10
-      }
+      },
+      "template": "board-quest"
     },
     {
       "id": "f-stretching",
@@ -247,10 +233,7 @@
       "difficulty": "starter",
       "category": "fitness",
       "flavor": "Ein biegsamer Baum bricht nicht im Sturm. Ein biegsamer Held bricht sich nicht beim Bücken. Beides unterschätzt.",
-      "rewards": {
-        "xp": 15,
-        "gold": 8
-      }
+      "template": "board-quest"
     },
     {
       "id": "f-gym",
@@ -260,10 +243,7 @@
       "difficulty": "advanced",
       "category": "fitness",
       "flavor": "Stahl wird im Feuer gehärtet. Du auch. Rogar Amboss hat diese Worte über die Eingangstür seiner Schmiede gemeißelt. Und über die Ausgangstür. Für den Fall, dass man flüchten will.",
-      "rewards": {
-        "xp": 40,
-        "gold": 25
-      }
+      "template": "board-quest"
     },
     {
       "id": "f-spaziergang",
@@ -276,7 +256,8 @@
       "rewards": {
         "xp": 20,
         "gold": 10
-      }
+      },
+      "template": "board-quest"
     },
     {
       "id": "f-treppen",
@@ -286,10 +267,7 @@
       "difficulty": "starter",
       "category": "fitness",
       "flavor": "\"Wer den Turm bezwingen will, muss jede Stufe ehren.\" — Oma Ilse, die den Aufzug nimmt seit die Keksdose im dritten Stock steht",
-      "rewards": {
-        "xp": 15,
-        "gold": 8
-      }
+      "template": "board-quest"
     },
     {
       "id": "f-kalt-duschen",
@@ -300,10 +278,7 @@
       "category": "fitness",
       "flavor": "Das Eis fragt nicht ob du bereit bist. Sei es trotzdem. Lumi lacht über Kälte. Aber Lumi ist auch... Lumi.",
       "flavorText": "Das Eis fragt nicht ob du bereit bist. Sei es trotzdem. Lumi lacht über Kälte. Aber Lumi ist auch... Lumi.",
-      "rewards": {
-        "xp": 25,
-        "gold": 15
-      }
+      "template": "board-quest"
     },
     {
       "id": "f-plank",
@@ -316,7 +291,8 @@
       "rewards": {
         "xp": 25,
         "gold": 12
-      }
+      },
+      "template": "board-quest"
     },
     {
       "id": "f-radfahren",
@@ -329,7 +305,8 @@
       "rewards": {
         "xp": 30,
         "gold": 15
-      }
+      },
+      "template": "board-quest"
     },
     {
       "id": "f-abend-workout",
@@ -342,7 +319,8 @@
       "rewards": {
         "xp": 25,
         "gold": 12
-      }
+      },
+      "template": "board-quest"
     },
     {
       "id": "f-wassertrinken",
@@ -352,10 +330,7 @@
       "difficulty": "starter",
       "category": "fitness",
       "flavor": "Wasser ist flüssige Magie. Die meisten vergessen es einfach. Mirael hat einen Brunnen der ewige Jugend verspricht. Es ist nur Wasser. Aber es funktioniert.",
-      "rewards": {
-        "xp": 15,
-        "gold": 8
-      }
+      "template": "board-quest"
     },
     {
       "id": "l-30min-lernen",
@@ -368,7 +343,8 @@
       "rewards": {
         "xp": 30,
         "gold": 15
-      }
+      },
+      "template": "board-quest"
     },
     {
       "id": "l-buch-lesen",
@@ -381,7 +357,8 @@
       "rewards": {
         "xp": 20,
         "gold": 10
-      }
+      },
+      "template": "board-quest"
     },
     {
       "id": "l-doku",
@@ -391,10 +368,7 @@
       "difficulty": "intermediate",
       "category": "learning",
       "flavor": "Was nicht geschrieben steht, hat nie stattgefunden. — Lyras erstes Gesetz. Das zweite ist: Wer es aufschreibt, findet es auch wieder.",
-      "rewards": {
-        "xp": 25,
-        "gold": 15
-      }
+      "template": "board-quest"
     },
     {
       "id": "l-tutorial",
@@ -407,7 +381,8 @@
       "rewards": {
         "xp": 30,
         "gold": 18
-      }
+      },
+      "template": "board-quest"
     },
     {
       "id": "l-podcast",
@@ -420,7 +395,8 @@
       "rewards": {
         "xp": 20,
         "gold": 10
-      }
+      },
+      "template": "board-quest"
     },
     {
       "id": "l-flashcards",
@@ -434,7 +410,8 @@
       "rewards": {
         "xp": 25,
         "gold": 12
-      }
+      },
+      "template": "board-quest"
     },
     {
       "id": "l-zertifikat",
@@ -444,10 +421,7 @@
       "difficulty": "advanced",
       "category": "learning",
       "flavor": "Ein Siegel beweist nicht Wissen. Es beweist Ausdauer. Und dass man Formulare ausfüllen kann. Die Gilde ist da sehr gründlich.",
-      "rewards": {
-        "xp": 40,
-        "gold": 25
-      }
+      "template": "board-quest"
     },
     {
       "id": "l-sprache",
@@ -460,7 +434,8 @@
       "rewards": {
         "xp": 20,
         "gold": 10
-      }
+      },
+      "template": "board-quest"
     },
     {
       "id": "l-code-kata",
@@ -473,7 +448,8 @@
       "rewards": {
         "xp": 30,
         "gold": 15
-      }
+      },
+      "template": "board-quest"
     },
     {
       "id": "l-news",
@@ -483,10 +459,7 @@
       "difficulty": "starter",
       "category": "learning",
       "flavor": "Die Wahrheit versteckt sich nie in der Überschrift. Alter Henrik liest drei Zeitungen am Tag. Alle von letzter Woche. Er sagt, erst mit Abstand erkennt man die Muster.",
-      "rewards": {
-        "xp": 15,
-        "gold": 8
-      }
+      "template": "board-quest"
     },
     {
       "id": "l-notizen",
@@ -499,7 +472,8 @@
       "rewards": {
         "xp": 20,
         "gold": 10
-      }
+      },
+      "template": "board-quest"
     },
     {
       "id": "l-erklaeren",
@@ -512,7 +486,8 @@
       "rewards": {
         "xp": 35,
         "gold": 20
-      }
+      },
+      "template": "board-quest"
     },
     {
       "id": "s-freund-anrufen",
@@ -522,10 +497,7 @@
       "difficulty": "intermediate",
       "category": "social",
       "flavor": "Freundschaften sind wie Feuer. Man muss sie füttern oder sie erlöschen. Finnegan hat das mal in einem Lied verarbeitet. Es waren sechs Strophen. Alle traurig. Dann hat er angerufen.",
-      "rewards": {
-        "xp": 25,
-        "gold": 15
-      }
+      "template": "board-quest"
     },
     {
       "id": "s-gemeinsam-essen",
@@ -538,7 +510,8 @@
       "rewards": {
         "xp": 20,
         "gold": 12
-      }
+      },
+      "template": "board-quest"
     },
     {
       "id": "s-hilfe",
@@ -551,7 +524,8 @@
       "rewards": {
         "xp": 20,
         "gold": 10
-      }
+      },
+      "template": "board-quest"
     },
     {
       "id": "s-nachricht",
@@ -561,10 +535,7 @@
       "difficulty": "starter",
       "category": "social",
       "flavor": "Manchmal braucht jemand nur einen einzigen Satz um den Tag zu überstehen. Lumi leuchtet heller wenn jemand lächelt. Das ist keine Metapher.",
-      "rewards": {
-        "xp": 15,
-        "gold": 8
-      }
+      "template": "board-quest"
     },
     {
       "id": "s-spaziergang-date",
@@ -575,10 +546,7 @@
       "category": "social",
       "flavor": "Gemeinsame Schritte wiegen schwerer als gemeinsame Worte. Der Pfad durch den Nebelhain ist am schönsten zu zweit. Auch wenn man sich verläuft. Besonders dann.",
       "flavorText": "Gemeinsame Schritte wiegen schwerer als gemeinsame Worte. Der Pfad durch den Nebelhain ist am schönsten zu zweit. Auch wenn man sich verläuft. Besonders dann.",
-      "rewards": {
-        "xp": 25,
-        "gold": 15
-      }
+      "template": "board-quest"
     },
     {
       "id": "s-feedback",
@@ -591,7 +559,8 @@
       "rewards": {
         "xp": 30,
         "gold": 18
-      }
+      },
+      "template": "board-quest"
     },
     {
       "id": "s-familie",
@@ -604,7 +573,8 @@
       "rewards": {
         "xp": 20,
         "gold": 10
-      }
+      },
+      "template": "board-quest"
     },
     {
       "id": "s-netzwerken",
@@ -614,10 +584,7 @@
       "difficulty": "intermediate",
       "category": "social",
       "flavor": "Jeder Fremde ist ein Buch das du noch nicht aufgeschlagen hast. Karim hat so sein halbes Imperium aufgebaut. Die andere Hälfte durch hartnäckiges Feilschen.",
-      "rewards": {
-        "xp": 25,
-        "gold": 15
-      }
+      "template": "board-quest"
     },
     {
       "id": "b-deep-work",
@@ -627,10 +594,7 @@
       "difficulty": "expert",
       "category": "boss",
       "flavor": "Die größten Schlachten werden in der Stille gewonnen. Stärke vor Schwäche. Reise vor Ziel. Und vier Stunden Fokus vor allem anderen.",
-      "rewards": {
-        "xp": 60,
-        "gold": 40
-      }
+      "template": "board-quest"
     },
     {
       "id": "b-comfort-zone",
@@ -643,7 +607,8 @@
       "rewards": {
         "xp": 50,
         "gold": 35
-      }
+      },
+      "template": "board-quest"
     },
     {
       "id": "b-projekt",
@@ -656,7 +621,8 @@
       "rewards": {
         "xp": 55,
         "gold": 35
-      }
+      },
+      "template": "board-quest"
     }
   ]
 }

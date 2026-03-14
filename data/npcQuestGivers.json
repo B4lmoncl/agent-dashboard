@@ -18,79 +18,97 @@
       "questChains": [
         [
           {
+            "template": "npc-quest",
             "title": "Oma Ilses Kekse",
-            "description": "Oma Ilse hat Kekse gebacken! Bring sie ihrem Enkel. (Mach einen 20-Minuten Spaziergang)",
             "type": "social",
             "priority": "medium",
-            "flavorText": "\"Meine Kekse sind das Beste in der ganzen Stadt, Kindchen!\" — Oma Ilse",
             "lore": "Quest von Oma Ilse · Kette 1/3 · 1/2",
             "rewards": {
               "xp": 25,
               "gold": 10
+            },
+            "vars": {
+              "quote": "Meine Kekse sind das Beste in der ganzen Stadt, Kindchen!",
+              "task": "Oma Ilse hat Kekse gebacken! Bring sie ihrem Enkel.",
+              "realWorldTask": "Mach einen 20-Minuten Spaziergang",
+              "difficulty": "medium"
             }
           },
           {
+            "template": "npc-quest",
             "title": "Oma Ilses Geschichten",
-            "description": "Oma Ilse erzählt von früher. Du hörst zu, weil du nett bist. (Informiere dich 20 Minuten über ein Geschichtsthema deiner Wahl)",
             "type": "personal",
             "priority": "low",
-            "flavorText": "\"Weißt du, früher war alles anders — aber manche Dinge waren besser.\" — Oma Ilse",
             "lore": "Quest von Oma Ilse · Kette 1/3 · 2/2",
             "rewards": {
               "xp": 30,
               "gold": 15
+            },
+            "vars": {
+              "quote": "Weißt du, früher war alles anders — aber manche Dinge waren besser.",
+              "task": "Oma Ilse erzählt von früher. Du hörst zu, weil du nett bist.",
+              "realWorldTask": "Informiere dich 20 Minuten über ein Geschichtsthema deiner Wahl",
+              "difficulty": "medium"
             }
           }
         ],
         [
           {
+            "template": "npc-quest",
             "title": "Oma Ilses Rezept",
-            "description": "Oma Ilse möchte ein altes Familienrezept weitergeben. (Koche heute etwas von Grund auf — kein Fertiggericht!)",
             "type": "personal",
             "priority": "low",
-            "flavorText": "\"Dieses Rezept hab ich von meiner Großmutter — und jetzt geb ich es dir weiter.\" — Oma Ilse",
             "lore": "Quest von Oma Ilse · Kette 2/3 · 1/2",
-            "rewards": {
-              "xp": 20,
-              "gold": 10
+            "vars": {
+              "quote": "Dieses Rezept hab ich von meiner Großmutter — und jetzt geb ich es dir weiter.",
+              "task": "Oma Ilse möchte ein altes Familienrezept weitergeben.",
+              "realWorldTask": "Koche heute etwas von Grund auf — kein Fertiggericht!",
+              "difficulty": "easy"
             }
           },
           {
+            "template": "npc-quest",
             "title": "Frühjahrsputz",
-            "description": "'Ein aufgeräumtes Heim, ein aufgeräumter Geist', sagt Oma Ilse. (Räume einen Bereich deiner Wohnung gründlich auf — 20 Minuten)",
             "type": "personal",
             "priority": "medium",
-            "flavorText": "\"Ein sauberes Heim ist ein glückliches Heim, mein Kind.\" — Oma Ilse",
             "lore": "Quest von Oma Ilse · Kette 2/3 · 2/2",
             "rewards": {
               "xp": 30,
               "gold": 15
+            },
+            "vars": {
+              "quote": "Ein sauberes Heim ist ein glückliches Heim, mein Kind.",
+              "task": "'Ein aufgeräumtes Heim, ein aufgeräumter Geist', sagt Oma Ilse.",
+              "realWorldTask": "Räume einen Bereich deiner Wohnung gründlich auf — 20 Minuten",
+              "difficulty": "medium"
             }
           }
         ],
         [
           {
+            "template": "npc-quest",
             "title": "Omas Garten",
-            "description": "Oma Ilse zeigt dir ihre Lieblingsblumen. (Geh heute in einen Park oder Garten und beobachte die Natur für 15 Minuten)",
             "type": "fitness",
             "priority": "low",
-            "flavorText": "\"Sieh nur, wie die Rosen blühen! Die Natur heilt jede Seele.\" — Oma Ilse",
             "lore": "Quest von Oma Ilse · Kette 3/3 · 1/2",
-            "rewards": {
-              "xp": 20,
-              "gold": 10
+            "vars": {
+              "quote": "Sieh nur, wie die Rosen blühen! Die Natur heilt jede Seele.",
+              "task": "Oma Ilse zeigt dir ihre Lieblingsblumen.",
+              "realWorldTask": "Geh heute in einen Park oder Garten und beobachte die Natur für 15 Minuten",
+              "difficulty": "easy"
             }
           },
           {
+            "template": "npc-quest",
             "title": "Ein Brief an jemanden",
-            "description": "'Schreib einem Menschen dem du dankbar bist', sagt Oma Ilse. (Schreibe eine Nachricht oder einen Brief an jemanden den du schätzt)",
             "type": "social",
             "priority": "medium",
-            "flavorText": "\"Worte aus dem Herzen — die schönsten Geschenke kosten nichts.\" — Oma Ilse",
             "lore": "Quest von Oma Ilse · Kette 3/3 · 2/2",
-            "rewards": {
-              "xp": 35,
-              "gold": 20
+            "vars": {
+              "quote": "Worte aus dem Herzen — die schönsten Geschenke kosten nichts.",
+              "task": "'Schreib einem Menschen dem du dankbar bist', sagt Oma Ilse.",
+              "realWorldTask": "Schreibe eine Nachricht oder einen Brief an jemanden den du schätzt",
+              "difficulty": "hard"
             }
           }
         ]
@@ -129,103 +147,139 @@
       "questChains": [
         [
           {
+            "template": "npc-quest",
             "title": "Karims Lieferung",
-            "description": "Karim braucht Hilfe beim Sortieren seiner Waren. (Räume deinen Schreibtisch oder ein Regal auf)",
             "type": "personal",
             "priority": "low",
-            "flavorText": "\"Ordnung ist das halbe Leben — und für einen Händler ist sie alles.\" — Karim",
             "lore": "Quest von Karim der Wanderhändler · Kette 1/3 · 1/3",
             "rewards": {
               "xp": 20,
               "gold": 25
+            },
+            "vars": {
+              "quote": "Ordnung ist das halbe Leben — und für einen Händler ist sie alles.",
+              "task": "Karim braucht Hilfe beim Sortieren seiner Waren.",
+              "realWorldTask": "Räume deinen Schreibtisch oder ein Regal auf",
+              "difficulty": "easy"
             }
           },
           {
+            "template": "npc-quest",
             "title": "Karims Geheimnis",
-            "description": "Karim erzählt von einer fernen Stadt. (Recherchiere 15 Minuten über eine Stadt die du noch nie besucht hast)",
             "type": "personal",
             "priority": "low",
-            "flavorText": "\"Ich habe Städte gesehen, die du dir nicht vorstellen kannst — lass mich dir erzählen...\" — Karim",
             "lore": "Quest von Karim der Wanderhändler · Kette 1/3 · 2/3",
             "rewards": {
               "xp": 25,
               "gold": 20
+            },
+            "vars": {
+              "quote": "Ich habe Städte gesehen, die du dir nicht vorstellen kannst — lass mich dir erzählen...",
+              "task": "Karim erzählt von einer fernen Stadt.",
+              "realWorldTask": "Recherchiere 15 Minuten über eine Stadt die du noch nie besucht hast",
+              "difficulty": "medium"
             }
           },
           {
+            "template": "npc-quest",
             "title": "Ein fairer Handel",
-            "description": "Karim bietet einen Tausch an — hilf einem Freund oder Kollegen bei etwas. (Tu jemandem einen Gefallen)",
             "type": "social",
             "priority": "medium",
-            "flavorText": "\"Ein fairer Tausch lässt beide Seiten lächeln. Das ist das Geheimnis des Handels.\" — Karim",
             "lore": "Quest von Karim der Wanderhändler · Kette 1/3 · 3/3",
             "rewards": {
               "xp": 35,
               "gold": 15
+            },
+            "vars": {
+              "quote": "Ein fairer Tausch lässt beide Seiten lächeln. Das ist das Geheimnis des Handels.",
+              "task": "Karim bietet einen Tausch an — hilf einem Freund oder Kollegen bei etwas.",
+              "realWorldTask": "Tu jemandem einen Gefallen",
+              "difficulty": "hard"
             }
           }
         ],
         [
           {
+            "template": "npc-quest",
             "title": "Marktanalyse",
-            "description": "Karim sagt: 'Wer den Markt kennt, gewinnt.' (Vergleiche heute Preise oder Optionen für etwas das du kaufen willst — 15 Minuten Recherche)",
             "type": "learning",
             "priority": "low",
-            "flavorText": "\"Wissen ist die wertvollste Ware die ich kenne — und sie ist kostenlos.\" — Karim",
             "lore": "Quest von Karim der Wanderhändler · Kette 2/3 · 1/2",
             "rewards": {
               "xp": 20,
               "gold": 25
+            },
+            "vars": {
+              "quote": "Wissen ist die wertvollste Ware die ich kenne — und sie ist kostenlos.",
+              "task": "Karim sagt: 'Wer den Markt kennt, gewinnt.'",
+              "realWorldTask": "Vergleiche heute Preise oder Optionen für etwas das du kaufen willst — 15 Minuten Recherche",
+              "difficulty": "easy"
             }
           },
           {
+            "template": "npc-quest",
             "title": "Die Handelsroute",
-            "description": "Karim plant seine nächste Reise. (Plane etwas — eine Aufgabe, ein Projekt, einen Ausflug — und schreib es auf)",
             "type": "personal",
             "priority": "medium",
-            "flavorText": "\"Jede große Reise beginnt mit einem einzigen Plan auf Pergament.\" — Karim",
             "lore": "Quest von Karim der Wanderhändler · Kette 2/3 · 2/2",
-            "rewards": {
-              "xp": 35,
-              "gold": 20
+            "vars": {
+              "quote": "Jede große Reise beginnt mit einem einzigen Plan auf Pergament.",
+              "task": "Karim plant seine nächste Reise.",
+              "realWorldTask": "Plane etwas — eine Aufgabe, ein Projekt, einen Ausflug — und schreib es auf",
+              "difficulty": "hard"
             }
           }
         ],
         [
           {
+            "template": "npc-quest",
             "title": "Kulturen der Welt",
-            "description": "Karim hat viele Länder bereist. (Lerne 20 Minuten über eine andere Kultur — Essen, Sprache, Traditionen)",
             "type": "learning",
             "priority": "low",
-            "flavorText": "\"Ich habe in hundert Städten gegessen — jede Küche erzählt eine Geschichte.\" — Karim",
             "lore": "Quest von Karim der Wanderhändler · Kette 3/3 · 1/3",
             "rewards": {
               "xp": 25,
               "gold": 20
+            },
+            "vars": {
+              "quote": "Ich habe in hundert Städten gegessen — jede Küche erzählt eine Geschichte.",
+              "task": "Karim hat viele Länder bereist.",
+              "realWorldTask": "Lerne 20 Minuten über eine andere Kultur — Essen, Sprache, Traditionen",
+              "difficulty": "medium"
             }
           },
           {
+            "template": "npc-quest",
             "title": "Das Angebot",
-            "description": "'Ein guter Händler kennt seinen Wert.' (Erledige heute eine Aufgabe die du schon lange aufgeschoben hast)",
             "type": "personal",
             "priority": "medium",
-            "flavorText": "\"Aufgeschoben ist nicht aufgehoben — aber irgendwann wird die Schuld fällig.\" — Karim",
             "lore": "Quest von Karim der Wanderhändler · Kette 3/3 · 2/3",
             "rewards": {
               "xp": 30,
               "gold": 25
+            },
+            "vars": {
+              "quote": "Aufgeschoben ist nicht aufgehoben — aber irgendwann wird die Schuld fällig.",
+              "task": "'Ein guter Händler kennt seinen Wert.'",
+              "realWorldTask": "Erledige heute eine Aufgabe die du schon lange aufgeschoben hast",
+              "difficulty": "medium"
             }
           },
           {
+            "template": "npc-quest",
             "title": "Das Geschenk",
-            "description": "Karim verschenkt etwas aus seiner Sammlung. (Gib heute jemandem etwas — Zeit, Hilfe, oder ein kleines Geschenk)",
             "type": "social",
             "priority": "medium",
-            "flavorText": "\"Das wertvollste Gut ist das, das du anderen gibst. Ich habe das auf meinen Reisen gelernt.\" — Karim",
             "lore": "Quest von Karim der Wanderhändler · Kette 3/3 · 3/3",
             "rewards": {
               "xp": 35,
               "gold": 15
+            },
+            "vars": {
+              "quote": "Das wertvollste Gut ist das, das du anderen gibst. Ich habe das auf meinen Reisen gelernt.",
+              "task": "Karim verschenkt etwas aus seiner Sammlung.",
+              "realWorldTask": "Gib heute jemandem etwas — Zeit, Hilfe, oder ein kleines Geschenk",
+              "difficulty": "hard"
             }
           }
         ]
@@ -264,103 +318,135 @@
       "questChains": [
         [
           {
+            "template": "npc-quest",
             "title": "Die erste Lektion",
-            "description": "Meister Tanaka sagt: 'Zuerst lernst du Geduld.' (Meditiere oder stretche 10 Minuten)",
             "type": "fitness",
             "priority": "low",
-            "flavorText": "\"Der Geist, der nicht zur Ruhe kommt, kann keine Stärke entwickeln.\" — Meister Tanaka",
             "lore": "Quest von Meister Tanaka · Kette 1/3 · 1/3",
-            "rewards": {
-              "xp": 20,
-              "gold": 10
+            "vars": {
+              "quote": "Der Geist, der nicht zur Ruhe kommt, kann keine Stärke entwickeln.",
+              "task": "Meister Tanaka sagt: 'Zuerst lernst du Geduld.'",
+              "realWorldTask": "Meditiere oder stretche 10 Minuten",
+              "difficulty": "easy"
             }
           },
           {
+            "template": "npc-quest",
             "title": "Die Prüfung des Körpers",
-            "description": "'Stärke kommt von Disziplin, nicht von Wünschen.' (Mach ein 30-Minuten Workout)",
             "type": "fitness",
             "priority": "medium",
-            "flavorText": "\"Der Körper ist das Werkzeug des Geistes. Schärfe es täglich.\" — Meister Tanaka",
             "lore": "Quest von Meister Tanaka · Kette 1/3 · 2/3",
             "rewards": {
               "xp": 35,
               "gold": 15
+            },
+            "vars": {
+              "quote": "Der Körper ist das Werkzeug des Geistes. Schärfe es täglich.",
+              "task": "'Stärke kommt von Disziplin, nicht von Wünschen.'",
+              "realWorldTask": "Mach ein 30-Minuten Workout",
+              "difficulty": "hard"
             }
           },
           {
+            "template": "npc-quest",
             "title": "Die Prüfung des Geistes",
-            "description": "'Wahrer Kampf findet im Kopf statt.' (Lerne 30 Minuten etwas Neues — egal was)",
             "type": "learning",
             "priority": "medium",
-            "flavorText": "\"Wer nur den Körper trainiert, hat die Hälfte vergessen. Lerne, was du nicht kennst.\" — Meister Tanaka",
             "lore": "Quest von Meister Tanaka · Kette 1/3 · 3/3",
             "rewards": {
               "xp": 35,
               "gold": 15
+            },
+            "vars": {
+              "quote": "Wer nur den Körper trainiert, hat die Hälfte vergessen. Lerne, was du nicht kennst.",
+              "task": "'Wahrer Kampf findet im Kopf statt.'",
+              "realWorldTask": "Lerne 30 Minuten etwas Neues — egal was",
+              "difficulty": "hard"
             }
           }
         ],
         [
           {
+            "template": "npc-quest",
             "title": "Der Atem",
-            "description": "Tanaka sagt: 'Kontrolle beginnt beim Atem.' (Übe 10 Minuten Atemübungen oder Box-Breathing)",
             "type": "fitness",
             "priority": "low",
-            "flavorText": "\"Beherrsche den Atem — und du beherrschst den Moment.\" — Meister Tanaka",
             "lore": "Quest von Meister Tanaka · Kette 2/3 · 1/3",
-            "rewards": {
-              "xp": 20,
-              "gold": 10
+            "vars": {
+              "quote": "Beherrsche den Atem — und du beherrschst den Moment.",
+              "task": "Tanaka sagt: 'Kontrolle beginnt beim Atem.'",
+              "realWorldTask": "Übe 10 Minuten Atemübungen oder Box-Breathing",
+              "difficulty": "easy"
             }
           },
           {
+            "template": "npc-quest",
             "title": "Die Balance",
-            "description": "'Gleichgewicht ist die Basis aller Stärke.' (Mach eine 20-Minuten Yoga- oder Gleichgewichtsübung)",
             "type": "fitness",
             "priority": "medium",
-            "flavorText": "\"Ein Baum ohne Wurzeln fällt beim ersten Sturm. Finde dein Gleichgewicht.\" — Meister Tanaka",
             "lore": "Quest von Meister Tanaka · Kette 2/3 · 2/3",
             "rewards": {
               "xp": 30,
               "gold": 15
+            },
+            "vars": {
+              "quote": "Ein Baum ohne Wurzeln fällt beim ersten Sturm. Finde dein Gleichgewicht.",
+              "task": "'Gleichgewicht ist die Basis aller Stärke.'",
+              "realWorldTask": "Mach eine 20-Minuten Yoga- oder Gleichgewichtsübung",
+              "difficulty": "medium"
             }
           },
           {
+            "template": "npc-quest",
             "title": "Der Fokus",
-            "description": "'Lenke all deine Kraft auf einen Punkt.' (Arbeite 45 Minuten ohne Unterbrechung an einer wichtigen Aufgabe)",
             "type": "personal",
             "priority": "high",
-            "flavorText": "\"Tausend halbherzige Schläge brechen keinen Stein. Ein einziger gezielter schon.\" — Meister Tanaka",
             "lore": "Quest von Meister Tanaka · Kette 2/3 · 3/3",
             "rewards": {
               "xp": 45,
               "gold": 20
+            },
+            "vars": {
+              "quote": "Tausend halbherzige Schläge brechen keinen Stein. Ein einziger gezielter schon.",
+              "task": "'Lenke all deine Kraft auf einen Punkt.'",
+              "realWorldTask": "Arbeite 45 Minuten ohne Unterbrechung an einer wichtigen Aufgabe",
+              "difficulty": "epic"
             }
           }
         ],
         [
           {
+            "template": "npc-quest",
             "title": "Der frühe Vogel",
-            "description": "Tanaka steht immer mit der Sonne auf. (Stehe morgen früh auf und beginne den Tag mit Bewegung — 15 Minuten)",
             "type": "fitness",
             "priority": "medium",
-            "flavorText": "\"Der Morgen gehört dem, der ihn verdient hat. Steh auf, bevor die Welt wach ist.\" — Meister Tanaka",
             "lore": "Quest von Meister Tanaka · Kette 3/3 · 1/2",
             "rewards": {
               "xp": 25,
               "gold": 10
+            },
+            "vars": {
+              "quote": "Der Morgen gehört dem, der ihn verdient hat. Steh auf, bevor die Welt wach ist.",
+              "task": "Tanaka steht immer mit der Sonne auf.",
+              "realWorldTask": "Stehe morgen früh auf und beginne den Tag mit Bewegung — 15 Minuten",
+              "difficulty": "medium"
             }
           },
           {
+            "template": "npc-quest",
             "title": "Die Technik",
-            "description": "'Wiederholung ist der Meister.' (Übe eine Fähigkeit bewusst — 30 Minuten intensives Üben)",
             "type": "learning",
             "priority": "medium",
-            "flavorText": "\"Ich habe dieselbe Bewegung zehntausend Mal gemacht — und lerne sie noch immer.\" — Meister Tanaka",
             "lore": "Quest von Meister Tanaka · Kette 3/3 · 2/2",
             "rewards": {
               "xp": 35,
               "gold": 15
+            },
+            "vars": {
+              "quote": "Ich habe dieselbe Bewegung zehntausend Mal gemacht — und lerne sie noch immer.",
+              "task": "'Wiederholung ist der Meister.'",
+              "realWorldTask": "Übe eine Fähigkeit bewusst — 30 Minuten intensives Üben",
+              "difficulty": "hard"
             }
           }
         ]
@@ -399,91 +485,102 @@
       "questChains": [
         [
           {
+            "template": "npc-quest",
             "title": "Kräuter sammeln",
-            "description": "Mirael braucht frische Zutaten. (Geh 15 Minuten an die frische Luft — Wald, Park oder Garten)",
             "type": "fitness",
             "priority": "low",
-            "flavorText": "\"Die Erde spricht zu denen, die zuhören. Geh hinaus und lausche.\" — Mirael",
             "lore": "Quest von Mirael die Waldwächterin · Kette 1/3 · 1/2",
-            "rewards": {
-              "xp": 20,
-              "gold": 10
+            "vars": {
+              "quote": "Die Erde spricht zu denen, die zuhören. Geh hinaus und lausche.",
+              "task": "Mirael braucht frische Zutaten.",
+              "realWorldTask": "Geh 15 Minuten an die frische Luft — Wald, Park oder Garten",
+              "difficulty": "easy"
             }
           },
           {
+            "template": "npc-quest",
             "title": "Der Heiltrank",
-            "description": "Mirael zeigt dir ein altes Rezept. (Koche dir einen gesunden Tee oder Smoothie)",
             "type": "personal",
             "priority": "low",
-            "flavorText": "\"Jede Pflanze trägt eine Medizin in sich — man muss nur wissen, wie man fragt.\" — Mirael",
             "lore": "Quest von Mirael die Waldwächterin · Kette 1/3 · 2/2",
-            "rewards": {
-              "xp": 25,
-              "gold": 15
+            "vars": {
+              "quote": "Jede Pflanze trägt eine Medizin in sich — man muss nur wissen, wie man fragt.",
+              "task": "Mirael zeigt dir ein altes Rezept.",
+              "realWorldTask": "Koche dir einen gesunden Tee oder Smoothie",
+              "difficulty": "medium"
             }
           }
         ],
         [
           {
+            "template": "npc-quest",
             "title": "Mondlicht-Meditation",
-            "description": "Mirael flüstert: 'Der Mond heilt was das Licht nicht kann.' (Meditiere heute Abend 15 Minuten im Dunkeln oder bei Kerzenlicht)",
             "type": "personal",
             "priority": "low",
-            "flavorText": "\"In der Stille der Nacht findest du, was der Tag dir verbirgt.\" — Mirael",
             "lore": "Quest von Mirael die Waldwächterin · Kette 2/3 · 1/3",
-            "rewards": {
-              "xp": 20,
-              "gold": 10
+            "vars": {
+              "quote": "In der Stille der Nacht findest du, was der Tag dir verbirgt.",
+              "task": "Mirael flüstert: 'Der Mond heilt was das Licht nicht kann.'",
+              "realWorldTask": "Meditiere heute Abend 15 Minuten im Dunkeln oder bei Kerzenlicht",
+              "difficulty": "easy"
             }
           },
           {
+            "template": "npc-quest",
             "title": "Die verborgenen Zutaten",
-            "description": "'Manche Heilmittel verstecken sich.' (Recherchiere 20 Minuten über Naturheilkunde oder Ernährung)",
             "type": "learning",
             "priority": "low",
-            "flavorText": "\"Das wertvollste Kraut wächst nicht im Garten — es wächst dort, wo niemand sucht.\" — Mirael",
             "lore": "Quest von Mirael die Waldwächterin · Kette 2/3 · 2/3",
-            "rewards": {
-              "xp": 25,
-              "gold": 15
+            "vars": {
+              "quote": "Das wertvollste Kraut wächst nicht im Garten — es wächst dort, wo niemand sucht.",
+              "task": "'Manche Heilmittel verstecken sich.'",
+              "realWorldTask": "Recherchiere 20 Minuten über Naturheilkunde oder Ernährung",
+              "difficulty": "medium"
             }
           },
           {
+            "template": "npc-quest",
             "title": "Das Ritual",
-            "description": "Mirael übergibt dir eine alte Praktik. (Etabliere eine neue gesunde Gewohnheit für heute — Trinken, Schlafen, Bewegung)",
             "type": "personal",
             "priority": "medium",
-            "flavorText": "\"Ein Ritual ist kein Zauber — es ist Disziplin, die wie Magie wirkt.\" — Mirael",
             "lore": "Quest von Mirael die Waldwächterin · Kette 2/3 · 3/3",
-            "rewards": {
-              "xp": 35,
-              "gold": 20
+            "vars": {
+              "quote": "Ein Ritual ist kein Zauber — es ist Disziplin, die wie Magie wirkt.",
+              "task": "Mirael übergibt dir eine alte Praktik.",
+              "realWorldTask": "Etabliere eine neue gesunde Gewohnheit für heute — Trinken, Schlafen, Bewegung",
+              "difficulty": "hard"
             }
           }
         ],
         [
           {
+            "template": "npc-quest",
             "title": "Baumgespräch",
-            "description": "'Hör dem Wald zu', sagt Mirael. (Verbring 20 Minuten draußen ohne Handy — einfach da sein)",
             "type": "fitness",
             "priority": "low",
-            "flavorText": "\"Ein alter Baum hat mehr gesehen als du dir vorstellen kannst. Sitz bei ihm und schweig.\" — Mirael",
             "lore": "Quest von Mirael die Waldwächterin · Kette 3/3 · 1/2",
-            "rewards": {
-              "xp": 20,
-              "gold": 10
+            "vars": {
+              "quote": "Ein alter Baum hat mehr gesehen als du dir vorstellen kannst. Sitz bei ihm und schweig.",
+              "task": "'Hör dem Wald zu', sagt Mirael.",
+              "realWorldTask": "Verbring 20 Minuten draußen ohne Handy — einfach da sein",
+              "difficulty": "easy"
             }
           },
           {
+            "template": "npc-quest",
             "title": "Körperpflege",
-            "description": "'Der Körper ist dein Tempel.' (Schlafe heute mindestens 7 Stunden oder mach eine Entspannungsübung vor dem Schlafen)",
             "type": "personal",
             "priority": "medium",
-            "flavorText": "\"Wer seinen Körper nicht pflegt, vergeudet das kostbarste Gefäß, das ihm gegeben wurde.\" — Mirael",
             "lore": "Quest von Mirael die Waldwächterin · Kette 3/3 · 2/2",
             "rewards": {
               "xp": 30,
               "gold": 15
+            },
+            "vars": {
+              "quote": "Wer seinen Körper nicht pflegt, vergeudet das kostbarste Gefäß, das ihm gegeben wurde.",
+              "task": "'Der Körper ist dein Tempel.'",
+              "realWorldTask": "Schlafe heute mindestens 7 Stunden oder mach eine Entspannungsübung vor dem Schlafen",
+              "difficulty": "medium"
             }
           }
         ]
@@ -522,103 +619,123 @@
       "questChains": [
         [
           {
+            "template": "npc-quest",
             "title": "Das Lied der Freundschaft",
-            "description": "Finnegan sagt: 'Musik verbindet!' (Schick einem Freund ein Lied das du magst)",
             "type": "social",
             "priority": "low",
-            "flavorText": "\"Ein Lied ist ein Geschenk, das man teilen muss — sonst verliert es seinen Klang!\" — Finnegan",
             "lore": "Quest von Finnegan der Barde · Kette 1/3 · 1/3",
-            "rewards": {
-              "xp": 20,
-              "gold": 10
+            "vars": {
+              "quote": "Ein Lied ist ein Geschenk, das man teilen muss — sonst verliert es seinen Klang!",
+              "task": "Finnegan sagt: 'Musik verbindet!'",
+              "realWorldTask": "Schick einem Freund ein Lied das du magst",
+              "difficulty": "easy"
             }
           },
           {
+            "template": "npc-quest",
             "title": "Die eigene Geschichte",
-            "description": "'Jeder hat eine Geschichte die erzählt werden will.' (Schreib 10 Minuten — Tagebuch, kreativ, egal was)",
             "type": "personal",
             "priority": "low",
-            "flavorText": "\"Ich habe tausend Geschichten gehört — aber deine kenne ich noch nicht. Schreib sie auf!\" — Finnegan",
             "lore": "Quest von Finnegan der Barde · Kette 1/3 · 2/3",
-            "rewards": {
-              "xp": 25,
-              "gold": 15
+            "vars": {
+              "quote": "Ich habe tausend Geschichten gehört — aber deine kenne ich noch nicht. Schreib sie auf!",
+              "task": "'Jeder hat eine Geschichte die erzählt werden will.'",
+              "realWorldTask": "Schreib 10 Minuten — Tagebuch, kreativ, egal was",
+              "difficulty": "medium"
             }
           },
           {
+            "template": "npc-quest",
             "title": "Der große Auftritt",
-            "description": "'Trau dich!' (Tu heute etwas außerhalb deiner Komfortzone — egal wie klein)",
             "type": "social",
             "priority": "medium",
-            "flavorText": "\"Das Publikum wartet! Und weißt du was? Es ist auf deiner Seite — man muss nur anfangen.\" — Finnegan",
             "lore": "Quest von Finnegan der Barde · Kette 1/3 · 3/3",
             "rewards": {
               "xp": 40,
               "gold": 20
+            },
+            "vars": {
+              "quote": "Das Publikum wartet! Und weißt du was? Es ist auf deiner Seite — man muss nur anfangen.",
+              "task": "'Trau dich!'",
+              "realWorldTask": "Tu heute etwas außerhalb deiner Komfortzone — egal wie klein",
+              "difficulty": "hard"
             }
           }
         ],
         [
           {
+            "template": "npc-quest",
             "title": "Die Melodie",
-            "description": "Finnegan lehrt dich einen Akkord. (Höre heute ein Album bewusst durch — kein Multitasking, nur Musik)",
             "type": "personal",
             "priority": "low",
-            "flavorText": "\"Musik, die man wirklich hört, verändert etwas in einem. Probier es aus!\" — Finnegan",
             "lore": "Quest von Finnegan der Barde · Kette 2/3 · 1/2",
-            "rewards": {
-              "xp": 20,
-              "gold": 10
+            "vars": {
+              "quote": "Musik, die man wirklich hört, verändert etwas in einem. Probier es aus!",
+              "task": "Finnegan lehrt dich einen Akkord.",
+              "realWorldTask": "Höre heute ein Album bewusst durch — kein Multitasking, nur Musik",
+              "difficulty": "easy"
             }
           },
           {
+            "template": "npc-quest",
             "title": "Das Gedicht",
-            "description": "'Worte sind Magie', flüstert Finnegan. (Schreibe ein kurzes Gedicht oder einen kreativen Text — 5 Strophen reichen)",
             "type": "personal",
             "priority": "low",
-            "flavorText": "\"Jedes Wort das du schreibst, bleibt irgendwo im Universum — schreib also schöne Worte!\" — Finnegan",
             "lore": "Quest von Finnegan der Barde · Kette 2/3 · 2/2",
             "rewards": {
               "xp": 30,
               "gold": 15
+            },
+            "vars": {
+              "quote": "Jedes Wort das du schreibst, bleibt irgendwo im Universum — schreib also schöne Worte!",
+              "task": "'Worte sind Magie', flüstert Finnegan.",
+              "realWorldTask": "Schreibe ein kurzes Gedicht oder einen kreativen Text — 5 Strophen reichen",
+              "difficulty": "medium"
             }
           }
         ],
         [
           {
+            "template": "npc-quest",
             "title": "Der Zuhörer",
-            "description": "Finnegan sagt: 'Ein guter Barde hört zuerst zu.' (Ruf heute jemanden an den du lange nicht gesprochen hast)",
             "type": "social",
             "priority": "medium",
-            "flavorText": "\"Die besten Geschichten bekommt man nicht, wenn man redet — sondern wenn man zuhört.\" — Finnegan",
             "lore": "Quest von Finnegan der Barde · Kette 3/3 · 1/3",
-            "rewards": {
-              "xp": 25,
-              "gold": 15
+            "vars": {
+              "quote": "Die besten Geschichten bekommt man nicht, wenn man redet — sondern wenn man zuhört.",
+              "task": "Finnegan sagt: 'Ein guter Barde hört zuerst zu.'",
+              "realWorldTask": "Ruf heute jemanden an den du lange nicht gesprochen hast",
+              "difficulty": "medium"
             }
           },
           {
+            "template": "npc-quest",
             "title": "Die Inspiration",
-            "description": "'Kunst entsteht überall.' (Besuche heute etwas Inspirierendes — Museum, Konzert, Kunstwerk online, oder ein Buch)",
             "type": "learning",
             "priority": "low",
-            "flavorText": "\"Inspiration ist keine Laune — sie ist ein Muskel. Trainiere ihn täglich!\" — Finnegan",
             "lore": "Quest von Finnegan der Barde · Kette 3/3 · 2/3",
             "rewards": {
               "xp": 25,
               "gold": 10
+            },
+            "vars": {
+              "quote": "Inspiration ist keine Laune — sie ist ein Muskel. Trainiere ihn täglich!",
+              "task": "'Kunst entsteht überall.'",
+              "realWorldTask": "Besuche heute etwas Inspirierendes — Museum, Konzert, Kunstwerk online, oder ein Buch",
+              "difficulty": "medium"
             }
           },
           {
+            "template": "npc-quest",
             "title": "Das Finale",
-            "description": "Finnegans größte Show beginnt! (Teile heute etwas das du erschaffen hast — Code, Kunst, Kochen — mit jemandem)",
             "type": "social",
             "priority": "high",
-            "flavorText": "\"Und nun — das Finale! Zeig der Welt was du erschaffen hast. Sie wartet darauf!\" — Finnegan",
             "lore": "Quest von Finnegan der Barde · Kette 3/3 · 3/3",
-            "rewards": {
-              "xp": 45,
-              "gold": 25
+            "vars": {
+              "quote": "Und nun — das Finale! Zeig der Welt was du erschaffen hast. Sie wartet darauf!",
+              "task": "Finnegans größte Show beginnt!",
+              "realWorldTask": "Teile heute etwas das du erschaffen hast — Code, Kunst, Kochen — mit jemandem",
+              "difficulty": "epic"
             }
           }
         ]
@@ -652,23 +769,27 @@
       "questChains": [
         [
           {
+            "template": "npc-quest",
             "title": "Morgenmeditation",
-            "description": "Beginne den Tag mit 5 Minuten Stille.",
             "type": "personal",
             "flavorText": "Der erste Schritt zur Meisterschaft ist Stille.",
-            "rewards": {
-              "xp": 20,
-              "gold": 10
+            "description": "Beginne den Tag mit 5 Minuten Stille.",
+            "vars": {
+              "difficulty": "easy"
             }
           },
           {
+            "template": "npc-quest",
             "title": "Körperliche Disziplin",
-            "description": "30 Minuten fokussiertes Training.",
             "type": "fitness",
             "flavorText": "Der Körper ist der Tempel des Geistes.",
+            "description": "30 Minuten fokussiertes Training.",
             "rewards": {
               "xp": 30,
               "gold": 15
+            },
+            "vars": {
+              "difficulty": "medium"
             }
           }
         ]
@@ -702,23 +823,23 @@
       "questChains": [
         [
           {
+            "template": "npc-quest",
             "title": "Zutaten sammeln",
-            "description": "Finde und dokumentiere 3 neue Ressourcen.",
             "type": "learning",
             "flavorText": "Jede Zutat erzählt eine Geschichte.",
-            "rewards": {
-              "xp": 25,
-              "gold": 15
+            "description": "Finde und dokumentiere 3 neue Ressourcen.",
+            "vars": {
+              "difficulty": "medium"
             }
           },
           {
+            "template": "npc-quest",
             "title": "Das Experiment",
-            "description": "Probiere etwas Neues aus.",
             "type": "personal",
             "flavorText": "Fehler sind die besten Lehrer!",
-            "rewards": {
-              "xp": 35,
-              "gold": 20
+            "description": "Probiere etwas Neues aus.",
+            "vars": {
+              "difficulty": "hard"
             }
           }
         ]
@@ -752,23 +873,27 @@
       "questChains": [
         [
           {
+            "template": "npc-quest",
             "title": "Waldspaziergang",
-            "description": "20 Minuten draussen in der Natur verbringen.",
             "type": "fitness",
             "flavorText": "Die Natur heilt was der Verstand nicht kann.",
-            "rewards": {
-              "xp": 20,
-              "gold": 10
+            "description": "20 Minuten draussen in der Natur verbringen.",
+            "vars": {
+              "difficulty": "easy"
             }
           },
           {
+            "template": "npc-quest",
             "title": "Altes Wissen",
-            "description": "Lerne etwas über ein Thema das dich interessiert.",
             "type": "learning",
             "flavorText": "Wissen ist der Schatz der Alten.",
+            "description": "Lerne etwas über ein Thema das dich interessiert.",
             "rewards": {
               "xp": 30,
               "gold": 15
+            },
+            "vars": {
+              "difficulty": "medium"
             }
           }
         ]
@@ -802,23 +927,31 @@
       "questChains": [
         [
           {
+            "template": "npc-quest",
             "title": "Nachteulen-Ritual",
-            "description": "Erledige eine Aufgabe nach 20 Uhr.",
             "type": "personal",
             "flavorText": "Die besten Ideen kommen bei Mondschein.",
+            "description": "Erledige eine Aufgabe nach 20 Uhr.",
             "rewards": {
               "xp": 40,
               "gold": 25
+            },
+            "vars": {
+              "difficulty": "hard"
             }
           },
           {
+            "template": "npc-quest",
             "title": "Sternenbeobachtung",
-            "description": "Nimm dir 10 Minuten um nachzudenken.",
             "type": "personal",
             "flavorText": "In der Stille findest du Antworten.",
+            "description": "Nimm dir 10 Minuten um nachzudenken.",
             "rewards": {
               "xp": 30,
               "gold": 20
+            },
+            "vars": {
+              "difficulty": "medium"
             }
           }
         ]
@@ -852,23 +985,23 @@
       "questChains": [
         [
           {
+            "template": "npc-quest",
             "title": "Schwere Arbeit",
-            "description": "Erledige eine anspruchsvolle Aufgabe.",
             "type": "personal",
             "flavorText": "Stahl wird nur im Feuer gehaertet.",
-            "rewards": {
-              "xp": 35,
-              "gold": 20
+            "description": "Erledige eine anspruchsvolle Aufgabe.",
+            "vars": {
+              "difficulty": "hard"
             }
           },
           {
+            "template": "npc-quest",
             "title": "Meisterwerk",
-            "description": "Erstelle oder verbessere etwas.",
             "type": "personal",
             "flavorText": "Ein Meisterwerk braucht Schweiss und Geduld.",
-            "rewards": {
-              "xp": 45,
-              "gold": 25
+            "description": "Erstelle oder verbessere etwas.",
+            "vars": {
+              "difficulty": "epic"
             }
           }
         ]
