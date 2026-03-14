@@ -27,12 +27,12 @@ function getVaelSpeech(commitment: string, bloodPact: boolean): string {
 }
 
 const ANTI_RITUAL_MILESTONES = [
-  { days: 7,   badge: "×", label: "1 Woche clean!" },
-  { days: 14,  badge: "×", label: "2 Wochen stark!" },
-  { days: 21,  badge: "×", label: "21 Tage — The Habit Breaks!" },
-  { days: 30,  badge: "×", label: "1 Monat stark!" },
-  { days: 60,  badge: "×", label: "60 Tage — Diamond Will!" },
-  { days: 90,  badge: "×", label: "90 Tage — Unbreakable!" },
+  { days: 7,   badge: "Bronze",  label: "1 Woche beständig!" },
+  { days: 14,  badge: "Silber",  label: "2 Wochen stark!" },
+  { days: 21,  badge: "Gold",    label: "21 Tage — Die Gewohnheit bricht!" },
+  { days: 30,  badge: "Titan",   label: "1 Monat beständig!" },
+  { days: 60,  badge: "Diamond", label: "60 Tage — Diamantwille!" },
+  { days: 90,  badge: "Legend",  label: "90 Tage — Unerschütterlich!" },
 ];
 
 export function AntiRitualePanel({ playerName, reviewApiKey }: { playerName: string; reviewApiKey: string }) {
@@ -168,9 +168,9 @@ export function AntiRitualePanel({ playerName, reviewApiKey }: { playerName: str
             </div>
             <p className="text-xs mb-1.5" style={{ color: mood.color }}>{mood.msg}</p>
             <div className="flex items-center gap-3 text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>
-              <span className="font-bold" style={{ color: mood.color }}>{days} days clean</span>
-              {longestStreak > 0 && <span title="Longest streak" style={{ color: "rgba(245,158,11,0.5)" }}>Best: {longestStreak}</span>}
-              {nextMilestone && <span>→ {nextMilestone.badge} in {nextMilestone.days - days}d</span>}
+              <span className="font-bold" style={{ color: mood.color }}>{days} Tage beständig</span>
+              {longestStreak > 0 && <span title="Längste Serie" style={{ color: "rgba(245,158,11,0.5)" }}>Rekord: {longestStreak}</span>}
+              {nextMilestone && <span>→ {nextMilestone.label} in {nextMilestone.days - days}d</span>}
             </div>
             {nextMilestone && (
               <div className="mt-2">

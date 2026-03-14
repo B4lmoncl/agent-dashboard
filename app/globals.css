@@ -67,13 +67,18 @@ body {
 }
 
 .premium-stardust {
-  --glow-color: rgba(167, 139, 250, 0.7);
-  animation: premium-breathe 2.5s ease-in-out infinite;
+  --glow-color: rgba(167, 139, 250, 0.4);
+  animation: premium-breathe 4s ease-in-out infinite;
 }
 
 .premium-rune-shards {
   --glow-color: rgba(129, 140, 248, 0.7);
   animation: premium-breathe 2.5s ease-in-out infinite;
+}
+
+.vault-nav-glow {
+  --glow-color: rgba(167, 139, 250, 0.5);
+  animation: premium-breathe 3.5s ease-in-out infinite;
 }
 
 .gacha-card-epic {

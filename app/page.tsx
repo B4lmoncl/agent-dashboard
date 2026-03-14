@@ -1305,7 +1305,7 @@ export default function Dashboard() {
               }}
               {...(v.tutorialKey ? { "data-tutorial": v.tutorialKey } : {})}
             >
-              {"iconSrc" in v && v.iconSrc && <img src={v.iconSrc} alt="" width={24} height={24} style={{ imageRendering: "auto", opacity: dashView === v.key ? 1 : 0.5 }} onError={e => (e.currentTarget.style.display = "none")} />}
+              {"iconSrc" in v && v.iconSrc && <img src={v.iconSrc} alt="" width={24} height={24} className={v.key === "gacha" ? "vault-nav-glow" : ""} style={{ imageRendering: "auto", opacity: dashView === v.key ? 1 : 0.5 }} onError={e => (e.currentTarget.style.display = "none")} />}
               {v.label}
             </button>
             )
@@ -1764,7 +1764,7 @@ export default function Dashboard() {
                               {nextMilestone && (
                                 <div className="mt-2">
                                   <div className="flex items-center justify-between text-xs mb-1" style={{ color: "rgba(255,255,255,0.25)" }}>
-                                    <span>Nächstes Ziel: {nextMilestone.badge} {nextMilestone.label}</span>
+                                    <span>Nächstes Ziel in {nextMilestone.days - ritual.streak} Tagen: {nextMilestone.label}</span>
                                     <span>{ritual.streak}/{nextMilestone.days}</span>
                                   </div>
                                   <div className="h-1 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.08)" }}>
