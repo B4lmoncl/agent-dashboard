@@ -1251,7 +1251,7 @@ export default function Dashboard() {
                       style={{ background: currencyExpanded === c.key ? `${c.color}12` : "rgba(255,255,255,0.03)", border: `1px solid ${currencyExpanded === c.key ? c.color + "30" : "rgba(255,255,255,0.07)"}` }}
                       onClick={() => setCurrencyExpanded(currencyExpanded === c.key ? null : c.key)}
                     >
-                      <img src={c.iconSrc} alt="" width={16} height={16} style={{ imageRendering: "auto" }} onError={(e) => { e.currentTarget.style.display = "none"; }} />
+                      <img src={c.iconSrc} alt="" width={24} height={24} style={{ imageRendering: "pixelated" }} onError={(e) => { e.currentTarget.style.display = "none"; }} />
                       <div className="flex-1 min-w-0">
                         <p className="text-xs font-semibold" style={{ color: c.color }}>{c.name}</p>
                         <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>{c.desc}</p>
@@ -1460,7 +1460,7 @@ export default function Dashboard() {
           const playerQuestTypes = ["personal", "learning", "fitness", "social", "relationship-coop"];
           const playerVisibleOpen = applySort(applyFilter(quests.open.filter(q => playerQuestTypes.includes(q.type ?? ""))));
           const playerVisibleInProgress = applySort(applyFilter(quests.inProgress.filter(q => playerQuestTypes.includes(q.type ?? "") && !isCompanionQuest(q))));
-          // Cap open quests: filter by player level, exclude already claimed, then pick up to 6 (stable by date seed)
+          // Filter by player level, exclude already claimed
           const inProgressIds = new Set(playerVisibleInProgress.map(q => q.id));
           const levelFiltered = playerVisibleOpen.filter(q => {
             if (inProgressIds.has(q.id)) return false;
@@ -1472,17 +1472,8 @@ export default function Dashboard() {
             if (q.minLevel > playerLevelInfo.level + 3) return false;
             return true;
           });
-          const boardSeed = Math.floor(Date.now() / (24 * 3600 * 1000)); // changes daily
-          const boardOpen = applySort(levelFiltered.length <= 6 ? levelFiltered : (() => {
-            const arr = [...levelFiltered];
-            let s = boardSeed;
-            for (let i = arr.length - 1; i > 0; i--) {
-              s = (s * 1664525 + 1013904223) & 0xffffffff;
-              const j = Math.abs(s) % (i + 1);
-              [arr[i], arr[j]] = [arr[j], arr[i]];
-            }
-            return arr.slice(0, 6);
-          })());
+          // Show all quests from daily rotation (no frontend cap)
+          const boardOpen = applySort(levelFiltered);
           return (
             <div>
 
