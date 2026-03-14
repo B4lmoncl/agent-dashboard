@@ -672,7 +672,22 @@
             }
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "tomas-rosary",
+          "name": "Bruder Tomas' Rosenkranz",
+          "emoji": null,
+          "rarity": "rare",
+          "stats": {
+            "weisheit": 4,
+            "ausdauer": 2
+          },
+          "slot": "amulet",
+          "desc": "Jede Perle trägt ein Gebet. Beruhigt den Geist in stürmischen Zeiten."
+        }
+      }
     },
     {
       "id": "zara-funkenwind",
@@ -707,7 +722,22 @@
             }
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "zara-flask",
+          "name": "Zaras Experimentierkolben",
+          "emoji": null,
+          "rarity": "epic",
+          "stats": {
+            "intelligenz": 5,
+            "glueck": 3
+          },
+          "slot": "weapon",
+          "desc": "Brodelt in allen Farben. Manchmal explodiert er. Meistens absichtlich."
+        }
+      }
     },
     {
       "id": "alter-henrik",
@@ -742,7 +772,22 @@
             }
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "henrik-staff",
+          "name": "Henriks Wanderstab",
+          "emoji": null,
+          "rarity": "rare",
+          "stats": {
+            "weisheit": 5,
+            "ausdauer": 1
+          },
+          "slot": "weapon",
+          "desc": "Knorrig und zuverlässig, wie sein Besitzer. Hat mehr Wälder gesehen als du je wirst."
+        }
+      }
     },
     {
       "id": "lumi",
@@ -777,7 +822,22 @@
             }
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "lumi-lantern",
+          "name": "Lumis Glühwürmchen-Laterne",
+          "emoji": null,
+          "rarity": "rare",
+          "stats": {
+            "glueck": 4,
+            "charisma": 2
+          },
+          "slot": "amulet",
+          "desc": "Leuchtet sanft in der Dunkelheit. Die Glühwürmchen darin sind erstaunlich loyal."
+        }
+      }
     },
     {
       "id": "rogar-amboss",
@@ -812,7 +872,22 @@
             }
           }
         ]
-      ]
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "rogar-hammer",
+          "name": "Rogars Meisterhammer",
+          "emoji": null,
+          "rarity": "epic",
+          "stats": {
+            "staerke": 5,
+            "ausdauer": 3
+          },
+          "slot": "weapon",
+          "desc": "Geschmiedet im Herzen eines Vulkans. Oder so sagt Rogar zumindest."
+        }
+      }
     }
   ]
 }
