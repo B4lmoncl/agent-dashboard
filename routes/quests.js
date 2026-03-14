@@ -542,9 +542,11 @@ router.get('/api/quests', (req, res) => {
       }
     }
 
-    // Show ALL open quests — no pool filtering
-    // Daily rotation already controls how many quests exist (18/day)
-    const poolFilteredOpen = openPlayer;
+    // Per-player pool: only show quests from this player's generated pool
+    const playerGenIds = new Set(pp.generatedQuests || []);
+    const poolFilteredOpen = playerGenIds.size > 0
+      ? openPlayer.filter(q => playerGenIds.has(q.id))
+      : openPlayer;
 
     // Dev quest types use global status as-is
     return res.json({
