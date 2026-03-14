@@ -609,7 +609,7 @@
       "cooldownHours": 48,
       "departureDurationHours": 72,
       "maxChainsPerVisit": 1,
-      "greeting": "x Eine Geschichte für ein Lied, ein Lied für eine Geschichte! x",
+      "greeting": "Eine Geschichte für ein Lied, ein Lied für eine Geschichte!",
       "name": "Finnegan der Barde",
       "emoji": null,
       "title": "Wandernder Geschichtenerzähler",
@@ -774,7 +774,10 @@
             "type": "personal",
             "priority": "low",
             "lore": "Quest von Bruder Tomas · Kette 1/3 · 1/2",
-            "rewards": { "xp": 15, "gold": 10 },
+            "rewards": {
+              "xp": 15,
+              "gold": 10
+            },
             "vars": {
               "quote": "Fünf Minuten Stille am Morgen wiegen mehr als eine Stunde Lärm am Abend.",
               "task": "Tomas faltet die Hände und schließt die Augen. 'Bevor der Tag beginnt, muss der Geist zur Ruhe kommen.'",
@@ -788,7 +791,10 @@
             "type": "personal",
             "priority": "medium",
             "lore": "Quest von Bruder Tomas · Kette 1/3 · 2/2",
-            "rewards": { "xp": 25, "gold": 15 },
+            "rewards": {
+              "xp": 25,
+              "gold": 15
+            },
             "vars": {
               "quote": "Enthalten heißt nicht verzichten. Es heißt wählen.",
               "task": "Tomas erklärt ruhig die Kraft des bewussten Verzichts. Er hat es selbst dreißig Jahre lang geübt.",
@@ -804,7 +810,10 @@
             "type": "fitness",
             "priority": "low",
             "lore": "Quest von Bruder Tomas · Kette 2/3 · 1/2",
-            "rewards": { "xp": 15, "gold": 10 },
+            "rewards": {
+              "xp": 15,
+              "gold": 10
+            },
             "vars": {
               "quote": "Ein Mönch der seinen Körper vernachlässigt, schwächt auch seinen Geist.",
               "task": "Tomas geht jeden Morgen denselben Pfad — nicht aus Gewohnheit, sondern aus Wahl.",
@@ -818,7 +827,10 @@
             "type": "fitness",
             "priority": "medium",
             "lore": "Quest von Bruder Tomas · Kette 2/3 · 2/2",
-            "rewards": { "xp": 25, "gold": 15 },
+            "rewards": {
+              "xp": 25,
+              "gold": 15
+            },
             "vars": {
               "quote": "Der Körper wehrt sich gegen Anstrengung. Der Wille setzt sich durch. Immer.",
               "task": "'Du wirst das merken, wenn es schwer wird', sagt Tomas. Er lächelt dabei.",
@@ -834,7 +846,10 @@
             "type": "personal",
             "priority": "low",
             "lore": "Quest von Bruder Tomas · Kette 3/3 · 1/3",
-            "rewards": { "xp": 15, "gold": 10 },
+            "rewards": {
+              "xp": 15,
+              "gold": 10
+            },
             "vars": {
               "quote": "Was du nicht benennen kannst, kannst du nicht leben.",
               "task": "Tomas trägt sein ganzes Leben einen kleinen Lederkodex mit sich. Er ist fast voll.",
@@ -848,7 +863,10 @@
             "type": "personal",
             "priority": "medium",
             "lore": "Quest von Bruder Tomas · Kette 3/3 · 2/3",
-            "rewards": { "xp": 25, "gold": 15 },
+            "rewards": {
+              "xp": 25,
+              "gold": 15
+            },
             "vars": {
               "quote": "Stärke misst man nicht daran, was man tut — sondern was man lässt.",
               "task": "Tomas lächelt schmal. 'Erkenne deine schwächste Stelle. Dann bewache sie.'",
@@ -862,7 +880,10 @@
             "type": "personal",
             "priority": "high",
             "lore": "Quest von Bruder Tomas · Kette 3/3 · 3/3",
-            "rewards": { "xp": 35, "gold": 25 },
+            "rewards": {
+              "xp": 35,
+              "gold": 25
+            },
             "vars": {
               "quote": "In der tiefen Stille hörst du nicht nichts. Du hörst alles.",
               "task": "Tomas verbeugt sich kaum merklich. Bei ihm bedeutet das Respekt.",
@@ -906,7 +927,10 @@
             "type": "learning",
             "priority": "low",
             "lore": "Quest von Zara Funkenwind · Kette 1/3 · 1/3",
-            "rewards": { "xp": 15, "gold": 10 },
+            "rewards": {
+              "xp": 15,
+              "gold": 10
+            },
             "vars": {
               "quote": "Alles ist eine Zutat! Licht, Zeit, sogar Langeweile — warte, ich muss das aufschreiben...",
               "task": "Zara kritzelt in ein Notizbuch. Drei Federn fallen heraus. Sie bemerkt es nicht.",
@@ -920,7 +944,10 @@
             "type": "learning",
             "priority": "medium",
             "lore": "Quest von Zara Funkenwind · Kette 1/3 · 2/3",
-            "rewards": { "xp": 25, "gold": 15 },
+            "rewards": {
+              "xp": 25,
+              "gold": 15
+            },
             "vars": {
               "quote": "Fehler sind Daten! Herrliche, nützliche Daten!",
               "task": "'Versuch Nummer... ich verliere den Überblick. Egal, wir machen weiter!'",
@@ -934,7 +961,10 @@
             "type": "personal",
             "priority": "medium",
             "lore": "Quest von Zara Funkenwind · Kette 1/3 · 3/3",
-            "rewards": { "xp": 35, "gold": 25 },
+            "rewards": {
+              "xp": 35,
+              "gold": 25
+            },
             "vars": {
               "quote": "Wenn zwei Dinge aufeinandertreffen, entsteht immer etwas Drittes. Immer. Faszinierend.",
               "task": "Zara schiebt dir eine Aufgabe hin. Halb sind die Seiten angesengt.",
@@ -950,7 +980,10 @@
             "type": "learning",
             "priority": "low",
             "lore": "Quest von Zara Funkenwind · Kette 2/3 · 1/3",
-            "rewards": { "xp": 15, "gold": 10 },
+            "rewards": {
+              "xp": 15,
+              "gold": 10
+            },
             "vars": {
               "quote": "Die besten Zutaten wachsen an unerwarteten Orten. Genau wie gute Ideen.",
               "task": "Zara murmelt etwas über 'Aetherkristalle in Alltagsgegenständen'. Wahrscheinlich metaphorisch.",
@@ -964,7 +997,10 @@
             "type": "learning",
             "priority": "medium",
             "lore": "Quest von Zara Funkenwind · Kette 2/3 · 2/3",
-            "rewards": { "xp": 25, "gold": 15 },
+            "rewards": {
+              "xp": 25,
+              "gold": 15
+            },
             "vars": {
               "quote": "Destillation ist einfach: Nimm das Beste, lass den Rest.",
               "task": "Zara zeigt dir ihr verstaubtes Labornotizbuch. Seite 847. Es gibt noch dreihundert weitere.",
@@ -978,7 +1014,10 @@
             "type": "social",
             "priority": "medium",
             "lore": "Quest von Zara Funkenwind · Kette 2/3 · 3/3",
-            "rewards": { "xp": 35, "gold": 25 },
+            "rewards": {
+              "xp": 35,
+              "gold": 25
+            },
             "vars": {
               "quote": "Und wenn du es wirklich verstehst — wirklich, wirklich — dann kannst du es erklären. Ich höre gerne zu!",
               "task": "Zara tippt aufgeregt auf die Tischplatte. Das könnten Morsezeichen sein.",
@@ -994,7 +1033,10 @@
             "type": "personal",
             "priority": "medium",
             "lore": "Quest von Zara Funkenwind · Kette 3/3 · 1/3",
-            "rewards": { "xp": 25, "gold": 15 },
+            "rewards": {
+              "xp": 25,
+              "gold": 15
+            },
             "vars": {
               "quote": "Erst der Plan — dann der Knall. Meistens. Manchmal auch gleichzeitig.",
               "task": "Zara legt drei Kolben nebeneinander. Keiner davon ist beschriftet.",
@@ -1008,7 +1050,10 @@
             "type": "personal",
             "priority": "medium",
             "lore": "Quest von Zara Funkenwind · Kette 3/3 · 2/3",
-            "rewards": { "xp": 35, "gold": 25 },
+            "rewards": {
+              "xp": 35,
+              "gold": 25
+            },
             "vars": {
               "quote": "Ah! Es hat nicht funktioniert! Ausgezeichnet! Jetzt wissen wir etwas das wir vorher nicht wussten.",
               "task": "Zaras letzter Versuch hat eine Augenbraue gekostet. Sie scheint aufrichtig stolz zu sein.",
@@ -1022,7 +1067,10 @@
             "type": "personal",
             "priority": "high",
             "lore": "Quest von Zara Funkenwind · Kette 3/3 · 3/3",
-            "rewards": { "xp": 50, "gold": 40 },
+            "rewards": {
+              "xp": 50,
+              "gold": 40
+            },
             "vars": {
               "quote": "Ich... ich glaube ich habe es! Nein, warte — ja! Definitiv ja! Vielleicht.",
               "task": "Zara springt auf. Etwas fällt vom Regal. Sie bemerkt es nicht.",
@@ -1066,7 +1114,10 @@
             "type": "fitness",
             "priority": "low",
             "lore": "Quest von Alter Henrik · Kette 1/3 · 1/2",
-            "rewards": { "xp": 15, "gold": 10 },
+            "rewards": {
+              "xp": 15,
+              "gold": 10
+            },
             "vars": {
               "quote": "Kein Baum wächst schnell. Und keiner der schnell wächst, steht lange.",
               "task": "Henrik schaut in die Baumkronen. Er wartet schon eine Weile.",
@@ -1080,7 +1131,10 @@
             "type": "learning",
             "priority": "low",
             "lore": "Quest von Alter Henrik · Kette 1/3 · 2/2",
-            "rewards": { "xp": 25, "gold": 15 },
+            "rewards": {
+              "xp": 25,
+              "gold": 15
+            },
             "vars": {
               "quote": "Die meisten Menschen sehen Wald. Ich sehe tausend einzelne Geschichten.",
               "task": "Henrik deutet auf eine Stelle am Boden. 'Siehst du das?' Er wartet geduldig.",
@@ -1096,7 +1150,10 @@
             "type": "personal",
             "priority": "low",
             "lore": "Quest von Alter Henrik · Kette 2/3 · 1/2",
-            "rewards": { "xp": 15, "gold": 10 },
+            "rewards": {
+              "xp": 15,
+              "gold": 10
+            },
             "vars": {
               "quote": "Ich war drei Tage allein im Wald. Es war genug.",
               "task": "Henrik lehnt gegen eine alte Buche. Er spricht selten — und dann meint er es.",
@@ -1110,7 +1167,10 @@
             "type": "personal",
             "priority": "medium",
             "lore": "Quest von Alter Henrik · Kette 2/3 · 2/2",
-            "rewards": { "xp": 25, "gold": 15 },
+            "rewards": {
+              "xp": 25,
+              "gold": 15
+            },
             "vars": {
               "quote": "Jedes Jahr hinterlässt eine Spur. Auch in dir.",
               "task": "Henrik zählt Jahresringe auf einem gefällten Stamm. Langsam. Sehr langsam.",
@@ -1126,7 +1186,10 @@
             "type": "personal",
             "priority": "low",
             "lore": "Quest von Alter Henrik · Kette 3/3 · 1/3",
-            "rewards": { "xp": 25, "gold": 15 },
+            "rewards": {
+              "xp": 25,
+              "gold": 15
+            },
             "vars": {
               "quote": "Der kürzeste Weg ist selten der beste Weg.",
               "task": "Henrik nimmt heute einen anderen Pfad als sonst. Er nennt keinen Grund.",
@@ -1140,7 +1203,10 @@
             "type": "social",
             "priority": "medium",
             "lore": "Quest von Alter Henrik · Kette 3/3 · 2/3",
-            "rewards": { "xp": 35, "gold": 25 },
+            "rewards": {
+              "xp": 35,
+              "gold": 25
+            },
             "vars": {
               "quote": "Ein Mensch hinterlässt entweder Narben oder Bäume. Manchmal beides.",
               "task": "Henrik pflanzt jeden Sommer einen Baum. Über hundert stehen schon.",
@@ -1154,7 +1220,10 @@
             "type": "social",
             "priority": "medium",
             "lore": "Quest von Alter Henrik · Kette 3/3 · 3/3",
-            "rewards": { "xp": 35, "gold": 25 },
+            "rewards": {
+              "xp": 35,
+              "gold": 25
+            },
             "vars": {
               "quote": "Die weisesten Menschen die ich kenne reden am wenigsten. Frag sie trotzdem.",
               "task": "Henrik nickt in Richtung der Siedlung. Eine seltene Geste.",
@@ -1198,7 +1267,10 @@
             "type": "personal",
             "priority": "low",
             "lore": "Quest von Lumi · Kette 1/3 · 1/3",
-            "rewards": { "xp": 15, "gold": 10 },
+            "rewards": {
+              "xp": 15,
+              "gold": 10
+            },
             "vars": {
               "quote": "*flimmert* Siehst du die? Jeder Stern ist eine Geschichte! So viele Geschichten!",
               "task": "Lumi tanzt aufgeregt um dich herum. Die Luft riecht nach Mondlicht und irgendwie nach Sommer.",
@@ -1212,7 +1284,10 @@
             "type": "personal",
             "priority": "medium",
             "lore": "Quest von Lumi · Kette 1/3 · 2/3",
-            "rewards": { "xp": 25, "gold": 15 },
+            "rewards": {
+              "xp": 25,
+              "gold": 15
+            },
             "vars": {
               "quote": "Menschen schlafen wenn die Welt am schönsten ist. Das finde ich immer noch seltsam.",
               "task": "Lumi setzt sich auf deine Schulter. So ungefähr. Ungefähr in der Größe.",
@@ -1226,7 +1301,10 @@
             "type": "personal",
             "priority": "medium",
             "lore": "Quest von Lumi · Kette 1/3 · 3/3",
-            "rewards": { "xp": 35, "gold": 25 },
+            "rewards": {
+              "xp": 35,
+              "gold": 25
+            },
             "vars": {
               "quote": "Der Mond stellt keine Fragen. Er leuchtet einfach. Vielleicht solltest du das auch mal versuchen.",
               "task": "Lumi schweigt kurz. Bei ihr bedeutet das fast eine Ewigkeit.",
@@ -1242,7 +1320,10 @@
             "type": "personal",
             "priority": "low",
             "lore": "Quest von Lumi · Kette 2/3 · 1/4",
-            "rewards": { "xp": 15, "gold": 10 },
+            "rewards": {
+              "xp": 15,
+              "gold": 10
+            },
             "vars": {
               "quote": "Die interessantesten Dinge passieren in den Zwischenräumen. Zwischen den Sekunden. Zwischen den Worten.",
               "task": "Lumi zeigt dir eine Stelle im Raum die leer aussieht. Sie sieht das eindeutig anders.",
@@ -1256,7 +1337,10 @@
             "type": "personal",
             "priority": "low",
             "lore": "Quest von Lumi · Kette 2/3 · 2/4",
-            "rewards": { "xp": 25, "gold": 15 },
+            "rewards": {
+              "xp": 25,
+              "gold": 15
+            },
             "vars": {
               "quote": "Träume sind Botschaften — aber in einer Sprache die ihr Sterblichen immer schneller vergesst.",
               "task": "Lumi neigt den Kopf. 'Was hast du letzte Nacht geträumt? Wirklich, ich frage mich das immer.'",
@@ -1270,7 +1354,10 @@
             "type": "social",
             "priority": "medium",
             "lore": "Quest von Lumi · Kette 2/3 · 3/4",
-            "rewards": { "xp": 35, "gold": 25 },
+            "rewards": {
+              "xp": 35,
+              "gold": 25
+            },
             "vars": {
               "quote": "Das Wichtigste ist meistens das, was niemand sieht. Das weiß ich aus sehr langer Erfahrung.",
               "task": "Lumi leuchtet kurz heller — dann dunkler. Eine Geste die du nicht ganz deutest.",
@@ -1284,7 +1371,10 @@
             "type": "learning",
             "priority": "high",
             "lore": "Quest von Lumi · Kette 2/3 · 4/4",
-            "rewards": { "xp": 50, "gold": 40 },
+            "rewards": {
+              "xp": 50,
+              "gold": 40
+            },
             "vars": {
               "quote": "*flimmert sehr stark* Du verstehst schon ein bisschen! Ich glaube, die Halle mag dich.",
               "task": "Lumi murmelt etwas in einer Sprache die älter ist als Aethermoor. Es klingt wie fließendes Wasser.",
@@ -1300,7 +1390,10 @@
             "type": "fitness",
             "priority": "low",
             "lore": "Quest von Lumi · Kette 3/3 · 1/4",
-            "rewards": { "xp": 25, "gold": 15 },
+            "rewards": {
+              "xp": 25,
+              "gold": 15
+            },
             "vars": {
               "quote": "Die Nacht macht die Welt nicht gefährlich. Sie macht sie ehrlich.",
               "task": "Lumi schwebt knapp über dem Boden. 'Komm, ich zeig dir was.'",
@@ -1314,7 +1407,10 @@
             "type": "personal",
             "priority": "medium",
             "lore": "Quest von Lumi · Kette 3/3 · 2/4",
-            "rewards": { "xp": 25, "gold": 15 },
+            "rewards": {
+              "xp": 25,
+              "gold": 15
+            },
             "vars": {
               "quote": "Ich erinnere mich an Helden deren Namen keiner mehr kennt. Das macht mich manchmal sehr traurig.",
               "task": "Lumi hält inne. Ihr Licht flackert leise. Für einen Moment wirkt sie sehr, sehr alt.",
@@ -1328,7 +1424,10 @@
             "type": "personal",
             "priority": "medium",
             "lore": "Quest von Lumi · Kette 3/3 · 3/4",
-            "rewards": { "xp": 35, "gold": 25 },
+            "rewards": {
+              "xp": 35,
+              "gold": 25
+            },
             "vars": {
               "quote": "Ihr Sterblichen habt diese merkwürdige Gabe: Ihr schafft Dinge die länger leben als ihr. Das finde ich... wunderschön.",
               "task": "Lumi dreht sich langsam, als würde sie die Halle umarmen.",
@@ -1342,7 +1441,10 @@
             "type": "personal",
             "priority": "high",
             "lore": "Quest von Lumi · Kette 3/3 · 4/4",
-            "rewards": { "xp": 50, "gold": 40 },
+            "rewards": {
+              "xp": 50,
+              "gold": 40
+            },
             "vars": {
               "quote": "*sehr leise, fast ernst* Du hast gut geschaut. Das ist mehr als die meisten schaffen.",
               "task": "Lumi leuchtet so hell wie du sie noch nie gesehen hast. Dann schwindet das Licht langsam — sie lächelt dabei.",
@@ -1386,7 +1488,10 @@
             "type": "personal",
             "priority": "medium",
             "lore": "Quest von Rogar Amboss · Kette 1/3 · 1/3",
-            "rewards": { "xp": 15, "gold": 10 },
+            "rewards": {
+              "xp": 15,
+              "gold": 10
+            },
             "vars": {
               "quote": "Aufwärmen ist für Leute die Angst vor ihrer eigenen Arbeit haben.",
               "task": "Rogar klopft einmal auf den Amboss. Das bedeutet: Fang an.",
@@ -1400,7 +1505,10 @@
             "type": "personal",
             "priority": "medium",
             "lore": "Quest von Rogar Amboss · Kette 1/3 · 2/3",
-            "rewards": { "xp": 25, "gold": 15 },
+            "rewards": {
+              "xp": 25,
+              "gold": 15
+            },
             "vars": {
               "quote": "Schlechte Schmiede arbeiten wenn sie mögen. Gute Schmiede arbeiten.",
               "task": "Rogars Hammer fällt im selben Takt seit dreißig Jahren. Kein Tag fehlt.",
@@ -1414,7 +1522,10 @@
             "type": "personal",
             "priority": "high",
             "lore": "Quest von Rogar Amboss · Kette 1/3 · 3/3",
-            "rewards": { "xp": 35, "gold": 25 },
+            "rewards": {
+              "xp": 35,
+              "gold": 25
+            },
             "vars": {
               "quote": "Ein Schwert das beim dritten Schlag bricht ist kein Schwert. Es ist Verschwendung von gutem Erz.",
               "task": "Rogar wirft ein schlecht geschmiedetes Stück in die Ecke. Ohne ein Wort.",
@@ -1430,7 +1541,10 @@
             "type": "personal",
             "priority": "low",
             "lore": "Quest von Rogar Amboss · Kette 2/3 · 1/3",
-            "rewards": { "xp": 15, "gold": 10 },
+            "rewards": {
+              "xp": 15,
+              "gold": 10
+            },
             "vars": {
               "quote": "Ich kenne einen der einen Nagel mit einer Axt einschlug. Er hieß Dummkopf.",
               "task": "Rogar ordnet seine Werkzeuge. Jedes liegt genau richtig. Schon immer.",
@@ -1444,7 +1558,10 @@
             "type": "fitness",
             "priority": "medium",
             "lore": "Quest von Rogar Amboss · Kette 2/3 · 2/3",
-            "rewards": { "xp": 25, "gold": 15 },
+            "rewards": {
+              "xp": 25,
+              "gold": 15
+            },
             "vars": {
               "quote": "Stahl formt sich nur wenn er heiß ist. Menschen auch. Tu's solange du kannst.",
               "task": "Rogar streckt die Hand ins Feuer. Er zieht sie wieder zurück. Das war ein Test.",
@@ -1458,7 +1575,10 @@
             "type": "fitness",
             "priority": "high",
             "lore": "Quest von Rogar Amboss · Kette 2/3 · 3/3",
-            "rewards": { "xp": 35, "gold": 25 },
+            "rewards": {
+              "xp": 35,
+              "gold": 25
+            },
             "vars": {
               "quote": "Tausend Schläge auf denselben Punkt. Wer das versteht, versteht Handwerk.",
               "task": "Rogar nickt dir zu. Das ist bei ihm viel.",
@@ -1474,7 +1594,10 @@
             "type": "personal",
             "priority": "medium",
             "lore": "Quest von Rogar Amboss · Kette 3/3 · 1/3",
-            "rewards": { "xp": 25, "gold": 15 },
+            "rewards": {
+              "xp": 25,
+              "gold": 15
+            },
             "vars": {
               "quote": "Keine Klinge entsteht ohne Zeichnung. Kein Bauwerk ohne Plan. Keine Leistung ohne Vorsatz.",
               "task": "Rogar zeigt dir seine alten Schmiedepläne. Hunderte Seiten. Nichts korrigiert — alles durchgestrichen und neu gemacht.",
@@ -1488,7 +1611,10 @@
             "type": "personal",
             "priority": "high",
             "lore": "Quest von Rogar Amboss · Kette 3/3 · 2/3",
-            "rewards": { "xp": 35, "gold": 25 },
+            "rewards": {
+              "xp": 35,
+              "gold": 25
+            },
             "vars": {
               "quote": "Ich werde dir nicht sagen dass es leicht wird. Aber ich sage dir: Es wird.",
               "task": "Rogar stellt sich dir gegenüber. Seine Augen sagen mehr als seine Worte.",
@@ -1502,7 +1628,10 @@
             "type": "personal",
             "priority": "high",
             "lore": "Quest von Rogar Amboss · Kette 3/3 · 3/3",
-            "rewards": { "xp": 50, "gold": 40 },
+            "rewards": {
+              "xp": 50,
+              "gold": 40
+            },
             "vars": {
               "quote": "... Nicht schlecht.",
               "task": "Rogar betrachtet das Ergebnis lange. Dann legt er kurz seine Hand darauf. Das ist die höchste Form des Lobes.",
