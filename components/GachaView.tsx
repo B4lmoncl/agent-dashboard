@@ -875,7 +875,7 @@ export default function GachaView({ users, playerName, reviewApiKey, onRefresh, 
                   <div key={rarity}>
                     <p className="text-sm font-bold uppercase tracking-wider mb-1" style={{ color: cfg.color }}>{cfg.label} ({items.length})</p>
                     <div className="h-px mb-3" style={{ background: `linear-gradient(90deg, ${cfg.border}, transparent)` }} />
-                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3" style={{ gridTemplateColumns: "repeat(4, minmax(0, 1fr))" }}>
+                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                       {items.map(item => (
                         <div
                           key={item.id}
