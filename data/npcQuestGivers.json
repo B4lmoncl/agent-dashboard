@@ -988,7 +988,7 @@
             "template": "npc-quest",
             "title": "Schwere Arbeit",
             "type": "personal",
-            "flavorText": "Stahl wird nur im Feuer gehaertet.",
+            "flavorText": "Stahl wird nur im Feuer gehärtet.",
             "description": "Erledige eine anspruchsvolle Aufgabe.",
             "vars": {
               "difficulty": "hard"
@@ -998,7 +998,7 @@
             "template": "npc-quest",
             "title": "Meisterwerk",
             "type": "personal",
-            "flavorText": "Ein Meisterwerk braucht Schweiss und Geduld.",
+            "flavorText": "Ein Meisterwerk braucht Schweiß und Geduld.",
             "description": "Erstelle oder verbessere etwas.",
             "vars": {
               "difficulty": "epic"
