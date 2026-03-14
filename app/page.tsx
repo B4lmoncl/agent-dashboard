@@ -1511,9 +1511,7 @@ export default function Dashboard() {
                             ＋ Create
                           </button>
                         )}
-                        {!isAdmin && playerName && (
-                          <SuggestQuestButton reviewApiKey={reviewApiKey} playerName={playerName} onRefresh={refresh} />
-                        )}
+                        {/* Suggest button removed — not needed for now */}
                         {playerName && reviewApiKey && (
                           <button
                             onClick={handlePoolRefresh}
