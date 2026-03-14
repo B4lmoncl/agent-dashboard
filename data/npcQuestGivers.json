@@ -662,10 +662,10 @@
             }
           },
           {
-            "title": "Koerperliche Disziplin",
+            "title": "Körperliche Disziplin",
             "description": "30 Minuten fokussiertes Training.",
             "type": "fitness",
-            "flavorText": "Der Koerper ist der Tempel des Geistes.",
+            "flavorText": "Der Körper ist der Tempel des Geistes.",
             "rewards": {
               "xp": 30,
               "gold": 15
@@ -690,7 +690,7 @@
             "title": "Zutaten sammeln",
             "description": "Finde und dokumentiere 3 neue Ressourcen.",
             "type": "learning",
-            "flavorText": "Jede Zutat erzaehlt eine Geschichte.",
+            "flavorText": "Jede Zutat erzählt eine Geschichte.",
             "rewards": {
               "xp": 25,
               "gold": 15
@@ -716,7 +716,7 @@
       "title": "Weiser Eremit",
       "description": "Ein alter Eremit der die Geheimnisse des Waldes kennt.",
       "portrait": "/images/npcs/alter-henrik.png",
-      "greeting": "Die Baeume fluestern heute lauter als sonst...",
+      "greeting": "Die Bäume flüstern heute lauter als sonst...",
       "rarity": "rare",
       "departureDurationHours": 72,
       "questChains": [
@@ -733,7 +733,7 @@
           },
           {
             "title": "Altes Wissen",
-            "description": "Lerne etwas ueber ein Thema das dich interessiert.",
+            "description": "Lerne etwas über ein Thema das dich interessiert.",
             "type": "learning",
             "flavorText": "Wissen ist der Schatz der Alten.",
             "rewards": {
