@@ -695,7 +695,7 @@ export default function Dashboard() {
     if (sortMode === "newest") return qs;
     return [...qs].sort((a, b) => (RARITY_ORDER[getQuestRarity(a)] ?? 4) - (RARITY_ORDER[getQuestRarity(b)] ?? 4));
   }, [sortMode]);
-  const isCompanionQuest = (q: Quest) => q.rarity === "companion" || (q.createdBy ?? "").toLowerCase() === "dobbie";
+  const isCompanionQuest = (q: Quest) => q.rarity === "companion" || q.type === "companion" || (q.createdBy ?? "").toLowerCase() === "dobbie" || (q.createdBy ?? "").toLowerCase() === "companion";
   const visibleOpen = useMemo(() => applySort(applyFilter(quests.open.filter(q => !isCompanionQuest(q)))), [quests.open, applyFilter, applySort]);
   const dobbieActiveQuests = useMemo(() => quests.inProgress.filter(q => isCompanionQuest(q)), [quests.inProgress]);
   const visibleInProgress = useMemo(() => applySort(applyFilter(quests.inProgress.filter(q => !isCompanionQuest(q)))), [quests.inProgress, applyFilter, applySort]);

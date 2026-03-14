@@ -690,50 +690,80 @@ export function buildSuggestions(quests: QuestsData, agents: Agent[]): Suggestio
   return suggestions;
 }
 
-// ─── Dobbie's Demands — NPC Quest Panel ──────────────────────────────────────
+// ─── Companion Quest Panel ───────────────────────────────────────────────────
 
-import dobbieData from "../public/data/dobbieCompanion.json";
-const DOBBIE_QUESTS = dobbieData.quests as { id: string; title: string; description: string; priority: "high" | "medium" | "low" }[];
-const DOBBIE_MOOD_QUOTES = dobbieData.moodQuotes as Record<string, string>;
+import companionProfiles from "../public/data/companionProfiles.json";
 
-export function computeCompanionMood(streak: number, user?: { companion?: { bondLevel?: number; lastPetted?: string | null } | null } | null): { label: string; color: string; quote: string; anim: string } {
+type CompanionProfile = { quests: { id: string; title: string; description: string; priority: "high" | "medium" | "low" }[]; moodQuotes: Record<string, string> };
+
+export function getCompanionProfile(companion?: { isReal?: boolean; type?: string; name?: string } | null): CompanionProfile {
+  if (!companion) return companionProfiles.real_pet as CompanionProfile;
+  if (companion.isReal) {
+    if (companion.name?.toLowerCase() === "dobbie") return companionProfiles.dobbie as CompanionProfile;
+    return companionProfiles.real_pet as CompanionProfile;
+  }
+  const key = companion.type as keyof typeof companionProfiles;
+  return (companionProfiles[key] || companionProfiles.wolf) as CompanionProfile;
+}
+
+function resolveProfileName(profile: CompanionProfile, name: string): CompanionProfile {
+  return {
+    quests: profile.quests.map(q => ({
+      ...q,
+      title: q.title.replace(/\{name\}/g, name),
+      description: q.description.replace(/\{name\}/g, name),
+    })),
+    moodQuotes: Object.fromEntries(
+      Object.entries(profile.moodQuotes).map(([k, v]) => [k, v.replace(/\{name\}/g, name)])
+    ),
+  };
+}
+
+export function computeCompanionMood(streak: number, user?: { companion?: { bondLevel?: number; lastPetted?: string | null } | null } | null, moodQuotes?: Record<string, string>): { label: string; color: string; quote: string; anim: string } {
   const hour = new Date().getHours();
   const isSleeping = hour >= 23 || hour < 7;
   const bondLevel = user?.companion?.bondLevel ?? 1;
   const lastPetted = user?.companion?.lastPetted;
   const hoursSincePet = lastPetted ? (Date.now() - new Date(lastPetted).getTime()) / 3_600_000 : Infinity;
   const petRecent = hoursSincePet < 24;
+  const q = moodQuotes || {};
 
-  if (isSleeping) return { label: "Sleeping", color: "#818cf8", quote: DOBBIE_MOOD_QUOTES.Sleeping, anim: "" };
-  if (streak >= 7 && petRecent && bondLevel >= 5) return { label: "Ecstatic", color: "#f472b6", quote: DOBBIE_MOOD_QUOTES.Ecstatic, anim: "animate-bounce" };
-  if (streak >= 7 && petRecent) return { label: "Happy", color: "#22c55e", quote: DOBBIE_MOOD_QUOTES.Happy, anim: "animate-bounce" };
-  if (streak >= 3 || petRecent) return { label: "Neutral", color: "#f59e0b", quote: DOBBIE_MOOD_QUOTES.Neutral, anim: "" };
-  if (!petRecent && hoursSincePet > 72) return { label: "Neglected", color: "#dc2626", quote: DOBBIE_MOOD_QUOTES.Neglected, anim: "animate-pulse" };
-  return { label: "Sad", color: "#ef4444", quote: DOBBIE_MOOD_QUOTES.Sad, anim: "animate-pulse" };
+  if (isSleeping) return { label: "Sleeping", color: "#818cf8", quote: q.Sleeping || "Zzz...", anim: "" };
+  if (streak >= 7 && petRecent && bondLevel >= 5) return { label: "Ecstatic", color: "#f472b6", quote: q.Ecstatic || "!", anim: "animate-bounce" };
+  if (streak >= 7 && petRecent) return { label: "Happy", color: "#22c55e", quote: q.Happy || ":)", anim: "animate-bounce" };
+  if (streak >= 3 || petRecent) return { label: "Neutral", color: "#f59e0b", quote: q.Neutral || "...", anim: "" };
+  if (!petRecent && hoursSincePet > 72) return { label: "Neglected", color: "#dc2626", quote: q.Neglected || "...", anim: "animate-pulse" };
+  return { label: "Sad", color: "#ef4444", quote: q.Sad || "...", anim: "animate-pulse" };
 }
 
-export function DobbieQuestPanel({ reviewApiKey, onRefresh, playerName, petName, quests, streak, user }: { reviewApiKey: string; onRefresh: () => void; playerName?: string; petName?: string; quests?: { inProgress: Quest[] }; streak?: number; user?: { companion?: { bondLevel?: number; lastPetted?: string | null } | null } | null }) {
+export function DobbieQuestPanel({ reviewApiKey, onRefresh, playerName, petName, quests, streak, user, companionProfile: profileProp }: { reviewApiKey: string; onRefresh: () => void; playerName?: string; petName?: string; quests?: { inProgress: Quest[] }; streak?: number; user?: { companion?: { bondLevel?: number; lastPetted?: string | null; isReal?: boolean; type?: string; name?: string } | null } | null; companionProfile?: CompanionProfile }) {
   const [creating, setCreating] = useState<string | null>(null);
   const [completing, setCompleting] = useState<string | null>(null);
   // Map<templateId, questId> for newly accepted quests this session
   const [justAccepted, setJustAccepted] = useState<Map<string, string>>(() => new Map());
-  const dobbieMood = computeCompanionMood(streak ?? 0, user);
+
+  // Resolve companion profile: prop > auto-detect from user.companion
+  const rawProfile = profileProp || getCompanionProfile(user?.companion);
+  const resolvedProfile = resolveProfileName(rawProfile, petName || user?.companion?.name || "Companion");
+  const COMPANION_QUESTS = resolvedProfile.quests;
+  const dobbieMood = computeCompanionMood(streak ?? 0, user, resolvedProfile.moodQuotes);
 
   // Derive Map<templateId, questId> for all active Dobbie quests
   const activeQuestMap = useMemo(() => {
     const map = new Map(justAccepted);
     if (quests && playerName) {
       (quests.inProgress ?? []).forEach(aq => {
-        if ((aq.createdBy ?? "").toLowerCase() !== "dobbie") return;
+        const cb = (aq.createdBy ?? "").toLowerCase();
+        if (cb !== "dobbie" && cb !== "companion") return;
         if (aq.claimedBy?.toLowerCase() !== playerName.toLowerCase()) return;
-        const t = DOBBIE_QUESTS.find(dt => dt.title === aq.title);
+        const t = COMPANION_QUESTS.find(dt => dt.title === aq.title);
         if (t && !map.has(t.id)) map.set(t.id, aq.id);
       });
     }
     return map;
   }, [quests, playerName, justAccepted]);
 
-  const createDobbieQuest = async (q: (typeof DOBBIE_QUESTS)[0]) => {
+  const createDobbieQuest = async (q: (typeof COMPANION_QUESTS)[0]) => {
     if (!reviewApiKey || activeQuestMap.has(q.id)) return;
     setCreating(q.id);
     try {
@@ -745,7 +775,7 @@ export function DobbieQuestPanel({ reviewApiKey, onRefresh, playerName, petName,
           description: q.description,
           priority: q.priority,
           type: "personal",
-          createdBy: "dobbie",
+          createdBy: "companion",
           recurrence: "daily",
           rarity: "companion",
         }),
@@ -791,7 +821,7 @@ export function DobbieQuestPanel({ reviewApiKey, onRefresh, playerName, petName,
       </div>
       <p className="text-xs mb-3 italic" style={{ color: "rgba(255,255,255,0.35)" }}>&ldquo;{dobbieMood.quote}&rdquo;</p>
       <div className="grid grid-cols-2 gap-2">
-        {DOBBIE_QUESTS.map(q => {
+        {COMPANION_QUESTS.map(q => {
           const isCreating = creating === q.id;
           const isCompleting = completing === q.id;
           const isActive = activeQuestMap.has(q.id);
