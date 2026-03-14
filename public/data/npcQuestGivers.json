@@ -770,26 +770,104 @@
         [
           {
             "template": "npc-quest",
-            "title": "Morgenmeditation",
+            "title": "Der erste Atemzug",
             "type": "personal",
-            "flavorText": "Der erste Schritt zur Meisterschaft ist Stille.",
-            "description": "Beginne den Tag mit 5 Minuten Stille.",
+            "priority": "low",
+            "lore": "Quest von Bruder Tomas · Kette 1/3 · 1/2",
+            "rewards": { "xp": 15, "gold": 10 },
             "vars": {
-              "difficulty": "easy"
+              "quote": "Fünf Minuten Stille am Morgen wiegen mehr als eine Stunde Lärm am Abend.",
+              "task": "Tomas faltet die Hände und schließt die Augen. 'Bevor der Tag beginnt, muss der Geist zur Ruhe kommen.'",
+              "realWorldTask": "Setze dich morgens 5 Minuten still hin — kein Handy, kein Lärm. Nur atmen.",
+              "difficulty": "starter"
             }
           },
           {
             "template": "npc-quest",
-            "title": "Körperliche Disziplin",
-            "type": "fitness",
-            "flavorText": "Der Körper ist der Tempel des Geistes.",
-            "description": "30 Minuten fokussiertes Training.",
-            "rewards": {
-              "xp": 30,
-              "gold": 15
-            },
+            "title": "Das Fasten des Geistes",
+            "type": "personal",
+            "priority": "medium",
+            "lore": "Quest von Bruder Tomas · Kette 1/3 · 2/2",
+            "rewards": { "xp": 25, "gold": 15 },
             "vars": {
-              "difficulty": "medium"
+              "quote": "Enthalten heißt nicht verzichten. Es heißt wählen.",
+              "task": "Tomas erklärt ruhig die Kraft des bewussten Verzichts. Er hat es selbst dreißig Jahre lang geübt.",
+              "realWorldTask": "Verzichte heute 3 Stunden lang auf soziale Medien oder Bildschirme. Vollständig.",
+              "difficulty": "intermediate"
+            }
+          }
+        ],
+        [
+          {
+            "template": "npc-quest",
+            "title": "Der beständige Schritt",
+            "type": "fitness",
+            "priority": "low",
+            "lore": "Quest von Bruder Tomas · Kette 2/3 · 1/2",
+            "rewards": { "xp": 15, "gold": 10 },
+            "vars": {
+              "quote": "Ein Mönch der seinen Körper vernachlässigt, schwächt auch seinen Geist.",
+              "task": "Tomas geht jeden Morgen denselben Pfad — nicht aus Gewohnheit, sondern aus Wahl.",
+              "realWorldTask": "Geh 20 Minuten spazieren — ohne Kopfhörer, ohne Ziel. Nur der Weg selbst.",
+              "difficulty": "starter"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Eisen und Wille",
+            "type": "fitness",
+            "priority": "medium",
+            "lore": "Quest von Bruder Tomas · Kette 2/3 · 2/2",
+            "rewards": { "xp": 25, "gold": 15 },
+            "vars": {
+              "quote": "Der Körper wehrt sich gegen Anstrengung. Der Wille setzt sich durch. Immer.",
+              "task": "'Du wirst das merken, wenn es schwer wird', sagt Tomas. Er lächelt dabei.",
+              "realWorldTask": "Mach ein 30-Minuten-Training — keine Ausreden, kein Abkürzen, kein Aufhören wenn es unangenehm wird.",
+              "difficulty": "intermediate"
+            }
+          }
+        ],
+        [
+          {
+            "template": "npc-quest",
+            "title": "Die Tugend benennen",
+            "type": "personal",
+            "priority": "low",
+            "lore": "Quest von Bruder Tomas · Kette 3/3 · 1/3",
+            "rewards": { "xp": 15, "gold": 10 },
+            "vars": {
+              "quote": "Was du nicht benennen kannst, kannst du nicht leben.",
+              "task": "Tomas trägt sein ganzes Leben einen kleinen Lederkodex mit sich. Er ist fast voll.",
+              "realWorldTask": "Schreibe drei Werte auf, nach denen du leben willst. Erkläre jeden in einem Satz.",
+              "difficulty": "starter"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Die schwache Stelle",
+            "type": "personal",
+            "priority": "medium",
+            "lore": "Quest von Bruder Tomas · Kette 3/3 · 2/3",
+            "rewards": { "xp": 25, "gold": 15 },
+            "vars": {
+              "quote": "Stärke misst man nicht daran, was man tut — sondern was man lässt.",
+              "task": "Tomas lächelt schmal. 'Erkenne deine schwächste Stelle. Dann bewache sie.'",
+              "realWorldTask": "Identifiziere eine schlechte Gewohnheit. Verzichte heute vollständig darauf — einen einzigen Tag lang.",
+              "difficulty": "intermediate"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Die vollständige Stille",
+            "type": "personal",
+            "priority": "high",
+            "lore": "Quest von Bruder Tomas · Kette 3/3 · 3/3",
+            "rewards": { "xp": 35, "gold": 25 },
+            "vars": {
+              "quote": "In der tiefen Stille hörst du nicht nichts. Du hörst alles.",
+              "task": "Tomas verbeugt sich kaum merklich. Bei ihm bedeutet das Respekt.",
+              "realWorldTask": "Meditiere 20 Minuten ohne Unterbrechung — kein Timer-Check, kein Fidgeting, kein Aufgeben wenn der Geist wandert.",
+              "difficulty": "advanced"
             }
           }
         ]
@@ -824,22 +902,132 @@
         [
           {
             "template": "npc-quest",
-            "title": "Zutaten sammeln",
+            "title": "Die Zutaten des Alltags",
             "type": "learning",
-            "flavorText": "Jede Zutat erzählt eine Geschichte.",
-            "description": "Finde und dokumentiere 3 neue Ressourcen.",
+            "priority": "low",
+            "lore": "Quest von Zara Funkenwind · Kette 1/3 · 1/3",
+            "rewards": { "xp": 15, "gold": 10 },
             "vars": {
-              "difficulty": "medium"
+              "quote": "Alles ist eine Zutat! Licht, Zeit, sogar Langeweile — warte, ich muss das aufschreiben...",
+              "task": "Zara kritzelt in ein Notizbuch. Drei Federn fallen heraus. Sie bemerkt es nicht.",
+              "realWorldTask": "Schreibe 10 Dinge auf die du heute wahrgenommen hast — Gerüche, Farben, Geräusche, Gefühle.",
+              "difficulty": "starter"
             }
           },
           {
             "template": "npc-quest",
-            "title": "Das Experiment",
-            "type": "personal",
-            "flavorText": "Fehler sind die besten Lehrer!",
-            "description": "Probiere etwas Neues aus.",
+            "title": "Das erste Experiment",
+            "type": "learning",
+            "priority": "medium",
+            "lore": "Quest von Zara Funkenwind · Kette 1/3 · 2/3",
+            "rewards": { "xp": 25, "gold": 15 },
             "vars": {
-              "difficulty": "hard"
+              "quote": "Fehler sind Daten! Herrliche, nützliche Daten!",
+              "task": "'Versuch Nummer... ich verliere den Überblick. Egal, wir machen weiter!'",
+              "realWorldTask": "Probiere heute etwas Neues aus — ein Rezept, eine Technik, eine App. Schreibe das Ergebnis auf.",
+              "difficulty": "intermediate"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Die Reaktion",
+            "type": "personal",
+            "priority": "medium",
+            "lore": "Quest von Zara Funkenwind · Kette 1/3 · 3/3",
+            "rewards": { "xp": 35, "gold": 25 },
+            "vars": {
+              "quote": "Wenn zwei Dinge aufeinandertreffen, entsteht immer etwas Drittes. Immer. Faszinierend.",
+              "task": "Zara schiebt dir eine Aufgabe hin. Halb sind die Seiten angesengt.",
+              "realWorldTask": "Kombiniere zwei Interessen oder Fähigkeiten in einem Projekt — 45 Minuten fokussiertes Arbeiten.",
+              "difficulty": "advanced"
+            }
+          }
+        ],
+        [
+          {
+            "template": "npc-quest",
+            "title": "Rohstoff-Suche",
+            "type": "learning",
+            "priority": "low",
+            "lore": "Quest von Zara Funkenwind · Kette 2/3 · 1/3",
+            "rewards": { "xp": 15, "gold": 10 },
+            "vars": {
+              "quote": "Die besten Zutaten wachsen an unerwarteten Orten. Genau wie gute Ideen.",
+              "task": "Zara murmelt etwas über 'Aetherkristalle in Alltagsgegenständen'. Wahrscheinlich metaphorisch.",
+              "realWorldTask": "Recherchiere 20 Minuten über ein Thema das dich schon immer interessiert hat.",
+              "difficulty": "starter"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Destillation",
+            "type": "learning",
+            "priority": "medium",
+            "lore": "Quest von Zara Funkenwind · Kette 2/3 · 2/3",
+            "rewards": { "xp": 25, "gold": 15 },
+            "vars": {
+              "quote": "Destillation ist einfach: Nimm das Beste, lass den Rest.",
+              "task": "Zara zeigt dir ihr verstaubtes Labornotizbuch. Seite 847. Es gibt noch dreihundert weitere.",
+              "realWorldTask": "Lerne eine Sache wirklich gründlich — 30 Minuten fokussiertes Lernen zu einem einzigen Unterthema.",
+              "difficulty": "intermediate"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Die Synthese",
+            "type": "social",
+            "priority": "medium",
+            "lore": "Quest von Zara Funkenwind · Kette 2/3 · 3/3",
+            "rewards": { "xp": 35, "gold": 25 },
+            "vars": {
+              "quote": "Und wenn du es wirklich verstehst — wirklich, wirklich — dann kannst du es erklären. Ich höre gerne zu!",
+              "task": "Zara tippt aufgeregt auf die Tischplatte. Das könnten Morsezeichen sein.",
+              "realWorldTask": "Erkläre jemandem etwas das du gelernt hast — mündlich oder als kurze schriftliche Zusammenfassung.",
+              "difficulty": "advanced"
+            }
+          }
+        ],
+        [
+          {
+            "template": "npc-quest",
+            "title": "Die Hypothese",
+            "type": "personal",
+            "priority": "medium",
+            "lore": "Quest von Zara Funkenwind · Kette 3/3 · 1/3",
+            "rewards": { "xp": 25, "gold": 15 },
+            "vars": {
+              "quote": "Erst der Plan — dann der Knall. Meistens. Manchmal auch gleichzeitig.",
+              "task": "Zara legt drei Kolben nebeneinander. Keiner davon ist beschriftet.",
+              "realWorldTask": "Plane ein persönliches Projekt: Schreibe Ziel, konkrete Schritte und den ersten Schritt für morgen auf.",
+              "difficulty": "intermediate"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Der Rückschlag",
+            "type": "personal",
+            "priority": "medium",
+            "lore": "Quest von Zara Funkenwind · Kette 3/3 · 2/3",
+            "rewards": { "xp": 35, "gold": 25 },
+            "vars": {
+              "quote": "Ah! Es hat nicht funktioniert! Ausgezeichnet! Jetzt wissen wir etwas das wir vorher nicht wussten.",
+              "task": "Zaras letzter Versuch hat eine Augenbraue gekostet. Sie scheint aufrichtig stolz zu sein.",
+              "realWorldTask": "Denke an etwas das kürzlich schiefgelaufen ist. Schreibe auf: Was passierte, was hast du gelernt, was machst du nächstes Mal anders.",
+              "difficulty": "advanced"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Die Entdeckung",
+            "type": "personal",
+            "priority": "high",
+            "lore": "Quest von Zara Funkenwind · Kette 3/3 · 3/3",
+            "rewards": { "xp": 50, "gold": 40 },
+            "vars": {
+              "quote": "Ich... ich glaube ich habe es! Nein, warte — ja! Definitiv ja! Vielleicht.",
+              "task": "Zara springt auf. Etwas fällt vom Regal. Sie bemerkt es nicht.",
+              "realWorldTask": "Schließe ein Vorhaben ab das du begonnen hast. Zeige das Ergebnis jemandem — egal wie klein es ist.",
+              "difficulty": "expert"
             }
           }
         ]
@@ -874,26 +1062,104 @@
         [
           {
             "template": "npc-quest",
-            "title": "Waldspaziergang",
+            "title": "Der Morgenwald",
             "type": "fitness",
-            "flavorText": "Die Natur heilt was der Verstand nicht kann.",
-            "description": "20 Minuten draussen in der Natur verbringen.",
+            "priority": "low",
+            "lore": "Quest von Alter Henrik · Kette 1/3 · 1/2",
+            "rewards": { "xp": 15, "gold": 10 },
             "vars": {
-              "difficulty": "easy"
+              "quote": "Kein Baum wächst schnell. Und keiner der schnell wächst, steht lange.",
+              "task": "Henrik schaut in die Baumkronen. Er wartet schon eine Weile.",
+              "realWorldTask": "Geh 20 Minuten draußen spazieren — ohne Kopfhörer, ohne Handy. Nur die Umgebung wahrnehmen.",
+              "difficulty": "starter"
             }
           },
           {
             "template": "npc-quest",
-            "title": "Altes Wissen",
+            "title": "Das geduldige Auge",
             "type": "learning",
-            "flavorText": "Wissen ist der Schatz der Alten.",
-            "description": "Lerne etwas über ein Thema das dich interessiert.",
-            "rewards": {
-              "xp": 30,
-              "gold": 15
-            },
+            "priority": "low",
+            "lore": "Quest von Alter Henrik · Kette 1/3 · 2/2",
+            "rewards": { "xp": 25, "gold": 15 },
             "vars": {
-              "difficulty": "medium"
+              "quote": "Die meisten Menschen sehen Wald. Ich sehe tausend einzelne Geschichten.",
+              "task": "Henrik deutet auf eine Stelle am Boden. 'Siehst du das?' Er wartet geduldig.",
+              "realWorldTask": "Wähle eine Pflanze, ein Tier oder ein Naturphänomen und lerne 20 Minuten darüber.",
+              "difficulty": "intermediate"
+            }
+          }
+        ],
+        [
+          {
+            "template": "npc-quest",
+            "title": "Das Schweigen",
+            "type": "personal",
+            "priority": "low",
+            "lore": "Quest von Alter Henrik · Kette 2/3 · 1/2",
+            "rewards": { "xp": 15, "gold": 10 },
+            "vars": {
+              "quote": "Ich war drei Tage allein im Wald. Es war genug.",
+              "task": "Henrik lehnt gegen eine alte Buche. Er spricht selten — und dann meint er es.",
+              "realWorldTask": "Verbringe 30 Minuten ohne Ablenkung — kein Handy, kein Lärm. Schreibe danach auf, was dir eingefallen ist.",
+              "difficulty": "starter"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Die Jahresringe",
+            "type": "personal",
+            "priority": "medium",
+            "lore": "Quest von Alter Henrik · Kette 2/3 · 2/2",
+            "rewards": { "xp": 25, "gold": 15 },
+            "vars": {
+              "quote": "Jedes Jahr hinterlässt eine Spur. Auch in dir.",
+              "task": "Henrik zählt Jahresringe auf einem gefällten Stamm. Langsam. Sehr langsam.",
+              "realWorldTask": "Reflektiere das vergangene Jahr: Was hat dich verändert? Schreibe drei Erkenntnisse auf.",
+              "difficulty": "intermediate"
+            }
+          }
+        ],
+        [
+          {
+            "template": "npc-quest",
+            "title": "Der Umweg",
+            "type": "personal",
+            "priority": "low",
+            "lore": "Quest von Alter Henrik · Kette 3/3 · 1/3",
+            "rewards": { "xp": 25, "gold": 15 },
+            "vars": {
+              "quote": "Der kürzeste Weg ist selten der beste Weg.",
+              "task": "Henrik nimmt heute einen anderen Pfad als sonst. Er nennt keinen Grund.",
+              "realWorldTask": "Tu heute etwas auf eine neue, langsamere Art — kochen, lernen, arbeiten. Keine Abkürzungen.",
+              "difficulty": "intermediate"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Was bleibt",
+            "type": "social",
+            "priority": "medium",
+            "lore": "Quest von Alter Henrik · Kette 3/3 · 2/3",
+            "rewards": { "xp": 35, "gold": 25 },
+            "vars": {
+              "quote": "Ein Mensch hinterlässt entweder Narben oder Bäume. Manchmal beides.",
+              "task": "Henrik pflanzt jeden Sommer einen Baum. Über hundert stehen schon.",
+              "realWorldTask": "Tue heute etwas das jemandem anderem nützt — ohne dass er davon weiß.",
+              "difficulty": "advanced"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Das Gespräch der Alten",
+            "type": "social",
+            "priority": "medium",
+            "lore": "Quest von Alter Henrik · Kette 3/3 · 3/3",
+            "rewards": { "xp": 35, "gold": 25 },
+            "vars": {
+              "quote": "Die weisesten Menschen die ich kenne reden am wenigsten. Frag sie trotzdem.",
+              "task": "Henrik nickt in Richtung der Siedlung. Eine seltene Geste.",
+              "realWorldTask": "Führe ein echtes Gespräch mit einem älteren Menschen — frage nach seiner Geschichte und höre zu.",
+              "difficulty": "advanced"
             }
           }
         ]
@@ -928,30 +1194,160 @@
         [
           {
             "template": "npc-quest",
-            "title": "Nachteulen-Ritual",
+            "title": "Erste Sterne",
             "type": "personal",
-            "flavorText": "Die besten Ideen kommen bei Mondschein.",
-            "description": "Erledige eine Aufgabe nach 20 Uhr.",
-            "rewards": {
-              "xp": 40,
-              "gold": 25
-            },
+            "priority": "low",
+            "lore": "Quest von Lumi · Kette 1/3 · 1/3",
+            "rewards": { "xp": 15, "gold": 10 },
             "vars": {
-              "difficulty": "hard"
+              "quote": "*flimmert* Siehst du die? Jeder Stern ist eine Geschichte! So viele Geschichten!",
+              "task": "Lumi tanzt aufgeregt um dich herum. Die Luft riecht nach Mondlicht und irgendwie nach Sommer.",
+              "realWorldTask": "Schaue heute Abend 10 Minuten in den Himmel — mit oder ohne Sterne. Einfach hinaufschauen.",
+              "difficulty": "starter"
             }
           },
           {
             "template": "npc-quest",
-            "title": "Sternenbeobachtung",
+            "title": "Die Nachtarbeit",
             "type": "personal",
-            "flavorText": "In der Stille findest du Antworten.",
-            "description": "Nimm dir 10 Minuten um nachzudenken.",
-            "rewards": {
-              "xp": 30,
-              "gold": 20
-            },
+            "priority": "medium",
+            "lore": "Quest von Lumi · Kette 1/3 · 2/3",
+            "rewards": { "xp": 25, "gold": 15 },
             "vars": {
-              "difficulty": "medium"
+              "quote": "Menschen schlafen wenn die Welt am schönsten ist. Das finde ich immer noch seltsam.",
+              "task": "Lumi setzt sich auf deine Schulter. So ungefähr. Ungefähr in der Größe.",
+              "realWorldTask": "Erledige heute Abend nach 20 Uhr eine kreative Aufgabe — schreiben, zeichnen, nachdenken.",
+              "difficulty": "intermediate"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Der Mondgedanke",
+            "type": "personal",
+            "priority": "medium",
+            "lore": "Quest von Lumi · Kette 1/3 · 3/3",
+            "rewards": { "xp": 35, "gold": 25 },
+            "vars": {
+              "quote": "Der Mond stellt keine Fragen. Er leuchtet einfach. Vielleicht solltest du das auch mal versuchen.",
+              "task": "Lumi schweigt kurz. Bei ihr bedeutet das fast eine Ewigkeit.",
+              "realWorldTask": "Schreibe bei Kerzenlicht oder gedimmtem Licht 15 Minuten lang — was auch immer dir einfällt.",
+              "difficulty": "advanced"
+            }
+          }
+        ],
+        [
+          {
+            "template": "npc-quest",
+            "title": "Die Zwischenräume",
+            "type": "personal",
+            "priority": "low",
+            "lore": "Quest von Lumi · Kette 2/3 · 1/4",
+            "rewards": { "xp": 15, "gold": 10 },
+            "vars": {
+              "quote": "Die interessantesten Dinge passieren in den Zwischenräumen. Zwischen den Sekunden. Zwischen den Worten.",
+              "task": "Lumi zeigt dir eine Stelle im Raum die leer aussieht. Sie sieht das eindeutig anders.",
+              "realWorldTask": "Beobachte heute 15 Minuten lang etwas — eine Kerze, den Regen, Menschen auf der Straße. Nur beobachten, nicht urteilen.",
+              "difficulty": "starter"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Der vergessene Traum",
+            "type": "personal",
+            "priority": "low",
+            "lore": "Quest von Lumi · Kette 2/3 · 2/4",
+            "rewards": { "xp": 25, "gold": 15 },
+            "vars": {
+              "quote": "Träume sind Botschaften — aber in einer Sprache die ihr Sterblichen immer schneller vergesst.",
+              "task": "Lumi neigt den Kopf. 'Was hast du letzte Nacht geträumt? Wirklich, ich frage mich das immer.'",
+              "realWorldTask": "Lege heute Nacht ein Notizbuch neben dein Bett und schreibe morgen früh als erstes auf, was du geträumt hast.",
+              "difficulty": "intermediate"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Das Unsichtbare",
+            "type": "social",
+            "priority": "medium",
+            "lore": "Quest von Lumi · Kette 2/3 · 3/4",
+            "rewards": { "xp": 35, "gold": 25 },
+            "vars": {
+              "quote": "Das Wichtigste ist meistens das, was niemand sieht. Das weiß ich aus sehr langer Erfahrung.",
+              "task": "Lumi leuchtet kurz heller — dann dunkler. Eine Geste die du nicht ganz deutest.",
+              "realWorldTask": "Schreibe einem Menschen den du schätzt, warum du ihn schätzt — ohne besonderen Anlass.",
+              "difficulty": "advanced"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Die alte Sprache",
+            "type": "learning",
+            "priority": "high",
+            "lore": "Quest von Lumi · Kette 2/3 · 4/4",
+            "rewards": { "xp": 50, "gold": 40 },
+            "vars": {
+              "quote": "*flimmert sehr stark* Du verstehst schon ein bisschen! Ich glaube, die Halle mag dich.",
+              "task": "Lumi murmelt etwas in einer Sprache die älter ist als Aethermoor. Es klingt wie fließendes Wasser.",
+              "realWorldTask": "Lerne 30 Minuten eine neue Sprache — oder lerne 10 Vokabeln einer Sprache die du noch nicht sprichst.",
+              "difficulty": "expert"
+            }
+          }
+        ],
+        [
+          {
+            "template": "npc-quest",
+            "title": "Der Abendspaziergang",
+            "type": "fitness",
+            "priority": "low",
+            "lore": "Quest von Lumi · Kette 3/3 · 1/4",
+            "rewards": { "xp": 25, "gold": 15 },
+            "vars": {
+              "quote": "Die Nacht macht die Welt nicht gefährlich. Sie macht sie ehrlich.",
+              "task": "Lumi schwebt knapp über dem Boden. 'Komm, ich zeig dir was.'",
+              "realWorldTask": "Mache einen Abendspaziergang nach Einbruch der Dunkelheit — mindestens 20 Minuten.",
+              "difficulty": "intermediate"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Die Hüter der Erinnerung",
+            "type": "personal",
+            "priority": "medium",
+            "lore": "Quest von Lumi · Kette 3/3 · 2/4",
+            "rewards": { "xp": 25, "gold": 15 },
+            "vars": {
+              "quote": "Ich erinnere mich an Helden deren Namen keiner mehr kennt. Das macht mich manchmal sehr traurig.",
+              "task": "Lumi hält inne. Ihr Licht flackert leise. Für einen Moment wirkt sie sehr, sehr alt.",
+              "realWorldTask": "Schreibe eine Erinnerung auf die du nicht vergessen möchtest — über eine Person, einen Moment, einen Ort.",
+              "difficulty": "intermediate"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Was nach uns bleibt",
+            "type": "personal",
+            "priority": "medium",
+            "lore": "Quest von Lumi · Kette 3/3 · 3/4",
+            "rewards": { "xp": 35, "gold": 25 },
+            "vars": {
+              "quote": "Ihr Sterblichen habt diese merkwürdige Gabe: Ihr schafft Dinge die länger leben als ihr. Das finde ich... wunderschön.",
+              "task": "Lumi dreht sich langsam, als würde sie die Halle umarmen.",
+              "realWorldTask": "Erschaffe heute etwas Bleibendes — ein Gedicht, ein Brief, ein Foto das du ausdruckst, ein Eintrag im Tagebuch.",
+              "difficulty": "advanced"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Das letzte Licht",
+            "type": "personal",
+            "priority": "high",
+            "lore": "Quest von Lumi · Kette 3/3 · 4/4",
+            "rewards": { "xp": 50, "gold": 40 },
+            "vars": {
+              "quote": "*sehr leise, fast ernst* Du hast gut geschaut. Das ist mehr als die meisten schaffen.",
+              "task": "Lumi leuchtet so hell wie du sie noch nie gesehen hast. Dann schwindet das Licht langsam — sie lächelt dabei.",
+              "realWorldTask": "Beginne heute eine Routine die du wirklich 30 Tage durchhalten willst. Schreibe auf, warum es diesmal klappt.",
+              "difficulty": "expert"
             }
           }
         ]
@@ -986,22 +1382,132 @@
         [
           {
             "template": "npc-quest",
-            "title": "Schwere Arbeit",
+            "title": "Direkt loslegen",
             "type": "personal",
-            "flavorText": "Stahl wird nur im Feuer gehärtet.",
-            "description": "Erledige eine anspruchsvolle Aufgabe.",
+            "priority": "medium",
+            "lore": "Quest von Rogar Amboss · Kette 1/3 · 1/3",
+            "rewards": { "xp": 15, "gold": 10 },
             "vars": {
-              "difficulty": "hard"
+              "quote": "Aufwärmen ist für Leute die Angst vor ihrer eigenen Arbeit haben.",
+              "task": "Rogar klopft einmal auf den Amboss. Das bedeutet: Fang an.",
+              "realWorldTask": "Beginne heute sofort mit deiner wichtigsten Aufgabe — keine Vorbereitung, kein Zögern, direkt loslegen.",
+              "difficulty": "starter"
             }
           },
           {
             "template": "npc-quest",
-            "title": "Meisterwerk",
+            "title": "Der Rhythmus",
             "type": "personal",
-            "flavorText": "Ein Meisterwerk braucht Schweiß und Geduld.",
-            "description": "Erstelle oder verbessere etwas.",
+            "priority": "medium",
+            "lore": "Quest von Rogar Amboss · Kette 1/3 · 2/3",
+            "rewards": { "xp": 25, "gold": 15 },
             "vars": {
-              "difficulty": "epic"
+              "quote": "Schlechte Schmiede arbeiten wenn sie mögen. Gute Schmiede arbeiten.",
+              "task": "Rogars Hammer fällt im selben Takt seit dreißig Jahren. Kein Tag fehlt.",
+              "realWorldTask": "Arbeite heute 45 Minuten ohne Pause an einer Aufgabe — Handy weg, alles andere weg.",
+              "difficulty": "intermediate"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Qualität oder nichts",
+            "type": "personal",
+            "priority": "high",
+            "lore": "Quest von Rogar Amboss · Kette 1/3 · 3/3",
+            "rewards": { "xp": 35, "gold": 25 },
+            "vars": {
+              "quote": "Ein Schwert das beim dritten Schlag bricht ist kein Schwert. Es ist Verschwendung von gutem Erz.",
+              "task": "Rogar wirft ein schlecht geschmiedetes Stück in die Ecke. Ohne ein Wort.",
+              "realWorldTask": "Nimm eine erledigte Aufgabe und mache sie besser — überarbeite, verfeinere, poliere. Kein 'gut genug'.",
+              "difficulty": "advanced"
+            }
+          }
+        ],
+        [
+          {
+            "template": "npc-quest",
+            "title": "Das richtige Werkzeug",
+            "type": "personal",
+            "priority": "low",
+            "lore": "Quest von Rogar Amboss · Kette 2/3 · 1/3",
+            "rewards": { "xp": 15, "gold": 10 },
+            "vars": {
+              "quote": "Ich kenne einen der einen Nagel mit einer Axt einschlug. Er hieß Dummkopf.",
+              "task": "Rogar ordnet seine Werkzeuge. Jedes liegt genau richtig. Schon immer.",
+              "realWorldTask": "Richte deinen Arbeitsplatz richtig ein — aufräumen, organisieren, die richtigen Werkzeuge bereitstellen.",
+              "difficulty": "starter"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Der heiße Stahl",
+            "type": "fitness",
+            "priority": "medium",
+            "lore": "Quest von Rogar Amboss · Kette 2/3 · 2/3",
+            "rewards": { "xp": 25, "gold": 15 },
+            "vars": {
+              "quote": "Stahl formt sich nur wenn er heiß ist. Menschen auch. Tu's solange du kannst.",
+              "task": "Rogar streckt die Hand ins Feuer. Er zieht sie wieder zurück. Das war ein Test.",
+              "realWorldTask": "Mache heute ein intensives körperliches Training — 30 Minuten, volle Leistung, keine Abkürzungen.",
+              "difficulty": "intermediate"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Tausend Schläge",
+            "type": "fitness",
+            "priority": "high",
+            "lore": "Quest von Rogar Amboss · Kette 2/3 · 3/3",
+            "rewards": { "xp": 35, "gold": 25 },
+            "vars": {
+              "quote": "Tausend Schläge auf denselben Punkt. Wer das versteht, versteht Handwerk.",
+              "task": "Rogar nickt dir zu. Das ist bei ihm viel.",
+              "realWorldTask": "Wiederhole eine Fähigkeit 30 Minuten lang bewusst — dieselbe Übung, dieselbe Bewegung, dieselbe Technik. Meisterschaft durch Wiederholung.",
+              "difficulty": "advanced"
+            }
+          }
+        ],
+        [
+          {
+            "template": "npc-quest",
+            "title": "Der Plan auf Stein",
+            "type": "personal",
+            "priority": "medium",
+            "lore": "Quest von Rogar Amboss · Kette 3/3 · 1/3",
+            "rewards": { "xp": 25, "gold": 15 },
+            "vars": {
+              "quote": "Keine Klinge entsteht ohne Zeichnung. Kein Bauwerk ohne Plan. Keine Leistung ohne Vorsatz.",
+              "task": "Rogar zeigt dir seine alten Schmiedepläne. Hunderte Seiten. Nichts korrigiert — alles durchgestrichen und neu gemacht.",
+              "realWorldTask": "Plane ein ambitioniertes Vorhaben schriftlich: Ziel, konkrete Schritte, Zeitrahmen und was du brauchst.",
+              "difficulty": "intermediate"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Die schwere Prüfung",
+            "type": "personal",
+            "priority": "high",
+            "lore": "Quest von Rogar Amboss · Kette 3/3 · 2/3",
+            "rewards": { "xp": 35, "gold": 25 },
+            "vars": {
+              "quote": "Ich werde dir nicht sagen dass es leicht wird. Aber ich sage dir: Es wird.",
+              "task": "Rogar stellt sich dir gegenüber. Seine Augen sagen mehr als seine Worte.",
+              "realWorldTask": "Stelle dich heute einer Aufgabe die du fürchtest oder aufgeschoben hast. Fang an — halte 20 Minuten durch.",
+              "difficulty": "advanced"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Das Meisterstück",
+            "type": "personal",
+            "priority": "high",
+            "lore": "Quest von Rogar Amboss · Kette 3/3 · 3/3",
+            "rewards": { "xp": 50, "gold": 40 },
+            "vars": {
+              "quote": "... Nicht schlecht.",
+              "task": "Rogar betrachtet das Ergebnis lange. Dann legt er kurz seine Hand darauf. Das ist die höchste Form des Lobes.",
+              "realWorldTask": "Schließe ein Projekt vollständig ab — von Anfang bis Ende in einer Sitzung. Kein 'fast fertig'.",
+              "difficulty": "expert"
             }
           }
         ]
