@@ -47,6 +47,7 @@
       "difficulty": "intermediate",
       "category": "personal",
       "flavor": "\"Die Kristallkugel zeigt dir alles. Außer das, was direkt vor deiner Nase liegt.\" — Alter Henrik",
+      "flavorText": "\"Die Kristallkugel zeigt dir alles. Außer das, was direkt vor deiner Nase liegt.\" — Alter Henrik",
       "rewards": {
         "xp": 25,
         "gold": 15
@@ -86,6 +87,7 @@
       "difficulty": "intermediate",
       "category": "personal",
       "flavor": "\"Jedes Rezept ist ein Zauberspruch. Die Zutaten sind deine Komponenten. Und nein, Fertignudeln zählen nicht als Transmutation.\" — Zara Funkenwind",
+      "flavorText": "\"Jedes Rezept ist ein Zauberspruch. Die Zutaten sind deine Komponenten. Und nein, Fertignudeln zählen nicht als Transmutation.\" — Zara Funkenwind",
       "rewards": {
         "xp": 25,
         "gold": 15
@@ -112,6 +114,7 @@
       "difficulty": "starter",
       "category": "personal",
       "flavor": "Worte sind die billigste Magie und die mächtigste. Finnegan hat mal ein ganzes Dorf mit einem einzigen Satz zum Weinen gebracht. Zugegeben, es war eine Beleidigung.",
+      "flavorText": "Worte sind die billigste Magie und die mächtigste. Finnegan hat mal ein ganzes Dorf mit einem einzigen Satz zum Weinen gebracht. Zugegeben, es war eine Beleidigung.",
       "rewards": {
         "xp": 15,
         "gold": 8
@@ -125,6 +128,7 @@
       "difficulty": "intermediate",
       "category": "personal",
       "flavor": "Der wichtigste Schritt ist immer der nächste. Besonders wenn er aus dem Bett führt.",
+      "flavorText": "Der wichtigste Schritt ist immer der nächste. Besonders wenn er aus dem Bett führt.",
       "rewards": {
         "xp": 20,
         "gold": 12
@@ -203,6 +207,7 @@
       "difficulty": "intermediate",
       "category": "fitness",
       "flavor": "Die Sterne verblassen am Morgen. Aber wer früh genug läuft, sieht sie noch grüßen.",
+      "flavorText": "Die Sterne verblassen am Morgen. Aber wer früh genug läuft, sieht sie noch grüßen.",
       "rewards": {
         "xp": 30,
         "gold": 15
@@ -294,6 +299,7 @@
       "difficulty": "intermediate",
       "category": "fitness",
       "flavor": "Das Eis fragt nicht ob du bereit bist. Sei es trotzdem. Lumi lacht über Kälte. Aber Lumi ist auch... Lumi.",
+      "flavorText": "Das Eis fragt nicht ob du bereit bist. Sei es trotzdem. Lumi lacht über Kälte. Aber Lumi ist auch... Lumi.",
       "rewards": {
         "xp": 25,
         "gold": 15
@@ -424,6 +430,7 @@
       "difficulty": "intermediate",
       "category": "learning",
       "flavor": "Wiederholung ist keine Langeweile. Wiederholung ist der Pfad zur Meisterschaft. Oder zum Wahnsinn. Die Grenze ist fließend, sagt Meister Tanaka.",
+      "flavorText": "Wiederholung ist keine Langeweile. Wiederholung ist der Pfad zur Meisterschaft. Oder zum Wahnsinn. Die Grenze ist fließend, sagt Meister Tanaka.",
       "rewards": {
         "xp": 25,
         "gold": 12
@@ -567,6 +574,7 @@
       "difficulty": "intermediate",
       "category": "social",
       "flavor": "Gemeinsame Schritte wiegen schwerer als gemeinsame Worte. Der Pfad durch den Nebelhain ist am schönsten zu zweit. Auch wenn man sich verläuft. Besonders dann.",
+      "flavorText": "Gemeinsame Schritte wiegen schwerer als gemeinsame Worte. Der Pfad durch den Nebelhain ist am schönsten zu zweit. Auch wenn man sich verläuft. Besonders dann.",
       "rewards": {
         "xp": 25,
         "gold": 15
