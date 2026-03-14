@@ -6,8 +6,14 @@
       "name": "First Quest",
       "description": "Complete your first quest",
       "icon": "/images/icons/ach-first-quest.png",
-      "condition": { "type": "quests_completed", "count": 1 },
-      "rewards": { "xp": 10, "gold": 5 },
+      "condition": {
+        "type": "quests_completed",
+        "count": 1
+      },
+      "rewards": {
+        "xp": 10,
+        "gold": 5
+      },
       "rarity": "common",
       "category": "milestone",
       "hidden": false
@@ -17,8 +23,14 @@
       "name": "Apprentice",
       "description": "Complete 10 quests",
       "icon": "/images/icons/ach-apprentice.png",
-      "condition": { "type": "quests_completed", "count": 10 },
-      "rewards": { "xp": 25, "gold": 15 },
+      "condition": {
+        "type": "quests_completed",
+        "count": 10
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
+      },
       "rarity": "common",
       "category": "milestone",
       "hidden": false
@@ -28,8 +40,14 @@
       "name": "Knight",
       "description": "Complete 50 quests",
       "icon": "/images/icons/ach-knight.png",
-      "condition": { "type": "quests_completed", "count": 50 },
-      "rewards": { "xp": 75, "gold": 50 },
+      "condition": {
+        "type": "quests_completed",
+        "count": 50
+      },
+      "rewards": {
+        "xp": 75,
+        "gold": 50
+      },
       "rarity": "rare",
       "category": "milestone",
       "hidden": false
@@ -39,8 +57,14 @@
       "name": "Legend",
       "description": "Complete 100 quests",
       "icon": "/images/icons/ach-legend.png",
-      "condition": { "type": "quests_completed", "count": 100 },
-      "rewards": { "xp": 150, "gold": 100 },
+      "condition": {
+        "type": "quests_completed",
+        "count": 100
+      },
+      "rewards": {
+        "xp": 150,
+        "gold": 100
+      },
       "rarity": "epic",
       "category": "milestone",
       "hidden": false
@@ -50,8 +74,14 @@
       "name": "Week Warrior",
       "description": "7-day quest streak",
       "icon": "/images/icons/ach-week-warrior.png",
-      "condition": { "type": "streak_days", "count": 7 },
-      "rewards": { "xp": 20, "gold": 10 },
+      "condition": {
+        "type": "streak_days",
+        "count": 7
+      },
+      "rewards": {
+        "xp": 20,
+        "gold": 10
+      },
       "rarity": "common",
       "category": "streak",
       "hidden": false
@@ -61,8 +91,14 @@
       "name": "Monthly Champion",
       "description": "30-day quest streak",
       "icon": "/images/icons/ach-monthly-champ.png",
-      "condition": { "type": "streak_days", "count": 30 },
-      "rewards": { "xp": 75, "gold": 50 },
+      "condition": {
+        "type": "streak_days",
+        "count": 30
+      },
+      "rewards": {
+        "xp": 75,
+        "gold": 50
+      },
       "rarity": "epic",
       "category": "streak",
       "hidden": false
@@ -72,8 +108,14 @@
       "name": "Lightning Hands",
       "description": "Complete 3 quests in one day",
       "icon": "/images/icons/ach-lightning.png",
-      "condition": { "type": "quests_today", "count": 3 },
-      "rewards": { "xp": 15, "gold": 10 },
+      "condition": {
+        "type": "quests_today",
+        "count": 3
+      },
+      "rewards": {
+        "xp": 15,
+        "gold": 10
+      },
       "rarity": "uncommon",
       "category": "speed",
       "hidden": false
@@ -83,8 +125,14 @@
       "name": "Jack of All Trades",
       "description": "Complete all quest types",
       "icon": "/images/icons/ach-all-trades.png",
-      "condition": { "type": "completed_types", "count": 5 },
-      "rewards": { "xp": 50, "gold": 25 },
+      "condition": {
+        "type": "completed_types",
+        "count": 5
+      },
+      "rewards": {
+        "xp": 50,
+        "gold": 25
+      },
       "rarity": "rare",
       "category": "variety",
       "hidden": false
@@ -94,8 +142,14 @@
       "name": "Boss Slayer",
       "description": "Defeat your first Boss Battle",
       "icon": "/images/icons/ach-boss-slayer.png",
-      "condition": { "type": "boss_defeated", "count": 1 },
-      "rewards": { "xp": 50, "gold": 30 },
+      "condition": {
+        "type": "boss_defeated",
+        "count": 1
+      },
+      "rewards": {
+        "xp": 50,
+        "gold": 30
+      },
       "rarity": "rare",
       "category": "boss",
       "hidden": false
@@ -105,8 +159,15 @@
       "name": "Ember Sprite",
       "description": "Complete 10 development quests",
       "icon": "/images/icons/ach-ember-sprite.png",
-      "condition": { "type": "quest_type_count", "questType": "development", "count": 10 },
-      "rewards": { "xp": 30, "gold": 20 },
+      "condition": {
+        "type": "quest_type_count",
+        "questType": "development",
+        "count": 10
+      },
+      "rewards": {
+        "xp": 30,
+        "gold": 20
+      },
       "rarity": "rare",
       "category": "companion",
       "hidden": false
@@ -116,8 +177,15 @@
       "name": "Lore Owl",
       "description": "Complete 5 learning quests",
       "icon": "/images/icons/ach-lore-owl.png",
-      "condition": { "type": "quest_type_count", "questType": "learning", "count": 5 },
-      "rewards": { "xp": 20, "gold": 15 },
+      "condition": {
+        "type": "quest_type_count",
+        "questType": "learning",
+        "count": 5
+      },
+      "rewards": {
+        "xp": 20,
+        "gold": 15
+      },
       "rarity": "uncommon",
       "category": "companion",
       "hidden": false
@@ -127,8 +195,14 @@
       "name": "Gear Golem",
       "description": "Reach Knight level (300 XP)",
       "icon": "/images/icons/ach-gear-golem.png",
-      "condition": { "type": "xp_threshold", "count": 300 },
-      "rewards": { "xp": 30, "gold": 20 },
+      "condition": {
+        "type": "xp_threshold",
+        "count": 300
+      },
+      "rewards": {
+        "xp": 30,
+        "gold": 20
+      },
       "rarity": "rare",
       "category": "companion",
       "hidden": false
@@ -138,8 +212,14 @@
       "name": "Code Sprinter",
       "description": "Complete the 30-Day Code Sprint",
       "icon": "/images/icons/ach-code-sprinter.png",
-      "condition": { "type": "challenge_completed", "challengeId": "code_sprint" },
-      "rewards": { "xp": 50, "gold": 30 },
+      "condition": {
+        "type": "challenge_completed",
+        "challengeId": "code_sprint"
+      },
+      "rewards": {
+        "xp": 50,
+        "gold": 30
+      },
       "rarity": "rare",
       "category": "challenge",
       "hidden": false
@@ -149,8 +229,14 @@
       "name": "Marathon Learner",
       "description": "Complete the Learning Marathon",
       "icon": "/images/icons/ach-marathon-learner.png",
-      "condition": { "type": "challenge_completed", "challengeId": "learning_marathon" },
-      "rewards": { "xp": 50, "gold": 30 },
+      "condition": {
+        "type": "challenge_completed",
+        "challengeId": "learning_marathon"
+      },
+      "rewards": {
+        "xp": 50,
+        "gold": 30
+      },
       "rarity": "rare",
       "category": "challenge",
       "hidden": false
@@ -160,8 +246,15 @@
       "name": "Night Owl",
       "description": "Complete a quest between 23:00 and 05:00",
       "icon": "/images/icons/ach-night-owl.png",
-      "condition": { "type": "time_of_day", "startHour": 23, "endHour": 5 },
-      "rewards": { "xp": 15, "gold": 10 },
+      "condition": {
+        "type": "time_of_day",
+        "startHour": 23,
+        "endHour": 5
+      },
+      "rewards": {
+        "xp": 15,
+        "gold": 10
+      },
       "rarity": "uncommon",
       "category": "speed",
       "hidden": false
@@ -171,8 +264,14 @@
       "name": "Speed Runner",
       "description": "Complete a quest within 1 hour of claiming it",
       "icon": "/images/icons/ach-speed-runner.png",
-      "condition": { "type": "completion_time", "maxMinutes": 60 },
-      "rewards": { "xp": 15, "gold": 10 },
+      "condition": {
+        "type": "completion_time",
+        "maxMinutes": 60
+      },
+      "rewards": {
+        "xp": 15,
+        "gold": 10
+      },
       "rarity": "uncommon",
       "category": "speed",
       "hidden": false
@@ -182,8 +281,15 @@
       "name": "Social Butterfly",
       "description": "Complete 5 social quests",
       "icon": "/images/icons/ach-social-butterfly.png",
-      "condition": { "type": "quest_type_count", "questType": "social", "count": 5 },
-      "rewards": { "xp": 20, "gold": 15 },
+      "condition": {
+        "type": "quest_type_count",
+        "questType": "social",
+        "count": 5
+      },
+      "rewards": {
+        "xp": 20,
+        "gold": 15
+      },
       "rarity": "uncommon",
       "category": "variety",
       "hidden": false
@@ -193,8 +299,15 @@
       "name": "Scholar",
       "description": "Complete 10 learning quests",
       "icon": "/images/icons/ach-scholar.png",
-      "condition": { "type": "quest_type_count", "questType": "learning", "count": 10 },
-      "rewards": { "xp": 30, "gold": 20 },
+      "condition": {
+        "type": "quest_type_count",
+        "questType": "learning",
+        "count": 10
+      },
+      "rewards": {
+        "xp": 30,
+        "gold": 20
+      },
       "rarity": "rare",
       "category": "variety",
       "hidden": false
@@ -204,8 +317,15 @@
       "name": "Gym Rat",
       "description": "Complete 10 fitness quests",
       "icon": "/images/icons/ach-gym-rat.png",
-      "condition": { "type": "quest_type_count", "questType": "fitness", "count": 10 },
-      "rewards": { "xp": 30, "gold": 20 },
+      "condition": {
+        "type": "quest_type_count",
+        "questType": "fitness",
+        "count": 10
+      },
+      "rewards": {
+        "xp": 30,
+        "gold": 20
+      },
       "rarity": "rare",
       "category": "variety",
       "hidden": false
@@ -215,8 +335,14 @@
       "name": "Chain Master",
       "description": "Complete a full quest chain",
       "icon": "/images/icons/ach-chain-master.png",
-      "condition": { "type": "chain_completed", "count": 1 },
-      "rewards": { "xp": 40, "gold": 25 },
+      "condition": {
+        "type": "chain_completed",
+        "count": 1
+      },
+      "rewards": {
+        "xp": 40,
+        "gold": 25
+      },
       "rarity": "rare",
       "category": "milestone",
       "hidden": false
@@ -226,8 +352,14 @@
       "name": "Campaign Victor",
       "description": "Complete a campaign",
       "icon": "/images/icons/ach-campaign-victor.png",
-      "condition": { "type": "campaign_completed", "count": 1 },
-      "rewards": { "xp": 100, "gold": 75 },
+      "condition": {
+        "type": "campaign_completed",
+        "count": 1
+      },
+      "rewards": {
+        "xp": 100,
+        "gold": 75
+      },
       "rarity": "epic",
       "category": "milestone",
       "hidden": false
@@ -237,8 +369,13 @@
       "name": "NPC Whisperer",
       "description": "Have all agents online at the same time",
       "icon": "/images/icons/ach-npc-whisperer.png",
-      "condition": { "type": "all_agents_online" },
-      "rewards": { "xp": 25, "gold": 15 },
+      "condition": {
+        "type": "all_agents_online"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
+      },
       "rarity": "rare",
       "category": "milestone",
       "hidden": false
@@ -248,8 +385,15 @@
       "name": "Forge Novice",
       "description": "Complete your first development quest",
       "icon": "/images/icons/ach-forge-novice.png",
-      "condition": { "type": "quest_type_count", "questType": "development", "count": 1 },
-      "rewards": { "xp": 10, "gold": 5 },
+      "condition": {
+        "type": "quest_type_count",
+        "questType": "development",
+        "count": 1
+      },
+      "rewards": {
+        "xp": 10,
+        "gold": 5
+      },
       "rarity": "common",
       "category": "milestone",
       "hidden": false
@@ -259,8 +403,15 @@
       "name": "Arena Debut",
       "description": "Complete your first fitness quest",
       "icon": "/images/icons/ach-arena-debut.png",
-      "condition": { "type": "quest_type_count", "questType": "fitness", "count": 1 },
-      "rewards": { "xp": 10, "gold": 5 },
+      "condition": {
+        "type": "quest_type_count",
+        "questType": "fitness",
+        "count": 1
+      },
+      "rewards": {
+        "xp": 10,
+        "gold": 5
+      },
       "rarity": "common",
       "category": "milestone",
       "hidden": false
@@ -270,8 +421,15 @@
       "name": "First Scroll",
       "description": "Complete your first learning quest",
       "icon": "/images/icons/ach-first-scroll.png",
-      "condition": { "type": "quest_type_count", "questType": "learning", "count": 1 },
-      "rewards": { "xp": 10, "gold": 5 },
+      "condition": {
+        "type": "quest_type_count",
+        "questType": "learning",
+        "count": 1
+      },
+      "rewards": {
+        "xp": 10,
+        "gold": 5
+      },
       "rarity": "common",
       "category": "milestone",
       "hidden": false
@@ -281,8 +439,14 @@
       "name": "Ten Quest Mark",
       "description": "Complete 10 quests total",
       "icon": "/images/icons/ach-ten-quests.png",
-      "condition": { "type": "quests_completed", "count": 10 },
-      "rewards": { "xp": 25, "gold": 15 },
+      "condition": {
+        "type": "quests_completed",
+        "count": 10
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
+      },
       "rarity": "common",
       "category": "milestone",
       "hidden": false
@@ -292,8 +456,14 @@
       "name": "Half Century",
       "description": "Complete 50 quests total",
       "icon": "/images/icons/ach-fifty-quests.png",
-      "condition": { "type": "quests_completed", "count": 50 },
-      "rewards": { "xp": 75, "gold": 50 },
+      "condition": {
+        "type": "quests_completed",
+        "count": 50
+      },
+      "rewards": {
+        "xp": 75,
+        "gold": 50
+      },
       "rarity": "rare",
       "category": "milestone",
       "hidden": false
@@ -303,8 +473,14 @@
       "name": "Co-op Hero",
       "description": "Complete a co-op quest",
       "icon": "/images/icons/ach-coop-hero.png",
-      "condition": { "type": "coop_completed", "count": 1 },
-      "rewards": { "xp": 20, "gold": 15 },
+      "condition": {
+        "type": "coop_completed",
+        "count": 1
+      },
+      "rewards": {
+        "xp": 20,
+        "gold": 15
+      },
       "rarity": "uncommon",
       "category": "milestone",
       "hidden": false
@@ -314,8 +490,15 @@
       "name": "Early Bird",
       "description": "Complete 3 quests before 08:00",
       "icon": "/images/icons/ach-early-bird.png",
-      "condition": { "type": "early_completions", "count": 3, "beforeHour": 8 },
-      "rewards": { "xp": 20, "gold": 10 },
+      "condition": {
+        "type": "early_completions",
+        "count": 3,
+        "beforeHour": 8
+      },
+      "rewards": {
+        "xp": 20,
+        "gold": 10
+      },
       "rarity": "uncommon",
       "category": "speed",
       "hidden": false
@@ -325,8 +508,14 @@
       "name": "The Forbidden Code",
       "description": "Complete a quest on a Sunday",
       "icon": "/images/icons/ach-forbidden-code.png",
-      "condition": { "type": "day_of_week", "day": 0 },
-      "rewards": { "xp": 15, "gold": 10 },
+      "condition": {
+        "type": "day_of_week",
+        "day": 0
+      },
+      "rewards": {
+        "xp": 15,
+        "gold": 10
+      },
       "rarity": "uncommon",
       "category": "hidden",
       "hidden": true
@@ -335,9 +524,14 @@
       "id": "easter_egg",
       "name": "Easter Egg Hunter",
       "description": "Found something secret...",
-      "icon": null,
-      "condition": { "type": "secret_found" },
-      "rewards": { "xp": 25, "gold": 25 },
+      "icon": "/images/icons/achievement-easter-egg.png",
+      "condition": {
+        "type": "secret_found"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 25
+      },
       "rarity": "rare",
       "category": "hidden",
       "hidden": true
@@ -346,9 +540,15 @@
       "id": "perfectionist",
       "name": "Perfectionist",
       "description": "Complete 100 quests",
-      "icon": null,
-      "condition": { "type": "quests_completed", "count": 100 },
-      "rewards": { "xp": 150, "gold": 100 },
+      "icon": "/images/icons/achievement-perfectionist.png",
+      "condition": {
+        "type": "quests_completed",
+        "count": 100
+      },
+      "rewards": {
+        "xp": 150,
+        "gold": 100
+      },
       "rarity": "epic",
       "category": "hidden",
       "hidden": true
@@ -357,9 +557,15 @@
       "id": "no_rest",
       "name": "No Rest for the Wicked",
       "description": "Maintain a 30-day streak",
-      "icon": null,
-      "condition": { "type": "streak_days", "count": 30 },
-      "rewards": { "xp": 75, "gold": 50 },
+      "icon": "/images/icons/achievement-no-rest.png",
+      "condition": {
+        "type": "streak_days",
+        "count": 30
+      },
+      "rewards": {
+        "xp": 75,
+        "gold": 50
+      },
       "rarity": "epic",
       "category": "hidden",
       "hidden": true
@@ -368,9 +574,15 @@
       "id": "one_ring",
       "name": "The One Ring",
       "description": "Earn 1000 gold total",
-      "icon": null,
-      "condition": { "type": "gold_threshold", "count": 1000 },
-      "rewards": { "xp": 100, "gold": 0 },
+      "icon": "/images/icons/achievement-one-ring.png",
+      "condition": {
+        "type": "gold_threshold",
+        "count": 1000
+      },
+      "rewards": {
+        "xp": 100,
+        "gold": 0
+      },
       "rarity": "legendary",
       "category": "hidden",
       "hidden": true
