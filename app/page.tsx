@@ -748,7 +748,7 @@ export default function Dashboard() {
               onClick={() => { setDashView("questBoard"); window.scrollTo({ top: 0, behavior: "smooth" }); }}
               title="Home — Quest Hall"
             >
-              <img src="/guild-gate.png" alt="Quest Hall" className="h-20 w-20" style={{ imageRendering: "pixelated", display: "block", marginBottom: "-8px", marginTop: "4px" }} />
+              <img src="/guild-gate.png" alt="Quest Hall" className="h-20 w-20" style={{ imageRendering: "auto", display: "block", marginBottom: "-8px", marginTop: "4px" }} />
               <span className="font-semibold text-sm tracking-tight" style={{ color: "#e8e8e8" }}>
                 Quest Hall
               </span>
@@ -1154,7 +1154,7 @@ export default function Dashboard() {
                     { emoji: "", key: "mondstaub" as const, value: Number(loggedInUser?.currencies?.mondstaub ?? 0), color: "#c084fc", iconSrc: "/images/icons/currency-mondstaub.png" },
                   ].map(c => (
                     <div key={c.key} className="flex items-center gap-1 cursor-pointer" onClick={() => setCurrenciesOpen(true)} title={c.key}>
-                      {(c as any).iconSrc ? <img src={(c as any).iconSrc} alt="" width={16} height={16} style={{ imageRendering: "auto" }} onError={(e) => { e.currentTarget.style.display = "none"; }} /> : <span style={{ fontSize: 18 }}>{c.emoji}</span>}
+                      {(c as any).iconSrc ? <img src={(c as any).iconSrc} alt="" width={16} height={16} className={c.key === "stardust" ? "premium-stardust" : c.key === "runensplitter" ? "premium-rune-shards" : ""} style={{ imageRendering: "auto" }} onError={(e) => { e.currentTarget.style.display = "none"; }} /> : <span style={{ fontSize: 18 }}>{c.emoji}</span>}
                       <span className="text-base font-mono font-black" style={{ color: c.value > 0 ? c.color : "rgba(255,255,255,0.15)" }}>
                         {c.value}
                       </span>
@@ -1251,7 +1251,7 @@ export default function Dashboard() {
                       style={{ background: currencyExpanded === c.key ? `${c.color}12` : "rgba(255,255,255,0.03)", border: `1px solid ${currencyExpanded === c.key ? c.color + "30" : "rgba(255,255,255,0.07)"}` }}
                       onClick={() => setCurrencyExpanded(currencyExpanded === c.key ? null : c.key)}
                     >
-                      <img src={c.iconSrc} alt="" width={24} height={24} style={{ imageRendering: "pixelated" }} onError={(e) => { e.currentTarget.style.display = "none"; }} />
+                      <img src={c.iconSrc} alt="" width={24} height={24} className={c.key === "stardust" ? "premium-stardust" : c.key === "runensplitter" ? "premium-rune-shards" : ""} style={{ imageRendering: "auto" }} onError={(e) => { e.currentTarget.style.display = "none"; }} />
                       <div className="flex-1 min-w-0">
                         <p className="text-xs font-semibold" style={{ color: c.color }}>{c.name}</p>
                         <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>{c.desc}</p>
@@ -1305,7 +1305,7 @@ export default function Dashboard() {
               }}
               {...(v.tutorialKey ? { "data-tutorial": v.tutorialKey } : {})}
             >
-              {"iconSrc" in v && v.iconSrc && <img src={v.iconSrc} alt="" width={16} height={16} style={{ imageRendering: "pixelated", opacity: dashView === v.key ? 1 : 0.5 }} onError={e => (e.currentTarget.style.display = "none")} />}
+              {"iconSrc" in v && v.iconSrc && <img src={v.iconSrc} alt="" width={16} height={16} style={{ imageRendering: "auto", opacity: dashView === v.key ? 1 : 0.5 }} onError={e => (e.currentTarget.style.display = "none")} />}
               {v.label}
             </button>
             )
@@ -1525,7 +1525,7 @@ export default function Dashboard() {
                             {poolRefreshing ? (
                               <span className="text-sm">—</span>
                             ) : (
-                              <img src="/images/icons/ui-quest-scroll.png" alt="" width={24} height={24} style={{ imageRendering: "pixelated" }} onError={e => (e.currentTarget.style.display = "none")} />
+                              <img src="/images/icons/ui-quest-scroll.png" alt="" width={24} height={24} style={{ imageRendering: "auto" }} onError={e => (e.currentTarget.style.display = "none")} />
                             )}
                           </button>
                         )}
@@ -1552,7 +1552,7 @@ export default function Dashboard() {
                         }}
                       >
                         <img src={tab.iconSrc} alt="" width={42} height={42}
-                          style={{ imageRendering: "pixelated" }}
+                          style={{ imageRendering: "auto" }}
                           onError={(e) => { e.currentTarget.style.display = "none"; const next = e.currentTarget.nextElementSibling as HTMLElement; if (next) next.style.display = "inline"; }} />
                         <span style={{ display: "none" }}>{tab.fallback}</span>
                         {tab.label}
@@ -1574,14 +1574,14 @@ export default function Dashboard() {
                             {t === "all" ? "All" : t === "npc" ? (
                               <>
                                 <img src="/images/icons/cat-npc.png" alt="" width={28} height={28}
-                                  style={{ imageRendering: "pixelated" }}
+                                  style={{ imageRendering: "auto" }}
                                   onError={(e) => { e.currentTarget.style.display = "none"; }} />
                                 NPC
                               </>
                             ) : (
                               <>
                                 <img src={`/images/icons/cat-${iconFile}.png`} alt="" width={28} height={28}
-                                  style={{ imageRendering: "pixelated" }}
+                                  style={{ imageRendering: "auto" }}
                                   onError={(e) => { e.currentTarget.style.display = "none"; const next = e.currentTarget.nextElementSibling as HTMLElement; if (next) next.style.display = "inline"; }} />
                                 <span style={{ display: "none" }}>{cfg!.icon?.startsWith("/") ? cfg!.label : cfg!.icon}</span>
                                 {cfg!.label}
@@ -1631,7 +1631,7 @@ export default function Dashboard() {
                     boardOpen.length === 0 && playerVisibleInProgress.length === 0 ? (
                       <div className="rounded-xl p-5 text-center" style={{ background: "#252525", border: "1px solid rgba(255,255,255,0.06)" }}>
                         <p className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>{searchFilter ? "No quests match your search" : "No player quests open"}</p>
-                        {!searchFilter && playerName && reviewApiKey && <button onClick={handlePoolRefresh} className="btn-interactive mt-2 px-3 py-1 rounded inline-flex items-center gap-1.5" style={{ background: "rgba(59,130,246,0.12)", color: "#60a5fa", border: "1px solid rgba(59,130,246,0.3)" }}><img src="/images/icons/ui-quest-scroll.png" alt="" width={20} height={20} style={{ imageRendering: "pixelated" }} onError={e => (e.currentTarget.style.display = "none")} /><span className="text-xs font-semibold">Load Quests</span></button>}
+                        {!searchFilter && playerName && reviewApiKey && <button onClick={handlePoolRefresh} className="btn-interactive mt-2 px-3 py-1 rounded inline-flex items-center gap-1.5" style={{ background: "rgba(59,130,246,0.12)", color: "#60a5fa", border: "1px solid rgba(59,130,246,0.3)" }}><img src="/images/icons/ui-quest-scroll.png" alt="" width={20} height={20} style={{ imageRendering: "auto" }} onError={e => (e.currentTarget.style.display = "none")} /><span className="text-xs font-semibold">Load Quests</span></button>}
                       </div>
                     ) : (
                       <>
@@ -1847,7 +1847,7 @@ export default function Dashboard() {
                         <div className="flex gap-4 mb-4" style={{ alignItems: "flex-start" }}>
                           {/* Portrait column with speech bubble */}
                           <div className="flex-none" style={{ width: 195, overflow: "visible" }}>
-                            <img src="/images/portraits/npc-seraine.png?v=3" alt="Seraine Ashwell" width={256} height={384} style={{ imageRendering: "pixelated", width: "100%", height: "auto", display: "block", filter: "drop-shadow(0 0 14px rgba(245,158,11,0.35))", borderRadius: "4px 4px 0 0", pointerEvents: "none" }} />
+                            <img src="/images/portraits/npc-seraine.png?v=3" alt="Seraine Ashwell" width={256} height={384} style={{ imageRendering: "auto", width: "100%", height: "auto", display: "block", filter: "drop-shadow(0 0 14px rgba(245,158,11,0.35))", borderRadius: "4px 4px 0 0", pointerEvents: "none" }} />
                             <div style={{ background: "rgba(25,17,5,0.88)", border: "1px solid rgba(245,158,11,0.3)", borderTop: "none", borderRadius: "0 0 8px 8px", padding: "8px 10px" }}>
                               <p style={{ fontSize: "0.8rem", fontStyle: "italic", color: "#c9a46a", lineHeight: 1.5, margin: 0 }}>„Jedes Feuer beginnt mit einem Funken. Deins auch."</p>
                             </div>
@@ -1904,7 +1904,7 @@ export default function Dashboard() {
                               <div style={{ position: "relative" }} onClick={e => e.stopPropagation()}>
                                 {/* NPC Portrait — absolute left of modal, hidden on mobile */}
                                 <div className="hidden md:flex flex-col" style={{ position: "absolute", right: "calc(100% + 16px)", top: "50%", transform: "translateY(-50%)", width: 200, overflow: "visible" }}>
-                                  <img src="/images/portraits/npc-seraine.png?v=3" alt="Seraine Ashwell" width={256} height={384} style={{ imageRendering: "pixelated", width: "100%", height: "auto", display: "block", filter: "drop-shadow(0 0 14px rgba(245,158,11,0.4))", borderRadius: "8px 8px 0 0", pointerEvents: "none" }} />
+                                  <img src="/images/portraits/npc-seraine.png?v=3" alt="Seraine Ashwell" width={256} height={384} style={{ imageRendering: "auto", width: "100%", height: "auto", display: "block", filter: "drop-shadow(0 0 14px rgba(245,158,11,0.4))", borderRadius: "8px 8px 0 0", pointerEvents: "none" }} />
                                   <div style={{ background: "rgba(25,17,5,0.92)", border: "1px solid rgba(245,158,11,0.4)", borderTop: "none", borderRadius: "0 0 8px 8px", padding: "10px 12px" }}>
                                     <p style={{ fontSize: "0.8rem", fontStyle: "italic", color: "#c9a46a", lineHeight: 1.5, margin: 0 }}>{getSeraineSpeech(newRitualCommitment, newRitualBloodPact)}</p>
                                   </div>
@@ -1912,7 +1912,7 @@ export default function Dashboard() {
                               <div style={{ maxWidth: 1000, width: "100%", borderRadius: "1rem", background: newRitualBloodPact ? "linear-gradient(160deg, #2c1a1a 0%, #1e1010 100%)" : "linear-gradient(160deg, #2c2318 0%, #1e1912 100%)", border: `1px solid ${newRitualBloodPact ? "rgba(239,68,68,0.45)" : "rgba(245,158,11,0.3)"}`, boxShadow: newRitualBloodPact ? "0 0 60px rgba(239,68,68,0.12)" : "0 0 40px rgba(167,139,250,0.08)", transition: "all 0.4s ease" }}>
                                 {/* Header */}
                                 <div className="flex items-center gap-3 px-5 pt-4 pb-3 border-b" style={{ borderColor: "rgba(245,158,11,0.12)" }}>
-                                  <img src="/images/icons/ui-ritual-rune.png" alt="" width={28} height={28} style={{ imageRendering: "pixelated" }} onError={e => (e.currentTarget.style.display = "none")} />
+                                  <img src="/images/icons/ui-ritual-rune.png" alt="" width={28} height={28} style={{ imageRendering: "auto" }} onError={e => (e.currentTarget.style.display = "none")} />
                                   <div>
                                     <h3 className="text-sm font-bold" style={{ color: "#e8d5a3" }}>Forge a New Rite</h3>
                                     <p className="text-xs" style={{ color: "rgba(200,170,100,0.4)" }}>Seraine Ashwell — Ritual Chamber</p>
@@ -2043,7 +2043,7 @@ export default function Dashboard() {
                     <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: "rgba(0,0,0,0.88)" }} onClick={closeExtend}>
                       <div style={{ position: "relative" }} onClick={e => e.stopPropagation()}>
                         <div className="hidden md:flex flex-col" style={{ position: "absolute", right: "calc(100% + 16px)", top: "50%", transform: "translateY(-50%)", width: 200, overflow: "visible" }}>
-                          <img src="/images/portraits/npc-seraine.png?v=3" alt="Seraine Ashwell" width={256} height={384} style={{ imageRendering: "pixelated", width: "100%", height: "auto", display: "block", filter: "drop-shadow(0 0 14px rgba(245,158,11,0.4))", borderRadius: "8px 8px 0 0", pointerEvents: "none" }} />
+                          <img src="/images/portraits/npc-seraine.png?v=3" alt="Seraine Ashwell" width={256} height={384} style={{ imageRendering: "auto", width: "100%", height: "auto", display: "block", filter: "drop-shadow(0 0 14px rgba(245,158,11,0.4))", borderRadius: "8px 8px 0 0", pointerEvents: "none" }} />
                           <div style={{ background: "rgba(25,17,5,0.92)", border: "1px solid rgba(245,158,11,0.4)", borderTop: "none", borderRadius: "0 0 8px 8px", padding: "10px 12px" }}>
                             <p style={{ fontSize: "0.8rem", fontStyle: "italic", color: "#c9a46a", lineHeight: 1.5, margin: 0 }}>&ldquo;Das Feuer wächst. Gut. Nähre es.&rdquo;</p>
                           </div>
@@ -2107,7 +2107,7 @@ export default function Dashboard() {
                     <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: "rgba(0,0,0,0.88)" }} onClick={() => setRecommitRitualId(null)}>
                       <div style={{ position: "relative" }} onClick={e => e.stopPropagation()}>
                         <div className="hidden md:flex flex-col" style={{ position: "absolute", right: "calc(100% + 16px)", top: "50%", transform: "translateY(-50%)", width: 200, overflow: "visible" }}>
-                          <img src="/images/portraits/npc-seraine.png?v=3" alt="Seraine Ashwell" width={256} height={384} style={{ imageRendering: "pixelated", width: "100%", height: "auto", display: "block", filter: "drop-shadow(0 0 14px rgba(245,158,11,0.4))", borderRadius: "8px 8px 0 0", pointerEvents: "none" }} />
+                          <img src="/images/portraits/npc-seraine.png?v=3" alt="Seraine Ashwell" width={256} height={384} style={{ imageRendering: "auto", width: "100%", height: "auto", display: "block", filter: "drop-shadow(0 0 14px rgba(245,158,11,0.4))", borderRadius: "8px 8px 0 0", pointerEvents: "none" }} />
                           <div style={{ background: "rgba(25,17,5,0.92)", border: "1px solid rgba(245,158,11,0.4)", borderTop: "none", borderRadius: "0 0 8px 8px", padding: "10px 12px" }}>
                             <p style={{ fontSize: "0.8rem", fontStyle: "italic", color: "#c9a46a", lineHeight: 1.5, margin: 0 }}>&ldquo;The flame went out. But the ember remembers. Do you?&rdquo;</p>
                           </div>
@@ -2429,7 +2429,7 @@ export default function Dashboard() {
               {/* Header */}
               <div className="px-5 pt-4 pb-3 flex items-start justify-between gap-3" style={{ borderBottom: `1px solid rgba(255,255,255,0.07)` }}>
                 <div className="flex items-start gap-3 flex-1 min-w-0">
-                  <span className="text-2xl flex-shrink-0">{typeCfg.icon?.startsWith("/") ? <img src={typeCfg.icon} alt="" width={28} height={28} style={{ imageRendering: "pixelated" }} onError={(e) => { e.currentTarget.style.display = "none"; }} /> : typeCfg.icon}</span>
+                  <span className="text-2xl flex-shrink-0">{typeCfg.icon?.startsWith("/") ? <img src={typeCfg.icon} alt="" width={28} height={28} style={{ imageRendering: "auto" }} onError={(e) => { e.currentTarget.style.display = "none"; }} /> : typeCfg.icon}</span>
                   <div className="flex-1 min-w-0">
                     <h3 className="text-base font-bold leading-snug" style={{ color: "#f0f0f0" }}>{q.title}</h3>
                     <div className="flex items-center gap-2 mt-1 flex-wrap">
@@ -2510,11 +2510,11 @@ export default function Dashboard() {
                       <p className="text-xs font-semibold uppercase tracking-widest mb-2" style={{ color: "rgba(255,255,255,0.25)" }}>Belohnung</p>
                       <div className="flex items-center gap-3">
                         <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg" style={{ background: "rgba(251,191,36,0.08)", border: "1px solid rgba(251,191,36,0.2)" }}>
-                          <img src="/images/icons/reward-gold.png" width={16} height={16} style={{ imageRendering: "pixelated", verticalAlign: "middle" }} />
+                          <img src="/images/icons/reward-gold.png" width={16} height={16} style={{ imageRendering: "auto", verticalAlign: "middle" }} />
                           <span className="text-sm font-mono font-bold" style={{ color: "#fbbf24" }}>{displayGold} Gold</span>
                         </div>
                         <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg" style={{ background: "rgba(167,139,250,0.08)", border: "1px solid rgba(167,139,250,0.2)" }}>
-                          <img src="/images/icons/reward-xp.png" width={16} height={16} style={{ imageRendering: "pixelated", verticalAlign: "middle" }} />
+                          <img src="/images/icons/reward-xp.png" width={16} height={16} style={{ imageRendering: "auto", verticalAlign: "middle" }} />
                           <span className="text-sm font-mono font-bold" style={{ color: "#a78bfa" }}>{displayXp} XP</span>
                         </div>
                       </div>

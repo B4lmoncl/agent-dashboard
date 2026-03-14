@@ -384,7 +384,7 @@ export default function CharacterView({ playerName, apiKey, users, classesList }
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
-        imageRendering: "pixelated" as any,
+        imageRendering: "auto" as any,
         backgroundColor: "#fce4ec",
         filter: "brightness(1.3)",
       }}
@@ -411,10 +411,10 @@ export default function CharacterView({ playerName, apiKey, users, classesList }
               opacity: 0,
               "--drift": `${p.drift}px`,
               pointerEvents: "none",
-              imageRendering: "pixelated",
+              imageRendering: "auto",
             } as React.CSSProperties}
           >
-            <img src={p.image} alt="" style={{ width: "100%", height: "100%", imageRendering: "pixelated" }} />
+            <img src={p.image} alt="" style={{ width: "100%", height: "100%", imageRendering: "auto" }} />
           </div>
         ))}
       </div>

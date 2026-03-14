@@ -235,7 +235,7 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
             <img
               src="/images/portraits/companion-dobbie.png"
               alt={companionName}
-              style={{ width: 128, height: 160, imageRendering: "pixelated", borderRadius: 4, border: `2px solid ${cColor.border}`, boxShadow: `0 0 12px rgba(${cColor.accentRgb},0.15)`, flexShrink: 0 }}
+              style={{ width: 128, height: 160, imageRendering: "auto", borderRadius: 4, border: `2px solid ${cColor.border}`, boxShadow: `0 0 12px rgba(${cColor.accentRgb},0.15)`, flexShrink: 0 }}
             />
           ) : (
             <div style={{

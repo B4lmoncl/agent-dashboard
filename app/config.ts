@@ -32,12 +32,12 @@ export const typeConfig: Record<string, { label: string; icon: string | null; co
 };
 
 export const STREAK_MILESTONES_CLIENT = [
-  { days: 7,   badge: 'x', label: 'Bronze' },
-  { days: 14,  badge: 'x', label: '2-Wochen' },
-  { days: 21,  badge: 'x', label: 'Silber' },
-  { days: 30,  badge: 'x', label: 'Monat' },
-  { days: 60,  badge: 'x', label: 'Gold' },
-  { days: 90,  badge: 'x', label: 'Unerschütterlich' },
-  { days: 180, badge: 'x', label: 'Diamond' },
-  { days: 365, badge: 'x', label: 'Legendary' },
+  { days: 7,   badge: 'Bronze',  label: 'Bronze' },
+  { days: 14,  badge: '2W',      label: '2-Wochen' },
+  { days: 21,  badge: 'Silber',  label: 'Silber' },
+  { days: 30,  badge: '1M',      label: 'Monat' },
+  { days: 60,  badge: 'Gold',    label: 'Gold' },
+  { days: 90,  badge: 'Titan',   label: 'Unerschütterlich' },
+  { days: 180, badge: 'Diamond', label: 'Diamond' },
+  { days: 365, badge: 'Legend',  label: 'Legendary' },
 ];

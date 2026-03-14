@@ -62,7 +62,7 @@ export function UserCard({ user, classes = [] }: { user: User; classes?: ClassDe
         </div>
         {/* Gold */}
         <div className="flex flex-col items-end gap-1">
-          <span className="text-xs font-mono font-bold inline-flex items-center gap-1" style={{ color: "#f59e0b" }} title="Gold"><img src="/images/icons/currency-gold.png" alt="" width={12} height={12} style={{ imageRendering: "pixelated" }} onError={e => { e.currentTarget.style.display = "none"; }} /> {gold}</span>
+          <span className="text-xs font-mono font-bold inline-flex items-center gap-1" style={{ color: "#f59e0b" }} title="Gold"><img src="/images/icons/currency-gold.png" alt="" width={12} height={12} style={{ imageRendering: "auto" }} onError={e => { e.currentTarget.style.display = "none"; }} /> {gold}</span>
         </div>
       </div>
 

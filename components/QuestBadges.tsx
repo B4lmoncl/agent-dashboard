@@ -51,7 +51,7 @@ export function TypeBadge({ type }: { type?: string }) {
         alt=""
         width={18}
         height={18}
-        style={{ imageRendering: "pixelated", display: "inline", verticalAlign: "middle" }}
+        style={{ imageRendering: "auto", display: "inline", verticalAlign: "middle" }}
         onError={(e) => { e.currentTarget.style.display = "none"; (e.currentTarget.nextElementSibling as HTMLElement | null)?.style && ((e.currentTarget.nextElementSibling as HTMLElement).style.display = "inline"); }}
       />
       <span style={{ display: "none" }}>{cfg.icon?.startsWith("/") ? cfg.label : cfg.icon}</span>

@@ -110,7 +110,7 @@ function ChainToastContent({ parentTitle, template, onAccept, onClose }: {
           <div className="flex items-center gap-1 mb-3">
             {typeCfg && (
               <span className="text-xs px-1.5 py-0.5 rounded" style={{ background: typeCfg.bg, color: typeCfg.color, border: `1px solid ${typeCfg.border}` }}>
-                {typeCfg.icon?.startsWith("/") ? <img src={typeCfg.icon} alt="" width={14} height={14} style={{ imageRendering: "pixelated", display: "inline", verticalAlign: "middle" }} onError={(e) => { e.currentTarget.style.display = "none"; }} /> : typeCfg.icon} {typeCfg.label}
+                {typeCfg.icon?.startsWith("/") ? <img src={typeCfg.icon} alt="" width={14} height={14} style={{ imageRendering: "auto", display: "inline", verticalAlign: "middle" }} onError={(e) => { e.currentTarget.style.display = "none"; }} /> : typeCfg.icon} {typeCfg.label}
               </span>
             )}
           </div>
