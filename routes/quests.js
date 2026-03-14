@@ -543,9 +543,14 @@ router.get('/api/quests', (req, res) => {
     }
 
     // Per-player pool: only show quests from this player's generated pool
-    const playerGenIds = new Set(pp.generatedQuests || []);
-    const poolFilteredOpen = playerGenIds.size > 0
-      ? openPlayer.filter(q => playerGenIds.has(q.id))
+    // activeQuestPool = visible subset (~11), generatedQuests = full 18
+    // Prefer activeQuestPool if populated, else fall back to generatedQuests
+    const poolIds = pp.activeQuestPool && pp.activeQuestPool.length > 0
+      ? pp.activeQuestPool
+      : (pp.generatedQuests || []);
+    const visibleIds = new Set(poolIds);
+    const poolFilteredOpen = visibleIds.size > 0
+      ? openPlayer.filter(q => visibleIds.has(q.id))
       : openPlayer;
 
     // Dev quest types use global status as-is
