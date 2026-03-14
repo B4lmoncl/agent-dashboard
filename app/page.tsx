@@ -1276,17 +1276,17 @@ export default function Dashboard() {
         })()}
 
         {/* View toggle */}
-        <div className="flex gap-1 flex-wrap" style={{ background: "#111", borderRadius: 8, padding: 3, display: "inline-flex" }}>
+        <div className="flex gap-1 flex-wrap" data-tutorial="nav-bar" style={{ background: "#111", borderRadius: 8, padding: 3, display: "inline-flex" }}>
           {[
             { key: "questBoard",    label: "The Great Hall",     tutorialKey: "quest-board-tab", iconSrc: "/images/icons/nav-great-hall.png" },
             { key: "npcBoard",      label: "The Wanderer's Rest", tutorialKey: "npc-board-tab", iconSrc: "/images/icons/nav-wanderer.png" },
             { key: "campaign",    label: "The Observatory",        tutorialKey: "campaign-tab", iconSrc: "/images/icons/nav-observatory.png" },
             { key: "klassenquests", label: "The Arcanum",  tutorialKey: null, iconSrc: "/images/icons/nav-arcanum.png" },
-            ...(playerName ? [{ key: "character", label: "Character", tutorialKey: null, iconSrc: "/images/icons/nav-character.png" }] : []),
-            { key: "shop",        label: "The Bazaar",               tutorialKey: null, iconSrc: "/images/icons/nav-bazaar.png" },
-            { key: "gacha",       label: "Vault of Fate",            tutorialKey: null, iconSrc: "/images/icons/vault-of-fate.png" },
+            ...(playerName ? [{ key: "character", label: "Character", tutorialKey: "character-tab", iconSrc: "/images/icons/nav-character.png" }] : []),
+            { key: "shop",        label: "The Bazaar",               tutorialKey: "bazaar-tab", iconSrc: "/images/icons/nav-bazaar.png" },
+            { key: "gacha",       label: "Vault of Fate",            tutorialKey: "vault-tab", iconSrc: "/images/icons/vault-of-fate.png" },
             { key: "leaderboard", label: "The Proving Grounds", tutorialKey: "leaderboard-tab", iconSrc: "/images/icons/nav-proving.png" },
-            { key: "honors",      label: "Hall of Honors",  tutorialKey: null, iconSrc: "/images/icons/nav-honors.png" },
+            { key: "honors",      label: "Hall of Honors",  tutorialKey: "honors-tab", iconSrc: "/images/icons/nav-honors.png" },
             { key: "season",      label: `${CURRENT_SEASON.name} Season`, tutorialKey: "season-tab", iconSrc: "" },
           ].map(v => (
             "isDivider" in v && v.isDivider ? (
@@ -1537,7 +1537,7 @@ export default function Dashboard() {
                   <div className="flex gap-1 mb-3">
                     {[
                       { key: "auftraege",    label: "Quest Board",     iconSrc: "/images/icons/ui-quest-scroll.png",  fallback: "" },
-                      { key: "rituale",      label: "Ritual Chamber",  iconSrc: "/images/icons/ui-ritual-rune.png",   fallback: "" },
+                      { key: "rituale",      label: "Ritual Chamber",  iconSrc: "/images/icons/ui-ritual-rune.png",   fallback: "", tutorialKey: "rituals-tab" },
                       { key: "anti-rituale", label: "Vow Shrine",      iconSrc: "/images/icons/ui-vow-sword.png",     fallback: "" },
                     ].map(tab => (
                       <button
@@ -1550,6 +1550,7 @@ export default function Dashboard() {
                           color: questBoardTab === tab.key ? "#a78bfa" : "rgba(255,255,255,0.4)",
                           border: `1px solid ${questBoardTab === tab.key ? "rgba(167,139,250,0.4)" : "rgba(255,255,255,0.08)"}`,
                         }}
+                        {...("tutorialKey" in tab && tab.tutorialKey ? { "data-tutorial": tab.tutorialKey } : {})}
                       >
                         <img src={tab.iconSrc} alt="" width={42} height={42}
                           style={{ imageRendering: "auto" }}
@@ -1668,17 +1669,17 @@ export default function Dashboard() {
                             </button>
                             {!openSectionCollapsed && (
                               <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))", gap: 12, marginTop: 4 }}>
-                                {boardOpen.map(q =>
+                                {boardOpen.map((q, i) =>
                                   q.children && q.children.length > 0
                                     ? <EpicQuestCard key={q.id} quest={q} selected={selectedIds.has(q.id)} onToggle={reviewApiKey ? toggleSelect : undefined} />
-                                    : <QuestCard key={q.id} quest={q} selected={selectedIds.has(q.id)} onToggle={reviewApiKey ? toggleSelect : undefined}
+                                    : <div key={q.id} {...(i === 0 ? { "data-tutorial": "quest-list-first" } : {})}><QuestCard quest={q} selected={selectedIds.has(q.id)} onToggle={reviewApiKey ? toggleSelect : undefined}
                                         onClaim={reviewApiKey && playerName ? handleClaim : undefined}
                                         onUnclaim={reviewApiKey && playerName ? handleUnclaim : undefined}
                                         onComplete={reviewApiKey && playerName ? handleComplete : undefined}
                                         onCoopClaim={reviewApiKey && playerName ? handleCoopClaim : undefined}
                                         onCoopComplete={reviewApiKey && playerName ? handleCoopComplete : undefined}
                                         playerName={playerName} playerLevel={currentPlayerLevel} gridMode
-                                        onDetails={q => setQuestDetailModal(q)} />
+                                        onDetails={q => setQuestDetailModal(q)} /></div>
                                 )}
                               </div>
                             )}
@@ -2786,7 +2787,14 @@ export default function Dashboard() {
 
       {/* Tutorial Overlay */}
       {showTutorial && (
-        <TutorialOverlay step={tutorialStep} onNext={handleTutorialNext} onSkip={handleTutorialSkip} />
+        <TutorialOverlay step={tutorialStep} onNext={handleTutorialNext} onSkip={handleTutorialSkip} onNavigate={(tabKey) => {
+          if (tabKey === "rituals") {
+            setDashView("questBoard");
+            setQuestBoardTab("rituale");
+          } else {
+            setDashView(tabKey as typeof dashView);
+          }
+        }} />
       )}
 
       {/* Onboarding Wizard */}

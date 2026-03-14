@@ -190,11 +190,11 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                   <li>• <span style={{ color: "#a855f7" }}>Legend</span> (365 Tage)</li>
                 </ul>
               </GuideSection>
-              <GuideSection title="Ätherbund">
-                Wähle einen Ätherbund (Spark bis Eternity) um dein Ritual zu verlängern und bessere Boni zu bekommen.
+              <GuideSection title="Aetherbond">
+                Wähle einen Aetherbond (Spark bis Eternity) um dein Ritual zu verlängern und bessere Boni zu bekommen.
               </GuideSection>
-              <GuideSection title="Blutknoten">
-                Der Blutknoten verdreifacht Belohnungen, aber bei Versagen verfallen alle Rewards.
+              <GuideSection title="Blood Pact">
+                Der Blood Pact verdreifacht Belohnungen, aber bei Versagen verfallen alle Rewards.
               </GuideSection>
               <GuideSection title="Vow Shrine">
                 Im Vow Shrine legst du langfristige Gelübde ab — Versprechen an dich selbst.
@@ -213,9 +213,9 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                   <li>• Im Vault of Fate — Gacha Pulls</li>
                 </ul>
               </GuideSection>
-              <GuideSection title="Forge-Temperatur">
-                Deine Forge-Temperatur zeigt wie aktiv du bist (0-100%). Erledige Quests um sie hochzuhalten. Bei 0% bekommst du eine <span style={{ color: "#ef4444" }}>XP-Strafe</span>.
-                <p className="mt-1">Die Deepforge-Temperatur zeigt wie aktiv du bist.</p>
+              <GuideSection title="Deepforge">
+                Deine Deepforge zeigt wie aktiv du bist (0-100%). Erledige Quests um sie hochzuhalten. Bei 0% bekommst du eine <span style={{ color: "#ef4444" }}>XP-Strafe</span>.
+                <p className="mt-1">Die Deepforge zeigt wie aktiv du bist.</p>
               </GuideSection>
               <GuideSection title="Währungen">
                 <ul className="space-y-1 mt-1">
@@ -259,11 +259,18 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
 
 export function GuideModal({ onClose, onRestartTutorial }: { onClose: () => void; onRestartTutorial?: () => void }) {
   useModalBehavior(true, onClose);
+
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => { document.body.style.overflow = ""; };
+  }, []);
+
   return (
     <div
       className="fixed inset-0 z-50 flex items-center justify-center p-4"
-      style={{ background: "rgba(0,0,0,0.75)" }}
+      style={{ background: "rgba(0,0,0,0.75)", touchAction: "none", overscrollBehavior: "contain" }}
       onClick={onClose}
+      onWheel={e => e.stopPropagation()}
     >
       <div
         className="rounded-2xl w-full max-w-lg overflow-hidden"
@@ -289,72 +296,138 @@ export const TUTORIAL_STEPS = [
   {
     key: "welcome",
     title: "Willkommen in der Quest Hall!",
-    desc: "Lass mich dir kurz zeigen wie alles funktioniert. Dauert nur eine Minute.",
+    desc: "Lass mich dir kurz zeigen wie alles funktioniert.",
     target: null,
     position: "center" as const,
+    navigateTo: null,
   },
   {
     key: "stat-cards",
     title: "Deine Stats",
-    desc: "Forge Streak, aktive Quests, abgeschlossene Quests und Gold. Logge dich ein um deine persönlichen Werte zu sehen.",
+    desc: "Forge Streak, aktive Quests und abgeschlossene Quests — dein Fortschritt auf einen Blick.",
     target: "stat-cards",
     position: "bottom" as const,
-  },
-  {
-    key: "quest-board-tab",
-    title: "Quest Board",
-    desc: "Hier findest du deine Quests — Personal, Learning, Fitness und Social. Nimm an was dich motiviert!",
-    target: "quest-board-tab",
-    position: "bottom" as const,
-  },
-  {
-    key: "npcs",
-    title: "NPCs & Wanderer's Rest",
-    desc: "Reisende NPCs bringen eigene Quest-Ketten mit. Schließe sie ab bevor der NPC weiterzieht!",
-    target: "npc-board-tab",
-    position: "bottom" as const,
-  },
-  {
-    key: "quest-filters",
-    title: "Filter & Suche",
-    desc: "Filtere Quests nach Typ oder suche nach Stichwörtern. So findest du schnell was zu dir passt.",
-    target: "quest-filters",
-    position: "bottom" as const,
-  },
-  {
-    key: "claim-hint",
-    title: "Quests annehmen",
-    desc: "Klick auf eine Quest und dann auf Annehmen. Nach Abschluss auf Abschließen — XP und Gold kommen sofort.",
-    target: null,
-    position: "center" as const,
+    navigateTo: null,
   },
   {
     key: "login-btn",
     title: "Einloggen",
-    desc: "Logge dich mit Name und API-Key ein um Quests anzunehmen und Fortschritt zu tracken. Noch kein Account? Klick auf Register!",
+    desc: "Logge dich mit Name und Passwort ein um Quests anzunehmen. Noch kein Account? Klick auf Register!",
     target: "login-btn",
     position: "bottom" as const,
+    navigateTo: null,
   },
   {
-    key: "gacha",
-    title: "Vault of Fate",
-    desc: "Ziehe Items im Vault of Fate — Ausrüstung, Tränke und seltene Artefakte. Pity-System inklusive!",
-    target: null,
-    position: "center" as const,
+    key: "nav-overview",
+    title: "Navigation",
+    desc: "Oben findest du alle Bereiche der Quest Hall. Lass uns sie der Reihe nach durchgehen.",
+    target: "nav-bar",
+    position: "bottom" as const,
+    navigateTo: null,
   },
   {
-    key: "leaderboard-tab",
-    title: "Rangliste",
+    key: "quest-board",
+    title: "The Great Hall — Quest Board",
+    desc: "Dein Auftragsboard. Hier findest du Quests sortiert nach Typ und Schwierigkeit.",
+    target: "quest-board-tab",
+    position: "bottom" as const,
+    navigateTo: "questBoard",
+  },
+  {
+    key: "quest-filters",
+    title: "Filter & Suche",
+    desc: "Filtere Quests nach Typ (Personal, Learning, Fitness, Social, Coop) oder suche nach Stichwörtern.",
+    target: "quest-filters",
+    position: "bottom" as const,
+    navigateTo: "questBoard",
+  },
+  {
+    key: "first-quest",
+    title: "Deine erste Quest",
+    desc: "Klick auf eine Quest und dann auf 'Annehmen'. Probier es gleich aus — deine erste Quest wartet schon!",
+    target: "quest-list-first",
+    position: "bottom" as const,
+    navigateTo: "questBoard",
+  },
+  {
+    key: "wanderers-rest",
+    title: "The Wanderer's Rest — NPCs",
+    desc: "Reisende NPCs bringen eigene Quest-Ketten mit. Schließe sie ab bevor der NPC weiterzieht!",
+    target: "npc-board-tab",
+    position: "bottom" as const,
+    navigateTo: "npcBoard",
+  },
+  {
+    key: "rituals",
+    title: "Tägliche Rituale & Gelübde",
+    desc: "Rituale sind tägliche Aufgaben die Streaks aufbauen. Im Vow Shrine legst du langfristige Ziele fest.",
+    target: "rituals-tab",
+    position: "bottom" as const,
+    navigateTo: "rituals",
+  },
+  {
+    key: "vault-of-fate",
+    title: "Vault of Fate — Gacha",
+    desc: "Ziehe Items mit Stardust — Ausrüstung, Tränke und seltene Artefakte. Pity-System garantiert seltene Drops!",
+    target: "vault-tab",
+    position: "bottom" as const,
+    navigateTo: "gacha",
+  },
+  {
+    key: "bazaar",
+    title: "The Bazaar",
+    desc: "Im Bazaar löst du Gold gegen echte Belohnungen ein. Die Deepforge-Temperatur zeigt wie aktiv du bist.",
+    target: "bazaar-tab",
+    position: "bottom" as const,
+    navigateTo: "shop",
+  },
+  {
+    key: "leaderboard",
+    title: "The Proving Grounds",
     desc: "Wer hat die meisten Quests? Die längsten Streaks? Schau in die Rangliste!",
     target: "leaderboard-tab",
     position: "bottom" as const,
+    navigateTo: "leaderboard",
   },
   {
     key: "honors",
-    title: "Honors & Achievements",
+    title: "Hall of Honors",
     desc: "Schalte Achievements frei indem du Meilensteine erreichst. Deine Trophäensammlung!",
+    target: "honors-tab",
+    position: "bottom" as const,
+    navigateTo: "honors",
+  },
+  {
+    key: "season",
+    title: "Saisonale Events",
+    desc: "Jeden Monat gibt es ein neues Saison-Thema mit besonderen Boni und Herausforderungen.",
+    target: "season-tab",
+    position: "bottom" as const,
+    navigateTo: "season",
+  },
+  {
+    key: "xp-gold",
+    title: "XP, Gold & Währungen",
+    desc: "Quests geben XP und Gold. Stardust fürs Gacha, Rune Shards für Crafting. Alles auf deinem Character Screen.",
     target: null,
     position: "center" as const,
+    navigateTo: null,
+  },
+  {
+    key: "forge-streak",
+    title: "Forge Streak",
+    desc: "Erledige jeden Tag mindestens eine Quest um deinen Streak zu halten. Längere Streaks = bessere Boni!",
+    target: null,
+    position: "center" as const,
+    navigateTo: null,
+  },
+  {
+    key: "character",
+    title: "Dein Charakter",
+    desc: "Auf dem Character Screen siehst du dein Inventar, Gear und Stats. Items aus dem Vault landen hier.",
+    target: null,
+    position: "center" as const,
+    navigateTo: null,
   },
   {
     key: "done",
@@ -362,10 +435,11 @@ export const TUTORIAL_STEPS = [
     desc: "Die Halle wartet auf dich. Nimm deine erste Quest an und zeig was du kannst!",
     target: null,
     position: "center" as const,
+    navigateTo: null,
   },
 ];
 
-export function TutorialOverlay({ step, onNext, onSkip }: { step: number; onNext: () => void; onSkip: () => void }) {
+export function TutorialOverlay({ step, onNext, onSkip, onNavigate }: { step: number; onNext: () => void; onSkip: () => void; onNavigate?: (tabKey: string) => void }) {
   const stepDef = TUTORIAL_STEPS[step];
   const isLast = step === TUTORIAL_STEPS.length - 1;
   const [popupPos, setPopupPos] = useState<{ top: number; left: number; arrowDir: "up" | "down" | "none" } | null>(null);
@@ -393,6 +467,13 @@ export function TutorialOverlay({ step, onNext, onSkip }: { step: number; onNext
       return () => clearTimeout(t);
     }
   }, [isLast]);
+
+  // Navigate to tab when step changes
+  useEffect(() => {
+    if (stepDef.navigateTo && onNavigate) {
+      onNavigate(stepDef.navigateTo);
+    }
+  }, [stepDef, onNavigate]);
 
   useEffect(() => {
     if (!stepDef.target) { setPopupPos(null); return; }
@@ -440,12 +521,12 @@ export function TutorialOverlay({ step, onNext, onSkip }: { step: number; onNext
       {isCentered && (
         <div
           className="fixed inset-0"
-          style={{ background: "rgba(0,0,0,0.55)", zIndex: 9998, animation: "tutorial-fade-step 0.5s ease forwards" }}
+          style={{ background: "rgba(0,0,0,0.35)", zIndex: 9998, transition: "opacity 0.4s ease" }}
           onClick={onNext}
         />
       )}
       {!isCentered && (
-        <div className="fixed inset-0" style={{ zIndex: 9998, pointerEvents: "none" }} />
+        <div className="fixed inset-0" style={{ zIndex: 9998, pointerEvents: "none", transition: "opacity 0.4s ease" }} />
       )}
 
       {/* Confetti */}
