@@ -18,7 +18,7 @@
       "questChains": [
         [
           {
-            "title": "x Oma Ilses Kekse",
+            "title": "Oma Ilses Kekse",
             "description": "Oma Ilse hat Kekse gebacken! Bring sie ihrem Enkel. (Mach einen 20-Minuten Spaziergang)",
             "type": "social",
             "priority": "medium",
@@ -30,7 +30,7 @@
             }
           },
           {
-            "title": "x Oma Ilses Geschichten",
+            "title": "Oma Ilses Geschichten",
             "description": "Oma Ilse erzählt von früher. Du hörst zu, weil du nett bist. (Informiere dich 20 Minuten über ein Geschichtsthema deiner Wahl)",
             "type": "personal",
             "priority": "low",
@@ -44,7 +44,7 @@
         ],
         [
           {
-            "title": "x Oma Ilses Rezept",
+            "title": "Oma Ilses Rezept",
             "description": "Oma Ilse möchte ein altes Familienrezept weitergeben. (Koche heute etwas von Grund auf — kein Fertiggericht!)",
             "type": "personal",
             "priority": "low",
@@ -56,7 +56,7 @@
             }
           },
           {
-            "title": "x Frühjahrsputz",
+            "title": "Frühjahrsputz",
             "description": "'Ein aufgeräumtes Heim, ein aufgeräumter Geist', sagt Oma Ilse. (Räume einen Bereich deiner Wohnung gründlich auf — 20 Minuten)",
             "type": "personal",
             "priority": "medium",
@@ -70,7 +70,7 @@
         ],
         [
           {
-            "title": "x Omas Garten",
+            "title": "Omas Garten",
             "description": "Oma Ilse zeigt dir ihre Lieblingsblumen. (Geh heute in einen Park oder Garten und beobachte die Natur für 15 Minuten)",
             "type": "fitness",
             "priority": "low",
@@ -82,7 +82,7 @@
             }
           },
           {
-            "title": "x Ein Brief an jemanden",
+            "title": "Ein Brief an jemanden",
             "description": "'Schreib einem Menschen dem du dankbar bist', sagt Oma Ilse. (Schreibe eine Nachricht oder einen Brief an jemanden den du schätzt)",
             "type": "social",
             "priority": "medium",
@@ -129,7 +129,7 @@
       "questChains": [
         [
           {
-            "title": "x Karims Lieferung",
+            "title": "Karims Lieferung",
             "description": "Karim braucht Hilfe beim Sortieren seiner Waren. (Räume deinen Schreibtisch oder ein Regal auf)",
             "type": "personal",
             "priority": "low",
@@ -141,7 +141,7 @@
             }
           },
           {
-            "title": "x Karims Geheimnis",
+            "title": "Karims Geheimnis",
             "description": "Karim erzählt von einer fernen Stadt. (Recherchiere 15 Minuten über eine Stadt die du noch nie besucht hast)",
             "type": "personal",
             "priority": "low",
@@ -153,7 +153,7 @@
             }
           },
           {
-            "title": "x Ein fairer Handel",
+            "title": "Ein fairer Handel",
             "description": "Karim bietet einen Tausch an — hilf einem Freund oder Kollegen bei etwas. (Tu jemandem einen Gefallen)",
             "type": "social",
             "priority": "medium",
@@ -167,7 +167,7 @@
         ],
         [
           {
-            "title": "x Marktanalyse",
+            "title": "Marktanalyse",
             "description": "Karim sagt: 'Wer den Markt kennt, gewinnt.' (Vergleiche heute Preise oder Optionen für etwas das du kaufen willst — 15 Minuten Recherche)",
             "type": "learning",
             "priority": "low",
@@ -179,7 +179,7 @@
             }
           },
           {
-            "title": "x Die Handelsroute",
+            "title": "Die Handelsroute",
             "description": "Karim plant seine nächste Reise. (Plane etwas — eine Aufgabe, ein Projekt, einen Ausflug — und schreib es auf)",
             "type": "personal",
             "priority": "medium",
@@ -193,7 +193,7 @@
         ],
         [
           {
-            "title": "x Kulturen der Welt",
+            "title": "Kulturen der Welt",
             "description": "Karim hat viele Länder bereist. (Lerne 20 Minuten über eine andere Kultur — Essen, Sprache, Traditionen)",
             "type": "learning",
             "priority": "low",
@@ -205,7 +205,7 @@
             }
           },
           {
-            "title": "x Das Angebot",
+            "title": "Das Angebot",
             "description": "'Ein guter Händler kennt seinen Wert.' (Erledige heute eine Aufgabe die du schon lange aufgeschoben hast)",
             "type": "personal",
             "priority": "medium",
@@ -217,7 +217,7 @@
             }
           },
           {
-            "title": "x Das Geschenk",
+            "title": "Das Geschenk",
             "description": "Karim verschenkt etwas aus seiner Sammlung. (Gib heute jemandem etwas — Zeit, Hilfe, oder ein kleines Geschenk)",
             "type": "social",
             "priority": "medium",
@@ -264,7 +264,7 @@
       "questChains": [
         [
           {
-            "title": "x Die erste Lektion",
+            "title": "Die erste Lektion",
             "description": "Meister Tanaka sagt: 'Zuerst lernst du Geduld.' (Meditiere oder stretche 10 Minuten)",
             "type": "fitness",
             "priority": "low",
@@ -276,7 +276,7 @@
             }
           },
           {
-            "title": "x Die Prüfung des Körpers",
+            "title": "Die Prüfung des Körpers",
             "description": "'Stärke kommt von Disziplin, nicht von Wünschen.' (Mach ein 30-Minuten Workout)",
             "type": "fitness",
             "priority": "medium",
@@ -288,7 +288,7 @@
             }
           },
           {
-            "title": "x Die Prüfung des Geistes",
+            "title": "Die Prüfung des Geistes",
             "description": "'Wahrer Kampf findet im Kopf statt.' (Lerne 30 Minuten etwas Neues — egal was)",
             "type": "learning",
             "priority": "medium",
@@ -302,7 +302,7 @@
         ],
         [
           {
-            "title": "x Der Atem",
+            "title": "Der Atem",
             "description": "Tanaka sagt: 'Kontrolle beginnt beim Atem.' (Übe 10 Minuten Atemübungen oder Box-Breathing)",
             "type": "fitness",
             "priority": "low",
@@ -314,7 +314,7 @@
             }
           },
           {
-            "title": "x Die Balance",
+            "title": "Die Balance",
             "description": "'Gleichgewicht ist die Basis aller Stärke.' (Mach eine 20-Minuten Yoga- oder Gleichgewichtsübung)",
             "type": "fitness",
             "priority": "medium",
@@ -326,7 +326,7 @@
             }
           },
           {
-            "title": "x Der Fokus",
+            "title": "Der Fokus",
             "description": "'Lenke all deine Kraft auf einen Punkt.' (Arbeite 45 Minuten ohne Unterbrechung an einer wichtigen Aufgabe)",
             "type": "personal",
             "priority": "high",
@@ -340,7 +340,7 @@
         ],
         [
           {
-            "title": "x Der frühe Vogel",
+            "title": "Der frühe Vogel",
             "description": "Tanaka steht immer mit der Sonne auf. (Stehe morgen früh auf und beginne den Tag mit Bewegung — 15 Minuten)",
             "type": "fitness",
             "priority": "medium",
@@ -352,7 +352,7 @@
             }
           },
           {
-            "title": "x Die Technik",
+            "title": "Die Technik",
             "description": "'Wiederholung ist der Meister.' (Übe eine Fähigkeit bewusst — 30 Minuten intensives Üben)",
             "type": "learning",
             "priority": "medium",
@@ -399,7 +399,7 @@
       "questChains": [
         [
           {
-            "title": "x Kräuter sammeln",
+            "title": "Kräuter sammeln",
             "description": "Mirael braucht frische Zutaten. (Geh 15 Minuten an die frische Luft — Wald, Park oder Garten)",
             "type": "fitness",
             "priority": "low",
@@ -411,7 +411,7 @@
             }
           },
           {
-            "title": "x Der Heiltrank",
+            "title": "Der Heiltrank",
             "description": "Mirael zeigt dir ein altes Rezept. (Koche dir einen gesunden Tee oder Smoothie)",
             "type": "personal",
             "priority": "low",
@@ -425,7 +425,7 @@
         ],
         [
           {
-            "title": "x Mondlicht-Meditation",
+            "title": "Mondlicht-Meditation",
             "description": "Mirael flüstert: 'Der Mond heilt was das Licht nicht kann.' (Meditiere heute Abend 15 Minuten im Dunkeln oder bei Kerzenlicht)",
             "type": "personal",
             "priority": "low",
@@ -437,7 +437,7 @@
             }
           },
           {
-            "title": "x Die verborgenen Zutaten",
+            "title": "Die verborgenen Zutaten",
             "description": "'Manche Heilmittel verstecken sich.' (Recherchiere 20 Minuten über Naturheilkunde oder Ernährung)",
             "type": "learning",
             "priority": "low",
@@ -449,7 +449,7 @@
             }
           },
           {
-            "title": "x Das Ritual",
+            "title": "Das Ritual",
             "description": "Mirael übergibt dir eine alte Praktik. (Etabliere eine neue gesunde Gewohnheit für heute — Trinken, Schlafen, Bewegung)",
             "type": "personal",
             "priority": "medium",
@@ -463,7 +463,7 @@
         ],
         [
           {
-            "title": "x Baumgespräch",
+            "title": "Baumgespräch",
             "description": "'Hör dem Wald zu', sagt Mirael. (Verbring 20 Minuten draußen ohne Handy — einfach da sein)",
             "type": "fitness",
             "priority": "low",
@@ -475,7 +475,7 @@
             }
           },
           {
-            "title": "x Körperpflege",
+            "title": "Körperpflege",
             "description": "'Der Körper ist dein Tempel.' (Schlafe heute mindestens 7 Stunden oder mach eine Entspannungsübung vor dem Schlafen)",
             "type": "personal",
             "priority": "medium",
@@ -522,7 +522,7 @@
       "questChains": [
         [
           {
-            "title": "x Das Lied der Freundschaft",
+            "title": "Das Lied der Freundschaft",
             "description": "Finnegan sagt: 'Musik verbindet!' (Schick einem Freund ein Lied das du magst)",
             "type": "social",
             "priority": "low",
@@ -534,7 +534,7 @@
             }
           },
           {
-            "title": "x Die eigene Geschichte",
+            "title": "Die eigene Geschichte",
             "description": "'Jeder hat eine Geschichte die erzählt werden will.' (Schreib 10 Minuten — Tagebuch, kreativ, egal was)",
             "type": "personal",
             "priority": "low",
@@ -546,7 +546,7 @@
             }
           },
           {
-            "title": "x Der große Auftritt",
+            "title": "Der große Auftritt",
             "description": "'Trau dich!' (Tu heute etwas außerhalb deiner Komfortzone — egal wie klein)",
             "type": "social",
             "priority": "medium",
@@ -560,7 +560,7 @@
         ],
         [
           {
-            "title": "x Die Melodie",
+            "title": "Die Melodie",
             "description": "Finnegan lehrt dich einen Akkord. (Höre heute ein Album bewusst durch — kein Multitasking, nur Musik)",
             "type": "personal",
             "priority": "low",
@@ -572,7 +572,7 @@
             }
           },
           {
-            "title": "x Das Gedicht",
+            "title": "Das Gedicht",
             "description": "'Worte sind Magie', flüstert Finnegan. (Schreibe ein kurzes Gedicht oder einen kreativen Text — 5 Strophen reichen)",
             "type": "personal",
             "priority": "low",
@@ -586,7 +586,7 @@
         ],
         [
           {
-            "title": "x Der Zuhörer",
+            "title": "Der Zuhörer",
             "description": "Finnegan sagt: 'Ein guter Barde hört zuerst zu.' (Ruf heute jemanden an den du lange nicht gesprochen hast)",
             "type": "social",
             "priority": "medium",
@@ -598,7 +598,7 @@
             }
           },
           {
-            "title": "x Die Inspiration",
+            "title": "Die Inspiration",
             "description": "'Kunst entsteht überall.' (Besuche heute etwas Inspirierendes — Museum, Konzert, Kunstwerk online, oder ein Buch)",
             "type": "learning",
             "priority": "low",
@@ -610,7 +610,7 @@
             }
           },
           {
-            "title": "x Das Finale",
+            "title": "Das Finale",
             "description": "Finnegans größte Show beginnt! (Teile heute etwas das du erschaffen hast — Code, Kunst, Kochen — mit jemandem)",
             "type": "social",
             "priority": "high",
