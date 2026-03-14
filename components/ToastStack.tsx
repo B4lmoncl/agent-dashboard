@@ -51,16 +51,31 @@ export function useToastStack() {
 
 // ─── Individual Toast Renderers ──────────────────────────────────────────────
 
+const RARITY_TOAST_STYLE: Record<string, { bg: string; border: string; shadow: string; color: string; label: string }> = {
+  legendary: { bg: "#2a1e0e", border: "rgba(249,115,22,0.5)", shadow: "rgba(249,115,22,0.2)", color: "#f97316", label: "Legendär" },
+  epic:      { bg: "#1e1a2e", border: "rgba(168,85,247,0.5)", shadow: "rgba(168,85,247,0.2)", color: "#a855f7", label: "Episch" },
+  rare:      { bg: "#0e1e2a", border: "rgba(59,130,246,0.5)", shadow: "rgba(59,130,246,0.2)", color: "#3b82f6", label: "Selten" },
+  uncommon:  { bg: "#0e2a1e", border: "rgba(34,197,94,0.5)",  shadow: "rgba(34,197,94,0.2)",  color: "#22c55e", label: "Ungewöhnlich" },
+  common:    { bg: "#1e2a1e", border: "rgba(156,163,175,0.4)", shadow: "rgba(156,163,175,0.15)", color: "#9ca3af", label: "Gewöhnlich" },
+};
+
 function FlavorToastContent({ toast, onClose }: { toast: { message: string; icon: string; sub?: string }; onClose: () => void }) {
+  const rs = (toast.sub && RARITY_TOAST_STYLE[toast.sub]) || null;
+  const bg = rs?.bg || "#1e2a1e";
+  const border = rs?.border || "rgba(34,197,94,0.4)";
+  const shadow = rs?.shadow || "rgba(34,197,94,0.15)";
+  const color = rs?.color || "#22c55e";
+  const label = rs?.label || toast.sub;
+
   return (
     <div
       className="rounded-xl px-4 py-3 flex items-center gap-3 shadow-2xl"
-      style={{ background: "#1e2a1e", border: "1px solid rgba(34,197,94,0.4)", boxShadow: "0 8px 32px rgba(34,197,94,0.15)", maxWidth: 320, width: "100%" }}
+      style={{ background: bg, border: `1px solid ${border}`, boxShadow: `0 8px 32px ${shadow}`, maxWidth: 320, width: "100%" }}
     >
       {toast.icon && toast.icon.startsWith("/") ? <img src={toast.icon} alt="" width={28} height={28} style={{ imageRendering: "auto", flexShrink: 0 }} /> : <span className="text-2xl flex-shrink-0">{toast.icon}</span>}
       <div className="flex-1 min-w-0">
-        <p className="text-sm font-bold" style={{ color: "#22c55e" }}>{toast.message}</p>
-        {toast.sub && <p className="text-xs mt-0.5 truncate" style={{ color: "rgba(255,255,255,0.35)" }}>{toast.sub}</p>}
+        <p className="text-sm font-bold" style={{ color }}>{toast.message}</p>
+        {label && <p className="text-xs mt-0.5 truncate font-medium" style={{ color }}>{label}</p>}
       </div>
       <button onClick={onClose} style={{ color: "rgba(255,255,255,0.3)", flexShrink: 0 }}>×</button>
     </div>
