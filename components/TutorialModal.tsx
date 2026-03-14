@@ -24,11 +24,11 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
       {/* Tabs */}
       <div className="flex border-b overflow-x-auto mb-0" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
         {([
-          { key: "start", label: "x Start" },
-          { key: "quests", label: "x Quests" },
-          { key: "xp", label: "x XP & Levels" },
-          { key: "forge", label: "x Forge" },
-          { key: "achievements", label: "x Achievements" },
+          { key: "start", label: "Start" },
+          { key: "quests", label: "Quests" },
+          { key: "xp", label: "XP & Levels" },
+          { key: "forge", label: "Forge" },
+          { key: "achievements", label: "Achievements" },
         ] as { key: typeof tab; label: string }[]).map(t => (
           <button
             key={t.key}
@@ -52,7 +52,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
             className="text-xs px-2 py-0.5 rounded"
             style={{ color: "#fbbf24", background: "rgba(251,191,36,0.1)", border: "1px solid rgba(251,191,36,0.3)" }}
           >
-            x Restart Tutorial
+            Restart Tutorial
           </button>
         </div>
       )}
@@ -242,7 +242,7 @@ export function GuideModal({ onClose, onRestartTutorial }: { onClose: () => void
             <h2 className="text-sm font-bold" style={{ color: "#f0f0f0" }}>Player Guide</h2>
             <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>Everything you need to know</p>
           </div>
-          <button onClick={onClose} style={{ color: "rgba(255,255,255,0.3)", fontSize: 16, background: "none", border: "none", cursor: "pointer" }}>x</button>
+          <button onClick={onClose} style={{ color: "rgba(255,255,255,0.3)", fontSize: 16, background: "none", border: "none", cursor: "pointer" }}>×</button>
         </div>
         <GuideContent onRestartTutorial={onRestartTutorial} />
       </div>
@@ -332,7 +332,7 @@ export const TUTORIAL_STEPS = [
   },
   {
     key: "done",
-    title: "You're Ready, Adventurer! x",
+    title: "You're Ready, Adventurer!",
     desc: "The Forge awaits. Go forth, complete quests, and earn glory for the Guild!",
     target: null,
     position: "center" as const,
@@ -484,7 +484,7 @@ export function TutorialOverlay({ step, onNext, onSkip }: { step: number; onNext
             className="action-btn btn-primary text-xs px-4 py-1.5 rounded-lg font-semibold"
             style={{ background: "rgba(251,191,36,0.18)", color: "#fbbf24", border: "1px solid rgba(251,191,36,0.4)" }}
           >
-            {isLast ? "Let's Go! x" : "Next →"}
+            {isLast ? "Let's Go!" : "Next →"}
           </button>
         </div>
       </div>

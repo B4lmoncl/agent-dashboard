@@ -353,11 +353,11 @@ export function WandererRest({
             </div>
             {/* Text */}
             <div className="flex-1 text-left">
-              <p className="text-xs font-semibold uppercase tracking-widest mb-1" style={{ color: "rgba(255,215,0,0.5)", letterSpacing: "0.15em" }}>x Enter the Chamber</p>
+              <p className="text-xs font-semibold uppercase tracking-widest mb-1" style={{ color: "rgba(255,215,0,0.5)", letterSpacing: "0.15em" }}>Enter the Chamber</p>
               <p className="text-2xl font-bold" style={{ color: "#FFD700", textShadow: "0 0 20px rgba(255,215,0,0.45)" }}>The Starweaver&apos;s Chamber</p>
               <p className="text-sm mt-1 italic" style={{ color: "rgba(192,169,255,0.6)" }}>Step through — if she deems you worthy</p>
               {lyraAllQuests.length > 0 && (
-                <p className="text-xs mt-2" style={{ color: "rgba(255,215,0,0.4)" }}>x {lyraAllQuests.length} active quest{lyraAllQuests.length !== 1 ? "s" : ""} await</p>
+                <p className="text-xs mt-2" style={{ color: "rgba(255,215,0,0.4)" }}>{lyraAllQuests.length} active quest{lyraAllQuests.length !== 1 ? "s" : ""} await</p>
               )}
             </div>
             {/* Arrow */}
@@ -414,11 +414,11 @@ export function WandererRest({
                   <p className="text-xs mt-1 font-semibold" style={{ color: rc }}>{rarityStarsModal[npc.rarity] ?? npc.rarity}</p>
                   {!isStarweaver && !(npc as ActiveNpc & { permanent?: boolean }).permanent && (
                     <p className="text-xs mt-1" style={{ color: npc.hoursLeft <= 24 ? "#f59e0b" : "rgba(255,255,255,0.3)" }}>
-                      {npc.hoursLeft <= 24 ? `x Departs in ${npc.hoursLeft}h!` : `Departs in ${npc.daysLeft} day${npc.daysLeft !== 1 ? "s" : ""}`}
+                      {npc.hoursLeft <= 24 ? `Departs in ${npc.hoursLeft}h!` : `Departs in ${npc.daysLeft} day${npc.daysLeft !== 1 ? "s" : ""}`}
                     </p>
                   )}
                   {isStarweaver && (
-                    <span className="text-xs mt-2 inline-block px-2 py-0.5 rounded" style={{ background: "rgba(255,215,0,0.07)", color: "rgba(255,215,0,0.45)", border: "1px solid rgba(255,215,0,0.15)", fontSize: 10 }}>x Permanent · Always here</span>
+                    <span className="text-xs mt-2 inline-block px-2 py-0.5 rounded" style={{ background: "rgba(255,215,0,0.07)", color: "rgba(255,215,0,0.45)", border: "1px solid rgba(255,215,0,0.15)", fontSize: 10 }}>Permanent · Always here</span>
                   )}
                 </div>
               </div>
@@ -426,7 +426,7 @@ export function WandererRest({
               {/* Greeting / Speech bubble */}
               {npc.greeting && (
                 <div className="relative mx-5 mt-4 px-4 py-3 rounded-xl" style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", zIndex: 1 }}>
-                  <p className="text-xs italic leading-relaxed" style={{ color: "rgba(255,255,255,0.65)" }}>x &ldquo;{npc.greeting}&rdquo;</p>
+                  <p className="text-xs italic leading-relaxed" style={{ color: "rgba(255,255,255,0.65)" }}>&ldquo;{npc.greeting}&rdquo;</p>
                 </div>
               )}
 
@@ -434,7 +434,7 @@ export function WandererRest({
               {isStarweaver && (lyraQuestsOpen.length > 0 || lyraQuestsInProgress.length > 0) && (
                 <div className="relative px-5 pt-4 pb-0" style={{ zIndex: 1 }}>
                   <div className="flex items-center gap-2 mb-2">
-                    <h3 className="text-xs font-semibold uppercase tracking-widest" style={{ color: "#c084fc" }}>x Starweaver&apos;s Quests</h3>
+                    <h3 className="text-xs font-semibold uppercase tracking-widest" style={{ color: "#c084fc" }}>Starweaver&apos;s Quests</h3>
                     <span className="text-xs px-1.5 py-0.5 rounded font-mono" style={{ background: "rgba(192,132,252,0.1)", color: "#c084fc", border: "1px solid rgba(192,132,252,0.2)" }}>{lyraQuestsOpen.length + lyraQuestsInProgress.length}</span>
                   </div>
                   <div className="space-y-2 max-h-72 overflow-y-auto pr-1">
@@ -465,10 +465,10 @@ export function WandererRest({
                     <>
                       <div className="flex items-center justify-between mb-2">
                         <p className="text-xs font-semibold uppercase tracking-wide" style={{ color: "rgba(255,255,255,0.3)" }}>
-                          x Quest {currentQuest.position}/{totalCount}
+                          Quest {currentQuest.position}/{totalCount}
                         </p>
                         {completedCount > 0 && (
-                          <p className="text-xs" style={{ color: "#22c55e" }}>{completedCount} completed x</p>
+                          <p className="text-xs" style={{ color: "#22c55e" }}>{completedCount} completed</p>
                         )}
                       </div>
                       <div className="rounded-xl px-4 py-3" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)" }}>
@@ -482,7 +482,7 @@ export function WandererRest({
                           <span className="text-xs" style={{ color: "rgba(255,193,7,0.6)" }}>+{currentQuest.rewards?.gold ?? 0}g</span>
                           {(currentQuest.status === "claimed" || currentQuest.status === "in_progress") && (
                             <div className="flex items-center gap-2 ml-auto">
-                              <span className="text-xs px-2 py-0.5 rounded font-semibold" style={{ background: "rgba(96,165,250,0.15)", color: "#60a5fa", border: "1px solid rgba(96,165,250,0.3)" }}>x Active</span>
+                              <span className="text-xs px-2 py-0.5 rounded font-semibold" style={{ background: "rgba(96,165,250,0.15)", color: "#60a5fa", border: "1px solid rgba(96,165,250,0.3)" }}>Active</span>
                               {handleUnclaim && playerName && currentQuest.claimedBy?.toLowerCase() === playerName.toLowerCase() && (
                                 <button
                                   onClick={(e) => { e.stopPropagation(); handleUnclaim(currentQuest.questId); }}
@@ -567,7 +567,7 @@ export function WandererRest({
               {isStarweaver && (
                 <div className="relative px-5 pt-3 pb-5" style={{ zIndex: 1 }}>
                   {/* Future feature placeholders — coming soon */}
-                  <p className="text-xs font-semibold uppercase tracking-widest mb-3" style={{ color: "rgba(255,215,0,0.25)", letterSpacing: "0.12em" }}>x Coming Soon</p>
+                  <p className="text-xs font-semibold uppercase tracking-widest mb-3" style={{ color: "rgba(255,215,0,0.25)", letterSpacing: "0.12em" }}>Coming Soon</p>
                   <div className="space-y-2">
                     {[
                       { icon: "", label: "Special Requests", sub: "Coming soon" },
@@ -603,7 +603,7 @@ export function WandererRest({
               <div className="flex items-center justify-between mb-2">
                 <div>
                   <div className="flex items-center gap-1.5">
-                    <h2 className="text-xs font-semibold uppercase tracking-widest" style={{ color: "#8b5cf6" }}>x NPC Quest Board</h2>
+                    <h2 className="text-xs font-semibold uppercase tracking-widest" style={{ color: "#8b5cf6" }}>NPC Quest Board</h2>
                     <InfoTooltip text="Agent development quests. The AI NPCs (Nova, Hex, Echo, Pixel, Atlas, Lyra) work on these. Admin can review and approve suggested quests." />
                   </div>
                   <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.25)" }}>{devVisibleOpen.length} open · {devVisibleInProgress.length} in progress</p>
@@ -662,12 +662,12 @@ export function WandererRest({
             {quests.suggested.length > 0 && (
               <section className="mb-6">
                 <div className="flex items-center gap-2 mb-3">
-                  <h2 className="text-xs font-semibold uppercase tracking-widest" style={{ color: "#f59e0b" }}>x Review Board</h2>
+                  <h2 className="text-xs font-semibold uppercase tracking-widest" style={{ color: "#f59e0b" }}>Review Board</h2>
                   <span className="text-xs px-1.5 py-0.5 rounded font-mono" style={{ background: "rgba(245,158,11,0.12)", color: "#f59e0b", border: "1px solid rgba(245,158,11,0.3)" }}>{quests.suggested.length}</span>
                 </div>
                 {!reviewApiKey ? (
                   <div className="rounded-xl p-3" style={{ background: "#252525", border: "1px solid rgba(245,158,11,0.2)" }}>
-                    <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>x Log in to review and approve quests.</p>
+                    <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>Log in to review and approve quests.</p>
                   </div>
                 ) : (
                   <div className="space-y-2">
@@ -688,8 +688,8 @@ export function WandererRest({
                             <input type="text" value={reviewComments[q.id] ?? ""} onChange={e => setReviewComments(prev => ({ ...prev, [q.id]: e.target.value }))} placeholder="Add a comment (optional)…" className="mt-2 w-full text-xs px-2 py-1.5 rounded" style={{ background: "#1a1a1a", border: "1px solid rgba(255,255,255,0.08)", color: "#e8e8e8", outline: "none" }} />
                           </div>
                           <div className="flex flex-col gap-1.5 flex-shrink-0">
-                            <button onClick={() => handleApprove(q.id, reviewComments[q.id])} className="action-btn btn-approve px-2.5 py-1.5 rounded-lg text-xs font-medium" style={{ background: "rgba(34,197,94,0.15)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.3)" }}>x Approve</button>
-                            <button onClick={() => handleReject(q.id, reviewComments[q.id])} className="action-btn btn-danger px-2.5 py-1.5 rounded-lg text-xs font-medium" style={{ background: "rgba(239,68,68,0.1)", color: "rgba(239,68,68,0.7)", border: "1px solid rgba(239,68,68,0.2)" }}>x Reject</button>
+                            <button onClick={() => handleApprove(q.id, reviewComments[q.id])} className="action-btn btn-approve px-2.5 py-1.5 rounded-lg text-xs font-medium" style={{ background: "rgba(34,197,94,0.15)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.3)" }}>Approve</button>
+                            <button onClick={() => handleReject(q.id, reviewComments[q.id])} className="action-btn btn-danger px-2.5 py-1.5 rounded-lg text-xs font-medium" style={{ background: "rgba(239,68,68,0.1)", color: "rgba(239,68,68,0.7)", border: "1px solid rgba(239,68,68,0.2)" }}>Reject</button>
                           </div>
                         </div>
                       </div>

@@ -45,7 +45,7 @@ export default function HonorsView({ catalogue, users, playerName = "" }: { cata
       {/* Header */}
       <div className="rounded-2xl p-5" style={{ background: "linear-gradient(135deg, #110d04 0%, #0f0f0f 100%)", border: "1px solid rgba(245,158,11,0.18)", boxShadow: "0 0 30px rgba(245,158,11,0.04)" }}>
         <div className="flex items-center gap-3 mb-1">
-          <span style={{ fontSize: 28 }}>x</span>
+          <span style={{ fontSize: 28 }}>—</span>
           <div>
             <h2 className="text-lg font-bold" style={{ color: "#d4a64a" }}>Hall of Honors</h2>
             <p className="text-xs" style={{ color: "rgba(212,166,74,0.4)" }}>

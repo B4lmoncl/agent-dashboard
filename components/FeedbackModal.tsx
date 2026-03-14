@@ -76,7 +76,7 @@ export default function FeedbackModal({ elementPath, playerName, onClose }: Feed
         <div className="px-5 py-4 space-y-4" style={{ overscrollBehavior: "contain" }}>
           {submitted ? (
             <div className="text-center py-6">
-              <div className="text-4xl mb-3">x</div>
+              <div className="text-4xl mb-3">✓</div>
               <p className="text-sm font-semibold" style={{ color: "#22c55e" }}>Feedback submitted!</p>
               <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.3)" }}>Thank you for helping improve Quest Hall.</p>
             </div>
@@ -103,7 +103,7 @@ export default function FeedbackModal({ elementPath, playerName, onClose }: Feed
               <div>
                 <label className="text-xs mb-2 block" style={{ color: "rgba(255,255,255,0.4)" }}>Type</label>
                 <div className="flex gap-2">
-                  {([["bug", "x Bug"], ["feedback", "x Suggestion"]] as const).map(([val, label]) => (
+                  {([["bug", "Bug"], ["feedback", "Suggestion"]] as const).map(([val, label]) => (
                     <button
                       key={val}
                       onClick={() => setType(val)}
@@ -175,7 +175,7 @@ export default function FeedbackModal({ elementPath, playerName, onClose }: Feed
                     cursor: submitting || !text.trim() ? "not-allowed" : "pointer",
                   }}
                 >
-                  {submitting ? "Submitting…" : "Submit x"}
+                  {submitting ? "Submitting…" : "Submit"}
                 </button>
               </div>
             </>

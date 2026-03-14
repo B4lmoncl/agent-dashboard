@@ -232,7 +232,7 @@ export function AntiRitualePanel({ playerName, reviewApiKey }: { playerName: str
                   onMouseEnter={e => { if (!vowDoneToday) { (e.currentTarget as HTMLButtonElement).style.background = "rgba(99,102,241,0.25)"; (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(99,102,241,0.55)"; (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 0 10px rgba(99,102,241,0.2)"; }}}
                   onMouseLeave={e => { if (!vowDoneToday) { (e.currentTarget as HTMLButtonElement).style.background = "rgba(99,102,241,0.12)"; (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(99,102,241,0.3)"; (e.currentTarget as HTMLButtonElement).style.boxShadow = "none"; }}}
                 >
-                  {vowDoneToday ? "x Clean" : "Abhaken"}
+                  {vowDoneToday ? "✓ Clean" : "Abhaken"}
                 </button>
                 <button
                   onClick={() => { setSlipAnimId(ar.id); markViolated(ar.id); setTimeout(() => setSlipAnimId(null), 400); }}
@@ -537,7 +537,7 @@ export function AntiRitualePanel({ playerName, reviewApiKey }: { playerName: str
               </div>
               <div style={{ maxWidth: 420, width: "100%", borderRadius: "1rem", background: "linear-gradient(160deg, #1e1c2c 0%, #141220 100%)", border: "1px solid rgba(139,92,246,0.35)", boxShadow: "0 0 40px rgba(139,92,246,0.08)", overscrollBehavior: "contain" }}>
                 <div className="px-5 pt-5 pb-3 text-center" style={{ borderBottom: "1px solid rgba(139,92,246,0.12)" }}>
-                  <p className="text-3xl mb-2">x</p>
+                  <p className="text-3xl mb-2">—</p>
                   <h3 className="text-base font-bold" style={{ color: "#e2e8f0" }}>Rise Again</h3>
                   <p className="text-xs mt-1" style={{ color: "rgba(165,180,252,0.5)" }}>{vowToRecommit.title}</p>
                 </div>

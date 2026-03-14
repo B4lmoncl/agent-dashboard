@@ -1532,7 +1532,7 @@ export default function Dashboard() {
                             title="Refresh quest pool (1x per hour)"
                           >
                             {poolRefreshing ? (
-                              <span className="text-sm">x</span>
+                              <span className="text-sm">—</span>
                             ) : (
                               <img src="/images/icons/ui-quest-scroll.png" alt="" width={24} height={24} style={{ imageRendering: "pixelated" }} onError={e => (e.currentTarget.style.display = "none")} />
                             )}
@@ -1828,7 +1828,7 @@ export default function Dashboard() {
                                     onMouseEnter={e => { if (!doneToday) { (e.currentTarget as HTMLButtonElement).style.background = "rgba(167,139,250,0.28)"; (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(167,139,250,0.55)"; (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 0 10px rgba(167,139,250,0.2)"; } }}
                                     onMouseLeave={e => { if (!doneToday) { (e.currentTarget as HTMLButtonElement).style.background = "rgba(167,139,250,0.15)"; (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(167,139,250,0.3)"; (e.currentTarget as HTMLButtonElement).style.boxShadow = "none"; } }}
                                   >
-                                    {doneToday ? "x Erledigt" : "Abhaken"}
+                                    {doneToday ? "✓ Erledigt" : "Abhaken"}
                                   </button>
                                   {reviewApiKey && !ritual.bloodPact && (
                                     <button
@@ -2123,7 +2123,7 @@ export default function Dashboard() {
                         </div>
                         <div style={{ maxWidth: 420, width: "100%", borderRadius: "1rem", background: "linear-gradient(160deg, #2c2318 0%, #1e1912 100%)", border: "1px solid rgba(167,139,250,0.35)", boxShadow: "0 0 40px rgba(167,139,250,0.08)" }}>
                           <div className="px-5 pt-5 pb-3 text-center" style={{ borderBottom: "1px solid rgba(245,158,11,0.12)" }}>
-                            <p className="text-3xl mb-2">x</p>
+                            <p className="text-3xl mb-2">—</p>
                             <h3 className="text-base font-bold" style={{ color: "#e8d5a3" }}>Rise Again</h3>
                             <p className="text-xs mt-1" style={{ color: "rgba(200,170,100,0.5)" }}>{ritualToRecommit.title}</p>
                           </div>
@@ -2498,7 +2498,7 @@ export default function Dashboard() {
                 {/* Ornamental divider */}
                 <div className="flex items-center gap-2" style={{ color: "rgba(255,255,255,0.12)" }}>
                   <span style={{ flex: 1, height: 1, background: "rgba(255,255,255,0.07)", display: "block" }} />
-                  <span style={{ fontSize: 11, letterSpacing: 4 }}>xxx</span>
+                  <span style={{ fontSize: 11, letterSpacing: 4 }}>◆ ◆ ◆</span>
                   <span style={{ flex: 1, height: 1, background: "rgba(255,255,255,0.07)", display: "block" }} />
                 </div>
                 {/* Task / Aufgabe */}
@@ -2546,15 +2546,15 @@ export default function Dashboard() {
                 )}
                 {!isCoop && reviewApiKey && playerName && isClaimedByMe && (
                   <>
-                    <button onClick={() => { handleUnclaim(q.id); setQuestDetailModal(null); }} className="text-xs px-3 py-1.5 rounded font-medium" style={{ background: "rgba(239,68,68,0.1)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.25)", cursor: "pointer" }}>x Unclaim</button>
-                    <button onClick={() => { handleComplete(q.id, q.title); setQuestDetailModal(null); }} className="text-sm px-4 py-1.5 rounded font-semibold" style={{ background: "rgba(251,191,36,0.15)", color: "#fbbf24", border: "1px solid rgba(251,191,36,0.35)", cursor: "pointer" }}>x Abgeschlossen</button>
+                    <button onClick={() => { handleUnclaim(q.id); setQuestDetailModal(null); }} className="text-xs px-3 py-1.5 rounded font-medium" style={{ background: "rgba(239,68,68,0.1)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.25)", cursor: "pointer" }}>Unclaim</button>
+                    <button onClick={() => { handleComplete(q.id, q.title); setQuestDetailModal(null); }} className="text-sm px-4 py-1.5 rounded font-semibold" style={{ background: "rgba(251,191,36,0.15)", color: "#fbbf24", border: "1px solid rgba(251,191,36,0.35)", cursor: "pointer" }}>Abgeschlossen</button>
                   </>
                 )}
                 {isCoop && isCoopPartner && !hasCoopClaimed && q.status !== "completed" && reviewApiKey && playerName && (
                   <button onClick={() => { handleCoopClaim(q.id); setQuestDetailModal(null); }} className="text-sm px-4 py-1.5 rounded font-semibold" style={{ background: "rgba(244,63,94,0.12)", color: "#f43f5e", border: "1px solid rgba(244,63,94,0.3)", cursor: "pointer" }}>Join Coop</button>
                 )}
                 {isCoop && isCoopPartner && hasCoopClaimed && !hasCoopCompleted && q.status !== "completed" && reviewApiKey && playerName && (
-                  <button onClick={() => { handleCoopComplete(q.id); setQuestDetailModal(null); }} className="text-sm px-4 py-1.5 rounded font-semibold" style={{ background: "rgba(34,197,94,0.12)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.3)", cursor: "pointer" }}>x My Part Done</button>
+                  <button onClick={() => { handleCoopComplete(q.id); setQuestDetailModal(null); }} className="text-sm px-4 py-1.5 rounded font-semibold" style={{ background: "rgba(34,197,94,0.12)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.3)", cursor: "pointer" }}>My Part Done</button>
                 )}
               </div>
             </div>
