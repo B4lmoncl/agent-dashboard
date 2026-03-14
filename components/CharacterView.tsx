@@ -326,9 +326,25 @@ const RARITY_LABELS: Record<string, string> = {
 
 const STAT_LABELS: Record<string, string> = { kraft: "Kraft", ausdauer: "Ausdauer", weisheit: "Weisheit", glueck: "Glück" };
 
-const GRID_COLS = 7;
+const GRID_COLS = 5;
 const GRID_ROWS = 12;
 const GRID_TOTAL = GRID_COLS * GRID_ROWS;
+
+const RARITY_BG: Record<string, string> = {
+  common: "rgba(156,163,175,0.08)",
+  uncommon: "rgba(34,197,94,0.1)",
+  rare: "rgba(59,130,246,0.12)",
+  epic: "rgba(168,85,247,0.15)",
+  legendary: "rgba(249,115,22,0.18)",
+};
+
+const RARITY_BORDER_30: Record<string, string> = {
+  common: "rgba(156,163,175,0.3)",
+  uncommon: "rgba(34,197,94,0.3)",
+  rare: "rgba(59,130,246,0.3)",
+  epic: "rgba(168,85,247,0.3)",
+  legendary: "rgba(249,115,22,0.3)",
+};
 
 type InventoryItem = CharacterData["inventory"][number];
 
@@ -413,12 +429,10 @@ function InventoryTooltip({ item, mousePos }: { item: InventoryItem; mousePos: {
   );
 }
 
-function InventorySlot({ item, rarityColor, isSelected, level, onSelect }: {
+function InventorySlot({ item, level, onEquip }: {
   item: InventoryItem | null;
-  rarityColor?: string;
-  isSelected: boolean;
   level: number;
-  onSelect: (id: string) => void;
+  onEquip: (id: string) => void;
 }) {
   const [hovered, setHovered] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
@@ -438,32 +452,34 @@ function InventorySlot({ item, rarityColor, isSelected, level, onSelect }: {
   }
 
   const locked = item.minLevel > level;
+  const rarityBg = RARITY_BG[item.rarity] ?? "rgba(255,255,255,0.04)";
+  const rarityBorder = RARITY_BORDER_30[item.rarity] ?? "rgba(255,255,255,0.08)";
 
   return (
     <>
       <button
-        onClick={() => onSelect(item.id)}
+        onClick={() => !locked && onEquip(item.id)}
         onMouseEnter={(e) => { setHovered(true); setMousePos({ x: e.clientX, y: e.clientY }); }}
         onMouseMove={(e) => setMousePos({ x: e.clientX, y: e.clientY })}
         onMouseLeave={() => setHovered(false)}
         style={{
           width: "100%",
           aspectRatio: "1",
-          background: isSelected ? "rgba(167,139,250,0.15)" : "rgba(255,255,255,0.04)",
-          border: `2px solid ${isSelected ? "rgba(167,139,250,0.6)" : (rarityColor || "rgba(255,255,255,0.08)")}`,
+          background: rarityBg,
+          border: `1px solid ${rarityBorder}`,
           borderRadius: 3,
-          cursor: "pointer",
+          cursor: locked ? "not-allowed" : "pointer",
           opacity: locked ? 0.4 : 1,
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          padding: 1,
+          padding: 2,
           position: "relative",
         }}
       >
         {item.icon
           ? <img src={item.icon} alt={item.name} style={{ width: "85%", height: "85%", imageRendering: "auto", objectFit: "contain" }} />
-          : <span style={{ fontSize: 14, color: rarityColor || "#9ca3af", lineHeight: 1 }}>◆</span>
+          : <span style={{ fontSize: 14, color: RARITY_COLORS[item.rarity] || "#9ca3af", lineHeight: 1 }}>◆</span>
         }
       </button>
       {hovered && <InventoryTooltip item={item} mousePos={mousePos} />}
@@ -485,7 +501,7 @@ export default function CharacterView({ playerName, apiKey, users, classesList }
   const [loading, setLoading] = useState(true);
   const [equipping, setEquipping] = useState<string | null>(null);
   const [unequipping, setUnequipping] = useState<string | null>(null);
-  const [selectedItem, setSelectedItem] = useState<string | null>(null);
+  const [rightTab, setRightTab] = useState<"stats" | "ausrustung">("stats");
   const [profileSettingsOpen, setProfileSettingsOpen] = useState(false);
 
   const PETAL_COUNT = 35;
@@ -596,140 +612,32 @@ export default function CharacterView({ playerName, apiKey, users, classesList }
           className="flex-shrink-0 rounded-xl p-3 overflow-y-auto"
           style={{ width: 250, background: "rgba(0,0,0,0.75)", border: "1px solid rgba(255,255,255,0.1)", maxHeight: 440 }}
         >
-          <p className="text-xs font-bold uppercase tracking-wider mb-3" style={{ color: "rgba(255,255,255,0.5)" }}>Ausrüstung</p>
-
-          {/* Equipment Slots */}
-          <div className="space-y-1.5 mb-4">
-            {EQUIP_SLOT_LABELS.map(({ slot, iconSrc, label }) => {
-              const equippedItemId = charData?.equipment[slot];
-              const item = equippedItemId
-                ? charData?.inventory.find(i => i.id === equippedItemId) ?? null
-                : null;
-              const borderColor = item ? (RARITY_COLORS[item.rarity] || RARITY_BORDER[item.tier] || "#9ca3af") : "rgba(255,255,255,0.1)";
-              return (
-                <div
-                  key={slot}
-                  className="flex items-center gap-2 px-2 py-1.5 rounded-lg"
-                  style={{ background: "rgba(255,255,255,0.04)", border: `1px solid ${borderColor}` }}
-                >
-                  <span className="w-5 flex items-center justify-center">
-                    {iconSrc ? <img src={iconSrc} alt={label} width={16} height={16} style={{ imageRendering: "auto" }} /> : null}
-                  </span>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-xs font-medium truncate" style={{ color: item ? "#e8e8e8" : "rgba(255,255,255,0.3)" }}>
-                      {item ? <><span className="inline-flex items-center gap-1">{item.icon ? <img src={item.icon} alt="" width={14} height={14} style={{ imageRendering: "auto" }} /> : <span style={{ color: RARITY_COLORS[item.rarity] || "#9ca3af" }}>◆</span>} {item.name}</span></> : <span style={{ color: "rgba(255,255,255,0.2)" }}>Leer</span>}
-                    </p>
-                    <p className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>{label}</p>
-                  </div>
-                  {item && (
-                    <button
-                      onClick={() => handleUnequip(slot)}
-                      disabled={unequipping === slot}
-                      className="text-xs px-1.5 py-0.5 rounded"
-                      style={{ background: "rgba(239,68,68,0.15)", color: "#f87171", border: "1px solid rgba(239,68,68,0.2)", cursor: "pointer" }}
-                    >
-                      {unequipping === slot ? "…" : "−"}
-                    </button>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-
-          {/* Divider */}
-          <div style={{ borderTop: "1px solid rgba(255,255,255,0.08)", marginBottom: 10 }} />
-          <p className="text-xs font-bold uppercase tracking-wider mb-2" style={{ color: "rgba(255,255,255,0.35)" }}>Inventar</p>
+          <p className="text-xs font-bold uppercase tracking-wider mb-3" style={{ color: "rgba(255,255,255,0.5)" }}>Inventar</p>
 
           {loading && <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>Lädt...</p>}
           {!loading && charData && (() => {
             const equippedIds = new Set(Object.values(charData.equipment).filter(Boolean));
             const unequipped = charData.inventory.filter(i => !equippedIds.has(i.id));
-
-            // TODO: drag-and-drop reordering
-
             return (
-              <>
-                {/* Diablo-style inventory grid */}
-                <div
-                  style={{
-                    display: "grid",
-                    gridTemplateColumns: `repeat(${GRID_COLS}, 1fr)`,
-                    gap: 2,
-                  }}
-                >
-                  {Array.from({ length: GRID_TOTAL }, (_, idx) => {
-                    const item = unequipped[idx] ?? null;
-                    const rarityColor = item ? (RARITY_COLORS[item.rarity] || "#9ca3af") : undefined;
-                    return (
-                      <InventorySlot
-                        key={idx}
-                        item={item}
-                        rarityColor={rarityColor}
-                        isSelected={item ? selectedItem === item.id : false}
-                        level={charData.level}
-                        onSelect={(id) => setSelectedItem(selectedItem === id ? null : id)}
-                      />
-                    );
-                  })}
-                </div>
-
-                {/* Item detail panel (click-to-select backup) */}
-                {(() => {
-                  const selected = selectedItem ? unequipped.find(i => i.id === selectedItem) ?? null : null;
-                  if (!selected) return null;
-                  const equippedInSlot = charData.inventory.find(i => i.id === charData.equipment[selected.slot]) ?? null;
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: `repeat(${GRID_COLS}, 1fr)`,
+                  gap: 3,
+                }}
+              >
+                {Array.from({ length: GRID_TOTAL }, (_, idx) => {
+                  const item = unequipped[idx] ?? null;
                   return (
-                    <div
-                      className="rounded-xl p-3 space-y-2 mt-2"
-                      style={{ background: "rgba(0,0,0,0.5)", border: `1px solid ${RARITY_COLORS[selected.rarity] ?? "#9ca3af"}50` }}
-                    >
-                      <div className="flex items-center gap-2">
-                        {selected.icon ? <img src={selected.icon} alt={selected.name} width={40} height={40} style={{ imageRendering: "auto" }} /> : <span className="text-2xl" style={{ color: RARITY_COLORS[selected.rarity] || "#9ca3af" }}>◆</span>}
-                        <div>
-                          <p className="text-xs font-semibold" style={{ color: "#e8e8e8" }}>{selected.name}</p>
-                          <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>
-                            {RARITY_LABELS[selected.rarity] || selected.rarity}
-                            {selected.minLevel > 1 && ` · Lv.${selected.minLevel}+`}
-                          </p>
-                        </div>
-                      </div>
-
-                      {Object.keys(selected.stats).length > 0 && (
-                        <div className="space-y-0.5">
-                          {Object.entries(selected.stats).map(([stat, val]) => {
-                            const equippedVal = (equippedInSlot?.stats?.[stat] ?? 0) as number;
-                            const diff = (val as number) - equippedVal;
-                            return (
-                              <div key={stat} className="flex items-center justify-between text-xs">
-                                <span style={{ color: "rgba(255,255,255,0.5)" }}>{STAT_LABELS[stat] ?? stat}</span>
-                                <span style={{ color: "#e8e8e8" }} className="font-mono">
-                                  +{val as number}
-                                  {equippedInSlot && diff !== 0 && (
-                                    <span className="ml-1 text-xs" style={{ color: diff > 0 ? "#4ade80" : "#f87171" }}>
-                                      ({diff > 0 ? `↑+${diff}` : `↓${diff}`})
-                                    </span>
-                                  )}
-                                </span>
-                              </div>
-                            );
-                          })}
-                        </div>
-                      )}
-
-                      {selected.minLevel <= charData.level && (
-                        <button
-                          onClick={() => { handleEquip(selected.id); setSelectedItem(null); }}
-                          disabled={equipping === selected.id}
-                          className="w-full py-1.5 rounded-lg text-xs font-semibold"
-                          style={{ background: "rgba(34,197,94,0.15)", color: "#4ade80", border: "1px solid rgba(34,197,94,0.2)", cursor: "pointer" }}
-                        >
-                          {equipping === selected.id ? "…" : "Ausrüsten"}
-                        </button>
-                      )}
-                    </div>
+                    <InventorySlot
+                      key={idx}
+                      item={item}
+                      level={charData.level}
+                      onEquip={handleEquip}
+                    />
                   );
-                })()}
-              </>
+                })}
+              </div>
             );
           })()}
         </div>
@@ -745,15 +653,75 @@ export default function CharacterView({ playerName, apiKey, users, classesList }
           </div>
         </div>
 
-        {/* RIGHT: Stats Panel */}
+        {/* RIGHT: Stats / Ausrüstung Panel */}
         <div
-          className="flex-shrink-0 rounded-xl p-3"
-          style={{ width: 250, background: "rgba(0,0,0,0.75)", border: "1px solid rgba(255,255,255,0.1)" }}
+          className="flex-shrink-0 rounded-xl p-3 overflow-y-auto"
+          style={{ width: 250, background: "rgba(0,0,0,0.75)", border: "1px solid rgba(255,255,255,0.1)", maxHeight: 440 }}
         >
-          <p className="text-xs font-bold uppercase tracking-wider mb-3" style={{ color: "rgba(255,255,255,0.5)" }}>Stats</p>
+          {/* Tab toggle */}
+          <div className="flex gap-1 mb-3">
+            {(["stats", "ausrustung"] as const).map(tab => (
+              <button
+                key={tab}
+                onClick={() => setRightTab(tab)}
+                className="flex-1 py-1 rounded-lg text-xs font-semibold"
+                style={{
+                  background: rightTab === tab ? "rgba(167,139,250,0.15)" : "rgba(255,255,255,0.04)",
+                  border: `1px solid ${rightTab === tab ? "rgba(167,139,250,0.5)" : "rgba(255,255,255,0.08)"}`,
+                  color: rightTab === tab ? "#a78bfa" : "rgba(255,255,255,0.4)",
+                  cursor: "pointer",
+                }}
+              >
+                {tab === "stats" ? "Stats" : "Ausrüstung"}
+              </button>
+            ))}
+          </div>
 
-          {loading && <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>Lädt...</p>}
-          {!loading && charData && (() => {
+          {/* Ausrüstung tab */}
+          {rightTab === "ausrustung" && (
+            <div className="space-y-1.5">
+              {EQUIP_SLOT_LABELS.map(({ slot, iconSrc, label }) => {
+                const equippedItemId = charData?.equipment[slot];
+                const item = equippedItemId
+                  ? charData?.inventory.find(i => i.id === equippedItemId) ?? null
+                  : null;
+                const borderColor = item ? (RARITY_COLORS[item.rarity] || RARITY_BORDER[item.tier] || "#9ca3af") : "rgba(255,255,255,0.1)";
+                return (
+                  <div
+                    key={slot}
+                    className="flex items-center gap-2 px-2 py-1.5 rounded-lg"
+                    style={{ background: "rgba(255,255,255,0.04)", border: `1px solid ${borderColor}` }}
+                  >
+                    <span className="w-5 flex items-center justify-center">
+                      {iconSrc ? <img src={iconSrc} alt={label} width={16} height={16} style={{ imageRendering: "auto" }} /> : null}
+                    </span>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-xs font-medium truncate" style={{ color: item ? "#e8e8e8" : "rgba(255,255,255,0.3)" }}>
+                        {item
+                          ? <span className="inline-flex items-center gap-1">{item.icon ? <img src={item.icon} alt="" width={14} height={14} style={{ imageRendering: "auto" }} /> : <span style={{ color: RARITY_COLORS[item.rarity] || "#9ca3af" }}>◆</span>} {item.name}</span>
+                          : <span style={{ color: "rgba(255,255,255,0.2)" }}>Leer</span>}
+                      </p>
+                      <p className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>{label}</p>
+                    </div>
+                    {item && (
+                      <button
+                        onClick={() => handleUnequip(slot)}
+                        disabled={unequipping === slot}
+                        className="text-xs px-1.5 py-0.5 rounded"
+                        style={{ background: "rgba(239,68,68,0.15)", color: "#f87171", border: "1px solid rgba(239,68,68,0.2)", cursor: "pointer" }}
+                      >
+                        {unequipping === slot ? "…" : "−"}
+                      </button>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          )}
+
+          {/* Stats tab */}
+          {rightTab === "stats" && loading && <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>Lädt...</p>}
+          {rightTab === "stats" && !loading && charData && (() => {
             const { kraft, ausdauer, weisheit, glueck } = charData.stats;
             const base = charData.baseStats;
             const statRows = [
