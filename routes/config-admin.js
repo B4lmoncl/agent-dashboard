@@ -1,8 +1,10 @@
 const router = require('express').Router();
 const crypto = require('crypto');
 const { state, XP_BY_PRIORITY, GOLD_BY_PRIORITY, TEMP_BY_PRIORITY, STREAK_MILESTONES, RARITY_WEIGHTS, RARITY_COLORS, RARITY_ORDER, EQUIPMENT_SLOTS, LEVELS, PLAYER_QUEST_TYPES, saveQuests, savePlayerProgress, saveManagedKeys } = require('../lib/state');
-const { now, getLevelInfo, getPlayerProgress, awardXP } = require('../lib/helpers');
+const { now, getLevelInfo, getPlayerProgress, awardXP, getTodayBerlin } = require('../lib/helpers');
 const { requireApiKey, requireMasterKey, getMasterKey } = require('../lib/middleware');
+const { assignRarity, selectDailyQuests } = require('../lib/rotation');
+const { resolveQuest } = require('../lib/quest-templates');
 
 // GET /api/config — expose game constants to frontend (no auth required)
 router.get('/api/config', (req, res) => {
@@ -71,36 +73,126 @@ router.get('/api/leaderboard', (req, res) => {
 });
 
 // ─── Quest Pool System ─────────────────────────────────────────────────────────
-// Maintains a per-player pool of up to 10 player-type quests (personal/fitness/social/learning)
-// Mix: 2-3 personal, 2-3 fitness, 2-3 social, 1-2 learning
+// Per-player quest pool. Refresh generates 18 NEW quests from templates (per player),
+// then picks ~10 for the visible "Open" tab.
 
-const POOL_TYPES = ['personal', 'fitness', 'social', 'learning'];
-const POOL_MIX = { personal: 3, fitness: 3, social: 2, learning: 2 }; // target counts
+const POOL_TYPES = ['personal', 'fitness', 'social', 'learning', 'boss'];
+const POOL_MIX = { personal: 3, fitness: 3, social: 2, learning: 2, boss: 1 }; // visible pool target
 
-function buildQuestPool(playerName, playerLevel) {
+function buildVisiblePool(playerName, playerLevel) {
   const uid = playerName.toLowerCase();
   const pp = getPlayerProgress(uid);
-  const completedIds = new Set(Object.keys(pp.completedQuests || {}));
-  const claimedIds = new Set(pp.claimedQuests || []);
+  const userRecord = state.users[uid];
+  // Exclude quests already claimed (in progress)
+  const claimedIds = new Set((userRecord?.openQuests || []).map(q => typeof q === 'string' ? q : q.id));
   const pool = [];
 
+  // Pick from this player's generated quest pool (pp.generatedQuests)
+  const generated = (pp.generatedQuests || [])
+    .map(id => state.quests.find(q => q.id === id))
+    .filter(q => q && q.status === 'open' && !claimedIds.has(q.id));
+
   for (const type of POOL_TYPES) {
-    const target = POOL_MIX[type] || 2;
-    const candidates = state.quests.filter(q =>
-      q.status === 'open' &&
-      q.type === type &&
-      !q.parentQuestId &&
-      !completedIds.has(q.id) &&
-      !claimedIds.has(q.id) &&
-      (q.minLevel || 1) <= playerLevel
-    );
-    // Shuffle candidates
+    const target = POOL_MIX[type] || 1;
+    const candidates = generated.filter(q => q.type === type);
     const shuffled = candidates.sort(() => Math.random() - 0.5);
     for (let i = 0; i < Math.min(target, shuffled.length); i++) {
       pool.push(shuffled[i].id);
     }
   }
-  return pool.slice(0, 10);
+  return pool.slice(0, 11);
+}
+
+// Generate 18 fresh quests from templates for a specific player
+function generatePlayerQuests(playerName, playerLevel) {
+  const uid = playerName.toLowerCase();
+  const pp = getPlayerProgress(uid);
+  const userRecord = state.users[uid];
+  const todayStr = getTodayBerlin();
+
+  // Collect IDs to exclude: claimed + completed today + current generated pool
+  const claimedIds = new Set((userRecord?.openQuests || []).map(q => typeof q === 'string' ? q : q.id));
+  const completedTodayIds = new Set();
+  for (const [qid, info] of Object.entries(pp.completedQuests || {})) {
+    const doneAt = info?.completedAt || info;
+    if (typeof doneAt === 'string' && doneAt.startsWith(todayStr)) {
+      completedTodayIds.add(qid);
+    }
+  }
+  // Also exclude templateIds of claimed + completed-today quests
+  const excludeTemplateIds = new Set();
+  for (const q of state.quests) {
+    if (claimedIds.has(q.id) || completedTodayIds.has(q.id)) {
+      if (q.templateId) excludeTemplateIds.add(q.templateId);
+    }
+  }
+  // Also exclude templateIds of current generated pool (if any still open)
+  for (const qid of (pp.generatedQuests || [])) {
+    const q = state.quests.find(x => x.id === qid);
+    if (q && q.templateId) excludeTemplateIds.add(q.templateId);
+  }
+
+  const catalog = state.questCatalog.templates || [];
+  const templates = catalog.filter(t =>
+    t.category !== 'companion' && t.createdBy !== 'companion' && !excludeTemplateIds.has(t.id)
+  );
+
+  if (templates.length === 0) {
+    console.warn(`[Quest Pool] No available templates for ${uid} (${excludeTemplateIds.size} excluded)`);
+    return [];
+  }
+
+  const daySeed = Date.now() + uid.split('').reduce((s, c) => s + c.charCodeAt(0), 0);
+  const dailyTemplates = selectDailyQuests(templates, {
+    count: 18,
+    typeDistribution: { personal: 5, fitness: 4, learning: 4, social: 3, boss: 2 },
+    previousIds: pp.previousTemplateIds || [],
+    daySeed,
+  });
+
+  const priorityMap = { starter: 'low', intermediate: 'medium', advanced: 'high', expert: 'high' };
+  const newQuests = dailyTemplates.map((t, i) => {
+    const resolved = resolveQuest(t);
+    return {
+      id: `quest-${uid}-${Date.now()}-${String(i + 1).padStart(3, '0')}`,
+      title: resolved.title || t.title,
+      description: resolved.description || t.description,
+      priority: priorityMap[t.difficulty] || t.priority || 'medium',
+      type: resolved.type || t.type || 'personal',
+      categories: t.category ? [t.category] : [],
+      product: null, humanInputRequired: false,
+      createdBy: 'system', status: 'open',
+      createdAt: new Date().toISOString(),
+      claimedBy: null, completedBy: null, completedAt: null,
+      parentQuestId: null, recurrence: t.recurrence || null,
+      streak: 0, lastCompletedAt: null,
+      proof: null, checklist: null, nextQuestTemplate: null,
+      coopPartners: null, coopClaimed: [], coopCompletions: [],
+      skills: t.tags || [], lore: resolved.lore || t.lore || null,
+      chapter: t.chainId || null, minLevel: t.minLevel || 1,
+      classRequired: t.classId || null,
+      requiresRelationship: t.requiresRelationship || false,
+      rarity: assignRarity(t),
+      flavorText: resolved.flavorText || null,
+      rewards: resolved.rewards,
+      templateId: t.id,
+    };
+  });
+
+  // Remove old generated quests that are still 'open' (not claimed)
+  const oldGenIds = new Set(pp.generatedQuests || []);
+  state.quests = state.quests.filter(q => !oldGenIds.has(q.id) || q.status !== 'open');
+
+  // Add new quests
+  state.quests.push(...newQuests);
+  saveQuests();
+
+  // Track generated IDs and previous template IDs
+  pp.generatedQuests = newQuests.map(q => q.id);
+  pp.previousTemplateIds = dailyTemplates.map(t => t.id);
+
+  console.log(`[Quest Pool] Generated ${newQuests.length} quests for ${uid} (${excludeTemplateIds.size} templates excluded)`);
+  return newQuests.map(q => q.id);
 }
 
 // GET /api/quests/pool?player=X — get or initialize the quest pool
@@ -112,16 +204,21 @@ router.get('/api/quests/pool', (req, res) => {
   const pp = getPlayerProgress(playerParam);
   const playerLevel = getLevelInfo(userRecord.xp || 0).level;
 
-  // Fill pool if empty or has no valid quests
+  // Auto-generate if player has no generated quests yet
+  if (!pp.generatedQuests || pp.generatedQuests.length === 0) {
+    pp.generatedQuests = generatePlayerQuests(playerParam, playerLevel);
+  }
+
+  // Build/rebuild visible pool if empty or stale
   if (!pp.activeQuestPool || pp.activeQuestPool.length === 0) {
-    pp.activeQuestPool = buildQuestPool(playerParam, playerLevel);
+    pp.activeQuestPool = buildVisiblePool(playerParam, playerLevel);
     savePlayerProgress();
   } else {
-    // Remove completed/rejected quests from pool
-    const validIds = new Set(state.quests.filter(q => q.status === 'open' || q.status === 'in_progress').map(q => q.id));
+    // Remove completed/claimed quests from visible pool
+    const validIds = new Set(state.quests.filter(q => q.status === 'open').map(q => q.id));
     pp.activeQuestPool = pp.activeQuestPool.filter(id => validIds.has(id));
     if (pp.activeQuestPool.length < 3) {
-      pp.activeQuestPool = buildQuestPool(playerParam, playerLevel);
+      pp.activeQuestPool = buildVisiblePool(playerParam, playerLevel);
       savePlayerProgress();
     }
   }
@@ -133,7 +230,8 @@ router.get('/api/quests/pool', (req, res) => {
   res.json({ pool: poolQuests, lastRefresh: pp.lastPoolRefresh || null });
 });
 
-// POST /api/quests/pool/refresh?player=X — refresh the pool (1 per hour cooldown)
+// POST /api/quests/pool/refresh?player=X — full pool refresh (6h cooldown)
+// Generates 18 NEW quests from templates (per player), replaces old open ones
 router.post('/api/quests/pool/refresh', requireApiKey, (req, res) => {
   const playerParam = req.query.player ? String(req.query.player).toLowerCase() : null;
   if (!playerParam) return res.status(400).json({ error: 'player parameter required' });
@@ -142,17 +240,21 @@ router.post('/api/quests/pool/refresh', requireApiKey, (req, res) => {
   const pp = getPlayerProgress(playerParam);
   const playerLevel = getLevelInfo(userRecord.xp || 0).level;
 
-  // Cooldown check: 1 refresh per hour
+  // Cooldown check: 6 hours
+  const COOLDOWN_MS = 6 * 3600 * 1000;
   const nowMs = Date.now();
   if (pp.lastPoolRefresh) {
     const elapsed = nowMs - new Date(pp.lastPoolRefresh).getTime();
-    if (elapsed < 3600 * 1000) {
-      const waitMin = Math.ceil((3600 * 1000 - elapsed) / 60000);
-      return res.status(429).json({ error: `Pool refresh cooldown. Try again in ${waitMin} min.` });
+    if (elapsed < COOLDOWN_MS) {
+      const waitH = Math.floor((COOLDOWN_MS - elapsed) / 3600000);
+      const waitMin = Math.ceil(((COOLDOWN_MS - elapsed) % 3600000) / 60000);
+      return res.status(429).json({ error: `Pool refresh cooldown. Try again in ${waitH}h ${waitMin}min.` });
     }
   }
 
-  pp.activeQuestPool = buildQuestPool(playerParam, playerLevel);
+  // Generate 18 new quests from templates (old open ones get removed)
+  pp.generatedQuests = generatePlayerQuests(playerParam, playerLevel);
+  pp.activeQuestPool = buildVisiblePool(playerParam, playerLevel);
   pp.lastPoolRefresh = new Date().toISOString();
   savePlayerProgress();
 
@@ -160,7 +262,7 @@ router.post('/api/quests/pool/refresh', requireApiKey, (req, res) => {
     .map(id => state.quests.find(q => q.id === id))
     .filter(Boolean);
 
-  res.json({ ok: true, pool: poolQuests, lastRefresh: pp.lastPoolRefresh });
+  res.json({ ok: true, pool: poolQuests, generated: pp.generatedQuests.length, lastRefresh: pp.lastPoolRefresh });
 });
 
 // GET /api/quests/reset-recurring — reset completed recurring quests based on interval
