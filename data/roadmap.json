@@ -78,5 +78,17 @@
     "status": "planned",
     "eta": "TBD",
     "category": "core"
+  },
+  {
+    "id": "r11",
+    "title": "Drag & Drop Inventar",
+    "description": "Items per Drag & Drop in Gear-Slots ausrüsten. Consumables mit Use-Button verbrauchen.",
+    "status": "planned"
+  },
+  {
+    "id": "r12",
+    "title": "NPC Gacha Banner",
+    "description": "NPCs als seltene Pulls aus dem Gacha-System ziehen. Gezogene NPCs besuchen die Quest Hall häufiger oder permanent.",
+    "status": "planned"
   }
 ]
