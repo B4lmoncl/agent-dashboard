@@ -279,8 +279,8 @@ export function WandererRest({
         )}
       </section>
 
-      {/* ── NPC Info Popup ── */}
-      {npcInfoOpen && (
+      {/* ── NPC Info Popup (portal for viewport centering) ── */}
+      {npcInfoOpen && createPortal(
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: "rgba(0,0,0,0.75)" }} onClick={() => setNpcInfoOpen(false)}>
           <div className="rounded-2xl w-full max-w-md overflow-hidden" style={{ background: "#1a1a1a", border: "1px solid rgba(255,215,0,0.3)", boxShadow: "0 0 60px rgba(255,200,0,0.1)", maxHeight: "85vh", overflowY: "auto" }} onClick={e => e.stopPropagation()}>
             <div className="flex items-center justify-between p-4 border-b" style={{ borderColor: "rgba(255,255,255,0.08)" }}>
@@ -310,7 +310,8 @@ export function WandererRest({
               <p style={{ color: "rgba(255,255,255,0.35)", fontStyle: "italic" }}>Verpasste Quests kommen erst zurück wenn der NPC erneut vorbeischaut.</p>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
 
       {/* ── Companion Hearth separator ── */}
