@@ -1,14 +1,82 @@
 [
-  { "id": "r1", "title": "Klassensystem",      "desc": "Karrierepfade als RPG-Klassen",         "status": "in_progress", "eta": "März 2026",  "category": "core"           },
-  { "id": "r2", "title": "Companion System v2", "desc": "Eigenen Companion erstellen",           "status": "planned",     "eta": "April 2026", "category": "feature"        },
-  { "id": "r3", "title": "Character Creator",   "desc": "RPG-Style Onboarding",                  "status": "planned",     "eta": "März 2026",  "category": "core"           },
-  { "id": "r4", "title": "Quest Katalog",       "desc": "Skalierbarer Quest-Pool mit Metriken",  "status": "in_progress", "eta": "März 2026",  "category": "infrastructure" },
+  {
+    "id": "r1",
+    "title": "Quest Board",
+    "desc": "98 Quests über alle Level und Schwierigkeiten, Template-System, Rarity-basierte Sortierung",
+    "status": "done",
+    "eta": "März 2026",
+    "category": "core"
+  },
+  {
+    "id": "r2",
+    "title": "NPC System",
+    "desc": "Wanderer's Rest mit rotierenden NPCs, Quest-Ketten, Raritäten und einzigartigen Item-Belohnungen",
+    "status": "done",
+    "eta": "März 2026",
+    "category": "core"
+  },
+  {
+    "id": "r3",
+    "title": "Gacha System",
+    "desc": "Sternentor mit 19 Items, Pity-System, Pixel Art Icons und Pull-Animationen",
+    "status": "done",
+    "eta": "März 2026",
+    "category": "feature"
+  },
+  {
+    "id": "r4",
+    "title": "Rituale & Gelübde",
+    "desc": "Tägliche Rituale mit Streak-Tracking und Pixel Art Badges, Shrine of Vows",
+    "status": "done",
+    "eta": "März 2026",
+    "category": "feature"
+  },
   {
     "id": "r5",
-    "title": "xx Kampagnen-System v2",
-    "desc": "Vorgefertigte Quest-Chains als lange Kampagnen wählen und durchspielen. Legendäre Belohnungen, Wochen-lange Herausforderungen, thematisch zusammenhängende Quests.",
+    "title": "Achievements",
+    "desc": "34 Achievements mit Pixel Art Icons, automatische Vergabe bei Meilensteinen",
+    "status": "done",
+    "eta": "März 2026",
+    "category": "feature"
+  },
+  {
+    "id": "r6",
+    "title": "Character Screen",
+    "desc": "Inventar, Ausrüstung, Stats, Equipment Slots — Diablo-inspiriertes Layout",
+    "status": "in_progress",
+    "eta": "März 2026",
+    "category": "core"
+  },
+  {
+    "id": "r7",
+    "title": "Bazaar-Händler",
+    "desc": "Permanenter NPC im Bazaar bei dem man Items verkaufen kann — Dupes und ungewollte Gacha-Items gegen Gold",
     "status": "planned",
-    "eta": "April 2026",
+    "eta": "TBD",
+    "category": "feature"
+  },
+  {
+    "id": "r8",
+    "title": "The Observatory",
+    "desc": "Kampagnen und langfristige Story-Arcs mit narrativen Quest-Ketten",
+    "status": "planned",
+    "eta": "TBD",
+    "category": "feature"
+  },
+  {
+    "id": "r9",
+    "title": "The Arcanum",
+    "desc": "Klassenquests und Skill Trees — spezialisierte Aufgaben basierend auf deinem Berufspfad",
+    "status": "planned",
+    "eta": "TBD",
+    "category": "feature"
+  },
+  {
+    "id": "r10",
+    "title": "Character Screen Rework",
+    "desc": "Vollständiges Diablo-Style Inventar mit Equipment Grid, Stat-Tooltips und visuellen Item-Icons",
+    "status": "planned",
+    "eta": "TBD",
     "category": "core"
   }
 ]
