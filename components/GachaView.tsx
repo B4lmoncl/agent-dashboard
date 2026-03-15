@@ -116,7 +116,7 @@ function BannerPreviewCard({
     <button
       data-feedback-id={`gacha-view.banner.${banner.id}`}
       onClick={onClick}
-      className="flex-1 min-w-[280px] rounded-2xl p-6 text-left transition-all duration-300 group relative overflow-hidden"
+      className="flex-1 min-w-[280px] rounded-2xl p-6 text-left transition-all duration-300 group relative overflow-hidden active:scale-[0.97] active:brightness-125"
       style={{
         background: `linear-gradient(160deg, ${isFeatured ? "#1c1328" : "#16123a"} 0%, #0c0c18 70%, ${isFeatured ? "#120e1e" : "#0e0e2a"} 100%)`,
         border: `1px solid ${isFeatured ? "rgba(167,139,250,0.3)" : "rgba(129,140,248,0.35)"}`,
