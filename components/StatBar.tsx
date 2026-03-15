@@ -10,39 +10,69 @@ interface StatBarProps {
   subColor?: string;
   tooltip?: ReactNode;
   onClick?: () => void;
+  inline?: boolean;
 }
 
-export default function StatBar({ label, value, value2, value2Color, sub, accent = "rgba(255,255,255,0.8)", subColor, tooltip, onClick }: StatBarProps) {
+export default function StatBar({ label, value, value2, value2Color, sub, accent = "rgba(255,255,255,0.8)", subColor, tooltip, onClick, inline }: StatBarProps) {
   return (
     <div
       className="rounded-2xl px-5 py-4 flex flex-col gap-0.5 relative group"
       style={{ background: "#181818", border: "1px solid rgba(255,68,68,0.15)", cursor: onClick ? "pointer" : "default" }}
       onClick={onClick}
     >
-      <div className="flex items-center gap-1">
-        <p className="text-xs uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.3)" }}>{label}</p>
-      </div>
-      <div className="flex items-baseline gap-2">
-        <p className="text-2xl font-bold" style={{ color: accent }}>{value}</p>
-        {value2 && (
-          <>
-            {value2.startsWith("◆") ? (
+      {inline ? (
+        <>
+          <div className="flex items-baseline gap-2">
+            <span className="text-xs uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.3)" }}>{label}</span>
+            <span className="text-base font-bold" style={{ color: accent }}>{value}</span>
+            {value2 && (
               <>
-                <span className="text-2xl font-bold" style={{
-                  background: "linear-gradient(to right, #a855f7, #fbbf24)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text",
-                }}>◆</span>
-                <p className="text-2xl font-bold" style={{ color: value2Color || "rgba(255,255,255,0.5)" }}>{value2.slice(1)}</p>
+                {value2.startsWith("◆") ? (
+                  <>
+                    <span className="text-base font-bold mx-1" style={{
+                      background: "linear-gradient(to right, #a855f7, #fbbf24)",
+                      WebkitBackgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                      backgroundClip: "text",
+                    }}>◆</span>
+                    <span className="text-base font-bold" style={{ color: value2Color || "rgba(255,255,255,0.5)" }}>{value2.slice(1).trim()}</span>
+                  </>
+                ) : (
+                  <span className="text-base font-bold" style={{ color: value2Color || "rgba(255,255,255,0.5)" }}>{value2}</span>
+                )}
               </>
-            ) : (
-              <p className="text-2xl font-bold" style={{ color: value2Color || "rgba(255,255,255,0.5)" }}>{value2}</p>
             )}
-          </>
-        )}
-      </div>
-      {sub && <p className="text-xs" style={{ color: subColor || "rgba(255,255,255,0.3)" }}>{sub}</p>}
+          </div>
+          {sub && <p className="text-xs mt-0.5" style={{ color: subColor || "rgba(255,255,255,0.3)" }}>{sub}</p>}
+        </>
+      ) : (
+        <>
+          <div className="flex items-center gap-1">
+            <p className="text-xs uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.3)" }}>{label}</p>
+          </div>
+          <div className="flex items-baseline gap-2">
+            <p className="text-2xl font-bold" style={{ color: accent }}>{value}</p>
+            {value2 && (
+              <>
+                {value2.startsWith("◆") ? (
+                  <>
+                    <span className="text-2xl font-bold" style={{
+                      background: "linear-gradient(to right, #a855f7, #fbbf24)",
+                      WebkitBackgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                      backgroundClip: "text",
+                    }}>◆</span>
+                    <p className="text-2xl font-bold" style={{ color: value2Color || "rgba(255,255,255,0.5)" }}>{value2.slice(1)}</p>
+                  </>
+                ) : (
+                  <p className="text-2xl font-bold" style={{ color: value2Color || "rgba(255,255,255,0.5)" }}>{value2}</p>
+                )}
+              </>
+            )}
+          </div>
+          {sub && <p className="text-xs" style={{ color: subColor || "rgba(255,255,255,0.3)" }}>{sub}</p>}
+        </>
+      )}
       {tooltip && (
         <div
           className="absolute left-0 top-full mt-1 rounded-xl p-3 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity z-50"

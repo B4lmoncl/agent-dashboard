@@ -1117,6 +1117,7 @@ export default function Dashboard() {
             sub={playerName ? "all active bonuses" : "login to view"}
             accent="#a855f7"
             onClick={loggedInUser?.modifiers ? () => setModifierOpen(true) : undefined}
+            inline
           />
           </div>
         </div>
