@@ -1113,7 +1113,37 @@ export default function Dashboard() {
             value={loading ? "—" : playerName && loggedInUser?.modifiers ? `×${loggedInUser.modifiers.xp.total}` : "—"}
             sub={playerName && loggedInUser?.modifiers ? `Gold ×${loggedInUser.modifiers.gold.total}` : "login to view"}
             accent="#a855f7"
-            tooltip={<InfoTooltip text="Your total XP and Gold earn multiplier from all sources: Forge Temperature, Gear, Companion Bond, and Streak." />}
+            tooltip={loggedInUser?.modifiers ? (
+              <div className="text-xs leading-relaxed" style={{ minWidth: 240 }}>
+                <p className="font-semibold mb-1.5" style={{ color: "#f0f0f0", fontSize: 13 }}>Modifier Breakdown</p>
+                <p className="font-semibold mb-1" style={{ color: "#a855f7", fontSize: 12 }}>XP ×{loggedInUser.modifiers.xp.total}</p>
+                <div className="space-y-0.5 mb-2">
+                  {[
+                    { label: "Forge Temp", val: loggedInUser.modifiers.xp.forge, color: forgeTempColor },
+                    { label: "Gear", val: loggedInUser.modifiers.xp.gear, color: "#818cf8" },
+                    { label: "Companions", val: loggedInUser.modifiers.xp.companions, color: "#f472b6" },
+                    { label: "Bond Level", val: loggedInUser.modifiers.xp.bond, color: "#fb923c" },
+                  ].map(r => (
+                    <div key={r.label} className="flex items-center justify-between">
+                      <span style={{ color: "rgba(255,255,255,0.5)" }}>{r.label}</span>
+                      <span className="font-mono font-semibold" style={{ color: r.val !== 1 ? r.color : "rgba(255,255,255,0.25)" }}>×{r.val}</span>
+                    </div>
+                  ))}
+                </div>
+                <p className="font-semibold mb-1" style={{ color: "#fbbf24", fontSize: 12 }}>Gold ×{loggedInUser.modifiers.gold.total}</p>
+                <div className="space-y-0.5">
+                  {[
+                    { label: "Forge Temp", val: loggedInUser.modifiers.gold.forge, color: forgeTempColor },
+                    { label: `Streak (${loggedInUser.streakDays ?? 0}d)`, val: loggedInUser.modifiers.gold.streak, color: "#f97316" },
+                  ].map(r => (
+                    <div key={r.label} className="flex items-center justify-between">
+                      <span style={{ color: "rgba(255,255,255,0.5)" }}>{r.label}</span>
+                      <span className="font-mono font-semibold" style={{ color: r.val !== 1 ? r.color : "rgba(255,255,255,0.25)" }}>×{r.val}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ) : <InfoTooltip text="Log in to see your modifier breakdown." />}
           />
           </div>
         </div>
