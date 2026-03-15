@@ -25,19 +25,21 @@ export default function StatBar({ label, value, value2, value2Color, sub, accent
       <div className="flex items-baseline gap-2">
         <p className="text-2xl font-bold" style={{ color: accent }}>{value}</p>
         {value2 && (
-          <p className="text-2xl font-bold" style={{ color: value2Color || "rgba(255,255,255,0.5)" }}>
+          <>
             {value2.startsWith("◆") ? (
               <>
-                <span style={{
+                <span className="text-2xl font-bold" style={{
                   background: "linear-gradient(to right, #a855f7, #fbbf24)",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                   backgroundClip: "text",
                 }}>◆</span>
-                {value2.slice(1)}
+                <p className="text-2xl font-bold" style={{ color: value2Color || "rgba(255,255,255,0.5)" }}>{value2.slice(1)}</p>
               </>
-            ) : value2}
-          </p>
+            ) : (
+              <p className="text-2xl font-bold" style={{ color: value2Color || "rgba(255,255,255,0.5)" }}>{value2}</p>
+            )}
+          </>
         )}
       </div>
       {sub && <p className="text-xs" style={{ color: subColor || "rgba(255,255,255,0.3)" }}>{sub}</p>}

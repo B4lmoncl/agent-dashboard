@@ -10,7 +10,7 @@ const router = require('express').Router();
 
 // GET /api/users
 router.get('/api/users', (req, res) => {
-  const { getXpMultiplier, getGoldMultiplier, getUserGear } = require('../lib/helpers');
+  const { getXpMultiplier, getGoldMultiplier, getUserGear, getQuestHoardingMalus } = require('../lib/helpers');
   const companionIds = ['ember_sprite', 'lore_owl', 'gear_golem'];
   const result = Object.values(state.users).map(u => {
     const ft = calcDynamicForgeTemp(u.id);
@@ -22,11 +22,13 @@ router.get('/api/users', (req, res) => {
     const compBonus = 1 + 0.02 * companionIds.filter(id => earnedIds.has(id)).length;
     const bondBonus = 1 + 0.01 * Math.max(0, (u.companion?.bondLevel ?? 1) - 1);
     const streakGold = Math.min(1 + (u.streakDays || 0) * 0.1, 3);
+    const hoarding = getQuestHoardingMalus(u.id);
+    const hoardingMultiplier = hoarding.multiplier;
     return {
       ...u,
       forgeTemp: ft,
       modifiers: {
-        xp: { forge: forgeXp, gear: gearBonus, companions: compBonus, bond: bondBonus, total: +(forgeXp * gearBonus * compBonus * bondBonus).toFixed(2) },
+        xp: { forge: forgeXp, gear: gearBonus, companions: compBonus, bond: bondBonus, hoarding: hoardingMultiplier, hoardingCount: hoarding.count, hoardingPct: hoarding.malusPct, total: +(forgeXp * gearBonus * compBonus * bondBonus * hoardingMultiplier).toFixed(2) },
         gold: { forge: forgeGold, streak: streakGold, total: +(forgeGold * streakGold).toFixed(2) },
       },
     };
