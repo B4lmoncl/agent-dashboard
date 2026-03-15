@@ -104,6 +104,7 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
   const [petting, setPetting] = useState(false);
   const [heartAnim, setHeartAnim] = useState(false);
   const [petError, setPetError] = useState("");
+  const [showHearts, setShowHearts] = useState(false);
   const [completedIds, setCompletedIds] = useState<Set<string>>(new Set());
   const [completingId, setCompletingId] = useState<string | null>(null);
   const [questToast, setQuestToast] = useState<string | null>(null);

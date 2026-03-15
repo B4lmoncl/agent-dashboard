@@ -56,6 +56,22 @@ body {
   border-radius: 2px;
 }
 
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translate(-50%, -10px); }
+  to { opacity: 1; transform: translate(-50%, 0); }
+}
+
+@keyframes petHeartFloat {
+  0%   { opacity: 1; transform: translateY(0) scale(1); }
+  60%  { opacity: 0.8; transform: translateY(-28px) scale(1.15); }
+  100% { opacity: 0; transform: translateY(-52px) scale(0.8); }
+}
+
 @keyframes premium-breathe {
   0%, 100% { filter: drop-shadow(0 0 4px var(--glow-color)); opacity: 1; }
   50% { filter: drop-shadow(0 0 8px var(--glow-color)); opacity: 0.9; }

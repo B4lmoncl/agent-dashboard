@@ -151,8 +151,16 @@ function generatePlayerQuests(playerName, playerLevel) {
   });
 
   const priorityMap = { starter: 'low', intermediate: 'medium', advanced: 'high', expert: 'high' };
+  const REWARDS_BY_RARITY = {
+    common:    { xp: 10, gold: 8  },
+    uncommon:  { xp: 18, gold: 14 },
+    rare:      { xp: 30, gold: 24 },
+    epic:      { xp: 50, gold: 40 },
+    legendary: { xp: 80, gold: 65 },
+  };
   const newQuests = dailyTemplates.map((t, i) => {
     const resolved = resolveQuest(t);
+    const rarity = assignRarity(t);
     return {
       id: `quest-${uid}-${Date.now()}-${String(i + 1).padStart(3, '0')}`,
       title: resolved.title || t.title,
@@ -172,10 +180,10 @@ function generatePlayerQuests(playerName, playerLevel) {
       chapter: t.chainId || null, minLevel: t.minLevel || 1,
       classRequired: t.classId || null,
       requiresRelationship: t.requiresRelationship || false,
-      rarity: assignRarity(t),
+      rarity,
       difficulty: (t.vars && t.vars.difficulty) || t.difficulty || 'starter',
       flavorText: resolved.flavorText || null,
-      rewards: resolved.rewards,
+      rewards: REWARDS_BY_RARITY[rarity] || resolved.rewards || { xp: 20, gold: 10 },
       templateId: t.id,
     };
   });

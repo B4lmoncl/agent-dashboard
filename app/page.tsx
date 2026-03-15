@@ -196,11 +196,26 @@ export default function Dashboard() {
 
   // ─── apiFetch wrapper ─────────────────────────────────────────────────────
   const [apiError, setApiError] = useState<string | null>(null);
+  const apiErrorTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const setApiErrorWithAutoClose = useCallback((msg: string | null) => {
+    setApiError(msg);
+    if (apiErrorTimerRef.current) clearTimeout(apiErrorTimerRef.current);
+    if (msg) {
+      apiErrorTimerRef.current = setTimeout(() => setApiError(null), 5000);
+    }
+  }, []);
+  // Escape key dismisses api error toast
+  useEffect(() => {
+    if (!apiError) return;
+    const handler = (e: KeyboardEvent) => { if (e.key === "Escape") setApiError(null); };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, [apiError]);
   const apiFetch = useCallback(async (url: string, options?: RequestInit): Promise<Response> => {
     const r = await fetch(url, options);
     if (r.status === 429) {
       const msg = "Zu viel geschmiedet! Der Amboss muss erst abkühlen. Warte kurz vor dem Einreichen neuer Quests.";
-      setApiError(msg);
+      setApiErrorWithAutoClose(msg);
       throw new Error(msg);
     }
     return r;
@@ -483,7 +498,7 @@ export default function Dashboard() {
         await refresh();
       } else {
         const d = await r.json().catch(() => ({}));
-        if (d.error) setApiError(d.error);
+        if (d.error) setApiErrorWithAutoClose(d.error);
       }
     } catch { /* ignore */ } finally {
       setPoolRefreshing(false);
@@ -1639,9 +1654,9 @@ export default function Dashboard() {
                         {playerVisibleInProgress.length > 0 && (
                           <>
                             <button data-feedback-id="quest-board.in-progress" onClick={() => { const next = !inProgressSectionCollapsed; setInProgressSectionCollapsed(next); try { localStorage.setItem("qb_inprogress_collapsed", String(next)); } catch { /* ignore */ } }} className="flex items-center gap-2 w-full text-left pt-1 pb-0.5">
-                              <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.25)" }}>In Progress</span>
-                              <span className="text-xs px-1 rounded font-mono" style={{ background: "rgba(139,92,246,0.08)", color: "rgba(139,92,246,0.5)" }}>{playerVisibleInProgress.length}</span>
-                              <span className="ml-auto text-xs" style={{ color: "rgba(255,255,255,0.15)" }}>{inProgressSectionCollapsed ? "▼" : "▲"}</span>
+                              <span className="text-base font-extrabold uppercase tracking-widest" style={{ color: "#a78bfa", textShadow: "0 0 12px rgba(167,139,250,0.35)", borderLeft: "3px solid #a78bfa", paddingLeft: 8 }}>In Progress</span>
+                              <span className="text-xs px-2 py-0.5 rounded-md font-mono font-bold" style={{ background: "rgba(139,92,246,0.18)", color: "#a78bfa", border: "1px solid rgba(139,92,246,0.3)" }}>{playerVisibleInProgress.length}</span>
+                              <span className="ml-auto text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>{inProgressSectionCollapsed ? "▼" : "▲"}</span>
                             </button>
                             {!inProgressSectionCollapsed && (
                               <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))", gap: 12, marginTop: 4 }}>
@@ -1663,9 +1678,16 @@ export default function Dashboard() {
                         )}
                         {boardOpen.length > 0 && (
                           <>
-                            <button data-feedback-id="quest-board.open" onClick={() => { const next = !openSectionCollapsed; setOpenSectionCollapsed(next); try { localStorage.setItem("qb_open_collapsed", String(next)); } catch { /* ignore */ } }} className="flex items-center gap-2 w-full text-left pt-2 pb-0.5">
-                              <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.3)" }}>Open</span>
-                              <span className="ml-auto text-xs" style={{ color: "rgba(255,255,255,0.15)" }}>{openSectionCollapsed ? "▼" : "▲"}</span>
+                            {playerVisibleInProgress.length > 0 && (
+                              <div className="flex items-center gap-3 my-3">
+                                <div className="flex-1 h-px" style={{ background: "linear-gradient(90deg, transparent, rgba(167,139,250,0.25), rgba(148,163,184,0.15), transparent)" }} />
+                                <span className="text-xs font-mono uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.12)", fontSize: 9 }}>◆</span>
+                                <div className="flex-1 h-px" style={{ background: "linear-gradient(90deg, transparent, rgba(148,163,184,0.15), rgba(167,139,250,0.25), transparent)" }} />
+                              </div>
+                            )}
+                            <button data-feedback-id="quest-board.open" onClick={() => { const next = !openSectionCollapsed; setOpenSectionCollapsed(next); try { localStorage.setItem("qb_open_collapsed", String(next)); } catch { /* ignore */ } }} className="flex items-center gap-2 w-full text-left pt-1 pb-0.5">
+                              <span className="text-base font-extrabold uppercase tracking-widest" style={{ color: "#94a3b8", textShadow: "0 0 8px rgba(148,163,184,0.2)", borderLeft: "3px solid #94a3b8", paddingLeft: 8 }}>Offen</span>
+                              <span className="ml-auto text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>{openSectionCollapsed ? "▼" : "▲"}</span>
                             </button>
                             {!openSectionCollapsed && (
                               <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))", gap: 12, marginTop: 4 }}>
@@ -2507,10 +2529,12 @@ export default function Dashboard() {
                 )}
                 {/* Rewards */}
                 {(() => {
+                  const XP_BY_RARITY: Record<string, number> = { common: 10, uncommon: 18, rare: 30, epic: 50, legendary: 80 };
+                  const GOLD_BY_RARITY: Record<string, number> = { common: 8, uncommon: 14, rare: 24, epic: 40, legendary: 65 };
                   const XP_FALLBACK: Record<string, number> = { high: 30, medium: 20, low: 10 };
                   const GOLD_FALLBACK: Record<string, number> = { high: 25, medium: 15, low: 9 };
-                  const displayXp = (q.rewards?.xp != null && q.rewards.xp > 0) ? q.rewards.xp : (XP_FALLBACK[q.priority] ?? 10);
-                  const displayGold = (q.rewards?.gold != null && q.rewards.gold > 0) ? q.rewards.gold : (GOLD_FALLBACK[q.priority] ?? 9);
+                  const displayXp = (q.rewards?.xp != null && q.rewards.xp > 0) ? q.rewards.xp : (q.rarity ? (XP_BY_RARITY[q.rarity] ?? XP_FALLBACK[q.priority] ?? 10) : (XP_FALLBACK[q.priority] ?? 10));
+                  const displayGold = (q.rewards?.gold != null && q.rewards.gold > 0) ? q.rewards.gold : (q.rarity ? (GOLD_BY_RARITY[q.rarity] ?? GOLD_FALLBACK[q.priority] ?? 9) : (GOLD_FALLBACK[q.priority] ?? 9));
                   return (
                     <div>
                       <p className="text-xs font-semibold uppercase tracking-widest mb-2" style={{ color: "rgba(255,255,255,0.25)" }}>Belohnung</p>
@@ -2637,15 +2661,24 @@ export default function Dashboard() {
         );
       })()}
 
-      {/* API Error Toast (rate limit etc) */}
+      {/* API Error Toast (rate limit etc) — auto-closes after 5s, click/Escape to dismiss */}
       {apiError && (
         <div
-          className="fixed top-16 left-1/2 z-50 flex items-center gap-3 px-4 py-3 rounded-xl shadow-2xl"
-          style={{ transform: "translateX(-50%)", background: "#1a1a1a", border: "1px solid rgba(239,68,68,0.5)", maxWidth: "90vw" }}
+          onClick={() => setApiError(null)}
+          className="fixed top-16 left-1/2 z-50 flex items-center gap-3 px-4 py-3 rounded-xl shadow-2xl cursor-pointer select-none"
+          style={{
+            transform: "translateX(-50%)",
+            background: "linear-gradient(135deg, #1c1010, #1a1a1a)",
+            border: "1px solid rgba(239,68,68,0.45)",
+            boxShadow: "0 4px 24px rgba(0,0,0,0.6), 0 0 16px rgba(239,68,68,0.12)",
+            maxWidth: "min(480px, 92vw)",
+            animation: "fadeInDown 0.2s ease",
+          }}
+          title="Klicken zum Schließen"
         >
-          <span className="text-sm">×</span>
-          <p className="text-xs" style={{ color: "#ef4444" }}>{apiError}</p>
-          <button onClick={() => setApiError(null)} className="text-xs ml-2" style={{ color: "rgba(255,255,255,0.3)" }}>x</button>
+          <span style={{ fontSize: 18, flexShrink: 0 }}>⏱</span>
+          <p className="text-xs leading-relaxed flex-1" style={{ color: "#fca5a5" }}>{apiError}</p>
+          <span className="text-xs flex-shrink-0" style={{ color: "rgba(255,255,255,0.25)", marginLeft: 4 }}>✕</span>
         </div>
       )}
 

@@ -170,7 +170,10 @@ export default function HonorsView({ catalogue, users, playerName = "" }: { cata
                               <p className="text-xs font-bold truncate" style={{ color: highlight ? "#f0f0f0" : "rgba(255,255,255,0.35)" }}>{ach.name}</p>
                               {isHidden && myEarned && <span className="text-xs px-1 rounded" style={{ background: "rgba(138,43,226,0.2)", color: "#a855f7", fontSize: 9 }}>SECRET</span>}
                             </div>
-                            <p className="text-xs mt-0.5 leading-relaxed" style={{ color: "rgba(255,255,255,0.3)" }}>{ach.desc}</p>
+                            {earnerCount > 0
+                              ? <p className="text-xs mt-0.5 leading-relaxed" style={{ color: "rgba(255,255,255,0.3)" }}>{ach.desc}</p>
+                              : <p className="text-xs mt-0.5 leading-relaxed italic" style={{ color: "rgba(255,255,255,0.15)" }}>Schließe dieses Achievement ab, um mehr zu erfahren...</p>
+                            }
                           </div>
                         </div>
 
@@ -194,18 +197,21 @@ export default function HonorsView({ catalogue, users, playerName = "" }: { cata
                         {/* Earner badges */}
                         {earners.length > 0 && (
                           <div className="flex flex-wrap gap-1 mt-2">
-                            {earners
-                              .filter(u => !playerName || (u.id.toLowerCase() !== playerName.toLowerCase() && u.name.toLowerCase() !== playerName.toLowerCase()))
-                              .map(u => (
-                                <span
-                                  key={u.id}
-                                  className="text-xs px-1.5 py-0.5 rounded"
-                                  style={{ background: `${u.color}15`, color: `${u.color}cc`, border: `1px solid ${u.color}30`, fontSize: 10 }}
-                                >
-                                  {u.name}
-                                </span>
-                              ))
-                            }
+                            {earners.map(u => (
+                              <span
+                                key={u.id}
+                                className="text-xs px-1.5 py-0.5 rounded"
+                                style={{
+                                  background: `${u.color}15`,
+                                  color: `${u.color}cc`,
+                                  border: `1px solid ${u.color}30`,
+                                  fontSize: 10,
+                                  fontWeight: playerName && (u.id.toLowerCase() === playerName.toLowerCase() || u.name.toLowerCase() === playerName.toLowerCase()) ? 700 : 400,
+                                }}
+                              >
+                                {u.name}
+                              </span>
+                            ))}
                           </div>
                         )}
                       </div>
