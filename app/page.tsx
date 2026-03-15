@@ -646,6 +646,8 @@ export default function Dashboard() {
   const playerTypes = ["personal", "learning", "fitness", "social", "relationship-coop"];
   const playerActiveQuests = quests.inProgress.filter(q => playerTypes.includes(q.type ?? "") && q.claimedBy?.toLowerCase() === (playerName || "").toLowerCase());
   const playerCompletedQuests = quests.completed.filter(q => playerTypes.includes(q.type ?? "") && q.completedBy?.toLowerCase() === (playerName || "").toLowerCase());
+  // Use persistent counter from user record (survives rotation cleanup)
+  const playerCompletedTotal = loggedInUser?.questsCompleted ?? playerCompletedQuests.length;
 
   // Level info for logged-in player
   const LEVEL_XP = [0,50,120,200,300,420,560,720,900,1100,1350,1650,2000,2400,2850,3350,3900,4500,5150,5850,6700,7600,8600,9700,10900,12200,13600,15100,16700,18400];
@@ -675,7 +677,7 @@ export default function Dashboard() {
   const forgeTempIcon = forgeTemp === 0 ? "×" : forgeTemp <= 20 ? "×" : forgeTemp <= 40 ? "×" : forgeTemp <= 60 ? "×" : forgeTemp <= 80 ? "×" : "×";
 
   const playerActiveCount = playerActiveQuests.length;
-  const playerCompletedCount = playerCompletedQuests.length;
+  const playerCompletedCount = playerCompletedTotal;
 
   const openQuestsCount = quests.open.filter(q => playerTypes.includes(q.type ?? "")).length;
 
