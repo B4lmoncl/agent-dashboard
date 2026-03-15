@@ -1111,9 +1111,11 @@ export default function Dashboard() {
           <div data-feedback-id="stats.modifiers">
           <StatBar
             label="Modifier"
-            value={loading ? "—" : playerName && loggedInUser?.modifiers ? `×${loggedInUser.modifiers.xp.total}` : "—"}
-            sub={playerName && loggedInUser?.modifiers ? `◆ Gold ×${loggedInUser.modifiers.gold.total}` : "login to view"}
+            value={loading ? "—" : playerName && loggedInUser?.modifiers ? `XP ×${loggedInUser.modifiers.xp.total}` : "—"}
+            sub={playerName && loggedInUser?.modifiers ? `Gold ×${loggedInUser.modifiers.gold.total}` : "login to view"}
             accent="#a855f7"
+            subColor="#fbbf24"
+            horizontal
             onClick={loggedInUser?.modifiers ? () => setModifierOpen(true) : undefined}
           />
           </div>
