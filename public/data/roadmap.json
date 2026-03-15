@@ -2,7 +2,7 @@
   {
     "id": "r1",
     "title": "Quest Board",
-    "desc": "98 Quests über alle Level und Schwierigkeiten, Template-System, Rarity-basierte Sortierung",
+    "desc": "198 Quest Templates über alle Level und Schwierigkeiten, per-player rotation, Template-System, Rarity-basierte Sortierung",
     "status": "done",
     "eta": "März 2026",
     "category": "core"
@@ -10,7 +10,7 @@
   {
     "id": "r2",
     "title": "NPC System",
-    "desc": "Wanderer's Rest mit rotierenden NPCs, Quest-Ketten, Raritäten und einzigartigen Item-Belohnungen",
+    "desc": "Wanderer's Rest mit rotierenden NPCs (10 aktive), Quest-Ketten, Raritäten, unique Item-Rewards, auto-cleanup bei departure",
     "status": "done",
     "eta": "März 2026",
     "category": "core"
@@ -18,7 +18,7 @@
   {
     "id": "r3",
     "title": "Gacha System",
-    "desc": "Sternentor mit 19 Items, Pity-System, Pixel Art Icons und Pull-Animationen",
+    "desc": "Sternentor mit 19 Items, Pity-System (Epic 50%, Legendary 0.5%), Pixel Art Icons (128x128), Pull-Animationen",
     "status": "done",
     "eta": "März 2026",
     "category": "feature"
@@ -26,7 +26,7 @@
   {
     "id": "r4",
     "title": "Rituale & Gelübde",
-    "desc": "Tägliche Rituale mit Streak-Tracking und Pixel Art Badges, Shrine of Vows",
+    "desc": "Tägliche Rituale mit Streak-Tracking und Pixel Art Badges, Shrine of Vows mit Anti-Ritual Mood System",
     "status": "done",
     "eta": "März 2026",
     "category": "feature"
@@ -42,53 +42,137 @@
   {
     "id": "r6",
     "title": "Character Screen",
-    "desc": "Inventar, Ausrüstung, Stats, Equipment Slots — Diablo-inspiriertes Layout",
-    "status": "in_progress",
+    "desc": "Inventar (6-col grid, 56×56 slots), Equipment Slots, Stats, Tooltips, Diablo-inspiriertes Layout",
+    "status": "done",
     "eta": "März 2026",
     "category": "core"
   },
   {
+    "id": "r13",
+    "title": "Quest Hoarding Malus",
+    "desc": "Anti-Hoarding Mechanic: -10% XP pro Quest über 20 (soft cap 50%, hard cap 80%), nur sichtbare NPCs zählen",
+    "status": "done",
+    "eta": "März 2026",
+    "category": "balance"
+  },
+  {
+    "id": "r14",
+    "title": "Forge Temperature System",
+    "desc": "2%/h decay rate, recoverable via quests, affects XP multiplier, 4-tier system (0-100%)",
+    "status": "done",
+    "eta": "März 2026",
+    "category": "progression"
+  },
+  {
     "id": "r7",
     "title": "Bazaar-Händler",
-    "desc": "Permanenter NPC im Bazaar bei dem man Items verkaufen kann — Dupes und ungewollte Gacha-Items gegen Gold",
+    "desc": "Permanenter NPC im Bazaar zum Verkaufen von Items — Dupes und ungewollte Gacha-Items gegen Gold",
     "status": "planned",
-    "eta": "TBD",
+    "eta": "April 2026",
     "category": "feature"
   },
   {
-    "id": "r8",
-    "title": "The Observatory",
-    "desc": "Kampagnen und langfristige Story-Arcs mit narrativen Quest-Ketten",
-    "status": "planned",
-    "eta": "TBD",
+    "id": "r15",
+    "title": "Pet Bonding Rework",
+    "desc": "2x/day XP limit mit hearts animation, Info nach limit, unlimited petting möglich (kein XP)",
+    "status": "in_progress",
+    "eta": "März 2026",
     "category": "feature"
   },
   {
-    "id": "r9",
-    "title": "The Arcanum",
-    "desc": "Klassenquests und Skill Trees — spezialisierte Aufgaben basierend auf deinem Berufspfad",
+    "id": "r16",
+    "title": "Battle Pass Click-to-Claim",
+    "desc": "Rewards direkt im Season Pass Tab claimen statt via Character Screen → Inventory",
     "status": "planned",
-    "eta": "TBD",
-    "category": "feature"
-  },
-  {
-    "id": "r10",
-    "title": "Character Screen Rework",
-    "desc": "Vollständiges Diablo-Style Inventar mit Equipment Grid, Stat-Tooltips und visuellen Item-Icons",
-    "status": "planned",
-    "eta": "TBD",
-    "category": "core"
+    "eta": "März 2026",
+    "category": "ux"
   },
   {
     "id": "r11",
     "title": "Drag & Drop Inventar",
-    "description": "Items per Drag & Drop in Gear-Slots ausrüsten. Consumables mit Use-Button verbrauchen.",
-    "status": "planned"
+    "desc": "Items per Drag & Drop in Gear-Slots ausrüsten, Consumables mit Use-Button verbrauchen",
+    "status": "planned",
+    "eta": "April 2026",
+    "category": "ux"
+  },
+  {
+    "id": "r17",
+    "title": "Equipment Slot Pixel Art Icons",
+    "desc": "16×16 oder 32×32 Pixel Art Placeholder für leere Helm/Weapon/Armor/Amulet Slots",
+    "status": "planned",
+    "eta": "März 2026",
+    "category": "polish"
+  },
+  {
+    "id": "r18",
+    "title": "Level-Up Celebration",
+    "desc": "Animation + Popup + automatische Rewards bei Level-Up (levelRewards.json ready)",
+    "status": "planned",
+    "eta": "April 2026",
+    "category": "feature"
+  },
+  {
+    "id": "r19",
+    "title": "Tab Notification System",
+    "desc": "Yellow glow / badge bei neuen Rewards / Claims / Companion Quests",
+    "status": "planned",
+    "eta": "April 2026",
+    "category": "ux"
+  },
+  {
+    "id": "r20",
+    "title": "Companion Portraits",
+    "desc": "Pixel Art Portraits für alle 6 Companions via PixelLab (128×128)",
+    "status": "planned",
+    "eta": "TBD",
+    "category": "art"
+  },
+  {
+    "id": "r8",
+    "title": "The Observatory (Campaigns v2)",
+    "desc": "Lange narrative Story-Arcs mit Quest-Ketten und einzigartigen Belohnungen",
+    "status": "planned",
+    "eta": "April 2026",
+    "category": "feature"
+  },
+  {
+    "id": "r9",
+    "title": "The Arcanum (Klassen-System)",
+    "desc": "Klassenquests und Skill Trees — spezialisierte Aufgaben basierend auf Berufspfad",
+    "status": "planned",
+    "eta": "TBD",
+    "category": "feature"
   },
   {
     "id": "r12",
     "title": "NPC Gacha Banner",
-    "description": "NPCs als seltene Pulls aus dem Gacha-System ziehen. Gezogene NPCs besuchen die Quest Hall häufiger oder permanent.",
-    "status": "planned"
+    "desc": "NPCs als seltene Pulls aus dem Gacha ziehen — gezogene NPCs besuchen häufiger oder permanent",
+    "status": "planned",
+    "eta": "TBD",
+    "category": "feature"
+  },
+  {
+    "id": "r21",
+    "title": "Season System v2",
+    "desc": "Überarbeitetes Season-System mit besserer Progression und Rewards",
+    "status": "planned",
+    "eta": "TBD",
+    "category": "rework"
+  },
+  {
+    "id": "r22",
+    "title": "Starweaver Special Quests",
+    "desc": "Dynamische Quests via LLM Chat mit Sternenwächterin Lyra",
+    "status": "planned",
+    "eta": "TBD",
+    "category": "feature"
+  },
+  {
+    "id": "r23",
+    "title": "Sound Effects & Music",
+    "desc": "Quest complete sounds, UI clicks, ambient background music",
+    "status": "planned",
+    "eta": "TBD",
+    "category": "polish"
   }
 ]
