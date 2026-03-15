@@ -27,6 +27,7 @@ export function UserCard({ user, classes = [] }: { user: User; classes?: ClassDe
     : "brightness(0.6) grayscale(0.8)";
   const goldMultiplier = temp >= 100 ? "1.5" : temp >= 80 ? "1.3" : temp >= 60 ? "1.15" : "1.0";
   const xpMultiplier = temp >= 100 ? "1.5" : temp >= 80 ? "1.25" : temp >= 60 ? "1.15" : temp >= 40 ? "1.0" : temp >= 20 ? "0.8" : "0.5";
+  const forgeColor = temp >= 100 ? "#e0f0ff" : temp >= 80 ? "#f97316" : temp >= 60 ? "#ea580c" : temp >= 40 ? "#b45309" : temp >= 20 ? "#78716c" : "#4b5563";
   const xpMalus = temp === 0;
   const forgeInfo = getForgeTempInfo(temp);
 
@@ -94,7 +95,7 @@ export function UserCard({ user, classes = [] }: { user: User; classes?: ClassDe
       <div className="mb-2" title={forgeInfo.tooltipText}>
         <div className="flex items-center justify-between mb-0.5">
           <span className="text-xs font-medium flex items-center gap-1" style={{ color: tempColor }}>
-            <img src="/images/icons/ach-forge-novice.png" alt="forge" width={14} height={14} style={{ imageRendering: "auto", filter: forgeFilter }} /> {temp}% <span style={{ color: "rgba(255,255,255,0.3)", fontWeight: 400 }}>|</span> <span style={{ color: "#f59e0b" }}>{goldMultiplier}x</span>
+            <img src="/images/icons/ach-forge-novice.png" alt="forge" width={14} height={14} style={{ imageRendering: "auto", filter: forgeFilter }} /> <span style={{ color: forgeColor }}>{temp}%</span> <span style={{ color: "rgba(255,255,255,0.3)", fontWeight: 400 }}>|</span> <span style={{ color: forgeColor }}>{goldMultiplier}x</span>
           </span>
           <span className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>Forge Temp</span>
         </div>

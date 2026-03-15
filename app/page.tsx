@@ -674,6 +674,7 @@ export default function Dashboard() {
   const forgeTemp = Math.min(loggedInUser?.forgeTemp ?? 0, 100);
   const forgeTempColor = forgeTemp === 0 ? "#4a4a4a" : forgeTemp <= 20 ? "#8b0000" : forgeTemp <= 40 ? "#ff4500" : forgeTemp <= 60 ? "#ff8c00" : forgeTemp <= 80 ? "#ffa500" : "#00bfff";
   const forgeTempLabel = forgeTemp === 0 ? "Cold" : forgeTemp <= 20 ? "Smoldering" : forgeTemp <= 40 ? "Warming" : forgeTemp <= 60 ? "Burning" : forgeTemp <= 80 ? "Blazing" : "White-hot";
+  const forgeTempColor = forgeTemp === 0 ? "#4b5563" : forgeTemp <= 20 ? "#78716c" : forgeTemp <= 40 ? "#b45309" : forgeTemp <= 60 ? "#ea580c" : forgeTemp <= 80 ? "#f97316" : "#e0f0ff";
   const forgeTempIcon = forgeTemp === 0 ? "×" : forgeTemp <= 20 ? "×" : forgeTemp <= 40 ? "×" : forgeTemp <= 60 ? "×" : forgeTemp <= 80 ? "×" : "×";
 
   const playerActiveCount = playerActiveQuests.length;
@@ -1185,10 +1186,7 @@ export default function Dashboard() {
                     <span className="text-xs font-medium" style={{ color: forgeTempColor }}>
                       {forgeTempIcon} {forgeTemp}%
                     </span>
-                    <span className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>{forgeTempLabel}</span>
-                    <span className="text-xs px-1 py-0.5 rounded font-mono" style={{ color: "rgba(255,255,255,0.25)", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.07)" }}>
-                      {forgeQuestsToday}/8
-                    </span>
+                    <span className="text-xs font-medium" style={{ color: forgeTempColor }}>{forgeTempLabel}</span>
                     <span className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>?</span>
                   </div>
                   {/* Forge bar */}
@@ -1203,28 +1201,28 @@ export default function Dashboard() {
                     className="absolute right-0 top-full mt-1 rounded-xl p-3 text-xs leading-relaxed pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity"
                     style={{ background: "#1a1a1a", border: "1px solid rgba(255,255,255,0.12)", minWidth: 260, boxShadow: "0 8px 32px rgba(0,0,0,0.6)", zIndex: 100 }}
                   >
-                    <p className="font-semibold mb-1" style={{ color: "#f0f0f0" }}>The Deepforge</p>
-                    <p className="mb-2" style={{ color: "rgba(255,255,255,0.5)" }}>
+                    <p className="font-semibold mb-1" style={{ color: "#f0f0f0", fontSize: 14 }}>The Deepforge</p>
+                    <p className="mb-2" style={{ color: "rgba(255,255,255,0.55)", fontSize: 13 }}>
                       Dein Aktivitäts-Level. Steigt mit jeder Quest, sinkt wenn du pausierst.
                     </p>
-                    <p className="mb-1.5 font-semibold" style={{ color: "rgba(255,255,255,0.6)", fontSize: 11 }}>Was bringt&apos;s?</p>
-                    <div className="space-y-1 mb-2">
+                    <p className="mb-1.5 font-semibold" style={{ color: "rgba(255,255,255,0.6)", fontSize: 12 }}>Was bringt&apos;s?</p>
+                    <div className="space-y-1.5 mb-3">
                       {[
                         { t: "0%", label: "Cold", bonus: "XP ×0.5 (Malus!)", color: "#4b5563" },
                         { t: "20%", label: "Smoldering", bonus: "XP ×0.8", color: "#78716c" },
                         { t: "40%", label: "Warming", bonus: "XP ×1.0", color: "#b45309" },
                         { t: "60%", label: "Burning", bonus: "XP ×1.15 · Gold ×1.15", color: "#ea580c" },
                         { t: "80%", label: "Blazing", bonus: "XP ×1.25 · Gold ×1.3", color: "#f97316" },
-                        { t: "100%", label: "White-hot!", bonus: "XP ×1.5 · Gold ×1.5", color: "#fbbf24" },
+                        { t: "100%", label: "White-hot!", bonus: "XP ×1.5 · Gold ×1.5", color: "#e0f0ff" },
                       ].map(row => (
                         <div key={row.t} className="flex items-center gap-2">
-                          <span className="font-mono font-bold" style={{ color: row.color, minWidth: 36, fontSize: 12 }}>{row.t}</span>
-                          <span style={{ color: row.color, minWidth: 76, fontSize: 11 }}>{row.label}</span>
-                          <span className="font-mono" style={{ color: row.color, fontSize: 11 }}>{row.bonus}</span>
+                          <span className="font-mono font-bold" style={{ color: row.color, minWidth: 38, fontSize: 13 }}>{row.t}</span>
+                          <span style={{ color: row.color, minWidth: 80, fontSize: 13 }}>{row.label}</span>
+                          <span className="font-mono" style={{ color: row.color, fontSize: 12 }}>{row.bonus}</span>
                         </div>
                       ))}
                     </div>
-                    <p className="mb-1" style={{ color: "rgba(255,255,255,0.5)", fontSize: 11 }}>
+                    <p className="mb-1" style={{ color: "rgba(255,255,255,0.55)", fontSize: 12 }}>
                       +10% pro abgeschlossener Quest. Sinkt um ~2% pro Stunde Inaktivität.
                     </p>
                   </div>
