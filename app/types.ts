@@ -55,6 +55,7 @@ export interface Quest {
   npcGiverId?: string | null;
   npcName?: string | null;
   npcRarity?: string | null;
+  difficulty?: string | null;
   flavorText?: string | null;
   chainIndex?: number | null;
   chainTotal?: number | null;
