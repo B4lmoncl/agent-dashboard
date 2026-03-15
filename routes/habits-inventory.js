@@ -8,7 +8,7 @@ const {
 } = require('../lib/state');
 const {
   now, getLevelInfo, getUserStats, getUserEquipment, getUserDropBonus,
-  rollLoot, resetLootPity, addLootToInventory,
+  rollLoot, resetLootPity, addLootToInventory, calcDynamicForgeTemp,
 } = require('../lib/helpers');
 const { requireApiKey } = require('../lib/middleware');
 const { rebuildCatalogMeta } = require('../lib/quest-catalog');
@@ -363,7 +363,7 @@ router.get('/api/player/:name/character', (req, res) => {
     stats: { kraft: fullStats.kraft || 0, ausdauer: fullStats.ausdauer || 0, weisheit: fullStats.weisheit || 0, glueck: fullStats.glueck || 0 },
     baseStats,
     inventory: inventoryItems,
-    forgeTemp: Math.min(100, Math.round(u.forgeTemp || 0)),
+    forgeTemp: calcDynamicForgeTemp(uid),
     season: 'spring',
     setBonusInfo,
     namedSetBonuses,

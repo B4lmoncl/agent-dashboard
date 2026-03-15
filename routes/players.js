@@ -27,12 +27,10 @@ router.get('/api/player/:name', (req, res) => {
   if (!userRecord) return res.status(404).json({ error: 'Player not found' });
   const pp = getPlayerProgress(uid);
   const levelInfo = getLevelInfo(userRecord.xp || 0);
-  // Dynamic per-player forgeTemp based on last 24h completions
+  // Dynamic forgeTemp: stored value with 2%/hr time decay
   const dynamicForgeTemp = calcDynamicForgeTemp(uid);
-  // Also update stored value for XP multiplier calculations
-  userRecord.forgeTemp = dynamicForgeTemp;
   // Calculate modifier breakdown
-  const { getXpMultiplier, getGoldMultiplier, getUserGear } = require('../lib/helpers');
+  const { getXpMultiplier, getGoldMultiplier, getUserGear, getQuestHoardingMalus } = require('../lib/helpers');
   const forgeXp = getXpMultiplier(uid);
   const forgeGold = getGoldMultiplier(uid);
   const gear = getUserGear(uid);
@@ -44,7 +42,9 @@ router.get('/api/player/:name', (req, res) => {
   const bondBonus = 1 + 0.01 * Math.max(0, bondLevel - 1);
   const streakDays = userRecord.streakDays || 0;
   const streakGold = Math.min(1 + streakDays * 0.1, 3);
-  const totalXp = +(forgeXp * gearBonus * companionBonus * bondBonus).toFixed(2);
+  const hoarding = getQuestHoardingMalus(uid);
+  const hoardingMultiplier = hoarding.multiplier;
+  const totalXp = +(forgeXp * gearBonus * companionBonus * bondBonus * hoardingMultiplier).toFixed(2);
   const totalGold = +(forgeGold * streakGold).toFixed(2);
 
   res.json({
@@ -61,7 +61,7 @@ router.get('/api/player/:name', (req, res) => {
     streakDays,
     forgeTemp: dynamicForgeTemp,
     modifiers: {
-      xp: { forge: forgeXp, gear: gearBonus, companions: companionBonus, bond: bondBonus, total: totalXp },
+      xp: { forge: forgeXp, gear: gearBonus, companions: companionBonus, bond: bondBonus, hoarding: hoardingMultiplier, hoardingCount: hoarding.count, hoardingPct: hoarding.malusPct, total: totalXp },
       gold: { forge: forgeGold, streak: streakGold, total: totalGold },
     },
   });

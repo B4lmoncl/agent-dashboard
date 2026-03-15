@@ -117,8 +117,13 @@ router.post('/api/forge/temp-decay', requireApiKey, (req, res) => {
     if (!u.streakLastDate || u.streakLastDate === today) continue;
     const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
     if (u.streakLastDate !== yesterday) {
-      // missed at least one day
+      // missed at least one day — apply pending time decay first, then penalty
+      if (u.forgeTempAt) {
+        const hrs = (Date.now() - new Date(u.forgeTempAt).getTime()) / 3600000;
+        u.forgeTemp = Math.max(0, (u.forgeTemp ?? 100) - hrs * 2);
+      }
       u.forgeTemp = Math.max(0, (u.forgeTemp ?? 100) - 10);
+      u.forgeTempAt = new Date().toISOString();
       decayed++;
     }
   }
