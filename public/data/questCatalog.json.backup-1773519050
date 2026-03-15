@@ -1,0 +1,1392 @@
+{
+  "templates": [
+    {
+      "id": "p-morgenritual",
+      "template": "board-quest",
+      "title": "Morgenritual",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Steh auf, trink Wasser, streck dich. Kein Handy für die ersten 15 Minuten.",
+        "flavor": "Die Halle ist am stillsten kurz vor Sonnenaufgang. Manche sagen, das ist der Moment in dem sie träumt.",
+        "difficulty": "starter"
+      }
+    },
+    {
+      "id": "p-ohne-trank",
+      "template": "board-quest",
+      "title": "Ohne den Trank",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Ein Tag ohne Koffein. Ja, wirklich. Die Kopfschmerzen sind Teil der Prüfung.",
+        "flavor": "\"Der stille Trank hat seine Tücken. Wer ihn meistert, meistert sich selbst.\" — Meister Tanaka",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 18
+      }
+    },
+    {
+      "id": "p-chronik",
+      "template": "board-quest",
+      "title": "Chronik des Tages",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Schreib drei Dinge auf die heute gut liefen. Kein Zynismus erlaubt.",
+        "flavor": "Im Archiv der Sternenwächterin stehen Tausende von Namen. Sie hat keinen einzigen vergessen. Hast du deinen Tag schon aufgeschrieben?",
+        "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 15,
+        "gold": 10
+      }
+    },
+    {
+      "id": "p-digital-detox",
+      "template": "board-quest",
+      "title": "Digitale Stille",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "2 Stunden ohne Social Media. Die Welt dreht sich trotzdem weiter, versprochen.",
+        "flavor": "\"Die Kristallkugel zeigt dir alles. Außer das, was direkt vor deiner Nase liegt.\" — Alter Henrik",
+        "difficulty": "intermediate"
+      }
+    },
+    {
+      "id": "p-aufraeum",
+      "template": "board-quest",
+      "title": "Die Große Reinigung",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Räum deinen Schreibtisch auf. Komplett. Keine Ausreden.",
+        "flavor": "Ordnung im Äußeren, Ordnung im Inneren. Oder zumindest findet man seine Schlüssel. Bruder Tomas behauptet beides, beweisen kann er nur Letzteres.",
+        "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 20,
+        "gold": 12
+      }
+    },
+    {
+      "id": "p-frueh-ins-bett",
+      "template": "board-quest",
+      "title": "Frühwächters Eid",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Vor 22:30 im Bett. Nicht am Handy. Einfach schlafen.",
+        "flavor": "Die mächtigsten Zauber wirken im Schlaf. Das ist keine Metapher — die Bibliothek reorganisiert sich tatsächlich nachts. Du solltest das auch tun.",
+        "difficulty": "intermediate"
+      }
+    },
+    {
+      "id": "p-kochen",
+      "template": "board-quest",
+      "title": "Der Alchemistenkessel",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Koch dir etwas Richtiges. Kein Fertiggericht, kein Lieferdienst.",
+        "flavor": "\"Jedes Rezept ist ein Zauberspruch. Die Zutaten sind deine Komponenten. Und nein, Fertignudeln zählen nicht als Transmutation.\" — Zara Funkenwind",
+        "difficulty": "intermediate"
+      }
+    },
+    {
+      "id": "p-mail-inbox",
+      "template": "board-quest",
+      "title": "Postberg-Bezwinger",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Räum deine Inbox auf. Alles unter 2 Minuten sofort beantworten, Rest archivieren.",
+        "flavor": "Ungelesene Briefe stapeln sich im Postturm der Gilde. Der letzte Held der sie ignoriert hat, wurde unter einer Lawine aus Mahnbescheiden begraben. Bürokratie kennt keine Gnade.",
+        "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 20,
+        "gold": 10
+      }
+    },
+    {
+      "id": "p-dankbarkeit",
+      "template": "board-quest",
+      "title": "Drei Sterne",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Sag drei Menschen heute etwas Nettes. Ehrlich gemeint, nicht pflichtmäßig.",
+        "flavor": "Worte sind die billigste Magie und die mächtigste. Finnegan hat mal ein ganzes Dorf mit einem einzigen Satz zum Weinen gebracht. Zugegeben, es war eine Beleidigung.",
+        "difficulty": "starter"
+      }
+    },
+    {
+      "id": "p-no-snooze",
+      "template": "board-quest",
+      "title": "Kein Aufschub",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Steh beim ersten Wecker auf. Kein Snooze. Kein 'noch 5 Minuten'.",
+        "flavor": "Der wichtigste Schritt ist immer der nächste. Besonders wenn er aus dem Bett führt.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 20,
+        "gold": 12
+      }
+    },
+    {
+      "id": "p-budget",
+      "template": "board-quest",
+      "title": "Gold zählen",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Check deine Finanzen. Was kam rein, was ging raus diese Woche?",
+        "flavor": "\"Wer sein Gold nicht zählt, wird von seinem Gold gezählt.\" — Karim, während er zum dritten Mal nachzählt",
+        "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 15,
+        "gold": 10
+      }
+    },
+    {
+      "id": "p-wardrobe",
+      "template": "board-quest",
+      "title": "Ausmisten",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Finde 5 Dinge in deiner Wohnung die du nicht mehr brauchst. Weg damit.",
+        "flavor": "Loslassen ist die schwerste Disziplin. Bruder Tomas predigt das seit dreißig Jahren und hat trotzdem noch die Sandalen von seiner Aufnahmeprüfung.",
+        "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 20,
+        "gold": 10
+      }
+    },
+    {
+      "id": "p-planen",
+      "template": "board-quest",
+      "title": "Der Stratege",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Plan deinen morgigen Tag. Was willst du schaffen? Schreib es auf.",
+        "flavor": "Ein Plan überlebt selten den ersten Kontakt mit dem Morgen. Aber ohne Plan überlebt man gar nichts. Meister Tanaka hat übrigens sieben Backup-Pläne. Für den Dienstag.",
+        "difficulty": "starter"
+      }
+    },
+    {
+      "id": "p-kein-nachtisch",
+      "template": "board-quest",
+      "title": "Eiserne Disziplin",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Kein Zucker nach 18 Uhr. Der Süßkram kann warten.",
+        "flavor": "Die Alchemisten-Gilde hat bewiesen, dass Zucker nach Sonnenuntergang seine kristalline Struktur verändert. In Wahrheit wollten sie nur die Kekse für sich.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 20,
+        "gold": 12
+      }
+    },
+    {
+      "id": "p-tagebuch",
+      "template": "board-quest",
+      "title": "Wanderers Logbuch",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Schreib mindestens 200 Wörter über deinen Tag. Ungefiltert, ehrlich.",
+        "flavor": "Lyra führt ihr Logbuch seit dreitausend Jahren. Sie sagt, die langweiligen Einträge sind im Nachhinein die wertvollsten. Die Abenteuer erinnert man ohnehin.",
+        "difficulty": "intermediate"
+      }
+    },
+    {
+      "id": "f-morgenlauf",
+      "template": "board-quest",
+      "title": "Morgenlauf",
+      "type": "fitness",
+      "category": "fitness",
+      "vars": {
+        "description": "20 Minuten laufen bevor du mit dem Tag anfängst. Egal wie schnell.",
+        "flavor": "Die Sterne verblassen am Morgen. Aber wer früh genug läuft, sieht sie noch grüßen.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 30,
+        "gold": 15
+      }
+    },
+    {
+      "id": "f-10k-schritte",
+      "template": "board-quest",
+      "title": "10.000 Schritte",
+      "type": "fitness",
+      "category": "fitness",
+      "vars": {
+        "description": "Sammle heute 10.000 Schritte. Zählt alles — Treppen, Spaziergänge, Herumlaufen.",
+        "flavor": "Jeder Schritt ist ein Vers in deinem Lied. Finnegan behauptet, seine besten Balladen entstehen bei Schritt zwölftausend. Ab Schritt dreizehntausend wird es experimentell.",
+        "difficulty": "intermediate"
+      }
+    },
+    {
+      "id": "f-liegestuetzen",
+      "template": "board-quest",
+      "title": "Bodenkampf",
+      "type": "fitness",
+      "category": "fitness",
+      "vars": {
+        "description": "3 Sätze Liegestützen. So viele wie gehen. Kein Schummeln.",
+        "flavor": "\"Der Boden ist dein Gegner. Drück ihn weg.\" — Rogar Amboss, der das auch über Türen, Felsen und einmal über einen Bären gesagt hat",
+        "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 20,
+        "gold": 10
+      }
+    },
+    {
+      "id": "f-stretching",
+      "template": "board-quest",
+      "title": "Geschmeidigkeit",
+      "type": "fitness",
+      "category": "fitness",
+      "vars": {
+        "description": "15 Minuten Stretching oder Yoga. Dein Rücken wird es dir danken.",
+        "flavor": "Sable Nachtwind bewegt sich wie Rauch durch enge Gassen. Auf die Frage nach ihrem Geheimnis sagte sie nur: \"Dehnen. Jeden Morgen. Und niemals erwischt werden.\"",
+        "difficulty": "starter"
+      }
+    },
+    {
+      "id": "f-gym",
+      "template": "board-quest",
+      "title": "Schmiede des Körpers",
+      "type": "fitness",
+      "category": "fitness",
+      "vars": {
+        "description": "Ab ins Gym. Vollständiges Workout, mindestens 45 Minuten.",
+        "flavor": "Stahl wird im Feuer gehärtet. Du auch. Rogar Amboss hat diese Worte über die Eingangstür seiner Schmiede gemeißelt. Und über die Ausgangstür. Für den Fall, dass man flüchten will.",
+        "difficulty": "advanced"
+      }
+    },
+    {
+      "id": "f-spaziergang",
+      "template": "board-quest",
+      "title": "Der stille Pfad",
+      "type": "fitness",
+      "category": "fitness",
+      "vars": {
+        "description": "30 Minuten spazieren. Ohne Handy. Nur du und die Welt.",
+        "flavor": "Der Pfad durch den Nebelhain hat kein Ziel. Das ist der Punkt. Oma Ilse geht ihn jeden Dienstag und kommt mit Geschichten zurück, die sie niemandem erzählt.",
+        "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 20,
+        "gold": 10
+      }
+    },
+    {
+      "id": "f-treppen",
+      "template": "board-quest",
+      "title": "Turmbesteigung",
+      "type": "fitness",
+      "category": "fitness",
+      "vars": {
+        "description": "Nimm heute jede Treppe statt den Aufzug. Ausnahmslos.",
+        "flavor": "\"Wer den Turm bezwingen will, muss jede Stufe ehren.\" — Oma Ilse, die den Aufzug nimmt seit die Keksdose im dritten Stock steht",
+        "difficulty": "starter"
+      }
+    },
+    {
+      "id": "f-kalt-duschen",
+      "template": "board-quest",
+      "title": "Frostprüfung",
+      "type": "fitness",
+      "category": "fitness",
+      "vars": {
+        "description": "Kalt duschen. Mindestens 30 Sekunden. Schreien ist erlaubt.",
+        "flavor": "Das Eis fragt nicht ob du bereit bist. Sei es trotzdem. Lumi lacht über Kälte. Aber Lumi ist auch... Lumi.",
+        "difficulty": "intermediate"
+      }
+    },
+    {
+      "id": "f-plank",
+      "template": "board-quest",
+      "title": "Die Unbewegliche Mauer",
+      "type": "fitness",
+      "category": "fitness",
+      "vars": {
+        "description": "Plank halten. 3 Durchgänge, jeweils so lange wie möglich.",
+        "flavor": "Stillstand ist manchmal die größte Bewegung. Das klingt wie etwas das Meister Tanaka sagen würde. Hat er auch. Dreimal. Während er selbst plankte.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 12
+      }
+    },
+    {
+      "id": "f-radfahren",
+      "template": "board-quest",
+      "title": "Windreiter",
+      "type": "fitness",
+      "category": "fitness",
+      "vars": {
+        "description": "Fahr heute Fahrrad statt Auto oder Bahn. Egal wohin.",
+        "flavor": "\"Der Wind ist kein Gegner. Er ist ein Tanzpartner.\" — Zara Funkenwind, die auch mal einen Tornado umarmt hat. Nur einmal.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 30,
+        "gold": 15
+      }
+    },
+    {
+      "id": "f-abend-workout",
+      "template": "board-quest",
+      "title": "Abendschmiede",
+      "type": "fitness",
+      "category": "fitness",
+      "vars": {
+        "description": "Abend-Workout: 20 Minuten Bodyweight. Kein Equipment nötig.",
+        "flavor": "Die letzte Stunde des Tages gehört dem Krieger in dir. Oder dem Sofa. Es ist deine Entscheidung, aber die Halle merkt sich beides.",
+        "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 12
+      }
+    },
+    {
+      "id": "f-wassertrinken",
+      "template": "board-quest",
+      "title": "Quell der Stärke",
+      "type": "fitness",
+      "category": "fitness",
+      "vars": {
+        "description": "Trink heute mindestens 2 Liter Wasser. Kaffee zählt nicht.",
+        "flavor": "Wasser ist flüssige Magie. Die meisten vergessen es einfach. Mirael hat einen Brunnen der ewige Jugend verspricht. Es ist nur Wasser. Aber es funktioniert.",
+        "difficulty": "starter"
+      }
+    },
+    {
+      "id": "l-30min-lernen",
+      "template": "board-quest",
+      "title": "Wissensjäger",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "30 Minuten fokussiert etwas Neues lernen. Kein YouTube-Rabbit-Hole.",
+        "flavor": "Wissen ist der einzige Schatz der schwerer wird je mehr man trägt — und trotzdem leichter. Das Archiv hat heute neue Regale aufgestellt. Jemand muss sie füllen.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 30,
+        "gold": 15
+      }
+    },
+    {
+      "id": "l-buch-lesen",
+      "template": "board-quest",
+      "title": "Buchstabenzauber",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Lies 30 Minuten in einem Buch. Papier oder E-Reader, kein Social Media.",
+        "flavor": "Bücher sind Portale. Manche führen in Welten, manche führen zu dir selbst. Die Bibliothek hat einen eigenen Willen. Und schlechte Laune, wenn man Seiten knickt.",
+        "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 20,
+        "gold": 10
+      }
+    },
+    {
+      "id": "l-doku",
+      "template": "board-quest",
+      "title": "Chronistenarbeit",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Dokumentiere etwas das du gelernt hast. Wiki, Notiz, Blog — Hauptsache aufgeschrieben.",
+        "flavor": "Was nicht geschrieben steht, hat nie stattgefunden. — Lyras erstes Gesetz. Das zweite ist: Wer es aufschreibt, findet es auch wieder.",
+        "difficulty": "intermediate"
+      }
+    },
+    {
+      "id": "l-tutorial",
+      "template": "board-quest",
+      "title": "Lehrlings Übung",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Folge einem Tutorial zu einer Technologie die du noch nicht kennst.",
+        "flavor": "Im Archiv gibt es ein Regal das sich nur öffnet, wenn man zugibt nichts zu wissen. Die meisten Helden scheitern an diesem Schritt. Anfangen ist die eigentliche Kunst.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 30,
+        "gold": 18
+      }
+    },
+    {
+      "id": "l-podcast",
+      "template": "board-quest",
+      "title": "Stimmen des Wissens",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Hör einen Fachpodcast oder Hörbuch. Mindestens 30 Minuten.",
+        "flavor": "Manchmal ist Zuhören mächtiger als jeder Zauberspruch. Bruder Tomas schweigt seit vierzig Jahren beruflich und hat trotzdem mehr gelernt als die meisten.",
+        "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 20,
+        "gold": 10
+      }
+    },
+    {
+      "id": "l-flashcards",
+      "template": "board-quest",
+      "title": "Gedächtnispalast",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Erstelle oder reviewe 20 Karteikarten zu einem Thema deiner Wahl.",
+        "flavor": "Wiederholung ist keine Langeweile. Wiederholung ist der Pfad zur Meisterschaft. Oder zum Wahnsinn. Die Grenze ist fließend, sagt Meister Tanaka.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 12
+      }
+    },
+    {
+      "id": "l-zertifikat",
+      "template": "board-quest",
+      "title": "Siegel des Gelehrten",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Arbeite an einer Zertifizierung oder einem Online-Kurs. Mindestens 1 Modul.",
+        "flavor": "Ein Siegel beweist nicht Wissen. Es beweist Ausdauer. Und dass man Formulare ausfüllen kann. Die Gilde ist da sehr gründlich.",
+        "difficulty": "advanced"
+      }
+    },
+    {
+      "id": "l-sprache",
+      "template": "board-quest",
+      "title": "Fremde Zungen",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "15 Minuten Sprachübung. Duolingo, Anki, oder echte Konversation.",
+        "flavor": "\"Wer eine neue Sprache lernt, gewinnt eine neue Seele.\" — Karim, der in zwölf Sprachen handeln kann und in jeder einzelnen zu teuer verkauft",
+        "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 20,
+        "gold": 10
+      }
+    },
+    {
+      "id": "l-code-kata",
+      "template": "board-quest",
+      "title": "Code-Kata",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Löse ein Coding-Problem auf LeetCode, Codewars oder ähnlich.",
+        "flavor": "Code ist Poesie die Maschinen verstehen. Wer den wahren Namen einer Funktion kennt, beherrscht sie. Das Archiv hat eine Abteilung für diese Art von Magie — sie summt leise.",
+        "difficulty": "intermediate"
+      },
+      "rewards": {
+        "xp": 30,
+        "gold": 15
+      }
+    },
+    {
+      "id": "l-news",
+      "template": "board-quest",
+      "title": "Weltenbote",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Lies einen langen Fachartikel statt nur Headlines zu scannen.",
+        "flavor": "Die Wahrheit versteckt sich nie in der Überschrift. Alter Henrik liest drei Zeitungen am Tag. Alle von letzter Woche. Er sagt, erst mit Abstand erkennt man die Muster.",
+        "difficulty": "starter"
+      }
+    },
+    {
+      "id": "l-notizen",
+      "template": "board-quest",
+      "title": "Essenz destillieren",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Geh deine Notizen der letzten Woche durch. Fasse zusammen was wichtig war.",
+        "flavor": "Rohmaterial ist nichts wert. Erst die Destillation macht Gold. Zara Funkenwind sagt das über Erze. Aber es gilt auch für Notizen.",
+        "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 20,
+        "gold": 10
+      }
+    },
+    {
+      "id": "l-erklaeren",
+      "template": "board-quest",
+      "title": "Lehrmeisters Prüfung",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Erkläre jemandem ein Konzept das du gut kennst. Feynman-Methode.",
+        "flavor": "\"Wer nicht erklären kann, hat nicht verstanden.\" — Meister Tanaka, bevor er zwanzig Minuten braucht um zu erklären warum Einfachheit wichtig ist",
+        "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 35,
+        "gold": 20
+      }
+    },
+    {
+      "id": "s-freund-anrufen",
+      "template": "board-quest",
+      "title": "Alte Bande",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Ruf einen Freund an den du länger nicht gehört hast. Kein Chat, Anruf.",
+        "flavor": "Freundschaften sind wie Feuer. Man muss sie füttern oder sie erlöschen. Finnegan hat das mal in einem Lied verarbeitet. Es waren sechs Strophen. Alle traurig. Dann hat er angerufen.",
+        "difficulty": "intermediate"
+      }
+    },
+    {
+      "id": "s-gemeinsam-essen",
+      "template": "board-quest",
+      "title": "Tafelrunde",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Iss heute mit jemandem zusammen. Kein Handy am Tisch.",
+        "flavor": "\"Die besten Geschichten werden bei vollem Teller erzählt.\" — Oma Ilse, die grundsätzlich keine Geschichte ohne Kekse anfängt",
+        "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 20,
+        "gold": 12
+      }
+    },
+    {
+      "id": "s-hilfe",
+      "template": "board-quest",
+      "title": "Helfende Hand",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Hilf jemandem heute bei etwas. Ungefragt, ohne Gegenleistung.",
+        "flavor": "Wer gibt ohne zu zählen, bekommt ohne zu bitten. Das ist entweder tiefe Weisheit oder schlechte Buchführung. Bruder Tomas sagt: beides.",
+        "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 20,
+        "gold": 10
+      }
+    },
+    {
+      "id": "s-nachricht",
+      "template": "board-quest",
+      "title": "Lichtbotschaft",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Schreib jemandem eine ehrliche Nachricht warum du froh bist dass es ihn gibt.",
+        "flavor": "Manchmal braucht jemand nur einen einzigen Satz um den Tag zu überstehen. Lumi leuchtet heller wenn jemand lächelt. Das ist keine Metapher.",
+        "difficulty": "starter"
+      }
+    },
+    {
+      "id": "s-spaziergang-date",
+      "template": "board-quest",
+      "title": "Wandergefährte",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Geh mit jemandem spazieren. Reden, nicht scrollen.",
+        "flavor": "Gemeinsame Schritte wiegen schwerer als gemeinsame Worte. Der Pfad durch den Nebelhain ist am schönsten zu zweit. Auch wenn man sich verläuft. Besonders dann.",
+        "difficulty": "intermediate"
+      }
+    },
+    {
+      "id": "s-feedback",
+      "template": "board-quest",
+      "title": "Ehrenspiegel",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Frag jemanden nach ehrlichem Feedback zu etwas das dir wichtig ist.",
+        "flavor": "Der Spiegel zeigt nicht was du sehen willst. Dafür ist er ehrlich. Mirael hat einen der die Wahrheit spricht. Niemand besucht ihn freiwillig.",
+        "difficulty": "advanced"
+      },
+      "rewards": {
+        "xp": 30,
+        "gold": 18
+      }
+    },
+    {
+      "id": "s-familie",
+      "template": "board-quest",
+      "title": "Familienbande",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Ruf deine Familie an oder besuch sie. Auch 10 Minuten zählen.",
+        "flavor": "Manche Bande sind älter als jeder Eid. Stärker als jeder Schwur. Und hartnäckiger als Oma Ilses Nachfragen ob man genug isst.",
+        "difficulty": "starter"
+      },
+      "rewards": {
+        "xp": 20,
+        "gold": 10
+      }
+    },
+    {
+      "id": "s-netzwerken",
+      "template": "board-quest",
+      "title": "Neue Wege",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Sprich mit jemandem Neuem. Auf der Arbeit, online, oder im echten Leben.",
+        "flavor": "Jeder Fremde ist ein Buch das du noch nicht aufgeschlagen hast. Karim hat so sein halbes Imperium aufgebaut. Die andere Hälfte durch hartnäckiges Feilschen.",
+        "difficulty": "intermediate"
+      }
+    },
+    {
+      "id": "b-deep-work",
+      "template": "board-quest",
+      "title": "Deep Work Marathon",
+      "type": "boss",
+      "category": "boss",
+      "vars": {
+        "description": "4 Stunden Deep Work. Kein Social Media, keine Ablenkung. Fokus pur.",
+        "flavor": "Die größten Schlachten werden in der Stille gewonnen. Stärke vor Schwäche. Reise vor Ziel. Und vier Stunden Fokus vor allem anderen.",
+        "difficulty": "expert"
+      }
+    },
+    {
+      "id": "b-comfort-zone",
+      "template": "board-quest",
+      "title": "Jenseits der Grenze",
+      "type": "boss",
+      "category": "boss",
+      "vars": {
+        "description": "Tu heute etwas das dir Angst macht. Etwas das du seit Wochen aufschiebst.",
+        "flavor": "Mut ist nicht die Abwesenheit von Angst. Mut ist der erste Schritt trotzdem. Hinter der Grenze wartet etwas. Es wartet schon lange.",
+        "difficulty": "expert"
+      },
+      "rewards": {
+        "xp": 50,
+        "gold": 35
+      }
+    },
+    {
+      "id": "b-projekt",
+      "template": "board-quest",
+      "title": "Das Meisterwerk",
+      "type": "boss",
+      "category": "boss",
+      "vars": {
+        "description": "Arbeite mindestens 3 Stunden an deinem wichtigsten Projekt. Keine Nebensachen.",
+        "flavor": "Halbfertige Werke sind Gräber ungelebter Ideen. Die Halle hat zu viele davon gesehen. Dieses hier verdient ein Ende. Ein richtiges.",
+        "difficulty": "expert"
+      },
+      "rewards": {
+        "xp": 55,
+        "gold": 35
+      }
+    },
+    {
+      "id": "f-treppenmeister",
+      "template": "board-quest",
+      "title": "Der Aufstieg",
+      "type": "fitness",
+      "category": "fitness",
+      "difficulty": "starter",
+      "minLevel": 1,
+      "vars": {
+        "description": "Nimm heute bei jeder Gelegenheit die Treppe statt den Aufzug.",
+        "flavor": "Die Halle hat keinen Aufzug. Hat sie nie gehabt. Die Treppen sind aus einem Grund steil.",
+        "difficulty": "starter"
+      }
+    },
+    {
+      "id": "l-wiki-spirale",
+      "template": "board-quest",
+      "title": "Die Spirale",
+      "type": "learning",
+      "category": "learning",
+      "difficulty": "starter",
+      "minLevel": 1,
+      "vars": {
+        "description": "Öffne einen Wikipedia-Artikel zu einem Thema das dich null interessiert. Lies 20 Minuten. Folge den Links.",
+        "flavor": "Wissen ist kein gerader Pfad. Es windet sich, verzweigt sich, und manchmal landest du bei etwas das dein Leben verändert.",
+        "difficulty": "starter"
+      }
+    },
+    {
+      "id": "s-altes-gesicht",
+      "template": "board-quest",
+      "title": "Ein altes Gesicht",
+      "type": "social",
+      "category": "social",
+      "difficulty": "starter",
+      "minLevel": 1,
+      "vars": {
+        "description": "Schreib jemandem den du lange nicht gehört hast. Kein Anlass nötig.",
+        "flavor": "Die besten Wiedersehen haben keinen Grund.",
+        "difficulty": "starter"
+      }
+    },
+    {
+      "id": "p-digitale-stille",
+      "template": "board-quest",
+      "title": "Digitale Stille",
+      "type": "personal",
+      "category": "personal",
+      "difficulty": "starter",
+      "minLevel": 1,
+      "vars": {
+        "description": "2 Stunden ohne Social Media. Handy auf lautlos, Apps zu. Ja, wirklich.",
+        "flavor": "Die lautesten Ablenkungen kommen aus den kleinsten Geräten.",
+        "difficulty": "starter"
+      }
+    },
+    {
+      "id": "f-kalt-erwischt",
+      "template": "board-quest",
+      "title": "Kalt erwischt",
+      "type": "fitness",
+      "category": "fitness",
+      "difficulty": "starter",
+      "minLevel": 1,
+      "vars": {
+        "description": "Beende deine Dusche mit 30 Sekunden kaltem Wasser. Ja, es wird unangenehm.",
+        "flavor": "Stahl wird im Feuer geformt. Oder im Eis. Kommt auf den Schmied an.",
+        "difficulty": "starter"
+      }
+    },
+    {
+      "id": "l-eine-seite",
+      "template": "board-quest",
+      "title": "Eine Seite genügt",
+      "type": "learning",
+      "category": "learning",
+      "difficulty": "starter",
+      "minLevel": 2,
+      "vars": {
+        "description": "Lies ein Kapitel eines Sachbuchs. Nicht überfliegen — wirklich lesen.",
+        "flavor": "Manche Wanderer rennen durch Bibliotheken. Die klugen setzen sich hin.",
+        "difficulty": "starter"
+      }
+    },
+    {
+      "id": "f-spaziergang-regen",
+      "template": "board-quest",
+      "title": "Durch den Regen",
+      "type": "fitness",
+      "category": "fitness",
+      "difficulty": "starter",
+      "minLevel": 2,
+      "vars": {
+        "description": "Geh 20 Minuten spazieren. Bonus: bei schlechtem Wetter.",
+        "flavor": "Kein Wanderer wartet auf perfekte Bedingungen.",
+        "difficulty": "starter"
+      }
+    },
+    {
+      "id": "p-sortier-dich",
+      "template": "board-quest",
+      "title": "Ordnung im Chaos",
+      "type": "personal",
+      "category": "personal",
+      "difficulty": "intermediate",
+      "minLevel": 2,
+      "vars": {
+        "description": "Räum eine Schublade, einen Ordner oder deinen Desktop auf. Komplett, nicht halbherzig.",
+        "flavor": "Die Halle räumt sich nicht von selbst auf. Okay, manchmal schon. Aber dein Schreibtisch nicht.",
+        "difficulty": "intermediate"
+      }
+    },
+    {
+      "id": "s-kompliment",
+      "template": "board-quest",
+      "title": "Worte die bleiben",
+      "type": "social",
+      "category": "social",
+      "difficulty": "starter",
+      "minLevel": 2,
+      "vars": {
+        "description": "Mach heute drei Leuten ein ehrliches Kompliment. Nicht oberflächlich — sag was du wirklich denkst.",
+        "flavor": "Manche Worte wiegen mehr als Gold. Die Halle weiß das.",
+        "difficulty": "starter"
+      }
+    },
+    {
+      "id": "l-ted-talk",
+      "template": "board-quest",
+      "title": "Stimmen aus der Ferne",
+      "type": "learning",
+      "category": "learning",
+      "difficulty": "intermediate",
+      "minLevel": 3,
+      "vars": {
+        "description": "Schau einen Talk oder Vortrag (TED, Konferenz, YouTube) zu einem Thema außerhalb deines Fachgebiets.",
+        "flavor": "Die besten Ideen kommen von dort, wo man nicht hinschaut.",
+        "difficulty": "intermediate"
+      }
+    },
+    {
+      "id": "f-100-challenge",
+      "template": "board-quest",
+      "title": "Die Hundert",
+      "type": "fitness",
+      "category": "fitness",
+      "difficulty": "intermediate",
+      "minLevel": 3,
+      "vars": {
+        "description": "100 Kniebeugen. Am Stück oder über den Tag verteilt — aber 100.",
+        "flavor": "Hundert ist eine Zahl die klein klingt und groß brennt.",
+        "difficulty": "intermediate"
+      }
+    },
+    {
+      "id": "p-frueh-wecker",
+      "template": "board-quest",
+      "title": "Vor der Dämmerung",
+      "type": "personal",
+      "category": "personal",
+      "difficulty": "intermediate",
+      "minLevel": 3,
+      "vars": {
+        "description": "Steh morgen 30 Minuten früher auf als üblich. Nutze die Zeit für dich — nicht für Arbeit.",
+        "flavor": "Die Stunde vor dem Rest der Welt gehört den Wanderern.",
+        "difficulty": "intermediate"
+      }
+    },
+    {
+      "id": "s-zuhören",
+      "template": "board-quest",
+      "title": "Schweigen ist Stärke",
+      "type": "social",
+      "category": "social",
+      "difficulty": "intermediate",
+      "minLevel": 3,
+      "vars": {
+        "description": "Führe ein Gespräch in dem du mehr zuhörst als redest. Frag nach, unterbrich nicht.",
+        "flavor": "Die stärksten Helden sind oft die leisesten.",
+        "difficulty": "intermediate"
+      }
+    },
+    {
+      "id": "l-neues-tool",
+      "template": "board-quest",
+      "title": "Unbekanntes Werkzeug",
+      "type": "learning",
+      "category": "learning",
+      "difficulty": "intermediate",
+      "minLevel": 3,
+      "vars": {
+        "description": "Installiere ein Tool oder eine App die du noch nie benutzt hast. Arbeite 30 Minuten damit.",
+        "flavor": "Jeder Handwerker schwört auf sein Lieblingswerkzeug. Aber erst muss man alle anderen ausprobiert haben.",
+        "difficulty": "intermediate"
+      }
+    },
+    {
+      "id": "f-plank-challenge",
+      "template": "board-quest",
+      "title": "Unbewegt",
+      "type": "fitness",
+      "category": "fitness",
+      "difficulty": "intermediate",
+      "minLevel": 4,
+      "vars": {
+        "description": "Halte eine Plank so lange du kannst. Dann nochmal. Und nochmal. 3 Runden.",
+        "flavor": "Stillstand ist manchmal die härteste Bewegung.",
+        "difficulty": "intermediate"
+      }
+    },
+    {
+      "id": "p-angst-quest",
+      "template": "board-quest",
+      "title": "Die unbequeme Wahrheit",
+      "type": "personal",
+      "category": "personal",
+      "difficulty": "intermediate",
+      "minLevel": 4,
+      "vars": {
+        "description": "Tu heute eine Sache die du seit Wochen vor dir herschiebst. Du weißt welche.",
+        "flavor": "Der Aetherstrom fließt nicht um Hindernisse herum. Er fließt durch sie hindurch.",
+        "difficulty": "intermediate"
+      }
+    },
+    {
+      "id": "l-doku-abend",
+      "template": "board-quest",
+      "title": "Chroniken der Welt",
+      "type": "learning",
+      "category": "learning",
+      "difficulty": "intermediate",
+      "minLevel": 4,
+      "vars": {
+        "description": "Schau eine Dokumentation über ein Thema das dich schon immer interessiert hat. Mindestens 45 Minuten.",
+        "flavor": "Die Archive der Halle enthalten nicht nur Bücher. Manche Geschichten erzählen sich in Bildern.",
+        "difficulty": "intermediate"
+      }
+    },
+    {
+      "id": "s-kochen-fuer-andere",
+      "template": "board-quest",
+      "title": "Festmahl",
+      "type": "social",
+      "category": "social",
+      "difficulty": "intermediate",
+      "minLevel": 4,
+      "vars": {
+        "description": "Koch etwas für jemand anderen. Kein Anlass, keine Erwartung. Einfach so.",
+        "flavor": "In der Halle gibt es keinen Hunger. Aber das gemeinsame Essen bleibt trotzdem das Beste.",
+        "difficulty": "intermediate"
+      }
+    },
+    {
+      "id": "f-outdoor-training",
+      "template": "board-quest",
+      "title": "Unter freiem Himmel",
+      "type": "fitness",
+      "category": "fitness",
+      "difficulty": "intermediate",
+      "minLevel": 4,
+      "vars": {
+        "description": "Trainiere heute draußen. Park, Wald, Hinterhof — egal wo, Hauptsache nicht drinnen.",
+        "flavor": "Wände sind Grenzen. Der Himmel nicht.",
+        "difficulty": "intermediate"
+      }
+    },
+    {
+      "id": "p-brief-an-mich",
+      "template": "board-quest",
+      "title": "Brief an die Zukunft",
+      "type": "personal",
+      "category": "personal",
+      "difficulty": "intermediate",
+      "minLevel": 5,
+      "vars": {
+        "description": "Schreib einen Brief an dein zukünftiges Ich. Lies ihn in 6 Monaten.",
+        "flavor": "Die Zeit ist der einzige Bote den man nicht bestechen kann.",
+        "difficulty": "intermediate"
+      }
+    },
+    {
+      "id": "l-hands-on",
+      "template": "board-quest",
+      "title": "Theorie und Praxis",
+      "type": "learning",
+      "category": "learning",
+      "difficulty": "advanced",
+      "minLevel": 5,
+      "vars": {
+        "description": "Nimm etwas das du theoretisch verstehst und bau es nach. Code, Handwerk, Rezept — egal was.",
+        "flavor": "Wissen ohne Anwendung ist wie eine Klinge ohne Griff.",
+        "difficulty": "advanced"
+      }
+    },
+    {
+      "id": "f-5k-lauf",
+      "template": "board-quest",
+      "title": "Fünf Meilen",
+      "type": "fitness",
+      "category": "fitness",
+      "difficulty": "advanced",
+      "minLevel": 5,
+      "vars": {
+        "description": "Lauf 5 Kilometer. Tempo egal, Ankommen zählt.",
+        "flavor": "Jeder Weg beginnt mit dem ersten Schritt. Aber der fünftausendste ist der, an den man sich erinnert.",
+        "difficulty": "advanced"
+      }
+    },
+    {
+      "id": "s-ehrliches-gespraech",
+      "template": "board-quest",
+      "title": "Ohne Maske",
+      "type": "social",
+      "category": "social",
+      "difficulty": "advanced",
+      "minLevel": 5,
+      "vars": {
+        "description": "Sag jemandem etwas das du schon lange sagen wolltest. Etwas Ehrliches. Etwas das zählt.",
+        "flavor": "Die schwersten Worte wiegen am wenigsten, sobald sie ausgesprochen sind.",
+        "difficulty": "advanced"
+      }
+    },
+    {
+      "id": "p-nein-sagen",
+      "template": "board-quest",
+      "title": "Das schwierige Wort",
+      "type": "personal",
+      "category": "personal",
+      "difficulty": "advanced",
+      "minLevel": 5,
+      "vars": {
+        "description": "Sag heute zu etwas Nein das du normalerweise widerwillig mitmachen würdest.",
+        "flavor": "Zwei Buchstaben. Endlose Kraft.",
+        "difficulty": "advanced"
+      }
+    },
+    {
+      "id": "l-teach-someone",
+      "template": "board-quest",
+      "title": "Der beste Lehrer",
+      "type": "learning",
+      "category": "learning",
+      "difficulty": "advanced",
+      "minLevel": 5,
+      "vars": {
+        "description": "Erklär jemandem ein Konzept das du gut verstehst. Ohne Fachbegriffe, so dass deine Oma es kapieren würde.",
+        "flavor": "Wer lehrt, lernt zweimal. Das wussten schon die ersten Archivare der Halle.",
+        "difficulty": "advanced"
+      }
+    },
+    {
+      "id": "f-gym-routine",
+      "template": "board-quest",
+      "title": "Eiserne Routine",
+      "type": "fitness",
+      "category": "fitness",
+      "difficulty": "advanced",
+      "minLevel": 6,
+      "vars": {
+        "description": "Geh ins Gym und absolviere ein volles Workout. Kein halbes Ding, kein 'nächstes Mal'.",
+        "flavor": "Der Schmied arbeitet nicht wenn er Lust hat. Er arbeitet weil das Eisen heiß ist.",
+        "difficulty": "advanced"
+      }
+    },
+    {
+      "id": "p-budget-check",
+      "template": "board-quest",
+      "title": "Gold zählen",
+      "type": "personal",
+      "category": "personal",
+      "difficulty": "advanced",
+      "minLevel": 6,
+      "vars": {
+        "description": "Setz dich hin und geh deine Finanzen des letzten Monats durch. Wo geht dein Gold hin?",
+        "flavor": "Selbst die reichsten Abenteurer scheitern, wenn sie nicht wissen wo ihre Münzen verschwinden.",
+        "difficulty": "advanced"
+      }
+    },
+    {
+      "id": "l-projekt-starten",
+      "template": "board-quest",
+      "title": "Der erste Stein",
+      "type": "learning",
+      "category": "learning",
+      "difficulty": "advanced",
+      "minLevel": 6,
+      "vars": {
+        "description": "Starte ein kleines Nebenprojekt. Programmieren, basteln, schreiben — egal. Hauptsache anfangen.",
+        "flavor": "Kein Turm wurde je von oben gebaut.",
+        "difficulty": "advanced"
+      }
+    },
+    {
+      "id": "s-streit-loesen",
+      "template": "board-quest",
+      "title": "Friedensschmied",
+      "type": "social",
+      "category": "social",
+      "difficulty": "advanced",
+      "minLevel": 6,
+      "vars": {
+        "description": "Löse einen schwelenden Konflikt. Ruf an, triff dich, red darüber. Nicht ignorieren.",
+        "flavor": "Manche Wunden heilen nur wenn man sie öffnet.",
+        "difficulty": "advanced"
+      }
+    },
+    {
+      "id": "f-keine-ausrede",
+      "template": "board-quest",
+      "title": "Keine Ausrede",
+      "type": "fitness",
+      "category": "fitness",
+      "difficulty": "advanced",
+      "minLevel": 6,
+      "vars": {
+        "description": "Trainiere heute, egal wie du dich fühlst. 30 Minuten minimum. Keine Verhandlung.",
+        "flavor": "Disziplin fragt nicht nach deiner Meinung.",
+        "difficulty": "advanced"
+      }
+    },
+    {
+      "id": "l-deep-dive",
+      "template": "board-quest",
+      "title": "Tief graben",
+      "type": "learning",
+      "category": "learning",
+      "difficulty": "advanced",
+      "minLevel": 7,
+      "vars": {
+        "description": "Nimm dir 2 Stunden für ein Thema das du immer oberflächlich abgehandelt hast. Geh in die Tiefe.",
+        "flavor": "An der Oberfläche sieht alles gleich aus. Der Schatz liegt tiefer.",
+        "difficulty": "advanced"
+      }
+    },
+    {
+      "id": "f-morgen-workout",
+      "template": "board-quest",
+      "title": "Vor dem Rest der Welt",
+      "type": "fitness",
+      "category": "fitness",
+      "difficulty": "advanced",
+      "minLevel": 7,
+      "vars": {
+        "description": "Trainiere morgens bevor du irgendwas anderes machst. Aufstehen, Schuhe an, los.",
+        "flavor": "Wenn die Sonne aufgeht und du schon schwitzt, hast du gewonnen.",
+        "difficulty": "advanced"
+      }
+    },
+    {
+      "id": "s-danke-sagen",
+      "template": "board-quest",
+      "title": "Unbezahlte Schulden",
+      "type": "social",
+      "category": "social",
+      "difficulty": "advanced",
+      "minLevel": 7,
+      "vars": {
+        "description": "Bedank dich bei jemandem der dir mal geholfen hat und es wahrscheinlich vergessen hat.",
+        "flavor": "Dankbarkeit altert nicht. Selbst Jahre später trifft sie ins Herz.",
+        "difficulty": "advanced"
+      }
+    },
+    {
+      "id": "p-routine-breaker",
+      "template": "board-quest",
+      "title": "Der andere Weg",
+      "type": "personal",
+      "category": "personal",
+      "difficulty": "intermediate",
+      "minLevel": 7,
+      "vars": {
+        "description": "Ändere heute eine Gewohnheit bewusst. Anderer Weg zur Arbeit, anderes Frühstück, anderer Rhythmus.",
+        "flavor": "Gewohnheit ist der bequemste Kerker. Die Tür steht offen.",
+        "difficulty": "intermediate"
+      }
+    },
+    {
+      "id": "l-tutorial-machen",
+      "template": "board-quest",
+      "title": "Lehrling",
+      "type": "learning",
+      "category": "learning",
+      "difficulty": "advanced",
+      "minLevel": 8,
+      "vars": {
+        "description": "Mach ein Tutorial für eine Fähigkeit die du nicht hast. Kochen, Zeichnen, eine neue Sprache, ein Instrument.",
+        "flavor": "Jeder Meister war mal ein Lehrling der sich lächerlich vorkam.",
+        "difficulty": "advanced"
+      }
+    },
+    {
+      "id": "f-max-effort",
+      "template": "board-quest",
+      "title": "Alles oder Nichts",
+      "type": "fitness",
+      "category": "fitness",
+      "difficulty": "expert",
+      "minLevel": 8,
+      "vars": {
+        "description": "Mach das härteste Workout das du kennst. Volle Intensität, keine Abkürzungen, Push bis zum Limit.",
+        "flavor": "Die Schmiede hat kein Erbarmen. Aber was sie formt, hält.",
+        "difficulty": "expert"
+      }
+    },
+    {
+      "id": "p-5-dinge",
+      "template": "board-quest",
+      "title": "Ballast abwerfen",
+      "type": "personal",
+      "category": "personal",
+      "difficulty": "advanced",
+      "minLevel": 8,
+      "vars": {
+        "description": "Finde 5 Dinge die du nicht brauchst und verschenke oder entsorge sie. Nicht nächste Woche — heute.",
+        "flavor": "Leichtes Gepäck, weiter Weg.",
+        "difficulty": "advanced"
+      }
+    },
+    {
+      "id": "s-fremder-held",
+      "template": "board-quest",
+      "title": "Ein Fremder",
+      "type": "social",
+      "category": "social",
+      "difficulty": "advanced",
+      "minLevel": 8,
+      "vars": {
+        "description": "Hilf heute einem Fremden. Tür aufhalten reicht nicht — etwas das wirklich einen Unterschied macht.",
+        "flavor": "Helden erkennt man nicht am Namen. Sondern daran, was sie tun wenn niemand zuschaut.",
+        "difficulty": "advanced"
+      }
+    },
+    {
+      "id": "l-etwas-kaputtes",
+      "template": "board-quest",
+      "title": "Reparatur",
+      "type": "learning",
+      "category": "learning",
+      "difficulty": "advanced",
+      "minLevel": 8,
+      "vars": {
+        "description": "Repariere etwas das kaputt ist, statt es wegzuwerfen. YouTube-Tutorial erlaubt.",
+        "flavor": "Die Handwerker der Halle werfen nichts weg. Alles hat eine zweite Chance verdient.",
+        "difficulty": "advanced"
+      }
+    },
+    {
+      "id": "f-30-tage-start",
+      "template": "board-quest",
+      "title": "Der Schwur",
+      "type": "fitness",
+      "category": "fitness",
+      "difficulty": "expert",
+      "minLevel": 9,
+      "vars": {
+        "description": "Starte eine 30-Tage-Challenge: Jeden Tag mindestens 20 Minuten Sport. Kein Ausfall, kein Aufschub.",
+        "flavor": "Dreißig Tage. Das klingt nach wenig. Frag die, die es versucht haben.",
+        "difficulty": "expert"
+      }
+    },
+    {
+      "id": "p-schlaf-reset",
+      "template": "board-quest",
+      "title": "Die vergessene Kunst",
+      "type": "personal",
+      "category": "personal",
+      "difficulty": "expert",
+      "minLevel": 9,
+      "vars": {
+        "description": "Eine Woche lang jeden Tag zur gleichen Zeit ins Bett und aufstehen. 7-8 Stunden. Keine Ausnahme.",
+        "flavor": "Schlaf ist keine Schwäche. Schlaf ist die mächtigste Regeneration die es gibt. Sogar die Halle schläft manchmal.",
+        "difficulty": "expert"
+      }
+    },
+    {
+      "id": "l-meister-klasse",
+      "template": "board-quest",
+      "title": "Meisterklasse",
+      "type": "learning",
+      "category": "learning",
+      "difficulty": "expert",
+      "minLevel": 9,
+      "vars": {
+        "description": "Nimm dir ein Thema in dem du gut bist und werde besser. Online-Kurs, Buch, Mentoring — investiere 5 Stunden diese Woche.",
+        "flavor": "Der Unterschied zwischen gut und herausragend ist nicht Talent. Es ist Ausdauer.",
+        "difficulty": "expert"
+      }
+    },
+    {
+      "id": "s-gruppe-planen",
+      "template": "board-quest",
+      "title": "Der Ruf",
+      "type": "social",
+      "category": "social",
+      "difficulty": "advanced",
+      "minLevel": 9,
+      "vars": {
+        "description": "Organisiere ein Treffen mit Freunden. Du planst, du lädst ein, du machst den ersten Schritt.",
+        "flavor": "Gilden gründen sich nicht von selbst. Irgendjemand muss den ersten Brief schreiben.",
+        "difficulty": "advanced"
+      }
+    },
+    {
+      "id": "f-neuer-sport",
+      "template": "board-quest",
+      "title": "Unbekanntes Terrain",
+      "type": "fitness",
+      "category": "fitness",
+      "difficulty": "advanced",
+      "minLevel": 9,
+      "vars": {
+        "description": "Probiere eine Sportart die du noch nie gemacht hast. Klettern, Schwimmen, Kampfsport, Yoga — Hauptsache neu.",
+        "flavor": "Komfort ist der Feind des Wachstums.",
+        "difficulty": "advanced"
+      }
+    },
+    {
+      "id": "p-lebens-inventur",
+      "template": "board-quest",
+      "title": "Inventur",
+      "type": "personal",
+      "category": "personal",
+      "difficulty": "expert",
+      "minLevel": 10,
+      "vars": {
+        "description": "Nimm dir eine Stunde und frag dich: Was läuft gut? Was nicht? Wo will ich in einem Jahr stehen? Schreib es auf.",
+        "flavor": "Die Halle fragt nicht oft. Aber wenn sie fragt, erwartet sie eine ehrliche Antwort.",
+        "difficulty": "expert"
+      }
+    },
+    {
+      "id": "l-mentor",
+      "template": "board-quest",
+      "title": "Meister und Schüler",
+      "type": "learning",
+      "category": "learning",
+      "difficulty": "expert",
+      "minLevel": 10,
+      "vars": {
+        "description": "Finde jemanden der besser ist als du in etwas. Frag ob du von ihm lernen kannst. Demut ist kein Bug.",
+        "flavor": "Selbst die Sternenwächterin hat einmal gelernt. Von wem, sagt sie nicht.",
+        "difficulty": "expert"
+      }
+    },
+    {
+      "id": "f-iron-week",
+      "template": "board-quest",
+      "title": "Eiserne Woche",
+      "type": "fitness",
+      "category": "fitness",
+      "difficulty": "expert",
+      "minLevel": 10,
+      "vars": {
+        "description": "7 Tage in Folge trainieren. Abwechselnd Kraft und Ausdauer. Kein Ruhetag diese Woche.",
+        "flavor": "Sieben Tage. Sieben Prüfungen. Am Ende weißt du wer du bist.",
+        "difficulty": "expert"
+      }
+    },
+    {
+      "id": "s-gemeinsam-kochen",
+      "template": "board-quest",
+      "title": "Rezept für Zwei",
+      "type": "social",
+      "category": "social",
+      "difficulty": "advanced",
+      "minLevel": 10,
+      "vars": {
+        "description": "Koch zusammen mit jemandem ein aufwendiges Gericht. Kein Fast Food, kein Lieferdienst. Gemeinsam schneiden, würzen, warten.",
+        "flavor": "Die besten Feste in der Halle haben nie mit dem Essen angefangen. Sondern mit dem Kochen.",
+        "difficulty": "advanced"
+      }
+    }
+  ]
+}
