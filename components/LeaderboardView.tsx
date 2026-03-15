@@ -117,7 +117,6 @@ export default function LeaderboardView({ entries, agents, mode = "agents", user
           const color = entry.color ?? meta.color;
           const lvl = getLbLevel(entry.xp);
           const cls = isPlayerMode && entry.classId ? classMap.get(entry.classId) : null;
-          const forge = isPlayerMode ? getForgeTier(entry.forgeTemp ?? 0) : null;
           return (
             <div key={entry.id} className="flex flex-col items-center gap-2" style={{ minWidth: 100 }}>
               <div className="text-lg"><RankMedal rank={rank} /></div>
@@ -131,13 +130,7 @@ export default function LeaderboardView({ entries, agents, mode = "agents", user
                 <p className="text-xs font-bold" style={{ color: "#f0f0f0" }}>{entry.name}</p>
                 {cls && <p className="text-xs" style={{ color: "rgba(167,139,250,0.7)", fontSize: 10 }}>{cls.icon} {cls.fantasy}</p>}
                 <p className="text-xs" style={{ color: lvl.color }}>{lvl.name}</p>
-                <div className="flex items-center justify-center gap-2 mt-0.5">
-                  <span className="text-xs font-mono font-bold" style={{ color: "#a855f7" }}>{entry.xp} XP</span>
-                  {isPlayerMode && <span className="text-xs font-mono font-bold" style={{ color: "#fbbf24" }}>{entry.gold ?? 0}g</span>}
-                </div>
-                {forge && (
-                  <p className="text-xs font-semibold" style={{ color: forge.color, fontSize: 10 }}>{forge.label}</p>
-                )}
+                <span className="text-xs font-mono font-bold" style={{ color: "#a855f7" }}>{entry.xp} XP</span>
               </div>
               <div
                 className={`w-full rounded-t-lg flex items-center justify-center ${podiumHeightClass}`}
@@ -150,117 +143,64 @@ export default function LeaderboardView({ entries, agents, mode = "agents", user
         })}
       </div>
 
-      {/* ── Player Cards List ── */}
-      <div className="space-y-2">
+      {/* ── Ranking Note ── */}
+      <p className="text-center text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>
+        Ranked by XP · Ties broken by Quests Completed
+      </p>
+
+      {/* ── Leaderboard Table ── */}
+      <div className="rounded-xl overflow-hidden" style={{ background: "#1e1e1e", border: "1px solid rgba(255,255,255,0.07)" }}>
+        <div className="grid px-4 py-2" style={{ gridTemplateColumns: "40px 1fr 80px 80px 80px", color: "rgba(255,255,255,0.3)", fontSize: 11, borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+          <span>#</span><span>{isPlayerMode ? "Adventurer" : "Agent"}</span><span className="text-right">Level</span><span className="text-right">XP</span><span className="text-right">Quests</span>
+        </div>
         {merged.map((entry) => {
           const meta = agentMetaLb[entry.id?.toLowerCase()] ?? { avatar: entry.avatar ?? entry.id?.slice(0, 2).toUpperCase() ?? "??", color: entry.color ?? "#666" };
           const color = entry.color ?? meta.color;
           const lvl = getLbLevel(entry.xp);
           const isTop = entry.rank <= 3;
-          const cls = isPlayerMode && entry.classId ? classMap.get(entry.classId) : null;
-          const forge = isPlayerMode ? getForgeTier(entry.forgeTemp ?? 0) : null;
-          const forgeTemp = entry.forgeTemp ?? 0;
-          const achievementCount = entry.earnedAchievements?.length ?? 0;
+          const maxXp = merged[0]?.xp ?? 1;
+          const barPct = maxXp > 0 ? (entry.xp / maxXp) * 100 : 0;
 
           return (
             <div
               key={entry.id}
-              className="rounded-xl px-4 py-3"
+              className="grid px-4 py-3 items-center"
               style={{
-                background: isTop ? `linear-gradient(135deg, ${color}0a, ${color}04)` : "#1a1a1a",
-                border: isTop ? `1px solid ${color}25` : "1px solid rgba(255,255,255,0.06)",
+                gridTemplateColumns: "40px 1fr 80px 80px 80px",
+                borderBottom: "1px solid rgba(255,255,255,0.04)",
+                background: isTop ? `${color}08` : "transparent",
               }}
             >
-              {/* Row 1: Rank + Avatar + Name/Class + Level */}
-              <div className="flex items-center gap-3">
-                {/* Rank */}
-                <div className="w-8 flex-shrink-0 text-center">
-                  <span className="text-sm font-bold" style={{ color: entry.rank <= 3 ? ["#f59e0b", "#9ca3af", "#cd7f32"][entry.rank - 1] : "rgba(255,255,255,0.25)" }}>
-                    <RankMedal rank={entry.rank} />
-                  </span>
-                </div>
-
-                {/* Avatar */}
+              <span className="text-sm font-bold" style={{ color: entry.rank <= 3 ? ["#f59e0b", "#9ca3af", "#cd7f32"][entry.rank - 1] : "rgba(255,255,255,0.25)" }}>
+                <RankMedal rank={entry.rank} />
+              </span>
+              <div className="flex items-center gap-2 min-w-0">
                 <div
-                  className="w-10 h-10 rounded-xl flex items-center justify-center font-bold text-sm flex-shrink-0"
+                  className="w-8 h-8 rounded-lg flex items-center justify-center font-bold text-xs flex-shrink-0"
                   style={{ background: `linear-gradient(135deg, ${color}, ${color}99)`, color: "#fff" }}
                 >
                   {entry.avatar ?? meta.avatar}
                 </div>
-
-                {/* Name + Class */}
                 <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-1.5 flex-wrap">
-                    <p className="text-sm font-semibold truncate" style={{ color: "#f0f0f0" }}>{entry.name}</p>
-                    {isPlayerMode && cls && (
-                      <span className="text-xs flex-shrink-0" style={{ color: "rgba(167,139,250,0.7)", fontSize: 10 }}>{cls.icon} {cls.fantasy}</span>
-                    )}
-                    {isPlayerMode && !cls && (
-                      <span className="text-xs flex-shrink-0 italic" style={{ color: "rgba(255,255,255,0.15)", fontSize: 10 }}>No Class</span>
-                    )}
+                  <div className="flex items-center gap-1.5">
+                    <p className="text-xs font-semibold truncate" style={{ color: "#f0f0f0" }}>{entry.name}</p>
+                    {isPlayerMode && (() => {
+                      const cls = entry.classId ? classMap.get(entry.classId) : null;
+                      return cls ? (
+                        <span className="text-xs flex-shrink-0" style={{ color: "rgba(167,139,250,0.6)", fontSize: 10 }}>{cls.icon} {cls.fantasy}</span>
+                      ) : (
+                        <span className="text-xs flex-shrink-0 italic" style={{ color: "rgba(255,255,255,0.15)", fontSize: 10 }}>No Class</span>
+                      );
+                    })()}
                   </div>
-                  {/* Level */}
-                  <p className="text-xs font-medium" style={{ color: lvl.color }}>{lvl.name}</p>
-                </div>
-
-                {/* XP + Gold (desktop) */}
-                <div className="hidden sm:flex items-center gap-3 flex-shrink-0">
-                  <span className="text-xs font-mono font-bold" style={{ color: "#a855f7" }}>{entry.xp} XP</span>
-                  {isPlayerMode && <span className="text-xs font-mono font-bold" style={{ color: "#fbbf24" }}>{entry.gold ?? 0}g</span>}
-                  <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.4)" }}>{entry.questsCompleted} Quests</span>
+                  <div className="mt-0.5 rounded-full overflow-hidden" style={{ height: 2, background: "rgba(255,255,255,0.06)" }}>
+                    <div className="h-full rounded-full" style={{ width: `${barPct}%`, background: `linear-gradient(90deg, ${color}80, ${color})` }} />
+                  </div>
                 </div>
               </div>
-
-              {/* Row 2: Stats bar (player mode) */}
-              {isPlayerMode && (
-                <div className="flex items-center gap-3 mt-2 ml-[76px] flex-wrap">
-                  {/* XP + Gold (mobile) */}
-                  <div className="flex sm:hidden items-center gap-2">
-                    <span className="text-xs font-mono font-bold" style={{ color: "#a855f7" }}>{entry.xp} XP</span>
-                    <span className="text-xs font-mono font-bold" style={{ color: "#fbbf24" }}>{entry.gold ?? 0}g</span>
-                    <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.4)" }}>{entry.questsCompleted} Q</span>
-                  </div>
-
-                  {/* Forge Temperature bar */}
-                  {forge && (
-                    <div className="flex items-center gap-1.5">
-                      <div className="rounded-full overflow-hidden" style={{ width: 48, height: 6, background: "rgba(255,255,255,0.06)" }}>
-                        <div className="h-full rounded-full" style={{ width: `${Math.max(forgeTemp, 4)}%`, background: forge.color, transition: "width 0.3s" }} />
-                      </div>
-                      <span className="text-xs font-medium" style={{ color: forge.color, fontSize: 10 }}>{forge.label}</span>
-                    </div>
-                  )}
-
-                  {/* Companion */}
-                  {entry.companion?.name && (
-                    <span className="text-xs" style={{ color: "rgba(255,255,255,0.4)", fontSize: 10 }}>
-                      {entry.companion.emoji} {entry.companion.name}
-                    </span>
-                  )}
-
-                  {/* Achievements */}
-                  {achievementCount > 0 && (
-                    <span className="text-xs" style={{ color: "rgba(255,255,255,0.3)", fontSize: 10 }}>
-                      {achievementCount} Achievement{achievementCount !== 1 ? "s" : ""}
-                    </span>
-                  )}
-                </div>
-              )}
-
-              {/* Row 2: Agents mode — simple XP bar */}
-              {!isPlayerMode && (
-                <div className="mt-1.5 ml-[76px]">
-                  <div className="flex items-center gap-3">
-                    <div className="flex-1 rounded-full overflow-hidden" style={{ height: 3, background: "rgba(255,255,255,0.06)", maxWidth: 120 }}>
-                      <div className="h-full rounded-full" style={{ width: `${merged[0]?.xp ? (entry.xp / merged[0].xp) * 100 : 0}%`, background: `linear-gradient(90deg, ${color}80, ${color})` }} />
-                    </div>
-                    <div className="flex sm:hidden items-center gap-2">
-                      <span className="text-xs font-mono font-bold" style={{ color: "#a855f7" }}>{entry.xp} XP</span>
-                      <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.4)" }}>{entry.questsCompleted} Q</span>
-                    </div>
-                  </div>
-                </div>
-              )}
+              <span className="text-right text-xs font-semibold" style={{ color: lvl.color }}>{lvl.name}</span>
+              <span className="text-right text-xs font-mono font-bold" style={{ color: "#a855f7" }}>{entry.xp}</span>
+              <span className="text-right text-xs font-mono" style={{ color: "rgba(255,255,255,0.5)" }}>{entry.questsCompleted}</span>
             </div>
           );
         })}
