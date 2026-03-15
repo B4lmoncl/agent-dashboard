@@ -672,7 +672,6 @@ export default function Dashboard() {
     q.completedAt && new Date(q.completedAt).getTime() > now24h
   ).length;
   const forgeTemp = Math.min(loggedInUser?.forgeTemp ?? 0, 100);
-  const forgeTempColor = forgeTemp === 0 ? "#4a4a4a" : forgeTemp <= 20 ? "#8b0000" : forgeTemp <= 40 ? "#ff4500" : forgeTemp <= 60 ? "#ff8c00" : forgeTemp <= 80 ? "#ffa500" : "#00bfff";
   const forgeTempLabel = forgeTemp === 0 ? "Cold" : forgeTemp <= 20 ? "Smoldering" : forgeTemp <= 40 ? "Warming" : forgeTemp <= 60 ? "Burning" : forgeTemp <= 80 ? "Blazing" : "White-hot";
   const forgeTempColor = forgeTemp === 0 ? "#4b5563" : forgeTemp <= 20 ? "#78716c" : forgeTemp <= 40 ? "#b45309" : forgeTemp <= 60 ? "#ea580c" : forgeTemp <= 80 ? "#f97316" : "#e0f0ff";
   const forgeTempIcon = forgeTemp === 0 ? "×" : forgeTemp <= 20 ? "×" : forgeTemp <= 40 ? "×" : forgeTemp <= 60 ? "×" : forgeTemp <= 80 ? "×" : "×";
