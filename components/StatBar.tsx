@@ -1,5 +1,3 @@
-import { ReactNode } from "react";
-
 interface StatBarProps {
   label: string;
   value: string | number;
@@ -8,15 +6,14 @@ interface StatBarProps {
   sub?: string;
   accent?: string;
   subColor?: string;
-  tooltip?: ReactNode;
   onClick?: () => void;
   inline?: boolean;
 }
 
-export default function StatBar({ label, value, value2, value2Color, sub, accent = "rgba(255,255,255,0.8)", subColor, tooltip, onClick, inline }: StatBarProps) {
+export default function StatBar({ label, value, value2, value2Color, sub, accent = "rgba(255,255,255,0.8)", subColor, onClick, inline }: StatBarProps) {
   return (
     <div
-      className="rounded-2xl px-5 py-4 flex flex-col gap-0.5 relative group"
+      className="rounded-2xl px-5 py-4 flex flex-col gap-0.5 relative"
       style={{ background: "#181818", border: "1px solid rgba(255,68,68,0.15)", cursor: onClick ? "pointer" : "default" }}
       onClick={onClick}
     >
@@ -72,14 +69,6 @@ export default function StatBar({ label, value, value2, value2Color, sub, accent
           </div>
           {sub && <p className="text-xs" style={{ color: subColor || "rgba(255,255,255,0.3)" }}>{sub}</p>}
         </>
-      )}
-      {tooltip && (
-        <div
-          className="absolute left-0 top-full mt-1 rounded-xl p-3 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity z-50"
-          style={{ background: "#1a1a1a", border: "1px solid rgba(255,255,255,0.12)", boxShadow: "0 8px 32px rgba(0,0,0,0.6)" }}
-        >
-          {tooltip}
-        </div>
       )}
     </div>
   );

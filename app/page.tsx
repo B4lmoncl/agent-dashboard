@@ -183,6 +183,16 @@ export default function Dashboard() {
   const [changelogData, setChangelogData] = useState<{ version: string; date: string; title: string; changes: string[] }[]>([]);
   const [changelogExpanded, setChangelogExpanded] = useState<string | null>(null);
 
+  // Stat card info popups — ESC to close + scroll lock
+  const closeStreakInfo = useCallback(() => setStreakInfoOpen(false), []);
+  const closeActiveQuestsInfo = useCallback(() => setActiveQuestsInfoOpen(false), []);
+  const closeCompletedInfo = useCallback(() => setCompletedInfoOpen(false), []);
+  const closeModifier = useCallback(() => setModifierOpen(false), []);
+  useModalBehavior(streakInfoOpen, closeStreakInfo);
+  useModalBehavior(activeQuestsInfoOpen, closeActiveQuestsInfo);
+  useModalBehavior(completedInfoOpen, closeCompletedInfo);
+  useModalBehavior(modifierOpen, closeModifier);
+
   // Quest detail modal — ESC to close + scroll lock
   const closeQuestDetailModal = useCallback(() => setQuestDetailModal(null), []);
   useModalBehavior(!!questDetailModal, closeQuestDetailModal);
