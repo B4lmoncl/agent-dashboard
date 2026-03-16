@@ -29,7 +29,7 @@ import { InfoTooltip } from "@/components/InfoTooltip";
 import { WandererRest } from "@/components/WandererRest";
 import GuildHallBackground from "@/components/GuildHallBackground";
 import FeedbackOverlay from "@/components/FeedbackOverlay";
-import { ModalPortal } from "@/components/ModalPortal";
+import { ModalPortal, useModalBehavior } from "@/components/ModalPortal";
 import type {
   Agent, Quest, NpcQuestChainEntry, ActiveNpc, EarnedAchievement,
   User, CampaignQuest, Campaign, AchievementDef, ClassDef, LeaderboardEntry,
@@ -151,14 +151,14 @@ export default function Dashboard() {
   const [extendRitualCommitment, setExtendRitualCommitment] = useState("none");
   const [recommitRitualId, setRecommitRitualId] = useState<string | null>(null);
 
-  useEffect(() => {
-    if (!createRitualOpen) return;
-    const handler = (e: KeyboardEvent) => {
-      if (e.key === "Escape") { setCreateRitualOpen(false); setNewRitualTitle(""); setNewRitualCommitment("none"); setNewRitualBloodPact(false); }
-    };
-    window.addEventListener("keydown", handler);
-    return () => window.removeEventListener("keydown", handler);
-  }, [createRitualOpen]);
+  const closeLootDrop = useCallback(() => setLootDrop(null), []);
+  useModalBehavior(!!lootDrop, closeLootDrop);
+  const closeLevelUp = useCallback(() => setLevelUpCelebration(null), []);
+  useModalBehavior(!!levelUpCelebration, closeLevelUp);
+  const closeRitualModal = useCallback(() => {
+    setCreateRitualOpen(false); setNewRitualTitle(""); setNewRitualCommitment("none"); setNewRitualBloodPact(false);
+  }, []);
+  useModalBehavior(createRitualOpen, closeRitualModal);
   const [changelog, setChangelog] = useState<ChangelogEntry[]>([]);
   const [changelogLoading, setChangelogLoading] = useState(false);
   const [poolRefreshing, setPoolRefreshing] = useState(false);
@@ -178,14 +178,14 @@ export default function Dashboard() {
   const [currencyExpanded, setCurrencyExpanded] = useState<string | null>(null);
   const [feedbackMode, setFeedbackMode] = useState(false);
   const [favorites, setFavorites] = useState<string[]>([]);
+  const [gameVersion, setGameVersion] = useState<string>("1.5.1");
+  const [versionPopupOpen, setVersionPopupOpen] = useState(false);
+  const [changelogData, setChangelogData] = useState<{ version: string; date: string; title: string; changes: string[] }[]>([]);
+  const [changelogExpanded, setChangelogExpanded] = useState<string | null>(null);
 
-  // Quest detail modal — ESC to close
-  useEffect(() => {
-    if (!questDetailModal) return;
-    const handler = (e: KeyboardEvent) => { if (e.key === "Escape") setQuestDetailModal(null); };
-    window.addEventListener("keydown", handler);
-    return () => window.removeEventListener("keydown", handler);
-  }, [questDetailModal]);
+  // Quest detail modal — ESC to close + scroll lock
+  const closeQuestDetailModal = useCallback(() => setQuestDetailModal(null), []);
+  useModalBehavior(!!questDetailModal, closeQuestDetailModal);
 
   // Settings popup — click-outside to close
   useEffect(() => {
@@ -199,6 +199,37 @@ export default function Dashboard() {
     return () => document.removeEventListener("mousedown", handler);
   }, [settingsPopupOpen]);
 
+
+  // ─── New Version popup check ────────────────────────────────────────────
+  const versionCheckedRef = useRef(false);
+  useEffect(() => {
+    if (!playerName || !reviewApiKey || !gameVersion || versionCheckedRef.current) return;
+    versionCheckedRef.current = true;
+    (async () => {
+      try {
+        const r = await fetch(`/api/player/${encodeURIComponent(playerName.toLowerCase())}/seen-version`, { signal: AbortSignal.timeout(2000) });
+        if (r.ok) {
+          const d = await r.json();
+          if (d.lastSeenVersion !== gameVersion) {
+            setVersionPopupOpen(true);
+          }
+        }
+      } catch { /* ignore */ }
+    })();
+  }, [playerName, reviewApiKey, gameVersion]);
+
+  const dismissVersionPopup = useCallback(async () => {
+    setVersionPopupOpen(false);
+    if (playerName && reviewApiKey) {
+      try {
+        await fetch(`/api/player/${encodeURIComponent(playerName.toLowerCase())}/seen-version`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "x-api-key": reviewApiKey },
+          body: JSON.stringify({ version: gameVersion }),
+        });
+      } catch { /* ignore */ }
+    }
+  }, [playerName, reviewApiKey, gameVersion]);
 
   // ─── apiFetch wrapper ─────────────────────────────────────────────────────
   const [apiError, setApiError] = useState<string | null>(null);
@@ -268,6 +299,15 @@ export default function Dashboard() {
         if (r.ok) { const d = await r.json(); setFavorites(d.favorites || []); }
       } catch { /* ignore */ }
     }
+    // Fetch game version + changelog
+    try {
+      const r = await fetch(`/api/game-version`, { signal: AbortSignal.timeout(1500) });
+      if (r.ok) { const d = await r.json(); setGameVersion(d.version || "1.5.1"); }
+    } catch { /* ignore */ }
+    try {
+      const r = await fetch(`/api/changelog-data`, { signal: AbortSignal.timeout(2000) });
+      if (r.ok) { const d = await r.json(); if (Array.isArray(d)) setChangelogData(d); }
+    } catch { /* ignore */ }
     setLoading(false);
     setLastRefresh(new Date());
   }, [playerName]);
@@ -2665,6 +2705,7 @@ export default function Dashboard() {
                 boxShadow: isLegendary ? `0 0 40px ${rarityColor}30` : "0 20px 60px rgba(0,0,0,0.6)",
                 maxHeight: "80vh",
                 overflow: "hidden",
+                overscrollBehavior: "contain",
               }}
               onClick={e => e.stopPropagation()}
             >
@@ -2877,7 +2918,7 @@ export default function Dashboard() {
 
       <footer data-feedback-id="footer" className="mt-12 py-4" style={{ borderTop: "1px solid rgba(255,68,68,0.07)", position: "relative", zIndex: 2 }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-center gap-3 text-xs font-mono" style={{ color: "rgba(255,255,255,0.15)" }}>
-          <span>Quest Hall v1.5.0</span>
+          <span>Quest Hall v{gameVersion}</span>
           <span style={{ color: "rgba(255,255,255,0.08)" }}>·</span>
           <button
             data-feedback-id="footer.alpha-button"
@@ -2896,7 +2937,7 @@ export default function Dashboard() {
               transition: "color 0.2s, border-color 0.2s",
             }}
           >
-            (α) Alpha v1.5
+            (α) Alpha v{gameVersion}
           </button>
         </div>
       </footer>

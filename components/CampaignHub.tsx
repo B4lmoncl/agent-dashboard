@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Campaign, CampaignQuest, Quest, QuestsData } from "@/app/types";
 import { timeAgo } from "@/app/utils";
 import { priorityConfig } from "@/app/config";
+import { useModalBehavior } from "@/components/ModalPortal";
 
 // ─── Campaign Hub ──────────────────────────────────────────────────────────────
 const CAMPAIGN_ICONS = ["●","◆","★","◇","■","▲","◉","▣","✦","⬡","◈","▶","◎","△","□","⬢"];
@@ -20,6 +21,9 @@ export default function CampaignHub({ campaigns, quests, reviewApiKey, onRefresh
   const [selectedQuestIds, setSelectedQuestIds] = useState<string[]>([]);
   const [submitting, setSubmitting] = useState(false);
   const [deleteConfirm, setDeleteConfirm] = useState<string | null>(null);
+
+  const closeCreateModal = useCallback(() => setCreateOpen(false), []);
+  useModalBehavior(createOpen, closeCreateModal);
 
   const expandedCampaign = campaigns.find(c => c.id === expandedId);
   const allAvailableQuests = [...quests.open, ...quests.inProgress];

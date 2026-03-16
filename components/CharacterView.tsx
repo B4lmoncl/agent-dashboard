@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, useMemo, useRef } from "react";
 import { createPortal } from "react-dom";
+import { useModalBehavior } from "@/components/ModalPortal";
 import type { User, CharacterData, ClassDef, PixelCharacterProps } from "@/app/types";
 
 // ─── PixelCharacter Canvas Component ─────────────────────────────────────────
@@ -217,6 +218,7 @@ function ProfileSettingsModal({ playerName, apiKey, initialStatus, initialPartne
   onClose: () => void;
   onSaved: () => void;
 }) {
+  useModalBehavior(true, onClose);
   const [status, setStatus] = useState(initialStatus);
   const [partner, setPartner] = useState(initialPartnerName);
   const [saving, setSaving] = useState(false);
