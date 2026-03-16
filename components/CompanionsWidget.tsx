@@ -208,10 +208,7 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
       const d = await r.json();
       if (r.ok) {
         setPetsToday(d.petsToday ?? null);
-        if (d.message) {
-          setPetError(d.message);
-          setTimeout(() => setPetError(""), 4000);
-        }
+        // message feedback removed — belly rubs counter is enough
         if (onUserRefresh) onUserRefresh();
       } else {
         setPetError(d.error || "Error");
@@ -356,7 +353,7 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
                       <span className="text-xs" style={{ color: "rgba(255,107,157,0.5)", fontSize: 10, whiteSpace: "nowrap" }}>
                         {petsToday !== null ? petsToday : (user?.companion?.petCountToday ?? 0)}/2 belly rubs today
                       </span>
-                      {petError && <span className="text-xs mt-0.5" style={{ color: "#f59e0b", whiteSpace: "nowrap", maxWidth: 120, textAlign: "center", fontSize: 10 }}>{petError}</span>}
+
                     </div>
                   )}
                 </div>
