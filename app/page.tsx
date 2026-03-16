@@ -181,7 +181,7 @@ export default function Dashboard() {
   const [feedbackMode, setFeedbackMode] = useState(false);
   const [favorites, setFavorites] = useState<string[]>([]);
   const [modalStarAnimating, setModalStarAnimating] = useState(false);
-  const [gameVersion, setGameVersion] = useState<string>("1.5.1");
+  const [gameVersion, setGameVersion] = useState<string>("1.5.2");
   const [versionPopupOpen, setVersionPopupOpen] = useState(false);
   const [changelogData, setChangelogData] = useState<{ version: string; date: string; title: string; changes: string[] }[]>([]);
   const [changelogExpanded, setChangelogExpanded] = useState<string | null>(null);

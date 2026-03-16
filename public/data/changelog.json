@@ -1,5 +1,31 @@
 [
   {
+    "version": "1.5.2",
+    "date": "2026-03-17",
+    "title": "The Item System Overhaul — Equip, Consume & Loot",
+    "changes": [
+      "Item Template System — 98 unified item definitions with types, rarities, effects",
+      "Consumable items now work! Gold, XP, Bond, Streak Shields, Forge Temp & more",
+      "Equipment from Gacha/Loot can now be equipped — not just shop items",
+      "Unequip returns items to inventory (no more item loss!)",
+      "Active Buff system — timed effects like XP boost, Gold 2x, Essenz boost",
+      "Discard items with confirmation dialog",
+      "Click inventory items → Action popup (Use / Equip / Discard)",
+      "Diablo-style consume feedback toast (non-blocking)",
+      "Stats now have real effects: Kraft→+XP, Weisheit→+Gold, Ausdauer→less Forge decay",
+      "Passive Gacha effects active: Rarity boost, Pity reduction, Streak recovery",
+      "29 new pixel art loot item icons (128x128)",
+      "9 new NPC reward item icons with pixelated rendering",
+      "NPC reward items upgraded — better stats + unique passive effects",
+      "Level requirement shown in item tooltips",
+      "image-rendering: pixelated for all icons — crisp pixel art at every size",
+      "3 new NPCs: Der Elegante Herr, Vex die Archivarin, Captain Flint",
+      "50 new quest templates (248 total) — more variety, more easter eggs",
+      "Pet feedback text removed (button no longer jumps around)",
+      "Class selection fix in profile endpoint"
+    ]
+  },
+  {
     "version": "1.5.1",
     "date": "2026-03-16",
     "title": "Alpha Feedback Batch — Bugs, UI Polish & New Features",

@@ -2587,6 +2587,606 @@
         "flavor": "Cardio muss nicht langweilig sein. Die Halle erlaubt Kreativität.",
         "difficulty": "intermediate"
       }
+    },
+    {
+      "id": "p-knochenarbeit",
+      "template": "board-quest",
+      "title": "Knochenarbeit",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Erledige die eine Aufgabe die du seit Tagen vor dir herschiebst. Du weißt welche.",
+        "flavor": "Manche Helden kämpfen gegen Drachen. Andere gegen ihre eigene To-Do-Liste. Letztere sind die wahren Tapferen — denn der Drache kommt wenigstens zu dir.",
+        "difficulty": "intermediate"
+      }
+    },
+    {
+      "id": "p-eleganter-auftritt",
+      "template": "board-quest",
+      "title": "Der elegante Auftritt",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Zieh dich heute bewusst gut an. Auch wenn du nirgendwo hingehst.",
+        "flavor": "Es gibt eine alte Weisheit unter den Duellisten von Aethermoor: Wer gut aussieht, kämpft besser. Und wer gut kämpft, sieht gut aus. Ein Teufelskreis im besten Sinne.",
+        "difficulty": "starter"
+      }
+    },
+    {
+      "id": "p-stille-stunde",
+      "template": "board-quest",
+      "title": "Die Stille Stunde",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Eine volle Stunde ohne Bildschirm. Lesen, spazieren, nachdenken — alles erlaubt außer Displays.",
+        "flavor": "Im tiefsten Gewölbe der Bibliothek gibt es einen Raum ohne Licht. Nicht weil er dunkel ist, sondern weil das Licht dort beschlossen hat, eine Pause zu machen. Manchmal braucht selbst Licht Ruhe.",
+        "difficulty": "intermediate"
+      }
+    },
+    {
+      "id": "p-totenwache",
+      "template": "board-quest",
+      "title": "Die Totenwache",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Lösch drei Apps von deinem Handy die du seit Monaten nicht benutzt hast. Lass los.",
+        "flavor": "Nicht alles was in deinem Inventar liegt verdient einen Platz. Manche Dinge tragen wir nur mit weil wir vergessen haben sie abzulegen. Die besten Wanderer reisen leicht.",
+        "difficulty": "starter"
+      }
+    },
+    {
+      "id": "p-letzte-seite",
+      "template": "board-quest",
+      "title": "Die letzte Seite",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Lies das Buch/den Artikel/die Doku fertig die du angefangen hast. Keine neuen anfangen.",
+        "flavor": "Die Bibliothekare von Aethermoor haben ein Sprichwort: Wer hundert Bücher anfängt und keines beendet, hat hundert Anfänge gelesen. Und keinen einzigen Schluss.",
+        "difficulty": "intermediate"
+      }
+    },
+    {
+      "id": "p-schattentanz",
+      "template": "board-quest",
+      "title": "Schattentanz",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Meditiere oder mach Atemübungen für mindestens 10 Minuten. Setz dich hin. Atme. Fertig.",
+        "flavor": "Die geschicktesten Duellisten bewegen sich nicht schneller als andere. Sie bewegen sich ruhiger. Wer seinen Atem kontrolliert, kontrolliert den Kampf.",
+        "difficulty": "starter"
+      }
+    },
+    {
+      "id": "p-verschollener-brief",
+      "template": "board-quest",
+      "title": "Der verschollene Brief",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Schreib jemandem eine Nachricht, bei dem du dich lange nicht gemeldet hast. Einfach Hallo sagen.",
+        "flavor": "In den Archiven der Gilde verstauben Briefe die nie abgeschickt wurden. Jeder einzelne hätte eine Geschichte verändert. Schick deinen ab.",
+        "difficulty": "starter"
+      }
+    },
+    {
+      "id": "p-nachtschmied",
+      "template": "board-quest",
+      "title": "Der Nachtschmied",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Bereite alles für morgen vor bevor du ins Bett gehst. Klamotten, Tasche, Mittagessen.",
+        "flavor": "Die besten Waffen werden in der Nacht geschmiedet, nicht am Morgen. Wer vorbereitet aufwacht, hat den Tag schon halb gewonnen bevor er begonnen hat.",
+        "difficulty": "starter"
+      }
+    },
+    {
+      "id": "p-leeres-blatt",
+      "template": "board-quest",
+      "title": "Das leere Blatt",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Schreib 15 Minuten lang auf was dir durch den Kopf geht. Kein Ziel, kein Thema. Einfach schreiben.",
+        "flavor": "Manche Zauber brauchen keine Formel. Manchmal reicht es, die Gedanken fließen zu lassen und zu sehen wohin der Strom sie trägt.",
+        "difficulty": "starter"
+      }
+    },
+    {
+      "id": "p-wanderers-rast",
+      "template": "board-quest",
+      "title": "Wanderers Rast",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Nimm dir bewusst 30 Minuten für etwas das dir Freude macht. Kein Multitasking. Nur Genuss.",
+        "flavor": "Der wichtigste Schritt eines Wanderers ist manchmal der, den er nicht macht. Rast ist keine Schwäche. Rast ist Strategie.",
+        "difficulty": "starter"
+      }
+    },
+    {
+      "id": "p-plan-b",
+      "template": "board-quest",
+      "title": "Plan B (war eigentlich Plan A)",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Mach einen Backup deiner wichtigsten Dateien. Handy-Fotos, Dokumente, was auch immer. Heute.",
+        "flavor": "Der Plan war perfekt. Dann hat jemand den Plan gelesen und der Plan hat beschlossen, sich umzubringen. Deshalb gibt es Plan B.",
+        "difficulty": "intermediate"
+      }
+    },
+    {
+      "id": "p-sauberer-start",
+      "template": "board-quest",
+      "title": "Sauberer Start",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Putz deinen Schreibtisch komplett. Alles runter, abwischen, nur das Nötigste wieder drauf.",
+        "flavor": "Die Werkbank eines Schmieds verrät mehr über sein Können als seine Waffen. Chaos auf dem Tisch heißt Chaos im Kopf. Meistens.",
+        "difficulty": "starter"
+      }
+    },
+    {
+      "id": "p-alte-schuld",
+      "template": "board-quest",
+      "title": "Alte Schulden",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Gib jemandem etwas zurück das du dir geliehen hast. Buch, Werkzeug, Geld, Tupperware. Du weißt was.",
+        "flavor": "In Aethermoor sagt man: Schulden sind wie Schatten. Je länger du sie ignorierst, desto länger werden sie. Und irgendwann werden sie lebendig.",
+        "difficulty": "starter"
+      }
+    },
+    {
+      "id": "p-meisterklasse",
+      "template": "board-quest",
+      "title": "Meisterklasse",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Lerne heute eine neue Tastenkombination oder ein Feature in einem Tool das du täglich nutzt.",
+        "flavor": "Selbst die erfahrensten Magier entdecken neue Runen in Büchern die sie seit Jahren lesen. Die Magie war immer da. Man muss nur hinschauen.",
+        "difficulty": "starter"
+      }
+    },
+    {
+      "id": "p-dreifacher-eid",
+      "template": "board-quest",
+      "title": "Der dreifache Eid",
+      "type": "personal",
+      "category": "personal",
+      "vars": {
+        "description": "Sag heute drei Mal Nein zu Dingen die du eigentlich nicht willst aber normalerweise mitmachst.",
+        "flavor": "Stärke vor Schwäche. Nicht die Stärke zuzuschlagen — die Stärke abzulehnen.",
+        "difficulty": "advanced"
+      }
+    },
+    {
+      "id": "f-eiserne-mauer",
+      "template": "board-quest",
+      "title": "Die eiserne Mauer",
+      "type": "fitness",
+      "category": "fitness",
+      "vars": {
+        "description": "3 Sätze Plank, je 45 Sekunden. Halt die Stellung.",
+        "flavor": "Die Mauern von Aethermoor wurden nicht aus Stein gebaut sondern aus dem Willen derer die dahinter standen. Dein Core ist deine Mauer. Bau sie auf.",
+        "difficulty": "intermediate"
+      }
+    },
+    {
+      "id": "f-morgenpatrouille",
+      "template": "board-quest",
+      "title": "Morgenpatrouille",
+      "type": "fitness",
+      "category": "fitness",
+      "vars": {
+        "description": "Geh morgens 20 Minuten spazieren bevor du irgendwas anderes machst. Frische Luft first.",
+        "flavor": "Die Stadtwache von Aethermoor beginnt jeden Tag mit einer Runde um die Mauern. Nicht weil es nötig ist. Sondern weil es den Kopf klärt bevor der Tag anfängt.",
+        "difficulty": "starter"
+      }
+    },
+    {
+      "id": "f-hundert-schlaege",
+      "template": "board-quest",
+      "title": "Hundert Schläge",
+      "type": "fitness",
+      "category": "fitness",
+      "vars": {
+        "description": "100 Liegestütze heute. Über den Tag verteilt ist okay. Muss nicht am Stück sein.",
+        "flavor": "Im Dojo von Meister Tanaka gibt es eine Regel: Bevor du eine neue Technik lernst, wiederholst du die alte hundert Mal. Perfektion kommt von Wiederholung.",
+        "difficulty": "advanced"
+      }
+    },
+    {
+      "id": "f-treppen-turm",
+      "template": "board-quest",
+      "title": "Der ewige Turm",
+      "type": "fitness",
+      "category": "fitness",
+      "vars": {
+        "description": "Nimm heute jede Treppe statt Aufzug/Rolltreppe. Ausnahmslos.",
+        "flavor": "Der Turm der Sternenwächterin hat 777 Stufen. Es gibt keinen Aufzug. Wer sie erklimmt, sieht die Welt von oben. Wer den Aufzug sucht, sieht gar nichts.",
+        "difficulty": "intermediate"
+      }
+    },
+    {
+      "id": "f-schattenboxen",
+      "template": "board-quest",
+      "title": "Schattenboxen",
+      "type": "fitness",
+      "category": "fitness",
+      "vars": {
+        "description": "Mach ein komplettes Stretching oder Yoga-Programm. Mindestens 20 Minuten. Dein Körper dankt es dir.",
+        "flavor": "Die geschmeidigsten Krieger überleben am längsten. Nicht die stärksten, nicht die schnellsten — die beweglichsten. Frag jeden Knochen der das Gegenteil behauptet.",
+        "difficulty": "intermediate"
+      }
+    },
+    {
+      "id": "f-ruestung-schmieden",
+      "template": "board-quest",
+      "title": "Rüstung schmieden",
+      "type": "fitness",
+      "category": "fitness",
+      "vars": {
+        "description": "Volles Workout im Gym. Kein halbes, kein \"ich mach nur Arme\". Das volle Programm.",
+        "flavor": "Dein Körper ist deine erste Rüstung. Und im Gegensatz zu der aus Stahl, musst du diese selbst schmieden. Jeden. Verdammten. Tag.",
+        "difficulty": "advanced"
+      }
+    },
+    {
+      "id": "f-wasser-eid",
+      "template": "board-quest",
+      "title": "Der Wassereid",
+      "type": "fitness",
+      "category": "fitness",
+      "vars": {
+        "description": "Trink heute mindestens 2 Liter Wasser. Kein Kaffee, keine Softdrinks als Ersatz.",
+        "flavor": "Der Aetherstrom fließt durch alles. Durch Stein, durch Stahl, durch dich. Aber nur wenn du ihn lässt. Und er mag Wasser lieber als Koffein.",
+        "difficulty": "starter"
+      }
+    },
+    {
+      "id": "f-kalte-dusche",
+      "template": "board-quest",
+      "title": "Die kalte Prüfung",
+      "type": "fitness",
+      "category": "fitness",
+      "vars": {
+        "description": "Beende deine Dusche mit 30 Sekunden kaltem Wasser. Nicht warm-kalt. KALT.",
+        "flavor": "Die Prüfungen der Wanderer haben eine Gemeinsamkeit: Sie sind unangenehm. Und genau deshalb funktionieren sie.",
+        "difficulty": "intermediate"
+      }
+    },
+    {
+      "id": "f-krieger-fruehstueck",
+      "template": "board-quest",
+      "title": "Kriegers Frühstück",
+      "type": "fitness",
+      "category": "fitness",
+      "vars": {
+        "description": "Mach dir ein gesundes, proteinreiches Frühstück. Selbst zubereitet. Kein Müsliriegel.",
+        "flavor": "Kein Krieger geht mit leerem Magen in die Schlacht. Und nein, drei Tassen Kaffee sind kein Frühstück. Auch nicht vier.",
+        "difficulty": "starter"
+      }
+    },
+    {
+      "id": "f-spaziergang-der-weisen",
+      "template": "board-quest",
+      "title": "Der Pfad der Weisen",
+      "type": "fitness",
+      "category": "fitness",
+      "vars": {
+        "description": "Geh 30 Minuten spazieren während du einen Podcast oder ein Hörbuch hörst. Wissen + Bewegung.",
+        "flavor": "Die größten Philosophen von Aethermoor dachten nicht an Schreibtischen nach. Sie wanderten. Und irgendwo zwischen dem dritten und vierten Kilometer fanden sie die Antworten.",
+        "difficulty": "intermediate"
+      }
+    },
+    {
+      "id": "l-wahre-namen",
+      "template": "board-quest",
+      "title": "Die Kunst der wahren Namen",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Lerne fünf neue Fachbegriffe in einem Thema das dich interessiert. Schreib sie auf mit Erklärung.",
+        "flavor": "Wer den wahren Namen einer Sache kennt, hat Macht über sie. Das gilt für Dämonen genau wie für Subnetting.",
+        "difficulty": "starter"
+      }
+    },
+    {
+      "id": "l-bibliothek-beisst",
+      "template": "board-quest",
+      "title": "Wenn die Bibliothek beißt",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Lies einen Artikel oder schau ein Video über ein Thema von dem du NICHTS verstehst. Komplett neues Gebiet.",
+        "flavor": "Die Bibliothek beißt zurück. Buchstäblich. Handschuhe empfohlen. Aber wer durch die gefährlichen Regale kommt, findet Wissen das andere nie sehen.",
+        "difficulty": "intermediate"
+      }
+    },
+    {
+      "id": "l-drei-dinge",
+      "template": "board-quest",
+      "title": "Drei Dinge die alle Weisen fürchten",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Erkläre einem Freund oder Kollegen ein komplexes Thema so, dass er es versteht. Wenn du es nicht einfach erklären kannst, verstehst du es nicht.",
+        "flavor": "Es gibt drei Dinge die alle weisen Wanderer fürchten: das Meer bei Sturm, eine mondlose Nacht, und den Moment wenn jemand fragt \"Kannst du das nochmal erklären?\"",
+        "difficulty": "intermediate"
+      }
+    },
+    {
+      "id": "l-investitur-stahl",
+      "template": "board-quest",
+      "title": "Investitur-Stahl",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Lerne ein neues Tool oder eine neue Technologie kennen. Tutorial durcharbeiten, nicht nur angucken.",
+        "flavor": "Manche Metalle speichern Aether besser als andere. Investitur-Stahl ist das stärkste — weil es nicht nur hält, sondern wächst. Wie Wissen.",
+        "difficulty": "intermediate"
+      }
+    },
+    {
+      "id": "l-runenleser",
+      "template": "board-quest",
+      "title": "Runenleser",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Lies die Dokumentation zu etwas das du regelmäßig benutzt. Die echte Doku, nicht Stack Overflow.",
+        "flavor": "Die alten Runen sind nicht kryptisch weil sie geheim sind. Sie sind kryptisch weil niemand die Dokumentation liest. Sei besser als niemand.",
+        "difficulty": "intermediate"
+      }
+    },
+    {
+      "id": "l-lehrlings-eid",
+      "template": "board-quest",
+      "title": "Lehrlings Eid",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Starte einen Online-Kurs oder ein Tutorial das du schon ewig machen wolltest. Nur den ersten Abschnitt.",
+        "flavor": "Jeder Meister war einmal ein Lehrling der beschlossen hat anzufangen. Nicht morgen. Nicht nächste Woche. Heute.",
+        "difficulty": "starter"
+      }
+    },
+    {
+      "id": "l-archiv-ratten",
+      "template": "board-quest",
+      "title": "Archivratten",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Organisiere deine Notizen, Bookmarks oder Wissensdatenbank. Lösch Veraltetes, sortiere den Rest.",
+        "flavor": "Die Archivare sind die unbesungenen Helden der Bibliothek. Ohne sie wäre alles Wissen der Welt nur ein sehr großer Papierhaufen.",
+        "difficulty": "intermediate"
+      }
+    },
+    {
+      "id": "l-forbidden-knowledge",
+      "template": "board-quest",
+      "title": "Verbotenes Wissen",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Lerne etwas über ein Thema das dich einschüchtert. Finanzen, Steuern, Kochen, was auch immer du vermeidest.",
+        "flavor": "Im dritten Untergeschoss der Bibliothek stehen Bücher die nicht gelesen werden wollen. Nicht weil sie gefährlich sind — sondern weil sie unbequeme Wahrheiten enthalten.",
+        "difficulty": "advanced"
+      }
+    },
+    {
+      "id": "l-feuer-und-stahl",
+      "template": "board-quest",
+      "title": "Feuer und Stahl",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Bau etwas. Ein kleines Projekt, ein Skript, eine Webseite, egal was. Von Null anfangen und fertigmachen.",
+        "flavor": "Rogars Amboss singt am lautesten wenn neues Metall darauf liegt. Nicht reparieren, nicht verbessern — erschaffen. Heute bist du der Schmied.",
+        "difficulty": "advanced"
+      }
+    },
+    {
+      "id": "l-sternenkarte",
+      "template": "board-quest",
+      "title": "Sternenkarte",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Erstell eine Mindmap oder ein Diagramm zu einem Thema das du gerade lernst. Visuell denken.",
+        "flavor": "Die Sternenwächterin sagt, jedes Wissensnetz gleicht einem Sternbild. Man muss nur die Verbindungen ziehen. Manche leuchten erst dann.",
+        "difficulty": "intermediate"
+      }
+    },
+    {
+      "id": "l-lehrstunde",
+      "template": "board-quest",
+      "title": "Die unerwartete Lehrstunde",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Schau dir ein Video oder lies einen Artikel über etwas komplett Nutzloses aber Faszinierendes. Schwarze Löcher, mittelalterliche Belagerungsmaschinen, was auch immer.",
+        "flavor": "Die besten Entdeckungen passieren auf dem Weg zum Klo. Nicht weil der Ort besonders ist, sondern weil der Geist endlich wandern darf.",
+        "difficulty": "starter"
+      }
+    },
+    {
+      "id": "l-fehlschlag-chronik",
+      "template": "board-quest",
+      "title": "Die Fehlschlag-Chronik",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Schreib drei Fehler auf die du in den letzten Wochen gemacht hast und was du daraus gelernt hast.",
+        "flavor": "Die Chronik der Wanderer verzeichnet mehr Niederlagen als Siege. Nicht weil die Wanderer schlecht waren — sondern weil nur die Ehrlichen ihre Fehler aufschreiben.",
+        "difficulty": "intermediate"
+      }
+    },
+    {
+      "id": "l-sprachzauber",
+      "template": "board-quest",
+      "title": "Sprachzauber",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Lerne 10 neue Wörter oder Sätze in einer Fremdsprache. Duolingo zählt.",
+        "flavor": "Jede Sprache ist ein Schlüssel zu einer anderen Welt. Die Bibliothek hat Bücher in 3000 Sprachen. Die meisten davon beschimpfen den Leser — aber sehr höflich.",
+        "difficulty": "starter"
+      }
+    },
+    {
+      "id": "l-reverse-engineering",
+      "template": "board-quest",
+      "title": "Reverse Engineering",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Nimm etwas auseinander (digital oder physisch) und versteh wie es funktioniert. Router, App, Kaffeemaschine.",
+        "flavor": "Die besten Alchemisten beginnen nicht mit dem Brauen. Sie beginnen mit dem Zerlegen. Erst wer versteht was drin ist, kann verstehen was rauskommt.",
+        "difficulty": "advanced"
+      }
+    },
+    {
+      "id": "l-gilden-bibliothek",
+      "template": "board-quest",
+      "title": "Gilden-Bibliothek",
+      "type": "learning",
+      "category": "learning",
+      "vars": {
+        "description": "Teile etwas Nützliches das du gelernt hast mit jemandem. Blog-Post, Chat-Nachricht, Notiz — Hauptsache du gibst Wissen weiter.",
+        "flavor": "Wissen das man für sich behält ist nur halb so viel wert. Die Bibliothek wächst nicht durch Einzelne, sondern durch alle die ein Buch zurückstellen.",
+        "difficulty": "intermediate"
+      }
+    },
+    {
+      "id": "s-chaotischer-barde",
+      "template": "board-quest",
+      "title": "Der chaotische Barde",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Erzähl jemandem eine Geschichte. Egal ob wahr oder erfunden. Hauptsache gut erzählt.",
+        "flavor": "Finnegan hat mal eine Geschichte so gut erzählt, dass drei Leute geweint haben und einer seinen Job gekündigt hat. Er hat nie verraten ob sie wahr war. Das ist die Kunst.",
+        "difficulty": "intermediate"
+      }
+    },
+    {
+      "id": "s-gemeinsamer-tisch",
+      "template": "board-quest",
+      "title": "Der gemeinsame Tisch",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Iss mit jemandem zusammen. Nicht nebeneinander am Handy — richtig zusammen.",
+        "flavor": "Die Große Halle hat Platz für tausend Helden. Aber die beste Magie entsteht an kleinen Tischen mit wenigen Freunden und zu viel Essen.",
+        "difficulty": "starter"
+      }
+    },
+    {
+      "id": "s-friedensangebot",
+      "template": "board-quest",
+      "title": "Friedensangebot",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Mach den ersten Schritt bei einem kleinen Konflikt oder Missverständnis. Auch wenn du denkst du hast Recht.",
+        "flavor": "Nicht jede Schlacht muss gewonnen werden. Manche Siege bestehen darin, das Schwert einzustecken und die Hand auszustrecken.",
+        "difficulty": "advanced"
+      }
+    },
+    {
+      "id": "s-verborgenes-talent",
+      "template": "board-quest",
+      "title": "Verborgenes Talent",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Frag jemanden nach einem Hobby oder Talent von dem du noch nichts wusstest.",
+        "flavor": "Karim der Wanderhändler hat einmal drei Stunden mit einem Bauern geredet und erfahren, dass dieser die beste Sternennavigation der ganzen Küste beherrschte. Man weiß nie.",
+        "difficulty": "starter"
+      }
+    },
+    {
+      "id": "s-gilden-pakt",
+      "template": "board-quest",
+      "title": "Gilden-Pakt",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Hilf jemandem bei etwas ohne dass er darum gebeten hat. Einfach machen.",
+        "flavor": "Kein Held wandert allein. Selbst die Sterne leuchten in Gruppen — nicht weil sie müssen, sondern weil es besser aussieht.",
+        "difficulty": "starter"
+      }
+    },
+    {
+      "id": "s-ehrliches-wort",
+      "template": "board-quest",
+      "title": "Ein ehrliches Wort",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Gib jemandem ein echtes, aufrichtiges Kompliment. Kein \"schönes Shirt\" — etwas das du wirklich meinst.",
+        "flavor": "Worte sind in Aethermoor keine Kleinigkeit. Ein ehrliches Wort zur richtigen Zeit hat schon Kriege beendet. Und mehrere angefangen. Aber meistens beendet.",
+        "difficulty": "starter"
+      }
+    },
+    {
+      "id": "s-spieleabend",
+      "template": "board-quest",
+      "title": "Tavernen-Abend",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Organisier einen Spieleabend, Filmabend oder einfach ein Treffen. Du musst einladen, nicht warten.",
+        "flavor": "Die Taverne unter der Quest Hall ist immer geöffnet. Aber der beste Abend ist nicht der mit dem meisten Bier — sondern der mit den besten Leuten.",
+        "difficulty": "intermediate"
+      }
+    },
+    {
+      "id": "s-fremder-wanderer",
+      "template": "board-quest",
+      "title": "Der fremde Wanderer",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Sprich heute mit jemandem dem du normalerweise nicht ansprichst. Kollege, Nachbar, Kassierer.",
+        "flavor": "Jeder Fremde ist ein NPC bis du mit ihm sprichst. Dann wird er manchmal zum wichtigsten Charakter der Geschichte.",
+        "difficulty": "intermediate"
+      }
+    },
+    {
+      "id": "s-brief-aus-der-ferne",
+      "template": "board-quest",
+      "title": "Brief aus der Ferne",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Schick einem Freund der weit weg wohnt eine persönliche Nachricht. Nicht \"Alles gut?\" sondern was Echtes.",
+        "flavor": "Die Brieftauben der Gilde fliegen über tausend Meilen. Nicht weil sie müssen — sondern weil jemand am anderen Ende wartet.",
+        "difficulty": "starter"
+      }
+    },
+    {
+      "id": "s-vater-weisheit",
+      "template": "board-quest",
+      "title": "Väterliche Weisheit",
+      "type": "social",
+      "category": "social",
+      "vars": {
+        "description": "Ruf einen Elternteil oder eine wichtige Bezugsperson an. Einfach reden. Frag wie es geht.",
+        "flavor": "Ich bin kein Held. Ich bin ein Vater. Und das ist manchmal schwerer, manchmal leichter, aber immer wichtiger als jede Quest.",
+        "difficulty": "starter"
+      }
     }
   ]
 }

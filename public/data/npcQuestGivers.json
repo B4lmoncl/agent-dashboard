@@ -1688,6 +1688,243 @@
           "icon": "/images/icons/npc-rogar-hammer.png"
         }
       }
+    },
+    {
+      "id": "skelett-gentleman",
+      "name": "Der Elegante Herr",
+      "emoji": "💀",
+      "title": "Gentleman-Detektiv",
+      "description": "Ein überraschend gut gekleideter Besucher. Niemand weiß woher er kommt. Sein Lächeln ist... beständig.",
+      "portrait": "/images/npcs/gentleman-detective.png",
+      "greeting": "Ah, ein neuer Wanderer. Wunderbar. Ich brauche jemanden mit funktionierenden Händen — und weniger Fragen als Antworten.",
+      "rarity": "epic",
+      "visitDuration": {
+        "min": 48,
+        "max": 96
+      },
+      "questChains": [
+        {
+          "name": "Die Spur im Schatten",
+          "quests": [
+            {
+              "title": "Der gestohlene Auftritt",
+              "type": "personal",
+              "category": "personal",
+              "description": "Zieh dich heute besonders gut an. Erste Eindrücke sind alles. Besonders wenn man keinen zweiten machen kann.",
+              "flavor": "Die beste Verteidigung ist ein gut sitzender Anzug und eine schnelle Zunge. Manche Leute haben beides. Manche Leute sind auch unnatürlich dünn.",
+              "difficulty": "starter"
+            },
+            {
+              "title": "Scharfes Auge",
+              "type": "learning",
+              "category": "learning",
+              "description": "Beobachte heute bewusst Details die du sonst übersiehst. Schreib 5 Dinge auf die dir auffallen.",
+              "flavor": "Jeder sieht. Wenige beobachten. Und noch weniger ziehen die richtigen Schlüsse. Außer ich natürlich. Ich liege nie falsch. Fast nie. Einmal.",
+              "difficulty": "intermediate"
+            },
+            {
+              "title": "Das Rätsel der drei Schlüssel",
+              "type": "learning",
+              "category": "learning",
+              "description": "Löse drei Rätsel oder Puzzles. Sudoku, Kreuzworträtsel, Programm-Bug — alles zählt.",
+              "flavor": "Rätsel sind wie Schlösser. Man braucht entweder den richtigen Schlüssel oder genug Dynamit. Ich bevorzuge den Schlüssel. Meistens.",
+              "difficulty": "intermediate"
+            },
+            {
+              "title": "Verbündete sammeln",
+              "type": "social",
+              "category": "social",
+              "description": "Überzeug heute drei verschiedene Leute von etwas. Restaurantwahl, Filmabend, egal was. Diplomatie üben.",
+              "flavor": "Die besten Detektive arbeiten nicht allein. Sie lassen nur alle glauben, sie würden es tun.",
+              "difficulty": "intermediate"
+            },
+            {
+              "title": "Der letzte Vorhang",
+              "type": "personal",
+              "category": "personal",
+              "description": "Schließ eine Sache ab die du angefangen aber nie beendet hast. Der elegante Herr duldet keine losen Enden.",
+              "flavor": "Jede Geschichte verdient ein Ende. Auch die mittelmäßigen. Besonders die mittelmäßigen. Denn mittelmäßige Geschichten die nie enden werden zu schlechten.",
+              "difficulty": "advanced"
+            }
+          ]
+        }
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "mantel-der-eleganz",
+          "name": "Mantel der Eleganz",
+          "emoji": "🎩",
+          "slot": "armor",
+          "stats": {
+            "glueck": 8,
+            "weisheit": 6
+          },
+          "passiveEffect": "charm_boost_15",
+          "passiveDesc": "Unwiderstehliche Eleganz: +15% Gold bei NPC-Quests",
+          "rarity": "epic",
+          "desc": "Ein perfekt sitzender Mantel. Sieht gut aus. Selbst auf Knochen.",
+          "icon": "/images/icons/npc-gentleman-coat.png"
+        }
+      }
+    },
+    {
+      "id": "archivarin-vex",
+      "name": "Vex die Archivarin",
+      "emoji": "📚",
+      "title": "Hüterin der vergessenen Regale",
+      "description": "Eine strenge aber faire Bibliothekarin die die unteren Stockwerke der Bibliothek verwaltet. Dort wo die Bücher unruhig werden.",
+      "portrait": "/images/npcs/archivarin-vex.png",
+      "greeting": "Psst. In meiner Bibliothek wird geflüstert. Die Bücher mögen es nicht wenn man schreit. Und ich auch nicht.",
+      "rarity": "rare",
+      "visitDuration": {
+        "min": 36,
+        "max": 72
+      },
+      "questChains": [
+        {
+          "name": "Die unruhigen Regale",
+          "quests": [
+            {
+              "title": "Überfällige Rückgabe",
+              "type": "personal",
+              "category": "personal",
+              "description": "Räum etwas auf das schon zu lange liegen geblieben ist. Wäsche, Papierkram, Downloads-Ordner.",
+              "flavor": "Wissen Sie wie lange das letzte überfällige Buch in meiner Bibliothek war? 340 Jahre. Die Mahngebühren haben einen eigenen Kontinent gekauft.",
+              "difficulty": "starter"
+            },
+            {
+              "title": "Stille Lektüre",
+              "type": "learning",
+              "category": "learning",
+              "description": "Lies 30 Minuten ohne Unterbrechung. Kein Handy, keine Musik, nur du und der Text.",
+              "flavor": "Die Bücher im dritten Untergeschoss rascheln nachts. Nicht weil sie lebendig sind — sondern weil sie gelesen werden wollen. Gib ihnen was sie wollen.",
+              "difficulty": "intermediate"
+            },
+            {
+              "title": "Katalogisierung",
+              "type": "learning",
+              "category": "learning",
+              "description": "Organisiere einen Teil deines digitalen Lebens. Bookmarks, Dateien, Notizen — strukturiere es.",
+              "flavor": "Ohne System ist Wissen nur Lärm. Und in meiner Bibliothek ist Lärm tödlich. Buchstäblich. Das Buch in Regal 7B hat Zähne.",
+              "difficulty": "intermediate"
+            },
+            {
+              "title": "Wissensaustausch",
+              "type": "social",
+              "category": "social",
+              "description": "Teile etwas Interessantes das du gelesen/gelernt hast mit jemandem.",
+              "flavor": "Bücher die nicht geteilt werden, verstauben. Und verstaubte Bücher werden... schwierig. Vertrau mir.",
+              "difficulty": "starter"
+            }
+          ]
+        }
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "vex-lesebrille",
+          "name": "Vex' Lesebrille der Erkenntnis",
+          "emoji": "👓",
+          "slot": "helm",
+          "stats": {
+            "weisheit": 9,
+            "glueck": 3
+          },
+          "passiveEffect": "xp_boost_8",
+          "passiveDesc": "Tieferes Verständnis: +8% XP aus Learning-Quests",
+          "rarity": "rare",
+          "desc": "Eine Brille die mehr zeigt als nur Buchstaben. Manche Träger behaupten, sie könnten damit die Wahrheit lesen. Zwischen den Zeilen.",
+          "icon": "/images/icons/npc-vex-glasses.png"
+        }
+      }
+    },
+    {
+      "id": "captain-flint",
+      "name": "Captain Flint",
+      "emoji": "⚓",
+      "title": "Kapitän der Nebelmeere",
+      "description": "Ein wettergegerbter Seefahrer der behauptet, Meere bereist zu haben die auf keiner Karte stehen. Sein Schiff hat noch nie jemand gesehen.",
+      "portrait": "/images/npcs/captain-flint.png",
+      "greeting": "Land! Endlich. Ich brauche neue Crew. Die letzte hat sich geweigert weiterzufahren nachdem das Meer angefangen hat zu singen. Weicheier.",
+      "rarity": "epic",
+      "visitDuration": {
+        "min": 48,
+        "max": 72
+      },
+      "questChains": [
+        {
+          "name": "Jenseits der Karten",
+          "quests": [
+            {
+              "title": "Seekarten studieren",
+              "type": "learning",
+              "category": "learning",
+              "description": "Lerne etwas Neues über ein Thema das dich schon immer interessiert hat. Tiefer eintauchen als üblich.",
+              "flavor": "Die besten Seekarten sind die die zeigen was hinter dem Rand liegt. Die schlechtesten sind die die behaupten, es gäbe keinen Rand.",
+              "difficulty": "intermediate"
+            },
+            {
+              "title": "Sturm im Wasserglas",
+              "type": "fitness",
+              "category": "fitness",
+              "description": "Mach ein intensives 20-Minuten Workout. Schnell, hart, fertig.",
+              "flavor": "Auf See hat man keine Zeit für lange Trainingseinheiten. Man hat zwanzig Minuten zwischen zwei Wellen und die muss man nutzen.",
+              "difficulty": "intermediate"
+            },
+            {
+              "title": "Proviant beschaffen",
+              "type": "personal",
+              "category": "personal",
+              "description": "Kauf gesunde Lebensmittel ein und meal-prep für mindestens 3 Tage. Ein Kapitän plant voraus.",
+              "flavor": "Eine Crew ohne Proviant ist keine Crew — sie ist eine Versammlung zukünftiger Kannibalen. Vorausplanung rettet Leben. Und Manieren.",
+              "difficulty": "advanced"
+            },
+            {
+              "title": "Die singende See",
+              "type": "personal",
+              "category": "personal",
+              "description": "Hör ein komplett neues Album oder eine Playlist die du normalerweise nicht hören würdest. Neue Ufer erkunden.",
+              "flavor": "Das Meer singt in Frequenzen die die meisten Menschen nicht hören wollen. Nicht weil sie unschön sind — sondern weil sie Wahrheiten enthalten.",
+              "difficulty": "starter"
+            },
+            {
+              "title": "Anker lichten",
+              "type": "personal",
+              "category": "personal",
+              "description": "Triff eine Entscheidung die du seit langem vor dir herschiebst. Nicht perfekt, einfach entscheiden.",
+              "flavor": "Der schwierigste Moment einer Reise ist nicht der Sturm. Es ist der Moment wo man den Anker lichtet und weiß dass man nicht mehr zurück kann. Also: Anker hoch.",
+              "difficulty": "advanced"
+            },
+            {
+              "title": "Neue Koordinaten",
+              "type": "social",
+              "category": "social",
+              "description": "Plane etwas Neues mit jemandem. Trip, Projekt, Event — etwas das ihr noch nie gemacht habt.",
+              "flavor": "Die aufregendsten Reisen beginnen mit dem Satz \"Ich hab da eine Idee\". Die katastrophalsten übrigens auch. Das Risiko ist es wert.",
+              "difficulty": "intermediate"
+            }
+          ]
+        }
+      ],
+      "finalReward": {
+        "type": "unique_item",
+        "item": {
+          "id": "flints-kompass",
+          "name": "Flints Nebelkompass",
+          "emoji": "🧭",
+          "slot": "amulet",
+          "stats": {
+            "glueck": 10,
+            "ausdauer": 4
+          },
+          "passiveEffect": "quest_discovery_bonus",
+          "passiveDesc": "Nebelnavigation: +20% Chance auf seltene Quest-Drops",
+          "rarity": "epic",
+          "desc": "Zeigt nicht nach Norden. Zeigt dorthin wo du hin musst. Nicht immer dasselbe.",
+          "icon": "/images/icons/npc-flint-compass.png"
+        }
+      }
     }
   ]
 }
