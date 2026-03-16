@@ -720,13 +720,13 @@
       "id": "f-treppenmeister",
       "template": "board-quest",
       "title": "Der Aufstieg",
-      "type": "fitness",
-      "category": "fitness",
+      "type": "learning",
+      "category": "learning",
       "difficulty": "starter",
       "minLevel": 1,
       "vars": {
-        "description": "Nimm heute bei jeder Gelegenheit die Treppe statt den Aufzug.",
-        "flavor": "Die Halle hat keinen Aufzug. Hat sie nie gehabt. Die Treppen sind aus einem Grund steil.",
+        "description": "Lerne heute etwas Neues, das über deinem aktuellen Niveau liegt — ein Tutorial, ein Konzept, eine Fähigkeit. Steig eine Stufe höher.",
+        "flavor": "Der wahre Aufstieg findet nicht auf Treppen statt, sondern im Kopf. Jede neue Erkenntnis ist eine Stufe nach oben.",
         "difficulty": "starter"
       }
     },
