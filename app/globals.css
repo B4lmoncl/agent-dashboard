@@ -338,6 +338,12 @@ body {
   box-shadow: 0 0 12px rgba(34,197,94,0.3);
 }
 
+/* Quest pool refresh — cooldown-active red glow (static, no pulse) */
+.quest-refresh-cooldown {
+  border-color: rgba(239,68,68,0.3) !important;
+  box-shadow: 0 0 6px rgba(239,68,68,0.15);
+}
+
 /* ─── Ritual / Vow tier cards & frequency buttons ───────────────────────── */
 .ritual-tier-btn {
   transition: filter 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
