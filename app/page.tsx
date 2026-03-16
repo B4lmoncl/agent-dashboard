@@ -173,6 +173,7 @@ export default function Dashboard() {
   const [modifierOpen, setModifierOpen] = useState(false);
   const [currencyExpanded, setCurrencyExpanded] = useState<string | null>(null);
   const [feedbackMode, setFeedbackMode] = useState(false);
+  const [favorites, setFavorites] = useState<string[]>([]);
 
   // Quest detail modal — ESC to close
   useEffect(() => {
@@ -257,6 +258,12 @@ export default function Dashboard() {
       const r = await fetch(npcUrl, { signal: AbortSignal.timeout(2000) });
       if (r.ok) { const d = await r.json(); setActiveNpcs(d.npcs || []); }
     } catch { /* ignore */ }
+    if (playerName) {
+      try {
+        const r = await fetch(`/api/player/${encodeURIComponent(playerName.toLowerCase())}/favorites`, { signal: AbortSignal.timeout(2000) });
+        if (r.ok) { const d = await r.json(); setFavorites(d.favorites || []); }
+      } catch { /* ignore */ }
+    }
     setLoading(false);
     setLastRefresh(new Date());
   }, [playerName]);
@@ -351,6 +358,20 @@ export default function Dashboard() {
       return updateChain(prev);
     });
   }, []);
+
+  const handleToggleFavorite = useCallback(async (questId: string) => {
+    if (!reviewApiKey || !playerName) return;
+    const isFav = favorites.includes(questId);
+    const action = isFav ? "remove" : "add";
+    setFavorites(prev => isFav ? prev.filter(id => id !== questId) : [...prev, questId]);
+    try {
+      await fetch(`/api/player/${encodeURIComponent(playerName.toLowerCase())}/favorites`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "x-api-key": reviewApiKey },
+        body: JSON.stringify({ questId, action }),
+      });
+    } catch { /* ignore */ }
+  }, [reviewApiKey, playerName, favorites]);
 
   const handleClaim = useCallback(async (questId: string) => {
     const key = reviewApiKey;
@@ -694,8 +715,13 @@ export default function Dashboard() {
   // Quest search + sort + type filter
   const applyFilter = useCallback((qs: Quest[]) => {
     let result = qs;
-    if (typeFilter === "npc") result = result.filter(q => !!q.npcGiverId);
-    else if (typeFilter !== "all") result = result.filter(q => (q.type ?? "development") === typeFilter);
+    if (typeFilter === "favorites") {
+      result = result.filter(q => favorites.includes(q.id));
+    } else if (typeFilter === "npc") {
+      result = result.filter(q => !!q.npcGiverId);
+    } else if (typeFilter !== "all") {
+      result = result.filter(q => (q.type ?? "development") === typeFilter);
+    }
     // Class-specific quest filter
     if (playerName) {
       const currentUser = users.find(u => u.name.toLowerCase() === playerName.toLowerCase());
@@ -708,11 +734,18 @@ export default function Dashboard() {
     if (!searchFilter) return result;
     const s = searchFilter.toLowerCase();
     return result.filter(q => q.title.toLowerCase().includes(s) || (q.description || "").toLowerCase().includes(s));
-  }, [searchFilter, typeFilter, playerName, users]);
+  }, [searchFilter, typeFilter, playerName, users, favorites]);
   const applySort = useCallback((qs: Quest[]) => {
-    if (sortMode === "newest") return qs;
-    return [...qs].sort((a, b) => (RARITY_ORDER[getQuestRarity(a)] ?? 4) - (RARITY_ORDER[getQuestRarity(b)] ?? 4));
-  }, [sortMode]);
+    const sorted = sortMode === "newest" ? qs : [...qs].sort((a, b) => (RARITY_ORDER[getQuestRarity(a)] ?? 4) - (RARITY_ORDER[getQuestRarity(b)] ?? 4));
+    // Favorites always sort to top
+    if (favorites.length === 0) return sorted;
+    const favSet = new Set(favorites);
+    return [...sorted].sort((a, b) => {
+      const aFav = favSet.has(a.id) ? 0 : 1;
+      const bFav = favSet.has(b.id) ? 0 : 1;
+      return aFav - bFav;
+    });
+  }, [sortMode, favorites]);
   const isCompanionQuest = (q: Quest) => q.rarity === "companion" || (q.type as string) === "companion" || (q.createdBy ?? "").toLowerCase() === "dobbie" || (q.createdBy ?? "").toLowerCase() === "companion";
   const visibleOpen = useMemo(() => applySort(applyFilter(quests.open.filter(q => !isCompanionQuest(q)))), [quests.open, applyFilter, applySort]);
   const dobbieActiveQuests = useMemo(() => quests.inProgress.filter(q => isCompanionQuest(q)), [quests.inProgress]);
@@ -1656,7 +1689,7 @@ export default function Dashboard() {
                   {questBoardTab === "auftraege" && <div data-feedback-id="quest-board" className="space-y-2">
                     {/* Category filters — Quest Board only */}
                     <div data-feedback-id="quest-board.filters" className="flex gap-1 flex-wrap mb-2" data-tutorial="quest-filters">
-                      {(["all", "personal", "learning", "fitness", "social", "relationship-coop", "npc"] as const).map(t => {
+                      {(["all", "favorites", "personal", "learning", "fitness", "social", "relationship-coop", "npc"] as const).map(t => {
                         const cfg = t === "all" || t === "npc" ? null : typeConfig[t];
                         const isActive = typeFilter === t;
                         const iconFile = t === "relationship-coop" ? "coop" : t;
@@ -1818,7 +1851,10 @@ export default function Dashboard() {
                       const doneToday = ritual.lastCompleted === today;
                       const isBroken = ritual.status === "broken";
                       const milestone = STREAK_MILESTONES_CLIENT.reduce<{days:number;badge:string;label:string}|null>((acc, m) => ritual.streak >= m.days ? m : acc, null);
-                      const nextMilestone = STREAK_MILESTONES_CLIENT.find(m => ritual.streak < m.days);
+                      const commitGoal = ritual.commitmentDays && ritual.commitmentDays > 0 ? ritual.commitmentDays : null;
+                      const nextMilestone = commitGoal
+                        ? (ritual.streak < commitGoal ? { days: commitGoal, badge: "\uD83C\uDFC6", label: "Commitment" } : null)
+                        : STREAK_MILESTONES_CLIENT.find(m => ritual.streak < m.days);
                       const progress = nextMilestone ? (ritual.streak / nextMilestone.days) * 100 : 100;
                       const longestStreak = ritual.longestStreak ?? ritual.streak;
                       const lastCompletedFormatted = ritual.lastCompleted
