@@ -558,7 +558,7 @@ router.get('/api/quests', (req, res) => {
     // Prefer activeQuestPool if populated, else fall back to generatedQuests
     const poolIds = pp.activeQuestPool && pp.activeQuestPool.length > 0
       ? pp.activeQuestPool
-      : (pp.generatedQuests || []);
+      : (pp.generatedQuests || []).slice(0, 11);
     const visibleIds = new Set(poolIds);
     const poolFilteredOpen = visibleIds.size > 0
       ? openPlayer.filter(q => visibleIds.has(q.id))
