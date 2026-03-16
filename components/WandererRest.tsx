@@ -214,11 +214,11 @@ export function WandererRest({
                       className="relative rounded-lg overflow-hidden flex-shrink-0"
                       style={{
                         width: 148, height: 148,
-                        border: `3px solid ${`${rc}60`}`,
+                        border: urgent && !allDone ? "3px solid rgba(220,38,38,0.5)" : `3px solid ${`${rc}60`}`,
                         boxShadow: `0 0 0 0 ${rc}`,
                         transition: "box-shadow 0.2s ease",
                       }}
-                      onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.boxShadow = `0 0 18px 4px ${rc}55`; }}
+                      onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.boxShadow = urgent && !allDone ? "0 0 18px 4px rgba(220,38,38,0.35)" : `0 0 18px 4px ${rc}55`; }}
                       onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.boxShadow = `0 0 0 0 ${rc}`; }}
                     >
                       {npc.portrait ? (
@@ -261,7 +261,7 @@ export function WandererRest({
                       <p className="text-xs font-semibold leading-tight" style={{ color: "#e8e8e8" }}>{npc.name}</p>
                       <p className="text-xs mt-0.5" style={{ color: rc, fontSize: 10 }}>{rarityStars[npc.rarity] ?? "●"}</p>
                       {!allDone && (
-                        <p className="text-xs mt-0.5" style={{ color: urgent ? "#dc2626" : "rgba(255,255,255,0.3)", fontSize: 10 }}>
+                        <p className="text-xs mt-0.5" style={{ color: "#dc2626", fontSize: 10 }}>
                           Departs in {urgent ? `${npc.hoursLeft}h` : `${npc.daysLeft}d`}
                         </p>
                       )}

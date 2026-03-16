@@ -193,6 +193,22 @@ export default function Dashboard() {
   useModalBehavior(completedInfoOpen, closeCompletedInfo);
   useModalBehavior(modifierOpen, closeModifier);
 
+  // Currencies modal — ESC to close + scroll lock
+  const closeCurrencies = useCallback(() => { setCurrenciesOpen(false); setCurrencyExpanded(null); }, []);
+  useModalBehavior(currenciesOpen, closeCurrencies);
+
+  // Delete ritual confirm — ESC to close + scroll lock
+  const closeDeleteRitualConfirm = useCallback(() => setDeleteRitualConfirmId(null), []);
+  useModalBehavior(!!deleteRitualConfirmId, closeDeleteRitualConfirm);
+
+  // Extend ritual — ESC to close + scroll lock
+  const closeExtendRitual = useCallback(() => { setExtendRitualId(null); setExtendRitualCommitment("none"); }, []);
+  useModalBehavior(!!extendRitualId, closeExtendRitual);
+
+  // Recommit ritual — ESC to close + scroll lock
+  const closeRecommitRitual = useCallback(() => setRecommitRitualId(null), []);
+  useModalBehavior(!!recommitRitualId, closeRecommitRitual);
+
   // Quest detail modal — ESC to close + scroll lock
   const closeQuestDetailModal = useCallback(() => setQuestDetailModal(null), []);
   useModalBehavior(!!questDetailModal, closeQuestDetailModal);
@@ -2296,6 +2312,7 @@ export default function Dashboard() {
 
                 {/* Delete Ritual Confirm Modal */}
                 {deleteRitualConfirmId && (
+                  <ModalPortal>
                   <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: "rgba(0,0,0,0.75)" }} onClick={() => setDeleteRitualConfirmId(null)}>
                     <div className="w-full max-w-xs rounded-2xl overflow-hidden" style={{ background: "linear-gradient(160deg, #2c2318 0%, #1e1912 100%)", border: "1px solid rgba(239,68,68,0.35)", boxShadow: "0 0 40px rgba(239,68,68,0.1)" }} onClick={e => e.stopPropagation()}>
                       <div className="p-5 text-center">
@@ -2322,6 +2339,7 @@ export default function Dashboard() {
                       </div>
                     </div>
                   </div>
+                  </ModalPortal>
                 )}
 
                 {/* Extend Ritual Modal */}

@@ -1,0 +1,44 @@
+[
+  {
+    "version": "1.5.1",
+    "date": "2026-03-16",
+    "title": "Alpha Feedback Batch — Bugs, UI Polish & New Features",
+    "changes": [
+      "Level-lock on quests enforced — quests above your level are now properly gated",
+      "Ritual extend tracker fix — commitment extensions now track correctly",
+      "Season Pass set to Coming Soon — placeholder until full implementation",
+      "Quest duplicate fix — prevented duplicate quests from appearing in pool",
+      "Stat card tooltips reworked — click-to-open popups replace hover tooltips",
+      "NPC feedback panel selector expanded — more NPC options in feedback mode",
+      "Quest pool cap enforced — max 11 open quests at a time",
+      "NPC departure styling — red banner on departing NPCs",
+      "Level up celebration animation — visual fanfare on level up",
+      "Companion quest completion feedback — Dobbie reacts to quest completions",
+      "Popout windows: ESC + click-outside + viewport centered — consistent modal behavior",
+      "Quest refresh button green glow — visual indicator for pool refresh",
+      "Quest difficulties adjusted — rebalanced quest difficulty ratings",
+      "XP info panel added to Quest Board — transparent XP breakdown display",
+      "WoW-style XP scaling curve — exponential progression inspired by WoW Classic",
+      "Quest favorites system — star icon to favorite quests, sort to top",
+      "Version tracking + New Version popup — notifies players of new releases",
+      "Expandable changelog — accordion-style version history"
+    ]
+  },
+  {
+    "version": "1.5.0",
+    "date": "2026-03-01",
+    "title": "Quest Hall Launch — Core Systems Online",
+    "changes": [
+      "Quest Board with 198 quest templates across 6 categories",
+      "NPC quest giver system with rotating visitors",
+      "Player progression with XP, gold, and streaks",
+      "Class system with skill trees",
+      "Companion system with bond levels",
+      "Ritual & Anti-Ritual tracking",
+      "Gacha banner system",
+      "Leaderboard and achievements",
+      "Campaign quest chains",
+      "Equipment and inventory system"
+    ]
+  }
+]

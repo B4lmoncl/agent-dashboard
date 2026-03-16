@@ -191,6 +191,48 @@ router.get('/api/player/:name/favorites', (req, res) => {
   res.json({ favorites: pp.favorites || [] });
 });
 
+// GET /api/game-version — get current game version from version.json
+router.get('/api/game-version', (req, res) => {
+  const fs = require('fs');
+  const path = require('path');
+  try {
+    const versionFile = path.join(__dirname, '..', 'public', 'data', 'version.json');
+    const data = JSON.parse(fs.readFileSync(versionFile, 'utf8'));
+    res.json(data);
+  } catch { res.json({ version: '1.5.1' }); }
+});
+
+// GET /api/changelog-data — get structured changelog from changelog.json
+router.get('/api/changelog-data', (req, res) => {
+  const fs = require('fs');
+  const path = require('path');
+  try {
+    const file = path.join(__dirname, '..', 'public', 'data', 'changelog.json');
+    const data = JSON.parse(fs.readFileSync(file, 'utf8'));
+    res.json(data);
+  } catch { res.json([]); }
+});
+
+// POST /api/player/:name/seen-version — update last seen version
+router.post('/api/player/:name/seen-version', requireApiKey, (req, res) => {
+  const uid = req.params.name.toLowerCase();
+  if (!state.users[uid]) return res.status(404).json({ error: 'Player not found' });
+  const pp = getPlayerProgress(uid);
+  const { version } = req.body;
+  if (!version) return res.status(400).json({ error: 'version required' });
+  pp.lastSeenVersion = version;
+  savePlayerProgress();
+  res.json({ ok: true, lastSeenVersion: version });
+});
+
+// GET /api/player/:name/seen-version — get last seen version
+router.get('/api/player/:name/seen-version', (req, res) => {
+  const uid = req.params.name.toLowerCase();
+  if (!state.users[uid]) return res.status(404).json({ error: 'Player not found' });
+  const pp = getPlayerProgress(uid);
+  res.json({ lastSeenVersion: pp.lastSeenVersion || null });
+});
+
 // GET /api/npcs — list all NPC profiles
 router.get('/api/npcs', (req, res) => {
   res.json(Object.entries(NPC_META).map(([id, meta]) => ({ id, ...meta })));
