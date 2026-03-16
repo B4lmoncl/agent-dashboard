@@ -214,10 +214,9 @@ export function WandererRest({
                       className="relative rounded-lg overflow-hidden flex-shrink-0"
                       style={{
                         width: 148, height: 148,
-                        border: `3px solid ${urgent ? "rgba(245,158,11,0.65)" : `${rc}60`}`,
-                        boxShadow: urgent ? "0 0 14px 3px rgba(245,158,11,0.22)" : `0 0 0 0 ${rc}`,
+                        border: `3px solid ${`${rc}60`}`,
+                        boxShadow: `0 0 0 0 ${rc}`,
                         transition: "box-shadow 0.2s ease",
-                        animation: urgent && hasOpenQuests ? "pulse-amber-border 1.8s ease-in-out infinite" : undefined,
                       }}
                       onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.boxShadow = `0 0 18px 4px ${rc}55`; }}
                       onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.boxShadow = `0 0 0 0 ${rc}`; }}
@@ -241,8 +240,8 @@ export function WandererRest({
                         </div>
                       )}
                       {urgent && !allDone && (
-                        <div className="absolute bottom-0 left-0 right-0 py-0.5 text-center" style={{ background: "rgba(245,158,11,0.85)", fontSize: 9, fontWeight: 700, color: "#fff", letterSpacing: 1 }}>
-                          x {npc.hoursLeft}H LEFT
+                        <div className="absolute bottom-0 left-0 right-0 py-0.5 text-center" style={{ background: "rgba(220,38,38,0.8)", fontSize: 9, fontWeight: 700, color: "#fff", letterSpacing: 1 }}>
+                          ⏳ {npc.hoursLeft}H LEFT
                         </div>
                       )}
                       {/* Gold pulsing dot for NPCs with unclaimed open quests */}
@@ -262,7 +261,7 @@ export function WandererRest({
                       <p className="text-xs font-semibold leading-tight" style={{ color: "#e8e8e8" }}>{npc.name}</p>
                       <p className="text-xs mt-0.5" style={{ color: rc, fontSize: 10 }}>{rarityStars[npc.rarity] ?? "●"}</p>
                       {!allDone && (
-                        <p className="text-xs mt-0.5" style={{ color: urgent ? "#f59e0b" : "rgba(255,255,255,0.3)", fontSize: 10 }}>
+                        <p className="text-xs mt-0.5" style={{ color: urgent ? "#dc2626" : "rgba(255,255,255,0.3)", fontSize: 10 }}>
                           Departs in {urgent ? `${npc.hoursLeft}h` : `${npc.daysLeft}d`}
                         </p>
                       )}
@@ -454,7 +453,7 @@ export function WandererRest({
                   <p className="text-xs mt-0.5" style={{ color: isStarweaver ? "rgba(255,215,0,0.5)" : "rgba(255,255,255,0.35)" }}>{npc.title}</p>
                   <p className="text-xs mt-1 font-semibold" style={{ color: rc }}>{rarityStarsModal[npc.rarity] ?? npc.rarity}</p>
                   {!isStarweaver && !(npc as ActiveNpc & { permanent?: boolean }).permanent && (
-                    <p className="text-xs mt-1" style={{ color: npc.hoursLeft <= 24 ? "#f59e0b" : "rgba(255,255,255,0.3)" }}>
+                    <p className="text-xs mt-1" style={{ color: npc.hoursLeft <= 24 ? "#dc2626" : "rgba(255,255,255,0.3)" }}>
                       {npc.hoursLeft <= 24 ? `Departs in ${npc.hoursLeft}h!` : `Departs in ${npc.daysLeft} day${npc.daysLeft !== 1 ? "s" : ""}`}
                     </p>
                   )}
