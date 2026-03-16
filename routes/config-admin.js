@@ -134,7 +134,8 @@ function generatePlayerQuests(playerName, playerLevel) {
 
   const catalog = state.questCatalog.templates || [];
   const templates = catalog.filter(t =>
-    t.category !== 'companion' && t.createdBy !== 'companion' && !excludeTemplateIds.has(t.id)
+    t.category !== 'companion' && t.createdBy !== 'companion' && !excludeTemplateIds.has(t.id) &&
+    (t.minLevel || 1) <= playerLevel
   );
 
   if (templates.length === 0) {

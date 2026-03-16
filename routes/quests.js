@@ -18,7 +18,7 @@ function buildQuestPool(playerId, playerLevel) {
     const candidates = state.quests.filter(q =>
       q.type === type && q.status === 'open' && !q.parentQuestId &&
       !completedIds.has(q.id) && !claimedIds.has(q.id) &&
-      (!q.minLevel || q.minLevel <= playerLevel + 3) &&
+      (!q.minLevel || q.minLevel <= playerLevel) &&
       !q.npcGiverId
     );
     candidates.sort(() => Math.random() - 0.5);
@@ -528,7 +528,7 @@ router.get('/api/quests', (req, res) => {
       }
 
       const minLvl = q.minLevel || 1;
-      if (playerLevel + 3 < minLvl) {
+      if (playerLevel < minLvl) {
         lockedPlayer.push({ ...q, playerStatus: 'locked' });
         continue;
       }
