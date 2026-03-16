@@ -109,6 +109,7 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
   const [completingId, setCompletingId] = useState<string | null>(null);
   const [questToast, setQuestToast] = useState<string | null>(null);
   const [rewardPopup, setRewardPopup] = useState<{ title: string; xp: number; gold: number; bondXp: number; loot: { name: string; emoji: string; rarity: string } | null } | null>(null);
+  const [completingSuccessId, setCompletingSuccessId] = useState<string | null>(null);
   const [companionGlow, setCompanionGlow] = useState(false);
 
   const handleCompleteQuest = async (questId: string, questTitle: string) => {
@@ -123,12 +124,15 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
       if (r.ok) {
         const data = await r.json();
         setCompletedIds(prev => new Set([...prev, questId]));
-        // Show reward popup
+        // Success animation on button for 1.5s
+        setCompletingSuccessId(questId);
+        setTimeout(() => setCompletingSuccessId(null), 1500);
+        // Show reward popup — stays until user clicks to dismiss
         const quest = data.quest;
         setRewardPopup({
           title: questTitle.length > 40 ? questTitle.slice(0, 40) + "…" : questTitle,
-          xp: quest?.rewards?.xp ?? 0,
-          gold: quest?.rewards?.gold ?? 0,
+          xp: quest?.rewards?.xp ?? data.xp ?? 0,
+          gold: quest?.rewards?.gold ?? data.gold ?? 0,
           bondXp: 1,
           loot: data.lootDrop ? { name: data.lootDrop.name, emoji: data.lootDrop.emoji, rarity: data.lootDrop.rarity } : null,
         });
@@ -370,17 +374,17 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
                                 title="Mark quest complete"
                                 style={{
                                   width: 24, height: 24, borderRadius: "50%",
-                                  border: done ? "1.5px solid #4ade80" : "1.5px solid rgba(255,107,157,0.4)",
-                                  background: done ? "rgba(34,197,94,0.15)" : "rgba(255,107,157,0.08)",
-                                  color: done ? "#4ade80" : "#a78bfa",
+                                  border: done || completingSuccessId === q.id ? "1.5px solid #4ade80" : "1.5px solid rgba(255,107,157,0.4)",
+                                  background: completingSuccessId === q.id ? "rgba(34,197,94,0.7)" : done ? "rgba(34,197,94,0.15)" : "rgba(255,107,157,0.08)",
+                                  color: done || completingSuccessId === q.id ? "#4ade80" : "#a78bfa",
                                   cursor: completingId ? "wait" : "pointer",
                                   display: "flex", alignItems: "center", justifyContent: "center",
                                   fontSize: "0.7rem", fontWeight: 700, flexShrink: 0,
                                   transition: "all 0.2s",
-                                  boxShadow: "0 0 6px rgba(255,107,157,0.1)",
+                                  boxShadow: completingSuccessId === q.id ? "0 0 14px rgba(34,197,94,0.6)" : "0 0 6px rgba(255,107,157,0.1)",
                                 }}
                                 onMouseEnter={e => {
-                                  if (!done) {
+                                  if (!done && completingSuccessId !== q.id) {
                                     const btn = e.currentTarget as HTMLButtonElement;
                                     btn.style.background = "rgba(34,197,94,0.8)";
                                     btn.style.color = "white";
@@ -389,17 +393,19 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
                                   }
                                 }}
                                 onMouseLeave={e => {
-                                  const btn = e.currentTarget as HTMLButtonElement;
-                                  btn.style.background = done ? "rgba(34,197,94,0.15)" : "rgba(255,107,157,0.08)";
-                                  btn.style.color = done ? "#4ade80" : "#a78bfa";
-                                  btn.style.border = done ? "1.5px solid #4ade80" : "1.5px solid rgba(255,107,157,0.4)";
-                                  btn.style.boxShadow = "0 0 6px rgba(255,107,157,0.1)";
-                                  btn.style.transform = "scale(1)";
+                                  if (completingSuccessId !== q.id) {
+                                    const btn = e.currentTarget as HTMLButtonElement;
+                                    btn.style.background = done ? "rgba(34,197,94,0.15)" : "rgba(255,107,157,0.08)";
+                                    btn.style.color = done ? "#4ade80" : "#a78bfa";
+                                    btn.style.border = done ? "1.5px solid #4ade80" : "1.5px solid rgba(255,107,157,0.4)";
+                                    btn.style.boxShadow = "0 0 6px rgba(255,107,157,0.1)";
+                                    btn.style.transform = "scale(1)";
+                                  }
                                 }}
                                 onMouseDown={e => { (e.currentTarget as HTMLButtonElement).style.transform = "scale(0.95)"; }}
                                 onMouseUp={e => { (e.currentTarget as HTMLButtonElement).style.transform = "scale(1)"; }}
                               >
-                                ✓
+                                {completingSuccessId === q.id ? "✓" : completingId === q.id ? "…" : "✓"}
                               </button>
                             )}
                           </div>
