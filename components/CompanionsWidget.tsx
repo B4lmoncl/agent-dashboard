@@ -108,6 +108,8 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
   const [completedIds, setCompletedIds] = useState<Set<string>>(new Set());
   const [completingId, setCompletingId] = useState<string | null>(null);
   const [questToast, setQuestToast] = useState<string | null>(null);
+  const [rewardPopup, setRewardPopup] = useState<{ title: string; xp: number; gold: number; bondXp: number; loot: { name: string; emoji: string; rarity: string } | null } | null>(null);
+  const [companionGlow, setCompanionGlow] = useState(false);
 
   const handleCompleteQuest = async (questId: string, questTitle: string) => {
     if (!apiKey || completingId) return;
@@ -119,9 +121,20 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
         body: JSON.stringify({ agentId: playerName }),
       });
       if (r.ok) {
+        const data = await r.json();
         setCompletedIds(prev => new Set([...prev, questId]));
-        setQuestToast(`Done: "${questTitle.length > 32 ? questTitle.slice(0, 32) + "…" : questTitle}" completed!`);
-        setTimeout(() => setQuestToast(null), 2500);
+        // Show reward popup
+        const quest = data.quest;
+        setRewardPopup({
+          title: questTitle.length > 40 ? questTitle.slice(0, 40) + "…" : questTitle,
+          xp: quest?.rewards?.xp ?? 0,
+          gold: quest?.rewards?.gold ?? 0,
+          bondXp: 1,
+          loot: data.lootDrop ? { name: data.lootDrop.name, emoji: data.lootDrop.emoji, rarity: data.lootDrop.rarity } : null,
+        });
+        // Companion glow effect
+        setCompanionGlow(true);
+        setTimeout(() => setCompanionGlow(false), 2000);
         setTimeout(() => {
           setCompletedIds(prev => { const s = new Set(prev); s.delete(questId); return s; });
           if (onUserRefresh) onUserRefresh();
@@ -236,14 +249,15 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
             <img
               src="/images/portraits/companion-dobbie.png"
               alt={companionName}
-              style={{ width: 128, height: 160, imageRendering: "auto", borderRadius: 4, border: `2px solid ${cColor.border}`, boxShadow: `0 0 12px rgba(${cColor.accentRgb},0.15)`, flexShrink: 0 }}
+              style={{ width: 128, height: 160, imageRendering: "auto", borderRadius: 4, border: `2px solid ${cColor.border}`, boxShadow: companionGlow ? `0 0 24px rgba(${cColor.accentRgb},0.6), 0 0 48px rgba(${cColor.accentRgb},0.3)` : `0 0 12px rgba(${cColor.accentRgb},0.15)`, flexShrink: 0, transition: "box-shadow 0.5s ease" }}
             />
           ) : (
             <div style={{
               width: 128, height: 160, borderRadius: 4,
               border: `2px solid ${cColor.border}`,
-              boxShadow: `0 0 12px rgba(${cColor.accentRgb},0.15)`,
+              boxShadow: companionGlow ? `0 0 24px rgba(${cColor.accentRgb},0.6), 0 0 48px rgba(${cColor.accentRgb},0.3)` : `0 0 12px rgba(${cColor.accentRgb},0.15)`,
               flexShrink: 0,
+              transition: "box-shadow 0.5s ease",
               background: `linear-gradient(135deg, rgba(${cColor.accentRgb},0.08), rgba(${cColor.accentRgb},0.02))`,
               display: "flex", alignItems: "center", justifyContent: "center",
               fontSize: 48, color: cColor.accent,
@@ -426,6 +440,57 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
           </div>
         </div>
       </div>
+
+      {/* Companion Quest Reward Popup */}
+      {rewardPopup && (
+        <div className="fixed inset-0 z-[150] flex items-center justify-center p-4" style={{ background: "rgba(0,0,0,0.8)" }}
+          onClick={() => setRewardPopup(null)}>
+          <div className="w-full max-w-xs rounded-2xl p-6 text-center" style={{
+            background: "linear-gradient(180deg, #1a0d1e 0%, #0d0d14 60%)",
+            border: `2px solid ${cColor.border}`,
+            boxShadow: `0 0 30px rgba(${cColor.accentRgb},0.3), 0 0 60px rgba(${cColor.accentRgb},0.1)`,
+            animation: "levelup-modal-in 0.5s cubic-bezier(0.34,1.56,0.64,1) forwards",
+          }} onClick={e => e.stopPropagation()}>
+            <div className="text-4xl mb-2" style={{ filter: `drop-shadow(0 0 12px rgba(${cColor.accentRgb},0.6))` }}>
+              {user?.companion?.emoji || "⭐"}
+            </div>
+            <div className="text-xs font-bold uppercase tracking-[0.2em] mb-1" style={{ color: cColor.accent }}>
+              Quest Complete!
+            </div>
+            <div className="text-sm font-semibold mb-4" style={{ color: "rgba(255,255,255,0.7)" }}>
+              {rewardPopup.title}
+            </div>
+            <div className="flex flex-col gap-1.5 mb-4">
+              {rewardPopup.xp > 0 && (
+                <div className="flex items-center justify-center gap-2 py-1.5 px-3 rounded-lg" style={{ background: "rgba(167,139,250,0.1)", border: "1px solid rgba(167,139,250,0.2)" }}>
+                  <span className="text-sm" style={{ color: "#a78bfa" }}>+{rewardPopup.xp} XP</span>
+                </div>
+              )}
+              {rewardPopup.gold > 0 && (
+                <div className="flex items-center justify-center gap-2 py-1.5 px-3 rounded-lg" style={{ background: "rgba(251,191,36,0.1)", border: "1px solid rgba(251,191,36,0.2)" }}>
+                  <span className="text-sm" style={{ color: "#fbbf24" }}>+{rewardPopup.gold} Gold</span>
+                </div>
+              )}
+              <div className="flex items-center justify-center gap-2 py-1.5 px-3 rounded-lg" style={{ background: `rgba(${cColor.accentRgb},0.1)`, border: `1px solid rgba(${cColor.accentRgb},0.2)` }}>
+                <span className="text-sm" style={{ color: cColor.accent }}>+{rewardPopup.bondXp} Bond XP</span>
+              </div>
+              {rewardPopup.loot && (
+                <div className="flex items-center justify-center gap-2 py-1.5 px-3 rounded-lg" style={{ background: "rgba(255,215,0,0.08)", border: "1px solid rgba(255,215,0,0.2)" }}>
+                  <span className="text-sm">{rewardPopup.loot.emoji}</span>
+                  <span className="text-sm" style={{ color: "#FFD700" }}>{rewardPopup.loot.name}</span>
+                </div>
+              )}
+            </div>
+            <button
+              onClick={() => setRewardPopup(null)}
+              className="action-btn w-full py-2 rounded-xl text-sm font-semibold"
+              style={{ background: `rgba(${cColor.accentRgb},0.12)`, color: cColor.accent, border: `1px solid rgba(${cColor.accentRgb},0.35)` }}
+            >
+              Nice!
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
