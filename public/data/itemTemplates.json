@@ -12,8 +12,10 @@
   "types": [
     "equipment",
     "consumable",
-    "material",
+    "passive",
     "cosmetic",
+    "special",
+    "material",
     "key",
     "season"
   ],
@@ -55,6 +57,680 @@
   ],
   "items": [
     {
+      "id": "gold-small",
+      "name": "Beutel mit Münzen",
+      "type": "consumable",
+      "rarity": "common",
+      "icon": "/images/icons/loot-gold-small.png",
+      "description": "Ein kleiner Beutel mit 15 Goldmünzen.",
+      "effect": {
+        "type": "gold",
+        "amount": 15
+      },
+      "minLevel": 1,
+      "flavorText": ""
+    },
+    {
+      "id": "xp-small",
+      "name": "Erfahrungskristall",
+      "type": "consumable",
+      "rarity": "common",
+      "icon": "/images/icons/loot-xp-small.png",
+      "description": "Ein kleiner Kristall voller Erfahrung.",
+      "effect": {
+        "type": "xp",
+        "amount": 10
+      },
+      "minLevel": 1,
+      "flavorText": ""
+    },
+    {
+      "id": "companion-snack",
+      "name": "Companion-Leckerli",
+      "type": "consumable",
+      "rarity": "common",
+      "icon": "/images/icons/loot-companion-snack.png",
+      "description": "Ein Leckerli für deinen Begleiter. +1 Bond XP.",
+      "effect": {
+        "type": "bond",
+        "amount": 1
+      },
+      "minLevel": 1,
+      "flavorText": ""
+    },
+    {
+      "id": "repair-kit-s",
+      "name": "Kleines Reparaturkit",
+      "type": "consumable",
+      "rarity": "common",
+      "icon": "/images/icons/loot-repair-kit-s.png",
+      "description": "Ein kleines Kit zur Reparatur. +5 Schmiedeglut.",
+      "effect": {
+        "type": "forge_temp",
+        "amount": 5
+      },
+      "minLevel": 1,
+      "flavorText": ""
+    },
+    {
+      "id": "bandage",
+      "name": "Verband",
+      "type": "consumable",
+      "rarity": "common",
+      "icon": "/images/icons/loot-bandage.png",
+      "description": "Ein einfacher Verband. +3 Schmiedeglut.",
+      "effect": {
+        "type": "forge_temp",
+        "amount": 3
+      },
+      "minLevel": 1,
+      "flavorText": ""
+    },
+    {
+      "id": "apple",
+      "name": "Frischer Apfel",
+      "type": "consumable",
+      "rarity": "common",
+      "icon": "/images/icons/loot-apple.png",
+      "description": "Ein frischer Apfel. +5 XP.",
+      "effect": {
+        "type": "xp",
+        "amount": 5
+      },
+      "minLevel": 1,
+      "flavorText": ""
+    },
+    {
+      "id": "gold-medium",
+      "name": "Truhe mit Gold",
+      "type": "consumable",
+      "rarity": "uncommon",
+      "icon": "/images/icons/loot-gold-medium.png",
+      "description": "Eine Truhe voller Gold. +50 Gold.",
+      "effect": {
+        "type": "gold",
+        "amount": 50
+      },
+      "minLevel": 1,
+      "flavorText": ""
+    },
+    {
+      "id": "xp-scroll",
+      "name": "Schriftrolle der Erfahrung",
+      "type": "consumable",
+      "rarity": "uncommon",
+      "icon": "/images/icons/loot-xp-scroll.png",
+      "description": "Eine Schriftrolle die Erfahrung gewährt. +25% XP-Boost für 3 Aufgaben.",
+      "effect": {
+        "type": "xp_boost",
+        "amount": 25,
+        "duration": "3_tasks"
+      },
+      "minLevel": 1,
+      "flavorText": ""
+    },
+    {
+      "id": "companion-toy",
+      "name": "Companion-Spielzeug",
+      "type": "consumable",
+      "rarity": "uncommon",
+      "icon": "/images/icons/loot-companion-toy.png",
+      "description": "Ein Spielzeug für deinen Begleiter. +3 Bond XP.",
+      "effect": {
+        "type": "bond",
+        "amount": 3
+      },
+      "minLevel": 1,
+      "flavorText": ""
+    },
+    {
+      "id": "streak-shield",
+      "name": "Streak-Schutzschild",
+      "type": "consumable",
+      "rarity": "uncommon",
+      "icon": "/images/icons/loot-streak-shield.png",
+      "description": "Schützt deinen Streak einmalig vor Verlust.",
+      "effect": {
+        "type": "streak_shield",
+        "amount": 1
+      },
+      "minLevel": 1,
+      "flavorText": ""
+    },
+    {
+      "id": "lucky-coin",
+      "name": "Glücksmünze",
+      "type": "consumable",
+      "rarity": "uncommon",
+      "icon": "/images/icons/loot-lucky-coin.png",
+      "description": "Eine glänzende Münze. +75 Gold.",
+      "effect": {
+        "type": "gold",
+        "amount": 75
+      },
+      "minLevel": 1,
+      "flavorText": ""
+    },
+    {
+      "id": "training-manual",
+      "name": "Trainingshandbuch",
+      "type": "consumable",
+      "rarity": "uncommon",
+      "icon": "/images/icons/loot-training-manual.png",
+      "description": "Ein detailliertes Handbuch. +15% XP-Boost für 5 Aufgaben.",
+      "effect": {
+        "type": "xp_boost",
+        "amount": 15,
+        "duration": "5_tasks"
+      },
+      "minLevel": 5,
+      "flavorText": ""
+    },
+    {
+      "id": "gold-large",
+      "name": "Schatzkiste",
+      "type": "consumable",
+      "rarity": "rare",
+      "icon": "/images/icons/loot-gold-large.png",
+      "description": "Eine volle Schatzkiste! +150 Gold.",
+      "effect": {
+        "type": "gold",
+        "amount": 150
+      },
+      "minLevel": 9,
+      "flavorText": ""
+    },
+    {
+      "id": "gear-random",
+      "name": "Mysteriöse Ausrüstung",
+      "type": "consumable",
+      "rarity": "rare",
+      "icon": "/images/icons/loot-gear-random.png",
+      "description": "Ein mysteriöses Paket mit zufälliger Ausrüstung.",
+      "effect": {
+        "type": "random_gear"
+      },
+      "minLevel": 9,
+      "flavorText": ""
+    },
+    {
+      "id": "companion-egg",
+      "name": "Mysteriöses Ei",
+      "type": "special",
+      "rarity": "rare",
+      "icon": "/images/icons/loot-companion-egg.png",
+      "description": "Ein mysteriöses Ei... Was schlüpft daraus?",
+      "effect": {
+        "type": "companion_egg"
+      },
+      "minLevel": 9,
+      "flavorText": ""
+    },
+    {
+      "id": "streak-shield-x3",
+      "name": "Legendäres Streak-Schild",
+      "type": "consumable",
+      "rarity": "rare",
+      "icon": "/images/icons/loot-streak-shield-x3.png",
+      "description": "Drei Schutzschilde auf einmal! +3 Streak-Schutz.",
+      "effect": {
+        "type": "streak_shield",
+        "amount": 3
+      },
+      "minLevel": 9,
+      "flavorText": ""
+    },
+    {
+      "id": "sakura-petal",
+      "name": "Ewige Kirschblüte",
+      "type": "cosmetic",
+      "rarity": "rare",
+      "icon": "/images/icons/loot-sakura-petal.png",
+      "description": "Eine ewig blühende Kirschblüte. Schaltet die Sakura-Aura frei.",
+      "effect": {
+        "type": "cosmetic",
+        "cosmetic": "sakura_aura"
+      },
+      "minLevel": 9,
+      "flavorText": ""
+    },
+    {
+      "id": "forge-ember",
+      "name": "Schmiedeglut",
+      "type": "consumable",
+      "rarity": "rare",
+      "icon": "/images/icons/loot-forge-ember.png",
+      "description": "Glühende Schmiedeglut. +30 Forge-Temperatur.",
+      "effect": {
+        "type": "forge_temp",
+        "amount": 30
+      },
+      "minLevel": 9,
+      "flavorText": ""
+    },
+    {
+      "id": "gold-huge",
+      "name": "Drachenhort",
+      "type": "consumable",
+      "rarity": "epic",
+      "icon": "/images/icons/loot-gold-huge.png",
+      "description": "Der Hort eines Drachen! +500 Gold.",
+      "effect": {
+        "type": "gold",
+        "amount": 500
+      },
+      "minLevel": 17,
+      "flavorText": ""
+    },
+    {
+      "id": "gear-upgrade",
+      "name": "Schmiedehammer der Meister",
+      "type": "special",
+      "rarity": "epic",
+      "icon": "/images/icons/loot-gear-upgrade.png",
+      "description": "Verbessert das schwächste ausgerüstete Teil auf die nächste Stufe.",
+      "effect": {
+        "type": "gear_next_tier"
+      },
+      "minLevel": 17,
+      "flavorText": ""
+    },
+    {
+      "id": "second-chance",
+      "name": "Stein der zweiten Chance",
+      "type": "consumable",
+      "rarity": "epic",
+      "icon": "/images/icons/loot-second-chance.png",
+      "description": "Setzt einen verpassten Ritual-Zähler zurück.",
+      "effect": {
+        "type": "undo_missed_ritual"
+      },
+      "minLevel": 17,
+      "flavorText": ""
+    },
+    {
+      "id": "xp-mega",
+      "name": "Arkaner Fokuskristall",
+      "type": "consumable",
+      "rarity": "epic",
+      "icon": "/images/icons/loot-xp-mega.png",
+      "description": "Ein mächtiger Kristall. +50% XP-Boost für 24 Stunden.",
+      "effect": {
+        "type": "xp_boost",
+        "amount": 50,
+        "duration": "24h"
+      },
+      "minLevel": 17,
+      "flavorText": ""
+    },
+    {
+      "id": "dragon-scale",
+      "name": "Drachenschuppe (Loot)",
+      "type": "consumable",
+      "rarity": "epic",
+      "icon": "/images/icons/loot-dragon-scale.png",
+      "description": "Eine seltene Schuppe. Enthält epische Ausrüstung.",
+      "effect": {
+        "type": "random_gear_epic"
+      },
+      "minLevel": 17,
+      "flavorText": ""
+    },
+    {
+      "id": "time-crystal",
+      "name": "Zeitkristall",
+      "type": "consumable",
+      "rarity": "epic",
+      "icon": "/images/icons/loot-time-crystal.png",
+      "description": "Ein Kristall aus gefrorener Zeit. +2 Streak-Schutz.",
+      "effect": {
+        "type": "streak_shield",
+        "amount": 2
+      },
+      "minLevel": 17,
+      "flavorText": ""
+    },
+    {
+      "id": "named-weapon",
+      "name": "Klinge des Frühaufstehers",
+      "type": "special",
+      "rarity": "legendary",
+      "icon": "/images/icons/loot-named-weapon.png",
+      "description": "Eine legendäre Klinge, geschmiedet im Licht der Morgendämmerung.",
+      "effect": {
+        "type": "named_gear"
+      },
+      "minLevel": 25,
+      "flavorText": ""
+    },
+    {
+      "id": "guild-blessing",
+      "name": "Segen der Gilde",
+      "type": "consumable",
+      "rarity": "legendary",
+      "icon": "/images/icons/loot-guild-blessing.png",
+      "description": "Segnet die gesamte Gilde. +25% XP für alle für 24h.",
+      "effect": {
+        "type": "team_buff",
+        "amount": 25,
+        "duration": "24h"
+      },
+      "minLevel": 25,
+      "flavorText": ""
+    },
+    {
+      "id": "legendary-title",
+      "name": "Titel: Glückskind",
+      "type": "consumable",
+      "rarity": "legendary",
+      "icon": "/images/icons/loot-legendary-title.png",
+      "description": "Verleiht den legendären Titel 'Glückskind'.",
+      "effect": {
+        "type": "title",
+        "title": "Glückskind"
+      },
+      "minLevel": 25,
+      "flavorText": ""
+    },
+    {
+      "id": "world-key",
+      "name": "Schlüssel der Welten",
+      "type": "special",
+      "rarity": "legendary",
+      "icon": "/images/icons/loot-world-key.png",
+      "description": "Ein Schlüssel zu einer geheimen Quest...",
+      "effect": {
+        "type": "unlock_secret_quest"
+      },
+      "minLevel": 25,
+      "flavorText": ""
+    },
+    {
+      "id": "phoenix-feather",
+      "name": "Phoenixfeder",
+      "type": "consumable",
+      "rarity": "legendary",
+      "icon": "/images/icons/loot-phoenix-feather.png",
+      "description": "Einmalig: Nächster Streak-Verlust wird komplett verhindert.",
+      "effect": {
+        "type": "revive"
+      },
+      "minLevel": 25,
+      "flavorText": ""
+    },
+    {
+      "id": "klinge-aetherstrom",
+      "name": "Klinge des Aetherstroms",
+      "type": "equipment",
+      "slot": "weapon",
+      "rarity": "legendary",
+      "icon": "/images/icons/gacha-klinge-aetherstrom.png",
+      "description": "Eine Klinge, geschmiedet im reinsten Aetherstrom.",
+      "stats": {
+        "kraft": 15,
+        "ausdauer": 5,
+        "weisheit": 5,
+        "glueck": 5
+      },
+      "passiveEffect": "xp_boost_10",
+      "minLevel": 25,
+      "flavorText": ""
+    },
+    {
+      "id": "mantel-sternenwaechter",
+      "name": "Mantel der Sternenwächterin",
+      "type": "equipment",
+      "slot": "armor",
+      "rarity": "legendary",
+      "icon": "/images/icons/gacha-mantel-sternenwaechter.png",
+      "description": "Gewoben aus dem Licht sterbender Sterne.",
+      "stats": {
+        "ausdauer": 20,
+        "weisheit": 5,
+        "glueck": 5
+      },
+      "passiveEffect": "xp_boost_10",
+      "minLevel": 25,
+      "flavorText": ""
+    },
+    {
+      "id": "phoenixfeder",
+      "name": "Phönixfeder",
+      "type": "consumable",
+      "rarity": "legendary",
+      "icon": "/images/icons/gacha-phoenixfeder.png",
+      "description": "Die letzte Feder eines wiedergeborenen Phönix. Stellt einen gebrochenen Streak vollständig wieder her.",
+      "effect": {
+        "type": "revive"
+      },
+      "minLevel": 1,
+      "flavorText": ""
+    },
+    {
+      "id": "schild-eiserner-wille",
+      "name": "Schild des Eisernen Willens",
+      "type": "equipment",
+      "slot": "shield",
+      "rarity": "epic",
+      "icon": "/images/icons/gacha-schild-eiserner-wille.png",
+      "description": "Geschmiedet im Herzen eines erloschenen Vulkans.",
+      "stats": {
+        "ausdauer": 12,
+        "kraft": 3
+      },
+      "minLevel": 17,
+      "flavorText": ""
+    },
+    {
+      "id": "stab-erkenntnis",
+      "name": "Stab der Erkenntnis",
+      "type": "equipment",
+      "slot": "weapon",
+      "rarity": "epic",
+      "icon": "/images/icons/gacha-stab-erkenntnis.png",
+      "description": "Ein Stab aus uraltem Weltenholz.",
+      "stats": {
+        "weisheit": 10,
+        "glueck": 3
+      },
+      "passiveEffect": "xp_boost_5",
+      "minLevel": 17,
+      "flavorText": ""
+    },
+    {
+      "id": "goldene-schriftrolle",
+      "name": "Goldene Schriftrolle",
+      "type": "consumable",
+      "rarity": "epic",
+      "icon": "/images/icons/gacha-goldene-schriftrolle.png",
+      "description": "2x Gold für 24 Stunden.",
+      "effect": {
+        "type": "gold_2x_24h",
+        "duration": "24h"
+      },
+      "minLevel": 1,
+      "flavorText": ""
+    },
+    {
+      "id": "essenz-magnet",
+      "name": "Essenz-Magnet",
+      "type": "consumable",
+      "rarity": "epic",
+      "icon": "/images/icons/gacha-essenz-magnet.png",
+      "description": "Ein pulsierender Kristall. +Essenz für 48h.",
+      "effect": {
+        "type": "essenz_boost_48h",
+        "duration": "48h"
+      },
+      "minLevel": 1,
+      "flavorText": ""
+    },
+    {
+      "id": "abenteuerklinge",
+      "name": "Abenteurerklinge",
+      "type": "equipment",
+      "slot": "weapon",
+      "rarity": "rare",
+      "icon": "/images/icons/gacha-abenteuerklinge.png",
+      "description": "Die Standardwaffe eines erfahrenen Abenteurers.",
+      "stats": {
+        "kraft": 8,
+        "glueck": 1
+      },
+      "minLevel": 9,
+      "flavorText": ""
+    },
+    {
+      "id": "wanderermantel",
+      "name": "Wanderermantel",
+      "type": "equipment",
+      "slot": "armor",
+      "rarity": "rare",
+      "icon": "/images/icons/gacha-wanderermantel.png",
+      "description": "Ein wettergegerbter Mantel, der schon tausend Meilen gesehen hat.",
+      "stats": {
+        "ausdauer": 6,
+        "weisheit": 2
+      },
+      "minLevel": 9,
+      "flavorText": ""
+    },
+    {
+      "id": "gluecksklee",
+      "name": "Glücksklee",
+      "type": "passive",
+      "rarity": "rare",
+      "icon": "/images/icons/gacha-gluecksklee.png",
+      "description": "+15% Rarity-Boost im Gacha solange im Inventar.",
+      "effect": {
+        "type": "rarity_boost_15"
+      },
+      "minLevel": 1,
+      "flavorText": ""
+    },
+    {
+      "id": "schatzkompass",
+      "name": "Schatzkompass",
+      "type": "passive",
+      "rarity": "rare",
+      "icon": "/images/icons/gacha-schatzkompass.png",
+      "description": "2x Gold bei nächster Quest-Belohnung.",
+      "effect": {
+        "type": "gold_boost_next"
+      },
+      "minLevel": 1,
+      "flavorText": ""
+    },
+    {
+      "id": "mitleids-katalysator",
+      "name": "Mitleids-Katalysator",
+      "type": "passive",
+      "rarity": "rare",
+      "icon": "/images/icons/gacha-mitleids-katalysator.png",
+      "description": "Pity-Counter -5 beim nächsten Gacha-Pull.",
+      "effect": {
+        "type": "pity_minus_5"
+      },
+      "minLevel": 1,
+      "flavorText": ""
+    },
+    {
+      "id": "eisenschwert",
+      "name": "Eisenschwert",
+      "type": "equipment",
+      "slot": "weapon",
+      "rarity": "uncommon",
+      "icon": "/images/icons/gacha-eisenschwert.png",
+      "description": "Ein solides Schwert aus gehärtetem Eisen.",
+      "stats": {
+        "kraft": 4
+      },
+      "minLevel": 1,
+      "flavorText": ""
+    },
+    {
+      "id": "lederschultern",
+      "name": "Lederschultern",
+      "type": "equipment",
+      "slot": "armor",
+      "rarity": "uncommon",
+      "icon": "/images/icons/gacha-lederschultern.png",
+      "description": "Robuste Lederschultern, die so manchen Hieb abgefangen haben.",
+      "stats": {
+        "ausdauer": 3
+      },
+      "minLevel": 1,
+      "flavorText": ""
+    },
+    {
+      "id": "kleine-erinnerungssplitter",
+      "name": "Kleine Erinnerungssplitter",
+      "type": "passive",
+      "rarity": "uncommon",
+      "icon": "/images/icons/gacha-kleine-erinnerungssplitter.png",
+      "description": "50% Chance auf Streak-Recovery bei Miss.",
+      "effect": {
+        "type": "streak_recovery_50"
+      },
+      "minLevel": 1,
+      "flavorText": ""
+    },
+    {
+      "id": "sanduhr-gnade",
+      "name": "Sanduhr der Gnade",
+      "type": "consumable",
+      "rarity": "uncommon",
+      "icon": "/images/icons/gacha-sanduhr-gnade.png",
+      "description": "+24h auf alle aktiven Quest-Timer.",
+      "effect": {
+        "type": "quest_timer_24h"
+      },
+      "minLevel": 1,
+      "flavorText": ""
+    },
+    {
+      "id": "rostiger-dolch",
+      "name": "Rostiger Dolch (Gacha)",
+      "type": "equipment",
+      "slot": "weapon",
+      "rarity": "common",
+      "icon": "/images/icons/gacha-rostiger-dolch.png",
+      "description": "Ein alter, rostiger Dolch. Besser als nichts.",
+      "stats": {
+        "kraft": 2
+      },
+      "minLevel": 1,
+      "flavorText": ""
+    },
+    {
+      "id": "flickenumhang",
+      "name": "Flickenumhang",
+      "type": "equipment",
+      "slot": "armor",
+      "rarity": "common",
+      "icon": "/images/icons/gacha-flickenumhang.png",
+      "description": "Ein mehrfach geflickter Umhang.",
+      "stats": {
+        "ausdauer": 1
+      },
+      "minLevel": 1,
+      "flavorText": ""
+    },
+    {
+      "id": "heiltrank",
+      "name": "Heiltrank",
+      "type": "consumable",
+      "rarity": "common",
+      "icon": "/images/icons/gacha-heiltrank.png",
+      "description": "Ein einfacher Heiltrank. +10 Forge-Temp.",
+      "effect": {
+        "type": "forge_temp",
+        "amount": 10
+      },
+      "minLevel": 1,
+      "flavorText": ""
+    },
+    {
       "id": "t1-sword",
       "name": "Holzschwert",
       "type": "equipment",
@@ -75,7 +751,8 @@
       "stackable": false,
       "maxStack": 1,
       "sellPrice": 16,
-      "buyPrice": 50
+      "buyPrice": 50,
+      "flavorText": ""
     },
     {
       "id": "t1-dagger",
@@ -99,7 +776,8 @@
       "stackable": false,
       "maxStack": 1,
       "sellPrice": 13,
-      "buyPrice": 40
+      "buyPrice": 40,
+      "flavorText": ""
     },
     {
       "id": "t1-staff",
@@ -123,7 +801,8 @@
       "stackable": false,
       "maxStack": 1,
       "sellPrice": 25,
-      "buyPrice": 75
+      "buyPrice": 75,
+      "flavorText": ""
     },
     {
       "id": "t1-axe",
@@ -146,7 +825,8 @@
       "stackable": false,
       "maxStack": 1,
       "sellPrice": 30,
-      "buyPrice": 90
+      "buyPrice": 90,
+      "flavorText": ""
     },
     {
       "id": "t1-shield",
@@ -169,7 +849,8 @@
       "stackable": false,
       "maxStack": 1,
       "sellPrice": 16,
-      "buyPrice": 50
+      "buyPrice": 50,
+      "flavorText": ""
     },
     {
       "id": "t1-buckler",
@@ -193,7 +874,8 @@
       "stackable": false,
       "maxStack": 1,
       "sellPrice": 26,
-      "buyPrice": 80
+      "buyPrice": 80,
+      "flavorText": ""
     },
     {
       "id": "t1-helm",
@@ -216,7 +898,8 @@
       "stackable": false,
       "maxStack": 1,
       "sellPrice": 13,
-      "buyPrice": 40
+      "buyPrice": 40,
+      "flavorText": ""
     },
     {
       "id": "t1-hood",
@@ -239,7 +922,8 @@
       "stackable": false,
       "maxStack": 1,
       "sellPrice": 20,
-      "buyPrice": 60
+      "buyPrice": 60,
+      "flavorText": ""
     },
     {
       "id": "t1-armor",
@@ -263,7 +947,8 @@
       "stackable": false,
       "maxStack": 1,
       "sellPrice": 20,
-      "buyPrice": 60
+      "buyPrice": 60,
+      "flavorText": ""
     },
     {
       "id": "t1-tunic",
@@ -287,7 +972,8 @@
       "stackable": false,
       "maxStack": 1,
       "sellPrice": 33,
-      "buyPrice": 100
+      "buyPrice": 100,
+      "flavorText": ""
     },
     {
       "id": "t1-amulet",
@@ -310,7 +996,8 @@
       "stackable": false,
       "maxStack": 1,
       "sellPrice": 15,
-      "buyPrice": 45
+      "buyPrice": 45,
+      "flavorText": ""
     },
     {
       "id": "t1-charm",
@@ -333,7 +1020,8 @@
       "stackable": false,
       "maxStack": 1,
       "sellPrice": 23,
-      "buyPrice": 70
+      "buyPrice": 70,
+      "flavorText": ""
     },
     {
       "id": "t1-boots",
@@ -356,7 +1044,8 @@
       "stackable": false,
       "maxStack": 1,
       "sellPrice": 11,
-      "buyPrice": 35
+      "buyPrice": 35,
+      "flavorText": ""
     },
     {
       "id": "t1-sandals",
@@ -380,7 +1069,8 @@
       "stackable": false,
       "maxStack": 1,
       "sellPrice": 21,
-      "buyPrice": 65
+      "buyPrice": 65,
+      "flavorText": ""
     },
     {
       "id": "t2-sword",
@@ -404,7 +1094,8 @@
       "stackable": false,
       "maxStack": 1,
       "sellPrice": 66,
-      "buyPrice": 200
+      "buyPrice": 200,
+      "flavorText": ""
     },
     {
       "id": "t2-katana",
@@ -428,7 +1119,8 @@
       "stackable": false,
       "maxStack": 1,
       "sellPrice": 100,
-      "buyPrice": 300
+      "buyPrice": 300,
+      "flavorText": ""
     },
     {
       "id": "t2-hammer",
@@ -451,7 +1143,8 @@
       "stackable": false,
       "maxStack": 1,
       "sellPrice": 116,
-      "buyPrice": 350
+      "buyPrice": 350,
+      "flavorText": ""
     },
     {
       "id": "t2-shield",
@@ -474,7 +1167,8 @@
       "stackable": false,
       "maxStack": 1,
       "sellPrice": 73,
-      "buyPrice": 220
+      "buyPrice": 220,
+      "flavorText": ""
     },
     {
       "id": "t2-tower",
@@ -498,7 +1192,8 @@
       "stackable": false,
       "maxStack": 1,
       "sellPrice": 106,
-      "buyPrice": 320
+      "buyPrice": 320,
+      "flavorText": ""
     },
     {
       "id": "t2-helm",
@@ -522,7 +1217,8 @@
       "stackable": false,
       "maxStack": 1,
       "sellPrice": 66,
-      "buyPrice": 200
+      "buyPrice": 200,
+      "flavorText": ""
     },
     {
       "id": "t2-circlet",
@@ -546,7 +1242,8 @@
       "stackable": false,
       "maxStack": 1,
       "sellPrice": 93,
-      "buyPrice": 280
+      "buyPrice": 280,
+      "flavorText": ""
     },
     {
       "id": "t2-armor",
@@ -570,7 +1267,8 @@
       "stackable": false,
       "maxStack": 1,
       "sellPrice": 83,
-      "buyPrice": 250
+      "buyPrice": 250,
+      "flavorText": ""
     },
     {
       "id": "t2-brigandine",
@@ -595,7 +1293,8 @@
       "stackable": false,
       "maxStack": 1,
       "sellPrice": 133,
-      "buyPrice": 400
+      "buyPrice": 400,
+      "flavorText": ""
     },
     {
       "id": "t2-amulet",
@@ -618,7 +1317,8 @@
       "stackable": false,
       "maxStack": 1,
       "sellPrice": 60,
-      "buyPrice": 180
+      "buyPrice": 180,
+      "flavorText": ""
     },
     {
       "id": "t2-pendant",
@@ -642,7 +1342,8 @@
       "stackable": false,
       "maxStack": 1,
       "sellPrice": 100,
-      "buyPrice": 300
+      "buyPrice": 300,
+      "flavorText": ""
     },
     {
       "id": "t2-boots",
@@ -666,7 +1367,8 @@
       "stackable": false,
       "maxStack": 1,
       "sellPrice": 63,
-      "buyPrice": 190
+      "buyPrice": 190,
+      "flavorText": ""
     },
     {
       "id": "t2-strider",
@@ -690,7 +1392,8 @@
       "stackable": false,
       "maxStack": 1,
       "sellPrice": 90,
-      "buyPrice": 270
+      "buyPrice": 270,
+      "flavorText": ""
     },
     {
       "id": "t3-sword",
@@ -714,7 +1417,8 @@
       "stackable": false,
       "maxStack": 1,
       "sellPrice": 166,
-      "buyPrice": 500
+      "buyPrice": 500,
+      "flavorText": ""
     },
     {
       "id": "t3-lance",
@@ -738,7 +1442,8 @@
       "stackable": false,
       "maxStack": 1,
       "sellPrice": 233,
-      "buyPrice": 700
+      "buyPrice": 700,
+      "flavorText": ""
     },
     {
       "id": "t3-wand",
@@ -762,7 +1467,8 @@
       "stackable": false,
       "maxStack": 1,
       "sellPrice": 250,
-      "buyPrice": 750
+      "buyPrice": 750,
+      "flavorText": ""
     },
     {
       "id": "t3-shield",
@@ -786,7 +1492,8 @@
       "stackable": false,
       "maxStack": 1,
       "sellPrice": 183,
-      "buyPrice": 550
+      "buyPrice": 550,
+      "flavorText": ""
     },
     {
       "id": "t3-barrier",
@@ -810,7 +1517,8 @@
       "stackable": false,
       "maxStack": 1,
       "sellPrice": 233,
-      "buyPrice": 700
+      "buyPrice": 700,
+      "flavorText": ""
     },
     {
       "id": "t3-helm",
@@ -834,7 +1542,8 @@
       "stackable": false,
       "maxStack": 1,
       "sellPrice": 166,
-      "buyPrice": 500
+      "buyPrice": 500,
+      "flavorText": ""
     },
     {
       "id": "t3-crown",
@@ -859,7 +1568,8 @@
       "stackable": false,
       "maxStack": 1,
       "sellPrice": 266,
-      "buyPrice": 800
+      "buyPrice": 800,
+      "flavorText": ""
     },
     {
       "id": "t3-armor",
@@ -884,7 +1594,8 @@
       "stackable": false,
       "maxStack": 1,
       "sellPrice": 200,
-      "buyPrice": 600
+      "buyPrice": 600,
+      "flavorText": ""
     },
     {
       "id": "t3-plate",
@@ -909,7 +1620,8 @@
       "stackable": false,
       "maxStack": 1,
       "sellPrice": 300,
-      "buyPrice": 900
+      "buyPrice": 900,
+      "flavorText": ""
     },
     {
       "id": "t3-amulet",
@@ -933,7 +1645,8 @@
       "stackable": false,
       "maxStack": 1,
       "sellPrice": 166,
-      "buyPrice": 500
+      "buyPrice": 500,
+      "flavorText": ""
     },
     {
       "id": "t3-eye",
@@ -957,7 +1670,8 @@
       "stackable": false,
       "maxStack": 1,
       "sellPrice": 250,
-      "buyPrice": 750
+      "buyPrice": 750,
+      "flavorText": ""
     },
     {
       "id": "t3-boots",
@@ -981,7 +1695,8 @@
       "stackable": false,
       "maxStack": 1,
       "sellPrice": 160,
-      "buyPrice": 480
+      "buyPrice": 480,
+      "flavorText": ""
     },
     {
       "id": "t3-shadow",
@@ -1006,7 +1721,8 @@
       "stackable": false,
       "maxStack": 1,
       "sellPrice": 240,
-      "buyPrice": 720
+      "buyPrice": 720,
+      "flavorText": ""
     },
     {
       "id": "t4-dawn",
@@ -1031,7 +1747,8 @@
       "stackable": false,
       "maxStack": 1,
       "sellPrice": 666,
-      "buyPrice": 2000
+      "buyPrice": 2000,
+      "flavorText": ""
     },
     {
       "id": "t4-void",
@@ -1056,7 +1773,8 @@
       "stackable": false,
       "maxStack": 1,
       "sellPrice": 1000,
-      "buyPrice": 3000
+      "buyPrice": 3000,
+      "flavorText": ""
     },
     {
       "id": "t4-aegis",
@@ -1080,7 +1798,8 @@
       "stackable": false,
       "maxStack": 1,
       "sellPrice": 666,
-      "buyPrice": 2000
+      "buyPrice": 2000,
+      "flavorText": ""
     },
     {
       "id": "t4-crown",
@@ -1104,7 +1823,8 @@
       "stackable": false,
       "maxStack": 1,
       "sellPrice": 666,
-      "buyPrice": 2000
+      "buyPrice": 2000,
+      "flavorText": ""
     },
     {
       "id": "t4-armor",
@@ -1129,7 +1849,8 @@
       "stackable": false,
       "maxStack": 1,
       "sellPrice": 833,
-      "buyPrice": 2500
+      "buyPrice": 2500,
+      "flavorText": ""
     },
     {
       "id": "t4-heart",
@@ -1153,7 +1874,8 @@
       "stackable": false,
       "maxStack": 1,
       "sellPrice": 666,
-      "buyPrice": 2000
+      "buyPrice": 2000,
+      "flavorText": ""
     },
     {
       "id": "t4-boots",
@@ -1178,7 +1900,8 @@
       "stackable": false,
       "maxStack": 1,
       "sellPrice": 666,
-      "buyPrice": 2000
+      "buyPrice": 2000,
+      "flavorText": ""
     },
     {
       "id": "t4-excalibur",
@@ -1204,7 +1927,8 @@
       "stackable": false,
       "maxStack": 1,
       "sellPrice": 0,
-      "buyPrice": 0
+      "buyPrice": 0,
+      "flavorText": ""
     },
     {
       "id": "t4-phoenix",
@@ -1229,7 +1953,8 @@
       "stackable": false,
       "maxStack": 1,
       "sellPrice": 0,
-      "buyPrice": 0
+      "buyPrice": 0,
+      "flavorText": ""
     },
     {
       "id": "t4-oracle",
@@ -1253,7 +1978,8 @@
       "stackable": false,
       "maxStack": 1,
       "sellPrice": 0,
-      "buyPrice": 0
+      "buyPrice": 0,
+      "flavorText": ""
     }
   ]
 }

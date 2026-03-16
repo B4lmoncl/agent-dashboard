@@ -23,6 +23,7 @@ const {
   loadLootTables, loadGearTemplates, loadNpcGivers, loadNpcState,
   loadAppState, loadFeedback,
   loadCurrencyTemplates, loadGachaPool, loadBannerTemplates, loadGachaState,
+  loadItemTemplates,
   saveAppState,
 } = require('./lib/state');
 const { autoCreateCampaigns, initAchievementCatalogue } = require('./lib/helpers');
@@ -131,6 +132,7 @@ loadCurrencyTemplates();
 loadGachaPool();
 loadBannerTemplates();
 loadGachaState();
+loadItemTemplates();
 
 // NPC & rotation systems
 startupNpcCheck();
