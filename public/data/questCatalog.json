@@ -303,9 +303,9 @@
       "type": "fitness",
       "category": "fitness",
       "vars": {
-        "description": "Nimm heute jede Treppe statt den Aufzug. Ausnahmslos.",
+        "description": "Absolviere eine echte Kletterherausforderung: 10 Stockwerke Treppen steigen ohne Pause, oder eine Kletterwand/Outdoor-Kletterroute bezwingen.",
         "flavor": "\"Wer den Turm bezwingen will, muss jede Stufe ehren.\" — Oma Ilse, die den Aufzug nimmt seit die Keksdose im dritten Stock steht",
-        "difficulty": "starter"
+        "difficulty": "advanced"
       }
     },
     {
@@ -722,12 +722,12 @@
       "title": "Der Aufstieg",
       "type": "learning",
       "category": "learning",
-      "difficulty": "starter",
+      "difficulty": "advanced",
       "minLevel": 1,
       "vars": {
-        "description": "Lerne heute etwas Neues, das über deinem aktuellen Niveau liegt — ein Tutorial, ein Konzept, eine Fähigkeit. Steig eine Stufe höher.",
+        "description": "Wage den geistigen Aufstieg: Arbeite dich in ein Thema ein, das deutlich über deinem aktuellen Wissensstand liegt. Lies einen Fachartikel, schau ein fortgeschrittenes Tutorial, oder löse ein Problem aus einem fremden Fachgebiet.",
         "flavor": "Der wahre Aufstieg findet nicht auf Treppen statt, sondern im Kopf. Jede neue Erkenntnis ist eine Stufe nach oben.",
-        "difficulty": "starter"
+        "difficulty": "advanced"
       }
     },
     {
