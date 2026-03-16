@@ -119,6 +119,7 @@ export function QuestCard({ quest, selected, onToggle, onClaim, onUnclaim, onCom
   onToggleFavorite?: (id: string) => void;
 }) {
   const [expanded, setExpanded] = useState(false);
+  const [starAnimating, setStarAnimating] = useState(false);
   const isInProgress = quest.status === "in_progress";
   const cats = quest.categories?.length ? quest.categories : (quest.category ? [quest.category] : []);
   const isClaimedByMe = playerName && quest.claimedBy?.toLowerCase() === playerName.toLowerCase();
@@ -170,18 +171,19 @@ export function QuestCard({ quest, selected, onToggle, onClaim, onUnclaim, onCom
       >
         {/* Rarity top strip */}
         <div style={{ height: 3, background: `linear-gradient(90deg, transparent, ${rarityColor}bb, transparent)`, borderRadius: "10px 10px 0 0" }} />
-        {/* Favorite star — top right corner */}
-        {onToggleFavorite && (
-          <button
-            onClick={e => { e.stopPropagation(); onToggleFavorite(quest.id); }}
-            style={{ position: "absolute", top: 6, right: 6, background: "none", border: "none", cursor: "pointer", fontSize: 16, lineHeight: 1, color: isFavorite ? "#fbbf24" : "rgba(255,255,255,0.2)", textShadow: isFavorite ? "0 0 6px rgba(251,191,36,0.5)" : "none", transition: "color 0.2s, text-shadow 0.2s", zIndex: 2, padding: 2 }}
-            title={isFavorite ? "Remove from favorites" : "Add to favorites"}
-          >
-            {isFavorite ? "\u2605" : "\u2606"}
-          </button>
-        )}
-        {/* Rarity gem — top right corner (shifted if star present) */}
-        <div style={{ position: "absolute", top: onToggleFavorite ? 26 : 10, right: 10, width: 8, height: 8, borderRadius: "50%", background: rarityColor, boxShadow: `0 0 7px ${rarityColor}`, opacity: 0.88 }} />
+        {/* Rarity gem + Favorite star — top right, same horizontal line */}
+        <div style={{ position: "absolute", top: 8, right: 6, display: "flex", alignItems: "center", gap: 4, zIndex: 2 }}>
+          <div style={{ width: 8, height: 8, borderRadius: "50%", background: rarityColor, boxShadow: `0 0 7px ${rarityColor}`, opacity: 0.88, flexShrink: 0 }} />
+          {onToggleFavorite && (
+            <button
+              onClick={e => { e.stopPropagation(); onToggleFavorite(quest.id); setStarAnimating(true); setTimeout(() => setStarAnimating(false), 350); }}
+              style={{ background: "none", border: "none", cursor: "pointer", fontSize: 22, lineHeight: 1, color: isFavorite ? "#fbbf24" : "rgba(255,255,255,0.2)", textShadow: isFavorite ? "0 0 8px rgba(251,191,36,0.6)" : "none", transition: "color 0.2s, text-shadow 0.2s", padding: 0, display: "flex", animation: starAnimating ? "star-bounce 300ms ease-out forwards" : "none" }}
+              title={isFavorite ? "Remove from favorites" : "Add to favorites"}
+            >
+              {isFavorite ? "\u2605" : "\u2606"}
+            </button>
+          )}
+        </div>
         {/* Card body */}
         <div className="p-3 flex-1">
           <div className="flex items-start gap-2 mb-1.5">
@@ -259,8 +261,8 @@ export function QuestCard({ quest, selected, onToggle, onClaim, onUnclaim, onCom
       {/* Favorite star — top right */}
       {onToggleFavorite && (
         <button
-          onClick={e => { e.stopPropagation(); onToggleFavorite(quest.id); }}
-          style={{ position: "absolute", top: 6, right: 8, background: "none", border: "none", cursor: "pointer", fontSize: 14, lineHeight: 1, color: isFavorite ? "#fbbf24" : "rgba(255,255,255,0.15)", textShadow: isFavorite ? "0 0 6px rgba(251,191,36,0.5)" : "none", transition: "color 0.2s, text-shadow 0.2s", zIndex: 2, padding: 2 }}
+          onClick={e => { e.stopPropagation(); onToggleFavorite(quest.id); setStarAnimating(true); setTimeout(() => setStarAnimating(false), 350); }}
+          style={{ position: "absolute", top: 4, right: 6, background: "none", border: "none", cursor: "pointer", fontSize: 22, lineHeight: 1, color: isFavorite ? "#fbbf24" : "rgba(255,255,255,0.15)", textShadow: isFavorite ? "0 0 8px rgba(251,191,36,0.6)" : "none", transition: "color 0.2s, text-shadow 0.2s", zIndex: 2, padding: 0, animation: starAnimating ? "star-bounce 300ms ease-out forwards" : "none" }}
           title={isFavorite ? "Remove from favorites" : "Add to favorites"}
         >
           {isFavorite ? "\u2605" : "\u2606"}

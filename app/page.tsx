@@ -162,6 +162,7 @@ export default function Dashboard() {
   const [changelog, setChangelog] = useState<ChangelogEntry[]>([]);
   const [changelogLoading, setChangelogLoading] = useState(false);
   const [poolRefreshing, setPoolRefreshing] = useState(false);
+  const [lastPoolRefresh, setLastPoolRefresh] = useState<Date | null>(null);
   const [npcBoardFilter, setNpcBoardFilter] = useState<string | null>(null);
   const [activeNpcs, setActiveNpcs] = useState<ActiveNpc[]>([]);
   const [selectedNpc, setSelectedNpc] = useState<ActiveNpc | null>(null);
@@ -179,6 +180,7 @@ export default function Dashboard() {
   const [currencyExpanded, setCurrencyExpanded] = useState<string | null>(null);
   const [feedbackMode, setFeedbackMode] = useState(false);
   const [favorites, setFavorites] = useState<string[]>([]);
+  const [modalStarAnimating, setModalStarAnimating] = useState(false);
   const [gameVersion, setGameVersion] = useState<string>("1.5.1");
   const [versionPopupOpen, setVersionPopupOpen] = useState(false);
   const [changelogData, setChangelogData] = useState<{ version: string; date: string; title: string; changes: string[] }[]>([]);
@@ -337,6 +339,12 @@ export default function Dashboard() {
       const r = await fetch(`/api/changelog-data`, { signal: AbortSignal.timeout(2000) });
       if (r.ok) { const d = await r.json(); if (Array.isArray(d)) setChangelogData(d); }
     } catch { /* ignore */ }
+    if (playerName) {
+      try {
+        const r = await fetch(`/api/quests/pool?player=${encodeURIComponent(playerName)}`, { signal: AbortSignal.timeout(2000) });
+        if (r.ok) { const d = await r.json(); if (d.lastRefresh) setLastPoolRefresh(new Date(d.lastRefresh)); }
+      } catch { /* ignore */ }
+    }
     setLoading(false);
     setLastRefresh(new Date());
   }, [playerName]);
@@ -593,6 +601,7 @@ export default function Dashboard() {
         headers: { "x-api-key": reviewApiKey },
       });
       if (r.ok) {
+        setLastPoolRefresh(new Date());
         await refresh();
       } else {
         const d = await r.json().catch(() => ({}));
@@ -1865,7 +1874,7 @@ export default function Dashboard() {
                           <button
                             onClick={handlePoolRefresh}
                             disabled={poolRefreshing}
-                            className={`btn-interactive px-2 py-1 rounded${!poolRefreshing ? " quest-refresh-ready" : ""}`}
+                            className={`btn-interactive px-2 py-1 rounded${(() => { const ready = !poolRefreshing && (!lastPoolRefresh || Date.now() - lastPoolRefresh.getTime() >= 6 * 3600 * 1000); return poolRefreshing ? "" : ready ? " quest-refresh-ready" : " quest-refresh-cooldown"; })()}`}
                             style={{ background: "rgba(59,130,246,0.12)", color: "#60a5fa", border: "1px solid rgba(59,130,246,0.3)", opacity: poolRefreshing ? 0.6 : 1 }}
                             title="Refresh quest pool (1x per 6h)"
                           >
@@ -2818,7 +2827,18 @@ export default function Dashboard() {
                     </div>
                   </div>
                 </div>
-                <button onClick={() => setQuestDetailModal(null)} style={{ color: "rgba(255,255,255,0.4)", background: "none", border: "none", cursor: "pointer", fontSize: 20, lineHeight: 1, flexShrink: 0 }}>×</button>
+                <div className="flex items-center gap-2 flex-shrink-0">
+                  {reviewApiKey && playerName && (
+                    <button
+                      onClick={() => { handleToggleFavorite(q.id); setModalStarAnimating(true); setTimeout(() => setModalStarAnimating(false), 350); }}
+                      style={{ background: "none", border: "none", cursor: "pointer", fontSize: 24, lineHeight: 1, color: favorites.includes(q.id) ? "#fbbf24" : "rgba(255,255,255,0.2)", textShadow: favorites.includes(q.id) ? "0 0 10px rgba(251,191,36,0.7)" : "none", transition: "color 0.2s, text-shadow 0.2s", padding: 0, animation: modalStarAnimating ? "star-bounce 300ms ease-out forwards" : "none" }}
+                      title={favorites.includes(q.id) ? "Remove from favorites" : "Add to favorites"}
+                    >
+                      {favorites.includes(q.id) ? "\u2605" : "\u2606"}
+                    </button>
+                  )}
+                  <button onClick={() => setQuestDetailModal(null)} style={{ color: "rgba(255,255,255,0.4)", background: "none", border: "none", cursor: "pointer", fontSize: 20, lineHeight: 1 }}>×</button>
+                </div>
               </div>
               {/* Body */}
               <div className="px-5 py-4 overflow-y-auto flex-1 space-y-3">
