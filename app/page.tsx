@@ -1451,6 +1451,7 @@ export default function Dashboard() {
                   <div className="space-y-1.5">
                     {[
                       { label: "Forge Temp", val: loggedInUser.modifiers.xp.forge, color: forgeTempColor, desc: `${forgeTemp}% — ${forgeTempLabel}` },
+                      { label: "Kraft", val: loggedInUser.modifiers.xp.kraft ?? 1, color: "#f97316", desc: (loggedInUser.modifiers.xp.kraft ?? 1) > 1 ? `+${Math.round(((loggedInUser.modifiers.xp.kraft ?? 1) - 1) * 100)}% (1% pro Kraft-Punkt)` : "Kein Kraft-Bonus" },
                       { label: "Gear", val: loggedInUser.modifiers.xp.gear, color: "#818cf8", desc: loggedInUser.modifiers.xp.gear > 1 ? `+${Math.round((loggedInUser.modifiers.xp.gear - 1) * 100)}% von Tools` : "Kein Gear-Bonus" },
                       { label: "Companions", val: loggedInUser.modifiers.xp.companions, color: "#f472b6", desc: loggedInUser.modifiers.xp.companions > 1 ? `+${Math.round((loggedInUser.modifiers.xp.companions - 1) * 100)}% (2% pro Companion)` : "Keine Companions beschworen" },
                       { label: "Bond Level", val: loggedInUser.modifiers.xp.bond, color: "#fb923c", desc: loggedInUser.modifiers.xp.bond > 1 ? `+${Math.round((loggedInUser.modifiers.xp.bond - 1) * 100)}% (1% pro Bond-Level)` : "Bond Level 1" },
@@ -1476,6 +1477,7 @@ export default function Dashboard() {
                   <div className="space-y-1.5">
                     {[
                       { label: "Forge Temp", val: loggedInUser.modifiers.gold.forge, color: forgeTempColor, desc: `${forgeTemp}% — ${forgeTempLabel}` },
+                      { label: "Weisheit", val: loggedInUser.modifiers.gold.weisheit ?? 1, color: "#60a5fa", desc: (loggedInUser.modifiers.gold.weisheit ?? 1) > 1 ? `+${Math.round(((loggedInUser.modifiers.gold.weisheit ?? 1) - 1) * 100)}% (1% pro Weisheit-Punkt)` : "Kein Weisheit-Bonus" },
                       { label: "Streak", val: loggedInUser.modifiers.gold.streak, color: "#f97316", desc: `${loggedInUser.streakDays ?? 0} Tage (+1.5% pro Tag, max ×1.45)` },
                     ].map(r => (
                       <div key={r.label} className="flex items-center justify-between px-2 py-1 rounded-lg" style={{ background: r.val !== 1 ? "rgba(255,255,255,0.03)" : "transparent" }}>

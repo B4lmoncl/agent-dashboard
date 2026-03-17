@@ -55,8 +55,12 @@ router.get('/api/player/:name', (req, res) => {
   // Dynamic forgeTemp: stored value with 2%/hr time decay
   const dynamicForgeTemp = calcDynamicForgeTemp(uid);
   // Calculate modifier breakdown
-  const { getXpMultiplier, getGoldMultiplier, getUserGear, getQuestHoardingMalus } = require('../lib/helpers');
+  const { getXpMultiplier, getGoldMultiplier, getForgeXpBase, getForgeGoldBase, getKraftBonus, getWeisheitBonus, getUserGear, getQuestHoardingMalus } = require('../lib/helpers');
+  const forgeXpPure = getForgeXpBase(uid);
+  const kraftBonus = getKraftBonus(uid);
   const forgeXp = getXpMultiplier(uid);
+  const forgeGoldPure = getForgeGoldBase(uid);
+  const weisheitBonus = getWeisheitBonus(uid);
   const forgeGold = getGoldMultiplier(uid);
   const gear = getUserGear(uid);
   const gearBonus = 1 + (gear.xpBonus || 0) / 100;
@@ -86,8 +90,8 @@ router.get('/api/player/:name', (req, res) => {
     streakDays,
     forgeTemp: dynamicForgeTemp,
     modifiers: {
-      xp: { forge: forgeXp, gear: gearBonus, companions: companionBonus, bond: bondBonus, hoarding: hoardingMultiplier, hoardingCount: hoarding.count, hoardingPct: hoarding.malusPct, total: totalXp },
-      gold: { forge: forgeGold, streak: streakGold, total: totalGold },
+      xp: { forge: forgeXpPure, kraft: kraftBonus, gear: gearBonus, companions: companionBonus, bond: bondBonus, hoarding: hoardingMultiplier, hoardingCount: hoarding.count, hoardingPct: hoarding.malusPct, total: totalXp },
+      gold: { forge: forgeGoldPure, weisheit: weisheitBonus, streak: streakGold, total: totalGold },
     },
   });
 });
