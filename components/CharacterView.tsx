@@ -708,7 +708,7 @@ export default function CharacterView({ playerName, apiKey, users, classesList, 
     <div
       className="relative overflow-hidden rounded-t-2xl"
       style={{
-        height: 480,
+        height: 550,
         backgroundColor: "#fce4ec",
       }}
     >
@@ -767,7 +767,7 @@ export default function CharacterView({ playerName, apiKey, users, classesList, 
         {/* LEFT: Inventory Panel */}
         <div
           className="flex-shrink-0 rounded-xl p-2 overflow-y-auto"
-          style={{ width: 310, maxHeight: 420, background: "rgba(0,0,0,0.75)", border: "1px solid rgba(255,255,255,0.1)", minHeight: 0, paddingRight: 12 }}
+          style={{ width: 310, maxHeight: 490, background: "rgba(0,0,0,0.75)", border: "1px solid rgba(255,255,255,0.1)", minHeight: 0, paddingRight: 12 }}
         >
           <p className="text-xs font-bold uppercase tracking-wider mb-3" style={{ color: "rgba(255,255,255,0.5)" }}>Inventar</p>
 
@@ -813,7 +813,7 @@ export default function CharacterView({ playerName, apiKey, users, classesList, 
         {/* RIGHT: Stats / Gear Panel */}
         <div
           className="flex-shrink-0 rounded-xl p-3 overflow-y-auto"
-          style={{ width: 250, maxHeight: 420, background: "rgba(0,0,0,0.75)", border: "1px solid rgba(255,255,255,0.1)", minHeight: 0 }}
+          style={{ width: 250, maxHeight: 490, background: "rgba(0,0,0,0.75)", border: "1px solid rgba(255,255,255,0.1)", minHeight: 0 }}
         >
           {/* Tab toggle */}
           <div className="flex gap-1 mb-3">
