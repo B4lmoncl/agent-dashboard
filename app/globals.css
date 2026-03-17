@@ -20,10 +20,18 @@ body {
 }
 
 /* Pixel art icons — crisp rendering at all sizes */
-img[src*="/icons/"] {
+img[src*="/icons/"],
+img[src*="/portraits/"] {
   image-rendering: pixelated;
   image-rendering: -moz-crisp-edges;
   image-rendering: crisp-edges;
+  /* Force pixelated rendering even at small sizes */
+  -ms-interpolation-mode: nearest-neighbor;
+}
+
+/* Ensure no anti-aliasing on pixel art */
+img[src*="/icons/"] {
+  image-rendering: pixelated !important;
 }
 
 ::-webkit-scrollbar { width: 6px; height: 6px; }
