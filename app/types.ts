@@ -138,8 +138,8 @@ export interface User {
   partnerName?: string | null;
   pronouns?: string | null;
   modifiers?: {
-    xp: { forge: number; gear: number; companions: number; bond: number; hoarding: number; hoardingCount: number; hoardingPct: number; total: number };
-    gold: { forge: number; streak: number; total: number };
+    xp: { forge: number; kraft?: number; gear: number; companions: number; bond: number; hoarding: number; hoardingCount: number; hoardingPct: number; total: number };
+    gold: { forge: number; weisheit?: number; streak: number; total: number };
   };
 }
 
