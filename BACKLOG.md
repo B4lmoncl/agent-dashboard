@@ -40,6 +40,14 @@
 29. NPC als Preis im Gacha Banner [Roadmap: planned]
 30. Economy Balancing [Roadmap: planned]
 
+## 🔧 TECH DEBT
+- [ ] Backend Cleanup: Doppelte Werte / Formeln aufspüren und zentralisieren
+  - Streak-Formel war 4x definiert (helpers.js 2x, players.js, users.js)
+  - Level-Tabelle war 3x definiert (levels.json, utils.ts, page.tsx inline)
+  - Forge-Multiplier hatte Stat-Bonus reingebacken statt separat
+  - → Alles mit grep -rn durchforsten, Single Source of Truth erzwingen
+  - → Shared constants Datei für Formeln die Backend + Frontend brauchen
+
 ## 🚀 PHASE 2 (Große Features)
 
 31. Season System v2 [Roadmap: planned]
