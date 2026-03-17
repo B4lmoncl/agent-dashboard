@@ -731,6 +731,7 @@ router.get('/api/player/:name/character', (req, res) => {
     name: u.companion.name,
     emoji: u.companion.emoji,
     bondLevel: u.companion.bondLevel || 0,
+    bondXp: u.companion.bondXp || 0,
   } : null;
   res.json({
     name: u.name || uid,
