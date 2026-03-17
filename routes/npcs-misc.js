@@ -160,6 +160,23 @@ router.get('/api/feedback', (req, res) => {
   res.json(state.feedbackEntries);
 });
 
+// PATCH /api/feedback/:id — resolve/unresolve a feedback entry
+router.patch('/api/feedback/:id', (req, res) => {
+  const { id } = req.params;
+  const { resolved } = req.body || {};
+  
+  const entry = state.feedbackEntries.find(e => e.id === id);
+  if (!entry) {
+    return res.status(404).json({ error: 'Feedback entry not found' });
+  }
+  
+  entry.resolved = !!resolved;
+  saveFeedback();
+  
+  console.log(`[feedback] ${resolved ? 'Resolved' : 'Reopened'} feedback ${id}: ${entry.text.slice(0, 50)}`);
+  res.json({ ok: true, entry });
+});
+
 // Serve index.html for non-API routes (SPA fallback)
 router.get('*', (req, res) => {
   const indexPath = path.join(__dirname, '..', 'out', 'index.html');
