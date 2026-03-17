@@ -738,6 +738,8 @@ router.get('/api/player/:name/character', (req, res) => {
     level: lvlInfo.level,
     xp,
     xpToNext: lvlInfo.nextXp,
+    xpInLevel: lvlInfo.nextXp ? xp - lvlInfo.xpRequired : 0,
+    xpForLevel: lvlInfo.nextXp ? lvlInfo.nextXp - lvlInfo.xpRequired : 0,
     xpProgress,
     title: lvlInfo.title,
     classId: u.classId || null,

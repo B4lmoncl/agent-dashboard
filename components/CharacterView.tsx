@@ -972,7 +972,7 @@ export default function CharacterView({ playerName, apiKey, users, classesList, 
                   <div className="flex items-center justify-between mb-1">
                     <span className="text-xs font-bold" style={{ color: "#a78bfa" }}>Lv.{charData.level}</span>
                     <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.3)" }}>
-                      {charData.xp}{charData.xpToNext ? ` / ${charData.xpToNext}` : ""} XP
+                      {(charData as any).xpInLevel ?? charData.xp}{(charData as any).xpForLevel ? ` / ${(charData as any).xpForLevel}` : ""} XP
                     </span>
                   </div>
                   <div className="rounded-full overflow-hidden" style={{ height: 5, background: "rgba(255,255,255,0.07)" }}>

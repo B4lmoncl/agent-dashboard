@@ -1471,7 +1471,7 @@ export default function Dashboard() {
                   <div className="space-y-1.5">
                     {[
                       { label: "Forge Temp", val: loggedInUser.modifiers.gold.forge, color: forgeTempColor, desc: `${forgeTemp}% — ${forgeTempLabel}` },
-                      { label: "Streak", val: loggedInUser.modifiers.gold.streak, color: "#f97316", desc: `${loggedInUser.streakDays ?? 0} Tage (+10% pro Tag, max ×3)` },
+                      { label: "Streak", val: loggedInUser.modifiers.gold.streak, color: "#f97316", desc: `${loggedInUser.streakDays ?? 0} Tage (+1.5% pro Tag, max ×1.45)` },
                     ].map(r => (
                       <div key={r.label} className="flex items-center justify-between px-2 py-1 rounded-lg" style={{ background: r.val !== 1 ? "rgba(255,255,255,0.03)" : "transparent" }}>
                         <div>

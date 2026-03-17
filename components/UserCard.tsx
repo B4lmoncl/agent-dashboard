@@ -161,7 +161,7 @@ export function UserCard({ user, classes = [] }: { user: User; classes?: ClassDe
         <div className="flex items-center justify-between mb-1">
           <span className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>XP{xpMalus ? " (−50%)" : ""}</span>
           <span className="text-xs font-mono font-semibold" style={{ color: xpMalus ? "#ef4444" : "#a855f7" }}>
-            {xp}{nextLvlEntry ? ` / ${nextLvlEntry.xpRequired}` : " MAX"}
+            {nextLvlEntry ? `${xp - lvl.xpRequired} / ${nextLvlEntry.xpRequired - lvl.xpRequired}` : "MAX"}
           </span>
         </div>
         <div className="rounded-full overflow-hidden mb-2" style={{ height: 3, background: "rgba(255,255,255,0.06)" }}>
