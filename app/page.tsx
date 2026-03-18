@@ -51,6 +51,7 @@ import {
   priorityConfig, categoryConfig, productConfig, typeConfig, STREAK_MILESTONES_CLIENT,
 } from "@/app/config";
 import { getAuthHeaders, setAccessToken } from "@/lib/auth-client";
+import { useQuestActions } from "@/hooks/useQuestActions";
 
 const RARITY_ORDER: Record<string, number> = { legendary: 0, epic: 1, rare: 2, uncommon: 3, common: 4, companion: 1 };
 
@@ -99,16 +100,14 @@ export default function Dashboard() {
   const [reviewApiKey, setReviewApiKey] = useState<string>(() => {
     try { return localStorage.getItem("dash_api_key") || ""; } catch { return ""; }
   });
-  const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
-  const [bulkLoading, setBulkLoading] = useState(false);
-  const [reviewComments, setReviewComments] = useState<Record<string, string>>({});
+  // selectedIds, bulkLoading, reviewComments moved to useQuestActions hook
   const [typeFilter, setTypeFilter] = useState<string>("all");
   const [dashView, setDashView] = useState<"questBoard" | "npcBoard" | "klassenquests" | "character" | "campaign" | "leaderboard" | "honors" | "season" | "shop" | "gacha" | "roadmap" | "changelog">("questBoard");
   const [createQuestOpen, setCreateQuestOpen] = useState(false);
   const [questBoardAgentOpen, setQuestBoardAgentOpen] = useState(false);
   const [npcAgentRosterOpen, setNpcAgentRosterOpen] = useState(true);
   const [dobbieOpen, setDobbieOpen] = useState(false);
-  const [shopUserId, setShopUserId] = useState<string | null>(null);
+  // shopUserId moved to useQuestActions hook
   // Toast stack system (replaces individual toast states)
   const { toasts, addToast, removeToast } = useToastStack();
   // Compat setters that push into the unified toast stack
@@ -179,7 +178,7 @@ export default function Dashboard() {
   useModalBehavior(createRitualOpen, closeRitualModal);
   const [changelog, setChangelog] = useState<ChangelogEntry[]>([]);
   const [changelogLoading, setChangelogLoading] = useState(false);
-  const [poolRefreshing, setPoolRefreshing] = useState(false);
+  // poolRefreshing moved to useQuestActions hook
   const [lastPoolRefresh, setLastPoolRefresh] = useState<Date | null>(null);
   const [npcBoardFilter, setNpcBoardFilter] = useState<string | null>(null);
   const [activeNpcs, setActiveNpcs] = useState<ActiveNpc[]>([]);
@@ -353,297 +352,49 @@ export default function Dashboard() {
     setLastRefresh(new Date());
   }, [playerName]);
 
-  const handleApprove = useCallback(async (id: string, comment?: string) => {
-    const key = reviewApiKey;
-    if (!key) return;
-    try {
-      const body = comment ? JSON.stringify({ comment }) : undefined;
-      const r = await fetch(`/api/quest/${id}/approve`, {
-        method: "POST",
-        headers: { "X-API-Key": key, ...(body ? { "Content-Type": "application/json" } : {}) },
-        body,
-      });
-      if (r.ok) {
-        setReviewComments(prev => { const next = { ...prev }; delete next[id]; return next; });
-        await refresh();
-      }
-    } catch { /* ignore */ }
-  }, [reviewApiKey, refresh]);
+  // ─── Quest/Shop action handlers (extracted to hook) ─────────────────────────
+  const {
+    selectedIds, setSelectedIds,
+    bulkLoading,
+    reviewComments, setReviewComments,
+    poolRefreshing,
+    shopUserId, setShopUserId,
+    handleApprove, handleReject, handleChangePriority,
+    toggleSelect, handleBulkUpdate,
+    handleToggleFavorite: _handleToggleFavorite,
+    handleClaim, handleUnclaim, handleCoopClaim, handleCoopComplete,
+    handleComplete, handleChainAccept: _handleChainAccept,
+    handlePoolRefresh, handleShopBuy, handleGearBuy,
+    updateNpcQuestStatus,
+  } = useQuestActions({
+    reviewApiKey, playerName, refresh,
+    setActiveNpcs, setSelectedNpc,
+    setChainOffer, setRewardCelebration,
+    pendingLevelUpRef, setRituals,
+    addToast, setApiErrorWithAutoClose,
+    lastPoolRefresh, setLastPoolRefresh,
+  });
 
-  const handleReject = useCallback(async (id: string, comment?: string) => {
-    const key = reviewApiKey;
-    if (!key) return;
-    try {
-      const body = comment ? JSON.stringify({ comment }) : undefined;
-      const r = await fetch(`/api/quest/${id}/reject`, {
-        method: "POST",
-        headers: { "X-API-Key": key, ...(body ? { "Content-Type": "application/json" } : {}) },
-        body,
-      });
-      if (r.ok) {
-        setReviewComments(prev => { const next = { ...prev }; delete next[id]; return next; });
-        await refresh();
-      }
-    } catch { /* ignore */ }
-  }, [reviewApiKey, refresh]);
-
-  const handleChangePriority = useCallback(async (id: string, priority: Quest["priority"]) => {
-    const key = reviewApiKey;
-    if (!key) return;
-    try {
-      await fetch(`/api/quest/${id}`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json", "X-API-Key": key },
-        body: JSON.stringify({ priority }),
-      });
-      setQuests(prev => ({
-        ...prev,
-        suggested: prev.suggested.map(q => q.id === id ? { ...q, priority } : q),
-      }));
-    } catch { /* ignore */ }
-  }, [reviewApiKey]);
-
-  const toggleSelect = useCallback((id: string) => {
-    setSelectedIds(prev => {
-      const next = new Set(prev);
-      if (next.has(id)) next.delete(id); else next.add(id);
-      return next;
-    });
-  }, []);
-
-  const handleBulkUpdate = useCallback(async (status: Quest["status"]) => {
-    const key = reviewApiKey;
-    if (!key || selectedIds.size === 0) return;
-    setBulkLoading(true);
-    try {
-      await fetch("/api/quests/bulk-update", {
-        method: "POST",
-        headers: { "Content-Type": "application/json", "X-API-Key": key },
-        body: JSON.stringify({ ids: Array.from(selectedIds), status }),
-      });
-      setSelectedIds(new Set());
-      await refresh();
-    } catch { /* ignore */ } finally {
-      setBulkLoading(false);
-    }
-  }, [reviewApiKey, selectedIds, refresh]);
-
-  const updateNpcQuestStatus = useCallback((questId: string, status: string, claimedBy: string | null) => {
-    const updateChain = (npc: ActiveNpc): ActiveNpc => ({
-      ...npc,
-      questChain: npc.questChain.map(q =>
-        q.questId === questId ? { ...q, status: status as "open" | "in_progress" | "completed" | "claimed", claimedBy } : q
-      ),
-    });
-    setActiveNpcs(prev => prev.map(npc =>
-      npc.questChain.some(q => q.questId === questId) ? updateChain(npc) : npc
-    ));
-    setSelectedNpc(prev => {
-      if (!prev || !prev.questChain.some(q => q.questId === questId)) return prev;
-      return updateChain(prev);
-    });
-  }, []);
-
+  // Wrap handleToggleFavorite to also update local favorites state
   const handleToggleFavorite = useCallback(async (questId: string) => {
-    if (!reviewApiKey || !playerName) return;
     const isFav = favorites.includes(questId);
-    const action = isFav ? "remove" : "add";
     setFavorites(prev => isFav ? prev.filter(id => id !== questId) : [...prev, questId]);
-    try {
-      await fetch(`/api/player/${encodeURIComponent(playerName.toLowerCase())}/favorites`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json", ...getAuthHeaders(reviewApiKey) },
-        body: JSON.stringify({ questId, action }),
-      });
-    } catch { /* ignore */ }
-  }, [reviewApiKey, playerName, favorites]);
+    await _handleToggleFavorite(questId, favorites);
+  }, [_handleToggleFavorite, favorites]);
 
-  const handleClaim = useCallback(async (questId: string) => {
-    const key = reviewApiKey;
-    const pName = playerName;
-    if (!key || !pName) return;
-    try {
-      const r = await fetch(`/api/quest/${questId}/claim`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json", "X-API-Key": key },
-        body: JSON.stringify({ agentId: pName }),
-      });
-      if (r.ok) {
-        updateNpcQuestStatus(questId, "in_progress", pName.toLowerCase());
-        await refresh();
-      }
-    } catch { /* ignore */ }
-  }, [reviewApiKey, playerName, refresh, updateNpcQuestStatus]);
-
-  const handleUnclaim = useCallback(async (questId: string) => {
-    const key = reviewApiKey;
-    const pName = playerName;
-    if (!key || !pName) return;
-    try {
-      const r = await fetch(`/api/quest/${questId}/unclaim`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json", "X-API-Key": key },
-        body: JSON.stringify({ agentId: pName }),
-      });
-      if (r.ok) {
-        updateNpcQuestStatus(questId, "open", null);
-        await refresh();
-      }
-    } catch { /* ignore */ }
-  }, [reviewApiKey, playerName, refresh, updateNpcQuestStatus]);
-
-  const handleCoopClaim = useCallback(async (questId: string) => {
-    const key = reviewApiKey;
-    const pName = playerName;
-    if (!key || !pName) return;
-    try {
-      const r = await fetch(`/api/quest/${questId}/coop-claim`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json", "X-API-Key": key },
-        body: JSON.stringify({ userId: pName }),
-      });
-      if (r.ok) await refresh();
-    } catch { /* ignore */ }
-  }, [reviewApiKey, playerName, refresh]);
-
-  const handleCoopComplete = useCallback(async (questId: string) => {
-    const key = reviewApiKey;
-    const pName = playerName;
-    if (!key || !pName) return;
-    try {
-      const r = await fetch(`/api/quest/${questId}/coop-complete`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json", "X-API-Key": key },
-        body: JSON.stringify({ userId: pName }),
-      });
-      if (r.ok) await refresh();
-    } catch { /* ignore */ }
-  }, [reviewApiKey, playerName, refresh]);
-
-  const handleComplete = useCallback(async (questId: string, questTitle: string) => {
-    const key = reviewApiKey;
-    const pName = playerName;
-    if (!key || !pName) return;
-    try {
-      const r = await fetch(`/api/quest/${questId}/complete`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json", "X-API-Key": key },
-        body: JSON.stringify({ agentId: pName }),
-      });
-      if (r.ok) {
-        const data = await r.json();
-        if (data.chainQuestTemplate) {
-          setChainOffer({ template: data.chainQuestTemplate, parentTitle: questTitle });
-        }
-        // Show Reward Celebration popup (replaces flavor toast)
-        const isNpcQuest = !!data.quest?.npcGiverId;
-        setRewardCelebration({
-          type: isNpcQuest ? "npc-quest" : "quest",
-          title: questTitle,
-          xpEarned: data.xpEarned || 0,
-          goldEarned: data.goldEarned || 0,
-          loot: data.lootDrop || null,
-          achievement: data.newAchievements?.length > 0 ? data.newAchievements[0] : null,
-        });
-        // Queue level-up to show after reward celebration is dismissed
-        if (data.levelUp) {
-          pendingLevelUpRef.current = data.levelUp;
-        }
-        // Optimistically update NPC quest chain: mark completed + unlock next locked quest
-        setActiveNpcs(prev => prev.map(npc => {
-          if (!npc.questChain.some(q => q.questId === questId)) return npc;
-          let unlockNext = false;
-          const updated = npc.questChain.map(q => {
-            if (q.questId === questId) { unlockNext = true; return { ...q, status: "completed" as const, completedBy: pName.toLowerCase() }; }
-            if (unlockNext && q.status === "locked") { unlockNext = false; return { ...q, status: "open" as const }; }
-            return q;
-          });
-          return { ...npc, questChain: updated };
-        }));
-        setSelectedNpc(prev => {
-          if (!prev || !prev.questChain.some(q => q.questId === questId)) return prev;
-          let unlockNext = false;
-          const updated = prev.questChain.map(q => {
-            if (q.questId === questId) { unlockNext = true; return { ...q, status: "completed" as const, completedBy: pName.toLowerCase() }; }
-            if (unlockNext && q.status === "locked") { unlockNext = false; return { ...q, status: "open" as const }; }
-            return q;
-          });
-          return { ...prev, questChain: updated };
-        });
-        await refresh();
-      }
-    } catch { /* ignore */ }
-  }, [reviewApiKey, playerName, refresh]);
-
+  // Wrap handleChainAccept to pass chainOffer
   const handleChainAccept = useCallback(async () => {
-    const key = reviewApiKey;
-    if (!key || !chainOffer) return;
-    try {
-      await fetch("/api/quest", {
-        method: "POST",
-        headers: { "Content-Type": "application/json", "X-API-Key": key },
-        body: JSON.stringify({ ...chainOffer.template, createdBy: playerName || "unknown" }),
-      });
-      setChainOffer(null);
-      await refresh();
-    } catch { /* ignore */ }
-  }, [reviewApiKey, chainOffer, playerName, refresh]);
+    await _handleChainAccept(chainOffer);
+  }, [_handleChainAccept, chainOffer]);
 
-  const handlePoolRefresh = useCallback(async () => {
-    if (!playerName || !reviewApiKey || poolRefreshing) return;
-    setPoolRefreshing(true);
-    try {
-      const r = await fetch(`/api/quests/pool/refresh?player=${encodeURIComponent(playerName)}`, {
-        method: "POST",
-        headers: { ...getAuthHeaders(reviewApiKey) },
-      });
-      if (r.ok) {
-        setLastPoolRefresh(new Date());
-        await refresh();
-      } else {
-        const d = await r.json().catch(() => ({}));
-        if (d.error) setApiErrorWithAutoClose(d.error);
-      }
-    } catch { /* ignore */ } finally {
-      setPoolRefreshing(false);
-    }
-  }, [playerName, reviewApiKey, poolRefreshing, refresh]);
-
-  const handleShopBuy = useCallback(async (userId: string, itemId: string) => {
-    const key = reviewApiKey;
-    if (!key || !userId) return;
-    try {
-      const r = await fetch("/api/shop/buy", {
-        method: "POST",
-        headers: { "Content-Type": "application/json", "X-API-Key": key },
-        body: JSON.stringify({ userId, itemId }),
-      });
-      if (r.ok) {
-        const data = await r.json();
-        setShopUserId(null);
-        if (data.item?.name) setPurchaseToast(`${data.item.name} acquired!`);
-        await refresh();
-      }
-    } catch { /* ignore */ }
-  }, [reviewApiKey, refresh]);
-
-  const handleGearBuy = useCallback(async (userId: string, gearId: string) => {
-    const key = reviewApiKey;
-    if (!key || !userId) return;
-    try {
-      const r = await fetch("/api/shop/gear/buy", {
-        method: "POST",
-        headers: { "Content-Type": "application/json", "X-API-Key": key },
-        body: JSON.stringify({ userId, gearId }),
-      });
-      if (r.ok) {
-        const data = await r.json();
-        setShopUserId(null);
-        if (data.gear?.name) setPurchaseToast(`${data.gear.name} acquired!`);
-        await refresh();
-      }
-    } catch { /* ignore */ }
-  }, [reviewApiKey, refresh]);
+  // Wrap handleChangePriority to also update local quests state
+  const handleChangePriorityWithState = useCallback(async (id: string, priority: Quest["priority"]) => {
+    await handleChangePriority(id, priority);
+    setQuests(prev => ({
+      ...prev,
+      suggested: prev.suggested.map(q => q.id === id ? { ...q, priority } : q),
+    }));
+  }, [handleChangePriority]);
 
   // Toast auto-dismiss is handled by ToastStack
 
@@ -2062,7 +1813,7 @@ export default function Dashboard() {
               setDevInProgressCollapsed={setDevInProgressCollapsed}
               handleApprove={handleApprove}
               handleReject={handleReject}
-              handleChangePriority={handleChangePriority}
+              handleChangePriority={handleChangePriorityWithState}
               reviewComments={reviewComments}
               setReviewComments={setReviewComments}
               dobbieOpen={dobbieOpen}
