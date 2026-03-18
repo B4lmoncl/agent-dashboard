@@ -121,5 +121,15 @@
     "high": 0.5,
     "medium": 0.35,
     "low": 0.2
+  },
+  "npcMaxActive": 7,
+  "npcSpawnChance": 0.30,
+  "npcRotationMinutes": 30,
+  "npcDefaultWeights": {
+    "common": 50,
+    "uncommon": 25,
+    "rare": 15,
+    "epic": 8,
+    "legendary": 2
   }
 }

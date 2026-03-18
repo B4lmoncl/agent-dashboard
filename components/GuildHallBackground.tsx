@@ -213,16 +213,32 @@ export default function GuildHallBackground() {
     resize();
     window.addEventListener("resize", resize);
 
-    // Deterministic stars seeded by index
-    const STAR_COUNT = 160;
-    const stars = Array.from({ length: STAR_COUNT }, (_, i) => ({
-      x:  ((i * 7919 + 1234) % 9973) / 9973,
-      y:  ((i * 6271 + 4321) % 8191) / 8191 * 0.55,
-      s:  ((i * 3571) % 100) / 100 * 1.15 + 0.22,
-      to: ((i * 2341) % 628) / 100,
-      ts: 0.0006 + ((i * 1231) % 100) / 100 * 0.0012,
-      bright: i % 11 === 0, // ~every 11th star gets cross twinkle
-    }));
+    // Deterministic stars using hash function to avoid visible patterns
+    function starHash(seed: number): number {
+      let t = (seed + 0x6D2B79F5) | 0;
+      t = Math.imul(t ^ (t >>> 15), t | 1);
+      t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    }
+    const STAR_COUNT = 500;
+    const stars = Array.from({ length: STAR_COUNT }, (_, i) => {
+      const h0 = starHash(i * 3 + 0);
+      const h1 = starHash(i * 3 + 1);
+      const h2 = starHash(i * 3 + 2);
+      // Size distribution: most stars tiny, few medium, rare large
+      // Cubic falloff so ~80% are small dust, ~15% medium, ~5% bright
+      const sizeRoll = h2 * h2 * h2;
+      return {
+        x:  h0,
+        y:  h1, // Scaled to skyMaxY at render time
+        s:  sizeRoll * 2.0 + 0.18,
+        to: starHash(i * 5 + 100) * Math.PI * 2,
+        ts: 0.0004 + starHash(i * 5 + 200) * 0.002,
+        bright: sizeRoll > 0.7,
+        warmTint: starHash(i * 7 + 400) < 0.18,
+        blueTint: starHash(i * 7 + 500) < 0.10,
+      };
+    });
 
     // Seasonal particles
     const showParticles = season !== "summer" || tod === "night" || tod === "dawn" || tod === "sunset";
@@ -290,49 +306,121 @@ export default function GuildHallBackground() {
         ctx.fillRect(0, 0, w, h);
       }
 
+      // ── Milky Way & nebulae (night only) ──────────────────────────────
+      // Constrained to upper sky area to avoid bleeding into mountains
+      if (tod === "night") {
+        // Milky Way — diagonal band of diffuse light across the sky
+        ctx.save();
+        ctx.translate(w * 0.5, h * 0.18);
+        ctx.rotate(-0.45); // ~25° tilt
+        const mwWidth = w * 0.18;
+        const mwLength = w * 1.6;
+        // Core band
+        const mwGrad = ctx.createLinearGradient(0, -mwWidth, 0, mwWidth);
+        mwGrad.addColorStop(0, "rgba(0,0,0,0)");
+        mwGrad.addColorStop(0.25, "rgba(140,120,180,0.025)");
+        mwGrad.addColorStop(0.4, "rgba(160,140,200,0.045)");
+        mwGrad.addColorStop(0.5, "rgba(180,160,220,0.055)");
+        mwGrad.addColorStop(0.6, "rgba(160,140,200,0.045)");
+        mwGrad.addColorStop(0.75, "rgba(140,120,180,0.025)");
+        mwGrad.addColorStop(1, "rgba(0,0,0,0)");
+        ctx.fillStyle = mwGrad;
+        ctx.fillRect(-mwLength * 0.5, -mwWidth, mwLength, mwWidth * 2);
+        // Brighter core center
+        const mwCore = ctx.createRadialGradient(0, 0, 0, 0, 0, mwWidth * 0.6);
+        mwCore.addColorStop(0, "rgba(200,180,240,0.04)");
+        mwCore.addColorStop(1, "rgba(0,0,0,0)");
+        ctx.fillStyle = mwCore;
+        ctx.fillRect(-mwWidth, -mwWidth, mwWidth * 2, mwWidth * 2);
+        ctx.restore();
+
+        // Nebula patches — small colored gas clouds
+        const nebulaData = [
+          { x: 0.22, y: 0.08, r: 0.06, color: "rgba(120,60,160," },
+          { x: 0.65, y: 0.05, r: 0.045, color: "rgba(60,80,180," },
+          { x: 0.42, y: 0.15, r: 0.035, color: "rgba(160,60,100," },
+        ];
+        for (const nb of nebulaData) {
+          const nx = nb.x * w, ny = nb.y * h, nr = nb.r * w;
+          const pulse = Math.sin(t * 0.002 + nb.x * 10) * 0.01 + 1;
+          const ng = ctx.createRadialGradient(nx, ny, 0, nx, ny, nr * pulse);
+          ng.addColorStop(0, nb.color + "0.06)");
+          ng.addColorStop(0.4, nb.color + "0.03)");
+          ng.addColorStop(1, "rgba(0,0,0,0)");
+          ctx.fillStyle = ng;
+          ctx.beginPath();
+          ctx.arc(nx, ny, nr * pulse, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+
       // ── Stars ────────────────────────────────────────────────────────────
+      // Stars only in upper sky area — below this, the guild hall image has
+      // mountains/trees/buildings. The bg image uses object-position: center bottom,
+      // so the ground/buildings fill the lower portion.
       if (tod !== "day") {
-        const sa = tod === "night" ? 0.72 : tod === "dawn" ? 0.35 : 0.18;
-        const starLimit = mobile() ? 65 : STAR_COUNT;
+        const sa = tod === "night" ? 0.88 : tod === "dawn" ? 0.45 : 0.22;
+        const starLimit = mobile() ? 180 : STAR_COUNT;
+        const skyMaxY = h * 0.42; // Stars only in top 42% of viewport
 
         for (let i = 0; i < starLimit; i++) {
           const s = stars[i];
-          const tw = Math.sin(t * s.ts + s.to) * 0.3 + 0.7;
+          const sx = s.x * w;
+          const sy = s.y * skyMaxY; // Map star y to sky zone only
+          // Two-frequency twinkle for natural variation
+          const tw = Math.sin(t * s.ts + s.to) * 0.25 + Math.sin(t * s.ts * 1.7 + s.to * 0.6) * 0.15 + 0.6;
           const alpha = sa * tw;
+          const starColor = s.warmTint ? "#ffe8c8" : s.blueTint ? "#b8d4ff" : "#d6c8ff";
 
-          if (s.bright && tod === "night") {
+          if (s.bright && (tod === "night" || tod === "dawn")) {
             // Cross-shaped twinkle for bright stars
-            const crossLen = s.s * 3.5 * tw;
-            ctx.globalAlpha = alpha * 0.6;
-            ctx.strokeStyle = "#d6c8ff";
-            ctx.lineWidth = 0.5;
+            const crossLen = s.s * 4 * tw;
+            ctx.globalAlpha = alpha * 0.5;
+            ctx.strokeStyle = starColor;
+            ctx.lineWidth = 0.6;
             ctx.beginPath();
-            ctx.moveTo(s.x * w - crossLen, s.y * h);
-            ctx.lineTo(s.x * w + crossLen, s.y * h);
-            ctx.moveTo(s.x * w, s.y * h - crossLen);
-            ctx.lineTo(s.x * w, s.y * h + crossLen);
+            ctx.moveTo(sx - crossLen, sy);
+            ctx.lineTo(sx + crossLen, sy);
+            ctx.moveTo(sx, sy - crossLen * 1.3);
+            ctx.lineTo(sx, sy + crossLen * 1.3);
+            ctx.stroke();
+            // Diagonal cross (softer)
+            ctx.globalAlpha = alpha * 0.25;
+            const diagLen = crossLen * 0.6;
+            ctx.beginPath();
+            ctx.moveTo(sx - diagLen, sy - diagLen);
+            ctx.lineTo(sx + diagLen, sy + diagLen);
+            ctx.moveTo(sx + diagLen, sy - diagLen);
+            ctx.lineTo(sx - diagLen, sy + diagLen);
             ctx.stroke();
             // Bright core
             ctx.globalAlpha = alpha;
-            ctx.fillStyle = "#e8e0ff";
+            ctx.fillStyle = starColor;
             ctx.beginPath();
-            ctx.arc(s.x * w, s.y * h, s.s * 1.2, 0, Math.PI * 2);
+            ctx.arc(sx, sy, s.s * 1.3, 0, Math.PI * 2);
             ctx.fill();
-            // Soft glow
-            ctx.globalAlpha = alpha * 0.2;
-            const sg = ctx.createRadialGradient(s.x * w, s.y * h, 0, s.x * w, s.y * h, s.s * 6);
-            sg.addColorStop(0, "rgba(200,190,255,0.5)");
+            // Soft glow halo
+            ctx.globalAlpha = alpha * 0.25;
+            const sg = ctx.createRadialGradient(sx, sy, 0, sx, sy, s.s * 7);
+            sg.addColorStop(0, s.warmTint ? "rgba(255,220,180,0.6)" : "rgba(200,190,255,0.6)");
             sg.addColorStop(1, "rgba(0,0,0,0)");
             ctx.fillStyle = sg;
             ctx.beginPath();
-            ctx.arc(s.x * w, s.y * h, s.s * 6, 0, Math.PI * 2);
+            ctx.arc(sx, sy, s.s * 7, 0, Math.PI * 2);
             ctx.fill();
           } else {
             ctx.globalAlpha = alpha;
-            ctx.fillStyle = "#d6c8ff";
+            ctx.fillStyle = starColor;
             ctx.beginPath();
-            ctx.arc(s.x * w, s.y * h, s.s, 0, Math.PI * 2);
+            ctx.arc(sx, sy, s.s, 0, Math.PI * 2);
             ctx.fill();
+            // Subtle glow for medium-sized stars
+            if (s.s > 1.0) {
+              ctx.globalAlpha = alpha * 0.15;
+              ctx.beginPath();
+              ctx.arc(sx, sy, s.s * 2.5, 0, Math.PI * 2);
+              ctx.fill();
+            }
           }
         }
         ctx.globalAlpha = 1;
