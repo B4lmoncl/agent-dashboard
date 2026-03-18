@@ -1,16 +1,17 @@
 "use client";
 
-import { useEffect, useState, useCallback, useRef, useMemo } from "react";
+import { useEffect, useState, useCallback, useRef, useMemo, lazy, Suspense } from "react";
 import StatBar from "@/components/StatBar";
 import OnboardingWizard from "@/components/OnboardingWizard";
-import LeaderboardView from "@/components/LeaderboardView";
-import HonorsView from "@/components/HonorsView";
-import CVBuilderPanel from "@/components/CVBuilderPanel";
-// import BattlePassView from "@/components/BattlePassView"; // Season Pass disabled — Coming Soon
-import CampaignHub from "@/components/CampaignHub";
-import ShopView from "@/components/ShopView";
-import GachaView from "@/components/GachaView";
-import CharacterView from "@/components/CharacterView";
+// Lazy-loaded views — only loaded when the tab is active (code splitting)
+const LeaderboardView = lazy(() => import("@/components/LeaderboardView"));
+const HonorsView = lazy(() => import("@/components/HonorsView"));
+const CVBuilderPanel = lazy(() => import("@/components/CVBuilderPanel"));
+const CampaignHub = lazy(() => import("@/components/CampaignHub"));
+const ShopView = lazy(() => import("@/components/ShopView"));
+const GachaView = lazy(() => import("@/components/GachaView"));
+const CharacterView = lazy(() => import("@/components/CharacterView"));
+const RitualChamber = lazy(() => import("@/components/RitualChamber"));
 import { GuideModal, GuideContent, TutorialOverlay, TUTORIAL_STEPS } from "@/components/TutorialModal";
 import {
   CreateQuestModal, PersonalQuestPanel, ForgeChallengesPanel, AntiRitualePanel,
@@ -32,7 +33,6 @@ import FeedbackOverlay from "@/components/FeedbackOverlay";
 import { ModalPortal, useModalBehavior, ModalOverlay } from "@/components/ModalPortal";
 import DashboardHeader from "@/components/DashboardHeader";
 import DashboardModals from "@/components/DashboardModals";
-import RitualChamber from "@/components/RitualChamber";
 import { DashboardProvider } from "@/app/DashboardContext";
 import QuestDetailModal from "@/components/QuestDetailModal";
 import { SFX } from "@/lib/sounds";
@@ -57,6 +57,9 @@ import { getAuthHeaders, setAccessToken } from "@/lib/auth-client";
 import { useQuestActions } from "@/hooks/useQuestActions";
 
 const RARITY_ORDER: Record<string, number> = { legendary: 0, epic: 1, rare: 2, uncommon: 3, common: 4, companion: 1 };
+
+// Suspense fallback for lazy-loaded views
+const ViewFallback = () => <div className="flex items-center justify-center py-20 text-w30 text-sm font-mono">Loading...</div>;
 
 export default function Dashboard() {
   const [agents, setAgents] = useState<Agent[]>([]);
@@ -825,13 +828,13 @@ export default function Dashboard() {
                 </div>
               </div>
             )}
-            <LeaderboardView entries={leaderboard} agents={agents} mode="players" />
+            <Suspense fallback={<ViewFallback />}><LeaderboardView entries={leaderboard} agents={agents} mode="players" /></Suspense>
           </div>
         )}
 
         {/* Honors View — Player-specific */}
         {dashView === "honors" && (
-          <HonorsView catalogue={achievementCatalogue} />
+          <Suspense fallback={<ViewFallback />}><HonorsView catalogue={achievementCatalogue} /></Suspense>
         )}
 
         {/* Campaign View */}
@@ -869,18 +872,18 @@ export default function Dashboard() {
 
         {/* ── SHOP TAB ── */}
         {dashView === "shop" && (
-          <ShopView
+          <Suspense fallback={<ViewFallback />}><ShopView
             onBuy={handleShopBuy}
             onGearBuy={handleGearBuy}
-          />
+          /></Suspense>
         )}
 
         {/* ── VAULT OF FATE (GACHA) TAB ── */}
         {dashView === "gacha" && (
-          <GachaView
+          <Suspense fallback={<ViewFallback />}><GachaView
             onRefresh={refresh}
             onPullComplete={(items) => { items.forEach((item: any, i: number) => { setTimeout(() => addToast({ type: "flavor", message: `${item.item?.name || "Item"} collected!`, icon: item.item?.icon || "/images/icons/vault-of-fate.png", sub: item.item?.rarity || "common" }), i * 50); }); }}
-          />
+          /></Suspense>
         )}
 
         {/* ── ROADMAP TAB ── */}
@@ -1219,7 +1222,7 @@ export default function Dashboard() {
 
                   {/* ── Rituale Tab ── */}
                   {questBoardTab === "rituale" && (
-                    <RitualChamber rituals={rituals} setRituals={setRituals} setRewardCelebration={setRewardCelebration} />
+                    <Suspense fallback={<ViewFallback />}><RitualChamber rituals={rituals} setRituals={setRituals} setRewardCelebration={setRewardCelebration} /></Suspense>
                   )}
 
                   {/* ── Anti-Rituale Tab ── */}
@@ -1254,7 +1257,7 @@ export default function Dashboard() {
 
         {/* ── CHARACTER TAB ── */}
         {dashView === "character" && playerName && (
-          <CharacterView addToast={addToast} />
+          <Suspense fallback={<ViewFallback />}><CharacterView addToast={addToast} /></Suspense>
         )}
 
         {/* ── THE WANDERER'S REST (NPC Tab) ── */}
