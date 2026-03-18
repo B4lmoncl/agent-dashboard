@@ -260,6 +260,7 @@ router.post('/api/personal-templates/spawn', requireApiKey, (req, res) => {
     checklist: template.checklist ? template.checklist.map(item => ({ ...item, done: false })) : null,
   };
   state.quests.push(quest);
+  state.questsById.set(quest.id, quest);
   saveQuests();
   console.log(`[personal-template] spawned: ${quest.id} — "${quest.title}" (${templateId})`);
   res.json({ ok: true, quest });
@@ -318,6 +319,7 @@ router.post('/api/challenges/join', requireApiKey, (req, res) => {
       challengeId,
     };
     state.quests.push(q);
+    state.questsById.set(q.id, q);
     created.push(q);
   }
   saveUsers();

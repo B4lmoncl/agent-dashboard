@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const crypto = require('crypto');
-const { state, XP_BY_PRIORITY, GOLD_BY_PRIORITY, TEMP_BY_PRIORITY, STREAK_MILESTONES, RARITY_WEIGHTS, RARITY_COLORS, RARITY_ORDER, EQUIPMENT_SLOTS, LEVELS, PLAYER_QUEST_TYPES, saveQuests, savePlayerProgress, saveManagedKeys } = require('../lib/state');
+const { state, XP_BY_PRIORITY, GOLD_BY_PRIORITY, TEMP_BY_PRIORITY, STREAK_MILESTONES, RARITY_WEIGHTS, RARITY_COLORS, RARITY_ORDER, EQUIPMENT_SLOTS, LEVELS, PLAYER_QUEST_TYPES, saveQuests, savePlayerProgress, saveManagedKeys, rebuildQuestsById } = require('../lib/state');
 const { now, getLevelInfo, getPlayerProgress, awardXP, getTodayBerlin } = require('../lib/helpers');
 const { requireApiKey, requireMasterKey, getMasterKey } = require('../lib/middleware');
 const { assignRarity, selectDailyQuests } = require('../lib/rotation');
@@ -89,7 +89,7 @@ function buildVisiblePool(playerName, playerLevel) {
 
   // Pick from this player's generated quest pool (pp.generatedQuests)
   const generated = (pp.generatedQuests || [])
-    .map(id => state.quests.find(q => q.id === id))
+    .map(id => state.questsById.get(id))
     .filter(q => q && q.status === 'open' && !claimedIds.has(q.id) && (!q.minLevel || q.minLevel <= playerLevel));
 
   for (const type of POOL_TYPES) {
@@ -128,7 +128,7 @@ function generatePlayerQuests(playerName, playerLevel) {
   }
   // Also exclude templateIds of current generated pool (if any still open)
   for (const qid of (pp.generatedQuests || [])) {
-    const q = state.quests.find(x => x.id === qid);
+    const q = state.questsById.get(qid);
     if (q && q.templateId) excludeTemplateIds.add(q.templateId);
   }
 
@@ -192,9 +192,11 @@ function generatePlayerQuests(playerName, playerLevel) {
   // Remove old generated quests that are still 'open' (not claimed)
   const oldGenIds = new Set(pp.generatedQuests || []);
   state.quests = state.quests.filter(q => !oldGenIds.has(q.id) || q.status !== 'open');
+  rebuildQuestsById();
 
   // Add new quests
   state.quests.push(...newQuests);
+  for (const q of newQuests) state.questsById.set(q.id, q);
   saveQuests();
 
   // Track generated IDs and previous template IDs
@@ -234,7 +236,7 @@ router.get('/api/quests/pool', (req, res) => {
   }
 
   const poolQuests = pp.activeQuestPool
-    .map(id => state.quests.find(q => q.id === id))
+    .map(id => state.questsById.get(id))
     .filter(Boolean);
 
   res.json({ pool: poolQuests, lastRefresh: pp.lastPoolRefresh || null });
@@ -269,7 +271,7 @@ router.post('/api/quests/pool/refresh', requireApiKey, (req, res) => {
   savePlayerProgress();
 
   const poolQuests = pp.activeQuestPool
-    .map(id => state.quests.find(q => q.id === id))
+    .map(id => state.questsById.get(id))
     .filter(Boolean);
 
   res.json({ ok: true, pool: poolQuests, generated: pp.generatedQuests.length, lastRefresh: pp.lastPoolRefresh });

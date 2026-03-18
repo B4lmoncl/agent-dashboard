@@ -9,7 +9,7 @@ const { requireApiKey } = require('../lib/middleware');
 router.get('/api/campaigns', (req, res) => {
   const enriched = state.campaigns.map(c => {
     const questDetails = c.questIds.map(id => {
-      const q = state.quests.find(q => q.id === id);
+      const q = state.questsById.get(id);
       if (!q) return { id, title: '(deleted)', status: 'deleted' };
       return { id: q.id, title: q.title, status: q.status, priority: q.priority, type: q.type,
                completedBy: q.completedBy, completedAt: q.completedAt, claimedBy: q.claimedBy,
@@ -34,7 +34,7 @@ router.post('/api/campaigns', requireApiKey, (req, res) => {
     createdBy: createdBy || 'unknown',
     createdAt: now(),
     status: 'active',
-    questIds: Array.isArray(questIds) ? questIds.filter(id => state.quests.find(q => q.id === id)) : [],
+    questIds: Array.isArray(questIds) ? questIds.filter(id => state.questsById.has(id)) : [],
     bossQuestId: bossQuestId || null,
     rewards: { xp: Number(rewards?.xp) || 0, gold: Number(rewards?.gold) || 0, title: rewards?.title || '' },
   };
@@ -49,7 +49,7 @@ router.get('/api/campaigns/:id', (req, res) => {
   const campaign = state.campaigns.find(c => c.id === req.params.id);
   if (!campaign) return res.status(404).json({ error: 'Campaign not found' });
   const questDetails = campaign.questIds.map(id => {
-    const q = state.quests.find(q => q.id === id);
+    const q = state.questsById.get(id);
     return q || { id, title: '(deleted)', status: 'deleted' };
   });
   const completed = questDetails.filter(q => q.status === 'completed').length;
@@ -88,7 +88,7 @@ router.post('/api/campaigns/:id/add-quest', requireApiKey, (req, res) => {
   if (!campaign) return res.status(404).json({ error: 'Campaign not found' });
   const { questId } = req.body;
   if (!questId) return res.status(400).json({ error: 'questId required' });
-  if (!state.quests.find(q => q.id === questId)) return res.status(404).json({ error: 'Quest not found' });
+  if (!state.questsById.has(questId)) return res.status(404).json({ error: 'Quest not found' });
   if (!campaign.questIds.includes(questId)) campaign.questIds.push(questId);
   saveCampaigns();
   res.json({ ok: true, campaign });

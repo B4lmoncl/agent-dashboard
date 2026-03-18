@@ -1,6 +1,6 @@
 // ─── Quest API ──────────────────────────────────────────────────────────────────
 const router = require('express').Router();
-const { state, PLAYER_QUEST_TYPES, NPC_NAMES, XP_BY_PRIORITY, saveQuests, saveData, savePlayerProgress, saveQuestCatalog } = require('../lib/state');
+const { state, PLAYER_QUEST_TYPES, NPC_NAMES, XP_BY_PRIORITY, saveQuests, saveData, savePlayerProgress, saveQuestCatalog, rebuildQuestsById } = require('../lib/state');
 const { now, getPlayerProgress, getLevelInfo, onQuestCompletedByUser, awardXP, awardAgentGold, updateAgentStreak, randGold } = require('../lib/helpers');
 const { requireApiKey } = require('../lib/middleware');
 const { rebuildCatalogMeta } = require('../lib/quest-catalog');
@@ -84,7 +84,7 @@ router.post('/api/quest', requireApiKey, (req, res) => {
   }
   // Validate parentQuestId if provided
   if (parentQuestId) {
-    const parent = state.quests.find(q => q.id === parentQuestId);
+    const parent = state.questsById.get(parentQuestId);
     if (!parent) return res.status(400).json({ error: `Parent quest not found: ${parentQuestId}` });
   }
   const resolvedCreatedBy = typeof createdBy === 'string' && createdBy.trim() ? createdBy.trim() : 'unknown';
@@ -154,6 +154,7 @@ router.post('/api/quest', requireApiKey, (req, res) => {
     rarity: resolvedRarity,
   };
   state.quests.push(quest);
+  state.questsById.set(quest.id, quest);
   saveQuests();
   // Auto-add template entry to catalog
   try {
@@ -186,7 +187,7 @@ router.post('/api/quest', requireApiKey, (req, res) => {
 // PATCH /api/quest/:id/checklist — update checklist items on a quest
 // Body: { items: [{ text: string, done: boolean }] }
 router.patch('/api/quest/:id/checklist', requireApiKey, (req, res) => {
-  const quest = state.quests.find(q => q.id === req.params.id);
+  const quest = state.questsById.get(req.params.id);
   if (!quest) return res.status(404).json({ error: 'Quest not found' });
   const { items } = req.body;
   if (!Array.isArray(items)) return res.status(400).json({ error: 'items must be an array' });
@@ -215,7 +216,7 @@ router.post('/api/quests/household-rotate', requireApiKey, (req, res) => {
 
 // POST /api/quest/:id/claim — agent/player claims a quest
 router.post('/api/quest/:id/claim', requireApiKey, (req, res) => {
-  const quest = state.quests.find(q => q.id === req.params.id);
+  const quest = state.questsById.get(req.params.id);
   if (!quest) return res.status(404).json({ error: 'Quest not found' });
   const { agentId } = req.body;
   if (!agentId) return res.status(400).json({ error: 'agentId is required' });
@@ -277,7 +278,7 @@ router.post('/api/quest/:id/claim', requireApiKey, (req, res) => {
 
 // POST /api/quest/:id/complete — mark quest as done
 router.post('/api/quest/:id/complete', requireApiKey, (req, res) => {
-  const quest = state.quests.find(q => q.id === req.params.id);
+  const quest = state.questsById.get(req.params.id);
   if (!quest) return res.status(404).json({ error: 'Quest not found' });
   const { agentId } = req.body;
   if (!agentId) return res.status(400).json({ error: 'agentId is required' });
@@ -391,7 +392,7 @@ router.post('/api/quest/:id/complete', requireApiKey, (req, res) => {
 
 // POST /api/quest/:id/unclaim — agent/player unclaims a quest
 router.post('/api/quest/:id/unclaim', requireApiKey, (req, res) => {
-  const quest = state.quests.find(q => q.id === req.params.id);
+  const quest = state.questsById.get(req.params.id);
   if (!quest) return res.status(404).json({ error: 'Quest not found' });
   const { agentId } = req.body;
   if (!agentId) return res.status(400).json({ error: 'agentId is required' });
@@ -425,7 +426,7 @@ router.post('/api/quest/:id/unclaim', requireApiKey, (req, res) => {
 
 // POST /api/quest/:id/coop-claim — player claims their part of a co-op quest
 router.post('/api/quest/:id/coop-claim', requireApiKey, (req, res) => {
-  const quest = state.quests.find(q => q.id === req.params.id);
+  const quest = state.questsById.get(req.params.id);
   if (!quest) return res.status(404).json({ error: 'Quest not found' });
   if (quest.type !== 'relationship-coop') return res.status(400).json({ error: 'Not a co-op quest' });
   const { userId } = req.body;
@@ -450,7 +451,7 @@ router.post('/api/quest/:id/coop-claim', requireApiKey, (req, res) => {
 
 // POST /api/quest/:id/coop-complete — player marks their part as done
 router.post('/api/quest/:id/coop-complete', requireApiKey, (req, res) => {
-  const quest = state.quests.find(q => q.id === req.params.id);
+  const quest = state.questsById.get(req.params.id);
   if (!quest) return res.status(404).json({ error: 'Quest not found' });
   if (quest.type !== 'relationship-coop') return res.status(400).json({ error: 'Not a co-op quest' });
   const { userId } = req.body;
@@ -614,7 +615,7 @@ router.get('/api/quests', (req, res) => {
 
 // POST /api/quest/:id/approve — approve a suggested quest → open
 router.post('/api/quest/:id/approve', requireApiKey, (req, res) => {
-  const quest = state.quests.find(q => q.id === req.params.id);
+  const quest = state.questsById.get(req.params.id);
   if (!quest) return res.status(404).json({ error: 'Quest not found' });
   if (quest.status !== 'suggested') return res.status(409).json({ error: `Quest is not in suggested state (current: ${quest.status})` });
   quest.status = 'open';
@@ -626,7 +627,7 @@ router.post('/api/quest/:id/approve', requireApiKey, (req, res) => {
 
 // POST /api/quest/:id/reject — reject any non-completed quest → rejected
 router.post('/api/quest/:id/reject', requireApiKey, (req, res) => {
-  const quest = state.quests.find(q => q.id === req.params.id);
+  const quest = state.questsById.get(req.params.id);
   if (!quest) return res.status(404).json({ error: 'Quest not found' });
   if (quest.status === 'completed') return res.status(409).json({ error: 'Cannot reject a completed quest' });
   quest.status = 'rejected';
@@ -638,7 +639,7 @@ router.post('/api/quest/:id/reject', requireApiKey, (req, res) => {
 
 // PATCH /api/quest/:id — update quest fields (priority, proof, title, description, claimedBy, etc.)
 router.patch('/api/quest/:id', requireApiKey, (req, res) => {
-  const quest = state.quests.find(q => q.id === req.params.id);
+  const quest = state.questsById.get(req.params.id);
   if (!quest) return res.status(404).json({ error: 'Quest not found' });
   const { priority, proof, title, description, status, claimedBy } = req.body;
   if (priority !== undefined) {
@@ -674,7 +675,7 @@ router.patch('/api/quests/:id/complete', requireApiKey, (req, res) => {
   const { id } = req.params;
   const { completedBy } = req.body;
 
-  const quest = state.quests.find(q => q.id === id);
+  const quest = state.questsById.get(id);
   if (!quest) return res.status(404).json({ error: 'Quest not found' });
   if (quest.status === 'completed') return res.status(409).json({ error: 'Quest already completed' });
 
@@ -754,7 +755,7 @@ router.post('/api/quests/import', requireApiKey, (req, res) => {
     if (isDuplicate) { skipped++; continue; }
 
     const id = `quest-import-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
-    state.quests.push({
+    const importedQuest = {
       id,
       title:              q.title.trim(),
       description:        q.description || '',
@@ -783,7 +784,9 @@ router.post('/api/quests/import', requireApiKey, (req, res) => {
       classRequired:      q.classRequired || null,
       proof:              null,
       checklist:          Array.isArray(q.checklist) ? q.checklist : null,
-    });
+    };
+    state.quests.push(importedQuest);
+    state.questsById.set(importedQuest.id, importedQuest);
     created.push(id);
   }
 

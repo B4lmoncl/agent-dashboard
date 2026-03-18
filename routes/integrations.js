@@ -45,6 +45,7 @@ router.post('/api/webhooks/github', (req, res) => {
       createdAt: pr.created_at || new Date().toISOString(),
     };
     state.quests.push(quest);
+    state.questsById.set(quest.id, quest);
     saveQuests();
     console.log(`[github] PR #${pr.number} merged → completed quest ${quest.id}`);
     return res.json({ ok: true, event: 'pr_merged', questId: quest.id });
@@ -69,6 +70,7 @@ router.post('/api/webhooks/github', (req, res) => {
       createdAt: issue.created_at || new Date().toISOString(),
     };
     state.quests.push(quest);
+    state.questsById.set(quest.id, quest);
     saveQuests();
     console.log(`[github] Issue #${issue.number} opened → suggested quest ${quest.id}`);
     return res.json({ ok: true, event: 'issue_opened', questId: quest.id });
