@@ -651,8 +651,12 @@ export default function CharacterView({ addToast }: { addToast?: (t: ToastInput)
   const [statTooltipOpen, setStatTooltipOpen] = useState<string | null>(null);
   const [invFilter, setInvFilter] = useState<InvFilter>("all");
   const [invSort, setInvSort] = useState<InvSort>("none");
+  const [sortDropdownOpen, setSortDropdownOpen] = useState(false);
+  const sortDropdownRef = useRef<HTMLDivElement>(null);
   const [dragFromIdx, setDragFromIdx] = useState<number | null>(null);
   const [dragOverIdx, setDragOverIdx] = useState<number | null>(null);
+  // Position-based grid: maps grid slot index → item id (supports gaps)
+  const [invPositions, setInvPositions] = useState<Record<string, number>>({});
 
   useEffect(() => {
     if (!statTooltipOpen) return;
@@ -660,6 +664,25 @@ export default function CharacterView({ addToast }: { addToast?: (t: ToastInput)
     document.addEventListener("click", close);
     return () => document.removeEventListener("click", close);
   }, [statTooltipOpen]);
+
+  // Close sort dropdown on click outside
+  useEffect(() => {
+    if (!sortDropdownOpen) return;
+    const close = (e: MouseEvent) => {
+      if (sortDropdownRef.current && !sortDropdownRef.current.contains(e.target as Node)) setSortDropdownOpen(false);
+    };
+    document.addEventListener("mousedown", close);
+    return () => document.removeEventListener("mousedown", close);
+  }, [sortDropdownOpen]);
+
+  // Load inventory positions from localStorage
+  useEffect(() => {
+    if (!playerName) return;
+    try {
+      const saved = localStorage.getItem(`inv-pos-${playerName}`);
+      if (saved) setInvPositions(JSON.parse(saved));
+    } catch { /* ignore */ }
+  }, [playerName]);
 
   const PETAL_COUNT = 35;
   const petals = useMemo(() => Array.from({ length: PETAL_COUNT }, (_, i) => ({
@@ -819,14 +842,61 @@ export default function CharacterView({ addToast }: { addToast?: (t: ToastInput)
           {/* Header + Sort */}
           <div className="flex items-center justify-between mb-2">
             <p className="text-xs font-bold uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.5)" }}>Inventar</p>
-            <select
-              value={invSort}
-              onChange={e => setInvSort(e.target.value as InvSort)}
-              className="text-xs rounded px-1.5 py-0.5"
-              style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.12)", color: "rgba(255,255,255,0.6)", cursor: "pointer", outline: "none" }}
-            >
-              {INV_SORTS.map(s => <option key={s.key} value={s.key}>{s.label}</option>)}
-            </select>
+            <div className="relative" ref={sortDropdownRef}>
+              <button
+                onClick={() => setSortDropdownOpen(v => !v)}
+                className="text-xs rounded px-2 py-1 flex items-center gap-1"
+                style={{
+                  background: "rgba(255,255,255,0.06)",
+                  border: "1px solid rgba(255,255,255,0.12)",
+                  color: "rgba(255,255,255,0.6)",
+                  cursor: "pointer",
+                  outline: "none",
+                  minWidth: 90,
+                  justifyContent: "space-between",
+                }}
+              >
+                <span>{INV_SORTS.find(s => s.key === invSort)?.label ?? "Standard"}</span>
+                <span style={{ fontSize: 8, opacity: 0.5 }}>{sortDropdownOpen ? "▲" : "▼"}</span>
+              </button>
+              {sortDropdownOpen && (
+                <div
+                  style={{
+                    position: "absolute",
+                    top: "100%",
+                    right: 0,
+                    marginTop: 2,
+                    background: "rgba(18,14,28,0.97)",
+                    border: "1px solid rgba(167,139,250,0.25)",
+                    borderRadius: 6,
+                    overflow: "hidden",
+                    zIndex: 50,
+                    minWidth: 110,
+                    boxShadow: "0 4px 16px rgba(0,0,0,0.5)",
+                  }}
+                >
+                  {INV_SORTS.map(s => (
+                    <button
+                      key={s.key}
+                      onClick={() => { setInvSort(s.key); setSortDropdownOpen(false); }}
+                      className="w-full text-left text-xs px-3 py-1.5"
+                      style={{
+                        background: invSort === s.key ? "rgba(167,139,250,0.15)" : "transparent",
+                        color: invSort === s.key ? "#a78bfa" : "rgba(255,255,255,0.6)",
+                        cursor: "pointer",
+                        border: "none",
+                        display: "block",
+                        transition: "background 0.1s",
+                      }}
+                      onMouseEnter={e => { if (invSort !== s.key) (e.target as HTMLElement).style.background = "rgba(255,255,255,0.06)"; }}
+                      onMouseLeave={e => { if (invSort !== s.key) (e.target as HTMLElement).style.background = "transparent"; }}
+                    >
+                      {s.label}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
 
           {/* Filter Tabs */}
@@ -863,12 +933,43 @@ export default function CharacterView({ addToast }: { addToast?: (t: ToastInput)
             }
 
             // Sort
+            const isSorted = invSort !== "none";
             if (invSort === "rarity") {
               unequipped = [...unequipped].sort((a, b) => (RARITY_SORT_ORDER[a.rarity] ?? 9) - (RARITY_SORT_ORDER[b.rarity] ?? 9));
             } else if (invSort === "name") {
               unequipped = [...unequipped].sort((a, b) => a.name.localeCompare(b.name));
             } else if (invSort === "level") {
               unequipped = [...unequipped].sort((a, b) => (b.minLevel || 0) - (a.minLevel || 0));
+            }
+
+            // Build position-based grid (only in "Standard" sort mode)
+            // grid[slotIndex] = item | null
+            const grid: (InventoryItem | null)[] = new Array(GRID_TOTAL).fill(null);
+            if (isSorted) {
+              // When sorted: compact layout, no custom positions
+              for (let i = 0; i < unequipped.length && i < GRID_TOTAL; i++) grid[i] = unequipped[i];
+            } else {
+              // Standard mode: use saved positions, place items with gaps
+              const positioned = new Set<number>();
+              const unplaced: InventoryItem[] = [];
+              for (const item of unequipped) {
+                const pos = invPositions[item.id];
+                if (pos !== undefined && pos >= 0 && pos < GRID_TOTAL && !positioned.has(pos)) {
+                  grid[pos] = item;
+                  positioned.add(pos);
+                } else {
+                  unplaced.push(item);
+                }
+              }
+              // Place remaining items in first available slots
+              let nextSlot = 0;
+              for (const item of unplaced) {
+                while (nextSlot < GRID_TOTAL && grid[nextSlot] !== null) nextSlot++;
+                if (nextSlot < GRID_TOTAL) {
+                  grid[nextSlot] = item;
+                  nextSlot++;
+                }
+              }
             }
 
             const handleDragStart = (idx: number) => setDragFromIdx(idx);
@@ -879,38 +980,40 @@ export default function CharacterView({ addToast }: { addToast?: (t: ToastInput)
                 setDragOverIdx(null);
                 return;
               }
-              // Build new order by moving dragFrom item to dragOver position
-              const allEquippedIds = new Set(Object.values(charData.equipment).filter(Boolean));
-              const fullUnequipped = charData.inventory.filter(i => !allEquippedIds.has(i.id));
-              // Map filtered indices back to full array
-              const srcItem = unequipped[dragFromIdx];
-              const dstItem = unequipped[dragOverIdx];
+
+              const srcItem = grid[dragFromIdx];
+              const dstItem = grid[dragOverIdx];
               if (!srcItem) { setDragFromIdx(null); setDragOverIdx(null); return; }
 
-              const srcFullIdx = fullUnequipped.findIndex(i => i.id === srcItem.id);
-              const dstFullIdx = dstItem ? fullUnequipped.findIndex(i => i.id === dstItem.id) : fullUnequipped.length;
-              if (srcFullIdx === -1) { setDragFromIdx(null); setDragOverIdx(null); return; }
-
-              const reordered = [...fullUnequipped];
-              const [moved] = reordered.splice(srcFullIdx, 1);
-              const insertAt = dstFullIdx > srcFullIdx ? dstFullIdx - 1 : dstFullIdx;
-              reordered.splice(insertAt < 0 ? 0 : insertAt, 0, moved);
-
-              // Optimistic update: rebuild full inventory (equipped items stay, unequipped reordered)
-              const equipped = charData.inventory.filter(i => allEquippedIds.has(i.id));
-              setCharData({ ...charData, inventory: [...equipped, ...reordered] });
+              // Swap positions (or move to empty slot)
+              const newPositions = { ...invPositions };
+              newPositions[srcItem.id] = dragOverIdx;
+              if (dstItem) {
+                newPositions[dstItem.id] = dragFromIdx;
+              }
+              setInvPositions(newPositions);
               setDragFromIdx(null);
               setDragOverIdx(null);
 
-              // Persist to backend
+              // Persist positions to localStorage
+              try { localStorage.setItem(`inv-pos-${playerName}`, JSON.stringify(newPositions)); } catch { /* ignore */ }
+
+              // Persist order to backend (flat item list, no gaps)
               try {
+                const allEquippedIds = new Set(Object.values(charData.equipment).filter(Boolean));
+                const equipped = charData.inventory.filter(i => allEquippedIds.has(i.id));
+                // Build new grid with swap applied
+                const newGrid = [...grid];
+                newGrid[dragOverIdx] = srcItem;
+                newGrid[dragFromIdx] = dstItem;
+                const reordered = newGrid.filter(Boolean) as InventoryItem[];
                 const fullOrder = [...equipped, ...reordered].map(i => i.id);
                 await fetch(`/api/player/${encodeURIComponent(playerName)}/inventory/reorder`, {
                   method: "POST",
                   headers: { "Content-Type": "application/json", ...getAuthHeaders() },
                   body: JSON.stringify({ order: fullOrder }),
                 });
-              } catch { /* silent — optimistic update already applied */ }
+              } catch { /* silent */ }
             };
 
             return (
@@ -922,7 +1025,7 @@ export default function CharacterView({ addToast }: { addToast?: (t: ToastInput)
                 }}
               >
                 {Array.from({ length: GRID_TOTAL }, (_, idx) => {
-                  const item = unequipped[idx] ?? null;
+                  const item = grid[idx];
                   return (
                     <InventorySlot
                       key={item?.id ?? `empty-${idx}`}

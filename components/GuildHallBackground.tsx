@@ -230,7 +230,7 @@ export default function GuildHallBackground() {
       const sizeRoll = h2 * h2 * h2;
       return {
         x:  h0,
-        y:  h1 * 0.60,
+        y:  h1, // Scaled to skyMaxY at render time
         s:  sizeRoll * 2.0 + 0.18,
         to: starHash(i * 5 + 100) * Math.PI * 2,
         ts: 0.0004 + starHash(i * 5 + 200) * 0.002,
@@ -307,10 +307,11 @@ export default function GuildHallBackground() {
       }
 
       // ── Milky Way & nebulae (night only) ──────────────────────────────
+      // Constrained to upper sky area to avoid bleeding into mountains
       if (tod === "night") {
         // Milky Way — diagonal band of diffuse light across the sky
         ctx.save();
-        ctx.translate(w * 0.5, h * 0.28);
+        ctx.translate(w * 0.5, h * 0.18);
         ctx.rotate(-0.45); // ~25° tilt
         const mwWidth = w * 0.18;
         const mwLength = w * 1.6;
@@ -335,9 +336,9 @@ export default function GuildHallBackground() {
 
         // Nebula patches — small colored gas clouds
         const nebulaData = [
-          { x: 0.22, y: 0.12, r: 0.06, color: "rgba(120,60,160," },
-          { x: 0.65, y: 0.08, r: 0.045, color: "rgba(60,80,180," },
-          { x: 0.42, y: 0.22, r: 0.035, color: "rgba(160,60,100," },
+          { x: 0.22, y: 0.08, r: 0.06, color: "rgba(120,60,160," },
+          { x: 0.65, y: 0.05, r: 0.045, color: "rgba(60,80,180," },
+          { x: 0.42, y: 0.15, r: 0.035, color: "rgba(160,60,100," },
         ];
         for (const nb of nebulaData) {
           const nx = nb.x * w, ny = nb.y * h, nr = nb.r * w;
@@ -354,14 +355,18 @@ export default function GuildHallBackground() {
       }
 
       // ── Stars ────────────────────────────────────────────────────────────
+      // Stars only in upper sky area — below this, the guild hall image has
+      // mountains/trees/buildings. The bg image uses object-position: center bottom,
+      // so the ground/buildings fill the lower portion.
       if (tod !== "day") {
         const sa = tod === "night" ? 0.88 : tod === "dawn" ? 0.45 : 0.22;
         const starLimit = mobile() ? 180 : STAR_COUNT;
+        const skyMaxY = h * 0.42; // Stars only in top 42% of viewport
 
         for (let i = 0; i < starLimit; i++) {
           const s = stars[i];
           const sx = s.x * w;
-          const sy = s.y * h;
+          const sy = s.y * skyMaxY; // Map star y to sky zone only
           // Two-frequency twinkle for natural variation
           const tw = Math.sin(t * s.ts + s.to) * 0.25 + Math.sin(t * s.ts * 1.7 + s.to * 0.6) * 0.15 + 0.6;
           const alpha = sa * tw;
