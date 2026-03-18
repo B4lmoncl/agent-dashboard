@@ -69,7 +69,7 @@ const DIFFICULTY_TIERS = [
 ];
 
 const BLOOD_PACT_MULTIPLIER: Record<string, number> = {
-  none: 1, spark: 3, flame: 3, ember: 3, crucible: 5, eternity: 8,
+  none: 1, spark: 3, flame: 3, ember: 5, crucible: 8, eternity: 15,
 };
 
 function getSeraineSpeech(commitment: string, bloodPact: boolean): string {

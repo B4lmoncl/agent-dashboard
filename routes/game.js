@@ -227,7 +227,7 @@ router.post('/api/rituals/:id/complete', requireApiKey, (req, res) => {
     // ─── Commitment & difficulty bonus calculation ───
     const COMMITMENT_BONUSES = { none: { gold: 0, xp: 0 }, spark: { gold: 3, xp: 5 }, flame: { gold: 7, xp: 10 }, ember: { gold: 13, xp: 20 }, crucible: { gold: 20, xp: 35 }, eternity: { gold: 30, xp: 50 } };
     const DIFFICULTY_BOND_SCALE = { easy: 0.5, medium: 1.0, hard: 1.5, legendary: 2.0 };
-    const BLOOD_PACT_MULTI = { none: 1, spark: 3, flame: 3, ember: 3, crucible: 5, eternity: 8 };
+    const BLOOD_PACT_MULTI = { none: 1, spark: 3, flame: 3, ember: 5, crucible: 8, eternity: 15 };
     const commitBonus = COMMITMENT_BONUSES[ritual.commitment] || { gold: 0, xp: 0 };
     const diffScale = DIFFICULTY_BOND_SCALE[ritual.difficulty] || 1.0;
     const pactMulti = ritual.bloodPact ? (BLOOD_PACT_MULTI[ritual.commitment] || 3) : 1;
