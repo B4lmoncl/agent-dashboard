@@ -138,7 +138,8 @@ router.post('/api/rituals', requireApiKey, (req, res) => {
     status: 'active',
     ...(commitment ? { commitment } : {}),
     ...(commitmentDays ? { commitmentDays } : {}),
-    ...(isAntiRitual ? { isAntiRitual: true, category, bloodPact, cleanDays: 0, lastViolated: null } : {}),
+    ...(bloodPact ? { bloodPact: true } : {}),
+    ...(isAntiRitual ? { isAntiRitual: true, category, cleanDays: 0, lastViolated: null } : {}),
   };
   state.rituals.push(ritual);
   saveRituals();
