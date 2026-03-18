@@ -1542,26 +1542,30 @@ export default function Dashboard() {
       <footer data-feedback-id="footer" className="mt-12 py-4" style={{ borderTop: "1px solid rgba(255,68,68,0.07)", position: "relative", zIndex: 2 }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-center gap-3 text-xs font-mono" style={{ color: "rgba(255,255,255,0.15)" }}>
           <span>Quest Hall v{gameVersion}</span>
-          <span style={{ color: "rgba(255,255,255,0.08)" }}>·</span>
-          <button
-            data-feedback-id="footer.alpha-button"
-            onClick={() => setFeedbackMode(v => !v)}
-            title={feedbackMode ? "Exit Feedback Mode (Esc)" : "Enter Alpha Feedback Mode"}
-            style={{
-              background: "none",
-              cursor: "pointer",
-              fontFamily: "monospace",
-              fontSize: 12,
-              padding: "2px 6px",
-              borderRadius: 4,
-              color: feedbackMode ? "#818cf8" : "rgba(255,255,255,0.25)",
-              border: `1px solid ${feedbackMode ? "rgba(129,140,248,0.5)" : "rgba(255,255,255,0.1)"}`,
-              animation: feedbackMode ? "pulse-online 1.5s ease-in-out infinite" : "none",
-              transition: "color 0.2s, border-color 0.2s",
-            }}
-          >
-            (α) Alpha v{gameVersion}
-          </button>
+          {reviewApiKey && playerName && (
+            <>
+              <span style={{ color: "rgba(255,255,255,0.08)" }}>·</span>
+              <button
+                data-feedback-id="footer.alpha-button"
+                onClick={() => setFeedbackMode(v => !v)}
+                title={feedbackMode ? "Exit Feedback Mode (Esc)" : "Enter Alpha Feedback Mode"}
+                style={{
+                  background: "none",
+                  cursor: "pointer",
+                  fontFamily: "monospace",
+                  fontSize: 12,
+                  padding: "2px 6px",
+                  borderRadius: 4,
+                  color: feedbackMode ? "#818cf8" : "rgba(255,255,255,0.25)",
+                  border: `1px solid ${feedbackMode ? "rgba(129,140,248,0.5)" : "rgba(255,255,255,0.1)"}`,
+                  animation: feedbackMode ? "pulse-online 1.5s ease-in-out infinite" : "none",
+                  transition: "color 0.2s, border-color 0.2s",
+                }}
+              >
+                (α) Alpha v{gameVersion}
+              </button>
+            </>
+          )}
         </div>
       </footer>
 

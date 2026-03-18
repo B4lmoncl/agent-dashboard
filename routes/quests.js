@@ -175,6 +175,7 @@ router.post('/api/quest', requireApiKey, (req, res) => {
       createdAt: quest.createdAt,
     };
     state.questCatalog.templates.push(tpl);
+    if (tpl.id) state.questCatalogById.set(tpl.id, tpl);
     rebuildCatalogMeta();
     saveQuestCatalog();
   } catch (_) {}

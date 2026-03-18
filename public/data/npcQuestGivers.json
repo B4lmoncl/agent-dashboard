@@ -1937,5 +1937,19 @@
         }
       }
     }
-  ]
+  ],
+  "specialNpcs": {
+    "dobbie": {
+      "avatar": null,
+      "color": "#ff6b9d",
+      "role": "Cat Overlord",
+      "description": "Dobbie the demanding house cat. His requests are not optional. Resistance is futile."
+    },
+    "npc-dobbie": {
+      "avatar": null,
+      "color": "#ff6b9d",
+      "role": "Cat Overlord",
+      "description": "Dobbie the demanding house cat. His requests are not optional. Resistance is futile."
+    }
+  }
 }

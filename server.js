@@ -26,6 +26,7 @@ const {
   loadCurrencyTemplates, loadGachaPool, loadBannerTemplates, loadGachaState,
   loadItemTemplates,
   saveAppState,
+  flushPendingSaves,
 } = require('./lib/state');
 const { autoCreateCampaigns, initAchievementCatalogue } = require('./lib/helpers');
 const { startupNpcCheck, checkPeriodicTasks } = require('./lib/npc-engine');
@@ -168,6 +169,7 @@ const server = app.listen(PORT, () => {
 // ─── Graceful shutdown ──────────────────────────────────────────────────────
 function shutdown(signal) {
   console.log(`\n[shutdown] ${signal} received, closing server...`);
+  flushPendingSaves();
   server.close(() => {
     console.log('[shutdown] HTTP server closed');
     process.exit(0);

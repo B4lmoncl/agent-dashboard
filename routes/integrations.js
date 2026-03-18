@@ -169,6 +169,7 @@ router.post('/api/catalog/template', requireApiKey, (req, res) => {
     createdAt: now(),
   };
   state.questCatalog.templates.push(tpl);
+  if (tpl.id) state.questCatalogById.set(tpl.id, tpl);
   rebuildCatalogMeta();
   saveQuestCatalog();
   res.json({ ok: true, template: tpl });
