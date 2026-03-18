@@ -21,7 +21,11 @@ function buildQuestPool(playerId, playerLevel) {
       (!q.minLevel || q.minLevel <= playerLevel) &&
       !q.npcGiverId
     );
-    candidates.sort(() => Math.random() - 0.5);
+    // Fisher-Yates shuffle (uniform distribution)
+    for (let i = candidates.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [candidates[i], candidates[j]] = [candidates[j], candidates[i]];
+    }
     pool.push(...candidates.slice(0, count).map(q => q.id));
   }
   return pool;
@@ -700,8 +704,10 @@ router.post('/api/quests/bulk-update', requireApiKey, (req, res) => {
 
   const updated = [];
   const notFound = [];
+  // Build index for O(1) lookups instead of O(n) per id
+  const questMap = new Map(state.quests.map(q => [q.id, q]));
   for (const id of ids) {
-    const quest = state.quests.find(q => q.id === id);
+    const quest = questMap.get(id);
     if (!quest) { notFound.push(id); continue; }
     const wasNotCompleted = quest.status !== 'completed';
     quest.status = status;

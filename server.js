@@ -158,11 +158,22 @@ if (habitsInventory.fetchAndCacheChangelog) {
 }
 
 // ─── Start server ────────────────────────────────────────────────────────────
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log(`\n🔴 Agent Dashboard API running on http://localhost:${PORT}`);
   console.log(`   Agents: ${AGENT_NAMES.join(', ')}`);
   console.log(`   API Keys: ${validApiKeys.size} configured`);
-  console.log(`   Rate limit: 2000 req / 15 min per IP`);
-  console.log(`   Routes: ${12} route modules loaded`);
-  console.log(`   Lib: state, helpers, middleware, npc-engine, rotation, quest-catalog\n`);
+  console.log(`   Rate limit: 2000 req / 15 min per IP\n`);
 });
+
+// ─── Graceful shutdown ──────────────────────────────────────────────────────
+function shutdown(signal) {
+  console.log(`\n[shutdown] ${signal} received, closing server...`);
+  server.close(() => {
+    console.log('[shutdown] HTTP server closed');
+    process.exit(0);
+  });
+  // Force exit after 5s if connections don't close
+  setTimeout(() => { console.warn('[shutdown] Forcing exit'); process.exit(1); }, 5000);
+}
+process.on('SIGTERM', () => shutdown('SIGTERM'));
+process.on('SIGINT', () => shutdown('SIGINT'));

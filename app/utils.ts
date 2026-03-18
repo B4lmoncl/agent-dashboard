@@ -288,3 +288,10 @@ export const LB_LEVELS = [
   { name: "Archmage",   min: 600, color: "#a855f7" },
 ];
 export function getLbLevel(xp: number) { return LB_LEVELS.findLast(l => xp >= l.min) ?? LB_LEVELS[0]; }
+export function getLbXpProgress(xp: number): number {
+  const lvl = getLbLevel(xp);
+  const idx = LB_LEVELS.indexOf(lvl);
+  const next = LB_LEVELS[idx + 1];
+  if (!next) return 1;
+  return (xp - lvl.min) / (next.min - lvl.min);
+}

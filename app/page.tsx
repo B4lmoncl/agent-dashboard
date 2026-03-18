@@ -70,7 +70,6 @@ export default function Dashboard() {
   const [rejectedOpen, setRejectedOpen] = useState(false);
   const [searchFilter, setSearchFilter] = useState("");
   const [sortMode, setSortMode] = useState<"rarity" | "newest">("rarity");
-  const [versions, setVersions] = useState<{ dashboard: string; app: string } | null>(null);
   const [reviewApiKey, setReviewApiKey] = useState<string>(() => {
     try { return localStorage.getItem("dash_api_key") || ""; } catch { return ""; }
   });
@@ -225,16 +224,6 @@ export default function Dashboard() {
     window.addEventListener("keydown", handler);
     return () => window.removeEventListener("keydown", handler);
   }, [apiError]);
-  const apiFetch = useCallback(async (url: string, options?: RequestInit): Promise<Response> => {
-    const r = await fetch(url, options);
-    if (r.status === 429) {
-      const msg = "Zu viel geschmiedet! Der Amboss muss erst abkühlen. Warte kurz vor dem Einreichen neuer Quests.";
-      setApiErrorWithAutoClose(msg);
-      throw new Error(msg);
-    }
-    return r;
-  }, []);
-
   const refresh = useCallback(async () => {
     const [a, q, u, lb, ac, camps] = await Promise.all([fetchAgents(), fetchQuests(playerName || undefined), fetchUsers(), fetchLeaderboard(), fetchAchievementCatalogue(), fetchCampaigns()]);
     // Lyra always first, then online/working agents, then rest
@@ -261,10 +250,6 @@ export default function Dashboard() {
       const r = await fetch(`/api/health`, { signal: AbortSignal.timeout(1500) });
       setApiLive(r.ok);
     } catch { setApiLive(false); }
-    try {
-      const r = await fetch(`/api/version`, { signal: AbortSignal.timeout(1500) });
-      if (r.ok) setVersions(await r.json());
-    } catch { /* ignore */ }
     try {
       const npcUrl = playerName ? `/api/npcs/active?player=${encodeURIComponent(playerName.toLowerCase())}` : `/api/npcs/active`;
       const r = await fetch(npcUrl, { signal: AbortSignal.timeout(2000) });

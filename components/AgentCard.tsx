@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { LB_LEVELS, getLbLevel, getLbXpProgress } from "@/app/utils";
 
 interface Agent {
   id: string;
@@ -22,23 +23,6 @@ interface Agent {
   pendingCommands?: number;
 }
 
-// ─── XP / Level system ────────────────────────────────────────────────────────
-const LEVELS = [
-  { name: "Novice",     min: 0,   max: 99,  color: "#9ca3af" },
-  { name: "Apprentice", min: 100, max: 299, color: "#22c55e" },
-  { name: "Knight",     min: 300, max: 599, color: "#3b82f6" },
-  { name: "Archmage",   min: 600, max: Infinity, color: "#a855f7" },
-];
-
-function getLevel(xp: number) {
-  return LEVELS.findLast(l => xp >= l.min) ?? LEVELS[0];
-}
-
-function getXpProgress(xp: number): number {
-  const lvl = getLevel(xp);
-  if (lvl.max === Infinity) return 1;
-  return (xp - lvl.min) / (lvl.max - lvl.min + 1);
-}
 
 interface Quest {
   id: string;
@@ -271,9 +255,10 @@ export default function AgentCard({ agent, activeQuests = [], isWide = false }: 
       {/* XP Bar */}
       {(() => {
         const xp = agent.xp ?? 0;
-        const lvl = getLevel(xp);
-        const progress = getXpProgress(xp);
-        const nextLvl = LEVELS[LEVELS.indexOf(lvl) + 1];
+        const lvl = getLbLevel(xp);
+        const progress = getLbXpProgress(xp);
+        const idx = LB_LEVELS.indexOf(lvl);
+        const nextLvl = LB_LEVELS[idx + 1];
         return (
           <div className="mt-3">
             <div className="flex items-center justify-between mb-1">
