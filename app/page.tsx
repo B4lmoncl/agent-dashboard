@@ -955,7 +955,7 @@ export default function Dashboard() {
                 </div>
                 <p className="text-xs mb-1.5" style={{ color: "#a78bfa" }}>Lv.{playerLevelInfo.level} · {playerLevelInfo.title}</p>
                 {/* XP progress bar */}
-                <div className="h-1.5 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.07)" }}>
+                <div className="h-1.5 rounded-full overflow-hidden bg-w7">
                   <div
                     className="h-full rounded-full transition-all duration-700"
                     style={{ width: `${(playerLevelInfo.progress * 100).toFixed(1)}%`, background: "linear-gradient(90deg, #7c3aed, #a78bfa)" }}
@@ -1471,7 +1471,7 @@ export default function Dashboard() {
                             {playerVisibleInProgress.length > 0 && (
                               <div className="flex items-center gap-3 my-4">
                                 <div className="flex-1" style={{ height: 2, background: "linear-gradient(90deg, transparent, rgba(167,139,250,0.35), rgba(148,163,184,0.25), transparent)" }} />
-                                <span className="text-xs font-mono uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.2)", fontSize: 9 }}>◆</span>
+                                <span className="text-xs font-mono uppercase tracking-widest text-w20" style={{ fontSize: 9 }}>◆</span>
                                 <div className="flex-1" style={{ height: 2, background: "linear-gradient(90deg, transparent, rgba(148,163,184,0.25), rgba(167,139,250,0.35), transparent)" }} />
                               </div>
                             )}
@@ -1541,7 +1541,7 @@ export default function Dashboard() {
                                 <span className="text-sm font-medium truncate" style={{ color: doneToday ? "rgba(255,255,255,0.4)" : "#e8e8e8", textDecoration: doneToday ? "line-through" : "none" }}>{ritual.title}</span>
                                 {milestone && ((milestone as any).icon ? <img src={(milestone as any).icon} alt={milestone.badge} width={20} height={20} className="img-render-auto" /> : <span className="text-xs">{milestone.badge}</span>)}
                               </div>
-                              <div className="flex items-center gap-3 text-xs flex-wrap" className="text-w35">
+                              <div className="flex items-center gap-3 text-xs flex-wrap text-w35">
                                 <span style={{ color: ritual.streak >= 21 ? "#818cf8" : ritual.streak >= 7 ? "#f97316" : "rgba(255,255,255,0.35)" }}>
                                   {ritual.streak} Tage Streak
                                 </span>
@@ -1560,11 +1560,11 @@ export default function Dashboard() {
                               </div>
                               {nextMilestone && (
                                 <div className="mt-2">
-                                  <div className="flex items-center justify-between text-xs mb-1" className="text-w25">
+                                  <div className="flex items-center justify-between text-xs mb-1 text-w25">
                                     <span>Nächstes Ziel in {nextMilestone.days - ritual.streak}d: <span style={{ color: nextMilestone.label === "Bronze" ? "#cd7f32" : nextMilestone.label === "Silber" ? "#c0c0c0" : nextMilestone.label === "Gold" ? "#ffd700" : nextMilestone.label === "Diamond" ? "#b9f2ff" : "#a78bfa", fontWeight: 700 }}>{nextMilestone.label}</span></span>
                                     <span>{ritual.streak}/{nextMilestone.days}</span>
                                   </div>
-                                  <div className="h-1 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.08)" }}>
+                                  <div className="h-1 rounded-full overflow-hidden bg-w8">
                                     <div className="h-full rounded-full transition-all" style={{ width: `${progress}%`, background: "rgba(167,139,250,0.6)" }} />
                                   </div>
                                 </div>
@@ -1664,8 +1664,8 @@ export default function Dashboard() {
                               )}
                             </div>
                             {playerRituals.length === 0 ? (
-                              <div className="rounded-xl p-5 text-center" style={{ background: "#252525", border: "1px solid rgba(255,255,255,0.06)" }}>
-                                <p className="text-xs mb-2" className="text-w25">No rituals. Create your first daily ritual!</p>
+                              <div className="rounded-xl p-5 text-center bg-card border-w6">
+                                <p className="text-xs mb-2 text-w25">No rituals. Create your first daily ritual!</p>
                               </div>
                             ) : (
                               <div className="space-y-2">
@@ -1799,7 +1799,7 @@ export default function Dashboard() {
                 {/* Delete Ritual Confirm Modal */}
                 {deleteRitualConfirmId && (
                   <ModalPortal>
-                  <div className="fixed inset-0 z-50 flex items-center justify-center p-4" className="modal-backdrop" onClick={() => setDeleteRitualConfirmId(null)}>
+                  <div className="fixed inset-0 z-50 flex items-center justify-center p-4 modal-backdrop" onClick={() => setDeleteRitualConfirmId(null)}>
                     <div className="w-full max-w-xs rounded-2xl overflow-hidden" style={{ background: "linear-gradient(160deg, #2c2318 0%, #1e1912 100%)", border: "1px solid rgba(239,68,68,0.35)", boxShadow: "0 0 40px rgba(239,68,68,0.1)" }} onClick={e => e.stopPropagation()}>
                       <div className="p-5 text-center">
                         <p className="text-2xl mb-3">×</p>
@@ -1921,7 +1921,7 @@ export default function Dashboard() {
                             <p style={{ fontSize: "0.8rem", fontStyle: "italic", color: "#c9a46a", lineHeight: 1.5, margin: 0 }}>&ldquo;The flame went out. But the ember remembers. Do you?&rdquo;</p>
                           </div>
                           <div className="p-5 space-y-4">
-                            <p className="text-sm leading-relaxed" className="text-w50">
+                            <p className="text-sm leading-relaxed text-w50">
                               Your streak was broken, but the rite endures. Recommit and begin anew — your longest streak of <span style={{ color: "#f59e0b", fontWeight: 600 }}>{ritualToRecommit.longestStreak ?? 0} days</span> is etched in the records.
                             </p>
                             <p className="text-xs italic" style={{ color: "rgba(200,170,100,0.35)" }}>
@@ -1969,7 +1969,7 @@ export default function Dashboard() {
               <h2 className="text-xs font-semibold uppercase tracking-widest" style={{ color: "#60a5fa" }}>The Arcanum</h2>
             </div>
             <div className="rounded-xl px-6 py-16 text-center" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
-              <p className="text-lg font-bold mb-2" className="text-w25">Coming Soon</p>
+              <p className="text-lg font-bold mb-2 text-w25">Coming Soon</p>
               <p className="text-xs" style={{ color: "rgba(255,255,255,0.15)" }}>Das Arcanum sammelt seine Schriftrollen. Klassenquests und Skill Trees folgen bald.</p>
             </div>
           </div>
@@ -2039,10 +2039,10 @@ export default function Dashboard() {
               onClick={() => setRejectedOpen(v => !v)}
               className="flex items-center gap-2 mb-3 w-full text-left"
             >
-              <h2 className="text-xs font-semibold uppercase tracking-widest" className="text-w20">
+              <h2 className="text-xs font-semibold uppercase tracking-widest text-w20">
                 Rejected
               </h2>
-              <span className="text-xs px-1.5 py-0.5 rounded font-mono" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.2)" }}>
+              <span className="text-xs px-1.5 py-0.5 rounded font-mono bg-w4 text-w20">
                 {quests.rejected.length}
               </span>
               <span className="ml-auto text-xs" style={{ color: "rgba(255,255,255,0.15)" }}>
@@ -2050,7 +2050,7 @@ export default function Dashboard() {
               </span>
             </button>
             {rejectedOpen && (
-              <div className="rounded-xl overflow-hidden" style={{ background: "#1e1e1e", border: "1px solid rgba(255,255,255,0.04)" }}>
+              <div className="rounded-xl overflow-hidden bg-surface-alt" style={{ border: "1px solid rgba(255,255,255,0.04)" }}>
                 {quests.rejected.map((q, i) => (
                   <div
                     key={q.id}
@@ -2059,7 +2059,7 @@ export default function Dashboard() {
                   >
                     <span className="text-xs flex-shrink-0" style={{ color: "rgba(239,68,68,0.4)" }}>x</span>
                     <div className="flex-1 min-w-0">
-                      <p className="text-xs truncate" style={{ color: "rgba(255,255,255,0.25)", textDecoration: "line-through" }}>{q.title}</p>
+                      <p className="text-xs truncate text-w25" style={{ textDecoration: "line-through" }}>{q.title}</p>
                       <span className="text-xs" style={{ color: "rgba(255,255,255,0.15)" }}>by {q.createdBy ?? "unknown"}</span>
                     </div>
                     <PriorityBadge priority={q.priority} />
@@ -2094,13 +2094,13 @@ export default function Dashboard() {
                 onClick={() => setCompletedOpen(v => !v)}
                 className="flex items-center gap-2 mb-3 w-full text-left"
               >
-                <h2 className="text-xs font-semibold uppercase tracking-widest" className="text-w40">
+                <h2 className="text-xs font-semibold uppercase tracking-widest text-w40">
                   {dashView === "npcBoard" ? "NPC Quest Log" : "Quest Journal"}
                 </h2>
-                <span className="text-xs px-1.5 py-0.5 rounded font-mono" style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.3)" }}>
+                <span className="text-xs px-1.5 py-0.5 rounded font-mono bg-w6 text-w30">
                   {journalQuests.length}
                 </span>
-                <span className="ml-auto text-xs" className="text-w20">
+                <span className="ml-auto text-xs text-w20">
                   {completedOpen ? "▲" : "▼"}
                 </span>
               </button>
@@ -2112,12 +2112,11 @@ export default function Dashboard() {
                     value={completedSearch}
                     onChange={e => setCompletedSearch(e.target.value)}
                     placeholder="Search completed quests…"
-                    className="w-full text-xs px-3 py-2 rounded-lg mb-2"
-                    style={{ background: "#1e1e1e", border: "1px solid rgba(255,255,255,0.08)", color: "#e8e8e8", outline: "none" }}
+                    className="w-full text-xs px-3 py-2 rounded-lg mb-2 input-dark border-w8"
                   />
-                  <div className="rounded-xl overflow-hidden" style={{ background: "#1e1e1e", border: "1px solid rgba(255,255,255,0.06)" }}>
+                  <div className="rounded-xl overflow-hidden bg-surface-alt border-w6">
                     {journalQuests.length === 0 ? (
-                      <p className="text-xs p-4 text-center" className="text-w20">
+                      <p className="text-xs p-4 text-center text-w20">
                         {dashView === "questBoard" && !playerName ? "Login to see your completed quests" : "No completed quests yet"}
                       </p>
                     ) : (() => {
@@ -2129,7 +2128,7 @@ export default function Dashboard() {
                           )
                         : journalQuests;
                       if (filtered.length === 0) return (
-                        <p className="text-xs p-4 text-center" className="text-w20">No quests match &ldquo;{completedSearch}&rdquo;</p>
+                        <p className="text-xs p-4 text-center text-w20">No quests match &ldquo;{completedSearch}&rdquo;</p>
                       );
                       return (
                         <div>
@@ -2162,7 +2161,7 @@ export default function Dashboard() {
             boxShadow: "0 8px 32px rgba(0,0,0,0.6), 0 0 20px rgba(255,102,51,0.1)",
           }}
         >
-          <span className="text-xs font-medium mr-1" className="text-w50">
+          <span className="text-xs font-medium mr-1 text-w50">
             {selectedIds.size} selected
           </span>
           {(["open", "completed", "rejected"] as Quest["status"][]).map(s => (
@@ -2183,8 +2182,7 @@ export default function Dashboard() {
           ))}
           <button
             onClick={() => setSelectedIds(new Set())}
-            className="text-xs px-2 py-1 rounded-lg ml-1"
-            style={{ color: "rgba(255,255,255,0.3)", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}
+            className="text-xs px-2 py-1 rounded-lg ml-1 text-w30" style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}
           >
             x
           </button>
@@ -2210,8 +2208,7 @@ export default function Dashboard() {
           <ModalPortal>
           <div
             data-feedback-id="quest-board.quest-modal"
-            className="fixed inset-0 z-[90] flex items-center justify-center p-4"
-            className="modal-backdrop"
+            className="fixed inset-0 z-[90] flex items-center justify-center p-4 modal-backdrop"
             onClick={() => setQuestDetailModal(null)}
           >
             <div
@@ -2233,13 +2230,13 @@ export default function Dashboard() {
                 <div className="flex items-start gap-3 flex-1 min-w-0">
                   <span className="text-2xl flex-shrink-0">{typeCfg.icon?.startsWith("/") ? <img src={typeCfg.icon} alt="" width={28} height={28} className="img-render-auto" onError={(e) => { e.currentTarget.style.display = "none"; }} /> : typeCfg.icon}</span>
                   <div className="flex-1 min-w-0">
-                    <h3 className="text-base font-bold leading-snug" className="text-bright">{q.title}</h3>
+                    <h3 className="text-base font-bold leading-snug text-bright">{q.title}</h3>
                     <div className="flex items-center gap-2 mt-1 flex-wrap">
                       <span className="text-xs font-mono px-1.5 py-0.5 rounded" style={{ color: rarityColor, background: `${rarityColor}18`, border: `1px solid ${rarityColor}40` }}>{rarity}</span>
                       {q.difficulty && q.difficulty !== "none" && (
-                        <span className="text-xs font-mono px-1.5 py-0.5 rounded capitalize" style={{ color: "rgba(255,255,255,0.5)", background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}>{q.difficulty}</span>
+                        <span className="text-xs font-mono px-1.5 py-0.5 rounded capitalize text-w50" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}>{q.difficulty}</span>
                       )}
-                      <span className="text-xs capitalize" className="text-w35">{q.type ?? "personal"}</span>
+                      <span className="text-xs capitalize text-w35">{q.type ?? "personal"}</span>
                       {/* priority hidden from modal header */}
                       {q.minLevel != null && q.minLevel > 0 && (() => {
                         const meets = playerLevelInfo.level >= q.minLevel;
@@ -2264,7 +2261,7 @@ export default function Dashboard() {
                       {favorites.includes(q.id) ? "\u2605" : "\u2606"}
                     </button>
                   )}
-                  <button onClick={() => setQuestDetailModal(null)} style={{ color: "rgba(255,255,255,0.4)", background: "none", border: "none", cursor: "pointer", fontSize: 20, lineHeight: 1 }}>×</button>
+                  <button onClick={() => setQuestDetailModal(null)} className="btn-close" style={{ fontSize: 20, lineHeight: 1 }}>×</button>
                 </div>
               </div>
               {/* Body */}
@@ -2325,7 +2322,7 @@ export default function Dashboard() {
                   const displayGold = (q.rewards?.gold != null && q.rewards.gold > 0) ? q.rewards.gold : (q.rarity ? (GOLD_BY_RARITY[q.rarity] ?? GOLD_FALLBACK[q.priority] ?? 9) : (GOLD_FALLBACK[q.priority] ?? 9));
                   return (
                     <div>
-                      <p className="text-xs font-semibold uppercase tracking-widest mb-2" className="text-w25">Belohnung</p>
+                      <p className="text-xs font-semibold uppercase tracking-widest mb-2 text-w25">Belohnung</p>
                       <div className="flex items-center gap-3">
                         <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg" style={{ background: "rgba(251,191,36,0.08)", border: "1px solid rgba(251,191,36,0.2)" }}>
                           <img src="/images/icons/reward-gold.png" width={16} height={16} className="img-render-auto" style={{ verticalAlign: "middle" }} />
@@ -2386,9 +2383,9 @@ export default function Dashboard() {
             onClick={e => e.stopPropagation()}>
             <div className="text-5xl mb-3" style={{ filter: `drop-shadow(0 0 12px ${lootDrop.rarityColor})` }}>{lootDrop.emoji}</div>
             <div className="text-xs font-bold uppercase tracking-widest mb-1" style={{ color: lootDrop.rarityColor }}>{lootDrop.rarity}</div>
-            <div className="text-base font-bold mb-2" className="text-primary">{lootDrop.name}</div>
+            <div className="text-base font-bold mb-2 text-primary">{lootDrop.name}</div>
             {lootDrop.effect?.amount && (
-              <div className="text-xs mb-4" className="text-w50">
+              <div className="text-xs mb-4 text-w50">
                 {lootDrop.effect.type === 'gold' && `＋${lootDrop.effect.amount} Gold`}
                 {lootDrop.effect.type === 'xp' && `＋${lootDrop.effect.amount} XP`}
                 {lootDrop.effect.type === 'streak_shield' && `＋${lootDrop.effect.amount} Streak-Schutzschild`}
@@ -2432,7 +2429,7 @@ export default function Dashboard() {
             <div className="text-xs font-bold uppercase tracking-[0.3em] mb-2" style={{ color: "rgba(255,215,0,0.6)" }}>Level Up!</div>
             <div className="levelup-title text-3xl font-black mb-1" style={{ color: "#FFD700" }}>Level {levelUpCelebration.level}</div>
             <div className="text-sm font-semibold mb-5" style={{ color: "rgba(255,215,0,0.7)" }}>{levelUpCelebration.title}</div>
-            <div className="text-xs mb-6" className="text-w35">The Forge recognizes your dedication, adventurer.</div>
+            <div className="text-xs mb-6 text-w35">The Forge recognizes your dedication, adventurer.</div>
             <button
               onClick={() => setLevelUpCelebration(null)}
               className="action-btn w-full py-2.5 rounded-xl text-sm font-bold"
@@ -2504,7 +2501,7 @@ export default function Dashboard() {
         >
           <span style={{ fontSize: 18, flexShrink: 0 }}>⏱</span>
           <p className="text-xs leading-relaxed flex-1" style={{ color: "#fca5a5" }}>{apiError}</p>
-          <span className="text-xs flex-shrink-0" style={{ color: "rgba(255,255,255,0.25)", marginLeft: 4 }}>✕</span>
+          <span className="text-xs flex-shrink-0 text-w25" style={{ marginLeft: 4 }}>✕</span>
         </div>
       )}
 
@@ -2565,7 +2562,7 @@ export default function Dashboard() {
               </div>
               <button
                 onClick={() => setInfoOverlayOpen(false)}
-                style={{ color: "rgba(255,255,255,0.3)", background: "none", border: "none", cursor: "pointer", fontSize: 18, padding: "0 0.5rem 0.5rem" }}
+                className="text-w30" style={{ background: "none", border: "none", cursor: "pointer", fontSize: 18, padding: "0 0.5rem 0.5rem" }}
               >
                 ×
               </button>
@@ -2576,10 +2573,10 @@ export default function Dashboard() {
               {infoOverlayTab === "changelog" && (
                 <div className="space-y-2">
                   <div className="flex items-center gap-2 pb-1">
-                    <span className="text-xs font-semibold uppercase tracking-widest" className="text-w35">Changelog</span>
+                    <span className="text-xs font-semibold uppercase tracking-widest text-w35">Changelog</span>
                   </div>
                   {changelogData.length === 0 && (
-                    <div className="text-sm" className="text-w25">No changelog data available.</div>
+                    <div className="text-sm text-w25">No changelog data available.</div>
                   )}
                   {changelogData.map(entry => (
                     <div key={entry.version} className="rounded-lg overflow-hidden" style={{ border: "1px solid rgba(255,255,255,0.07)" }}>
@@ -2594,17 +2591,17 @@ export default function Dashboard() {
                         <span className="flex-1 text-sm font-medium" style={{ color: "rgba(255,255,255,0.75)" }}>
                           {entry.title}
                         </span>
-                        <span className="text-xs shrink-0" className="text-w25">
+                        <span className="text-xs shrink-0 text-w25">
                           {entry.date}
                         </span>
-                        <span className="shrink-0" style={{ color: "rgba(255,255,255,0.3)", fontSize: 10 }}>
+                        <span className="shrink-0 text-w30" style={{ fontSize: 10 }}>
                           {changelogExpanded === entry.version ? "▲" : "▼"}
                         </span>
                       </button>
                       {changelogExpanded === entry.version && (
                         <ul className="px-4 py-3 space-y-1.5" style={{ borderTop: "1px solid rgba(255,255,255,0.06)", background: "rgba(0,0,0,0.2)" }}>
                           {entry.changes.map((change, i) => (
-                            <li key={i} className="flex items-start gap-2 text-sm" className="text-w60">
+                            <li key={i} className="flex items-start gap-2 text-sm text-w60">
                               <span className="shrink-0" style={{ color: "rgba(255,68,68,0.6)", marginTop: 2 }}>•</span>
                               {change}
                             </li>
@@ -2664,8 +2661,7 @@ export default function Dashboard() {
       {/* Class Activation Notification */}
       {classActivatedNotif && (
         <div
-          className="fixed inset-0 z-[90] flex items-center justify-center p-4"
-          className="modal-backdrop"
+          className="fixed inset-0 z-[90] flex items-center justify-center p-4 modal-backdrop"
           onClick={() => setClassActivatedNotif(null)}
         >
           <div
@@ -2675,14 +2671,14 @@ export default function Dashboard() {
           >
             <div className="text-center space-y-1">
               <div className="text-4xl">×</div>
-              <h2 className="text-base font-bold" className="text-bright">
+              <h2 className="text-base font-bold text-bright">
                 Dein Klassenpfad steht bereit!
               </h2>
               <p className="text-sm font-semibold" style={{ color: "#a78bfa" }}>
                 {classActivatedNotif.classIcon} Willkommen auf dem {classActivatedNotif.className}!
               </p>
             </div>
-            <p className="text-xs text-center" className="text-w50">
+            <p className="text-xs text-center text-w50">
               {classActivatedNotif.classDescription}
             </p>
             <button
@@ -2708,11 +2704,11 @@ export default function Dashboard() {
             }}
           >
             <div className="text-center space-y-2">
-              <h2 className="text-lg font-bold" className="text-bright">
+              <h2 className="text-lg font-bold text-bright">
                 Version {gameVersion} is live! ✨
               </h2>
               {changelogData[0] && (
-                <p className="text-sm" className="text-w50">
+                <p className="text-sm text-w50">
                   {changelogData[0].title}
                 </p>
               )}
