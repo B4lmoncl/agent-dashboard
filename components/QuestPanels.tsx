@@ -347,8 +347,10 @@ export function AntiRitualePanel({ playerName, reviewApiKey }: { playerName: str
         const tierData = COMMITMENT_TIERS_VOW.find(t => t.id === newVowCommitment)!;
         const diffData = DIFFICULTY_TIERS_VOW.find(d => d.id === newVowDifficulty)!;
         const pactMulti = newVowBloodPact ? (BLOOD_PACT_MULTIPLIER_VOW[newVowCommitment] || 3) : 1;
-        const bonusGold = Math.round(tierData.bonusGold * diffData.bondScale * pactMulti);
-        const bonusXp = Math.round(tierData.bonusXp * diffData.bondScale * pactMulti);
+        const bonusGold = Math.round(tierData.bonusGold * diffData.bondScale);
+        const bonusXp = Math.round(tierData.bonusXp * diffData.bondScale);
+        const pactCompletionGold = newVowBloodPact ? Math.round(tierData.bonusGold * diffData.bondScale * pactMulti) : 0;
+        const pactCompletionXp = newVowBloodPact ? Math.round(tierData.bonusXp * diffData.bondScale * pactMulti) : 0;
         return (
           <ModalPortal>
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: "rgba(0,0,0,0.88)" }} onClick={closeVowModal}>
@@ -437,8 +439,13 @@ export function AntiRitualePanel({ playerName, reviewApiKey }: { playerName: str
                   <p className="text-xs font-semibold mb-1.5" style={{ color: "rgba(165,180,252,0.4)" }}>Reward Preview</p>
                   <p className="text-xs mb-1" style={{ color: "rgba(165,180,252,0.3)", fontStyle: "italic", letterSpacing: "0.03em" }}>Täglich bei Check-in:</p>
                   <p className="text-xs" style={{ color: "rgba(165,180,252,0.65)", display: "flex", alignItems: "center", gap: 4, flexWrap: "wrap" }}>Base <span style={{ color: diffData.color, fontSize: "0.65rem" }}>({diffData.label})</span>: <span style={{ color: "#818cf8", display: "inline-flex", alignItems: "center", gap: 2 }}>{diffData.gold} <img src="/images/icons/reward-gold.png" width={20} height={20} style={{ imageRendering: "smooth" }} /></span> <span style={{ color: "#a78bfa" }}>{diffData.xp} XP</span></p>
-                  {tierData.id !== "none" && <p className="text-xs mt-0.5" style={{ color: "rgba(165,180,252,0.65)", display: "flex", alignItems: "center", gap: 4, flexWrap: "wrap" }}>Bond Bonus{diffData.bondScale !== 1 && <span style={{ color: diffData.color, fontSize: "0.6rem" }}> ×{diffData.bondScale}</span>}: <span style={{ color: "#818cf8", display: "inline-flex", alignItems: "center", gap: 2 }}>+{bonusGold} <img src="/images/icons/reward-gold.png" width={20} height={20} style={{ imageRendering: "smooth" }} /></span> <span style={{ color: "#a78bfa" }}>+{bonusXp} XP</span>{newVowBloodPact && <span style={{ color: "#6366f1", fontWeight: "bold" }}> (Pact ×{pactMulti})</span>}</p>}
+                  {tierData.id !== "none" && <p className="text-xs mt-0.5" style={{ color: "rgba(165,180,252,0.65)", display: "flex", alignItems: "center", gap: 4, flexWrap: "wrap" }}>Bond Bonus{diffData.bondScale !== 1 && <span style={{ color: diffData.color, fontSize: "0.6rem" }}> ×{diffData.bondScale}</span>}: <span style={{ color: "#818cf8", display: "inline-flex", alignItems: "center", gap: 2 }}>+{bonusGold} <img src="/images/icons/reward-gold.png" width={20} height={20} style={{ imageRendering: "smooth" }} /></span> <span style={{ color: "#a78bfa" }}>+{bonusXp} XP</span></p>}
                   {(bonusGold > 0 || bonusXp > 0) && <p className="text-xs mt-1" style={{ color: "rgba(165,180,252,0.85)", display: "flex", alignItems: "center", gap: 4, fontWeight: 600, flexWrap: "wrap" }}>= Täglich: <span style={{ color: "#818cf8", display: "inline-flex", alignItems: "center", gap: 2 }}>{diffData.gold + bonusGold} <img src="/images/icons/reward-gold.png" width={20} height={20} style={{ imageRendering: "smooth" }} /></span> <span style={{ color: "#a78bfa" }}>{diffData.xp + bonusXp} XP</span></p>}
+                  {newVowBloodPact && pactCompletionXp > 0 && <>
+                    <div style={{ borderTop: "1px solid rgba(99,102,241,0.15)", margin: "8px 0 6px" }} />
+                    <p className="text-xs mb-0.5" style={{ color: "rgba(99,102,241,0.6)", fontStyle: "italic", letterSpacing: "0.03em" }}>Einmalig nach {tierData.days}d Abschluss <span style={{ fontWeight: 600 }}>(Pact ×{pactMulti})</span>:</p>
+                    <p className="text-xs" style={{ color: "rgba(129,140,248,0.9)", display: "flex", alignItems: "center", gap: 4, fontWeight: 600, flexWrap: "wrap" }}><span style={{ color: "#818cf8", display: "inline-flex", alignItems: "center", gap: 2 }}>{pactCompletionGold} <img src="/images/icons/reward-gold.png" width={20} height={20} style={{ imageRendering: "smooth" }} /></span> <span style={{ color: "#a78bfa" }}>{pactCompletionXp} XP</span></p>
+                  </>}
                   <p className="text-xs mt-2 mb-0.5" style={{ color: "rgba(165,180,252,0.3)", fontStyle: "italic", letterSpacing: "0.03em" }}>Bei Streak-Meilenstein:</p>
                   <p className="text-xs" style={{ color: "rgba(165,180,252,0.45)" }}>Loot-Drops bei 3, 7, 14, 30, 60, 90 Tagen</p>
                 </div>

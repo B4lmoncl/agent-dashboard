@@ -222,17 +222,19 @@ router.post('/api/rituals/:id/complete', requireApiKey, (req, res) => {
   let newAchievements = [];
   let lootDrop = null;
   let milestoneDrop = null;
+  let pactCompletionXp = 0;
+  let pactCompletionGold = 0;
 
   if (u) {
     // ─── Commitment & difficulty bonus calculation ───
+    // Daily: base + bond bonus (no pact multiplier). Pact bonus pays out at commitment completion.
     const COMMITMENT_BONUSES = { none: { gold: 0, xp: 0 }, spark: { gold: 3, xp: 5 }, flame: { gold: 7, xp: 10 }, ember: { gold: 13, xp: 20 }, crucible: { gold: 20, xp: 35 }, eternity: { gold: 30, xp: 50 } };
     const DIFFICULTY_BOND_SCALE = { easy: 0.5, medium: 1.0, hard: 1.5, legendary: 2.0 };
     const BLOOD_PACT_MULTI = { none: 1, spark: 3, flame: 3, ember: 7, crucible: 16, eternity: 30 };
     const commitBonus = COMMITMENT_BONUSES[ritual.commitment] || { gold: 0, xp: 0 };
     const diffScale = DIFFICULTY_BOND_SCALE[ritual.difficulty] || 1.0;
-    const pactMulti = ritual.bloodPact ? (BLOOD_PACT_MULTI[ritual.commitment] || 3) : 1;
-    const commitXp = Math.round(commitBonus.xp * diffScale * pactMulti);
-    const commitGold = Math.round(commitBonus.gold * diffScale * pactMulti);
+    const commitXp = Math.round(commitBonus.xp * diffScale);
+    const commitGold = Math.round(commitBonus.gold * diffScale);
 
     // Apply full multiplier chain (same as quest completion)
     const xpBase = (ritual.rewards.xp || 15) + commitXp;
@@ -258,6 +260,16 @@ router.post('/api/rituals/:id/complete', requireApiKey, (req, res) => {
     let goldEarned = Math.round(goldBase * goldMulti * streakGoldMulti);
     if (consumePassiveEffect(uid, 'gold_boost_next')) goldEarned *= 2;
     u.gold = (u.gold || 0) + goldEarned;
+
+    // ─── Blood Pact completion bonus (one-time at end of commitment) ───
+    if (ritual.bloodPact && ritual.commitmentDays && ritual.streak >= ritual.commitmentDays && !ritual.pactCompleted) {
+      const pactMulti = BLOOD_PACT_MULTI[ritual.commitment] || 3;
+      pactCompletionXp = Math.round(commitBonus.xp * diffScale * pactMulti);
+      pactCompletionGold = Math.round(commitBonus.gold * diffScale * pactMulti);
+      u.xp = (u.xp || 0) + pactCompletionXp;
+      u.gold = (u.gold || 0) + pactCompletionGold;
+      ritual.pactCompleted = true;
+    }
 
     // Milestone check
     const prevStreak = ritual.streak - 1;
@@ -288,7 +300,7 @@ router.post('/api/rituals/:id/complete', requireApiKey, (req, res) => {
   }
   saveRituals();
 
-  res.json({ ok: true, ritual, newAchievements, lootDrop, milestoneDrop });
+  res.json({ ok: true, ritual, newAchievements, lootDrop, milestoneDrop, ...(pactCompletionXp > 0 ? { pactCompletion: { xp: pactCompletionXp, gold: pactCompletionGold } } : {}) });
 });
 
 // PATCH /api/rituals/:id/extend — extend ritual/vow deadline [auth]
