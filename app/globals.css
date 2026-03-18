@@ -17,11 +17,20 @@ body {
   animation: gradient-shift 18s ease infinite;
   color: var(--foreground);
   -webkit-font-smoothing: antialiased;
+  /* GPU-accelerated scrolling */
+  will-change: scroll-position;
+  -webkit-overflow-scrolling: touch;
 }
 
 /* Default: smooth rendering for all images (icons, portraits, UI) */
 img {
   image-rendering: smooth;
+}
+
+/* Skip rendering for offscreen cards — browser resumes paint when scrolled into view */
+.cv-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 140px;
 }
 
 ::-webkit-scrollbar { width: 6px; height: 6px; }

@@ -146,7 +146,7 @@ export const QuestCard = memo(function QuestCard({ quest, selected, onToggle, on
     return (
       <div
         data-feedback-id={`quest-board.quest-card.${quest.id}`}
-        className="rounded-xl flex flex-col cursor-pointer relative overflow-hidden"
+        className="cv-auto rounded-xl flex flex-col cursor-pointer relative overflow-hidden"
         style={{
           background: "linear-gradient(160deg, #2c2318 0%, #1e1912 55%, #241e16 100%)",
           border: `2px solid ${rarityColor}88`,
@@ -234,7 +234,7 @@ export const QuestCard = memo(function QuestCard({ quest, selected, onToggle, on
   return (
     <div
       data-feedback-id={`quest-board.quest-card.${quest.id}`}
-      className="rounded-lg p-3 cursor-pointer relative overflow-hidden"
+      className="cv-auto rounded-lg p-3 cursor-pointer relative overflow-hidden"
       style={{
         background: selected ? "linear-gradient(160deg, #2e2010 0%, #1e1a10 100%)" : "linear-gradient(160deg, #2a2016 0%, #1c1810 60%, #221d14 100%)",
         border: `1px solid ${selected ? "rgba(255,102,51,0.6)" : isInProgress ? `${rarityColor}55` : `${rarityColor}44`}`,
