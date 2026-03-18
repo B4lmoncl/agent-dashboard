@@ -232,6 +232,7 @@ export interface Ritual {
   commitment?: string;
   commitmentDays?: number;
   bloodPact?: boolean;
+  pactCompleted?: boolean;
   cleanDays?: number;
   lastViolated?: string | null;
   missedDays?: number;

@@ -106,6 +106,11 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
                 {ritual.streak}
               </span>
               <span className="text-sm font-medium truncate" style={{ color: doneToday ? "rgba(255,255,255,0.4)" : "#e8e8e8", textDecoration: doneToday ? "line-through" : "none" }}>{ritual.title}</span>
+              {ritual.bloodPact && (
+                <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded text-xs font-bold" style={{ color: "#ef4444", background: "rgba(239,68,68,0.12)", border: "1px solid rgba(239,68,68,0.3)", fontSize: 9, letterSpacing: "0.04em" }}>
+                  Blood Pact
+                </span>
+              )}
               {milestone && ((milestone as any).icon ? <img src={(milestone as any).icon} alt={milestone.badge} width={20} height={20} className="img-render-auto" /> : <span className="text-xs">{milestone.badge}</span>)}
             </div>
             <div className="flex items-center gap-3 text-xs flex-wrap text-w35">
@@ -125,6 +130,22 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
               <span>{ritual.schedule.type === 'daily' ? 'täglich' : ritual.schedule.days?.join(', ')}</span>
               <span>{ritual.rewards.xp} XP · {ritual.rewards.gold} Gold</span>
             </div>
+            {ritual.bloodPact && commitGoal && !ritual.pactCompleted && (
+              <div className="flex items-center gap-2 mt-1 text-xs" style={{ color: "rgba(239,68,68,0.6)" }}>
+                <span style={{ fontSize: 10 }}>⬥</span>
+                <span>Pact-Ziel: <span style={{ color: "#ef4444", fontWeight: 600 }}>{commitGoal}d</span></span>
+                <span>·</span>
+                <span style={{ color: ritual.streak >= commitGoal ? "#22c55e" : "rgba(239,68,68,0.8)", fontWeight: 600 }}>
+                  {ritual.streak >= commitGoal ? "Erfüllt!" : `${commitGoal - ritual.streak}d verbleibend`}
+                </span>
+              </div>
+            )}
+            {ritual.bloodPact && ritual.pactCompleted && (
+              <div className="flex items-center gap-1.5 mt-1 text-xs" style={{ color: "rgba(34,197,94,0.7)" }}>
+                <span style={{ fontSize: 10 }}>✦</span>
+                <span style={{ fontWeight: 600 }}>Blood Pact erfüllt</span>
+              </div>
+            )}
             {nextMilestone && (
               <div className="mt-2">
                 <div className="flex items-center justify-between text-xs mb-1 text-w25">
@@ -282,7 +303,7 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
             <div data-feedback-id="ritual-chamber.create-modal" className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: "rgba(0,0,0,0.85)" }} onClick={closeRitualModal}>
               <div style={{ position: "relative" }} onClick={e => e.stopPropagation()}>
                 {/* NPC Portrait — absolute left of modal, hidden on mobile */}
-                <div className="hidden md:flex flex-col" style={{ position: "absolute", right: "calc(100% + 16px)", top: "50%", transform: "translateY(-50%)", width: 200, overflow: "visible" }}>
+                <div className="hidden md:flex flex-col" style={{ position: "absolute", right: "calc(100% + 4px)", top: "50%", transform: "translateY(-50%)", width: 200, overflow: "visible" }}>
                   <img src="/images/portraits/npc-seraine.png?v=3" alt="Seraine Ashwell" width={256} height={384} className="img-render-auto" style={{ width: "100%", height: "auto", display: "block", filter: "drop-shadow(0 0 14px rgba(245,158,11,0.4))", borderRadius: "8px 8px 0 0", pointerEvents: "none" }} />
                   <div style={{ background: "rgba(25,17,5,0.92)", border: "1px solid rgba(245,158,11,0.4)", borderTop: "none", borderRadius: "0 0 8px 8px", padding: "10px 12px" }}>
                     <p style={{ fontSize: "0.8rem", fontStyle: "italic", color: "#c9a46a", lineHeight: 1.5, margin: 0 }}>{getSeraineSpeech(newRitualCommitment, newRitualBloodPact)}</p>
@@ -433,7 +454,7 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
           <ModalPortal>
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: "rgba(0,0,0,0.88)" }} onClick={closeExtend}>
             <div style={{ position: "relative" }} onClick={e => e.stopPropagation()}>
-              <div className="hidden md:flex flex-col" style={{ position: "absolute", right: "calc(100% + 16px)", top: "50%", transform: "translateY(-50%)", width: 200, overflow: "visible" }}>
+              <div className="hidden md:flex flex-col" style={{ position: "absolute", right: "calc(100% + 4px)", top: "50%", transform: "translateY(-50%)", width: 200, overflow: "visible" }}>
                 <img src="/images/portraits/npc-seraine.png?v=3" alt="Seraine Ashwell" width={256} height={384} className="img-render-auto" style={{ width: "100%", height: "auto", display: "block", filter: "drop-shadow(0 0 14px rgba(245,158,11,0.4))", borderRadius: "8px 8px 0 0", pointerEvents: "none" }} />
                 <div style={{ background: "rgba(25,17,5,0.92)", border: "1px solid rgba(245,158,11,0.4)", borderTop: "none", borderRadius: "0 0 8px 8px", padding: "10px 12px" }}>
                   <p style={{ fontSize: "0.8rem", fontStyle: "italic", color: "#c9a46a", lineHeight: 1.5, margin: 0 }}>&ldquo;Das Feuer wächst. Gut. Nähre es.&rdquo;</p>
@@ -497,7 +518,7 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
           <ModalPortal>
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: "rgba(0,0,0,0.88)" }} onClick={() => setRecommitRitualId(null)}>
             <div style={{ position: "relative" }} onClick={e => e.stopPropagation()}>
-              <div className="hidden md:flex flex-col" style={{ position: "absolute", right: "calc(100% + 16px)", top: "50%", transform: "translateY(-50%)", width: 200, overflow: "visible" }}>
+              <div className="hidden md:flex flex-col" style={{ position: "absolute", right: "calc(100% + 4px)", top: "50%", transform: "translateY(-50%)", width: 200, overflow: "visible" }}>
                 <img src="/images/portraits/npc-seraine.png?v=3" alt="Seraine Ashwell" width={256} height={384} className="img-render-auto" style={{ width: "100%", height: "auto", display: "block", filter: "drop-shadow(0 0 14px rgba(245,158,11,0.4))", borderRadius: "8px 8px 0 0", pointerEvents: "none" }} />
                 <div style={{ background: "rgba(25,17,5,0.92)", border: "1px solid rgba(245,158,11,0.4)", borderTop: "none", borderRadius: "0 0 8px 8px", padding: "10px 12px" }}>
                   <p style={{ fontSize: "0.8rem", fontStyle: "italic", color: "#c9a46a", lineHeight: 1.5, margin: 0 }}>&ldquo;The flame went out. But the ember remembers. Do you?&rdquo;</p>
