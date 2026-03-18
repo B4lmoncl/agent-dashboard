@@ -183,6 +183,11 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
                 {days}
               </span>
               <span className="text-sm font-semibold" style={{ color: "#e8e8e8" }}>{ar.title}</span>
+              {ar.bloodPact && (
+                <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded text-xs font-bold" style={{ color: "#ef4444", background: "rgba(239,68,68,0.12)", border: "1px solid rgba(239,68,68,0.3)", fontSize: 9, letterSpacing: "0.04em" }}>
+                  Blood Pact
+                </span>
+              )}
               {badge && <span className="text-sm" title={badge.label}>{badge.badge}</span>}
             </div>
             <p className="text-xs mb-1.5" style={{ color: mood.color }}>{mood.msg}</p>
@@ -191,6 +196,22 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
               {longestStreak > 0 && <span title="Längste Serie" style={{ color: "rgba(245,158,11,0.5)" }}>Rekord: {longestStreak}</span>}
               {nextMilestone && <span>→ {nextMilestone.badge} in {nextMilestone.days - days}d</span>}
             </div>
+            {ar.bloodPact && ar.commitmentDays && ar.commitmentDays > 0 && !(ar as any).pactCompleted && (
+              <div className="flex items-center gap-2 mt-1 text-xs" style={{ color: "rgba(239,68,68,0.6)" }}>
+                <span style={{ fontSize: 10 }}>⬥</span>
+                <span>Pact-Ziel: <span style={{ color: "#ef4444", fontWeight: 600 }}>{ar.commitmentDays}d</span></span>
+                <span>·</span>
+                <span style={{ color: days >= ar.commitmentDays ? "#22c55e" : "rgba(239,68,68,0.8)", fontWeight: 600 }}>
+                  {days >= ar.commitmentDays ? "Erfüllt!" : `${ar.commitmentDays - days}d verbleibend`}
+                </span>
+              </div>
+            )}
+            {ar.bloodPact && (ar as any).pactCompleted && (
+              <div className="flex items-center gap-1.5 mt-1 text-xs" style={{ color: "rgba(34,197,94,0.7)" }}>
+                <span style={{ fontSize: 10 }}>✦</span>
+                <span style={{ fontWeight: 600 }}>Blood Pact erfüllt</span>
+              </div>
+            )}
             {nextMilestone && (
               <div className="mt-2">
                 <div className="h-1 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.07)" }}>
