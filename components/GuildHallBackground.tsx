@@ -22,19 +22,21 @@ function getSeason(): Season {
 }
 
 // Sky gradient [top, upper-mid, lower-mid, horizon] — warm fantasy tones
+// Now the canvas is the ONLY sky source (no-bg image has transparent sky)
 const SKY: Record<TOD, [string, string, string, string]> = {
   dawn:   ["#07040e", "#2a0e28", "#6e2b18", "#d4582a"],
-  day:    ["#0a0810", "#18102a", "#2a1a45", "#3d2860"],
+  day:    ["#0c1228", "#1a2855", "#2d4080", "#4a5a98"],
   sunset: ["#07040e", "#1e0820", "#5c180a", "#c2400a"],
   night:  ["#02010a", "#0d0b1a", "#120d22", "#1c1438"],
 };
 
-// Background opacity per TOD — night is darker, day is brighter
+// Foreground opacity per TOD — higher values since the transparent sky
+// in guild-hall-no-bg.png lets the canvas sky show through naturally
 const BG_OPACITY: Record<TOD, number> = {
-  dawn:   0.30,
-  day:    0.28,
-  sunset: 0.35,
-  night:  0.35,
+  dawn:   0.55,
+  day:    0.50,
+  sunset: 0.60,
+  night:  0.60,
 };
 
 // ─── Particles ────────────────────────────────────────────────────────────────
@@ -355,18 +357,16 @@ export default function GuildHallBackground() {
       }
 
       // ── Stars ────────────────────────────────────────────────────────────
-      // Stars only in upper sky area — below this, the guild hall image has
-      // mountains/trees/buildings. The bg image uses object-position: center bottom,
-      // so the ground/buildings fill the lower portion.
+      // Stars fill the full viewport — the no-bg foreground image with its
+      // transparent sky naturally masks stars behind mountains/buildings.
       if (tod !== "day") {
         const sa = tod === "night" ? 0.88 : tod === "dawn" ? 0.45 : 0.22;
         const starLimit = mobile() ? 180 : STAR_COUNT;
-        const skyMaxY = h * 0.42; // Stars only in top 42% of viewport
 
         for (let i = 0; i < starLimit; i++) {
           const s = stars[i];
           const sx = s.x * w;
-          const sy = s.y * skyMaxY; // Map star y to sky zone only
+          const sy = s.y * h; // Full viewport — foreground image handles masking
           // Two-frequency twinkle for natural variation
           const tw = Math.sin(t * s.ts + s.to) * 0.25 + Math.sin(t * s.ts * 1.7 + s.to * 0.6) * 0.15 + 0.6;
           const alpha = sa * tw;
@@ -608,18 +608,18 @@ export default function GuildHallBackground() {
         }}
       />
 
-      {/* Layer 2 — Guild Hall background image (switches by TOD) */}
+      {/* Layer 2 — Guild Hall foreground (transparent sky lets canvas show through) */}
       <div
         style={{
           position: "fixed",
           inset: 0,
           pointerEvents: "none",
-          zIndex: 0,
+          zIndex: 1,
         }}
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/images/guild-hall-bg.png"
+          src="/images/guild-hall-no-bg.png"
           alt=""
           style={{
             width: "100%",
