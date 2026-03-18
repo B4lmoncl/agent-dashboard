@@ -398,6 +398,19 @@ router.post('/api/quest/:id/unclaim', requireApiKey, (req, res) => {
   if (!agentId) return res.status(400).json({ error: 'agentId is required' });
   const agentKey = agentId.toLowerCase();
 
+  // NPC quests: per-player tracking via playerProgress.npcQuests
+  if (quest.npcGiverId && state.users[agentKey]) {
+    const pp = getPlayerProgress(agentKey);
+    const npcStatus = (pp.npcQuests || {})[quest.id];
+    if (!npcStatus || npcStatus.status !== 'in_progress') {
+      return res.status(409).json({ error: 'NPC quest not claimed by this player' });
+    }
+    delete pp.npcQuests[quest.id];
+    savePlayerProgress();
+    console.log(`[quest] ${quest.id} unclaimed (npc per-player) by ${agentKey}`);
+    return res.json({ ok: true, quest: { ...quest, status: 'open', claimedBy: null } });
+  }
+
   // Player quest types use per-player tracking
   if (PLAYER_QUEST_TYPES.includes(quest.type) && state.users[agentKey]) {
     const pp = getPlayerProgress(agentKey);
