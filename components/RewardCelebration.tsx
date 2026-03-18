@@ -284,7 +284,9 @@ export function RewardCelebration({ data, onClose, onCollect }: RewardCelebratio
             background: "rgba(255,215,0,0.08)",
             border: "1px solid rgba(255,215,0,0.25)",
           }}>
-            <span className="text-sm mr-1">{data.achievement.icon}</span>
+            {data.achievement.icon && data.achievement.icon.startsWith("/")
+              ? <img src={data.achievement.icon} alt="" width={20} height={20} className="mr-1 img-render-auto" style={{ imageRendering: "smooth" }} />
+              : <span className="text-sm mr-1">{data.achievement.icon}</span>}
             <span className="text-sm font-semibold" style={{ color: "#FFD700" }}>{data.achievement.name}</span>
           </div>
         )}

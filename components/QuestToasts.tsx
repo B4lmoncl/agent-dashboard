@@ -75,7 +75,9 @@ export function AchievementToast({ achievement, onClose }: { achievement: Earned
       style={{ background: "#252525", border: "1px solid rgba(245,158,11,0.5)", boxShadow: "0 8px 48px rgba(245,158,11,0.3)", maxWidth: 360, pointerEvents: "auto" }}
       onClick={e => e.stopPropagation()}
     >
-      <span className="text-2xl flex-shrink-0">{achievement.icon}</span>
+      {achievement.icon && achievement.icon.startsWith("/")
+        ? <img src={achievement.icon} alt="" width={32} height={32} className="flex-shrink-0 img-render-auto" style={{ imageRendering: "smooth" }} />
+        : <span className="text-2xl flex-shrink-0">{achievement.icon}</span>}
       <div className="flex-1 min-w-0">
         <p className="text-xs font-bold" style={{ color: "#f59e0b" }}>Achievement Unlocked!</p>
         <p className="text-sm font-semibold" style={{ color: "#f0f0f0" }}>{achievement.name}</p>
