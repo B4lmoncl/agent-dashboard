@@ -114,15 +114,17 @@ const THEMES: Record<RewardType, ThemeConfig> = {
 interface RewardCelebrationProps {
   data: RewardCelebrationData;
   onClose: () => void;
+  /** Called when user clicks "Nehmen" — use to fire toasts for loot/achievements */
+  onCollect?: (data: RewardCelebrationData) => void;
 }
 
-export function RewardCelebration({ data, onClose }: RewardCelebrationProps) {
+export function RewardCelebration({ data, onClose, onCollect }: RewardCelebrationProps) {
   const [flavorIdx] = useState(() => Math.floor(Math.random() * 5));
 
-  // ESC to close
+  // ESC to collect & close
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
+      if (e.key === "Escape") { if (onCollect) onCollect(data); onClose(); }
     };
     document.addEventListener("keydown", handler);
     document.body.style.overflow = "hidden";
@@ -130,7 +132,7 @@ export function RewardCelebration({ data, onClose }: RewardCelebrationProps) {
       document.removeEventListener("keydown", handler);
       document.body.style.overflow = "";
     };
-  }, [onClose]);
+  }, [onClose, onCollect, data]);
 
   const theme = THEMES[data.type] || THEMES.quest;
   // Allow companion-specific overrides
@@ -148,7 +150,7 @@ export function RewardCelebration({ data, onClose }: RewardCelebrationProps) {
     <div
       className="fixed inset-0 z-[200] flex items-center justify-center p-4"
       style={{ background: "rgba(0,0,0,0.85)" }}
-      onClick={onClose}
+      onClick={() => { if (onCollect) onCollect(data); onClose(); }}
     >
       <div
         className="reward-celebration-modal w-full max-w-sm rounded-2xl p-8 text-center relative overflow-hidden"
@@ -280,9 +282,9 @@ export function RewardCelebration({ data, onClose }: RewardCelebrationProps) {
           </div>
         )}
 
-        {/* Continue button */}
+        {/* Collect button */}
         <button
-          onClick={onClose}
+          onClick={() => { if (onCollect) onCollect(data); onClose(); }}
           className="action-btn w-full py-2.5 rounded-xl text-sm font-bold transition-all"
           style={{
             background: `rgba(${accentRgb},0.12)`,
@@ -298,7 +300,7 @@ export function RewardCelebration({ data, onClose }: RewardCelebrationProps) {
             (e.currentTarget as HTMLButtonElement).style.boxShadow = "none";
           }}
         >
-          {data.type === "companion" ? "Nice!" : "Continue"}
+          Nehmen
         </button>
       </div>
     </div>

@@ -2427,7 +2427,10 @@ export default function Dashboard() {
 
       {/* Reward Celebration (quest/ritual/vow/companion completion) */}
       {rewardCelebration && (
-        <RewardCelebration data={rewardCelebration} onClose={closeRewardCelebration} />
+        <RewardCelebration data={rewardCelebration} onClose={closeRewardCelebration} onCollect={(rd) => {
+          if (rd.loot) setPurchaseToast(`${rd.loot.name} added to inventory!`);
+          if (rd.achievement) addToast({ type: "achievement", achievement: rd.achievement as EarnedAchievement });
+        }} />
       )}
 
       {/* Loot Drop Notification */}
