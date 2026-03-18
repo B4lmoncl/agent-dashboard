@@ -62,11 +62,15 @@ const COMMITMENT_TIERS = [
 ];
 
 const DIFFICULTY_TIERS = [
-  { id: "easy",      label: "Leicht",     color: "#4ade80", gold: 3,  xp: 8,  icon: "I",   flavor: "A gentle start" },
-  { id: "medium",    label: "Mittel",     color: "#f59e0b", gold: 5,  xp: 15, icon: "II",  flavor: "Steady effort" },
-  { id: "hard",      label: "Schwer",     color: "#ef4444", gold: 8,  xp: 25, icon: "III", flavor: "True discipline" },
-  { id: "legendary", label: "Legendär",   color: "#a78bfa", gold: 12, xp: 40, icon: "IV",  flavor: "Forged in will" },
+  { id: "easy",      label: "Leicht",     color: "#4ade80", gold: 3,  xp: 8,  icon: "I",   flavor: "A gentle start",   bondScale: 0.5 },
+  { id: "medium",    label: "Mittel",     color: "#f59e0b", gold: 5,  xp: 15, icon: "II",  flavor: "Steady effort",    bondScale: 1.0 },
+  { id: "hard",      label: "Schwer",     color: "#ef4444", gold: 8,  xp: 25, icon: "III", flavor: "True discipline",  bondScale: 1.5 },
+  { id: "legendary", label: "Legendär",   color: "#a78bfa", gold: 12, xp: 40, icon: "IV",  flavor: "Forged in will",   bondScale: 2.0 },
 ];
+
+const BLOOD_PACT_MULTIPLIER: Record<string, number> = {
+  none: 1, spark: 3, flame: 3, ember: 3, crucible: 5, eternity: 8,
+};
 
 function getSeraineSpeech(commitment: string, bloodPact: boolean): string {
   if (bloodPact) return "Den Blutknoten also. Ich werde dich nicht davon abhalten. Aber die letzte Person die hier einen Blutknoten geschworen hat, stand drei Monate später weinend vor meiner Tür. Tee?";
@@ -1703,8 +1707,9 @@ export default function Dashboard() {
                           };
                           const tierData = COMMITMENT_TIERS.find(t => t.id === newRitualCommitment)!;
                           const diffData = DIFFICULTY_TIERS.find(d => d.id === newRitualDifficulty)!;
-                          const bonusGold = tierData.bonusGold * (newRitualBloodPact ? 3 : 1);
-                          const bonusXp = tierData.bonusXp * (newRitualBloodPact ? 3 : 1);
+                          const pactMulti = newRitualBloodPact ? (BLOOD_PACT_MULTIPLIER[newRitualCommitment] || 3) : 1;
+                          const bonusGold = Math.round(tierData.bonusGold * diffData.bondScale * pactMulti);
+                          const bonusXp = Math.round(tierData.bonusXp * diffData.bondScale * pactMulti);
                           return (
                             <ModalPortal>
                             <div data-feedback-id="ritual-chamber.create-modal" className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: "rgba(0,0,0,0.85)" }} onClick={closeRitualModal}>
@@ -1792,7 +1797,8 @@ export default function Dashboard() {
                                   <div className="rounded-lg p-3" style={{ background: "rgba(0,0,0,0.2)", border: "1px solid rgba(245,158,11,0.1)" }}>
                                     <p className="text-xs font-semibold mb-1.5" style={{ color: "rgba(200,170,100,0.45)" }}>Reward Preview</p>
                                     <p className="text-xs" style={{ color: "rgba(200,170,100,0.65)", display: "flex", alignItems: "center", gap: 4, flexWrap: "wrap" }}>Base <span style={{ color: diffData.color, fontSize: "0.65rem" }}>({diffData.label})</span>: <span style={{ color: "#f59e0b", display: "inline-flex", alignItems: "center", gap: 2 }}>{diffData.gold} <img src="/images/icons/reward-gold.png" width={20} height={20} className="img-render-auto" /></span> <span style={{ color: "#a78bfa" }}>{diffData.xp} XP</span></p>
-                                    {tierData.id !== "none" && <p className="text-xs mt-0.5" style={{ color: "rgba(200,170,100,0.65)", display: "flex", alignItems: "center", gap: 4, flexWrap: "wrap" }}>Bond Bonus: <span style={{ color: "#f59e0b", display: "inline-flex", alignItems: "center", gap: 2 }}>+{bonusGold} <img src="/images/icons/reward-gold.png" width={20} height={20} className="img-render-auto" /></span> <span style={{ color: "#a78bfa" }}>+{bonusXp} XP</span>{newRitualBloodPact && <span style={{ color: "#ef4444", fontWeight: "bold" }}> ×3</span>}</p>}
+                                    {tierData.id !== "none" && <p className="text-xs mt-0.5" style={{ color: "rgba(200,170,100,0.65)", display: "flex", alignItems: "center", gap: 4, flexWrap: "wrap" }}>Bond Bonus{diffData.bondScale !== 1 && <span style={{ color: diffData.color, fontSize: "0.6rem" }}> ×{diffData.bondScale}</span>}: <span style={{ color: "#f59e0b", display: "inline-flex", alignItems: "center", gap: 2 }}>+{bonusGold} <img src="/images/icons/reward-gold.png" width={20} height={20} className="img-render-auto" /></span> <span style={{ color: "#a78bfa" }}>+{bonusXp} XP</span>{newRitualBloodPact && <span style={{ color: "#ef4444", fontWeight: "bold" }}> (Pact ×{pactMulti})</span>}</p>}
+                                    {(bonusGold > 0 || bonusXp > 0) && <p className="text-xs mt-1" style={{ color: "rgba(200,170,100,0.85)", display: "flex", alignItems: "center", gap: 4, fontWeight: 600, flexWrap: "wrap" }}>Total: <span style={{ color: "#f59e0b", display: "inline-flex", alignItems: "center", gap: 2 }}>{diffData.gold + bonusGold} <img src="/images/icons/reward-gold.png" width={20} height={20} className="img-render-auto" /></span> <span style={{ color: "#a78bfa" }}>{diffData.xp + bonusXp} XP</span></p>}
                                   </div>
                                   <div className="flex gap-2 pt-1">
                                     <button onClick={closeRitualModal} className="action-btn text-sm py-2.5 px-5 rounded-xl bg-w4 border-w8" style={{ color: "rgba(200,170,100,0.38)" }}>Cancel</button>

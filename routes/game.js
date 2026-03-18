@@ -224,8 +224,18 @@ router.post('/api/rituals/:id/complete', requireApiKey, (req, res) => {
   let milestoneDrop = null;
 
   if (u) {
+    // ─── Commitment & difficulty bonus calculation ───
+    const COMMITMENT_BONUSES = { none: { gold: 0, xp: 0 }, spark: { gold: 3, xp: 5 }, flame: { gold: 7, xp: 10 }, ember: { gold: 13, xp: 20 }, crucible: { gold: 20, xp: 35 }, eternity: { gold: 30, xp: 50 } };
+    const DIFFICULTY_BOND_SCALE = { easy: 0.5, medium: 1.0, hard: 1.5, legendary: 2.0 };
+    const BLOOD_PACT_MULTI = { none: 1, spark: 3, flame: 3, ember: 3, crucible: 5, eternity: 8 };
+    const commitBonus = COMMITMENT_BONUSES[ritual.commitment] || { gold: 0, xp: 0 };
+    const diffScale = DIFFICULTY_BOND_SCALE[ritual.difficulty] || 1.0;
+    const pactMulti = ritual.bloodPact ? (BLOOD_PACT_MULTI[ritual.commitment] || 3) : 1;
+    const commitXp = Math.round(commitBonus.xp * diffScale * pactMulti);
+    const commitGold = Math.round(commitBonus.gold * diffScale * pactMulti);
+
     // Apply full multiplier chain (same as quest completion)
-    const xpBase = ritual.rewards.xp || 15;
+    const xpBase = (ritual.rewards.xp || 15) + commitXp;
     const streakBonus = getStreakXpBonus(ritual.streak);
     const xpMulti = getXpMultiplier(uid);
     const gear = getUserGear(uid);
@@ -242,7 +252,7 @@ router.post('/api/rituals/:id/complete', requireApiKey, (req, res) => {
     u.xp = (u.xp || 0) + xpAmount;
 
     // Gold with full multiplier chain
-    const goldBase = ritual.rewards.gold || 5;
+    const goldBase = (ritual.rewards.gold || 5) + commitGold;
     const goldMulti = getGoldMultiplier(uid);
     const streakGoldMulti = Math.min(1 + (u.streakDays || 0) * 0.015, 1.45);
     let goldEarned = Math.round(goldBase * goldMulti * streakGoldMulti);
