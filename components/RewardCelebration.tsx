@@ -130,15 +130,14 @@ export function RewardCelebration({ data, onClose, onCollect }: RewardCelebratio
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   // ESC to collect & close
+  // NOTE: Body scroll lock is handled by useModalBehavior in page.tsx — do NOT duplicate here
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
       if (e.key === "Escape") { if (onCollect) onCollect(data); onClose(); }
     };
     document.addEventListener("keydown", handler);
-    document.body.style.overflow = "hidden";
     return () => {
       document.removeEventListener("keydown", handler);
-      document.body.style.overflow = "";
     };
   }, [onClose, onCollect, data]);
 
