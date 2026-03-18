@@ -1,13 +1,28 @@
+const crypto = require('crypto');
 const router = require('express').Router();
 const { state, saveUsers, saveQuests, saveQuestCatalog } = require('../lib/state');
-const { now, todayStr } = require('../lib/helpers');
+const { now, todayStr, paginate } = require('../lib/helpers');
 const { requireApiKey } = require('../lib/middleware');
 const { rebuildCatalogMeta } = require('../lib/quest-catalog');
 
 // ─── GitHub Webhook ────────────────────────────────────────────────────────────
+// Verify GitHub webhook signature (HMAC-SHA256)
+function verifyGitHubSignature(req) {
+  const secret = process.env.GITHUB_WEBHOOK_SECRET;
+  if (!secret) return true; // Skip verification if no secret configured
+  const sig = req.headers['x-hub-signature-256'];
+  if (!sig) return false;
+  const body = JSON.stringify(req.body);
+  const expected = 'sha256=' + crypto.createHmac('sha256', secret).update(body).digest('hex');
+  return crypto.timingSafeEqual(Buffer.from(sig), Buffer.from(expected));
+}
+
 // POST /api/webhooks/github — handle GitHub events
 // merged PR → create completed quest; new issue → create suggested quest
 router.post('/api/webhooks/github', (req, res) => {
+  if (!verifyGitHubSignature(req)) {
+    return res.status(401).json({ error: 'Invalid webhook signature' });
+  }
   const event = req.headers['x-github-event'];
   const payload = req.body;
 
@@ -133,9 +148,13 @@ router.post('/api/forge/temp-decay', requireApiKey, (req, res) => {
 
 // ─── Quest Catalog API ────────────────────────────────────────────────────────
 
-// GET /api/catalog — full catalog with meta
+// GET /api/catalog — full catalog with meta (supports pagination on templates)
 router.get('/api/catalog', (req, res) => {
   rebuildCatalogMeta();
+  if (req.query.limit && state.questCatalog.templates) {
+    const page = paginate(state.questCatalog.templates, req.query);
+    return res.json({ ...state.questCatalog, templates: page.items, total: page.total, limit: page.limit, offset: page.offset, hasMore: page.hasMore });
+  }
   res.json(state.questCatalog);
 });
 

@@ -158,6 +158,24 @@ if (habitsInventory.fetchAndCacheChangelog) {
   setInterval(habitsInventory.fetchAndCacheChangelog, habitsInventory.CHANGELOG_TTL || 30 * 60 * 1000);
 }
 
+// ─── Memory pruning ────────────────────────────────────────────────────────
+// Clean up unbounded in-memory data every hour
+function pruneMemory() {
+  // Prune todayCompletions — keep only entries from today
+  const today = new Date().toISOString().slice(0, 10);
+  for (const [userId, data] of Object.entries(state.todayCompletions)) {
+    if (data && data.date && data.date !== today) {
+      delete state.todayCompletions[userId];
+    }
+  }
+  // Prune departureNotifications — keep max 50 most recent
+  if (state.npcState.departureNotifications && state.npcState.departureNotifications.length > 50) {
+    state.npcState.departureNotifications = state.npcState.departureNotifications.slice(-50);
+  }
+}
+pruneMemory(); // Run once at boot
+setInterval(pruneMemory, 60 * 60 * 1000); // Then every hour
+
 // ─── Start server ────────────────────────────────────────────────────────────
 const server = app.listen(PORT, () => {
   console.log(`\n🔴 Agent Dashboard API running on http://localhost:${PORT}`);

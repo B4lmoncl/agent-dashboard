@@ -30,13 +30,13 @@ const SKY: Record<TOD, [string, string, string, string]> = {
   night:  ["#02010a", "#0d0b1a", "#120d22", "#1c1438"],
 };
 
-// Foreground opacity per TOD — higher values since the transparent sky
-// in guild-hall-no-bg.png lets the canvas sky show through naturally
+// Foreground opacity per TOD — high enough so mountains/buildings are solid,
+// but the transparent sky areas still let canvas stars/effects show through.
 const BG_OPACITY: Record<TOD, number> = {
-  dawn:   0.55,
-  day:    0.50,
-  sunset: 0.60,
-  night:  0.60,
+  dawn:   0.85,
+  day:    0.88,
+  sunset: 0.85,
+  night:  0.92,
 };
 
 // ─── Particles ────────────────────────────────────────────────────────────────
@@ -222,7 +222,7 @@ export default function GuildHallBackground() {
       t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
       return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
     }
-    const STAR_COUNT = 500;
+    const STAR_COUNT = 800;
     const stars = Array.from({ length: STAR_COUNT }, (_, i) => {
       const h0 = starHash(i * 3 + 0);
       const h1 = starHash(i * 3 + 1);
@@ -309,45 +309,47 @@ export default function GuildHallBackground() {
       }
 
       // ── Milky Way & nebulae (night only) ──────────────────────────────
-      // Constrained to upper sky area to avoid bleeding into mountains
       if (tod === "night") {
         // Milky Way — diagonal band of diffuse light across the sky
         ctx.save();
-        ctx.translate(w * 0.5, h * 0.18);
+        ctx.translate(w * 0.5, h * 0.22);
         ctx.rotate(-0.45); // ~25° tilt
-        const mwWidth = w * 0.18;
-        const mwLength = w * 1.6;
-        // Core band
+        const mwWidth = w * 0.22;
+        const mwLength = w * 1.8;
+        // Core band — visible, ethereal glow
         const mwGrad = ctx.createLinearGradient(0, -mwWidth, 0, mwWidth);
         mwGrad.addColorStop(0, "rgba(0,0,0,0)");
-        mwGrad.addColorStop(0.25, "rgba(140,120,180,0.025)");
-        mwGrad.addColorStop(0.4, "rgba(160,140,200,0.045)");
-        mwGrad.addColorStop(0.5, "rgba(180,160,220,0.055)");
-        mwGrad.addColorStop(0.6, "rgba(160,140,200,0.045)");
-        mwGrad.addColorStop(0.75, "rgba(140,120,180,0.025)");
+        mwGrad.addColorStop(0.2, "rgba(140,120,180,0.06)");
+        mwGrad.addColorStop(0.35, "rgba(160,140,210,0.12)");
+        mwGrad.addColorStop(0.5, "rgba(185,165,230,0.16)");
+        mwGrad.addColorStop(0.65, "rgba(160,140,210,0.12)");
+        mwGrad.addColorStop(0.8, "rgba(140,120,180,0.06)");
         mwGrad.addColorStop(1, "rgba(0,0,0,0)");
         ctx.fillStyle = mwGrad;
         ctx.fillRect(-mwLength * 0.5, -mwWidth, mwLength, mwWidth * 2);
         // Brighter core center
-        const mwCore = ctx.createRadialGradient(0, 0, 0, 0, 0, mwWidth * 0.6);
-        mwCore.addColorStop(0, "rgba(200,180,240,0.04)");
+        const mwCore = ctx.createRadialGradient(0, 0, 0, 0, 0, mwWidth * 0.7);
+        mwCore.addColorStop(0, "rgba(210,190,255,0.12)");
+        mwCore.addColorStop(0.5, "rgba(180,160,230,0.06)");
         mwCore.addColorStop(1, "rgba(0,0,0,0)");
         ctx.fillStyle = mwCore;
         ctx.fillRect(-mwWidth, -mwWidth, mwWidth * 2, mwWidth * 2);
         ctx.restore();
 
-        // Nebula patches — small colored gas clouds
+        // Nebula patches — colored gas clouds with visible glow
         const nebulaData = [
-          { x: 0.22, y: 0.08, r: 0.06, color: "rgba(120,60,160," },
-          { x: 0.65, y: 0.05, r: 0.045, color: "rgba(60,80,180," },
-          { x: 0.42, y: 0.15, r: 0.035, color: "rgba(160,60,100," },
+          { x: 0.18, y: 0.10, r: 0.08, color: "rgba(120,60,160," },
+          { x: 0.68, y: 0.06, r: 0.065, color: "rgba(60,80,180," },
+          { x: 0.40, y: 0.18, r: 0.055, color: "rgba(160,60,100," },
+          { x: 0.82, y: 0.14, r: 0.04, color: "rgba(80,140,200," },
         ];
         for (const nb of nebulaData) {
           const nx = nb.x * w, ny = nb.y * h, nr = nb.r * w;
-          const pulse = Math.sin(t * 0.002 + nb.x * 10) * 0.01 + 1;
+          const pulse = Math.sin(t * 0.002 + nb.x * 10) * 0.02 + 1;
           const ng = ctx.createRadialGradient(nx, ny, 0, nx, ny, nr * pulse);
-          ng.addColorStop(0, nb.color + "0.06)");
-          ng.addColorStop(0.4, nb.color + "0.03)");
+          ng.addColorStop(0, nb.color + "0.18)");
+          ng.addColorStop(0.3, nb.color + "0.10)");
+          ng.addColorStop(0.6, nb.color + "0.04)");
           ng.addColorStop(1, "rgba(0,0,0,0)");
           ctx.fillStyle = ng;
           ctx.beginPath();
@@ -360,8 +362,8 @@ export default function GuildHallBackground() {
       // Stars fill the full viewport — the no-bg foreground image with its
       // transparent sky naturally masks stars behind mountains/buildings.
       if (tod !== "day") {
-        const sa = tod === "night" ? 0.88 : tod === "dawn" ? 0.45 : 0.22;
-        const starLimit = mobile() ? 180 : STAR_COUNT;
+        const sa = tod === "night" ? 0.95 : tod === "dawn" ? 0.50 : 0.25;
+        const starLimit = mobile() ? 250 : STAR_COUNT;
 
         for (let i = 0; i < starLimit; i++) {
           const s = stars[i];

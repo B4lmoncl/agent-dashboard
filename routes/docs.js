@@ -12,15 +12,8 @@ const API_DOCS = {
     description: 'REST API for managing and monitoring AI agents. Agents report status, receive commands, and can be queried by operators or other AI systems. POST endpoints always require an X-API-Key header. GET endpoints are public. Rate limited to 500 requests per 15 minutes per IP.',
   },
   servers: [
-    { url: 'http://localhost:3001',         description: 'Local server' },
-    { url: 'http://172.18.0.3:3001',        description: 'Docker internal (same host containers)' },
-    { url: 'http://187.77.139.247:3001',    description: 'External access (browser, desktop apps)' },
+    { url: 'http://localhost:3001', description: 'Local development server' },
   ],
-  'x-network': {
-    docker_internal: 'http://172.18.0.3:3001',
-    external:        'http://187.77.139.247:3001',
-    note: 'Agents running in Docker containers on the same host should use the docker_internal address. External clients (browser, Electron app) use the external address.',
-  },
   components: {
     securitySchemes: {
       ApiKeyAuth: {

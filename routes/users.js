@@ -3,11 +3,21 @@
  */
 const crypto = require('crypto');
 const { state, LEVELS, QUEST_FLAVOR, CAMPAIGN_NPCS, DEFAULT_CURRENCIES, ensureUserCurrencies, saveUsers, saveClasses, saveManagedKeys } = require('../lib/state');
-const { now, getLevelInfo, calcDynamicForgeTemp, onQuestCompletedByUser, createCompanionQuestsForUser } = require('../lib/helpers');
+const { now, getLevelInfo, calcDynamicForgeTemp, onQuestCompletedByUser, createCompanionQuestsForUser, paginate } = require('../lib/helpers');
 const { requireAuth, requireMasterKey, getMasterKey } = require('../lib/middleware');
 const { generateTokenPair, setRefreshCookie, clearRefreshCookie, getRefreshTokenFromRequest, verifyRefreshToken, revokeRefreshToken, resolveAuth } = require('../lib/auth');
 
+const rateLimit = require('express-rate-limit');
 const router = require('express').Router();
+
+// Strict rate limit for auth endpoints (brute-force protection)
+const authLimiter = rateLimit({
+  windowMs: 60 * 1000,  // 1 minute
+  max: 10,              // 10 attempts per minute per IP
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: 'Too many login attempts, please try again later' },
+});
 
 // ─── Helper: determine admin status for a user ─────────────────────────────
 function isUserAdmin(user) {
@@ -44,6 +54,11 @@ router.get('/api/users', (req, res) => {
       },
     };
   });
+  // Support pagination: ?limit=50&offset=0 — without params returns all (backward compat)
+  if (req.query.limit) {
+    const page = paginate(result, req.query);
+    return res.json({ users: page.items, total: page.total, limit: page.limit, offset: page.offset, hasMore: page.hasMore });
+  }
   res.json(result);
 });
 
@@ -129,7 +144,7 @@ router.get('/api/auth/check', (req, res) => {
 });
 
 // POST /api/auth/login — validate name + password, return JWT tokens
-router.post('/api/auth/login', async (req, res) => {
+router.post('/api/auth/login', authLimiter, async (req, res) => {
   const { name, password } = req.body;
   if (!name || !password) return res.status(400).json({ success: false, error: 'Name and password required' });
 
@@ -214,7 +229,7 @@ router.post('/api/auth/set-password', async (req, res) => {
 });
 
 // POST /api/register — register a new player (returns JWT tokens)
-router.post('/api/register', async (req, res) => {
+router.post('/api/register', authLimiter, async (req, res) => {
   const { name, password, age, goals, pronouns, classId, companion, relationshipStatus, partnerName } = req.body;
   if (!name || !String(name).trim()) return res.status(400).json({ error: 'name is required' });
   if (!password) return res.status(400).json({ error: 'password is required' });

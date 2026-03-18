@@ -6,6 +6,17 @@ const { state, saveGachaState } = require('../lib/state');
 const { requireApiKey } = require('../lib/middleware');
 const { spendCurrency, awardCurrency, hasPassiveEffect } = require('../lib/helpers');
 
+// ─── Player-level pull lock (prevents concurrent pulls for same player) ────
+const _pullLocks = new Map(); // playerId → true
+function acquirePullLock(playerId) {
+  if (_pullLocks.has(playerId)) return false;
+  _pullLocks.set(playerId, true);
+  return true;
+}
+function releasePullLock(playerId) {
+  _pullLocks.delete(playerId);
+}
+
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 
 function getPlayerGachaState(playerId) {
@@ -224,25 +235,33 @@ router.post('/api/gacha/pull', requireApiKey, (req, res) => {
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'Player not found' });
 
-  const banner = state.bannerTemplates.find(b => b.id === bannerId && b.active !== false);
-  if (!banner) return res.status(404).json({ error: 'Banner not found or inactive' });
-
-  const currency = banner.currency || 'runensplitter';
-  const cost = banner.costSingle || 10;
-
-  if (!spendCurrency(uid, currency, cost)) {
-    return res.status(400).json({ error: `Not enough ${currency}. Need ${cost}` });
+  if (!acquirePullLock(uid)) {
+    return res.status(429).json({ error: 'Pull already in progress, please wait' });
   }
 
-  const result = executePull(uid, banner);
-  if (!result) return res.status(500).json({ error: 'Pull failed — pool empty?' });
+  try {
+    const banner = state.bannerTemplates.find(b => b.id === bannerId && b.active !== false);
+    if (!banner) return res.status(404).json({ error: 'Banner not found or inactive' });
 
-  const { saveUsers } = require('../lib/state');
-  saveUsers();
-  saveGachaState();
+    const currency = banner.currency || 'runensplitter';
+    const cost = banner.costSingle || 10;
 
-  console.log(`[gacha] ${uid} pulled ${result.item.rarity} "${result.item.name}" from ${banner.name}${result.isDuplicate ? ' (DUP→' + result.duplicateRefund + ' Runensplitter)' : ''}`);
-  res.json({ ok: true, results: [result], currencies: u.currencies });
+    if (!spendCurrency(uid, currency, cost)) {
+      return res.status(400).json({ error: `Not enough ${currency}. Need ${cost}` });
+    }
+
+    const result = executePull(uid, banner);
+    if (!result) return res.status(500).json({ error: 'Pull failed — pool empty?' });
+
+    const { saveUsers } = require('../lib/state');
+    saveUsers();
+    saveGachaState();
+
+    console.log(`[gacha] ${uid} pulled ${result.item.rarity} "${result.item.name}" from ${banner.name}${result.isDuplicate ? ' (DUP→' + result.duplicateRefund + ' Runensplitter)' : ''}`);
+    res.json({ ok: true, results: [result], currencies: u.currencies });
+  } finally {
+    releasePullLock(uid);
+  }
 });
 
 // POST /api/gacha/pull10 — 10-pull (costs 90 instead of 100, guaranteed min 1 epic)
@@ -253,6 +272,11 @@ router.post('/api/gacha/pull10', requireApiKey, (req, res) => {
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'Player not found' });
 
+  if (!acquirePullLock(uid)) {
+    return res.status(429).json({ error: 'Pull already in progress, please wait' });
+  }
+
+  try {
   const banner = state.bannerTemplates.find(b => b.id === bannerId && b.active !== false);
   if (!banner) return res.status(404).json({ error: 'Banner not found or inactive' });
 
@@ -283,8 +307,8 @@ router.post('/api/gacha/pull10', requireApiKey, (req, res) => {
     const epicPool = pool.filter(item => item.rarity === 'epic');
     if (epicPool.length > 0) {
       // Replace the worst item (last common/uncommon)
-      const worstIdx = results.findIndex(r => r.item.rarity === 'common') ??
-                       results.findIndex(r => r.item.rarity === 'uncommon') ?? 9;
+      let worstIdx = results.findIndex(r => r.item.rarity === 'common');
+      if (worstIdx < 0) worstIdx = results.findIndex(r => r.item.rarity === 'uncommon');
       const idx = worstIdx >= 0 ? worstIdx : 9;
       const epicItem = epicPool[Math.floor(Math.random() * epicPool.length)];
       results[idx] = {
@@ -306,6 +330,9 @@ router.post('/api/gacha/pull10', requireApiKey, (req, res) => {
   for (const r of results) rarityCount[r.item.rarity] = (rarityCount[r.item.rarity] || 0) + 1;
   console.log(`[gacha] ${uid} 10-pull from ${banner.name}: ${JSON.stringify(rarityCount)}`);
   res.json({ ok: true, results, currencies: u.currencies });
+  } finally {
+    releasePullLock(uid);
+  }
 });
 
 module.exports = router;

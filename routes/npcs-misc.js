@@ -5,7 +5,8 @@ const path = require('path');
 const { state, saveNpcState, saveFeedback } = require('../lib/state');
 const { getMasterKey, requireMasterKey } = require('../lib/middleware');
 const { rotateNpcs } = require('../lib/npc-engine');
-const { getPlayerProgress } = require('../lib/helpers');
+const { getPlayerProgress, paginate } = require('../lib/helpers');
+const { requireAuth } = require('../lib/middleware');
 
 // GET /api/npcs/active?player=X — overlay per-player NPC quest status
 router.get('/api/npcs/active', (req, res) => {
@@ -150,13 +151,17 @@ router.post('/api/feedback', (req, res) => {
   res.json({ ok: true, id: entry.id });
 });
 
-// GET /api/feedback — list all feedback (admin)
-router.get('/api/feedback', (req, res) => {
+// GET /api/feedback — list all feedback (admin only, supports pagination)
+router.get('/api/feedback', requireMasterKey, (req, res) => {
+  if (req.query.limit) {
+    const page = paginate(state.feedbackEntries, req.query);
+    return res.json({ feedback: page.items, total: page.total, limit: page.limit, offset: page.offset, hasMore: page.hasMore });
+  }
   res.json(state.feedbackEntries);
 });
 
-// PATCH /api/feedback/:id — resolve/unresolve a feedback entry
-router.patch('/api/feedback/:id', (req, res) => {
+// PATCH /api/feedback/:id — resolve/unresolve a feedback entry (admin only)
+router.patch('/api/feedback/:id', requireMasterKey, (req, res) => {
   const { id } = req.params;
   const { resolved } = req.body || {};
   
