@@ -916,7 +916,7 @@ export default function Dashboard() {
 
         {/* Player Card — shown when logged in */}
         {playerName && loggedInUser && (
-          <div data-feedback-id="player-card" className={`rounded-xl p-4${levelUpCelebration ? " levelup-glow-header" : ""}`} style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.09)" }}>
+          <div data-feedback-id="player-card" className={`rounded-xl p-4 bg-w3${levelUpCelebration ? " levelup-glow-header" : ""}`} style={{ border: "1px solid rgba(255,255,255,0.09)" }}>
             <div className="flex items-center gap-4">
               {/* Portrait */}
               <div data-feedback-id="player-card.portrait" className="relative flex-shrink-0 cursor-pointer" onClick={() => setDashView("character")} title="Character">
@@ -1730,7 +1730,7 @@ export default function Dashboard() {
                                   <div className="grid grid-cols-2 gap-3">
                                     <div>
                                       <label className="text-xs font-semibold mb-1.5 block" style={{ color: "rgba(200,170,100,0.55)" }}>Category</label>
-                                      <select value={newRitualCategory} onChange={e => setNewRitualCategory(e.target.value)} className="w-full text-sm rounded-lg" style={{ background: "#1a1a2e", border: "1px solid rgba(245,158,11,0.3)", color: "#f0f0f0", outline: "none", padding: "8px 12px", borderRadius: 8, appearance: "none", cursor: "pointer" }}>
+                                      <select value={newRitualCategory} onChange={e => setNewRitualCategory(e.target.value)} className="w-full text-sm rounded-lg text-bright" style={{ background: "#1a1a2e", border: "1px solid rgba(245,158,11,0.3)", outline: "none", padding: "8px 12px", borderRadius: 8, appearance: "none", cursor: "pointer" }}>
                                         <option value="fitness">Fitness</option>
                                         <option value="learning">Learning</option>
                                         <option value="personal">Personal</option>
@@ -1773,7 +1773,7 @@ export default function Dashboard() {
                                     {tierData.id !== "none" && <p className="text-xs mt-0.5" style={{ color: "rgba(200,170,100,0.65)", display: "flex", alignItems: "center", gap: 4, flexWrap: "wrap" }}>Bond Bonus: <span style={{ color: "#f59e0b", display: "inline-flex", alignItems: "center", gap: 2 }}>+{bonusGold} <img src="/images/icons/reward-gold.png" width={20} height={20} className="img-render-auto" /></span> <span style={{ color: "#a78bfa" }}>+{bonusXp} XP</span>{newRitualBloodPact && <span style={{ color: "#ef4444", fontWeight: "bold" }}> ×3</span>}</p>}
                                   </div>
                                   <div className="flex gap-2 pt-1">
-                                    <button onClick={closeRitualModal} className="action-btn text-sm py-2.5 px-5 rounded-xl" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(200,170,100,0.38)", border: "1px solid rgba(255,255,255,0.08)" }}>Cancel</button>
+                                    <button onClick={closeRitualModal} className="action-btn text-sm py-2.5 px-5 rounded-xl bg-w4 border-w8" style={{ color: "rgba(200,170,100,0.38)" }}>Cancel</button>
                                     <button onClick={submitRitual} className="action-btn flex-1 text-sm py-2.5 rounded-xl font-bold" style={{ background: "rgba(245,158,11,0.22)", color: "#f59e0b", border: "1px solid rgba(245,158,11,0.55)", boxShadow: "0 0 16px rgba(245,158,11,0.12)" }}>Forge Ritual</button>
                                   </div>
                                 </div>
@@ -1868,7 +1868,7 @@ export default function Dashboard() {
                               </div>
                             </div>
                             <div className="flex gap-2 pt-1">
-                              <button onClick={closeExtend} className="text-sm py-2.5 px-5 rounded-xl" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(200,170,100,0.35)", border: "1px solid rgba(255,255,255,0.08)" }}>Abbrechen</button>
+                              <button onClick={closeExtend} className="text-sm py-2.5 px-5 rounded-xl bg-w4 border-w8" style={{ color: "rgba(200,170,100,0.35)" }}>Abbrechen</button>
                               <button
                                 disabled={!canExtend}
                                 onClick={async () => {
@@ -1928,7 +1928,7 @@ export default function Dashboard() {
                               &ldquo;Every forge has cooled. Every flame has flickered. What matters is the next spark.&rdquo;
                             </p>
                             <div className="flex gap-2 pt-1">
-                              <button onClick={() => setRecommitRitualId(null)} className="text-sm py-2.5 px-5 rounded-xl" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(200,170,100,0.35)", border: "1px solid rgba(255,255,255,0.08)" }}>Not Yet</button>
+                              <button onClick={() => setRecommitRitualId(null)} className="text-sm py-2.5 px-5 rounded-xl bg-w4 border-w8" style={{ color: "rgba(200,170,100,0.35)" }}>Not Yet</button>
                               <button
                                 onClick={async () => {
                                   try {
@@ -1968,7 +1968,7 @@ export default function Dashboard() {
             <div className="flex items-center gap-2 mb-4">
               <h2 className="text-xs font-semibold uppercase tracking-widest" style={{ color: "#60a5fa" }}>The Arcanum</h2>
             </div>
-            <div className="rounded-xl px-6 py-16 text-center" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
+            <div className="rounded-xl px-6 py-16 text-center border-w6" style={{ background: "rgba(255,255,255,0.02)" }}>
               <p className="text-lg font-bold mb-2 text-w25">Coming Soon</p>
               <p className="text-xs" style={{ color: "rgba(255,255,255,0.15)" }}>Das Arcanum sammelt seine Schriftrollen. Klassenquests und Skill Trees folgen bald.</p>
             </div>
@@ -2153,10 +2153,9 @@ export default function Dashboard() {
       {/* Bulk Action Bar */}
       {selectedIds.size > 0 && (
         <div
-          className="fixed bottom-6 left-1/2 z-50 flex items-center gap-2 px-4 py-2.5 rounded-xl shadow-2xl"
+          className="fixed bottom-6 left-1/2 z-50 flex items-center gap-2 px-4 py-2.5 rounded-xl shadow-2xl bg-card"
           style={{
             transform: "translateX(-50%)",
-            background: "#252525",
             border: "1px solid rgba(255,102,51,0.4)",
             boxShadow: "0 8px 32px rgba(0,0,0,0.6), 0 0 20px rgba(255,102,51,0.1)",
           }}
@@ -2182,7 +2181,7 @@ export default function Dashboard() {
           ))}
           <button
             onClick={() => setSelectedIds(new Set())}
-            className="text-xs px-2 py-1 rounded-lg ml-1 text-w30" style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}
+            className="text-xs px-2 py-1 rounded-lg ml-1 text-w30 bg-w4 border-w8"
           >
             x
           </button>
@@ -2212,9 +2211,8 @@ export default function Dashboard() {
             onClick={() => setQuestDetailModal(null)}
           >
             <div
-              className="w-full max-w-md rounded-2xl flex flex-col"
+              className="w-full max-w-md rounded-2xl flex flex-col bg-surface-alt"
               style={{
-                background: "#1e1e1e",
                 border: `2px solid ${rarityColor}66`,
                 boxShadow: isLegendary ? `0 0 40px ${rarityColor}30` : "0 20px 60px rgba(0,0,0,0.6)",
                 maxHeight: "80vh",
@@ -2379,7 +2377,7 @@ export default function Dashboard() {
       {lootDrop && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4" style={{ background: "rgba(0,0,0,0.8)" }}
           onClick={() => setLootDrop(null)}>
-          <div className="w-full max-w-xs rounded-2xl p-6 text-center" style={{ background: "#1a1a1a", border: `2px solid ${lootDrop.rarityColor}`, boxShadow: `0 0 30px ${lootDrop.rarityColor}55` }}
+          <div className="w-full max-w-xs rounded-2xl p-6 text-center bg-surface" style={{ border: `2px solid ${lootDrop.rarityColor}`, boxShadow: `0 0 30px ${lootDrop.rarityColor}55` }}
             onClick={e => e.stopPropagation()}>
             <div className="text-5xl mb-3" style={{ filter: `drop-shadow(0 0 12px ${lootDrop.rarityColor})` }}>{lootDrop.emoji}</div>
             <div className="text-xs font-bold uppercase tracking-widest mb-1" style={{ color: lootDrop.rarityColor }}>{lootDrop.rarity}</div>
@@ -2532,8 +2530,8 @@ export default function Dashboard() {
           onClick={e => { if (e.target === e.currentTarget) setInfoOverlayOpen(false); }}
         >
           <div
+            className="bg-surface border-w10"
             style={{
-              background: "#1a1a1a", border: "1px solid rgba(255,255,255,0.1)",
               borderRadius: 16, width: "min(800px, 95vw)", maxHeight: "80vh",
               overflow: "hidden", display: "flex", flexDirection: "column",
             }}
@@ -2579,11 +2577,11 @@ export default function Dashboard() {
                     <div className="text-sm text-w25">No changelog data available.</div>
                   )}
                   {changelogData.map(entry => (
-                    <div key={entry.version} className="rounded-lg overflow-hidden" style={{ border: "1px solid rgba(255,255,255,0.07)" }}>
+                    <div key={entry.version} className="rounded-lg overflow-hidden border-w7">
                       <button
                         onClick={() => setChangelogExpanded(changelogExpanded === entry.version ? null : entry.version)}
-                        className="w-full flex items-center gap-3 px-4 py-3 text-left"
-                        style={{ background: "rgba(255,255,255,0.03)", cursor: "pointer", border: "none" }}
+                        className="w-full flex items-center gap-3 px-4 py-3 text-left bg-w3"
+                        style={{ cursor: "pointer", border: "none" }}
                       >
                         <span className="text-xs font-mono px-2 py-0.5 rounded shrink-0" style={{ background: "rgba(255,68,68,0.15)", color: "#ff6666", border: "1px solid rgba(255,68,68,0.25)" }}>
                           v{entry.version}
@@ -2665,8 +2663,7 @@ export default function Dashboard() {
           onClick={() => setClassActivatedNotif(null)}
         >
           <div
-            className="w-full max-w-sm rounded-2xl p-6 space-y-4"
-            style={{ background: "#1a1a1a", border: "1px solid rgba(167,139,250,0.4)", boxShadow: "0 0 60px rgba(139,92,246,0.2)" }}
+            className="w-full max-w-sm rounded-2xl p-6 space-y-4 bg-surface" style={{ border: "1px solid rgba(167,139,250,0.4)", boxShadow: "0 0 60px rgba(139,92,246,0.2)" }}
             onClick={e => e.stopPropagation()}
           >
             <div className="text-center space-y-1">
@@ -2696,9 +2693,8 @@ export default function Dashboard() {
       {versionPopupOpen && (
         <ModalOverlay isOpen={versionPopupOpen} onClose={dismissVersionPopup} zIndex={70}>
           <div
-            className="w-full max-w-sm rounded-2xl p-6 space-y-4"
+            className="w-full max-w-sm rounded-2xl p-6 space-y-4 bg-surface"
             style={{
-              background: "#1a1a1a",
               border: "1px solid rgba(255,68,68,0.35)",
               boxShadow: "0 0 60px rgba(255,68,68,0.12)",
             }}
@@ -2727,8 +2723,7 @@ export default function Dashboard() {
               </button>
               <button
                 onClick={dismissVersionPopup}
-                className="flex-1 py-2.5 rounded-xl font-semibold text-sm"
-                style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.45)", border: "1px solid rgba(255,255,255,0.1)", cursor: "pointer" }}
+                className="flex-1 py-2.5 rounded-xl font-semibold text-sm bg-w6 border-w10" style={{ color: "rgba(255,255,255,0.45)", cursor: "pointer" }}
               >
                 Dismiss
               </button>
