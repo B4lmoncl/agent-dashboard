@@ -152,7 +152,7 @@ function ItemRevealCard({ result }: { result: GachaPullResult }) {
       {/* Item icon */}
       {result.item.icon && result.item.icon.startsWith("/") ? (
         <img src={result.item.icon} alt="" width={80} height={80} style={{
-          imageRendering: "auto",
+          imageRendering: "smooth",
           filter: `drop-shadow(0 0 16px ${cfg.glow})`,
           animation: isLegendary ? "gacha-legendary-glow 2s ease-in-out infinite" : undefined,
         }} />
@@ -452,7 +452,7 @@ function MultiPullReveal({ results, onDone }: { results: GachaPullResult[]; onDo
                 >
                   {result.item.icon && result.item.icon.startsWith("/") ? (
                     <img src={result.item.icon} alt="" width={56} height={56} style={{
-                      imageRendering: "auto",
+                      imageRendering: "smooth",
                       filter: isLeg ? `drop-shadow(0 0 8px ${cfg.glow})` : undefined,
                     }} />
                   ) : (
@@ -469,7 +469,7 @@ function MultiPullReveal({ results, onDone }: { results: GachaPullResult[]; onDo
                     {cfg.label}
                   </span>
                   {result.isDuplicate && (
-                    <span className="text-xs font-mono inline-flex items-center gap-1" style={{ color: "#a78bfa" }}>DUP +{result.duplicateRefund} <img src="/images/icons/currency-runensplitter.png" width={14} height={14} style={{ imageRendering: "auto" }} /></span>
+                    <span className="text-xs font-mono inline-flex items-center gap-1" style={{ color: "#a78bfa" }}>DUP +{result.duplicateRefund} <img src="/images/icons/currency-runensplitter.png" width={14} height={14} style={{ imageRendering: "smooth" }} /></span>
                   )}
                   {result.isNew && (
                     <div className="absolute -top-1.5 -right-1.5 text-[9px] font-bold px-1.5 py-0.5 rounded-full"

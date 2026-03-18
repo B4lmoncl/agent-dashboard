@@ -18,7 +18,7 @@ const COMPANION_META: Record<string, { icon: string; name: string }> = {
 function SmartIcon({ src, alt, size = 16, style }: { src: string; alt?: string; size?: number; style?: React.CSSProperties }) {
   if (!src) return null;
   if (src.startsWith("/")) {
-    return <img src={src} alt={alt ?? ""} width={size} height={size} style={{ imageRendering: "auto", ...style }} onError={e => { e.currentTarget.style.display = "none"; }} />;
+    return <img src={src} alt={alt ?? ""} width={size} height={size} style={{ imageRendering: "smooth", ...style }} onError={e => { e.currentTarget.style.display = "none"; }} />;
   }
   return <span style={{ fontSize: size, lineHeight: 1, ...style }}>{src}</span>;
 }

@@ -19,19 +19,9 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Pixel art icons — crisp rendering at all sizes */
-img[src*="/icons/"],
-img[src*="/portraits/"] {
-  image-rendering: pixelated;
-  image-rendering: -moz-crisp-edges;
-  image-rendering: crisp-edges;
-  /* Force pixelated rendering even at small sizes */
-  -ms-interpolation-mode: nearest-neighbor;
-}
-
-/* Ensure no anti-aliasing on pixel art */
-img[src*="/icons/"] {
-  image-rendering: pixelated !important;
+/* Default: smooth rendering for all images (icons, portraits, UI) */
+img {
+  image-rendering: smooth;
 }
 
 ::-webkit-scrollbar { width: 6px; height: 6px; }
@@ -691,8 +681,8 @@ img[src*="/icons/"] {
 .modal-backdrop      { background: rgba(0,0,0,0.75); }
 .modal-backdrop-blur { background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); }
 
-/* Image rendering — auto (non-pixel-art images like portraits)              */
-.img-render-auto { image-rendering: auto; }
+/* Image rendering — smooth (non-pixelated rendering for all images)         */
+.img-render-auto { image-rendering: smooth; }
 
 /* Common input field styling                                                */
 .input-dark {

@@ -82,7 +82,7 @@ export default function DashboardModals({
                         style={{ background: currencyExpanded === c.key ? `${c.color}12` : "rgba(255,255,255,0.03)", border: `1px solid ${currencyExpanded === c.key ? c.color + "30" : "rgba(255,255,255,0.07)"}` }}
                         onClick={() => setCurrencyExpanded(currencyExpanded === c.key ? null : c.key)}
                       >
-                        <img src={c.iconSrc} alt="" width={24} height={24} className={c.key === "stardust" ? "premium-stardust" : c.key === "runensplitter" ? "premium-rune-shards" : ""} style={{ imageRendering: "auto" }} onError={(e) => { e.currentTarget.style.display = "none"; }} />
+                        <img src={c.iconSrc} alt="" width={24} height={24} className={c.key === "stardust" ? "premium-stardust" : c.key === "runensplitter" ? "premium-rune-shards" : ""} style={{ imageRendering: "smooth" }} onError={(e) => { e.currentTarget.style.display = "none"; }} />
                         <div className="flex-1 min-w-0">
                           <p className="text-xs font-semibold" style={{ color: c.color }}>{c.name}</p>
                           <p className="text-xs text-w30">{c.desc}</p>

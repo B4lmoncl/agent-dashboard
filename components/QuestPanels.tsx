@@ -284,7 +284,7 @@ export function AntiRitualePanel({ playerName, reviewApiKey }: { playerName: str
       <div className="flex gap-4 mb-4" style={{ alignItems: "flex-start" }}>
         {/* Portrait column with speech bubble */}
         <div className="flex-none" style={{ width: 195, overflow: "visible" }}>
-          <img src="/images/portraits/npc-vael.png?v=3" alt="Vael the Silent" width={256} height={384} style={{ imageRendering: "auto", width: "100%", height: "auto", display: "block", filter: "drop-shadow(0 0 18px rgba(99,102,241,0.5))", borderRadius: "4px 4px 0 0", pointerEvents: "none" }} />
+          <img src="/images/portraits/npc-vael.png?v=3" alt="Vael the Silent" width={256} height={384} style={{ imageRendering: "smooth", width: "100%", height: "auto", display: "block", filter: "drop-shadow(0 0 18px rgba(99,102,241,0.5))", borderRadius: "4px 4px 0 0", pointerEvents: "none" }} />
           <div style={{ background: "rgba(8,8,20,0.9)", border: "1px solid rgba(99,102,241,0.35)", borderTop: "none", borderRadius: "0 0 8px 8px", padding: "8px 10px" }}>
             <p style={{ fontSize: "0.8rem", fontStyle: "italic", color: "#a5b4fc", lineHeight: 1.5, margin: 0 }}>„Sprich. Oder schweig. Beides hat Gewicht."</p>
           </div>
@@ -337,7 +337,7 @@ export function AntiRitualePanel({ playerName, reviewApiKey }: { playerName: str
             <div style={{ position: "relative" }} onClick={e => e.stopPropagation()}>
               {/* NPC Portrait — absolute right of modal, hidden on mobile */}
               <div className="hidden md:flex flex-col" style={{ position: "absolute", right: -185, top: "50%", transform: "translateY(-50%)", width: 200, overflow: "visible" }}>
-                <img src="/images/portraits/npc-vael.png?v=3" alt="Vael the Silent" width={256} height={384} style={{ imageRendering: "auto", width: "100%", height: "auto", display: "block", filter: "drop-shadow(0 0 18px rgba(99,102,241,0.5))", borderRadius: "8px 8px 0 0", pointerEvents: "none" }} />
+                <img src="/images/portraits/npc-vael.png?v=3" alt="Vael the Silent" width={256} height={384} style={{ imageRendering: "smooth", width: "100%", height: "auto", display: "block", filter: "drop-shadow(0 0 18px rgba(99,102,241,0.5))", borderRadius: "8px 8px 0 0", pointerEvents: "none" }} />
                 <div style={{ background: "rgba(8,8,20,0.92)", border: "1px solid rgba(99,102,241,0.4)", borderTop: "none", borderRadius: "0 0 8px 8px", padding: "10px 12px" }}>
                   <p style={{ fontSize: "0.8rem", fontStyle: "italic", color: "#a5b4fc", lineHeight: 1.5, margin: 0 }}>{getVaelSpeech(newVowCommitment, newVowBloodPact)}</p>
                 </div>
@@ -345,7 +345,7 @@ export function AntiRitualePanel({ playerName, reviewApiKey }: { playerName: str
             <div style={{ maxWidth: 1000, width: "100%", borderRadius: "1rem", background: newVowBloodPact ? "linear-gradient(160deg, #1a1a2e 0%, #0f0f1e 100%)" : "linear-gradient(160deg, #1e1c2c 0%, #141220 100%)", border: `1px solid ${newVowBloodPact ? "rgba(99,102,241,0.6)" : "rgba(99,102,241,0.3)"}`, boxShadow: newVowBloodPact ? "0 0 60px rgba(99,102,241,0.14)" : "0 0 40px rgba(99,102,241,0.07)", transition: "all 0.4s ease" }}>
               {/* Header */}
               <div className="flex items-center gap-3 px-5 pt-4 pb-3 border-b" style={{ borderColor: "rgba(99,102,241,0.12)" }}>
-                <img src="/images/icons/ui-vow-sword.png" alt="" width={48} height={48} style={{ imageRendering: "auto" }} onError={e => (e.currentTarget.style.display = "none")} />
+                <img src="/images/icons/ui-vow-sword.png" alt="" width={48} height={48} style={{ imageRendering: "smooth" }} onError={e => (e.currentTarget.style.display = "none")} />
                 <div>
                   <h3 className="text-sm font-bold" style={{ color: "#e2e8f0" }}>Swear a Vow</h3>
                   <p className="text-xs" style={{ color: "rgba(165,180,252,0.4)" }}>Vael the Silent — Vow Shrine</p>
@@ -405,8 +405,8 @@ export function AntiRitualePanel({ playerName, reviewApiKey }: { playerName: str
                 </div>
                 <div className="rounded-lg p-3" style={{ background: "rgba(0,0,0,0.2)", border: "1px solid rgba(99,102,241,0.12)" }}>
                   <p className="text-xs font-semibold mb-1.5" style={{ color: "rgba(165,180,252,0.4)" }}>Reward Preview</p>
-                  <p className="text-xs" style={{ color: "rgba(165,180,252,0.65)", display: "flex", alignItems: "center", gap: 4, flexWrap: "wrap" }}>Daily: <span style={{ color: "#818cf8", display: "inline-flex", alignItems: "center", gap: 2 }}>5 <img src="/images/icons/reward-gold.png" width={20} height={20} style={{ imageRendering: "auto" }} /></span> <span style={{ color: "#a78bfa" }}>10 XP</span></p>
-                  {tierData.id !== "none" && <p className="text-xs mt-0.5" style={{ color: "rgba(165,180,252,0.65)", display: "flex", alignItems: "center", gap: 4, flexWrap: "wrap" }}>Bond Bonus: <span style={{ color: "#818cf8", display: "inline-flex", alignItems: "center", gap: 2 }}>+{bonusGold} <img src="/images/icons/reward-gold.png" width={20} height={20} style={{ imageRendering: "auto" }} /></span> <span style={{ color: "#a78bfa" }}>+{bonusXp} XP</span>{newVowBloodPact && <span style={{ color: "#6366f1", fontWeight: "bold" }}> ×3</span>}</p>}
+                  <p className="text-xs" style={{ color: "rgba(165,180,252,0.65)", display: "flex", alignItems: "center", gap: 4, flexWrap: "wrap" }}>Daily: <span style={{ color: "#818cf8", display: "inline-flex", alignItems: "center", gap: 2 }}>5 <img src="/images/icons/reward-gold.png" width={20} height={20} style={{ imageRendering: "smooth" }} /></span> <span style={{ color: "#a78bfa" }}>10 XP</span></p>
+                  {tierData.id !== "none" && <p className="text-xs mt-0.5" style={{ color: "rgba(165,180,252,0.65)", display: "flex", alignItems: "center", gap: 4, flexWrap: "wrap" }}>Bond Bonus: <span style={{ color: "#818cf8", display: "inline-flex", alignItems: "center", gap: 2 }}>+{bonusGold} <img src="/images/icons/reward-gold.png" width={20} height={20} style={{ imageRendering: "smooth" }} /></span> <span style={{ color: "#a78bfa" }}>+{bonusXp} XP</span>{newVowBloodPact && <span style={{ color: "#6366f1", fontWeight: "bold" }}> ×3</span>}</p>}
                 </div>
                 <div className="flex gap-2 pt-1">
                   <button onClick={closeVowModal} className="action-btn text-sm py-2.5 px-5 rounded-xl" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(165,180,252,0.35)", border: "1px solid rgba(255,255,255,0.08)" }}>Cancel</button>
@@ -465,7 +465,7 @@ export function AntiRitualePanel({ playerName, reviewApiKey }: { playerName: str
             <div style={{ position: "relative" }} onClick={e => e.stopPropagation()}>
               {/* NPC Portrait */}
               <div className="hidden md:flex flex-col" style={{ position: "absolute", right: -185, top: "50%", transform: "translateY(-50%)", width: 200, overflow: "visible" }}>
-                <img src="/images/portraits/npc-vael.png?v=3" alt="Vael the Silent" width={256} height={384} style={{ imageRendering: "auto", width: "100%", height: "auto", display: "block", filter: "drop-shadow(0 0 18px rgba(99,102,241,0.5))", borderRadius: "8px 8px 0 0", pointerEvents: "none" }} />
+                <img src="/images/portraits/npc-vael.png?v=3" alt="Vael the Silent" width={256} height={384} style={{ imageRendering: "smooth", width: "100%", height: "auto", display: "block", filter: "drop-shadow(0 0 18px rgba(99,102,241,0.5))", borderRadius: "8px 8px 0 0", pointerEvents: "none" }} />
                 <div style={{ background: "rgba(8,8,20,0.92)", border: "1px solid rgba(99,102,241,0.4)", borderTop: "none", borderRadius: "0 0 8px 8px", padding: "10px 12px" }}>
                   <p style={{ fontSize: "0.8rem", fontStyle: "italic", color: "#a5b4fc", lineHeight: 1.5, margin: 0 }}>&ldquo;Dein Wille vertieft sich. Der Schwur wird stärker.&rdquo;</p>
                 </div>
@@ -530,7 +530,7 @@ export function AntiRitualePanel({ playerName, reviewApiKey }: { playerName: str
             <div style={{ position: "relative" }} onClick={e => e.stopPropagation()}>
               {/* NPC Portrait */}
               <div className="hidden md:flex flex-col" style={{ position: "absolute", right: -185, top: "50%", transform: "translateY(-50%)", width: 200, overflow: "visible" }}>
-                <img src="/images/portraits/npc-vael.png?v=3" alt="Vael the Silent" width={256} height={384} style={{ imageRendering: "auto", width: "100%", height: "auto", display: "block", filter: "drop-shadow(0 0 18px rgba(99,102,241,0.5))", borderRadius: "8px 8px 0 0", pointerEvents: "none" }} />
+                <img src="/images/portraits/npc-vael.png?v=3" alt="Vael the Silent" width={256} height={384} style={{ imageRendering: "smooth", width: "100%", height: "auto", display: "block", filter: "drop-shadow(0 0 18px rgba(99,102,241,0.5))", borderRadius: "8px 8px 0 0", pointerEvents: "none" }} />
                 <div style={{ background: "rgba(8,8,20,0.92)", border: "1px solid rgba(99,102,241,0.4)", borderTop: "none", borderRadius: "0 0 8px 8px", padding: "10px 12px" }}>
                   <p style={{ fontSize: "0.8rem", fontStyle: "italic", color: "#a5b4fc", lineHeight: 1.5, margin: 0 }}>&ldquo;You fell, adventurer. But you are still here. That is not nothing.&rdquo;</p>
                 </div>
