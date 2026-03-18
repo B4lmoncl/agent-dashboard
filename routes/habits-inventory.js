@@ -386,6 +386,33 @@ router.post('/api/player/:name/inventory/use/:itemId', requireAuth, requireSelf(
   res.json({ ok: true, effect: effect || null, message, updatedValues });
 });
 
+// ─── Reorder inventory ────────────────────────────────────────────────────
+router.post('/api/player/:name/inventory/reorder', requireAuth, requireSelf('name'), (req, res) => {
+  const uid = req.params.name.toLowerCase();
+  const u = state.users[uid];
+  if (!u) return res.status(404).json({ error: 'Player not found' });
+
+  const { order } = req.body;
+  if (!Array.isArray(order)) return res.status(400).json({ error: 'order must be an array of item IDs' });
+
+  const inv = u.inventory || [];
+  const byId = new Map(inv.map(i => [i.id, i]));
+  const reordered = [];
+  for (const id of order) {
+    const item = byId.get(id);
+    if (item) {
+      reordered.push(item);
+      byId.delete(id);
+    }
+  }
+  // Append any items not in the order array (safety)
+  for (const item of byId.values()) reordered.push(item);
+  u.inventory = reordered;
+  saveUsers();
+
+  res.json({ ok: true });
+});
+
 // ─── Discard endpoint ──────────────────────────────────────────────────────
 router.post('/api/player/:name/inventory/discard/:itemId', requireAuth, requireSelf('name'), (req, res) => {
   const uid = req.params.name.toLowerCase();

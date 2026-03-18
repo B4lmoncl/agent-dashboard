@@ -473,24 +473,52 @@ function InventoryTooltip({ item, mousePosRef }: { item: InventoryItem; mousePos
   );
 }
 
-function InventorySlot({ item, level, onItemClick }: {
+const RARITY_SORT_ORDER: Record<string, number> = { legendary: 0, epic: 1, rare: 2, uncommon: 3, common: 4 };
+
+type InvFilter = "all" | "equipment" | "consumable" | "passive";
+type InvSort = "none" | "rarity" | "name" | "level";
+
+const INV_FILTERS: { key: InvFilter; label: string }[] = [
+  { key: "all", label: "Alle" },
+  { key: "equipment", label: "Gear" },
+  { key: "consumable", label: "Items" },
+  { key: "passive", label: "Passiv" },
+];
+
+const INV_SORTS: { key: InvSort; label: string }[] = [
+  { key: "none", label: "Standard" },
+  { key: "rarity", label: "Seltenheit" },
+  { key: "name", label: "Name" },
+  { key: "level", label: "Level" },
+];
+
+function InventorySlot({ item, level, idx, onItemClick, onDragStart, onDragOver, onDrop, dragOverIdx }: {
   item: InventoryItem | null;
   level: number;
+  idx: number;
   onItemClick: (item: InventoryItem, rect: { x: number; y: number; width: number; height: number }) => void;
+  onDragStart: (idx: number) => void;
+  onDragOver: (idx: number) => void;
+  onDrop: () => void;
+  dragOverIdx: number | null;
 }) {
   const [hovered, setHovered] = useState(false);
   const mousePosRef = useRef({ x: 0, y: 0 });
   const btnRef = useRef<HTMLButtonElement>(null);
+  const isDropTarget = dragOverIdx === idx;
 
   if (!item) {
     return (
       <div
+        onDragOver={(e) => { e.preventDefault(); onDragOver(idx); }}
+        onDrop={(e) => { e.preventDefault(); onDrop(); }}
         style={{
           width: 56,
           height: 56,
-          background: "rgba(255,255,255,0.04)",
-          border: "1px solid rgba(255,255,255,0.08)",
+          background: isDropTarget ? "rgba(167,139,250,0.15)" : "rgba(255,255,255,0.04)",
+          border: `1px solid ${isDropTarget ? "rgba(167,139,250,0.4)" : "rgba(255,255,255,0.08)"}`,
           borderRadius: 3,
+          transition: "background 0.15s, border-color 0.15s",
         }}
       />
     );
@@ -503,6 +531,17 @@ function InventorySlot({ item, level, onItemClick }: {
     <>
       <button
         ref={btnRef}
+        draggable
+        onDragStart={(e) => {
+          onDragStart(idx);
+          e.dataTransfer.effectAllowed = "move";
+          if (btnRef.current) {
+            e.dataTransfer.setDragImage(btnRef.current, 28, 28);
+          }
+        }}
+        onDragOver={(e) => { e.preventDefault(); onDragOver(idx); }}
+        onDrop={(e) => { e.preventDefault(); onDrop(); }}
+        onDragEnd={() => { /* cleanup handled by parent */ }}
         onClick={() => {
           const el = btnRef.current;
           if (!el) return;
@@ -515,19 +554,20 @@ function InventorySlot({ item, level, onItemClick }: {
         style={{
           width: 56,
           height: 56,
-          background: rarityBg,
-          border: `1px solid ${rarityBorder}`,
+          background: isDropTarget ? "rgba(167,139,250,0.2)" : rarityBg,
+          border: `1px solid ${isDropTarget ? "rgba(167,139,250,0.5)" : rarityBorder}`,
           borderRadius: 3,
-          cursor: "pointer",
+          cursor: "grab",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
           padding: 2,
           position: "relative",
+          transition: "background 0.15s, border-color 0.15s",
         }}
       >
         {item.icon
-          ? <img src={item.icon} alt={item.name} style={{ width: 44, height: 44, imageRendering: "smooth", objectFit: "contain" }} />
+          ? <img src={item.icon} alt={item.name} draggable={false} style={{ width: 44, height: 44, imageRendering: "smooth", objectFit: "contain" }} />
           : <span style={{ fontSize: 14, color: RARITY_COLORS[item.rarity] || "#9ca3af", lineHeight: 1 }}>◆</span>
         }
         {/* Level requirement indicator */}
@@ -609,6 +649,10 @@ export default function CharacterView({ addToast }: { addToast?: (t: ToastInput)
   const [profileSettingsOpen, setProfileSettingsOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState<{ item: CharacterData["inventory"][number]; rect: { x: number; y: number; width: number; height: number } } | null>(null);
   const [statTooltipOpen, setStatTooltipOpen] = useState<string | null>(null);
+  const [invFilter, setInvFilter] = useState<InvFilter>("all");
+  const [invSort, setInvSort] = useState<InvSort>("none");
+  const [dragFromIdx, setDragFromIdx] = useState<number | null>(null);
+  const [dragOverIdx, setDragOverIdx] = useState<number | null>(null);
 
   useEffect(() => {
     if (!statTooltipOpen) return;
@@ -772,12 +816,103 @@ export default function CharacterView({ addToast }: { addToast?: (t: ToastInput)
           className="flex-shrink-0 rounded-xl p-2 overflow-y-auto"
           style={{ width: 310, maxHeight: 490, background: "rgba(0,0,0,0.75)", border: "1px solid rgba(255,255,255,0.1)", minHeight: 0, paddingRight: 12 }}
         >
-          <p className="text-xs font-bold uppercase tracking-wider mb-3" style={{ color: "rgba(255,255,255,0.5)" }}>Inventar</p>
+          {/* Header + Sort */}
+          <div className="flex items-center justify-between mb-2">
+            <p className="text-xs font-bold uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.5)" }}>Inventar</p>
+            <select
+              value={invSort}
+              onChange={e => setInvSort(e.target.value as InvSort)}
+              className="text-xs rounded px-1.5 py-0.5"
+              style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.12)", color: "rgba(255,255,255,0.6)", cursor: "pointer", outline: "none" }}
+            >
+              {INV_SORTS.map(s => <option key={s.key} value={s.key}>{s.label}</option>)}
+            </select>
+          </div>
+
+          {/* Filter Tabs */}
+          <div className="flex gap-1 mb-2">
+            {INV_FILTERS.map(f => (
+              <button
+                key={f.key}
+                onClick={() => setInvFilter(f.key)}
+                className="flex-1 py-0.5 rounded text-xs font-semibold"
+                style={{
+                  background: invFilter === f.key ? "rgba(167,139,250,0.15)" : "rgba(255,255,255,0.04)",
+                  border: `1px solid ${invFilter === f.key ? "rgba(167,139,250,0.4)" : "rgba(255,255,255,0.08)"}`,
+                  color: invFilter === f.key ? "#a78bfa" : "rgba(255,255,255,0.4)",
+                  cursor: "pointer",
+                  transition: "all 0.15s",
+                }}
+              >
+                {f.label}
+              </button>
+            ))}
+          </div>
 
           {loading && <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>Lädt...</p>}
           {!loading && charData && (() => {
             const equippedIds = new Set(Object.values(charData.equipment).filter(Boolean));
-            const unequipped = charData.inventory.filter(i => !equippedIds.has(i.id));
+            let unequipped = charData.inventory.filter(i => !equippedIds.has(i.id));
+
+            // Filter
+            if (invFilter !== "all") {
+              unequipped = unequipped.filter(i => {
+                const t = i.type || "consumable";
+                return t === invFilter;
+              });
+            }
+
+            // Sort
+            if (invSort === "rarity") {
+              unequipped = [...unequipped].sort((a, b) => (RARITY_SORT_ORDER[a.rarity] ?? 9) - (RARITY_SORT_ORDER[b.rarity] ?? 9));
+            } else if (invSort === "name") {
+              unequipped = [...unequipped].sort((a, b) => a.name.localeCompare(b.name));
+            } else if (invSort === "level") {
+              unequipped = [...unequipped].sort((a, b) => (b.minLevel || 0) - (a.minLevel || 0));
+            }
+
+            const handleDragStart = (idx: number) => setDragFromIdx(idx);
+            const handleDragOver = (idx: number) => setDragOverIdx(idx);
+            const handleDrop = async () => {
+              if (dragFromIdx === null || dragOverIdx === null || dragFromIdx === dragOverIdx) {
+                setDragFromIdx(null);
+                setDragOverIdx(null);
+                return;
+              }
+              // Build new order by moving dragFrom item to dragOver position
+              const allEquippedIds = new Set(Object.values(charData.equipment).filter(Boolean));
+              const fullUnequipped = charData.inventory.filter(i => !allEquippedIds.has(i.id));
+              // Map filtered indices back to full array
+              const srcItem = unequipped[dragFromIdx];
+              const dstItem = unequipped[dragOverIdx];
+              if (!srcItem) { setDragFromIdx(null); setDragOverIdx(null); return; }
+
+              const srcFullIdx = fullUnequipped.findIndex(i => i.id === srcItem.id);
+              const dstFullIdx = dstItem ? fullUnequipped.findIndex(i => i.id === dstItem.id) : fullUnequipped.length;
+              if (srcFullIdx === -1) { setDragFromIdx(null); setDragOverIdx(null); return; }
+
+              const reordered = [...fullUnequipped];
+              const [moved] = reordered.splice(srcFullIdx, 1);
+              const insertAt = dstFullIdx > srcFullIdx ? dstFullIdx - 1 : dstFullIdx;
+              reordered.splice(insertAt < 0 ? 0 : insertAt, 0, moved);
+
+              // Optimistic update: rebuild full inventory (equipped items stay, unequipped reordered)
+              const equipped = charData.inventory.filter(i => allEquippedIds.has(i.id));
+              setCharData({ ...charData, inventory: [...equipped, ...reordered] });
+              setDragFromIdx(null);
+              setDragOverIdx(null);
+
+              // Persist to backend
+              try {
+                const fullOrder = [...equipped, ...reordered].map(i => i.id);
+                await fetch(`/api/player/${encodeURIComponent(playerName)}/inventory/reorder`, {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json", ...getAuthHeaders() },
+                  body: JSON.stringify({ order: fullOrder }),
+                });
+              } catch { /* silent — optimistic update already applied */ }
+            };
+
             return (
               <div
                 style={{
@@ -790,10 +925,15 @@ export default function CharacterView({ addToast }: { addToast?: (t: ToastInput)
                   const item = unequipped[idx] ?? null;
                   return (
                     <InventorySlot
-                      key={idx}
+                      key={item?.id ?? `empty-${idx}`}
                       item={item}
+                      idx={idx}
                       level={charData.level}
                       onItemClick={(itm, rect) => setSelectedItem({ item: itm, rect })}
+                      onDragStart={handleDragStart}
+                      onDragOver={handleDragOver}
+                      onDrop={handleDrop}
+                      dragOverIdx={dragOverIdx}
                     />
                   );
                 })}
