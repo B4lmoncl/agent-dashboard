@@ -1725,18 +1725,6 @@
       }
     },
     {
-      "id": "f-spaziergang",
-      "template": "board-quest",
-      "title": "Spaziergang 5000",
-      "type": "fitness",
-      "category": "fitness",
-      "vars": {
-        "description": "5000 Schritte heute. Zählt dein Handy automatisch.",
-        "flavor": "Die alten Wanderer sagten: Bewegung ist Leben. Stillstand ist... naja.",
-        "difficulty": "starter"
-      }
-    },
-    {
       "id": "f-treppe",
       "template": "board-quest",
       "title": "Treppen statt Aufzug",
@@ -1757,18 +1745,6 @@
       "vars": {
         "description": "20 Push-Ups am Stück. Knie-Variante zählt auch.",
         "flavor": "Kraft kommt nicht über Nacht. Aber sie kommt.",
-        "difficulty": "intermediate"
-      }
-    },
-    {
-      "id": "f-plank",
-      "template": "board-quest",
-      "title": "Plank — 2 Minuten",
-      "type": "fitness",
-      "category": "fitness",
-      "vars": {
-        "description": "2 Minuten Plank halten. Am Stück oder in Sets, deine Wahl.",
-        "flavor": "Stabilität ist unterschätzt. Im Kampf. Im Leben. Im Plank.",
         "difficulty": "intermediate"
       }
     },
@@ -1833,30 +1809,6 @@
       }
     },
     {
-      "id": "s-nachricht",
-      "template": "board-quest",
-      "title": "Unerwartete Nachricht",
-      "type": "social",
-      "category": "social",
-      "vars": {
-        "description": "Schreib jemandem dem du länger nicht geschrieben hast. Keine Erwartung, nur 'Hey, dachte an dich'.",
-        "flavor": "Brücken bauen ist leichter als sie zu reparieren.",
-        "difficulty": "starter"
-      }
-    },
-    {
-      "id": "s-kompliment",
-      "template": "board-quest",
-      "title": "Echtes Kompliment",
-      "type": "social",
-      "category": "social",
-      "vars": {
-        "description": "Gib heute jemandem ein ehrliches Kompliment. Nicht oberflächlich. Meine es.",
-        "flavor": "Worte können heilen. Helden wissen das.",
-        "difficulty": "starter"
-      }
-    },
-    {
       "id": "s-anruf",
       "template": "board-quest",
       "title": "Anruf statt Text",
@@ -1902,18 +1854,6 @@
         "description": "Mach konkrete Pläne mit jemandem. Datum, Uhrzeit, Ort. Kein 'irgendwann mal'.",
         "flavor": "Irgendwann ist der Feind von Jetzt. Helden leben im Jetzt.",
         "difficulty": "intermediate"
-      }
-    },
-    {
-      "id": "s-danke-sagen",
-      "template": "board-quest",
-      "title": "Danke sagen",
-      "type": "social",
-      "category": "social",
-      "vars": {
-        "description": "Danke jemandem für etwas das er vor Wochen getan hat. Spezifisch sein.",
-        "flavor": "Dankbarkeit verjährt nicht. Die Sterne vergessen nicht.",
-        "difficulty": "advanced"
       }
     },
     {
@@ -2526,18 +2466,6 @@
         "description": "Teile heute etwas das dir schwerfällt. Eine Sorge, eine Unsicherheit. Mit jemandem dem du vertraust.",
         "flavor": "Stärke zeigt sich nicht im Verbergen der Schwäche. Sondern im Mut sie zu zeigen.",
         "difficulty": "advanced"
-      }
-    },
-    {
-      "id": "p-no-snooze",
-      "template": "board-quest",
-      "title": "Anti-Snooze Protocol",
-      "type": "personal",
-      "category": "personal",
-      "vars": {
-        "description": "Morgen: Wecker klingelt, du stehst auf. Kein Snooze. Erste Tat des Tages = Disziplin.",
-        "flavor": "Die ersten 5 Sekunden nach dem Wecker entscheiden den Tag. Gewinne sie.",
-        "difficulty": "intermediate"
       }
     },
     {
