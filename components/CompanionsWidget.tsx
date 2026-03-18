@@ -442,28 +442,27 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
             )}
 
             {/* Earned forge companions */}
-            {earnedCompanions.map(c => {
-              const meta = COMPANION_META_ALL[c.id];
-              return (
-                <div key={c.id} className="flex items-center gap-2 mt-2 px-2.5 py-1.5" style={{
-                  background: "#0e1018",
-                  border: "1px solid #1a1c28",
-                  boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.02)",
-                  borderTop: "1px solid rgba(167,139,250,0.25)",
-                  borderRadius: 2,
-                }}>
-                  {meta?.icon && (
-                    <img src={meta.icon} alt={meta.name} style={{ width: 24, height: 24, imageRendering: "smooth", flexShrink: 0 }} />
-                  )}
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-1.5">
-                      <span className="text-xs font-semibold" style={{ color: "#c4b5fd" }}>{meta?.name ?? c.name}</span>
+            {earnedCompanions.length > 0 && (
+              <div className="grid mt-2" style={{ gridTemplateColumns: `repeat(${Math.min(earnedCompanions.length, 3)}, 1fr)`, gap: 6 }}>
+                {earnedCompanions.map(c => {
+                  const meta = COMPANION_META_ALL[c.id];
+                  return (
+                    <div key={c.id} className="flex flex-col items-center gap-1.5 py-2.5 px-2" style={{
+                      background: "#0e1018",
+                      border: "1px solid #1a1c28",
+                      borderTop: "1px solid rgba(167,139,250,0.25)",
+                      borderRadius: 6,
+                    }}>
+                      {meta?.icon && (
+                        <img src={meta.icon} alt={meta.name} style={{ width: 48, height: 48, imageRendering: "smooth" }} />
+                      )}
+                      <span className="text-xs font-semibold text-center" style={{ color: "#c4b5fd", lineHeight: 1.2 }}>{meta?.name ?? c.name}</span>
                       <span className="text-xs font-mono" style={{ color: "rgba(167,139,250,0.4)" }}>+2% XP</span>
                     </div>
-                  </div>
-                </div>
-              );
-            })}
+                  );
+                })}
+              </div>
+            )}
 
             {earnedCompanions.length === 0 && !user?.companion && (
               <p className="text-xs mt-1 italic" style={{ color: "rgba(220,185,120,0.25)" }}>
