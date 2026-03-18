@@ -351,7 +351,7 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
                         🐾 Pet
                       </button>
                       <span className="text-xs" style={{ color: "rgba(255,107,157,0.5)", fontSize: 10, whiteSpace: "nowrap" }}>
-                        {petsToday !== null ? petsToday : (user?.companion?.petCountToday ?? 0)}/2 belly rubs today
+                        {petsToday !== null ? petsToday : (user?.companion?.petDateStr === new Date().toISOString().slice(0, 10) ? (user?.companion?.petCountToday ?? 0) : 0)}/2 belly rubs today
                       </span>
 
                     </div>
