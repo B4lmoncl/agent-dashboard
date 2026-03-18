@@ -27,91 +27,64 @@ router.get('/api/config', (req, res) => {
 // GET /api/dashboard?player=X — batch endpoint: returns agents, quests, users,
 // leaderboard, achievements, campaigns, rituals, habits, npcs, favorites in one call.
 // Reduces 14 separate API calls to 1.
-router.get('/api/dashboard', (req, res) => {
+router.get('/api/dashboard', async (req, res) => {
+  // Internally fetch from the real endpoints to reuse their full filtering logic.
+  // This avoids duplicating the complex player-specific quest overlay.
+  const http = require('http');
+  const baseUrl = `http://127.0.0.1:${process.env.PORT || 3001}`;
   const playerName = req.query.player || null;
-  const playerNameLower = playerName ? playerName.toLowerCase() : null;
+  const playerParam = playerName ? `?player=${encodeURIComponent(playerName)}` : '';
+  const playerLower = playerName ? playerName.toLowerCase() : null;
 
-  // Agents
-  const STALE_MS = 30 * 60 * 1000;
-  const agents = Object.values(state.store.agents).map(a => {
-    const stale = !a.lastSeen || (Date.now() - new Date(a.lastSeen).getTime() > STALE_MS);
-    return { ...a, health: stale ? 'stale' : (a.health || 'healthy') };
-  });
+  // Forward auth headers so internal requests pass middleware
+  const headers = {};
+  if (req.headers['x-api-key']) headers['x-api-key'] = req.headers['x-api-key'];
+  if (req.headers['authorization']) headers['authorization'] = req.headers['authorization'];
+  if (req.headers['cookie']) headers['cookie'] = req.headers['cookie'];
 
-  // Quests (same logic as GET /api/quests)
-  const questsRoute = require('./quests');
-  const quests = { open: [], inProgress: [], completed: [], suggested: [], rejected: [] };
-  for (const q of state.quests) {
-    const key = q.status === 'in_progress' ? 'inProgress' : q.status;
-    if (quests[key]) quests[key].push(q);
+  function internalGet(path) {
+    return new Promise((resolve) => {
+      const url = `${baseUrl}${path}`;
+      http.get(url, { headers, timeout: 3000 }, (resp) => {
+        let data = '';
+        resp.on('data', chunk => data += chunk);
+        resp.on('end', () => {
+          try { resolve(JSON.parse(data)); } catch { resolve(null); }
+        });
+      }).on('error', () => resolve(null));
+    });
   }
 
-  // Users with modifiers
-  const { getXpMultiplier, getGoldMultiplier, getForgeXpBase, getForgeGoldBase, getKraftBonus, getWeisheitBonus, getUserGear, getQuestHoardingMalus, calcDynamicForgeTemp } = require('../lib/helpers');
-  const companionIds = ['ember_sprite', 'lore_owl', 'gear_golem'];
-  const users = Object.values(state.users).map(u => {
-    const ft = calcDynamicForgeTemp(u.id);
-    const forgeXp = getXpMultiplier(u.id);
-    const forgeGold = getGoldMultiplier(u.id);
-    const gear = getUserGear(u.id);
-    const gearBonus = 1 + (gear.xpBonus || 0) / 100;
-    const earnedIds = new Set((u.earnedAchievements || []).map(a => a.id));
-    const compBonus = 1 + 0.02 * companionIds.filter(id => earnedIds.has(id)).length;
-    const bondBonus = 1 + 0.01 * Math.max(0, (u.companion?.bondLevel ?? 1) - 1);
-    const streakGold = Math.min(1 + (u.streakDays || 0) * 0.015, 1.45);
-    const hoarding = getQuestHoardingMalus(u.id);
-    return {
-      ...u,
-      forgeTemp: ft,
-      modifiers: {
-        xp: { forge: getForgeXpBase(u.id), kraft: getKraftBonus(u.id), gear: gearBonus, companions: compBonus, bond: bondBonus, hoarding: hoarding.multiplier, total: +(forgeXp * gearBonus * compBonus * bondBonus * hoarding.multiplier).toFixed(2) },
-        gold: { forge: getForgeGoldBase(u.id), weisheit: getWeisheitBonus(u.id), streak: streakGold, total: +(forgeGold * streakGold).toFixed(2) },
-      },
-    };
-  });
+  // Parallel internal fetches — reuses full route logic including player filtering
+  const npcParam = playerLower ? `?player=${encodeURIComponent(playerLower)}` : '';
+  const [agents, quests, users, achievements, campaigns, npcsData] = await Promise.all([
+    internalGet('/api/agents'),
+    internalGet(`/api/quests${playerParam}`),
+    internalGet('/api/users'),
+    internalGet('/api/achievements'),
+    internalGet('/api/campaigns'),
+    internalGet(`/api/npcs/active${npcParam}`),
+  ]);
 
-  // Campaigns
-  const campaigns = state.campaigns.map(c => {
-    const questDetails = c.questIds.map(id => {
-      const q = state.questsById.get(id);
-      if (!q) return { id, title: '(deleted)', status: 'deleted' };
-      return { id: q.id, title: q.title, status: q.status, completedAt: q.completedAt || null };
-    });
-    const done = questDetails.filter(q => q.status === 'completed').length;
-    return { ...c, quests: questDetails, progress: { done, total: questDetails.length } };
-  });
-
-  // Achievements
-  const achievements = state.ACHIEVEMENT_CATALOGUE || [];
-
-  // Player-specific data (only if player param provided)
+  // Player-specific lightweight data (direct state access — no complex logic)
   let rituals = [];
   let habits = [];
   let favorites = [];
-  let activeNpcs = [];
-
-  if (playerNameLower) {
-    rituals = (state.rituals?.active || []).filter(r => r.playerId === playerNameLower && !r.isAntiRitual);
-    habits = state.habits.filter(h => h.playerId === playerNameLower);
-    const u = state.users[playerNameLower];
+  if (playerLower) {
+    rituals = (state.rituals?.active || []).filter(r => r.playerId === playerLower && !r.isAntiRitual);
+    habits = state.habits.filter(h => h.playerId === playerLower);
+    const u = state.users[playerLower];
     favorites = u?.favorites || [];
   }
 
-  // Active NPCs
-  const { NPC_META } = require('../lib/state');
-  activeNpcs = (state.npcState.activeNpcs || []).map(npc => ({
-    ...npc,
-    ...(NPC_META[npc.giverId] || {}),
-    giverId: npc.giverId,
-  }));
+  const activeNpcs = (npcsData && npcsData.npcs) || [];
 
   res.json({
-    agents,
-    quests,
-    users,
-    leaderboard: null, // Computed on demand via /api/leaderboard
-    achievements,
-    campaigns,
+    agents: agents || [],
+    quests: quests || { open: [], inProgress: [], completed: [], suggested: [], rejected: [] },
+    users: users || [],
+    achievements: achievements || [],
+    campaigns: campaigns || [],
     rituals,
     habits,
     favorites,
