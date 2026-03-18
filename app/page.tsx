@@ -61,6 +61,13 @@ const COMMITMENT_TIERS = [
   { id: "eternity", label: "Eternity", days: 365, color: "#a78bfa",                bonusGold: 30, bonusXp: 50, flavorShort: "For eternity" },
 ];
 
+const DIFFICULTY_TIERS = [
+  { id: "easy",      label: "Leicht",     color: "#4ade80", gold: 3,  xp: 8,  icon: "I",   flavor: "A gentle start" },
+  { id: "medium",    label: "Mittel",     color: "#f59e0b", gold: 5,  xp: 15, icon: "II",  flavor: "Steady effort" },
+  { id: "hard",      label: "Schwer",     color: "#ef4444", gold: 8,  xp: 25, icon: "III", flavor: "True discipline" },
+  { id: "legendary", label: "Legendär",   color: "#a78bfa", gold: 12, xp: 40, icon: "IV",  flavor: "Forged in will" },
+];
+
 function getSeraineSpeech(commitment: string, bloodPact: boolean): string {
   if (bloodPact) return "Den Blutknoten also. Ich werde dich nicht davon abhalten. Aber die letzte Person die hier einen Blutknoten geschworen hat, stand drei Monate später weinend vor meiner Tür. Tee?";
   if (commitment === "eternity") return "Ein Jahr. Es gibt Kriege, die kürzer dauern. Königreiche, die weniger Bestand haben. Bist du sicher?";
@@ -137,6 +144,7 @@ export default function Dashboard() {
   const [newRitualCategory, setNewRitualCategory] = useState("personal");
   const [newRitualCommitment, setNewRitualCommitment] = useState("none");
   const [newRitualBloodPact, setNewRitualBloodPact] = useState(false);
+  const [newRitualDifficulty, setNewRitualDifficulty] = useState("medium");
   const [deleteRitualConfirmId, setDeleteRitualConfirmId] = useState<string | null>(null);
   const [extendRitualId, setExtendRitualId] = useState<string | null>(null);
   const [extendRitualCommitment, setExtendRitualCommitment] = useState("none");
@@ -147,7 +155,7 @@ export default function Dashboard() {
   const closeLevelUp = useCallback(() => setLevelUpCelebration(null), []);
   useModalBehavior(!!levelUpCelebration, closeLevelUp);
   const closeRitualModal = useCallback(() => {
-    setCreateRitualOpen(false); setNewRitualTitle(""); setNewRitualCommitment("none"); setNewRitualBloodPact(false);
+    setCreateRitualOpen(false); setNewRitualTitle(""); setNewRitualCommitment("none"); setNewRitualBloodPact(false); setNewRitualDifficulty("medium");
   }, []);
   useModalBehavior(createRitualOpen, closeRitualModal);
   const [changelog, setChangelog] = useState<ChangelogEntry[]>([]);
@@ -1682,17 +1690,19 @@ export default function Dashboard() {
                         )}
                         {/* Create Ritual Modal — simplified, no portrait */}
                         {createRitualOpen && (() => {
-                          const closeRitualModal = () => { setCreateRitualOpen(false); setNewRitualTitle(""); setRitualNameError(false); setRitualCommitmentError(false); setNewRitualCommitment("none"); setNewRitualBloodPact(false); };
+                          const closeRitualModal = () => { setCreateRitualOpen(false); setNewRitualTitle(""); setRitualNameError(false); setRitualCommitmentError(false); setNewRitualCommitment("none"); setNewRitualBloodPact(false); setNewRitualDifficulty("medium"); };
                           const submitRitual = async () => {
                             if (!newRitualTitle.trim()) { setRitualNameError(true); return; }
                             if (newRitualCommitment === "none") { setRitualCommitmentError(true); return; }
                             if (!reviewApiKey || !playerName) return;
                             const tier = COMMITMENT_TIERS.find(t => t.id === newRitualCommitment)!;
-                            await fetch('/api/rituals', { method: 'POST', headers: { 'Content-Type': 'application/json', 'x-api-key': reviewApiKey }, body: JSON.stringify({ title: newRitualTitle.trim(), schedule: { type: newRitualSchedule }, playerId: playerName, createdBy: playerName, category: newRitualCategory, commitment: newRitualCommitment, commitmentDays: tier.days, bloodPact: newRitualBloodPact }) });
+                            const diff = DIFFICULTY_TIERS.find(d => d.id === newRitualDifficulty)!;
+                            await fetch('/api/rituals', { method: 'POST', headers: { 'Content-Type': 'application/json', 'x-api-key': reviewApiKey }, body: JSON.stringify({ title: newRitualTitle.trim(), schedule: { type: newRitualSchedule }, playerId: playerName, createdBy: playerName, category: newRitualCategory, commitment: newRitualCommitment, commitmentDays: tier.days, bloodPact: newRitualBloodPact, difficulty: newRitualDifficulty, rewards: { xp: diff.xp, gold: diff.gold } }) });
                             closeRitualModal();
                             fetchRituals(playerName).then(setRituals);
                           };
                           const tierData = COMMITMENT_TIERS.find(t => t.id === newRitualCommitment)!;
+                          const diffData = DIFFICULTY_TIERS.find(d => d.id === newRitualDifficulty)!;
                           const bonusGold = tierData.bonusGold * (newRitualBloodPact ? 3 : 1);
                           const bonusXp = tierData.bonusXp * (newRitualBloodPact ? 3 : 1);
                           return (
@@ -1749,6 +1759,18 @@ export default function Dashboard() {
                                     </div>
                                   </div>
                                   <div>
+                                    <label className="text-xs font-semibold mb-1.5 block" style={{ color: "rgba(200,170,100,0.55)" }}>Difficulty</label>
+                                    <div className="grid grid-cols-4 gap-1.5">
+                                      {DIFFICULTY_TIERS.map(d => (
+                                        <button key={d.id} onClick={() => setNewRitualDifficulty(d.id)} className="ritual-tier-btn text-center p-2 rounded-lg" style={{ background: newRitualDifficulty === d.id ? `${d.color}22` : "rgba(0,0,0,0.2)", border: `1px solid ${newRitualDifficulty === d.id ? d.color : "rgba(255,255,255,0.07)"}`, boxShadow: newRitualDifficulty === d.id ? `0 0 12px ${d.color}44` : "none" }}>
+                                          <div className="text-xs font-bold" style={{ color: newRitualDifficulty === d.id ? d.color : "rgba(255,255,255,0.55)" }}>{d.label}</div>
+                                          <div style={{ fontSize: "0.6rem", color: "rgba(255,255,255,0.28)", marginTop: 2 }}>{d.icon}</div>
+                                          <div style={{ fontSize: "0.6rem", color: "rgba(255,255,255,0.22)", lineHeight: 1.3 }}>{d.flavor}</div>
+                                        </button>
+                                      ))}
+                                    </div>
+                                  </div>
+                                  <div>
                                     <label className="text-xs font-semibold mb-2 block" style={{ color: "rgba(200,170,100,0.55)" }}>Aetherbond</label>
                                     <div className="grid grid-cols-3 gap-1.5" style={ritualCommitmentError ? { border: "1px solid #ef4444", borderRadius: 8, padding: 2 } : {}}>
                                       {COMMITMENT_TIERS.map(tier => (
@@ -1769,7 +1791,7 @@ export default function Dashboard() {
                                   </div>
                                   <div className="rounded-lg p-3" style={{ background: "rgba(0,0,0,0.2)", border: "1px solid rgba(245,158,11,0.1)" }}>
                                     <p className="text-xs font-semibold mb-1.5" style={{ color: "rgba(200,170,100,0.45)" }}>Reward Preview</p>
-                                    <p className="text-xs" style={{ color: "rgba(200,170,100,0.65)", display: "flex", alignItems: "center", gap: 4, flexWrap: "wrap" }}>Daily: <span style={{ color: "#f59e0b", display: "inline-flex", alignItems: "center", gap: 2 }}>5 <img src="/images/icons/reward-gold.png" width={20} height={20} className="img-render-auto" /></span> <span style={{ color: "#a78bfa" }}>10 XP</span></p>
+                                    <p className="text-xs" style={{ color: "rgba(200,170,100,0.65)", display: "flex", alignItems: "center", gap: 4, flexWrap: "wrap" }}>Base <span style={{ color: diffData.color, fontSize: "0.65rem" }}>({diffData.label})</span>: <span style={{ color: "#f59e0b", display: "inline-flex", alignItems: "center", gap: 2 }}>{diffData.gold} <img src="/images/icons/reward-gold.png" width={20} height={20} className="img-render-auto" /></span> <span style={{ color: "#a78bfa" }}>{diffData.xp} XP</span></p>
                                     {tierData.id !== "none" && <p className="text-xs mt-0.5" style={{ color: "rgba(200,170,100,0.65)", display: "flex", alignItems: "center", gap: 4, flexWrap: "wrap" }}>Bond Bonus: <span style={{ color: "#f59e0b", display: "inline-flex", alignItems: "center", gap: 2 }}>+{bonusGold} <img src="/images/icons/reward-gold.png" width={20} height={20} className="img-render-auto" /></span> <span style={{ color: "#a78bfa" }}>+{bonusXp} XP</span>{newRitualBloodPact && <span style={{ color: "#ef4444", fontWeight: "bold" }}> ×3</span>}</p>}
                                   </div>
                                   <div className="flex gap-2 pt-1">

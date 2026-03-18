@@ -10,6 +10,13 @@ import { getAntiRitualMood } from "@/app/utils";
 
 // ─── Anti-Rituale Panel ───────────────────────────────────────────────────────
 
+const DIFFICULTY_TIERS_VOW = [
+  { id: "easy",      label: "Leicht",     color: "#4ade80", gold: 3,  xp: 8,  icon: "I",   flavor: "A gentle start" },
+  { id: "medium",    label: "Mittel",     color: "#f59e0b", gold: 5,  xp: 15, icon: "II",  flavor: "Steady effort" },
+  { id: "hard",      label: "Schwer",     color: "#ef4444", gold: 8,  xp: 25, icon: "III", flavor: "True discipline" },
+  { id: "legendary", label: "Legendär",   color: "#a78bfa", gold: 12, xp: 40, icon: "IV",  flavor: "Forged in will" },
+];
+
 const COMMITMENT_TIERS_VOW = [
   { id: "none",     label: "None",     days: 0,   color: "rgba(255,255,255,0.25)", bonusGold: 0,  bonusXp: 0,  flavorShort: "No commitment" },
   { id: "spark",    label: "Spark",    days: 7,   color: "#94a3b8",                bonusGold: 3,  bonusXp: 5,  flavorShort: "First spark" },
@@ -43,6 +50,7 @@ export function AntiRitualePanel({ playerName, reviewApiKey }: { playerName: str
   const [newVowCommitment, setNewVowCommitment] = useState("none");
   const [newVowBloodPact, setNewVowBloodPact] = useState(false);
   const [newVowFrequency, setNewVowFrequency] = useState("daily");
+  const [newVowDifficulty, setNewVowDifficulty] = useState("medium");
   const [vowNameError, setVowNameError] = useState(false);
   const [vowCommitmentError, setVowCommitmentError] = useState(false);
   const [deleteConfirmId, setDeleteConfirmId] = useState<string | null>(null);
@@ -109,6 +117,7 @@ export function AntiRitualePanel({ playerName, reviewApiKey }: { playerName: str
     if (!reviewApiKey || !playerName) return;
     try {
       const tier = COMMITMENT_TIERS_VOW.find(t => t.id === newVowCommitment)!;
+      const diff = DIFFICULTY_TIERS_VOW.find(d => d.id === newVowDifficulty)!;
       await fetch("/api/rituals", {
         method: "POST",
         headers: { "Content-Type": "application/json", "x-api-key": reviewApiKey },
@@ -122,12 +131,15 @@ export function AntiRitualePanel({ playerName, reviewApiKey }: { playerName: str
           commitment: newVowCommitment,
           commitmentDays: tier.days,
           bloodPact: newVowBloodPact,
+          difficulty: newVowDifficulty,
+          rewards: { xp: diff.xp, gold: diff.gold },
         }),
       });
       setNewTitle("");
       setVowNameError(false);
       setNewVowCommitment("none");
       setNewVowBloodPact(false);
+      setNewVowDifficulty("medium");
       setCreateOpen(false);
       loadAntiRituals();
     } catch { /* ignore */ }
@@ -327,8 +339,9 @@ export function AntiRitualePanel({ playerName, reviewApiKey }: { playerName: str
       )}
 
       {createOpen && (() => {
-        const closeVowModal = () => { setCreateOpen(false); setNewTitle(""); setNewVowCommitment("none"); setNewVowBloodPact(false); setVowCommitmentError(false); };
+        const closeVowModal = () => { setCreateOpen(false); setNewTitle(""); setNewVowCommitment("none"); setNewVowBloodPact(false); setNewVowDifficulty("medium"); setVowCommitmentError(false); };
         const tierData = COMMITMENT_TIERS_VOW.find(t => t.id === newVowCommitment)!;
+        const diffData = DIFFICULTY_TIERS_VOW.find(d => d.id === newVowDifficulty)!;
         const bonusGold = tierData.bonusGold * (newVowBloodPact ? 3 : 1);
         const bonusXp = tierData.bonusXp * (newVowBloodPact ? 3 : 1);
         return (
@@ -385,6 +398,18 @@ export function AntiRitualePanel({ playerName, reviewApiKey }: { playerName: str
                   </div>
                 </div>
                 <div>
+                  <label className="text-xs font-semibold mb-1.5 block" style={{ color: "rgba(165,180,252,0.55)" }}>Difficulty</label>
+                  <div className="grid grid-cols-4 gap-1.5">
+                    {DIFFICULTY_TIERS_VOW.map(d => (
+                      <button key={d.id} onClick={() => setNewVowDifficulty(d.id)} className="ritual-tier-btn text-center p-2 rounded-lg" style={{ background: newVowDifficulty === d.id ? `${d.color}22` : "rgba(0,0,0,0.2)", border: `1px solid ${newVowDifficulty === d.id ? d.color : "rgba(255,255,255,0.07)"}`, boxShadow: newVowDifficulty === d.id ? `0 0 12px ${d.color}44` : "none" }}>
+                        <div className="text-xs font-bold" style={{ color: newVowDifficulty === d.id ? d.color : "rgba(255,255,255,0.55)" }}>{d.label}</div>
+                        <div style={{ fontSize: "0.6rem", color: "rgba(255,255,255,0.28)", marginTop: 2 }}>{d.icon}</div>
+                        <div style={{ fontSize: "0.6rem", color: "rgba(255,255,255,0.22)", lineHeight: 1.3 }}>{d.flavor}</div>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+                <div>
                   <label className="text-xs font-semibold mb-2 block" style={{ color: "rgba(165,180,252,0.55)" }}>Aetherbond</label>
                   <div className="grid grid-cols-3 gap-1.5" style={vowCommitmentError ? { border: "1px solid #ef4444", borderRadius: 8, padding: 2 } : {}}>
                     {COMMITMENT_TIERS_VOW.map(tier => (
@@ -405,7 +430,7 @@ export function AntiRitualePanel({ playerName, reviewApiKey }: { playerName: str
                 </div>
                 <div className="rounded-lg p-3" style={{ background: "rgba(0,0,0,0.2)", border: "1px solid rgba(99,102,241,0.12)" }}>
                   <p className="text-xs font-semibold mb-1.5" style={{ color: "rgba(165,180,252,0.4)" }}>Reward Preview</p>
-                  <p className="text-xs" style={{ color: "rgba(165,180,252,0.65)", display: "flex", alignItems: "center", gap: 4, flexWrap: "wrap" }}>Daily: <span style={{ color: "#818cf8", display: "inline-flex", alignItems: "center", gap: 2 }}>5 <img src="/images/icons/reward-gold.png" width={20} height={20} style={{ imageRendering: "smooth" }} /></span> <span style={{ color: "#a78bfa" }}>10 XP</span></p>
+                  <p className="text-xs" style={{ color: "rgba(165,180,252,0.65)", display: "flex", alignItems: "center", gap: 4, flexWrap: "wrap" }}>Base <span style={{ color: diffData.color, fontSize: "0.65rem" }}>({diffData.label})</span>: <span style={{ color: "#818cf8", display: "inline-flex", alignItems: "center", gap: 2 }}>{diffData.gold} <img src="/images/icons/reward-gold.png" width={20} height={20} style={{ imageRendering: "smooth" }} /></span> <span style={{ color: "#a78bfa" }}>{diffData.xp} XP</span></p>
                   {tierData.id !== "none" && <p className="text-xs mt-0.5" style={{ color: "rgba(165,180,252,0.65)", display: "flex", alignItems: "center", gap: 4, flexWrap: "wrap" }}>Bond Bonus: <span style={{ color: "#818cf8", display: "inline-flex", alignItems: "center", gap: 2 }}>+{bonusGold} <img src="/images/icons/reward-gold.png" width={20} height={20} style={{ imageRendering: "smooth" }} /></span> <span style={{ color: "#a78bfa" }}>+{bonusXp} XP</span>{newVowBloodPact && <span style={{ color: "#6366f1", fontWeight: "bold" }}> ×3</span>}</p>}
                 </div>
                 <div className="flex gap-2 pt-1">
