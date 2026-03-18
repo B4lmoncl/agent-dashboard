@@ -722,53 +722,49 @@ export default function Dashboard() {
     check();
   }, [playerName, reviewApiKey]);
 
-  const needsAttention = agents.filter((a) => a.health === "needs_checkin" || a.health === "broken").length;
+  const needsAttention = useMemo(() => agents.filter((a) => a.health === "needs_checkin" || a.health === "broken").length, [agents]);
 
   // Player-specific stats (logged-in player)
-  const loggedInUser = playerName ? users.find(u => u.id.toLowerCase() === playerName.toLowerCase() || u.name.toLowerCase() === playerName.toLowerCase()) : null;
-  const currentPlayerLevel = loggedInUser ? getUserLevel(loggedInUser.xp ?? 0).level : undefined;
-  const playerTypes = ["personal", "learning", "fitness", "social", "relationship-coop"];
-  const playerActiveQuests = quests.inProgress.filter(q => playerTypes.includes(q.type ?? "") && q.claimedBy?.toLowerCase() === (playerName || "").toLowerCase());
-  const playerCompletedQuests = quests.completed.filter(q => playerTypes.includes(q.type ?? "") && q.completedBy?.toLowerCase() === (playerName || "").toLowerCase());
+  const playerNameLower = useMemo(() => (playerName || "").toLowerCase(), [playerName]);
+  const loggedInUser = useMemo(() => playerName ? users.find(u => u.id.toLowerCase() === playerNameLower || u.name.toLowerCase() === playerNameLower) : null, [playerName, playerNameLower, users]);
+  const currentPlayerLevel = useMemo(() => loggedInUser ? getUserLevel(loggedInUser.xp ?? 0).level : undefined, [loggedInUser]);
+
+  const playerTypes = useMemo(() => ["personal", "learning", "fitness", "social", "relationship-coop"], []);
+  const playerActiveQuests = useMemo(() => quests.inProgress.filter(q => playerTypes.includes(q.type ?? "") && q.claimedBy?.toLowerCase() === playerNameLower), [quests.inProgress, playerTypes, playerNameLower]);
+  const playerCompletedQuests = useMemo(() => quests.completed.filter(q => playerTypes.includes(q.type ?? "") && q.completedBy?.toLowerCase() === playerNameLower), [quests.completed, playerTypes, playerNameLower]);
   // Use persistent counter from user record (survives rotation cleanup)
   const playerCompletedTotal = loggedInUser?.questsCompleted ?? playerCompletedQuests.length;
 
   // Level info for logged-in player
-  function getPlayerLevelInfo(xp: number) {
-    const lvl = getUserLevel(xp);
-    const progress = getUserXpProgress(xp);
+  const playerXp = loggedInUser?.xp ?? 0;
+  const playerLevelInfo = useMemo(() => {
+    const lvl = getUserLevel(playerXp);
+    const progress = getUserXpProgress(playerXp);
     const nextEntry = GUILD_LEVELS[lvl.level]; // 1-based level → next entry
     return {
       level: lvl.level,
       title: lvl.title,
-      xp,
+      xp: playerXp,
       nextXp: nextEntry?.xpRequired ?? null,
       progress,
-      xpInLevel: nextEntry ? xp - lvl.xpRequired : 0,
+      xpInLevel: nextEntry ? playerXp - lvl.xpRequired : 0,
       xpForLevel: nextEntry ? nextEntry.xpRequired - lvl.xpRequired : 0,
     };
-  }
-  const playerXp = loggedInUser?.xp ?? 0;
-  const playerLevelInfo = getPlayerLevelInfo(playerXp);
+  }, [playerXp]);
   const playerStreak = loggedInUser?.streakDays ?? 0;
   const playerGold = loggedInUser?.gold ?? 0;
 
-  // Forge: count quests completed by the player in the last 24h
-  const now24h = Date.now() - 24 * 3600 * 1000;
-  const forgeQuestsToday = quests.completed.filter(q =>
-    playerName &&
-    (q.completedBy ?? "").toLowerCase() === playerName.toLowerCase() &&
-    q.completedAt && new Date(q.completedAt).getTime() > now24h
-  ).length;
+  // Forge: derived from loggedInUser
   const forgeTemp = Math.min(loggedInUser?.forgeTemp ?? 0, 100);
-  const forgeTempLabel = forgeTemp >= 100 ? "White-hot" : forgeTemp >= 80 ? "Blazing" : forgeTemp >= 60 ? "Burning" : forgeTemp >= 40 ? "Warming" : forgeTemp >= 20 ? "Smoldering" : "Cold";
-  const forgeTempColor = forgeTemp >= 100 ? "#e0f0ff" : forgeTemp >= 80 ? "#f97316" : forgeTemp >= 60 ? "#ea580c" : forgeTemp >= 40 ? "#b45309" : forgeTemp >= 20 ? "#78716c" : "#4b5563";
-  const forgeTempIcon = forgeTemp === 0 ? "×" : forgeTemp <= 20 ? "×" : forgeTemp <= 40 ? "×" : forgeTemp <= 60 ? "×" : forgeTemp <= 80 ? "×" : "×";
+  const { forgeTempLabel, forgeTempColor } = useMemo(() => ({
+    forgeTempLabel: forgeTemp >= 100 ? "White-hot" : forgeTemp >= 80 ? "Blazing" : forgeTemp >= 60 ? "Burning" : forgeTemp >= 40 ? "Warming" : forgeTemp >= 20 ? "Smoldering" : "Cold",
+    forgeTempColor: forgeTemp >= 100 ? "#e0f0ff" : forgeTemp >= 80 ? "#f97316" : forgeTemp >= 60 ? "#ea580c" : forgeTemp >= 40 ? "#b45309" : forgeTemp >= 20 ? "#78716c" : "#4b5563",
+  }), [forgeTemp]);
 
   const playerActiveCount = playerActiveQuests.length;
   const playerCompletedCount = playerCompletedTotal;
 
-  const openQuestsCount = quests.open.filter(q => playerTypes.includes(q.type ?? "")).length;
+  const openQuestsCount = useMemo(() => quests.open.filter(q => playerTypes.includes(q.type ?? "")).length, [quests.open, playerTypes]);
 
   const animStreak    = useCountUp(playerStreak, 0);
   const animActive    = useCountUp(playerActiveCount, 0);
@@ -813,7 +809,7 @@ export default function Dashboard() {
       return aFav - bFav;
     });
   }, [sortMode, favorites]);
-  const isCompanionQuest = (q: Quest) => q.rarity === "companion" || (q.type as string) === "companion" || (q.createdBy ?? "").toLowerCase() === "dobbie" || (q.createdBy ?? "").toLowerCase() === "companion";
+  const isCompanionQuest = useCallback((q: Quest) => q.rarity === "companion" || (q.type as string) === "companion" || (q.createdBy ?? "").toLowerCase() === "dobbie" || (q.createdBy ?? "").toLowerCase() === "companion", []);
   const visibleOpen = useMemo(() => applySort(applyFilter(quests.open.filter(q => !isCompanionQuest(q)))), [quests.open, applyFilter, applySort]);
   const dobbieActiveQuests = useMemo(() => quests.inProgress.filter(q => isCompanionQuest(q)), [quests.inProgress]);
   const visibleInProgress = useMemo(() => applySort(applyFilter(quests.inProgress.filter(q => !isCompanionQuest(q)))), [quests.inProgress, applyFilter, applySort]);
@@ -831,13 +827,16 @@ export default function Dashboard() {
   })), [quests.inProgress, searchFilter, applySort]);
 
   // Build per-agent quest map
-  const agentQuestMap: Record<string, Quest[]> = {};
-  for (const q of quests.inProgress) {
-    if (q.claimedBy) {
-      if (!agentQuestMap[q.claimedBy]) agentQuestMap[q.claimedBy] = [];
-      agentQuestMap[q.claimedBy].push(q);
+  const agentQuestMap = useMemo(() => {
+    const map: Record<string, Quest[]> = {};
+    for (const q of quests.inProgress) {
+      if (q.claimedBy) {
+        if (!map[q.claimedBy]) map[q.claimedBy] = [];
+        map[q.claimedBy].push(q);
+      }
     }
-  }
+    return map;
+  }, [quests.inProgress]);
 
   return (
     <div className="min-h-screen" style={{ background: "transparent", color: "#e8e8e8", position: "relative" }}>
