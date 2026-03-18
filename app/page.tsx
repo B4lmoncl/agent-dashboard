@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState, useCallback, useRef, useMemo } from "react";
-import AgentCard from "@/components/AgentCard";
 import StatBar from "@/components/StatBar";
 import OnboardingWizard from "@/components/OnboardingWizard";
 import LeaderboardView from "@/components/LeaderboardView";
@@ -30,6 +29,8 @@ import { WandererRest } from "@/components/WandererRest";
 import GuildHallBackground from "@/components/GuildHallBackground";
 import FeedbackOverlay from "@/components/FeedbackOverlay";
 import { ModalPortal, useModalBehavior, ModalOverlay } from "@/components/ModalPortal";
+import DashboardHeader from "@/components/DashboardHeader";
+import DashboardModals from "@/components/DashboardModals";
 import type {
   Agent, Quest, NpcQuestChainEntry, ActiveNpc, EarnedAchievement,
   User, CampaignQuest, Campaign, AchievementDef, ClassDef, LeaderboardEntry,
@@ -84,7 +85,6 @@ export default function Dashboard() {
   const [reviewApiKey, setReviewApiKey] = useState<string>(() => {
     try { return localStorage.getItem("dash_api_key") || ""; } catch { return ""; }
   });
-  const [reviewKeyInput, setReviewKeyInput] = useState("");
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
   const [bulkLoading, setBulkLoading] = useState(false);
   const [reviewComments, setReviewComments] = useState<Record<string, string>>({});
@@ -116,17 +116,8 @@ export default function Dashboard() {
   const [playerName, setPlayerName] = useState<string>(() => {
     try { return localStorage.getItem("dash_player_name") || ""; } catch { return ""; }
   });
-  const [playerNameInput, setPlayerNameInput] = useState("");
   const [guideOpen, setGuideOpen] = useState(false);
-  const [loginOpen, setLoginOpen] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
-  const [loginError, setLoginError] = useState("");
-  const [registerOpen, setRegisterOpen] = useState(false);
-  const [registerName, setRegisterName] = useState("");
-  const [registerPassword, setRegisterPassword] = useState("");
-  const [registerPasswordConfirm, setRegisterPasswordConfirm] = useState("");
-  const [registerError, setRegisterError] = useState("");
-  const [registerSuccess, setRegisterSuccess] = useState(false);
   const [cvBuilderOpen, setCvBuilderOpen] = useState(false);
   const [showTutorial, setShowTutorial] = useState(false);
   const [tutorialStep, setTutorialStep] = useState(0);
@@ -168,8 +159,6 @@ export default function Dashboard() {
   const [selectedNpc, setSelectedNpc] = useState<ActiveNpc | null>(null);
   const [infoOverlayOpen, setInfoOverlayOpen] = useState(false);
   const [infoOverlayTab, setInfoOverlayTab] = useState<"roadmap" | "changelog" | "guide">("roadmap");
-  const [settingsPopupOpen, setSettingsPopupOpen] = useState(false);
-  const settingsPopupRef = useRef<HTMLDivElement>(null);
   const [questDetailModal, setQuestDetailModal] = useState<Quest | null>(null);
   const [currenciesOpen, setCurrenciesOpen] = useState(false);
   const [modifierOpen, setModifierOpen] = useState(false);
@@ -217,18 +206,6 @@ export default function Dashboard() {
   // Quest detail modal — ESC to close + scroll lock
   const closeQuestDetailModal = useCallback(() => setQuestDetailModal(null), []);
   useModalBehavior(!!questDetailModal, closeQuestDetailModal);
-
-  // Settings popup — click-outside to close
-  useEffect(() => {
-    if (!settingsPopupOpen) return;
-    const handler = (e: MouseEvent) => {
-      if (settingsPopupRef.current && !settingsPopupRef.current.contains(e.target as Node)) {
-        setSettingsPopupOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handler);
-    return () => document.removeEventListener("mousedown", handler);
-  }, [settingsPopupOpen]);
 
 
   // ─── New Version popup check ────────────────────────────────────────────
@@ -865,333 +842,26 @@ export default function Dashboard() {
   return (
     <div className="min-h-screen" style={{ background: "transparent", color: "#e8e8e8", position: "relative" }}>
       <GuildHallBackground />
-      {/* Header */}
-      <header
-        className="sticky top-0 z-40 backdrop-blur-xl"
-        style={{
-          position: "relative",
-          zIndex: 40,
-          background: "rgba(26,26,26,0.75)",
-          backdropFilter: "blur(12px)",
-          WebkitBackdropFilter: "blur(12px)",
-          borderBottom: "1px solid rgba(255,68,68,0.15)",
-          overflow: "visible",
-        }}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between" style={{ overflow: "visible" }}>
-          <div className="flex items-center gap-3">
-            <button
-              data-feedback-id="header.guild-gate"
-              className="flex items-center gap-2"
-              style={{ background: "none", border: "none", padding: 0, cursor: "pointer", transition: "opacity 0.15s", alignSelf: "flex-start" }}
-              onMouseEnter={e => (e.currentTarget as HTMLButtonElement).style.opacity = "0.75"}
-              onMouseLeave={e => (e.currentTarget as HTMLButtonElement).style.opacity = "1"}
-              onClick={() => { setDashView("questBoard"); window.scrollTo({ top: 0, behavior: "smooth" }); }}
-              title="Home — Quest Hall"
-            >
-              <img src="/guild-gate.png" alt="Quest Hall" className="h-20 w-20" style={{ imageRendering: "auto", display: "block", marginBottom: "-8px", marginTop: "4px" }} />
-              <span className="font-semibold text-sm tracking-tight" style={{ color: "#e8e8e8" }}>
-                Quest Hall
-              </span>
-            </button>
-            <button
-              data-feedback-id="header.season-badge"
-              className="text-xs px-2 py-0.5 rounded font-medium btn-interactive"
-              style={{ color: CURRENT_SEASON.color, background: CURRENT_SEASON.bg, border: `1px solid ${CURRENT_SEASON.color}40`, cursor: "pointer" }}
-              title={`Current Season: ${CURRENT_SEASON.name} — click to view Season tab`}
-              onClick={() => setDashView("season")}
-            >
-              {CURRENT_SEASON.icon} {CURRENT_SEASON.name}
-            </button>
-          </div>
-
-          <div className="flex items-center gap-4">
-            <button
-              data-feedback-id="header.info-button"
-              onClick={() => { setInfoOverlayTab("guide"); setInfoOverlayOpen(true); }}
-              className="btn-interactive text-xs px-2 py-0.5 rounded"
-              style={{ color: "rgba(255,255,255,0.4)", background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}
-              title="Info, Guide & Tutorial"
-            >
-              Info
-            </button>
-            {/* Login / User area */}
-            <div className="relative" data-tutorial="login-btn" data-feedback-id="header.login-badge">
-              {reviewApiKey && playerName ? (
-                <div ref={settingsPopupRef} className="flex items-center gap-2">
-                  <button
-                    title={`${playerName} — Einstellungen`}
-                    onClick={() => setSettingsPopupOpen(v => !v)}
-                    className="btn-interactive flex items-center justify-center font-bold flex-shrink-0"
-                    style={{
-                      width: 48, height: 48, borderRadius: "50%",
-                      overflow: "hidden",
-                      border: `2px solid ${loggedInUser?.color ?? "#a78bfa"}60`,
-                      boxShadow: `0 2px 8px ${loggedInUser?.color ?? "#a78bfa"}40`,
-                      cursor: "pointer",
-                      padding: 0,
-                    }}
-                  >
-                    <img src="/images/portraits/hero-male.png" alt={playerName} style={{ width: "100%", height: "100%", objectFit: "cover", imageRendering: "auto" }} onError={e => { (e.currentTarget as HTMLImageElement).style.display = "none"; (e.currentTarget.nextElementSibling as HTMLElement).style.display = "flex"; }} />
-                    <div style={{ display: "none", width: "100%", height: "100%", alignItems: "center", justifyContent: "center", background: `linear-gradient(135deg, ${loggedInUser?.color ?? "#a78bfa"}, ${loggedInUser?.color ?? "#a78bfa"}88)`, color: "#fff", fontSize: 13, fontWeight: "bold" }}>{playerName.slice(0, 1).toUpperCase()}</div>
-                  </button>
-                  {settingsPopupOpen && (
-                      <div className="absolute right-0 top-9 z-50 rounded-xl shadow-xl flex flex-col" style={{ background: "#1e1e1e", border: "1px solid rgba(255,255,255,0.1)", minWidth: 200, overflow: "hidden" }}>
-                        {/* Profile */}
-                        <div className="px-4 py-3" style={{ borderBottom: "1px solid rgba(255,255,255,0.07)" }}>
-                          <div className="flex items-center gap-2 mb-0.5">
-                            <div className="w-7 h-7 rounded-full flex items-center justify-center font-bold text-xs flex-shrink-0" style={{ background: `linear-gradient(135deg, ${loggedInUser?.color ?? "#a78bfa"}, ${loggedInUser?.color ?? "#a78bfa"}88)`, color: "#fff" }}>
-                              {playerName.slice(0, 1).toUpperCase()}
-                            </div>
-                            <div>
-                              <p className="text-xs font-semibold" style={{ color: "#e8e8e8" }}>{playerName}</p>
-                              <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>Lv.{playerLevelInfo.level} · {playerLevelInfo.title}</p>
-                            </div>
-                          </div>
-                        </div>
-                        {/* Settings placeholder */}
-                        <button
-                          className="flex items-center gap-2 px-4 py-2.5 text-xs text-left"
-                          style={{ color: "rgba(255,255,255,0.5)", background: "none", border: "none", cursor: "not-allowed", opacity: 0.5 }}
-                        >
-                          Einstellungen <span style={{ fontSize: 10, color: "rgba(255,255,255,0.25)" }}>(bald)</span>
-                        </button>
-                        <div style={{ height: 1, background: "rgba(255,255,255,0.07)", margin: "0 12px" }} />
-                        {/* Logout */}
-                        <button
-                          className="flex items-center gap-2 px-4 py-2.5 text-xs text-left"
-                          style={{ color: "#ef4444", background: "none", border: "none", cursor: "pointer" }}
-                          onMouseEnter={e => (e.currentTarget as HTMLButtonElement).style.background = "rgba(239,68,68,0.08)"}
-                          onMouseLeave={e => (e.currentTarget as HTMLButtonElement).style.background = "none"}
-                          onClick={() => {
-                            localStorage.removeItem("dash_api_key");
-                            localStorage.removeItem("dash_player_name");
-                            setReviewApiKey("");
-                            setPlayerName("");
-                            setPlayerNameInput("");
-                            setReviewKeyInput("");
-                            setIsAdmin(false);
-                            setSettingsPopupOpen(false);
-                          }}
-                        >
-                          Logout
-                        </button>
-                      </div>
-                  )}
-                </div>
-              ) : (
-                <>
-                  <button
-                    onClick={() => setLoginOpen(v => !v)}
-                    className="btn-interactive text-xs px-2 py-0.5 rounded"
-                    style={{ color: "rgba(255,255,255,0.4)", background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}
-                  >
-                    Login
-                  </button>
-                  {loginOpen && (
-                    <div className="absolute right-0 top-7 z-50 rounded-xl p-3 shadow-xl flex flex-col gap-2" style={{ background: "#1e1e1e", border: "1px solid rgba(139,92,246,0.3)", minWidth: "220px" }}>
-                      {!registerOpen ? (
-                        <>
-                          <input
-                            type="text"
-                            value={playerNameInput}
-                            onChange={e => setPlayerNameInput(e.target.value)}
-                            placeholder="Your name"
-                            className="text-xs px-2 py-1 rounded"
-                            style={{ background: "#141414", border: "1px solid rgba(255,255,255,0.1)", color: "#fff", outline: "none" }}
-                          />
-                          <input
-                            type="password"
-                            value={reviewKeyInput}
-                            onChange={e => setReviewKeyInput(e.target.value)}
-                            placeholder="Password"
-                            className="text-xs px-2 py-1 rounded"
-                            style={{ background: "#141414", border: "1px solid rgba(255,255,255,0.1)", color: "#fff", outline: "none" }}
-                            onKeyDown={async e => {
-                              if (e.key === "Enter" && reviewKeyInput && playerNameInput) {
-                                const r = await fetch("/api/auth/login", {
-                                  method: "POST",
-                                  headers: { "Content-Type": "application/json" },
-                                  body: JSON.stringify({ name: playerNameInput, password: reviewKeyInput }),
-                                });
-                                const data = await r.json();
-                                if (data.success) {
-                                  localStorage.setItem("dash_api_key", data.apiKey);
-                                  localStorage.setItem("dash_player_name", data.name);
-                                  setPlayerName(data.name);
-                                  setReviewApiKey(data.apiKey);
-                                  setIsAdmin(data.isAdmin);
-                                  setLoginOpen(false);
-                                  setLoginError("");
-                                  createStarterQuestsIfNew(data.name, data.apiKey).then(() => refresh());
-                                } else {
-                                  setLoginError(data.error || "Invalid credentials");
-                                }
-                              }
-                            }}
-                          />
-                          {loginError && <p className="text-xs" style={{ color: "#ef4444" }}>{loginError}</p>}
-                          <div className="flex gap-1">
-                            <button
-                              onClick={async () => {
-                                if (!reviewKeyInput || !playerNameInput) return;
-                                const r = await fetch("/api/auth/login", {
-                                  method: "POST",
-                                  headers: { "Content-Type": "application/json" },
-                                  body: JSON.stringify({ name: playerNameInput, password: reviewKeyInput }),
-                                });
-                                const data = await r.json();
-                                if (data.success) {
-                                  localStorage.setItem("dash_api_key", data.apiKey);
-                                  localStorage.setItem("dash_player_name", data.name);
-                                  setPlayerName(data.name);
-                                  setReviewApiKey(data.apiKey);
-                                  setIsAdmin(data.isAdmin);
-                                  setLoginOpen(false);
-                                  setLoginError("");
-                                  createStarterQuestsIfNew(data.name, data.apiKey).then(() => refresh());
-                                } else {
-                                  setLoginError(data.error || "Invalid credentials");
-                                }
-                              }}
-                              className="flex-1 text-xs px-3 py-1 rounded font-medium"
-                              style={{ background: "rgba(139,92,246,0.2)", color: "#a78bfa", border: "1px solid rgba(139,92,246,0.4)" }}
-                            >
-                              Sign In
-                            </button>
-                            <button
-                              onClick={() => { setLoginOpen(false); setOnboardingOpen(true); }}
-                              className="text-xs px-3 py-1 rounded font-medium"
-                              style={{ background: "rgba(34,197,94,0.15)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.3)" }}
-                            >
-                              Register
-                            </button>
-                          </div>
-                        </>
-                      ) : registerSuccess ? (
-                        <div className="flex flex-col gap-2">
-                          <p className="text-xs font-semibold" style={{ color: "#22c55e" }}>Account Created!</p>
-                          <p className="text-xs" style={{ color: "rgba(255,255,255,0.5)" }}>You are now logged in.</p>
-                          <button
-                            onClick={() => { setRegisterOpen(false); setRegisterSuccess(false); setLoginOpen(false); }}
-                            className="text-xs px-3 py-1 rounded font-medium"
-                            style={{ background: "rgba(139,92,246,0.2)", color: "#a78bfa", border: "1px solid rgba(139,92,246,0.4)" }}
-                          >
-                            Done
-                          </button>
-                        </div>
-                      ) : (
-                        <div className="flex flex-col gap-2">
-                          <p className="text-xs font-semibold" style={{ color: "#22c55e" }}>Create Account</p>
-                          <input
-                            type="text"
-                            value={registerName}
-                            onChange={e => setRegisterName(e.target.value)}
-                            placeholder="Choose a name"
-                            className="text-xs px-2 py-1 rounded"
-                            style={{ background: "#141414", border: "1px solid rgba(255,255,255,0.1)", color: "#fff", outline: "none" }}
-                          />
-                          <input
-                            type="password"
-                            value={registerPassword}
-                            onChange={e => setRegisterPassword(e.target.value)}
-                            placeholder="Password (min 6 chars)"
-                            className="text-xs px-2 py-1 rounded"
-                            style={{ background: "#141414", border: "1px solid rgba(255,255,255,0.1)", color: "#fff", outline: "none" }}
-                          />
-                          <input
-                            type="password"
-                            value={registerPasswordConfirm}
-                            onChange={e => setRegisterPasswordConfirm(e.target.value)}
-                            placeholder="Confirm password"
-                            className="text-xs px-2 py-1 rounded"
-                            style={{ background: "#141414", border: "1px solid rgba(255,255,255,0.1)", color: "#fff", outline: "none" }}
-                          />
-                          {registerError && <p className="text-xs" style={{ color: "#ef4444" }}>{registerError}</p>}
-                          <div className="flex gap-1">
-                            <button
-                              onClick={async () => {
-                                if (!registerName.trim()) return;
-                                if (registerPassword.length < 6) { setRegisterError("Password must be at least 6 characters"); return; }
-                                if (registerPassword !== registerPasswordConfirm) { setRegisterError("Passwords do not match"); return; }
-                                const r = await fetch("/api/register", {
-                                  method: "POST",
-                                  headers: { "Content-Type": "application/json" },
-                                  body: JSON.stringify({ name: registerName.trim(), password: registerPassword }),
-                                });
-                                const data = await r.json();
-                                if (r.ok) {
-                                  setRegisterSuccess(true);
-                                  localStorage.setItem("dash_api_key", data.apiKey);
-                                  localStorage.setItem("dash_player_name", data.name);
-                                  setPlayerName(data.name);
-                                  setReviewApiKey(data.apiKey);
-                                  setIsAdmin(false);
-                                  setRegisterError("");
-                                  setRegisterPassword("");
-                                  setRegisterPasswordConfirm("");
-                                  await createStarterQuestsIfNew(data.name, data.apiKey);
-                                  await refresh();
-                                } else {
-                                  setRegisterError(data.error || "Registration failed");
-                                }
-                              }}
-                              className="flex-1 text-xs px-3 py-1 rounded font-medium"
-                              style={{ background: "rgba(34,197,94,0.15)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.3)" }}
-                            >
-                              Create
-                            </button>
-                            <button
-                              onClick={() => { setRegisterOpen(false); setRegisterError(""); setRegisterPassword(""); setRegisterPasswordConfirm(""); }}
-                              className="text-xs px-2 py-1 rounded"
-                              style={{ color: "rgba(255,255,255,0.3)", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}
-                            >
-                              Back
-                            </button>
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  )}
-                </>
-              )}
-            </div>
-            {needsAttention > 0 && (
-              <div
-                className="text-xs px-2 py-0.5 rounded font-medium"
-                style={{ color: "#f59e0b", background: "rgba(245,158,11,0.1)", border: "1px solid rgba(245,158,11,0.2)" }}
-              >
-                {needsAttention} need attention
-              </div>
-            )}
-            {quests.suggested.length > 0 && (
-              <div
-                className="text-xs px-2 py-0.5 rounded font-semibold"
-                style={{ color: "#f59e0b", background: "rgba(245,158,11,0.12)", border: "1px solid rgba(245,158,11,0.35)" }}
-              >
-                {quests.suggested.length} to review
-              </div>
-            )}
-            <div className="flex items-center gap-2 text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>
-              <span
-                className="w-1.5 h-1.5 rounded-full inline-block"
-                style={{
-                  background: apiLive ? "#22c55e" : "rgba(255,255,255,0.15)",
-                  animation: apiLive ? "pulse-online 2s ease-in-out infinite" : "none",
-                }}
-              />
-              {apiLive ? "API Live" : "Static"}
-            </div>
-            <div className="text-xs font-mono flex items-center gap-1.5" style={{ color: "rgba(255,255,255,0.25)" }}>
-              <span
-                className="w-1.5 h-1.5 rounded-full inline-block animate-pulse"
-                style={{ background: "rgba(255,102,51,0.5)" }}
-              />
-              Updated <span style={{ display: "inline-block", minWidth: "4rem" }}>{lastUpdatedStr}</span>
-            </div>
-          </div>
-        </div>
-      </header>
+      <DashboardHeader
+        dashView={dashView}
+        setDashView={(v) => setDashView(v as typeof dashView)}
+        playerName={playerName}
+        setPlayerName={setPlayerName}
+        loggedInUser={loggedInUser ?? null}
+        playerLevelInfo={playerLevelInfo}
+        reviewApiKey={reviewApiKey}
+        setReviewApiKey={setReviewApiKey}
+        isAdmin={isAdmin}
+        setIsAdmin={setIsAdmin}
+        needsAttention={needsAttention}
+        suggestedCount={quests.suggested.length}
+        apiLive={apiLive}
+        lastUpdatedStr={lastUpdatedStr}
+        refresh={refresh}
+        setOnboardingOpen={setOnboardingOpen}
+        setInfoOverlayOpen={setInfoOverlayOpen}
+        setInfoOverlayTab={setInfoOverlayTab}
+      />
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 py-8 space-y-8" style={{ position: "relative", zIndex: 2, background: "rgba(11,13,17,0.75)", borderRadius: 16, backdropFilter: "blur(8px)", marginTop: 8 }}>
         {/* Stats — Player-specific */}
@@ -1199,7 +869,7 @@ export default function Dashboard() {
           {!playerName && !loading && (
             <div className="col-span-1 sm:col-span-4 rounded-xl p-3 text-center" style={{ background: "rgba(167,139,250,0.06)", border: "1px solid rgba(167,139,250,0.2)" }}>
               <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>
-                <button onClick={() => setLoginOpen(true)} className="underline" style={{ color: "#a78bfa" }}>Log in</button> to see your personal stats
+                <button onClick={() => setOnboardingOpen(true)} className="underline" style={{ color: "#a78bfa" }}>Log in</button> to see your personal stats
               </p>
             </div>
           )}
@@ -1370,262 +1040,30 @@ export default function Dashboard() {
           </div>
         )}
 
-        {/* Currencies Modal */}
-        {currenciesOpen && (() => {
-          const CURRENCY_HOW: Record<string, string> = {
-            gold: "Schließe Quests ab, verkaufe Loot, oder erledige tägliche Herausforderungen. Das ehrliche Metall — ehrlich verdient.",
-            stardust: "Geronnenes Sternenlicht. Fällt bei Level-Ups, seltenen Achievements und besonderen Events vom Himmel.",
-            essenz: "Der stille Trank. Entsteht durch Beständigkeit — halte deinen Streak aufrecht und die Essenz fließt.",
-            runensplitter: "Echos der vergessenen Sprache. Belohnung für abgeschlossene Quest-Ketten und NPC-Aufträge. Ziehe am Rad der Sterne.",
-            gildentaler: "Zeichen des Zusammenhalts. Verdient durch Co-op Quests und soziale Herausforderungen mit deinen Verbündeten.",
-            mondstaub: "Der Atem der Konzentration. Extrem selten — fällt nur bei zeitlich begrenzten Events und legendären Taten.",
-          };
-          return (
-          <ModalPortal>
-          <div className="fixed inset-0 z-[90] flex items-center justify-center p-4" style={{ background: "rgba(0,0,0,0.75)" }}
-            onClick={() => { setCurrenciesOpen(false); setCurrencyExpanded(null); }}>
-            <div className="w-full max-w-xs rounded-2xl p-5" style={{ background: "#1e1e1e", border: "1px solid rgba(255,255,255,0.1)", maxHeight: "80vh", overflow: "hidden", display: "flex", flexDirection: "column" }}
-              onClick={e => e.stopPropagation()}>
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-sm font-semibold" style={{ color: "#e8e8e8" }}>Currencies</h3>
-                <button onClick={() => { setCurrenciesOpen(false); setCurrencyExpanded(null); }} style={{ color: "rgba(255,255,255,0.4)", background: "none", border: "none", cursor: "pointer", fontSize: 18 }}>×</button>
-              </div>
-              <div className="space-y-2 overflow-y-auto flex-1">
-                {[
-                  { name: "Gold", key: "gold" as const, value: loggedInUser?.currencies?.gold ?? animGold, color: "#f59e0b", desc: "Das ehrliche Metall der Halle.", iconSrc: "/images/icons/currency-gold.png" },
-                  { name: "Stardust", key: "stardust" as const, value: loggedInUser?.currencies?.stardust ?? 0, color: "#a78bfa", desc: "Geronnenes Sternenlicht.", iconSrc: "/images/icons/currency-stardust.png" },
-                  { name: "Essence", key: "essenz" as const, value: loggedInUser?.currencies?.essenz ?? 0, color: "#ef4444", desc: "Der stille Trank der Beständigkeit.", iconSrc: "/images/icons/currency-essenz.png" },
-                  { name: "Rune Shards", key: "runensplitter" as const, value: loggedInUser?.currencies?.runensplitter ?? 0, color: "#818cf8", desc: "Echos der vergessenen Sprache.", iconSrc: "/images/icons/currency-runensplitter.png" },
-                  { name: "Guild Coins", key: "gildentaler" as const, value: loggedInUser?.currencies?.gildentaler ?? 0, color: "#10b981", desc: "Zeichen des Zusammenhalts.", iconSrc: "/images/icons/currency-gildentaler.png" },
-                  { name: "Moondust", key: "mondstaub" as const, value: loggedInUser?.currencies?.mondstaub ?? 0, color: "#c084fc", desc: "Atem der Konzentration. Extrem selten.", iconSrc: "/images/icons/currency-mondstaub.png" },
-                ].map(c => (
-                  <div key={c.name}>
-                    <div
-                      className="flex items-center gap-3 rounded-xl px-3 py-2.5 cursor-pointer transition-colors"
-                      style={{ background: currencyExpanded === c.key ? `${c.color}12` : "rgba(255,255,255,0.03)", border: `1px solid ${currencyExpanded === c.key ? c.color + "30" : "rgba(255,255,255,0.07)"}` }}
-                      onClick={() => setCurrencyExpanded(currencyExpanded === c.key ? null : c.key)}
-                    >
-                      <img src={c.iconSrc} alt="" width={24} height={24} className={c.key === "stardust" ? "premium-stardust" : c.key === "runensplitter" ? "premium-rune-shards" : ""} style={{ imageRendering: "auto" }} onError={(e) => { e.currentTarget.style.display = "none"; }} />
-                      <div className="flex-1 min-w-0">
-                        <p className="text-xs font-semibold" style={{ color: c.color }}>{c.name}</p>
-                        <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>{c.desc}</p>
-                      </div>
-                      <span className="text-sm font-mono font-bold" style={{ color: c.value === 0 && c.key !== "gold" ? "rgba(255,255,255,0.2)" : c.color }}>
-                        {c.value === 0 && c.key !== "gold" ? "—" : c.value}
-                      </span>
-                    </div>
-                    {currencyExpanded === c.key && (
-                      <div className="rounded-b-xl px-4 py-3 -mt-1" style={{ background: `${c.color}08`, borderLeft: `1px solid ${c.color}30`, borderRight: `1px solid ${c.color}30`, borderBottom: `1px solid ${c.color}30` }}>
-                        <p className="text-[10px] font-bold uppercase tracking-wider mb-1" style={{ color: `${c.color}99` }}>Wie erhältst du {c.name}?</p>
-                        <p className="text-xs leading-relaxed" style={{ color: "rgba(255,255,255,0.55)" }}>{CURRENCY_HOW[c.key]}</p>
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-          </ModalPortal>
-          );
-        })()}
-
-        {/* Modifier Breakdown Modal */}
-        {modifierOpen && loggedInUser?.modifiers && (
-          <ModalPortal>
-            <div className="fixed inset-0 flex items-center justify-center" style={{ zIndex: 9999 }}
-              onClick={() => setModifierOpen(false)}>
-              <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.6)", backdropFilter: "blur(4px)" }} />
-              <div className="relative rounded-2xl p-5" style={{ background: "#1a1a1a", border: "1px solid rgba(255,255,255,0.12)", boxShadow: "0 12px 48px rgba(0,0,0,0.7)", minWidth: 320, maxWidth: 400 }}
-                onClick={e => e.stopPropagation()}>
-                <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-sm font-bold" style={{ color: "#f0f0f0" }}>Modifier Breakdown</h3>
-                  <button onClick={() => setModifierOpen(false)} style={{ color: "rgba(255,255,255,0.4)", background: "none", border: "none", cursor: "pointer", fontSize: 18 }}>×</button>
-                </div>
-
-                {/* XP Section */}
-                <div className="mb-4">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-xs font-bold uppercase tracking-wider" style={{ color: "#a855f7" }}>XP Modifier</span>
-                    <span className="text-lg font-mono font-black" style={{ color: loggedInUser.modifiers.xp.total >= 1 ? "#a855f7" : "#ef4444" }}>×{loggedInUser.modifiers.xp.total}</span>
-                  </div>
-                  <div className="space-y-1.5">
-                    {[
-                      { label: "Forge Temp", val: loggedInUser.modifiers.xp.forge, color: forgeTempColor, desc: `${forgeTemp}% — ${forgeTempLabel}` },
-                      { label: "Kraft", val: loggedInUser.modifiers.xp.kraft ?? 1, color: "#f97316", desc: (loggedInUser.modifiers.xp.kraft ?? 1) > 1 ? `+${Math.round(((loggedInUser.modifiers.xp.kraft ?? 1) - 1) * 100)}% (1% pro Kraft-Punkt)` : "Kein Kraft-Bonus" },
-                      { label: "Gear", val: loggedInUser.modifiers.xp.gear, color: "#818cf8", desc: loggedInUser.modifiers.xp.gear > 1 ? `+${Math.round((loggedInUser.modifiers.xp.gear - 1) * 100)}% von Tools` : "Kein Gear-Bonus" },
-                      { label: "Companions", val: loggedInUser.modifiers.xp.companions, color: "#f472b6", desc: loggedInUser.modifiers.xp.companions > 1 ? `+${Math.round((loggedInUser.modifiers.xp.companions - 1) * 100)}% (2% pro Companion)` : "Keine Companions beschworen" },
-                      { label: "Bond Level", val: loggedInUser.modifiers.xp.bond, color: "#fb923c", desc: loggedInUser.modifiers.xp.bond > 1 ? `+${Math.round((loggedInUser.modifiers.xp.bond - 1) * 100)}% (1% pro Bond-Level)` : "Bond Level 1" },
-                      { label: "Quest Hoarding", val: loggedInUser.modifiers.xp.hoarding, color: "#ef4444", desc: loggedInUser.modifiers.xp.hoarding < 1 ? `-${loggedInUser.modifiers.xp.hoardingPct}% XP (${loggedInUser.modifiers.xp.hoardingCount} in progress, ${loggedInUser.modifiers.xp.hoardingCount - 20} over limit)` : `No malus (${loggedInUser.modifiers.xp.hoardingCount}/20 slots used)` },
-                    ].map(r => (
-                      <div key={r.label} className="flex items-center justify-between px-2 py-1 rounded-lg" style={{ background: r.val !== 1 ? "rgba(255,255,255,0.03)" : "transparent" }}>
-                        <div>
-                          <span className="text-xs font-medium" style={{ color: r.val !== 1 ? "#f0f0f0" : "rgba(255,255,255,0.3)" }}>{r.label}</span>
-                          <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)", fontSize: 10 }}>{r.desc}</p>
-                        </div>
-                        <span className="font-mono font-bold text-sm" style={{ color: r.val !== 1 ? r.color : "rgba(255,255,255,0.2)" }}>×{r.val}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Gold Section */}
-                <div>
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-xs font-bold uppercase tracking-wider" style={{ color: "#fbbf24" }}>Gold Modifier</span>
-                    <span className="text-lg font-mono font-black" style={{ color: "#fbbf24" }}>×{loggedInUser.modifiers.gold.total}</span>
-                  </div>
-                  <div className="space-y-1.5">
-                    {[
-                      { label: "Forge Temp", val: loggedInUser.modifiers.gold.forge, color: forgeTempColor, desc: `${forgeTemp}% — ${forgeTempLabel}` },
-                      { label: "Weisheit", val: loggedInUser.modifiers.gold.weisheit ?? 1, color: "#60a5fa", desc: (loggedInUser.modifiers.gold.weisheit ?? 1) > 1 ? `+${Math.round(((loggedInUser.modifiers.gold.weisheit ?? 1) - 1) * 100)}% (1% pro Weisheit-Punkt)` : "Kein Weisheit-Bonus" },
-                      { label: "Streak", val: loggedInUser.modifiers.gold.streak, color: "#f97316", desc: `${loggedInUser.streakDays ?? 0} Tage (+1.5% pro Tag, max ×1.45)` },
-                    ].map(r => (
-                      <div key={r.label} className="flex items-center justify-between px-2 py-1 rounded-lg" style={{ background: r.val !== 1 ? "rgba(255,255,255,0.03)" : "transparent" }}>
-                        <div>
-                          <span className="text-xs font-medium" style={{ color: r.val !== 1 ? "#f0f0f0" : "rgba(255,255,255,0.3)" }}>{r.label}</span>
-                          <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)", fontSize: 10 }}>{r.desc}</p>
-                        </div>
-                        <span className="font-mono font-bold text-sm" style={{ color: r.val !== 1 ? r.color : "rgba(255,255,255,0.2)" }}>×{r.val}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </ModalPortal>
-        )}
-
-        {/* Streak Info Popup */}
-        {streakInfoOpen && (
-          <ModalPortal>
-            <div className="fixed inset-0 flex items-center justify-center" style={{ zIndex: 9999 }}
-              onClick={() => setStreakInfoOpen(false)}>
-              <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.6)", backdropFilter: "blur(4px)" }} />
-              <div className="relative rounded-2xl p-5" style={{ background: "#1a1a1a", border: "1px solid rgba(255,255,255,0.12)", boxShadow: "0 12px 48px rgba(0,0,0,0.7)", minWidth: 300, maxWidth: 380 }}
-                onClick={e => e.stopPropagation()}>
-                <div className="flex items-center justify-between mb-3">
-                  <h3 className="text-sm font-bold" style={{ color: "#f97316" }}>Forge Streak</h3>
-                  <button onClick={() => setStreakInfoOpen(false)} style={{ color: "rgba(255,255,255,0.4)", background: "none", border: "none", cursor: "pointer", fontSize: 18 }}>×</button>
-                </div>
-                <p className="text-xs leading-relaxed mb-3" style={{ color: "rgba(255,255,255,0.6)" }}>
-                  Your consecutive days of quest completion. Keep the streak alive to earn bonus XP and keep companions happy!
-                </p>
-                <div className="space-y-1.5">
-                  <div className="flex items-center justify-between px-2 py-1 rounded-lg" style={{ background: "rgba(255,255,255,0.03)" }}>
-                    <span className="text-xs" style={{ color: "rgba(255,255,255,0.5)" }}>Current Streak</span>
-                    <span className="font-mono font-bold text-sm" style={{ color: "#f97316" }}>{loggedInUser?.streakDays ?? 0}d</span>
-                  </div>
-                  <div className="flex items-center justify-between px-2 py-1 rounded-lg" style={{ background: "rgba(255,255,255,0.03)" }}>
-                    <span className="text-xs" style={{ color: "rgba(255,255,255,0.5)" }}>Gold Bonus</span>
-                    <span className="font-mono font-bold text-sm" style={{ color: "#fbbf24" }}>+{Math.min((loggedInUser?.streakDays ?? 0) * 10, 200)}%</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </ModalPortal>
-        )}
-
-        {/* Active Quests Info Popup */}
-        {activeQuestsInfoOpen && (
-          <ModalPortal>
-            <div className="fixed inset-0 flex items-center justify-center" style={{ zIndex: 9999 }}
-              onClick={() => setActiveQuestsInfoOpen(false)}>
-              <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.6)", backdropFilter: "blur(4px)" }} />
-              <div className="relative rounded-2xl p-5" style={{ background: "#1a1a1a", border: "1px solid rgba(255,255,255,0.12)", boxShadow: "0 12px 48px rgba(0,0,0,0.7)", minWidth: 300, maxWidth: 380 }}
-                onClick={e => e.stopPropagation()}>
-                <div className="flex items-center justify-between mb-3">
-                  <h3 className="text-sm font-bold" style={{ color: "#ef4444" }}>Active Quests</h3>
-                  <button onClick={() => setActiveQuestsInfoOpen(false)} style={{ color: "rgba(255,255,255,0.4)", background: "none", border: "none", cursor: "pointer", fontSize: 18 }}>×</button>
-                </div>
-                <p className="text-xs leading-relaxed mb-3" style={{ color: "rgba(255,255,255,0.6)" }}>
-                  Quests you&apos;ve claimed and are currently working on. Claiming too many quests at once (&gt;20) will apply an XP hoarding penalty.
-                </p>
-                <div className="space-y-1.5">
-                  <div className="flex items-center justify-between px-2 py-1 rounded-lg" style={{ background: "rgba(255,255,255,0.03)" }}>
-                    <span className="text-xs" style={{ color: "rgba(255,255,255,0.5)" }}>In Progress</span>
-                    <span className="font-mono font-bold text-sm" style={{ color: "#ef4444" }}>{quests.inProgress.length}</span>
-                  </div>
-                  <div className="flex items-center justify-between px-2 py-1 rounded-lg" style={{ background: "rgba(255,255,255,0.03)" }}>
-                    <span className="text-xs" style={{ color: "rgba(255,255,255,0.5)" }}>Open on Board</span>
-                    <span className="font-mono font-bold text-sm" style={{ color: "rgba(255,255,255,0.5)" }}>{openQuestsCount}</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </ModalPortal>
-        )}
-
-        {/* Quests Completed Info Popup */}
-        {completedInfoOpen && (
-          <ModalPortal>
-            <div className="fixed inset-0 flex items-center justify-center" style={{ zIndex: 9999 }}
-              onClick={() => setCompletedInfoOpen(false)}>
-              <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.6)", backdropFilter: "blur(4px)" }} />
-              <div className="relative rounded-2xl p-5" style={{ background: "#1a1a1a", border: "1px solid rgba(255,255,255,0.12)", boxShadow: "0 12px 48px rgba(0,0,0,0.7)", minWidth: 300, maxWidth: 380 }}
-                onClick={e => e.stopPropagation()}>
-                <div className="flex items-center justify-between mb-3">
-                  <h3 className="text-sm font-bold" style={{ color: "#22c55e" }}>Quests Completed</h3>
-                  <button onClick={() => setCompletedInfoOpen(false)} style={{ color: "rgba(255,255,255,0.4)", background: "none", border: "none", cursor: "pointer", fontSize: 18 }}>×</button>
-                </div>
-                <p className="text-xs leading-relaxed mb-3" style={{ color: "rgba(255,255,255,0.6)" }}>
-                  Total quests you&apos;ve finished. Each one earns XP toward your next level.
-                </p>
-                <div className="space-y-1.5">
-                  <div className="flex items-center justify-between px-2 py-1 rounded-lg" style={{ background: "rgba(255,255,255,0.03)" }}>
-                    <span className="text-xs" style={{ color: "rgba(255,255,255,0.5)" }}>Total Completed</span>
-                    <span className="font-mono font-bold text-sm" style={{ color: "#22c55e" }}>{loggedInUser?.questsCompleted ?? 0}</span>
-                  </div>
-                  <div className="flex items-center justify-between px-2 py-1 rounded-lg" style={{ background: "rgba(255,255,255,0.03)" }}>
-                    <span className="text-xs" style={{ color: "rgba(255,255,255,0.5)" }}>Total XP Earned</span>
-                    <span className="font-mono font-bold text-sm" style={{ color: "#a855f7" }}>{loggedInUser?.xp ?? 0}</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </ModalPortal>
-        )}
-
-        {/* XP Info Popup */}
-        {xpInfoOpen && (
-          <ModalPortal>
-            <div className="fixed inset-0 flex items-center justify-center" style={{ zIndex: 9999 }}
-              onClick={() => setXpInfoOpen(false)}>
-              <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.6)", backdropFilter: "blur(4px)" }} />
-              <div className="relative rounded-2xl p-5" style={{ background: "#1a1a1a", border: "1px solid rgba(167,139,250,0.25)", boxShadow: "0 12px 48px rgba(0,0,0,0.7)", minWidth: 320, maxWidth: 400 }}
-                onClick={e => e.stopPropagation()}>
-                <div className="flex items-center justify-between mb-3">
-                  <h3 className="text-sm font-bold" style={{ color: "#a78bfa" }}>How XP Works</h3>
-                  <button onClick={() => setXpInfoOpen(false)} style={{ color: "rgba(255,255,255,0.4)", background: "none", border: "none", cursor: "pointer", fontSize: 18 }}>×</button>
-                </div>
-                <p className="text-xs leading-relaxed mb-4" style={{ color: "rgba(255,255,255,0.55)" }}>
-                  XP scales with quest rarity. Higher rarity quests reward significantly more experience.
-                </p>
-                <div className="space-y-1.5 mb-4">
-                  {([
-                    { rarity: "Common",    color: "#9ca3af", xp: 10 },
-                    { rarity: "Uncommon",  color: "#22c55e", xp: 18 },
-                    { rarity: "Rare",      color: "#3b82f6", xp: 30 },
-                    { rarity: "Epic",      color: "#a855f7", xp: 50 },
-                    { rarity: "Legendary", color: "#FFD700", xp: 80 },
-                  ] as { rarity: string; color: string; xp: number }[]).map(({ rarity, color, xp }) => (
-                    <div key={rarity} className="flex items-center justify-between px-2.5 py-1.5 rounded-lg" style={{ background: "rgba(255,255,255,0.03)", border: `1px solid ${color}22` }}>
-                      <span className="text-xs font-semibold" style={{ color }}>{rarity}</span>
-                      <span className="font-mono font-bold text-sm" style={{ color: "#a78bfa" }}>{xp} XP</span>
-                    </div>
-                  ))}
-                </div>
-                <div className="rounded-lg px-3 py-2.5 mb-3" style={{ background: "rgba(167,139,250,0.06)", border: "1px solid rgba(167,139,250,0.15)" }}>
-                  <p className="text-xs leading-relaxed" style={{ color: "rgba(255,255,255,0.5)" }}>
-                    Your <span style={{ color: "#a78bfa" }}>Forge</span>, <span style={{ color: "#fbbf24" }}>Gear</span>, and <span style={{ color: "#f43f5e" }}>Companion</span> bonuses multiply all earned XP — stack them for maximum gains.
-                  </p>
-                </div>
-                <p className="text-xs leading-relaxed" style={{ color: "rgba(255,255,255,0.3)" }}>
-                  Higher levels require exponentially more XP. Every level up is an achievement.
-                </p>
-              </div>
-            </div>
-          </ModalPortal>
-        )}
+        {/* Currencies, Modifier, and Stat Info Modals */}
+        <DashboardModals
+          loggedInUser={loggedInUser ?? null}
+          animGold={animGold}
+          forgeTemp={forgeTemp}
+          forgeTempColor={forgeTempColor}
+          forgeTempLabel={forgeTempLabel}
+          openQuestsCount={openQuestsCount}
+          currenciesOpen={currenciesOpen}
+          setCurrenciesOpen={setCurrenciesOpen}
+          currencyExpanded={currencyExpanded}
+          setCurrencyExpanded={setCurrencyExpanded}
+          modifierOpen={modifierOpen}
+          setModifierOpen={setModifierOpen}
+          streakInfoOpen={streakInfoOpen}
+          setStreakInfoOpen={setStreakInfoOpen}
+          activeQuestsInfoOpen={activeQuestsInfoOpen}
+          setActiveQuestsInfoOpen={setActiveQuestsInfoOpen}
+          completedInfoOpen={completedInfoOpen}
+          setCompletedInfoOpen={setCompletedInfoOpen}
+          xpInfoOpen={xpInfoOpen}
+          setXpInfoOpen={setXpInfoOpen}
+          inProgressCount={quests.inProgress.length}
+        />
 
         {/* View toggle */}
         <div className="flex gap-1 flex-wrap" data-tutorial="nav-bar" style={{ background: "#111", borderRadius: 8, padding: 3, display: "inline-flex" }}>
@@ -1990,7 +1428,7 @@ export default function Dashboard() {
                         <p className="text-base mb-2">×</p>
                         <p className="text-sm font-semibold mb-1" style={{ color: "rgba(255,255,255,0.5)" }}>Logge dich ein um deine Quests zu sehen</p>
                         <p className="text-xs mb-3" style={{ color: "rgba(255,255,255,0.25)" }}>Dein persönlicher Quest-Pool wartet auf dich!</p>
-                        <button onClick={() => setLoginOpen(true)} className="text-xs px-4 py-1.5 rounded font-semibold" style={{ background: "rgba(167,139,250,0.18)", color: "#a78bfa", border: "1px solid rgba(167,139,250,0.4)" }}>
+                        <button onClick={() => setOnboardingOpen(true)} className="text-xs px-4 py-1.5 rounded font-semibold" style={{ background: "rgba(167,139,250,0.18)", color: "#a78bfa", border: "1px solid rgba(167,139,250,0.4)" }}>
                           Login
                         </button>
                       </div>
@@ -3320,136 +2758,3 @@ export default function Dashboard() {
   );
 }
 
-// ─── Suggest Quest Button + Modal (for non-admin players) ────────────────────
-function SuggestQuestButton({ reviewApiKey, playerName, onRefresh }: {
-  reviewApiKey: string;
-  playerName: string;
-  onRefresh: () => void;
-}) {
-  const [open, setOpen] = useState(false);
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [type, setType] = useState<"personal" | "learning" | "fitness" | "social">("personal");
-  const [priority, setPriority] = useState<"low" | "medium" | "high">("medium");
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
-  const [done, setDone] = useState(false);
-
-  const handleSubmit = async () => {
-    if (!title.trim()) { setError("Title is required"); return; }
-    setLoading(true);
-    setError("");
-    try {
-      const r = await fetch("/api/quest", {
-        method: "POST",
-        headers: { "Content-Type": "application/json", "X-API-Key": reviewApiKey },
-        body: JSON.stringify({ title: title.trim(), description: description.trim(), type, priority, createdBy: playerName, suggest: true }),
-      });
-      if (r.ok) {
-        setDone(true);
-        onRefresh();
-        setTimeout(() => { setOpen(false); setDone(false); setTitle(""); setDescription(""); }, 1800);
-      } else {
-        const d = await r.json();
-        setError(d.error || "Failed to submit");
-      }
-    } catch { setError("Network error"); } finally { setLoading(false); }
-  };
-
-  return (
-    <>
-      <button
-        onClick={() => { setOpen(true); setDone(false); setError(""); }}
-        className="btn-interactive text-xs px-2 py-1 rounded font-semibold"
-        style={{ background: "rgba(34,197,94,0.12)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.3)" }}
-        title="Suggest a Quest"
-      >
-        Suggest
-      </button>
-      {open && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: "rgba(0,0,0,0.75)" }} onClick={() => setOpen(false)}>
-          <div className="rounded-2xl w-full max-w-md" style={{ background: "#1a1a1a", border: "1px solid rgba(34,197,94,0.3)", boxShadow: "0 0 40px rgba(34,197,94,0.1)" }} onClick={e => e.stopPropagation()}>
-            <div className="flex items-center justify-between p-4 border-b" style={{ borderColor: "rgba(255,255,255,0.08)" }}>
-              <div>
-                <h2 className="text-sm font-bold" style={{ color: "#f0f0f0" }}>Suggest a Quest</h2>
-                <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.3)" }}>Your suggestion goes to the admin for review</p>
-              </div>
-              <button onClick={() => setOpen(false)} style={{ color: "rgba(255,255,255,0.3)", fontSize: 16 }}>×</button>
-            </div>
-            {done ? (
-              <div className="p-6 text-center">
-                <p className="text-2xl mb-2">×</p>
-                <p className="text-sm font-semibold" style={{ color: "#22c55e" }}>Quest Suggested!</p>
-                <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.4)" }}>Awaiting admin review</p>
-              </div>
-            ) : (
-              <div className="p-4 flex flex-col gap-3">
-                <div>
-                  <label className="text-xs mb-1 block" style={{ color: "rgba(255,255,255,0.5)" }}>Quest Title *</label>
-                  <input
-                    type="text"
-                    value={title}
-                    onChange={e => setTitle(e.target.value)}
-                    placeholder="What quest do you want to suggest?"
-                    className="w-full text-xs px-2 py-1.5 rounded"
-                    style={{ background: "#141414", border: "1px solid rgba(255,255,255,0.12)", color: "#fff", outline: "none" }}
-                    autoFocus
-                  />
-                </div>
-                <div>
-                  <label className="text-xs mb-1 block" style={{ color: "rgba(255,255,255,0.5)" }}>Description</label>
-                  <textarea
-                    value={description}
-                    onChange={e => setDescription(e.target.value)}
-                    placeholder="Optional details…"
-                    rows={3}
-                    className="w-full text-xs px-2 py-1.5 rounded resize-none"
-                    style={{ background: "#141414", border: "1px solid rgba(255,255,255,0.12)", color: "#fff", outline: "none" }}
-                  />
-                </div>
-                <div className="grid grid-cols-2 gap-2">
-                  <div>
-                    <label className="text-xs mb-1 block" style={{ color: "rgba(255,255,255,0.5)" }}>Type</label>
-                    <select
-                      value={type}
-                      onChange={e => setType(e.target.value as typeof type)}
-                      className="w-full text-xs px-2 py-1.5 rounded"
-                      style={{ background: "#141414", border: "1px solid rgba(255,255,255,0.12)", color: "#fff", outline: "none" }}
-                    >
-                      <option value="personal">Personal</option>
-                      <option value="learning">Learning</option>
-                      <option value="fitness">Fitness</option>
-                      <option value="social">Social</option>
-                    </select>
-                  </div>
-                  <div>
-                    <label className="text-xs mb-1 block" style={{ color: "rgba(255,255,255,0.5)" }}>Priority</label>
-                    <select
-                      value={priority}
-                      onChange={e => setPriority(e.target.value as typeof priority)}
-                      className="w-full text-xs px-2 py-1.5 rounded"
-                      style={{ background: "#141414", border: "1px solid rgba(255,255,255,0.12)", color: "#fff", outline: "none" }}
-                    >
-                      <option value="low">Low</option>
-                      <option value="medium">Medium</option>
-                      <option value="high">High</option>
-                    </select>
-                  </div>
-                </div>
-                {error && <p className="text-xs" style={{ color: "#ef4444" }}>{error}</p>}
-                <button
-                  onClick={handleSubmit}
-                  disabled={loading || !title.trim()}
-                  className="w-full text-xs py-2 rounded font-semibold"
-                  style={{ background: loading || !title.trim() ? "rgba(34,197,94,0.05)" : "rgba(34,197,94,0.18)", color: loading || !title.trim() ? "rgba(34,197,94,0.4)" : "#22c55e", border: "1px solid rgba(34,197,94,0.3)", cursor: loading || !title.trim() ? "not-allowed" : "pointer" }}
-                >
-                  {loading ? "Submitting…" : "Submit for Review"}
-                </button>
-              </div>
-            )}
-          </div>
-        </div>
-      )}
-    </>
-  );
-}
