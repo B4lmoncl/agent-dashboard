@@ -238,17 +238,17 @@ export default function Dashboard() {
 
     // Try batch endpoint first (1 call instead of 14)
     const batch = await fetchDashboard(playerName || undefined);
-    if (batch) {
-      setAgents(sortAgents(batch.agents));
+    if (batch && batch.quests && batch.agents) {
+      setAgents(sortAgents(batch.agents || []));
       setQuests(batch.quests);
-      setUsers(batch.users);
-      if (batch.achievements.length > 0) setAchievementCatalogue(batch.achievements);
-      setCampaigns(batch.campaigns);
-      setRituals(batch.rituals);
-      setHabits(batch.habits);
-      setFavorites(batch.favorites);
-      setActiveNpcs(batch.activeNpcs);
-      setApiLive(batch.apiLive);
+      setUsers(batch.users || []);
+      if (Array.isArray(batch.achievements) && batch.achievements.length > 0) setAchievementCatalogue(batch.achievements);
+      setCampaigns(batch.campaigns || []);
+      setRituals(batch.rituals || []);
+      setHabits(batch.habits || []);
+      setFavorites(batch.favorites || []);
+      setActiveNpcs(batch.activeNpcs || []);
+      setApiLive(!!batch.apiLive);
     } else {
       // Fallback: individual fetches if batch endpoint not available
       const [a, q, u, lb, ac, camps] = await Promise.all([fetchAgents(), fetchQuests(playerName || undefined), fetchUsers(), fetchLeaderboard(), fetchAchievementCatalogue(), fetchCampaigns()]);
