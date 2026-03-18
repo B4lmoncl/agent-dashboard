@@ -224,6 +224,8 @@ router.post('/api/rituals/:id/complete', requireApiKey, (req, res) => {
   let milestoneDrop = null;
   let pactCompletionXp = 0;
   let pactCompletionGold = 0;
+  let xpAmount = 0;
+  let goldEarnedAmount = 0;
 
   if (u) {
     // ─── Commitment & difficulty bonus calculation ───
@@ -250,16 +252,16 @@ router.post('/api/rituals/:id/complete', requireApiKey, (req, res) => {
     let passiveXpBonus = 1;
     if (hasPassiveEffect(uid, 'xp_boost_10')) passiveXpBonus += 0.10;
     if (hasPassiveEffect(uid, 'xp_boost_5')) passiveXpBonus += 0.05;
-    const xpAmount = Math.round(xpBase * (1 + streakBonus) * xpMulti * gearBonus * companionBonus * bondBonus * hoardingMalus * passiveXpBonus);
+    xpAmount = Math.round(xpBase * (1 + streakBonus) * xpMulti * gearBonus * companionBonus * bondBonus * hoardingMalus * passiveXpBonus);
     u.xp = (u.xp || 0) + xpAmount;
 
     // Gold with full multiplier chain
     const goldBase = (ritual.rewards.gold || 5) + commitGold;
     const goldMulti = getGoldMultiplier(uid);
     const streakGoldMulti = Math.min(1 + (u.streakDays || 0) * 0.015, 1.45);
-    let goldEarned = Math.round(goldBase * goldMulti * streakGoldMulti);
-    if (consumePassiveEffect(uid, 'gold_boost_next')) goldEarned *= 2;
-    u.gold = (u.gold || 0) + goldEarned;
+    goldEarnedAmount = Math.round(goldBase * goldMulti * streakGoldMulti);
+    if (consumePassiveEffect(uid, 'gold_boost_next')) goldEarnedAmount *= 2;
+    u.gold = (u.gold || 0) + goldEarnedAmount;
 
     // ─── Blood Pact completion bonus (one-time at end of commitment) ───
     if (ritual.bloodPact && ritual.commitmentDays && ritual.streak >= ritual.commitmentDays && !ritual.pactCompleted) {
@@ -300,7 +302,9 @@ router.post('/api/rituals/:id/complete', requireApiKey, (req, res) => {
   }
   saveRituals();
 
-  res.json({ ok: true, ritual, newAchievements, lootDrop, milestoneDrop, ...(pactCompletionXp > 0 ? { pactCompletion: { xp: pactCompletionXp, gold: pactCompletionGold } } : {}) });
+  const xpEarned = pactCompletionXp > 0 ? xpAmount + pactCompletionXp : xpAmount;
+  const goldEarned = pactCompletionGold > 0 ? goldEarnedAmount + pactCompletionGold : goldEarnedAmount;
+  res.json({ ok: true, ritual, newAchievements, lootDrop, milestoneDrop, xpEarned, goldEarned, ...(pactCompletionXp > 0 ? { pactCompletion: { xp: pactCompletionXp, gold: pactCompletionGold } } : {}) });
 });
 
 // PATCH /api/rituals/:id/extend — extend ritual/vow deadline [auth]

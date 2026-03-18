@@ -22,6 +22,7 @@ import {
   UserCard, ShopModal, RARITY_COLORS,
 } from "@/components/QuestBoard";
 import { ToastStack, useToastStack } from "@/components/ToastStack";
+import { RewardCelebration, RewardCelebrationData } from "@/components/RewardCelebration";
 import { CompanionsWidget } from "@/components/CompanionsWidget";
 import { RoadmapView } from "@/components/RoadmapView";
 import { InfoTooltip } from "@/components/InfoTooltip";
@@ -139,6 +140,7 @@ export default function Dashboard() {
   const [habits, setHabits] = useState<Habit[]>([]);
   const [lootDrop, setLootDrop] = useState<LootItem | null>(null);
   const [levelUpCelebration, setLevelUpCelebration] = useState<{ level: number; title: string } | null>(null);
+  const [rewardCelebration, setRewardCelebration] = useState<RewardCelebrationData | null>(null);
   const [questBoardTab, setQuestBoardTab] = useState<"auftraege" | "rituale" | "anti-rituale">("auftraege");
   const [createRitualOpen, setCreateRitualOpen] = useState(false);
   const [newRitualTitle, setNewRitualTitle] = useState("");
@@ -158,6 +160,17 @@ export default function Dashboard() {
   useModalBehavior(!!lootDrop, closeLootDrop);
   const closeLevelUp = useCallback(() => setLevelUpCelebration(null), []);
   useModalBehavior(!!levelUpCelebration, closeLevelUp);
+  const pendingLevelUpRef = useRef<{ level: number; title: string } | null>(null);
+  const closeRewardCelebration = useCallback(() => {
+    setRewardCelebration(null);
+    // Show queued level-up celebration after reward popup is dismissed
+    if (pendingLevelUpRef.current) {
+      const lu = pendingLevelUpRef.current;
+      pendingLevelUpRef.current = null;
+      setTimeout(() => setLevelUpCelebration(lu), 200);
+    }
+  }, []);
+  useModalBehavior(!!rewardCelebration, closeRewardCelebration);
   const closeRitualModal = useCallback(() => {
     setCreateRitualOpen(false); setNewRitualTitle(""); setNewRitualCommitment("none"); setNewRitualBloodPact(false); setNewRitualDifficulty("medium");
   }, []);
@@ -517,30 +530,23 @@ export default function Dashboard() {
       });
       if (r.ok) {
         const data = await r.json();
-        if (data.newAchievements?.length > 0) setToast(data.newAchievements[0]);
         if (data.chainQuestTemplate) {
           setChainOffer({ template: data.chainQuestTemplate, parentTitle: questTitle });
         }
-        if (data.lootDrop) {
-          setLootDrop(data.lootDrop);
-        }
+        // Show Reward Celebration popup (replaces flavor toast)
+        const isNpcQuest = !!data.quest?.npcGiverId;
+        setRewardCelebration({
+          type: isNpcQuest ? "npc-quest" : "quest",
+          title: questTitle,
+          xpEarned: data.xpEarned || 0,
+          goldEarned: data.goldEarned || 0,
+          loot: data.lootDrop || null,
+          achievement: data.newAchievements?.length > 0 ? data.newAchievements[0] : null,
+        });
+        // Queue level-up to show after reward celebration is dismissed
         if (data.levelUp) {
-          setLevelUpCelebration(data.levelUp);
+          pendingLevelUpRef.current = data.levelUp;
         }
-        // Show flavor feedback on completion
-        const currentUser = users.find(u => u.id === pName.toLowerCase() || u.name.toLowerCase() === pName.toLowerCase());
-        const streak = currentUser?.streakDays ?? 0;
-        const FLAVOR_MESSAGES = [
-          { message: "Quest slain!", icon: "×" },
-          { message: "Like a pro!", icon: "×" },
-          { message: "Clutch finish!", icon: "×" },
-          { message: "Well played!", icon: "×" },
-          { message: "The Forge burns bright!", icon: "×" },
-        ];
-        let flavor = FLAVOR_MESSAGES[Math.floor(Math.random() * FLAVOR_MESSAGES.length)];
-        if (streak >= 30) flavor = { message: "Legendary streak!", icon: "×" };
-        else if (streak >= 7) flavor = { message: "Streak master!", icon: "×" };
-        setFlavorToast({ ...flavor, sub: questTitle.length > 40 ? questTitle.slice(0, 40) + "…" : questTitle });
         // Optimistically update NPC quest chain: mark completed + unlock next locked quest
         setActiveNpcs(prev => prev.map(npc => {
           if (!npc.questChain.some(q => q.questId === questId)) return npc;
@@ -1292,7 +1298,7 @@ export default function Dashboard() {
               {/* Companions Widget — full experience in the Great Hall */}
               {playerName && (
                 <div className="mb-5" style={{ minHeight: 100 }}>
-                  <CompanionsWidget user={loggedInUser} streak={playerStreak} playerName={playerName} apiKey={reviewApiKey} onDobbieClick={() => { setDashView("npcBoard"); setNpcBoardFilter(null); }} onUserRefresh={refresh} dobbieQuests={dobbieActiveQuests} />
+                  <CompanionsWidget user={loggedInUser} streak={playerStreak} playerName={playerName} apiKey={reviewApiKey} onDobbieClick={() => { setDashView("npcBoard"); setNpcBoardFilter(null); }} onUserRefresh={refresh} dobbieQuests={dobbieActiveQuests} onRewardCelebration={setRewardCelebration} />
                 </div>
               )}
 
@@ -1612,8 +1618,16 @@ export default function Dashboard() {
                                         const data = await r.json();
                                         if (data.ok) {
                                           fetchRituals(playerName).then(setRituals);
-                                          if (data.lootDrop) setLootDrop(data.lootDrop);
-                                          if (data.milestoneDrop) setLootDrop(data.milestoneDrop);
+                                          // Show reward celebration for ritual completion
+                                          setRewardCelebration({
+                                            type: ritual.isAntiRitual ? "vow" : "ritual",
+                                            title: ritual.title,
+                                            xpEarned: data.xpEarned || 0,
+                                            goldEarned: data.goldEarned || 0,
+                                            loot: data.lootDrop || data.milestoneDrop || null,
+                                            streak: data.ritual?.streak || ritual.streak,
+                                            pactBonus: data.pactCompletion || null,
+                                          });
                                           refresh();
                                         }
                                       } catch { /* ignore */ }
@@ -1828,7 +1842,7 @@ export default function Dashboard() {
                   {/* ── Anti-Rituale Tab ── */}
                   {questBoardTab === "anti-rituale" && (
                     <div data-feedback-id="vow-shrine">
-                    <AntiRitualePanel playerName={playerName} reviewApiKey={reviewApiKey} />
+                    <AntiRitualePanel playerName={playerName} reviewApiKey={reviewApiKey} onRewardCelebration={setRewardCelebration} />
                     </div>
                   )}
 
@@ -2410,6 +2424,11 @@ export default function Dashboard() {
           </ModalPortal>
         );
       })()}
+
+      {/* Reward Celebration (quest/ritual/vow/companion completion) */}
+      {rewardCelebration && (
+        <RewardCelebration data={rewardCelebration} onClose={closeRewardCelebration} />
+      )}
 
       {/* Loot Drop Notification */}
       {lootDrop && (

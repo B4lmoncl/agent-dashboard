@@ -297,7 +297,9 @@ router.post('/api/quest/:id/complete', requireApiKey, (req, res) => {
     const newLevelInfo = getLevelInfo(u?.xp ?? 0);
     const lootDrop = u?._lastLoot || null;
     const companionReward = u?._lastCompanionReward || null;
-    if (u) { delete u._lastLoot; delete u._lastCompanionReward; }
+    const xpEarned = u?._lastXpEarned || 0;
+    const goldEarned = u?._lastGoldEarned || 0;
+    if (u) { delete u._lastLoot; delete u._lastCompanionReward; delete u._lastXpEarned; delete u._lastGoldEarned; }
     console.log(`[quest] ${quest.id} completed (npc per-player) by ${agentKey}`);
     return res.json({
       ok: true,
@@ -305,6 +307,8 @@ router.post('/api/quest/:id/complete', requireApiKey, (req, res) => {
       newAchievements,
       lootDrop,
       companionReward,
+      xpEarned,
+      goldEarned,
       chainQuestTemplate: null,
       levelUp: newLevelInfo.level > prevLevel ? { level: newLevelInfo.level, title: newLevelInfo.title } : null,
     });
@@ -332,7 +336,9 @@ router.post('/api/quest/:id/complete', requireApiKey, (req, res) => {
     const newLevelInfo2 = getLevelInfo(u2?.xp ?? 0);
     const lootDrop = u2?._lastLoot || null;
     const companionReward = u2?._lastCompanionReward || null;
-    if (u2) { delete u2._lastLoot; delete u2._lastCompanionReward; }
+    const xpEarned = u2?._lastXpEarned || 0;
+    const goldEarned = u2?._lastGoldEarned || 0;
+    if (u2) { delete u2._lastLoot; delete u2._lastCompanionReward; delete u2._lastXpEarned; delete u2._lastGoldEarned; }
     console.log(`[quest] ${quest.id} completed (per-player) by ${agentKey}`);
     return res.json({
       ok: true,
@@ -340,6 +346,8 @@ router.post('/api/quest/:id/complete', requireApiKey, (req, res) => {
       newAchievements,
       lootDrop,
       companionReward,
+      xpEarned,
+      goldEarned,
       chainQuestTemplate: quest.nextQuestTemplate || null,
       levelUp: newLevelInfo2.level > prevLevel2 ? { level: newLevelInfo2.level, title: newLevelInfo2.title } : null,
     });
@@ -371,9 +379,11 @@ router.post('/api/quest/:id/complete', requireApiKey, (req, res) => {
   const newLevelInfo3 = getLevelInfo(u3?.xp ?? 0);
   const lootDrop = u3?._lastLoot || null;
   const companionReward = u3?._lastCompanionReward || null;
-  if (u3) { delete u3._lastLoot; delete u3._lastCompanionReward; }
+  const xpEarned = u3?._lastXpEarned || 0;
+  const goldEarned = u3?._lastGoldEarned || 0;
+  if (u3) { delete u3._lastLoot; delete u3._lastCompanionReward; delete u3._lastXpEarned; delete u3._lastGoldEarned; }
   console.log(`[quest] ${quest.id} completed by ${agentId}`);
-  res.json({ ok: true, quest, newAchievements, lootDrop, companionReward, chainQuestTemplate: quest.nextQuestTemplate || null, levelUp: u3 && newLevelInfo3.level > prevLevel3 ? { level: newLevelInfo3.level, title: newLevelInfo3.title } : null });
+  res.json({ ok: true, quest, newAchievements, lootDrop, companionReward, xpEarned, goldEarned, chainQuestTemplate: quest.nextQuestTemplate || null, levelUp: u3 && newLevelInfo3.level > prevLevel3 ? { level: newLevelInfo3.level, title: newLevelInfo3.title } : null });
 });
 
 // POST /api/quest/:id/unclaim — agent/player unclaims a quest

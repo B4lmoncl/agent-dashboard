@@ -95,7 +95,7 @@ function getCompanionQuotes(companionType?: string, companionName?: string): str
   return templates.map(t => t.replace(/\{name\}/g, name));
 }
 
-export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieClick, onUserRefresh, compact, dobbieQuests }: {
+export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieClick, onUserRefresh, compact, dobbieQuests, onRewardCelebration }: {
   user: User | null | undefined;
   streak: number;
   playerName?: string;
@@ -104,6 +104,7 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
   onUserRefresh?: () => void;
   compact?: boolean;
   dobbieQuests?: Quest[];
+  onRewardCelebration?: (data: { type: "companion"; title: string; xpEarned: number; goldEarned: number; loot?: { name: string; emoji: string; rarity: string } | null; bondXp?: number; companionAccent?: string; companionEmoji?: string }) => void;
 }) {
   const companionType = user?.companion?.type || user?.companion?.species;
   const companionQuotes = getCompanionQuotes(companionType, user?.companion?.name);
@@ -135,15 +136,30 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
         // Success animation on button for 1.5s
         setCompletingSuccessId(questId);
         setTimeout(() => setCompletingSuccessId(null), 1500);
-        // Show reward popup — stays until user clicks to dismiss
-        const quest = data.quest;
-        setRewardPopup({
-          title: questTitle.length > 40 ? questTitle.slice(0, 40) + "…" : questTitle,
-          xp: quest?.rewards?.xp ?? data.xp ?? 0,
-          gold: quest?.rewards?.gold ?? data.gold ?? 0,
-          bondXp: 1,
-          loot: data.lootDrop ? { name: data.lootDrop.name, emoji: data.lootDrop.emoji, rarity: data.lootDrop.rarity } : null,
-        });
+        // Show reward celebration via unified popup
+        if (onRewardCelebration) {
+          const cColor = getCompanionColor(user?.companion?.type || user?.companion?.species);
+          onRewardCelebration({
+            type: "companion",
+            title: questTitle.length > 40 ? questTitle.slice(0, 40) + "…" : questTitle,
+            xpEarned: data.xpEarned ?? data.quest?.rewards?.xp ?? 0,
+            goldEarned: data.goldEarned ?? data.quest?.rewards?.gold ?? 0,
+            bondXp: 1,
+            loot: data.lootDrop ? { name: data.lootDrop.name, emoji: data.lootDrop.emoji, rarity: data.lootDrop.rarity } : null,
+            companionAccent: cColor.accent,
+            companionEmoji: user?.companion?.emoji || "🐾",
+          });
+        } else {
+          // Fallback to local popup if no callback
+          const quest = data.quest;
+          setRewardPopup({
+            title: questTitle.length > 40 ? questTitle.slice(0, 40) + "…" : questTitle,
+            xp: quest?.rewards?.xp ?? data.xp ?? 0,
+            gold: quest?.rewards?.gold ?? data.gold ?? 0,
+            bondXp: 1,
+            loot: data.lootDrop ? { name: data.lootDrop.name, emoji: data.lootDrop.emoji, rarity: data.lootDrop.rarity } : null,
+          });
+        }
         // Companion glow effect
         setCompanionGlow(true);
         setTimeout(() => setCompanionGlow(false), 2000);

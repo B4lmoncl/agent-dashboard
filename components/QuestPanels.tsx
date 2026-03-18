@@ -46,7 +46,7 @@ const ANTI_RITUAL_MILESTONES = [
   { days: 90,  badge: "Legend",  label: "90 Tage — Unerschütterlich!" },
 ];
 
-export function AntiRitualePanel({ playerName, reviewApiKey }: { playerName: string; reviewApiKey: string }) {
+export function AntiRitualePanel({ playerName, reviewApiKey, onRewardCelebration }: { playerName: string; reviewApiKey: string; onRewardCelebration?: (data: { type: "vow"; title: string; xpEarned: number; goldEarned: number; loot?: { name: string; emoji: string; rarity: string; rarityColor?: string } | null; streak?: number; pactBonus?: { xp: number; gold: number } | null }) => void }) {
   const [antiRituals, setAntiRituals] = useState<AntiRitual[]>([]);
   const [createOpen, setCreateOpen] = useState(false);
   const [newTitle, setNewTitle] = useState("");
@@ -233,7 +233,20 @@ export function AntiRitualePanel({ playerName, reviewApiKey }: { playerName: str
                         body: JSON.stringify({ playerId: playerName }),
                       });
                       const data = await r.json();
-                      if (data.ok) loadAntiRituals();
+                      if (data.ok) {
+                        loadAntiRituals();
+                        if (onRewardCelebration) {
+                          onRewardCelebration({
+                            type: "vow",
+                            title: ar.title,
+                            xpEarned: data.xpEarned || 0,
+                            goldEarned: data.goldEarned || 0,
+                            loot: data.lootDrop || data.milestoneDrop || null,
+                            streak: data.ritual?.streak || ar.cleanDays,
+                            pactBonus: data.pactCompletion || null,
+                          });
+                        }
+                      }
                     } catch { /* ignore */ }
                   }}
                   disabled={vowDoneToday || !reviewApiKey}
