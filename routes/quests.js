@@ -310,6 +310,9 @@ router.post('/api/quest/:id/complete', requireApiKey, (req, res) => {
     let npcFinalReward = null;
     if (quest.chainIndex != null && quest.chainTotal && quest.chainIndex === quest.chainTotal - 1) {
       const giver = state.npcGivers.givers.find(g => g.id === quest.npcGiverId);
+      if (u) {
+        u._npcsUnlocked = (u._npcsUnlocked || 0) + 1;
+      }
       if (giver?.finalReward?.item && u) {
         const item = giver.finalReward.item;
         addLootToInventory(agentKey, item);

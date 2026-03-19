@@ -38,11 +38,11 @@ function GachaInfoModal({ onClose }: { onClose: () => void }) {
             <h4 className="text-xs font-bold uppercase tracking-wider mb-2" style={{ color: "#f97316" }}>Drop Rates</h4>
             <div className="space-y-1">
               {[
-                { label: "Legendary", rate: "1.6%", color: "#f97316" },
+                { label: "Legendary", rate: "0.8%", color: "#f97316" },
                 { label: "Epic", rate: "13%", color: "#a855f7" },
                 { label: "Rare", rate: "35%", color: "#3b82f6" },
                 { label: "Uncommon", rate: "40%", color: "#22c55e" },
-                { label: "Common", rate: "10.4%", color: "#9ca3af" },
+                { label: "Common", rate: "11.2%", color: "#9ca3af" },
               ].map(r => (
                 <div key={r.label} className="flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: r.color }} />
@@ -57,8 +57,8 @@ function GachaInfoModal({ onClose }: { onClose: () => void }) {
             <h4 className="text-xs font-bold uppercase tracking-wider mb-2" style={{ color: "#a855f7" }}>Pity System</h4>
             <p>Every pull without a Legendary increases your <span style={{ color: "#f97316" }}>pity counter</span>. The Wheel remembers your devotion.</p>
             <ul className="mt-2 space-y-1 list-disc list-inside">
-              <li><span style={{ color: "#f97316" }}>Soft Pity</span> begins at <strong>35 pulls</strong> — your Legendary drop rate increases significantly with each subsequent pull.</li>
-              <li><span style={{ color: "#ef4444" }}>Hard Pity</span> at <strong>50 pulls</strong> — you are <em>guaranteed</em> a Legendary item.</li>
+              <li><span style={{ color: "#f97316" }}>Soft Pity</span> begins at <strong>55 pulls</strong> — your Legendary drop rate increases significantly with each subsequent pull.</li>
+              <li><span style={{ color: "#ef4444" }}>Hard Pity</span> at <strong>75 pulls</strong> — you are <em>guaranteed</em> a Legendary item.</li>
               <li><span style={{ color: "#a855f7" }}>Epic Pity</span> guarantees an Epic every <strong>10 pulls</strong>.</li>
             </ul>
           </div>
@@ -76,7 +76,7 @@ function GachaInfoModal({ onClose }: { onClose: () => void }) {
 
           <div>
             <h4 className="text-xs font-bold uppercase tracking-wider mb-2" style={{ color: "#3b82f6" }}>10-Pull Bonus</h4>
-            <p>A 10-pull costs only <strong>90</strong> instead of 100 — a 10% discount. Plus, every 10-pull guarantees <em>at least one Rare or better</em>.</p>
+            <p>A 10-pull costs only <strong>90</strong> instead of 100 — a 10% discount. Plus, every 10-pull guarantees <em>at least one Epic or better</em>.</p>
           </div>
         </div>
       </div>
@@ -380,8 +380,8 @@ function BannerPullModal({
   };
 
   // Pity info panel (click-toggle)
-  const inSoftPity = pity ? pity.pityCounter >= 35 : false;
-  const pullsTilLegendary = pity ? ((pity.hardPity || 50) - pity.pityCounter) : 50;
+  const inSoftPity = pity ? pity.pityCounter >= (pity.softPityStart || 55) : false;
+  const pullsTilLegendary = pity ? ((pity.hardPity || 75) - pity.pityCounter) : 75;
 
   return (
     <ModalOverlay isOpen onClose={onClose} zIndex={55}>
@@ -547,13 +547,13 @@ function BannerPullModal({
                 {pity ? (
                   <>
                     <p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>
-                      <span className="font-semibold" style={{ color: "#f97316" }}>Legendary: {pity.pityCounter}/50</span>
+                      <span className="font-semibold" style={{ color: "#f97316" }}>Legendary: {pity.pityCounter}/{pity.hardPity || 75}</span>
                       {"  "}
                       <span className="font-semibold" style={{ color: "#a855f7" }}>Epic: {pity.epicPityCounter}/10</span>
                     </p>
                     <p className="text-[10px] mt-1" style={{ color: "rgba(255,255,255,0.35)" }}>
-                      {(pity.hardPity || 50) - pity.pityCounter} pulls until guaranteed Legendary
-                      {pity.pityCounter >= 35 && <span style={{ color: "#f97316" }}> — Soft Pity active!</span>}
+                      {(pity.hardPity || 75) - pity.pityCounter} pulls until guaranteed Legendary
+                      {pity.pityCounter >= (pity.softPityStart || 55) && <span style={{ color: "#f97316" }}> — Soft Pity active!</span>}
                       {pity.guaranteed5050 && <span style={{ color: "#22c55e" }}> — Next Legendary = Featured!</span>}
                     </p>
                   </>
@@ -564,10 +564,10 @@ function BannerPullModal({
               <div>
                 <p className="text-xs font-bold mb-1.5" style={{ color: "#e0e0e0" }}>Drop Rates</p>
                 <p className="text-[11px] leading-relaxed" style={{ color: "rgba(255,255,255,0.5)" }}>
-                  <span style={{ color: "#f97316" }}>Legendary 1.6%</span>{" · "}<span style={{ color: "#a855f7" }}>Epic 13%</span>{" · "}<span style={{ color: "#3b82f6" }}>Rare 35%</span>{" · "}<span style={{ color: "#22c55e" }}>Uncommon 40%</span>{" · "}<span style={{ color: "#9ca3af" }}>Common 10.4%</span>
+                  <span style={{ color: "#f97316" }}>Legendary 0.8%</span>{" · "}<span style={{ color: "#a855f7" }}>Epic 13%</span>{" · "}<span style={{ color: "#3b82f6" }}>Rare 35%</span>{" · "}<span style={{ color: "#22c55e" }}>Uncommon 40%</span>{" · "}<span style={{ color: "#9ca3af" }}>Common 11.2%</span>
                 </p>
                 <p className="text-[10px] mt-1.5" style={{ color: "rgba(255,255,255,0.3)" }}>
-                  Soft pity starts at pull 35 — legendary chance increases with each pull. Hard pity at 50 guarantees a legendary item.
+                  Soft pity starts at pull 55 — legendary chance increases with each pull. Hard pity at 75 guarantees a legendary item.
                 </p>
               </div>
             </div>

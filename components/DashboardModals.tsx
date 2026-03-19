@@ -43,7 +43,7 @@ export default function DashboardModals({
 }: DashboardModalsProps) {
   const CURRENCY_HOW: Record<string, string> = {
     gold: "Schließe Quests ab, kaufe Gear und Shop-Items, oder investiere in Crafting-Rezepte. Beeinflusst durch Streak, Forge-Temperatur, Weisheit, Companions und Gear. Tauschbar gegen Runensplitter und Gildentaler.",
-    stardust: "Fällt bei Level-Ups, beim täglichen Login und an Streak-Meilensteinen vom Himmel. Verwendbar für Gacha-Banner und tauschbar gegen Runensplitter.",
+    stardust: "Fällt bei Level-Ups und an Streak-Meilensteinen vom Himmel. Verwendbar für Gacha-Banner und tauschbar gegen Runensplitter.",
     essenz: "Entsteht durch täglichen Login-Bonus, Streak-Meilensteine und das Zerlegen von Items in der Schmiedekunst. Gebraucht für Professionswechsel und Crafting-Rezepte.",
     runensplitter: "Belohnung für jede abgeschlossene Quest und den täglichen Login. Streak-Meilensteine und Gacha-Duplikate geben extra. Die Hauptwährung für Gacha-Pulls. Tauschbar mit Gold.",
     gildentaler: "Verdient durch soziale und Co-op Quests — die Währung des Zusammenhalts. Einlösbar für Gilden-Items im Shop. Tauschbar mit Gold.",
@@ -125,7 +125,7 @@ export default function DashboardModals({
                 <div className="space-y-1.5">
                   {[
                     { label: "Forge Temp", val: loggedInUser.modifiers.xp.forge, color: forgeTempColor, desc: `${forgeTemp}% — ${forgeTempLabel}` },
-                    { label: "Kraft", val: loggedInUser.modifiers.xp.kraft ?? 1, color: "#f97316", desc: (loggedInUser.modifiers.xp.kraft ?? 1) > 1 ? `+${Math.round(((loggedInUser.modifiers.xp.kraft ?? 1) - 1) * 100)}% (1% pro Kraft-Punkt)` : "Kein Kraft-Bonus" },
+                    { label: "Kraft", val: loggedInUser.modifiers.xp.kraft ?? 1, color: "#f97316", desc: (loggedInUser.modifiers.xp.kraft ?? 1) > 1 ? `+${(((loggedInUser.modifiers.xp.kraft ?? 1) - 1) * 100).toFixed(1)}% (0.5% pro Kraft-Punkt)` : "Kein Kraft-Bonus" },
                     { label: "Gear", val: loggedInUser.modifiers.xp.gear, color: "#818cf8", desc: loggedInUser.modifiers.xp.gear > 1 ? `+${Math.round((loggedInUser.modifiers.xp.gear - 1) * 100)}% von Tools` : "Kein Gear-Bonus" },
                     { label: "Companions", val: loggedInUser.modifiers.xp.companions, color: "#f472b6", desc: loggedInUser.modifiers.xp.companions > 1 ? `+${Math.round((loggedInUser.modifiers.xp.companions - 1) * 100)}% (2% pro Companion)` : "Keine Companions beschworen" },
                     { label: "Bond Level", val: loggedInUser.modifiers.xp.bond, color: "#fb923c", desc: loggedInUser.modifiers.xp.bond > 1 ? `+${Math.round((loggedInUser.modifiers.xp.bond - 1) * 100)}% (1% pro Bond-Level)` : "Bond Level 1" },
@@ -150,7 +150,7 @@ export default function DashboardModals({
                 <div className="space-y-1.5">
                   {[
                     { label: "Forge Temp", val: loggedInUser.modifiers.gold.forge, color: forgeTempColor, desc: `${forgeTemp}% — ${forgeTempLabel}` },
-                    { label: "Weisheit", val: loggedInUser.modifiers.gold.weisheit ?? 1, color: "#60a5fa", desc: (loggedInUser.modifiers.gold.weisheit ?? 1) > 1 ? `+${Math.round(((loggedInUser.modifiers.gold.weisheit ?? 1) - 1) * 100)}% (1% pro Weisheit-Punkt)` : "Kein Weisheit-Bonus" },
+                    { label: "Weisheit", val: loggedInUser.modifiers.gold.weisheit ?? 1, color: "#60a5fa", desc: (loggedInUser.modifiers.gold.weisheit ?? 1) > 1 ? `+${(((loggedInUser.modifiers.gold.weisheit ?? 1) - 1) * 100).toFixed(1)}% (0.5% pro Weisheit-Punkt)` : "Kein Weisheit-Bonus" },
                     { label: "Streak", val: loggedInUser.modifiers.gold.streak, color: "#f97316", desc: `${loggedInUser.streakDays ?? 0} Tage (+1.5% pro Tag, max ×1.45)` },
                     ...((loggedInUser.modifiers.gold as any).legendary && (loggedInUser.modifiers.gold as any).legendary !== 1 ? [{ label: "Legendary", val: (loggedInUser.modifiers.gold as any).legendary, color: "#f97316", desc: `+${Math.round(((loggedInUser.modifiers.gold as any).legendary - 1) * 100)}% von Legendärem Gear` }] : []),
                   ].map(r => (
