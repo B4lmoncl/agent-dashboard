@@ -4,6 +4,7 @@
 const router = require('express').Router();
 const { state, saveUsers, ensureUserCurrencies } = require('../lib/state');
 const { requireApiKey } = require('../lib/middleware');
+const { now, awardCurrency, getStreakMilestone } = require('../lib/helpers');
 
 // GET /api/currency/:playerId — read all balances
 router.get('/api/currency/:playerId', (req, res) => {
@@ -97,6 +98,64 @@ router.post('/api/currency/:playerId/convert', requireApiKey, (req, res) => {
 // GET /api/currency/templates — get all currency definitions
 router.get('/api/currency/templates', (req, res) => {
   res.json(state.currencyTemplates);
+});
+
+// ─── Daily Bonus Claim ──────────────────────────────────────────────────────
+// POST /api/daily-bonus/claim — player actively claims daily login rewards
+router.post('/api/daily-bonus/claim', requireApiKey, (req, res) => {
+  const uid = (req.body.player || req.body.playerId || '').toLowerCase();
+  const u = state.users[uid];
+  if (!u) return res.status(404).json({ error: 'Spieler nicht gefunden' });
+  ensureUserCurrencies(u);
+
+  const today = new Date().toISOString().slice(0, 10);
+  if (u.dailyBonusLastClaim === today) {
+    return res.status(409).json({ error: 'Daily Bonus bereits abgeholt', alreadyClaimed: true });
+  }
+
+  u.dailyBonusLastClaim = today;
+  const streakDays = u.streakDays || 0;
+  const milestone = getStreakMilestone(streakDays);
+
+  // Base daily rewards
+  const rewards = {
+    essenz: 3,
+    runensplitter: 2,
+  };
+
+  // Streak milestone bonus rewards
+  let milestoneBonus = null;
+  if (milestone && streakDays > 0) {
+    // Award extra currency based on streak length
+    if (streakDays >= 30) { rewards.runensplitter += 3; rewards.essenz += 5; milestoneBonus = milestone; }
+    else if (streakDays >= 14) { rewards.runensplitter += 2; rewards.essenz += 2; milestoneBonus = milestone; }
+    else if (streakDays >= 7) { rewards.runensplitter += 1; rewards.essenz += 1; milestoneBonus = milestone; }
+  }
+
+  // Apply rewards
+  for (const [currency, amount] of Object.entries(rewards)) {
+    awardCurrency(uid, currency, amount);
+  }
+
+  saveUsers();
+  res.json({
+    ok: true,
+    rewards,
+    streakDays,
+    milestone: milestoneBonus,
+    currencies: u.currencies,
+    claimedAt: now(),
+  });
+});
+
+// GET /api/daily-bonus/status/:playerId — check if daily bonus is available
+router.get('/api/daily-bonus/status/:playerId', (req, res) => {
+  const uid = req.params.playerId.toLowerCase();
+  const u = state.users[uid];
+  if (!u) return res.status(404).json({ error: 'Spieler nicht gefunden' });
+  const today = new Date().toISOString().slice(0, 10);
+  const claimed = u.dailyBonusLastClaim === today;
+  res.json({ available: !claimed, lastClaim: u.dailyBonusLastClaim || null, streakDays: u.streakDays || 0 });
 });
 
 module.exports = router;

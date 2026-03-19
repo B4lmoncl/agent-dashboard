@@ -9,7 +9,7 @@ const {
 const {
   now, getLevelInfo, getUserStats, getUserEquipment, getUserDropBonus,
   rollLoot, resetLootPity, addLootToInventory, calcDynamicForgeTemp,
-  getBondLevel, getLegendaryEffects,
+  getBondLevel, getLegendaryEffects, createGearInstance, migrateUserEquipment,
 } = require('../lib/helpers');
 const { requireAuth, requireSelf } = require('../lib/middleware');
 const { rebuildCatalogMeta } = require('../lib/quest-catalog');
@@ -470,32 +470,32 @@ router.post('/api/player/:name/equip/:itemId', requireAuth, requireSelf('name'),
   if (shopItem) {
     if (level < shopItem.minLevel) return res.status(400).json({ error: `Requires level ${shopItem.minLevel}` });
     if ((u.gold || 0) < shopItem.cost) return res.status(400).json({ error: `Insufficient gold. Need ${shopItem.cost}, have ${u.gold || 0}` });
-    if (u.equipment[shopItem.slot] === shopItem.id) return res.status(409).json({ error: 'Already equipped' });
+    // Check if same template already equipped in that slot
+    const currentSlotItem = u.equipment[shopItem.slot];
+    if (currentSlotItem && typeof currentSlotItem === 'object' && currentSlotItem.templateId === shopItem.id) {
+      return res.status(409).json({ error: 'Already equipped' });
+    }
 
     // Swap: return currently equipped item to inventory
-    const prevItemId = u.equipment[shopItem.slot];
-    if (prevItemId) {
-      const prevTemplate = resolveItem(prevItemId);
+    if (currentSlotItem) {
+      const prev = typeof currentSlotItem === 'object' ? currentSlotItem : null;
       u.inventory.push({
         id: `inv-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
-        itemId: prevItemId,
-        name: prevTemplate?.name || prevItemId,
-        emoji: prevTemplate?.emoji || null,
-        icon: prevTemplate?.icon || null,
-        rarity: prevTemplate?.rarity || 'common',
-        stats: prevTemplate?.stats || {},
+        ...(prev || { itemId: currentSlotItem, name: currentSlotItem }),
         obtainedAt: now(),
         source: 'unequip',
       });
     }
 
     u.gold -= shopItem.cost;
-    u.equipment[shopItem.slot] = shopItem.id;
+    // Roll stats for the new item (Diablo-3-style)
+    const instance = createGearInstance(shopItem);
+    u.equipment[shopItem.slot] = instance;
     if (!u.purchases) u.purchases = [];
     u.purchases.push({ type: 'equipment', item: shopItem.id, cost: shopItem.cost, at: now() });
     const stats = getUserStats(uid);
     saveUsers();
-    return res.json({ ok: true, equipment: u.equipment, stats, gold: u.gold });
+    return res.json({ ok: true, equipment: u.equipment, stats, gold: u.gold, rolledItem: instance });
   }
 
   // 2. Check user.inventory[] for equipment-type items (already owned — no gold cost)
@@ -514,28 +514,47 @@ router.post('/api/player/:name/equip/:itemId', requireAuth, requireSelf('name'),
   const slot = template.slot;
   if (!slot) return res.status(400).json({ error: 'Item has no equipment slot' });
 
-  if (u.equipment[slot] === templateId) return res.status(409).json({ error: 'Already equipped' });
+  // Check if already equipped (instance or legacy)
+  const currentSlotItem = u.equipment[slot];
+  if (currentSlotItem) {
+    const currentId = typeof currentSlotItem === 'object' ? currentSlotItem.templateId : currentSlotItem;
+    if (currentId === templateId && typeof currentSlotItem === 'object' && currentSlotItem.instanceId === invEntry.id) {
+      return res.status(409).json({ error: 'Already equipped' });
+    }
+  }
 
   // Swap: return currently equipped item to inventory
-  const prevItemId = u.equipment[slot];
-  if (prevItemId) {
-    const prevTemplate = resolveItem(prevItemId);
+  if (currentSlotItem) {
+    const prev = typeof currentSlotItem === 'object' ? currentSlotItem : null;
     u.inventory.push({
-      id: `inv-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
-      itemId: prevItemId,
-      name: prevTemplate?.name || prevItemId,
-      emoji: prevTemplate?.emoji || null,
-      icon: prevTemplate?.icon || null,
-      rarity: prevTemplate?.rarity || 'common',
-      stats: prevTemplate?.stats || {},
+      id: prev?.instanceId || `inv-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
+      ...(prev || { itemId: currentSlotItem, name: currentSlotItem }),
       obtainedAt: now(),
       source: 'unequip',
     });
   }
 
-  // Remove from inventory and equip
+  // Remove from inventory and equip as instance
   u.inventory = u.inventory.filter(i => i.id !== invEntry.id);
-  u.equipment[slot] = templateId;
+  // If invEntry already has rolled stats (from gacha/drop), build instance from it
+  const instance = {
+    instanceId: invEntry.id || `gi-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+    templateId,
+    name: invEntry.name || template.name,
+    slot,
+    tier: template.tier || invEntry.tier || 0,
+    rarity: invEntry.rarity || template.rarity || 'common',
+    stats: invEntry.stats || template.stats || {},
+    legendaryEffect: invEntry.legendaryEffect || template.legendaryEffect || null,
+    setId: template.setId || invEntry.setId || null,
+    desc: invEntry.desc || template.desc || '',
+    icon: invEntry.icon || template.icon || null,
+    passiveEffect: invEntry.passiveEffect || template.passiveEffect || null,
+    passiveDesc: invEntry.passiveDesc || template.passiveDesc || null,
+    affixes: invEntry.affixes || template.affixes || null,
+    rolledAt: invEntry.rolledAt || invEntry.obtainedAt || now(),
+  };
+  u.equipment[slot] = instance;
 
   const stats = getUserStats(uid);
   saveUsers();
@@ -778,7 +797,10 @@ router.get('/api/player/:name/character', (req, res) => {
     partnerName: u.partnerName || null,
     companion,
     equipment: u.equipment || {},
-    stats: { kraft: fullStats.kraft || 0, ausdauer: fullStats.ausdauer || 0, weisheit: fullStats.weisheit || 0, glueck: fullStats.glueck || 0 },
+    stats: {
+      kraft: fullStats.kraft || 0, ausdauer: fullStats.ausdauer || 0, weisheit: fullStats.weisheit || 0, glueck: fullStats.glueck || 0,
+      fokus: fullStats.fokus || 0, vitalitaet: fullStats.vitalitaet || 0, charisma: fullStats.charisma || 0, tempo: fullStats.tempo || 0,
+    },
     baseStats,
     inventory: inventoryItems,
     forgeTemp: calcDynamicForgeTemp(uid),
@@ -800,21 +822,25 @@ router.post('/api/player/:name/unequip/:slot', requireAuth, requireSelf('name'),
   if (!u.equipment) u.equipment = {};
   if (!u.inventory) u.inventory = [];
 
-  const itemId = u.equipment[slot];
-  if (itemId) {
-    // Return the item to inventory
-    const template = resolveItem(itemId);
-    u.inventory.push({
-      id: `inv-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
-      itemId: itemId,
-      name: template?.name || itemId,
-      emoji: template?.emoji || null,
-      icon: template?.icon || null,
-      rarity: template?.rarity || 'common',
-      stats: template?.stats || {},
-      obtainedAt: now(),
-      source: 'unequip',
-    });
+  const equipped = u.equipment[slot];
+  if (equipped) {
+    // Return the item to inventory (preserve rolled instance data)
+    if (typeof equipped === 'object' && equipped.instanceId) {
+      u.inventory.push({ ...equipped, id: equipped.instanceId, obtainedAt: now(), source: 'unequip' });
+    } else if (typeof equipped === 'string') {
+      const template = resolveItem(equipped);
+      u.inventory.push({
+        id: `inv-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
+        itemId: equipped,
+        name: template?.name || equipped,
+        emoji: template?.emoji || null,
+        icon: template?.icon || null,
+        rarity: template?.rarity || 'common',
+        stats: template?.stats || {},
+        obtainedAt: now(),
+        source: 'unequip',
+      });
+    }
   }
 
   delete u.equipment[slot];

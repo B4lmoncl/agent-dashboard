@@ -336,7 +336,7 @@ const RARITY_LABELS: Record<string, string> = {
   legendary: "Legendary",
 };
 
-const STAT_LABELS: Record<string, string> = { kraft: "Kraft", ausdauer: "Ausdauer", weisheit: "Weisheit", glueck: "Glück" };
+const STAT_LABELS: Record<string, string> = { kraft: "Kraft", ausdauer: "Ausdauer", weisheit: "Weisheit", glueck: "Glück", fokus: "Fokus", vitalitaet: "Vitalität", charisma: "Charisma", tempo: "Tempo" };
 
 const BOND_LEVELS = [
   { level: 1,  title: "Stranger",       minXp: 0   },
@@ -352,10 +352,14 @@ const BOND_LEVELS = [
 ];
 
 const STAT_EFFECTS: Record<string, string> = {
-  "Kraft":    "+1% Quest XP per point",
-  "Weisheit": "+1% Gold per point",
-  "Ausdauer": "-0.5% Forge Decay per point",
-  "Glück":    "+0.5% Drop Chance per point",
+  "Kraft":     "+0.5% Quest XP pro Punkt",
+  "Weisheit":  "+0.5% Gold pro Punkt",
+  "Ausdauer":  "-0.5% Forge Decay pro Punkt",
+  "Glück":     "+0.5% Drop Chance pro Punkt",
+  "Fokus":     "+1 Flat Bonus-XP pro Quest",
+  "Vitalität": "+1% Streak-Schutz pro Punkt",
+  "Charisma":  "+5% Companion Bond-XP pro Punkt",
+  "Tempo":     "+1 Forge-Temp pro Quest",
 };
 
 const GRID_COLS = 5;
@@ -1139,14 +1143,21 @@ export default function CharacterView({ addToast }: { addToast?: (t: ToastInput)
           {/* Stats tab */}
           {rightTab === "stats" && loading && <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>Lädt...</p>}
           {rightTab === "stats" && !loading && charData && (() => {
-            const { kraft, ausdauer, weisheit, glueck } = charData.stats;
+            const { kraft, ausdauer, weisheit, glueck, fokus, vitalitaet, charisma, tempo } = charData.stats;
             const base = charData.baseStats;
             const statRows = [
-              { icon: "/images/icons/stat-kraft.png", label: "Kraft", iconSrc: "/images/icons/stat-kraft.png",    val: kraft,    base: base.kraft,    tooltip: "KRA · Bonus-XP aus Quests" },
-              { icon: "/images/icons/stat-ausdauer.png", label: "Ausdauer", iconSrc: "/images/icons/stat-ausdauer.png", val: ausdauer, base: base.ausdauer, tooltip: "AUS · Reduziert Streak-Strafe" },
-              { icon: "/images/icons/stat-weisheit.png", label: "Weisheit", iconSrc: "/images/icons/stat-weisheit.png", val: weisheit, base: base.weisheit, tooltip: "WEI · Bonus-Fokuspunkte" },
-              { icon: "/images/icons/stat-glueck.png", label: "Glück", iconSrc: "/images/icons/stat-glueck.png",    val: glueck,   base: base.glueck,   tooltip: "GLÜ · Bessere Loot-Chancen" },
+              { icon: "/images/icons/stat-kraft.png", label: "Kraft", iconSrc: "/images/icons/stat-kraft.png",    val: kraft,    base: base.kraft,    tooltip: "KRA · +0.5% Quest-XP pro Punkt" },
+              { icon: "/images/icons/stat-ausdauer.png", label: "Ausdauer", iconSrc: "/images/icons/stat-ausdauer.png", val: ausdauer, base: base.ausdauer, tooltip: "AUS · Reduziert Forge-Decay" },
+              { icon: "/images/icons/stat-weisheit.png", label: "Weisheit", iconSrc: "/images/icons/stat-weisheit.png", val: weisheit, base: base.weisheit, tooltip: "WEI · +0.5% Gold pro Punkt" },
+              { icon: "/images/icons/stat-glueck.png", label: "Glück", iconSrc: "/images/icons/stat-glueck.png",    val: glueck,   base: base.glueck,   tooltip: "GLÜ · +0.5% Drop-Chance pro Punkt" },
             ];
+            const minorStatRows = [
+              { label: "Fokus", val: fokus || 0, tooltip: "FOK · Flat Bonus-XP pro Quest" },
+              { label: "Vitalität", val: vitalitaet || 0, tooltip: "VIT · +1% Streak-Schutz pro Punkt" },
+              { label: "Charisma", val: charisma || 0, tooltip: "CHA · +5% Companion Bond-XP pro Punkt" },
+              { label: "Tempo", val: tempo || 0, tooltip: "TMP · Bonus Forge-Temp pro Quest" },
+            ];
+            const hasMinorStats = minorStatRows.some(s => s.val > 0);
             return (
               <>
                 <div className="space-y-2 mb-4">
@@ -1191,6 +1202,19 @@ export default function CharacterView({ addToast }: { addToast?: (t: ToastInput)
                     );
                   })}
                 </div>
+
+                {/* Minor Stats */}
+                {hasMinorStats && (
+                  <div className="space-y-1.5 mb-4 pt-2" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+                    <p className="text-xs font-semibold mb-1" style={{ color: "rgba(255,255,255,0.35)" }}>Sekundär-Stats</p>
+                    {minorStatRows.filter(s => s.val > 0).map(s => (
+                      <div key={s.label} className="flex items-center gap-2">
+                        <span className="text-xs flex-1" style={{ color: "rgba(255,255,255,0.5)" }}>{s.label}</span>
+                        <span className="text-xs font-mono font-bold" style={{ color: "#a78bfa" }}>{s.val}</span>
+                      </div>
+                    ))}
+                  </div>
+                )}
 
                 {/* Set Bonus */}
                 {charData.setBonusInfo && (

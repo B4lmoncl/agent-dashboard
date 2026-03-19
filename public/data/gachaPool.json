@@ -6,11 +6,22 @@
       "rarity": "legendary",
       "type": "weapon",
       "emoji": null,
-      "stats": {
-        "kraft": 15,
-        "ausdauer": 5,
-        "weisheit": 5,
-        "glueck": 5
+      "affixes": {
+        "primary": {
+          "count": [3, 4],
+          "pool": [
+            { "stat": "kraft", "min": 8, "max": 20 },
+            { "stat": "weisheit", "min": 8, "max": 20 },
+            { "stat": "ausdauer", "min": 8, "max": 20 }
+          ]
+        },
+        "minor": {
+          "count": [1, 2],
+          "pool": [
+            { "stat": "fokus", "min": 3, "max": 8 },
+            { "stat": "tempo", "min": 3, "max": 8 }
+          ]
+        }
       },
       "effect": "xp_boost_10",
       "desc": "Eine Klinge, geschmiedet im reinsten Aetherstrom. Ihr Glühen pulsiert im Takt des Schicksals.",
@@ -22,10 +33,22 @@
       "rarity": "legendary",
       "type": "armor",
       "emoji": null,
-      "stats": {
-        "ausdauer": 20,
-        "weisheit": 5,
-        "glueck": 5
+      "affixes": {
+        "primary": {
+          "count": [3, 4],
+          "pool": [
+            { "stat": "ausdauer", "min": 8, "max": 20 },
+            { "stat": "kraft", "min": 8, "max": 20 },
+            { "stat": "weisheit", "min": 8, "max": 20 }
+          ]
+        },
+        "minor": {
+          "count": [1, 2],
+          "pool": [
+            { "stat": "vitalität", "min": 3, "max": 8 },
+            { "stat": "tempo", "min": 3, "max": 8 }
+          ]
+        }
       },
       "effect": "xp_boost_10",
       "desc": "Gewoben aus dem Licht sterbender Sterne. Wer ihn trägt, spürt die Wärme vergangener Zeitalter.",
@@ -48,9 +71,22 @@
       "rarity": "epic",
       "type": "armor",
       "emoji": null,
-      "stats": {
-        "ausdauer": 12,
-        "kraft": 3
+      "affixes": {
+        "primary": {
+          "count": [2, 3],
+          "pool": [
+            { "stat": "ausdauer", "min": 5, "max": 12 },
+            { "stat": "kraft", "min": 5, "max": 12 },
+            { "stat": "weisheit", "min": 5, "max": 12 }
+          ]
+        },
+        "minor": {
+          "count": [1, 2],
+          "pool": [
+            { "stat": "vitalität", "min": 2, "max": 5 },
+            { "stat": "tempo", "min": 2, "max": 5 }
+          ]
+        }
       },
       "effect": null,
       "desc": "Geschmiedet im Herzen eines erloschenen Vulkans. Unbeugsam wie der Wille seines Trägers.",
@@ -62,9 +98,22 @@
       "rarity": "epic",
       "type": "weapon",
       "emoji": null,
-      "stats": {
-        "weisheit": 10,
-        "glueck": 3
+      "affixes": {
+        "primary": {
+          "count": [2, 3],
+          "pool": [
+            { "stat": "kraft", "min": 5, "max": 12 },
+            { "stat": "weisheit", "min": 5, "max": 12 },
+            { "stat": "ausdauer", "min": 5, "max": 12 }
+          ]
+        },
+        "minor": {
+          "count": [1, 2],
+          "pool": [
+            { "stat": "fokus", "min": 2, "max": 5 },
+            { "stat": "tempo", "min": 2, "max": 5 }
+          ]
+        }
       },
       "effect": "xp_boost_5",
       "desc": "Ein Stab aus uraltem Weltenholz. Sein Kristall flüstert vergessenes Wissen.",
@@ -98,9 +147,22 @@
       "rarity": "rare",
       "type": "weapon",
       "emoji": null,
-      "stats": {
-        "kraft": 8,
-        "glueck": 1
+      "affixes": {
+        "primary": {
+          "count": [2, 3],
+          "pool": [
+            { "stat": "kraft", "min": 4, "max": 9 },
+            { "stat": "weisheit", "min": 4, "max": 9 },
+            { "stat": "ausdauer", "min": 4, "max": 9 }
+          ]
+        },
+        "minor": {
+          "count": [1, 1],
+          "pool": [
+            { "stat": "fokus", "min": 2, "max": 4 },
+            { "stat": "tempo", "min": 2, "max": 4 }
+          ]
+        }
       },
       "effect": null,
       "desc": "Die Standardwaffe eines erfahrenen Abenteurers. Zuverlässig und scharf.",
@@ -112,9 +174,22 @@
       "rarity": "rare",
       "type": "armor",
       "emoji": null,
-      "stats": {
-        "ausdauer": 6,
-        "weisheit": 2
+      "affixes": {
+        "primary": {
+          "count": [2, 3],
+          "pool": [
+            { "stat": "ausdauer", "min": 4, "max": 9 },
+            { "stat": "kraft", "min": 4, "max": 9 },
+            { "stat": "weisheit", "min": 4, "max": 9 }
+          ]
+        },
+        "minor": {
+          "count": [1, 1],
+          "pool": [
+            { "stat": "vitalität", "min": 2, "max": 4 },
+            { "stat": "tempo", "min": 2, "max": 4 }
+          ]
+        }
       },
       "effect": null,
       "desc": "Ein wettergegerbter Mantel, der schon tausend Meilen gesehen hat.",
@@ -159,8 +234,22 @@
       "rarity": "uncommon",
       "type": "weapon",
       "emoji": null,
-      "stats": {
-        "kraft": 4
+      "affixes": {
+        "primary": {
+          "count": [1, 2],
+          "pool": [
+            { "stat": "kraft", "min": 2, "max": 5 },
+            { "stat": "weisheit", "min": 2, "max": 5 },
+            { "stat": "ausdauer", "min": 2, "max": 5 }
+          ]
+        },
+        "minor": {
+          "count": [0, 1],
+          "pool": [
+            { "stat": "fokus", "min": 1, "max": 2 },
+            { "stat": "tempo", "min": 1, "max": 2 }
+          ]
+        }
       },
       "effect": null,
       "desc": "Ein solides Schwert aus gehärtetem Eisen. Nichts Besonderes, aber zuverlässig.",
@@ -172,8 +261,22 @@
       "rarity": "uncommon",
       "type": "armor",
       "emoji": null,
-      "stats": {
-        "ausdauer": 3
+      "affixes": {
+        "primary": {
+          "count": [1, 2],
+          "pool": [
+            { "stat": "ausdauer", "min": 2, "max": 5 },
+            { "stat": "kraft", "min": 2, "max": 5 },
+            { "stat": "weisheit", "min": 2, "max": 5 }
+          ]
+        },
+        "minor": {
+          "count": [0, 1],
+          "pool": [
+            { "stat": "vitalität", "min": 1, "max": 2 },
+            { "stat": "tempo", "min": 1, "max": 2 }
+          ]
+        }
       },
       "effect": null,
       "desc": "Robuste Lederschultern, die so manchen Hieb abgefangen haben.",
@@ -207,8 +310,22 @@
       "rarity": "common",
       "type": "weapon",
       "emoji": null,
-      "stats": {
-        "kraft": 2
+      "affixes": {
+        "primary": {
+          "count": [1, 1],
+          "pool": [
+            { "stat": "kraft", "min": 1, "max": 3 },
+            { "stat": "weisheit", "min": 1, "max": 3 },
+            { "stat": "ausdauer", "min": 1, "max": 3 }
+          ]
+        },
+        "minor": {
+          "count": [0, 0],
+          "pool": [
+            { "stat": "fokus", "min": 1, "max": 1 },
+            { "stat": "tempo", "min": 1, "max": 1 }
+          ]
+        }
       },
       "effect": null,
       "desc": "Ein alter, rostiger Dolch. Besser als nichts.",
@@ -220,8 +337,22 @@
       "rarity": "common",
       "type": "armor",
       "emoji": null,
-      "stats": {
-        "ausdauer": 1
+      "affixes": {
+        "primary": {
+          "count": [1, 1],
+          "pool": [
+            { "stat": "ausdauer", "min": 1, "max": 3 },
+            { "stat": "kraft", "min": 1, "max": 3 },
+            { "stat": "weisheit", "min": 1, "max": 3 }
+          ]
+        },
+        "minor": {
+          "count": [0, 0],
+          "pool": [
+            { "stat": "vitalität", "min": 1, "max": 1 },
+            { "stat": "tempo", "min": 1, "max": 1 }
+          ]
+        }
       },
       "effect": null,
       "desc": "Ein mehrfach geflickter Umhang. Er hält immerhin den Wind ab.",

@@ -8,9 +8,9 @@
   ],
   "gearTiers": [
     { "id": "worn",       "name": "Worn Tools",       "cost": 0,    "tier": 0, "xpBonus": 0,  "icon": "/images/icons/tools-worn.png", "desc": "Starting gear. No bonus." },
-    { "id": "sturdy",     "name": "Sturdy Tools",     "cost": 100,  "tier": 1, "xpBonus": 5,  "icon": "/images/icons/tools-sturdy.png", "desc": "+5% XP on all quests" },
-    { "id": "masterwork", "name": "Masterwork Tools", "cost": 300,  "tier": 2, "xpBonus": 10, "icon": "/images/icons/tools-masterwork.png", "desc": "+10% XP on all quests" },
-    { "id": "legendary",  "name": "Legendary Tools",  "cost": 700,  "tier": 3, "xpBonus": 15, "icon": "/images/icons/tools-legendary.png", "desc": "+15% XP on all quests" },
-    { "id": "mythic",     "name": "Mythic Forge",     "cost": 1500, "tier": 4, "xpBonus": 25, "icon": "/images/icons/tools-mythic.png", "desc": "+25% XP on all quests" }
+    { "id": "sturdy",     "name": "Sturdy Tools",     "cost": 100,  "tier": 1, "xpBonus": 3,  "icon": "/images/icons/tools-sturdy.png", "desc": "+3% XP on all quests" },
+    { "id": "masterwork", "name": "Masterwork Tools", "cost": 300,  "tier": 2, "xpBonus": 6,  "icon": "/images/icons/tools-masterwork.png", "desc": "+6% XP on all quests" },
+    { "id": "legendary",  "name": "Legendary Tools",  "cost": 700,  "tier": 3, "xpBonus": 10, "icon": "/images/icons/tools-legendary.png", "desc": "+10% XP on all quests" },
+    { "id": "mythic",     "name": "Mythic Forge",     "cost": 1500, "tier": 4, "xpBonus": 15, "icon": "/images/icons/tools-mythic.png", "desc": "+15% XP on all quests" }
   ]
 }

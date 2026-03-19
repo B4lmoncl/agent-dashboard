@@ -4,7 +4,7 @@
 const router = require('express').Router();
 const { state, saveGachaState } = require('../lib/state');
 const { requireApiKey } = require('../lib/middleware');
-const { spendCurrency, awardCurrency, hasPassiveEffect } = require('../lib/helpers');
+const { spendCurrency, awardCurrency, hasPassiveEffect, rollAffixStats } = require('../lib/helpers');
 
 // ─── Player-level pull lock (prevents concurrent pulls for same player) ────
 const _pullLocks = new Map(); // playerId → true
@@ -32,10 +32,10 @@ function getPlayerGachaState(playerId) {
 }
 
 function getEffectiveLegendaryRate(pityCounter) {
-  const BASE_RATE = 0.016;      // 1.6%
-  const SOFT_PITY_START = 35;
-  const HARD_PITY = 50;
-  const SOFT_PITY_INCREASE = 0.03;
+  const BASE_RATE = 0.008;      // 0.8% (nerfed from 1.6%)
+  const SOFT_PITY_START = 55;   // was 35
+  const HARD_PITY = 75;         // was 50
+  const SOFT_PITY_INCREASE = 0.025; // was 0.03
 
   if (pityCounter >= HARD_PITY - 1) return 1.0; // guaranteed
   if (pityCounter >= SOFT_PITY_START) {
@@ -138,6 +138,15 @@ function executePull(playerId, banner) {
     duplicateRefund = DUPLICATE_REFUND[rarity] || 1;
     awardCurrency(playerId, 'runensplitter', duplicateRefund);
   } else {
+    // Roll stats for equipment-type items (Diablo-3-style affix rolling)
+    const isEquipment = item.type === 'weapon' || item.type === 'armor' || item.type === 'equipment';
+    let rolledStats = item.stats || null;
+    let rolledLegendaryEffect = item.legendaryEffect || null;
+    if (isEquipment && item.affixes) {
+      const rolled = rollAffixStats(item);
+      rolledStats = rolled.stats;
+      if (rolled.legendaryEffect) rolledLegendaryEffect = rolled.legendaryEffect;
+    }
     // Add to inventory
     u.inventory.push({
       id: `gacha-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
@@ -148,7 +157,10 @@ function executePull(playerId, banner) {
       rarity: item.rarity,
       rarityColor: { common: '#9ca3af', uncommon: '#22c55e', rare: '#3b82f6', epic: '#a855f7', legendary: '#f97316' }[item.rarity] || '#9ca3af',
       effect: item.effect || null,
-      stats: item.stats || null,
+      stats: rolledStats,
+      legendaryEffect: rolledLegendaryEffect,
+      affixes: isEquipment ? (item.affixes || null) : null,
+      slot: item.type === 'weapon' ? 'weapon' : item.type === 'armor' ? 'armor' : null,
       obtainedAt: new Date().toISOString(),
       source: 'gacha',
     });

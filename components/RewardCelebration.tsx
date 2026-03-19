@@ -5,7 +5,7 @@ import { SFX } from "@/lib/sounds";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
-export type RewardType = "quest" | "npc-quest" | "ritual" | "vow" | "companion";
+export type RewardType = "quest" | "npc-quest" | "ritual" | "vow" | "companion" | "daily-bonus";
 
 export interface RewardCelebrationData {
   type: RewardType;
@@ -24,6 +24,8 @@ export interface RewardCelebrationData {
   achievement?: { name: string; icon: string; desc: string } | null;
   /** Blood pact completion bonus */
   pactBonus?: { xp: number; gold: number } | null;
+  /** Currency rewards (daily bonus) */
+  currencies?: { name: string; amount: number; color: string }[];
 }
 
 // ─── Theme config per reward type ────────────────────────────────────────────
@@ -108,6 +110,20 @@ const THEMES: Record<RewardType, ThemeConfig> = {
       "Loyalty rewarded!",
     ],
   },
+  "daily-bonus": {
+    accent: "#fbbf24",
+    accentRgb: "251,191,36",
+    gradientTop: "#1a160d",
+    label: "Täglicher Bonus!",
+    icon: "🌟",
+    flavorMessages: [
+      "Die Schmiede begrüßt dich!",
+      "Ein neuer Tag, neue Möglichkeiten!",
+      "Deine Treue wird belohnt!",
+      "Willkommen zurück, Abenteurer!",
+      "Die Forge brennt für dich!",
+    ],
+  },
 };
 
 // ─── Component ───────────────────────────────────────────────────────────────
@@ -151,7 +167,7 @@ export function RewardCelebration({ data, onClose, onCollect }: RewardCelebratio
   const icon = data.companionEmoji || theme.icon;
   const flavor = data.flavor || theme.flavorMessages[flavorIdx % theme.flavorMessages.length];
 
-  const hasRewards = data.xpEarned > 0 || data.goldEarned > 0 || data.loot || (data.bondXp && data.bondXp > 0);
+  const hasRewards = data.xpEarned > 0 || data.goldEarned > 0 || data.loot || (data.bondXp && data.bondXp > 0) || (data.currencies && data.currencies.length > 0);
 
   return (
     <div
@@ -267,6 +283,14 @@ export function RewardCelebration({ data, onClose, onCollect }: RewardCelebratio
                 <span className="text-sm font-semibold" style={{ color: data.loot.rarityColor || "#FFD700" }}>{data.loot.name}</span>
               </div>
             )}
+            {data.currencies && data.currencies.map((c, i) => (
+              <div key={i} className="reward-pill" style={{
+                background: `rgba(${hexToRgb(c.color)},0.1)`,
+                border: `1px solid rgba(${hexToRgb(c.color)},0.25)`,
+              }}>
+                <span className="text-sm font-semibold" style={{ color: c.color }}>+{c.amount} {c.name}</span>
+              </div>
+            ))}
             {data.pactBonus && (
               <div className="reward-pill" style={{
                 background: "rgba(239,68,68,0.1)",

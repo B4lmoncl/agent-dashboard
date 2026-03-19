@@ -28,7 +28,7 @@ const {
   saveAppState,
   flushPendingSaves,
 } = require('./lib/state');
-const { autoCreateCampaigns, initAchievementCatalogue } = require('./lib/helpers');
+const { autoCreateCampaigns, initAchievementCatalogue, migrateUserEquipment } = require('./lib/helpers');
 const { startupNpcCheck, checkPeriodicTasks } = require('./lib/npc-engine');
 const { checkAndRunDailyRotation } = require('./lib/rotation');
 const { seedQuestCatalog } = require('./lib/quest-catalog');
@@ -137,6 +137,11 @@ loadBannerTemplates();
 loadGachaState();
 loadItemTemplates();
 loadTitles();
+
+// Migrate legacy equipment (string IDs → rolled instances)
+for (const uid of Object.keys(state.users)) {
+  migrateUserEquipment(uid);
+}
 
 // NPC & rotation systems
 startupNpcCheck();

@@ -143,10 +143,12 @@ Für NPCs die nie verschwinden sollen, trage die ID zusätzlich in `lib/state.js
 
 ---
 
-## 3. Gear / Equipment erstellen
+## 3. Gear / Equipment erstellen (Diablo-3-Style Affix Rolling)
 
 **Datei**: `public/data/gearTemplates.json`
 **Array**: `items[]`
+
+Items haben **keine festen Stats** mehr. Stattdessen definiert jedes Item einen **Affix-Pool** mit Ranges. Beim Droppen/Kaufen werden Stats zufällig gerollt — wie bei Diablo 3.
 
 ### Schema
 
@@ -156,63 +158,126 @@ Für NPCs die nie verschwinden sollen, trage die ID zusätzlich in `lib/state.js
   "name": "Feuerschwert",
   "slot": "weapon",
   "tier": 2,
-  "reqLevel": 5,
+  "reqLevel": 9,
   "rarity": "rare",
-  "stats": { "kraft": 8, "ausdauer": 3 },
-  "price": 200,
-  "desc": "Ein Schwert, das in Flammen gehüllt ist."
+  "price": 300,
+  "desc": "Ein Schwert, das in Flammen gehüllt ist.",
+  "affixes": {
+    "primary": {
+      "count": [2, 3],
+      "pool": [
+        { "stat": "kraft", "min": 3, "max": 6 },
+        { "stat": "weisheit", "min": 2, "max": 4 },
+        { "stat": "ausdauer", "min": 2, "max": 4 }
+      ]
+    },
+    "minor": {
+      "count": [1, 1],
+      "pool": [
+        { "stat": "fokus", "min": 1, "max": 3 },
+        { "stat": "tempo", "min": 1, "max": 3 }
+      ]
+    }
+  }
 }
 ```
 
-### Slots
+**Wie es funktioniert:**
+1. `count: [min, max]` — Wie viele Affixes aus dem Pool gerollt werden
+2. `pool` — Welche Stats möglich sind, mit min/max Range pro Stat
+3. Es werden `count` zufällige Stats aus dem Pool gewählt (keine Duplikate)
+4. Jeder Stat rollt einen Wert zwischen `min` und `max`
+5. Ein "Godroll" = maximale Anzahl Affixes + alle auf Max-Wert
 
-`weapon`, `shield`, `helm`, `armor`, `amulet`, `boots`
+### Affix-Counts nach Rarity
 
-### Stats
+| Rarity | Primary Affixes | Minor Affixes |
+|--------|----------------|---------------|
+| common | 1 | 0 |
+| uncommon | 1-2 | 0-1 |
+| rare | 2-3 | 1 |
+| epic | 2-3 | 1-2 |
+| legendary | 3-4 | 1-2 + Legendary Effect |
 
-| Stat | Effekt |
-|------|--------|
-| `kraft` | XP-Multiplikator |
-| `ausdauer` | HP / Durchhaltevermögen |
-| `weisheit` | Gold-Multiplikator |
-| `glueck` | Loot-Drop-Chance |
+### Stat-Ranges nach Tier
+
+| Tier | Primary Range | Minor Range |
+|------|--------------|-------------|
+| T1 (Abenteurer) | 1-3 | 1-2 |
+| T2 (Veteranen) | 2-6 | 1-3 |
+| T3 (Meister) | 4-10 | 2-4 |
+| T4 (Legendär) | 6-15 | 2-5 |
+
+### Slots & empfohlene Affix-Pools
+
+| Slot | Primary Pool (Hauptstat zuerst) | Minor Pool |
+|------|-------------------------------|-----------|
+| weapon | kraft, weisheit, ausdauer | fokus, tempo |
+| shield | ausdauer, kraft, weisheit | vitalitaet, tempo |
+| helm | weisheit, glueck, kraft | fokus, charisma |
+| armor | ausdauer, kraft, weisheit | vitalitaet, tempo |
+| amulet | glueck, weisheit, ausdauer | charisma, fokus |
+| boots | glueck, kraft, ausdauer | tempo, charisma |
+
+### Primary Stats (Haupt-Power)
+
+| Stat | Effekt | Bonus pro Punkt |
+|------|--------|----------------|
+| `kraft` | Quest-XP Multiplikator | +0.5% |
+| `ausdauer` | Forge-Decay Reduktion | -0.5% |
+| `weisheit` | Gold-Multiplikator | +0.5% |
+| `glueck` | Loot-Drop-Chance | +0.5% |
+
+### Minor Stats (Sekundär-Utility)
+
+| Stat | Effekt | Bonus pro Punkt |
+|------|--------|----------------|
+| `fokus` | Flat Bonus-XP pro Quest | +1 XP |
+| `vitalitaet` | Streak-Schutz-Chance | +1% |
+| `charisma` | Companion Bond-XP | +5% |
+| `tempo` | Forge-Temp Recovery | +1 Temp |
 
 ### Tiers
 
 | Tier | Name | Level-Range |
 |------|------|-------------|
 | 1 | Abenteurer | 1-8 |
-| 2 | Veteran | 5-14 |
-| 3 | Meister | 10-22 |
-| 4 | Legende | 18-30 |
+| 2 | Veteranen | 9-16 |
+| 3 | Meister | 17-24 |
+| 4 | Legendär | 25-30 |
 
 ### Set-Boni
 
-Um ein Set zu erstellen, gib allen Items desselben Sets den gleichen Prefix (z.B. `fire-sword`, `fire-shield`, `fire-helm`). Set-Boni werden in `gearTemplates.json` → `namedSets` definiert.
+Set-Boni werden in `gearTemplates.json` → `namedSets` definiert.
 
-### Legendary Effects
+### Legendary Effects (mit Ranges)
 
-Legendäre Items können ein `legendaryEffect`-Feld haben. Wird automatisch angewendet wenn das Item ausgerüstet ist.
+Legendäre Items haben ein `legendaryEffect` mit min/max Range. Der Wert wird beim Droppen gerollt.
 
 ```json
 {
   "legendaryEffect": {
     "type": "xp_bonus",
-    "value": 10,
-    "label": "Flamme der Erkenntnis: +10% Quest-XP"
+    "min": 2,
+    "max": 5,
+    "label": "Flamme der Erkenntnis: +{value}% Quest-XP"
   }
 }
 ```
 
+**`{value}` im Label wird durch den gerollten Wert ersetzt.**
+
+Für feste Effekte (z.B. streak_protection) verwende `"value": 1` ohne min/max.
+
 **Verfügbare Effekt-Typen:**
 
-| Type | Value | Wirkung |
+| Type | Range | Wirkung |
 |------|-------|---------|
-| `xp_bonus` | Prozent | Multipliziert Quest-XP |
-| `gold_bonus` | Prozent | Multipliziert Gold-Rewards |
-| `drop_bonus` | Prozent | Addiert Drop-Chance |
-| `decay_reduction` | Prozent | Reduziert Forge-Decay |
-| `streak_protection` | Anzahl | Streak-Schilde pro Woche |
+| `xp_bonus` | 2-8% | Multipliziert Quest-XP |
+| `gold_bonus` | 2-7% | Multipliziert Gold-Rewards |
+| `drop_bonus` | 1-4% | Addiert Drop-Chance |
+| `decay_reduction` | 8-12% | Reduziert Forge-Decay |
+| `streak_protection` | 1 (fix) | Streak-Schilde pro Woche |
 
 ---
 

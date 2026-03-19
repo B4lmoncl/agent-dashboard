@@ -406,8 +406,8 @@ export interface CharacterData {
   classIcon: string | null;
   companion: { type?: string; name: string; emoji: string; bondLevel: number } | null;
   appearance?: { skinColor?: string; hairStyle?: string; hairColor?: string };
-  equipment: Record<string, string | null>;
-  stats: { kraft: number; ausdauer: number; weisheit: number; glueck: number; _setBonus?: number };
+  equipment: Record<string, string | object | null>;
+  stats: { kraft: number; ausdauer: number; weisheit: number; glueck: number; fokus?: number; vitalitaet?: number; charisma?: number; tempo?: number; _setBonus?: number };
   baseStats: { kraft: number; ausdauer: number; weisheit: number; glueck: number };
   inventory: { id: string; slot: string; name: string; emoji?: string; icon?: string; tier: number; minLevel: number; stats: Record<string, number>; rarity: string; desc?: string; type?: string; effect?: any }[];
   forgeTemp: number;
