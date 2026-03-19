@@ -16,7 +16,8 @@
       },
       "rarity": "common",
       "category": "milestone",
-      "hidden": false
+      "hidden": false,
+      "points": 5
     },
     {
       "id": "apprentice",
@@ -33,7 +34,8 @@
       },
       "rarity": "common",
       "category": "milestone",
-      "hidden": false
+      "hidden": false,
+      "points": 5
     },
     {
       "id": "knight",
@@ -50,7 +52,8 @@
       },
       "rarity": "rare",
       "category": "milestone",
-      "hidden": false
+      "hidden": false,
+      "points": 25
     },
     {
       "id": "legend",
@@ -67,7 +70,8 @@
       },
       "rarity": "epic",
       "category": "milestone",
-      "hidden": false
+      "hidden": false,
+      "points": 50
     },
     {
       "id": "week_warrior",
@@ -84,7 +88,8 @@
       },
       "rarity": "common",
       "category": "streak",
-      "hidden": false
+      "hidden": false,
+      "points": 5
     },
     {
       "id": "monthly_champ",
@@ -101,7 +106,8 @@
       },
       "rarity": "epic",
       "category": "streak",
-      "hidden": false
+      "hidden": false,
+      "points": 50
     },
     {
       "id": "lightning",
@@ -118,7 +124,8 @@
       },
       "rarity": "uncommon",
       "category": "speed",
-      "hidden": false
+      "hidden": false,
+      "points": 10
     },
     {
       "id": "all_trades",
@@ -135,7 +142,8 @@
       },
       "rarity": "rare",
       "category": "variety",
-      "hidden": false
+      "hidden": false,
+      "points": 25
     },
     {
       "id": "boss_slayer",
@@ -152,7 +160,8 @@
       },
       "rarity": "rare",
       "category": "boss",
-      "hidden": false
+      "hidden": false,
+      "points": 25
     },
     {
       "id": "ember_sprite",
@@ -170,7 +179,8 @@
       },
       "rarity": "rare",
       "category": "companion",
-      "hidden": false
+      "hidden": false,
+      "points": 25
     },
     {
       "id": "lore_owl",
@@ -188,7 +198,8 @@
       },
       "rarity": "uncommon",
       "category": "companion",
-      "hidden": false
+      "hidden": false,
+      "points": 10
     },
     {
       "id": "gear_golem",
@@ -205,7 +216,8 @@
       },
       "rarity": "rare",
       "category": "companion",
-      "hidden": false
+      "hidden": false,
+      "points": 25
     },
     {
       "id": "challenge_coder",
@@ -222,7 +234,8 @@
       },
       "rarity": "rare",
       "category": "challenge",
-      "hidden": false
+      "hidden": false,
+      "points": 25
     },
     {
       "id": "challenge_learner",
@@ -239,7 +252,8 @@
       },
       "rarity": "rare",
       "category": "challenge",
-      "hidden": false
+      "hidden": false,
+      "points": 25
     },
     {
       "id": "night_owl",
@@ -257,7 +271,8 @@
       },
       "rarity": "uncommon",
       "category": "speed",
-      "hidden": false
+      "hidden": false,
+      "points": 10
     },
     {
       "id": "speed_runner",
@@ -274,7 +289,8 @@
       },
       "rarity": "uncommon",
       "category": "speed",
-      "hidden": false
+      "hidden": false,
+      "points": 10
     },
     {
       "id": "social_butterfly",
@@ -292,7 +308,8 @@
       },
       "rarity": "uncommon",
       "category": "variety",
-      "hidden": false
+      "hidden": false,
+      "points": 10
     },
     {
       "id": "scholar",
@@ -310,7 +327,8 @@
       },
       "rarity": "rare",
       "category": "variety",
-      "hidden": false
+      "hidden": false,
+      "points": 25
     },
     {
       "id": "gym_rat",
@@ -328,7 +346,8 @@
       },
       "rarity": "rare",
       "category": "variety",
-      "hidden": false
+      "hidden": false,
+      "points": 25
     },
     {
       "id": "chain_master",
@@ -345,7 +364,8 @@
       },
       "rarity": "rare",
       "category": "milestone",
-      "hidden": false
+      "hidden": false,
+      "points": 25
     },
     {
       "id": "campaign_victor",
@@ -362,7 +382,8 @@
       },
       "rarity": "epic",
       "category": "milestone",
-      "hidden": false
+      "hidden": false,
+      "points": 50
     },
     {
       "id": "npc_whisperer",
@@ -378,7 +399,8 @@
       },
       "rarity": "rare",
       "category": "milestone",
-      "hidden": false
+      "hidden": false,
+      "points": 25
     },
     {
       "id": "forge_novice",
@@ -396,7 +418,8 @@
       },
       "rarity": "common",
       "category": "milestone",
-      "hidden": false
+      "hidden": false,
+      "points": 5
     },
     {
       "id": "arena_first",
@@ -414,7 +437,8 @@
       },
       "rarity": "common",
       "category": "milestone",
-      "hidden": false
+      "hidden": false,
+      "points": 5
     },
     {
       "id": "scholar_first",
@@ -432,7 +456,8 @@
       },
       "rarity": "common",
       "category": "milestone",
-      "hidden": false
+      "hidden": false,
+      "points": 5
     },
     {
       "id": "ten_quests",
@@ -449,7 +474,8 @@
       },
       "rarity": "common",
       "category": "milestone",
-      "hidden": false
+      "hidden": false,
+      "points": 5
     },
     {
       "id": "fifty_quests",
@@ -466,7 +492,8 @@
       },
       "rarity": "rare",
       "category": "milestone",
-      "hidden": false
+      "hidden": false,
+      "points": 25
     },
     {
       "id": "coop_hero",
@@ -483,7 +510,8 @@
       },
       "rarity": "uncommon",
       "category": "milestone",
-      "hidden": false
+      "hidden": false,
+      "points": 10
     },
     {
       "id": "early_bird",
@@ -501,7 +529,8 @@
       },
       "rarity": "uncommon",
       "category": "speed",
-      "hidden": false
+      "hidden": false,
+      "points": 10
     },
     {
       "id": "forbidden_code",
@@ -518,7 +547,8 @@
       },
       "rarity": "uncommon",
       "category": "hidden",
-      "hidden": true
+      "hidden": true,
+      "points": 10
     },
     {
       "id": "easter_egg",
@@ -534,7 +564,8 @@
       },
       "rarity": "rare",
       "category": "hidden",
-      "hidden": true
+      "hidden": true,
+      "points": 25
     },
     {
       "id": "perfectionist",
@@ -551,7 +582,8 @@
       },
       "rarity": "epic",
       "category": "hidden",
-      "hidden": true
+      "hidden": true,
+      "points": 50
     },
     {
       "id": "no_rest",
@@ -568,7 +600,8 @@
       },
       "rarity": "epic",
       "category": "hidden",
-      "hidden": true
+      "hidden": true,
+      "points": 50
     },
     {
       "id": "one_ring",
@@ -585,7 +618,8 @@
       },
       "rarity": "legendary",
       "category": "hidden",
-      "hidden": true
+      "hidden": true,
+      "points": 100
     },
     {
       "id": "centurion",
@@ -602,7 +636,8 @@
       },
       "rarity": "epic",
       "category": "milestone",
-      "hidden": false
+      "hidden": false,
+      "points": 50
     },
     {
       "id": "master",
@@ -619,7 +654,8 @@
       },
       "rarity": "legendary",
       "category": "milestone",
-      "hidden": false
+      "hidden": false,
+      "points": 100
     },
     {
       "id": "hermit",
@@ -637,7 +673,8 @@
       },
       "rarity": "rare",
       "category": "variety",
-      "hidden": false
+      "hidden": false,
+      "points": 25
     },
     {
       "id": "boss_hunter",
@@ -654,7 +691,8 @@
       },
       "rarity": "epic",
       "category": "boss",
-      "hidden": false
+      "hidden": false,
+      "points": 50
     },
     {
       "id": "boss_legend",
@@ -671,7 +709,8 @@
       },
       "rarity": "legendary",
       "category": "boss",
-      "hidden": false
+      "hidden": false,
+      "points": 100
     },
     {
       "id": "two_week_warrior",
@@ -688,7 +727,8 @@
       },
       "rarity": "uncommon",
       "category": "streak",
-      "hidden": false
+      "hidden": false,
+      "points": 10
     },
     {
       "id": "quarter_year",
@@ -705,7 +745,8 @@
       },
       "rarity": "legendary",
       "category": "streak",
-      "hidden": false
+      "hidden": false,
+      "points": 100
     },
     {
       "id": "gold_hoarder",
@@ -722,7 +763,8 @@
       },
       "rarity": "rare",
       "category": "milestone",
-      "hidden": false
+      "hidden": false,
+      "points": 25
     },
     {
       "id": "dragon_hoard",
@@ -739,7 +781,8 @@
       },
       "rarity": "legendary",
       "category": "milestone",
-      "hidden": false
+      "hidden": false,
+      "points": 100
     },
     {
       "id": "initiate",
@@ -756,7 +799,8 @@
       },
       "rarity": "common",
       "category": "milestone",
-      "hidden": false
+      "hidden": false,
+      "points": 5
     },
     {
       "id": "adept",
@@ -773,7 +817,8 @@
       },
       "rarity": "rare",
       "category": "milestone",
-      "hidden": false
+      "hidden": false,
+      "points": 25
     },
     {
       "id": "master_rank",
@@ -790,7 +835,8 @@
       },
       "rarity": "epic",
       "category": "milestone",
-      "hidden": false
+      "hidden": false,
+      "points": 50
     },
     {
       "id": "grandmaster",
@@ -807,7 +853,8 @@
       },
       "rarity": "legendary",
       "category": "milestone",
-      "hidden": false
+      "hidden": false,
+      "points": 100
     },
     {
       "id": "chain_veteran",
@@ -824,7 +871,8 @@
       },
       "rarity": "epic",
       "category": "milestone",
-      "hidden": false
+      "hidden": false,
+      "points": 50
     },
     {
       "id": "marathon_runner",
@@ -841,7 +889,8 @@
       },
       "rarity": "rare",
       "category": "speed",
-      "hidden": false
+      "hidden": false,
+      "points": 25
     },
     {
       "id": "social_king",
@@ -859,7 +908,8 @@
       },
       "rarity": "epic",
       "category": "variety",
-      "hidden": false
+      "hidden": false,
+      "points": 50
     },
     {
       "id": "fitness_fanatic",
@@ -877,7 +927,8 @@
       },
       "rarity": "legendary",
       "category": "variety",
-      "hidden": false
+      "hidden": false,
+      "points": 100
     },
     {
       "id": "knowledge_seeker",
@@ -895,7 +946,8 @@
       },
       "rarity": "legendary",
       "category": "variety",
-      "hidden": false
+      "hidden": false,
+      "points": 100
     },
     {
       "id": "dev_legend",
@@ -913,7 +965,8 @@
       },
       "rarity": "legendary",
       "category": "variety",
-      "hidden": false
+      "hidden": false,
+      "points": 100
     },
     {
       "id": "weekend_warrior",
@@ -930,7 +983,8 @@
       },
       "rarity": "rare",
       "category": "speed",
-      "hidden": false
+      "hidden": false,
+      "points": 25
     },
     {
       "id": "coop_legend",
@@ -947,7 +1001,8 @@
       },
       "rarity": "epic",
       "category": "milestone",
-      "hidden": false
+      "hidden": false,
+      "points": 50
     },
     {
       "id": "hidden_midnight",
@@ -966,7 +1021,8 @@
       },
       "rarity": "rare",
       "category": "hidden",
-      "hidden": true
+      "hidden": true,
+      "points": 25
     },
     {
       "id": "hidden_skulduggery",
@@ -983,7 +1039,8 @@
       },
       "rarity": "rare",
       "category": "hidden",
-      "hidden": true
+      "hidden": true,
+      "points": 25
     },
     {
       "id": "hidden_stormlight",
@@ -1000,7 +1057,8 @@
       },
       "rarity": "epic",
       "category": "hidden",
-      "hidden": true
+      "hidden": true,
+      "points": 50
     },
     {
       "id": "hidden_critical_role",
@@ -1017,7 +1075,8 @@
       },
       "rarity": "rare",
       "category": "hidden",
-      "hidden": true
+      "hidden": true,
+      "points": 25
     },
     {
       "id": "hidden_dndads",
@@ -1034,7 +1093,8 @@
       },
       "rarity": "rare",
       "category": "hidden",
-      "hidden": true
+      "hidden": true,
+      "points": 25
     },
     {
       "id": "hidden_perfectionist",
@@ -1050,7 +1110,8 @@
       },
       "rarity": "epic",
       "category": "hidden",
-      "hidden": true
+      "hidden": true,
+      "points": 50
     },
     {
       "id": "hidden_npc_collector",
@@ -1066,7 +1127,8 @@
       },
       "rarity": "legendary",
       "category": "hidden",
-      "hidden": true
+      "hidden": true,
+      "points": 100
     },
     {
       "id": "hidden_gacha_addict",
@@ -1083,7 +1145,8 @@
       },
       "rarity": "epic",
       "category": "hidden",
-      "hidden": true
+      "hidden": true,
+      "points": 50
     },
     {
       "id": "hidden_full_inventory",
@@ -1100,7 +1163,8 @@
       },
       "rarity": "rare",
       "category": "hidden",
-      "hidden": true
+      "hidden": true,
+      "points": 25
     },
     {
       "id": "hidden_legendary_pull",
@@ -1117,7 +1181,107 @@
       },
       "rarity": "legendary",
       "category": "hidden",
-      "hidden": true
+      "hidden": true,
+      "points": 100
+    }
+  ],
+  "pointMilestones": [
+    {
+      "points": 50,
+      "reward": {
+        "type": "frame",
+        "id": "frame-bronze",
+        "name": "Bronzener Rahmen",
+        "color": "#cd7f32",
+        "desc": "Ein schlichter Bronzerahmen für deine Player Card."
+      }
+    },
+    {
+      "points": 100,
+      "reward": {
+        "type": "title",
+        "id": "overachiever",
+        "name": "Overachiever"
+      }
+    },
+    {
+      "points": 200,
+      "reward": {
+        "type": "frame",
+        "id": "frame-silver",
+        "name": "Silberner Rahmen",
+        "color": "#c0c0c0",
+        "desc": "Ein glänzender Silberrahmen."
+      }
+    },
+    {
+      "points": 350,
+      "reward": {
+        "type": "frame",
+        "id": "frame-gold",
+        "name": "Goldener Rahmen",
+        "color": "#ffd700",
+        "desc": "Ein prachtvoller Goldrahmen."
+      }
+    },
+    {
+      "points": 500,
+      "reward": {
+        "type": "title",
+        "id": "completionist",
+        "name": "Completionist"
+      }
+    },
+    {
+      "points": 750,
+      "reward": {
+        "type": "frame",
+        "id": "frame-arcane",
+        "name": "Arkaner Rahmen",
+        "color": "#a78bfa",
+        "desc": "Ein mystisch leuchtender Rahmen."
+      }
+    },
+    {
+      "points": 1000,
+      "reward": {
+        "type": "frame",
+        "id": "frame-legendary",
+        "name": "Legendärer Rahmen",
+        "color": "#ff8c00",
+        "desc": "Ein legendärer Rahmen, der vor Macht glüht.",
+        "glow": true
+      }
+    },
+    {
+      "points": 1500,
+      "reward": {
+        "type": "title",
+        "id": "legend_collector",
+        "name": "Legend Collector"
+      }
+    },
+    {
+      "points": 2000,
+      "reward": {
+        "type": "frame",
+        "id": "frame-celestial",
+        "name": "Himmlischer Rahmen",
+        "color": "#00bfff",
+        "desc": "Ein himmlischer Rahmen mit Sternenglanz.",
+        "glow": true
+      }
+    },
+    {
+      "points": 3000,
+      "reward": {
+        "type": "frame",
+        "id": "frame-void",
+        "name": "Void-Rahmen",
+        "color": "#ff4444",
+        "desc": "Ein dunkler Rahmen aus der Leere selbst.",
+        "glow": true
+      }
     }
   ]
 }

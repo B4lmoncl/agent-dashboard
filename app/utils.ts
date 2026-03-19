@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import type {
   Agent, Quest, QuestsData, User, Campaign, AchievementDef,
+  AchievementPointMilestone,
   ClassDef, LeaderboardEntry, Ritual, Habit, ChangelogEntry,
 } from "@/app/types";
 
@@ -65,12 +66,17 @@ export async function fetchLeaderboard(): Promise<LeaderboardEntry[]> {
   return [];
 }
 
-export async function fetchAchievementCatalogue(): Promise<AchievementDef[]> {
+export async function fetchAchievementCatalogue(): Promise<{ achievements: AchievementDef[]; pointMilestones: AchievementPointMilestone[] }> {
   try {
     const r = await fetch(`/api/achievements`, { signal: AbortSignal.timeout(2000) });
-    if (r.ok) return r.json();
+    if (r.ok) {
+      const data = await r.json();
+      // Handle both old (array) and new (object) response formats
+      if (Array.isArray(data)) return { achievements: data, pointMilestones: [] };
+      return { achievements: data.achievements || [], pointMilestones: data.pointMilestones || [] };
+    }
   } catch { /* ignore */ }
-  return [];
+  return { achievements: [], pointMilestones: [] };
 }
 
 export async function fetchRituals(playerName: string): Promise<Ritual[]> {

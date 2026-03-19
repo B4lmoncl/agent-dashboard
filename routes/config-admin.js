@@ -146,6 +146,69 @@ router.get('/api/leaderboard', (req, res) => {
   res.json([...agentsRanked, ...playersRanked]);
 });
 
+// ─── Leaderboard Seasons (TODO: integrate into Season rework) ─────────────────
+// Monthly competitive seasons with bracket-based rankings.
+// Each season runs for one calendar month. At month end, top players earn
+// exclusive titles, currency caches, and cosmetic frames.
+//
+// Brackets: Lvl 1-10 (Bronze), 11-20 (Silver), 21-30 (Gold)
+// Rewards: Top 1 = "Season Champion" title + 1000 stardust + gold frame
+//          Top 3 = "Season Veteran" title + 500 stardust + silver frame
+//          Top 5 = "Season Contender" title + 250 stardust + bronze frame
+//
+// Data model:
+//   state.seasonLeaderboard = {
+//     currentSeason: "2026-03",       // YYYY-MM
+//     seasonName: "Frühlingssturm",   // thematic name
+//     startedAt: ISO,
+//     brackets: {
+//       bronze: [{ userId, xpEarned, questsCompleted, rank }],
+//       silver: [...],
+//       gold: [...]
+//     },
+//     archive: {
+//       "2026-02": { brackets, winners: [...] }
+//     }
+//   }
+//
+// Endpoints:
+// router.get('/api/season/leaderboard', (req, res) => {
+//   const sl = state.seasonLeaderboard || {};
+//   const currentSeason = sl.currentSeason || new Date().toISOString().slice(0, 7);
+//   const agentIds = new Set(Object.keys(state.store.agents));
+//   const players = Object.values(state.users).filter(u => !agentIds.has(u.id));
+//
+//   const brackets = { bronze: [], silver: [], gold: [] };
+//   for (const u of players) {
+//     const { level } = getLevelInfo(u.xp || 0);
+//     const bracket = level <= 10 ? 'bronze' : level <= 20 ? 'silver' : 'gold';
+//     const seasonXp = u.seasonXp?.[currentSeason] || 0;
+//     const seasonQuests = u.seasonQuests?.[currentSeason] || 0;
+//     brackets[bracket].push({
+//       userId: u.id, name: u.name, avatar: u.avatar, level,
+//       xpEarned: seasonXp, questsCompleted: seasonQuests,
+//     });
+//   }
+//   for (const b of Object.keys(brackets)) {
+//     brackets[b].sort((a, b) => b.xpEarned - a.xpEarned || b.questsCompleted - a.questsCompleted);
+//     brackets[b] = brackets[b].map((p, i) => ({ ...p, rank: i + 1 }));
+//   }
+//   res.json({ currentSeason, seasonName: sl.seasonName || 'Season', brackets, archive: sl.archive || {} });
+// });
+//
+// router.post('/api/season/end', requireAuth, (req, res) => {
+//   // Admin-only: archive current season, distribute rewards, reset
+//   // Award titles: season_champion_YYYY_MM, season_veteran_..., season_contender_...
+//   // Award stardust caches and cosmetic frames
+//   // Reset seasonXp / seasonQuests on all users
+// });
+//
+// In onQuestCompletedByUser: track per-season XP
+//   u.seasonXp = u.seasonXp || {};
+//   u.seasonXp[currentSeason] = (u.seasonXp[currentSeason] || 0) + xpEarned;
+//   u.seasonQuests = u.seasonQuests || {};
+//   u.seasonQuests[currentSeason] = (u.seasonQuests[currentSeason] || 0) + 1;
+
 // ─── Quest Pool System ─────────────────────────────────────────────────────────
 // Per-player quest pool. Refresh generates 18 NEW quests from templates (per player),
 // then picks ~10 for the visible "Open" tab.

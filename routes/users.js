@@ -114,9 +114,31 @@ router.get('/api/streaks', (req, res) => {
   res.json([...userStreaks, ...agentStreaks].sort((a, b) => b.streakDays - a.streakDays));
 });
 
-// GET /api/achievements — list all achievement definitions
+// GET /api/achievements — list all achievement definitions + point milestones
 router.get('/api/achievements', (req, res) => {
-  res.json(state.ACHIEVEMENT_CATALOGUE.map(a => ({ id: a.id, name: a.name, icon: a.icon, desc: a.desc, category: a.category, hidden: !!a.hidden, condition: a.condition || null })));
+  res.json({
+    achievements: state.ACHIEVEMENT_CATALOGUE.map(a => ({ id: a.id, name: a.name, icon: a.icon, desc: a.desc, category: a.category, rarity: a.rarity, points: a.points || 5, hidden: !!a.hidden, condition: a.condition || null })),
+    pointMilestones: state.achievementMilestones || [],
+  });
+});
+
+// POST /api/player/:name/frame — equip a cosmetic frame
+router.post('/api/player/:name/frame', requireAuth, (req, res) => {
+  const uid = req.params.name.toLowerCase();
+  const u = state.usersByName.get(uid);
+  if (!u) return res.status(404).json({ error: 'User not found' });
+  const { frameId } = req.body;
+  if (!frameId) {
+    u.equippedFrame = null;
+    saveUsers();
+    return res.json({ message: 'Frame removed', equippedFrame: null });
+  }
+  u.unlockedFrames = u.unlockedFrames || [];
+  const frame = u.unlockedFrames.find(f => f.id === frameId);
+  if (!frame) return res.status(400).json({ error: 'Frame not unlocked' });
+  u.equippedFrame = { id: frame.id, name: frame.name, color: frame.color, glow: frame.glow || false };
+  saveUsers();
+  res.json({ message: `Frame "${frame.name}" equipped`, equippedFrame: u.equippedFrame });
 });
 
 // GET /api/quest-flavor — quest flavor text

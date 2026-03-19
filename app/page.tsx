@@ -4,6 +4,7 @@ import { useEffect, useState, useCallback, useRef, useMemo, lazy, Suspense } fro
 import StatBar from "@/components/StatBar";
 import OnboardingWizard from "@/components/OnboardingWizard";
 // Lazy-loaded views — only loaded when the tab is active (code splitting)
+const ForgeView = lazy(() => import("@/components/ForgeView"));
 const LeaderboardView = lazy(() => import("@/components/LeaderboardView"));
 const HonorsView = lazy(() => import("@/components/HonorsView"));
 const CVBuilderPanel = lazy(() => import("@/components/CVBuilderPanel"));
@@ -79,7 +80,7 @@ export default function Dashboard() {
   });
   // selectedIds, bulkLoading, reviewComments moved to useQuestActions hook
   const [typeFilter, setTypeFilter] = useState<string>("all");
-  const [dashView, setDashView] = useState<"questBoard" | "npcBoard" | "klassenquests" | "character" | "campaign" | "leaderboard" | "honors" | "season" | "shop" | "gacha" | "roadmap" | "changelog">("questBoard");
+  const [dashView, setDashView] = useState<"questBoard" | "npcBoard" | "klassenquests" | "character" | "campaign" | "leaderboard" | "honors" | "season" | "shop" | "forge" | "gacha" | "roadmap" | "changelog">("questBoard");
   const [createQuestOpen, setCreateQuestOpen] = useState(false);
   const [questBoardAgentOpen, setQuestBoardAgentOpen] = useState(false);
   const [npcAgentRosterOpen, setNpcAgentRosterOpen] = useState(true);
@@ -256,7 +257,7 @@ export default function Dashboard() {
       setQuests(q);
       setUsers(u);
       if (lb.length > 0) setLeaderboard(lb);
-      if (ac.length > 0) setAchievementCatalogue(ac);
+      if (ac.achievements.length > 0) setAchievementCatalogue(ac.achievements);
       setCampaigns(camps);
       if (playerName) {
         fetchRituals(playerName).then(setRituals);
@@ -789,6 +790,7 @@ export default function Dashboard() {
             { key: "klassenquests", label: "The Arcanum",  tutorialKey: null, iconSrc: "/images/icons/nav-arcanum.png" },
             ...(playerName ? [{ key: "character", label: "Character", tutorialKey: "character-tab", iconSrc: "/images/icons/nav-character.png" }] : []),
             { key: "shop",        label: "The Bazaar",               tutorialKey: "bazaar-tab", iconSrc: "/images/icons/nav-bazaar.png" },
+            ...(playerName ? [{ key: "forge", label: "The Forge", tutorialKey: null, iconSrc: "/images/icons/prof-schmied.png" }] : []),
             { key: "gacha",       label: "Vault of Fate",            tutorialKey: "vault-tab", iconSrc: "/images/icons/vault-of-fate.png" },
             { key: "leaderboard", label: "The Proving Grounds", tutorialKey: "leaderboard-tab", iconSrc: "/images/icons/nav-proving.png" },
             { key: "honors",      label: "Hall of Honors",  tutorialKey: "honors-tab", iconSrc: "/images/icons/nav-honors.png" },
@@ -881,6 +883,11 @@ export default function Dashboard() {
             onBuy={handleShopBuy}
             onGearBuy={handleGearBuy}
           /></Suspense>
+        )}
+
+        {/* ── FORGE TAB ── */}
+        {dashView === "forge" && (
+          <Suspense fallback={<ViewFallback />}><ForgeView onRefresh={refresh} /></Suspense>
         )}
 
         {/* ── VAULT OF FATE (GACHA) TAB ── */}

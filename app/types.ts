@@ -98,7 +98,21 @@ export interface EarnedAchievement {
   icon: string;
   desc: string;
   category: string;
+  rarity?: string;
+  points?: number;
   earnedAt: string;
+}
+
+export interface AchievementPointMilestone {
+  points: number;
+  reward: {
+    type: 'frame' | 'title';
+    id: string;
+    name: string;
+    color?: string;
+    desc?: string;
+    glow?: boolean;
+  };
 }
 
 export interface User {
@@ -141,6 +155,19 @@ export interface User {
     xp: { forge: number; kraft?: number; gear: number; companions: number; bond: number; hoarding: number; hoardingCount: number; hoardingPct: number; total: number };
     gold: { forge: number; weisheit?: number; streak: number; total: number };
   };
+  // Equipment (populated from backend)
+  equipment?: Record<string, unknown>;
+  // Achievement points & cosmetic frames
+  achievementPoints?: number;
+  unlockedFrames?: { id: string; name: string; color: string; glow?: boolean; unlockedAt: string }[];
+  equippedFrame?: { id: string; name: string; color: string; glow?: boolean } | null;
+  // Crafting professions
+  professions?: {
+    schmied?: { level: number; xp: number; lastCraftAt?: string };
+    alchemist?: { level: number; xp: number; lastCraftAt?: string };
+    verzauberer?: { level: number; xp: number; lastCraftAt?: string };
+  };
+  craftingMaterials?: Record<string, number>;
 }
 
 export interface CampaignQuest {

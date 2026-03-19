@@ -181,7 +181,7 @@ Use `paginate(array, req.query)` helper from `lib/helpers.js`.
 
 View components are lazy-loaded with `React.lazy()` + `Suspense`:
 - `LeaderboardView`, `HonorsView`, `CVBuilderPanel`, `CampaignHub`
-- `ShopView`, `GachaView`, `CharacterView`, `RitualChamber`
+- `ShopView`, `GachaView`, `CharacterView`, `RitualChamber`, `ForgeView`
 
 Only loaded when the tab is activated — reduces initial bundle by ~40%.
 
@@ -228,11 +228,30 @@ Quests can be: player-created, NPC-generated, GitHub webhook-generated, daily ro
 - Gold multiplied by: forge temp, weisheit stat, streak bonus
 
 ### Currency system
-- **Gold**: Primary currency (quest rewards, shop purchases)
-- **Stardust**: Premium currency
+- **Gold**: Primary currency (quest rewards, shop purchases, crafting costs)
+- **Stardust**: Premium currency (level-up rewards, season rewards)
 - **Essenz**: Crafting currency
 - **Runensplitter**: Gacha currency
 - Conversion between currencies with 20% tax
+
+### Achievement Points System
+- Each achievement awards points based on rarity: common=5, uncommon=10, rare=25, epic=50, legendary=100
+- Points accumulate in `user.achievementPoints`
+- **Cosmetic frame milestones**: At 50/100/200/350/500/750/1000/1500/2000/3000 pts, players unlock decorative frames for their UserCard
+- **Title milestones**: At certain thresholds, exclusive titles are awarded
+- Frames equipped via `POST /api/player/:name/frame`
+- Frame renders as colored border + optional glow on UserCard
+
+### Crafting Professions System
+- **3 Professions**: Schmied (stat rerolling), Alchemist (buff potions), Verzauberer (gear enchanting)
+- **Materials**: Drop from quest completion based on quest rarity (10 material types, common→legendary)
+- **Material drop rates**: Defined in `professions.json → materialDropRates` — rarer quests drop rarer materials
+- **Recipes**: Each has gold cost + material cost + profession level requirement + cooldown
+- **Profession leveling**: 10 levels per profession, XP gained per craft
+- **Unlock conditions**: Schmied/Alchemist at player level 5, Verzauberer at level 8
+- **Frontend**: "The Forge" tab with NPC popout modals (same createPortal pattern as WandererRest)
+- **Endpoints**: `GET /api/professions?player=X`, `POST /api/professions/craft`
+- **Data**: `public/data/professions.json` (professions, materials, recipes)
 
 ## Security measures
 

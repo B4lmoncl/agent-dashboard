@@ -64,6 +64,9 @@ components/           # React UI components (36 files, ~12k lines)
   CompanionsWidget.tsx # Companion management
   WandererRest.tsx    # NPC board / Wanderer's Rest
   OnboardingWizard.tsx # First-time user tutorial
+  ForgeView.tsx       # Crafting/Professions UI (Schmied, Alchemist, Verzauberer)
+  UserCard.tsx        # Player card with frame, title, stats
+  LeaderboardView.tsx # Proving Grounds leaderboard
   ...                 # 25 more components
 lib/                  # Backend business logic (8 files, ~3000 lines)
   state.js            # Central state, Maps, JSON persistence (~1060 lines)
@@ -88,9 +91,10 @@ routes/               # Express API routes (14 files, ~5200 lines)
   campaigns.js        # Campaign quest chains
   currency.js         # Multi-currency system
   integrations.js     # GitHub webhook (HMAC verified), catalog API
+  crafting.js         # Crafting professions (Schmied, Alchemist, Verzauberer)
   npcs-misc.js        # NPC endpoints, feedback (admin-only), SPA fallback
 public/
-  data/               # Game template data (34 JSON files)
+  data/               # Game template data (36 JSON files)
   images/             # Pixel art assets (~250 files)
     portraits/        # NPC and character portraits
     companions/       # Companion icons
@@ -143,7 +147,7 @@ Template: `.env.example`
 
 ## Key Game Systems
 
-Quest system (pool of ~10 open + ~25 max in-progress per player), XP/leveling (30 levels), gear/inventory with set bonuses and legendary effects, companions with bond levels, gacha banners with pity (soft 35, hard 50), daily rituals/streaks, campaign quest chains, multi-currency economy (gold, stardust, essenz, runensplitter), title system (earn and equip titles displayed in player card and leaderboard).
+Quest system (pool of ~10 open + ~25 max in-progress per player), XP/leveling (30 levels), gear/inventory with Diablo-3-style affix rolling (primary + minor stats with ranges), set bonuses and legendary effects, companions with bond levels, gacha banners with pity (soft 35, hard 50), daily rituals/streaks, campaign quest chains, multi-currency economy (gold, stardust, essenz, runensplitter), title system (earn and equip titles displayed in player card and leaderboard), **achievement points** (common=5, uncommon=10, rare=25, epic=50, legendary=100 pts; cosmetic frame unlocks at milestones), **crafting professions** (Schmied: gear stat rerolling, Alchemist: buff potions from materials, Verzauberer: gear enchanting; materials drop from quest completion).
 
 ## Important Files
 
@@ -163,6 +167,10 @@ Quest system (pool of ~10 open + ~25 max in-progress per player), XP/leveling (3
 | `public/data/*.json` | Game data templates (35 files) |
 | `public/data/titles.json` | Title definitions with conditions |
 | `public/data/gearTemplates.json` | Gear items, set bonuses, legendary effects |
+| `public/data/professions.json` | Crafting professions, materials, recipes |
+| `public/data/achievementTemplates.json` | Achievements with points + point milestones |
+| `routes/crafting.js` | Crafting profession routes (craft, materials) |
+| `components/ForgeView.tsx` | Forge UI with NPC popouts for crafting |
 
 ## Documentation
 

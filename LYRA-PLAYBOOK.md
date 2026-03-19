@@ -502,10 +502,13 @@ case 'dein_neuer_effekt':
   "condition": { "type": "quests_completed", "count": 10 },
   "rewards": { "xp": 50, "gold": 25 },
   "rarity": "rare",
+  "points": 25,
   "category": "milestone",
   "hidden": false
 }
 ```
+
+**WICHTIG:** Das `points`-Feld bestimmt, wie viele Achievement-Punkte vergeben werden. Standard nach Rarity: common=5, uncommon=10, rare=25, epic=50, legendary=100. Punkte sammeln sich und schalten kosmetische Rahmen + Titel frei (definiert in `pointMilestones` am Ende der Datei).
 
 ### Automatisch geprüfte Conditions
 
@@ -588,6 +591,64 @@ Neue Achievements können direkt in `achievementTemplates.json` hinzugefügt wer
 
 ---
 
+## 11. Crafting-Rezepte & Materialien erstellen
+
+**Datei**: `public/data/professions.json`
+
+### Profession-NPCs
+
+3 Berufe mit je eigenem NPC:
+- **Schmied** (Thorin): Gear-Stats rerolln, Rarität upgraden
+- **Alchemist** (Mirael): Buff-Tränke brauen (XP, Gold, Glück, Streak-Shield)
+- **Verzauberer** (Eldric): Gear-Enchants (temporär + permanent)
+
+### Neues Material hinzufügen
+
+In `professions.json → materials[]`:
+
+```json
+{
+  "id": "neues-material",
+  "name": "Neues Material",
+  "icon": "/images/icons/mat-neues.png",
+  "rarity": "rare",
+  "desc": "Beschreibung des Materials."
+}
+```
+
+Dann in `materialDropRates` die Drop-Chance pro Quest-Rarity eintragen:
+```json
+"materialDropRates": {
+  "rare": { "neues-material": 0.15 }
+}
+```
+
+### Neues Rezept hinzufügen
+
+In `professions.json → recipes[]`:
+
+```json
+{
+  "id": "neues-rezept",
+  "profession": "alchemist",
+  "name": "Neuer Trank",
+  "desc": "Effekt-Beschreibung",
+  "reqProfLevel": 3,
+  "cost": { "gold": 100 },
+  "materials": { "kraeuterbuendel": 2, "neues-material": 1 },
+  "result": { "type": "buff", "buffType": "xp_boost_10", "duration": "3_quests" },
+  "cooldownMinutes": 0
+}
+```
+
+**WICHTIG:** Neue Rezept-IDs mit neuen Effekten brauchen Code-Änderungen im `switch` in `routes/crafting.js`.
+
+### Profession-Level
+
+Jede Profession hat 10 Level mit steigenden XP-Schwellen (definiert in `levelThresholds`). +10 XP pro Craft.
+
+---
+
 ## Checkliste für neuen Content
 
 - [ ] ID ist einzigartig (prüfe mit `grep -r "deine-id" public/data/`)
@@ -612,3 +673,4 @@ Neue Achievements können direkt in `achievementTemplates.json` hinzugefügt wer
 | Achievements | `public/data/achievementTemplates.json` | Ggf. Trigger in state.js |
 | Klassen | `public/data/classes.json` | Nein |
 | Companions | `public/data/companionProfiles.json` | Nein |
+| Crafting/Berufe | `public/data/professions.json` | Nur für neue Rezept-Effekte |
