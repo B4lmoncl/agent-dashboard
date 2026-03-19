@@ -23,8 +23,6 @@ interface DashboardModalsProps {
   setStreakInfoOpen: (v: boolean) => void;
   activeQuestsInfoOpen: boolean;
   setActiveQuestsInfoOpen: (v: boolean) => void;
-  completedInfoOpen: boolean;
-  setCompletedInfoOpen: (v: boolean) => void;
   xpInfoOpen: boolean;
   setXpInfoOpen: (v: boolean) => void;
   // Quest counts
@@ -40,7 +38,6 @@ export default function DashboardModals({
   modifierOpen, setModifierOpen,
   streakInfoOpen, setStreakInfoOpen,
   activeQuestsInfoOpen, setActiveQuestsInfoOpen,
-  completedInfoOpen, setCompletedInfoOpen,
   xpInfoOpen, setXpInfoOpen,
   inProgressCount,
 }: DashboardModalsProps) {
@@ -207,11 +204,11 @@ export default function DashboardModals({
             <div className="absolute inset-0 modal-backdrop-blur" />
             <div className="relative rounded-2xl p-5 bg-surface border-w12" style={{ boxShadow: "0 12px 48px rgba(0,0,0,0.7)", minWidth: 300, maxWidth: 380, maxHeight: "85vh", overflowY: "auto" }} onClick={e => e.stopPropagation()}>
               <div className="flex items-center justify-between mb-3">
-                <h3 className="text-sm font-bold" style={{ color: "#ef4444" }}>Active Quests</h3>
+                <h3 className="text-sm font-bold" style={{ color: "#ef4444" }}>Quests</h3>
                 <button onClick={() => setActiveQuestsInfoOpen(false)} className="btn-close">×</button>
               </div>
               <p className="text-xs leading-relaxed mb-3 text-w60">
-                Quests you&apos;ve claimed and are currently working on. Claiming too many quests at once (&gt;20) will apply an XP hoarding penalty.
+                Your quest overview. Claiming too many quests at once (&gt;20) will apply an XP hoarding penalty.
               </p>
               <div className="space-y-1.5">
                 <div className="flex items-center justify-between px-2 py-1 rounded-lg bg-w3">
@@ -222,26 +219,6 @@ export default function DashboardModals({
                   <span className="text-xs text-w50">Open on Board</span>
                   <span className="font-mono font-bold text-sm text-w50">{openQuestsCount}</span>
                 </div>
-              </div>
-            </div>
-          </div>
-        </ModalPortal>
-      )}
-
-      {/* Quests Completed Info Popup */}
-      {completedInfoOpen && (
-        <ModalPortal>
-          <div className="fixed inset-0 flex items-center justify-center" style={{ zIndex: 9999 }} onClick={() => setCompletedInfoOpen(false)}>
-            <div className="absolute inset-0 modal-backdrop-blur" />
-            <div className="relative rounded-2xl p-5 bg-surface border-w12" style={{ boxShadow: "0 12px 48px rgba(0,0,0,0.7)", minWidth: 300, maxWidth: 380, maxHeight: "85vh", overflowY: "auto" }} onClick={e => e.stopPropagation()}>
-              <div className="flex items-center justify-between mb-3">
-                <h3 className="text-sm font-bold" style={{ color: "#22c55e" }}>Quests Completed</h3>
-                <button onClick={() => setCompletedInfoOpen(false)} className="btn-close">×</button>
-              </div>
-              <p className="text-xs leading-relaxed mb-3 text-w60">
-                Total quests you&apos;ve finished. Each one earns XP toward your next level.
-              </p>
-              <div className="space-y-1.5">
                 <div className="flex items-center justify-between px-2 py-1 rounded-lg bg-w3">
                   <span className="text-xs text-w50">Total Completed</span>
                   <span className="font-mono font-bold text-sm" style={{ color: "#22c55e" }}>{loggedInUser?.questsCompleted ?? 0}</span>

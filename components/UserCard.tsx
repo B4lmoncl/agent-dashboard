@@ -211,6 +211,13 @@ export function UserCard({ user, classes = [] }: { user: User; classes?: ClassDe
             </span>
           </div>
         )}
+        {/* Achievement Points */}
+        {(user.achievementPoints ?? 0) > 0 && (
+          <div className="flex items-center justify-between mt-1.5 pt-1.5" style={{ borderTop: "1px solid rgba(255,255,255,0.04)" }}>
+            <span className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>Achievement Points</span>
+            <span className="text-xs font-mono font-bold" style={{ color: "#d4a64a" }}>{user.achievementPoints}</span>
+          </div>
+        )}
       </div>
 
       {/* Bottom section — companions + achievements */}

@@ -57,8 +57,37 @@ import {
 } from "@/app/config";
 import { getAuthHeaders, setAccessToken } from "@/lib/auth-client";
 import { useQuestActions } from "@/hooks/useQuestActions";
+import professionsData from "@/public/data/professions.json";
 
 const RARITY_ORDER: Record<string, number> = { legendary: 0, epic: 1, rare: 2, uncommon: 3, common: 4, companion: 1 };
+
+// ─── Profession helpers ──────────────────────────────────────────────────────
+const PROF_RANK_THRESHOLDS = [0, 100, 250, 450, 720, 1100, 1600, 2200, 3000, 4000];
+const PROF_RANKS: { name: string; color: string }[] = [
+  { name: "Novice", color: "#6b7280" },
+  { name: "Apprentice", color: "#22c55e" },
+  { name: "Journeyman", color: "#3b82f6" },
+  { name: "Expert", color: "#a855f7" },
+  { name: "Artisan", color: "#f59e0b" },
+  { name: "Master", color: "#ef4444" },
+];
+function getProfRank(level: number) {
+  if (level >= 9) return PROF_RANKS[5];  // Master
+  if (level >= 7) return PROF_RANKS[4];  // Artisan
+  if (level >= 5) return PROF_RANKS[3];  // Expert
+  if (level >= 3) return PROF_RANKS[2];  // Journeyman
+  if (level >= 1) return PROF_RANKS[1];  // Apprentice
+  return PROF_RANKS[0];                  // Novice
+}
+const PROF_META: Record<string, { name: string; icon: string; color: string }> = {
+  schmied: { name: "Blacksmith", icon: "/images/icons/prof-schmied.png", color: "#f59e0b" },
+  alchemist: { name: "Alchemist", icon: "/images/icons/prof-alchemist.png", color: "#22c55e" },
+  verzauberer: { name: "Enchanter", icon: "/images/icons/prof-verzauberer.png", color: "#a78bfa" },
+  koch: { name: "Cook", icon: "/images/icons/prof-koch.png", color: "#e87b35" },
+};
+const MAT_RARITY_COLORS: Record<string, string> = {
+  common: "#9ca3af", uncommon: "#22c55e", rare: "#3b82f6", epic: "#a855f7", legendary: "#f59e0b",
+};
 
 // Suspense fallback for lazy-loaded views
 const ViewFallback = () => <div className="flex items-center justify-center py-20 text-w30 text-sm font-mono">Loading...</div>;
@@ -158,8 +187,8 @@ export default function Dashboard() {
   const [modifierOpen, setModifierOpen] = useState(false);
   const [streakInfoOpen, setStreakInfoOpen] = useState(false);
   const [activeQuestsInfoOpen, setActiveQuestsInfoOpen] = useState(false);
-  const [completedInfoOpen, setCompletedInfoOpen] = useState(false);
   const [xpInfoOpen, setXpInfoOpen] = useState(false);
+  const [professionsInfoOpen, setProfessionsInfoOpen] = useState(false);
   const [currencyExpanded, setCurrencyExpanded] = useState<string | null>(null);
   const [feedbackMode, setFeedbackMode] = useState(false);
   const [favorites, setFavorites] = useState<string[]>([]);
@@ -171,14 +200,14 @@ export default function Dashboard() {
   // Stat card info popups — ESC to close + scroll lock
   const closeStreakInfo = useCallback(() => setStreakInfoOpen(false), []);
   const closeActiveQuestsInfo = useCallback(() => setActiveQuestsInfoOpen(false), []);
-  const closeCompletedInfo = useCallback(() => setCompletedInfoOpen(false), []);
   const closeXpInfo = useCallback(() => setXpInfoOpen(false), []);
   const closeModifier = useCallback(() => setModifierOpen(false), []);
+  const closeProfessionsInfo = useCallback(() => setProfessionsInfoOpen(false), []);
   useModalBehavior(streakInfoOpen, closeStreakInfo);
   useModalBehavior(activeQuestsInfoOpen, closeActiveQuestsInfo);
-  useModalBehavior(completedInfoOpen, closeCompletedInfo);
   useModalBehavior(xpInfoOpen, closeXpInfo);
   useModalBehavior(modifierOpen, closeModifier);
+  useModalBehavior(professionsInfoOpen, closeProfessionsInfo);
 
   // Currencies modal — ESC to close + scroll lock
   const closeCurrencies = useCallback(() => { setCurrenciesOpen(false); setCurrencyExpanded(null); }, []);
@@ -653,32 +682,26 @@ export default function Dashboard() {
               </p>
             </div>
           )}
-          {/* TODO: replace icon placeholders with pixel art once ui-forge/ui-sword/ui-check/reward-gold assets exist */}
-          <div data-feedback-id="stats.forge-temp">
+          <div data-feedback-id="stats.forge-streak">
           <StatBar
             label="Forge Streak"
             value={loading ? "—" : playerName ? `${animStreak}d` : "—"}
-            sub={playerName ? "your streak" : "login to view"}
+            sub={playerName ? (playerStreak > 0 ? `+${Math.min((playerStreak * 1.5), 45).toFixed(1)}% gold` : "your streak") : "login to view"}
+            subColor={playerName ? "#fbbf24" : undefined}
             accent="#f97316"
             onClick={playerName ? () => setStreakInfoOpen(true) : undefined}
           />
           </div>
-          <div data-feedback-id="stats.active-quests">
+          <div data-feedback-id="stats.quests">
           <StatBar
-            label="Active Quests"
-            value={loading ? "—" : playerName ? animActive : "—"}
-            sub={playerName ? `${openQuestsCount} open` : "login to view"}
+            label="Quests"
+            value={loading ? "—" : playerName ? `${animActive}` : "—"}
+            value2={playerName ? `✓ ${animCompleted}` : undefined}
+            value2Color="#22c55e"
+            sub={playerName ? `active · ${openQuestsCount} open` : "login to view"}
             accent="#ef4444"
             onClick={playerName ? () => setActiveQuestsInfoOpen(true) : undefined}
-          />
-          </div>
-          <div data-feedback-id="stats.completed">
-          <StatBar
-            label="Quests Completed"
-            value={loading ? "—" : playerName ? animCompleted : "—"}
-            sub={playerName ? "your completions" : "login to view"}
-            accent="#22c55e"
-            onClick={playerName ? () => setCompletedInfoOpen(true) : undefined}
+            inline
           />
           </div>
           <div data-feedback-id="stats.modifiers">
@@ -692,6 +715,42 @@ export default function Dashboard() {
             onClick={loggedInUser?.modifiers ? () => setModifierOpen(true) : undefined}
             inline
           />
+          </div>
+          <div data-feedback-id="stats.professions">
+          {(() => {
+            const profs = loggedInUser?.professions;
+            const chosen = loggedInUser?.chosenProfessions ?? [];
+            if (!playerName || !profs || chosen.length === 0) {
+              return (
+                <StatBar
+                  label="Artisan"
+                  value={loading ? "—" : playerName ? "—" : "—"}
+                  sub={playerName ? "no professions yet" : "login to view"}
+                  accent="#f59e0b"
+                  onClick={playerName ? () => setProfessionsInfoOpen(true) : undefined}
+                  inline
+                />
+              );
+            }
+            const profSummary = chosen.map(pid => {
+              const p = profs[pid as keyof typeof profs];
+              const meta = PROF_META[pid];
+              return { id: pid, level: p?.level ?? 0, name: meta?.name ?? pid, color: meta?.color ?? "#888" };
+            });
+            const mainValue = profSummary.map(p => `Lv.${p.level}`).join(" · ");
+            const totalMats = Object.values(loggedInUser?.craftingMaterials ?? {}).reduce((a, b) => a + b, 0);
+            return (
+              <StatBar
+                label="Artisan"
+                value={loading ? "—" : mainValue}
+                sub={`${totalMats} materials`}
+                subColor="rgba(245,158,11,0.5)"
+                accent="#f59e0b"
+                onClick={() => setProfessionsInfoOpen(true)}
+                inline
+              />
+            );
+          })()}
           </div>
         </div>
 
@@ -865,12 +924,110 @@ export default function Dashboard() {
           setStreakInfoOpen={setStreakInfoOpen}
           activeQuestsInfoOpen={activeQuestsInfoOpen}
           setActiveQuestsInfoOpen={setActiveQuestsInfoOpen}
-          completedInfoOpen={completedInfoOpen}
-          setCompletedInfoOpen={setCompletedInfoOpen}
           xpInfoOpen={xpInfoOpen}
           setXpInfoOpen={setXpInfoOpen}
           inProgressCount={quests.inProgress.length}
         />
+
+        {/* Professions Info Modal */}
+        {professionsInfoOpen && loggedInUser && (() => {
+          const profs = loggedInUser.professions;
+          const chosen = loggedInUser.chosenProfessions ?? [];
+          const mats = loggedInUser.craftingMaterials ?? {};
+          const matDefs = professionsData.materials ?? [];
+          return (
+            <ModalPortal>
+              <div className="fixed inset-0 flex items-center justify-center" style={{ zIndex: 9999 }} onClick={() => setProfessionsInfoOpen(false)}>
+                <div className="absolute inset-0 modal-backdrop-blur" />
+                <div className="relative rounded-2xl p-5 bg-surface border-w12" style={{ boxShadow: "0 12px 48px rgba(0,0,0,0.7)", minWidth: 340, maxWidth: 440, maxHeight: "85vh", overflowY: "auto" }} onClick={e => e.stopPropagation()}>
+                  <div className="flex items-center justify-between mb-4">
+                    <h3 className="text-sm font-bold" style={{ color: "#f59e0b" }}>Artisan&apos;s Quarter</h3>
+                    <button onClick={() => setProfessionsInfoOpen(false)} className="btn-close">×</button>
+                  </div>
+
+                  {/* Chosen Professions */}
+                  {chosen.length > 0 ? (
+                    <div className="space-y-2 mb-4">
+                      {chosen.map(pid => {
+                        const p = profs?.[pid as keyof typeof profs];
+                        const meta = PROF_META[pid];
+                        const level = p?.level ?? 0;
+                        const xp = p?.xp ?? 0;
+                        const rank = getProfRank(level);
+                        // Backend: level = i+1 when xp >= thresholds[i], so current = thresholds[level-1], next = thresholds[level]
+                        const currentThreshold = level > 0 ? (PROF_RANK_THRESHOLDS[level - 1] ?? 0) : 0;
+                        const nextThreshold = level < 10 ? (PROF_RANK_THRESHOLDS[level] ?? null) : null;
+                        const xpInLevel = xp - currentThreshold;
+                        const xpForLevel = nextThreshold != null ? nextThreshold - currentThreshold : 0;
+                        return (
+                          <div key={pid} className="rounded-xl px-3 py-2.5" style={{ background: `${meta?.color ?? "#888"}08`, border: `1px solid ${meta?.color ?? "#888"}25` }}>
+                            <div className="flex items-center gap-2.5">
+                              <img src={meta?.icon ?? ""} alt="" width={28} height={28} className="img-render-auto" onError={e => (e.currentTarget.style.display = "none")} />
+                              <div className="flex-1 min-w-0">
+                                <div className="flex items-center gap-2">
+                                  <span className="text-xs font-bold" style={{ color: meta?.color ?? "#888" }}>{meta?.name ?? pid}</span>
+                                  <span className="text-xs font-semibold" style={{ color: rank.color }}>{rank.name}</span>
+                                </div>
+                                <div className="flex items-center gap-2 mt-0.5">
+                                  <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.5)" }}>Lv.{level}/10</span>
+                                  {nextThreshold != null && xpForLevel > 0 ? (
+                                    <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.25)" }}>{xpInLevel}/{xpForLevel} XP</span>
+                                  ) : level >= 10 ? (
+                                    <span className="text-xs font-mono" style={{ color: "#f59e0b" }}>MAX</span>
+                                  ) : null}
+                                </div>
+                              </div>
+                            </div>
+                            {/* XP progress bar */}
+                            {nextThreshold != null && xpForLevel > 0 && (
+                              <div className="mt-1.5 rounded-full overflow-hidden" style={{ height: 3, background: "rgba(255,255,255,0.06)" }}>
+                                <div className="h-full rounded-full transition-all duration-500" style={{ width: `${Math.min((xpInLevel / xpForLevel) * 100, 100)}%`, background: meta?.color ?? "#888" }} />
+                              </div>
+                            )}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  ) : (
+                    <p className="text-xs text-w30 mb-4">Noch keine Berufe gewählt. Besuche das Artisan&apos;s Quarter!</p>
+                  )}
+
+                  {/* Materials Inventory */}
+                  <div className="mb-2">
+                    <p className="text-xs font-bold uppercase tracking-wider mb-2" style={{ color: "rgba(255,255,255,0.4)" }}>Materials</p>
+                    {matDefs.length > 0 ? (
+                      <div className="grid grid-cols-2 gap-1.5">
+                        {matDefs.map(m => {
+                          const count = mats[m.id] ?? 0;
+                          return (
+                            <div key={m.id} className="flex items-center gap-2 rounded-lg px-2 py-1.5" style={{ background: count > 0 ? "rgba(255,255,255,0.03)" : "transparent", opacity: count > 0 ? 1 : 0.35 }}>
+                              <img src={m.icon} alt="" width={18} height={18} className="img-render-auto" onError={e => (e.currentTarget.style.display = "none")} />
+                              <div className="flex-1 min-w-0">
+                                <span className="text-xs truncate block" style={{ color: MAT_RARITY_COLORS[m.rarity] ?? "#9ca3af", fontSize: 10 }}>{m.name}</span>
+                              </div>
+                              <span className="text-xs font-mono font-bold" style={{ color: count > 0 ? "#f0f0f0" : "rgba(255,255,255,0.2)" }}>{count}</span>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    ) : (
+                      <p className="text-xs text-w20">No material data available.</p>
+                    )}
+                  </div>
+
+                  {/* Navigate to forge */}
+                  <button
+                    onClick={() => { setProfessionsInfoOpen(false); setDashView("forge"); }}
+                    className="w-full mt-3 px-3 py-2 rounded-lg text-xs font-semibold transition-colors"
+                    style={{ background: "rgba(245,158,11,0.1)", color: "#f59e0b", border: "1px solid rgba(245,158,11,0.25)" }}
+                  >
+                    Open Artisan&apos;s Quarter
+                  </button>
+                </div>
+              </div>
+            </ModalPortal>
+          );
+        })()}
 
         {/* View toggle */}
         <div className="flex gap-1 flex-wrap" data-tutorial="nav-bar" style={{ background: "#111", borderRadius: 8, padding: 3, display: "inline-flex" }}>
