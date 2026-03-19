@@ -91,8 +91,29 @@ const SKILL_UP_COLORS: Record<string, { color: string; label: string }> = {
   gray: { color: "#6b7280", label: "No XP" },
 };
 
+// ─── NPC location metadata ───────────────────────────────────────────────────
+const NPC_LOCATIONS: Record<string, { label: string; color: string; desc: string }> = {
+  schmied: { label: "Deepforge", color: "#f59e0b", desc: "Reroll stats, upgrade rarity" },
+  alchemist: { label: "Alchemist Lab", color: "#22c55e", desc: "Potions & elixirs" },
+  koch: { label: "Guild Kitchen", color: "#e87b35", desc: "Meals with XP/Gold buffs" },
+  verzauberer: { label: "Arcanum", color: "#a78bfa", desc: "Gear enchantments" },
+};
+
+// ─── Workshop tool tiers ─────────────────────────────────────────────────────
+const WORKSHOP_TIERS = [
+  { id: "worn", name: "Worn Tools", tier: 0, xpBonus: 0, cost: 0, currency: "gold", desc: "No bonus", icon: "/images/icons/tools-worn.png" },
+  { id: "sturdy", name: "Sturdy Tools", tier: 1, xpBonus: 2, cost: 250, currency: "gold", desc: "+2% XP on all quests", icon: "/images/icons/tools-sturdy.png" },
+  { id: "masterwork", name: "Masterwork Tools", tier: 2, xpBonus: 4, cost: 750, currency: "gold", desc: "+4% XP on all quests", icon: "/images/icons/tools-masterwork.png" },
+  { id: "legendary", name: "Legendary Tools", tier: 3, xpBonus: 7, cost: 150, currency: "essenz", desc: "+7% XP on all quests", icon: "/images/icons/tools-legendary.png" },
+  { id: "mythic", name: "Mythic Forge", tier: 4, xpBonus: 10, cost: 500, currency: "essenz", desc: "+10% XP on all quests", icon: "/images/icons/tools-mythic.png" },
+];
+
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 const hideOnError = (e: React.SyntheticEvent<HTMLImageElement>) => { e.currentTarget.style.display = "none"; };
+
+function getUserInventory(user: unknown): InventoryItem[] {
+  return ((user as Record<string, unknown>).inventory as InventoryItem[] | undefined) || [];
+}
 
 // ─── ForgeView Component ────────────────────────────────────────────────────
 export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () => void; onNavigate?: (tab: string) => void }) {
@@ -325,16 +346,9 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
 
       {/* ─── NPC Grid ──────────────────────────────────────────────────── */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-      {(() => {
-        const LOCATIONS: Record<string, { label: string; color: string; desc: string }> = {
-          schmied: { label: "Deepforge", color: "#f59e0b", desc: "Reroll stats, upgrade rarity" },
-          alchemist: { label: "Alchemist Lab", color: "#22c55e", desc: "Potions & elixirs" },
-          koch: { label: "Guild Kitchen", color: "#e87b35", desc: "Meals with XP/Gold buffs" },
-          verzauberer: { label: "Arcanum", color: "#a78bfa", desc: "Gear enchantments" },
-        };
-        return professions.map(prof => {
+      {professions.map(prof => {
           const locked = !prof.unlocked;
-          const loc = LOCATIONS[prof.id] || { label: prof.name, color: prof.color, desc: "" };
+          const loc = NPC_LOCATIONS[prof.id] || { label: prof.name, color: prof.color, desc: "" };
           const isChosen = prof.chosen;
           const canChoose = prof.canChoose && !isChosen && !locked;
           // Materials relevant to this profession
@@ -362,7 +376,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
 
               {/* NPC card — clickable to open modal */}
               <button
-                onClick={() => { if (!locked) { setSelectedNpc(prof); setNpcModalTab("recipes"); setCraftResult(null); } }}
+                onClick={() => { if (!locked) { setSelectedNpc(prof); setNpcModalTab("recipes"); setCraftResult(null); setDismantleResult(null); setTransmuteResult(null); setSelectedTransmute([]); } }}
                 disabled={locked}
                 className="w-full p-4 pt-2 text-left"
                 style={{ cursor: locked ? "not-allowed" : "pointer" }}
@@ -433,30 +447,22 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
               )}
             </div>
           );
-        });
-      })()}
+        })}
       </div>
 
       {/* ─── Workshop Tools — permanent upgrades ────────────────────────────── */}
       {(() => {
         const currentGear = loggedInUser.gear || "worn";
-        const TIERS = [
-          { id: "worn", name: "Worn Tools", tier: 0, xpBonus: 0, cost: 0, currency: "gold", desc: "No bonus", icon: "/images/icons/tools-worn.png" },
-          { id: "sturdy", name: "Sturdy Tools", tier: 1, xpBonus: 2, cost: 250, currency: "gold", desc: "+2% XP on all quests", icon: "/images/icons/tools-sturdy.png" },
-          { id: "masterwork", name: "Masterwork Tools", tier: 2, xpBonus: 4, cost: 750, currency: "gold", desc: "+4% XP on all quests", icon: "/images/icons/tools-masterwork.png" },
-          { id: "legendary", name: "Legendary Tools", tier: 3, xpBonus: 7, cost: 150, currency: "essenz", desc: "+7% XP on all quests", icon: "/images/icons/tools-legendary.png" },
-          { id: "mythic", name: "Mythic Forge", tier: 4, xpBonus: 10, cost: 500, currency: "essenz", desc: "+10% XP on all quests", icon: "/images/icons/tools-mythic.png" },
-        ];
-        const currentTierNum = TIERS.find(t => t.id === currentGear)?.tier ?? 0;
-        const gold = loggedInUser.currencies?.gold ?? loggedInUser.gold ?? 0;
-        const essenz = loggedInUser.currencies?.essenz ?? 0;
+        const currentTierNum = WORKSHOP_TIERS.find(t => t.id === currentGear)?.tier ?? 0;
+        const gold = currencies.gold ?? loggedInUser.currencies?.gold ?? loggedInUser.gold ?? 0;
+        const essenz = currencies.essenz ?? loggedInUser.currencies?.essenz ?? 0;
 
         return (
           <div className="space-y-2">
             <p className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(99,102,241,0.6)" }}>Workshop Tools</p>
             <p className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>Permanent XP upgrades. Each tier must be unlocked sequentially.</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-              {TIERS.filter(t => t.tier > 0).map(gear => {
+              {WORKSHOP_TIERS.filter(t => t.tier > 0).map(gear => {
                 const owned = gear.tier <= currentTierNum;
                 const isNext = gear.tier === currentTierNum + 1;
                 const canAfford = gear.currency === "gold" ? gold >= gear.cost : essenz >= gear.cost;
@@ -674,7 +680,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                         {/* Cost display */}
                         <div className="flex flex-wrap gap-2 mt-2">
                           {recipe.cost?.gold && (
-                            <span className="text-xs flex items-center gap-1" style={{ color: (loggedInUser?.currencies?.gold ?? loggedInUser?.gold ?? 0) >= recipe.cost.gold ? "#f59e0b" : "#f44" }}>
+                            <span className="text-xs flex items-center gap-1" style={{ color: (currencies.gold ?? loggedInUser?.currencies?.gold ?? loggedInUser?.gold ?? 0) >= recipe.cost.gold ? "#f59e0b" : "#f44" }}>
                               <img src="/images/icons/currency-gold.png" alt="" width={14} height={14} style={{ imageRendering: "smooth" }} onError={hideOnError} />
                               {recipe.cost.gold}
                             </span>
@@ -709,7 +715,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
 
             {/* ─── Tab: Schmiedekunst (Schmied only) ───────────────────── */}
             {npcModalTab === "schmiedekunst" && selectedNpc.id === "schmied" && (() => {
-              const inv: InventoryItem[] = ((loggedInUser as unknown as Record<string, unknown>).inventory as InventoryItem[] | undefined) || [];
+              const inv = getUserInventory(loggedInUser);
               const dismantleItems = inv.filter(i => i.rarity && i.name && (i.instanceId || i.id));
               const hasItems = dismantleItems.length > 0;
               // Group by rarity
@@ -776,7 +782,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
 
             {/* ─── Tab: Transmutation (Verzauberer only) ───────────────── */}
             {npcModalTab === "transmutation" && selectedNpc.id === "verzauberer" && (() => {
-              const inv: InventoryItem[] = ((loggedInUser as unknown as Record<string, unknown>).inventory as InventoryItem[] | undefined) || [];
+              const inv = getUserInventory(loggedInUser);
               const epicItems = inv.filter(i => i.rarity === "epic" && i.name && (i.instanceId || i.id));
               // Group epics by slot for proper same-slot validation
               const epicsBySlot: Record<string, InventoryItem[]> = {};

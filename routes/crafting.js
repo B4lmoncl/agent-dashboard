@@ -4,8 +4,8 @@
 const fs = require('fs');
 const path = require('path');
 const router = require('express').Router();
-const { state, saveUsers } = require('../lib/state');
-const { now, getLevelInfo, rollAffixStats, PRIMARY_STATS, MINOR_STATS } = require('../lib/helpers');
+const { state, saveUsers, ensureUserCurrencies } = require('../lib/state');
+const { now, getLevelInfo, PRIMARY_STATS, MINOR_STATS, createGearInstance } = require('../lib/helpers');
 
 const VALID_SLOTS = ['weapon', 'shield', 'helm', 'armor', 'amulet', 'boots'];
 const { requireAuth } = require('../lib/middleware');
@@ -177,7 +177,7 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
   if (recipe.cost?.gold) {
     const userGold = u.currencies?.gold ?? u.gold ?? 0;
     if (userGold < recipe.cost.gold) {
-      return res.status(400).json({ error: `Nicht genug Gold (${userGold}/${recipe.cost.gold})` });
+      return res.status(400).json({ error: `Not enough gold (${userGold}/${recipe.cost.gold})` });
     }
   }
 
@@ -186,7 +186,7 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
   for (const [matId, amount] of Object.entries(recipe.materials || {})) {
     if ((u.craftingMaterials[matId] || 0) < amount) {
       const matDef = PROFESSIONS_DATA.materials.find(m => m.id === matId);
-      return res.status(400).json({ error: `Nicht genug ${matDef?.name || matId} (${u.craftingMaterials[matId] || 0}/${amount})` });
+      return res.status(400).json({ error: `Not enough ${matDef?.name || matId} (${u.craftingMaterials[matId] || 0}/${amount})` });
     }
   }
 
@@ -249,7 +249,7 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
         // Add a new minor stat from pool
         const pick = template.affixes.minor.pool[Math.floor(Math.random() * template.affixes.minor.pool.length)];
         eq.stats[pick.stat] = pick.min + Math.floor(Math.random() * (pick.max - pick.min + 1));
-        result.message = `Neuer Minor-Stat: ${pick.stat} +${eq.stats[pick.stat]}`;
+        result.message = `New minor stat: ${pick.stat} +${eq.stats[pick.stat]}`;
       } else {
         const statToReroll = minorStats[Math.floor(Math.random() * minorStats.length)];
         const poolEntry = template.affixes.minor.pool.find(p => p.stat === statToReroll);
@@ -276,10 +276,10 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
       const currentIdx = RARITY_ORDER.indexOf(eq.rarity || 'common');
       if (Math.random() < 0.50) {
         eq.rarity = RARITY_ORDER[currentIdx + 1];
-        result.message = `Veredelung erfolgreich! Item ist jetzt ${eq.rarity}!`;
+        result.message = `Upgrade successful! Item is now ${eq.rarity}!`;
         result.upgraded = true;
       } else {
-        result.message = 'Veredelung fehlgeschlagen. Die Materialien sind verloren.';
+        result.message = 'Upgrade failed. Materials are lost.';
         result.success = false;
       }
       result.updatedGear = eq;
@@ -312,7 +312,6 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
     }
 
     case 'enchant_gear': {
-      const eq = u.equipment[targetSlot];
       const allStats = [...PRIMARY_STATS, ...MINOR_STATS];
       const stat = allStats[Math.floor(Math.random() * allStats.length)];
       const value = 2 + Math.floor(Math.random() * 3); // 2-4
@@ -432,7 +431,6 @@ router.post('/api/professions/switch', requireAuth, (req, res) => {
   }
 
   // Cost: 200 essenz to switch (lose all profession XP)
-  const { ensureUserCurrencies } = require('../lib/state');
   ensureUserCurrencies(u);
   const switchCost = 200;
   if ((u.currencies.essenz || 0) < switchCost) {
@@ -497,7 +495,6 @@ router.post('/api/schmiedekunst/dismantle', requireAuth, (req, res) => {
   u.inventory.splice(idx, 1);
 
   // Award essenz
-  const { ensureUserCurrencies } = require('../lib/state');
   ensureUserCurrencies(u);
   u.currencies.essenz = (u.currencies.essenz || 0) + essenzGained;
 
@@ -514,7 +511,7 @@ router.post('/api/schmiedekunst/dismantle', requireAuth, (req, res) => {
 
   saveUsers();
   res.json({
-    message: `${item.name} zerlegt! +${essenzGained} Essenz${materialsGained.length > 0 ? ' + Materialien' : ''}`,
+    message: `${item.name} dismantled! +${essenzGained} Essenz${materialsGained.length > 0 ? ' + Materials' : ''}`,
     dismantled: { name: item.name, rarity },
     essenzGained,
     materialsGained,
@@ -532,6 +529,9 @@ router.post('/api/schmiedekunst/dismantle-all', requireAuth, (req, res) => {
   if (!rarity || !DISMANTLE_ESSENZ[rarity]) {
     return res.status(400).json({ error: 'Valid rarity required (common/uncommon/rare/epic/legendary)' });
   }
+  if (rarity === 'legendary') {
+    return res.status(400).json({ error: 'Legendary items must be dismantled individually' });
+  }
 
   u.inventory = u.inventory || [];
   const equippedIds = new Set();
@@ -546,12 +546,12 @@ router.post('/api/schmiedekunst/dismantle-all', requireAuth, (req, res) => {
   );
   if (toDismantle.length === 0) return res.status(400).json({ error: `No ${rarity} items to dismantle` });
 
-  const { ensureUserCurrencies } = require('../lib/state');
   ensureUserCurrencies(u);
   u.craftingMaterials = u.craftingMaterials || {};
 
   let totalEssenz = 0;
   const allMats = {};
+  const dismantleIds = new Set(toDismantle.map(i => i.instanceId || i.id));
   for (const item of toDismantle) {
     totalEssenz += DISMANTLE_ESSENZ[rarity] || 2;
     for (const mat of (DISMANTLE_MATERIALS[rarity] || DISMANTLE_MATERIALS.common)) {
@@ -560,9 +560,9 @@ router.post('/api/schmiedekunst/dismantle-all', requireAuth, (req, res) => {
         allMats[mat.id] = (allMats[mat.id] || 0) + 1;
       }
     }
-    const idx = u.inventory.findIndex(i => (i.instanceId || i.id) === (item.instanceId || item.id));
-    if (idx !== -1) u.inventory.splice(idx, 1);
   }
+  // Remove all dismantled items in one pass (O(n) instead of O(n²))
+  u.inventory = u.inventory.filter(i => !dismantleIds.has(i.instanceId || i.id));
 
   u.currencies.essenz = (u.currencies.essenz || 0) + totalEssenz;
   saveUsers();
@@ -639,7 +639,6 @@ router.post('/api/schmiedekunst/transmute', requireAuth, (req, res) => {
   }
 
   // Find legendary items in same slot
-  const { createGearInstance } = require('../lib/helpers');
   const legendaryPool = state.FULL_GEAR_ITEMS.filter(g =>
     g.slot === slot && g.rarity === 'legendary' && g.tier === 4
   );
@@ -664,7 +663,7 @@ router.post('/api/schmiedekunst/transmute', requireAuth, (req, res) => {
 
   saveUsers();
   res.json({
-    message: `Schmiedekunst erfolgreich! ${legendary.name} wurde geschmiedet!`,
+    message: `Transmutation successful! ${legendary.name} has been forged!`,
     consumed: items.map(i => ({ name: i.name, rarity: i.rarity })),
     created: legendary,
     goldSpent: transmuteCost,
