@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const crypto = require('crypto');
 const { state, XP_BY_PRIORITY, GOLD_BY_PRIORITY, TEMP_BY_PRIORITY, XP_BY_RARITY, GOLD_BY_RARITY, RUNENSPLITTER_BY_RARITY, STREAK_MILESTONES, RARITY_WEIGHTS, RARITY_COLORS, RARITY_ORDER, EQUIPMENT_SLOTS, LEVELS, PLAYER_QUEST_TYPES, saveQuests, savePlayerProgress, saveManagedKeys, rebuildQuestsById } = require('../lib/state');
-const { now, getLevelInfo, getPlayerProgress, awardXP, getTodayBerlin } = require('../lib/helpers');
+const { now, getLevelInfo, getPlayerProgress, getTodayBerlin } = require('../lib/helpers');
 const { requireApiKey, requireMasterKey, getMasterKey } = require('../lib/middleware');
 const { assignRarity, selectDailyQuests } = require('../lib/rotation');
 const { resolveQuest } = require('../lib/quest-templates');

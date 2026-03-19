@@ -1,7 +1,7 @@
 // ─── Quest API ──────────────────────────────────────────────────────────────────
 const router = require('express').Router();
 const { state, PLAYER_QUEST_TYPES, NPC_NAMES, XP_BY_PRIORITY, XP_BY_RARITY, saveQuests, saveData, savePlayerProgress, saveQuestCatalog, rebuildQuestsById } = require('../lib/state');
-const { now, getPlayerProgress, getLevelInfo, onQuestCompletedByUser, awardXP, awardAgentGold, updateAgentStreak, randGold, addLootToInventory } = require('../lib/helpers');
+const { now, getPlayerProgress, getLevelInfo, onQuestCompletedByUser, randGold, addLootToInventory } = require('../lib/helpers');
 const { requireApiKey } = require('../lib/middleware');
 const { rebuildCatalogMeta } = require('../lib/quest-catalog');
 
@@ -387,12 +387,6 @@ router.post('/api/quest/:id/complete', requireApiKey, (req, res) => {
   const prevLevel3 = getLevelInfo(state.users[agentKey]?.xp ?? 0).level;
   if (state.users[agentKey]) {
     newAchievements = onQuestCompletedByUser(agentKey, quest);
-  } else if (state.store.agents[agentKey]) {
-    state.store.agents[agentKey].questsCompleted = (state.store.agents[agentKey].questsCompleted || 0) + 1;
-    awardXP(agentKey, quest.priority);
-    awardAgentGold(agentKey, quest.priority, state.store.agents[agentKey].streakDays);
-    updateAgentStreak(agentKey);
-    saveData();
   }
   const u3 = state.users[agentKey];
   const newLevelInfo3 = getLevelInfo(u3?.xp ?? 0);
@@ -691,7 +685,10 @@ router.patch('/api/quest/:id', requireApiKey, (req, res) => {
     quest.status = status;
     if (status === 'completed' && !wasCompleted) {
       quest.completedAt = quest.completedAt || now();
-      if (quest.claimedBy) awardXP(quest.claimedBy.toLowerCase(), quest.priority);
+      const completerId = (quest.claimedBy || '').toLowerCase();
+      if (completerId && state.users[completerId]) {
+        onQuestCompletedByUser(completerId, quest);
+      }
     }
   }
   saveQuests();
@@ -715,12 +712,6 @@ router.patch('/api/quests/:id/complete', requireApiKey, (req, res) => {
   let newAchievements = [];
   if (state.users[agentKey2]) {
     newAchievements = onQuestCompletedByUser(agentKey2, quest);
-  } else if (state.store.agents[agentKey2]) {
-    state.store.agents[agentKey2].questsCompleted = (state.store.agents[agentKey2].questsCompleted || 0) + 1;
-    awardXP(agentKey2, quest.priority);
-    awardAgentGold(agentKey2, quest.priority, state.store.agents[agentKey2].streakDays);
-    updateAgentStreak(agentKey2);
-    saveData();
   }
   res.json({ success: true, message: 'Quest completed', quest, newAchievements });
 });
@@ -743,9 +734,11 @@ router.post('/api/quests/bulk-update', requireApiKey, (req, res) => {
     quest.status = status;
     if (status === 'completed' && !quest.completedAt) {
       quest.completedAt = now();
-      // Award XP to the agent who claimed it (if any)
       if (wasNotCompleted && quest.claimedBy) {
-        awardXP(quest.claimedBy.toLowerCase(), quest.priority);
+        const completerId = quest.claimedBy.toLowerCase();
+        if (state.users[completerId]) {
+          onQuestCompletedByUser(completerId, quest);
+        }
       }
     }
     updated.push(id);
