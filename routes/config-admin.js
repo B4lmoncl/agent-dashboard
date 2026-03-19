@@ -72,7 +72,7 @@ router.get('/api/dashboard', async (req, res) => {
   let habits = [];
   let favorites = [];
   if (playerLower) {
-    rituals = (state.rituals?.active || []).filter(r => r.playerId === playerLower && !r.isAntiRitual);
+    rituals = (state.rituals || []).filter(r => r.playerId === playerLower && !r.isAntiRitual);
     habits = state.habits.filter(h => h.playerId === playerLower);
     const u = state.users[playerLower];
     favorites = u?.favorites || [];
