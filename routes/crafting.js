@@ -90,11 +90,9 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
 
   // Check 2-profession limit: player can only have 2 active professions
   u.chosenProfessions = u.chosenProfessions || [];
-  if (!u.chosenProfessions.includes(recipe.profession)) {
-    if (u.chosenProfessions.length >= 2) {
-      return res.status(400).json({ error: `Du hast bereits 2 Berufe gewählt (${u.chosenProfessions.join(', ')}). Wechsel erst einen ab.` });
-    }
-    u.chosenProfessions.push(recipe.profession);
+  const needsEnrollment = !u.chosenProfessions.includes(recipe.profession);
+  if (needsEnrollment && u.chosenProfessions.length >= 2) {
+    return res.status(400).json({ error: `Du hast bereits 2 Berufe gewählt (${u.chosenProfessions.join(', ')}). Wechsel erst einen ab.` });
   }
 
   // Check profession level
@@ -110,6 +108,26 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
     if (elapsed < recipe.cooldownMinutes) {
       const remaining = Math.ceil(recipe.cooldownMinutes - elapsed);
       return res.status(429).json({ error: `Cooldown: ${remaining} Minuten verbleibend` });
+    }
+  }
+
+  // ─── Pre-validate recipe requirements BEFORE deducting anything ──────────
+  // Validate targetSlot early (needed by Schmied/Verzauberer recipes)
+  if (targetSlot && !VALID_SLOTS.includes(targetSlot)) {
+    return res.status(400).json({ error: `Invalid slot: ${targetSlot}` });
+  }
+
+  // Validate slot-requiring recipes have a targetSlot and valid gear
+  const SLOT_RECIPES = ['reroll_stat', 'reroll_minor', 'upgrade_rarity', 'enchant_gear', 'permanent_enchant'];
+  if (SLOT_RECIPES.includes(recipeId)) {
+    if (!targetSlot) return res.status(400).json({ error: 'targetSlot required' });
+    const eq = u.equipment?.[targetSlot];
+    if (!eq || typeof eq === 'string') return res.status(400).json({ error: 'No gear instance in slot' });
+    if (recipeId === 'upgrade_rarity') {
+      const RARITY_ORDER = ['common', 'uncommon', 'rare', 'epic', 'legendary'];
+      if (RARITY_ORDER.indexOf(eq.rarity || 'common') >= RARITY_ORDER.length - 1) {
+        return res.status(400).json({ error: 'Item ist bereits legendär!' });
+      }
     }
   }
 
@@ -130,7 +148,9 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
     }
   }
 
-  // Deduct costs
+  // ─── All validation passed — enroll profession + deduct costs ──────────────
+  if (needsEnrollment) u.chosenProfessions.push(recipe.profession);
+
   if (recipe.cost?.gold) {
     if (u.currencies) u.currencies.gold -= recipe.cost.gold;
     else u.gold = (u.gold || 0) - recipe.cost.gold;
@@ -148,20 +168,12 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
   const newProfLevel = getProfLevel(u, recipe.profession);
   u.professions[recipe.profession].level = newProfLevel.level;
 
-  // ─── Execute recipe effect ──────────────────────────────────────────────
-  // Validate targetSlot if provided
-  if (targetSlot && !VALID_SLOTS.includes(targetSlot)) {
-    return res.status(400).json({ error: `Invalid slot: ${targetSlot}` });
-  }
-
   let result = { success: true, message: '' };
 
   switch (recipeId) {
     case 'reroll_stat': {
-      // Reroll one primary stat on an equipped item
-      if (!targetSlot) return res.status(400).json({ error: 'targetSlot required' });
-      const eq = u.equipment?.[targetSlot];
-      if (!eq || typeof eq === 'string') return res.status(400).json({ error: 'No gear instance in slot' });
+      // Reroll one primary stat on an equipped item (pre-validated above)
+      const eq = u.equipment[targetSlot];
       const template = state.gearById.get(eq.templateId) || state.itemTemplates?.get(eq.templateId);
       if (!template?.affixes?.primary?.pool?.length) return res.status(400).json({ error: 'Item has no rerollable primary stats' });
       // Pick a random primary stat and reroll it
@@ -187,9 +199,7 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
     }
 
     case 'reroll_minor': {
-      if (!targetSlot) return res.status(400).json({ error: 'targetSlot required' });
-      const eq = u.equipment?.[targetSlot];
-      if (!eq || typeof eq === 'string') return res.status(400).json({ error: 'No gear instance in slot' });
+      const eq = u.equipment[targetSlot];
       const template = state.gearById.get(eq.templateId) || state.itemTemplates?.get(eq.templateId);
       if (!template?.affixes?.minor?.pool?.length) return res.status(400).json({ error: 'Item has no rerollable minor stats' });
       const minorStats = Object.keys(eq.stats || {}).filter(s => MINOR_STATS.includes(s));
@@ -205,6 +215,13 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
           const oldVal = eq.stats[statToReroll];
           eq.stats[statToReroll] = poolEntry.min + Math.floor(Math.random() * (poolEntry.max - poolEntry.min + 1));
           result.message = `${statToReroll}: ${oldVal} → ${eq.stats[statToReroll]}`;
+        } else {
+          // Stat not in pool — pick random from pool (same logic as reroll_stat)
+          const randomPool = template.affixes.minor.pool[Math.floor(Math.random() * template.affixes.minor.pool.length)];
+          const oldVal = eq.stats[statToReroll];
+          delete eq.stats[statToReroll];
+          eq.stats[randomPool.stat] = randomPool.min + Math.floor(Math.random() * (randomPool.max - randomPool.min + 1));
+          result.message = `${statToReroll} (${oldVal}) → ${randomPool.stat} (${eq.stats[randomPool.stat]})`;
         }
       }
       result.updatedGear = eq;
@@ -212,16 +229,9 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
     }
 
     case 'upgrade_rarity': {
-      if (!targetSlot) return res.status(400).json({ error: 'targetSlot required' });
-      const eq = u.equipment?.[targetSlot];
-      if (!eq || typeof eq === 'string') return res.status(400).json({ error: 'No gear instance in slot' });
+      const eq = u.equipment[targetSlot];
       const RARITY_ORDER = ['common', 'uncommon', 'rare', 'epic', 'legendary'];
       const currentIdx = RARITY_ORDER.indexOf(eq.rarity || 'common');
-      if (currentIdx >= RARITY_ORDER.length - 1) {
-        result.message = 'Item ist bereits legendär!';
-        result.success = false;
-        break;
-      }
       if (Math.random() < 0.50) {
         eq.rarity = RARITY_ORDER[currentIdx + 1];
         result.message = `Veredelung erfolgreich! Item ist jetzt ${eq.rarity}!`;
@@ -238,6 +248,11 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
     case 'potion_gold':
     case 'potion_luck': {
       u.activeBuffs = u.activeBuffs || [];
+      if (u.activeBuffs.length >= 50) {
+        result.message = 'Zu viele aktive Buffs! Schließe erst Quests ab.';
+        result.success = false;
+        break;
+      }
       u.activeBuffs.push({
         type: recipe.result.buffType,
         questsRemaining: 3,
@@ -255,9 +270,7 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
     }
 
     case 'enchant_gear': {
-      if (!targetSlot) return res.status(400).json({ error: 'targetSlot required' });
-      const eq = u.equipment?.[targetSlot];
-      if (!eq || typeof eq === 'string') return res.status(400).json({ error: 'No gear instance in slot' });
+      const eq = u.equipment[targetSlot];
       const allStats = [...PRIMARY_STATS, ...MINOR_STATS];
       const stat = allStats[Math.floor(Math.random() * allStats.length)];
       const value = 2 + Math.floor(Math.random() * 3); // 2-4
@@ -274,9 +287,7 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
     }
 
     case 'permanent_enchant': {
-      if (!targetSlot) return res.status(400).json({ error: 'targetSlot required' });
-      const eq = u.equipment?.[targetSlot];
-      if (!eq || typeof eq === 'string') return res.status(400).json({ error: 'No gear instance in slot' });
+      const eq = u.equipment[targetSlot];
       const stat = MINOR_STATS[Math.floor(Math.random() * MINOR_STATS.length)];
       const value = 1 + Math.floor(Math.random() * 2); // 1-2
       eq.stats = eq.stats || {};
@@ -442,6 +453,10 @@ router.post('/api/schmiedekunst/transmute', requireAuth, (req, res) => {
   const { itemIds } = req.body; // array of 3 inventory instanceIds
   if (!itemIds || !Array.isArray(itemIds) || itemIds.length !== 3) {
     return res.status(400).json({ error: '3 itemIds required' });
+  }
+  // Prevent duplicate IDs (exploit: same item counted 3x)
+  if (new Set(itemIds).size !== 3) {
+    return res.status(400).json({ error: 'Alle 3 Items müssen unterschiedlich sein' });
   }
 
   u.inventory = u.inventory || [];

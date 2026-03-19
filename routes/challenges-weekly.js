@@ -179,11 +179,17 @@ router.post('/api/weekly-challenge/claim', requireAuth, (req, res) => {
   const rewards = stageRewards[String(nextStage)] || {};
 
   ensureUserCurrencies(u);
-  if (rewards.gold) { u.currencies.gold = (u.currencies.gold || 0) + rewards.gold; u.gold = u.currencies.gold; }
+  if (rewards.gold) awardCurrency(uid, 'gold', rewards.gold);
   if (rewards.runensplitter) awardCurrency(uid, 'runensplitter', rewards.runensplitter);
   if (rewards.essenz) awardCurrency(uid, 'essenz', rewards.essenz);
   if (rewards.sternentaler) awardCurrency(uid, 'sternentaler', rewards.sternentaler);
+  const prevLevel = rewards.xp ? getLevelInfo(u.xp || 0).level : 0;
   if (rewards.xp) { u.xp = (u.xp || 0) + rewards.xp; }
+  // Award stardust on level-up (same logic as quest completion)
+  if (rewards.xp) {
+    const newLevel = getLevelInfo(u.xp).level;
+    if (newLevel > prevLevel) awardCurrency(uid, 'stardust', 5 + newLevel);
+  }
 
   // Advance stage
   u.weeklyChallenge.completedStages.push(nextStage);

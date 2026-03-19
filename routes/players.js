@@ -233,6 +233,10 @@ router.post('/api/player/:name/companion/ultimate', requireAuth, requireSelf('na
       if (quest.status !== 'in_progress' && quest.status !== 'open') {
         return res.status(400).json({ error: 'Quest muss offen oder in Bearbeitung sein' });
       }
+      // Ownership check: cannot complete another player's claimed quest
+      if (quest.claimedBy && quest.claimedBy !== uid) {
+        return res.status(403).json({ error: 'Quest gehört einem anderen Spieler' });
+      }
       if (quest.status === 'open') {
         quest.status = 'in_progress';
         quest.claimedBy = uid;
@@ -274,8 +278,11 @@ router.post('/api/player/:name/companion/ultimate', requireAuth, requireSelf('na
   // Set cooldown
   u.companion.ultimateLastUsed = now();
   saveUsers();
-  const { saveQuests } = require('../lib/state');
-  saveQuests();
+  // Only save quests if we actually modified one
+  if (result.completedQuest) {
+    const { saveQuests } = require('../lib/state');
+    saveQuests();
+  }
 
   res.json({
     ...result,
@@ -292,7 +299,7 @@ router.get('/api/cv-export', (req, res) => {
     q.type === 'learning' &&
     q.status === 'completed' &&
     !q.npcGiverId &&
-    (!userId || q.completedBy === userId || (q.claimedBy && q.claimedBy.toLowerCase() === userId.toLowerCase()))
+    (!userId || (q.completedBy && q.completedBy.toLowerCase() === userId.toLowerCase()) || (q.claimedBy && q.claimedBy.toLowerCase() === userId.toLowerCase()))
   );
   const skillMap = {};
   for (const q of learningQuests) {
