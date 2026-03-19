@@ -171,6 +171,8 @@ export interface User {
     koch?: { level: number; xp: number; lastCraftAt?: string };
   };
   craftingMaterials?: Record<string, number>;
+  equippedTitle?: { id: string; name: string; rarity: string } | null;
+  chosenProfessions?: string[];
 }
 
 export interface CampaignQuest {

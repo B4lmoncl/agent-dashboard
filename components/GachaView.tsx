@@ -381,7 +381,7 @@ function BannerPullModal({
 
   // Pity info panel (click-toggle)
   const inSoftPity = pity ? pity.pityCounter >= 35 : false;
-  const pullsTilLegendary = pity ? (50 - pity.pityCounter) : 50;
+  const pullsTilLegendary = pity ? ((pity.hardPity || 50) - pity.pityCounter) : 50;
 
   return (
     <ModalOverlay isOpen onClose={onClose} zIndex={55}>
@@ -552,7 +552,7 @@ function BannerPullModal({
                       <span className="font-semibold" style={{ color: "#a855f7" }}>Epic: {pity.epicPityCounter}/10</span>
                     </p>
                     <p className="text-[10px] mt-1" style={{ color: "rgba(255,255,255,0.35)" }}>
-                      {50 - pity.pityCounter} pulls until guaranteed Legendary
+                      {(pity.hardPity || 50) - pity.pityCounter} pulls until guaranteed Legendary
                       {pity.pityCounter >= 35 && <span style={{ color: "#f97316" }}> — Soft Pity active!</span>}
                       {pity.guaranteed5050 && <span style={{ color: "#22c55e" }}> — Next Legendary = Featured!</span>}
                     </p>
@@ -674,7 +674,7 @@ export default function GachaView({ onRefresh, onPullComplete }: {
 
   // Load banners
   useEffect(() => {
-    fetch("/api/gacha/banners").then(r => r.json()).then(data => {
+    fetch("/api/gacha/banners").then(r => { if (!r.ok) throw new Error(); return r.json(); }).then(data => {
       if (Array.isArray(data)) setBanners(data);
     }).catch(() => {});
   }, []);
@@ -682,14 +682,14 @@ export default function GachaView({ onRefresh, onPullComplete }: {
   // Load pity
   useEffect(() => {
     if (!user?.id) return;
-    fetch(`/api/gacha/pity/${user.id}`).then(r => r.json()).then(data => {
+    fetch(`/api/gacha/pity/${user.id}`).then(r => { if (!r.ok) throw new Error(); return r.json(); }).then(data => {
       if (data.pityCounter !== undefined) setPity(data);
     }).catch(() => {});
   }, [user?.id, pullResults]);
 
   // Pre-load pool for item name resolution
   useEffect(() => {
-    fetch("/api/gacha/pool").then(r => r.json()).then(data => {
+    fetch("/api/gacha/pool").then(r => { if (!r.ok) throw new Error(); return r.json(); }).then(data => {
       if (data.pool) setPoolInfo(data.pool);
     }).catch(() => {});
   }, []);

@@ -210,6 +210,8 @@ router.post('/api/shop/gear/buy', requireApiKey, (req, res) => {
   const { userId, gearId } = req.body;
   if (!userId || !gearId) return res.status(400).json({ error: 'userId and gearId are required' });
   const uid = userId.toLowerCase();
+  // Self-check: only allow buying for own account
+  if (req.auth?.userId && req.auth.userId !== uid) return res.status(403).json({ error: 'Cannot buy gear for another user' });
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'User not found' });
   const gear = GEAR_TIERS.find(g => g.id === gearId);
@@ -242,6 +244,8 @@ router.post('/api/shop/buy', requireApiKey, (req, res) => {
   const { userId, itemId } = req.body;
   if (!userId || !itemId) return res.status(400).json({ error: 'userId and itemId are required' });
   const uid = userId.toLowerCase();
+  // Self-check: only allow buying for own account
+  if (req.auth?.userId && req.auth.userId !== uid) return res.status(403).json({ error: 'Cannot buy items for another user' });
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'User not found' });
   const item = SHOP_ITEMS.find(i => i.id === itemId);

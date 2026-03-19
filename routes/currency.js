@@ -3,7 +3,7 @@
  */
 const router = require('express').Router();
 const { state, saveUsers, ensureUserCurrencies } = require('../lib/state');
-const { requireApiKey } = require('../lib/middleware');
+const { requireApiKey, getMasterKey } = require('../lib/middleware');
 const { now, awardCurrency, getStreakMilestone } = require('../lib/helpers');
 
 // GET /api/currency/:playerId — read all balances
@@ -28,6 +28,14 @@ router.post('/api/currency/:playerId', requireApiKey, (req, res) => {
   }
   if (!['earn', 'spend'].includes(action)) {
     return res.status(400).json({ error: 'action muss "earn" oder "spend" sein' });
+  }
+  // "earn" requires master key to prevent unlimited currency minting
+  if (action === 'earn') {
+    const master = getMasterKey();
+    const callerKey = req.headers['x-api-key'] || req.headers['authorization']?.replace('Bearer ', '');
+    if (!master || callerKey !== master) {
+      return res.status(403).json({ error: 'Earning currency requires master key' });
+    }
   }
   ensureUserCurrencies(u);
   if (!(currency in u.currencies)) {

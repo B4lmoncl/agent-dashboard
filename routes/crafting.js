@@ -80,6 +80,16 @@ function getSkillUpXpMultiplier(profLevel, reqProfLevel) {
   return 0;
 }
 
+// Max profession slots based on player level (configured in professions.json)
+function getMaxProfessionSlots(playerLevel) {
+  const slots = PROFESSIONS_DATA.professionSlots || [{ playerLevel: 5, slot: 1 }, { playerLevel: 15, slot: 2 }];
+  let maxSlots = 0;
+  for (const s of slots) {
+    if (playerLevel >= s.playerLevel) maxSlots = s.slot;
+  }
+  return maxSlots;
+}
+
 function getProfLevel(u, profId) {
   const prof = (u.professions || {})[profId];
   if (!prof) return { level: 0, xp: 0 };
@@ -116,7 +126,8 @@ router.get('/api/professions', (req, res) => {
     const profProgress = u ? getProfLevel(u, p.id) : { level: 0, xp: 0 };
     const lastCraft = (u?.professions || {})[p.id]?.lastCraftAt || null;
     const chosen = (u?.chosenProfessions || []).includes(p.id);
-    const canChoose = chosen || (u?.chosenProfessions || []).length < 2;
+    const pMaxSlots = u ? getMaxProfessionSlots(playerLevel) : 0;
+    const canChoose = chosen || (u?.chosenProfessions || []).length < pMaxSlots;
     const rank = getProfRank(profProgress.level);
     return {
       ...p,
@@ -156,7 +167,10 @@ router.get('/api/professions', (req, res) => {
   const materials = u?.craftingMaterials || {};
   const currencies = u ? { essenz: u.currencies?.essenz ?? 0, gold: u.currencies?.gold ?? u.gold ?? 0, stardust: u.currencies?.stardust ?? 0 } : {};
   const dailyBonus = u ? getDailyBonusInfo(u) : { dailyBonusAvailable: false };
-  res.json({ professions, recipes, materials, materialDefs: PROFESSIONS_DATA.materials, proficiencyRanks: PROFICIENCY_RANKS, skillUpColors: PROFESSIONS_DATA.skillUpColors || {}, currencies, dailyBonus });
+  const playerLvl = u ? getLevelInfo(u.xp || 0).level : 0;
+  const maxProfSlots = getMaxProfessionSlots(playerLvl);
+  const chosenCount = (u?.chosenProfessions || []).length;
+  res.json({ professions, recipes, materials, materialDefs: PROFESSIONS_DATA.materials, proficiencyRanks: PROFICIENCY_RANKS, skillUpColors: PROFESSIONS_DATA.skillUpColors || {}, currencies, dailyBonus, maxProfSlots, chosenCount, professionSlots: PROFESSIONS_DATA.professionSlots || [] });
 });
 
 // ─── POST /api/professions/craft — execute a recipe ─────────────────────────
@@ -181,11 +195,12 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
     return res.status(400).json({ error: `Requires player level ${profDef.unlockCondition.value}` });
   }
 
-  // Check 2-profession limit: player can only have 2 active professions
+  // Check profession slot limit based on player level
   u.chosenProfessions = u.chosenProfessions || [];
+  const maxSlots = getMaxProfessionSlots(playerLevel);
   const needsEnrollment = !u.chosenProfessions.includes(recipe.profession);
-  if (needsEnrollment && u.chosenProfessions.length >= 2) {
-    return res.status(400).json({ error: `You already have 2 professions (${u.chosenProfessions.join(', ')}). Drop one first.` });
+  if (needsEnrollment && u.chosenProfessions.length >= maxSlots) {
+    return res.status(400).json({ error: `You have ${u.chosenProfessions.length}/${maxSlots} profession slots (${u.chosenProfessions.join(', ')}). ${maxSlots < 4 ? 'Unlock more slots by leveling up, or d' : 'D'}rop one first.` });
   }
 
   // Check profession level
@@ -568,8 +583,10 @@ router.post('/api/professions/choose', requireAuth, (req, res) => {
   if (u.chosenProfessions.includes(professionId)) {
     return res.status(400).json({ error: `${profDef.name} is already an active profession.` });
   }
-  if (u.chosenProfessions.length >= 2) {
-    return res.status(400).json({ error: `You already have 2 professions (${u.chosenProfessions.join(', ')}). Drop one first.` });
+  const choosePLevel = getLevelInfo(u.xp || 0).level;
+  const chooseMaxSlots = getMaxProfessionSlots(choosePLevel);
+  if (u.chosenProfessions.length >= chooseMaxSlots) {
+    return res.status(400).json({ error: `You have ${u.chosenProfessions.length}/${chooseMaxSlots} profession slots (${u.chosenProfessions.join(', ')}). ${chooseMaxSlots < 4 ? 'Unlock more slots by leveling up, or d' : 'D'}rop one first.` });
   }
 
   u.chosenProfessions.push(professionId);

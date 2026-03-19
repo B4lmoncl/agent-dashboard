@@ -4,7 +4,7 @@ services:
     container_name: agent-dashboard-api
     restart: unless-stopped
     ports:
-      - "3001:3001"
+      - "127.0.0.1:3001:3001"
     environment:
       - NODE_ENV=production
       - PORT=3001
@@ -12,6 +12,10 @@ services:
       - API_KEY=${API_KEY:-}
       # Multiple keys (one per agent): API_KEYS=lyra-key,hex-key,nova-key
       - API_KEYS=${API_KEYS:-}
+      # Admin master key (defaults to first API_KEY if not set)
+      - MASTER_KEY=${MASTER_KEY:-}
+      # GitHub webhook HMAC verification secret
+      - GITHUB_WEBHOOK_SECRET=${GITHUB_WEBHOOK_SECRET:-}
     volumes:
       - quest-data:/app/data
 

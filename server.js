@@ -42,6 +42,15 @@ app.use(cors({ credentials: true, origin: true }));
 app.use(express.json());
 app.use(cookieParser());
 
+// Security headers
+app.use((req, res, next) => {
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('X-Frame-Options', 'SAMEORIGIN');
+  res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+  res.setHeader('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
+  next();
+});
+
 // Rate limiting
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
@@ -99,6 +108,14 @@ app.use(require('./routes/habits-inventory'));
 app.use(require('./routes/crafting'));
 app.use(require('./routes/challenges-weekly'));
 app.use(require('./routes/npcs-misc'));  // Must be last (has SPA fallback catch-all)
+
+// ─── Express error handler (catch-all for unhandled route errors) ────────────
+app.use((err, req, res, _next) => {
+  console.error(`[error] ${req.method} ${req.path}:`, err.message || err);
+  if (!res.headersSent) {
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
 
 // ─── Boot sequence ───────────────────────────────────────────────────────────
 ensureDataDir();

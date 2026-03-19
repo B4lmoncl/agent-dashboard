@@ -3,6 +3,7 @@
 import { useEffect, useState, useCallback, useRef, useMemo, lazy, Suspense } from "react";
 import StatBar from "@/components/StatBar";
 import OnboardingWizard from "@/components/OnboardingWizard";
+import ErrorBoundary from "@/components/ErrorBoundary";
 // Lazy-loaded views — only loaded when the tab is active (code splitting)
 const ForgeView = lazy(() => import("@/components/ForgeView"));
 const LeaderboardView = lazy(() => import("@/components/LeaderboardView"));
@@ -878,13 +879,13 @@ export default function Dashboard() {
                 </div>
               </div>
             )}
-            <Suspense fallback={<ViewFallback />}><LeaderboardView entries={leaderboard} agents={agents} mode="players" /></Suspense>
+            <ErrorBoundary><Suspense fallback={<ViewFallback />}><LeaderboardView entries={leaderboard} agents={agents} mode="players" /></Suspense></ErrorBoundary>
           </div>
         )}
 
         {/* Honors View — Player-specific */}
         {dashView === "honors" && (
-          <Suspense fallback={<ViewFallback />}><HonorsView catalogue={achievementCatalogue} /></Suspense>
+          <ErrorBoundary><Suspense fallback={<ViewFallback />}><HonorsView catalogue={achievementCatalogue} /></Suspense></ErrorBoundary>
         )}
 
         {/* Campaign View */}
@@ -922,23 +923,23 @@ export default function Dashboard() {
 
         {/* ── SHOP TAB ── */}
         {dashView === "shop" && (
-          <Suspense fallback={<ViewFallback />}><ShopView
+          <ErrorBoundary><Suspense fallback={<ViewFallback />}><ShopView
             onBuy={handleShopBuy}
             onGearBuy={handleGearBuy}
-          /></Suspense>
+          /></Suspense></ErrorBoundary>
         )}
 
         {/* ── FORGE TAB ── */}
         {dashView === "forge" && (
-          <Suspense fallback={<ViewFallback />}><ForgeView onRefresh={refresh} onNavigate={(tab: string) => setDashView(tab as typeof dashView)} /></Suspense>
+          <ErrorBoundary><Suspense fallback={<ViewFallback />}><ForgeView onRefresh={refresh} onNavigate={(tab: string) => setDashView(tab as typeof dashView)} /></Suspense></ErrorBoundary>
         )}
 
         {/* ── VAULT OF FATE (GACHA) TAB ── */}
         {dashView === "gacha" && (
-          <Suspense fallback={<ViewFallback />}><GachaView
+          <ErrorBoundary><Suspense fallback={<ViewFallback />}><GachaView
             onRefresh={refresh}
             onPullComplete={(items) => { items.forEach((item: any, i: number) => { setTimeout(() => addToast({ type: "flavor", message: `${item.item?.name || "Item"} collected!`, icon: item.item?.icon || "/images/icons/vault-of-fate.png", sub: item.item?.rarity || "common" }), i * 50); }); }}
-          /></Suspense>
+          /></Suspense></ErrorBoundary>
         )}
 
         {/* ── ROADMAP TAB ── */}
@@ -1218,7 +1219,7 @@ export default function Dashboard() {
                                         onCoopClaim={reviewApiKey && playerName ? handleCoopClaim : undefined}
                                         onCoopComplete={reviewApiKey && playerName ? handleCoopComplete : undefined}
                                         playerName={playerName} playerLevel={currentPlayerLevel} gridMode
-                                        onDetails={q => setQuestDetailModal(q)}
+                                        onDetails={setQuestDetailModal}
                                         isFavorite={favorites.includes(q.id)} onToggleFavorite={reviewApiKey && playerName ? handleToggleFavorite : undefined} />
                                 )}
                               </div>
@@ -1250,7 +1251,7 @@ export default function Dashboard() {
                                         onCoopClaim={reviewApiKey && playerName ? handleCoopClaim : undefined}
                                         onCoopComplete={reviewApiKey && playerName ? handleCoopComplete : undefined}
                                         playerName={playerName} playerLevel={currentPlayerLevel} gridMode
-                                        onDetails={q => setQuestDetailModal(q)}
+                                        onDetails={setQuestDetailModal}
                                         isFavorite={favorites.includes(q.id)} onToggleFavorite={reviewApiKey && playerName ? handleToggleFavorite : undefined} /></div>
                                 )}
                               </div>
@@ -1264,7 +1265,7 @@ export default function Dashboard() {
 
                   {/* ── Rituale Tab ── */}
                   {questBoardTab === "rituale" && (
-                    <Suspense fallback={<ViewFallback />}><RitualChamber rituals={rituals} setRituals={setRituals} setRewardCelebration={setRewardCelebration} /></Suspense>
+                    <ErrorBoundary><Suspense fallback={<ViewFallback />}><RitualChamber rituals={rituals} setRituals={setRituals} setRewardCelebration={setRewardCelebration} /></Suspense></ErrorBoundary>
                   )}
 
                   {/* ── Anti-Rituale Tab ── */}
@@ -1299,7 +1300,7 @@ export default function Dashboard() {
 
         {/* ── CHARACTER TAB ── */}
         {dashView === "character" && playerName && (
-          <Suspense fallback={<ViewFallback />}><CharacterView addToast={addToast} onNavigate={(tab: string) => setDashView(tab as typeof dashView)} /></Suspense>
+          <ErrorBoundary><Suspense fallback={<ViewFallback />}><CharacterView addToast={addToast} onNavigate={(tab: string) => setDashView(tab as typeof dashView)} /></Suspense></ErrorBoundary>
         )}
 
         {/* ── THE WANDERER'S REST (NPC Tab) ── */}

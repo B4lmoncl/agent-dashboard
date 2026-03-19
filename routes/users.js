@@ -46,8 +46,10 @@ router.get('/api/users', (req, res) => {
     const hoarding = getQuestHoardingMalus(u.id);
     const hoardingMultiplier = hoarding.multiplier;
     const legendaryMods = getLegendaryModifiers(u.id);
+    // Strip sensitive fields before exposing user data
+    const { passwordHash: _ph, apiKey: _ak, refreshTokens: _rt, spotify: _sp, ...safeUser } = u;
     return {
-      ...u,
+      ...safeUser,
       forgeTemp: ft,
       equippedTitle: u.equippedTitle || null,
       modifiers: {
@@ -68,7 +70,8 @@ router.get('/api/users', (req, res) => {
 router.get('/api/users/:id', (req, res) => {
   const user = state.users[req.params.id.toLowerCase()];
   if (!user) return res.status(404).json({ error: 'User not found' });
-  res.json(user);
+  const { passwordHash: _ph, apiKey: _ak, refreshTokens: _rt, spotify: _sp, ...safeUser } = user;
+  res.json(safeUser);
 });
 
 // POST /api/users/:id/register — create or update user

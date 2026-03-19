@@ -65,6 +65,17 @@
       "spendTargets": ["event_items", "limited_banners"],
       "weeklyEarnRate": "0-5",
       "convertible": false
+    },
+    {
+      "id": "sternentaler",
+      "name": "Star Coins",
+      "emoji": "/images/icons/currency-sternentaler.png",
+      "color": "#fbbf24",
+      "description": "Tokens of weekly glory. Earned exclusively through Weekly Challenges.",
+      "earnMethods": ["weekly_challenges"],
+      "spendTargets": ["exclusive_weekly_rewards"],
+      "weeklyEarnRate": "0-30",
+      "convertible": false
     }
   ],
   "conversionRules": {

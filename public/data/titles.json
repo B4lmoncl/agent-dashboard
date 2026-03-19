@@ -19,6 +19,8 @@
     { "id": "npc_friend", "name": "Volksfreund", "description": "5 NPC-Questketten abgeschlossen.", "rarity": "uncommon", "condition": { "type": "npc_chains", "value": 5 } },
     { "id": "forgemaster", "name": "Schmiedemeister", "description": "Forge-Temperatur 100% erreicht.", "rarity": "rare", "condition": { "type": "forge_temp", "value": 100 } },
     { "id": "lucky", "name": "Glückskind", "description": "Einen legendären Gacha-Pull gelandet.", "rarity": "epic", "condition": { "type": "gacha_legendary", "value": 1 } },
-    { "id": "completionist", "name": "Perfektionist", "description": "Alle 6 Ausrüstungsslots gefüllt.", "rarity": "uncommon", "condition": { "type": "full_equipment", "value": 1 } }
+    { "id": "completionist", "name": "Perfektionist", "description": "Alle 6 Ausrüstungsslots gefüllt.", "rarity": "uncommon", "condition": { "type": "full_equipment", "value": 1 } },
+    { "id": "overachiever", "name": "Übererfüller", "description": "100 Achievement-Punkte gesammelt.", "rarity": "uncommon", "condition": { "type": "achievement_points", "value": 100 } },
+    { "id": "legend_collector", "name": "Legendensammler", "description": "1500 Achievement-Punkte gesammelt.", "rarity": "legendary", "condition": { "type": "achievement_points", "value": 1500 } }
   ]
 }

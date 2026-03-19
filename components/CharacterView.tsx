@@ -30,6 +30,9 @@ function PixelCharacter({ appearance = {}, equipment = {}, companion = null }: P
     return 1;
   };
 
+  // Stable key for equipment changes (avoids JSON.stringify in dep array)
+  const equipKey = useMemo(() => Object.entries(equipment || {}).map(([k, v]) => `${k}:${typeof v === 'object' && v ? (v as Record<string, unknown>).templateId : v}`).join(','), [equipment]);
+
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -188,7 +191,7 @@ function PixelCharacter({ appearance = {}, equipment = {}, companion = null }: P
       if (blinkTimeout) clearTimeout(blinkTimeout);
     };
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [appearance.skinColor, appearance.hairStyle, appearance.hairColor, JSON.stringify(equipment)]);
+  }, [appearance.skinColor, appearance.hairStyle, appearance.hairColor, equipKey]);
 
   return (
     <div className="flex flex-col items-center gap-3">

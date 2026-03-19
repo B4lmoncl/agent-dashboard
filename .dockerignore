@@ -1,0 +1,13 @@
+node_modules
+.next
+out
+data
+.env
+.env.local
+.git
+.gitignore
+*.md
+electron-quest-app/node_modules
+electron-quest-app/dist
+.tsbuildinfo
+*.log

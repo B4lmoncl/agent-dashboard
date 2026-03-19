@@ -419,7 +419,7 @@ router.post('/api/quests/pool/refresh', requireApiKey, (req, res) => {
 });
 
 // GET /api/quests/reset-recurring — reset completed recurring quests based on interval
-router.get('/api/quests/reset-recurring', (req, res) => {
+router.get('/api/quests/reset-recurring', requireApiKey, (req, res) => {
   const nowMs = Date.now();
   const INTERVAL_MS = { daily: 24*3600*1000, weekly: 7*24*3600*1000, monthly: 30*24*3600*1000 };
   let resetCount = 0;

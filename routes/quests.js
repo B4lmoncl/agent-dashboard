@@ -122,7 +122,7 @@ router.post('/api/quest', requireApiKey, (req, res) => {
     if (!resolvedNextQuestTemplate.title) resolvedNextQuestTemplate = null;
   }
   const quest = {
-    id: `quest-${Date.now()}`,
+    id: `quest-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
     title,
     description: description || '',
     priority: priority || 'medium',
