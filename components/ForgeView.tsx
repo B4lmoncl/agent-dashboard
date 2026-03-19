@@ -158,8 +158,8 @@ export default function ForgeView({ onRefresh }: { onRefresh?: () => void }) {
     return (
       <div className="flex flex-col items-center justify-center py-16 space-y-3">
         <span className="text-4xl" style={{ opacity: 0.3 }}>&#9876;</span>
-        <p className="text-sm font-semibold" style={{ color: "rgba(255,255,255,0.5)" }}>Deepforge</p>
-        <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>Melde dich an, um die Deepforge zu betreten.</p>
+        <p className="text-sm font-semibold" style={{ color: "rgba(255,255,255,0.5)" }}>Handwerksviertel</p>
+        <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>Melde dich an, um das Handwerksviertel zu betreten.</p>
       </div>
     );
   }
@@ -170,7 +170,8 @@ export default function ForgeView({ onRefresh }: { onRefresh?: () => void }) {
     <div className="space-y-4">
       {/* Header */}
       <div className="flex items-center gap-3 flex-wrap">
-        <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.35)" }}>Deepforge</span>
+        <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.35)" }}>Handwerksviertel</span>
+        <span className="text-xs" style={{ color: "rgba(255,255,255,0.15)" }} title="Wähle bis zu 2 Berufe. Sammle Materialien durch Quests, besuche die NPCs zum Craften. Höhere Berufsstufen schalten stärkere Rezepte frei.">?</span>
         <div className="flex items-center gap-3 ml-auto text-xs">
           <span style={{ color: "#f59e0b" }}>
             <img src="/images/icons/currency-gold.png" alt="" width={20} height={20} style={{ imageRendering: "smooth", display: "inline", verticalAlign: "middle", marginRight: 2 }} onError={e => { (e.target as HTMLImageElement).style.display = "none"; }} />
@@ -199,10 +200,10 @@ export default function ForgeView({ onRefresh }: { onRefresh?: () => void }) {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
       {(() => {
         const LOCATIONS: Record<string, { label: string; color: string; desc: string }> = {
-          schmied: { label: "Schmiede", color: "#f59e0b", desc: "Gear rerolln & veredeln" },
-          alchemist: { label: "Alchemisten-Labor", color: "#22c55e", desc: "Tränke & Elixiere brauen" },
-          koch: { label: "Gildenküche", color: "#e87b35", desc: "Mahlzeiten & Buffs zubereiten" },
-          verzauberer: { label: "Arkanum", color: "#a78bfa", desc: "Gear verzaubern & verstärken" },
+          schmied: { label: "Deepforge", color: "#f59e0b", desc: "Gear-Stats rerolln & Rarität veredeln" },
+          alchemist: { label: "Alchemisten-Labor", color: "#22c55e", desc: "Tränke & Elixiere für temporäre Buffs" },
+          koch: { label: "Gildenküche", color: "#e87b35", desc: "Mahlzeiten mit XP-, Gold- & Forge-Buffs" },
+          verzauberer: { label: "Arkanum", color: "#a78bfa", desc: "Temporäre & permanente Gear-Enchants" },
         };
         return professions.map(prof => {
           const locked = !prof.unlocked;
@@ -255,90 +256,113 @@ export default function ForgeView({ onRefresh }: { onRefresh?: () => void }) {
       })()}
       </div>
 
-      {/* ─── Schmiedekunst (Kanai's Cube) ──────────────────────────────────── */}
-      <div className="rounded-xl p-4" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,140,0,0.15)" }}>
-        <div className="flex items-center gap-2 mb-3">
-          <img src="/images/icons/prof-schmied.png" alt="" width={20} height={20} style={{ imageRendering: "smooth" }} onError={e => { (e.target as HTMLImageElement).style.display = "none"; }} />
-          <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,140,0,0.6)" }}>Schmiedekunst</span>
-        </div>
+      {/* ─── Schmiedekunst ──────────────────────────────────────────────────── */}
+      {(() => {
+        const inv = (loggedInUser as any).inventory || [];
+        const dismantleItems = inv.filter((i: any) => i.rarity && i.name && (i.instanceId || i.id));
+        const epicItems = dismantleItems.filter((i: any) => i.rarity === "epic");
+        const hasItems = dismantleItems.length > 0;
+        const ESSENZ_TABLE: Record<string, number> = { common: 2, uncommon: 5, rare: 15, epic: 40, legendary: 100 };
 
-        {dismantleResult && (
-          <div className="rounded px-2.5 py-1.5 text-xs font-semibold mb-2" style={{ background: "rgba(255,140,0,0.08)", border: "1px solid rgba(255,140,0,0.2)", color: "#ff8c00" }}>
-            {dismantleResult}
-          </div>
-        )}
-        {transmuteResult && (
-          <div className="rounded px-2.5 py-1.5 text-xs font-semibold mb-2" style={{ background: "rgba(168,85,247,0.08)", border: "1px solid rgba(168,85,247,0.2)", color: "#a855f7" }}>
-            {transmuteResult}
-          </div>
-        )}
+        return (
+          <div className="space-y-3">
+            {/* Section header */}
+            <div className="flex items-center gap-2">
+              <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,140,0,0.5)" }}>Schmiedekunst</span>
+              <span className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }} title="Zerlege ungebrauchte Items in Essenz + Materialien. Kombiniere 3 Epics zu einem Legendary.">?</span>
+            </div>
 
-        {/* Inventory items for dismantle */}
-        {(() => {
-          const inv = (loggedInUser as any).inventory || [];
-          const dismantleItems = inv.filter((i: any) => i.rarity && i.name && (i.instanceId || i.id));
-          if (dismantleItems.length === 0) return (
-            <p className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>Keine Items im Inventar zum Zerlegen.</p>
-          );
-          const epicItems = dismantleItems.filter((i: any) => i.rarity === "epic");
-          return (
-            <div className="space-y-3">
-              {/* Dismantle */}
-              <div>
-                <p className="text-xs mb-1.5" style={{ color: "rgba(255,255,255,0.4)" }}>
-                  Zerlege Items in Essenz + Materialien
-                </p>
+            {/* Toast messages */}
+            {dismantleResult && (
+              <div className="rounded-lg px-3 py-2 text-xs font-semibold" style={{ background: "rgba(255,140,0,0.08)", border: "1px solid rgba(255,140,0,0.2)", color: "#ff8c00" }}>
+                {dismantleResult}
+              </div>
+            )}
+            {transmuteResult && (
+              <div className="rounded-lg px-3 py-2 text-xs font-semibold" style={{ background: "rgba(168,85,247,0.08)", border: "1px solid rgba(168,85,247,0.2)", color: "#a855f7" }}>
+                {transmuteResult}
+              </div>
+            )}
+
+            {/* Dismantle section */}
+            <div className="rounded-xl p-3" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,140,0,0.1)" }}>
+              <div className="flex items-center gap-2 mb-2">
+                <span className="text-xs font-semibold" style={{ color: "rgba(255,140,0,0.7)" }}>Zerlegen</span>
+                <span className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>Item → Essenz + Materialien</span>
+              </div>
+              {!hasItems ? (
+                <p className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>Keine Items im Inventar.</p>
+              ) : (
                 <div className="flex flex-wrap gap-1.5">
-                  {dismantleItems.slice(0, 12).map((item: any) => {
+                  {dismantleItems.slice(0, 16).map((item: any) => {
                     const rc = RARITY_COLORS[item.rarity] || "#9ca3af";
+                    const essenz = ESSENZ_TABLE[item.rarity] || 2;
                     return (
-                      <button key={item.instanceId || item.id} onClick={() => handleDismantle(item.instanceId || item.id)} className="text-xs px-2 py-1 rounded-lg" style={{
+                      <button key={item.instanceId || item.id} onClick={() => handleDismantle(item.instanceId || item.id)} className="text-xs px-2 py-1 rounded-lg transition-all hover:brightness-125" style={{
                         background: "rgba(255,255,255,0.03)", border: `1px solid ${rc}30`, color: rc,
-                      }} title={`Zerlegen: +${item.rarity === "legendary" ? 100 : item.rarity === "epic" ? 40 : item.rarity === "rare" ? 15 : 5} Essenz`}>
+                      }} title={`${item.name} (${item.rarity}) → +${essenz} Essenz + Materialien`}>
                         {item.name}
+                        <span className="ml-1 font-mono" style={{ color: "rgba(255,255,255,0.2)", fontSize: 9 }}>+{essenz}</span>
                       </button>
                     );
                   })}
-                </div>
-              </div>
-
-              {/* Transmute: 3 epics → 1 legendary */}
-              {epicItems.length >= 3 && (
-                <div style={{ borderTop: "1px solid rgba(255,255,255,0.05)", paddingTop: 12 }}>
-                  <p className="text-xs mb-1.5" style={{ color: "rgba(168,85,247,0.6)" }}>
-                    Transmutation: 3 Epics (gleicher Slot) + 500 Gold = 1 Legendary
-                  </p>
-                  <div className="flex flex-wrap gap-1.5 mb-2">
-                    {epicItems.map((item: any) => {
-                      const iid = item.instanceId || item.id;
-                      const sel = selectedTransmute.includes(iid);
-                      return (
-                        <button key={iid} onClick={() => {
-                          setSelectedTransmute(prev => sel ? prev.filter(x => x !== iid) : prev.length < 3 ? [...prev, iid] : prev);
-                        }} className="text-xs px-2 py-1 rounded-lg transition-all" style={{
-                          background: sel ? "rgba(168,85,247,0.15)" : "rgba(255,255,255,0.03)",
-                          border: `1px solid ${sel ? "rgba(168,85,247,0.5)" : "rgba(168,85,247,0.15)"}`,
-                          color: sel ? "#c084fc" : "#a855f7",
-                        }}>
-                          {sel ? "\u2713 " : ""}{item.name}
-                          <span className="text-xs ml-1" style={{ color: "rgba(255,255,255,0.2)", fontSize: 9 }}>{item.slot}</span>
-                        </button>
-                      );
-                    })}
-                  </div>
-                  {selectedTransmute.length === 3 && (
-                    <button onClick={handleTransmute} className="text-xs px-3 py-1.5 rounded-lg font-semibold" style={{
-                      background: "rgba(168,85,247,0.15)", color: "#c084fc", border: "1px solid rgba(168,85,247,0.4)",
-                    }}>
-                      Transmutieren (500 Gold)
-                    </button>
+                  {dismantleItems.length > 16 && (
+                    <span className="text-xs self-center" style={{ color: "rgba(255,255,255,0.2)" }}>+{dismantleItems.length - 16} weitere</span>
                   )}
                 </div>
               )}
             </div>
-          );
-        })()}
-      </div>
+
+            {/* Transmute section — only show when player has epic items */}
+            {epicItems.length >= 1 && (
+              <div className="rounded-xl p-3" style={{ background: "rgba(168,85,247,0.03)", border: "1px solid rgba(168,85,247,0.12)" }}>
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-xs font-semibold" style={{ color: "rgba(168,85,247,0.7)" }}>Transmutation</span>
+                  <span className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>3 Epics (gleicher Slot) + 500g → 1 Legendary</span>
+                </div>
+                {epicItems.length < 3 ? (
+                  <p className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>
+                    {epicItems.length}/3 Epic-Items — sammle {3 - epicItems.length} weitere.
+                  </p>
+                ) : (
+                  <>
+                    <div className="flex flex-wrap gap-1.5 mb-2">
+                      {epicItems.map((item: any) => {
+                        const iid = item.instanceId || item.id;
+                        const sel = selectedTransmute.includes(iid);
+                        return (
+                          <button key={iid} onClick={() => {
+                            setSelectedTransmute(prev => sel ? prev.filter(x => x !== iid) : prev.length < 3 ? [...prev, iid] : prev);
+                          }} className="text-xs px-2 py-1 rounded-lg transition-all" style={{
+                            background: sel ? "rgba(168,85,247,0.15)" : "rgba(255,255,255,0.03)",
+                            border: `1px solid ${sel ? "rgba(168,85,247,0.5)" : "rgba(168,85,247,0.15)"}`,
+                            color: sel ? "#c084fc" : "#a855f7",
+                          }}>
+                            {sel ? "\u2713 " : ""}{item.name}
+                            <span className="ml-1" style={{ color: "rgba(255,255,255,0.2)", fontSize: 9 }}>{item.slot}</span>
+                          </button>
+                        );
+                      })}
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-xs font-mono" style={{ color: selectedTransmute.length === 3 ? "rgba(168,85,247,0.8)" : "rgba(255,255,255,0.2)" }}>
+                        {selectedTransmute.length}/3 gewählt
+                      </span>
+                      {selectedTransmute.length === 3 && (
+                        <button onClick={handleTransmute} className="text-xs px-3 py-1.5 rounded-lg font-semibold transition-all hover:brightness-125" style={{
+                          background: "rgba(168,85,247,0.15)", color: "#c084fc", border: "1px solid rgba(168,85,247,0.4)",
+                        }}>
+                          Transmutieren (500 Gold)
+                        </button>
+                      )}
+                    </div>
+                  </>
+                )}
+              </div>
+            )}
+          </div>
+        );
+      })()}
 
       {/* ─── NPC Popout Modal ────────────────────────────────────────────────── */}
       {selectedNpc && typeof document !== "undefined" && createPortal(

@@ -81,6 +81,11 @@ export default function Dashboard() {
   // selectedIds, bulkLoading, reviewComments moved to useQuestActions hook
   const [typeFilter, setTypeFilter] = useState<string>("all");
   const [dashView, setDashView] = useState<"questBoard" | "npcBoard" | "klassenquests" | "character" | "campaign" | "leaderboard" | "honors" | "season" | "shop" | "forge" | "gacha" | "roadmap" | "changelog">("questBoard");
+  // Track seen content for notification dots (persists across renders via ref)
+  const seenQuestIdsRef = useRef<Set<string>>(new Set());
+  const seenNpcIdsRef = useRef<Set<string>>(new Set());
+  // Trigger re-render when seen sets change
+  const [seenVersion, setSeenVersion] = useState(0);
   const [createQuestOpen, setCreateQuestOpen] = useState(false);
   const [questBoardAgentOpen, setQuestBoardAgentOpen] = useState(false);
   const [npcAgentRosterOpen, setNpcAgentRosterOpen] = useState(true);
@@ -180,6 +185,34 @@ export default function Dashboard() {
   const closeQuestDetailModal = useCallback(() => setQuestDetailModal(null), []);
   useModalBehavior(!!questDetailModal, closeQuestDetailModal);
 
+
+  // ─── Notification dot logic: mark content as seen per tab visit ─────────
+  // Compute "has new" before marking seen (so dots show on first render)
+  const notifNewQuests = useMemo(() => {
+    if (dashView === "questBoard") return false;
+    return quests.open.some(q => !seenQuestIdsRef.current.has(q.id));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dashView, quests.open, seenVersion]);
+  const notifNewNpcs = useMemo(() => {
+    if (dashView === "npcBoard") return false;
+    return activeNpcs.some(n => !seenNpcIdsRef.current.has(n.id));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dashView, activeNpcs, seenVersion]);
+  // Mark content as seen when user visits a tab
+  useEffect(() => {
+    let changed = false;
+    if (dashView === "questBoard") {
+      for (const q of quests.open) {
+        if (!seenQuestIdsRef.current.has(q.id)) { seenQuestIdsRef.current.add(q.id); changed = true; }
+      }
+    }
+    if (dashView === "npcBoard") {
+      for (const n of activeNpcs) {
+        if (!seenNpcIdsRef.current.has(n.id)) { seenNpcIdsRef.current.add(n.id); changed = true; }
+      }
+    }
+    if (changed) setSeenVersion(v => v + 1);
+  }, [dashView, quests.open, activeNpcs]);
 
   // ─── New Version popup check ────────────────────────────────────────────
   const versionCheckedRef = useRef(false);
@@ -793,17 +826,16 @@ export default function Dashboard() {
             { key: "klassenquests", label: "The Arcanum",  tutorialKey: null, iconSrc: "/images/icons/nav-arcanum.png" },
             ...(playerName ? [{ key: "character", label: "Character", tutorialKey: "character-tab", iconSrc: "/images/icons/nav-character.png" }] : []),
             { key: "shop",        label: "The Bazaar",               tutorialKey: "bazaar-tab", iconSrc: "/images/icons/nav-bazaar.png" },
-            ...(playerName ? [{ key: "forge", label: "Deepforge", tutorialKey: null, iconSrc: "/images/icons/prof-schmied.png" }] : []),
+            ...(playerName ? [{ key: "forge", label: "Handwerksviertel", tutorialKey: null, iconSrc: "/images/icons/prof-schmied.png" }] : []),
             { key: "gacha",       label: "Vault of Fate",            tutorialKey: "vault-tab", iconSrc: "/images/icons/vault-of-fate.png" },
             { key: "leaderboard", label: "The Proving Grounds", tutorialKey: "leaderboard-tab", iconSrc: "/images/icons/nav-proving.png" },
             { key: "honors",      label: "Hall of Honors",  tutorialKey: "honors-tab", iconSrc: "/images/icons/nav-honors.png" },
             { key: "season",      label: `${CURRENT_SEASON.name} Season`, tutorialKey: "season-tab", iconSrc: "" },
           ].map(v => {
-            // Notification dots — show colored dot for tabs with new/active content
             const notifDot = (() => {
-              if (dashView === v.key) return null; // no dot on active tab
-              if (v.key === "questBoard" && quests.open.length > 0) return "#4ade80";
-              if (v.key === "npcBoard" && activeNpcs.length > 0) return "#f59e0b";
+              if (dashView === v.key) return null;
+              if (v.key === "questBoard" && notifNewQuests) return "#4ade80";
+              if (v.key === "npcBoard" && notifNewNpcs) return "#f59e0b";
               return null;
             })();
             return "isDivider" in v && v.isDivider ? (
