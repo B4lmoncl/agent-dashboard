@@ -131,6 +131,7 @@ export default function DashboardModals({
                     { label: "Companions", val: loggedInUser.modifiers.xp.companions, color: "#f472b6", desc: loggedInUser.modifiers.xp.companions > 1 ? `+${Math.round((loggedInUser.modifiers.xp.companions - 1) * 100)}% (2% pro Companion)` : "Keine Companions beschworen" },
                     { label: "Bond Level", val: loggedInUser.modifiers.xp.bond, color: "#fb923c", desc: loggedInUser.modifiers.xp.bond > 1 ? `+${Math.round((loggedInUser.modifiers.xp.bond - 1) * 100)}% (1% pro Bond-Level)` : "Bond Level 1" },
                     { label: "Quest Hoarding", val: loggedInUser.modifiers.xp.hoarding, color: "#ef4444", desc: loggedInUser.modifiers.xp.hoarding < 1 ? `-${loggedInUser.modifiers.xp.hoardingPct}% XP (${loggedInUser.modifiers.xp.hoardingCount} in progress, ${loggedInUser.modifiers.xp.hoardingCount - 20} over limit)` : `No malus (${loggedInUser.modifiers.xp.hoardingCount}/20 slots used)` },
+                    ...((loggedInUser.modifiers.xp as any).legendary && (loggedInUser.modifiers.xp as any).legendary !== 1 ? [{ label: "Legendary", val: (loggedInUser.modifiers.xp as any).legendary, color: "#f97316", desc: `+${Math.round(((loggedInUser.modifiers.xp as any).legendary - 1) * 100)}% von Legendärem Gear` }] : []),
                   ].map(r => (
                     <div key={r.label} className="flex items-center justify-between px-2 py-1 rounded-lg" style={{ background: r.val !== 1 ? "rgba(255,255,255,0.03)" : "transparent" }}>
                       <div>
@@ -152,6 +153,7 @@ export default function DashboardModals({
                     { label: "Forge Temp", val: loggedInUser.modifiers.gold.forge, color: forgeTempColor, desc: `${forgeTemp}% — ${forgeTempLabel}` },
                     { label: "Weisheit", val: loggedInUser.modifiers.gold.weisheit ?? 1, color: "#60a5fa", desc: (loggedInUser.modifiers.gold.weisheit ?? 1) > 1 ? `+${Math.round(((loggedInUser.modifiers.gold.weisheit ?? 1) - 1) * 100)}% (1% pro Weisheit-Punkt)` : "Kein Weisheit-Bonus" },
                     { label: "Streak", val: loggedInUser.modifiers.gold.streak, color: "#f97316", desc: `${loggedInUser.streakDays ?? 0} Tage (+1.5% pro Tag, max ×1.45)` },
+                    ...((loggedInUser.modifiers.gold as any).legendary && (loggedInUser.modifiers.gold as any).legendary !== 1 ? [{ label: "Legendary", val: (loggedInUser.modifiers.gold as any).legendary, color: "#f97316", desc: `+${Math.round(((loggedInUser.modifiers.gold as any).legendary - 1) * 100)}% von Legendärem Gear` }] : []),
                   ].map(r => (
                     <div key={r.label} className="flex items-center justify-between px-2 py-1 rounded-lg" style={{ background: r.val !== 1 ? "rgba(255,255,255,0.03)" : "transparent" }}>
                       <div>
@@ -188,7 +190,7 @@ export default function DashboardModals({
                 </div>
                 <div className="flex items-center justify-between px-2 py-1 rounded-lg bg-w3">
                   <span className="text-xs text-w50">Gold Bonus</span>
-                  <span className="font-mono font-bold text-sm" style={{ color: "#fbbf24" }}>+{Math.min((loggedInUser?.streakDays ?? 0) * 10, 200)}%</span>
+                  <span className="font-mono font-bold text-sm" style={{ color: "#fbbf24" }}>+{Math.min(((loggedInUser?.streakDays ?? 0) * 1.5), 45).toFixed(1)}%</span>
                 </div>
               </div>
             </div>
