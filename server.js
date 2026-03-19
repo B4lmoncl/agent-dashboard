@@ -24,7 +24,7 @@ const {
   loadLootTables, loadGearTemplates, loadNpcGivers, loadNpcState,
   loadAppState, loadFeedback,
   loadCurrencyTemplates, loadGachaPool, loadBannerTemplates, loadGachaState,
-  loadItemTemplates,
+  loadItemTemplates, loadTitles,
   saveAppState,
   flushPendingSaves,
 } = require('./lib/state');
@@ -136,6 +136,7 @@ loadGachaPool();
 loadBannerTemplates();
 loadGachaState();
 loadItemTemplates();
+loadTitles();
 
 // NPC & rotation systems
 startupNpcCheck();

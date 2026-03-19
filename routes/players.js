@@ -55,7 +55,7 @@ router.get('/api/player/:name', (req, res) => {
   // Dynamic forgeTemp: stored value with 2%/hr time decay
   const dynamicForgeTemp = calcDynamicForgeTemp(uid);
   // Calculate modifier breakdown
-  const { getXpMultiplier, getGoldMultiplier, getForgeXpBase, getForgeGoldBase, getKraftBonus, getWeisheitBonus, getUserGear, getQuestHoardingMalus } = require('../lib/helpers');
+  const { getXpMultiplier, getGoldMultiplier, getForgeXpBase, getForgeGoldBase, getKraftBonus, getWeisheitBonus, getUserGear, getQuestHoardingMalus, getLegendaryModifiers } = require('../lib/helpers');
   const forgeXpPure = getForgeXpBase(uid);
   const kraftBonus = getKraftBonus(uid);
   const forgeXp = getXpMultiplier(uid);
@@ -73,8 +73,9 @@ router.get('/api/player/:name', (req, res) => {
   const streakGold = Math.min(1 + streakDays * 0.015, 1.45);
   const hoarding = getQuestHoardingMalus(uid);
   const hoardingMultiplier = hoarding.multiplier;
-  const totalXp = +(forgeXp * gearBonus * companionBonus * bondBonus * hoardingMultiplier).toFixed(2);
-  const totalGold = +(forgeGold * streakGold).toFixed(2);
+  const legendaryMods = getLegendaryModifiers(uid);
+  const totalXp = +(forgeXp * gearBonus * companionBonus * bondBonus * hoardingMultiplier * legendaryMods.xpBonus).toFixed(2);
+  const totalGold = +(forgeGold * streakGold * legendaryMods.goldBonus).toFixed(2);
 
   res.json({
     id: uid,
@@ -90,8 +91,8 @@ router.get('/api/player/:name', (req, res) => {
     streakDays,
     forgeTemp: dynamicForgeTemp,
     modifiers: {
-      xp: { forge: forgeXpPure, kraft: kraftBonus, gear: gearBonus, companions: companionBonus, bond: bondBonus, hoarding: hoardingMultiplier, hoardingCount: hoarding.count, hoardingPct: hoarding.malusPct, total: totalXp },
-      gold: { forge: forgeGoldPure, weisheit: weisheitBonus, streak: streakGold, total: totalGold },
+      xp: { forge: forgeXpPure, kraft: kraftBonus, gear: gearBonus, companions: companionBonus, bond: bondBonus, hoarding: hoardingMultiplier, hoardingCount: hoarding.count, hoardingPct: hoarding.malusPct, legendary: legendaryMods.xpBonus, total: totalXp },
+      gold: { forge: forgeGoldPure, weisheit: weisheitBonus, streak: streakGold, legendary: legendaryMods.goldBonus, total: totalGold },
     },
   });
 });

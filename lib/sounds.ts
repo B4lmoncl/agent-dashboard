@@ -260,7 +260,7 @@ function modalClose() {
 function setMuted(muted: boolean) {
   _muted = muted;
   if (typeof window !== "undefined") {
-    localStorage.setItem("qh_sound_muted", muted ? "1" : "0");
+    try { localStorage.setItem("qh_sound_muted", muted ? "1" : "0"); } catch { /* private browsing */ }
   }
 }
 

@@ -90,8 +90,8 @@ export default function DashboardHeader({
     if (data.success) {
       // Store JWT access token in memory, API key in localStorage as fallback
       setAccessToken(data.accessToken || null);
-      localStorage.setItem("dash_api_key", data.apiKey);
-      localStorage.setItem("dash_player_name", data.name);
+      try { localStorage.setItem("dash_api_key", data.apiKey); } catch { /* private browsing */ }
+      try { localStorage.setItem("dash_player_name", data.name); } catch { /* private browsing */ }
       setPlayerName(data.name);
       setReviewApiKey(data.apiKey);
       setIsAdmin(data.isAdmin);
@@ -116,8 +116,8 @@ export default function DashboardHeader({
     if (r.ok) {
       setRegisterSuccess(true);
       setAccessToken(data.accessToken || null);
-      localStorage.setItem("dash_api_key", data.apiKey);
-      localStorage.setItem("dash_player_name", data.name);
+      try { localStorage.setItem("dash_api_key", data.apiKey); } catch { /* private browsing */ }
+      try { localStorage.setItem("dash_player_name", data.name); } catch { /* private browsing */ }
       setPlayerName(data.name);
       setReviewApiKey(data.apiKey);
       setIsAdmin(false);

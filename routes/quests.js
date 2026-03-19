@@ -1,7 +1,7 @@
 // ─── Quest API ──────────────────────────────────────────────────────────────────
 const router = require('express').Router();
 const { state, PLAYER_QUEST_TYPES, NPC_NAMES, XP_BY_PRIORITY, saveQuests, saveData, savePlayerProgress, saveQuestCatalog, rebuildQuestsById } = require('../lib/state');
-const { now, getPlayerProgress, getLevelInfo, onQuestCompletedByUser, awardXP, awardAgentGold, updateAgentStreak, randGold } = require('../lib/helpers');
+const { now, getPlayerProgress, getLevelInfo, onQuestCompletedByUser, awardXP, awardAgentGold, updateAgentStreak, randGold, addLootToInventory } = require('../lib/helpers');
 const { requireApiKey } = require('../lib/middleware');
 const { rebuildCatalogMeta } = require('../lib/quest-catalog');
 
@@ -53,6 +53,8 @@ function unlockNextChainQuest(completedQuest) {
 router.post('/api/quest', requireApiKey, (req, res) => {
   const { title, description, priority, category, categories, product, humanInputRequired, createdBy, type, parentQuestId, recurrence, proof, nextQuestTemplate, coopPartners, skills, lore, chapter, suggest, minLevel, classRequired, requiresRelationship, rarity } = req.body;
   if (!title) return res.status(400).json({ error: 'title is required' });
+  if (typeof title === 'string' && title.length > 500) return res.status(400).json({ error: 'title too long (max 500 chars)' });
+  if (typeof description === 'string' && description.length > 5000) return res.status(400).json({ error: 'description too long (max 5000 chars)' });
   const validPriorities = ['low', 'medium', 'high'];
   const validCategories = ['Coding', 'Research', 'Content', 'Sales', 'Infrastructure', 'Bug Fix', 'Feature'];
   const validProducts = ['Dashboard', 'Companion App', 'Infrastructure', 'Other'];
@@ -304,16 +306,29 @@ router.post('/api/quest/:id/complete', requireApiKey, (req, res) => {
     const xpEarned = u?._lastXpEarned || 0;
     const goldEarned = u?._lastGoldEarned || 0;
     if (u) { delete u._lastLoot; delete u._lastCompanionReward; delete u._lastXpEarned; delete u._lastGoldEarned; }
+    // Grant NPC's final reward item when the last quest in the chain is completed
+    let npcFinalReward = null;
+    if (quest.chainIndex != null && quest.chainTotal && quest.chainIndex === quest.chainTotal - 1) {
+      const giver = state.npcGivers.givers.find(g => g.id === quest.npcGiverId);
+      if (giver?.finalReward?.item && u) {
+        const item = giver.finalReward.item;
+        addLootToInventory(agentKey, item);
+        npcFinalReward = item;
+        saveData();
+        console.log(`[npc] Final reward '${item.id}' granted to ${agentKey} for completing ${giver.name}'s chain`);
+      }
+    }
     console.log(`[quest] ${quest.id} completed (npc per-player) by ${agentKey}`);
     return res.json({
       ok: true,
       quest: { ...quest, status: 'completed', completedBy: agentKey, completedAt: now() },
       newAchievements,
       lootDrop,
+      npcFinalReward,
       companionReward,
       xpEarned,
       goldEarned,
-      chainQuestTemplate: null,
+      chainQuestTemplate: quest.nextQuestTemplate || null,
       levelUp: newLevelInfo.level > prevLevel ? { level: newLevelInfo.level, title: newLevelInfo.title } : null,
     });
   }

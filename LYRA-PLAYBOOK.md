@@ -190,6 +190,65 @@ Für NPCs die nie verschwinden sollen, trage die ID zusätzlich in `lib/state.js
 
 Um ein Set zu erstellen, gib allen Items desselben Sets den gleichen Prefix (z.B. `fire-sword`, `fire-shield`, `fire-helm`). Set-Boni werden in `gearTemplates.json` → `namedSets` definiert.
 
+### Legendary Effects
+
+Legendäre Items können ein `legendaryEffect`-Feld haben. Wird automatisch angewendet wenn das Item ausgerüstet ist.
+
+```json
+{
+  "legendaryEffect": {
+    "type": "xp_bonus",
+    "value": 10,
+    "label": "Flamme der Erkenntnis: +10% Quest-XP"
+  }
+}
+```
+
+**Verfügbare Effekt-Typen:**
+
+| Type | Value | Wirkung |
+|------|-------|---------|
+| `xp_bonus` | Prozent | Multipliziert Quest-XP |
+| `gold_bonus` | Prozent | Multipliziert Gold-Rewards |
+| `drop_bonus` | Prozent | Addiert Drop-Chance |
+| `decay_reduction` | Prozent | Reduziert Forge-Decay |
+| `streak_protection` | Anzahl | Streak-Schilde pro Woche |
+
+---
+
+## 3b. Titel erstellen
+
+**Datei**: `public/data/titles.json`
+**Array**: `titles[]`
+
+### Schema
+
+```json
+{
+  "id": "unique-title-id",
+  "name": "Der Unaufhaltsame",
+  "description": "30-Tage-Streak erreicht.",
+  "rarity": "rare",
+  "condition": { "type": "streak", "value": 30 }
+}
+```
+
+### Condition Types
+
+| Type | Value | Prüfung |
+|------|-------|---------|
+| `level` | Zahl | Player-Level >= value |
+| `quests_completed` | Zahl | Abgeschlossene Quests >= value |
+| `streak` | Zahl | Aktiver Streak >= value |
+| `inventory_count` | Zahl | Items im Inventar >= value |
+| `gold` | Zahl | Gold-Balance >= value |
+| `npc_chains` | Zahl | Abgeschlossene NPC-Quests >= value |
+| `forge_temp` | Zahl | Forge-Temperatur >= value |
+| `gacha_legendary` | Zahl | Legendäre Gacha-Pulls >= value |
+| `full_equipment` | 1 | Alle 6 Slots gefüllt |
+
+Titel werden automatisch bei Quest-Abschluss geprüft und vergeben. Spieler können sie im Character-Screen auswählen.
+
 ---
 
 ## 4. Gacha-Pool Items erstellen
@@ -474,6 +533,7 @@ Für neue automatische Trigger muss ein Eintrag in `ACHIEVEMENT_TRIGGERS` (lib/s
 | NPCs | `public/data/npcQuestGivers.json` | Nein |
 | Quest-Templates | `public/data/questCatalog.json` | Nein |
 | Gear/Equipment | `public/data/gearTemplates.json` | Nein |
+| Titel | `public/data/titles.json` | Nein |
 | Gacha-Items | `public/data/gachaPool.json` | Nein |
 | Gacha-Banner | `public/data/bannerTemplates.json` | Nein |
 | Consumables | `public/data/itemTemplates.json` | Ja (Effekt in habits-inventory.js) |

@@ -311,11 +311,39 @@ router.post('/api/gacha/pull10', requireApiKey, (req, res) => {
       if (worstIdx < 0) worstIdx = results.findIndex(r => r.item.rarity === 'uncommon');
       const idx = worstIdx >= 0 ? worstIdx : 9;
       const epicItem = epicPool[Math.floor(Math.random() * epicPool.length)];
+      const isDup = u.inventory?.some(inv => inv.itemId === epicItem.id) || false;
+
+      // Remove the replaced item from inventory (it was added by executePull)
+      const replacedItemId = results[idx].item.id;
+      if (!results[idx].isDuplicate) {
+        const invIdx = u.inventory.findIndex(inv => inv.itemId === replacedItemId);
+        if (invIdx >= 0) u.inventory.splice(invIdx, 1);
+      }
+
+      // Add the guaranteed epic to inventory (or refund if duplicate)
+      if (isDup) {
+        awardCurrency(uid, 'runensplitter', DUPLICATE_REFUND['epic'] || 20);
+      } else {
+        u.inventory.push({
+          id: `gacha-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
+          itemId: epicItem.id,
+          name: epicItem.name,
+          emoji: epicItem.emoji || null,
+          icon: epicItem.icon || null,
+          rarity: epicItem.rarity,
+          rarityColor: '#a855f7',
+          effect: epicItem.effect || null,
+          stats: epicItem.stats || null,
+          obtainedAt: new Date().toISOString(),
+          source: 'gacha',
+        });
+      }
+
       results[idx] = {
         item: epicItem,
-        isNew: !u.inventory?.some(inv => inv.itemId === epicItem.id),
-        isDuplicate: u.inventory?.some(inv => inv.itemId === epicItem.id) || false,
-        duplicateRefund: u.inventory?.some(inv => inv.itemId === epicItem.id) ? 20 : 0,
+        isNew: !isDup,
+        isDuplicate: isDup,
+        duplicateRefund: isDup ? (DUPLICATE_REFUND['epic'] || 20) : 0,
         pityCounter: getPlayerGachaState(uid).pityCounter,
         epicPityCounter: 0,
       };

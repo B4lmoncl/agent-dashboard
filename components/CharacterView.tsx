@@ -657,6 +657,10 @@ export default function CharacterView({ addToast }: { addToast?: (t: ToastInput)
   const [dragOverIdx, setDragOverIdx] = useState<number | null>(null);
   // Position-based grid: maps grid slot index → item id (supports gaps)
   const [invPositions, setInvPositions] = useState<Record<string, number>>({});
+  // Title system
+  const [titlesOpen, setTitlesOpen] = useState(false);
+  const [earnedTitles, setEarnedTitles] = useState<{ id: string; name: string; description?: string; rarity: string; earnedAt?: string }[]>([]);
+  const [equippedTitleId, setEquippedTitleId] = useState<string | null>(null);
 
   useEffect(() => {
     if (!statTooltipOpen) return;
@@ -1213,6 +1217,19 @@ export default function CharacterView({ addToast }: { addToast?: (t: ToastInput)
                   );
                 })}
 
+                {/* Legendary Effects */}
+                {((charData as any).legendaryEffects ?? []).length > 0 && (
+                  <div className="mb-2 px-2 py-1.5 rounded-lg" style={{ background: "rgba(249,115,22,0.06)", border: "1px solid rgba(249,115,22,0.2)" }}>
+                    <p className="text-xs font-bold mb-1" style={{ color: "#f97316" }}>Legendary Effects</p>
+                    {((charData as any).legendaryEffects as { label: string; itemName: string }[]).map((e, i) => (
+                      <div key={i} className="flex items-center justify-between">
+                        <span className="text-xs" style={{ color: "rgba(249,115,22,0.7)" }}>{e.label}</span>
+                        <span className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>{e.itemName}</span>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
                 {/* Level bar */}
                 <div className="mb-3">
                   <div className="flex items-center justify-between mb-1">
@@ -1242,6 +1259,80 @@ export default function CharacterView({ addToast }: { addToast?: (t: ToastInput)
                     </div>
                   </div>
                 )}
+
+                {/* Title */}
+                <div className="mb-3">
+                  <button
+                    className="w-full flex items-center justify-between px-2 py-1.5 rounded-lg text-left"
+                    style={{ background: "rgba(251,191,36,0.06)", border: "1px solid rgba(251,191,36,0.15)" }}
+                    onClick={async () => {
+                      setTitlesOpen(!titlesOpen);
+                      if (!titlesOpen && playerName) {
+                        try {
+                          const r = await fetch(`/api/player/${encodeURIComponent(playerName)}/titles`, { signal: AbortSignal.timeout(3000) });
+                          if (r.ok) {
+                            const data = await r.json();
+                            setEarnedTitles(data.earned || []);
+                            setEquippedTitleId(data.equipped?.id || null);
+                          }
+                        } catch { /* ignore */ }
+                      }
+                    }}
+                  >
+                    <div className="flex items-center gap-2">
+                      <span className="text-xs font-semibold" style={{ color: "#fbbf24" }}>
+                        {(charData as any)?.equippedTitle?.name || "No Title"}
+                      </span>
+                      <span className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>
+                        ({(charData as any)?.earnedTitleCount ?? 0} earned)
+                      </span>
+                    </div>
+                    <span className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>{titlesOpen ? "▲" : "▼"}</span>
+                  </button>
+                  {titlesOpen && (
+                    <div className="mt-1.5 space-y-1 max-h-40 overflow-y-auto" style={{ overscrollBehavior: "contain" }}>
+                      {/* Unequip option */}
+                      <button
+                        className="w-full text-left px-2 py-1 rounded text-xs"
+                        style={{ background: !equippedTitleId ? "rgba(251,191,36,0.12)" : "rgba(255,255,255,0.03)", color: "rgba(255,255,255,0.4)" }}
+                        onClick={async () => {
+                          try {
+                            const r = await fetch(`/api/player/${encodeURIComponent(playerName!)}/title/equip`, {
+                              method: "POST", headers: { "Content-Type": "application/json", ...getAuthHeaders(apiKey) },
+                              body: JSON.stringify({ titleId: null }),
+                            });
+                            if (r.ok) { setEquippedTitleId(null); addToast?.({ type: "purchase", message: "Title removed" }); }
+                          } catch { /* ignore */ }
+                        }}
+                      >
+                        — No Title —
+                      </button>
+                      {earnedTitles.map(t => {
+                        const tc: Record<string,string> = { common: "#9ca3af", uncommon: "#22c55e", rare: "#60a5fa", epic: "#a855f7", legendary: "#f97316" };
+                        const c = tc[t.rarity] ?? "#9ca3af";
+                        return (
+                          <button
+                            key={t.id}
+                            className="w-full text-left px-2 py-1 rounded text-xs flex items-center justify-between"
+                            style={{ background: equippedTitleId === t.id ? `${c}18` : "rgba(255,255,255,0.03)", border: equippedTitleId === t.id ? `1px solid ${c}40` : "1px solid transparent" }}
+                            onClick={async () => {
+                              try {
+                                const r = await fetch(`/api/player/${encodeURIComponent(playerName!)}/title/equip`, {
+                                  method: "POST", headers: { "Content-Type": "application/json", ...getAuthHeaders(apiKey) },
+                                  body: JSON.stringify({ titleId: t.id }),
+                                });
+                                if (r.ok) { setEquippedTitleId(t.id); addToast?.({ type: "purchase", message: `Title: ${t.name}` }); }
+                              } catch { /* ignore */ }
+                            }}
+                          >
+                            <span style={{ color: c }}>{t.name}</span>
+                            {t.description && <span style={{ color: "rgba(255,255,255,0.2)", fontSize: 10 }}>{t.description}</span>}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
 
                 {/* Forge Temp */}
                 <div>

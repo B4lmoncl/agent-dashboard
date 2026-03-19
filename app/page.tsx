@@ -15,8 +15,8 @@ const RitualChamber = lazy(() => import("@/components/RitualChamber"));
 import { GuideModal, GuideContent, TutorialOverlay, TUTORIAL_STEPS } from "@/components/TutorialModal";
 import {
   CreateQuestModal, PersonalQuestPanel, ForgeChallengesPanel, AntiRitualePanel,
-  RelationshipCoopPanel, DobbieQuestPanel, SmartSuggestionsPanel, LearningQuestPanel,
-  HouseholdQuestBoard, ThoughtfulHeroPanel, CategoryBadge, ProductBadge,
+  RelationshipCoopPanel, DobbieQuestPanel, SmartSuggestionsPanel,
+  CategoryBadge, ProductBadge,
   HumanInputBadge, TypeBadge, CreatorBadge, AgentBadge, RecurringBadge,
   CompletedQuestRow, PriorityBadge, ClickablePriorityBadge, EpicQuestCard, QuestCard,
   ChainQuestToast, AchievementToast, FlavorToast, EmptyState, SkeletonCard,
@@ -651,6 +651,15 @@ export default function Dashboard() {
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 mb-0.5">
                   <p className="text-sm font-bold text-bright">{playerName}</p>
+                  {(loggedInUser as any).equippedTitle && (() => {
+                    const titleColors: Record<string, string> = { common: "#9ca3af", uncommon: "#22c55e", rare: "#60a5fa", epic: "#a855f7", legendary: "#f97316" };
+                    const tc = titleColors[(loggedInUser as any).equippedTitle.rarity] ?? "#9ca3af";
+                    return (
+                      <span className="text-xs px-1.5 py-0.5 rounded font-medium" style={{ color: tc, background: `${tc}15` }}>
+                        {(loggedInUser as any).equippedTitle.name}
+                      </span>
+                    );
+                  })()}
                   {loggedInUser.classId && loggedInUser.classId !== "null" && (() => {
                     const cls = (classesList || []).find((c: any) => c.id === loggedInUser.classId);
                     return cls ? (
@@ -686,7 +695,7 @@ export default function Dashboard() {
                     { emoji: "", key: "mondstaub" as const, value: Number(loggedInUser?.currencies?.mondstaub ?? 0), color: "#c084fc", iconSrc: "/images/icons/currency-mondstaub.png" },
                   ].map(c => (
                     <div key={c.key} className="flex items-center gap-1 cursor-pointer" onClick={() => setCurrenciesOpen(true)} title={c.key}>
-                      {(c as any).iconSrc ? <img src={(c as any).iconSrc} alt="" width={16} height={16} className={`${c.key === "stardust" ? "premium-stardust" : c.key === "runensplitter" ? "premium-rune-shards" : ""} img-render-auto`} onError={(e) => { e.currentTarget.style.display = "none"; }} /> : <span style={{ fontSize: 18 }}>{c.emoji}</span>}
+                      {c.iconSrc ? <img src={c.iconSrc} alt="" width={16} height={16} className={`${c.key === "stardust" ? "premium-stardust" : c.key === "runensplitter" ? "premium-rune-shards" : ""} img-render-auto`} onError={(e) => { e.currentTarget.style.display = "none"; }} /> : <span style={{ fontSize: 18 }}>{c.emoji}</span>}
                       <span className="text-base font-mono font-black" style={{ color: c.value > 0 ? c.color : "rgba(255,255,255,0.15)" }}>
                         {c.value}
                       </span>
@@ -1747,8 +1756,8 @@ export default function Dashboard() {
           onComplete={async ({ name: newName, apiKey, accessToken: token }) => {
             setOnboardingOpen(false);
             if (token) setAccessToken(token);
-            localStorage.setItem("dash_api_key", apiKey);
-            localStorage.setItem("dash_player_name", newName);
+            try { localStorage.setItem("dash_api_key", apiKey); } catch { /* private browsing */ }
+            try { localStorage.setItem("dash_player_name", newName); } catch { /* private browsing */ }
             setPlayerName(newName);
             setReviewApiKey(apiKey);
             setIsAdmin(false);

@@ -27,7 +27,7 @@ function isUserAdmin(user) {
 
 // GET /api/users
 router.get('/api/users', (req, res) => {
-  const { getXpMultiplier, getGoldMultiplier, getForgeXpBase, getForgeGoldBase, getKraftBonus, getWeisheitBonus, getUserGear, getQuestHoardingMalus } = require('../lib/helpers');
+  const { getXpMultiplier, getGoldMultiplier, getForgeXpBase, getForgeGoldBase, getKraftBonus, getWeisheitBonus, getUserGear, getQuestHoardingMalus, getLegendaryModifiers } = require('../lib/helpers');
   const companionIds = ['ember_sprite', 'lore_owl', 'gear_golem'];
   const result = Object.values(state.users).map(u => {
     const ft = calcDynamicForgeTemp(u.id);
@@ -45,12 +45,14 @@ router.get('/api/users', (req, res) => {
     const streakGold = Math.min(1 + (u.streakDays || 0) * 0.015, 1.45);
     const hoarding = getQuestHoardingMalus(u.id);
     const hoardingMultiplier = hoarding.multiplier;
+    const legendaryMods = getLegendaryModifiers(u.id);
     return {
       ...u,
       forgeTemp: ft,
+      equippedTitle: u.equippedTitle || null,
       modifiers: {
-        xp: { forge: forgeXpPure, kraft: kraftBonus, gear: gearBonus, companions: compBonus, bond: bondBonus, hoarding: hoardingMultiplier, hoardingCount: hoarding.count, hoardingPct: hoarding.malusPct, total: +(forgeXp * gearBonus * compBonus * bondBonus * hoardingMultiplier).toFixed(2) },
-        gold: { forge: forgeGoldPure, weisheit: weisheitBonus, streak: streakGold, total: +(forgeGold * streakGold).toFixed(2) },
+        xp: { forge: forgeXpPure, kraft: kraftBonus, gear: gearBonus, companions: compBonus, bond: bondBonus, hoarding: hoardingMultiplier, hoardingCount: hoarding.count, hoardingPct: hoarding.malusPct, legendary: legendaryMods.xpBonus, total: +(forgeXp * gearBonus * compBonus * bondBonus * hoardingMultiplier * legendaryMods.xpBonus).toFixed(2) },
+        gold: { forge: forgeGoldPure, weisheit: weisheitBonus, streak: streakGold, legendary: legendaryMods.goldBonus, total: +(forgeGold * streakGold * legendaryMods.goldBonus).toFixed(2) },
       },
     };
   });

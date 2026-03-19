@@ -12,7 +12,7 @@ export async function fetchAgents(): Promise<Agent[]> {
     if (r.ok) return r.json();
   } catch { /* API not running */ }
   try {
-    const r = await fetch(`/data/agents.json`);
+    const r = await fetch(`/data/agents.json`, { signal: AbortSignal.timeout(2000) });
     if (r.ok) {
       const data = await r.json();
       return Array.isArray(data) ? data : [];
@@ -32,7 +32,7 @@ export async function fetchQuests(playerName?: string): Promise<QuestsData> {
     }
   } catch { /* ignore */ }
   try {
-    const r = await fetch(`/data/quests.json`);
+    const r = await fetch(`/data/quests.json`, { signal: AbortSignal.timeout(2000) });
     if (r.ok) {
       const data = await r.json();
       return data && !Array.isArray(data) ? { ...empty, ...data } : empty;
@@ -78,7 +78,7 @@ export async function fetchRituals(playerName: string): Promise<Ritual[]> {
     const r = await fetch(`/api/rituals?player=${encodeURIComponent(playerName)}`, { signal: AbortSignal.timeout(2000), cache: "no-store" });
     if (r.ok) {
       const all: Ritual[] = await r.json();
-      return all.filter(r => !('isAntiRitual' in r && (r as any).isAntiRitual));
+      return all.filter(r => !r.isAntiRitual);
     }
   } catch { /* ignore */ }
   return [];
@@ -140,7 +140,7 @@ export async function createStarterQuestsIfNew(playerName: string, apiKey: strin
       { title: "x 10-Minute Stretch", description: "Do a short stretching routine to warm up and get your body moving!", type: "fitness", priority: "low", createdBy: "system" },
     ];
     await Promise.all(starterQuests.map(q =>
-      fetch("/api/quest", { method: "POST", headers, body: JSON.stringify(q) })
+      fetch("/api/quest", { method: "POST", headers, body: JSON.stringify(q), signal: AbortSignal.timeout(5000) })
     ));
   } catch { /* ignore */ }
 }

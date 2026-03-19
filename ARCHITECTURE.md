@@ -157,6 +157,24 @@ Supported on: `/api/users`, `/api/feedback`, `/api/catalog`.
 
 Use `paginate(array, req.query)` helper from `lib/helpers.js`.
 
+## Gear & Equipment System
+
+- **6 Slots**: weapon, shield, helm, armor, amulet, boots
+- **4 Tiers**: Abenteurer (L1-8), Veteranen (L9-16), Meister (L17-24), Legendär (L25-30)
+- **Stats**: kraft, ausdauer, weisheit, glueck — summed from equipped items
+- **Tier Set Bonuses**: 3/6 = +5% all stats, 6/6 = +10% all stats (auto-detected by tier)
+- **Named Set Bonuses**: Defined in `gearTemplates.json → namedSets[]`. Support partial (2/3 threshold) and full bonuses.
+- **Legendary Effects**: Items with `rarity: "legendary"` can have a `legendaryEffect` field. Types: `xp_bonus`, `gold_bonus`, `drop_bonus`, `decay_reduction`, `streak_protection`. Applied via `getLegendaryModifiers()` in `lib/helpers.js`.
+- **Stat effects**: Kraft → +1% XP, Weisheit → +1% Gold, Ausdauer → -0.5% forge decay, Glück → +0.5% drop chance
+
+## Title System
+
+- **Definitions**: `public/data/titles.json` — each title has `id`, `name`, `rarity`, `condition`
+- **Conditions**: `level`, `quests_completed`, `streak`, `inventory_count`, `gold`, `npc_chains`, `forge_temp`, `gacha_legendary`, `full_equipment`
+- **Award**: `checkAndAwardTitles(userId)` runs on quest completion. Earned titles stored in `user.earnedTitles[]`.
+- **Equip**: `POST /api/player/:name/title/equip` with `{ titleId }` or `{ titleId: null }` to unequip
+- **Display**: Equipped title shown in Player Card (page.tsx) and Leaderboard (LeaderboardView.tsx)
+
 ## Frontend Architecture
 
 ### Code splitting

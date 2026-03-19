@@ -19,8 +19,8 @@ export function getAccessToken(): string | null {
 
 export function clearAuth() {
   accessToken = null;
-  localStorage.removeItem("dash_api_key");
-  localStorage.removeItem("dash_player_name");
+  try { localStorage.removeItem("dash_api_key"); } catch { /* private browsing */ }
+  try { localStorage.removeItem("dash_player_name"); } catch { /* private browsing */ }
 }
 
 /**

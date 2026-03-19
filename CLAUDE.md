@@ -143,7 +143,7 @@ Template: `.env.example`
 
 ## Key Game Systems
 
-Quest system (pool of ~10 open + ~25 max in-progress per player), XP/leveling (30 levels), gear/inventory with set bonuses, companions with bond levels, gacha banners with pity (soft 35, hard 50), daily rituals/streaks, campaign quest chains, multi-currency economy (gold, stardust, essenz, runensplitter).
+Quest system (pool of ~10 open + ~25 max in-progress per player), XP/leveling (30 levels), gear/inventory with set bonuses and legendary effects, companions with bond levels, gacha banners with pity (soft 35, hard 50), daily rituals/streaks, campaign quest chains, multi-currency economy (gold, stardust, essenz, runensplitter), title system (earn and equip titles displayed in player card and leaderboard).
 
 ## Important Files
 
@@ -160,7 +160,9 @@ Quest system (pool of ~10 open + ~25 max in-progress per player), XP/leveling (3
 | `routes/quests.js` | Core quest API (~780 lines) |
 | `routes/config-admin.js` | Game config, leaderboard, `/api/dashboard` batch |
 | `routes/habits-inventory.js` | Rituals, gear, inventory (~830 lines) |
-| `public/data/*.json` | Game data templates (34 files) |
+| `public/data/*.json` | Game data templates (35 files) |
+| `public/data/titles.json` | Title definitions with conditions |
+| `public/data/gearTemplates.json` | Gear items, set bonuses, legendary effects |
 
 ## Documentation
 

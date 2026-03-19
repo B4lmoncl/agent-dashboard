@@ -9,7 +9,7 @@ const {
 const {
   now, getLevelInfo, getUserStats, getUserEquipment, getUserDropBonus,
   rollLoot, resetLootPity, addLootToInventory, calcDynamicForgeTemp,
-  getBondLevel,
+  getBondLevel, getLegendaryEffects,
 } = require('../lib/helpers');
 const { requireAuth, requireSelf } = require('../lib/middleware');
 const { rebuildCatalogMeta } = require('../lib/quest-catalog');
@@ -63,7 +63,9 @@ router.post('/api/habits/:id/score', requireAuth, (req, res) => {
   const uid = (playerId || '').toLowerCase();
   const u = state.users[uid];
   if (u && direction === 'up') {
-    u.xp = (u.xp || 0) + 3;
+    const bondLevel = u.companion?.bondLevel ?? 1;
+    const bondBonus = 1 + 0.01 * Math.max(0, bondLevel - 1);
+    u.xp = (u.xp || 0) + Math.round(3 * bondBonus);
     const dropBonus = getUserDropBonus(uid);
     const { level: habitPlayerLevel } = getLevelInfo(u.xp || 0);
     const dropped = rollLoot(0.05 + dropBonus, habitPlayerLevel);
@@ -783,6 +785,9 @@ router.get('/api/player/:name/character', (req, res) => {
     // season: 'spring', // Season Pass disabled — Coming Soon
     setBonusInfo,
     namedSetBonuses,
+    legendaryEffects: getLegendaryEffects(uid),
+    equippedTitle: u.equippedTitle || null,
+    earnedTitleCount: (u.earnedTitles || []).length,
   });
 });
 

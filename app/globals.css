@@ -742,6 +742,10 @@ img {
 /* Modal / Overlay backdrops                                                 */
 .modal-backdrop      { background: rgba(0,0,0,0.75); }
 .modal-backdrop-blur { background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); }
+.modal-backdrop, .modal-backdrop-blur {
+  touch-action: manipulation;
+  overscroll-behavior: contain;
+}
 
 /* Image rendering — smooth (non-pixelated rendering for all images)         */
 .img-render-auto { image-rendering: smooth; }

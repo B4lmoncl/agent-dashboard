@@ -9,7 +9,7 @@ const {
   getXpMultiplier, getGoldMultiplier, getUserGear, getQuestHoardingMalus,
   hasPassiveEffect, consumePassiveEffect, awardUserGold,
   getUserDropBonus, rollLoot, addLootToInventory, resetLootPity,
-  checkAndAwardAchievements,
+  checkAndAwardAchievements, checkAndAwardTitles,
 } = require('../lib/helpers');
 const { requireApiKey, requireMasterKey } = require('../lib/middleware');
 
@@ -363,6 +363,49 @@ router.delete('/api/rituals/:id', requireApiKey, (req, res) => {
   state.rituals.splice(idx, 1);
   saveRituals();
   res.json({ ok: true });
+});
+
+// ─── Titles ─────────────────────────────────────────────────────────────────
+const { requireAuth, requireSelf } = require('../lib/middleware');
+
+// GET /api/titles — all title definitions
+router.get('/api/titles', (req, res) => {
+  res.json(state.titleDefinitions || []);
+});
+
+// GET /api/player/:name/titles — player's earned titles + equipped title
+router.get('/api/player/:name/titles', (req, res) => {
+  const uid = req.params.name.toLowerCase();
+  const u = state.users[uid];
+  if (!u) return res.status(404).json({ error: 'Player not found' });
+  checkAndAwardTitles(uid);
+  saveUsers();
+  const defs = state.titleDefinitions || [];
+  const earned = (u.earnedTitles || []).map(t => {
+    const def = defs.find(d => d.id === t.id);
+    return def ? { ...def, earnedAt: t.earnedAt } : { id: t.id, name: t.id, earnedAt: t.earnedAt };
+  });
+  res.json({ earned, equipped: u.equippedTitle || null });
+});
+
+// POST /api/player/:name/title/equip — equip a title
+router.post('/api/player/:name/title/equip', requireAuth, requireSelf('name'), (req, res) => {
+  const uid = req.params.name.toLowerCase();
+  const u = state.users[uid];
+  if (!u) return res.status(404).json({ error: 'Player not found' });
+  const { titleId } = req.body;
+  if (!titleId) {
+    // Unequip
+    u.equippedTitle = null;
+    saveUsers();
+    return res.json({ ok: true, equippedTitle: null });
+  }
+  const earned = (u.earnedTitles || []).find(t => t.id === titleId);
+  if (!earned) return res.status(400).json({ error: 'Title not earned yet' });
+  const def = (state.titleDefinitions || []).find(d => d.id === titleId);
+  u.equippedTitle = def ? { id: def.id, name: def.name, rarity: def.rarity } : { id: titleId, name: titleId };
+  saveUsers();
+  res.json({ ok: true, equippedTitle: u.equippedTitle });
 });
 
 module.exports = router;
