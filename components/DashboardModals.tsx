@@ -45,13 +45,13 @@ export default function DashboardModals({
   inProgressCount,
 }: DashboardModalsProps) {
   const CURRENCY_HOW: Record<string, string> = {
-    gold: "Hauptbelohnung für abgeschlossene Quests (5–80 je nach Rarität). Beeinflusst durch Streak, Forge-Temperatur, Weisheit-Stat, Companions und Gear-Boni. Ausgegeben für Gear, Shop-Items und Crafting-Rezepte. Tauschbar gegen Runensplitter (5:1) und Gildentaler (3:1).",
-    stardust: "Verdient durch Level-Ups (5 + Level), täglichen Login-Bonus (2/Tag) und Streak-Meilensteine (z.B. +10 bei 30 Tagen, +30 bei 90 Tagen). Verwendbar für Gacha-Banner und tauschbar gegen Runensplitter (2:1).",
-    essenz: "Täglich 3 durch den Login-Bonus. Große Mengen bei Streak-Meilensteinen (7d: +10, 14d: +20, 30d: +50, 60d: +100, 90d: +200). Auch durch Zerlegen von Items in der Schmiedekunst. Hauptverwendung: Professionswechsel (200 Essenz) und Crafting-Rezepte.",
-    runensplitter: "Fällt bei jeder Quest (1–5 je nach Rarität) und beim täglichen Login (2/Tag). Streak-Meilensteine geben +15 bis +50 extra. Duplikate im Gacha erstatten Splitter zurück. Hauptwährung für Gacha-Pulls (10 pro Zug, 90 für 10er). Tauschbar mit Gold.",
-    gildentaler: "Verdient durch soziale und Co-op Quests (5 pro Quest). Einlösbar für Gilden-Items im Shop. Tauschbar mit Gold (3:1 rein, 0.25:1 raus) — fördert gemeinsames Spielen.",
-    mondstaub: "Die seltenste Währung. Nur durch extreme Streak-Beständigkeit erhältlich: +5 bei 60 Tagen, +10 bei 90 Tagen. Reserviert für limitierte Event-Items und saisonale Belohnungen. Nicht tauschbar.",
-    sternentaler: "Exklusiv aus wöchentlichen Herausforderungen (3-Stufen-System). Einlösbar für exklusive Wochenbelohnungen. Nicht tauschbar — nur für aktive Challenge-Spieler.",
+    gold: "Schließe Quests ab, kaufe Gear und Shop-Items, oder investiere in Crafting-Rezepte. Beeinflusst durch Streak, Forge-Temperatur, Weisheit, Companions und Gear. Tauschbar gegen Runensplitter und Gildentaler.",
+    stardust: "Fällt bei Level-Ups, beim täglichen Login und an Streak-Meilensteinen vom Himmel. Verwendbar für Gacha-Banner und tauschbar gegen Runensplitter.",
+    essenz: "Entsteht durch täglichen Login-Bonus, Streak-Meilensteine und das Zerlegen von Items in der Schmiedekunst. Gebraucht für Professionswechsel und Crafting-Rezepte.",
+    runensplitter: "Belohnung für jede abgeschlossene Quest und den täglichen Login. Streak-Meilensteine und Gacha-Duplikate geben extra. Die Hauptwährung für Gacha-Pulls. Tauschbar mit Gold.",
+    gildentaler: "Verdient durch soziale und Co-op Quests — die Währung des Zusammenhalts. Einlösbar für Gilden-Items im Shop. Tauschbar mit Gold.",
+    mondstaub: "Nur durch extreme Beständigkeit erhältlich — lange Streak-Meilensteine und seltene Events. Reserviert für limitierte Belohnungen. Nicht tauschbar.",
+    sternentaler: "Exklusiv aus wöchentlichen Herausforderungen. Einlösbar für exklusive Wochenbelohnungen. Nicht tauschbar — nur für aktive Challenge-Spieler.",
   };
 
   return (
@@ -70,13 +70,13 @@ export default function DashboardModals({
                 </div>
                 <div className="space-y-2 overflow-y-auto flex-1">
                   {[
-                    { name: "Gold", key: "gold" as const, value: loggedInUser?.currencies?.gold ?? animGold, color: "#f59e0b", desc: "Quest-Belohnungen, Shop & Crafting.", iconSrc: "/images/icons/currency-gold.png" },
-                    { name: "Stardust", key: "stardust" as const, value: loggedInUser?.currencies?.stardust ?? 0, color: "#a78bfa", desc: "Level-Ups, Login & Streak-Meilensteine.", iconSrc: "/images/icons/currency-stardust.png" },
-                    { name: "Essence", key: "essenz" as const, value: loggedInUser?.currencies?.essenz ?? 0, color: "#ef4444", desc: "Täglicher Bonus, Streaks & Schmiedekunst.", iconSrc: "/images/icons/currency-essenz.png" },
-                    { name: "Rune Shards", key: "runensplitter" as const, value: loggedInUser?.currencies?.runensplitter ?? 0, color: "#818cf8", desc: "Quests, Login & Gacha-Währung.", iconSrc: "/images/icons/currency-runensplitter.png" },
-                    { name: "Guild Coins", key: "gildentaler" as const, value: loggedInUser?.currencies?.gildentaler ?? 0, color: "#10b981", desc: "Co-op & soziale Quests.", iconSrc: "/images/icons/currency-gildentaler.png" },
-                    { name: "Moondust", key: "mondstaub" as const, value: loggedInUser?.currencies?.mondstaub ?? 0, color: "#c084fc", desc: "60- & 90-Tage-Streak. Extrem selten.", iconSrc: "/images/icons/currency-mondstaub.png" },
-                    { name: "Sternentaler", key: "sternentaler" as const, value: loggedInUser?.currencies?.sternentaler ?? 0, color: "#fbbf24", desc: "Exklusiv aus Weekly Challenges.", iconSrc: "/images/icons/currency-sternentaler.png" },
+                    { name: "Gold", key: "gold" as const, value: loggedInUser?.currencies?.gold ?? animGold, color: "#f59e0b", desc: "Das ehrliche Metall der Halle.", iconSrc: "/images/icons/currency-gold.png" },
+                    { name: "Stardust", key: "stardust" as const, value: loggedInUser?.currencies?.stardust ?? 0, color: "#a78bfa", desc: "Geronnenes Sternenlicht.", iconSrc: "/images/icons/currency-stardust.png" },
+                    { name: "Essence", key: "essenz" as const, value: loggedInUser?.currencies?.essenz ?? 0, color: "#ef4444", desc: "Der stille Trank der Beständigkeit.", iconSrc: "/images/icons/currency-essenz.png" },
+                    { name: "Rune Shards", key: "runensplitter" as const, value: loggedInUser?.currencies?.runensplitter ?? 0, color: "#818cf8", desc: "Echos der vergessenen Sprache.", iconSrc: "/images/icons/currency-runensplitter.png" },
+                    { name: "Guild Coins", key: "gildentaler" as const, value: loggedInUser?.currencies?.gildentaler ?? 0, color: "#10b981", desc: "Zeichen des Zusammenhalts.", iconSrc: "/images/icons/currency-gildentaler.png" },
+                    { name: "Moondust", key: "mondstaub" as const, value: loggedInUser?.currencies?.mondstaub ?? 0, color: "#c084fc", desc: "Atem der Konzentration. Extrem selten.", iconSrc: "/images/icons/currency-mondstaub.png" },
+                    { name: "Sternentaler", key: "sternentaler" as const, value: loggedInUser?.currencies?.sternentaler ?? 0, color: "#fbbf24", desc: "Exklusiv aus wöchentlichen Herausforderungen.", iconSrc: "/images/icons/currency-sternentaler.png" },
                   ].map(c => (
                     <div key={c.name}>
                       <div
