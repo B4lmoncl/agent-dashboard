@@ -149,7 +149,7 @@ for (const uid of Object.keys(state.users)) {
 
 // NPC & rotation systems
 startupNpcCheck();
-setInterval(checkPeriodicTasks, NPC_ROTATION_MS);
+const npcInterval = setInterval(checkPeriodicTasks, NPC_ROTATION_MS);
 checkAndRunDailyRotation();
 
 // Version tracking
@@ -165,7 +165,7 @@ try {
 const habitsInventory = require('./routes/habits-inventory');
 if (habitsInventory.fetchAndCacheChangelog) {
   habitsInventory.fetchAndCacheChangelog();
-  setInterval(habitsInventory.fetchAndCacheChangelog, habitsInventory.CHANGELOG_TTL || 30 * 60 * 1000);
+  var changelogInterval = setInterval(habitsInventory.fetchAndCacheChangelog, habitsInventory.CHANGELOG_TTL || 30 * 60 * 1000);
 }
 
 // ─── Memory pruning ────────────────────────────────────────────────────────
@@ -184,7 +184,7 @@ function pruneMemory() {
   }
 }
 pruneMemory(); // Run once at boot
-setInterval(pruneMemory, 60 * 60 * 1000); // Then every hour
+const pruneInterval = setInterval(pruneMemory, 60 * 60 * 1000); // Then every hour
 
 // ─── Start server ────────────────────────────────────────────────────────────
 const server = app.listen(PORT, () => {
@@ -197,6 +197,10 @@ const server = app.listen(PORT, () => {
 // ─── Graceful shutdown ──────────────────────────────────────────────────────
 function shutdown(signal) {
   console.log(`\n[shutdown] ${signal} received, closing server...`);
+  // Clear all intervals so they don't block server.close()
+  clearInterval(npcInterval);
+  clearInterval(pruneInterval);
+  if (typeof changelogInterval !== 'undefined') clearInterval(changelogInterval);
   flushPendingSaves();
   server.close(() => {
     console.log('[shutdown] HTTP server closed');
@@ -207,3 +211,13 @@ function shutdown(signal) {
 }
 process.on('SIGTERM', () => shutdown('SIGTERM'));
 process.on('SIGINT', () => shutdown('SIGINT'));
+
+// ─── Global error handlers — prevent data loss on unhandled errors ────────
+process.on('unhandledRejection', (reason) => {
+  console.error('[error] Unhandled promise rejection:', reason);
+});
+process.on('uncaughtException', (err) => {
+  console.error('[fatal] Uncaught exception:', err);
+  flushPendingSaves();
+  process.exit(1);
+});

@@ -78,6 +78,8 @@ router.post('/api/users/:id/register', requireAuth, (req, res) => {
   if (!state.users[id]) {
     state.users[id] = { id, name: name || id, avatar: avatar || id[0].toUpperCase(), color: color || '#f59e0b', xp: 0, questsCompleted: 0, achievements: [], earnedAchievements: [], streakDays: 0, streakLastDate: null, forgeTemp: 0, currencies: { ...DEFAULT_CURRENCIES }, _allCompletedTypes: [], createdAt: now() };
     ensureUserCurrencies(state.users[id]);
+    // Update lookup Maps so usersByName/usersByApiKey stay in sync
+    state.usersByName.set((name || id).toLowerCase(), state.users[id]);
   } else {
     if (name) state.users[id].name = name;
     if (avatar) state.users[id].avatar = avatar;
