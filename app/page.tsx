@@ -728,6 +728,7 @@ export default function Dashboard() {
                   sub={playerName ? "no professions yet" : "login to view"}
                   accent="#f59e0b"
                   onClick={playerName ? () => setProfessionsInfoOpen(true) : undefined}
+                  inline
                 />
               );
             }
@@ -953,8 +954,9 @@ export default function Dashboard() {
                         const level = p?.level ?? 0;
                         const xp = p?.xp ?? 0;
                         const rank = getProfRank(level);
-                        const currentThreshold = PROF_RANK_THRESHOLDS[level] ?? 0;
-                        const nextThreshold = level < 10 ? (PROF_RANK_THRESHOLDS[level + 1] ?? null) : null;
+                        // Backend: level = i+1 when xp >= thresholds[i], so current = thresholds[level-1], next = thresholds[level]
+                        const currentThreshold = level > 0 ? (PROF_RANK_THRESHOLDS[level - 1] ?? 0) : 0;
+                        const nextThreshold = level < 10 ? (PROF_RANK_THRESHOLDS[level] ?? null) : null;
                         const xpInLevel = xp - currentThreshold;
                         const xpForLevel = nextThreshold != null ? nextThreshold - currentThreshold : 0;
                         return (
@@ -968,11 +970,11 @@ export default function Dashboard() {
                                 </div>
                                 <div className="flex items-center gap-2 mt-0.5">
                                   <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.5)" }}>Lv.{level}/10</span>
-                                  {nextThreshold != null ? (
+                                  {nextThreshold != null && xpForLevel > 0 ? (
                                     <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.25)" }}>{xpInLevel}/{xpForLevel} XP</span>
-                                  ) : (
+                                  ) : level >= 10 ? (
                                     <span className="text-xs font-mono" style={{ color: "#f59e0b" }}>MAX</span>
-                                  )}
+                                  ) : null}
                                 </div>
                               </div>
                             </div>
