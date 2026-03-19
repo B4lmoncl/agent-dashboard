@@ -64,6 +64,7 @@ const RARITY_COLORS: Record<string, string> = {
 };
 
 const RARITY_ORDER = ["legendary", "epic", "rare", "uncommon", "common"];
+const RARITY_LABELS: Record<string, string> = { common: "Common", uncommon: "Uncommon", rare: "Rare", epic: "Epic", legendary: "Legendary" };
 
 const ESSENZ_TABLE: Record<string, number> = { common: 2, uncommon: 5, rare: 15, epic: 40, legendary: 100 };
 
@@ -198,8 +199,11 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
     setCrafting(false);
   };
 
-  const handleDismantle = async (itemId: string) => {
+  const handleDismantle = async (itemId: string, itemName?: string, itemRarity?: string) => {
     if (!reviewApiKey) return;
+    // Confirm for rare+ items to prevent accidental dismantles
+    const needsConfirm = ["rare", "epic", "legendary"].includes(itemRarity || "");
+    if (needsConfirm && !window.confirm(`Dismantle ${itemRarity?.toUpperCase()} "${itemName || "item"}"?\n\nThis cannot be undone.`)) return;
     try {
       const r = await fetch("/api/schmiedekunst/dismantle", {
         method: "POST",
@@ -214,8 +218,9 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
     } catch { setDismantleResult("Network error"); }
   };
 
-  const handleDismantleAll = async (rarity: string) => {
+  const handleDismantleAll = async (rarity: string, count?: number) => {
     if (!reviewApiKey) return;
+    if (!window.confirm(`Salvage ALL ${count || ""} ${rarity.toUpperCase()} items?\n\nAll items of this rarity will be dismantled. This cannot be undone.`)) return;
     try {
       const r = await fetch("/api/schmiedekunst/dismantle-all", {
         method: "POST",
@@ -232,6 +237,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
 
   const handleTransmute = async () => {
     if (!reviewApiKey || selectedTransmute.length !== 3) return;
+    if (!window.confirm("Transmute 3 Epic items + 500 Gold into 1 Legendary?\n\nThe 3 selected items will be destroyed. This cannot be undone.")) return;
     try {
       const r = await fetch("/api/schmiedekunst/transmute", {
         method: "POST",
@@ -578,13 +584,16 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                 const mats = profMats ? materialDefs.filter(m => profMats.has(m.id)) : [];
                 if (mats.length === 0) return null;
                 return (
-                  <div className="mt-3 flex flex-wrap gap-2">
-                    {mats.map(m => (
-                      <span key={m.id} className="text-sm flex items-center gap-1.5 px-2 py-1 rounded" style={{ background: "rgba(255,255,255,0.04)", color: materials[m.id] ? RARITY_COLORS[m.rarity] : "rgba(255,255,255,0.15)" }}>
-                        <img src={m.icon} alt="" width={16} height={16} style={{ imageRendering: "smooth" }} onError={hideOnError} />
-                        {m.name} <strong className="font-mono">x{materials[m.id] || 0}</strong>
-                      </span>
-                    ))}
+                  <div className="mt-3">
+                    <p className="text-xs mb-1.5" style={{ color: "rgba(255,255,255,0.25)" }}>Your materials <span style={{ color: "rgba(255,255,255,0.15)" }}>(earned from quest completions)</span></p>
+                    <div className="flex flex-wrap gap-2">
+                      {mats.map(m => (
+                        <span key={m.id} className="text-sm flex items-center gap-1.5 px-2 py-1 rounded cursor-help" title={`${m.desc || m.name} — ${RARITY_LABELS[m.rarity] || m.rarity} material, drops from ${m.rarity} quests`} style={{ background: "rgba(255,255,255,0.04)", color: materials[m.id] ? RARITY_COLORS[m.rarity] : "rgba(255,255,255,0.15)" }}>
+                          <img src={m.icon} alt="" width={16} height={16} style={{ imageRendering: "smooth" }} onError={hideOnError} />
+                          {m.name} <strong className="font-mono">x{materials[m.id] || 0}</strong>
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 );
               })()}
@@ -650,7 +659,17 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
 
                 {/* Recipes list */}
                 <div className="px-5 py-3 space-y-2" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
-                  <p className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.25)" }}>Recipes</p>
+                  <div className="flex items-center justify-between mb-1">
+                    <p className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.25)" }}>Recipes</p>
+                    <div className="flex items-center gap-3">
+                      {Object.entries(SKILL_UP_COLORS).map(([key, sc]) => (
+                        <span key={key} className="flex items-center gap-1 text-xs cursor-help" title={`${sc.label}: ${key === "orange" ? "100% XP" : key === "yellow" ? "75% XP" : key === "green" ? "25% XP" : "0% XP — level up to get XP from higher recipes"}`} style={{ color: "rgba(255,255,255,0.3)" }}>
+                          <span className="w-2 h-2 rounded-full" style={{ background: sc.color }} />
+                          {sc.label}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
                   {recipes.filter(r => r.profession === selectedNpc.id).map(recipe => {
                     const meetsLevel = recipe.canCraft;
                     const onCooldown = (recipe.cooldownRemaining ?? 0) > 0;
@@ -800,7 +819,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                             {/* Salvage All button (D3-style) */}
                             {grouped[rarity].length >= 2 && rarity !== "legendary" && (
                               <button
-                                onClick={() => handleDismantleAll(rarity)}
+                                onClick={() => handleDismantleAll(rarity, grouped[rarity].length)}
                                 className="salvage-all-btn text-xs px-2 py-1 rounded font-semibold ml-auto"
                                 style={{ background: "rgba(255,140,0,0.1)", color: "#ff8c00", border: "1px solid rgba(255,140,0,0.25)" }}
                               >
@@ -812,7 +831,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                             {grouped[rarity].slice(0, 24).map(item => (
                               <button
                                 key={item.instanceId || item.id}
-                                onClick={() => handleDismantle(item.instanceId || item.id)}
+                                onClick={() => handleDismantle(item.instanceId || item.id, item.name, rarity)}
                                 className="forge-btn relative flex items-center justify-center rounded-lg aspect-square"
                                 style={{ background: `${RARITY_COLORS[rarity]}08`, border: `1px solid ${RARITY_COLORS[rarity]}30` }}
                                 title={`${item.name} — Dismantle → +${ESSENZ_TABLE[rarity] || 2} Essenz`}
