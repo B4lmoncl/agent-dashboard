@@ -45,13 +45,13 @@ export default function DashboardModals({
   inProgressCount,
 }: DashboardModalsProps) {
   const CURRENCY_HOW: Record<string, string> = {
-    gold: "Schließe Quests ab, verkaufe Loot, oder erledige tägliche Herausforderungen. Das ehrliche Metall — ehrlich verdient.",
-    stardust: "Geronnenes Sternenlicht. Fällt bei Level-Ups, seltenen Achievements und besonderen Events vom Himmel.",
-    essenz: "Der stille Trank. Entsteht durch Beständigkeit — halte deinen Streak aufrecht und die Essenz fließt.",
-    runensplitter: "Echos der vergessenen Sprache. Belohnung für abgeschlossene Quest-Ketten und NPC-Aufträge. Ziehe am Rad der Sterne.",
-    gildentaler: "Zeichen des Zusammenhalts. Verdient durch Co-op Quests und soziale Herausforderungen mit deinen Verbündeten.",
-    mondstaub: "Der Atem der Konzentration. Extrem selten — fällt nur bei zeitlich begrenzten Events und legendären Taten.",
-    sternentaler: "Seltene Münzen aus den wöchentlichen Herausforderungen. Exklusiv für besondere Belohnungen.",
+    gold: "Schließe Quests ab, kaufe Gear und Shop-Items, oder investiere in Crafting-Rezepte. Beeinflusst durch Streak, Forge-Temperatur, Weisheit, Companions und Gear. Tauschbar gegen Runensplitter und Gildentaler.",
+    stardust: "Fällt bei Level-Ups, beim täglichen Login und an Streak-Meilensteinen vom Himmel. Verwendbar für Gacha-Banner und tauschbar gegen Runensplitter.",
+    essenz: "Entsteht durch täglichen Login-Bonus, Streak-Meilensteine und das Zerlegen von Items in der Schmiedekunst. Gebraucht für Professionswechsel und Crafting-Rezepte.",
+    runensplitter: "Belohnung für jede abgeschlossene Quest und den täglichen Login. Streak-Meilensteine und Gacha-Duplikate geben extra. Die Hauptwährung für Gacha-Pulls. Tauschbar mit Gold.",
+    gildentaler: "Verdient durch soziale und Co-op Quests — die Währung des Zusammenhalts. Einlösbar für Gilden-Items im Shop. Tauschbar mit Gold.",
+    mondstaub: "Nur durch extreme Beständigkeit erhältlich — lange Streak-Meilensteine und seltene Events. Reserviert für limitierte Belohnungen. Nicht tauschbar.",
+    sternentaler: "Exklusiv aus wöchentlichen Herausforderungen. Einlösbar für exklusive Wochenbelohnungen. Nicht tauschbar — nur für aktive Challenge-Spieler.",
   };
 
   return (
