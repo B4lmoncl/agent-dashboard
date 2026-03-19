@@ -9,7 +9,7 @@ const { now, getLevelInfo, PRIMARY_STATS, MINOR_STATS, createGearInstance } = re
 
 const VALID_SLOTS = ['weapon', 'shield', 'helm', 'armor', 'amulet', 'boots'];
 const RARITY_ORDER = ['common', 'uncommon', 'rare', 'epic', 'legendary'];
-const SLOT_RECIPES = ['reroll_stat', 'reroll_minor', 'upgrade_rarity', 'enchant_gear', 'permanent_enchant'];
+const SLOT_RECIPES = ['reroll_stat', 'reroll_minor', 'upgrade_rarity', 'permanent_enchant', 'reinforce_armor', 'enchant_socket'];
 const { requireAuth } = require('../lib/middleware');
 
 // ─── Helper: collect equipped item instanceIds ──────────────────────────────
@@ -124,10 +124,11 @@ router.get('/api/professions', (req, res) => {
     })
     .map(r => {
       const profProgress = u ? getProfLevel(u, r.profession) : { level: 0 };
-      const lastCraft = (u?.professions || {})[r.profession]?.lastCraftAt || null;
+      const recipeCooldowns = (u?.professions || {})[r.profession]?.recipeCooldowns || {};
+      const lastRecipeCraft = recipeCooldowns[r.id] || null;
       let cooldownRemaining = 0;
-      if (r.cooldownMinutes > 0 && lastCraft) {
-        const elapsed = (Date.now() - new Date(lastCraft).getTime()) / 1000;
+      if (r.cooldownMinutes > 0 && lastRecipeCraft) {
+        const elapsed = (Date.now() - new Date(lastRecipeCraft).getTime()) / 1000;
         cooldownRemaining = Math.max(0, Math.ceil(r.cooldownMinutes * 60 - elapsed));
       }
       return {
@@ -178,10 +179,11 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
     return res.status(400).json({ error: `Requires ${profDef.name} level ${recipe.reqProfLevel}` });
   }
 
-  // Check cooldown
-  const lastCraft = (u.professions || {})[recipe.profession]?.lastCraftAt;
-  if (recipe.cooldownMinutes > 0 && lastCraft) {
-    const elapsed = (Date.now() - new Date(lastCraft).getTime()) / 60000;
+  // Check cooldown (per-recipe, not per-profession)
+  const recipeCooldowns = (u.professions || {})[recipe.profession]?.recipeCooldowns || {};
+  const lastRecipeCraft = recipeCooldowns[recipeId] || null;
+  if (recipe.cooldownMinutes > 0 && lastRecipeCraft) {
+    const elapsed = (Date.now() - new Date(lastRecipeCraft).getTime()) / 60000;
     if (elapsed < recipe.cooldownMinutes) {
       const remaining = Math.ceil(recipe.cooldownMinutes - elapsed);
       return res.status(429).json({ error: `Cooldown: ${remaining} minutes remaining` });
@@ -195,10 +197,11 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
   }
 
   // Slot-requiring recipes can't batch (they target specific gear)
-  const effectiveCount = SLOT_RECIPES.includes(recipeId) || recipeId === 'reinforce_armor' || recipeId === 'enchant_socket' ? 1 : count;
+  const isSlotRecipe = SLOT_RECIPES.includes(recipeId);
+  const effectiveCount = isSlotRecipe ? 1 : count;
 
   // Validate slot-requiring recipes have a targetSlot and valid gear
-  if (SLOT_RECIPES.includes(recipeId) || recipeId === 'reinforce_armor' || recipeId === 'enchant_socket') {
+  if (isSlotRecipe) {
     if (!targetSlot) return res.status(400).json({ error: 'targetSlot required' });
     const eq = u.equipment?.[targetSlot];
     if (!eq || typeof eq === 'string') return res.status(400).json({ error: 'No gear instance in slot' });
@@ -206,6 +209,17 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
       if (RARITY_ORDER.indexOf(eq.rarity || 'common') >= RARITY_ORDER.length - 1) {
         return res.status(400).json({ error: 'Item is already legendary!' });
       }
+    }
+    // Pre-validate reroll has valid template/stats BEFORE deducting costs
+    if (recipeId === 'reroll_stat') {
+      const template = state.gearById.get(eq.templateId) || state.itemTemplates?.get(eq.templateId);
+      if (!template?.affixes?.primary?.pool?.length) return res.status(400).json({ error: 'Item has no rerollable primary stats' });
+      const primaryStats = Object.keys(eq.stats || {}).filter(s => PRIMARY_STATS.includes(s));
+      if (primaryStats.length === 0) return res.status(400).json({ error: 'No primary stats to reroll' });
+    }
+    if (recipeId === 'reroll_minor') {
+      const template = state.gearById.get(eq.templateId) || state.itemTemplates?.get(eq.templateId);
+      if (!template?.affixes?.minor?.pool?.length) return res.status(400).json({ error: 'Item has no rerollable minor stats' });
     }
   }
 
@@ -251,6 +265,11 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
   const totalXpGained = baseXp * xpMultiplier;
   u.professions[recipe.profession].xp += totalXpGained;
   u.professions[recipe.profession].lastCraftAt = now();
+  // Track per-recipe cooldown
+  if (recipe.cooldownMinutes > 0) {
+    u.professions[recipe.profession].recipeCooldowns = u.professions[recipe.profession].recipeCooldowns || {};
+    u.professions[recipe.profession].recipeCooldowns[recipeId] = now();
+  }
   u.lastCraftDate = new Date().toISOString().slice(0, 10); // track daily bonus
   const newProfLevel = getProfLevel(u, recipe.profession);
   u.professions[recipe.profession].level = newProfLevel.level;
@@ -259,13 +278,9 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
 
   switch (recipeId) {
     case 'reroll_stat': {
-      // Reroll one primary stat on an equipped item (pre-validated above)
       const eq = u.equipment[targetSlot];
       const template = state.gearById.get(eq.templateId) || state.itemTemplates?.get(eq.templateId);
-      if (!template?.affixes?.primary?.pool?.length) return res.status(400).json({ error: 'Item has no rerollable primary stats' });
-      // Pick a random primary stat and reroll it
       const primaryStats = Object.keys(eq.stats || {}).filter(s => PRIMARY_STATS.includes(s));
-      if (primaryStats.length === 0) return res.status(400).json({ error: 'No primary stats to reroll' });
       const statIdx = targetStatIndex != null ? Math.min(targetStatIndex, primaryStats.length - 1) : Math.floor(Math.random() * primaryStats.length);
       const statToReroll = primaryStats[statIdx];
       const poolEntry = template.affixes.primary.pool.find(p => p.stat === statToReroll);
@@ -288,7 +303,6 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
     case 'reroll_minor': {
       const eq = u.equipment[targetSlot];
       const template = state.gearById.get(eq.templateId) || state.itemTemplates?.get(eq.templateId);
-      if (!template?.affixes?.minor?.pool?.length) return res.status(400).json({ error: 'Item has no rerollable minor stats' });
       const minorStats = Object.keys(eq.stats || {}).filter(s => MINOR_STATS.includes(s));
       if (minorStats.length === 0) {
         // Add a new minor stat from pool

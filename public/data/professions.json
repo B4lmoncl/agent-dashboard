@@ -13,12 +13,7 @@
       "maxLevel": 10,
       "xpPerCraft": 10,
       "levelThresholds": [0, 50, 120, 220, 360, 550, 800, 1100, 1500, 2000],
-      "unlockCondition": { "type": "level", "value": 5 },
-      "abilities": [
-        { "id": "reroll_stat", "name": "Stat Reroll", "desc": "Rerolls one primary stat on an equipped item.", "reqLevel": 1, "cooldownMinutes": 60 },
-        { "id": "reroll_minor", "name": "Minor Reroll", "desc": "Rerolls one minor stat.", "reqLevel": 3, "cooldownMinutes": 120 },
-        { "id": "upgrade_rarity", "name": "Rarity Upgrade", "desc": "50% chance to upgrade item rarity by one tier.", "reqLevel": 7, "cooldownMinutes": 1440 }
-      ]
+      "unlockCondition": { "type": "level", "value": 5 }
     },
     {
       "id": "alchemist",
@@ -32,10 +27,7 @@
       "maxLevel": 10,
       "xpPerCraft": 10,
       "levelThresholds": [0, 50, 120, 220, 360, 550, 800, 1100, 1500, 2000],
-      "unlockCondition": { "type": "level", "value": 5 },
-      "abilities": [
-        { "id": "brew_potion", "name": "Brew Potion", "desc": "Brews a potion from materials.", "reqLevel": 1, "cooldownMinutes": 0 }
-      ]
+      "unlockCondition": { "type": "level", "value": 5 }
     },
     {
       "id": "verzauberer",
@@ -49,11 +41,7 @@
       "maxLevel": 10,
       "xpPerCraft": 10,
       "levelThresholds": [0, 50, 120, 220, 360, 550, 800, 1100, 1500, 2000],
-      "unlockCondition": { "type": "level", "value": 8 },
-      "abilities": [
-        { "id": "enchant_gear", "name": "Enchantment", "desc": "Applies a temporary enchant (+stat for 24h).", "reqLevel": 1, "cooldownMinutes": 360 },
-        { "id": "permanent_enchant", "name": "Permanent Enchant", "desc": "Permanently adds a minor stat to an item.", "reqLevel": 5, "cooldownMinutes": 1440 }
-      ]
+      "unlockCondition": { "type": "level", "value": 8 }
     },
     {
       "id": "koch",
@@ -67,10 +55,7 @@
       "maxLevel": 10,
       "xpPerCraft": 10,
       "levelThresholds": [0, 50, 120, 220, 360, 550, 800, 1100, 1500, 2000],
-      "unlockCondition": { "type": "level", "value": 3 },
-      "abilities": [
-        { "id": "cook_meal", "name": "Cook Meal", "desc": "Cooks a meal from ingredients.", "reqLevel": 1, "cooldownMinutes": 0 }
-      ]
+      "unlockCondition": { "type": "level", "value": 3 }
     }
   ],
   "materials": [

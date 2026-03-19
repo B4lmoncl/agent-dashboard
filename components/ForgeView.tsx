@@ -158,6 +158,16 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
 
   useEffect(() => { fetchData(); }, [fetchData]);
 
+  // Keep selectedNpc in sync with refreshed professions data
+  useEffect(() => {
+    if (selectedNpc) {
+      const updated = professions.find(p => p.id === selectedNpc.id);
+      if (updated && (updated.playerXp !== selectedNpc.playerXp || updated.playerLevel !== selectedNpc.playerLevel || updated.rank !== selectedNpc.rank)) {
+        setSelectedNpc(updated);
+      }
+    }
+  }, [professions, selectedNpc]);
+
   const handleCraft = async (recipeId: string, count = 1) => {
     if (crafting || !reviewApiKey) return;
     setCrafting(true);
