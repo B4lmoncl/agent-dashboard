@@ -258,6 +258,7 @@ router.post('/api/personal-templates/spawn', requireApiKey, (req, res) => {
     lastCompletedAt: null,
     proof: null,
     checklist: template.checklist ? template.checklist.map(item => ({ ...item, done: false })) : null,
+    rarity: template.rarity || 'common',
   };
   state.quests.push(quest);
   state.questsById.set(quest.id, quest);
@@ -317,6 +318,7 @@ router.post('/api/challenges/join', requireApiKey, (req, res) => {
       proof: null,
       checklist: null,
       challengeId,
+      rarity: qTemplate.rarity || 'common',
     };
     state.quests.push(q);
     state.questsById.set(q.id, q);

@@ -197,22 +197,14 @@ router.post('/api/player/:name/inventory/use/:itemId', requireAuth, requireSelf(
     }
     case 'random_gear': {
       const { level: playerLvl } = getLevelInfo(u.xp || 0);
-      const eligible = state.FULL_GEAR_ITEMS.filter(g => g.minLevel <= playerLvl && !g.shopHidden);
-      const pool = eligible.length > 0 ? eligible : state.FULL_GEAR_ITEMS.filter(g => g.minLevel <= playerLvl);
+      const eligible = state.FULL_GEAR_ITEMS.filter(g => (g.reqLevel || g.minLevel || 1) <= playerLvl && !g.shopHidden);
+      const pool = eligible.length > 0 ? eligible : state.FULL_GEAR_ITEMS.filter(g => (g.reqLevel || g.minLevel || 1) <= playerLvl);
       if (pool.length > 0) {
-        const gearItem = pool[Math.floor(Math.random() * pool.length)];
-        const newEntry = {
-          id: `inv-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
-          itemId: gearItem.id,
-          name: gearItem.name,
-          rarity: gearItem.rarity || 'common',
-          rarityColor: null,
-          obtainedAt: now(),
-          resolvedGear: { id: gearItem.id, name: gearItem.name, slot: gearItem.slot, emoji: gearItem.emoji },
-        };
-        u.inventory.push(newEntry);
-        updatedValues.newItem = newEntry;
-        message = `Du erhältst: ${gearItem.name}!`;
+        const gearTemplate = pool[Math.floor(Math.random() * pool.length)];
+        const instance = createGearInstance(gearTemplate);
+        u.inventory.push(instance);
+        updatedValues.newItem = instance;
+        message = `Du erhältst: ${instance.name}!`;
       } else {
         message = 'Keine passende Ausrüstung gefunden.';
       }
@@ -222,24 +214,16 @@ router.post('/api/player/:name/inventory/use/:itemId', requireAuth, requireSelf(
       const { level: playerLvl2 } = getLevelInfo(u.xp || 0);
       const minRarityIdx = RARITY_ORDER.indexOf('epic');
       const eligible2 = state.FULL_GEAR_ITEMS.filter(g =>
-        g.minLevel <= playerLvl2 && !g.shopHidden &&
+        (g.reqLevel || g.minLevel || 1) <= playerLvl2 && !g.shopHidden &&
         RARITY_ORDER.indexOf(g.rarity || 'common') >= minRarityIdx
       );
-      const pool2 = eligible2.length > 0 ? eligible2 : state.FULL_GEAR_ITEMS.filter(g => g.minLevel <= playerLvl2);
+      const pool2 = eligible2.length > 0 ? eligible2 : state.FULL_GEAR_ITEMS.filter(g => (g.reqLevel || g.minLevel || 1) <= playerLvl2);
       if (pool2.length > 0) {
-        const gearItem = pool2[Math.floor(Math.random() * pool2.length)];
-        const newEntry = {
-          id: `inv-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
-          itemId: gearItem.id,
-          name: gearItem.name,
-          rarity: gearItem.rarity || 'epic',
-          rarityColor: null,
-          obtainedAt: now(),
-          resolvedGear: { id: gearItem.id, name: gearItem.name, slot: gearItem.slot, emoji: gearItem.emoji },
-        };
-        u.inventory.push(newEntry);
-        updatedValues.newItem = newEntry;
-        message = `Du erhältst: ${gearItem.name}!`;
+        const gearTemplate = pool2[Math.floor(Math.random() * pool2.length)];
+        const instance = createGearInstance(gearTemplate);
+        u.inventory.push(instance);
+        updatedValues.newItem = instance;
+        message = `Du erhältst: ${instance.name}!`;
       } else {
         message = 'Keine passende Ausrüstung gefunden.';
       }
