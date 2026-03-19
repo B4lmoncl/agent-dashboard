@@ -770,15 +770,55 @@ Folgende Bilder, Portraits und Icons werden im Code referenziert, existieren abe
 | Feuerwurz | `public/images/icons/mat-feuerwurz.png` |
 | Sternenfrucht | `public/images/icons/mat-sternenfrucht.png` |
 
-### Gear/Item-Icons (48 fehlend)
+### Item-Template-Icons (50 fehlend)
 
-Alle Gear-Template-Icons unter `public/images/items/icons/` fehlen komplett. Betrifft:
+Icons aus `itemTemplates.json` unter `public/images/items/icons/` — betrifft Gear-Items die als Loot/Inventar-Items referenziert werden:
 - **T1 (14 Items):** `t1-sword`, `t1-dagger`, `t1-staff`, `t1-axe`, `t1-shield`, `t1-buckler`, `t1-helm`, `t1-hood`, `t1-armor`, `t1-tunic`, `t1-amulet`, `t1-charm`, `t1-boots`, `t1-sandals`
-- **T2 (12 Items):** `t2-sword`, `t2-katana`, `t2-hammer`, `t2-shield`, `t2-tower`, `t2-helm`, `t2-circlet`, `t2-armor`, `t2-brigandine`, `t2-amulet`, `t2-pendant`, `t2-boots`, `t2-strider`
+- **T2 (13 Items):** `t2-sword`, `t2-katana`, `t2-hammer`, `t2-shield`, `t2-tower`, `t2-helm`, `t2-circlet`, `t2-armor`, `t2-brigandine`, `t2-amulet`, `t2-pendant`, `t2-boots`, `t2-strider`
 - **T3 (12 Items):** `t3-sword`, `t3-lance`, `t3-wand`, `t3-shield`, `t3-barrier`, `t3-helm`, `t3-crown`, `t3-armor`, `t3-plate`, `t3-amulet`, `t3-eye`, `t3-boots`, `t3-shadow`
 - **T4 (10 Items):** `t4-dawn`, `t4-void`, `t4-aegis`, `t4-crown`, `t4-armor`, `t4-heart`, `t4-boots`, `t4-excalibur`, `t4-phoenix`, `t4-oracle`
 
 Pfad-Format: `public/images/items/icons/{id}.png`
+
+**Hinweis:** `gearTemplates.json` (Affix-Definitions) hat kein `icon`-Feld — nur `itemTemplates.json` (Inventar-Items) referenziert diese Icons.
+
+### Achievement-Icons (31 mit Platzhalter "?")
+
+Folgende Achievements nutzen `"?"` als Icon statt echtem Bild. Empfohlener Pfad: `public/images/icons/ach-{id}.png`
+
+| Achievement | Name |
+|-------------|------|
+| centurion | Centurion |
+| master | Quest Master |
+| hermit | The Hermit |
+| boss_hunter | Boss Hunter |
+| boss_legend | Boss Legend |
+| two_week_warrior | Fortnight Fighter |
+| quarter_year | Seasonal Champion |
+| gold_hoarder | Gold Hoarder |
+| dragon_hoard | Dragon's Hoard |
+| initiate | Initiate |
+| adept | Adept |
+| master_rank | Master |
+| grandmaster | Grandmaster |
+| chain_veteran | Chain Veteran |
+| marathon_runner | Marathon Runner |
+| social_king | Social Monarch |
+| fitness_fanatic | Fitness Fanatic |
+| knowledge_seeker | Knowledge Seeker |
+| dev_legend | Dev Legend |
+| weekend_warrior | Weekend Warrior |
+| coop_legend | Co-op Legend |
+| hidden_midnight | Midnight Oil |
+| hidden_skulduggery | Pleasant Surprise |
+| hidden_stormlight | Journey Before Destination |
+| hidden_critical_role | Bidet |
+| hidden_dndads | Daddy Magic |
+| hidden_perfectionist | No Quest Left Behind |
+| hidden_npc_collector | NPC Collector |
+| hidden_gacha_addict | Gacha Addict |
+| hidden_full_inventory | Hoarder's Dream |
+| hidden_legendary_pull | Legendary Luck |
 
 ### Klassen-Assets (1 Klasse)
 
