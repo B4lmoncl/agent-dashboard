@@ -644,29 +644,6 @@ export default function Dashboard() {
       />
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 py-8 space-y-8" style={{ position: "relative", zIndex: 2, background: "rgba(11,13,17,0.75)", borderRadius: 16, backdropFilter: "blur(8px)", marginTop: 8 }}>
-        {/* Daily Bonus Banner */}
-        {playerName && dailyBonusAvailable && (
-          <button
-            onClick={handleClaimDailyBonus}
-            disabled={claimingDailyBonus}
-            className="w-full rounded-xl p-4 flex items-center justify-center gap-3 transition-all"
-            style={{
-              background: "linear-gradient(90deg, rgba(250,204,21,0.12), rgba(245,158,11,0.15), rgba(250,204,21,0.12))",
-              border: "1px solid rgba(250,204,21,0.35)",
-              cursor: claimingDailyBonus ? "wait" : "pointer",
-              opacity: claimingDailyBonus ? 0.6 : 1,
-              boxShadow: "0 0 20px rgba(250,204,21,0.08), inset 0 1px 0 rgba(250,204,21,0.1)",
-              animation: "pulse-online 2s ease-in-out infinite",
-            }}
-          >
-            <span style={{ fontSize: 22 }}>☀</span>
-            <span className="text-sm font-bold" style={{ color: "#facc15" }}>
-              {claimingDailyBonus ? "Claiming..." : "Daily Bonus available — click to claim!"}
-            </span>
-            <span className="text-xs px-2 py-0.5 rounded-full" style={{ background: "rgba(250,204,21,0.1)", color: "rgba(250,204,21,0.7)" }}>Essenz + Runensplitter</span>
-          </button>
-        )}
-
         {/* Stats — Player-specific */}
         <div className="grid grid-cols-1 sm:grid-cols-4 gap-3" data-tutorial="stat-cards">
           {!playerName && !loading && (
@@ -777,6 +754,23 @@ export default function Dashboard() {
                 <p className="text-xs mt-1 font-mono text-w20">
                   {playerLevelInfo.xpInLevel} {playerLevelInfo.xpForLevel ? `/ ${playerLevelInfo.xpForLevel} XP` : "(max)"}
                 </p>
+                {dailyBonusAvailable && (
+                  <button
+                    onClick={handleClaimDailyBonus}
+                    disabled={claimingDailyBonus}
+                    className="mt-2 px-3 py-1.5 rounded-lg text-xs font-bold transition-all inline-flex items-center gap-1.5"
+                    style={{
+                      background: "linear-gradient(90deg, rgba(250,204,21,0.12), rgba(245,158,11,0.15))",
+                      color: "#facc15",
+                      border: "1px solid rgba(250,204,21,0.3)",
+                      cursor: claimingDailyBonus ? "wait" : "pointer",
+                      opacity: claimingDailyBonus ? 0.5 : 1,
+                      animation: "pulse-online 2s ease-in-out infinite",
+                    }}
+                  >
+                    <span>☀</span> {claimingDailyBonus ? "Claiming..." : "Claim Daily Bonus"}
+                  </button>
+                )}
               </div>
 
               {/* Right side: Currencies + Forge */}
