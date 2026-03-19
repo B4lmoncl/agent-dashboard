@@ -1,7 +1,7 @@
 // ─── Player API ────────────────────────────────────────────────────────────────
 const router = require('express').Router();
 const { state, NPC_META, saveUsers, savePlayerProgress } = require('../lib/state');
-const { now, todayStr, getLevelInfo, getPlayerProgress, calcDynamicForgeTemp, getBondLevel } = require('../lib/helpers');
+const { now, todayStr, getLevelInfo, getPlayerProgress, calcDynamicForgeTemp, getBondLevel, onQuestCompletedByUser } = require('../lib/helpers');
 const { requireAuth, requireSelf } = require('../lib/middleware');
 
 // PATCH /api/player/:name/profile — update profile settings [auth + self]
@@ -142,7 +142,18 @@ router.get('/api/player/:name/companion', (req, res) => {
   if (!u.companion) return res.json({ companion: null, quests: [] });
   const bondInfo = getBondLevel(u.companion.bondXp || 0);
   const companionQuests = state.quests.filter(q => q.type === 'companion' && q.companionOwnerId === uid && q.status !== 'rejected');
-  res.json({ companion: { ...u.companion, bondInfo }, quests: companionQuests });
+  const ultimateData = state.companionsData?.ultimates;
+  const ultimateReady = !u.companion.ultimateLastUsed || (Date.now() - new Date(u.companion.ultimateLastUsed).getTime()) >= (ultimateData?.cooldownDays || 7) * 24 * 60 * 60 * 1000;
+  res.json({
+    companion: { ...u.companion, bondInfo },
+    quests: companionQuests,
+    ultimate: bondInfo.level >= (ultimateData?.requiredBondLevel || 5) ? {
+      ready: ultimateReady,
+      cooldownDays: ultimateData?.cooldownDays || 7,
+      lastUsed: u.companion.ultimateLastUsed || null,
+      abilities: ultimateData?.abilities || [],
+    } : null,
+  });
 });
 
 // POST /api/player/:name/companion/pet — pet the companion (bond XP for first 2x/day, unlimited petting)
@@ -176,6 +187,101 @@ router.post('/api/player/:name/companion/pet', requireAuth, requireSelf('name'),
     petsToday: u.companion.petCountToday || 0,
     xpAwarded: !xpLimitReached,
     message: xpLimitReached ? 'Your companion loves the attention! (XP limit reached for today)' : undefined,
+  });
+});
+
+// POST /api/player/:name/companion/ultimate — activate companion ultimate ability
+router.post('/api/player/:name/companion/ultimate', requireAuth, requireSelf('name'), (req, res) => {
+  const uid = req.params.name.toLowerCase();
+  const u = state.users[uid];
+  if (!u) return res.status(404).json({ error: 'Player not found' });
+  if (!u.companion) return res.status(404).json({ error: 'No companion' });
+
+  const bondLevel = u.companion.bondLevel || getBondLevel(u.companion.bondXp || 0).level;
+  const ultimateData = state.companionsData?.ultimates;
+  if (!ultimateData) return res.status(500).json({ error: 'Ultimates not configured' });
+  const requiredLevel = ultimateData.requiredBondLevel || 5;
+  if (bondLevel < requiredLevel) {
+    return res.status(400).json({ error: `Bond Level ${requiredLevel} benötigt (aktuell: ${bondLevel})` });
+  }
+
+  // Check cooldown (7 days)
+  const cooldownDays = ultimateData.cooldownDays || 7;
+  const lastUsed = u.companion.ultimateLastUsed;
+  if (lastUsed) {
+    const elapsed = (Date.now() - new Date(lastUsed).getTime()) / (1000 * 60 * 60 * 24);
+    if (elapsed < cooldownDays) {
+      const remaining = Math.ceil(cooldownDays - elapsed);
+      return res.status(429).json({ error: `Ultimate auf Cooldown (noch ${remaining} Tag${remaining > 1 ? 'e' : ''})` });
+    }
+  }
+
+  const { abilityId, targetQuestId } = req.body;
+  if (!abilityId) return res.status(400).json({ error: 'abilityId required' });
+  const ability = ultimateData.abilities.find(a => a.id === abilityId);
+  if (!ability) return res.status(404).json({ error: 'Unknown ability' });
+
+  let result = { success: true, message: '' };
+  const companionName = u.companion.name || 'Dein Begleiter';
+  const flavorText = (ability.flavorText || '').replace(/\{name\}/g, companionName);
+
+  switch (ability.effect.type) {
+    case 'instant_complete_quest': {
+      if (!targetQuestId) return res.status(400).json({ error: 'targetQuestId required for instant_complete' });
+      const quest = state.questsById.get(targetQuestId);
+      if (!quest) return res.status(404).json({ error: 'Quest not found' });
+      if (quest.status !== 'in_progress' && quest.status !== 'open') {
+        return res.status(400).json({ error: 'Quest muss offen oder in Bearbeitung sein' });
+      }
+      if (quest.status === 'open') {
+        quest.status = 'in_progress';
+        quest.claimedBy = uid;
+        quest.claimedAt = now();
+      }
+      quest.status = 'completed';
+      quest.completedBy = uid;
+      quest.completedAt = now();
+      quest.proof = `Companion Ultimate: ${companionName}`;
+      const newAchs = onQuestCompletedByUser(uid, quest);
+      result.message = `${companionName} hat "${quest.title}" für dich erledigt!`;
+      result.completedQuest = quest;
+      result.newAchievements = newAchs;
+      result.xpEarned = u._lastXpEarned;
+      result.goldEarned = u._lastGoldEarned;
+      break;
+    }
+    case 'buff': {
+      u.activeBuffs = u.activeBuffs || [];
+      u.activeBuffs.push({
+        type: ability.effect.buffType,
+        questsRemaining: 1,
+        activatedAt: now(),
+        source: 'companion_ultimate',
+      });
+      result.message = `Doppelte Belohnung für die nächste Quest aktiviert!`;
+      break;
+    }
+    case 'streak_extend': {
+      const days = ability.effect.days || 3;
+      u.streakDays = (u.streakDays || 0) + days;
+      result.message = `Streak um ${days} Tage verlängert! (Gesamt: ${u.streakDays})`;
+      break;
+    }
+    default:
+      return res.status(400).json({ error: `Unknown effect type: ${ability.effect.type}` });
+  }
+
+  // Set cooldown
+  u.companion.ultimateLastUsed = now();
+  saveUsers();
+  const { saveQuests } = require('../lib/state');
+  saveQuests();
+
+  res.json({
+    ...result,
+    flavorText,
+    abilityUsed: ability.id,
+    cooldownEndsAt: new Date(Date.now() + cooldownDays * 24 * 60 * 60 * 1000).toISOString(),
   });
 });
 

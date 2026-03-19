@@ -40,5 +40,35 @@
     { "level": 8,  "title": "Legendary II",  "minXp": 300 },
     { "level": 9,  "title": "Legendary III", "minXp": 450 },
     { "level": 10, "title": "Legendary IV",  "minXp": 666 }
-  ]
+  ],
+  "ultimates": {
+    "requiredBondLevel": 5,
+    "cooldownDays": 7,
+    "abilities": [
+      {
+        "id": "instant_complete",
+        "name": "Sofort-Abschluss",
+        "icon": "/images/icons/ult-instant.png",
+        "desc": "{name} erledigt eine offene Quest sofort für dich.",
+        "effect": { "type": "instant_complete_quest" },
+        "flavorText": "{name} stürmt los und kehrt siegreich zurück!"
+      },
+      {
+        "id": "double_reward",
+        "name": "Doppelte Belohnung",
+        "icon": "/images/icons/ult-double.png",
+        "desc": "Die nächste abgeschlossene Quest gibt doppelte XP und Gold.",
+        "effect": { "type": "buff", "buffType": "double_reward", "duration": "1_quest" },
+        "flavorText": "{name}s Augen leuchten — die nächste Beute wird groß!"
+      },
+      {
+        "id": "streak_extend",
+        "name": "Streak-Verlängerung",
+        "icon": "/images/icons/ult-streak.png",
+        "desc": "Verlängert deinen aktuellen Streak um 3 Tage.",
+        "effect": { "type": "streak_extend", "days": 3 },
+        "flavorText": "{name} wacht über deinen Streak — 3 Tage Schutz!"
+      }
+    ]
+  }
 }
