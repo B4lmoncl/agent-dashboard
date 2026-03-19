@@ -930,7 +930,7 @@ export default function Dashboard() {
 
         {/* ── FORGE TAB ── */}
         {dashView === "forge" && (
-          <Suspense fallback={<ViewFallback />}><ForgeView onRefresh={refresh} /></Suspense>
+          <Suspense fallback={<ViewFallback />}><ForgeView onRefresh={refresh} onNavigate={(tab: string) => setDashView(tab as typeof dashView)} /></Suspense>
         )}
 
         {/* ── VAULT OF FATE (GACHA) TAB ── */}
@@ -1299,7 +1299,7 @@ export default function Dashboard() {
 
         {/* ── CHARACTER TAB ── */}
         {dashView === "character" && playerName && (
-          <Suspense fallback={<ViewFallback />}><CharacterView addToast={addToast} /></Suspense>
+          <Suspense fallback={<ViewFallback />}><CharacterView addToast={addToast} onNavigate={(tab: string) => setDashView(tab as typeof dashView)} /></Suspense>
         )}
 
         {/* ── THE WANDERER'S REST (NPC Tab) ── */}

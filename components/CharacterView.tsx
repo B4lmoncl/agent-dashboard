@@ -643,7 +643,7 @@ function GearSlotRow({ slot, iconSrc, label, item, onUnequip, unequipping }: {
   );
 }
 
-export default function CharacterView({ addToast }: { addToast?: (t: ToastInput) => void }) {
+export default function CharacterView({ addToast, onNavigate }: { addToast?: (t: ToastInput) => void; onNavigate?: (tab: string) => void }) {
   const { playerName, reviewApiKey: apiKey, users, classesList } = useDashboard();
   const [charData, setCharData] = useState<CharacterData | null>(null);
   const [loading, setLoading] = useState(true);
@@ -1018,7 +1018,7 @@ export default function CharacterView({ addToast }: { addToast?: (t: ToastInput)
                 const fullOrder = [...equipped, ...reordered].map(i => i.id);
                 await fetch(`/api/player/${encodeURIComponent(playerName)}/inventory/reorder`, {
                   method: "POST",
-                  headers: { "Content-Type": "application/json", ...getAuthHeaders() },
+                  headers: { "Content-Type": "application/json", ...getAuthHeaders(apiKey) },
                   body: JSON.stringify({ order: fullOrder }),
                 });
               } catch { /* silent */ }
@@ -1108,6 +1108,13 @@ export default function CharacterView({ addToast }: { addToast?: (t: ToastInput)
                   />
                 );
               })}
+
+              {/* Cross-nav to Forge */}
+              {onNavigate && (
+                <button onClick={() => onNavigate("forge")} className="cross-nav-link w-full text-left text-xs px-3 py-2 rounded-lg mt-2" style={{ background: "rgba(245,158,11,0.05)", border: "1px solid rgba(245,158,11,0.12)", color: "rgba(245,158,11,0.6)" }}>
+                  {"Reroll stats or enchant gear at the Artisan's Quarter \u2192"}
+                </button>
+              )}
 
               {/* Passive Items */}
               {charData && (() => {

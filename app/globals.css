@@ -309,6 +309,32 @@ img {
   transform: scale(0.98);
 }
 
+/* NPC rank glow — visual evolution based on profession level */
+.npc-rank-glow {
+  position: relative;
+}
+
+/* Salvage all button */
+.salvage-all-btn {
+  transition: transform 0.12s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+}
+.salvage-all-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 12px rgba(255,140,0,0.2);
+}
+.salvage-all-btn:active:not(:disabled) {
+  transform: scale(0.96);
+}
+
+/* Cross-navigation link */
+.cross-nav-link {
+  transition: color 0.12s ease, background-color 0.12s ease;
+  cursor: pointer;
+}
+.cross-nav-link:hover {
+  filter: brightness(1.3);
+}
+
 /* ─── Ripple on click ────────────────────────────────────────────────────────── */
 @keyframes ripple-spread {
   0%   { transform: translate(-50%, -50%) scale(0); opacity: 0.5; }

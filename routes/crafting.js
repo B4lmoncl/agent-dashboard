@@ -26,6 +26,32 @@ function loadProfessions() {
   }
 }
 
+// ─── Proficiency ranks (WoW-style named tiers) ─────────────────────────────
+const PROFICIENCY_RANKS = [
+  { min: 0, max: 0, name: 'Novice', color: '#6b7280' },
+  { min: 1, max: 2, name: 'Apprentice', color: '#22c55e' },
+  { min: 3, max: 4, name: 'Journeyman', color: '#3b82f6' },
+  { min: 5, max: 6, name: 'Expert', color: '#a855f7' },
+  { min: 7, max: 8, name: 'Artisan', color: '#f59e0b' },
+  { min: 9, max: 10, name: 'Master', color: '#ef4444' },
+];
+
+function getProfRank(level) {
+  for (let i = PROFICIENCY_RANKS.length - 1; i >= 0; i--) {
+    if (level >= PROFICIENCY_RANKS[i].min) return PROFICIENCY_RANKS[i];
+  }
+  return PROFICIENCY_RANKS[0];
+}
+
+// ─── Skill-up color for recipes (WoW-style: orange/yellow/green/gray) ───────
+function getSkillUpColor(profLevel, reqProfLevel) {
+  const diff = profLevel - reqProfLevel;
+  if (diff <= 0) return 'orange';   // guaranteed skill-up
+  if (diff <= 2) return 'yellow';   // likely skill-up
+  if (diff <= 4) return 'green';    // rare skill-up
+  return 'gray';                     // no skill-up
+}
+
 function getProfLevel(u, profId) {
   const prof = (u.professions || {})[profId];
   if (!prof) return { level: 0, xp: 0 };
@@ -48,6 +74,7 @@ router.get('/api/professions', (req, res) => {
     const lastCraft = (u?.professions || {})[p.id]?.lastCraftAt || null;
     const chosen = (u?.chosenProfessions || []).includes(p.id);
     const canChoose = chosen || (u?.chosenProfessions || []).length < 2;
+    const rank = getProfRank(profProgress.level);
     return {
       ...p,
       unlocked,
@@ -57,14 +84,29 @@ router.get('/api/professions', (req, res) => {
       playerXp: profProgress.xp,
       nextLevelXp: p.levelThresholds[profProgress.level] || null,
       lastCraftAt: lastCraft,
+      rank: rank.name,
+      rankColor: rank.color,
     };
   });
   const recipes = PROFESSIONS_DATA.recipes.map(r => {
     const profProgress = u ? getProfLevel(u, r.profession) : { level: 0 };
-    return { ...r, canCraft: profProgress.level >= r.reqProfLevel };
+    const lastCraft = (u?.professions || {})[r.profession]?.lastCraftAt || null;
+    // Cooldown remaining (in seconds)
+    let cooldownRemaining = 0;
+    if (r.cooldownMinutes > 0 && lastCraft) {
+      const elapsed = (Date.now() - new Date(lastCraft).getTime()) / 1000;
+      cooldownRemaining = Math.max(0, Math.ceil(r.cooldownMinutes * 60 - elapsed));
+    }
+    return {
+      ...r,
+      canCraft: profProgress.level >= r.reqProfLevel,
+      skillUpColor: getSkillUpColor(profProgress.level, r.reqProfLevel),
+      cooldownRemaining,
+    };
   });
   const materials = u?.craftingMaterials || {};
-  res.json({ professions, recipes, materials, materialDefs: PROFESSIONS_DATA.materials });
+  const currencies = u ? { essenz: u.currencies?.essenz ?? 0, gold: u.currencies?.gold ?? u.gold ?? 0, stardust: u.currencies?.stardust ?? 0 } : {};
+  res.json({ professions, recipes, materials, materialDefs: PROFESSIONS_DATA.materials, proficiencyRanks: PROFICIENCY_RANKS, currencies });
 });
 
 // ─── POST /api/professions/craft — execute a recipe ─────────────────────────
@@ -92,7 +134,7 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
   u.chosenProfessions = u.chosenProfessions || [];
   const needsEnrollment = !u.chosenProfessions.includes(recipe.profession);
   if (needsEnrollment && u.chosenProfessions.length >= 2) {
-    return res.status(400).json({ error: `Du hast bereits 2 Berufe gewählt (${u.chosenProfessions.join(', ')}). Wechsel erst einen ab.` });
+    return res.status(400).json({ error: `You already have 2 professions (${u.chosenProfessions.join(', ')}). Drop one first.` });
   }
 
   // Check profession level
@@ -107,7 +149,7 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
     const elapsed = (Date.now() - new Date(lastCraft).getTime()) / 60000;
     if (elapsed < recipe.cooldownMinutes) {
       const remaining = Math.ceil(recipe.cooldownMinutes - elapsed);
-      return res.status(429).json({ error: `Cooldown: ${remaining} Minuten verbleibend` });
+      return res.status(429).json({ error: `Cooldown: ${remaining} minutes remaining` });
     }
   }
 
@@ -126,7 +168,7 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
     if (recipeId === 'upgrade_rarity') {
       const RARITY_ORDER = ['common', 'uncommon', 'rare', 'epic', 'legendary'];
       if (RARITY_ORDER.indexOf(eq.rarity || 'common') >= RARITY_ORDER.length - 1) {
-        return res.status(400).json({ error: 'Item ist bereits legendär!' });
+        return res.status(400).json({ error: 'Item is already legendary!' });
       }
     }
   }
@@ -249,7 +291,7 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
     case 'potion_luck': {
       u.activeBuffs = u.activeBuffs || [];
       if (u.activeBuffs.length >= 50) {
-        result.message = 'Zu viele aktive Buffs! Schließe erst Quests ab.';
+        result.message = 'Too many active buffs! Complete quests first.';
         result.success = false;
         break;
       }
@@ -258,14 +300,14 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
         questsRemaining: 3,
         activatedAt: now(),
       });
-      const buffNames = { potion_xp: 'Erfahrung', potion_gold: 'Reichtum', potion_luck: 'Glück' };
-      result.message = `Elixier der ${buffNames[recipeId] || 'Macht'} aktiviert! (3 Quests)`;
+      const buffNames = { potion_xp: 'Experience', potion_gold: 'Wealth', potion_luck: 'Luck' };
+      result.message = `Elixir of ${buffNames[recipeId] || 'Power'} activated! (3 Quests)`;
       break;
     }
 
     case 'potion_streak': {
-      u.streakShields = (u.streakShields || 0) + 1;
-      result.message = `Streak-Shield erhalten! (Gesamt: ${u.streakShields})`;
+      u.streakShields = Math.min(10, (u.streakShields || 0) + 1);
+      result.message = `Streak Shield received! (Total: ${u.streakShields})`;
       break;
     }
 
@@ -282,7 +324,7 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
         expiresAt: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(),
         activatedAt: now(),
       });
-      result.message = `Temporäre Verzauberung: +${value} ${stat} für 24h`;
+      result.message = `Temporary enchantment: +${value} ${stat} for 24h`;
       break;
     }
 
@@ -292,7 +334,7 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
       const value = 1 + Math.floor(Math.random() * 2); // 1-2
       eq.stats = eq.stats || {};
       eq.stats[stat] = (eq.stats[stat] || 0) + value;
-      result.message = `Permanente Verzauberung: +${value} ${stat}!`;
+      result.message = `Permanent enchantment: +${value} ${stat}!`;
       result.updatedGear = eq;
       break;
     }
@@ -303,25 +345,25 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
       u.activeBuffs = u.activeBuffs || [];
       const buffType = recipe.result.buffType;
       u.activeBuffs.push({ type: buffType, questsRemaining: 5, activatedAt: now() });
-      const mealNames = { meal_hearty: 'Herzhafter Eintopf', meal_golden: 'Goldene Suppe' };
-      result.message = `${mealNames[recipeId] || 'Mahlzeit'} genossen! Buff aktiv für 5 Quests.`;
+      const mealNames = { meal_hearty: 'Hearty Stew', meal_golden: 'Golden Soup' };
+      result.message = `${mealNames[recipeId] || 'Meal'} consumed! Buff active for 5 quests.`;
       break;
     }
     case 'meal_feast': {
       u.activeBuffs = u.activeBuffs || [];
       u.activeBuffs.push({ type: 'xp_boost_15', questsRemaining: 3, activatedAt: now() });
       u.activeBuffs.push({ type: 'gold_boost_10', questsRemaining: 3, activatedAt: now() });
-      result.message = 'Sternenbankett! +15% XP + 10% Gold für 3 Quests!';
+      result.message = 'Star Banquet! +15% XP + 10% Gold for 3 quests!';
       break;
     }
     case 'meal_forge': {
       u.forgeTemp = Math.min(100, (u.forgeTemp || 0) + (recipe.result.amount || 15));
-      result.message = `Forge-Temperatur um ${recipe.result.amount || 15} erhöht! (${u.forgeTemp}%)`;
+      result.message = `Forge temperature raised by ${recipe.result.amount || 15}! (${u.forgeTemp}%)`;
       break;
     }
     case 'meal_endurance': {
-      u.streakShields = (u.streakShields || 0) + 1;
-      result.message = `Ausdauer-Ration! Streak-Shield erhalten (Gesamt: ${u.streakShields})`;
+      u.streakShields = Math.min(10, (u.streakShields || 0) + 1);
+      result.message = `Endurance Ration! Streak Shield received (Total: ${u.streakShields})`;
       break;
     }
 
@@ -359,10 +401,10 @@ router.post('/api/professions/choose', requireAuth, (req, res) => {
 
   u.chosenProfessions = u.chosenProfessions || [];
   if (u.chosenProfessions.includes(professionId)) {
-    return res.status(400).json({ error: `${profDef.name} ist bereits ein aktiver Beruf.` });
+    return res.status(400).json({ error: `${profDef.name} is already an active profession.` });
   }
   if (u.chosenProfessions.length >= 2) {
-    return res.status(400).json({ error: `Du hast bereits 2 Berufe gewählt (${u.chosenProfessions.join(', ')}). Wechsel erst einen ab.` });
+    return res.status(400).json({ error: `You already have 2 professions (${u.chosenProfessions.join(', ')}). Drop one first.` });
   }
 
   u.chosenProfessions.push(professionId);
@@ -371,7 +413,7 @@ router.post('/api/professions/choose', requireAuth, (req, res) => {
   saveUsers();
 
   res.json({
-    message: `${profDef.name} gewählt! Du kannst jetzt bei ${profDef.npcName} craften.`,
+    message: `${profDef.name} chosen! You can now craft at ${profDef.npcName}.`,
     chosenProfessions: u.chosenProfessions,
   });
 });
@@ -386,7 +428,7 @@ router.post('/api/professions/switch', requireAuth, (req, res) => {
 
   u.chosenProfessions = u.chosenProfessions || [];
   if (!u.chosenProfessions.includes(dropProfession)) {
-    return res.status(400).json({ error: `${dropProfession} ist kein aktiver Beruf` });
+    return res.status(400).json({ error: `${dropProfession} is not an active profession` });
   }
 
   // Cost: 200 essenz to switch (lose all profession XP)
@@ -394,7 +436,7 @@ router.post('/api/professions/switch', requireAuth, (req, res) => {
   ensureUserCurrencies(u);
   const switchCost = 200;
   if ((u.currencies.essenz || 0) < switchCost) {
-    return res.status(400).json({ error: `Berufswechsel kostet ${switchCost} Essenz (du hast ${u.currencies.essenz || 0})` });
+    return res.status(400).json({ error: `Switching professions costs ${switchCost} Essenz (you have ${u.currencies.essenz || 0})` });
   }
   u.currencies.essenz -= switchCost;
 
@@ -407,7 +449,7 @@ router.post('/api/professions/switch', requireAuth, (req, res) => {
 
   saveUsers();
   res.json({
-    message: `${dropProfession} abgelegt. Du kannst jetzt einen neuen Beruf wählen.`,
+    message: `${dropProfession} dropped. You can now choose a new profession.`,
     chosenProfessions: u.chosenProfessions,
     essenz: u.currencies.essenz,
   });
@@ -442,7 +484,7 @@ router.post('/api/schmiedekunst/dismantle', requireAuth, (req, res) => {
   if (u.equipment) {
     for (const slotVal of Object.values(u.equipment)) {
       if (slotVal && typeof slotVal === 'object' && slotVal.instanceId === inventoryItemId) {
-        return res.status(400).json({ error: 'Kann ausgerüstete Items nicht zerlegen' });
+        return res.status(400).json({ error: 'Cannot dismantle equipped items' });
       }
     }
   }
@@ -481,6 +523,64 @@ router.post('/api/schmiedekunst/dismantle', requireAuth, (req, res) => {
   });
 });
 
+// POST /api/schmiedekunst/dismantle-all — bulk dismantle by rarity (D3-style Salvage All)
+router.post('/api/schmiedekunst/dismantle-all', requireAuth, (req, res) => {
+  const uid = req.auth?.userId;
+  const u = state.users[uid];
+  if (!u) return res.status(404).json({ error: 'User not found' });
+  const { rarity } = req.body;
+  if (!rarity || !DISMANTLE_ESSENZ[rarity]) {
+    return res.status(400).json({ error: 'Valid rarity required (common/uncommon/rare/epic/legendary)' });
+  }
+
+  u.inventory = u.inventory || [];
+  const equippedIds = new Set();
+  if (u.equipment) {
+    for (const slotVal of Object.values(u.equipment)) {
+      if (slotVal && typeof slotVal === 'object' && slotVal.instanceId) equippedIds.add(slotVal.instanceId);
+    }
+  }
+
+  const toDismantle = u.inventory.filter(i =>
+    (i.rarity || 'common') === rarity && i.name && !equippedIds.has(i.instanceId || i.id)
+  );
+  if (toDismantle.length === 0) return res.status(400).json({ error: `No ${rarity} items to dismantle` });
+
+  const { ensureUserCurrencies } = require('../lib/state');
+  ensureUserCurrencies(u);
+  u.craftingMaterials = u.craftingMaterials || {};
+
+  let totalEssenz = 0;
+  const allMats = {};
+  for (const item of toDismantle) {
+    totalEssenz += DISMANTLE_ESSENZ[rarity] || 2;
+    for (const mat of (DISMANTLE_MATERIALS[rarity] || DISMANTLE_MATERIALS.common)) {
+      if (Math.random() < mat.chance) {
+        u.craftingMaterials[mat.id] = (u.craftingMaterials[mat.id] || 0) + 1;
+        allMats[mat.id] = (allMats[mat.id] || 0) + 1;
+      }
+    }
+    const idx = u.inventory.findIndex(i => (i.instanceId || i.id) === (item.instanceId || item.id));
+    if (idx !== -1) u.inventory.splice(idx, 1);
+  }
+
+  u.currencies.essenz = (u.currencies.essenz || 0) + totalEssenz;
+  saveUsers();
+
+  const matList = Object.entries(allMats).map(([id, amt]) => {
+    const def = PROFESSIONS_DATA.materials?.find(m => m.id === id);
+    return `${def?.name || id} x${amt}`;
+  });
+  res.json({
+    message: `${toDismantle.length}x ${rarity} dismantled! +${totalEssenz} Essenz${matList.length ? ` + ${matList.join(', ')}` : ''}`,
+    count: toDismantle.length,
+    totalEssenz,
+    materialsGained: allMats,
+    currencies: u.currencies,
+    craftingMaterials: u.craftingMaterials,
+  });
+});
+
 // POST /api/schmiedekunst/transmute — combine 3 epics of same slot → 1 legendary
 router.post('/api/schmiedekunst/transmute', requireAuth, (req, res) => {
   const uid = req.auth?.userId;
@@ -492,7 +592,7 @@ router.post('/api/schmiedekunst/transmute', requireAuth, (req, res) => {
   }
   // Prevent duplicate IDs (exploit: same item counted 3x)
   if (new Set(itemIds).size !== 3) {
-    return res.status(400).json({ error: 'Alle 3 Items müssen unterschiedlich sein' });
+    return res.status(400).json({ error: 'All 3 items must be different' });
   }
 
   u.inventory = u.inventory || [];
@@ -508,14 +608,14 @@ router.post('/api/schmiedekunst/transmute', requireAuth, (req, res) => {
     const equippedIds = new Set(Object.values(u.equipment).filter(v => v && typeof v === 'object').map(v => v.instanceId));
     for (const item of items) {
       if (equippedIds.has(item.instanceId || item.id)) {
-        return res.status(400).json({ error: `"${item.name}" ist ausgerüstet — erst ablegen` });
+        return res.status(400).json({ error: `"${item.name}" is equipped — unequip first` });
       }
     }
   }
 
   // Validate: all must be epic rarity
   const allEpic = items.every(i => (i.rarity || 'common') === 'epic');
-  if (!allEpic) return res.status(400).json({ error: 'Alle 3 Items müssen episch sein' });
+  if (!allEpic) return res.status(400).json({ error: 'All 3 items must be epic rarity' });
 
   // Validate: all must be same slot (look up from template if not on instance)
   const slots = items.map(i => {
@@ -526,16 +626,16 @@ router.post('/api/schmiedekunst/transmute', requireAuth, (req, res) => {
     return tmpl?.slot || null;
   });
   const slot = slots[0];
-  if (!slot) return res.status(400).json({ error: 'Slot konnte nicht ermittelt werden — Items ungültig' });
+  if (!slot) return res.status(400).json({ error: 'Could not determine slot — invalid items' });
   if (!slots.every(s => s === slot)) {
-    return res.status(400).json({ error: `Alle Items müssen denselben Slot haben (${slots.filter(Boolean).join(', ')})` });
+    return res.status(400).json({ error: `All items must be in the same slot (${slots.filter(Boolean).join(', ')})` });
   }
 
   // Gold cost
   const transmuteCost = 500;
   const userGold = u.currencies?.gold ?? u.gold ?? 0;
   if (userGold < transmuteCost) {
-    return res.status(400).json({ error: `Nicht genug Gold (${userGold}/${transmuteCost})` });
+    return res.status(400).json({ error: `Not enough gold (${userGold}/${transmuteCost})` });
   }
 
   // Find legendary items in same slot
@@ -544,7 +644,7 @@ router.post('/api/schmiedekunst/transmute', requireAuth, (req, res) => {
     g.slot === slot && g.rarity === 'legendary' && g.tier === 4
   );
   if (legendaryPool.length === 0) {
-    return res.status(400).json({ error: `Kein Legendär für Slot "${slot}" verfügbar` });
+    return res.status(400).json({ error: `No legendary available for slot "${slot}"` });
   }
 
   // Deduct gold
