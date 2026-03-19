@@ -131,7 +131,13 @@ router.get('/api/player/:name/notifications', requireAuth, requireSelf('name'), 
 router.get('/api/users/:id/achievements', (req, res) => {
   const u = state.users[req.params.id.toLowerCase()];
   if (!u) return res.status(404).json({ error: 'User not found' });
-  res.json(u.earnedAchievements || []);
+  // Enrich with catalogue data (icon/desc may be missing on old entries)
+  const enriched = (u.earnedAchievements || []).map(a => {
+    const tpl = state.ACHIEVEMENT_CATALOGUE.find(t => t.id === a.id);
+    if (!tpl) return a;
+    return { ...a, icon: a.icon || tpl.icon, desc: a.desc || tpl.desc, rarity: a.rarity || tpl.rarity };
+  });
+  res.json(enriched);
 });
 
 // GET /api/player/:name/companion — get companion details + quests

@@ -48,6 +48,14 @@ router.get('/api/users', (req, res) => {
     const legendaryMods = getLegendaryModifiers(u.id);
     // Strip sensitive fields before exposing user data
     const { passwordHash: _ph, apiKey: _ak, refreshTokens: _rt, spotify: _sp, ...safeUser } = u;
+    // Enrich earned achievements with catalogue data (icon/desc may be missing on old entries)
+    if (Array.isArray(safeUser.earnedAchievements)) {
+      safeUser.earnedAchievements = safeUser.earnedAchievements.map(a => {
+        const tpl = state.ACHIEVEMENT_CATALOGUE.find(t => t.id === a.id);
+        if (!tpl) return a;
+        return { ...a, icon: a.icon || tpl.icon, desc: a.desc || tpl.desc, rarity: a.rarity || tpl.rarity, category: a.category || tpl.category };
+      });
+    }
     return {
       ...safeUser,
       forgeTemp: ft,

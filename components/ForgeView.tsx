@@ -131,7 +131,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
   const [craftResult, setCraftResult] = useState<string | null>(null);
   const [crafting, setCrafting] = useState(false);
   const [selectedSlot, setSelectedSlot] = useState<string>("weapon");
-  const [dismantleResult, setDismantleResult] = useState<string | null>(null);
+  const [dismantleResult, setDismantleResult] = useState<{ message: string; essenz?: number; materials?: { id: string; name: string; amount: number }[] } | null>(null);
   const [transmuteResult, setTransmuteResult] = useState<string | null>(null);
   const [selectedTransmute, setSelectedTransmute] = useState<string[]>([]);
   const [npcModalTab, setNpcModalTab] = useState<"recipes" | "schmiedekunst" | "transmutation">("recipes");
@@ -211,11 +211,22 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
         body: JSON.stringify({ inventoryItemId: itemId }),
       });
       const data = await r.json();
-      setDismantleResult(data.message || data.error || "Error");
-      setTimeout(() => setDismantleResult(null), 4000);
+      if (r.ok && data.essenzGained != null) {
+        setDismantleResult({
+          message: data.message,
+          essenz: data.essenzGained,
+          materials: Array.isArray(data.materialsGained) ? data.materialsGained : Object.entries(data.materialsGained || {}).map(([id, amt]) => {
+            const def = materialDefs.find(m => m.id === id);
+            return { id, name: def?.name || id, amount: amt as number };
+          }),
+        });
+      } else {
+        setDismantleResult({ message: data.error || "Error" });
+      }
+      setTimeout(() => setDismantleResult(null), 5000);
       fetchData();
       onRefresh?.();
-    } catch { setDismantleResult("Network error"); }
+    } catch { setDismantleResult({ message: "Network error" }); }
   };
 
   const handleDismantleAll = async (rarity: string, count?: number) => {
@@ -228,11 +239,22 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
         body: JSON.stringify({ rarity }),
       });
       const data = await r.json();
-      setDismantleResult(data.message || data.error || "Error");
-      setTimeout(() => setDismantleResult(null), 5000);
+      if (r.ok && data.totalEssenz != null) {
+        setDismantleResult({
+          message: data.message,
+          essenz: data.totalEssenz,
+          materials: Object.entries(data.materialsGained || {}).map(([id, amt]) => {
+            const def = materialDefs.find(m => m.id === id);
+            return { id, name: def?.name || id, amount: amt as number };
+          }),
+        });
+      } else {
+        setDismantleResult({ message: data.error || "Error" });
+      }
+      setTimeout(() => setDismantleResult(null), 6000);
       fetchData();
       onRefresh?.();
-    } catch { setDismantleResult("Network error"); }
+    } catch { setDismantleResult({ message: "Network error" }); }
   };
 
   const handleTransmute = async () => {
@@ -811,8 +833,27 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                   </p>
 
                   {dismantleResult && (
-                    <div className="rounded-lg px-3 py-2 text-xs font-semibold" style={{ background: "rgba(255,140,0,0.08)", border: "1px solid rgba(255,140,0,0.2)", color: "#ff8c00" }}>
-                      {dismantleResult}
+                    <div className="rounded-lg px-3 py-2 text-xs space-y-1" style={{ background: "rgba(255,140,0,0.08)", border: "1px solid rgba(255,140,0,0.2)" }}>
+                      {dismantleResult.essenz != null ? (
+                        <>
+                          <div className="flex items-center gap-2 font-semibold" style={{ color: "#ff8c00" }}>
+                            <span>+{dismantleResult.essenz} Essenz</span>
+                            {dismantleResult.materials && dismantleResult.materials.length > 0 && (
+                              <span style={{ color: "rgba(255,255,255,0.3)" }}>|</span>
+                            )}
+                            {dismantleResult.materials && dismantleResult.materials.length > 0 && (
+                              <span style={{ color: "#22c55e" }}>
+                                {dismantleResult.materials.map(m => `${m.name} x${m.amount}`).join(", ")}
+                              </span>
+                            )}
+                          </div>
+                          {dismantleResult.materials && dismantleResult.materials.length === 0 && (
+                            <p style={{ color: "rgba(255,255,255,0.25)" }}>No materials dropped this time</p>
+                          )}
+                        </>
+                      ) : (
+                        <p className="font-semibold" style={{ color: "#ff8c00" }}>{dismantleResult.message}</p>
+                      )}
                     </div>
                   )}
 

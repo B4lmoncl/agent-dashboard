@@ -4,7 +4,7 @@
 const fs = require('fs');
 const path = require('path');
 const router = require('express').Router();
-const { state, saveUsers, ensureUserCurrencies } = require('../lib/state');
+const { state, saveUsers, saveUsersSync, ensureUserCurrencies } = require('../lib/state');
 const { now, getLevelInfo, PRIMARY_STATS, MINOR_STATS, createGearInstance } = require('../lib/helpers');
 
 const VALID_SLOTS = ['weapon', 'shield', 'helm', 'armor', 'amulet', 'boots'];
@@ -688,7 +688,8 @@ router.post('/api/schmiedekunst/dismantle', requireAuth, (req, res) => {
     }
   }
 
-  saveUsers();
+  // Sync write — dismantle must survive container restarts
+  saveUsersSync();
   res.json({
     message: `${item.name} dismantled! +${essenzGained} Essenz${materialsGained.length > 0 ? ' + Materials' : ''}`,
     dismantled: { name: item.name, rarity },
@@ -739,7 +740,8 @@ router.post('/api/schmiedekunst/dismantle-all', requireAuth, (req, res) => {
   u.inventory = u.inventory.filter(i => !dismantleIds.has(i.instanceId || i.id));
 
   u.currencies.essenz = (u.currencies.essenz || 0) + totalEssenz;
-  saveUsers();
+  // Sync write — bulk dismantle must survive container restarts
+  saveUsersSync();
 
   const matList = Object.entries(allMats).map(([id, amt]) => {
     const def = PROFESSIONS_DATA.materials?.find(m => m.id === id);
@@ -833,7 +835,8 @@ router.post('/api/schmiedekunst/transmute', requireAuth, (req, res) => {
   const legendary = createGearInstance(template);
   u.inventory.push(legendary);
 
-  saveUsers();
+  // Sync write — transmute destroys 3 items, must survive container restarts
+  saveUsersSync();
   res.json({
     message: `Transmutation successful! ${legendary.name} has been forged!`,
     consumed: items.map(i => ({ name: i.name, rarity: i.rarity })),
