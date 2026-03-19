@@ -225,8 +225,8 @@ router.get('/api/gacha/pity/:playerId', (req, res) => {
     pityCounter: gs.pityCounter,
     epicPityCounter: gs.epicPityCounter,
     guaranteed5050: gs.guaranteed5050,
-    hardPity: 50,
-    softPityStart: 35,
+    hardPity: 75,
+    softPityStart: 55,
     epicPity: 10,
   });
 });

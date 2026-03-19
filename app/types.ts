@@ -394,6 +394,22 @@ export interface PixelCharacterProps {
   companion?: { type?: string; name: string; emoji: string } | null;
 }
 
+export interface GearInstance {
+  instanceId: string;
+  templateId: string;
+  name: string;
+  slot: string;
+  tier: number;
+  rarity: string;
+  reqLevel: number;
+  desc?: string;
+  stats: Record<string, number>;
+  legendaryEffect?: { type: string; value: number; label?: string } | null;
+  setId?: string;
+  rolledAt: string;
+  affixRolls?: { primary: { stat: string; value: number }[]; minor: { stat: string; value: number }[] };
+}
+
 export interface CharacterData {
   name: string;
   level: number;
@@ -406,7 +422,7 @@ export interface CharacterData {
   classIcon: string | null;
   companion: { type?: string; name: string; emoji: string; bondLevel: number } | null;
   appearance?: { skinColor?: string; hairStyle?: string; hairColor?: string };
-  equipment: Record<string, string | object | null>;
+  equipment: Record<string, GearInstance | string | null>;
   stats: { kraft: number; ausdauer: number; weisheit: number; glueck: number; fokus?: number; vitalitaet?: number; charisma?: number; tempo?: number; _setBonus?: number };
   baseStats: { kraft: number; ausdauer: number; weisheit: number; glueck: number };
   inventory: { id: string; slot: string; name: string; emoji?: string; icon?: string; tier: number; minLevel: number; stats: Record<string, number>; rarity: string; desc?: string; type?: string; effect?: any }[];

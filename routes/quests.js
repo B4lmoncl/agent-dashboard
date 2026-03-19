@@ -1,6 +1,6 @@
 // ─── Quest API ──────────────────────────────────────────────────────────────────
 const router = require('express').Router();
-const { state, PLAYER_QUEST_TYPES, NPC_NAMES, XP_BY_PRIORITY, saveQuests, saveData, savePlayerProgress, saveQuestCatalog, rebuildQuestsById } = require('../lib/state');
+const { state, PLAYER_QUEST_TYPES, NPC_NAMES, XP_BY_PRIORITY, XP_BY_RARITY, saveQuests, saveData, savePlayerProgress, saveQuestCatalog, rebuildQuestsById } = require('../lib/state');
 const { now, getPlayerProgress, getLevelInfo, onQuestCompletedByUser, awardXP, awardAgentGold, updateAgentStreak, randGold, addLootToInventory } = require('../lib/helpers');
 const { requireApiKey } = require('../lib/middleware');
 const { rebuildCatalogMeta } = require('../lib/quest-catalog');
@@ -152,8 +152,8 @@ router.post('/api/quest', requireApiKey, (req, res) => {
     minLevel: (typeof minLevel === 'number' && minLevel >= 1) ? Math.floor(minLevel) : 1,
     classRequired: classRequired || null,
     requiresRelationship: requiresRelationship === true || requiresRelationship === 'true',
-    rewards: { xp: XP_BY_PRIORITY[priority || 'medium'] || 10, gold: randGold(priority || 'medium') },
-    rarity: resolvedRarity,
+    rewards: resolvedRarity ? { xp: XP_BY_RARITY[resolvedRarity] || 10, gold: randGold(resolvedRarity) } : { xp: 10, gold: randGold('common') },
+    rarity: resolvedRarity || 'common',
   };
   state.quests.push(quest);
   state.questsById.set(quest.id, quest);
@@ -170,9 +170,9 @@ router.post('/api/quest', requireApiKey, (req, res) => {
       minLevel: quest.minLevel || 1,
       chainId: quest.parentQuestId || null,
       chainOrder: null,
-      difficulty: quest.priority === 'high' ? 'advanced' : quest.priority === 'medium' ? 'intermediate' : 'starter',
+      difficulty: quest.difficulty || (quest.priority === 'high' ? 'advanced' : quest.priority === 'medium' ? 'intermediate' : 'starter'),
       estimatedTime: null,
-      rewards: { xp: XP_BY_PRIORITY[quest.priority] || 10, gold: 0 },
+      rewards: { xp: XP_BY_RARITY[quest.rarity] || XP_BY_PRIORITY[quest.priority] || 10, gold: 0 },
       tags: quest.skills || [],
       createdBy: quest.createdBy,
       createdAt: quest.createdAt,
@@ -514,15 +514,15 @@ router.post('/api/quest/:id/coop-complete', requireApiKey, (req, res) => {
 // ?player=X  → overlays per-player state for player quest types + applies minLevel filtering
 router.get('/api/quests', (req, res) => {
   const RARITY_REWARDS = {
-    legendary: { xp: 50, gold: 35 },
-    epic:      { xp: 35, gold: 25 },
-    rare:      { xp: 25, gold: 18 },
-    uncommon:  { xp: 20, gold: 12 },
-    common:    { xp: 10, gold: 8 },
+    common:    { xp: 10, gold: 8  },
+    uncommon:  { xp: 18, gold: 14 },
+    rare:      { xp: 30, gold: 24 },
+    epic:      { xp: 50, gold: 40 },
+    legendary: { xp: 80, gold: 65 },
   };
   function ensureRewards(q) {
     if (q.rewards && q.rewards.xp > 0) return q;
-    const fallback = RARITY_REWARDS[q.rarity] || RARITY_REWARDS[q.priority] || RARITY_REWARDS.common;
+    const fallback = RARITY_REWARDS[q.rarity] || RARITY_REWARDS.common;
     return { ...q, rewards: fallback };
   }
   const typeFilter  = req.query.type;
@@ -812,6 +812,7 @@ router.post('/api/quests/import', requireApiKey, (req, res) => {
       classRequired:      q.classRequired || null,
       proof:              null,
       checklist:          Array.isArray(q.checklist) ? q.checklist : null,
+      rarity:             q.rarity || 'common',
     };
     state.quests.push(importedQuest);
     state.questsById.set(importedQuest.id, importedQuest);
