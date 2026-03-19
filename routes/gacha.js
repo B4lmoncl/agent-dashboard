@@ -336,6 +336,14 @@ router.post('/api/gacha/pull10', requireApiKey, (req, res) => {
       if (isDup) {
         awardCurrency(uid, 'runensplitter', DUPLICATE_REFUND['epic'] || 20);
       } else {
+        const isEquip = epicItem.type === 'weapon' || epicItem.type === 'armor' || epicItem.type === 'equipment';
+        let rolledStats = epicItem.stats || null;
+        let rolledLegendary = epicItem.legendaryEffect || null;
+        if (isEquip && epicItem.affixes) {
+          const rolled = rollAffixStats(epicItem);
+          rolledStats = rolled.stats;
+          if (rolled.legendaryEffect) rolledLegendary = rolled.legendaryEffect;
+        }
         u.inventory.push({
           id: `gacha-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
           itemId: epicItem.id,
@@ -345,7 +353,10 @@ router.post('/api/gacha/pull10', requireApiKey, (req, res) => {
           rarity: epicItem.rarity,
           rarityColor: '#a855f7',
           effect: epicItem.effect || null,
-          stats: epicItem.stats || null,
+          stats: rolledStats,
+          legendaryEffect: rolledLegendary,
+          affixes: isEquip ? (epicItem.affixes || null) : null,
+          slot: epicItem.type === 'weapon' ? 'weapon' : epicItem.type === 'armor' ? 'armor' : null,
           obtainedAt: new Date().toISOString(),
           source: 'gacha',
         });

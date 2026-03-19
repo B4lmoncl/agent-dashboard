@@ -685,6 +685,7 @@ router.patch('/api/quest/:id', requireApiKey, (req, res) => {
     quest.status = status;
     if (status === 'completed' && !wasCompleted) {
       quest.completedAt = quest.completedAt || now();
+      unlockNextChainQuest(quest);
       const completerId = (quest.claimedBy || '').toLowerCase();
       if (completerId && state.users[completerId]) {
         onQuestCompletedByUser(completerId, quest);
@@ -708,6 +709,7 @@ router.patch('/api/quests/:id/complete', requireApiKey, (req, res) => {
   quest.completedBy = completedBy || 'unknown';
   quest.completedAt = now();
   saveQuests();
+  unlockNextChainQuest(quest);
   const agentKey2 = (completedBy || '').toLowerCase();
   let newAchievements = [];
   if (state.users[agentKey2]) {
