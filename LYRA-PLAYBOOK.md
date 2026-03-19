@@ -444,18 +444,24 @@ case 'dein_neuer_effekt':
 
 ### Automatisch geprüfte Conditions
 
-Die Achievement-Prüfung läuft über `ACHIEVEMENT_TRIGGERS` in `lib/state.js`. Aktuell werden diese Conditions automatisch geprüft:
+Achievements werden **rein datengetrieben** geprüft — die `condition` im JSON reicht aus, es muss kein Code geändert werden. Verfügbare Condition-Types:
 
-| Trigger-ID | Bedingung |
-|------------|-----------|
-| `first_quest` | 1 Quest abgeschlossen |
-| `ten_quests` | 10 Quests abgeschlossen |
-| `fifty_quests` | 50 Quests abgeschlossen |
-| `perfectionist` | 100 Quests abgeschlossen |
-| `no_rest` | 30 Tage Streak |
-| `one_ring` | 1000 Gold |
+| Condition Type | Felder | Beispiel |
+|---------------|--------|----------|
+| `quests_completed` | `count` | `{ "type": "quests_completed", "count": 50 }` |
+| `streak_days` | `count` | `{ "type": "streak_days", "count": 30 }` |
+| `xp_threshold` | `count` | `{ "type": "xp_threshold", "count": 500 }` |
+| `gold_threshold` | `count` | `{ "type": "gold_threshold", "count": 1000 }` |
+| `quests_today` | `count` | `{ "type": "quests_today", "count": 3 }` |
+| `completed_types` | `count` | `{ "type": "completed_types", "count": 5 }` |
+| `boss_defeated` | — | `{ "type": "boss_defeated" }` |
+| `quest_type_count` | `questType`, `count` | `{ "type": "quest_type_count", "questType": "learning", "count": 10 }` |
+| `challenge_completed` | `challengeId` | `{ "type": "challenge_completed", "challengeId": "code_sprint" }` |
+| `inventory_count` | `count` | `{ "type": "inventory_count", "count": 20 }` |
+| `gacha_pulls` | `count` | `{ "type": "gacha_pulls", "count": 10 }` |
+| `all_agents_online` | `count` | `{ "type": "all_agents_online", "count": 3 }` |
 
-Für neue automatische Trigger muss ein Eintrag in `ACHIEVEMENT_TRIGGERS` (lib/state.js, Zeile ~335) hinzugefügt werden. Achievements ohne passenden Trigger können manuell vergeben werden.
+Neue Achievements können direkt in `achievementTemplates.json` hinzugefügt werden — kein Code nötig.
 
 ---
 
