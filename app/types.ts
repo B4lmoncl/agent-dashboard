@@ -135,6 +135,7 @@ export interface User {
     runensplitter: number;
     gildentaler: number;
     mondstaub: number;
+    sternentaler: number;
   };
   gear?: string;
   createdAt?: string;

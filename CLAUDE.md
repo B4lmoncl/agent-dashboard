@@ -91,7 +91,8 @@ routes/               # Express API routes (14 files, ~5200 lines)
   campaigns.js        # Campaign quest chains
   currency.js         # Multi-currency system
   integrations.js     # GitHub webhook (HMAC verified), catalog API
-  crafting.js         # Crafting professions (Schmied, Alchemist, Verzauberer)
+  crafting.js         # Crafting professions (Schmied, Alchemist, Verzauberer, Koch) + Schmiedekunst
+  challenges-weekly.js # Weekly challenge mode (3-stage challenges)
   npcs-misc.js        # NPC endpoints, feedback (admin-only), SPA fallback
 public/
   data/               # Game template data (36 JSON files)
@@ -147,7 +148,7 @@ Template: `.env.example`
 
 ## Key Game Systems
 
-Quest system (pool of ~10 open + ~25 max in-progress per player), XP/leveling (30 levels), gear/inventory with Diablo-3-style affix rolling (primary + minor stats with ranges), set bonuses and legendary effects, companions with bond levels, gacha banners with pity (soft 35, hard 50), daily rituals/streaks, campaign quest chains, multi-currency economy (gold, stardust, essenz, runensplitter), title system (earn and equip titles displayed in player card and leaderboard), **achievement points** (common=5, uncommon=10, rare=25, epic=50, legendary=100 pts; cosmetic frame unlocks at milestones), **crafting professions** (Schmied: gear stat rerolling, Alchemist: buff potions from materials, Verzauberer: gear enchanting; materials drop from quest completion).
+Quest system (pool of ~10 open + ~25 max in-progress per player), XP/leveling (30 levels), gear/inventory with Diablo-3-style affix rolling (primary + minor stats with ranges), set bonuses and legendary effects (15 types including gameplay-changers: night gold, every-5th bonus, auto streak shield, material double, variety bonus), companions with bond levels + ultimates at Bond 5, gacha banners with pity (soft 35, hard 50), daily rituals/streaks, campaign quest chains, multi-currency economy (gold, stardust, essenz, runensplitter, sternentaler), title system (earn and equip titles displayed in player card and leaderboard), **achievement points** (common=5, uncommon=10, rare=25, epic=50, legendary=100 pts; cosmetic frame unlocks at milestones), **crafting professions** (Schmied: gear stat rerolling, Alchemist: buff potions, Verzauberer: gear enchanting, Koch: meals/consumables; materials drop from quest completion), **Schmiedekunst** (dismantle items → essenz + materials, transmute 3 epics → 1 legendary), **weekly challenges** (3-stage challenges with exclusive sternentaler currency).
 
 ## Important Files
 

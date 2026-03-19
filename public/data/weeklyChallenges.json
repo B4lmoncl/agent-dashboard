@@ -1,0 +1,94 @@
+{
+  "schema_version": "1.0",
+  "weeklyChallenge": {
+    "resetDay": "monday",
+    "stages": 3,
+    "stageRewards": {
+      "1": { "runensplitter": 10, "gold": 100, "xp": 50 },
+      "2": { "runensplitter": 25, "gold": 200, "xp": 100, "essenz": 15 },
+      "3": { "runensplitter": 50, "gold": 500, "xp": 250, "essenz": 30, "sternentaler": 5 }
+    },
+    "templates": [
+      {
+        "id": "fitness-blitz",
+        "name": "Fitness-Blitz",
+        "icon": "/images/icons/wc-fitness.png",
+        "stages": [
+          { "stage": 1, "desc": "Schließe 2 Fitness-Quests ab.", "requirement": { "type": "quest_type", "questType": "fitness", "count": 2 } },
+          { "stage": 2, "desc": "Schließe 3 weitere Fitness-Quests ab (5 gesamt).", "requirement": { "type": "quest_type", "questType": "fitness", "count": 5 } },
+          { "stage": 3, "desc": "Schließe 2 Quests am selben Tag ab + 7 Fitness-Quests gesamt.", "requirement": { "type": "quest_type", "questType": "fitness", "count": 7 } }
+        ]
+      },
+      {
+        "id": "code-sprint",
+        "name": "Code-Sprint",
+        "icon": "/images/icons/wc-code.png",
+        "stages": [
+          { "stage": 1, "desc": "Schließe 3 Development-Quests ab.", "requirement": { "type": "quest_type", "questType": "development", "count": 3 } },
+          { "stage": 2, "desc": "Schließe 5 Development-Quests ab.", "requirement": { "type": "quest_type", "questType": "development", "count": 5 } },
+          { "stage": 3, "desc": "Schließe 8 Development-Quests ab.", "requirement": { "type": "quest_type", "questType": "development", "count": 8 } }
+        ]
+      },
+      {
+        "id": "knowledge-hunt",
+        "name": "Wissensjagd",
+        "icon": "/images/icons/wc-learning.png",
+        "stages": [
+          { "stage": 1, "desc": "Schließe 2 Learning-Quests ab.", "requirement": { "type": "quest_type", "questType": "learning", "count": 2 } },
+          { "stage": 2, "desc": "Schließe 4 Learning-Quests ab.", "requirement": { "type": "quest_type", "questType": "learning", "count": 4 } },
+          { "stage": 3, "desc": "Schließe 7 Learning-Quests ab.", "requirement": { "type": "quest_type", "questType": "learning", "count": 7 } }
+        ]
+      },
+      {
+        "id": "social-butterfly",
+        "name": "Sozialoffensive",
+        "icon": "/images/icons/wc-social.png",
+        "stages": [
+          { "stage": 1, "desc": "Schließe 2 Social-Quests ab.", "requirement": { "type": "quest_type", "questType": "social", "count": 2 } },
+          { "stage": 2, "desc": "Schließe 3 Social-Quests ab.", "requirement": { "type": "quest_type", "questType": "social", "count": 3 } },
+          { "stage": 3, "desc": "Schließe 5 Social-Quests ab.", "requirement": { "type": "quest_type", "questType": "social", "count": 5 } }
+        ]
+      },
+      {
+        "id": "allrounder",
+        "name": "Allrounder",
+        "icon": "/images/icons/wc-allrounder.png",
+        "stages": [
+          { "stage": 1, "desc": "Schließe 3 Quests beliebigen Typs ab.", "requirement": { "type": "total_quests", "count": 3 } },
+          { "stage": 2, "desc": "Schließe Quests aus mindestens 3 verschiedenen Kategorien ab.", "requirement": { "type": "unique_types", "count": 3 } },
+          { "stage": 3, "desc": "Schließe 10 Quests ab, davon mindestens 2 verschiedene Typen.", "requirement": { "type": "total_quests", "count": 10 } }
+        ]
+      },
+      {
+        "id": "speedrun",
+        "name": "Speedrun",
+        "icon": "/images/icons/wc-speedrun.png",
+        "stages": [
+          { "stage": 1, "desc": "Schließe 3 Quests in den ersten 3 Tagen ab.", "requirement": { "type": "total_quests", "count": 3 } },
+          { "stage": 2, "desc": "Schließe 5 Quests ab.", "requirement": { "type": "total_quests", "count": 5 } },
+          { "stage": 3, "desc": "Schließe 8 Quests ab.", "requirement": { "type": "total_quests", "count": 8 } }
+        ]
+      },
+      {
+        "id": "streak-master",
+        "name": "Streak-Meister",
+        "icon": "/images/icons/wc-streak.png",
+        "stages": [
+          { "stage": 1, "desc": "Halte deinen Streak 3 Tage in Folge.", "requirement": { "type": "streak_maintained", "count": 3 } },
+          { "stage": 2, "desc": "Halte deinen Streak 5 Tage in Folge.", "requirement": { "type": "streak_maintained", "count": 5 } },
+          { "stage": 3, "desc": "Halte deinen Streak 7 Tage in Folge + 5 Quests.", "requirement": { "type": "streak_maintained", "count": 7 } }
+        ]
+      },
+      {
+        "id": "companion-bond",
+        "name": "Gefährtenbund",
+        "icon": "/images/icons/wc-companion.png",
+        "stages": [
+          { "stage": 1, "desc": "Schließe 2 Companion-Quests ab.", "requirement": { "type": "quest_type", "questType": "companion", "count": 2 } },
+          { "stage": 2, "desc": "Streichle deinen Companion 2x + 3 Companion-Quests.", "requirement": { "type": "quest_type", "questType": "companion", "count": 3 } },
+          { "stage": 3, "desc": "Schließe 5 Companion-Quests ab.", "requirement": { "type": "quest_type", "questType": "companion", "count": 5 } }
+        ]
+      }
+    ]
+  }
+}

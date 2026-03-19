@@ -73,6 +73,9 @@ export default function ForgeView({ onRefresh }: { onRefresh?: () => void }) {
   const [craftResult, setCraftResult] = useState<string | null>(null);
   const [crafting, setCrafting] = useState(false);
   const [selectedSlot, setSelectedSlot] = useState<string>("weapon");
+  const [dismantleResult, setDismantleResult] = useState<string | null>(null);
+  const [transmuteResult, setTransmuteResult] = useState<string | null>(null);
+  const [selectedTransmute, setSelectedTransmute] = useState<string[]>([]);
 
   const loggedIn = playerName && reviewApiKey;
 
@@ -115,6 +118,39 @@ export default function ForgeView({ onRefresh }: { onRefresh?: () => void }) {
       setCraftResult("Netzwerkfehler");
     }
     setCrafting(false);
+  };
+
+  const handleDismantle = async (itemId: string) => {
+    if (!reviewApiKey) return;
+    try {
+      const r = await fetch("/api/schmiedekunst/dismantle", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "x-api-key": reviewApiKey },
+        body: JSON.stringify({ inventoryItemId: itemId }),
+      });
+      const data = await r.json();
+      setDismantleResult(data.message || data.error || "Fehler");
+      setTimeout(() => setDismantleResult(null), 4000);
+      fetchData();
+      onRefresh?.();
+    } catch { setDismantleResult("Netzwerkfehler"); }
+  };
+
+  const handleTransmute = async () => {
+    if (!reviewApiKey || selectedTransmute.length !== 3) return;
+    try {
+      const r = await fetch("/api/schmiedekunst/transmute", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "x-api-key": reviewApiKey },
+        body: JSON.stringify({ itemIds: selectedTransmute }),
+      });
+      const data = await r.json();
+      setTransmuteResult(data.message || data.error || "Fehler");
+      setSelectedTransmute([]);
+      setTimeout(() => setTransmuteResult(null), 5000);
+      fetchData();
+      onRefresh?.();
+    } catch { setTransmuteResult("Netzwerkfehler"); }
   };
 
   if (!loggedIn || !loggedInUser) {
@@ -200,6 +236,91 @@ export default function ForgeView({ onRefresh }: { onRefresh?: () => void }) {
             </button>
           );
         })}
+      </div>
+
+      {/* ─── Schmiedekunst (Kanai's Cube) ──────────────────────────────────── */}
+      <div className="rounded-xl p-4" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,140,0,0.15)" }}>
+        <div className="flex items-center gap-2 mb-3">
+          <img src="/images/icons/prof-schmied.png" alt="" width={20} height={20} style={{ imageRendering: "smooth" }} onError={e => { (e.target as HTMLImageElement).style.display = "none"; }} />
+          <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,140,0,0.6)" }}>Schmiedekunst</span>
+        </div>
+
+        {dismantleResult && (
+          <div className="rounded px-2.5 py-1.5 text-xs font-semibold mb-2" style={{ background: "rgba(255,140,0,0.08)", border: "1px solid rgba(255,140,0,0.2)", color: "#ff8c00" }}>
+            {dismantleResult}
+          </div>
+        )}
+        {transmuteResult && (
+          <div className="rounded px-2.5 py-1.5 text-xs font-semibold mb-2" style={{ background: "rgba(168,85,247,0.08)", border: "1px solid rgba(168,85,247,0.2)", color: "#a855f7" }}>
+            {transmuteResult}
+          </div>
+        )}
+
+        {/* Inventory items for dismantle */}
+        {(() => {
+          const inv = (loggedInUser as any).inventory || [];
+          const dismantleItems = inv.filter((i: any) => i.rarity && i.name && (i.instanceId || i.id));
+          if (dismantleItems.length === 0) return (
+            <p className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>Keine Items im Inventar zum Zerlegen.</p>
+          );
+          const epicItems = dismantleItems.filter((i: any) => i.rarity === "epic");
+          return (
+            <div className="space-y-3">
+              {/* Dismantle */}
+              <div>
+                <p className="text-xs mb-1.5" style={{ color: "rgba(255,255,255,0.4)" }}>
+                  Zerlege Items in Essenz + Materialien
+                </p>
+                <div className="flex flex-wrap gap-1.5">
+                  {dismantleItems.slice(0, 12).map((item: any) => {
+                    const rc = RARITY_COLORS[item.rarity] || "#9ca3af";
+                    return (
+                      <button key={item.instanceId || item.id} onClick={() => handleDismantle(item.instanceId || item.id)} className="text-xs px-2 py-1 rounded-lg" style={{
+                        background: "rgba(255,255,255,0.03)", border: `1px solid ${rc}30`, color: rc,
+                      }} title={`Zerlegen: +${item.rarity === "legendary" ? 100 : item.rarity === "epic" ? 40 : item.rarity === "rare" ? 15 : 5} Essenz`}>
+                        {item.name}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Transmute: 3 epics → 1 legendary */}
+              {epicItems.length >= 3 && (
+                <div style={{ borderTop: "1px solid rgba(255,255,255,0.05)", paddingTop: 12 }}>
+                  <p className="text-xs mb-1.5" style={{ color: "rgba(168,85,247,0.6)" }}>
+                    Transmutation: 3 Epics (gleicher Slot) + 500 Gold = 1 Legendary
+                  </p>
+                  <div className="flex flex-wrap gap-1.5 mb-2">
+                    {epicItems.map((item: any) => {
+                      const iid = item.instanceId || item.id;
+                      const sel = selectedTransmute.includes(iid);
+                      return (
+                        <button key={iid} onClick={() => {
+                          setSelectedTransmute(prev => sel ? prev.filter(x => x !== iid) : prev.length < 3 ? [...prev, iid] : prev);
+                        }} className="text-xs px-2 py-1 rounded-lg transition-all" style={{
+                          background: sel ? "rgba(168,85,247,0.15)" : "rgba(255,255,255,0.03)",
+                          border: `1px solid ${sel ? "rgba(168,85,247,0.5)" : "rgba(168,85,247,0.15)"}`,
+                          color: sel ? "#c084fc" : "#a855f7",
+                        }}>
+                          {sel ? "\u2713 " : ""}{item.name}
+                          <span className="text-xs ml-1" style={{ color: "rgba(255,255,255,0.2)", fontSize: 9 }}>{item.slot}</span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                  {selectedTransmute.length === 3 && (
+                    <button onClick={handleTransmute} className="text-xs px-3 py-1.5 rounded-lg font-semibold" style={{
+                      background: "rgba(168,85,247,0.15)", color: "#c084fc", border: "1px solid rgba(168,85,247,0.4)",
+                    }}>
+                      Transmutieren (500 Gold)
+                    </button>
+                  )}
+                </div>
+              )}
+            </div>
+          );
+        })()}
       </div>
 
       {/* ─── NPC Popout Modal ────────────────────────────────────────────────── */}

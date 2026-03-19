@@ -266,6 +266,34 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
       break;
     }
 
+    // ─── Koch recipes ──────────────────────────────────────────────────────
+    case 'meal_hearty':
+    case 'meal_golden': {
+      u.activeBuffs = u.activeBuffs || [];
+      const buffType = recipe.result.buffType;
+      u.activeBuffs.push({ type: buffType, questsRemaining: 5, activatedAt: now() });
+      const mealNames = { meal_hearty: 'Herzhafter Eintopf', meal_golden: 'Goldene Suppe' };
+      result.message = `${mealNames[recipeId] || 'Mahlzeit'} genossen! Buff aktiv für 5 Quests.`;
+      break;
+    }
+    case 'meal_feast': {
+      u.activeBuffs = u.activeBuffs || [];
+      u.activeBuffs.push({ type: 'xp_boost_15', questsRemaining: 3, activatedAt: now() });
+      u.activeBuffs.push({ type: 'gold_boost_10', questsRemaining: 3, activatedAt: now() });
+      result.message = 'Sternenbankett! +15% XP + 10% Gold für 3 Quests!';
+      break;
+    }
+    case 'meal_forge': {
+      u.forgeTemp = Math.min(100, (u.forgeTemp || 0) + (recipe.result.amount || 15));
+      result.message = `Forge-Temperatur um ${recipe.result.amount || 15} erhöht! (${u.forgeTemp}%)`;
+      break;
+    }
+    case 'meal_endurance': {
+      u.streakShields = (u.streakShields || 0) + 1;
+      result.message = `Ausdauer-Ration! Streak-Shield erhalten (Gesamt: ${u.streakShields})`;
+      break;
+    }
+
     default:
       return res.status(400).json({ error: `Unknown recipe: ${recipeId}` });
   }
@@ -278,6 +306,144 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
     gold: u.currencies?.gold ?? u.gold ?? 0,
     newProfLevel: newProfLevel.level,
     profLevelUp: newProfLevel.level > profProgress.level,
+  });
+});
+
+// ─── Schmiedekunst (Kanai's Cube) ────────────────────────────────────────────
+// Dismantle items into Essenz, transmute 3 epics of same slot → 1 legendary
+
+const DISMANTLE_ESSENZ = { common: 2, uncommon: 5, rare: 15, epic: 40, legendary: 100 };
+const DISMANTLE_MATERIALS = {
+  common: [{ id: 'eisenerz', chance: 0.5 }, { id: 'magiestaub', chance: 0.3 }],
+  uncommon: [{ id: 'eisenerz', chance: 0.6 }, { id: 'kristallsplitter', chance: 0.3 }, { id: 'magiestaub', chance: 0.4 }],
+  rare: [{ id: 'kristallsplitter', chance: 0.5 }, { id: 'drachenschuppe', chance: 0.2 }, { id: 'runenstein', chance: 0.4 }],
+  epic: [{ id: 'drachenschuppe', chance: 0.5 }, { id: 'aetherkern', chance: 0.15 }, { id: 'runenstein', chance: 0.4 }],
+  legendary: [{ id: 'aetherkern', chance: 0.6 }, { id: 'seelensplitter', chance: 0.1 }, { id: 'phoenixfeder', chance: 0.3 }],
+};
+
+// POST /api/schmiedekunst/dismantle — dismantle an inventory item into essenz + materials
+router.post('/api/schmiedekunst/dismantle', requireAuth, (req, res) => {
+  const uid = req.resolvedPlayerId;
+  const u = state.users[uid];
+  if (!u) return res.status(404).json({ error: 'User not found' });
+  const { inventoryItemId } = req.body;
+  if (!inventoryItemId) return res.status(400).json({ error: 'inventoryItemId required' });
+
+  u.inventory = u.inventory || [];
+  const idx = u.inventory.findIndex(i => (i.instanceId || i.id) === inventoryItemId);
+  if (idx === -1) return res.status(404).json({ error: 'Item not in inventory' });
+  const item = u.inventory[idx];
+
+  // Cannot dismantle currently equipped items
+  if (u.equipment) {
+    for (const slotVal of Object.values(u.equipment)) {
+      if (slotVal && typeof slotVal === 'object' && slotVal.instanceId === inventoryItemId) {
+        return res.status(400).json({ error: 'Kann ausgerüstete Items nicht zerlegen' });
+      }
+    }
+  }
+
+  const rarity = item.rarity || 'common';
+  const essenzGained = DISMANTLE_ESSENZ[rarity] || 2;
+  const matDrops = DISMANTLE_MATERIALS[rarity] || DISMANTLE_MATERIALS.common;
+
+  // Remove from inventory
+  u.inventory.splice(idx, 1);
+
+  // Award essenz
+  const { ensureUserCurrencies } = require('../lib/state');
+  ensureUserCurrencies(u);
+  u.currencies.essenz = (u.currencies.essenz || 0) + essenzGained;
+
+  // Roll material drops
+  u.craftingMaterials = u.craftingMaterials || {};
+  const materialsGained = [];
+  for (const mat of matDrops) {
+    if (Math.random() < mat.chance) {
+      u.craftingMaterials[mat.id] = (u.craftingMaterials[mat.id] || 0) + 1;
+      const matDef = PROFESSIONS_DATA.materials?.find(m => m.id === mat.id);
+      materialsGained.push({ id: mat.id, name: matDef?.name || mat.id, amount: 1 });
+    }
+  }
+
+  saveUsers();
+  res.json({
+    message: `${item.name} zerlegt! +${essenzGained} Essenz${materialsGained.length > 0 ? ' + Materialien' : ''}`,
+    dismantled: { name: item.name, rarity },
+    essenzGained,
+    materialsGained,
+    currencies: u.currencies,
+    craftingMaterials: u.craftingMaterials,
+  });
+});
+
+// POST /api/schmiedekunst/transmute — combine 3 epics of same slot → 1 legendary
+router.post('/api/schmiedekunst/transmute', requireAuth, (req, res) => {
+  const uid = req.resolvedPlayerId;
+  const u = state.users[uid];
+  if (!u) return res.status(404).json({ error: 'User not found' });
+  const { itemIds } = req.body; // array of 3 inventory instanceIds
+  if (!itemIds || !Array.isArray(itemIds) || itemIds.length !== 3) {
+    return res.status(400).json({ error: '3 itemIds required' });
+  }
+
+  u.inventory = u.inventory || [];
+  const items = [];
+  for (const id of itemIds) {
+    const item = u.inventory.find(i => (i.instanceId || i.id) === id);
+    if (!item) return res.status(404).json({ error: `Item ${id} not found in inventory` });
+    items.push(item);
+  }
+
+  // Validate: all must be epic rarity
+  const allEpic = items.every(i => (i.rarity || 'common') === 'epic');
+  if (!allEpic) return res.status(400).json({ error: 'Alle 3 Items müssen episch sein' });
+
+  // Validate: all must be same slot
+  const slots = items.map(i => i.slot || i.resolvedGear?.slot);
+  const slot = slots[0];
+  if (!slot || !slots.every(s => s === slot)) {
+    return res.status(400).json({ error: 'Alle 3 Items müssen denselben Slot haben' });
+  }
+
+  // Gold cost
+  const transmuteCost = 500;
+  const userGold = u.currencies?.gold ?? u.gold ?? 0;
+  if (userGold < transmuteCost) {
+    return res.status(400).json({ error: `Nicht genug Gold (${userGold}/${transmuteCost})` });
+  }
+
+  // Find legendary items in same slot
+  const { createGearInstance } = require('../lib/helpers');
+  const legendaryPool = state.FULL_GEAR_ITEMS.filter(g =>
+    g.slot === slot && g.rarity === 'legendary' && g.tier === 4
+  );
+  if (legendaryPool.length === 0) {
+    return res.status(400).json({ error: `Kein Legendär für Slot "${slot}" verfügbar` });
+  }
+
+  // Deduct gold
+  if (u.currencies) u.currencies.gold -= transmuteCost;
+  else u.gold = (u.gold || 0) - transmuteCost;
+
+  // Remove the 3 epic items from inventory
+  for (const item of items) {
+    const removeIdx = u.inventory.findIndex(i => (i.instanceId || i.id) === (item.instanceId || item.id));
+    if (removeIdx !== -1) u.inventory.splice(removeIdx, 1);
+  }
+
+  // Create legendary
+  const template = legendaryPool[Math.floor(Math.random() * legendaryPool.length)];
+  const legendary = createGearInstance(template);
+  u.inventory.push(legendary);
+
+  saveUsers();
+  res.json({
+    message: `Schmiedekunst erfolgreich! ${legendary.name} wurde geschmiedet!`,
+    consumed: items.map(i => ({ name: i.name, rarity: i.rarity })),
+    created: legendary,
+    goldSpent: transmuteCost,
+    gold: u.currencies?.gold ?? u.gold ?? 0,
   });
 });
 

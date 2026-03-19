@@ -97,6 +97,7 @@ app.use(require('./routes/integrations'));
 app.use(require('./routes/game'));
 app.use(require('./routes/habits-inventory'));
 app.use(require('./routes/crafting'));
+app.use(require('./routes/challenges-weekly'));
 app.use(require('./routes/npcs-misc'));  // Must be last (has SPA fallback catch-all)
 
 // ─── Boot sequence ───────────────────────────────────────────────────────────
@@ -139,6 +140,7 @@ loadGachaState();
 loadItemTemplates();
 loadTitles();
 require('./routes/crafting').loadProfessions();
+require('./routes/challenges-weekly').loadWeeklyChallenges();
 
 // Migrate legacy equipment (string IDs → rolled instances)
 for (const uid of Object.keys(state.users)) {

@@ -54,6 +54,23 @@
         { "id": "enchant_gear", "name": "Verzauberung", "desc": "Fügt einem Item einen temporären Enchant hinzu (+Stat für 24h).", "reqLevel": 1, "cooldownMinutes": 360 },
         { "id": "permanent_enchant", "name": "Permanente Verzauberung", "desc": "Fügt einem Item einen permanenten Minor-Stat hinzu.", "reqLevel": 5, "cooldownMinutes": 1440 }
       ]
+    },
+    {
+      "id": "koch",
+      "name": "Koch",
+      "npcName": "Bruna die Köchin",
+      "npcPortrait": "/images/npcs/bruna-koch.png",
+      "npcGreeting": "Hunger? Setz dich! Mein Eintopf heilt Körper und Seele.",
+      "description": "Kocht Mahlzeiten aus gesammelten Kräutern und Materialien. Mahlzeiten geben temporäre Buffs.",
+      "color": "#e87b35",
+      "icon": "/images/icons/prof-koch.png",
+      "maxLevel": 10,
+      "xpPerCraft": 10,
+      "levelThresholds": [0, 50, 120, 220, 360, 550, 800, 1100, 1500, 2000],
+      "unlockCondition": { "type": "level", "value": 3 },
+      "abilities": [
+        { "id": "cook_meal", "name": "Mahlzeit kochen", "desc": "Kocht eine Mahlzeit aus Zutaten.", "reqLevel": 1, "cooldownMinutes": 0 }
+      ]
     }
   ],
   "materials": [
@@ -66,14 +83,17 @@
     { "id": "mondblume", "name": "Mondblume", "icon": "/images/icons/mat-mondblume.png", "rarity": "uncommon", "desc": "Blüht nur bei Mondschein." },
     { "id": "phoenixfeder", "name": "Phönixfeder", "icon": "/images/icons/mat-phoenixfeder.png", "rarity": "epic", "desc": "Eine glühende Feder voller Lebenskraft." },
     { "id": "runenstein", "name": "Runenstein", "icon": "/images/icons/mat-runenstein.png", "rarity": "uncommon", "desc": "Ein Stein mit eingravierten Runen." },
-    { "id": "seelensplitter", "name": "Seelensplitter", "icon": "/images/icons/mat-seelensplitter.png", "rarity": "legendary", "desc": "Ein Fragment einer alten Seele. Extrem selten." }
+    { "id": "seelensplitter", "name": "Seelensplitter", "icon": "/images/icons/mat-seelensplitter.png", "rarity": "legendary", "desc": "Ein Fragment einer alten Seele. Extrem selten." },
+    { "id": "wildfleisch", "name": "Wildfleisch", "icon": "/images/icons/mat-wildfleisch.png", "rarity": "common", "desc": "Frisches Fleisch aus der Wildnis." },
+    { "id": "feuerwurz", "name": "Feuerwurz", "icon": "/images/icons/mat-feuerwurz.png", "rarity": "uncommon", "desc": "Eine scharfe Wurzel die von innen wärmt." },
+    { "id": "sternenfrucht", "name": "Sternenfrucht", "icon": "/images/icons/mat-sternenfrucht.png", "rarity": "rare", "desc": "Eine leuchtende Frucht aus den Himmelsgärten." }
   ],
   "materialDropRates": {
-    "common": { "eisenerz": 0.30, "magiestaub": 0.25, "kraeuterbuendel": 0.30 },
-    "uncommon": { "eisenerz": 0.20, "magiestaub": 0.20, "kraeuterbuendel": 0.20, "kristallsplitter": 0.12, "mondblume": 0.10, "runenstein": 0.12 },
-    "rare": { "kristallsplitter": 0.18, "mondblume": 0.15, "runenstein": 0.18, "drachenschuppe": 0.08 },
-    "epic": { "drachenschuppe": 0.15, "aetherkern": 0.06, "phoenixfeder": 0.06 },
-    "legendary": { "aetherkern": 0.12, "phoenixfeder": 0.10, "seelensplitter": 0.03 }
+    "common": { "eisenerz": 0.30, "magiestaub": 0.25, "kraeuterbuendel": 0.30, "wildfleisch": 0.25 },
+    "uncommon": { "eisenerz": 0.20, "magiestaub": 0.20, "kraeuterbuendel": 0.20, "kristallsplitter": 0.12, "mondblume": 0.10, "runenstein": 0.12, "wildfleisch": 0.18, "feuerwurz": 0.10 },
+    "rare": { "kristallsplitter": 0.18, "mondblume": 0.15, "runenstein": 0.18, "drachenschuppe": 0.08, "feuerwurz": 0.15, "sternenfrucht": 0.06 },
+    "epic": { "drachenschuppe": 0.15, "aetherkern": 0.06, "phoenixfeder": 0.06, "sternenfrucht": 0.12 },
+    "legendary": { "aetherkern": 0.12, "phoenixfeder": 0.10, "seelensplitter": 0.03, "sternenfrucht": 0.20 }
   },
   "recipes": [
     {
@@ -169,6 +189,61 @@
       "cost": { "gold": 300 },
       "materials": { "runenstein": 3, "aetherkern": 1, "seelensplitter": 1 },
       "cooldownMinutes": 1440
+    },
+    {
+      "id": "meal_hearty",
+      "profession": "koch",
+      "name": "Herzhafter Eintopf",
+      "desc": "+5% XP für die nächsten 5 Quests. Wärmt Körper und Seele.",
+      "reqProfLevel": 1,
+      "cost": { "gold": 25 },
+      "materials": { "wildfleisch": 2, "kraeuterbuendel": 1 },
+      "result": { "type": "buff", "buffType": "xp_boost_5", "duration": "5_quests" },
+      "cooldownMinutes": 0
+    },
+    {
+      "id": "meal_golden",
+      "profession": "koch",
+      "name": "Goldene Suppe",
+      "desc": "+10% Gold für die nächsten 5 Quests.",
+      "reqProfLevel": 2,
+      "cost": { "gold": 40 },
+      "materials": { "wildfleisch": 1, "feuerwurz": 1, "kraeuterbuendel": 1 },
+      "result": { "type": "buff", "buffType": "gold_boost_10", "duration": "5_quests" },
+      "cooldownMinutes": 0
+    },
+    {
+      "id": "meal_feast",
+      "profession": "koch",
+      "name": "Sternenbankett",
+      "desc": "+15% XP + 10% Gold für die nächsten 3 Quests. Ein Festmahl!",
+      "reqProfLevel": 5,
+      "cost": { "gold": 100 },
+      "materials": { "sternenfrucht": 1, "wildfleisch": 2, "feuerwurz": 1 },
+      "result": { "type": "buff", "buffType": "feast_buff", "duration": "3_quests" },
+      "cooldownMinutes": 0
+    },
+    {
+      "id": "meal_forge",
+      "profession": "koch",
+      "name": "Schmiedeglut-Braten",
+      "desc": "+15 Forge-Temperatur sofort.",
+      "reqProfLevel": 3,
+      "cost": { "gold": 50 },
+      "materials": { "feuerwurz": 2, "wildfleisch": 1 },
+      "result": { "type": "forge_temp", "amount": 15 },
+      "cooldownMinutes": 0
+    },
+    {
+      "id": "meal_endurance",
+      "profession": "koch",
+      "name": "Ausdauer-Ration",
+      "desc": "Gewährt 1 Streak-Shield.",
+      "reqProfLevel": 7,
+      "cost": { "gold": 150 },
+      "materials": { "sternenfrucht": 1, "feuerwurz": 2, "mondblume": 1 },
+      "result": { "type": "streak_shield", "amount": 1 },
+      "cooldownMinutes": 0
     }
   ]
 }
