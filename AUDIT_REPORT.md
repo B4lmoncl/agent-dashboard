@@ -73,9 +73,14 @@
 - **Backend:** `lib/state.js` uses [min, max] ranges ([5,10], [10,18], [18,30], [30,50], [50,80])
 - **Fix:** Updated GOLD_BY_RARITY to use ranges and display as "5–10" format
 
+#### M-10: Stat Tooltips Missing Caps ✅
+- **Was:** Fokus tooltip said "+1 Flat Bonus-XP pro Quest" (no cap mentioned); Glück said "+0.5% Drop Chance pro Punkt" (no cap)
+- **Backend:** Fokus capped at +50 (`Math.min(50, fokus)`), Glück capped at 20% (`Math.min(0.20, ...)`)
+- **Fix:** Updated tooltips to show caps: "+1 Flat Bonus-XP pro Punkt (max +50)" and "+0.5% Drop Chance pro Punkt (max 20%)"
+
 ### MEDIUM (deferred — informational only)
 
-#### M-10: XP Modifier Modal — Missing Factors
+#### M-11: XP Modifier Modal — Missing Factors
 - Frontend modal shows: forge, kraft, gear, companions, bond, hoarding, legendary
 - Backend also applies: passiveXpBonus, activeXpBuf, nthBonus, varietyBonus, fokus stat
 - **Impact:** Users don't see temporary buff modifiers (low impact, these are transient)
@@ -136,6 +141,7 @@
 | F-13 | — | Artisan stat card: add inline prop for consistency | page.tsx | ✅ Done |
 | F-14 | M-08 | Workshop tool costs: 150/500 essenz → 2000/5000 gold | ForgeView.tsx | ✅ Done |
 | F-15 | M-09 | Quest gold display: fixed values → backend ranges | QuestDetailModal.tsx | ✅ Done |
+| F-16 | M-10 | Fokus tooltip: add +50 cap, Glück tooltip: add 20% cap | CharacterView.tsx | ✅ Done |
 
 ### Verification
 
