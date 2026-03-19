@@ -315,7 +315,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
         <div className="flex items-center gap-4 ml-auto text-sm">
           <span className="font-mono font-medium" style={{ color: "rgba(255,255,255,0.35)" }}>{chosenCount}/{maxProfSlots} Professions</span>
           {dailyBonusAvailable && (
-            <span className="px-2 py-1 rounded font-bold text-xs" style={{ background: "rgba(250,204,21,0.12)", color: "#facc15", border: "1px solid rgba(250,204,21,0.25)" }}>
+            <span className="px-2 py-1 rounded font-bold text-xs cursor-help" title="Daily Bonus active! Your first craft today gives 2x profession XP. Resets daily." style={{ background: "rgba(250,204,21,0.12)", color: "#facc15", border: "1px solid rgba(250,204,21,0.25)" }}>
               2x XP
             </span>
           )}
@@ -787,7 +787,16 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
             {/* ─── Tab: Schmiedekunst (Schmied only) ───────────────────── */}
             {npcModalTab === "schmiedekunst" && selectedNpc.id === "schmied" && (() => {
               const inv = getUserInventory(loggedInUser);
-              const dismantleItems = inv.filter(i => i.rarity && i.name && (i.instanceId || i.id) && (i.slot || i.templateId));
+              // Collect equipped item IDs so we never show them in dismantle/transmute
+              const equippedIds = new Set<string>();
+              for (const slot of Object.keys(equippedSlots)) {
+                const eq = equippedSlots[slot];
+                if (eq && typeof eq === "object") {
+                  if (eq.instanceId) equippedIds.add(eq.instanceId);
+                  else if (eq.id) equippedIds.add(eq.id);
+                }
+              }
+              const dismantleItems = inv.filter(i => i.rarity && i.name && (i.instanceId || i.id) && (i.slot || i.templateId) && !equippedIds.has(i.instanceId || i.id));
               const hasItems = dismantleItems.length > 0;
               // Group by rarity
               const grouped: Record<string, InventoryItem[]> = {};
@@ -857,7 +866,16 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
             {/* ─── Tab: Transmutation (Verzauberer only) ───────────────── */}
             {npcModalTab === "transmutation" && selectedNpc.id === "verzauberer" && (() => {
               const inv = getUserInventory(loggedInUser);
-              const epicItems = inv.filter(i => i.rarity === "epic" && i.name && (i.instanceId || i.id) && i.slot);
+              // Exclude equipped items from transmutation
+              const equippedIds = new Set<string>();
+              for (const slot of Object.keys(equippedSlots)) {
+                const eq = equippedSlots[slot];
+                if (eq && typeof eq === "object") {
+                  if (eq.instanceId) equippedIds.add(eq.instanceId);
+                  else if (eq.id) equippedIds.add(eq.id);
+                }
+              }
+              const epicItems = inv.filter(i => i.rarity === "epic" && i.name && (i.instanceId || i.id) && i.slot && !equippedIds.has(i.instanceId || i.id));
               // Group epics by slot for proper same-slot validation
               const epicsBySlot: Record<string, InventoryItem[]> = {};
               for (const item of epicItems) {
