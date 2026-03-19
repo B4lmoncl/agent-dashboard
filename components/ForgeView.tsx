@@ -884,7 +884,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                                 onClick={() => handleDismantle(item.instanceId || item.id, item.name, rarity)}
                                 className="forge-btn relative flex items-center justify-center rounded-lg aspect-square"
                                 style={{ background: `${RARITY_COLORS[rarity]}08`, border: `1px solid ${RARITY_COLORS[rarity]}30` }}
-                                title={`${item.name} — Dismantle → +${ESSENZ_TABLE[rarity] || 2} Essenz`}
+                                title={`${item.name} — Dismantle → +${ESSENZ_TABLE[rarity] || 2} Essenz + Materials`}
                               >
                                 {item.icon
                                   ? <img src={item.icon} alt={item.name} style={{ width: 40, height: 40, imageRendering: "smooth", objectFit: "contain" }} />

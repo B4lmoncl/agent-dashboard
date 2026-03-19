@@ -118,6 +118,21 @@ app.use((err, req, res, _next) => {
 });
 
 // ─── Boot sequence ───────────────────────────────────────────────────────────
+// Verify data directory is writable — critical for player progress persistence
+const { RUNTIME_DIR } = require('./lib/state');
+try {
+  const testFile = path.join(RUNTIME_DIR, '.write-test');
+  fs.writeFileSync(testFile, 'ok');
+  fs.unlinkSync(testFile);
+  console.log(`[boot] Data directory ${RUNTIME_DIR} is writable`);
+} catch (e) {
+  console.error(`\n${'='.repeat(70)}`);
+  console.error(`  CRITICAL: Data directory ${RUNTIME_DIR} is NOT writable!`);
+  console.error(`  Player progress will NOT be saved.`);
+  console.error(`  Error: ${e.message}`);
+  console.error(`  Fix: run 'chown -R appuser:appgroup ${RUNTIME_DIR}' or check Docker volume permissions`);
+  console.error(`${'='.repeat(70)}\n`);
+}
 ensureDataDir();
 ensureRuntimeFiles();
 seedMutableFiles();
@@ -226,6 +241,12 @@ function pruneMemory() {
 pruneMemory(); // Run once at boot
 const pruneInterval = setInterval(pruneMemory, 60 * 60 * 1000); // Then every hour
 
+// ─── Periodic force-save (safety net for player progress) ───────────────────
+// Flush all pending saves every 60s to ensure data survives unexpected restarts
+const forceSaveInterval = setInterval(() => {
+  flushPendingSaves();
+}, 60 * 1000);
+
 // ─── Start server ────────────────────────────────────────────────────────────
 const server = app.listen(PORT, () => {
   console.log(`\n🔴 Agent Dashboard API running on http://localhost:${PORT}`);
@@ -240,6 +261,7 @@ function shutdown(signal) {
   // Clear all intervals so they don't block server.close()
   clearInterval(npcInterval);
   clearInterval(pruneInterval);
+  clearInterval(forceSaveInterval);
   if (typeof changelogInterval !== 'undefined') clearInterval(changelogInterval);
   flushPendingSaves();
   server.close(() => {
