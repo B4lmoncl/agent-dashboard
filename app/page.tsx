@@ -364,16 +364,16 @@ export default function Dashboard() {
         setRewardCelebration({
           type: "daily-bonus",
           title: "Daily Bonus Claimed!",
-          subtitle: rewardParts.join(" + ") + (data.milestone ? ` (${data.milestone} streak bonus!)` : ""),
-          xp: 0,
-          gold: 0,
+          flavor: rewardParts.join(" + ") + (data.milestone ? ` (${data.milestone} streak bonus!)` : ""),
+          xpEarned: 0,
+          goldEarned: 0,
         });
         refresh();
       } else {
-        addToast(data.error || "Could not claim daily bonus", "error");
+        addToast({ type: "flavor", message: data.error || "Could not claim daily bonus", icon: "/images/icons/currency-essenz.png" });
       }
     } catch {
-      addToast("Network error", "error");
+      addToast({ type: "flavor", message: "Network error", icon: "/images/icons/currency-essenz.png" });
     } finally {
       setClaimingDailyBonus(false);
     }

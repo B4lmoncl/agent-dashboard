@@ -120,6 +120,7 @@ export async function fetchDashboard(playerName?: string): Promise<{
   habits: Habit[];
   favorites: string[];
   activeNpcs: any[];
+  dailyBonusAvailable?: boolean;
   apiLive: boolean;
 } | null> {
   try {
