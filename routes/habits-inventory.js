@@ -647,10 +647,19 @@ router.get('/api/player/:name/character', (req, res) => {
   const xpProgress = lvlInfo.nextXp
     ? Math.min(1, (xp - lvlInfo.xpRequired) / (lvlInfo.nextXp - lvlInfo.xpRequired))
     : 1;
-  const equippedIds = Object.values(u.equipment || {}).filter(Boolean);
+  const equippedRaw = Object.values(u.equipment || {}).filter(Boolean);
   let baseStats = { kraft: 0, ausdauer: 0, weisheit: 0, glueck: 0 };
   const equippedItems = [];
-  for (const itemId of equippedIds) {
+  for (const entry of equippedRaw) {
+    // entry can be an instance object (new format) or a string ID (legacy)
+    if (typeof entry === 'object' && entry.templateId) {
+      equippedItems.push({ id: entry.templateId, instanceId: entry.instanceId, name: entry.name, stats: entry.stats || {}, slot: entry.slot, rarity: entry.rarity, setId: entry.setId || null, icon: entry.icon, tier: entry.tier || 0, minLevel: entry.minLevel || 1, desc: entry.desc, legendaryEffect: entry.legendaryEffect || null, passiveEffect: entry.passiveEffect || null, passiveDesc: entry.passiveDesc || null, affixes: entry.affixes || null });
+      for (const [stat, val] of Object.entries(entry.stats || {})) {
+        baseStats[stat] = (baseStats[stat] || 0) + val;
+      }
+      continue;
+    }
+    const itemId = typeof entry === 'string' ? entry : entry.id;
     let item = state.gearById.get(itemId);
     if (!item) {
       // Check item templates for gacha/loot equipment

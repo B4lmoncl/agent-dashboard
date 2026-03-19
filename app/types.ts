@@ -435,6 +435,7 @@ export interface GearInstance {
   rarity: string;
   reqLevel: number;
   desc?: string;
+  icon?: string | null;
   stats: Record<string, number>;
   legendaryEffect?: { type: string; value: number; label?: string } | null;
   setId?: string;

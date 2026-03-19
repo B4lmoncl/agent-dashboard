@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback, useMemo, useRef } from "react";
 import { createPortal } from "react-dom";
 import { useModalBehavior } from "@/components/ModalPortal";
 import ItemActionPopup from "@/components/ItemActionPopup";
-import type { User, CharacterData, ClassDef, PixelCharacterProps } from "@/app/types";
+import type { User, CharacterData, ClassDef, PixelCharacterProps, GearInstance } from "@/app/types";
 import type { ToastInput } from "@/components/ToastStack";
 import { useDashboard } from "@/app/DashboardContext";
 import { getAuthHeaders } from "@/lib/auth-client";
@@ -932,7 +932,11 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
 
           {loading && <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>Lädt...</p>}
           {!loading && charData && (() => {
-            const equippedIds = new Set(Object.values(charData.equipment).filter(Boolean));
+            const equippedIds = new Set(
+              Object.values(charData.equipment).filter(Boolean).map(v =>
+                typeof v === 'object' && v !== null ? ((v as GearInstance).instanceId || (v as GearInstance).templateId) : v
+              )
+            );
             let unequipped = charData.inventory.filter(i => !equippedIds.has(i.id));
 
             // Filter
@@ -1095,10 +1099,14 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
           {rightTab === "ausrustung" && (
             <div className="space-y-1.5">
               {EQUIP_SLOT_LABELS.map(({ slot, iconSrc, label }) => {
-                const equippedItemId = charData?.equipment[slot];
-                const item = equippedItemId
-                  ? charData?.inventory.find(i => i.id === equippedItemId) ?? null
-                  : null;
+                const eqRaw = charData?.equipment[slot];
+                const isInstance = eqRaw && typeof eqRaw === 'object';
+                const gi = isInstance ? eqRaw as GearInstance : null;
+                const equippedItemId = gi ? (gi.instanceId || gi.templateId) : eqRaw;
+                // For instance objects, build item directly from equipment data
+                const item = gi
+                  ? { id: gi.instanceId || gi.templateId, name: gi.name, slot: gi.slot, rarity: gi.rarity || 'common', stats: gi.stats || {}, icon: gi.icon || undefined, tier: gi.tier || 0, minLevel: gi.reqLevel || 0, desc: gi.desc, legendaryEffect: gi.legendaryEffect, affixes: gi.affixRolls }
+                  : equippedItemId ? charData?.inventory.find(i => i.id === equippedItemId) ?? null : null;
                 return (
                   <GearSlotRow
                     key={slot}
@@ -1112,12 +1120,8 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                 );
               })}
 
-              {/* Cross-nav to Forge */}
-              {onNavigate && (
-                <button onClick={() => onNavigate("forge")} className="cross-nav-link w-full text-left text-xs px-3 py-2 rounded-lg mt-2" style={{ background: "rgba(245,158,11,0.05)", border: "1px solid rgba(245,158,11,0.12)", color: "rgba(245,158,11,0.6)" }}>
-                  {"Reroll stats or enchant gear at the Artisan's Quarter \u2192"}
-                </button>
-              )}
+
+
 
               {/* Passive Items */}
               {charData && (() => {
@@ -1467,6 +1471,16 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
             {charData?.classTier && <p className="text-xs" style={{ color: "rgba(167,139,250,0.45)" }}>{charData.classTier}</p>}
           </div>
         </div>
+      )}
+      {onNavigate && (
+        <button
+          onClick={() => onNavigate("forge")}
+          className="cross-nav-link shrink-0 text-xs px-2.5 py-1.5 rounded-lg font-semibold"
+          style={{ background: "rgba(245,158,11,0.06)", border: "1px solid rgba(245,158,11,0.15)", color: "rgba(245,158,11,0.55)" }}
+          title="Reroll stats, enchant gear, craft items"
+        >
+          Artisan&#39;s Quarter &#8250;
+        </button>
       )}
       {charData?.companion && (() => {
         const comp = charData.companion;
