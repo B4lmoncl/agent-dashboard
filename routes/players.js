@@ -252,6 +252,9 @@ router.post('/api/player/:name/companion/ultimate', requireAuth, requireSelf('na
       result.newAchievements = newAchs;
       result.xpEarned = u._lastXpEarned;
       result.goldEarned = u._lastGoldEarned;
+      // Clean up temp fields to prevent disk persistence
+      delete u._lastXpEarned; delete u._lastGoldEarned;
+      delete u._lastLoot; delete u._lastCompanionReward;
       break;
     }
     case 'buff': {
