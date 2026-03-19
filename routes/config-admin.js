@@ -5,6 +5,7 @@ const { now, getLevelInfo, getPlayerProgress, awardXP, getTodayBerlin } = requir
 const { requireApiKey, requireMasterKey, getMasterKey } = require('../lib/middleware');
 const { assignRarity, selectDailyQuests } = require('../lib/rotation');
 const { resolveQuest } = require('../lib/quest-templates');
+const { POOL_TYPES, POOL_MIX } = require('./quests');
 
 // GET /api/config — expose game constants to frontend (no auth required)
 router.get('/api/config', (req, res) => {
@@ -145,8 +146,7 @@ router.get('/api/leaderboard', (req, res) => {
 // Per-player quest pool. Refresh generates 18 NEW quests from templates (per player),
 // then picks ~10 for the visible "Open" tab.
 
-const POOL_TYPES = ['personal', 'fitness', 'social', 'learning', 'boss'];
-const POOL_MIX = { personal: 3, fitness: 3, social: 2, learning: 2, boss: 1 }; // visible pool target
+// POOL_TYPES and POOL_MIX imported from routes/quests.js (single source of truth)
 
 function buildVisiblePool(playerName, playerLevel) {
   const uid = playerName.toLowerCase();

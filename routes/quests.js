@@ -6,8 +6,8 @@ const { requireApiKey } = require('../lib/middleware');
 const { rebuildCatalogMeta } = require('../lib/quest-catalog');
 
 // ─── Quest Pool (used by GET /api/quests and exported for config-admin) ──────
-const POOL_TYPES = ['personal', 'learning', 'fitness', 'social'];
-const POOL_MIX = { personal: 3, learning: 3, fitness: 2, social: 2 };
+const POOL_TYPES = ['personal', 'learning', 'fitness', 'social', 'boss'];
+const POOL_MIX = { personal: 3, learning: 3, fitness: 2, social: 2, boss: 1 };
 
 function buildQuestPool(playerId, playerLevel) {
   const pp = getPlayerProgress(playerId);
@@ -825,4 +825,5 @@ router.post('/api/quests/import', requireApiKey, (req, res) => {
 
 module.exports = router;
 module.exports.POOL_TYPES = POOL_TYPES;
+module.exports.POOL_MIX = POOL_MIX;
 module.exports.buildQuestPool = buildQuestPool;
