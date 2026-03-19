@@ -113,7 +113,7 @@ export default function ShopView({ onBuy, onGearBuy }: {
         </div>
       </div>
 
-      {/* Workshop moved to Deepforge — tool upgrades available there */}
+      {/* Workshop Tools moved to Artisan's Quarter */}
     </div>
   );
 }

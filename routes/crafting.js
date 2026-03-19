@@ -340,6 +340,42 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
   });
 });
 
+// ─── POST /api/professions/choose — explicitly enroll in a profession ────────
+router.post('/api/professions/choose', requireAuth, (req, res) => {
+  const uid = req.auth?.userId;
+  const u = state.users[uid];
+  if (!u) return res.status(404).json({ error: 'User not found' });
+  const { professionId } = req.body;
+  if (!professionId) return res.status(400).json({ error: 'professionId required' });
+
+  const profDef = PROFESSIONS_DATA.professions.find(p => p.id === professionId);
+  if (!profDef) return res.status(404).json({ error: 'Profession not found' });
+
+  // Check unlock condition
+  const playerLevel = getLevelInfo(u.xp || 0).level;
+  if (profDef.unlockCondition?.type === 'level' && playerLevel < profDef.unlockCondition.value) {
+    return res.status(400).json({ error: `Requires player level ${profDef.unlockCondition.value}` });
+  }
+
+  u.chosenProfessions = u.chosenProfessions || [];
+  if (u.chosenProfessions.includes(professionId)) {
+    return res.status(400).json({ error: `${profDef.name} ist bereits ein aktiver Beruf.` });
+  }
+  if (u.chosenProfessions.length >= 2) {
+    return res.status(400).json({ error: `Du hast bereits 2 Berufe gewählt (${u.chosenProfessions.join(', ')}). Wechsel erst einen ab.` });
+  }
+
+  u.chosenProfessions.push(professionId);
+  u.professions = u.professions || {};
+  if (!u.professions[professionId]) u.professions[professionId] = { xp: 0, lastCraftAt: null };
+  saveUsers();
+
+  res.json({
+    message: `${profDef.name} gewählt! Du kannst jetzt bei ${profDef.npcName} craften.`,
+    chosenProfessions: u.chosenProfessions,
+  });
+});
+
 // ─── POST /api/professions/switch — drop a profession to choose another ─────
 router.post('/api/professions/switch', requireAuth, (req, res) => {
   const uid = req.auth?.userId;
