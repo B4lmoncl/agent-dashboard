@@ -368,6 +368,11 @@ router.post('/api/player/:name/inventory/use/:itemId', requireAuth, requireSelf(
   // Remove item from inventory (consumable is consumed)
   u.inventory = u.inventory.filter(i => i.id !== invItem.id);
   saveUsers();
+  // Some effects modify quests (e.g., quest_timer_24h) — persist those too
+  if (updatedValues.questsExtended) {
+    const { saveQuests } = require('../lib/state');
+    saveQuests();
+  }
 
   res.json({ ok: true, effect: effect || null, message, updatedValues });
 });

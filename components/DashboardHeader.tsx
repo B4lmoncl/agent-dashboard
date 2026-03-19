@@ -81,6 +81,7 @@ export default function DashboardHeader({
 
   const handleLogin = async () => {
     if (!reviewKeyInput || !playerNameInput) return;
+    try {
     const r = await fetch("/api/auth/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -101,12 +102,14 @@ export default function DashboardHeader({
     } else {
       setLoginError(data.error || "Invalid credentials");
     }
+    } catch { setLoginError("Connection error"); }
   };
 
   const handleRegister = async () => {
     if (!registerName.trim()) return;
     if (registerPassword.length < 6) { setRegisterError("Password must be at least 6 characters"); return; }
     if (registerPassword !== registerPasswordConfirm) { setRegisterError("Passwords do not match"); return; }
+    try {
     const r = await fetch("/api/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -129,6 +132,7 @@ export default function DashboardHeader({
     } else {
       setRegisterError(data.error || "Registration failed");
     }
+    } catch { setRegisterError("Connection error"); }
   };
 
   const handleLogout = () => {

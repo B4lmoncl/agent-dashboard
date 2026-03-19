@@ -129,7 +129,7 @@ router.get('/api/weekly-challenge', (req, res) => {
 
 // POST /api/weekly-challenge/progress — record quest completion for weekly challenge
 router.post('/api/weekly-challenge/progress', requireAuth, (req, res) => {
-  const uid = req.resolvedPlayerId;
+  const uid = req.auth?.userId;
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'User not found' });
 
@@ -153,7 +153,7 @@ router.post('/api/weekly-challenge/progress', requireAuth, (req, res) => {
 
 // POST /api/weekly-challenge/claim — claim stage reward
 router.post('/api/weekly-challenge/claim', requireAuth, (req, res) => {
-  const uid = req.resolvedPlayerId;
+  const uid = req.auth?.userId;
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'User not found' });
 

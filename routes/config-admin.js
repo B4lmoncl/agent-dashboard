@@ -231,7 +231,12 @@ function buildVisiblePool(playerName, playerLevel) {
   for (const type of POOL_TYPES) {
     const target = POOL_MIX[type] || 1;
     const candidates = generated.filter(q => q.type === type);
-    const shuffled = candidates.sort(() => Math.random() - 0.5);
+    // Fisher-Yates shuffle (unbiased)
+    const shuffled = [...candidates];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
     for (let i = 0; i < Math.min(target, shuffled.length); i++) {
       pool.push(shuffled[i].id);
     }

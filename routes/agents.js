@@ -88,7 +88,7 @@ router.get('/api/agent/:name/commands', (req, res) => {
 });
 
 // PATCH /api/agent/:name/command/:cmdId — agent acknowledges/completes a command
-router.patch('/api/agent/:name/command/:cmdId', (req, res) => {
+router.patch('/api/agent/:name/command/:cmdId', requireApiKey, (req, res) => {
   const agent = getAgent(req.params.name);
   if (!agent) return res.status(404).json({ error: 'Agent not found' });
   const cmd = (agent.commands || []).find(c => c.id === req.params.cmdId);

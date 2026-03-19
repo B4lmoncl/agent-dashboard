@@ -378,8 +378,8 @@ router.get('/api/player/:name/titles', (req, res) => {
   const uid = req.params.name.toLowerCase();
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'Player not found' });
-  checkAndAwardTitles(uid);
-  saveUsers();
+  const newTitles = checkAndAwardTitles(uid);
+  if (newTitles.length > 0) saveUsers();
   const defs = state.titleDefinitions || [];
   const earned = (u.earnedTitles || []).map(t => {
     const def = defs.find(d => d.id === t.id);

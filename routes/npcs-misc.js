@@ -130,17 +130,23 @@ router.get('/api/app-state', (req, res) => {
 });
 
 // ─── Feedback endpoints ────────────────────────────────────────────────────────
-// POST /api/feedback — store a feedback entry
+// POST /api/feedback — store a feedback entry (capped at 500 entries)
 router.post('/api/feedback', (req, res) => {
   const { elementPath, type, text, userId, timestamp } = req.body || {};
   if (!text || typeof text !== 'string') {
     return res.status(400).json({ error: 'text is required' });
   }
+  if (text.length > 2000) {
+    return res.status(400).json({ error: 'text too long (max 2000 chars)' });
+  }
+  if (state.feedbackEntries.length >= 500) {
+    return res.status(429).json({ error: 'Feedback limit reached' });
+  }
   const entry = {
     id: `fb-${Date.now()}`,
     elementPath: elementPath || 'unknown',
     type: type === 'bug' ? 'bug' : 'feedback',
-    text: text.trim(),
+    text: text.trim().slice(0, 2000),
     userId: userId || 'anonymous',
     timestamp: timestamp || new Date().toISOString(),
     resolved: false,

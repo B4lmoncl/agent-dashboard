@@ -72,7 +72,7 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
   const { recipeId, targetSlot, targetStatIndex } = req.body;
   if (!recipeId) return res.status(400).json({ error: 'recipeId required' });
 
-  const uid = req.resolvedPlayerId;
+  const uid = req.auth?.userId;
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'User not found' });
 
@@ -342,7 +342,7 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
 
 // ─── POST /api/professions/switch — drop a profession to choose another ─────
 router.post('/api/professions/switch', requireAuth, (req, res) => {
-  const uid = req.resolvedPlayerId;
+  const uid = req.auth?.userId;
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'User not found' });
   const { dropProfession } = req.body;
@@ -391,7 +391,7 @@ const DISMANTLE_MATERIALS = {
 
 // POST /api/schmiedekunst/dismantle — dismantle an inventory item into essenz + materials
 router.post('/api/schmiedekunst/dismantle', requireAuth, (req, res) => {
-  const uid = req.resolvedPlayerId;
+  const uid = req.auth?.userId;
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'User not found' });
   const { inventoryItemId } = req.body;
@@ -447,7 +447,7 @@ router.post('/api/schmiedekunst/dismantle', requireAuth, (req, res) => {
 
 // POST /api/schmiedekunst/transmute — combine 3 epics of same slot → 1 legendary
 router.post('/api/schmiedekunst/transmute', requireAuth, (req, res) => {
-  const uid = req.resolvedPlayerId;
+  const uid = req.auth?.userId;
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'User not found' });
   const { itemIds } = req.body; // array of 3 inventory instanceIds

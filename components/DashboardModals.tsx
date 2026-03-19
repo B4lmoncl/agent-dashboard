@@ -51,6 +51,7 @@ export default function DashboardModals({
     runensplitter: "Echos der vergessenen Sprache. Belohnung für abgeschlossene Quest-Ketten und NPC-Aufträge. Ziehe am Rad der Sterne.",
     gildentaler: "Zeichen des Zusammenhalts. Verdient durch Co-op Quests und soziale Herausforderungen mit deinen Verbündeten.",
     mondstaub: "Der Atem der Konzentration. Extrem selten — fällt nur bei zeitlich begrenzten Events und legendären Taten.",
+    sternentaler: "Seltene Münzen aus den wöchentlichen Herausforderungen. Exklusiv für besondere Belohnungen.",
   };
 
   return (
@@ -75,6 +76,7 @@ export default function DashboardModals({
                     { name: "Rune Shards", key: "runensplitter" as const, value: loggedInUser?.currencies?.runensplitter ?? 0, color: "#818cf8", desc: "Echos der vergessenen Sprache.", iconSrc: "/images/icons/currency-runensplitter.png" },
                     { name: "Guild Coins", key: "gildentaler" as const, value: loggedInUser?.currencies?.gildentaler ?? 0, color: "#10b981", desc: "Zeichen des Zusammenhalts.", iconSrc: "/images/icons/currency-gildentaler.png" },
                     { name: "Moondust", key: "mondstaub" as const, value: loggedInUser?.currencies?.mondstaub ?? 0, color: "#c084fc", desc: "Atem der Konzentration. Extrem selten.", iconSrc: "/images/icons/currency-mondstaub.png" },
+                    { name: "Sternentaler", key: "sternentaler" as const, value: loggedInUser?.currencies?.sternentaler ?? 0, color: "#fbbf24", desc: "Exklusiv aus wöchentlichen Herausforderungen.", iconSrc: "/images/icons/currency-sternentaler.png" },
                   ].map(c => (
                     <div key={c.name}>
                       <div
