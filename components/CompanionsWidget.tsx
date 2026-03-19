@@ -91,6 +91,10 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
   const [completedIds, setCompletedIds] = useState<Set<string>>(new Set());
   const [completingId, setCompletingId] = useState<string | null>(null);
   const [questToast, setQuestToast] = useState<string | null>(null);
+  const [ultimateUsing, setUltimateUsing] = useState<string | null>(null);
+  const [ultimateResult, setUltimateResult] = useState<string | null>(null);
+  const [ultimatePickQuest, setUltimatePickQuest] = useState(false);
+  const [ultimateGlow, setUltimateGlow] = useState(false);
   const [rewardPopup, setRewardPopup] = useState<{ title: string; xp: number; gold: number; bondXp: number; loot: { name: string; emoji: string; rarity: string } | null } | null>(null);
   const [completingSuccessId, setCompletingSuccessId] = useState<string | null>(null);
   const [companionGlow, setCompanionGlow] = useState(false);
@@ -209,6 +213,39 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
     setPetting(false);
   };
 
+  const handleUltimate = async (abilityId: string, targetQuestId?: string) => {
+    if (!playerName || !apiKey || ultimateUsing) return;
+    setUltimateUsing(abilityId);
+    setUltimateResult(null);
+    try {
+      const r = await fetch(`/api/player/${encodeURIComponent(playerName.toLowerCase())}/companion/ultimate`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", ...getAuthHeaders(apiKey) },
+        body: JSON.stringify({ abilityId, targetQuestId }),
+      });
+      const d = await r.json();
+      if (r.ok) {
+        setUltimateResult(d.flavorText || d.message || "Erfolg!");
+        setUltimatePickQuest(false);
+        setUltimateGlow(true);
+        SFX.companionPet();
+        setTimeout(() => setUltimateResult(null), 5000);
+        setTimeout(() => setUltimateGlow(false), 4000);
+        if (onUserRefresh) onUserRefresh();
+      } else {
+        setUltimateResult(d.error || "Fehler");
+        setTimeout(() => setUltimateResult(null), 4000);
+      }
+    } catch { setUltimateResult("Netzwerkfehler"); setTimeout(() => setUltimateResult(null), 3000); }
+    setUltimateUsing(null);
+  };
+
+  // Calculate ultimate cooldown
+  const ultimateLastUsed = user?.companion?.ultimateLastUsed as string | undefined;
+  const ultimateCooldownDays = 7;
+  const ultimateReady = !ultimateLastUsed || (Date.now() - new Date(ultimateLastUsed).getTime()) >= ultimateCooldownDays * 24 * 60 * 60 * 1000;
+  const ultimateDaysLeft = ultimateLastUsed ? Math.max(0, Math.ceil(ultimateCooldownDays - (Date.now() - new Date(ultimateLastUsed).getTime()) / (24 * 60 * 60 * 1000))) : 0;
+
   const companionName = user?.companion?.name ?? "Companion";
   const cColor = getCompanionColor(companionType);
 
@@ -242,10 +279,14 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
       <div
         style={{
           background: "#0c0e14",
-          border: "2px solid #2a2a3e",
-          boxShadow: `inset 2px 2px 0 #0a0b10, inset -2px -2px 0 #141620, 0 0 0 5px #0c0e14, 0 0 0 7px #1e2030, 0 4px 16px rgba(0,0,0,0.7), 0 0 15px rgba(${cColor.accentRgb},0.04)`,
+          border: ultimateGlow ? "2px solid rgba(255,215,0,0.6)" : "2px solid #2a2a3e",
+          boxShadow: ultimateGlow
+            ? `0 0 20px rgba(255,215,0,0.35), 0 0 40px rgba(255,215,0,0.15), 0 0 60px rgba(255,215,0,0.08), inset 0 0 20px rgba(255,215,0,0.05)`
+            : `inset 2px 2px 0 #0a0b10, inset -2px -2px 0 #141620, 0 0 0 5px #0c0e14, 0 0 0 7px #1e2030, 0 4px 16px rgba(0,0,0,0.7), 0 0 15px rgba(${cColor.accentRgb},0.04)`,
           borderRadius: 2,
           overflow: "visible",
+          transition: "border 0.5s ease, box-shadow 1s ease",
+          animation: ultimateGlow ? "ultimateBreath 2s ease-in-out infinite" : undefined,
         }}
       >
         {/* Portrait + Content layout */}
@@ -347,6 +388,80 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
 
                     </div>
                   )}
+                </div>
+              </div>
+            )}
+
+            {/* ─── Companion Ultimate ─── */}
+            {bondLevel >= 5 && playerName && apiKey && (
+              <div style={{
+                background: "#0e1018",
+                border: "1px solid #1a1c28",
+                borderTop: `1px solid rgba(${cColor.accentRgb},0.35)`,
+                borderRadius: 2,
+                padding: "8px 10px",
+                marginBottom: 10,
+              }}>
+                <div className="flex items-center justify-between mb-1.5">
+                  <span className="text-xs font-bold uppercase tracking-widest" style={{ color: `rgba(${cColor.accentRgb},0.6)`, fontSize: 10 }}>Ultimate</span>
+                  {!ultimateReady && (
+                    <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.2)", fontSize: 10 }}>
+                      Cooldown: {ultimateDaysLeft}d
+                    </span>
+                  )}
+                </div>
+                {ultimateResult && (
+                  <div className="rounded px-2.5 py-1.5 text-xs font-semibold mb-2" style={{
+                    background: `rgba(${cColor.accentRgb},0.08)`,
+                    border: `1px solid rgba(${cColor.accentRgb},0.2)`,
+                    color: cColor.accent,
+                  }}>
+                    {ultimateResult}
+                  </div>
+                )}
+                {/* Quest picker for instant_complete */}
+                {ultimatePickQuest && dobbieQuests && dobbieQuests.length > 0 && (
+                  <div className="mb-2 space-y-1">
+                    <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>Wähle eine Quest:</p>
+                    {dobbieQuests.filter(q => !completedIds.has(q.id)).map(q => (
+                      <button key={q.id} onClick={() => handleUltimate("instant_complete", q.id)} disabled={!!ultimateUsing}
+                        className="w-full text-left text-xs px-2 py-1.5 rounded" style={{
+                          background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)", color: "#f0d0c0",
+                        }}>
+                        {q.title}
+                      </button>
+                    ))}
+                    <button onClick={() => setUltimatePickQuest(false)} className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>Abbrechen</button>
+                  </div>
+                )}
+                <div className="flex gap-1.5 flex-wrap">
+                  {[
+                    { id: "instant_complete", label: "Sofort", desc: `${companionName} erledigt eine Quest`, icon: "⚡", needsQuest: true },
+                    { id: "double_reward", label: "2x Loot", desc: "Nächste Quest doppelt", icon: "✨", needsQuest: false },
+                    { id: "streak_extend", label: "+3 Streak", desc: "Streak verlängern", icon: "🔥", needsQuest: false },
+                  ].map(ult => (
+                    <button
+                      key={ult.id}
+                      onClick={() => {
+                        if (ult.needsQuest) { setUltimatePickQuest(true); }
+                        else handleUltimate(ult.id);
+                      }}
+                      disabled={!ultimateReady || !!ultimateUsing}
+                      title={ult.desc}
+                      className="flex-1 text-xs px-2 py-1.5 rounded-lg font-semibold transition-all text-center"
+                      style={{
+                        background: ultimateReady ? `rgba(${cColor.accentRgb},0.1)` : "rgba(255,255,255,0.02)",
+                        color: ultimateReady ? cColor.accent : "rgba(255,255,255,0.15)",
+                        border: `1px solid ${ultimateReady ? `rgba(${cColor.accentRgb},0.25)` : "rgba(255,255,255,0.05)"}`,
+                        cursor: ultimateReady ? "pointer" : "not-allowed",
+                        minWidth: 70,
+                      }}
+                    >
+                      <span style={{ fontSize: 14 }}>{ult.icon}</span>
+                      <br />
+                      {ultimateUsing === ult.id ? "..." : ult.label}
+                    </button>
+                  ))}
                 </div>
               </div>
             )}

@@ -589,6 +589,20 @@ Neue Achievements können direkt in `achievementTemplates.json` hinzugefügt wer
 
 `{name}` wird zur Laufzeit durch den Companion-Namen ersetzt.
 
+### Companion Ultimates
+
+Ab **Bond Level 5** schaltet jeder Companion eine Ultimate-Fähigkeit frei (1x pro 7 Tage):
+
+| Ultimate | Effekt | API |
+|----------|--------|-----|
+| Sofort-Abschluss | Schließt eine Quest sofort ab (XP + Gold) | `POST /api/player/:name/companion/ultimate` mit `{ abilityId: "instant_complete", targetQuestId }` |
+| Doppelte Belohnung | Nächste Quest gibt 2x XP + Gold | `{ abilityId: "double_reward" }` |
+| Streak-Verlängerung | +3 Tage auf den aktuellen Streak | `{ abilityId: "streak_extend" }` |
+
+**Visueller Effekt:** Goldener Glow + Breathing-Animation um das Companion-Widget für 4 Sekunden.
+
+Neue Ultimates können in `companions.json → ultimates.abilities[]` hinzugefügt werden. Neue Effekt-Typen brauchen Code in `routes/players.js`.
+
 ---
 
 ## 11. Crafting-Rezepte & Materialien erstellen

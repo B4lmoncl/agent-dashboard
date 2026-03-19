@@ -234,6 +234,14 @@ Quests can be: player-created, NPC-generated, GitHub webhook-generated, daily ro
 - **Runensplitter**: Gacha currency
 - Conversion between currencies with 20% tax
 
+### Companion Ultimates
+- **Unlock**: Bond Level 5 ("Best Friend")
+- **Cooldown**: 7 days per use
+- **3 Abilities**: Instant quest complete, double next reward, +3 streak days
+- **Visual**: Golden glow + breathing animation on widget (4s)
+- **Buff system**: `double_reward` buff integrates with `onQuestCompletedByUser` via `activeBuffs`
+- **Endpoint**: `POST /api/player/:name/companion/ultimate`
+
 ### Achievement Points System
 - Each achievement awards points based on rarity: common=5, uncommon=10, rare=25, epic=50, legendary=100
 - Points accumulate in `user.achievementPoints`

@@ -145,6 +145,7 @@ export interface User {
     type: string; name: string; emoji: string; isReal: boolean; species?: string;
     bondLevel?: number; bondXp?: number; lastPetted?: string | null;
     petCountToday?: number; petDateStr?: string | null;
+    ultimateLastUsed?: string | null;
   } | null;
   age?: number | null;
   goals?: string | null;
