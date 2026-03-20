@@ -612,6 +612,7 @@ function InventorySlot({ item, level, idx, onItemClick, onDragStart, onDragOver,
         onMouseEnter={(e) => { mousePosRef.current = { x: e.clientX, y: e.clientY }; setHovered(true); }}
         onMouseMove={(e) => { mousePosRef.current = { x: e.clientX, y: e.clientY }; }}
         onMouseLeave={() => setHovered(false)}
+        className={item.rarity === "legendary" ? "legendary-shimmer" : item.rarity === "epic" ? "epic-glow" : ""}
         style={{
           width: 56,
           height: 56,
@@ -1277,7 +1278,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
 
               {/* Set Completion Tracker */}
               {charData && (() => {
-                const sets: { name: string; count: number; total: number; isComplete: boolean; rarity?: string; activeLabel?: string | null }[] = [];
+                const sets: { name: string; count: number; total: number; isComplete: boolean; rarity?: string; activeLabel?: string | null; bonuses?: { threshold: number; label: string; active: boolean }[] }[] = [];
                 // Tier-based set bonus
                 if (charData.setBonusInfo) {
                   const sb = charData.setBonusInfo;
@@ -1285,7 +1286,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                 }
                 // Named sets
                 for (const ns of charData.namedSetBonuses || []) {
-                  sets.push({ name: ns.name, count: ns.count, total: ns.total, isComplete: ns.isComplete, rarity: ns.rarity, activeLabel: ns.activeLabel });
+                  sets.push({ name: ns.name, count: ns.count, total: ns.total, isComplete: ns.isComplete, rarity: ns.rarity, activeLabel: ns.activeLabel, bonuses: (ns as { bonuses?: { threshold: number; label: string; active: boolean }[] }).bonuses });
                 }
                 if (!sets.length) return null;
                 return (
@@ -1309,7 +1310,17 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                             <div className="w-full rounded-full overflow-hidden" style={{ height: 3, background: "rgba(255,255,255,0.06)" }}>
                               <div className="h-full rounded-full transition-all" style={{ width: `${pct * 100}%`, background: barColor }} />
                             </div>
-                            {s.activeLabel && (
+                            {/* Show all bonus thresholds with active/inactive styling */}
+                            {s.bonuses && s.bonuses.length > 0 ? (
+                              <div className="mt-1 space-y-0.5">
+                                {s.bonuses.map((b, bi) => (
+                                  <p key={bi} className="text-xs flex items-center gap-1" style={{ fontSize: 10, color: b.active ? barColor : "rgba(255,255,255,0.2)" }}>
+                                    <span className="font-mono" style={{ minWidth: 24 }}>({b.threshold})</span>
+                                    <span>{b.label}</span>
+                                  </p>
+                                ))}
+                              </div>
+                            ) : s.activeLabel && (
                               <p className="text-xs mt-1" style={{ color: barColor, fontSize: 10 }}>{s.activeLabel}</p>
                             )}
                           </div>

@@ -747,6 +747,62 @@ img {
 .reward-pill:nth-child(5) { animation-delay: 0.8s; }
 
 /* ─── Companion Quest Feedback ─────────────────────────────────────────── */
+
+/* ─── Legendary Item Shimmer ──────────────────────────────────────────── */
+@keyframes legendary-shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.legendary-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+.legendary-shimmer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent 30%,
+    rgba(249, 115, 22, 0.12) 45%,
+    rgba(249, 115, 22, 0.25) 50%,
+    rgba(249, 115, 22, 0.12) 55%,
+    transparent 70%
+  );
+  background-size: 200% 100%;
+  animation: legendary-shimmer 3s ease-in-out infinite;
+  pointer-events: none;
+  border-radius: inherit;
+}
+.epic-glow {
+  box-shadow: 0 0 6px rgba(168, 85, 247, 0.25), inset 0 0 4px rgba(168, 85, 247, 0.08);
+}
+
+/* ─── Companion Bond Progress Ring ────────────────────────────────────── */
+.bond-ring {
+  position: relative;
+}
+.bond-ring-svg {
+  position: absolute;
+  inset: -4px;
+  width: calc(100% + 8px);
+  height: calc(100% + 8px);
+  pointer-events: none;
+}
+@keyframes bond-glow-pulse {
+  0%, 100% { filter: drop-shadow(0 0 3px rgba(250, 204, 21, 0.4)); }
+  50% { filter: drop-shadow(0 0 8px rgba(250, 204, 21, 0.7)) drop-shadow(0 0 16px rgba(250, 204, 21, 0.3)); }
+}
+.bond-max-glow {
+  animation: bond-glow-pulse 2.5s ease-in-out infinite;
+}
+
+/* ─── Crafting Skill-Up Colors ────────────────────────────────────────── */
+.skillup-orange { color: #ff8000; text-shadow: 0 0 6px rgba(255, 128, 0, 0.3); }
+.skillup-yellow { color: #ffff00; }
+.skillup-green { color: #40c040; }
+.skillup-gray { color: rgba(255, 255, 255, 0.25); }
+
 @keyframes companion-bounce {
   0%, 100% { transform: translateY(0); }
   20% { transform: translateY(-8px); }

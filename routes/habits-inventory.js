@@ -701,7 +701,17 @@ router.get('/api/player/:name/character', (req, res) => {
         if (ownedCount >= Number(threshold)) activeLabel = bonus.label;
       }
     }
-    namedSetBonuses.push({ id: ns.id, name: ns.name, rarity: ns.rarity, count: ownedCount, total: ns.pieces.length, isComplete, activeLabel });
+    // Build all bonus thresholds for active/inactive display
+    const bonuses = [];
+    if (ns.partialBonus) {
+      for (const [threshold, bonus] of Object.entries(ns.partialBonus)) {
+        bonuses.push({ threshold: Number(threshold), label: bonus.label, active: ownedCount >= Number(threshold) });
+      }
+    }
+    if (ns.fullBonus) {
+      bonuses.push({ threshold: ns.pieces.length, label: ns.fullBonus.label, active: isComplete });
+    }
+    namedSetBonuses.push({ id: ns.id, name: ns.name, rarity: ns.rarity, count: ownedCount, total: ns.pieces.length, isComplete, activeLabel, bonuses });
   }
   let classTier = null;
   if (u.classId) {

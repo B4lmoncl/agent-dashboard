@@ -294,15 +294,19 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
           {/* Left: Portrait — virtual types get pixel art portrait, real pets use emoji fallback */}
           {(() => {
             const portraitSrc = getCompanionPortrait(companionType, companionName);
-            return portraitSrc ? (
+            const ringSize = portraitSrc ? { w: 128, h: 160 } : { w: 128, h: 160 };
+            const ringPad = 5;
+            const circumference = 2 * (ringSize.w + ringSize.h - 4 * 4); // approximate rect perimeter
+            const isMaxBond = bondLevel >= 10;
+            const portrait = portraitSrc ? (
               <img
                 src={portraitSrc}
                 alt={companionName}
-                style={{ width: 128, height: 160, imageRendering: "auto", borderRadius: 4, border: `2px solid ${cColor.border}`, boxShadow: companionGlow ? `0 0 24px rgba(${cColor.accentRgb},0.6), 0 0 48px rgba(${cColor.accentRgb},0.3)` : `0 0 12px rgba(${cColor.accentRgb},0.15)`, flexShrink: 0, transition: "box-shadow 0.5s ease" }}
+                style={{ width: ringSize.w, height: ringSize.h, imageRendering: "auto", borderRadius: 4, border: `2px solid ${cColor.border}`, boxShadow: companionGlow ? `0 0 24px rgba(${cColor.accentRgb},0.6), 0 0 48px rgba(${cColor.accentRgb},0.3)` : `0 0 12px rgba(${cColor.accentRgb},0.15)`, flexShrink: 0, transition: "box-shadow 0.5s ease" }}
               />
             ) : (
               <div style={{
-                width: 128, height: 160, borderRadius: 4,
+                width: ringSize.w, height: ringSize.h, borderRadius: 4,
                 border: `2px solid ${cColor.border}`,
                 boxShadow: companionGlow ? `0 0 24px rgba(${cColor.accentRgb},0.6), 0 0 48px rgba(${cColor.accentRgb},0.3)` : `0 0 12px rgba(${cColor.accentRgb},0.15)`,
                 flexShrink: 0,
@@ -312,6 +316,23 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
                 fontSize: 48, color: cColor.accent,
               }}>
                 {user?.companion?.emoji || COMPANION_PORTRAIT_FALLBACK[companionType ?? ""] || "?"}
+              </div>
+            );
+            return (
+              <div className={`bond-ring${isMaxBond ? " bond-max-glow" : ""}`} style={{ position: "relative", flexShrink: 0, width: ringSize.w + ringPad * 2, height: ringSize.h + ringPad * 2 }}>
+                {/* Bond progress ring */}
+                <svg className="bond-ring-svg" viewBox={`0 0 ${ringSize.w + ringPad * 2} ${ringSize.h + ringPad * 2}`} fill="none" style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }}>
+                  <rect x="1.5" y="1.5" width={ringSize.w + ringPad * 2 - 3} height={ringSize.h + ringPad * 2 - 3} rx="6" ry="6"
+                    stroke={`rgba(${cColor.accentRgb},0.1)`} strokeWidth="2.5" fill="none" />
+                  <rect x="1.5" y="1.5" width={ringSize.w + ringPad * 2 - 3} height={ringSize.h + ringPad * 2 - 3} rx="6" ry="6"
+                    stroke={isMaxBond ? "#facc15" : cColor.accent} strokeWidth="2.5" fill="none"
+                    strokeDasharray={circumference}
+                    strokeDashoffset={circumference * (1 - bondProgress)}
+                    style={{ transition: "stroke-dashoffset 0.8s ease-out" }} />
+                </svg>
+                <div style={{ position: "absolute", top: ringPad, left: ringPad }}>
+                  {portrait}
+                </div>
               </div>
             );
           })()}
