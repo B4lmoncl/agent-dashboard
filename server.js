@@ -188,9 +188,15 @@ require('./routes/challenges-weekly').loadWeeklyChallenges();
 require('./routes/expedition').loadExpeditions();
 require('./routes/expedition').loadExpeditionState();
 
-// Migrate legacy equipment (string IDs → rolled instances)
-for (const uid of Object.keys(state.users)) {
-  migrateUserEquipment(uid);
+// Migrate legacy equipment (string IDs → rolled instances) — only if needed
+{
+  const needsMigration = Object.values(state.users).some(u =>
+    u.equipment && Object.values(u.equipment).some(v => typeof v === 'string')
+  );
+  if (needsMigration) {
+    for (const uid of Object.keys(state.users)) migrateUserEquipment(uid);
+    console.log('[migration] Equipment migration complete');
+  }
 }
 
 // Migrate inventory items: backfill missing slot/icon from gear templates
