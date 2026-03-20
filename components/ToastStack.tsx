@@ -277,6 +277,8 @@ export function ToastStack({ toasts, onRemove, onAchievementClick }: { toasts: T
   return (
     <div
       className="fixed z-[150] flex flex-col-reverse items-end"
+      role="status"
+      aria-live="polite"
       style={{
         bottom: 24,
         right: 24,

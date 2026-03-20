@@ -154,8 +154,8 @@ export interface User {
   partnerName?: string | null;
   pronouns?: string | null;
   modifiers?: {
-    xp: { forge: number; kraft?: number; gear: number; companions: number; bond: number; hoarding: number; hoardingCount: number; hoardingPct: number; total: number };
-    gold: { forge: number; weisheit?: number; streak: number; total: number };
+    xp: { forge: number; kraft?: number; gear: number; companions: number; bond: number; hoarding: number; hoardingCount: number; hoardingPct: number; legendary?: number; total: number };
+    gold: { forge: number; weisheit?: number; streak: number; legendary?: number; total: number };
   };
   // Equipment (populated from backend)
   equipment?: Record<string, unknown>;

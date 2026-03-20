@@ -11,6 +11,12 @@
   --color-foreground: var(--foreground);
 }
 
+/* Keyboard focus indicator — only visible when using keyboard navigation */
+:focus-visible {
+  outline: 2px solid rgba(167, 139, 250, 0.7);
+  outline-offset: 2px;
+}
+
 body {
   background: linear-gradient(180deg, #0b0d11 0%, #220f24 50%, #0b0d11 100%);
   background-size: 100% 200%;

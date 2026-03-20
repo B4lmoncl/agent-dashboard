@@ -65,6 +65,8 @@ export function ModalOverlay({
         className="fixed inset-0 flex items-center justify-center p-4"
         style={{ background: `rgba(0,0,0,${bgOpacity})`, zIndex }}
         onClick={onClose}
+        role="dialog"
+        aria-modal="true"
       >
         <div onClick={e => e.stopPropagation()} style={{ overscrollBehavior: "contain" }}>
           {children}
