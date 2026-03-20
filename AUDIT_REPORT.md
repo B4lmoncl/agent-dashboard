@@ -639,6 +639,78 @@ All modals use the `useModalBehavior` hook providing consistent ESC-to-close, bo
 | `@next/next/no-img-element` warnings (11) | **Intentional** — project uses static export with pixel art, `next/image` not needed |
 | React compiler warnings in other components | **Pre-existing** — `setState in effect` and `impure function during render` patterns across 10+ components |
 
+## 11. Phase 2 Iteration — Frontend-Backend Consistency (2026-03-20)
+
+### 11.1 CRITICAL FIX: Glück Stat Not Applied to Quest Loot Drops
+
+**Severity: HIGH**
+
+| Frontend Claim | Backend Reality |
+|----------------|----------------|
+| "Glück: +0.5% Drop-Chance pro Punkt (max 20%)" | `getUserDropBonus()` function existed but was NEVER called for quest loot drops |
+
+**Root Cause:** In `lib/helpers.js:1140`, quest loot drop chance was hardcoded:
+```javascript
+// BEFORE (broken):
+let dropChance = pityGuaranteed ? 1 : (hasLuckBuff ? 0.45 : 0.25);
+
+// AFTER (fixed):
+const glueckBonus = getUserDropBonus(userId);
+let dropChance = pityGuaranteed ? 1 : ((hasLuckBuff ? 0.45 : 0.25) + glueckBonus);
+```
+
+The `getUserDropBonus()` function was only applied to habit/ritual loot, not quest loot. Now Glück properly adds up to +20% drop chance to quest completion loot, matching what the UI claims.
+
+**Other stat effects verified correct:**
+| Stat | Formula | Verified |
+|------|---------|----------|
+| Kraft | `Math.min(1.30, 1 + kraft * 0.005)` → max +30% XP | YES |
+| Weisheit | `Math.min(1.30, 1 + weisheit * 0.005)` → max +30% Gold | YES |
+| Ausdauer | `Math.max(0.1, 1 - ausdauer * 0.005)` → min 10% decay | YES |
+
+### 11.2 BUG FIX: usersByName Stale Entry on Name Change
+
+**Severity: MEDIUM**
+
+`POST /api/users/:id/register` — when updating an existing user's name, the old `usersByName` entry was not removed and the new name was not indexed in the Map. Fixed by deleting old entry and setting new one.
+
+### 11.3 Code Quality: parseInt Radix Fixes (Round 2)
+
+All remaining `parseInt()` calls without explicit radix 10 fixed across:
+- `lib/helpers.js` (paginate: limit, offset)
+- `lib/npc-engine.js` (Berlin timezone hour parsing)
+- `routes/docs.js` (HTTP status code comparison)
+- `components/ForgeView.tsx` (craft count select)
+- `components/SocialView.tsx` (trade gold inputs, 2 instances)
+
+### 11.4 Documentation: ARCHITECTURE.md Updated
+
+- Route count: 14 → 18 files
+- Component count: 36 → 42 files
+- Added missing `social.js` route entry
+- Updated lazy-loaded component list (removed dead CampaignHub/CVBuilderPanel, added ChallengesView/SocialView/DailyLoginCalendar)
+
+### 11.5 Frontend-Backend Consistency Re-verified
+
+| Area | Status |
+|------|--------|
+| XP calculation (kraft, forge temp, gear, companion) | **Consistent** |
+| Gold calculation (weisheit, streaks, forge temp) | **Consistent** |
+| Forge decay (ausdauer, legendary effects) | **Consistent** |
+| Drop chance (glück, luck buff, pity) | **FIXED** — was broken, now consistent |
+| Gacha pity (soft 55, hard 75, epic every 10) | **Consistent** |
+| Currency operations (spend, earn, convert) | **Consistent** |
+| Crafting costs and cooldowns | **Consistent** |
+
+### 11.6 Remaining Acknowledged Issues (Deferred)
+
+| Issue | Severity | Status |
+|-------|----------|--------|
+| Modal backdrop styles inconsistent (different opacity/blur) | LOW | Visual only, no functional impact |
+| Silent error suppression in fetch utilities | LOW | Intentional for offline-first UX |
+| `@next/next/no-img-element` warnings (11) | N/A | Intentional — static export |
+| React compiler warnings | N/A | Pre-existing, no runtime impact |
+
 ---
 
 *End of Audit Report — Updated 2026-03-20*
