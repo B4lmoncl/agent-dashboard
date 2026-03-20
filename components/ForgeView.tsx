@@ -107,8 +107,8 @@ const WORKSHOP_TIERS = [
   { id: "worn", name: "Worn Tools", tier: 0, xpBonus: 0, cost: 0, currency: "gold", desc: "No bonus", icon: "/images/icons/tools-worn.png" },
   { id: "sturdy", name: "Sturdy Tools", tier: 1, xpBonus: 2, cost: 250, currency: "gold", desc: "+2% XP on all quests", icon: "/images/icons/tools-sturdy.png" },
   { id: "masterwork", name: "Masterwork Tools", tier: 2, xpBonus: 4, cost: 750, currency: "gold", desc: "+4% XP on all quests", icon: "/images/icons/tools-masterwork.png" },
-  { id: "legendary", name: "Legendary Tools", tier: 3, xpBonus: 7, cost: 150, currency: "essenz", desc: "+7% XP on all quests", icon: "/images/icons/tools-legendary.png" },
-  { id: "mythic", name: "Mythic Forge", tier: 4, xpBonus: 10, cost: 500, currency: "essenz", desc: "+10% XP on all quests", icon: "/images/icons/tools-mythic.png" },
+  { id: "legendary", name: "Legendary Tools", tier: 3, xpBonus: 7, cost: 2000, currency: "gold", desc: "+7% XP on all quests", icon: "/images/icons/tools-legendary.png" },
+  { id: "mythic", name: "Mythic Forge", tier: 4, xpBonus: 10, cost: 5000, currency: "gold", desc: "+10% XP on all quests", icon: "/images/icons/tools-mythic.png" },
 ];
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
