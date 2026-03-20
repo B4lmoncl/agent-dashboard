@@ -255,6 +255,21 @@ All fixes verified via:
 | 15 | F-31 | D-03 | LYRA-PLAYBOOK.md: drop rates outdated | LYRA-PLAYBOOK.md | ✅ Done |
 | 16 | F-32 | D-04 | CLAUDE.md: pity values outdated | CLAUDE.md | ✅ Done |
 
+#### Q-05: Companion Bond XP Toast on Quest Completion ✅
+- **Was:** Backend returns `companionReward` (bond XP, level-up info) on companion quest completion, but frontend ignored it entirely
+- **Now:** Fires a companionBond toast AND sets celebration type to "companion" with proper accent color and emoji
+
+#### Q-06: Multiple Achievements — Only First Shown ✅
+- **Was:** If multiple achievements earned on one quest, only first shown in celebration. Rest silently lost.
+- **Now:** Additional achievements (index 1+) fire as achievement toasts after the celebration
+
+### Session 2 Additional Fixes
+
+| # | Fix ID | Issue | Description | File(s) | Status |
+|---|--------|-------|-------------|---------|--------|
+| 17 | F-33 | Q-05 | Companion bond toast + celebration on companion quests | useQuestActions.ts | ✅ Done |
+| 18 | F-34 | Q-06 | Multiple achievements: fire toasts for all beyond first | useQuestActions.ts | ✅ Done |
+
 ### Verified Non-Issues (Session 2)
 
 - **Image rendering**: Global `img { image-rendering: smooth; }` in `globals.css:26-28` — all images already render smooth by default
@@ -268,4 +283,4 @@ All fixes verified via:
 
 ---
 
-*Audit Session 2 complete. 16 additional fixes applied (8 mismatches, 4 QoL improvements, 4 doc fixes).*
+*Audit Session 2 complete. 18 additional fixes applied (8 mismatches, 6 QoL improvements, 4 doc fixes).*
