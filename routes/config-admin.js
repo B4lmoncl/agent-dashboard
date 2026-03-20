@@ -62,13 +62,15 @@ router.get('/api/dashboard', async (req, res) => {
 
   // Parallel internal fetches — reuses full route logic including player filtering
   const npcParam = playerLower ? `?player=${encodeURIComponent(playerLower)}` : '';
-  const [agents, quests, users, achievements, campaigns, npcsData] = await Promise.all([
+  const [agents, quests, users, achievements, campaigns, npcsData, weeklyChallenge, expedition] = await Promise.all([
     internalGet('/api/agents'),
     internalGet(`/api/quests${playerParam}`),
     internalGet('/api/users'),
     internalGet('/api/achievements'),
     internalGet('/api/campaigns'),
     internalGet(`/api/npcs/active${npcParam}`),
+    playerLower ? internalGet(`/api/weekly-challenge${playerParam}`) : Promise.resolve(null),
+    internalGet(`/api/expedition${playerParam}`),
   ]);
 
   // Player-specific lightweight data (direct state access — no complex logic)
@@ -105,6 +107,8 @@ router.get('/api/dashboard', async (req, res) => {
     favorites,
     activeNpcs,
     dailyBonusAvailable,
+    weeklyChallenge: weeklyChallenge?.challenge || null,
+    expedition: expedition?.expedition || null,
     apiLive: true,
   });
 });
