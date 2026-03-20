@@ -178,13 +178,13 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2 mb-1">
               {/* Streak flame counter */}
-              <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-xs font-bold" style={{ color: flameColor, background: `${flameColor}12`, border: `1px solid ${flameColor}30`, boxShadow: flameGlow, fontSize: 11 }}>
+              <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-xs font-bold" style={{ color: flameColor, background: `${flameColor}12`, border: `1px solid ${flameColor}30`, boxShadow: flameGlow, fontSize: 12 }}>
                 <span style={{ fontSize: 13 }}>{days >= 7 ? "\uD83D\uDD25" : "\u2728"}</span>
                 {days}
               </span>
               <span className="text-sm font-semibold" style={{ color: "#e8e8e8" }}>{ar.title}</span>
               {ar.bloodPact && (
-                <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded text-xs font-bold" style={{ color: "#ef4444", background: "rgba(239,68,68,0.12)", border: "1px solid rgba(239,68,68,0.3)", fontSize: 9, letterSpacing: "0.04em" }}>
+                <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded text-xs font-bold" style={{ color: "#ef4444", background: "rgba(239,68,68,0.12)", border: "1px solid rgba(239,68,68,0.3)", fontSize: 12, letterSpacing: "0.04em" }}>
                   Blood Pact
                 </span>
               )}
@@ -418,7 +418,7 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
                 <div>
                   <label className="text-xs font-semibold mb-1.5 block" style={{ color: "rgba(165,180,252,0.55)" }}>What are you vowing to avoid?</label>
                   <input value={newTitle} onChange={e => { setNewTitle(e.target.value); if (vowNameError) setVowNameError(false); }} placeholder="e.g. No social media before noon..." className="w-full text-sm px-3 py-2.5 rounded-lg" style={{ background: "rgba(0,0,0,0.35)", border: vowNameError ? "1px solid #ef4444" : "1px solid rgba(99,102,241,0.3)", color: "#e2e8f0", outline: "none" }} onKeyDown={e => e.key === "Enter" && createAntiRitual()} autoFocus />
-                  {vowNameError && <p style={{ color: "#ef4444", fontSize: "0.7rem", marginTop: 4 }}>Please enter a vow name</p>}
+                  {vowNameError && <p style={{ color: "#ef4444", fontSize: "0.75rem", marginTop: 4 }}>Please enter a vow name</p>}
                 </div>
                 <div className="grid grid-cols-2 gap-3">
                   <div>
@@ -464,7 +464,7 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
                       </button>
                     ))}
                   </div>
-                  {vowCommitmentError && <p style={{ color: "#ef4444", fontSize: "0.7rem", marginTop: 4 }}>Choose a commitment duration</p>}
+                  {vowCommitmentError && <p style={{ color: "#ef4444", fontSize: "0.75rem", marginTop: 4 }}>Choose a commitment duration</p>}
                 </div>
                 <div>
                   <button onClick={() => setNewVowBloodPact(p => !p)} className={`action-btn w-full py-2.5 px-4 rounded-xl font-semibold text-sm ${newVowBloodPact ? "blood-pact-active-indigo" : ""}`} style={{ background: newVowBloodPact ? "rgba(99,102,241,0.2)" : "rgba(255,255,255,0.04)", color: newVowBloodPact ? "#818cf8" : "rgba(255,255,255,0.25)", border: `1px solid ${newVowBloodPact ? "rgba(99,102,241,0.6)" : "rgba(255,255,255,0.1)"}`, transition: "color 0.3s, background 0.3s, border 0.3s" }}>

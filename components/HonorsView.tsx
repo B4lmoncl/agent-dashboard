@@ -203,7 +203,7 @@ export default function HonorsView({ catalogue, highlightedAchievementId, onHigh
                           <div className="flex-1 min-w-0">
                             <div className="flex items-center gap-1.5">
                               <p className="text-xs font-bold truncate" style={{ color: highlight ? "#f0f0f0" : "rgba(255,255,255,0.35)" }}>{ach.name}</p>
-                              {isHidden && myEarned && <span className="text-xs px-1 rounded" style={{ background: "rgba(138,43,226,0.2)", color: "#a855f7", fontSize: 9 }}>SECRET</span>}
+                              {isHidden && myEarned && <span className="text-xs px-1 rounded" style={{ background: "rgba(138,43,226,0.2)", color: "#a855f7" }}>SECRET</span>}
                             </div>
                             {earnerCount > 0 || myEarned
                               ? <p className="text-xs mt-0.5 leading-relaxed" style={{ color: "rgba(255,255,255,0.3)" }}>{ach.desc || conditionToText(ach.condition as Record<string, unknown>) || "Achievement freigeschaltet!"}</p>
@@ -215,15 +215,15 @@ export default function HonorsView({ catalogue, highlightedAchievementId, onHigh
                         {/* Rarity + earned date + earner count */}
                         <div className="flex items-center justify-between mt-3 pt-2" style={{ borderTop: "1px solid rgba(255,255,255,0.04)" }}>
                           <div className="flex items-center gap-2">
-                            <span className="text-xs font-semibold" style={{ color: rarity.color, fontSize: 10, letterSpacing: "0.04em" }}>
+                            <span className="text-xs font-semibold" style={{ color: rarity.color, letterSpacing: "0.04em" }}>
                               {rarity.label.toUpperCase()}
                             </span>
-                            <span className="text-xs" style={{ color: "rgba(255,255,255,0.15)", fontSize: 10 }}>
+                            <span className="text-xs" style={{ color: "rgba(255,255,255,0.15)" }}>
                               {totalUsers > 0 ? Math.round((earnerCount / totalUsers) * 100) : 0}% aller Spieler
                             </span>
                           </div>
                           {myEarned && myEarnedData?.earnedAt && (
-                            <span className="text-xs" style={{ color: "rgba(245,158,11,0.5)", fontSize: 10 }}>
+                            <span className="text-xs" style={{ color: "rgba(245,158,11,0.5)" }}>
                               {new Date(myEarnedData.earnedAt).toLocaleDateString("de-DE", { day: "2-digit", month: "short", year: "numeric" })}
                             </span>
                           )}
@@ -240,7 +240,7 @@ export default function HonorsView({ catalogue, highlightedAchievementId, onHigh
                                   background: `${u.color}15`,
                                   color: `${u.color}cc`,
                                   border: `1px solid ${u.color}30`,
-                                  fontSize: 10,
+                                  fontSize: 12,
                                   fontWeight: playerName && (u.id.toLowerCase() === playerName.toLowerCase() || u.name.toLowerCase() === playerName.toLowerCase()) ? 700 : 400,
                                 }}
                               >

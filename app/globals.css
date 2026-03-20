@@ -829,3 +829,23 @@ img {
   cursor: pointer;
   font-size: 18px;
 }
+
+/* ─── Floor Navigation ─────────────────────────────────────────────────────── */
+/* View content fade-in on navigation                                         */
+@keyframes floor-fade-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+[data-feedback-id^="nav."] ~ * {
+  animation: floor-fade-in 0.2s ease-out;
+}
+
+/* Active floor tab glow                                                      */
+[data-feedback-id^="nav.floor."] {
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+
+/* Floor banner gradient transition                                           */
+.floor-banner {
+  transition: background 0.4s ease-in-out;
+}

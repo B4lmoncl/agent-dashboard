@@ -101,13 +101,13 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2 mb-1">
               {/* Streak flame counter */}
-              <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-xs font-bold" style={{ color: flameColor, background: `${flameColor}12`, border: `1px solid ${flameColor}30`, boxShadow: flameGlow, fontSize: 11 }}>
+              <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-xs font-bold" style={{ color: flameColor, background: `${flameColor}12`, border: `1px solid ${flameColor}30`, boxShadow: flameGlow, fontSize: 12 }}>
                 <span style={{ fontSize: 13 }}>{ritual.streak >= 7 ? "★" : "●"}</span>
                 {ritual.streak}
               </span>
               <span className="text-sm font-medium truncate" style={{ color: doneToday ? "rgba(255,255,255,0.4)" : "#e8e8e8", textDecoration: doneToday ? "line-through" : "none" }}>{ritual.title}</span>
               {ritual.bloodPact && (
-                <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded text-xs font-bold" style={{ color: "#ef4444", background: "rgba(239,68,68,0.12)", border: "1px solid rgba(239,68,68,0.3)", fontSize: 9, letterSpacing: "0.04em" }}>
+                <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded text-xs font-bold" style={{ color: "#ef4444", background: "rgba(239,68,68,0.12)", border: "1px solid rgba(239,68,68,0.3)", fontSize: 12, letterSpacing: "0.04em" }}>
                   Blood Pact
                 </span>
               )}
@@ -328,7 +328,7 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
                   <div>
                     <label className="text-xs font-semibold mb-1.5 block" style={{ color: "rgba(200,170,100,0.55)" }}>Ritual Name</label>
                     <input value={newRitualTitle} onChange={e => { setNewRitualTitle(e.target.value); if (ritualNameError) setRitualNameError(false); }} placeholder="Name your ritual..." className="w-full text-sm px-3 py-2.5 rounded-lg" style={{ background: "rgba(0,0,0,0.3)", border: ritualNameError ? "1px solid #ef4444" : "1px solid rgba(245,158,11,0.25)", color: "#e8d5a3", outline: "none" }} onKeyDown={e => e.key === "Enter" && submitRitual()} autoFocus />
-                    {ritualNameError && <p style={{ color: "#ef4444", fontSize: "0.7rem", marginTop: 4 }}>Please enter a ritual name</p>}
+                    {ritualNameError && <p style={{ color: "#ef4444", fontSize: "0.75rem", marginTop: 4 }}>Please enter a ritual name</p>}
                   </div>
                   <div className="grid grid-cols-2 gap-3">
                     <div>
@@ -374,7 +374,7 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
                         </button>
                       ))}
                     </div>
-                    {ritualCommitmentError && <p style={{ color: "#ef4444", fontSize: "0.7rem", marginTop: 4 }}>Choose a commitment duration</p>}
+                    {ritualCommitmentError && <p style={{ color: "#ef4444", fontSize: "0.75rem", marginTop: 4 }}>Choose a commitment duration</p>}
                   </div>
                   <div>
                     <button onClick={() => setNewRitualBloodPact(p => !p)} className={`action-btn w-full py-2.5 px-4 rounded-xl font-semibold text-sm ${newRitualBloodPact ? "blood-pact-active" : ""}`} style={{ background: newRitualBloodPact ? "rgba(239,68,68,0.18)" : "rgba(255,255,255,0.04)", color: newRitualBloodPact ? "#ef4444" : "rgba(255,255,255,0.28)", border: `1px solid ${newRitualBloodPact ? "rgba(239,68,68,0.5)" : "rgba(255,255,255,0.1)"}`, transition: "color 0.3s, background 0.3s, border 0.3s" }}>

@@ -110,7 +110,7 @@ export function UserCard({ user, classes = [] }: { user: User; classes?: ClassDe
             {(user as any).equippedTitle && (() => {
               const t = (user as any).equippedTitle;
               const tc: Record<string,string> = { common: "#9ca3af", uncommon: "#22c55e", rare: "#60a5fa", epic: "#a855f7", legendary: "#f97316" };
-              return <p className="text-xs font-medium" style={{ color: tc[t.rarity] ?? "#9ca3af", fontSize: 10 }}>&laquo; {t.name} &raquo;</p>;
+              return <p className="text-xs font-medium" style={{ color: tc[t.rarity] ?? "#9ca3af" }}>&laquo; {t.name} &raquo;</p>;
             })()}
           </div>
           {/* Gold */}
@@ -195,9 +195,9 @@ export function UserCard({ user, classes = [] }: { user: User; classes?: ClassDe
           >
             <SmartIcon src="/images/icons/ach-forge-novice.png" size={35} style={{ filter: forgeFilter }} />
             <span className="font-mono font-semibold" style={{ color: forgeColor }}>{temp}%</span>
-            <span style={{ color: forgeColor, fontSize: 10, fontWeight: 600 }}>{forgeTierLabel}</span>
+            <span className="text-xs" style={{ color: forgeColor, fontWeight: 600 }}>{forgeTierLabel}</span>
             <span style={{ color: "rgba(255,255,255,0.2)" }}>·</span>
-            <span className="font-mono" style={{ color: "rgba(255,255,255,0.3)", fontSize: 10 }}>{goldMultiplier}×</span>
+            <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.3)" }}>{goldMultiplier}×</span>
           </span>
         </div>
         {/* Total Modifiers */}
@@ -237,7 +237,7 @@ export function UserCard({ user, classes = [] }: { user: User; classes?: ClassDe
                 </span>
               ))}
               <SmartIcon src={mood.emoji} size={13} style={{ marginLeft: 2 }} />
-              <span className="text-xs ml-auto font-mono" style={{ color: "rgba(99,102,241,0.5)", fontSize: 10 }}>+{companionAchs.length * 2}% XP</span>
+              <span className="text-xs ml-auto font-mono" style={{ color: "rgba(99,102,241,0.5)" }}>+{companionAchs.length * 2}% XP</span>
             </div>
           )}
 

@@ -267,7 +267,7 @@ function ExpeditionView({
                     boxShadow: cp.reached ? `0 0 6px ${cp.isBonus ? "#fbbf24" : "#22c55e"}40` : "none",
                   }}
                 />
-                <span className="text-xs text-w20 absolute -bottom-3 left-1/2 -translate-x-1/2 whitespace-nowrap" style={{ fontSize: 9 }}>
+                <span className="text-xs text-w20 absolute -bottom-3 left-1/2 -translate-x-1/2 whitespace-nowrap">
                   {cp.required}
                 </span>
               </div>

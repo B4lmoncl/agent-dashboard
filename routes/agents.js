@@ -43,12 +43,14 @@ router.post('/api/agent/:name/status', requireApiKey, (req, res) => {
 router.get('/api/agents', (req, res) => {
   const STALE_MS = 30 * 60 * 1000; // 30 minutes
   const nowMs = Date.now();
-  for (const agent of Object.values(state.store.agents)) {
+  const agents = Object.values(state.store.agents).map(agent => {
+    const copy = sanitizeAgent(agent);
     if (agent.lastUpdate && (nowMs - new Date(agent.lastUpdate).getTime()) > STALE_MS) {
-      if (agent.health === 'ok') agent.health = 'stale';
+      if (agent.health === 'ok') copy.health = 'stale';
     }
-  }
-  res.json(Object.values(state.store.agents).map(sanitizeAgent));
+    return copy;
+  });
+  res.json(agents);
 });
 
 // GET /api/agent/:name — get single agent

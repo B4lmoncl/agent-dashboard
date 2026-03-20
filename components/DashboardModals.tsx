@@ -135,7 +135,7 @@ export default function DashboardModals({
                     <div key={r.label} className="flex items-center justify-between px-2 py-1 rounded-lg" style={{ background: r.val !== 1 ? "rgba(255,255,255,0.03)" : "transparent" }}>
                       <div>
                         <span className="text-xs font-medium" style={{ color: r.val !== 1 ? "#f0f0f0" : "rgba(255,255,255,0.3)" }}>{r.label}</span>
-                        <p className="text-xs text-w30" style={{ fontSize: 10 }}>{r.desc}</p>
+                        <p className="text-xs text-w30">{r.desc}</p>
                       </div>
                       <span className="font-mono font-bold text-sm" style={{ color: r.val !== 1 ? r.color : "rgba(255,255,255,0.2)" }}>×{r.val}</span>
                     </div>
@@ -157,7 +157,7 @@ export default function DashboardModals({
                     <div key={r.label} className="flex items-center justify-between px-2 py-1 rounded-lg" style={{ background: r.val !== 1 ? "rgba(255,255,255,0.03)" : "transparent" }}>
                       <div>
                         <span className="text-xs font-medium" style={{ color: r.val !== 1 ? "#f0f0f0" : "rgba(255,255,255,0.3)" }}>{r.label}</span>
-                        <p className="text-xs text-w30" style={{ fontSize: 10 }}>{r.desc}</p>
+                        <p className="text-xs text-w30">{r.desc}</p>
                       </div>
                       <span className="font-mono font-bold text-sm" style={{ color: r.val !== 1 ? r.color : "rgba(255,255,255,0.2)" }}>×{r.val}</span>
                     </div>

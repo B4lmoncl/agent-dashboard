@@ -31,6 +31,88 @@ export const typeConfig: Record<string, { label: string; icon: string | null; co
   "relationship-coop": { label: "Co-op", icon: "/images/icons/cat-coop.png", color: "#f43f5e", bg: "rgba(244,63,94,0.12)", border: "rgba(244,63,94,0.4)" },
 };
 
+// ─── Gildenhallen-Stockwerke (Urithiru-inspired navigation) ──────────────────
+
+export interface FloorRoom {
+  key: string;
+  label: string;
+  iconSrc: string;
+  requiresLogin?: boolean;
+  tutorialKey?: string | null;
+}
+
+export interface Floor {
+  id: string;
+  name: string;
+  subtitle: string;
+  icon: string;
+  color: string;
+  gradient: string;
+  rooms: FloorRoom[];
+}
+
+export const FLOORS: Floor[] = [
+  {
+    id: "turmspitze",
+    name: "Turmspitze",
+    subtitle: "Prestige & Ruhm",
+    icon: "▲",
+    color: "#fbbf24",
+    gradient: "linear-gradient(135deg, #fbbf24 0%, #1a1a3a 100%)",
+    rooms: [
+      { key: "campaign",    label: "The Observatory",      iconSrc: "/images/icons/nav-observatory.png", tutorialKey: "campaign-tab" },
+      { key: "leaderboard", label: "The Proving Grounds",  iconSrc: "/images/icons/nav-proving.png",     tutorialKey: "leaderboard-tab" },
+      { key: "honors",      label: "Hall of Honors",       iconSrc: "/images/icons/nav-honors.png",      tutorialKey: "honors-tab" },
+      { key: "season",      label: "Season",               iconSrc: "",                                  tutorialKey: "season-tab" },
+    ],
+  },
+  {
+    id: "haupthalle",
+    name: "Haupthalle",
+    subtitle: "Abenteuer",
+    icon: "●",
+    color: "#f97316",
+    gradient: "linear-gradient(135deg, #f97316 0%, #1a0f0a 100%)",
+    rooms: [
+      { key: "questBoard", label: "The Great Hall",        iconSrc: "/images/icons/nav-great-hall.png",  tutorialKey: "quest-board-tab" },
+      { key: "npcBoard",   label: "The Wanderer's Rest",   iconSrc: "/images/icons/nav-wanderer.png",    tutorialKey: "npc-board-tab" },
+      { key: "challenges", label: "Challenges",            iconSrc: "/images/icons/nav-challenges.png",  tutorialKey: null },
+    ],
+  },
+  {
+    id: "gewerbeviertel",
+    name: "Gewerbeviertel",
+    subtitle: "Handel & Handwerk",
+    icon: "■",
+    color: "#a855f7",
+    gradient: "linear-gradient(135deg, #a855f7 0%, #1a0a2e 100%)",
+    rooms: [
+      { key: "shop",  label: "The Bazaar",           iconSrc: "/images/icons/nav-bazaar.png",       tutorialKey: "bazaar-tab" },
+      { key: "forge", label: "Artisan's Quarter",     iconSrc: "/images/icons/prof-schmied.png",     requiresLogin: true },
+      { key: "gacha", label: "Vault of Fate",         iconSrc: "/images/icons/vault-of-fate.png",    tutorialKey: "vault-tab" },
+    ],
+  },
+  {
+    id: "charakterturm",
+    name: "Charakter-Turm",
+    subtitle: "Persönlich",
+    icon: "✦",
+    color: "#3b82f6",
+    gradient: "linear-gradient(135deg, #3b82f6 0%, #0a1a2e 100%)",
+    rooms: [
+      { key: "character",     label: "Character",        iconSrc: "/images/icons/nav-character.png",    requiresLogin: true, tutorialKey: "character-tab" },
+      { key: "klassenquests", label: "The Arcanum",      iconSrc: "/images/icons/nav-arcanum.png",      tutorialKey: null },
+      { key: "rituals",       label: "Ritual Chamber",   iconSrc: "/images/icons/ui-ritual-rune.png",   requiresLogin: true, tutorialKey: "rituals-tab" },
+      { key: "vows",          label: "Vow Shrine",       iconSrc: "/images/icons/ui-vow-sword.png",     requiresLogin: true },
+    ],
+  },
+];
+
+/** Get the floor that contains a given room key */
+export function getFloorForRoom(roomKey: string): Floor | undefined {
+  return FLOORS.find(f => f.rooms.some(r => r.key === roomKey));
+}
+
 export const STREAK_MILESTONES_CLIENT = [
   { days: 7,   badge: 'Bronze',  label: 'Bronze',           icon: '/images/icons/streak-bronze.png' },
   { days: 14,  badge: '2W',      label: '2-Wochen',         icon: '/images/icons/streak-2w.png' },

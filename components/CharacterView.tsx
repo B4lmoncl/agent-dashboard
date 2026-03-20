@@ -579,7 +579,7 @@ function InventorySlot({ item, level, idx, onItemClick, onDragStart, onDragOver,
         }
         {/* Level requirement indicator */}
         {item.minLevel > 0 && item.minLevel > level && (
-          <span style={{ position: "absolute", bottom: 1, right: 1, fontSize: 8, color: "#ef4444", fontWeight: 700, background: "rgba(0,0,0,0.7)", borderRadius: 2, padding: "0 2px" }}>
+          <span style={{ position: "absolute", bottom: 1, right: 1, fontSize: 12, color: "#ef4444", fontWeight: 700, background: "rgba(0,0,0,0.7)", borderRadius: 2, padding: "0 2px" }}>
             Lv{item.minLevel}
           </span>
         )}
@@ -1364,7 +1364,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                             }}
                           >
                             <span style={{ color: c }}>{t.name}</span>
-                            {t.description && <span style={{ color: "rgba(255,255,255,0.2)", fontSize: 10 }}>{t.description}</span>}
+                            {t.description && <span className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>{t.description}</span>}
                           </button>
                         );
                       })}
@@ -1506,7 +1506,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                 <div style={{ width: `${bondProgress * 100}%`, height: "100%", background: "linear-gradient(90deg, #ec4899, #f9a8d4)", borderRadius: 9999 }} />
               </div>
               {nextBond && (
-                <p style={{ fontSize: 9, color: "rgba(255,255,255,0.3)", marginTop: 1 }}>{xpToNext} XP → {nextBond.title}</p>
+                <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)", marginTop: 1 }}>{xpToNext} XP → {nextBond.title}</p>
               )}
             </div>
           </div>

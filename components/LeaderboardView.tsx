@@ -128,8 +128,8 @@ export default function LeaderboardView({ entries, agents, mode = "agents" }: {
               </div>
               <div className="text-center space-y-0.5">
                 <p className="text-xs font-bold" style={{ color: "#f0f0f0" }}>{entry.name}</p>
-                {(() => { const t = (userMap.get(entry.id) as any)?.equippedTitle; const tc: Record<string,string> = { common: "#9ca3af", uncommon: "#22c55e", rare: "#60a5fa", epic: "#a855f7", legendary: "#f97316" }; return t ? <p className="text-xs font-medium" style={{ color: tc[t.rarity] ?? "#9ca3af", fontSize: 10 }}>{t.name}</p> : null; })()}
-                {cls && <p className="text-xs" style={{ color: "rgba(167,139,250,0.7)", fontSize: 10 }}>{cls.icon} {cls.fantasy}</p>}
+                {(() => { const t = (userMap.get(entry.id) as any)?.equippedTitle; const tc: Record<string,string> = { common: "#9ca3af", uncommon: "#22c55e", rare: "#60a5fa", epic: "#a855f7", legendary: "#f97316" }; return t ? <p className="text-xs font-medium" style={{ color: tc[t.rarity] ?? "#9ca3af" }}>{t.name}</p> : null; })()}
+                {cls && <p className="text-xs" style={{ color: "rgba(167,139,250,0.7)" }}>{cls.icon} {cls.fantasy}</p>}
                 <p className="text-xs" style={{ color: lvl.color }}>{lvl.name}</p>
                 <span className="text-xs font-mono font-bold" style={{ color: "#a855f7" }}>{entry.xp} XP</span>
               </div>
@@ -151,7 +151,7 @@ export default function LeaderboardView({ entries, agents, mode = "agents" }: {
 
       {/* ── Leaderboard Table ── */}
       <div className="rounded-xl overflow-hidden" style={{ background: "#1e1e1e", border: "1px solid rgba(255,255,255,0.07)" }}>
-        <div className="grid px-4 py-2" style={{ gridTemplateColumns: "40px 1fr 80px 80px 80px", color: "rgba(255,255,255,0.3)", fontSize: 11, borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+        <div className="grid px-4 py-2" style={{ gridTemplateColumns: "40px 1fr 80px 80px 80px", color: "rgba(255,255,255,0.3)", fontSize: 12, borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
           <span>#</span><span>{isPlayerMode ? "Adventurer" : "Agent"}</span><span className="text-right">Level</span><span className="text-right">XP</span><span className="text-right">Quests</span>
         </div>
         {merged.map((entry) => {
@@ -185,13 +185,13 @@ export default function LeaderboardView({ entries, agents, mode = "agents" }: {
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-1.5">
                     <p className="text-xs font-semibold truncate" style={{ color: "#f0f0f0" }}>{entry.name}</p>
-                    {isPlayerMode && (() => { const t = (userMap.get(entry.id) as any)?.equippedTitle; const tc: Record<string,string> = { common: "#9ca3af", uncommon: "#22c55e", rare: "#60a5fa", epic: "#a855f7", legendary: "#f97316" }; return t ? <span className="text-xs flex-shrink-0" style={{ color: tc[t.rarity] ?? "#9ca3af", fontSize: 10 }}>{t.name}</span> : null; })()}
+                    {isPlayerMode && (() => { const t = (userMap.get(entry.id) as any)?.equippedTitle; const tc: Record<string,string> = { common: "#9ca3af", uncommon: "#22c55e", rare: "#60a5fa", epic: "#a855f7", legendary: "#f97316" }; return t ? <span className="text-xs flex-shrink-0" style={{ color: tc[t.rarity] ?? "#9ca3af" }}>{t.name}</span> : null; })()}
                     {isPlayerMode && (() => {
                       const cls = entry.classId && entry.classId !== "null" ? classMap.get(entry.classId) : null;
                       return cls ? (
-                        <span className="text-xs flex-shrink-0" style={{ color: "rgba(167,139,250,0.6)", fontSize: 10 }}>{cls.icon} {cls.fantasy}</span>
+                        <span className="text-xs flex-shrink-0" style={{ color: "rgba(167,139,250,0.6)" }}>{cls.icon} {cls.fantasy}</span>
                       ) : (
-                        <span className="text-xs flex-shrink-0 italic" style={{ color: "rgba(255,255,255,0.15)", fontSize: 10 }}>No Class</span>
+                        <span className="text-xs flex-shrink-0 italic" style={{ color: "rgba(255,255,255,0.15)" }}>No Class</span>
                       );
                     })()}
                   </div>

@@ -451,7 +451,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                   </div>
                   <p className="text-sm" style={{ color: "rgba(255,255,255,0.4)", lineHeight: 1.4 }}>{prof.description}</p>
                   {isChosen && synergy && synergyChosen && (
-                    <p className="text-xs mt-0.5" style={{ color: `${prof.color}60`, fontSize: 9 }}>&#9733; {synergy.label} active</p>
+                    <p className="text-xs mt-0.5" style={{ color: `${prof.color}60` }}>&#9733; {synergy.label} active</p>
                   )}
                 </div>
               </div>
@@ -487,7 +487,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
             {relevantMats.length > 0 && !locked && (
               <div className="px-4 pb-3 flex flex-wrap gap-1.5">
                 {relevantMats.slice(0, 6).map(m => (
-                  <span key={m.id} className="text-xs flex items-center gap-1 px-1.5 py-0.5 rounded" style={{ background: "rgba(255,255,255,0.03)", color: `${RARITY_COLORS[m.rarity]}90`, fontSize: 10 }}>
+                  <span key={m.id} className="text-xs flex items-center gap-1 px-1.5 py-0.5 rounded" style={{ background: "rgba(255,255,255,0.03)", color: `${RARITY_COLORS[m.rarity]}90` }}>
                     <img src={m.icon} alt="" width={12} height={12} style={{ imageRendering: "auto" }} onError={hideOnError} />
                     x{materials[m.id]}
                   </span>
@@ -721,7 +721,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                             <p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,0.4)" }}>{recipe.desc}</p>
                             {/* D3-style reroll preview: show what stats CAN be rolled */}
                             {meetsLevel && (recipe.id === "reroll_stat" || recipe.id === "reroll_minor" || recipe.id === "reinforce_armor" || recipe.id === "enchant_socket") && equippedSlots[selectedSlot] && typeof equippedSlots[selectedSlot] === "object" && (
-                              <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.25)", fontSize: 9 }}>
+                              <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.25)" }}>
                                 Current: {Object.entries((equippedSlots[selectedSlot] as Record<string, unknown>).stats as Record<string, number> || {}).map(([k, v]) => `${k} ${v}`).join(", ") || "none"}
                               </p>
                             )}
@@ -1063,7 +1063,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
               </div>
 
               {maxProfSlots < 4 && (
-                <p className="text-center pt-1" style={{ color: "rgba(255,255,255,0.25)", fontSize: 10 }}>
+                <p className="text-xs text-center pt-1" style={{ color: "rgba(255,255,255,0.25)" }}>
                   Weitere Slots werden durch Levelaufstieg freigeschaltet (Lv5, Lv15, Lv20, Lv25)
                 </p>
               )}

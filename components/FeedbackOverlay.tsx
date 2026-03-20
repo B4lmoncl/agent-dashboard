@@ -131,7 +131,7 @@ export default function FeedbackOverlay({ active, onExit, playerName }: Feedback
             border: "1px solid rgba(129,140,248,0.4)",
             borderRadius: 6,
             padding: "4px 8px",
-            fontSize: 11,
+            fontSize: 12,
             color: "#818cf8",
             fontFamily: "monospace",
             maxWidth: 240,

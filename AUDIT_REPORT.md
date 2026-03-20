@@ -540,3 +540,50 @@ These 10 issues were found during the challenges code audit and fixed in commit 
 - **No critical or high-severity new issues found** outside the challenges system
 - **Previous sessions' fixes verified:** All still in place and correct
 - **Navigation analysis:** 14 top-level tabs identified — restructuring proposal in progress (Phase 2)
+
+---
+
+## 9. Session 6 — Bug Fixes & Navigation Restructuring (2026-03-20)
+
+### 9.1 Additional Bug Fixes
+
+#### F-41: GET /api/agents Mutates State (Side-Effect on Read) ✅
+- **Location:** `routes/agents.js:46-49`
+- **Severity:** MEDIUM
+- **Issue:** GET handler mutated `agent.health = 'stale'` directly on the persisted state object when an agent hadn't reported in 30+ minutes. Every GET request permanently changed the stored health, making the stale status irreversible even if the agent later checked in (since the stored value was no longer `'ok'`).
+- **Fix:** Compute stale status on a sanitized copy instead of mutating the source object. The response now shows `'stale'` without altering persisted state.
+
+#### F-42: Daily Bonus Uses UTC Instead of Berlin Timezone ✅
+- **Location:** `routes/currency.js:119,166`
+- **Severity:** MEDIUM
+- **Issue:** `new Date().toISOString().slice(0, 10)` produces UTC dates. For a Berlin-based user at e.g. 23:30 CET (= 22:30 UTC in winter, or 21:30 UTC in summer), the daily bonus date boundary doesn't match the rest of the system which uses `getTodayBerlin()` (Europe/Berlin timezone). Could cause double-claims or missed claims around midnight.
+- **Fix:** Replaced both occurrences with `getTodayBerlin()` from `lib/helpers.js`, consistent with all other date-boundary logic in the codebase.
+
+### 9.2 Navigation Restructuring
+
+Implementation of Urithiru-inspired 4-floor navigation system per `PLAN.md`. See PLAN.md for full specification.
+
+**Changes:**
+- Replaced flat 14-tab navigation with 2-level system (4 floor tabs + room tabs per floor)
+- Added floor data structure in `app/config.ts` (FLOORS, Floor, FloorRoom, getFloorForRoom)
+- Extracted Ritual Chamber and Vow Shrine from quest board sub-tabs to standalone views
+- Added floor banner with gradient and subtle pattern overlay
+- Added CSS transitions for floor switching (fade-in animation)
+- `setDashView` wrapper auto-syncs the active floor when navigating from other components
+
+**Floors:**
+| Floor | Rooms |
+|-------|-------|
+| Turmspitze (Prestige) | Observatory, Proving Grounds, Hall of Honors, Season |
+| Haupthalle (Abenteuer) | The Great Hall, Wanderer's Rest, Challenges |
+| Gewerbeviertel (Handel) | The Bazaar, Artisan's Quarter, Vault of Fate |
+| Charakter-Turm (Persönlich) | Character, The Arcanum, Ritual Chamber, Vow Shrine |
+
+### 9.3 Sitewide Font Size Minimum (12px) ✅
+
+#### F-43: Enforce 12px Minimum Font Size for All Readable Text ✅
+- **Severity:** LOW (accessibility/readability QoL)
+- **Issue:** 34 instances of readable text (labels, descriptions, stats, badges) rendered at 8–11px across 15 component files. Reference minimum: `text-xs` (12px) as used in the Artisan stat card "x Materials" line.
+- **Fix:** Systematically raised all readable text to ≥12px. Decorative symbols (●, ◆, ✦, ⬥, ▲/▼, ?) left at smaller sizes since they are not content text.
+- **Files changed:** LeaderboardView, UserCard, CompanionsWidget, WandererRest, DashboardHeader, DashboardModals, FeedbackOverlay, HonorsView, ForgeView, QuestCards, CharacterView, ChallengesView, QuestPanels, RitualChamber, OnboardingWizard, page.tsx
+- **Also fixed:** All `fontSize: "0.7rem"` (11.2px) instances → `"0.75rem"` (12px) in QuestCards, QuestPanels, RitualChamber, CompanionsWidget

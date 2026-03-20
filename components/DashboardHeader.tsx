@@ -240,7 +240,7 @@ export default function DashboardHeader({
                       className="flex items-center gap-2 px-4 py-2.5 text-xs text-left text-w50"
                       style={{ background: "none", border: "none", cursor: "not-allowed", opacity: 0.5 }}
                     >
-                      Einstellungen <span className="text-w25" style={{ fontSize: 10 }}>(bald)</span>
+                      Einstellungen <span className="text-w25">(bald)</span>
                     </button>
                     <div className="bg-w7" style={{ height: 1, margin: "0 12px" }} />
                     <button

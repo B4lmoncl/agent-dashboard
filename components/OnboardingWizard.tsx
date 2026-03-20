@@ -674,7 +674,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
                             ? <img src={vc.iconSrc} alt={vc.name} width={32} height={32} style={{ imageRendering: "auto", borderRadius: 4, objectFit: "cover" }} />
                             : <span className="text-2xl">{vc.emoji}</span>
                           }
-                          <span className="text-xs px-1.5 py-0.5 rounded-full font-semibold" style={{ background: "rgba(167,139,250,0.12)", color: "#a78bfa", fontSize: 10 }}>{vc.trait}</span>
+                          <span className="text-xs px-1.5 py-0.5 rounded-full font-semibold" style={{ background: "rgba(167,139,250,0.12)", color: "#a78bfa" }}>{vc.trait}</span>
                         </div>
                         <p className="text-xs font-semibold" style={{ color: "#f0f0f0" }}>{vc.name}</p>
                         <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.35)" }}>{vc.desc}</p>

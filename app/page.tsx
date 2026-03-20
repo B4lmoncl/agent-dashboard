@@ -55,7 +55,9 @@ import {
 } from "@/app/utils";
 import {
   priorityConfig, categoryConfig, productConfig, typeConfig, STREAK_MILESTONES_CLIENT,
+  FLOORS, getFloorForRoom,
 } from "@/app/config";
+import type { Floor } from "@/app/config";
 import { getAuthHeaders, setAccessToken } from "@/lib/auth-client";
 import { useQuestActions } from "@/hooks/useQuestActions";
 import professionsData from "@/public/data/professions.json";
@@ -115,7 +117,15 @@ export default function Dashboard() {
   });
   // selectedIds, bulkLoading, reviewComments moved to useQuestActions hook
   const [typeFilter, setTypeFilter] = useState<string>("all");
-  const [dashView, setDashView] = useState<"questBoard" | "npcBoard" | "klassenquests" | "character" | "campaign" | "leaderboard" | "honors" | "season" | "shop" | "forge" | "gacha" | "roadmap" | "changelog" | "challenges">("questBoard");
+  const [dashViewRaw, setDashViewRaw] = useState<"questBoard" | "npcBoard" | "klassenquests" | "character" | "campaign" | "leaderboard" | "honors" | "season" | "shop" | "forge" | "gacha" | "roadmap" | "changelog" | "challenges" | "rituals" | "vows">("questBoard");
+  const [activeFloor, setActiveFloor] = useState("haupthalle");
+  // Wrap setDashView to auto-sync the active floor
+  const dashView = dashViewRaw;
+  const setDashView = useCallback((view: typeof dashViewRaw) => {
+    setDashViewRaw(view);
+    const floor = getFloorForRoom(view);
+    if (floor) setActiveFloor(floor.id);
+  }, []);
   // Track seen content for notification dots (persists across renders via ref)
   const seenQuestIdsRef = useRef<Set<string>>(new Set());
   const seenNpcIdsRef = useRef<Set<string>>(new Set());
@@ -165,7 +175,7 @@ export default function Dashboard() {
   const [lootDrop, setLootDrop] = useState<LootItem | null>(null);
   const [levelUpCelebration, setLevelUpCelebration] = useState<{ level: number; title: string } | null>(null);
   const [rewardCelebration, setRewardCelebration] = useState<RewardCelebrationData | null>(null);
-  const [questBoardTab, setQuestBoardTab] = useState<"auftraege" | "rituale" | "anti-rituale">("auftraege");
+  // questBoardTab removed — Rituals and Vows are now standalone views in Charakter-Turm
   const closeLootDrop = useCallback(() => setLootDrop(null), []);
   useModalBehavior(!!lootDrop, closeLootDrop);
   const closeLevelUp = useCallback(() => setLevelUpCelebration(null), []);
@@ -1015,7 +1025,7 @@ export default function Dashboard() {
                             <div key={m.id} className="flex items-center gap-2 rounded-lg px-2 py-1.5" style={{ background: count > 0 ? "rgba(255,255,255,0.03)" : "transparent", opacity: count > 0 ? 1 : 0.35 }}>
                               <img src={m.icon} alt="" width={18} height={18} className="img-render-auto" onError={e => (e.currentTarget.style.display = "none")} />
                               <div className="flex-1 min-w-0">
-                                <span className="text-xs truncate block" style={{ color: MAT_RARITY_COLORS[m.rarity] ?? "#9ca3af", fontSize: 10 }}>{m.name}</span>
+                                <span className="text-xs truncate block" style={{ color: MAT_RARITY_COLORS[m.rarity] ?? "#9ca3af" }}>{m.name}</span>
                               </div>
                               <span className="text-xs font-mono font-bold" style={{ color: count > 0 ? "#f0f0f0" : "rgba(255,255,255,0.2)" }}>{count}</span>
                             </div>
@@ -1041,51 +1051,93 @@ export default function Dashboard() {
           );
         })()}
 
-        {/* View toggle */}
-        <div className="flex gap-1 flex-wrap" data-tutorial="nav-bar" style={{ background: "#111", borderRadius: 8, padding: 3, display: "inline-flex" }}>
-          {[
-            { key: "questBoard",    label: "The Great Hall",     tutorialKey: "quest-board-tab", iconSrc: "/images/icons/nav-great-hall.png" },
-            { key: "npcBoard",      label: "The Wanderer's Rest", tutorialKey: "npc-board-tab", iconSrc: "/images/icons/nav-wanderer.png" },
-            { key: "campaign",    label: "The Observatory",        tutorialKey: "campaign-tab", iconSrc: "/images/icons/nav-observatory.png" },
-            { key: "klassenquests", label: "The Arcanum",  tutorialKey: null, iconSrc: "/images/icons/nav-arcanum.png" },
-            ...(playerName ? [{ key: "character", label: "Character", tutorialKey: "character-tab", iconSrc: "/images/icons/nav-character.png" }] : []),
-            { key: "shop",        label: "The Bazaar",               tutorialKey: "bazaar-tab", iconSrc: "/images/icons/nav-bazaar.png" },
-            ...(playerName ? [{ key: "forge", label: "Artisan's Quarter", tutorialKey: null, iconSrc: "/images/icons/prof-schmied.png" }] : []),
-            { key: "gacha",       label: "Vault of Fate",            tutorialKey: "vault-tab", iconSrc: "/images/icons/vault-of-fate.png" },
-            { key: "challenges", label: "Challenges",              tutorialKey: null, iconSrc: "/images/icons/nav-challenges.png" },
-            { key: "leaderboard", label: "The Proving Grounds", tutorialKey: "leaderboard-tab", iconSrc: "/images/icons/nav-proving.png" },
-            { key: "honors",      label: "Hall of Honors",  tutorialKey: "honors-tab", iconSrc: "/images/icons/nav-honors.png" },
-            { key: "season",      label: `${CURRENT_SEASON.name} Season`, tutorialKey: "season-tab", iconSrc: "" },
-          ].map(v => {
-            const notifDot = (() => {
-              if (dashView === v.key) return null;
-              if (v.key === "questBoard" && notifNewQuests) return "#4ade80";
-              if (v.key === "npcBoard" && notifNewNpcs) return "#f59e0b";
-              return null;
-            })();
-            return "isDivider" in v && v.isDivider ? (
-              <span key={v.key} className="text-xs font-semibold uppercase tracking-widest px-2 py-1.5 flex items-center" style={{ color: "rgba(255,215,0,0.5)", letterSpacing: "0.1em", pointerEvents: "none" }}>
-                x {v.label}
-              </span>
-            ) : (
-            <button
-              key={v.key}
-              data-feedback-id={`nav.tab.${v.key}`}
-              onClick={() => setDashView(v.key as typeof dashView)}
-              className="btn-interactive text-sm font-semibold px-3 py-1.5 rounded transition-all inline-flex items-center gap-1.5 relative"
-              style={{
-                background: dashView === v.key ? "#252525" : "transparent",
-                color: dashView === v.key ? "#f0f0f0" : "rgba(255,255,255,0.3)",
-              }}
-              {...(v.tutorialKey ? { "data-tutorial": v.tutorialKey } : {})}
-            >
-              {"iconSrc" in v && v.iconSrc && <img src={v.iconSrc} alt="" width={24} height={24} className={`${v.key === "gacha" ? "vault-nav-glow" : ""} img-render-auto`} style={{ opacity: dashView === v.key ? 1 : 0.5 }} onError={e => (e.currentTarget.style.display = "none")} />}
-              {v.label}
-              {notifDot && <span className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full" style={{ background: notifDot, boxShadow: `0 0 4px ${notifDot}` }} />}
-            </button>
-            );
-          })}
-        </div>
+        {/* ── Stockwerk-Navigation (2-level: Floor tabs + Room tabs) ── */}
+        {(() => {
+          const currentFloor = FLOORS.find(f => f.id === activeFloor) || FLOORS[1];
+          const visibleRooms = currentFloor.rooms.filter(r => !r.requiresLogin || playerName);
+          // Notification dots per room
+          const getRoomNotif = (key: string) => {
+            if (dashView === key) return null;
+            if (key === "questBoard" && notifNewQuests) return "#4ade80";
+            if (key === "npcBoard" && notifNewNpcs) return "#f59e0b";
+            return null;
+          };
+          // Check if a floor has any notification
+          const floorHasNotif = (floor: Floor) => floor.rooms.some(r => getRoomNotif(r.key) !== null);
+
+          return (
+            <div data-tutorial="nav-bar" className="space-y-0">
+              {/* Floor tabs */}
+              <div className="flex gap-1" style={{ background: "#0d0d0d", borderRadius: "10px 10px 0 0", padding: "4px 4px 0 4px" }}>
+                {FLOORS.map(floor => {
+                  const isActive = floor.id === activeFloor;
+                  const hasNotif = !isActive && floorHasNotif(floor);
+                  return (
+                    <button
+                      key={floor.id}
+                      data-feedback-id={`nav.floor.${floor.id}`}
+                      onClick={() => {
+                        setActiveFloor(floor.id);
+                        // Navigate to first visible room if current view isn't on this floor
+                        const floorRoomKeys = floor.rooms.filter(r => !r.requiresLogin || playerName).map(r => r.key);
+                        if (!floorRoomKeys.includes(dashView)) {
+                          setDashView(floorRoomKeys[0] as typeof dashView);
+                        }
+                      }}
+                      className="btn-interactive text-sm font-bold px-4 py-2 rounded-t-lg transition-all inline-flex items-center gap-1.5 relative"
+                      style={{
+                        background: isActive ? "#111" : "transparent",
+                        color: isActive ? floor.color : "rgba(255,255,255,0.3)",
+                        borderBottom: isActive ? "none" : "1px solid rgba(255,255,255,0.06)",
+                        letterSpacing: "0.03em",
+                      }}
+                    >
+                      <span style={{ fontSize: 14 }}>{floor.icon}</span>
+                      <span className="hidden sm:inline">{floor.name}</span>
+                      {hasNotif && <span className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full" style={{ background: "#4ade80", boxShadow: "0 0 4px #4ade80" }} />}
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Floor header banner */}
+              <div className="floor-banner relative overflow-hidden" style={{ background: currentFloor.gradient, borderRadius: 0, padding: "10px 16px", minHeight: 44 }}>
+                <div className="relative z-10">
+                  <span className="text-sm font-bold uppercase tracking-widest" style={{ color: currentFloor.color }}>{currentFloor.name}</span>
+                  <span className="text-sm ml-2" style={{ color: "rgba(255,255,255,0.35)" }}>— {currentFloor.subtitle}</span>
+                </div>
+                {/* Decorative overlay pattern */}
+                <div className="absolute inset-0 opacity-5" style={{ backgroundImage: "repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.1) 10px, rgba(255,255,255,0.1) 11px)" }} />
+              </div>
+
+              {/* Room tabs */}
+              <div className="flex gap-1 flex-wrap" style={{ background: "#111", borderRadius: "0 0 10px 10px", padding: "4px" }}>
+                {visibleRooms.map(room => {
+                  const isActive = dashView === room.key;
+                  const notifDot = getRoomNotif(room.key);
+                  const seasonLabel = room.key === "season" ? `${CURRENT_SEASON.name} Season` : room.label;
+                  return (
+                    <button
+                      key={room.key}
+                      data-feedback-id={`nav.tab.${room.key}`}
+                      onClick={() => setDashView(room.key as typeof dashView)}
+                      className="btn-interactive text-sm font-semibold px-3 py-1.5 rounded transition-all inline-flex items-center gap-1.5 relative"
+                      style={{
+                        background: isActive ? "#252525" : "transparent",
+                        color: isActive ? "#f0f0f0" : "rgba(255,255,255,0.3)",
+                      }}
+                      {...(room.tutorialKey ? { "data-tutorial": room.tutorialKey } : {})}
+                    >
+                      {room.iconSrc && <img src={room.iconSrc} alt="" width={24} height={24} className={`${room.key === "gacha" ? "vault-nav-glow" : ""} img-render-auto`} style={{ opacity: isActive ? 1 : 0.5 }} onError={e => (e.currentTarget.style.display = "none")} />}
+                      {seasonLabel}
+                      {notifDot && <span className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full" style={{ background: notifDot, boxShadow: `0 0 4px ${notifDot}` }} />}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          );
+        })()}
 
         {/* The Proving Grounds — Leaderboard + Player Cards */}
         {dashView === "leaderboard" && (
@@ -1329,35 +1381,7 @@ export default function Dashboard() {
                     </div>
                   </div>
 
-                  {/* Board Sub-Tabs */}
-                  <div className="flex gap-1 mb-3">
-                    {[
-                      { key: "auftraege",    label: "Quest Board",     iconSrc: "/images/icons/ui-quest-scroll.png",  fallback: "" },
-                      { key: "rituale",      label: "Ritual Chamber",  iconSrc: "/images/icons/ui-ritual-rune.png",   fallback: "", tutorialKey: "rituals-tab" },
-                      { key: "anti-rituale", label: "Vow Shrine",      iconSrc: "/images/icons/ui-vow-sword.png",     fallback: "" },
-                    ].map(tab => (
-                      <button
-                        key={tab.key}
-                        data-feedback-id={`sub-tab.${tab.key}`}
-                        onClick={() => setQuestBoardTab(tab.key as "auftraege" | "rituale" | "anti-rituale")}
-                        className="btn-interactive text-sm px-3 py-1.5 rounded-lg font-medium transition-all inline-flex items-center gap-1.5"
-                        style={{
-                          background: questBoardTab === tab.key ? "rgba(167,139,250,0.2)" : "rgba(255,255,255,0.04)",
-                          color: questBoardTab === tab.key ? "#a78bfa" : "rgba(255,255,255,0.4)",
-                          border: `1px solid ${questBoardTab === tab.key ? "rgba(167,139,250,0.4)" : "rgba(255,255,255,0.08)"}`,
-                        }}
-                        {...("tutorialKey" in tab && tab.tutorialKey ? { "data-tutorial": tab.tutorialKey } : {})}
-                      >
-                        <img src={tab.iconSrc} alt="" width={42} height={42}
-                          className="img-render-auto"
-                          onError={(e) => { e.currentTarget.style.display = "none"; const next = e.currentTarget.nextElementSibling as HTMLElement; if (next) next.style.display = "inline"; }} />
-                        <span style={{ display: "none" }}>{tab.fallback}</span>
-                        {tab.label}
-                      </button>
-                    ))}
-                  </div>
-
-                  {questBoardTab === "auftraege" && <div data-feedback-id="quest-board" className="space-y-2">
+                  <div data-feedback-id="quest-board" className="space-y-2">
                     {/* Category filters — Quest Board only */}
                     <div data-feedback-id="quest-board.filters" className="flex gap-1 flex-wrap mb-2" data-tutorial="quest-filters">
                       {(["all", "favorites", "personal", "learning", "fitness", "social", "relationship-coop", "npc"] as const).map(t => {
@@ -1494,19 +1518,7 @@ export default function Dashboard() {
                       </>
                     )}
 
-                  </div>}
-
-                  {/* ── Rituale Tab ── */}
-                  {questBoardTab === "rituale" && (
-                    <ErrorBoundary><Suspense fallback={<ViewFallback />}><RitualChamber rituals={rituals} setRituals={setRituals} setRewardCelebration={setRewardCelebration} /></Suspense></ErrorBoundary>
-                  )}
-
-                  {/* ── Anti-Rituale Tab ── */}
-                  {questBoardTab === "anti-rituale" && (
-                    <div data-feedback-id="vow-shrine">
-                    <AntiRitualePanel onRewardCelebration={setRewardCelebration} />
-                    </div>
-                  )}
+                  </div>
 
                 </aside>
 
@@ -1534,6 +1546,18 @@ export default function Dashboard() {
         {/* ── CHARACTER TAB ── */}
         {dashView === "character" && playerName && (
           <ErrorBoundary><Suspense fallback={<ViewFallback />}><CharacterView addToast={addToast} onNavigate={(tab: string) => setDashView(tab as typeof dashView)} /></Suspense></ErrorBoundary>
+        )}
+
+        {/* ── RITUAL CHAMBER (standalone view) ── */}
+        {dashView === "rituals" && (
+          <ErrorBoundary><Suspense fallback={<ViewFallback />}><RitualChamber rituals={rituals} setRituals={setRituals} setRewardCelebration={setRewardCelebration} /></Suspense></ErrorBoundary>
+        )}
+
+        {/* ── VOW SHRINE (standalone view) ── */}
+        {dashView === "vows" && (
+          <div data-feedback-id="vow-shrine">
+            <AntiRitualePanel onRewardCelebration={setRewardCelebration} />
+          </div>
         )}
 
         {/* ── THE WANDERER'S REST (NPC Tab) ── */}
@@ -2017,12 +2041,7 @@ export default function Dashboard() {
       {/* Tutorial Overlay */}
       {showTutorial && (
         <TutorialOverlay step={tutorialStep} onNext={handleTutorialNext} onSkip={handleTutorialSkip} onNavigate={(tabKey) => {
-          if (tabKey === "rituals") {
-            setDashView("questBoard");
-            setQuestBoardTab("rituale");
-          } else {
-            setDashView(tabKey as typeof dashView);
-          }
+          setDashView(tabKey as typeof dashView);
         }} />
       )}
 

@@ -220,7 +220,7 @@ export function WandererRest({
                         </div>
                       )}
                       {urgent && !allDone && (
-                        <div className="absolute bottom-0 left-0 right-0 py-0.5 text-center" style={{ background: "rgba(220,38,38,0.8)", fontSize: 9, fontWeight: 700, color: "#fff", letterSpacing: 1 }}>
+                        <div className="absolute bottom-0 left-0 right-0 py-0.5 text-center" style={{ background: "rgba(220,38,38,0.8)", fontSize: 12, fontWeight: 700, color: "#fff", letterSpacing: 1 }}>
                           ⏳ {npc.hoursLeft}H LEFT
                         </div>
                       )}
@@ -241,12 +241,12 @@ export function WandererRest({
                       <p className="text-xs font-semibold leading-tight" style={{ color: "#e8e8e8" }}>{npc.name}</p>
                       <p className="text-xs mt-0.5" style={{ color: rc, fontSize: 10 }}>{rarityStars[npc.rarity] ?? "●"}</p>
                       {!allDone && (
-                        <p className="text-xs mt-0.5" style={{ color: "#dc2626", fontSize: 10 }}>
+                        <p className="text-xs mt-0.5" style={{ color: "#dc2626" }}>
                           Departs in {urgent ? `${npc.hoursLeft}h` : `${npc.daysLeft}d`}
                         </p>
                       )}
                       {allDone && (
-                        <p className="text-xs mt-0.5" style={{ color: "#22c55e", fontSize: 10 }}>Completed</p>
+                        <p className="text-xs mt-0.5" style={{ color: "#22c55e" }}>Completed</p>
                       )}
                     </div>
                   </button>
@@ -439,7 +439,7 @@ export function WandererRest({
                     </p>
                   )}
                   {isStarweaver && (
-                    <span className="text-xs mt-2 inline-block px-2 py-0.5 rounded" style={{ background: "rgba(255,215,0,0.07)", color: "rgba(255,215,0,0.45)", border: "1px solid rgba(255,215,0,0.15)", fontSize: 10 }}>Permanent · Always here</span>
+                    <span className="text-xs mt-2 inline-block px-2 py-0.5 rounded" style={{ background: "rgba(255,215,0,0.07)", color: "rgba(255,215,0,0.45)", border: "1px solid rgba(255,215,0,0.15)" }}>Permanent · Always here</span>
                   )}
                 </div>
               </div>

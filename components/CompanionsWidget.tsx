@@ -329,7 +329,7 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
             </div>
 
             {/* Flavor text / quote */}
-            <p style={{ color: "rgba(255,255,255,0.3)", fontSize: 11, fontStyle: "italic", marginBottom: 12 }}>
+            <p style={{ color: "rgba(255,255,255,0.3)", fontSize: 12, fontStyle: "italic", marginBottom: 12 }}>
               &ldquo;{companionQuotes[quoteIdx % companionQuotes.length]}&rdquo;
             </p>
 
@@ -382,7 +382,7 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
                       }} title="Pet your companion (+0.5 bond XP, max 2x/day)">
                         🐾 Pet
                       </button>
-                      <span className="text-xs" style={{ color: "rgba(255,107,157,0.5)", fontSize: 10, whiteSpace: "nowrap" }}>
+                      <span className="text-xs" style={{ color: "rgba(255,107,157,0.5)", whiteSpace: "nowrap" }}>
                         {petsToday !== null ? petsToday : (user?.companion?.petDateStr === new Date().toISOString().slice(0, 10) ? (user?.companion?.petCountToday ?? 0) : 0)}/2 belly rubs today
                       </span>
 
@@ -403,9 +403,9 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
                 marginBottom: 10,
               }}>
                 <div className="flex items-center justify-between mb-1.5">
-                  <span className="text-xs font-bold uppercase tracking-widest" style={{ color: `rgba(${cColor.accentRgb},0.6)`, fontSize: 10 }}>Ultimate</span>
+                  <span className="text-xs font-bold uppercase tracking-widest" style={{ color: `rgba(${cColor.accentRgb},0.6)` }}>Ultimate</span>
                   {!ultimateReady && (
-                    <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.2)", fontSize: 10 }}>
+                    <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.2)" }}>
                       Cooldown: {ultimateDaysLeft}d
                     </span>
                   )}
@@ -501,11 +501,11 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
                         </div>
                         <div className="px-3 pb-2.5 flex items-center justify-between gap-2">
                           <div className="flex items-center gap-2">
-                            <span className="font-mono" style={{ fontSize: "0.7rem", color: "rgba(255,107,157,0.6)" }}>{q.rewards?.xp ?? 0} XP</span>
-                            <span className="font-mono" style={{ fontSize: "0.7rem", color: "rgba(251,191,36,0.75)" }}>{q.rewards?.gold ?? 0}g</span>
+                            <span className="font-mono" style={{ fontSize: "0.75rem", color: "rgba(255,107,157,0.6)" }}>{q.rewards?.xp ?? 0} XP</span>
+                            <span className="font-mono" style={{ fontSize: "0.75rem", color: "rgba(251,191,36,0.75)" }}>{q.rewards?.gold ?? 0}g</span>
                           </div>
                           <div className="flex items-center gap-1.5">
-                            <span className="text-xs uppercase font-mono" style={{ color: "rgba(255,107,157,0.5)", fontSize: 9, letterSpacing: "0.06em" }}>{rarity}</span>
+                            <span className="text-xs uppercase font-mono" style={{ color: "rgba(255,107,157,0.5)", letterSpacing: "0.06em" }}>{rarity}</span>
                             {apiKey && (
                               <button
                                 onClick={() => handleCompleteQuest(q.id, q.title)}
@@ -518,7 +518,7 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
                                   color: done || completingSuccessId === q.id ? "#4ade80" : "#a78bfa",
                                   cursor: completingId ? "wait" : "pointer",
                                   display: "flex", alignItems: "center", justifyContent: "center",
-                                  fontSize: "0.7rem", fontWeight: 700, flexShrink: 0,
+                                  fontSize: "0.75rem", fontWeight: 700, flexShrink: 0,
                                   transition: "all 0.2s",
                                   boxShadow: completingSuccessId === q.id ? "0 0 14px rgba(34,197,94,0.6)" : "0 0 6px rgba(255,107,157,0.1)",
                                 }}
