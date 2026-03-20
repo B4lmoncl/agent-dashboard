@@ -21,7 +21,7 @@ export interface RewardCelebrationData {
   /** Extra flavor text override */
   flavor?: string;
   /** Achievement earned */
-  achievement?: { name: string; icon: string; desc: string } | null;
+  achievement?: { id?: string; name: string; icon: string; desc: string } | null;
   /** Blood pact completion bonus */
   pactBonus?: { xp: number; gold: number } | null;
   /** Currency rewards (daily bonus) */
@@ -133,9 +133,11 @@ interface RewardCelebrationProps {
   onClose: () => void;
   /** Called when user clicks "Nehmen" — use to fire toasts for loot/achievements */
   onCollect?: (data: RewardCelebrationData) => void;
+  /** Called when user clicks an achievement to navigate to Hall of Honors */
+  onAchievementClick?: (achievementId: string) => void;
 }
 
-export function RewardCelebration({ data, onClose, onCollect }: RewardCelebrationProps) {
+export function RewardCelebration({ data, onClose, onCollect, onAchievementClick }: RewardCelebrationProps) {
   const [flavorIdx] = useState(() => Math.floor(Math.random() * 5));
 
   // Play reward sound on mount
@@ -304,14 +306,27 @@ export function RewardCelebration({ data, onClose, onCollect }: RewardCelebratio
 
         {/* Achievement */}
         {data.achievement && (
-          <div className="reward-pill mb-5" style={{
-            background: "rgba(255,215,0,0.08)",
-            border: "1px solid rgba(255,215,0,0.25)",
-          }}>
+          <div
+            className="reward-pill mb-5"
+            style={{
+              background: "rgba(255,215,0,0.08)",
+              border: "1px solid rgba(255,215,0,0.25)",
+              cursor: onAchievementClick && data.achievement.id ? "pointer" : undefined,
+            }}
+            onClick={(e) => {
+              if (onAchievementClick && data.achievement?.id) {
+                e.stopPropagation();
+                onAchievementClick(data.achievement.id);
+                if (onCollect) onCollect(data);
+                onClose();
+              }
+            }}
+          >
             {data.achievement.icon && data.achievement.icon.startsWith("/")
-              ? <img src={data.achievement.icon} alt="" width={20} height={20} className="mr-1 img-render-auto" style={{ imageRendering: "smooth" }} />
+              ? <img src={data.achievement.icon} alt="" width={20} height={20} className="mr-1 img-render-auto" style={{ imageRendering: "auto" }} />
               : <span className="text-sm mr-1">{data.achievement.icon}</span>}
             <span className="text-sm font-semibold" style={{ color: "#FFD700" }}>{data.achievement.name}</span>
+            {onAchievementClick && data.achievement.id && <span className="text-xs ml-1" style={{ color: "rgba(255,215,0,0.5)" }}>→</span>}
           </div>
         )}
 

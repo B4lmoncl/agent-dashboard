@@ -192,7 +192,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                   <li style={{ color: "rgba(255,255,255,0.4)" }}><span style={{ color: "#9ca3af" }}>Fokus</span> — Flacher XP-Bonus pro Quest (bis +50)</li>
                   <li style={{ color: "rgba(255,255,255,0.4)" }}><span style={{ color: "#9ca3af" }}>Vitalität</span> — +1% Streak-Recovery-Chance pro Punkt</li>
                   <li style={{ color: "rgba(255,255,255,0.4)" }}><span style={{ color: "#9ca3af" }}>Charisma</span> — +5% Bond-XP pro Companion-Quest</li>
-                  <li style={{ color: "rgba(255,255,255,0.4)" }}><span style={{ color: "#9ca3af" }}>Tempo</span> — +2% Forge-Temp-Recovery pro Quest</li>
+                  <li style={{ color: "rgba(255,255,255,0.4)" }}><span style={{ color: "#9ca3af" }}>Tempo</span> — +1% Forge-Temp-Recovery pro Punkt</li>
                 </ul>
               </GuideSection>
               <GuideSection title="Set-Boni & Legendary Effects">

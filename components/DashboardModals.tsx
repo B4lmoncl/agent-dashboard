@@ -42,13 +42,13 @@ export default function DashboardModals({
   inProgressCount,
 }: DashboardModalsProps) {
   const CURRENCY_HOW: Record<string, string> = {
-    gold: "Schließe Quests ab, kaufe Gear und Shop-Items, oder investiere in Crafting-Rezepte. Beeinflusst durch Streak, Forge-Temperatur, Weisheit, Companions und Gear. Tauschbar gegen Runensplitter und Gildentaler.",
-    stardust: "Fällt bei Level-Ups und an Streak-Meilensteinen vom Himmel. Verwendbar für Gacha-Banner und tauschbar gegen Runensplitter.",
+    gold: "Schließe Quests ab, kaufe Gear und Shop-Items, oder investiere in Crafting-Rezepte. Beeinflusst durch Streak, Forge-Temperatur, Weisheit und Legendary-Gear. Tauschbar gegen Runensplitter und Gildentaler.",
+    stardust: "Fällt bei Level-Ups vom Himmel. Verwendbar für Gacha-Banner und tauschbar gegen Runensplitter.",
     essenz: "Entsteht durch täglichen Login-Bonus, Streak-Meilensteine und das Zerlegen von Items in der Schmiedekunst. Gebraucht für Professionswechsel und Crafting-Rezepte.",
     runensplitter: "Belohnung für jede abgeschlossene Quest und den täglichen Login. Streak-Meilensteine und Gacha-Duplikate geben extra. Die Hauptwährung für Gacha-Pulls. Tauschbar mit Gold.",
     gildentaler: "Verdient durch soziale und Co-op Quests — die Währung des Zusammenhalts. Einlösbar für Gilden-Items im Shop. Tauschbar mit Gold.",
     mondstaub: "Nur durch extreme Beständigkeit erhältlich — lange Streak-Meilensteine und seltene Events. Reserviert für limitierte Belohnungen. Nicht tauschbar.",
-    sternentaler: "Exklusiv aus wöchentlichen Herausforderungen. Einlösbar für exklusive Wochenbelohnungen. Nicht tauschbar — nur für aktive Challenge-Spieler.",
+    sternentaler: "Exklusiv aus wöchentlichen Herausforderungen. Einlösbar für exklusive Wochenbelohnungen. Nicht tauschbar.",
   };
 
   return (
@@ -81,7 +81,7 @@ export default function DashboardModals({
                         style={{ background: currencyExpanded === c.key ? `${c.color}12` : "rgba(255,255,255,0.03)", border: `1px solid ${currencyExpanded === c.key ? c.color + "30" : "rgba(255,255,255,0.07)"}` }}
                         onClick={() => setCurrencyExpanded(currencyExpanded === c.key ? null : c.key)}
                       >
-                        <img src={c.iconSrc} alt="" width={24} height={24} className={c.key === "stardust" ? "premium-stardust" : c.key === "runensplitter" ? "premium-rune-shards" : ""} style={{ imageRendering: "smooth" }} onError={(e) => { e.currentTarget.style.display = "none"; }} />
+                        <img src={c.iconSrc} alt="" width={24} height={24} className={c.key === "stardust" ? "premium-stardust" : c.key === "runensplitter" ? "premium-rune-shards" : ""} style={{ imageRendering: "auto" }} onError={(e) => { e.currentTarget.style.display = "none"; }} />
                         <div className="flex-1 min-w-0">
                           <p className="text-xs font-semibold" style={{ color: c.color }}>{c.name}</p>
                           <p className="text-xs text-w30">{c.desc}</p>

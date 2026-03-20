@@ -298,7 +298,7 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
               <img
                 src={portraitSrc}
                 alt={companionName}
-                style={{ width: 128, height: 160, imageRendering: "smooth", borderRadius: 4, border: `2px solid ${cColor.border}`, boxShadow: companionGlow ? `0 0 24px rgba(${cColor.accentRgb},0.6), 0 0 48px rgba(${cColor.accentRgb},0.3)` : `0 0 12px rgba(${cColor.accentRgb},0.15)`, flexShrink: 0, transition: "box-shadow 0.5s ease" }}
+                style={{ width: 128, height: 160, imageRendering: "auto", borderRadius: 4, border: `2px solid ${cColor.border}`, boxShadow: companionGlow ? `0 0 24px rgba(${cColor.accentRgb},0.6), 0 0 48px rgba(${cColor.accentRgb},0.3)` : `0 0 12px rgba(${cColor.accentRgb},0.15)`, flexShrink: 0, transition: "box-shadow 0.5s ease" }}
               />
             ) : (
               <div style={{
@@ -569,7 +569,7 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
                       borderRadius: 6,
                     }}>
                       {meta?.icon && (
-                        <img src={meta.icon} alt={meta.name} style={{ width: 48, height: 48, imageRendering: "smooth" }} />
+                        <img src={meta.icon} alt={meta.name} style={{ width: 48, height: 48, imageRendering: "auto" }} />
                       )}
                       <span className="text-xs font-semibold text-center" style={{ color: "#c4b5fd", lineHeight: 1.2 }}>{meta?.name ?? c.name}</span>
                       <span className="text-xs font-mono" style={{ color: "rgba(167,139,250,0.4)" }}>+2% XP</span>

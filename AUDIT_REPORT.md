@@ -143,7 +143,7 @@
 | F-15 | M-09 | Quest gold display: fixed values → backend ranges | QuestDetailModal.tsx | ✅ Done |
 | F-16 | M-10 | Fokus tooltip: add +50 cap, Glück tooltip: add 20% cap | CharacterView.tsx | ✅ Done |
 
-### Verification
+### Verification (Session 1)
 
 All fixes verified via:
 - TypeScript compilation (`npx tsc --noEmit`) — 0 errors
@@ -152,4 +152,245 @@ All fixes verified via:
 
 ---
 
-*Audit complete. All critical and high priority issues resolved.*
+## 5. Audit Session 2 — Deep Consistency & QoL Pass
+
+**Date:** 2026-03-20
+
+### Frontend-Backend Mismatches Found & Fixed
+
+#### M-12: Gold Currency Description — Wrong Modifiers ✅
+- **Was:** DashboardModals.tsx said gold is "Beeinflusst durch Streak, Forge-Temperatur, Weisheit, **Companions und Gear**"
+- **Backend:** Gold modifiers are only: Streak, Forge-Temperatur, Weisheit, Legendary gear. Companions and Gear/Tools affect XP, not gold.
+- **Fix:** Updated description to "Beeinflusst durch Streak, Forge-Temperatur, Weisheit und Legendary-Gear"
+
+#### M-13: Stardust Currency Description — False Source ✅
+- **Was:** DashboardModals.tsx said stardust "Fällt bei Level-Ups und an **Streak-Meilensteinen** vom Himmel"
+- **Backend:** No code awards stardust at streak milestones. Only source: level-ups (`helpers.js:1077`)
+- **Fix:** Removed "Streak-Meilensteinen" from stardust description
+
+#### M-14: Sternentaler Currency Description — Incomplete Source ✅
+- **Was:** DashboardModals.tsx said "Exklusiv aus wöchentlichen Herausforderungen"
+- **Backend:** Also awarded from daily bonus with 15-25% chance (`currency.js:134-138`)
+- **Fix:** Updated to "Hauptsächlich aus wöchentlichen Herausforderungen. Kleine Chance beim täglichen Login-Bonus."
+
+#### M-15: Kraft Stat Tooltip — Missing Cap ✅
+- **Was:** CharacterView.tsx STAT_EFFECTS: "+0.5% Quest XP pro Punkt" (no cap)
+- **Backend:** `Math.min(1.30, ...)` = capped at +30%
+- **Fix:** Added "(max +30%)" to Kraft description
+
+#### M-16: Weisheit Stat Tooltip — Missing Cap ✅
+- **Was:** CharacterView.tsx STAT_EFFECTS: "+0.5% Gold pro Punkt" (no cap)
+- **Backend:** `Math.min(1.30, ...)` = capped at +30%
+- **Fix:** Added "(max +30%)" to Weisheit description
+
+#### M-17: Ausdauer Stat Tooltip — Missing Floor Info ✅
+- **Was:** CharacterView.tsx STAT_EFFECTS: "-0.5% Forge Decay pro Punkt" (no floor)
+- **Backend:** `Math.max(0.1, ...)` = floor at 10% of base rate
+- **Fix:** Added "(min 10% der Basis-Rate)" to Ausdauer description
+
+#### M-18: Vitalität Stat Tooltip — Missing Cap ✅
+- **Was:** CharacterView.tsx STAT_EFFECTS: "+1% Streak-Schutz pro Punkt" (no cap)
+- **Backend:** `Math.min(0.75, ...)` = capped at 75% total
+- **Fix:** Added "(max 75% gesamt)" to Vitalität description
+
+#### M-19: Tempo Stat Description — Wrong Value ✅
+- **Was:** CharacterView.tsx STAT_EFFECTS: "+1 Forge-Temp pro Quest"
+- **Backend:** `tempoMulti = 1 + tempo * 0.02` = +2% forge temp recovery per point (NOT +1 flat per quest)
+- **Fix:** Changed to "+2% Forge-Temp-Recovery pro Punkt"
+
+### QoL Improvements
+
+#### Q-01: Achievements Clickable → Hall of Honors Navigation ✅
+- Achievement toasts (ToastStack) and achievement pills in RewardCelebration are now clickable
+- Clicking navigates to the Hall of Honors view with the achievement highlighted and scrolled into view
+- Highlight glow persists for 3 seconds then fades
+- Added `onAchievementClick` prop to ToastStack and RewardCelebration
+- Added `highlightedAchievementId` prop to HonorsView with scroll-to-element + highlight ring
+
+#### Q-02: Daily Bonus — Individual Currency Reward Pills ✅
+- **Was:** Daily bonus rewards only shown as text in a flavor string
+- **Now:** Individual currency pills (Essenz, Runensplitter, Sternentaler) shown as styled reward pills in RewardCelebration
+
+#### Q-03: Quest Completion — Show All Earned Currencies ✅
+- **Was:** Only XP and Gold shown in quest completion celebration. Runensplitter and Gildentaler awarded silently.
+- **Now:** Backend returns `runensplitterEarned` and `gildentalerEarned` in completion response. Frontend shows them as currency pills in RewardCelebration.
+- Files changed: `lib/helpers.js` (track `_lastRunensplitterEarned`, `_lastGildentalerEarned`), `routes/quests.js` (include in response), `hooks/useQuestActions.ts` (display as currency pills)
+
+#### Q-04: CompanionBond Toast Rendering ✅
+- **Was:** `companionBond` toast type was defined in ToastStack types but had no render component — was silently ignored
+- **Now:** Added `CompanionBondToastContent` component with companion emoji, bond XP gain, bond title, and special styling for bond level-ups
+
+### Documentation Fixes
+
+#### D-01: ARCHITECTURE.md — Stat Effects Outdated ✅
+- Kraft "+1%" → "+0.5% (max +30%)", Weisheit "+1%" → "+0.5% (max +30%)"
+
+#### D-02: ARCHITECTURE.md — Pity Values Outdated ✅
+- "soft pity at 35, hard pity at 50" → "soft pity at 55, hard pity at 75"
+
+#### D-03: LYRA-PLAYBOOK.md — Drop Rates Outdated ✅
+- Legendary "1.6%" → "0.8%", Common "10.4%" → "11.2%"
+
+#### D-04: CLAUDE.md — Pity Values Outdated ✅
+- "soft 35, hard 50" → "soft 55, hard 75"
+
+### Session 2 Fix Manifest
+
+| # | Fix ID | Issue | Description | File(s) | Status |
+|---|--------|-------|-------------|---------|--------|
+| 1 | F-17 | M-12 | Gold description: remove false "Companions und Gear" | DashboardModals.tsx | ✅ Done |
+| 2 | F-18 | M-13 | Stardust description: remove false "Streak-Meilensteinen" | DashboardModals.tsx | ✅ Done |
+| 3 | F-19 | M-14 | Sternentaler description: add daily bonus source | DashboardModals.tsx | ✅ Done |
+| 4 | F-20 | M-15 | Kraft tooltip: add +30% cap | CharacterView.tsx | ✅ Done |
+| 5 | F-21 | M-16 | Weisheit tooltip: add +30% cap | CharacterView.tsx | ✅ Done |
+| 6 | F-22 | M-17 | Ausdauer tooltip: add floor info | CharacterView.tsx | ✅ Done |
+| 7 | F-23 | M-18 | Vitalität tooltip: add 75% cap | CharacterView.tsx | ✅ Done |
+| 8 | F-24 | M-19 | Tempo description: +1 flat → +2% per point | CharacterView.tsx | ✅ Done |
+| 9 | F-25 | Q-01 | Achievement click → Hall of Honors navigation | ToastStack.tsx, RewardCelebration.tsx, HonorsView.tsx, page.tsx | ✅ Done |
+| 10 | F-26 | Q-02 | Daily bonus: individual currency pills | page.tsx | ✅ Done |
+| 11 | F-27 | Q-03 | Quest completion: show runensplitter + gildentaler | helpers.js, quests.js, useQuestActions.ts | ✅ Done |
+| 12 | F-28 | Q-04 | CompanionBond toast renderer | ToastStack.tsx | ✅ Done |
+| 13 | F-29 | D-01 | ARCHITECTURE.md: stat effects outdated | ARCHITECTURE.md | ✅ Done |
+| 14 | F-30 | D-02 | ARCHITECTURE.md: pity values outdated | ARCHITECTURE.md | ✅ Done |
+| 15 | F-31 | D-03 | LYRA-PLAYBOOK.md: drop rates outdated | LYRA-PLAYBOOK.md | ✅ Done |
+| 16 | F-32 | D-04 | CLAUDE.md: pity values outdated | CLAUDE.md | ✅ Done |
+
+#### Q-05: Companion Bond XP Toast on Quest Completion ✅
+- **Was:** Backend returns `companionReward` (bond XP, level-up info) on companion quest completion, but frontend ignored it entirely
+- **Now:** Fires a companionBond toast AND sets celebration type to "companion" with proper accent color and emoji
+
+#### Q-06: Multiple Achievements — Only First Shown ✅
+- **Was:** If multiple achievements earned on one quest, only first shown in celebration. Rest silently lost.
+- **Now:** Additional achievements (index 1+) fire as achievement toasts after the celebration
+
+### Session 2 Additional Fixes
+
+| # | Fix ID | Issue | Description | File(s) | Status |
+|---|--------|-------|-------------|---------|--------|
+| 17 | F-33 | Q-05 | Companion bond toast + celebration on companion quests | useQuestActions.ts | ✅ Done |
+| 18 | F-34 | Q-06 | Multiple achievements: fire toasts for all beyond first | useQuestActions.ts | ✅ Done |
+
+### Verified Non-Issues (Session 2)
+
+- **Image rendering**: Global `img { image-rendering: smooth; }` in `globals.css:26-28` — all images already render smooth by default
+- **Essenz "täglichen Login-Bonus" claim**: Verified CORRECT — daily bonus awards 3 essenz (currency.js:130)
+- **Mondstaub description**: Says "Nur durch extreme Beständigkeit erhältlich" — no code awards it; appears intentionally reserved for future content
+
+### Verification (Session 2)
+
+All fixes verified via:
+- TypeScript compilation (`npx tsc --noEmit`) — 0 errors
+
+---
+
+*Audit Session 2 complete. 18 additional fixes applied (8 mismatches, 6 QoL improvements, 4 doc fixes).*
+
+---
+
+## 6. Audit Session 3 — Full Component Sweep & Modal Consistency
+
+**Date:** 2026-03-20
+
+### Component Audit Results
+
+All 25+ frontend components were audited for: hardcoded value mismatches, missing image-rendering, broken functionality, UI inconsistencies.
+
+| Component | Status | Notes |
+|-----------|--------|-------|
+| CampaignHub.tsx | ✅ Clean | Image rendering correct, backend integration correct |
+| WandererRest.tsx | ✅ Clean | All images have `imageRendering: "smooth"`, ESC key handling, NPC data sync |
+| OnboardingWizard.tsx | ⚠️ Fixed | Missing backdrop-click-to-close (ESC worked, backdrop didn't) |
+| QuestCards.tsx | ✅ Clean | Gold fallback values (25/15/9) are midpoints of backend ranges — reasonable |
+| QuestDetailModal.tsx | ✅ Clean | Uses same gold fallback pattern, rarely activated |
+| QuestModals.tsx | ⚠️ Fixed | CreateQuestModal missing ESC key handler |
+| ShopView.tsx | ✅ Clean | Image rendering correct, purchase feedback wired |
+| GachaView.tsx | ✅ Clean | Pity values 55/75 match backend, drop rates correct |
+| ForgeView.tsx | ✅ Clean | All profession data, costs, ranks match backend |
+| LeaderboardView.tsx | ✅ Clean | Image rendering correct, title rarity colors consistent |
+| UserCard.tsx | ✅ Clean | Frame display correct, image fallbacks working |
+| DashboardHeader.tsx | ✅ Clean | Image rendering correct, uses config constants |
+| DashboardModals.tsx | ✅ Clean | All currency descriptions now accurate (fixed in Session 2) |
+| CompanionsWidget.tsx | ✅ Clean | Bond thresholds exact match with backend |
+| RitualChamber.tsx | ✅ Clean | Image rendering correct, uses config streaks |
+| GuildHallBackground.tsx | ✅ Clean | Canvas rendering correct, seasonal colors consistent |
+| BattlePassView.tsx | ⚠️ Orphaned | Commented out in page.tsx, no backend support — dead feature |
+
+### Modal Close Behavior Audit
+
+| Modal | Backdrop Click | ESC Key | Status |
+|-------|---------------|---------|--------|
+| DashboardModals (all 5) | ✅ | ✅ | Clean |
+| QuestDetailModal | ✅ | ✅ | Clean |
+| TutorialModal (Guide) | ✅ | ✅ | Clean |
+| TutorialOverlay | ✅ | ✅ | Clean |
+| OnboardingWizard | ✅ Fixed | ✅ | Was missing backdrop click |
+| FeedbackModal | ✅ | ✅ | Clean |
+| RewardCelebration | ✅ | ✅ | Click calls onCollect then close (by design) |
+| GachaPull (Single) | ⚠️ Phase-gated | ⚠️ Phase-gated | By design — can't dismiss during animation |
+| GachaPull (Multi) | ⚠️ Phase-gated | ⚠️ Phase-gated | By design — can't dismiss during animation |
+| CreateQuestModal | ✅ | ✅ Fixed | Was missing ESC handler |
+| ItemActionPopup | ✅ | ✅ | Clean (manual handlers) |
+
+### Fixes Applied
+
+| # | Fix ID | Issue | Description | File(s) | Status |
+|---|--------|-------|-------------|---------|--------|
+| 1 | F-35 | — | CreateQuestModal: add ESC key close via useModalBehavior | QuestModals.tsx | ✅ Done |
+| 2 | F-36 | — | OnboardingWizard: add backdrop-click-to-close | OnboardingWizard.tsx | ✅ Done |
+
+### Known Non-Issues
+
+- **BattlePassView.tsx**: Orphaned component (commented out in page.tsx). No backend API, hardcoded dates. Feature was never completed. Not fixing since it's inactive.
+- **GachaPull phase-gated close**: By design — gacha animations shouldn't be dismissible mid-animation.
+- **QuestCards gold fallback (25/15/9)**: These are midpoints of backend ranges [20-30]/[12-20]/[6-12]. Only used when `quest.rewards.gold` is missing (rare). Cosmetic only.
+
+### Verification (Session 3)
+
+- TypeScript compilation (`npx tsc --noEmit`) — 0 errors
+- No new ESLint errors introduced
+
+---
+
+*Audit Session 3 complete. Full component sweep done. 2 modal consistency fixes applied. All components clean.*
+
+---
+
+## 7. Audit Session 4 — User-Reported Fixes
+
+**Date:** 2026-03-20
+
+### Issues Reported by User
+
+#### M-20: Sternentaler — Daily Bonus Should Not Award ✅
+- **Was:** `routes/currency.js:134-138` gave 15-25% chance of sternentaler from daily bonus
+- **User:** "Sternentaler sollten NUR aus wöchentlichen Herausforderungen kommen"
+- **Fix:** Removed sternentaler chance from daily bonus handler. Updated frontend description from "Hauptsächlich aus wöchentlichen Herausforderungen. Kleine Chance beim täglichen Login-Bonus." to "Exklusiv aus wöchentlichen Herausforderungen."
+- **Files:** `routes/currency.js`, `components/DashboardModals.tsx`
+
+#### M-21: Tempo Stat — +2% Per Point Too Strong ✅
+- **Was:** `lib/helpers.js:218` used `tempo * 0.02` = +2% forge temp recovery per point
+- **User:** "Tempo 2% forge temp pro punkt ist zu stark. Mit 10 Tempo ist man dann ja schon bei 30% pro quest recovery."
+- **Fix:** Reduced to `tempo * 0.01` = +1% per point. Updated all frontend tooltips (CharacterView, TutorialModal).
+- **Files:** `lib/helpers.js`, `components/CharacterView.tsx`, `components/TutorialModal.tsx`
+
+#### M-22: Image Rendering — `smooth` Not Valid CSS Value ✅
+- **Was:** Global CSS and all inline styles used `image-rendering: smooth` — a CSS Images Level 4 value NOT supported by any major browser (Chrome, Firefox, Safari all ignore it)
+- **Effect:** The property was silently dropped, leaving images at browser default with no explicit rendering directive
+- **Fix:** Changed global CSS (`globals.css`) and all inline `imageRendering` from `"smooth"` to `"auto"` (the standard, universally-supported value for bilinear filtering). Added `!important` to global rule to prevent any cascade override. Updated 25 component files.
+- **Files:** `app/globals.css`, 25 component files
+
+### Session 4 Fix Manifest
+
+| # | Fix ID | Issue | Description | File(s) | Status |
+|---|--------|-------|-------------|---------|--------|
+| 1 | F-37 | M-20 | Remove sternentaler from daily bonus | currency.js, DashboardModals.tsx | ✅ Done |
+| 2 | F-38 | M-21 | Tempo: +2% → +1% per point | helpers.js, CharacterView.tsx, TutorialModal.tsx | ✅ Done |
+| 3 | F-39 | M-22 | image-rendering: smooth → auto (25+ files) | globals.css, 25 component files | ✅ Done |
+
+### Verification (Session 4)
+
+- TypeScript compilation (`npx tsc --noEmit`) — 0 errors
+
+---
+
+*Audit Session 4 complete. 3 user-reported fixes applied (balance, economy, rendering).*

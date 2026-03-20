@@ -738,7 +738,7 @@ export default function GachaView({ onRefresh, onPullComplete }: {
     return (
       <div className="space-y-4">
         <div className="text-center py-16 space-y-3">
-          <img src="/images/icons/vault-of-fate.png" alt="" style={{ width: 96, height: 96, imageRendering: "smooth", margin: "0 auto", display: "block", filter: "drop-shadow(0 0 12px rgba(167,139,250,0.6)) drop-shadow(0 0 30px rgba(167,139,250,0.3))" }} />
+          <img src="/images/icons/vault-of-fate.png" alt="" style={{ width: 96, height: 96, imageRendering: "auto", margin: "0 auto", display: "block", filter: "drop-shadow(0 0 12px rgba(167,139,250,0.6)) drop-shadow(0 0 30px rgba(167,139,250,0.3))" }} />
           <p className="text-base font-semibold" style={{ color: "rgba(255,255,255,0.5)" }}>The Vault of Fate</p>
           <p className="text-sm italic max-w-md mx-auto" style={{ color: "rgba(255,255,255,0.25)" }}>
             A circular chamber with a single, floating astrolabe at its center. Sign in to step before the Wheel of Stars.
@@ -801,7 +801,7 @@ export default function GachaView({ onRefresh, onPullComplete }: {
         <div className="flex items-center gap-5 mb-3">
           <div className="flex-shrink-0" style={{ animation: "vault-fate-glow 5s ease-in-out infinite alternate" }}>
             <img src="/images/icons/vault-of-fate.png" alt="" style={{
-              width: 128, height: 128, imageRendering: "smooth", display: "block",
+              width: 128, height: 128, imageRendering: "auto", display: "block",
               filter: "drop-shadow(0 0 12px rgba(167,139,250,0.5)) drop-shadow(0 0 30px rgba(167,139,250,0.25))",
             }} />
           </div>
@@ -857,7 +857,7 @@ export default function GachaView({ onRefresh, onPullComplete }: {
                 const cfg = RARITY_CONFIG[h.rarity] || RARITY_CONFIG.common;
                 return (
                   <div key={i} className="flex items-center gap-3 rounded-xl px-3 py-2.5" style={{ background: cfg.bg, border: `1px solid ${cfg.border}` }}>
-                    {(h as any).icon && (h as any).icon.startsWith("/") ? <img src={(h as any).icon} alt="" width={24} height={24} style={{ imageRendering: "smooth" }} /> : <span className="text-base">{h.emoji || "?"}</span>}
+                    {(h as any).icon && (h as any).icon.startsWith("/") ? <img src={(h as any).icon} alt="" width={24} height={24} style={{ imageRendering: "auto" }} /> : <span className="text-base">{h.emoji || "?"}</span>}
                     <span className="text-xs font-semibold flex-1" style={{ color: cfg.color }}>{h.name}</span>
                     <span className="text-[9px] uppercase font-medium" style={{ color: "rgba(255,255,255,0.35)" }}>{cfg.label}</span>
                     {h.isDuplicate && <span className="text-[9px] px-1.5 py-0.5 rounded" style={{ color: "#a78bfa", background: "rgba(167,139,250,0.15)" }}>DUP</span>}
@@ -900,7 +900,7 @@ export default function GachaView({ onRefresh, onPullComplete }: {
                         >
                           {hasGlow && <div className="absolute inset-0 rounded-xl pointer-events-none" style={{ boxShadow: `inset 0 0 10px ${cfg.glow}, 0 0 12px ${cfg.glow}`, animation: "pool-glow-breathe 3.5s ease-in-out infinite" }} />}
                           {(item as any).icon && (item as any).icon.startsWith("/")
-                            ? <img src={(item as any).icon} alt="" width={52} height={52} style={{ imageRendering: "smooth", filter: `drop-shadow(0 0 8px ${cfg.glow})`, position: "relative", zIndex: 1 }} />
+                            ? <img src={(item as any).icon} alt="" width={52} height={52} style={{ imageRendering: "auto", filter: `drop-shadow(0 0 8px ${cfg.glow})`, position: "relative", zIndex: 1 }} />
                             : item.emoji
                               ? <span className="text-4xl relative z-10">{item.emoji}</span>
                               : <span className="text-sm font-medium relative z-10" style={{ color: "rgba(255,255,255,0.4)" }}>{item.name?.slice(0, 2)}</span>

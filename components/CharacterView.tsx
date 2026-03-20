@@ -198,7 +198,7 @@ function PixelCharacter({ appearance = {}, equipment = {}, companion = null }: P
       <canvas
         ref={canvasRef}
         style={{
-          imageRendering: 'smooth',
+          imageRendering: 'auto',
           filter: 'drop-shadow(0 4px 16px rgba(0,0,0,0.5))',
         }}
       />
@@ -208,9 +208,9 @@ function PixelCharacter({ appearance = {}, equipment = {}, companion = null }: P
           style={{ background: "rgba(0,0,0,0.55)", border: "1px solid rgba(255,255,255,0.15)" }}
         >
           {companion.type && ["dragon","owl","phoenix","wolf","fox","bear"].includes(companion.type)
-            ? <img src={`/images/portraits/companion-${companion.type}.png`} alt={companion.name} width={28} height={28} style={{ imageRendering: "smooth", borderRadius: 3, objectFit: "cover" }} />
+            ? <img src={`/images/portraits/companion-${companion.type}.png`} alt={companion.name} width={28} height={28} style={{ imageRendering: "auto", borderRadius: 3, objectFit: "cover" }} />
             : companion.type === "cat" && companion.name?.toLowerCase() === "dobbie"
-              ? <img src="/images/portraits/companion-dobbie.png" alt={companion.name} width={28} height={28} style={{ imageRendering: "smooth", borderRadius: 3, objectFit: "cover" }} />
+              ? <img src="/images/portraits/companion-dobbie.png" alt={companion.name} width={28} height={28} style={{ imageRendering: "auto", borderRadius: 3, objectFit: "cover" }} />
               : <span className="text-xl">{companion.emoji}</span>
           }
           <span className="text-xs font-semibold" style={{ color: "#e8e8e8" }}>{companion.name}</span>
@@ -355,14 +355,14 @@ const BOND_LEVELS = [
 ];
 
 const STAT_EFFECTS: Record<string, string> = {
-  "Kraft":     "+0.5% Quest XP pro Punkt",
-  "Weisheit":  "+0.5% Gold pro Punkt",
-  "Ausdauer":  "-0.5% Forge Decay pro Punkt",
+  "Kraft":     "+0.5% Quest XP pro Punkt (max +30%)",
+  "Weisheit":  "+0.5% Gold pro Punkt (max +30%)",
+  "Ausdauer":  "-0.5% Forge Decay pro Punkt (min 10% der Basis-Rate)",
   "Glück":     "+0.5% Drop Chance pro Punkt (max 20%)",
   "Fokus":     "+1 Flat Bonus-XP pro Punkt (max +50)",
-  "Vitalität": "+1% Streak-Schutz pro Punkt",
+  "Vitalität": "+1% Streak-Schutz pro Punkt (max 75% gesamt)",
   "Charisma":  "+5% Companion Bond-XP pro Punkt",
-  "Tempo":     "+1 Forge-Temp pro Quest",
+  "Tempo":     "+1% Forge-Temp-Recovery pro Punkt",
 };
 
 const GRID_COLS = 5;
@@ -435,7 +435,7 @@ function InventoryTooltip({ item, mousePosRef }: { item: InventoryItem; mousePos
         <div className="flex items-center gap-2.5">
           <div className="flex-shrink-0 flex items-center justify-center" style={{ width: 160, height: 160, background: "rgba(255,255,255,0.04)", borderRadius: 8, border: `1px solid ${rarityColor}40` }}>
             {item.icon
-              ? <img src={item.icon} alt={item.name} width={148} height={148} style={{ imageRendering: "smooth" }} />
+              ? <img src={item.icon} alt={item.name} width={148} height={148} style={{ imageRendering: "auto" }} />
               : <span className="text-6xl" style={{ color: rarityColor }}>◆</span>
             }
           </div>
@@ -574,7 +574,7 @@ function InventorySlot({ item, level, idx, onItemClick, onDragStart, onDragOver,
         }}
       >
         {item.icon
-          ? <img src={item.icon} alt={item.name} draggable={false} style={{ width: 44, height: 44, imageRendering: "smooth", objectFit: "contain" }} />
+          ? <img src={item.icon} alt={item.name} draggable={false} style={{ width: 44, height: 44, imageRendering: "auto", objectFit: "contain" }} />
           : <span style={{ fontSize: 14, color: RARITY_COLORS[item.rarity] || "#9ca3af", lineHeight: 1 }}>◆</span>
         }
         {/* Level requirement indicator */}
@@ -620,12 +620,12 @@ function GearSlotRow({ slot, iconSrc, label, item, onUnequip, unequipping }: {
         onMouseLeave={() => setHovered(false)}
       >
         <span className="flex items-center justify-center" style={{ width: 40, height: 40, flexShrink: 0 }}>
-          {iconSrc ? <img src={iconSrc} alt={label} width={40} height={40} style={{ imageRendering: "smooth" }} /> : null}
+          {iconSrc ? <img src={iconSrc} alt={label} width={40} height={40} style={{ imageRendering: "auto" }} /> : null}
         </span>
         <div className="flex-1 min-w-0">
           <p className="text-xs font-medium truncate" style={{ color: item ? "#e8e8e8" : "rgba(255,255,255,0.3)" }}>
             {item
-              ? <span className="inline-flex items-center gap-1">{item.icon ? <img src={item.icon} alt="" width={36} height={36} style={{ imageRendering: "smooth" }} /> : <span style={{ color: RARITY_COLORS[item.rarity] || "#9ca3af" }}>◆</span>} {item.name}</span>
+              ? <span className="inline-flex items-center gap-1">{item.icon ? <img src={item.icon} alt="" width={36} height={36} style={{ imageRendering: "auto" }} /> : <span style={{ color: RARITY_COLORS[item.rarity] || "#9ca3af" }}>◆</span>} {item.name}</span>
               : <span style={{ color: "rgba(255,255,255,0.2)" }}>Leer</span>}
           </p>
           <p className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>{label}</p>
@@ -801,7 +801,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
           backgroundSize: "100% auto",
           backgroundPosition: "center top",
           backgroundRepeat: "no-repeat",
-          imageRendering: "smooth" as any,
+          imageRendering: "auto" as any,
           filter: "brightness(1.3)",
           pointerEvents: "none",
         }}
@@ -828,10 +828,10 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
               opacity: 0,
               "--drift": `${p.drift}px`,
               pointerEvents: "none",
-              imageRendering: "smooth",
+              imageRendering: "auto",
             } as React.CSSProperties}
           >
-            <img src={p.image} alt="" style={{ width: "100%", height: "100%", imageRendering: "smooth" }} />
+            <img src={p.image} alt="" style={{ width: "100%", height: "100%", imageRendering: "auto" }} />
           </div>
         ))}
       </div>
@@ -1138,7 +1138,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                           style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.07)" }}
                         >
                           {item.icon
-                            ? <img src={item.icon} alt={item.name} width={32} height={32} style={{ imageRendering: "smooth", flexShrink: 0 }} />
+                            ? <img src={item.icon} alt={item.name} width={32} height={32} style={{ imageRendering: "auto", flexShrink: 0 }} />
                             : <span style={{ width: 32, height: 32, flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", color: RARITY_COLORS[item.rarity] || "#9ca3af", fontSize: 14 }}>◆</span>
                           }
                           <div className="flex-1 min-w-0" title={item.desc || item.name}>
@@ -1160,16 +1160,16 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
             const { kraft, ausdauer, weisheit, glueck, fokus, vitalitaet, charisma, tempo } = charData.stats;
             const base = charData.baseStats;
             const statRows = [
-              { icon: "/images/icons/stat-kraft.png", label: "Kraft", iconSrc: "/images/icons/stat-kraft.png",    val: kraft,    base: base.kraft,    tooltip: "KRA · +0.5% Quest-XP pro Punkt" },
-              { icon: "/images/icons/stat-ausdauer.png", label: "Ausdauer", iconSrc: "/images/icons/stat-ausdauer.png", val: ausdauer, base: base.ausdauer, tooltip: "AUS · Reduziert Forge-Decay" },
-              { icon: "/images/icons/stat-weisheit.png", label: "Weisheit", iconSrc: "/images/icons/stat-weisheit.png", val: weisheit, base: base.weisheit, tooltip: "WEI · +0.5% Gold pro Punkt" },
-              { icon: "/images/icons/stat-glueck.png", label: "Glück", iconSrc: "/images/icons/stat-glueck.png",    val: glueck,   base: base.glueck,   tooltip: "GLÜ · +0.5% Drop-Chance pro Punkt" },
+              { icon: "/images/icons/stat-kraft.png", label: "Kraft", iconSrc: "/images/icons/stat-kraft.png",    val: kraft,    base: base.kraft,    tooltip: "KRA · +0.5% Quest-XP pro Punkt (max +30%)" },
+              { icon: "/images/icons/stat-ausdauer.png", label: "Ausdauer", iconSrc: "/images/icons/stat-ausdauer.png", val: ausdauer, base: base.ausdauer, tooltip: "AUS · -0.5% Forge Decay pro Punkt" },
+              { icon: "/images/icons/stat-weisheit.png", label: "Weisheit", iconSrc: "/images/icons/stat-weisheit.png", val: weisheit, base: base.weisheit, tooltip: "WEI · +0.5% Gold pro Punkt (max +30%)" },
+              { icon: "/images/icons/stat-glueck.png", label: "Glück", iconSrc: "/images/icons/stat-glueck.png",    val: glueck,   base: base.glueck,   tooltip: "GLÜ · +0.5% Drop-Chance pro Punkt (max 20%)" },
             ];
             const minorStatRows = [
-              { label: "Fokus", val: fokus || 0, tooltip: "FOK · Flat Bonus-XP pro Quest" },
-              { label: "Vitalität", val: vitalitaet || 0, tooltip: "VIT · +1% Streak-Schutz pro Punkt" },
+              { label: "Fokus", val: fokus || 0, tooltip: "FOK · +1 Flat Bonus-XP pro Punkt (max +50)" },
+              { label: "Vitalität", val: vitalitaet || 0, tooltip: "VIT · +1% Streak-Schutz pro Punkt (max 75%)" },
               { label: "Charisma", val: charisma || 0, tooltip: "CHA · +5% Companion Bond-XP pro Punkt" },
-              { label: "Tempo", val: tempo || 0, tooltip: "TMP · Bonus Forge-Temp pro Quest" },
+              { label: "Tempo", val: tempo || 0, tooltip: "TMP · +1% Forge-Temp-Recovery pro Punkt" },
             ];
             const hasMinorStats = minorStatRows.some(s => s.val > 0);
             return (
@@ -1185,7 +1185,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                           style={{ cursor: "pointer" }}
                           onClick={(e) => { e.stopPropagation(); setStatTooltipOpen(isOpen ? null : s.label); }}
                         >
-                          <img src={s.iconSrc} alt={s.label} width={16} height={16} style={{ imageRendering: "smooth" }} className="w-4 h-4" />
+                          <img src={s.iconSrc} alt={s.label} width={16} height={16} style={{ imageRendering: "auto" }} className="w-4 h-4" />
                           <span className="text-xs flex-1" style={{ color: "rgba(255,255,255,0.65)" }}>{s.label}</span>
                           <span className="text-xs font-mono font-bold" style={{ color: "#e8e8e8" }}>{s.val}</span>
                           {bonus > 0 && (
@@ -1383,7 +1383,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                         width={16}
                         height={16}
                         style={{
-                          imageRendering: "smooth",
+                          imageRendering: "auto",
                           filter: charData.forgeTemp >= 70
                             ? "brightness(1.2) sepia(1) saturate(3) hue-rotate(-10deg)"
                             : charData.forgeTemp >= 40
@@ -1494,9 +1494,9 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
         return (
           <div className="flex items-center gap-2 shrink-0">
             {comp.type && ["dragon","owl","phoenix","wolf","fox","bear"].includes(comp.type)
-              ? <img src={`/images/portraits/companion-${comp.type}.png`} alt={comp.name} width={32} height={32} style={{ imageRendering: "smooth", borderRadius: 4, objectFit: "cover" }} />
+              ? <img src={`/images/portraits/companion-${comp.type}.png`} alt={comp.name} width={32} height={32} style={{ imageRendering: "auto", borderRadius: 4, objectFit: "cover" }} />
               : comp.type === "cat" && comp.name?.toLowerCase() === "dobbie"
-                ? <img src="/images/portraits/companion-dobbie.png" alt={comp.name} width={32} height={32} style={{ imageRendering: "smooth", borderRadius: 4, objectFit: "cover" }} />
+                ? <img src="/images/portraits/companion-dobbie.png" alt={comp.name} width={32} height={32} style={{ imageRendering: "auto", borderRadius: 4, objectFit: "cover" }} />
                 : <span className="text-xl">{comp.emoji}</span>
             }
             <div>

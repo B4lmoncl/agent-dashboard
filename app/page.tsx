@@ -140,6 +140,11 @@ export default function Dashboard() {
   const [devInProgressCollapsed, setDevInProgressCollapsed] = useState(true);
   const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>([]);
   const [achievementCatalogue, setAchievementCatalogue] = useState<AchievementDef[]>([]);
+  const [highlightedAchievementId, setHighlightedAchievementId] = useState<string | null>(null);
+  const navigateToAchievement = useCallback((achievementId: string) => {
+    setDashView("honors");
+    setHighlightedAchievementId(achievementId);
+  }, []);
   const [campaigns, setCampaigns] = useState<Campaign[]>([]);
   const [playerName, setPlayerName] = useState<string>(() => {
     try { return localStorage.getItem("dash_player_name") || ""; } catch { return ""; }
@@ -387,15 +392,17 @@ export default function Dashboard() {
       const data = await r.json();
       if (r.ok && data.ok) {
         setDailyBonusAvailable(false);
-        const rewardParts: string[] = [];
-        if (data.rewards?.essenz) rewardParts.push(`${data.rewards.essenz} Essenz`);
-        if (data.rewards?.runensplitter) rewardParts.push(`${data.rewards.runensplitter} Runensplitter`);
+        const currencies: { name: string; amount: number; color: string }[] = [];
+        if (data.rewards?.essenz) currencies.push({ name: "Essenz", amount: data.rewards.essenz, color: "#ef4444" });
+        if (data.rewards?.runensplitter) currencies.push({ name: "Runensplitter", amount: data.rewards.runensplitter, color: "#818cf8" });
+        if (data.rewards?.sternentaler) currencies.push({ name: "Sternentaler", amount: data.rewards.sternentaler, color: "#fbbf24" });
         setRewardCelebration({
           type: "daily-bonus",
           title: "Daily Bonus Claimed!",
-          flavor: rewardParts.join(" + ") + (data.milestone ? ` (${data.milestone} streak bonus!)` : ""),
+          flavor: data.milestone ? `${data.milestone.label} streak bonus!` : undefined,
           xpEarned: 0,
           goldEarned: 0,
+          currencies,
         });
         refresh();
       } else {
@@ -1096,7 +1103,7 @@ export default function Dashboard() {
 
         {/* Honors View — Player-specific */}
         {dashView === "honors" && (
-          <ErrorBoundary><Suspense fallback={<ViewFallback />}><HonorsView catalogue={achievementCatalogue} /></Suspense></ErrorBoundary>
+          <ErrorBoundary><Suspense fallback={<ViewFallback />}><HonorsView catalogue={achievementCatalogue} highlightedAchievementId={highlightedAchievementId} onHighlightClear={() => setHighlightedAchievementId(null)} /></Suspense></ErrorBoundary>
         )}
 
         {/* Campaign View */}
@@ -1737,7 +1744,7 @@ export default function Dashboard() {
 
       {/* Reward Celebration (quest/ritual/vow/companion completion) */}
       {rewardCelebration && (
-        <RewardCelebration data={rewardCelebration} onClose={closeRewardCelebration} onCollect={(rd) => {
+        <RewardCelebration data={rewardCelebration} onClose={closeRewardCelebration} onAchievementClick={navigateToAchievement} onCollect={(rd) => {
           if (rd.loot) setPurchaseToast(`${rd.loot.name} added to inventory!`);
           if (rd.achievement) addToast({ type: "achievement", achievement: rd.achievement as EarnedAchievement });
         }} />
@@ -1793,7 +1800,7 @@ export default function Dashboard() {
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
               <div style={{ width: 100, height: 100, borderRadius: "50%", border: "2px solid rgba(255,215,0,0.6)", animation: "levelup-ring 2s ease-out infinite" }} />
             </div>
-            <img src="/images/icons/levelup-icon.png" alt="Level Up" width={80} height={80} className="mx-auto mb-3" style={{ imageRendering: "smooth", filter: "drop-shadow(0 0 16px rgba(255,215,0,0.6))" }} />
+            <img src="/images/icons/levelup-icon.png" alt="Level Up" width={80} height={80} className="mx-auto mb-3" style={{ imageRendering: "auto", filter: "drop-shadow(0 0 16px rgba(255,215,0,0.6))" }} />
             <div className="text-xs font-bold uppercase tracking-[0.3em] mb-2" style={{ color: "rgba(255,215,0,0.6)" }}>Level Up!</div>
             <div className="levelup-title text-3xl font-black mb-1" style={{ color: "#FFD700" }}>Level {levelUpCelebration.level}</div>
             <div className="text-sm font-semibold mb-5" style={{ color: "rgba(255,215,0,0.7)" }}>{levelUpCelebration.title}</div>
@@ -1878,7 +1885,7 @@ export default function Dashboard() {
       )}
 
       {/* Unified Toast Stack */}
-      <ToastStack toasts={toasts} onRemove={removeToast} />
+      <ToastStack toasts={toasts} onRemove={removeToast} onAchievementClick={navigateToAchievement} />
 
       {/* Chain Quest Toast (interactive, still separate for accept handling) */}
       {chainOffer && (

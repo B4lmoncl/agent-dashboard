@@ -7,6 +7,7 @@ import type {
 import { timeAgo } from "@/app/utils";
 import { RecurringBadge } from "./QuestBadges";
 import { getAuthHeaders } from "@/lib/auth-client";
+import { useModalBehavior } from "./ModalPortal";
 
 // ─── Create Quest Modal ──────────────────────────────────────────────────────
 export function CreateQuestModal({ quests, users, reviewApiKey, onRefresh, onClose }: {
@@ -16,6 +17,7 @@ export function CreateQuestModal({ quests, users, reviewApiKey, onRefresh, onClo
   onRefresh: () => void;
   onClose: () => void;
 }) {
+  useModalBehavior(true, onClose);
   const [tab, setTab] = useState<"personal" | "learning" | "household" | "social" | "coop" | "challenges">("personal");
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: "rgba(0,0,0,0.75)" }} onClick={onClose}>
@@ -50,7 +52,7 @@ export function CreateQuestModal({ quests, users, reviewApiKey, onRefresh, onClo
               {t.iconSrc ? (
                 <>
                   <img src={t.iconSrc} alt="" width={28} height={28}
-                    style={{ imageRendering: "smooth" }}
+                    style={{ imageRendering: "auto" }}
                     onError={(e) => { e.currentTarget.style.display = "none"; const next = e.currentTarget.nextElementSibling as HTMLElement; if (next) next.style.display = "inline"; }} />
                   <span style={{ display: "none" }}>{t.fallback}</span>
                 </>

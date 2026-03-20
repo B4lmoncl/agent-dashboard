@@ -208,14 +208,42 @@ export function useQuestActions({
           setChainOffer({ template: data.chainQuestTemplate, parentTitle: questTitle });
         }
         const isNpcQuest = !!data.quest?.npcGiverId;
+        const currencies: { name: string; amount: number; color: string }[] = [];
+        if (data.runensplitterEarned > 0) currencies.push({ name: "Runensplitter", amount: data.runensplitterEarned, color: "#818cf8" });
+        if (data.gildentalerEarned > 0) currencies.push({ name: "Gildentaler", amount: data.gildentalerEarned, color: "#10b981" });
         setRewardCelebration({
-          type: isNpcQuest ? "npc-quest" : "quest",
+          type: isNpcQuest ? "npc-quest" : data.companionReward ? "companion" : "quest",
           title: questTitle,
           xpEarned: data.xpEarned || 0,
           goldEarned: data.goldEarned || 0,
           loot: data.lootDrop || null,
           achievement: data.newAchievements?.length > 0 ? data.newAchievements[0] : null,
+          ...(currencies.length > 0 ? { currencies } : {}),
+          ...(data.companionReward ? {
+            bondXp: data.companionReward.bondXpGained || 0,
+            companionEmoji: data.companionReward.companionType === "ember_sprite" ? "🔥" : data.companionReward.companionType === "lore_owl" ? "🦉" : data.companionReward.companionType === "gear_golem" ? "⚙️" : "🐾",
+            companionAccent: data.companionReward.companionType === "ember_sprite" ? "#f97316" : data.companionReward.companionType === "lore_owl" ? "#a78bfa" : data.companionReward.companionType === "gear_golem" ? "#60a5fa" : "#ff6b9d",
+          } : {}),
         });
+        // Fire toasts for additional achievements beyond the first (which is shown in celebration)
+        if (data.newAchievements?.length > 1) {
+          for (let i = 1; i < data.newAchievements.length; i++) {
+            addToast({ type: "achievement", achievement: data.newAchievements[i] });
+          }
+        }
+        // Fire companion bond toast if companion quest awarded bond XP
+        if (data.companionReward) {
+          const cr = data.companionReward;
+          addToast({
+            type: "companionBond",
+            companionName: cr.companionName || "Companion",
+            companionEmoji: cr.companionType === "ember_sprite" ? "🔥" : cr.companionType === "lore_owl" ? "🦉" : cr.companionType === "gear_golem" ? "⚙️" : "🐾",
+            bondXpGained: cr.bondXpGained || 1,
+            newBondXp: cr.newBondXp || 0,
+            bondTitle: cr.bondTitle || "Stranger",
+            bondLevelUp: !!cr.bondLevelUp,
+          });
+        }
         if (data.levelUp) {
           pendingLevelUpRef.current = data.levelUp;
         }

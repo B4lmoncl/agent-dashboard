@@ -193,7 +193,7 @@ export const QuestCard = memo(function QuestCard({ quest, selected, onToggle, on
                 alt=""
                 width={27}
                 height={27}
-                style={{ imageRendering: "smooth" }}
+                style={{ imageRendering: "auto" }}
                 onError={(e) => { e.currentTarget.style.display = "none"; const next = e.currentTarget.nextElementSibling as HTMLElement; if (next) next.style.display = "inline"; }}
               />
               <span style={{ display: "none" }}>{typeCfg.icon?.startsWith("/") ? typeCfg.label : typeCfg.icon}</span>

@@ -78,7 +78,7 @@ function FlavorToastContent({ toast, onClose }: { toast: { message: string; icon
       className="rounded-xl px-4 py-3 flex items-center gap-3 shadow-2xl"
       style={{ background: bg, border: `1px solid ${border}`, boxShadow: `0 8px 32px ${shadow}`, maxWidth: 320, width: "100%" }}
     >
-      {toast.icon && toast.icon.startsWith("/") ? <img src={toast.icon} alt="" width={28} height={28} style={{ imageRendering: "smooth", flexShrink: 0 }} /> : <span className="text-2xl flex-shrink-0">{toast.icon}</span>}
+      {toast.icon && toast.icon.startsWith("/") ? <img src={toast.icon} alt="" width={28} height={28} style={{ imageRendering: "auto", flexShrink: 0 }} /> : <span className="text-2xl flex-shrink-0">{toast.icon}</span>}
       <div className="flex-1 min-w-0">
         <p className="text-sm font-bold" style={{ color }}>{toast.message}</p>
         {label && <p className="text-xs mt-0.5 truncate font-medium" style={{ color }}>{label}</p>}
@@ -88,19 +88,20 @@ function FlavorToastContent({ toast, onClose }: { toast: { message: string; icon
   );
 }
 
-function AchievementToastContent({ achievement, onClose }: { achievement: EarnedAchievement; onClose: () => void }) {
+function AchievementToastContent({ achievement, onClose, onAchievementClick }: { achievement: EarnedAchievement; onClose: () => void; onAchievementClick?: (id: string) => void }) {
   return (
     <div
       className="rounded-xl px-5 py-4 flex items-center gap-4 shadow-2xl"
-      style={{ background: "#252525", border: "1px solid rgba(245,158,11,0.5)", boxShadow: "0 8px 48px rgba(245,158,11,0.3)", maxWidth: 360, width: "100%" }}
+      style={{ background: "#252525", border: "1px solid rgba(245,158,11,0.5)", boxShadow: "0 8px 48px rgba(245,158,11,0.3)", maxWidth: 360, width: "100%", cursor: onAchievementClick ? "pointer" : undefined }}
+      onClick={() => { if (onAchievementClick && achievement.id) { onAchievementClick(achievement.id); onClose(); } }}
     >
-      {achievement.icon && achievement.icon.startsWith("/") ? <img src={achievement.icon} alt="" width={28} height={28} style={{ imageRendering: "smooth", flexShrink: 0 }} /> : <span className="text-2xl flex-shrink-0">{achievement.icon}</span>}
+      {achievement.icon && achievement.icon.startsWith("/") ? <img src={achievement.icon} alt="" width={28} height={28} style={{ imageRendering: "auto", flexShrink: 0 }} /> : <span className="text-2xl flex-shrink-0">{achievement.icon}</span>}
       <div className="flex-1 min-w-0">
         <p className="text-xs font-bold" style={{ color: "#f59e0b" }}>Achievement Unlocked!</p>
         <p className="text-sm font-semibold" style={{ color: "#f0f0f0" }}>{achievement.name}</p>
         <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>{achievement.desc}</p>
       </div>
-      <button onClick={onClose} style={{ color: "rgba(255,255,255,0.3)" }}>×</button>
+      <button onClick={(e) => { e.stopPropagation(); onClose(); }} style={{ color: "rgba(255,255,255,0.3)" }}>×</button>
     </div>
   );
 }
@@ -131,7 +132,7 @@ function ChainToastContent({ parentTitle, template, onAccept, onClose }: {
           <div className="flex items-center gap-1 mb-3">
             {typeCfg && (
               <span className="text-xs px-1.5 py-0.5 rounded" style={{ background: typeCfg.bg, color: typeCfg.color, border: `1px solid ${typeCfg.border}` }}>
-                {typeCfg.icon?.startsWith("/") ? <img src={typeCfg.icon} alt="" width={14} height={14} style={{ imageRendering: "smooth", display: "inline", verticalAlign: "middle" }} onError={(e) => { e.currentTarget.style.display = "none"; }} /> : typeCfg.icon} {typeCfg.label}
+                {typeCfg.icon?.startsWith("/") ? <img src={typeCfg.icon} alt="" width={14} height={14} style={{ imageRendering: "auto", display: "inline", verticalAlign: "middle" }} onError={(e) => { e.currentTarget.style.display = "none"; }} /> : typeCfg.icon} {typeCfg.label}
               </span>
             )}
           </div>
@@ -166,7 +167,7 @@ function ItemToastContent({ toast, onClose }: { toast: { itemName: string; messa
       style={{ background: rs.bg, border: `1px solid ${rs.border}`, boxShadow: `0 8px 32px ${rs.shadow}`, maxWidth: 340, width: "100%" }}
     >
       {toast.icon && toast.icon.startsWith("/")
-        ? <img src={toast.icon} alt="" width={32} height={32} style={{ imageRendering: "smooth", flexShrink: 0 }} />
+        ? <img src={toast.icon} alt="" width={32} height={32} style={{ imageRendering: "auto", flexShrink: 0 }} />
         : <span className="text-2xl flex-shrink-0" style={{ color: rs.color }}>◆</span>}
       <div className="flex-1 min-w-0">
         <p className="text-sm font-bold" style={{ color: rs.color }}>{toast.itemName}</p>
@@ -190,8 +191,28 @@ function PurchaseToastContent({ message, onClose }: { message: string; onClose: 
   );
 }
 
+function CompanionBondToastContent({ toast, onClose }: { toast: { companionName: string; companionEmoji: string; bondXpGained: number; newBondXp: number; bondTitle: string; bondLevelUp: boolean }; onClose: () => void }) {
+  return (
+    <div
+      className="rounded-xl px-4 py-3 flex items-center gap-3 shadow-2xl"
+      style={{ background: toast.bondLevelUp ? "#2a1e2e" : "#1e1a2e", border: `1px solid ${toast.bondLevelUp ? "rgba(255,107,157,0.5)" : "rgba(255,107,157,0.3)"}`, boxShadow: `0 8px 32px rgba(255,107,157,${toast.bondLevelUp ? "0.25" : "0.1"})`, maxWidth: 340, width: "100%" }}
+    >
+      <span className="text-2xl flex-shrink-0">{toast.companionEmoji}</span>
+      <div className="flex-1 min-w-0">
+        {toast.bondLevelUp
+          ? <p className="text-xs font-bold" style={{ color: "#ff6b9d" }}>Bond Level Up!</p>
+          : <p className="text-xs font-bold" style={{ color: "#ff6b9d" }}>+{toast.bondXpGained} Bond XP</p>
+        }
+        <p className="text-sm font-semibold" style={{ color: "#f0f0f0" }}>{toast.companionName}</p>
+        <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>{toast.bondTitle}</p>
+      </div>
+      <button onClick={onClose} style={{ color: "rgba(255,255,255,0.3)", flexShrink: 0 }}>×</button>
+    </div>
+  );
+}
+
 // ─── Single Toast Wrapper with auto-dismiss + slide animation ────────────────
-function ToastWrapper({ toast, index, onRemove }: { toast: ToastItem; index: number; onRemove: (id: string) => void }) {
+function ToastWrapper({ toast, index, onRemove, onAchievementClick }: { toast: ToastItem; index: number; onRemove: (id: string) => void; onAchievementClick?: (id: string) => void }) {
   const [visible, setVisible] = useState(false);
   const [exiting, setExiting] = useState(false);
 
@@ -223,16 +244,17 @@ function ToastWrapper({ toast, index, onRemove }: { toast: ToastItem; index: num
       }}
     >
       {toast.type === "flavor" && <FlavorToastContent toast={toast} onClose={handleClose} />}
-      {toast.type === "achievement" && <AchievementToastContent achievement={toast.achievement} onClose={handleClose} />}
+      {toast.type === "achievement" && <AchievementToastContent achievement={toast.achievement} onClose={handleClose} onAchievementClick={onAchievementClick} />}
       {toast.type === "chain" && <ChainToastContent parentTitle={toast.parentTitle} template={toast.template} onAccept={toast.onAccept} onClose={handleClose} />}
       {toast.type === "purchase" && <PurchaseToastContent message={toast.message} onClose={handleClose} />}
       {toast.type === "item" && <ItemToastContent toast={toast} onClose={handleClose} />}
+      {toast.type === "companionBond" && <CompanionBondToastContent toast={toast} onClose={handleClose} />}
     </div>
   );
 }
 
 // ─── Toast Stack Container ───────────────────────────────────────────────────
-export function ToastStack({ toasts, onRemove }: { toasts: ToastItem[]; onRemove: (id: string) => void }) {
+export function ToastStack({ toasts, onRemove, onAchievementClick }: { toasts: ToastItem[]; onRemove: (id: string) => void; onAchievementClick?: (id: string) => void }) {
   if (toasts.length === 0) return null;
 
   return (
@@ -246,7 +268,7 @@ export function ToastStack({ toasts, onRemove }: { toasts: ToastItem[]; onRemove
       }}
     >
       {toasts.map((toast, i) => (
-        <ToastWrapper key={toast.id} toast={toast} index={i} onRemove={onRemove} />
+        <ToastWrapper key={toast.id} toast={toast} index={i} onRemove={onRemove} onAchievementClick={onAchievementClick} />
       ))}
     </div>
   );
