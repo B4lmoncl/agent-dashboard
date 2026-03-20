@@ -814,12 +814,12 @@ export default function Dashboard() {
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 mb-0.5">
                   <p className="text-sm font-bold text-bright">{playerName}</p>
-                  {(loggedInUser as any).equippedTitle && (() => {
+                  {loggedInUser.equippedTitle && (() => {
                     const titleColors: Record<string, string> = { common: "#9ca3af", uncommon: "#22c55e", rare: "#60a5fa", epic: "#a855f7", legendary: "#f97316" };
-                    const tc = titleColors[(loggedInUser as any).equippedTitle.rarity] ?? "#9ca3af";
+                    const tc = titleColors[loggedInUser.equippedTitle.rarity] ?? "#9ca3af";
                     return (
                       <span className="text-xs px-1.5 py-0.5 rounded font-medium" style={{ color: tc, background: `${tc}15` }}>
-                        {(loggedInUser as any).equippedTitle.name}
+                        {loggedInUser.equippedTitle.name}
                       </span>
                     );
                   })()}
@@ -2081,13 +2081,9 @@ export default function Dashboard() {
 
       {/* Class Activation Notification */}
       {classActivatedNotif && (
-        <div
-          className="fixed inset-0 z-[90] flex items-center justify-center p-4 modal-backdrop"
-          onClick={() => setClassActivatedNotif(null)}
-        >
+        <ModalOverlay isOpen={!!classActivatedNotif} onClose={() => setClassActivatedNotif(null)} zIndex={90}>
           <div
             className="w-full max-w-sm rounded-2xl p-6 space-y-4 bg-surface" style={{ border: "1px solid rgba(167,139,250,0.4)", boxShadow: "0 0 60px rgba(139,92,246,0.2)" }}
-            onClick={e => e.stopPropagation()}
           >
             <div className="text-center space-y-1">
               <div className="text-4xl">×</div>
@@ -2109,7 +2105,7 @@ export default function Dashboard() {
               Los geht&apos;s!
             </button>
           </div>
-        </div>
+        </ModalOverlay>
       )}
 
       {/* Version Update Popup */}

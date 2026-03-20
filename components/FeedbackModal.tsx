@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useModalBehavior } from "./ModalPortal";
+import { ModalOverlay } from "./ModalPortal";
 
 interface FeedbackModalProps {
   elementPath: string;
@@ -10,7 +10,6 @@ interface FeedbackModalProps {
 }
 
 export default function FeedbackModal({ elementPath, playerName, onClose }: FeedbackModalProps) {
-  useModalBehavior(true, onClose);
   const [type, setType] = useState<"bug" | "feedback">("feedback");
   const [text, setText] = useState("");
   const [submitting, setSubmitting] = useState(false);
@@ -47,11 +46,7 @@ export default function FeedbackModal({ elementPath, playerName, onClose }: Feed
   };
 
   return (
-    <div
-      className="fixed inset-0 z-[10001] flex items-center justify-center p-4"
-      style={{ background: "rgba(0,0,0,0.8)" }}
-      onClick={e => { if (e.target === e.currentTarget) onClose(); }}
-    >
+    <ModalOverlay isOpen onClose={onClose} zIndex={10001} bgOpacity={0.8}>
       <div
         className="w-full max-w-md rounded-2xl overflow-hidden"
         style={{
@@ -182,6 +177,6 @@ export default function FeedbackModal({ elementPath, playerName, onClose }: Feed
           )}
         </div>
       </div>
-    </div>
+    </ModalOverlay>
   );
 }

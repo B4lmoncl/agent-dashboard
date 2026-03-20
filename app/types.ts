@@ -453,7 +453,7 @@ export interface CharacterData {
   classTier: string | null;
   classFantasy: string | null;
   classIcon: string | null;
-  companion: { type?: string; name: string; emoji: string; bondLevel: number } | null;
+  companion: { type?: string; name: string; emoji: string; bondLevel: number; bondXp?: number } | null;
   appearance?: { skinColor?: string; hairStyle?: string; hairColor?: string };
   equipment: Record<string, GearInstance | string | null>;
   stats: { kraft: number; ausdauer: number; weisheit: number; glueck: number; fokus?: number; vitalitaet?: number; charisma?: number; tempo?: number; _setBonus?: number };
@@ -464,6 +464,11 @@ export interface CharacterData {
   setBonusInfo: { name: string; count: number; total: number } | null;
   namedSetBonuses?: { id: string; name: string; rarity: string; count: number; total: number; isComplete: boolean; activeLabel: string | null }[];
   xpProgress: number;
+  xpInLevel?: number;
+  xpForLevel?: number;
+  legendaryEffects?: { label: string; itemName: string }[];
+  equippedTitle?: { id: string; name: string; rarity: string; description?: string } | null;
+  earnedTitleCount?: number;
   relationshipStatus?: string;
   partnerName?: string | null;
 }

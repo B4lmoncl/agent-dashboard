@@ -1256,10 +1256,10 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                 })}
 
                 {/* Legendary Effects */}
-                {((charData as any).legendaryEffects ?? []).length > 0 && (
+                {(charData.legendaryEffects ?? []).length > 0 && (
                   <div className="mb-2 px-2 py-1.5 rounded-lg" style={{ background: "rgba(249,115,22,0.06)", border: "1px solid rgba(249,115,22,0.2)" }}>
                     <p className="text-xs font-bold mb-1" style={{ color: "#f97316" }}>Legendary Effects</p>
-                    {((charData as any).legendaryEffects as { label: string; itemName: string }[]).map((e, i) => (
+                    {(charData.legendaryEffects ?? []).map((e, i) => (
                       <div key={i} className="flex items-center justify-between">
                         <span className="text-xs" style={{ color: "rgba(249,115,22,0.7)" }}>{e.label}</span>
                         <span className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>{e.itemName}</span>
@@ -1273,7 +1273,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                   <div className="flex items-center justify-between mb-1">
                     <span className="text-xs font-bold" style={{ color: "#a78bfa" }}>Lv.{charData.level}</span>
                     <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.3)" }}>
-                      {(charData as any).xpInLevel ?? charData.xp}{(charData as any).xpForLevel ? ` / ${(charData as any).xpForLevel}` : ""} XP
+                      {charData.xpInLevel ?? charData.xp}{charData.xpForLevel ? ` / ${charData.xpForLevel}` : ""} XP
                     </span>
                   </div>
                   <div className="rounded-full overflow-hidden" style={{ height: 5, background: "rgba(255,255,255,0.07)" }}>
@@ -1319,10 +1319,10 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                   >
                     <div className="flex items-center gap-2">
                       <span className="text-xs font-semibold" style={{ color: "#fbbf24" }}>
-                        {(charData as any)?.equippedTitle?.name || "No Title"}
+                        {charData.equippedTitle?.name || "No Title"}
                       </span>
                       <span className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>
-                        ({(charData as any)?.earnedTitleCount ?? 0} earned)
+                        ({charData.earnedTitleCount ?? 0} earned)
                       </span>
                     </div>
                     <span className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>{titlesOpen ? "▲" : "▼"}</span>
@@ -1484,7 +1484,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
       )}
       {charData?.companion && (() => {
         const comp = charData.companion;
-        const bondXp = (comp as any).bondXp ?? 0;
+        const bondXp = comp.bondXp ?? 0;
         const bondLvl = [...BOND_LEVELS].reverse().find(b => bondXp >= b.minXp) ?? BOND_LEVELS[0];
         const nextBond = BOND_LEVELS.find(b => b.level === bondLvl.level + 1);
         const bondProgress = nextBond
