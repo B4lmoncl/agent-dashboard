@@ -169,7 +169,7 @@ server.js             # Express entry point (~289 lines)
 ### 2.14 Navigation (Urithiru-inspired)
 **Files**: `app/config.ts`
 
-- 5 floors: The Pinnacle, The Great Halls, The Trade Quarter, The Inner Sanctum, The Breakaway
+- 5 floors: The Pinnacle, The Great Halls, The Trading District, The Inner Sanctum, The Breakaway
 - Each floor has 1-4 rooms (tabs), floor banners with gradient backgrounds
 - The Breakaway is a standalone 5th floor for the social hub (inspired by Urithiru's social area)
 
@@ -476,6 +476,57 @@ Updated Guide to cover all features:
 | LYRA-PLAYBOOK.md | ✅ Accurate | None |
 | BACKLOG.md | ⚠️ Stale entries | Update fixed items |
 | README.md | ⚠️ Incomplete API docs | Add newer endpoints |
+
+---
+
+## 8. Crafting System Improvements (Phase 1 — 2026-03-20)
+
+### 8.1 Rename: "Trade Quarter" → "Trading District"
+
+Renamed the floor label from "The Trade Quarter" to "The Trading District" across all frontend files. "Artisan's Quarter" room name retained unchanged.
+
+**Files changed:** `app/config.ts`, `components/TutorialModal.tsx`, `components/SocialView.tsx`, `AUDIT_REPORT.md`
+
+### 8.2 Passive Gathering System
+
+Active professions now passively grant bonus material drops when completing quests. Each profession has 3 **affinity materials**:
+
+| Profession | Affinity Materials |
+|------------|-------------------|
+| Schmied | Iron Ore, Crystal Shard, Dragon Scale |
+| Alchemist | Herb Bundle, Moonpetal, Starfruit |
+| Verzauberer | Arcane Dust, Runestone, Aether Core |
+| Koch | Wild Game, Fireroot, Phoenix Feather |
+
+**Scaling:** Base 5% chance per material at level 1, +3% per level, cap 35% at level 10.
+
+**Files changed:** `public/data/professions.json` (gatheringConfig + gatheringAffinity per profession), `lib/helpers.js` (rollCraftingMaterials extended)
+
+### 8.3 Mastery Bonuses (Level 8+)
+
+Each profession gains a passive mastery bonus at profession level 8+:
+
+| Profession | Mastery Bonus |
+|------------|--------------|
+| Schmied | +10% gear stat rolls on reinforce/sharpen recipes |
+| Alchemist | +2 extra quest charges on crafted potions |
+| Verzauberer | +2 to enchantment stat ranges |
+| Koch | +2 extra quest charges on crafted meals |
+
+**Files changed:** `public/data/professions.json` (masteryConfig + masteryBonus per profession), `routes/crafting.js` (mastery applied per recipe handler), `components/ForgeView.tsx` (mastery badge on profession cards)
+
+### 8.4 Trainer + Drops Recipe System
+
+Recipes now have explicit **source** types replacing the old auto-unlock system:
+
+- **Trainer recipes** (11): Base recipes learned by visiting the NPC and paying gold. Free starter recipes auto-known, advanced ones cost 30-250g.
+- **Drop recipes** (10): Rare recipes found as quest completion rewards. Drop chance 4-12% based on recipe rarity, gated by minimum quest rarity.
+
+**New endpoint:** `POST /api/professions/learn` — Purchase a trainer recipe with gold.
+
+**Quest reward flow:** On quest completion, if the player has active professions, there's a chance to discover a drop recipe (max 1 per quest). Recipe is added to `user.learnedRecipes[]`.
+
+**Files changed:** `public/data/professions.json` (source, trainerCost, dropChance, dropMinQuestRarity per recipe), `routes/crafting.js` (isRecipeDiscovered/isRecipeVisible rewrite, learn endpoint, craft validation), `lib/helpers.js` (recipe drop rolls in onQuestCompletedByUser), `components/ForgeView.tsx` (Learn button, recipe interfaces)
 
 ---
 

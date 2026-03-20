@@ -81,7 +81,7 @@ export const FLOORS: Floor[] = [
   },
   {
     id: "gewerbeviertel",
-    name: "The Trade Quarter",
+    name: "The Trading District",
     subtitle: "Commerce & Craft",
     icon: "■",
     color: "#a855f7",

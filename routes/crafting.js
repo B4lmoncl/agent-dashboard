@@ -101,9 +101,30 @@ function getProfLevel(u, profId) {
   return { level: Math.min(level, 10), xp: prof.xp || 0 };
 }
 
-// ─── Helper: check if recipe is discovered for this player ──────────────────
-function isRecipeDiscovered(recipe, profProgress) {
-  if (!recipe.discovery) return true; // no discovery gate = always visible
+// ─── Helper: check if recipe is discovered/learned for this player ───────────
+function isRecipeDiscovered(recipe, profProgress, user) {
+  // Drop-source recipes: must be in player's learnedRecipes
+  if (recipe.source === 'drop') {
+    return (user?.learnedRecipes || []).includes(recipe.id);
+  }
+  // Trainer-source recipes with trainerCost: must be purchased (in learnedRecipes)
+  if (recipe.source === 'trainer' && recipe.trainerCost > 0) {
+    return (user?.learnedRecipes || []).includes(recipe.id);
+  }
+  // Legacy/free trainer recipes: use old discovery gate system
+  if (!recipe.discovery) return true;
+  if (recipe.discovery.type === 'profLevel') return profProgress.level >= recipe.discovery.value;
+  return true;
+}
+
+// ─── Helper: check if recipe is visible (show in UI even if locked) ─────────
+function isRecipeVisible(recipe, profProgress, user) {
+  // Trainer recipes: always visible if profession level is met (show as "learnable")
+  if (recipe.source === 'trainer') return profProgress.level >= recipe.reqProfLevel;
+  // Drop recipes: only visible once learned
+  if (recipe.source === 'drop') return (user?.learnedRecipes || []).includes(recipe.id);
+  // Legacy: use discovery gate
+  if (!recipe.discovery) return true;
   if (recipe.discovery.type === 'profLevel') return profProgress.level >= recipe.discovery.value;
   return true;
 }
@@ -129,6 +150,8 @@ router.get('/api/professions', (req, res) => {
     const pMaxSlots = u ? getMaxProfessionSlots(playerLevel) : 0;
     const canChoose = chosen || (u?.chosenProfessions || []).length < pMaxSlots;
     const rank = getProfRank(profProgress.level);
+    const masteryUnlockLvl = PROFESSIONS_DATA.masteryConfig?.unlockLevel || 8;
+    const masteryActive = profProgress.level >= masteryUnlockLvl;
     return {
       ...p,
       unlocked,
@@ -140,16 +163,20 @@ router.get('/api/professions', (req, res) => {
       lastCraftAt: lastCraft,
       rank: rank.name,
       rankColor: rank.color,
+      masteryActive,
+      masteryBonus: p.masteryBonus || null,
+      gatheringAffinity: p.gatheringAffinity || [],
     };
   });
-  // Filter out undiscovered recipes — they should not appear in the UI at all
+  // Filter recipes: show visible ones, mark learned/learnable status
   const recipes = PROFESSIONS_DATA.recipes
     .filter(r => {
       const profProgress = u ? getProfLevel(u, r.profession) : { level: 0, xp: 0 };
-      return isRecipeDiscovered(r, profProgress);
+      return isRecipeVisible(r, profProgress, u);
     })
     .map(r => {
       const profProgress = u ? getProfLevel(u, r.profession) : { level: 0 };
+      const learned = isRecipeDiscovered(r, profProgress, u);
       const recipeCooldowns = (u?.professions || {})[r.profession]?.recipeCooldowns || {};
       const lastRecipeCraft = recipeCooldowns[r.id] || null;
       let cooldownRemaining = 0;
@@ -159,7 +186,8 @@ router.get('/api/professions', (req, res) => {
       }
       return {
         ...r,
-        canCraft: profProgress.level >= r.reqProfLevel,
+        learned,
+        canCraft: learned && profProgress.level >= r.reqProfLevel,
         skillUpColor: getSkillUpColor(profProgress.level, r.reqProfLevel),
         cooldownRemaining,
       };
@@ -170,7 +198,59 @@ router.get('/api/professions', (req, res) => {
   const playerLvl = u ? getLevelInfo(u.xp || 0).level : 0;
   const maxProfSlots = getMaxProfessionSlots(playerLvl);
   const chosenCount = (u?.chosenProfessions || []).length;
-  res.json({ professions, recipes, materials, materialDefs: PROFESSIONS_DATA.materials, proficiencyRanks: PROFICIENCY_RANKS, skillUpColors: PROFESSIONS_DATA.skillUpColors || {}, currencies, dailyBonus, maxProfSlots, chosenCount, professionSlots: PROFESSIONS_DATA.professionSlots || [] });
+  const learnedRecipes = u?.learnedRecipes || [];
+  const masteryConfig = PROFESSIONS_DATA.masteryConfig || null;
+  const gatheringConfig = PROFESSIONS_DATA.gatheringConfig || null;
+  res.json({ professions, recipes, materials, materialDefs: PROFESSIONS_DATA.materials, proficiencyRanks: PROFICIENCY_RANKS, skillUpColors: PROFESSIONS_DATA.skillUpColors || {}, currencies, dailyBonus, maxProfSlots, chosenCount, professionSlots: PROFESSIONS_DATA.professionSlots || [], learnedRecipes, masteryConfig, gatheringConfig });
+});
+
+// ─── POST /api/professions/learn — buy a recipe from an NPC trainer ─────────
+router.post('/api/professions/learn', requireAuth, (req, res) => {
+  const { recipeId } = req.body;
+  if (!recipeId) return res.status(400).json({ error: 'recipeId required' });
+
+  const uid = req.auth?.userId;
+  const u = state.users[uid];
+  if (!u) return res.status(404).json({ error: 'User not found' });
+
+  const recipe = PROFESSIONS_DATA.recipes.find(r => r.id === recipeId);
+  if (!recipe) return res.status(404).json({ error: 'Recipe not found' });
+
+  if (recipe.source !== 'trainer' || !recipe.trainerCost) {
+    return res.status(400).json({ error: 'This recipe cannot be purchased from a trainer.' });
+  }
+
+  // Must have chosen the profession
+  if (!(u.chosenProfessions || []).includes(recipe.profession)) {
+    return res.status(400).json({ error: 'You must choose this profession first.' });
+  }
+
+  // Check profession level
+  const profProgress = getProfLevel(u, recipe.profession);
+  if (profProgress.level < recipe.reqProfLevel) {
+    const profDef = PROFESSIONS_DATA.professions.find(p => p.id === recipe.profession);
+    return res.status(400).json({ error: `Requires ${profDef?.name || recipe.profession} level ${recipe.reqProfLevel}` });
+  }
+
+  // Already learned?
+  u.learnedRecipes = u.learnedRecipes || [];
+  if (u.learnedRecipes.includes(recipeId)) {
+    return res.status(400).json({ error: 'You already know this recipe.' });
+  }
+
+  // Check gold
+  const goldNeeded = recipe.trainerCost;
+  if ((u.currencies?.gold ?? u.gold ?? 0) < goldNeeded) {
+    return res.status(400).json({ error: `Not enough gold (need ${goldNeeded})` });
+  }
+
+  // Deduct gold and learn
+  u.gold -= goldNeeded;
+  u.learnedRecipes.push(recipeId);
+  state.saveUsers();
+
+  const profDef = PROFESSIONS_DATA.professions.find(p => p.id === recipe.profession);
+  res.json({ success: true, recipe: recipe.name, profession: profDef?.name || recipe.profession, goldSpent: goldNeeded });
 });
 
 // ─── POST /api/professions/craft — execute a recipe ─────────────────────────
@@ -203,8 +283,13 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
     return res.status(400).json({ error: `You have ${u.chosenProfessions.length}/${maxSlots} profession slots (${u.chosenProfessions.join(', ')}). ${maxSlots < 4 ? 'Unlock more slots by leveling up, or d' : 'D'}rop one first.` });
   }
 
-  // Check profession level
+  // Check recipe is learned (trainer+drop source system)
   const profProgress = getProfLevel(u, recipe.profession);
+  if (!isRecipeDiscovered(recipe, profProgress, u)) {
+    return res.status(400).json({ error: 'You haven\'t learned this recipe yet.' });
+  }
+
+  // Check profession level
   if (profProgress.level < recipe.reqProfLevel) {
     return res.status(400).json({ error: `Requires ${profDef.name} level ${recipe.reqProfLevel}` });
   }
@@ -309,6 +394,11 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
   const newProfLevel = getProfLevel(u, recipe.profession);
   u.professions[recipe.profession].level = newProfLevel.level;
 
+  // ─── Mastery bonus check (level 8+) ─────────────────────────────────────────
+  const masteryLevel = PROFESSIONS_DATA.masteryConfig?.unlockLevel || 8;
+  const hasMastery = profProgress.level >= masteryLevel;
+  const masteryDef = hasMastery ? profDef.masteryBonus : null;
+
   let result = { success: true, message: '' };
 
   switch (recipeId) {
@@ -388,15 +478,16 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
         result.success = false;
         break;
       }
+      const potionDuration = 3 + (masteryDef?.type === 'potion_duration' ? masteryDef.value : 0);
       for (let i = 0; i < effectiveCount; i++) {
         u.activeBuffs.push({
           type: recipe.result.buffType,
-          questsRemaining: 3,
+          questsRemaining: potionDuration,
           activatedAt: now(),
         });
       }
       const buffNames = { potion_xp: 'Experience', potion_gold: 'Wealth', potion_luck: 'Luck' };
-      result.message = `Elixir of ${buffNames[recipeId] || 'Power'} activated! (3 Quests)${effectiveCount > 1 ? ` (x${effectiveCount})` : ''}`;
+      result.message = `Elixir of ${buffNames[recipeId] || 'Power'} activated! (${potionDuration} Quests)${effectiveCount > 1 ? ` (x${effectiveCount})` : ''}${masteryDef ? ' (Mastery)' : ''}`;
       break;
     }
 
@@ -408,18 +499,20 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
 
     case 'potion_doubledown': {
       u.activeBuffs = u.activeBuffs || [];
+      const flaskDuration = 5 + (masteryDef?.type === 'potion_duration' ? masteryDef.value : 0);
       for (let i = 0; i < effectiveCount; i++) {
-        u.activeBuffs.push({ type: 'xp_boost_25', questsRemaining: 5, activatedAt: now() });
-        u.activeBuffs.push({ type: 'gold_boost_20', questsRemaining: 5, activatedAt: now() });
+        u.activeBuffs.push({ type: 'xp_boost_25', questsRemaining: flaskDuration, activatedAt: now() });
+        u.activeBuffs.push({ type: 'gold_boost_20', questsRemaining: flaskDuration, activatedAt: now() });
       }
-      result.message = `Flask of Ambition activated! +25% XP + 20% Gold for 5 quests${effectiveCount > 1 ? ` (x${effectiveCount})` : ''}`;
+      result.message = `Flask of Ambition activated! +25% XP + 20% Gold for ${flaskDuration} quests${effectiveCount > 1 ? ` (x${effectiveCount})` : ''}${masteryDef ? ' (Mastery)' : ''}`;
       break;
     }
 
     case 'enchant_gear': {
       const allStats = [...PRIMARY_STATS, ...MINOR_STATS];
       const stat = allStats[Math.floor(Math.random() * allStats.length)];
-      const value = 2 + Math.floor(Math.random() * 3); // 2-4
+      const enchantBonus = masteryDef?.type === 'enchant_power' ? masteryDef.value : 0;
+      const value = 2 + Math.floor(Math.random() * 3) + enchantBonus; // 2-4 + mastery
       u.activeBuffs = u.activeBuffs || [];
       u.activeBuffs.push({
         type: `enchant_${stat}`,
@@ -428,7 +521,7 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
         expiresAt: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(),
         activatedAt: now(),
       });
-      result.message = `Temporary enchantment: +${value} ${stat} for 24h`;
+      result.message = `Temporary enchantment: +${value} ${stat} for 24h${masteryDef ? ' (Mastery)' : ''}`;
       break;
     }
 
@@ -459,10 +552,11 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
     case 'permanent_enchant': {
       const eq = u.equipment[targetSlot];
       const stat = MINOR_STATS[Math.floor(Math.random() * MINOR_STATS.length)];
-      const value = 1 + Math.floor(Math.random() * 2); // 1-2
+      const enchantBonus = masteryDef?.type === 'enchant_power' ? masteryDef.value : 0;
+      const value = 1 + Math.floor(Math.random() * 2) + enchantBonus; // 1-2 + mastery
       eq.stats = eq.stats || {};
       eq.stats[stat] = (eq.stats[stat] || 0) + value;
-      result.message = `Permanent enchantment: +${value} ${stat}!`;
+      result.message = `Permanent enchantment: +${value} ${stat}!${masteryDef ? ' (Mastery)' : ''}`;
       result.updatedGear = eq;
       break;
     }
@@ -470,10 +564,11 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
     case 'enchant_socket': {
       const eq = u.equipment[targetSlot];
       const stat = PRIMARY_STATS[Math.floor(Math.random() * PRIMARY_STATS.length)];
-      const value = 3 + Math.floor(Math.random() * 3); // 3-5
+      const enchantBonus = masteryDef?.type === 'enchant_power' ? masteryDef.value : 0;
+      const value = 3 + Math.floor(Math.random() * 3) + enchantBonus; // 3-5 + mastery
       eq.stats = eq.stats || {};
       eq.stats[stat] = (eq.stats[stat] || 0) + value;
-      result.message = `Arcane Infusion: +${value} ${stat} permanently!`;
+      result.message = `Arcane Infusion: +${value} ${stat} permanently!${masteryDef ? ' (Mastery)' : ''}`;
       result.updatedGear = eq;
       break;
     }
@@ -481,10 +576,11 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
     case 'reinforce_armor': {
       const eq = u.equipment[targetSlot];
       const stat = PRIMARY_STATS[Math.floor(Math.random() * PRIMARY_STATS.length)];
-      const value = 3 + Math.floor(Math.random() * 4); // 3-6
+      let value = 3 + Math.floor(Math.random() * 4); // 3-6
+      if (masteryDef?.type === 'gear_stat_boost') value = Math.ceil(value * (1 + masteryDef.value / 100));
       eq.stats = eq.stats || {};
       eq.stats[stat] = (eq.stats[stat] || 0) + value;
-      result.message = `Reinforced! +${value} ${stat} permanently!`;
+      result.message = `Reinforced! +${value} ${stat} permanently!${masteryDef ? ' (Mastery)' : ''}`;
       result.updatedGear = eq;
       break;
     }
@@ -492,10 +588,11 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
     case 'sharpen_blade': {
       const eq = u.equipment[targetSlot];
       const stat = PRIMARY_STATS[Math.floor(Math.random() * PRIMARY_STATS.length)];
-      const value = 1 + Math.floor(Math.random() * 3); // 1-3
+      let value = 1 + Math.floor(Math.random() * 3); // 1-3
+      if (masteryDef?.type === 'gear_stat_boost') value = Math.ceil(value * (1 + masteryDef.value / 100));
       eq.stats = eq.stats || {};
       eq.stats[stat] = (eq.stats[stat] || 0) + value;
-      result.message = `Blade sharpened! +${value} ${stat} permanently!`;
+      result.message = `Blade sharpened! +${value} ${stat} permanently!${masteryDef ? ' (Mastery)' : ''}`;
       result.updatedGear = eq;
       break;
     }
@@ -505,20 +602,22 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
     case 'meal_golden': {
       u.activeBuffs = u.activeBuffs || [];
       const buffType = recipe.result.buffType;
+      const mealDuration = 5 + (masteryDef?.type === 'meal_duration' ? masteryDef.value : 0);
       for (let i = 0; i < effectiveCount; i++) {
-        u.activeBuffs.push({ type: buffType, questsRemaining: 5, activatedAt: now() });
+        u.activeBuffs.push({ type: buffType, questsRemaining: mealDuration, activatedAt: now() });
       }
       const mealNames = { meal_hearty: 'Hearty Stew', meal_golden: 'Golden Soup' };
-      result.message = `${mealNames[recipeId] || 'Meal'} consumed! Buff active for 5 quests${effectiveCount > 1 ? ` (x${effectiveCount})` : ''}.`;
+      result.message = `${mealNames[recipeId] || 'Meal'} consumed! Buff active for ${mealDuration} quests${effectiveCount > 1 ? ` (x${effectiveCount})` : ''}.${masteryDef ? ' (Mastery)' : ''}`;
       break;
     }
     case 'meal_feast': {
       u.activeBuffs = u.activeBuffs || [];
+      const feastDuration = 3 + (masteryDef?.type === 'meal_duration' ? masteryDef.value : 0);
       for (let i = 0; i < effectiveCount; i++) {
-        u.activeBuffs.push({ type: 'xp_boost_15', questsRemaining: 3, activatedAt: now() });
-        u.activeBuffs.push({ type: 'gold_boost_10', questsRemaining: 3, activatedAt: now() });
+        u.activeBuffs.push({ type: 'xp_boost_15', questsRemaining: feastDuration, activatedAt: now() });
+        u.activeBuffs.push({ type: 'gold_boost_10', questsRemaining: feastDuration, activatedAt: now() });
       }
-      result.message = `Star Banquet! +15% XP + 10% Gold for 3 quests${effectiveCount > 1 ? ` (x${effectiveCount})` : ''}!`;
+      result.message = `Star Banquet! +15% XP + 10% Gold for ${feastDuration} quests${effectiveCount > 1 ? ` (x${effectiveCount})` : ''}!${masteryDef ? ' (Mastery)' : ''}`;
       break;
     }
     case 'meal_forge': {
@@ -534,12 +633,13 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
     }
     case 'meal_champions': {
       u.activeBuffs = u.activeBuffs || [];
+      const champDuration = 5 + (masteryDef?.type === 'meal_duration' ? masteryDef.value : 0);
       for (let i = 0; i < effectiveCount; i++) {
-        u.activeBuffs.push({ type: 'xp_boost_20', questsRemaining: 5, activatedAt: now() });
-        u.activeBuffs.push({ type: 'gold_boost_15', questsRemaining: 5, activatedAt: now() });
-        u.activeBuffs.push({ type: 'luck_boost_10', questsRemaining: 5, activatedAt: now() });
+        u.activeBuffs.push({ type: 'xp_boost_20', questsRemaining: champDuration, activatedAt: now() });
+        u.activeBuffs.push({ type: 'gold_boost_15', questsRemaining: champDuration, activatedAt: now() });
+        u.activeBuffs.push({ type: 'luck_boost_10', questsRemaining: champDuration, activatedAt: now() });
       }
-      result.message = `Champion's Feast! +20% XP + 15% Gold + 10% Luck for 5 quests${effectiveCount > 1 ? ` (x${effectiveCount})` : ''}!`;
+      result.message = `Champion's Feast! +20% XP + 15% Gold + 10% Luck for ${champDuration} quests${effectiveCount > 1 ? ` (x${effectiveCount})` : ''}!${masteryDef ? ' (Mastery)' : ''}`;
       break;
     }
 

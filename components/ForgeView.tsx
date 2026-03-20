@@ -26,6 +26,9 @@ interface ProfessionDef {
   unlockCondition?: { type: string; value: number };
   rank?: string;
   rankColor?: string;
+  masteryActive?: boolean;
+  masteryBonus?: { type: string; value: number; desc: string } | null;
+  gatheringAffinity?: string[];
 }
 
 interface Recipe {
@@ -39,6 +42,9 @@ interface Recipe {
   materials: Record<string, number>;
   cooldownMinutes: number;
   canCraft: boolean;
+  learned?: boolean;
+  source?: "trainer" | "drop";
+  trainerCost?: number;
   skillUpColor?: string;
   cooldownRemaining?: number;
   result?: { type?: string };
@@ -194,6 +200,30 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
         onRefresh?.();
       } else {
         setCraftResult(data.error || "Crafting failed");
+      }
+    } catch {
+      setCraftResult("Network error");
+    }
+    setCrafting(false);
+  };
+
+  const handleLearnRecipe = async (recipeId: string) => {
+    if (crafting || !reviewApiKey) return;
+    setCrafting(true);
+    setCraftResult(null);
+    try {
+      const r = await fetch("/api/professions/learn", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", ...getAuthHeaders(reviewApiKey) },
+        body: JSON.stringify({ recipeId }),
+      });
+      const data = await r.json();
+      if (r.ok) {
+        setCraftResult(`Learned: ${data.recipe} (${data.profession}) — ${data.goldSpent}g`);
+        fetchData();
+        onRefresh?.();
+      } else {
+        setCraftResult(data.error || "Failed to learn recipe");
       }
     } catch {
       setCraftResult("Network error");
@@ -486,6 +516,14 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                   <span className="text-sm font-mono font-semibold" style={{ color: prof.rankColor || prof.color }}>Lv.{prof.playerLevel}</span>
                 </div>
               )}
+              {prof.masteryActive && prof.masteryBonus && (
+                <p className="text-xs mt-1" style={{ color: "#facc15" }} title={prof.masteryBonus.desc}>&#9733; Mastery: {prof.masteryBonus.desc}</p>
+              )}
+              {isChosen && prof.gatheringAffinity && prof.gatheringAffinity.length > 0 && (
+                <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.3)" }}>
+                  Gathering: {prof.gatheringAffinity.map(id => materialDefs.find(m => m.id === id)?.name || id).join(", ")}
+                </p>
+              )}
               {locked && (
                 <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.3)" }}>
                   Requires Player Level {prof.unlockCondition?.value || "?"}
@@ -716,6 +754,8 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                     </div>
                   </div>
                   {recipes.filter(r => r.profession === selectedNpc.id).map(recipe => {
+                    const isLearned = recipe.learned !== false;
+                    const needsLearn = !isLearned && recipe.source === "trainer" && (recipe.trainerCost ?? 0) > 0;
                     const meetsLevel = recipe.canCraft;
                     const onCooldown = (recipe.cooldownRemaining ?? 0) > 0;
                     const skillUp = SKILL_UP_COLORS[recipe.skillUpColor || "orange"];
@@ -729,7 +769,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                       }
                       return true;
                     })();
-                    const canDo = canAfford && meetsLevel && !onCooldown;
+                    const canDo = isLearned && canAfford && meetsLevel && !onCooldown;
 
                     return (
                       <div key={recipe.id} className="rounded-lg p-3" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)", borderLeft: `3px solid ${skillUp?.color || "rgba(255,255,255,0.06)"}` }}>
@@ -767,18 +807,34 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                                 {[1, 2, 3, 5, 10].map(n => <option key={n} value={n}>x{n}</option>)}
                               </select>
                             )}
-                            <button
-                              onClick={() => canDo && handleCraft(recipe.id, effectiveCount)}
-                              disabled={!canDo || crafting}
-                              className="forge-btn text-sm px-4 py-2 rounded-lg font-semibold"
-                              style={{
-                                background: canDo ? `${selectedNpc.color}20` : "rgba(255,255,255,0.03)",
-                                color: canDo ? selectedNpc.color : "rgba(255,255,255,0.2)",
-                                border: `1px solid ${canDo ? `${selectedNpc.color}40` : "rgba(255,255,255,0.06)"}`,
-                              }}
-                            >
-                              {crafting ? "..." : onCooldown ? "On CD" : "Craft"}
-                            </button>
+                            {needsLearn ? (
+                              <button
+                                onClick={() => handleLearnRecipe(recipe.id)}
+                                disabled={crafting || (currencies.gold ?? loggedInUser?.currencies?.gold ?? loggedInUser?.gold ?? 0) < (recipe.trainerCost ?? 0)}
+                                className="forge-btn text-sm px-4 py-2 rounded-lg font-semibold"
+                                style={{
+                                  background: `${selectedNpc.color}15`,
+                                  color: "#facc15",
+                                  border: "1px solid rgba(250,204,21,0.3)",
+                                }}
+                                title={`Learn from ${selectedNpc.npcName} for ${recipe.trainerCost}g`}
+                              >
+                                {crafting ? "..." : `Learn (${recipe.trainerCost}g)`}
+                              </button>
+                            ) : (
+                              <button
+                                onClick={() => canDo && handleCraft(recipe.id, effectiveCount)}
+                                disabled={!canDo || crafting}
+                                className="forge-btn text-sm px-4 py-2 rounded-lg font-semibold"
+                                style={{
+                                  background: canDo ? `${selectedNpc.color}20` : "rgba(255,255,255,0.03)",
+                                  color: canDo ? selectedNpc.color : "rgba(255,255,255,0.2)",
+                                  border: `1px solid ${canDo ? `${selectedNpc.color}40` : "rgba(255,255,255,0.06)"}`,
+                                }}
+                              >
+                                {crafting ? "..." : onCooldown ? "On CD" : "Craft"}
+                              </button>
+                            )}
                           </div>
                         </div>
                         {/* Cost display */}

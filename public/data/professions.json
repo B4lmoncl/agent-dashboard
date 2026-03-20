@@ -19,7 +19,9 @@
       "maxLevel": 10,
       "xpPerCraft": 10,
       "levelThresholds": [0, 100, 250, 450, 720, 1100, 1600, 2200, 3000, 4000],
-      "unlockCondition": { "type": "level", "value": 5 }
+      "unlockCondition": { "type": "level", "value": 5 },
+      "gatheringAffinity": ["eisenerz", "kristallsplitter", "drachenschuppe"],
+      "masteryBonus": { "type": "gear_stat_boost", "value": 10, "desc": "+10% gear stat rolls when equipping items" }
     },
     {
       "id": "alchemist",
@@ -33,7 +35,9 @@
       "maxLevel": 10,
       "xpPerCraft": 10,
       "levelThresholds": [0, 100, 250, 450, 720, 1100, 1600, 2200, 3000, 4000],
-      "unlockCondition": { "type": "level", "value": 5 }
+      "unlockCondition": { "type": "level", "value": 5 },
+      "gatheringAffinity": ["kraeuterbuendel", "mondblume", "sternenfrucht"],
+      "masteryBonus": { "type": "potion_duration", "value": 2, "desc": "+2 extra quest charges on crafted potions" }
     },
     {
       "id": "verzauberer",
@@ -47,7 +51,9 @@
       "maxLevel": 10,
       "xpPerCraft": 10,
       "levelThresholds": [0, 100, 250, 450, 720, 1100, 1600, 2200, 3000, 4000],
-      "unlockCondition": { "type": "level", "value": 8 }
+      "unlockCondition": { "type": "level", "value": 8 },
+      "gatheringAffinity": ["magiestaub", "runenstein", "aetherkern"],
+      "masteryBonus": { "type": "enchant_power", "value": 2, "desc": "+2 bonus to enchantment stat ranges" }
     },
     {
       "id": "koch",
@@ -61,9 +67,21 @@
       "maxLevel": 10,
       "xpPerCraft": 10,
       "levelThresholds": [0, 100, 250, 450, 720, 1100, 1600, 2200, 3000, 4000],
-      "unlockCondition": { "type": "level", "value": 3 }
+      "unlockCondition": { "type": "level", "value": 3 },
+      "gatheringAffinity": ["wildfleisch", "feuerwurz", "phoenixfeder"],
+      "masteryBonus": { "type": "meal_duration", "value": 2, "desc": "+2 extra quest charges on crafted meals" }
     }
   ],
+  "gatheringConfig": {
+    "baseBonusChance": 0.05,
+    "perLevelBonus": 0.03,
+    "maxBonusChance": 0.35,
+    "description": "Active professions passively gather their affinity materials on quest completion. Chance scales with profession level."
+  },
+  "masteryConfig": {
+    "unlockLevel": 8,
+    "description": "At profession level 8+, a passive mastery bonus activates for that profession."
+  },
   "materials": [
     { "id": "eisenerz", "name": "Iron Ore", "icon": "/images/icons/mat-eisenerz.png", "rarity": "common", "desc": "Base material for smithing." },
     { "id": "magiestaub", "name": "Arcane Dust", "icon": "/images/icons/mat-magiestaub.png", "rarity": "common", "desc": "Fine dust with magical resonance." },
@@ -103,7 +121,8 @@
       "cost": { "gold": 150 },
       "materials": { "eisenerz": 3 },
       "result": { "type": "reroll", "target": "primary_stat" },
-      "cooldownMinutes": 60
+      "cooldownMinutes": 60,
+      "source": "trainer"
     },
     {
       "id": "reroll_minor",
@@ -115,7 +134,8 @@
       "cost": { "gold": 200 },
       "materials": { "eisenerz": 2, "kristallsplitter": 1 },
       "result": { "type": "reroll", "target": "minor_stat" },
-      "cooldownMinutes": 120
+      "cooldownMinutes": 120,
+      "source": "trainer", "trainerCost": 100
     },
     {
       "id": "sharpen_blade",
@@ -127,7 +147,8 @@
       "cost": { "gold": 250 },
       "materials": { "eisenerz": 3, "kristallsplitter": 2 },
       "result": { "type": "reinforce", "statBonus": [1, 3], "target": "primary_stat" },
-      "cooldownMinutes": 180
+      "cooldownMinutes": 180,
+      "source": "trainer", "trainerCost": 250
     },
     {
       "id": "upgrade_rarity",
@@ -140,7 +161,8 @@
       "materials": { "drachenschuppe": 2, "aetherkern": 1 },
       "result": { "type": "upgrade_rarity", "successChance": 0.5 },
       "cooldownMinutes": 1440,
-      "discovery": { "type": "profLevel", "value": 7 }
+      "discovery": { "type": "profLevel", "value": 7 },
+      "source": "drop", "dropChance": 0.08, "dropMinQuestRarity": "rare"
     },
     {
       "id": "reinforce_armor",
@@ -153,7 +175,8 @@
       "materials": { "drachenschuppe": 3, "aetherkern": 2, "seelensplitter": 1 },
       "result": { "type": "reinforce", "statBonus": [3, 6], "target": "primary_stat" },
       "cooldownMinutes": 2880,
-      "discovery": { "type": "profLevel", "value": 9 }
+      "discovery": { "type": "profLevel", "value": 9 },
+      "source": "drop", "dropChance": 0.05, "dropMinQuestRarity": "epic"
     },
     {
       "id": "potion_xp",
@@ -165,7 +188,8 @@
       "cost": { "gold": 50 },
       "materials": { "kraeuterbuendel": 3, "magiestaub": 1 },
       "result": { "type": "buff", "buffType": "xp_boost_10", "duration": "3_quests" },
-      "cooldownMinutes": 0
+      "cooldownMinutes": 0,
+      "source": "trainer"
     },
     {
       "id": "potion_gold",
@@ -177,7 +201,8 @@
       "cost": { "gold": 75 },
       "materials": { "kraeuterbuendel": 2, "mondblume": 1 },
       "result": { "type": "buff", "buffType": "gold_boost_15", "duration": "3_quests" },
-      "cooldownMinutes": 0
+      "cooldownMinutes": 0,
+      "source": "trainer", "trainerCost": 50
     },
     {
       "id": "potion_luck",
@@ -189,7 +214,8 @@
       "cost": { "gold": 100 },
       "materials": { "mondblume": 2, "kristallsplitter": 1 },
       "result": { "type": "buff", "buffType": "luck_boost_20", "duration": "3_quests" },
-      "cooldownMinutes": 0
+      "cooldownMinutes": 0,
+      "source": "trainer", "trainerCost": 75
     },
     {
       "id": "potion_streak",
@@ -202,7 +228,8 @@
       "materials": { "phoenixfeder": 1, "mondblume": 2, "kraeuterbuendel": 3 },
       "result": { "type": "streak_shield", "amount": 1 },
       "cooldownMinutes": 0,
-      "discovery": { "type": "profLevel", "value": 6 }
+      "discovery": { "type": "profLevel", "value": 6 },
+      "source": "drop", "dropChance": 0.10, "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "potion_doubledown",
@@ -215,7 +242,8 @@
       "materials": { "sternenfrucht": 2, "mondblume": 3, "phoenixfeder": 1, "kraeuterbuendel": 5 },
       "result": { "type": "buff", "buffType": "ambition_buff", "duration": "5_quests" },
       "cooldownMinutes": 720,
-      "discovery": { "type": "profLevel", "value": 8 }
+      "discovery": { "type": "profLevel", "value": 8 },
+      "source": "drop", "dropChance": 0.06, "dropMinQuestRarity": "rare"
     },
     {
       "id": "enchant_gear",
@@ -227,7 +255,8 @@
       "cost": { "gold": 100 },
       "materials": { "magiestaub": 3, "runenstein": 1 },
       "result": { "type": "temp_enchant", "statBonus": [2, 4], "durationHours": 24 },
-      "cooldownMinutes": 360
+      "cooldownMinutes": 360,
+      "source": "trainer"
     },
     {
       "id": "runic_polish",
@@ -239,7 +268,8 @@
       "cost": { "gold": 120 },
       "materials": { "magiestaub": 2, "runenstein": 2 },
       "result": { "type": "temp_enchant", "statBonus": [1, 2], "durationHours": 48 },
-      "cooldownMinutes": 240
+      "cooldownMinutes": 240,
+      "source": "trainer", "trainerCost": 80
     },
     {
       "id": "glyph_of_warding",
@@ -252,7 +282,8 @@
       "materials": { "runenstein": 3, "kristallsplitter": 2 },
       "result": { "type": "buff", "buffType": "warding_8", "duration": "3_quests" },
       "cooldownMinutes": 0,
-      "discovery": { "type": "profLevel", "value": 6 }
+      "discovery": { "type": "profLevel", "value": 6 },
+      "source": "drop", "dropChance": 0.10, "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "permanent_enchant",
@@ -265,7 +296,8 @@
       "materials": { "runenstein": 3, "aetherkern": 1, "seelensplitter": 1 },
       "result": { "type": "perm_enchant", "statBonus": [1, 2], "target": "minor_stat" },
       "cooldownMinutes": 1440,
-      "discovery": { "type": "profLevel", "value": 5 }
+      "discovery": { "type": "profLevel", "value": 5 },
+      "source": "drop", "dropChance": 0.08, "dropMinQuestRarity": "rare"
     },
     {
       "id": "enchant_socket",
@@ -278,7 +310,8 @@
       "materials": { "runenstein": 5, "aetherkern": 2, "seelensplitter": 1, "drachenschuppe": 2 },
       "result": { "type": "perm_enchant", "statBonus": [3, 5], "target": "primary_stat" },
       "cooldownMinutes": 2880,
-      "discovery": { "type": "profLevel", "value": 8 }
+      "discovery": { "type": "profLevel", "value": 8 },
+      "source": "drop", "dropChance": 0.04, "dropMinQuestRarity": "epic"
     },
     {
       "id": "meal_hearty",
@@ -290,7 +323,8 @@
       "cost": { "gold": 25 },
       "materials": { "wildfleisch": 2, "kraeuterbuendel": 1 },
       "result": { "type": "buff", "buffType": "xp_boost_5", "duration": "5_quests" },
-      "cooldownMinutes": 0
+      "cooldownMinutes": 0,
+      "source": "trainer"
     },
     {
       "id": "meal_golden",
@@ -302,7 +336,8 @@
       "cost": { "gold": 40 },
       "materials": { "wildfleisch": 1, "feuerwurz": 1, "kraeuterbuendel": 1 },
       "result": { "type": "buff", "buffType": "gold_boost_10", "duration": "5_quests" },
-      "cooldownMinutes": 0
+      "cooldownMinutes": 0,
+      "source": "trainer", "trainerCost": 30
     },
     {
       "id": "meal_forge",
@@ -314,7 +349,8 @@
       "cost": { "gold": 50 },
       "materials": { "feuerwurz": 2, "wildfleisch": 1 },
       "result": { "type": "forge_temp", "amount": 15 },
-      "cooldownMinutes": 0
+      "cooldownMinutes": 0,
+      "source": "trainer", "trainerCost": 40
     },
     {
       "id": "meal_feast",
@@ -327,7 +363,8 @@
       "materials": { "sternenfrucht": 1, "wildfleisch": 2, "feuerwurz": 1 },
       "result": { "type": "buff", "buffType": "feast_buff", "duration": "3_quests" },
       "cooldownMinutes": 0,
-      "discovery": { "type": "profLevel", "value": 5 }
+      "discovery": { "type": "profLevel", "value": 5 },
+      "source": "drop", "dropChance": 0.12, "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "meal_endurance",
@@ -340,7 +377,8 @@
       "materials": { "sternenfrucht": 1, "feuerwurz": 2, "mondblume": 1 },
       "result": { "type": "streak_shield", "amount": 1 },
       "cooldownMinutes": 0,
-      "discovery": { "type": "profLevel", "value": 7 }
+      "discovery": { "type": "profLevel", "value": 7 },
+      "source": "drop", "dropChance": 0.08, "dropMinQuestRarity": "rare"
     },
     {
       "id": "meal_champions",
@@ -353,7 +391,8 @@
       "materials": { "sternenfrucht": 3, "wildfleisch": 3, "feuerwurz": 2, "mondblume": 2 },
       "result": { "type": "buff", "buffType": "champions_feast", "duration": "5_quests" },
       "cooldownMinutes": 1440,
-      "discovery": { "type": "profLevel", "value": 9 }
+      "discovery": { "type": "profLevel", "value": 9 },
+      "source": "drop", "dropChance": 0.04, "dropMinQuestRarity": "epic"
     }
   ]
 }

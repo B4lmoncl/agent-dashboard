@@ -755,7 +755,7 @@ export default function SocialView() {
       {/* Section header */}
       <div className="flex items-center gap-2">
         <span className="text-xs font-semibold uppercase tracking-widest text-w35">The Breakaway</span>
-        <InfoTooltip text="The social hub of the Trade Quarter. Add friends, send messages, and propose trades. Trades are negotiated back and forth — both players must agree before items and gold are exchanged." />
+        <InfoTooltip text="The social hub of the Trading District. Add friends, send messages, and propose trades. Trades are negotiated back and forth — both players must agree before items and gold are exchanged." />
       </div>
 
       {/* Tab navigation */}
