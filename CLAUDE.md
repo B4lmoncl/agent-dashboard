@@ -45,14 +45,14 @@ cd electron-quest-app && npm install && npm start
 
 ```
 app/                  # Next.js app directory
-  page.tsx            # Main dashboard component (~1850 lines)
-  types.ts            # Shared TypeScript interfaces (~420 lines)
+  page.tsx            # Main dashboard component (~2150 lines)
+  types.ts            # Shared TypeScript interfaces (~540 lines)
   utils.ts            # Fetch helpers, fetchDashboard batch, level utils (~320 lines)
   config.ts           # UI configuration constants
   globals.css         # Tailwind + CSS utilities + animations (~720 lines)
   layout.tsx          # Root layout wrapper
   DashboardContext.tsx # React context for shared state
-components/           # React UI components (36 files, ~12k lines)
+components/           # React UI components (39 files, ~13k lines)
   DashboardHeader.tsx # Top navigation bar
   DashboardModals.tsx # Modal system (currencies, modifiers, info)
   CharacterView.tsx   # Character screen + equipment (lazy-loaded)
@@ -67,8 +67,11 @@ components/           # React UI components (36 files, ~12k lines)
   ForgeView.tsx       # Crafting/Professions UI (Schmied, Alchemist, Verzauberer)
   UserCard.tsx        # Player card with frame, title, stats
   LeaderboardView.tsx # Proving Grounds leaderboard
-  ...                 # 25 more components
-lib/                  # Backend business logic (8 files, ~3000 lines)
+  ChallengesView.tsx  # Weekly challenges (Sternenpfad + Expedition) (lazy-loaded)
+  ...                 # 26 more components
+hooks/                # React custom hooks
+  useQuestActions.ts  # Quest action handlers (claim, complete, approve, etc.)
+lib/                  # Backend business logic (8 files, ~3800 lines)
   state.js            # Central state, Maps, JSON persistence (~1060 lines)
   helpers.js          # Utility functions, paginate() (~920 lines)
   auth.js             # JWT, refresh tokens, API key auth
@@ -77,7 +80,7 @@ lib/                  # Backend business logic (8 files, ~3000 lines)
   rotation.js         # Daily quest rotation logic
   middleware.js       # Express middleware (auth, master key)
   quest-templates.js  # Quest template interpolation
-routes/               # Express API routes (14 files, ~5200 lines)
+routes/               # Express API routes (17 files, ~6200 lines)
   quests.js           # Quest CRUD, claim, complete (~780 lines)
   habits-inventory.js # Rituals, gear, inventory, effects (~830 lines)
   config-admin.js     # Game config, leaderboard, /api/dashboard batch (~430 lines)
@@ -92,7 +95,8 @@ routes/               # Express API routes (14 files, ~5200 lines)
   currency.js         # Multi-currency system
   integrations.js     # GitHub webhook (HMAC verified), catalog API
   crafting.js         # Crafting professions (Schmied, Alchemist, Verzauberer, Koch) + Schmiedekunst
-  challenges-weekly.js # Weekly challenge mode (3-stage challenges)
+  challenges-weekly.js # Sternenpfad: 3-stage solo weekly challenges with star ratings
+  expedition.js       # Expedition: cooperative weekly challenge with shared checkpoints
   npcs-misc.js        # NPC endpoints, feedback (admin-only), SPA fallback
 public/
   data/               # Game template data (36 JSON files)
@@ -102,7 +106,7 @@ public/
     npcs/             # NPC portraits
 electron-quest-app/   # Electron desktop companion app (10 files)
 scripts/              # Asset generation & data validation (5 files)
-server.js             # Express entry point, boot sequence (~195 lines)
+server.js             # Express entry point, boot sequence (~289 lines)
 ```
 
 ## Architecture
@@ -148,14 +152,14 @@ Template: `.env.example`
 
 ## Key Game Systems
 
-Quest system (pool of ~10 open + ~25 max in-progress per player), XP/leveling (30 levels), gear/inventory with Diablo-3-style affix rolling (primary + minor stats with ranges), set bonuses and legendary effects (15 types including gameplay-changers: night gold, every-5th bonus, auto streak shield, material double, variety bonus), companions with bond levels + ultimates at Bond 5, gacha banners with pity (soft 55, hard 75), daily rituals/streaks, campaign quest chains, multi-currency economy (gold, stardust, essenz, runensplitter, sternentaler), title system (earn and equip titles displayed in player card and leaderboard), **achievement points** (common=5, uncommon=10, rare=25, epic=50, legendary=100 pts; cosmetic frame unlocks at milestones), **Artisan's Quarter** (crafting hub with 4 profession NPCs: Blacksmith/Grimvar for gear rerolling+reinforcing, Alchemist/Ysolde for buff potions+flasks, Enchanter/Eldric for gear enchanting+infusions, Cook/Bruna for meals+consumables; 2-profession limit per player; 10 levels per profession with WoW-style ranks Novice→Apprentice→Journeyman→Expert→Artisan→Master; recipe-specific XP scaling 8-50 XP; daily bonus 2x XP on first craft; recipe discovery unlocks at higher ranks; batch crafting x1-x10 for buff recipes; per-recipe cooldowns; 13 materials common→legendary from quest drops; WoW-style skill-up colors orange/yellow/green/gray; synergy hints for profession pairings), **Schmiedekunst** (dismantle items → essenz + materials with D3-style Salvage All per rarity, transmute 3 same-slot epics + 500g → 1 legendary; slot-locked selection UI), **Workshop Tools** (4-tier permanent XP upgrades: Sturdy→Masterwork→Legendary→Mythic, 2-10% XP bonus), **weekly challenges** (3-stage challenges with exclusive sternentaler currency), **Bazaar shop** (two categories: self-care rewards like gaming/movie/spa + gameplay boosts with temporary buff effects like XP scrolls, luck coins, streak shields — buffs applied server-side on purchase via `applyShopEffect()`).
+Quest system (pool of ~10 open + ~25 max in-progress per player), XP/leveling (30 levels), gear/inventory with Diablo-3-style affix rolling (primary + minor stats with ranges), set bonuses and legendary effects (15 types including gameplay-changers: night gold, every-5th bonus, auto streak shield, material double, variety bonus), companions with bond levels + ultimates at Bond 5, gacha banners with pity (soft 55, hard 75), daily rituals/streaks, campaign quest chains, multi-currency economy (gold, stardust, essenz, runensplitter, sternentaler), title system (earn and equip titles displayed in player card and leaderboard), **achievement points** (common=5, uncommon=10, rare=25, epic=50, legendary=100 pts; cosmetic frame unlocks at milestones), **Artisan's Quarter** (crafting hub with 4 profession NPCs: Blacksmith/Grimvar for gear rerolling+reinforcing, Alchemist/Ysolde for buff potions+flasks, Enchanter/Eldric for gear enchanting+infusions, Cook/Bruna for meals+consumables; 2-profession limit per player; 10 levels per profession with WoW-style ranks Novice→Apprentice→Journeyman→Expert→Artisan→Master; recipe-specific XP scaling 8-50 XP; daily bonus 2x XP on first craft; recipe discovery unlocks at higher ranks; batch crafting x1-x10 for buff recipes; per-recipe cooldowns; 13 materials common→legendary from quest drops; WoW-style skill-up colors orange/yellow/green/gray; synergy hints for profession pairings), **Schmiedekunst** (dismantle items → essenz + materials with D3-style Salvage All per rarity, transmute 3 same-slot epics + 500g → 1 legendary; slot-locked selection UI), **Workshop Tools** (4-tier permanent XP upgrades: Sturdy→Masterwork→Legendary→Mythic, 2-10% XP bonus), **Sternenpfad** (solo weekly challenge: 3 stages with star ratings 1-3 per stage, max 9 stars; weekly modifiers +50%/-25% per quest type; speed bonus +1★ if stage completed within 2 days; star-scaled rewards +15% at 2★, +33% at 3★; exclusive sternentaler currency), **Expedition** (cooperative weekly challenge: guild-wide shared progress toward 3+bonus checkpoints; scales with registered player count; no per-player cap so active players compensate for inactive ones; bonus checkpoint awards rotating titles), **Bazaar shop** (two categories: self-care rewards like gaming/movie/spa + gameplay boosts with temporary buff effects like XP scrolls, luck coins, streak shields — buffs applied server-side on purchase via `applyShopEffect()`).
 
 ## Important Files
 
 | File | Role |
 |------|------|
-| `app/page.tsx` | Main dashboard UI (~1850 lines) |
-| `app/types.ts` | All TypeScript interfaces (~420 lines) |
+| `app/page.tsx` | Main dashboard UI (~2150 lines) |
+| `app/types.ts` | All TypeScript interfaces (~540 lines) |
 | `app/utils.ts` | Fetch helpers, `fetchDashboard()` batch, level system |
 | `app/globals.css` | CSS utility classes + animations (~720 lines) |
 | `lib/state.js` | State management, Maps, persistence (~1060 lines) |
@@ -165,7 +169,7 @@ Quest system (pool of ~10 open + ~25 max in-progress per player), XP/leveling (3
 | `routes/quests.js` | Core quest API (~780 lines) |
 | `routes/config-admin.js` | Game config, leaderboard, `/api/dashboard` batch |
 | `routes/habits-inventory.js` | Rituals, gear, inventory (~830 lines) |
-| `public/data/*.json` | Game data templates (35 files) |
+| `public/data/*.json` | Game data templates (36+ files) |
 | `public/data/titles.json` | Title definitions with conditions |
 | `public/data/gearTemplates.json` | Gear items, set bonuses, legendary effects |
 | `public/data/professions.json` | Crafting professions, materials, recipes |
@@ -173,6 +177,12 @@ Quest system (pool of ~10 open + ~25 max in-progress per player), XP/leveling (3
 | `routes/shop.js` | Bazaar shop (self-care + boost items with effects) |
 | `routes/crafting.js` | Crafting profession routes (craft, materials) |
 | `components/ForgeView.tsx` | Forge UI with NPC popouts for crafting |
+| `routes/challenges-weekly.js` | Sternenpfad: 3-stage solo weekly challenges |
+| `routes/expedition.js` | Expedition: cooperative weekly challenge |
+| `components/ChallengesView.tsx` | Challenges UI (Sternenpfad + Expedition toggle) |
+| `public/data/weeklyChallenges.json` | Weekly challenge templates, modifiers, star thresholds |
+| `public/data/expeditions.json` | Expedition templates, checkpoint rewards, bonus titles |
+| `hooks/useQuestActions.ts` | Quest action handlers (claim, complete, approve, etc.) |
 
 ## Documentation
 

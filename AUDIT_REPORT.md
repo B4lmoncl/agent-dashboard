@@ -394,3 +394,149 @@ All 25+ frontend components were audited for: hardcoded value mismatches, missin
 ---
 
 *Audit Session 4 complete. 3 user-reported fixes applied (balance, economy, rendering).*
+
+---
+
+## 8. Audit Session 5 — Full Codebase Audit + Challenges System + QoL
+
+**Date:** 2026-03-20
+**Scope:** Complete re-audit of entire codebase (30,667 lines across 64 source files), new Challenges system review, navigation UX analysis
+
+### 8.1 Architecture Overview (Updated)
+
+| Layer | Stack | Entry Point | Lines |
+|-------|-------|-------------|-------|
+| Frontend | Next.js 16.1.6, React 19, TypeScript 5, Tailwind CSS 4 | `app/page.tsx` | ~2,148 |
+| Components | 39 .tsx files | `components/` | ~12,500 |
+| Hooks | 1 custom hook | `hooks/useQuestActions.ts` | ~369 |
+| Backend Routes | 17 .js files | `routes/` | ~6,200 |
+| Backend Lib | 8 .js files | `lib/` | ~3,800 |
+| Server | Express 4.18 entry point | `server.js` | 289 |
+| Data Templates | 36+ JSON files | `public/data/` | — |
+| Desktop | Electron 29 | `electron-quest-app/` | ~500 |
+| **Total** | | | **~30,700** |
+
+**Data Flow:**
+```
+React → fetchDashboard() batch → Express API → lib/state.js Maps → debounced writeFileSync → /data/*.json
+                                                                    ↘ /data/runtime/*.json (expedition, gacha, npc state)
+```
+
+### 8.2 Complete Feature Catalog
+
+| # | Feature | Frontend | Backend | Data Files |
+|---|---------|----------|---------|------------|
+| 1 | **Quest Management** | QuestBoard, QuestCards, QuestPanels, QuestDetailModal, QuestModals, QuestBadges | routes/quests.js | quests.json |
+| 2 | **Player System** (XP, Levels, Stats) | page.tsx (StatBar), CharacterView | lib/helpers.js, routes/players.js | users.json |
+| 3 | **Classes & Tiers** | CharacterView, page.tsx | routes/game.js | classes.json |
+| 4 | **Companions** | CompanionsWidget, CharacterView | lib/helpers.js | companions.json |
+| 5 | **NPC System** (Wanderer's Rest) | WandererRest | lib/npc-engine.js, routes/npcs-misc.js | npcGivers.json, npcState.json |
+| 6 | **Campaigns** | CampaignHub | routes/campaigns.js | campaigns.json |
+| 7 | **Rituals & Habits** | RitualChamber, page.tsx | routes/habits-inventory.js | rituals.json, habits.json |
+| 8 | **Anti-Rituals (Vow Shrine)** | page.tsx | routes/habits-inventory.js | rituals.json |
+| 9 | **Equipment & Gear** | CharacterView, ItemActionPopup | routes/habits-inventory.js | gearTemplates.json |
+| 10 | **Gacha System** | GachaView, GachaPull | routes/gacha.js | gachaPool.json, bannerTemplates.json |
+| 11 | **Shop (Bazaar)** | ShopView, ShopModal | routes/shop.js | shopItems.json |
+| 12 | **Crafting Professions** | ForgeView | routes/crafting.js | professions.json |
+| 13 | **Leaderboard** | LeaderboardView | routes/config-admin.js | — (computed) |
+| 14 | **Achievements** | HonorsView | lib/helpers.js | achievementTemplates.json |
+| 15 | **Currencies** (7 types) | DashboardModals | routes/currency.js | currencyTemplates.json |
+| 16 | **Weekly Challenges (Sternenpfad)** | ChallengesView | routes/challenges-weekly.js | weeklyChallenges.json |
+| 17 | **Expedition (Coop)** | ChallengesView | routes/expedition.js | expeditions.json |
+| 18 | **Titles** | CharacterView, LeaderboardView | routes/game.js | titles.json |
+| 19 | **Agent Monitoring** | AgentCard | routes/agents.js | store.json |
+| 20 | **Onboarding** | OnboardingWizard | routes/users.js | — |
+| 21 | **Daily Bonus** | page.tsx | routes/currency.js | — |
+| 22 | **CV Builder** | CVBuilderPanel | routes/players.js | — |
+| 23 | **Season System** | page.tsx | lib/helpers.js | — |
+| 24 | **Feedback** | FeedbackModal, FeedbackOverlay | routes/npcs-misc.js | feedback.json |
+| 25 | **Tutorial/Guide** | TutorialModal | — | — (static) |
+| 26 | **Changelog** | page.tsx (info overlay) | routes/habits-inventory.js | — (GitHub API) |
+| 27 | **Roadmap** | RoadmapView | routes/config-admin.js | roadmap.json |
+| 28 | **Schmiedekunst** (Dismantle/Transmute) | ForgeView | routes/crafting.js | — |
+| 29 | **GitHub Webhook** | — | routes/integrations.js | — |
+
+### 8.3 Navigation Tab Inventory
+
+**Current: 14 top-level tabs + 3 quest sub-tabs + 3 info overlay tabs = 20 views**
+
+| # | Key | Label | Requires Login | Lazy-Loaded | Icon |
+|---|-----|-------|---------------|-------------|------|
+| 1 | `questBoard` | The Great Hall | No | No | nav-great-hall.png |
+| 2 | `npcBoard` | The Wanderer's Rest | No | No | nav-wanderer.png |
+| 3 | `campaign` | The Observatory | No | No | nav-observatory.png |
+| 4 | `klassenquests` | The Arcanum | No | No | nav-arcanum.png |
+| 5 | `character` | Character | **Yes** | **Yes** | nav-character.png |
+| 6 | `shop` | The Bazaar | No | No | nav-bazaar.png |
+| 7 | `forge` | Artisan's Quarter | **Yes** | **Yes** | prof-schmied.png |
+| 8 | `gacha` | Vault of Fate | No | **Yes** | vault-of-fate.png |
+| 9 | `challenges` | Challenges | No | **Yes** | nav-challenges.png |
+| 10 | `leaderboard` | The Proving Grounds | No | No | nav-proving.png |
+| 11 | `honors` | Hall of Honors | No | No | nav-honors.png |
+| 12 | `season` | [Season Name] Season | No | No | — |
+| 13 | `roadmap` | Roadmap | No | No | — |
+| 14 | `changelog` | Changelog | No | No | — |
+
+**Quest sub-tabs** (within The Great Hall): Quest Board, Ritual Chamber, Vow Shrine
+**Info overlay tabs**: Roadmap, Changelog, Guide
+
+### 8.4 Challenges System — Issues Found & Fixed
+
+These 10 issues were found during the challenges code audit and fixed in commit `2dfee05`:
+
+| # | ID | Severity | Description | Fix |
+|---|-----|----------|-------------|-----|
+| 1 | C-01 | HIGH | `calculateStageStars()` GET call site missing `modifier` param — stars calculated without modifier | Added `modifier` arg |
+| 2 | C-02 | HIGH | `calculateStageStars()` claim call site missing `modifier` param — permanent star values wrong | Added `modifier` arg |
+| 3 | C-03 | MEDIUM | Expedition titles stored in `u.earnedExpeditionTitles` — disconnected from title system | Changed to `u.earnedTitles` |
+| 4 | C-04 | MEDIUM | Division by zero in ChallengesView when `progressMax === 0` | Guard: `progressMax > 0 ? ... : 0` |
+| 5 | C-05 | LOW | `streak_maintained` progress shows 0 in frontend — `streakDays` not in API response | Added `streakDays` to response |
+| 6 | C-06 | LOW | Expedition uses sync `fs.writeFileSync` on every quest completion | Debounced (200ms) |
+| 7 | C-07 | LOW | Expedition `saveExpeditionState()` doesn't call `ensureRuntimeDir()` | Added `ensureRuntimeDir()` |
+| 8 | C-08 | LOW | Unused `getLevelInfo` import in expedition.js | Removed |
+| 9 | C-09 | LOW | helpers.js catch block silently swallows all expedition errors | Log non-MODULE_NOT_FOUND errors |
+| 10 | C-10 | LOW | No user-visible error feedback on failed challenge claims | Added error toast UI |
+
+### 8.5 New Issues Found — Session 5
+
+#### I-01: `useQuestActions.ts` — 14 Silent Error Catches [LOW]
+- **Location:** `hooks/useQuestActions.ts` — lines 76, 92, 103, 125, 140, 155, 170, 182, 194, 273, 286, 304, 323, 340
+- **Issue:** Every API call wraps its catch in `catch { /* ignore */ }` — network errors and server errors are completely invisible to users
+- **Impact:** If an API call fails (claim, complete, approve, reject, shop buy, etc.), the user sees nothing — the action just silently does nothing
+- **Note:** This is consistent with the original design pattern (fail silently, optimistic UI). A QoL improvement would add user-visible error feedback, but it's not a bug per se.
+- **Status:** Documented — candidate for future QoL improvement
+
+#### I-02: `server.js:226` — `var` Declaration [COSMETIC]
+- **Location:** `server.js:226`
+- **Issue:** Uses `var changelogInterval` for hoisting across an `if` block
+- **Impact:** Works correctly but inconsistent with codebase style (`const`/`let` everywhere else)
+- **Status:** Documented — very low priority
+
+#### I-03: BattlePassView.tsx — Orphaned Component [INFO]
+- **Location:** `components/BattlePassView.tsx`
+- **Issue:** Commented out in page.tsx, no backend API exists, hardcoded dates
+- **Impact:** Dead code, no runtime impact
+- **Status:** Previously documented in Session 3, still present
+
+#### I-04: Challenges Navigation Icon Missing [LOW]
+- **Location:** page.tsx line 1055
+- **Issue:** `nav-challenges.png` referenced — need to verify file exists
+- **Status:** Checking...
+
+### 8.6 Documentation Currency
+
+| Doc File | Last Updated | Status |
+|----------|-------------|--------|
+| CLAUDE.md | 2026-03-20 | ⚠️ Needs update — missing challenges/expedition system |
+| ARCHITECTURE.md | 2026-03-20 | ⚠️ Needs update — missing challenges/expedition |
+| LYRA-PLAYBOOK.md | 2026-03-20 | OK (content creation guide) |
+| BACKLOG.md | 2026-03-19 | OK (may be stale, user-managed) |
+| README.md | 2026-03-19 | ⚠️ Needs update — missing new routes |
+
+### 8.7 Session 5 Summary
+
+- **Challenges system:** 10 issues found and fixed (commit `2dfee05`)
+- **Full codebase re-audit:** 4 new items documented (I-01 through I-04)
+- **No critical or high-severity new issues found** outside the challenges system
+- **Previous sessions' fixes verified:** All still in place and correct
+- **Navigation analysis:** 14 top-level tabs identified — restructuring proposal in progress (Phase 2)

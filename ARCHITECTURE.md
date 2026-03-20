@@ -111,7 +111,8 @@ All routes are mounted in `server.js` in order. The last route file (`npcs-misc.
 | `integrations.js` | GitHub webhook (HMAC verified), catalog API | Webhook signature |
 | `campaigns.js` | Campaign CRUD, quest chains | API key |
 | `crafting.js` | Crafting professions, Schmiedekunst (dismantle/transmute) | API key |
-| `challenges-weekly.js` | Weekly 3-stage challenges (sternentaler rewards) | API key |
+| `challenges-weekly.js` | Sternenpfad: 3-stage solo weekly challenges with star ratings, modifiers, speed bonus | API key |
+| `expedition.js` | Expedition: cooperative weekly challenge with shared checkpoints, scaling by player count | API key |
 | `npcs-misc.js` | NPC rotation, feedback (admin-only), SPA fallback | Master key (feedback) |
 | `docs.js` | OpenAPI spec, HTML docs | Public |
 
@@ -130,6 +131,8 @@ All routes are mounted in `server.js` in order. The last route file (`npcs-misc.
   "habits": [...],
   "favorites": [...],
   "activeNpcs": [...],
+  "weeklyChallenge": { ... },
+  "expedition": { ... },
   "apiLive": true
 }
 ```
@@ -280,6 +283,30 @@ Quests can be: player-created, NPC-generated, GitHub webhook-generated, daily ro
 - **Frontend**: `ForgeView.tsx` — Artisan's Quarter tab with NPC grid, Workshop Tools, NPC popout modals (createPortal)
 - **Endpoints**: `GET /api/professions?player=X` (with dailyBonus), `POST /api/professions/craft` (with count), `POST /api/professions/choose`, `POST /api/professions/switch`, `POST /api/schmiedekunst/dismantle`, `POST /api/schmiedekunst/dismantle-all`, `POST /api/schmiedekunst/transmute`
 - **Data**: `public/data/professions.json` (4 professions, 13 materials, 18 recipes, drop rates)
+
+### Challenges System
+
+Two weekly challenge types, accessible under a single "Challenges" tab with toggle buttons:
+
+**Sternenpfad (Solo)**
+- 3-stage weekly challenge with star ratings (1-3 per stage, max 9 stars)
+- Template rotation: deterministic via ISO week seed (`weekSeed % templates.length`)
+- **Star thresholds**: Each stage defines 3 overachievement thresholds. 1★ at threshold[0], 2★ at threshold[1], 3★ at threshold[2]
+- **Speed bonus**: Complete a stage within `speedBonusDays` (default 2) for +1★ (capped at 3)
+- **Weekly modifiers**: Rotate per week, apply bonus/malus multipliers to specific quest types. Effective progress stored as `progress.effective` alongside raw counts
+- **Star-scaled rewards**: Base rewards + bonus (2★: +15%, 3★: +33%)
+- **Endpoints**: `GET /api/weekly-challenge?player=X`, `POST /api/weekly-challenge/progress`, `POST /api/weekly-challenge/claim`
+- **Data**: `public/data/weeklyChallenges.json` (8 templates, 6 modifiers)
+
+**Expedition (Cooperative)**
+- Guild-wide cooperative challenge with shared checkpoint progress
+- 4 checkpoints (3 regular + 1 bonus): required quest count scales with registered player count (`questsPerPlayer × playerCount`)
+- **Nachholmechanik**: No per-player contribution cap — active players compensate for inactive ones
+- **Bonus checkpoint**: Awards a rotating title from `bonusTitles` pool
+- Auto-contribution: `contributeQuest(userId)` called from `onQuestCompletedByUser()` in helpers.js
+- **Endpoints**: `GET /api/expedition?player=X`, `POST /api/expedition/claim`
+- **Data**: `public/data/expeditions.json` (8 narrative templates, 6 bonus titles)
+- **State**: `data/runtime/expedition.json` (debounced writes, separate from user data)
 
 ## Security measures
 
