@@ -519,9 +519,19 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                     )}
                   </div>
                   <p className="text-sm" style={{ color: "rgba(255,255,255,0.4)", lineHeight: 1.4 }}>{prof.description}</p>
-                  {isChosen && synergy && synergyChosen && (
-                    <p className="text-xs mt-0.5" style={{ color: `${prof.color}60` }}>&#9733; {synergy.label} active</p>
-                  )}
+                  {synergy && (() => {
+                    const partnerProf = professions.find(p => p.id === synergy.partner);
+                    if (isChosen && synergyChosen) {
+                      return <p className="text-xs mt-0.5" style={{ color: `${prof.color}80` }}>&#9733; {synergy.label} synergy active with {partnerProf?.npcName || synergy.partner}</p>;
+                    }
+                    if (!isChosen && canChoose && partnerProf) {
+                      return <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.25)" }}>Pairs well with {partnerProf.name} ({synergy.label})</p>;
+                    }
+                    if (isChosen && !synergyChosen && partnerProf) {
+                      return <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.2)" }}>Tip: Add {partnerProf.name} for {synergy.label} synergy</p>;
+                    }
+                    return null;
+                  })()}
                 </div>
               </div>
 
