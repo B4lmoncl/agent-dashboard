@@ -167,7 +167,7 @@ Use `paginate(array, req.query)` helper from `lib/helpers.js`.
 - **Tier Set Bonuses**: 3/6 = +5% all stats, 6/6 = +10% all stats (auto-detected by tier)
 - **Named Set Bonuses**: Defined in `gearTemplates.json → namedSets[]`. Support partial (2/3 threshold) and full bonuses.
 - **Legendary Effects**: Items with `rarity: "legendary"` can have a `legendaryEffect` field. Types: `xp_bonus`, `gold_bonus`, `drop_bonus`, `decay_reduction`, `streak_protection`. Applied via `getLegendaryModifiers()` in `lib/helpers.js`.
-- **Stat effects**: Kraft → +1% XP, Weisheit → +1% Gold, Ausdauer → -0.5% forge decay, Glück → +0.5% drop chance
+- **Stat effects**: Kraft → +0.5% XP (max +30%), Weisheit → +0.5% Gold (max +30%), Ausdauer → -0.5% forge decay (min 10% of base), Glück → +0.5% drop chance (max 20%)
 
 ## Title System
 
@@ -219,7 +219,7 @@ Quests can be: player-created, NPC-generated, GitHub webhook-generated, daily ro
 
 ### Gacha system
 - Two banner types: Standard, Featured
-- Pity system: soft pity at 35 pulls, hard pity at 50 (legendary guaranteed)
+- Pity system: soft pity at 55 pulls, hard pity at 75 (legendary guaranteed)
 - Epic pity: guaranteed every 10 pulls
 - Duplicate items refund currency (Runensplitter)
 - Per-player pull lock prevents race conditions

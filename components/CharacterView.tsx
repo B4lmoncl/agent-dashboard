@@ -355,14 +355,14 @@ const BOND_LEVELS = [
 ];
 
 const STAT_EFFECTS: Record<string, string> = {
-  "Kraft":     "+0.5% Quest XP pro Punkt",
-  "Weisheit":  "+0.5% Gold pro Punkt",
-  "Ausdauer":  "-0.5% Forge Decay pro Punkt",
+  "Kraft":     "+0.5% Quest XP pro Punkt (max +30%)",
+  "Weisheit":  "+0.5% Gold pro Punkt (max +30%)",
+  "Ausdauer":  "-0.5% Forge Decay pro Punkt (min 10% der Basis-Rate)",
   "Glück":     "+0.5% Drop Chance pro Punkt (max 20%)",
   "Fokus":     "+1 Flat Bonus-XP pro Punkt (max +50)",
-  "Vitalität": "+1% Streak-Schutz pro Punkt",
+  "Vitalität": "+1% Streak-Schutz pro Punkt (max 75% gesamt)",
   "Charisma":  "+5% Companion Bond-XP pro Punkt",
-  "Tempo":     "+1 Forge-Temp pro Quest",
+  "Tempo":     "+2% Forge-Temp-Recovery pro Punkt",
 };
 
 const GRID_COLS = 5;
@@ -1160,16 +1160,16 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
             const { kraft, ausdauer, weisheit, glueck, fokus, vitalitaet, charisma, tempo } = charData.stats;
             const base = charData.baseStats;
             const statRows = [
-              { icon: "/images/icons/stat-kraft.png", label: "Kraft", iconSrc: "/images/icons/stat-kraft.png",    val: kraft,    base: base.kraft,    tooltip: "KRA · +0.5% Quest-XP pro Punkt" },
-              { icon: "/images/icons/stat-ausdauer.png", label: "Ausdauer", iconSrc: "/images/icons/stat-ausdauer.png", val: ausdauer, base: base.ausdauer, tooltip: "AUS · Reduziert Forge-Decay" },
-              { icon: "/images/icons/stat-weisheit.png", label: "Weisheit", iconSrc: "/images/icons/stat-weisheit.png", val: weisheit, base: base.weisheit, tooltip: "WEI · +0.5% Gold pro Punkt" },
-              { icon: "/images/icons/stat-glueck.png", label: "Glück", iconSrc: "/images/icons/stat-glueck.png",    val: glueck,   base: base.glueck,   tooltip: "GLÜ · +0.5% Drop-Chance pro Punkt" },
+              { icon: "/images/icons/stat-kraft.png", label: "Kraft", iconSrc: "/images/icons/stat-kraft.png",    val: kraft,    base: base.kraft,    tooltip: "KRA · +0.5% Quest-XP pro Punkt (max +30%)" },
+              { icon: "/images/icons/stat-ausdauer.png", label: "Ausdauer", iconSrc: "/images/icons/stat-ausdauer.png", val: ausdauer, base: base.ausdauer, tooltip: "AUS · -0.5% Forge Decay pro Punkt" },
+              { icon: "/images/icons/stat-weisheit.png", label: "Weisheit", iconSrc: "/images/icons/stat-weisheit.png", val: weisheit, base: base.weisheit, tooltip: "WEI · +0.5% Gold pro Punkt (max +30%)" },
+              { icon: "/images/icons/stat-glueck.png", label: "Glück", iconSrc: "/images/icons/stat-glueck.png",    val: glueck,   base: base.glueck,   tooltip: "GLÜ · +0.5% Drop-Chance pro Punkt (max 20%)" },
             ];
             const minorStatRows = [
-              { label: "Fokus", val: fokus || 0, tooltip: "FOK · Flat Bonus-XP pro Quest" },
-              { label: "Vitalität", val: vitalitaet || 0, tooltip: "VIT · +1% Streak-Schutz pro Punkt" },
+              { label: "Fokus", val: fokus || 0, tooltip: "FOK · +1 Flat Bonus-XP pro Punkt (max +50)" },
+              { label: "Vitalität", val: vitalitaet || 0, tooltip: "VIT · +1% Streak-Schutz pro Punkt (max 75%)" },
               { label: "Charisma", val: charisma || 0, tooltip: "CHA · +5% Companion Bond-XP pro Punkt" },
-              { label: "Tempo", val: tempo || 0, tooltip: "TMP · Bonus Forge-Temp pro Quest" },
+              { label: "Tempo", val: tempo || 0, tooltip: "TMP · +2% Forge-Temp-Recovery pro Punkt" },
             ];
             const hasMinorStats = minorStatRows.some(s => s.val > 0);
             return (

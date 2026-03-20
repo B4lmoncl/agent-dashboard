@@ -208,6 +208,9 @@ export function useQuestActions({
           setChainOffer({ template: data.chainQuestTemplate, parentTitle: questTitle });
         }
         const isNpcQuest = !!data.quest?.npcGiverId;
+        const currencies: { name: string; amount: number; color: string }[] = [];
+        if (data.runensplitterEarned > 0) currencies.push({ name: "Runensplitter", amount: data.runensplitterEarned, color: "#818cf8" });
+        if (data.gildentalerEarned > 0) currencies.push({ name: "Gildentaler", amount: data.gildentalerEarned, color: "#10b981" });
         setRewardCelebration({
           type: isNpcQuest ? "npc-quest" : "quest",
           title: questTitle,
@@ -215,6 +218,7 @@ export function useQuestActions({
           goldEarned: data.goldEarned || 0,
           loot: data.lootDrop || null,
           achievement: data.newAchievements?.length > 0 ? data.newAchievements[0] : null,
+          ...(currencies.length > 0 ? { currencies } : {}),
         });
         if (data.levelUp) {
           pendingLevelUpRef.current = data.levelUp;

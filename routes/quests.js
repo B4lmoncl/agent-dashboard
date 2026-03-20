@@ -397,9 +397,11 @@ router.post('/api/quest/:id/complete', requireApiKey, (req, res) => {
   const companionReward = u3?._lastCompanionReward || null;
   const xpEarned = u3?._lastXpEarned || 0;
   const goldEarned = u3?._lastGoldEarned || 0;
-  if (u3) { delete u3._lastLoot; delete u3._lastCompanionReward; delete u3._lastXpEarned; delete u3._lastGoldEarned; }
+  const runensplitterEarned = u3?._lastRunensplitterEarned || 0;
+  const gildentalerEarned = u3?._lastGildentalerEarned || 0;
+  if (u3) { delete u3._lastLoot; delete u3._lastCompanionReward; delete u3._lastXpEarned; delete u3._lastGoldEarned; delete u3._lastRunensplitterEarned; delete u3._lastGildentalerEarned; }
   console.log(`[quest] ${quest.id} completed by ${agentId}`);
-  res.json({ ok: true, quest, newAchievements, lootDrop, companionReward, xpEarned, goldEarned, chainQuestTemplate: quest.nextQuestTemplate || null, levelUp: u3 && newLevelInfo3.level > prevLevel3 ? { level: newLevelInfo3.level, title: newLevelInfo3.title } : null });
+  res.json({ ok: true, quest, newAchievements, lootDrop, companionReward, xpEarned, goldEarned, runensplitterEarned, gildentalerEarned, chainQuestTemplate: quest.nextQuestTemplate || null, levelUp: u3 && newLevelInfo3.level > prevLevel3 ? { level: newLevelInfo3.level, title: newLevelInfo3.title } : null });
 });
 
 // POST /api/quest/:id/unclaim — agent/player unclaims a quest

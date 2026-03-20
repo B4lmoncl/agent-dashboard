@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo } from "react";
+import { useMemo, useEffect, useRef } from "react";
 import type { AchievementDef } from "@/app/types";
 import { useDashboard } from "@/app/DashboardContext";
 
@@ -30,7 +30,17 @@ function conditionToText(cond: Record<string, unknown> | undefined): string {
   }
 }
 
-export default function HonorsView({ catalogue }: { catalogue: AchievementDef[] }) {
+export default function HonorsView({ catalogue, highlightedAchievementId, onHighlightClear }: { catalogue: AchievementDef[]; highlightedAchievementId?: string | null; onHighlightClear?: () => void }) {
+  const highlightRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (highlightedAchievementId && highlightRef.current) {
+      highlightRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
+      // Clear after a delay so user sees the highlight then it fades
+      const timer = setTimeout(() => { if (onHighlightClear) onHighlightClear(); }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [highlightedAchievementId, onHighlightClear]);
   const { users, playerName: ctxPlayerName } = useDashboard();
   const playerName = ctxPlayerName || "";
   const categories = Array.from(new Set(catalogue.map(a => a.category)));
@@ -158,15 +168,18 @@ export default function HonorsView({ catalogue }: { catalogue: AchievementDef[] 
                       ? "linear-gradient(160deg, rgba(20,17,10,0.6) 0%, #131313 100%)"
                       : "#131313";
 
+                  const isHighlighted = highlightedAchievementId === ach.id;
+
                   return (
                     <div
                       key={ach.id}
+                      ref={isHighlighted ? highlightRef : undefined}
                       className="rounded-xl overflow-hidden group"
                       style={{
                         background: bgColor,
-                        border: `2px solid ${frameColor}`,
-                        boxShadow: frameShadow,
-                        opacity: highlight || (!playerName && anyEarned) ? 1 : 0.4,
+                        border: `2px solid ${isHighlighted ? "#f59e0b" : frameColor}`,
+                        boxShadow: isHighlighted ? "0 0 24px rgba(245,158,11,0.4), 0 0 48px rgba(245,158,11,0.15)" : frameShadow,
+                        opacity: highlight || (!playerName && anyEarned) || isHighlighted ? 1 : 0.4,
                         transition: "all 0.3s ease",
                       }}
                     >

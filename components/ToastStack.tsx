@@ -88,11 +88,12 @@ function FlavorToastContent({ toast, onClose }: { toast: { message: string; icon
   );
 }
 
-function AchievementToastContent({ achievement, onClose }: { achievement: EarnedAchievement; onClose: () => void }) {
+function AchievementToastContent({ achievement, onClose, onAchievementClick }: { achievement: EarnedAchievement; onClose: () => void; onAchievementClick?: (id: string) => void }) {
   return (
     <div
       className="rounded-xl px-5 py-4 flex items-center gap-4 shadow-2xl"
-      style={{ background: "#252525", border: "1px solid rgba(245,158,11,0.5)", boxShadow: "0 8px 48px rgba(245,158,11,0.3)", maxWidth: 360, width: "100%" }}
+      style={{ background: "#252525", border: "1px solid rgba(245,158,11,0.5)", boxShadow: "0 8px 48px rgba(245,158,11,0.3)", maxWidth: 360, width: "100%", cursor: onAchievementClick ? "pointer" : undefined }}
+      onClick={() => { if (onAchievementClick && achievement.id) { onAchievementClick(achievement.id); onClose(); } }}
     >
       {achievement.icon && achievement.icon.startsWith("/") ? <img src={achievement.icon} alt="" width={28} height={28} style={{ imageRendering: "smooth", flexShrink: 0 }} /> : <span className="text-2xl flex-shrink-0">{achievement.icon}</span>}
       <div className="flex-1 min-w-0">
@@ -100,7 +101,7 @@ function AchievementToastContent({ achievement, onClose }: { achievement: Earned
         <p className="text-sm font-semibold" style={{ color: "#f0f0f0" }}>{achievement.name}</p>
         <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>{achievement.desc}</p>
       </div>
-      <button onClick={onClose} style={{ color: "rgba(255,255,255,0.3)" }}>×</button>
+      <button onClick={(e) => { e.stopPropagation(); onClose(); }} style={{ color: "rgba(255,255,255,0.3)" }}>×</button>
     </div>
   );
 }
@@ -190,8 +191,28 @@ function PurchaseToastContent({ message, onClose }: { message: string; onClose: 
   );
 }
 
+function CompanionBondToastContent({ toast, onClose }: { toast: { companionName: string; companionEmoji: string; bondXpGained: number; newBondXp: number; bondTitle: string; bondLevelUp: boolean }; onClose: () => void }) {
+  return (
+    <div
+      className="rounded-xl px-4 py-3 flex items-center gap-3 shadow-2xl"
+      style={{ background: toast.bondLevelUp ? "#2a1e2e" : "#1e1a2e", border: `1px solid ${toast.bondLevelUp ? "rgba(255,107,157,0.5)" : "rgba(255,107,157,0.3)"}`, boxShadow: `0 8px 32px rgba(255,107,157,${toast.bondLevelUp ? "0.25" : "0.1"})`, maxWidth: 340, width: "100%" }}
+    >
+      <span className="text-2xl flex-shrink-0">{toast.companionEmoji}</span>
+      <div className="flex-1 min-w-0">
+        {toast.bondLevelUp
+          ? <p className="text-xs font-bold" style={{ color: "#ff6b9d" }}>Bond Level Up!</p>
+          : <p className="text-xs font-bold" style={{ color: "#ff6b9d" }}>+{toast.bondXpGained} Bond XP</p>
+        }
+        <p className="text-sm font-semibold" style={{ color: "#f0f0f0" }}>{toast.companionName}</p>
+        <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>{toast.bondTitle}</p>
+      </div>
+      <button onClick={onClose} style={{ color: "rgba(255,255,255,0.3)", flexShrink: 0 }}>×</button>
+    </div>
+  );
+}
+
 // ─── Single Toast Wrapper with auto-dismiss + slide animation ────────────────
-function ToastWrapper({ toast, index, onRemove }: { toast: ToastItem; index: number; onRemove: (id: string) => void }) {
+function ToastWrapper({ toast, index, onRemove, onAchievementClick }: { toast: ToastItem; index: number; onRemove: (id: string) => void; onAchievementClick?: (id: string) => void }) {
   const [visible, setVisible] = useState(false);
   const [exiting, setExiting] = useState(false);
 
@@ -223,16 +244,17 @@ function ToastWrapper({ toast, index, onRemove }: { toast: ToastItem; index: num
       }}
     >
       {toast.type === "flavor" && <FlavorToastContent toast={toast} onClose={handleClose} />}
-      {toast.type === "achievement" && <AchievementToastContent achievement={toast.achievement} onClose={handleClose} />}
+      {toast.type === "achievement" && <AchievementToastContent achievement={toast.achievement} onClose={handleClose} onAchievementClick={onAchievementClick} />}
       {toast.type === "chain" && <ChainToastContent parentTitle={toast.parentTitle} template={toast.template} onAccept={toast.onAccept} onClose={handleClose} />}
       {toast.type === "purchase" && <PurchaseToastContent message={toast.message} onClose={handleClose} />}
       {toast.type === "item" && <ItemToastContent toast={toast} onClose={handleClose} />}
+      {toast.type === "companionBond" && <CompanionBondToastContent toast={toast} onClose={handleClose} />}
     </div>
   );
 }
 
 // ─── Toast Stack Container ───────────────────────────────────────────────────
-export function ToastStack({ toasts, onRemove }: { toasts: ToastItem[]; onRemove: (id: string) => void }) {
+export function ToastStack({ toasts, onRemove, onAchievementClick }: { toasts: ToastItem[]; onRemove: (id: string) => void; onAchievementClick?: (id: string) => void }) {
   if (toasts.length === 0) return null;
 
   return (
@@ -246,7 +268,7 @@ export function ToastStack({ toasts, onRemove }: { toasts: ToastItem[]; onRemove
       }}
     >
       {toasts.map((toast, i) => (
-        <ToastWrapper key={toast.id} toast={toast} index={i} onRemove={onRemove} />
+        <ToastWrapper key={toast.id} toast={toast} index={i} onRemove={onRemove} onAchievementClick={onAchievementClick} />
       ))}
     </div>
   );

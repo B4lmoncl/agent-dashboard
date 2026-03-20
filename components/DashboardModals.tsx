@@ -42,13 +42,13 @@ export default function DashboardModals({
   inProgressCount,
 }: DashboardModalsProps) {
   const CURRENCY_HOW: Record<string, string> = {
-    gold: "Schließe Quests ab, kaufe Gear und Shop-Items, oder investiere in Crafting-Rezepte. Beeinflusst durch Streak, Forge-Temperatur, Weisheit, Companions und Gear. Tauschbar gegen Runensplitter und Gildentaler.",
-    stardust: "Fällt bei Level-Ups und an Streak-Meilensteinen vom Himmel. Verwendbar für Gacha-Banner und tauschbar gegen Runensplitter.",
+    gold: "Schließe Quests ab, kaufe Gear und Shop-Items, oder investiere in Crafting-Rezepte. Beeinflusst durch Streak, Forge-Temperatur, Weisheit und Legendary-Gear. Tauschbar gegen Runensplitter und Gildentaler.",
+    stardust: "Fällt bei Level-Ups vom Himmel. Verwendbar für Gacha-Banner und tauschbar gegen Runensplitter.",
     essenz: "Entsteht durch täglichen Login-Bonus, Streak-Meilensteine und das Zerlegen von Items in der Schmiedekunst. Gebraucht für Professionswechsel und Crafting-Rezepte.",
     runensplitter: "Belohnung für jede abgeschlossene Quest und den täglichen Login. Streak-Meilensteine und Gacha-Duplikate geben extra. Die Hauptwährung für Gacha-Pulls. Tauschbar mit Gold.",
     gildentaler: "Verdient durch soziale und Co-op Quests — die Währung des Zusammenhalts. Einlösbar für Gilden-Items im Shop. Tauschbar mit Gold.",
     mondstaub: "Nur durch extreme Beständigkeit erhältlich — lange Streak-Meilensteine und seltene Events. Reserviert für limitierte Belohnungen. Nicht tauschbar.",
-    sternentaler: "Exklusiv aus wöchentlichen Herausforderungen. Einlösbar für exklusive Wochenbelohnungen. Nicht tauschbar — nur für aktive Challenge-Spieler.",
+    sternentaler: "Hauptsächlich aus wöchentlichen Herausforderungen. Kleine Chance beim täglichen Login-Bonus. Einlösbar für exklusive Wochenbelohnungen. Nicht tauschbar.",
   };
 
   return (

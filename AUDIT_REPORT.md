@@ -143,7 +143,7 @@
 | F-15 | M-09 | Quest gold display: fixed values → backend ranges | QuestDetailModal.tsx | ✅ Done |
 | F-16 | M-10 | Fokus tooltip: add +50 cap, Glück tooltip: add 20% cap | CharacterView.tsx | ✅ Done |
 
-### Verification
+### Verification (Session 1)
 
 All fixes verified via:
 - TypeScript compilation (`npx tsc --noEmit`) — 0 errors
@@ -152,4 +152,120 @@ All fixes verified via:
 
 ---
 
-*Audit complete. All critical and high priority issues resolved.*
+## 5. Audit Session 2 — Deep Consistency & QoL Pass
+
+**Date:** 2026-03-20
+
+### Frontend-Backend Mismatches Found & Fixed
+
+#### M-12: Gold Currency Description — Wrong Modifiers ✅
+- **Was:** DashboardModals.tsx said gold is "Beeinflusst durch Streak, Forge-Temperatur, Weisheit, **Companions und Gear**"
+- **Backend:** Gold modifiers are only: Streak, Forge-Temperatur, Weisheit, Legendary gear. Companions and Gear/Tools affect XP, not gold.
+- **Fix:** Updated description to "Beeinflusst durch Streak, Forge-Temperatur, Weisheit und Legendary-Gear"
+
+#### M-13: Stardust Currency Description — False Source ✅
+- **Was:** DashboardModals.tsx said stardust "Fällt bei Level-Ups und an **Streak-Meilensteinen** vom Himmel"
+- **Backend:** No code awards stardust at streak milestones. Only source: level-ups (`helpers.js:1077`)
+- **Fix:** Removed "Streak-Meilensteinen" from stardust description
+
+#### M-14: Sternentaler Currency Description — Incomplete Source ✅
+- **Was:** DashboardModals.tsx said "Exklusiv aus wöchentlichen Herausforderungen"
+- **Backend:** Also awarded from daily bonus with 15-25% chance (`currency.js:134-138`)
+- **Fix:** Updated to "Hauptsächlich aus wöchentlichen Herausforderungen. Kleine Chance beim täglichen Login-Bonus."
+
+#### M-15: Kraft Stat Tooltip — Missing Cap ✅
+- **Was:** CharacterView.tsx STAT_EFFECTS: "+0.5% Quest XP pro Punkt" (no cap)
+- **Backend:** `Math.min(1.30, ...)` = capped at +30%
+- **Fix:** Added "(max +30%)" to Kraft description
+
+#### M-16: Weisheit Stat Tooltip — Missing Cap ✅
+- **Was:** CharacterView.tsx STAT_EFFECTS: "+0.5% Gold pro Punkt" (no cap)
+- **Backend:** `Math.min(1.30, ...)` = capped at +30%
+- **Fix:** Added "(max +30%)" to Weisheit description
+
+#### M-17: Ausdauer Stat Tooltip — Missing Floor Info ✅
+- **Was:** CharacterView.tsx STAT_EFFECTS: "-0.5% Forge Decay pro Punkt" (no floor)
+- **Backend:** `Math.max(0.1, ...)` = floor at 10% of base rate
+- **Fix:** Added "(min 10% der Basis-Rate)" to Ausdauer description
+
+#### M-18: Vitalität Stat Tooltip — Missing Cap ✅
+- **Was:** CharacterView.tsx STAT_EFFECTS: "+1% Streak-Schutz pro Punkt" (no cap)
+- **Backend:** `Math.min(0.75, ...)` = capped at 75% total
+- **Fix:** Added "(max 75% gesamt)" to Vitalität description
+
+#### M-19: Tempo Stat Description — Wrong Value ✅
+- **Was:** CharacterView.tsx STAT_EFFECTS: "+1 Forge-Temp pro Quest"
+- **Backend:** `tempoMulti = 1 + tempo * 0.02` = +2% forge temp recovery per point (NOT +1 flat per quest)
+- **Fix:** Changed to "+2% Forge-Temp-Recovery pro Punkt"
+
+### QoL Improvements
+
+#### Q-01: Achievements Clickable → Hall of Honors Navigation ✅
+- Achievement toasts (ToastStack) and achievement pills in RewardCelebration are now clickable
+- Clicking navigates to the Hall of Honors view with the achievement highlighted and scrolled into view
+- Highlight glow persists for 3 seconds then fades
+- Added `onAchievementClick` prop to ToastStack and RewardCelebration
+- Added `highlightedAchievementId` prop to HonorsView with scroll-to-element + highlight ring
+
+#### Q-02: Daily Bonus — Individual Currency Reward Pills ✅
+- **Was:** Daily bonus rewards only shown as text in a flavor string
+- **Now:** Individual currency pills (Essenz, Runensplitter, Sternentaler) shown as styled reward pills in RewardCelebration
+
+#### Q-03: Quest Completion — Show All Earned Currencies ✅
+- **Was:** Only XP and Gold shown in quest completion celebration. Runensplitter and Gildentaler awarded silently.
+- **Now:** Backend returns `runensplitterEarned` and `gildentalerEarned` in completion response. Frontend shows them as currency pills in RewardCelebration.
+- Files changed: `lib/helpers.js` (track `_lastRunensplitterEarned`, `_lastGildentalerEarned`), `routes/quests.js` (include in response), `hooks/useQuestActions.ts` (display as currency pills)
+
+#### Q-04: CompanionBond Toast Rendering ✅
+- **Was:** `companionBond` toast type was defined in ToastStack types but had no render component — was silently ignored
+- **Now:** Added `CompanionBondToastContent` component with companion emoji, bond XP gain, bond title, and special styling for bond level-ups
+
+### Documentation Fixes
+
+#### D-01: ARCHITECTURE.md — Stat Effects Outdated ✅
+- Kraft "+1%" → "+0.5% (max +30%)", Weisheit "+1%" → "+0.5% (max +30%)"
+
+#### D-02: ARCHITECTURE.md — Pity Values Outdated ✅
+- "soft pity at 35, hard pity at 50" → "soft pity at 55, hard pity at 75"
+
+#### D-03: LYRA-PLAYBOOK.md — Drop Rates Outdated ✅
+- Legendary "1.6%" → "0.8%", Common "10.4%" → "11.2%"
+
+#### D-04: CLAUDE.md — Pity Values Outdated ✅
+- "soft 35, hard 50" → "soft 55, hard 75"
+
+### Session 2 Fix Manifest
+
+| # | Fix ID | Issue | Description | File(s) | Status |
+|---|--------|-------|-------------|---------|--------|
+| 1 | F-17 | M-12 | Gold description: remove false "Companions und Gear" | DashboardModals.tsx | ✅ Done |
+| 2 | F-18 | M-13 | Stardust description: remove false "Streak-Meilensteinen" | DashboardModals.tsx | ✅ Done |
+| 3 | F-19 | M-14 | Sternentaler description: add daily bonus source | DashboardModals.tsx | ✅ Done |
+| 4 | F-20 | M-15 | Kraft tooltip: add +30% cap | CharacterView.tsx | ✅ Done |
+| 5 | F-21 | M-16 | Weisheit tooltip: add +30% cap | CharacterView.tsx | ✅ Done |
+| 6 | F-22 | M-17 | Ausdauer tooltip: add floor info | CharacterView.tsx | ✅ Done |
+| 7 | F-23 | M-18 | Vitalität tooltip: add 75% cap | CharacterView.tsx | ✅ Done |
+| 8 | F-24 | M-19 | Tempo description: +1 flat → +2% per point | CharacterView.tsx | ✅ Done |
+| 9 | F-25 | Q-01 | Achievement click → Hall of Honors navigation | ToastStack.tsx, RewardCelebration.tsx, HonorsView.tsx, page.tsx | ✅ Done |
+| 10 | F-26 | Q-02 | Daily bonus: individual currency pills | page.tsx | ✅ Done |
+| 11 | F-27 | Q-03 | Quest completion: show runensplitter + gildentaler | helpers.js, quests.js, useQuestActions.ts | ✅ Done |
+| 12 | F-28 | Q-04 | CompanionBond toast renderer | ToastStack.tsx | ✅ Done |
+| 13 | F-29 | D-01 | ARCHITECTURE.md: stat effects outdated | ARCHITECTURE.md | ✅ Done |
+| 14 | F-30 | D-02 | ARCHITECTURE.md: pity values outdated | ARCHITECTURE.md | ✅ Done |
+| 15 | F-31 | D-03 | LYRA-PLAYBOOK.md: drop rates outdated | LYRA-PLAYBOOK.md | ✅ Done |
+| 16 | F-32 | D-04 | CLAUDE.md: pity values outdated | CLAUDE.md | ✅ Done |
+
+### Verified Non-Issues (Session 2)
+
+- **Image rendering**: Global `img { image-rendering: smooth; }` in `globals.css:26-28` — all images already render smooth by default
+- **Essenz "täglichen Login-Bonus" claim**: Verified CORRECT — daily bonus awards 3 essenz (currency.js:130)
+- **Mondstaub description**: Says "Nur durch extreme Beständigkeit erhältlich" — no code awards it; appears intentionally reserved for future content
+
+### Verification (Session 2)
+
+All fixes verified via:
+- TypeScript compilation (`npx tsc --noEmit`) — 0 errors
+
+---
+
+*Audit Session 2 complete. 16 additional fixes applied (8 mismatches, 4 QoL improvements, 4 doc fixes).*

@@ -351,11 +351,11 @@ Titel werden automatisch bei Quest-Abschluss geprüft und vergeben. Spieler kön
 
 | Rarity | Standard-Rate |
 |--------|---------------|
-| legendary | 1.6% |
+| legendary | 0.8% |
 | epic | 13% |
 | rare | 35% |
 | uncommon | 40% |
-| common | 10.4% |
+| common | 11.2% |
 
 ---
 
@@ -379,11 +379,11 @@ Titel werden automatisch bei Quest-Abschluss geprüft und vergeben. Spieler kön
   "icon": "/images/icons/banner-icon.png",
   "lore": "Flavor-Text zum Banner.",
   "dropRates": {
-    "legendary": "1.6%",
+    "legendary": "0.8%",
     "epic": "13%",
     "rare": "35%",
     "uncommon": "40%",
-    "common": "10.4%"
+    "common": "11.2%"
   }
 }
 ```
