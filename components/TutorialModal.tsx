@@ -17,7 +17,7 @@ export function GuideSection({ title, children }: { title: string; children: Rea
 // ─── GuideContent ─────────────────────────────────────────────────────────────
 
 export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => void }) {
-  const [tab, setTab] = useState<"start" | "quests" | "npcs" | "character" | "gacha" | "crafting" | "rituals" | "challenges" | "progression" | "honors">("start");
+  const [tab, setTab] = useState<"start" | "quests" | "npcs" | "character" | "gacha" | "crafting" | "rituals" | "challenges" | "social" | "progression" | "honors">("start");
   return (
     <div>
       {/* Tabs */}
@@ -31,6 +31,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
           { key: "crafting",    label: "Crafting" },
           { key: "rituals",     label: "Rituals" },
           { key: "challenges",  label: "Challenges" },
+          { key: "social",      label: "Social" },
           { key: "progression", label: "Progression" },
           { key: "honors",      label: "Honors" },
         ] as { key: typeof tab; label: string }[]).map(t => (
@@ -81,6 +82,16 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                   <li>• Wähle eine <span style={{ color: "#a78bfa" }}>aktive Klasse</span> aus der Liste — sie ist sofort verfügbar.</li>
                   <li>• Keine passende Klasse? <span style={{ color: "#f59e0b" }}>Eigene Klasse einreichen</span> — ein Admin schmiedet sie für dich.</li>
                   <li>• Klassen haben <span style={{ color: "#c4b5fd" }}>Tier-Stufen</span> die mit XP automatisch freigeschaltet werden.</li>
+                </ul>
+              </GuideSection>
+              <GuideSection title="Navigation (5 Stockwerke)">
+                Die Quest Hall ist in 5 Stockwerke aufgeteilt — inspiriert von Urithiru:
+                <ul className="space-y-1 mt-1">
+                  <li><span style={{ color: "#fbbf24" }}>The Pinnacle</span> — Prestige: Observatory (Kampagnen), Proving Grounds (Leaderboard), Hall of Honors, Season</li>
+                  <li><span style={{ color: "#f97316" }}>The Great Halls</span> — Abenteuer: Quest Board, Wanderer&apos;s Rest (NPCs), Weekly Challenges</li>
+                  <li><span style={{ color: "#a855f7" }}>The Trade Quarter</span> — Handel: Bazaar (Shop), Artisan&apos;s Quarter (Crafting), Vault of Fate (Gacha)</li>
+                  <li><span style={{ color: "#3b82f6" }}>The Inner Sanctum</span> — Persönlich: Character, Arcanum, Ritual Chamber, Vow Shrine</li>
+                  <li><span style={{ color: "#ec4899" }}>The Breakaway</span> — Sozial: Friends, Messages, Trading</li>
                 </ul>
               </GuideSection>
               <GuideSection title="Companions">
@@ -142,6 +153,22 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                 <ul className="space-y-1 mt-1">
                   <li>• 21-29 Quests: bis zu <span style={{ color: "#ef4444" }}>-50% XP</span></li>
                   <li>• 30+ Quests: <span style={{ color: "#ef4444" }}>-80% XP</span></li>
+                </ul>
+              </GuideSection>
+              <GuideSection title="The Observatory (Campaigns)">
+                Im <strong>Observatory</strong> (The Pinnacle) erstellst und verfolgst du Kampagnen — zusammenhängende Quest-Ketten mit eigener Story:
+                <ul className="space-y-1 mt-1">
+                  <li>• Erstelle Kampagnen mit Titel, Beschreibung und verknüpften Quests.</li>
+                  <li>• Quests in einer Kampagne werden der Reihe nach freigeschaltet.</li>
+                  <li>• Fortschrittsbalken zeigt den Gesamtfortschritt jeder Kampagne.</li>
+                </ul>
+              </GuideSection>
+              <GuideSection title="The Arcanum (Class & Roadmap)">
+                Im <strong>Arcanum</strong> (Inner Sanctum) findest du klassenspezifische Inhalte und die Feature-Roadmap:
+                <ul className="space-y-1 mt-1">
+                  <li>• <span style={{ color: "#a78bfa" }}>Klassenquests</span> — Spezielle Quests basierend auf deiner gewählten Klasse.</li>
+                  <li>• <span style={{ color: "#f59e0b" }}>Roadmap</span> — Übersicht geplanter Features und Updates.</li>
+                  <li>• <span style={{ color: "#3b82f6" }}>CV Builder</span> — Erstelle einen Lebenslauf basierend auf deinen Quest-Erfolgen.</li>
                 </ul>
               </GuideSection>
             </>
@@ -393,6 +420,37 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
               </GuideSection>
             </>
           )}
+          {tab === "social" && (
+            <>
+              <GuideSection title="The Breakaway">
+                Der soziale Hub der Quest Hall. Hier findest du Freunde, Nachrichten und das Handelssystem. Erreichbar über den <strong>5. Stock (The Breakaway)</strong> — nur eingeloggt.
+              </GuideSection>
+              <GuideSection title="Friends">
+                <ul className="space-y-1 mt-1">
+                  <li>• <span style={{ color: "#f0f0f0" }}>Freund hinzufügen</span> — Gib den Spielernamen ein und sende eine Anfrage.</li>
+                  <li>• <span style={{ color: "#f0f0f0" }}>Anfragen</span> — Eingehende Anfragen annehmen oder ablehnen. Ausgehende Anfragen sehen bis der andere antwortet.</li>
+                  <li>• Freundesliste zeigt <span style={{ color: "#22c55e" }}>Online-Status</span>, Level und Klasse jedes Freundes.</li>
+                </ul>
+              </GuideSection>
+              <GuideSection title="Messages">
+                <ul className="space-y-1 mt-1">
+                  <li>• Sende Nachrichten an Freunde (max 500 Zeichen).</li>
+                  <li>• Unterhaltungen zeigen <span style={{ color: "#a855f7" }}>ungelesene Nachrichten</span> mit Zähler.</li>
+                  <li>• Nachrichten werden automatisch als gelesen markiert wenn du die Unterhaltung öffnest.</li>
+                </ul>
+              </GuideSection>
+              <GuideSection title="Trading">
+                Handle Items und Gold mit Freunden über ein Verhandlungssystem:
+                <ul className="space-y-1 mt-1">
+                  <li>• <span style={{ color: "#f0f0f0" }}>Trade vorschlagen</span> — Wähle einen Freund, biete Gold und/oder Items an.</li>
+                  <li>• <span style={{ color: "#fbbf24" }}>Verhandlung</span> — Trades gehen hin und her. Jede Seite kann ein Gegenangebot machen.</li>
+                  <li>• <span style={{ color: "#22c55e" }}>Annahme</span> — Beide Spieler müssen akzeptieren. Items und Gold werden atomar getauscht.</li>
+                  <li>• <span style={{ color: "#ef4444" }}>Absicherung</span> — Ausgerüstete Items können nicht gehandelt werden. Gold wird bei Angebot überprüft.</li>
+                  <li>• Nur ein aktiver Trade pro Spielerpaar gleichzeitig erlaubt.</li>
+                </ul>
+              </GuideSection>
+            </>
+          )}
           {tab === "progression" && (
             <>
               <GuideSection title="XP & Level">
@@ -439,6 +497,9 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                   <li>• <span style={{ color: "#f0f0f0" }}>Self-Care Rewards</span> — Echte Belohnungen für Gold: Gaming-Zeit, Movie Night, Spa-Tag, Hobby-Zeit, etc.</li>
                   <li>• <span style={{ color: "#a855f7" }}>Boosts</span> — Gameplay-Buffs: XP-Schriftrollen (+10% für 5 Quests), Streak-Shields, Luck Coins, Stardust-Phiolen, Essenz-Kristalle.</li>
                 </ul>
+              </GuideSection>
+              <GuideSection title="Season (Saisonales Event)">
+                Jeden Monat gibt es ein neues <strong>Saison-Thema</strong> mit besonderen Boni. Das aktuelle Saison-Thema wird im <strong>Season</strong>-Tab (The Pinnacle) angezeigt und beeinflusst bestimmte Quest-Typen mit Bonus-Modifiern.
               </GuideSection>
             </>
           )}

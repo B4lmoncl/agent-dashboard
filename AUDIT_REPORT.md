@@ -391,9 +391,53 @@ See Section 4 header table rows — standard CRUD/read endpoints for their respe
 - **Brighter background**: Theme background lifted from #0b0d11 to #111318 with brighter surface/card colors
 - **Affix rolling verified**: All item-granting paths (gacha, shop, quest drops, crafting transmute, trades) correctly apply affix rolling
 
+## 6. Phase 2-3 Audit Findings (v1.5.5)
+
+### 6.1 Critical Fixes Applied
+
+| Issue | Severity | Status |
+|-------|----------|--------|
+| SocialView trade field mapping — `pendingFor`, `currentInitiatorOffer`, `currentRecipientOffer` not matching API response | P0 | **Fixed** — Backend `enrichTradeResponse()` now flattens fields to match frontend types |
+| Conversations sort bug — `lastMessage.createdAt` accessed on string field | P1 | **Fixed** — Sort now uses `lastMessageAt` |
+| Trade rounds missing enriched data — frontend expected `byName`, `initiatorOffer`, `recipientOffer` per round but backend returned raw `offer` | P1 | **Fixed** — Backend now builds cumulative offer state per round |
+| Trade list missing avatar/color — frontend displayed `initiatorAvatar`, `recipientAvatar`, etc. but API didn't return them | P1 | **Fixed** — `enrichTradeResponse()` adds all player metadata |
+| Trade status mismatch — backend uses `pending_initiator`/`pending_recipient`, frontend expected `pending` + `pendingFor` | P1 | **Fixed** — Backend normalizes to `status: "pending"` with `pendingFor` field |
+
+### 6.2 Frontend-Backend Consistency
+
+- **All 8 stat effects** (Kraft, Ausdauer, Weisheit, Glück, Fokus, Vitalität, Charisma, Tempo): ✅ Verified match
+- **XP/Gold tables**: ✅ Match backend `BASE_XP`/`BASE_GOLD` maps
+- **Streak bonus**: ✅ 1.5%/day cap 45% matches backend
+- **Hoarding malus**: ✅ 5%/quest over 20, cap 80% matches backend
+- **Shop effects**: ✅ All buff types correctly applied server-side via `applyShopEffect()`
+- **Affix rolling**: ✅ All 5 item-granting paths use `createGearInstance`/`rollAffixStats`
+- **Level system**: ✅ XP table, stardust on level-up, max level 30 all match
+
+### 6.3 Modal Behavior Audit
+
+| Component | ESC Key | Backdrop Close | Scroll Lock | Status |
+|-----------|---------|----------------|-------------|--------|
+| DashboardModals (5 popups) | ✅ | ✅ | ✅ | via `useModalBehavior` in page.tsx |
+| QuestDetailModal | ✅ | ✅ | ✅ | via `useModalBehavior` in page.tsx |
+| RitualChamber (4 modals) | ✅ | ✅ | ✅ | via `useModalBehavior` in component |
+| GuideModal | ✅ | ✅ | ✅ | via `useModalBehavior` + manual scroll lock |
+| ShopModal | ✅ | ✅ | ✅ | via `useModalBehavior` |
+| CreateQuestModal | ✅ | ✅ | ✅ | via `useModalBehavior` |
+| CampaignHub | ✅ | ✅ | ✅ | via `useModalBehavior` |
+| OnboardingWizard | ✅ | ✅ | ✅ | via `useModalBehavior` |
+| CharacterView modals | ✅ | ✅ | ✅ | via `useModalBehavior` |
+| QuestPanels (extend/recommit) | ✅ | ✅ | ✅ | via `useModalBehavior` |
+| LootDrop/LevelUp/RewardCelebration | ✅ | ✅ | ✅ | via `useModalBehavior` in page.tsx |
+
+### 6.4 Guide Completeness
+
+Updated Guide to cover all features:
+- **Added**: Navigation (5 floors), Social/Breakaway (Friends, Messages, Trading), The Arcanum, The Observatory (Campaigns), Season tab
+- **Verified**: All 10 existing tabs (Start, Quests, NPCs, Character, Gacha, Crafting, Rituals, Challenges, Progression, Honors) accurate
+
 ---
 
-## 6. Documentation Status
+## 7. Documentation Status
 
 | File | Status | Action Needed |
 |------|--------|---------------|

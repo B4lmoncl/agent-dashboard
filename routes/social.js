@@ -320,10 +320,91 @@ router.get('/api/social/:playerId/conversations', requireAuth, requireSelf('play
 
   // Sort by most recent message
   const conversations = Array.from(convMap.values())
-    .sort((a, b) => new Date(b.lastMessage.createdAt).getTime() - new Date(a.lastMessage.createdAt).getTime());
+    .sort((a, b) => new Date(b.lastMessageAt).getTime() - new Date(a.lastMessageAt).getTime());
 
   res.json({ conversations });
 });
+
+// ─── Trade Response Helper ────────────────────────────────────────────────────
+
+/** Transform internal trade to frontend-expected shape with enriched names/avatars/rounds */
+function enrichTradeResponse(t) {
+  const initiatorUser = state.users[t.initiator];
+  const recipientUser = state.users[t.recipient];
+
+  // Normalize status: pending_initiator/pending_recipient → "pending" + pendingFor
+  const isPending = t.status === 'pending_initiator' || t.status === 'pending_recipient';
+  const pendingFor = t.status === 'pending_initiator' ? t.initiator : t.status === 'pending_recipient' ? t.recipient : null;
+
+  // Flatten currentOffer to top-level fields
+  const currentInitiatorOffer = t.currentOffer?.initiatorOffer
+    ? enrichOffer(t.currentOffer.initiatorOffer, t.initiator)
+    : { gold: 0, items: [] };
+  const currentRecipientOffer = t.currentOffer?.recipientOffer
+    ? enrichOffer(t.currentOffer.recipientOffer, t.recipient)
+    : { gold: 0, items: [] };
+
+  // Build cumulative offer state per round for display
+  const enrichedRounds = [];
+  let runningInitiatorOffer = { gold: 0, items: [] };
+  let runningRecipientOffer = { gold: 0, items: [] };
+  for (const round of t.rounds) {
+    const isInit = round.by === t.initiator;
+    const enrichedOffer = enrichOffer(round.offer, round.by);
+    if (isInit) {
+      runningInitiatorOffer = enrichedOffer;
+    } else {
+      runningRecipientOffer = enrichedOffer;
+    }
+    enrichedRounds.push({
+      by: round.by,
+      byName: state.users[round.by]?.name || round.by,
+      initiatorOffer: { ...runningInitiatorOffer },
+      recipientOffer: { ...runningRecipientOffer },
+      message: round.message || '',
+      at: round.at,
+    });
+  }
+
+  return {
+    id: t.id,
+    initiator: t.initiator,
+    initiatorName: initiatorUser?.name || t.initiator,
+    initiatorAvatar: initiatorUser?.avatar || (initiatorUser?.name || t.initiator)[0],
+    initiatorColor: initiatorUser?.color || '#a78bfa',
+    recipient: t.recipient,
+    recipientName: recipientUser?.name || t.recipient,
+    recipientAvatar: recipientUser?.avatar || (recipientUser?.name || t.recipient)[0],
+    recipientColor: recipientUser?.color || '#a78bfa',
+    status: isPending ? 'pending' : t.status,
+    pendingFor,
+    rounds: enrichedRounds,
+    currentInitiatorOffer,
+    currentRecipientOffer,
+    initiatorAccepted: t.initiatorAccepted || false,
+    recipientAccepted: t.recipientAccepted || false,
+    createdAt: t.createdAt,
+    completedAt: t.completedAt,
+  };
+}
+
+/** Enrich an offer's item IDs into full item objects */
+function enrichOffer(offer, ownerId) {
+  const gold = offer?.gold || 0;
+  const itemIds = offer?.items || [];
+  const owner = state.users[ownerId];
+  const items = itemIds.map(instanceId => {
+    const invItem = owner ? (owner.inventory || []).find(i => i.id === instanceId) : null;
+    return {
+      instanceId,
+      name: invItem?.name || instanceId,
+      rarity: invItem?.rarity || 'common',
+      icon: invItem?.icon || null,
+      slot: invItem?.slot || null,
+    };
+  });
+  return { gold, items };
+}
 
 // ─── Trading System ───────────────────────────────────────────────────────────
 
@@ -416,19 +497,7 @@ router.get('/api/social/:playerId/trades', requireAuth, requireSelf('playerId'),
       return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
     })
     .slice(0, 50) // Cap at 50 most recent
-    .map(t => ({
-      id: t.id,
-      initiator: t.initiator,
-      initiatorName: state.users[t.initiator]?.name || t.initiator,
-      recipient: t.recipient,
-      recipientName: state.users[t.recipient]?.name || t.recipient,
-      status: t.status,
-      currentOffer: t.currentOffer,
-      roundCount: t.rounds.length,
-      lastActivity: t.rounds.length > 0 ? t.rounds[t.rounds.length - 1].at : t.createdAt,
-      createdAt: t.createdAt,
-      completedAt: t.completedAt,
-    }));
+    .map(t => enrichTradeResponse(t));
 
   res.json({ trades });
 });
@@ -444,28 +513,7 @@ router.get('/api/social/trade/:tradeId', requireAuth, (req, res) => {
     return res.status(403).json({ error: 'You are not a participant in this trade' });
   }
 
-  // Enrich item data in rounds
-  const enrichedRounds = trade.rounds.map(round => {
-    const enrichedItems = (round.offer.items || []).map(instanceId => {
-      // Try to find item in the owner's inventory or return basic info
-      const owner = state.users[round.by];
-      const invItem = owner ? (owner.inventory || []).find(i => i.id === instanceId) : null;
-      return {
-        instanceId,
-        name: invItem?.name || instanceId,
-        rarity: invItem?.rarity || 'common',
-        icon: invItem?.icon || null,
-      };
-    });
-    return { ...round, offer: { ...round.offer, enrichedItems } };
-  });
-
-  res.json({
-    ...trade,
-    rounds: enrichedRounds,
-    initiatorName: state.users[trade.initiator]?.name || trade.initiator,
-    recipientName: state.users[trade.recipient]?.name || trade.recipient,
-  });
+  res.json(enrichTradeResponse(trade));
 });
 
 // POST /api/social/trade/:tradeId/counter — counter-offer

@@ -617,7 +617,7 @@ export interface Trade {
   recipientAvatar: string;
   recipientColor: string;
   status: "pending" | "completed" | "declined" | "expired";
-  pendingFor: string; // which player needs to act next
+  pendingFor: string | null; // which player needs to act next
   rounds: TradeRound[];
   currentInitiatorOffer: TradeOffer;
   currentRecipientOffer: TradeOffer;
