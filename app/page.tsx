@@ -161,6 +161,10 @@ export default function Dashboard() {
   const [playerName, setPlayerName] = useState<string>(() => {
     try { return localStorage.getItem("dash_player_name") || ""; } catch { return ""; }
   });
+  // Ref keeps the latest playerName available inside callbacks without stale closures.
+  // This is the root fix for filter bugs after login on new devices / incognito.
+  const playerNameRef = useRef(playerName);
+  playerNameRef.current = playerName;
   const [guideOpen, setGuideOpen] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   const [cvBuilderOpen, setCvBuilderOpen] = useState(false);
@@ -312,6 +316,9 @@ export default function Dashboard() {
     return () => window.removeEventListener("keydown", handler);
   }, [apiError]);
   const refresh = useCallback(async () => {
+    // Read from ref so we always use the LATEST playerName, even if called
+    // from a stale closure (e.g. right after login before React re-renders).
+    const pName = playerNameRef.current;
     const statusOrder: Record<string, number> = { working: 0, online: 1, idle: 2, offline: 3 };
     const sortAgents = (a: Agent[]) => [...a].sort((x, y) => {
       if (x.id === "lyra") return -1;
@@ -320,7 +327,7 @@ export default function Dashboard() {
     });
 
     // Try batch endpoint first (1 call instead of 14)
-    const batch = await fetchDashboard(playerName || undefined);
+    const batch = await fetchDashboard(pName || undefined);
     if (batch && batch.quests && batch.agents) {
       setAgents(sortAgents(batch.agents || []));
       setQuests(batch.quests);
@@ -339,36 +346,37 @@ export default function Dashboard() {
       if (batch.expedition !== undefined) setExpedition(batch.expedition || null);
     } else {
       // Fallback: individual fetches if batch endpoint not available
-      const [a, q, u, lb, ac, camps] = await Promise.all([fetchAgents(), fetchQuests(playerName || undefined), fetchUsers(), fetchLeaderboard(), fetchAchievementCatalogue(), fetchCampaigns()]);
+      const [a, q, u, lb, ac, camps] = await Promise.all([fetchAgents(), fetchQuests(pName || undefined), fetchUsers(), fetchLeaderboard(), fetchAchievementCatalogue(), fetchCampaigns()]);
       setAgents(sortAgents(a));
       setQuests(q);
       setUsers(u);
       if (lb.length > 0) setLeaderboard(lb);
       if (ac.achievements.length > 0) setAchievementCatalogue(ac.achievements);
       setCampaigns(camps);
-      if (playerName) {
-        fetchRituals(playerName).then(setRituals);
-        fetchHabits(playerName).then(setHabits);
+      if (pName) {
+        fetchRituals(pName).then(setRituals);
+        fetchHabits(pName).then(setHabits);
       }
       try { const r = await fetch(`/api/health`, { signal: AbortSignal.timeout(1500) }); setApiLive(r.ok); } catch { setApiLive(false); }
       try {
-        const npcUrl = playerName ? `/api/npcs/active?player=${encodeURIComponent(playerName.toLowerCase())}` : `/api/npcs/active`;
+        const npcUrl = pName ? `/api/npcs/active?player=${encodeURIComponent(pName.toLowerCase())}` : `/api/npcs/active`;
         const r = await fetch(npcUrl, { signal: AbortSignal.timeout(2000) });
         if (r.ok) { const d = await r.json(); setActiveNpcs(d.npcs || []); }
       } catch { /* ignore */ }
-      if (playerName) {
-        try { const r = await fetch(`/api/player/${encodeURIComponent(playerName.toLowerCase())}/favorites`, { signal: AbortSignal.timeout(2000) }); if (r.ok) { const d = await r.json(); setFavorites(d.favorites || []); } } catch { /* ignore */ }
+      if (pName) {
+        try { const r = await fetch(`/api/player/${encodeURIComponent(pName.toLowerCase())}/favorites`, { signal: AbortSignal.timeout(2000) }); if (r.ok) { const d = await r.json(); setFavorites(d.favorites || []); } } catch { /* ignore */ }
       }
     }
     // These lightweight calls remain separate (rarely change, small payloads)
     try { const r = await fetch(`/api/game-version`, { signal: AbortSignal.timeout(1500) }); if (r.ok) { const d = await r.json(); setGameVersion(d.version || "1.5.1"); } } catch { /* ignore */ }
     try { const r = await fetch(`/api/changelog-data`, { signal: AbortSignal.timeout(2000) }); if (r.ok) { const d = await r.json(); if (Array.isArray(d)) setChangelogData(d); } } catch { /* ignore */ }
-    if (playerName) {
-      try { const r = await fetch(`/api/quests/pool?player=${encodeURIComponent(playerName)}`, { signal: AbortSignal.timeout(2000) }); if (r.ok) { const d = await r.json(); if (d.lastRefresh) setLastPoolRefresh(new Date(d.lastRefresh)); } } catch { /* ignore */ }
+    if (pName) {
+      try { const r = await fetch(`/api/quests/pool?player=${encodeURIComponent(pName)}`, { signal: AbortSignal.timeout(2000) }); if (r.ok) { const d = await r.json(); if (d.lastRefresh) setLastPoolRefresh(new Date(d.lastRefresh)); } } catch { /* ignore */ }
     }
     setLoading(false);
     setLastRefresh(new Date());
-  }, [playerName]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // ─── Quest/Shop action handlers (extracted to hook) ─────────────────────────
   const {
@@ -457,6 +465,12 @@ export default function Dashboard() {
     const interval = setInterval(refresh, 30_000);
     return () => clearInterval(interval);
   }, [refresh]);
+
+  // Re-fetch when playerName changes (login/logout) so filters apply correctly
+  useEffect(() => {
+    refresh();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [playerName]);
 
   // Fetch class list once on mount
   useEffect(() => {
@@ -636,7 +650,7 @@ export default function Dashboard() {
   }, [sortMode, favorites]);
   const isCompanionQuest = useCallback((q: Quest) => q.rarity === "companion" || (q.type as string) === "companion" || (q.createdBy ?? "").toLowerCase() === "dobbie" || (q.createdBy ?? "").toLowerCase() === "companion", []);
   const visibleOpen = useMemo(() => applySort(applyFilter(quests.open.filter(q => !isCompanionQuest(q)))), [quests.open, applyFilter, applySort]);
-  const dobbieActiveQuests = useMemo(() => quests.inProgress.filter(q => isCompanionQuest(q)), [quests.inProgress]);
+  const dobbieActiveQuests = useMemo(() => quests.inProgress.filter(q => isCompanionQuest(q) && (!playerNameLower || q.claimedBy?.toLowerCase() === playerNameLower || (q as any).companionOwnerId?.toLowerCase() === playerNameLower)), [quests.inProgress, playerNameLower]);
   const visibleInProgress = useMemo(() => applySort(applyFilter(quests.inProgress.filter(q => !isCompanionQuest(q)))), [quests.inProgress, applyFilter, applySort]);
 
   // NPC board — dev-only filtered quests
@@ -1314,7 +1328,7 @@ export default function Dashboard() {
         {dashView === "questBoard" && (() => {
           const playerQuestTypes = ["personal", "learning", "fitness", "social", "relationship-coop"];
           const playerVisibleOpen = applySort(applyFilter(quests.open.filter(q => playerQuestTypes.includes(q.type ?? ""))));
-          const playerVisibleInProgress = applySort(applyFilter(quests.inProgress.filter(q => playerQuestTypes.includes(q.type ?? "") && !isCompanionQuest(q))));
+          const playerVisibleInProgress = applySort(applyFilter(quests.inProgress.filter(q => playerQuestTypes.includes(q.type ?? "") && !isCompanionQuest(q) && (!playerNameLower || q.claimedBy?.toLowerCase() === playerNameLower))));
           // Filter by player level, exclude already claimed
           const inProgressIds = new Set(playerVisibleInProgress.map(q => q.id));
           const levelFiltered = playerVisibleOpen.filter(q => {
