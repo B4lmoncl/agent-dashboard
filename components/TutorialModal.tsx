@@ -345,6 +345,25 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
               <GuideSection title="Workshop Tools">
                 Permanente XP-Upgrades in 4 Stufen: <span style={{ color: "#9ca3af" }}>Sturdy (+2%)</span> → <span style={{ color: "#3b82f6" }}>Masterwork (+4%)</span> → <span style={{ color: "#FFD700" }}>Legendary (+7%)</span> → <span style={{ color: "#a855f7" }}>Mythic (+10%)</span>
               </GuideSection>
+              <GuideSection title="Passive Gathering">
+                Aktive Berufe sammeln beim Abschließen von Quests automatisch ihre <strong>Affinitäts-Materialien</strong>. Chance skaliert mit Berufslevel (5% bei Lv1, bis 35% bei Lv10).
+              </GuideSection>
+              <GuideSection title="Mastery (Lv8+)">
+                Ab <strong>Berufslevel 8</strong> wird ein passiver <span style={{ color: "#facc15" }}>Mastery-Bonus</span> aktiviert:
+                <ul className="space-y-1 mt-1">
+                  <li>• <span style={{ color: "#f59e0b" }}>Schmied</span> — +10% Gear-Stat-Rolls</li>
+                  <li>• <span style={{ color: "#22c55e" }}>Alchemist</span> — +2 Quest-Ladungen auf Tränke</li>
+                  <li>• <span style={{ color: "#a78bfa" }}>Verzauberer</span> — +2 auf Verzauberungs-Stat-Ranges</li>
+                  <li>• <span style={{ color: "#e87b35" }}>Koch</span> — +2 Quest-Ladungen auf Mahlzeiten</li>
+                </ul>
+              </GuideSection>
+              <GuideSection title="Recipes: Trainer & Drops">
+                Rezepte haben zwei Quellen:
+                <ul className="space-y-1 mt-1">
+                  <li>• <strong>Trainer-Rezepte</strong> — Beim NPC kaufen (Gold). Basis-Rezepte sind gratis, fortgeschrittene kosten Gold.</li>
+                  <li>• <strong>Drop-Rezepte</strong> — Seltene Rezepte als Quest-Belohnungen. Chance abhängig von Quest-Seltenheit.</li>
+                </ul>
+              </GuideSection>
             </>
           )}
           {tab === "rituals" && (
