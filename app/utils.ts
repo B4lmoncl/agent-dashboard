@@ -3,6 +3,7 @@ import type {
   Agent, Quest, QuestsData, User, Campaign, AchievementDef,
   AchievementPointMilestone,
   ClassDef, LeaderboardEntry, Ritual, Habit, ChangelogEntry,
+  WeeklyChallenge, Expedition,
 } from "@/app/types";
 
 // ─── Fetch helpers ────────────────────────────────────────────────────────────
@@ -121,6 +122,8 @@ export async function fetchDashboard(playerName?: string): Promise<{
   favorites: string[];
   activeNpcs: any[];
   dailyBonusAvailable?: boolean;
+  weeklyChallenge?: WeeklyChallenge | null;
+  expedition?: Expedition | null;
   apiLive: boolean;
 } | null> {
   try {

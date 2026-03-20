@@ -14,6 +14,7 @@ const ShopView = lazy(() => import("@/components/ShopView"));
 const GachaView = lazy(() => import("@/components/GachaView"));
 const CharacterView = lazy(() => import("@/components/CharacterView"));
 const RitualChamber = lazy(() => import("@/components/RitualChamber"));
+const ChallengesView = lazy(() => import("@/components/ChallengesView"));
 import { GuideModal, GuideContent, TutorialOverlay, TUTORIAL_STEPS } from "@/components/TutorialModal";
 import {
   CreateQuestModal, PersonalQuestPanel, ForgeChallengesPanel, AntiRitualePanel,
@@ -101,6 +102,8 @@ export default function Dashboard() {
   const [secondsAgo, setSecondsAgo] = useState(0);
   const [apiLive, setApiLive] = useState(false);
   const [dailyBonusAvailable, setDailyBonusAvailable] = useState(false);
+  const [weeklyChallenge, setWeeklyChallenge] = useState<import("@/app/types").WeeklyChallenge | null>(null);
+  const [expedition, setExpedition] = useState<import("@/app/types").Expedition | null>(null);
   const [claimingDailyBonus, setClaimingDailyBonus] = useState(false);
   const [completedOpen, setCompletedOpen] = useState(false);
   const [completedSearch, setCompletedSearch] = useState("");
@@ -112,7 +115,7 @@ export default function Dashboard() {
   });
   // selectedIds, bulkLoading, reviewComments moved to useQuestActions hook
   const [typeFilter, setTypeFilter] = useState<string>("all");
-  const [dashView, setDashView] = useState<"questBoard" | "npcBoard" | "klassenquests" | "character" | "campaign" | "leaderboard" | "honors" | "season" | "shop" | "forge" | "gacha" | "roadmap" | "changelog">("questBoard");
+  const [dashView, setDashView] = useState<"questBoard" | "npcBoard" | "klassenquests" | "character" | "campaign" | "leaderboard" | "honors" | "season" | "shop" | "forge" | "gacha" | "roadmap" | "changelog" | "challenges">("questBoard");
   // Track seen content for notification dots (persists across renders via ref)
   const seenQuestIdsRef = useRef<Set<string>>(new Set());
   const seenNpcIdsRef = useRef<Set<string>>(new Set());
@@ -323,6 +326,8 @@ export default function Dashboard() {
       setActiveNpcs(batch.activeNpcs || []);
       setApiLive(!!batch.apiLive);
       if (batch.dailyBonusAvailable !== undefined) setDailyBonusAvailable(!!batch.dailyBonusAvailable);
+      if (batch.weeklyChallenge !== undefined) setWeeklyChallenge(batch.weeklyChallenge || null);
+      if (batch.expedition !== undefined) setExpedition(batch.expedition || null);
     } else {
       // Fallback: individual fetches if batch endpoint not available
       const [a, q, u, lb, ac, camps] = await Promise.all([fetchAgents(), fetchQuests(playerName || undefined), fetchUsers(), fetchLeaderboard(), fetchAchievementCatalogue(), fetchCampaigns()]);
@@ -1047,6 +1052,7 @@ export default function Dashboard() {
             { key: "shop",        label: "The Bazaar",               tutorialKey: "bazaar-tab", iconSrc: "/images/icons/nav-bazaar.png" },
             ...(playerName ? [{ key: "forge", label: "Artisan's Quarter", tutorialKey: null, iconSrc: "/images/icons/prof-schmied.png" }] : []),
             { key: "gacha",       label: "Vault of Fate",            tutorialKey: "vault-tab", iconSrc: "/images/icons/vault-of-fate.png" },
+            { key: "challenges", label: "Challenges",              tutorialKey: null, iconSrc: "/images/icons/nav-challenges.png" },
             { key: "leaderboard", label: "The Proving Grounds", tutorialKey: "leaderboard-tab", iconSrc: "/images/icons/nav-proving.png" },
             { key: "honors",      label: "Hall of Honors",  tutorialKey: "honors-tab", iconSrc: "/images/icons/nav-honors.png" },
             { key: "season",      label: `${CURRENT_SEASON.name} Season`, tutorialKey: "season-tab", iconSrc: "" },
@@ -1157,6 +1163,15 @@ export default function Dashboard() {
           <ErrorBoundary><Suspense fallback={<ViewFallback />}><GachaView
             onRefresh={refresh}
             onPullComplete={(items) => { items.forEach((item: any, i: number) => { setTimeout(() => addToast({ type: "flavor", message: `${item.item?.name || "Item"} collected!`, icon: item.item?.icon || "/images/icons/vault-of-fate.png", sub: item.item?.rarity || "common" }), i * 50); }); }}
+          /></Suspense></ErrorBoundary>
+        )}
+
+        {/* ── CHALLENGES TAB ── */}
+        {dashView === "challenges" && (
+          <ErrorBoundary><Suspense fallback={<ViewFallback />}><ChallengesView
+            weeklyChallenge={weeklyChallenge}
+            expedition={expedition}
+            onRefresh={refresh}
           /></Suspense></ErrorBoundary>
         )}
 

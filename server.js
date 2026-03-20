@@ -107,6 +107,7 @@ app.use(require('./routes/game'));
 app.use(require('./routes/habits-inventory'));
 app.use(require('./routes/crafting'));
 app.use(require('./routes/challenges-weekly'));
+app.use(require('./routes/expedition'));
 app.use(require('./routes/npcs-misc'));  // Must be last (has SPA fallback catch-all)
 
 // ─── Express error handler (catch-all for unhandled route errors) ────────────
@@ -173,6 +174,8 @@ loadItemTemplates();
 loadTitles();
 require('./routes/crafting').loadProfessions();
 require('./routes/challenges-weekly').loadWeeklyChallenges();
+require('./routes/expedition').loadExpeditions();
+require('./routes/expedition').loadExpeditionState();
 
 // Migrate legacy equipment (string IDs → rolled instances)
 for (const uid of Object.keys(state.users)) {

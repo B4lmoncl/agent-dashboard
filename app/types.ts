@@ -467,3 +467,76 @@ export interface CharacterData {
   relationshipStatus?: string;
   partnerName?: string | null;
 }
+
+// ─── Challenge System Types ──────────────────────────────────────────────────
+
+export interface WeeklyModifier {
+  id: string;
+  name: string;
+  description: string;
+  bonusType: string;
+  bonusMultiplier: number;
+  malusMultiplier: number;
+}
+
+export interface WeeklyChallengeStage {
+  stage: number;
+  desc: string;
+  requirement: { type: string; questType?: string; count: number };
+  starThresholds: [number, number, number];
+  completed: boolean;
+  current: boolean;
+  rewards: Record<string, number>;
+  earnedStars: number;
+}
+
+export interface WeeklyChallenge {
+  weekId: string;
+  templateId: string;
+  name: string;
+  icon: string;
+  stages: WeeklyChallengeStage[];
+  currentStage: number;
+  progress: Record<string, number>;
+  canAdvance: boolean;
+  startedAt: string;
+  stageStartedAt: (string | null)[];
+  stars: number[];
+  totalStars: number;
+  modifier: WeeklyModifier | null;
+  speedBonusDays: number;
+  streakDays?: number;
+}
+
+export interface ExpeditionCheckpoint {
+  number: number;
+  name: string;
+  required: number;
+  reached: boolean;
+  rewards: Record<string, number>;
+  isBonus: boolean;
+  bonusTitle: { id: string; name: string; rarity: string } | null;
+  claimedByPlayer: boolean;
+}
+
+export interface ExpeditionContribution {
+  userId: string;
+  name: string;
+  avatar: string;
+  color: string;
+  count: number;
+}
+
+export interface Expedition {
+  weekId: string;
+  templateId: string;
+  name: string;
+  description: string;
+  icon: string;
+  progress: number;
+  playerCount: number;
+  checkpoints: ExpeditionCheckpoint[];
+  contributions: ExpeditionContribution[];
+  playerContribution: number;
+  startedAt: string;
+}
