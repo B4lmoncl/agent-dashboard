@@ -8,7 +8,6 @@ import ErrorBoundary from "@/components/ErrorBoundary";
 const ForgeView = lazy(() => import("@/components/ForgeView"));
 const LeaderboardView = lazy(() => import("@/components/LeaderboardView"));
 const HonorsView = lazy(() => import("@/components/HonorsView"));
-const CampaignHub = lazy(() => import("@/components/CampaignHub"));
 const ShopView = lazy(() => import("@/components/ShopView"));
 const GachaView = lazy(() => import("@/components/GachaView"));
 const CharacterView = lazy(() => import("@/components/CharacterView"));
@@ -18,13 +17,10 @@ const DailyLoginCalendar = lazy(() => import("@/components/DailyLoginCalendar"))
 const SocialView = lazy(() => import("@/components/SocialView"));
 import { GuideModal, GuideContent, TutorialOverlay, TUTORIAL_STEPS } from "@/components/TutorialModal";
 import {
-  CreateQuestModal, PersonalQuestPanel, ForgeChallengesPanel, AntiRitualePanel,
-  RelationshipCoopPanel, DobbieQuestPanel, SmartSuggestionsPanel,
-  CategoryBadge, ProductBadge,
-  HumanInputBadge, TypeBadge, CreatorBadge, AgentBadge, RecurringBadge,
-  CompletedQuestRow, PriorityBadge, ClickablePriorityBadge, EpicQuestCard, QuestCard,
-  ChainQuestToast, FlavorToast, EmptyState, SkeletonCard,
-  UserCard, ShopModal, RARITY_COLORS,
+  CreateQuestModal, AntiRitualePanel,
+  CompletedQuestRow, PriorityBadge, EpicQuestCard, QuestCard,
+  ChainQuestToast,
+  UserCard, ShopModal,
 } from "@/components/QuestBoard";
 import { ToastStack, useToastStack } from "@/components/ToastStack";
 import { RewardCelebration, RewardCelebrationData } from "@/components/RewardCelebration";
@@ -42,21 +38,19 @@ import { DashboardProvider } from "@/app/DashboardContext";
 import QuestDetailModal from "@/components/QuestDetailModal";
 import { SFX } from "@/lib/sounds";
 import type {
-  Agent, Quest, NpcQuestChainEntry, ActiveNpc, EarnedAchievement,
-  User, CampaignQuest, Campaign, AchievementDef, ClassDef, LeaderboardEntry,
+  Agent, Quest, ActiveNpc, EarnedAchievement,
+  User, Campaign, AchievementDef, ClassDef, LeaderboardEntry,
   QuestsData, Ritual, Habit, LootItem, ChangelogEntry,
-  PersonalTemplate, ForgeChallengeTemplate, AntiRitual, Suggestion,
-  ShopItem, RoadmapItem,
 } from "@/app/types";
 import {
   fetchAgents, fetchQuests, fetchUsers, fetchCampaigns, fetchLeaderboard,
   fetchAchievementCatalogue, fetchRituals, fetchHabits, fetchChangelog, fetchDashboard,
-  createStarterQuestsIfNew, timeAgo, useCountUp, getSeason, CURRENT_SEASON,
-  GUILD_LEVELS, getUserLevel, USER_LEVELS, getUserXpProgress, getForgeTempInfo,
-  getQuestRarity, getAntiRitualMood, LB_LEVELS, getLbLevel,
+  createStarterQuestsIfNew, useCountUp, CURRENT_SEASON,
+  GUILD_LEVELS, getUserLevel, getUserXpProgress,
+  getQuestRarity,
 } from "@/app/utils";
 import {
-  priorityConfig, categoryConfig, productConfig, typeConfig, STREAK_MILESTONES_CLIENT,
+  typeConfig,
   FLOORS, getFloorForRoom,
 } from "@/app/config";
 import type { Floor } from "@/app/config";
@@ -143,15 +137,10 @@ export default function Dashboard() {
   // Trigger re-render when seen sets change
   const [seenVersion, setSeenVersion] = useState(0);
   const [createQuestOpen, setCreateQuestOpen] = useState(false);
-  const [questBoardAgentOpen, setQuestBoardAgentOpen] = useState(false);
-  const [npcAgentRosterOpen, setNpcAgentRosterOpen] = useState(true);
   const [dobbieOpen, setDobbieOpen] = useState(false);
   // shopUserId moved to useQuestActions hook
   // Toast stack system (replaces individual toast states)
   const { toasts, addToast, removeToast } = useToastStack();
-  // Compat setters that push into the unified toast stack
-  const setToast = useCallback((a: EarnedAchievement | null) => { if (a) addToast({ type: "achievement", achievement: a }); }, [addToast]);
-  const setFlavorToast = useCallback((t: { message: string; icon: string; sub?: string } | null) => { if (t) addToast({ type: "flavor", ...t }); }, [addToast]);
   const setPurchaseToast = useCallback((msg: string | null) => { if (msg) addToast({ type: "purchase", message: msg }); }, [addToast]);
   const [chainOffer, setChainOffer] = useState<{ template: { title: string; description?: string | null; type?: string; priority?: string }; parentTitle: string } | null>(null);
   const [openSectionCollapsed, setOpenSectionCollapsed] = useState<boolean>(() => {
@@ -168,8 +157,8 @@ export default function Dashboard() {
   const navigateToAchievement = useCallback((achievementId: string) => {
     setDashView("honors");
     setHighlightedAchievementId(achievementId);
-  }, []);
-  const [campaigns, setCampaigns] = useState<Campaign[]>([]);
+  }, [setDashView]);
+  const [, setCampaigns] = useState<Campaign[]>([]);
   const [playerName, setPlayerName] = useState<string>(() => {
     try { return localStorage.getItem("dash_player_name") || ""; } catch { return ""; }
   });
@@ -179,14 +168,13 @@ export default function Dashboard() {
   playerNameRef.current = playerName;
   const [guideOpen, setGuideOpen] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
-  const [cvBuilderOpen, setCvBuilderOpen] = useState(false);
   const [showTutorial, setShowTutorial] = useState(false);
   const [tutorialStep, setTutorialStep] = useState(0);
   const [onboardingOpen, setOnboardingOpen] = useState(false);
   const [classesList, setClassesList] = useState<ClassDef[]>([]);
   const [classActivatedNotif, setClassActivatedNotif] = useState<{ className: string; classIcon: string; classDescription: string } | null>(null);
   const [rituals, setRituals] = useState<Ritual[]>([]);
-  const [habits, setHabits] = useState<Habit[]>([]);
+  const [, setHabits] = useState<Habit[]>([]);
   const [lootDrop, setLootDrop] = useState<LootItem | null>(null);
   const [levelUpCelebration, setLevelUpCelebration] = useState<{ level: number; title: string } | null>(null);
   const [rewardCelebration, setRewardCelebration] = useState<RewardCelebrationData | null>(null);
@@ -345,7 +333,7 @@ export default function Dashboard() {
       setAgents(sortAgents(batch.agents || []));
       setQuests(batch.quests);
       setUsers(batch.users || []);
-      const rawAchs = batch.achievements as any;
+      const rawAchs = batch.achievements as AchievementDef[] | { achievements: AchievementDef[] } | undefined;
       const batchAchs = Array.isArray(rawAchs) ? rawAchs : rawAchs?.achievements;
       if (Array.isArray(batchAchs) && batchAchs.length > 0) setAchievementCatalogue(batchAchs);
       setCampaigns(batch.campaigns || []);
@@ -388,7 +376,6 @@ export default function Dashboard() {
     }
     setLoading(false);
     setLastRefresh(new Date());
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // ─── Quest/Shop action handlers (extracted to hook) ─────────────────────────
@@ -404,7 +391,6 @@ export default function Dashboard() {
     handleClaim, handleUnclaim, handleCoopClaim, handleCoopComplete,
     handleComplete, handleChainAccept: _handleChainAccept,
     handlePoolRefresh, handleShopBuy, handleGearBuy,
-    updateNpcQuestStatus,
   } = useQuestActions({
     reviewApiKey, playerName, refresh,
     setActiveNpcs, setSelectedNpc,
@@ -662,33 +648,7 @@ export default function Dashboard() {
     });
   }, [sortMode, favorites]);
   const isCompanionQuest = useCallback((q: Quest) => q.rarity === "companion" || (q.type as string) === "companion" || (q.createdBy ?? "").toLowerCase() === "dobbie" || (q.createdBy ?? "").toLowerCase() === "companion", []);
-  const visibleOpen = useMemo(() => applySort(applyFilter(quests.open.filter(q => !isCompanionQuest(q)))), [quests.open, applyFilter, applySort]);
-  const dobbieActiveQuests = useMemo(() => quests.inProgress.filter(q => isCompanionQuest(q) && (!playerNameLower || q.claimedBy?.toLowerCase() === playerNameLower || (q as any).companionOwnerId?.toLowerCase() === playerNameLower)), [quests.inProgress, playerNameLower]);
-  const visibleInProgress = useMemo(() => applySort(applyFilter(quests.inProgress.filter(q => !isCompanionQuest(q)))), [quests.inProgress, applyFilter, applySort]);
-
-  // NPC board — dev-only filtered quests
-  const devOpen = useMemo(() => applySort(quests.open.filter(q => (q.type ?? "development") === "development").filter(q => {
-    if (!searchFilter) return true;
-    const s = searchFilter.toLowerCase();
-    return q.title.toLowerCase().includes(s) || (q.description || "").toLowerCase().includes(s);
-  })), [quests.open, searchFilter, applySort]);
-  const devInProgress = useMemo(() => applySort(quests.inProgress.filter(q => (q.type ?? "development") === "development").filter(q => {
-    if (!searchFilter) return true;
-    const s = searchFilter.toLowerCase();
-    return q.title.toLowerCase().includes(s) || (q.description || "").toLowerCase().includes(s);
-  })), [quests.inProgress, searchFilter, applySort]);
-
-  // Build per-agent quest map
-  const agentQuestMap = useMemo(() => {
-    const map: Record<string, Quest[]> = {};
-    for (const q of quests.inProgress) {
-      if (q.claimedBy) {
-        if (!map[q.claimedBy]) map[q.claimedBy] = [];
-        map[q.claimedBy].push(q);
-      }
-    }
-    return map;
-  }, [quests.inProgress]);
+  const dobbieActiveQuests = useMemo(() => quests.inProgress.filter(q => isCompanionQuest(q) && (!playerNameLower || q.claimedBy?.toLowerCase() === playerNameLower || (q as Quest & { companionOwnerId?: string }).companionOwnerId?.toLowerCase() === playerNameLower)), [quests.inProgress, playerNameLower, isCompanionQuest]);
 
   const ctxValue = useMemo(() => ({
     playerName, reviewApiKey, isAdmin, loggedInUser: loggedInUser ?? null,
@@ -851,7 +811,7 @@ export default function Dashboard() {
                     );
                   })()}
                   {loggedInUser.classId && loggedInUser.classId !== "null" && (() => {
-                    const cls = (classesList || []).find((c: any) => c.id === loggedInUser.classId);
+                    const cls = (classesList || []).find((c: ClassDef) => c.id === loggedInUser.classId);
                     return cls ? (
                       <span className="text-xs px-1.5 py-0.5 rounded font-medium text-w40 bg-w6 border-w10">
                         {cls.name}
@@ -1271,7 +1231,7 @@ export default function Dashboard() {
         {dashView === "gacha" && (
           <ErrorBoundary><Suspense fallback={<ViewFallback />}><GachaView
             onRefresh={refresh}
-            onPullComplete={(items) => { items.forEach((item: any, i: number) => { setTimeout(() => addToast({ type: "flavor", message: `${item.item?.name || "Item"} collected!`, icon: item.item?.icon || "/images/icons/vault-of-fate.png", sub: item.item?.rarity || "common" }), i * 50); }); }}
+            onPullComplete={(items) => { items.forEach((item: { item?: { name?: string; icon?: string; rarity?: string } }, i: number) => { setTimeout(() => addToast({ type: "flavor", message: `${item.item?.name || "Item"} collected!`, icon: item.item?.icon || "/images/icons/vault-of-fate.png", sub: item.item?.rarity || "common" }), i * 50); }); }}
           /></Suspense></ErrorBoundary>
         )}
 

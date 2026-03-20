@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useContext } from "react";
-import type { User, Quest, QuestsData, ActiveNpc, ClassDef, Ritual, Habit } from "@/app/types";
+import type { User, QuestsData, ClassDef } from "@/app/types";
 
 // ─── Context shape — shared state accessed by 3+ components ─────────────────
 export interface DashboardContextValue {

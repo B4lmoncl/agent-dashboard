@@ -591,6 +591,54 @@ All stat effects, XP/gold calculations, streak mechanics, shop effects, crafting
 
 All modals use the `useModalBehavior` hook providing consistent ESC-to-close, body scroll lock, and backdrop-click-to-close behavior. No inconsistencies found.
 
+## 10. Phase 5 — Dead Code Cleanup & Type Safety (2026-03-20)
+
+### 10.1 Unused Imports Removed
+
+| File | Removed Imports |
+|------|----------------|
+| `app/page.tsx` | `CampaignHub` (lazy), 14 unused QuestBoard components (`PersonalQuestPanel`, `ForgeChallengesPanel`, `CategoryBadge`, `ProductBadge`, `HumanInputBadge`, `TypeBadge`, `CreatorBadge`, `AgentBadge`, `RecurringBadge`, `ClickablePriorityBadge`, `FlavorToast`, `EmptyState`, `SkeletonCard`, `RARITY_COLORS`), 8 unused types (`NpcQuestChainEntry`, `CampaignQuest`, `PersonalTemplate`, `ForgeChallengeTemplate`, `AntiRitual`, `Suggestion`, `ShopItem`, `RoadmapItem`), 6 unused utils (`timeAgo`, `getSeason`, `USER_LEVELS`, `getForgeTempInfo`, `getAntiRitualMood`, `LB_LEVELS`), 3 unused config (`priorityConfig`, `categoryConfig`, `productConfig`, `STREAK_MILESTONES_CLIENT`) |
+| `app/DashboardContext.tsx` | `Quest`, `ActiveNpc`, `Ritual`, `Habit` (unused type imports) |
+
+### 10.2 Dead Code Removed
+
+| Location | What | Why Dead |
+|----------|------|----------|
+| `page.tsx` | `questBoardAgentOpen` / `setQuestBoardAgentOpen` | State never read or set outside declaration |
+| `page.tsx` | `npcAgentRosterOpen` / `setNpcAgentRosterOpen` | State never read or set outside declaration |
+| `page.tsx` | `cvBuilderOpen` / `setCvBuilderOpen` | State never read or set outside declaration |
+| `page.tsx` | `setToast` / `setFlavorToast` | Compat wrappers — replaced by `addToast` directly |
+| `page.tsx` | `agentQuestMap` useMemo | Computed but never consumed |
+| `page.tsx` | `visibleOpen` / `visibleInProgress` useMemo | Computed but never consumed (refactored) |
+| `page.tsx` | `devOpen` / `devInProgress` useMemo | Computed but never consumed (refactored) |
+| `page.tsx` | `updateNpcQuestStatus` destructure | Destructured from hook but never called |
+| `page.tsx` | `habits` value (setter kept) | Set via API but value never read in page |
+| `page.tsx` | `campaigns` value (setter kept) | Set via API but value never read in page |
+
+### 10.3 Type Safety Fixes
+
+| Location | Before | After |
+|----------|--------|-------|
+| `page.tsx:336` | `as any` | `as AchievementDef[] \| { achievements: AchievementDef[] } \| undefined` |
+| `page.tsx:652` | `(q as any).companionOwnerId` | `(q as Quest & { companionOwnerId?: string }).companionOwnerId` |
+| `page.tsx:815` | `(c: any)` | `(c: ClassDef)` |
+| `page.tsx:1235` | `(item: any, i: number)` | `(item: { item?: { name?: string; icon?: string; rarity?: string } }, i: number)` |
+
+### 10.4 Dependency Array Fixes
+
+| Location | Fix |
+|----------|-----|
+| `page.tsx:160` | Added `setDashView` to `navigateToAchievement` deps (state setter = stable ref) |
+| `page.tsx:652` | Added `isCompanionQuest` to `dobbieActiveQuests` deps |
+| `page.tsx:379` | Removed stale `eslint-disable-next-line` (no longer needed) |
+
+### 10.5 Remaining Acknowledged Issues (Not Bugs)
+
+| Issue | Status |
+|-------|--------|
+| `@next/next/no-img-element` warnings (11) | **Intentional** — project uses static export with pixel art, `next/image` not needed |
+| React compiler warnings in other components | **Pre-existing** — `setState in effect` and `impure function during render` patterns across 10+ components |
+
 ---
 
 *End of Audit Report — Updated 2026-03-20*
