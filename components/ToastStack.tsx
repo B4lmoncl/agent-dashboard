@@ -11,7 +11,8 @@ export type ToastItem =
   | { type: "chain"; id: string; parentTitle: string; template: { title: string; description?: string | null; type?: string; priority?: string }; onAccept: () => void }
   | { type: "purchase"; id: string; message: string }
   | { type: "item"; id: string; itemName: string; message: string; icon?: string; rarity: string }
-  | { type: "companionBond"; id: string; companionName: string; companionEmoji: string; bondXpGained: number; newBondXp: number; bondTitle: string; bondLevelUp: boolean };
+  | { type: "companionBond"; id: string; companionName: string; companionEmoji: string; bondXpGained: number; newBondXp: number; bondTitle: string; bondLevelUp: boolean }
+  | { type: "error"; id: string; message: string };
 
 export type ToastInput =
   | { type: "flavor"; message: string; icon: string; sub?: string }
@@ -19,7 +20,8 @@ export type ToastInput =
   | { type: "chain"; parentTitle: string; template: { title: string; description?: string | null; type?: string; priority?: string }; onAccept: () => void }
   | { type: "purchase"; message: string }
   | { type: "item"; itemName: string; message: string; icon?: string; rarity: string }
-  | { type: "companionBond"; companionName: string; companionEmoji: string; bondXpGained: number; newBondXp: number; bondTitle: string; bondLevelUp: boolean };
+  | { type: "companionBond"; companionName: string; companionEmoji: string; bondXpGained: number; newBondXp: number; bondTitle: string; bondLevelUp: boolean }
+  | { type: "error"; message: string };
 
 const TOAST_DURATION: Record<ToastItem["type"], number> = {
   flavor: 4000,
@@ -28,6 +30,7 @@ const TOAST_DURATION: Record<ToastItem["type"], number> = {
   purchase: 3000,
   item: 3000,
   companionBond: 4500,
+  error: 5000,
 };
 
 const MAX_VISIBLE = 4;
@@ -211,6 +214,19 @@ function CompanionBondToastContent({ toast, onClose }: { toast: { companionName:
   );
 }
 
+function ErrorToastContent({ message, onClose }: { message: string; onClose: () => void }) {
+  return (
+    <div
+      className="rounded-xl px-4 py-3 flex items-center gap-3 shadow-2xl"
+      style={{ background: "#2a1010", border: "1px solid rgba(239,68,68,0.5)", boxShadow: "0 8px 32px rgba(239,68,68,0.15)", maxWidth: 320, width: "100%" }}
+    >
+      <span className="text-lg flex-shrink-0" style={{ color: "#ef4444" }}>!</span>
+      <p className="text-sm font-medium flex-1" style={{ color: "#fca5a5" }}>{message}</p>
+      <button onClick={onClose} style={{ color: "rgba(255,255,255,0.3)", flexShrink: 0 }}>×</button>
+    </div>
+  );
+}
+
 // ─── Single Toast Wrapper with auto-dismiss + slide animation ────────────────
 function ToastWrapper({ toast, index, onRemove, onAchievementClick }: { toast: ToastItem; index: number; onRemove: (id: string) => void; onAchievementClick?: (id: string) => void }) {
   const [visible, setVisible] = useState(false);
@@ -249,6 +265,7 @@ function ToastWrapper({ toast, index, onRemove, onAchievementClick }: { toast: T
       {toast.type === "purchase" && <PurchaseToastContent message={toast.message} onClose={handleClose} />}
       {toast.type === "item" && <ItemToastContent toast={toast} onClose={handleClose} />}
       {toast.type === "companionBond" && <CompanionBondToastContent toast={toast} onClose={handleClose} />}
+      {toast.type === "error" && <ErrorToastContent message={toast.message} onClose={handleClose} />}
     </div>
   );
 }

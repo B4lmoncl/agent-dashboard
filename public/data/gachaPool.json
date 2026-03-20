@@ -45,7 +45,7 @@
         "minor": {
           "count": [1, 2],
           "pool": [
-            { "stat": "vitalität", "min": 3, "max": 8 },
+            { "stat": "vitalitaet", "min": 3, "max": 8 },
             { "stat": "tempo", "min": 3, "max": 8 }
           ]
         }
@@ -83,7 +83,7 @@
         "minor": {
           "count": [1, 2],
           "pool": [
-            { "stat": "vitalität", "min": 2, "max": 5 },
+            { "stat": "vitalitaet", "min": 2, "max": 5 },
             { "stat": "tempo", "min": 2, "max": 5 }
           ]
         }
@@ -186,7 +186,7 @@
         "minor": {
           "count": [1, 1],
           "pool": [
-            { "stat": "vitalität", "min": 2, "max": 4 },
+            { "stat": "vitalitaet", "min": 2, "max": 4 },
             { "stat": "tempo", "min": 2, "max": 4 }
           ]
         }
@@ -221,7 +221,7 @@
       "id": "mitleids-katalysator",
       "name": "Mitleids-Katalysator",
       "rarity": "rare",
-      "type": "gacha",
+      "type": "consumable",
       "emoji": null,
       "stats": {},
       "effect": "pity_minus_5",
@@ -273,7 +273,7 @@
         "minor": {
           "count": [0, 1],
           "pool": [
-            { "stat": "vitalität", "min": 1, "max": 2 },
+            { "stat": "vitalitaet", "min": 1, "max": 2 },
             { "stat": "tempo", "min": 1, "max": 2 }
           ]
         }
@@ -349,7 +349,7 @@
         "minor": {
           "count": [0, 0],
           "pool": [
-            { "stat": "vitalität", "min": 1, "max": 1 },
+            { "stat": "vitalitaet", "min": 1, "max": 1 },
             { "stat": "tempo", "min": 1, "max": 1 }
           ]
         }
