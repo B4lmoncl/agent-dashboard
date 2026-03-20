@@ -92,6 +92,14 @@ const MAT_RARITY_COLORS: Record<string, string> = {
   common: "#9ca3af", uncommon: "#22c55e", rare: "#3b82f6", epic: "#a855f7", legendary: "#f59e0b",
 };
 
+const MAT_SOURCES: Record<string, string> = {
+  common: "Common/Uncommon quest drops · Dismantling common gear",
+  uncommon: "Uncommon/Rare quest drops · Dismantling uncommon gear",
+  rare: "Rare/Epic quest drops · Dismantling rare gear",
+  epic: "Epic/Legendary quest drops · Dismantling epic gear",
+  legendary: "Legendary quest drops · Dismantling legendary gear",
+};
+
 // Suspense fallback for lazy-loaded views
 const ViewFallback = () => <div className="flex items-center justify-center py-20 text-w30 text-sm font-mono">Loading...</div>;
 
@@ -1040,17 +1048,23 @@ export default function Dashboard() {
                   {/* Materials Inventory */}
                   <div className="mb-2">
                     <p className="text-xs font-bold uppercase tracking-wider mb-2" style={{ color: "rgba(255,255,255,0.4)" }}>Materials</p>
+                    <p className="text-xs mb-2" style={{ color: "rgba(255,255,255,0.25)" }}>Earned from quest completions (scaled by rarity) and dismantling gear.</p>
                     {matDefs.length > 0 ? (
-                      <div className="grid grid-cols-2 gap-1.5">
+                      <div className="space-y-1">
                         {matDefs.map(m => {
                           const count = mats[m.id] ?? 0;
+                          const rarColor = MAT_RARITY_COLORS[m.rarity] ?? "#9ca3af";
+                          const source = MAT_SOURCES[m.rarity] ?? "Quest drops";
                           return (
-                            <div key={m.id} className="flex items-center gap-2 rounded-lg px-2 py-1.5" style={{ background: count > 0 ? "rgba(255,255,255,0.03)" : "transparent", opacity: count > 0 ? 1 : 0.35 }}>
-                              <img src={m.icon} alt="" width={18} height={18} className="img-render-auto" onError={e => (e.currentTarget.style.display = "none")} />
-                              <div className="flex-1 min-w-0">
-                                <span className="text-xs truncate block" style={{ color: MAT_RARITY_COLORS[m.rarity] ?? "#9ca3af" }}>{m.name}</span>
+                            <div key={m.id} className="rounded-lg px-2.5 py-1.5" style={{ background: count > 0 ? "rgba(255,255,255,0.03)" : "transparent", opacity: count > 0 ? 1 : 0.35 }}>
+                              <div className="flex items-center gap-2">
+                                <img src={m.icon} alt="" width={18} height={18} className="img-render-auto" onError={e => (e.currentTarget.style.display = "none")} />
+                                <div className="flex-1 min-w-0">
+                                  <span className="text-xs truncate block" style={{ color: rarColor }}>{m.name}</span>
+                                </div>
+                                <span className="text-xs font-mono font-bold" style={{ color: count > 0 ? "#f0f0f0" : "rgba(255,255,255,0.2)" }}>{count}</span>
                               </div>
-                              <span className="text-xs font-mono font-bold" style={{ color: count > 0 ? "#f0f0f0" : "rgba(255,255,255,0.2)" }}>{count}</span>
+                              <p className="text-xs mt-0.5 pl-[26px]" style={{ color: "rgba(255,255,255,0.2)", fontSize: 10 }}>{source}</p>
                             </div>
                           );
                         })}

@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0b0d11;
+  --background: #111318;
   --foreground: #e8e8e8;
   --accent: #ff4444;
 }
@@ -18,7 +18,7 @@
 }
 
 body {
-  background: linear-gradient(180deg, #0b0d11 0%, #220f24 50%, #0b0d11 100%);
+  background: linear-gradient(180deg, #111318 0%, #2a1530 50%, #111318 100%);
   background-size: 100% 200%;
   animation: gradient-shift 18s ease infinite;
   color: var(--foreground);
@@ -795,10 +795,10 @@ img {
 .bg-w8  { background: rgba(255,255,255,0.08); }
 
 /* Dark surface backgrounds                                                  */
-.bg-surface      { background: #1a1a1a; }
-.bg-surface-alt  { background: #1e1e1e; }
-.bg-card         { background: #252525; }
-.bg-input        { background: #141414; }
+.bg-surface      { background: #1e1e22; }
+.bg-surface-alt  { background: #222228; }
+.bg-card         { background: #2a2a30; }
+.bg-input        { background: #181820; }
 
 /* Borders — white at various opacities                                      */
 .border-w6  { border: 1px solid rgba(255,255,255,0.06); }

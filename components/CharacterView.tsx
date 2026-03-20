@@ -387,10 +387,11 @@ const RARITY_BORDER_30: Record<string, string> = {
 
 type InventoryItem = CharacterData["inventory"][number];
 
-function InventoryTooltip({ item, mousePosRef }: { item: InventoryItem; mousePosRef: React.RefObject<{ x: number; y: number }> }) {
+function InventoryTooltip({ item, mousePosRef, equippedItem }: { item: InventoryItem; mousePosRef: React.RefObject<{ x: number; y: number }>; equippedItem?: InventoryItem | null }) {
   const ref = useRef<HTMLDivElement>(null);
   const rarityColor = RARITY_COLORS[item.rarity] || "#9ca3af";
   const hasStats = item.stats && Object.keys(item.stats).length > 0;
+  const eqStats = equippedItem?.stats || {};
 
   useEffect(() => {
     const el = ref.current;
@@ -413,6 +414,12 @@ function InventoryTooltip({ item, mousePosRef }: { item: InventoryItem; mousePos
     raf = requestAnimationFrame(update);
     return () => cancelAnimationFrame(raf);
   }, [mousePosRef]);
+
+  // Build comparison data: all stats from both items
+  const allStatKeys = new Set([
+    ...Object.keys(item.stats || {}),
+    ...Object.keys(eqStats),
+  ]);
 
   return (
     <div
@@ -445,21 +452,55 @@ function InventoryTooltip({ item, mousePosRef }: { item: InventoryItem; mousePos
           </div>
         </div>
 
+        {/* Flavor text */}
+        {(item as any).flavorText && (
+          <p className="text-xs italic leading-relaxed" style={{ color: "rgba(255,255,255,0.35)" }}>&ldquo;{(item as any).flavorText}&rdquo;</p>
+        )}
+
         {/* Description */}
         {item.desc && (
           <p className="text-xs leading-relaxed" style={{ color: "rgba(255,255,255,0.5)" }}>{item.desc}</p>
         )}
 
-        {/* Stats */}
+        {/* Legendary effect */}
+        {(item as any).legendaryEffect && (
+          <p className="text-xs font-semibold" style={{ color: "#f59e0b" }}>
+            {(item as any).legendaryEffect.label || (item as any).legendaryEffect.type}
+          </p>
+        )}
+
+        {/* Stats with comparison */}
         {hasStats && (
           <div className="space-y-0.5 pt-1" style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}>
-            {Object.entries(item.stats).map(([stat, val]) => (
-              <div key={stat} className="flex items-center justify-between text-xs">
-                <span style={{ color: "rgba(255,255,255,0.55)" }}>{STAT_LABELS[stat] || stat}</span>
-                <span className="font-mono font-semibold" style={{ color: "#4ade80" }}>+{val as number}</span>
-              </div>
-            ))}
+            {[...allStatKeys].map(stat => {
+              const val = (item.stats?.[stat] as number) || 0;
+              const eqVal = (eqStats[stat] as number) || 0;
+              const diff = val - eqVal;
+              const showDiff = equippedItem && equippedItem.id !== item.id;
+              return (
+                <div key={stat} className="flex items-center justify-between text-xs">
+                  <span style={{ color: "rgba(255,255,255,0.55)" }}>{STAT_LABELS[stat] || stat}</span>
+                  <span className="flex items-center gap-1.5">
+                    <span className="font-mono font-semibold" style={{ color: val > 0 ? "#4ade80" : "rgba(255,255,255,0.4)" }}>
+                      {val > 0 ? `+${val}` : val}
+                    </span>
+                    {showDiff && diff !== 0 && (
+                      <span className="font-mono text-xs" style={{ color: diff > 0 ? "#4ade80" : "#ef4444", fontSize: 10 }}>
+                        ({diff > 0 ? `+${diff}` : diff})
+                      </span>
+                    )}
+                  </span>
+                </div>
+              );
+            })}
           </div>
+        )}
+
+        {/* Comparison header */}
+        {equippedItem && equippedItem.id !== item.id && (
+          <p className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>
+            vs equipped: {equippedItem.name}
+          </p>
         )}
 
         {/* Level requirement + Slot type */}
@@ -499,7 +540,7 @@ const INV_SORTS: { key: InvSort; label: string }[] = [
   { key: "level", label: "Level" },
 ];
 
-function InventorySlot({ item, level, idx, onItemClick, onDragStart, onDragOver, onDrop, dragOverIdx }: {
+function InventorySlot({ item, level, idx, onItemClick, onDragStart, onDragOver, onDrop, dragOverIdx, equippedForSlot }: {
   item: InventoryItem | null;
   level: number;
   idx: number;
@@ -508,6 +549,7 @@ function InventorySlot({ item, level, idx, onItemClick, onDragStart, onDragOver,
   onDragOver: (idx: number) => void;
   onDrop: () => void;
   dragOverIdx: number | null;
+  equippedForSlot?: InventoryItem | null;
 }) {
   const [hovered, setHovered] = useState(false);
   const mousePosRef = useRef({ x: 0, y: 0 });
@@ -584,7 +626,7 @@ function InventorySlot({ item, level, idx, onItemClick, onDragStart, onDragOver,
           </span>
         )}
       </button>
-      {hovered && createPortal(<InventoryTooltip item={item} mousePosRef={mousePosRef} />, document.body)}
+      {hovered && createPortal(<InventoryTooltip item={item} mousePosRef={mousePosRef} equippedItem={equippedForSlot} />, document.body)}
     </>
   );
 }
@@ -1039,22 +1081,38 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                   gap: 2,
                 }}
               >
-                {Array.from({ length: GRID_TOTAL }, (_, idx) => {
-                  const item = grid[idx];
-                  return (
-                    <InventorySlot
-                      key={item?.id ?? `empty-${idx}`}
-                      item={item}
-                      idx={idx}
-                      level={charData.level}
-                      onItemClick={(itm, rect) => setSelectedItem({ item: itm, rect })}
-                      onDragStart={handleDragStart}
-                      onDragOver={handleDragOver}
-                      onDrop={handleDrop}
-                      dragOverIdx={dragOverIdx}
-                    />
-                  );
-                })}
+                {(() => {
+                  // Build slot → equipped item map for comparison tooltips
+                  const slotEquipMap: Record<string, InventoryItem | null> = {};
+                  for (const { slot } of EQUIP_SLOT_LABELS) {
+                    const eqRaw = charData.equipment[slot];
+                    if (!eqRaw) { slotEquipMap[slot] = null; continue; }
+                    const isInstance = typeof eqRaw === 'object' && eqRaw !== null;
+                    const gi = isInstance ? eqRaw as GearInstance : null;
+                    const eqId = gi ? (gi.instanceId || gi.templateId) : eqRaw;
+                    slotEquipMap[slot] = gi
+                      ? { id: gi.instanceId || gi.templateId, name: gi.name, slot: gi.slot, rarity: gi.rarity || 'common', stats: gi.stats || {}, icon: gi.icon || undefined, tier: gi.tier || 0, minLevel: gi.reqLevel || 0, desc: gi.desc, legendaryEffect: gi.legendaryEffect, affixes: gi.affixRolls } as unknown as InventoryItem
+                      : charData.inventory.find(i => i.id === eqId) ?? null;
+                  }
+                  return Array.from({ length: GRID_TOTAL }, (_, idx) => {
+                    const item = grid[idx];
+                    const equipped = item?.slot ? slotEquipMap[item.slot] ?? null : null;
+                    return (
+                      <InventorySlot
+                        key={item?.id ?? `empty-${idx}`}
+                        item={item}
+                        idx={idx}
+                        level={charData.level}
+                        onItemClick={(itm, rect) => setSelectedItem({ item: itm, rect })}
+                        onDragStart={handleDragStart}
+                        onDragOver={handleDragOver}
+                        onDrop={handleDrop}
+                        dragOverIdx={dragOverIdx}
+                        equippedForSlot={equipped}
+                      />
+                    );
+                  });
+                })()}
               </div>
             );
           })()}

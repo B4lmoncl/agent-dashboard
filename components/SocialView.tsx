@@ -41,7 +41,8 @@ type SocialTab = "friends" | "messages" | "trades";
 
 function FriendsTab({ apiKey, playerName }: { apiKey: string; playerName: string }) {
   const [friends, setFriends] = useState<FriendInfo[]>([]);
-  const [requests, setRequests] = useState<FriendRequest[]>([]);
+  const [incomingRequests, setIncomingRequests] = useState<FriendRequest[]>([]);
+  const [outgoingRequests, setOutgoingRequests] = useState<FriendRequest[]>([]);
   const [addInput, setAddInput] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -54,7 +55,11 @@ function FriendsTab({ apiKey, playerName }: { apiKey: string; playerName: string
         fetch(`/api/social/${encodeURIComponent(playerName)}/friend-requests`, { headers }),
       ]);
       if (fRes.ok) setFriends((await fRes.json()).friends || []);
-      if (rRes.ok) setRequests((await rRes.json()).requests || []);
+      if (rRes.ok) {
+        const data = await rRes.json();
+        setIncomingRequests(data.incoming || []);
+        setOutgoingRequests(data.outgoing || []);
+      }
     } catch { /* ignore */ }
     setLoading(false);
   }, [apiKey, playerName]);
@@ -97,8 +102,8 @@ function FriendsTab({ apiKey, playerName }: { apiKey: string; playerName: string
     } catch { /* ignore */ }
   };
 
-  const incoming = requests.filter(r => r.to.toLowerCase() === playerName.toLowerCase() && r.status === "pending");
-  const outgoing = requests.filter(r => r.from.toLowerCase() === playerName.toLowerCase() && r.status === "pending");
+  const incoming = incomingRequests;
+  const outgoing = outgoingRequests;
 
   if (loading) return <p className="text-xs text-w20 text-center py-8">Loading...</p>;
 

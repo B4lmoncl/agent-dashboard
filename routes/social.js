@@ -66,8 +66,10 @@ router.get('/api/social/:playerId/friends', requireAuth, requireSelf('playerId')
       return {
         id: friendId,
         name: friendUser?.name || friendId,
+        avatar: friendUser?.avatar || (friendUser?.name || friendId)[0],
+        color: friendUser?.color || '#a78bfa',
         since: f.since,
-        online: isOnline,
+        isOnline,
         level: friendUser ? (friendUser.xp || 0) : 0,
         classId: friendUser?.classId || null,
       };
@@ -180,17 +182,25 @@ router.get('/api/social/:playerId/friend-requests', requireAuth, requireSelf('pl
 
   const incoming = state.socialData.friendRequests
     .filter(r => r.to === uid && r.status === 'pending')
-    .map(r => ({
-      ...r,
-      fromName: state.users[r.from]?.name || r.from,
-    }));
+    .map(r => {
+      const fromUser = state.users[r.from];
+      return {
+        ...r,
+        fromName: fromUser?.name || r.from,
+        fromAvatar: fromUser?.avatar || (fromUser?.name || r.from)[0],
+        fromColor: fromUser?.color || '#a78bfa',
+      };
+    });
 
   const outgoing = state.socialData.friendRequests
     .filter(r => r.from === uid && r.status === 'pending')
-    .map(r => ({
-      ...r,
-      toName: state.users[r.to]?.name || r.to,
-    }));
+    .map(r => {
+      const toUser = state.users[r.to];
+      return {
+        ...r,
+        toName: toUser?.name || r.to,
+      };
+    });
 
   res.json({ incoming, outgoing });
 });
@@ -290,16 +300,14 @@ router.get('/api/social/:playerId/conversations', requireAuth, requireSelf('play
     const msgTime = new Date(m.createdAt).getTime();
 
     if (!existing || msgTime > new Date(existing.lastMessage.createdAt).getTime()) {
+      const partner = state.users[partnerId];
       convMap.set(partnerId, {
-        partnerId,
-        partnerName: state.users[partnerId]?.name || partnerId,
-        lastMessage: {
-          id: m.id,
-          from: m.from,
-          text: m.text.length > 100 ? m.text.slice(0, 100) + '...' : m.text,
-          createdAt: m.createdAt,
-          read: m.read,
-        },
+        playerId: partnerId,
+        playerName: partner?.name || partnerId,
+        playerAvatar: partner?.avatar || (partner?.name || partnerId)[0],
+        playerColor: partner?.color || '#a78bfa',
+        lastMessage: m.text.length > 100 ? m.text.slice(0, 100) + '...' : m.text,
+        lastMessageAt: m.createdAt,
         unreadCount: (existing?.unreadCount || 0) + (m.to === uid && !m.read ? 1 : 0),
       });
     } else {

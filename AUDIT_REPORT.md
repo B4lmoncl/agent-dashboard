@@ -153,11 +153,25 @@ server.js             # Express entry point (~289 lines)
 - Equipment display, stats overview (4 primary + 4 minor stats)
 - Set bonuses, legendary effects, title selection, class/companion info
 
-### 2.13 Navigation (Urithiru-inspired)
-**Files**: `app/config.ts`, `components/FloorNavigation.tsx`
+### 2.13 Social & Trading System (The Breakaway)
+**Files**: `routes/social.js`, `components/SocialView.tsx`, `lib/state.js` (socialData)
 
-- 4 floors: The Pinnacle, The Great Halls, The Trade Quarter, The Inner Sanctum
-- Each floor has 3-4 rooms (tabs), floor banners with gradient backgrounds
+- **Friends**: Send/accept/decline requests, remove friends, online status
+- **Messages**: Friend-only conversations with unread counts, paginated history (500-char limit)
+- **Trading**: Multi-round WoW/D3-style negotiation:
+  - Propose trade (gold + items + message) → counter-offer back and forth
+  - Both sides must accept for atomic execution
+  - Validates gold balance, item ownership, equipped status at execution time
+  - Full trade history with round-by-round detail
+- Data persistence in `data/social.json` (friendships, friendRequests, messages, trades)
+- Social summary in `/api/dashboard` batch endpoint (pending requests, unread messages, active trades)
+
+### 2.14 Navigation (Urithiru-inspired)
+**Files**: `app/config.ts`
+
+- 5 floors: The Pinnacle, The Great Halls, The Trade Quarter, The Inner Sanctum, The Breakaway
+- Each floor has 1-4 rooms (tabs), floor banners with gradient backgrounds
+- The Breakaway is a standalone 5th floor for the social hub (inspired by Urithiru's social area)
 
 ---
 
@@ -344,12 +358,42 @@ server.js             # Express entry point (~289 lines)
 | GET | /api/expedition | — | Current expedition |
 | POST | /api/expedition/claim | auth | Claim checkpoint |
 
+### social.js
+| Method | Path | Auth | Description |
+|--------|------|------|-------------|
+| GET | /api/social/:playerId/friends | auth+self | List friends with online status |
+| POST | /api/social/friend-request | auth | Send friend request |
+| POST | /api/social/friend-request/:id/accept | auth | Accept friend request |
+| POST | /api/social/friend-request/:id/decline | auth | Decline friend request |
+| DELETE | /api/social/friend/:friendId | auth | Remove friend |
+| GET | /api/social/:playerId/friend-requests | auth+self | List pending requests |
+| GET | /api/social/:playerId/messages/:otherId | auth+self | Get conversation (paginated) |
+| POST | /api/social/message | auth | Send message (friends-only) |
+| GET | /api/social/:playerId/conversations | auth+self | List conversations |
+| POST | /api/social/trade/propose | auth | Propose trade |
+| GET | /api/social/:playerId/trades | auth+self | List trades |
+| GET | /api/social/trade/:tradeId | auth | Trade details |
+| POST | /api/social/trade/:tradeId/counter | auth | Counter-offer |
+| POST | /api/social/trade/:tradeId/accept | auth | Accept trade |
+| POST | /api/social/trade/:tradeId/decline | auth | Decline trade |
+
 ### campaigns.js, currency.js, game.js, integrations.js, npcs-misc.js, docs.js
 See Section 4 header table rows — standard CRUD/read endpoints for their respective domains.
 
 ---
 
-## 5. Documentation Status
+## 5. Quality of Life Improvements (v1.5.4)
+
+- **Gear comparison tooltips**: Inventory item hover now shows stat deltas vs currently equipped gear (green = better, red = worse)
+- **Flavor text in tooltips**: Item hover tooltips now display flavor text in italic
+- **Legendary effect display**: Item tooltips show legendary effect labels
+- **Material source info**: Artisan stat card modal shows how to obtain each material (quest drops by rarity, dismantling)
+- **Brighter background**: Theme background lifted from #0b0d11 to #111318 with brighter surface/card colors
+- **Affix rolling verified**: All item-granting paths (gacha, shop, quest drops, crafting transmute, trades) correctly apply affix rolling
+
+---
+
+## 6. Documentation Status
 
 | File | Status | Action Needed |
 |------|--------|---------------|
