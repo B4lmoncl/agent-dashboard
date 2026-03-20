@@ -131,11 +131,7 @@ router.post('/api/daily-bonus/claim', requireApiKey, (req, res) => {
     runensplitter: 2,
   };
 
-  // Small chance for sternentaler (star shards) — premium currency stays rare
-  const sternentalerChance = streakDays >= 30 ? 0.25 : streakDays >= 14 ? 0.20 : 0.15;
-  if (Math.random() < sternentalerChance) {
-    rewards.sternentaler = streakDays >= 30 ? 2 : 1;
-  }
+  // Sternentaler are ONLY earned from weekly challenges — not from daily bonus
 
   // Streak milestone bonus rewards
   let milestoneBonus = null;

@@ -352,3 +352,45 @@ All 25+ frontend components were audited for: hardcoded value mismatches, missin
 ---
 
 *Audit Session 3 complete. Full component sweep done. 2 modal consistency fixes applied. All components clean.*
+
+---
+
+## 7. Audit Session 4 — User-Reported Fixes
+
+**Date:** 2026-03-20
+
+### Issues Reported by User
+
+#### M-20: Sternentaler — Daily Bonus Should Not Award ✅
+- **Was:** `routes/currency.js:134-138` gave 15-25% chance of sternentaler from daily bonus
+- **User:** "Sternentaler sollten NUR aus wöchentlichen Herausforderungen kommen"
+- **Fix:** Removed sternentaler chance from daily bonus handler. Updated frontend description from "Hauptsächlich aus wöchentlichen Herausforderungen. Kleine Chance beim täglichen Login-Bonus." to "Exklusiv aus wöchentlichen Herausforderungen."
+- **Files:** `routes/currency.js`, `components/DashboardModals.tsx`
+
+#### M-21: Tempo Stat — +2% Per Point Too Strong ✅
+- **Was:** `lib/helpers.js:218` used `tempo * 0.02` = +2% forge temp recovery per point
+- **User:** "Tempo 2% forge temp pro punkt ist zu stark. Mit 10 Tempo ist man dann ja schon bei 30% pro quest recovery."
+- **Fix:** Reduced to `tempo * 0.01` = +1% per point. Updated all frontend tooltips (CharacterView, TutorialModal).
+- **Files:** `lib/helpers.js`, `components/CharacterView.tsx`, `components/TutorialModal.tsx`
+
+#### M-22: Image Rendering — `smooth` Not Valid CSS Value ✅
+- **Was:** Global CSS and all inline styles used `image-rendering: smooth` — a CSS Images Level 4 value NOT supported by any major browser (Chrome, Firefox, Safari all ignore it)
+- **Effect:** The property was silently dropped, leaving images at browser default with no explicit rendering directive
+- **Fix:** Changed global CSS (`globals.css`) and all inline `imageRendering` from `"smooth"` to `"auto"` (the standard, universally-supported value for bilinear filtering). Added `!important` to global rule to prevent any cascade override. Updated 25 component files.
+- **Files:** `app/globals.css`, 25 component files
+
+### Session 4 Fix Manifest
+
+| # | Fix ID | Issue | Description | File(s) | Status |
+|---|--------|-------|-------------|---------|--------|
+| 1 | F-37 | M-20 | Remove sternentaler from daily bonus | currency.js, DashboardModals.tsx | ✅ Done |
+| 2 | F-38 | M-21 | Tempo: +2% → +1% per point | helpers.js, CharacterView.tsx, TutorialModal.tsx | ✅ Done |
+| 3 | F-39 | M-22 | image-rendering: smooth → auto (25+ files) | globals.css, 25 component files | ✅ Done |
+
+### Verification (Session 4)
+
+- TypeScript compilation (`npx tsc --noEmit`) — 0 errors
+
+---
+
+*Audit Session 4 complete. 3 user-reported fixes applied (balance, economy, rendering).*

@@ -36,7 +36,7 @@ export default function ShopView({ onBuy, onGearBuy }: {
       <div className="flex items-center gap-3 flex-wrap">
         <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.35)" }}>The Bazaar</span>
         <div className="flex items-center gap-2 ml-auto">
-          <img src="/images/icons/currency-gold.png" alt="" width={24} height={24} style={{ imageRendering: "smooth" }} onError={e => { e.currentTarget.style.display = "none"; }} />
+          <img src="/images/icons/currency-gold.png" alt="" width={24} height={24} style={{ imageRendering: "auto" }} onError={e => { e.currentTarget.style.display = "none"; }} />
           <span className="text-base font-mono font-bold" style={{ color: "#f59e0b" }}>{gold}</span>
         </div>
       </div>
@@ -54,7 +54,7 @@ export default function ShopView({ onBuy, onGearBuy }: {
                   className="flex items-center gap-3 p-3 rounded-xl"
                   style={{ background: "rgba(139,92,246,0.06)", border: "1px solid rgba(139,92,246,0.15)" }}
                 >
-                  {item.icon && item.icon.startsWith("/") ? <img src={item.icon} alt="" style={{ width: 40, height: 40, imageRendering: "smooth" }} onError={e => { e.currentTarget.style.display = "none"; }} /> : <span className="text-2xl flex-shrink-0">{item.icon}</span>}
+                  {item.icon && item.icon.startsWith("/") ? <img src={item.icon} alt="" style={{ width: 40, height: 40, imageRendering: "auto" }} onError={e => { e.currentTarget.style.display = "none"; }} /> : <span className="text-2xl flex-shrink-0">{item.icon}</span>}
                   <div className="flex-1 min-w-0">
                     <p className="text-xs font-semibold" style={{ color: "#c4b5fd" }}>{item.name}</p>
                     <p className="text-xs" style={{ color: "rgba(196,181,253,0.5)" }}>{item.desc}</p>
@@ -69,7 +69,7 @@ export default function ShopView({ onBuy, onGearBuy }: {
                       border: `1px solid ${canAfford ? "rgba(139,92,246,0.4)" : "rgba(255,255,255,0.08)"}`,
                     }}
                   >
-                    <img src="/images/icons/currency-gold.png" alt="" width={20} height={20} style={{ imageRendering: "smooth", display: "inline", verticalAlign: "middle", marginRight: 2 }} onError={e => { e.currentTarget.style.display = "none"; }} /> {item.cost}
+                    <img src="/images/icons/currency-gold.png" alt="" width={20} height={20} style={{ imageRendering: "auto", display: "inline", verticalAlign: "middle", marginRight: 2 }} onError={e => { e.currentTarget.style.display = "none"; }} /> {item.cost}
                   </button>
                 </div>
               );
@@ -90,7 +90,7 @@ export default function ShopView({ onBuy, onGearBuy }: {
                 className="flex items-center gap-3 p-3 rounded-xl"
                 style={{ background: "#1e1e1e", border: "1px solid rgba(255,255,255,0.07)" }}
               >
-                {item.icon && item.icon.startsWith("/") ? <img src={item.icon} alt="" style={{ width: 40, height: 40, imageRendering: "smooth" }} onError={e => { e.currentTarget.style.display = "none"; }} /> : <span className="text-2xl flex-shrink-0">{item.icon}</span>}
+                {item.icon && item.icon.startsWith("/") ? <img src={item.icon} alt="" style={{ width: 40, height: 40, imageRendering: "auto" }} onError={e => { e.currentTarget.style.display = "none"; }} /> : <span className="text-2xl flex-shrink-0">{item.icon}</span>}
                 <div className="flex-1 min-w-0">
                   <p className="text-xs font-semibold" style={{ color: "#f0f0f0" }}>{item.name}</p>
                   <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>{item.desc}</p>
@@ -105,7 +105,7 @@ export default function ShopView({ onBuy, onGearBuy }: {
                     border: `1px solid ${canAfford ? "rgba(245,158,11,0.4)" : "rgba(255,255,255,0.08)"}`,
                   }}
                 >
-                  <img src="/images/icons/currency-gold.png" alt="" width={20} height={20} style={{ imageRendering: "smooth", display: "inline", verticalAlign: "middle", marginRight: 2 }} onError={e => { e.currentTarget.style.display = "none"; }} /> {item.cost}
+                  <img src="/images/icons/currency-gold.png" alt="" width={20} height={20} style={{ imageRendering: "auto", display: "inline", verticalAlign: "middle", marginRight: 2 }} onError={e => { e.currentTarget.style.display = "none"; }} /> {item.cost}
                 </button>
               </div>
             );
