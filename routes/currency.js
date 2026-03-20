@@ -122,6 +122,10 @@ router.post('/api/daily-bonus/claim', requireApiKey, (req, res) => {
   }
 
   u.dailyBonusLastClaim = today;
+  if (!u.dailyClaimHistory) u.dailyClaimHistory = [];
+  if (!u.dailyClaimHistory.includes(today)) u.dailyClaimHistory.push(today);
+  // Keep only last 90 days of history
+  if (u.dailyClaimHistory.length > 90) u.dailyClaimHistory = u.dailyClaimHistory.slice(-90);
   const streakDays = u.streakDays || 0;
   const milestone = getStreakMilestone(streakDays);
 
@@ -165,7 +169,7 @@ router.get('/api/daily-bonus/status/:playerId', (req, res) => {
   if (!u) return res.status(404).json({ error: 'Spieler nicht gefunden' });
   const today = getTodayBerlin();
   const claimed = u.dailyBonusLastClaim === today;
-  res.json({ available: !claimed, lastClaim: u.dailyBonusLastClaim || null, streakDays: u.streakDays || 0 });
+  res.json({ available: !claimed, lastClaim: u.dailyBonusLastClaim || null, streakDays: u.streakDays || 0, claimHistory: u.dailyClaimHistory || [] });
 });
 
 module.exports = router;

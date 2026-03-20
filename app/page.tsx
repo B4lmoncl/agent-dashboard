@@ -14,6 +14,7 @@ const GachaView = lazy(() => import("@/components/GachaView"));
 const CharacterView = lazy(() => import("@/components/CharacterView"));
 const RitualChamber = lazy(() => import("@/components/RitualChamber"));
 const ChallengesView = lazy(() => import("@/components/ChallengesView"));
+const DailyLoginCalendar = lazy(() => import("@/components/DailyLoginCalendar"));
 const SocialView = lazy(() => import("@/components/SocialView"));
 import { GuideModal, GuideContent, TutorialOverlay, TUTORIAL_STEPS } from "@/components/TutorialModal";
 import {
@@ -27,6 +28,7 @@ import {
 } from "@/components/QuestBoard";
 import { ToastStack, useToastStack } from "@/components/ToastStack";
 import { RewardCelebration, RewardCelebrationData } from "@/components/RewardCelebration";
+import { useFloatingRewards, FloatingRewardsLayer } from "@/components/FloatingRewards";
 import { CompanionsWidget } from "@/components/CompanionsWidget";
 import { RoadmapView } from "@/components/RoadmapView";
 import { InfoTooltip } from "@/components/InfoTooltip";
@@ -115,6 +117,7 @@ export default function Dashboard() {
   const [weeklyChallenge, setWeeklyChallenge] = useState<import("@/app/types").WeeklyChallenge | null>(null);
   const [expedition, setExpedition] = useState<import("@/app/types").Expedition | null>(null);
   const [claimingDailyBonus, setClaimingDailyBonus] = useState(false);
+  const [loginCalendarOpen, setLoginCalendarOpen] = useState(false);
   const [completedOpen, setCompletedOpen] = useState(false);
   const [completedSearch, setCompletedSearch] = useState("");
   const [rejectedOpen, setRejectedOpen] = useState(false);
@@ -187,6 +190,7 @@ export default function Dashboard() {
   const [lootDrop, setLootDrop] = useState<LootItem | null>(null);
   const [levelUpCelebration, setLevelUpCelebration] = useState<{ level: number; title: string } | null>(null);
   const [rewardCelebration, setRewardCelebration] = useState<RewardCelebrationData | null>(null);
+  const { rewards: floatingRewards, addFloating, removeFloating } = useFloatingRewards();
   // questBoardTab removed — Rituals and Vows are now standalone views in Charakter-Turm
   const closeLootDrop = useCallback(() => setLootDrop(null), []);
   useModalBehavior(!!lootDrop, closeLootDrop);
@@ -866,23 +870,38 @@ export default function Dashboard() {
                 <p className="text-xs mt-1 font-mono text-w20">
                   {playerLevelInfo.xpInLevel} {playerLevelInfo.xpForLevel ? `/ ${playerLevelInfo.xpForLevel} XP` : "(max)"}
                 </p>
-                {dailyBonusAvailable && (
+                <div className="flex items-center gap-2 mt-2">
+                  {dailyBonusAvailable && (
+                    <button
+                      onClick={handleClaimDailyBonus}
+                      disabled={claimingDailyBonus}
+                      className="px-3 py-1.5 rounded-lg text-xs font-bold transition-all inline-flex items-center gap-1.5"
+                      style={{
+                        background: "linear-gradient(90deg, rgba(250,204,21,0.12), rgba(245,158,11,0.15))",
+                        color: "#facc15",
+                        border: "1px solid rgba(250,204,21,0.3)",
+                        cursor: claimingDailyBonus ? "wait" : "pointer",
+                        opacity: claimingDailyBonus ? 0.5 : 1,
+                        animation: "pulse-online 2s ease-in-out infinite",
+                      }}
+                    >
+                      <span>☀</span> {claimingDailyBonus ? "Claiming..." : "Claim Daily Bonus"}
+                    </button>
+                  )}
                   <button
-                    onClick={handleClaimDailyBonus}
-                    disabled={claimingDailyBonus}
-                    className="mt-2 px-3 py-1.5 rounded-lg text-xs font-bold transition-all inline-flex items-center gap-1.5"
+                    onClick={() => setLoginCalendarOpen(true)}
+                    className="px-2 py-1.5 rounded-lg text-xs font-semibold inline-flex items-center gap-1"
                     style={{
-                      background: "linear-gradient(90deg, rgba(250,204,21,0.12), rgba(245,158,11,0.15))",
-                      color: "#facc15",
-                      border: "1px solid rgba(250,204,21,0.3)",
-                      cursor: claimingDailyBonus ? "wait" : "pointer",
-                      opacity: claimingDailyBonus ? 0.5 : 1,
-                      animation: "pulse-online 2s ease-in-out infinite",
+                      background: "rgba(251,191,36,0.06)",
+                      color: "rgba(251,191,36,0.6)",
+                      border: "1px solid rgba(251,191,36,0.15)",
+                      cursor: "pointer",
                     }}
+                    title="Login-Kalender"
                   >
-                    <span>☀</span> {claimingDailyBonus ? "Claiming..." : "Claim Daily Bonus"}
+                    📅
                   </button>
-                )}
+                </div>
               </div>
 
               {/* Right side: Currencies + Forge */}
@@ -1824,11 +1843,24 @@ export default function Dashboard() {
         />
       )}
 
+      {/* Daily Login Calendar */}
+      {loginCalendarOpen && (
+        <Suspense fallback={null}>
+          <DailyLoginCalendar onClose={() => setLoginCalendarOpen(false)} />
+        </Suspense>
+      )}
+
       {/* Reward Celebration (quest/ritual/vow/companion completion) */}
       {rewardCelebration && (
         <RewardCelebration data={rewardCelebration} onClose={closeRewardCelebration} onAchievementClick={navigateToAchievement} onCollect={(rd) => {
           if (rd.loot) setPurchaseToast(`${rd.loot.name} added to inventory!`);
           if (rd.achievement) addToast({ type: "achievement", achievement: rd.achievement as EarnedAchievement });
+          // Trigger floating reward numbers
+          const floats: { text: string; color: string }[] = [];
+          if (rd.xpEarned > 0) floats.push({ text: `+${rd.xpEarned} XP`, color: "#a78bfa" });
+          if (rd.goldEarned > 0) floats.push({ text: `+${rd.goldEarned} Gold`, color: "#fbbf24" });
+          if (rd.bondXp && rd.bondXp > 0) floats.push({ text: `+${rd.bondXp} Bond`, color: "#ff6b9d" });
+          if (floats.length > 0) addFloating(floats);
         }} />
       )}
 
@@ -2200,6 +2232,7 @@ export default function Dashboard() {
         </div>
       )}
     </div>
+    <FloatingRewardsLayer rewards={floatingRewards} onRemove={removeFloating} />
     </DashboardProvider>
   );
 }

@@ -693,6 +693,12 @@ img {
   50% { opacity: 1; transform: scale(1.05) translateY(-5px); }
   100% { opacity: 1; transform: scale(1) translateY(0); }
 }
+@keyframes floatRewardUp {
+  0% { opacity: 0; transform: translateY(0) scale(0.6); }
+  15% { opacity: 1; transform: translateY(-10px) scale(1.1); }
+  30% { transform: translateY(-25px) scale(1); }
+  100% { opacity: 0; transform: translateY(-120px) scale(0.85); }
+}
 @keyframes reward-sparkle {
   0% { opacity: 0; transform: translate(0px, 0px) scale(0); }
   20% { opacity: 1; transform: translate(calc(var(--sx) * 0.5), calc(var(--sy) * 0.5)) scale(1.2); }

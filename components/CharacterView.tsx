@@ -485,8 +485,8 @@ function InventoryTooltip({ item, mousePosRef, equippedItem }: { item: Inventory
                       {val > 0 ? `+${val}` : val}
                     </span>
                     {showDiff && diff !== 0 && (
-                      <span className="font-mono text-xs" style={{ color: diff > 0 ? "#4ade80" : "#ef4444", fontSize: 10 }}>
-                        ({diff > 0 ? `+${diff}` : diff})
+                      <span className="font-mono font-bold" style={{ color: diff > 0 ? "#4ade80" : "#ef4444", fontSize: 11 }}>
+                        {diff > 0 ? `▲${diff}` : `▼${Math.abs(diff)}`}
                       </span>
                     )}
                   </span>
@@ -496,12 +496,24 @@ function InventoryTooltip({ item, mousePosRef, equippedItem }: { item: Inventory
           </div>
         )}
 
-        {/* Comparison header */}
-        {equippedItem && equippedItem.id !== item.id && (
-          <p className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>
-            vs equipped: {equippedItem.name}
-          </p>
-        )}
+        {/* Comparison summary */}
+        {equippedItem && equippedItem.id !== item.id && (() => {
+          const totalDiff = [...allStatKeys].reduce((sum, stat) => {
+            return sum + ((item.stats?.[stat] as number) || 0) - ((eqStats[stat] as number) || 0);
+          }, 0);
+          return (
+            <div className="pt-1 space-y-1" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+              <div className="flex items-center justify-between">
+                <span className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>vs {equippedItem.name}</span>
+                {totalDiff !== 0 && (
+                  <span className="text-xs font-bold font-mono" style={{ color: totalDiff > 0 ? "#4ade80" : "#ef4444" }}>
+                    {totalDiff > 0 ? `+${totalDiff}` : totalDiff} gesamt
+                  </span>
+                )}
+              </div>
+            </div>
+          );
+        })()}
 
         {/* Level requirement + Slot type */}
         <div className="text-xs pt-1 space-y-0.5" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
@@ -700,6 +712,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
   const [statTooltipOpen, setStatTooltipOpen] = useState<string | null>(null);
   const [invFilter, setInvFilter] = useState<InvFilter>("all");
   const [invSort, setInvSort] = useState<InvSort>("none");
+  const [invSearch, setInvSearch] = useState("");
   const [sortDropdownOpen, setSortDropdownOpen] = useState(false);
   const sortDropdownRef = useRef<HTMLDivElement>(null);
   const [dragFromIdx, setDragFromIdx] = useState<number | null>(null);
@@ -783,11 +796,17 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
     setUnequipping(slot);
     setSelectedItem(null);
     try {
-      await fetch(`/api/player/${encodeURIComponent(playerName)}/unequip/${slot}`, {
+      const r = await fetch(`/api/player/${encodeURIComponent(playerName)}/unequip/${slot}`, {
         method: "POST",
         headers: { ...getAuthHeaders(apiKey) },
       });
+      if (!r.ok && addToast) {
+        const data = await r.json().catch(() => null);
+        addToast({ type: "error", message: data?.error || "Ablegen fehlgeschlagen" });
+      }
       await fetchChar();
+    } catch {
+      if (addToast) addToast({ type: "error", message: "Netzwerkfehler beim Ablegen" });
     } finally { setUnequipping(null); }
   };
 
@@ -805,21 +824,35 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
         if (addToast && item) {
           addToast({ type: "item", itemName: item.name, message: data.message || "Item benutzt!", icon: item.icon, rarity: item.rarity || "common" });
         }
+      } else if (addToast) {
+        const data = await r.json().catch(() => null);
+        addToast({ type: "error", message: data?.error || "Item konnte nicht benutzt werden" });
       }
       await fetchChar();
-    } catch { /* ignore */ }
+    } catch {
+      if (addToast) addToast({ type: "error", message: "Netzwerkfehler beim Benutzen" });
+    }
   };
 
   const handleDiscardItem = async (itemId: string) => {
     if (!apiKey) return;
     setSelectedItem(null);
     try {
-      await fetch(`/api/player/${encodeURIComponent(playerName)}/inventory/discard/${itemId}`, {
+      const r = await fetch(`/api/player/${encodeURIComponent(playerName)}/inventory/discard/${itemId}`, {
         method: "POST",
         headers: { ...getAuthHeaders(apiKey) },
       });
+      if (r.ok) {
+        const item = charData?.inventory.find(i => i.id === itemId);
+        if (addToast && item) addToast({ type: "item", itemName: item.name, message: `${item.name} verworfen`, icon: item.icon, rarity: item.rarity || "common" });
+      } else if (addToast) {
+        const data = await r.json().catch(() => null);
+        addToast({ type: "error", message: data?.error || "Verwerfen fehlgeschlagen" });
+      }
       await fetchChar();
-    } catch { /* ignore */ }
+    } catch {
+      if (addToast) addToast({ type: "error", message: "Netzwerkfehler beim Verwerfen" });
+    }
   };
 
   const loggedInUser = users.find(u => u.name.toLowerCase() === playerName.toLowerCase());
@@ -952,6 +985,32 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
             </div>
           </div>
 
+          {/* Search + Filter */}
+          <div className="relative mb-1.5">
+            <input
+              type="text"
+              value={invSearch}
+              onChange={e => setInvSearch(e.target.value)}
+              placeholder="Suche..."
+              className="w-full text-xs px-2.5 py-1.5 rounded-lg"
+              style={{
+                background: "rgba(255,255,255,0.04)",
+                border: "1px solid rgba(255,255,255,0.1)",
+                color: "#e8e8e8",
+                outline: "none",
+                paddingLeft: 26,
+              }}
+            />
+            <span className="absolute left-2 top-1/2 -translate-y-1/2 text-xs" style={{ color: "rgba(255,255,255,0.25)", pointerEvents: "none" }}>🔍</span>
+            {invSearch && (
+              <button
+                onClick={() => setInvSearch("")}
+                className="absolute right-1.5 top-1/2 -translate-y-1/2 text-xs px-1 rounded"
+                style={{ color: "rgba(255,255,255,0.4)", cursor: "pointer", background: "rgba(255,255,255,0.06)" }}
+              >×</button>
+            )}
+          </div>
+
           {/* Filter Tabs */}
           <div className="flex gap-1 mb-2">
             {INV_FILTERS.map(f => (
@@ -980,6 +1039,12 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
               )
             );
             let unequipped = charData.inventory.filter(i => !equippedIds.has(i.id));
+
+            // Search
+            if (invSearch.trim()) {
+              const q = invSearch.trim().toLowerCase();
+              unequipped = unequipped.filter(i => i.name.toLowerCase().includes(q));
+            }
 
             // Filter
             if (invFilter !== "all") {
@@ -1205,6 +1270,51 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                           </div>
                         </div>
                       ))}
+                    </div>
+                  </div>
+                );
+              })()}
+
+              {/* Set Completion Tracker */}
+              {charData && (() => {
+                const sets: { name: string; count: number; total: number; isComplete: boolean; rarity?: string; activeLabel?: string | null }[] = [];
+                // Tier-based set bonus
+                if (charData.setBonusInfo) {
+                  const sb = charData.setBonusInfo;
+                  sets.push({ name: sb.name, count: sb.count, total: sb.total, isComplete: sb.count >= sb.total });
+                }
+                // Named sets
+                for (const ns of charData.namedSetBonuses || []) {
+                  sets.push({ name: ns.name, count: ns.count, total: ns.total, isComplete: ns.isComplete, rarity: ns.rarity, activeLabel: ns.activeLabel });
+                }
+                if (!sets.length) return null;
+                return (
+                  <div className="mt-3">
+                    <p className="text-xs font-bold uppercase tracking-wider mb-2" style={{ color: "rgba(255,255,255,0.35)" }}>Set-Boni</p>
+                    <div className="space-y-1.5">
+                      {sets.map(s => {
+                        const pct = Math.min(s.count / s.total, 1);
+                        const barColor = s.isComplete ? "#4ade80" : s.rarity === "legendary" ? "#f97316" : s.rarity === "epic" ? "#a855f7" : "#a78bfa";
+                        return (
+                          <div key={s.name} className="rounded-lg px-2.5 py-2" style={{ background: "rgba(255,255,255,0.03)", border: `1px solid ${s.isComplete ? "rgba(74,222,128,0.3)" : "rgba(255,255,255,0.06)"}` }}>
+                            <div className="flex items-center justify-between mb-1">
+                              <span className="text-xs font-semibold" style={{ color: s.isComplete ? "#4ade80" : "rgba(255,255,255,0.6)" }}>
+                                {s.isComplete ? "✓ " : ""}{s.name}
+                              </span>
+                              <span className="text-xs font-mono" style={{ color: s.isComplete ? "#4ade80" : "rgba(255,255,255,0.35)" }}>
+                                {s.count}/{s.total}
+                              </span>
+                            </div>
+                            {/* Progress bar */}
+                            <div className="w-full rounded-full overflow-hidden" style={{ height: 3, background: "rgba(255,255,255,0.06)" }}>
+                              <div className="h-full rounded-full transition-all" style={{ width: `${pct * 100}%`, background: barColor }} />
+                            </div>
+                            {s.activeLabel && (
+                              <p className="text-xs mt-1" style={{ color: barColor, fontSize: 10 }}>{s.activeLabel}</p>
+                            )}
+                          </div>
+                        );
+                      })}
                     </div>
                   </div>
                 );
