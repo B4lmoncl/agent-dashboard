@@ -546,3 +546,83 @@ export interface Expedition {
   playerContribution: number;
   startedAt: string;
 }
+
+// ─── Social System Types ─────────────────────────────────────────────────────
+
+export interface FriendInfo {
+  id: string;
+  name: string;
+  avatar: string;
+  color: string;
+  level: number;
+  isOnline: boolean;
+  since: string;
+}
+
+export interface FriendRequest {
+  id: string;
+  from: string;
+  fromName: string;
+  fromAvatar: string;
+  fromColor: string;
+  to: string;
+  toName: string;
+  status: "pending" | "accepted" | "declined";
+  createdAt: string;
+}
+
+export interface SocialMessage {
+  id: string;
+  from: string;
+  fromName: string;
+  to: string;
+  toName: string;
+  text: string;
+  createdAt: string;
+  read: boolean;
+}
+
+export interface Conversation {
+  playerId: string;
+  playerName: string;
+  playerAvatar: string;
+  playerColor: string;
+  lastMessage: string;
+  lastMessageAt: string;
+  unreadCount: number;
+}
+
+export interface TradeOffer {
+  gold: number;
+  items: { instanceId: string; name: string; rarity: string; icon?: string | null; slot?: string }[];
+}
+
+export interface TradeRound {
+  by: string;
+  byName: string;
+  initiatorOffer: TradeOffer;
+  recipientOffer: TradeOffer;
+  message: string;
+  at: string;
+}
+
+export interface Trade {
+  id: string;
+  initiator: string;
+  initiatorName: string;
+  initiatorAvatar: string;
+  initiatorColor: string;
+  recipient: string;
+  recipientName: string;
+  recipientAvatar: string;
+  recipientColor: string;
+  status: "pending" | "completed" | "declined" | "expired";
+  pendingFor: string; // which player needs to act next
+  rounds: TradeRound[];
+  currentInitiatorOffer: TradeOffer;
+  currentRecipientOffer: TradeOffer;
+  initiatorAccepted: boolean;
+  recipientAccepted: boolean;
+  createdAt: string;
+  completedAt: string | null;
+}

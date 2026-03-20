@@ -25,6 +25,7 @@ const {
   loadAppState, loadFeedback,
   loadCurrencyTemplates, loadGachaPool, loadBannerTemplates, loadGachaState,
   loadItemTemplates, loadTitles,
+  loadSocialData,
   saveAppState,
   flushPendingSaves,
 } = require('./lib/state');
@@ -119,6 +120,7 @@ app.use(require('./routes/habits-inventory'));
 app.use(require('./routes/crafting'));
 app.use(require('./routes/challenges-weekly'));
 app.use(require('./routes/expedition'));
+app.use(require('./routes/social'));
 app.use(require('./routes/npcs-misc'));  // Must be last (has SPA fallback catch-all)
 
 // ─── Express error handler (catch-all for unhandled route errors) ────────────
@@ -183,6 +185,7 @@ loadBannerTemplates();
 loadGachaState();
 loadItemTemplates();
 loadTitles();
+loadSocialData();
 require('./routes/crafting').loadProfessions();
 require('./routes/challenges-weekly').loadWeeklyChallenges();
 require('./routes/expedition').loadExpeditions();

@@ -1,253 +1,364 @@
 # Quest Hall — Full Codebase Audit Report
 
-**Date:** 2026-03-20 (Session 8 — Deep 6-agent audit + fixes)
-**Auditor:** Claude Opus 4.6
-**Scope:** Complete frontend + backend + data + documentation audit
-**Status:** Sessions 7-8 fixes applied; remaining items documented
+> Generated 2026-03-20 · Covers v1.5.3
 
 ---
 
 ## 1. Architecture Overview
 
-| Layer | Stack | Entry Point |
-|-------|-------|-------------|
-| Frontend | Next.js 16.1.6, React 19, TypeScript 5, Tailwind CSS 4 | `app/page.tsx` (~2150 lines) |
-| Backend | Express 4.18, Node.js 20, CommonJS | `server.js` → `routes/*.js` (17 files) |
-| Desktop | Electron 29 (Quest Forge v1.5.0) | `electron-quest-app/` |
-| Persistence | JSON files in `/data/` directory | `lib/state.js` (debounced writes) |
-| Auth | JWT (15min access + 7d refresh) + API Key | `lib/auth.js` |
+### Tech Stack
 
-**Data Flow:** React components → `fetchDashboard()` batch → Express API → `lib/state.js` Maps → debounced `writeFileSync` → `/data/*.json`
+| Layer | Technology | Version |
+|-------|-----------|---------|
+| Frontend | Next.js (static export) | 16.1.6 |
+| UI | React + TypeScript | 19 / 5 |
+| Styling | Tailwind CSS + custom utilities | 4 |
+| Backend | Express.js (Node.js) | 4.18 / 20 |
+| Desktop | Electron (Quest Forge) | 29 |
+| Persistence | JSON files in `/data` volume | — |
+| Deployment | Docker (Alpine), Docker Compose | — |
+| CI/CD | GitHub Actions (Electron build) | — |
 
----
+### Data Flow
 
-## 2. Previous Sessions Summary (1–6)
+```
+React Components → fetch(/api/*) → Express Routes → lib/state.js (in-memory Maps)
+                                                          ↓
+                                                   debounced saveData()
+                                                          ↓
+                                                   /data/*.json (Docker volume)
+```
 
-Sessions 1–6 fixed 43 issues (F-01 through F-43):
-- Gacha pity thresholds, legendary drop rates, 10-pull guarantee text
-- Stat descriptions (Kraft, Weisheit), modifier display values
-- Legendary gear effects (15 types), set bonus calculations
-- Quest completion flow, companion bond mechanics
-- Modal close consistency, toast system unification
-- Challenges system (Sternenpfad + Expedition) — 10 fixes
-- GET /api/agents state mutation, currency timezone bug
-- Navigation restructuring (4-floor Urithiru system)
-- Sitewide 12px minimum font size enforcement
+- **Batch endpoint**: `GET /api/dashboard?player=X` replaces 14 individual fetches
+- **O(1) lookups**: `questsById`, `usersByName`, `usersByApiKey`, `questCatalogById`, `gearById`, `itemTemplates` Maps
+- **Templates** (read-only): `public/data/*.json` — 36 files
+- **Runtime** (mutable): `data/*.json` — persisted via debounced writes (200ms coalesce)
 
----
+### Folder Structure
 
-## 3. Session 7 — Fresh Full Audit Findings
-
-### 3.1 CRITICAL — Data Integrity
-
-#### D-01: Stat Name Inconsistency (`vitalität` vs `vitalitaet`) ✅ FIXED
-- **Location:** `public/data/gachaPool.json` lines 48, 86, 189, 276, 352
-- **Fix applied:** Replaced all 5 `vitalität` → `vitalitaet`
-
-#### D-02: 31 Achievement Icons Are Placeholders ⬜ DEFERRED
-- **Location:** `public/data/achievementTemplates.json` — 31 entries with `"icon": "?"`
-- **Note:** Requires pixel art asset creation (not a code fix). `onError` gracefully hides missing images.
-
-### 3.2 HIGH — Backend Logic
-
-#### B-01: Dashboard Batch Endpoint Uses Internal HTTP Self-Calls ⬜ DEFERRED
-- **Location:** `routes/config-admin.js:35-114`
-- **Note:** Design debt, not a runtime bug. Works correctly today. Refactoring is 2-4 hour effort.
-
-#### B-02: Missing Rate Limiting on Mutation Endpoints ✅ FIXED
-- **Fix applied:** Added mutation rate limiter (60 writes/min per IP) in `server.js` for all POST/PATCH/PUT/DELETE on `/api/`
-
-#### B-03: CORS Origin Wildcard ⬜ NOTED
-- **Location:** `server.js:41` — `cors({ credentials: true, origin: true })`
-- **Note:** Acceptable for single-user/dev mode. Should be tightened for production deployment.
-
-#### B-04: Timing Attack on Master Key Length Check ⬜ NOTED
-- **Location:** `lib/auth.js` — master key comparison
-- **Note:** Low practical risk. Would require sub-ms timing precision from attacker.
-
-### 3.3 HIGH — Frontend UX
-
-#### F-44: Silent Error Suppression ✅ PARTIALLY FIXED
-- **Fixed:** All 14 silent catches in `hooks/useQuestActions.ts` now show error toasts
-- **Added:** "error" toast type to `ToastStack` with red styling and 5s duration
-- **Remaining:** ~60 silent catches in other components (page.tsx, CharacterView, QuestModals, GachaView) — most are non-critical background fetches or localStorage operations
-
-#### F-45: Missing Loading States on Async Operations ✅ FIXED
-- **Fixed (Session 8):** Added `loadingAction` state to `useQuestActions` (7 handlers: claim, unclaim, complete, approve, reject, coopClaim, coopComplete); added `authLoading` to DashboardHeader (login/register buttons show loading text + disabled state)
-
-#### F-46: Missing Confirmation for Destructive Actions ⬜ REMAINING
-- **Location:** `DashboardHeader.tsx:251` (logout), `useQuestActions.ts` (unclaim, reject quest)
-- **Impact:** Accidental actions cannot be undone
-
-### 3.4 MEDIUM — Data Quality
-
-#### D-03: Gacha Item Type Error ✅ FIXED
-- **Fix applied:** Changed `"type": "gacha"` → `"type": "consumable"` for mitleids-katalysator
-
-#### D-04: Missing MASTER_KEY in .env.example ✅ FIXED
-- **Fix applied:** Added MASTER_KEY, GITHUB_WEBHOOK_SECRET, PORT, NODE_ENV, API_KEYS to .env.example
-
-### 3.5 MEDIUM — Frontend Quality
-
-#### F-47: Inconsistent Modal/Popup Closure ✅ PARTIALLY FIXED
-- **Fixed (Session 8):** Class Activation modal (page.tsx) migrated to `<ModalOverlay>` for ESC support; FeedbackModal migrated to `<ModalOverlay>` for consistent portal rendering
-- **Remaining:** Some popouts/drawers still use custom close logic (acceptable for non-modal UI elements)
-
-#### F-48: Hardcoded Reward Fallbacks ✅ FIXED
-- **Fix applied:** QuestCards now shows actual `quest.rewards.xp` and `quest.rewards.gold` values, with "~" for undetermined gold instead of hardcoded priority-based fallbacks
-
-#### F-49: No Offline Mode Indication ✅ FIXED
-- **Fix applied:** Added "Connection lost — showing cached data. Actions may not save." red banner when `!apiLive && !loading`
-
-#### F-50: Dead Code / Commented Features ✅ FIXED
-- **Fix applied:** Removed BattlePassView comment, unused imports (CVBuilderPanel, CVData, ChangelogCommit, AchievementToast)
-
-### 3.6 MEDIUM — Code Quality
-
-#### C-01: Quest Completion Has 3 Near-Identical Code Paths ⬜ REMAINING
-- **Location:** `routes/quests.js:289-400` — NPC quests, player quests, dev quests
-- **Impact:** Bugs must be fixed 3x; easy to miss one path
-
-#### C-02: Achievement Lookup Uses O(n) find() ✅ FIXED
-- **Fix applied:** Built `state.achievementCatalogueById` Map at boot; replaced 3 O(n) `.find()` calls with O(1) `.get()` in `lib/helpers.js`, `routes/users.js`, `routes/players.js`
-
-#### C-03: Inconsistent Error Response Format ⬜ REMAINING
-- **Location:** Various routes
-- **Impact:** Frontend must handle multiple formats
-
-### 3.7 LOW
-
-#### L-01: `any` Type Usage ✅ MOSTLY FIXED
-- **Fixed (Session 8):** Removed 20+ unnecessary `as any` casts across page.tsx, CharacterView, DashboardModals, UserCard, LeaderboardView, QuestPanels
-- **Extended types:** `CharacterData` (xpInLevel, xpForLevel, legendaryEffects, equippedTitle, earnedTitleCount, bondXp), `User.modifiers` (legendary), `AntiRitual` (pactCompleted)
-- **Remaining:** ~15 `as any` in GachaView (icon field not on type), ForgeView (InventoryItem index signature), CharacterView (CSS imageRendering, runtime _playerLevel) — legitimate workarounds
-
-#### L-02: Missing ARIA Labels / Accessibility ✅ PARTIALLY FIXED
-- **Fixed (Session 8):** Added `role="dialog"` + `aria-modal="true"` to ModalOverlay, `role="status"` + `aria-live="polite"` to ToastStack, `:focus-visible` outline in globals.css
-- **Remaining:** Icon-only buttons still lack aria-label (individual component work)
-
-#### L-03: Equipment Migration Runs Every Boot ✅ FIXED
-- **Fixed (Session 8):** Added pre-check that skips migration loop when no legacy string-type equipment values exist
+```
+app/                  # Next.js app (page.tsx ~2150 lines, types, utils, config, context)
+components/           # 39 React components (~13k lines)
+hooks/                # Custom hooks (useQuestActions)
+lib/                  # Backend logic (8 files, ~3800 lines) + frontend utils
+routes/               # Express API (17 files, ~6200 lines)
+public/data/          # 36 JSON template files
+data/                 # Runtime JSON (Docker volume, git-ignored)
+electron-quest-app/   # Electron desktop companion
+scripts/              # Asset generation, data validation
+server.js             # Express entry point (~289 lines)
+```
 
 ---
 
-## 4. Session 8 — Deep 6-Agent Audit
+## 2. Feature Catalog
 
-Session 8 launched 6 specialized audit agents covering backend, frontend, data integrity, gear stats, modal consistency, and gacha/shop systems.
+### 2.1 Quest System
+**Files**: `routes/quests.js`, `lib/quest-catalog.js`, `lib/rotation.js`, `components/QuestCards.tsx`, `components/QuestBoard.tsx`
 
-### 4.1 Verified Correct (No Action Needed)
+- Quest pool (~10 open + ~25 max in-progress per player)
+- 5 quest types: development, personal, learning, fitness, social + boss, relationship-coop, companion
+- Quest lifecycle: open → claimed → in_progress → completed (or suggested → approved → open)
+- Per-player quest pool rotation (daily at midnight or manual refresh)
+- Epic quests with child sub-quests, co-op quests with partner claims
+- NPC quest chains (sequential unlock within a chain)
+- Rarity system: common/uncommon/rare/epic/legendary with scaled XP/Gold
+- Quest catalog seeding from 248+ templates
 
-| Area | Verification |
-|------|-------------|
-| Streak Gold Bonus | Backend: 1.5%/day, max 45%. Frontend displays correct formula. |
-| XP Multiplier Chain | All 10+ factors (forge, kraft, gear, companion, bond, hoarding, passive, legendary, active, nth, variety) traced end-to-end. |
-| ForgeTemp Decay | 2%/hr decay with Ausdauer modifier. Display matches backend. |
-| Currency Tax | 20% tax enforced server-side in `routes/currency.js:92-93`. UI mentions tax. |
-| Docker Setup | `docker-entrypoint.sh` exists and is correct (448 bytes). |
-| Item ID Overlap | 50 IDs shared between `gearTemplates.json` and `itemTemplates.json` — by design (different representations for different contexts). |
-| Gacha Pity System | Soft pity at 55, hard pity at 75. Correctly implemented. |
-| Toast System | Unified ToastStack with 7 types including error (5s duration). |
+### 2.2 Player System
+**Files**: `routes/users.js`, `routes/players.js`, `lib/auth.js`
 
-### 4.2 New Findings & Fixes
+- Registration with onboarding (name, password, class, companion, age, goals, pronouns)
+- JWT auth with access/refresh tokens + API key fallback
+- Player profile: XP, level (30 levels), streaks, forge temperature
+- 7 currencies: gold, stardust, essenz, runensplitter, gildentaler, mondstaub, sternentaler
+- Title system (25 titles with condition-based unlock)
+- Achievement points with frame unlocks at milestones
+- Equipment system with 6 slots (weapon, shield, helm, armor, amulet, boots)
+- Inventory management (use, equip, discard, reorder)
 
-#### F-51: Class Activation Modal Missing ESC Handler ✅ FIXED
-- **Location:** `app/page.tsx` — class activation notification modal
-- **Fix applied:** Replaced custom backdrop div with `<ModalOverlay>` component
+### 2.3 Companion System
+**Files**: `routes/players.js`, `components/CompanionsWidget.tsx`, `lib/helpers.js`
 
-#### F-52: FeedbackModal Not Using ModalPortal ✅ FIXED
-- **Location:** `components/FeedbackModal.tsx`
-- **Fix applied:** Migrated from `useModalBehavior` + custom div to `<ModalOverlay>` for consistent portal rendering
+- Real pets (cat, dog, etc.) or virtual companions (ember_sprite, lore_owl, gear_golem)
+- Bond levels (1-5) with XP from petting (2x/day) and quests
+- Ultimate abilities at Bond 5: instant complete, double reward, streak extend (7-day cooldown)
+- Companion care quests (daily, auto-generated)
+- Mood quotes by personality type
 
-#### F-53: Unnecessary `as any` Type Casts ✅ FIXED
-- **Location:** `app/page.tsx` (3 casts), `components/CharacterView.tsx` (6 casts)
-- **Fix applied:** Removed casts by using existing type fields or extending `CharacterData` interface
+### 2.4 Gacha System
+**Files**: `routes/gacha.js`, `components/GachaView.tsx`
 
-#### F-54: CharacterData Interface Missing Fields ✅ FIXED
-- **Location:** `app/types.ts`
-- **Fix applied:** Added `xpInLevel`, `xpForLevel`, `legendaryEffects`, `equippedTitle`, `earnedTitleCount` to `CharacterData`; added `bondXp` to companion type
+- 2 banner types: standard, featured (both cost runensplitter)
+- Single pull + 10-pull with discount
+- Pity system: soft pity at 55, hard pity at 75 (guaranteed legendary)
+- Epic pity at 10 (guaranteed epic+)
+- 50/50 featured item mechanic with guaranteed featured on loss
+- Pull lock to prevent double-pulls, duplicate refund (stardust)
 
-#### F-55: ForgeView Uses `window.confirm()` for Destructive Actions ✅ FIXED
-- **Location:** `components/ForgeView.tsx` (3 occurrences: dismantle, dismantle-all, transmute)
-- **Fix applied:** Replaced with in-component confirmation modal (themed, non-blocking)
+### 2.5 Crafting (Artisan's Quarter)
+**Files**: `routes/crafting.js`, `components/ForgeView.tsx`, `public/data/professions.json`
 
-#### F-56: DashboardModals `as any` for Legendary Modifier ✅ FIXED
-- **Location:** `components/DashboardModals.tsx` (8 casts for xp.legendary and gold.legendary)
-- **Fix applied:** Added `legendary?` to User modifier types; removed all casts
+- 4 profession NPCs: Blacksmith, Alchemist, Enchanter, Cook
+- Max 2 professions per player, 10 levels each
+- WoW-style ranks: Novice → Apprentice → Journeyman → Expert → Artisan → Master
+- 13 materials (common→legendary), recipe discovery, batch crafting
+- Schmiedekunst: dismantle items → essenz + materials, transmute 3 epics → 1 legendary
+- Daily 2x XP bonus on first craft
 
-#### F-57: Missing ARIA Roles and Focus Styles ✅ FIXED
-- **Fix applied:** `role="dialog"` + `aria-modal="true"` on ModalOverlay; `role="status"` + `aria-live="polite"` on ToastStack; `:focus-visible` outline in globals.css
+### 2.6 Weekly Challenges
+**Files**: `routes/challenges-weekly.js`, `routes/expedition.js`, `components/ChallengesView.tsx`
 
-#### F-58: Type Casts in UserCard, LeaderboardView, QuestPanels ✅ FIXED
-- **Fix applied:** Removed 11 `as any` casts by using existing type fields; added `pactCompleted` to AntiRitual type
+- **Star Path**: Solo 3-stage challenge, up to 9 stars, weekly modifiers, speed bonus
+- **Expedition**: Guild-wide cooperative, 3+bonus checkpoints, scales with player count
+- Both reset every Monday, exclusive sternentaler currency
 
-### 4.3 Backend Deep Audit (40 findings triaged)
+### 2.7 NPC System
+**Files**: `routes/npcs-misc.js`, `lib/npc-engine.js`, `components/WandererRest.tsx`
 
-A specialized backend audit agent reviewed all 17 route files, `lib/state.js`, `lib/helpers.js`, `lib/npc-engine.js`, and `server.js`. **Most "critical" findings were false positives** due to the agent not accounting for Node.js single-threaded execution model:
+- 12+ quest-giving NPCs with spawn weights, cooldowns, rarity
+- Rotation system: 3 active NPCs at a time, daily rotation check
+- Multi-chain quests per NPC (sequential unlock)
 
-| Claim | Verdict | Reason |
-|-------|---------|--------|
-| #1 Race condition in quest hoarding | FALSE POSITIVE | Node.js is single-threaded; NPC departures run on timer, not mid-request |
-| #3 Passive effect null guard missing | FALSE POSITIVE | `if (!tmpl) continue;` already exists at line 692 |
-| #4 Loot pity order wrong | FALSE POSITIVE | `checkLootPity()` called at line 1109, `resetLootPity()` at 1134 — correct order |
-| #8 NPC departure rebuilds | FALSE POSITIVE | `rebuildQuestsById()` called at line 82 after all splices |
-| #16 getWeekId not exported | FALSE POSITIVE | Exported at line 358: `module.exports.getWeekId = getWeekId` |
-| #21 Unused crypto in users.js | FALSE POSITIVE | Used at line 281 for API key generation |
-| #9 /api/config no auth | BY DESIGN | Comment says "no auth required" — public game constants |
+### 2.8 Campaign System
+**Files**: `routes/campaigns.js`, `components/CampaignView.tsx`
 
-**Verified real (minor) issues fixed:**
+- Quest chains grouped into campaigns with boss quests
+- Campaign rewards (XP, gold, titles), progress tracking
 
-#### B-05: Quest Creation Missing Type Validation ✅ FIXED
-- **Location:** `routes/quests.js:55-57`
-- **Fix applied:** Enforce `title` and `description` must be strings; cap skills array at 20 entries
+### 2.9 Ritual & Vow System
+**Files**: `routes/habits-inventory.js`, `components/RitualChamber.tsx`, `components/VowShrine.tsx`
 
-**Remaining low-priority backend items (from audit, verified real but minor):**
-- Hardcoded setIds array in `createGearInstance` (fallback to 'adventurer' is acceptable)
-- Some gacha duplicate detection doesn't check `templateId` (only affects gear instances, which go through different flow)
-- Magic numbers in streak recovery not documented as constants
+- Rituals: recurring tasks with streak tracking (daily/weekly/custom)
+- Anti-rituals (vows): habits to break, clean day tracking, blood pact mode
+- Aetherbond & Blood Pact commitment tiers
+
+### 2.10 Shop (Bazaar)
+**Files**: `routes/shop.js`, `components/ShopView.tsx`
+
+- Self-care rewards (gaming, spa, books) — no gameplay effect
+- Gameplay boosts (XP scroll, luck coin, streak shield) — temporary buffs
+- Gear shop with tiered equipment, workshop tools (permanent XP upgrades)
+
+### 2.11 Leaderboard & Honors
+**Files**: `routes/config-admin.js`, `components/LeaderboardView.tsx`, `components/HonorsView.tsx`
+
+- Leaderboard ranked by XP
+- Achievements catalog (60 achievements, auto-checked conditions)
+- Achievement point milestones with cosmetic frame unlocks
+
+### 2.12 Character Screen
+**Files**: `components/CharacterView.tsx`
+
+- Equipment display, stats overview (4 primary + 4 minor stats)
+- Set bonuses, legendary effects, title selection, class/companion info
+
+### 2.13 Navigation (Urithiru-inspired)
+**Files**: `app/config.ts`, `components/FloorNavigation.tsx`
+
+- 4 floors: The Pinnacle, The Great Halls, The Trade Quarter, The Inner Sanctum
+- Each floor has 3-4 rooms (tabs), floor banners with gradient backgrounds
 
 ---
 
-## 5. Fix Summary
+## 3. Data Model
 
-### Completed (Session 7)
+### User Record (`state.users[id]`)
 
-| ID | Description | Commit |
-|----|-------------|--------|
-| D-01 | Fix `vitalität` → `vitalitaet` in gachaPool.json (5 occurrences) | cf2bc5d |
-| D-03 | Fix gacha item type `"gacha"` → `"consumable"` | cf2bc5d |
-| D-04 | Complete .env.example with all env vars | cf2bc5d |
-| F-44 | Add error toasts to useQuestActions.ts (14 catches) + error toast type | cf2bc5d |
-| F-49 | Add offline mode indicator banner | 1883d6a |
-| B-02 | Add mutation rate limiter (60/min per IP) | 1883d6a |
-| C-02 | Build achievement Map for O(1) lookups (3 locations) | 1883d6a |
-| F-48 | Remove hardcoded reward fallbacks in QuestCards | 94bb8e9 |
-| F-50 | Clean up dead code and unused imports | 94bb8e9 |
+| Field | Type | Description |
+|-------|------|-------------|
+| id | string | Lowercase unique ID |
+| name | string | Display name |
+| avatar | string | First letter or custom |
+| color | string | Hex color |
+| xp | number | Total XP earned |
+| questsCompleted | number | Lifetime quest count |
+| streakDays | number | Current daily streak |
+| streakLastDate | string | Last streak date (Berlin TZ) |
+| forgeTemp | number | Forge temperature (0-100) |
+| currencies | object | {gold, stardust, essenz, runensplitter, gildentaler, mondstaub, sternentaler} |
+| inventory | array | GearInstance[] items |
+| equipment | object | {weapon, shield, helm, armor, amulet, boots} slot→instanceId |
+| companion | object | {type, name, emoji, isReal, bondXp, bondLevel, ...} |
+| classId | string | Active class ID |
+| apiKey | string | Auth API key |
+| passwordHash | string | bcrypt hash |
+| earnedAchievements | array | Unlocked achievements |
+| achievementPoints | number | Total achievement points |
+| unlockedFrames | array | Cosmetic frame unlocks |
+| equippedFrame | object | Currently equipped frame |
+| equippedTitle | object | Currently equipped title |
+| professions | object | Per-profession level/xp |
+| craftingMaterials | object | Material ID → count |
+| favorites | array | Favorited quest IDs |
+| activeBuffs | array | Temporary gameplay buffs |
+| relationshipStatus | string | single/relationship/married/... |
 
-### Completed (Session 8)
+### Quest Record (`state.quests[]`)
 
-| ID | Description | Commit |
-|----|-------------|--------|
-| F-51 | Migrate Class Activation modal to ModalOverlay | ec38bae |
-| F-52 | Migrate FeedbackModal to ModalOverlay | ec38bae |
-| F-53 | Remove 9 unnecessary `as any` type casts | ec38bae |
-| F-54 | Extend CharacterData interface with missing fields | ec38bae |
-| F-45 | Add loading states to all quest actions + auth buttons | 13a5d7e |
-| L-03 | Skip equipment migration when no legacy data found | f8cb155 |
-| F-55 | Replace 3x window.confirm() with proper modal in ForgeView | 16b5312 |
-| F-56 | Remove 8x as-any casts for legendary modifiers | 16b5312 |
-| F-57 | Add ARIA roles (dialog, status) + focus-visible styles | 16b5312 |
-| F-58 | Remove 11x as-any casts in UserCard, LeaderboardView, QuestPanels | 9662437 |
-| B-05 | Harden quest creation input validation (type checks + skills cap) | 5c2f5ef |
+| Field | Type | Description |
+|-------|------|-------------|
+| id | string | Unique quest ID |
+| title | string | Quest title |
+| description | string | Quest description |
+| type | string | development/personal/learning/fitness/social/boss/companion |
+| priority | string | low/medium/high |
+| status | string | open/in_progress/completed/suggested/rejected |
+| claimedBy | string | Player who claimed |
+| completedBy | string | Player who completed |
+| rewards | object | {xp, gold} |
+| rarity | string | common→legendary |
+| npcGiverId | string | NPC source (if NPC quest) |
+| parentQuestId | string | Parent epic quest |
+| companionOwnerId | string | Owner for companion quests |
+| minLevel | number | Level requirement |
 
-### Remaining (prioritized)
+### PlayerProgress (`state.playerProgress[id]`)
 
-| Priority | ID | Description | Est. Effort |
-|----------|----|-------------|-------------|
-| 🔵 P3 | C-01 | Refactor quest completion code paths | 60 min |
-| 🔵 P3 | C-03 | Standardize error response format | 45 min |
-| ⚪ P4 | D-02 | Create 31 achievement icon assets | External |
-| ⚪ P4 | B-01 | Refactor dashboard to direct function calls | 2-4 hrs |
-| ⚪ P4 | L-01 | Replace remaining ~15 `as any` types (most legitimate) | 20 min |
-| ⚪ P4 | L-02 | Add aria-label to icon-only buttons | 30 min |
-| ⚪ noted | B-03 | CORS tightening (production only) | 10 min |
-| ⚪ noted | B-04 | Timing-safe key length check | 5 min |
+| Field | Type | Description |
+|-------|------|-------------|
+| claimedQuests | array | Currently claimed quest IDs |
+| completedQuests | object | {questId: {at, xp, gold}} |
+| npcQuests | object | Per-NPC quest status tracking |
+| generatedQuests | array | Full generated pool (~18 IDs) |
+| activeQuestPool | array | Visible subset (~11 IDs) |
+| weeklyChallenge | object | Star Path progress |
+| expeditionClaims | object | Expedition checkpoint claims |
+
+---
+
+## 4. API Endpoints (All 17 Route Files)
+
+### agents.js
+| Method | Path | Auth | Description |
+|--------|------|------|-------------|
+| GET | /api/agents | — | List all agents |
+| POST | /api/agents | apiKey | Create/update agent |
+| POST | /api/agent/:id/heartbeat | apiKey | Agent heartbeat |
+| DELETE | /api/agent/:id | apiKey | Remove agent |
+
+### quests.js
+| Method | Path | Auth | Description |
+|--------|------|------|-------------|
+| GET | /api/quests | — | List quests (?player= for per-player view) |
+| POST | /api/quests | apiKey | Create quest |
+| POST | /api/quest/:id/claim | auth | Claim a quest |
+| POST | /api/quest/:id/complete | auth | Complete a quest |
+| POST | /api/quest/:id/approve | apiKey | Approve suggested quest |
+| POST | /api/quest/:id/reject | apiKey | Reject quest |
+| POST | /api/quest/:id/unclaim | auth | Unclaim a quest |
+| POST | /api/quest/:id/coop-claim | auth | Claim co-op quest part |
+| POST | /api/quest/:id/coop-complete | auth | Complete co-op quest part |
+| PUT | /api/quest/:id | apiKey | Update quest fields |
+| DELETE | /api/quest/:id | apiKey | Delete quest |
+
+### users.js
+| Method | Path | Auth | Description |
+|--------|------|------|-------------|
+| GET | /api/users | — | List all users (sanitized) |
+| GET | /api/users/:id | — | Get user profile |
+| POST | /api/register | rateLimit | Register new player |
+| POST | /api/auth/login | rateLimit | Login (returns JWT) |
+| POST | /api/auth/refresh | — | Refresh access token |
+| POST | /api/auth/logout | — | Revoke refresh token |
+
+### players.js
+| Method | Path | Auth | Description |
+|--------|------|------|-------------|
+| GET | /api/player/:name/character | — | Full character data |
+| GET | /api/player/:name/companion | — | Companion details |
+| POST | /api/player/:name/companion/pet | auth+self | Pet companion |
+| POST | /api/player/:name/companion/ultimate | auth+self | Use ultimate |
+| POST | /api/player/:name/equip | auth+self | Equip gear |
+| POST | /api/player/:name/unequip/:slot | auth+self | Unequip slot |
+| GET | /api/player/:name/favorites | auth | Get favorites |
+| POST | /api/player/:name/favorites | auth+self | Toggle favorite |
+| GET | /api/player/:name/titles | — | Get earned titles |
+| POST | /api/player/:name/title | auth+self | Equip title |
+| POST | /api/player/:name/appearance | auth+self | Update appearance |
+| POST | /api/player/:name/profile | auth+self | Update profile |
+
+### habits-inventory.js
+| Method | Path | Auth | Description |
+|--------|------|------|-------------|
+| GET | /api/rituals/:playerId | — | List rituals |
+| POST | /api/rituals | auth | Create ritual |
+| POST | /api/ritual/:id/complete | auth | Complete ritual |
+| DELETE | /api/ritual/:id | auth | Delete ritual |
+| GET | /api/habits/:playerId | — | List habits |
+| POST | /api/habits | auth | Create habit |
+| POST | /api/habit/:id/tick | auth | Tick habit |
+| DELETE | /api/habit/:id | auth | Delete habit |
+| GET | /api/player/:name/inventory | — | List inventory |
+| POST | /api/player/:name/inventory/use/:itemId | auth+self | Use item |
+| POST | /api/player/:name/inventory/discard/:itemId | auth+self | Discard item |
+| GET | /api/shop/equipment | — | Shop gear list |
+| POST | /api/player/:name/gear/buy | auth+self | Buy gear |
+| POST | /api/player/:name/dismantle | auth+self | Dismantle item |
+| POST | /api/player/:name/dismantle-bulk | auth+self | Bulk dismantle |
+| POST | /api/player/:name/transmute | auth+self | Transmute epics→legendary |
+| POST | /api/vows | auth | Create vow |
+| POST | /api/vow/:id/violate | auth | Record vow violation |
+
+### config-admin.js
+| Method | Path | Auth | Description |
+|--------|------|------|-------------|
+| GET | /api/dashboard | — | Batch endpoint |
+| GET | /api/game-config | — | Game config |
+| GET | /api/leaderboard | — | Leaderboard |
+| GET | /api/achievements | — | Achievement catalog |
+| POST | /api/daily-bonus/claim | auth | Claim daily bonus |
+| GET | /api/quests/pool | — | Quest pool info |
+| POST | /api/quests/pool/refresh | auth | Refresh quest pool |
+
+### shop.js
+| Method | Path | Auth | Description |
+|--------|------|------|-------------|
+| GET | /api/shop | — | List shop items |
+| POST | /api/shop/buy | auth | Buy item |
+
+### gacha.js
+| Method | Path | Auth | Description |
+|--------|------|------|-------------|
+| GET | /api/gacha/banners | — | Active banners |
+| POST | /api/gacha/pull | auth | Pull (1 or 10) |
+| GET | /api/gacha/pity/:playerId | — | Pity info |
+
+### crafting.js
+| Method | Path | Auth | Description |
+|--------|------|------|-------------|
+| GET | /api/crafting/professions | — | Professions + recipes |
+| POST | /api/crafting/choose | auth | Choose professions |
+| POST | /api/crafting/craft | auth | Craft recipe |
+| GET | /api/crafting/materials/:playerId | — | Player materials |
+
+### challenges-weekly.js
+| Method | Path | Auth | Description |
+|--------|------|------|-------------|
+| GET | /api/weekly-challenge | — | Current challenge |
+| POST | /api/weekly-challenge/claim | auth | Claim stage |
+
+### expedition.js
+| Method | Path | Auth | Description |
+|--------|------|------|-------------|
+| GET | /api/expedition | — | Current expedition |
+| POST | /api/expedition/claim | auth | Claim checkpoint |
+
+### campaigns.js, currency.js, game.js, integrations.js, npcs-misc.js, docs.js
+See Section 4 header table rows — standard CRUD/read endpoints for their respective domains.
+
+---
+
+## 5. Documentation Status
+
+| File | Status | Action Needed |
+|------|--------|---------------|
+| CLAUDE.md | ⚠️ Version says 1.4.0 | Update to 1.5.3 |
+| ARCHITECTURE.md | ✅ Accurate | None |
+| LYRA-PLAYBOOK.md | ✅ Accurate | None |
+| BACKLOG.md | ⚠️ Stale entries | Update fixed items |
+| README.md | ⚠️ Incomplete API docs | Add newer endpoints |
+
+---
+
+*End of Audit Report*

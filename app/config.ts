@@ -87,9 +87,9 @@ export const FLOORS: Floor[] = [
     color: "#a855f7",
     gradient: "linear-gradient(135deg, #a855f7 0%, #1a0a2e 100%)",
     rooms: [
-      { key: "shop",  label: "The Bazaar",           iconSrc: "/images/icons/nav-bazaar.png",       tutorialKey: "bazaar-tab" },
-      { key: "forge", label: "Artisan's Quarter",     iconSrc: "/images/icons/prof-schmied.png",     requiresLogin: true },
-      { key: "gacha", label: "Vault of Fate",         iconSrc: "/images/icons/vault-of-fate.png",    tutorialKey: "vault-tab" },
+      { key: "shop",   label: "The Bazaar",           iconSrc: "/images/icons/nav-bazaar.png",       tutorialKey: "bazaar-tab" },
+      { key: "forge",  label: "Artisan's Quarter",     iconSrc: "/images/icons/prof-schmied.png",     requiresLogin: true },
+      { key: "gacha",  label: "Vault of Fate",         iconSrc: "/images/icons/vault-of-fate.png",    tutorialKey: "vault-tab" },
     ],
   },
   {
@@ -104,6 +104,17 @@ export const FLOORS: Floor[] = [
       { key: "klassenquests", label: "The Arcanum",      iconSrc: "/images/icons/nav-arcanum.png",      tutorialKey: null },
       { key: "rituals",       label: "Ritual Chamber",   iconSrc: "/images/icons/ui-ritual-rune.png",   requiresLogin: true, tutorialKey: "rituals-tab" },
       { key: "vows",          label: "Vow Shrine",       iconSrc: "/images/icons/ui-vow-sword.png",     requiresLogin: true },
+    ],
+  },
+  {
+    id: "breakaway",
+    name: "The Breakaway",
+    subtitle: "Social & Trade",
+    icon: "⬡",
+    color: "#ec4899",
+    gradient: "linear-gradient(135deg, #ec4899 0%, #1a0a1e 100%)",
+    rooms: [
+      { key: "social", label: "The Breakaway", iconSrc: "/images/icons/nav-breakaway.png", requiresLogin: true, tutorialKey: null },
     ],
   },
 ];

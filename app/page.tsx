@@ -14,6 +14,7 @@ const GachaView = lazy(() => import("@/components/GachaView"));
 const CharacterView = lazy(() => import("@/components/CharacterView"));
 const RitualChamber = lazy(() => import("@/components/RitualChamber"));
 const ChallengesView = lazy(() => import("@/components/ChallengesView"));
+const SocialView = lazy(() => import("@/components/SocialView"));
 import { GuideModal, GuideContent, TutorialOverlay, TUTORIAL_STEPS } from "@/components/TutorialModal";
 import {
   CreateQuestModal, PersonalQuestPanel, ForgeChallengesPanel, AntiRitualePanel,
@@ -116,7 +117,7 @@ export default function Dashboard() {
   });
   // selectedIds, bulkLoading, reviewComments moved to useQuestActions hook
   const [typeFilter, setTypeFilter] = useState<string>("all");
-  const [dashViewRaw, setDashViewRaw] = useState<"questBoard" | "npcBoard" | "klassenquests" | "character" | "campaign" | "leaderboard" | "honors" | "season" | "shop" | "forge" | "gacha" | "roadmap" | "changelog" | "challenges" | "rituals" | "vows">("questBoard");
+  const [dashViewRaw, setDashViewRaw] = useState<"questBoard" | "npcBoard" | "klassenquests" | "character" | "campaign" | "leaderboard" | "honors" | "season" | "shop" | "forge" | "gacha" | "roadmap" | "changelog" | "challenges" | "rituals" | "vows" | "social">("questBoard");
   const [activeFloor, setActiveFloor] = useState("haupthalle");
   // Wrap setDashView to auto-sync the active floor
   const dashView = dashViewRaw;
@@ -1581,6 +1582,11 @@ export default function Dashboard() {
           <div data-feedback-id="vow-shrine">
             <AntiRitualePanel onRewardCelebration={setRewardCelebration} />
           </div>
+        )}
+
+        {/* ── THE BREAKAWAY (Social & Trade) ── */}
+        {dashView === "social" && (
+          <ErrorBoundary><Suspense fallback={<ViewFallback />}><SocialView /></Suspense></ErrorBoundary>
         )}
 
         {/* ── THE WANDERER'S REST (NPC Tab) ── */}

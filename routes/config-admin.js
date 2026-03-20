@@ -96,6 +96,19 @@ router.get('/api/dashboard', async (req, res) => {
     }
   }
 
+  // Social summary (lightweight counts for badge indicators)
+  let socialSummary = null;
+  if (playerLower) {
+    const sd = state.socialData;
+    const pendingFriendRequests = sd.friendRequests.filter(r => r.to === playerLower && r.status === 'pending').length;
+    const unreadMessages = sd.messages.filter(m => m.to === playerLower && !m.read).length;
+    const activeTrades = sd.trades.filter(t =>
+      (t.initiator === playerLower || t.recipient === playerLower) &&
+      (t.status === 'pending_initiator' || t.status === 'pending_recipient')
+    ).length;
+    socialSummary = { pendingFriendRequests, unreadMessages, activeTrades };
+  }
+
   res.json({
     agents: agents || [],
     quests: quests || { open: [], inProgress: [], completed: [], suggested: [], rejected: [] },
@@ -109,6 +122,7 @@ router.get('/api/dashboard', async (req, res) => {
     dailyBonusAvailable,
     weeklyChallenge: weeklyChallenge?.challenge || null,
     expedition: expedition?.expedition || null,
+    socialSummary,
     apiLive: true,
   });
 });
