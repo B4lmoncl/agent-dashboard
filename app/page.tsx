@@ -1109,10 +1109,10 @@ export default function Dashboard() {
               </div>
 
               {/* Floor header banner */}
-              <div className="floor-banner relative overflow-hidden" style={{ background: currentFloor.gradient, borderRadius: 0, padding: "10px 16px", minHeight: 44 }}>
+              <div className="floor-banner relative overflow-hidden" style={{ background: currentFloor.gradient, borderRadius: 0, padding: "14px 20px", minHeight: 52 }}>
                 <div className="relative z-10">
-                  <span className="text-sm font-bold uppercase tracking-widest" style={{ color: currentFloor.color }}>{currentFloor.name}</span>
-                  <span className="text-sm ml-2" style={{ color: "rgba(255,255,255,0.35)" }}>— {currentFloor.subtitle}</span>
+                  <span className="text-base font-black uppercase tracking-widest" style={{ color: currentFloor.color, textShadow: "0 1px 8px rgba(0,0,0,0.6)" }}>{currentFloor.name}</span>
+                  <span className="text-sm ml-2.5 font-medium" style={{ color: "rgba(255,255,255,0.5)", textShadow: "0 1px 4px rgba(0,0,0,0.5)" }}>— {currentFloor.subtitle}</span>
                 </div>
                 {/* Decorative overlay pattern */}
                 <div className="absolute inset-0 opacity-5" style={{ backgroundImage: "repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.1) 10px, rgba(255,255,255,0.1) 11px)" }} />

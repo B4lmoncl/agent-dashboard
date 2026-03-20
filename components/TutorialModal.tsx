@@ -17,7 +17,7 @@ export function GuideSection({ title, children }: { title: string; children: Rea
 // ─── GuideContent ─────────────────────────────────────────────────────────────
 
 export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => void }) {
-  const [tab, setTab] = useState<"start" | "quests" | "npcs" | "charakter" | "gacha" | "crafting" | "rituale" | "progression" | "honors">("start");
+  const [tab, setTab] = useState<"start" | "quests" | "npcs" | "character" | "gacha" | "crafting" | "rituals" | "challenges" | "progression" | "honors">("start");
   return (
     <div>
       {/* Tabs */}
@@ -26,10 +26,11 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
           { key: "start",       label: "Start" },
           { key: "quests",      label: "Quests" },
           { key: "npcs",        label: "NPCs" },
-          { key: "charakter",   label: "Charakter" },
+          { key: "character",   label: "Character" },
           { key: "gacha",       label: "Gacha" },
           { key: "crafting",    label: "Crafting" },
-          { key: "rituale",     label: "Rituale" },
+          { key: "rituals",     label: "Rituals" },
+          { key: "challenges",  label: "Challenges" },
           { key: "progression", label: "Progression" },
           { key: "honors",      label: "Honors" },
         ] as { key: typeof tab; label: string }[]).map(t => (
@@ -63,7 +64,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
       <div className="p-5 space-y-4 text-xs" style={{ color: "rgba(255,255,255,0.7)", lineHeight: 1.7 }}>
           {tab === "start" && (
             <>
-              <GuideSection title="Registrierung">
+              <GuideSection title="Registration">
                 Klicke auf <strong>Login → Register</strong> in der Kopfleiste. Der <strong>Charakter-Creator</strong> führt dich in 6 Schritten durch die Erstellung deines Helden:
                 <ol className="space-y-1 mt-1 ml-2" style={{ listStyleType: "decimal" }}>
                   <li><span style={{ color: "#f0f0f0" }}>Name & Passwort</span> — Wähle deinen Heldennamen und ein sicheres Passwort (min. 6 Zeichen).</li>
@@ -74,7 +75,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                   <li><span style={{ color: "#f0f0f0" }}>Zusammenfassung</span> — Übersicht und Bestätigung.</li>
                 </ol>
               </GuideSection>
-              <GuideSection title="Klassen">
+              <GuideSection title="Classes">
                 Klassen definieren deinen Berufspfad und geben dir passende Quests.
                 <ul className="space-y-1 mt-1">
                   <li>• Wähle eine <span style={{ color: "#a78bfa" }}>aktive Klasse</span> aus der Liste — sie ist sofort verfügbar.</li>
@@ -82,7 +83,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                   <li>• Klassen haben <span style={{ color: "#c4b5fd" }}>Tier-Stufen</span> die mit XP automatisch freigeschaltet werden.</li>
                 </ul>
               </GuideSection>
-              <GuideSection title="Begleiter">
+              <GuideSection title="Companions">
                 Dein Begleiter erscheint auf deiner Spielerkarte, gibt dir Quests und motiviert dich. Wähle zwischen deinem echten Haustier oder einem virtuellen Begleiter:
                 <ul className="space-y-1 mt-1">
                   <li><span style={{ color: "#f0f0f0" }}>Haustier</span> — Dein echtes Tier (Katze, Hund, Hamster, ...) bekommt artgerechte Pflege-Quests.</li>
@@ -107,7 +108,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                 </ul>
                 <p className="mt-1.5">Dein Quest-Pool wird automatisch aufgefüllt (~10 offene Quests). Klicke auf das Scroll-Icon um neue Quests zu laden (Cooldown: 6h).</p>
               </GuideSection>
-              <GuideSection title="Quest-Typen">
+              <GuideSection title="Quest Types">
                 <ul className="space-y-1 mt-1">
                   <li><span style={{ color: "#22c55e" }}>Personal (grün)</span> — Haushalt, Alltag, persönliche Ziele</li>
                   <li><span style={{ color: "#3b82f6" }}>Learning (blau)</span> — Lernen, Lesen, Weiterbildung</li>
@@ -118,7 +119,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                   <li><span style={{ color: "#f59e0b" }}>Boss</span> — Besonders schwer, garantierter Loot-Drop</li>
                 </ul>
               </GuideSection>
-              <GuideSection title="Seltenheit & Belohnungen">
+              <GuideSection title="Rarity & Rewards">
                 Quests haben eine Seltenheit die ihre Belohnungen bestimmt:
                 <ul className="space-y-1 mt-1">
                   <li><span style={{ color: "#9ca3af" }}>Common</span> — 10 XP, 5-10 Gold, 1 Runensplitter</li>
@@ -129,14 +130,14 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                 </ul>
                 <p className="mt-1" style={{ color: "rgba(255,255,255,0.4)" }}>Zusätzlich: Chance auf Loot-Drops (25% Basis) und Crafting-Materialien bei jeder Quest.</p>
               </GuideSection>
-              <GuideSection title="Coop-Quests & Quest-Ketten">
+              <GuideSection title="Coop Quests & Quest Chains">
                 <ul className="space-y-1 mt-1">
                   <li>• <span style={{ color: "#f0f0f0" }}>Coop-Quests</span>: Beide Partner müssen ihren Teil abschließen. Die Quest wird erst als erledigt markiert wenn alle fertig sind.</li>
                   <li>• <span style={{ color: "#f0f0f0" }}>Quest-Ketten</span>: Aufeinander aufbauende Quests — die nächste wird erst freigeschaltet wenn die vorherige erledigt ist.</li>
                   <li>• <span style={{ color: "#f0f0f0" }}>Wiederkehrende Quests</span>: Manche Quests wiederholen sich täglich, wöchentlich oder monatlich.</li>
                 </ul>
               </GuideSection>
-              <GuideSection title="Quest-Horten Malus">
+              <GuideSection title="Quest Hoarding Penalty">
                 <p>Zu viele aktive Quests gleichzeitig? Ab <strong style={{ color: "#ef4444" }}>20 aktiven Quests</strong> gibt es eine XP-Strafe:</p>
                 <ul className="space-y-1 mt-1">
                   <li>• 21-29 Quests: bis zu <span style={{ color: "#ef4444" }}>-50% XP</span></li>
@@ -150,7 +151,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
               <GuideSection title="Wanderer's Rest">
                 Im Wanderer&apos;s Rest tauchen reisende NPCs auf — jeder mit eigenen Quest-Ketten und Persönlichkeit. Bis zu <strong>7 NPCs</strong> können gleichzeitig aktiv sein.
               </GuideSection>
-              <GuideSection title="Wie es funktioniert">
+              <GuideSection title="How it Works">
                 <ul className="space-y-1 mt-1">
                   <li>• NPCs kommen und gehen — sie bleiben <strong>2-4 Tage</strong>, dann ziehen sie weiter.</li>
                   <li>• Jeder NPC hat Quest-Ketten mit aufeinander aufbauenden Aufgaben — du musst sie <strong>der Reihe nach</strong> abschließen.</li>
@@ -159,7 +160,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                   <li>• Nach der Abreise hat ein NPC einen <strong>Cooldown</strong> (meist 48h) bevor er wiederkommen kann.</li>
                 </ul>
               </GuideSection>
-              <GuideSection title="NPC Raritäten">
+              <GuideSection title="NPC Rarities">
                 <ul className="space-y-1 mt-1">
                   <li><span style={{ color: "#9ca3af" }}>Common</span> — 2-3 Ketten, einfache Aufgaben, gemütliches Tempo</li>
                   <li><span style={{ color: "#3b82f6" }}>Rare</span> — 3 Ketten, 6-8 Quests, anspruchsvoller</li>
@@ -170,12 +171,12 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
               </GuideSection>
             </>
           )}
-          {tab === "charakter" && (
+          {tab === "character" && (
             <>
-              <GuideSection title="Charakter-Screen">
+              <GuideSection title="Character Screen">
                 Auf dem Charakter-Screen siehst du dein Inventar, deine Ausrüstung, Stats und deinen Begleiter. Erreichbar über den <strong>Character</strong>-Tab (nur eingeloggt).
               </GuideSection>
-              <GuideSection title="Ausrüstung (6 Slots)">
+              <GuideSection title="Equipment (6 Slots)">
                 Rüste Items aus dem Inventar aus. Jeder Slot kann ein Item tragen:
                 <ul className="space-y-1 mt-1">
                   <li>• <span style={{ color: "#f0f0f0" }}>Helm, Rüstung, Waffe, Schild, Amulett, Stiefel</span></li>
@@ -183,7 +184,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                   <li>• Stats werden zufällig gewürfelt (Diablo-3-Stil) — bessere Seltenheit = höhere Werte</li>
                 </ul>
               </GuideSection>
-              <GuideSection title="Stats & ihre Wirkung">
+              <GuideSection title="Stats & Effects">
                 <ul className="space-y-1 mt-1">
                   <li><span style={{ color: "#ef4444" }}>Kraft</span> — Bis zu +30% XP-Bonus</li>
                   <li><span style={{ color: "#3b82f6" }}>Ausdauer</span> — Verlangsamt Forge-Temperatur-Verfall</li>
@@ -195,13 +196,13 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                   <li style={{ color: "rgba(255,255,255,0.4)" }}><span style={{ color: "#9ca3af" }}>Tempo</span> — +1% Forge-Temp-Recovery pro Punkt</li>
                 </ul>
               </GuideSection>
-              <GuideSection title="Set-Boni & Legendary Effects">
+              <GuideSection title="Set Bonuses & Legendary Effects">
                 <ul className="space-y-1 mt-1">
                   <li>• <span style={{ color: "#f0f0f0" }}>Set-Bonus</span>: 3 Teile eines Sets = +5% Primary Stats, 6 Teile = +10%</li>
                   <li>• <span style={{ color: "#FFD700" }}>Legendary Effects</span>: Besondere Effekte auf Legendary-Gear — z.B. XP-Bonus, Gold-Bonus, Nacht-Gold-Verdopplung, Auto-Streak-Schutz, Material-Verdopplung und mehr.</li>
                 </ul>
               </GuideSection>
-              <GuideSection title="Begleiter & Bond-System">
+              <GuideSection title="Companions & Bond System">
                 Dein Begleiter hat ein <strong>Bond-Level</strong> (1-10). Höherer Bond = mehr Boni:
                 <ul className="space-y-1 mt-1">
                   <li>• <span style={{ color: "#f0f0f0" }}>Streicheln</span> — 2× pro Tag für +0.5 Bond-XP</li>
@@ -212,7 +213,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                 </ul>
                 <p className="mt-1" style={{ color: "rgba(255,255,255,0.35)" }}>Bond-Stufen: Stranger → Acquaintance → Friend → Close Friend → Best Friend → Soulmate → Legendary I-IV</p>
               </GuideSection>
-              <GuideSection title="Inventar">
+              <GuideSection title="Inventory">
                 Items aus Gacha, Loot-Drops und Quests landen hier. Du kannst sie:
                 <ul className="space-y-1 mt-1">
                   <li>• <strong>Ausrüsten</strong> — Gear in Slots anlegen</li>
@@ -222,7 +223,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                 </ul>
                 <p className="mt-1" style={{ color: "rgba(255,255,255,0.35)" }}>Passive Items (z.B. Glücksklee, Mitleids-Katalysator) wirken automatisch solange sie im Inventar sind.</p>
               </GuideSection>
-              <GuideSection title="Titel">
+              <GuideSection title="Titles">
                 Titel werden durch Meilensteine freigeschaltet (Level, Quests, Streaks, Gold, ...). Rüste einen Titel im Charakter-Screen aus — er wird auf deiner Spielerkarte und im Leaderboard angezeigt.
               </GuideSection>
             </>
@@ -236,7 +237,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                   <li>• <span style={{ color: "#818cf8" }}>Astral Radiance</span> (Featured) — Kostet <strong>Stardust</strong> (10 pro Pull, 90 für 10×)</li>
                 </ul>
               </GuideSection>
-              <GuideSection title="Drop-Raten">
+              <GuideSection title="Drop Rates">
                 <ul className="space-y-1 mt-1">
                   <li><span style={{ color: "#FFD700" }}>Legendary</span> — 0.8% Basis-Chance</li>
                   <li><span style={{ color: "#a855f7" }}>Epic</span> — 13%</li>
@@ -260,7 +261,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                   <li>• Verlierst du das 50/50, ist das <strong>nächste Legendary garantiert</strong> das Featured-Item</li>
                 </ul>
               </GuideSection>
-              <GuideSection title="Duplikate">
+              <GuideSection title="Duplicates">
                 Doppelte Items werden automatisch zu <span style={{ color: "#a78bfa" }}>Runensplittern</span> umgewandelt: Common 1, Uncommon 3, Rare 8, Epic 20, Legendary 50.
               </GuideSection>
             </>
@@ -268,9 +269,9 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
           {tab === "crafting" && (
             <>
               <GuideSection title="Artisan's Quarter">
-                Das Crafting-Hub mit 4 Berufs-NPCs. Erreichbar über den <strong>Artisan&apos;s Quarter</strong>-Tab (nur eingeloggt). Jeder Beruf hat ein eigenes Mindest-Level.
+                Das Crafting-Hub im <strong>Trade Quarter</strong> mit 4 Berufs-NPCs. Erreichbar über den <strong>Artisan&apos;s Quarter</strong>-Tab (nur eingeloggt). Jeder Beruf hat ein eigenes Mindest-Level.
               </GuideSection>
-              <GuideSection title="Berufe (4 Stück)">
+              <GuideSection title="Professions (4)">
                 <ul className="space-y-1 mt-1">
                   <li><span style={{ color: "#f59e0b" }}>Schmied (Grimvar)</span> — Gear rerolling, Stats verbessern, Rarity upgraden. Ab Lv5.</li>
                   <li><span style={{ color: "#22c55e" }}>Alchemist (Ysolde)</span> — XP-, Gold- und Loot-Tränke, Streak-Shields. Ab Lv5.</li>
@@ -278,7 +279,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                   <li><span style={{ color: "#e87b35" }}>Koch (Bruna)</span> — Mahlzeiten mit XP/Gold-Buffs, Streak-Shields. Ab Lv3.</li>
                 </ul>
               </GuideSection>
-              <GuideSection title="Berufs-Slots & Stufen">
+              <GuideSection title="Profession Slots & Ranks">
                 <ul className="space-y-1 mt-1">
                   <li>• Berufs-Slots: <strong>1</strong> ab Lv5, <strong>2</strong> ab Lv15, <strong>3</strong> ab Lv20, <strong>4</strong> ab Lv25</li>
                   <li>• Jeder Beruf hat <strong>10 Level</strong> mit WoW-Stil-Rängen: <span style={{ color: "#6b7280" }}>Novice</span> → <span style={{ color: "#22c55e" }}>Apprentice</span> → <span style={{ color: "#3b82f6" }}>Journeyman</span> → <span style={{ color: "#a855f7" }}>Expert</span> → <span style={{ color: "#f59e0b" }}>Artisan</span> → <span style={{ color: "#ef4444" }}>Master</span></li>
@@ -286,7 +287,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                   <li>• <span style={{ color: "#facc15" }}>Daily Bonus</span>: Erstes Crafting am Tag gibt <strong>2× Berufs-XP</strong></li>
                 </ul>
               </GuideSection>
-              <GuideSection title="Skill-Up Farben">
+              <GuideSection title="Skill-Up Colors">
                 Ob ein Rezept XP gibt, siehst du an der Farbe:
                 <ul className="space-y-1 mt-1">
                   <li><span style={{ color: "#f97316" }}>●</span> Orange — Garantierte XP (100%)</li>
@@ -295,7 +296,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                   <li><span style={{ color: "#6b7280" }}>●</span> Grau — Keine XP mehr (zu niedrig)</li>
                 </ul>
               </GuideSection>
-              <GuideSection title="Schmiedekunst & Transmutation">
+              <GuideSection title="Salvaging & Transmutation">
                 Neben Rezepten haben Schmied und Verzauberer jeweils ein spezielles Feature:
                 <ul className="space-y-1 mt-1">
                   <li>• <strong style={{ color: "#f59e0b" }}>Schmiedekunst</strong> (beim Schmied) — Items <strong>zerlegen</strong> in <span style={{ color: "#ff8c00" }}>Essenz</span> + <span style={{ color: "#22c55e" }}>Materialien</span>. &quot;Salvage All&quot; für Massenzerlegung (nicht für Legendary).</li>
@@ -307,12 +308,12 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
               </GuideSection>
             </>
           )}
-          {tab === "rituale" && (
+          {tab === "rituals" && (
             <>
-              <GuideSection title="Tägliche Rituale">
+              <GuideSection title="Daily Rituals">
                 Rituale sind wiederkehrende Aufgaben die du jeden Tag erledigst. Sie bauen Streaks auf und geben tägliche XP und Gold. Erreichbar über die <strong>Ritual Chamber</strong> im Quest Board.
               </GuideSection>
-              <GuideSection title="Rituale erstellen">
+              <GuideSection title="Creating Rituals">
                 Klicke auf &quot;Neues Ritual&quot; und gib einen Namen, Schwierigkeit und optional eine Beschreibung ein. Rituale tracken automatisch deinen Streak.
                 <p className="mt-1">Verpasste Tage kosten Streak-Punkte: 1 Tag = -3, 2 Tage = -7, 3+ Tage = Reset auf 0!</p>
               </GuideSection>
@@ -351,13 +352,54 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
               </GuideSection>
             </>
           )}
+          {tab === "challenges" && (
+            <>
+              <GuideSection title="Weekly Challenges">
+                Jede Woche gibt es zwei Herausforderungen: den <strong>Sternenpfad</strong> (Solo) und die <strong>Expedition</strong> (Kooperativ). Erreichbar über den <strong>Challenges</strong>-Tab in den Great Halls. Reset jeden Montag.
+              </GuideSection>
+              <GuideSection title="Sternenpfad (Solo)">
+                Eine persönliche 3-stufige Challenge mit Sternbewertung:
+                <ul className="space-y-1 mt-1">
+                  <li>• <strong>3 Stufen</strong> mit aufsteigender Schwierigkeit — z.B. bestimmte Quest-Typen abschließen, Gesamtquests, Streak halten</li>
+                  <li>• Jede Stufe gibt <span style={{ color: "#fbbf24" }}>1-3 Sterne</span> basierend auf deinem Fortschritt (max 9 Sterne)</li>
+                  <li>• <span style={{ color: "#22c55e" }}>Speed Bonus</span>: Stufe innerhalb von 2 Tagen abschließen = +1 Stern (max 3)</li>
+                  <li>• Sterne skalieren Belohnungen: 2★ = <span style={{ color: "#f0f0f0" }}>+15%</span>, 3★ = <span style={{ color: "#f0f0f0" }}>+33%</span></li>
+                </ul>
+              </GuideSection>
+              <GuideSection title="Weekly Modifiers">
+                Jede Woche gibt es einen <strong>Modifier</strong> der bestimmte Quest-Typen beeinflusst:
+                <ul className="space-y-1 mt-1">
+                  <li>• <span style={{ color: "#22c55e" }}>Bonus-Typ</span>: Ein Quest-Typ gibt <strong>+50%</strong> Fortschritt</li>
+                  <li>• Andere Typen geben <span style={{ color: "#ef4444" }}>-25%</span> Fortschritt</li>
+                  <li>• Der Modifier wird oben im Challenges-Tab angezeigt</li>
+                </ul>
+              </GuideSection>
+              <GuideSection title="Expedition (Cooperative)">
+                Eine gildenweite Herausforderung bei der alle Spieler gemeinsam Fortschritt erarbeiten:
+                <ul className="space-y-1 mt-1">
+                  <li>• <strong>4 Checkpoints</strong> mit geteiltem Fortschrittsbalken</li>
+                  <li>• Benötigte Quests skalieren mit der <strong>Spieleranzahl</strong> (z.B. 8/12/18/25 Quests pro Spieler)</li>
+                  <li>• Kein Pro-Spieler-Limit — aktive Spieler können für inaktive kompensieren</li>
+                  <li>• <strong>Checkpoint 4 (Bonus)</strong>: Exklusiver rotierender <span style={{ color: "#fbbf24" }}>Titel</span> als Belohnung</li>
+                </ul>
+              </GuideSection>
+              <GuideSection title="Challenge Rewards">
+                <ul className="space-y-1 mt-1">
+                  <li>• <span style={{ color: "#f59e0b" }}>Gold</span>, <span style={{ color: "#a78bfa" }}>Runensplitter</span>, <span style={{ color: "#ef4444" }}>Essenz</span> und <span style={{ color: "#818cf8" }}>XP</span> pro Stufe/Checkpoint</li>
+                  <li>• <span style={{ color: "#fbbf24" }}>Sternentaler</span> — exklusive Währung nur aus Weekly Challenges</li>
+                  <li>• Belohnungen werden manuell beansprucht (Claim-Button pro Stufe/Checkpoint)</li>
+                  <li>• Expedition erfordert mindestens <strong>1 Quest-Beitrag</strong> zum Claimen</li>
+                </ul>
+              </GuideSection>
+            </>
+          )}
           {tab === "progression" && (
             <>
               <GuideSection title="XP & Level">
                 Jede abgeschlossene Quest gibt XP. Dein XP-Ertrag wird von vielen Faktoren beeinflusst: Forge-Temperatur, Stats (Kraft), Gear, Companion-Bond, Streaks und aktive Buffs.
                 <p className="mt-1">Max-Level: 30. Bei jedem Level-Up erhältst du <span style={{ color: "#818cf8" }}>5 + Level Stardust</span>.</p>
               </GuideSection>
-              <GuideSection title="Forge-Temperatur">
+              <GuideSection title="Forge Temperature">
                 Deine Forge-Temperatur (0-100%) zeigt wie aktiv du bist und beeinflusst XP und Gold:
                 <ul className="space-y-1 mt-1">
                   <li>• <span style={{ color: "#e0f0ff" }}>100% (White-hot)</span>: ×1.5 XP, ×1.5 Gold</li>
@@ -377,7 +419,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                   <li>• <span style={{ color: "#f0f0f0" }}>Auto-Recovery</span>: Vitalität-Stat + passive Items geben bis zu 75% Chance den Streak automatisch zu retten</li>
                 </ul>
               </GuideSection>
-              <GuideSection title="Währungen (7 Stück)">
+              <GuideSection title="Currencies (7)">
                 <ul className="space-y-1 mt-1">
                   <li><span style={{ color: "#f59e0b" }}>Gold</span> — Hauptwährung. Quests, Rituale, NPC-Aufträge. Für Bazaar, Crafting und Gacha.</li>
                   <li><span style={{ color: "#818cf8" }}>Stardust</span> — Featured-Banner-Pulls, Level-Ups.</li>
@@ -389,7 +431,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                 </ul>
               </GuideSection>
               <GuideSection title="Daily Login Bonus">
-                Einmal pro Tag abholen: <strong>3 Essenz + 2 Runensplitter</strong>. Bei längeren Streaks gibt es Bonus-Essenz und Runensplitter. Kleine Chance auf <span style={{ color: "#fbbf24" }}>Sternentaler</span> (15-25% je nach Streak).
+                Einmal pro Tag abholen: <strong>3 Essenz + 2 Runensplitter</strong>. Bei längeren Streaks gibt es Bonus-Essenz und Runensplitter (7d: +1/+1, 14d: +2/+2, 30d+: +3/+5).
               </GuideSection>
               <GuideSection title="The Bazaar (Shop)">
                 Im Bazaar gibt es zwei Kategorien:
@@ -405,7 +447,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
               <GuideSection title="Hall of Honors">
                 Im Honors-Tab findest du alle <strong>55+ Achievements</strong>. Sie werden automatisch freigeschaltet wenn du Meilensteine erreichst.
               </GuideSection>
-              <GuideSection title="Achievement-Punkte">
+              <GuideSection title="Achievement Points">
                 Jedes Achievement gibt Punkte basierend auf Seltenheit:
                 <ul className="space-y-1 mt-1">
                   <li><span style={{ color: "#9ca3af" }}>Common</span> — 5 Punkte</li>
@@ -415,7 +457,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                   <li><span style={{ color: "#FFD700" }}>Legendary</span> — 100 Punkte</li>
                 </ul>
               </GuideSection>
-              <GuideSection title="Kategorien">
+              <GuideSection title="Categories">
                 <ul className="space-y-1 mt-1">
                   <li>• <span style={{ color: "#f0f0f0" }}>Quest-Meilensteine</span> — Erste Quest, 10, 50, 100, 200, 500 Quests</li>
                   <li>• <span style={{ color: "#f0f0f0" }}>Streak</span> — 7, 14, 30, 90 Tage</li>
@@ -425,7 +467,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                   <li>• <span style={{ color: "#f0f0f0" }}>Versteckte</span> — Easter Eggs und geheime Achievements</li>
                 </ul>
               </GuideSection>
-              <GuideSection title="Punkte-Meilensteine (Frames & Titel)">
+              <GuideSection title="Point Milestones (Frames & Titles)">
                 Gesammelte Punkte schalten kosmetische <strong>Portrait-Rahmen</strong> und <strong>Titel</strong> frei:
                 <ul className="space-y-1 mt-1">
                   <li>• <span style={{ color: "#cd7f32" }}>50 Pkt</span> — Bronzener Rahmen</li>
@@ -436,13 +478,10 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                   <li>• <span style={{ color: "#00bfff" }}>2000 Pkt</span> — Himmlischer Rahmen (mit Glow)</li>
                 </ul>
               </GuideSection>
-              <GuideSection title="Weekly Challenges">
-                Jede Woche gibt es eine <strong>3-stufige Challenge</strong> mit speziellen Aufgaben (z.B. bestimmte Quest-Typen, Gesamtquests, Streak halten). Belohnungen pro Stufe: Gold, Runensplitter, Essenz und die exklusive Währung <span style={{ color: "#fbbf24" }}>Sternentaler</span>.
-              </GuideSection>
               <GuideSection title="Proving Grounds (Leaderboard)">
                 Im Proving Grounds siehst du die Rangliste aller Spieler, sortiert nach XP. Zeigt Level, Quests, Klasse und ausgerüsteten Titel. Top 3 bekommen Podium-Plätze mit Gold/Silber/Bronze-Medaillen.
               </GuideSection>
-              <GuideSection title="Forge-Begleiter">
+              <GuideSection title="Forge Companions">
                 Spezielle Achievements schalten <strong>Forge-Begleiter</strong> frei, die +2% XP-Bonus geben: <span style={{ color: "#f97316" }}>Ember Sprite</span> (10 Dev-Quests), <span style={{ color: "#a78bfa" }}>Lore Owl</span> (5 Learning-Quests) und <span style={{ color: "#9ca3af" }}>Gear Golem</span> (300 XP). Bis zu +6% XP-Bonus insgesamt.
               </GuideSection>
             </>
@@ -565,7 +604,7 @@ export const TUTORIAL_STEPS = [
   {
     key: "vault-of-fate",
     title: "Vault of Fate — Gacha",
-    desc: "Ziehe Items mit Stardust — Ausrüstung, Tränke und seltene Artefakte. Pity-System garantiert seltene Drops!",
+    desc: "Ziehe Items mit Runensplittern oder Stardust — Ausrüstung, Tränke und seltene Artefakte. Pity-System garantiert seltene Drops!",
     target: "vault-tab",
     position: "bottom" as const,
     navigateTo: "gacha",
@@ -605,7 +644,7 @@ export const TUTORIAL_STEPS = [
   {
     key: "xp-gold",
     title: "XP, Gold & Währungen",
-    desc: "Quests geben XP und Gold. Stardust fürs Gacha, Rune Shards für Crafting. Alles auf deinem Character Screen.",
+    desc: "Quests geben XP und Gold. Runensplitter und Stardust fürs Gacha, Essenz und Materialien fürs Crafting.",
     target: null,
     position: "center" as const,
     navigateTo: null,
