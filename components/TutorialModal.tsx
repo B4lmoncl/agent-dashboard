@@ -389,7 +389,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                 </ul>
               </GuideSection>
               <GuideSection title="Daily Login Bonus">
-                Einmal pro Tag abholen: <strong>3 Essenz + 2 Runensplitter</strong>. Bei längeren Streaks gibt es Bonus-Essenz und Runensplitter. Kleine Chance auf <span style={{ color: "#fbbf24" }}>Sternentaler</span> (15-25% je nach Streak).
+                Einmal pro Tag abholen: <strong>3 Essenz + 2 Runensplitter</strong>. Bei längeren Streaks gibt es Bonus-Essenz und Runensplitter (7d: +1/+1, 14d: +2/+2, 30d+: +3/+5).
               </GuideSection>
               <GuideSection title="The Bazaar (Shop)">
                 Im Bazaar gibt es zwei Kategorien:
@@ -565,7 +565,7 @@ export const TUTORIAL_STEPS = [
   {
     key: "vault-of-fate",
     title: "Vault of Fate — Gacha",
-    desc: "Ziehe Items mit Stardust — Ausrüstung, Tränke und seltene Artefakte. Pity-System garantiert seltene Drops!",
+    desc: "Ziehe Items mit Runensplittern oder Stardust — Ausrüstung, Tränke und seltene Artefakte. Pity-System garantiert seltene Drops!",
     target: "vault-tab",
     position: "bottom" as const,
     navigateTo: "gacha",
@@ -605,7 +605,7 @@ export const TUTORIAL_STEPS = [
   {
     key: "xp-gold",
     title: "XP, Gold & Währungen",
-    desc: "Quests geben XP und Gold. Stardust fürs Gacha, Rune Shards für Crafting. Alles auf deinem Character Screen.",
+    desc: "Quests geben XP und Gold. Runensplitter und Stardust fürs Gacha, Essenz und Materialien fürs Crafting.",
     target: null,
     position: "center" as const,
     navigateTo: null,
