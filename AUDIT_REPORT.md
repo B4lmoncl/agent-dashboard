@@ -180,6 +180,31 @@ Session 8 launched 6 specialized audit agents covering backend, frontend, data i
 #### F-58: Type Casts in UserCard, LeaderboardView, QuestPanels ✅ FIXED
 - **Fix applied:** Removed 11 `as any` casts by using existing type fields; added `pactCompleted` to AntiRitual type
 
+### 4.3 Backend Deep Audit (40 findings triaged)
+
+A specialized backend audit agent reviewed all 17 route files, `lib/state.js`, `lib/helpers.js`, `lib/npc-engine.js`, and `server.js`. **Most "critical" findings were false positives** due to the agent not accounting for Node.js single-threaded execution model:
+
+| Claim | Verdict | Reason |
+|-------|---------|--------|
+| #1 Race condition in quest hoarding | FALSE POSITIVE | Node.js is single-threaded; NPC departures run on timer, not mid-request |
+| #3 Passive effect null guard missing | FALSE POSITIVE | `if (!tmpl) continue;` already exists at line 692 |
+| #4 Loot pity order wrong | FALSE POSITIVE | `checkLootPity()` called at line 1109, `resetLootPity()` at 1134 — correct order |
+| #8 NPC departure rebuilds | FALSE POSITIVE | `rebuildQuestsById()` called at line 82 after all splices |
+| #16 getWeekId not exported | FALSE POSITIVE | Exported at line 358: `module.exports.getWeekId = getWeekId` |
+| #21 Unused crypto in users.js | FALSE POSITIVE | Used at line 281 for API key generation |
+| #9 /api/config no auth | BY DESIGN | Comment says "no auth required" — public game constants |
+
+**Verified real (minor) issues fixed:**
+
+#### B-05: Quest Creation Missing Type Validation ✅ FIXED
+- **Location:** `routes/quests.js:55-57`
+- **Fix applied:** Enforce `title` and `description` must be strings; cap skills array at 20 entries
+
+**Remaining low-priority backend items (from audit, verified real but minor):**
+- Hardcoded setIds array in `createGearInstance` (fallback to 'adventurer' is acceptable)
+- Some gacha duplicate detection doesn't check `templateId` (only affects gear instances, which go through different flow)
+- Magic numbers in streak recovery not documented as constants
+
 ---
 
 ## 5. Fix Summary
@@ -212,6 +237,7 @@ Session 8 launched 6 specialized audit agents covering backend, frontend, data i
 | F-56 | Remove 8x as-any casts for legendary modifiers | 16b5312 |
 | F-57 | Add ARIA roles (dialog, status) + focus-visible styles | 16b5312 |
 | F-58 | Remove 11x as-any casts in UserCard, LeaderboardView, QuestPanels | 9662437 |
+| B-05 | Harden quest creation input validation (type checks + skills cap) | 5c2f5ef |
 
 ### Remaining (prioritized)
 
