@@ -523,13 +523,18 @@ function ExpeditionView({
                         <span className="text-xs ml-1" style={{ color: "#f87171", fontSize: 9 }}>&#9660;</span>
                       )}
                     </div>
-                    <div className="ml-6 rounded-full overflow-hidden" style={{ height: 3, background: "rgba(255,255,255,0.04)" }}>
+                    <div className="ml-6 rounded-full overflow-hidden relative" style={{ height: 4, background: "rgba(255,255,255,0.04)" }}>
                       <div className="h-full rounded-full transition-all" style={{ width: `${pct}%`, background: aboveFair ? "#4ade80" : "#f8717180" }} />
+                      {/* Fair share target line */}
+                      <div className="absolute top-0 bottom-0" style={{ left: `${Math.min(100, Math.round((fairShare / topCount) * 100))}%`, width: 1, background: "rgba(251,191,36,0.5)" }} title={`Fair share: ${fairShare}`} />
                     </div>
                   </div>
                 );
               })}
-              <p className="text-xs mt-2" style={{ color: "rgba(255,255,255,0.15)", fontSize: 10 }}>Fair share: ~{fairShare} quests per player</p>
+              <div className="flex items-center gap-2 mt-2">
+                <div className="w-3 h-0.5" style={{ background: "rgba(251,191,36,0.5)" }} />
+                <p className="text-xs" style={{ color: "rgba(251,191,36,0.4)", fontSize: 10 }}>Fair share: ~{fairShare} quests per player</p>
+              </div>
             </div>
           );
         })() : (
