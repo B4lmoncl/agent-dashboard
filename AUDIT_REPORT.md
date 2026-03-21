@@ -1405,6 +1405,7 @@ These features have been proposed by audit agents in the past as "missing" when 
 | **Workshop Upgrades (permanent bonuses)** | `public/data/shopItems.json` (workshopUpgrades), `routes/shop.js`, `lib/helpers.js` | Added in Session 6 |
 | **Tavern/Rest Mode (The Hearth)** | `components/TavernView.tsx`, `routes/players.js`, `app/config.ts` (6th floor) | Added in Session 6 |
 | **Rift/Dungeon System (The Rift)** | `components/RiftView.tsx`, `routes/rift.js`, `app/config.ts` (Great Halls room) | Added in Session 6 |
+| **Rift abandon confirmation** | `components/RiftView.tsx` (2-step confirm state with Cancel button) | Added in Session 8 |
 
 ### A.2 Verified Non-Bugs (Do NOT Report Again)
 
@@ -1426,6 +1427,12 @@ These were reported as bugs by audit agents but are either intentional design de
 | **Timing-safe comparison leaks key length** | Master key length is not a meaningful secret in this context. |
 | **`@next/next/no-img-element` lint warnings** | Intentional — project uses static export with pixel art. `next/image` not needed and would complicate the build. |
 | **React compiler warnings (setState in effect)** | Pre-existing across 10+ components. No runtime impact. Would require major refactor to fix. |
+| **Expedition bonus titles not in titles.json** | Expedition titles are awarded directly via `u.earnedTitles.push()`, not through `checkAndAwardTitles()`. They don't need titles.json entries. |
+| **Banner dropRates are strings ("0.8%") not numbers** | Display-only documentation in bannerTemplates.json. Actual rates hardcoded in gacha.js. Strings never parsed for math. |
+| **rituals.json and habits.json are empty arrays** | Intentional — these are user-created content, not templates. Empty is the correct initial state. |
+| **Quest catalog templates missing rewards field** | Intentional — templates use difficulty-based rewards resolved from gameConfig.json at runtime. |
+| **loadingAction blocks all quest actions globally** | Single mutex is adequate — users typically interact with one quest at a time. Per-quest loading would add complexity. |
+| **Hearth enter button has no 2-step confirmation** | Not needed — the "While resting" panel already shows all consequences (30-day cooldown, no quests, etc.) before the button. |
 
 ### A.3 Architectural Decisions (Do NOT "Fix" These)
 
@@ -1603,23 +1610,74 @@ Fully implemented function exported but never called anywhere. The quest pool sy
 
 All seed quests get `createdAt: 2026-03-10T12:00:00Z`. Already 11+ days old on current deployment.
 
-### 20.14 Remaining Issues Summary
+### 20.14 All Issues — Fixed
 
 | # | Issue | Severity | Status |
 |---|-------|----------|--------|
-| 1 | Rift bypasses reward pipeline | CRITICAL | **To fix** |
-| 2 | NPC departures not processed between midnights | HIGH | **To fix** |
-| 3 | MASTER_KEY env var never read | MEDIUM | **To fix** |
-| 4 | getBondLevel fallback wrong property | MEDIUM | **To fix** |
-| 5 | NPC force-spawn ignores cooldowns | MEDIUM | **To fix** |
-| 6 | Forge temp loot hardcoded decay | MEDIUM | **To fix** |
-| 7 | Tavern leave falsy-OR | LOW | **To fix** |
-| 8 | Rift abandon no confirmation | LOW | **To fix** |
-| 9 | saveCampaigns not debounced | LOW | **To fix** |
-| 10 | Local RARITY_ORDER shadows import | LOW | **To fix** |
-| 11 | loadManagedKeys null guard | LOW | **To fix** |
+| 1 | Rift bypasses reward pipeline | CRITICAL | **Fixed** — `77c52c2` |
+| 2 | NPC departures not processed between midnights | HIGH | **Fixed** — `77c52c2` |
+| 3 | MASTER_KEY env var never read | MEDIUM | **Fixed** — `77c52c2` |
+| 4 | getBondLevel fallback wrong property | MEDIUM | **Fixed** — `77c52c2` |
+| 5 | NPC force-spawn ignores cooldowns | MEDIUM | **Fixed** — `77c52c2` |
+| 6 | Forge temp loot hardcoded decay | MEDIUM | **Fixed** — `77c52c2` |
+| 7 | Tavern leave falsy-OR | LOW | **Fixed** — `77c52c2` |
+| 8 | Rift abandon no confirmation | LOW | **Fixed** — `77c52c2` |
+| 9 | saveCampaigns not debounced | LOW | **Fixed** — `77c52c2` |
+| 10 | Local RARITY_ORDER shadows import | LOW | **Fixed** — `77c52c2` |
+| 11 | loadManagedKeys null guard | LOW | **Fixed** — `77c52c2` |
 | 12 | selectDailyQuests dead code | INFO | Acknowledged |
 | 13 | Hardcoded seed date | INFO | Acknowledged |
+
+---
+
+## 21. Phase 2026-03-21 — Data Template & Frontend Polish (Session 8, Batch 2)
+
+### 21.1 Data Template Fixes
+
+| Issue | Severity | Fix |
+|-------|----------|-----|
+| itemTemplates.json `slots` mismatched (head/chest/ring vs helm/armor) | MEDIUM | Aligned to `EQUIPMENT_SLOTS`: weapon, shield, helm, armor, amulet, boots |
+| itemTemplates.json `stats` missing 4 minor stats | MEDIUM | Added fokus, vitalitaet, charisma, tempo |
+| 4 duplicate achievement conditions (double-awarding same milestone) | HIGH | Differentiated: 10→25, 50→75, 100→150 quests; 30→60 day streak |
+| Achievement XP descriptions wrong ("Level 5 = 100 XP") | HIGH | Changed to "Earn X XP total" — no misleading level references |
+| `grandmaster` references impossible Level 50 | HIGH | Changed description to "Earn 5,000 XP total" |
+
+### 21.2 Frontend Translation Pass
+
+| Fix | File | Description |
+|-----|------|-------------|
+| Equipment slot labels | `CharacterView.tsx` | Waffe→Weapon, Schild→Shield, Rüstung→Armor, Amulett→Amulet, Stiefel→Boots |
+| Tab key "ausrustung" | `CharacterView.tsx` | →"equipment" (all references) |
+| Stat tooltip descriptions | `CharacterView.tsx` | "pro Punkt"→"per point", "Schutz"→"Protection", "gesamt"→"total" (8 tooltips + 8 stat bar tooltips) |
+| Gacha item type labels | `GachaPull.tsx` | Waffe→Weapon, Rüstung→Armor, Verbrauchbar→Consumable |
+
+### 21.3 Agent Findings — Verified Non-Issues (Session 8)
+
+| Reported Issue | Actual Status |
+|----------------|---------------|
+| itemTemplates slots/stats mismatch is CRITICAL | **Downgraded to MEDIUM** — arrays are metadata only, never read by code |
+| Expedition bonus titles not in titles.json | **Not a bug** — titles awarded directly via `u.earnedTitles.push()` |
+| Banner dropRates are strings not numbers | **Not a bug** — display-only documentation, rates hardcoded in gacha.js |
+| rituals.json and habits.json are empty | **Intentional** — user-created content, not templates |
+| Quest catalog templates missing rewards | **Intentional** — resolved from difficulty via gameConfig.json |
+| Hearth enter needs confirmation dialog | **Not needed** — UI shows comprehensive consequences panel |
+| loadingAction blocks all quest actions globally | **Acknowledged** — single-quest interaction pattern is typical |
+
+### 21.4 Remaining Acknowledged Issues (Not Fixed)
+
+| Issue | Severity | Status |
+|-------|----------|--------|
+| 31 achievements have placeholder icon "?" | MEDIUM | **Acknowledged** — Need actual icon assets |
+| Single-piece named sets with "fullBonus" | LOW | **Acknowledged** — May be intentional |
+| professions.json `xpPerCraft` unused field | LOW | **Acknowledged** — Recipe xpGain is used |
+| CURRENT_SEASON computed at module load time | LOW | **Acknowledged** — Only stale across month boundaries |
+
+### 21.5 Changelog (Session 8)
+
+| Commit | Timestamp | Description |
+|--------|-----------|-------------|
+| `77c52c2` | 2026-03-21 | Fix critical rift reward bypass + 10 audit findings |
+| `8b78b1c` | 2026-03-21 | Fix data template inconsistencies + translate remaining German UI text |
 
 ---
 
