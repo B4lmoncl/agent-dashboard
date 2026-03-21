@@ -173,7 +173,7 @@ function ItemRevealCard({ result }: { result: GachaPullResult }) {
 
       {/* Item type */}
       <span className="text-[11px] uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.4)" }}>
-        {result.item.type === "weapon" ? "Waffe" : result.item.type === "armor" ? "Rüstung" : result.item.type === "consumable" ? "Verbrauchbar" : "Gacha"}
+        {result.item.type === "weapon" ? "Weapon" : result.item.type === "armor" ? "Armor" : result.item.type === "consumable" ? "Consumable" : "Gacha"}
       </span>
 
       {/* Stats */}

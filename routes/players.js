@@ -631,9 +631,9 @@ router.post('/api/tavern/leave', requireAuth, (req, res) => {
   u.tavernHistory = u.tavernHistory || [];
   u.tavernHistory.push({ startedAt: u.tavernRest.startedAt, endedAt: u.tavernRest.endedAt, days: u.tavernRest.days, reason: u.tavernRest.reason });
 
-  // Restore frozen values
-  u.streakDays = u.tavernRest.streakFrozenAt || u.streakDays;
-  u.forgeTemp = u.tavernRest.forgeFrozenAt || u.forgeTemp;
+  // Restore frozen values (use ?? to correctly restore 0 values)
+  u.streakDays = u.tavernRest.streakFrozenAt ?? u.streakDays;
+  u.forgeTemp = u.tavernRest.forgeFrozenAt ?? u.forgeTemp;
 
   saveUsers();
   console.log(`[tavern] ${uid} left the Hearth early`);

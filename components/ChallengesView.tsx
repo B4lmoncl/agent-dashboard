@@ -4,6 +4,7 @@ import { useState, useCallback, useEffect, useMemo } from "react";
 import { useDashboard } from "@/app/DashboardContext";
 import type { WeeklyChallenge, Expedition, ExpeditionCheckpoint } from "@/app/types";
 import { InfoTooltip } from "@/components/InfoTooltip";
+import { Tip } from "@/components/GameTooltip";
 
 // ─── Currency icons ──────────────────────────────────────────────────────────
 const CURRENCY_ICONS: Record<string, { label: string; color: string }> = {
@@ -16,11 +17,14 @@ const CURRENCY_ICONS: Record<string, { label: string; color: string }> = {
 
 function CurrencyBadge({ type, amount }: { type: string; amount: number }) {
   const info = CURRENCY_ICONS[type] || { label: type, color: "#888" };
-  return (
-    <span className="inline-flex items-center gap-1 text-xs px-1.5 py-0.5 rounded" style={{ background: `${info.color}15`, color: info.color }}>
+  // Wrap with Tip if the currency has a tooltip entry
+  const tipKey = type === "runensplitter" || type === "sternentaler" || type === "essenz" || type === "gold" || type === "stardust" || type === "gildentaler" ? type : null;
+  const badge = (
+    <span className="inline-flex items-center gap-1 text-xs px-1.5 py-0.5 rounded" style={{ background: `${info.color}15`, color: info.color, cursor: tipKey ? "help" : undefined }}>
       {amount} {info.label}
     </span>
   );
+  return tipKey ? <Tip k={tipKey}>{badge}</Tip> : badge;
 }
 
 // ─── Star display ────────────────────────────────────────────────────────────

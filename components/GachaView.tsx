@@ -6,6 +6,7 @@ import { useDashboard } from "@/app/DashboardContext";
 import GachaPull, { RARITY_CONFIG } from "./GachaPull";
 import { ModalOverlay } from "./ModalPortal";
 import { getAuthHeaders } from "@/lib/auth-client";
+import { Tip } from "@/components/GameTooltip";
 
 // ─── Currency helpers ────────────────────────────────────────────────────────
 const CURRENCY_META: Record<string, { emoji: string; label: string; color: string; iconSrc?: string }> = {
@@ -54,7 +55,7 @@ function GachaInfoModal({ onClose }: { onClose: () => void }) {
           </div>
 
           <div>
-            <h4 className="text-xs font-bold uppercase tracking-wider mb-2" style={{ color: "#a855f7" }}>Pity System</h4>
+            <Tip k="pity"><h4 className="text-xs font-bold uppercase tracking-wider mb-2" style={{ color: "#a855f7", cursor: "help" }}>Pity System</h4></Tip>
             <p>Every pull without a Legendary increases your <span style={{ color: "#f97316" }}>pity counter</span>. The Wheel remembers your devotion.</p>
             <ul className="mt-2 space-y-1 list-disc list-inside">
               <li><span style={{ color: "#f97316" }}>Soft Pity</span> begins at <strong>55 pulls</strong> — your Legendary drop rate increases significantly with each subsequent pull.</li>

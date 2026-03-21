@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Tip } from "@/components/GameTooltip";
 import type { User, Quest } from "@/app/types";
 import { InfoTooltip } from "@/components/InfoTooltip";
 import { RARITY_COLORS } from "@/components/QuestBoard";
@@ -370,7 +371,7 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
                     <div className="flex items-center gap-1.5 flex-wrap">
                       <span className="text-xs font-bold" style={{ color: "#f0e0d0" }}>{user.companion.name}</span>
                       <span className="text-xs italic" style={{ color: "rgba(220,185,120,0.4)" }}>{user.companion.isReal ? "Real Pet" : "Virtual"}</span>
-                      <span className="text-xs" style={{ color: `rgba(${cColor.accentRgb},0.65)` }}>Bond Lv.{bondLevel} — {bondTitle}</span>
+                      <Tip k="bond_level"><span className="text-xs" style={{ color: `rgba(${cColor.accentRgb},0.65)`, cursor: "help" }}>Bond Lv.{bondLevel} — {bondTitle}</span></Tip>
                       {bondXpBonus > 0 && <span className="text-xs" style={{ color: `rgba(${cColor.accentRgb},0.45)` }}>+{bondXpBonus}% XP</span>}
                     </div>
                     <div className="mt-1 rounded-full overflow-hidden" style={{ height: 4, background: `rgba(${cColor.accentRgb},0.1)` }}>

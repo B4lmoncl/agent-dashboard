@@ -311,7 +311,7 @@ router.get('/api/social/:playerId/conversations', requireAuth, requireSelf('play
     const existing = convMap.get(partnerId);
     const msgTime = new Date(m.createdAt).getTime();
 
-    if (!existing || msgTime > new Date(existing.lastMessage.createdAt).getTime()) {
+    if (!existing || msgTime > new Date(existing.lastMessageAt).getTime()) {
       const partner = state.users[partnerId];
       convMap.set(partnerId, {
         playerId: partnerId,

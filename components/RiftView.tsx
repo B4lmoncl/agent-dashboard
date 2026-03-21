@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { useDashboard } from "@/app/DashboardContext";
 import { getAuthHeaders } from "@/lib/auth-client";
+import { Tip } from "@/components/GameTooltip";
 
 // ─── Types ──────────────────────────────────────────────────────────────────
 
@@ -177,7 +178,7 @@ export default function RiftView({ onRefresh }: { onRefresh?: () => void }) {
       <div className="flex items-center gap-3">
         <span className="text-2xl">🌀</span>
         <div>
-          <h2 className="text-sm font-bold uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.5)" }}>The Rift</h2>
+          <Tip k="rift"><h2 className="text-sm font-bold uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.5)", cursor: "help" }}>The Rift</h2></Tip>
           <p className="text-xs text-w25">Timed quest chains with escalating difficulty. Complete all stages before time runs out.</p>
         </div>
       </div>

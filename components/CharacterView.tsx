@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback, useMemo, useRef } from "react";
 import { createPortal } from "react-dom";
 import { useModalBehavior } from "@/components/ModalPortal";
 import ItemActionPopup from "@/components/ItemActionPopup";
+import { Tip } from "@/components/GameTooltip";
 import type { User, CharacterData, ClassDef, PixelCharacterProps, GearInstance } from "@/app/types";
 import type { ToastInput } from "@/components/ToastStack";
 import { useDashboard } from "@/app/DashboardContext";
@@ -288,7 +289,7 @@ function ProfileSettingsModal({ playerName, apiKey, initialStatus, initialPartne
             <input
               value={partner}
               onChange={e => setPartner(e.target.value)}
-              placeholder="z.B. Alex, Maria..."
+              placeholder="e.g. Alex, Maria..."
               className="w-full text-xs px-3 py-2 rounded-lg"
               style={{ background: "#141414", border: "1px solid rgba(255,255,255,0.12)", color: "#f0f0f0", outline: "none", borderRadius: 8 }}
             />
@@ -306,7 +307,7 @@ function ProfileSettingsModal({ playerName, apiKey, initialStatus, initialPartne
             disabled={saving}
             className="flex-1 py-2 rounded-xl text-xs font-semibold"
             style={{ background: "linear-gradient(135deg, #7c3aed, #a78bfa)", color: "#fff" }}
-          >{saving ? "…" : "Speichern"}</button>
+          >{saving ? "…" : "Save"}</button>
         </div>
       </div>
     </div>
@@ -355,14 +356,14 @@ const BOND_LEVELS = [
 ];
 
 const STAT_EFFECTS: Record<string, string> = {
-  "Kraft":     "+0.5% Quest XP pro Punkt (max +30%)",
-  "Weisheit":  "+0.5% Gold pro Punkt (max +30%)",
-  "Ausdauer":  "-0.5% Forge Decay pro Punkt (min 10% der Basis-Rate)",
-  "Glück":     "+0.5% Drop Chance pro Punkt (max 20%)",
-  "Fokus":     "+1 Flat Bonus-XP pro Punkt (max +50)",
-  "Vitalität": "+1% Streak-Schutz pro Punkt (max 75% gesamt)",
-  "Charisma":  "+5% Companion Bond-XP pro Punkt",
-  "Tempo":     "+1% Forge-Temp-Recovery pro Punkt",
+  "Kraft":     "+0.5% Quest XP per point (max +30%)",
+  "Weisheit":  "+0.5% Gold per point (max +30%)",
+  "Ausdauer":  "-0.5% Forge Decay per point (min 10% base rate)",
+  "Glück":     "+0.5% Drop Chance per point (max 20%)",
+  "Fokus":     "+1 Flat Bonus XP per point (max +50)",
+  "Vitalität": "+1% Streak Protection per point (max 75% total)",
+  "Charisma":  "+5% Companion Bond XP per point",
+  "Tempo":     "+1% Forge Temp Recovery per point",
 };
 
 const GRID_COLS = 5;
@@ -507,7 +508,7 @@ function InventoryTooltip({ item, mousePosRef, equippedItem }: { item: Inventory
                 <span className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>vs {equippedItem.name}</span>
                 {totalDiff !== 0 && (
                   <span className="text-xs font-bold font-mono" style={{ color: totalDiff > 0 ? "#4ade80" : "#ef4444" }}>
-                    {totalDiff > 0 ? `+${totalDiff}` : totalDiff} gesamt
+                    {totalDiff > 0 ? `+${totalDiff}` : totalDiff} total
                   </span>
                 )}
               </div>
@@ -519,7 +520,7 @@ function InventoryTooltip({ item, mousePosRef, equippedItem }: { item: Inventory
         <div className="text-xs pt-1 space-y-0.5" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
           {item.minLevel && item.minLevel > 1 && (
             <p style={{ color: item.minLevel > (item as any)._playerLevel ? "#ef4444" : "rgba(255,255,255,0.4)" }}>
-              Benötigt Level {item.minLevel}
+              Requires Level {item.minLevel}
             </p>
           )}
           {item.slot && (
@@ -539,14 +540,14 @@ type InvFilter = "all" | "equipment" | "consumable" | "passive";
 type InvSort = "none" | "rarity" | "name" | "level";
 
 const INV_FILTERS: { key: InvFilter; label: string }[] = [
-  { key: "all", label: "Alle" },
+  { key: "all", label: "All" },
   { key: "equipment", label: "Gear" },
   { key: "consumable", label: "Items" },
-  { key: "passive", label: "Passiv" },
+  { key: "passive", label: "Passive" },
 ];
 
 const INV_SORTS: { key: InvSort; label: string }[] = [
-  { key: "none", label: "Standard" },
+  { key: "none", label: "Default" },
   { key: "rarity", label: "Rarity" },
   { key: "name", label: "Name" },
   { key: "level", label: "Level" },
@@ -646,11 +647,11 @@ function InventorySlot({ item, level, idx, onItemClick, onDragStart, onDragOver,
 
 const EQUIP_SLOT_LABELS: { slot: string; emoji: string; label: string; iconSrc?: string }[] = [
   { slot: "helm", emoji: "", iconSrc: "/images/icons/equip-helm.png", label: "Helm" },
-  { slot: "weapon", emoji: "", iconSrc: "/images/icons/equip-weapon.png", label: "Waffe" },
-  { slot: "shield", emoji: "", iconSrc: "/images/icons/equip-shield.png", label: "Schild" },
-  { slot: "armor", emoji: "", iconSrc: "/images/icons/equip-armor.png", label: "Rüstung" },
-  { slot: "amulet", emoji: "", iconSrc: "/images/icons/equip-amulet.png", label: "Amulett" },
-  { slot: "boots", emoji: "", iconSrc: "/images/icons/equip-boots.png", label: "Stiefel" },
+  { slot: "weapon", emoji: "", iconSrc: "/images/icons/equip-weapon.png", label: "Weapon" },
+  { slot: "shield", emoji: "", iconSrc: "/images/icons/equip-shield.png", label: "Shield" },
+  { slot: "armor", emoji: "", iconSrc: "/images/icons/equip-armor.png", label: "Armor" },
+  { slot: "amulet", emoji: "", iconSrc: "/images/icons/equip-amulet.png", label: "Amulet" },
+  { slot: "boots", emoji: "", iconSrc: "/images/icons/equip-boots.png", label: "Boots" },
 ];
 
 function GearSlotRow({ slot, iconSrc, label, item, onUnequip, unequipping }: {
@@ -681,7 +682,7 @@ function GearSlotRow({ slot, iconSrc, label, item, onUnequip, unequipping }: {
           <p className="text-xs font-medium truncate" style={{ color: item ? "#e8e8e8" : "rgba(255,255,255,0.3)" }}>
             {item
               ? <span className="inline-flex items-center gap-1">{item.icon ? <img src={item.icon} alt="" width={36} height={36} style={{ imageRendering: "auto" }} /> : <span style={{ color: RARITY_COLORS[item.rarity] || "#9ca3af" }}>◆</span>} {item.name}</span>
-              : <span style={{ color: "rgba(255,255,255,0.2)" }}>Leer</span>}
+              : <span style={{ color: "rgba(255,255,255,0.2)" }}>Empty</span>}
           </p>
           <p className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>{label}</p>
         </div>
@@ -707,7 +708,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
   const [loading, setLoading] = useState(true);
   const [equipping, setEquipping] = useState<string | null>(null);
   const [unequipping, setUnequipping] = useState<string | null>(null);
-  const [rightTab, setRightTab] = useState<"stats" | "ausrustung">("stats");
+  const [rightTab, setRightTab] = useState<"stats" | "equipment">("stats");
   const [profileSettingsOpen, setProfileSettingsOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState<{ item: CharacterData["inventory"][number]; rect: { x: number; y: number; width: number; height: number } } | null>(null);
   const [statTooltipOpen, setStatTooltipOpen] = useState<string | null>(null);
@@ -785,7 +786,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
       if (r.ok) {
         const item = charData?.inventory.find(i => i.id === itemId);
         if (item && addToast) {
-          addToast({ type: "item", itemName: item.name, message: `${item.name} ausgerüstet!`, icon: item.icon, rarity: item.rarity || "common" });
+          addToast({ type: "item", itemName: item.name, message: `${item.name} equipped!`, icon: item.icon, rarity: item.rarity || "common" });
         }
       }
       await fetchChar();
@@ -823,7 +824,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
         const data = await r.json();
         const item = charData?.inventory.find(i => i.id === itemId);
         if (addToast && item) {
-          addToast({ type: "item", itemName: item.name, message: data.message || "Item benutzt!", icon: item.icon, rarity: item.rarity || "common" });
+          addToast({ type: "item", itemName: item.name, message: data.message || "Item used!", icon: item.icon, rarity: item.rarity || "common" });
         }
       } else if (addToast) {
         const data = await r.json().catch(() => null);
@@ -845,10 +846,10 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
       });
       if (r.ok) {
         const item = charData?.inventory.find(i => i.id === itemId);
-        if (addToast && item) addToast({ type: "item", itemName: item.name, message: `${item.name} verworfen`, icon: item.icon, rarity: item.rarity || "common" });
+        if (addToast && item) addToast({ type: "item", itemName: item.name, message: `${item.name} discarded`, icon: item.icon, rarity: item.rarity || "common" });
       } else if (addToast) {
         const data = await r.json().catch(() => null);
-        addToast({ type: "error", message: data?.error || "Verwerfen fehlgeschlagen" });
+        addToast({ type: "error", message: data?.error || "Discard failed" });
       }
       await fetchChar();
     } catch {
@@ -928,7 +929,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
         >
           {/* Header + Sort */}
           <div className="flex items-center justify-between mb-2">
-            <p className="text-xs font-bold uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.5)" }}>Inventar</p>
+            <p className="text-xs font-bold uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.5)" }}>Inventory</p>
             <div className="relative" ref={sortDropdownRef}>
               <button
                 onClick={() => setSortDropdownOpen(v => !v)}
@@ -943,7 +944,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                   justifyContent: "space-between",
                 }}
               >
-                <span>{INV_SORTS.find(s => s.key === invSort)?.label ?? "Standard"}</span>
+                <span>{INV_SORTS.find(s => s.key === invSort)?.label ?? "Default"}</span>
                 <span style={{ fontSize: 8, opacity: 0.5 }}>{sortDropdownOpen ? "▲" : "▼"}</span>
               </button>
               {sortDropdownOpen && (
@@ -992,7 +993,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
               type="text"
               value={invSearch}
               onChange={e => setInvSearch(e.target.value)}
-              placeholder="Suche..."
+              placeholder="Search..."
               className="w-full text-xs px-2.5 py-1.5 rounded-lg"
               style={{
                 background: "rgba(255,255,255,0.04)",
@@ -1202,7 +1203,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
         >
           {/* Tab toggle */}
           <div className="flex gap-1 mb-3">
-            {(["stats", "ausrustung"] as const).map(tab => (
+            {(["stats", "equipment"] as const).map(tab => (
               <button
                 key={tab}
                 onClick={() => setRightTab(tab)}
@@ -1220,7 +1221,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
           </div>
 
           {/* Gear tab */}
-          {rightTab === "ausrustung" && (
+          {rightTab === "equipment" && (
             <div className="space-y-1.5">
               {EQUIP_SLOT_LABELS.map(({ slot, iconSrc, label }) => {
                 const eqRaw = charData?.equipment[slot];
@@ -1339,16 +1340,16 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
             const { kraft, ausdauer, weisheit, glueck, fokus, vitalitaet, charisma, tempo } = charData.stats;
             const base = charData.baseStats;
             const statRows = [
-              { icon: "/images/icons/stat-kraft.png", label: "Kraft", iconSrc: "/images/icons/stat-kraft.png",    val: kraft,    base: base.kraft,    tooltip: "KRA · +0.5% Quest-XP pro Punkt (max +30%)" },
-              { icon: "/images/icons/stat-ausdauer.png", label: "Ausdauer", iconSrc: "/images/icons/stat-ausdauer.png", val: ausdauer, base: base.ausdauer, tooltip: "AUS · -0.5% Forge Decay pro Punkt" },
-              { icon: "/images/icons/stat-weisheit.png", label: "Weisheit", iconSrc: "/images/icons/stat-weisheit.png", val: weisheit, base: base.weisheit, tooltip: "WEI · +0.5% Gold pro Punkt (max +30%)" },
-              { icon: "/images/icons/stat-glueck.png", label: "Glück", iconSrc: "/images/icons/stat-glueck.png",    val: glueck,   base: base.glueck,   tooltip: "GLÜ · +0.5% Drop-Chance pro Punkt (max 20%)" },
+              { icon: "/images/icons/stat-kraft.png", label: "Kraft", iconSrc: "/images/icons/stat-kraft.png",    val: kraft,    base: base.kraft,    tooltip: "KRA · +0.5% Quest XP per point (max +30%)" },
+              { icon: "/images/icons/stat-ausdauer.png", label: "Ausdauer", iconSrc: "/images/icons/stat-ausdauer.png", val: ausdauer, base: base.ausdauer, tooltip: "AUS · -0.5% Forge Decay per point" },
+              { icon: "/images/icons/stat-weisheit.png", label: "Weisheit", iconSrc: "/images/icons/stat-weisheit.png", val: weisheit, base: base.weisheit, tooltip: "WEI · +0.5% Gold per point (max +30%)" },
+              { icon: "/images/icons/stat-glueck.png", label: "Glück", iconSrc: "/images/icons/stat-glueck.png",    val: glueck,   base: base.glueck,   tooltip: "GLÜ · +0.5% Drop Chance per point (max 20%)" },
             ];
             const minorStatRows = [
-              { label: "Fokus", val: fokus || 0, tooltip: "FOK · +1 Flat Bonus-XP pro Punkt (max +50)" },
-              { label: "Vitalität", val: vitalitaet || 0, tooltip: "VIT · +1% Streak-Schutz pro Punkt (max 75%)" },
-              { label: "Charisma", val: charisma || 0, tooltip: "CHA · +5% Companion Bond-XP pro Punkt" },
-              { label: "Tempo", val: tempo || 0, tooltip: "TMP · +1% Forge-Temp-Recovery pro Punkt" },
+              { label: "Fokus", val: fokus || 0, tooltip: "FOK · +1 Flat Bonus XP per point (max +50)" },
+              { label: "Vitalität", val: vitalitaet || 0, tooltip: "VIT · +1% Streak Protection per point (max 75%)" },
+              { label: "Charisma", val: charisma || 0, tooltip: "CHA · +5% Companion Bond XP per point" },
+              { label: "Tempo", val: tempo || 0, tooltip: "TMP · +1% Forge Temp Recovery per point" },
             ];
             const hasMinorStats = minorStatRows.some(s => s.val > 0);
             return (
@@ -1356,41 +1357,20 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                 <div className="space-y-2 mb-4">
                   {statRows.map(s => {
                     const bonus = s.val - s.base;
-                    const isOpen = statTooltipOpen === s.label;
+                    const tipKey = s.label.toLowerCase().replace("ü", "ue") as string;
+                    const registryKey = tipKey === "glueck" ? "glueck" : tipKey === "kraft" ? "kraft" : tipKey === "ausdauer" ? "ausdauer" : tipKey === "weisheit" ? "weisheit" : tipKey;
                     return (
-                      <div key={s.label} style={{ position: "relative" }}>
-                        <div
-                          className="flex items-center gap-2"
-                          style={{ cursor: "pointer" }}
-                          onClick={(e) => { e.stopPropagation(); setStatTooltipOpen(isOpen ? null : s.label); }}
-                        >
-                          <img src={s.iconSrc} alt={s.label} width={16} height={16} style={{ imageRendering: "auto" }} className="w-4 h-4" />
-                          <span className="text-xs flex-1" style={{ color: "rgba(255,255,255,0.65)" }}>{s.label}</span>
-                          <span className="text-xs font-mono font-bold" style={{ color: "#e8e8e8" }}>{s.val}</span>
-                          {bonus > 0 && (
-                            <span className="text-xs font-mono" style={{ color: "#4ade80" }}>(+{bonus})</span>
-                          )}
-                        </div>
-                        {isOpen && (
-                          <div
-                            style={{
-                              position: "absolute",
-                              top: "calc(100% + 4px)",
-                              right: 0,
-                              zIndex: 300,
-                              background: "#141414",
-                              border: `1px solid rgba(255,255,255,0.15)`,
-                              borderRadius: 6,
-                              padding: "6px 10px",
-                              whiteSpace: "nowrap",
-                              boxShadow: "0 4px 16px rgba(0,0,0,0.7)",
-                            }}
-                            onClick={(e) => e.stopPropagation()}
-                          >
-                            <p className="text-xs font-semibold" style={{ color: "#e8e8e8" }}>{s.label}</p>
-                            <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.5)" }}>{STAT_EFFECTS[s.label] ?? s.tooltip}</p>
+                      <div key={s.label}>
+                        <Tip k={registryKey}>
+                          <div className="flex items-center gap-2" style={{ cursor: "help" }}>
+                            <img src={s.iconSrc} alt={s.label} width={16} height={16} style={{ imageRendering: "auto" }} className="w-4 h-4" />
+                            <span className="text-xs flex-1" style={{ color: "rgba(255,255,255,0.65)" }}>{s.label}</span>
+                            <span className="text-xs font-mono font-bold" style={{ color: "#e8e8e8" }}>{s.val}</span>
+                            {bonus > 0 && (
+                              <span className="text-xs font-mono" style={{ color: "#4ade80" }}>(+{bonus})</span>
+                            )}
                           </div>
-                        )}
+                        </Tip>
                       </div>
                     );
                   })}
@@ -1400,12 +1380,20 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                 {hasMinorStats && (
                   <div className="space-y-1.5 mb-4 pt-2" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
                     <p className="text-xs font-semibold mb-1" style={{ color: "rgba(255,255,255,0.35)" }}>Sekundär-Stats</p>
-                    {minorStatRows.filter(s => s.val > 0).map(s => (
-                      <div key={s.label} className="flex items-center gap-2">
-                        <span className="text-xs flex-1" style={{ color: "rgba(255,255,255,0.5)" }}>{s.label}</span>
-                        <span className="text-xs font-mono font-bold" style={{ color: "#a78bfa" }}>{s.val}</span>
-                      </div>
-                    ))}
+                    {minorStatRows.filter(s => s.val > 0).map(s => {
+                      const tipKey = s.label.toLowerCase().replace("ä", "ae") as string;
+                      const registryKey = tipKey === "vitalitaet" ? "vitalitaet" : tipKey;
+                      return (
+                        <div key={s.label}>
+                          <Tip k={registryKey}>
+                            <div className="flex items-center gap-2" style={{ cursor: "help" }}>
+                              <span className="text-xs flex-1" style={{ color: "rgba(255,255,255,0.5)" }}>{s.label}</span>
+                              <span className="text-xs font-mono font-bold" style={{ color: "#a78bfa" }}>{s.val}</span>
+                            </div>
+                          </Tip>
+                        </div>
+                      );
+                    })}
                   </div>
                 )}
 

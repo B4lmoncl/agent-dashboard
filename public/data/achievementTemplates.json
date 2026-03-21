@@ -462,11 +462,11 @@
     {
       "id": "ten_quests",
       "name": "Ten Quest Mark",
-      "description": "Complete 10 quests total",
+      "description": "Complete 25 quests total",
       "icon": "/images/icons/ach-ten-quests.png",
       "condition": {
         "type": "quests_completed",
-        "count": 10
+        "count": 25
       },
       "rewards": {
         "xp": 25,
@@ -480,11 +480,11 @@
     {
       "id": "fifty_quests",
       "name": "Half Century",
-      "description": "Complete 50 quests total",
+      "description": "Complete 75 quests total",
       "icon": "/images/icons/ach-fifty-quests.png",
       "condition": {
         "type": "quests_completed",
-        "count": 50
+        "count": 75
       },
       "rewards": {
         "xp": 75,
@@ -570,11 +570,11 @@
     {
       "id": "perfectionist",
       "name": "Perfectionist",
-      "description": "Complete 100 quests",
+      "description": "Complete 150 quests",
       "icon": "/images/icons/achievement-perfectionist.png",
       "condition": {
         "type": "quests_completed",
-        "count": 100
+        "count": 150
       },
       "rewards": {
         "xp": 150,
@@ -588,11 +588,11 @@
     {
       "id": "no_rest",
       "name": "No Rest for the Wicked",
-      "description": "Maintain a 30-day streak",
+      "description": "Maintain a 60-day streak",
       "icon": "/images/icons/achievement-no-rest.png",
       "condition": {
         "type": "streak_days",
-        "count": 30
+        "count": 60
       },
       "rewards": {
         "xp": 75,
@@ -787,7 +787,7 @@
     {
       "id": "initiate",
       "name": "Initiate",
-      "description": "Reach level 5 (100 XP)",
+      "description": "Earn 100 XP total",
       "icon": "?",
       "condition": {
         "type": "xp_threshold",
@@ -805,7 +805,7 @@
     {
       "id": "adept",
       "name": "Adept",
-      "description": "Reach level 10 (500 XP)",
+      "description": "Earn 500 XP total",
       "icon": "?",
       "condition": {
         "type": "xp_threshold",
@@ -823,7 +823,7 @@
     {
       "id": "master_rank",
       "name": "Master",
-      "description": "Reach level 20 (1500 XP)",
+      "description": "Earn 1,500 XP total",
       "icon": "?",
       "condition": {
         "type": "xp_threshold",
@@ -841,7 +841,7 @@
     {
       "id": "grandmaster",
       "name": "Grandmaster",
-      "description": "Reach level 50 (5000 XP)",
+      "description": "Earn 5,000 XP total",
       "icon": "?",
       "condition": {
         "type": "xp_threshold",

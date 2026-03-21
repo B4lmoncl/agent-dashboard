@@ -5,6 +5,7 @@ import { createPortal } from "react-dom";
 import { useDashboard } from "@/app/DashboardContext";
 import { useModalBehavior } from "@/components/ModalPortal";
 import { getAuthHeaders } from "@/lib/auth-client";
+import { Tip } from "@/components/GameTooltip";
 
 // ─── Types ──────────────────────────────────────────────────────────────────
 interface ProfessionDef {
@@ -607,7 +608,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
 
         return (
           <div className="space-y-2">
-            <p className="text-sm font-semibold uppercase tracking-widest" style={{ color: "rgba(99,102,241,0.6)" }}>Workshop Tools</p>
+            <Tip k="workshop_upgrades"><p className="text-sm font-semibold uppercase tracking-widest" style={{ color: "rgba(99,102,241,0.6)", cursor: "help" }}>Workshop Tools</p></Tip>
             <p className="text-sm" style={{ color: "rgba(255,255,255,0.25)" }}>Permanent XP upgrades. Each tier must be unlocked sequentially.</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               {WORKSHOP_TIERS.filter(t => t.tier > 0).map(gear => {

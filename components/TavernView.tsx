@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { useDashboard } from "@/app/DashboardContext";
 import { getAuthHeaders } from "@/lib/auth-client";
+import { Tip } from "@/components/GameTooltip";
 
 // ─── Types ──────────────────────────────────────────────────────────────────
 
@@ -131,7 +132,7 @@ export default function TavernView({ onRefresh }: { onRefresh?: () => void }) {
       {/* Header */}
       <div className="text-center space-y-2">
         <p className="text-3xl">🔥</p>
-        <h2 className="text-lg font-bold" style={{ color: "#d97706" }}>The Hearth</h2>
+        <Tip k="hearth"><h2 className="text-lg font-bold" style={{ color: "#d97706", cursor: "help" }}>The Hearth</h2></Tip>
         <p className="text-xs text-w35" style={{ maxWidth: 400, margin: "0 auto" }}>
           A place of rest within the tower. Here, weary adventurers can pause their journey without losing their progress. Your streaks and forge temperature will be frozen while you rest.
         </p>

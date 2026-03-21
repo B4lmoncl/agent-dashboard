@@ -31,6 +31,7 @@ import { useFloatingRewards, FloatingRewardsLayer } from "@/components/FloatingR
 import { CompanionsWidget } from "@/components/CompanionsWidget";
 import { RoadmapView } from "@/components/RoadmapView";
 import { InfoTooltip } from "@/components/InfoTooltip";
+import { Tip } from "@/components/GameTooltip";
 import { WandererRest } from "@/components/WandererRest";
 import GuildHallBackground from "@/components/GuildHallBackground";
 import FeedbackOverlay from "@/components/FeedbackOverlay";
@@ -865,7 +866,7 @@ export default function Dashboard() {
                       border: "1px solid rgba(251,191,36,0.15)",
                       cursor: "pointer",
                     }}
-                    title="Login-Kalender"
+                    title="Login Calendar"
                   >
                     📅
                   </button>
@@ -919,7 +920,7 @@ export default function Dashboard() {
                     <p className="mb-2" style={{ color: "rgba(255,255,255,0.55)", fontSize: 13 }}>
                       Your activity level. Rises with each quest, drops when you pause.
                     </p>
-                    <p className="mb-1.5 font-semibold text-w60" style={{ fontSize: 12 }}>Was bringt&apos;s?</p>
+                    <p className="mb-1.5 font-semibold text-w60" style={{ fontSize: 12 }}>Benefits</p>
                     <div className="space-y-1.5 mb-3">
                       {[
                         { t: "0%", label: "Cold", bonus: "XP ×0.5 (Malus!)", color: "#4b5563" },
@@ -937,7 +938,7 @@ export default function Dashboard() {
                       ))}
                     </div>
                     <p className="mb-1" style={{ color: "rgba(255,255,255,0.55)", fontSize: 12 }}>
-                      +10% pro abgeschlossener Quest. Sinkt um ~2% pro Stunde Inaktivität.
+                      +10% per completed quest. Decays ~2% per hour of inactivity.
                     </p>
                   </div>
                 </div>
@@ -1205,7 +1206,7 @@ export default function Dashboard() {
             </div>
             <div className="rounded-xl px-6 py-16 text-center border-w6" style={{ background: "rgba(255,255,255,0.02)" }}>
               <p className="text-lg font-bold mb-2 text-w25">Coming Soon</p>
-              <p className="text-xs" style={{ color: "rgba(255,255,255,0.15)" }}>Das Observatory wird bald eröffnet. Halte Ausschau nach den Sternen.</p>
+              <p className="text-xs" style={{ color: "rgba(255,255,255,0.15)" }}>The Observatory will open soon. Watch for the stars.</p>
             </div>
           </div>
         )}
@@ -1422,7 +1423,7 @@ export default function Dashboard() {
                   {dailyMissions && playerName && (
                     <div className="rounded-xl p-3 mb-3" style={{ background: "linear-gradient(135deg, rgba(99,102,241,0.06) 0%, rgba(168,85,247,0.04) 100%)", border: "1px solid rgba(99,102,241,0.15)" }}>
                       <div className="flex items-center justify-between mb-2">
-                        <span className="text-xs font-bold uppercase tracking-wider" style={{ color: "rgba(99,102,241,0.7)" }}>Daily Missions</span>
+                        <Tip k="daily_missions"><span className="text-xs font-bold uppercase tracking-wider" style={{ color: "rgba(99,102,241,0.7)", cursor: "help" }}>Daily Missions</span></Tip>
                         <span className="text-xs font-mono font-bold" style={{ color: dailyMissions.earned >= dailyMissions.total ? "#4ade80" : "#818cf8" }}>
                           {dailyMissions.earned}/{dailyMissions.total}
                         </span>
@@ -1640,7 +1641,7 @@ export default function Dashboard() {
             </div>
             <div className="rounded-xl px-6 py-16 text-center border-w6" style={{ background: "rgba(255,255,255,0.02)" }}>
               <p className="text-lg font-bold mb-2 text-w25">Coming Soon</p>
-              <p className="text-xs" style={{ color: "rgba(255,255,255,0.15)" }}>Das Arcanum sammelt seine Schriftrollen. Klassenquests und Skill Trees folgen bald.</p>
+              <p className="text-xs" style={{ color: "rgba(255,255,255,0.15)" }}>The Arcanum gathers its scrolls. Class quests and skill trees coming soon.</p>
             </div>
           </div>
         )}
@@ -1927,7 +1928,7 @@ export default function Dashboard() {
               <div className="text-xs mb-4 text-w50">
                 {lootDrop.effect.type === 'gold' && `＋${lootDrop.effect.amount} Gold`}
                 {lootDrop.effect.type === 'xp' && `＋${lootDrop.effect.amount} XP`}
-                {lootDrop.effect.type === 'streak_shield' && `＋${lootDrop.effect.amount} Streak-Schutzschild`}
+                {lootDrop.effect.type === 'streak_shield' && `＋${lootDrop.effect.amount} Streak Shield`}
                 {lootDrop.effect.type === 'bond' && `＋${lootDrop.effect.amount} Bond XP`}
               </div>
             )}
@@ -1936,7 +1937,7 @@ export default function Dashboard() {
               className="shop-buy-btn w-full py-2.5 rounded-xl text-sm font-semibold"
               style={{ background: `${lootDrop.rarityColor}22`, color: lootDrop.rarityColor, border: `1px solid ${lootDrop.rarityColor}55` }}
             >
-              Einsammeln x
+              Collect x
             </button>
           </div>
         </div>
@@ -2209,7 +2210,7 @@ export default function Dashboard() {
                 Your class path is ready!
               </h2>
               <p className="text-sm font-semibold" style={{ color: "#a78bfa" }}>
-                {classActivatedNotif.classIcon} Willkommen auf dem {classActivatedNotif.className}!
+                {classActivatedNotif.classIcon} Welcome to {classActivatedNotif.className}!
               </p>
             </div>
             <p className="text-xs text-center text-w50">
@@ -2220,7 +2221,7 @@ export default function Dashboard() {
               className="w-full py-2.5 rounded-xl font-semibold text-sm"
               style={{ background: "linear-gradient(135deg, #7c3aed, #a78bfa)", color: "#fff" }}
             >
-              Los geht&apos;s!
+              Let&apos;s go!
             </button>
           </div>
         </ModalOverlay>

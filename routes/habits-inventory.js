@@ -715,7 +715,7 @@ router.get('/api/player/:name/character', (req, res) => {
   }
   let classTier = null;
   if (u.classId) {
-    const classData = state.store.classes ? state.store.classes.find(c => c.id === u.classId) : null;
+    const classData = state.classesData?.classes ? state.classesData?.classes.find(c => c.id === u.classId) : null;
     if (classData && classData.tiers) {
       const tier = [...classData.tiers].reverse().find(t => xp >= t.minXp);
       if (tier) classTier = tier.title;
@@ -799,8 +799,8 @@ router.get('/api/player/:name/character', (req, res) => {
     title: lvlInfo.title,
     classId: u.classId || null,
     classTier,
-    classFantasy: u.classId && state.store.classes ? (state.store.classes.find(c => c.id === u.classId)?.fantasy ?? null) : null,
-    classIcon: u.classId && state.store.classes ? (state.store.classes.find(c => c.id === u.classId)?.icon ?? null) : null,
+    classFantasy: u.classId && state.classesData?.classes ? (state.classesData?.classes.find(c => c.id === u.classId)?.fantasy ?? null) : null,
+    classIcon: u.classId && state.classesData?.classes ? (state.classesData?.classes.find(c => c.id === u.classId)?.icon ?? null) : null,
     relationshipStatus: u.relationshipStatus || 'single',
     partnerName: u.partnerName || null,
     companion,

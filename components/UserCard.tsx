@@ -2,6 +2,7 @@
 
 import type { User, ClassDef } from "@/app/types";
 import { getUserLevel, getUserXpProgress, getForgeTempInfo, GUILD_LEVELS } from "@/app/utils";
+import { Tip } from "@/components/GameTooltip";
 import shopData from "../public/data/shopItems.json";
 
 const GEAR_ICONS: Record<string, { icon: string; name: string; bonus: number }> = Object.fromEntries(
@@ -213,27 +214,29 @@ export function UserCard({ user, classes = [] }: { user: User; classes?: ClassDe
           <span className="text-xs inline-flex items-center gap-1.5" style={{ color: "rgba(255,255,255,0.35)" }}>
             Quests <span className="font-mono font-semibold" style={{ color: "#8b5cf6" }}>{user.questsCompleted ?? 0}</span>
           </span>
-          <span
-            className="text-xs inline-flex items-center gap-1"
-            title={forgeInfo.tooltipText}
-            style={{ cursor: "default" }}
-          >
-            <SmartIcon src="/images/icons/ach-forge-novice.png" size={35} style={{ filter: forgeFilter }} />
-            <span className="font-mono font-semibold" style={{ color: forgeColor }}>{temp}%</span>
-            <span className="text-xs" style={{ color: forgeColor, fontWeight: 600 }}>{forgeTierLabel}</span>
-            <span style={{ color: "rgba(255,255,255,0.2)" }}>·</span>
-            <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.3)" }}>{goldMultiplier}×</span>
-          </span>
+          <Tip k="forge_temp">
+            <span className="text-xs inline-flex items-center gap-1" style={{ cursor: "help" }}>
+              <SmartIcon src="/images/icons/ach-forge-novice.png" size={35} style={{ filter: forgeFilter }} />
+              <span className="font-mono font-semibold" style={{ color: forgeColor }}>{temp}%</span>
+              <span className="text-xs" style={{ color: forgeColor, fontWeight: 600 }}>{forgeTierLabel}</span>
+              <span style={{ color: "rgba(255,255,255,0.2)" }}>·</span>
+              <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.3)" }}>{goldMultiplier}×</span>
+            </span>
+          </Tip>
         </div>
         {/* Total Modifiers */}
         {user.modifiers && (
           <div className="flex items-center justify-between mt-1.5 pt-1.5" style={{ borderTop: "1px solid rgba(255,255,255,0.04)" }}>
-            <span className="text-xs inline-flex items-center gap-1" style={{ color: "#a855f7" }}>
-              XP <span className="font-mono font-bold" style={{ color: user.modifiers.xp.total >= 1 ? "#a855f7" : "#ef4444" }}>×{user.modifiers.xp.total}</span>
-            </span>
-            <span className="text-xs inline-flex items-center gap-1" style={{ color: "#fbbf24" }}>
-              Gold <span className="font-mono font-bold" style={{ color: "#fbbf24" }}>×{user.modifiers.gold.total}</span>
-            </span>
+            <Tip k="xp">
+              <span className="text-xs inline-flex items-center gap-1" style={{ color: "#a855f7", cursor: "help" }}>
+                XP <span className="font-mono font-bold" style={{ color: user.modifiers.xp.total >= 1 ? "#a855f7" : "#ef4444" }}>×{user.modifiers.xp.total}</span>
+              </span>
+            </Tip>
+            <Tip k="gold">
+              <span className="text-xs inline-flex items-center gap-1" style={{ color: "#fbbf24", cursor: "help" }}>
+                Gold <span className="font-mono font-bold" style={{ color: "#fbbf24" }}>×{user.modifiers.gold.total}</span>
+              </span>
+            </Tip>
           </div>
         )}
         {/* Achievement Points */}

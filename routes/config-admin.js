@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const crypto = require('crypto');
-const { state, XP_BY_PRIORITY, GOLD_BY_PRIORITY, TEMP_BY_PRIORITY, XP_BY_RARITY, GOLD_BY_RARITY, RUNENSPLITTER_BY_RARITY, STREAK_MILESTONES, RARITY_WEIGHTS, RARITY_COLORS, RARITY_ORDER, EQUIPMENT_SLOTS, LEVELS, PLAYER_QUEST_TYPES, saveQuests, savePlayerProgress, saveManagedKeys, rebuildQuestsById } = require('../lib/state');
-const { now, getLevelInfo, getPlayerProgress, getTodayBerlin } = require('../lib/helpers');
+const { state, XP_BY_PRIORITY, GOLD_BY_PRIORITY, TEMP_BY_PRIORITY, XP_BY_RARITY, GOLD_BY_RARITY, RUNENSPLITTER_BY_RARITY, STREAK_MILESTONES, RARITY_WEIGHTS, RARITY_COLORS, RARITY_ORDER, EQUIPMENT_SLOTS, LEVELS, PLAYER_QUEST_TYPES, saveQuests, saveUsers, savePlayerProgress, saveManagedKeys, rebuildQuestsById, ensureUserCurrencies } = require('../lib/state');
+const { now, getLevelInfo, getPlayerProgress, getTodayBerlin, awardCurrency } = require('../lib/helpers');
 const { requireApiKey, requireAuth, requireMasterKey, getMasterKey } = require('../lib/middleware');
 const { assignRarity, selectDailyQuests } = require('../lib/rotation');
 const { resolveQuest } = require('../lib/quest-templates');
@@ -121,9 +121,9 @@ router.get('/api/dashboard', async (req, res) => {
       // Check daily bonus claimed
       const dailyClaimed = u.dailyBonusLastClaim === today;
       // Check rituals completed today
-      const ritualsToday = (state.store.rituals || []).filter(r => r.playerId === playerLower && r.lastCompleted === today).length;
+      const ritualsToday = (state.rituals || []).filter(r => r.playerId === playerLower && r.lastCompleted === today).length;
       // Check companion petted today
-      const petCount = u.companion?.petsToday ?? 0;
+      const petCount = u.companion?.petCountToday ?? 0;
       // Check crafted today
       const craftedToday = u.lastCraftDate === today;
       // Build mission list with points
@@ -186,8 +186,8 @@ router.post('/api/daily-missions/claim', requireAuth, (req, res) => {
   const pp = state.playerProgress[uid] || {};
   const questsToday = Object.values(pp.completedQuests || {}).filter(cq => cq && cq.at && cq.at.startsWith(today)).length;
   const dailyClaimed = u.dailyBonusLastClaim === today;
-  const ritualsToday = (state.store.rituals || []).filter(r => r.playerId === uid && r.lastCompleted === today).length;
-  const petCount = u.companion?.petsToday ?? 0;
+  const ritualsToday = (state.rituals || []).filter(r => r.playerId === uid && r.lastCompleted === today).length;
+  const petCount = u.companion?.petCountToday ?? 0;
   const craftedToday = u.lastCraftDate === today;
   const missions = [
     { points: 100, done: dailyClaimed },

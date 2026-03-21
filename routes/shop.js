@@ -2,7 +2,7 @@
  * Shop, Gear, Personal Quest Templates & Forge Challenge Routes.
  */
 const router = require('express').Router();
-const { state, saveUsers, saveQuests, SHOP_ITEMS, GEAR_TIERS } = require('../lib/state');
+const { state, saveUsers, saveQuests, SHOP_ITEMS, GEAR_TIERS, ensureUserCurrencies } = require('../lib/state');
 const { now, getUserGear, getLevelInfo } = require('../lib/helpers');
 const { requireApiKey } = require('../lib/middleware');
 

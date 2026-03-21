@@ -1405,6 +1405,7 @@ These features have been proposed by audit agents in the past as "missing" when 
 | **Workshop Upgrades (permanent bonuses)** | `public/data/shopItems.json` (workshopUpgrades), `routes/shop.js`, `lib/helpers.js` | Added in Session 6 |
 | **Tavern/Rest Mode (The Hearth)** | `components/TavernView.tsx`, `routes/players.js`, `app/config.ts` (room in Breakaway floor) | Added in Session 6, moved to Breakaway in Session 8 |
 | **Rift/Dungeon System (The Rift)** | `components/RiftView.tsx`, `routes/rift.js`, `app/config.ts` (Great Halls room) | Added in Session 6 |
+| **Rift abandon confirmation** | `components/RiftView.tsx` (2-step confirm state with Cancel button) | Added in Session 8 |
 
 ### A.2 Verified Non-Bugs (Do NOT Report Again)
 
@@ -1426,6 +1427,12 @@ These were reported as bugs by audit agents but are either intentional design de
 | **Timing-safe comparison leaks key length** | Master key length is not a meaningful secret in this context. |
 | **`@next/next/no-img-element` lint warnings** | Intentional — project uses static export with pixel art. `next/image` not needed and would complicate the build. |
 | **React compiler warnings (setState in effect)** | Pre-existing across 10+ components. No runtime impact. Would require major refactor to fix. |
+| **Expedition bonus titles not in titles.json** | Expedition titles are awarded directly via `u.earnedTitles.push()`, not through `checkAndAwardTitles()`. They don't need titles.json entries. |
+| **Banner dropRates are strings ("0.8%") not numbers** | Display-only documentation in bannerTemplates.json. Actual rates hardcoded in gacha.js. Strings never parsed for math. |
+| **rituals.json and habits.json are empty arrays** | Intentional — these are user-created content, not templates. Empty is the correct initial state. |
+| **Quest catalog templates missing rewards field** | Intentional — templates use difficulty-based rewards resolved from gameConfig.json at runtime. |
+| **loadingAction blocks all quest actions globally** | Single mutex is adequate — users typically interact with one quest at a time. Per-quest loading would add complexity. |
+| **Hearth enter button has no 2-step confirmation** | Not needed — the "While resting" panel already shows all consequences (30-day cooldown, no quests, etc.) before the button. |
 
 ### A.3 Architectural Decisions (Do NOT "Fix" These)
 
@@ -1463,75 +1470,345 @@ These were reported as bugs by audit agents but are either intentional design de
 
 ---
 
-## 20. Phase 2026-03-21 — Full Codebase Audit (Session 8)
+## 20. Phase 2026-03-21 — Deep Codebase Audit Session 8
 
-### 20.1 FIX: Daytime Sky Too Dark
+### 20.1 CRITICAL: Rift System Bypasses Entire Reward Pipeline
+
+**Severity: CRITICAL**
+**File:** `routes/rift.js:222-229`
+
+The Rift `complete-stage` endpoint awards XP and Gold **raw** without going through `onQuestCompletedByUser()`. This means:
+
+| What's Missing | Impact |
+|----------------|--------|
+| XP multipliers (Kraft, forge temp, companion, gear, hoarding malus) | Players get raw XP instead of multiplied XP |
+| Gold multipliers (Weisheit, streak, forge temp, legendary effects) | Players get raw gold instead of multiplied gold |
+| Forge temperature update | No forge temp gain from rift stages |
+| Streak update | Rift stages don't count toward daily streak |
+| Loot drops (Glück, luck buff, pity) | No item drops from rift stages |
+| Achievement checks | Rift completions don't trigger achievements |
+| Title checks | Rift completions don't trigger title awards |
+| Expedition contribution | Rift stages don't count toward cooperative expedition |
+| Weekly challenge progress | Rift stages don't count toward Sternenpfad |
+| Crafting material drops | No materials from rift stages |
+| Recipe discovery | No recipe drops from rift stages |
+| Activity feed logging | Rift completions not logged to social feed |
+| Daily mission progress | Rift stages don't count toward daily missions |
+
+**Current code:**
+```js
+u.xp = (u.xp || 0) + nextStage.xpReward;  // Raw XP, no multipliers
+awardCurrency(uid, 'gold', nextStage.goldReward);  // Raw gold, no multipliers
+```
+
+**Fix:** Call `onQuestCompletedByUser()` with a synthetic quest object representing the rift stage, or extract the reward logic into a shared function.
+
+### 20.2 HIGH: NPC Departures Not Processed Between Midnights
+
+**Severity: HIGH**
+**File:** `lib/npc-engine.js:255-260`
+
+`checkPeriodicTasks()` runs every 30 minutes but does NOT call `processNpcDepartures()`. If an NPC's departure time passes between midnight rotations, it stays "active" with quests still available until the next server restart or midnight rotation.
+
+**Fix:** Add `processNpcDepartures(now);` call in `checkPeriodicTasks()`.
+
+### 20.3 MEDIUM: MASTER_KEY Env Var Never Read
+
+**Severity: MEDIUM**
+**File:** `lib/auth.js:34-39`
+
+`getMasterKeyFromEnv()` returns `envKeys[0]` (first API key) but never checks `process.env.MASTER_KEY`. The documented `MASTER_KEY` env var is dead configuration.
+
+**Fix:** Check `process.env.MASTER_KEY` first: `return process.env.MASTER_KEY || envKeys[0] || '';`
+
+### 20.4 MEDIUM: getBondLevel Fallback Returns Wrong Property Key
+
+**Severity: MEDIUM**
+**File:** `lib/helpers.js:89`
+
+When `BOND_LEVELS` is empty, the fallback returns `{ level: 1, name: 'Acquaintance', minXp: 0 }` but the normal return uses `title` (not `name`) as the property key, and BOND_LEVELS[0] is `'Stranger'` not `'Acquaintance'`. Frontend code expecting `.title` would get `undefined`.
+
+**Fix:** Change fallback to `{ level: 1, title: 'Stranger', minXp: 0 }`.
+
+### 20.5 MEDIUM: NPC Force-Spawn Ignores Cooldowns in Fallback
+
+**Severity: MEDIUM**
+**File:** `lib/npc-engine.js:213-217`
+
+`forceSpawnMinimumNpc()` falls back to ALL non-permanent NPCs if no common/uncommon candidates pass the initial filter. The fallback filter does NOT check cooldowns, so a force-spawned NPC could be one still on cooldown.
+
+**Fix:** Add cooldown check to fallback filter.
+
+### 20.6 MEDIUM: Forge Temp Loot Uses Hardcoded Decay Rate
+
+**Severity: MEDIUM**
+**File:** `lib/helpers.js:820-825`
+
+`addLootToInventory` calculates forge temp with hardcoded 2%/h decay, but `calcDynamicForgeTemp()` uses a variable rate based on Ausdauer stat and legendary modifiers. The inline calculation diverges from actual forge temp.
+
+**Fix:** Use `calcDynamicForgeTemp(userId)` to get current temp, then add bonus.
+
+### 20.7 LOW: Tavern Leave Uses Falsy-OR for Frozen Values
+
+**Severity: LOW**
+**File:** `routes/players.js:635-636`
+
+```js
+u.streakDays = u.tavernRest.streakFrozenAt || u.streakDays;
+u.forgeTemp = u.tavernRest.forgeFrozenAt || u.forgeTemp;
+```
+
+If `streakFrozenAt` is 0 (player had 0 streak), `0 || u.streakDays` keeps current value instead of restoring to 0.
+
+**Fix:** Use nullish coalescing: `u.tavernRest.streakFrozenAt ?? u.streakDays`
+
+### 20.8 LOW: Rift Abandon Has No Confirmation Dialog
+
+**Severity: LOW (QoL)**
+**File:** `components/RiftView.tsx:140-153`
+
+`abandonRift()` immediately calls the API with no confirmation dialog. Abandoning a rift is destructive (applies multi-day cooldown), which is inconsistent with other destructive actions (dismantle, transmute) that have 2-step confirmation.
+
+**Fix:** Add confirmation state similar to ForgeView's `confirmAction` pattern.
+
+### 20.9 LOW: saveCampaigns Not Debounced
+
+**Severity: LOW**
+**File:** `lib/state.js:561-568`
+
+`saveCampaigns()` performs synchronous write on every call. Unlike `saveQuests`, `saveUsers`, `savePlayerProgress` which use `debouncedSave()`.
+
+**Fix:** Use `debouncedSave('campaigns', ...)` pattern.
+
+### 20.10 LOW: Local RARITY_ORDER Shadows Imported One
+
+**Severity: LOW**
+**File:** `lib/helpers.js:1208`
+
+Local `const RARITY_ORDER = [...]` redeclaration shadows the imported `RARITY_ORDER` from `state.js`. If the config-defined order is ever customized, recipe drop logic would silently ignore it.
+
+**Fix:** Remove local declaration, use imported one.
+
+### 20.11 LOW: loadManagedKeys Assumes validApiKeys Exists
+
+**Severity: LOW**
+**File:** `lib/state.js:926-936`
+
+`loadManagedKeys()` calls `state.validApiKeys.add(k.key)` but `validApiKeys` is initially `null`. Currently safe due to boot order, but fragile.
+
+**Fix:** Add null guard: `if (state.validApiKeys) state.validApiKeys.add(k.key);`
+
+### 20.12 INFO: selectDailyQuests Dead Code
+
+**File:** `lib/rotation.js:107-154`
+
+Fully implemented function exported but never called anywhere. The quest pool system uses a different mechanism.
+
+### 20.13 INFO: seedQuestCatalog Uses Hardcoded Base Date
+
+**File:** `lib/quest-catalog.js:41`
+
+All seed quests get `createdAt: 2026-03-10T12:00:00Z`. Already 11+ days old on current deployment.
+
+### 20.14 All Issues — Fixed
+
+| # | Issue | Severity | Status |
+|---|-------|----------|--------|
+| 1 | Rift bypasses reward pipeline | CRITICAL | **Fixed** — `77c52c2` |
+| 2 | NPC departures not processed between midnights | HIGH | **Fixed** — `77c52c2` |
+| 3 | MASTER_KEY env var never read | MEDIUM | **Fixed** — `77c52c2` |
+| 4 | getBondLevel fallback wrong property | MEDIUM | **Fixed** — `77c52c2` |
+| 5 | NPC force-spawn ignores cooldowns | MEDIUM | **Fixed** — `77c52c2` |
+| 6 | Forge temp loot hardcoded decay | MEDIUM | **Fixed** — `77c52c2` |
+| 7 | Tavern leave falsy-OR | LOW | **Fixed** — `77c52c2` |
+| 8 | Rift abandon no confirmation | LOW | **Fixed** — `77c52c2` |
+| 9 | saveCampaigns not debounced | LOW | **Fixed** — `77c52c2` |
+| 10 | Local RARITY_ORDER shadows import | LOW | **Fixed** — `77c52c2` |
+| 11 | loadManagedKeys null guard | LOW | **Fixed** — `77c52c2` |
+| 12 | selectDailyQuests dead code | INFO | Acknowledged |
+| 13 | Hardcoded seed date | INFO | Acknowledged |
+
+---
+
+## 21. Phase 2026-03-21 — Data Template & Frontend Polish (Session 8, Batch 2)
+
+### 21.1 Data Template Fixes
+
+| Issue | Severity | Fix |
+|-------|----------|-----|
+| itemTemplates.json `slots` mismatched (head/chest/ring vs helm/armor) | MEDIUM | Aligned to `EQUIPMENT_SLOTS`: weapon, shield, helm, armor, amulet, boots |
+| itemTemplates.json `stats` missing 4 minor stats | MEDIUM | Added fokus, vitalitaet, charisma, tempo |
+| 4 duplicate achievement conditions (double-awarding same milestone) | HIGH | Differentiated: 10→25, 50→75, 100→150 quests; 30→60 day streak |
+| Achievement XP descriptions wrong ("Level 5 = 100 XP") | HIGH | Changed to "Earn X XP total" — no misleading level references |
+| `grandmaster` references impossible Level 50 | HIGH | Changed description to "Earn 5,000 XP total" |
+
+### 21.2 Frontend Translation Pass
+
+| Fix | File | Description |
+|-----|------|-------------|
+| Equipment slot labels | `CharacterView.tsx` | Waffe→Weapon, Schild→Shield, Rüstung→Armor, Amulett→Amulet, Stiefel→Boots |
+| Tab key "ausrustung" | `CharacterView.tsx` | →"equipment" (all references) |
+| Stat tooltip descriptions | `CharacterView.tsx` | "pro Punkt"→"per point", "Schutz"→"Protection", "gesamt"→"total" (8 tooltips + 8 stat bar tooltips) |
+| Gacha item type labels | `GachaPull.tsx` | Waffe→Weapon, Rüstung→Armor, Verbrauchbar→Consumable |
+
+### 21.3 Agent Findings — Verified Non-Issues (Session 8)
+
+| Reported Issue | Actual Status |
+|----------------|---------------|
+| itemTemplates slots/stats mismatch is CRITICAL | **Downgraded to MEDIUM** — arrays are metadata only, never read by code |
+| Expedition bonus titles not in titles.json | **Not a bug** — titles awarded directly via `u.earnedTitles.push()` |
+| Banner dropRates are strings not numbers | **Not a bug** — display-only documentation, rates hardcoded in gacha.js |
+| rituals.json and habits.json are empty | **Intentional** — user-created content, not templates |
+| Quest catalog templates missing rewards | **Intentional** — resolved from difficulty via gameConfig.json |
+| Hearth enter needs confirmation dialog | **Not needed** — UI shows comprehensive consequences panel |
+| loadingAction blocks all quest actions globally | **Acknowledged** — single-quest interaction pattern is typical |
+
+### 21.4 Remaining Acknowledged Issues (Not Fixed)
+
+| Issue | Severity | Status |
+|-------|----------|--------|
+| 31 achievements have placeholder icon "?" | MEDIUM | **Acknowledged** — Need actual icon assets |
+| Single-piece named sets with "fullBonus" | LOW | **Acknowledged** — May be intentional |
+| professions.json `xpPerCraft` unused field | LOW | **Acknowledged** — Recipe xpGain is used |
+| CURRENT_SEASON computed at module load time | LOW | **Acknowledged** — Only stale across month boundaries |
+
+### 21.5 Changelog (Session 8)
+
+| Commit | Timestamp | Description |
+|--------|-----------|-------------|
+| `77c52c2` | 2026-03-21 | Fix critical rift reward bypass + 10 audit findings |
+| `8b78b1c` | 2026-03-21 | Fix data template inconsistencies + translate remaining German UI text |
+
+## 22. Phase 2026-03-21 — Parallel Branch Fixes (Merged from Main)
+
+### 22.1 FIX: Daytime Sky Too Dark
 
 **Severity: MEDIUM (UX)**
 **File:** `components/GuildHallBackground.tsx:28`
 
-The day sky gradient used near-night colors (`#1a2848` top → `#6880b8` horizon), making daytime look almost as dark as night. Updated to a warm fantasy-bright palette:
+The day sky gradient used near-night colors, making daytime look almost as dark as night. Updated to warm fantasy-bright palette.
 
-| Position | Before | After |
-|----------|--------|-------|
-| Top | `#1a2848` (near-black blue) | `#3a6cb8` (medium blue) |
-| Upper-mid | `#2a4070` (dark navy) | `#5088d0` (friendly blue) |
-| Lower-mid | `#4060a0` (muted blue) | `#78a8e0` (light blue) |
-| Horizon | `#6880b8` (gray-blue) | `#b8c8e0` (warm haze) |
+### 22.2 Documentation & Version Sync
 
-### 20.2 Documentation Version Inconsistencies
+- `CLAUDE.md`: v1.4.0 → v1.5.3, component/route counts updated
+- `package.json`: 1.4.0 → 1.5.3
+- `ARCHITECTURE.md`: Added Rift + Hearth sections, fixed component count
+- Hearth moved into The Breakaway floor as a room
 
-**Severity: LOW**
+### 22.3 Battle Pass Rewards Hidden
 
-| File | Current Value | Correct Value | Status |
-|------|--------------|---------------|--------|
-| `CLAUDE.md:5` | v1.4.0 | v1.5.3 | **To fix** |
-| `package.json:3` | 1.4.0 | 1.5.3 | **To fix** |
-| `public/data/appState.json` | 1.4.0 | N/A (overwritten by server.js at boot) | Non-issue |
-| `CLAUDE.md` | "5 floors" | 5 floors (The Hearth moved into The Breakaway) | **Fixed** |
+Reward track hidden until backend claim system exists. Was display-only preview of planned feature.
 
-### 20.3 Previous Audit Status Correction
+### 22.4 Star Path Cumulative Milestone Claiming
 
-Section 14.1 items 3-10 were marked "Pending" but all are fully implemented. Status corrected to **DONE** in this session.
+Backend endpoint for claiming cumulative star rewards (3★/6★/9★ milestones).
 
-### 20.4 Verified Non-Issues (This Session)
+### 22.5 Login Calendar Persistence Fix
 
-| Reported Concern | Actual Status |
-|-----------------|---------------|
-| Global loot pity bug (not per-player) | **Not a bug** — `_lootPity` stored on user object (`u._lootPity`), is per-player |
-| itemTemplates.json has 7 slots (includes "ring") vs gameConfig 6 slots | **Not a bug** — "ring" exists in template schema but no items use it; EQUIPMENT_SLOTS (6) is the authoritative list |
-| appState.json version 1.4.0 mismatch | **Not a bug** — `server.js:238` overwrites with `pkg.version` at boot; file is just seed data |
+Two bugs fixed in daily login calendar not persisting across sessions.
 
-### 20.5 FIX: Battle Pass Rewards Hidden
+### 22.6 Rift Abandon Confirmation
 
-**Severity: MEDIUM (UX)**
-**File:** `components/BattlePassView.tsx`
+Confirmation dialog added for rift abandon (destructive action with cooldown).
 
-The Season tab showed a Battle Pass reward track with 10 levels of rewards ("+50 Bonus Gold", "Streak Shield", "Premium Gear Token", etc.) but **no backend endpoint exists to claim them**. This was a display-only preview of a planned feature ("Battle Pass Click-to-Claim" on the roadmap), but users couldn't tell it wasn't functional.
+### 22.7 Changelog (Merged from Main)
 
-**Fix:** Hidden the reward track entirely. Will be re-enabled when the backend claim system is implemented.
+| Commit | Description |
+|--------|-------------|
+| `e6aa560` | Fix: brighten daytime sky gradient |
+| `2025e6c` | Docs: version/structure updates |
+| `3b49ccc` | Fix: sync version numbers to 1.5.3 |
+| `c7aac1a` | Docs: Rift + Tavern in ARCHITECTURE.md |
+| `d48313b` | UI: hide Battle Pass rewards track |
+| `0de7a39` | Refactor: Hearth into Breakaway floor |
+| `f6c5ce1` | Docs: reflect Hearth in Breakaway |
+| `bf0b233` | Docs: update BACKLOG.md |
+| `7d6ae05` | Docs: update SCALABILITY-AUDIT.md |
+| `4b127f0` | Fix: Rift abandon confirmation |
+| `346ba86` | Feat: Star Path cumulative claiming |
+| `9462c63` | Fix: login calendar persistence |
 
-### 20.6 Documentation Fixes
+---
 
-| File | Change |
-|------|--------|
-| `CLAUDE.md` | Version v1.4.0 → v1.5.3 |
-| `CLAUDE.md` | Component count 39 → 45, route count 17 → 19 |
-| `CLAUDE.md` | Added missing files (SocialView, PlayerProfileModal, RiftView, TavernView, social.js, rift.js) |
-| `package.json` | Version 1.4.0 → 1.5.3 |
-| `public/data/appState.json` | Seed version 1.4.0 → 1.5.3 |
-| `ARCHITECTURE.md` | Component count 46 → 45 |
-| `ARCHITECTURE.md` | Added The Rift and The Hearth sections |
+## 23. Phase 2026-03-21 — Deep Backend Audit (Session 9)
 
-### 20.7 Changelog (Session 8)
+### 23.1 CRITICAL Fixes (Runtime Crashes)
+
+| # | Issue | File | Fix |
+|---|-------|------|-----|
+| 1 | `ensureUserCurrencies` not imported — daily mission claim crashes | `config-admin.js:3` | Added to state imports |
+| 2 | `saveUsers` not imported — daily mission claim crashes | `config-admin.js:3` | Added to state imports |
+| 3 | `awardCurrency` not imported — daily mission claim crashes | `config-admin.js:4` | Added to helpers imports |
+| 4 | `ensureUserCurrencies` not imported — workshop upgrade crashes | `shop.js:5` | Added to state imports |
+
+### 23.2 HIGH Fixes (Silently Broken Features)
+
+| # | Issue | File | Fix |
+|---|-------|------|-----|
+| 5 | Daily mission pet check uses `petsToday` (wrong) instead of `petCountToday` | `config-admin.js:126,190` | Fixed property name |
+| 6 | Daily mission ritual check reads `state.store.rituals` (doesn't exist) instead of `state.rituals` | `config-admin.js:124,189` | Fixed state path |
+| 7 | Character screen class display reads `state.store.classes` (doesn't exist) instead of `state.classesData?.classes` | `habits-inventory.js:718,802,803` | Fixed state path |
+| 8 | Rift `_last*` temp fields never deleted → persist to disk, wasting space | `rift.js:273-277` | Added cleanup before saveUsers |
+
+### 23.3 MEDIUM Fixes
+
+| # | Issue | File | Fix |
+|---|-------|------|-----|
+| 9 | Conversation list shows oldest message preview (reads `.lastMessage.createdAt` on string) | `social.js:314` | Changed to `.lastMessageAt` |
+
+### 23.4 Remaining Acknowledged Issues (Backend)
+
+| Issue | Severity | Status |
+|-------|----------|--------|
+| `GET /api/users` has no auth (exposes profile data) | MEDIUM | **Acknowledged** — needed for dashboard batch, sensitive fields stripped |
+| GitHub webhook bypassed when no secret configured | MEDIUM | **Acknowledged** — deployment requires GITHUB_WEBHOOK_SECRET env var |
+| Feedback POST has no auth | MEDIUM | **Acknowledged** — capped at 500, global rate limit applies |
+| Event placeholder endpoints have no auth | MEDIUM | **Acknowledged** — only log, no state mutation |
+| `var` instead of `let` for changelogInterval | LOW | Cosmetic, no runtime impact |
+| Expedition save not flushed on shutdown | INFO | At most 200ms of progress lost |
+
+### 23.5 Changelog (Session 9)
 
 | Commit | Timestamp | Description |
 |--------|-----------|-------------|
-| `e6aa560` | 2026-03-21 | Fix: brighten daytime sky gradient from near-night to warm fantasy blue |
-| `2025e6c` | 2026-03-21 | Docs: update AUDIT_REPORT status corrections and CLAUDE.md version/structure |
-| `3b49ccc` | 2026-03-21 | Fix: sync version numbers to 1.5.3 across package.json and appState.json |
-| `c7aac1a` | 2026-03-21 | Docs: add Rift and Tavern sections to ARCHITECTURE.md, fix component count |
-| `d48313b` | 2026-03-21 | UI: hide Battle Pass rewards track until backend claim system exists |
+| `6b5fec3` | 2026-03-21 | Merge main into feature branch — resolve conflicts |
+| `8471133` | 2026-03-21 | Fix 3 CRITICAL + 4 HIGH + 1 MEDIUM bugs from backend audit |
+
+## 24. Phase 2026-03-21 — Frontend Deep Audit (Session 9)
+
+### 24.1 Translation Pass: 30 German → English Strings
+
+All interactive UI strings translated across 6 files:
+
+| Area | File | Strings Fixed |
+|------|------|---------------|
+| Currency modal | `DashboardModals.tsx` | 7 "How to earn" paragraphs + heading |
+| Loot/forge/class | `page.tsx` | 8 strings (collect, shield, tooltip, observatory, arcanum, class activation) |
+| Character screen | `CharacterView.tsx` | 15 strings (save, search, filters, slot labels, toasts, tooltips) |
+| Rituals | `RitualChamber.tsx` | 3 strings (streak, today, next goal, blood pact) |
+| Vow system | `QuestPanels.tsx` | 6 strings (difficulty tiers, milestones, blood pact) |
+| Login calendar | `DailyLoginCalendar.tsx` | 1 string (streak label) |
+
+### 24.2 Frontend Verified Non-Issues
+
+| Reported | Actual Status |
+|----------|---------------|
+| Forge tooltip XP/Gold values wrong | **Not a bug** — verified matches backend `getForgeXpBase()` and `getForgeGoldBase()` |
+| handleChangePriority missing refresh | **LOW** — only affects until next 30s auto-refresh, acceptable |
+| Dead `loggedInUser` variable in CharacterView | **INFO** — cosmetic, no runtime impact |
+
+### 24.3 Remaining Acknowledged (Frontend)
+
+| Issue | Severity | Status |
+|-------|----------|--------|
+| ShopView buy buttons have no loading state | LOW | Acceptable — purchases are fast |
+| RoadmapView ETA placeholder in German | LOW | "z.B." in admin-only input |
+
+### 24.4 Changelog (Session 9, Frontend)
+
+| Commit | Timestamp | Description |
+|--------|-----------|-------------|
+| `2f3ed17` | 2026-03-21 | Translate remaining German interactive UI to English (30 strings) |
 
 ---
 

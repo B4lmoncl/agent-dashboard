@@ -16,7 +16,7 @@ Browser → Express (port 3001) → lib/state.js (in-memory) → /data/*.json (d
 | Directory | Purpose | Language |
 |-----------|---------|----------|
 | `lib/` | Backend business logic (state, helpers, engines) | JS (CommonJS) |
-| `routes/` | Express route handlers (19 files) | JS (CommonJS) |
+| `routes/` | Express route handlers (20 files) | JS (CommonJS) |
 | `app/` | Next.js app directory (page, types, utils, context) | TypeScript |
 | `components/` | React UI components (45 files) | TypeScript |
 | `public/data/` | Read-only game templates (JSON) | JSON |
@@ -114,6 +114,7 @@ All routes are mounted in `server.js` in order. The last route file (`npcs-misc.
 | `challenges-weekly.js` | Sternenpfad: 3-stage solo weekly challenges with star ratings, modifiers, speed bonus | API key |
 | `expedition.js` | Expedition: cooperative weekly challenge with shared checkpoints, scaling by player count | API key |
 | `social.js` | Friends (online status), messages (read receipts), trades (item picker), activity feed | API key |
+| `rift.js` | Rift/Dungeon: timed quest chains with 3 tiers (Normal/Hard/Legendary), full reward pipeline | API key |
 | `npcs-misc.js` | NPC rotation, feedback (admin-only), SPA fallback | Master key (feedback) |
 | `docs.js` | OpenAPI spec, HTML docs | Public |
 

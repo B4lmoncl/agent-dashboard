@@ -6,7 +6,7 @@
  */
 const router = require('express').Router();
 const { state, saveUsers, ensureUserCurrencies } = require('../lib/state');
-const { now, getLevelInfo, awardCurrency } = require('../lib/helpers');
+const { now, getLevelInfo, awardCurrency, onQuestCompletedByUser } = require('../lib/helpers');
 const { requireAuth } = require('../lib/middleware');
 
 // ─── Rift Configuration ──────────────────────────────────────────────────────
@@ -221,11 +221,25 @@ router.post('/api/rift/complete-stage', requireAuth, (req, res) => {
   // Complete the stage
   nextStage.completed = true;
   nextStage.completedAt = now();
-
-  // Award stage rewards
   ensureUserCurrencies(u);
-  u.xp = (u.xp || 0) + nextStage.xpReward;
-  awardCurrency(uid, 'gold', nextStage.goldReward);
+
+  // Map difficulty scale to quest rarity for proper reward multipliers
+  const DIFF_TO_RARITY = { 1: 'common', 1.5: 'uncommon', 2: 'rare', 2.5: 'epic', 3: 'epic', 3.5: 'legendary' };
+  const stageRarity = DIFF_TO_RARITY[nextStage.difficulty] || (nextStage.difficulty >= 3 ? 'legendary' : 'rare');
+
+  // Use the full reward pipeline: XP multipliers, gold multipliers, forge temp,
+  // streaks, loot drops, achievements, titles, expedition, weekly challenge,
+  // crafting materials, recipe discovery, activity feed, daily missions
+  const syntheticQuest = {
+    id: `rift-${rift.tier}-stage-${nextStage.stage}`,
+    title: `${RIFT_TIERS[rift.tier]?.name || 'Rift'}: ${nextStage.name}`,
+    type: nextStage.type,
+    priority: nextStage.difficulty >= 2.5 ? 'high' : nextStage.difficulty >= 1.5 ? 'medium' : 'low',
+    rarity: stageRarity,
+    status: 'completed',
+    rewards: { xp: nextStage.xpReward, gold: nextStage.goldReward },
+  };
+  onQuestCompletedByUser(uid, syntheticQuest);
 
   // Check if rift is fully completed
   const allDone = rift.quests.every(q => q.completed);
@@ -233,7 +247,7 @@ router.post('/api/rift/complete-stage', requireAuth, (req, res) => {
     rift.completed = true;
     rift.completedAt = now();
 
-    // Award completion bonus
+    // Award completion bonus currencies (raw — these are bonus on top of quest rewards)
     const tier = RIFT_TIERS[rift.tier];
     if (tier?.completionBonus) {
       for (const [currency, amount] of Object.entries(tier.completionBonus)) {
@@ -256,17 +270,24 @@ router.post('/api/rift/complete-stage', requireAuth, (req, res) => {
     if (u.riftHistory.length > 20) u.riftHistory = u.riftHistory.slice(-20);
   }
 
-  saveUsers();
+  // Read temp fields from onQuestCompletedByUser before cleanup
   const stageNum = rift.quests.filter(q => q.completed).length;
-  console.log(`[rift] ${uid} completed stage ${stageNum}/${rift.quests.length} in ${rift.tier} rift`);
+  const xpEarned = u._lastXpEarned || nextStage.xpReward;
+  const goldEarned = u._lastGoldEarned || nextStage.goldReward;
+  const loot = u._lastLoot || null;
+  // Cleanup temp fields to prevent persistence bloat
+  delete u._lastXpEarned; delete u._lastGoldEarned; delete u._lastLoot; delete u._lastCompanionReward;
+  saveUsers();
+  console.log(`[rift] ${uid} completed stage ${stageNum}/${rift.quests.length} in ${rift.tier} rift (+${xpEarned}XP, +${goldEarned}g)`);
 
   res.json({
     ok: true,
     stage: nextStage,
     stageNum,
     totalStages: rift.quests.length,
-    xpEarned: nextStage.xpReward,
-    goldEarned: nextStage.goldReward,
+    xpEarned,
+    goldEarned,
+    loot,
     riftCompleted: allDone,
     completionBonus: allDone ? RIFT_TIERS[rift.tier]?.completionBonus : null,
     message: allDone
