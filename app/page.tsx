@@ -1261,7 +1261,7 @@ export default function Dashboard() {
 
         {/* ── THE RIFT (Dungeon System) ── */}
         {dashView === "rift" && (
-          <ErrorBoundary><Suspense fallback={<ViewFallback />}><RiftView onRefresh={refreshDashboard} /></Suspense></ErrorBoundary>
+          <ErrorBoundary><Suspense fallback={<ViewFallback />}><RiftView onRefresh={refresh} /></Suspense></ErrorBoundary>
         )}
 
         {/* ── ROADMAP TAB ── */}
@@ -1448,7 +1448,7 @@ export default function Dashboard() {
                                           headers: { ...getAuthHeaders(reviewApiKey!), "Content-Type": "application/json" },
                                           body: JSON.stringify({ threshold: ms.threshold }),
                                         });
-                                        if (r.ok) refreshDashboard();
+                                        if (r.ok) refresh();
                                       } catch { /* ignore */ }
                                     }}
                                     className="btn-interactive text-xs px-1.5 py-0.5 rounded font-bold badge-enter"
@@ -1669,7 +1669,7 @@ export default function Dashboard() {
 
         {/* ── THE HEARTH (Tavern / Rest Mode) ── */}
         {dashView === "tavern" && (
-          <ErrorBoundary><Suspense fallback={<ViewFallback />}><TavernView onRefresh={refreshDashboard} /></Suspense></ErrorBoundary>
+          <ErrorBoundary><Suspense fallback={<ViewFallback />}><TavernView onRefresh={refresh} /></Suspense></ErrorBoundary>
         )}
 
         {/* ── THE WANDERER'S REST (NPC Tab) ── */}
