@@ -11,11 +11,11 @@
       "npcPatron": null,
       "symbol": "🜂",
       "rewards": {
-        "freundlich": { "title": "Glutwandler", "titleRarity": "uncommon" },
-        "respektiert": { "recipe": "flask_of_embers", "recipeDesc": "Flask of Embers (+15% Forge Temp recovery)" },
-        "geehrt": { "frame": "glut_frame", "frameDesc": "Zirkel der Glut Frame" },
-        "verehrt": { "title": "Flammenherz", "titleRarity": "epic", "shopDiscount": 10 },
-        "erhaben": { "legendaryEffect": "glut_mastery", "effectDesc": "+5% XP for Fitness quests permanently", "title": "Aszendent der Glut", "titleRarity": "legendary" }
+        "friendly": { "title": "Glutwandler", "titleRarity": "uncommon" },
+        "honored": { "recipe": "flask_of_embers", "recipeDesc": "Flask of Embers (+15% Forge Temp recovery)" },
+        "revered": { "frame": "glut_frame", "frameDesc": "Zirkel der Glut Frame" },
+        "exalted": { "title": "Flammenherz", "titleRarity": "epic", "shopDiscount": 10 },
+        "paragon": { "legendaryEffect": "glut_mastery", "effectDesc": "+5% XP for Fitness quests permanently", "title": "Aszendent der Glut", "titleRarity": "legendary" }
       }
     },
     {
@@ -29,11 +29,11 @@
       "npcPatron": null,
       "symbol": "🜄",
       "rewards": {
-        "freundlich": { "title": "Tintenträger", "titleRarity": "uncommon" },
-        "respektiert": { "recipe": "scholars_ink", "recipeDesc": "Scholar's Ink (+10% bonus XP from Learning quests)" },
-        "geehrt": { "frame": "tinte_frame", "frameDesc": "Zirkel der Tinte Frame" },
-        "verehrt": { "title": "Kodexhüter", "titleRarity": "epic", "shopDiscount": 10 },
-        "erhaben": { "legendaryEffect": "tinte_mastery", "effectDesc": "+5% XP for Learning quests permanently", "title": "Chronist der Tinte", "titleRarity": "legendary" }
+        "friendly": { "title": "Tintenträger", "titleRarity": "uncommon" },
+        "honored": { "recipe": "scholars_ink", "recipeDesc": "Scholar's Ink (+10% bonus XP from Learning quests)" },
+        "revered": { "frame": "tinte_frame", "frameDesc": "Zirkel der Tinte Frame" },
+        "exalted": { "title": "Kodexhüter", "titleRarity": "epic", "shopDiscount": 10 },
+        "paragon": { "legendaryEffect": "tinte_mastery", "effectDesc": "+5% XP for Learning quests permanently", "title": "Chronist der Tinte", "titleRarity": "legendary" }
       }
     },
     {
@@ -47,11 +47,11 @@
       "npcPatron": null,
       "symbol": "🜁",
       "rewards": {
-        "freundlich": { "title": "Ambosslehrling", "titleRarity": "uncommon" },
-        "respektiert": { "recipe": "artisans_whetstone", "recipeDesc": "Artisan's Whetstone (+1 profession XP per craft)" },
-        "geehrt": { "frame": "amboss_frame", "frameDesc": "Zirkel des Amboss Frame" },
-        "verehrt": { "title": "Meisterschmied", "titleRarity": "epic", "shopDiscount": 10 },
-        "erhaben": { "legendaryEffect": "amboss_mastery", "effectDesc": "+10% material drop chance permanently", "title": "Runenschmied des Amboss", "titleRarity": "legendary" }
+        "friendly": { "title": "Ambosslehrling", "titleRarity": "uncommon" },
+        "honored": { "recipe": "artisans_whetstone", "recipeDesc": "Artisan's Whetstone (+1 profession XP per craft)" },
+        "revered": { "frame": "amboss_frame", "frameDesc": "Zirkel des Amboss Frame" },
+        "exalted": { "title": "Meisterschmied", "titleRarity": "epic", "shopDiscount": 10 },
+        "paragon": { "legendaryEffect": "amboss_mastery", "effectDesc": "+10% material drop chance permanently", "title": "Runenschmied des Amboss", "titleRarity": "legendary" }
       }
     },
     {
@@ -65,21 +65,21 @@
       "npcPatron": null,
       "symbol": "🜃",
       "rewards": {
-        "freundlich": { "title": "Echostimme", "titleRarity": "uncommon" },
-        "respektiert": { "recipe": "resonance_charm", "recipeDesc": "Resonance Charm (+5% Bond XP for companions)" },
-        "geehrt": { "frame": "echo_frame", "frameDesc": "Zirkel des Echos Frame" },
-        "verehrt": { "title": "Klangweber", "titleRarity": "epic", "shopDiscount": 10 },
-        "erhaben": { "legendaryEffect": "echo_mastery", "effectDesc": "+5% Gold for Social/Creative quests permanently", "title": "Harmonist des Echos", "titleRarity": "legendary" }
+        "friendly": { "title": "Echostimme", "titleRarity": "uncommon" },
+        "honored": { "recipe": "resonance_charm", "recipeDesc": "Resonance Charm (+5% Bond XP for companions)" },
+        "revered": { "frame": "echo_frame", "frameDesc": "Zirkel des Echos Frame" },
+        "exalted": { "title": "Klangweber", "titleRarity": "epic", "shopDiscount": 10 },
+        "paragon": { "legendaryEffect": "echo_mastery", "effectDesc": "+5% Gold for Social/Creative quests permanently", "title": "Harmonist des Echos", "titleRarity": "legendary" }
       }
     }
   ],
   "standings": [
     { "id": "neutral", "name": "Neutral", "minRep": 0, "color": "#6b7280" },
-    { "id": "freundlich", "name": "Freundlich", "minRep": 500, "color": "#22c55e" },
-    { "id": "respektiert", "name": "Respektiert", "minRep": 1500, "color": "#3b82f6" },
-    { "id": "geehrt", "name": "Geehrt", "minRep": 4000, "color": "#a855f7" },
-    { "id": "verehrt", "name": "Verehrt", "minRep": 8000, "color": "#f59e0b" },
-    { "id": "erhaben", "name": "Erhaben", "minRep": 15000, "color": "#ef4444" }
+    { "id": "friendly", "name": "Friendly", "minRep": 500, "color": "#22c55e" },
+    { "id": "honored", "name": "Honored", "minRep": 1500, "color": "#3b82f6" },
+    { "id": "revered", "name": "Revered", "minRep": 4000, "color": "#a855f7" },
+    { "id": "exalted", "name": "Exalted", "minRep": 8000, "color": "#f59e0b" },
+    { "id": "paragon", "name": "Paragon", "minRep": 15000, "color": "#ef4444" }
   ],
   "repPerQuest": {
     "common": 5,

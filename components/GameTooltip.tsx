@@ -418,13 +418,15 @@ const TOOLTIP_REGISTRY: Record<string, TooltipEntry> = {
     ),
   },
   npc_quest_board: {
-    title: "NPC Quest Board",
-    icon: "🤖",
+    title: "The Wanderer's Rest",
+    icon: "🏕️",
     accent: "#8b5cf6",
     body: (
       <>
-        <p>Agent development quests. The AI NPCs (Nova, Hex, Echo, Pixel, Atlas, Lyra) work on these autonomously.</p>
-        <p className="gt-source">Admin can review and approve suggested quests.</p>
+        <p>Travelling NPCs visit the guild hall on a rotating schedule. Each NPC brings unique quest chains with story and rewards.</p>
+        <p>Up to 3 NPCs are active at a time. They stay for a few days before departing, with a cooldown before they can return.</p>
+        <p>Complete an NPC&apos;s quest chain before they leave to earn all rewards. Quests unlock sequentially within each chain.</p>
+        <p className="gt-source">Rarer NPCs appear less often but offer better rewards.</p>
       </>
     ),
   },
@@ -994,17 +996,17 @@ const TOOLTIP_REGISTRY: Record<string, TooltipEntry> = {
 
   // ── Factions ──
   factions: {
-    title: "Die Vier Zirkel",
+    title: "The Four Circles",
     icon: "🜂",
     accent: "#a78bfa",
     body: (
       <>
-        <p>Geheime Orden des Turms. Quests geben automatisch Reputation bei der passenden Fraktion.</p>
-        <div className="gt-stat-row" style={{ color: "#ef4444" }}><span>🔥 Zirkel der Glut</span><span>Fitness</span></div>
-        <div className="gt-stat-row" style={{ color: "#3b82f6" }}><span>📜 Zirkel der Tinte</span><span>Learning</span></div>
-        <div className="gt-stat-row" style={{ color: "#f59e0b" }}><span>⚒️ Zirkel des Amboss</span><span>Dev / Personal</span></div>
-        <div className="gt-stat-row" style={{ color: "#8b5cf6" }}><span>🌊 Zirkel des Echos</span><span>Social / Creative</span></div>
-        <p className="gt-source">6 Stufen: Neutral → Freundlich → Respektiert → Geehrt → Verehrt → Erhaben. Jede Stufe schaltet Titel, Rezepte, Frames und Boni frei.</p>
+        <p>Secret orders of the tower. Quests automatically grant reputation to the matching faction.</p>
+        <div className="gt-stat-row" style={{ color: "#ef4444" }}><span>🔥 Circle of Embers</span><span>Fitness</span></div>
+        <div className="gt-stat-row" style={{ color: "#3b82f6" }}><span>📜 Circle of Ink</span><span>Learning</span></div>
+        <div className="gt-stat-row" style={{ color: "#f59e0b" }}><span>⚒️ Circle of the Anvil</span><span>Dev / Personal</span></div>
+        <div className="gt-stat-row" style={{ color: "#8b5cf6" }}><span>🌊 Circle of Echoes</span><span>Social / Creative</span></div>
+        <p className="gt-source">6 tiers: Neutral → Friendly → Honored → Revered → Exalted → Paragon. Each tier unlocks titles, recipes, frames, and bonuses.</p>
       </>
     ),
   },

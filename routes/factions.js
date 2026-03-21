@@ -23,6 +23,12 @@ function getNextStanding(rep) {
   return null; // max standing reached
 }
 
+// Migrate old German standing IDs to English
+const STANDING_MIGRATION = {
+  freundlich: "friendly", respektiert: "honored", geehrt: "revered",
+  verehrt: "exalted", erhaben: "paragon",
+};
+
 function ensureUserFactions(user) {
   if (!user.factions) {
     user.factions = {};
@@ -34,6 +40,11 @@ function ensureUserFactions(user) {
   for (const f of factionsData.factions) {
     if (!user.factions[f.id]) {
       user.factions[f.id] = { rep: 0, weeklyBonusUsed: 0, claimedRewards: [] };
+    }
+    // Migrate old German standing IDs in claimedRewards
+    const pd = user.factions[f.id];
+    if (pd.claimedRewards) {
+      pd.claimedRewards = pd.claimedRewards.map(id => STANDING_MIGRATION[id] || id);
     }
   }
 }

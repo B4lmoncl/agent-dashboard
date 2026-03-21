@@ -1472,7 +1472,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
 
                 {/* Title */}
                 <div className="mb-3">
-                  <Tip k="titles"><button
+                  <button
                     className="w-full flex items-center justify-between px-2 py-1.5 rounded-lg text-left"
                     style={{ background: "rgba(251,191,36,0.06)", border: "1px solid rgba(251,191,36,0.15)" }}
                     onClick={async () => {
@@ -1498,7 +1498,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                       </span>
                     </div>
                     <span className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>{titlesOpen ? "▲" : "▼"}</span>
-                  </button></Tip>
+                  </button>
                   {titlesOpen && (
                     <div className="mt-1.5 space-y-1 max-h-40 overflow-y-auto" style={{ overscrollBehavior: "contain" }}>
                       {/* Unequip option */}

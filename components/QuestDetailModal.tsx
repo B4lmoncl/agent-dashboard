@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ModalPortal, useModalBehavior } from "@/components/ModalPortal";
+import { ModalPortal } from "@/components/ModalPortal";
 import { RARITY_COLORS } from "@/components/QuestBoard";
 import { getQuestRarity } from "@/app/utils";
 import { typeConfig } from "@/app/config";
@@ -36,7 +36,8 @@ export default function QuestDetailModal({
   handleCoopComplete,
   handleToggleFavorite,
 }: QuestDetailModalProps) {
-  useModalBehavior(true, onClose);
+  // NOTE: useModalBehavior is called in page.tsx (line 248) — do NOT duplicate here
+  // or body scroll lock will break on close (double-lock restores "hidden" instead of "")
   const [modalStarAnimating, setModalStarAnimating] = useState(false);
 
   const rarity = getQuestRarity(q);

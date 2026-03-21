@@ -63,7 +63,7 @@ export const FLOORS: Floor[] = [
       { key: "campaign",    label: "The Observatory",      iconSrc: "/images/icons/nav-observatory.png", tutorialKey: "campaign-tab" },
       { key: "leaderboard", label: "The Proving Grounds",  iconSrc: "/images/icons/nav-proving.png",     tutorialKey: "leaderboard-tab" },
       { key: "honors",      label: "Hall of Honors",       iconSrc: "/images/icons/nav-honors.png",      tutorialKey: "honors-tab" },
-      { key: "factions",    label: "Die Vier Zirkel",      iconSrc: "",                                  requiresLogin: true, tutorialKey: null },
+      { key: "factions",    label: "The Four Circles",     iconSrc: "",                                  requiresLogin: true, tutorialKey: null },
       { key: "season",      label: "Season Pass",          iconSrc: "",                                  requiresLogin: true, tutorialKey: "season-tab" },
     ],
   },

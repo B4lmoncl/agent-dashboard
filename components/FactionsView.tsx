@@ -118,10 +118,10 @@ export default function FactionsView() {
       <div className="text-center space-y-2">
         <p className="text-3xl">🜂</p>
         <Tip k="factions">
-          <h2 className="text-lg font-bold" style={{ color: "#e8e8e8" }}>Die Vier Zirkel</h2>
+          <h2 className="text-lg font-bold" style={{ color: "#e8e8e8" }}>The Four Circles</h2>
         </Tip>
         <p className="text-xs text-w35" style={{ maxWidth: 440, margin: "0 auto" }}>
-          Geheime Orden des Turms. Verdiene Ansehen durch Quests und schalte exklusive Belohnungen frei.
+          Secret orders of the tower. Earn reputation through quests and unlock exclusive rewards.
         </p>
       </div>
 
