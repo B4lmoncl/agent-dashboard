@@ -147,9 +147,9 @@ function SternenpfadView({
           <div className="flex items-center gap-2 mb-1">
             <span className="text-sm" style={{ lineHeight: 1 }}>&#9889;</span>
             <span className="text-xs font-bold uppercase tracking-wider" style={{ color: "#a855f7" }}>Weekly Modifier Active</span>
-            {modifier.multiplier && (
-              <span className="text-xs font-bold px-1.5 py-0.5 rounded" style={{ background: modifier.multiplier > 1 ? "rgba(34,197,94,0.12)" : "rgba(239,68,68,0.12)", color: modifier.multiplier > 1 ? "#22c55e" : "#ef4444" }}>
-                {modifier.multiplier > 1 ? "+" : ""}{Math.round((modifier.multiplier - 1) * 100)}%
+            {modifier.bonusMultiplier && (
+              <span className="text-xs font-bold px-1.5 py-0.5 rounded" style={{ background: modifier.bonusMultiplier > 1 ? "rgba(34,197,94,0.12)" : "rgba(239,68,68,0.12)", color: modifier.bonusMultiplier > 1 ? "#22c55e" : "#ef4444" }}>
+                {modifier.bonusMultiplier > 1 ? "+" : ""}{Math.round((modifier.bonusMultiplier - 1) * 100)}%
               </span>
             )}
           </div>
@@ -255,9 +255,9 @@ function SternenpfadView({
                   <div className="flex items-center justify-between text-xs mb-1">
                     <span className="text-w30">
                       {progressValue}/{progressMax}
-                      {isActive && modifier && modifier.multiplier && modifier.multiplier !== 1 && (
-                        <span className="ml-1.5" style={{ color: modifier.multiplier > 1 ? "#22c55e" : "#ef4444" }}>
-                          (effective: {Math.round(progressValue * modifier.multiplier * 10) / 10})
+                      {isActive && modifier && modifier.bonusMultiplier && modifier.bonusMultiplier !== 1 && (
+                        <span className="ml-1.5" style={{ color: modifier.bonusMultiplier > 1 ? "#22c55e" : "#ef4444" }}>
+                          (effective: {Math.round(progressValue * modifier.bonusMultiplier * 10) / 10})
                         </span>
                       )}
                     </span>

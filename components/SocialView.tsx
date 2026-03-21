@@ -1041,7 +1041,7 @@ function ActivityFeedTab({ apiKey, playerName }: { apiKey: string; playerName: s
             description = `hit a ${d.days}-day streak`;
             break;
           default:
-            description = event.type.replace(/_/g, " ");
+            description = (event.type as string).replace(/_/g, " ");
         }
         const rarityColor = d.rarity ? (RARITY_COLORS[d.rarity] || "#e8e8e8") : "#e8e8e8";
 
