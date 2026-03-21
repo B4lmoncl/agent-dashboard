@@ -359,7 +359,7 @@ Timed quest chains with escalating difficulty, accessible from "The Great Halls"
 
 ### The Hearth (Tavern/Rest Mode)
 
-Rest area on the 6th floor ("The Hearth"), inspired by Urithiru's gathering halls.
+Rest area within "The Breakaway" floor, inspired by Urithiru's gathering halls.
 
 - **Rest mode**: Freeze streaks + forge temp for 1-7 days
 - **Auto-expire**: Ends after selected duration

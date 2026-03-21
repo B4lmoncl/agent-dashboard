@@ -1403,7 +1403,7 @@ These features have been proposed by audit agents in the past as "missing" when 
 | **Cumulative star reward track** | `components/ChallengesView.tsx` (horizontal milestone bar at top of Star Path) | Added in Session 2 |
 | **Activity feed compact/detail toggle** | `components/SocialView.tsx` ActivityFeedTab (⊟ Compact / ⊞ Detailed button) | Added in Session 2 |
 | **Workshop Upgrades (permanent bonuses)** | `public/data/shopItems.json` (workshopUpgrades), `routes/shop.js`, `lib/helpers.js` | Added in Session 6 |
-| **Tavern/Rest Mode (The Hearth)** | `components/TavernView.tsx`, `routes/players.js`, `app/config.ts` (6th floor) | Added in Session 6 |
+| **Tavern/Rest Mode (The Hearth)** | `components/TavernView.tsx`, `routes/players.js`, `app/config.ts` (room in Breakaway floor) | Added in Session 6, moved to Breakaway in Session 8 |
 | **Rift/Dungeon System (The Rift)** | `components/RiftView.tsx`, `routes/rift.js`, `app/config.ts` (Great Halls room) | Added in Session 6 |
 
 ### A.2 Verified Non-Bugs (Do NOT Report Again)
@@ -1488,7 +1488,7 @@ The day sky gradient used near-night colors (`#1a2848` top → `#6880b8` horizon
 | `CLAUDE.md:5` | v1.4.0 | v1.5.3 | **To fix** |
 | `package.json:3` | 1.4.0 | 1.5.3 | **To fix** |
 | `public/data/appState.json` | 1.4.0 | N/A (overwritten by server.js at boot) | Non-issue |
-| `CLAUDE.md` | "5 floors" | 6 floors (missing The Hearth) | **To fix** |
+| `CLAUDE.md` | "5 floors" | 5 floors (The Hearth moved into The Breakaway) | **Fixed** |
 
 ### 20.3 Previous Audit Status Correction
 
@@ -1502,11 +1502,36 @@ Section 14.1 items 3-10 were marked "Pending" but all are fully implemented. Sta
 | itemTemplates.json has 7 slots (includes "ring") vs gameConfig 6 slots | **Not a bug** — "ring" exists in template schema but no items use it; EQUIPMENT_SLOTS (6) is the authoritative list |
 | appState.json version 1.4.0 mismatch | **Not a bug** — `server.js:238` overwrites with `pkg.version` at boot; file is just seed data |
 
-### 20.5 Changelog (Session 8)
+### 20.5 FIX: Battle Pass Rewards Hidden
+
+**Severity: MEDIUM (UX)**
+**File:** `components/BattlePassView.tsx`
+
+The Season tab showed a Battle Pass reward track with 10 levels of rewards ("+50 Bonus Gold", "Streak Shield", "Premium Gear Token", etc.) but **no backend endpoint exists to claim them**. This was a display-only preview of a planned feature ("Battle Pass Click-to-Claim" on the roadmap), but users couldn't tell it wasn't functional.
+
+**Fix:** Hidden the reward track entirely. Will be re-enabled when the backend claim system is implemented.
+
+### 20.6 Documentation Fixes
+
+| File | Change |
+|------|--------|
+| `CLAUDE.md` | Version v1.4.0 → v1.5.3 |
+| `CLAUDE.md` | Component count 39 → 45, route count 17 → 19 |
+| `CLAUDE.md` | Added missing files (SocialView, PlayerProfileModal, RiftView, TavernView, social.js, rift.js) |
+| `package.json` | Version 1.4.0 → 1.5.3 |
+| `public/data/appState.json` | Seed version 1.4.0 → 1.5.3 |
+| `ARCHITECTURE.md` | Component count 46 → 45 |
+| `ARCHITECTURE.md` | Added The Rift and The Hearth sections |
+
+### 20.7 Changelog (Session 8)
 
 | Commit | Timestamp | Description |
 |--------|-----------|-------------|
 | `e6aa560` | 2026-03-21 | Fix: brighten daytime sky gradient from near-night to warm fantasy blue |
+| `2025e6c` | 2026-03-21 | Docs: update AUDIT_REPORT status corrections and CLAUDE.md version/structure |
+| `3b49ccc` | 2026-03-21 | Fix: sync version numbers to 1.5.3 across package.json and appState.json |
+| `c7aac1a` | 2026-03-21 | Docs: add Rift and Tavern sections to ARCHITECTURE.md, fix component count |
+| `d48313b` | 2026-03-21 | UI: hide Battle Pass rewards track until backend claim system exists |
 
 ---
 
