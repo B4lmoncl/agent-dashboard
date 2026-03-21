@@ -31,7 +31,7 @@ export default function ShopView({ onBuy, onGearBuy }: {
   }
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 tab-content-enter">
       {/* Header */}
       <div className="flex items-center gap-3 flex-wrap">
         <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.35)" }}>The Bazaar</span>

@@ -225,7 +225,7 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
       });
       const d = await r.json();
       if (r.ok) {
-        setUltimateResult(d.flavorText || d.message || "Erfolg!");
+        setUltimateResult(d.flavorText || d.message || "Success!");
         setUltimatePickQuest(false);
         setUltimateGlow(true);
         SFX.companionPet();
@@ -236,7 +236,7 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
         setUltimateResult(d.error || "Error");
         setTimeout(() => setUltimateResult(null), 4000);
       }
-    } catch { setUltimateResult("Netzwerkfehler"); setTimeout(() => setUltimateResult(null), 3000); }
+    } catch { setUltimateResult("Network error"); setTimeout(() => setUltimateResult(null), 3000); }
     setUltimateUsing(null);
   };
 
