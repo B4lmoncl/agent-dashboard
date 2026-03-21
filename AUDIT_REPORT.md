@@ -1255,7 +1255,62 @@ Agent-discovered comprehensive German text scan found 60+ untranslated strings a
 | `0442274` | 2026-03-21 | AUDIT_REPORT documentation update |
 | `4bcd3aa` | 2026-03-21 | QuestDetailModal + GachaPull translation |
 
-### 17.10 Remaining Issues Summary
+## 18. Phase 2026-03-21 — New Features (Session 6)
+
+### 18.1 Workshop Upgrades (4 Permanent Bonus Items)
+
+**Files:** `public/data/shopItems.json`, `routes/shop.js`, `lib/state.js`, `lib/helpers.js`, `components/ForgeView.tsx`
+
+New permanent upgrade system in Artisan's Quarter with 4 items:
+
+| Upgrade | Tiers | Effect | Cost Range |
+|---------|-------|--------|------------|
+| Gold-Forged Tools | 4 | +2/3/4/5% Gold (additive) | 500-10,000g |
+| Loot Chance Amulet | 3 | +1/2/3% Loot Drop (additive) | 1,000-8,000g |
+| Streak Shield Charm | 1 | Auto-save streak 1x/week | 15,000g |
+| Material Magnet | 3 | +5/10/15% Material chance (additive) | 2,000-12,000g |
+
+All bonuses are **additive** (not multiplicative) to prevent stacking abuse. Integration points: `getGoldMultiplier()`, loot drop roll, `updateUserStreak()`, `rollCraftingMaterials()`.
+
+### 18.2 Tavern/Rest Mode (The Hearth)
+
+**Files:** `app/config.ts`, `routes/players.js`, `lib/helpers.js`, `components/TavernView.tsx`, `app/page.tsx`
+
+New 6th floor "The Hearth" — rest area inspired by Urithiru's gathering halls:
+- **Enter rest mode** (1-7 days) with optional reason
+- **Freezes**: Streaks, forge temp, quest generation
+- **Auto-expires** after selected duration
+- **30-day cooldown** between rests
+- **History** tracked (last 5 entries)
+- **Leave early** option with frozen value restoration
+
+### 18.3 Rift/Dungeon System (The Rift)
+
+**Files:** `routes/rift.js`, `server.js`, `app/config.ts`, `app/page.tsx`, `components/RiftView.tsx`
+
+Timed quest chains with escalating difficulty:
+
+| Tier | Quests | Time | Fail Cooldown | Min Level | Completion Bonus |
+|------|--------|------|---------------|-----------|------------------|
+| Normal | 3 | 72h | 3 days | 1 | 100g + 5 Essenz |
+| Hard | 5 | 48h | 5 days | 5 | 300g + 10 Essenz + 5 Runensplitter |
+| Legendary | 7 | 36h | 7 days | 10 | 750g + 20 Essenz + 10 Runensplitter + 3 Sternentaler |
+
+- Difficulty scales per stage (1x, 1.5x, 2x, 2.5x...)
+- XP + Gold rewards per stage
+- Successful completion clears fail cooldown
+- Abandon = fail (cooldown applied)
+- Rift history tracked (last 20 entries)
+
+### 18.4 Changelog (Session 6)
+
+| Commit | Description |
+|--------|-------------|
+| `e15f8ea` | Workshop Upgrade items (4 permanent bonuses) |
+| `7a3c612` | Tavern/Rest Mode (The Hearth — new 6th floor) |
+| `eb41603` | Rift/Dungeon System (The Rift — 3 difficulty tiers) |
+
+### 18.5 Remaining Issues Summary
 
 | Issue | Severity | Area | Status |
 |-------|----------|------|--------|
@@ -1298,6 +1353,9 @@ These features have been proposed by audit agents in the past as "missing" when 
 | **Daily mission checklist** | `routes/config-admin.js` (6 missions, 4 milestones), `app/page.tsx` (inline panel) | Added in Session 2 |
 | **Cumulative star reward track** | `components/ChallengesView.tsx` (horizontal milestone bar at top of Star Path) | Added in Session 2 |
 | **Activity feed compact/detail toggle** | `components/SocialView.tsx` ActivityFeedTab (⊟ Compact / ⊞ Detailed button) | Added in Session 2 |
+| **Workshop Upgrades (permanent bonuses)** | `public/data/shopItems.json` (workshopUpgrades), `routes/shop.js`, `lib/helpers.js` | Added in Session 6 |
+| **Tavern/Rest Mode (The Hearth)** | `components/TavernView.tsx`, `routes/players.js`, `app/config.ts` (6th floor) | Added in Session 6 |
+| **Rift/Dungeon System (The Rift)** | `components/RiftView.tsx`, `routes/rift.js`, `app/config.ts` (Great Halls room) | Added in Session 6 |
 
 ### A.2 Verified Non-Bugs (Do NOT Report Again)
 
