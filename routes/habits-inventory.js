@@ -360,7 +360,7 @@ router.post('/api/player/:name/inventory/use/:itemId', requireAuth, requireSelf(
     }
     default: {
       // Unknown effect — consume anyway but note it
-      message = `Item verbraucht. (Effekt "${effectType}" wird noch nicht unterstützt)`;
+      message = `Item consumed. (Effect "${effectType}" is not yet supported)`;
       break;
     }
   }

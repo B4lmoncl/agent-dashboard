@@ -10,7 +10,7 @@ const { now, awardCurrency, getStreakMilestone, getTodayBerlin } = require('../l
 router.get('/api/currency/:playerId', (req, res) => {
   const uid = req.params.playerId.toLowerCase();
   const u = state.users[uid];
-  if (!u) return res.status(404).json({ error: 'Spieler nicht gefunden' });
+  if (!u) return res.status(404).json({ error: 'Player not found' });
   ensureUserCurrencies(u);
   res.json({ playerId: uid, currencies: u.currencies });
 });
@@ -20,7 +20,7 @@ router.get('/api/currency/:playerId', (req, res) => {
 router.post('/api/currency/:playerId', requireApiKey, (req, res) => {
   const uid = req.params.playerId.toLowerCase();
   const u = state.users[uid];
-  if (!u) return res.status(404).json({ error: 'Spieler nicht gefunden' });
+  if (!u) return res.status(404).json({ error: 'Player not found' });
 
   const { action, currency, amount, reason } = req.body;
   if (!action || !currency || !amount) {
@@ -42,7 +42,7 @@ router.post('/api/currency/:playerId', requireApiKey, (req, res) => {
     return res.status(400).json({ error: `Unbekannte Währung: ${currency}` });
   }
   const amt = Math.abs(Math.floor(amount));
-  if (amt <= 0) return res.status(400).json({ error: 'Betrag muss positiv sein' });
+  if (amt <= 0) return res.status(400).json({ error: 'Amount must be positive' });
 
   if (action === 'spend') {
     if (u.currencies[currency] < amt) {
@@ -63,7 +63,7 @@ router.post('/api/currency/:playerId', requireApiKey, (req, res) => {
 router.post('/api/currency/:playerId/convert', requireApiKey, (req, res) => {
   const uid = req.params.playerId.toLowerCase();
   const u = state.users[uid];
-  if (!u) return res.status(404).json({ error: 'Spieler nicht gefunden' });
+  if (!u) return res.status(404).json({ error: 'Player not found' });
 
   const { from, to, amount } = req.body;
   if (!from || !to || !amount) {
@@ -73,18 +73,18 @@ router.post('/api/currency/:playerId/convert', requireApiKey, (req, res) => {
   if (!(from in u.currencies) || !(to in u.currencies)) {
     return res.status(400).json({ error: 'Unbekannte Währung' });
   }
-  if (from === to) return res.status(400).json({ error: 'Kann nicht in gleiche Währung konvertieren' });
+  if (from === to) return res.status(400).json({ error: 'Cannot convert to same currency' });
 
   // Check if pair is allowed
   const rules = state.currencyTemplates.conversionRules || {};
   const pairs = rules.allowedPairs || [];
   const pair = pairs.find(p => p.from === from && p.to === to);
   if (!pair) {
-    return res.status(400).json({ error: `Konvertierung von ${from} zu ${to} ist nicht erlaubt` });
+    return res.status(400).json({ error: `Conversion from ${from} to ${to} is not allowed` });
   }
 
   const amt = Math.abs(Math.floor(amount));
-  if (amt <= 0) return res.status(400).json({ error: 'Betrag muss positiv sein' });
+  if (amt <= 0) return res.status(400).json({ error: 'Amount must be positive' });
   if (u.currencies[from] < amt) {
     return res.status(400).json({ error: `Nicht genug ${from}. Hast ${u.currencies[from]}, brauchst ${amt}` });
   }
@@ -113,12 +113,12 @@ router.get('/api/currency/templates', (req, res) => {
 router.post('/api/daily-bonus/claim', requireApiKey, (req, res) => {
   const uid = (req.body.player || req.body.playerId || '').toLowerCase();
   const u = state.users[uid];
-  if (!u) return res.status(404).json({ error: 'Spieler nicht gefunden' });
+  if (!u) return res.status(404).json({ error: 'Player not found' });
   ensureUserCurrencies(u);
 
   const today = getTodayBerlin();
   if (u.dailyBonusLastClaim === today) {
-    return res.status(409).json({ error: 'Daily Bonus bereits abgeholt', alreadyClaimed: true });
+    return res.status(409).json({ error: 'Daily Bonus already claimed', alreadyClaimed: true });
   }
 
   u.dailyBonusLastClaim = today;
@@ -166,7 +166,7 @@ router.post('/api/daily-bonus/claim', requireApiKey, (req, res) => {
 router.get('/api/daily-bonus/status/:playerId', (req, res) => {
   const uid = req.params.playerId.toLowerCase();
   const u = state.users[uid];
-  if (!u) return res.status(404).json({ error: 'Spieler nicht gefunden' });
+  if (!u) return res.status(404).json({ error: 'Player not found' });
   const today = getTodayBerlin();
   const claimed = u.dailyBonusLastClaim === today;
   res.json({ available: !claimed, lastClaim: u.dailyBonusLastClaim || null, streakDays: u.streakDays || 0, claimHistory: u.dailyClaimHistory || [] });

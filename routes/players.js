@@ -237,7 +237,7 @@ router.post('/api/player/:name/companion/ultimate', requireAuth, requireSelf('na
       const quest = state.questsById.get(targetQuestId);
       if (!quest) return res.status(404).json({ error: 'Quest not found' });
       if (quest.status !== 'in_progress' && quest.status !== 'open') {
-        return res.status(400).json({ error: 'Quest muss offen oder in Bearbeitung sein' });
+        return res.status(400).json({ error: 'Quest must be open or in progress' });
       }
       // Ownership check: cannot complete another player's claimed quest
       if (quest.claimedBy && quest.claimedBy !== uid) {
