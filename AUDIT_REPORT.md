@@ -941,4 +941,126 @@ All changes verified clean:
 
 ---
 
+## 16. Phase 2026-03-21 — QoL Overhaul & UI Polish (Session 2)
+
+### 16.1 Consistent English UI
+
+Translated all remaining German interactive UI text to English across 10 files. The TutorialModal/Guide remains in German (intentional for German-speaking user base), but all interactive buttons, labels, placeholders, and tooltips are now consistently English.
+
+**Files changed:** `app/page.tsx`, `app/utils.ts`, `components/UserCard.tsx`, `components/CompanionsWidget.tsx`, `components/QuestPanels.tsx`, `components/RitualChamber.tsx`, `components/CharacterView.tsx`, `components/ItemActionPopup.tsx`, `components/OnboardingWizard.tsx`
+
+**Key translations:**
+- "Abbrechen" → "Cancel" (6 files)
+- "Weiter →" → "Next →" (OnboardingWizard)
+- "Wähle deinen Pfad" → "Choose your path"
+- "Wähle deinen Begleiter" → "Choose your companion"
+- "Klasse wird geschmiedet..." → "Class is being forged..."
+- Forge temperature tooltips fully translated (6 tier descriptions)
+- Companion ultimate labels translated (Sofort→Instant, etc.)
+- OnboardingWizard placeholders (z.B.→e.g., German example text→English)
+
+### 16.2 Profession XP Bars in UserCard
+
+**File:** `components/UserCard.tsx`
+
+Added profession section to the player card showing active professions with:
+- Colored profession icons (Blacksmith=gold, Alchemist=green, Enchanter=purple, Cook=orange)
+- Profession level number + rank name
+- Animated XP progress bars with gradient fill matching profession color
+- Only shown when user has chosen professions
+
+### 16.3 Loading Skeleton States
+
+Replaced plain "Loading..." text across Social tabs with animated skeleton placeholder cards:
+- **FriendsTab**: 3 skeleton friend cards in grid layout
+- **MessagesTab**: 3 skeleton conversation rows
+- **TradesTab**: 2 skeleton trade cards
+- **ActivityFeedTab**: 4 skeleton event rows
+
+**CSS:** Added `@keyframes skeleton-pulse`, `.skeleton`, `.skeleton-text`, `.skeleton-bar`, `.skeleton-card` classes.
+
+### 16.4 Smooth Tab Transitions
+
+Added fade-in + slide-up animation when switching between tabs:
+- SocialView tabs (friends/messages/trades/activity) use `key={activeTab}` + `tab-content-enter`
+- ChallengesView tabs (Star Path/Expedition) use same pattern
+- **CSS:** `@keyframes tab-fade-in` (0.2s ease-out, 4px translateY)
+
+### 16.5 Social Notification Badge
+
+**Files:** `app/page.tsx`, `app/utils.ts`
+
+- Frontend now consumes `socialSummary` from dashboard batch endpoint (already returned by backend)
+- Shows purple notification badge with count (pending requests + unread messages + active trades) on The Breakaway floor tab
+- Badge uses CSS bounce-in animation (`@keyframes badge-bounce-in`)
+- Floor tab also gets purple notification dot via `getRoomNotif()` system
+
+### 16.6 Friend List Auto-Refresh
+
+**File:** `components/SocialView.tsx`
+
+Added 30-second polling interval to FriendsTab — friends list auto-refreshes in background to show online status changes without manual navigation.
+
+### 16.7 Activity Feed Visual Enhancements
+
+**File:** `components/SocialView.tsx`, `app/globals.css`
+
+- Legendary events get golden glow border animation (`feed-event-legendary` class)
+- Epic events get purple border highlight (`feed-event-epic` class)
+- **CSS:** `@keyframes feed-legendary-glow` (3s breathing golden glow)
+
+### 16.8 D3-style Trade Item Tooltips
+
+**Files:** `routes/social.js`, `app/types.ts`, `components/SocialView.tsx`
+
+- Backend `enrichOffer()` now includes `stats`, `setName`, `legendaryEffect` from inventory items
+- Frontend `TradeOfferDisplay` shows hover tooltip on trade items with:
+  - Full stat breakdown in green (+value format)
+  - Set bonus name
+  - Legendary effect label with star icon
+  - Dark themed tooltip with rarity-colored border glow
+  - Item icon (if available)
+
+### 16.9 D3-style Reroll Preview
+
+**Files:** `routes/crafting.js`, `components/ForgeView.tsx`
+
+- Backend `/api/professions` now returns `slotAffixRanges` — per-slot affix pool data (primary + minor stat ranges, current stats, item name, rarity) for all equipped gear
+- ForgeView shows reroll preview panel below reroll/enchant recipes:
+  - Current stats listed
+  - All possible stat ranges shown as "stat min–max" with green highlighting for stats you currently have
+  - Shows "(now X)" for currently rolled values
+
+### 16.10 Expedition Fair Share Target Line
+
+**File:** `components/ChallengesView.tsx`
+
+- Added golden vertical target line on each contribution bar showing the fair share threshold
+- Enhanced fair share legend with colored indicator line matching the bar marker
+- Contribution bars increased from 3px to 4px height for better visibility
+
+### 16.11 CSS Animation Library Additions
+
+**File:** `app/globals.css` (+89 lines)
+
+New animation keyframes and utility classes:
+- `skeleton-pulse` — Skeleton loading shimmer
+- `tab-fade-in` — Tab content entrance
+- `stage-complete-glow`, `stage-complete-check` — Challenge stage completion
+- `challenge-toast-in/out` — Challenge progress notifications
+- `feed-legendary-glow` — Legendary event breathing glow
+- `status-come-online` — Online status transition
+- `badge-bounce-in` — Notification badge entrance
+
+### 16.12 Remaining Issues Summary
+
+| Issue | Severity | Area | Status |
+|-------|----------|------|--------|
+| `tradeableItems` computed every render (no useMemo) | LOW | Social/Trades | Acceptable — only affects users with large inventories |
+| OnboardingWizard step content still partially German | LOW | Onboarding | TutorialModal-linked content, intentionally German |
+| Some `@next/next/no-img-element` warnings | N/A | Lint | Intentional — static export with pixel art |
+| React compiler warnings | N/A | Pre-existing | No runtime impact |
+
+---
+
 *End of Audit Report — Updated 2026-03-21*
