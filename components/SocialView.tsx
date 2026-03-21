@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { useDashboard } from "@/app/DashboardContext";
 import { getAuthHeaders } from "@/lib/auth-client";
-import { Tip } from "@/components/GameTooltip";
+import { Tip, TipCustom } from "@/components/GameTooltip";
 import PlayerProfileModal from "@/components/PlayerProfileModal";
 import type {
   FriendInfo, FriendRequest, Conversation, SocialMessage,
@@ -313,6 +313,7 @@ function MessagesTab({ apiKey, playerName }: { apiKey: string; playerName: strin
   const [activeConvo, setActiveConvo] = useState<string | null>(null);
   const [messages, setMessages] = useState<SocialMessage[]>([]);
   const [msgInput, setMsgInput] = useState("");
+  const [sendError, setSendError] = useState("");
   const [loading, setLoading] = useState(true);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
@@ -363,6 +364,9 @@ function MessagesTab({ apiKey, playerName }: { apiKey: string; playerName: strin
         setMsgInput("");
         openConvo(activeConvo);
         fetchConversations();
+      } else {
+        const data = await r.json().catch(() => null);
+        setSendError(data?.error || "Failed to send message");
       }
     } catch { /* ignore */ }
   };
@@ -412,7 +416,7 @@ function MessagesTab({ apiKey, playerName }: { apiKey: string; playerName: strin
         <div className="flex gap-2">
           <input
             value={msgInput}
-            onChange={e => setMsgInput(e.target.value)}
+            onChange={e => { setMsgInput(e.target.value); if (sendError) setSendError(""); }}
             onKeyDown={e => { if (e.key === "Enter") sendMessage(); }}
             placeholder="Type a message..."
             maxLength={500}
@@ -427,6 +431,7 @@ function MessagesTab({ apiKey, playerName }: { apiKey: string; playerName: strin
             Send
           </button>
         </div>
+        {sendError && <p className="text-xs mt-1" style={{ color: "#f87171" }}>{sendError}</p>}
       </div>
     );
   }
@@ -1105,19 +1110,23 @@ export default function SocialView() {
 
       {/* Tab navigation */}
       <div className="inline-flex rounded-lg p-0.5" style={{ background: "#111" }}>
-        {(["friends", "messages", "trades", "activity"] as SocialTab[]).map(tab => (
-          <button
-            key={tab}
-            onClick={() => setActiveTab(tab)}
-            className="btn-interactive text-xs font-semibold px-4 py-2 rounded-md transition-all capitalize"
-            style={{
-              background: activeTab === tab ? "#252525" : "transparent",
-              color: activeTab === tab ? "#a855f7" : "rgba(255,255,255,0.3)",
-            }}
-          >
-            {tab === "activity" ? "Feed" : tab}
-          </button>
-        ))}
+        {(["friends", "messages", "trades", "activity"] as SocialTab[]).map(tab => {
+          const tipKey = tab === "trades" ? "trading" : tab === "activity" ? "activity_feed" : tab;
+          return (
+            <Tip key={tab} k={tipKey}>
+              <button
+                onClick={() => setActiveTab(tab)}
+                className="btn-interactive text-xs font-semibold px-4 py-2 rounded-md transition-all capitalize"
+                style={{
+                  background: activeTab === tab ? "#252525" : "transparent",
+                  color: activeTab === tab ? "#a855f7" : "rgba(255,255,255,0.3)",
+                }}
+              >
+                {tab === "activity" ? "Feed" : tab}
+              </button>
+            </Tip>
+          );
+        })}
       </div>
 
       {/* Tab content */}

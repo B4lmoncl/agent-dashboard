@@ -3,7 +3,7 @@
 import { useMemo, useEffect, useRef } from "react";
 import type { AchievementDef } from "@/app/types";
 import { useDashboard } from "@/app/DashboardContext";
-import { Tip } from "@/components/GameTooltip";
+import { Tip, TipCustom } from "@/components/GameTooltip";
 
 function conditionToText(cond: Record<string, unknown> | undefined): string {
   if (!cond) return "";
@@ -216,9 +216,11 @@ export default function HonorsView({ catalogue, highlightedAchievementId, onHigh
                         {/* Rarity + earned date + earner count */}
                         <div className="flex items-center justify-between mt-3 pt-2" style={{ borderTop: "1px solid rgba(255,255,255,0.04)" }}>
                           <div className="flex items-center gap-2">
-                            <span className="text-xs font-semibold" style={{ color: rarity.color, letterSpacing: "0.04em" }}>
-                              {rarity.label.toUpperCase()}
-                            </span>
+                            <Tip k="rarity">
+                              <span className="text-xs font-semibold" style={{ color: rarity.color, letterSpacing: "0.04em" }}>
+                                {rarity.label.toUpperCase()}
+                              </span>
+                            </Tip>
                             <span className="text-xs" style={{ color: "rgba(255,255,255,0.15)" }}>
                               {totalUsers > 0 ? Math.round((earnerCount / totalUsers) * 100) : 0}% aller Spieler
                             </span>

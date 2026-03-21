@@ -12,6 +12,17 @@ const RARITY_ORDER = ['common', 'uncommon', 'rare', 'epic', 'legendary'];
 const SLOT_RECIPES = ['reroll_stat', 'reroll_minor', 'upgrade_rarity', 'permanent_enchant', 'reinforce_armor', 'enchant_socket', 'sharpen_blade'];
 const { requireAuth } = require('../lib/middleware');
 
+// ─── Crafting lock (prevents concurrent craft for same player) ──────────────
+const _craftLocks = new Map();
+function acquireCraftLock(playerId) {
+  if (_craftLocks.has(playerId)) return false;
+  _craftLocks.set(playerId, true);
+  return true;
+}
+function releaseCraftLock(playerId) {
+  _craftLocks.delete(playerId);
+}
+
 // ─── Helper: collect equipped item instanceIds ──────────────────────────────
 function getEquippedIds(u) {
   const ids = new Set();
@@ -279,6 +290,9 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
   if (!recipeId) return res.status(400).json({ error: 'recipeId required' });
 
   const uid = req.auth?.userId;
+  if (!acquireCraftLock(uid)) return res.status(429).json({ error: 'Craft in progress, please wait' });
+
+  try {
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'User not found' });
 
@@ -679,6 +693,7 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
     dailyBonusUsed: dailyBonusAvailable,
     craftCount: effectiveCount,
   });
+  } finally { releaseCraftLock(uid); }
 });
 
 // ─── POST /api/professions/choose — explicitly enroll in a profession ────────

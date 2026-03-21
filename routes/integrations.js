@@ -102,7 +102,7 @@ router.get('/api/integrations/spotify/status', requireApiKey, (req, res) => {
 });
 
 // POST /api/events/quest-start
-router.post('/api/events/quest-start', (req, res) => {
+router.post('/api/events/quest-start', requireApiKey, (req, res) => {
   const { questId, userId } = req.body || {};
   console.log(`[event] quest-start questId=${questId} userId=${userId}`);
   // Placeholder: trigger Spotify playlist, notifications, etc.
@@ -110,7 +110,7 @@ router.post('/api/events/quest-start', (req, res) => {
 });
 
 // POST /api/events/quest-complete
-router.post('/api/events/quest-complete', (req, res) => {
+router.post('/api/events/quest-complete', requireApiKey, (req, res) => {
   const { questId, userId } = req.body || {};
   console.log(`[event] quest-complete questId=${questId} userId=${userId}`);
   // Placeholder: trigger Spotify celebration track, etc.
@@ -118,7 +118,7 @@ router.post('/api/events/quest-complete', (req, res) => {
 });
 
 // POST /api/events/level-up
-router.post('/api/events/level-up', (req, res) => {
+router.post('/api/events/level-up', requireApiKey, (req, res) => {
   const { userId, newLevel } = req.body || {};
   console.log(`[event] level-up userId=${userId} newLevel=${newLevel}`);
   // Placeholder: trigger Spotify level-up fanfare, etc.

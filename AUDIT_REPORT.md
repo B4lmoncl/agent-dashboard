@@ -1433,6 +1433,11 @@ These were reported as bugs by audit agents but are either intentional design de
 | **Quest catalog templates missing rewards field** | Intentional — templates use difficulty-based rewards resolved from gameConfig.json at runtime. |
 | **loadingAction blocks all quest actions globally** | Single mutex is adequate — users typically interact with one quest at a time. Per-quest loading would add complexity. |
 | **Hearth enter button has no 2-step confirmation** | Not needed — the "While resting" panel already shows all consequences (30-day cooldown, no quests, etc.) before the button. |
+| **Crafting count silently defaults NaN to 1** | `Math.max(1, Math.min(10, parseInt(rawCount, 10) || 1))` safely clamps all inputs. Rejecting would break backward compatibility. |
+| **Gacha affix roll missing try/catch** | Low risk — all item templates are validated. Only corrupted JSON data could cause a crash, which would indicate a deeper problem. |
+| **Trades tab missing empty state** | Already exists at `SocialView.tsx:967-969` — shows "No trades yet. Propose a trade to get started!" |
+| **loadManagedKeys called before validApiKeys init** | Not a bug — `state.validApiKeys` set at `server.js:104`, before `loadManagedKeys()` at line 162. |
+| **German stat names (Kraft, Weisheit, Ausdauer, Glück)** | Intentional game world proper nouns — same rule as currency names. Do NOT translate. |
 
 ### A.3 Architectural Decisions (Do NOT "Fix" These)
 
@@ -1964,6 +1969,118 @@ No conversion needed — these serve a different purpose than the GameTooltip sy
 |---|---------------|-----------------|----------|-----|
 | 1 | Hoarding: -80% at 28+ quests | -50% at 25+, -80% at 30+ | **HIGH** | Fixed tooltip to show correct soft/hard caps |
 | 2 | Vow Easy: 1× multiplier | 0.5× bondScale | **MEDIUM** | Fixed tooltip to show 0.5× |
+
+## 27. Phase 2026-03-21 — Deep Codebase Audit (Session 11)
+
+### 27.1 CRITICAL: .find().value Without Null Safety in Timezone Helpers
+
+**Severity: CRITICAL**
+**Files:** `lib/helpers.js:42`, `lib/npc-engine.js:248`
+
+Both `getMsUntilNextMidnightBerlin()` and `checkCompanionQuestTimeLimits()` use `parts.find(p => p.type === type).value` without null-checking the `.find()` result. If `Intl.DateTimeFormat` returns unexpected parts on any environment, this crashes the server — taking down daily rotation scheduling and companion quest time limits.
+
+**Fix:** Added null-safe accessors with fallbacks:
+- `helpers.js`: `const get = (type) => { const p = parts.find(x => x.type === type); return p ? parseInt(p.value, 10) : 0; };`
+- `npc-engine.js`: `const hourPart = berlinParts.find(p => p.type === 'hour'); const bH = hourPart ? parseInt(hourPart.value, 10) : 12;`
+
+### 27.2 CRITICAL: Battle Pass Claim Never Persists User Data
+
+**Severity: CRITICAL**
+**File:** `routes/battlepass.js:165`
+
+`POST /api/battlepass/claim/:level` awards currencies (gold, essenz, runensplitter, stardust), titles, and frames to the user object, but calls `saveData()` which only saves agent data — NOT user data. All battle pass rewards are lost on server restart.
+
+**Root Cause:** `saveData()` in `lib/state.js:495` only writes `state.store.agents`, not users.
+
+**Fix:** Changed `saveData()` → `saveUsers()` (added `saveUsers` to imports).
+
+### 27.3 HIGH: Habit Score/Delete Missing Ownership Check
+
+**Severity: HIGH**
+**File:** `routes/habits-inventory.js:48-89`
+
+`POST /api/habits/:id/score` and `DELETE /api/habits/:id` use `requireAuth` but never verify the habit belongs to the authenticated user. Any authenticated user could score or delete any habit.
+
+**Fix:** Added ownership validation: `if (habit.playerId && habit.playerId.toLowerCase() !== authId) return res.status(403).json({ error: 'Not your habit' });`
+
+### 27.4 MEDIUM: unhandledRejection Missing flushPendingSaves
+
+**Severity: MEDIUM**
+**File:** `server.js:304-306`
+
+The `unhandledRejection` handler only logs but doesn't call `flushPendingSaves()`, unlike `uncaughtException` which does. Unhandled promise rejections could result in data loss.
+
+**Fix:** Added `flushPendingSaves();` to the `unhandledRejection` handler.
+
+### 27.5 MEDIUM: Trade Execution Lock Added
+
+**Severity: MEDIUM**
+**File:** `routes/social.js:9-18`
+
+Added player-level trade execution locks (`_tradeLocks` Map) using the same pattern as gacha pull locks. Both initiator and recipient are locked during `executeTrade()`, released in a `finally` block. Prevents concurrent trade execution draining items/gold.
+
+### 27.6 MEDIUM: Crafting Material Lock Added
+
+**Severity: MEDIUM**
+**File:** `routes/crafting.js:14-23`
+
+Added player-level craft locks (`_craftLocks` Map) to prevent concurrent craft requests consuming materials twice. Lock acquired before validation, released in `finally` block.
+
+### 27.7 MEDIUM: Event Endpoints Now Require Auth
+
+**Severity: MEDIUM**
+**File:** `routes/integrations.js:105-126`
+
+`POST /api/events/quest-start`, `/quest-complete`, `/level-up` were unprotected placeholder endpoints. Added `requireApiKey` middleware to all three.
+
+### 27.8 LOW: Frontend Error Handling Improvements
+
+| Fix | File | Description |
+|-----|------|-------------|
+| Equip error feedback | `CharacterView.tsx:786` | Added error toast when equip API call fails |
+| Message send error | `SocialView.tsx:354` | Added `sendError` state with inline error display below input, clears on typing |
+
+### 27.9 LOW: debouncedSave Error Handler
+
+**File:** `lib/state.js:64`
+
+Added try/catch to the setTimeout callback in `debouncedSave` so save failures are logged to console instead of silently swallowed.
+
+### 27.10 Verified Non-Issues (Session 11)
+
+| Reported Issue | Actual Status |
+|----------------|---------------|
+| Trade race condition (double-spend) | **Fixed** — Trade locks added (Section 27.5) |
+| Crafting material race condition | **Fixed** — Craft locks added (Section 27.6) |
+| loadManagedKeys called before validApiKeys | **Not a bug** — `state.validApiKeys` set at line 104, before `loadManagedKeys()` at line 162 |
+| usersByApiKey not updated in POST /api/users/:id/register | **Not a bug** — This endpoint doesn't set API keys; API keys are set in /api/auth/register |
+| German stat names (Kraft, Weisheit, etc.) | **Intentional** — Game world proper nouns, same as currency names |
+| Trades tab missing empty state | **Already exists** — `SocialView.tsx:967-969` shows "No trades yet" message |
+| Crafting count silently defaults NaN to 1 | **Acceptable** — `Math.max(1, Math.min(10, parseInt(rawCount, 10) || 1))` safely clamps all inputs to 1-10 |
+| Gacha affix roll missing try/catch | **Low risk** — All item templates have required fields; only corrupted data would cause failure |
+
+### 27.11 All Issues — Fixed
+
+| # | Issue | Severity | Status |
+|---|-------|----------|--------|
+| 1 | .find().value null safety (helpers.js) | CRITICAL | **Fixed** |
+| 2 | .find().value null safety (npc-engine.js) | CRITICAL | **Fixed** |
+| 3 | Battle Pass claim never persists user data | CRITICAL | **Fixed** |
+| 4 | Habit score/delete missing ownership check | HIGH | **Fixed** |
+| 5 | Trade execution race condition | MEDIUM | **Fixed** (lock added) |
+| 6 | Crafting material race condition | MEDIUM | **Fixed** (lock added) |
+| 7 | Event endpoints missing auth | MEDIUM | **Fixed** |
+| 8 | unhandledRejection missing flush | MEDIUM | **Fixed** |
+| 9 | debouncedSave silent error swallowing | LOW | **Fixed** |
+| 10 | CharacterView equip error feedback | LOW | **Fixed** |
+| 11 | SocialView message send error feedback | LOW | **Fixed** |
+
+### 27.12 Changelog (Session 11)
+
+| Commit | Timestamp | Description |
+|--------|-----------|-------------|
+| `c75889b` | 2026-03-21 | Security fixes: trade locks, craft locks, event auth, debouncedSave error handler |
+| (pending) | 2026-03-21 | Fix: null safety, battlepass save, habit ownership, error handling |
 
 ---
 

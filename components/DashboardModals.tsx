@@ -43,12 +43,21 @@ export default function DashboardModals({
   xpInfoOpen, setXpInfoOpen,
   inProgressCount,
 }: DashboardModalsProps) {
+  // Unified ESC key handler for all modals
   useEffect(() => {
-    if (!currenciesOpen) return;
-    const h = (e: KeyboardEvent) => { if (e.key === "Escape") { setCurrenciesOpen(false); setCurrencyExpanded(null); } };
+    const anyOpen = currenciesOpen || modifierOpen || streakInfoOpen || activeQuestsInfoOpen || xpInfoOpen;
+    if (!anyOpen) return;
+    const h = (e: KeyboardEvent) => {
+      if (e.key !== "Escape") return;
+      if (currenciesOpen) { setCurrenciesOpen(false); setCurrencyExpanded(null); }
+      if (modifierOpen) setModifierOpen(false);
+      if (streakInfoOpen) setStreakInfoOpen(false);
+      if (activeQuestsInfoOpen) setActiveQuestsInfoOpen(false);
+      if (xpInfoOpen) setXpInfoOpen(false);
+    };
     document.addEventListener("keydown", h);
     return () => document.removeEventListener("keydown", h);
-  }, [currenciesOpen]);
+  }, [currenciesOpen, modifierOpen, streakInfoOpen, activeQuestsInfoOpen, xpInfoOpen]);
 
   const CURRENCY_HOW: Record<string, string> = {
     gold: "Earned from quests, rituals, and NPC chains. Multiplied by Streak, Forge Temperature, Weisheit stat, and Legendary gear. Used for Bazaar, crafting, and gear. Convertible to Runensplitter and Gildentaler.",

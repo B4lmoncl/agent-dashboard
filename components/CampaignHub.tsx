@@ -255,7 +255,7 @@ export default function CampaignHub({ campaigns, quests, reviewApiKey, onRefresh
               {/* Progress bar */}
               <div className="mb-2">
                 <div className="flex items-center justify-between mb-1">
-                  <span className="text-xs" style={{ color: "rgba(167,139,250,0.6)" }}>{completed}/{total} Quests</span>
+                  <Tip k="campaign_stages"><span className="text-xs" style={{ color: "rgba(167,139,250,0.6)" }}>{completed}/{total} Quests</span></Tip>
                   <span className="text-xs font-semibold" style={{ color: isVictory ? "#fbbf24" : "#a78bfa" }}>{pct}%</span>
                 </div>
                 <div className="rounded-full overflow-hidden" style={{ height: 4, background: "rgba(255,255,255,0.07)" }}>

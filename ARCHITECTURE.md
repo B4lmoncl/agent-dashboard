@@ -16,9 +16,9 @@ Browser → Express (port 3001) → lib/state.js (in-memory) → /data/*.json (d
 | Directory | Purpose | Language |
 |-----------|---------|----------|
 | `lib/` | Backend business logic (state, helpers, engines) | JS (CommonJS) |
-| `routes/` | Express route handlers (20 files) | JS (CommonJS) |
+| `routes/` | Express route handlers (21 files) | JS (CommonJS) |
 | `app/` | Next.js app directory (page, types, utils, context) | TypeScript |
-| `components/` | React UI components (45 files) | TypeScript |
+| `components/` | React UI components (47 files) | TypeScript |
 | `public/data/` | Read-only game templates (JSON) | JSON |
 | `data/` | Runtime persistent data (Docker volume) | JSON |
 | `server.js` | Express entry point, boot sequence | JS |
@@ -115,6 +115,8 @@ All routes are mounted in `server.js` in order. The last route file (`npcs-misc.
 | `expedition.js` | Expedition: cooperative weekly challenge with shared checkpoints, scaling by player count | API key |
 | `social.js` | Friends (online status), messages (read receipts), trades (item picker), activity feed | API key |
 | `rift.js` | Rift/Dungeon: timed quest chains with 3 tiers (Normal/Hard/Legendary), full reward pipeline | API key |
+| `battlepass.js` | Season Pass: 40-level reward track with XP from quests/rituals/missions | API key |
+| `factions.js` | Die Vier Zirkel: 4 factions with 6 rep tiers, auto-rep from quests | API key |
 | `npcs-misc.js` | NPC rotation, feedback (admin-only), SPA fallback | Master key (feedback) |
 | `docs.js` | OpenAPI spec, HTML docs | Public |
 
@@ -370,6 +372,26 @@ Rest area within "The Breakaway" floor, inspired by Urithiru's gathering halls.
 - **Endpoints**: `GET /api/tavern/status`, `POST /api/tavern/enter`, `POST /api/tavern/leave`
 - **Files**: `routes/players.js`, `components/TavernView.tsx`
 
+### Season Pass (Battle Pass)
+
+40-level reward track with XP earned from quests, rituals, daily missions.
+
+- **XP sources**: quest completion (10-50 XP by rarity), ritual (8), vow clean day (5), daily mission milestones
+- **Rewards**: Gold, essenz, runensplitter, stardust, exclusive titles, cosmetic frames
+- **Endpoints**: `GET /api/battlepass`, `POST /api/battlepass/claim/:level`
+- **Files**: `routes/battlepass.js`, `components/BattlePassView.tsx`, `public/data/battlePass.json`
+
+### Faction System (Die Vier Zirkel)
+
+4 factions with reputation tiers, auto-gained from quest completion.
+
+- **Factions**: Orden der Klinge (combat), Zirkel der Sterne (knowledge), Pakt der Wildnis (nature), Bund der Schatten (stealth)
+- **6 rep tiers**: Neutral → Friendly → Honored → Revered → Exalted → Paragon
+- **Auto-rep**: Quest completions grant +10-30 rep to matching faction based on quest type
+- **Tier rewards**: Titles, recipes, frames, shop discounts, legendary effects
+- **Endpoints**: `GET /api/factions`, `POST /api/factions/claim-reward`
+- **Files**: `routes/factions.js`, `components/FactionsView.tsx`, `public/data/factions.json`
+
 ## Security measures
 
 - GitHub webhook HMAC-SHA256 signature verification (`GITHUB_WEBHOOK_SECRET`)
@@ -378,6 +400,9 @@ Rest area within "The Breakaway" floor, inspired by Urithiru's gathering halls.
 - JWT with refresh token rotation
 - API key validation via Set (O(1) lookup)
 - User lookup via Map (O(1) — no array scan)
+- Trade execution lock (prevents concurrent double-spend)
+- Crafting material lock (prevents concurrent material drain)
+- Habit ownership validation on score/delete endpoints
 
 ## Memory management
 

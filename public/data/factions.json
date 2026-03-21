@@ -1,0 +1,93 @@
+{
+  "factions": [
+    {
+      "id": "glut",
+      "name": "Zirkel der Glut",
+      "icon": "🔥",
+      "accent": "#ef4444",
+      "motto": "Durch Feuer geschmiedet, in Asche geläutert.",
+      "description": "Die Feuer-Asketen des Turms. Meister der körperlichen Disziplin und unerschütterlichen Willenskraft. Ihre Rituale sind schweißtreibend, ihre Belohnungen hart verdient.",
+      "questTypes": ["fitness"],
+      "npcPatron": null,
+      "symbol": "🜂",
+      "rewards": {
+        "freundlich": { "title": "Glutwandler", "titleRarity": "uncommon" },
+        "respektiert": { "recipe": "flask_of_embers", "recipeDesc": "Flask of Embers (+15% Forge Temp recovery)" },
+        "geehrt": { "frame": "glut_frame", "frameDesc": "Zirkel der Glut Frame" },
+        "verehrt": { "title": "Flammenherz", "titleRarity": "epic", "shopDiscount": 10 },
+        "erhaben": { "legendaryEffect": "glut_mastery", "effectDesc": "+5% XP for Fitness quests permanently", "title": "Aszendent der Glut", "titleRarity": "legendary" }
+      }
+    },
+    {
+      "id": "tinte",
+      "name": "Zirkel der Tinte",
+      "icon": "📜",
+      "accent": "#3b82f6",
+      "motto": "Wissen ist die schärfste Klinge.",
+      "description": "Die Schriftgelehrten und Archivare. Jedes Wort, jede Lektion, jede Erkenntnis wird in ihren endlosen Kodizes festgehalten. Ihre Macht liegt im Verstehen.",
+      "questTypes": ["learning"],
+      "npcPatron": null,
+      "symbol": "🜄",
+      "rewards": {
+        "freundlich": { "title": "Tintenträger", "titleRarity": "uncommon" },
+        "respektiert": { "recipe": "scholars_ink", "recipeDesc": "Scholar's Ink (+10% bonus XP from Learning quests)" },
+        "geehrt": { "frame": "tinte_frame", "frameDesc": "Zirkel der Tinte Frame" },
+        "verehrt": { "title": "Kodexhüter", "titleRarity": "epic", "shopDiscount": 10 },
+        "erhaben": { "legendaryEffect": "tinte_mastery", "effectDesc": "+5% XP for Learning quests permanently", "title": "Chronist der Tinte", "titleRarity": "legendary" }
+      }
+    },
+    {
+      "id": "amboss",
+      "name": "Zirkel des Amboss",
+      "icon": "⚒️",
+      "accent": "#f59e0b",
+      "motto": "Was die Hand formt, hält die Welt zusammen.",
+      "description": "Die Schmiede-Mystiker, Meister aller Handwerke. Sie glauben, dass in jedem geschaffenen Gegenstand ein Fragment der Schöpfung wohnt. Ihre Werkstätten sind Tempel.",
+      "questTypes": ["development", "personal"],
+      "npcPatron": null,
+      "symbol": "🜁",
+      "rewards": {
+        "freundlich": { "title": "Ambosslehrling", "titleRarity": "uncommon" },
+        "respektiert": { "recipe": "artisans_whetstone", "recipeDesc": "Artisan's Whetstone (+1 profession XP per craft)" },
+        "geehrt": { "frame": "amboss_frame", "frameDesc": "Zirkel des Amboss Frame" },
+        "verehrt": { "title": "Meisterschmied", "titleRarity": "epic", "shopDiscount": 10 },
+        "erhaben": { "legendaryEffect": "amboss_mastery", "effectDesc": "+10% material drop chance permanently", "title": "Runenschmied des Amboss", "titleRarity": "legendary" }
+      }
+    },
+    {
+      "id": "echo",
+      "name": "Zirkel des Echos",
+      "icon": "🌊",
+      "accent": "#8b5cf6",
+      "motto": "Jede Stimme hallt in der Ewigkeit wider.",
+      "description": "Die Klangwirker und Brückenbauer. Sie glauben, dass Verbindungen zwischen Menschen die wahre Magie sind. Ihre Kraft liegt im Miteinander, im geteilten Wort, im Echo das zurückkehrt.",
+      "questTypes": ["social", "creative"],
+      "npcPatron": null,
+      "symbol": "🜃",
+      "rewards": {
+        "freundlich": { "title": "Echostimme", "titleRarity": "uncommon" },
+        "respektiert": { "recipe": "resonance_charm", "recipeDesc": "Resonance Charm (+5% Bond XP for companions)" },
+        "geehrt": { "frame": "echo_frame", "frameDesc": "Zirkel des Echos Frame" },
+        "verehrt": { "title": "Klangweber", "titleRarity": "epic", "shopDiscount": 10 },
+        "erhaben": { "legendaryEffect": "echo_mastery", "effectDesc": "+5% Gold for Social/Creative quests permanently", "title": "Harmonist des Echos", "titleRarity": "legendary" }
+      }
+    }
+  ],
+  "standings": [
+    { "id": "neutral", "name": "Neutral", "minRep": 0, "color": "#6b7280" },
+    { "id": "freundlich", "name": "Freundlich", "minRep": 500, "color": "#22c55e" },
+    { "id": "respektiert", "name": "Respektiert", "minRep": 1500, "color": "#3b82f6" },
+    { "id": "geehrt", "name": "Geehrt", "minRep": 4000, "color": "#a855f7" },
+    { "id": "verehrt", "name": "Verehrt", "minRep": 8000, "color": "#f59e0b" },
+    { "id": "erhaben", "name": "Erhaben", "minRep": 15000, "color": "#ef4444" }
+  ],
+  "repPerQuest": {
+    "common": 5,
+    "uncommon": 8,
+    "rare": 12,
+    "epic": 20,
+    "legendary": 35
+  },
+  "weeklyBonusMultiplier": 2.0,
+  "weeklyBonusDesc": "First 3 quests per faction per week grant double reputation."
+}

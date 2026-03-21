@@ -49,6 +49,8 @@ router.post('/api/habits/:id/score', requireAuth, (req, res) => {
   const { direction, playerId } = req.body;
   const habit = state.habits.find(h => h.id === req.params.id);
   if (!habit) return res.status(404).json({ error: 'Habit not found' });
+  const authId = req.auth?.userId?.toLowerCase() || req.auth?.userName?.toLowerCase();
+  if (habit.playerId && habit.playerId.toLowerCase() !== authId) return res.status(403).json({ error: 'Not your habit' });
   if (!['up', 'down'].includes(direction)) return res.status(400).json({ error: 'direction must be up or down' });
   if (direction === 'up') habit.score = (habit.score || 0) + 1;
   else habit.score = (habit.score || 0) - 1;
@@ -83,6 +85,9 @@ router.post('/api/habits/:id/score', requireAuth, (req, res) => {
 router.delete('/api/habits/:id', requireAuth, (req, res) => {
   const idx = state.habits.findIndex(h => h.id === req.params.id);
   if (idx === -1) return res.status(404).json({ error: 'Habit not found' });
+  const habit = state.habits[idx];
+  const authId = req.auth?.userId?.toLowerCase() || req.auth?.userName?.toLowerCase();
+  if (habit.playerId && habit.playerId.toLowerCase() !== authId) return res.status(403).json({ error: 'Not your habit' });
   state.habits.splice(idx, 1);
   saveHabits();
   res.json({ ok: true });

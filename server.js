@@ -122,6 +122,8 @@ app.use(require('./routes/challenges-weekly'));
 app.use(require('./routes/expedition'));
 app.use(require('./routes/social'));
 app.use(require('./routes/rift'));
+app.use('/api/factions', require('./routes/factions'));
+app.use('/api/battlepass', require('./routes/battlepass'));
 app.use(require('./routes/npcs-misc'));  // Must be last (has SPA fallback catch-all)
 
 // ─── Express error handler (catch-all for unhandled route errors) ────────────
@@ -301,6 +303,7 @@ process.on('SIGINT', () => shutdown('SIGINT'));
 // ─── Global error handlers — prevent data loss on unhandled errors ────────
 process.on('unhandledRejection', (reason) => {
   console.error('[error] Unhandled promise rejection:', reason);
+  flushPendingSaves();
 });
 process.on('uncaughtException', (err) => {
   console.error('[fatal] Uncaught exception:', err);

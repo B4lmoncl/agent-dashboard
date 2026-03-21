@@ -6,6 +6,17 @@ const { state, saveUsers, saveSocial, ensureUserCurrencies, EQUIPMENT_SLOTS, log
 const { now, getLevelInfo } = require('../lib/helpers');
 const { requireAuth, requireSelf } = require('../lib/middleware');
 
+// ─── Trade execution lock (prevents concurrent trade execution for same player) ──
+const _tradeLocks = new Map();
+function acquireTradeLock(playerId) {
+  if (_tradeLocks.has(playerId)) return false;
+  _tradeLocks.set(playerId, true);
+  return true;
+}
+function releaseTradeLock(playerId) {
+  _tradeLocks.delete(playerId);
+}
+
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
 function genId(prefix) {
@@ -635,22 +646,33 @@ router.post('/api/social/trade/:tradeId/accept', requireAuth, (req, res) => {
 
   // Check if BOTH sides have accepted
   if (trade.initiatorAccepted && trade.recipientAccepted) {
-    // Execute the trade atomically
-    const result = executeTrade(trade);
-    if (!result.ok) {
-      // Revert acceptance on failure
-      if (isInitiator) trade.initiatorAccepted = false;
-      if (isRecipient) trade.recipientAccepted = false;
-      saveSocial();
-      return res.status(400).json({ error: result.error });
+    // Acquire locks for both players to prevent concurrent trade execution
+    if (!acquireTradeLock(trade.initiator) || !acquireTradeLock(trade.recipient)) {
+      releaseTradeLock(trade.initiator);
+      releaseTradeLock(trade.recipient);
+      return res.status(429).json({ error: 'Trade in progress, please wait' });
     }
+    try {
+      // Execute the trade atomically
+      const result = executeTrade(trade);
+      if (!result.ok) {
+        // Revert acceptance on failure
+        if (isInitiator) trade.initiatorAccepted = false;
+        if (isRecipient) trade.recipientAccepted = false;
+        saveSocial();
+        return res.status(400).json({ error: result.error });
+      }
 
-    saveSocial();
-    saveUsers();
-    logActivity(trade.initiator, 'trade_complete', { with: trade.recipient, summary: result.summary });
-    logActivity(trade.recipient, 'trade_complete', { with: trade.initiator, summary: result.summary });
-    console.log(`[social] Trade completed: ${trade.id} between ${trade.initiator} and ${trade.recipient}`);
-    return res.json({ ok: true, trade, executed: true, summary: result.summary });
+      saveSocial();
+      saveUsers();
+      logActivity(trade.initiator, 'trade_complete', { with: trade.recipient, summary: result.summary });
+      logActivity(trade.recipient, 'trade_complete', { with: trade.initiator, summary: result.summary });
+      console.log(`[social] Trade completed: ${trade.id} between ${trade.initiator} and ${trade.recipient}`);
+      return res.json({ ok: true, trade, executed: true, summary: result.summary });
+    } finally {
+      releaseTradeLock(trade.initiator);
+      releaseTradeLock(trade.recipient);
+    }
   }
 
   // Only one side accepted — swap turn to the other player so they can accept too

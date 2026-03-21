@@ -784,6 +784,248 @@ const TOOLTIP_REGISTRY: Record<string, TooltipEntry> = {
       </>
     ),
   },
+
+  // ── Modifiers & Multipliers ──
+  modifiers: {
+    title: "Active Modifiers",
+    icon: "📊",
+    accent: "#a78bfa",
+    body: (
+      <>
+        <p>Your current <GTRef k="xp">XP</GTRef> and <GTRef k="gold">Gold</GTRef> multipliers. These combine all active bonuses:</p>
+        <div className="gt-stat-row"><span><GTRef k="forge_temp">Forge Temp</GTRef></span><span>×0.5 to ×1.5</span></div>
+        <div className="gt-stat-row"><span><GTRef k="streak">Streak</GTRef></span><span>up to +45% <GTRef k="gold">Gold</GTRef></span></div>
+        <div className="gt-stat-row"><span><GTRef k="gear">Gear</GTRef> Stats</span><span><GTRef k="kraft">Kraft</GTRef>, <GTRef k="weisheit">Weisheit</GTRef></span></div>
+        <div className="gt-stat-row"><span>Buffs</span><span>Shop scrolls, potions</span></div>
+        <div className="gt-stat-row"><span><GTRef k="hoarding">Hoarding</GTRef></span><span>Penalty if 20+ quests</span></div>
+        <p className="gt-source">Hover over individual modifiers in the details panel for breakdowns.</p>
+      </>
+    ),
+  },
+  active_quests: {
+    title: "Active Quests",
+    icon: "📋",
+    accent: "#6366f1",
+    body: (
+      <>
+        <p>Quests you&apos;ve claimed from the <GTRef k="quest_board">Quest Board</GTRef>. Complete them to earn <GTRef k="xp">XP</GTRef>, <GTRef k="gold">Gold</GTRef>, and loot drops.</p>
+        <div className="gt-stat-row"><span>Soft cap</span><span>20 active quests</span></div>
+        <div className="gt-stat-row"><span>Hard cap</span><span>~25 in-progress max</span></div>
+        <p className="gt-source">Exceeding 20 active quests triggers the <GTRef k="hoarding">Hoarding Penalty</GTRef>.</p>
+      </>
+    ),
+  },
+
+  // ── Rift Details ──
+  rift_tiers: {
+    title: "Rift Difficulty Tiers",
+    icon: "⚡",
+    accent: "#a855f7",
+    body: (
+      <>
+        <p>Choose a tier when entering <GTRef k="rift">The Rift</GTRef>. Higher tiers are harder but give better rewards.</p>
+        <div className="gt-stat-row"><span>Normal</span><span>3 quests · 72h · 1×-1.5× diff</span></div>
+        <div className="gt-stat-row"><span>Hard</span><span>5 quests · 48h · 1.5×-2.5× diff</span></div>
+        <div className="gt-stat-row" style={{ color: "#FFD700" }}><span>Legendary</span><span>7 quests · 36h · 2×-3.5× diff</span></div>
+        <p className="gt-source">Failure triggers a cooldown: Normal 3d, Hard 5d, Legendary 7d.</p>
+      </>
+    ),
+  },
+  rift_cooldown: {
+    title: "Rift Cooldown",
+    icon: "⏳",
+    accent: "#ef4444",
+    body: (
+      <>
+        <p>After failing or abandoning a <GTRef k="rift">Rift</GTRef> run, a cooldown prevents re-entry.</p>
+        <div className="gt-stat-row"><span>Normal fail</span><span>3 day cooldown</span></div>
+        <div className="gt-stat-row"><span>Hard fail</span><span>5 day cooldown</span></div>
+        <div className="gt-stat-row"><span>Legendary fail</span><span>7 day cooldown</span></div>
+        <p className="gt-source">Completing a run successfully has no cooldown — enter again immediately.</p>
+      </>
+    ),
+  },
+
+  // ── Rest & Tavern ──
+  rest_freeze: {
+    title: "Rest Mode Effects",
+    icon: "❄️",
+    accent: "#60a5fa",
+    body: (
+      <>
+        <p>While resting at <GTRef k="hearth">The Hearth</GTRef>, the following are frozen:</p>
+        <div className="gt-stat-row"><span><GTRef k="streak">Streak</GTRef></span><span>Paused — won&apos;t decay</span></div>
+        <div className="gt-stat-row"><span><GTRef k="forge_temp">Forge Temp</GTRef></span><span>Paused — won&apos;t decay</span></div>
+        <div className="gt-stat-row"><span>Quest generation</span><span>Disabled during rest</span></div>
+        <div className="gt-stat-row"><span>Duration</span><span>1-7 days (auto-expires)</span></div>
+        <p className="gt-source">30-day cooldown after rest ends. You can leave early.</p>
+      </>
+    ),
+  },
+
+  // ── Social Features ──
+  trading: {
+    title: "Trading",
+    icon: "🔄",
+    accent: "#f59e0b",
+    body: (
+      <>
+        <p>Exchange items and <GTRef k="gold">Gold</GTRef> with friends in <GTRef k="breakaway">The Breakaway</GTRef>.</p>
+        <p>Both players propose offers, then negotiate back and forth until both accept.</p>
+        <p className="gt-source">Item rarity colors and stat tooltips are shown during trade preview.</p>
+      </>
+    ),
+  },
+  messages: {
+    title: "Messages",
+    icon: "💬",
+    accent: "#818cf8",
+    body: (
+      <>
+        <p>Direct messages with friends in <GTRef k="breakaway">The Breakaway</GTRef>.</p>
+        <p>Messages have auto-read receipts: ✓ = sent, ✓✓ = read.</p>
+        <p className="gt-source">Keep conversations going to strengthen your social connections.</p>
+      </>
+    ),
+  },
+  activity_feed: {
+    title: "Activity Feed",
+    icon: "📰",
+    accent: "#10b981",
+    body: (
+      <>
+        <p>WoW Guild News-style feed showing your friends&apos; activities:</p>
+        <div className="gt-stat-row"><span>Quest completions</span><span>All rarities</span></div>
+        <div className="gt-stat-row"><span>Level-ups</span><span>Major milestones</span></div>
+        <div className="gt-stat-row"><span><GTRef k="achievements">Achievements</GTRef></span><span>New unlocks</span></div>
+        <div className="gt-stat-row"><span>Gacha pulls</span><span>Epic+ only</span></div>
+        <div className="gt-stat-row"><span>Rare drops &amp; trades</span><span>Notable items</span></div>
+        <p className="gt-source">Toggle compact/detailed view. Capped at 500 events.</p>
+      </>
+    ),
+  },
+  friends: {
+    title: "Friends",
+    icon: "👥",
+    accent: "#818cf8",
+    body: (
+      <>
+        <p>Add friends to see their status, send <GTRef k="messages">messages</GTRef>, propose <GTRef k="trading">trades</GTRef>, and follow their <GTRef k="activity_feed">activity</GTRef>.</p>
+        <div className="gt-stat-row"><span>🟢 Online</span><span>Active now</span></div>
+        <div className="gt-stat-row"><span>🟡 Idle</span><span>Recently active</span></div>
+        <div className="gt-stat-row"><span>⚫ Offline</span><span>Not active</span></div>
+        <p className="gt-source">Search for players by name to send friend requests.</p>
+      </>
+    ),
+  },
+
+  // ── Campaign Details ──
+  campaign_stages: {
+    title: "Campaign Stages",
+    icon: "🗺️",
+    accent: "#818cf8",
+    body: (
+      <>
+        <p>Each <GTRef k="campaigns">Campaign</GTRef> has sequential quest stages. Complete the current stage to unlock the next.</p>
+        <p>Stage rewards escalate — later stages grant more <GTRef k="xp">XP</GTRef>, <GTRef k="gold">Gold</GTRef>, and unique drops.</p>
+        <p className="gt-source">Some campaigns feature a Boss Quest as the final stage.</p>
+      </>
+    ),
+  },
+
+  // ── Quest Details ──
+  quest_types: {
+    title: "Quest Types",
+    icon: "🏷️",
+    accent: "#6366f1",
+    body: (
+      <>
+        <p>Quests are categorized by type, affecting which <GTRef k="weekly_challenges">weekly modifiers</GTRef> apply:</p>
+        <div className="gt-stat-row"><span>🧘 Personal</span><span>Self-care, organization</span></div>
+        <div className="gt-stat-row"><span>📚 Learning</span><span>Study, skills, reading</span></div>
+        <div className="gt-stat-row"><span>💪 Fitness</span><span>Exercise, health</span></div>
+        <div className="gt-stat-row"><span>👥 Social</span><span>Friends, community</span></div>
+        <div className="gt-stat-row"><span>🎨 Creative</span><span>Art, music, writing</span></div>
+        <div className="gt-stat-row"><span>💼 Work</span><span>Career, productivity</span></div>
+      </>
+    ),
+  },
+  quest_difficulty: {
+    title: "Quest Difficulty",
+    icon: "📈",
+    accent: "#f59e0b",
+    body: (
+      <>
+        <p>Quest difficulty affects <GTRef k="xp">XP</GTRef> and <GTRef k="gold">Gold</GTRef> rewards. Higher difficulty = greater rewards but harder tasks.</p>
+        <p>Difficulty is set when a quest is created and cannot be changed afterward.</p>
+        <p className="gt-source">Combined with <GTRef k="rarity">Rarity</GTRef> to determine final reward values.</p>
+      </>
+    ),
+  },
+
+  // ── Leaderboard ──
+  leaderboard_rank: {
+    title: "Leaderboard Rank",
+    icon: "🏆",
+    accent: "#fbbf24",
+    body: (
+      <>
+        <p>Your position on <GTRef k="proving_grounds">The Proving Grounds</GTRef> based on total <GTRef k="xp">XP</GTRef> earned.</p>
+        <div className="gt-stat-row" style={{ color: "#FFD700" }}><span>🥇 1st</span><span>Gold medal</span></div>
+        <div className="gt-stat-row" style={{ color: "#C0C0C0" }}><span>🥈 2nd</span><span>Silver medal</span></div>
+        <div className="gt-stat-row" style={{ color: "#CD7F32" }}><span>🥉 3rd</span><span>Bronze medal</span></div>
+        <p className="gt-source">Level, <GTRef k="titles">Title</GTRef>, and <GTRef k="achievements">Achievement Points</GTRef> are displayed alongside your rank.</p>
+      </>
+    ),
+  },
+
+  // ── Seasons ──
+  seasons: {
+    title: "Seasons",
+    icon: "🌿",
+    accent: "#10b981",
+    body: (
+      <>
+        <p>The world of Quest Hall changes with the seasons. Each season brings unique modifiers, themed quests, and exclusive rewards.</p>
+        <p className="gt-source">Season badges show the current active season and its theme.</p>
+      </>
+    ),
+  },
+
+  // ── Factions ──
+  factions: {
+    title: "Die Vier Zirkel",
+    icon: "🜂",
+    accent: "#a78bfa",
+    body: (
+      <>
+        <p>Geheime Orden des Turms. Quests geben automatisch Reputation bei der passenden Fraktion.</p>
+        <div className="gt-stat-row" style={{ color: "#ef4444" }}><span>🔥 Zirkel der Glut</span><span>Fitness</span></div>
+        <div className="gt-stat-row" style={{ color: "#3b82f6" }}><span>📜 Zirkel der Tinte</span><span>Learning</span></div>
+        <div className="gt-stat-row" style={{ color: "#f59e0b" }}><span>⚒️ Zirkel des Amboss</span><span>Dev / Personal</span></div>
+        <div className="gt-stat-row" style={{ color: "#8b5cf6" }}><span>🌊 Zirkel des Echos</span><span>Social / Creative</span></div>
+        <p className="gt-source">6 Stufen: Neutral → Freundlich → Respektiert → Geehrt → Verehrt → Erhaben. Jede Stufe schaltet Titel, Rezepte, Frames und Boni frei.</p>
+      </>
+    ),
+  },
+
+  // ── Battle Pass ──
+  battle_pass: {
+    title: "Season Pass",
+    icon: "🌅",
+    accent: "#a78bfa",
+    body: (
+      <>
+        <p>Saisonaler Fortschrittstrack mit 40 Stufen. Verdiene Pass-<GTRef k="xp">XP</GTRef> durch alle Aktivitäten:</p>
+        <div className="gt-stat-row"><span>Quests</span><span>10-60 XP nach <GTRef k="rarity">Rarität</GTRef></span></div>
+        <div className="gt-stat-row"><span><GTRef k="rituals">Rituale</GTRef></span><span>8 XP</span></div>
+        <div className="gt-stat-row"><span><GTRef k="rift">Rift</GTRef> Stufe</span><span>20 XP</span></div>
+        <div className="gt-stat-row"><span><GTRef k="daily_missions">Daily Missions</GTRef></span><span>10-30 XP</span></div>
+        <div className="gt-stat-row"><span>Crafting</span><span>5 XP</span></div>
+        <p className="gt-source">250 XP pro Level. Belohnungen: <GTRef k="gold">Gold</GTRef>, <GTRef k="essenz">Essenz</GTRef>, <GTRef k="runensplitter">Runensplitter</GTRef>, <GTRef k="titles">Titel</GTRef>, Frames, <GTRef k="mondstaub">Mondstaub</GTRef>.</p>
+      </>
+    ),
+  },
 };
 
 // ─── Nested Tooltip Reference (clickable/hoverable keyword) ─────────────────
