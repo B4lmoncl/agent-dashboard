@@ -111,7 +111,9 @@ router.post('/api/users/:id/award-xp', requireAuth, (req, res) => {
   const id = req.params.id.toLowerCase();
   if (!state.users[id]) return res.status(404).json({ error: 'User not found' });
   const { amount = 10, reason } = req.body;
-  state.users[id].xp = (state.users[id].xp || 0) + parseInt(amount, 10);
+  const xpAmount = Math.max(0, Math.min(100000, parseInt(amount, 10) || 0));
+  if (xpAmount <= 0) return res.status(400).json({ error: 'Amount must be positive' });
+  state.users[id].xp = (state.users[id].xp || 0) + xpAmount;
   if (reason) {
     state.users[id].achievements = state.users[id].achievements || [];
     state.users[id].achievements.push({ reason, xp: amount, at: now() });

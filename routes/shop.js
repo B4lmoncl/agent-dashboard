@@ -15,25 +15,25 @@ function applyShopEffect(u, item) {
   if (type === 'instant_stardust') {
     u.currencies = u.currencies || {};
     u.currencies.stardust = (u.currencies.stardust || 0) + amount;
-    return `+${amount} Stardust erhalten!`;
+    return `+${amount} Stardust received!`;
   }
   if (type === 'instant_essenz') {
     u.currencies = u.currencies || {};
     u.currencies.essenz = (u.currencies.essenz || 0) + amount;
-    return `+${amount} Essenz erhalten!`;
+    return `+${amount} Essenz received!`;
   }
 
   // Buff-based effects
   u.activeBuffs = u.activeBuffs || [];
   u.activeBuffs.push({ type, questsRemaining, activatedAt: now() });
   const buffNames = {
-    xp_boost_10: `+10% XP für ${questsRemaining} Quests`,
-    gold_boost_10: `+10% Gold für ${questsRemaining} Quests`,
-    luck_boost_20: `Erhöhte Loot-Chance für ${questsRemaining} Quests`,
-    streak_shield: 'Streak-Schild aktiviert!',
-    material_double: `Doppelte Material-Drops für ${questsRemaining} Quests`,
+    xp_boost_10: `+10% XP for ${questsRemaining} quests`,
+    gold_boost_10: `+10% Gold for ${questsRemaining} quests`,
+    luck_boost_20: `Increased loot chance for ${questsRemaining} quests`,
+    streak_shield: 'Streak Shield activated!',
+    material_double: `Double material drops for ${questsRemaining} quests`,
   };
-  return buffNames[type] || 'Effekt aktiviert!';
+  return buffNames[type] || 'Effect activated!';
 }
 
 // ─── Personal Life Quest Templates ───────────────────────────────────────────
