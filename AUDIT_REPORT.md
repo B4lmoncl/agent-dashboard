@@ -1200,7 +1200,19 @@ Added 3 new guide sections for recently implemented features:
 - **Daily Missions** — 6 missions, 4 milestones, point system, daily reset mechanics
 - **Activity Feed** — Event types, rarity highlighting, compact/detailed toggle
 
-### 17.6 Remaining Issues Summary
+### 17.6 Translation Pass (Session 5)
+
+Additional German→English translations in interactive UI across 5 files:
+
+| File | Changes |
+|------|---------|
+| `RitualChamber.tsx` | Difficulty: Leicht→Easy, Mittel→Medium, Schwer→Hard, Legendär→Legendary. Labels: Abhaken→Check off, Erledigt→Done, täglich→daily, Pact-Ziel→Pact Goal, verbleibend→remaining, Erfüllt→Fulfilled. Täglich bei Abhaken→Daily on check-off. NPC lore (Seraine) kept in German. |
+| `CharacterView.tsx` | Inventory sort: Seltenheit→Rarity |
+| `DashboardModals.tsx` | XP modifiers: pro Kraft-Punkt→per Kraft point, von Tools→from Tools, Kein X-Bonus→No X bonus, Keine Companions beschworen→No Companions summoned, pro Bond-Level→per Bond Level. Gold modifiers: Tage→days, pro Tag→per day, pro Weisheit-Punkt→per Weisheit point, von Legendärem→from Legendary |
+| `CompanionsWidget.tsx` | Error fallback: Fehler→Error |
+| `RewardCelebration.tsx` | Daily bonus theme: Täglicher Bonus→Daily Bonus, all flavor messages translated |
+
+### 17.7 Remaining Issues Summary
 
 | Issue | Severity | Area | Status |
 |-------|----------|------|--------|
