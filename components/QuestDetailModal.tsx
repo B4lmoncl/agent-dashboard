@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ModalPortal } from "@/components/ModalPortal";
+import { ModalPortal, useModalBehavior } from "@/components/ModalPortal";
 import { RARITY_COLORS } from "@/components/QuestBoard";
 import { getQuestRarity } from "@/app/utils";
 import { typeConfig } from "@/app/config";
@@ -36,6 +36,7 @@ export default function QuestDetailModal({
   handleCoopComplete,
   handleToggleFavorite,
 }: QuestDetailModalProps) {
+  useModalBehavior(true, onClose);
   const [modalStarAnimating, setModalStarAnimating] = useState(false);
 
   const rarity = getQuestRarity(q);

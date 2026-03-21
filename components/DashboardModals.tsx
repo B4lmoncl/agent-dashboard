@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import type { User } from "@/app/types";
 import { ModalPortal } from "@/components/ModalPortal";
 import { Tip } from "@/components/GameTooltip";
@@ -42,6 +43,13 @@ export default function DashboardModals({
   xpInfoOpen, setXpInfoOpen,
   inProgressCount,
 }: DashboardModalsProps) {
+  useEffect(() => {
+    if (!currenciesOpen) return;
+    const h = (e: KeyboardEvent) => { if (e.key === "Escape") { setCurrenciesOpen(false); setCurrencyExpanded(null); } };
+    document.addEventListener("keydown", h);
+    return () => document.removeEventListener("keydown", h);
+  }, [currenciesOpen]);
+
   const CURRENCY_HOW: Record<string, string> = {
     gold: "Earned from quests, rituals, and NPC chains. Multiplied by Streak, Forge Temperature, Weisheit stat, and Legendary gear. Used for Bazaar, crafting, and gear. Convertible to Runensplitter and Gildentaler.",
     stardust: "Awarded on level-up (5 + level). Used for Featured Gacha banner pulls. Convertible to Runensplitter.",
