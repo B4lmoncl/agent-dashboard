@@ -3,7 +3,7 @@
 import { useState, useCallback, useEffect, useMemo } from "react";
 import { useDashboard } from "@/app/DashboardContext";
 import type { WeeklyChallenge, Expedition, ExpeditionCheckpoint } from "@/app/types";
-import { Tip } from "@/components/GameTooltip";
+import { Tip, TipCustom } from "@/components/GameTooltip";
 
 // ─── Currency icons ──────────────────────────────────────────────────────────
 const CURRENCY_ICONS: Record<string, { label: string; color: string }> = {
@@ -111,10 +111,12 @@ function SternenpfadView({
             <p className="text-xs text-w30">Week {challenge.weekId}</p>
           </div>
         </div>
-        <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg" style={{ background: "rgba(251,191,36,0.08)", border: "1px solid rgba(251,191,36,0.2)" }}>
-          <Stars earned={totalStars} max={9} animated />
-          <span className="text-xs font-bold ml-1" style={{ color: "#fbbf24" }}>{totalStars}/9</span>
-        </div>
+        <TipCustom title="Star Rating" icon="★" accent="#fbbf24" body={<><p>Earn up to <strong>3 stars per stage</strong> (9 total). Higher star counts unlock better milestone rewards.</p><p style={{ marginTop: 4, opacity: 0.7 }}>Complete stages quickly for a Speed Bonus star!</p></>}>
+          <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg cursor-help" style={{ background: "rgba(251,191,36,0.08)", border: "1px solid rgba(251,191,36,0.2)" }}>
+            <Stars earned={totalStars} max={9} animated />
+            <span className="text-xs font-bold ml-1" style={{ color: "#fbbf24" }}>{totalStars}/9</span>
+          </div>
+        </TipCustom>
       </div>
 
       {/* Cumulative Star Milestone Track */}
@@ -261,9 +263,11 @@ function SternenpfadView({
                   </span>
                   <Stars earned={stage.earnedStars} animated />
                   {speedBonusActive && (
-                    <span className="text-xs px-1.5 py-0.5 rounded cursor-help" title={`Complete this stage within ${challenge.speedBonusDays} days for +1 bonus star!`} style={{ background: "rgba(34,197,94,0.1)", color: "#22c55e" }}>
-                      ⚡ Speed Bonus
-                    </span>
+                    <TipCustom title="Speed Bonus" icon="⚡" accent="#22c55e" body={<p>Complete this stage within <strong>{challenge.speedBonusDays} days</strong> for +1 bonus star!</p>}>
+                      <span className="text-xs px-1.5 py-0.5 rounded cursor-help" style={{ background: "rgba(34,197,94,0.1)", color: "#22c55e" }}>
+                        ⚡ Speed Bonus
+                      </span>
+                    </TipCustom>
                   )}
                 </div>
                 <p className="text-xs text-w40 mb-2">{stage.desc}</p>
@@ -575,7 +579,9 @@ function ExpeditionView({
                     <div className="ml-6 rounded-full overflow-hidden relative" style={{ height: 4, background: "rgba(255,255,255,0.04)" }}>
                       <div className="h-full rounded-full transition-all" style={{ width: `${pct}%`, background: aboveFair ? "#4ade80" : "#f8717180" }} />
                       {/* Fair share target line */}
-                      <div className="absolute top-0 bottom-0" style={{ left: `${Math.min(100, Math.round((fairShare / topCount) * 100))}%`, width: 1, background: "rgba(251,191,36,0.5)" }} title={`Fair share: ${fairShare}`} />
+                      <TipCustom title="Fair Share" icon="⚖️" accent="#fbbf24" body={<p>Each player&apos;s fair share is <strong>{fairShare} quests</strong>. Active players compensate for inactive ones.</p>}>
+                        <div className="absolute top-0 bottom-0" style={{ left: `${Math.min(100, Math.round((fairShare / topCount) * 100))}%`, width: 1, background: "rgba(251,191,36,0.5)" }} />
+                      </TipCustom>
                     </div>
                   </div>
                 );

@@ -5,6 +5,7 @@ import type { User, Quest, QuestsData } from "@/app/types";
 import { createStarterQuestsIfNew, CURRENT_SEASON } from "@/app/utils";
 import { SFX } from "@/lib/sounds";
 import { setAccessToken, clearAuth } from "@/lib/auth-client";
+import { TipCustom } from "@/components/GameTooltip";
 
 interface DashboardHeaderProps {
   dashView: string;
@@ -182,10 +183,11 @@ export default function DashboardHeader({
             data-feedback-id="header.season-badge"
             className="text-xs px-2 py-0.5 rounded font-medium btn-interactive"
             style={{ color: CURRENT_SEASON.color, background: CURRENT_SEASON.bg, border: `1px solid ${CURRENT_SEASON.color}40`, cursor: "pointer" }}
-            title={`Current Season: ${CURRENT_SEASON.name} — click to view Season tab`}
             onClick={() => setDashView("season")}
           >
-            {CURRENT_SEASON.icon} {CURRENT_SEASON.name}
+            <TipCustom title={`Season: ${CURRENT_SEASON.name}`} icon={CURRENT_SEASON.icon} accent={CURRENT_SEASON.color} body={<p>Current season. Click to view the Season tab with details and seasonal rewards.</p>}>
+              <span>{CURRENT_SEASON.icon} {CURRENT_SEASON.name}</span>
+            </TipCustom>
           </button>
         </div>
 

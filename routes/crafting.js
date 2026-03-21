@@ -39,7 +39,7 @@ function loadProfessions() {
   }
 }
 
-// ─── Proficiency ranks (WoW-style named tiers) ─────────────────────────────
+// ─── Proficiency ranks (named tiers) ────────────────────────────────────────
 const PROFICIENCY_RANKS = [
   { min: 0, max: 0, name: 'Novice', color: '#6b7280' },
   { min: 1, max: 2, name: 'Apprentice', color: '#22c55e' },
@@ -56,7 +56,7 @@ function getProfRank(level) {
   return PROFICIENCY_RANKS[0];
 }
 
-// ─── Skill-up color for recipes (WoW-style: orange/yellow/green/gray) ───────
+// ─── Skill-up color for recipes (orange/yellow/green/gray) ──────────────────
 function getSkillUpColor(profLevel, reqProfLevel) {
   const diff = profLevel - reqProfLevel;
   if (diff <= 0) return 'orange';   // guaranteed skill-up
@@ -65,7 +65,7 @@ function getSkillUpColor(profLevel, reqProfLevel) {
   return 'gray';                     // no skill-up
 }
 
-// XP multiplier based on skill-up color (WoW-style diminishing returns)
+// XP multiplier based on skill-up color (diminishing returns)
 function getSkillUpXpMultiplier(profLevel, reqProfLevel) {
   const colors = PROFESSIONS_DATA.skillUpColors;
   if (colors) {
@@ -201,7 +201,7 @@ router.get('/api/professions', (req, res) => {
   const learnedRecipes = u?.learnedRecipes || [];
   const masteryConfig = PROFESSIONS_DATA.masteryConfig || null;
   const gatheringConfig = PROFESSIONS_DATA.gatheringConfig || null;
-  // Build reroll preview data: per-slot affix ranges for equipped gear (D3-style reroll preview)
+  // Build reroll preview data: per-slot affix ranges for equipped gear
   const slotAffixRanges = {};
   if (u && u.equipment) {
     for (const slot of VALID_SLOTS) {
@@ -819,7 +819,7 @@ router.post('/api/schmiedekunst/dismantle', requireAuth, (req, res) => {
   });
 });
 
-// POST /api/schmiedekunst/dismantle-all — bulk dismantle by rarity (D3-style Salvage All)
+// POST /api/schmiedekunst/dismantle-all — bulk dismantle by rarity (Salvage All)
 router.post('/api/schmiedekunst/dismantle-all', requireAuth, (req, res) => {
   const uid = req.auth?.userId;
   const u = state.users[uid];

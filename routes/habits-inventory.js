@@ -477,7 +477,7 @@ router.post('/api/player/:name/equip/:itemId', requireAuth, requireSelf('name'),
     }
 
     u.gold -= shopItem.cost;
-    // Roll stats for the new item (Diablo-3-style)
+    // Roll stats for the new item
     const instance = createGearInstance(shopItem);
     u.equipment[shopItem.slot] = instance;
     if (!u.purchases) u.purchases = [];

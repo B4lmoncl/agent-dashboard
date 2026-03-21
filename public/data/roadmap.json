@@ -42,7 +42,7 @@
   {
     "id": "r6",
     "title": "Character Screen",
-    "desc": "Inventar (6-col grid, 56×56 slots), Equipment Slots, Stats, Tooltips, Diablo-inspiriertes Layout",
+    "desc": "Inventar (6-col grid, 56×56 slots), Equipment Slots, Stats, Tooltips",
     "status": "done",
     "eta": "März 2026",
     "category": "core"

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Tip } from "@/components/GameTooltip";
+import { Tip, TipCustom } from "@/components/GameTooltip";
 import type { User, Quest } from "@/app/types";
 import { RARITY_COLORS } from "@/components/QuestBoard";
 import { getQuestRarity } from "@/app/utils";
@@ -400,8 +400,10 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
                         color: "#a78bfa", border: "1px solid rgba(167,139,250,0.3)",
                         boxShadow: heartAnim ? "0 0 12px rgba(255,107,157,0.3)" : "0 0 6px rgba(255,107,157,0.1)",
                         cursor: petting ? "wait" : "pointer",
-                      }} title="Pet your companion (+0.5 bond XP, max 2x/day)">
-                        🐾 Pet
+                      }}>
+                        <TipCustom title="Pet Companion" icon="🐾" accent="#a78bfa" body={<p>Give your companion a belly rub! Grants <strong>+0.5 bond XP</strong> per pet, up to <strong>2x per day</strong>.</p>}>
+                          <span>🐾 Pet</span>
+                        </TipCustom>
                       </button>
                       <span className="text-xs" style={{ color: "rgba(255,107,157,0.5)", whiteSpace: "nowrap" }}>
                         {petsToday !== null ? petsToday : (user?.companion?.petDateStr === new Date().toISOString().slice(0, 10) ? (user?.companion?.petCountToday ?? 0) : 0)}/2 belly rubs today

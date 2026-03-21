@@ -488,7 +488,7 @@ function TradeOfferDisplay({ offer, label, color }: { offer: TradeOffer; label: 
                 <span className="font-semibold" style={{ color: rc }}>{item.name}</span>
                 <span className="text-w20 capitalize ml-auto">{item.rarity}</span>
                 {item.slot && <span className="text-w15">({item.slot})</span>}
-                {/* D3-style stat tooltip on hover */}
+                {/* Stat tooltip on hover */}
                 {(item.stats || item.setName || item.legendaryEffect) && (
                   <div className="absolute left-0 bottom-full mb-1 z-50 hidden group-hover:block pointer-events-none" style={{ minWidth: 180 }}>
                     <div className="rounded-lg p-2.5 shadow-xl" style={{ background: "#1a1a1f", border: `1px solid ${rc}40`, boxShadow: `0 4px 16px rgba(0,0,0,0.6), 0 0 8px ${rc}15` }}>

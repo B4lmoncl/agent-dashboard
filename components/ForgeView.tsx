@@ -6,7 +6,7 @@ import { useDashboard } from "@/app/DashboardContext";
 
 import { useModalBehavior } from "@/components/ModalPortal";
 import { getAuthHeaders } from "@/lib/auth-client";
-import { Tip } from "@/components/GameTooltip";
+import { Tip, TipCustom } from "@/components/GameTooltip";
 
 // ─── Types ──────────────────────────────────────────────────────────────────
 interface ProfessionDef {
@@ -87,7 +87,7 @@ const SLOT_LABELS: Record<string, string> = {
   boots: "Boots",
 };
 
-// ─── Synergy hints (WoW-style profession pairing suggestions) ───────────────
+// ─── Synergy hints (profession pairing suggestions) ─────────────────────────
 const SYNERGY_HINTS: Record<string, { partner: string; label: string }> = {
   schmied: { partner: "verzauberer", label: "Gear Mastery" },
   verzauberer: { partner: "schmied", label: "Gear Mastery" },
@@ -414,9 +414,11 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
         <div className="flex items-center gap-4 ml-auto text-sm">
           <span className="font-mono font-medium" style={{ color: "rgba(255,255,255,0.35)" }}>{chosenCount}/{maxProfSlots} Professions</span>
           {dailyBonusAvailable && (
-            <span className="px-2 py-1 rounded font-bold text-xs cursor-help" title="Daily Bonus active! Your first craft today gives 2x profession XP. Resets daily." style={{ background: "rgba(250,204,21,0.12)", color: "#facc15", border: "1px solid rgba(250,204,21,0.25)" }}>
-              2x XP
-            </span>
+            <TipCustom title="Daily Bonus" icon="⚡" accent="#facc15" body={<p>Your first craft today gives <strong>2x profession XP</strong>. Resets daily at midnight.</p>}>
+              <span className="px-2 py-1 rounded font-bold text-xs cursor-help" style={{ background: "rgba(250,204,21,0.12)", color: "#facc15", border: "1px solid rgba(250,204,21,0.25)" }}>
+                2x XP
+              </span>
+            </TipCustom>
           )}
           <span className="flex items-center gap-1.5" style={{ color: "#f59e0b" }}>
             <img src="/images/icons/currency-gold.png" alt="" width={24} height={24} style={{ imageRendering: "auto" }} onError={hideOnError} />
@@ -748,10 +750,12 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                     <p className="text-xs mb-1.5" style={{ color: "rgba(255,255,255,0.25)" }}>Your materials <span style={{ color: "rgba(255,255,255,0.15)" }}>(earned from quest completions)</span></p>
                     <div className="flex flex-wrap gap-2">
                       {mats.map(m => (
-                        <span key={m.id} className="text-sm flex items-center gap-1.5 px-2 py-1 rounded cursor-help" title={`${m.desc || m.name} — ${RARITY_LABELS[m.rarity] || m.rarity} material, drops from ${m.rarity} quests`} style={{ background: "rgba(255,255,255,0.04)", color: materials[m.id] ? RARITY_COLORS[m.rarity] : "rgba(255,255,255,0.15)" }}>
+                        <TipCustom key={m.id} title={m.name} icon="🧱" accent={RARITY_COLORS[m.rarity] || "#888"} body={<><p>{m.desc || m.name}</p><p style={{ marginTop: 4, opacity: 0.7 }}>{RARITY_LABELS[m.rarity] || m.rarity} material — drops from {m.rarity} quests</p></>}>
+                        <span className="text-sm flex items-center gap-1.5 px-2 py-1 rounded cursor-help" style={{ background: "rgba(255,255,255,0.04)", color: materials[m.id] ? RARITY_COLORS[m.rarity] : "rgba(255,255,255,0.15)" }}>
                           <img src={m.icon} alt="" width={16} height={16} style={{ imageRendering: "auto" }} onError={hideOnError} />
                           {m.name} <strong className="font-mono">x{materials[m.id] || 0}</strong>
                         </span>
+                        </TipCustom>
                       ))}
                     </div>
                   </div>
@@ -823,10 +827,12 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                     <Tip k="recipes"><p className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.25)" }}>Recipes</p></Tip>
                     <div className="flex items-center gap-3">
                       {Object.entries(SKILL_UP_COLORS).map(([key, sc]) => (
-                        <span key={key} className="flex items-center gap-1 text-xs cursor-help" title={`${sc.label}: ${key === "orange" ? "100% XP" : key === "yellow" ? "75% XP" : key === "green" ? "25% XP" : "0% XP — level up to get XP from higher recipes"}`} style={{ color: "rgba(255,255,255,0.3)" }}>
+                        <TipCustom key={key} title={`${sc.label} Skill-Up`} icon="📊" accent={sc.color} body={<p>{key === "orange" ? "100% chance to gain XP" : key === "yellow" ? "75% chance to gain XP" : key === "green" ? "25% chance to gain XP" : "0% XP — level up to unlock XP from higher recipes"}</p>}>
+                        <span className="flex items-center gap-1 text-xs cursor-help" style={{ color: "rgba(255,255,255,0.3)" }}>
                           <span className="w-2 h-2 rounded-full" style={{ background: sc.color }} />
                           {sc.label}
                         </span>
+                        </TipCustom>
                       ))}
                     </div>
                   </div>
@@ -858,7 +864,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                               <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: skillUp?.color || "#6b7280" }} title={skillUp?.label || ""} />
                             </div>
                             <p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,0.4)" }}>{recipe.desc}</p>
-                            {/* D3-style reroll preview: show current stats + possible ranges */}
+                            {/* Reroll preview: show current stats + possible ranges */}
                             {meetsLevel && (recipe.id === "reroll_stat" || recipe.id === "reroll_minor" || recipe.id === "reinforce_armor" || recipe.id === "enchant_socket") && equippedSlots[selectedSlot] && typeof equippedSlots[selectedSlot] === "object" && (() => {
                               const slotData = slotAffixRanges[selectedSlot];
                               const currentStats = (equippedSlots[selectedSlot] as Record<string, unknown>).stats as Record<string, number> || {};
@@ -1044,7 +1050,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                           <div className="flex items-center gap-2 mb-2">
                             <span className="text-sm font-semibold uppercase" style={{ color: RARITY_COLORS[rarity] }}>{rarity}</span>
                             <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.25)" }}>+{ESSENZ_TABLE[rarity] || 2} Essenz each</span>
-                            {/* Salvage All button (D3-style) */}
+                            {/* Salvage All button */}
                             {grouped[rarity].length >= 2 && rarity !== "legendary" && (
                               <button
                                 onClick={() => handleDismantleAll(rarity, grouped[rarity].length)}

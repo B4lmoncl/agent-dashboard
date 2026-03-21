@@ -157,16 +157,8 @@ export function WandererRest({
         <div className="mb-4">
           <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
             <div style={{ flex: 1, height: 1, background: "linear-gradient(90deg, transparent, rgba(255,215,0,0.25), transparent)" }} />
-            <span style={{ fontSize: "0.85rem", color: "rgba(255,215,0,0.6)", letterSpacing: "0.15em", textTransform: "uppercase" }}>◆ The Wanderer's Rest ◆</span>
+            <Tip k="npc_quest_board"><span style={{ fontSize: "0.85rem", color: "rgba(255,215,0,0.6)", letterSpacing: "0.15em", textTransform: "uppercase" }}>◆ The Wanderer&#39;s Rest ◆</span></Tip>
             <div style={{ flex: 1, height: 1, background: "linear-gradient(90deg, transparent, rgba(255,215,0,0.25), transparent)" }} />
-            <span
-              data-feedback-id="wanderers-rest.info"
-              onClick={() => setNpcInfoOpen(true)}
-              style={{ cursor: "pointer", color: "rgba(255,215,0,0.45)", borderRadius: "50%", border: "1px solid rgba(255,215,0,0.3)", width: 18, height: 18, display: "inline-flex", alignItems: "center", justifyContent: "center", fontSize: 12, fontWeight: 700, flexShrink: 0, transition: "color 0.2s, border-color 0.2s" }}
-              onMouseEnter={e => { (e.target as HTMLElement).style.color = "rgba(255,215,0,0.8)"; (e.target as HTMLElement).style.borderColor = "rgba(255,215,0,0.6)"; }}
-              onMouseLeave={e => { (e.target as HTMLElement).style.color = "rgba(255,215,0,0.45)"; (e.target as HTMLElement).style.borderColor = "rgba(255,215,0,0.3)"; }}
-              title="What is this?"
-            >?</span>
           </div>
           <p className="text-xs mt-2 italic text-center" style={{ color: "rgba(255,255,255,0.3)" }}>They come. They go. They always return.</p>
         </div>

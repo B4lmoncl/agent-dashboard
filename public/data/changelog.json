@@ -27,7 +27,7 @@
       "Active Buff system — timed effects like XP boost, Gold 2x, Essenz boost",
       "Discard items with confirmation dialog",
       "Click inventory items → Action popup (Use / Equip / Discard)",
-      "Diablo-style consume feedback toast (non-blocking)",
+      "Consume feedback toast (non-blocking)",
       "Stats now have real effects: Kraft→+XP, Weisheit→+Gold, Ausdauer→less Forge decay",
       "Passive Gacha effects active: Rarity boost, Pity reduction, Streak recovery",
       "29 new pixel art loot item icons (128x128)",
@@ -60,7 +60,7 @@
       "Quest refresh button green glow — visual indicator for pool refresh",
       "Quest difficulties adjusted — rebalanced quest difficulty ratings",
       "XP info panel added to Quest Board — transparent XP breakdown display",
-      "WoW-style XP scaling curve — exponential progression inspired by WoW Classic",
+      "Exponential XP scaling curve",
       "Quest favorites system — star icon to favorite quests, sort to top",
       "Version tracking + New Version popup — notifies players of new releases",
       "Expandable changelog — accordion-style version history"

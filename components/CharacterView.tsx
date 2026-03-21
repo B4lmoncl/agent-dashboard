@@ -1644,9 +1644,8 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
           onClick={() => onNavigate("forge")}
           className="cross-nav-link shrink-0 text-xs px-2.5 py-1.5 rounded-lg font-semibold"
           style={{ background: "rgba(245,158,11,0.06)", border: "1px solid rgba(245,158,11,0.15)", color: "rgba(245,158,11,0.55)" }}
-          title="Reroll stats, enchant gear, craft items"
         >
-          Artisan&#39;s Quarter &#8250;
+          <Tip k="artisans_quarter">Artisan&#39;s Quarter &#8250;</Tip>
         </button>
       )}
       {charData?.companion && (() => {
