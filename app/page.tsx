@@ -30,7 +30,7 @@ import { RewardCelebration, RewardCelebrationData } from "@/components/RewardCel
 import { useFloatingRewards, FloatingRewardsLayer } from "@/components/FloatingRewards";
 import { CompanionsWidget } from "@/components/CompanionsWidget";
 import { RoadmapView } from "@/components/RoadmapView";
-import { Tip } from "@/components/GameTooltip";
+import { Tip, TipCustom } from "@/components/GameTooltip";
 import { WandererRest } from "@/components/WandererRest";
 import GuildHallBackground from "@/components/GuildHallBackground";
 import FeedbackOverlay from "@/components/FeedbackOverlay";
@@ -865,7 +865,6 @@ export default function Dashboard() {
                       border: "1px solid rgba(251,191,36,0.15)",
                       cursor: "pointer",
                     }}
-                    title="Login Calendar"
                   >
                     <Tip k="login_calendar">📅</Tip>
                   </button>
@@ -874,7 +873,7 @@ export default function Dashboard() {
 
               {/* Right side: Currencies + Forge */}
               <div className="flex flex-col items-end gap-2 flex-shrink-0">
-                {/* Currency bar — prominent like HSR/Genshin */}
+                {/* Currency bar */}
                 <div className="flex items-center gap-3 rounded-xl px-3 py-2 bg-w4 border-w8">
                   {[
                     { emoji: "", key: "gold" as const, value: Number(loggedInUser?.currencies?.gold ?? animGold), color: "#f59e0b", iconSrc: "/images/icons/currency-gold.png" },
@@ -885,7 +884,7 @@ export default function Dashboard() {
                     { emoji: "", key: "mondstaub" as const, value: Number(loggedInUser?.currencies?.mondstaub ?? 0), color: "#c084fc", iconSrc: "/images/icons/currency-mondstaub.png" },
                     { emoji: "", key: "sternentaler" as const, value: Number(loggedInUser?.currencies?.sternentaler ?? 0), color: "#fbbf24", iconSrc: "/images/icons/currency-sternentaler.png" },
                   ].map(c => (
-                    <div key={c.key} className="flex items-center gap-1 cursor-pointer" onClick={() => setCurrenciesOpen(true)} title={c.key}>
+                    <div key={c.key} className="flex items-center gap-1 cursor-pointer" onClick={() => setCurrenciesOpen(true)}>
                       <Tip k={c.key}>
                         {c.iconSrc ? <img src={c.iconSrc} alt="" width={16} height={16} className={`${c.key === "stardust" ? "premium-stardust" : c.key === "runensplitter" ? "premium-rune-shards" : ""} img-render-auto`} onError={(e) => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} /> : <span style={{ fontSize: 18 }}>{c.emoji}</span>}
                         <span className="text-base font-mono font-black" style={{ color: c.value > 0 ? c.color : "rgba(255,255,255,0.15)" }}>
@@ -1402,13 +1401,14 @@ export default function Dashboard() {
                             disabled={poolRefreshing}
                             className={`btn-interactive px-2 py-1 rounded${(() => { const ready = !poolRefreshing && (!lastPoolRefresh || Date.now() - lastPoolRefresh.getTime() >= 6 * 3600 * 1000); return poolRefreshing ? "" : ready ? " quest-refresh-ready" : " quest-refresh-cooldown"; })()}`}
                             style={{ background: "rgba(59,130,246,0.12)", color: "#60a5fa", border: "1px solid rgba(59,130,246,0.3)", opacity: poolRefreshing ? 0.6 : 1 }}
-                            title="Refresh quest pool (1x per 6h)"
                           >
-                            {poolRefreshing ? (
-                              <span className="text-sm">—</span>
-                            ) : (
-                              <img src="/images/icons/ui-quest-scroll.png" alt="" width={24} height={24} className="img-render-auto" onError={e => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} />
-                            )}
+                            <TipCustom title="Refresh Quest Pool" icon="🔄" accent="#22c55e" body={<p>Refreshes the available quest pool. Limited to once every 6 hours.</p>}>
+                              {poolRefreshing ? (
+                                <span className="text-sm">—</span>
+                              ) : (
+                                <img src="/images/icons/ui-quest-scroll.png" alt="" width={24} height={24} className="img-render-auto" onError={e => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} />
+                              )}
+                            </TipCustom>
                           </button>
                         )}
                       </div>

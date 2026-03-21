@@ -138,7 +138,7 @@ function executePull(playerId, banner) {
     duplicateRefund = DUPLICATE_REFUND[rarity] || 1;
     awardCurrency(playerId, 'runensplitter', duplicateRefund);
   } else {
-    // Roll stats for equipment-type items (Diablo-3-style affix rolling)
+    // Roll stats for equipment-type items (affix rolling)
     const isEquipment = item.type === 'weapon' || item.type === 'armor' || item.type === 'equipment';
     let rolledStats = item.stats || null;
     let rolledLegendaryEffect = item.legendaryEffect || null;

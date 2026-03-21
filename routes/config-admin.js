@@ -122,8 +122,8 @@ router.get('/api/dashboard', async (req, res) => {
       const dailyClaimed = u.dailyBonusLastClaim === today;
       // Check rituals completed today
       const ritualsToday = (state.rituals || []).filter(r => r.playerId === playerLower && r.lastCompleted === today).length;
-      // Check companion petted today
-      const petCount = u.companion?.petCountToday ?? 0;
+      // Check companion petted today (petCountToday is only reset on next pet, so verify date)
+      const petCount = (u.companion?.petDateStr === today) ? (u.companion.petCountToday ?? 0) : 0;
       // Check crafted today
       const craftedToday = u.lastCraftDate === today;
       // Build mission list with points
@@ -187,7 +187,7 @@ router.post('/api/daily-missions/claim', requireAuth, (req, res) => {
   const questsToday = Object.values(pp.completedQuests || {}).filter(cq => cq && cq.at && cq.at.startsWith(today)).length;
   const dailyClaimed = u.dailyBonusLastClaim === today;
   const ritualsToday = (state.rituals || []).filter(r => r.playerId === uid && r.lastCompleted === today).length;
-  const petCount = u.companion?.petCountToday ?? 0;
+  const petCount = (u.companion?.petDateStr === today) ? (u.companion.petCountToday ?? 0) : 0;
   const craftedToday = u.lastCraftDate === today;
   const missions = [
     { points: 100, done: dailyClaimed },

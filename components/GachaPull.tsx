@@ -301,7 +301,7 @@ function SinglePullReveal({ result, onDone }: { result: GachaPullResult; onDone:
   );
 }
 
-// ─── Multi Pull (10×) — Sequential HSR-style reveals ────────────────────────
+// ─── Multi Pull (10×) — Sequential reveals ──────────────────────────────────
 // 8s charge, flash shows BEST rarity, then sequential item reveals
 function MultiPullReveal({ results, onDone }: { results: GachaPullResult[]; onDone: () => void; onCollect?: (item: string) => void }) {
   const [phase, setPhase] = useState<"charge" | "flash" | "sequential" | "black" | "summary">("charge");

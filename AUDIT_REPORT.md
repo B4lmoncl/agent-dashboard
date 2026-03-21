@@ -101,7 +101,7 @@ server.js             # Express entry point (~289 lines)
 
 - 4 profession NPCs: Blacksmith, Alchemist, Enchanter, Cook
 - Max 2 professions per player, 10 levels each
-- WoW-style ranks: Novice → Apprentice → Journeyman → Expert → Artisan → Master
+- Named ranks: Novice → Apprentice → Journeyman → Expert → Artisan → Master
 - 13 materials (common→legendary), recipe discovery, batch crafting
 - Schmiedekunst: dismantle items → essenz + materials, transmute 3 epics → 1 legendary
 - Daily 2x XP bonus on first craft
@@ -1809,6 +1809,161 @@ All interactive UI strings translated across 6 files:
 | Commit | Timestamp | Description |
 |--------|-----------|-------------|
 | `2f3ed17` | 2026-03-21 | Translate remaining German interactive UI to English (30 strings) |
+
+---
+
+## 25. Phase 2026-03-21 — Tooltip System Overhaul & Modal Consistency (Session 10)
+
+### 25.1 Tooltip System — GameTooltip Implementation
+
+New tooltip system (`components/GameTooltip.tsx`) with 3 component types:
+- `<Tip k="...">` — Registry-based tooltips (52 usages across 21 components)
+- `<TipCustom>` — Ad-hoc custom tooltips (11 usages)
+- `<GTRef k="...">` — Nested cross-reference tooltips (~94 usages within registry)
+
+**Registry**: 50+ entries covering stats, currencies, systems, sections, features.
+
+**Behavior**: 800ms hover delay → tooltip appears. Root tooltips pin on hover-complete (close via click-outside or ESC). Nested tooltips close on mouse-leave with 150ms grace period.
+
+**Positioning**: Changed from `position: fixed` to `position: absolute` with scroll offsets — pinned tooltips stay anchored to content.
+
+### 25.2 Tooltip System — Fixes Applied
+
+| # | Issue | Fix |
+|---|-------|-----|
+| 1 | Pinned tooltips scrolled with viewport | Changed to absolute positioning + scrollY/scrollX offsets |
+| 2 | No ESC key to close tooltips | Added keydown Escape listener alongside click-outside |
+| 3 | Double tooltips (old title= + new Tip) | Removed title= where Tip already exists |
+| 4 | Wanderer's Rest "?" info icon (old system) | Replaced with `<Tip k="npc_quest_board">` on heading |
+| 5 | Refresh Quest Pool had no tooltip | Added `<TipCustom>` with refresh explanation |
+| 6 | Star Path star display had no tooltip | Added `<TipCustom>` explaining star rating system |
+| 7 | Speed Bonus had old cursor-help title= | Replaced with `<TipCustom>` |
+| 8 | Fair Share had old title= | Replaced with `<TipCustom>` |
+| 9 | Forge Daily Bonus had old title= | Replaced with `<TipCustom>` |
+| 10 | Material details had old title= with cursor-help | Replaced with `<TipCustom>` per material |
+| 11 | Skill-up colors had old title= with cursor-help | Replaced with `<TipCustom>` per color |
+| 12 | Artisan's Quarter link had old title= | Replaced with `<Tip k="artisans_quarter">` |
+| 13 | Season indicator had old title= | Replaced with `<TipCustom>` |
+
+### 25.3 Game Reference Removal
+
+Removed ALL game name references (HSR, WoW, Diablo, D3, CK3, BG3, Genshin, Steam) from:
+- Tooltip registry text (GameTooltip.tsx) — 8 references
+- Tutorial content (TutorialModal.tsx) — 14 references
+- Changelog + Roadmap (JSON) — 3 references
+- CSS animation names (ck3-* → gt-*) — 4 references
+- Backend comments (routes/, lib/) — 9 references
+- Component comments — 6 references
+
+**20 files modified, 0 game references remaining in code/data** (documentation markdown files unchanged).
+
+### 25.4 Cross-Reference Tooltips (GTRef)
+
+Added ~94 nested sub-tooltips within registry entries. Every mention of:
+- Currencies (XP, Gold, Essenz, Runensplitter, Stardust, Sternentaler)
+- Stats (Kraft, Ausdauer, Weisheit, Glück, Fokus, Vitalität, Charisma, Tempo)
+- Systems (Streak, Forge Temp, Pity, Bond Level)
+
+...now has a hoverable GTRef cross-reference (except self-references to avoid loops).
+
+### 25.5 Daily Missions Pet Bug Fix
+
+**Bug**: "Pet your companion" daily mission showed as completed even when not petted today.
+**Root cause**: `petCountToday` wasn't checked against `petDateStr` matching today's date.
+**Fix**: Added `u.companion?.petDateStr === today` check in both dashboard read and milestone claim paths (`routes/config-admin.js`).
+
+### 25.6 Modal Consistency Audit & Fixes
+
+**14 distinct modals audited.** Key inconsistencies found and fixed:
+
+| Modal | ESC Key | Click-Outside | X Button | Backdrop |
+|-------|---------|---------------|----------|----------|
+| Currencies | ✗→✓ FIXED | ✓ | ✓ | rgba(0,0,0,0.75) |
+| Modifier Info | ✓ | ✓ | ✓ | rgba(0,0,0,0.6) + blur |
+| Streak/Active/XP Info (×3) | ✓ | ✓ | ✓ | rgba(0,0,0,0.6) + blur |
+| Quest Detail | ✗→✓ FIXED | ✓ | ✓ | rgba(0,0,0,0.75) |
+| Reward Celebration | ✓ | ✓ | ✓ | rgba(0,0,0,0.85) |
+| Gacha Info | ✓ | ✓ | ✓ | rgba(0,0,0,0.75) |
+| Gacha Banner | ✓ | ✓ | ✗→✓ FIXED | rgba(0,0,0,0.75) |
+| Player Profile | ✓ | ✓ | ✓ | rgba(0,0,0,0.82) |
+| Shop | ✓ | ✓ | ✓ | rgba(0,0,0,0.7) |
+| Create Quest | ✓ | ✓ | ✓ | rgba(0,0,0,0.75) |
+| Onboarding Wizard | ✓ | ✗ (wizard) | ✗ (wizard) | wizard overlay |
+| Feedback Modal | ✓ | ✓ | ✓ | rgba(0,0,0,0.8) |
+
+**Remaining acknowledged issues (Modal):**
+
+| Issue | Severity | Status |
+|-------|----------|--------|
+| Z-index inconsistency (50→10001 range) | LOW | Acknowledged — functional, no stacking bugs observed |
+| Backdrop blur only on 4 info modals, not others | LOW | Acknowledged — intentional visual hierarchy |
+| Backdrop opacity varies (0.6-0.85) | LOW | Acknowledged — different modal importance levels |
+
+### 25.7 Tooltip Coverage Map (All Rooms)
+
+| Floor | Room | Tooltip Key | Status |
+|-------|------|-------------|--------|
+| Pinnacle | The Observatory | campaigns | ✓ |
+| Pinnacle | The Proving Grounds | proving_grounds | ✓ |
+| Pinnacle | Hall of Honors | achievements | ✓ |
+| Pinnacle | Season | — | ✗ No tooltip (BattlePassView) |
+| Great Halls | The Great Hall | quest_board | ✓ |
+| Great Halls | The Wanderer's Rest | npc_quest_board | ✓ |
+| Great Halls | Challenges | weekly_challenges | ✓ |
+| Great Halls | The Rift | rift | ✓ |
+| Trading District | The Bazaar | bazaar | ✓ |
+| Trading District | Artisan's Quarter | artisans_quarter | ✓ |
+| Trading District | Vault of Fate | vault_of_fate | ✓ |
+| Inner Sanctum | Character | — | ✗ No tooltip (CharacterView) |
+| Inner Sanctum | The Arcanum | classes | Partial (coming soon) |
+| Inner Sanctum | Ritual Chamber | rituals | ✓ |
+| Inner Sanctum | Vow Shrine | vows | ✓ |
+| Breakaway | The Breakaway | breakaway | ✓ |
+| Breakaway | The Hearth | hearth | ✓ |
+
+### 25.8 Remaining HTML title= Attributes (Appropriate)
+
+128 HTML `title=` attributes remain across the codebase. These are appropriate for:
+- **Action buttons**: "Delete", "Create Quest", "Claim", "Dismiss" — simple action hints
+- **Dynamic content**: Material descriptions, item names, achievement text — data-driven
+- **Toggle state**: "Mute/Unmute", "Add/Remove favorite" — contextual hints
+- **TutorialModal GuideSection**: `title` prop (not HTML attribute) — 47 section headers
+
+No conversion needed — these serve a different purpose than the GameTooltip system.
+
+### 25.9 Changelog (Session 10)
+
+| Commit | Timestamp | Description |
+|--------|-----------|-------------|
+| `9522e06` | 2026-03-21 | Tooltip system overhaul: positioning, ESC close, game ref removal, old tooltip migration |
+| `b418756` | 2026-03-21 | Fix modal consistency: add ESC key to all modals, add X button to gacha banner |
+| `4902df6` | 2026-03-21 | Fix 2 frontend-backend mismatches in tooltip values |
+
+---
+
+## 26. Frontend-Backend Consistency Verification (Session 10)
+
+### 26.1 Values Verified (All Match)
+
+| Claim in Tooltip | Backend Code | Status |
+|------------------|-------------|--------|
+| Kraft: +0.5% XP per point, cap 30% | `Math.min(1.30, 1 + kraft * 0.005)` | **MATCH** |
+| Weisheit: +0.5% Gold per point, cap 30% | `Math.min(1.30, 1 + weisheit * 0.005)` | **MATCH** |
+| Forge Temp XP: 100%=×1.5, 80%=×1.25, 60%=×1.15, 40%=×1.0, 20%=×0.8, <20%=×0.5 | `getForgeXpBase()` | **MATCH** |
+| Forge Temp Gold: 100%=×1.5, 80%=×1.3, 60%=×1.15 | `getForgeGoldBase()` | **MATCH** |
+| Streak Gold: +1.5%/day, cap 45% | `Math.min(1 + days * 0.015, 1.45)` | **MATCH** |
+| Pity: Soft 55, Hard 75, +2.5%/pull | `SOFT_PITY_START=55, HARD_PITY=75, INCREASE=0.025` | **MATCH** |
+| Bond: +0.5 XP/pet, 2x/day | `bondXp + 0.5, petCountToday >= 2` | **MATCH** |
+| Quest XP: C=10, U=18, R=30, E=50, L=80 | `XP_BY_RARITY` | **MATCH** |
+| Daily Missions: 100=25g, 300=50g+3e, 500=100g+2r, 750=150g+1s | `milestones[]` | **MATCH** |
+| Vow rewards: Med=1×/5g/15xp, Hard=1.5×/8g/25xp, Leg=2×/12g/40xp | `DIFFICULTY_TIERS_VOW` | **MATCH** |
+
+### 26.2 Mismatches Found & Fixed
+
+| # | Frontend Claim | Backend Reality | Severity | Fix |
+|---|---------------|-----------------|----------|-----|
+| 1 | Hoarding: -80% at 28+ quests | -50% at 25+, -80% at 30+ | **HIGH** | Fixed tooltip to show correct soft/hard caps |
+| 2 | Vow Easy: 1× multiplier | 0.5× bondScale | **MEDIUM** | Fixed tooltip to show 0.5× |
 
 ---
 

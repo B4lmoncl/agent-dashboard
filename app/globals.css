@@ -1022,7 +1022,7 @@ img {
   animation: badge-bounce-in 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-/* ─── GameTooltip System (CK3-inspired) ─────────────────────────────────── */
+/* ─── GameTooltip System ─────────────────────────────────────────────────── */
 
 .gt-trigger {
   position: relative;
@@ -1030,7 +1030,7 @@ img {
   display: inline;
 }
 
-/* CK3 loading bar — golden line fills under trigger during hover delay */
+/* Loading bar — golden line fills under trigger during hover delay */
 .gt-trigger.gt-loading::after {
   content: "";
   position: absolute;
@@ -1040,10 +1040,10 @@ img {
   background: linear-gradient(90deg, rgba(255,215,0,0.5), rgba(255,215,0,0.9), rgba(255,215,0,0.5));
   border-radius: 1px;
   box-shadow: 0 0 8px rgba(255,215,0,0.4);
-  animation: ck3-load-bar 0.8s linear forwards;
+  animation: gt-load-bar 0.8s linear forwards;
 }
 
-@keyframes ck3-load-bar {
+@keyframes gt-load-bar {
   0%   { width: 0; opacity: 1; }
   85%  { width: 100%; opacity: 1; }
   100% { width: 100%; opacity: 0; }
@@ -1076,16 +1076,16 @@ img {
   pointer-events: auto;
 }
 
-/* CK3 golden shimmer edge at top of panel */
+/* Golden shimmer edge at top of panel */
 .gt-panel::before {
   content: "";
   display: block;
   height: 2px;
   background: linear-gradient(90deg, transparent 5%, rgba(255,215,0,0.4) 30%, rgba(255,215,0,0.7) 50%, rgba(255,215,0,0.4) 70%, transparent 95%);
-  animation: ck3-shimmer 3s ease-in-out infinite;
+  animation: gt-shimmer 3s ease-in-out infinite;
 }
 
-@keyframes ck3-shimmer {
+@keyframes gt-shimmer {
   0%, 100% { opacity: 0.3; }
   50% { opacity: 1; }
 }

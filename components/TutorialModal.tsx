@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { useModalBehavior } from "./ModalPortal";
 
-// ─── GuideSection (WoW-inspired section card with optional icon) ────────────
+// ─── GuideSection (section card with optional icon) ─────────────────────────
 
 export function GuideSection({ title, icon, children, accent }: { title: string; icon?: string; children: React.ReactNode; accent?: string }) {
   const borderColor = accent || "rgba(255,255,255,0.06)";
@@ -18,7 +18,7 @@ export function GuideSection({ title, icon, children, accent }: { title: string;
   );
 }
 
-/** HSR-style tip box — yellow border, italic text */
+/** tip box — yellow border, italic text */
 function GuideTip({ children }: { children: React.ReactNode }) {
   return (
     <div className="rounded-lg px-3 py-2 mt-2 flex items-start gap-2" style={{ background: "rgba(251,191,36,0.06)", border: "1px solid rgba(251,191,36,0.2)" }}>
@@ -28,7 +28,7 @@ function GuideTip({ children }: { children: React.ReactNode }) {
   );
 }
 
-/** Diablo-style rarity-colored inline label */
+/** rarity-colored inline label */
 function Rarity({ r, children }: { r: string; children: React.ReactNode }) {
   const colors: Record<string, string> = { common: "#9ca3af", uncommon: "#22c55e", rare: "#3b82f6", epic: "#a855f7", legendary: "#FFD700" };
   return <span style={{ color: colors[r] || "#f0f0f0", fontWeight: 600 }}>{children}</span>;
@@ -179,7 +179,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
               </GuideSection>
 
               <GuideSection title="Seltenheit & Belohnungen" icon="✨" accent="rgba(168,85,247,0.3)">
-                Quests haben eine Seltenheitsstufe (Diablo-Stil) die Belohnungen bestimmt:
+                Quests haben eine Seltenheitsstufe die Belohnungen bestimmt:
                 <div className="mt-2 rounded-lg overflow-hidden" style={{ border: "1px solid rgba(255,255,255,0.06)" }}>
                   <div className="grid grid-cols-4 gap-0 text-center text-xs font-bold py-1" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.4)" }}>
                     <span>Rarity</span><span>XP</span><span>Gold</span><span>Runen</span>
@@ -253,7 +253,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
               </GuideSection>
 
               <GuideSection title="Ausrüstung (6 Slots)" icon="⚔️">
-                Rüste Items aus dem Inventar aus. Stats werden beim Drop zufällig gewürfelt — Diablo-3-Stil:
+                Rüste Items aus dem Inventar aus. Stats werden beim Drop zufällig gewürfelt:
                 <div className="grid grid-cols-3 gap-1 mt-2 text-center text-xs">
                   {(["Helm", "Weapon", "Shield", "Armor", "Amulet", "Boots"] as const).map(s => (
                     <div key={s} className="rounded px-1 py-1" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>{s}</div>
@@ -349,7 +349,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                 </div>
               </GuideSection>
 
-              <GuideSection title="Pity-System (HSR-Stil)" icon="🎯" accent="rgba(251,191,36,0.3)">
+              <GuideSection title="Pity-System" icon="🎯" accent="rgba(251,191,36,0.3)">
                 <ul className="space-y-1 mt-2">
                   <li>• <Stat color="#f59e0b">Soft Pity</Stat> ab Pull 55 → Legendary-Chance steigt +2.5%/Pull</li>
                   <li>• <Stat color="#ef4444">Hard Pity</Stat> bei Pull 75 → <strong>Garantiertes Legendary</strong></li>
@@ -389,7 +389,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                 </div>
               </GuideSection>
 
-              <GuideSection title="Berufs-Slots & Ränge (WoW-Stil)" icon="📈">
+              <GuideSection title="Berufs-Slots & Ränge" icon="📈">
                 <ul className="space-y-1 mt-2">
                   <li>• Slots: <strong>1</strong> ab Lv5, <strong>2</strong> ab Lv15, <strong>3</strong> ab Lv20, <strong>4</strong> ab Lv25</li>
                   <li>• 10 Level pro Beruf: <Stat color="#6b7280">Novice</Stat> → <Stat color="#22c55e">Apprentice</Stat> → <Stat color="#3b82f6">Journeyman</Stat> → <Stat color="#a855f7">Expert</Stat> → <Stat color="#f59e0b">Artisan</Stat> → <Stat color="#ef4444">Master</Stat></li>
@@ -398,7 +398,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                 </ul>
               </GuideSection>
 
-              <GuideSection title="Skill-Up Farben (WoW-Stil)" icon="🎨">
+              <GuideSection title="Skill-Up Farben" icon="🎨">
                 <div className="flex gap-3 mt-2">
                   <div className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-full" style={{ background: "#f97316" }} /> <span>100%</span></div>
                   <div className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-full" style={{ background: "#eab308" }} /> <span>75%</span></div>
@@ -409,7 +409,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
 
               <GuideSection title="Schmiedekunst & Transmutation" icon="⚗️" accent="rgba(245,158,11,0.3)">
                 <ul className="space-y-1 mt-2">
-                  <li>• <Stat color="#f59e0b">Salvage</Stat> — Items zerlegen → Essenz + Materialien. &quot;Salvage All&quot; per Seltenheit (D3-Stil). Legendary nur einzeln.</li>
+                  <li>• <Stat color="#f59e0b">Salvage</Stat> — Items zerlegen → Essenz + Materialien. &quot;Salvage All&quot; per Seltenheit. Legendary nur einzeln.</li>
                   <li>• <Stat color="#a78bfa">Transmute</Stat> — 3 Epic-Items (gleicher Slot) + 500g → 1 Legendary (Slot-gesperrt).</li>
                 </ul>
               </GuideSection>
@@ -475,7 +475,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
               </GuideSection>
 
               <GuideSection title="Sternenpfad (Solo)" icon="⭐">
-                Persönliche 3-stufige Challenge mit Sternbewertung (HSR-Stil):
+                Persönliche 3-stufige Challenge mit Sternbewertung:
                 <ul className="space-y-1 mt-2">
                   <li>• <strong>3 Stufen</strong> mit aufsteigender Schwierigkeit</li>
                   <li>• Jede Stufe: <Stat color="#fbbf24">1-3 Sterne</Stat> (max 9 insgesamt)</li>
@@ -533,7 +533,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
               <GuideSection title="Spieler suchen & Profile" icon="🔍">
                 <ul className="space-y-1 mt-2">
                   <li>• <Stat color="#f0f0f0">Suche</Stat> — Autocomplete-Spielersuche nach Name.</li>
-                  <li>• <Stat color="#a855f7">Profil</Stat> — Klicke auf Spieler (Leaderboard, Freundesliste, Suche) → Steam/Diablo-Stil Profil: Gear, Achievements, Berufe, Companion.</li>
+                  <li>• <Stat color="#a855f7">Profil</Stat> — Klicke auf Spieler (Leaderboard, Freundesliste, Suche) → Profil: Gear, Achievements, Berufe, Companion.</li>
                   <li>• Direkt aus dem Profil: <strong>Freund hinzufügen</strong> oder <strong>Nachricht senden</strong>.</li>
                 </ul>
               </GuideSection>
@@ -549,13 +549,13 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
               <GuideSection title="Nachrichten & Handel" icon="🤝">
                 <ul className="space-y-1 mt-2">
                   <li>• <Stat color="#3b82f6">Nachrichten</Stat> — DM an Freunde (500 Zeichen). Read-Receipts (✓✓).</li>
-                  <li>• <Stat color="#fbbf24">Trading</Stat> — Gold + Items handeln. Mehrere Verhandlungsrunden möglich (D3-Stil).</li>
+                  <li>• <Stat color="#fbbf24">Trading</Stat> — Gold + Items handeln. Mehrere Verhandlungsrunden möglich.</li>
                   <li>• Beide müssen akzeptieren → atomarer Tausch. Ausgerüstete Items nicht handelbar.</li>
                 </ul>
               </GuideSection>
 
               <GuideSection title="Activity Feed" icon="📰" accent="rgba(129,140,248,0.3)">
-                WoW Guild News-Stil Feed mit Aktivitäten deiner Freunde:
+                Feed mit Aktivitäten deiner Freunde:
                 <div className="flex flex-wrap gap-1.5 mt-2 text-xs">
                   <span className="rounded px-1.5 py-0.5" style={{ background: "rgba(255,255,255,0.04)" }}>⚔️ Quests</span>
                   <span className="rounded px-1.5 py-0.5" style={{ background: "rgba(255,255,255,0.04)" }}>⬆️ Level-Ups</span>
@@ -609,7 +609,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                 </div>
               </GuideSection>
 
-              <GuideSection title="Daily Missions (HSR-Stil)" icon="✅" accent="rgba(34,197,94,0.3)">
+              <GuideSection title="Daily Missions" icon="✅" accent="rgba(34,197,94,0.3)">
                 6 tägliche Aufgaben mit Belohnungstrack auf dem Quest Board:
                 <div className="grid grid-cols-3 gap-1 mt-2 text-center text-xs">
                   <div className="rounded px-1 py-1" style={{ background: "rgba(255,255,255,0.03)" }}>Login +100</div>
@@ -728,7 +728,7 @@ export function GuideModal({ onClose, onRestartTutorial }: { onClose: () => void
   );
 }
 
-// ─── Tutorial Overlay (Honkai Star Rail style) ───────────────────────────────
+// ─── Tutorial Overlay ────────────────────────────────────────────────────────
 
 export const TUTORIAL_STEPS = [
   {
@@ -806,7 +806,7 @@ export const TUTORIAL_STEPS = [
   {
     key: "leaderboard",
     title: "The Proving Grounds",
-    desc: "Die Rangliste aller Spieler. Klicke auf einen Spieler um sein Profil zu sehen — Diablo-/Steam-Stil mit Gear, Achievements und mehr.",
+    desc: "Die Rangliste aller Spieler. Klicke auf einen Spieler um sein Profil zu sehen — mit Gear, Achievements und mehr.",
     target: "leaderboard-tab",
     position: "bottom" as const,
     navigateTo: "leaderboard",
@@ -822,7 +822,7 @@ export const TUTORIAL_STEPS = [
   {
     key: "character",
     title: "Dein Charakter & Ausrüstung",
-    desc: "Im Inner Sanctum findest du deinen Character Screen mit 6 Equipment-Slots, Stats (Diablo-Stil Affix-Rolling), Rituale und Gelübde.",
+    desc: "Im Inner Sanctum findest du deinen Character Screen mit 6 Equipment-Slots, Stats (Affix-Rolling), Rituale und Gelübde.",
     target: null,
     position: "center" as const,
     navigateTo: null,

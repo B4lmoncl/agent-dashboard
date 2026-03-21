@@ -496,8 +496,7 @@ function BannerPullModal({
                 </span>
                 <Tip k="gacha_banners"><h3 className="text-lg font-bold mt-2" style={{ color: "#f0ece4" }}>{banner.name}</h3></Tip>
               </div>
-              {/* Close button - absolute top right */}
-                <button onClick={onClose} className="absolute top-2 right-2 w-5 h-5 rounded-full flex items-center justify-center text-xs" style={{ color: "rgba(255,255,255,0.5)", background: "rgba(0,0,0,0.5)", border: "1px solid rgba(255,255,255,0.15)", cursor: "pointer", zIndex: 10 }}>✕</button>
+              <button onClick={onClose} className="btn-close" style={{ position: "absolute", top: 12, right: 12, zIndex: 10 }}>×</button>
             </div>
             <p className="text-xs italic leading-relaxed mb-4" style={{ color: "rgba(255,255,255,0.25)", maxWidth: portraitSrc ? "55%" : undefined }}>
               {banner.lore}
