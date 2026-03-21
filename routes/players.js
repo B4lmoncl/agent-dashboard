@@ -395,6 +395,128 @@ router.get('/api/player/:name/seen-version', (req, res) => {
   res.json({ lastSeenVersion: pp.lastSeenVersion || null });
 });
 
+// ─── Player Search & Public Profile ──────────────────────────────────────────
+
+// GET /api/players/search?q=term — search all players by name (for friend adding, profile browsing)
+router.get('/api/players/search', (req, res) => {
+  const q = ((req.query.q || '') + '').toLowerCase().trim();
+  const limit = Math.min(parseInt(req.query.limit, 10) || 20, 50);
+  const agentIds = new Set(Object.keys(state.store.agents || {}));
+
+  // Get all non-agent players
+  let players = Object.values(state.users)
+    .filter(u => u && u.name && !agentIds.has(u.id))
+    .map(u => {
+      const lvl = getLevelInfo(u.xp || 0);
+      return {
+        id: u.id,
+        name: u.name,
+        avatar: u.avatar || u.name[0],
+        color: u.color || '#a78bfa',
+        level: lvl.level,
+        levelTitle: lvl.title,
+        xp: u.xp || 0,
+        classId: u.classId || null,
+        equippedTitle: u.equippedTitle || null,
+        questsCompleted: u.questsCompleted || 0,
+      };
+    });
+
+  // Filter by search query if provided
+  if (q) {
+    players = players.filter(p => p.name.toLowerCase().includes(q));
+  }
+
+  // Sort by XP descending
+  players.sort((a, b) => b.xp - a.xp);
+
+  res.json({ players: players.slice(0, limit) });
+});
+
+// GET /api/player/:name/public-profile — comprehensive public profile for viewing other players
+router.get('/api/player/:name/public-profile', (req, res) => {
+  const uid = req.params.name.toLowerCase();
+  const u = state.users[uid];
+  if (!u) return res.status(404).json({ error: 'Player not found' });
+
+  const lvl = getLevelInfo(u.xp || 0);
+  const pp = getPlayerProgress(uid);
+  const dynamicForgeTemp = calcDynamicForgeTemp(uid);
+
+  // Equipped gear (public)
+  const equipped = {};
+  const SLOTS = ['weapon', 'shield', 'helm', 'armor', 'amulet', 'boots'];
+  for (const slot of SLOTS) {
+    const eq = (u.equipment || {})[slot];
+    if (eq && typeof eq === 'object') {
+      equipped[slot] = { name: eq.name, rarity: eq.rarity, icon: eq.icon || null, stats: eq.stats || {}, slot: eq.slot, setId: eq.setId || null, legendaryEffect: eq.legendaryEffect || null, desc: eq.desc || '' };
+    }
+  }
+
+  // Achievements (public)
+  const achievements = (u.earnedAchievements || []).map(a => ({
+    id: a.id, name: a.name, desc: a.desc, icon: a.icon, rarity: a.rarity, points: a.points || 0, earnedAt: a.earnedAt,
+  }));
+
+  // Class info
+  let classInfo = null;
+  if (u.classId) {
+    const cls = (state.classesData?.classes || []).find(c => c.id === u.classId);
+    if (cls) {
+      const classTier = cls.tiers ? [...cls.tiers].reverse().find(t => (u.xp || 0) >= t.minXp) : null;
+      classInfo = { id: cls.id, name: cls.fantasy || cls.name, icon: cls.icon, tier: classTier?.title || null };
+    }
+  }
+
+  // Companion (public)
+  let companion = null;
+  if (u.companion) {
+    const c = u.companion;
+    companion = { name: c.name, type: c.type, emoji: c.emoji, isReal: c.isReal, bondLevel: getBondLevel(c.bondXp || 0).level };
+  }
+
+  // Professions (public)
+  const professions = [];
+  if (u.chosenProfessions && u.professions) {
+    for (const pid of u.chosenProfessions) {
+      const p = u.professions[pid];
+      if (p) professions.push({ id: pid, level: p.level || 0, xp: p.xp || 0 });
+    }
+  }
+
+  // Online status
+  const agentEntry = (state.store.agents || {})[uid];
+  const agentOnline = agentEntry ? agentEntry.status === 'online' : false;
+  const lastActiveAt = u.lastActiveAt || null;
+  const msSinceActive = lastActiveAt ? Date.now() - new Date(lastActiveAt).getTime() : Infinity;
+  const onlineStatus = agentOnline || msSinceActive < 5 * 60 * 1000 ? 'online' : msSinceActive < 30 * 60 * 1000 ? 'idle' : 'offline';
+
+  res.json({
+    id: uid,
+    name: u.name,
+    avatar: u.avatar || u.name[0],
+    color: u.color || '#a78bfa',
+    level: lvl.level,
+    levelTitle: lvl.title,
+    xp: u.xp || 0,
+    questsCompleted: u.questsCompleted || 0,
+    streakDays: u.streakDays || 0,
+    forgeTemp: dynamicForgeTemp,
+    gold: u.currencies?.gold ?? u.gold ?? 0,
+    achievementPoints: u.achievementPoints || 0,
+    equippedTitle: u.equippedTitle || null,
+    equippedFrame: u.equippedFrame || null,
+    classInfo,
+    companion,
+    equipped,
+    achievements,
+    professions,
+    onlineStatus,
+    lastActiveAt,
+    memberSince: u.createdAt || null,
+  });
+});
+
 // GET /api/npcs — list all NPC profiles
 router.get('/api/npcs', (req, res) => {
   res.json(Object.entries(NPC_META).map(([id, meta]) => ({ id, ...meta })));

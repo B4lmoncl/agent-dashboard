@@ -15,6 +15,7 @@ const RitualChamber = lazy(() => import("@/components/RitualChamber"));
 const ChallengesView = lazy(() => import("@/components/ChallengesView"));
 const DailyLoginCalendar = lazy(() => import("@/components/DailyLoginCalendar"));
 const SocialView = lazy(() => import("@/components/SocialView"));
+const PlayerProfileModal = lazy(() => import("@/components/PlayerProfileModal"));
 import { GuideModal, GuideContent, TutorialOverlay, TUTORIAL_STEPS } from "@/components/TutorialModal";
 import {
   CreateQuestModal, AntiRitualePanel,
@@ -111,6 +112,7 @@ export default function Dashboard() {
   const [weeklyChallenge, setWeeklyChallenge] = useState<import("@/app/types").WeeklyChallenge | null>(null);
   const [expedition, setExpedition] = useState<import("@/app/types").Expedition | null>(null);
   const [socialBadge, setSocialBadge] = useState<{ pendingFriendRequests: number; unreadMessages: number; activeTrades: number } | null>(null);
+  const [profilePlayerId, setProfilePlayerId] = useState<string | null>(null);
   const [dailyMissions, setDailyMissions] = useState<{ missions: { id: string; label: string; points: number; done: boolean }[]; earned: number; total: number; milestones: { threshold: number; reward: Record<string, number>; claimed: boolean }[] } | null>(null);
   const [claimingDailyBonus, setClaimingDailyBonus] = useState(false);
   const [loginCalendarOpen, setLoginCalendarOpen] = useState(false);
@@ -1184,7 +1186,7 @@ export default function Dashboard() {
                 </div>
               </div>
             )}
-            <ErrorBoundary><Suspense fallback={<ViewFallback />}><LeaderboardView entries={leaderboard} agents={agents} mode="players" /></Suspense></ErrorBoundary>
+            <ErrorBoundary><Suspense fallback={<ViewFallback />}><LeaderboardView entries={leaderboard} agents={agents} mode="players" onOpenProfile={id => setProfilePlayerId(id)} /></Suspense></ErrorBoundary>
           </div>
         )}
 
@@ -2269,6 +2271,12 @@ export default function Dashboard() {
       )}
     </div>
     <FloatingRewardsLayer rewards={floatingRewards} onRemove={removeFloating} />
+    {/* Player Profile Modal — accessible from Leaderboard, Social, etc. */}
+    {profilePlayerId && (
+      <Suspense fallback={null}>
+        <PlayerProfileModal playerId={profilePlayerId} onClose={() => setProfilePlayerId(null)} />
+      </Suspense>
+    )}
     </DashboardProvider>
   );
 }

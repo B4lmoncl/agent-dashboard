@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import { useDashboard } from "@/app/DashboardContext";
 import { getAuthHeaders } from "@/lib/auth-client";
 import { InfoTooltip } from "@/components/InfoTooltip";
+import PlayerProfileModal from "@/components/PlayerProfileModal";
 import type {
   FriendInfo, FriendRequest, Conversation, SocialMessage,
   Trade, TradeOffer, ActivityEvent,
@@ -67,13 +68,16 @@ type SocialTab = "friends" | "messages" | "trades" | "activity";
 
 // ─── Friends Tab ────────────────────────────────────────────────────────────
 
-function FriendsTab({ apiKey, playerName }: { apiKey: string; playerName: string }) {
+function FriendsTab({ apiKey, playerName, onOpenProfile }: { apiKey: string; playerName: string; onOpenProfile?: (id: string) => void }) {
   const [friends, setFriends] = useState<FriendInfo[]>([]);
   const [incomingRequests, setIncomingRequests] = useState<FriendRequest[]>([]);
   const [outgoingRequests, setOutgoingRequests] = useState<FriendRequest[]>([]);
   const [addInput, setAddInput] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [searchResults, setSearchResults] = useState<{ id: string; name: string; avatar: string; color: string; level: number; classId: string | null }[]>([]);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const searchRef = useRef<HTMLDivElement>(null);
 
   const fetchFriends = useCallback(async () => {
     try {
@@ -100,18 +104,47 @@ function FriendsTab({ apiKey, playerName }: { apiKey: string; playerName: string
     return () => clearInterval(interval);
   }, [fetchFriends]);
 
-  const sendRequest = async () => {
-    if (!addInput.trim()) return;
+  // Player search with debounce
+  useEffect(() => {
+    if (!addInput.trim() || addInput.trim().length < 1) { setSearchResults([]); setSearchOpen(false); return; }
+    const timer = setTimeout(async () => {
+      try {
+        const r = await fetch(`/api/players/search?q=${encodeURIComponent(addInput.trim())}&limit=8`);
+        if (r.ok) {
+          const data = await r.json();
+          // Filter out self and existing friends
+          const friendIds = new Set(friends.map(f => f.id));
+          const filtered = (data.players || []).filter((p: { id: string }) => p.id !== playerName.toLowerCase() && !friendIds.has(p.id));
+          setSearchResults(filtered);
+          setSearchOpen(filtered.length > 0);
+        }
+      } catch { /* ignore */ }
+    }, 300);
+    return () => clearTimeout(timer);
+  }, [addInput, playerName, friends]);
+
+  // Close search dropdown on outside click
+  useEffect(() => {
+    const handler = (e: MouseEvent) => { if (searchRef.current && !searchRef.current.contains(e.target as Node)) setSearchOpen(false); };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, []);
+
+  const sendRequest = async (target?: string) => {
+    const name = target || addInput.trim();
+    if (!name) return;
     setError(null);
     try {
       const r = await fetch("/api/social/friend-request", {
         method: "POST",
         headers: { ...getAuthHeaders(apiKey), "Content-Type": "application/json" },
-        body: JSON.stringify({ targetPlayer: addInput.trim() }),
+        body: JSON.stringify({ targetPlayer: name }),
       });
       const d = await r.json();
       if (!r.ok) { setError(d.error || "Failed"); return; }
       setAddInput("");
+      setSearchOpen(false);
+      setSearchResults([]);
       fetchFriends();
     } catch { setError("Network error"); }
   };
@@ -153,22 +186,48 @@ function FriendsTab({ apiKey, playerName }: { apiKey: string; playerName: string
 
   return (
     <div className="space-y-4 tab-content-enter">
-      {/* Add friend */}
-      <div className="flex gap-2">
-        <input
-          value={addInput}
-          onChange={e => setAddInput(e.target.value)}
-          onKeyDown={e => { if (e.key === "Enter") sendRequest(); }}
-          placeholder="Player name..."
-          className="input-dark flex-1 text-xs px-3 py-2 rounded-lg"
-        />
-        <button
-          onClick={sendRequest}
-          className="btn-interactive text-xs font-semibold px-4 py-2 rounded-lg"
-          style={{ background: "rgba(168,85,247,0.15)", color: "#a855f7", border: "1px solid rgba(168,85,247,0.3)" }}
-        >
-          Add Friend
-        </button>
+      {/* Add friend — with player search */}
+      <div ref={searchRef} className="relative">
+        <div className="flex gap-2">
+          <input
+            value={addInput}
+            onChange={e => setAddInput(e.target.value)}
+            onKeyDown={e => { if (e.key === "Enter") sendRequest(); }}
+            onFocus={() => { if (searchResults.length > 0) setSearchOpen(true); }}
+            placeholder="Search players..."
+            className="input-dark flex-1 text-xs px-3 py-2 rounded-lg"
+          />
+          <button
+            onClick={() => sendRequest()}
+            className="btn-interactive text-xs font-semibold px-4 py-2 rounded-lg"
+            style={{ background: "rgba(168,85,247,0.15)", color: "#a855f7", border: "1px solid rgba(168,85,247,0.3)" }}
+          >
+            Add Friend
+          </button>
+        </div>
+        {/* Search dropdown */}
+        {searchOpen && searchResults.length > 0 && (
+          <div className="absolute left-0 right-0 top-full mt-1 z-50 rounded-lg shadow-xl overflow-hidden" style={{ background: "#1a1a1f", border: "1px solid rgba(255,255,255,0.1)", maxHeight: 280, overflowY: "auto" }}>
+            {searchResults.map(p => (
+              <div key={p.id} className="flex items-center gap-2.5 px-3 py-2.5 hover:bg-white/[0.04] transition-colors" style={{ borderBottom: "1px solid rgba(255,255,255,0.04)" }}>
+                <button onClick={() => onOpenProfile?.(p.id)} className="flex items-center gap-2.5 flex-1 text-left min-w-0" style={{ background: "none", border: "none", cursor: "pointer", padding: 0 }}>
+                  <PlayerBadge name={p.name} avatar={p.avatar} color={p.color} size={28} />
+                  <div className="min-w-0 flex-1">
+                    <p className="text-xs font-semibold truncate" style={{ color: "#e8e8e8" }}>{p.name}</p>
+                    <p className="text-xs text-w25">Lv.{p.level}</p>
+                  </div>
+                </button>
+                <button
+                  onClick={() => sendRequest(p.name)}
+                  className="btn-interactive text-xs px-2.5 py-1 rounded font-semibold flex-shrink-0"
+                  style={{ background: "rgba(168,85,247,0.12)", color: "#a855f7", border: "1px solid rgba(168,85,247,0.25)" }}
+                >
+                  + Add
+                </button>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
       {error && <p className="text-xs" style={{ color: "#ef4444" }}>{error}</p>}
 
@@ -216,7 +275,7 @@ function FriendsTab({ apiKey, playerName }: { apiKey: string; playerName: string
         ) : (
           <div className="grid grid-cols-2 lg:grid-cols-3 gap-2">
             {friends.map(f => (
-              <div key={f.id} className="relative rounded-xl p-3 flex flex-col items-center text-center group transition-all" style={{ background: "rgba(255,255,255,0.02)", border: `1px solid ${f.isOnline ? "rgba(34,197,94,0.2)" : "rgba(255,255,255,0.05)"}` }}>
+              <div key={f.id} className="relative rounded-xl p-3 flex flex-col items-center text-center group transition-all cursor-pointer" onClick={() => onOpenProfile?.(f.id)} style={{ background: "rgba(255,255,255,0.02)", border: `1px solid ${f.isOnline ? "rgba(34,197,94,0.2)" : "rgba(255,255,255,0.05)"}` }}>
                 {/* Remove button — top right, visible on hover */}
                 {confirmRemove === f.id ? (
                   <div className="absolute top-1.5 right-1.5 flex gap-1">
@@ -1021,6 +1080,7 @@ function ActivityFeedTab({ apiKey, playerName }: { apiKey: string; playerName: s
 export default function SocialView() {
   const { playerName, reviewApiKey } = useDashboard();
   const [activeTab, setActiveTab] = useState<SocialTab>("friends");
+  const [profilePlayerId, setProfilePlayerId] = useState<string | null>(null);
 
   if (!playerName || !reviewApiKey) {
     return (
@@ -1058,11 +1118,20 @@ export default function SocialView() {
 
       {/* Tab content */}
       <div key={activeTab} className="tab-content-enter">
-        {activeTab === "friends" && <FriendsTab apiKey={reviewApiKey} playerName={playerName} />}
+        {activeTab === "friends" && <FriendsTab apiKey={reviewApiKey} playerName={playerName} onOpenProfile={id => setProfilePlayerId(id)} />}
         {activeTab === "messages" && <MessagesTab apiKey={reviewApiKey} playerName={playerName} />}
         {activeTab === "trades" && <TradesTab apiKey={reviewApiKey} playerName={playerName} />}
         {activeTab === "activity" && <ActivityFeedTab apiKey={reviewApiKey} playerName={playerName} />}
       </div>
+
+      {/* Player Profile Modal */}
+      {profilePlayerId && (
+        <PlayerProfileModal
+          playerId={profilePlayerId}
+          onClose={() => setProfilePlayerId(null)}
+          onMessage={(id) => { setProfilePlayerId(null); setActiveTab("messages"); }}
+        />
+      )}
     </div>
   );
 }
