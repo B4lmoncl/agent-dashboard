@@ -1774,6 +1774,42 @@ Confirmation dialog added for rift abandon (destructive action with cooldown).
 | `6b5fec3` | 2026-03-21 | Merge main into feature branch — resolve conflicts |
 | `8471133` | 2026-03-21 | Fix 3 CRITICAL + 4 HIGH + 1 MEDIUM bugs from backend audit |
 
+## 24. Phase 2026-03-21 — Frontend Deep Audit (Session 9)
+
+### 24.1 Translation Pass: 30 German → English Strings
+
+All interactive UI strings translated across 6 files:
+
+| Area | File | Strings Fixed |
+|------|------|---------------|
+| Currency modal | `DashboardModals.tsx` | 7 "How to earn" paragraphs + heading |
+| Loot/forge/class | `page.tsx` | 8 strings (collect, shield, tooltip, observatory, arcanum, class activation) |
+| Character screen | `CharacterView.tsx` | 15 strings (save, search, filters, slot labels, toasts, tooltips) |
+| Rituals | `RitualChamber.tsx` | 3 strings (streak, today, next goal, blood pact) |
+| Vow system | `QuestPanels.tsx` | 6 strings (difficulty tiers, milestones, blood pact) |
+| Login calendar | `DailyLoginCalendar.tsx` | 1 string (streak label) |
+
+### 24.2 Frontend Verified Non-Issues
+
+| Reported | Actual Status |
+|----------|---------------|
+| Forge tooltip XP/Gold values wrong | **Not a bug** — verified matches backend `getForgeXpBase()` and `getForgeGoldBase()` |
+| handleChangePriority missing refresh | **LOW** — only affects until next 30s auto-refresh, acceptable |
+| Dead `loggedInUser` variable in CharacterView | **INFO** — cosmetic, no runtime impact |
+
+### 24.3 Remaining Acknowledged (Frontend)
+
+| Issue | Severity | Status |
+|-------|----------|--------|
+| ShopView buy buttons have no loading state | LOW | Acceptable — purchases are fast |
+| RoadmapView ETA placeholder in German | LOW | "z.B." in admin-only input |
+
+### 24.4 Changelog (Session 9, Frontend)
+
+| Commit | Timestamp | Description |
+|--------|-----------|-------------|
+| `2f3ed17` | 2026-03-21 | Translate remaining German interactive UI to English (30 strings) |
+
 ---
 
 *End of Audit Report — Updated 2026-03-21*
