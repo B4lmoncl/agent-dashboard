@@ -25,7 +25,7 @@ function getSeason(): Season {
 // Now the canvas is the ONLY sky source (no-bg image has transparent sky)
 const SKY: Record<TOD, [string, string, string, string]> = {
   dawn:   ["#07040e", "#2a0e28", "#6e2b18", "#d4582a"],
-  day:    ["#1a2848", "#2a4070", "#4060a0", "#6880b8"],
+  day:    ["#3a6cb8", "#5088d0", "#78a8e0", "#b8c8e0"],
   sunset: ["#07040e", "#1e0820", "#5c180a", "#c2400a"],
   night:  ["#02010a", "#0d0b1a", "#120d22", "#1c1438"],
 };

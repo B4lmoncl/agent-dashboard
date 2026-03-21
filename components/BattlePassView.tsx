@@ -106,32 +106,7 @@ export default function BattlePassView({ users, quests }: { users: User[]; quest
         </div>
       )}
 
-      {/* Battle Pass reward track */}
-      <div>
-        <h3 className="text-xs font-semibold uppercase tracking-widest mb-3" style={{ color: "rgba(255,255,255,0.3)" }}>Battle Pass Rewards</h3>
-        <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
-          {BATTLE_PASS_LEVELS.map(l => {
-            const highestUserXp = Math.max(0, ...users.map(u => userSeasonXp[(u.id || "").toLowerCase()] ?? 0));
-            const unlocked = highestUserXp >= l.xp;
-            return (
-              <div
-                key={l.level}
-                className="rounded-xl p-3 text-center"
-                style={{
-                  background: unlocked ? `${season.color}12` : "#252525",
-                  border: `1px solid ${unlocked ? season.color + "50" : "rgba(255,255,255,0.07)"}`,
-                  opacity: unlocked ? 1 : 0.5,
-                }}
-              >
-                <p className="text-xs font-bold mb-1" style={{ color: unlocked ? season.color : "rgba(255,255,255,0.3)" }}>L{l.level}</p>
-                <p className="text-xs" style={{ color: unlocked ? "#f0f0f0" : "rgba(255,255,255,0.4)" }}>{l.reward}</p>
-                {l.premium && <p className="text-xs mt-1 font-semibold" style={{ color: "#f59e0b" }}>Premium</p>}
-                <p className="text-xs mt-1 font-mono" style={{ color: "rgba(255,255,255,0.2)" }}>{l.xp} XP</p>
-              </div>
-            );
-          })}
-        </div>
-      </div>
+      {/* Battle Pass reward track — hidden until backend claim system is implemented */}
     </div>
   );
 }

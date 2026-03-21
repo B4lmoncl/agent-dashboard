@@ -224,6 +224,7 @@ router.get('/api/weekly-challenge', (req, res) => {
       stageStartedAt: challenge.stageStartedAt,
       stars: stageStars,
       totalStars,
+      claimedMilestones: u.weeklyChallenge.claimedMilestones || [],
       modifier,
       speedBonusDays: WEEKLY_DATA.weeklyChallenge?.speedBonusDays || 2,
       streakDays: u.streakDays || 0,
@@ -351,6 +352,53 @@ router.post('/api/weekly-challenge/claim', requireAuth, (req, res) => {
       stars: u.weeklyChallenge.stars,
     },
   });
+});
+
+// ─── Cumulative Star Milestones ──────────────────────────────────────────────
+
+const STAR_MILESTONES = [
+  { stars: 3, rewards: { gold: 50 } },
+  { stars: 6, rewards: { gold: 100, essenz: 3 } },
+  { stars: 9, rewards: { gold: 150, essenz: 5, sternentaler: 1 } },
+];
+
+// POST /api/weekly-challenge/claim-milestone — claim cumulative star milestone
+router.post('/api/weekly-challenge/claim-milestone', requireAuth, (req, res) => {
+  const uid = req.auth?.userId;
+  const u = state.users[uid];
+  if (!u) return res.status(404).json({ error: 'User not found' });
+
+  const challenge = getActiveChallenge(uid);
+  if (!challenge) return res.status(400).json({ error: 'No active challenge' });
+
+  const { stars: targetStars } = req.body;
+  const milestone = STAR_MILESTONES.find(m => m.stars === targetStars);
+  if (!milestone) return res.status(400).json({ error: 'Invalid milestone' });
+
+  // Calculate total stars earned
+  const totalStars = (u.weeklyChallenge.stars || []).reduce((s, v) => s + (v || 0), 0);
+  if (totalStars < milestone.stars) {
+    return res.status(400).json({ error: `Need ${milestone.stars} stars (have ${totalStars})` });
+  }
+
+  // Prevent double-claim
+  u.weeklyChallenge.claimedMilestones = u.weeklyChallenge.claimedMilestones || [];
+  if (u.weeklyChallenge.claimedMilestones.includes(milestone.stars)) {
+    return res.status(409).json({ error: 'Milestone already claimed' });
+  }
+
+  // Award rewards
+  ensureUserCurrencies(u);
+  const rewards = { ...milestone.rewards };
+  if (rewards.gold) awardCurrency(uid, 'gold', rewards.gold);
+  if (rewards.essenz) awardCurrency(uid, 'essenz', rewards.essenz);
+  if (rewards.sternentaler) awardCurrency(uid, 'sternentaler', rewards.sternentaler);
+
+  u.weeklyChallenge.claimedMilestones.push(milestone.stars);
+
+  saveUsers();
+  console.log(`[weekly] ${uid} claimed ${milestone.stars}★ milestone`);
+  res.json({ ok: true, stars: milestone.stars, rewards, claimedMilestones: u.weeklyChallenge.claimedMilestones });
 });
 
 module.exports = router;

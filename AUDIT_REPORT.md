@@ -832,14 +832,14 @@ This section tracks all planned work so a future session can resume if the curre
 |---|-------|----------|---------|-----------------|--------|
 | 1 | Friends level shows raw XP | HIGH | `routes/social.js:73` | Import `getLevelInfo` from helpers, change `friendUser.xp` to `getLevelInfo(friendUser.xp).level` | **DONE** |
 | 2 | ForgeView modals missing `useModalBehavior` | MEDIUM | `components/ForgeView.tsx:628,1097,1174` | Import `useModalBehavior` from ModalPortal. Add 3 calls: `useModalBehavior(!!selectedNpc, closeNpc)`, `useModalBehavior(!!confirmProf, closeConfirmProf)`, `useModalBehavior(!!confirmAction, closeConfirmAction)`. This adds ESC-to-close and body scroll lock to all 3 modals. | **In Progress** |
-| 3 | Trade UI can't select items (gold-only) | MEDIUM | `components/SocialView.tsx:397-458` | Add inventory item picker component to trade proposal and counter-offer forms. Fetch user inventory, render selectable item list, pass selected item IDs in `offer.items[]` array. Backend already supports item trading via `validateTradeItems()` and `executeTrade()`. | Pending |
-| 4 | Messages don't auto-refresh | LOW | `components/SocialView.tsx:210-246` | Add `useEffect` with 10s `setInterval` polling when a conversation is active (`selectedFriend` is set). Clear interval on unmount or friend change. | Pending |
-| 5 | No friend removal confirmation | LOW | `components/SocialView.tsx:95-103` | Add confirmation dialog before calling DELETE endpoint. Use same pattern as other destructive actions (2-step confirm state). | Pending |
-| 6 | Craft count shared across recipes | LOW | `components/ForgeView.tsx:148,803` | Reset `craftCount` to 1 when `selectedNpc` changes or when switching between recipe tabs. Add `useEffect` that resets on NPC/tab change. | Pending |
-| 7 | Language mixing in ForgeView | LOW | `components/ForgeView.tsx:1108-1165` | Translate German text in profession confirm modal to English: "Beruf erlernen"→"Learn Profession", "Abbrechen"→"Cancel", "Das passiert:"→"What happens:", "Belegte Slots"→"Used Slots", etc. | Pending |
-| 8 | No weekly reset timer in Challenges | LOW | `components/ChallengesView.tsx` | Calculate next Monday 00:00 UTC from current `weekId`, show "Resets in X days, Y hours" countdown. Use `useEffect` with 60s interval to update. | Pending |
-| 9 | Workshop Tools no loading feedback | INFO | `components/ForgeView.tsx:594-602` | Add `buying` state to Workshop Tools purchase button. Show spinner during API call, show success/error toast after. | Pending |
-| 10 | Star Path shows raw progress, not modifier-adjusted | INFO | `components/ChallengesView.tsx:103-117` | Display both raw and effective (modifier-adjusted) progress. Show modifier info next to progress bar (e.g. "3/5 quests (effective: 4.5 with +50% modifier)"). | Pending |
+| 3 | Trade UI can't select items (gold-only) | MEDIUM | `components/SocialView.tsx` | Inventory item picker added to trade proposal and counter-offer forms | **DONE** |
+| 4 | Messages don't auto-refresh | LOW | `components/SocialView.tsx:340` | 10s polling interval when conversation active | **DONE** |
+| 5 | No friend removal confirmation | LOW | `components/SocialView.tsx:166` | 2-step confirm state (`confirmRemove`) with Yes/No buttons | **DONE** |
+| 6 | Craft count shared across recipes | LOW | `components/ForgeView.tsx:209` | `useEffect` resets `craftCount` to 1 on NPC/tab change | **DONE** |
+| 7 | Language mixing in ForgeView | LOW | `components/ForgeView.tsx:1295` | German text translated to English ("Learn Profession", etc.) | **DONE** |
+| 8 | No weekly reset timer in Challenges | LOW | `components/ChallengesView.tsx:53` | `WeeklyResetTimer` component with countdown | **DONE** |
+| 9 | Workshop Tools no loading feedback | INFO | `components/ForgeView.tsx:151` | `buyingTool` loading state with disabled button | **DONE** |
+| 10 | Star Path shows raw progress, not modifier-adjusted | INFO | `components/ChallengesView.tsx:260` | Shows "(effective: X)" next to raw progress | **DONE** |
 
 ### 14.2 QoL Improvements (User-Approved)
 
@@ -1403,7 +1403,7 @@ These features have been proposed by audit agents in the past as "missing" when 
 | **Cumulative star reward track** | `components/ChallengesView.tsx` (horizontal milestone bar at top of Star Path) | Added in Session 2 |
 | **Activity feed compact/detail toggle** | `components/SocialView.tsx` ActivityFeedTab (⊟ Compact / ⊞ Detailed button) | Added in Session 2 |
 | **Workshop Upgrades (permanent bonuses)** | `public/data/shopItems.json` (workshopUpgrades), `routes/shop.js`, `lib/helpers.js` | Added in Session 6 |
-| **Tavern/Rest Mode (The Hearth)** | `components/TavernView.tsx`, `routes/players.js`, `app/config.ts` (6th floor) | Added in Session 6 |
+| **Tavern/Rest Mode (The Hearth)** | `components/TavernView.tsx`, `routes/players.js`, `app/config.ts` (room in Breakaway floor) | Added in Session 6, moved to Breakaway in Session 8 |
 | **Rift/Dungeon System (The Rift)** | `components/RiftView.tsx`, `routes/rift.js`, `app/config.ts` (Great Halls room) | Added in Session 6 |
 
 ### A.2 Verified Non-Bugs (Do NOT Report Again)
@@ -1460,6 +1460,78 @@ These were reported as bugs by audit agents but are either intentional design de
 5. **Don't suggest adding a database.** The JSON persistence model is an intentional architectural choice.
 6. **Don't suggest adding `next/image`.** The project uses static export with pixel art where `<img>` is the correct choice.
 7. **Check the `AUDIT_REPORT.md` Sections 6.6, 9.5, 16.14, 17.4** for previously verified non-issues before re-investigating.
+
+---
+
+## 20. Phase 2026-03-21 — Full Codebase Audit (Session 8)
+
+### 20.1 FIX: Daytime Sky Too Dark
+
+**Severity: MEDIUM (UX)**
+**File:** `components/GuildHallBackground.tsx:28`
+
+The day sky gradient used near-night colors (`#1a2848` top → `#6880b8` horizon), making daytime look almost as dark as night. Updated to a warm fantasy-bright palette:
+
+| Position | Before | After |
+|----------|--------|-------|
+| Top | `#1a2848` (near-black blue) | `#3a6cb8` (medium blue) |
+| Upper-mid | `#2a4070` (dark navy) | `#5088d0` (friendly blue) |
+| Lower-mid | `#4060a0` (muted blue) | `#78a8e0` (light blue) |
+| Horizon | `#6880b8` (gray-blue) | `#b8c8e0` (warm haze) |
+
+### 20.2 Documentation Version Inconsistencies
+
+**Severity: LOW**
+
+| File | Current Value | Correct Value | Status |
+|------|--------------|---------------|--------|
+| `CLAUDE.md:5` | v1.4.0 | v1.5.3 | **To fix** |
+| `package.json:3` | 1.4.0 | 1.5.3 | **To fix** |
+| `public/data/appState.json` | 1.4.0 | N/A (overwritten by server.js at boot) | Non-issue |
+| `CLAUDE.md` | "5 floors" | 5 floors (The Hearth moved into The Breakaway) | **Fixed** |
+
+### 20.3 Previous Audit Status Correction
+
+Section 14.1 items 3-10 were marked "Pending" but all are fully implemented. Status corrected to **DONE** in this session.
+
+### 20.4 Verified Non-Issues (This Session)
+
+| Reported Concern | Actual Status |
+|-----------------|---------------|
+| Global loot pity bug (not per-player) | **Not a bug** — `_lootPity` stored on user object (`u._lootPity`), is per-player |
+| itemTemplates.json has 7 slots (includes "ring") vs gameConfig 6 slots | **Not a bug** — "ring" exists in template schema but no items use it; EQUIPMENT_SLOTS (6) is the authoritative list |
+| appState.json version 1.4.0 mismatch | **Not a bug** — `server.js:238` overwrites with `pkg.version` at boot; file is just seed data |
+
+### 20.5 FIX: Battle Pass Rewards Hidden
+
+**Severity: MEDIUM (UX)**
+**File:** `components/BattlePassView.tsx`
+
+The Season tab showed a Battle Pass reward track with 10 levels of rewards ("+50 Bonus Gold", "Streak Shield", "Premium Gear Token", etc.) but **no backend endpoint exists to claim them**. This was a display-only preview of a planned feature ("Battle Pass Click-to-Claim" on the roadmap), but users couldn't tell it wasn't functional.
+
+**Fix:** Hidden the reward track entirely. Will be re-enabled when the backend claim system is implemented.
+
+### 20.6 Documentation Fixes
+
+| File | Change |
+|------|--------|
+| `CLAUDE.md` | Version v1.4.0 → v1.5.3 |
+| `CLAUDE.md` | Component count 39 → 45, route count 17 → 19 |
+| `CLAUDE.md` | Added missing files (SocialView, PlayerProfileModal, RiftView, TavernView, social.js, rift.js) |
+| `package.json` | Version 1.4.0 → 1.5.3 |
+| `public/data/appState.json` | Seed version 1.4.0 → 1.5.3 |
+| `ARCHITECTURE.md` | Component count 46 → 45 |
+| `ARCHITECTURE.md` | Added The Rift and The Hearth sections |
+
+### 20.7 Changelog (Session 8)
+
+| Commit | Timestamp | Description |
+|--------|-----------|-------------|
+| `e6aa560` | 2026-03-21 | Fix: brighten daytime sky gradient from near-night to warm fantasy blue |
+| `2025e6c` | 2026-03-21 | Docs: update AUDIT_REPORT status corrections and CLAUDE.md version/structure |
+| `3b49ccc` | 2026-03-21 | Fix: sync version numbers to 1.5.3 across package.json and appState.json |
+| `c7aac1a` | 2026-03-21 | Docs: add Rift and Tavern sections to ARCHITECTURE.md, fix component count |
+| `d48313b` | 2026-03-21 | UI: hide Battle Pass rewards track until backend claim system exists |
 
 ---
 

@@ -5,7 +5,7 @@
 
 ## Executive Summary
 
-The app has solid bones but is hitting natural monolith limits. `server.js` (~5200 lines) and `app/page.tsx` (~7900 lines) mix config, business logic, and UI into single files. Most critical data is still hardcoded; multi-player works but is vulnerable to race conditions at concurrent access; there are no batch-import pipelines for content.
+The app has solid bones. Since the initial audit, `server.js` was reduced from ~5200 to ~310 lines (routes extracted to 19 files), and `app/page.tsx` from ~7900 to ~2150 lines (views lazy-loaded). Most hardcoded data was extracted to JSON templates. Race conditions remain theoretical in the single-process deployment model.
 
 ---
 

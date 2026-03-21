@@ -80,6 +80,7 @@ export default function RiftView({ onRefresh }: { onRefresh?: () => void }) {
   const [loading, setLoading] = useState(true);
   const [actionLoading, setActionLoading] = useState(false);
   const [message, setMessage] = useState<{ text: string; type: "success" | "error" } | null>(null);
+  const [confirmAbandon, setConfirmAbandon] = useState(false);
 
   const fetchRift = useCallback(async () => {
     if (!playerName) return;
@@ -139,6 +140,7 @@ export default function RiftView({ onRefresh }: { onRefresh?: () => void }) {
 
   const abandonRift = async () => {
     if (!reviewApiKey || actionLoading) return;
+    setConfirmAbandon(false);
     setActionLoading(true);
     try {
       const r = await fetch("/api/rift/abandon", {
@@ -257,15 +259,35 @@ export default function RiftView({ onRefresh }: { onRefresh?: () => void }) {
                 {actionLoading ? "..." : `Complete Stage ${activeRift.currentStage}`}
               </button>
             )}
-            {!activeRift.completed && (
+            {!activeRift.completed && !confirmAbandon && (
               <button
-                onClick={abandonRift}
+                onClick={() => setConfirmAbandon(true)}
                 disabled={actionLoading}
                 className="btn-interactive text-xs px-4 py-2.5 rounded-lg"
                 style={{ background: "rgba(239,68,68,0.08)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.2)" }}
               >
                 Abandon
               </button>
+            )}
+            {!activeRift.completed && confirmAbandon && (
+              <div className="flex gap-2 items-center">
+                <span className="text-xs" style={{ color: "rgba(239,68,68,0.7)" }}>Abandon? ({tiers[activeRift.tier]?.failCooldownDays || 3}d cooldown)</span>
+                <button
+                  onClick={abandonRift}
+                  disabled={actionLoading}
+                  className="btn-interactive text-xs px-3 py-1.5 rounded-lg font-semibold"
+                  style={{ background: "rgba(239,68,68,0.15)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.3)" }}
+                >
+                  Yes
+                </button>
+                <button
+                  onClick={() => setConfirmAbandon(false)}
+                  className="btn-interactive text-xs px-3 py-1.5 rounded-lg"
+                  style={{ color: "rgba(255,255,255,0.4)" }}
+                >
+                  No
+                </button>
+              </div>
             )}
           </div>
         </div>
