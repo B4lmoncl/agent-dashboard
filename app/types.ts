@@ -556,6 +556,8 @@ export interface FriendInfo {
   color: string;
   level: number;
   isOnline: boolean;
+  onlineStatus: "online" | "idle" | "offline";
+  lastActiveAt: string | null;
   since: string;
 }
 
@@ -580,6 +582,18 @@ export interface SocialMessage {
   text: string;
   createdAt: string;
   read: boolean;
+  readAt?: string;
+}
+
+export interface ActivityEvent {
+  id: string;
+  player: string;
+  playerName: string;
+  playerAvatar: string;
+  playerColor: string;
+  type: "quest_complete" | "level_up" | "achievement" | "gacha_pull" | "rare_drop" | "trade_complete" | "streak_milestone";
+  data: Record<string, unknown>;
+  at: string;
 }
 
 export interface Conversation {

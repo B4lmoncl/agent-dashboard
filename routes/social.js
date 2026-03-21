@@ -2,8 +2,8 @@
  * Social Routes — Friends, Messages, and Trading system.
  */
 const router = require('express').Router();
-const { state, saveUsers, saveSocial, ensureUserCurrencies, EQUIPMENT_SLOTS } = require('../lib/state');
-const { now } = require('../lib/helpers');
+const { state, saveUsers, saveSocial, ensureUserCurrencies, EQUIPMENT_SLOTS, logActivity } = require('../lib/state');
+const { now, getLevelInfo } = require('../lib/helpers');
 const { requireAuth, requireSelf } = require('../lib/middleware');
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
@@ -60,17 +60,27 @@ router.get('/api/social/:playerId/friends', requireAuth, requireSelf('playerId')
     .map(f => {
       const friendId = f.player1 === uid ? f.player2 : f.player1;
       const friendUser = state.users[friendId];
-      // Determine online status from agent store
+      // Determine online status from agent store + lastActiveAt
       const agentEntry = state.store.agents[friendId];
-      const isOnline = agentEntry ? agentEntry.status === 'online' : false;
+      const agentOnline = agentEntry ? agentEntry.status === 'online' : false;
+      const lastActiveAt = friendUser?.lastActiveAt || null;
+      // Online: agent online OR active within 5 min. Idle: active within 30 min.
+      const msSinceActive = lastActiveAt ? Date.now() - new Date(lastActiveAt).getTime() : Infinity;
+      const onlineStatus = agentOnline || msSinceActive < 5 * 60 * 1000
+        ? 'online'
+        : msSinceActive < 30 * 60 * 1000
+          ? 'idle'
+          : 'offline';
       return {
         id: friendId,
         name: friendUser?.name || friendId,
         avatar: friendUser?.avatar || (friendUser?.name || friendId)[0],
         color: friendUser?.color || '#a78bfa',
         since: f.since,
-        isOnline,
-        level: friendUser ? (friendUser.xp || 0) : 0,
+        isOnline: onlineStatus === 'online',
+        onlineStatus,
+        lastActiveAt,
+        level: friendUser ? getLevelInfo(friendUser.xp || 0).level : 0,
         classId: friendUser?.classId || null,
       };
     });
@@ -231,11 +241,13 @@ router.get('/api/social/:playerId/messages/:otherPlayerId', requireAuth, require
 
   const page = msgs.slice(0, limit);
 
-  // Mark messages to this player as read
+  // Mark messages to this player as read with timestamp
   let markedRead = 0;
+  const readTimestamp = now();
   for (const m of state.socialData.messages) {
     if (m.from === otherId && m.to === uid && !m.read) {
       m.read = true;
+      m.readAt = readTimestamp;
       markedRead++;
     }
   }
@@ -632,6 +644,8 @@ router.post('/api/social/trade/:tradeId/accept', requireAuth, (req, res) => {
 
     saveSocial();
     saveUsers();
+    logActivity(trade.initiator, 'trade_complete', { with: trade.recipient, summary: result.summary });
+    logActivity(trade.recipient, 'trade_complete', { with: trade.initiator, summary: result.summary });
     console.log(`[social] Trade completed: ${trade.id} between ${trade.initiator} and ${trade.recipient}`);
     return res.json({ ok: true, trade, executed: true, summary: result.summary });
   }
@@ -749,5 +763,41 @@ function executeTrade(trade) {
   console.log(`[social] Trade executed: ${trade.initiator} gave ${gold1}g + ${items1.length} items, ${trade.recipient} gave ${gold2}g + ${items2.length} items`);
   return { ok: true, summary };
 }
+
+// ─── Activity Feed ───────────────────────────────────────────────────────────
+
+// GET /api/social/:playerId/activity-feed — recent events from friends
+router.get('/api/social/:playerId/activity-feed', requireAuth, requireSelf('playerId'), (req, res) => {
+  const uid = req.params.playerId.toLowerCase();
+  if (!state.users[uid]) return res.status(404).json({ error: 'Player not found' });
+
+  // Get friend IDs
+  const friendIds = new Set(
+    state.socialData.friendships
+      .filter(f => f.player1 === uid || f.player2 === uid)
+      .map(f => f.player1 === uid ? f.player2 : f.player1)
+  );
+
+  // Also include own events
+  friendIds.add(uid);
+
+  const limit = Math.min(Math.max(parseInt(req.query.limit, 10) || 30, 1), 100);
+  const log = state.socialData.activityLog || [];
+
+  const feed = log
+    .filter(e => friendIds.has(e.player))
+    .slice(0, limit)
+    .map(e => {
+      const user = state.users[e.player];
+      return {
+        ...e,
+        playerName: user?.name || e.player,
+        playerAvatar: user?.avatar || (user?.name || e.player)[0],
+        playerColor: user?.color || '#a78bfa',
+      };
+    });
+
+  res.json({ feed });
+});
 
 module.exports = router;

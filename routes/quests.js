@@ -1,6 +1,6 @@
 // ─── Quest API ──────────────────────────────────────────────────────────────────
 const router = require('express').Router();
-const { state, PLAYER_QUEST_TYPES, NPC_NAMES, XP_BY_PRIORITY, XP_BY_RARITY, saveQuests, saveData, savePlayerProgress, saveQuestCatalog, rebuildQuestsById } = require('../lib/state');
+const { state, PLAYER_QUEST_TYPES, NPC_NAMES, XP_BY_PRIORITY, XP_BY_RARITY, saveQuests, saveData, savePlayerProgress, saveQuestCatalog, rebuildQuestsById, logActivity } = require('../lib/state');
 const { now, getPlayerProgress, getLevelInfo, onQuestCompletedByUser, randGold, addLootToInventory } = require('../lib/helpers');
 const { requireApiKey } = require('../lib/middleware');
 const { rebuildCatalogMeta } = require('../lib/quest-catalog');
@@ -322,6 +322,10 @@ router.post('/api/quest/:id/complete', requireApiKey, (req, res) => {
         console.log(`[npc] Final reward '${item.id}' granted to ${agentKey} for completing ${giver.name}'s chain`);
       }
     }
+    // Activity feed
+    logActivity(agentKey, 'quest_complete', { quest: quest.title || quest.id, rarity: quest.rarity || 'common', xp: xpEarned, gold: goldEarned });
+    if (u && newLevelInfo.level > prevLevel) logActivity(agentKey, 'level_up', { level: newLevelInfo.level, title: newLevelInfo.title });
+    if (newAchievements.length > 0) for (const ach of newAchievements) logActivity(agentKey, 'achievement', { name: ach.name || ach.id, rarity: ach.rarity, points: ach.points || 0 });
     console.log(`[quest] ${quest.id} completed (npc per-player) by ${agentKey}`);
     return res.json({
       ok: true,
@@ -362,6 +366,10 @@ router.post('/api/quest/:id/complete', requireApiKey, (req, res) => {
     const xpEarned = u2?._lastXpEarned || 0;
     const goldEarned = u2?._lastGoldEarned || 0;
     if (u2) { delete u2._lastLoot; delete u2._lastCompanionReward; delete u2._lastXpEarned; delete u2._lastGoldEarned; }
+    // Activity feed
+    logActivity(agentKey, 'quest_complete', { quest: quest.title || quest.id, rarity: quest.rarity || 'common', xp: xpEarned, gold: goldEarned });
+    if (u2 && newLevelInfo2.level > prevLevel2) logActivity(agentKey, 'level_up', { level: newLevelInfo2.level, title: newLevelInfo2.title });
+    if (newAchievements.length > 0) for (const ach of newAchievements) logActivity(agentKey, 'achievement', { name: ach.name || ach.id, rarity: ach.rarity, points: ach.points || 0 });
     console.log(`[quest] ${quest.id} completed (per-player) by ${agentKey}`);
     return res.json({
       ok: true,
@@ -401,6 +409,21 @@ router.post('/api/quest/:id/complete', requireApiKey, (req, res) => {
   const runensplitterEarned = u3?._lastRunensplitterEarned || 0;
   const gildentalerEarned = u3?._lastGildentalerEarned || 0;
   if (u3) { delete u3._lastLoot; delete u3._lastCompanionReward; delete u3._lastXpEarned; delete u3._lastGoldEarned; delete u3._lastRunensplitterEarned; delete u3._lastGildentalerEarned; }
+  // Activity feed: quest completion + optional level-up
+  if (state.users[agentKey]) {
+    logActivity(agentKey, 'quest_complete', { quest: quest.title || quest.id, rarity: quest.rarity || 'common', xp: xpEarned, gold: goldEarned });
+    if (u3 && newLevelInfo3.level > prevLevel3) {
+      logActivity(agentKey, 'level_up', { level: newLevelInfo3.level, title: newLevelInfo3.title });
+    }
+    if (newAchievements.length > 0) {
+      for (const ach of newAchievements) {
+        logActivity(agentKey, 'achievement', { name: ach.name || ach.id, rarity: ach.rarity || 'common', points: ach.points || 0 });
+      }
+    }
+    if (lootDrop && (lootDrop.rarity === 'epic' || lootDrop.rarity === 'legendary')) {
+      logActivity(agentKey, 'rare_drop', { item: lootDrop.name || lootDrop.id, rarity: lootDrop.rarity });
+    }
+  }
   console.log(`[quest] ${quest.id} completed by ${agentId}`);
   res.json({ ok: true, quest, newAchievements, lootDrop, companionReward, xpEarned, goldEarned, runensplitterEarned, gildentalerEarned, chainQuestTemplate: quest.nextQuestTemplate || null, levelUp: u3 && newLevelInfo3.level > prevLevel3 ? { level: newLevelInfo3.level, title: newLevelInfo3.title } : null });
 });

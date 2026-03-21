@@ -2,7 +2,7 @@
  * Gacha Routes — Pull mechanics, banners, history, pity tracking.
  */
 const router = require('express').Router();
-const { state, saveGachaState } = require('../lib/state');
+const { state, saveGachaState, logActivity } = require('../lib/state');
 const { requireApiKey } = require('../lib/middleware');
 const { spendCurrency, awardCurrency, hasPassiveEffect, rollAffixStats } = require('../lib/helpers');
 
@@ -269,6 +269,10 @@ router.post('/api/gacha/pull', requireApiKey, (req, res) => {
     saveUsers();
     saveGachaState();
 
+    // Activity feed for epic+ pulls
+    if (['epic', 'legendary'].includes(result.item.rarity)) {
+      logActivity(uid, 'gacha_pull', { item: result.item.name, rarity: result.item.rarity, banner: banner.name });
+    }
     console.log(`[gacha] ${uid} pulled ${result.item.rarity} "${result.item.name}" from ${banner.name}${result.isDuplicate ? ' (DUP→' + result.duplicateRefund + ' Runensplitter)' : ''}`);
     res.json({ ok: true, results: [result], currencies: u.currencies });
   } finally {
@@ -377,6 +381,12 @@ router.post('/api/gacha/pull10', requireApiKey, (req, res) => {
   saveUsers();
   saveGachaState();
 
+  // Activity feed for epic+ pulls in 10-pull
+  for (const r of results) {
+    if (['epic', 'legendary'].includes(r.item.rarity)) {
+      logActivity(uid, 'gacha_pull', { item: r.item.name, rarity: r.item.rarity, banner: banner.name });
+    }
+  }
   const rarityCount = {};
   for (const r of results) rarityCount[r.item.rarity] = (rarityCount[r.item.rarity] || 0) + 1;
   console.log(`[gacha] ${uid} 10-pull from ${banner.name}: ${JSON.stringify(rarityCount)}`);
