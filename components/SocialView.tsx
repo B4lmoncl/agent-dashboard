@@ -94,6 +94,12 @@ function FriendsTab({ apiKey, playerName }: { apiKey: string; playerName: string
 
   useEffect(() => { fetchFriends(); }, [fetchFriends]);
 
+  // Auto-refresh friends list every 30s
+  useEffect(() => {
+    const interval = setInterval(fetchFriends, 30000);
+    return () => clearInterval(interval);
+  }, [fetchFriends]);
+
   const sendRequest = async () => {
     if (!addInput.trim()) return;
     setError(null);
@@ -136,10 +142,17 @@ function FriendsTab({ apiKey, playerName }: { apiKey: string; playerName: string
   const incoming = incomingRequests;
   const outgoing = outgoingRequests;
 
-  if (loading) return <p className="text-xs text-w20 text-center py-8">Loading...</p>;
+  if (loading) return (
+    <div className="space-y-3 tab-content-enter">
+      <div className="skeleton-card"><div className="flex gap-2"><div className="skeleton skeleton-text flex-1" /><div className="skeleton w-20 h-8 rounded-lg" /></div></div>
+      <div className="grid grid-cols-2 lg:grid-cols-3 gap-2">
+        {[1,2,3].map(i => <div key={i} className="skeleton-card flex flex-col items-center gap-2 py-4"><div className="skeleton w-9 h-9 rounded-full" /><div className="skeleton skeleton-text w-16" /><div className="skeleton skeleton-text w-10" /></div>)}
+      </div>
+    </div>
+  );
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 tab-content-enter">
       {/* Add friend */}
       <div className="flex gap-2">
         <input
@@ -285,7 +298,11 @@ function MessagesTab({ apiKey, playerName }: { apiKey: string; playerName: strin
     } catch { /* ignore */ }
   };
 
-  if (loading) return <p className="text-xs text-w20 text-center py-8">Loading...</p>;
+  if (loading) return (
+    <div className="space-y-2 tab-content-enter">
+      {[1,2,3].map(i => <div key={i} className="skeleton-card flex items-center gap-3"><div className="skeleton w-8 h-8 rounded-full flex-shrink-0" /><div className="flex-1 space-y-1.5"><div className="skeleton skeleton-text w-24" /><div className="skeleton skeleton-text w-40" /></div></div>)}
+    </div>
+  );
 
   if (activeConvo) {
     const convo = conversations.find(c => c.playerId === activeConvo);
@@ -524,7 +541,12 @@ function TradesTab({ apiKey, playerName }: { apiKey: string; playerName: string 
     setActionLoading(false);
   };
 
-  if (loading) return <p className="text-xs text-w20 text-center py-8">Loading...</p>;
+  if (loading) return (
+    <div className="space-y-2 tab-content-enter">
+      <div className="skeleton-card"><div className="skeleton skeleton-text w-32 mb-2" /><div className="skeleton skeleton-text w-48" /></div>
+      <div className="skeleton-card"><div className="skeleton skeleton-text w-28 mb-2" /><div className="skeleton skeleton-text w-44" /></div>
+    </div>
+  );
 
   // Trade detail view
   if (selectedTrade) {
@@ -876,7 +898,11 @@ function ActivityFeedTab({ apiKey, playerName }: { apiKey: string; playerName: s
     return () => clearInterval(interval);
   }, [fetchFeed]);
 
-  if (loading) return <p className="text-xs text-w20 text-center py-8">Loading...</p>;
+  if (loading) return (
+    <div className="space-y-2 tab-content-enter">
+      {[1,2,3,4].map(i => <div key={i} className="skeleton-card flex items-start gap-2.5"><div className="skeleton w-5 h-5 rounded flex-shrink-0" /><div className="flex-1 space-y-1"><div className="skeleton skeleton-text w-36" /><div className="skeleton skeleton-text w-20" /></div></div>)}
+    </div>
+  );
 
   if (feed.length === 0) {
     return <p className="text-xs text-w20 text-center py-8">No activity yet. Complete quests, pull gacha, and earn achievements to see them here!</p>;
@@ -918,7 +944,7 @@ function ActivityFeedTab({ apiKey, playerName }: { apiKey: string; playerName: s
         const rarityColor = d.rarity ? (RARITY_COLORS[d.rarity] || "#e8e8e8") : "#e8e8e8";
 
         return (
-          <div key={event.id} className="flex items-start gap-2.5 rounded-lg px-3 py-2.5" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)" }}>
+          <div key={event.id} className={`flex items-start gap-2.5 rounded-lg px-3 py-2.5 ${d.rarity === "legendary" ? "feed-event-legendary" : d.rarity === "epic" ? "feed-event-epic" : ""}`} style={{ background: d.rarity === "legendary" ? "rgba(255,140,0,0.04)" : d.rarity === "epic" ? "rgba(168,85,247,0.03)" : "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)" }}>
             <span className="text-sm flex-shrink-0 mt-0.5">{icon}</span>
             <div className="flex-1 min-w-0">
               <p className="text-xs">
@@ -982,10 +1008,12 @@ export default function SocialView() {
       </div>
 
       {/* Tab content */}
-      {activeTab === "friends" && <FriendsTab apiKey={reviewApiKey} playerName={playerName} />}
-      {activeTab === "messages" && <MessagesTab apiKey={reviewApiKey} playerName={playerName} />}
-      {activeTab === "trades" && <TradesTab apiKey={reviewApiKey} playerName={playerName} />}
-      {activeTab === "activity" && <ActivityFeedTab apiKey={reviewApiKey} playerName={playerName} />}
+      <div key={activeTab} className="tab-content-enter">
+        {activeTab === "friends" && <FriendsTab apiKey={reviewApiKey} playerName={playerName} />}
+        {activeTab === "messages" && <MessagesTab apiKey={reviewApiKey} playerName={playerName} />}
+        {activeTab === "trades" && <TradesTab apiKey={reviewApiKey} playerName={playerName} />}
+        {activeTab === "activity" && <ActivityFeedTab apiKey={reviewApiKey} playerName={playerName} />}
+      </div>
     </div>
   );
 }

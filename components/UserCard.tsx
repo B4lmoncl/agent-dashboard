@@ -8,6 +8,31 @@ const GEAR_ICONS: Record<string, { icon: string; name: string; bonus: number }> 
   shopData.gearTiers.filter(g => g.tier > 0).map(g => [g.id, { icon: g.icon, name: g.name, bonus: g.xpBonus }])
 );
 
+// Profession data for UserCard display
+const PROF_META: Record<string, { name: string; icon: string; color: string }> = {
+  schmied: { name: "Blacksmith", icon: "/images/icons/prof-schmied.png", color: "#f59e0b" },
+  alchemist: { name: "Alchemist", icon: "/images/icons/prof-alchemist.png", color: "#22c55e" },
+  verzauberer: { name: "Enchanter", icon: "/images/icons/prof-verzauberer.png", color: "#a78bfa" },
+  koch: { name: "Cook", icon: "/images/icons/prof-koch.png", color: "#e87b35" },
+};
+const PROF_RANK_THRESHOLDS = [0, 100, 250, 450, 720, 1100, 1600, 2200, 3000, 4000];
+const PROF_RANKS: { name: string; color: string }[] = [
+  { name: "Novice", color: "#6b7280" },
+  { name: "Apprentice", color: "#22c55e" },
+  { name: "Journeyman", color: "#3b82f6" },
+  { name: "Expert", color: "#a855f7" },
+  { name: "Artisan", color: "#f59e0b" },
+  { name: "Master", color: "#ef4444" },
+];
+function getProfRank(level: number) {
+  if (level >= 9) return PROF_RANKS[5];
+  if (level >= 7) return PROF_RANKS[4];
+  if (level >= 5) return PROF_RANKS[3];
+  if (level >= 3) return PROF_RANKS[2];
+  if (level >= 1) return PROF_RANKS[1];
+  return PROF_RANKS[0];
+}
+
 const COMPANION_IDS = ["ember_sprite", "lore_owl", "gear_golem"];
 const COMPANION_META: Record<string, { icon: string; name: string }> = {
   ember_sprite: { icon: "/images/icons/mini-ember-sprite.png", name: "Ember Sprite" },
@@ -136,7 +161,7 @@ export function UserCard({ user, classes = [] }: { user: User; classes?: ClassDe
               className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-md text-xs font-semibold"
               style={{ background: "rgba(245,158,11,0.08)", color: "rgba(245,158,11,0.7)", animation: "pulse-online 1.5s ease-in-out infinite" }}
             >
-              ★ Klasse wird geschmiedet...
+              ★ Class is being forged...
             </span>
           )}
           {user.companion && (() => {
@@ -219,6 +244,41 @@ export function UserCard({ user, classes = [] }: { user: User; classes?: ClassDe
           </div>
         )}
       </div>
+
+      {/* Profession bars — show active professions with colored XP progress */}
+      {user.chosenProfessions && user.chosenProfessions.length > 0 && user.professions && (
+        <div className="px-4 py-2" style={{ borderTop: "1px solid rgba(255,255,255,0.04)" }}>
+          <div className="space-y-1.5">
+            {user.chosenProfessions.map(pid => {
+              const p = user.professions?.[pid as keyof NonNullable<typeof user.professions>];
+              const meta = PROF_META[pid];
+              if (!meta) return null;
+              const level = p?.level ?? 0;
+              const xpVal = p?.xp ?? 0;
+              const rank = getProfRank(level);
+              const currentThreshold = level > 0 ? (PROF_RANK_THRESHOLDS[level - 1] ?? 0) : 0;
+              const nextThreshold = level < 10 ? (PROF_RANK_THRESHOLDS[level] ?? null) : null;
+              const xpInLevel = xpVal - currentThreshold;
+              const xpForLevel = nextThreshold != null ? nextThreshold - currentThreshold : 0;
+              const progressPct = xpForLevel > 0 ? Math.min(100, (xpInLevel / xpForLevel) * 100) : (level >= 10 ? 100 : 0);
+              return (
+                <div key={pid} className="flex items-center gap-2">
+                  <SmartIcon src={meta.icon} size={16} />
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center justify-between mb-0.5">
+                      <span className="text-xs font-semibold truncate" style={{ color: meta.color }}>{meta.name}</span>
+                      <span className="text-xs font-mono" style={{ color: rank.color }}>Lv.{level} <span style={{ fontSize: 9, opacity: 0.7 }}>{rank.name}</span></span>
+                    </div>
+                    <div className="rounded-full overflow-hidden" style={{ height: 2.5, background: "rgba(255,255,255,0.06)" }}>
+                      <div className="h-full rounded-full transition-all duration-500" style={{ width: `${progressPct}%`, background: `linear-gradient(90deg, ${meta.color}99, ${meta.color})` }} />
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
 
       {/* Bottom section — companions + achievements */}
       {(companionAchs.length > 0 || displayAchs.length > 0) && (

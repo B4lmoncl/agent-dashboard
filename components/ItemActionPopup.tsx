@@ -204,7 +204,7 @@ export default function ItemActionPopup({
                   onClick={() => setConfirmDiscard(false)}
                   className="flex-1 py-1.5 rounded-lg text-xs"
                   style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.4)", border: "1px solid rgba(255,255,255,0.08)", cursor: "pointer" }}
-                >Abbrechen</button>
+                >Cancel</button>
               </div>
             </div>
           )}

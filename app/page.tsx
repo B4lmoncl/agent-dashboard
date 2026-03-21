@@ -110,6 +110,7 @@ export default function Dashboard() {
   const [dailyBonusAvailable, setDailyBonusAvailable] = useState(false);
   const [weeklyChallenge, setWeeklyChallenge] = useState<import("@/app/types").WeeklyChallenge | null>(null);
   const [expedition, setExpedition] = useState<import("@/app/types").Expedition | null>(null);
+  const [socialBadge, setSocialBadge] = useState<{ pendingFriendRequests: number; unreadMessages: number; activeTrades: number } | null>(null);
   const [claimingDailyBonus, setClaimingDailyBonus] = useState(false);
   const [loginCalendarOpen, setLoginCalendarOpen] = useState(false);
   const [completedOpen, setCompletedOpen] = useState(false);
@@ -345,6 +346,7 @@ export default function Dashboard() {
       if (batch.dailyBonusAvailable !== undefined) setDailyBonusAvailable(!!batch.dailyBonusAvailable);
       if (batch.weeklyChallenge !== undefined) setWeeklyChallenge(batch.weeklyChallenge || null);
       if (batch.expedition !== undefined) setExpedition(batch.expedition || null);
+      if (batch.socialSummary) setSocialBadge(batch.socialSummary);
     } else {
       // Fallback: individual fetches if batch endpoint not available
       const [a, q, u, lb, ac, camps] = await Promise.all([fetchAgents(), fetchQuests(pName || undefined), fetchUsers(), fetchLeaderboard(), fetchAchievementCatalogue(), fetchCampaigns()]);
@@ -1021,7 +1023,7 @@ export default function Dashboard() {
                       })}
                     </div>
                   ) : (
-                    <p className="text-xs text-w30 mb-4">Noch keine Berufe gewählt. Besuche das Artisan&apos;s Quarter!</p>
+                    <p className="text-xs text-w30 mb-4">No professions chosen yet. Visit the Artisan&apos;s Quarter!</p>
                   )}
 
                   {/* Materials Inventory */}
@@ -1072,10 +1074,12 @@ export default function Dashboard() {
           const currentFloor = FLOORS.find(f => f.id === activeFloor) || FLOORS[1];
           const visibleRooms = currentFloor.rooms.filter(r => !r.requiresLogin || playerName);
           // Notification dots per room
+          const socialTotal = socialBadge ? (socialBadge.pendingFriendRequests + socialBadge.unreadMessages + socialBadge.activeTrades) : 0;
           const getRoomNotif = (key: string) => {
             if (dashView === key) return null;
             if (key === "questBoard" && notifNewQuests) return "#4ade80";
             if (key === "npcBoard" && notifNewNpcs) return "#f59e0b";
+            if (key === "social" && socialTotal > 0) return "#a855f7";
             return null;
           };
           // Check if a floor has any notification
@@ -1110,7 +1114,12 @@ export default function Dashboard() {
                     >
                       <span style={{ fontSize: 14 }}>{floor.icon}</span>
                       <span className="hidden sm:inline">{floor.name}</span>
-                      {hasNotif && <span className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full" style={{ background: "#4ade80", boxShadow: "0 0 4px #4ade80" }} />}
+                      {hasNotif && <span className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full badge-enter" style={{ background: "#4ade80", boxShadow: "0 0 4px #4ade80" }} />}
+                      {floor.id === "breakaway" && socialTotal > 0 && !isActive && (
+                        <span className="absolute -top-1 -right-1 min-w-[16px] h-4 rounded-full flex items-center justify-center text-xs font-bold badge-enter" style={{ background: "#a855f7", color: "#fff", fontSize: 9, padding: "0 4px", boxShadow: "0 0 6px rgba(168,85,247,0.4)" }}>
+                          {socialTotal}
+                        </span>
+                      )}
                     </button>
                   );
                 })}

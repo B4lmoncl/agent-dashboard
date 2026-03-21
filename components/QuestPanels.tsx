@@ -569,7 +569,7 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
                     </div>
                   </div>
                   <div className="flex gap-2 pt-1">
-                    <button onClick={closeExtend} className="text-sm py-2.5 px-5 rounded-xl" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(165,180,252,0.35)", border: "1px solid rgba(255,255,255,0.08)" }}>Abbrechen</button>
+                    <button onClick={closeExtend} className="text-sm py-2.5 px-5 rounded-xl" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(165,180,252,0.35)", border: "1px solid rgba(255,255,255,0.08)" }}>Cancel</button>
                     <button
                       disabled={!canExtend}
                       onClick={async () => {

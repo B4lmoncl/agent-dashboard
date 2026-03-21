@@ -300,7 +300,7 @@ function ProfileSettingsModal({ playerName, apiKey, initialStatus, initialPartne
             onClick={onClose}
             className="flex-1 py-2 rounded-xl text-xs"
             style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.4)", border: "1px solid rgba(255,255,255,0.08)" }}
-          >Abbrechen</button>
+          >Cancel</button>
           <button
             onClick={handleSave}
             disabled={saving}

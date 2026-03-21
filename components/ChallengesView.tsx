@@ -651,6 +651,7 @@ export default function ChallengesView({
       )}
 
       {/* Content */}
+      <div key={activeTab} className="tab-content-enter">
       {activeTab === "sternenpfad" && (
         weeklyChallenge ? (
           <SternenpfadView
@@ -682,6 +683,7 @@ export default function ChallengesView({
           </div>
         )
       )}
+      </div>
     </div>
   );
 }

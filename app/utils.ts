@@ -124,6 +124,7 @@ export async function fetchDashboard(playerName?: string): Promise<{
   dailyBonusAvailable?: boolean;
   weeklyChallenge?: WeeklyChallenge | null;
   expedition?: Expedition | null;
+  socialSummary?: { pendingFriendRequests: number; unreadMessages: number; activeTrades: number } | null;
   apiLive: boolean;
 } | null> {
   try {
@@ -256,35 +257,35 @@ export function getUserXpProgress(xp: number) {
 // ─── Forge Temperature helpers ────────────────────────────────────────────────
 
 export function getForgeTempInfo(temp: number): { statusMessage: string; actionSuggestion: string; tooltipText: string } {
-  const baseTooltip = "Schmiede-Temperatur: Je heißer die Schmiede, desto besser deine Handwerks-Erfolge. Höhere Temperatur = mehr Gold-Multiplikator (bis 1.5×). Die Temperatur sinkt automatisch mit der Zeit — schließe Quests ab, um sie oben zu halten. Bei 0% erhältst du einen XP-Malus.";
+  const baseTooltip = "Forge Temperature: The hotter the forge, the better your crafting results. Higher temperature = more Gold multiplier (up to 1.5×). Temperature drops automatically over time — complete quests to keep it up. At 0% you receive an XP penalty.";
   if (temp === 100) return {
-    statusMessage: "Die Schmiede brennt weißglühend — du bist unaufhaltsam",
-    actionSuggestion: "Gipfel erreicht! Jede abgeschlossene Quest hält diese Temperatur aufrecht.",
+    statusMessage: "The forge burns white-hot — you are unstoppable",
+    actionSuggestion: "Peak reached! Every completed quest maintains this temperature.",
     tooltipText: baseTooltip,
   };
   if (temp >= 80) return {
-    statusMessage: "Die Schmiede brüllt — dein Hammer trifft sicher",
-    actionSuggestion: "Kurz vor dem Maximum. Noch ein bis zwei Quests bringen die Schmiede auf Weißglut.",
+    statusMessage: "The forge roars — your hammer strikes true",
+    actionSuggestion: "Near maximum. One or two more quests will bring the forge to white heat.",
     tooltipText: baseTooltip,
   };
   if (temp >= 60) return {
-    statusMessage: "Die Schmiede glüht gleichmäßig — der Rhythmus eines Handwerkers",
-    actionSuggestion: "Guter Rhythmus! Halte die Schmiede am Laufen durch abgeschlossene Quests.",
+    statusMessage: "The forge glows steadily — the rhythm of a craftsman",
+    actionSuggestion: "Good rhythm! Keep the forge running with completed quests.",
     tooltipText: baseTooltip,
   };
   if (temp >= 40) return {
-    statusMessage: "Die Schmiede kühlt ab — das Metall wird steif",
-    actionSuggestion: "Die Glut hält noch — aber nicht lange. Schließe eine Quest ab, um das Feuer anzufachen.",
+    statusMessage: "The forge is cooling — the metal grows stiff",
+    actionSuggestion: "The embers still hold — but not for long. Complete a quest to stoke the fire.",
     tooltipText: baseTooltip,
   };
   if (temp >= 20) return {
-    statusMessage: "Die Schmiede ist kalt — aber die Struktur hält",
-    actionSuggestion: "Zurück zum Amboss. Wähle die kleinste Quest auf deinem Board und schließe sie ab.",
+    statusMessage: "The forge is cold — but the structure holds",
+    actionSuggestion: "Back to the anvil. Pick the smallest quest on your board and complete it.",
     tooltipText: baseTooltip,
   };
   return {
-    statusMessage: "Die Schmiede ist eingefroren — aber du hältst noch den Hammer",
-    actionSuggestion: "Dies ist dein Neustart-Moment. Schließe eine Quest ab. Irgendeine Quest.",
+    statusMessage: "The forge is frozen — but you still hold the hammer",
+    actionSuggestion: "This is your restart moment. Complete a quest. Any quest.",
     tooltipText: baseTooltip,
   };
 }

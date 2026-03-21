@@ -288,12 +288,12 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
                   style={inputStyle}
                   value={name}
                   onChange={e => setName(e.target.value)}
-                  placeholder="z.B. Luna, Marco, Aria..."
+                  placeholder="e.g. Luna, Marco, Aria..."
                   autoFocus
                 />
               </div>
               <div>
-                <label className="text-xs font-semibold mb-1.5 block" style={{ color: "rgba(255,255,255,0.5)" }}>Passwort</label>
+                <label className="text-xs font-semibold mb-1.5 block" style={{ color: "rgba(255,255,255,0.5)" }}>Password</label>
                 <input
                   type="password"
                   style={inputStyle}
@@ -303,28 +303,28 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
                 />
               </div>
               <div>
-                <label className="text-xs font-semibold mb-1.5 block" style={{ color: "rgba(255,255,255,0.5)" }}>Passwort wiederholen</label>
+                <label className="text-xs font-semibold mb-1.5 block" style={{ color: "rgba(255,255,255,0.5)" }}>Confirm password</label>
                 <input
                   type="password"
                   style={inputStyle}
                   value={passwordConfirm}
                   onChange={e => setPasswordConfirm(e.target.value)}
-                  placeholder="Passwort best\u00e4tigen"
+                  placeholder="Confirm password"
                   onKeyDown={e => { if (e.key === "Enter" && canProceedStep0) setStep(1); }}
                 />
                 {password && passwordConfirm && password !== passwordConfirm && (
-                  <p className="text-xs mt-1" style={{ color: "#ef4444" }}>Passw\u00f6rter stimmen nicht \u00fcberein</p>
+                  <p className="text-xs mt-1" style={{ color: "#ef4444" }}>Passwords don&apos;t match</p>
                 )}
               </div>
             </div>
             <div className="flex justify-between items-center">
-              <button onClick={onClose} style={btnSecondary}>Abbrechen</button>
+              <button onClick={onClose} style={btnSecondary}>Cancel</button>
               <button
                 onClick={() => { setError(""); setStep(1); }}
                 disabled={!canProceedStep0}
                 style={canProceedStep0 ? btnPrimary : btnDisabled}
               >
-                Weiter →
+                Next →
               </button>
             </div>
           </div>
@@ -344,7 +344,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
                 type="number"
                 value={age}
                 onChange={e => setAge(e.target.value)}
-                placeholder="z.B. 25"
+                placeholder="e.g. 25"
                 min={5}
                 max={120}
               />
@@ -380,12 +380,12 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
                 style={textareaStyle}
                 value={goals}
                 onChange={e => setGoals(e.target.value)}
-                placeholder="z.B. Fit werden, Karriere voranbringen, neue Skills lernen..."
+                placeholder="e.g. Get fit, advance career, learn new skills..."
               />
             </div>
             <div className="flex justify-between">
               <button onClick={() => setStep(0)} style={btnSecondary}>← Zurück</button>
-              <button onClick={() => setStep(2)} style={btnPrimary}>Weiter →</button>
+              <button onClick={() => setStep(2)} style={btnPrimary}>Next →</button>
             </div>
           </div>
         )}
@@ -394,7 +394,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
         {step === 2 && (
           <div className="p-6 space-y-4">
             <div>
-              <h2 className="text-lg font-bold" style={{ color: "#f0f0f0" }}>Wähle deinen Pfad</h2>
+              <h2 className="text-lg font-bold" style={{ color: "#f0f0f0" }}>Choose your path</h2>
               <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.4)" }}>Jeder Pfad bringt einzigartige Quests und Fähigkeiten.</p>
             </div>
 
@@ -474,12 +474,12 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
               <div className="rounded-xl p-4 space-y-3" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.1)" }}>
                 <p className="text-xs font-semibold" style={{ color: "#a78bfa" }}>Klasse einreichen</p>
                 <div>
-                  <label className="text-xs mb-1 block" style={{ color: "rgba(255,255,255,0.4)" }}>Was machst du beruflich?</label>
+                  <label className="text-xs mb-1 block" style={{ color: "rgba(255,255,255,0.4)" }}>What do you do for a living?</label>
                   <textarea
                     style={{ ...textareaStyle, minHeight: 60 }}
                     value={customProfession}
                     onChange={e => setCustomProfession(e.target.value)}
-                    placeholder="z.B. Elektriker, Grafikdesigner, Pflegekraft..."
+                    placeholder="e.g. Electrician, Designer, Nurse..."
                   />
                 </div>
                 <div>
@@ -488,7 +488,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
                     style={{ ...textareaStyle, minHeight: 60 }}
                     value={customFocus}
                     onChange={e => setCustomFocus(e.target.value)}
-                    placeholder="z.B. Weiterbildung, Fitness, Work-Life-Balance..."
+                    placeholder="e.g. Education, Fitness, Work-Life-Balance..."
                   />
                 </div>
                 <div className="flex gap-2">
@@ -505,7 +505,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
                     Klasse einreichen
                   </button>
                   <button onClick={() => setShowCustomClass(false)} className="text-xs px-3 py-1.5 rounded-lg" style={{ color: "rgba(255,255,255,0.3)" }}>
-                    Abbrechen
+                    Cancel
                   </button>
                 </div>
               </div>
@@ -527,7 +527,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
                 disabled={!canProceedStep2}
                 style={canProceedStep2 ? btnPrimary : btnDisabled}
               >
-                Weiter →
+                Next →
               </button>
             </div>
           </div>
@@ -571,14 +571,14 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
                   style={inputStyle}
                   value={partnerName}
                   onChange={e => setPartnerName(e.target.value)}
-                  placeholder="z.B. Alex, Maria, Sam..."
+                  placeholder="e.g. Alex, Maria, Sam..."
                 />
               </div>
             )}
 
             <div className="flex justify-between">
               <button onClick={() => setStep(2)} style={btnSecondary}>← Zurück</button>
-              <button onClick={() => setStep(4)} style={btnPrimary}>Weiter →</button>
+              <button onClick={() => setStep(4)} style={btnPrimary}>Next →</button>
             </div>
           </div>
         )}
@@ -587,7 +587,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
         {step === 4 && (
           <div className="p-6 space-y-4">
             <div>
-              <h2 className="text-lg font-bold" style={{ color: "#f0f0f0" }}>Wähle deinen Begleiter</h2>
+              <h2 className="text-lg font-bold" style={{ color: "#f0f0f0" }}>Choose your companion</h2>
               <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.4)" }}>Dein Begleiter motiviert dich auf deinem Weg.</p>
             </div>
 
@@ -627,7 +627,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
                     style={inputStyle}
                     value={petName}
                     onChange={e => setPetName(e.target.value)}
-                    placeholder="z.B. Luna, Bello, Tweety..."
+                    placeholder="e.g. Luna, Bello, Tweety..."
                     autoFocus
                   />
                 </div>
@@ -721,7 +721,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
                 disabled={!canProceedStep3 || loading}
                 style={canProceedStep3 && !loading ? btnPrimary : btnDisabled}
               >
-                {loading ? "Wird geschmiedet..." : "Weiter →"}
+                {loading ? "Forging..." : "Next →"}
               </button>
             </div>
           </div>
@@ -754,7 +754,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
                   {selectedClass
                     ? `${selectedClass.icon} ${selectedClass.fantasy}`
                     : customClassSubmitted
-                      ? "Wird geschmiedet..."
+                      ? "Forging..."
                       : "—"}
                 </span>
               </div>
@@ -778,7 +778,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
             </div>
 
             <div className="rounded-xl p-3 text-center" style={{ background: "rgba(34,197,94,0.08)", border: "1px solid rgba(34,197,94,0.2)" }}>
-              <p className="text-xs" style={{ color: "#22c55e" }}>Du bist jetzt eingeloggt. Dein Passwort ist sicher gespeichert.</p>
+              <p className="text-xs" style={{ color: "#22c55e" }}>You are now logged in. Your password has been securely saved.</p>
             </div>
 
             <button

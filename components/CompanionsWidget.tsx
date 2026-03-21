@@ -443,7 +443,7 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
                 {/* Quest picker for instant_complete */}
                 {ultimatePickQuest && dobbieQuests && dobbieQuests.length > 0 && (
                   <div className="mb-2 space-y-1">
-                    <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>Wähle eine Quest:</p>
+                    <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>Choose a quest:</p>
                     {dobbieQuests.filter(q => !completedIds.has(q.id)).map(q => (
                       <button key={q.id} onClick={() => handleUltimate("instant_complete", q.id)} disabled={!!ultimateUsing}
                         className="w-full text-left text-xs px-2 py-1.5 rounded" style={{
@@ -452,14 +452,14 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
                         {q.title}
                       </button>
                     ))}
-                    <button onClick={() => setUltimatePickQuest(false)} className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>Abbrechen</button>
+                    <button onClick={() => setUltimatePickQuest(false)} className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>Cancel</button>
                   </div>
                 )}
                 <div className="flex gap-1.5 flex-wrap">
                   {[
-                    { id: "instant_complete", label: "Sofort", desc: `${companionName} erledigt eine Quest`, icon: "⚡", needsQuest: true },
-                    { id: "double_reward", label: "2x Loot", desc: "Nächste Quest doppelt", icon: "✨", needsQuest: false },
-                    { id: "streak_extend", label: "+3 Streak", desc: "Streak verlängern", icon: "🔥", needsQuest: false },
+                    { id: "instant_complete", label: "Instant", desc: `${companionName} completes a quest`, icon: "⚡", needsQuest: true },
+                    { id: "double_reward", label: "2x Loot", desc: "Next quest doubled", icon: "✨", needsQuest: false },
+                    { id: "streak_extend", label: "+3 Streak", desc: "Extend streak", icon: "🔥", needsQuest: false },
                   ].map(ult => (
                     <button
                       key={ult.id}
