@@ -8,6 +8,7 @@ import { STREAK_MILESTONES_CLIENT } from "@/app/config";
 import { useDashboard } from "@/app/DashboardContext";
 import type { Ritual } from "@/app/types";
 import type { RewardCelebrationData } from "@/components/RewardCelebration";
+import { Tip } from "@/components/GameTooltip";
 
 // ─── Ritual / Vow Commitment Tiers ───────────────────────────────────────────
 const COMMITMENT_TIERS = [
@@ -108,14 +109,14 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
               <span className="text-sm font-medium truncate" style={{ color: doneToday ? "rgba(255,255,255,0.4)" : "#e8e8e8", textDecoration: doneToday ? "line-through" : "none" }}>{ritual.title}</span>
               {ritual.bloodPact && (
                 <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded text-xs font-bold" style={{ color: "#ef4444", background: "rgba(239,68,68,0.12)", border: "1px solid rgba(239,68,68,0.3)", fontSize: 12, letterSpacing: "0.04em" }}>
-                  Blood Pact
+                  <Tip k="blood_pact">Blood Pact</Tip>
                 </span>
               )}
               {milestone && ((milestone as any).icon ? <img src={(milestone as any).icon} alt={milestone.badge} width={20} height={20} className="img-render-auto" /> : <span className="text-xs">{milestone.badge}</span>)}
             </div>
             <div className="flex items-center gap-3 text-xs flex-wrap text-w35">
               <span style={{ color: ritual.streak >= 21 ? "#818cf8" : ritual.streak >= 7 ? "#f97316" : "rgba(255,255,255,0.35)" }}>
-                {ritual.streak} Day Streak
+                <Tip k="streak">{ritual.streak} Day Streak</Tip>
               </span>
               {longestStreak > 0 && (
                 <span title="Longest streak" style={{ color: "rgba(245,158,11,0.5)" }}>
@@ -132,7 +133,7 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
             </div>
             {ritual.bloodPact && commitGoal && !ritual.pactCompleted && (
               <div className="flex items-center gap-2 mt-1 text-xs" style={{ color: "rgba(239,68,68,0.6)" }}>
-                <span style={{ fontSize: 10 }}>⬥</span>
+                <span style={{ fontSize: 12 }}>⬥</span>
                 <span>Pact Goal: <span style={{ color: "#ef4444", fontWeight: 600 }}>{commitGoal}d</span></span>
                 <span>·</span>
                 <span style={{ color: ritual.streak >= commitGoal ? "#22c55e" : "rgba(239,68,68,0.8)", fontWeight: 600 }}>
@@ -142,7 +143,7 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
             )}
             {ritual.bloodPact && ritual.pactCompleted && (
               <div className="flex items-center gap-1.5 mt-1 text-xs" style={{ color: "rgba(34,197,94,0.7)" }}>
-                <span style={{ fontSize: 10 }}>✦</span>
+                <span style={{ fontSize: 12 }}>✦</span>
                 <span style={{ fontWeight: 600 }}>Blood Pact fulfilled</span>
               </div>
             )}
@@ -251,7 +252,7 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
           <div className="flex-1 min-w-0">
             <div className="flex items-center justify-between mb-3">
               <div>
-                <h3 className="font-bold uppercase tracking-widest" style={{ color: "#f59e0b", fontSize: "1rem" }}>Ritual Chamber</h3>
+                <h3 className="font-bold uppercase tracking-widest" style={{ color: "#f59e0b", fontSize: "1rem" }}><Tip k="rituals">Ritual Chamber</Tip></h3>
                 <p style={{ color: "rgba(245,158,11,0.6)", fontSize: "1rem", fontWeight: 600, marginTop: 2 }}>Seraine Ashwell</p>
               </div>
               {playerName && reviewApiKey && (
@@ -312,7 +313,7 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
               <div style={{ maxWidth: 1000, width: "100%", borderRadius: "1rem", background: newRitualBloodPact ? "linear-gradient(160deg, #2c1a1a 0%, #1e1010 100%)" : "linear-gradient(160deg, #2c2318 0%, #1e1912 100%)", border: `1px solid ${newRitualBloodPact ? "rgba(239,68,68,0.45)" : "rgba(245,158,11,0.3)"}`, boxShadow: newRitualBloodPact ? "0 0 60px rgba(239,68,68,0.12)" : "0 0 40px rgba(167,139,250,0.08)", transition: "all 0.4s ease" }}>
                 {/* Header */}
                 <div className="flex items-center gap-3 px-5 pt-4 pb-3 border-b" style={{ borderColor: "rgba(245,158,11,0.12)" }}>
-                  <img src="/images/icons/ui-ritual-rune.png" alt="" width={28} height={28} className="img-render-auto" onError={e => (e.currentTarget.style.display = "none")} />
+                  <img src="/images/icons/ui-ritual-rune.png" alt="" width={28} height={28} className="img-render-auto" onError={e => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} />
                   <div>
                     <h3 className="text-sm font-bold" style={{ color: "#e8d5a3" }}>Forge a New Rite</h3>
                     <p className="text-xs" style={{ color: "rgba(200,170,100,0.4)" }}>Seraine Ashwell — Ritual Chamber</p>
@@ -364,7 +365,7 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
                     </div>
                   </div>
                   <div>
-                    <label className="text-xs font-semibold mb-2 block" style={{ color: "rgba(200,170,100,0.55)" }}>Aetherbond</label>
+                    <label className="text-xs font-semibold mb-2 block" style={{ color: "rgba(200,170,100,0.55)" }}><Tip k="aetherbond">Aetherbond</Tip></label>
                     <div className="grid grid-cols-3 gap-1.5" style={ritualCommitmentError ? { border: "1px solid #ef4444", borderRadius: 8, padding: 2 } : {}}>
                       {COMMITMENT_TIERS.map(tier => (
                         <button key={tier.id} onClick={() => { setNewRitualCommitment(tier.id); if (ritualCommitmentError) setRitualCommitmentError(false); }} className="ritual-tier-btn text-left p-2 rounded-lg" style={{ background: newRitualCommitment === tier.id ? `${tier.color}22` : "rgba(0,0,0,0.2)", border: `1px solid ${newRitualCommitment === tier.id ? tier.color : "rgba(255,255,255,0.07)"}`, boxShadow: newRitualCommitment === tier.id ? `0 0 12px ${tier.color}55` : "none" }}>
@@ -378,7 +379,7 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
                   </div>
                   <div>
                     <button onClick={() => setNewRitualBloodPact(p => !p)} className={`action-btn w-full py-2.5 px-4 rounded-xl font-semibold text-sm ${newRitualBloodPact ? "blood-pact-active" : ""}`} style={{ background: newRitualBloodPact ? "rgba(239,68,68,0.18)" : "rgba(255,255,255,0.04)", color: newRitualBloodPact ? "#ef4444" : "rgba(255,255,255,0.28)", border: `1px solid ${newRitualBloodPact ? "rgba(239,68,68,0.5)" : "rgba(255,255,255,0.1)"}`, transition: "color 0.3s, background 0.3s, border 0.3s" }}>
-                      {newRitualBloodPact ? "Blood Pact Sealed" : "Seal Blood Pact"}
+                      {newRitualBloodPact ? <Tip k="blood_pact">Blood Pact Sealed</Tip> : <Tip k="blood_pact">Seal Blood Pact</Tip>}
                     </button>
                     {newRitualBloodPact && <p className="text-xs mt-1.5 text-center" style={{ color: "rgba(239,68,68,0.7)" }}>! Blood Pact: Failure = all rewards forfeit.</p>}
                   </div>

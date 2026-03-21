@@ -486,7 +486,7 @@ function InventoryTooltip({ item, mousePosRef, equippedItem }: { item: Inventory
                       {val > 0 ? `+${val}` : val}
                     </span>
                     {showDiff && diff !== 0 && (
-                      <span className="font-mono font-bold" style={{ color: diff > 0 ? "#4ade80" : "#ef4444", fontSize: 11 }}>
+                      <span className="font-mono font-bold" style={{ color: diff > 0 ? "#4ade80" : "#ef4444", fontSize: 12 }}>
                         {diff > 0 ? `▲${diff}` : `▼${Math.abs(diff)}`}
                       </span>
                     )}
@@ -929,7 +929,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
         >
           {/* Header + Sort */}
           <div className="flex items-center justify-between mb-2">
-            <p className="text-xs font-bold uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.5)" }}>Inventory</p>
+            <Tip k="inventory"><p className="text-xs font-bold uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.5)" }}>Inventory</p></Tip>
             <div className="relative" ref={sortDropdownRef}>
               <button
                 onClick={() => setSortDropdownOpen(v => !v)}
@@ -1215,7 +1215,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                   cursor: "pointer",
                 }}
               >
-                {tab === "stats" ? "Stats" : "Gear"}
+                {tab === "stats" ? "Stats" : <Tip k="gear">Gear</Tip>}
               </button>
             ))}
           </div>
@@ -1315,14 +1315,14 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                             {s.bonuses && s.bonuses.length > 0 ? (
                               <div className="mt-1 space-y-0.5">
                                 {s.bonuses.map((b, bi) => (
-                                  <p key={bi} className="text-xs flex items-center gap-1" style={{ fontSize: 10, color: b.active ? barColor : "rgba(255,255,255,0.2)" }}>
+                                  <p key={bi} className="text-xs flex items-center gap-1" style={{ fontSize: 12, color: b.active ? barColor : "rgba(255,255,255,0.2)" }}>
                                     <span className="font-mono" style={{ minWidth: 24 }}>({b.threshold})</span>
                                     <span>{b.label}</span>
                                   </p>
                                 ))}
                               </div>
                             ) : s.activeLabel && (
-                              <p className="text-xs mt-1" style={{ color: barColor, fontSize: 10 }}>{s.activeLabel}</p>
+                              <p className="text-xs mt-1" style={{ color: barColor, fontSize: 12 }}>{s.activeLabel}</p>
                             )}
                           </div>
                         );
@@ -1400,10 +1400,10 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                 {/* Set Bonus */}
                 {charData.setBonusInfo && (
                   <div className="mb-3 px-2 py-1.5 rounded-lg" style={{ background: "rgba(167,139,250,0.1)", border: "1px solid rgba(167,139,250,0.25)" }}>
-                    <p className="text-xs font-semibold" style={{ color: "#a78bfa" }}>
+                    <Tip k="set_bonus"><p className="text-xs font-semibold" style={{ color: "#a78bfa" }}>
                       {charData.setBonusInfo.name} {charData.setBonusInfo.count}/{charData.setBonusInfo.total}
                       {charData.setBonusInfo.count >= charData.setBonusInfo.total ? " ✓" : " ○"}
-                    </p>
+                    </p></Tip>
                   </div>
                 )}
                 {/* Named Set Bonuses */}
@@ -1425,7 +1425,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                 {/* Legendary Effects */}
                 {(charData.legendaryEffects ?? []).length > 0 && (
                   <div className="mb-2 px-2 py-1.5 rounded-lg" style={{ background: "rgba(249,115,22,0.06)", border: "1px solid rgba(249,115,22,0.2)" }}>
-                    <p className="text-xs font-bold mb-1" style={{ color: "#f97316" }}>Legendary Effects</p>
+                    <Tip k="legendary_effects"><p className="text-xs font-bold mb-1" style={{ color: "#f97316" }}>Legendary Effects</p></Tip>
                     {(charData.legendaryEffects ?? []).map((e, i) => (
                       <div key={i} className="flex items-center justify-between">
                         <span className="text-xs" style={{ color: "rgba(249,115,22,0.7)" }}>{e.label}</span>

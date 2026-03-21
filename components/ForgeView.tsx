@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
 import { createPortal } from "react-dom";
 import { useDashboard } from "@/app/DashboardContext";
-import { InfoTooltip } from "@/components/InfoTooltip";
+
 import { useModalBehavior } from "@/components/ModalPortal";
 import { getAuthHeaders } from "@/lib/auth-client";
 import { Tip } from "@/components/GameTooltip";
@@ -121,7 +121,7 @@ const WORKSHOP_TIERS = [
 ];
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
-const hideOnError = (e: React.SyntheticEvent<HTMLImageElement>) => { e.currentTarget.style.display = "none"; };
+const hideOnError = (e: React.SyntheticEvent<HTMLImageElement>) => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; };
 
 function getUserInventory(user: unknown): InventoryItem[] {
   return ((user as Record<string, unknown>).inventory as InventoryItem[] | undefined) || [];
@@ -410,20 +410,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
     <div className="space-y-4">
       {/* ─── Header with currencies + info ─────────────────────────────── */}
       <div className="flex items-center gap-4 flex-wrap">
-        <InfoTooltip text={<>
-          <p style={{ fontWeight: 600, color: "rgba(255,255,255,0.7)", marginBottom: 6 }}>How do Professions work?</p>
-          <p>&bull; Unlock slots as you level (Lv5: 1st, Lv15: 2nd, Lv20: 3rd, Lv25: all 4)</p>
-          <p>&bull; Collect <strong style={{ color: "#e8e8e8" }}>Materials</strong> from quests, <strong style={{ color: "#e8e8e8" }}>craft recipes</strong> with Gold + Materials</p>
-          <p>&bull; Ranks: <span style={{ color: "#22c55e" }}>Apprentice</span> → <span style={{ color: "#3b82f6" }}>Journeyman</span> → <span style={{ color: "#a855f7" }}>Expert</span> → <span style={{ color: "#f59e0b" }}>Artisan</span> → <span style={{ color: "#ef4444" }}>Master</span></p>
-          <p>&bull; Skill-up colors: <span style={{ color: "#f97316" }}>orange</span>/<span style={{ color: "#eab308" }}>yellow</span>/<span style={{ color: "#22c55e" }}>green</span>/<span style={{ color: "#6b7280" }}>gray</span> (WoW-style)</p>
-          <p>&bull; Switching costs <strong style={{ color: "#f44" }}>200 Essenz</strong> &amp; resets progress</p>
-          <p>&bull; <span style={{ color: "#facc15" }}>Daily Bonus</span>: First craft = <strong style={{ color: "#facc15" }}>2x XP</strong> · Batch craft x1-x10</p>
-          <p style={{ borderTop: "1px solid rgba(255,255,255,0.06)", paddingTop: 6, marginTop: 6, color: "rgba(255,255,255,0.4)", fontWeight: 600, fontSize: 10 }}>Recommended Pairings</p>
-          <p><span style={{ color: "#f59e0b" }}>Blacksmith + Enchanter</span> = Gear Mastery</p>
-          <p><span style={{ color: "#22c55e" }}>Alchemist + Cook</span> = Full Sustenance</p>
-        </>}>
-          <span className="text-base font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.4)", borderBottom: "1px dotted rgba(255,215,0,0.3)" }}>{"Artisan's Quarter"}</span>
-        </InfoTooltip>
+        <Tip k="artisans_quarter"><span className="text-base font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.4)" }}>{"Artisan's Quarter"}</span></Tip>
         <div className="flex items-center gap-4 ml-auto text-sm">
           <span className="font-mono font-medium" style={{ color: "rgba(255,255,255,0.35)" }}>{chosenCount}/{maxProfSlots} Professions</span>
           {dailyBonusAvailable && (
@@ -450,7 +437,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
       {/* ─── All Materials Bar ─────────────────────────────────────────── */}
       {Object.keys(materials).length > 0 && (
         <div className="rounded-xl p-3" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
-          <p className="text-xs font-semibold uppercase tracking-widest mb-2" style={{ color: "rgba(255,255,255,0.25)" }}>Materials</p>
+          <Tip k="materials"><p className="text-xs font-semibold uppercase tracking-widest mb-2" style={{ color: "rgba(255,255,255,0.25)" }}>Materials</p></Tip>
           <div className="flex flex-wrap gap-2">
             {materialDefs.filter(m => materials[m.id]).map(m => (
               <div key={m.id} className="flex items-center gap-1.5 px-2 py-1 rounded-lg" style={{ background: "rgba(255,255,255,0.04)", border: `1px solid ${RARITY_COLORS[m.rarity] || "#555"}30` }} title={m.desc}>
@@ -481,7 +468,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
             {/* Location header */}
             <div className="px-4 pt-3 pb-1">
               <div className="flex items-center gap-2">
-                <span className="text-sm font-semibold uppercase tracking-widest" style={{ color: `${loc.color}70` }}>{loc.label}</span>
+                <Tip k="professions"><span className="text-sm font-semibold uppercase tracking-widest" style={{ color: `${loc.color}70` }}>{loc.label}</span></Tip>
                 <span className="text-sm" style={{ color: "rgba(255,255,255,0.25)" }}>{loc.desc}</span>
                 <div className="ml-auto flex items-center gap-1.5">
                   {isChosen && <span className="text-xs px-2 py-0.5 rounded font-semibold" style={{ background: `${prof.color}18`, color: prof.color }}>Active</span>}
@@ -792,7 +779,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                       color: npcModalTab === t.key ? t.color : "rgba(255,255,255,0.25)",
                       borderBottom: npcModalTab === t.key ? `2px solid ${t.color}` : "2px solid transparent",
                     }}>
-                      {t.label}
+                      {t.key === "schmiedekunst" ? <Tip k="schmiedekunst">{t.label}</Tip> : t.label}
                     </button>
                   ))}
                 </div>
@@ -833,7 +820,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                 {/* Recipes list */}
                 <div className="px-5 py-3 space-y-2" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
                   <div className="flex items-center justify-between mb-1">
-                    <p className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.25)" }}>Recipes</p>
+                    <Tip k="recipes"><p className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.25)" }}>Recipes</p></Tip>
                     <div className="flex items-center gap-3">
                       {Object.entries(SKILL_UP_COLORS).map(([key, sc]) => (
                         <span key={key} className="flex items-center gap-1 text-xs cursor-help" title={`${sc.label}: ${key === "orange" ? "100% XP" : key === "yellow" ? "75% XP" : key === "green" ? "25% XP" : "0% XP — level up to get XP from higher recipes"}`} style={{ color: "rgba(255,255,255,0.3)" }}>

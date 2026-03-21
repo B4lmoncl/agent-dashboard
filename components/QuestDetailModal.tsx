@@ -93,7 +93,7 @@ export default function QuestDetailModal({
         {/* Header */}
         <div className="px-5 pt-4 pb-3 flex items-start justify-between gap-3" style={{ borderBottom: `1px solid rgba(255,255,255,0.07)` }}>
           <div className="flex items-start gap-3 flex-1 min-w-0">
-            <span className="text-2xl flex-shrink-0">{typeCfg.icon?.startsWith("/") ? <img src={typeCfg.icon} alt="" width={28} height={28} className="img-render-auto" onError={(e) => { e.currentTarget.style.display = "none"; }} /> : typeCfg.icon}</span>
+            <span className="text-2xl flex-shrink-0">{typeCfg.icon?.startsWith("/") ? <img src={typeCfg.icon} alt="" width={28} height={28} className="img-render-auto" onError={(e) => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} /> : typeCfg.icon}</span>
             <div className="flex-1 min-w-0">
               <h3 className="text-base font-bold leading-snug text-bright">{q.title}</h3>
               <div className="flex items-center gap-2 mt-1 flex-wrap">
@@ -151,7 +151,7 @@ export default function QuestDetailModal({
           {/* Ornamental divider */}
           <div className="flex items-center gap-2" style={{ color: "rgba(255,255,255,0.12)" }}>
             <span style={{ flex: 1, height: 1, background: "rgba(255,255,255,0.07)", display: "block" }} />
-            <span style={{ fontSize: 11, letterSpacing: 4 }}>◆ ◆ ◆</span>
+            <span style={{ fontSize: 12, letterSpacing: 4 }}>◆ ◆ ◆</span>
             <span style={{ flex: 1, height: 1, background: "rgba(255,255,255,0.07)", display: "block" }} />
           </div>
           {/* Task */}

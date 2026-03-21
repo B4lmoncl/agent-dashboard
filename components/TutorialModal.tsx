@@ -106,27 +106,27 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                 Die Quest Hall ist wie der Turm Urithiru in Stockwerke gegliedert:
                 <div className="grid gap-1.5 mt-2">
                   <div className="rounded-lg px-2.5 py-1.5 flex items-center gap-2" style={{ background: "rgba(251,191,36,0.06)" }}>
-                    <span style={{ color: "#fbbf24", fontWeight: 800, fontSize: 11, width: 14, textAlign: "center" }}>▲</span>
+                    <span style={{ color: "#fbbf24", fontWeight: 800, fontSize: 12, width: 14, textAlign: "center" }}>▲</span>
                     <div><Stat color="#fbbf24">The Pinnacle</Stat> — Observatory, Proving Grounds, Hall of Honors, Season</div>
                   </div>
                   <div className="rounded-lg px-2.5 py-1.5 flex items-center gap-2" style={{ background: "rgba(249,115,22,0.06)" }}>
-                    <span style={{ color: "#f97316", fontWeight: 800, fontSize: 11, width: 14, textAlign: "center" }}>●</span>
+                    <span style={{ color: "#f97316", fontWeight: 800, fontSize: 12, width: 14, textAlign: "center" }}>●</span>
                     <div><Stat color="#f97316">The Great Halls</Stat> — Quest Board, Wanderer&apos;s Rest, Challenges, The Rift</div>
                   </div>
                   <div className="rounded-lg px-2.5 py-1.5 flex items-center gap-2" style={{ background: "rgba(168,85,247,0.06)" }}>
-                    <span style={{ color: "#a855f7", fontWeight: 800, fontSize: 11, width: 14, textAlign: "center" }}>■</span>
+                    <span style={{ color: "#a855f7", fontWeight: 800, fontSize: 12, width: 14, textAlign: "center" }}>■</span>
                     <div><Stat color="#a855f7">The Trading District</Stat> — Bazaar, Artisan&apos;s Quarter, Vault of Fate</div>
                   </div>
                   <div className="rounded-lg px-2.5 py-1.5 flex items-center gap-2" style={{ background: "rgba(59,130,246,0.06)" }}>
-                    <span style={{ color: "#3b82f6", fontWeight: 800, fontSize: 11, width: 14, textAlign: "center" }}>✦</span>
+                    <span style={{ color: "#3b82f6", fontWeight: 800, fontSize: 12, width: 14, textAlign: "center" }}>✦</span>
                     <div><Stat color="#3b82f6">The Inner Sanctum</Stat> — Character, Arcanum, Ritual Chamber, Vow Shrine</div>
                   </div>
                   <div className="rounded-lg px-2.5 py-1.5 flex items-center gap-2" style={{ background: "rgba(236,72,153,0.06)" }}>
-                    <span style={{ color: "#ec4899", fontWeight: 800, fontSize: 11, width: 14, textAlign: "center" }}>⬡</span>
+                    <span style={{ color: "#ec4899", fontWeight: 800, fontSize: 12, width: 14, textAlign: "center" }}>⬡</span>
                     <div><Stat color="#ec4899">The Breakaway</Stat> — Freunde, Nachrichten, Handel</div>
                   </div>
                   <div className="rounded-lg px-2.5 py-1.5 flex items-center gap-2" style={{ background: "rgba(217,119,6,0.06)" }}>
-                    <span style={{ fontSize: 11, width: 14, textAlign: "center" }}>🔥</span>
+                    <span style={{ fontSize: 12, width: 14, textAlign: "center" }}>🔥</span>
                     <div><Stat color="#d97706">The Hearth</Stat> — Ruhemodus, Streak-Freeze, Regeneration</div>
                   </div>
                 </div>
@@ -181,11 +181,11 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
               <GuideSection title="Seltenheit & Belohnungen" icon="✨" accent="rgba(168,85,247,0.3)">
                 Quests haben eine Seltenheitsstufe (Diablo-Stil) die Belohnungen bestimmt:
                 <div className="mt-2 rounded-lg overflow-hidden" style={{ border: "1px solid rgba(255,255,255,0.06)" }}>
-                  <div className="grid grid-cols-4 gap-0 text-center text-[10px] font-bold py-1" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.4)" }}>
+                  <div className="grid grid-cols-4 gap-0 text-center text-xs font-bold py-1" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.4)" }}>
                     <span>Rarity</span><span>XP</span><span>Gold</span><span>Runen</span>
                   </div>
                   {([["common","Common","10","5-10","1"],["uncommon","Uncommon","18","10-18","1"],["rare","Rare","30","18-30","2"],["epic","Epic","50","30-50","3"],["legendary","Legendary","80","50-80","5"]] as const).map(([r,name,xp,gold,rune]) => (
-                    <div key={r} className="grid grid-cols-4 gap-0 text-center text-[11px] py-0.5" style={{ borderTop: "1px solid rgba(255,255,255,0.04)" }}>
+                    <div key={r} className="grid grid-cols-4 gap-0 text-center text-xs py-0.5" style={{ borderTop: "1px solid rgba(255,255,255,0.04)" }}>
                       <Rarity r={r}>{name}</Rarity><span>{xp}</span><span>{gold}</span><span>{rune}</span>
                     </div>
                   ))}
@@ -254,7 +254,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
 
               <GuideSection title="Ausrüstung (6 Slots)" icon="⚔️">
                 Rüste Items aus dem Inventar aus. Stats werden beim Drop zufällig gewürfelt — Diablo-3-Stil:
-                <div className="grid grid-cols-3 gap-1 mt-2 text-center text-[11px]">
+                <div className="grid grid-cols-3 gap-1 mt-2 text-center text-xs">
                   {(["Helm", "Weapon", "Shield", "Armor", "Amulet", "Boots"] as const).map(s => (
                     <div key={s} className="rounded px-1 py-1" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>{s}</div>
                   ))}
@@ -262,14 +262,14 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
               </GuideSection>
 
               <GuideSection title="Stats & Effekte" icon="📊" accent="rgba(168,85,247,0.3)">
-                <p className="mb-1.5 font-semibold" style={{ color: "rgba(255,255,255,0.4)", fontSize: 10 }}>PRIMARY STATS</p>
+                <p className="mb-1.5 font-semibold" style={{ color: "rgba(255,255,255,0.4)", fontSize: 12 }}>PRIMARY STATS</p>
                 <div className="space-y-1">
                   <div className="flex justify-between"><Stat color="#ef4444">Kraft</Stat> <span>+0.5% XP/Punkt (max +30%)</span></div>
                   <div className="flex justify-between"><Stat color="#3b82f6">Ausdauer</Stat> <span>-0.5% Forge-Decay/Punkt</span></div>
                   <div className="flex justify-between"><Stat color="#f59e0b">Weisheit</Stat> <span>+0.5% Gold/Punkt (max +30%)</span></div>
                   <div className="flex justify-between"><Stat color="#22c55e">Glück</Stat> <span>+0.5% Loot-Chance/Punkt (max 20%)</span></div>
                 </div>
-                <p className="mt-2 mb-1 font-semibold" style={{ color: "rgba(255,255,255,0.4)", fontSize: 10 }}>MINOR STATS</p>
+                <p className="mt-2 mb-1 font-semibold" style={{ color: "rgba(255,255,255,0.4)", fontSize: 12 }}>MINOR STATS</p>
                 <div className="space-y-1" style={{ color: "rgba(255,255,255,0.45)" }}>
                   <div className="flex justify-between"><Stat color="#9ca3af">Fokus</Stat> <span>+1 Flat-XP/Quest (max +50)</span></div>
                   <div className="flex justify-between"><Stat color="#9ca3af">Vitalität</Stat> <span>+1% Streak-Schutz/Punkt</span></div>
@@ -283,7 +283,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                   <li>• <Stat color="#f0f0f0">Tier-Set</Stat>: 3/6 Teile = +5%, 6/6 = +10% Primary Stats</li>
                   <li>• <Rarity r="legendary">Legendary Effects</Rarity> (15 Typen):</li>
                 </ul>
-                <div className="grid grid-cols-2 gap-1 mt-1 text-[10px]" style={{ color: "rgba(255,255,255,0.5)" }}>
+                <div className="grid grid-cols-2 gap-1 mt-1 text-xs" style={{ color: "rgba(255,255,255,0.5)" }}>
                   <span>XP-Bonus · Gold-Bonus</span>
                   <span>Nacht-Gold ×2 (23-05h)</span>
                   <span>Jede-5.-Quest-Bonus</span>
@@ -300,12 +300,12 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                   <li>• <Stat color="#f0f0f0">Companion-Quests</Stat> — Begleiter-Quests für Bond-XP</li>
                   <li>• Ab <Stat color="#ec4899">Bond Lv. 5</Stat> → <strong>Ultimates</strong> (7d Cooldown):</li>
                 </ul>
-                <div className="grid grid-cols-3 gap-1 mt-1.5 text-center text-[11px]">
+                <div className="grid grid-cols-3 gap-1 mt-1.5 text-center text-xs">
                   <div className="rounded px-1 py-1.5" style={{ background: "rgba(168,85,247,0.08)", border: "1px solid rgba(168,85,247,0.2)" }}>⚡ Sofort-Abschluss</div>
                   <div className="rounded px-1 py-1.5" style={{ background: "rgba(251,191,36,0.08)", border: "1px solid rgba(251,191,36,0.2)" }}>✨ 2× Loot</div>
                   <div className="rounded px-1 py-1.5" style={{ background: "rgba(239,68,68,0.08)", border: "1px solid rgba(239,68,68,0.2)" }}>🔥 +3 Streak-Tage</div>
                 </div>
-                <p className="mt-1.5" style={{ color: "rgba(255,255,255,0.3)", fontSize: 10 }}>Stranger → Acquaintance → Friend → Close Friend → Best Friend → Soulmate → Legendary I-IV</p>
+                <p className="mt-1.5" style={{ color: "rgba(255,255,255,0.3)", fontSize: 12 }}>Stranger → Acquaintance → Friend → Close Friend → Best Friend → Soulmate → Legendary I-IV</p>
               </GuideSection>
 
               <GuideSection title="Inventar & Titel" icon="🎒">
@@ -325,14 +325,14 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                 Ziehe Items — Ausrüstung, Tränke und seltene Artefakte. Zwei Banner:
                 <div className="grid grid-cols-2 gap-2 mt-2">
                   <div className="rounded-lg p-2 text-center" style={{ background: "rgba(167,139,250,0.08)", border: "1px solid rgba(167,139,250,0.2)" }}>
-                    <p className="font-bold text-[11px]" style={{ color: "#a78bfa" }}>Wheel of Stars</p>
-                    <p className="text-[10px]" style={{ color: "rgba(255,255,255,0.4)" }}>Standard · Runensplitter</p>
-                    <p className="text-[10px] mt-0.5">10/Pull · 90/10×</p>
+                    <p className="font-bold text-xs" style={{ color: "#a78bfa" }}>Wheel of Stars</p>
+                    <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>Standard · Runensplitter</p>
+                    <p className="text-xs mt-0.5">10/Pull · 90/10×</p>
                   </div>
                   <div className="rounded-lg p-2 text-center" style={{ background: "rgba(129,140,248,0.08)", border: "1px solid rgba(129,140,248,0.2)" }}>
-                    <p className="font-bold text-[11px]" style={{ color: "#818cf8" }}>Astral Radiance</p>
-                    <p className="text-[10px]" style={{ color: "rgba(255,255,255,0.4)" }}>Featured · Stardust</p>
-                    <p className="text-[10px] mt-0.5">10/Pull · 90/10×</p>
+                    <p className="font-bold text-xs" style={{ color: "#818cf8" }}>Astral Radiance</p>
+                    <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>Featured · Stardust</p>
+                    <p className="text-xs mt-0.5">10/Pull · 90/10×</p>
                   </div>
                 </div>
               </GuideSection>
@@ -343,7 +343,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                     <div key={name} className="flex items-center gap-2">
                       <div className="h-1.5 rounded-full" style={{ background: color, width: name === "Legendary" ? "8%" : name === "Epic" ? "26%" : name === "Rare" ? "70%" : name === "Uncommon" ? "80%" : "22%", minWidth: 6 }} />
                       <span className="flex-shrink-0 w-20" style={{ color, fontWeight: 600 }}>{name}</span>
-                      <span className="font-mono text-[11px]">{rate}</span>
+                      <span className="font-mono text-xs">{rate}</span>
                     </div>
                   ))}
                 </div>
@@ -371,20 +371,20 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                 Crafting-Hub im Trading District mit 4 Berufs-NPCs (nur eingeloggt):
                 <div className="grid grid-cols-2 gap-1.5 mt-2">
                   <div className="rounded-lg p-2" style={{ background: "rgba(245,158,11,0.06)", border: "1px solid rgba(245,158,11,0.15)" }}>
-                    <p className="font-bold text-[11px]" style={{ color: "#f59e0b" }}>⚒ Grimvar (Schmied)</p>
-                    <p className="text-[10px]" style={{ color: "rgba(255,255,255,0.4)" }}>Gear Reroll, Rarity Up · Lv5+</p>
+                    <p className="font-bold text-xs" style={{ color: "#f59e0b" }}>⚒ Grimvar (Schmied)</p>
+                    <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>Gear Reroll, Rarity Up · Lv5+</p>
                   </div>
                   <div className="rounded-lg p-2" style={{ background: "rgba(34,197,94,0.06)", border: "1px solid rgba(34,197,94,0.15)" }}>
-                    <p className="font-bold text-[11px]" style={{ color: "#22c55e" }}>🧪 Ysolde (Alchemist)</p>
-                    <p className="text-[10px]" style={{ color: "rgba(255,255,255,0.4)" }}>Tränke, Buffs · Lv5+</p>
+                    <p className="font-bold text-xs" style={{ color: "#22c55e" }}>🧪 Ysolde (Alchemist)</p>
+                    <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>Tränke, Buffs · Lv5+</p>
                   </div>
                   <div className="rounded-lg p-2" style={{ background: "rgba(167,139,250,0.06)", border: "1px solid rgba(167,139,250,0.15)" }}>
-                    <p className="font-bold text-[11px]" style={{ color: "#a78bfa" }}>✨ Eldric (Verzauberer)</p>
-                    <p className="text-[10px]" style={{ color: "rgba(255,255,255,0.4)" }}>Enchants, Infusions · Lv8+</p>
+                    <p className="font-bold text-xs" style={{ color: "#a78bfa" }}>✨ Eldric (Verzauberer)</p>
+                    <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>Enchants, Infusions · Lv8+</p>
                   </div>
                   <div className="rounded-lg p-2" style={{ background: "rgba(232,123,53,0.06)", border: "1px solid rgba(232,123,53,0.15)" }}>
-                    <p className="font-bold text-[11px]" style={{ color: "#e87b35" }}>🍖 Bruna (Koch)</p>
-                    <p className="text-[10px]" style={{ color: "rgba(255,255,255,0.4)" }}>Mahlzeiten, Buffs · Lv3+</p>
+                    <p className="font-bold text-xs" style={{ color: "#e87b35" }}>🍖 Bruna (Koch)</p>
+                    <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>Mahlzeiten, Buffs · Lv3+</p>
                   </div>
                 </div>
               </GuideSection>
@@ -454,7 +454,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
 
               <GuideSection title="Aetherbond & Blood Pact" icon="⚡">
                 <Stat color="#f0f0f0">Aetherbond</Stat> — Commitment-Stufen für Bonus-Gold/XP:
-                <div className="flex gap-1 mt-1 text-[11px]">
+                <div className="flex gap-1 mt-1 text-xs">
                   <Stat color="#9ca3af">Spark</Stat><span>→</span><Stat color="#22c55e">Flame</Stat><span>→</span><Stat color="#f59e0b">Ember</Stat><span>→</span><Stat color="#ef4444">Crucible</Stat><span>→</span><Stat color="#a855f7">Eternity</Stat>
                 </div>
                 <div className="mt-2">
@@ -498,11 +498,11 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
               <GuideSection title="The Rift (Dungeons)" icon="🌀" accent="rgba(168,85,247,0.4)">
                 Zeitlich begrenzte Quest-Ketten mit eskalierender Schwierigkeit:
                 <div className="mt-2 rounded-lg overflow-hidden" style={{ border: "1px solid rgba(255,255,255,0.06)" }}>
-                  <div className="grid grid-cols-5 text-center text-[10px] font-bold py-1" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.4)" }}>
+                  <div className="grid grid-cols-5 text-center text-xs font-bold py-1" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.4)" }}>
                     <span>Tier</span><span>Stages</span><span>Zeit</span><span>Min Lv</span><span>Cooldown</span>
                   </div>
                   {([["Normal","3","72h","1","3d","#22c55e"],["Hard","5","48h","5","5d","#a855f7"],["Legendary","7","36h","10","7d","#f59e0b"]] as const).map(([name,stages,time,lv,cd,color]) => (
-                    <div key={name} className="grid grid-cols-5 text-center text-[11px] py-0.5" style={{ borderTop: "1px solid rgba(255,255,255,0.04)" }}>
+                    <div key={name} className="grid grid-cols-5 text-center text-xs py-0.5" style={{ borderTop: "1px solid rgba(255,255,255,0.04)" }}>
                       <Stat color={color}>{name}</Stat><span>{stages}</span><span>{time}</span><span>Lv{lv}</span><span>{cd}</span>
                     </div>
                   ))}
@@ -556,7 +556,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
 
               <GuideSection title="Activity Feed" icon="📰" accent="rgba(129,140,248,0.3)">
                 WoW Guild News-Stil Feed mit Aktivitäten deiner Freunde:
-                <div className="flex flex-wrap gap-1.5 mt-2 text-[10px]">
+                <div className="flex flex-wrap gap-1.5 mt-2 text-xs">
                   <span className="rounded px-1.5 py-0.5" style={{ background: "rgba(255,255,255,0.04)" }}>⚔️ Quests</span>
                   <span className="rounded px-1.5 py-0.5" style={{ background: "rgba(255,255,255,0.04)" }}>⬆️ Level-Ups</span>
                   <span className="rounded px-1.5 py-0.5" style={{ background: "rgba(255,255,255,0.04)" }}>🏆 Achievements</span>
@@ -577,7 +577,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
 
               <GuideSection title="Forge-Temperatur" icon="🔥" accent="rgba(249,115,22,0.3)">
                 Aktivitätsmeter (0-100%) — beeinflusst XP und Gold:
-                <div className="mt-2 space-y-0.5 text-[11px]">
+                <div className="mt-2 space-y-0.5 text-xs">
                   <div className="flex justify-between"><Stat color="#e0f0ff">100% White-hot</Stat><span>×1.5 XP · ×1.5 Gold</span></div>
                   <div className="flex justify-between"><Stat color="#f97316">80%+ Blazing</Stat><span>×1.25 XP · ×1.3 Gold</span></div>
                   <div className="flex justify-between"><Stat color="#ea580c">60%+ Burning</Stat><span>×1.15 XP · ×1.15 Gold</span></div>
@@ -598,7 +598,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
               </GuideSection>
 
               <GuideSection title="Währungen (7)" icon="💰">
-                <div className="grid grid-cols-2 gap-1 mt-2 text-[11px]">
+                <div className="grid grid-cols-2 gap-1 mt-2 text-xs">
                   <div><Stat color="#f59e0b">Gold</Stat> — Hauptwährung</div>
                   <div><Stat color="#818cf8">Stardust</Stat> — Featured Gacha</div>
                   <div><Stat color="#ef4444">Essenz</Stat> — Crafting</div>
@@ -611,7 +611,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
 
               <GuideSection title="Daily Missions (HSR-Stil)" icon="✅" accent="rgba(34,197,94,0.3)">
                 6 tägliche Aufgaben mit Belohnungstrack auf dem Quest Board:
-                <div className="grid grid-cols-3 gap-1 mt-2 text-center text-[10px]">
+                <div className="grid grid-cols-3 gap-1 mt-2 text-center text-xs">
                   <div className="rounded px-1 py-1" style={{ background: "rgba(255,255,255,0.03)" }}>Login +100</div>
                   <div className="rounded px-1 py-1" style={{ background: "rgba(255,255,255,0.03)" }}>1 Quest +150</div>
                   <div className="rounded px-1 py-1" style={{ background: "rgba(255,255,255,0.03)" }}>3 Quests +250</div>
@@ -649,7 +649,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
 
               <GuideSection title="Achievement Points" icon="⭐">
                 Punkte nach Seltenheit:
-                <div className="flex gap-2 mt-2 text-[11px]">
+                <div className="flex gap-2 mt-2 text-xs">
                   <span><Rarity r="common">Common</Rarity> 5</span>
                   <span><Rarity r="uncommon">Uncommon</Rarity> 10</span>
                   <span><Rarity r="rare">Rare</Rarity> 25</span>
@@ -659,7 +659,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
               </GuideSection>
 
               <GuideSection title="Kategorien" icon="📂">
-                <div className="grid grid-cols-2 gap-1 mt-2 text-[11px]">
+                <div className="grid grid-cols-2 gap-1 mt-2 text-xs">
                   <span>📋 Quest-Meilensteine (1-500)</span>
                   <span>🔥 Streak (7-365 Tage)</span>
                   <span>🎯 Quest-Typ-Spezialisierungen</span>
@@ -670,7 +670,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
               </GuideSection>
 
               <GuideSection title="Portrait-Rahmen (Punkte-Meilensteine)" icon="🖼️" accent="rgba(167,139,250,0.3)">
-                <div className="space-y-0.5 mt-2 text-[11px]">
+                <div className="space-y-0.5 mt-2 text-xs">
                   <div className="flex justify-between"><Stat color="#cd7f32">50 Pkt</Stat><span>Bronzener Rahmen</span></div>
                   <div className="flex justify-between"><Stat color="#c0c0c0">200 Pkt</Stat><span>Silberner Rahmen</span></div>
                   <div className="flex justify-between"><Stat color="#ffd700">350 Pkt</Stat><span>Goldener Rahmen</span></div>

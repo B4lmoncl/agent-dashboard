@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { useDashboard } from "@/app/DashboardContext";
 import { getAuthHeaders } from "@/lib/auth-client";
-import { InfoTooltip } from "@/components/InfoTooltip";
+import { Tip } from "@/components/GameTooltip";
 import PlayerProfileModal from "@/components/PlayerProfileModal";
 import type {
   FriendInfo, FriendRequest, Conversation, SocialMessage,
@@ -284,8 +284,8 @@ function FriendsTab({ apiKey, playerName, onOpenProfile }: { apiKey: string; pla
                 {/* Remove button — top right, visible on hover */}
                 {confirmRemove === f.id ? (
                   <div className="absolute top-1.5 right-1.5 flex gap-1">
-                    <button onClick={() => removeFriend(f.id)} className="btn-interactive text-xs px-1.5 py-0.5 rounded font-semibold" style={{ background: "rgba(239,68,68,0.12)", color: "#ef4444", fontSize: 10 }}>Yes</button>
-                    <button onClick={() => setConfirmRemove(null)} className="btn-interactive text-xs px-1.5 py-0.5 rounded text-w30" style={{ fontSize: 10 }}>No</button>
+                    <button onClick={() => removeFriend(f.id)} className="btn-interactive text-xs px-1.5 py-0.5 rounded font-semibold" style={{ background: "rgba(239,68,68,0.12)", color: "#ef4444", fontSize: 12 }}>Yes</button>
+                    <button onClick={() => setConfirmRemove(null)} className="btn-interactive text-xs px-1.5 py-0.5 rounded text-w30" style={{ fontSize: 12 }}>No</button>
                   </div>
                 ) : (
                   <button onClick={() => setConfirmRemove(f.id)} className="btn-interactive absolute top-1.5 right-1.5 text-xs px-1 py-0.5 rounded text-w15 opacity-0 group-hover:opacity-100 transition-opacity" title="Remove friend">✕</button>
@@ -452,7 +452,7 @@ function MessagesTab({ apiKey, playerName }: { apiKey: string; playerName: strin
               <p className="text-xs text-w30 truncate mt-0.5">{c.lastMessage}</p>
             </div>
             {c.unreadCount > 0 && (
-              <span className="w-5 h-5 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0" style={{ background: "#a855f7", color: "#fff", fontSize: 9 }}>
+              <span className="w-5 h-5 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0" style={{ background: "#a855f7", color: "#fff", fontSize: 12 }}>
                 {c.unreadCount}
               </span>
             )}
@@ -484,7 +484,7 @@ function TradeOfferDisplay({ offer, label, color }: { offer: TradeOffer; label: 
             const tooltipParts = [item.name, item.slot ? `Slot: ${item.slot}` : "", item.rarity.charAt(0).toUpperCase() + item.rarity.slice(1), statsStr, item.setName ? `Set: ${item.setName}` : "", item.legendaryEffect ? `★ ${item.legendaryEffect.label}` : ""].filter(Boolean);
             return (
               <div key={item.instanceId} className="group relative flex items-center gap-2 text-xs px-2 py-1.5 rounded cursor-default" style={{ background: "rgba(255,255,255,0.03)", borderLeft: `2px solid ${rc}` }}>
-                {item.icon && <img src={item.icon} alt="" width={20} height={20} style={{ imageRendering: "auto" }} onError={e => (e.currentTarget.style.display = "none")} />}
+                {item.icon && <img src={item.icon} alt="" width={20} height={20} style={{ imageRendering: "auto" }} onError={e => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} />}
                 <span className="font-semibold" style={{ color: rc }}>{item.name}</span>
                 <span className="text-w20 capitalize ml-auto">{item.rarity}</span>
                 {item.slot && <span className="text-w15">({item.slot})</span>}
@@ -1048,7 +1048,7 @@ function ActivityFeedTab({ apiKey, playerName }: { apiKey: string; playerName: s
         if (compactView) {
           return (
             <div key={event.id} className="flex items-center gap-2 text-xs px-2 py-1 rounded" style={{ background: d.rarity === "legendary" ? "rgba(255,140,0,0.04)" : "rgba(255,255,255,0.015)", borderLeft: `2px solid ${d.rarity ? (RARITY_COLORS[d.rarity] || "rgba(255,255,255,0.06)") : "rgba(255,255,255,0.06)"}` }}>
-              <span style={{ fontSize: 11 }}>{icon}</span>
+              <span style={{ fontSize: 12 }}>{icon}</span>
               <span className="font-semibold truncate" style={{ color: isOwn ? "#a855f7" : event.playerColor }}>{name}</span>
               <span className="text-w30 truncate flex-1">{description}</span>
               <span className="text-w15 flex-shrink-0">{timeAgo(event.at)}</span>
@@ -1100,9 +1100,7 @@ export default function SocialView() {
     <div className="space-y-4">
       {/* Section header */}
       <div className="flex items-center gap-2">
-        <InfoTooltip text="The social hub of the Trading District. Add friends, send messages, and propose trades. Trades are negotiated back and forth — both players must agree before items and gold are exchanged.">
-          <span className="text-xs font-semibold uppercase tracking-widest text-w35" style={{ borderBottom: "1px dotted rgba(255,215,0,0.3)" }}>The Breakaway</span>
-        </InfoTooltip>
+        <Tip k="breakaway"><span className="text-xs font-semibold uppercase tracking-widest text-w35">The Breakaway</span></Tip>
       </div>
 
       {/* Tab navigation */}

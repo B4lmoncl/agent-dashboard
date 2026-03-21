@@ -7,7 +7,7 @@ import {
   EpicQuestCard, QuestCard, DobbieQuestPanel,
   ClickablePriorityBadge, CategoryBadge, ProductBadge, PriorityBadge,
 } from "@/components/QuestBoard";
-import { InfoTooltip } from "@/components/InfoTooltip";
+import { Tip } from "@/components/GameTooltip";
 import { useDashboard } from "@/app/DashboardContext";
 import { getCompanionColor as getCC, getCompanionPortrait as getCompanionPortraitWR } from "@/lib/companion-config";
 interface WandererRestProps {
@@ -162,7 +162,7 @@ export function WandererRest({
             <span
               data-feedback-id="wanderers-rest.info"
               onClick={() => setNpcInfoOpen(true)}
-              style={{ cursor: "pointer", color: "rgba(255,215,0,0.45)", borderRadius: "50%", border: "1px solid rgba(255,215,0,0.3)", width: 18, height: 18, display: "inline-flex", alignItems: "center", justifyContent: "center", fontSize: 10, fontWeight: 700, flexShrink: 0, transition: "color 0.2s, border-color 0.2s" }}
+              style={{ cursor: "pointer", color: "rgba(255,215,0,0.45)", borderRadius: "50%", border: "1px solid rgba(255,215,0,0.3)", width: 18, height: 18, display: "inline-flex", alignItems: "center", justifyContent: "center", fontSize: 12, fontWeight: 700, flexShrink: 0, transition: "color 0.2s, border-color 0.2s" }}
               onMouseEnter={e => { (e.target as HTMLElement).style.color = "rgba(255,215,0,0.8)"; (e.target as HTMLElement).style.borderColor = "rgba(255,215,0,0.6)"; }}
               onMouseLeave={e => { (e.target as HTMLElement).style.color = "rgba(255,215,0,0.45)"; (e.target as HTMLElement).style.borderColor = "rgba(255,215,0,0.3)"; }}
               title="What is this?"
@@ -239,7 +239,7 @@ export function WandererRest({
                     </div>
                     <div className="text-center" style={{ maxWidth: 148 }}>
                       <p className="text-xs font-semibold leading-tight" style={{ color: "#e8e8e8" }}>{npc.name}</p>
-                      <p className="text-xs mt-0.5" style={{ color: rc, fontSize: 10 }}>{rarityStars[npc.rarity] ?? "●"}</p>
+                      <p className="text-xs mt-0.5" style={{ color: rc, fontSize: 12 }}>{rarityStars[npc.rarity] ?? "●"}</p>
                       {!allDone && (
                         <p className="text-xs mt-0.5" style={{ color: "#dc2626" }}>
                           Departs in {urgent ? `${npc.hoursLeft}h` : `${npc.daysLeft}d`}
@@ -365,7 +365,7 @@ export function WandererRest({
                   width={144}
                   height={144}
                   style={{ imageRendering: "auto", display: "block", width: "100%", height: "100%", objectFit: "cover", opacity: 0.85 }}
-                  onError={e => { (e.target as HTMLImageElement).style.display = "none"; const fb = (e.target as HTMLImageElement).nextElementSibling as HTMLElement; if (fb) fb.style.display = "flex"; }}
+                  onError={e => { const t = e.target as HTMLImageElement; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; const fb = t.nextElementSibling as HTMLElement; if (fb) fb.style.display = "flex"; }}
                 />
                 <div style={{ display: "none", position: "absolute", inset: 0, alignItems: "center", justifyContent: "center", fontSize: 32 }}>?</div>
                 <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(255,215,0,0.08) 0%, transparent 60%)", pointerEvents: "none" }} />
@@ -553,7 +553,7 @@ export function WandererRest({
                         q.status === "locked" ? (
                           <span
                             key={q.questId}
-                            style={{ fontSize: 9, opacity: 0.3, lineHeight: 1, display: "inline-block" }}
+                            style={{ fontSize: 12, opacity: 0.3, lineHeight: 1, display: "inline-block" }}
                             title={`Quest ${q.position}: ${q.title} (locked)`}
                           >○</span>
                         ) : (
@@ -624,9 +624,7 @@ export function WandererRest({
               <div className="flex items-center justify-between mb-2">
                 <div>
                   <div className="flex items-center gap-1.5">
-                    <InfoTooltip text="Agent development quests. The AI NPCs (Nova, Hex, Echo, Pixel, Atlas, Lyra) work on these. Admin can review and approve suggested quests.">
-                      <h2 className="text-xs font-semibold uppercase tracking-widest" style={{ color: "#8b5cf6", borderBottom: "1px dotted rgba(255,215,0,0.3)" }}>NPC Quest Board</h2>
-                    </InfoTooltip>
+                    <Tip k="npc_quest_board"><h2 className="text-xs font-semibold uppercase tracking-widest" style={{ color: "#8b5cf6" }}>NPC Quest Board</h2></Tip>
                   </div>
                   <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.25)" }}>{devVisibleOpen.length} open · {devVisibleInProgress.length} in progress</p>
                 </div>

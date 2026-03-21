@@ -146,7 +146,7 @@ export default function DailyLoginCalendar({ onClose }: { onClose: () => void })
                     >
                       <span className="text-xs font-semibold" style={{ color: textColor }}>{day.dayNum}</span>
                       {day.claimed && (
-                        <span className="absolute bottom-0.5 text-xs" style={{ color: "#fbbf24", fontSize: 10, lineHeight: 1 }}>✓</span>
+                        <span className="absolute bottom-0.5 text-xs" style={{ color: "#fbbf24", fontSize: 12, lineHeight: 1 }}>✓</span>
                       )}
                       {day.isToday && !day.claimed && (
                         <span className="absolute bottom-0.5 text-xs" style={{ color: "#a78bfa", fontSize: 8, lineHeight: 1 }}>●</span>

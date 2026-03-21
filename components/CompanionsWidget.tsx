@@ -341,9 +341,9 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
           <div style={{ flex: 1, minWidth: 0 }}>
             {/* Title + mood on same line */}
             <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", marginBottom: 4 }}>
-              <span style={{ color: cColor.accent, fontWeight: 600, fontSize: 14 }}>
+              <Tip k="companions"><span style={{ color: cColor.accent, fontWeight: 600, fontSize: 14 }}>
                 {companionName}&apos;s Demands
-              </span>
+              </span></Tip>
               <span className={mood.anim} title={mood.tip} style={{ color: mood.color, fontSize: 12, flexShrink: 0 }}>
                 {mood.label}
               </span>

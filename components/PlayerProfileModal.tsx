@@ -57,7 +57,7 @@ function timeAgo(dateStr: string): string {
   return `${days}d ago`;
 }
 
-const hideOnError = (e: React.SyntheticEvent<HTMLImageElement>) => { e.currentTarget.style.display = "none"; };
+const hideOnError = (e: React.SyntheticEvent<HTMLImageElement>) => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; };
 
 // ─── Component ──────────────────────────────────────────────────────────────
 
@@ -220,7 +220,7 @@ export default function PlayerProfileModal({ playerId, onClose, onAddFriend, onM
                           </div>
                         </div>
                         {item.legendaryEffect && (
-                          <p className="text-xs mt-1 truncate" style={{ color: "#f59e0b", fontSize: 9 }}>★ {item.legendaryEffect.label}</p>
+                          <p className="text-xs mt-1 truncate" style={{ color: "#f59e0b", fontSize: 12 }}>★ {item.legendaryEffect.label}</p>
                         )}
                       </div>
                     );

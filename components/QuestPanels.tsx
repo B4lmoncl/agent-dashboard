@@ -9,6 +9,7 @@ import { typeConfig } from "@/app/config";
 import { getAntiRitualMood } from "@/app/utils";
 import { useDashboard } from "@/app/DashboardContext";
 import { getAuthHeaders } from "@/lib/auth-client";
+import { Tip } from "@/components/GameTooltip";
 
 // ─── Anti-Rituale Panel ───────────────────────────────────────────────────────
 
@@ -185,7 +186,7 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
               <span className="text-sm font-semibold" style={{ color: "#e8e8e8" }}>{ar.title}</span>
               {ar.bloodPact && (
                 <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded text-xs font-bold" style={{ color: "#ef4444", background: "rgba(239,68,68,0.12)", border: "1px solid rgba(239,68,68,0.3)", fontSize: 12, letterSpacing: "0.04em" }}>
-                  Blood Pact
+                  <Tip k="blood_pact">Blood Pact</Tip>
                 </span>
               )}
               {badge && <span className="text-sm" title={badge.label}>{badge.badge}</span>}
@@ -198,7 +199,7 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
             </div>
             {ar.bloodPact && ar.commitmentDays && ar.commitmentDays > 0 && !ar.pactCompleted && (
               <div className="flex items-center gap-2 mt-1 text-xs" style={{ color: "rgba(239,68,68,0.6)" }}>
-                <span style={{ fontSize: 10 }}>⬥</span>
+                <span style={{ fontSize: 12 }}>⬥</span>
                 <span>Pact-Ziel: <span style={{ color: "#ef4444", fontWeight: 600 }}>{ar.commitmentDays}d</span></span>
                 <span>·</span>
                 <span style={{ color: days >= ar.commitmentDays ? "#22c55e" : "rgba(239,68,68,0.8)", fontWeight: 600 }}>
@@ -208,7 +209,7 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
             )}
             {ar.bloodPact && ar.pactCompleted && (
               <div className="flex items-center gap-1.5 mt-1 text-xs" style={{ color: "rgba(34,197,94,0.7)" }}>
-                <span style={{ fontSize: 10 }}>✦</span>
+                <span style={{ fontSize: 12 }}>✦</span>
                 <span style={{ fontWeight: 600 }}>Blood Pact fulfilled</span>
               </div>
             )}
@@ -347,7 +348,7 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
           <div className="flex items-center justify-between mb-3">
             <div>
               <h3 className="font-bold uppercase tracking-widest" style={{ color: "#818cf8", fontSize: "1rem" }}>
-                Vow Shrine
+                <Tip k="vows">Vow Shrine</Tip>
                 <span className="font-normal normal-case ml-2" style={{ color: "rgba(165,180,252,0.35)", fontSize: "0.75rem" }}>— track what you don&apos;t do</span>
               </h3>
               <p style={{ color: "rgba(99,102,241,0.6)", fontSize: "1rem", fontWeight: 600, marginTop: 2 }}>Vael the Silent</p>
@@ -402,7 +403,7 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
             <div style={{ maxWidth: 1000, width: "100%", borderRadius: "1rem", background: newVowBloodPact ? "linear-gradient(160deg, #1a1a2e 0%, #0f0f1e 100%)" : "linear-gradient(160deg, #1e1c2c 0%, #141220 100%)", border: `1px solid ${newVowBloodPact ? "rgba(99,102,241,0.6)" : "rgba(99,102,241,0.3)"}`, boxShadow: newVowBloodPact ? "0 0 60px rgba(99,102,241,0.14)" : "0 0 40px rgba(99,102,241,0.07)", transition: "all 0.4s ease" }}>
               {/* Header */}
               <div className="flex items-center gap-3 px-5 pt-4 pb-3 border-b" style={{ borderColor: "rgba(99,102,241,0.12)" }}>
-                <img src="/images/icons/ui-vow-sword.png" alt="" width={48} height={48} style={{ imageRendering: "auto" }} onError={e => (e.currentTarget.style.display = "none")} />
+                <img src="/images/icons/ui-vow-sword.png" alt="" width={48} height={48} style={{ imageRendering: "auto" }} onError={e => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} />
                 <div>
                   <h3 className="text-sm font-bold" style={{ color: "#e2e8f0" }}>Swear a Vow</h3>
                   <p className="text-xs" style={{ color: "rgba(165,180,252,0.4)" }}>Vael the Silent — Vow Shrine</p>
@@ -454,7 +455,7 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
                   </div>
                 </div>
                 <div>
-                  <label className="text-xs font-semibold mb-2 block" style={{ color: "rgba(165,180,252,0.55)" }}>Aetherbond</label>
+                  <label className="text-xs font-semibold mb-2 block" style={{ color: "rgba(165,180,252,0.55)" }}><Tip k="aetherbond">Aetherbond</Tip></label>
                   <div className="grid grid-cols-3 gap-1.5" style={vowCommitmentError ? { border: "1px solid #ef4444", borderRadius: 8, padding: 2 } : {}}>
                     {COMMITMENT_TIERS_VOW.map(tier => (
                       <button key={tier.id} onClick={() => { setNewVowCommitment(tier.id); if (vowCommitmentError) setVowCommitmentError(false); }} className="ritual-tier-btn text-left p-2 rounded-lg" style={{ background: newVowCommitment === tier.id ? `${tier.color}1a` : "rgba(0,0,0,0.2)", border: `1px solid ${newVowCommitment === tier.id ? tier.color : "rgba(255,255,255,0.07)"}`, boxShadow: newVowCommitment === tier.id ? `0 0 12px ${tier.color}55` : "none" }}>
@@ -468,7 +469,7 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
                 </div>
                 <div>
                   <button onClick={() => setNewVowBloodPact(p => !p)} className={`action-btn w-full py-2.5 px-4 rounded-xl font-semibold text-sm ${newVowBloodPact ? "blood-pact-active-indigo" : ""}`} style={{ background: newVowBloodPact ? "rgba(99,102,241,0.2)" : "rgba(255,255,255,0.04)", color: newVowBloodPact ? "#818cf8" : "rgba(255,255,255,0.25)", border: `1px solid ${newVowBloodPact ? "rgba(99,102,241,0.6)" : "rgba(255,255,255,0.1)"}`, transition: "color 0.3s, background 0.3s, border 0.3s" }}>
-                    {newVowBloodPact ? "Blood Pact Sealed" : "Seal Blood Pact"}
+                    {newVowBloodPact ? <Tip k="blood_pact">Blood Pact Sealed</Tip> : <Tip k="blood_pact">Seal Blood Pact</Tip>}
                   </button>
                   {newVowBloodPact && <p className="text-xs mt-1.5 text-center" style={{ color: "rgba(99,102,241,0.8)" }}>! Blood Pact: Failure = all rewards forfeit.</p>}
                 </div>

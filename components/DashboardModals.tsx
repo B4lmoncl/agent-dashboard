@@ -82,7 +82,7 @@ export default function DashboardModals({
                         style={{ background: currencyExpanded === c.key ? `${c.color}12` : "rgba(255,255,255,0.03)", border: `1px solid ${currencyExpanded === c.key ? c.color + "30" : "rgba(255,255,255,0.07)"}` }}
                         onClick={() => setCurrencyExpanded(currencyExpanded === c.key ? null : c.key)}
                       >
-                        <img src={c.iconSrc} alt="" width={24} height={24} className={c.key === "stardust" ? "premium-stardust" : c.key === "runensplitter" ? "premium-rune-shards" : ""} style={{ imageRendering: "auto" }} onError={(e) => { e.currentTarget.style.display = "none"; }} />
+                        <img src={c.iconSrc} alt="" width={24} height={24} className={c.key === "stardust" ? "premium-stardust" : c.key === "runensplitter" ? "premium-rune-shards" : ""} style={{ imageRendering: "auto" }} onError={(e) => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} />
                         <div className="flex-1 min-w-0">
                           <p className="text-xs font-semibold" style={{ color: c.color }}>{c.name}</p>
                           <p className="text-xs text-w30">{c.desc}</p>
@@ -93,7 +93,7 @@ export default function DashboardModals({
                       </div>
                       {currencyExpanded === c.key && (
                         <div className="rounded-b-xl px-4 py-3 -mt-1" style={{ background: `${c.color}08`, borderLeft: `1px solid ${c.color}30`, borderRight: `1px solid ${c.color}30`, borderBottom: `1px solid ${c.color}30` }}>
-                          <p className="text-[10px] font-bold uppercase tracking-wider mb-1" style={{ color: `${c.color}99` }}>How to earn {c.name}</p>
+                          <p className="text-xs font-bold uppercase tracking-wider mb-1" style={{ color: `${c.color}99` }}>How to earn {c.name}</p>
                           <p className="text-xs leading-relaxed text-w55">{CURRENCY_HOW[c.key]}</p>
                         </div>
                       )}

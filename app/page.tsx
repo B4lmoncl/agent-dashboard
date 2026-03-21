@@ -30,7 +30,6 @@ import { RewardCelebration, RewardCelebrationData } from "@/components/RewardCel
 import { useFloatingRewards, FloatingRewardsLayer } from "@/components/FloatingRewards";
 import { CompanionsWidget } from "@/components/CompanionsWidget";
 import { RoadmapView } from "@/components/RoadmapView";
-import { InfoTooltip } from "@/components/InfoTooltip";
 import { Tip } from "@/components/GameTooltip";
 import { WandererRest } from "@/components/WandererRest";
 import GuildHallBackground from "@/components/GuildHallBackground";
@@ -709,14 +708,14 @@ export default function Dashboard() {
             </div>
           )}
           <div data-feedback-id="stats.forge-streak">
-          <StatBar
+          <Tip k="streak"><StatBar
             label="Forge Streak"
             value={loading ? "—" : playerName ? `${animStreak}d` : "—"}
             sub={playerName ? (playerStreak > 0 ? `+${Math.min((playerStreak * 1.5), 45).toFixed(1)}% gold` : "your streak") : "login to view"}
             subColor={playerName && playerStreak > 0 ? "#fbbf24" : undefined}
             accent="#f97316"
             onClick={playerName ? () => setStreakInfoOpen(true) : undefined}
-          />
+          /></Tip>
           </div>
           <div data-feedback-id="stats.quests">
           <StatBar
@@ -793,7 +792,7 @@ export default function Dashboard() {
                   style={{ border: `2px solid ${loggedInUser.color ?? "#a78bfa"}50` }}
                   onError={e => {
                     const img = e.currentTarget as HTMLImageElement;
-                    img.style.display = "none";
+                    img.style.opacity = "0"; img.style.width = "0"; img.style.overflow = "hidden";
                     const fallback = img.nextElementSibling as HTMLElement;
                     if (fallback) fallback.style.display = "flex";
                   }}
@@ -828,7 +827,7 @@ export default function Dashboard() {
                     ) : null;
                   })()}
                 </div>
-                <p className="text-xs mb-1.5" style={{ color: "#a78bfa" }}>Lv.{playerLevelInfo.level} · {playerLevelInfo.title}</p>
+                <p className="text-xs mb-1.5" style={{ color: "#a78bfa" }}><Tip k="player_level">Lv.{playerLevelInfo.level}</Tip> · {playerLevelInfo.title}</p>
                 {/* XP progress bar */}
                 <div className="h-1.5 rounded-full overflow-hidden bg-w7">
                   <div
@@ -868,7 +867,7 @@ export default function Dashboard() {
                     }}
                     title="Login Calendar"
                   >
-                    📅
+                    <Tip k="login_calendar">📅</Tip>
                   </button>
                 </div>
               </div>
@@ -887,10 +886,12 @@ export default function Dashboard() {
                     { emoji: "", key: "sternentaler" as const, value: Number(loggedInUser?.currencies?.sternentaler ?? 0), color: "#fbbf24", iconSrc: "/images/icons/currency-sternentaler.png" },
                   ].map(c => (
                     <div key={c.key} className="flex items-center gap-1 cursor-pointer" onClick={() => setCurrenciesOpen(true)} title={c.key}>
-                      {c.iconSrc ? <img src={c.iconSrc} alt="" width={16} height={16} className={`${c.key === "stardust" ? "premium-stardust" : c.key === "runensplitter" ? "premium-rune-shards" : ""} img-render-auto`} onError={(e) => { e.currentTarget.style.display = "none"; }} /> : <span style={{ fontSize: 18 }}>{c.emoji}</span>}
-                      <span className="text-base font-mono font-black" style={{ color: c.value > 0 ? c.color : "rgba(255,255,255,0.15)" }}>
-                        {c.value}
-                      </span>
+                      <Tip k={c.key}>
+                        {c.iconSrc ? <img src={c.iconSrc} alt="" width={16} height={16} className={`${c.key === "stardust" ? "premium-stardust" : c.key === "runensplitter" ? "premium-rune-shards" : ""} img-render-auto`} onError={(e) => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} /> : <span style={{ fontSize: 18 }}>{c.emoji}</span>}
+                        <span className="text-base font-mono font-black" style={{ color: c.value > 0 ? c.color : "rgba(255,255,255,0.15)" }}>
+                          {c.value}
+                        </span>
+                      </Tip>
                     </div>
                   ))}
                 </div>
@@ -898,11 +899,13 @@ export default function Dashboard() {
                 {/* Forge Temperature */}
                 <div data-feedback-id="player-card.forge-tooltip" className="relative group">
                   <div className="flex items-center gap-1.5 cursor-help">
-                    <img src="/images/icons/ach-forge-novice.png" alt="forge" width={35} height={35} className="img-render-auto" onError={e => (e.currentTarget.style.display = "none")} />
-                    <span className="text-xs font-medium" style={{ color: forgeTempColor }}>
-                      {forgeTemp}%
-                    </span>
-                    <span className="text-xs font-medium" style={{ color: forgeTempColor }}>{forgeTempLabel}</span>
+                    <img src="/images/icons/ach-forge-novice.png" alt="forge" width={35} height={35} className="img-render-auto" onError={e => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} />
+                    <Tip k="forge_temp">
+                      <span className="text-xs font-medium" style={{ color: forgeTempColor }}>
+                        {forgeTemp}%
+                      </span>
+                      <span className="text-xs font-medium" style={{ color: forgeTempColor }}>{forgeTempLabel}</span>
+                    </Tip>
                   </div>
                   {/* Forge bar */}
                   <div className="mt-1 rounded-full overflow-hidden bg-w6" style={{ height: 3, width: 120 }}>
@@ -1003,7 +1006,7 @@ export default function Dashboard() {
                         return (
                           <div key={pid} className="rounded-xl px-3 py-2.5" style={{ background: `${meta?.color ?? "#888"}08`, border: `1px solid ${meta?.color ?? "#888"}25` }}>
                             <div className="flex items-center gap-2.5">
-                              <img src={meta?.icon ?? ""} alt="" width={28} height={28} className="img-render-auto" onError={e => (e.currentTarget.style.display = "none")} />
+                              <img src={meta?.icon ?? ""} alt="" width={28} height={28} className="img-render-auto" onError={e => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} />
                               <div className="flex-1 min-w-0">
                                 <div className="flex items-center gap-2">
                                   <span className="text-xs font-bold" style={{ color: meta?.color ?? "#888" }}>{meta?.name ?? pid}</span>
@@ -1046,13 +1049,13 @@ export default function Dashboard() {
                           return (
                             <div key={m.id} className="rounded-lg px-2.5 py-1.5" style={{ background: count > 0 ? "rgba(255,255,255,0.03)" : "transparent", opacity: count > 0 ? 1 : 0.35 }}>
                               <div className="flex items-center gap-2">
-                                <img src={m.icon} alt="" width={18} height={18} className="img-render-auto" onError={e => (e.currentTarget.style.display = "none")} />
+                                <img src={m.icon} alt="" width={18} height={18} className="img-render-auto" onError={e => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} />
                                 <div className="flex-1 min-w-0">
                                   <span className="text-xs truncate block" style={{ color: rarColor }}>{m.name}</span>
                                 </div>
                                 <span className="text-xs font-mono font-bold" style={{ color: count > 0 ? "#f0f0f0" : "rgba(255,255,255,0.2)" }}>{count}</span>
                               </div>
-                              <p className="text-xs mt-0.5 pl-[26px]" style={{ color: "rgba(255,255,255,0.2)", fontSize: 10 }}>{source}</p>
+                              <p className="text-xs mt-0.5 pl-[26px]" style={{ color: "rgba(255,255,255,0.2)", fontSize: 12 }}>{source}</p>
                             </div>
                           );
                         })}
@@ -1123,7 +1126,7 @@ export default function Dashboard() {
                       <span className="hidden sm:inline">{floor.name}</span>
                       {hasNotif && <span className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full badge-enter" style={{ background: "#4ade80", boxShadow: "0 0 4px #4ade80" }} />}
                       {floor.id === "breakaway" && socialTotal > 0 && !isActive && (
-                        <span className="absolute -top-1 -right-1 min-w-[16px] h-4 rounded-full flex items-center justify-center text-xs font-bold badge-enter" style={{ background: "#a855f7", color: "#fff", fontSize: 9, padding: "0 4px", boxShadow: "0 0 6px rgba(168,85,247,0.4)" }}>
+                        <span className="absolute -top-1 -right-1 min-w-[16px] h-4 rounded-full flex items-center justify-center text-xs font-bold badge-enter" style={{ background: "#a855f7", color: "#fff", fontSize: 12, padding: "0 4px", boxShadow: "0 0 6px rgba(168,85,247,0.4)" }}>
                           {socialTotal}
                         </span>
                       )}
@@ -1162,7 +1165,7 @@ export default function Dashboard() {
                       }}
                       {...(room.tutorialKey ? { "data-tutorial": room.tutorialKey } : {})}
                     >
-                      {room.iconSrc && <img src={room.iconSrc} alt="" width={24} height={24} className={`${room.key === "gacha" ? "vault-nav-glow" : ""} img-render-auto`} style={{ opacity: isActive ? 1 : 0.5 }} onError={e => (e.currentTarget.style.display = "none")} />}
+                      {room.iconSrc && <img src={room.iconSrc} alt="" width={24} height={24} className={`${room.key === "gacha" ? "vault-nav-glow" : ""} img-render-auto`} style={{ opacity: isActive ? 1 : 0.5 }} onError={e => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} />}
                       {seasonLabel}
                       {notifDot && <span className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full" style={{ background: notifDot, boxShadow: `0 0 4px ${notifDot}` }} />}
                     </button>
@@ -1177,9 +1180,7 @@ export default function Dashboard() {
         {dashView === "leaderboard" && (
           <div className="space-y-6">
             <div className="flex items-center gap-2">
-              <InfoTooltip text="Rankings based on XP earned. Compete with other players to claim glory!">
-                <span className="text-xs font-semibold uppercase tracking-widest text-w35" style={{ borderBottom: "1px dotted rgba(255,215,0,0.3)" }}>The Proving Grounds</span>
-              </InfoTooltip>
+              <Tip k="proving_grounds"><span className="text-xs font-semibold uppercase tracking-widest text-w35">The Proving Grounds</span></Tip>
             </div>
             {/* Player cards */}
             {users.filter(u => !agents.some(a => a.id === u.id)).length > 0 && (
@@ -1203,7 +1204,7 @@ export default function Dashboard() {
         {dashView === "campaign" && (
           <div className="space-y-3">
             <div className="flex items-center gap-2">
-              <span className="text-xs font-semibold uppercase tracking-widest text-w35">The Observatory</span>
+              <Tip k="campaigns"><span className="text-xs font-semibold uppercase tracking-widest text-w35">The Observatory</span></Tip>
             </div>
             <div className="rounded-xl px-6 py-16 text-center border-w6" style={{ background: "rgba(255,255,255,0.02)" }}>
               <p className="text-lg font-bold mb-2 text-w25">Coming Soon</p>
@@ -1375,14 +1376,7 @@ export default function Dashboard() {
                     <div className="flex items-center justify-between mb-2">
                       <div>
                         <div className="flex items-center gap-1.5">
-                          <InfoTooltip text={<>
-                            <p>Claim quests to start them, complete them to earn XP and Gold.</p>
-                            <p style={{ borderTop: "1px solid rgba(255,255,255,0.06)", paddingTop: 6, marginTop: 6, fontWeight: 600, color: "rgba(167,139,250,0.8)" }}>XP by Rarity</p>
-                            <p><span style={{ color: "#9ca3af" }}>Common 10</span>{" · "}<span style={{ color: "#22c55e" }}>Uncommon 18</span>{" · "}<span style={{ color: "#3b82f6" }}>Rare 30</span>{" · "}<span style={{ color: "#a855f7" }}>Epic 50</span>{" · "}<span style={{ color: "#FFD700" }}>Legendary 80</span></p>
-                            <p style={{ fontSize: 10, color: "rgba(255,255,255,0.35)" }}>Forge, Gear &amp; Companion bonuses multiply all XP.</p>
-                          </>}>
-                            <h2 className="text-xs font-semibold uppercase tracking-widest text-w40" style={{ borderBottom: "1px dotted rgba(255,215,0,0.3)" }}>Quest Board</h2>
-                          </InfoTooltip>
+                          <Tip k="quest_board"><h2 className="text-xs font-semibold uppercase tracking-widest text-w40">Quest Board</h2></Tip>
                         </div>
                         <p className="text-xs mt-0.5 text-w25">
                           {playerName
@@ -1413,7 +1407,7 @@ export default function Dashboard() {
                             {poolRefreshing ? (
                               <span className="text-sm">—</span>
                             ) : (
-                              <img src="/images/icons/ui-quest-scroll.png" alt="" width={24} height={24} className="img-render-auto" onError={e => (e.currentTarget.style.display = "none")} />
+                              <img src="/images/icons/ui-quest-scroll.png" alt="" width={24} height={24} className="img-render-auto" onError={e => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} />
                             )}
                           </button>
                         )}
@@ -1502,14 +1496,14 @@ export default function Dashboard() {
                               <>
                                 <img src="/images/icons/cat-npc.png" alt="" width={28} height={28}
                                   className="img-render-auto"
-                                  onError={(e) => { e.currentTarget.style.display = "none"; }} />
+                                  onError={(e) => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} />
                                 NPC
                               </>
                             ) : (
                               <>
                                 <img src={`/images/icons/cat-${iconFile}.png`} alt="" width={28} height={28}
                                   className="img-render-auto"
-                                  onError={(e) => { e.currentTarget.style.display = "none"; const next = e.currentTarget.nextElementSibling as HTMLElement; if (next) next.style.display = "inline"; }} />
+                                  onError={(e) => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; const next = t.nextElementSibling as HTMLElement; if (next) next.style.display = "inline"; }} />
                                 <span style={{ display: "none" }}>{cfg!.icon?.startsWith("/") ? cfg!.label : cfg!.icon}</span>
                                 {cfg!.label}
                               </>
@@ -1558,7 +1552,7 @@ export default function Dashboard() {
                     boardOpen.length === 0 && playerVisibleInProgress.length === 0 ? (
                       <div className="rounded-xl p-5 text-center bg-card border-w6">
                         <p className="text-xs text-w20">{searchFilter ? "No quests match your search" : "No player quests open"}</p>
-                        {!searchFilter && playerName && reviewApiKey && <button onClick={handlePoolRefresh} className="btn-interactive mt-2 px-3 py-1 rounded inline-flex items-center gap-1.5" style={{ background: "rgba(59,130,246,0.12)", color: "#60a5fa", border: "1px solid rgba(59,130,246,0.3)" }}><img src="/images/icons/ui-quest-scroll.png" alt="" width={20} height={20} className="img-render-auto" onError={e => (e.currentTarget.style.display = "none")} /><span className="text-xs font-semibold">Load Quests</span></button>}
+                        {!searchFilter && playerName && reviewApiKey && <button onClick={handlePoolRefresh} className="btn-interactive mt-2 px-3 py-1 rounded inline-flex items-center gap-1.5" style={{ background: "rgba(59,130,246,0.12)", color: "#60a5fa", border: "1px solid rgba(59,130,246,0.3)" }}><img src="/images/icons/ui-quest-scroll.png" alt="" width={20} height={20} className="img-render-auto" onError={e => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} /><span className="text-xs font-semibold">Load Quests</span></button>}
                       </div>
                     ) : (
                       <>
@@ -1593,7 +1587,7 @@ export default function Dashboard() {
                             {playerVisibleInProgress.length > 0 && (
                               <div className="flex items-center gap-3 my-4">
                                 <div className="flex-1" style={{ height: 2, background: "linear-gradient(90deg, transparent, rgba(167,139,250,0.35), rgba(148,163,184,0.25), transparent)" }} />
-                                <span className="text-xs font-mono uppercase tracking-widest text-w20" style={{ fontSize: 9 }}>◆</span>
+                                <span className="text-xs font-mono uppercase tracking-widest text-w20" style={{ fontSize: 12 }}>◆</span>
                                 <div className="flex-1" style={{ height: 2, background: "linear-gradient(90deg, transparent, rgba(148,163,184,0.25), rgba(167,139,250,0.35), transparent)" }} />
                               </div>
                             )}
@@ -2140,7 +2134,7 @@ export default function Dashboard() {
                         <span className="text-xs shrink-0 text-w25">
                           {entry.date}
                         </span>
-                        <span className="shrink-0 text-w30" style={{ fontSize: 10 }}>
+                        <span className="shrink-0 text-w30" style={{ fontSize: 12 }}>
                           {changelogExpanded === entry.version ? "▲" : "▼"}
                         </span>
                       </button>

@@ -172,7 +172,7 @@ function ItemRevealCard({ result }: { result: GachaPullResult }) {
       </p>
 
       {/* Item type */}
-      <span className="text-[11px] uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.4)" }}>
+      <span className="text-xs uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.4)" }}>
         {result.item.type === "weapon" ? "Weapon" : result.item.type === "armor" ? "Armor" : result.item.type === "consumable" ? "Consumable" : "Gacha"}
       </span>
 
@@ -180,7 +180,7 @@ function ItemRevealCard({ result }: { result: GachaPullResult }) {
       {result.item.stats && Object.keys(result.item.stats).length > 0 && (
         <div className="flex gap-3 flex-wrap justify-center">
           {Object.entries(result.item.stats).filter(([, v]) => v > 0).map(([stat, val]) => (
-            <span key={stat} className="text-[11px] font-mono px-2 py-0.5 rounded"
+            <span key={stat} className="text-xs font-mono px-2 py-0.5 rounded"
               style={{ color: "#e8e8e8", background: "rgba(255,255,255,0.06)" }}>
               +{val} {stat.charAt(0).toUpperCase() + stat.slice(1)}
             </span>
@@ -195,7 +195,7 @@ function ItemRevealCard({ result }: { result: GachaPullResult }) {
 
       {/* Duplicate notice */}
       {result.isDuplicate && (
-        <div className="text-[11px] px-2 py-1 rounded-lg" style={{ background: "rgba(167,139,250,0.15)", color: "#a78bfa", border: "1px solid rgba(167,139,250,0.3)" }}>
+        <div className="text-xs px-2 py-1 rounded-lg" style={{ background: "rgba(167,139,250,0.15)", color: "#a78bfa", border: "1px solid rgba(167,139,250,0.3)" }}>
           Duplikat → +{result.duplicateRefund} × Runensplitter
         </div>
       )}
@@ -400,7 +400,7 @@ function MultiPullReveal({ results, onDone }: { results: GachaPullResult[]; onDo
           <BurstParticles rarity={currentResult.item.rarity} count={currentResult.item.rarity === "legendary" ? 30 : 12} />
 
           {/* Progress indicator */}
-          <span className="text-[11px] uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.35)" }}>
+          <span className="text-xs uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.35)" }}>
             {currentIdx + 1} / {shuffledResults.length}
           </span>
 
@@ -469,7 +469,7 @@ function MultiPullReveal({ results, onDone }: { results: GachaPullResult[]; onDo
                   <p className="text-xs sm:text-sm font-semibold text-center leading-tight" style={{ color: cfg.color }}>
                     {result.item.name}
                   </p>
-                  <span className="text-[10px] uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.3)" }}>
+                  <span className="text-xs uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.3)" }}>
                     {cfg.label}
                   </span>
                   {result.isDuplicate && (
