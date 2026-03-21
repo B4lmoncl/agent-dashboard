@@ -1186,4 +1186,94 @@ Replaced the plain text input "Player name..." with a searchable dropdown:
 
 ---
 
+## Appendix A: Audit Meta — Known False Findings & Common Traps for Future Sessions
+
+> **Purpose:** This section exists to prevent future Claude Code sessions from wasting time re-investigating issues that have already been verified as non-issues, or from proposing features that already exist. Read this BEFORE starting any audit.
+
+### A.1 Features That Already Exist (Do NOT Propose Again)
+
+These features have been proposed by audit agents in the past as "missing" when they already existed. Always verify in the actual code before suggesting.
+
+| Feature | Where It Exists | How Agents Got Confused |
+|---------|----------------|----------------------|
+| **Floating reward numbers (+XP, +Gold)** | `components/FloatingRewards.tsx`, `app/globals.css:711` (`@keyframes floatRewardUp`) | Agent searched for "floating numbers" but didn't check the FloatingRewards component |
+| **Daily bonus claim endpoint** | `routes/currency.js:113` (`POST /api/daily-bonus/claim`) | Agent only checked `config-admin.js` and `routes/quests.js`, missed `currency.js` |
+| **Ritual CRUD endpoints** | `routes/game.js` (POST/PATCH/DELETE /api/rituals) | Agent only checked `routes/habits-inventory.js` and assumed rituals were read-only |
+| **Habit CRUD endpoints** | `routes/habits-inventory.js` (POST/DELETE /api/habits, POST /api/habits/:id/score) | Agent missed the habits section of this file |
+| **Hidden achievement "???" placeholders** | `components/HonorsView.tsx:137-156` (shows "??? Hidden Achievement" with lock icon) | Agent assumed achievements were all visible |
+| **Item flavor text in hover tooltips** | `components/CharacterView.tsx:456-457` (InventoryTooltip shows `flavorText`) | Agent didn't read the InventoryTooltip function |
+| **Material cost display (owned/needed)** | `components/ForgeView.tsx:879-889` (shows `{materials[matId] || 0}/{needed}` per recipe) | Agent expected a separate "shopping list" view, missed inline display |
+| **Salvage All by rarity** | `components/ForgeView.tsx:980-987` (per-rarity "Salvage All" buttons in Schmiedekunst tab) | Already implemented with D3-style per-rarity buttons |
+| **Weekly reset timer** | `components/ChallengesView.tsx:53-78` (`WeeklyResetTimer` component) | Agent didn't check ChallengesView |
+| **Star rating animations** | `app/globals.css:160-171` (`@keyframes star-earn`, `star-glow`, `.star-earned`) | Agent expected to find it in component code, not CSS |
+| **Gacha pity display** | `components/GachaView.tsx` (shows pity counter, soft/hard thresholds) | Agent expected a separate widget |
+| **NPC visual progression (rank glow)** | `components/ForgeView.tsx:482-487` (`npc-rank-glow`, `npc-card-hover` classes with rank-based box-shadow) | Agent expected portrait changes, missed the CSS glow system |
+| **Batch crafting (x1-x10)** | `components/ForgeView.tsx:831-839` (select dropdown for batchable recipes) | Agent expected a queue system, missed the batch count selector |
+| **Message auto-refresh polling** | `components/SocialView.tsx:273-279` (10s interval when conversation active) | Agent didn't read the useEffect with setInterval |
+| **Friend auto-refresh** | `components/SocialView.tsx:97-101` (30s interval) | Agent missed the second useEffect |
+| **Craft cost preview (batch total)** | `components/ForgeView.tsx:874-889` (multiplies cost × craftCount, shows total) | Agent expected a separate preview panel |
+| **ESC to close all modals** | `components/ModalPortal.tsx` (`useModalBehavior` hook used by all modals) | Agent found some manual ESC handlers and assumed inconsistency |
+| **Player search for friend adding** | `components/SocialView.tsx` (debounced autocomplete via `/api/players/search`) | Added in Session 3 — verify before proposing again |
+| **Player profile modal** | `components/PlayerProfileModal.tsx` (Steam/Diablo-style, accessible from leaderboard + friends) | Added in Session 3 |
+| **Daily mission checklist** | `routes/config-admin.js` (6 missions, 4 milestones), `app/page.tsx` (inline panel) | Added in Session 2 |
+| **Cumulative star reward track** | `components/ChallengesView.tsx` (horizontal milestone bar at top of Star Path) | Added in Session 2 |
+| **Activity feed compact/detail toggle** | `components/SocialView.tsx` ActivityFeedTab (⊟ Compact / ⊞ Detailed button) | Added in Session 2 |
+
+### A.2 Verified Non-Bugs (Do NOT Report Again)
+
+These were reported as bugs by audit agents but are either intentional design decisions or working correctly.
+
+| Reported "Bug" | Why It's Not a Bug |
+|----------------|-------------------|
+| **Gacha pull lock is in-memory only** | Intentional — this is a single-process Node.js deployment. Distributed locks unnecessary. |
+| **Gacha pity decrement happens before pull** | Currency is validated in the POST handler BEFORE `executePull()` is called. Pity only decrements on funded pulls. The "before" is before the rarity roll, not before payment. |
+| **Trade execution race condition (double-spend)** | Single-process Node.js with sync event loop — concurrent requests serialize naturally. Only possible under extreme load, which this app won't see. |
+| **Expedition progress race condition** | Same as above — Express processes requests sequentially. |
+| **Dashboard batch uses internal HTTP calls** | Intentional design — ensures middleware (auth, rate limiting) applies uniformly to sub-calls. |
+| **`getMaxProfessionSlots()` returns 0 below Lv5** | Intentional — players below Lv5 cannot choose professions. 0 slots = correct. |
+| **`dismantle` uses `saveUsersSync` vs `saveUsers` for crafting** | Intentional — dismantle is irreversible (item destroyed), so sync write is safety measure. Normal crafting uses async debounced save. |
+| **Hard pity off-by-one (74 vs 75)** | Not a bug — counter=74 means 75th pull. `>= HARD_PITY-1` is correct. |
+| **NPC quests skip forge temp update** | Not a bug — `onQuestCompletedByUser()` calls `updateUserForgeTemp()` for ALL quest paths including NPC. |
+| **Crafting reroll missing poolEntry check** | Not a bug — `if (poolEntry)` check exists on line 414 before `.min/.max` access. |
+| **CORS `origin: true` accepts all origins** | Acknowledged design choice for self-hosted single-user deployment. Not a production multi-tenant app. |
+| **Timing-safe comparison leaks key length** | Master key length is not a meaningful secret in this context. |
+| **`@next/next/no-img-element` lint warnings** | Intentional — project uses static export with pixel art. `next/image` not needed and would complicate the build. |
+| **React compiler warnings (setState in effect)** | Pre-existing across 10+ components. No runtime impact. Would require major refactor to fix. |
+
+### A.3 Architectural Decisions (Do NOT "Fix" These)
+
+| Decision | Rationale |
+|----------|-----------|
+| **JSON file persistence instead of database** | Intentional for simplicity. This is a small-group app (< 50 users), not a production SaaS. JSON files in Docker volume are sufficient. |
+| **TutorialModal/Guide content is in German** | The target audience is German-speaking. The guide is lore/narrative content. Interactive UI elements (buttons, labels, error messages) should be English. |
+| **No CSRF protection** | Mitigated by API key/JWT requirement on all mutating endpoints. No session cookies used for auth. |
+| **`state.quests.find()` used in some routes** | Only used for complex multi-field lookups where the `questsById` Map can't help (e.g., find by title + type + status). |
+| **Inconsistent error response formats (`{error}` vs `{success, error}`)** | Frontend handles both. Standardization would be nice but not breaking. |
+| **No test suite** | Acknowledged in CLAUDE.md. Validation only via `scripts/verify-items.js` and ESLint. |
+
+### A.4 Translation Rules
+
+| Context | Language | Rule |
+|---------|----------|------|
+| Interactive UI (buttons, labels, placeholders, error messages) | **English** | Always translate German to English |
+| Backend API error responses | **English** | Always translate German to English |
+| TutorialModal / Guide content | **German** | Keep as-is — this is the main narrative guide |
+| Gear/item descriptions (`desc` field in gearTemplates.json) | **German** | Keep as-is — this is lore/flavor text, intentionally German |
+| Quest flavor text | **Mixed** | NPC quests have German flavor, player quests have English. Both are intentional. |
+| Currency names (Runensplitter, Sternentaler, etc.) | **German names** | These are proper nouns in the game world. Do NOT translate. |
+| Achievement names/descriptions | **English** | Should be English |
+| Profession rank names (Novice, Apprentice, etc.) | **English** | Already English |
+
+### A.5 Common Agent Mistakes to Avoid
+
+1. **Don't propose features before searching the codebase.** Always `grep` for the feature name, related keywords, and component names before claiming something doesn't exist.
+2. **Don't assume routes are missing from one file.** Routes are spread across 18 files. A route not in `quests.js` might be in `currency.js`, `game.js`, or `config-admin.js`.
+3. **Don't report single-process race conditions as bugs.** Node.js event loop serializes requests. True race conditions only occur with async I/O between check-and-act, which is rare in this codebase.
+4. **Don't translate German lore/flavor text.** Only translate interactive UI and error messages. Gear descriptions, quest flavor, and guide content stay German.
+5. **Don't suggest adding a database.** The JSON persistence model is an intentional architectural choice.
+6. **Don't suggest adding `next/image`.** The project uses static export with pixel art where `<img>` is the correct choice.
+7. **Check the `AUDIT_REPORT.md` Sections 6.6, 9.5, 16.14, 17.4** for previously verified non-issues before re-investigating.
+
+---
+
 *End of Audit Report — Updated 2026-03-21*
