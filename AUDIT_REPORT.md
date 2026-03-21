@@ -1331,7 +1331,35 @@ Timed quest chains with escalating difficulty:
 | Companion German text | `CompanionsWidget.tsx` | "Erfolg!"→"Success!", "Netzwerkfehler"→"Network error" |
 | Shop missing animation | `ShopView.tsx` | Added `tab-content-enter` class (only view missing it) |
 
-### 19.3 Remaining Issues Summary
+### 19.3 Economy Balancing Analysis (Session 7)
+
+Agent-driven comprehensive analysis of the entire game economy. **Score: 8.5/10**
+
+**Healthy Systems (no changes needed):**
+- XP multiplier chain: Well-capped (max ~4,700 XP/legendary quest conservatively)
+- Gold multiplier chain: Hard caps prevent runaway scaling (streak cap 1.45×, forge cap 1.5×)
+- Gacha economy: 1.8-2.7 days per 10-pull is healthy; pity at 75 is industry standard
+- Rift rewards: Risk/reward appropriate for timed challenges
+- Runensplitter economy: Balanced with quest completion rates
+- Workshop upgrades: Total sink 87,000g is substantial but achievable
+
+**Decisions Made:**
+
+| Finding | Decision | Action |
+|---------|----------|--------|
+| Streak Charm too expensive for value | Add Tier 2 (2x/week, 25,000g) | **Implemented** — Reworked to per-week usage counter |
+| Stardust inflation at max level | Gacha Featured Banner as sink | No code change — content/banner update |
+| Mondstaub + Gildentaler inactive | Keep both, implement later | Deferred to future session |
+
+### 19.4 Changelog (Session 7)
+
+| Commit | Description |
+|--------|-------------|
+| `744cddc` | Shop UI polish (cursor, tooltips) + translate all shop items to English |
+| `91b3cf8` | Fix Gacha/Companion German text, add ShopView animation |
+| `d2171a8` | Streak Shield Charm Tier 2 (2x/week, 25,000g) |
+
+### 19.5 Remaining Issues Summary
 
 | Issue | Severity | Area | Status |
 |-------|----------|------|--------|
