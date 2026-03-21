@@ -313,6 +313,7 @@ function MessagesTab({ apiKey, playerName }: { apiKey: string; playerName: strin
   const [activeConvo, setActiveConvo] = useState<string | null>(null);
   const [messages, setMessages] = useState<SocialMessage[]>([]);
   const [msgInput, setMsgInput] = useState("");
+  const [sendError, setSendError] = useState("");
   const [loading, setLoading] = useState(true);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
@@ -363,6 +364,9 @@ function MessagesTab({ apiKey, playerName }: { apiKey: string; playerName: strin
         setMsgInput("");
         openConvo(activeConvo);
         fetchConversations();
+      } else {
+        const data = await r.json().catch(() => null);
+        setSendError(data?.error || "Failed to send message");
       }
     } catch { /* ignore */ }
   };
@@ -412,7 +416,7 @@ function MessagesTab({ apiKey, playerName }: { apiKey: string; playerName: strin
         <div className="flex gap-2">
           <input
             value={msgInput}
-            onChange={e => setMsgInput(e.target.value)}
+            onChange={e => { setMsgInput(e.target.value); if (sendError) setSendError(""); }}
             onKeyDown={e => { if (e.key === "Enter") sendMessage(); }}
             placeholder="Type a message..."
             maxLength={500}
@@ -427,6 +431,7 @@ function MessagesTab({ apiKey, playerName }: { apiKey: string; playerName: strin
             Send
           </button>
         </div>
+        {sendError && <p className="text-xs mt-1" style={{ color: "#f87171" }}>{sendError}</p>}
       </div>
     );
   }

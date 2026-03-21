@@ -788,6 +788,9 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
         if (item && addToast) {
           addToast({ type: "item", itemName: item.name, message: `${item.name} equipped!`, icon: item.icon, rarity: item.rarity || "common" });
         }
+      } else {
+        const data = await r.json().catch(() => null);
+        if (addToast) addToast({ type: "error", message: data?.error || "Failed to equip item" });
       }
       await fetchChar();
     } finally { setEquipping(null); }

@@ -8,6 +8,7 @@ import { Tip, TipCustom } from "@/components/GameTooltip";
 // ─── Types ──────────────────────────────────────────────────────────────────
 
 interface FactionStanding {
+  id: string;
   name: string;
   minRep: number;
   color: string;
