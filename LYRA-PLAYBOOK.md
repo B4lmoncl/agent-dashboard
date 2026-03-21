@@ -737,7 +737,7 @@ First craft each day awards **2x profession XP**. Tracked via `u.lastCraftDate`.
 
 Each profession has 10 levels with scaling XP thresholds (defined in `levelThresholds`). XP per craft varies by recipe difficulty (8-50 XP). WoW-style ranks: Novice (Lv.0) → Apprentice (1-2) → Journeyman (3-4) → Expert (5-6) → Artisan (7-8) → Master (9-10).
 
-### Schmiedekunst System (Blacksmith tab)
+### Salvage & Transmute System (Blacksmith tab, formerly "Schmiedekunst")
 
 - **Dismantle**: Destroy inventory items → Essenz (2-100 by rarity) + chance at materials
 - **Salvage All**: D3-style bulk dismantle per rarity (legendary excluded, must be individual)

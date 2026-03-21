@@ -113,7 +113,7 @@ All routes are mounted in `server.js` in order. The last route file (`npcs-misc.
 | `crafting.js` | Crafting professions, Schmiedekunst (dismantle/transmute) | API key |
 | `challenges-weekly.js` | Sternenpfad: 3-stage solo weekly challenges with star ratings, modifiers, speed bonus | API key |
 | `expedition.js` | Expedition: cooperative weekly challenge with shared checkpoints, scaling by player count | API key |
-| `social.js` | Friends, messages, trades, leaderboard | API key |
+| `social.js` | Friends (online status), messages (read receipts), trades (item picker), activity feed | API key |
 | `npcs-misc.js` | NPC rotation, feedback (admin-only), SPA fallback | Master key (feedback) |
 | `docs.js` | OpenAPI spec, HTML docs | Public |
 
@@ -309,6 +309,41 @@ Two weekly challenge types, accessible under a single "Challenges" tab with togg
 - **Endpoints**: `GET /api/expedition?player=X`, `POST /api/expedition/claim`
 - **Data**: `public/data/expeditions.json` (8 narrative templates, 6 bonus titles)
 - **State**: `data/runtime/expedition.json` (debounced writes, separate from user data)
+
+### Social System ("The Breakaway")
+
+Player-to-player social features accessible via the "Social" tab in the Trading District.
+
+**Friends**
+- Friend request system (send/accept/decline) with 2-way confirmation
+- Friends list as card grid (2-3 columns) with 3-tier online status:
+  - `online` (green dot + glow) = agent online OR active within 5 min
+  - `idle` (yellow dot) = active within 30 min
+  - `offline` (gray dot) = inactive > 30 min
+- `lastActiveAt` tracking via `requireAuth` middleware on every authenticated request
+- **Endpoints**: `GET /api/social/:playerId/friends`, `POST /api/social/friend-request`, `DELETE /api/social/friend/:friendId`
+
+**Messages**
+- Direct messaging between friends, 500 char limit per message
+- Conversations with unread count, auto-read on fetch (marks `read: true` + `readAt` timestamp)
+- Double-checkmark read receipts in UI (✓ sent, ✓✓ blue read)
+- Auto-refresh every 10s when conversation is active
+- **Endpoints**: `GET /api/social/:playerId/conversations`, `GET /api/social/:playerId/messages/:otherId`, `POST /api/social/message`
+
+**Trading**
+- Item + gold trading with negotiation rounds (back-and-forth counter-offers)
+- Both players must accept current terms for execution — atomic gold + item transfer
+- Item validation (ownership, not equipped), gold validation
+- D3-style rarity-colored item display with left border accent
+- **Endpoints**: `POST /api/social/trade/propose`, `POST /api/social/trade/:id/counter`, `POST /api/social/trade/:id/accept`, `POST /api/social/trade/:id/decline`
+
+**Activity Feed**
+- WoW Guild News-style feed showing events from friends + own activity
+- Event types: `quest_complete`, `level_up`, `achievement`, `gacha_pull` (epic+), `rare_drop`, `trade_complete`
+- Capped at 500 events, enriched with player name/avatar/color
+- Auto-refresh every 30s in frontend
+- **Endpoint**: `GET /api/social/:playerId/activity-feed?limit=30`
+- **State**: `socialData.activityLog` array in `data/social.json`
 
 ## Security measures
 
