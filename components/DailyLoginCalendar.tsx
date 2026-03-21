@@ -87,7 +87,7 @@ export default function DailyLoginCalendar({ onClose }: { onClose: () => void })
             <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>{monthNames[month]} {year}</p>
           </div>
           <div className="text-right">
-            <p className="text-sm font-bold" style={{ color: "#fbbf24" }}>{streakDays} Tage Streak</p>
+            <p className="text-sm font-bold" style={{ color: "#fbbf24" }}>{streakDays} Day Streak</p>
             <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>{claimedThisMonth}/{daysInMonth} diesen Monat</p>
           </div>
         </div>

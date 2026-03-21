@@ -43,13 +43,13 @@ export default function DashboardModals({
   inProgressCount,
 }: DashboardModalsProps) {
   const CURRENCY_HOW: Record<string, string> = {
-    gold: "Schließe Quests ab, kaufe Gear und Shop-Items, oder investiere in Crafting-Rezepte. Beeinflusst durch Streak, Forge-Temperatur, Weisheit und Legendary-Gear. Tauschbar gegen Runensplitter und Gildentaler.",
-    stardust: "Fällt bei Level-Ups vom Himmel. Verwendbar für Gacha-Banner und tauschbar gegen Runensplitter.",
-    essenz: "Entsteht durch täglichen Login-Bonus, Streak-Meilensteine und das Zerlegen von Items in der Schmiedekunst. Gebraucht für Professionswechsel und Crafting-Rezepte.",
-    runensplitter: "Belohnung für jede abgeschlossene Quest und den täglichen Login. Streak-Meilensteine und Gacha-Duplikate geben extra. Die Hauptwährung für Gacha-Pulls. Tauschbar mit Gold.",
-    gildentaler: "Verdient durch soziale und Co-op Quests — die Währung des Zusammenhalts. Einlösbar für Gilden-Items im Shop. Tauschbar mit Gold.",
-    mondstaub: "Nur durch extreme Beständigkeit erhältlich — lange Streak-Meilensteine und seltene Events. Reserviert für limitierte Belohnungen. Nicht tauschbar.",
-    sternentaler: "Exklusiv aus wöchentlichen Herausforderungen. Einlösbar für exklusive Wochenbelohnungen. Nicht tauschbar.",
+    gold: "Earned from quests, rituals, and NPC chains. Multiplied by Streak, Forge Temperature, Weisheit stat, and Legendary gear. Used for Bazaar, crafting, and gear. Convertible to Runensplitter and Gildentaler.",
+    stardust: "Awarded on level-up (5 + level). Used for Featured Gacha banner pulls. Convertible to Runensplitter.",
+    essenz: "From daily login bonus, streak milestones, and item dismantling (Schmiedekunst). Used for profession switching and crafting recipes.",
+    runensplitter: "Reward for every completed quest and daily login. Extra from streak milestones and gacha duplicates. Main currency for standard Gacha pulls. Convertible with Gold.",
+    gildentaler: "Earned from Social and Co-op quests (+5 per quest). Redeemable for guild items in the shop. Convertible with Gold.",
+    mondstaub: "Only from extreme consistency — long streak milestones and rare events. Reserved for limited rewards. Not convertible.",
+    sternentaler: "Exclusive from weekly challenges (Star Path + Expedition). Redeemable for exclusive weekly rewards. Not convertible.",
   };
 
   return (
@@ -93,7 +93,7 @@ export default function DashboardModals({
                       </div>
                       {currencyExpanded === c.key && (
                         <div className="rounded-b-xl px-4 py-3 -mt-1" style={{ background: `${c.color}08`, borderLeft: `1px solid ${c.color}30`, borderRight: `1px solid ${c.color}30`, borderBottom: `1px solid ${c.color}30` }}>
-                          <p className="text-[10px] font-bold uppercase tracking-wider mb-1" style={{ color: `${c.color}99` }}>Wie erhältst du {c.name}?</p>
+                          <p className="text-[10px] font-bold uppercase tracking-wider mb-1" style={{ color: `${c.color}99` }}>How to earn {c.name}</p>
                           <p className="text-xs leading-relaxed text-w55">{CURRENCY_HOW[c.key]}</p>
                         </div>
                       )}

@@ -115,7 +115,7 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
             </div>
             <div className="flex items-center gap-3 text-xs flex-wrap text-w35">
               <span style={{ color: ritual.streak >= 21 ? "#818cf8" : ritual.streak >= 7 ? "#f97316" : "rgba(255,255,255,0.35)" }}>
-                {ritual.streak} Tage Streak
+                {ritual.streak} Day Streak
               </span>
               {longestStreak > 0 && (
                 <span title="Longest streak" style={{ color: "rgba(245,158,11,0.5)" }}>
@@ -124,7 +124,7 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
               )}
               {lastCompletedFormatted && (
                 <span title="Last completed" className="text-w20">
-                  {doneToday ? "Heute" : lastCompletedFormatted}
+                  {doneToday ? "Today" : lastCompletedFormatted}
                 </span>
               )}
               <span>{ritual.schedule.type === 'daily' ? 'daily' : ritual.schedule.days?.join(', ')}</span>
@@ -143,13 +143,13 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
             {ritual.bloodPact && ritual.pactCompleted && (
               <div className="flex items-center gap-1.5 mt-1 text-xs" style={{ color: "rgba(34,197,94,0.7)" }}>
                 <span style={{ fontSize: 10 }}>✦</span>
-                <span style={{ fontWeight: 600 }}>Blood Pact erfüllt</span>
+                <span style={{ fontWeight: 600 }}>Blood Pact fulfilled</span>
               </div>
             )}
             {nextMilestone && (
               <div className="mt-2">
                 <div className="flex items-center justify-between text-xs mb-1 text-w25">
-                  <span>Nächstes Ziel in {nextMilestone.days - ritual.streak}d: <span style={{ color: nextMilestone.label === "Bronze" ? "#cd7f32" : nextMilestone.label === "Silber" ? "#c0c0c0" : nextMilestone.label === "Gold" ? "#ffd700" : nextMilestone.label === "Diamond" ? "#b9f2ff" : "#a78bfa", fontWeight: 700 }}>{nextMilestone.label}</span></span>
+                  <span>Next goal in {nextMilestone.days - ritual.streak}d: <span style={{ color: nextMilestone.label === "Bronze" ? "#cd7f32" : nextMilestone.label === "Silber" ? "#c0c0c0" : nextMilestone.label === "Gold" ? "#ffd700" : nextMilestone.label === "Diamond" ? "#b9f2ff" : "#a78bfa", fontWeight: 700 }}>{nextMilestone.label}</span></span>
                   <span>{ritual.streak}/{nextMilestone.days}</span>
                 </div>
                 <div className="h-1 rounded-full overflow-hidden bg-w8">

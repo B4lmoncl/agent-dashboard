@@ -289,7 +289,7 @@ function ProfileSettingsModal({ playerName, apiKey, initialStatus, initialPartne
             <input
               value={partner}
               onChange={e => setPartner(e.target.value)}
-              placeholder="z.B. Alex, Maria..."
+              placeholder="e.g. Alex, Maria..."
               className="w-full text-xs px-3 py-2 rounded-lg"
               style={{ background: "#141414", border: "1px solid rgba(255,255,255,0.12)", color: "#f0f0f0", outline: "none", borderRadius: 8 }}
             />
@@ -307,7 +307,7 @@ function ProfileSettingsModal({ playerName, apiKey, initialStatus, initialPartne
             disabled={saving}
             className="flex-1 py-2 rounded-xl text-xs font-semibold"
             style={{ background: "linear-gradient(135deg, #7c3aed, #a78bfa)", color: "#fff" }}
-          >{saving ? "…" : "Speichern"}</button>
+          >{saving ? "…" : "Save"}</button>
         </div>
       </div>
     </div>
@@ -508,7 +508,7 @@ function InventoryTooltip({ item, mousePosRef, equippedItem }: { item: Inventory
                 <span className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>vs {equippedItem.name}</span>
                 {totalDiff !== 0 && (
                   <span className="text-xs font-bold font-mono" style={{ color: totalDiff > 0 ? "#4ade80" : "#ef4444" }}>
-                    {totalDiff > 0 ? `+${totalDiff}` : totalDiff} gesamt
+                    {totalDiff > 0 ? `+${totalDiff}` : totalDiff} total
                   </span>
                 )}
               </div>
@@ -520,7 +520,7 @@ function InventoryTooltip({ item, mousePosRef, equippedItem }: { item: Inventory
         <div className="text-xs pt-1 space-y-0.5" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
           {item.minLevel && item.minLevel > 1 && (
             <p style={{ color: item.minLevel > (item as any)._playerLevel ? "#ef4444" : "rgba(255,255,255,0.4)" }}>
-              Benötigt Level {item.minLevel}
+              Requires Level {item.minLevel}
             </p>
           )}
           {item.slot && (
@@ -540,14 +540,14 @@ type InvFilter = "all" | "equipment" | "consumable" | "passive";
 type InvSort = "none" | "rarity" | "name" | "level";
 
 const INV_FILTERS: { key: InvFilter; label: string }[] = [
-  { key: "all", label: "Alle" },
+  { key: "all", label: "All" },
   { key: "equipment", label: "Gear" },
   { key: "consumable", label: "Items" },
-  { key: "passive", label: "Passiv" },
+  { key: "passive", label: "Passive" },
 ];
 
 const INV_SORTS: { key: InvSort; label: string }[] = [
-  { key: "none", label: "Standard" },
+  { key: "none", label: "Default" },
   { key: "rarity", label: "Rarity" },
   { key: "name", label: "Name" },
   { key: "level", label: "Level" },
@@ -682,7 +682,7 @@ function GearSlotRow({ slot, iconSrc, label, item, onUnequip, unequipping }: {
           <p className="text-xs font-medium truncate" style={{ color: item ? "#e8e8e8" : "rgba(255,255,255,0.3)" }}>
             {item
               ? <span className="inline-flex items-center gap-1">{item.icon ? <img src={item.icon} alt="" width={36} height={36} style={{ imageRendering: "auto" }} /> : <span style={{ color: RARITY_COLORS[item.rarity] || "#9ca3af" }}>◆</span>} {item.name}</span>
-              : <span style={{ color: "rgba(255,255,255,0.2)" }}>Leer</span>}
+              : <span style={{ color: "rgba(255,255,255,0.2)" }}>Empty</span>}
           </p>
           <p className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>{label}</p>
         </div>
@@ -786,7 +786,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
       if (r.ok) {
         const item = charData?.inventory.find(i => i.id === itemId);
         if (item && addToast) {
-          addToast({ type: "item", itemName: item.name, message: `${item.name} ausgerüstet!`, icon: item.icon, rarity: item.rarity || "common" });
+          addToast({ type: "item", itemName: item.name, message: `${item.name} equipped!`, icon: item.icon, rarity: item.rarity || "common" });
         }
       }
       await fetchChar();
@@ -824,7 +824,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
         const data = await r.json();
         const item = charData?.inventory.find(i => i.id === itemId);
         if (addToast && item) {
-          addToast({ type: "item", itemName: item.name, message: data.message || "Item benutzt!", icon: item.icon, rarity: item.rarity || "common" });
+          addToast({ type: "item", itemName: item.name, message: data.message || "Item used!", icon: item.icon, rarity: item.rarity || "common" });
         }
       } else if (addToast) {
         const data = await r.json().catch(() => null);
@@ -846,10 +846,10 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
       });
       if (r.ok) {
         const item = charData?.inventory.find(i => i.id === itemId);
-        if (addToast && item) addToast({ type: "item", itemName: item.name, message: `${item.name} verworfen`, icon: item.icon, rarity: item.rarity || "common" });
+        if (addToast && item) addToast({ type: "item", itemName: item.name, message: `${item.name} discarded`, icon: item.icon, rarity: item.rarity || "common" });
       } else if (addToast) {
         const data = await r.json().catch(() => null);
-        addToast({ type: "error", message: data?.error || "Verwerfen fehlgeschlagen" });
+        addToast({ type: "error", message: data?.error || "Discard failed" });
       }
       await fetchChar();
     } catch {
@@ -929,7 +929,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
         >
           {/* Header + Sort */}
           <div className="flex items-center justify-between mb-2">
-            <p className="text-xs font-bold uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.5)" }}>Inventar</p>
+            <p className="text-xs font-bold uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.5)" }}>Inventory</p>
             <div className="relative" ref={sortDropdownRef}>
               <button
                 onClick={() => setSortDropdownOpen(v => !v)}
@@ -944,7 +944,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                   justifyContent: "space-between",
                 }}
               >
-                <span>{INV_SORTS.find(s => s.key === invSort)?.label ?? "Standard"}</span>
+                <span>{INV_SORTS.find(s => s.key === invSort)?.label ?? "Default"}</span>
                 <span style={{ fontSize: 8, opacity: 0.5 }}>{sortDropdownOpen ? "▲" : "▼"}</span>
               </button>
               {sortDropdownOpen && (
@@ -993,7 +993,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
               type="text"
               value={invSearch}
               onChange={e => setInvSearch(e.target.value)}
-              placeholder="Suche..."
+              placeholder="Search..."
               className="w-full text-xs px-2.5 py-1.5 rounded-lg"
               style={{
                 background: "rgba(255,255,255,0.04)",

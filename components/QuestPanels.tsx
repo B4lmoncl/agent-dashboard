@@ -13,10 +13,10 @@ import { getAuthHeaders } from "@/lib/auth-client";
 // ─── Anti-Rituale Panel ───────────────────────────────────────────────────────
 
 const DIFFICULTY_TIERS_VOW = [
-  { id: "easy",      label: "Leicht",     color: "#4ade80", gold: 3,  xp: 8,  icon: "I",   flavor: "A gentle start",   bondScale: 0.5 },
-  { id: "medium",    label: "Mittel",     color: "#f59e0b", gold: 5,  xp: 15, icon: "II",  flavor: "Steady effort",    bondScale: 1.0 },
-  { id: "hard",      label: "Schwer",     color: "#ef4444", gold: 8,  xp: 25, icon: "III", flavor: "True discipline",  bondScale: 1.5 },
-  { id: "legendary", label: "Legendär",   color: "#a78bfa", gold: 12, xp: 40, icon: "IV",  flavor: "Forged in will",   bondScale: 2.0 },
+  { id: "easy",      label: "Easy",       color: "#4ade80", gold: 3,  xp: 8,  icon: "I",   flavor: "A gentle start",   bondScale: 0.5 },
+  { id: "medium",    label: "Medium",     color: "#f59e0b", gold: 5,  xp: 15, icon: "II",  flavor: "Steady effort",    bondScale: 1.0 },
+  { id: "hard",      label: "Hard",       color: "#ef4444", gold: 8,  xp: 25, icon: "III", flavor: "True discipline",  bondScale: 1.5 },
+  { id: "legendary", label: "Legendary",  color: "#a78bfa", gold: 12, xp: 40, icon: "IV",  flavor: "Forged in will",   bondScale: 2.0 },
 ];
 
 const BLOOD_PACT_MULTIPLIER_VOW: Record<string, number> = {
@@ -40,12 +40,12 @@ function getVaelSpeech(commitment: string, bloodPact: boolean): string {
 }
 
 const ANTI_RITUAL_MILESTONES = [
-  { days: 7,   badge: "Bronze",  label: "1 Woche beständig!" },
-  { days: 14,  badge: "Silber",  label: "2 Wochen stark!" },
-  { days: 21,  badge: "Gold",    label: "21 Tage — Die Gewohnheit bricht!" },
-  { days: 30,  badge: "Titan",   label: "1 Monat beständig!" },
-  { days: 60,  badge: "Diamond", label: "60 Tage — Diamantwille!" },
-  { days: 90,  badge: "Legend",  label: "90 Tage — Unerschütterlich!" },
+  { days: 7,   badge: "Bronze",  label: "1 week of resilience!" },
+  { days: 14,  badge: "Silver",  label: "2 weeks strong!" },
+  { days: 21,  badge: "Gold",    label: "21 days — The habit breaks!" },
+  { days: 30,  badge: "Titan",   label: "1 month of consistency!" },
+  { days: 60,  badge: "Diamond", label: "60 days — Diamond will!" },
+  { days: 90,  badge: "Legend",  label: "90 days — Unyielding!" },
 ];
 
 export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?: (data: { type: "vow"; title: string; xpEarned: number; goldEarned: number; loot?: { name: string; emoji: string; rarity: string; rarityColor?: string } | null; streak?: number; pactBonus?: { xp: number; gold: number } | null }) => void }) {
@@ -209,7 +209,7 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
             {ar.bloodPact && ar.pactCompleted && (
               <div className="flex items-center gap-1.5 mt-1 text-xs" style={{ color: "rgba(34,197,94,0.7)" }}>
                 <span style={{ fontSize: 10 }}>✦</span>
-                <span style={{ fontWeight: 600 }}>Blood Pact erfüllt</span>
+                <span style={{ fontWeight: 600 }}>Blood Pact fulfilled</span>
               </div>
             )}
             {nextMilestone && (
