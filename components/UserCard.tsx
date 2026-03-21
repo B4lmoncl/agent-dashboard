@@ -270,7 +270,7 @@ export function UserCard({ user, classes = [] }: { user: User; classes?: ClassDe
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center justify-between mb-0.5">
                       <span className="text-xs font-semibold truncate" style={{ color: meta.color }}>{meta.name}</span>
-                      <span className="text-xs font-mono" style={{ color: rank.color }}>Lv.{level} <span style={{ fontSize: 9, opacity: 0.7 }}>{rank.name}</span></span>
+                      <span className="text-xs font-mono" style={{ color: rank.color }}>Lv.{level} <span style={{ fontSize: 12, opacity: 0.7 }}>{rank.name}</span></span>
                     </div>
                     <div className="rounded-full overflow-hidden" style={{ height: 2.5, background: "rgba(255,255,255,0.06)" }}>
                       <div className="h-full rounded-full transition-all duration-500" style={{ width: `${progressPct}%`, background: `linear-gradient(90deg, ${meta.color}99, ${meta.color})` }} />

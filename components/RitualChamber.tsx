@@ -132,7 +132,7 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
             </div>
             {ritual.bloodPact && commitGoal && !ritual.pactCompleted && (
               <div className="flex items-center gap-2 mt-1 text-xs" style={{ color: "rgba(239,68,68,0.6)" }}>
-                <span style={{ fontSize: 10 }}>⬥</span>
+                <span style={{ fontSize: 12 }}>⬥</span>
                 <span>Pact Goal: <span style={{ color: "#ef4444", fontWeight: 600 }}>{commitGoal}d</span></span>
                 <span>·</span>
                 <span style={{ color: ritual.streak >= commitGoal ? "#22c55e" : "rgba(239,68,68,0.8)", fontWeight: 600 }}>
@@ -142,7 +142,7 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
             )}
             {ritual.bloodPact && ritual.pactCompleted && (
               <div className="flex items-center gap-1.5 mt-1 text-xs" style={{ color: "rgba(34,197,94,0.7)" }}>
-                <span style={{ fontSize: 10 }}>✦</span>
+                <span style={{ fontSize: 12 }}>✦</span>
                 <span style={{ fontWeight: 600 }}>Blood Pact fulfilled</span>
               </div>
             )}

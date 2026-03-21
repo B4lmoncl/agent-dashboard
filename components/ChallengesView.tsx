@@ -3,7 +3,6 @@
 import { useState, useCallback, useEffect, useMemo } from "react";
 import { useDashboard } from "@/app/DashboardContext";
 import type { WeeklyChallenge, Expedition, ExpeditionCheckpoint } from "@/app/types";
-import { InfoTooltip } from "@/components/InfoTooltip";
 import { Tip } from "@/components/GameTooltip";
 
 // ─── Currency icons ──────────────────────────────────────────────────────────
@@ -150,8 +149,8 @@ function SternenpfadView({
                     {claimed ? "✓" : claimingMilestone === ms.stars ? "…" : ms.stars}
                   </button>
                   <span className="text-xs font-bold" style={{ color: reached ? "#fbbf24" : "rgba(255,255,255,0.2)" }}>{ms.label}</span>
-                  <span className="text-xs" style={{ color: reached ? "rgba(251,191,36,0.6)" : "rgba(255,255,255,0.12)", fontSize: 9 }}>{ms.reward}</span>
-                  {canClaim && <span className="text-xs font-semibold" style={{ color: "#fbbf24", fontSize: 9 }}>Claim!</span>}
+                  <span className="text-xs" style={{ color: reached ? "rgba(251,191,36,0.6)" : "rgba(255,255,255,0.12)", fontSize: 12 }}>{ms.reward}</span>
+                  {canClaim && <span className="text-xs font-semibold" style={{ color: "#fbbf24", fontSize: 12 }}>Claim!</span>}
                 </div>
               );
             })}
@@ -242,7 +241,7 @@ function SternenpfadView({
                 {isCompleted ? (
                   <span style={{ color: "#000", fontSize: 12, fontWeight: 800 }}>✓</span>
                 ) : (
-                  <span style={{ color: isActive ? "#000" : "rgba(255,255,255,0.3)", fontSize: 10, fontWeight: 700 }}>{i + 1}</span>
+                  <span style={{ color: isActive ? "#000" : "rgba(255,255,255,0.3)", fontSize: 12, fontWeight: 700 }}>{i + 1}</span>
                 )}
               </div>
 
@@ -568,9 +567,9 @@ function ExpeditionView({
                       </div>
                       <span className="font-semibold" style={{ color: aboveFair ? "#4ade80" : "#f87171" }}>{c.count}</span>
                       {aboveFair ? (
-                        <span className="text-xs ml-1" style={{ color: "#4ade80", fontSize: 9 }}>&#9650;</span>
+                        <span className="text-xs ml-1" style={{ color: "#4ade80", fontSize: 12 }}>&#9650;</span>
                       ) : (
-                        <span className="text-xs ml-1" style={{ color: "#f87171", fontSize: 9 }}>&#9660;</span>
+                        <span className="text-xs ml-1" style={{ color: "#f87171", fontSize: 12 }}>&#9660;</span>
                       )}
                     </div>
                     <div className="ml-6 rounded-full overflow-hidden relative" style={{ height: 4, background: "rgba(255,255,255,0.04)" }}>
@@ -583,7 +582,7 @@ function ExpeditionView({
               })}
               <div className="flex items-center gap-2 mt-2">
                 <div className="w-3 h-0.5" style={{ background: "rgba(251,191,36,0.5)" }} />
-                <p className="text-xs" style={{ color: "rgba(251,191,36,0.4)", fontSize: 10 }}>Fair share: ~{fairShare} quests per player</p>
+                <p className="text-xs" style={{ color: "rgba(251,191,36,0.4)", fontSize: 12 }}>Fair share: ~{fairShare} quests per player</p>
               </div>
             </div>
           );
@@ -694,9 +693,7 @@ export default function ChallengesView({
       {/* Section header */}
       <div className="flex items-center justify-between flex-wrap gap-2">
         <div className="flex items-center gap-2">
-          <InfoTooltip text="Two weekly challenges reset every Monday. Star Path is a solo 3-stage challenge — earn up to 9 stars with speed bonuses. Expedition is a guild-wide cooperative challenge — all players contribute quests toward shared checkpoints. Rewards include Gold, Rune Shards, Essenz and the exclusive Sternentaler currency.">
-            <span className="text-xs font-semibold uppercase tracking-widest text-w35" style={{ borderBottom: "1px dotted rgba(255,215,0,0.3)" }}>Weekly Challenges</span>
-          </InfoTooltip>
+          <Tip k="weekly_challenges"><span className="text-xs font-semibold uppercase tracking-widest text-w35">Weekly Challenges</span></Tip>
         </div>
         <WeeklyResetTimer />
       </div>

@@ -486,7 +486,7 @@ function InventoryTooltip({ item, mousePosRef, equippedItem }: { item: Inventory
                       {val > 0 ? `+${val}` : val}
                     </span>
                     {showDiff && diff !== 0 && (
-                      <span className="font-mono font-bold" style={{ color: diff > 0 ? "#4ade80" : "#ef4444", fontSize: 11 }}>
+                      <span className="font-mono font-bold" style={{ color: diff > 0 ? "#4ade80" : "#ef4444", fontSize: 12 }}>
                         {diff > 0 ? `▲${diff}` : `▼${Math.abs(diff)}`}
                       </span>
                     )}
@@ -1315,14 +1315,14 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                             {s.bonuses && s.bonuses.length > 0 ? (
                               <div className="mt-1 space-y-0.5">
                                 {s.bonuses.map((b, bi) => (
-                                  <p key={bi} className="text-xs flex items-center gap-1" style={{ fontSize: 10, color: b.active ? barColor : "rgba(255,255,255,0.2)" }}>
+                                  <p key={bi} className="text-xs flex items-center gap-1" style={{ fontSize: 12, color: b.active ? barColor : "rgba(255,255,255,0.2)" }}>
                                     <span className="font-mono" style={{ minWidth: 24 }}>({b.threshold})</span>
                                     <span>{b.label}</span>
                                   </p>
                                 ))}
                               </div>
                             ) : s.activeLabel && (
-                              <p className="text-xs mt-1" style={{ color: barColor, fontSize: 10 }}>{s.activeLabel}</p>
+                              <p className="text-xs mt-1" style={{ color: barColor, fontSize: 12 }}>{s.activeLabel}</p>
                             )}
                           </div>
                         );

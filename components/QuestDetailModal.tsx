@@ -151,7 +151,7 @@ export default function QuestDetailModal({
           {/* Ornamental divider */}
           <div className="flex items-center gap-2" style={{ color: "rgba(255,255,255,0.12)" }}>
             <span style={{ flex: 1, height: 1, background: "rgba(255,255,255,0.07)", display: "block" }} />
-            <span style={{ fontSize: 11, letterSpacing: 4 }}>◆ ◆ ◆</span>
+            <span style={{ fontSize: 12, letterSpacing: 4 }}>◆ ◆ ◆</span>
             <span style={{ flex: 1, height: 1, background: "rgba(255,255,255,0.07)", display: "block" }} />
           </div>
           {/* Task */}

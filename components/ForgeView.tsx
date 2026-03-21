@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
 import { createPortal } from "react-dom";
 import { useDashboard } from "@/app/DashboardContext";
-import { InfoTooltip } from "@/components/InfoTooltip";
+
 import { useModalBehavior } from "@/components/ModalPortal";
 import { getAuthHeaders } from "@/lib/auth-client";
 import { Tip } from "@/components/GameTooltip";
@@ -410,20 +410,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
     <div className="space-y-4">
       {/* ─── Header with currencies + info ─────────────────────────────── */}
       <div className="flex items-center gap-4 flex-wrap">
-        <InfoTooltip text={<>
-          <p style={{ fontWeight: 600, color: "rgba(255,255,255,0.7)", marginBottom: 6 }}>How do Professions work?</p>
-          <p>&bull; Unlock slots as you level (Lv5: 1st, Lv15: 2nd, Lv20: 3rd, Lv25: all 4)</p>
-          <p>&bull; Collect <strong style={{ color: "#e8e8e8" }}>Materials</strong> from quests, <strong style={{ color: "#e8e8e8" }}>craft recipes</strong> with Gold + Materials</p>
-          <p>&bull; Ranks: <span style={{ color: "#22c55e" }}>Apprentice</span> → <span style={{ color: "#3b82f6" }}>Journeyman</span> → <span style={{ color: "#a855f7" }}>Expert</span> → <span style={{ color: "#f59e0b" }}>Artisan</span> → <span style={{ color: "#ef4444" }}>Master</span></p>
-          <p>&bull; Skill-up colors: <span style={{ color: "#f97316" }}>orange</span>/<span style={{ color: "#eab308" }}>yellow</span>/<span style={{ color: "#22c55e" }}>green</span>/<span style={{ color: "#6b7280" }}>gray</span> (WoW-style)</p>
-          <p>&bull; Switching costs <strong style={{ color: "#f44" }}>200 Essenz</strong> &amp; resets progress</p>
-          <p>&bull; <span style={{ color: "#facc15" }}>Daily Bonus</span>: First craft = <strong style={{ color: "#facc15" }}>2x XP</strong> · Batch craft x1-x10</p>
-          <p style={{ borderTop: "1px solid rgba(255,255,255,0.06)", paddingTop: 6, marginTop: 6, color: "rgba(255,255,255,0.4)", fontWeight: 600, fontSize: 10 }}>Recommended Pairings</p>
-          <p><span style={{ color: "#f59e0b" }}>Blacksmith + Enchanter</span> = Gear Mastery</p>
-          <p><span style={{ color: "#22c55e" }}>Alchemist + Cook</span> = Full Sustenance</p>
-        </>}>
-          <span className="text-base font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.4)", borderBottom: "1px dotted rgba(255,215,0,0.3)" }}>{"Artisan's Quarter"}</span>
-        </InfoTooltip>
+        <Tip k="artisans_quarter"><span className="text-base font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.4)" }}>{"Artisan's Quarter"}</span></Tip>
         <div className="flex items-center gap-4 ml-auto text-sm">
           <span className="font-mono font-medium" style={{ color: "rgba(255,255,255,0.35)" }}>{chosenCount}/{maxProfSlots} Professions</span>
           {dailyBonusAvailable && (

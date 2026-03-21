@@ -198,7 +198,7 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
             </div>
             {ar.bloodPact && ar.commitmentDays && ar.commitmentDays > 0 && !ar.pactCompleted && (
               <div className="flex items-center gap-2 mt-1 text-xs" style={{ color: "rgba(239,68,68,0.6)" }}>
-                <span style={{ fontSize: 10 }}>⬥</span>
+                <span style={{ fontSize: 12 }}>⬥</span>
                 <span>Pact-Ziel: <span style={{ color: "#ef4444", fontWeight: 600 }}>{ar.commitmentDays}d</span></span>
                 <span>·</span>
                 <span style={{ color: days >= ar.commitmentDays ? "#22c55e" : "rgba(239,68,68,0.8)", fontWeight: 600 }}>
@@ -208,7 +208,7 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
             )}
             {ar.bloodPact && ar.pactCompleted && (
               <div className="flex items-center gap-1.5 mt-1 text-xs" style={{ color: "rgba(34,197,94,0.7)" }}>
-                <span style={{ fontSize: 10 }}>✦</span>
+                <span style={{ fontSize: 12 }}>✦</span>
                 <span style={{ fontWeight: 600 }}>Blood Pact fulfilled</span>
               </div>
             )}

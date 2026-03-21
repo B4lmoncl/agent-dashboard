@@ -355,9 +355,130 @@ const TOOLTIP_REGISTRY: Record<string, TooltipEntry> = {
     accent: "#d97706",
     body: (
       <>
-        <p>Rest mode for 1-7 days. Freezes <GTRef k="streak">Streak</GTRef> and <GTRef k="forge_temp">Forge Temp</GTRef>. No quest generation or hoarding penalty changes during rest.</p>
+        <p>Rest mode for 1-7 days. Freezes <GTRef k="streak">Streak</GTRef> and <GTRef k="forge_temp">Forge Temp</GTRef>. No quest generation or <GTRef k="hoarding">hoarding penalty</GTRef> changes during rest.</p>
         <div className="gt-stat-row"><span>Cooldown</span><span>30 days after rest ends</span></div>
         <p className="gt-source">Can leave early — frozen values are restored.</p>
+      </>
+    ),
+  },
+
+  // ── Section Headers ──
+  quest_board: {
+    title: "Quest Board",
+    icon: "📋",
+    accent: "#ef4444",
+    body: (
+      <>
+        <p>Your personal quest board. Claim quests, complete them for <GTRef k="xp">XP</GTRef> and <GTRef k="gold">Gold</GTRef>. Filter by type to find what interests you.</p>
+        <div className="gt-stat-row" style={{ color: "#9ca3af" }}><span>Common</span><span>10 XP</span></div>
+        <div className="gt-stat-row" style={{ color: "#22c55e" }}><span>Uncommon</span><span>18 XP</span></div>
+        <div className="gt-stat-row" style={{ color: "#3b82f6" }}><span>Rare</span><span>30 XP</span></div>
+        <div className="gt-stat-row" style={{ color: "#a855f7" }}><span>Epic</span><span>50 XP</span></div>
+        <div className="gt-stat-row" style={{ color: "#FFD700" }}><span>Legendary</span><span>80 XP</span></div>
+        <p className="gt-source"><GTRef k="forge_temp">Forge</GTRef>, Gear &amp; <GTRef k="bond_level">Companion</GTRef> bonuses multiply all XP.</p>
+      </>
+    ),
+  },
+  proving_grounds: {
+    title: "The Proving Grounds",
+    icon: "🏆",
+    accent: "#fbbf24",
+    body: (
+      <>
+        <p>Rankings based on <GTRef k="xp">XP</GTRef> earned. Compete with other players to claim glory on the leaderboard.</p>
+        <p className="gt-source">Level, achievements, and title are displayed alongside your rank.</p>
+      </>
+    ),
+  },
+  weekly_challenges: {
+    title: "Weekly Challenges",
+    icon: "⭐",
+    accent: "#fbbf24",
+    body: (
+      <>
+        <p>Two challenges that reset every Monday:</p>
+        <div className="gt-stat-row"><span>Star Path</span><span>Solo · 3 stages · up to 9★</span></div>
+        <div className="gt-stat-row"><span>Expedition</span><span>Co-op · shared checkpoints</span></div>
+        <p>Speed bonus: complete a stage within 2 days for +1★. <GTRef k="streak">Streak</GTRef> and <GTRef k="forge_temp">Forge</GTRef> bonuses apply.</p>
+        <p className="gt-source">Rewards: <GTRef k="gold">Gold</GTRef>, <GTRef k="runensplitter">Rune Shards</GTRef>, <GTRef k="essenz">Essenz</GTRef>, and the exclusive <GTRef k="sternentaler">Sternentaler</GTRef> currency.</p>
+      </>
+    ),
+  },
+  breakaway: {
+    title: "The Breakaway",
+    icon: "🤝",
+    accent: "#818cf8",
+    body: (
+      <>
+        <p>Social hub of the Trading District. Add friends, send messages, and propose trades.</p>
+        <p>Trades are negotiated back and forth — both players must agree before items and <GTRef k="gold">Gold</GTRef> are exchanged.</p>
+        <p className="gt-source">Activity feed shows quest completions, level-ups, achievements, and rare drops from friends.</p>
+      </>
+    ),
+  },
+  npc_quest_board: {
+    title: "NPC Quest Board",
+    icon: "🤖",
+    accent: "#8b5cf6",
+    body: (
+      <>
+        <p>Agent development quests. The AI NPCs (Nova, Hex, Echo, Pixel, Atlas, Lyra) work on these autonomously.</p>
+        <p className="gt-source">Admin can review and approve suggested quests.</p>
+      </>
+    ),
+  },
+  artisans_quarter: {
+    title: "Artisan&apos;s Quarter",
+    icon: "⚒️",
+    accent: "#f59e0b",
+    body: (
+      <>
+        <p>Crafting hub with 4 profession NPCs. Collect materials from quests, craft recipes with <GTRef k="gold">Gold</GTRef> + materials.</p>
+        <div className="gt-stat-row"><span>Ranks</span><span>Apprentice → Master</span></div>
+        <div className="gt-stat-row"><span>Profession Slots</span><span>Lv5 / Lv15 / Lv20 / Lv25</span></div>
+        <div className="gt-stat-row"><span>Daily Bonus</span><span>First craft = 2× prof. XP</span></div>
+        <p className="gt-source">Skill-up colors: orange / yellow / green / gray (WoW-style). Switching costs 200 <GTRef k="essenz">Essenz</GTRef>.</p>
+      </>
+    ),
+  },
+  vault_of_fate: {
+    title: "Vault of Fate",
+    icon: "★",
+    accent: "#a78bfa",
+    body: (
+      <>
+        <p>Draw items from the Aetherstream. The Wheel remembers every pull.</p>
+        <div className="gt-stat-row" style={{ color: "#f97316" }}><span>Legendary</span><span>0.8%</span></div>
+        <div className="gt-stat-row" style={{ color: "#a855f7" }}><span>Epic</span><span>13%</span></div>
+        <div className="gt-stat-row" style={{ color: "#3b82f6" }}><span>Rare</span><span>35%</span></div>
+        <div className="gt-stat-row" style={{ color: "#22c55e" }}><span>Uncommon</span><span>40%</span></div>
+        <div className="gt-stat-row" style={{ color: "#9ca3af" }}><span>Common</span><span>11.2%</span></div>
+        <p className="gt-source"><GTRef k="pity">Pity</GTRef>: Soft at 55, hard at 75. 10-pull = 10% discount + guaranteed Epic+. Duplicates → <GTRef k="runensplitter">Rune Shards</GTRef>.</p>
+      </>
+    ),
+  },
+  companions: {
+    title: "Companions",
+    icon: "🐾",
+    accent: "#ec4899",
+    body: (
+      <>
+        <p>Loyal companions that grow alongside you. Each has unique abilities and bond levels (1-10).</p>
+        <div className="gt-stat-row"><span>Bond Bonus</span><span>+1% <GTRef k="xp">XP</GTRef> per level</span></div>
+        <div className="gt-stat-row"><span>Ultimate (Bond 5)</span><span>7-day cooldown ability</span></div>
+        <p className="gt-source">Pet 2×/day for +0.5 Bond XP. Complete companion quests for +1 Bond XP (× <GTRef k="charisma">Charisma</GTRef>).</p>
+      </>
+    ),
+  },
+  login_calendar: {
+    title: "Login Calendar",
+    icon: "📅",
+    accent: "#22c55e",
+    body: (
+      <>
+        <p>Daily login rewards tracked on a monthly calendar. Each day grants scaling currency bonuses.</p>
+        <p><GTRef k="streak">Streak</GTRef> days are highlighted — maintain your streak for milestone rewards.</p>
+        <p className="gt-source">Rewards include <GTRef k="gold">Gold</GTRef>, <GTRef k="essenz">Essenz</GTRef>, and <GTRef k="runensplitter">Rune Shards</GTRef>.</p>
       </>
     ),
   },
@@ -391,18 +512,19 @@ interface GameTooltipProps {
 export function GameTooltip({ k, entry: directEntry, children, align = "left" }: GameTooltipProps) {
   const resolvedEntry = directEntry || (k ? TOOLTIP_REGISTRY[k] : null);
   const [visible, setVisible] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [pos, setPos] = useState({ top: 0, left: 0 });
   const triggerRef = useRef<HTMLSpanElement>(null);
   const tooltipRef = useRef<HTMLDivElement>(null);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const depth = useContext(TooltipDepthContext);
+  const isPinnable = depth === 0; // Root tooltips pin open; nested use hover
 
-  const show = useCallback(() => {
+  const computePos = useCallback(() => {
     if (!triggerRef.current) return;
     const rect = triggerRef.current.getBoundingClientRect();
-    const tooltipWidth = 320;
+    const tooltipWidth = 360;
 
-    // Calculate position — prefer below, flip if near bottom
     let top = rect.bottom + TOOLTIP_GAP;
     let left = align === "right"
       ? rect.right - tooltipWidth
@@ -410,46 +532,77 @@ export function GameTooltip({ k, entry: directEntry, children, align = "left" }:
         ? rect.left + rect.width / 2 - tooltipWidth / 2
         : rect.left;
 
-    // Clamp to viewport
     if (left < 8) left = 8;
     if (left + tooltipWidth > window.innerWidth - 8) left = window.innerWidth - tooltipWidth - 8;
     if (top + 200 > window.innerHeight) top = rect.top - TOOLTIP_GAP - 200;
 
-    // Offset for nested tooltips
     if (depth > 0) {
       left += NESTED_OFFSET * depth;
       top += NESTED_OFFSET * depth;
     }
 
     setPos({ top, left });
-    setVisible(true);
   }, [align, depth]);
 
   const hide = useCallback(() => {
-    if (timerRef.current) clearTimeout(timerRef.current);
-    timerRef.current = null;
+    if (timerRef.current) { clearTimeout(timerRef.current); timerRef.current = null; }
+    setLoading(false);
     setVisible(false);
   }, []);
 
   const handleMouseEnter = useCallback(() => {
-    timerRef.current = setTimeout(show, HOVER_DELAY);
-  }, [show]);
+    if (visible) return; // already pinned
+    setLoading(true);
+    timerRef.current = setTimeout(() => {
+      computePos();
+      setLoading(false);
+      setVisible(true);
+    }, HOVER_DELAY);
+  }, [visible, computePos]);
 
   const handleMouseLeave = useCallback(() => {
-    if (timerRef.current) { clearTimeout(timerRef.current); timerRef.current = null; }
-    // Small delay before hiding to allow moving to tooltip
+    // Cancel loading bar if still in delay phase
+    if (loading) {
+      if (timerRef.current) { clearTimeout(timerRef.current); timerRef.current = null; }
+      setLoading(false);
+      return;
+    }
+    // Pinned root tooltip — stays open until click-outside
+    if (isPinnable) return;
+    // Nested tooltip — grace period then close
     timerRef.current = setTimeout(hide, 150);
-  }, [hide]);
+  }, [loading, isPinnable, hide]);
 
   const handleTooltipEnter = useCallback(() => {
     if (timerRef.current) { clearTimeout(timerRef.current); timerRef.current = null; }
   }, []);
 
   const handleTooltipLeave = useCallback(() => {
+    if (isPinnable) return; // Pinned root — stays open
     timerRef.current = setTimeout(hide, 150);
-  }, [hide]);
+  }, [isPinnable, hide]);
 
-  // Cleanup timer on unmount
+  // Click-outside to close pinned root tooltips (CK3 behavior)
+  useEffect(() => {
+    if (!visible || !isPinnable) return;
+    const handleClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (triggerRef.current?.contains(target)) return;
+      if (tooltipRef.current?.contains(target)) return;
+      // Don't close if click lands inside a nested tooltip panel
+      if (target.closest?.(".gt-panel")) return;
+      hide();
+    };
+    const frame = requestAnimationFrame(() => {
+      document.addEventListener("mousedown", handleClick);
+    });
+    return () => {
+      cancelAnimationFrame(frame);
+      document.removeEventListener("mousedown", handleClick);
+    };
+  }, [visible, isPinnable, hide]);
+
+  // Cleanup on unmount
   useEffect(() => () => { if (timerRef.current) clearTimeout(timerRef.current); }, []);
 
   if (!resolvedEntry) return <>{children}</>;
@@ -470,11 +623,13 @@ export function GameTooltip({ k, entry: directEntry, children, align = "left" }:
             onMouseEnter={handleTooltipEnter}
             onMouseLeave={handleTooltipLeave}
           >
-            {/* Header */}
-            <div className="gt-header">
-              {resolvedEntry.icon && <span className="gt-icon">{resolvedEntry.icon}</span>}
-              <span className="gt-title" style={{ color: resolvedEntry.accent || "#f0f0f0" }}>{resolvedEntry.title}</span>
-            </div>
+            {/* Header (conditional) */}
+            {resolvedEntry.title && (
+              <div className="gt-header">
+                {resolvedEntry.icon && <span className="gt-icon">{resolvedEntry.icon}</span>}
+                <span className="gt-title" style={{ color: resolvedEntry.accent || "#f0f0f0" }}>{resolvedEntry.title}</span>
+              </div>
+            )}
             {/* Body */}
             <div className="gt-body">
               {resolvedEntry.body}
@@ -488,7 +643,7 @@ export function GameTooltip({ k, entry: directEntry, children, align = "left" }:
   return (
     <span
       ref={triggerRef}
-      className="gt-trigger"
+      className={`gt-trigger${loading ? " gt-loading" : ""}`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >

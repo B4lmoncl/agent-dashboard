@@ -93,7 +93,7 @@ export default function DashboardModals({
                       </div>
                       {currencyExpanded === c.key && (
                         <div className="rounded-b-xl px-4 py-3 -mt-1" style={{ background: `${c.color}08`, borderLeft: `1px solid ${c.color}30`, borderRight: `1px solid ${c.color}30`, borderBottom: `1px solid ${c.color}30` }}>
-                          <p className="text-[10px] font-bold uppercase tracking-wider mb-1" style={{ color: `${c.color}99` }}>How to earn {c.name}</p>
+                          <p className="text-xs font-bold uppercase tracking-wider mb-1" style={{ color: `${c.color}99` }}>How to earn {c.name}</p>
                           <p className="text-xs leading-relaxed text-w55">{CURRENCY_HOW[c.key]}</p>
                         </div>
                       )}
