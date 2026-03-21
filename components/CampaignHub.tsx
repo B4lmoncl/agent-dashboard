@@ -6,6 +6,7 @@ import { timeAgo } from "@/app/utils";
 import { priorityConfig } from "@/app/config";
 import { useModalBehavior } from "@/components/ModalPortal";
 import { getAuthHeaders } from "@/lib/auth-client";
+import { Tip } from "@/components/GameTooltip";
 
 // ─── Campaign Hub ──────────────────────────────────────────────────────────────
 const CAMPAIGN_ICONS = ["●","◆","★","◇","■","▲","◉","▣","✦","⬡","◈","▶","◎","△","□","⬢"];
@@ -199,7 +200,7 @@ export default function CampaignHub({ campaigns, quests, reviewApiKey, onRefresh
         <div className="flex items-center gap-3">
           <span style={{ fontSize: 28 }}>◆</span>
           <div>
-            <h2 className="text-lg font-bold" style={{ color: "#e9d5ff" }}>Campaign Hub</h2>
+            <Tip k="campaigns"><h2 className="text-lg font-bold" style={{ color: "#e9d5ff" }}>Campaign Hub</h2></Tip>
             <p className="text-xs" style={{ color: "rgba(167,139,250,0.5)" }}>Long-form quest chains and story arcs</p>
           </div>
         </div>
