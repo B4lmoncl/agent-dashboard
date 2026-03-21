@@ -718,7 +718,7 @@ export default function Dashboard() {
           /></Tip>
           </div>
           <div data-feedback-id="stats.quests">
-          <StatBar
+          <Tip k="active_quests"><StatBar
             label="Quests"
             value={loading ? "—" : playerName ? `${animActive}` : "—"}
             value2={playerName ? `✓ ${animCompleted}` : undefined}
@@ -727,10 +727,10 @@ export default function Dashboard() {
             accent="#ef4444"
             onClick={playerName ? () => setActiveQuestsInfoOpen(true) : undefined}
             inline
-          />
+          /></Tip>
           </div>
           <div data-feedback-id="stats.modifiers">
-          <StatBar
+          <Tip k="modifiers"><StatBar
             label="Modifier"
             value={loading ? "—" : playerName && loggedInUser?.modifiers ? `XP ×${loggedInUser.modifiers.xp.total}` : "—"}
             value2={playerName && loggedInUser?.modifiers ? `◆ Gold ×${loggedInUser.modifiers.gold.total}` : undefined}
@@ -739,7 +739,7 @@ export default function Dashboard() {
             accent="#a855f7"
             onClick={loggedInUser?.modifiers ? () => setModifierOpen(true) : undefined}
             inline
-          />
+          /></Tip>
           </div>
           <div data-feedback-id="stats.professions">
           {(() => {
@@ -747,14 +747,14 @@ export default function Dashboard() {
             const chosen = loggedInUser?.chosenProfessions ?? [];
             if (!playerName || !profs || chosen.length === 0) {
               return (
-                <StatBar
+                <Tip k="artisans_quarter"><StatBar
                   label="Artisan"
                   value={loading ? "—" : playerName ? "—" : "—"}
                   sub={playerName ? "no professions yet" : "login to view"}
                   accent="#f59e0b"
                   onClick={playerName ? () => setProfessionsInfoOpen(true) : undefined}
                   inline
-                />
+                /></Tip>
               );
             }
             const profSummary = chosen.map(pid => {
@@ -765,7 +765,7 @@ export default function Dashboard() {
             const mainValue = profSummary.map(p => `Lv.${p.level}`).join(" · ");
             const totalMats = Object.values(loggedInUser?.craftingMaterials ?? {}).reduce((a, b) => a + b, 0);
             return (
-              <StatBar
+              <Tip k="artisans_quarter"><StatBar
                 label="Artisan"
                 value={loading ? "—" : mainValue}
                 sub={`${totalMats} materials`}
@@ -773,7 +773,7 @@ export default function Dashboard() {
                 accent="#f59e0b"
                 onClick={() => setProfessionsInfoOpen(true)}
                 inline
-              />
+              /></Tip>
             );
           })()}
           </div>
@@ -896,8 +896,8 @@ export default function Dashboard() {
                 </div>
 
                 {/* Forge Temperature */}
-                <div data-feedback-id="player-card.forge-tooltip" className="relative group">
-                  <div className="flex items-center gap-1.5 cursor-help">
+                <div data-feedback-id="player-card.forge-tooltip" className="relative">
+                  <div className="flex items-center gap-1.5">
                     <img src="/images/icons/ach-forge-novice.png" alt="forge" width={35} height={35} className="img-render-auto" onError={e => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} />
                     <Tip k="forge_temp">
                       <span className="text-xs font-medium" style={{ color: forgeTempColor }}>
@@ -912,36 +912,6 @@ export default function Dashboard() {
                       className="h-full rounded-full transition-all duration-700"
                       style={{ width: `${forgeTemp}%`, background: `linear-gradient(90deg, ${forgeTempColor}80, ${forgeTempColor})`, boxShadow: forgeTemp > 60 ? `0 0 6px ${forgeTempColor}80` : "none" }}
                     />
-                  </div>
-                  {/* Tooltip */}
-                  <div
-                    className="absolute right-0 top-full mt-1 rounded-xl p-3 text-xs leading-relaxed pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity bg-surface border-w12"
-                    style={{ minWidth: 380, boxShadow: "0 8px 32px rgba(0,0,0,0.6)", zIndex: 100 }}
-                  >
-                    <p className="font-semibold mb-1 text-bright" style={{ fontSize: 14 }}>The Deepforge</p>
-                    <p className="mb-2" style={{ color: "rgba(255,255,255,0.55)", fontSize: 13 }}>
-                      Your activity level. Rises with each quest, drops when you pause.
-                    </p>
-                    <p className="mb-1.5 font-semibold text-w60" style={{ fontSize: 12 }}>Benefits</p>
-                    <div className="space-y-1.5 mb-3">
-                      {[
-                        { t: "0%", label: "Cold", bonus: "XP ×0.5 (Malus!)", color: "#4b5563" },
-                        { t: "20%", label: "Smoldering", bonus: "XP ×0.8", color: "#78716c" },
-                        { t: "40%", label: "Warming", bonus: "XP ×1.0", color: "#b45309" },
-                        { t: "60%", label: "Burning", bonus: "XP ×1.15 · Gold ×1.15", color: "#ea580c" },
-                        { t: "80%", label: "Blazing", bonus: "XP ×1.25 · Gold ×1.3", color: "#f97316" },
-                        { t: "100%", label: "White-hot!", bonus: "XP ×1.5 · Gold ×1.5", color: "#e0f0ff" },
-                      ].map(row => (
-                        <div key={row.t} className="flex items-center gap-2">
-                          <span className="font-mono font-bold" style={{ color: row.color, minWidth: 38, fontSize: 13 }}>{row.t}</span>
-                          <span style={{ color: row.color, minWidth: 80, fontSize: 13 }}>{row.label}</span>
-                          <span className="font-mono" style={{ color: row.color, fontSize: 12 }}>{row.bonus}</span>
-                        </div>
-                      ))}
-                    </div>
-                    <p className="mb-1" style={{ color: "rgba(255,255,255,0.55)", fontSize: 12 }}>
-                      +10% per completed quest. Decays ~2% per hour of inactivity.
-                    </p>
                   </div>
                 </div>
               </div>
@@ -1633,7 +1603,7 @@ export default function Dashboard() {
         {dashView === "klassenquests" && (
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <h2 className="text-xs font-semibold uppercase tracking-widest" style={{ color: "#60a5fa" }}>The Arcanum</h2>
+              <Tip k="classes"><h2 className="text-xs font-semibold uppercase tracking-widest" style={{ color: "#60a5fa" }}>The Arcanum</h2></Tip>
             </div>
             <div className="rounded-xl px-6 py-16 text-center border-w6" style={{ background: "rgba(255,255,255,0.02)" }}>
               <p className="text-lg font-bold mb-2 text-w25">Coming Soon</p>

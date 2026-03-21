@@ -412,7 +412,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
       <div className="flex items-center gap-4 flex-wrap">
         <Tip k="artisans_quarter"><span className="text-base font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.4)" }}>{"Artisan's Quarter"}</span></Tip>
         <div className="flex items-center gap-4 ml-auto text-sm">
-          <span className="font-mono font-medium" style={{ color: "rgba(255,255,255,0.35)" }}>{chosenCount}/{maxProfSlots} Professions</span>
+          <Tip k="professions"><span className="font-mono font-medium" style={{ color: "rgba(255,255,255,0.35)" }}>{chosenCount}/{maxProfSlots} Professions</span></Tip>
           {dailyBonusAvailable && (
             <TipCustom title="Daily Bonus" icon="⚡" accent="#facc15" body={<p>Your first craft today gives <strong>2x profession XP</strong>. Resets daily at midnight.</p>}>
               <span className="px-2 py-1 rounded font-bold text-xs cursor-help" style={{ background: "rgba(250,204,21,0.12)", color: "#facc15", border: "1px solid rgba(250,204,21,0.25)" }}>
@@ -420,14 +420,14 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
               </span>
             </TipCustom>
           )}
-          <span className="flex items-center gap-1.5" style={{ color: "#f59e0b" }}>
+          <Tip k="gold"><span className="flex items-center gap-1.5" style={{ color: "#f59e0b" }}>
             <img src="/images/icons/currency-gold.png" alt="" width={24} height={24} style={{ imageRendering: "auto" }} onError={hideOnError} />
             <span className="font-mono font-bold">{currencies.gold ?? loggedInUser.currencies?.gold ?? loggedInUser.gold ?? 0}</span>
-          </span>
-          <span className="flex items-center gap-1.5" style={{ color: "#ff8c00" }}>
+          </span></Tip>
+          <Tip k="essenz"><span className="flex items-center gap-1.5" style={{ color: "#ff8c00" }}>
             <img src="/images/icons/currency-essenz.png" alt="" width={24} height={24} style={{ imageRendering: "auto" }} onError={hideOnError} />
             <span className="font-mono font-bold">{currencies.essenz ?? loggedInUser.currencies?.essenz ?? 0}</span>
-          </span>
+          </span></Tip>
           {onNavigate && (
             <button onClick={() => onNavigate("character")} className="cross-nav-link text-sm px-3 py-1 rounded" style={{ color: "rgba(255,255,255,0.3)", border: "1px solid rgba(255,255,255,0.1)" }}>
               Character &rarr;

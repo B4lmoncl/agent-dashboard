@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { useDashboard } from "@/app/DashboardContext";
 import { getAuthHeaders } from "@/lib/auth-client";
-import { Tip } from "@/components/GameTooltip";
+import { Tip, TipCustom } from "@/components/GameTooltip";
 import PlayerProfileModal from "@/components/PlayerProfileModal";
 import type {
   FriendInfo, FriendRequest, Conversation, SocialMessage,
@@ -1105,19 +1105,23 @@ export default function SocialView() {
 
       {/* Tab navigation */}
       <div className="inline-flex rounded-lg p-0.5" style={{ background: "#111" }}>
-        {(["friends", "messages", "trades", "activity"] as SocialTab[]).map(tab => (
-          <button
-            key={tab}
-            onClick={() => setActiveTab(tab)}
-            className="btn-interactive text-xs font-semibold px-4 py-2 rounded-md transition-all capitalize"
-            style={{
-              background: activeTab === tab ? "#252525" : "transparent",
-              color: activeTab === tab ? "#a855f7" : "rgba(255,255,255,0.3)",
-            }}
-          >
-            {tab === "activity" ? "Feed" : tab}
-          </button>
-        ))}
+        {(["friends", "messages", "trades", "activity"] as SocialTab[]).map(tab => {
+          const tipKey = tab === "trades" ? "trading" : tab === "activity" ? "activity_feed" : tab;
+          return (
+            <Tip key={tab} k={tipKey}>
+              <button
+                onClick={() => setActiveTab(tab)}
+                className="btn-interactive text-xs font-semibold px-4 py-2 rounded-md transition-all capitalize"
+                style={{
+                  background: activeTab === tab ? "#252525" : "transparent",
+                  color: activeTab === tab ? "#a855f7" : "rgba(255,255,255,0.3)",
+                }}
+              >
+                {tab === "activity" ? "Feed" : tab}
+              </button>
+            </Tip>
+          );
+        })}
       </div>
 
       {/* Tab content */}

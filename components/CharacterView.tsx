@@ -1438,10 +1438,10 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                 {/* Level bar */}
                 <div className="mb-3">
                   <div className="flex items-center justify-between mb-1">
-                    <span className="text-xs font-bold" style={{ color: "#a78bfa" }}>Lv.{charData.level}</span>
-                    <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.3)" }}>
+                    <Tip k="player_level"><span className="text-xs font-bold" style={{ color: "#a78bfa" }}>Lv.{charData.level}</span></Tip>
+                    <Tip k="xp"><span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.3)" }}>
                       {charData.xpInLevel ?? charData.xp}{charData.xpForLevel ? ` / ${charData.xpForLevel}` : ""} XP
-                    </span>
+                    </span></Tip>
                   </div>
                   <div className="rounded-full overflow-hidden" style={{ height: 5, background: "rgba(255,255,255,0.07)" }}>
                     <div
@@ -1454,20 +1454,22 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
 
                 {/* Class */}
                 {cls && (
-                  <div className="mb-3 px-2 py-1.5 rounded-lg" style={{ background: "rgba(167,139,250,0.06)", border: "1px solid rgba(167,139,250,0.15)" }}>
-                    <div className="flex items-center gap-2">
-                      <span className="text-base">{cls.icon}</span>
-                      <div>
-                        <p className="text-xs font-semibold" style={{ color: "#c4b5fd" }}>{cls.fantasy}</p>
-                        {charData.classTier && <p className="text-xs" style={{ color: "rgba(167,139,250,0.5)" }}>{charData.classTier}</p>}
+                  <Tip k="classes">
+                    <div className="mb-3 px-2 py-1.5 rounded-lg" style={{ background: "rgba(167,139,250,0.06)", border: "1px solid rgba(167,139,250,0.15)" }}>
+                      <div className="flex items-center gap-2">
+                        <span className="text-base">{cls.icon}</span>
+                        <div>
+                          <p className="text-xs font-semibold" style={{ color: "#c4b5fd" }}>{cls.fantasy}</p>
+                          {charData.classTier && <p className="text-xs" style={{ color: "rgba(167,139,250,0.5)" }}>{charData.classTier}</p>}
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  </Tip>
                 )}
 
                 {/* Title */}
                 <div className="mb-3">
-                  <button
+                  <Tip k="titles"><button
                     className="w-full flex items-center justify-between px-2 py-1.5 rounded-lg text-left"
                     style={{ background: "rgba(251,191,36,0.06)", border: "1px solid rgba(251,191,36,0.15)" }}
                     onClick={async () => {
@@ -1493,7 +1495,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                       </span>
                     </div>
                     <span className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>{titlesOpen ? "▲" : "▼"}</span>
-                  </button>
+                  </button></Tip>
                   {titlesOpen && (
                     <div className="mt-1.5 space-y-1 max-h-40 overflow-y-auto" style={{ overscrollBehavior: "contain" }}>
                       {/* Unequip option */}
@@ -1540,6 +1542,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                 </div>
 
                 {/* Forge Temp */}
+                <Tip k="forge_temp">
                 <div>
                   <div className="flex items-center justify-between mb-1">
                     <span className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>Forge Temp</span>
@@ -1571,6 +1574,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                     />
                   </div>
                 </div>
+                </Tip>
               </>
             );
           })()}
@@ -1658,7 +1662,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
           : 1;
         const xpToNext = nextBond ? nextBond.minXp - bondXp : 0;
         return (
-          <div className="flex items-center gap-2 shrink-0">
+          <Tip k="bond_level"><div className="flex items-center gap-2 shrink-0">
             {comp.type && ["dragon","owl","phoenix","wolf","fox","bear"].includes(comp.type)
               ? <img src={`/images/portraits/companion-${comp.type}.png`} alt={comp.name} width={32} height={32} style={{ imageRendering: "auto", borderRadius: 4, objectFit: "cover" }} />
               : comp.type === "cat" && comp.name?.toLowerCase() === "dobbie"
@@ -1675,7 +1679,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                 <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)", marginTop: 1 }}>{xpToNext} XP → {nextBond.title}</p>
               )}
             </div>
-          </div>
+          </div></Tip>
         );
       })()}
     </div>

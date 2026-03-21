@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { useDashboard } from "@/app/DashboardContext";
 import { getAuthHeaders } from "@/lib/auth-client";
-import { Tip } from "@/components/GameTooltip";
+import { Tip, TipCustom } from "@/components/GameTooltip";
 
 // ─── Types ──────────────────────────────────────────────────────────────────
 
@@ -165,14 +165,18 @@ export default function TavernView({ onRefresh }: { onRefresh?: () => void }) {
           )}
 
           <div className="grid grid-cols-2 gap-3">
-            <div className="rounded-lg p-3 text-center" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
-              <p className="text-xs text-w30">Streak Frozen</p>
-              <p className="text-lg font-mono font-bold" style={{ color: "#f59e0b" }}>🔥 {status.streakFrozenAt}</p>
-            </div>
-            <div className="rounded-lg p-3 text-center" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
-              <p className="text-xs text-w30">Forge Frozen</p>
-              <p className="text-lg font-mono font-bold" style={{ color: "#f97316" }}>⚒ {status.forgeFrozenAt}%</p>
-            </div>
+            <Tip k="streak">
+              <div className="rounded-lg p-3 text-center" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
+                <p className="text-xs text-w30">Streak Frozen</p>
+                <p className="text-lg font-mono font-bold" style={{ color: "#f59e0b" }}>🔥 {status.streakFrozenAt}</p>
+              </div>
+            </Tip>
+            <Tip k="forge_temp">
+              <div className="rounded-lg p-3 text-center" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
+                <p className="text-xs text-w30">Forge Frozen</p>
+                <p className="text-lg font-mono font-bold" style={{ color: "#f97316" }}>⚒ {status.forgeFrozenAt}%</p>
+              </div>
+            </Tip>
           </div>
 
           <button
@@ -227,7 +231,7 @@ export default function TavernView({ onRefresh }: { onRefresh?: () => void }) {
 
           {/* What happens */}
           <div className="rounded-lg p-3 space-y-1" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)" }}>
-            <p className="text-xs font-semibold text-w40">While resting:</p>
+            <Tip k="rest_freeze"><p className="text-xs font-semibold text-w40">While resting:</p></Tip>
             <ul className="text-xs text-w30 space-y-0.5">
               <li>✓ Streaks are frozen (no decay)</li>
               <li>✓ Forge temperature frozen (no decay)</li>

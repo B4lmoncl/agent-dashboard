@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { useDashboard } from "@/app/DashboardContext";
 import { getAuthHeaders } from "@/lib/auth-client";
-import { Tip } from "@/components/GameTooltip";
+import { Tip, TipCustom } from "@/components/GameTooltip";
 
 // ─── Types ──────────────────────────────────────────────────────────────────
 
@@ -237,9 +237,9 @@ export default function RiftView({ onRefresh }: { onRefresh?: () => void }) {
                         </div>
                       </div>
                       <div className="text-right text-xs">
-                        <span style={{ color: "#a855f7" }}>{q.xpReward} XP</span>
+                        <Tip k="xp"><span style={{ color: "#a855f7" }}>{q.xpReward} XP</span></Tip>
                         <span className="text-w15 mx-1">·</span>
-                        <span style={{ color: "#fbbf24" }}>{q.goldReward}g</span>
+                        <Tip k="gold"><span style={{ color: "#fbbf24" }}>{q.goldReward}g</span></Tip>
                       </div>
                     </div>
                   </div>
@@ -315,19 +315,29 @@ export default function RiftView({ onRefresh }: { onRefresh?: () => void }) {
                   {locked && <p className="text-xs text-w20">Requires Lv.{tier.minLevel}</p>}
                 </div>
                 <div className="space-y-1 text-xs text-w35">
-                  <div className="flex justify-between"><span>Stages</span><span className="font-mono text-w50">{tier.questCount}</span></div>
-                  <div className="flex justify-between"><span>Time Limit</span><span className="font-mono text-w50">{tier.timeLimitHours}h</span></div>
-                  <div className="flex justify-between"><span>Fail Cooldown</span><span className="font-mono text-w50">{tier.failCooldownDays}d</span></div>
+                  <TipCustom title="Rift Stages" icon="⚔️" accent={tier.color} body={<p>Complete {tier.questCount} quests sequentially with escalating difficulty (1× to {tier.questCount > 5 ? "3.5" : tier.questCount > 3 ? "2.5" : "1.5"}×). Each stage grants full XP, Gold, and loot rewards.</p>}>
+                    <div className="flex justify-between"><span>Stages</span><span className="font-mono text-w50">{tier.questCount}</span></div>
+                  </TipCustom>
+                  <TipCustom title="Time Limit" icon="⏱️" accent={tier.color} body={<p>You have {tier.timeLimitHours} hours to complete all {tier.questCount} stages. If time runs out, the run fails and a cooldown is triggered.</p>}>
+                    <div className="flex justify-between"><span>Time Limit</span><span className="font-mono text-w50">{tier.timeLimitHours}h</span></div>
+                  </TipCustom>
+                  <Tip k="rift_cooldown">
+                    <div className="flex justify-between"><span>Fail Cooldown</span><span className="font-mono text-w50">{tier.failCooldownDays}d</span></div>
+                  </Tip>
                 </div>
                 {tier.completionBonus && (
                   <div className="rounded-lg p-2" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.04)" }}>
                     <p className="text-xs text-w25 mb-1">Completion Bonus:</p>
                     <div className="flex flex-wrap gap-1">
-                      {Object.entries(tier.completionBonus).map(([k, v]) => (
-                        <span key={k} className="text-xs px-1.5 py-0.5 rounded" style={{ background: "rgba(255,255,255,0.04)", color: k === "gold" ? "#fbbf24" : k === "essenz" ? "#ef4444" : k === "sternentaler" ? "#fbbf24" : "#818cf8" }}>
-                          {v} {k}
-                        </span>
-                      ))}
+                      {Object.entries(tier.completionBonus).map(([k, v]) => {
+                        const tipKey = k === "gold" ? "gold" : k === "essenz" ? "essenz" : k === "sternentaler" ? "sternentaler" : k === "runensplitter" ? "runensplitter" : "";
+                        const badge = (
+                          <span className="text-xs px-1.5 py-0.5 rounded" style={{ background: "rgba(255,255,255,0.04)", color: k === "gold" ? "#fbbf24" : k === "essenz" ? "#ef4444" : k === "sternentaler" ? "#fbbf24" : "#818cf8" }}>
+                            {v} {k}
+                          </span>
+                        );
+                        return tipKey ? <Tip key={k} k={tipKey}>{badge}</Tip> : <span key={k}>{badge}</span>;
+                      })}
                     </div>
                   </div>
                 )}
