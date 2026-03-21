@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-**Quest Hall / Agent Dashboard** (v1.4.0) — A real-time operations center and gamified quest management system for AI agents and players. Combines agent monitoring, RPG quest mechanics (classes, companions, gacha, leveling), a REST API, and an Electron desktop companion app (Quest Forge).
+**Quest Hall / Agent Dashboard** (v1.5.3) — A real-time operations center and gamified quest management system for AI agents and players. Combines agent monitoring, RPG quest mechanics (classes, companions, gacha, leveling), a REST API, and an Electron desktop companion app (Quest Forge).
 
 ## Tech Stack
 
@@ -52,7 +52,7 @@ app/                  # Next.js app directory
   globals.css         # Tailwind + CSS utilities + animations (~720 lines)
   layout.tsx          # Root layout wrapper
   DashboardContext.tsx # React context for shared state
-components/           # React UI components (39 files, ~13k lines)
+components/           # React UI components (45 files, ~15k lines)
   DashboardHeader.tsx # Top navigation bar
   DashboardModals.tsx # Modal system (currencies, modifiers, info)
   CharacterView.tsx   # Character screen + equipment (lazy-loaded)
@@ -68,6 +68,10 @@ components/           # React UI components (39 files, ~13k lines)
   UserCard.tsx        # Player card with frame, title, stats
   LeaderboardView.tsx # Proving Grounds leaderboard
   ChallengesView.tsx  # Weekly challenges (Sternenpfad + Expedition) (lazy-loaded)
+  SocialView.tsx      # Social hub: friends, messages, trades, activity feed
+  PlayerProfileModal.tsx # Steam/Diablo-style player profile modal
+  TavernView.tsx      # The Hearth: rest mode with streak/forge freeze
+  RiftView.tsx        # The Rift: timed dungeon quest chains
   ...                 # 26 more components
 hooks/                # React custom hooks
   useQuestActions.ts  # Quest action handlers (claim, complete, approve, etc.)
@@ -80,7 +84,7 @@ lib/                  # Backend business logic (8 files, ~3800 lines)
   rotation.js         # Daily quest rotation logic
   middleware.js       # Express middleware (auth, master key)
   quest-templates.js  # Quest template interpolation
-routes/               # Express API routes (17 files, ~6200 lines)
+routes/               # Express API routes (19 files, ~8000 lines)
   quests.js           # Quest CRUD, claim, complete (~780 lines)
   habits-inventory.js # Rituals, gear, inventory, effects (~830 lines)
   config-admin.js     # Game config, leaderboard, /api/dashboard batch (~430 lines)
@@ -88,16 +92,18 @@ routes/               # Express API routes (17 files, ~6200 lines)
   agents.js           # Agent CRUD & status
   gacha.js            # Banner pulls with pull lock, pity tracking
   game.js             # Classes, roadmap, rituals
-  shop.js             # Shop items, forge challenges
-  players.js          # Player profiles
+  shop.js             # Shop items, forge challenges, workshop upgrades
+  players.js          # Player profiles, companion, tavern/rest mode
   users.js            # User management, JWT auth, rate-limited login
   campaigns.js        # Campaign quest chains
-  currency.js         # Multi-currency system
+  currency.js         # Multi-currency system, daily bonus
   integrations.js     # GitHub webhook (HMAC verified), catalog API
   crafting.js         # Crafting professions (Schmied, Alchemist, Verzauberer, Koch) + Schmiedekunst
   challenges-weekly.js # Sternenpfad: 3-stage solo weekly challenges with star ratings
   expedition.js       # Expedition: cooperative weekly challenge with shared checkpoints
   npcs-misc.js        # NPC endpoints, feedback (admin-only), SPA fallback
+  social.js           # Friends, messages, trading, activity feed
+  rift.js             # The Rift: timed dungeon quest chains (3 difficulty tiers)
 public/
   data/               # Game template data (36 JSON files)
   images/             # Pixel art assets (~250 files)
@@ -152,7 +158,7 @@ Template: `.env.example`
 
 ## Key Game Systems
 
-Quest system (pool of ~10 open + ~25 max in-progress per player), XP/leveling (30 levels), gear/inventory with Diablo-3-style affix rolling (primary + minor stats with ranges), set bonuses and legendary effects (15 types including gameplay-changers: night gold, every-5th bonus, auto streak shield, material double, variety bonus), companions with bond levels + ultimates at Bond 5, gacha banners with pity (soft 55, hard 75), daily rituals/streaks, campaign quest chains, multi-currency economy (gold, stardust, essenz, runensplitter, sternentaler), title system (earn and equip titles displayed in player card and leaderboard), **achievement points** (common=5, uncommon=10, rare=25, epic=50, legendary=100 pts; cosmetic frame unlocks at milestones), **Artisan's Quarter** (crafting hub with 4 profession NPCs: Blacksmith/Grimvar for gear rerolling+reinforcing, Alchemist/Ysolde for buff potions+flasks, Enchanter/Eldric for gear enchanting+infusions, Cook/Bruna for meals+consumables; 2-profession limit per player; 10 levels per profession with WoW-style ranks Novice→Apprentice→Journeyman→Expert→Artisan→Master; recipe-specific XP scaling 8-50 XP; daily bonus 2x XP on first craft; recipe discovery unlocks at higher ranks; batch crafting x1-x10 for buff recipes; per-recipe cooldowns; 13 materials common→legendary from quest drops; WoW-style skill-up colors orange/yellow/green/gray; synergy hints for profession pairings), **Schmiedekunst** (dismantle items → essenz + materials with D3-style Salvage All per rarity, transmute 3 same-slot epics + 500g → 1 legendary; slot-locked selection UI), **Workshop Tools** (4-tier permanent XP upgrades: Sturdy→Masterwork→Legendary→Mythic, 2-10% XP bonus), **Sternenpfad** (solo weekly challenge: 3 stages with star ratings 1-3 per stage, max 9 stars; weekly modifiers +50%/-25% per quest type; speed bonus +1★ if stage completed within 2 days; star-scaled rewards +15% at 2★, +33% at 3★; exclusive sternentaler currency), **Expedition** (cooperative weekly challenge: guild-wide shared progress toward 3+bonus checkpoints; scales with registered player count; no per-player cap so active players compensate for inactive ones; bonus checkpoint awards rotating titles), **Bazaar shop** (two categories: self-care rewards like gaming/movie/spa + gameplay boosts with temporary buff effects like XP scrolls, luck coins, streak shields — buffs applied server-side on purchase via `applyShopEffect()`), **Social System "The Breakaway"** (friends with 3-tier online status online/idle/offline via `lastActiveAt` tracking, direct messaging with auto-read receipts and double-checkmark indicators, item+gold trading with negotiation rounds and D3-style rarity-colored item display with stat tooltips, WoW Guild News-style activity feed showing quest completions, level-ups, achievements, epic+ gacha pulls, rare drops and trades from friends with compact/detailed view toggle; friends displayed as card grid instead of list; activity log capped at 500 events; **Player Search** with debounced autocomplete for finding and adding friends; **Player Profiles** Steam/Diablo-style modal showing equipment, achievements, professions, companion, online status — accessible from leaderboard, friends list, and search results), **Daily Missions** (HSR-style daily checklist with 6 missions: login, quests, rituals, companion, crafting; 4 milestone reward tiers at 100/300/500/750 points with currency rewards), **Workshop Upgrades** (4 permanent bonus items in Artisan's Quarter: Gold-Forged Tools +2-5% gold, Loot Chance Amulet +1-3% drop, Streak Shield Charm auto-save 1x/week, Material Magnet +5-15% material chance; all additive bonuses with tiered progression), **The Hearth** (tavern/rest mode: freeze streaks + forge temp for 1-7 days; optional reason; auto-expire; 30-day cooldown; rest history; new 6th floor inspired by Urithiru gathering halls), **The Rift** (dungeon system: timed quest chains with 3 tiers — Normal 3 quests/72h, Hard 5/48h, Legendary 7/36h; escalating difficulty 1x→3.5x; fail cooldown 3/5/7 days; completion bonuses; new room in Great Halls).
+Quest system (pool of ~10 open + ~25 max in-progress per player), XP/leveling (30 levels), gear/inventory with Diablo-3-style affix rolling (primary + minor stats with ranges), set bonuses and legendary effects (15 types including gameplay-changers: night gold, every-5th bonus, auto streak shield, material double, variety bonus), companions with bond levels + ultimates at Bond 5, gacha banners with pity (soft 55, hard 75), daily rituals/streaks, campaign quest chains, multi-currency economy (gold, stardust, essenz, runensplitter, sternentaler), title system (earn and equip titles displayed in player card and leaderboard), **achievement points** (common=5, uncommon=10, rare=25, epic=50, legendary=100 pts; cosmetic frame unlocks at milestones), **Artisan's Quarter** (crafting hub with 4 profession NPCs: Blacksmith/Grimvar for gear rerolling+reinforcing, Alchemist/Ysolde for buff potions+flasks, Enchanter/Eldric for gear enchanting+infusions, Cook/Bruna for meals+consumables; 2-profession limit per player; 10 levels per profession with WoW-style ranks Novice→Apprentice→Journeyman→Expert→Artisan→Master; recipe-specific XP scaling 8-50 XP; daily bonus 2x XP on first craft; recipe discovery unlocks at higher ranks; batch crafting x1-x10 for buff recipes; per-recipe cooldowns; 13 materials common→legendary from quest drops; WoW-style skill-up colors orange/yellow/green/gray; synergy hints for profession pairings), **Schmiedekunst** (dismantle items → essenz + materials with D3-style Salvage All per rarity, transmute 3 same-slot epics + 500g → 1 legendary; slot-locked selection UI), **Workshop Tools** (4-tier permanent XP upgrades: Sturdy→Masterwork→Legendary→Mythic, 2-10% XP bonus), **Sternenpfad** (solo weekly challenge: 3 stages with star ratings 1-3 per stage, max 9 stars; weekly modifiers +50%/-25% per quest type; speed bonus +1★ if stage completed within 2 days; star-scaled rewards +15% at 2★, +33% at 3★; exclusive sternentaler currency), **Expedition** (cooperative weekly challenge: guild-wide shared progress toward 3+bonus checkpoints; scales with registered player count; no per-player cap so active players compensate for inactive ones; bonus checkpoint awards rotating titles), **Bazaar shop** (two categories: self-care rewards like gaming/movie/spa + gameplay boosts with temporary buff effects like XP scrolls, luck coins, streak shields — buffs applied server-side on purchase via `applyShopEffect()`), **Social System "The Breakaway"** (friends with 3-tier online status online/idle/offline via `lastActiveAt` tracking, direct messaging with auto-read receipts and double-checkmark indicators, item+gold trading with negotiation rounds and D3-style rarity-colored item display with stat tooltips, WoW Guild News-style activity feed showing quest completions, level-ups, achievements, epic+ gacha pulls, rare drops and trades from friends with compact/detailed view toggle; friends displayed as card grid instead of list; activity log capped at 500 events; **Player Search** with debounced autocomplete for finding and adding friends; **Player Profiles** Steam/Diablo-style modal showing equipment, achievements, professions, companion, online status — accessible from leaderboard, friends list, and search results), **Daily Missions** (HSR-style daily checklist with 6 missions: login, quests, rituals, companion, crafting; 4 milestone reward tiers at 100/300/500/750 points with currency rewards), **Workshop Upgrades** (4 permanent bonus items in Artisan's Quarter: Gold-Forged Tools +2-5% gold, Loot Chance Amulet +1-3% drop, Streak Shield Charm auto-save 1x/week, Material Magnet +5-15% material chance; all additive bonuses with tiered progression), **The Hearth** (tavern/rest mode: freeze streaks + forge temp for 1-7 days; optional reason; auto-expire; 30-day cooldown; rest history; room within The Breakaway floor, inspired by Urithiru gathering halls), **The Rift** (dungeon system: timed quest chains with 3 tiers — Normal 3 quests/72h, Hard 5/48h, Legendary 7/36h; escalating difficulty 1x→3.5x; fail cooldown 3/5/7 days; completion bonuses; new room in Great Halls).
 
 ## Important Files
 
@@ -186,6 +192,11 @@ Quest system (pool of ~10 open + ~25 max in-progress per player), XP/leveling (3
 | `routes/social.js` | Social system: friends, messages, trades, activity feed |
 | `components/SocialView.tsx` | Social UI: card grid friends, messages, trades, activity feed |
 | `components/PlayerProfileModal.tsx` | Steam/Diablo-style player profile modal |
+| `routes/rift.js` | The Rift: timed dungeon quest chains (3 tiers) |
+| `components/RiftView.tsx` | Rift UI: tier selection, stage tracking, rewards |
+| `routes/players.js` | Player profiles, companion, tavern/rest mode |
+| `components/TavernView.tsx` | The Hearth: rest mode with streak/forge freeze |
+| `app/config.ts` | UI config: floor/room navigation, type/priority colors |
 
 ## Documentation
 

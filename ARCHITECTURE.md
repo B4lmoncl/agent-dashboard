@@ -18,7 +18,7 @@ Browser → Express (port 3001) → lib/state.js (in-memory) → /data/*.json (d
 | `lib/` | Backend business logic (state, helpers, engines) | JS (CommonJS) |
 | `routes/` | Express route handlers (20 files) | JS (CommonJS) |
 | `app/` | Next.js app directory (page, types, utils, context) | TypeScript |
-| `components/` | React UI components (46 files) | TypeScript |
+| `components/` | React UI components (45 files) | TypeScript |
 | `public/data/` | Read-only game templates (JSON) | JSON |
 | `data/` | Runtime persistent data (Docker volume) | JSON |
 | `server.js` | Express entry point, boot sequence | JS |
@@ -345,6 +345,30 @@ Player-to-player social features accessible via the "Social" tab in the Trading 
 - Auto-refresh every 30s in frontend
 - **Endpoint**: `GET /api/social/:playerId/activity-feed?limit=30`
 - **State**: `socialData.activityLog` array in `data/social.json`
+
+### The Rift (Dungeon System)
+
+Timed quest chains with escalating difficulty, accessible from "The Great Halls" floor.
+
+- **3 Tiers**: Normal (3 quests/72h), Hard (5/48h), Legendary (7/36h)
+- **Difficulty scaling**: 1x → 1.5x → 2x → 2.5x → 3x → 3.25x → 3.5x per stage
+- **Fail cooldown**: 3/5/7 days per tier (cleared on success)
+- **Min level gates**: Normal=1, Hard=5, Legendary=10
+- **Endpoints**: `GET /api/rift`, `POST /api/rift/enter`, `POST /api/rift/complete-stage`, `POST /api/rift/abandon`
+- **State**: Per-user `riftState` in users data (activeRift, cooldowns, history)
+- **Files**: `routes/rift.js`, `components/RiftView.tsx`
+
+### The Hearth (Tavern/Rest Mode)
+
+Rest area within "The Breakaway" floor, inspired by Urithiru's gathering halls.
+
+- **Rest mode**: Freeze streaks + forge temp for 1-7 days
+- **Auto-expire**: Ends after selected duration
+- **30-day cooldown** between rest periods
+- **Leave early**: Restores frozen values
+- **History**: Last 5 rest entries tracked
+- **Endpoints**: `GET /api/tavern/status`, `POST /api/tavern/enter`, `POST /api/tavern/leave`
+- **Files**: `routes/players.js`, `components/TavernView.tsx`
 
 ## Security measures
 

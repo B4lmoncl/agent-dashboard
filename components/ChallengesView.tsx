@@ -86,13 +86,18 @@ function SternenpfadView({
   challenge,
   onClaim,
   claiming,
+  onClaimMilestone,
+  claimingMilestone,
 }: {
   challenge: WeeklyChallenge;
   onClaim: () => void;
   claiming: boolean;
+  onClaimMilestone: (stars: number) => void;
+  claimingMilestone: number | null;
 }) {
   const totalStars = challenge.totalStars;
   const modifier = challenge.modifier;
+  const claimedMilestones: number[] = (challenge as WeeklyChallenge & { claimedMilestones?: number[] }).claimedMilestones || [];
 
   return (
     <div className="space-y-4">
@@ -126,17 +131,27 @@ function SternenpfadView({
               { stars: 9, label: "9★", reward: "1 Sternentaler + 5 Essenz" },
             ].map(ms => {
               const reached = totalStars >= ms.stars;
+              const claimed = claimedMilestones.includes(ms.stars);
+              const canClaim = reached && !claimed;
               return (
                 <div key={ms.stars} className="flex flex-col items-center gap-0.5">
-                  <div className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold" style={{
-                    background: reached ? "#fbbf24" : "rgba(255,255,255,0.06)",
-                    color: reached ? "#000" : "rgba(255,255,255,0.2)",
-                    boxShadow: reached ? "0 0 8px rgba(251,191,36,0.3)" : "none",
-                  }}>
-                    {reached ? "✓" : ms.stars}
-                  </div>
+                  <button
+                    className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold transition-all"
+                    disabled={!canClaim || claimingMilestone !== null}
+                    onClick={() => canClaim && onClaimMilestone(ms.stars)}
+                    style={{
+                      background: claimed ? "#fbbf24" : canClaim ? "rgba(251,191,36,0.25)" : "rgba(255,255,255,0.06)",
+                      color: claimed ? "#000" : canClaim ? "#fbbf24" : "rgba(255,255,255,0.2)",
+                      boxShadow: claimed ? "0 0 8px rgba(251,191,36,0.3)" : canClaim ? "0 0 12px rgba(251,191,36,0.2)" : "none",
+                      cursor: canClaim ? "pointer" : "default",
+                      animation: canClaim ? "pulse 2s infinite" : "none",
+                    }}
+                  >
+                    {claimed ? "✓" : claimingMilestone === ms.stars ? "…" : ms.stars}
+                  </button>
                   <span className="text-xs font-bold" style={{ color: reached ? "#fbbf24" : "rgba(255,255,255,0.2)" }}>{ms.label}</span>
                   <span className="text-xs" style={{ color: reached ? "rgba(251,191,36,0.6)" : "rgba(255,255,255,0.12)", fontSize: 9 }}>{ms.reward}</span>
+                  {canClaim && <span className="text-xs font-semibold" style={{ color: "#fbbf24", fontSize: 9 }}>Claim!</span>}
                 </div>
               );
             })}
@@ -592,6 +607,7 @@ export default function ChallengesView({
 }) {
   const [activeTab, setActiveTab] = useState<"sternenpfad" | "expedition">("sternenpfad");
   const [claimingStage, setClaimingStage] = useState(false);
+  const [claimingMilestone, setClaimingMilestone] = useState<number | null>(null);
   const [claimingCheckpoint, setClaimingCheckpoint] = useState<number | null>(null);
   const [claimError, setClaimError] = useState<string | null>(null);
   const { reviewApiKey, playerName } = useDashboard();
@@ -618,6 +634,32 @@ export default function ChallengesView({
       setClaimError("Network error");
     } finally {
       setClaimingStage(false);
+    }
+  }, [reviewApiKey, onRefresh]);
+
+  const handleClaimMilestone = useCallback(async (stars: number) => {
+    if (!reviewApiKey) return;
+    setClaimingMilestone(stars);
+    setClaimError(null);
+    try {
+      const { getAuthHeaders } = await import("@/lib/auth-client");
+      const headers = getAuthHeaders(reviewApiKey);
+      const resp = await fetch("/api/weekly-challenge/claim-milestone", {
+        method: "POST",
+        headers: { ...headers, "Content-Type": "application/json" },
+        body: JSON.stringify({ stars }),
+      });
+      if (resp.ok) {
+        await onRefresh();
+      } else {
+        const data = await resp.json().catch(() => ({}));
+        setClaimError(data.error || "Failed to claim milestone");
+      }
+    } catch (e) {
+      console.error("[challenges] claim milestone failed:", e);
+      setClaimError("Network error");
+    } finally {
+      setClaimingMilestone(null);
     }
   }, [reviewApiKey, onRefresh]);
 
@@ -698,6 +740,8 @@ export default function ChallengesView({
             challenge={weeklyChallenge}
             onClaim={handleClaimStage}
             claiming={claimingStage}
+            onClaimMilestone={handleClaimMilestone}
+            claimingMilestone={claimingMilestone}
           />
         ) : (
           <div className="rounded-xl px-6 py-12 text-center border-w6" style={{ background: "rgba(255,255,255,0.02)" }}>

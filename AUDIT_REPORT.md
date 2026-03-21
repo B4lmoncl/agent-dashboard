@@ -832,14 +832,14 @@ This section tracks all planned work so a future session can resume if the curre
 |---|-------|----------|---------|-----------------|--------|
 | 1 | Friends level shows raw XP | HIGH | `routes/social.js:73` | Import `getLevelInfo` from helpers, change `friendUser.xp` to `getLevelInfo(friendUser.xp).level` | **DONE** |
 | 2 | ForgeView modals missing `useModalBehavior` | MEDIUM | `components/ForgeView.tsx:628,1097,1174` | Import `useModalBehavior` from ModalPortal. Add 3 calls: `useModalBehavior(!!selectedNpc, closeNpc)`, `useModalBehavior(!!confirmProf, closeConfirmProf)`, `useModalBehavior(!!confirmAction, closeConfirmAction)`. This adds ESC-to-close and body scroll lock to all 3 modals. | **In Progress** |
-| 3 | Trade UI can't select items (gold-only) | MEDIUM | `components/SocialView.tsx:397-458` | Add inventory item picker component to trade proposal and counter-offer forms. Fetch user inventory, render selectable item list, pass selected item IDs in `offer.items[]` array. Backend already supports item trading via `validateTradeItems()` and `executeTrade()`. | Pending |
-| 4 | Messages don't auto-refresh | LOW | `components/SocialView.tsx:210-246` | Add `useEffect` with 10s `setInterval` polling when a conversation is active (`selectedFriend` is set). Clear interval on unmount or friend change. | Pending |
-| 5 | No friend removal confirmation | LOW | `components/SocialView.tsx:95-103` | Add confirmation dialog before calling DELETE endpoint. Use same pattern as other destructive actions (2-step confirm state). | Pending |
-| 6 | Craft count shared across recipes | LOW | `components/ForgeView.tsx:148,803` | Reset `craftCount` to 1 when `selectedNpc` changes or when switching between recipe tabs. Add `useEffect` that resets on NPC/tab change. | Pending |
-| 7 | Language mixing in ForgeView | LOW | `components/ForgeView.tsx:1108-1165` | Translate German text in profession confirm modal to English: "Beruf erlernen"→"Learn Profession", "Abbrechen"→"Cancel", "Das passiert:"→"What happens:", "Belegte Slots"→"Used Slots", etc. | Pending |
-| 8 | No weekly reset timer in Challenges | LOW | `components/ChallengesView.tsx` | Calculate next Monday 00:00 UTC from current `weekId`, show "Resets in X days, Y hours" countdown. Use `useEffect` with 60s interval to update. | Pending |
-| 9 | Workshop Tools no loading feedback | INFO | `components/ForgeView.tsx:594-602` | Add `buying` state to Workshop Tools purchase button. Show spinner during API call, show success/error toast after. | Pending |
-| 10 | Star Path shows raw progress, not modifier-adjusted | INFO | `components/ChallengesView.tsx:103-117` | Display both raw and effective (modifier-adjusted) progress. Show modifier info next to progress bar (e.g. "3/5 quests (effective: 4.5 with +50% modifier)"). | Pending |
+| 3 | Trade UI can't select items (gold-only) | MEDIUM | `components/SocialView.tsx` | Inventory item picker added to trade proposal and counter-offer forms | **DONE** |
+| 4 | Messages don't auto-refresh | LOW | `components/SocialView.tsx:340` | 10s polling interval when conversation active | **DONE** |
+| 5 | No friend removal confirmation | LOW | `components/SocialView.tsx:166` | 2-step confirm state (`confirmRemove`) with Yes/No buttons | **DONE** |
+| 6 | Craft count shared across recipes | LOW | `components/ForgeView.tsx:209` | `useEffect` resets `craftCount` to 1 on NPC/tab change | **DONE** |
+| 7 | Language mixing in ForgeView | LOW | `components/ForgeView.tsx:1295` | German text translated to English ("Learn Profession", etc.) | **DONE** |
+| 8 | No weekly reset timer in Challenges | LOW | `components/ChallengesView.tsx:53` | `WeeklyResetTimer` component with countdown | **DONE** |
+| 9 | Workshop Tools no loading feedback | INFO | `components/ForgeView.tsx:151` | `buyingTool` loading state with disabled button | **DONE** |
+| 10 | Star Path shows raw progress, not modifier-adjusted | INFO | `components/ChallengesView.tsx:260` | Shows "(effective: X)" next to raw progress | **DONE** |
 
 ### 14.2 QoL Improvements (User-Approved)
 
@@ -1403,7 +1403,7 @@ These features have been proposed by audit agents in the past as "missing" when 
 | **Cumulative star reward track** | `components/ChallengesView.tsx` (horizontal milestone bar at top of Star Path) | Added in Session 2 |
 | **Activity feed compact/detail toggle** | `components/SocialView.tsx` ActivityFeedTab (⊟ Compact / ⊞ Detailed button) | Added in Session 2 |
 | **Workshop Upgrades (permanent bonuses)** | `public/data/shopItems.json` (workshopUpgrades), `routes/shop.js`, `lib/helpers.js` | Added in Session 6 |
-| **Tavern/Rest Mode (The Hearth)** | `components/TavernView.tsx`, `routes/players.js`, `app/config.ts` (6th floor) | Added in Session 6 |
+| **Tavern/Rest Mode (The Hearth)** | `components/TavernView.tsx`, `routes/players.js`, `app/config.ts` (room in Breakaway floor) | Added in Session 6, moved to Breakaway in Session 8 |
 | **Rift/Dungeon System (The Rift)** | `components/RiftView.tsx`, `routes/rift.js`, `app/config.ts` (Great Halls room) | Added in Session 6 |
 | **Rift abandon confirmation** | `components/RiftView.tsx` (2-step confirm state with Cancel button) | Added in Session 8 |
 
@@ -1678,6 +1678,55 @@ All seed quests get `createdAt: 2026-03-10T12:00:00Z`. Already 11+ days old on c
 |--------|-----------|-------------|
 | `77c52c2` | 2026-03-21 | Fix critical rift reward bypass + 10 audit findings |
 | `8b78b1c` | 2026-03-21 | Fix data template inconsistencies + translate remaining German UI text |
+
+## 22. Phase 2026-03-21 — Parallel Branch Fixes (Merged from Main)
+
+### 22.1 FIX: Daytime Sky Too Dark
+
+**Severity: MEDIUM (UX)**
+**File:** `components/GuildHallBackground.tsx:28`
+
+The day sky gradient used near-night colors, making daytime look almost as dark as night. Updated to warm fantasy-bright palette.
+
+### 22.2 Documentation & Version Sync
+
+- `CLAUDE.md`: v1.4.0 → v1.5.3, component/route counts updated
+- `package.json`: 1.4.0 → 1.5.3
+- `ARCHITECTURE.md`: Added Rift + Hearth sections, fixed component count
+- Hearth moved into The Breakaway floor as a room
+
+### 22.3 Battle Pass Rewards Hidden
+
+Reward track hidden until backend claim system exists. Was display-only preview of planned feature.
+
+### 22.4 Star Path Cumulative Milestone Claiming
+
+Backend endpoint for claiming cumulative star rewards (3★/6★/9★ milestones).
+
+### 22.5 Login Calendar Persistence Fix
+
+Two bugs fixed in daily login calendar not persisting across sessions.
+
+### 22.6 Rift Abandon Confirmation
+
+Confirmation dialog added for rift abandon (destructive action with cooldown).
+
+### 22.7 Changelog (Merged from Main)
+
+| Commit | Description |
+|--------|-------------|
+| `e6aa560` | Fix: brighten daytime sky gradient |
+| `2025e6c` | Docs: version/structure updates |
+| `3b49ccc` | Fix: sync version numbers to 1.5.3 |
+| `c7aac1a` | Docs: Rift + Tavern in ARCHITECTURE.md |
+| `d48313b` | UI: hide Battle Pass rewards track |
+| `0de7a39` | Refactor: Hearth into Breakaway floor |
+| `f6c5ce1` | Docs: reflect Hearth in Breakaway |
+| `bf0b233` | Docs: update BACKLOG.md |
+| `7d6ae05` | Docs: update SCALABILITY-AUDIT.md |
+| `4b127f0` | Fix: Rift abandon confirmation |
+| `346ba86` | Feat: Star Path cumulative claiming |
+| `9462c63` | Fix: login calendar persistence |
 
 ---
 
