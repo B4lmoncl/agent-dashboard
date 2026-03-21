@@ -27,5 +27,54 @@
     { "id": "masterwork", "name": "Masterwork Tools", "cost": 750,  "tier": 2, "xpBonus": 4, "icon": "/images/icons/tools-masterwork.png", "desc": "+4% XP auf alle Quests" },
     { "id": "legendary",  "name": "Legendary Tools",  "cost": 2000, "tier": 3, "xpBonus": 7, "icon": "/images/icons/tools-legendary.png", "desc": "+7% XP auf alle Quests" },
     { "id": "mythic",     "name": "Mythic Forge",     "cost": 5000, "tier": 4, "xpBonus": 10, "icon": "/images/icons/tools-mythic.png", "desc": "+10% XP auf alle Quests" }
+  ],
+  "workshopUpgrades": [
+    {
+      "id": "gold_tools",
+      "name": "Gold-Forged Tools",
+      "category": "gold_boost",
+      "tiers": [
+        { "tier": 1, "cost": 500,   "currency": "gold", "value": 2, "label": "+2% Gold on all quests" },
+        { "tier": 2, "cost": 1500,  "currency": "gold", "value": 3, "label": "+3% Gold on all quests" },
+        { "tier": 3, "cost": 4000,  "currency": "gold", "value": 4, "label": "+4% Gold on all quests" },
+        { "tier": 4, "cost": 10000, "currency": "gold", "value": 5, "label": "+5% Gold on all quests" }
+      ],
+      "icon": "/images/icons/workshop-gold-tools.png",
+      "desc": "Permanent gold bonus from enchanted tools."
+    },
+    {
+      "id": "loot_amulet",
+      "name": "Loot Chance Amulet",
+      "category": "loot_boost",
+      "tiers": [
+        { "tier": 1, "cost": 1000,  "currency": "gold", "value": 1, "label": "+1% Loot Drop Chance" },
+        { "tier": 2, "cost": 3000,  "currency": "gold", "value": 2, "label": "+2% Loot Drop Chance" },
+        { "tier": 3, "cost": 8000,  "currency": "gold", "value": 3, "label": "+3% Loot Drop Chance" }
+      ],
+      "icon": "/images/icons/workshop-loot-amulet.png",
+      "desc": "A lucky charm that attracts rare drops."
+    },
+    {
+      "id": "streak_charm",
+      "name": "Streak Shield Charm",
+      "category": "streak_shield",
+      "tiers": [
+        { "tier": 1, "cost": 15000, "currency": "gold", "value": 1, "label": "Auto-saves streak 1x per week" }
+      ],
+      "icon": "/images/icons/workshop-streak-charm.png",
+      "desc": "An ancient charm that protects your streak once per week."
+    },
+    {
+      "id": "material_magnet",
+      "name": "Material Magnet",
+      "category": "material_boost",
+      "tiers": [
+        { "tier": 1, "cost": 2000,  "currency": "gold", "value": 5,  "label": "+5% Material Drop Chance" },
+        { "tier": 2, "cost": 5000,  "currency": "gold", "value": 10, "label": "+10% Material Drop Chance" },
+        { "tier": 3, "cost": 12000, "currency": "gold", "value": 15, "label": "+15% Material Drop Chance" }
+      ],
+      "icon": "/images/icons/workshop-material-magnet.png",
+      "desc": "Magnetically attracts crafting materials from quests."
+    }
   ]
 }
