@@ -18,7 +18,7 @@ Browser → Express (port 3001) → lib/state.js (in-memory) → /data/*.json (d
 | `lib/` | Backend business logic (state, helpers, engines) | JS (CommonJS) |
 | `routes/` | Express route handlers (18 files) | JS (CommonJS) |
 | `app/` | Next.js app directory (page, types, utils, context) | TypeScript |
-| `components/` | React UI components (42 files) | TypeScript |
+| `components/` | React UI components (43 files) | TypeScript |
 | `public/data/` | Read-only game templates (JSON) | JSON |
 | `data/` | Runtime persistent data (Docker volume) | JSON |
 | `server.js` | Express entry point, boot sequence | JS |

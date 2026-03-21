@@ -1108,7 +1108,57 @@ Based on automated frontend component analysis, the following additional issues 
 - Animated progress fill with golden gradient
 - Checkmark nodes for reached milestones with glow effect
 
-### 16.16 Remaining Issues Summary
+## 17. Phase 2026-03-21 — Player Profile System & Social Overhaul (Session 3)
+
+### 17.1 Player Profile System (Steam/Diablo-inspired)
+
+**New Files:** `components/PlayerProfileModal.tsx`
+**Modified Files:** `routes/players.js`, `app/page.tsx`, `components/LeaderboardView.tsx`, `components/SocialView.tsx`
+
+A comprehensive public player profile system accessible from multiple entry points:
+
+**Backend:**
+- `GET /api/player/:name/public-profile` — Returns full public profile data including:
+  - Level, XP, title, class, companion, forge temp, streaks
+  - All 6 equipment slots with stats, rarity, legendary effects, descriptions
+  - All achievements with dates
+  - Active professions with levels
+  - Online status (3-tier: online/idle/offline)
+  - Member-since date
+- `GET /api/players/search?q=term` — Searchable player list for friend adding
+  - Filters out agents, returns name/avatar/color/level/class
+  - Supports `limit` parameter (max 50)
+
+**Frontend:**
+- `PlayerProfileModal` — Full-featured modal with:
+  - Header: Avatar (with frame), name, level, title, class, streak, online status
+  - Action buttons: "Add Friend" + "Message" (for non-self profiles)
+  - Stats grid: XP, Quests, Achievement Points, Gold
+  - Equipment grid: 6 slots with rarity-colored cards, stat tooltips, legendary labels
+  - Companion section with bond level
+  - Professions with colored icons and levels
+  - Achievement badges (max 20 shown + overflow count)
+  - Footer: Online status, member-since date
+
+**Integration Points:**
+- **Leaderboard (Proving Grounds):** Click any player row → opens their profile
+- **Friends List:** Click any friend card → opens their profile
+- **Player Search:** Click a name in search results → opens their profile
+- **Search results:** Each result has "+ Add" button for quick friend requests
+
+### 17.2 Player Search for Friend Adding
+
+Replaced the plain text input "Player name..." with a searchable dropdown:
+- Debounced search (300ms) queries `/api/players/search`
+- Shows matching players with avatar, name, level
+- Filters out self and existing friends
+- Each result has:
+  - Click name → open profile
+  - Click "+ Add" → send friend request directly
+- Dropdown closes on outside click
+- Still supports direct name entry + Enter key for exact matches
+
+### 17.3 Remaining Issues Summary
 
 | Issue | Severity | Area | Status |
 |-------|----------|------|--------|
