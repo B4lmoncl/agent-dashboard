@@ -4,7 +4,6 @@ import { useState, memo } from "react";
 import type { Quest } from "@/app/types";
 import { timeAgo, getQuestRarity } from "@/app/utils";
 import { typeConfig } from "@/app/config";
-import { Tip } from "@/components/GameTooltip";
 import {
   CategoryBadge, ProductBadge, HumanInputBadge, TypeBadge,
   AgentBadge, RecurringBadge, PriorityBadge,
@@ -225,7 +224,7 @@ export const QuestCard = memo(function QuestCard({ quest, selected, onToggle, on
             <span className="font-mono" style={{ fontSize: "0.75rem", color: "rgba(251,191,36,0.75)" }}><img src="/images/icons/currency-gold.png" alt="" style={{width:14,height:14,display:"inline",verticalAlign:"middle",marginRight:2}} /> {quest.rewards?.gold || "~"}</span>
           </div>
           <div className="flex items-center gap-1.5">
-            <Tip k="rarity"><span className="text-xs uppercase font-mono" style={{ color: `${rarityColor}aa`, letterSpacing: "0.06em" }}>{rarity}</span></Tip>
+            <span className="text-xs uppercase font-mono" style={{ color: `${rarityColor}aa`, letterSpacing: "0.06em" }}>{rarity}</span>
           </div>
         </div>
       </div>

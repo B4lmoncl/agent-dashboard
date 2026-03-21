@@ -418,13 +418,15 @@ const TOOLTIP_REGISTRY: Record<string, TooltipEntry> = {
     ),
   },
   npc_quest_board: {
-    title: "NPC Quest Board",
-    icon: "🤖",
+    title: "The Wanderer's Rest",
+    icon: "🏕️",
     accent: "#8b5cf6",
     body: (
       <>
-        <p>Agent development quests. The AI NPCs (Nova, Hex, Echo, Pixel, Atlas, Lyra) work on these autonomously.</p>
-        <p className="gt-source">Admin can review and approve suggested quests.</p>
+        <p>Travelling NPCs visit the guild hall on a rotating schedule. Each NPC brings unique quest chains with story and rewards.</p>
+        <p>Up to 3 NPCs are active at a time. They stay for a few days before departing, with a cooldown before they can return.</p>
+        <p>Complete an NPC&apos;s quest chain before they leave to earn all rewards. Quests unlock sequentially within each chain.</p>
+        <p className="gt-source">Rarer NPCs appear less often but offer better rewards.</p>
       </>
     ),
   },
