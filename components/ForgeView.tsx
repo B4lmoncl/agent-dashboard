@@ -149,6 +149,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
   const [craftCount, setCraftCount] = useState(1);
   const [confirmAction, setConfirmAction] = useState<{ message: string; onConfirm: () => void } | null>(null);
   const [buyingTool, setBuyingTool] = useState<string | null>(null);
+  const [slotAffixRanges, setSlotAffixRanges] = useState<Record<string, { primary: { stat: string; min: number; max: number }[]; minor: { stat: string; min: number; max: number }[]; currentStats: Record<string, number>; itemName: string; rarity: string }>>({});
 
   // Close callbacks for modal behavior hooks
   const closeNpcModal = useCallback(() => {
@@ -177,6 +178,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
         if (data.currencies) setCurrencies(data.currencies);
         if (data.dailyBonus) setDailyBonusAvailable(data.dailyBonus.dailyBonusAvailable ?? false);
         if (data.maxProfSlots != null) setMaxProfSlots(data.maxProfSlots);
+        if (data.slotAffixRanges) setSlotAffixRanges(data.slotAffixRanges);
       }
     } catch { /* ignore */ }
   }, [playerName]);
@@ -812,12 +814,34 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                               <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: skillUp?.color || "#6b7280" }} title={skillUp?.label || ""} />
                             </div>
                             <p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,0.4)" }}>{recipe.desc}</p>
-                            {/* D3-style reroll preview: show what stats CAN be rolled */}
-                            {meetsLevel && (recipe.id === "reroll_stat" || recipe.id === "reroll_minor" || recipe.id === "reinforce_armor" || recipe.id === "enchant_socket") && equippedSlots[selectedSlot] && typeof equippedSlots[selectedSlot] === "object" && (
-                              <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.25)" }}>
-                                Current: {Object.entries((equippedSlots[selectedSlot] as Record<string, unknown>).stats as Record<string, number> || {}).map(([k, v]) => `${k} ${v}`).join(", ") || "none"}
-                              </p>
-                            )}
+                            {/* D3-style reroll preview: show current stats + possible ranges */}
+                            {meetsLevel && (recipe.id === "reroll_stat" || recipe.id === "reroll_minor" || recipe.id === "reinforce_armor" || recipe.id === "enchant_socket") && equippedSlots[selectedSlot] && typeof equippedSlots[selectedSlot] === "object" && (() => {
+                              const slotData = slotAffixRanges[selectedSlot];
+                              const currentStats = (equippedSlots[selectedSlot] as Record<string, unknown>).stats as Record<string, number> || {};
+                              const isRerollPrimary = recipe.id === "reroll_stat";
+                              const isRerollMinor = recipe.id === "reroll_minor";
+                              const ranges = slotData ? (isRerollPrimary ? slotData.primary : isRerollMinor ? slotData.minor : [...slotData.primary, ...slotData.minor]) : [];
+                              return (
+                                <div className="mt-1 rounded-lg px-2 py-1.5" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.04)" }}>
+                                  <p className="text-xs mb-1" style={{ color: "rgba(255,255,255,0.3)" }}>
+                                    Current: {Object.entries(currentStats).map(([k, v]) => `${k} +${v}`).join(", ") || "none"}
+                                  </p>
+                                  {ranges.length > 0 && (
+                                    <div className="flex flex-wrap gap-x-3 gap-y-0.5">
+                                      {ranges.map(r => {
+                                        const current = currentStats[r.stat];
+                                        return (
+                                          <span key={r.stat} className="text-xs" style={{ color: current != null ? "#4ade80" : "rgba(255,255,255,0.2)" }}>
+                                            {r.stat} {r.min}–{r.max}
+                                            {current != null && <span style={{ color: "rgba(255,255,255,0.15)" }}> (now {current})</span>}
+                                          </span>
+                                        );
+                                      })}
+                                    </div>
+                                  )}
+                                </div>
+                              );
+                            })()}
                             {!meetsLevel && (
                               <p className="text-xs mt-1" style={{ color: "#f44" }}>Requires {selectedNpc.name} Lv.{recipe.reqProfLevel}</p>
                             )}

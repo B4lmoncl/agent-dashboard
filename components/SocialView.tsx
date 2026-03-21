@@ -411,11 +411,32 @@ function TradeOfferDisplay({ offer, label, color }: { offer: TradeOffer; label: 
         <div className="space-y-1">
           {offer.items.map(item => {
             const rc = RARITY_COLORS[item.rarity] || "#888";
+            const statsStr = item.stats ? Object.entries(item.stats).map(([k, v]) => `${k}: +${v}`).join("\n") : "";
+            const tooltipParts = [item.name, item.slot ? `Slot: ${item.slot}` : "", item.rarity.charAt(0).toUpperCase() + item.rarity.slice(1), statsStr, item.setName ? `Set: ${item.setName}` : "", item.legendaryEffect ? `★ ${item.legendaryEffect.label}` : ""].filter(Boolean);
             return (
-              <div key={item.instanceId} className="flex items-center gap-2 text-xs px-2 py-1.5 rounded" style={{ background: "rgba(255,255,255,0.03)", borderLeft: `2px solid ${rc}` }}>
+              <div key={item.instanceId} className="group relative flex items-center gap-2 text-xs px-2 py-1.5 rounded cursor-default" style={{ background: "rgba(255,255,255,0.03)", borderLeft: `2px solid ${rc}` }}>
+                {item.icon && <img src={item.icon} alt="" width={20} height={20} style={{ imageRendering: "auto" }} onError={e => (e.currentTarget.style.display = "none")} />}
                 <span className="font-semibold" style={{ color: rc }}>{item.name}</span>
                 <span className="text-w20 capitalize ml-auto">{item.rarity}</span>
                 {item.slot && <span className="text-w15">({item.slot})</span>}
+                {/* D3-style stat tooltip on hover */}
+                {(item.stats || item.setName || item.legendaryEffect) && (
+                  <div className="absolute left-0 bottom-full mb-1 z-50 hidden group-hover:block pointer-events-none" style={{ minWidth: 180 }}>
+                    <div className="rounded-lg p-2.5 shadow-xl" style={{ background: "#1a1a1f", border: `1px solid ${rc}40`, boxShadow: `0 4px 16px rgba(0,0,0,0.6), 0 0 8px ${rc}15` }}>
+                      <p className="text-xs font-bold mb-1" style={{ color: rc }}>{item.name}</p>
+                      {item.slot && <p className="text-xs text-w25 mb-1 capitalize">{item.slot} · {item.rarity}</p>}
+                      {item.stats && Object.keys(item.stats).length > 0 && (
+                        <div className="space-y-0.5 mb-1">
+                          {Object.entries(item.stats).map(([stat, val]) => (
+                            <p key={stat} className="text-xs" style={{ color: "#4ade80" }}>+{val} {stat}</p>
+                          ))}
+                        </div>
+                      )}
+                      {item.setName && <p className="text-xs" style={{ color: "#22c55e" }}>Set: {item.setName}</p>}
+                      {item.legendaryEffect && <p className="text-xs" style={{ color: "#f59e0b" }}>★ {item.legendaryEffect.label}</p>}
+                    </div>
+                  </div>
+                )}
               </div>
             );
           })}

@@ -201,7 +201,24 @@ router.get('/api/professions', (req, res) => {
   const learnedRecipes = u?.learnedRecipes || [];
   const masteryConfig = PROFESSIONS_DATA.masteryConfig || null;
   const gatheringConfig = PROFESSIONS_DATA.gatheringConfig || null;
-  res.json({ professions, recipes, materials, materialDefs: PROFESSIONS_DATA.materials, proficiencyRanks: PROFICIENCY_RANKS, skillUpColors: PROFESSIONS_DATA.skillUpColors || {}, currencies, dailyBonus, maxProfSlots, chosenCount, professionSlots: PROFESSIONS_DATA.professionSlots || [], learnedRecipes, masteryConfig, gatheringConfig });
+  // Build reroll preview data: per-slot affix ranges for equipped gear (D3-style reroll preview)
+  const slotAffixRanges = {};
+  if (u && u.equipment) {
+    for (const slot of VALID_SLOTS) {
+      const eq = u.equipment[slot];
+      if (!eq || typeof eq !== 'object' || !eq.templateId) continue;
+      const template = state.gearById.get(eq.templateId) || state.itemTemplates?.get(eq.templateId);
+      if (!template || !template.affixes) continue;
+      slotAffixRanges[slot] = {
+        primary: (template.affixes.primary?.pool || []).map(p => ({ stat: p.stat, min: p.min, max: p.max })),
+        minor: (template.affixes.minor?.pool || []).map(p => ({ stat: p.stat, min: p.min, max: p.max })),
+        currentStats: eq.stats || {},
+        itemName: eq.name || template.name || slot,
+        rarity: eq.rarity || template.rarity || 'common',
+      };
+    }
+  }
+  res.json({ professions, recipes, materials, materialDefs: PROFESSIONS_DATA.materials, proficiencyRanks: PROFICIENCY_RANKS, skillUpColors: PROFESSIONS_DATA.skillUpColors || {}, currencies, dailyBonus, maxProfSlots, chosenCount, professionSlots: PROFESSIONS_DATA.professionSlots || [], learnedRecipes, masteryConfig, gatheringConfig, slotAffixRanges });
 });
 
 // ─── POST /api/professions/learn — buy a recipe from an NPC trainer ─────────
