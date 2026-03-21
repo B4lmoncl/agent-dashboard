@@ -1730,4 +1730,50 @@ Confirmation dialog added for rift abandon (destructive action with cooldown).
 
 ---
 
+## 23. Phase 2026-03-21 — Deep Backend Audit (Session 9)
+
+### 23.1 CRITICAL Fixes (Runtime Crashes)
+
+| # | Issue | File | Fix |
+|---|-------|------|-----|
+| 1 | `ensureUserCurrencies` not imported — daily mission claim crashes | `config-admin.js:3` | Added to state imports |
+| 2 | `saveUsers` not imported — daily mission claim crashes | `config-admin.js:3` | Added to state imports |
+| 3 | `awardCurrency` not imported — daily mission claim crashes | `config-admin.js:4` | Added to helpers imports |
+| 4 | `ensureUserCurrencies` not imported — workshop upgrade crashes | `shop.js:5` | Added to state imports |
+
+### 23.2 HIGH Fixes (Silently Broken Features)
+
+| # | Issue | File | Fix |
+|---|-------|------|-----|
+| 5 | Daily mission pet check uses `petsToday` (wrong) instead of `petCountToday` | `config-admin.js:126,190` | Fixed property name |
+| 6 | Daily mission ritual check reads `state.store.rituals` (doesn't exist) instead of `state.rituals` | `config-admin.js:124,189` | Fixed state path |
+| 7 | Character screen class display reads `state.store.classes` (doesn't exist) instead of `state.classesData?.classes` | `habits-inventory.js:718,802,803` | Fixed state path |
+| 8 | Rift `_last*` temp fields never deleted → persist to disk, wasting space | `rift.js:273-277` | Added cleanup before saveUsers |
+
+### 23.3 MEDIUM Fixes
+
+| # | Issue | File | Fix |
+|---|-------|------|-----|
+| 9 | Conversation list shows oldest message preview (reads `.lastMessage.createdAt` on string) | `social.js:314` | Changed to `.lastMessageAt` |
+
+### 23.4 Remaining Acknowledged Issues (Backend)
+
+| Issue | Severity | Status |
+|-------|----------|--------|
+| `GET /api/users` has no auth (exposes profile data) | MEDIUM | **Acknowledged** — needed for dashboard batch, sensitive fields stripped |
+| GitHub webhook bypassed when no secret configured | MEDIUM | **Acknowledged** — deployment requires GITHUB_WEBHOOK_SECRET env var |
+| Feedback POST has no auth | MEDIUM | **Acknowledged** — capped at 500, global rate limit applies |
+| Event placeholder endpoints have no auth | MEDIUM | **Acknowledged** — only log, no state mutation |
+| `var` instead of `let` for changelogInterval | LOW | Cosmetic, no runtime impact |
+| Expedition save not flushed on shutdown | INFO | At most 200ms of progress lost |
+
+### 23.5 Changelog (Session 9)
+
+| Commit | Timestamp | Description |
+|--------|-----------|-------------|
+| `6b5fec3` | 2026-03-21 | Merge main into feature branch — resolve conflicts |
+| `8471133` | 2026-03-21 | Fix 3 CRITICAL + 4 HIGH + 1 MEDIUM bugs from backend audit |
+
+---
+
 *End of Audit Report — Updated 2026-03-21*
