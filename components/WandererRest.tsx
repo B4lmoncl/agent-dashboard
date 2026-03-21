@@ -157,7 +157,7 @@ export function WandererRest({
         <div className="mb-4">
           <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
             <div style={{ flex: 1, height: 1, background: "linear-gradient(90deg, transparent, rgba(255,215,0,0.25), transparent)" }} />
-            <Tip k="npc_quest_board"><span style={{ fontSize: "0.85rem", color: "rgba(255,215,0,0.6)", letterSpacing: "0.15em", textTransform: "uppercase" }}>◆ The Wanderer&#39;s Rest ◆</span></Tip>
+            <Tip k="npc_quest_board" accent="rgba(255,215,0,0.6)"><span style={{ fontSize: "0.85rem", letterSpacing: "0.15em", textTransform: "uppercase" }}>◆ The Wanderer&#39;s Rest ◆</span></Tip>
             <div style={{ flex: 1, height: 1, background: "linear-gradient(90deg, transparent, rgba(255,215,0,0.25), transparent)" }} />
           </div>
           <p className="text-xs mt-2 italic text-center" style={{ color: "rgba(255,255,255,0.3)" }}>They come. They go. They always return.</p>

@@ -200,7 +200,7 @@ export default function CampaignHub({ campaigns, quests, reviewApiKey, onRefresh
         <div className="flex items-center gap-3">
           <span style={{ fontSize: 28 }}>◆</span>
           <div>
-            <Tip k="campaigns"><h2 className="text-lg font-bold" style={{ color: "#e9d5ff" }}>Campaign Hub</h2></Tip>
+            <Tip k="campaigns" accent="#e9d5ff"><h2 className="text-lg font-bold">Campaign Hub</h2></Tip>
             <p className="text-xs" style={{ color: "rgba(167,139,250,0.5)" }}>Long-form quest chains and story arcs</p>
           </div>
         </div>
