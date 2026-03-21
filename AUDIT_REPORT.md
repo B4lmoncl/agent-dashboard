@@ -1064,7 +1064,24 @@ Based on automated frontend component analysis, the following additional issues 
 | DashboardHeader German text | `DashboardHeader.tsx` | Translated "Einstellungen (bald)"→"Settings (coming soon)", sound toggle titles |
 | ReadCheck aria-label | `SocialView.tsx` | Added `aria-label` for screen reader accessibility on message read indicators |
 
-### 16.13 Remaining Issues Summary
+### 16.13 Backend Fixes (Agent-Discovered Issues)
+
+| Fix | Severity | File | Description |
+|-----|----------|------|-------------|
+| Expedition checkpoint hardcoded to 4 | MEDIUM | `routes/expedition.js` | Replaced `cpNum === 4` with dynamic `cpNum === totalCheckpoints` for bonus detection — now works with any number of checkpoints |
+| German backend error messages | LOW | `routes/expedition.js`, `routes/challenges-weekly.js`, `routes/currency.js`, `routes/habits-inventory.js`, `routes/players.js` | Translated all remaining German error messages to English |
+
+### 16.14 Backend Findings — Acknowledged (Not Fixed)
+
+| Issue | Severity | Status |
+|-------|----------|--------|
+| Gacha pull lock is in-memory only (won't work multi-instance) | LOW | **Won't fix** — Single-process deployment |
+| Dismantle uses saveUsersSync vs craft uses saveUsers | LOW | **Acknowledged** — Dismantle is more critical (irreversible), sync is intentional |
+| Trade execution partial failure could leave items in limbo | LOW | **Acknowledged** — Single-process Node.js serializes naturally |
+| Input length validation already present on main endpoints | N/A | **Verified** — Quests (500/5000), messages (500), feedback (2000) already validated |
+| getMaxProfessionSlots returns 0 below threshold | N/A | **Intentional** — Players below Lv5 correctly cannot choose professions |
+
+### 16.15 Remaining Issues Summary
 
 | Issue | Severity | Area | Status |
 |-------|----------|------|--------|
