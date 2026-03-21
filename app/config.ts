@@ -126,11 +126,11 @@ export function getFloorForRoom(roomKey: string): Floor | undefined {
 
 export const STREAK_MILESTONES_CLIENT = [
   { days: 7,   badge: 'Bronze',  label: 'Bronze',           icon: '/images/icons/streak-bronze.png' },
-  { days: 14,  badge: '2W',      label: '2-Wochen',         icon: '/images/icons/streak-2w.png' },
-  { days: 21,  badge: 'Silber',  label: 'Silber',           icon: '/images/icons/streak-silver.png' },
-  { days: 30,  badge: '1M',      label: 'Monat',            icon: '/images/icons/streak-1m.png' },
+  { days: 14,  badge: '2W',      label: '2 Weeks',          icon: '/images/icons/streak-2w.png' },
+  { days: 21,  badge: 'Silber',  label: 'Silver',           icon: '/images/icons/streak-silver.png' },
+  { days: 30,  badge: '1M',      label: '1 Month',          icon: '/images/icons/streak-1m.png' },
   { days: 60,  badge: 'Gold',    label: 'Gold',             icon: '/images/icons/streak-gold.png' },
-  { days: 90,  badge: 'Titan',   label: 'Unerschütterlich', icon: '/images/icons/streak-titan.png' },
+  { days: 90,  badge: 'Titan',   label: 'Unyielding',       icon: '/images/icons/streak-titan.png' },
   { days: 180, badge: 'Diamond', label: 'Diamond',          icon: '/images/icons/streak-diamond.png' },
   { days: 365, badge: 'Legend',  label: 'Legendary',        icon: '/images/icons/streak-legend.png' },
 ];

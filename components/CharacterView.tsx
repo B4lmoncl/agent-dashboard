@@ -264,10 +264,10 @@ function ProfileSettingsModal({ playerName, apiKey, initialStatus, initialPartne
           <label className="text-xs font-semibold block" style={{ color: "rgba(255,255,255,0.5)" }}>Relationship Status</label>
           {[
             { value: "single",       label: "Single" },
-            { value: "relationship", label: "In einer Beziehung" },
-            { value: "married",      label: "Verheiratet" },
-            { value: "complicated",  label: "Es ist kompliziert" },
-            { value: "other",        label: "Andere" },
+            { value: "relationship", label: "In a relationship" },
+            { value: "married",      label: "Married" },
+            { value: "complicated",  label: "It's complicated" },
+            { value: "other",        label: "Other" },
           ].map(opt => (
             <button
               key={opt.value}

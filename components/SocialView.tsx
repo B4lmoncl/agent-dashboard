@@ -75,6 +75,7 @@ function FriendsTab({ apiKey, playerName, onOpenProfile }: { apiKey: string; pla
   const [addInput, setAddInput] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [successMsg, setSuccessMsg] = useState<string | null>(null);
   const [searchResults, setSearchResults] = useState<{ id: string; name: string; avatar: string; color: string; level: number; classId: string | null }[]>([]);
   const [searchOpen, setSearchOpen] = useState(false);
   const searchRef = useRef<HTMLDivElement>(null);
@@ -145,6 +146,9 @@ function FriendsTab({ apiKey, playerName, onOpenProfile }: { apiKey: string; pla
       setAddInput("");
       setSearchOpen(false);
       setSearchResults([]);
+      setError(null);
+      setSuccessMsg(`Friend request sent to ${name}!`);
+      setTimeout(() => setSuccessMsg(null), 3000);
       fetchFriends();
     } catch { setError("Network error"); }
   };
@@ -230,6 +234,7 @@ function FriendsTab({ apiKey, playerName, onOpenProfile }: { apiKey: string; pla
         )}
       </div>
       {error && <p className="text-xs" style={{ color: "#ef4444" }}>{error}</p>}
+      {successMsg && <p className="text-xs tab-content-enter" style={{ color: "#22c55e" }}>{successMsg}</p>}
 
       {/* Incoming requests */}
       {incoming.length > 0 && (
