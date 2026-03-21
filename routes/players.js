@@ -522,4 +522,122 @@ router.get('/api/npcs', (req, res) => {
   res.json(Object.entries(NPC_META).map(([id, meta]) => ({ id, ...meta })));
 });
 
+// ─── Tavern / Rest Mode ──────────────────────────────────────────────────────
+
+// GET /api/tavern/status — get current rest mode status
+router.get('/api/tavern/status', (req, res) => {
+  const playerName = (req.query.player || '').toLowerCase();
+  const u = playerName ? state.usersByName.get(playerName) : null;
+  if (!u) return res.json({ resting: false });
+
+  const rest = u.tavernRest || null;
+  if (!rest || !rest.active) {
+    // Check cooldown
+    const lastRestEnd = rest?.endedAt ? new Date(rest.endedAt).getTime() : 0;
+    const cooldownMs = 30 * 24 * 60 * 60 * 1000; // 30 days
+    const cooldownReady = !lastRestEnd || (Date.now() - lastRestEnd) > cooldownMs;
+    const cooldownEndsAt = lastRestEnd ? new Date(lastRestEnd + cooldownMs).toISOString() : null;
+    return res.json({
+      resting: false,
+      canRest: cooldownReady,
+      cooldownEndsAt: cooldownReady ? null : cooldownEndsAt,
+      history: (u.tavernHistory || []).slice(-5),
+    });
+  }
+
+  // Check auto-expire (max 7 days)
+  const startedAt = new Date(rest.startedAt).getTime();
+  const durationMs = (rest.days || 7) * 24 * 60 * 60 * 1000;
+  const expiresAt = new Date(startedAt + durationMs);
+  if (Date.now() > expiresAt.getTime()) {
+    // Auto-expire
+    rest.active = false;
+    rest.endedAt = expiresAt.toISOString();
+    rest.autoExpired = true;
+    u.tavernHistory = u.tavernHistory || [];
+    u.tavernHistory.push({ startedAt: rest.startedAt, endedAt: rest.endedAt, days: rest.days, reason: rest.reason });
+    saveUsers();
+    return res.json({
+      resting: false,
+      justExpired: true,
+      canRest: false,
+      cooldownEndsAt: new Date(expiresAt.getTime() + 30 * 24 * 60 * 60 * 1000).toISOString(),
+      history: (u.tavernHistory || []).slice(-5),
+    });
+  }
+
+  const elapsed = Date.now() - startedAt;
+  const remaining = Math.max(0, durationMs - elapsed);
+
+  res.json({
+    resting: true,
+    startedAt: rest.startedAt,
+    days: rest.days,
+    reason: rest.reason || null,
+    expiresAt: expiresAt.toISOString(),
+    remainingMs: remaining,
+    remainingDays: Math.ceil(remaining / (24 * 60 * 60 * 1000)),
+    streakFrozenAt: rest.streakFrozenAt,
+    forgeFrozenAt: rest.forgeFrozenAt,
+    history: (u.tavernHistory || []).slice(-5),
+  });
+});
+
+// POST /api/tavern/enter — enter rest mode
+router.post('/api/tavern/enter', requireAuth, (req, res) => {
+  const uid = req.auth?.userId;
+  const u = state.users[uid];
+  if (!u) return res.status(404).json({ error: 'Player not found' });
+
+  const { days = 3, reason } = req.body;
+  const restDays = Math.max(1, Math.min(7, parseInt(days, 10) || 3));
+
+  // Check if already resting
+  if (u.tavernRest?.active) return res.status(400).json({ error: 'Already resting in the Hearth' });
+
+  // Check cooldown (30 days since last rest ended)
+  const lastRestEnd = u.tavernRest?.endedAt ? new Date(u.tavernRest.endedAt).getTime() : 0;
+  const cooldownMs = 30 * 24 * 60 * 60 * 1000;
+  if (lastRestEnd && (Date.now() - lastRestEnd) < cooldownMs) {
+    const cooldownEnds = new Date(lastRestEnd + cooldownMs).toISOString();
+    return res.status(429).json({ error: `Rest on cooldown until ${cooldownEnds}`, cooldownEndsAt: cooldownEnds });
+  }
+
+  // Freeze streak + forge temp
+  u.tavernRest = {
+    active: true,
+    startedAt: now(),
+    days: restDays,
+    reason: (reason || '').slice(0, 200) || null,
+    streakFrozenAt: u.streakDays || 0,
+    forgeFrozenAt: u.forgeTemp || 0,
+    endedAt: null,
+  };
+
+  saveUsers();
+  console.log(`[tavern] ${uid} entered rest mode for ${restDays} days`);
+  res.json({ ok: true, days: restDays, message: `Entered the Hearth for ${restDays} days. Streaks and forge temp are frozen.` });
+});
+
+// POST /api/tavern/leave — leave rest mode early
+router.post('/api/tavern/leave', requireAuth, (req, res) => {
+  const uid = req.auth?.userId;
+  const u = state.users[uid];
+  if (!u) return res.status(404).json({ error: 'Player not found' });
+  if (!u.tavernRest?.active) return res.status(400).json({ error: 'Not currently resting' });
+
+  u.tavernRest.active = false;
+  u.tavernRest.endedAt = now();
+  u.tavernHistory = u.tavernHistory || [];
+  u.tavernHistory.push({ startedAt: u.tavernRest.startedAt, endedAt: u.tavernRest.endedAt, days: u.tavernRest.days, reason: u.tavernRest.reason });
+
+  // Restore frozen values
+  u.streakDays = u.tavernRest.streakFrozenAt || u.streakDays;
+  u.forgeTemp = u.tavernRest.forgeFrozenAt || u.forgeTemp;
+
+  saveUsers();
+  console.log(`[tavern] ${uid} left the Hearth early`);
+  res.json({ ok: true, message: 'Welcome back, adventurer! Your streak and forge temp have been restored.' });
+});
+
 module.exports = router;

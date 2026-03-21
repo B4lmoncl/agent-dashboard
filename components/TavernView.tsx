@@ -1,0 +1,279 @@
+"use client";
+
+import { useState, useEffect, useCallback } from "react";
+import { useDashboard } from "@/app/DashboardContext";
+import { getAuthHeaders } from "@/lib/auth-client";
+
+// ─── Types ──────────────────────────────────────────────────────────────────
+
+interface TavernStatus {
+  resting: boolean;
+  canRest?: boolean;
+  cooldownEndsAt?: string | null;
+  startedAt?: string;
+  days?: number;
+  reason?: string | null;
+  expiresAt?: string;
+  remainingMs?: number;
+  remainingDays?: number;
+  streakFrozenAt?: number;
+  forgeFrozenAt?: number;
+  justExpired?: boolean;
+  history?: { startedAt: string; endedAt: string; days: number; reason: string | null }[];
+}
+
+function timeLeft(ms: number): string {
+  const d = Math.floor(ms / 86400000);
+  const h = Math.floor((ms % 86400000) / 3600000);
+  if (d > 0) return `${d}d ${h}h`;
+  const m = Math.floor((ms % 3600000) / 60000);
+  return `${h}h ${m}m`;
+}
+
+function timeAgo(dateStr: string): string {
+  const diff = Date.now() - new Date(dateStr).getTime();
+  const days = Math.floor(diff / 86400000);
+  if (days < 1) return "today";
+  if (days === 1) return "yesterday";
+  return `${days}d ago`;
+}
+
+// ─── Component ──────────────────────────────────────────────────────────────
+
+export default function TavernView({ onRefresh }: { onRefresh?: () => void }) {
+  const { playerName, reviewApiKey } = useDashboard();
+  const [status, setStatus] = useState<TavernStatus | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [actionLoading, setActionLoading] = useState(false);
+  const [selectedDays, setSelectedDays] = useState(3);
+  const [reason, setReason] = useState("");
+  const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState<string | null>(null);
+
+  const fetchStatus = useCallback(async () => {
+    if (!playerName) return;
+    try {
+      const r = await fetch(`/api/tavern/status?player=${encodeURIComponent(playerName)}`);
+      if (r.ok) setStatus(await r.json());
+    } catch { /* ignore */ }
+    setLoading(false);
+  }, [playerName]);
+
+  useEffect(() => { fetchStatus(); }, [fetchStatus]);
+
+  // Auto-refresh timer for remaining time
+  useEffect(() => {
+    if (!status?.resting) return;
+    const interval = setInterval(fetchStatus, 60000);
+    return () => clearInterval(interval);
+  }, [status?.resting, fetchStatus]);
+
+  const enterTavern = async () => {
+    if (!reviewApiKey || !playerName || actionLoading) return;
+    setActionLoading(true);
+    setError(null);
+    try {
+      const r = await fetch("/api/tavern/enter", {
+        method: "POST",
+        headers: { ...getAuthHeaders(reviewApiKey), "Content-Type": "application/json" },
+        body: JSON.stringify({ days: selectedDays, reason: reason.trim() || null }),
+      });
+      const d = await r.json();
+      if (!r.ok) { setError(d.error || "Failed to enter"); } else {
+        setSuccess(d.message);
+        setTimeout(() => setSuccess(null), 5000);
+        fetchStatus();
+        onRefresh?.();
+      }
+    } catch { setError("Network error"); }
+    setActionLoading(false);
+  };
+
+  const leaveTavern = async () => {
+    if (!reviewApiKey || !playerName || actionLoading) return;
+    setActionLoading(true);
+    setError(null);
+    try {
+      const r = await fetch("/api/tavern/leave", {
+        method: "POST",
+        headers: getAuthHeaders(reviewApiKey),
+      });
+      const d = await r.json();
+      if (!r.ok) { setError(d.error || "Failed to leave"); } else {
+        setSuccess(d.message);
+        setTimeout(() => setSuccess(null), 5000);
+        fetchStatus();
+        onRefresh?.();
+      }
+    } catch { setError("Network error"); }
+    setActionLoading(false);
+  };
+
+  if (!playerName || !reviewApiKey) {
+    return (
+      <div className="rounded-xl px-6 py-12 text-center" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
+        <p className="text-2xl mb-2">🔥</p>
+        <p className="text-sm font-bold mb-1 text-w25">The Hearth</p>
+        <p className="text-xs text-w15">Log in to rest at the Hearth.</p>
+      </div>
+    );
+  }
+
+  if (loading) return (
+    <div className="space-y-3 tab-content-enter">
+      <div className="skeleton-card h-32" />
+      <div className="skeleton-card h-20" />
+    </div>
+  );
+
+  return (
+    <div className="space-y-5 tab-content-enter">
+      {/* Header */}
+      <div className="text-center space-y-2">
+        <p className="text-3xl">🔥</p>
+        <h2 className="text-lg font-bold" style={{ color: "#d97706" }}>The Hearth</h2>
+        <p className="text-xs text-w35" style={{ maxWidth: 400, margin: "0 auto" }}>
+          A place of rest within the tower. Here, weary adventurers can pause their journey without losing their progress. Your streaks and forge temperature will be frozen while you rest.
+        </p>
+      </div>
+
+      {/* Status messages */}
+      {error && <p className="text-xs text-center" style={{ color: "#ef4444" }}>{error}</p>}
+      {success && <p className="text-xs text-center tab-content-enter" style={{ color: "#22c55e" }}>{success}</p>}
+
+      {/* Currently resting */}
+      {status?.resting && (
+        <div className="rounded-xl p-5 space-y-4" style={{ background: "linear-gradient(135deg, rgba(217,119,6,0.08) 0%, rgba(245,158,11,0.04) 100%)", border: "1px solid rgba(217,119,6,0.25)" }}>
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm font-bold" style={{ color: "#d97706" }}>Currently Resting</p>
+              <p className="text-xs text-w35">You entered the Hearth {timeAgo(status.startedAt!)}</p>
+            </div>
+            <div className="text-right">
+              <p className="text-lg font-mono font-bold" style={{ color: "#fbbf24" }}>
+                {status.remainingDays}d left
+              </p>
+              <p className="text-xs text-w25">{timeLeft(status.remainingMs || 0)} remaining</p>
+            </div>
+          </div>
+
+          {status.reason && (
+            <p className="text-xs italic text-w40 px-3 py-2 rounded-lg" style={{ background: "rgba(255,255,255,0.03)", borderLeft: "3px solid rgba(217,119,6,0.3)" }}>
+              &ldquo;{status.reason}&rdquo;
+            </p>
+          )}
+
+          <div className="grid grid-cols-2 gap-3">
+            <div className="rounded-lg p-3 text-center" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
+              <p className="text-xs text-w30">Streak Frozen</p>
+              <p className="text-lg font-mono font-bold" style={{ color: "#f59e0b" }}>🔥 {status.streakFrozenAt}</p>
+            </div>
+            <div className="rounded-lg p-3 text-center" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
+              <p className="text-xs text-w30">Forge Frozen</p>
+              <p className="text-lg font-mono font-bold" style={{ color: "#f97316" }}>⚒ {status.forgeFrozenAt}%</p>
+            </div>
+          </div>
+
+          <button
+            onClick={leaveTavern}
+            disabled={actionLoading}
+            className="btn-interactive w-full text-xs font-bold py-2.5 rounded-lg"
+            style={{ background: "rgba(34,197,94,0.15)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.3)", opacity: actionLoading ? 0.5 : 1 }}
+          >
+            {actionLoading ? "..." : "Leave the Hearth — Return to Adventure"}
+          </button>
+        </div>
+      )}
+
+      {/* Not resting — can enter */}
+      {!status?.resting && status?.canRest && (
+        <div className="rounded-xl p-5 space-y-4" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.08)" }}>
+          <p className="text-sm font-semibold" style={{ color: "#e8e8e8" }}>Take a Rest</p>
+          <p className="text-xs text-w35">Going on vacation? Feeling burned out? Rest at the Hearth to freeze your progress. No quests will be generated, no streaks will decay, and your forge temperature stays locked.</p>
+
+          {/* Duration selector */}
+          <div>
+            <p className="text-xs font-semibold mb-2 text-w40">Duration</p>
+            <div className="flex gap-2">
+              {[1, 2, 3, 5, 7].map(d => (
+                <button
+                  key={d}
+                  onClick={() => setSelectedDays(d)}
+                  className="flex-1 py-2 rounded-lg text-xs font-bold transition-all"
+                  style={{
+                    background: selectedDays === d ? "rgba(217,119,6,0.15)" : "rgba(255,255,255,0.03)",
+                    color: selectedDays === d ? "#d97706" : "rgba(255,255,255,0.3)",
+                    border: `1px solid ${selectedDays === d ? "rgba(217,119,6,0.4)" : "rgba(255,255,255,0.06)"}`,
+                  }}
+                >
+                  {d}d
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Reason (optional) */}
+          <div>
+            <p className="text-xs font-semibold mb-1 text-w40">Reason (optional)</p>
+            <input
+              value={reason}
+              onChange={e => setReason(e.target.value)}
+              placeholder="e.g. Vacation, sick leave, mental health break..."
+              maxLength={200}
+              className="input-dark w-full text-xs px-3 py-2 rounded-lg"
+            />
+          </div>
+
+          {/* What happens */}
+          <div className="rounded-lg p-3 space-y-1" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)" }}>
+            <p className="text-xs font-semibold text-w40">While resting:</p>
+            <ul className="text-xs text-w30 space-y-0.5">
+              <li>✓ Streaks are frozen (no decay)</li>
+              <li>✓ Forge temperature frozen (no decay)</li>
+              <li>✓ No quest pool rotation</li>
+              <li>✓ No hoarding penalty changes</li>
+              <li>⚠ Cannot complete quests or rituals</li>
+              <li>⚠ 30-day cooldown after rest ends</li>
+              <li>⚠ Auto-expires after {selectedDays} day{selectedDays !== 1 ? "s" : ""}</li>
+            </ul>
+          </div>
+
+          <button
+            onClick={enterTavern}
+            disabled={actionLoading}
+            className="btn-interactive w-full text-sm font-bold py-3 rounded-xl"
+            style={{ background: "linear-gradient(135deg, #d97706, #f59e0b)", color: "#000", opacity: actionLoading ? 0.5 : 1 }}
+          >
+            {actionLoading ? "..." : `Enter the Hearth (${selectedDays} day${selectedDays !== 1 ? "s" : ""})`}
+          </button>
+        </div>
+      )}
+
+      {/* On cooldown */}
+      {!status?.resting && !status?.canRest && status?.cooldownEndsAt && (
+        <div className="rounded-xl p-5 text-center" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
+          <p className="text-sm font-semibold text-w40 mb-2">Rest on Cooldown</p>
+          <p className="text-xs text-w25">You recently rested. Next rest available:</p>
+          <p className="text-sm font-mono font-bold mt-1" style={{ color: "#d97706" }}>
+            {new Date(status.cooldownEndsAt).toLocaleDateString()}
+          </p>
+        </div>
+      )}
+
+      {/* Rest history */}
+      {status?.history && status.history.length > 0 && (
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-wider text-w25 mb-2">Rest History</p>
+          <div className="space-y-1">
+            {status.history.map((h, i) => (
+              <div key={i} className="flex items-center justify-between text-xs px-3 py-2 rounded-lg" style={{ background: "rgba(255,255,255,0.02)" }}>
+                <span className="text-w35">{h.days}d rest{h.reason ? ` — "${h.reason}"` : ""}</span>
+                <span className="text-w20">{timeAgo(h.endedAt)}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}

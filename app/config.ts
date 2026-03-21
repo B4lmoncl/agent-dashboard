@@ -117,6 +117,17 @@ export const FLOORS: Floor[] = [
       { key: "social", label: "The Breakaway", iconSrc: "/images/icons/nav-breakaway.png", requiresLogin: true, tutorialKey: null },
     ],
   },
+  {
+    id: "taverne",
+    name: "The Hearth",
+    subtitle: "Rest & Recovery",
+    icon: "🔥",
+    color: "#d97706",
+    gradient: "linear-gradient(135deg, #d97706 0%, #1a150a 100%)",
+    rooms: [
+      { key: "tavern", label: "The Hearth", iconSrc: "/images/icons/nav-tavern.png", requiresLogin: true, tutorialKey: null },
+    ],
+  },
 ];
 
 /** Get the floor that contains a given room key */
