@@ -67,13 +67,13 @@ export default function DashboardModals({
                 </div>
                 <div className="space-y-2 overflow-y-auto flex-1">
                   {[
-                    { name: "Gold", key: "gold" as const, value: loggedInUser?.currencies?.gold ?? animGold, color: "#f59e0b", desc: "Das ehrliche Metall der Halle.", iconSrc: "/images/icons/currency-gold.png" },
-                    { name: "Stardust", key: "stardust" as const, value: loggedInUser?.currencies?.stardust ?? 0, color: "#a78bfa", desc: "Geronnenes Sternenlicht.", iconSrc: "/images/icons/currency-stardust.png" },
-                    { name: "Essence", key: "essenz" as const, value: loggedInUser?.currencies?.essenz ?? 0, color: "#ef4444", desc: "Der stille Trank der Beständigkeit.", iconSrc: "/images/icons/currency-essenz.png" },
-                    { name: "Rune Shards", key: "runensplitter" as const, value: loggedInUser?.currencies?.runensplitter ?? 0, color: "#818cf8", desc: "Echos der vergessenen Sprache.", iconSrc: "/images/icons/currency-runensplitter.png" },
-                    { name: "Guild Coins", key: "gildentaler" as const, value: loggedInUser?.currencies?.gildentaler ?? 0, color: "#10b981", desc: "Zeichen des Zusammenhalts.", iconSrc: "/images/icons/currency-gildentaler.png" },
-                    { name: "Moondust", key: "mondstaub" as const, value: loggedInUser?.currencies?.mondstaub ?? 0, color: "#c084fc", desc: "Atem der Konzentration. Extrem selten.", iconSrc: "/images/icons/currency-mondstaub.png" },
-                    { name: "Sternentaler", key: "sternentaler" as const, value: loggedInUser?.currencies?.sternentaler ?? 0, color: "#fbbf24", desc: "Exklusiv aus wöchentlichen Herausforderungen.", iconSrc: "/images/icons/currency-sternentaler.png" },
+                    { name: "Gold", key: "gold" as const, value: loggedInUser?.currencies?.gold ?? animGold, color: "#f59e0b", desc: "The honest metal of the Hall.", iconSrc: "/images/icons/currency-gold.png" },
+                    { name: "Stardust", key: "stardust" as const, value: loggedInUser?.currencies?.stardust ?? 0, color: "#a78bfa", desc: "Congealed starlight.", iconSrc: "/images/icons/currency-stardust.png" },
+                    { name: "Essence", key: "essenz" as const, value: loggedInUser?.currencies?.essenz ?? 0, color: "#ef4444", desc: "The silent brew of perseverance.", iconSrc: "/images/icons/currency-essenz.png" },
+                    { name: "Rune Shards", key: "runensplitter" as const, value: loggedInUser?.currencies?.runensplitter ?? 0, color: "#818cf8", desc: "Echoes of the forgotten tongue.", iconSrc: "/images/icons/currency-runensplitter.png" },
+                    { name: "Guild Coins", key: "gildentaler" as const, value: loggedInUser?.currencies?.gildentaler ?? 0, color: "#10b981", desc: "Tokens of solidarity.", iconSrc: "/images/icons/currency-gildentaler.png" },
+                    { name: "Moondust", key: "mondstaub" as const, value: loggedInUser?.currencies?.mondstaub ?? 0, color: "#c084fc", desc: "Breath of focus. Extremely rare.", iconSrc: "/images/icons/currency-mondstaub.png" },
+                    { name: "Sternentaler", key: "sternentaler" as const, value: loggedInUser?.currencies?.sternentaler ?? 0, color: "#fbbf24", desc: "Exclusive from weekly challenges.", iconSrc: "/images/icons/currency-sternentaler.png" },
                   ].map(c => (
                     <div key={c.name}>
                       <div
@@ -125,12 +125,12 @@ export default function DashboardModals({
                 <div className="space-y-1.5">
                   {[
                     { label: "Forge Temp", val: loggedInUser.modifiers.xp.forge, color: forgeTempColor, desc: `${forgeTemp}% — ${forgeTempLabel}` },
-                    { label: "Kraft", val: loggedInUser.modifiers.xp.kraft ?? 1, color: "#f97316", desc: (loggedInUser.modifiers.xp.kraft ?? 1) > 1 ? `+${(((loggedInUser.modifiers.xp.kraft ?? 1) - 1) * 100).toFixed(1)}% (0.5% pro Kraft-Punkt)` : "Kein Kraft-Bonus" },
-                    { label: "Gear", val: loggedInUser.modifiers.xp.gear, color: "#818cf8", desc: loggedInUser.modifiers.xp.gear > 1 ? `+${Math.round((loggedInUser.modifiers.xp.gear - 1) * 100)}% von Tools` : "Kein Gear-Bonus" },
-                    { label: "Companions", val: loggedInUser.modifiers.xp.companions, color: "#f472b6", desc: loggedInUser.modifiers.xp.companions > 1 ? `+${Math.round((loggedInUser.modifiers.xp.companions - 1) * 100)}% (2% pro Companion)` : "Keine Companions beschworen" },
-                    { label: "Bond Level", val: loggedInUser.modifiers.xp.bond, color: "#fb923c", desc: loggedInUser.modifiers.xp.bond > 1 ? `+${Math.round((loggedInUser.modifiers.xp.bond - 1) * 100)}% (1% pro Bond-Level)` : "Bond Level 1" },
+                    { label: "Kraft", val: loggedInUser.modifiers.xp.kraft ?? 1, color: "#f97316", desc: (loggedInUser.modifiers.xp.kraft ?? 1) > 1 ? `+${(((loggedInUser.modifiers.xp.kraft ?? 1) - 1) * 100).toFixed(1)}% (0.5% per Kraft point)` : "No Kraft bonus" },
+                    { label: "Gear", val: loggedInUser.modifiers.xp.gear, color: "#818cf8", desc: loggedInUser.modifiers.xp.gear > 1 ? `+${Math.round((loggedInUser.modifiers.xp.gear - 1) * 100)}% from Tools` : "No Gear bonus" },
+                    { label: "Companions", val: loggedInUser.modifiers.xp.companions, color: "#f472b6", desc: loggedInUser.modifiers.xp.companions > 1 ? `+${Math.round((loggedInUser.modifiers.xp.companions - 1) * 100)}% (2% per Companion)` : "No Companions summoned" },
+                    { label: "Bond Level", val: loggedInUser.modifiers.xp.bond, color: "#fb923c", desc: loggedInUser.modifiers.xp.bond > 1 ? `+${Math.round((loggedInUser.modifiers.xp.bond - 1) * 100)}% (1% per Bond Level)` : "Bond Level 1" },
                     { label: "Quest Hoarding", val: loggedInUser.modifiers.xp.hoarding, color: "#ef4444", desc: loggedInUser.modifiers.xp.hoarding < 1 ? `-${loggedInUser.modifiers.xp.hoardingPct}% XP (${loggedInUser.modifiers.xp.hoardingCount} in progress, ${loggedInUser.modifiers.xp.hoardingCount - 20} over limit)` : `No malus (${loggedInUser.modifiers.xp.hoardingCount}/20 slots used)` },
-                    ...(loggedInUser.modifiers.xp.legendary && loggedInUser.modifiers.xp.legendary !== 1 ? [{ label: "Legendary", val: loggedInUser.modifiers.xp.legendary, color: "#f97316", desc: `+${Math.round((loggedInUser.modifiers.xp.legendary - 1) * 100)}% von Legendärem Gear` }] : []),
+                    ...(loggedInUser.modifiers.xp.legendary && loggedInUser.modifiers.xp.legendary !== 1 ? [{ label: "Legendary", val: loggedInUser.modifiers.xp.legendary, color: "#f97316", desc: `+${Math.round((loggedInUser.modifiers.xp.legendary - 1) * 100)}% from Legendary Gear` }] : []),
                   ].map(r => (
                     <div key={r.label} className="flex items-center justify-between px-2 py-1 rounded-lg" style={{ background: r.val !== 1 ? "rgba(255,255,255,0.03)" : "transparent" }}>
                       <div>
@@ -150,9 +150,9 @@ export default function DashboardModals({
                 <div className="space-y-1.5">
                   {[
                     { label: "Forge Temp", val: loggedInUser.modifiers.gold.forge, color: forgeTempColor, desc: `${forgeTemp}% — ${forgeTempLabel}` },
-                    { label: "Weisheit", val: loggedInUser.modifiers.gold.weisheit ?? 1, color: "#60a5fa", desc: (loggedInUser.modifiers.gold.weisheit ?? 1) > 1 ? `+${(((loggedInUser.modifiers.gold.weisheit ?? 1) - 1) * 100).toFixed(1)}% (0.5% pro Weisheit-Punkt)` : "Kein Weisheit-Bonus" },
-                    { label: "Streak", val: loggedInUser.modifiers.gold.streak, color: "#f97316", desc: `${loggedInUser.streakDays ?? 0} Tage (+1.5% pro Tag, max ×1.45)` },
-                    ...(loggedInUser.modifiers.gold.legendary && loggedInUser.modifiers.gold.legendary !== 1 ? [{ label: "Legendary", val: loggedInUser.modifiers.gold.legendary, color: "#f97316", desc: `+${Math.round((loggedInUser.modifiers.gold.legendary - 1) * 100)}% von Legendärem Gear` }] : []),
+                    { label: "Weisheit", val: loggedInUser.modifiers.gold.weisheit ?? 1, color: "#60a5fa", desc: (loggedInUser.modifiers.gold.weisheit ?? 1) > 1 ? `+${(((loggedInUser.modifiers.gold.weisheit ?? 1) - 1) * 100).toFixed(1)}% (0.5% per Weisheit point)` : "No Weisheit bonus" },
+                    { label: "Streak", val: loggedInUser.modifiers.gold.streak, color: "#f97316", desc: `${loggedInUser.streakDays ?? 0} days (+1.5% per day, max ×1.45)` },
+                    ...(loggedInUser.modifiers.gold.legendary && loggedInUser.modifiers.gold.legendary !== 1 ? [{ label: "Legendary", val: loggedInUser.modifiers.gold.legendary, color: "#f97316", desc: `+${Math.round((loggedInUser.modifiers.gold.legendary - 1) * 100)}% from Legendary Gear` }] : []),
                   ].map(r => (
                     <div key={r.label} className="flex items-center justify-between px-2 py-1 rounded-lg" style={{ background: r.val !== 1 ? "rgba(255,255,255,0.03)" : "transparent" }}>
                       <div>

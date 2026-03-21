@@ -284,16 +284,16 @@ router.post('/api/weekly-challenge/claim', requireAuth, (req, res) => {
 
   const nextStage = challenge.currentStage + 1;
   if (nextStage > (challenge.template.stages?.length || 0)) {
-    return res.status(400).json({ error: 'Alle Stufen bereits abgeschlossen' });
+    return res.status(400).json({ error: 'All stages already completed' });
   }
   // Prevent double-claim (idempotency)
   if (challenge.completedStages.includes(nextStage)) {
-    return res.status(409).json({ error: 'Stufe bereits beansprucht' });
+    return res.status(409).json({ error: 'Stage already claimed' });
   }
 
   const canAdvance = evaluateStageProgress(uid, challenge);
   if (!canAdvance) {
-    return res.status(400).json({ error: 'Stufe noch nicht erfüllt' });
+    return res.status(400).json({ error: 'Stage requirements not yet met' });
   }
 
   // Calculate stars for this stage before claiming

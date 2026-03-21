@@ -159,7 +159,7 @@ router.post('/api/player/:name/inventory/use/:itemId', requireAuth, requireSelf(
       // Task-based durations stored as-is, checked elsewhere
       u.activeBuffs.push({ type: 'xp_boost', amount: amt, duration: dur, activatedAt, expiresAt });
       updatedValues.activeBuffs = getActiveBuffs(uid);
-      message = `XP-Boost aktiv! +${amt}% für ${dur}`;
+      message = `XP Boost active! +${amt}% for ${dur}`;
       break;
     }
     case 'bond': {
@@ -169,9 +169,9 @@ router.post('/api/player/:name/inventory/use/:itemId', requireAuth, requireSelf(
         u.companion.bondLevel = getBondLevel(u.companion.bondXp).level;
         updatedValues.bondXp = u.companion.bondXp;
         updatedValues.bondLevel = u.companion.bondLevel;
-        message = `+${amt} Bond XP! ${u.companion.name || 'Dein Begleiter'} freut sich!`;
+        message = `+${amt} Bond XP! ${u.companion.name || 'Your Companion'} is happy!`;
       } else {
-        message = `+${amt} Bond XP! (Kein Begleiter aktiv)`;
+        message = `+${amt} Bond XP! (No companion active)`;
       }
       break;
     }
@@ -204,9 +204,9 @@ router.post('/api/player/:name/inventory/use/:itemId', requireAuth, requireSelf(
         const instance = createGearInstance(gearTemplate);
         u.inventory.push(instance);
         updatedValues.newItem = instance;
-        message = `Du erhältst: ${instance.name}!`;
+        message = `You received: ${instance.name}!`;
       } else {
-        message = 'Keine passende Ausrüstung gefunden.';
+        message = 'No matching equipment found.';
       }
       break;
     }
@@ -223,9 +223,9 @@ router.post('/api/player/:name/inventory/use/:itemId', requireAuth, requireSelf(
         const instance = createGearInstance(gearTemplate);
         u.inventory.push(instance);
         updatedValues.newItem = instance;
-        message = `Du erhältst: ${instance.name}!`;
+        message = `You received: ${instance.name}!`;
       } else {
-        message = 'Keine passende Ausrüstung gefunden.';
+        message = 'No matching equipment found.';
       }
       break;
     }
@@ -234,7 +234,7 @@ router.post('/api/player/:name/inventory/use/:itemId', requireAuth, requireSelf(
       if (!u.pendingEggs) u.pendingEggs = [];
       u.pendingEggs.push({ obtainedAt: now() });
       updatedValues.pendingEggs = u.pendingEggs.length;
-      message = 'Ein mysteriöses Ei... (coming soon)';
+      message = 'A mysterious egg... (coming soon)';
       break;
     }
     case 'cosmetic': {
@@ -256,12 +256,12 @@ router.post('/api/player/:name/inventory/use/:itemId', requireAuth, requireSelf(
         u.ritualMissCount = 0;
         updatedValues.ritualMissCount = 0;
       }
-      message = 'Zweite Chance! Verpasstes Ritual zurückgesetzt.';
+      message = 'Second Chance! Missed ritual reset.';
       break;
     }
     case 'named_gear': {
       // Placeholder — would add a specific legendary weapon
-      message = 'Legendäre Waffe erhalten! (Coming soon — wird in Task 2 implementiert)';
+      message = 'Legendary weapon obtained! (Coming soon)';
       break;
     }
     case 'team_buff': {
@@ -273,7 +273,7 @@ router.post('/api/player/:name/inventory/use/:itemId', requireAuth, requireSelf(
       const expiresAt = dur === '24h' ? new Date(Date.now() + 24 * 3600000).toISOString() : new Date(Date.now() + 48 * 3600000).toISOString();
       u.activeBuffs.push({ type: 'team_buff', amount: amt, duration: dur, activatedAt, expiresAt, scope: 'global' });
       updatedValues.activeBuffs = getActiveBuffs(uid);
-      message = `Gildensegen aktiv! +${amt}% XP für alle!`;
+      message = `Guild Blessing active! +${amt}% XP for all!`;
       break;
     }
     case 'title': {
@@ -292,7 +292,7 @@ router.post('/api/player/:name/inventory/use/:itemId', requireAuth, requireSelf(
     case 'revive': {
       u.phoenixFeather = true;
       updatedValues.phoenixFeather = true;
-      message = 'Phoenix-Feder bereit! Nächster Streak-Verlust wird verhindert.';
+      message = 'Phoenix Feather ready! Next streak loss prevented.';
       break;
     }
     case 'gold_2x_24h': {
@@ -301,7 +301,7 @@ router.post('/api/player/:name/inventory/use/:itemId', requireAuth, requireSelf(
       const expiresAt = new Date(Date.now() + 24 * 3600000).toISOString();
       u.activeBuffs.push({ type: 'gold_2x', amount: 2, duration: '24h', activatedAt, expiresAt });
       updatedValues.activeBuffs = getActiveBuffs(uid);
-      message = '2x Gold aktiv für 24 Stunden!';
+      message = '2x Gold active for 24 hours!';
       break;
     }
     case 'essenz_boost_48h': {
@@ -310,7 +310,7 @@ router.post('/api/player/:name/inventory/use/:itemId', requireAuth, requireSelf(
       const expiresAt = new Date(Date.now() + 48 * 3600000).toISOString();
       u.activeBuffs.push({ type: 'essenz_boost', amount: 2, duration: '48h', activatedAt, expiresAt });
       updatedValues.activeBuffs = getActiveBuffs(uid);
-      message = '2x Essenz-Drops aktiv für 48 Stunden!';
+      message = '2x Essence drops active for 48 hours!';
       break;
     }
     case 'quest_timer_24h': {
@@ -323,7 +323,7 @@ router.post('/api/player/:name/inventory/use/:itemId', requireAuth, requireSelf(
         }
       }
       updatedValues.questsExtended = extended;
-      message = `+24h auf ${extended} aktive Quest-Timer!`;
+      message = `+24h on ${extended} active quest timers!`;
       break;
     }
     // Gacha passive effect strings used as consumable (when someone manages to "use" them)
@@ -342,7 +342,7 @@ router.post('/api/player/:name/inventory/use/:itemId', requireAuth, requireSelf(
     case 'streak_recovery_100': {
       u.phoenixFeather = true;
       updatedValues.phoenixFeather = true;
-      message = 'Phoenix-Feder bereit! Nächster Streak-Verlust wird verhindert.';
+      message = 'Phoenix Feather ready! Next streak loss prevented.';
       break;
     }
     case 'armor': {
@@ -360,7 +360,7 @@ router.post('/api/player/:name/inventory/use/:itemId', requireAuth, requireSelf(
     }
     default: {
       // Unknown effect — consume anyway but note it
-      message = `Item verbraucht. (Effekt "${effectType}" wird noch nicht unterstützt)`;
+      message = `Item consumed. (Effect "${effectType}" is not yet supported)`;
       break;
     }
   }

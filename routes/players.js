@@ -208,7 +208,7 @@ router.post('/api/player/:name/companion/ultimate', requireAuth, requireSelf('na
   if (!ultimateData) return res.status(500).json({ error: 'Ultimates not configured' });
   const requiredLevel = ultimateData.requiredBondLevel || 5;
   if (bondLevel < requiredLevel) {
-    return res.status(400).json({ error: `Bond Level ${requiredLevel} benötigt (aktuell: ${bondLevel})` });
+    return res.status(400).json({ error: `Bond Level ${requiredLevel} required (current: ${bondLevel})` });
   }
 
   // Check cooldown (7 days)
@@ -218,7 +218,7 @@ router.post('/api/player/:name/companion/ultimate', requireAuth, requireSelf('na
     const elapsed = (Date.now() - new Date(lastUsed).getTime()) / (1000 * 60 * 60 * 24);
     if (elapsed < cooldownDays) {
       const remaining = Math.ceil(cooldownDays - elapsed);
-      return res.status(429).json({ error: `Ultimate auf Cooldown (noch ${remaining} Tag${remaining > 1 ? 'e' : ''})` });
+      return res.status(429).json({ error: `Ultimate on cooldown (${remaining} day${remaining > 1 ? 's' : ''} remaining)` });
     }
   }
 
@@ -228,7 +228,7 @@ router.post('/api/player/:name/companion/ultimate', requireAuth, requireSelf('na
   if (!ability) return res.status(404).json({ error: 'Unknown ability' });
 
   let result = { success: true, message: '' };
-  const companionName = u.companion.name || 'Dein Begleiter';
+  const companionName = u.companion.name || 'Your Companion';
   const flavorText = (ability.flavorText || '').replace(/\{name\}/g, companionName);
 
   switch (ability.effect.type) {
@@ -237,11 +237,11 @@ router.post('/api/player/:name/companion/ultimate', requireAuth, requireSelf('na
       const quest = state.questsById.get(targetQuestId);
       if (!quest) return res.status(404).json({ error: 'Quest not found' });
       if (quest.status !== 'in_progress' && quest.status !== 'open') {
-        return res.status(400).json({ error: 'Quest muss offen oder in Bearbeitung sein' });
+        return res.status(400).json({ error: 'Quest must be open or in progress' });
       }
       // Ownership check: cannot complete another player's claimed quest
       if (quest.claimedBy && quest.claimedBy !== uid) {
-        return res.status(403).json({ error: 'Quest gehört einem anderen Spieler' });
+        return res.status(403).json({ error: 'Quest belongs to another player' });
       }
       if (quest.status === 'open') {
         quest.status = 'in_progress';
@@ -253,7 +253,7 @@ router.post('/api/player/:name/companion/ultimate', requireAuth, requireSelf('na
       quest.completedAt = now();
       quest.proof = `Companion Ultimate: ${companionName}`;
       const newAchs = onQuestCompletedByUser(uid, quest);
-      result.message = `${companionName} hat "${quest.title}" für dich erledigt!`;
+      result.message = `${companionName} completed "${quest.title}" for you!`;
       result.completedQuest = quest;
       result.newAchievements = newAchs;
       result.xpEarned = u._lastXpEarned;
@@ -271,13 +271,13 @@ router.post('/api/player/:name/companion/ultimate', requireAuth, requireSelf('na
         activatedAt: now(),
         source: 'companion_ultimate',
       });
-      result.message = `Doppelte Belohnung für die nächste Quest aktiviert!`;
+      result.message = `Double reward for next quest activated!`;
       break;
     }
     case 'streak_extend': {
       const days = ability.effect.days || 3;
       u.streakDays = (u.streakDays || 0) + days;
-      result.message = `Streak um ${days} Tage verlängert! (Gesamt: ${u.streakDays})`;
+      result.message = `Streak extended by ${days} days! (Total: ${u.streakDays})`;
       break;
     }
     default:
@@ -395,9 +395,249 @@ router.get('/api/player/:name/seen-version', (req, res) => {
   res.json({ lastSeenVersion: pp.lastSeenVersion || null });
 });
 
+// ─── Player Search & Public Profile ──────────────────────────────────────────
+
+// GET /api/players/search?q=term — search all players by name (for friend adding, profile browsing)
+router.get('/api/players/search', (req, res) => {
+  const q = ((req.query.q || '') + '').toLowerCase().trim();
+  const limit = Math.min(parseInt(req.query.limit, 10) || 20, 50);
+  const agentIds = new Set(Object.keys(state.store.agents || {}));
+
+  // Get all non-agent players
+  let players = Object.values(state.users)
+    .filter(u => u && u.name && !agentIds.has(u.id))
+    .map(u => {
+      const lvl = getLevelInfo(u.xp || 0);
+      return {
+        id: u.id,
+        name: u.name,
+        avatar: u.avatar || u.name[0],
+        color: u.color || '#a78bfa',
+        level: lvl.level,
+        levelTitle: lvl.title,
+        xp: u.xp || 0,
+        classId: u.classId || null,
+        equippedTitle: u.equippedTitle || null,
+        questsCompleted: u.questsCompleted || 0,
+      };
+    });
+
+  // Filter by search query if provided
+  if (q) {
+    players = players.filter(p => p.name.toLowerCase().includes(q));
+  }
+
+  // Sort by XP descending
+  players.sort((a, b) => b.xp - a.xp);
+
+  res.json({ players: players.slice(0, limit) });
+});
+
+// GET /api/player/:name/public-profile — comprehensive public profile for viewing other players
+router.get('/api/player/:name/public-profile', (req, res) => {
+  const uid = req.params.name.toLowerCase();
+  const u = state.users[uid];
+  if (!u) return res.status(404).json({ error: 'Player not found' });
+
+  const lvl = getLevelInfo(u.xp || 0);
+  const pp = getPlayerProgress(uid);
+  const dynamicForgeTemp = calcDynamicForgeTemp(uid);
+
+  // Equipped gear (public)
+  const equipped = {};
+  const SLOTS = ['weapon', 'shield', 'helm', 'armor', 'amulet', 'boots'];
+  for (const slot of SLOTS) {
+    const eq = (u.equipment || {})[slot];
+    if (eq && typeof eq === 'object') {
+      equipped[slot] = { name: eq.name, rarity: eq.rarity, icon: eq.icon || null, stats: eq.stats || {}, slot: eq.slot, setId: eq.setId || null, legendaryEffect: eq.legendaryEffect || null, desc: eq.desc || '' };
+    }
+  }
+
+  // Achievements (public)
+  const achievements = (u.earnedAchievements || []).map(a => ({
+    id: a.id, name: a.name, desc: a.desc, icon: a.icon, rarity: a.rarity, points: a.points || 0, earnedAt: a.earnedAt,
+  }));
+
+  // Class info
+  let classInfo = null;
+  if (u.classId) {
+    const cls = (state.classesData?.classes || []).find(c => c.id === u.classId);
+    if (cls) {
+      const classTier = cls.tiers ? [...cls.tiers].reverse().find(t => (u.xp || 0) >= t.minXp) : null;
+      classInfo = { id: cls.id, name: cls.fantasy || cls.name, icon: cls.icon, tier: classTier?.title || null };
+    }
+  }
+
+  // Companion (public)
+  let companion = null;
+  if (u.companion) {
+    const c = u.companion;
+    companion = { name: c.name, type: c.type, emoji: c.emoji, isReal: c.isReal, bondLevel: getBondLevel(c.bondXp || 0).level };
+  }
+
+  // Professions (public)
+  const professions = [];
+  if (u.chosenProfessions && u.professions) {
+    for (const pid of u.chosenProfessions) {
+      const p = u.professions[pid];
+      if (p) professions.push({ id: pid, level: p.level || 0, xp: p.xp || 0 });
+    }
+  }
+
+  // Online status
+  const agentEntry = (state.store.agents || {})[uid];
+  const agentOnline = agentEntry ? agentEntry.status === 'online' : false;
+  const lastActiveAt = u.lastActiveAt || null;
+  const msSinceActive = lastActiveAt ? Date.now() - new Date(lastActiveAt).getTime() : Infinity;
+  const onlineStatus = agentOnline || msSinceActive < 5 * 60 * 1000 ? 'online' : msSinceActive < 30 * 60 * 1000 ? 'idle' : 'offline';
+
+  res.json({
+    id: uid,
+    name: u.name,
+    avatar: u.avatar || u.name[0],
+    color: u.color || '#a78bfa',
+    level: lvl.level,
+    levelTitle: lvl.title,
+    xp: u.xp || 0,
+    questsCompleted: u.questsCompleted || 0,
+    streakDays: u.streakDays || 0,
+    forgeTemp: dynamicForgeTemp,
+    gold: u.currencies?.gold ?? u.gold ?? 0,
+    achievementPoints: u.achievementPoints || 0,
+    equippedTitle: u.equippedTitle || null,
+    equippedFrame: u.equippedFrame || null,
+    classInfo,
+    companion,
+    equipped,
+    achievements,
+    professions,
+    onlineStatus,
+    lastActiveAt,
+    memberSince: u.createdAt || null,
+  });
+});
+
 // GET /api/npcs — list all NPC profiles
 router.get('/api/npcs', (req, res) => {
   res.json(Object.entries(NPC_META).map(([id, meta]) => ({ id, ...meta })));
+});
+
+// ─── Tavern / Rest Mode ──────────────────────────────────────────────────────
+
+// GET /api/tavern/status — get current rest mode status
+router.get('/api/tavern/status', (req, res) => {
+  const playerName = (req.query.player || '').toLowerCase();
+  const u = playerName ? state.usersByName.get(playerName) : null;
+  if (!u) return res.json({ resting: false });
+
+  const rest = u.tavernRest || null;
+  if (!rest || !rest.active) {
+    // Check cooldown
+    const lastRestEnd = rest?.endedAt ? new Date(rest.endedAt).getTime() : 0;
+    const cooldownMs = 30 * 24 * 60 * 60 * 1000; // 30 days
+    const cooldownReady = !lastRestEnd || (Date.now() - lastRestEnd) > cooldownMs;
+    const cooldownEndsAt = lastRestEnd ? new Date(lastRestEnd + cooldownMs).toISOString() : null;
+    return res.json({
+      resting: false,
+      canRest: cooldownReady,
+      cooldownEndsAt: cooldownReady ? null : cooldownEndsAt,
+      history: (u.tavernHistory || []).slice(-5),
+    });
+  }
+
+  // Check auto-expire (max 7 days)
+  const startedAt = new Date(rest.startedAt).getTime();
+  const durationMs = (rest.days || 7) * 24 * 60 * 60 * 1000;
+  const expiresAt = new Date(startedAt + durationMs);
+  if (Date.now() > expiresAt.getTime()) {
+    // Auto-expire
+    rest.active = false;
+    rest.endedAt = expiresAt.toISOString();
+    rest.autoExpired = true;
+    u.tavernHistory = u.tavernHistory || [];
+    u.tavernHistory.push({ startedAt: rest.startedAt, endedAt: rest.endedAt, days: rest.days, reason: rest.reason });
+    saveUsers();
+    return res.json({
+      resting: false,
+      justExpired: true,
+      canRest: false,
+      cooldownEndsAt: new Date(expiresAt.getTime() + 30 * 24 * 60 * 60 * 1000).toISOString(),
+      history: (u.tavernHistory || []).slice(-5),
+    });
+  }
+
+  const elapsed = Date.now() - startedAt;
+  const remaining = Math.max(0, durationMs - elapsed);
+
+  res.json({
+    resting: true,
+    startedAt: rest.startedAt,
+    days: rest.days,
+    reason: rest.reason || null,
+    expiresAt: expiresAt.toISOString(),
+    remainingMs: remaining,
+    remainingDays: Math.ceil(remaining / (24 * 60 * 60 * 1000)),
+    streakFrozenAt: rest.streakFrozenAt,
+    forgeFrozenAt: rest.forgeFrozenAt,
+    history: (u.tavernHistory || []).slice(-5),
+  });
+});
+
+// POST /api/tavern/enter — enter rest mode
+router.post('/api/tavern/enter', requireAuth, (req, res) => {
+  const uid = req.auth?.userId;
+  const u = state.users[uid];
+  if (!u) return res.status(404).json({ error: 'Player not found' });
+
+  const { days = 3, reason } = req.body;
+  const restDays = Math.max(1, Math.min(7, parseInt(days, 10) || 3));
+
+  // Check if already resting
+  if (u.tavernRest?.active) return res.status(400).json({ error: 'Already resting in the Hearth' });
+
+  // Check cooldown (30 days since last rest ended)
+  const lastRestEnd = u.tavernRest?.endedAt ? new Date(u.tavernRest.endedAt).getTime() : 0;
+  const cooldownMs = 30 * 24 * 60 * 60 * 1000;
+  if (lastRestEnd && (Date.now() - lastRestEnd) < cooldownMs) {
+    const cooldownEnds = new Date(lastRestEnd + cooldownMs).toISOString();
+    return res.status(429).json({ error: `Rest on cooldown until ${cooldownEnds}`, cooldownEndsAt: cooldownEnds });
+  }
+
+  // Freeze streak + forge temp
+  u.tavernRest = {
+    active: true,
+    startedAt: now(),
+    days: restDays,
+    reason: (reason || '').slice(0, 200) || null,
+    streakFrozenAt: u.streakDays || 0,
+    forgeFrozenAt: u.forgeTemp || 0,
+    endedAt: null,
+  };
+
+  saveUsers();
+  console.log(`[tavern] ${uid} entered rest mode for ${restDays} days`);
+  res.json({ ok: true, days: restDays, message: `Entered the Hearth for ${restDays} days. Streaks and forge temp are frozen.` });
+});
+
+// POST /api/tavern/leave — leave rest mode early
+router.post('/api/tavern/leave', requireAuth, (req, res) => {
+  const uid = req.auth?.userId;
+  const u = state.users[uid];
+  if (!u) return res.status(404).json({ error: 'Player not found' });
+  if (!u.tavernRest?.active) return res.status(400).json({ error: 'Not currently resting' });
+
+  u.tavernRest.active = false;
+  u.tavernRest.endedAt = now();
+  u.tavernHistory = u.tavernHistory || [];
+  u.tavernHistory.push({ startedAt: u.tavernRest.startedAt, endedAt: u.tavernRest.endedAt, days: u.tavernRest.days, reason: u.tavernRest.reason });
+
+  // Restore frozen values
+  u.streakDays = u.tavernRest.streakFrozenAt || u.streakDays;
+  u.forgeTemp = u.tavernRest.forgeFrozenAt || u.forgeTemp;
+
+  saveUsers();
+  console.log(`[tavern] ${uid} left the Hearth early`);
+  res.json({ ok: true, message: 'Welcome back, adventurer! Your streak and forge temp have been restored.' });
 });
 
 module.exports = router;

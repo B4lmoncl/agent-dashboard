@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Quest Hall",
-  description: "Quest Hall — Dein Abenteuer wartet.",
+  description: "Quest Hall — Your adventure awaits.",
 };
 
 export default function RootLayout({

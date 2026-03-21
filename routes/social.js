@@ -413,6 +413,9 @@ function enrichOffer(offer, ownerId) {
       rarity: invItem?.rarity || 'common',
       icon: invItem?.icon || null,
       slot: invItem?.slot || null,
+      stats: invItem?.stats || null,
+      setName: invItem?.setName || null,
+      legendaryEffect: invItem?.legendaryEffect || null,
     };
   });
   return { gold, items };

@@ -8,23 +8,23 @@ function conditionToText(cond: Record<string, unknown> | undefined): string {
   if (!cond) return "";
   const t = cond.type as string;
   const c = (cond.count as number) || 0;
-  const TYPE_LABELS: Record<string, string> = { development: "Development", learning: "Wissen", fitness: "Fitness", social: "Social" };
+  const TYPE_LABELS: Record<string, string> = { development: "Development", learning: "Learning", fitness: "Fitness", social: "Social" };
   switch (t) {
-    case "quests_completed": return `Schließe ${c} Quest${c > 1 ? "s" : ""} ab`;
-    case "streak_days": return `Halte einen ${c}-Tage Streak`;
-    case "quests_today": return `Schließe ${c} Quests an einem Tag ab`;
-    case "completed_types": return `Schließe Quests in ${c} verschiedenen Kategorien ab`;
-    case "boss_defeated": return `Besiege ${c} Boss-Quest${c > 1 ? "s" : ""}`;
-    case "quest_type_count": return `Schließe ${c} ${TYPE_LABELS[(cond.questType as string)] || (cond.questType as string)}-Quests ab`;
-    case "xp_threshold": return `Erreiche ${c} XP`;
-    case "gold_threshold": return `Sammle ${c} Gold`;
-    case "time_of_day": return `Schließe eine Quest zwischen ${cond.startHour}:00 und ${cond.endHour}:00 ab`;
-    case "completion_time": return `Schließe eine Quest in unter ${cond.maxMinutes} Minuten ab`;
-    case "chain_completed": return `Schließe ${c} NPC Quest-Chain${c > 1 ? "s" : ""} ab`;
-    case "campaign_completed": return `Schließe ${c} Kampagne${c > 1 ? "n" : ""} ab`;
-    case "coop_completed": return `Schließe ${c} Coop-Quest${c > 1 ? "s" : ""} ab`;
-    case "early_completions": return `Schließe ${c} Quests vor ${cond.beforeHour}:00 Uhr ab`;
-    case "day_of_week": return `Schließe eine Quest am Sonntag ab`;
+    case "quests_completed": return `Complete ${c} quest${c > 1 ? "s" : ""}`;
+    case "streak_days": return `Maintain a ${c}-day streak`;
+    case "quests_today": return `Complete ${c} quests in one day`;
+    case "completed_types": return `Complete quests in ${c} different categories`;
+    case "boss_defeated": return `Defeat ${c} boss quest${c > 1 ? "s" : ""}`;
+    case "quest_type_count": return `Complete ${c} ${TYPE_LABELS[(cond.questType as string)] || (cond.questType as string)} quests`;
+    case "xp_threshold": return `Reach ${c} XP`;
+    case "gold_threshold": return `Collect ${c} Gold`;
+    case "time_of_day": return `Complete a quest between ${cond.startHour}:00 and ${cond.endHour}:00`;
+    case "completion_time": return `Complete a quest in under ${cond.maxMinutes} minutes`;
+    case "chain_completed": return `Complete ${c} NPC quest chain${c > 1 ? "s" : ""}`;
+    case "campaign_completed": return `Complete ${c} campaign${c > 1 ? "s" : ""}`;
+    case "coop_completed": return `Complete ${c} coop quest${c > 1 ? "s" : ""}`;
+    case "early_completions": return `Complete ${c} quests before ${cond.beforeHour}:00`;
+    case "day_of_week": return `Complete a quest on Sunday`;
     case "secret_found": return "???";
     default: return "";
   }
@@ -207,7 +207,7 @@ export default function HonorsView({ catalogue, highlightedAchievementId, onHigh
                             </div>
                             {earnerCount > 0 || myEarned
                               ? <p className="text-xs mt-0.5 leading-relaxed" style={{ color: "rgba(255,255,255,0.3)" }}>{ach.desc || conditionToText(ach.condition as Record<string, unknown>) || "Achievement freigeschaltet!"}</p>
-                              : <p className="text-xs mt-0.5 leading-relaxed italic" style={{ color: "rgba(255,255,255,0.15)" }}>Schließe dieses Achievement ab, um mehr zu erfahren...</p>
+                              : <p className="text-xs mt-0.5 leading-relaxed italic" style={{ color: "rgba(255,255,255,0.15)" }}>Complete this achievement to learn more...</p>
                             }
                           </div>
                         </div>

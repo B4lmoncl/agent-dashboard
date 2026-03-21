@@ -154,16 +154,16 @@ export default function QuestDetailModal({
             <span style={{ fontSize: 11, letterSpacing: 4 }}>◆ ◆ ◆</span>
             <span style={{ flex: 1, height: 1, background: "rgba(255,255,255,0.07)", display: "block" }} />
           </div>
-          {/* Task / Aufgabe */}
+          {/* Task */}
           {q.description && (
             <div className="rounded-lg px-3 py-2.5" style={{ background: "rgba(255,255,255,0.03)", borderLeft: `3px solid ${rarityColor}55`, border: `1px solid rgba(255,255,255,0.06)`, borderLeftColor: `${rarityColor}66` }}>
-              <p className="text-xs font-semibold uppercase tracking-widest mb-1.5" style={{ color: `${rarityColor}99` }}>Aufgabe</p>
+              <p className="text-xs font-semibold uppercase tracking-widest mb-1.5" style={{ color: `${rarityColor}99` }}>Task</p>
               <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.65)" }}>{q.description}</p>
             </div>
           )}
           {/* Rewards */}
           <div>
-            <p className="text-xs font-semibold uppercase tracking-widest mb-2 text-w25">Belohnung</p>
+            <p className="text-xs font-semibold uppercase tracking-widest mb-2 text-w25">Reward</p>
             <div className="flex items-center gap-3">
               <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg" style={{ background: "rgba(251,191,36,0.08)", border: "1px solid rgba(251,191,36,0.2)" }}>
                 <img src="/images/icons/reward-gold.png" width={16} height={16} className="img-render-auto" style={{ verticalAlign: "middle" }} />
@@ -176,7 +176,7 @@ export default function QuestDetailModal({
             </div>
           </div>
           {q.claimedBy && !isClaimedByMe && (
-            <p className="text-xs" style={{ color: "rgba(139,92,246,0.7)" }}>→ Beansprucht von {q.claimedBy}</p>
+            <p className="text-xs" style={{ color: "rgba(139,92,246,0.7)" }}>→ Claimed by {q.claimedBy}</p>
           )}
         </div>
         {/* Action footer */}

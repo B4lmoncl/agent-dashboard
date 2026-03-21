@@ -109,6 +109,37 @@ function SternenpfadView({
         </div>
       </div>
 
+      {/* Cumulative Star Milestone Track */}
+      <div className="rounded-lg px-4 py-3" style={{ background: "rgba(251,191,36,0.03)", border: "1px solid rgba(251,191,36,0.1)" }}>
+        <div className="relative">
+          <div className="h-1 rounded-full" style={{ background: "rgba(255,255,255,0.06)" }}>
+            <div className="h-full rounded-full transition-all duration-700" style={{ width: `${Math.min(100, (totalStars / 9) * 100)}%`, background: "linear-gradient(90deg, #fbbf24, #f59e0b)" }} />
+          </div>
+          <div className="flex justify-between mt-2">
+            {[
+              { stars: 3, label: "3★", reward: "50 Gold" },
+              { stars: 6, label: "6★", reward: "3 Essenz + 100 Gold" },
+              { stars: 9, label: "9★", reward: "1 Sternentaler + 5 Essenz" },
+            ].map(ms => {
+              const reached = totalStars >= ms.stars;
+              return (
+                <div key={ms.stars} className="flex flex-col items-center gap-0.5">
+                  <div className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold" style={{
+                    background: reached ? "#fbbf24" : "rgba(255,255,255,0.06)",
+                    color: reached ? "#000" : "rgba(255,255,255,0.2)",
+                    boxShadow: reached ? "0 0 8px rgba(251,191,36,0.3)" : "none",
+                  }}>
+                    {reached ? "✓" : ms.stars}
+                  </div>
+                  <span className="text-xs font-bold" style={{ color: reached ? "#fbbf24" : "rgba(255,255,255,0.2)" }}>{ms.label}</span>
+                  <span className="text-xs" style={{ color: reached ? "rgba(251,191,36,0.6)" : "rgba(255,255,255,0.12)", fontSize: 9 }}>{ms.reward}</span>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+
       {/* Weekly Modifier Banner */}
       {modifier && (
         <div className="rounded-lg px-4 py-3 relative overflow-hidden" style={{ background: "linear-gradient(135deg, rgba(168,85,247,0.08) 0%, rgba(99,102,241,0.06) 100%)", border: "1px solid rgba(168,85,247,0.25)", boxShadow: "0 0 20px rgba(168,85,247,0.06)" }}>
@@ -212,8 +243,8 @@ function SternenpfadView({
                   </span>
                   <Stars earned={stage.earnedStars} animated />
                   {speedBonusActive && (
-                    <span className="text-xs px-1.5 py-0.5 rounded" style={{ background: "rgba(34,197,94,0.1)", color: "#22c55e" }}>
-                      Speed Bonus
+                    <span className="text-xs px-1.5 py-0.5 rounded cursor-help" title={`Complete this stage within ${challenge.speedBonusDays} days for +1 bonus star!`} style={{ background: "rgba(34,197,94,0.1)", color: "#22c55e" }}>
+                      ⚡ Speed Bonus
                     </span>
                   )}
                 </div>
@@ -523,13 +554,18 @@ function ExpeditionView({
                         <span className="text-xs ml-1" style={{ color: "#f87171", fontSize: 9 }}>&#9660;</span>
                       )}
                     </div>
-                    <div className="ml-6 rounded-full overflow-hidden" style={{ height: 3, background: "rgba(255,255,255,0.04)" }}>
+                    <div className="ml-6 rounded-full overflow-hidden relative" style={{ height: 4, background: "rgba(255,255,255,0.04)" }}>
                       <div className="h-full rounded-full transition-all" style={{ width: `${pct}%`, background: aboveFair ? "#4ade80" : "#f8717180" }} />
+                      {/* Fair share target line */}
+                      <div className="absolute top-0 bottom-0" style={{ left: `${Math.min(100, Math.round((fairShare / topCount) * 100))}%`, width: 1, background: "rgba(251,191,36,0.5)" }} title={`Fair share: ${fairShare}`} />
                     </div>
                   </div>
                 );
               })}
-              <p className="text-xs mt-2" style={{ color: "rgba(255,255,255,0.15)", fontSize: 10 }}>Fair share: ~{fairShare} quests per player</p>
+              <div className="flex items-center gap-2 mt-2">
+                <div className="w-3 h-0.5" style={{ background: "rgba(251,191,36,0.5)" }} />
+                <p className="text-xs" style={{ color: "rgba(251,191,36,0.4)", fontSize: 10 }}>Fair share: ~{fairShare} quests per player</p>
+              </div>
             </div>
           );
         })() : (
@@ -651,6 +687,7 @@ export default function ChallengesView({
       )}
 
       {/* Content */}
+      <div key={activeTab} className="tab-content-enter">
       {activeTab === "sternenpfad" && (
         weeklyChallenge ? (
           <SternenpfadView
@@ -682,6 +719,7 @@ export default function ChallengesView({
           </div>
         )
       )}
+      </div>
     </div>
   );
 }

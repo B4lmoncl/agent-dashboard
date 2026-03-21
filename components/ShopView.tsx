@@ -31,7 +31,7 @@ export default function ShopView({ onBuy, onGearBuy }: {
   }
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 tab-content-enter">
       {/* Header */}
       <div className="flex items-center gap-3 flex-wrap">
         <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.35)" }}>The Bazaar</span>
@@ -63,10 +63,12 @@ export default function ShopView({ onBuy, onGearBuy }: {
                     onClick={() => canAfford && onBuy(user.id, item.id)}
                     disabled={!canAfford}
                     className="shop-buy-btn text-xs px-2.5 py-1 rounded-lg font-semibold flex-shrink-0"
+                    title={canAfford ? `Buy for ${item.cost} gold` : `Insufficient gold (need ${item.cost}, have ${gold})`}
                     style={{
                       background: canAfford ? "rgba(139,92,246,0.2)" : "rgba(255,255,255,0.04)",
                       color: canAfford ? "#a78bfa" : "rgba(255,255,255,0.2)",
                       border: `1px solid ${canAfford ? "rgba(139,92,246,0.4)" : "rgba(255,255,255,0.08)"}`,
+                      cursor: canAfford ? "pointer" : "not-allowed",
                     }}
                   >
                     <img src="/images/icons/currency-gold.png" alt="" width={20} height={20} style={{ imageRendering: "auto", display: "inline", verticalAlign: "middle", marginRight: 2 }} onError={e => { e.currentTarget.style.display = "none"; }} /> {item.cost}
@@ -99,10 +101,12 @@ export default function ShopView({ onBuy, onGearBuy }: {
                   onClick={() => canAfford && onBuy(user.id, item.id)}
                   disabled={!canAfford}
                   className="shop-buy-btn text-xs px-2.5 py-1 rounded-lg font-semibold flex-shrink-0"
+                  title={canAfford ? `Buy for ${item.cost} gold` : `Insufficient gold (need ${item.cost}, have ${gold})`}
                   style={{
                     background: canAfford ? "rgba(245,158,11,0.2)" : "rgba(255,255,255,0.04)",
                     color: canAfford ? "#f59e0b" : "rgba(255,255,255,0.2)",
                     border: `1px solid ${canAfford ? "rgba(245,158,11,0.4)" : "rgba(255,255,255,0.08)"}`,
+                    cursor: canAfford ? "pointer" : "not-allowed",
                   }}
                 >
                   <img src="/images/icons/currency-gold.png" alt="" width={20} height={20} style={{ imageRendering: "auto", display: "inline", verticalAlign: "middle", marginRight: 2 }} onError={e => { e.currentTarget.style.display = "none"; }} /> {item.cost}

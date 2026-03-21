@@ -1,31 +1,81 @@
 {
   "items": [
-    { "id": "gaming_1h",   "name": "1h Gaming",       "cost": 100,  "category": "self-care", "icon": "/images/icons/shop-gaming.png",   "desc": "1 Stunde schuld-freies Gaming." },
-    { "id": "snack_break", "name": "Snack Break",      "cost": 25,   "category": "self-care", "icon": "/images/icons/shop-snack.png",    "desc": "Gönn dir einen Snack." },
-    { "id": "day_off",     "name": "Tag Frei",         "cost": 500,  "category": "self-care", "icon": "/images/icons/shop-dayoff.png",   "desc": "Überspringt einen Tag bei wiederkehrenden Quests." },
-    { "id": "movie_night", "name": "Movie Night",      "cost": 150,  "category": "self-care", "icon": "/images/icons/shop-movie.png",    "desc": "Ein Abend frei für einen Film." },
-    { "id": "sleep_in",    "name": "Ausschlafen",      "cost": 75,   "category": "self-care", "icon": "/images/icons/shop-sleep.png",    "desc": "Eine Extra-Stunde Schlaf, ohne Reue." },
-    { "id": "spa_day",     "name": "Spa-Tag",          "cost": 300,  "category": "self-care", "icon": "/images/icons/shop-spa.png",      "desc": "Ein Tag voller Selbstpflege. Du hast es dir verdient." },
-    { "id": "new_book",    "name": "Neues Buch",       "cost": 200,  "category": "self-care", "icon": "/images/icons/shop-book.png",     "desc": "Kauf dir das Buch, das du schon lange lesen wolltest." },
-    { "id": "fancy_meal",  "name": "Essen gehen",      "cost": 250,  "category": "self-care", "icon": "/images/icons/shop-meal.png",     "desc": "Gönn dir ein richtiges Essen auswärts." },
-    { "id": "hobby_time",  "name": "Hobby-Zeit",       "cost": 125,  "category": "self-care", "icon": "/images/icons/shop-hobby.png",    "desc": "2 Stunden für dein Hobby, geschützt." },
-    { "id": "social_outing","name": "Social Outing",   "cost": 175,  "category": "self-care", "icon": "/images/icons/shop-social.png",   "desc": "Triff Freunde — Quest erledigt." },
-    { "id": "nature_walk", "name": "Natur-Spaziergang","cost": 50,   "category": "self-care", "icon": "/images/icons/shop-nature.png",   "desc": "30 Minuten draußen. Frische Luft." },
-    { "id": "digital_detox","name": "Digital Detox",   "cost": 400,  "category": "self-care", "icon": "/images/icons/shop-detox.png",    "desc": "Einen Tag ohne Bildschirm. Hardcore-Belohnung." },
+    { "id": "gaming_1h",   "name": "1h Gaming",       "cost": 100,  "category": "self-care", "icon": "/images/icons/shop-gaming.png",   "desc": "One hour of guilt-free gaming." },
+    { "id": "snack_break", "name": "Snack Break",      "cost": 25,   "category": "self-care", "icon": "/images/icons/shop-snack.png",    "desc": "Treat yourself to a snack." },
+    { "id": "day_off",     "name": "Day Off",          "cost": 500,  "category": "self-care", "icon": "/images/icons/shop-dayoff.png",   "desc": "Skip a day on recurring quests." },
+    { "id": "movie_night", "name": "Movie Night",      "cost": 150,  "category": "self-care", "icon": "/images/icons/shop-movie.png",    "desc": "An evening off for a movie." },
+    { "id": "sleep_in",    "name": "Sleep In",         "cost": 75,   "category": "self-care", "icon": "/images/icons/shop-sleep.png",    "desc": "An extra hour of sleep, guilt-free." },
+    { "id": "spa_day",     "name": "Spa Day",          "cost": 300,  "category": "self-care", "icon": "/images/icons/shop-spa.png",      "desc": "A day of self-care. You've earned it." },
+    { "id": "new_book",    "name": "New Book",         "cost": 200,  "category": "self-care", "icon": "/images/icons/shop-book.png",     "desc": "Buy that book you've been wanting to read." },
+    { "id": "fancy_meal",  "name": "Dine Out",         "cost": 250,  "category": "self-care", "icon": "/images/icons/shop-meal.png",     "desc": "Treat yourself to a proper meal out." },
+    { "id": "hobby_time",  "name": "Hobby Time",       "cost": 125,  "category": "self-care", "icon": "/images/icons/shop-hobby.png",    "desc": "2 hours for your hobby, protected." },
+    { "id": "social_outing","name": "Social Outing",   "cost": 175,  "category": "self-care", "icon": "/images/icons/shop-social.png",   "desc": "Meet friends — quest completed." },
+    { "id": "nature_walk", "name": "Nature Walk",      "cost": 50,   "category": "self-care", "icon": "/images/icons/shop-nature.png",   "desc": "30 minutes outdoors. Fresh air." },
+    { "id": "digital_detox","name": "Digital Detox",   "cost": 400,  "category": "self-care", "icon": "/images/icons/shop-detox.png",    "desc": "A day without screens. Hardcore reward." },
 
-    { "id": "xp_scroll",       "name": "XP-Schriftrolle",   "cost": 200,  "category": "boost",  "icon": "/images/icons/shop-xp-scroll.png",     "desc": "+10% XP für die nächsten 5 Quests.",      "effect": { "type": "xp_boost_10",   "questsRemaining": 5 } },
-    { "id": "gold_incense",    "name": "Goldweihrauch",     "cost": 175,  "category": "boost",  "icon": "/images/icons/shop-gold-incense.png",  "desc": "+10% Gold für die nächsten 5 Quests.",     "effect": { "type": "gold_boost_10", "questsRemaining": 5 } },
-    { "id": "lucky_coin",      "name": "Glücksmünze",       "cost": 350,  "category": "boost",  "icon": "/images/icons/shop-lucky-coin.png",    "desc": "Erhöhte Loot-Chance für 3 Quests.",        "effect": { "type": "luck_boost_20", "questsRemaining": 3 } },
-    { "id": "streak_shield",   "name": "Streak-Schild",     "cost": 300,  "category": "boost",  "icon": "/images/icons/shop-streak-shield.png", "desc": "Schützt einmalig einen Streak vor Reset.", "effect": { "type": "streak_shield", "questsRemaining": 1 } },
-    { "id": "double_drop",     "name": "Doppel-Beute",      "cost": 500,  "category": "boost",  "icon": "/images/icons/shop-double-drop.png",   "desc": "Doppelte Material-Drops für 3 Quests.",    "effect": { "type": "material_double", "questsRemaining": 3 } },
-    { "id": "stardust_flask",  "name": "Sternenstaub-Phiole","cost": 150, "category": "boost",  "icon": "/images/icons/shop-stardust.png",      "desc": "Gibt sofort 25 Stardust.",                 "effect": { "type": "instant_stardust", "amount": 25 } },
-    { "id": "essenz_crystal",  "name": "Essenz-Kristall",   "cost": 400,  "category": "boost",  "icon": "/images/icons/shop-essenz.png",        "desc": "Gibt sofort 10 Essenz.",                   "effect": { "type": "instant_essenz",   "amount": 10 } }
+    { "id": "xp_scroll",       "name": "XP Scroll",         "cost": 200,  "category": "boost",  "icon": "/images/icons/shop-xp-scroll.png",     "desc": "+10% XP for the next 5 quests.",           "effect": { "type": "xp_boost_10",   "questsRemaining": 5 } },
+    { "id": "gold_incense",    "name": "Gold Incense",      "cost": 175,  "category": "boost",  "icon": "/images/icons/shop-gold-incense.png",  "desc": "+10% Gold for the next 5 quests.",          "effect": { "type": "gold_boost_10", "questsRemaining": 5 } },
+    { "id": "lucky_coin",      "name": "Lucky Coin",        "cost": 350,  "category": "boost",  "icon": "/images/icons/shop-lucky-coin.png",    "desc": "Increased loot chance for 3 quests.",       "effect": { "type": "luck_boost_20", "questsRemaining": 3 } },
+    { "id": "streak_shield",   "name": "Streak Shield",     "cost": 300,  "category": "boost",  "icon": "/images/icons/shop-streak-shield.png", "desc": "Protects your streak once from reset.",     "effect": { "type": "streak_shield", "questsRemaining": 1 } },
+    { "id": "double_drop",     "name": "Double Drop",       "cost": 500,  "category": "boost",  "icon": "/images/icons/shop-double-drop.png",   "desc": "Double material drops for 3 quests.",       "effect": { "type": "material_double", "questsRemaining": 3 } },
+    { "id": "stardust_flask",  "name": "Stardust Flask",    "cost": 150,  "category": "boost",  "icon": "/images/icons/shop-stardust.png",      "desc": "Instantly grants 25 Stardust.",             "effect": { "type": "instant_stardust", "amount": 25 } },
+    { "id": "essenz_crystal",  "name": "Essence Crystal",   "cost": 400,  "category": "boost",  "icon": "/images/icons/shop-essenz.png",        "desc": "Instantly grants 10 Essence.",              "effect": { "type": "instant_essenz",   "amount": 10 } }
   ],
   "gearTiers": [
-    { "id": "worn",       "name": "Worn Tools",       "cost": 0,    "tier": 0, "xpBonus": 0, "icon": "/images/icons/tools-worn.png", "desc": "Abgenutzte Werkzeuge. Kein Bonus." },
-    { "id": "sturdy",     "name": "Sturdy Tools",     "cost": 250,  "tier": 1, "xpBonus": 2, "icon": "/images/icons/tools-sturdy.png", "desc": "+2% XP auf alle Quests" },
-    { "id": "masterwork", "name": "Masterwork Tools", "cost": 750,  "tier": 2, "xpBonus": 4, "icon": "/images/icons/tools-masterwork.png", "desc": "+4% XP auf alle Quests" },
-    { "id": "legendary",  "name": "Legendary Tools",  "cost": 2000, "tier": 3, "xpBonus": 7, "icon": "/images/icons/tools-legendary.png", "desc": "+7% XP auf alle Quests" },
-    { "id": "mythic",     "name": "Mythic Forge",     "cost": 5000, "tier": 4, "xpBonus": 10, "icon": "/images/icons/tools-mythic.png", "desc": "+10% XP auf alle Quests" }
+    { "id": "worn",       "name": "Worn Tools",       "cost": 0,    "tier": 0, "xpBonus": 0, "icon": "/images/icons/tools-worn.png", "desc": "Worn-out tools. No bonus." },
+    { "id": "sturdy",     "name": "Sturdy Tools",     "cost": 250,  "tier": 1, "xpBonus": 2, "icon": "/images/icons/tools-sturdy.png", "desc": "+2% XP on all quests" },
+    { "id": "masterwork", "name": "Masterwork Tools", "cost": 750,  "tier": 2, "xpBonus": 4, "icon": "/images/icons/tools-masterwork.png", "desc": "+4% XP on all quests" },
+    { "id": "legendary",  "name": "Legendary Tools",  "cost": 2000, "tier": 3, "xpBonus": 7, "icon": "/images/icons/tools-legendary.png", "desc": "+7% XP on all quests" },
+    { "id": "mythic",     "name": "Mythic Forge",     "cost": 5000, "tier": 4, "xpBonus": 10, "icon": "/images/icons/tools-mythic.png", "desc": "+10% XP on all quests" }
+  ],
+  "workshopUpgrades": [
+    {
+      "id": "gold_tools",
+      "name": "Gold-Forged Tools",
+      "category": "gold_boost",
+      "tiers": [
+        { "tier": 1, "cost": 500,   "currency": "gold", "value": 2, "label": "+2% Gold on all quests" },
+        { "tier": 2, "cost": 1500,  "currency": "gold", "value": 3, "label": "+3% Gold on all quests" },
+        { "tier": 3, "cost": 4000,  "currency": "gold", "value": 4, "label": "+4% Gold on all quests" },
+        { "tier": 4, "cost": 10000, "currency": "gold", "value": 5, "label": "+5% Gold on all quests" }
+      ],
+      "icon": "/images/icons/workshop-gold-tools.png",
+      "desc": "Permanent gold bonus from enchanted tools."
+    },
+    {
+      "id": "loot_amulet",
+      "name": "Loot Chance Amulet",
+      "category": "loot_boost",
+      "tiers": [
+        { "tier": 1, "cost": 1000,  "currency": "gold", "value": 1, "label": "+1% Loot Drop Chance" },
+        { "tier": 2, "cost": 3000,  "currency": "gold", "value": 2, "label": "+2% Loot Drop Chance" },
+        { "tier": 3, "cost": 8000,  "currency": "gold", "value": 3, "label": "+3% Loot Drop Chance" }
+      ],
+      "icon": "/images/icons/workshop-loot-amulet.png",
+      "desc": "A lucky charm that attracts rare drops."
+    },
+    {
+      "id": "streak_charm",
+      "name": "Streak Shield Charm",
+      "category": "streak_shield",
+      "tiers": [
+        { "tier": 1, "cost": 15000, "currency": "gold", "value": 1, "label": "Auto-saves streak 1x per week" },
+        { "tier": 2, "cost": 25000, "currency": "gold", "value": 2, "label": "Auto-saves streak 2x per week" }
+      ],
+      "icon": "/images/icons/workshop-streak-charm.png",
+      "desc": "An ancient charm that protects your streak once per week."
+    },
+    {
+      "id": "material_magnet",
+      "name": "Material Magnet",
+      "category": "material_boost",
+      "tiers": [
+        { "tier": 1, "cost": 2000,  "currency": "gold", "value": 5,  "label": "+5% Material Drop Chance" },
+        { "tier": 2, "cost": 5000,  "currency": "gold", "value": 10, "label": "+10% Material Drop Chance" },
+        { "tier": 3, "cost": 12000, "currency": "gold", "value": 15, "label": "+15% Material Drop Chance" }
+      ],
+      "icon": "/images/icons/workshop-material-magnet.png",
+      "desc": "Magnetically attracts crafting materials from quests."
+    }
   ]
 }

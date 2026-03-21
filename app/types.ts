@@ -608,7 +608,12 @@ export interface Conversation {
 
 export interface TradeOffer {
   gold: number;
-  items: { instanceId: string; name: string; rarity: string; icon?: string | null; slot?: string }[];
+  items: {
+    instanceId: string; name: string; rarity: string; icon?: string | null; slot?: string;
+    stats?: Record<string, number> | null;
+    setName?: string | null;
+    legendaryEffect?: { type: string; label: string } | null;
+  }[];
 }
 
 export interface TradeRound {

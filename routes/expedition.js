@@ -133,10 +133,11 @@ router.get('/api/expedition', (req, res) => {
   const weekSeed = parseInt(exp.weekId.replace(/\D/g, ''), 10);
   const bonusTitle = bonusTitles.length > 0 ? bonusTitles[weekSeed % bonusTitles.length] : null;
 
-  // Build checkpoint info
+  // Build checkpoint info — last checkpoint is always the bonus checkpoint
+  const totalCheckpoints = exp.totalRequired.length;
   const checkpoints = exp.totalRequired.map((required, i) => {
     const cpNum = i + 1;
-    const isBonus = cpNum === 4;
+    const isBonus = cpNum === totalCheckpoints;
     const rewardKey = isBonus ? 'bonus' : String(cpNum);
     return {
       number: cpNum,
@@ -186,28 +187,30 @@ router.post('/api/expedition/claim', requireAuth, (req, res) => {
 
   const { checkpoint } = req.body;
   const cpNum = parseInt(checkpoint, 10);
-  if (!cpNum || cpNum < 1 || cpNum > 4) {
+  const maxCheckpoints = exp.totalRequired.length;
+  if (!cpNum || cpNum < 1 || cpNum > maxCheckpoints) {
     return res.status(400).json({ error: 'Invalid checkpoint' });
   }
 
   // Must have reached this checkpoint
   if (!exp.checkpointsReached.includes(cpNum)) {
-    return res.status(400).json({ error: 'Checkpoint noch nicht erreicht' });
+    return res.status(400).json({ error: 'Checkpoint not yet reached' });
   }
 
   // Must have contributed at least 1 quest
   if ((exp.contributions[uid] || 0) < 1) {
-    return res.status(400).json({ error: 'Du musst mindestens 1 Quest beigetragen haben' });
+    return res.status(400).json({ error: 'You must have contributed at least 1 quest' });
   }
 
   // Prevent double-claim
   exp.claimedRewards[uid] = exp.claimedRewards[uid] || [];
   if (exp.claimedRewards[uid].includes(cpNum)) {
-    return res.status(409).json({ error: 'Belohnung bereits beansprucht' });
+    return res.status(409).json({ error: 'Reward already claimed' });
   }
 
-  // Award rewards
-  const rewardKey = cpNum === 4 ? 'bonus' : String(cpNum);
+  // Award rewards — last checkpoint is always the bonus checkpoint
+  const isBonus = cpNum === maxCheckpoints;
+  const rewardKey = isBonus ? 'bonus' : String(cpNum);
   const rewards = { ...(EXPEDITION_DATA.expedition?.checkpointRewards[rewardKey] || {}) };
 
   ensureUserCurrencies(u);
@@ -216,8 +219,8 @@ router.post('/api/expedition/claim', requireAuth, (req, res) => {
   if (rewards.essenz) awardCurrency(uid, 'essenz', rewards.essenz);
   if (rewards.sternentaler) awardCurrency(uid, 'sternentaler', rewards.sternentaler);
 
-  // Award bonus title for checkpoint 4
-  if (cpNum === 4) {
+  // Award bonus title for bonus (last) checkpoint
+  if (isBonus) {
     const bonusTitles = EXPEDITION_DATA.expedition?.bonusTitles || [];
     const weekSeed = parseInt(exp.weekId.replace(/\D/g, ''), 10);
     const bonusTitle = bonusTitles.length > 0 ? bonusTitles[weekSeed % bonusTitles.length] : null;

@@ -256,18 +256,18 @@ function ProfileSettingsModal({ playerName, apiKey, initialStatus, initialPartne
         onClick={e => e.stopPropagation()}
       >
         <div>
-          <h2 className="text-base font-bold" style={{ color: "#f0f0f0" }}>⚙ Profil-Einstellungen</h2>
-          <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.4)" }}>Beziehungsstatus und weitere Einstellungen</p>
+          <h2 className="text-base font-bold" style={{ color: "#f0f0f0" }}>⚙ Profile Settings</h2>
+          <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.4)" }}>Relationship status and other settings</p>
         </div>
 
         <div className="space-y-2">
-          <label className="text-xs font-semibold block" style={{ color: "rgba(255,255,255,0.5)" }}>Beziehungsstatus</label>
+          <label className="text-xs font-semibold block" style={{ color: "rgba(255,255,255,0.5)" }}>Relationship Status</label>
           {[
             { value: "single",       label: "Single" },
-            { value: "relationship", label: "In einer Beziehung" },
-            { value: "married",      label: "Verheiratet" },
-            { value: "complicated",  label: "Es ist kompliziert" },
-            { value: "other",        label: "Andere" },
+            { value: "relationship", label: "In a relationship" },
+            { value: "married",      label: "Married" },
+            { value: "complicated",  label: "It's complicated" },
+            { value: "other",        label: "Other" },
           ].map(opt => (
             <button
               key={opt.value}
@@ -284,7 +284,7 @@ function ProfileSettingsModal({ playerName, apiKey, initialStatus, initialPartne
 
         {status !== "single" && (
           <div>
-            <label className="text-xs font-semibold mb-1.5 block" style={{ color: "rgba(255,255,255,0.5)" }}>Name des Partners / der Partnerin</label>
+            <label className="text-xs font-semibold mb-1.5 block" style={{ color: "rgba(255,255,255,0.5)" }}>Partner's Name</label>
             <input
               value={partner}
               onChange={e => setPartner(e.target.value)}
@@ -300,7 +300,7 @@ function ProfileSettingsModal({ playerName, apiKey, initialStatus, initialPartne
             onClick={onClose}
             className="flex-1 py-2 rounded-xl text-xs"
             style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.4)", border: "1px solid rgba(255,255,255,0.08)" }}
-          >Abbrechen</button>
+          >Cancel</button>
           <button
             onClick={handleSave}
             disabled={saving}
@@ -547,7 +547,7 @@ const INV_FILTERS: { key: InvFilter; label: string }[] = [
 
 const INV_SORTS: { key: InvSort; label: string }[] = [
   { key: "none", label: "Standard" },
-  { key: "rarity", label: "Seltenheit" },
+  { key: "rarity", label: "Rarity" },
   { key: "name", label: "Name" },
   { key: "level", label: "Level" },
 ];
@@ -803,11 +803,11 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
       });
       if (!r.ok && addToast) {
         const data = await r.json().catch(() => null);
-        addToast({ type: "error", message: data?.error || "Ablegen fehlgeschlagen" });
+        addToast({ type: "error", message: data?.error || "Failed to unequip" });
       }
       await fetchChar();
     } catch {
-      if (addToast) addToast({ type: "error", message: "Netzwerkfehler beim Ablegen" });
+      if (addToast) addToast({ type: "error", message: "Network error while unequipping" });
     } finally { setUnequipping(null); }
   };
 
@@ -827,11 +827,11 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
         }
       } else if (addToast) {
         const data = await r.json().catch(() => null);
-        addToast({ type: "error", message: data?.error || "Item konnte nicht benutzt werden" });
+        addToast({ type: "error", message: data?.error || "Item could not be used" });
       }
       await fetchChar();
     } catch {
-      if (addToast) addToast({ type: "error", message: "Netzwerkfehler beim Benutzen" });
+      if (addToast) addToast({ type: "error", message: "Network error while using item" });
     }
   };
 
@@ -852,7 +852,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
       }
       await fetchChar();
     } catch {
-      if (addToast) addToast({ type: "error", message: "Netzwerkfehler beim Verwerfen" });
+      if (addToast) addToast({ type: "error", message: "Network error while discarding" });
     }
   };
 
@@ -1636,7 +1636,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
           <button
             onClick={() => setProfileSettingsOpen(true)}
             className="text-xs px-1.5 py-0.5 rounded-lg ml-2"
-            title="Profil-Einstellungen"
+            title="Profile Settings"
             style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.4)", border: "1px solid rgba(255,255,255,0.1)", cursor: "pointer" }}
           >...</button>
         </div>

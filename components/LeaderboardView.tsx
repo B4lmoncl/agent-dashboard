@@ -49,10 +49,11 @@ type PlayerEntry = LeaderboardEntry & {
 
 // ─── Component ───────────────────────────────────────────────────────────────
 
-export default function LeaderboardView({ entries, agents, mode = "agents" }: {
+export default function LeaderboardView({ entries, agents, mode = "agents", onOpenProfile }: {
   entries: LeaderboardEntry[];
   agents: Agent[];
   mode?: "agents" | "players";
+  onOpenProfile?: (playerId: string) => void;
 }) {
   const { users, classesList: classes } = useDashboard();
   const classMap = new Map(classes.map(c => [c.id, c]));
@@ -167,7 +168,8 @@ export default function LeaderboardView({ entries, agents, mode = "agents" }: {
           return (
             <div
               key={entry.id}
-              className="grid px-4 py-3 items-center"
+              className={`grid px-4 py-3 items-center${isPlayerMode && onOpenProfile ? " cursor-pointer hover:bg-white/[0.03] transition-colors" : ""}`}
+              onClick={isPlayerMode && onOpenProfile ? () => onOpenProfile(entry.id) : undefined}
               style={{
                 gridTemplateColumns: "40px 1fr 80px 80px 80px",
                 borderBottom: "1px solid rgba(255,255,255,0.04)",

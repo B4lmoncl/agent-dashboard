@@ -604,7 +604,7 @@ function BannerPullModal({
               <div style={{ position: "relative", zIndex: 10 }}>
                 <div className="text-sm font-bold flex items-center justify-center gap-2">
                   {pulling && <span style={{ display: "inline-block", width: 12, height: 12, border: "2px solid currentColor", borderTopColor: "transparent", borderRadius: "50%", animation: "spin 0.7s linear infinite", opacity: 0.8 }} />}
-                  {pulling ? "Ziehe..." : "1× Arcane Pull"}
+                  {pulling ? "Pulling..." : "1× Arcane Pull"}
                 </div>
                 <div className="text-[11px] mt-0.5" style={{ opacity: 0.65, fontWeight: 400 }}>{banner.costSingle} {ci.label}</div>
               </div>
@@ -638,7 +638,7 @@ function BannerPullModal({
               <div style={{ position: "relative", zIndex: 10 }}>
                 <div className="text-sm font-bold flex items-center justify-center gap-2">
                   {pulling && <span style={{ display: "inline-block", width: 12, height: 12, border: "2px solid currentColor", borderTopColor: "transparent", borderRadius: "50%", animation: "spin 0.7s linear infinite", opacity: 0.8 }} />}
-                  {pulling ? "Ziehe..." : "10× Arcane Pull"}
+                  {pulling ? "Pulling..." : "10× Arcane Pull"}
                 </div>
                 <div className="text-[11px] mt-0.5" style={{ opacity: 0.65, fontWeight: 400 }}>{banner.cost10} {ci.label}</div>
               </div>

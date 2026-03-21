@@ -251,7 +251,7 @@ function SinglePullReveal({ result, onDone }: { result: GachaPullResult; onDone:
         className="absolute top-4 right-4 text-xs px-3 py-1.5 rounded-lg z-[110]"
         style={{ background: "rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.5)", border: "1px solid rgba(255,255,255,0.15)" }}
       >
-        Überspringen
+        Skip
       </button>
 
       {/* Charge phase — neutral white-blue orb */}
@@ -277,7 +277,7 @@ function SinglePullReveal({ result, onDone }: { result: GachaPullResult; onDone:
           <BurstParticles rarity={rarity} count={isLegendary ? 30 : 12} />
           <ItemRevealCard result={result} />
 
-          {/* Nehmen button with pulse */}
+          {/* Claim button with pulse */}
           <button
             data-feedback-id="gacha-pull.single.collect"
             onClick={onDone}
@@ -293,7 +293,7 @@ function SinglePullReveal({ result, onDone }: { result: GachaPullResult; onDone:
             onMouseEnter={(e) => { e.currentTarget.style.background = "linear-gradient(135deg, rgba(129,140,248,0.4) 0%, rgba(167,139,250,0.35) 100%)"; e.currentTarget.style.boxShadow = "0 0 25px rgba(129,140,248,0.3)"; }}
             onMouseLeave={(e) => { e.currentTarget.style.background = "linear-gradient(135deg, rgba(129,140,248,0.25) 0%, rgba(167,139,250,0.2) 100%)"; e.currentTarget.style.boxShadow = "0 0 15px rgba(129,140,248,0.15)"; }}
           >
-            Nehmen
+            Claim
           </button>
         </div>
       )}
@@ -344,7 +344,7 @@ function MultiPullReveal({ results, onDone }: { results: GachaPullResult[]; onDo
     return () => window.removeEventListener("keydown", handler);
   }, [phase, onDone]);
 
-  const handleNehmen = useCallback(() => {
+  const handleClaim = useCallback(() => {
     const nextIdx = currentIdx + 1;
     if (nextIdx < shuffledResults.length) {
       SFX.gachaReveal(shuffledResults[nextIdx].item.rarity);
@@ -363,7 +363,7 @@ function MultiPullReveal({ results, onDone }: { results: GachaPullResult[]; onDo
       className="fixed inset-0 z-[100] flex items-center justify-center p-4"
       style={{ background: "rgba(0,0,0,0.9)" }}
       onClick={() => {
-        if (phase === "sequential") handleNehmen();
+        if (phase === "sequential") handleClaim();
         else if (phase === "summary") onDone();
       }}
     >
@@ -374,7 +374,7 @@ function MultiPullReveal({ results, onDone }: { results: GachaPullResult[]; onDo
         className="absolute top-4 right-4 text-xs px-3 py-1.5 rounded-lg z-[110]"
         style={{ background: "rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.5)", border: "1px solid rgba(255,255,255,0.15)" }}
       >
-        Überspringen
+        Skip
       </button>
 
       {/* Charge phase — 8s neutral */}
@@ -406,10 +406,10 @@ function MultiPullReveal({ results, onDone }: { results: GachaPullResult[]; onDo
 
           <ItemRevealCard result={currentResult} />
 
-          {/* Nehmen button */}
+          {/* Claim button */}
           <button
             data-feedback-id="gacha-pull.multi.collect"
-            onClick={handleNehmen}
+            onClick={handleClaim}
             className="text-sm px-6 py-2.5 rounded-lg font-semibold mt-2 transition-all duration-200 hover:scale-105 active:scale-95"
             style={{
               background: "linear-gradient(135deg, rgba(129,140,248,0.25) 0%, rgba(167,139,250,0.2) 100%)",
@@ -422,7 +422,7 @@ function MultiPullReveal({ results, onDone }: { results: GachaPullResult[]; onDo
             onMouseEnter={(e) => { e.currentTarget.style.background = "linear-gradient(135deg, rgba(129,140,248,0.4) 0%, rgba(167,139,250,0.35) 100%)"; e.currentTarget.style.boxShadow = "0 0 25px rgba(129,140,248,0.3)"; }}
             onMouseLeave={(e) => { e.currentTarget.style.background = "linear-gradient(135deg, rgba(129,140,248,0.25) 0%, rgba(167,139,250,0.2) 100%)"; e.currentTarget.style.boxShadow = "0 0 15px rgba(129,140,248,0.15)"; }}
           >
-            Nehmen
+            Claim
           </button>
         </div>
       )}
@@ -515,7 +515,7 @@ function MultiPullReveal({ results, onDone }: { results: GachaPullResult[]; onDo
             onMouseEnter={(e) => { e.currentTarget.style.boxShadow = "0 0 25px rgba(129,140,248,0.3)"; e.currentTarget.style.background = "linear-gradient(135deg, rgba(129,140,248,0.4) 0%, rgba(167,139,250,0.35) 100%)"; }}
             onMouseLeave={(e) => { e.currentTarget.style.boxShadow = "0 0 15px rgba(129,140,248,0.15)"; e.currentTarget.style.background = "linear-gradient(135deg, rgba(129,140,248,0.25) 0%, rgba(167,139,250,0.2) 100%)"; }}
           >
-            Nehmen
+            Claim
           </button>
         </div>
       )}

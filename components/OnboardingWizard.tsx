@@ -29,22 +29,22 @@ interface OnboardingWizardProps {
 }
 
 const VIRTUAL_COMPANIONS = [
-  { type: "dragon", emoji: "", iconSrc: "/images/icons/companion-dragon.png", name: "Ember",  desc: "Ein feuriger Drache der dich antreibt",            personality: "fierce",    trait: "Fordernd",  questHint: "Erledige 3 Quests täglich!" },
-  { type: "owl", emoji: "", iconSrc: "/images/icons/companion-owl.png", name: "Sage",   desc: "Eine weise Eule die dich beim Lernen begleitet",   personality: "wise",      trait: "Weise",     questHint: "Lerne jeden Tag etwas Neues" },
-  { type: "phoenix", emoji: "", iconSrc: "/images/icons/companion-phoenix.png", name: "Blaze",  desc: "Ein Phoenix der aus jeder Niederlage aufsteht",    personality: "resilient", trait: "Resilient", questHint: "Nach jedem Rückschlag stärker" },
-  { type: "wolf",    emoji: "", iconSrc: "/images/portraits/companion-wolf.png",    name: "Shadow", desc: "Ein treuer Wolf der immer an deiner Seite steht",  personality: "loyal",     trait: "Treu",      questHint: "Tägliche Routine einhalten" },
-  { type: "fox",     emoji: "", iconSrc: "/images/portraits/companion-fox.png",     name: "Trick",  desc: "Ein schlauer Fuchs der kreative Lösungen findet",  personality: "clever",    trait: "Clever",    questHint: "Finde einen kreativeren Weg" },
-  { type: "bear",    emoji: "", iconSrc: "/images/portraits/companion-bear.png",    name: "Bjorn",  desc: "Ein starker Bär der dich durch harte Zeiten trägt",personality: "strong",    trait: "Stark",     questHint: "Sport und Kraft quests" },
+  { type: "dragon", emoji: "", iconSrc: "/images/icons/companion-dragon.png", name: "Ember",  desc: "A fiery dragon that pushes you forward",           personality: "fierce",    trait: "Fierce",    questHint: "Complete 3 quests every day!" },
+  { type: "owl", emoji: "", iconSrc: "/images/icons/companion-owl.png", name: "Sage",   desc: "A wise owl that guides your learning journey",     personality: "wise",      trait: "Wise",      questHint: "Learn something new every day" },
+  { type: "phoenix", emoji: "", iconSrc: "/images/icons/companion-phoenix.png", name: "Blaze",  desc: "A phoenix that rises from every setback",          personality: "resilient", trait: "Resilient", questHint: "Stronger after every setback" },
+  { type: "wolf",    emoji: "", iconSrc: "/images/portraits/companion-wolf.png",    name: "Shadow", desc: "A loyal wolf that stands by your side",            personality: "loyal",     trait: "Loyal",     questHint: "Maintain your daily routine" },
+  { type: "fox",     emoji: "", iconSrc: "/images/portraits/companion-fox.png",     name: "Trick",  desc: "A clever fox that finds creative solutions",       personality: "clever",    trait: "Clever",    questHint: "Find a more creative approach" },
+  { type: "bear",    emoji: "", iconSrc: "/images/portraits/companion-bear.png",    name: "Bjorn",  desc: "A strong bear that carries you through tough times",personality: "strong",    trait: "Strong",    questHint: "Fitness and strength quests" },
 ];
 
 const PET_SPECIES = [
-  { value: "cat",     label: "Katze",    carePreview: ["Füttern", "Spielen", "Kuscheln", "Tierarzt-Check"] },
-  { value: "dog",     label: "Hund",     carePreview: ["Gassi gehen", "Füttern", "Training", "Pflegen", "Tierarzt-Check"] },
-  { value: "hamster", label: "Hamster",  carePreview: ["Füttern", "Käfig reinigen", "Spielen"] },
-  { value: "bird",    label: "Vogel",    carePreview: ["Füttern", "Singen", "Käfig reinigen"] },
-  { value: "fish",    label: "Fisch",    carePreview: ["Füttern", "Aquarium reinigen"] },
-  { value: "rabbit",  label: "Hase",     carePreview: ["Füttern", "Spielen", "Pflegen"] },
-  { value: "other",   label: "Andere",   carePreview: ["Füttern", "Pflegen"] },
+  { value: "cat",     label: "Cat",      carePreview: ["Feed", "Play", "Cuddle", "Vet Check"] },
+  { value: "dog",     label: "Dog",      carePreview: ["Walk", "Feed", "Train", "Groom", "Vet Check"] },
+  { value: "hamster", label: "Hamster",  carePreview: ["Feed", "Clean Cage", "Play"] },
+  { value: "bird",    label: "Bird",     carePreview: ["Feed", "Sing", "Clean Cage"] },
+  { value: "fish",    label: "Fish",     carePreview: ["Feed", "Clean Aquarium"] },
+  { value: "rabbit",  label: "Rabbit",   carePreview: ["Feed", "Play", "Groom"] },
+  { value: "other",   label: "Other",    carePreview: ["Feed", "Care"] },
 ];
 
 const PET_EMOJI: Record<string, string> = {
@@ -185,7 +185,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
       });
       const data = await r.json();
       if (!r.ok) {
-        setError(data.error || "Registrierung fehlgeschlagen");
+        setError(data.error || "Registration failed");
         setLoading(false);
         return;
       }
@@ -193,7 +193,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
       if (data.accessToken) setGeneratedAccessToken(data.accessToken);
       setStep(5);
     } catch {
-      setError("Verbindungsfehler. Bitte versuche es erneut.");
+      setError("Connection error. Please try again.");
     }
     setLoading(false);
   };
@@ -254,23 +254,30 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
           overscrollBehavior: "contain",
         }}
       >
-        {/* Step indicator dots */}
-        <div className="flex items-center justify-center gap-2 pt-5 pb-1">
-          {[0, 1, 2, 3, 4, 5].map(i => (
-            <div
-              key={i}
-              className="rounded-full transition-all duration-300"
-              style={{
-                width: i === step ? 24 : 8,
-                height: 8,
-                background: i === step
-                  ? "#a78bfa"
-                  : i < step
-                    ? "rgba(167,139,250,0.5)"
-                    : "rgba(255,255,255,0.1)",
-              }}
-            />
-          ))}
+        {/* Step indicator — icon + label + progress dots */}
+        <div className="pt-5 pb-2 px-6">
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-xs font-semibold uppercase tracking-wider" style={{ color: "rgba(167,139,250,0.6)" }}>
+              {["Create Hero", "About You", "Choose Path", "Status", "Companion", "Summary"][step]}
+            </span>
+            <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.2)" }}>{step + 1}/6</span>
+          </div>
+          <div className="flex items-center gap-1.5">
+            {[0, 1, 2, 3, 4, 5].map(i => (
+              <div
+                key={i}
+                className="rounded-full transition-all duration-300 flex-1"
+                style={{
+                  height: 3,
+                  background: i === step
+                    ? "#a78bfa"
+                    : i < step
+                      ? "rgba(167,139,250,0.5)"
+                      : "rgba(255,255,255,0.08)",
+                }}
+              />
+            ))}
+          </div>
         </div>
 
         {/* ── Step 0: Name ── */}
@@ -278,53 +285,53 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
           <div className="p-6 space-y-5">
             <div className="text-center space-y-1">
               <div className="text-4xl">★</div>
-              <h2 className="text-lg font-bold" style={{ color: "#f0f0f0" }}>Willkommen in der Quest Hall!</h2>
-              <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>Dein Abenteuer beginnt hier. Wie sollen wir dich nennen?</p>
+              <h2 className="text-lg font-bold" style={{ color: "#f0f0f0" }}>Welcome to the Quest Hall!</h2>
+              <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>Your adventure begins here. What should we call you?</p>
             </div>
             <div className="space-y-3">
               <div>
-                <label className="text-xs font-semibold mb-1.5 block" style={{ color: "rgba(255,255,255,0.5)" }}>Dein Name</label>
+                <label className="text-xs font-semibold mb-1.5 block" style={{ color: "rgba(255,255,255,0.5)" }}>Your Name</label>
                 <input
                   style={inputStyle}
                   value={name}
                   onChange={e => setName(e.target.value)}
-                  placeholder="z.B. Luna, Marco, Aria..."
+                  placeholder="e.g. Luna, Marco, Aria..."
                   autoFocus
                 />
               </div>
               <div>
-                <label className="text-xs font-semibold mb-1.5 block" style={{ color: "rgba(255,255,255,0.5)" }}>Passwort</label>
+                <label className="text-xs font-semibold mb-1.5 block" style={{ color: "rgba(255,255,255,0.5)" }}>Password</label>
                 <input
                   type="password"
                   style={inputStyle}
                   value={password}
                   onChange={e => setPassword(e.target.value)}
-                  placeholder="Min. 6 Zeichen"
+                  placeholder="Min. 6 characters"
                 />
               </div>
               <div>
-                <label className="text-xs font-semibold mb-1.5 block" style={{ color: "rgba(255,255,255,0.5)" }}>Passwort wiederholen</label>
+                <label className="text-xs font-semibold mb-1.5 block" style={{ color: "rgba(255,255,255,0.5)" }}>Confirm password</label>
                 <input
                   type="password"
                   style={inputStyle}
                   value={passwordConfirm}
                   onChange={e => setPasswordConfirm(e.target.value)}
-                  placeholder="Passwort best\u00e4tigen"
+                  placeholder="Confirm password"
                   onKeyDown={e => { if (e.key === "Enter" && canProceedStep0) setStep(1); }}
                 />
                 {password && passwordConfirm && password !== passwordConfirm && (
-                  <p className="text-xs mt-1" style={{ color: "#ef4444" }}>Passw\u00f6rter stimmen nicht \u00fcberein</p>
+                  <p className="text-xs mt-1" style={{ color: "#ef4444" }}>Passwords don&apos;t match</p>
                 )}
               </div>
             </div>
             <div className="flex justify-between items-center">
-              <button onClick={onClose} style={btnSecondary}>Abbrechen</button>
+              <button onClick={onClose} style={btnSecondary}>Cancel</button>
               <button
                 onClick={() => { setError(""); setStep(1); }}
                 disabled={!canProceedStep0}
                 style={canProceedStep0 ? btnPrimary : btnDisabled}
               >
-                Weiter →
+                Next →
               </button>
             </div>
           </div>
@@ -334,23 +341,23 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
         {step === 1 && (
           <div className="p-6 space-y-5">
             <div>
-              <h2 className="text-lg font-bold" style={{ color: "#f0f0f0" }}>Erzähl uns von dir</h2>
-              <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.4)" }}>Diese Infos helfen uns, passende Quests für dich zu erstellen.</p>
+              <h2 className="text-lg font-bold" style={{ color: "#f0f0f0" }}>Tell us about yourself</h2>
+              <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.4)" }}>This helps us create quests tailored to you.</p>
             </div>
             <div>
-              <label className="text-xs font-semibold mb-1.5 block" style={{ color: "rgba(255,255,255,0.5)" }}>Alter (optional)</label>
+              <label className="text-xs font-semibold mb-1.5 block" style={{ color: "rgba(255,255,255,0.5)" }}>Age (optional)</label>
               <input
                 style={inputStyle}
                 type="number"
                 value={age}
                 onChange={e => setAge(e.target.value)}
-                placeholder="z.B. 25"
+                placeholder="e.g. 25"
                 min={5}
                 max={120}
               />
             </div>
             <div>
-              <label className="text-xs font-semibold mb-1.5 block" style={{ color: "rgba(255,255,255,0.5)" }}>Pronomen (optional)</label>
+              <label className="text-xs font-semibold mb-1.5 block" style={{ color: "rgba(255,255,255,0.5)" }}>Pronouns (optional)</label>
               <div className="flex flex-wrap gap-1.5">
                 {[
                   { value: "he/him", label: "He/Him" },
@@ -375,17 +382,17 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
               </div>
             </div>
             <div>
-              <label className="text-xs font-semibold mb-1.5 block" style={{ color: "rgba(255,255,255,0.5)" }}>Was willst du erreichen?</label>
+              <label className="text-xs font-semibold mb-1.5 block" style={{ color: "rgba(255,255,255,0.5)" }}>What do you want to achieve?</label>
               <textarea
                 style={textareaStyle}
                 value={goals}
                 onChange={e => setGoals(e.target.value)}
-                placeholder="z.B. Fit werden, Karriere voranbringen, neue Skills lernen..."
+                placeholder="e.g. Get fit, advance career, learn new skills..."
               />
             </div>
             <div className="flex justify-between">
-              <button onClick={() => setStep(0)} style={btnSecondary}>← Zurück</button>
-              <button onClick={() => setStep(2)} style={btnPrimary}>Weiter →</button>
+              <button onClick={() => setStep(0)} style={btnSecondary}>← Back</button>
+              <button onClick={() => setStep(2)} style={btnPrimary}>Next →</button>
             </div>
           </div>
         )}
@@ -394,8 +401,8 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
         {step === 2 && (
           <div className="p-6 space-y-4">
             <div>
-              <h2 className="text-lg font-bold" style={{ color: "#f0f0f0" }}>Wähle deinen Pfad</h2>
-              <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.4)" }}>Jeder Pfad bringt einzigartige Quests und Fähigkeiten.</p>
+              <h2 className="text-lg font-bold" style={{ color: "#f0f0f0" }}>Choose your path</h2>
+              <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.4)" }}>Each path brings unique quests and skills.</p>
             </div>
 
             {/* Class cards */}
@@ -422,7 +429,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
                         <span className="text-sm font-semibold" style={{ color: "#f0f0f0" }}>{cls.fantasy}</span>
                         {(cls.playerCount ?? 0) > 0 && (
                           <span className="text-xs px-1.5 py-0.5 rounded-full" style={{ background: "rgba(167,139,250,0.1)", color: "rgba(167,139,250,0.7)" }}>
-                            {cls.playerCount} Spieler
+                            {cls.playerCount} players
                           </span>
                         )}
                       </div>
@@ -433,7 +440,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
                 </button>
               ))}
               {classes.length === 0 && (
-                <p className="text-xs text-center py-4" style={{ color: "rgba(255,255,255,0.3)" }}>Klassen werden geladen...</p>
+                <p className="text-xs text-center py-4" style={{ color: "rgba(255,255,255,0.3)" }}>Loading classes...</p>
               )}
             </div>
 
@@ -444,7 +451,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
                 style={{ background: "rgba(167,139,250,0.07)", border: "1px solid rgba(167,139,250,0.22)" }}
               >
                 <p className="text-xs font-semibold" style={{ color: "#a78bfa" }}>
-                  {selectedClass.icon} Du hast {selectedClass.fantasy} gewählt!
+                  {selectedClass.icon} You chose {selectedClass.fantasy}!
                 </p>
                 <ul className="text-xs space-y-0.5" style={{ color: "rgba(255,255,255,0.55)" }}>
                   <li>• {selectedClass.description}</li>
@@ -453,7 +460,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
                   ))}
                 </ul>
                 <button onClick={() => setShowClassTutorial(false)} className="text-xs" style={{ color: "rgba(167,139,250,0.55)" }}>
-                  Verstanden!
+                  Got it!
                 </button>
               </div>
             )}
@@ -465,30 +472,30 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
                 className="text-xs underline"
                 style={{ color: "rgba(167,139,250,0.5)" }}
               >
-                Keine passende Klasse? →
+                No matching class? →
               </button>
             )}
 
             {/* Custom class form */}
             {showCustomClass && !customClassSubmitted && (
               <div className="rounded-xl p-4 space-y-3" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.1)" }}>
-                <p className="text-xs font-semibold" style={{ color: "#a78bfa" }}>Klasse einreichen</p>
+                <p className="text-xs font-semibold" style={{ color: "#a78bfa" }}>Submit Custom Class</p>
                 <div>
-                  <label className="text-xs mb-1 block" style={{ color: "rgba(255,255,255,0.4)" }}>Was machst du beruflich?</label>
+                  <label className="text-xs mb-1 block" style={{ color: "rgba(255,255,255,0.4)" }}>What do you do for a living?</label>
                   <textarea
                     style={{ ...textareaStyle, minHeight: 60 }}
                     value={customProfession}
                     onChange={e => setCustomProfession(e.target.value)}
-                    placeholder="z.B. Elektriker, Grafikdesigner, Pflegekraft..."
+                    placeholder="e.g. Electrician, Designer, Nurse..."
                   />
                 </div>
                 <div>
-                  <label className="text-xs mb-1 block" style={{ color: "rgba(255,255,255,0.4)" }}>Worauf willst du den Fokus legen?</label>
+                  <label className="text-xs mb-1 block" style={{ color: "rgba(255,255,255,0.4)" }}>What do you want to focus on?</label>
                   <textarea
                     style={{ ...textareaStyle, minHeight: 60 }}
                     value={customFocus}
                     onChange={e => setCustomFocus(e.target.value)}
-                    placeholder="z.B. Weiterbildung, Fitness, Work-Life-Balance..."
+                    placeholder="e.g. Education, Fitness, Work-Life-Balance..."
                   />
                 </div>
                 <div className="flex gap-2">
@@ -502,10 +509,10 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
                       border: `1px solid ${customProfession.trim() ? "rgba(167,139,250,0.35)" : "rgba(255,255,255,0.08)"}`,
                     }}
                   >
-                    Klasse einreichen
+                    Submit Class
                   </button>
                   <button onClick={() => setShowCustomClass(false)} className="text-xs px-3 py-1.5 rounded-lg" style={{ color: "rgba(255,255,255,0.3)" }}>
-                    Abbrechen
+                    Cancel
                   </button>
                 </div>
               </div>
@@ -515,19 +522,19 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
             {customClassSubmitted && (
               <div className="rounded-xl p-3" style={{ background: "rgba(245,158,11,0.07)", border: "1px solid rgba(245,158,11,0.25)" }}>
                 <p className="text-xs" style={{ color: "#f59e0b" }}>
-                  Deine Klasse wird geschmiedet! Du kannst schon loslegen — dein Klassenpfad wird dir zur Verfügung gestellt sobald er fertig ist.
+                  Your class is being forged! You can get started right away — your class path will be available once it's ready.
                 </p>
               </div>
             )}
 
             <div className="flex justify-between">
-              <button onClick={() => setStep(1)} style={btnSecondary}>← Zurück</button>
+              <button onClick={() => setStep(1)} style={btnSecondary}>← Back</button>
               <button
                 onClick={() => setStep(3)}
                 disabled={!canProceedStep2}
                 style={canProceedStep2 ? btnPrimary : btnDisabled}
               >
-                Weiter →
+                Next →
               </button>
             </div>
           </div>
@@ -537,17 +544,17 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
         {step === 3 && (
           <div className="p-6 space-y-5">
             <div>
-              <h2 className="text-lg font-bold" style={{ color: "#f0f0f0" }}>Beziehungsstatus</h2>
-              <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.4)" }}>Optional — hilft uns, passende Quests für dich zu erstellen.</p>
+              <h2 className="text-lg font-bold" style={{ color: "#f0f0f0" }}>Relationship Status</h2>
+              <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.4)" }}>Optional — helps us create co-op quests for couples.</p>
             </div>
 
             <div className="space-y-2">
               {[
                 { value: "single",        label: "Single" },
-                { value: "relationship",  label: "In einer Beziehung" },
-                { value: "married",       label: "Verheiratet" },
-                { value: "complicated",   label: "Es ist kompliziert" },
-                { value: "other",         label: "Andere" },
+                { value: "relationship",  label: "In a relationship" },
+                { value: "married",       label: "Married" },
+                { value: "complicated",   label: "It's complicated" },
+                { value: "other",         label: "Other" },
               ].map(opt => (
                 <button
                   key={opt.value}
@@ -566,19 +573,19 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
 
             {(relationshipStatus !== "single") && (
               <div>
-                <label className="text-xs font-semibold mb-1.5 block" style={{ color: "rgba(255,255,255,0.5)" }}>Name deines Partners / deiner Partnerin (optional)</label>
+                <label className="text-xs font-semibold mb-1.5 block" style={{ color: "rgba(255,255,255,0.5)" }}>Partner's name (optional)</label>
                 <input
                   style={inputStyle}
                   value={partnerName}
                   onChange={e => setPartnerName(e.target.value)}
-                  placeholder="z.B. Alex, Maria, Sam..."
+                  placeholder="e.g. Alex, Maria, Sam..."
                 />
               </div>
             )}
 
             <div className="flex justify-between">
-              <button onClick={() => setStep(2)} style={btnSecondary}>← Zurück</button>
-              <button onClick={() => setStep(4)} style={btnPrimary}>Weiter →</button>
+              <button onClick={() => setStep(2)} style={btnSecondary}>← Back</button>
+              <button onClick={() => setStep(4)} style={btnPrimary}>Next →</button>
             </div>
           </div>
         )}
@@ -587,15 +594,15 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
         {step === 4 && (
           <div className="p-6 space-y-4">
             <div>
-              <h2 className="text-lg font-bold" style={{ color: "#f0f0f0" }}>Wähle deinen Begleiter</h2>
-              <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.4)" }}>Dein Begleiter motiviert dich auf deinem Weg.</p>
+              <h2 className="text-lg font-bold" style={{ color: "#f0f0f0" }}>Choose your companion</h2>
+              <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.4)" }}>Your companion motivates you on your journey.</p>
             </div>
 
             {/* Real pet toggle */}
             <div className="flex gap-2">
               {[
-                { v: true,  label: "Ich habe ein Haustier" },
-                { v: false, label: "Virtueller Begleiter" },
+                { v: true,  label: "I have a real pet" },
+                { v: false, label: "Virtual companion" },
               ].map(opt => (
                 <button
                   key={String(opt.v)}
@@ -616,18 +623,18 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
             {hasRealPet === true && (
               <div className="space-y-3">
                 <div>
-                  <label className="text-xs font-semibold mb-1.5 block" style={{ color: "rgba(255,255,255,0.5)" }}>Tierart</label>
+                  <label className="text-xs font-semibold mb-1.5 block" style={{ color: "rgba(255,255,255,0.5)" }}>Pet Type</label>
                   <select style={inputStyle} value={petSpecies} onChange={e => setPetSpecies(e.target.value)}>
                     {PET_SPECIES.map(s => <option key={s.value} value={s.value}>{s.label}</option>)}
                   </select>
                 </div>
                 <div>
-                  <label className="text-xs font-semibold mb-1.5 block" style={{ color: "rgba(255,255,255,0.5)" }}>Name deines Haustieres</label>
+                  <label className="text-xs font-semibold mb-1.5 block" style={{ color: "rgba(255,255,255,0.5)" }}>Your pet's name</label>
                   <input
                     style={inputStyle}
                     value={petName}
                     onChange={e => setPetName(e.target.value)}
-                    placeholder="z.B. Luna, Bello, Tweety..."
+                    placeholder="e.g. Luna, Bello, Tweety..."
                     autoFocus
                   />
                 </div>
@@ -637,7 +644,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
                   return speciesData ? (
                     <div className="rounded-xl p-3" style={{ background: "rgba(255,107,157,0.06)", border: "1px solid rgba(255,107,157,0.18)" }}>
                       <p className="text-xs font-semibold mb-1.5" style={{ color: "#ff6b9d" }}>
-                        Deine Pflegequests {petName ? `für ${petName}` : ""}
+                        Care quests {petName ? `for ${petName}` : ""}
                       </p>
                       <div className="flex flex-wrap gap-1">
                         {speciesData.carePreview.map(q => (
@@ -646,7 +653,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
                           </span>
                         ))}
                       </div>
-                      <p className="text-xs mt-1.5" style={{ color: "rgba(255,255,255,0.3)" }}>Diese Quests werden täglich/wöchentlich für dich erstellt.</p>
+                      <p className="text-xs mt-1.5" style={{ color: "rgba(255,255,255,0.3)" }}>These quests will be created daily/weekly for you.</p>
                     </div>
                   ) : null;
                 })()}
@@ -691,16 +698,16 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
                   const vc = VIRTUAL_COMPANIONS.find(v => v.type === virtualCompanionType);
                   return (
                     <div className="rounded-xl p-3 space-y-2" style={{ background: "rgba(167,139,250,0.07)", border: "1px solid rgba(167,139,250,0.2)" }}>
-                      <p className="text-xs font-semibold" style={{ color: "#a78bfa" }}>Quests die generiert werden</p>
+                      <p className="text-xs font-semibold" style={{ color: "#a78bfa" }}>Quests that will be generated</p>
                       <p className="text-xs" style={{ color: "rgba(255,255,255,0.5)" }}>
-                        {vc?.emoji} {virtualCompanionName || vc?.name} wird täglich eine motivierende Quest für dich erstellen, basierend auf seinem Charakter.
+                        {vc?.emoji} {virtualCompanionName || vc?.name} will create a daily motivational quest for you, based on their personality.
                       </p>
                     </div>
                   );
                 })()}
                 {virtualCompanionType && (
                   <div>
-                    <label className="text-xs font-semibold mb-1.5 block" style={{ color: "rgba(255,255,255,0.5)" }}>Name deines Begleiters</label>
+                    <label className="text-xs font-semibold mb-1.5 block" style={{ color: "rgba(255,255,255,0.5)" }}>Companion's name</label>
                     <input
                       style={inputStyle}
                       value={virtualCompanionName}
@@ -715,13 +722,13 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
             {error && <p className="text-xs" style={{ color: "#ef4444" }}>{error}</p>}
 
             <div className="flex justify-between">
-              <button onClick={() => setStep(3)} style={btnSecondary}>← Zurück</button>
+              <button onClick={() => setStep(3)} style={btnSecondary}>← Back</button>
               <button
                 onClick={handleFinalSubmit}
                 disabled={!canProceedStep3 || loading}
                 style={canProceedStep3 && !loading ? btnPrimary : btnDisabled}
               >
-                {loading ? "Wird geschmiedet..." : "Weiter →"}
+                {loading ? "Forging..." : "Next →"}
               </button>
             </div>
           </div>
@@ -732,8 +739,8 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
           <div className="p-6 space-y-5">
             <div className="text-center space-y-1">
               <div className="text-4xl">★</div>
-              <h2 className="text-lg font-bold" style={{ color: "#f0f0f0" }}>Dein Abenteuer beginnt!</h2>
-              <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>Dein Held wurde in den Büchern der Quest Hall verewigt.</p>
+              <h2 className="text-lg font-bold" style={{ color: "#f0f0f0" }}>Your adventure begins!</h2>
+              <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>Your hero has been inscribed in the Quest Hall records.</p>
             </div>
 
             {/* Summary card */}
@@ -744,22 +751,22 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
               </div>
               {pronouns && (
                 <div className="flex justify-between text-xs">
-                  <span style={{ color: "rgba(255,255,255,0.4)" }}>Pronomen</span>
+                  <span style={{ color: "rgba(255,255,255,0.4)" }}>Pronouns</span>
                   <span style={{ color: "#f0f0f0", fontWeight: 600 }}>{pronouns === "prefer_not_to_say" ? "—" : pronouns}</span>
                 </div>
               )}
               <div className="flex justify-between text-xs">
-                <span style={{ color: "rgba(255,255,255,0.4)" }}>Klasse</span>
+                <span style={{ color: "rgba(255,255,255,0.4)" }}>Class</span>
                 <span style={{ color: "#a78bfa", fontWeight: 600 }}>
                   {selectedClass
                     ? `${selectedClass.icon} ${selectedClass.fantasy}`
                     : customClassSubmitted
-                      ? "Wird geschmiedet..."
+                      ? "Forging..."
                       : "—"}
                 </span>
               </div>
               <div className="flex justify-between text-xs">
-                <span style={{ color: "rgba(255,255,255,0.4)" }}>Begleiter</span>
+                <span style={{ color: "rgba(255,255,255,0.4)" }}>Companion</span>
                 <span style={{ color: "#f0f0f0", fontWeight: 600 }}>
                   {hasRealPet
                     ? `${PET_EMOJI[petSpecies] ?? ""} ${petName}`.trim()
@@ -771,14 +778,14 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
               <div className="flex justify-between text-xs">
                 <span style={{ color: "rgba(255,255,255,0.4)" }}>Status</span>
                 <span style={{ color: "#f0f0f0", fontWeight: 600 }}>
-                  {relationshipStatus === "single" ? "Single" : relationshipStatus === "relationship" ? "In einer Beziehung" : relationshipStatus === "married" ? "Verheiratet" : relationshipStatus === "complicated" ? "Kompliziert" : "Andere"}
+                  {relationshipStatus === "single" ? "Single" : relationshipStatus === "relationship" ? "In a relationship" : relationshipStatus === "married" ? "Married" : relationshipStatus === "complicated" ? "It's complicated" : "Other"}
                   {partnerName && ` (${partnerName})`}
                 </span>
               </div>
             </div>
 
             <div className="rounded-xl p-3 text-center" style={{ background: "rgba(34,197,94,0.08)", border: "1px solid rgba(34,197,94,0.2)" }}>
-              <p className="text-xs" style={{ color: "#22c55e" }}>Du bist jetzt eingeloggt. Dein Passwort ist sicher gespeichert.</p>
+              <p className="text-xs" style={{ color: "#22c55e" }}>You are now logged in. Your password has been securely saved.</p>
             </div>
 
             <button
@@ -786,7 +793,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
               className="w-full py-3 rounded-xl font-bold text-sm"
               style={{ background: "linear-gradient(135deg, #7c3aed, #a78bfa)", color: "#fff", boxShadow: "0 4px 20px rgba(139,92,246,0.3)" }}
             >
-              Los geht&apos;s!
+              Begin Your Journey!
             </button>
           </div>
         )}

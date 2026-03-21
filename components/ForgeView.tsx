@@ -149,6 +149,9 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
   const [craftCount, setCraftCount] = useState(1);
   const [confirmAction, setConfirmAction] = useState<{ message: string; onConfirm: () => void } | null>(null);
   const [buyingTool, setBuyingTool] = useState<string | null>(null);
+  const [slotAffixRanges, setSlotAffixRanges] = useState<Record<string, { primary: { stat: string; min: number; max: number }[]; minor: { stat: string; min: number; max: number }[]; currentStats: Record<string, number>; itemName: string; rarity: string }>>({});
+  const [workshopUpgrades, setWorkshopUpgrades] = useState<{ id: string; name: string; desc: string; icon: string; category: string; currentTier: number; maxTier: number; currentValue: number; nextTier: { tier: number; cost: number; currency: string; value: number; label: string } | null }[]>([]);
+  const [buyingUpgrade, setBuyingUpgrade] = useState<string | null>(null);
 
   // Close callbacks for modal behavior hooks
   const closeNpcModal = useCallback(() => {
@@ -177,6 +180,15 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
         if (data.currencies) setCurrencies(data.currencies);
         if (data.dailyBonus) setDailyBonusAvailable(data.dailyBonus.dailyBonusAvailable ?? false);
         if (data.maxProfSlots != null) setMaxProfSlots(data.maxProfSlots);
+        if (data.slotAffixRanges) setSlotAffixRanges(data.slotAffixRanges);
+      }
+    } catch { /* ignore */ }
+    // Fetch workshop upgrades
+    try {
+      const wr = await fetch(`/api/shop/workshop?player=${encodeURIComponent(playerName)}`, { signal: AbortSignal.timeout(3000) });
+      if (wr.ok) {
+        const wData = await wr.json();
+        setWorkshopUpgrades(wData.workshopUpgrades || []);
       }
     } catch { /* ignore */ }
   }, [playerName]);
@@ -653,6 +665,72 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
         );
       })()}
 
+      {/* ─── Workshop Upgrades — permanent bonuses ────────────────────────── */}
+      {workshopUpgrades.length > 0 && (
+        <div className="space-y-2">
+          <p className="text-sm font-semibold uppercase tracking-widest" style={{ color: "rgba(168,85,247,0.6)" }}>Workshop Upgrades</p>
+          <p className="text-sm" style={{ color: "rgba(255,255,255,0.25)" }}>Permanent bonuses. Each tier must be unlocked sequentially.</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+            {workshopUpgrades.map(up => {
+              const maxed = up.currentTier >= up.maxTier;
+              const next = up.nextTier;
+              const gold = currencies.gold ?? loggedInUser?.currencies?.gold ?? loggedInUser?.gold ?? 0;
+              const canAfford = next ? gold >= next.cost : false;
+              return (
+                <div key={up.id} className="flex items-center gap-3 p-3 rounded-xl" style={{
+                  background: maxed ? "rgba(168,85,247,0.08)" : "rgba(255,255,255,0.02)",
+                  border: `1px solid ${maxed ? "rgba(168,85,247,0.3)" : "rgba(255,255,255,0.06)"}`,
+                }}>
+                  <img src={up.icon} alt="" className="w-12 h-12 flex-shrink-0" style={{ imageRendering: "auto" }} onError={hideOnError} />
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-semibold" style={{ color: maxed ? "#a78bfa" : "#e8e8e8" }}>
+                      {up.name} {maxed && <span style={{ color: "rgba(168,85,247,0.5)" }}>✓ MAX</span>}
+                    </p>
+                    <p className="text-sm" style={{ color: "rgba(255,255,255,0.3)" }}>
+                      {maxed ? `+${up.currentValue}% active` : next?.label || up.desc}
+                    </p>
+                    {!maxed && up.currentTier > 0 && (
+                      <p className="text-xs" style={{ color: "rgba(168,85,247,0.4)" }}>Current: +{up.currentValue}% (Tier {up.currentTier}/{up.maxTier})</p>
+                    )}
+                  </div>
+                  {!maxed && next && (
+                    <button
+                      onClick={async () => {
+                        if (!canAfford || !reviewApiKey || buyingUpgrade) return;
+                        setBuyingUpgrade(up.id);
+                        try {
+                          const r = await fetch("/api/shop/workshop/buy", {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json", ...getAuthHeaders(reviewApiKey) },
+                            body: JSON.stringify({ upgradeId: up.id }),
+                          });
+                          if (r.ok) { onRefresh?.(); fetchData(); }
+                        } catch { /* ignore */ }
+                        setBuyingUpgrade(null);
+                      }}
+                      disabled={!canAfford || buyingUpgrade === up.id}
+                      className="forge-btn text-xs px-2.5 py-1 rounded-lg font-semibold flex-shrink-0"
+                      style={{
+                        background: canAfford ? "rgba(168,85,247,0.2)" : "rgba(255,255,255,0.03)",
+                        color: canAfford ? "#a78bfa" : "rgba(255,255,255,0.2)",
+                        border: `1px solid ${canAfford ? "rgba(168,85,247,0.4)" : "rgba(255,255,255,0.06)"}`,
+                        cursor: canAfford ? "pointer" : "not-allowed",
+                      }}
+                      title={canAfford ? `Buy for ${next.cost} gold` : `Insufficient gold (need ${next.cost})`}
+                    >
+                      {buyingUpgrade === up.id ? "..." : (<>
+                        <img src="/images/icons/currency-gold.png" alt="" width={18} height={18} style={{ imageRendering: "auto", display: "inline", verticalAlign: "middle", marginRight: 3 }} onError={hideOnError} />
+                        {next.cost}
+                      </>)}
+                    </button>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
       {/* ─── NPC Popout Modal ────────────────────────────────────────────────── */}
       {selectedNpc && typeof document !== "undefined" && createPortal(
         <div
@@ -812,12 +890,34 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                               <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: skillUp?.color || "#6b7280" }} title={skillUp?.label || ""} />
                             </div>
                             <p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,0.4)" }}>{recipe.desc}</p>
-                            {/* D3-style reroll preview: show what stats CAN be rolled */}
-                            {meetsLevel && (recipe.id === "reroll_stat" || recipe.id === "reroll_minor" || recipe.id === "reinforce_armor" || recipe.id === "enchant_socket") && equippedSlots[selectedSlot] && typeof equippedSlots[selectedSlot] === "object" && (
-                              <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.25)" }}>
-                                Current: {Object.entries((equippedSlots[selectedSlot] as Record<string, unknown>).stats as Record<string, number> || {}).map(([k, v]) => `${k} ${v}`).join(", ") || "none"}
-                              </p>
-                            )}
+                            {/* D3-style reroll preview: show current stats + possible ranges */}
+                            {meetsLevel && (recipe.id === "reroll_stat" || recipe.id === "reroll_minor" || recipe.id === "reinforce_armor" || recipe.id === "enchant_socket") && equippedSlots[selectedSlot] && typeof equippedSlots[selectedSlot] === "object" && (() => {
+                              const slotData = slotAffixRanges[selectedSlot];
+                              const currentStats = (equippedSlots[selectedSlot] as Record<string, unknown>).stats as Record<string, number> || {};
+                              const isRerollPrimary = recipe.id === "reroll_stat";
+                              const isRerollMinor = recipe.id === "reroll_minor";
+                              const ranges = slotData ? (isRerollPrimary ? slotData.primary : isRerollMinor ? slotData.minor : [...slotData.primary, ...slotData.minor]) : [];
+                              return (
+                                <div className="mt-1 rounded-lg px-2 py-1.5" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.04)" }}>
+                                  <p className="text-xs mb-1" style={{ color: "rgba(255,255,255,0.3)" }}>
+                                    Current: {Object.entries(currentStats).map(([k, v]) => `${k} +${v}`).join(", ") || "none"}
+                                  </p>
+                                  {ranges.length > 0 && (
+                                    <div className="flex flex-wrap gap-x-3 gap-y-0.5">
+                                      {ranges.map(r => {
+                                        const current = currentStats[r.stat];
+                                        return (
+                                          <span key={r.stat} className="text-xs" style={{ color: current != null ? "#4ade80" : "rgba(255,255,255,0.2)" }}>
+                                            {r.stat} {r.min}–{r.max}
+                                            {current != null && <span style={{ color: "rgba(255,255,255,0.15)" }}> (now {current})</span>}
+                                          </span>
+                                        );
+                                      })}
+                                    </div>
+                                  )}
+                                </div>
+                              );
+                            })()}
                             {!meetsLevel && (
                               <p className="text-xs mt-1" style={{ color: "#f44" }}>Requires {selectedNpc.name} Lv.{recipe.reqProfLevel}</p>
                             )}

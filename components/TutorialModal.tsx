@@ -456,11 +456,19 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
               <GuideSection title="The Breakaway">
                 Der soziale Hub der Quest Hall. Hier findest du Freunde, Nachrichten und das Handelssystem. Erreichbar über den <strong>5. Stock (The Breakaway)</strong> — nur eingeloggt.
               </GuideSection>
+              <GuideSection title="Player Search & Profiles">
+                <ul className="space-y-1 mt-1">
+                  <li>• <span style={{ color: "#f0f0f0" }}>Spieler suchen</span> — Tippe in das Suchfeld um Spieler nach Name zu finden. Autocomplete zeigt passende Ergebnisse.</li>
+                  <li>• <span style={{ color: "#a855f7" }}>Spielerprofil</span> — Klicke auf einen Spieler im Leaderboard, in der Freundesliste oder in Suchergebnissen um sein Profil zu sehen: Ausrüstung, Achievements, Berufe, Companion und mehr.</li>
+                  <li>• Direkt aus dem Profil: <strong>Freund hinzufügen</strong> oder <strong>Nachricht senden</strong>.</li>
+                </ul>
+              </GuideSection>
               <GuideSection title="Friends">
                 <ul className="space-y-1 mt-1">
-                  <li>• <span style={{ color: "#f0f0f0" }}>Freund hinzufügen</span> — Gib den Spielernamen ein und sende eine Anfrage.</li>
+                  <li>• <span style={{ color: "#f0f0f0" }}>Freund hinzufügen</span> — Suche nach Spielern oder gib den Namen direkt ein.</li>
                   <li>• <span style={{ color: "#f0f0f0" }}>Anfragen</span> — Eingehende Anfragen annehmen oder ablehnen. Ausgehende Anfragen sehen bis der andere antwortet.</li>
-                  <li>• Freundesliste zeigt <span style={{ color: "#22c55e" }}>Online-Status</span>, Level und Klasse jedes Freundes.</li>
+                  <li>• Freundesliste zeigt <span style={{ color: "#22c55e" }}>Online-Status</span> (3 Stufen: Online/Idle/Offline), Level und Klasse jedes Freundes.</li>
+                  <li>• Auto-Refresh alle 30 Sekunden für aktuelle Online-Anzeige.</li>
                 </ul>
               </GuideSection>
               <GuideSection title="Messages">
@@ -478,6 +486,15 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                   <li>• <span style={{ color: "#22c55e" }}>Annahme</span> — Beide Spieler müssen akzeptieren. Items und Gold werden atomar getauscht.</li>
                   <li>• <span style={{ color: "#ef4444" }}>Absicherung</span> — Ausgerüstete Items können nicht gehandelt werden. Gold wird bei Angebot überprüft.</li>
                   <li>• Nur ein aktiver Trade pro Spielerpaar gleichzeitig erlaubt.</li>
+                </ul>
+              </GuideSection>
+              <GuideSection title="Activity Feed">
+                Der <strong>Feed</strong>-Tab zeigt Aktivitäten von dir und deinen Freunden:
+                <ul className="space-y-1 mt-1">
+                  <li>• ⚔️ Quest-Abschlüsse, ⬆️ Level-Ups, 🏆 Achievements, ✨ Gacha-Pulls (Epic+), 💎 Seltene Drops, 🤝 Trades</li>
+                  <li>• <span style={{ color: "#ff8c00" }}>Legendary</span>-Events leuchten golden, <span style={{ color: "#a855f7" }}>Epic</span>-Events lila</li>
+                  <li>• Umschaltbar zwischen <strong>Kompakt</strong> (einzeilig) und <strong>Detailliert</strong> (mit Glow-Effekten)</li>
+                  <li>• Auto-Refresh alle 30 Sekunden</li>
                 </ul>
               </GuideSection>
             </>
@@ -521,6 +538,15 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
               </GuideSection>
               <GuideSection title="Daily Login Bonus">
                 Einmal pro Tag abholen: <strong>3 Essenz + 2 Runensplitter</strong>. Bei längeren Streaks gibt es Bonus-Essenz und Runensplitter (7d: +1/+1, 14d: +2/+2, 30d+: +3/+5).
+              </GuideSection>
+              <GuideSection title="Daily Missions">
+                Tägliche Aufgaben mit Belohnungstrack — sichtbar oben auf dem Quest Board:
+                <ul className="space-y-1 mt-1">
+                  <li>• <span style={{ color: "#f0f0f0" }}>6 Missionen</span>: Login Bonus (+100), 1 Quest (+150), 3 Quests (+250), Ritual (+100), Companion streicheln (+50), Craften (+100)</li>
+                  <li>• <span style={{ color: "#fbbf24" }}>4 Meilensteine</span>: Bei 100/300/500/750 Punkten gibt es Gold, Essenz, Runensplitter und Sternentaler</li>
+                  <li>• Meilenstein-Belohnungen werden manuell beansprucht (Klick auf den leuchtenden Punkt)</li>
+                  <li>• Missionen und Meilensteine resetten täglich um Mitternacht</li>
+                </ul>
               </GuideSection>
               <GuideSection title="The Bazaar (Shop)">
                 Im Bazaar gibt es zwei Kategorien:

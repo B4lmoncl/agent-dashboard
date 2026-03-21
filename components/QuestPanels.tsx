@@ -193,7 +193,7 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
             <p className="text-xs mb-1.5" style={{ color: mood.color }}>{mood.msg}</p>
             <div className="flex items-center gap-3 text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>
               <span className="font-bold" style={{ color: mood.color }}>{days} Tage beständig</span>
-              {longestStreak > 0 && <span title="Längste Serie" style={{ color: "rgba(245,158,11,0.5)" }}>Rekord: {longestStreak}</span>}
+              {longestStreak > 0 && <span title="Longest streak" style={{ color: "rgba(245,158,11,0.5)" }}>Record: {longestStreak}</span>}
               {nextMilestone && <span>→ {nextMilestone.badge} in {nextMilestone.days - days}d</span>}
             </div>
             {ar.bloodPact && ar.commitmentDays && ar.commitmentDays > 0 && !ar.pactCompleted && (
@@ -569,7 +569,7 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
                     </div>
                   </div>
                   <div className="flex gap-2 pt-1">
-                    <button onClick={closeExtend} className="text-sm py-2.5 px-5 rounded-xl" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(165,180,252,0.35)", border: "1px solid rgba(255,255,255,0.08)" }}>Abbrechen</button>
+                    <button onClick={closeExtend} className="text-sm py-2.5 px-5 rounded-xl" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(165,180,252,0.35)", border: "1px solid rgba(255,255,255,0.08)" }}>Cancel</button>
                     <button
                       disabled={!canExtend}
                       onClick={async () => {

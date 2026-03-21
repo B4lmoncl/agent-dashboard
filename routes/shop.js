@@ -15,25 +15,25 @@ function applyShopEffect(u, item) {
   if (type === 'instant_stardust') {
     u.currencies = u.currencies || {};
     u.currencies.stardust = (u.currencies.stardust || 0) + amount;
-    return `+${amount} Stardust erhalten!`;
+    return `+${amount} Stardust received!`;
   }
   if (type === 'instant_essenz') {
     u.currencies = u.currencies || {};
     u.currencies.essenz = (u.currencies.essenz || 0) + amount;
-    return `+${amount} Essenz erhalten!`;
+    return `+${amount} Essenz received!`;
   }
 
   // Buff-based effects
   u.activeBuffs = u.activeBuffs || [];
   u.activeBuffs.push({ type, questsRemaining, activatedAt: now() });
   const buffNames = {
-    xp_boost_10: `+10% XP für ${questsRemaining} Quests`,
-    gold_boost_10: `+10% Gold für ${questsRemaining} Quests`,
-    luck_boost_20: `Erhöhte Loot-Chance für ${questsRemaining} Quests`,
-    streak_shield: 'Streak-Schild aktiviert!',
-    material_double: `Doppelte Material-Drops für ${questsRemaining} Quests`,
+    xp_boost_10: `+10% XP for ${questsRemaining} quests`,
+    gold_boost_10: `+10% Gold for ${questsRemaining} quests`,
+    luck_boost_20: `Increased loot chance for ${questsRemaining} quests`,
+    streak_shield: 'Streak Shield activated!',
+    material_double: `Double material drops for ${questsRemaining} quests`,
   };
-  return buffNames[type] || 'Effekt aktiviert!';
+  return buffNames[type] || 'Effect activated!';
 }
 
 // ─── Personal Life Quest Templates ───────────────────────────────────────────
@@ -224,6 +224,63 @@ router.post('/api/shop/gear/buy', requireApiKey, (req, res) => {
   saveUsers();
   console.log(`[gear] ${uid} upgraded to "${gear.name}" for ${gear.cost} gold`);
   res.json({ ok: true, gear, remainingGold: u.gold });
+});
+
+// POST /api/shop/workshop/buy — buy a workshop upgrade (permanent bonuses)
+router.post('/api/shop/workshop/buy', requireApiKey, (req, res) => {
+  const { upgradeId } = req.body;
+  const uid = req.auth?.userId;
+  const u = state.users[uid];
+  if (!u) return res.status(404).json({ error: 'User not found' });
+  if (!upgradeId) return res.status(400).json({ error: 'upgradeId required' });
+
+  const upgrades = state.store.shopData?.workshopUpgrades || [];
+  const upgrade = upgrades.find(up => up.id === upgradeId);
+  if (!upgrade) return res.status(404).json({ error: 'Workshop upgrade not found' });
+
+  // Determine current tier
+  u.workshopUpgrades = u.workshopUpgrades || {};
+  const currentTier = u.workshopUpgrades[upgradeId] || 0;
+  const nextTierDef = upgrade.tiers.find(t => t.tier === currentTier + 1);
+  if (!nextTierDef) return res.status(400).json({ error: 'Already at max tier' });
+
+  // Check currency
+  ensureUserCurrencies(u);
+  const currency = nextTierDef.currency || 'gold';
+  const balance = currency === 'gold' ? (u.currencies?.gold ?? u.gold ?? 0) : (u.currencies?.[currency] ?? 0);
+  if (balance < nextTierDef.cost) return res.status(400).json({ error: `Insufficient ${currency}. Need ${nextTierDef.cost}, have ${balance}` });
+
+  // Deduct cost
+  if (currency === 'gold') {
+    u.currencies.gold = (u.currencies.gold ?? u.gold ?? 0) - nextTierDef.cost;
+    u.gold = u.currencies.gold;
+  } else {
+    u.currencies[currency] = (u.currencies[currency] || 0) - nextTierDef.cost;
+  }
+
+  // Apply upgrade
+  u.workshopUpgrades[upgradeId] = currentTier + 1;
+  saveUsers();
+  console.log(`[workshop] ${uid} upgraded "${upgrade.name}" to tier ${currentTier + 1} for ${nextTierDef.cost} ${currency}`);
+  res.json({ ok: true, upgrade: upgrade.name, tier: currentTier + 1, label: nextTierDef.label });
+});
+
+// GET /api/shop/workshop — get workshop upgrade definitions + player progress
+router.get('/api/shop/workshop', (req, res) => {
+  const playerName = (req.query.player || '').toLowerCase();
+  const u = playerName ? state.usersByName.get(playerName) : null;
+  const upgrades = state.store.shopData?.workshopUpgrades || [];
+  const playerUpgrades = u?.workshopUpgrades || {};
+
+  const result = upgrades.map(up => ({
+    ...up,
+    currentTier: playerUpgrades[up.id] || 0,
+    maxTier: up.tiers.length,
+    nextTier: up.tiers.find(t => t.tier === (playerUpgrades[up.id] || 0) + 1) || null,
+    currentValue: up.tiers.find(t => t.tier === (playerUpgrades[up.id] || 0))?.value || 0,
+  }));
+
+  res.json({ workshopUpgrades: result });
 });
 
 // GET /api/user/:id/gear — get user's current gear

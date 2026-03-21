@@ -15,6 +15,9 @@ const RitualChamber = lazy(() => import("@/components/RitualChamber"));
 const ChallengesView = lazy(() => import("@/components/ChallengesView"));
 const DailyLoginCalendar = lazy(() => import("@/components/DailyLoginCalendar"));
 const SocialView = lazy(() => import("@/components/SocialView"));
+const TavernView = lazy(() => import("@/components/TavernView"));
+const RiftView = lazy(() => import("@/components/RiftView"));
+const PlayerProfileModal = lazy(() => import("@/components/PlayerProfileModal"));
 import { GuideModal, GuideContent, TutorialOverlay, TUTORIAL_STEPS } from "@/components/TutorialModal";
 import {
   CreateQuestModal, AntiRitualePanel,
@@ -110,6 +113,9 @@ export default function Dashboard() {
   const [dailyBonusAvailable, setDailyBonusAvailable] = useState(false);
   const [weeklyChallenge, setWeeklyChallenge] = useState<import("@/app/types").WeeklyChallenge | null>(null);
   const [expedition, setExpedition] = useState<import("@/app/types").Expedition | null>(null);
+  const [socialBadge, setSocialBadge] = useState<{ pendingFriendRequests: number; unreadMessages: number; activeTrades: number } | null>(null);
+  const [profilePlayerId, setProfilePlayerId] = useState<string | null>(null);
+  const [dailyMissions, setDailyMissions] = useState<{ missions: { id: string; label: string; points: number; done: boolean }[]; earned: number; total: number; milestones: { threshold: number; reward: Record<string, number>; claimed: boolean }[] } | null>(null);
   const [claimingDailyBonus, setClaimingDailyBonus] = useState(false);
   const [loginCalendarOpen, setLoginCalendarOpen] = useState(false);
   const [completedOpen, setCompletedOpen] = useState(false);
@@ -122,7 +128,7 @@ export default function Dashboard() {
   });
   // selectedIds, bulkLoading, reviewComments moved to useQuestActions hook
   const [typeFilter, setTypeFilter] = useState<string>("all");
-  const [dashViewRaw, setDashViewRaw] = useState<"questBoard" | "npcBoard" | "klassenquests" | "character" | "campaign" | "leaderboard" | "honors" | "season" | "shop" | "forge" | "gacha" | "roadmap" | "changelog" | "challenges" | "rituals" | "vows" | "social">("questBoard");
+  const [dashViewRaw, setDashViewRaw] = useState<"questBoard" | "npcBoard" | "klassenquests" | "character" | "campaign" | "leaderboard" | "honors" | "season" | "shop" | "forge" | "gacha" | "roadmap" | "changelog" | "challenges" | "rituals" | "vows" | "social" | "tavern" | "rift">("questBoard");
   const [activeFloor, setActiveFloor] = useState("haupthalle");
   // Wrap setDashView to auto-sync the active floor
   const dashView = dashViewRaw;
@@ -345,6 +351,8 @@ export default function Dashboard() {
       if (batch.dailyBonusAvailable !== undefined) setDailyBonusAvailable(!!batch.dailyBonusAvailable);
       if (batch.weeklyChallenge !== undefined) setWeeklyChallenge(batch.weeklyChallenge || null);
       if (batch.expedition !== undefined) setExpedition(batch.expedition || null);
+      if (batch.socialSummary) setSocialBadge(batch.socialSummary);
+      if (batch.dailyMissions) setDailyMissions(batch.dailyMissions);
     } else {
       // Fallback: individual fetches if batch endpoint not available
       const [a, q, u, lb, ac, camps] = await Promise.all([fetchAgents(), fetchQuests(pName || undefined), fetchUsers(), fetchLeaderboard(), fetchAchievementCatalogue(), fetchCampaigns()]);
@@ -909,7 +917,7 @@ export default function Dashboard() {
                   >
                     <p className="font-semibold mb-1 text-bright" style={{ fontSize: 14 }}>The Deepforge</p>
                     <p className="mb-2" style={{ color: "rgba(255,255,255,0.55)", fontSize: 13 }}>
-                      Dein Aktivitäts-Level. Steigt mit jeder Quest, sinkt wenn du pausierst.
+                      Your activity level. Rises with each quest, drops when you pause.
                     </p>
                     <p className="mb-1.5 font-semibold text-w60" style={{ fontSize: 12 }}>Was bringt&apos;s?</p>
                     <div className="space-y-1.5 mb-3">
@@ -1021,7 +1029,7 @@ export default function Dashboard() {
                       })}
                     </div>
                   ) : (
-                    <p className="text-xs text-w30 mb-4">Noch keine Berufe gewählt. Besuche das Artisan&apos;s Quarter!</p>
+                    <p className="text-xs text-w30 mb-4">No professions chosen yet. Visit the Artisan&apos;s Quarter!</p>
                   )}
 
                   {/* Materials Inventory */}
@@ -1072,10 +1080,12 @@ export default function Dashboard() {
           const currentFloor = FLOORS.find(f => f.id === activeFloor) || FLOORS[1];
           const visibleRooms = currentFloor.rooms.filter(r => !r.requiresLogin || playerName);
           // Notification dots per room
+          const socialTotal = socialBadge ? (socialBadge.pendingFriendRequests + socialBadge.unreadMessages + socialBadge.activeTrades) : 0;
           const getRoomNotif = (key: string) => {
             if (dashView === key) return null;
             if (key === "questBoard" && notifNewQuests) return "#4ade80";
             if (key === "npcBoard" && notifNewNpcs) return "#f59e0b";
+            if (key === "social" && socialTotal > 0) return "#a855f7";
             return null;
           };
           // Check if a floor has any notification
@@ -1110,7 +1120,12 @@ export default function Dashboard() {
                     >
                       <span style={{ fontSize: 14 }}>{floor.icon}</span>
                       <span className="hidden sm:inline">{floor.name}</span>
-                      {hasNotif && <span className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full" style={{ background: "#4ade80", boxShadow: "0 0 4px #4ade80" }} />}
+                      {hasNotif && <span className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full badge-enter" style={{ background: "#4ade80", boxShadow: "0 0 4px #4ade80" }} />}
+                      {floor.id === "breakaway" && socialTotal > 0 && !isActive && (
+                        <span className="absolute -top-1 -right-1 min-w-[16px] h-4 rounded-full flex items-center justify-center text-xs font-bold badge-enter" style={{ background: "#a855f7", color: "#fff", fontSize: 9, padding: "0 4px", boxShadow: "0 0 6px rgba(168,85,247,0.4)" }}>
+                          {socialTotal}
+                        </span>
+                      )}
                     </button>
                   );
                 })}
@@ -1173,7 +1188,7 @@ export default function Dashboard() {
                 </div>
               </div>
             )}
-            <ErrorBoundary><Suspense fallback={<ViewFallback />}><LeaderboardView entries={leaderboard} agents={agents} mode="players" /></Suspense></ErrorBoundary>
+            <ErrorBoundary><Suspense fallback={<ViewFallback />}><LeaderboardView entries={leaderboard} agents={agents} mode="players" onOpenProfile={id => setProfilePlayerId(id)} /></Suspense></ErrorBoundary>
           </div>
         )}
 
@@ -1242,6 +1257,11 @@ export default function Dashboard() {
             expedition={expedition}
             onRefresh={refresh}
           /></Suspense></ErrorBoundary>
+        )}
+
+        {/* ── THE RIFT (Dungeon System) ── */}
+        {dashView === "rift" && (
+          <ErrorBoundary><Suspense fallback={<ViewFallback />}><RiftView onRefresh={refreshDashboard} /></Suspense></ErrorBoundary>
         )}
 
         {/* ── ROADMAP TAB ── */}
@@ -1363,8 +1383,8 @@ export default function Dashboard() {
                         </div>
                         <p className="text-xs mt-0.5 text-w25">
                           {playerName
-                            ? `${boardOpen.length + playerVisibleInProgress.length} aktive Quests`
-                            : "Logge dich ein · 0 verfügbar"}
+                            ? `${boardOpen.length + playerVisibleInProgress.length} active quests`
+                            : "Log in · 0 available"}
                         </p>
                       </div>
                       <div className="flex items-center gap-1">
@@ -1397,6 +1417,71 @@ export default function Dashboard() {
                       </div>
                     </div>
                   </div>
+
+                  {/* Daily Missions Panel */}
+                  {dailyMissions && playerName && (
+                    <div className="rounded-xl p-3 mb-3" style={{ background: "linear-gradient(135deg, rgba(99,102,241,0.06) 0%, rgba(168,85,247,0.04) 100%)", border: "1px solid rgba(99,102,241,0.15)" }}>
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="text-xs font-bold uppercase tracking-wider" style={{ color: "rgba(99,102,241,0.7)" }}>Daily Missions</span>
+                        <span className="text-xs font-mono font-bold" style={{ color: dailyMissions.earned >= dailyMissions.total ? "#4ade80" : "#818cf8" }}>
+                          {dailyMissions.earned}/{dailyMissions.total}
+                        </span>
+                      </div>
+                      {/* Milestone reward track */}
+                      <div className="relative mb-3">
+                        <div className="h-1.5 rounded-full" style={{ background: "rgba(255,255,255,0.06)" }}>
+                          <div className="h-full rounded-full transition-all duration-700" style={{ width: `${Math.min(100, (dailyMissions.earned / dailyMissions.total) * 100)}%`, background: "linear-gradient(90deg, #818cf8, #a78bfa)" }} />
+                        </div>
+                        <div className="flex justify-between mt-1">
+                          {dailyMissions.milestones.map(ms => {
+                            const reached = dailyMissions.earned >= ms.threshold;
+                            const pct = (ms.threshold / dailyMissions.total) * 100;
+                            return (
+                              <div key={ms.threshold} className="relative" style={{ left: `${pct - 50/(dailyMissions.milestones.length)}%` }}>
+                                {reached && !ms.claimed ? (
+                                  <button
+                                    onClick={async () => {
+                                      try {
+                                        const { getAuthHeaders } = await import("@/lib/auth-client");
+                                        const r = await fetch("/api/daily-missions/claim", {
+                                          method: "POST",
+                                          headers: { ...getAuthHeaders(reviewApiKey!), "Content-Type": "application/json" },
+                                          body: JSON.stringify({ threshold: ms.threshold }),
+                                        });
+                                        if (r.ok) refreshDashboard();
+                                      } catch { /* ignore */ }
+                                    }}
+                                    className="btn-interactive text-xs px-1.5 py-0.5 rounded font-bold badge-enter"
+                                    style={{ background: "rgba(74,222,128,0.15)", color: "#4ade80", border: "1px solid rgba(74,222,128,0.3)" }}
+                                    title={Object.entries(ms.reward).map(([k, v]) => `+${v} ${k}`).join(", ")}
+                                  >
+                                    {ms.threshold}
+                                  </button>
+                                ) : (
+                                  <span className="text-xs font-mono px-1" style={{ color: ms.claimed ? "#4ade80" : reached ? "#818cf8" : "rgba(255,255,255,0.15)" }}>
+                                    {ms.claimed ? "✓" : ms.threshold}
+                                  </span>
+                                )}
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+                      {/* Mission list — compact */}
+                      <div className="flex flex-wrap gap-1.5">
+                        {dailyMissions.missions.map(m => (
+                          <span key={m.id} className="text-xs px-2 py-1 rounded-lg inline-flex items-center gap-1" style={{
+                            background: m.done ? "rgba(74,222,128,0.08)" : "rgba(255,255,255,0.03)",
+                            color: m.done ? "#4ade80" : "rgba(255,255,255,0.3)",
+                            border: `1px solid ${m.done ? "rgba(74,222,128,0.15)" : "rgba(255,255,255,0.05)"}`,
+                            textDecoration: m.done ? "line-through" : "none",
+                          }}>
+                            {m.done ? "✓" : "○"} {m.label} <span className="font-mono" style={{ color: m.done ? "rgba(74,222,128,0.5)" : "rgba(255,255,255,0.15)" }}>+{m.points}</span>
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
 
                   <div data-feedback-id="quest-board" className="space-y-2">
                     {/* Category filters — Quest Board only */}
@@ -1459,8 +1544,8 @@ export default function Dashboard() {
                     {!playerName && !loading ? (
                       <div className="rounded-xl p-8 text-center bg-card border-w6">
                         <p className="text-base mb-2">×</p>
-                        <p className="text-sm font-semibold mb-1 text-w50">Logge dich ein um deine Quests zu sehen</p>
-                        <p className="text-xs mb-3 text-w25">Dein persönlicher Quest-Pool wartet auf dich!</p>
+                        <p className="text-sm font-semibold mb-1 text-w50">Log in to view your quests</p>
+                        <p className="text-xs mb-3 text-w25">Your personal quest pool awaits!</p>
                         <button onClick={() => setOnboardingOpen(true)} className="text-xs px-4 py-1.5 rounded font-semibold" style={{ background: "rgba(167,139,250,0.18)", color: "#a78bfa", border: "1px solid rgba(167,139,250,0.4)" }}>
                           Login
                         </button>
@@ -1580,6 +1665,11 @@ export default function Dashboard() {
         {/* ── THE BREAKAWAY (Social & Trade) ── */}
         {dashView === "social" && (
           <ErrorBoundary><Suspense fallback={<ViewFallback />}><SocialView /></Suspense></ErrorBoundary>
+        )}
+
+        {/* ── THE HEARTH (Tavern / Rest Mode) ── */}
+        {dashView === "tavern" && (
+          <ErrorBoundary><Suspense fallback={<ViewFallback />}><TavernView onRefresh={refreshDashboard} /></Suspense></ErrorBoundary>
         )}
 
         {/* ── THE WANDERER'S REST (NPC Tab) ── */}
@@ -1950,7 +2040,7 @@ export default function Dashboard() {
             maxWidth: "min(480px, 92vw)",
             animation: "fadeInDown 0.2s ease",
           }}
-          title="Klicken zum Schließen"
+          title="Click to close"
         >
           <span style={{ fontSize: 18, flexShrink: 0 }}>⏱</span>
           <p className="text-xs leading-relaxed flex-1" style={{ color: "#fca5a5" }}>{apiError}</p>
@@ -2116,7 +2206,7 @@ export default function Dashboard() {
             <div className="text-center space-y-1">
               <div className="text-4xl">×</div>
               <h2 className="text-base font-bold text-bright">
-                Dein Klassenpfad steht bereit!
+                Your class path is ready!
               </h2>
               <p className="text-sm font-semibold" style={{ color: "#a78bfa" }}>
                 {classActivatedNotif.classIcon} Willkommen auf dem {classActivatedNotif.className}!
@@ -2193,6 +2283,12 @@ export default function Dashboard() {
       )}
     </div>
     <FloatingRewardsLayer rewards={floatingRewards} onRemove={removeFloating} />
+    {/* Player Profile Modal — accessible from Leaderboard, Social, etc. */}
+    {profilePlayerId && (
+      <Suspense fallback={null}>
+        <PlayerProfileModal playerId={profilePlayerId} onClose={() => setProfilePlayerId(null)} />
+      </Suspense>
+    )}
     </DashboardProvider>
   );
 }

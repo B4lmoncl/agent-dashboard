@@ -184,7 +184,7 @@ export default function DailyLoginCalendar({ onClose }: { onClose: () => void })
           className="w-full py-2 rounded-xl text-xs font-semibold"
           style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.5)", border: "1px solid rgba(255,255,255,0.08)", cursor: "pointer" }}
         >
-          Schließen
+          Close
         </button>
       </div>
     </div>

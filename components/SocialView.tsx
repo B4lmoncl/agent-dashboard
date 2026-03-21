@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import { useDashboard } from "@/app/DashboardContext";
 import { getAuthHeaders } from "@/lib/auth-client";
 import { InfoTooltip } from "@/components/InfoTooltip";
+import PlayerProfileModal from "@/components/PlayerProfileModal";
 import type {
   FriendInfo, FriendRequest, Conversation, SocialMessage,
   Trade, TradeOffer, ActivityEvent,
@@ -49,7 +50,7 @@ function OnlineDot({ status, lastActiveAt }: { status: string; lastActiveAt?: st
 
 function ReadCheck({ read }: { read: boolean }) {
   return (
-    <span className="text-xs ml-1" style={{ color: read ? "#60a5fa" : "#555" }} title={read ? "Read" : "Sent"}>
+    <span className="text-xs ml-1" style={{ color: read ? "#60a5fa" : "#555" }} title={read ? "Read" : "Sent"} aria-label={read ? "Message read" : "Message sent"}>
       {read ? "✓✓" : "✓"}
     </span>
   );
@@ -67,13 +68,17 @@ type SocialTab = "friends" | "messages" | "trades" | "activity";
 
 // ─── Friends Tab ────────────────────────────────────────────────────────────
 
-function FriendsTab({ apiKey, playerName }: { apiKey: string; playerName: string }) {
+function FriendsTab({ apiKey, playerName, onOpenProfile }: { apiKey: string; playerName: string; onOpenProfile?: (id: string) => void }) {
   const [friends, setFriends] = useState<FriendInfo[]>([]);
   const [incomingRequests, setIncomingRequests] = useState<FriendRequest[]>([]);
   const [outgoingRequests, setOutgoingRequests] = useState<FriendRequest[]>([]);
   const [addInput, setAddInput] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [successMsg, setSuccessMsg] = useState<string | null>(null);
+  const [searchResults, setSearchResults] = useState<{ id: string; name: string; avatar: string; color: string; level: number; classId: string | null }[]>([]);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const searchRef = useRef<HTMLDivElement>(null);
 
   const fetchFriends = useCallback(async () => {
     try {
@@ -94,18 +99,56 @@ function FriendsTab({ apiKey, playerName }: { apiKey: string; playerName: string
 
   useEffect(() => { fetchFriends(); }, [fetchFriends]);
 
-  const sendRequest = async () => {
-    if (!addInput.trim()) return;
+  // Auto-refresh friends list every 30s
+  useEffect(() => {
+    const interval = setInterval(fetchFriends, 30000);
+    return () => clearInterval(interval);
+  }, [fetchFriends]);
+
+  // Player search with debounce
+  useEffect(() => {
+    if (!addInput.trim() || addInput.trim().length < 1) { setSearchResults([]); setSearchOpen(false); return; }
+    const timer = setTimeout(async () => {
+      try {
+        const r = await fetch(`/api/players/search?q=${encodeURIComponent(addInput.trim())}&limit=8`);
+        if (r.ok) {
+          const data = await r.json();
+          // Filter out self and existing friends
+          const friendIds = new Set(friends.map(f => f.id));
+          const filtered = (data.players || []).filter((p: { id: string }) => p.id !== playerName.toLowerCase() && !friendIds.has(p.id));
+          setSearchResults(filtered);
+          setSearchOpen(filtered.length > 0);
+        }
+      } catch { /* ignore */ }
+    }, 300);
+    return () => clearTimeout(timer);
+  }, [addInput, playerName, friends]);
+
+  // Close search dropdown on outside click
+  useEffect(() => {
+    const handler = (e: MouseEvent) => { if (searchRef.current && !searchRef.current.contains(e.target as Node)) setSearchOpen(false); };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, []);
+
+  const sendRequest = async (target?: string) => {
+    const name = target || addInput.trim();
+    if (!name) return;
     setError(null);
     try {
       const r = await fetch("/api/social/friend-request", {
         method: "POST",
         headers: { ...getAuthHeaders(apiKey), "Content-Type": "application/json" },
-        body: JSON.stringify({ targetPlayer: addInput.trim() }),
+        body: JSON.stringify({ targetPlayer: name }),
       });
       const d = await r.json();
       if (!r.ok) { setError(d.error || "Failed"); return; }
       setAddInput("");
+      setSearchOpen(false);
+      setSearchResults([]);
+      setError(null);
+      setSuccessMsg(`Friend request sent to ${name}!`);
+      setTimeout(() => setSuccessMsg(null), 3000);
       fetchFriends();
     } catch { setError("Network error"); }
   };
@@ -136,28 +179,62 @@ function FriendsTab({ apiKey, playerName }: { apiKey: string; playerName: string
   const incoming = incomingRequests;
   const outgoing = outgoingRequests;
 
-  if (loading) return <p className="text-xs text-w20 text-center py-8">Loading...</p>;
+  if (loading) return (
+    <div className="space-y-3 tab-content-enter">
+      <div className="skeleton-card"><div className="flex gap-2"><div className="skeleton skeleton-text flex-1" /><div className="skeleton w-20 h-8 rounded-lg" /></div></div>
+      <div className="grid grid-cols-2 lg:grid-cols-3 gap-2">
+        {[1,2,3].map(i => <div key={i} className="skeleton-card flex flex-col items-center gap-2 py-4"><div className="skeleton w-9 h-9 rounded-full" /><div className="skeleton skeleton-text w-16" /><div className="skeleton skeleton-text w-10" /></div>)}
+      </div>
+    </div>
+  );
 
   return (
-    <div className="space-y-4">
-      {/* Add friend */}
-      <div className="flex gap-2">
-        <input
-          value={addInput}
-          onChange={e => setAddInput(e.target.value)}
-          onKeyDown={e => { if (e.key === "Enter") sendRequest(); }}
-          placeholder="Player name..."
-          className="input-dark flex-1 text-xs px-3 py-2 rounded-lg"
-        />
-        <button
-          onClick={sendRequest}
-          className="btn-interactive text-xs font-semibold px-4 py-2 rounded-lg"
-          style={{ background: "rgba(168,85,247,0.15)", color: "#a855f7", border: "1px solid rgba(168,85,247,0.3)" }}
-        >
-          Add Friend
-        </button>
+    <div className="space-y-4 tab-content-enter">
+      {/* Add friend — with player search */}
+      <div ref={searchRef} className="relative">
+        <div className="flex gap-2">
+          <input
+            value={addInput}
+            onChange={e => setAddInput(e.target.value)}
+            onKeyDown={e => { if (e.key === "Enter") sendRequest(); }}
+            onFocus={() => { if (searchResults.length > 0) setSearchOpen(true); }}
+            placeholder="Search players..."
+            className="input-dark flex-1 text-xs px-3 py-2 rounded-lg"
+          />
+          <button
+            onClick={() => sendRequest()}
+            className="btn-interactive text-xs font-semibold px-4 py-2 rounded-lg"
+            style={{ background: "rgba(168,85,247,0.15)", color: "#a855f7", border: "1px solid rgba(168,85,247,0.3)" }}
+          >
+            Add Friend
+          </button>
+        </div>
+        {/* Search dropdown */}
+        {searchOpen && searchResults.length > 0 && (
+          <div className="absolute left-0 right-0 top-full mt-1 z-50 rounded-lg shadow-xl overflow-hidden" style={{ background: "#1a1a1f", border: "1px solid rgba(255,255,255,0.1)", maxHeight: 280, overflowY: "auto" }}>
+            {searchResults.map(p => (
+              <div key={p.id} className="flex items-center gap-2.5 px-3 py-2.5 hover:bg-white/[0.04] transition-colors" style={{ borderBottom: "1px solid rgba(255,255,255,0.04)" }}>
+                <button onClick={() => onOpenProfile?.(p.id)} className="flex items-center gap-2.5 flex-1 text-left min-w-0" style={{ background: "none", border: "none", cursor: "pointer", padding: 0 }}>
+                  <PlayerBadge name={p.name} avatar={p.avatar} color={p.color} size={28} />
+                  <div className="min-w-0 flex-1">
+                    <p className="text-xs font-semibold truncate" style={{ color: "#e8e8e8" }}>{p.name}</p>
+                    <p className="text-xs text-w25">Lv.{p.level}</p>
+                  </div>
+                </button>
+                <button
+                  onClick={() => sendRequest(p.name)}
+                  className="btn-interactive text-xs px-2.5 py-1 rounded font-semibold flex-shrink-0"
+                  style={{ background: "rgba(168,85,247,0.12)", color: "#a855f7", border: "1px solid rgba(168,85,247,0.25)" }}
+                >
+                  + Add
+                </button>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
       {error && <p className="text-xs" style={{ color: "#ef4444" }}>{error}</p>}
+      {successMsg && <p className="text-xs tab-content-enter" style={{ color: "#22c55e" }}>{successMsg}</p>}
 
       {/* Incoming requests */}
       {incoming.length > 0 && (
@@ -203,7 +280,7 @@ function FriendsTab({ apiKey, playerName }: { apiKey: string; playerName: string
         ) : (
           <div className="grid grid-cols-2 lg:grid-cols-3 gap-2">
             {friends.map(f => (
-              <div key={f.id} className="relative rounded-xl p-3 flex flex-col items-center text-center group transition-all" style={{ background: "rgba(255,255,255,0.02)", border: `1px solid ${f.isOnline ? "rgba(34,197,94,0.2)" : "rgba(255,255,255,0.05)"}` }}>
+              <div key={f.id} className="relative rounded-xl p-3 flex flex-col items-center text-center group transition-all cursor-pointer" onClick={() => onOpenProfile?.(f.id)} style={{ background: "rgba(255,255,255,0.02)", border: `1px solid ${f.isOnline ? "rgba(34,197,94,0.2)" : "rgba(255,255,255,0.05)"}` }}>
                 {/* Remove button — top right, visible on hover */}
                 {confirmRemove === f.id ? (
                   <div className="absolute top-1.5 right-1.5 flex gap-1">
@@ -265,8 +342,13 @@ function MessagesTab({ apiKey, playerName }: { apiKey: string; playerName: strin
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeConvo, apiKey, playerName]);
 
+  // Only auto-scroll to bottom if user is already near the bottom (not reading old messages)
+  const messagesContainerRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    const container = messagesContainerRef.current;
+    if (!container) { messagesEndRef.current?.scrollIntoView({ behavior: "smooth" }); return; }
+    const isNearBottom = container.scrollHeight - container.scrollTop - container.clientHeight < 80;
+    if (isNearBottom) messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
   const sendMessage = async () => {
@@ -285,7 +367,11 @@ function MessagesTab({ apiKey, playerName }: { apiKey: string; playerName: strin
     } catch { /* ignore */ }
   };
 
-  if (loading) return <p className="text-xs text-w20 text-center py-8">Loading...</p>;
+  if (loading) return (
+    <div className="space-y-2 tab-content-enter">
+      {[1,2,3].map(i => <div key={i} className="skeleton-card flex items-center gap-3"><div className="skeleton w-8 h-8 rounded-full flex-shrink-0" /><div className="flex-1 space-y-1.5"><div className="skeleton skeleton-text w-24" /><div className="skeleton skeleton-text w-40" /></div></div>)}
+    </div>
+  );
 
   if (activeConvo) {
     const convo = conversations.find(c => c.playerId === activeConvo);
@@ -298,7 +384,7 @@ function MessagesTab({ apiKey, playerName }: { apiKey: string; playerName: strin
         </div>
 
         {/* Messages */}
-        <div className="space-y-2 max-h-[360px] overflow-y-auto pr-1" style={{ scrollbarWidth: "thin" }}>
+        <div ref={messagesContainerRef} className="space-y-2 max-h-[360px] overflow-y-auto pr-1" style={{ scrollbarWidth: "thin" }}>
           {messages.map(msg => {
             const isMine = msg.from.toLowerCase() === playerName.toLowerCase();
             return (
@@ -394,11 +480,32 @@ function TradeOfferDisplay({ offer, label, color }: { offer: TradeOffer; label: 
         <div className="space-y-1">
           {offer.items.map(item => {
             const rc = RARITY_COLORS[item.rarity] || "#888";
+            const statsStr = item.stats ? Object.entries(item.stats).map(([k, v]) => `${k}: +${v}`).join("\n") : "";
+            const tooltipParts = [item.name, item.slot ? `Slot: ${item.slot}` : "", item.rarity.charAt(0).toUpperCase() + item.rarity.slice(1), statsStr, item.setName ? `Set: ${item.setName}` : "", item.legendaryEffect ? `★ ${item.legendaryEffect.label}` : ""].filter(Boolean);
             return (
-              <div key={item.instanceId} className="flex items-center gap-2 text-xs px-2 py-1.5 rounded" style={{ background: "rgba(255,255,255,0.03)", borderLeft: `2px solid ${rc}` }}>
+              <div key={item.instanceId} className="group relative flex items-center gap-2 text-xs px-2 py-1.5 rounded cursor-default" style={{ background: "rgba(255,255,255,0.03)", borderLeft: `2px solid ${rc}` }}>
+                {item.icon && <img src={item.icon} alt="" width={20} height={20} style={{ imageRendering: "auto" }} onError={e => (e.currentTarget.style.display = "none")} />}
                 <span className="font-semibold" style={{ color: rc }}>{item.name}</span>
                 <span className="text-w20 capitalize ml-auto">{item.rarity}</span>
                 {item.slot && <span className="text-w15">({item.slot})</span>}
+                {/* D3-style stat tooltip on hover */}
+                {(item.stats || item.setName || item.legendaryEffect) && (
+                  <div className="absolute left-0 bottom-full mb-1 z-50 hidden group-hover:block pointer-events-none" style={{ minWidth: 180 }}>
+                    <div className="rounded-lg p-2.5 shadow-xl" style={{ background: "#1a1a1f", border: `1px solid ${rc}40`, boxShadow: `0 4px 16px rgba(0,0,0,0.6), 0 0 8px ${rc}15` }}>
+                      <p className="text-xs font-bold mb-1" style={{ color: rc }}>{item.name}</p>
+                      {item.slot && <p className="text-xs text-w25 mb-1 capitalize">{item.slot} · {item.rarity}</p>}
+                      {item.stats && Object.keys(item.stats).length > 0 && (
+                        <div className="space-y-0.5 mb-1">
+                          {Object.entries(item.stats).map(([stat, val]) => (
+                            <p key={stat} className="text-xs" style={{ color: "#4ade80" }}>+{val} {stat}</p>
+                          ))}
+                        </div>
+                      )}
+                      {item.setName && <p className="text-xs" style={{ color: "#22c55e" }}>Set: {item.setName}</p>}
+                      {item.legendaryEffect && <p className="text-xs" style={{ color: "#f59e0b" }}>★ {item.legendaryEffect.label}</p>}
+                    </div>
+                  </div>
+                )}
               </div>
             );
           })}
@@ -524,7 +631,12 @@ function TradesTab({ apiKey, playerName }: { apiKey: string; playerName: string 
     setActionLoading(false);
   };
 
-  if (loading) return <p className="text-xs text-w20 text-center py-8">Loading...</p>;
+  if (loading) return (
+    <div className="space-y-2 tab-content-enter">
+      <div className="skeleton-card"><div className="skeleton skeleton-text w-32 mb-2" /><div className="skeleton skeleton-text w-48" /></div>
+      <div className="skeleton-card"><div className="skeleton skeleton-text w-28 mb-2" /><div className="skeleton skeleton-text w-44" /></div>
+    </div>
+  );
 
   // Trade detail view
   if (selectedTrade) {
@@ -859,6 +971,7 @@ function TradesTab({ apiKey, playerName }: { apiKey: string; playerName: string 
 function ActivityFeedTab({ apiKey, playerName }: { apiKey: string; playerName: string }) {
   const [feed, setFeed] = useState<ActivityEvent[]>([]);
   const [loading, setLoading] = useState(true);
+  const [compactView, setCompactView] = useState(false);
 
   const fetchFeed = useCallback(async () => {
     try {
@@ -876,7 +989,11 @@ function ActivityFeedTab({ apiKey, playerName }: { apiKey: string; playerName: s
     return () => clearInterval(interval);
   }, [fetchFeed]);
 
-  if (loading) return <p className="text-xs text-w20 text-center py-8">Loading...</p>;
+  if (loading) return (
+    <div className="space-y-2 tab-content-enter">
+      {[1,2,3,4].map(i => <div key={i} className="skeleton-card flex items-start gap-2.5"><div className="skeleton w-5 h-5 rounded flex-shrink-0" /><div className="flex-1 space-y-1"><div className="skeleton skeleton-text w-36" /><div className="skeleton skeleton-text w-20" /></div></div>)}
+    </div>
+  );
 
   if (feed.length === 0) {
     return <p className="text-xs text-w20 text-center py-8">No activity yet. Complete quests, pull gacha, and earn achievements to see them here!</p>;
@@ -884,6 +1001,17 @@ function ActivityFeedTab({ apiKey, playerName }: { apiKey: string; playerName: s
 
   return (
     <div className="space-y-2">
+      {/* Compact / Detail toggle */}
+      <div className="flex justify-end">
+        <button
+          onClick={() => setCompactView(v => !v)}
+          className="btn-interactive text-xs px-2 py-1 rounded"
+          style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.3)", border: "1px solid rgba(255,255,255,0.06)" }}
+          title={compactView ? "Switch to detailed view" : "Switch to compact view"}
+        >
+          {compactView ? "⊞ Detailed" : "⊟ Compact"}
+        </button>
+      </div>
       {feed.map(event => {
         const icon = EVENT_ICONS[event.type] || "📌";
         const isOwn = event.player === playerName.toLowerCase();
@@ -917,8 +1045,19 @@ function ActivityFeedTab({ apiKey, playerName }: { apiKey: string; playerName: s
         }
         const rarityColor = d.rarity ? (RARITY_COLORS[d.rarity] || "#e8e8e8") : "#e8e8e8";
 
+        if (compactView) {
+          return (
+            <div key={event.id} className="flex items-center gap-2 text-xs px-2 py-1 rounded" style={{ background: d.rarity === "legendary" ? "rgba(255,140,0,0.04)" : "rgba(255,255,255,0.015)", borderLeft: `2px solid ${d.rarity ? (RARITY_COLORS[d.rarity] || "rgba(255,255,255,0.06)") : "rgba(255,255,255,0.06)"}` }}>
+              <span style={{ fontSize: 11 }}>{icon}</span>
+              <span className="font-semibold truncate" style={{ color: isOwn ? "#a855f7" : event.playerColor }}>{name}</span>
+              <span className="text-w30 truncate flex-1">{description}</span>
+              <span className="text-w15 flex-shrink-0">{timeAgo(event.at)}</span>
+            </div>
+          );
+        }
+
         return (
-          <div key={event.id} className="flex items-start gap-2.5 rounded-lg px-3 py-2.5" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)" }}>
+          <div key={event.id} className={`flex items-start gap-2.5 rounded-lg px-3 py-2.5 ${d.rarity === "legendary" ? "feed-event-legendary" : d.rarity === "epic" ? "feed-event-epic" : ""}`} style={{ background: d.rarity === "legendary" ? "rgba(255,140,0,0.04)" : d.rarity === "epic" ? "rgba(168,85,247,0.03)" : "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)" }}>
             <span className="text-sm flex-shrink-0 mt-0.5">{icon}</span>
             <div className="flex-1 min-w-0">
               <p className="text-xs">
@@ -946,6 +1085,7 @@ function ActivityFeedTab({ apiKey, playerName }: { apiKey: string; playerName: s
 export default function SocialView() {
   const { playerName, reviewApiKey } = useDashboard();
   const [activeTab, setActiveTab] = useState<SocialTab>("friends");
+  const [profilePlayerId, setProfilePlayerId] = useState<string | null>(null);
 
   if (!playerName || !reviewApiKey) {
     return (
@@ -982,10 +1122,21 @@ export default function SocialView() {
       </div>
 
       {/* Tab content */}
-      {activeTab === "friends" && <FriendsTab apiKey={reviewApiKey} playerName={playerName} />}
-      {activeTab === "messages" && <MessagesTab apiKey={reviewApiKey} playerName={playerName} />}
-      {activeTab === "trades" && <TradesTab apiKey={reviewApiKey} playerName={playerName} />}
-      {activeTab === "activity" && <ActivityFeedTab apiKey={reviewApiKey} playerName={playerName} />}
+      <div key={activeTab} className="tab-content-enter">
+        {activeTab === "friends" && <FriendsTab apiKey={reviewApiKey} playerName={playerName} onOpenProfile={id => setProfilePlayerId(id)} />}
+        {activeTab === "messages" && <MessagesTab apiKey={reviewApiKey} playerName={playerName} />}
+        {activeTab === "trades" && <TradesTab apiKey={reviewApiKey} playerName={playerName} />}
+        {activeTab === "activity" && <ActivityFeedTab apiKey={reviewApiKey} playerName={playerName} />}
+      </div>
+
+      {/* Player Profile Modal */}
+      {profilePlayerId && (
+        <PlayerProfileModal
+          playerId={profilePlayerId}
+          onClose={() => setProfilePlayerId(null)}
+          onMessage={(id) => { setProfilePlayerId(null); setActiveTab("messages"); }}
+        />
+      )}
     </div>
   );
 }

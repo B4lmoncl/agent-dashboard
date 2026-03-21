@@ -941,4 +941,526 @@ All changes verified clean:
 
 ---
 
+## 16. Phase 2026-03-21 — QoL Overhaul & UI Polish (Session 2)
+
+### 16.1 Consistent English UI
+
+Translated all remaining German interactive UI text to English across 10 files. The TutorialModal/Guide remains in German (intentional for German-speaking user base), but all interactive buttons, labels, placeholders, and tooltips are now consistently English.
+
+**Files changed:** `app/page.tsx`, `app/utils.ts`, `components/UserCard.tsx`, `components/CompanionsWidget.tsx`, `components/QuestPanels.tsx`, `components/RitualChamber.tsx`, `components/CharacterView.tsx`, `components/ItemActionPopup.tsx`, `components/OnboardingWizard.tsx`
+
+**Key translations:**
+- "Abbrechen" → "Cancel" (6 files)
+- "Weiter →" → "Next →" (OnboardingWizard)
+- "Wähle deinen Pfad" → "Choose your path"
+- "Wähle deinen Begleiter" → "Choose your companion"
+- "Klasse wird geschmiedet..." → "Class is being forged..."
+- Forge temperature tooltips fully translated (6 tier descriptions)
+- Companion ultimate labels translated (Sofort→Instant, etc.)
+- OnboardingWizard placeholders (z.B.→e.g., German example text→English)
+
+### 16.2 Profession XP Bars in UserCard
+
+**File:** `components/UserCard.tsx`
+
+Added profession section to the player card showing active professions with:
+- Colored profession icons (Blacksmith=gold, Alchemist=green, Enchanter=purple, Cook=orange)
+- Profession level number + rank name
+- Animated XP progress bars with gradient fill matching profession color
+- Only shown when user has chosen professions
+
+### 16.3 Loading Skeleton States
+
+Replaced plain "Loading..." text across Social tabs with animated skeleton placeholder cards:
+- **FriendsTab**: 3 skeleton friend cards in grid layout
+- **MessagesTab**: 3 skeleton conversation rows
+- **TradesTab**: 2 skeleton trade cards
+- **ActivityFeedTab**: 4 skeleton event rows
+
+**CSS:** Added `@keyframes skeleton-pulse`, `.skeleton`, `.skeleton-text`, `.skeleton-bar`, `.skeleton-card` classes.
+
+### 16.4 Smooth Tab Transitions
+
+Added fade-in + slide-up animation when switching between tabs:
+- SocialView tabs (friends/messages/trades/activity) use `key={activeTab}` + `tab-content-enter`
+- ChallengesView tabs (Star Path/Expedition) use same pattern
+- **CSS:** `@keyframes tab-fade-in` (0.2s ease-out, 4px translateY)
+
+### 16.5 Social Notification Badge
+
+**Files:** `app/page.tsx`, `app/utils.ts`
+
+- Frontend now consumes `socialSummary` from dashboard batch endpoint (already returned by backend)
+- Shows purple notification badge with count (pending requests + unread messages + active trades) on The Breakaway floor tab
+- Badge uses CSS bounce-in animation (`@keyframes badge-bounce-in`)
+- Floor tab also gets purple notification dot via `getRoomNotif()` system
+
+### 16.6 Friend List Auto-Refresh
+
+**File:** `components/SocialView.tsx`
+
+Added 30-second polling interval to FriendsTab — friends list auto-refreshes in background to show online status changes without manual navigation.
+
+### 16.7 Activity Feed Visual Enhancements
+
+**File:** `components/SocialView.tsx`, `app/globals.css`
+
+- Legendary events get golden glow border animation (`feed-event-legendary` class)
+- Epic events get purple border highlight (`feed-event-epic` class)
+- **CSS:** `@keyframes feed-legendary-glow` (3s breathing golden glow)
+
+### 16.8 D3-style Trade Item Tooltips
+
+**Files:** `routes/social.js`, `app/types.ts`, `components/SocialView.tsx`
+
+- Backend `enrichOffer()` now includes `stats`, `setName`, `legendaryEffect` from inventory items
+- Frontend `TradeOfferDisplay` shows hover tooltip on trade items with:
+  - Full stat breakdown in green (+value format)
+  - Set bonus name
+  - Legendary effect label with star icon
+  - Dark themed tooltip with rarity-colored border glow
+  - Item icon (if available)
+
+### 16.9 D3-style Reroll Preview
+
+**Files:** `routes/crafting.js`, `components/ForgeView.tsx`
+
+- Backend `/api/professions` now returns `slotAffixRanges` — per-slot affix pool data (primary + minor stat ranges, current stats, item name, rarity) for all equipped gear
+- ForgeView shows reroll preview panel below reroll/enchant recipes:
+  - Current stats listed
+  - All possible stat ranges shown as "stat min–max" with green highlighting for stats you currently have
+  - Shows "(now X)" for currently rolled values
+
+### 16.10 Expedition Fair Share Target Line
+
+**File:** `components/ChallengesView.tsx`
+
+- Added golden vertical target line on each contribution bar showing the fair share threshold
+- Enhanced fair share legend with colored indicator line matching the bar marker
+- Contribution bars increased from 3px to 4px height for better visibility
+
+### 16.11 CSS Animation Library Additions
+
+**File:** `app/globals.css` (+89 lines)
+
+New animation keyframes and utility classes:
+- `skeleton-pulse` — Skeleton loading shimmer
+- `tab-fade-in` — Tab content entrance
+- `stage-complete-glow`, `stage-complete-check` — Challenge stage completion
+- `challenge-toast-in/out` — Challenge progress notifications
+- `feed-legendary-glow` — Legendary event breathing glow
+- `status-come-online` — Online status transition
+- `badge-bounce-in` — Notification badge entrance
+
+### 16.12 Additional Fixes (Agent-Discovered Issues)
+
+Based on automated frontend component analysis, the following additional issues were identified and fixed:
+
+| Fix | File | Description |
+|-----|------|-------------|
+| Message auto-scroll disruption | `SocialView.tsx` | Messages no longer force-scroll to bottom during 10s polling — only scrolls if user is already near bottom |
+| Speed bonus tooltip | `ChallengesView.tsx` | Added ⚡ icon and title tooltip explaining "Complete within X days for +1 bonus star" |
+| CharacterView German text | `CharacterView.tsx` | Translated "Profil-Einstellungen"→"Profile Settings", "Beziehungsstatus"→"Relationship Status", "Name des Partners"→"Partner's Name" |
+| DashboardHeader German text | `DashboardHeader.tsx` | Translated "Einstellungen (bald)"→"Settings (coming soon)", sound toggle titles |
+| ReadCheck aria-label | `SocialView.tsx` | Added `aria-label` for screen reader accessibility on message read indicators |
+
+### 16.13 Backend Fixes (Agent-Discovered Issues)
+
+| Fix | Severity | File | Description |
+|-----|----------|------|-------------|
+| Expedition checkpoint hardcoded to 4 | MEDIUM | `routes/expedition.js` | Replaced `cpNum === 4` with dynamic `cpNum === totalCheckpoints` for bonus detection — now works with any number of checkpoints |
+| German backend error messages | LOW | `routes/expedition.js`, `routes/challenges-weekly.js`, `routes/currency.js`, `routes/habits-inventory.js`, `routes/players.js` | Translated all remaining German error messages to English |
+
+### 16.14 Backend Findings — Acknowledged (Not Fixed)
+
+| Issue | Severity | Status |
+|-------|----------|--------|
+| Gacha pull lock is in-memory only (won't work multi-instance) | LOW | **Won't fix** — Single-process deployment |
+| Dismantle uses saveUsersSync vs craft uses saveUsers | LOW | **Acknowledged** — Dismantle is more critical (irreversible), sync is intentional |
+| Trade execution partial failure could leave items in limbo | LOW | **Acknowledged** — Single-process Node.js serializes naturally |
+| Input length validation already present on main endpoints | N/A | **Verified** — Quests (500/5000), messages (500), feedback (2000) already validated |
+| getMaxProfessionSlots returns 0 below threshold | N/A | **Intentional** — Players below Lv5 correctly cannot choose professions |
+
+### 16.15 New Features (Session 2, Batch 2)
+
+#### Daily Mission Checklist (HSR-inspired)
+**Files:** `routes/config-admin.js`, `app/page.tsx`, `app/utils.ts`
+
+- 6 daily missions computed from existing player actions (no new storage for mission tracking):
+  - Claim Daily Bonus (+100), Complete 1 Quest (+150), Complete 3 Quests (+250), Complete a Ritual (+100), Pet Companion (+50), Craft an Item (+100)
+- 4 milestone reward tiers: 100pts (25g), 300pts (50g+3 essenz), 500pts (100g+2 runensplitter), 750pts (150g+1 sternentaler)
+- `POST /api/daily-missions/claim` endpoint with server-side validation
+- Frontend: inline panel on quest board with compact mission chips and horizontal reward track
+- Auto-prunes old claims (7-day retention)
+
+#### Activity Feed Compact/Detail Toggle
+**File:** `components/SocialView.tsx`
+
+- Toggle button in feed header (⊟ Compact / ⊞ Detailed)
+- Compact view: single-line events with rarity-colored left border, truncated text
+- Detailed view: existing multi-line cards with legendary/epic glow effects
+
+#### Cumulative Star Reward Track
+**File:** `components/ChallengesView.tsx`
+
+- Horizontal milestone bar at top of SternenpfadView
+- Three milestones: 3★ (50 Gold), 6★ (3 Essenz + 100 Gold), 9★ (1 Sternentaler + 5 Essenz)
+- Animated progress fill with golden gradient
+- Checkmark nodes for reached milestones with glow effect
+
+## 17. Phase 2026-03-21 — Player Profile System & Social Overhaul (Session 3)
+
+### 17.1 Player Profile System (Steam/Diablo-inspired)
+
+**New Files:** `components/PlayerProfileModal.tsx`
+**Modified Files:** `routes/players.js`, `app/page.tsx`, `components/LeaderboardView.tsx`, `components/SocialView.tsx`
+
+A comprehensive public player profile system accessible from multiple entry points:
+
+**Backend:**
+- `GET /api/player/:name/public-profile` — Returns full public profile data including:
+  - Level, XP, title, class, companion, forge temp, streaks
+  - All 6 equipment slots with stats, rarity, legendary effects, descriptions
+  - All achievements with dates
+  - Active professions with levels
+  - Online status (3-tier: online/idle/offline)
+  - Member-since date
+- `GET /api/players/search?q=term` — Searchable player list for friend adding
+  - Filters out agents, returns name/avatar/color/level/class
+  - Supports `limit` parameter (max 50)
+
+**Frontend:**
+- `PlayerProfileModal` — Full-featured modal with:
+  - Header: Avatar (with frame), name, level, title, class, streak, online status
+  - Action buttons: "Add Friend" + "Message" (for non-self profiles)
+  - Stats grid: XP, Quests, Achievement Points, Gold
+  - Equipment grid: 6 slots with rarity-colored cards, stat tooltips, legendary labels
+  - Companion section with bond level
+  - Professions with colored icons and levels
+  - Achievement badges (max 20 shown + overflow count)
+  - Footer: Online status, member-since date
+
+**Integration Points:**
+- **Leaderboard (Proving Grounds):** Click any player row → opens their profile
+- **Friends List:** Click any friend card → opens their profile
+- **Player Search:** Click a name in search results → opens their profile
+- **Search results:** Each result has "+ Add" button for quick friend requests
+
+### 17.2 Player Search for Friend Adding
+
+Replaced the plain text input "Player name..." with a searchable dropdown:
+- Debounced search (300ms) queries `/api/players/search`
+- Shows matching players with avatar, name, level
+- Filters out self and existing friends
+- Each result has:
+  - Click name → open profile
+  - Click "+ Add" → send friend request directly
+- Dropdown closes on outside click
+- Still supports direct name entry + Enter key for exact matches
+
+### 17.3 Backend Bug Fixes (Session 3)
+
+| Fix | Severity | File | Description |
+|-----|----------|------|-------------|
+| XP award validation | HIGH | `routes/users.js` | `POST /api/users/:id/award-xp` now validates amount is positive and capped at 100,000. Previously accepted negative values (could subtract XP) |
+| German shop messages | MEDIUM | `routes/shop.js` | Translated buff messages: "erhalten"→"received", "für X Quests"→"for X quests", "Streak-Schild"→"Streak Shield", "Effekt aktiviert"→"Effect activated" |
+| German streak labels | LOW | `lib/state.js` | Translated milestone labels: "2-Wochen"→"2 Weeks", "Monat"→"1 Month", "Silber"→"Silver", "Unerschütterlich"→"Unyielding" |
+
+### 17.4 Agent Findings — Verified Non-Issues
+
+| Reported Issue | Actual Status |
+|----------------|---------------|
+| `/api/daily-bonus/claim` missing | **False alarm** — Endpoint exists in `routes/currency.js:113` |
+| Gacha pity decrement race | **Not a bug** — Currency is validated BEFORE `executePull()` is called; pity reduction only happens on funded pulls |
+| Rituals/Habits not exposed | **False alarm** — Full CRUD exists in `routes/game.js` (rituals) and `routes/habits-inventory.js` (habits) |
+| Companion quest timezone bug | **Low risk** — Only affects companion care quest daily deadlines; uses Berlin timezone fallback consistently |
+
+### 17.5 Onboarding & Tutorial Overhaul (Session 4)
+
+#### OnboardingWizard Overhaul
+**File:** `components/OnboardingWizard.tsx`
+
+Full English translation of the registration wizard (50+ text changes):
+- Step headers: Willkommen→Welcome, Erzähl uns→Tell us, Beziehungsstatus→Relationship Status
+- Labels: Dein Name→Your Name, Alter→Age, Pronomen→Pronouns, Tierart→Pet Type
+- Companion data: Fordernd→Fierce, Weise→Wise, Treu→Loyal, Stark→Strong
+- Pet species: Katze→Cat, Hund→Dog, Hamster→Hamster, Hase→Rabbit
+- Care quests: Füttern→Feed, Spielen→Play, Kuscheln→Cuddle, Gassi gehen→Walk
+- Navigation: Zurück→Back, Los geht's→Begin Your Journey!
+- Errors: Registrierung fehlgeschlagen→Registration failed
+- Summary labels: Klasse→Class, Begleiter→Companion
+- Added step name labels ("Create Hero", "About You", etc.) with X/6 counter
+- Replaced dot indicators with full-width segmented progress bar
+
+#### TutorialModal Updates
+**File:** `components/TutorialModal.tsx`
+
+Added 3 new guide sections for recently implemented features:
+- **Player Search & Profiles** — How to search players, view profiles, add friends from profiles
+- **Daily Missions** — 6 missions, 4 milestones, point system, daily reset mechanics
+- **Activity Feed** — Event types, rarity highlighting, compact/detailed toggle
+
+### 17.6 Translation Pass (Session 5)
+
+Additional German→English translations in interactive UI across 5 files:
+
+| File | Changes |
+|------|---------|
+| `RitualChamber.tsx` | Difficulty: Leicht→Easy, Mittel→Medium, Schwer→Hard, Legendär→Legendary. Labels: Abhaken→Check off, Erledigt→Done, täglich→daily, Pact-Ziel→Pact Goal, verbleibend→remaining, Erfüllt→Fulfilled. Täglich bei Abhaken→Daily on check-off. NPC lore (Seraine) kept in German. |
+| `CharacterView.tsx` | Inventory sort: Seltenheit→Rarity |
+| `DashboardModals.tsx` | XP modifiers: pro Kraft-Punkt→per Kraft point, von Tools→from Tools, Kein X-Bonus→No X bonus, Keine Companions beschworen→No Companions summoned, pro Bond-Level→per Bond Level. Gold modifiers: Tage→days, pro Tag→per day, pro Weisheit-Punkt→per Weisheit point, von Legendärem→from Legendary |
+| `CompanionsWidget.tsx` | Error fallback: Fehler→Error |
+| `RewardCelebration.tsx` | Daily bonus theme: Täglicher Bonus→Daily Bonus, all flavor messages translated |
+
+### 17.7 Complete Translation Pass (Session 5, Batch 2)
+
+Agent-discovered comprehensive German text scan found 60+ untranslated strings across 12 files. All fixed:
+
+**Frontend (8 files, ~35 strings):**
+- `ItemActionPopup.tsx` — All 8 button labels/messages (Ausrüsten→Equip, Wegwerfen→Discard, etc.)
+- `HonorsView.tsx` — All 15 achievement condition templates + hidden achievement text
+- `CharacterView.tsx` — 5 error toast messages (unequip, use, discard network errors)
+- `QuestPanels.tsx` — Streak labels (Längste Serie→Longest streak, Rekord→Record)
+- `DailyLoginCalendar.tsx` — Close button (Schließen→Close)
+- `RewardCelebration.tsx` — Daily bonus theme (label + 5 flavor messages)
+- `page.tsx` — 5 UI strings (activity level tooltip, quest counts, login prompts)
+- `layout.tsx` — Meta description
+
+**Backend (4 files, ~30 strings):**
+- `habits-inventory.js` — 15 item-use response messages (XP boost, bond XP, random gear, phoenix feather, etc.)
+- `currency.js` — 6 error messages (validation, unknown currency, conversion)
+- `players.js` — 7 companion/ultimate messages (cooldown, quest completion, streak extend)
+- `helpers.js` — 7 companion quest title templates (fierce, wise, resilient, loyal, clever, strong)
+
+### 17.8 QoL Agent Findings — Additional Fixes (Session 5, Batch 3)
+
+| Fix | File | Description |
+|-----|------|-------------|
+| QuestDetailModal German labels | `QuestDetailModal.tsx` | Aufgabe→Task, Belohnung→Reward, Beansprucht von→Claimed by |
+| GachaPull German buttons | `GachaPull.tsx` | Überspringen→Skip, Nehmen→Claim, handleNehmen→handleClaim |
+
+**QoL Agent findings — acknowledged but deferred (LOW priority):**
+- Missing `cursor: not-allowed` on disabled shop buttons
+- Missing `title` tooltips on disabled shop buy buttons
+- Missing `data-feedback-id` attributes on ShopView, ShopModal, DashboardModals (analytics instrumentation)
+- These are polish items, not user-facing bugs
+
+### 17.9 Changelog (Session 5)
+
+| Commit | Timestamp | Description |
+|--------|-----------|-------------|
+| `82d274f` | 2026-03-21 | RitualChamber + CharacterView + DashboardModals + CompanionsWidget translations |
+| `cdd59e3` | 2026-03-21 | RewardCelebration daily-bonus theme translation |
+| `80139ba` | 2026-03-21 | Complete agent-discovered translation pass (12 files, 60+ strings) |
+| `0442274` | 2026-03-21 | AUDIT_REPORT documentation update |
+| `4bcd3aa` | 2026-03-21 | QuestDetailModal + GachaPull translation |
+
+## 18. Phase 2026-03-21 — New Features (Session 6)
+
+### 18.1 Workshop Upgrades (4 Permanent Bonus Items)
+
+**Files:** `public/data/shopItems.json`, `routes/shop.js`, `lib/state.js`, `lib/helpers.js`, `components/ForgeView.tsx`
+
+New permanent upgrade system in Artisan's Quarter with 4 items:
+
+| Upgrade | Tiers | Effect | Cost Range |
+|---------|-------|--------|------------|
+| Gold-Forged Tools | 4 | +2/3/4/5% Gold (additive) | 500-10,000g |
+| Loot Chance Amulet | 3 | +1/2/3% Loot Drop (additive) | 1,000-8,000g |
+| Streak Shield Charm | 1 | Auto-save streak 1x/week | 15,000g |
+| Material Magnet | 3 | +5/10/15% Material chance (additive) | 2,000-12,000g |
+
+All bonuses are **additive** (not multiplicative) to prevent stacking abuse. Integration points: `getGoldMultiplier()`, loot drop roll, `updateUserStreak()`, `rollCraftingMaterials()`.
+
+### 18.2 Tavern/Rest Mode (The Hearth)
+
+**Files:** `app/config.ts`, `routes/players.js`, `lib/helpers.js`, `components/TavernView.tsx`, `app/page.tsx`
+
+New 6th floor "The Hearth" — rest area inspired by Urithiru's gathering halls:
+- **Enter rest mode** (1-7 days) with optional reason
+- **Freezes**: Streaks, forge temp, quest generation
+- **Auto-expires** after selected duration
+- **30-day cooldown** between rests
+- **History** tracked (last 5 entries)
+- **Leave early** option with frozen value restoration
+
+### 18.3 Rift/Dungeon System (The Rift)
+
+**Files:** `routes/rift.js`, `server.js`, `app/config.ts`, `app/page.tsx`, `components/RiftView.tsx`
+
+Timed quest chains with escalating difficulty:
+
+| Tier | Quests | Time | Fail Cooldown | Min Level | Completion Bonus |
+|------|--------|------|---------------|-----------|------------------|
+| Normal | 3 | 72h | 3 days | 1 | 100g + 5 Essenz |
+| Hard | 5 | 48h | 5 days | 5 | 300g + 10 Essenz + 5 Runensplitter |
+| Legendary | 7 | 36h | 7 days | 10 | 750g + 20 Essenz + 10 Runensplitter + 3 Sternentaler |
+
+- Difficulty scales per stage (1x, 1.5x, 2x, 2.5x...)
+- XP + Gold rewards per stage
+- Successful completion clears fail cooldown
+- Abandon = fail (cooldown applied)
+- Rift history tracked (last 20 entries)
+
+### 18.4 Changelog (Session 6)
+
+| Commit | Description |
+|--------|-------------|
+| `e15f8ea` | Workshop Upgrade items (4 permanent bonuses) |
+| `7a3c612` | Tavern/Rest Mode (The Hearth — new 6th floor) |
+| `eb41603` | Rift/Dungeon System (The Rift — 3 difficulty tiers) |
+
+## 19. Phase 2026-03-21 — UI Polish & Balancing (Session 7)
+
+### 19.1 Shop UI Polish
+
+**Files:** `components/ShopView.tsx`, `public/data/shopItems.json`
+
+- Added `cursor: not-allowed` on disabled shop buy buttons (was deferred LOW priority from Session 5)
+- Added `title` tooltips on all shop buy buttons showing gold needed vs available
+- Translated all 24 shop item names + descriptions to English:
+  - Self-care: Tag Frei→Day Off, Ausschlafen→Sleep In, Spa-Tag→Spa Day, etc.
+  - Boosts: XP-Schriftrolle→XP Scroll, Goldweihrauch→Gold Incense, etc.
+  - Gear tiers: Abgenutzte Werkzeuge→Worn-out tools, auf alle Quests→on all quests
+
+### 19.2 UI Agent Fixes (Session 7, Batch 2)
+
+| Fix | File | Description |
+|-----|------|-------------|
+| Gacha pull German text | `GachaView.tsx` | "Ziehe..."→"Pulling..." on pull buttons |
+| Companion German text | `CompanionsWidget.tsx` | "Erfolg!"→"Success!", "Netzwerkfehler"→"Network error" |
+| Shop missing animation | `ShopView.tsx` | Added `tab-content-enter` class (only view missing it) |
+
+### 19.3 Economy Balancing Analysis (Session 7)
+
+Agent-driven comprehensive analysis of the entire game economy. **Score: 8.5/10**
+
+**Healthy Systems (no changes needed):**
+- XP multiplier chain: Well-capped (max ~4,700 XP/legendary quest conservatively)
+- Gold multiplier chain: Hard caps prevent runaway scaling (streak cap 1.45×, forge cap 1.5×)
+- Gacha economy: 1.8-2.7 days per 10-pull is healthy; pity at 75 is industry standard
+- Rift rewards: Risk/reward appropriate for timed challenges
+- Runensplitter economy: Balanced with quest completion rates
+- Workshop upgrades: Total sink 87,000g is substantial but achievable
+
+**Decisions Made:**
+
+| Finding | Decision | Action |
+|---------|----------|--------|
+| Streak Charm too expensive for value | Add Tier 2 (2x/week, 25,000g) | **Implemented** — Reworked to per-week usage counter |
+| Stardust inflation at max level | Gacha Featured Banner as sink | No code change — content/banner update |
+| Mondstaub + Gildentaler inactive | Keep both, implement later | Deferred to future session |
+
+### 19.4 Changelog (Session 7)
+
+| Commit | Description |
+|--------|-------------|
+| `744cddc` | Shop UI polish (cursor, tooltips) + translate all shop items to English |
+| `91b3cf8` | Fix Gacha/Companion German text, add ShopView animation |
+| `d2171a8` | Streak Shield Charm Tier 2 (2x/week, 25,000g) |
+
+### 19.5 Remaining Issues Summary
+
+| Issue | Severity | Area | Status |
+|-------|----------|------|--------|
+| `tradeableItems` computed every render (no useMemo) | LOW | Social/Trades | Acceptable — only affects users with large inventories |
+| OnboardingWizard step content still partially German | LOW | Onboarding | TutorialModal-linked content, intentionally German |
+| Some `@next/next/no-img-element` warnings | N/A | Lint | Intentional — static export with pixel art |
+| React compiler warnings | N/A | Pre-existing | No runtime impact |
+
+---
+
+## Appendix A: Audit Meta — Known False Findings & Common Traps for Future Sessions
+
+> **Purpose:** This section exists to prevent future Claude Code sessions from wasting time re-investigating issues that have already been verified as non-issues, or from proposing features that already exist. Read this BEFORE starting any audit.
+
+### A.1 Features That Already Exist (Do NOT Propose Again)
+
+These features have been proposed by audit agents in the past as "missing" when they already existed. Always verify in the actual code before suggesting.
+
+| Feature | Where It Exists | How Agents Got Confused |
+|---------|----------------|----------------------|
+| **Floating reward numbers (+XP, +Gold)** | `components/FloatingRewards.tsx`, `app/globals.css:711` (`@keyframes floatRewardUp`) | Agent searched for "floating numbers" but didn't check the FloatingRewards component |
+| **Daily bonus claim endpoint** | `routes/currency.js:113` (`POST /api/daily-bonus/claim`) | Agent only checked `config-admin.js` and `routes/quests.js`, missed `currency.js` |
+| **Ritual CRUD endpoints** | `routes/game.js` (POST/PATCH/DELETE /api/rituals) | Agent only checked `routes/habits-inventory.js` and assumed rituals were read-only |
+| **Habit CRUD endpoints** | `routes/habits-inventory.js` (POST/DELETE /api/habits, POST /api/habits/:id/score) | Agent missed the habits section of this file |
+| **Hidden achievement "???" placeholders** | `components/HonorsView.tsx:137-156` (shows "??? Hidden Achievement" with lock icon) | Agent assumed achievements were all visible |
+| **Item flavor text in hover tooltips** | `components/CharacterView.tsx:456-457` (InventoryTooltip shows `flavorText`) | Agent didn't read the InventoryTooltip function |
+| **Material cost display (owned/needed)** | `components/ForgeView.tsx:879-889` (shows `{materials[matId] || 0}/{needed}` per recipe) | Agent expected a separate "shopping list" view, missed inline display |
+| **Salvage All by rarity** | `components/ForgeView.tsx:980-987` (per-rarity "Salvage All" buttons in Schmiedekunst tab) | Already implemented with D3-style per-rarity buttons |
+| **Weekly reset timer** | `components/ChallengesView.tsx:53-78` (`WeeklyResetTimer` component) | Agent didn't check ChallengesView |
+| **Star rating animations** | `app/globals.css:160-171` (`@keyframes star-earn`, `star-glow`, `.star-earned`) | Agent expected to find it in component code, not CSS |
+| **Gacha pity display** | `components/GachaView.tsx` (shows pity counter, soft/hard thresholds) | Agent expected a separate widget |
+| **NPC visual progression (rank glow)** | `components/ForgeView.tsx:482-487` (`npc-rank-glow`, `npc-card-hover` classes with rank-based box-shadow) | Agent expected portrait changes, missed the CSS glow system |
+| **Batch crafting (x1-x10)** | `components/ForgeView.tsx:831-839` (select dropdown for batchable recipes) | Agent expected a queue system, missed the batch count selector |
+| **Message auto-refresh polling** | `components/SocialView.tsx:273-279` (10s interval when conversation active) | Agent didn't read the useEffect with setInterval |
+| **Friend auto-refresh** | `components/SocialView.tsx:97-101` (30s interval) | Agent missed the second useEffect |
+| **Craft cost preview (batch total)** | `components/ForgeView.tsx:874-889` (multiplies cost × craftCount, shows total) | Agent expected a separate preview panel |
+| **ESC to close all modals** | `components/ModalPortal.tsx` (`useModalBehavior` hook used by all modals) | Agent found some manual ESC handlers and assumed inconsistency |
+| **Player search for friend adding** | `components/SocialView.tsx` (debounced autocomplete via `/api/players/search`) | Added in Session 3 — verify before proposing again |
+| **Player profile modal** | `components/PlayerProfileModal.tsx` (Steam/Diablo-style, accessible from leaderboard + friends) | Added in Session 3 |
+| **Daily mission checklist** | `routes/config-admin.js` (6 missions, 4 milestones), `app/page.tsx` (inline panel) | Added in Session 2 |
+| **Cumulative star reward track** | `components/ChallengesView.tsx` (horizontal milestone bar at top of Star Path) | Added in Session 2 |
+| **Activity feed compact/detail toggle** | `components/SocialView.tsx` ActivityFeedTab (⊟ Compact / ⊞ Detailed button) | Added in Session 2 |
+| **Workshop Upgrades (permanent bonuses)** | `public/data/shopItems.json` (workshopUpgrades), `routes/shop.js`, `lib/helpers.js` | Added in Session 6 |
+| **Tavern/Rest Mode (The Hearth)** | `components/TavernView.tsx`, `routes/players.js`, `app/config.ts` (6th floor) | Added in Session 6 |
+| **Rift/Dungeon System (The Rift)** | `components/RiftView.tsx`, `routes/rift.js`, `app/config.ts` (Great Halls room) | Added in Session 6 |
+
+### A.2 Verified Non-Bugs (Do NOT Report Again)
+
+These were reported as bugs by audit agents but are either intentional design decisions or working correctly.
+
+| Reported "Bug" | Why It's Not a Bug |
+|----------------|-------------------|
+| **Gacha pull lock is in-memory only** | Intentional — this is a single-process Node.js deployment. Distributed locks unnecessary. |
+| **Gacha pity decrement happens before pull** | Currency is validated in the POST handler BEFORE `executePull()` is called. Pity only decrements on funded pulls. The "before" is before the rarity roll, not before payment. |
+| **Trade execution race condition (double-spend)** | Single-process Node.js with sync event loop — concurrent requests serialize naturally. Only possible under extreme load, which this app won't see. |
+| **Expedition progress race condition** | Same as above — Express processes requests sequentially. |
+| **Dashboard batch uses internal HTTP calls** | Intentional design — ensures middleware (auth, rate limiting) applies uniformly to sub-calls. |
+| **`getMaxProfessionSlots()` returns 0 below Lv5** | Intentional — players below Lv5 cannot choose professions. 0 slots = correct. |
+| **`dismantle` uses `saveUsersSync` vs `saveUsers` for crafting** | Intentional — dismantle is irreversible (item destroyed), so sync write is safety measure. Normal crafting uses async debounced save. |
+| **Hard pity off-by-one (74 vs 75)** | Not a bug — counter=74 means 75th pull. `>= HARD_PITY-1` is correct. |
+| **NPC quests skip forge temp update** | Not a bug — `onQuestCompletedByUser()` calls `updateUserForgeTemp()` for ALL quest paths including NPC. |
+| **Crafting reroll missing poolEntry check** | Not a bug — `if (poolEntry)` check exists on line 414 before `.min/.max` access. |
+| **CORS `origin: true` accepts all origins** | Acknowledged design choice for self-hosted single-user deployment. Not a production multi-tenant app. |
+| **Timing-safe comparison leaks key length** | Master key length is not a meaningful secret in this context. |
+| **`@next/next/no-img-element` lint warnings** | Intentional — project uses static export with pixel art. `next/image` not needed and would complicate the build. |
+| **React compiler warnings (setState in effect)** | Pre-existing across 10+ components. No runtime impact. Would require major refactor to fix. |
+
+### A.3 Architectural Decisions (Do NOT "Fix" These)
+
+| Decision | Rationale |
+|----------|-----------|
+| **JSON file persistence instead of database** | Intentional for simplicity. This is a small-group app (< 50 users), not a production SaaS. JSON files in Docker volume are sufficient. |
+| **TutorialModal/Guide content is in German** | The target audience is German-speaking. The guide is lore/narrative content. Interactive UI elements (buttons, labels, error messages) should be English. |
+| **No CSRF protection** | Mitigated by API key/JWT requirement on all mutating endpoints. No session cookies used for auth. |
+| **`state.quests.find()` used in some routes** | Only used for complex multi-field lookups where the `questsById` Map can't help (e.g., find by title + type + status). |
+| **Inconsistent error response formats (`{error}` vs `{success, error}`)** | Frontend handles both. Standardization would be nice but not breaking. |
+| **No test suite** | Acknowledged in CLAUDE.md. Validation only via `scripts/verify-items.js` and ESLint. |
+
+### A.4 Translation Rules
+
+| Context | Language | Rule |
+|---------|----------|------|
+| Interactive UI (buttons, labels, placeholders, error messages) | **English** | Always translate German to English |
+| Backend API error responses | **English** | Always translate German to English |
+| TutorialModal / Guide content | **German** | Keep as-is — this is the main narrative guide |
+| Gear/item descriptions (`desc` field in gearTemplates.json) | **German** | Keep as-is — this is lore/flavor text, intentionally German |
+| Quest flavor text | **Mixed** | NPC quests have German flavor, player quests have English. Both are intentional. |
+| Currency names (Runensplitter, Sternentaler, etc.) | **German names** | These are proper nouns in the game world. Do NOT translate. |
+| Achievement names/descriptions | **English** | Should be English |
+| Profession rank names (Novice, Apprentice, etc.) | **English** | Already English |
+
+### A.5 Common Agent Mistakes to Avoid
+
+1. **Don't propose features before searching the codebase.** Always `grep` for the feature name, related keywords, and component names before claiming something doesn't exist.
+2. **Don't assume routes are missing from one file.** Routes are spread across 18 files. A route not in `quests.js` might be in `currency.js`, `game.js`, or `config-admin.js`.
+3. **Don't report single-process race conditions as bugs.** Node.js event loop serializes requests. True race conditions only occur with async I/O between check-and-act, which is rare in this codebase.
+4. **Don't translate German lore/flavor text.** Only translate interactive UI and error messages. Gear descriptions, quest flavor, and guide content stay German.
+5. **Don't suggest adding a database.** The JSON persistence model is an intentional architectural choice.
+6. **Don't suggest adding `next/image`.** The project uses static export with pixel art where `<img>` is the correct choice.
+7. **Check the `AUDIT_REPORT.md` Sections 6.6, 9.5, 16.14, 17.4** for previously verified non-issues before re-investigating.
+
+---
+
 *End of Audit Report — Updated 2026-03-21*

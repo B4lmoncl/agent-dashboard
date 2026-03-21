@@ -194,7 +194,7 @@ export default function DashboardHeader({
             data-feedback-id="header.sound-toggle"
             onClick={toggleMute}
             className="btn-interactive text-xs px-2 py-0.5 rounded text-w40 bg-w5 border-w10"
-            title={soundMuted ? "Sound einschalten" : "Sound ausschalten"}
+            title={soundMuted ? "Enable sound" : "Mute sound"}
             aria-label={soundMuted ? "Unmute sound effects" : "Mute sound effects"}
             style={{ minWidth: 28, textAlign: "center" }}
           >
@@ -214,7 +214,7 @@ export default function DashboardHeader({
             {reviewApiKey && playerName ? (
               <div ref={settingsPopupRef} className="flex items-center gap-2">
                 <button
-                  title={`${playerName} — Einstellungen`}
+                  title={`${playerName} — Settings`}
                   onClick={() => setSettingsPopupOpen(v => !v)}
                   className="btn-interactive flex items-center justify-center font-bold flex-shrink-0"
                   style={{
@@ -246,7 +246,7 @@ export default function DashboardHeader({
                       className="flex items-center gap-2 px-4 py-2.5 text-xs text-left text-w50"
                       style={{ background: "none", border: "none", cursor: "not-allowed", opacity: 0.5 }}
                     >
-                      Einstellungen <span className="text-w25">(bald)</span>
+                      Settings <span className="text-w25">(coming soon)</span>
                     </button>
                     <div className="bg-w7" style={{ height: 1, margin: "0 12px" }} />
                     <button

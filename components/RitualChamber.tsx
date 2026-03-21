@@ -20,10 +20,10 @@ const COMMITMENT_TIERS = [
 ];
 
 const DIFFICULTY_TIERS = [
-  { id: "easy",      label: "Leicht",     color: "#4ade80", gold: 3,  xp: 8,  icon: "I",   flavor: "A gentle start",   bondScale: 0.5 },
-  { id: "medium",    label: "Mittel",     color: "#f59e0b", gold: 5,  xp: 15, icon: "II",  flavor: "Steady effort",    bondScale: 1.0 },
-  { id: "hard",      label: "Schwer",     color: "#ef4444", gold: 8,  xp: 25, icon: "III", flavor: "True discipline",  bondScale: 1.5 },
-  { id: "legendary", label: "Legendär",   color: "#a78bfa", gold: 12, xp: 40, icon: "IV",  flavor: "Forged in will",   bondScale: 2.0 },
+  { id: "easy",      label: "Easy",       color: "#4ade80", gold: 3,  xp: 8,  icon: "I",   flavor: "A gentle start",   bondScale: 0.5 },
+  { id: "medium",    label: "Medium",     color: "#f59e0b", gold: 5,  xp: 15, icon: "II",  flavor: "Steady effort",    bondScale: 1.0 },
+  { id: "hard",      label: "Hard",       color: "#ef4444", gold: 8,  xp: 25, icon: "III", flavor: "True discipline",  bondScale: 1.5 },
+  { id: "legendary", label: "Legendary",  color: "#a78bfa", gold: 12, xp: 40, icon: "IV",  flavor: "Forged in will",   bondScale: 2.0 },
 ];
 
 const BLOOD_PACT_MULTIPLIER: Record<string, number> = {
@@ -127,16 +127,16 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
                   {doneToday ? "Heute" : lastCompletedFormatted}
                 </span>
               )}
-              <span>{ritual.schedule.type === 'daily' ? 'täglich' : ritual.schedule.days?.join(', ')}</span>
+              <span>{ritual.schedule.type === 'daily' ? 'daily' : ritual.schedule.days?.join(', ')}</span>
               <span>{ritual.rewards.xp} XP · {ritual.rewards.gold} Gold</span>
             </div>
             {ritual.bloodPact && commitGoal && !ritual.pactCompleted && (
               <div className="flex items-center gap-2 mt-1 text-xs" style={{ color: "rgba(239,68,68,0.6)" }}>
                 <span style={{ fontSize: 10 }}>⬥</span>
-                <span>Pact-Ziel: <span style={{ color: "#ef4444", fontWeight: 600 }}>{commitGoal}d</span></span>
+                <span>Pact Goal: <span style={{ color: "#ef4444", fontWeight: 600 }}>{commitGoal}d</span></span>
                 <span>·</span>
                 <span style={{ color: ritual.streak >= commitGoal ? "#22c55e" : "rgba(239,68,68,0.8)", fontWeight: 600 }}>
-                  {ritual.streak >= commitGoal ? "Erfüllt!" : `${commitGoal - ritual.streak}d verbleibend`}
+                  {ritual.streak >= commitGoal ? "Fulfilled!" : `${commitGoal - ritual.streak}d remaining`}
                 </span>
               </div>
             )}
@@ -170,7 +170,7 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
                   Rise Again
                 </button>
                 {reviewApiKey && (
-                  <button onClick={() => setDeleteRitualConfirmId(ritual.id)} className="text-xs px-2 py-1.5 rounded-lg transition-all" style={{ background: "rgba(239,68,68,0.08)", color: "rgba(239,68,68,0.5)", border: "1px solid rgba(239,68,68,0.15)", cursor: 'pointer' }} title="Ritual löschen">×</button>
+                  <button onClick={() => setDeleteRitualConfirmId(ritual.id)} className="text-xs px-2 py-1.5 rounded-lg transition-all" style={{ background: "rgba(239,68,68,0.08)", color: "rgba(239,68,68,0.5)", border: "1px solid rgba(239,68,68,0.15)", cursor: 'pointer' }} title="Delete ritual">×</button>
                 )}
               </>
             ) : (
@@ -212,7 +212,7 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
                   onMouseEnter={e => { if (!doneToday) { (e.currentTarget as HTMLButtonElement).style.background = "rgba(167,139,250,0.28)"; (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(167,139,250,0.55)"; (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 0 10px rgba(167,139,250,0.2)"; } }}
                   onMouseLeave={e => { if (!doneToday) { (e.currentTarget as HTMLButtonElement).style.background = "rgba(167,139,250,0.15)"; (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(167,139,250,0.3)"; (e.currentTarget as HTMLButtonElement).style.boxShadow = "none"; } }}
                 >
-                  {doneToday ? "✓ Erledigt" : "Abhaken"}
+                  {doneToday ? "✓ Done" : "Check off"}
                 </button>
                 {reviewApiKey && !ritual.bloodPact && (
                   <button
@@ -225,7 +225,7 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
                   </button>
                 )}
                 {reviewApiKey && (
-                  <button onClick={() => setDeleteRitualConfirmId(ritual.id)} className="text-xs px-2 py-1.5 rounded-lg transition-all" style={{ background: "rgba(239,68,68,0.08)", color: "rgba(239,68,68,0.5)", border: "1px solid rgba(239,68,68,0.15)", cursor: 'pointer' }} title="Ritual löschen">×</button>
+                  <button onClick={() => setDeleteRitualConfirmId(ritual.id)} className="text-xs px-2 py-1.5 rounded-lg transition-all" style={{ background: "rgba(239,68,68,0.08)", color: "rgba(239,68,68,0.5)", border: "1px solid rgba(239,68,68,0.15)", cursor: 'pointer' }} title="Delete ritual">×</button>
                 )}
               </>
             )}
@@ -384,7 +384,7 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
                   </div>
                   <div className="rounded-lg p-3" style={{ background: "rgba(0,0,0,0.2)", border: "1px solid rgba(245,158,11,0.1)" }}>
                     <p className="text-xs font-semibold mb-1.5" style={{ color: "rgba(200,170,100,0.45)" }}>Reward Preview</p>
-                    <p className="text-xs mb-1" style={{ color: "rgba(200,170,100,0.35)", fontStyle: "italic", letterSpacing: "0.03em" }}>Täglich bei Abhaken:</p>
+                    <p className="text-xs mb-1" style={{ color: "rgba(200,170,100,0.35)", fontStyle: "italic", letterSpacing: "0.03em" }}>Daily on check-off:</p>
                     <p className="text-xs" style={{ color: "rgba(200,170,100,0.65)", display: "flex", alignItems: "center", gap: 4, flexWrap: "wrap" }}>Base <span style={{ color: diffData.color, fontSize: "0.65rem" }}>({diffData.label})</span>: <span style={{ color: "#f59e0b", display: "inline-flex", alignItems: "center", gap: 2 }}>{diffData.gold} <img src="/images/icons/reward-gold.png" width={20} height={20} className="img-render-auto" /></span> <span style={{ color: "#a78bfa" }}>{diffData.xp} XP</span></p>
                     {tierData.id !== "none" && <p className="text-xs mt-0.5" style={{ color: "rgba(200,170,100,0.65)", display: "flex", alignItems: "center", gap: 4, flexWrap: "wrap" }}>Bond Bonus{diffData.bondScale !== 1 && <span style={{ color: diffData.color, fontSize: "0.6rem" }}> ×{diffData.bondScale}</span>}: <span style={{ color: "#f59e0b", display: "inline-flex", alignItems: "center", gap: 2 }}>+{bonusGold} <img src="/images/icons/reward-gold.png" width={20} height={20} className="img-render-auto" /></span> <span style={{ color: "#a78bfa" }}>+{bonusXp} XP</span></p>}
                     {(bonusGold > 0 || bonusXp > 0) && <p className="text-xs mt-1" style={{ color: "rgba(200,170,100,0.85)", display: "flex", alignItems: "center", gap: 4, fontWeight: 600, flexWrap: "wrap" }}>= Täglich: <span style={{ color: "#f59e0b", display: "inline-flex", alignItems: "center", gap: 2 }}>{diffData.gold + bonusGold} <img src="/images/icons/reward-gold.png" width={20} height={20} className="img-render-auto" /></span> <span style={{ color: "#a78bfa" }}>{diffData.xp + bonusXp} XP</span></p>}
@@ -481,7 +481,7 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
                     </div>
                   </div>
                   <div className="flex gap-2 pt-1">
-                    <button onClick={closeExtend} className="text-sm py-2.5 px-5 rounded-xl bg-w4 border-w8" style={{ color: "rgba(200,170,100,0.35)" }}>Abbrechen</button>
+                    <button onClick={closeExtend} className="text-sm py-2.5 px-5 rounded-xl bg-w4 border-w8" style={{ color: "rgba(200,170,100,0.35)" }}>Cancel</button>
                     <button
                       disabled={!canExtend}
                       onClick={async () => {

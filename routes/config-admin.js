@@ -109,6 +109,43 @@ router.get('/api/dashboard', async (req, res) => {
     socialSummary = { pendingFriendRequests, unreadMessages, activeTrades };
   }
 
+  // Daily missions — computed from existing player actions (no new storage needed)
+  let dailyMissions = null;
+  if (playerLower) {
+    const u = state.users[playerLower];
+    if (u) {
+      const today = new Date().toISOString().slice(0, 10);
+      const pp = state.playerProgress[playerLower] || {};
+      // Count quests completed today
+      const questsToday = Object.values(pp.completedQuests || {}).filter(cq => cq && cq.at && cq.at.startsWith(today)).length;
+      // Check daily bonus claimed
+      const dailyClaimed = u.dailyBonusLastClaim === today;
+      // Check rituals completed today
+      const ritualsToday = (state.store.rituals || []).filter(r => r.playerId === playerLower && r.lastCompleted === today).length;
+      // Check companion petted today
+      const petCount = u.companion?.petsToday ?? 0;
+      // Check crafted today
+      const craftedToday = u.lastCraftDate === today;
+      // Build mission list with points
+      const missions = [
+        { id: 'login', label: 'Claim Daily Bonus', points: 100, done: dailyClaimed },
+        { id: 'quest1', label: 'Complete 1 Quest', points: 150, done: questsToday >= 1 },
+        { id: 'quest3', label: 'Complete 3 Quests', points: 250, done: questsToday >= 3 },
+        { id: 'ritual', label: 'Complete a Ritual', points: 100, done: ritualsToday >= 1 },
+        { id: 'pet', label: 'Pet your Companion', points: 50, done: petCount >= 1 },
+        { id: 'craft', label: 'Craft an Item', points: 100, done: craftedToday },
+      ];
+      const earned = missions.filter(m => m.done).reduce((sum, m) => sum + m.points, 0);
+      const milestones = [
+        { threshold: 100, reward: { gold: 25 }, claimed: (u.dailyMilestonesClaimed || {})[today]?.includes(100) },
+        { threshold: 300, reward: { gold: 50, essenz: 3 }, claimed: (u.dailyMilestonesClaimed || {})[today]?.includes(300) },
+        { threshold: 500, reward: { gold: 100, runensplitter: 2 }, claimed: (u.dailyMilestonesClaimed || {})[today]?.includes(500) },
+        { threshold: 750, reward: { gold: 150, sternentaler: 1 }, claimed: (u.dailyMilestonesClaimed || {})[today]?.includes(750) },
+      ];
+      dailyMissions = { missions, earned, total: 750, milestones };
+    }
+  }
+
   res.json({
     agents: agents || [],
     quests: quests || { open: [], inProgress: [], completed: [], suggested: [], rejected: [] },
@@ -123,8 +160,63 @@ router.get('/api/dashboard', async (req, res) => {
     weeklyChallenge: weeklyChallenge?.challenge || null,
     expedition: expedition?.expedition || null,
     socialSummary,
+    dailyMissions,
     apiLive: true,
   });
+});
+
+// POST /api/daily-missions/claim — claim a milestone reward
+router.post('/api/daily-missions/claim', requireAuth, (req, res) => {
+  const uid = req.auth?.userId;
+  const u = state.users[uid];
+  if (!u) return res.status(404).json({ error: 'User not found' });
+
+  const { threshold } = req.body;
+  const validThresholds = [100, 300, 500, 750];
+  if (!validThresholds.includes(threshold)) return res.status(400).json({ error: 'Invalid threshold' });
+
+  const today = new Date().toISOString().slice(0, 10);
+  u.dailyMilestonesClaimed = u.dailyMilestonesClaimed || {};
+  u.dailyMilestonesClaimed[today] = u.dailyMilestonesClaimed[today] || [];
+  if (u.dailyMilestonesClaimed[today].includes(threshold)) {
+    return res.status(409).json({ error: 'Milestone already claimed' });
+  }
+
+  // Verify earned points meet threshold
+  const pp = state.playerProgress[uid] || {};
+  const questsToday = Object.values(pp.completedQuests || {}).filter(cq => cq && cq.at && cq.at.startsWith(today)).length;
+  const dailyClaimed = u.dailyBonusLastClaim === today;
+  const ritualsToday = (state.store.rituals || []).filter(r => r.playerId === uid && r.lastCompleted === today).length;
+  const petCount = u.companion?.petsToday ?? 0;
+  const craftedToday = u.lastCraftDate === today;
+  const missions = [
+    { points: 100, done: dailyClaimed },
+    { points: 150, done: questsToday >= 1 },
+    { points: 250, done: questsToday >= 3 },
+    { points: 100, done: ritualsToday >= 1 },
+    { points: 50, done: petCount >= 1 },
+    { points: 100, done: craftedToday },
+  ];
+  const earned = missions.filter(m => m.done).reduce((sum, m) => sum + m.points, 0);
+  if (earned < threshold) return res.status(400).json({ error: 'Not enough activity points' });
+
+  // Award reward
+  const rewards = { 100: { gold: 25 }, 300: { gold: 50, essenz: 3 }, 500: { gold: 100, runensplitter: 2 }, 750: { gold: 150, sternentaler: 1 } };
+  const reward = rewards[threshold] || {};
+  ensureUserCurrencies(u);
+  for (const [currency, amount] of Object.entries(reward)) {
+    awardCurrency(uid, currency, amount);
+  }
+  u.dailyMilestonesClaimed[today].push(threshold);
+
+  // Prune old daily milestone claims (keep last 7 days)
+  const dates = Object.keys(u.dailyMilestonesClaimed).sort();
+  while (dates.length > 7) {
+    delete u.dailyMilestonesClaimed[dates.shift()];
+  }
+
+  saveUsers();
+  res.json({ success: true, reward, earned });
 });
 
 router.get('/api/leaderboard', (req, res) => {

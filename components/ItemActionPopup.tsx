@@ -108,7 +108,7 @@ export default function ItemActionPopup({
             </p>
             {item.minLevel > 0 && (
               <p className="text-xs" style={{ color: meetsLevel ? "rgba(255,255,255,0.3)" : "#ef4444" }}>
-                Lv. {item.minLevel}{!meetsLevel ? " (zu niedrig)" : ""}
+                Lv. {item.minLevel}{!meetsLevel ? " (too low)" : ""}
               </p>
             )}
           </div>
@@ -139,7 +139,7 @@ export default function ItemActionPopup({
         {/* Passive badge */}
         {itemType === "passive" && (
           <div className="px-2 py-1 rounded-lg text-xs font-semibold text-center" style={{ background: "rgba(34,197,94,0.1)", border: "1px solid rgba(34,197,94,0.3)", color: "#22c55e" }}>
-            Aktiv solange im Inventar
+            Active while in inventory
           </div>
         )}
 
@@ -152,14 +152,14 @@ export default function ItemActionPopup({
               disabled={busy}
               className="w-full py-1.5 rounded-lg text-xs font-semibold"
               style={{ background: "rgba(34,197,94,0.15)", color: "#4ade80", border: "1px solid rgba(34,197,94,0.3)", cursor: "pointer" }}
-            >{busy ? "…" : "Ausrüsten"}</button>
+            >{busy ? "…" : "Equip"}</button>
           )}
           {itemType === "equipment" && !isEquipped && !meetsLevel && (
             <button
               disabled
               className="w-full py-1.5 rounded-lg text-xs font-semibold"
               style={{ background: "rgba(255,255,255,0.03)", color: "rgba(255,255,255,0.2)", border: "1px solid rgba(255,255,255,0.06)", cursor: "not-allowed" }}
-            >Lv. {item.minLevel} benötigt</button>
+            >Lv. {item.minLevel} required</button>
           )}
           {itemType === "equipment" && isEquipped && equippedSlot && (
             <button
@@ -167,7 +167,7 @@ export default function ItemActionPopup({
               disabled={busy}
               className="w-full py-1.5 rounded-lg text-xs font-semibold"
               style={{ background: "rgba(239,68,68,0.12)", color: "#f87171", border: "1px solid rgba(239,68,68,0.25)", cursor: "pointer" }}
-            >{busy ? "…" : "Ablegen"}</button>
+            >{busy ? "…" : "Unequip"}</button>
           )}
 
           {/* Consumable actions */}
@@ -177,7 +177,7 @@ export default function ItemActionPopup({
               disabled={busy}
               className="w-full py-1.5 rounded-lg text-xs font-semibold"
               style={{ background: "rgba(59,130,246,0.15)", color: "#60a5fa", border: "1px solid rgba(59,130,246,0.3)", cursor: "pointer" }}
-            >{busy ? "…" : "Benutzen"}</button>
+            >{busy ? "…" : "Use"}</button>
           )}
 
           {/* Discard */}
@@ -186,12 +186,12 @@ export default function ItemActionPopup({
               onClick={() => setConfirmDiscard(true)}
               className="w-full py-1.5 rounded-lg text-xs"
               style={{ background: "rgba(255,255,255,0.03)", color: "rgba(255,255,255,0.3)", border: "1px solid rgba(255,255,255,0.06)", cursor: "pointer" }}
-            >Wegwerfen</button>
+            >Discard</button>
           )}
           {confirmDiscard && (
             <div className="space-y-1">
               <p className="text-xs text-center" style={{ color: "#f87171" }}>
-                Willst du {item.name} wirklich wegwerfen?
+                Are you sure you want to discard {item.name}?
               </p>
               <div className="flex gap-1">
                 <button
@@ -199,12 +199,12 @@ export default function ItemActionPopup({
                   disabled={busy}
                   className="flex-1 py-1.5 rounded-lg text-xs font-semibold"
                   style={{ background: "rgba(239,68,68,0.2)", color: "#f87171", border: "1px solid rgba(239,68,68,0.4)", cursor: "pointer" }}
-                >{busy ? "…" : "Wegwerfen"}</button>
+                >{busy ? "…" : "Discard"}</button>
                 <button
                   onClick={() => setConfirmDiscard(false)}
                   className="flex-1 py-1.5 rounded-lg text-xs"
                   style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.4)", border: "1px solid rgba(255,255,255,0.08)", cursor: "pointer" }}
-                >Abbrechen</button>
+                >Cancel</button>
               </div>
             </div>
           )}
