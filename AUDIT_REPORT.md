@@ -1232,7 +1232,30 @@ Agent-discovered comprehensive German text scan found 60+ untranslated strings a
 - `players.js` — 7 companion/ultimate messages (cooldown, quest completion, streak extend)
 - `helpers.js` — 7 companion quest title templates (fierce, wise, resilient, loyal, clever, strong)
 
-### 17.8 Remaining Issues Summary
+### 17.8 QoL Agent Findings — Additional Fixes (Session 5, Batch 3)
+
+| Fix | File | Description |
+|-----|------|-------------|
+| QuestDetailModal German labels | `QuestDetailModal.tsx` | Aufgabe→Task, Belohnung→Reward, Beansprucht von→Claimed by |
+| GachaPull German buttons | `GachaPull.tsx` | Überspringen→Skip, Nehmen→Claim, handleNehmen→handleClaim |
+
+**QoL Agent findings — acknowledged but deferred (LOW priority):**
+- Missing `cursor: not-allowed` on disabled shop buttons
+- Missing `title` tooltips on disabled shop buy buttons
+- Missing `data-feedback-id` attributes on ShopView, ShopModal, DashboardModals (analytics instrumentation)
+- These are polish items, not user-facing bugs
+
+### 17.9 Changelog (Session 5)
+
+| Commit | Timestamp | Description |
+|--------|-----------|-------------|
+| `82d274f` | 2026-03-21 | RitualChamber + CharacterView + DashboardModals + CompanionsWidget translations |
+| `cdd59e3` | 2026-03-21 | RewardCelebration daily-bonus theme translation |
+| `80139ba` | 2026-03-21 | Complete agent-discovered translation pass (12 files, 60+ strings) |
+| `0442274` | 2026-03-21 | AUDIT_REPORT documentation update |
+| `4bcd3aa` | 2026-03-21 | QuestDetailModal + GachaPull translation |
+
+### 17.10 Remaining Issues Summary
 
 | Issue | Severity | Area | Status |
 |-------|----------|------|--------|
