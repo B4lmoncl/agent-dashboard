@@ -57,7 +57,7 @@ function timeAgo(dateStr: string): string {
   return `${days}d ago`;
 }
 
-const hideOnError = (e: React.SyntheticEvent<HTMLImageElement>) => { e.currentTarget.style.display = "none"; };
+const hideOnError = (e: React.SyntheticEvent<HTMLImageElement>) => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; };
 
 // ─── Component ──────────────────────────────────────────────────────────────
 

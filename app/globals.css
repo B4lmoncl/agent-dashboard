@@ -1027,8 +1027,7 @@ img {
 .gt-trigger {
   position: relative;
   cursor: help;
-  display: inline-flex;
-  align-items: center;
+  display: inline;
 }
 
 /* CK3 loading bar — golden line fills under trigger during hover delay */
@@ -1051,8 +1050,8 @@ img {
 }
 
 .gt-ref {
-  font-weight: 600;
-  border-bottom: 1px dotted;
+  font-weight: inherit;
+  border-bottom: 1px dotted rgba(255,215,0,0.35);
   cursor: help;
   transition: opacity 0.15s;
 }

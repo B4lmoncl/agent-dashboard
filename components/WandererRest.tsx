@@ -365,7 +365,7 @@ export function WandererRest({
                   width={144}
                   height={144}
                   style={{ imageRendering: "auto", display: "block", width: "100%", height: "100%", objectFit: "cover", opacity: 0.85 }}
-                  onError={e => { (e.target as HTMLImageElement).style.display = "none"; const fb = (e.target as HTMLImageElement).nextElementSibling as HTMLElement; if (fb) fb.style.display = "flex"; }}
+                  onError={e => { const t = e.target as HTMLImageElement; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; const fb = t.nextElementSibling as HTMLElement; if (fb) fb.style.display = "flex"; }}
                 />
                 <div style={{ display: "none", position: "absolute", inset: 0, alignItems: "center", justifyContent: "center", fontSize: 32 }}>?</div>
                 <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(255,215,0,0.08) 0%, transparent 60%)", pointerEvents: "none" }} />

@@ -792,7 +792,7 @@ export default function Dashboard() {
                   style={{ border: `2px solid ${loggedInUser.color ?? "#a78bfa"}50` }}
                   onError={e => {
                     const img = e.currentTarget as HTMLImageElement;
-                    img.style.display = "none";
+                    img.style.opacity = "0"; img.style.width = "0"; img.style.overflow = "hidden";
                     const fallback = img.nextElementSibling as HTMLElement;
                     if (fallback) fallback.style.display = "flex";
                   }}
@@ -886,7 +886,7 @@ export default function Dashboard() {
                     { emoji: "", key: "sternentaler" as const, value: Number(loggedInUser?.currencies?.sternentaler ?? 0), color: "#fbbf24", iconSrc: "/images/icons/currency-sternentaler.png" },
                   ].map(c => (
                     <div key={c.key} className="flex items-center gap-1 cursor-pointer" onClick={() => setCurrenciesOpen(true)} title={c.key}>
-                      {c.iconSrc ? <img src={c.iconSrc} alt="" width={16} height={16} className={`${c.key === "stardust" ? "premium-stardust" : c.key === "runensplitter" ? "premium-rune-shards" : ""} img-render-auto`} onError={(e) => { e.currentTarget.style.display = "none"; }} /> : <span style={{ fontSize: 18 }}>{c.emoji}</span>}
+                      {c.iconSrc ? <img src={c.iconSrc} alt="" width={16} height={16} className={`${c.key === "stardust" ? "premium-stardust" : c.key === "runensplitter" ? "premium-rune-shards" : ""} img-render-auto`} onError={(e) => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} /> : <span style={{ fontSize: 18 }}>{c.emoji}</span>}
                       <span className="text-base font-mono font-black" style={{ color: c.value > 0 ? c.color : "rgba(255,255,255,0.15)" }}>
                         {c.value}
                       </span>
@@ -897,7 +897,7 @@ export default function Dashboard() {
                 {/* Forge Temperature */}
                 <div data-feedback-id="player-card.forge-tooltip" className="relative group">
                   <div className="flex items-center gap-1.5 cursor-help">
-                    <img src="/images/icons/ach-forge-novice.png" alt="forge" width={35} height={35} className="img-render-auto" onError={e => (e.currentTarget.style.display = "none")} />
+                    <img src="/images/icons/ach-forge-novice.png" alt="forge" width={35} height={35} className="img-render-auto" onError={e => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} />
                     <span className="text-xs font-medium" style={{ color: forgeTempColor }}>
                       {forgeTemp}%
                     </span>
@@ -1002,7 +1002,7 @@ export default function Dashboard() {
                         return (
                           <div key={pid} className="rounded-xl px-3 py-2.5" style={{ background: `${meta?.color ?? "#888"}08`, border: `1px solid ${meta?.color ?? "#888"}25` }}>
                             <div className="flex items-center gap-2.5">
-                              <img src={meta?.icon ?? ""} alt="" width={28} height={28} className="img-render-auto" onError={e => (e.currentTarget.style.display = "none")} />
+                              <img src={meta?.icon ?? ""} alt="" width={28} height={28} className="img-render-auto" onError={e => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} />
                               <div className="flex-1 min-w-0">
                                 <div className="flex items-center gap-2">
                                   <span className="text-xs font-bold" style={{ color: meta?.color ?? "#888" }}>{meta?.name ?? pid}</span>
@@ -1045,7 +1045,7 @@ export default function Dashboard() {
                           return (
                             <div key={m.id} className="rounded-lg px-2.5 py-1.5" style={{ background: count > 0 ? "rgba(255,255,255,0.03)" : "transparent", opacity: count > 0 ? 1 : 0.35 }}>
                               <div className="flex items-center gap-2">
-                                <img src={m.icon} alt="" width={18} height={18} className="img-render-auto" onError={e => (e.currentTarget.style.display = "none")} />
+                                <img src={m.icon} alt="" width={18} height={18} className="img-render-auto" onError={e => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} />
                                 <div className="flex-1 min-w-0">
                                   <span className="text-xs truncate block" style={{ color: rarColor }}>{m.name}</span>
                                 </div>
@@ -1161,7 +1161,7 @@ export default function Dashboard() {
                       }}
                       {...(room.tutorialKey ? { "data-tutorial": room.tutorialKey } : {})}
                     >
-                      {room.iconSrc && <img src={room.iconSrc} alt="" width={24} height={24} className={`${room.key === "gacha" ? "vault-nav-glow" : ""} img-render-auto`} style={{ opacity: isActive ? 1 : 0.5 }} onError={e => (e.currentTarget.style.display = "none")} />}
+                      {room.iconSrc && <img src={room.iconSrc} alt="" width={24} height={24} className={`${room.key === "gacha" ? "vault-nav-glow" : ""} img-render-auto`} style={{ opacity: isActive ? 1 : 0.5 }} onError={e => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} />}
                       {seasonLabel}
                       {notifDot && <span className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full" style={{ background: notifDot, boxShadow: `0 0 4px ${notifDot}` }} />}
                     </button>
@@ -1403,7 +1403,7 @@ export default function Dashboard() {
                             {poolRefreshing ? (
                               <span className="text-sm">—</span>
                             ) : (
-                              <img src="/images/icons/ui-quest-scroll.png" alt="" width={24} height={24} className="img-render-auto" onError={e => (e.currentTarget.style.display = "none")} />
+                              <img src="/images/icons/ui-quest-scroll.png" alt="" width={24} height={24} className="img-render-auto" onError={e => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} />
                             )}
                           </button>
                         )}
@@ -1492,14 +1492,14 @@ export default function Dashboard() {
                               <>
                                 <img src="/images/icons/cat-npc.png" alt="" width={28} height={28}
                                   className="img-render-auto"
-                                  onError={(e) => { e.currentTarget.style.display = "none"; }} />
+                                  onError={(e) => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} />
                                 NPC
                               </>
                             ) : (
                               <>
                                 <img src={`/images/icons/cat-${iconFile}.png`} alt="" width={28} height={28}
                                   className="img-render-auto"
-                                  onError={(e) => { e.currentTarget.style.display = "none"; const next = e.currentTarget.nextElementSibling as HTMLElement; if (next) next.style.display = "inline"; }} />
+                                  onError={(e) => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; const next = t.nextElementSibling as HTMLElement; if (next) next.style.display = "inline"; }} />
                                 <span style={{ display: "none" }}>{cfg!.icon?.startsWith("/") ? cfg!.label : cfg!.icon}</span>
                                 {cfg!.label}
                               </>
@@ -1548,7 +1548,7 @@ export default function Dashboard() {
                     boardOpen.length === 0 && playerVisibleInProgress.length === 0 ? (
                       <div className="rounded-xl p-5 text-center bg-card border-w6">
                         <p className="text-xs text-w20">{searchFilter ? "No quests match your search" : "No player quests open"}</p>
-                        {!searchFilter && playerName && reviewApiKey && <button onClick={handlePoolRefresh} className="btn-interactive mt-2 px-3 py-1 rounded inline-flex items-center gap-1.5" style={{ background: "rgba(59,130,246,0.12)", color: "#60a5fa", border: "1px solid rgba(59,130,246,0.3)" }}><img src="/images/icons/ui-quest-scroll.png" alt="" width={20} height={20} className="img-render-auto" onError={e => (e.currentTarget.style.display = "none")} /><span className="text-xs font-semibold">Load Quests</span></button>}
+                        {!searchFilter && playerName && reviewApiKey && <button onClick={handlePoolRefresh} className="btn-interactive mt-2 px-3 py-1 rounded inline-flex items-center gap-1.5" style={{ background: "rgba(59,130,246,0.12)", color: "#60a5fa", border: "1px solid rgba(59,130,246,0.3)" }}><img src="/images/icons/ui-quest-scroll.png" alt="" width={20} height={20} className="img-render-auto" onError={e => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} /><span className="text-xs font-semibold">Load Quests</span></button>}
                       </div>
                     ) : (
                       <>

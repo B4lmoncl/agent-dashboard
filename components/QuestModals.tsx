@@ -53,7 +53,7 @@ export function CreateQuestModal({ quests, users, reviewApiKey, onRefresh, onClo
                 <>
                   <img src={t.iconSrc} alt="" width={28} height={28}
                     style={{ imageRendering: "auto" }}
-                    onError={(e) => { e.currentTarget.style.display = "none"; const next = e.currentTarget.nextElementSibling as HTMLElement; if (next) next.style.display = "inline"; }} />
+                    onError={(e) => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; const next = t.nextElementSibling as HTMLElement; if (next) next.style.display = "inline"; }} />
                   <span style={{ display: "none" }}>{t.fallback}</span>
                 </>
               ) : <span>{t.fallback}</span>}

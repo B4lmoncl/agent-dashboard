@@ -402,7 +402,7 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
             <div style={{ maxWidth: 1000, width: "100%", borderRadius: "1rem", background: newVowBloodPact ? "linear-gradient(160deg, #1a1a2e 0%, #0f0f1e 100%)" : "linear-gradient(160deg, #1e1c2c 0%, #141220 100%)", border: `1px solid ${newVowBloodPact ? "rgba(99,102,241,0.6)" : "rgba(99,102,241,0.3)"}`, boxShadow: newVowBloodPact ? "0 0 60px rgba(99,102,241,0.14)" : "0 0 40px rgba(99,102,241,0.07)", transition: "all 0.4s ease" }}>
               {/* Header */}
               <div className="flex items-center gap-3 px-5 pt-4 pb-3 border-b" style={{ borderColor: "rgba(99,102,241,0.12)" }}>
-                <img src="/images/icons/ui-vow-sword.png" alt="" width={48} height={48} style={{ imageRendering: "auto" }} onError={e => (e.currentTarget.style.display = "none")} />
+                <img src="/images/icons/ui-vow-sword.png" alt="" width={48} height={48} style={{ imageRendering: "auto" }} onError={e => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} />
                 <div>
                   <h3 className="text-sm font-bold" style={{ color: "#e2e8f0" }}>Swear a Vow</h3>
                   <p className="text-xs" style={{ color: "rgba(165,180,252,0.4)" }}>Vael the Silent — Vow Shrine</p>

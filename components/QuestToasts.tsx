@@ -35,7 +35,7 @@ export function ChainQuestToast({ parentTitle, template, onAccept, onDismiss }: 
           <div className="flex items-center gap-1 mb-3">
             {typeCfg && (
               <span className="text-xs px-1.5 py-0.5 rounded" style={{ background: typeCfg.bg, color: typeCfg.color, border: `1px solid ${typeCfg.border}` }}>
-                {typeCfg.icon?.startsWith("/") ? <img src={typeCfg.icon} alt="" width={14} height={14} style={{ imageRendering: "auto", display: "inline", verticalAlign: "middle" }} onError={(e) => { e.currentTarget.style.display = "none"; }} /> : typeCfg.icon} {typeCfg.label}
+                {typeCfg.icon?.startsWith("/") ? <img src={typeCfg.icon} alt="" width={14} height={14} style={{ imageRendering: "auto", display: "inline", verticalAlign: "middle" }} onError={(e) => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} /> : typeCfg.icon} {typeCfg.label}
               </span>
             )}
           </div>

@@ -32,7 +32,7 @@ export function ShopModal({ userId, userName, gold, currentGear, onClose, onBuy,
         <div className="flex items-center justify-between mb-4">
           <div>
             <h3 className="text-sm font-bold" style={{ color: "#f0f0f0" }}>Forge Shop</h3>
-            <p className="text-xs inline-flex items-center gap-1" style={{ color: "rgba(255,255,255,0.3)" }}>{userName} · <img src="/images/icons/currency-gold.png" alt="" width={20} height={20} style={{ imageRendering: "auto" }} onError={e => { e.currentTarget.style.display = "none"; }} /> {gold} gold</p>
+            <p className="text-xs inline-flex items-center gap-1" style={{ color: "rgba(255,255,255,0.3)" }}>{userName} · <img src="/images/icons/currency-gold.png" alt="" width={20} height={20} style={{ imageRendering: "auto" }} onError={e => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} /> {gold} gold</p>
           </div>
           <button onClick={onClose} style={{ color: "rgba(255,255,255,0.3)" }}>×</button>
         </div>
@@ -58,7 +58,7 @@ export function ShopModal({ userId, userName, gold, currentGear, onClose, onBuy,
                   border: `1px solid ${gold >= item.cost ? "rgba(245,158,11,0.4)" : "rgba(255,255,255,0.08)"}`,
                 }}
               >
-                <img src="/images/icons/currency-gold.png" alt="" width={20} height={20} style={{ imageRendering: "auto", display: "inline", verticalAlign: "middle", marginRight: 2 }} onError={e => { e.currentTarget.style.display = "none"; }} /> {item.cost}
+                <img src="/images/icons/currency-gold.png" alt="" width={20} height={20} style={{ imageRendering: "auto", display: "inline", verticalAlign: "middle", marginRight: 2 }} onError={e => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} /> {item.cost}
               </button>
             </div>
           ))}
@@ -101,7 +101,7 @@ export function ShopModal({ userId, userName, gold, currentGear, onClose, onBuy,
                           border: `1px solid ${canBuy ? "rgba(99,102,241,0.4)" : "rgba(255,255,255,0.08)"}`,
                         }}
                       >
-                        <img src="/images/icons/currency-gold.png" alt="" width={20} height={20} style={{ imageRendering: "auto", display: "inline", verticalAlign: "middle", marginRight: 2 }} onError={e => { e.currentTarget.style.display = "none"; }} /> {gear.cost}
+                        <img src="/images/icons/currency-gold.png" alt="" width={20} height={20} style={{ imageRendering: "auto", display: "inline", verticalAlign: "middle", marginRight: 2 }} onError={e => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} /> {gear.cost}
                       </button>
                     )}
                   </div>

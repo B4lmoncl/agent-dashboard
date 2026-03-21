@@ -312,7 +312,7 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
               <div style={{ maxWidth: 1000, width: "100%", borderRadius: "1rem", background: newRitualBloodPact ? "linear-gradient(160deg, #2c1a1a 0%, #1e1010 100%)" : "linear-gradient(160deg, #2c2318 0%, #1e1912 100%)", border: `1px solid ${newRitualBloodPact ? "rgba(239,68,68,0.45)" : "rgba(245,158,11,0.3)"}`, boxShadow: newRitualBloodPact ? "0 0 60px rgba(239,68,68,0.12)" : "0 0 40px rgba(167,139,250,0.08)", transition: "all 0.4s ease" }}>
                 {/* Header */}
                 <div className="flex items-center gap-3 px-5 pt-4 pb-3 border-b" style={{ borderColor: "rgba(245,158,11,0.12)" }}>
-                  <img src="/images/icons/ui-ritual-rune.png" alt="" width={28} height={28} className="img-render-auto" onError={e => (e.currentTarget.style.display = "none")} />
+                  <img src="/images/icons/ui-ritual-rune.png" alt="" width={28} height={28} className="img-render-auto" onError={e => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} />
                   <div>
                     <h3 className="text-sm font-bold" style={{ color: "#e8d5a3" }}>Forge a New Rite</h3>
                     <p className="text-xs" style={{ color: "rgba(200,170,100,0.4)" }}>Seraine Ashwell — Ritual Chamber</p>
