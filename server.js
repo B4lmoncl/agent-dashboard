@@ -121,6 +121,7 @@ app.use(require('./routes/crafting'));
 app.use(require('./routes/challenges-weekly'));
 app.use(require('./routes/expedition'));
 app.use(require('./routes/social'));
+app.use(require('./routes/rift'));
 app.use(require('./routes/npcs-misc'));  // Must be last (has SPA fallback catch-all)
 
 // ─── Express error handler (catch-all for unhandled route errors) ────────────

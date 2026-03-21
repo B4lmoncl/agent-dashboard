@@ -77,6 +77,7 @@ export const FLOORS: Floor[] = [
       { key: "questBoard", label: "The Great Hall",        iconSrc: "/images/icons/nav-great-hall.png",  tutorialKey: "quest-board-tab" },
       { key: "npcBoard",   label: "The Wanderer's Rest",   iconSrc: "/images/icons/nav-wanderer.png",    tutorialKey: "npc-board-tab" },
       { key: "challenges", label: "Challenges",            iconSrc: "/images/icons/nav-challenges.png",  tutorialKey: null },
+      { key: "rift",       label: "The Rift",              iconSrc: "/images/icons/nav-rift.png",        requiresLogin: true, tutorialKey: null },
     ],
   },
   {

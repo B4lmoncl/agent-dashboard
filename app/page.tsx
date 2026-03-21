@@ -16,6 +16,7 @@ const ChallengesView = lazy(() => import("@/components/ChallengesView"));
 const DailyLoginCalendar = lazy(() => import("@/components/DailyLoginCalendar"));
 const SocialView = lazy(() => import("@/components/SocialView"));
 const TavernView = lazy(() => import("@/components/TavernView"));
+const RiftView = lazy(() => import("@/components/RiftView"));
 const PlayerProfileModal = lazy(() => import("@/components/PlayerProfileModal"));
 import { GuideModal, GuideContent, TutorialOverlay, TUTORIAL_STEPS } from "@/components/TutorialModal";
 import {
@@ -127,7 +128,7 @@ export default function Dashboard() {
   });
   // selectedIds, bulkLoading, reviewComments moved to useQuestActions hook
   const [typeFilter, setTypeFilter] = useState<string>("all");
-  const [dashViewRaw, setDashViewRaw] = useState<"questBoard" | "npcBoard" | "klassenquests" | "character" | "campaign" | "leaderboard" | "honors" | "season" | "shop" | "forge" | "gacha" | "roadmap" | "changelog" | "challenges" | "rituals" | "vows" | "social" | "tavern">("questBoard");
+  const [dashViewRaw, setDashViewRaw] = useState<"questBoard" | "npcBoard" | "klassenquests" | "character" | "campaign" | "leaderboard" | "honors" | "season" | "shop" | "forge" | "gacha" | "roadmap" | "changelog" | "challenges" | "rituals" | "vows" | "social" | "tavern" | "rift">("questBoard");
   const [activeFloor, setActiveFloor] = useState("haupthalle");
   // Wrap setDashView to auto-sync the active floor
   const dashView = dashViewRaw;
@@ -1256,6 +1257,11 @@ export default function Dashboard() {
             expedition={expedition}
             onRefresh={refresh}
           /></Suspense></ErrorBoundary>
+        )}
+
+        {/* ── THE RIFT (Dungeon System) ── */}
+        {dashView === "rift" && (
+          <ErrorBoundary><Suspense fallback={<ViewFallback />}><RiftView onRefresh={refreshDashboard} /></Suspense></ErrorBoundary>
         )}
 
         {/* ── ROADMAP TAB ── */}
