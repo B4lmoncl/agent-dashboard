@@ -1,13 +1,12 @@
 {
   "schema_version": "2.0",
   "slots": [
-    "head",
-    "chest",
     "weapon",
     "shield",
-    "boots",
-    "ring",
-    "amulet"
+    "helm",
+    "armor",
+    "amulet",
+    "boots"
   ],
   "types": [
     "equipment",
@@ -23,7 +22,11 @@
     "kraft",
     "ausdauer",
     "weisheit",
-    "glueck"
+    "glueck",
+    "fokus",
+    "vitalitaet",
+    "charisma",
+    "tempo"
   ],
   "tiers": [
     {

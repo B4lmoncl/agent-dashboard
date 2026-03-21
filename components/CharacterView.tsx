@@ -355,14 +355,14 @@ const BOND_LEVELS = [
 ];
 
 const STAT_EFFECTS: Record<string, string> = {
-  "Kraft":     "+0.5% Quest XP pro Punkt (max +30%)",
-  "Weisheit":  "+0.5% Gold pro Punkt (max +30%)",
-  "Ausdauer":  "-0.5% Forge Decay pro Punkt (min 10% der Basis-Rate)",
-  "Glück":     "+0.5% Drop Chance pro Punkt (max 20%)",
-  "Fokus":     "+1 Flat Bonus-XP pro Punkt (max +50)",
-  "Vitalität": "+1% Streak-Schutz pro Punkt (max 75% gesamt)",
-  "Charisma":  "+5% Companion Bond-XP pro Punkt",
-  "Tempo":     "+1% Forge-Temp-Recovery pro Punkt",
+  "Kraft":     "+0.5% Quest XP per point (max +30%)",
+  "Weisheit":  "+0.5% Gold per point (max +30%)",
+  "Ausdauer":  "-0.5% Forge Decay per point (min 10% base rate)",
+  "Glück":     "+0.5% Drop Chance per point (max 20%)",
+  "Fokus":     "+1 Flat Bonus XP per point (max +50)",
+  "Vitalität": "+1% Streak Protection per point (max 75% total)",
+  "Charisma":  "+5% Companion Bond XP per point",
+  "Tempo":     "+1% Forge Temp Recovery per point",
 };
 
 const GRID_COLS = 5;
@@ -646,11 +646,11 @@ function InventorySlot({ item, level, idx, onItemClick, onDragStart, onDragOver,
 
 const EQUIP_SLOT_LABELS: { slot: string; emoji: string; label: string; iconSrc?: string }[] = [
   { slot: "helm", emoji: "", iconSrc: "/images/icons/equip-helm.png", label: "Helm" },
-  { slot: "weapon", emoji: "", iconSrc: "/images/icons/equip-weapon.png", label: "Waffe" },
-  { slot: "shield", emoji: "", iconSrc: "/images/icons/equip-shield.png", label: "Schild" },
-  { slot: "armor", emoji: "", iconSrc: "/images/icons/equip-armor.png", label: "Rüstung" },
-  { slot: "amulet", emoji: "", iconSrc: "/images/icons/equip-amulet.png", label: "Amulett" },
-  { slot: "boots", emoji: "", iconSrc: "/images/icons/equip-boots.png", label: "Stiefel" },
+  { slot: "weapon", emoji: "", iconSrc: "/images/icons/equip-weapon.png", label: "Weapon" },
+  { slot: "shield", emoji: "", iconSrc: "/images/icons/equip-shield.png", label: "Shield" },
+  { slot: "armor", emoji: "", iconSrc: "/images/icons/equip-armor.png", label: "Armor" },
+  { slot: "amulet", emoji: "", iconSrc: "/images/icons/equip-amulet.png", label: "Amulet" },
+  { slot: "boots", emoji: "", iconSrc: "/images/icons/equip-boots.png", label: "Boots" },
 ];
 
 function GearSlotRow({ slot, iconSrc, label, item, onUnequip, unequipping }: {
@@ -707,7 +707,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
   const [loading, setLoading] = useState(true);
   const [equipping, setEquipping] = useState<string | null>(null);
   const [unequipping, setUnequipping] = useState<string | null>(null);
-  const [rightTab, setRightTab] = useState<"stats" | "ausrustung">("stats");
+  const [rightTab, setRightTab] = useState<"stats" | "equipment">("stats");
   const [profileSettingsOpen, setProfileSettingsOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState<{ item: CharacterData["inventory"][number]; rect: { x: number; y: number; width: number; height: number } } | null>(null);
   const [statTooltipOpen, setStatTooltipOpen] = useState<string | null>(null);
@@ -1202,7 +1202,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
         >
           {/* Tab toggle */}
           <div className="flex gap-1 mb-3">
-            {(["stats", "ausrustung"] as const).map(tab => (
+            {(["stats", "equipment"] as const).map(tab => (
               <button
                 key={tab}
                 onClick={() => setRightTab(tab)}
@@ -1220,7 +1220,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
           </div>
 
           {/* Gear tab */}
-          {rightTab === "ausrustung" && (
+          {rightTab === "equipment" && (
             <div className="space-y-1.5">
               {EQUIP_SLOT_LABELS.map(({ slot, iconSrc, label }) => {
                 const eqRaw = charData?.equipment[slot];
@@ -1339,16 +1339,16 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
             const { kraft, ausdauer, weisheit, glueck, fokus, vitalitaet, charisma, tempo } = charData.stats;
             const base = charData.baseStats;
             const statRows = [
-              { icon: "/images/icons/stat-kraft.png", label: "Kraft", iconSrc: "/images/icons/stat-kraft.png",    val: kraft,    base: base.kraft,    tooltip: "KRA · +0.5% Quest-XP pro Punkt (max +30%)" },
-              { icon: "/images/icons/stat-ausdauer.png", label: "Ausdauer", iconSrc: "/images/icons/stat-ausdauer.png", val: ausdauer, base: base.ausdauer, tooltip: "AUS · -0.5% Forge Decay pro Punkt" },
-              { icon: "/images/icons/stat-weisheit.png", label: "Weisheit", iconSrc: "/images/icons/stat-weisheit.png", val: weisheit, base: base.weisheit, tooltip: "WEI · +0.5% Gold pro Punkt (max +30%)" },
-              { icon: "/images/icons/stat-glueck.png", label: "Glück", iconSrc: "/images/icons/stat-glueck.png",    val: glueck,   base: base.glueck,   tooltip: "GLÜ · +0.5% Drop-Chance pro Punkt (max 20%)" },
+              { icon: "/images/icons/stat-kraft.png", label: "Kraft", iconSrc: "/images/icons/stat-kraft.png",    val: kraft,    base: base.kraft,    tooltip: "KRA · +0.5% Quest XP per point (max +30%)" },
+              { icon: "/images/icons/stat-ausdauer.png", label: "Ausdauer", iconSrc: "/images/icons/stat-ausdauer.png", val: ausdauer, base: base.ausdauer, tooltip: "AUS · -0.5% Forge Decay per point" },
+              { icon: "/images/icons/stat-weisheit.png", label: "Weisheit", iconSrc: "/images/icons/stat-weisheit.png", val: weisheit, base: base.weisheit, tooltip: "WEI · +0.5% Gold per point (max +30%)" },
+              { icon: "/images/icons/stat-glueck.png", label: "Glück", iconSrc: "/images/icons/stat-glueck.png",    val: glueck,   base: base.glueck,   tooltip: "GLÜ · +0.5% Drop Chance per point (max 20%)" },
             ];
             const minorStatRows = [
-              { label: "Fokus", val: fokus || 0, tooltip: "FOK · +1 Flat Bonus-XP pro Punkt (max +50)" },
-              { label: "Vitalität", val: vitalitaet || 0, tooltip: "VIT · +1% Streak-Schutz pro Punkt (max 75%)" },
-              { label: "Charisma", val: charisma || 0, tooltip: "CHA · +5% Companion Bond-XP pro Punkt" },
-              { label: "Tempo", val: tempo || 0, tooltip: "TMP · +1% Forge-Temp-Recovery pro Punkt" },
+              { label: "Fokus", val: fokus || 0, tooltip: "FOK · +1 Flat Bonus XP per point (max +50)" },
+              { label: "Vitalität", val: vitalitaet || 0, tooltip: "VIT · +1% Streak Protection per point (max 75%)" },
+              { label: "Charisma", val: charisma || 0, tooltip: "CHA · +5% Companion Bond XP per point" },
+              { label: "Tempo", val: tempo || 0, tooltip: "TMP · +1% Forge Temp Recovery per point" },
             ];
             const hasMinorStats = minorStatRows.some(s => s.val > 0);
             return (
