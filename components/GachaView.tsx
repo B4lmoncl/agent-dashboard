@@ -7,7 +7,6 @@ import { Tip, TipCustom } from "@/components/GameTooltip";
 import GachaPull, { RARITY_CONFIG } from "./GachaPull";
 import { ModalOverlay } from "./ModalPortal";
 import { getAuthHeaders } from "@/lib/auth-client";
-import { Tip } from "@/components/GameTooltip";
 
 // ─── Currency helpers ────────────────────────────────────────────────────────
 const CURRENCY_META: Record<string, { emoji: string; label: string; color: string; iconSrc?: string }> = {
