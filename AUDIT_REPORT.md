@@ -1212,7 +1212,27 @@ Additional German→English translations in interactive UI across 5 files:
 | `CompanionsWidget.tsx` | Error fallback: Fehler→Error |
 | `RewardCelebration.tsx` | Daily bonus theme: Täglicher Bonus→Daily Bonus, all flavor messages translated |
 
-### 17.7 Remaining Issues Summary
+### 17.7 Complete Translation Pass (Session 5, Batch 2)
+
+Agent-discovered comprehensive German text scan found 60+ untranslated strings across 12 files. All fixed:
+
+**Frontend (8 files, ~35 strings):**
+- `ItemActionPopup.tsx` — All 8 button labels/messages (Ausrüsten→Equip, Wegwerfen→Discard, etc.)
+- `HonorsView.tsx` — All 15 achievement condition templates + hidden achievement text
+- `CharacterView.tsx` — 5 error toast messages (unequip, use, discard network errors)
+- `QuestPanels.tsx` — Streak labels (Längste Serie→Longest streak, Rekord→Record)
+- `DailyLoginCalendar.tsx` — Close button (Schließen→Close)
+- `RewardCelebration.tsx` — Daily bonus theme (label + 5 flavor messages)
+- `page.tsx` — 5 UI strings (activity level tooltip, quest counts, login prompts)
+- `layout.tsx` — Meta description
+
+**Backend (4 files, ~30 strings):**
+- `habits-inventory.js` — 15 item-use response messages (XP boost, bond XP, random gear, phoenix feather, etc.)
+- `currency.js` — 6 error messages (validation, unknown currency, conversion)
+- `players.js` — 7 companion/ultimate messages (cooldown, quest completion, streak extend)
+- `helpers.js` — 7 companion quest title templates (fierce, wise, resilient, loyal, clever, strong)
+
+### 17.8 Remaining Issues Summary
 
 | Issue | Severity | Area | Status |
 |-------|----------|------|--------|
