@@ -1,4 +1,4 @@
-# Lyra Playbook — Content Creation Guide
+# Lyra Playbook — Content Creation Guide & Lore Bible
 
 > Mechanisches Handbuch für LLMs, die neuen Content (NPCs, Quests, Items, Gear etc.) ins System einspeisen. Dieses Dokument beschreibt WO und WIE — nicht WAS. Den Content selbst bestimmst du.
 
@@ -2095,3 +2095,275 @@ Die Berufs-NPCs aus `professions.json` referenzieren Portraits die nicht existie
 | Season Templates | `public/data/seasonTemplates.json` | Nein |
 | Ritual/Vow Templates | `public/data/ritualVowTemplates.json` | Nein |
 | GameTooltip Registry | `components/GameTooltip.tsx` | Ja (Code-Änderung) |
+
+---
+
+## Lore Bible — Quest Hall World Building
+
+> **⚠️ DO NOT MODIFY THIS SECTION. Claude Code darf diese Sektion NIEMALS erweitern, kürzen oder verändern — außer der User sagt es EXPLIZIT. Diese Lore Bible ist die kanonische Quelle für die Welt von Quest Hall und wird ausschließlich vom User gepflegt.**
+
+### Welt: Aethermoor
+- Kosmisch + geerdet. Sterne sind Knotenpunkte des Aetherstroms, nicht nur Deko
+- Alt, geschichtet, voller Narben vergangener Zeitalter
+- Magie = Aetherstrom. Nicht "Hokuspokus" sondern eine Naturkraft die man *verhandelt*
+- Aktuelles Zeitalter: **Wiederkehr** — Risse öffnen sich, Dungeons erwachen, neue Helden nötig
+
+### Die Quest Hall = Urithiru (Hauptreferenz)
+
+Die Quest Hall ist inspiriert von **Urithiru** aus Brandon Sandersons *Sturmlicht-Chroniken* — dem uralten Turm der Ritter des Strahlenden. Diese Referenz ist die PRIMÄRE Designgrundlage für die gesamte Struktur der Quest Hall:
+
+- **Der Turm selbst:** Die Quest Hall ist ein massiver, uralter Turm mit vielen Stockwerken (Floors). Jedes Stockwerk hat eigene Räume, Funktionen und Atmosphäre — genau wie Urithirus Ebenen.
+- **Die Stockwerke (Floors):** The Pinnacle (Turmspitze), The Great Halls (Haupthallen), The Trading District (Gewerbeviertel), The Inner Sanctum (Charakterturm), The Breakaway (Sozialbereich) — angelehnt an Urithirus Struktur mit Versammlungshallen, Marktplätzen, Gemächern, und Gesellschaftsräumen.
+- **The Hearth (Die Taverne):** Inspiriert von Urithirus Gemeinschaftshallen wo Brückenmänner, Gelehrte und Ritter zusammenkommen.
+- **Die Halle lebt:** Wie Urithiru hat die Quest Hall ein Eigenleben — sie reagiert auf ihre Bewohner, hat Geheimnisse, und erwacht langsam aus einem langen Schlaf (Zeitalter der Wiederkehr).
+- **Neue Räume/Floors** sollten sich anfühlen wie das Entdecken einer neuen Ebene von Urithiru — jeder Raum hat Geschichte, Zweck und Atmosphäre.
+- **Stormlight-Ideale** durchziehen die Lore: "Leben vor Tod. Stärke vor Schwäche. Reise vor Ziel." — paraphrasiert, nie direkt zitiert.
+
+Bei JEDER Erweiterung der Quest Hall (neue Floors, Räume, Features) frag dich: "Wie würde das in Urithiru aussehen? Welche Ebene wäre das? Wer würde dort leben?"
+
+### Tone
+
+**So klingt Quest Hall:**
+- **Poetisch aber nicht kitschig.** Kingkiller Chronicle Vibe, nicht Herr der Ringe Pathos
+- **Trocken humorvoll.** Syl aus Stormlight, Scheibenwelt-Fußnoten-Energie
+- **Ernst wenn's drauf ankommt.** Frieren-Momente: leise, melancholisch, überraschend tief
+- **Zugänglich.** Kein "Prithee, good sir" — eher wie ein kluger Freund der Fantasy liebt
+- **Deutsch.** Alle In-Game Texte deutsch. Raumnamen englisch (The Great Hall, The Arcanum etc.)
+
+**Beispiel-Sätze nach Stimmung:**
+
+**Episch:**
+- "Der Aetherstrom pulsiert. Die Halle hat auf dich gewartet."
+- "Hinter dem Tor liegen Welten, die noch keinen Namen tragen."
+
+**Humorvoll:**
+- "Die Bibliothek beißt zurück. Buchstäblich. Handschuhe empfohlen."
+- "Oma Ilse hat Kekse mitgebracht. Die letzte Heldin die abgelehnt hat, wurde nie wieder gesehen."
+
+**Melancholisch:**
+- "Manche Quests enden nicht mit Fanfaren. Manche enden mit Stille und der Erkenntnis, dass man gewachsen ist."
+- "Die Sterne erinnern sich an jeden Helden. Auch an die, die niemand sonst kennt."
+
+**Ermutigend:**
+- "Du bist hier. Das ist schon mehr als die meisten schaffen."
+- "Jeder Streak begann mit Tag Eins. Auch die legendären."
+
+**Mysteriös:**
+- "Die Sternenwächterin schweigt heute. Das ist selten. Und selten ist selten gut."
+- "Im tiefsten Gewölbe der Schmiede hört man manchmal einen Hammerschlag. Niemand weiß, wer schmiedet."
+
+### Sprach-Regeln
+
+**IMMER:**
+- Spieler = "Wanderer" oder "Held/Heldin" (nie "User")
+- Quests = "Aufträge" oder "Herausforderungen"
+- Tod/Failure = "Scheitern" oder "Fallen" (nie "Game Over")
+- Die Halle lebt, atmet, hat Vorlieben
+- Lyra ist weise aber nie belehrend, frech aber nie gemein
+
+**NIE:**
+- Modern/Corporate Sprache ("Optimiere deine Produktivität!")
+- Cringe-Fantasy ("Grüße, edler Recke!")
+- Passive Stimme wo aktive geht
+- Zu viele Ausrufezeichen!!!
+- Erklärungen die niemand braucht
+
+### Quest-Generierung
+
+**Template:**
+```
+Titel: [Emoji] [Evokativ, nicht beschreibend] — [Untertitel]
+Flavor: [1-2 Sätze Lore/Atmosphäre, in-universe]
+Aufgabe: [Klar, konkret, machbar]
+Rewards: XP, Gold, ggf. Items
+Rarity: Common/Uncommon/Rare/Epic/Legendary
+Tags: classRequired?, minLevel, category
+```
+
+**Quest-Kategorien + Flavor-Vibes:**
+
+| Kategorie | Vibe | Beispiel-Flavor |
+|-----------|------|-----------------|
+| Personal | Warm, ermutigend | "Nicht jede Heldentat findet auf dem Schlachtfeld statt." |
+| Learning | Neugierig, geheimnisvoll | "Wissen ist die schärfste Klinge — und die Bibliothek hat heute geöffnet." |
+| Fitness | Kraftvoll, direkt | "Dein Körper ist deine erste Rüstung. Schmiede sie." |
+| Social | Herzlich, verbindend | "Kein Held wandert allein. Selbst die Sterne leuchten in Gruppen." |
+| Co-op | Episch, zusammen | "Manche Tore öffnen sich nur für zwei Schlüssel gleichzeitig." |
+
+**Rarity-Scaling:**
+
+| Rarity | Quest-Dauer | Rewards | Flavor |
+|--------|------------|---------|--------|
+| Common | 15min-1h | 10-15 XP, 5-10 Gold | Kurz, alltäglich |
+| Uncommon | 1-3h | 20-30 XP, 15-25 Gold | Etwas mehr Lore |
+| Rare | 3h-1 Tag | 40-60 XP, 30-50 Gold | Eigene kleine Geschichte |
+| Epic | Mehrere Tage | 80-120 XP, 60-100 Gold | Narrative Arc |
+| Legendary | 1+ Wochen | 150+ XP, 100+ Gold, Item | Volle Quest-Story |
+
+### Kampagnen-Generierung
+
+**Regeln:**
+- Quests bauen aufeinander auf (Quest 3 braucht was man in Quest 2 gelernt hat)
+- Schwierigkeit steigt graduell
+- Letzte Quest = Boss Quest (schwer, episch, besondere Belohnung)
+- Flavor-Text jeder Quest referenziert den Kampagnen-Bogen
+- Lyra vergibt Kampagnen persönlich ("Die Sternenwächterin hat dich rufen lassen...")
+
+### NPCs — Personality Quick Reference
+
+| NPC | Rarity | Vibe | Spricht wie... |
+|-----|--------|------|----------------|
+| Oma Ilse | Common | Warm, weise, Kekse | Deine Lieblings-Oma |
+| Karim | Uncommon | Gewürze, Geschichten, Handel | Händler auf einem Basar |
+| Finnegan | Uncommon | Laut, chaotisch, gut gemeint | Der Kumpel der immer Ärger macht |
+| Sable Nachtwind | Rare | Mysteriös, diebisch, ehrlich | Kaz Brekker lite |
+| Mirael | Legendary | Formell, alt, mächtig | Gandalf trifft Dumbledore |
+| Lyra (NPC) | Permanent | Frech, weise, nie belehrend | Syl + Cortana + Spice |
+
+### Währungen — In-Game Flavor
+
+| Währung | Kurz | In Flavor-Text |
+|---------|------|----------------|
+| Gold 🪙 | Gold | "das ehrliche Metall", "Münzen" |
+| Astralium ✨ | Astralium | "geronnenes Sternenlicht", "Kristalle" |
+| Essenz 🔥 | Essenz | "der stille Trank", "Bernstein der Beständigkeit" |
+| Runensplitter 💎 | Splitter | "Echos der vergessenen Sprache" |
+| Gildentaler 🤝 | Taler | "Zeichen des Zusammenhalts" |
+| Mondstaub 🌙 | Mondstaub | "Atem der Konzentration" |
+
+### Die Vier Zirkel — Fraktionen des Turms
+
+Die Vier Zirkel sind uralte Ordnungen innerhalb von Urithiru, die während des langen Schlafs des Turms verblasst waren. Mit dem Zeitalter der Wiederkehr formieren sie sich neu. Jeder Zirkel verkörpert eine Philosophie, einen Aspekt des Aetherstroms.
+
+| Zirkel | Symbol | Philosophie | Vibe |
+|--------|--------|-------------|------|
+| **Zirkel der Glut** 🔥 | 🜂 | "Durch Feuer geschmiedet, in Asche geläutert." | Feuer-Asketen. Körperliche Disziplin, unerschütterliche Willenskraft. Ihre Rituale sind schweißtreibend — Schmiede des eigenen Körpers. Denk an Spartaner mit Zen-Philosophie. |
+| **Zirkel der Tinte** 📜 | 🜄 | "Wissen ist die schärfste Klinge." | Schriftgelehrte und Archivare. Jedes Wort, jede Lektion wird in endlosen Kodizes festgehalten. Leise, bedächtig, gefährlich klug. Die Bibliothek ist ihr Tempel — und die Bibliothek beißt zurück. |
+| **Zirkel des Amboss** ⚒️ | 🜁 | "Was die Hand formt, hält die Welt zusammen." | Schmiede-Mystiker, Meister aller Handwerke. Jeder geschaffene Gegenstand enthält ein Fragment der Schöpfung. Ihre Werkstätten sind Tempel. Pragmatisch, erdverbunden, stolz. |
+| **Zirkel des Echos** 🌊 | 🜃 | "Jede Stimme hallt in der Ewigkeit wider." | Klangwirker und Brückenbauer. Verbindungen zwischen Menschen sind die wahre Magie. Ihre Kraft liegt im Miteinander, im geteilten Wort, im Echo das zurückkehrt. Warm, empathisch, überraschend mächtig. |
+
+Die Zirkel stehen nicht in Konkurrenz — sie ergänzen sich. Ein Held kann Reputation in allen vier gleichzeitig aufbauen. Die höchsten Ränge (Exalted, Paragon) bringen echte Macht: exklusive Rezepte, legendäre Effekte, Rabatte im Basar.
+
+### Der Rift — Risse in der Realität
+
+Der Rift ist ein Ort zwischen den Welten — Risse im Aetherstrom, durch die Fragmentierte Realitäten sickern. Seit dem Zeitalter der Wiederkehr öffnen sich diese Risse häufiger. Helden betreten den Rift, um sich der eskalierenden Gefahr zu stellen.
+
+- **Normal/Hard/Legendary:** Drei Schwierigkeitsstufen — wie tiefere Ebenen eines Abgrunds
+- **Mythic+ (Endloser Rift):** Jenseits von Legendary. Unendliche Skalierung. Hier messen sich die stärksten Wanderer. "Der Rift hat keinen Boden. Nur die, die aufgehört haben zu fallen."
+- **Lore-Vibe:** Bedrohlich, zeitkritisch, die Uhr tickt. Der Rift *will* dass du scheiterst. "Die Risse flüstern. Hör nicht hin."
+
+### The Undercroft — Dungeons unter dem Turm
+
+Unter Urithiru liegen vergessene Gewölbe, versiegelte Archive und Kammern die seit Äonen niemand betreten hat. Mit dem Erwachen des Turms öffnen sich diese Orte — aber nicht freiwillig.
+
+- **Kooperativ:** 2-4 Helden zusammen. Alleine geht niemand in die Tiefe.
+- **Drei Orte:** The Sunken Archive (Normal), The Shattered Spire (Hard), The Hollow Core (Legendary)
+- **Lore-Vibe:** Verlassen, gefährlich, faszinierend. Jeder Dungeon erzählt eine Geschichte der Vergangenheit des Turms. "Was hier unten schläft, hat Gründe dafür."
+
+### Der Kolosseum — Weltbosse
+
+Im tiefsten Amphitheater des Turms — dem Kolosseum — manifestieren sich die größten Bedrohungen Aethermoors. Uralte Wesen, aufgeschreckt durch die Rückkehr des Aetherstroms.
+
+- **Gemeinschaftsereignis:** Alle Helden kämpfen gemeinsam. Jede abgeschlossene Quest ist ein Schlag gegen den Boss.
+- **Drei Stufen:** Champion (lokale Bedrohung), Titan (regionale Gefahr), Colossus (weltbedrohend)
+- **Einzigartige Beute:** Weltbosse sind die Hauptquelle für Unique Named Items — handgeschmiedete Legendäre mit eigener Lore und Geschichte.
+- **Lore-Vibe:** Episch, gemeinschaftlich, bedeutungsvoll. "Der Turm bebt. Etwas Uraltes ist erwacht."
+
+### The Hearth — Die Taverne
+
+In den oberen Hallen von Urithiru gibt es einen Raum, den jeder kennt und niemand vergisst: The Hearth. Ein Ort der Ruhe inmitten des Chaos. Inspiriert von Urithirus Gemeinschaftshallen, wo Brückenmänner nach der Schlacht zusammensitzen, wo Gelehrte Geschichten tauschen, wo man einfach *sein* darf.
+
+- Helden können hier rasten (1-7 Tage), Streaks und Forge-Temperatur einfrieren
+- **Lore-Vibe:** Warm, sicher, melancholisch. "Selbst Helden brauchen eine Pause. Die Halle versteht das."
+
+### The Breakaway — Sozialbereich
+
+Der gesellschaftliche Flügel des Turms. Wo Helden sich treffen, Nachrichten austauschen, handeln und Freundschaften schmieden. Nicht alles im Turm ist Kampf und Quest — manchmal ist ein gutes Gespräch die stärkste Waffe.
+
+- Freunde, Nachrichten, Handel, Activity Feed
+- **Lore-Vibe:** Lebendig, sozial, der Herzschlag der Gemeinschaft. "Die stärksten Bande werden nicht in der Schlacht geschmiedet, sondern danach."
+
+### The Arcanum — Klassen & Wissen
+
+Die mystische Bibliothek des Turms. Hier wählen Helden ihren Pfad — ihre Klasse, ihre Spezialisierung. Das Arcanum katalogisiert alles Wissen und alle Fähigkeiten. Bücher die sich selbst schreiben. Regale die sich bewegen. "Die Bibliothek hat einen eigenen Willen. Und schlechte Laune."
+
+### Vault of Fate — Gacha / Schicksalskammer
+
+Tief im Trading District steht ein uralter Mechanismus — das Vault of Fate. Wer Runensplitter opfert, darf in die Schicksalskammer greifen. Was man herauszieht ist... unvorhersehbar.
+
+- **Lore-Vibe:** Mysteriös, aufregend, ein bisschen gefährlich. "Das Schicksal lässt sich nicht kaufen. Aber verhandeln... manchmal."
+- Die Pity-Mechanik in-universe: "Die Kammer erinnert sich an jeden der leer ausgeht. Irgendwann... gibt sie nach."
+
+### Artisan's Quarter — Die Schmieden
+
+Das Handwerkerviertel von Urithiru. Vier Meister, vier Disziplinen. Hier wird geschmiedet, gebraut, verzaubert und gekocht. Jeder NPC hat eine Persönlichkeit:
+
+- **Grimvar** (Schmied) — Wortkarg, respektiert nur Taten. Sein Hammer spricht für ihn.
+- **Ysolde** (Alchemistin) — Neugierig, ein bisschen verrückt. Ihre Tränke explodieren selten. Meistens.
+- **Eldric** (Verzauberer) — Formell, präzise, leicht herablassend. Jede Silbe hat Gewicht.
+- **Bruna** (Köchin) — Herzlich, laut, kein Held verlässt ihre Küche hungrig. Oder nüchtern.
+
+### Sternenpfad & Expedition — Wöchentliche Herausforderungen
+
+- **Sternenpfad:** Solo-Herausforderung. Drei Stufen, neun Sterne. "Die Sterne messen dich. Nicht deine Ausrüstung, nicht dein Level — dich."
+- **Expedition:** Kooperativ. Alle Helden zusammen gegen ein großes Ziel. "Gemeinsam ist kein leeres Wort. Es ist eine Waffe."
+
+### Season Pass — Der Zyklus der Jahreszeiten
+
+Der Turm folgt einem Rhythmus — Jahreszeiten die kommen und gehen, jede mit eigenem Thema und eigenen Belohnungen. 40 Stufen pro Saison. "Die Zeit ist kein Feind. Sie ist ein Lehrer mit einem sehr engen Zeitplan."
+
+### Companions — Begleiter
+
+Jeder Held hat einen Begleiter. Manche sind Drachen, manche Eulen, manche sind die Katze die einem zugelaufen ist. Der Bond wächst mit der Zeit — und mit Bond Level 5 erwacht eine Ultimate-Fähigkeit.
+
+- **Lore-Vibe:** Persönlich, emotional, loyal. "Dein Companion erinnert sich an jeden Tag den ihr zusammen verbracht habt. Auch an die schlechten. Besonders an die schlechten."
+- **Companion Expeditions:** Schick deinen Begleiter auf eigene Abenteuer. Er kommt zurück mit Geschichten und Schätzen. "Ember kam zurück mit... ist das eine Drachenschuppe? Von wem?!"
+
+### Lyra — Die Sternenwächterin
+
+Lyra ist die permanente NPC-Präsenz in der Quest Hall. Sie ist alt — älter als der Turm vielleicht. Sie hat Frieren-Vibes: unsterblich, hat Schwierigkeiten die Kürze sterblicher Leben zu begreifen, sammelt Wissen wie andere Erinnerungen sammeln.
+
+- **Nie belehrend** — sie stellt Fragen statt Antworten zu geben
+- **Frech aber nie gemein** — Syl (Stormlight) + Cortana trifft trockenen Humor
+- **Weise ohne es raushängen zu lassen** — "Dreißig Jahre sind ein Wimpernschlag. Für manche."
+- Sie vergibt Kampagnen persönlich, kennt jeden NPC beim Namen, und hat Geheimnisse die sie nie teilt
+
+### Checkliste: Bevor Content generiert wird
+
+1. Passt der Tone? (Kingkiller, nicht Herr der Ringe)
+2. Ist es deutsch? (außer Raumnamen)
+3. Referenziert es die Welt? (Aethermoor, Aetherstrom, die Halle)
+4. Kein Spoiler für zukünftige Lore?
+5. Passt die Rarity zur Schwierigkeit?
+6. Hat die Quest einen classRequired Tag wenn nötig?
+7. Wäre ICH (als Spieler) motiviert das zu machen?
+
+### Easter Eggs & Referenzen
+
+**Philosophie:**
+- Referenzen sollen **subtil** sein — wer das Werk kennt, schmunzelt. Wer nicht, merkt nichts.
+- NIE direkte Zitate oder Namen kopieren. Immer in-universe umformulieren.
+- Easter Eggs in: Quest-Flavor, NPC-Dialogen, Item-Beschreibungen, Raum-Details, Achievements
+
+**Quellen & Anspielungen:**
+
+- **Skulduggery Pleasant** — Trockener Humor in Kampfsituationen. Eleganz als Waffe. NPCs die absurd selbstsicher sind und es irgendwie rechtfertigen. "Manche Helden tragen ihr Grinsen als Maske. Andere haben keine andere Wahl." Items wie "Mantel der Eleganz" (erhöht Charisma: "Sieht gut aus. Selbst auf Knochen."). "Die beste Verteidigung ist ein gut sitzender Anzug und eine schnelle Zunge." Ein Skelett in feiner Kleidung als NPC-Gerücht — nie bestätigt.
+- **Cosmere / Brandon Sanderson** — Ehrensprüche als Quest-Titel. "Der wichtigste Schritt ist immer der nächste."
+- **Königsmörder-Chronik (Patrick Rothfuss)** — Der GESAMTE Tone ist von Kvothe inspiriert. Musik/Geschichten als Machtsystem.
+- **Frieren** — Leise, melancholische Quest-Texte über Vergänglichkeit. Lyra selbst hat Frieren-Vibes (unsterblich, Schwierigkeiten mit der Kürze sterblicher Leben).
+- **Solo Leveling** — Das Tor der Quest Hall = direkte Inspiration. "Hinter dem Tor wartet etwas."
+- **Honkai Star Rail / Genshin Impact** — Gacha, Companion-Bonding, sternenbezogene Lore.
+- **Scheibenwelt (Terry Pratchett)** — Fußnoten-Energie in Tooltip-Texten. "Die Bibliothek hat einen eigenen Willen."
+- **Dunkler Turm (Stephen King)** — "Die Welt ist weitergezogen" für verlassene Dungeons. Schicksals-Thematik.
+- **Critical Role / D&D** — NPC-Dialoge die sich anfühlen wie ein DM der improvisiert.
+- **Dungeons and Daddies** — Chaotische Dad-Energie, emotionale Sucker Punches. Leon + Lindi Bond-Material!
+
+**Regeln für Easter Eggs:**
+1. Max 1 pro Quest/Item — nicht überladen
+2. Nie erklären — wenn du es erklären musst, ist es zu offensichtlich
+3. In-universe first — muss auch ohne Referenz-Wissen Sinn machen
+4. Mischen — nicht nur ein Werk referenzieren, durchrotieren
+5. Leon soll überrascht werden — er kennt alle diese Werke, also muss es clever sein
+6. **Prioritäts-Quellen**: Skulduggery Pleasant, Stormlight Archive, Scheibenwelt, Critical Role, Dungeons and Daddies
+7. DnDads-Referenzen = Bonus — Leon UND Lindi erkennen die, doppelter Impact
+8. **NIEMALS SPOILERN** — Easter Eggs NICHT an Leon listen/verraten! Er will sie beim Spielen selbst entdecken.

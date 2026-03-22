@@ -258,11 +258,11 @@ export function RewardCelebration({ data, onClose, onCollect, onAchievementClick
   return (
     <div
       className="fixed inset-0 z-[200] flex items-center justify-center p-4"
-      style={{ background: "rgba(0,0,0,0.85)" }}
+      style={{ background: `radial-gradient(circle at center, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.88) 100%)` }}
       onClick={() => { if (onCollect) onCollect(data); onClose(); }}
     >
       <div
-        className="reward-celebration-modal w-full max-w-sm rounded-2xl p-8 text-center relative overflow-hidden"
+        className="reward-celebration-modal reward-burst-enter w-full max-w-sm rounded-2xl p-8 text-center relative overflow-hidden"
         style={{
           background: `linear-gradient(180deg, ${gradientTop} 0%, #0d0d14 60%)`,
           border: `2px solid rgba(${accentRgb},0.5)`,

@@ -21,6 +21,7 @@ const FactionsView = lazy(() => import("@/components/FactionsView"));
 const BattlePassView = lazy(() => import("@/components/BattlePassView"));
 const WorldBossView = lazy(() => import("@/components/WorldBossView"));
 const DungeonView = lazy(() => import("@/components/DungeonView"));
+import TodayDrawer from "@/components/TodayDrawer";
 const PlayerProfileModal = lazy(() => import("@/components/PlayerProfileModal"));
 import { GuideModal, GuideContent, TutorialOverlay, TUTORIAL_STEPS } from "@/components/TutorialModal";
 import {
@@ -118,6 +119,7 @@ export default function Dashboard() {
   const [weeklyChallenge, setWeeklyChallenge] = useState<import("@/app/types").WeeklyChallenge | null>(null);
   const [expedition, setExpedition] = useState<import("@/app/types").Expedition | null>(null);
   const [socialBadge, setSocialBadge] = useState<{ pendingFriendRequests: number; unreadMessages: number; activeTrades: number } | null>(null);
+  const [todayOpen, setTodayOpen] = useState(false);
   const [profilePlayerId, setProfilePlayerId] = useState<string | null>(null);
   const [dailyMissions, setDailyMissions] = useState<{ missions: { id: string; label: string; points: number; done: boolean }[]; earned: number; total: number; milestones: { threshold: number; reward: Record<string, number>; claimed: boolean }[] } | null>(null);
   const [claimingDailyBonus, setClaimingDailyBonus] = useState(false);
@@ -690,6 +692,7 @@ export default function Dashboard() {
         setOnboardingOpen={setOnboardingOpen}
         setInfoOverlayOpen={setInfoOverlayOpen}
         setInfoOverlayTab={setInfoOverlayTab}
+        onTodayOpen={() => setTodayOpen(true)}
       />
 
       {!apiLive && !loading && (
@@ -1956,6 +1959,28 @@ export default function Dashboard() {
         <Suspense fallback={null}>
           <DailyLoginCalendar onClose={() => setLoginCalendarOpen(false)} />
         </Suspense>
+      )}
+
+      {/* Today Drawer */}
+      {playerName && (
+        <TodayDrawer
+          open={todayOpen}
+          onClose={() => setTodayOpen(false)}
+          onNavigate={(v) => { setDashView(v as typeof dashView); }}
+          dailyBonusAvailable={dailyBonusAvailable}
+          dailyMissions={dailyMissions}
+          rituals={rituals}
+          activeNpcs={activeNpcs}
+          onClaimDailyBonus={() => { setClaimingDailyBonus(true); }}
+          inProgressCount={quests.inProgress.length}
+          weeklyChallenge={weeklyChallenge ? { stagesCompleted: weeklyChallenge.stages?.filter((s: { completed?: boolean }) => s.completed).length ?? 0 } : null}
+          worldBossActive={false}
+          riftActive={false}
+          vowCount={0}
+          socialBadge={socialBadge}
+          expeditionActive={!!expedition}
+          dungeonActive={false}
+        />
       )}
 
       {/* Reward Celebration (quest/ritual/vow/companion completion) */}

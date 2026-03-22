@@ -6,10 +6,57 @@ const bpData = require("../public/data/battlePass.json");
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 
+// Season epoch: Season 1 starts at this date. Each subsequent season auto-starts
+// after seasonDurationDays. Seasons cycle through bpData.seasons[] in order.
+const SEASON_EPOCH = new Date("2026-03-01T00:00:00Z").getTime();
+
+function getActiveSeason() {
+  const now = Date.now();
+  const durationMs = (bpData.settings.seasonDurationDays || 90) * 86400000;
+  const elapsed = Math.max(0, now - SEASON_EPOCH);
+  const seasonIndex = Math.floor(elapsed / durationMs) % bpData.seasons.length;
+  const season = bpData.seasons[seasonIndex];
+  const seasonStartMs = SEASON_EPOCH + Math.floor(elapsed / durationMs) * durationMs;
+  const seasonEndMs = seasonStartMs + durationMs;
+  return {
+    ...season,
+    levels: bpData.settings.levels,
+    xpPerLevel: bpData.settings.xpPerLevel,
+    seasonDurationDays: bpData.settings.seasonDurationDays,
+    seasonName: season.name,
+    seasonTheme: season.theme,
+    seasonIcon: season.icon,
+    seasonAccent: season.accent,
+    currentSeason: season.season,
+    seasonStartedAt: new Date(seasonStartMs).toISOString(),
+    seasonEndsAt: new Date(seasonEndMs).toISOString(),
+  };
+}
+
+// Backward-compatible config getter (returns shape matching old bpData.config)
+function getConfig() {
+  const active = getActiveSeason();
+  return {
+    levels: active.levels,
+    xpPerLevel: active.xpPerLevel,
+    seasonDurationDays: active.seasonDurationDays,
+    currentSeason: active.currentSeason,
+    seasonName: active.seasonName,
+    seasonTheme: active.seasonTheme,
+    seasonIcon: active.seasonIcon,
+    seasonAccent: active.seasonAccent,
+  };
+}
+
+function getActiveRewards() {
+  return getActiveSeason().rewards;
+}
+
 function ensureUserBP(user) {
+  const config = getConfig();
   if (!user.battlePass) {
     user.battlePass = {
-      season: bpData.config.currentSeason,
+      season: config.currentSeason,
       xp: 0,
       level: 0,
       claimedLevels: [],
@@ -17,9 +64,9 @@ function ensureUserBP(user) {
     };
   }
   // Reset if new season — preserve unclaimed level info for reference
-  if (user.battlePass.season !== bpData.config.currentSeason) {
+  if (user.battlePass.season !== config.currentSeason) {
     user.battlePass = {
-      season: bpData.config.currentSeason,
+      season: config.currentSeason,
       xp: 0,
       level: 0,
       claimedLevels: [],
@@ -31,14 +78,14 @@ function ensureUserBP(user) {
       },
     };
   }
-  // Backfill seasonStartedAt for existing users
   if (!user.battlePass.seasonStartedAt) {
     user.battlePass.seasonStartedAt = new Date().toISOString();
   }
 }
 
 function getBPLevel(xp) {
-  return Math.min(Math.floor(xp / bpData.config.xpPerLevel), bpData.config.levels);
+  const config = getConfig();
+  return Math.min(Math.floor(xp / config.xpPerLevel), config.levels);
 }
 
 // ─── GET /api/battlepass — Current pass state for player ─────────────────────
@@ -50,26 +97,26 @@ router.get("/", requireAuth, (req, res) => {
 
   ensureUserBP(user);
 
+  const config = getConfig();
   const bp = user.battlePass;
   const level = getBPLevel(bp.xp);
-  const xpInLevel = bp.xp % bpData.config.xpPerLevel;
-  const progress = xpInLevel / bpData.config.xpPerLevel;
+  const xpInLevel = bp.xp % config.xpPerLevel;
+  const progress = xpInLevel / config.xpPerLevel;
 
-  // Calculate season end
-  const seasonEnd = new Date(new Date(bp.seasonStartedAt).getTime() + bpData.config.seasonDurationDays * 86400000).toISOString();
+  const activeSeason = getActiveSeason();
 
   res.json({
-    config: bpData.config,
-    rewards: bpData.rewards,
+    config,
+    rewards: activeSeason.rewards,
     xpSources: bpData.xpSources,
     player: {
       xp: bp.xp,
       level,
       xpInLevel,
-      xpPerLevel: bpData.config.xpPerLevel,
+      xpPerLevel: config.xpPerLevel,
       progress,
       claimedLevels: bp.claimedLevels,
-      seasonEnd,
+      seasonEnd: activeSeason.seasonEndsAt,
     },
   });
 });
@@ -83,8 +130,9 @@ router.post("/claim/:level", requireAuth, (req, res) => {
 
   ensureUserBP(user);
 
+  const config = getConfig();
   const targetLevel = parseInt(req.params.level, 10);
-  if (isNaN(targetLevel) || targetLevel < 1 || targetLevel > bpData.config.levels) {
+  if (isNaN(targetLevel) || targetLevel < 1 || targetLevel > config.levels) {
     return res.status(400).json({ error: "Invalid level" });
   }
 
@@ -99,7 +147,7 @@ router.post("/claim/:level", requireAuth, (req, res) => {
     return res.status(400).json({ error: "Already claimed" });
   }
 
-  const reward = bpData.rewards.find(r => r.level === targetLevel);
+  const reward = getActiveRewards().find(r => r.level === targetLevel);
   if (!reward) return res.status(404).json({ error: "No reward at this level" });
 
   // Grant reward
@@ -150,7 +198,7 @@ router.post("/claim/:level", requireAuth, (req, res) => {
           id: reward.titleId,
           name: reward.titleName,
           rarity: reward.titleRarity || "uncommon",
-          source: `${bpData.config.seasonName} — Level ${targetLevel}`,
+          source: `${config.seasonName} — Level ${targetLevel}`,
           earnedAt: new Date().toISOString(),
         });
       }
@@ -163,9 +211,9 @@ router.post("/claim/:level", requireAuth, (req, res) => {
         user.unlockedFrames.push({
           id: reward.frameId,
           name: reward.frameName,
-          color: reward.frameColor || bpData.config.seasonAccent,
+          color: reward.frameColor || config.seasonAccent,
           glow: true,
-          source: `${bpData.config.seasonName} — Level ${targetLevel}`,
+          source: `${config.seasonName} — Level ${targetLevel}`,
         });
       }
       granted.frameName = reward.frameName;

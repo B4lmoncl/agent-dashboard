@@ -63,7 +63,7 @@ export function ModalOverlay({
     <ModalPortal>
       <div
         className="fixed inset-0 flex items-center justify-center p-4"
-        style={{ background: `rgba(0,0,0,${bgOpacity})`, zIndex }}
+        style={{ background: `radial-gradient(circle at center, rgba(0,0,0,${Math.max(0, bgOpacity - 0.15)}) 0%, rgba(0,0,0,${bgOpacity}) 50%, rgba(0,0,0,${Math.min(1, bgOpacity + 0.1)}) 100%)`, backdropFilter: "blur(2px)", WebkitBackdropFilter: "blur(2px)", zIndex }}
         onClick={onClose}
         role="dialog"
         aria-modal="true"

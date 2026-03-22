@@ -146,11 +146,11 @@ export const QuestCard = memo(function QuestCard({ quest, selected, onToggle, on
     return (
       <div
         data-feedback-id={`quest-board.quest-card.${quest.id}`}
-        className="cv-auto rounded-xl flex flex-col cursor-pointer relative overflow-hidden"
+        className="cv-auto rounded-xl flex flex-col cursor-pointer relative overflow-hidden quest-card-emboss"
         style={{
           background: "linear-gradient(160deg, #2c2318 0%, #1e1912 55%, #241e16 100%)",
           border: `2px solid ${rarityColor}88`,
-          boxShadow: `0 0 ${isLegendary ? 16 : 6}px ${rarityColor}${isLegendary ? "44" : "1a"}`,
+          boxShadow: `0 0 ${isLegendary ? 16 : 6}px ${rarityColor}${isLegendary ? "44" : "1a"}, inset 0 1px 3px rgba(255,255,255,0.04), inset 0 -2px 6px rgba(0,0,0,0.6)`,
           transition: "border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease",
           transform: "translateY(0)",
           minHeight: 110,
@@ -170,7 +170,7 @@ export const QuestCard = memo(function QuestCard({ quest, selected, onToggle, on
         }}
       >
         {/* Rarity top strip */}
-        <div style={{ height: 3, background: `linear-gradient(90deg, transparent, ${rarityColor}bb, transparent)`, borderRadius: "10px 10px 0 0" }} />
+        <div style={{ height: 4, background: `linear-gradient(90deg, transparent 5%, ${rarityColor}cc 30%, ${rarityColor}dd 50%, ${rarityColor}cc 70%, transparent 95%)`, borderRadius: "10px 10px 0 0", boxShadow: `0 2px 8px ${rarityColor}44`, position: "relative", zIndex: 1 }} />
         {/* Rarity gem + Favorite star — top right, same horizontal line */}
         <div style={{ position: "absolute", top: 8, right: 6, display: "flex", alignItems: "center", gap: 4, zIndex: 2 }}>
           <div style={{ width: 8, height: 8, borderRadius: "50%", background: rarityColor, boxShadow: `0 0 7px ${rarityColor}`, opacity: 0.88, flexShrink: 0 }} />

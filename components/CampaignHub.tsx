@@ -258,8 +258,8 @@ export default function CampaignHub({ campaigns, quests, reviewApiKey, onRefresh
                   <Tip k="campaign_stages"><span className="text-xs" style={{ color: "rgba(167,139,250,0.6)" }}>{completed}/{total} Quests</span></Tip>
                   <span className="text-xs font-semibold" style={{ color: isVictory ? "#fbbf24" : "#a78bfa" }}>{pct}%</span>
                 </div>
-                <div className="rounded-full overflow-hidden" style={{ height: 4, background: "rgba(255,255,255,0.07)" }}>
-                  <div className="h-full rounded-full transition-all" style={{ width: `${pct}%`, background: isVictory ? "linear-gradient(90deg,#fbbf24,#f59e0b)" : "linear-gradient(90deg,#7c3aed,#a78bfa)" }} />
+                <div className="progress-bar-diablo">
+                  <div className="progress-bar-diablo-fill" style={{ width: `${pct}%`, background: isVictory ? "linear-gradient(90deg,#fbbf2488,#fbbf24,#f59e0bcc)" : "linear-gradient(90deg,#7c3aed88,#a78bfa,#a78bfacc)" }} />
                 </div>
               </div>
 

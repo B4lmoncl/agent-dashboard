@@ -377,6 +377,38 @@ const TOOLTIP_REGISTRY: Record<string, TooltipEntry> = {
       </>
     ),
   },
+  gear_score: {
+    title: "Gear Score",
+    icon: "⚔️",
+    accent: "#818cf8",
+    body: (
+      <>
+        <p>Combined power rating from all equipped gear. Higher stats and socketed <GTRef k="gems">Gems</GTRef> increase your score.</p>
+        <p className="gt-source">Affects dungeon success chance and <GTRef k="world_boss">World Boss</GTRef> damage multiplier.</p>
+      </>
+    ),
+  },
+  collection_log: {
+    title: "Collection Log",
+    icon: "📖",
+    accent: "#60a5fa",
+    body: (
+      <p>Track all Unique Named Items you&apos;ve discovered. Unique items drop from <GTRef k="world_boss">World Bosses</GTRef>, <GTRef k="dungeons">Dungeons</GTRef>, and the Mythic Rift.</p>
+    ),
+  },
+  mythic_rift: {
+    title: "Mythic+ Endless Rift",
+    icon: "♾️",
+    accent: "#f97316",
+    body: (
+      <>
+        <p>Infinite scaling difficulty beyond Legendary. Each level increases the difficulty multiplier by +0.25× and reduces time by 1.5 hours (min 18h).</p>
+        <div className="gt-stat-row"><span>Progression</span><span>+1 level per clear</span></div>
+        <div className="gt-stat-row"><span>Fail Cooldown</span><span>None — retry immediately</span></div>
+        <p className="gt-source">Leaderboard tracks highest level. Bonus loot at M+5, M+10, M+15, M+20.</p>
+      </>
+    ),
+  },
   hearth: {
     title: "The Hearth (Rest Mode)",
     icon: "🏠",
