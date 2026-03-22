@@ -81,7 +81,7 @@ function FlavorToastContent({ toast, onClose }: { toast: { message: string; icon
       className="rounded-xl px-4 py-3 flex items-center gap-3 shadow-2xl"
       style={{ background: bg, border: `1px solid ${border}`, boxShadow: `0 8px 32px ${shadow}`, maxWidth: 320, width: "100%" }}
     >
-      {toast.icon && toast.icon.startsWith("/") ? <img src={toast.icon} alt="" width={28} height={28} style={{ imageRendering: "auto", flexShrink: 0 }} /> : <span className="text-2xl flex-shrink-0">{toast.icon}</span>}
+      {toast.icon && toast.icon.startsWith("/") ? <img src={toast.icon} alt="" width={28} height={28} style={{ imageRendering: "auto", flexShrink: 0 }} onError={e => { e.currentTarget.style.display = "none"; }} /> : <span className="text-2xl flex-shrink-0">{toast.icon}</span>}
       <div className="flex-1 min-w-0">
         <p className="text-sm font-bold" style={{ color }}>{toast.message}</p>
         {label && <p className="text-xs mt-0.5 truncate font-medium" style={{ color }}>{label}</p>}
@@ -98,7 +98,7 @@ function AchievementToastContent({ achievement, onClose, onAchievementClick }: {
       style={{ background: "#252525", border: "1px solid rgba(245,158,11,0.5)", boxShadow: "0 8px 48px rgba(245,158,11,0.3)", maxWidth: 360, width: "100%", cursor: onAchievementClick ? "pointer" : undefined }}
       onClick={() => { if (onAchievementClick && achievement.id) { onAchievementClick(achievement.id); onClose(); } }}
     >
-      {achievement.icon && achievement.icon.startsWith("/") ? <img src={achievement.icon} alt="" width={28} height={28} style={{ imageRendering: "auto", flexShrink: 0 }} /> : <span className="text-2xl flex-shrink-0">{achievement.icon}</span>}
+      {achievement.icon && achievement.icon.startsWith("/") ? <img src={achievement.icon} alt="" width={28} height={28} style={{ imageRendering: "auto", flexShrink: 0 }} onError={e => { e.currentTarget.style.display = "none"; }} /> : <span className="text-2xl flex-shrink-0">{achievement.icon}</span>}
       <div className="flex-1 min-w-0">
         <p className="text-xs font-bold" style={{ color: "#f59e0b" }}>Achievement Unlocked!</p>
         <p className="text-sm font-semibold" style={{ color: "#f0f0f0" }}>{achievement.name}</p>
@@ -170,7 +170,7 @@ function ItemToastContent({ toast, onClose }: { toast: { itemName: string; messa
       style={{ background: rs.bg, border: `1px solid ${rs.border}`, boxShadow: `0 8px 32px ${rs.shadow}`, maxWidth: 340, width: "100%" }}
     >
       {toast.icon && toast.icon.startsWith("/")
-        ? <img src={toast.icon} alt="" width={32} height={32} style={{ imageRendering: "auto", flexShrink: 0 }} />
+        ? <img src={toast.icon} alt="" width={32} height={32} style={{ imageRendering: "auto", flexShrink: 0 }} onError={e => { e.currentTarget.style.display = "none"; }} />
         : <span className="text-2xl flex-shrink-0" style={{ color: rs.color }}>◆</span>}
       <div className="flex-1 min-w-0">
         <p className="text-sm font-bold" style={{ color: rs.color }}>{toast.itemName}</p>

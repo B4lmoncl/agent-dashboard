@@ -43,7 +43,7 @@ export function ShopModal({ userId, userName, gold, currentGear, onClose, onBuy,
               className="flex items-center gap-3 p-3 rounded-xl"
               style={{ background: "#252525", border: "1px solid rgba(255,255,255,0.07)" }}
             >
-              <img src={item.icon} alt={item.name} className="w-6 h-6 flex-shrink-0" style={{ imageRendering: "auto" }} />
+              <img src={item.icon} alt={item.name} className="w-6 h-6 flex-shrink-0" style={{ imageRendering: "auto" }} onError={e => { e.currentTarget.style.display = "none"; }} />
               <div className="flex-1 min-w-0">
                 <p className="text-xs font-semibold" style={{ color: "#f0f0f0" }}>{item.name}</p>
                 <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>{item.desc}</p>
@@ -83,7 +83,7 @@ export function ShopModal({ userId, userName, gold, currentGear, onClose, onBuy,
                       opacity: owned || canBuy || gear.tier === currentTier + 1 ? 1 : 0.4,
                     }}
                   >
-                    <img src={gear.icon} alt={gear.name} className="w-6 h-6 flex-shrink-0" style={{ imageRendering: "auto" }} />
+                    <img src={gear.icon} alt={gear.name} className="w-6 h-6 flex-shrink-0" style={{ imageRendering: "auto" }} onError={e => { e.currentTarget.style.display = "none"; }} />
                     <div className="flex-1 min-w-0">
                       <p className="text-xs font-semibold" style={{ color: owned ? "#818cf8" : "#f0f0f0" }}>
                         {gear.name} {owned ? "✓" : ""}

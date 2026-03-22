@@ -168,11 +168,11 @@ export default function QuestDetailModal({
             <p className="text-xs font-semibold uppercase tracking-widest mb-2 text-w25">Reward</p>
             <div className="flex items-center gap-3">
               <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg" style={{ background: "rgba(251,191,36,0.08)", border: "1px solid rgba(251,191,36,0.2)" }}>
-                <img src="/images/icons/reward-gold.png" width={16} height={16} className="img-render-auto" style={{ verticalAlign: "middle" }} />
+                <img src="/images/icons/reward-gold.png" width={16} height={16} className="img-render-auto" style={{ verticalAlign: "middle" }} onError={e => { e.currentTarget.style.display = "none"; }} />
                 <span className="text-sm font-mono font-bold" style={{ color: "#fbbf24" }}>{displayGold} Gold</span>
               </div>
               <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg" style={{ background: "rgba(167,139,250,0.08)", border: "1px solid rgba(167,139,250,0.2)" }}>
-                <img src="/images/icons/reward-xp.png" width={16} height={16} className="img-render-auto" style={{ verticalAlign: "middle" }} />
+                <img src="/images/icons/reward-xp.png" width={16} height={16} className="img-render-auto" style={{ verticalAlign: "middle" }} onError={e => { e.currentTarget.style.display = "none"; }} />
                 <span className="text-sm font-mono font-bold" style={{ color: "#a78bfa" }}>{displayXp} XP</span>
               </div>
             </div>
