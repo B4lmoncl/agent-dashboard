@@ -639,7 +639,20 @@ export default function ChallengesView({
         headers: { ...headers, "Content-Type": "application/json" },
       });
       if (resp.ok) {
+        const data = await resp.json().catch(() => ({}));
         await onRefresh();
+        if (onRewardCelebration && data.rewards) {
+          const currencies: { name: string; amount: number; color: string }[] = [];
+          if (data.rewards.essenz) currencies.push({ name: "Essenz", amount: data.rewards.essenz, color: "#3b82f6" });
+          if (data.rewards.sternentaler) currencies.push({ name: "Sternentaler", amount: data.rewards.sternentaler, color: "#fbbf24" });
+          onRewardCelebration({
+            type: "sternenpfad",
+            title: data.message || `Stage Complete (${data.stars ?? 0}★)`,
+            xpEarned: data.rewards.xp || 0,
+            goldEarned: data.rewards.gold || 0,
+            currencies: currencies.length > 0 ? currencies : undefined,
+          });
+        }
       } else {
         const data = await resp.json().catch(() => ({}));
         setClaimError(data.error || "Failed to claim reward");
@@ -650,7 +663,7 @@ export default function ChallengesView({
     } finally {
       setClaimingStage(false);
     }
-  }, [reviewApiKey, onRefresh]);
+  }, [reviewApiKey, onRefresh, onRewardCelebration]);
 
   const handleClaimMilestone = useCallback(async (stars: number) => {
     if (!reviewApiKey) return;
