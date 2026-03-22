@@ -240,7 +240,7 @@ router.post('/api/expedition/claim', requireAuth, (req, res) => {
   saveUsers();
 
   res.json({
-    message: `Checkpoint ${cpNum} Belohnung beansprucht!`,
+    message: `Checkpoint ${cpNum} reward claimed!`,
     checkpoint: cpNum,
     rewards,
   });

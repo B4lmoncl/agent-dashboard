@@ -86,7 +86,7 @@ router.post('/api/currency/:playerId/convert', requireApiKey, (req, res) => {
   const amt = Math.abs(Math.floor(amount));
   if (amt <= 0) return res.status(400).json({ error: 'Amount must be positive' });
   if (u.currencies[from] < amt) {
-    return res.status(400).json({ error: `Nicht genug ${from}. Hast ${u.currencies[from]}, brauchst ${amt}` });
+    return res.status(400).json({ error: `Not enough ${from}. Have ${u.currencies[from]}, need ${amt}` });
   }
 
   const taxRate = rules.taxRate || 0.20;

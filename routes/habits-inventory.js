@@ -131,7 +131,7 @@ router.post('/api/player/:name/inventory/use/:itemId', requireAuth, requireSelf(
     // No effect — just remove the item
     u.inventory = u.inventory.filter(i => i.id !== invItem.id);
     saveUsers();
-    return res.json({ ok: true, effect: null, message: 'Item verbraucht.', updatedValues: {} });
+    return res.json({ ok: true, effect: null, message: 'Item consumed.', updatedValues: {} });
   }
 
   let message = '';
