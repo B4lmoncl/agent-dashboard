@@ -1438,6 +1438,9 @@ These were reported as bugs by audit agents but are either intentional design de
 | **Trades tab missing empty state** | Already exists at `SocialView.tsx:967-969` — shows "No trades yet. Propose a trade to get started!" |
 | **loadManagedKeys called before validApiKeys init** | Not a bug — `state.validApiKeys` set at `server.js:104`, before `loadManagedKeys()` at line 162. |
 | **German stat names (Kraft, Weisheit, Ausdauer, Glück)** | Intentional game world proper nouns — same rule as currency names. Do NOT translate. |
+| **Gold stored in both `u.gold` and `u.currencies.gold`** | Historical migration artifact. Backend handles both fields. Not worth a breaking migration. |
+| **`var changelogInterval` in server.js** | Cosmetic — `var` used for hoisting so `clearInterval` works in shutdown. Would need restructuring to change. |
+| **`selectDailyQuests` dead code in rotation.js** | Fully implemented but never called. The quest pool system uses a different mechanism. May be useful for future rotation changes. |
 
 ### A.3 Architectural Decisions (Do NOT "Fix" These)
 
@@ -1472,6 +1475,8 @@ These were reported as bugs by audit agents but are either intentional design de
 5. **Don't suggest adding a database.** The JSON persistence model is an intentional architectural choice.
 6. **Don't suggest adding `next/image`.** The project uses static export with pixel art where `<img>` is the correct choice.
 7. **Check the `AUDIT_REPORT.md` Sections 6.6, 9.5, 16.14, 17.4** for previously verified non-issues before re-investigating.
+8. **Don't use `req.playerName` in route handlers.** This property does NOT exist. The `requireAuth` middleware sets `req.auth = { userId, userName, isAdmin }`. Use `req.auth?.userId` with `state.users[uid]`.
+9. **Don't use `saveData()` for user state changes.** `saveData()` only saves agent data. Use `saveUsers()` for any changes to user objects (currencies, inventory, titles, etc.).
 
 ---
 
@@ -2084,4 +2089,67 @@ Added try/catch to the setTimeout callback in `debouncedSave` so save failures a
 
 ---
 
-*End of Audit Report — Updated 2026-03-21*
+## 28. Phase 2026-03-22 — Deep Codebase Audit (Session 12)
+
+### 28.1 CRITICAL: Battle Pass & Factions Endpoints Return 404 for All Users
+
+**Severity: CRITICAL**
+**Files:** `routes/battlepass.js:36,69`, `routes/factions.js:55,93`
+
+Both Battle Pass and Factions routes used `state.usersByName.get(req.playerName)` to look up the authenticated user. However, `req.playerName` is **never set** by any middleware — the `requireAuth` middleware only sets `req.auth = { userId, userName, isAdmin }`.
+
+**Impact:** Every GET and POST to `/api/battlepass` and `/api/factions` returns `404 "User not found"`. This means:
+- Players cannot view their Season Pass progress or claim rewards
+- Players cannot view faction standings or claim faction tier rewards
+- Both features are **completely non-functional** despite the frontend UI rendering correctly
+
+**Fix:** Changed all 4 occurrences to use `req.auth?.userId` with `state.users[uid]` — the standard pattern used by all other routes (expedition, challenges, shop, crafting, etc.).
+
+### 28.2 CRITICAL: Faction Reward Claims Never Persisted to Disk
+
+**Severity: CRITICAL**
+**File:** `routes/factions.js:155,212`
+
+Both `POST /:factionId/claim` (faction reward claiming) and `resetWeeklyBonuses()` called `saveData()` — which only saves **agent data** (`state.store.agents`), NOT user data. This is the same bug pattern as the battlepass save issue fixed in Session 11 (Section 27.2).
+
+**Impact:** Faction reward claims (titles, frames, shop discounts) and weekly bonus resets are applied in-memory but **lost on server restart**. Players would see their rewards briefly, then lose them after any restart.
+
+**Fix:** Changed `saveData()` → `saveUsers()` and updated import from `{ state, saveData }` to `{ state, saveUsers }`.
+
+### 28.3 HIGH: Faction Weekly Bonus Never Resets
+
+**Severity: HIGH**
+**File:** `routes/factions.js:207-213`
+
+`resetWeeklyBonuses()` is exported but **never called anywhere** — not by server.js, not by any cron, not by the NPC engine's `checkPeriodicTasks()`. This means the `weeklyBonusUsed` counter for faction reputation bonus (3x 2× multiplier per week) never resets. After a player uses their 3 weekly bonuses, they permanently lose the 2× rep multiplier.
+
+**Fix:** Added auto-reset mechanism to `ensureUserFactions()` using a `_factionWeekId` field on the user object. When the ISO week number changes, all faction `weeklyBonusUsed` counters auto-reset to 0. This matches the pattern used by `challenges-weekly.js` (weekId-based auto-reset on access).
+
+### 28.4 Phase 2-3 Analysis Summary
+
+**Frontend-Backend Consistency:** Re-verified after critical fixes. All stat effects, XP/gold calculations, streak mechanics, shop effects, crafting recipes, gacha rates, currency operations, and daily mission computations match between frontend display and backend logic.
+
+**Modal Behavior:** All modals verified consistent — ESC key, backdrop close, scroll lock all work via `useModalBehavior` hook.
+
+**Translation Status:** No remaining German interactive UI text found in components or backend error messages. German lore/flavor text and TutorialModal content intentionally preserved.
+
+**Security:** No eval/innerHTML injection vectors. No sensitive data in console.log. All mutating endpoints require auth. Rate limiting in place.
+
+### 28.5 Remaining Acknowledged Issues
+
+| Issue | Severity | Status |
+|-------|----------|--------|
+| `var changelogInterval` in server.js:249 | LOW | Acknowledged — cosmetic, no runtime impact |
+| Gold stored in both `u.gold` and `u.currencies.gold` | LOW | Acknowledged — historical migration, backend handles both |
+| `selectDailyQuests` dead code in rotation.js | INFO | Acknowledged — exported but never called |
+| `resetWeeklyBonuses` function now dead code | INFO | **Replaced** by auto-reset in `ensureUserFactions` |
+
+### 28.6 Changelog (Session 12)
+
+| Commit | Timestamp | Description |
+|--------|-----------|-------------|
+| (pending) | 2026-03-22 | Fix CRITICAL: battlepass+factions req.playerName, factions saveData, weekly bonus auto-reset |
+
+---
+
+*End of Audit Report — Updated 2026-03-22*

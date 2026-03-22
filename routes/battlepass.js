@@ -33,7 +33,8 @@ function getBPLevel(xp) {
 // ─── GET /api/battlepass — Current pass state for player ─────────────────────
 
 router.get("/", requireAuth, (req, res) => {
-  const user = state.usersByName.get(req.playerName);
+  const uid = req.auth?.userId;
+  const user = uid ? state.users[uid] : null;
   if (!user) return res.status(404).json({ error: "User not found" });
 
   ensureUserBP(user);
@@ -66,7 +67,8 @@ router.get("/", requireAuth, (req, res) => {
 // ─── POST /api/battlepass/claim/:level — Claim reward for a level ────────────
 
 router.post("/claim/:level", requireAuth, (req, res) => {
-  const user = state.usersByName.get(req.playerName);
+  const uid = req.auth?.userId;
+  const user = uid ? state.users[uid] : null;
   if (!user) return res.status(404).json({ error: "User not found" });
 
   ensureUserBP(user);

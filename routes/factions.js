@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { state, saveData } = require("../lib/state");
+const { state, saveUsers } = require("../lib/state");
 const { requireAuth } = require("../lib/middleware");
 const factionsData = require("../public/data/factions.json");
 
@@ -29,6 +29,14 @@ const STANDING_MIGRATION = {
   verehrt: "exalted", erhaben: "paragon",
 };
 
+// Get current ISO week number (used for weekly bonus auto-reset)
+function getCurrentWeekId() {
+  const now = new Date();
+  const startOfYear = new Date(now.getFullYear(), 0, 1);
+  const days = Math.floor((now - startOfYear) / 86400000);
+  return `${now.getFullYear()}-W${String(Math.ceil((days + startOfYear.getDay() + 1) / 7)).padStart(2, '0')}`;
+}
+
 function ensureUserFactions(user) {
   if (!user.factions) {
     user.factions = {};
@@ -47,12 +55,21 @@ function ensureUserFactions(user) {
       pd.claimedRewards = pd.claimedRewards.map(id => STANDING_MIGRATION[id] || id);
     }
   }
+  // Auto-reset weekly bonus when a new week starts
+  const currentWeek = getCurrentWeekId();
+  if (user._factionWeekId !== currentWeek) {
+    user._factionWeekId = currentWeek;
+    for (const fid of Object.keys(user.factions)) {
+      user.factions[fid].weeklyBonusUsed = 0;
+    }
+  }
 }
 
 // ─── GET /api/factions — Faction definitions + player standings ──────────────
 
 router.get("/", requireAuth, (req, res) => {
-  const user = state.usersByName.get(req.playerName);
+  const uid = req.auth?.userId;
+  const user = uid ? state.users[uid] : null;
   if (!user) return res.status(404).json({ error: "User not found" });
 
   ensureUserFactions(user);
@@ -90,7 +107,8 @@ router.get("/", requireAuth, (req, res) => {
 // ─── POST /api/factions/:factionId/claim — Claim standing reward ─────────────
 
 router.post("/:factionId/claim", requireAuth, (req, res) => {
-  const user = state.usersByName.get(req.playerName);
+  const uid = req.auth?.userId;
+  const user = uid ? state.users[uid] : null;
   if (!user) return res.status(404).json({ error: "User not found" });
 
   ensureUserFactions(user);
@@ -152,7 +170,7 @@ router.post("/:factionId/claim", requireAuth, (req, res) => {
   }
 
   playerData.claimedRewards.push(standing.id);
-  saveData();
+  saveUsers();
 
   res.json({ ok: true, granted, standing: standing.id, factionId });
 });
@@ -209,7 +227,7 @@ function resetWeeklyBonuses() {
       user.factions[fid].weeklyBonusUsed = 0;
     }
   }
-  saveData();
+  saveUsers();
 }
 
 module.exports = router;
