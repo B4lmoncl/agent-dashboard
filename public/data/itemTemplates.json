@@ -1983,6 +1983,266 @@
       "sellPrice": 0,
       "buyPrice": 0,
       "flavorText": "Sieht die Zukunft. Manchmal ist das ein Fluch. Manchmal die einzige Hoffnung."
+    },
+    {
+      "id": "elixir-aetherfokus",
+      "name": "Elixier des Aetherfokus",
+      "type": "consumable",
+      "rarity": "rare",
+      "icon": null,
+      "description": "+15% XP und +10% Gold für die nächsten 5 Quests.",
+      "effect": {
+        "type": "xp_gold_boost",
+        "xpPercent": 15,
+        "goldPercent": 10,
+        "charges": 5
+      },
+      "minLevel": 15,
+      "flavorText": "Ysolde schwört, die Zutat ist legal. Meistens."
+    },
+    {
+      "id": "rift-essenz",
+      "name": "Rissessenz",
+      "type": "consumable",
+      "rarity": "epic",
+      "icon": null,
+      "description": "Gesammelt aus den Spalten zwischen den Welten. +200 Essenz.",
+      "effect": {
+        "type": "essenz",
+        "amount": 200
+      },
+      "minLevel": 20,
+      "flavorText": "Schmeckt nach Nichts. Buchstäblich."
+    },
+    {
+      "id": "elixir-glueckstern",
+      "name": "Elixier des Glückssterns",
+      "type": "consumable",
+      "rarity": "rare",
+      "icon": null,
+      "description": "+20% Drop-Chance für die nächsten 3 Quests.",
+      "effect": {
+        "type": "luck_boost",
+        "percent": 20,
+        "charges": 3
+      },
+      "minLevel": 10,
+      "flavorText": "Flüssiges Glück. In einer Flasche. Was soll schon schiefgehen?"
+    },
+    {
+      "id": "aetherbrot",
+      "name": "Aetherbrot",
+      "type": "consumable",
+      "rarity": "common",
+      "icon": null,
+      "description": "Nahrhaft und seltsam leuchtend. +25 XP.",
+      "effect": {
+        "type": "xp",
+        "amount": 25
+      },
+      "minLevel": 1,
+      "flavorText": "Schmeckt nach Morgenröte und einem Hauch Mathematik."
+    },
+    {
+      "id": "sternenstaub-trank",
+      "name": "Sternenstaubtrank",
+      "type": "consumable",
+      "rarity": "epic",
+      "icon": null,
+      "description": "+50 Stardust.",
+      "effect": {
+        "type": "stardust",
+        "amount": 50
+      },
+      "minLevel": 25,
+      "flavorText": "Jeder Schluck ist ein Wunsch. Jeder Wunsch ein Stern."
+    },
+    {
+      "id": "runensplitter-phiole",
+      "name": "Runensplitter-Phiole",
+      "type": "consumable",
+      "rarity": "rare",
+      "icon": null,
+      "description": "+25 Runensplitter.",
+      "effect": {
+        "type": "runensplitter",
+        "amount": 25
+      },
+      "minLevel": 15,
+      "flavorText": "Vorsicht: Kann zu spontanem Runenleuchten führen."
+    },
+    {
+      "id": "bond-elixier",
+      "name": "Gefährten-Elixier",
+      "type": "consumable",
+      "rarity": "rare",
+      "icon": null,
+      "description": "+30 Bond-XP für deinen Gefährten.",
+      "effect": {
+        "type": "bond",
+        "amount": 30
+      },
+      "minLevel": 10,
+      "flavorText": "Dein Gefährte liebt dich schon. Aber jetzt liebt er dich mehr."
+    },
+    {
+      "id": "schmiedeglut-gross",
+      "name": "Große Schmiedeglut",
+      "type": "consumable",
+      "rarity": "epic",
+      "icon": null,
+      "description": "+40 Forge Temperature.",
+      "effect": {
+        "type": "forge_temp",
+        "amount": 40
+      },
+      "minLevel": 20,
+      "flavorText": "Grimvar hat sie persönlich angezündet. Mit seinem Blick."
+    },
+    {
+      "id": "sternentaler-beutel",
+      "name": "Sternentaler-Beutel",
+      "type": "consumable",
+      "rarity": "epic",
+      "icon": null,
+      "description": "+10 Sternentaler.",
+      "effect": {
+        "type": "sternentaler",
+        "amount": 10
+      },
+      "minLevel": 25,
+      "flavorText": "Münzen aus kondensiertem Sternenlicht."
+    },
+    {
+      "id": "erfahrungs-kristall-gross",
+      "name": "Großer Erfahrungskristall",
+      "type": "consumable",
+      "rarity": "rare",
+      "icon": null,
+      "description": "+75 XP.",
+      "effect": {
+        "type": "xp",
+        "amount": 75
+      },
+      "minLevel": 10,
+      "flavorText": "Die Kristalle erinnern sich. An alles."
+    },
+    {
+      "id": "gold-muenze-alt",
+      "name": "Alte Goldmünze",
+      "type": "consumable",
+      "rarity": "uncommon",
+      "icon": null,
+      "description": "+30 Gold.",
+      "effect": {
+        "type": "gold",
+        "amount": 30
+      },
+      "minLevel": 5,
+      "flavorText": "Die Prägung zeigt einen Herrscher den niemand kennt."
+    },
+    {
+      "id": "notration",
+      "name": "Notration",
+      "type": "consumable",
+      "rarity": "common",
+      "icon": null,
+      "description": "+10 Forge Temperature.",
+      "effect": {
+        "type": "forge_temp",
+        "amount": 10
+      },
+      "minLevel": 1,
+      "flavorText": "Haltbar bis zum Ende der Zeit."
+    },
+    {
+      "id": "fraktions-empfehlung",
+      "name": "Fraktionsempfehlung",
+      "type": "consumable",
+      "rarity": "rare",
+      "icon": null,
+      "description": "+50 Fraktionsreputation.",
+      "effect": {
+        "type": "faction_rep",
+        "amount": 50
+      },
+      "minLevel": 15,
+      "flavorText": "Ein versiegelter Brief. Der Inhalt klingt nach: Du bist in Ordnung."
+    },
+    {
+      "id": "handwerkersegen",
+      "name": "Handwerkersegen",
+      "type": "consumable",
+      "rarity": "uncommon",
+      "icon": null,
+      "description": "Nächste Crafting-Aktion kostet 50% weniger Gold.",
+      "effect": {
+        "type": "craft_discount",
+        "percent": 50,
+        "charges": 1
+      },
+      "minLevel": 10,
+      "flavorText": "Bruna hat ihn gesegnet. Oder verflucht."
+    },
+    {
+      "id": "expeditions-proviant",
+      "name": "Expeditionsproviant",
+      "type": "consumable",
+      "rarity": "uncommon",
+      "icon": null,
+      "description": "Gefährten-Expedition dauert 25% kürzer.",
+      "effect": {
+        "type": "expedition_speed",
+        "percent": 25,
+        "charges": 1
+      },
+      "minLevel": 10,
+      "flavorText": "Dein Gefährte rennt schneller wenn er riecht was drin ist."
+    },
+    {
+      "id": "dungeon-schluessel",
+      "name": "Verzierter Dungeonschlüssel",
+      "type": "key",
+      "rarity": "rare",
+      "icon": null,
+      "description": "Setzt den Cooldown eines Dungeons zurück.",
+      "effect": {
+        "type": "dungeon_reset",
+        "charges": 1
+      },
+      "minLevel": 20,
+      "flavorText": "Das Schloss kennt diesen Schlüssel. Es öffnet sich widerwillig."
+    },
+    {
+      "id": "rift-stabilisator",
+      "name": "Rift-Stabilisator",
+      "type": "consumable",
+      "rarity": "epic",
+      "icon": null,
+      "description": "+25% mehr Zeit im nächsten Rift.",
+      "effect": {
+        "type": "rift_time_extend",
+        "percent": 25,
+        "charges": 1
+      },
+      "minLevel": 25,
+      "flavorText": "Die Realität beschwert sich weniger wenn man sie stabilisiert."
+    },
+    {
+      "id": "aether-konzentrat",
+      "name": "Aetherkonzentrat",
+      "type": "consumable",
+      "rarity": "legendary",
+      "icon": null,
+      "description": "+100 XP, +50 Gold, +25 Essenz.",
+      "effect": {
+        "type": "multi_reward",
+        "xp": 100,
+        "gold": 50,
+        "essenz": 25
+      },
+      "minLevel": 30,
+      "flavorText": "Der Aetherstrom in seiner reinsten Form. Lyra sagt, es kitzelt."
     }
   ]
 }
