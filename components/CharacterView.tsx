@@ -1922,7 +1922,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
       >
         <div
           className="rounded-2xl overflow-hidden"
-          style={{ width: 560, maxHeight: "80vh", background: "#0f1117", border: "1px solid rgba(96,165,250,0.2)", boxShadow: "0 8px 32px rgba(0,0,0,0.6)" }}
+          style={{ width: "min(90vw, 560px)", maxHeight: "80vh", background: "#0f1117", border: "1px solid rgba(96,165,250,0.2)", boxShadow: "0 8px 32px rgba(0,0,0,0.6)" }}
         >
           {/* Header */}
           <div className="flex items-center justify-between px-5 py-3" style={{ borderBottom: "1px solid rgba(255,255,255,0.08)", background: "rgba(96,165,250,0.04)" }}>

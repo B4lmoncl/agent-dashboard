@@ -652,7 +652,7 @@ export default function TodayDrawer({
       <div
         className="fixed top-0 right-0 z-[91] h-full flex flex-col"
         style={{
-          width: 720,
+          width: "min(95vw, 720px)",
           background: timeInfo.bg,
           borderLeft: "1px solid rgba(255,255,255,0.06)",
           boxShadow: "-12px 0 40px rgba(0,0,0,0.7)",
