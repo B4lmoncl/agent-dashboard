@@ -1131,6 +1131,72 @@ export default function Dashboard() {
                 </div>
                 {/* Decorative overlay pattern */}
                 <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.1) 10px, rgba(255,255,255,0.1) 11px)" }} />
+                {/* Ambient particles */}
+                <div className="absolute inset-0 pointer-events-none overflow-hidden">
+                  {Array.from({ length: 12 }, (_, i) => {
+                    const seed = i * 137.5;
+                    const left = `${(seed % 100)}%`;
+                    const top = `${((seed * 2.3) % 80) + 10}%`;
+                    const delay = `${(i * 0.7) % 5}s`;
+                    const size = 2 + (i % 3) * 1.5;
+
+                    if (currentFloor.id === "turmspitze") {
+                      // Gold sparkles drifting
+                      return <div key={i} className="banner-particle" style={{
+                        left, top, width: size, height: size,
+                        background: i % 3 === 0 ? "#fbbf24" : "#fff8dc",
+                        boxShadow: `0 0 ${4 + i % 3}px #fbbf2480`,
+                        animation: `banner-sparkle ${4 + (i % 3)}s ease-in-out ${delay} infinite`,
+                        "--dx1": `${Math.cos(i) * 20}px`, "--dy1": `${Math.sin(i) * -15}px`,
+                        "--dx2": `${Math.cos(i + 1) * 40}px`, "--dy2": `${Math.sin(i + 1) * -30}px`,
+                        "--dx3": `${Math.cos(i + 2) * 55}px`, "--dy3": `${Math.sin(i + 2) * -40}px`,
+                      } as React.CSSProperties} />;
+                    }
+                    if (currentFloor.id === "haupthalle") {
+                      // Rising embers
+                      return <div key={i} className="banner-particle" style={{
+                        left, bottom: `${(i * 7) % 20}%`, top: "auto",
+                        width: size * 0.8, height: size * 0.8,
+                        background: i % 2 === 0 ? "#ff6a00" : "#ffa040",
+                        boxShadow: `0 0 ${3 + i % 2}px #ff6a0060`,
+                        borderRadius: "50%",
+                        animation: `banner-float-up ${5 + (i % 4)}s ease-out ${delay} infinite`,
+                      }} />;
+                    }
+                    if (currentFloor.id === "gewerbeviertel") {
+                      // Purple magic dust
+                      return <div key={i} className="banner-particle" style={{
+                        left, top, width: size, height: size,
+                        background: i % 2 === 0 ? "#c084fc" : "#e0b0ff",
+                        boxShadow: `0 0 ${4 + i % 2}px #a855f760`,
+                        animation: `banner-drift ${6 + (i % 3)}s ease-in-out ${delay} infinite`,
+                        "--drift-x": `${Math.sin(i * 0.8) * 50}px`,
+                        "--drift-y": `${-20 - (i % 4) * 10}px`,
+                      } as React.CSSProperties} />;
+                    }
+                    if (currentFloor.id === "charakterturm") {
+                      // Blue crystal motes
+                      return <div key={i} className="banner-particle" style={{
+                        left, top, width: size, height: size,
+                        background: i % 3 === 0 ? "#60a5fa" : "#93c5fd",
+                        boxShadow: `0 0 ${5 + i % 2}px #3b82f650`,
+                        animation: `banner-drift ${7 + (i % 3)}s ease-in-out ${delay} infinite`,
+                        "--drift-x": `${Math.cos(i * 1.2) * 35}px`,
+                        "--drift-y": `${Math.sin(i * 0.9) * -25}px`,
+                      } as React.CSSProperties} />;
+                    }
+                    // Breakaway — warm fireflies
+                    return <div key={i} className="banner-particle" style={{
+                      left, top, width: size + 1, height: size + 1,
+                      background: i % 2 === 0 ? "#fde68a" : "#fbbf24",
+                      boxShadow: `0 0 ${6 + i % 3}px #fbbf2480`,
+                      animation: `banner-firefly ${5 + (i % 4)}s ease-in-out ${delay} infinite`,
+                      "--ff1x": `${Math.cos(i) * 25}px`, "--ff1y": `${Math.sin(i) * -15}px`,
+                      "--ff2x": `${Math.cos(i + 2) * 40}px`, "--ff2y": `${Math.sin(i + 2) * 10}px`,
+                      "--ff3x": `${Math.cos(i + 4) * 50}px`, "--ff3y": `${Math.sin(i + 4) * -20}px`,
+                    } as React.CSSProperties} />;
+                  })}
+                </div>
               </div>
 
               {/* Room tabs */}

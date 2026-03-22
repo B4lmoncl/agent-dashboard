@@ -892,6 +892,47 @@ img {
   transition: background 0.4s ease-in-out;
 }
 
+/* ─── Floor Banner Particles ───────────────────────────────────────────── */
+.banner-particle {
+  position: absolute;
+  pointer-events: none;
+  border-radius: 50%;
+  will-change: transform, opacity;
+}
+
+/* Sparkle / star drift (Pinnacle) */
+@keyframes banner-sparkle {
+  0%   { transform: translate(0, 0) scale(0); opacity: 0; }
+  15%  { opacity: 1; transform: translate(var(--dx1), var(--dy1)) scale(1); }
+  85%  { opacity: 0.6; transform: translate(var(--dx2), var(--dy2)) scale(0.8); }
+  100% { opacity: 0; transform: translate(var(--dx3), var(--dy3)) scale(0); }
+}
+
+/* Float upward (embers / Great Halls) */
+@keyframes banner-float-up {
+  0%   { transform: translateY(0) scale(1); opacity: 0; }
+  10%  { opacity: 0.8; }
+  90%  { opacity: 0.3; }
+  100% { transform: translateY(-180px) scale(0.3); opacity: 0; }
+}
+
+/* Gentle drift (magic dust / Trading District, Inner Sanctum) */
+@keyframes banner-drift {
+  0%   { transform: translate(0, 0); opacity: 0; }
+  20%  { opacity: 0.7; }
+  80%  { opacity: 0.4; }
+  100% { transform: translate(var(--drift-x), var(--drift-y)); opacity: 0; }
+}
+
+/* Firefly pulse (Breakaway) */
+@keyframes banner-firefly {
+  0%   { transform: translate(0, 0) scale(0.5); opacity: 0; }
+  20%  { opacity: 0.9; transform: translate(var(--ff1x), var(--ff1y)) scale(1); }
+  50%  { opacity: 0.3; }
+  80%  { opacity: 0.8; transform: translate(var(--ff2x), var(--ff2y)) scale(0.7); }
+  100% { opacity: 0; transform: translate(var(--ff3x), var(--ff3y)) scale(0.3); }
+}
+
 /* ─── Skeleton Loading ──────────────────────────────────────────────────── */
 @keyframes skeleton-pulse {
   0%, 100% { opacity: 0.04; }
