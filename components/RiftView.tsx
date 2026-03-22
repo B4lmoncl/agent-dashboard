@@ -315,7 +315,7 @@ export default function RiftView({ onRefresh }: { onRefresh?: () => void }) {
                   {locked && <p className="text-xs text-w20">Requires Lv.{tier.minLevel}</p>}
                 </div>
                 <div className="space-y-1 text-xs text-w35">
-                  <TipCustom title="Rift Stages" icon="⚔️" accent={tier.color} body={<p>Complete {tier.questCount} quests sequentially with escalating difficulty (1× to {tier.questCount > 5 ? "3.5" : tier.questCount > 3 ? "2.5" : "1.5"}×). Each stage grants full XP, Gold, and loot rewards.</p>}>
+                  <TipCustom title="Rift Stages" icon="⚔️" accent={tier.color} body={<p>Complete {tier.questCount} quests sequentially with escalating difficulty (1× to {1 + (tier.questCount - 1) * 0.5}×). Each stage grants full XP, Gold, and loot rewards.</p>}>
                     <div className="flex justify-between"><span>Stages</span><span className="font-mono text-w50">{tier.questCount}</span></div>
                   </TipCustom>
                   <TipCustom title="Time Limit" icon="⏱️" accent={tier.color} body={<p>You have {tier.timeLimitHours} hours to complete all {tier.questCount} stages. If time runs out, the run fails and a cooldown is triggered.</p>}>
