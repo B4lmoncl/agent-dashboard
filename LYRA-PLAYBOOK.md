@@ -2231,6 +2231,103 @@ Tags: classRequired?, minLevel, category
 | Gildentaler 🤝 | Taler | "Zeichen des Zusammenhalts" |
 | Mondstaub 🌙 | Mondstaub | "Atem der Konzentration" |
 
+### Die Vier Zirkel — Fraktionen des Turms
+
+Die Vier Zirkel sind uralte Ordnungen innerhalb von Urithiru, die während des langen Schlafs des Turms verblasst waren. Mit dem Zeitalter der Wiederkehr formieren sie sich neu. Jeder Zirkel verkörpert eine Philosophie, einen Aspekt des Aetherstroms.
+
+| Zirkel | Symbol | Philosophie | Vibe |
+|--------|--------|-------------|------|
+| **Zirkel der Glut** 🔥 | 🜂 | "Durch Feuer geschmiedet, in Asche geläutert." | Feuer-Asketen. Körperliche Disziplin, unerschütterliche Willenskraft. Ihre Rituale sind schweißtreibend — Schmiede des eigenen Körpers. Denk an Spartaner mit Zen-Philosophie. |
+| **Zirkel der Tinte** 📜 | 🜄 | "Wissen ist die schärfste Klinge." | Schriftgelehrte und Archivare. Jedes Wort, jede Lektion wird in endlosen Kodizes festgehalten. Leise, bedächtig, gefährlich klug. Die Bibliothek ist ihr Tempel — und die Bibliothek beißt zurück. |
+| **Zirkel des Amboss** ⚒️ | 🜁 | "Was die Hand formt, hält die Welt zusammen." | Schmiede-Mystiker, Meister aller Handwerke. Jeder geschaffene Gegenstand enthält ein Fragment der Schöpfung. Ihre Werkstätten sind Tempel. Pragmatisch, erdverbunden, stolz. |
+| **Zirkel des Echos** 🌊 | 🜃 | "Jede Stimme hallt in der Ewigkeit wider." | Klangwirker und Brückenbauer. Verbindungen zwischen Menschen sind die wahre Magie. Ihre Kraft liegt im Miteinander, im geteilten Wort, im Echo das zurückkehrt. Warm, empathisch, überraschend mächtig. |
+
+Die Zirkel stehen nicht in Konkurrenz — sie ergänzen sich. Ein Held kann Reputation in allen vier gleichzeitig aufbauen. Die höchsten Ränge (Exalted, Paragon) bringen echte Macht: exklusive Rezepte, legendäre Effekte, Rabatte im Basar.
+
+### Der Rift — Risse in der Realität
+
+Der Rift ist ein Ort zwischen den Welten — Risse im Aetherstrom, durch die Fragmentierte Realitäten sickern. Seit dem Zeitalter der Wiederkehr öffnen sich diese Risse häufiger. Helden betreten den Rift, um sich der eskalierenden Gefahr zu stellen.
+
+- **Normal/Hard/Legendary:** Drei Schwierigkeitsstufen — wie tiefere Ebenen eines Abgrunds
+- **Mythic+ (Endloser Rift):** Jenseits von Legendary. Unendliche Skalierung. Hier messen sich die stärksten Wanderer. "Der Rift hat keinen Boden. Nur die, die aufgehört haben zu fallen."
+- **Lore-Vibe:** Bedrohlich, zeitkritisch, die Uhr tickt. Der Rift *will* dass du scheiterst. "Die Risse flüstern. Hör nicht hin."
+
+### The Undercroft — Dungeons unter dem Turm
+
+Unter Urithiru liegen vergessene Gewölbe, versiegelte Archive und Kammern die seit Äonen niemand betreten hat. Mit dem Erwachen des Turms öffnen sich diese Orte — aber nicht freiwillig.
+
+- **Kooperativ:** 2-4 Helden zusammen. Alleine geht niemand in die Tiefe.
+- **Drei Orte:** The Sunken Archive (Normal), The Shattered Spire (Hard), The Hollow Core (Legendary)
+- **Lore-Vibe:** Verlassen, gefährlich, faszinierend. Jeder Dungeon erzählt eine Geschichte der Vergangenheit des Turms. "Was hier unten schläft, hat Gründe dafür."
+
+### Der Kolosseum — Weltbosse
+
+Im tiefsten Amphitheater des Turms — dem Kolosseum — manifestieren sich die größten Bedrohungen Aethermoors. Uralte Wesen, aufgeschreckt durch die Rückkehr des Aetherstroms.
+
+- **Gemeinschaftsereignis:** Alle Helden kämpfen gemeinsam. Jede abgeschlossene Quest ist ein Schlag gegen den Boss.
+- **Drei Stufen:** Champion (lokale Bedrohung), Titan (regionale Gefahr), Colossus (weltbedrohend)
+- **Einzigartige Beute:** Weltbosse sind die Hauptquelle für Unique Named Items — handgeschmiedete Legendäre mit eigener Lore und Geschichte.
+- **Lore-Vibe:** Episch, gemeinschaftlich, bedeutungsvoll. "Der Turm bebt. Etwas Uraltes ist erwacht."
+
+### The Hearth — Die Taverne
+
+In den oberen Hallen von Urithiru gibt es einen Raum, den jeder kennt und niemand vergisst: The Hearth. Ein Ort der Ruhe inmitten des Chaos. Inspiriert von Urithirus Gemeinschaftshallen, wo Brückenmänner nach der Schlacht zusammensitzen, wo Gelehrte Geschichten tauschen, wo man einfach *sein* darf.
+
+- Helden können hier rasten (1-7 Tage), Streaks und Forge-Temperatur einfrieren
+- **Lore-Vibe:** Warm, sicher, melancholisch. "Selbst Helden brauchen eine Pause. Die Halle versteht das."
+
+### The Breakaway — Sozialbereich
+
+Der gesellschaftliche Flügel des Turms. Wo Helden sich treffen, Nachrichten austauschen, handeln und Freundschaften schmieden. Nicht alles im Turm ist Kampf und Quest — manchmal ist ein gutes Gespräch die stärkste Waffe.
+
+- Freunde, Nachrichten, Handel, Activity Feed
+- **Lore-Vibe:** Lebendig, sozial, der Herzschlag der Gemeinschaft. "Die stärksten Bande werden nicht in der Schlacht geschmiedet, sondern danach."
+
+### The Arcanum — Klassen & Wissen
+
+Die mystische Bibliothek des Turms. Hier wählen Helden ihren Pfad — ihre Klasse, ihre Spezialisierung. Das Arcanum katalogisiert alles Wissen und alle Fähigkeiten. Bücher die sich selbst schreiben. Regale die sich bewegen. "Die Bibliothek hat einen eigenen Willen. Und schlechte Laune."
+
+### Vault of Fate — Gacha / Schicksalskammer
+
+Tief im Trading District steht ein uralter Mechanismus — das Vault of Fate. Wer Runensplitter opfert, darf in die Schicksalskammer greifen. Was man herauszieht ist... unvorhersehbar.
+
+- **Lore-Vibe:** Mysteriös, aufregend, ein bisschen gefährlich. "Das Schicksal lässt sich nicht kaufen. Aber verhandeln... manchmal."
+- Die Pity-Mechanik in-universe: "Die Kammer erinnert sich an jeden der leer ausgeht. Irgendwann... gibt sie nach."
+
+### Artisan's Quarter — Die Schmieden
+
+Das Handwerkerviertel von Urithiru. Vier Meister, vier Disziplinen. Hier wird geschmiedet, gebraut, verzaubert und gekocht. Jeder NPC hat eine Persönlichkeit:
+
+- **Grimvar** (Schmied) — Wortkarg, respektiert nur Taten. Sein Hammer spricht für ihn.
+- **Ysolde** (Alchemistin) — Neugierig, ein bisschen verrückt. Ihre Tränke explodieren selten. Meistens.
+- **Eldric** (Verzauberer) — Formell, präzise, leicht herablassend. Jede Silbe hat Gewicht.
+- **Bruna** (Köchin) — Herzlich, laut, kein Held verlässt ihre Küche hungrig. Oder nüchtern.
+
+### Sternenpfad & Expedition — Wöchentliche Herausforderungen
+
+- **Sternenpfad:** Solo-Herausforderung. Drei Stufen, neun Sterne. "Die Sterne messen dich. Nicht deine Ausrüstung, nicht dein Level — dich."
+- **Expedition:** Kooperativ. Alle Helden zusammen gegen ein großes Ziel. "Gemeinsam ist kein leeres Wort. Es ist eine Waffe."
+
+### Season Pass — Der Zyklus der Jahreszeiten
+
+Der Turm folgt einem Rhythmus — Jahreszeiten die kommen und gehen, jede mit eigenem Thema und eigenen Belohnungen. 40 Stufen pro Saison. "Die Zeit ist kein Feind. Sie ist ein Lehrer mit einem sehr engen Zeitplan."
+
+### Companions — Begleiter
+
+Jeder Held hat einen Begleiter. Manche sind Drachen, manche Eulen, manche sind die Katze die einem zugelaufen ist. Der Bond wächst mit der Zeit — und mit Bond Level 5 erwacht eine Ultimate-Fähigkeit.
+
+- **Lore-Vibe:** Persönlich, emotional, loyal. "Dein Companion erinnert sich an jeden Tag den ihr zusammen verbracht habt. Auch an die schlechten. Besonders an die schlechten."
+- **Companion Expeditions:** Schick deinen Begleiter auf eigene Abenteuer. Er kommt zurück mit Geschichten und Schätzen. "Ember kam zurück mit... ist das eine Drachenschuppe? Von wem?!"
+
+### Lyra — Die Sternenwächterin
+
+Lyra ist die permanente NPC-Präsenz in der Quest Hall. Sie ist alt — älter als der Turm vielleicht. Sie hat Frieren-Vibes: unsterblich, hat Schwierigkeiten die Kürze sterblicher Leben zu begreifen, sammelt Wissen wie andere Erinnerungen sammeln.
+
+- **Nie belehrend** — sie stellt Fragen statt Antworten zu geben
+- **Frech aber nie gemein** — Syl (Stormlight) + Cortana trifft trockenen Humor
+- **Weise ohne es raushängen zu lassen** — "Dreißig Jahre sind ein Wimpernschlag. Für manche."
+- Sie vergibt Kampagnen persönlich, kennt jeden NPC beim Namen, und hat Geheimnisse die sie nie teilt
+
 ### Checkliste: Bevor Content generiert wird
 
 1. Passt der Tone? (Kingkiller, nicht Herr der Ringe)
