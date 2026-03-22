@@ -9042,6 +9042,2796 @@
         "label": "Singularität: +{value}% XP pro Ritual-Streak-Tag"
       },
       "setId": "legendary"
+    },
+    {
+      "id": "fac-glut-weapon",
+      "name": "Glutklinge",
+      "slot": "weapon",
+      "tier": 1,
+      "reqLevel": 8,
+      "rarity": "uncommon",
+      "price": 0,
+      "desc": "Geschmiedet in der Esse des Zirkels. Die Hitze geht nie ganz raus.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "fac-glut-shield",
+      "name": "Aschenschild",
+      "slot": "shield",
+      "tier": 2,
+      "reqLevel": 12,
+      "rarity": "uncommon",
+      "price": 0,
+      "desc": "Bedeckt mit Asche vergangener Prüfungen. Jede Schicht ist ein bestandener Test.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "fac-glut-helm",
+      "name": "Helm der Feuerprobe",
+      "slot": "helm",
+      "tier": 3,
+      "reqLevel": 18,
+      "rarity": "rare",
+      "price": 0,
+      "desc": "Wer die Feuerprobe besteht, verdient diesen Helm. Wer sie nicht besteht, braucht keinen.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "fac-glut-armor",
+      "name": "Glutpanzer",
+      "slot": "armor",
+      "tier": 3,
+      "reqLevel": 22,
+      "rarity": "rare",
+      "price": 0,
+      "desc": "Jede Platte in Glut gehärtet. Der Zirkel akzeptiert keine halben Sachen.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "fac-glut-amulet",
+      "name": "Emblem der Glut",
+      "slot": "amulet",
+      "tier": 4,
+      "reqLevel": 30,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Das Zeichen der Geläuterten. Durch Feuer geschmiedet, in Asche geläutert.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "glueck",
+              "min": 3,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary"
+    },
+    {
+      "id": "fac-glut-boots",
+      "name": "Stiefel des Feuerwandlers",
+      "slot": "boots",
+      "tier": 4,
+      "reqLevel": 40,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Der Boden brennt unter dir. Oder du brennst für ihn. Beides zählt.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary"
+    },
+    {
+      "id": "fac-tinte-weapon",
+      "name": "Federkiel-Dolch",
+      "slot": "weapon",
+      "tier": 1,
+      "reqLevel": 8,
+      "rarity": "uncommon",
+      "price": 0,
+      "desc": "Schärfer als jedes Argument. Und das sagt viel.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "fac-tinte-shield",
+      "name": "Buchdeckel-Schild",
+      "slot": "shield",
+      "tier": 2,
+      "reqLevel": 12,
+      "rarity": "uncommon",
+      "price": 0,
+      "desc": "Der Einband eines verbotenen Buches. Das Buch beißt zurück. Der Einband schützt.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "fac-tinte-helm",
+      "name": "Kappe des Chronisten",
+      "slot": "helm",
+      "tier": 3,
+      "reqLevel": 18,
+      "rarity": "rare",
+      "price": 0,
+      "desc": "Jedes Wort das je geschrieben wurde, flüstert durch den Stoff.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "glueck",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "fac-tinte-armor",
+      "name": "Robe der tausend Seiten",
+      "slot": "armor",
+      "tier": 3,
+      "reqLevel": 22,
+      "rarity": "rare",
+      "price": 0,
+      "desc": "Jede Seite ein Kapitel. Jedes Kapitel ein Schutz. Lesen auf eigene Gefahr.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "fac-tinte-amulet",
+      "name": "Siegel der Tinte",
+      "slot": "amulet",
+      "tier": 4,
+      "reqLevel": 30,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Wissen ist die schärfste Klinge. Dieses Siegel ist der Beweis.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "glueck",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "charisma",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary"
+    },
+    {
+      "id": "fac-tinte-boots",
+      "name": "Sandalen des Archivars",
+      "slot": "boots",
+      "tier": 4,
+      "reqLevel": 40,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Leise in Bibliotheken. Laut in Schlachten. Der Archivar kennt den Unterschied.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "charisma",
+              "min": 3,
+              "max": 5
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary"
+    },
+    {
+      "id": "fac-amboss-weapon",
+      "name": "Lehrlingshammer",
+      "slot": "weapon",
+      "tier": 1,
+      "reqLevel": 8,
+      "rarity": "uncommon",
+      "price": 0,
+      "desc": "Klein, aber ehrlich. Jeder Meister hat mit diesem Hammer angefangen.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "fac-amboss-shield",
+      "name": "Ambossplatte",
+      "slot": "shield",
+      "tier": 2,
+      "reqLevel": 12,
+      "rarity": "uncommon",
+      "price": 0,
+      "desc": "Ein Stück vom Amboss selbst. Was die Hand formt, hält die Welt zusammen.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "fac-amboss-helm",
+      "name": "Schmiedemaske",
+      "slot": "helm",
+      "tier": 3,
+      "reqLevel": 18,
+      "rarity": "rare",
+      "price": 0,
+      "desc": "Schützt vor Funken, Hitze und dummen Fragen.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "fac-amboss-armor",
+      "name": "Werkstattrüstung",
+      "slot": "armor",
+      "tier": 3,
+      "reqLevel": 22,
+      "rarity": "rare",
+      "price": 0,
+      "desc": "Brandflecken erzählen von Nachtschichten. Jeder Fleck eine Lektion.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "fac-amboss-amulet",
+      "name": "Kern des Amboss",
+      "slot": "amulet",
+      "tier": 4,
+      "reqLevel": 30,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Ein Splitter des Ur-Amboss. Er vibriert noch.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "glueck",
+              "min": 3,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary"
+    },
+    {
+      "id": "fac-amboss-boots",
+      "name": "Stiefel des Meisterschmieds",
+      "slot": "boots",
+      "tier": 4,
+      "reqLevel": 40,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Standfest am Amboss. Standfest überall. Der Meister wankt nicht.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary"
+    },
+    {
+      "id": "fac-echo-weapon",
+      "name": "Klangstab",
+      "slot": "weapon",
+      "tier": 1,
+      "reqLevel": 8,
+      "rarity": "uncommon",
+      "price": 0,
+      "desc": "Jeder Schlag erzeugt einen Ton. Zusammen eine Melodie. Meistens dissonant.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "glueck",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "charisma",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "fac-echo-shield",
+      "name": "Resonanzschild",
+      "slot": "shield",
+      "tier": 2,
+      "reqLevel": 12,
+      "rarity": "uncommon",
+      "price": 0,
+      "desc": "Schwingt mit der Frequenz des Angreifers. Neutralisiert. Meistens.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "glueck",
+              "min": 2,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "charisma",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "fac-echo-helm",
+      "name": "Helm der Harmonien",
+      "slot": "helm",
+      "tier": 3,
+      "reqLevel": 18,
+      "rarity": "rare",
+      "price": 0,
+      "desc": "Jede Stimme hallt in der Ewigkeit wider. Unter diesem Helm hörst du sie alle.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "glueck",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "charisma",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "fac-echo-armor",
+      "name": "Mantel der Brückenbauer",
+      "slot": "armor",
+      "tier": 3,
+      "reqLevel": 22,
+      "rarity": "rare",
+      "price": 0,
+      "desc": "Verbindet Träger und Welt. Empathie als Rüstung. Klingt sanft. Ist es nicht.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "glueck",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "charisma",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "fac-echo-amulet",
+      "name": "Herz des Echos",
+      "slot": "amulet",
+      "tier": 4,
+      "reqLevel": 30,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Jede Stimme hallt in der Ewigkeit wider. Dies ist die lauteste.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "glueck",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "charisma",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary"
+    },
+    {
+      "id": "fac-echo-boots",
+      "name": "Stiefel des Wanderhalls",
+      "slot": "boots",
+      "tier": 4,
+      "reqLevel": 40,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Deine Schritte hallen weiter als du denkst. Über Grenzen hinweg. Über Welten.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "charisma",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary"
+    },
+    {
+      "id": "ch-stern-3star-weapon",
+      "name": "Sternenpfad-Klinge",
+      "slot": "weapon",
+      "tier": 2,
+      "reqLevel": 14,
+      "rarity": "rare",
+      "price": 0,
+      "desc": "Drei Sterne leuchten auf der Klinge. Drei Prüfungen bestanden.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "glueck",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "ch-stern-3star-armor",
+      "name": "Sternenpfad-Weste",
+      "slot": "armor",
+      "tier": 2,
+      "reqLevel": 16,
+      "rarity": "rare",
+      "price": 0,
+      "desc": "Gewebt unter dem Sternenlicht der ersten drei Prüfungen.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "ch-stern-3star-amulet",
+      "name": "Drei-Sterne-Medaillon",
+      "slot": "amulet",
+      "tier": 2,
+      "reqLevel": 15,
+      "rarity": "rare",
+      "price": 0,
+      "desc": "Drei Sterne. Nicht viel. Aber ehrlich verdient.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "glueck",
+              "min": 2,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "ch-stern-6star-helm",
+      "name": "Sternenpfad-Visier",
+      "slot": "helm",
+      "tier": 3,
+      "reqLevel": 22,
+      "rarity": "rare",
+      "price": 0,
+      "desc": "Sechs Sterne. Die Hälfte des Weges. Oder der Anfang des schweren Teils.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "ch-stern-6star-shield",
+      "name": "Sternenschild",
+      "slot": "shield",
+      "tier": 3,
+      "reqLevel": 24,
+      "rarity": "rare",
+      "price": 0,
+      "desc": "Die Sterne am Rand leuchten in der Dunkelheit. Sechs kleine Leuchtfeuer.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "ch-stern-6star-boots",
+      "name": "Sternenläufer",
+      "slot": "boots",
+      "tier": 3,
+      "reqLevel": 23,
+      "rarity": "rare",
+      "price": 0,
+      "desc": "Sechs Sterne unter den Sohlen. Der Pfad leuchtet vor dir.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "glueck",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "ch-stern-9star-weapon",
+      "name": "Klinge des vollendeten Pfades",
+      "slot": "weapon",
+      "tier": 4,
+      "reqLevel": 34,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Neun Sterne. Neun Prüfungen. Null Zweifel.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary"
+    },
+    {
+      "id": "ch-stern-9star-armor",
+      "name": "Rüstung der neun Sterne",
+      "slot": "armor",
+      "tier": 4,
+      "reqLevel": 36,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Perfekte Sterne. Perfekter Pfad. Perfekt genug.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 6
+            },
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary"
+    },
+    {
+      "id": "ch-stern-9star-amulet",
+      "name": "Neunsterntaler",
+      "slot": "amulet",
+      "tier": 4,
+      "reqLevel": 35,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Neun Sternentaler. Jeder einzelne eine Erinnerung an Überwindung.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "charisma",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary"
+    },
+    {
+      "id": "ch-exped-cp1-helm",
+      "name": "Expeditionshelm",
+      "slot": "helm",
+      "tier": 2,
+      "reqLevel": 16,
+      "rarity": "rare",
+      "price": 0,
+      "desc": "Checkpoint eins. Der erste Schritt ist immer der leichteste. Und der trügerischste.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "ch-exped-cp2-shield",
+      "name": "Expeditionsschild",
+      "slot": "shield",
+      "tier": 3,
+      "reqLevel": 22,
+      "rarity": "rare",
+      "price": 0,
+      "desc": "Checkpoint zwei. Die Mitte hält. Immer.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "ch-exped-cp3-armor",
+      "name": "Veteranenrüstung der Expedition",
+      "slot": "armor",
+      "tier": 4,
+      "reqLevel": 28,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Checkpoint drei. Hier trennen sich die Wanderer von den Helden.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary"
+    },
+    {
+      "id": "ch-exped-bonus-weapon",
+      "name": "Klinge der Expedition",
+      "slot": "weapon",
+      "tier": 4,
+      "reqLevel": 36,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Bonus-Checkpoint. Für die, die weitergegangen sind als erwartet.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 6
+            },
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary"
+    },
+    {
+      "id": "ch-exped-boots",
+      "name": "Marschstiefel der Expedition",
+      "slot": "boots",
+      "tier": 3,
+      "reqLevel": 20,
+      "rarity": "rare",
+      "price": 0,
+      "desc": "Tausend Schritte zusammen. Keiner allein.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "glueck",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "ch-exped-amulet",
+      "name": "Kompass der Gemeinsamen",
+      "slot": "amulet",
+      "tier": 3,
+      "reqLevel": 24,
+      "rarity": "rare",
+      "price": 0,
+      "desc": "Zeigt nicht nach Norden. Zeigt zu deinen Verbündeten.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "glueck",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "charisma",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "bp-lv5-weapon",
+      "name": "Saisonklinge",
+      "slot": "weapon",
+      "tier": 1,
+      "reqLevel": 5,
+      "rarity": "uncommon",
+      "price": 0,
+      "desc": "Markiert den Beginn der Saison. Frisch und voller Möglichkeiten.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "glueck",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "bp-lv5-helm",
+      "name": "Saisonkappe",
+      "slot": "helm",
+      "tier": 1,
+      "reqLevel": 5,
+      "rarity": "uncommon",
+      "price": 0,
+      "desc": "Jede Saison eine neue Farbe. Diese hier ist... interessant.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "bp-lv10-shield",
+      "name": "Saisonschild",
+      "slot": "shield",
+      "tier": 1,
+      "reqLevel": 10,
+      "rarity": "uncommon",
+      "price": 0,
+      "desc": "Level 10 des Passes. Du bleibst dran. Das ist schon mehr als die meisten.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "bp-lv10-armor",
+      "name": "Saisonwams",
+      "slot": "armor",
+      "tier": 1,
+      "reqLevel": 10,
+      "rarity": "uncommon",
+      "price": 0,
+      "desc": "Zehn Level. Zehn Schritte. Der Weg ist lang, aber du gehst ihn.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "bp-lv15-amulet",
+      "name": "Saisonmedaillon",
+      "slot": "amulet",
+      "tier": 2,
+      "reqLevel": 14,
+      "rarity": "rare",
+      "price": 0,
+      "desc": "Fünfzehn Level. Du meinst es ernst. Das Medaillon auch.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "glueck",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "charisma",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "bp-lv15-boots",
+      "name": "Saisonstiefel",
+      "slot": "boots",
+      "tier": 2,
+      "reqLevel": 14,
+      "rarity": "rare",
+      "price": 0,
+      "desc": "Für die Halbzeit. Schneller jetzt.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "glueck",
+              "min": 2,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "bp-lv20-weapon",
+      "name": "Saisonschwert",
+      "slot": "weapon",
+      "tier": 3,
+      "reqLevel": 18,
+      "rarity": "rare",
+      "price": 0,
+      "desc": "Zwanzig Level. Die Klinge hat sich mit dir geschärft.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "glueck",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "bp-lv20-helm",
+      "name": "Saisonhelm",
+      "slot": "helm",
+      "tier": 3,
+      "reqLevel": 18,
+      "rarity": "rare",
+      "price": 0,
+      "desc": "Halb geschafft. Die obere Hälfte.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "bp-lv25-shield",
+      "name": "Veteranenschild der Saison",
+      "slot": "shield",
+      "tier": 3,
+      "reqLevel": 24,
+      "rarity": "rare",
+      "price": 0,
+      "desc": "Fünfundzwanzig. Veteranenstatus. Der Schild weiß es.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "bp-lv25-armor",
+      "name": "Veteranenrüstung der Saison",
+      "slot": "armor",
+      "tier": 3,
+      "reqLevel": 24,
+      "rarity": "rare",
+      "price": 0,
+      "desc": "Fünfundzwanzig Level Durchhaltevermögen. In Stahl gegossen.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "bp-lv30-amulet",
+      "name": "Meisteramulett der Saison",
+      "slot": "amulet",
+      "tier": 4,
+      "reqLevel": 30,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Dreißig. Meistertier. Das Amulett summt vor Respekt.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "glueck",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "charisma",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary"
+    },
+    {
+      "id": "bp-lv30-boots",
+      "name": "Meisterstiefel der Saison",
+      "slot": "boots",
+      "tier": 4,
+      "reqLevel": 30,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Dreißig Level unter den Sohlen. Die nächsten zehn werden anders.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "glueck",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary"
+    },
+    {
+      "id": "bp-lv35-weapon",
+      "name": "Championklinge der Saison",
+      "slot": "weapon",
+      "tier": 4,
+      "reqLevel": 36,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Fünfunddreißig. Fast geschafft. Die Klinge schmeckt Blut — metaphorisch.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary"
+    },
+    {
+      "id": "bp-lv35-helm",
+      "name": "Championhelm der Saison",
+      "slot": "helm",
+      "tier": 4,
+      "reqLevel": 36,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Fünf Level vom Ende. Die Krone wartet.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 6
+            },
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "charisma",
+              "min": 3,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary"
+    },
+    {
+      "id": "bp-lv40-armor",
+      "name": "Meisterwerk der Saison",
+      "slot": "armor",
+      "tier": 4,
+      "reqLevel": 42,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Level 40. Geschafft. Der Höhepunkt der Saison, in Stahl verewigt.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 7
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary"
+    },
+    {
+      "id": "bp-lv40-amulet",
+      "name": "Krönung der Saison",
+      "slot": "amulet",
+      "tier": 4,
+      "reqLevel": 42,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Das Finale. Alles was du getan hast, verdichtet in einem Stein.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "glueck",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 5,
+              "max": 7
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "charisma",
+              "min": 3,
+              "max": 5
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary"
     }
   ],
   "setBonus": {
