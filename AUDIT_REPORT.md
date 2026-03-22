@@ -382,6 +382,9 @@ Complete redesign of TodayDrawer.tsx with 13 new visual features:
 | `5d850b4` | MEDIUM | Rift Mythic tooltip "+0.25x per level" → "+0.3x" (matches `mythicLevel * 0.3` in backend) |
 | `5d850b4` | MEDIUM | Challenge 9-star milestone label missing 150 Gold from reward description |
 | `5d850b4` | MEDIUM | Login error responses return 401 instead of 200 (3 auth paths) |
+| `480deaf` | HIGH | Centralize gold dual-field sync: `awardUserGold` + `awardCurrency` + `addLootToInventory` now sync both `u.gold` and `u.currencies.gold` |
+| `480deaf` | HIGH | Fix 3 remaining gold desync sites: consumable gold effect, multi_reward, transmute deduction |
+| `480deaf` | LOW | DungeonView: reset confirmCancel state when activeRun changes |
 
 ### Known Remaining (Low/Cosmetic — Not Fixed)
 
