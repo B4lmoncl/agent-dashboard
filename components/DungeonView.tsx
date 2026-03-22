@@ -100,7 +100,7 @@ interface CollectResult {
   successChance: number;
   effectivePower: number;
   threshold: number;
-  rewards: Record<string, unknown>;
+  rewards: { gold: number; essenz: number; runensplitter: number; sternentaler?: number; materialCount?: number; gearDropItem?: { name: string; rarity: string } };
   bonusAwarded: { title?: string; frame?: string } | null;
   uniqueDrop: { name: string; slot: string; id: string } | null;
   message: string;

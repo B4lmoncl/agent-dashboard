@@ -726,7 +726,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
   const [earnedTitles, setEarnedTitles] = useState<{ id: string; name: string; description?: string; rarity: string; earnedAt?: string }[]>([]);
   const [equippedTitleId, setEquippedTitleId] = useState<string | null>(null);
   // Gem system
-  const [gemData, setGemData] = useState<{ gems: { id: string; name: string; type: string; tier: number; stat: string; value: number }[]; inventory: { gemId: string; count: number }[]; socketedGems: Record<string, { slot: string; sockets: ({ gemId: string; gemName: string; gemType: string } | null)[] }> } | null>(null);
+  const [gemData, setGemData] = useState<{ gems: { id: string; name: string; type: string; tier: number; stat: string; value: number }[]; inventory: Record<string, { gemId: string; count: number; gemType: string; tier: number; name: string; statBonus: number }>; socketedGems: Record<string, { slot: string; sockets: ({ gemId: string; gemName: string; gemType: string } | null)[] }>; unsocketCost?: number } | null>(null);
   const [gemsLoading, setGemsLoading] = useState(false);
   const [gemAction, setGemAction] = useState<string | null>(null);
   // Collection log
@@ -1605,16 +1605,15 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
           {rightTab === "gems" && !gemsLoading && gemData && (() => {
             const GEM_COLORS: Record<string, string> = { Ruby: "#ef4444", Sapphire: "#3b82f6", Emerald: "#22c55e", Topaz: "#f59e0b", Amethyst: "#a855f7", Diamond: "#e2e8f0" };
             // Group inventory by type
-            const gemMap = new Map(gemData.gems.map((g: { id: string }) => [g.id, g]));
+            const gemMap = new Map(gemData.gems.map(g => [g.id, g]));
             const grouped: Record<string, { gemKey: string; gem: typeof gemData.gems[0]; tier: number; count: number; name: string; statBonus: number }[]> = {};
             for (const [gemKey, inv] of Object.entries(gemData.inventory || {})) {
-              const invData = inv as { count: number; gemType: string; tier: number; name: string; statBonus: number };
-              if (!invData || invData.count <= 0) continue;
-              const gem = gemMap.get(invData.gemType);
+              if (!inv || inv.count <= 0) continue;
+              const gem = gemMap.get(inv.gemType);
               if (!gem) continue;
-              const gemName = (gem as { name: string }).name || invData.gemType;
+              const gemName = gem.name || inv.gemType;
               if (!grouped[gemName]) grouped[gemName] = [];
-              grouped[gemName].push({ gemKey, gem, tier: invData.tier, count: invData.count, name: invData.name, statBonus: invData.statBonus });
+              grouped[gemName].push({ gemKey, gem, tier: inv.tier, count: inv.count, name: inv.name, statBonus: inv.statBonus });
             }
             const doGemAction = async (action: string, body: Record<string, unknown>) => {
               if (!apiKey || gemAction) return;
