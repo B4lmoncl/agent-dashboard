@@ -433,7 +433,7 @@ export const EpicQuestCard = memo(function EpicQuestCard({ quest, selected, onTo
       onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.boxShadow = "none"; }}
     >
       {/* Header row */}
-      <div className="p-3" onClick={() => setExpanded(v => !v)}>
+      <div className="p-3" onClick={() => setExpanded(v => !v)} style={{ cursor: "pointer" }}>
         <div className="flex items-start gap-2">
           {onToggle && (
             <button

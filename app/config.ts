@@ -31,6 +31,16 @@ export const typeConfig: Record<string, { label: string; icon: string | null; co
   "relationship-coop": { label: "Co-op", icon: "/images/icons/cat-coop.png", color: "#f43f5e", bg: "rgba(244,63,94,0.12)", border: "rgba(244,63,94,0.4)" },
 };
 
+// ─── Canonical Rarity Colors ─────────────────────────────────────────────────
+// Single source of truth — import this instead of defining locally
+export const RARITY_COLORS: Record<string, string> = {
+  common: "#9ca3af",
+  uncommon: "#22c55e",
+  rare: "#3b82f6",
+  epic: "#a855f7",
+  legendary: "#f97316",
+};
+
 // ─── Gildenhallen-Stockwerke (Urithiru-inspired navigation) ──────────────────
 
 export interface FloorRoom {

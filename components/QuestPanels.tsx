@@ -119,10 +119,12 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
     } catch { /* ignore */ }
   };
 
+  const [vowCreating, setVowCreating] = useState(false);
   const createAntiRitual = async () => {
     if (!newTitle.trim()) { setVowNameError(true); return; }
     if (newVowCommitment === "none") { setVowCommitmentError(true); return; }
-    if (!reviewApiKey || !playerName) return;
+    if (!reviewApiKey || !playerName || vowCreating) return;
+    setVowCreating(true);
     try {
       const tier = COMMITMENT_TIERS_VOW.find(t => t.id === newVowCommitment)!;
       const diff = DIFFICULTY_TIERS_VOW.find(d => d.id === newVowDifficulty)!;
@@ -151,6 +153,7 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
       setCreateOpen(false);
       loadAntiRituals();
     } catch { /* ignore */ }
+    setVowCreating(false);
   };
 
   const getStreakBadge = (days: number) =>
@@ -489,7 +492,7 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
                 </div>
                 <div className="flex gap-2 pt-1">
                   <button onClick={closeVowModal} className="action-btn text-sm py-2.5 px-5 rounded-xl" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(165,180,252,0.35)", border: "1px solid rgba(255,255,255,0.08)" }}>Cancel</button>
-                  <button onClick={createAntiRitual} className="action-btn flex-1 text-sm py-2.5 rounded-xl font-bold" style={{ background: "rgba(67,56,202,0.32)", color: "#a5b4fc", border: "1px solid rgba(99,102,241,0.6)", boxShadow: "0 0 16px rgba(99,102,241,0.12)" }}>Seal Vow</button>
+                  <button onClick={createAntiRitual} disabled={vowCreating} className="action-btn flex-1 text-sm py-2.5 rounded-xl font-bold" style={{ background: "rgba(67,56,202,0.32)", color: "#a5b4fc", border: "1px solid rgba(99,102,241,0.6)", boxShadow: "0 0 16px rgba(99,102,241,0.12)" }}>{vowCreating ? "Sealing..." : "Seal Vow"}</button>
                 </div>
               </div>
             </div>
