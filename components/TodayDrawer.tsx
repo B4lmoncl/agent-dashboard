@@ -3,26 +3,55 @@
 import { useMemo, useState, useEffect } from "react";
 import { useDashboard } from "@/app/DashboardContext";
 import { getUserLevel, getUserXpProgress } from "@/app/utils";
+import { Tip } from "@/components/GameTooltip";
 import type { ActiveNpc, Ritual } from "@/app/types";
+
+// ─── Helpers ─────────────────────────────────────────────────────────────────
+
+/** Navigate to a view and scroll to a DOM element once it renders */
+function navigateAndScroll(
+  onNavigate: (view: string) => void,
+  onClose: () => void,
+  view: string,
+  elementId: string,
+) {
+  onNavigate(view);
+  onClose();
+  // Poll for the element since the view needs time to render
+  let attempts = 0;
+  const poll = () => {
+    const el = document.getElementById(elementId);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "center" });
+      // Brief highlight flash
+      el.style.boxShadow = "0 0 0 2px rgba(129,140,248,0.5)";
+      setTimeout(() => { el.style.boxShadow = ""; }, 1500);
+      return;
+    }
+    if (++attempts < 20) requestAnimationFrame(poll);
+  };
+  requestAnimationFrame(poll);
+}
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
 interface TodayItem {
   id: string;
-  icon: string;
+  icon: string;       // image path (/images/...) or short text symbol
   label: string;
   done: boolean;
   urgent?: boolean;
   sub?: string;
   reward?: string;
   rewardIcon?: string;
+  tooltipKey?: string; // GameTooltip registry key
   onClick?: () => void;
 }
 
 interface TodayCategory {
   id: string;
   label: string;
-  icon: string;
+  icon: string;       // image path or text symbol
   items: TodayItem[];
 }
 
@@ -40,31 +69,31 @@ interface TimeInfo {
 function getTimeGreeting(): TimeInfo {
   const h = new Date().getHours();
   if (h < 6) return {
-    greeting: "Night Watch", icon: "🌙",
+    greeting: "Night Watch", icon: "\u263D",
     flavor: "The halls are quiet. Perfect for focused work.",
     bg: "linear-gradient(180deg, #0a0d1a 0%, #0d1020 40%, #0f1117 100%)",
     particleColor: "rgba(129,140,248,0.5)", accentGlow: "rgba(99,102,241,0.06)",
   };
   if (h < 12) return {
-    greeting: "Dawn Patrol", icon: "☀️",
+    greeting: "Dawn Patrol", icon: "\u2600",
     flavor: "A new day in Aethermoor. The forge awaits.",
     bg: "linear-gradient(180deg, #1a1410 0%, #15120f 40%, #0f1117 100%)",
     particleColor: "rgba(251,191,36,0.5)", accentGlow: "rgba(251,191,36,0.04)",
   };
   if (h < 17) return {
-    greeting: "Afternoon", icon: "⚔️",
+    greeting: "Afternoon", icon: "\u2694",
     flavor: "The sun is high. Time for quests.",
     bg: "linear-gradient(180deg, #14172199 0%, #0f1117 30%)",
     particleColor: "rgba(232,232,232,0.35)", accentGlow: "rgba(255,255,255,0.03)",
   };
   if (h < 21) return {
-    greeting: "Evening", icon: "🌅",
+    greeting: "Evening", icon: "\u2728",
     flavor: "The day winds down. Wrap up your tasks.",
     bg: "linear-gradient(180deg, #1a1210 0%, #151010 40%, #0f1117 100%)",
     particleColor: "rgba(249,115,22,0.45)", accentGlow: "rgba(249,115,22,0.04)",
   };
   return {
-    greeting: "Night Watch", icon: "🌙",
+    greeting: "Night Watch", icon: "\u263D",
     flavor: "The halls are quiet. Perfect for focused work.",
     bg: "linear-gradient(180deg, #0a0d1a 0%, #0d1020 40%, #0f1117 100%)",
     particleColor: "rgba(129,140,248,0.5)", accentGlow: "rgba(99,102,241,0.06)",
@@ -312,7 +341,7 @@ export default function TodayDrawer({
     // Daily Bonus
     daily.push({
       id: "daily-bonus",
-      icon: "🎁",
+      icon: "/images/icons/currency-gold.png",
       label: "Daily Bonus",
       done: !dailyBonusAvailable,
       reward: dailyBonusAvailable ? "+Gold, +Stardust" : undefined,
@@ -324,14 +353,16 @@ export default function TodayDrawer({
     const userComp = loggedInUser?.companion;
     const petsDone = userComp?.petDateStr === today ? (userComp?.petCountToday ?? 0) : 0;
     if (userComp) {
+      const compIcon = userComp.type ? `/images/companions/companion-${userComp.type}.png` : "/images/icons/currency-essenz.png";
       daily.push({
         id: "companion-pet",
-        icon: userComp.emoji || "🐾",
+        icon: compIcon,
         label: `Pet ${userComp.name}`,
         done: petsDone >= 2,
         sub: `${petsDone}/2`,
         reward: "+Bond XP",
         rewardIcon: "/images/icons/currency-essenz.png",
+        tooltipKey: "bond_level",
         onClick: () => { onNavigate("questBoard"); onClose(); },
       });
     }
@@ -343,12 +374,13 @@ export default function TodayDrawer({
     });
     daily.push({
       id: "rituals",
-      icon: "🔮",
+      icon: "/images/icons/currency-essenz.png",
       label: "Rituals",
       done: incompleteRituals.length === 0 && rituals.length > 0,
       sub: rituals.length === 0 ? "None set" : `${rituals.length - incompleteRituals.length}/${rituals.length}`,
       reward: rituals.length > 0 ? "+XP, Streak" : undefined,
       rewardIcon: "/images/icons/currency-essenz.png",
+      tooltipKey: "rituals",
       onClick: () => { onNavigate("rituals"); onClose(); },
     });
 
@@ -358,12 +390,13 @@ export default function TodayDrawer({
       const doneCount = dailyMissions.missions.filter(m => m.done).length;
       daily.push({
         id: "daily-missions",
-        icon: "📋",
+        icon: "/images/icons/currency-stardust.png",
         label: "Daily Missions",
         done: allDone,
         sub: `${doneCount}/${dailyMissions.missions.length}`,
         reward: allDone ? undefined : `${dailyMissions.total - dailyMissions.earned} pts left`,
-        onClick: () => { onNavigate("questBoard"); onClose(); },
+        tooltipKey: "daily_missions",
+        onClick: () => navigateAndScroll(onNavigate, onClose, "questBoard", "daily-missions-section"),
       });
 
       // Unclaimed milestones → URGENT
@@ -371,13 +404,14 @@ export default function TodayDrawer({
       if (unclaimedMilestones.length > 0) {
         urgent.push({
           id: "milestone-claim",
-          icon: "⭐",
+          icon: "/images/icons/currency-stardust.png",
           label: "Claim Milestone",
           done: false,
           urgent: true,
           sub: `${unclaimedMilestones.length} ready`,
           reward: "Currencies",
-          onClick: () => { onNavigate("questBoard"); onClose(); },
+          tooltipKey: "daily_missions",
+          onClick: () => navigateAndScroll(onNavigate, onClose, "questBoard", "daily-missions-section"),
         });
       }
     }
@@ -388,7 +422,7 @@ export default function TodayDrawer({
     if (loggedInUser?.professions && Object.keys(loggedInUser.professions).length > 0) {
       daily.push({
         id: "crafting-bonus",
-        icon: "⚒️",
+        icon: "/images/icons/equip-weapon.png",
         label: "Crafting 2× XP",
         done: craftedToday,
         sub: craftedToday ? "Used" : "Available",
@@ -409,7 +443,7 @@ export default function TodayDrawer({
       const hoursLeft = Math.max(0, Math.round((new Date(npc.expiresAt).getTime() - now) / 3600000));
       urgent.push({
         id: `npc-${npc.id}`,
-        icon: npc.emoji || "👤",
+        icon: npc.portrait ? `/images/npcs/${npc.portrait}` : "\u2022",
         label: npc.name,
         done: false,
         urgent: true,
@@ -422,7 +456,7 @@ export default function TodayDrawer({
     if (worldBossActive) {
       urgent.push({
         id: "world-boss",
-        icon: "🐉",
+        icon: "/images/icons/ach-boss-slayer.png",
         label: "World Boss Active",
         done: false,
         urgent: true,
@@ -437,7 +471,7 @@ export default function TodayDrawer({
     if (inProgressCount > 0) {
       content.push({
         id: "in-progress",
-        icon: "⚔️",
+        icon: "/images/icons/equip-weapon.png",
         label: "Quests In Progress",
         done: false,
         sub: `${inProgressCount} active`,
@@ -452,7 +486,7 @@ export default function TodayDrawer({
       const starsEarned = weeklyChallenge.stagesCompleted ?? 0;
       content.push({
         id: "weekly-challenge",
-        icon: "⭐",
+        icon: "/images/icons/currency-stardust.png",
         label: "Star Path",
         done: starsEarned >= 3,
         sub: `${starsEarned}/3 stages`,
@@ -465,7 +499,7 @@ export default function TodayDrawer({
     if (riftActive) {
       content.push({
         id: "rift-active",
-        icon: "🌀",
+        icon: "/images/icons/currency-runensplitter.png",
         label: "Rift In Progress",
         done: false,
         sub: "Complete your stages",
@@ -478,7 +512,7 @@ export default function TodayDrawer({
     if (expeditionActive) {
       content.push({
         id: "expedition",
-        icon: "🏔️",
+        icon: "/images/icons/ach-marathon-runner.png",
         label: "Expedition",
         done: false,
         sub: "Contribute quests",
@@ -491,7 +525,7 @@ export default function TodayDrawer({
     if (dungeonActive) {
       content.push({
         id: "dungeon-active",
-        icon: "🏚️",
+        icon: "/images/icons/ach-coop-hero.png",
         label: "Dungeon Run",
         done: false,
         sub: "Collect rewards",
@@ -504,7 +538,7 @@ export default function TodayDrawer({
     if (vowCount > 0) {
       content.push({
         id: "vows",
-        icon: "🩸",
+        icon: "/images/icons/currency-mondstaub.png",
         label: "Vows",
         done: false,
         sub: `${vowCount} active`,
@@ -519,7 +553,7 @@ export default function TodayDrawer({
       if (socialBadge.pendingFriendRequests > 0) {
         social.push({
           id: "friend-requests",
-          icon: "👥",
+          icon: "/images/icons/ach-social-butterfly.png",
           label: "Friend Requests",
           done: false,
           urgent: true,
@@ -530,7 +564,7 @@ export default function TodayDrawer({
       if (socialBadge.activeTrades > 0) {
         social.push({
           id: "active-trades",
-          icon: "🤝",
+          icon: "/images/icons/currency-gildentaler.png",
           label: "Open Trades",
           done: false,
           sub: `${socialBadge.activeTrades} active`,
@@ -540,7 +574,7 @@ export default function TodayDrawer({
       if (socialBadge.unreadMessages > 0) {
         social.push({
           id: "unread-messages",
-          icon: "💬",
+          icon: "/images/icons/ach-social-king.png",
           label: "Unread Messages",
           done: false,
           sub: `${socialBadge.unreadMessages} new`,
@@ -551,10 +585,10 @@ export default function TodayDrawer({
 
     // Build categories array (skip empty categories)
     const cats: TodayCategory[] = [];
-    if (urgent.length > 0) cats.push({ id: "urgent", label: "Urgent", icon: "⚡", items: urgent });
-    if (daily.length > 0) cats.push({ id: "daily", label: "Daily Tasks", icon: "☀️", items: daily });
-    if (content.length > 0) cats.push({ id: "content", label: "Active Content", icon: "🗺️", items: content });
-    if (social.length > 0) cats.push({ id: "social", label: "Social", icon: "💬", items: social });
+    if (urgent.length > 0) cats.push({ id: "urgent", label: "Urgent", icon: "\u26A0", items: urgent });
+    if (daily.length > 0) cats.push({ id: "daily", label: "Daily Tasks", icon: "\u2726", items: daily });
+    if (content.length > 0) cats.push({ id: "content", label: "Active Content", icon: "\u2694", items: content });
+    if (social.length > 0) cats.push({ id: "social", label: "Social", icon: "\u2606", items: social });
     return cats;
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dailyBonusAvailable, dailyMissions, rituals, activeNpcs, loggedInUser, inProgressCount, weeklyChallenge, worldBossActive, riftActive, vowCount, socialBadge, expeditionActive, dungeonActive, today]);
@@ -563,6 +597,19 @@ export default function TodayDrawer({
   const doneCount = allItems.filter(i => i.done).length;
   const totalCount = allItems.length;
   const allDone = doneCount === totalCount && totalCount > 0;
+
+  const comp = loggedInUser?.companion;
+
+  // Companion portrait (same logic as UserCard)
+  const companionSrc = useMemo(() => {
+    if (!comp) return "";
+    if (comp.type && ["dragon", "owl", "phoenix", "wolf", "fox", "bear"].includes(comp.type))
+      return `/images/portraits/companion-${comp.type}.png`;
+    if (comp.type === "cat" && comp.name?.toLowerCase() === "dobbie")
+      return "/images/portraits/companion-dobbie.png";
+    if (comp.type) return `/images/companions/companion-${comp.type}.png`;
+    return "";
+  }, [comp]);
 
   if (!open) return null;
 
@@ -573,7 +620,6 @@ export default function TodayDrawer({
   const ringOffset = ringCircumference * (1 - xpProgress);
 
   const isNight = new Date().getHours() < 6 || new Date().getHours() >= 21;
-  const comp = loggedInUser?.companion;
 
   return (
     <>
@@ -588,7 +634,7 @@ export default function TodayDrawer({
       <div
         className="fixed top-0 right-0 z-[91] h-full flex flex-col"
         style={{
-          width: 440,
+          width: 720,
           background: timeInfo.bg,
           borderLeft: "1px solid rgba(255,255,255,0.06)",
           boxShadow: "-12px 0 40px rgba(0,0,0,0.7)",
@@ -648,7 +694,11 @@ export default function TodayDrawer({
                   }}
                   title={`${comp.name} (Bond ${comp.bondLevel ?? 1})`}
                 >
-                  <span className="flex items-center justify-center w-full h-full text-lg">{comp.emoji || "🐾"}</span>
+                  {companionSrc ? (
+                    <img src={companionSrc} alt={comp.name} width={36} height={36} className="w-full h-full object-cover" style={{ imageRendering: "auto" }} onError={e => { e.currentTarget.style.display = "none"; }} />
+                  ) : (
+                    <span className="flex items-center justify-center w-full h-full text-lg" style={{ color: "rgba(255,255,255,0.4)" }}>{comp.name?.[0] || "?"}</span>
+                  )}
                   {/* Bond badge */}
                   <span className="absolute -bottom-0.5 -right-0.5 text-xs rounded-full flex items-center justify-center"
                     style={{
@@ -716,7 +766,7 @@ export default function TodayDrawer({
           {/* Streak + Forge as Mini-Cards */}
           <div className="grid grid-cols-2 gap-3">
             {/* Streak Card */}
-            <div className="today-stat-card rounded-xl px-3 py-2.5 relative overflow-hidden" style={{
+            <Tip k="streak"><div className="today-stat-card rounded-xl px-3 py-2.5 relative overflow-hidden" style={{
               background: streak > 0
                 ? "linear-gradient(135deg, rgba(249,115,22,0.08) 0%, rgba(251,191,36,0.04) 100%)"
                 : "rgba(255,255,255,0.02)",
@@ -730,10 +780,10 @@ export default function TodayDrawer({
                   <span className="text-xs block" style={{ color: "rgba(255,255,255,0.25)", marginTop: -2 }}>Streak</span>
                 </div>
               </div>
-            </div>
+            </div></Tip>
 
             {/* Forge Temp Card */}
-            <div className="today-stat-card rounded-xl px-3 py-2.5 relative overflow-hidden" style={{
+            <Tip k="forge_temp"><div className="today-stat-card rounded-xl px-3 py-2.5 relative overflow-hidden" style={{
               background: forgeTemp > 0
                 ? `linear-gradient(135deg, ${forgeTempColor}10 0%, ${forgeTempColor}05 100%)`
                 : "rgba(255,255,255,0.02)",
@@ -744,7 +794,7 @@ export default function TodayDrawer({
             } as React.CSSProperties}>
               <ForgeEmbers temp={forgeTemp} color={forgeTempColor} />
               <div className="flex items-center gap-2 relative" style={{ zIndex: 1 }}>
-                <span className="text-sm" style={{ filter: forgeTemp > 0 ? "none" : "grayscale(1) opacity(0.4)" }}>🔨</span>
+                <span className="text-sm" style={{ filter: forgeTemp > 0 ? "none" : "grayscale(1) opacity(0.4)", fontFamily: "serif" }}>{"\u2692"}</span>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center justify-between">
                     <span className="text-sm font-mono font-bold" style={{ color: forgeTempColor }}>{forgeTemp}%</span>
@@ -760,16 +810,16 @@ export default function TodayDrawer({
                   <span className="text-xs block mt-0.5" style={{ color: "rgba(255,255,255,0.2)", fontSize: 10 }}>Forge</span>
                 </div>
               </div>
-            </div>
+            </div></Tip>
           </div>
         </div>
 
         {/* ─── Progress Arc ─────────────────────────────────────────── */}
         <div className="relative flex justify-center py-3" style={{ zIndex: 1 }}>
-          <svg width="200" height="60" viewBox="0 0 200 60">
+          <svg width="200" height="110" viewBox="0 0 200 110">
             {/* Background arc */}
             <path
-              d="M 20 55 A 80 80 0 0 1 180 55"
+              d="M 20 85 A 80 80 0 0 1 180 85"
               fill="none"
               stroke="rgba(255,255,255,0.05)"
               strokeWidth="6"
@@ -777,7 +827,7 @@ export default function TodayDrawer({
             />
             {/* Progress arc */}
             <path
-              d="M 20 55 A 80 80 0 0 1 180 55"
+              d="M 20 85 A 80 80 0 0 1 180 85"
               fill="none"
               stroke={allDone ? "#4ade80" : "#818cf8"}
               strokeWidth="6"
@@ -790,10 +840,10 @@ export default function TodayDrawer({
               }}
             />
             {/* Center text */}
-            <text x="100" y="45" textAnchor="middle" fill={allDone ? "#4ade80" : "#e8e8e8"} fontSize="16" fontWeight="bold" fontFamily="monospace" style={{ pointerEvents: "none" }}>
+            <text x="100" y="75" textAnchor="middle" fill={allDone ? "#4ade80" : "#e8e8e8"} fontSize="16" fontWeight="bold" fontFamily="monospace" style={{ pointerEvents: "none" }}>
               {doneCount}/{totalCount}
             </text>
-            <text x="100" y="56" textAnchor="middle" fill="rgba(255,255,255,0.25)" fontSize="10" style={{ pointerEvents: "none" }}>
+            <text x="100" y="88" textAnchor="middle" fill="rgba(255,255,255,0.25)" fontSize="10" style={{ pointerEvents: "none" }}>
               {allDone ? "ALL COMPLETE" : "tasks today"}
             </text>
             {/* Segment dots for each category */}
@@ -802,7 +852,7 @@ export default function TodayDrawer({
               const angle = -180 + ((ci + 0.5) / categories.length) * 180;
               const rad = (angle * Math.PI) / 180;
               const cx = 100 + 80 * Math.cos(rad);
-              const cy = 55 + 80 * Math.sin(rad);
+              const cy = 85 + 80 * Math.sin(rad);
               return (
                 <circle
                   key={cat.id}
@@ -819,7 +869,7 @@ export default function TodayDrawer({
         </div>
 
         {/* ─── Categorized Card Grid ──────────────────────────────────── */}
-        <div className="flex-1 overflow-y-auto px-4 pb-3 relative" style={{ scrollbarWidth: "thin", zIndex: 1 }}>
+        <div className="flex-1 overflow-y-auto px-4 pb-3 relative today-scroll" style={{ zIndex: 1 }}>
           {categories.map((cat, catIdx) => {
             const catAllDone = cat.items.every(i => i.done);
             return (
@@ -843,7 +893,7 @@ export default function TodayDrawer({
                 </div>
 
                 {/* 2-Column Card Grid */}
-                <div className="grid grid-cols-2 gap-2 mb-1">
+                <div className="grid grid-cols-3 gap-2 mb-1">
                   {cat.items.map((item, itemIdx) => (
                     <button
                       key={item.id}
@@ -869,7 +919,11 @@ export default function TodayDrawer({
                     >
                       {/* Top row: icon + status */}
                       <div className="flex items-center justify-between">
-                        <span style={{ fontSize: 18 }}>{item.icon}</span>
+                        {item.icon.startsWith("/") ? (
+                          <img src={item.icon} alt="" width={20} height={20} className="img-render-auto flex-shrink-0" onError={e => { e.currentTarget.style.display = "none"; }} />
+                        ) : (
+                          <span style={{ fontSize: 16, lineHeight: 1 }}>{item.icon}</span>
+                        )}
                         <span className="flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center" style={{
                           background: item.done ? "rgba(74,222,128,0.15)" : item.urgent ? "rgba(251,191,36,0.15)" : "rgba(255,255,255,0.06)",
                           color: item.done ? "#4ade80" : item.urgent ? "#fbbf24" : "rgba(255,255,255,0.3)",
@@ -887,7 +941,7 @@ export default function TodayDrawer({
                         textDecoration: item.done ? "line-through" : "none",
                         textDecorationColor: "rgba(74,222,128,0.3)",
                       }}>
-                        {item.label}
+                        {item.tooltipKey ? <Tip k={item.tooltipKey}>{item.label}</Tip> : item.label}
                       </p>
 
                       {/* Sub + Reward row */}

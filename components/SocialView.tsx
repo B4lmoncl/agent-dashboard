@@ -37,6 +37,9 @@ function PlayerBadge({ name, avatar, color, size = 24 }: { name: string; avatar:
 const ONLINE_COLORS: Record<string, string> = { online: "#22c55e", idle: "#eab308", offline: "#555" };
 const ONLINE_LABELS: Record<string, string> = { online: "Online", idle: "Idle", offline: "Offline" };
 const RARITY_COLORS: Record<string, string> = { legendary: "#ff8c00", epic: "#a855f7", rare: "#3b82f6", uncommon: "#22c55e", common: "#888" };
+const RARITY_SORT: Record<string, number> = { legendary: 0, epic: 1, rare: 2, uncommon: 3, common: 4 };
+const SLOT_SORT: Record<string, number> = { weapon: 0, shield: 1, helm: 2, armor: 3, amulet: 4, boots: 5 };
+type TradeSortKey = "rarity" | "name" | "slot";
 
 function OnlineDot({ status, lastActiveAt }: { status: string; lastActiveAt?: string | null }) {
   const label = status === "offline" && lastActiveAt ? `${timeAgo(lastActiveAt)}` : ONLINE_LABELS[status] || "Offline";
@@ -534,33 +537,34 @@ function TradeOfferDisplay({ offer, label, color }: { offer: TradeOffer; label: 
         <div className="space-y-1">
           {offer.items.map(item => {
             const rc = RARITY_COLORS[item.rarity] || "#888";
-            const statsStr = item.stats ? Object.entries(item.stats).map(([k, v]) => `${k}: +${v}`).join("\n") : "";
-            const tooltipParts = [item.name, item.slot ? `Slot: ${item.slot}` : "", item.rarity.charAt(0).toUpperCase() + item.rarity.slice(1), statsStr, item.setName ? `Set: ${item.setName}` : "", item.legendaryEffect ? `★ ${item.legendaryEffect.label}` : ""].filter(Boolean);
             return (
-              <div key={item.instanceId} className="group relative flex items-center gap-2 text-xs px-2 py-1.5 rounded cursor-default" style={{ background: "rgba(255,255,255,0.03)", borderLeft: `2px solid ${rc}` }}>
-                {item.icon && <img src={item.icon} alt="" width={20} height={20} style={{ imageRendering: "auto" }} onError={e => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} />}
-                <span className="font-semibold" style={{ color: rc }}>{item.name}</span>
-                <span className="text-w20 capitalize ml-auto">{item.rarity}</span>
-                {item.slot && <span className="text-w15">({item.slot})</span>}
-                {/* Stat tooltip on hover */}
-                {(item.stats || item.setName || item.legendaryEffect) && (
-                  <div className="absolute left-0 bottom-full mb-1 z-50 hidden group-hover:block pointer-events-none" style={{ minWidth: 180 }}>
-                    <div className="rounded-lg p-2.5 shadow-xl" style={{ background: "#1a1a1f", border: `1px solid ${rc}40`, boxShadow: `0 4px 16px rgba(0,0,0,0.6), 0 0 8px ${rc}15` }}>
-                      <p className="text-xs font-bold mb-1" style={{ color: rc }}>{item.name}</p>
-                      {item.slot && <p className="text-xs text-w25 mb-1 capitalize">{item.slot} · {item.rarity}</p>}
-                      {item.stats && Object.keys(item.stats).length > 0 && (
-                        <div className="space-y-0.5 mb-1">
-                          {Object.entries(item.stats).map(([stat, val]) => (
-                            <p key={stat} className="text-xs" style={{ color: "#4ade80" }}>+{val} {stat}</p>
-                          ))}
+              <TipCustom
+                key={item.instanceId}
+                title={item.name}
+                accent={rc}
+                hoverDelay={300}
+                body={<>
+                  <p className="text-xs capitalize" style={{ color: rc }}>{item.rarity}{item.slot ? ` \u00b7 ${item.slot}` : ""}</p>
+                  {item.legendaryEffect && <p className="text-xs mt-1 font-semibold" style={{ color: "#f59e0b" }}>{item.legendaryEffect.label}</p>}
+                  {item.stats && Object.keys(item.stats).length > 0 && (
+                    <div className="mt-1 space-y-0.5" style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: 4 }}>
+                      {Object.entries(item.stats).map(([stat, val]) => (
+                        <div key={stat} className="flex items-center justify-between text-xs">
+                          <span style={{ color: "rgba(255,255,255,0.5)" }}>{stat}</span>
+                          <span className="font-mono" style={{ color: "#4ade80" }}>+{val}</span>
                         </div>
-                      )}
-                      {item.setName && <p className="text-xs" style={{ color: "#22c55e" }}>Set: {item.setName}</p>}
-                      {item.legendaryEffect && <p className="text-xs" style={{ color: "#f59e0b" }}>★ {item.legendaryEffect.label}</p>}
+                      ))}
                     </div>
-                  </div>
-                )}
-              </div>
+                  )}
+                  {item.setName && <p className="text-xs mt-1" style={{ color: "#22c55e" }}>Set: {item.setName}</p>}
+                </>}
+              >
+                <div className="flex items-center gap-2 text-xs px-2 py-1.5 rounded cursor-default" style={{ background: "rgba(255,255,255,0.03)", borderLeft: `2px solid ${rc}` }}>
+                  {item.icon && <img src={item.icon} alt="" width={20} height={20} style={{ imageRendering: "auto" }} onError={e => { e.currentTarget.style.display = "none"; }} />}
+                  <span className="font-semibold truncate" style={{ color: rc }}>{item.name}</span>
+                  <span className="text-w20 capitalize ml-auto flex-shrink-0">{item.rarity}</span>
+                </div>
+              </TipCustom>
             );
           })}
         </div>
@@ -575,60 +579,96 @@ function TradeOfferDisplay({ offer, label, color }: { offer: TradeOffer; label: 
 
 // ─── Trade Item Grid (inventory-style) ────────────────────────────────────────
 
-function TradeItemGrid({ items, selectedIds, onToggle }: {
-  items: { id: string; name: string; rarity: string; slot?: string; icon?: string; emoji?: string; stats?: Record<string, number> }[];
+function TradeItemGrid({ items, selectedIds, onToggle, sortKey, onSortChange }: {
+  items: { id: string; name: string; rarity: string; slot?: string; icon?: string; emoji?: string; stats?: Record<string, number>; desc?: string; flavorText?: string; legendaryEffect?: { type: string; label?: string; value?: number } | null; setId?: string }[];
   selectedIds: string[];
   onToggle: (id: string) => void;
+  sortKey?: TradeSortKey;
+  onSortChange?: (key: TradeSortKey) => void;
 }) {
+  const sorted = [...items].sort((a, b) => {
+    if (sortKey === "rarity") return (RARITY_SORT[a.rarity] ?? 5) - (RARITY_SORT[b.rarity] ?? 5);
+    if (sortKey === "name") return a.name.localeCompare(b.name);
+    if (sortKey === "slot") return (SLOT_SORT[a.slot ?? ""] ?? 99) - (SLOT_SORT[b.slot ?? ""] ?? 99);
+    return 0;
+  });
   return (
-    <div className="rounded-lg p-2 max-h-[180px] overflow-y-auto" style={{ background: "rgba(0,0,0,0.25)", border: "1px solid rgba(255,255,255,0.06)", scrollbarWidth: "thin" }}>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, 52px)", gap: 3 }}>
-        {items.map(item => {
-          const selected = selectedIds.includes(item.id);
-          const rc = RARITY_COLORS[item.rarity] || "#888";
-          return (
-            <TipCustom
-              key={item.id}
-              title={item.name}
-              icon={item.emoji || "📦"}
-              accent={rc}
-              hoverDelay={300}
-              body={<>
-                <p className="text-xs capitalize" style={{ color: rc }}>{item.rarity}{item.slot ? ` · ${item.slot}` : ""}</p>
-                {item.stats && Object.entries(item.stats).filter(([, v]) => v > 0).length > 0 && (
-                  <div className="mt-1 space-y-0.5">
-                    {Object.entries(item.stats).filter(([, v]) => v > 0).map(([k, v]) => (
-                      <p key={k} className="text-xs" style={{ color: "rgba(255,255,255,0.5)" }}>{k}: +{v}</p>
-                    ))}
-                  </div>
-                )}
-              </>}
+    <div>
+      {/* Sort controls */}
+      {onSortChange && (
+        <div className="flex gap-1 mb-1.5">
+          {(["rarity", "name", "slot"] as TradeSortKey[]).map(k => (
+            <button
+              key={k}
+              onClick={() => onSortChange(k)}
+              className="text-xs px-2 py-0.5 rounded"
+              style={{
+                background: sortKey === k ? "rgba(168,85,247,0.15)" : "rgba(255,255,255,0.04)",
+                color: sortKey === k ? "#a855f7" : "rgba(255,255,255,0.3)",
+                border: `1px solid ${sortKey === k ? "rgba(168,85,247,0.3)" : "rgba(255,255,255,0.06)"}`,
+                cursor: "pointer",
+              }}
             >
-              <button
-                onClick={() => onToggle(item.id)}
-                className="relative flex items-center justify-center rounded-lg transition-all"
-                style={{
-                  width: 52, height: 52,
-                  background: selected ? "rgba(168,85,247,0.15)" : "rgba(255,255,255,0.03)",
-                  border: `2px solid ${selected ? "#a855f7" : `${rc}30`}`,
-                  cursor: "pointer",
-                }}
+              {k.charAt(0).toUpperCase() + k.slice(1)}
+            </button>
+          ))}
+        </div>
+      )}
+      <div className="rounded-lg p-2 max-h-[240px] overflow-y-auto" style={{ background: "rgba(0,0,0,0.25)", border: "1px solid rgba(255,255,255,0.06)", scrollbarWidth: "thin" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, 52px)", gap: 3 }}>
+          {sorted.map(item => {
+            const selected = selectedIds.includes(item.id);
+            const rc = RARITY_COLORS[item.rarity] || "#888";
+            return (
+              <TipCustom
+                key={item.id}
+                title={item.name}
+                accent={rc}
+                hoverDelay={300}
+                body={<>
+                  <p className="text-xs capitalize" style={{ color: rc }}>{item.rarity}{item.slot ? ` \u00b7 ${item.slot}` : ""}</p>
+                  {item.desc && <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.4)" }}>{item.desc}</p>}
+                  {item.flavorText && <p className="text-xs italic mt-1" style={{ color: "rgba(255,255,255,0.3)" }}>&ldquo;{item.flavorText}&rdquo;</p>}
+                  {item.legendaryEffect && <p className="text-xs mt-1 font-semibold" style={{ color: "#f59e0b" }}>{item.legendaryEffect.label || item.legendaryEffect.type}</p>}
+                  {item.stats && Object.entries(item.stats).filter(([, v]) => v > 0).length > 0 && (
+                    <div className="mt-1 space-y-0.5" style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: 4 }}>
+                      {Object.entries(item.stats).filter(([, v]) => v > 0).map(([k, v]) => (
+                        <div key={k} className="flex items-center justify-between text-xs">
+                          <span style={{ color: "rgba(255,255,255,0.5)" }}>{k}</span>
+                          <span className="font-mono" style={{ color: "#4ade80" }}>+{v}</span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                  {item.setId && <p className="text-xs mt-1" style={{ color: "#22c55e" }}>Set: {item.setId}</p>}
+                </>}
               >
-                {item.icon ? (
-                  <img src={item.icon} alt={item.name} width={36} height={36} style={{ imageRendering: "auto", objectFit: "contain" }} />
-                ) : (
-                  <span style={{ fontSize: 22 }}>{item.emoji || "📦"}</span>
-                )}
-                {/* Rarity dot */}
-                <span className="absolute top-0.5 right-0.5 w-2 h-2 rounded-full" style={{ background: rc }} />
-                {/* Selection checkmark */}
-                {selected && (
-                  <span className="absolute bottom-0.5 right-0.5 w-4 h-4 rounded-full flex items-center justify-center" style={{ background: "#a855f7", fontSize: 9, color: "#fff", lineHeight: 1 }}>✓</span>
-                )}
-              </button>
-            </TipCustom>
-          );
-        })}
+                <button
+                  onClick={() => onToggle(item.id)}
+                  className="relative flex items-center justify-center rounded-lg transition-all"
+                  style={{
+                    width: 52, height: 52,
+                    background: selected ? "rgba(168,85,247,0.15)" : "rgba(255,255,255,0.03)",
+                    border: `2px solid ${selected ? "#a855f7" : `${rc}30`}`,
+                    cursor: "pointer",
+                  }}
+                >
+                  {item.icon ? (
+                    <img src={item.icon} alt={item.name} width={36} height={36} style={{ imageRendering: "auto", objectFit: "contain" }} onError={e => { e.currentTarget.style.display = "none"; }} />
+                  ) : (
+                    <span className="text-2xl" style={{ color: rc }}>{"\u25C6"}</span>
+                  )}
+                  {/* Rarity dot */}
+                  <span className="absolute top-0.5 right-0.5 w-2 h-2 rounded-full" style={{ background: rc }} />
+                  {/* Selection checkmark */}
+                  {selected && (
+                    <span className="absolute bottom-0.5 right-0.5 w-4 h-4 rounded-full flex items-center justify-center" style={{ background: "#a855f7", fontSize: 9, color: "#fff", lineHeight: 1 }}>{"\u2713"}</span>
+                  )}
+                </button>
+              </TipCustom>
+            );
+          })}
+        </div>
       </div>
     </div>
   );
@@ -653,6 +693,9 @@ function TradesTab({ apiKey, playerName }: { apiKey: string; playerName: string 
   const [counterGold, setCounterGold] = useState(0);
   const [counterMsg, setCounterMsg] = useState("");
   const [counterItems, setCounterItems] = useState<string[]>([]);
+
+  // Item sort
+  const [tradeSort, setTradeSort] = useState<TradeSortKey>("rarity");
 
   // Get unequipped inventory items for trade
   const tradeableItems = (loggedInUser?.inventory || []).filter(item => {
@@ -792,34 +835,7 @@ function TradesTab({ apiKey, playerName }: { apiKey: string; playerName: string 
           />
         </div>
 
-        {/* Negotiation history */}
-        {t.rounds.length > 0 && (
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-wider text-w35 mb-2">Negotiation History</p>
-            <div className="space-y-2 max-h-[200px] overflow-y-auto" style={{ scrollbarWidth: "thin" }}>
-              {t.rounds.map((round, i) => {
-                const isMe = round.by.toLowerCase() === playerName.toLowerCase();
-                return (
-                  <div key={i} className="rounded-lg px-3 py-2" style={{ background: isMe ? "rgba(168,85,247,0.05)" : "rgba(255,255,255,0.02)", border: `1px solid ${isMe ? "rgba(168,85,247,0.1)" : "rgba(255,255,255,0.04)"}` }}>
-                    <div className="flex items-center justify-between mb-1">
-                      <span className="text-xs font-semibold" style={{ color: isMe ? "#a855f7" : "#e8e8e8" }}>{round.byName}</span>
-                      <span className="text-xs text-w15">{timeAgo(round.at)}</span>
-                    </div>
-                    {round.message && <p className="text-xs text-w40 italic">"{round.message}"</p>}
-                    <div className="flex gap-3 mt-1 text-xs text-w20">
-                      {round.initiatorOffer.gold > 0 && <span>{t.initiatorName}: {round.initiatorOffer.gold}g</span>}
-                      {round.recipientOffer.gold > 0 && <span>{t.recipientName}: {round.recipientOffer.gold}g</span>}
-                      {round.initiatorOffer.items.length > 0 && <span>+{round.initiatorOffer.items.length} items</span>}
-                      {round.recipientOffer.items.length > 0 && <span>+{round.recipientOffer.items.length} items</span>}
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        )}
-
-        {/* Actions */}
+        {/* Actions — directly under offers */}
         {t.status === "pending" && isMyTurn && (
           <div className="space-y-3 pt-2">
             {error && <p className="text-xs" style={{ color: "#ef4444" }}>{error}</p>}
@@ -863,7 +879,7 @@ function TradesTab({ apiKey, playerName }: { apiKey: string; playerName: string 
               {tradeableItems.length > 0 && (
                 <div className="mb-3">
                   <label className="text-xs text-w25 block mb-1">Items to offer ({counterItems.length} selected)</label>
-                  <TradeItemGrid items={tradeableItems} selectedIds={counterItems} onToggle={id => toggleTradeItem(id, "counter")} />
+                  <TradeItemGrid items={tradeableItems} selectedIds={counterItems} onToggle={id => toggleTradeItem(id, "counter")} sortKey={tradeSort} onSortChange={setTradeSort} />
                 </div>
               )}
               <label className="text-xs text-w25 block mb-1">Message</label>
@@ -897,6 +913,33 @@ function TradesTab({ apiKey, playerName }: { apiKey: string; playerName: string 
             >
               Cancel Trade
             </button>
+          </div>
+        )}
+
+        {/* Negotiation history — below actions */}
+        {t.rounds.length > 0 && (
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-wider text-w35 mb-2">Negotiation History</p>
+            <div className="space-y-2 max-h-[200px] overflow-y-auto" style={{ scrollbarWidth: "thin" }}>
+              {t.rounds.map((round, i) => {
+                const isMe = round.by.toLowerCase() === playerName.toLowerCase();
+                return (
+                  <div key={i} className="rounded-lg px-3 py-2" style={{ background: isMe ? "rgba(168,85,247,0.05)" : "rgba(255,255,255,0.02)", border: `1px solid ${isMe ? "rgba(168,85,247,0.1)" : "rgba(255,255,255,0.04)"}` }}>
+                    <div className="flex items-center justify-between mb-1">
+                      <span className="text-xs font-semibold" style={{ color: isMe ? "#a855f7" : "#e8e8e8" }}>{round.byName}</span>
+                      <span className="text-xs text-w15">{timeAgo(round.at)}</span>
+                    </div>
+                    {round.message && <p className="text-xs text-w40 italic">&ldquo;{round.message}&rdquo;</p>}
+                    <div className="flex gap-3 mt-1 text-xs text-w20">
+                      {round.initiatorOffer.gold > 0 && <span>{t.initiatorName}: {round.initiatorOffer.gold}g</span>}
+                      {round.recipientOffer.gold > 0 && <span>{t.recipientName}: {round.recipientOffer.gold}g</span>}
+                      {round.initiatorOffer.items.length > 0 && <span>+{round.initiatorOffer.items.length} items</span>}
+                      {round.recipientOffer.items.length > 0 && <span>+{round.recipientOffer.items.length} items</span>}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         )}
       </div>
@@ -937,7 +980,7 @@ function TradesTab({ apiKey, playerName }: { apiKey: string; playerName: string 
           {tradeableItems.length > 0 && (
             <div>
               <label className="text-xs text-w25 block mb-1">Items to offer ({newTradeItems.length} selected)</label>
-              <TradeItemGrid items={tradeableItems} selectedIds={newTradeItems} onToggle={id => toggleTradeItem(id, "new")} />
+              <TradeItemGrid items={tradeableItems} selectedIds={newTradeItems} onToggle={id => toggleTradeItem(id, "new")} sortKey={tradeSort} onSortChange={setTradeSort} />
             </div>
           )}
           <div>

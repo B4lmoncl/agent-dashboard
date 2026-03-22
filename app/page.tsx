@@ -1485,7 +1485,7 @@ export default function Dashboard() {
 
                   {/* Daily Missions Panel */}
                   {dailyMissions && playerName && (
-                    <div className="rounded-xl p-3 mb-3" style={{ background: "linear-gradient(135deg, rgba(99,102,241,0.06) 0%, rgba(168,85,247,0.04) 100%)", border: "1px solid rgba(99,102,241,0.15)" }}>
+                    <div id="daily-missions-section" className="rounded-xl p-3 mb-3" style={{ background: "linear-gradient(135deg, rgba(99,102,241,0.06) 0%, rgba(168,85,247,0.04) 100%)", border: "1px solid rgba(99,102,241,0.15)" }}>
                       <div className="flex items-center justify-between mb-2">
                         <Tip k="daily_missions" heading><span className="text-xs font-bold uppercase tracking-wider" style={{ color: "rgba(99,102,241,0.7)", cursor: "help" }}>Daily Missions</span></Tip>
                         <span className="text-xs font-mono font-bold" style={{ color: dailyMissions.earned >= dailyMissions.total ? "#4ade80" : "#818cf8" }}>
@@ -1969,6 +1969,24 @@ export default function Dashboard() {
         <Suspense fallback={null}>
           <DailyLoginCalendar onClose={() => setLoginCalendarOpen(false)} />
         </Suspense>
+      )}
+
+      {/* Fixed Today button — always visible top-right */}
+      {playerName && !todayOpen && (
+        <button
+          onClick={() => setTodayOpen(true)}
+          className="fixed top-3 right-4 z-[80] btn-interactive text-xs px-3 py-2 rounded-lg font-bold tracking-wide today-header-btn"
+          style={{
+            background: "linear-gradient(135deg, rgba(129,140,248,0.15) 0%, rgba(167,139,250,0.1) 100%)",
+            color: "#a78bfa",
+            border: "1px solid rgba(129,140,248,0.25)",
+            boxShadow: "0 2px 12px rgba(129,140,248,0.12), inset 0 1px 0 rgba(255,255,255,0.05)",
+          }}
+          title="Today's tasks"
+          aria-label="Open today's task overview"
+        >
+          {"\u2726"} Today
+        </button>
       )}
 
       {/* Today Drawer */}
