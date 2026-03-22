@@ -166,7 +166,8 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
                   onClick={() => setRecommitRitualId(ritual.id)}
                   disabled={!reviewApiKey}
                   className="text-xs px-3 py-1.5 rounded-lg font-bold transition-all"
-                  style={{ background: "rgba(167,139,250,0.15)", color: "#a78bfa", border: "1px solid rgba(167,139,250,0.4)", cursor: "pointer", boxShadow: "0 0 10px rgba(167,139,250,0.1)" }}
+                  style={{ background: "rgba(167,139,250,0.15)", color: "#a78bfa", border: "1px solid rgba(167,139,250,0.4)", cursor: !reviewApiKey ? "not-allowed" : "pointer", boxShadow: "0 0 10px rgba(167,139,250,0.1)", opacity: !reviewApiKey ? 0.5 : 1 }}
+                  title={!reviewApiKey ? "Log in to rise again" : "Recommit to this ritual"}
                 >
                   Rise Again
                 </button>
@@ -201,7 +202,7 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
                         });
                         refresh();
                       }
-                    } catch { /* ignore */ }
+                    } catch { /* network error — retry silently */ }
                   }}
                   className="text-xs px-2.5 py-1.5 rounded-lg font-medium transition-all"
                   style={{

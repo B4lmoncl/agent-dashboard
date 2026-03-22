@@ -2008,6 +2008,22 @@ export default function Dashboard() {
           socialBadge={socialBadge}
           expeditionActive={!!expedition}
           dungeonActive={false}
+          onClaimMilestone={async (threshold) => {
+            try {
+              const { getAuthHeaders } = await import("@/lib/auth-client");
+              const r = await fetch("/api/daily-missions/claim", {
+                method: "POST",
+                headers: { ...getAuthHeaders(reviewApiKey!), "Content-Type": "application/json" },
+                body: JSON.stringify({ threshold }),
+              });
+              if (r.ok) {
+                const data = await r.json();
+                const rewardText = Object.entries(data.reward || {}).map(([k, v]) => `+${v} ${k[0].toUpperCase() + k.slice(1)}`).join(", ");
+                addToast({ type: "flavor", message: `Milestone ${threshold} claimed! ${rewardText}`, icon: "/images/icons/currency-gold.png" });
+                refresh();
+              }
+            } catch { /* ignore */ }
+          }}
         />
       )}
 
