@@ -15,7 +15,13 @@
       { "id": "code", "name": "Woche des Codes", "description": "Development-Quests zählen 1.5× für den Sternenpfad, andere Typen nur 0.75×.", "bonusType": "development", "bonusMultiplier": 1.5, "malusMultiplier": 0.75 },
       { "id": "fellowship", "name": "Woche der Kameradschaft", "description": "Social-Quests zählen 1.5× für den Sternenpfad, andere Typen nur 0.75×.", "bonusType": "social", "bonusMultiplier": 1.5, "malusMultiplier": 0.75 },
       { "id": "companion", "name": "Woche der Gefährten", "description": "Companion-Quests zählen 1.5× für den Sternenpfad, andere Typen nur 0.75×.", "bonusType": "companion", "bonusMultiplier": 1.5, "malusMultiplier": 0.75 },
-      { "id": "variety", "name": "Woche der Vielfalt", "description": "Jeder neue Quest-Typ zählt doppelt für den Sternenpfad. Wiederholte Typen nur 0.75×.", "bonusType": "variety", "bonusMultiplier": 2.0, "malusMultiplier": 0.75 }
+      { "id": "variety", "name": "Woche der Vielfalt", "description": "Jeder neue Quest-Typ zählt doppelt für den Sternenpfad. Wiederholte Typen nur 0.75×.", "bonusType": "variety", "bonusMultiplier": 2.0, "malusMultiplier": 0.75 },
+      { "id": "discipline", "name": "Woche der Disziplin", "description": "Health-Quests zählen 1.5× für den Sternenpfad, andere Typen nur 0.75×.", "bonusType": "health", "bonusMultiplier": 1.5, "malusMultiplier": 0.75 },
+      { "id": "craft", "name": "Woche des Handwerks", "description": "Crafting-Quests zählen 1.5× für den Sternenpfad, andere Typen nur 0.75×.", "bonusType": "crafting", "bonusMultiplier": 1.5, "malusMultiplier": 0.75 },
+      { "id": "focus", "name": "Woche des Fokus", "description": "Nur ein einziger Quest-Typ zählt 2× für den Sternenpfad. Alle anderen Typen nur 0.5×.", "bonusType": "single_focus", "bonusMultiplier": 2.0, "malusMultiplier": 0.5 },
+      { "id": "endurance", "name": "Woche der Ausdauer", "description": "Quests ab dem 5. abgeschlossenen Quest der Woche zählen 1.5×. Frühere Quests zählen normal.", "bonusType": "endurance", "bonusMultiplier": 1.5, "malusMultiplier": 0.75 },
+      { "id": "creativity", "name": "Woche der Kreativität", "description": "Creative-Quests zählen 1.5× für den Sternenpfad, andere Typen nur 0.75×.", "bonusType": "creative", "bonusMultiplier": 1.5, "malusMultiplier": 0.75 },
+      { "id": "balance", "name": "Woche der Balance", "description": "Mindestens 2 verschiedene Quest-Typen pro Tag zählen 1.5×. Nur ein Typ am Tag zählt 0.75×.", "bonusType": "balance", "bonusMultiplier": 1.5, "malusMultiplier": 0.75 }
     ],
     "templates": [
       {
@@ -96,6 +102,126 @@
           { "stage": 1, "desc": "Schließe 2 Companion-Quests ab.", "requirement": { "type": "quest_type", "questType": "companion", "count": 2 }, "starThresholds": [2, 3, 4] },
           { "stage": 2, "desc": "Streichle deinen Companion 2x + 3 Companion-Quests.", "requirement": { "type": "quest_type", "questType": "companion", "count": 3 }, "starThresholds": [3, 4, 6] },
           { "stage": 3, "desc": "Schließe 5 Companion-Quests ab.", "requirement": { "type": "quest_type", "questType": "companion", "count": 5 }, "starThresholds": [5, 7, 9] }
+        ]
+      },
+      {
+        "id": "aethersturm",
+        "name": "Aethersturm",
+        "icon": "/images/icons/wc-generic.png",
+        "stages": [
+          { "stage": 1, "desc": "Schließe 4 Quests ab, bevor der Aetherstrom nachlässt.", "requirement": { "type": "total_quests", "count": 4 }, "starThresholds": [4, 6, 8] },
+          { "stage": 2, "desc": "Schließe Quests aus mindestens 4 verschiedenen Kategorien ab.", "requirement": { "type": "unique_types", "count": 4 }, "starThresholds": [4, 5, 6] },
+          { "stage": 3, "desc": "Schließe 12 Quests ab — der Sturm verlangt Ausdauer.", "requirement": { "type": "total_quests", "count": 12 }, "starThresholds": [12, 15, 18] }
+        ]
+      },
+      {
+        "id": "eiserne-disziplin",
+        "name": "Eiserne Disziplin",
+        "icon": "/images/icons/wc-generic.png",
+        "stages": [
+          { "stage": 1, "desc": "Halte deinen Streak 2 Tage und schließe 2 Health-Quests ab.", "requirement": { "type": "quest_type", "questType": "health", "count": 2 }, "starThresholds": [2, 3, 4] },
+          { "stage": 2, "desc": "Schließe 4 Health-Quests ab.", "requirement": { "type": "quest_type", "questType": "health", "count": 4 }, "starThresholds": [4, 5, 7] },
+          { "stage": 3, "desc": "Schließe 6 Health-Quests ab und halte den Streak die ganze Woche.", "requirement": { "type": "quest_type", "questType": "health", "count": 6 }, "starThresholds": [6, 8, 10] }
+        ]
+      },
+      {
+        "id": "flamme-der-schmiede",
+        "name": "Flamme der Schmiede",
+        "icon": "/images/icons/wc-generic.png",
+        "stages": [
+          { "stage": 1, "desc": "Schließe 2 Crafting-Quests ab. Grimvar wartet.", "requirement": { "type": "quest_type", "questType": "crafting", "count": 2 }, "starThresholds": [2, 3, 5] },
+          { "stage": 2, "desc": "Schließe 4 Crafting-Quests ab.", "requirement": { "type": "quest_type", "questType": "crafting", "count": 4 }, "starThresholds": [4, 6, 8] },
+          { "stage": 3, "desc": "Schließe 7 Crafting-Quests ab — die Esse glüht.", "requirement": { "type": "quest_type", "questType": "crafting", "count": 7 }, "starThresholds": [7, 9, 12] }
+        ]
+      },
+      {
+        "id": "wanderers-pflicht",
+        "name": "Wanderers Pflicht",
+        "icon": "/images/icons/wc-generic.png",
+        "stages": [
+          { "stage": 1, "desc": "Schließe 3 Quests beliebigen Typs ab.", "requirement": { "type": "total_quests", "count": 3 }, "starThresholds": [3, 4, 6] },
+          { "stage": 2, "desc": "Schließe 6 Quests ab.", "requirement": { "type": "total_quests", "count": 6 }, "starThresholds": [6, 8, 10] },
+          { "stage": 3, "desc": "Schließe 9 Quests ab und halte den Streak 5 Tage.", "requirement": { "type": "streak_maintained", "count": 5 }, "starThresholds": [5, 6, 7] }
+        ]
+      },
+      {
+        "id": "ruf-der-sterne",
+        "name": "Ruf der Sterne",
+        "icon": "/images/icons/wc-generic.png",
+        "stages": [
+          { "stage": 1, "desc": "Schließe 2 Learning-Quests ab. Die Sterne flüstern.", "requirement": { "type": "quest_type", "questType": "learning", "count": 2 }, "starThresholds": [2, 3, 4] },
+          { "stage": 2, "desc": "Schließe Quests aus mindestens 3 verschiedenen Kategorien ab.", "requirement": { "type": "unique_types", "count": 3 }, "starThresholds": [3, 4, 5] },
+          { "stage": 3, "desc": "Schließe 8 Quests ab, davon mindestens 3 Learning-Quests.", "requirement": { "type": "total_quests", "count": 8 }, "starThresholds": [8, 10, 13] }
+        ]
+      },
+      {
+        "id": "stille-wacht",
+        "name": "Stille Wacht",
+        "icon": "/images/icons/wc-generic.png",
+        "stages": [
+          { "stage": 1, "desc": "Halte deinen Streak 3 Tage. Stille Beständigkeit.", "requirement": { "type": "streak_maintained", "count": 3 }, "starThresholds": [3, 4, 5] },
+          { "stage": 2, "desc": "Schließe 4 Quests ab und halte den Streak 4 Tage.", "requirement": { "type": "streak_maintained", "count": 4 }, "starThresholds": [4, 5, 6] },
+          { "stage": 3, "desc": "Halte den Streak die gesamte Woche. Sieben Tage Wacht.", "requirement": { "type": "streak_maintained", "count": 7 }, "starThresholds": [7, 8, 10] }
+        ]
+      },
+      {
+        "id": "klingenprobe",
+        "name": "Klingenprobe",
+        "icon": "/images/icons/wc-generic.png",
+        "stages": [
+          { "stage": 1, "desc": "Schließe 3 Fitness-Quests ab. Stahl deinen Körper.", "requirement": { "type": "quest_type", "questType": "fitness", "count": 3 }, "starThresholds": [3, 4, 6] },
+          { "stage": 2, "desc": "Schließe 5 Fitness-Quests und 2 Health-Quests ab.", "requirement": { "type": "quest_type", "questType": "fitness", "count": 5 }, "starThresholds": [5, 7, 9] },
+          { "stage": 3, "desc": "Schließe 9 Quests ab, davon mindestens 6 Fitness-Quests.", "requirement": { "type": "total_quests", "count": 9 }, "starThresholds": [9, 11, 14] }
+        ]
+      },
+      {
+        "id": "echos-der-tiefe",
+        "name": "Echos der Tiefe",
+        "icon": "/images/icons/wc-generic.png",
+        "stages": [
+          { "stage": 1, "desc": "Schließe 2 Quests ab. Die Tiefe ruft.", "requirement": { "type": "total_quests", "count": 2 }, "starThresholds": [2, 3, 5] },
+          { "stage": 2, "desc": "Schließe Quests aus mindestens 4 verschiedenen Kategorien ab.", "requirement": { "type": "unique_types", "count": 4 }, "starThresholds": [4, 5, 6] },
+          { "stage": 3, "desc": "Schließe 11 Quests ab — tief genug, um Echos zu hören.", "requirement": { "type": "total_quests", "count": 11 }, "starThresholds": [11, 14, 17] }
+        ]
+      },
+      {
+        "id": "seelenbrand",
+        "name": "Seelenbrand",
+        "icon": "/images/icons/wc-generic.png",
+        "stages": [
+          { "stage": 1, "desc": "Schließe 2 Creative-Quests ab. Entzünde die Flamme.", "requirement": { "type": "quest_type", "questType": "creative", "count": 2 }, "starThresholds": [2, 3, 4] },
+          { "stage": 2, "desc": "Schließe 4 Creative-Quests ab.", "requirement": { "type": "quest_type", "questType": "creative", "count": 4 }, "starThresholds": [4, 5, 7] },
+          { "stage": 3, "desc": "Schließe 6 Creative-Quests ab — der Brand lodert.", "requirement": { "type": "quest_type", "questType": "creative", "count": 6 }, "starThresholds": [6, 8, 10] }
+        ]
+      },
+      {
+        "id": "gesellenpruefung",
+        "name": "Gesellenprüfung",
+        "icon": "/images/icons/wc-generic.png",
+        "stages": [
+          { "stage": 1, "desc": "Schließe je 1 Quest aus 2 verschiedenen Kategorien ab.", "requirement": { "type": "unique_types", "count": 2 }, "starThresholds": [2, 3, 4] },
+          { "stage": 2, "desc": "Schließe je 1 Quest aus 4 verschiedenen Kategorien ab.", "requirement": { "type": "unique_types", "count": 4 }, "starThresholds": [4, 5, 6] },
+          { "stage": 3, "desc": "Schließe je 1 Quest aus 5 Kategorien ab und 10 Quests gesamt.", "requirement": { "type": "unique_types", "count": 5 }, "starThresholds": [5, 6, 7] }
+        ]
+      },
+      {
+        "id": "aschenpfad",
+        "name": "Aschenpfad",
+        "icon": "/images/icons/wc-generic.png",
+        "stages": [
+          { "stage": 1, "desc": "Schließe 3 Development-Quests ab. Der Pfad beginnt.", "requirement": { "type": "quest_type", "questType": "development", "count": 3 }, "starThresholds": [3, 4, 5] },
+          { "stage": 2, "desc": "Schließe 5 Development-Quests und halte den Streak 3 Tage.", "requirement": { "type": "quest_type", "questType": "development", "count": 5 }, "starThresholds": [5, 7, 9] },
+          { "stage": 3, "desc": "Schließe 8 Development-Quests ab. Asche wird zu Stahl.", "requirement": { "type": "quest_type", "questType": "development", "count": 8 }, "starThresholds": [8, 10, 13] }
+        ]
+      },
+      {
+        "id": "mondlicht-marathon",
+        "name": "Mondlicht-Marathon",
+        "icon": "/images/icons/wc-generic.png",
+        "stages": [
+          { "stage": 1, "desc": "Schließe 4 Quests ab. Der Mond steigt.", "requirement": { "type": "total_quests", "count": 4 }, "starThresholds": [4, 5, 7] },
+          { "stage": 2, "desc": "Schließe 7 Quests ab.", "requirement": { "type": "total_quests", "count": 7 }, "starThresholds": [7, 9, 11] },
+          { "stage": 3, "desc": "Schließe 13 Quests ab, bevor der Mond sinkt.", "requirement": { "type": "total_quests", "count": 13 }, "starThresholds": [13, 16, 20] }
         ]
       }
     ]
