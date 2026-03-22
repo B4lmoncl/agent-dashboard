@@ -384,7 +384,7 @@ router.post('/api/world-boss/claim', requireAuth, (req, res) => {
           name: dropId.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase()),
           rarity: 'legendary',
           source: 'world-boss',
-          bossId: template.id,
+          bossId: template ? template.id : boss.bossId,
           obtainedAt: new Date().toISOString(),
         });
         rewards.push({ type: 'legendary-drop', itemId: dropId });
