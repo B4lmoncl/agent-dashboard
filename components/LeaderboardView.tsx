@@ -156,7 +156,7 @@ export default function LeaderboardView({ entries, agents, mode = "agents", onOp
       {/* ── Leaderboard Table ── */}
       <div className="rounded-xl overflow-hidden" style={{ background: "#1e1e1e", border: "1px solid rgba(255,255,255,0.07)" }}>
         <div className="grid px-4 py-2" style={{ gridTemplateColumns: "40px 1fr 80px 80px 80px", color: "rgba(255,255,255,0.3)", fontSize: 12, borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
-          <span>#</span><span>{isPlayerMode ? "Adventurer" : "Agent"}</span><Tip k="player_level"><span className="text-right">Level</span></Tip><Tip k="xp"><span className="text-right">XP</span></Tip><span className="text-right">Quests</span>
+          <span>#</span><span>{isPlayerMode ? "Adventurer" : "Agent"}</span><Tip k="player_level"><span className="text-right">Level</span></Tip><Tip k="xp"><span className="text-right">XP</span></Tip><Tip k="quest_board"><span className="text-right">Quests</span></Tip>
         </div>
         {merged.map((entry) => {
           const meta = agentMetaLb[entry.id?.toLowerCase()] ?? { avatar: entry.avatar ?? entry.id?.slice(0, 2).toUpperCase() ?? "??", color: entry.color ?? "#666" };
