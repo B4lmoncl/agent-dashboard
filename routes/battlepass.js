@@ -13,6 +13,7 @@ function ensureUserBP(user) {
       xp: 0,
       level: 0,
       claimedLevels: [],
+      seasonStartedAt: new Date().toISOString(),
     };
   }
   // Reset if new season
@@ -22,7 +23,12 @@ function ensureUserBP(user) {
       xp: 0,
       level: 0,
       claimedLevels: [],
+      seasonStartedAt: new Date().toISOString(),
     };
+  }
+  // Backfill seasonStartedAt for existing users
+  if (!user.battlePass.seasonStartedAt) {
+    user.battlePass.seasonStartedAt = new Date().toISOString();
   }
 }
 
@@ -45,8 +51,7 @@ router.get("/", requireAuth, (req, res) => {
   const progress = xpInLevel / bpData.config.xpPerLevel;
 
   // Calculate season end
-  const seasonStart = bp.seasonStartedAt || new Date().toISOString();
-  const seasonEnd = new Date(new Date(seasonStart).getTime() + bpData.config.seasonDurationDays * 86400000).toISOString();
+  const seasonEnd = new Date(new Date(bp.seasonStartedAt).getTime() + bpData.config.seasonDurationDays * 86400000).toISOString();
 
   res.json({
     config: bpData.config,
