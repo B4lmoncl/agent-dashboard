@@ -920,6 +920,439 @@ One title is randomly selected each week for the bonus checkpoint reward. All bo
 
 ---
 
+## 15. The Rift — Timed Dungeon Quest Chains
+
+**Data**: `public/data/battlePass.json` (rift XP source defined here), runtime state in `data/`
+**Backend**: `routes/rift.js`
+**Frontend**: `components/RiftView.tsx`
+
+The Rift is a **timed dungeon system** with 3 difficulty tiers. Players enter a Rift, receive a chain of quests, and must complete them within a time limit. Failing (timeout) imposes a cooldown before retrying.
+
+### Tier Structure
+
+| Tier | Quests | Time Limit | Fail Cooldown | Difficulty Multiplier |
+|------|--------|------------|---------------|----------------------|
+| Normal | 3 | 72 hours | 3 days | 1x → 1.5x |
+| Hard | 5 | 48 hours | 5 days | 1.5x → 2.5x |
+| Legendary | 7 | 36 hours | 7 days | 2x → 3.5x |
+
+### Content Needs
+
+Rift quests are generated from the existing **quest catalog** (`questCatalog.json`). The system selects quests with escalating difficulty. No separate Rift-specific quest templates are needed.
+
+**What Lyra should create for The Rift:**
+- **Achievement templates** in `achievementTemplates.json` for Rift milestones (e.g., "Complete first Normal Rift", "Complete a Legendary Rift", "Complete 10 Rifts")
+- **Titles** in `titles.json` for Rift accomplishments (e.g., condition type `rift_completions`)
+- **Loot table entries** in `lootTables.json` for Rift-specific rewards — Rift completion bonus loot should be higher rarity
+- Ensure the **quest catalog** has enough variety and difficulty spread to support 7-quest chains at high difficulty
+
+### When to Generate New Content
+
+- When players report repetitive Rift quest chains (add more quest templates to the catalog)
+- When new achievement milestones are desired (e.g., "Complete 50 Rifts")
+
+---
+
+## 16. Season Pass / Battle Pass
+
+**Data**: `public/data/battlePass.json`
+**Backend**: `routes/battlepass.js`
+**Frontend**: `components/BattlePassView.tsx`
+
+A **40-level reward track** that resets each season (90 days). Players earn Season XP from multiple gameplay activities and claim rewards at each level.
+
+### Config Schema
+
+In `battlePass.json → config`:
+
+```json
+{
+  "levels": 40,
+  "xpPerLevel": 250,
+  "seasonDurationDays": 90,
+  "currentSeason": 1,
+  "seasonName": "Season 1 — Awakening",
+  "seasonTheme": "Die Zirkel erwachen. Die alten Ordnungen formieren sich neu im Turm.",
+  "seasonIcon": "🌅",
+  "seasonAccent": "#a78bfa"
+}
+```
+
+### Reward Schema
+
+In `battlePass.json → rewards[]`:
+
+```json
+{ "level": 1, "type": "gold", "amount": 50 },
+{ "level": 5, "type": "runensplitter", "amount": 5, "milestone": true },
+{ "level": 10, "type": "title", "titleId": "bp_s1_10", "titleName": "Erwachter", "titleRarity": "uncommon", "milestone": true },
+{ "level": 20, "type": "frame", "frameId": "bp_s1_frame", "frameName": "Awakening Frame", "frameColor": "#a78bfa", "milestone": true },
+{ "level": 4, "type": "material", "materialId": "iron_ore", "amount": 3 }
+```
+
+### Reward Types
+
+| Type | Extra Fields | Description |
+|------|-------------|-------------|
+| `gold` | `amount` | Gold currency |
+| `essenz` | `amount` | Essenz currency |
+| `runensplitter` | `amount` | Runensplitter currency |
+| `stardust` | `amount` | Stardust currency |
+| `sternentaler` | `amount` | Sternentaler currency |
+| `mondstaub` | `amount` | Rare currency |
+| `material` | `materialId`, `amount` | Crafting material (ID must exist in `professions.json → materials`) |
+| `title` | `titleId`, `titleName`, `titleRarity` | Exclusive seasonal title |
+| `frame` | `frameId`, `frameName`, `frameColor` | Cosmetic player frame |
+
+**`milestone: true`** marks visually highlighted levels in the UI (levels 5, 10, 15, 20, 25, 30, 35, 40 recommended).
+
+### XP Sources
+
+In `battlePass.json → xpSources`:
+
+```json
+{
+  "quest_complete": { "common": 10, "uncommon": 15, "rare": 25, "epic": 40, "legendary": 60 },
+  "ritual_complete": 8,
+  "vow_clean_day": 5,
+  "daily_mission_milestone": { "100": 10, "300": 15, "500": 20, "750": 30 },
+  "crafting": 5,
+  "rift_stage": 20,
+  "sternenpfad_star": 10,
+  "expedition_checkpoint": 15,
+  "companion_pet": 2,
+  "login": 5
+}
+```
+
+### ⏰ Time-Bound Content Requirement
+
+**Every new season (every ~90 days) requires a complete new Battle Pass:**
+- New `config` with season number, name, theme, icon, accent color
+- New `rewards[]` array with 40 levels of rewards — mix currencies, materials, 2-3 exclusive titles, 1-2 exclusive frames
+- Season titles and frames should have IDs prefixed with `bp_sN_` (e.g., `bp_s2_10`)
+- XP sources can be adjusted per season for balance
+
+### Design Guidelines
+
+- Rewards should escalate: early levels give small currency amounts, later levels give titles/frames/rare currencies
+- Every 5th level should be a milestone with a notable reward
+- Level 40 should always be an epic-rarity title — the crown jewel of the season
+- Include at least 1 frame (around level 20) and 3 titles (levels 10, 25, 40)
+- Season themes should be narratively distinct and tie into faction/world lore
+- Accent color should be unique per season for visual identity
+
+---
+
+## 17. Die Vier Zirkel — Faction System
+
+**Data**: `public/data/factions.json`
+**Backend**: `routes/factions.js`
+**Frontend**: `components/FactionsView.tsx`
+
+Four factions with 6 reputation tiers. Players earn reputation automatically by completing quests whose type matches a faction's affinity. Each tier unlocks claimable rewards.
+
+### Faction Schema
+
+In `factions.json → factions[]`:
+
+```json
+{
+  "id": "glut",
+  "name": "Zirkel der Glut",
+  "icon": "🔥",
+  "accent": "#ef4444",
+  "motto": "Durch Feuer geschmiedet, in Asche geläutert.",
+  "description": "Die Feuer-Asketen des Turms. Meister der körperlichen Disziplin...",
+  "questTypes": ["fitness"],
+  "npcPatron": null,
+  "symbol": "🜂",
+  "rewards": {
+    "friendly": { "title": "Glutwandler", "titleRarity": "uncommon" },
+    "honored": { "recipe": "flask_of_embers", "recipeDesc": "Flask of Embers (+15% Forge Temp recovery)" },
+    "revered": { "frame": "glut_frame", "frameDesc": "Zirkel der Glut Frame" },
+    "exalted": { "title": "Flammenherz", "titleRarity": "epic", "shopDiscount": 10 },
+    "paragon": { "legendaryEffect": "glut_mastery", "effectDesc": "+5% XP for Fitness quests permanently", "title": "Aszendent der Glut", "titleRarity": "legendary" }
+  }
+}
+```
+
+### Current Factions
+
+| Faction | ID | Quest Types | Theme |
+|---------|-----|------------|-------|
+| Zirkel der Glut | `glut` | fitness | Fire/discipline |
+| Zirkel der Tinte | `tinte` | learning | Knowledge/archives |
+| Zirkel des Amboss | `amboss` | development, personal | Craft/creation |
+| Zirkel des Echos | `echo` | social, creative | Connection/community |
+
+### Reputation Standings
+
+In `factions.json → standings[]`:
+
+| Standing | Min Rep | Color |
+|----------|---------|-------|
+| Neutral | 0 | `#6b7280` |
+| Friendly | 500 | `#22c55e` |
+| Honored | 1,500 | `#3b82f6` |
+| Revered | 4,000 | `#a855f7` |
+| Exalted | 8,000 | `#f59e0b` |
+| Paragon | 15,000 | `#ef4444` |
+
+### Rep Per Quest (by rarity)
+
+In `factions.json → repPerQuest`: common=5, uncommon=8, rare=12, epic=20, legendary=35. First 3 quests per faction per week grant 2x rep (weekly bonus).
+
+### Tier Reward Types
+
+| Tier | Reward Type | Description |
+|------|------------|-------------|
+| Friendly | Title (uncommon) | Entry-level faction title |
+| Honored | Recipe | Exclusive crafting recipe (must exist in `professions.json → recipes[]`) |
+| Revered | Frame | Cosmetic player frame |
+| Exalted | Title (epic) + shop discount | Prestigious title + 10% Bazaar discount |
+| Paragon | Legendary effect + title (legendary) | Permanent gameplay bonus + highest-tier title |
+
+### Content Needs
+
+**What Lyra should create for Factions:**
+- **Faction reward titles** in `titles.json` — one per tier per faction (currently 3 per faction: friendly, exalted, paragon)
+- **Faction reward recipes** in `professions.json → recipes[]` — one per faction at Honored tier
+- **NPC patrons** — each faction can have a patron NPC (`npcPatron` field, currently `null`). These could be added as quest givers in `npcQuestGivers.json` with faction-themed quest chains
+- **Flavor text** — motto, description for each faction
+- **Achievements** in `achievementTemplates.json` for faction milestones (e.g., "Reach Exalted with any faction", "Reach Paragon with all factions")
+
+### When to Generate New Content
+
+- When a new faction is added (would require code changes in `routes/factions.js` for quest-type mapping)
+- When new tiers or tier rewards are desired
+- When faction patron NPCs are to be introduced
+
+---
+
+## 18. Social System — The Breakaway
+
+**Backend**: `routes/social.js`
+**Frontend**: `components/SocialView.tsx`, `components/PlayerProfileModal.tsx`
+
+The Social System encompasses friends, direct messaging, item/gold trading, activity feed, player search, and player profiles. Content for this system is mostly player-generated at runtime, but there are template and configuration aspects.
+
+### Content Needs
+
+**What Lyra should create for Social:**
+- **Activity feed event descriptions** — The feed shows quest completions, level-ups, achievements, gacha pulls, drops, and trades. These use existing quest/achievement/item names, so keeping those rich and flavorful improves the social feed quality
+- **Achievements** in `achievementTemplates.json` for social milestones:
+  - "Add first friend"
+  - "Send first message"
+  - "Complete first trade"
+  - "Have 5/10/20 friends"
+- **Titles** in `titles.json` for social accomplishments (e.g., condition types `friends_count`, `trades_completed`, `messages_sent`)
+
+### No Dedicated JSON Template File
+
+The Social System does not have its own template JSON file. It operates on runtime data (friends lists, messages, trade state) stored in `data/`. Content improvement comes through enriching the items, achievements, and titles that appear within the social context.
+
+---
+
+## 19. The Hearth — Tavern / Rest Mode
+
+**Backend**: `routes/players.js`
+**Frontend**: `components/TavernView.tsx`
+
+The Hearth allows players to enter **rest mode** for 1-7 days, freezing streaks and forge temperature. It has a 30-day cooldown between uses.
+
+### Content Needs
+
+**What Lyra should create for The Hearth:**
+- **Achievements** in `achievementTemplates.json` for rest mode usage (e.g., "Take your first rest", "Use rest mode 5 times")
+- **Titles** in `titles.json` related to rest (e.g., "The Weary", "Keeper of the Hearth")
+- **Flavor text** — The Hearth is thematically inspired by Urithiru gathering halls (Stormlight Archive). NPCs, descriptions, and ambient text should match this cozy tavern atmosphere
+
+### No Dedicated JSON Template File
+
+The Hearth's configuration (max days, cooldown period) is defined in code (`routes/players.js`). No separate JSON template file exists for tavern content.
+
+---
+
+## 20. Daily Missions
+
+**Backend**: Built into the dashboard batch endpoint and quest completion hooks
+**Frontend**: Displayed in the main dashboard
+
+An HSR-style daily checklist with 6 missions that reset each day. Completing missions earns points toward 4 milestone tiers (100/300/500/750 points) with currency rewards.
+
+### Mission Types
+
+| Mission | Points | Description |
+|---------|--------|-------------|
+| Login | 50 | Log in to the dashboard |
+| Complete quests | Variable | Complete 1-3 quests |
+| Rituals | Variable | Complete daily rituals |
+| Companion | Variable | Interact with companion |
+| Crafting | Variable | Craft an item |
+| Variety | Variable | Complete different quest types |
+
+### Content Needs
+
+**What Lyra should create for Daily Missions:**
+- **Achievements** in `achievementTemplates.json` for daily mission milestones (e.g., "Reach 750 daily mission points 7 days in a row", "Complete all daily missions 30 times")
+- Daily missions feed into **Battle Pass XP** (see xpSources in `battlePass.json`), so keeping the daily loop engaging supports the season pass progression
+
+### No Dedicated JSON Template File
+
+Daily mission definitions are in code. The milestone rewards are defined in the backend. No separate JSON file to edit.
+
+---
+
+## 21. Workshop Upgrades
+
+**Data**: Defined in `routes/shop.js` (workshop upgrades section)
+**Frontend**: `components/ForgeView.tsx`
+
+Four permanent bonus items purchasable in the Artisan's Quarter. Each has multiple tiers with escalating costs and bonuses.
+
+### Upgrade Items
+
+| Upgrade | Tiers | Effect | Bonus Range |
+|---------|-------|--------|-------------|
+| Gold-Forged Tools | 4 | +% gold from quests | +2-5% |
+| Loot Chance Amulet | 4 | +% item drop chance | +1-3% |
+| Streak Shield Charm | 4 | Auto-save streak 1x/week | 1x |
+| Material Magnet | 4 | +% material drop chance | +5-15% |
+
+### Content Needs
+
+**What Lyra should create for Workshop Upgrades:**
+- **Achievements** in `achievementTemplates.json` for upgrade milestones (e.g., "Purchase first workshop upgrade", "Max out all workshop upgrades")
+- **Titles** in `titles.json` for workshop mastery
+
+### No Dedicated JSON Template File
+
+Workshop upgrade definitions (costs, bonuses, tiers) are in code (`routes/shop.js`). No separate JSON template file.
+
+---
+
+## 22. GameTooltip System
+
+**Frontend**: `components/GameTooltip.tsx`
+
+A rich tooltip framework with 50+ registry entries that provide hover-to-learn information about every stat, currency, and system in the game. Tooltips support cross-references via `GTRef` sub-tooltips.
+
+### Content Needs
+
+**What Lyra should create for GameTooltip:**
+- When adding **new stats, currencies, systems, or mechanics**, ensure a corresponding tooltip registry entry exists in `GameTooltip.tsx`
+- Tooltip entries include: `key`, `title`, `body` (description text), and optional `refs` (cross-links to other tooltips)
+- This requires a **code change** in `components/GameTooltip.tsx` — tooltip definitions are in the component, not in a JSON file
+
+### When to Update
+
+- Every time a new currency, stat, buff type, or game system is added
+- When existing tooltip descriptions become outdated due to balance changes
+
+---
+
+## Content Generation Checklist
+
+A complete reference of ALL content types Lyra can create, which files they belong to, and whether code changes are needed.
+
+| # | Content Type | File | Code Change? | Notes |
+|---|-------------|------|-------------|-------|
+| 1 | Quest templates | `public/data/questCatalog.json` | No | ID prefix by type: `p-`, `d-`, `l-`, `f-`, `s-` |
+| 2 | NPC quest givers | `public/data/npcQuestGivers.json` | No | + portrait image in `public/images/npcs/` |
+| 3 | Gear / equipment | `public/data/gearTemplates.json` | No | Affix-pool style, see Section 3 |
+| 4 | Achievement templates | `public/data/achievementTemplates.json` | No | Points by rarity: 5/10/25/50/100 |
+| 5 | Weekly challenge templates (Sternenpfad) | `public/data/weeklyChallenges.json` | No | Target: 16-20 templates for rotation |
+| 6 | Weekly modifiers (Sternenpfad) | `public/data/weeklyChallenges.json` → `weeklyModifiers[]` | No | Bonus/malus quest type pairs |
+| 7 | Expedition templates | `public/data/expeditions.json` | No | Target: 16-20 templates for rotation |
+| 8 | Expedition bonus titles | `public/data/expeditions.json` → `bonusTitles[]` | No | All should be `epic` rarity |
+| 9 | Battle Pass seasons | `public/data/battlePass.json` | No | Full config + 40 rewards per season |
+| 10 | Faction definitions | `public/data/factions.json` | Yes (quest-type mapping in `routes/factions.js`) | 4 factions currently; adding new ones needs code |
+| 11 | Faction tier rewards | `public/data/factions.json` → per-faction `rewards` | No (if recipe exists) | Titles, frames, recipes, effects |
+| 12 | Titles | `public/data/titles.json` | No | Auto-checked on quest completion |
+| 13 | Shop items (self-care) | `public/data/shopItems.json` | No | Category: `"self-care"` |
+| 14 | Shop items (boosts) | `public/data/shopItems.json` | Only for new effect types (`routes/shop.js`) | Category: `"boost"` |
+| 15 | Consumable items | `public/data/itemTemplates.json` | Yes (effect in `routes/habits-inventory.js`) | Always needs code for new effects |
+| 16 | Gacha pool items | `public/data/gachaPool.json` | No | |
+| 17 | Gacha banners | `public/data/bannerTemplates.json` | No | Featured items must exist in gacha pool |
+| 18 | Loot table entries | `public/data/lootTables.json` | No | Organized by rarity tiers |
+| 19 | Classes | `public/data/classes.json` | No | Includes skill tree + achievements |
+| 20 | Companion profiles & quests | `public/data/companionProfiles.json` | No | `{name}` placeholder in quest text |
+| 21 | Companion ultimates | `public/data/companions.json` → `ultimates.abilities[]` | Yes (new effects in `routes/players.js`) | |
+| 22 | Crafting recipes | `public/data/professions.json` → `recipes[]` | Only for new result types (`routes/crafting.js`) | |
+| 23 | Crafting materials | `public/data/professions.json` → `materials[]` | No | + drop rates in `materialDropRates` |
+| 24 | Quest flavor text | `public/data/questFlavor.json` | No | Flavor/lore snippets for quest display |
+| 25 | Changelog entries | `public/data/changelog.json` | No | Patch notes shown in-game |
+| 26 | Campaign NPCs | `public/data/campaignNpcs.json` | No | NPCs for campaign quest chains |
+| 27 | Ritual/Vow templates | `public/data/ritualVowTemplates.json` | No | Daily ritual definitions |
+| 28 | Season templates | `public/data/seasonTemplates.json` | No | Season theme definitions |
+| 29 | Tooltip registry entries | `components/GameTooltip.tsx` | Yes (code change) | 50+ entries for all game terms |
+
+### Priority Content (Time-Sensitive)
+
+These content types need **regular updates** to prevent staleness:
+
+1. **Weekly Challenge templates** (`weeklyChallenges.json`) — Target 16-20, add 2-4 per month
+2. **Expedition templates** (`expeditions.json`) — Target 16-20, add 2-4 per month
+3. **Battle Pass rewards** (`battlePass.json`) — Full new season every ~90 days
+4. **Quest catalog** (`questCatalog.json`) — Expand regularly to support Rift variety and daily rotation
+5. **NPC quest givers** (`npcQuestGivers.json`) — Add new NPCs periodically for fresh Wanderer's Rest rotation
+6. **Expedition bonus titles** (`expeditions.json → bonusTitles[]`) — Expand pool to prevent repeats
+
+---
+
+## Icon / Image Requirements
+
+When creating new content, the following image assets may need to be generated.
+
+### General Specifications
+
+- **Format**: PNG with transparent background
+- **Style**: Consistent with existing pixel art aesthetic (smooth rendering, not pixelated)
+- **Color palette**: Dark theme compatible (`#0b0d11` background, `#e8e8e8` text, `#ff4444` accents)
+
+### Required Assets by Content Type
+
+| Content Type | Image Needed | Size | Path Pattern |
+|-------------|-------------|------|-------------|
+| NPC quest giver | Portrait | 128x128 or 256x256 | `public/images/npcs/{npc-id}.png` |
+| Crafting profession NPC | Portrait | 128x128 or 256x256 | `public/images/npcs/{npc-id}.png` |
+| Gear / equipment item | Item icon | 64x64 | `public/images/items/icons/{item-id}.png` |
+| Shop item | Shop icon | 64x64 or 128x128 | `public/images/icons/shop-{item-id}.png` |
+| Crafting material | Material icon | 64x64 | `public/images/icons/mat-{material-id}.png` |
+| Achievement | Achievement icon | 64x64 | `public/images/icons/ach-{achievement-id}.png` |
+| Gacha pool item | Item icon | 64x64 or 128x128 | `public/images/icons/gacha-{item-id}.png` |
+| Gacha banner | Banner art | 128x128 | `public/images/icons/banner-{banner-id}.png` |
+| Class | Class icon | 64x64 | `public/images/icons/class-{class-id}.png` |
+| Class skill | Skill icon | 48x48 or 64x64 | `public/images/icons/skill-{skill-id}.png` |
+| Companion | Companion icon | 128x128 | `public/images/companions/{companion-id}.png` |
+| Weekly challenge | Challenge icon | 64x64 | `public/images/icons/challenge-{challenge-id}.png` |
+| Expedition | Expedition icon | 64x64 | `public/images/icons/expedition-{expedition-id}.png` |
+
+### Content Types That Do NOT Require Images
+
+- Titles (text-only, displayed with rarity color)
+- Loot table entries (use existing item icons)
+- Battle Pass rewards (use reward type icons — currency/title/frame icons exist)
+- Faction definitions (use emoji icon field)
+- Changelog entries (text-only)
+- Quest flavor text (text-only)
+- Tooltip registry entries (text-only)
+- Workshop upgrades (use existing forge icons)
+- Daily missions (use system icons)
+
+### Image Checklist
+
+When adding new visual content:
+
+- [ ] Image is PNG with transparent background
+- [ ] Image matches the size recommendation for its type
+- [ ] Image is placed in the correct `public/images/` subdirectory
+- [ ] The JSON entry references the image path as `/images/...` (not `public/images/...`)
+- [ ] Image style is consistent with existing game art
+
+---
+
 ## Checkliste für neuen Content
 
 - [ ] ID ist einzigartig (prüfe mit `grep -r "deine-id" public/data/`)
@@ -1059,7 +1492,18 @@ Die Berufs-NPCs aus `professions.json` referenzieren Portraits die nicht existie
 | Shop/Bazaar | `public/data/shopItems.json` | Nur für neue Effekt-Typen (shop.js) |
 | Consumables | `public/data/itemTemplates.json` | Ja (Effekt in habits-inventory.js) |
 | Loot-Tables | `public/data/lootTables.json` | Nein |
-| Achievements | `public/data/achievementTemplates.json` | Ggf. Trigger in state.js |
+| Achievements | `public/data/achievementTemplates.json` | Nein (datengetrieben) |
 | Klassen | `public/data/classes.json` | Nein |
 | Companions | `public/data/companionProfiles.json` | Nein |
+| Companion Ultimates | `public/data/companions.json` | Ja (Effekte in players.js) |
 | Crafting/Berufe | `public/data/professions.json` | Nur für neue Rezept-Effekte |
+| Weekly Challenges | `public/data/weeklyChallenges.json` | Nein |
+| Expeditions | `public/data/expeditions.json` | Nein |
+| Battle Pass / Season | `public/data/battlePass.json` | Nein |
+| Factions | `public/data/factions.json` | Ja (neue Fraktionen brauchen Code) |
+| Campaign NPCs | `public/data/campaignNpcs.json` | Nein |
+| Quest Flavor Text | `public/data/questFlavor.json` | Nein |
+| Changelog | `public/data/changelog.json` | Nein |
+| Season Templates | `public/data/seasonTemplates.json` | Nein |
+| Ritual/Vow Templates | `public/data/ritualVowTemplates.json` | Nein |
+| GameTooltip Registry | `components/GameTooltip.tsx` | Ja (Code-Änderung) |
