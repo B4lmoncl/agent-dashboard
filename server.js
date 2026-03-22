@@ -124,6 +124,7 @@ app.use(require('./routes/social'));
 app.use(require('./routes/rift'));
 app.use('/api/factions', require('./routes/factions'));
 app.use('/api/battlepass', require('./routes/battlepass'));
+app.use(require('./routes/world-boss'));
 app.use(require('./routes/npcs-misc'));  // Must be last (has SPA fallback catch-all)
 
 // ─── Express error handler (catch-all for unhandled route errors) ────────────
@@ -193,6 +194,8 @@ require('./routes/crafting').loadProfessions();
 require('./routes/challenges-weekly').loadWeeklyChallenges();
 require('./routes/expedition').loadExpeditions();
 require('./routes/expedition').loadExpeditionState();
+require('./routes/world-boss').loadWorldBossState();
+require('./routes/world-boss').checkAutoSpawn();
 
 // Migrate legacy equipment (string IDs → rolled instances) — only if needed
 {

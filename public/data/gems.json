@@ -1,0 +1,59 @@
+{
+  "gems": [
+    { "id": "ruby",     "name": "Ruby",     "stat": "kraft",     "color": "#ef4444", "icon": "🔴", "tiers": [
+      { "tier": 1, "name": "Chipped Ruby",    "statBonus": 2 },
+      { "tier": 2, "name": "Flawed Ruby",     "statBonus": 4 },
+      { "tier": 3, "name": "Ruby",            "statBonus": 7 },
+      { "tier": 4, "name": "Flawless Ruby",   "statBonus": 11 },
+      { "tier": 5, "name": "Royal Ruby",      "statBonus": 16 }
+    ]},
+    { "id": "sapphire",  "name": "Sapphire",  "stat": "weisheit",  "color": "#3b82f6", "icon": "🔵", "tiers": [
+      { "tier": 1, "name": "Chipped Sapphire",  "statBonus": 2 },
+      { "tier": 2, "name": "Flawed Sapphire",   "statBonus": 4 },
+      { "tier": 3, "name": "Sapphire",          "statBonus": 7 },
+      { "tier": 4, "name": "Flawless Sapphire", "statBonus": 11 },
+      { "tier": 5, "name": "Royal Sapphire",    "statBonus": 16 }
+    ]},
+    { "id": "emerald",   "name": "Emerald",   "stat": "glueck",    "color": "#22c55e", "icon": "🟢", "tiers": [
+      { "tier": 1, "name": "Chipped Emerald",   "statBonus": 2 },
+      { "tier": 2, "name": "Flawed Emerald",    "statBonus": 4 },
+      { "tier": 3, "name": "Emerald",           "statBonus": 7 },
+      { "tier": 4, "name": "Flawless Emerald",  "statBonus": 11 },
+      { "tier": 5, "name": "Royal Emerald",     "statBonus": 16 }
+    ]},
+    { "id": "topaz",     "name": "Topaz",     "stat": "ausdauer",  "color": "#f59e0b", "icon": "🟡", "tiers": [
+      { "tier": 1, "name": "Chipped Topaz",     "statBonus": 2 },
+      { "tier": 2, "name": "Flawed Topaz",      "statBonus": 4 },
+      { "tier": 3, "name": "Topaz",             "statBonus": 7 },
+      { "tier": 4, "name": "Flawless Topaz",    "statBonus": 11 },
+      { "tier": 5, "name": "Royal Topaz",       "statBonus": 16 }
+    ]},
+    { "id": "amethyst",  "name": "Amethyst",  "stat": "vitalitaet","color": "#a855f7", "icon": "🟣", "tiers": [
+      { "tier": 1, "name": "Chipped Amethyst",  "statBonus": 2 },
+      { "tier": 2, "name": "Flawed Amethyst",   "statBonus": 4 },
+      { "tier": 3, "name": "Amethyst",          "statBonus": 7 },
+      { "tier": 4, "name": "Flawless Amethyst", "statBonus": 11 },
+      { "tier": 5, "name": "Royal Amethyst",    "statBonus": 16 }
+    ]},
+    { "id": "diamond",   "name": "Diamond",   "stat": "fokus",     "color": "#e2e8f0", "icon": "💎", "tiers": [
+      { "tier": 1, "name": "Chipped Diamond",   "statBonus": 2 },
+      { "tier": 2, "name": "Flawed Diamond",    "statBonus": 4 },
+      { "tier": 3, "name": "Diamond",           "statBonus": 7 },
+      { "tier": 4, "name": "Flawless Diamond",  "statBonus": 11 },
+      { "tier": 5, "name": "Royal Diamond",     "statBonus": 16 }
+    ]}
+  ],
+  "socketsByRarity": {
+    "common": [0, 0],
+    "uncommon": [0, 1],
+    "rare": [1, 1],
+    "epic": [1, 2],
+    "legendary": [2, 3]
+  },
+  "dropConfig": {
+    "baseChance": 0.15,
+    "questRarityBonus": { "common": 0, "uncommon": 0.05, "rare": 0.10, "epic": 0.15, "legendary": 0.25 },
+    "maxTierByLevel": { "1": 1, "10": 2, "20": 3, "30": 4, "40": 5 },
+    "upgradeCost": { "gold": 100, "gemsRequired": 3 }
+  }
+}
