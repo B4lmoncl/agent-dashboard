@@ -1950,9 +1950,30 @@ When adding new visual content:
 - [ ] `node scripts/verify-items.js` läuft ohne Fehler
 - [ ] Server startet ohne Fehler nach der Änderung
 
-## Fehlende Assets & Content (Stand: 2026-03-19)
+## Fehlende Assets & Content (Stand: 2026-03-22)
 
-Folgende Bilder, Portraits und Icons werden im Code referenziert, existieren aber noch nicht. Müssen als PNG erstellt werden (empfohlen: 64×64 oder 128×128, transparenter Hintergrund).
+Folgende Bilder, Portraits und Icons werden im Code referenziert, existieren aber noch nicht. Müssen als PNG erstellt werden (transparenter Hintergrund).
+
+### Zusammenfassung
+
+| Kategorie | Fehlend | Größe | Priorität |
+|-----------|---------|-------|-----------|
+| Floor-Banner | 5 | 1200×200px | HOCH |
+| Gear Item Icons | 251 | 128×128px | HOCH |
+| Unique Item Icons | 14 | 128×128px | HOCH |
+| Consumable Icons | 18 | 128×128px | HOCH |
+| Crafting Materials | 13 | 24×24px | MITTEL |
+| Shop/Workshop | 18 | 32×32px | MITTEL |
+| Nav/Room Icons | 4 | 24×24px | MITTEL |
+| Profession Icons | 4 | 32×32px | MITTEL |
+| Profession NPC Portraits | 4 | 128×128px | MITTEL |
+| Weekly Challenges | 8 | 24×24px | NIEDRIG |
+| Expedition Locations | 8 | 64×64px | NIEDRIG |
+| Companion Ultimates | 3 | 32×32px | NIEDRIG |
+| Achievement Icons | 31 | 64×64px | NIEDRIG |
+| NPC Role Icons | 2 | 24×24px | NIEDRIG |
+| Klassen-Assets | 6 | 64×64px | NIEDRIG |
+| **GESAMT** | **~389** | | |
 
 ### Shop-Icons (14 fehlend)
 
@@ -1991,17 +2012,101 @@ Folgende Bilder, Portraits und Icons werden im Code referenziert, existieren abe
 | Feuerwurz | `public/images/icons/mat-feuerwurz.png` |
 | Sternenfrucht | `public/images/icons/mat-sternenfrucht.png` |
 
-### Item-Template-Icons (50 fehlend)
+### Gear-Icons (251 fehlend) — 128×128px
 
-Icons aus `itemTemplates.json` unter `public/images/items/icons/` — betrifft Gear-Items die als Loot/Inventar-Items referenziert werden:
-- **T1 (14 Items):** `t1-sword`, `t1-dagger`, `t1-staff`, `t1-axe`, `t1-shield`, `t1-buckler`, `t1-helm`, `t1-hood`, `t1-armor`, `t1-tunic`, `t1-amulet`, `t1-charm`, `t1-boots`, `t1-sandals`
-- **T2 (13 Items):** `t2-sword`, `t2-katana`, `t2-hammer`, `t2-shield`, `t2-tower`, `t2-helm`, `t2-circlet`, `t2-armor`, `t2-brigandine`, `t2-amulet`, `t2-pendant`, `t2-boots`, `t2-strider`
-- **T3 (12 Items):** `t3-sword`, `t3-lance`, `t3-wand`, `t3-shield`, `t3-barrier`, `t3-helm`, `t3-crown`, `t3-armor`, `t3-plate`, `t3-amulet`, `t3-eye`, `t3-boots`, `t3-shadow`
-- **T4 (10 Items):** `t4-dawn`, `t4-void`, `t4-aegis`, `t4-crown`, `t4-armor`, `t4-heart`, `t4-boots`, `t4-excalibur`, `t4-phoenix`, `t4-oracle`
+Alle Items aus `gearTemplates.json`. Pfad-Format: `public/images/items/icons/{id}.png`
 
-Pfad-Format: `public/images/items/icons/{id}.png`
+**Existing Gear (55 Items):**
+- **T1 (14):** `t1-sword`, `t1-dagger`, `t1-staff`, `t1-axe`, `t1-shield`, `t1-buckler`, `t1-helm`, `t1-hood`, `t1-armor`, `t1-tunic`, `t1-amulet`, `t1-charm`, `t1-boots`, `t1-sandals`
+- **T2 (13):** `t2-sword`, `t2-katana`, `t2-hammer`, `t2-shield`, `t2-tower`, `t2-helm`, `t2-circlet`, `t2-armor`, `t2-brigandine`, `t2-amulet`, `t2-pendant`, `t2-boots`, `t2-strider`
+- **T3 (13):** `t3-sword`, `t3-lance`, `t3-wand`, `t3-shield`, `t3-barrier`, `t3-helm`, `t3-crown`, `t3-armor`, `t3-plate`, `t3-amulet`, `t3-eye`, `t3-boots`, `t3-shadow`
+- **T4 (15):** `t4-dawn`, `t4-void`, `t4-aegis`, `t4-crown`, `t4-armor`, `t4-heart`, `t4-boots`, `t4-excalibur`, `t4-phoenix`, `t4-oracle`, `t4-nightfall`, `t4-rhythm`, `t4-sentinel`, `t4-midas`, `t4-scholar`
 
-**Hinweis:** `gearTemplates.json` (Affix-Definitions) hat kein `icon`-Feld — nur `itemTemplates.json` (Inventar-Items) referenziert diese Icons.
+**General Pool — gen-* (65 Items):**
+- **Common (12):** `gen-knochen-dolch`, `gen-reisigschild`, `gen-flickenhaube`, `gen-sackleinen-wams`, `gen-bindfaden-kette`, `gen-barfuss-wraps`, `gen-kupfer-saebel`, `gen-stroh-sandalen`, `gen-messingkeule`, `gen-zinn-keule`, `gen-rost-brustplatte`, `gen-bergarbeiter-helm`
+- **Uncommon (17):** `gen-hirschhorn-bogen`, `gen-wachsschild`, `gen-kraehen-kappe`, `gen-wanderer-mantel`, `gen-bernstein-anhanger`, `gen-pelz-stiefel`, `gen-nebel-klinge`, `gen-spiegel-schild`, `gen-gelehrten-hut`, `gen-genietete-weste`, `gen-windlaeufer-amulett`, `gen-ranger-stiefel`, `gen-schuppenhemd`, `gen-schild-der-wacht`, `gen-silber-medaillon`, `gen-pilger-stiefel`, `gen-alchemisten-ring`
+- **Rare (18):** `gen-wildschwein-speer`, `gen-eisen-streitaxt`, `gen-aether-stab`, `gen-dorn-schild`, `gen-stahl-visier`, `gen-doppelring-kette`, `gen-knorpel-amulett`, `gen-beschlagene-stiefel`, `gen-flammen-hammer`, `gen-falkner-haube`, `gen-geflochtene-ruestung`, `gen-waldschreiter`, `gen-sturm-hellebarde`, `gen-panzermantel`, `gen-eid-amulett`, `gen-eisenwurz-treter`, `gen-frostmantel`, `gen-nebel-helm`
+- **Epic (13):** `gen-mondsichel`, `gen-runen-pavise`, `gen-kriegs-helm`, `gen-aethermantel`, `gen-auge-des-wanderers`, `gen-wolkenschreiter`, `gen-titan-schild`, `gen-aether-krone`, `gen-zerschmetterer`, `gen-seher-amulett`, `gen-himmelsschreiter`, `gen-grenzgaenger-schwert`, `gen-kriegs-gamaschen`
+- **Legendary (5):** `gen-seelenbrecher`, `gen-irrlichter-stab`, `gen-ewiger-schild`, `gen-sternstaub-krone`, `gen-schattenweber-robe`
+
+**Dungeon — dun-* (34 Items):**
+- **Sunken Archive (12):** `dun-archive-tinten-schwert`, `dun-archive-pergament-schild`, `dun-archive-bibliothekars-kappe`, `dun-archive-nasse-robe`, `dun-archive-bernstein-amulett`, `dun-archive-flut-stiefel`, `dun-archive-chronisten-feder`, `dun-archive-tiefenhelm`, `dun-archive-wissen-panzer`, `dun-archive-tidenring`, `dun-archive-gezeitenstiefel`, `dun-archive-wellen-schild`
+- **Shattered Spire (12):** `dun-spire-prisma-klinge`, `dun-spire-kristall-schild`, `dun-spire-splitter-helm`, `dun-spire-resonanz-ruestung`, `dun-spire-funken-amulett`, `dun-spire-ladungs-stiefel`, `dun-spire-energie-klinge`, `dun-spire-arkaner-schild`, `dun-spire-prismen-krone`, `dun-spire-energiepanzer`, `dun-spire-blitz-amulett`, `dun-spire-gleiter-stiefel`
+- **Hollow Core (10):** `dun-core-leere-sense`, `dun-core-nichts-schild`, `dun-core-abgrund-haube`, `dun-core-schatten-ruestung`, `dun-core-leere-amulett`, `dun-core-void-stiefel`, `dun-core-abyssale-klinge`, `dun-core-kern-schild`, `dun-core-leere-robe`, `dun-core-dunkelheit-helm`
+
+**Rift — rift-* (19 Items):**
+- **Normal (4):** `rift-normal-spalt-schwert`, `rift-normal-verzerrte-ruestung`, `rift-normal-flicker-helm`, `rift-normal-echo-stiefel`
+- **Hard (5):** `rift-hard-phasen-klinge`, `rift-hard-dimensionsschild`, `rift-hard-zerbrochene-krone`, `rift-hard-riss-amulett`, `rift-hard-warp-stiefel`
+- **Legendary (5):** `rift-legend-weltenriss-schwert`, `rift-legend-paradox-ruestung`, `rift-legend-null-amulett`, `rift-legend-entropie-helm`, `rift-legend-zerriss-stiefel`
+- **Mythic+ (5):** `rift-mythic-unendlichkeits-klinge`, `rift-mythic-ewigkeits-panzer`, `rift-mythic-omega-helm`, `rift-mythic-horizont-amulett`, `rift-mythic-singularitaet-stiefel`
+
+**Faction — fac-* (24 Items):**
+- **Glut (6):** `fac-glut-weapon`, `fac-glut-shield`, `fac-glut-helm`, `fac-glut-armor`, `fac-glut-amulet`, `fac-glut-boots`
+- **Tinte (6):** `fac-tinte-weapon`, `fac-tinte-shield`, `fac-tinte-helm`, `fac-tinte-armor`, `fac-tinte-amulet`, `fac-tinte-boots`
+- **Amboss (6):** `fac-amboss-weapon`, `fac-amboss-shield`, `fac-amboss-helm`, `fac-amboss-armor`, `fac-amboss-amulet`, `fac-amboss-boots`
+- **Echo (6):** `fac-echo-weapon`, `fac-echo-shield`, `fac-echo-helm`, `fac-echo-armor`, `fac-echo-amulet`, `fac-echo-boots`
+
+**Challenge — ch-* (15 Items):**
+- **Sternenpfad (9):** `ch-stern-3star-weapon`, `ch-stern-3star-armor`, `ch-stern-3star-amulet`, `ch-stern-6star-helm`, `ch-stern-6star-shield`, `ch-stern-6star-boots`, `ch-stern-9star-weapon`, `ch-stern-9star-armor`, `ch-stern-9star-amulet`
+- **Expedition (6):** `ch-exped-cp1-helm`, `ch-exped-cp2-shield`, `ch-exped-cp3-armor`, `ch-exped-bonus-weapon`, `ch-exped-boots`, `ch-exped-amulet`
+
+**Battle Pass — bp-* (16 Items):**
+`bp-lv5-weapon`, `bp-lv5-helm`, `bp-lv10-shield`, `bp-lv10-armor`, `bp-lv15-amulet`, `bp-lv15-boots`, `bp-lv20-weapon`, `bp-lv20-helm`, `bp-lv25-shield`, `bp-lv25-armor`, `bp-lv30-amulet`, `bp-lv30-boots`, `bp-lv35-weapon`, `bp-lv35-helm`, `bp-lv40-armor`, `bp-lv40-amulet`
+
+**World Boss — wb-* (9 Items):**
+`wb-wyrm-gauntlets`, `wb-colossus-brustplatte`, `wb-hydra-schild`, `wb-phantom-amulet`, `wb-golem-helm`, `wb-seraph-robe`, `wb-leviathan-stiefel`, `wb-sovereign-waffe`, `wb-weaver-shield`
+
+**Gacha — gacha-* (7 Items):**
+`gacha-astral-stab`, `gacha-astral-helm`, `gacha-astral-stiefel`, `gacha-wheel-amulet`, `gacha-wheel-armor`, `gacha-wheel-waffe`, `gacha-wheel-schild`
+
+**Endgame — end-* (7 Items):**
+`end-ewiger-bogen`, `end-weltenbrecher`, `end-urschild`, `end-aetherkrone`, `end-sternenmantel`, `end-schicksals-amulett`, `end-ewige-stiefel`
+
+### Unique Item Icons (14 fehlend) — 128×128px
+
+Aus `uniqueItems.json`. Pfad-Format: `public/images/uniques/{id}.png`
+
+| ID | Name | Slot | Source |
+|----|------|------|--------|
+| wyrm-scale-shield | Wyrm-Scale Aegis | shield | world_boss |
+| colossus-ember-amulet | Ember of the Colossus | amulet | world_boss |
+| hydra-focus-helm | Crown of Clarity | helm | world_boss |
+| archive-codex | Codex of the Deep | armor | dungeon |
+| spire-edge | Spire's Edge | weapon | dungeon |
+| void-pendant | Pendant of the Hollow | amulet | dungeon |
+| doubt-whisper-boots | Schritte des Zweifels | boots | world_boss |
+| entropy-web-armor | Netz der Entropie | armor | world_boss |
+| stagnation-helm | Krone der Stille | helm | world_boss |
+| perfection-wings | Schwingen der Perfektion | amulet | world_boss |
+| isolation-trident | Dreizack der Leere | weapon | world_boss |
+| apathy-crown | Krone des Vergessenen Throns | helm | world_boss |
+| astral-veil | Schleier der Sternenwächterin | armor | gacha |
+| wheel-of-fate-shield | Schild des Schicksalsrads | shield | gacha |
+
+### Consumable Icons (18 fehlend) — 128×128px
+
+Neue Consumables aus `itemTemplates.json`. Pfad-Format: `public/images/icons/{id}.png`
+
+| ID | Name | Rarity |
+|----|------|--------|
+| elixir-aetherfokus | Elixier des Aetherfokus | rare |
+| rift-essenz | Rissessenz | epic |
+| elixir-glueckstern | Elixier des Glückssterns | rare |
+| aetherbrot | Aetherbrot | common |
+| sternenstaub-trank | Sternenstaubtrank | epic |
+| runensplitter-phiole | Runensplitter-Phiole | rare |
+| bond-elixier | Gefährten-Elixier | rare |
+| schmiedeglut-gross | Große Schmiedeglut | epic |
+| sternentaler-beutel | Sternentaler-Beutel | epic |
+| erfahrungs-kristall-gross | Großer Erfahrungskristall | rare |
+| gold-muenze-alt | Alte Goldmünze | uncommon |
+| notration | Notration | common |
+| fraktions-empfehlung | Fraktionsempfehlung | rare |
+| handwerkersegen | Handwerkersegen | uncommon |
+| expeditions-proviant | Expeditionsproviant | uncommon |
+| dungeon-schluessel | Verzierter Dungeonschlüssel | rare |
+| rift-stabilisator | Rift-Stabilisator | epic |
+| aether-konzentrat | Aetherkonzentrat | legendary |
 
 ### Achievement-Icons (31 mit Platzhalter "?")
 
