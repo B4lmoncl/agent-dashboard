@@ -620,12 +620,14 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                               headers: { "Content-Type": "application/json", ...getAuthHeaders(reviewApiKey) },
                               body: JSON.stringify({ gearId: gear.id }),
                             });
-                            if (r.ok) { onRefresh?.(); fetchData(); }
-                          } catch { /* ignore */ }
+                            if (r.ok) { onRefresh?.(); fetchData(); setCraftResult("Tool purchased!"); }
+                            else { const d = await r.json().catch(() => ({})); setCraftResult(d.error || "Purchase failed"); }
+                          } catch { setCraftResult("Network error"); }
                           setBuyingTool(null);
                         }}
                         disabled={!canBuy || buyingTool === gear.id}
                         className="forge-btn text-xs px-2.5 py-1 rounded-lg font-semibold flex-shrink-0"
+                        title={!canBuy ? "Not enough gold" : `Buy for ${gear.price}g`}
                         style={{
                           background: canBuy ? "rgba(99,102,241,0.2)" : "rgba(255,255,255,0.03)",
                           color: canBuy ? "#818cf8" : "rgba(255,255,255,0.2)",
@@ -685,12 +687,14 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                             headers: { "Content-Type": "application/json", ...getAuthHeaders(reviewApiKey) },
                             body: JSON.stringify({ upgradeId: up.id }),
                           });
-                          if (r.ok) { onRefresh?.(); fetchData(); }
-                        } catch { /* ignore */ }
+                          if (r.ok) { onRefresh?.(); fetchData(); setCraftResult("Upgrade purchased!"); }
+                          else { const d = await r.json().catch(() => ({})); setCraftResult(d.error || "Upgrade failed"); }
+                        } catch { setCraftResult("Network error"); }
                         setBuyingUpgrade(null);
                       }}
                       disabled={!canAfford || buyingUpgrade === up.id}
                       className="forge-btn text-xs px-2.5 py-1 rounded-lg font-semibold flex-shrink-0"
+                      title={!canAfford ? "Not enough gold or materials" : `Upgrade for ${up.cost}g`}
                       style={{
                         background: canAfford ? "rgba(168,85,247,0.2)" : "rgba(255,255,255,0.03)",
                         color: canAfford ? "#a78bfa" : "rgba(255,255,255,0.2)",
