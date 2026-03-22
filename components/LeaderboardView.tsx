@@ -169,7 +169,7 @@ export default function LeaderboardView({ entries, agents, mode = "agents", onOp
           return (
             <div
               key={entry.id}
-              className={`grid px-4 py-3 items-center${isPlayerMode && onOpenProfile ? " cursor-pointer hover:bg-white/[0.03] transition-colors" : ""}`}
+              className={`cv-auto grid px-4 py-3 items-center${isPlayerMode && onOpenProfile ? " cursor-pointer hover:bg-white/[0.03] transition-colors" : ""}`}
               onClick={isPlayerMode && onOpenProfile ? () => onOpenProfile(entry.id) : undefined}
               style={{
                 gridTemplateColumns: "40px 1fr 80px 80px 80px",
