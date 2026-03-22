@@ -2284,4 +2284,89 @@ Both `POST /:factionId/claim` (faction reward claiming) and `resetWeeklyBonuses(
 
 ---
 
+## 31. New Features Audit — Session 15 (2026-03-22)
+
+### 31.1 Features Audited
+
+| Feature | Backend | Frontend | Data |
+|---------|---------|----------|------|
+| **Dungeon System** | `routes/dungeons.js` | `components/DungeonView.tsx` | `public/data/dungeons.json` |
+| **World Boss** | `routes/world-boss.js` | `components/WorldBossView.tsx` | `public/data/worldBosses.json` |
+| **Gem/Socket System** | `routes/gems.js` | `CharacterView.tsx` (gem tab) | `public/data/gems.json` |
+| **Unique Items** | `lib/helpers.js` (createUniqueInstance) | `CharacterView.tsx` (collection log) | `public/data/uniqueItems.json` |
+| **Companion Expeditions** | `routes/players.js` | (Backend only, no UI) | `public/data/companionExpeditions.json` |
+| **Rift — Mythic+** | `routes/rift.js` | `components/RiftView.tsx` | (Inline config) |
+| **Level Cap 50** | `lib/helpers.js` | `app/utils.ts` | `public/data/levels.json` |
+
+### 31.2 Critical Bugs Found & Fixed
+
+| # | Bug | Severity | Fix | Commit |
+|---|-----|----------|-----|--------|
+| 1 | **Dungeon success calculated independently per player** — each collector got an independent `Math.random()`, so one player could "succeed" while another "failed" in the same run | **CRITICAL** | Success now determined once (first collector), stored on run object, reused by subsequent collectors | `03c5c3a` |
+| 2 | **Dungeon gear drops not actually rolled** — `rollDungeonRewards()` set `gearDrop: true` but never created an actual gear item | **CRITICAL** | Now calls `rollLoot()` + `addLootToInventory()` with minimum rarity enforcement from dungeon config | `03c5c3a` |
+| 3 | **Dungeon material IDs invalid** — hardcoded English IDs (`iron-ore`, `leather-scraps`) that don't exist in the crafting system; actual IDs are German (`eisenerz`, `magiestaub`) | **CRITICAL** | Now uses `state.professionsData.materials` to pick real material IDs | `03c5c3a` |
+| 4 | **Companion expedition gem key format wrong** — stored as `ruby_t1` but gem system expects `ruby_1` | **CRITICAL** | Fixed key format: `${gem.id}_${tier}` instead of `${gem.id}_t${tier}` | `03c5c3a` |
+| 5 | **World boss frames stored in `user.frames`** — every other system uses `user.unlockedFrames`; frames from world boss were invisible to frontend | **CRITICAL** | Changed to `user.unlockedFrames` for consistency | `03c5c3a` |
+| 6 | **Gear score ignored socketed gem bonuses** — `getGearScore()` only counted item levels, not gem stat bonuses | **HIGH** | Now adds `floor(statBonus/2)` per socketed gem to gear score | `03c5c3a` |
+| 7 | **Dungeon unique item drops not implemented** — unique items with `source: "dungeon:*"` existed in data but no code to drop them | **HIGH** | Added unique item roll logic to dungeon collect, with collection log tracking | `03c5c3a` |
+| 8 | **World boss damage error silently swallowed** — `dealBossDamage` in try/catch caught ALL errors, not just missing module | **MEDIUM** | Now logs actual errors; only suppresses MODULE_NOT_FOUND during boot | `2dae6ca` |
+| 9 | **Missing tooltip registry entries** — `Tip k="dungeons"` and `Tip k="world_boss"` rendered empty | **MEDIUM** | Added both entries to GameTooltip.tsx TOOLTIP_REGISTRY | `2dae6ca` |
+| 10 | **DungeonView create modal missing ESC key dismiss** — inconsistent with other modals | **LOW** | Added `useEffect` keydown handler for Escape | `2dae6ca` |
+
+### 31.3 Architecture Notes for New Features
+
+#### Dungeon System ("The Undercroft")
+- **Room**: The Great Halls → The Undercroft
+- **Persistence**: `data/dungeonState.json` (activeRuns, cooldowns, history)
+- **Flow**: Create run (invite friends) → friends join → auto-start at minPlayers → 8h idle timer → each player collects → finalize when all collected
+- **Key design**: Success is group-wide (determined once per run), rewards are individual (each player gets own rolls)
+- **State on run object**: `run.success`, `run.effectivePower`, `run.successChance` — set by first collector, reused by rest
+
+#### World Boss System ("The Colosseum")
+- **Room**: The Great Halls → The Colosseum
+- **Persistence**: `data/worldBoss.json`
+- **Integration**: `dealBossDamage()` called from `onQuestCompletedByUser()` in helpers.js — every quest completion deals damage
+- **Damage multiplier**: Gear Score / 50 * 10% (capped at +100%)
+- **Auto-spawn**: `checkAutoSpawn()` called periodically; spawns after `spawnIntervalDays` since last boss ended
+
+#### Gem/Socket System
+- **Key format**: `{gemType}_{tier}` (e.g., `ruby_1`, `sapphire_3`)
+- **Socket count**: Determined by item rarity via `socketsByRarity` config
+- **Gear score integration**: Each socketed gem adds `floor(statBonus/2)` to item's gear score contribution
+- **6 gem types**: Ruby (kraft), Sapphire (weisheit), Emerald (glueck), Topaz (ausdauer), Amethyst (vitalitaet), Diamond (fokus)
+- **5 tiers**: Chipped (1) → Flawed (2) → [Name] (3) → Flawless (4) → Royal (5)
+
+#### Unique Items
+- **Source format**: `world_boss:{bossId}` or `dungeon:{dungeonId}`
+- **Drop**: Rolled during world boss claim or dungeon collect; checks ownership to prevent duplicates
+- **Collection log**: `user.collectionLog` (array of obtained IDs) + `user.collectionLogDates` (timestamps)
+- **Instance creation**: `createUniqueInstance()` rolls stats from affix pools, applies legendary effect
+
+#### Companion Expeditions
+- **4 tiers**: Quick Forage (4h), Deep Woods (8h), Mountain Pass (12h), Ancient Ruins (24h)
+- **Bond multiplier**: 1 + bondLevel * 0.1 (applied to gold rewards)
+- **Cooldown**: 1 hour between expeditions
+- **Rewards**: Gold, essenz, runensplitter, materials, gems, rare item (highest tier only)
+- **No frontend UI yet** — backend-only; needs CompanionsWidget integration
+
+### 31.4 Remaining Known Issues (Not Fixed This Session)
+
+| # | Issue | Severity | Notes |
+|---|-------|----------|-------|
+| 1 | Companion Expeditions have no frontend UI | MEDIUM | Backend complete in routes/players.js; needs CompanionsWidget.tsx integration |
+| 2 | RiftView TIER_IDS array doesn't include "mythic" | LOW | Mythic section renders separately, but the array at line 78 is misleading |
+| 3 | Bond level thresholds hardcoded in CompanionsWidget | LOW | Should be externalized to JSON config |
+| 4 | Rarity colors defined 5+ times across components | LOW | Should use shared constant from config.ts |
+| 5 | Some modals missing ESC key handler | LOW | CharacterView collection log, CompanionsWidget reward popup |
+
+### 31.5 Changelog (Session 15)
+
+| Commit | Timestamp | Description |
+|--------|-----------|-------------|
+| `57f2aa2` | 2026-03-22 | Feat: Complete Dungeon System (DungeonView.tsx + types) |
+| `03c5c3a` | 2026-03-22 | Fix: Critical bugs in dungeons, world boss, gems, expeditions |
+| `2dae6ca` | 2026-03-22 | QoL: Dungeon/world_boss tooltips, ESC handler, error logging |
+
+---
+
 *End of Audit Report — Updated 2026-03-22*

@@ -1512,6 +1512,101 @@ The Enchanter (Eldric) now offers **targeted stat rerolling** instead of blanket
 
 ---
 
+## 28. Dungeon System ("The Undercroft")
+
+**Data**: `public/data/dungeons.json`
+**Backend**: `routes/dungeons.js`
+**Frontend**: `components/DungeonView.tsx`
+
+Async cooperative group dungeons (2-4 friends). Players create a run, invite friends, wait 8 hours, then collect rewards based on combined Gear Score + companion bond level.
+
+### Dungeon Template Schema
+
+```json
+{
+  "id": "dungeon-id",
+  "name": "The Dungeon Name",
+  "description": "1-2 sentence flavor text.",
+  "icon": "📜",
+  "accent": "#22c55e",
+  "tier": "normal",
+  "minLevel": 10,
+  "minPlayers": 2,
+  "maxPlayers": 4,
+  "durationHours": 8,
+  "cooldownDays": 7,
+  "gearScoreThreshold": 100,
+  "rewards": {
+    "gold": [200, 500],
+    "essenz": [5, 12],
+    "runensplitter": [2, 5],
+    "sternentaler": [1, 3],
+    "materials": { "count": [3, 6] },
+    "gems": { "chance": 0.4, "maxTier": 2 },
+    "gearDrop": { "chance": 0.3, "minRarity": "rare" }
+  },
+  "bonusRewards": {
+    "title": "Archive Delver",
+    "frame": { "id": "dungeon-frame-id", "name": "Archive Delver", "color": "#22c55e", "glow": false }
+  }
+}
+```
+
+### Tier Design Guidelines
+
+| Tier | Min Level | Gear Score | Min Players | Unique Drops | Design |
+|------|-----------|-----------|-------------|--------------|--------|
+| Normal | 10 | 100 | 2 | 1 (armor/shield) | Introductory, forgiving |
+| Hard | 20 | 250 | 2 | 1 (weapon) | Challenging, better loot |
+| Legendary | 35 | 500 | 3 | 1 (amulet/accessory) | End-game, unique-worthy |
+
+### Content Needs
+
+- **Dungeon templates** in `dungeons.json` — aim for 6-9 dungeons (2-3 per tier)
+- **Unique Named Items** in `uniqueItems.json` with `source: "dungeon:{dungeonId}"`
+- **Achievements** in `achievementTemplates.json` for dungeon milestones
+- **Titles** in `titles.json` for dungeon accomplishments (bonus titles in dungeon JSON)
+- **Each dungeon should have thematic coherence**: name, description, icon, unique drops should tell a story within Urithiru
+
+---
+
+## 29. Companion Expeditions
+
+**Data**: `public/data/companionExpeditions.json`
+**Backend**: `routes/players.js` (endpoints: send, collect, list)
+
+Idle mechanic — send your companion on timed expeditions to gather resources while you do other things.
+
+### Expedition Template Schema
+
+```json
+{
+  "id": "expedition-id",
+  "name": "Expedition Name",
+  "description": "1-2 sentence description.",
+  "durationHours": 8,
+  "icon": "🌲",
+  "rewards": {
+    "gold": [50, 120],
+    "materials": { "chance": 0.8, "count": [1, 3] },
+    "gems": { "chance": 0.2, "maxTier": 2 },
+    "essenz": [1, 3],
+    "runensplitter": [0, 2],
+    "rareItem": { "chance": 0.05 }
+  }
+}
+```
+
+### Content Needs
+
+- **Expedition templates** in `companionExpeditions.json` — aim for 6-8 expeditions
+- Higher-tier expeditions should have longer durations but much better rewards
+- **Theme**: Expeditions explore the area around Urithiru — forests, mountains, ruins, distant lands
+- Gold rewards scaled by companion bond level (1 + bondLevel × 0.1)
+- Frontend UI integration is pending (backend is complete)
+
+---
+
 ## Content Generation Checklist
 
 A complete reference of ALL content types Lyra can create, which files they belong to, and whether code changes are needed.

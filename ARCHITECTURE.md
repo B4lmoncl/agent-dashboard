@@ -16,7 +16,7 @@ Browser → Express (port 3001) → lib/state.js (in-memory) → /data/*.json (d
 | Directory | Purpose | Language |
 |-----------|---------|----------|
 | `lib/` | Backend business logic (state, helpers, engines) | JS (CommonJS) |
-| `routes/` | Express route handlers (23 files) | JS (CommonJS) |
+| `routes/` | Express route handlers (24 files) | JS (CommonJS) |
 | `app/` | Next.js app directory (page, types, utils, context) | TypeScript |
 | `components/` | React UI components (47 files) | TypeScript |
 | `public/data/` | Read-only game templates (JSON) | JSON |
@@ -119,6 +119,7 @@ All routes are mounted in `server.js` in order. The last route file (`npcs-misc.
 | `factions.js` | Die Vier Zirkel: 4 factions with 6 rep tiers, auto-rep from quests | API key |
 | `world-boss.js` | World Boss: community bosses, contribution damage, unique drops, spawn cycle | API key |
 | `gems.js` | Gem/Socket system: 6 gem types, 5 tiers, socket/unsocket/upgrade/salvage | API key |
+| `dungeons.js` | Dungeon system: create/join runs, collect rewards, unique item drops | API key |
 | `npcs-misc.js` | NPC rotation, feedback (admin-only), SPA fallback | Master key (feedback) |
 | `docs.js` | OpenAPI spec, HTML docs | Public |
 
@@ -436,13 +437,39 @@ Infinite scaling rift levels beyond Legendary tier, for endgame players.
 - **Unique rewards**: Exclusive titles and items at milestone levels
 - **Files**: `routes/rift.js` (extended with Mythic+ logic)
 
+### Dungeon System ("The Undercroft")
+
+Async cooperative group dungeons (2-4 players) with idle timers and gear-score-based outcomes.
+
+- **Room**: The Great Halls → The Undercroft
+- **3 tiers**: Sunken Archive (Normal Lv10, GS 100), Shattered Spire (Hard Lv20, GS 250), Hollow Core (Legendary Lv35, GS 500)
+- **Flow**: Create run → invite friends → auto-start at minPlayers → 8h idle timer → collect individual rewards
+- **Success**: Determined once per run (first collector calculates); based on combined gear score + bond bonus vs scaled threshold
+- **Rewards**: Gold, essenz, runensplitter, sternentaler, crafting materials, gem drops, actual gear items, unique named items
+- **Cooldown**: 7 days per dungeon after collecting
+- **Persistence**: `data/dungeonState.json` (activeRuns, cooldowns, history)
+- **Files**: `routes/dungeons.js`, `components/DungeonView.tsx`, `public/data/dungeons.json`
+
+### Companion Expeditions
+
+Idle mechanic for companions — send your companion on timed expeditions for rewards.
+
+- **4 expeditions**: Quick Forage (4h), Deep Woods (8h), Mountain Pass (12h), Ancient Ruins (24h)
+- **Bond multiplier**: 1 + bondLevel × 0.1 (scales gold rewards)
+- **Rewards**: Gold, essenz, runensplitter, crafting materials, gems, rare item drops (highest tier)
+- **Cooldown**: 1 hour between expeditions
+- **No bond XP while on expedition** (petting still allowed, just no XP)
+- **Files**: `routes/players.js` (endpoints), `public/data/companionExpeditions.json` (templates)
+- **Frontend**: Not yet implemented — backend-only
+
 ### Unique Named Items
 
 Handcrafted legendary items with fixed stats, unique flavor text, and lore.
 
 - **Not randomly rolled**: Unlike standard gear, stats are predetermined
-- **Collection log**: Per-player tracking of discovered unique items
-- **Sources**: World boss drops, Mythic+ Rift rewards, special events
+- **Collection log**: Per-player tracking of discovered unique items (`user.collectionLog` + `user.collectionLogDates`)
+- **Sources**: World boss drops (`source: "world_boss:{bossId}"`), dungeon drops (`source: "dungeon:{dungeonId}"`), Mythic+ Rift rewards, special events
+- **Instance creation**: `createUniqueInstance()` rolls from affix pools, applies legendary effect
 - **Data**: `public/data/uniqueItems.json` (item definitions, stats, lore, source info)
 
 ### Enchanting Overhaul (D3 Mystic Style)
