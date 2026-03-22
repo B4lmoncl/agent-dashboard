@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from "react";
 import { useDashboard } from "@/app/DashboardContext";
 import { getAuthHeaders } from "@/lib/auth-client";
 import { Tip } from "@/components/GameTooltip";
+import type { RewardCelebrationData } from "@/components/RewardCelebration";
 
 // ─── Types ──────────────────────────────────────────────────────────────────
 
@@ -58,7 +59,7 @@ const REWARD_CONFIG: Record<string, { icon: string; color: string; label: string
 
 // ─── Component ──────────────────────────────────────────────────────────────
 
-export default function BattlePassView() {
+export default function BattlePassView({ onRewardCelebration }: { onRewardCelebration?: (data: RewardCelebrationData) => void } = {}) {
   const { playerName } = useDashboard();
   const [config, setConfig] = useState<BPConfig | null>(null);
   const [rewards, setRewards] = useState<BPReward[]>([]);
@@ -93,6 +94,22 @@ export default function BattlePassView() {
       if (r.ok) {
         setMessage({ text: `Level ${level} reward claimed!`, type: "success" });
         fetchBP();
+        if (onRewardCelebration && data.granted) {
+          const g = data.granted;
+          const currencies: { name: string; amount: number; color: string }[] = [];
+          if (g.type === "essenz" && g.amount) currencies.push({ name: "Essenz", amount: g.amount, color: "#ef4444" });
+          if (g.type === "runensplitter" && g.amount) currencies.push({ name: "Runensplitter", amount: g.amount, color: "#a78bfa" });
+          if (g.type === "stardust" && g.amount) currencies.push({ name: "Stardust", amount: g.amount, color: "#818cf8" });
+          if (g.type === "sternentaler" && g.amount) currencies.push({ name: "Sternentaler", amount: g.amount, color: "#fbbf24" });
+          if (g.type === "mondstaub" && g.amount) currencies.push({ name: "Mondstaub", amount: g.amount, color: "#c084fc" });
+          onRewardCelebration({
+            type: "battlepass",
+            title: g.type === "title" ? `Title: ${g.titleName}` : g.type === "frame" ? `Frame: ${g.frameName}` : `Level ${level} Reward`,
+            xpEarned: 0,
+            goldEarned: g.type === "gold" ? (g.amount || 0) : 0,
+            currencies: currencies.length > 0 ? currencies : undefined,
+          });
+        }
       } else {
         setMessage({ text: data.error || "Failed to claim", type: "error" });
       }

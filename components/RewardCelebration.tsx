@@ -5,7 +5,7 @@ import { SFX } from "@/lib/sounds";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
-export type RewardType = "quest" | "npc-quest" | "ritual" | "vow" | "companion" | "daily-bonus";
+export type RewardType = "quest" | "npc-quest" | "ritual" | "vow" | "companion" | "daily-bonus" | "expedition" | "sternenpfad" | "battlepass" | "faction" | "world-boss" | "dungeon";
 
 export interface RewardCelebrationData {
   type: RewardType;
@@ -122,6 +122,90 @@ const THEMES: Record<RewardType, ThemeConfig> = {
       "Your loyalty is rewarded!",
       "Welcome back, adventurer!",
       "The Forge burns for you!",
+    ],
+  },
+  expedition: {
+    accent: "#4ade80",
+    accentRgb: "74,222,128",
+    gradientTop: "#0d1a12",
+    label: "Expedition Reward!",
+    icon: "🏕️",
+    flavorMessages: [
+      "The guild marches onward!",
+      "Teamwork makes the dream work!",
+      "A checkpoint well earned!",
+      "Together, nothing can stop us!",
+      "The expedition bears fruit!",
+    ],
+  },
+  sternenpfad: {
+    accent: "#fbbf24",
+    accentRgb: "251,191,36",
+    gradientTop: "#1a160d",
+    label: "Star Path Milestone!",
+    icon: "★",
+    flavorMessages: [
+      "The stars align in your favor!",
+      "Your brilliance shines through!",
+      "A constellation of effort!",
+      "Stardust fills your coffers!",
+      "The path rewards the worthy!",
+    ],
+  },
+  battlepass: {
+    accent: "#f472b6",
+    accentRgb: "244,114,182",
+    gradientTop: "#1a0d15",
+    label: "Season Pass Reward!",
+    icon: "🎖️",
+    flavorMessages: [
+      "Season progress rewarded!",
+      "Another level conquered!",
+      "The season favors the bold!",
+      "Climbing the ranks!",
+      "Your dedication pays off!",
+    ],
+  },
+  faction: {
+    accent: "#c084fc",
+    accentRgb: "192,132,252",
+    gradientTop: "#150d1a",
+    label: "Faction Reward!",
+    icon: "🜂",
+    flavorMessages: [
+      "The Circle acknowledges you!",
+      "Your allegiance is rewarded!",
+      "Standing increased!",
+      "The order is pleased!",
+      "Honor among the ranks!",
+    ],
+  },
+  "world-boss": {
+    accent: "#ef4444",
+    accentRgb: "239,68,68",
+    gradientTop: "#1a0d0d",
+    label: "World Boss Vanquished!",
+    icon: "💀",
+    flavorMessages: [
+      "The beast has fallen!",
+      "A mighty foe, defeated!",
+      "The realm breathes easier!",
+      "Spoils of a legendary battle!",
+      "Your courage is unmatched!",
+    ],
+  },
+  dungeon: {
+    accent: "#22d3ee",
+    accentRgb: "34,211,238",
+    gradientTop: "#0d1518",
+    label: "Dungeon Cleared!",
+    icon: "🏰",
+    flavorMessages: [
+      "The Undercroft yields its treasures!",
+      "Darkness conquered!",
+      "The dungeon bows before you!",
+      "Riches from the deep!",
+      "A dungeon well plundered!",
     ],
   },
 };

@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from "react";
 import { useDashboard } from "@/app/DashboardContext";
 import { getAuthHeaders } from "@/lib/auth-client";
 import { Tip, TipCustom } from "@/components/GameTooltip";
+import type { RewardCelebrationData } from "@/components/RewardCelebration";
 
 // ─── Types ──────────────────────────────────────────────────────────────────
 
@@ -130,7 +131,7 @@ const TIER_LABELS: Record<string, string> = {
 
 // ─── Component ──────────────────────────────────────────────────────────────
 
-export default function DungeonView({ onRefresh }: { onRefresh?: () => void }) {
+export default function DungeonView({ onRefresh, onRewardCelebration }: { onRefresh?: () => void; onRewardCelebration?: (data: RewardCelebrationData) => void }) {
   const { playerName, reviewApiKey } = useDashboard();
   const [dungeons, setDungeons] = useState<DungeonTemplate[]>([]);
   const [activeRun, setActiveRun] = useState<ActiveRun | null>(null);
@@ -269,6 +270,26 @@ export default function DungeonView({ onRefresh }: { onRefresh?: () => void }) {
         setMessage({ text: d.message, type: d.success ? "success" : "error" });
         fetchDungeons();
         onRefresh?.();
+        if (onRewardCelebration && d.rewards) {
+          const rw = d.rewards;
+          const currencies: { name: string; amount: number; color: string }[] = [];
+          if (rw.essenz) currencies.push({ name: "Essenz", amount: rw.essenz, color: "#ef4444" });
+          if (rw.runensplitter) currencies.push({ name: "Runensplitter", amount: rw.runensplitter, color: "#a78bfa" });
+          if (rw.sternentaler) currencies.push({ name: "Sternentaler", amount: rw.sternentaler, color: "#fbbf24" });
+          const loot = d.uniqueDrop
+            ? { name: d.uniqueDrop.name, emoji: "🏰", rarity: "legendary", rarityColor: "#ff8c00" }
+            : rw.gearDropItem
+              ? { name: rw.gearDropItem.name, emoji: "⚔️", rarity: rw.gearDropItem.rarity || "rare" }
+              : undefined;
+          onRewardCelebration({
+            type: "dungeon",
+            title: d.success ? "Dungeon Cleared!" : "Dungeon Survived",
+            xpEarned: 0,
+            goldEarned: rw.gold || 0,
+            loot: loot || undefined,
+            currencies: currencies.length > 0 ? currencies : undefined,
+          });
+        }
       }
     } catch { setMessage({ text: "Network error", type: "error" }); }
     setActionLoading(false);

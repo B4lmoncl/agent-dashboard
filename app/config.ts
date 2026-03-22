@@ -48,6 +48,7 @@ export interface Floor {
   icon: string;
   color: string;
   gradient: string;
+  /** Optional 792x200 banner image (right-aligned behind gradient overlay) */
   banner?: string;
   rooms: FloorRoom[];
 }

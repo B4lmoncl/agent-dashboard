@@ -3,6 +3,7 @@
 import { useState, useCallback, useEffect, useMemo } from "react";
 import { useDashboard } from "@/app/DashboardContext";
 import type { WeeklyChallenge, Expedition, ExpeditionCheckpoint } from "@/app/types";
+import type { RewardCelebrationData } from "@/components/RewardCelebration";
 import { Tip, TipCustom } from "@/components/GameTooltip";
 
 // ─── Currency icons ──────────────────────────────────────────────────────────
@@ -605,10 +606,12 @@ export default function ChallengesView({
   weeklyChallenge,
   expedition,
   onRefresh,
+  onRewardCelebration,
 }: {
   weeklyChallenge: WeeklyChallenge | null;
   expedition: Expedition | null;
   onRefresh: () => Promise<void>;
+  onRewardCelebration?: (data: RewardCelebrationData) => void;
 }) {
   const [activeTab, setActiveTab] = useState<"sternenpfad" | "expedition">("sternenpfad");
   const [claimingStage, setClaimingStage] = useState(false);
@@ -655,7 +658,20 @@ export default function ChallengesView({
         body: JSON.stringify({ stars }),
       });
       if (resp.ok) {
+        const data = await resp.json().catch(() => ({}));
         await onRefresh();
+        if (onRewardCelebration && data.rewards) {
+          const currencies: { name: string; amount: number; color: string }[] = [];
+          if (data.rewards.essenz) currencies.push({ name: "Essenz", amount: data.rewards.essenz, color: "#3b82f6" });
+          if (data.rewards.sternentaler) currencies.push({ name: "Sternentaler", amount: data.rewards.sternentaler, color: "#fbbf24" });
+          onRewardCelebration({
+            type: "sternenpfad",
+            title: `${stars}★ Milestone Claimed!`,
+            xpEarned: 0,
+            goldEarned: data.rewards.gold || 0,
+            currencies: currencies.length > 0 ? currencies : undefined,
+          });
+        }
       } else {
         const data = await resp.json().catch(() => ({}));
         setClaimError(data.error || "Failed to claim milestone");
@@ -666,7 +682,7 @@ export default function ChallengesView({
     } finally {
       setClaimingMilestone(null);
     }
-  }, [reviewApiKey, onRefresh]);
+  }, [reviewApiKey, onRefresh, onRewardCelebration]);
 
   const handleClaimCheckpoint = useCallback(async (checkpoint: number) => {
     if (!reviewApiKey) return;
@@ -681,7 +697,21 @@ export default function ChallengesView({
         body: JSON.stringify({ checkpoint }),
       });
       if (resp.ok) {
+        const data = await resp.json().catch(() => ({}));
         await onRefresh();
+        if (onRewardCelebration && data.rewards) {
+          const currencies: { name: string; amount: number; color: string }[] = [];
+          if (data.rewards.runensplitter) currencies.push({ name: "Runensplitter", amount: data.rewards.runensplitter, color: "#a855f7" });
+          if (data.rewards.essenz) currencies.push({ name: "Essenz", amount: data.rewards.essenz, color: "#3b82f6" });
+          if (data.rewards.sternentaler) currencies.push({ name: "Sternentaler", amount: data.rewards.sternentaler, color: "#fbbf24" });
+          onRewardCelebration({
+            type: "expedition",
+            title: `Checkpoint ${checkpoint} Reward!`,
+            xpEarned: 0,
+            goldEarned: data.rewards.gold || 0,
+            currencies: currencies.length > 0 ? currencies : undefined,
+          });
+        }
       } else {
         const data = await resp.json().catch(() => ({}));
         setClaimError(data.error || "Failed to claim reward");
@@ -692,7 +722,7 @@ export default function ChallengesView({
     } finally {
       setClaimingCheckpoint(null);
     }
-  }, [reviewApiKey, onRefresh]);
+  }, [reviewApiKey, onRefresh, onRewardCelebration]);
 
   return (
     <div className="space-y-4">
