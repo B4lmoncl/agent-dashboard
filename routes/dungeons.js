@@ -8,7 +8,7 @@ const router = require('express').Router();
 const fs = require('fs');
 const path = require('path');
 const { state, saveUsers, saveSocial, ensureUserCurrencies, RUNTIME_DIR, logActivity } = require('../lib/state');
-const { now, getLevelInfo, awardCurrency, getGearScore, getBondLevel, rollLoot, addLootToInventory } = require('../lib/helpers');
+const { now, getLevelInfo, awardCurrency, getGearScore, getBondLevel, rollLoot, addLootToInventory, createUniqueInstance, trackUniqueInCollection } = require('../lib/helpers');
 const { requireAuth } = require('../lib/middleware');
 
 // ─── Dungeon Templates ──────────────────────────────────────────────────────
@@ -161,16 +161,15 @@ function applyDungeonRewards(userId, rewards) {
   if (rewards.runensplitter) awardCurrency(userId, 'runensplitter', rewards.runensplitter);
   if (rewards.sternentaler) awardCurrency(userId, 'sternentaler', rewards.sternentaler);
 
-  // Materials — award random crafting materials
+  // Materials — award random crafting materials (use actual profession materials)
   if (rewards.materialCount && rewards.materialCount > 0) {
-    const MATERIAL_IDS = [
-      'iron-ore', 'leather-scraps', 'cloth-scraps', 'herb-bundle',
-      'arcane-dust', 'monster-bone', 'crystal-shard',
-    ];
-    if (!u.craftingMaterials) u.craftingMaterials = {};
-    for (let i = 0; i < rewards.materialCount; i++) {
-      const matId = MATERIAL_IDS[Math.floor(Math.random() * MATERIAL_IDS.length)];
-      u.craftingMaterials[matId] = (u.craftingMaterials[matId] || 0) + 1;
+    const allMaterials = state.professionsData?.materials || [];
+    if (allMaterials.length > 0) {
+      if (!u.craftingMaterials) u.craftingMaterials = {};
+      for (let i = 0; i < rewards.materialCount; i++) {
+        const mat = allMaterials[Math.floor(Math.random() * allMaterials.length)];
+        u.craftingMaterials[mat.id] = (u.craftingMaterials[mat.id] || 0) + 1;
+      }
     }
   }
 }
@@ -440,25 +439,72 @@ router.post('/api/dungeons/:runId/collect', requireAuth, (req, res) => {
   const dungeon = getDungeon(run.dungeonId);
   if (!dungeon) return res.status(500).json({ error: 'Dungeon template not found' });
 
-  // Calculate combined group power
-  let totalGearScore = 0;
-  let totalBond = 0;
-  for (const pid of run.participants) {
-    totalGearScore += (run.participantGearScores[pid] || 0);
-    totalBond += (run.participantBondLevels[pid] || 0);
-  }
-  const bondBonus = totalBond * 5;
-  const effectivePower = totalGearScore + bondBonus;
+  // ── Determine run success ONCE (first collector calculates, subsequent reuse) ──
   const participantCount = run.participants.length;
+  if (run.success === undefined) {
+    // First collector determines outcome for the entire group
+    let totalGearScore = 0;
+    let totalBond = 0;
+    for (const pid of run.participants) {
+      totalGearScore += (run.participantGearScores[pid] || 0);
+      totalBond += (run.participantBondLevels[pid] || 0);
+    }
+    const bondBonus = totalBond * 5;
+    run.effectivePower = totalGearScore + bondBonus;
+    run.threshold = dungeon.gearScoreThreshold * participantCount;
+    run.successChance = calculateSuccessChance(run.effectivePower, dungeon.gearScoreThreshold, participantCount);
+    run.success = Math.random() < run.successChance;
+  }
 
-  // Success calculation
-  const successChance = calculateSuccessChance(effectivePower, dungeon.gearScoreThreshold, participantCount);
-  const isSuccess = Math.random() < successChance;
+  const isSuccess = run.success;
+  const effectivePower = run.effectivePower;
 
-  // Roll individual rewards
+  // Roll individual rewards (each player gets own rolls)
   const rewards = rollDungeonRewards(dungeon, isSuccess);
 
-  // Apply rewards
+  // ── Actual gear drop: roll a real item via rollLoot ──
+  if (isSuccess && rewards.gearDrop) {
+    const playerLevel = getLevelInfo(u.xp || 0).level;
+    const gearItem = rollLoot(1.0, playerLevel); // guaranteed roll since we already passed chance check
+    if (gearItem) {
+      // Enforce minimum rarity from dungeon config
+      const RARITY_ORDER = ['common', 'uncommon', 'rare', 'epic', 'legendary'];
+      const minIdx = RARITY_ORDER.indexOf(rewards.gearMinRarity || 'rare');
+      const itemIdx = RARITY_ORDER.indexOf(gearItem.rarity || 'common');
+      if (itemIdx < minIdx) gearItem.rarity = rewards.gearMinRarity || 'rare';
+      addLootToInventory(uid, gearItem);
+      rewards.gearDropItem = { name: gearItem.name, rarity: gearItem.rarity, slot: gearItem.slot };
+    }
+    delete rewards.gearDrop;
+    delete rewards.gearMinRarity;
+  }
+
+  // ── Unique item drop from dungeon source ──
+  let uniqueDrop = null;
+  if (isSuccess) {
+    const dungeonUniques = (state.uniqueItems || []).filter(
+      ui => ui.source === `dungeon:${dungeon.id}`
+    );
+    for (const uniqueTemplate of dungeonUniques) {
+      if (Math.random() < (uniqueTemplate.dropChance || 0.05)) {
+        // Check if player already owns this unique
+        const alreadyOwns = (u.equipment && Object.values(u.equipment).some(e => e && e.templateId === uniqueTemplate.id && e.isUnique))
+          || (u.inventory || []).some(i => i.templateId === uniqueTemplate.id && i.isUnique);
+        if (!alreadyOwns) {
+          const gearInstance = createUniqueInstance(uniqueTemplate);
+          if (!u.inventory) u.inventory = [];
+          u.inventory.push(gearInstance);
+          trackUniqueInCollection(uid, uniqueTemplate.id);
+          if (!u.collectionLogDates) u.collectionLogDates = {};
+          u.collectionLogDates[uniqueTemplate.id] = now();
+          uniqueDrop = { name: uniqueTemplate.name, slot: uniqueTemplate.slot, id: uniqueTemplate.id };
+          break; // Max 1 unique per run
+        }
+      }
+    }
+  }
+
+  // Apply currency/material rewards
   applyDungeonRewards(uid, rewards);
 
   // Set cooldown
@@ -471,7 +517,6 @@ router.post('/api/dungeons/:runId/collect', requireAuth, (req, res) => {
   // Award bonus rewards on first success — title + frame
   let bonusAwarded = null;
   if (isSuccess && dungeon.bonusRewards) {
-    // Check if player already has this title
     const titles = u.earnedTitles || [];
     if (dungeon.bonusRewards.title && !titles.some(t => t.name === dungeon.bonusRewards.title)) {
       if (!u.earnedTitles) u.earnedTitles = [];
@@ -483,7 +528,6 @@ router.post('/api/dungeons/:runId/collect', requireAuth, (req, res) => {
       });
       bonusAwarded = { title: dungeon.bonusRewards.title };
     }
-    // Frame
     if (dungeon.bonusRewards.frame) {
       if (!u.unlockedFrames) u.unlockedFrames = [];
       if (!u.unlockedFrames.some(f => f.id === dungeon.bonusRewards.frame.id)) {
@@ -503,9 +547,8 @@ router.post('/api/dungeons/:runId/collect', requireAuth, (req, res) => {
     rarity: dungeon.tier === 'legendary' ? 'legendary' : dungeon.tier === 'hard' ? 'epic' : 'rare',
   });
 
-  // If all participants collected, finalize run
+  // If all participants collected, finalize run → move to history
   if (run.collected.length >= run.participants.length) {
-    // Move to history
     dungeonState.history.push({
       runId,
       dungeonId: run.dungeonId,
@@ -518,13 +561,11 @@ router.post('/api/dungeons/:runId/collect', requireAuth, (req, res) => {
       success: isSuccess,
       effectivePower,
       threshold: dungeon.gearScoreThreshold * participantCount,
-      successChance,
+      successChance: run.successChance,
     });
-    // Cap history
     if (dungeonState.history.length > 100) {
       dungeonState.history = dungeonState.history.slice(-100);
     }
-    // Remove active run
     delete dungeonState.activeRuns[runId];
   }
 
@@ -536,11 +577,12 @@ router.post('/api/dungeons/:runId/collect', requireAuth, (req, res) => {
   res.json({
     ok: true,
     success: isSuccess,
-    successChance: Math.round(successChance * 100),
+    successChance: Math.round(run.successChance * 100),
     effectivePower,
     threshold: dungeon.gearScoreThreshold * participantCount,
     rewards,
     bonusAwarded,
+    uniqueDrop,
     message: isSuccess
       ? `Dungeon cleared! You conquered ${dungeon.name}!`
       : `The group barely escaped ${dungeon.name}. Consolation rewards received.`,

@@ -100,8 +100,9 @@ interface CollectResult {
   successChance: number;
   effectivePower: number;
   threshold: number;
-  rewards: Record<string, number>;
+  rewards: Record<string, unknown>;
   bonusAwarded: { title?: string; frame?: string } | null;
+  uniqueDrop: { name: string; slot: string; id: string } | null;
   message: string;
 }
 
@@ -353,12 +354,18 @@ export default function DungeonView({ onRefresh }: { onRefresh?: () => void }) {
                 +{collectResult.rewards.materialCount} Materials
               </span>
             )}
-            {collectResult.rewards.gearDrop && (
+            {collectResult.rewards.gearDropItem && (
               <span className="text-xs px-2 py-1 rounded font-semibold" style={{ background: "rgba(168,85,247,0.08)", color: "#a855f7" }}>
-                Gear Drop!
+                {(collectResult.rewards.gearDropItem as { name: string; rarity: string }).name} ({(collectResult.rewards.gearDropItem as { rarity: string }).rarity})
               </span>
             )}
           </div>
+
+          {collectResult.uniqueDrop && (
+            <div className="text-xs mt-1 px-3 py-2 rounded-lg font-semibold" style={{ background: "rgba(251,191,36,0.08)", border: "1px solid rgba(251,191,36,0.2)", color: "#fbbf24" }}>
+              Unique Item Found: <strong>{collectResult.uniqueDrop.name}</strong> ({collectResult.uniqueDrop.slot})
+            </div>
+          )}
 
           {collectResult.bonusAwarded && (
             <div className="text-xs mt-1" style={{ color: "#fbbf24" }}>

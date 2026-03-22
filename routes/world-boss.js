@@ -311,10 +311,10 @@ router.post('/api/world-boss/claim', requireAuth, (req, res) => {
 
   // ── #1 contributor: Exclusive frame ──
   if (rank === 1 && template?.frameReward) {
-    if (!user.frames) user.frames = [];
+    if (!user.unlockedFrames) user.unlockedFrames = [];
     const frameId = `${template.frameReward.id}-${boss.spawnedAt.slice(0, 10)}`;
-    if (!user.frames.find(f => f.id === frameId)) {
-      user.frames.push({
+    if (!user.unlockedFrames.find(f => f.id === frameId)) {
+      user.unlockedFrames.push({
         id: frameId,
         name: template.frameReward.name,
         color: template.frameReward.color,

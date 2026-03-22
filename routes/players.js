@@ -933,7 +933,7 @@ router.post('/api/player/:name/companion/expedition/collect', requireAuth, requi
     if (allGems.length > 0) {
       const gem = allGems[Math.floor(Math.random() * allGems.length)];
       const tier = Math.min(maxTier, Math.floor(Math.random() * maxTier) + 1);
-      const gemKey = `${gem.id}_t${tier}`;
+      const gemKey = `${gem.id}_${tier}`;
       u.gems = u.gems || {};
       u.gems[gemKey] = (u.gems[gemKey] || 0) + 1;
       collected.gem = { type: gem.id, name: gem.name, tier };
