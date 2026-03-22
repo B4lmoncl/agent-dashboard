@@ -1,6 +1,6 @@
 # Quest Hall — Codebase Audit Report
 
-> Last updated: 2026-03-22 · v1.5.3 · Sessions 1–24
+> Last updated: 2026-03-22 · v1.5.3 · Sessions 1–25
 
 ---
 
@@ -297,6 +297,46 @@ Added comprehensive design rules to `CLAUDE.md`: typography, colors, interaction
 | `e6a60f9` | Compress AUDIT_REPORT.md (2938 → 270 lines) |
 | `be52d3e` | System-wide atmospheric modals + Diablo bars on factions/battlepass/campaigns |
 | `4ddacac` | Missing tooltip registry entries: gear_score, collection_log, mythic_rift |
+
+---
+
+## 7. Session 25 — Item System Expansion + Audit (2026-03-22)
+
+### Item Content Batch
+
+Massive item pool expansion inspired by WoW Classic (item budget, source exclusivity) and Diablo 3 (primary/secondary split, Loot 2.0):
+
+| Batch | Items | Source |
+|-------|-------|--------|
+| Rebalance | 55 existing | New rules: Rarity=affix count, Level=stat values |
+| General Pool | +65 | gen-* (quest drops, shop, world drops) |
+| Dungeon + Rift | +53 | dun-*, rift-* (source-locked) |
+| Faction + Challenge + BP | +55 | fac-*, ch-*, bp-* (rep/skill-gated) |
+| Endgame + WB + Gacha | +23 | wb-*, gacha-*, end-* |
+| Consumables | +18 | itemTemplates.json |
+| Unique Items | +8 | uniqueItems.json (6 WB + 2 gacha) |
+| Named Sets | +6 | gearTemplates.json namedSets |
+| **Total** | **251 gear + 18 consumables + 14 uniques + 9 sets** | |
+
+### Balancing Rules (documented in CLAUDE.md)
+
+- Affix counts: Common [1,1]/[0,0] → Legendary [3,3]/[2,2]
+- Stat ranges by level (identical for all rarities): Lv1-10 (1-3) → Lv41-50 (5-8)
+- 12 new legendary effect types added
+- BiS ceiling: Lv50 Legendary = 15-24 primary + 6-12 minor + effect
+
+### Audit Fixes (Session 25)
+
+| Commit | Severity | Fix |
+|--------|----------|-----|
+| `8887e64` | CRITICAL | 12 legendary effect types had no backend handlers in getLegendaryModifiers() |
+| `8887e64` | CRITICAL | 6 world boss uniqueDrops IDs mismatched uniqueItems.json (items unobtainable) |
+| `8887e64` | CRITICAL | world-boss.js:387 null crash when boss template missing |
+| `fa83fde` | HIGH | Gacha unique items (astral-veil, wheel-of-fate-shield) not in gacha pool |
+| `fa83fde` | HIGH | RiftView missing RewardCelebration on stage/rift completion |
+| `fa83fde` | HIGH | RiftView checkmark fontSize: 8 → 10 (below 12px minimum) |
+| `2dcffda` | MEDIUM | Missing cursor:not-allowed on WorldBoss, BattlePass, Factions disabled buttons |
+| `2dcffda` | MEDIUM | 12 new consumable effect types had no handlers in habits-inventory.js |
 
 ---
 
