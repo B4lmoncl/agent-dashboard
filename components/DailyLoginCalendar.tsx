@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { useDashboard } from "@/app/DashboardContext";
 import { getAuthHeaders } from "@/lib/auth-client";
+import { useModalBehavior } from "@/components/ModalPortal";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
@@ -26,6 +27,7 @@ const MILESTONES = [
 // ─── Component ───────────────────────────────────────────────────────────────
 
 export default function DailyLoginCalendar({ onClose }: { onClose: () => void }) {
+  useModalBehavior(true, onClose);
   const { playerName, reviewApiKey: apiKey } = useDashboard();
   const [claimHistory, setClaimHistory] = useState<string[]>([]);
   const [streakDays, setStreakDays] = useState(0);
