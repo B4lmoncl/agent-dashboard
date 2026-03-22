@@ -172,13 +172,12 @@ export default function BattlePassView({ onRewardCelebration }: { onRewardCelebr
             {player.xpInLevel} / {player.xpPerLevel}
           </span>
         </div>
-        <div className="rounded-full overflow-hidden" style={{ height: 5, background: "rgba(255,255,255,0.06)" }}>
+        <div className={`progress-bar-diablo${player.progress > 0.9 ? " progress-bar-nearly-full" : ""}`}>
           <div
-            className="h-full rounded-full transition-all duration-700"
+            className="progress-bar-diablo-fill"
             style={{
               width: `${Math.round(player.progress * 100)}%`,
-              background: `linear-gradient(90deg, ${config.seasonAccent}99, ${config.seasonAccent})`,
-              boxShadow: `0 0 8px ${config.seasonAccent}50`,
+              background: `linear-gradient(90deg, ${config.seasonAccent}88, ${config.seasonAccent}, ${config.seasonAccent}cc)`,
             }}
           />
         </div>

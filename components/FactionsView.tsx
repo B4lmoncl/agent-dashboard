@@ -210,13 +210,12 @@ export default function FactionsView({ onRewardCelebration }: { onRewardCelebrat
                     </span>
                   )}
                 </div>
-                <div className="rounded-full overflow-hidden" style={{ height: 4, background: "rgba(255,255,255,0.06)" }}>
+                <div className={`progress-bar-diablo${f.progress > 0.9 ? " progress-bar-nearly-full" : ""}`}>
                   <div
-                    className="h-full rounded-full transition-all duration-700"
+                    className="progress-bar-diablo-fill"
                     style={{
                       width: `${Math.round(f.progress * 100)}%`,
-                      background: `linear-gradient(90deg, ${f.accent}99, ${f.accent})`,
-                      boxShadow: `0 0 6px ${f.accent}50`,
+                      background: `linear-gradient(90deg, ${f.accent}88, ${f.accent}, ${f.accent}cc)`,
                     }}
                   />
                 </div>
