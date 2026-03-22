@@ -26,6 +26,7 @@ interface DashboardHeaderProps {
   setOnboardingOpen: (v: boolean) => void;
   setInfoOverlayOpen: (v: boolean) => void;
   setInfoOverlayTab: (v: "roadmap" | "changelog" | "guide") => void;
+  onTodayOpen?: () => void;
 }
 
 export default function DashboardHeader({
@@ -39,6 +40,7 @@ export default function DashboardHeader({
   refresh,
   setOnboardingOpen,
   setInfoOverlayOpen, setInfoOverlayTab,
+  onTodayOpen,
 }: DashboardHeaderProps) {
   const settingsPopupRef = useRef<HTMLDivElement>(null);
   const [settingsPopupOpen, setSettingsPopupOpen] = useState(false);
@@ -202,6 +204,17 @@ export default function DashboardHeader({
           >
             {soundMuted ? "🔇" : "🔊"}
           </button>
+          {onTodayOpen && playerName && (
+            <button
+              onClick={onTodayOpen}
+              className="btn-interactive text-xs px-2 py-0.5 rounded font-semibold"
+              style={{ background: "rgba(129,140,248,0.1)", color: "#818cf8", border: "1px solid rgba(129,140,248,0.2)" }}
+              title="Today's tasks"
+              aria-label="Open today's task overview"
+            >
+              📅 Today
+            </button>
+          )}
           <button
             data-feedback-id="header.info-button"
             onClick={() => { setInfoOverlayTab("guide"); setInfoOverlayOpen(true); }}
