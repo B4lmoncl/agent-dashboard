@@ -243,6 +243,10 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
       setCraftResult("Network error");
     }
     setCrafting(false);
+    // Auto-scroll craft result into view
+    requestAnimationFrame(() => {
+      document.getElementById("forge-craft-result")?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    });
   };
 
   const handleLearnRecipe = async (recipeId: string) => {
@@ -980,7 +984,9 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                                   background: canDo ? `${selectedNpc.color}20` : "rgba(255,255,255,0.03)",
                                   color: canDo ? selectedNpc.color : "rgba(255,255,255,0.2)",
                                   border: `1px solid ${canDo ? `${selectedNpc.color}40` : "rgba(255,255,255,0.06)"}`,
+                                  cursor: canDo && !crafting ? "pointer" : "not-allowed",
                                 }}
+                                title={!canDo ? (!isLearned ? "Recipe not learned" : !meetsLevel ? "Profession level too low" : onCooldown ? `On cooldown (${Math.ceil((recipe.cooldownRemaining ?? 0) / 60)}min left)` : !canAfford ? "Not enough materials or gold" : "") : `Craft ${recipe.name}`}
                               >
                                 {crafting ? "Crafting\u2026" : onCooldown ? "On Cooldown" : "Craft"}
                               </button>
@@ -1028,7 +1034,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
 
                 {/* Craft result toast */}
                 {craftResult && (
-                  <div className="mx-5 mb-4 px-3 py-2 rounded-lg text-xs font-semibold text-center" style={{ background: `${selectedNpc.color}15`, color: selectedNpc.color, border: `1px solid ${selectedNpc.color}30` }}>
+                  <div id="forge-craft-result" className="mx-5 mb-4 px-3 py-2 rounded-lg text-xs font-semibold text-center" style={{ background: `${selectedNpc.color}15`, color: selectedNpc.color, border: `1px solid ${selectedNpc.color}30` }}>
                     {craftResult}
                   </div>
                 )}

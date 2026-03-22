@@ -6,6 +6,33 @@ import { getUserLevel, getUserXpProgress } from "@/app/utils";
 import { Tip } from "@/components/GameTooltip";
 import type { ActiveNpc, Ritual } from "@/app/types";
 
+// ─── Helpers ─────────────────────────────────────────────────────────────────
+
+/** Navigate to a view and scroll to a DOM element once it renders */
+function navigateAndScroll(
+  onNavigate: (view: string) => void,
+  onClose: () => void,
+  view: string,
+  elementId: string,
+) {
+  onNavigate(view);
+  onClose();
+  // Poll for the element since the view needs time to render
+  let attempts = 0;
+  const poll = () => {
+    const el = document.getElementById(elementId);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "center" });
+      // Brief highlight flash
+      el.style.boxShadow = "0 0 0 2px rgba(129,140,248,0.5)";
+      setTimeout(() => { el.style.boxShadow = ""; }, 1500);
+      return;
+    }
+    if (++attempts < 20) requestAnimationFrame(poll);
+  };
+  requestAnimationFrame(poll);
+}
+
 // ─── Types ───────────────────────────────────────────────────────────────────
 
 interface TodayItem {
@@ -369,7 +396,7 @@ export default function TodayDrawer({
         sub: `${doneCount}/${dailyMissions.missions.length}`,
         reward: allDone ? undefined : `${dailyMissions.total - dailyMissions.earned} pts left`,
         tooltipKey: "daily_missions",
-        onClick: () => { onNavigate("questBoard"); onClose(); setTimeout(() => { document.getElementById("daily-missions-section")?.scrollIntoView({ behavior: "smooth", block: "center" }); }, 300); },
+        onClick: () => navigateAndScroll(onNavigate, onClose, "questBoard", "daily-missions-section"),
       });
 
       // Unclaimed milestones → URGENT
@@ -383,7 +410,8 @@ export default function TodayDrawer({
           urgent: true,
           sub: `${unclaimedMilestones.length} ready`,
           reward: "Currencies",
-          onClick: () => { onNavigate("questBoard"); onClose(); setTimeout(() => { document.getElementById("daily-missions-section")?.scrollIntoView({ behavior: "smooth", block: "center" }); }, 300); },
+          tooltipKey: "daily_missions",
+          onClick: () => navigateAndScroll(onNavigate, onClose, "questBoard", "daily-missions-section"),
         });
       }
     }
