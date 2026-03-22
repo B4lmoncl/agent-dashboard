@@ -873,7 +873,17 @@ export default function Dashboard() {
                       cursor: "pointer",
                     }}
                   >
-                    <Tip k="login_calendar">📅</Tip>
+                    <Tip k="login_calendar">
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ display: "inline-block", verticalAlign: "middle" }}>
+                        <rect x="1" y="3" width="14" height="12" rx="2" stroke="rgba(251,191,36,0.6)" strokeWidth="1.5" fill="rgba(251,191,36,0.06)" />
+                        <path d="M1 7h14" stroke="rgba(251,191,36,0.3)" strokeWidth="1" />
+                        <rect x="5" y="1" width="1.5" height="3.5" rx="0.75" fill="rgba(251,191,36,0.5)" />
+                        <rect x="9.5" y="1" width="1.5" height="3.5" rx="0.75" fill="rgba(251,191,36,0.5)" />
+                        <circle cx="5.5" cy="10.5" r="1" fill="rgba(251,191,36,0.5)" />
+                        <circle cx="8" cy="10.5" r="1" fill="rgba(251,191,36,0.4)" />
+                        <circle cx="10.5" cy="10.5" r="1" fill="rgba(251,191,36,0.3)" />
+                      </svg>
+                    </Tip>
                   </button>
                 </div>
               </div>
