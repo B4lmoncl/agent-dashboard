@@ -24,6 +24,12 @@
     { "id": "legend_collector", "name": "Legendensammler", "description": "1500 Achievement-Punkte gesammelt.", "rarity": "legendary", "condition": { "type": "achievement_points", "value": 1500 } },
     { "id": "bp_s1_10", "name": "Erwachter", "description": "Season Pass Level 10 erreicht — Season 1: Awakening.", "rarity": "uncommon", "condition": { "type": "battlepass_level", "value": 10 } },
     { "id": "bp_s1_25", "name": "Saisonveteran", "description": "Season Pass Level 25 erreicht — Season 1: Awakening.", "rarity": "rare", "condition": { "type": "battlepass_level", "value": 25 } },
-    { "id": "bp_s1_40", "name": "Erbe der Saison", "description": "Season Pass Level 40 erreicht — Season 1: Awakening. Du hast alles gesehen.", "rarity": "legendary", "condition": { "type": "battlepass_level", "value": 40 } }
+    { "id": "bp_s1_40", "name": "Erbe der Saison", "description": "Season Pass Level 40 erreicht — Season 1: Awakening. Du hast alles gesehen.", "rarity": "legendary", "condition": { "type": "battlepass_level", "value": 40 } },
+    { "id": "bp_s2_10", "name": "Aschenträger", "description": "Season Pass Level 10 — Season 2: Aschenstrom.", "rarity": "uncommon", "condition": { "type": "battlepass_level", "value": 10 } },
+    { "id": "bp_s2_25", "name": "Flammenläufer", "description": "Season Pass Level 25 — Season 2: Aschenstrom.", "rarity": "rare", "condition": { "type": "battlepass_level", "value": 25 } },
+    { "id": "bp_s2_40", "name": "Herz der Asche", "description": "Season Pass Level 40 — Season 2: Aschenstrom. Die Flammen haben dich geformt.", "rarity": "epic", "condition": { "type": "battlepass_level", "value": 40 } },
+    { "id": "bp_s3_10", "name": "Sternenrufer", "description": "Season Pass Level 10 — Season 3: Sternensturm.", "rarity": "uncommon", "condition": { "type": "battlepass_level", "value": 10 } },
+    { "id": "bp_s3_25", "name": "Sturmwandler", "description": "Season Pass Level 25 — Season 3: Sternensturm.", "rarity": "rare", "condition": { "type": "battlepass_level", "value": 25 } },
+    { "id": "bp_s3_40", "name": "Auge des Sturms", "description": "Season Pass Level 40 — Season 3: Sternensturm. Der Sturm beugt sich deinem Willen.", "rarity": "epic", "condition": { "type": "battlepass_level", "value": 40 } }
   ]
 }
