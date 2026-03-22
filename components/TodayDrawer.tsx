@@ -790,10 +790,10 @@ export default function TodayDrawer({
               }}
             />
             {/* Center text */}
-            <text x="100" y="45" textAnchor="middle" fill={allDone ? "#4ade80" : "#e8e8e8"} fontSize="16" fontWeight="bold" fontFamily="monospace">
+            <text x="100" y="45" textAnchor="middle" fill={allDone ? "#4ade80" : "#e8e8e8"} fontSize="16" fontWeight="bold" fontFamily="monospace" style={{ pointerEvents: "none" }}>
               {doneCount}/{totalCount}
             </text>
-            <text x="100" y="56" textAnchor="middle" fill="rgba(255,255,255,0.25)" fontSize="9">
+            <text x="100" y="56" textAnchor="middle" fill="rgba(255,255,255,0.25)" fontSize="10" style={{ pointerEvents: "none" }}>
               {allDone ? "ALL COMPLETE" : "tasks today"}
             </text>
             {/* Segment dots for each category */}
