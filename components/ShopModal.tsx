@@ -32,7 +32,7 @@ export function ShopModal({ userId, userName, gold, currentGear, onClose, onBuy,
         <div className="flex items-center justify-between mb-4">
           <div>
             <h3 className="text-sm font-bold" style={{ color: "#f0f0f0" }}>Forge Shop</h3>
-            <p className="text-xs inline-flex items-center gap-1" style={{ color: "rgba(255,255,255,0.3)" }}>{userName} · <img src="/images/icons/currency-gold.png" alt="" width={20} height={20} style={{ imageRendering: "auto" }} onError={e => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} /> {gold} gold</p>
+            <p className="text-xs inline-flex items-center gap-1" style={{ color: "rgba(255,255,255,0.3)" }}>{userName} · <img src="/images/icons/currency-gold.png" alt="" width={20} height={20} style={{ imageRendering: "auto" }} onError={e => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} /> {gold.toLocaleString()} gold</p>
           </div>
           <button onClick={onClose} style={{ color: "rgba(255,255,255,0.3)" }}>×</button>
         </div>

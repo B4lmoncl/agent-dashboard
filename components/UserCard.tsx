@@ -178,7 +178,7 @@ export function UserCard({ user, classes = [], onClick }: { user: User; classes?
       <div className="px-3 pb-2">
         <div className="flex items-center justify-between mb-1">
           <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.3)" }}>
-            {nextLvlEntry ? `${xp - lvl.xpRequired} / ${nextLvlEntry.xpRequired - lvl.xpRequired}` : "MAX"}
+            {nextLvlEntry ? `${(xp - lvl.xpRequired).toLocaleString()} / ${(nextLvlEntry.xpRequired - lvl.xpRequired).toLocaleString()}` : "MAX"}
           </span>
         </div>
         <div className={`progress-bar-diablo${progress > 0.9 ? " progress-bar-nearly-full" : ""}`}>

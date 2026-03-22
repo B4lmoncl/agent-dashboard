@@ -206,8 +206,8 @@ export default function LeaderboardView({ entries, agents, mode = "agents", onOp
                 </div>
               </div>
               <span className="text-right text-xs font-semibold" style={{ color: lvl.color }}>{lvl.name}</span>
-              <span className="text-right text-xs font-mono font-bold" style={{ color: "#a855f7" }}>{entry.xp}</span>
-              <span className="text-right text-xs font-mono" style={{ color: "rgba(255,255,255,0.5)" }}>{entry.questsCompleted}</span>
+              <span className="text-right text-xs font-mono font-bold" style={{ color: "#a855f7" }}>{entry.xp.toLocaleString()}</span>
+              <span className="text-right text-xs font-mono" style={{ color: "rgba(255,255,255,0.5)" }}>{entry.questsCompleted.toLocaleString()}</span>
             </div>
           );
         })}

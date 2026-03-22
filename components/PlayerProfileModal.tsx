@@ -225,10 +225,10 @@ export default function PlayerProfileModal({ playerId, onClose, onAddFriend, onM
             <div className="grid grid-cols-5 gap-px" style={{ background: "rgba(255,255,255,0.04)" }}>
               {[
                 { label: "XP", value: profile.xp.toLocaleString(), color: "#a855f7", tip: "xp" as const },
-                { label: "Quests", value: String(profile.questsCompleted), color: "#8b5cf6", tip: "quest_board" as const },
-                { label: "GS", value: String(profile.gearScore ?? 0), color: "#fbbf24", tip: "gear_score" as const },
-                { label: "Ach. Pts", value: String(profile.achievementPoints), color: "#d4a64a", tip: "achievements" as const },
-                { label: "Gold", value: String(profile.gold), color: "#f59e0b", tip: "gold" as const },
+                { label: "Quests", value: profile.questsCompleted.toLocaleString(), color: "#8b5cf6", tip: "quest_board" as const },
+                { label: "GS", value: (profile.gearScore ?? 0).toLocaleString(), color: "#fbbf24", tip: "gear_score" as const },
+                { label: "Ach. Pts", value: profile.achievementPoints.toLocaleString(), color: "#d4a64a", tip: "achievements" as const },
+                { label: "Gold", value: profile.gold.toLocaleString(), color: "#f59e0b", tip: "gold" as const },
               ].map(s => (
                 <Tip key={s.label} k={s.tip}>
                   <div className="text-center py-3 cursor-help" style={{ background: "#141418" }}>

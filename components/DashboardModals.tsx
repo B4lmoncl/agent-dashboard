@@ -105,7 +105,7 @@ export default function DashboardModals({
                           <p className="text-xs text-w30">{c.desc}</p>
                         </div>
                         <span className="text-sm font-mono font-bold" style={{ color: c.value === 0 && c.key !== "gold" ? "rgba(255,255,255,0.2)" : c.color }}>
-                          {c.value === 0 && c.key !== "gold" ? "—" : c.value}
+                          {c.value === 0 && c.key !== "gold" ? "—" : c.value.toLocaleString()}
                         </span>
                       </div>
                       {currencyExpanded === c.key && (
