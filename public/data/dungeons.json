@@ -1,0 +1,84 @@
+{
+  "dungeons": [
+    {
+      "id": "forgotten-halls",
+      "name": "The Forgotten Halls",
+      "description": "Ancient corridors beneath Urithiru, sealed since the last Desolation. Echoes of lost Radiants linger.",
+      "icon": "\ud83c\udfd3\ufe0f",
+      "accent": "#22c55e",
+      "tier": "normal",
+      "minLevel": 10,
+      "minPlayers": 2,
+      "maxPlayers": 4,
+      "durationHours": 8,
+      "cooldownDays": 7,
+      "gearScoreThreshold": 100,
+      "rewards": {
+        "gold": [200, 500],
+        "essenz": [5, 12],
+        "runensplitter": [2, 5],
+        "materials": { "count": [3, 6] },
+        "gems": { "chance": 0.4, "maxTier": 2 },
+        "gearDrop": { "chance": 0.3, "minRarity": "rare" }
+      },
+      "bonusRewards": {
+        "title": "Hallwalker",
+        "frame": { "id": "forgotten-halls-frame", "name": "Hallwalker", "color": "#22c55e", "glow": false }
+      }
+    },
+    {
+      "id": "stormfather-sanctum",
+      "name": "The Stormfather's Sanctum",
+      "description": "High in the clouds above the Pinnacle. Lightning crackles and the winds howl with ancient fury.",
+      "icon": "\u26a1",
+      "accent": "#3b82f6",
+      "tier": "hard",
+      "minLevel": 20,
+      "minPlayers": 2,
+      "maxPlayers": 4,
+      "durationHours": 8,
+      "cooldownDays": 7,
+      "gearScoreThreshold": 250,
+      "rewards": {
+        "gold": [500, 1200],
+        "essenz": [10, 25],
+        "runensplitter": [5, 12],
+        "sternentaler": [1, 3],
+        "materials": { "count": [5, 10] },
+        "gems": { "chance": 0.6, "maxTier": 3 },
+        "gearDrop": { "chance": 0.5, "minRarity": "epic" }
+      },
+      "bonusRewards": {
+        "title": "Stormblessed",
+        "frame": { "id": "stormfather-frame", "name": "Stormblessed", "color": "#3b82f6", "glow": true }
+      }
+    },
+    {
+      "id": "odium-depths",
+      "name": "Odium's Depths",
+      "description": "The deepest darkness beneath the tower. Only the most powerful dare enter. Odium's influence corrupts all within.",
+      "icon": "\ud83d\udc80",
+      "accent": "#ef4444",
+      "tier": "legendary",
+      "minLevel": 35,
+      "minPlayers": 3,
+      "maxPlayers": 4,
+      "durationHours": 8,
+      "cooldownDays": 7,
+      "gearScoreThreshold": 500,
+      "rewards": {
+        "gold": [1000, 3000],
+        "essenz": [20, 50],
+        "runensplitter": [10, 25],
+        "sternentaler": [3, 8],
+        "materials": { "count": [8, 15] },
+        "gems": { "chance": 0.8, "maxTier": 5 },
+        "gearDrop": { "chance": 0.7, "minRarity": "legendary" }
+      },
+      "bonusRewards": {
+        "title": "Voidbringer",
+        "frame": { "id": "odium-frame", "name": "Voidbringer", "color": "#ef4444", "glow": true }
+      }
+    }
+  ]
+}
