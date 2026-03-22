@@ -97,7 +97,7 @@ export default function ItemActionPopup({
             style={{ width: 56, height: 56, background: RARITY_BG[item.rarity] || "rgba(255,255,255,0.04)", borderRadius: 8, border: `1px solid ${rarityColor}40` }}
           >
             {item.icon
-              ? <img src={item.icon} alt={item.name} width={48} height={48} style={{ imageRendering: "auto", objectFit: "contain" }} />
+              ? <img src={item.icon} alt={item.name} width={48} height={48} style={{ imageRendering: "smooth", objectFit: "contain" }} />
               : <span className="text-2xl" style={{ color: rarityColor }}>◆</span>}
           </div>
           <div className="min-w-0 flex-1">

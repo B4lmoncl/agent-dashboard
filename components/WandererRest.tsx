@@ -71,7 +71,7 @@ function CompanionHearthPanel({ petName, companionType, companionEmoji, reviewAp
             <img
               src={portraitSrc}
               alt={petName ?? "Companion"}
-              style={{ width: 128, height: 160, imageRendering: "auto", borderRadius: 4, border: `2px solid ${cc.border}`, boxShadow: `0 0 12px rgba(${cc.accentRgb},0.15)`, flexShrink: 0 }}
+              style={{ width: 128, height: 160, imageRendering: "smooth", borderRadius: 4, border: `2px solid ${cc.border}`, boxShadow: `0 0 12px rgba(${cc.accentRgb},0.15)`, flexShrink: 0 }}
             />
           ) : (
             <div style={{
@@ -199,7 +199,7 @@ export function WandererRest({
                           alt={npc.name}
                           width={148}
                           height={148}
-                          style={{ imageRendering: "auto", display: "block", width: "100%", height: "100%", objectFit: "cover" }}
+                          style={{ imageRendering: "smooth", display: "block", width: "100%", height: "100%", objectFit: "cover" }}
                         />
                       ) : (
                         <div className="w-full h-full flex items-center justify-center" style={{ background: "rgba(255,255,255,0.04)", fontSize: 56 }}>
@@ -356,7 +356,7 @@ export function WandererRest({
                   alt="The Starweaver"
                   width={144}
                   height={144}
-                  style={{ imageRendering: "auto", display: "block", width: "100%", height: "100%", objectFit: "cover", opacity: 0.85 }}
+                  style={{ imageRendering: "smooth", display: "block", width: "100%", height: "100%", objectFit: "cover", opacity: 0.85 }}
                   onError={e => { const t = e.target as HTMLImageElement; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; const fb = t.nextElementSibling as HTMLElement; if (fb) fb.style.display = "flex"; }}
                 />
                 <div style={{ display: "none", position: "absolute", inset: 0, alignItems: "center", justifyContent: "center", fontSize: 32 }}>?</div>
@@ -416,7 +416,7 @@ export function WandererRest({
               <div className="relative px-5 pt-5 pb-4 flex items-start gap-4" style={{ borderBottom: "1px solid rgba(255,255,255,0.07)", zIndex: 1 }}>
                 <div className="flex-shrink-0 rounded-lg overflow-hidden" style={{ width: isStarweaver ? 128 : 96, height: isStarweaver ? 128 : 96, background: "#0a0a15", border: `3px solid ${isStarweaver ? "rgba(255,215,0,0.5)" : `rgba(${rarityRgb[npc.rarity] ?? "196,204,216"},0.6)`}`, boxShadow: isStarweaver ? "0 0 24px rgba(255,215,0,0.35), 0 0 8px rgba(100,60,200,0.3)" : `0 0 12px rgba(${rarityRgb[npc.rarity] ?? "196,204,216"},0.25)` }}>
                   {npc.portrait ? (
-                    <img src={npc.portrait} alt={npc.name} width={isStarweaver ? 128 : 96} height={isStarweaver ? 128 : 96} style={{ imageRendering: "auto", display: "block", width: "100%", height: "100%", objectFit: "cover" }} />
+                    <img src={npc.portrait} alt={npc.name} width={isStarweaver ? 128 : 96} height={isStarweaver ? 128 : 96} style={{ imageRendering: "smooth", display: "block", width: "100%", height: "100%", objectFit: "cover" }} />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center" style={{ background: "rgba(255,255,255,0.04)", fontSize: 40 }}>{npc.emoji && npc.emoji !== "x" && npc.emoji !== "" ? npc.emoji : null}</div>
                   )}
@@ -567,7 +567,7 @@ export function WandererRest({
                   {/* Final reward */}
                   {npc.finalReward?.item && (
                     <div className="mt-4 px-4 py-3 rounded-xl flex items-start gap-3" style={{ background: "rgba(255,215,0,0.04)", border: "1px solid rgba(255,215,0,0.12)" }}>
-                      {(npc.finalReward.item as any).icon && (npc.finalReward.item as any).icon.startsWith("/") ? <img src={(npc.finalReward.item as any).icon} alt="" width={96} height={96} style={{ imageRendering: "auto", flexShrink: 0, marginTop: 2 }} /> : <span className="text-xl flex-shrink-0 mt-0.5">{npc.finalReward.item.emoji || "?"}</span>}
+                      {(npc.finalReward.item as any).icon && (npc.finalReward.item as any).icon.startsWith("/") ? <img src={(npc.finalReward.item as any).icon} alt="" width={96} height={96} style={{ imageRendering: "smooth", flexShrink: 0, marginTop: 2 }} /> : <span className="text-xl flex-shrink-0 mt-0.5">{npc.finalReward.item.emoji || "?"}</span>}
                       <div className="flex-1 min-w-0">
                         <p className="text-sm font-semibold" style={{ color: "rgba(255,215,0,0.8)" }}>Chain Reward</p>
                         <p className="text-sm mt-0.5 font-medium" style={{ color: "rgba(255,255,255,0.6)" }}>{npc.finalReward.item.name}</p>
@@ -724,7 +724,7 @@ export function WandererRest({
                     <img
                       src="/images/portraits/companion-dobbie.png"
                       alt={petName ?? "Companion"}
-                      style={{ width: 128, height: 160, imageRendering: "auto", borderRadius: 4, border: "2px solid rgba(255,107,157,0.4)", boxShadow: "0 0 12px rgba(255,107,157,0.15)", flexShrink: 0 }}
+                      style={{ width: 128, height: 160, imageRendering: "smooth", borderRadius: 4, border: "2px solid rgba(255,107,157,0.4)", boxShadow: "0 0 12px rgba(255,107,157,0.15)", flexShrink: 0 }}
                     />
                     <div style={{ flex: 1, minWidth: 0 }}>
                       <DobbieQuestPanel reviewApiKey={reviewApiKey} onRefresh={refresh} playerName={playerName} petName={petName} quests={quests} streak={streak} user={user} />

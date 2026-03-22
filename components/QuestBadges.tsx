@@ -51,7 +51,7 @@ export function TypeBadge({ type }: { type?: string }) {
         alt=""
         width={18}
         height={18}
-        style={{ imageRendering: "auto", display: "inline", verticalAlign: "middle" }}
+        style={{ imageRendering: "smooth", display: "inline", verticalAlign: "middle" }}
         onError={(e) => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; const s = t.nextElementSibling as HTMLElement | null; if (s) s.style.display = "inline"; }}
       />
       <span style={{ display: "none" }}>{cfg.icon?.startsWith("/") ? cfg.label : cfg.icon}</span>

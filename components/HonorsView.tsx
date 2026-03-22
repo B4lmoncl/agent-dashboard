@@ -198,7 +198,7 @@ export default function HonorsView({ catalogue, highlightedAchievementId, onHigh
                               boxShadow: myEarned ? `inset 0 0 12px ${isHidden ? "rgba(138,43,226,0.15)" : "rgba(245,158,11,0.1)"}` : "none",
                             }}
                           >
-                            {ach.icon && ach.icon.startsWith("/") ? <img src={ach.icon} alt="" width={48} height={48} style={{ imageRendering: "auto", filter: highlight || (!playerName && anyEarned) ? "none" : "grayscale(1) brightness(0.5)" }} /> : <span className="text-2xl" style={{ filter: highlight || (!playerName && anyEarned) ? "none" : "grayscale(1) brightness(0.5)" }}>{ach.icon}</span>}
+                            {ach.icon && ach.icon.startsWith("/") ? <img src={ach.icon} alt="" width={48} height={48} style={{ imageRendering: "smooth", filter: highlight || (!playerName && anyEarned) ? "none" : "grayscale(1) brightness(0.5)" }} /> : <span className="text-2xl" style={{ filter: highlight || (!playerName && anyEarned) ? "none" : "grayscale(1) brightness(0.5)" }}>{ach.icon}</span>}
                           </div>
 
                           <div className="flex-1 min-w-0">

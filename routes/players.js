@@ -491,6 +491,26 @@ router.get('/api/player/:name/public-profile', (req, res) => {
   const msSinceActive = lastActiveAt ? Date.now() - new Date(lastActiveAt).getTime() : Infinity;
   const onlineStatus = agentOnline || msSinceActive < 5 * 60 * 1000 ? 'online' : msSinceActive < 30 * 60 * 1000 ? 'idle' : 'offline';
 
+  // Friendship status (if viewer is authenticated)
+  const { resolveAuth } = require('../lib/auth');
+  const viewerAuth = resolveAuth(req);
+  const viewerId = viewerAuth?.userId?.toLowerCase();
+  let friendshipStatus = 'none'; // none | friends | pending_sent | pending_received
+  if (viewerId && viewerId !== uid) {
+    const sd = state.socialData;
+    const isFriend = sd.friendships.some(f =>
+      (f.player1 === viewerId && f.player2 === uid) || (f.player1 === uid && f.player2 === viewerId)
+    );
+    if (isFriend) {
+      friendshipStatus = 'friends';
+    } else {
+      const pendingSent = sd.friendRequests.some(r => r.from === viewerId && r.to === uid && r.status === 'pending');
+      const pendingReceived = sd.friendRequests.some(r => r.from === uid && r.to === viewerId && r.status === 'pending');
+      if (pendingSent) friendshipStatus = 'pending_sent';
+      else if (pendingReceived) friendshipStatus = 'pending_received';
+    }
+  }
+
   res.json({
     id: uid,
     name: u.name,
@@ -514,6 +534,7 @@ router.get('/api/player/:name/public-profile', (req, res) => {
     onlineStatus,
     lastActiveAt,
     memberSince: u.createdAt || null,
+    friendshipStatus,
   });
 });
 

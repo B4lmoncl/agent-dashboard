@@ -628,7 +628,7 @@ export default function GuildHallBackground() {
             height: "100%",
             objectFit: "cover",
             objectPosition: "center bottom",
-            imageRendering: "auto",
+            imageRendering: "smooth",
             opacity: bgOpacity,
             userSelect: "none",
             transition: "opacity 2s ease",

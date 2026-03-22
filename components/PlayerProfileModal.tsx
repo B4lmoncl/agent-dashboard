@@ -72,6 +72,8 @@ export default function PlayerProfileModal({ playerId, onClose, onAddFriend, onM
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [friendRequestSent, setFriendRequestSent] = useState(false);
+  const [removingFriend, setRemovingFriend] = useState(false);
+  const [confirmRemove, setConfirmRemove] = useState(false);
 
   useModalBehavior(true, onClose);
 
@@ -106,6 +108,22 @@ export default function PlayerProfileModal({ playerId, onClose, onAddFriend, onM
         onAddFriend?.(playerId);
       }
     } catch { /* ignore */ }
+  };
+
+  const handleRemoveFriend = async () => {
+    if (!reviewApiKey || !playerName) return;
+    setRemovingFriend(true);
+    try {
+      const r = await fetch(`/api/social/friend/${encodeURIComponent(playerId)}`, {
+        method: "DELETE",
+        headers: getAuthHeaders(reviewApiKey),
+      });
+      if (r.ok) {
+        fetchProfile(); // Refresh to update friendshipStatus
+        setConfirmRemove(false);
+      }
+    } catch { /* ignore */ }
+    setRemovingFriend(false);
   };
 
   if (typeof document === "undefined") return null;
@@ -160,20 +178,32 @@ export default function PlayerProfileModal({ playerId, onClose, onAddFriend, onM
               {/* Action buttons */}
               {!isSelf && reviewApiKey && (
                 <div className="flex gap-2 mt-4">
-                  <button
-                    onClick={handleAddFriend}
-                    disabled={friendRequestSent}
-                    className="btn-interactive flex-1 text-xs font-semibold py-2 rounded-lg"
-                    style={{ background: friendRequestSent ? "rgba(34,197,94,0.1)" : "rgba(168,85,247,0.15)", color: friendRequestSent ? "#22c55e" : "#a855f7", border: `1px solid ${friendRequestSent ? "rgba(34,197,94,0.3)" : "rgba(168,85,247,0.3)"}` }}
-                  >
-                    {friendRequestSent ? "✓ Request Sent" : "Add Friend"}
-                  </button>
-                  {onMessage && (
-                    <button
-                      onClick={() => { onMessage(playerId); onClose(); }}
-                      className="btn-interactive flex-1 text-xs font-semibold py-2 rounded-lg"
-                      style={{ background: "rgba(99,102,241,0.12)", color: "#818cf8", border: "1px solid rgba(99,102,241,0.3)" }}
-                    >
+                  {(profile as ProfileData & { friendshipStatus?: string })?.friendshipStatus === "friends" ? (
+                    confirmRemove ? (
+                      <div className="flex gap-2 flex-1">
+                        <button onClick={handleRemoveFriend} disabled={removingFriend} className="btn-interactive flex-1 text-xs font-semibold py-2 rounded-lg" style={{ background: "rgba(239,68,68,0.15)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.3)" }}>
+                          {removingFriend ? "..." : "Confirm Remove"}
+                        </button>
+                        <button onClick={() => setConfirmRemove(false)} className="btn-interactive flex-1 text-xs font-semibold py-2 rounded-lg" style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.4)", border: "1px solid rgba(255,255,255,0.1)" }}>
+                          Cancel
+                        </button>
+                      </div>
+                    ) : (
+                      <button onClick={() => setConfirmRemove(true)} className="btn-interactive flex-1 text-xs font-semibold py-2 rounded-lg" style={{ background: "rgba(239,68,68,0.08)", color: "rgba(239,68,68,0.6)", border: "1px solid rgba(239,68,68,0.2)" }}>
+                        Remove Friend
+                      </button>
+                    )
+                  ) : (profile as ProfileData & { friendshipStatus?: string })?.friendshipStatus === "pending_sent" || friendRequestSent ? (
+                    <button disabled className="btn-interactive flex-1 text-xs font-semibold py-2 rounded-lg" style={{ background: "rgba(34,197,94,0.1)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.3)" }}>
+                      ✓ Request Sent
+                    </button>
+                  ) : (
+                    <button onClick={handleAddFriend} className="btn-interactive flex-1 text-xs font-semibold py-2 rounded-lg" style={{ background: "rgba(168,85,247,0.15)", color: "#a855f7", border: "1px solid rgba(168,85,247,0.3)" }}>
+                      Add Friend
+                    </button>
+                  )}
+                  {onMessage && (profile as ProfileData & { friendshipStatus?: string })?.friendshipStatus === "friends" && (
+                    <button onClick={() => { onMessage(playerId); onClose(); }} className="btn-interactive flex-1 text-xs font-semibold py-2 rounded-lg" style={{ background: "rgba(99,102,241,0.12)", color: "#818cf8", border: "1px solid rgba(99,102,241,0.3)" }}>
                       Message
                     </button>
                   )}
@@ -213,7 +243,7 @@ export default function PlayerProfileModal({ playerId, onClose, onAddFriend, onM
                     return (
                       <div key={slot} className="rounded-lg p-2" style={{ background: `${rc}08`, border: `1px solid ${rc}25` }} title={`${item.name}\n${Object.entries(item.stats).map(([k,v]) => `+${v} ${k}`).join('\n')}${item.desc ? `\n"${item.desc}"` : ''}`}>
                         <div className="flex items-center gap-1.5">
-                          {item.icon && <img src={item.icon} alt="" width={24} height={24} style={{ imageRendering: "auto" }} onError={hideOnError} />}
+                          {item.icon && <img src={item.icon} alt="" width={24} height={24} style={{ imageRendering: "smooth" }} onError={hideOnError} />}
                           <div className="min-w-0">
                             <p className="text-xs font-semibold truncate" style={{ color: rc }}>{item.name}</p>
                             <p className="text-xs text-w20">{SLOT_LABELS[slot]}</p>
@@ -252,7 +282,7 @@ export default function PlayerProfileModal({ playerId, onClose, onAddFriend, onM
                     if (!meta) return null;
                     return (
                       <div key={p.id} className="flex items-center gap-2 px-2.5 py-1.5 rounded-lg" style={{ background: `${meta.color}10`, border: `1px solid ${meta.color}25` }}>
-                        <img src={meta.icon} alt="" width={18} height={18} style={{ imageRendering: "auto" }} onError={hideOnError} />
+                        <img src={meta.icon} alt="" width={18} height={18} style={{ imageRendering: "smooth" }} onError={hideOnError} />
                         <div>
                           <p className="text-xs font-semibold" style={{ color: meta.color }}>{meta.name}</p>
                           <p className="text-xs text-w25">Lv.{p.level}</p>
@@ -273,7 +303,7 @@ export default function PlayerProfileModal({ playerId, onClose, onAddFriend, onM
                 <div className="flex flex-wrap gap-1.5">
                   {profile.achievements.slice(0, 20).map(a => (
                     <span key={a.id} title={`${a.name}: ${a.desc}`} className="inline-flex" style={{ cursor: "default" }}>
-                      {a.icon ? <img src={a.icon} alt={a.name} width={22} height={22} style={{ imageRendering: "auto" }} onError={hideOnError} /> : <span className="text-sm">🏆</span>}
+                      {a.icon ? <img src={a.icon} alt={a.name} width={22} height={22} style={{ imageRendering: "smooth" }} onError={hideOnError} /> : <span className="text-sm">🏆</span>}
                     </span>
                   ))}
                   {profile.achievements.length > 20 && (

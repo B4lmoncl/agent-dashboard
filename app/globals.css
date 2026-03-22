@@ -29,9 +29,8 @@ body {
 }
 
 /* Default: smooth rendering for all images (icons, portraits, UI) */
-/* "auto" = bilinear filtering (standard, universally supported) */
 img {
-  image-rendering: auto !important;
+  image-rendering: smooth;
 }
 
 /* Skip rendering for offscreen cards — browser resumes paint when scrolled into view */
@@ -894,7 +893,7 @@ img {
 }
 
 /* Image rendering — auto (bilinear, non-pixelated for all images)           */
-.img-render-auto { image-rendering: auto !important; }
+.img-render-auto { image-rendering: smooth; }
 
 /* Common input field styling                                                */
 .input-dark {

@@ -35,7 +35,7 @@ export function ChainQuestToast({ parentTitle, template, onAccept, onDismiss }: 
           <div className="flex items-center gap-1 mb-3">
             {typeCfg && (
               <span className="text-xs px-1.5 py-0.5 rounded" style={{ background: typeCfg.bg, color: typeCfg.color, border: `1px solid ${typeCfg.border}` }}>
-                {typeCfg.icon?.startsWith("/") ? <img src={typeCfg.icon} alt="" width={14} height={14} style={{ imageRendering: "auto", display: "inline", verticalAlign: "middle" }} onError={(e) => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} /> : typeCfg.icon} {typeCfg.label}
+                {typeCfg.icon?.startsWith("/") ? <img src={typeCfg.icon} alt="" width={14} height={14} style={{ imageRendering: "smooth", display: "inline", verticalAlign: "middle" }} onError={(e) => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} /> : typeCfg.icon} {typeCfg.label}
               </span>
             )}
           </div>
@@ -76,7 +76,7 @@ export function AchievementToast({ achievement, onClose }: { achievement: Earned
       onClick={e => e.stopPropagation()}
     >
       {achievement.icon && achievement.icon.startsWith("/")
-        ? <img src={achievement.icon} alt="" width={32} height={32} className="flex-shrink-0 img-render-auto" style={{ imageRendering: "auto" }} />
+        ? <img src={achievement.icon} alt="" width={32} height={32} className="flex-shrink-0 img-render-auto" style={{ imageRendering: "smooth" }} />
         : <span className="text-2xl flex-shrink-0">{achievement.icon}</span>}
       <div className="flex-1 min-w-0">
         <p className="text-xs font-bold" style={{ color: "#f59e0b" }}>Achievement Unlocked!</p>
