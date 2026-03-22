@@ -2369,4 +2369,56 @@ Both `POST /:factionId/claim` (faction reward claiming) and `resetWeeklyBonuses(
 
 ---
 
+## 32. Deep Audit — Session 16 (2026-03-22)
+
+### 32.1 Scope
+
+Comprehensive deep audit of all new features (dungeons, world boss, gems, companion expeditions) focusing on:
+- Race conditions and state consistency
+- Auth/security gaps
+- Input validation
+- Data persistence reliability
+- Frontend-backend consistency
+- Minimum font size compliance (12px for readable text)
+
+### 32.2 Critical Bugs Found & Fixed
+
+| # | Bug | Severity | File | Fix | Commit |
+|---|-----|----------|------|-----|--------|
+| 1 | **Dungeon uid not lowercased** — friendship checks fail due to case mismatch between JWT userId and lowercased invited names | **CRITICAL** | `routes/dungeons.js` | Lowercase uid in create/join/collect endpoints | `d214cd6` |
+| 2 | **Dungeon self-invite possible** — creator could invite themselves | **HIGH** | `routes/dungeons.js` | Filter self from invited list | `d214cd6` |
+| 3 | **Dungeon duplicate invites** — same player could be invited twice | **MEDIUM** | `routes/dungeons.js` | Deduplicate with `new Set()` | `d214cd6` |
+| 4 | **No forming run cleanup** — orphaned forming runs persist indefinitely (memory leak) | **HIGH** | `routes/dungeons.js` | Add `pruneStaleRuns()` (24h timeout) + `/api/dungeons/cancel` endpoint | `d214cd6` |
+| 5 | **World boss double-claim race** — two concurrent claims could both pass the `includes(uid)` check before either saves | **CRITICAL** | `routes/world-boss.js` | Push to `rewardsClaimed` BEFORE reward calculation (atomic guard) | `d214cd6` |
+| 6 | **World boss totalDamage /0** — `boss.maxHp - boss.currentHp \|\| boss.maxHp` returns maxHp when damage is 0 (wrong) | **HIGH** | `routes/world-boss.js` | Use `Math.max(..., 1)` | `d214cd6` |
+| 7 | **World boss history unbounded** — contributions objects grow without limit | **HIGH** | `routes/world-boss.js` | Cap at 50 entries, strip contributions before archiving | `d214cd6` |
+| 8 | **Gem gold deduction inconsistent** — old `u.gold` vs new `u.currencies.gold` branching could leave negative balance | **HIGH** | `routes/gems.js` | Use `ensureUserCurrencies()` consistently in unsocket + upgrade | `d214cd6` |
+| 9 | **Companion expeditions GET lacks auth** — unauthenticated access to expedition status | **HIGH** | `routes/players.js` | Add `requireAuth, requireSelf('name')` middleware | `16f37d0` |
+| 10 | **Readable text under 12px** — multiple components had 9-10px labels | **MEDIUM** | Multiple components | Bump to 12px minimum | `2ee72c5` |
+
+### 32.3 New Endpoints Added
+
+| Endpoint | Method | Purpose |
+|----------|--------|---------|
+| `/api/dungeons/cancel` | POST | Creator cancels forming runs (prevents orphaned state) |
+
+### 32.4 Remaining Known Issues
+
+| # | Issue | Severity | Notes |
+|---|-------|----------|-------|
+| 1 | No atomic transactions for concurrent state modifications | LOW | Node.js single-threaded mitigates most race conditions; only affects concurrent requests within same tick |
+| 2 | `dealBossDamage` saves on every quest completion | LOW | Could benefit from debouncing, but not critical |
+| 3 | Companion Expeditions: no UI | MEDIUM | Backend fully functional; needs CompanionsWidget integration |
+| 4 | Gem socket operations have no undo/history | LOW | Matches D3 behavior (intentional) |
+
+### 32.5 Changelog (Session 16)
+
+| Commit | Timestamp | Description |
+|--------|-----------|-------------|
+| `d214cd6` | 2026-03-22 | Fix: Critical backend issues (dungeons, world boss, gems) |
+| `2ee72c5` | 2026-03-22 | Fix: Minimum font size 12px for readable text |
+| `16f37d0` | 2026-03-22 | Fix: Companion expedition GET auth middleware |
+
+---
+
 *End of Audit Report — Updated 2026-03-22*
