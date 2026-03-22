@@ -2108,6 +2108,19 @@ Die Berufs-NPCs aus `professions.json` referenzieren Portraits die nicht existie
 - Magie = Aetherstrom. Nicht "Hokuspokus" sondern eine Naturkraft die man *verhandelt*
 - Aktuelles Zeitalter: **Wiederkehr** — Risse öffnen sich, Dungeons erwachen, neue Helden nötig
 
+### Die Quest Hall = Urithiru (Hauptreferenz)
+
+Die Quest Hall ist inspiriert von **Urithiru** aus Brandon Sandersons *Sturmlicht-Chroniken* — dem uralten Turm der Ritter des Strahlenden. Diese Referenz ist die PRIMÄRE Designgrundlage für die gesamte Struktur der Quest Hall:
+
+- **Der Turm selbst:** Die Quest Hall ist ein massiver, uralter Turm mit vielen Stockwerken (Floors). Jedes Stockwerk hat eigene Räume, Funktionen und Atmosphäre — genau wie Urithirus Ebenen.
+- **Die Stockwerke (Floors):** The Pinnacle (Turmspitze), The Great Halls (Haupthallen), The Trading District (Gewerbeviertel), The Inner Sanctum (Charakterturm), The Breakaway (Sozialbereich) — angelehnt an Urithirus Struktur mit Versammlungshallen, Marktplätzen, Gemächern, und Gesellschaftsräumen.
+- **The Hearth (Die Taverne):** Inspiriert von Urithirus Gemeinschaftshallen wo Brückenmänner, Gelehrte und Ritter zusammenkommen.
+- **Die Halle lebt:** Wie Urithiru hat die Quest Hall ein Eigenleben — sie reagiert auf ihre Bewohner, hat Geheimnisse, und erwacht langsam aus einem langen Schlaf (Zeitalter der Wiederkehr).
+- **Neue Räume/Floors** sollten sich anfühlen wie das Entdecken einer neuen Ebene von Urithiru — jeder Raum hat Geschichte, Zweck und Atmosphäre.
+- **Stormlight-Ideale** durchziehen die Lore: "Leben vor Tod. Stärke vor Schwäche. Reise vor Ziel." — paraphrasiert, nie direkt zitiert.
+
+Bei JEDER Erweiterung der Quest Hall (neue Floors, Räume, Features) frag dich: "Wie würde das in Urithiru aussehen? Welche Ebene wäre das? Wer würde dort leben?"
+
 ### Tone
 
 **So klingt Quest Hall:**
@@ -2237,7 +2250,7 @@ Tags: classRequired?, minLevel, category
 
 **Quellen & Anspielungen:**
 
-- **Skulduggery Pleasant** — Trockener Humor in Kampfsituationen. "Manche Helden tragen ihr Grinsen als Maske."
+- **Skulduggery Pleasant** — Trockener Humor in Kampfsituationen. Eleganz als Waffe. NPCs die absurd selbstsicher sind und es irgendwie rechtfertigen. "Manche Helden tragen ihr Grinsen als Maske. Andere haben keine andere Wahl." Items wie "Mantel der Eleganz" (erhöht Charisma: "Sieht gut aus. Selbst auf Knochen."). "Die beste Verteidigung ist ein gut sitzender Anzug und eine schnelle Zunge." Ein Skelett in feiner Kleidung als NPC-Gerücht — nie bestätigt.
 - **Cosmere / Brandon Sanderson** — Ehrensprüche als Quest-Titel. "Der wichtigste Schritt ist immer der nächste."
 - **Königsmörder-Chronik (Patrick Rothfuss)** — Der GESAMTE Tone ist von Kvothe inspiriert. Musik/Geschichten als Machtsystem.
 - **Frieren** — Leise, melancholische Quest-Texte über Vergänglichkeit. Lyra selbst hat Frieren-Vibes (unsterblich, Schwierigkeiten mit der Kürze sterblicher Leben).
