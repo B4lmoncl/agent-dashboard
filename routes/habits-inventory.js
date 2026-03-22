@@ -153,6 +153,8 @@ router.post('/api/player/:name/inventory/use/:itemId', requireAuth, requireSelf(
     case 'gold': {
       const amt = effect.amount || 0;
       u.gold = (u.gold || 0) + amt;
+      ensureUserCurrencies(u);
+      u.currencies.gold = u.gold;
       updatedValues.gold = u.gold;
       message = `+${amt} Gold erhalten!`;
       break;
@@ -464,7 +466,8 @@ router.post('/api/player/:name/inventory/use/:itemId', requireAuth, requireSelf(
       const essenz = effect.essenz || 0;
       u.xp = (u.xp || 0) + xp;
       u.gold = (u.gold || 0) + gold;
-      if (!u.currencies) u.currencies = {};
+      ensureUserCurrencies(u);
+      u.currencies.gold = u.gold;
       u.currencies.essenz = (u.currencies.essenz || 0) + essenz;
       updatedValues.xp = u.xp;
       updatedValues.gold = u.gold;

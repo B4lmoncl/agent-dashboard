@@ -151,6 +151,9 @@ export default function DungeonView({ onRefresh, onRewardCelebration }: { onRefr
   const [collectResult, setCollectResult] = useState<CollectResult | null>(null);
   const [confirmCancel, setConfirmCancel] = useState(false);
 
+  // Reset confirmation when active run changes
+  useEffect(() => { setConfirmCancel(false); }, [activeRun?.runId]);
+
   const fetchDungeons = useCallback(async () => {
     if (!playerName) return;
     try {

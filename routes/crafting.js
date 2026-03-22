@@ -979,9 +979,10 @@ router.post('/api/schmiedekunst/transmute', requireAuth, (req, res) => {
     return res.status(400).json({ error: `No legendary available for slot "${slot}"` });
   }
 
-  // Deduct gold
-  if (u.currencies) u.currencies.gold -= transmuteCost;
-  else u.gold = (u.gold || 0) - transmuteCost;
+  // Deduct gold — sync both fields
+  ensureUserCurrencies(u);
+  u.currencies.gold = (u.currencies.gold || 0) - transmuteCost;
+  u.gold = u.currencies.gold;
 
   // Remove the 3 epic items from inventory
   for (const item of items) {
