@@ -963,6 +963,7 @@ export default function Dashboard() {
           xpInfoOpen={xpInfoOpen}
           setXpInfoOpen={setXpInfoOpen}
           inProgressCount={quests.inProgress.length}
+          onNavigate={(v) => setDashView(v as typeof dashView)}
         />
 
         {/* Professions Info Modal */}
@@ -2035,7 +2036,7 @@ export default function Dashboard() {
 
       {/* Reward Celebration (quest/ritual/vow/companion completion) */}
       {rewardCelebration && (
-        <RewardCelebration data={rewardCelebration} onClose={closeRewardCelebration} onAchievementClick={navigateToAchievement} onCollect={(rd) => {
+        <RewardCelebration data={rewardCelebration} onClose={closeRewardCelebration} onAchievementClick={navigateToAchievement} onNavigate={(v) => setDashView(v as typeof dashView)} onCollect={(rd) => {
           if (rd.loot) setPurchaseToast(`${rd.loot.name} added to inventory!`);
           if (rd.achievement) addToast({ type: "achievement", achievement: rd.achievement as EarnedAchievement });
           // Trigger floating reward numbers

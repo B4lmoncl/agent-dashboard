@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { useDashboard } from "@/app/DashboardContext";
+import { getUserLevel } from "@/app/utils";
 import { getAuthHeaders } from "@/lib/auth-client";
 import { Tip, TipCustom } from "@/components/GameTooltip";
 import type { RewardCelebrationData } from "@/components/RewardCelebration";
@@ -133,7 +134,7 @@ const TIER_LABELS: Record<string, string> = {
 // ─── Component ──────────────────────────────────────────────────────────────
 
 export default function DungeonView({ onRefresh, onRewardCelebration }: { onRefresh?: () => void; onRewardCelebration?: (data: RewardCelebrationData) => void }) {
-  const { playerName, reviewApiKey } = useDashboard();
+  const { playerName, reviewApiKey, loggedInUser } = useDashboard();
   const [dungeons, setDungeons] = useState<DungeonTemplate[]>([]);
   const [activeRun, setActiveRun] = useState<ActiveRun | null>(null);
   const [history, setHistory] = useState<DungeonHistory[]>([]);
@@ -647,6 +648,15 @@ export default function DungeonView({ onRefresh, onRewardCelebration }: { onRefr
                   <p className="text-sm font-bold mt-1" style={{ color: d.accent }}>{d.name}</p>
                   <p className="text-xs text-w25 mt-0.5 px-2">{d.description}</p>
                   {locked && <p className="text-xs text-w20 mt-1">Requires Lv.{d.minLevel}</p>}
+                  {!locked && (() => {
+                    const playerLevel = getUserLevel(loggedInUser?.xp ?? 0).level;
+                    const meetsLevel = playerLevel >= d.minLevel;
+                    return (
+                      <p className="text-xs mt-1.5 font-semibold" style={{ color: meetsLevel ? "#22c55e" : "#fbbf24" }}>
+                        {meetsLevel ? "\u2713 Ready" : `Lv.${playerLevel}/${d.minLevel}`} {"\u00b7"} GS {d.gearScoreThreshold}/player
+                      </p>
+                    );
+                  })()}
                 </div>
 
                 <div className="space-y-1 text-xs text-w35">
