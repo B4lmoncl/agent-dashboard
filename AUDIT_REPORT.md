@@ -2842,4 +2842,97 @@ Six parallel audit agents covering ALL files:
 
 ---
 
+## 39. UX Deep Polish — Session 23 (2026-03-22)
+
+### 39.1 Methodology
+
+Four parallel UX-focused audit agents launched covering ALL view components:
+- Agent 1: CharacterView, ForgeView, GachaView, ShopView (interaction polish)
+- Agent 2: SocialView, ChallengesView, RiftView, DungeonView, WorldBossView, TavernView (navigation + timers)
+- Agent 3: page.tsx, DashboardHeader, QuestCards, UserCard, BattlePassView, FactionsView, LeaderboardView (visual hierarchy)
+- Agent 4: Modals, tooltips, CSS, companions, achievements, onboarding (consistency + contrast)
+
+### 39.2 Bugs Found & Fixed
+
+| # | Issue | Severity | File(s) | Fix | Commit |
+|---|-------|----------|---------|-----|--------|
+| 1 | **Collection log crash** — API returns `{uniques, completionPercent}` but frontend expects `{items, completion}` | **CRITICAL** | `CharacterView.tsx` | Map API response fields on fetch | `35d6370` |
+| 2 | **Tooltip z-index too low** — tooltips (z:9950) hidden behind modals (z:10000+) | **HIGH** | `GameTooltip.tsx:1205` | Raised tooltip z-index base to 10100 | `71e28f4` |
+| 3 | **InventoryTooltip level req always gray** — `_playerLevel` property never set, comparison always `false` | **HIGH** | `CharacterView.tsx:522` | Pass `playerLevel` through from InventorySlot | `2e8a5b1` |
+| 4 | **Unequip button invisible for GearInstance** — `includes()` compared string ID against objects | **HIGH** | `CharacterView.tsx:1753` | Extract instanceId/templateId before comparison | `2e8a5b1` |
+| 5 | **Heading tooltips misaligned** — defaulted to `align: "left"` instead of `"center"` for headings | **MEDIUM** | `GameTooltip.tsx:1089` | Default to `"center"` when `heading` is true | `f8fcc5f` |
+| 6 | **Messages tab no way to start new conversation** — only showed existing conversations | **MEDIUM** | `SocialView.tsx` | Added "+ New Message" button with friend picker | `35d6370` |
+| 7 | **PlayerProfileModal unsafe friendshipStatus cast** | **MEDIUM** | `PlayerProfileModal.tsx` | Added to ProfileData interface, removed `as` casts | `31fb718` |
+| 8 | **ProfileModal equipped null crash** — `Object.keys(profile.equipped)` without null guard | **MEDIUM** | `PlayerProfileModal.tsx:240` | Added null guard | `31fb718` |
+| 9 | **DungeonView gearDropItem undefined display** | **MEDIUM** | `DungeonView.tsx:388` | Added name/rarity fallbacks | `859a758` |
+| 10 | **ChallengesView contributions crash** — `expedition.contributions` could be null | **MEDIUM** | `ChallengesView.tsx:553` | Added optional chaining | `859a758` |
+| 11 | **Activity feed shows "undefined"** — 6 event data fields without null fallbacks | **MEDIUM** | `SocialView.tsx:1100-1125` | Added fallbacks for all TipCustom titles and spans | `e6c80b4` |
+| 12 | **PlayerBadge crash on empty name** — `name[0]` without optional chaining | **LOW** | `SocialView.tsx:32` | Use `name?.[0] ?? "?"` | `e6c80b4` |
+| 13 | **OnboardingWizard empty emojis** — all companion + pet emojis were empty strings | **MEDIUM** | `OnboardingWizard.tsx:31-52` | Populated all emojis (🐉🦉🔥🐺🦊🐻 + 🐱🐕🐹🦜🐠🐰🐾) | `31fb718` |
+
+### 39.3 UX Quality of Life Improvements
+
+| # | Improvement | File(s) | Commit |
+|---|-------------|---------|--------|
+| 1 | **Stat comparison shows all diffs** — `=` for unchanged, `▲` for better, `▼` for worse (was hiding unchanged) | `CharacterView.tsx` | `8822025` |
+| 2 | **Equipped item info in comparison** — shows equipped item name + rarity color + mini-stats | `CharacterView.tsx` | `8822025` |
+| 3 | **Trade item grid** — replaced vertical item list with inventory-style 52px icon grid with rarity dots + tooltips | `SocialView.tsx` | `35d6370` |
+| 4 | **Activity feed tooltips** — quests, achievements, items, drops now have TipCustom hover tooltips | `SocialView.tsx` | `35d6370` |
+| 5 | **Gacha pull disabled tooltip** — shows "Need X more Runensplitter" when insufficient currency + cursor:not-allowed | `GachaView.tsx` | `4c19eee` |
+| 6 | **Learn recipe disabled styling** — dimmed colors + not-allowed cursor + deficit tooltip | `ForgeView.tsx` | `4c19eee` |
+| 7 | **Claim error auto-dismiss** — ChallengesView errors auto-clear after 5 seconds | `ChallengesView.tsx` | `57a6ff7` |
+| 8 | **Tavern cooldown relative time** — "in 15 days" instead of raw date string | `TavernView.tsx` | `57a6ff7` |
+| 9 | **Quest search "Clear Search" button** — shown when search returns no results, for both quest board and journal | `page.tsx` | `db4307e` |
+| 10 | **Hidden achievement contrast** — raised opacity from 0.25/0.12 to 0.45/0.25 for readability | `HonorsView.tsx` | `71e28f4` |
+| 11 | **Onboarding progress bar** — completed steps now full opacity purple, thicker (4px vs 3px) | `OnboardingWizard.tsx` | `71e28f4` |
+
+### 39.4 Reward Celebration Coverage Verification
+
+All reward-granting flows verified to have visual feedback:
+
+| Flow | Feedback Type | Status |
+|------|--------------|--------|
+| Quest completion | RewardCelebration popup | ✅ |
+| Daily bonus | RewardCelebration popup | ✅ |
+| Ritual completion | RewardCelebration popup | ✅ |
+| Vow milestone | RewardCelebration popup | ✅ |
+| Battle Pass claim | RewardCelebration popup | ✅ |
+| Faction tier reward | RewardCelebration popup | ✅ |
+| World Boss claim | RewardCelebration popup | ✅ |
+| Dungeon collect | RewardCelebration popup | ✅ |
+| Companion ultimate | RewardCelebration popup | ✅ |
+| Star Path milestone | RewardCelebration popup | ✅ |
+| Expedition checkpoint | RewardCelebration popup | ✅ |
+| Gacha pull | GachaPull animation (dedicated) | ✅ |
+| Daily mission milestone | Toast notification | ✅ |
+| Crafting | Inline result in NPC modal | ✅ |
+| Shop purchase | Toast notification | ✅ |
+
+### 39.5 Remaining Acknowledged Issues (Low Priority)
+
+| Issue | Severity | Notes |
+|-------|----------|-------|
+| Modal backdrop opacity varies (0.6-0.92) | LOW | Visual hierarchy by modal importance level |
+| Stat cards no visual distinction when onClick undefined | LOW | Minor — cards still readable |
+| BattlePass material rewards show generic "Material" label | LOW | Content issue, not code bug |
+| Tooltip doesn't recalculate on window resize | LOW | Edge case — tooltip disappears on mouse-leave anyway |
+
+### 39.6 Changelog (Session 23)
+
+| Commit | Timestamp | Description |
+|--------|-----------|-------------|
+| `35d6370` | 2026-03-22 | Fix collection log crash + messaging + trade grid + feed tooltips |
+| `f8fcc5f` | 2026-03-22 | Fix heading tooltip alignment: center under headings |
+| `2e8a5b1` | 2026-03-22 | Fix CharacterView: level req color + equipped item detection |
+| `31fb718` | 2026-03-22 | Fix PlayerProfileModal type safety + OnboardingWizard emojis |
+| `e6c80b4` | 2026-03-22 | Add null fallbacks in activity feed + PlayerBadge |
+| `8822025` | 2026-03-22 | Improve inventory tooltip stat comparison display |
+| `859a758` | 2026-03-22 | Fix null safety in DungeonView + ChallengesView |
+| `4c19eee` | 2026-03-22 | UX: disabled button feedback for gacha + recipe learn |
+| `57a6ff7` | 2026-03-22 | UX: auto-dismiss claim errors + relative cooldown time |
+| `db4307e` | 2026-03-22 | UX: Clear Search button in quest board + journal |
+| `71e28f4` | 2026-03-22 | UX: tooltip z-index, achievement contrast, onboarding progress |
+
+---
+
 *End of Audit Report — Updated 2026-03-22*
