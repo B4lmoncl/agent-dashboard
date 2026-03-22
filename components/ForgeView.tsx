@@ -627,7 +627,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                         }}
                         disabled={!canBuy || buyingTool === gear.id}
                         className="forge-btn text-xs px-2.5 py-1 rounded-lg font-semibold flex-shrink-0"
-                        title={!canBuy ? "Not enough gold" : `Buy for ${gear.price}g`}
+                        title={!canBuy ? "Not enough gold" : `Buy for ${gear.cost}g`}
                         style={{
                           background: canBuy ? "rgba(99,102,241,0.2)" : "rgba(255,255,255,0.03)",
                           color: canBuy ? "#818cf8" : "rgba(255,255,255,0.2)",
