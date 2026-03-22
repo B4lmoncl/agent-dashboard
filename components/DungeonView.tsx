@@ -36,6 +36,7 @@ interface DungeonTemplate {
   };
   unlocked: boolean;
   cooldown: { onCooldown: boolean; endsAt?: string; remainingMs?: number };
+  uniqueItemDetails?: { id: string; name: string; slot: string; desc: string; flavorText?: string; legendaryEffect?: { type: string; label?: string }; icon: string | null }[];
 }
 
 interface Participant {
@@ -693,6 +694,33 @@ export default function DungeonView({ onRefresh, onRewardCelebration }: { onRefr
                     <p className="text-xs text-w15 mt-1">Bonus: <span style={{ color: d.accent }}>{d.bonusRewards.title}</span> title + frame</p>
                   )}
                 </div>
+
+                {/* Unique drops */}
+                {d.uniqueItemDetails && d.uniqueItemDetails.length > 0 && (
+                  <div className="space-y-1">
+                    <p className="text-xs text-w25">Unique Drops:</p>
+                    {d.uniqueItemDetails.map(item => (
+                      <TipCustom
+                        key={item.id}
+                        title={item.name}
+                        accent="#ff8c00"
+                        hoverDelay={300}
+                        body={<>
+                          <p className="text-xs" style={{ color: "#ff8c00" }}>Legendary {item.slot}</p>
+                          {item.desc && <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.5)" }}>{item.desc}</p>}
+                          {item.flavorText && <p className="text-xs italic mt-1" style={{ color: "rgba(255,255,255,0.3)" }}>&ldquo;{item.flavorText}&rdquo;</p>}
+                          {item.legendaryEffect?.label && <p className="text-xs mt-1 font-semibold" style={{ color: "#f59e0b" }}>{item.legendaryEffect.label}</p>}
+                        </>}
+                      >
+                        <div className="flex items-center gap-1.5 px-2 py-1 rounded cursor-help" style={{ background: "rgba(255,140,0,0.04)", border: "1px solid rgba(255,140,0,0.1)", borderLeft: "2px solid #ff8c00" }}>
+                          <span className="text-xs" style={{ color: "#ff8c00" }}>{"\u2726"}</span>
+                          <span className="text-xs font-semibold" style={{ color: "#ff8c00" }}>{item.name}</span>
+                          <span className="text-xs text-w15 ml-auto capitalize">{item.slot}</span>
+                        </div>
+                      </TipCustom>
+                    ))}
+                  </div>
+                )}
 
                 {onCd && d.cooldown.endsAt && (
                   <p className="text-xs text-center" style={{ color: "#ef4444" }}>

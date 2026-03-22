@@ -223,6 +223,10 @@ router.get('/api/dungeons', (req, res) => {
       bonusRewards: d.bonusRewards,
       unlocked: lvl >= d.minLevel,
       cooldown,
+      // Unique item drop previews
+      uniqueItemDetails: (state.uniqueItems || [])
+        .filter(u => u.source === `dungeon:${d.id}`)
+        .map(u => ({ id: u.id, name: u.name, slot: u.slot, desc: u.desc, flavorText: u.flavorText, legendaryEffect: u.legendaryEffect, icon: u.icon })),
     };
   });
 
