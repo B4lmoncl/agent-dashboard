@@ -1,10 +1,10 @@
 {
   "dungeons": [
     {
-      "id": "forgotten-halls",
-      "name": "The Forgotten Halls",
-      "description": "Ancient corridors beneath Urithiru, sealed since the last Desolation. Echoes of lost Radiants linger.",
-      "icon": "\ud83c\udfd3\ufe0f",
+      "id": "sunken-archive",
+      "name": "The Sunken Archive",
+      "description": "Flooded chambers deep beneath the tower. Ancient scrolls and forgotten knowledge lie waterlogged in the dark.",
+      "icon": "📜",
       "accent": "#22c55e",
       "tier": "normal",
       "minLevel": 10,
@@ -22,15 +22,15 @@
         "gearDrop": { "chance": 0.3, "minRarity": "rare" }
       },
       "bonusRewards": {
-        "title": "Hallwalker",
-        "frame": { "id": "forgotten-halls-frame", "name": "Hallwalker", "color": "#22c55e", "glow": false }
+        "title": "Archive Delver",
+        "frame": { "id": "sunken-archive-frame", "name": "Archive Delver", "color": "#22c55e", "glow": false }
       }
     },
     {
-      "id": "stormfather-sanctum",
-      "name": "The Stormfather's Sanctum",
-      "description": "High in the clouds above the Pinnacle. Lightning crackles and the winds howl with ancient fury.",
-      "icon": "\u26a1",
+      "id": "shattered-spire",
+      "name": "The Shattered Spire",
+      "description": "A collapsed tower wing where the winds howl through broken stone. Something still stirs among the rubble.",
+      "icon": "⚡",
       "accent": "#3b82f6",
       "tier": "hard",
       "minLevel": 20,
@@ -49,15 +49,15 @@
         "gearDrop": { "chance": 0.5, "minRarity": "epic" }
       },
       "bonusRewards": {
-        "title": "Stormblessed",
-        "frame": { "id": "stormfather-frame", "name": "Stormblessed", "color": "#3b82f6", "glow": true }
+        "title": "Spire Breaker",
+        "frame": { "id": "shattered-spire-frame", "name": "Spire Breaker", "color": "#3b82f6", "glow": true }
       }
     },
     {
-      "id": "odium-depths",
-      "name": "Odium's Depths",
-      "description": "The deepest darkness beneath the tower. Only the most powerful dare enter. Odium's influence corrupts all within.",
-      "icon": "\ud83d\udc80",
+      "id": "hollow-core",
+      "name": "The Hollow Core",
+      "description": "The deepest point of the tower — a vast emptiness that should not exist. Those who enter rarely return unchanged.",
+      "icon": "💀",
       "accent": "#ef4444",
       "tier": "legendary",
       "minLevel": 35,
@@ -76,8 +76,8 @@
         "gearDrop": { "chance": 0.7, "minRarity": "legendary" }
       },
       "bonusRewards": {
-        "title": "Voidbringer",
-        "frame": { "id": "odium-frame", "name": "Voidbringer", "color": "#ef4444", "glow": true }
+        "title": "Voidwalker",
+        "frame": { "id": "hollow-core-frame", "name": "Voidwalker", "color": "#ef4444", "glow": true }
       }
     }
   ]

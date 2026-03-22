@@ -20,6 +20,7 @@ const RiftView = lazy(() => import("@/components/RiftView"));
 const FactionsView = lazy(() => import("@/components/FactionsView"));
 const BattlePassView = lazy(() => import("@/components/BattlePassView"));
 const WorldBossView = lazy(() => import("@/components/WorldBossView"));
+const DungeonView = lazy(() => import("@/components/DungeonView"));
 const PlayerProfileModal = lazy(() => import("@/components/PlayerProfileModal"));
 import { GuideModal, GuideContent, TutorialOverlay, TUTORIAL_STEPS } from "@/components/TutorialModal";
 import {
@@ -131,7 +132,7 @@ export default function Dashboard() {
   });
   // selectedIds, bulkLoading, reviewComments moved to useQuestActions hook
   const [typeFilter, setTypeFilter] = useState<string>("all");
-  const [dashViewRaw, setDashViewRaw] = useState<"questBoard" | "npcBoard" | "klassenquests" | "character" | "campaign" | "leaderboard" | "honors" | "season" | "shop" | "forge" | "gacha" | "roadmap" | "changelog" | "challenges" | "rituals" | "vows" | "social" | "tavern" | "rift" | "factions" | "worldboss">("questBoard");
+  const [dashViewRaw, setDashViewRaw] = useState<"questBoard" | "npcBoard" | "klassenquests" | "character" | "campaign" | "leaderboard" | "honors" | "season" | "shop" | "forge" | "gacha" | "roadmap" | "changelog" | "challenges" | "rituals" | "vows" | "social" | "tavern" | "rift" | "factions" | "worldboss" | "dungeons">("questBoard");
   const [activeFloor, setActiveFloor] = useState("haupthalle");
   // Wrap setDashView to auto-sync the active floor
   const dashView = dashViewRaw;
@@ -1198,6 +1199,11 @@ export default function Dashboard() {
         {/* World Boss — The Colosseum */}
         {dashView === "worldboss" && (
           <ErrorBoundary><Suspense fallback={<ViewFallback />}><WorldBossView /></Suspense></ErrorBoundary>
+        )}
+
+        {/* ── DUNGEONS — The Undercroft ── */}
+        {dashView === "dungeons" && (
+          <ErrorBoundary><Suspense fallback={<ViewFallback />}><DungeonView onRefresh={refresh} /></Suspense></ErrorBoundary>
         )}
 
         {/* ── SHOP TAB ── */}

@@ -126,6 +126,7 @@ app.use('/api/factions', require('./routes/factions'));
 app.use('/api/battlepass', require('./routes/battlepass'));
 app.use(require('./routes/world-boss'));
 app.use(require('./routes/gems'));
+app.use(require('./routes/dungeons'));
 app.use(require('./routes/npcs-misc'));  // Must be last (has SPA fallback catch-all)
 
 // ─── Express error handler (catch-all for unhandled route errors) ────────────
@@ -200,6 +201,8 @@ require('./routes/world-boss').loadWorldBossState();
 require('./routes/world-boss').checkAutoSpawn();
 require('./routes/gems').loadGems();
 require('./routes/players').loadCompanionExpeditions();
+require('./routes/dungeons').loadDungeonTemplates();
+require('./routes/dungeons').loadDungeonState();
 
 // Migrate legacy equipment (string IDs → rolled instances) — only if needed
 {

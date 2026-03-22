@@ -80,6 +80,7 @@ export const FLOORS: Floor[] = [
       { key: "challenges", label: "Challenges",            iconSrc: "/images/icons/nav-challenges.png",  tutorialKey: null },
       { key: "rift",       label: "The Rift",              iconSrc: "/images/icons/nav-rift.png",        requiresLogin: true, tutorialKey: null },
       { key: "worldboss",  label: "The Colosseum",         iconSrc: "",                                  requiresLogin: true, tutorialKey: null },
+      { key: "dungeons",   label: "The Undercroft",        iconSrc: "",                                  requiresLogin: true, tutorialKey: null },
     ],
   },
   {
