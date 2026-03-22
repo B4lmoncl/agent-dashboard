@@ -6116,6 +6116,2932 @@
       },
       "legendaryEffect": null,
       "setId": "legendary"
+    },
+    {
+      "id": "dun-archive-tinten-schwert",
+      "name": "Tintenverschmiertes Schwert",
+      "slot": "weapon",
+      "tier": 2,
+      "reqLevel": 10,
+      "rarity": "rare",
+      "price": 0,
+      "desc": "Die Klinge ist mit alter Tinte befleckt. Die Worte sind unleserlich — aber sie schneiden trotzdem.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 2
+            },
+            {
+              "stat": "charisma",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "dun-archive-pergament-schild",
+      "name": "Pergamentgebundener Schild",
+      "slot": "shield",
+      "tier": 2,
+      "reqLevel": 11,
+      "rarity": "rare",
+      "price": 0,
+      "desc": "Seiten eines uralten Buches, um einen Holzrahmen gewickelt. Das Wissen schützt. Buchstäblich.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 2
+            },
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "dun-archive-bibliothekars-kappe",
+      "name": "Bibliothekarskappe",
+      "slot": "helm",
+      "tier": 2,
+      "reqLevel": 10,
+      "rarity": "rare",
+      "price": 0,
+      "desc": "Noch feucht. Das Archiv hat sie nicht freiwillig hergegeben.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "glueck",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "dun-archive-nasse-robe",
+      "name": "Wassergetränkte Robe",
+      "slot": "armor",
+      "tier": 2,
+      "reqLevel": 12,
+      "rarity": "rare",
+      "price": 0,
+      "desc": "Tropft noch. Riecht nach altem Papier und vergessenem Wissen.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "dun-archive-bernstein-amulett",
+      "name": "Bernstein des Archivars",
+      "slot": "amulet",
+      "tier": 2,
+      "reqLevel": 11,
+      "rarity": "rare",
+      "price": 0,
+      "desc": "Im Bernstein eingeschlossen: ein Buchstabe. Welcher, ändert sich je nach Licht.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 3
+            },
+            {
+              "stat": "glueck",
+              "min": 2,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "charisma",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "dun-archive-flut-stiefel",
+      "name": "Flutstiefel",
+      "slot": "boots",
+      "tier": 2,
+      "reqLevel": 10,
+      "rarity": "rare",
+      "price": 0,
+      "desc": "Wasserdicht. Nicht wirklich — aber das Wasser zögert kurz.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "glueck",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "dun-archive-chronisten-feder",
+      "name": "Klinge des Chronisten",
+      "slot": "weapon",
+      "tier": 2,
+      "reqLevel": 15,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Geformt wie eine Schreibfeder. Schreibt Geschichte. In Blut, wenn es sein muss.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "glueck",
+              "min": 2,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "charisma",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "dun-archive-tiefenhelm",
+      "name": "Helm der versunkenen Hallen",
+      "slot": "helm",
+      "tier": 2,
+      "reqLevel": 16,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Korallen wachsen an den Seiten. Die Tiefe hat ihn sich zu eigen gemacht.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "dun-archive-wissen-panzer",
+      "name": "Panzer des bewahrten Wissens",
+      "slot": "armor",
+      "tier": 2,
+      "reqLevel": 15,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Jede Platte eingraviert mit Formeln. Wer sie liest, versteht die Welt besser. Oder wird verrückt.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "glueck",
+              "min": 2,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "dun-archive-tidenring",
+      "name": "Tidenring",
+      "slot": "amulet",
+      "tier": 2,
+      "reqLevel": 16,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Das Wasser im Inneren bewegt sich. Immer. Auch wenn du stillstehst.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "glueck",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "charisma",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "dun-archive-gezeitenstiefel",
+      "name": "Gezeitenstiefel",
+      "slot": "boots",
+      "tier": 2,
+      "reqLevel": 14,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Nasse Fußspuren. Immer. Auch auf Sand.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "glueck",
+              "min": 2,
+              "max": 3
+            },
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "dun-archive-wellen-schild",
+      "name": "Wellenschild",
+      "slot": "shield",
+      "tier": 2,
+      "reqLevel": 14,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Geschnitzt aus dem Kiel eines versunkenen Schiffes. Die Wellen erkennen ihn noch.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "dun-spire-prisma-klinge",
+      "name": "Prismaklinge",
+      "slot": "weapon",
+      "tier": 3,
+      "reqLevel": 20,
+      "rarity": "rare",
+      "price": 0,
+      "desc": "Bricht Licht in hundert Farben. Bricht auch Knochen, wenn nötig.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "glueck",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "dun-spire-kristall-schild",
+      "name": "Kristallbollwerk",
+      "slot": "shield",
+      "tier": 3,
+      "reqLevel": 20,
+      "rarity": "rare",
+      "price": 0,
+      "desc": "Gewachsen, nicht geschmiedet. Die Kristalle des Spire formen sich nach deinem Willen. Meistens.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "dun-spire-splitter-helm",
+      "name": "Splitterhelm",
+      "slot": "helm",
+      "tier": 3,
+      "reqLevel": 18,
+      "rarity": "rare",
+      "price": 0,
+      "desc": "Kristallsplitter ragen aus dem Metall. Nicht Dekoration — der Spire wächst weiter.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "dun-spire-resonanz-ruestung",
+      "name": "Resonanzrüstung",
+      "slot": "armor",
+      "tier": 3,
+      "reqLevel": 19,
+      "rarity": "rare",
+      "price": 0,
+      "desc": "Vibriert bei jedem Schritt. Der Spire singt durch sie hindurch.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "dun-spire-funken-amulett",
+      "name": "Funkenamulett",
+      "slot": "amulet",
+      "tier": 3,
+      "reqLevel": 20,
+      "rarity": "rare",
+      "price": 0,
+      "desc": "Kleine Blitze tanzen zwischen den Kristallen. Berühre es nicht bei Regen.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "glueck",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "charisma",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "dun-spire-ladungs-stiefel",
+      "name": "Geladene Stiefel",
+      "slot": "boots",
+      "tier": 3,
+      "reqLevel": 18,
+      "rarity": "rare",
+      "price": 0,
+      "desc": "Statische Aufladung bei jedem Schritt. Nicht anfassen nach dem Ausziehen.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "glueck",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "dun-spire-energie-klinge",
+      "name": "Energieklinge des Spire",
+      "slot": "weapon",
+      "tier": 3,
+      "reqLevel": 24,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Pures Kristall. Die Klinge existiert nur, solange du sie hältst. Lass nicht los.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "glueck",
+              "min": 3,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "dun-spire-arkaner-schild",
+      "name": "Arkaner Kristallschild",
+      "slot": "shield",
+      "tier": 3,
+      "reqLevel": 24,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Der Kristall wächst nach, wenn er bricht. Langsam. Aber er wächst.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "dun-spire-prismen-krone",
+      "name": "Prismenkrone",
+      "slot": "helm",
+      "tier": 3,
+      "reqLevel": 22,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Bricht jeden Gedanken in Spektren. Verwirrend, aber erleuchtend.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "glueck",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "charisma",
+              "min": 2,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "dun-spire-energiepanzer",
+      "name": "Energiepanzer des Turms",
+      "slot": "armor",
+      "tier": 3,
+      "reqLevel": 24,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Kristallplatten, durchzogen von Energielinien. Pulsiert im Rhythmus des Spire.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "dun-spire-blitz-amulett",
+      "name": "Blitzherz-Amulett",
+      "slot": "amulet",
+      "tier": 3,
+      "reqLevel": 23,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Ein Kristall, der niemals aufhört zu leuchten. Nie. Auch nachts. Besonders nachts.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "glueck",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "charisma",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "dun-spire-gleiter-stiefel",
+      "name": "Turmgleiter",
+      "slot": "boots",
+      "tier": 3,
+      "reqLevel": 22,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Wer den Spire bestiegen hat, braucht keine Treppen mehr.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "glueck",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "dun-core-leere-sense",
+      "name": "Sense der Leere",
+      "slot": "weapon",
+      "tier": 4,
+      "reqLevel": 35,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Die Klinge ist nicht da. Aber sie schneidet trotzdem. Die Leere schneidet immer.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary"
+    },
+    {
+      "id": "dun-core-nichts-schild",
+      "name": "Schild des Nichts",
+      "slot": "shield",
+      "tier": 4,
+      "reqLevel": 36,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Was nicht existiert, kann nicht zerbrechen. Die Philosophie dahinter ist fragwürdig.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary"
+    },
+    {
+      "id": "dun-core-abgrund-haube",
+      "name": "Abgrundhaube",
+      "slot": "helm",
+      "tier": 4,
+      "reqLevel": 35,
+      "rarity": "legendary",
+      "price": 0,
+      "desc": "Wenn du in den Abgrund blickst, blickt die Haube zurück. Und zwinkert.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            3,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            }
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "dungeon_loot_bonus",
+        "min": 2,
+        "max": 5,
+        "label": "Abgrundblick: +{value}% Dungeon-Belohnungen"
+      },
+      "setId": "legendary"
+    },
+    {
+      "id": "dun-core-schatten-ruestung",
+      "name": "Schattengewobene Rüstung",
+      "slot": "armor",
+      "tier": 4,
+      "reqLevel": 36,
+      "rarity": "legendary",
+      "price": 0,
+      "desc": "Aus Schatten gewebt. Kein Licht dringt hindurch. Kein Schwert auch nicht.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            3,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            }
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "decay_reduction",
+        "min": 2,
+        "max": 5,
+        "label": "Schattenmantel: -{value}% Forge-Decay"
+      },
+      "setId": "legendary"
+    },
+    {
+      "id": "dun-core-leere-amulett",
+      "name": "Amulett der hohlen Tiefe",
+      "slot": "amulet",
+      "tier": 4,
+      "reqLevel": 38,
+      "rarity": "legendary",
+      "price": 0,
+      "desc": "Ein Loch im Stein. Nicht ein Loch in einem Stein — ein Loch, geformt wie ein Stein.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            3,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "charisma",
+              "min": 3,
+              "max": 5
+            }
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "salvage_bonus",
+        "min": 3,
+        "max": 6,
+        "label": "Leere Tiefe: +{value}% Materialien beim Zerlegen"
+      },
+      "setId": "legendary"
+    },
+    {
+      "id": "dun-core-void-stiefel",
+      "name": "Void-Treter",
+      "slot": "boots",
+      "tier": 4,
+      "reqLevel": 35,
+      "rarity": "legendary",
+      "price": 0,
+      "desc": "Deine Schritte machen kein Geräusch. Nicht weil du leise bist — der Boden hört auf zu existieren.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            3,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 6
+            },
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            }
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "gem_preserve",
+        "min": 5,
+        "max": 10,
+        "label": "Voidschritt: +{value}% Chance, Edelstein beim Entfernen zu bewahren"
+      },
+      "setId": "legendary"
+    },
+    {
+      "id": "dun-core-abyssale-klinge",
+      "name": "Abyssale Klinge",
+      "slot": "weapon",
+      "tier": 4,
+      "reqLevel": 38,
+      "rarity": "legendary",
+      "price": 0,
+      "desc": "Geschmiedet in der Abwesenheit von allem. Sogar Hitze. Wie schmiedet man ohne Hitze?",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            3,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            }
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "xp_bonus",
+        "min": 2,
+        "max": 5,
+        "label": "Abyssaler Schnitt: +{value}% Quest-XP"
+      },
+      "setId": "legendary"
+    },
+    {
+      "id": "dun-core-kern-schild",
+      "name": "Schutzschild des Kerns",
+      "slot": "shield",
+      "tier": 4,
+      "reqLevel": 37,
+      "rarity": "legendary",
+      "price": 0,
+      "desc": "Der innerste Kern hält alles zusammen. Oder hält alles draußen. Kommt auf die Perspektive an.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            3,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            }
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "drop_bonus",
+        "min": 1,
+        "max": 3,
+        "label": "Kernschutz: +{value}% Drop-Chance"
+      },
+      "setId": "legendary"
+    },
+    {
+      "id": "dun-core-leere-robe",
+      "name": "Robe der Vergessenen",
+      "slot": "armor",
+      "tier": 4,
+      "reqLevel": 35,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Jemand hat sie getragen. Jemand, den alle vergessen haben. Auch die Robe.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 6
+            },
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary"
+    },
+    {
+      "id": "dun-core-dunkelheit-helm",
+      "name": "Helm der ewigen Nacht",
+      "slot": "helm",
+      "tier": 4,
+      "reqLevel": 36,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Es ist immer dunkel unter diesem Helm. Aber du siehst trotzdem. Besser als vorher.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 6
+            },
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "charisma",
+              "min": 3,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary"
+    },
+    {
+      "id": "rift-normal-spalt-schwert",
+      "name": "Spaltschwert",
+      "slot": "weapon",
+      "tier": 3,
+      "reqLevel": 15,
+      "rarity": "rare",
+      "price": 0,
+      "desc": "Die Klinge flimmert. Ist sie hier oder dort? Ja.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "glueck",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "rift-normal-verzerrte-ruestung",
+      "name": "Verzerrte Rüstung",
+      "slot": "armor",
+      "tier": 3,
+      "reqLevel": 16,
+      "rarity": "rare",
+      "price": 0,
+      "desc": "Die Konturen verschwimmen. Nicht beschädigt — die Realität hier ist einfach... weicher.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "rift-normal-flicker-helm",
+      "name": "Flickerhelm",
+      "slot": "helm",
+      "tier": 2,
+      "reqLevel": 15,
+      "rarity": "rare",
+      "price": 0,
+      "desc": "Blinkt rein und raus aus der Existenz. Hoffentlich nicht während eines Treffers.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "glueck",
+              "min": 2,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "rift-normal-echo-stiefel",
+      "name": "Echostiefel",
+      "slot": "boots",
+      "tier": 2,
+      "reqLevel": 16,
+      "rarity": "rare",
+      "price": 0,
+      "desc": "Deine Schritte hallen nach. Sekunden nachdem du weitergegangen bist.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "glueck",
+              "min": 2,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "rift-hard-phasen-klinge",
+      "name": "Phasenklinge",
+      "slot": "weapon",
+      "tier": 3,
+      "reqLevel": 24,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Existiert in zwei Dimensionen gleichzeitig. Schneidet in beiden.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "glueck",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "rift-hard-dimensionsschild",
+      "name": "Dimensionsschild",
+      "slot": "shield",
+      "tier": 4,
+      "reqLevel": 26,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Blockiert Angriffe bevor sie passieren. Zeitparadoxon inklusive.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "glueck",
+              "min": 3,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary"
+    },
+    {
+      "id": "rift-hard-zerbrochene-krone",
+      "name": "Zerbrochene Krone",
+      "slot": "helm",
+      "tier": 4,
+      "reqLevel": 28,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Zerbrochen in einer Dimension. Ganz in einer anderen. Du trägst beide.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "glueck",
+              "min": 3,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "charisma",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary"
+    },
+    {
+      "id": "rift-hard-riss-amulett",
+      "name": "Riss-Amulett",
+      "slot": "amulet",
+      "tier": 4,
+      "reqLevel": 25,
+      "rarity": "rare",
+      "price": 0,
+      "desc": "Ein Riss in der Realität, eingefangen in Kristall. Es zieht daran.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "glueck",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary"
+    },
+    {
+      "id": "rift-hard-warp-stiefel",
+      "name": "Warpstiefel",
+      "slot": "boots",
+      "tier": 4,
+      "reqLevel": 26,
+      "rarity": "rare",
+      "price": 0,
+      "desc": "Du kommst manchmal an, bevor du losgehst. Das ist verwirrend, aber schnell.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "glueck",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary"
+    },
+    {
+      "id": "rift-legend-weltenriss-schwert",
+      "name": "Weltenrissschwert",
+      "slot": "weapon",
+      "tier": 4,
+      "reqLevel": 32,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Geschmiedet im Riss zwischen den Welten. Wo genau? Überall gleichzeitig.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary"
+    },
+    {
+      "id": "rift-legend-paradox-ruestung",
+      "name": "Paradoxrüstung",
+      "slot": "armor",
+      "tier": 4,
+      "reqLevel": 34,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Gleichzeitig schwer und leicht. Existent und nicht. Schrödingers Rüstung.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 6
+            },
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary"
+    },
+    {
+      "id": "rift-legend-null-amulett",
+      "name": "Nullpunkt-Amulett",
+      "slot": "amulet",
+      "tier": 4,
+      "reqLevel": 33,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Am Nullpunkt treffen sich alle Dimensionen. Es ist laut dort.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "charisma",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary"
+    },
+    {
+      "id": "rift-legend-entropie-helm",
+      "name": "Entropiehelm",
+      "slot": "helm",
+      "tier": 4,
+      "reqLevel": 35,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Ordnung zerfällt. Chaos entsteht. Unter diesem Helm macht beides Sinn.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 6
+            },
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary"
+    },
+    {
+      "id": "rift-legend-zerriss-stiefel",
+      "name": "Zerrissene Stiefel",
+      "slot": "boots",
+      "tier": 4,
+      "reqLevel": 34,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Zwischen den Rissen sieht man andere Orte. Andere Zeiten. Andere Schuhe.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 6
+            },
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary"
+    },
+    {
+      "id": "rift-mythic-unendlichkeits-klinge",
+      "name": "Klinge der Unendlichkeit",
+      "slot": "weapon",
+      "tier": 4,
+      "reqLevel": 45,
+      "rarity": "legendary",
+      "price": 0,
+      "desc": "Hat kein Ende. Kein Anfang. Nur Mitte. Und die Mitte schneidet.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            3,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "glueck",
+              "min": 5,
+              "max": 7
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "crit_chance",
+        "min": 3,
+        "max": 6,
+        "label": "Unendlichkeit: +{value}% Chance auf doppelte Quest-Belohnung"
+      },
+      "setId": "legendary"
+    },
+    {
+      "id": "rift-mythic-ewigkeits-panzer",
+      "name": "Panzer der Ewigkeit",
+      "slot": "armor",
+      "tier": 4,
+      "reqLevel": 46,
+      "rarity": "legendary",
+      "price": 0,
+      "desc": "Die Zeit vergeht. Die Rüstung nicht. Das ist der Deal.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            3,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 7
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            }
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "faction_rep_boost",
+        "min": 3,
+        "max": 6,
+        "label": "Zeitlose Ehre: +{value}% Fraktionsreputation"
+      },
+      "setId": "legendary"
+    },
+    {
+      "id": "rift-mythic-omega-helm",
+      "name": "Omegakrone",
+      "slot": "helm",
+      "tier": 4,
+      "reqLevel": 48,
+      "rarity": "legendary",
+      "price": 0,
+      "desc": "Das Ende aller Dinge. Und der Anfang der nächsten. Omega ist nur ein Buchstabe.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            3,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "glueck",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 5,
+              "max": 7
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "charisma",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "challenge_score_bonus",
+        "min": 3,
+        "max": 6,
+        "label": "Omegasicht: +{value}% Herausforderungs-Score"
+      },
+      "setId": "legendary"
+    },
+    {
+      "id": "rift-mythic-horizont-amulett",
+      "name": "Amulett des Horizonts",
+      "slot": "amulet",
+      "tier": 4,
+      "reqLevel": 47,
+      "rarity": "legendary",
+      "price": 0,
+      "desc": "Der Horizont ist immer gleich weit weg. Wie dieses Amulett — du trägst es und erreichst es nie.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            3,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "glueck",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 7
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "charisma",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            }
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "expedition_speed",
+        "min": 5,
+        "max": 10,
+        "label": "Horizontruf: -{value}% Expeditionsdauer"
+      },
+      "setId": "legendary"
+    },
+    {
+      "id": "rift-mythic-singularitaet-stiefel",
+      "name": "Singularitätsstiefel",
+      "slot": "boots",
+      "tier": 4,
+      "reqLevel": 50,
+      "rarity": "legendary",
+      "price": 0,
+      "desc": "Am Punkt der Singularität ist alles eins. Deine Schritte auch — sie sind überall gleichzeitig.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            3,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "glueck",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 7
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "ritual_streak_bonus",
+        "min": 1,
+        "max": 3,
+        "label": "Singularität: +{value}% XP pro Ritual-Streak-Tag"
+      },
+      "setId": "legendary"
     }
   ],
   "setBonus": {
