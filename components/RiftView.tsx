@@ -331,7 +331,14 @@ export default function RiftView({ onRefresh }: { onRefresh?: () => void }) {
               }}>
                 <div className="text-center">
                   <span className="text-2xl">{tier.icon}</span>
-                  <p className="text-sm font-bold mt-1" style={{ color: tier.color }}>{tier.name}</p>
+                  <TipCustom
+                    title={tier.name}
+                    icon={tier.icon}
+                    accent={tier.color}
+                    body={<p>{tier.questCount} quests in {tier.timeLimitHours}h. Base difficulty scales up to {id === "normal" ? "1" : id === "hard" ? "2" : "3.5"}×. Failing triggers a {tier.failCooldownDays}-day cooldown.</p>}
+                  >
+                    <p className="text-sm font-bold mt-1 cursor-help" style={{ color: tier.color }}>{tier.name}</p>
+                  </TipCustom>
                   {locked && <p className="text-xs text-w20">Requires Lv.{tier.minLevel}</p>}
                 </div>
                 <div className="space-y-1 text-xs text-w35">

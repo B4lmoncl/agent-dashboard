@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { useDashboard } from "@/app/DashboardContext";
 import { getAuthHeaders } from "@/lib/auth-client";
-import { Tip } from "@/components/GameTooltip";
+import { Tip, TipCustom } from "@/components/GameTooltip";
 import type { RewardCelebrationData } from "@/components/RewardCelebration";
 
 // ─── Types ──────────────────────────────────────────────────────────────────
@@ -443,7 +443,9 @@ export default function WorldBossView({ onRefresh, onRewardCelebration }: { onRe
           <div className="grid grid-cols-3 gap-3 text-center">
             <div>
               <p className="text-lg font-bold font-mono" style={{ color: "#ef4444" }}>{formatNumber(playerContribution.damage)}</p>
-              <p className="text-xs text-w20">Damage Dealt</p>
+              <TipCustom title="Damage Dealt" icon="⚔️" accent="#ef4444" body={<p>Damage is calculated from quest completions. Higher rarity quests deal more damage.</p>}>
+                <p className="text-xs text-w20 cursor-help">Damage Dealt</p>
+              </TipCustom>
             </div>
             <div>
               <p className="text-lg font-bold font-mono" style={{ color: "#a855f7" }}>{playerContribution.quests}</p>
