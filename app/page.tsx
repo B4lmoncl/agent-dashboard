@@ -1188,22 +1188,22 @@ export default function Dashboard() {
 
         {/* Factions — Die Vier Zirkel */}
         {dashView === "factions" && (
-          <ErrorBoundary><Suspense fallback={<ViewFallback />}><FactionsView /></Suspense></ErrorBoundary>
+          <ErrorBoundary><Suspense fallback={<ViewFallback />}><FactionsView onRewardCelebration={setRewardCelebration} /></Suspense></ErrorBoundary>
         )}
 
         {/* Season Pass (Battle Pass) */}
         {dashView === "season" && (
-          <ErrorBoundary><Suspense fallback={<ViewFallback />}><BattlePassView /></Suspense></ErrorBoundary>
+          <ErrorBoundary><Suspense fallback={<ViewFallback />}><BattlePassView onRewardCelebration={setRewardCelebration} /></Suspense></ErrorBoundary>
         )}
 
         {/* World Boss — The Colosseum */}
         {dashView === "worldboss" && (
-          <ErrorBoundary><Suspense fallback={<ViewFallback />}><WorldBossView /></Suspense></ErrorBoundary>
+          <ErrorBoundary><Suspense fallback={<ViewFallback />}><WorldBossView onRewardCelebration={setRewardCelebration} /></Suspense></ErrorBoundary>
         )}
 
         {/* ── DUNGEONS — The Undercroft ── */}
         {dashView === "dungeons" && (
-          <ErrorBoundary><Suspense fallback={<ViewFallback />}><DungeonView onRefresh={refresh} /></Suspense></ErrorBoundary>
+          <ErrorBoundary><Suspense fallback={<ViewFallback />}><DungeonView onRefresh={refresh} onRewardCelebration={setRewardCelebration} /></Suspense></ErrorBoundary>
         )}
 
         {/* ── SHOP TAB ── */}
@@ -1233,6 +1233,7 @@ export default function Dashboard() {
             weeklyChallenge={weeklyChallenge}
             expedition={expedition}
             onRefresh={refresh}
+            onRewardCelebration={setRewardCelebration}
           /></Suspense></ErrorBoundary>
         )}
 

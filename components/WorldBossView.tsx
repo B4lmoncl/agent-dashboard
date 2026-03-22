@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from "react";
 import { useDashboard } from "@/app/DashboardContext";
 import { getAuthHeaders } from "@/lib/auth-client";
 import { Tip } from "@/components/GameTooltip";
+import type { RewardCelebrationData } from "@/components/RewardCelebration";
 
 // ─── Types ──────────────────────────────────────────────────────────────────
 
@@ -141,7 +142,7 @@ function rewardColor(r: ClaimReward): string {
 
 // ─── Component ──────────────────────────────────────────────────────────────
 
-export default function WorldBossView({ onRefresh }: { onRefresh?: () => void }) {
+export default function WorldBossView({ onRefresh, onRewardCelebration }: { onRefresh?: () => void; onRewardCelebration?: (data: RewardCelebrationData) => void }) {
   const { playerName, reviewApiKey } = useDashboard();
   const [data, setData] = useState<BossData | null>(null);
   const [loading, setLoading] = useState(true);
@@ -213,12 +214,30 @@ export default function WorldBossView({ onRefresh }: { onRefresh?: () => void })
         setMessage({ text: "Rewards claimed!", type: "success" });
         fetchBoss();
         onRefresh?.();
+        if (onRewardCelebration && d.rewards) {
+          const currencies: { name: string; amount: number; color: string }[] = [];
+          for (const rw of d.rewards) {
+            if (rw.type === "essenz" && rw.amount) currencies.push({ name: "Essenz", amount: rw.amount, color: "#ef4444" });
+            if (rw.type === "stardust" && rw.amount) currencies.push({ name: "Stardust", amount: rw.amount, color: "#818cf8" });
+          }
+          const goldReward = d.rewards.find((rw: ClaimReward) => rw.type === "gold");
+          const lootReward = d.rewards.find((rw: ClaimReward) => rw.type === "unique-drop" || rw.type === "legendary-drop");
+          onRewardCelebration({
+            type: "world-boss",
+            title: "World Boss Rewards!",
+            xpEarned: 0,
+            goldEarned: goldReward?.amount || 0,
+            loot: lootReward ? { name: lootReward.name || "Legendary Drop", emoji: "💀", rarity: "legendary", rarityColor: "#ff8c00" } : undefined,
+            currencies: currencies.length > 0 ? currencies : undefined,
+            flavor: d.rank ? `Rank #${d.rank} · ${d.contributionPercent}% contribution` : undefined,
+          });
+        }
       }
     } catch {
       setMessage({ text: "Network error", type: "error" });
     }
     setClaiming(false);
-  }, [reviewApiKey, claiming, fetchBoss, onRefresh]);
+  }, [reviewApiKey, claiming, fetchBoss, onRefresh, onRewardCelebration]);
 
   // ─── Loading ────────────────────────────────────────────────────────────────
 

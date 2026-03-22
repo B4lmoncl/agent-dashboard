@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from "react";
 import { useDashboard } from "@/app/DashboardContext";
 import { getAuthHeaders } from "@/lib/auth-client";
 import { Tip, TipCustom } from "@/components/GameTooltip";
+import type { RewardCelebrationData } from "@/components/RewardCelebration";
 
 // ─── Types ──────────────────────────────────────────────────────────────────
 
@@ -49,7 +50,7 @@ interface Faction {
 
 // ─── Component ──────────────────────────────────────────────────────────────
 
-export default function FactionsView() {
+export default function FactionsView({ onRewardCelebration }: { onRewardCelebration?: (data: RewardCelebrationData) => void } = {}) {
   const { playerName } = useDashboard();
   const [factions, setFactions] = useState<Faction[]>([]);
   const [standings, setStandings] = useState<FactionStanding[]>([]);
@@ -80,8 +81,19 @@ export default function FactionsView() {
       });
       const data = await r.json();
       if (r.ok) {
-        setMessage({ text: `Reward claimed: ${data.granted?.map((g: { type: string; name?: string }) => g.name || g.type).join(", ")}`, type: "success" });
+        const grantedNames = data.granted?.map((g: { type: string; name?: string }) => g.name || g.type).join(", ") || "Reward";
+        setMessage({ text: `Reward claimed: ${grantedNames}`, type: "success" });
         fetchFactions();
+        if (onRewardCelebration) {
+          const faction = factions.find(f => f.id === factionId);
+          onRewardCelebration({
+            type: "faction",
+            title: `${faction?.name || "Faction"} — ${faction?.standingName || "Reward"}`,
+            xpEarned: 0,
+            goldEarned: 0,
+            flavor: grantedNames,
+          });
+        }
       } else {
         setMessage({ text: data.error || "Failed to claim", type: "error" });
       }

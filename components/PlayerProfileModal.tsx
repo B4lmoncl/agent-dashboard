@@ -6,6 +6,7 @@ import { useModalBehavior } from "@/components/ModalPortal";
 import { useDashboard } from "@/app/DashboardContext";
 import { getAuthHeaders } from "@/lib/auth-client";
 import { getUserLevel } from "@/app/utils";
+import { Tip, TipCustom } from "@/components/GameTooltip";
 
 // ─── Types ──────────────────────────────────────────────────────────────────
 
@@ -158,20 +159,26 @@ export default function PlayerProfileModal({ playerId, onClose, onAddFriend, onM
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 flex-wrap">
                     <h2 className="text-lg font-bold" style={{ color: "#f5f5f5" }}>{profile.name}</h2>
-                    {profile.streakDays > 0 && <span className="text-xs font-bold" style={{ color: profile.streakDays >= 30 ? "#ef4444" : "#f59e0b" }}>🔥{profile.streakDays}</span>}
+                    {profile.streakDays > 0 && <Tip k="streak"><span className="text-xs font-bold cursor-help" style={{ color: profile.streakDays >= 30 ? "#ef4444" : "#f59e0b" }}>🔥{profile.streakDays}</span></Tip>}
                   </div>
-                  <p className="text-sm font-semibold" style={{ color: `${profile.color}cc` }}>
-                    Lv.{profile.level} · {profile.levelTitle}
-                  </p>
-                  {profile.equippedTitle && (
-                    <p className="text-xs font-medium" style={{ color: RARITY_COLORS[profile.equippedTitle.rarity] || "#9ca3af" }}>
-                      &laquo; {profile.equippedTitle.name} &raquo;
+                  <Tip k="player_level">
+                    <p className="text-sm font-semibold cursor-help" style={{ color: `${profile.color}cc` }}>
+                      Lv.{profile.level} · {profile.levelTitle}
                     </p>
+                  </Tip>
+                  {profile.equippedTitle && (
+                    <Tip k="titles">
+                      <p className="text-xs font-medium cursor-help" style={{ color: RARITY_COLORS[profile.equippedTitle.rarity] || "#9ca3af" }}>
+                        &laquo; {profile.equippedTitle.name} &raquo;
+                      </p>
+                    </Tip>
                   )}
                   {profile.classInfo && (
-                    <p className="text-xs" style={{ color: "rgba(167,139,250,0.7)" }}>
-                      {profile.classInfo.icon} {profile.classInfo.name}{profile.classInfo.tier ? ` · ${profile.classInfo.tier}` : ""}
-                    </p>
+                    <Tip k="classes">
+                      <p className="text-xs cursor-help" style={{ color: "rgba(167,139,250,0.7)" }}>
+                        {profile.classInfo.icon} {profile.classInfo.name}{profile.classInfo.tier ? ` · ${profile.classInfo.tier}` : ""}
+                      </p>
+                    </Tip>
                   )}
                 </div>
               </div>
@@ -215,15 +222,17 @@ export default function PlayerProfileModal({ playerId, onClose, onAddFriend, onM
             {/* Stats row */}
             <div className="grid grid-cols-4 gap-px" style={{ background: "rgba(255,255,255,0.04)" }}>
               {[
-                { label: "XP", value: profile.xp.toLocaleString(), color: "#a855f7" },
-                { label: "Quests", value: String(profile.questsCompleted), color: "#8b5cf6" },
-                { label: "Ach. Pts", value: String(profile.achievementPoints), color: "#d4a64a" },
-                { label: "Gold", value: String(profile.gold), color: "#fbbf24" },
+                { label: "XP", value: profile.xp.toLocaleString(), color: "#a855f7", tip: "xp" as const },
+                { label: "Quests", value: String(profile.questsCompleted), color: "#8b5cf6", tip: "quest_board" as const },
+                { label: "Ach. Pts", value: String(profile.achievementPoints), color: "#d4a64a", tip: "achievements" as const },
+                { label: "Gold", value: String(profile.gold), color: "#fbbf24", tip: "gold" as const },
               ].map(s => (
-                <div key={s.label} className="text-center py-3" style={{ background: "#141418" }}>
-                  <p className="text-sm font-mono font-bold" style={{ color: s.color }}>{s.value}</p>
-                  <p className="text-xs text-w25">{s.label}</p>
-                </div>
+                <Tip key={s.label} k={s.tip}>
+                  <div className="text-center py-3 cursor-help" style={{ background: "#141418" }}>
+                    <p className="text-sm font-mono font-bold" style={{ color: s.color }}>{s.value}</p>
+                    <p className="text-xs text-w25">{s.label}</p>
+                  </div>
+                </Tip>
               ))}
             </div>
 
@@ -241,19 +250,33 @@ export default function PlayerProfileModal({ playerId, onClose, onAddFriend, onM
                       </div>
                     );
                     const rc = RARITY_COLORS[item.rarity] || "#888";
-                    return (
-                      <div key={slot} className="rounded-lg p-2" style={{ background: `${rc}08`, border: `1px solid ${rc}25` }} title={`${item.name}\n${Object.entries(item.stats).map(([k,v]) => `+${v} ${k}`).join('\n')}${item.desc ? `\n"${item.desc}"` : ''}`}>
-                        <div className="flex items-center gap-1.5">
-                          {item.icon && <img src={item.icon} alt="" width={24} height={24} style={{ imageRendering: "smooth" }} onError={hideOnError} />}
-                          <div className="min-w-0">
-                            <p className="text-xs font-semibold truncate" style={{ color: rc }}>{item.name}</p>
-                            <p className="text-xs text-w20">{SLOT_LABELS[slot]}</p>
-                          </div>
-                        </div>
-                        {item.legendaryEffect && (
-                          <p className="text-xs mt-1 truncate" style={{ color: "#f59e0b", fontSize: 12 }}>★ {item.legendaryEffect.label}</p>
-                        )}
+                    const statLines = Object.entries(item.stats).map(([k, v]) => (
+                      <span key={k} className="block text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>+{v} {k}</span>
+                    ));
+                    const tooltipBody = (
+                      <div className="space-y-1">
+                        <p className="text-xs font-semibold" style={{ color: rc }}>{item.rarity.charAt(0).toUpperCase() + item.rarity.slice(1)} · {SLOT_LABELS[slot]}</p>
+                        {statLines.length > 0 && <div>{statLines}</div>}
+                        {item.setId && <p className="text-xs" style={{ color: "#22c55e" }}>Set: {item.setId}</p>}
+                        {item.legendaryEffect && <p className="text-xs" style={{ color: "#f59e0b" }}>★ {item.legendaryEffect.label}</p>}
+                        {item.desc && <p className="text-xs italic" style={{ color: "rgba(255,255,255,0.3)" }}>&quot;{item.desc}&quot;</p>}
                       </div>
+                    );
+                    return (
+                      <TipCustom key={slot} title={item.name} icon={item.icon ? undefined : "⚔️"} accent={rc} body={tooltipBody}>
+                        <div className="rounded-lg p-2 cursor-help" style={{ background: `${rc}08`, border: `1px solid ${rc}25` }}>
+                          <div className="flex items-center gap-1.5">
+                            {item.icon && <img src={item.icon} alt="" width={24} height={24} style={{ imageRendering: "smooth" }} onError={hideOnError} />}
+                            <div className="min-w-0">
+                              <p className="text-xs font-semibold truncate" style={{ color: rc }}>{item.name}</p>
+                              <p className="text-xs text-w20">{SLOT_LABELS[slot]}</p>
+                            </div>
+                          </div>
+                          {item.legendaryEffect && (
+                            <p className="text-xs mt-1 truncate" style={{ color: "#f59e0b", fontSize: 12 }}>★ {item.legendaryEffect.label}</p>
+                          )}
+                        </div>
+                      </TipCustom>
                     );
                   })}
                 </div>
@@ -263,32 +286,40 @@ export default function PlayerProfileModal({ playerId, onClose, onAddFriend, onM
             {/* Companion */}
             {profile.companion && (
               <div className="px-4 py-3" style={{ borderTop: "1px solid rgba(255,255,255,0.04)" }}>
-                <div className="flex items-center gap-2">
-                  <span className="text-lg">{profile.companion.emoji || "🐾"}</span>
-                  <div>
-                    <p className="text-xs font-semibold" style={{ color: "#e8e8e8" }}>{profile.companion.name}</p>
-                    <p className="text-xs text-w30">Bond Level {profile.companion.bondLevel} · {profile.companion.isReal ? "Real pet" : "Virtual"}</p>
+                <Tip k="companions">
+                  <div className="flex items-center gap-2 cursor-help">
+                    <span className="text-lg">{profile.companion.emoji || "🐾"}</span>
+                    <div>
+                      <p className="text-xs font-semibold" style={{ color: "#e8e8e8" }}>{profile.companion.name}</p>
+                      <Tip k="bond_level">
+                        <p className="text-xs text-w30 cursor-help">Bond Level {profile.companion.bondLevel} · {profile.companion.isReal ? "Real pet" : "Virtual"}</p>
+                      </Tip>
+                    </div>
                   </div>
-                </div>
+                </Tip>
               </div>
             )}
 
             {/* Professions */}
             {profile.professions.length > 0 && (
               <div className="px-4 py-3" style={{ borderTop: "1px solid rgba(255,255,255,0.04)" }}>
-                <p className="text-xs font-bold uppercase tracking-wider mb-2 text-w35">Professions</p>
+                <Tip k="professions" heading>
+                  <p className="text-xs font-bold uppercase tracking-wider mb-2 text-w35 cursor-help">Professions</p>
+                </Tip>
                 <div className="flex gap-2">
                   {profile.professions.map(p => {
                     const meta = PROF_META[p.id];
                     if (!meta) return null;
                     return (
-                      <div key={p.id} className="flex items-center gap-2 px-2.5 py-1.5 rounded-lg" style={{ background: `${meta.color}10`, border: `1px solid ${meta.color}25` }}>
-                        <img src={meta.icon} alt="" width={18} height={18} style={{ imageRendering: "smooth" }} onError={hideOnError} />
-                        <div>
-                          <p className="text-xs font-semibold" style={{ color: meta.color }}>{meta.name}</p>
-                          <p className="text-xs text-w25">Lv.{p.level}</p>
+                      <Tip k="professions" key={p.id}>
+                        <div className="flex items-center gap-2 px-2.5 py-1.5 rounded-lg cursor-help" style={{ background: `${meta.color}10`, border: `1px solid ${meta.color}25` }}>
+                          <img src={meta.icon} alt="" width={18} height={18} style={{ imageRendering: "smooth" }} onError={hideOnError} />
+                          <div>
+                            <p className="text-xs font-semibold" style={{ color: meta.color }}>{meta.name}</p>
+                            <p className="text-xs text-w25">Lv.{p.level}</p>
+                          </div>
                         </div>
-                      </div>
+                      </Tip>
                     );
                   })}
                 </div>
@@ -298,15 +329,27 @@ export default function PlayerProfileModal({ playerId, onClose, onAddFriend, onM
             {/* Achievements */}
             {profile.achievements.length > 0 && (
               <div className="px-4 py-3" style={{ borderTop: "1px solid rgba(255,255,255,0.04)" }}>
-                <p className="text-xs font-bold uppercase tracking-wider mb-2 text-w35">
-                  Achievements ({profile.achievements.length})
-                </p>
+                <Tip k="achievements" heading>
+                  <p className="text-xs font-bold uppercase tracking-wider mb-2 text-w35 cursor-help">
+                    Achievements ({profile.achievements.length})
+                  </p>
+                </Tip>
                 <div className="flex flex-wrap gap-1.5">
-                  {profile.achievements.slice(0, 20).map(a => (
-                    <span key={a.id} title={`${a.name}: ${a.desc}`} className="inline-flex" style={{ cursor: "default" }}>
-                      {a.icon ? <img src={a.icon} alt={a.name} width={22} height={22} style={{ imageRendering: "smooth" }} onError={hideOnError} /> : <span className="text-sm">🏆</span>}
-                    </span>
-                  ))}
+                  {profile.achievements.slice(0, 20).map(a => {
+                    const achColor = RARITY_COLORS[a.rarity] || "#fbbf24";
+                    return (
+                      <TipCustom key={a.id} title={a.name} icon={a.icon?.startsWith("/") ? undefined : a.icon || "🏆"} accent={achColor} body={
+                        <div>
+                          <p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>{a.desc}</p>
+                          <p className="text-xs mt-1" style={{ color: achColor }}>{a.rarity.charAt(0).toUpperCase() + a.rarity.slice(1)} · {a.points} pts</p>
+                        </div>
+                      }>
+                        <span className="inline-flex cursor-help">
+                          {a.icon ? <img src={a.icon} alt={a.name} width={22} height={22} style={{ imageRendering: "smooth" }} onError={hideOnError} /> : <span className="text-sm">🏆</span>}
+                        </span>
+                      </TipCustom>
+                    );
+                  })}
                   {profile.achievements.length > 20 && (
                     <span className="text-xs self-center text-w20">+{profile.achievements.length - 20} more</span>
                   )}
