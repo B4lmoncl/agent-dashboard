@@ -202,6 +202,7 @@ function FriendsTab({ apiKey, playerName, onOpenProfile }: { apiKey: string; pla
             onKeyDown={e => { if (e.key === "Enter") sendRequest(); }}
             onFocus={() => { if (searchResults.length > 0) setSearchOpen(true); }}
             placeholder="Search players..."
+            maxLength={50}
             className="input-dark flex-1 text-xs px-3 py-2 rounded-lg"
           />
           <button
