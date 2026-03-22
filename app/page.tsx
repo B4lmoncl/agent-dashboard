@@ -2413,7 +2413,7 @@ export default function Dashboard() {
     {/* Player Profile Modal — accessible from Leaderboard, Social, etc. */}
     {profilePlayerId && (
       <Suspense fallback={null}>
-        <PlayerProfileModal playerId={profilePlayerId} onClose={() => setProfilePlayerId(null)} />
+        <PlayerProfileModal playerId={profilePlayerId} onClose={() => setProfilePlayerId(null)} onMessage={(id) => { setProfilePlayerId(null); setDashView("social"); }} />
       </Suspense>
     )}
     </DashboardProvider>

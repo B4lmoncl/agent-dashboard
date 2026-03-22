@@ -311,7 +311,7 @@ function FriendsTab({ apiKey, playerName, onOpenProfile }: { apiKey: string; pla
 
 // ─── Messages Tab ───────────────────────────────────────────────────────────
 
-function MessagesTab({ apiKey, playerName }: { apiKey: string; playerName: string }) {
+function MessagesTab({ apiKey, playerName, autoOpenWith, onAutoOpened }: { apiKey: string; playerName: string; autoOpenWith?: string | null; onAutoOpened?: () => void }) {
   const [conversations, setConversations] = useState<Conversation[]>([]);
   const [activeConvo, setActiveConvo] = useState<string | null>(null);
   const [messages, setMessages] = useState<SocialMessage[]>([]);
@@ -331,6 +331,15 @@ function MessagesTab({ apiKey, playerName }: { apiKey: string; playerName: strin
   }, [apiKey, playerName]);
 
   useEffect(() => { fetchConversations(); }, [fetchConversations]);
+
+  // Auto-open conversation when navigated from profile "Message" button
+  useEffect(() => {
+    if (autoOpenWith && !loading) {
+      openConvo(autoOpenWith);
+      onAutoOpened?.();
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [autoOpenWith, loading]);
 
   const openConvo = async (otherPlayerId: string) => {
     setActiveConvo(otherPlayerId);
@@ -1208,6 +1217,7 @@ export default function SocialView() {
   const { playerName, reviewApiKey } = useDashboard();
   const [activeTab, setActiveTab] = useState<SocialTab>("friends");
   const [profilePlayerId, setProfilePlayerId] = useState<string | null>(null);
+  const [pendingMessageTarget, setPendingMessageTarget] = useState<string | null>(null);
 
   if (!playerName || !reviewApiKey) {
     return (
@@ -1249,7 +1259,7 @@ export default function SocialView() {
       {/* Tab content */}
       <div key={activeTab} className="tab-content-enter">
         {activeTab === "friends" && <FriendsTab apiKey={reviewApiKey} playerName={playerName} onOpenProfile={id => setProfilePlayerId(id)} />}
-        {activeTab === "messages" && <MessagesTab apiKey={reviewApiKey} playerName={playerName} />}
+        {activeTab === "messages" && <MessagesTab apiKey={reviewApiKey} playerName={playerName} autoOpenWith={pendingMessageTarget} onAutoOpened={() => setPendingMessageTarget(null)} />}
         {activeTab === "trades" && <TradesTab apiKey={reviewApiKey} playerName={playerName} />}
         {activeTab === "activity" && <ActivityFeedTab apiKey={reviewApiKey} playerName={playerName} />}
       </div>
@@ -1259,7 +1269,7 @@ export default function SocialView() {
         <PlayerProfileModal
           playerId={profilePlayerId}
           onClose={() => setProfilePlayerId(null)}
-          onMessage={(id) => { setProfilePlayerId(null); setActiveTab("messages"); }}
+          onMessage={(id) => { setProfilePlayerId(null); setPendingMessageTarget(id); setActiveTab("messages"); }}
         />
       )}
     </div>
