@@ -137,6 +137,9 @@ All routes are mounted in `server.js` in order. The last route file (`npcs-misc.
   "activeNpcs": [...],
   "weeklyChallenge": { ... },
   "expedition": { ... },
+  "dailyBonusAvailable": true,
+  "socialSummary": { "pendingFriendRequests": 0, "unreadMessages": 0, "activeTrades": 0 },
+  "dailyMissions": { "missions": [...], "earned": 0, "total": 750, "milestones": [...] },
   "apiLive": true
 }
 ```

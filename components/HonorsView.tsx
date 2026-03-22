@@ -74,7 +74,7 @@ export default function HonorsView({ catalogue, highlightedAchievementId, onHigh
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 tab-content-enter">
       {/* Header */}
       <div className="rounded-2xl p-5" style={{ background: "linear-gradient(135deg, #110d04 0%, #0f0f0f 100%)", border: "1px solid rgba(245,158,11,0.18)", boxShadow: "0 0 30px rgba(245,158,11,0.04)" }}>
         <div className="flex items-center gap-3 mb-1">

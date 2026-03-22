@@ -194,7 +194,7 @@ export default function CampaignHub({ campaigns, quests, reviewApiKey, onRefresh
 
   // ── Campaign cards grid ──────────────────────────────────────────────────────
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 tab-content-enter">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">

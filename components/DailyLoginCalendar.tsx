@@ -18,9 +18,9 @@ interface CalendarDay {
 // ─── Streak milestone rewards preview ────────────────────────────────────────
 
 const MILESTONES = [
-  { days: 7,  label: "7-Tage Bonus",  reward: "+1 Runensplitter, +1 Essenz" },
-  { days: 14, label: "14-Tage Bonus", reward: "+2 Runensplitter, +2 Essenz" },
-  { days: 30, label: "30-Tage Bonus", reward: "+3 Runensplitter, +5 Essenz" },
+  { days: 7,  label: "7-Day Bonus",  reward: "+1 Runensplitter, +1 Essenz" },
+  { days: 14, label: "14-Day Bonus", reward: "+2 Runensplitter, +2 Essenz" },
+  { days: 30, label: "30-Day Bonus", reward: "+3 Runensplitter, +5 Essenz" },
 ];
 
 // ─── Component ───────────────────────────────────────────────────────────────
@@ -88,7 +88,7 @@ export default function DailyLoginCalendar({ onClose }: { onClose: () => void })
           </div>
           <div className="text-right">
             <p className="text-sm font-bold" style={{ color: "#fbbf24" }}>{streakDays} Day Streak</p>
-            <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>{claimedThisMonth}/{daysInMonth} diesen Monat</p>
+            <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>{claimedThisMonth}/{daysInMonth} this month</p>
           </div>
         </div>
 

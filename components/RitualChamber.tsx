@@ -238,7 +238,7 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
 
   return (
     <>
-      <div data-feedback-id="ritual-chamber" className="section-ritual">
+      <div data-feedback-id="ritual-chamber" className="section-ritual tab-content-enter">
         {/* ── Top flex row: Portrait left, content right ── */}
         <div className="flex gap-4 mb-4" style={{ alignItems: "flex-start" }}>
           {/* Portrait column with speech bubble */}

@@ -407,7 +407,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
   const chosenCount = professions.filter(p => p.chosen).length;
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 tab-content-enter">
       {/* ─── Header with currencies + info ─────────────────────────────── */}
       <div className="flex items-center gap-4 flex-wrap">
         <Tip k="artisans_quarter"><span className="text-base font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.4)" }}>{"Artisan's Quarter"}</span></Tip>

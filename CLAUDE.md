@@ -52,7 +52,7 @@ app/                  # Next.js app directory
   globals.css         # Tailwind + CSS utilities + animations (~720 lines)
   layout.tsx          # Root layout wrapper
   DashboardContext.tsx # React context for shared state
-components/           # React UI components (47 files, ~16k lines)
+components/           # React UI components (47 files, ~21k lines)
   DashboardHeader.tsx # Top navigation bar
   DashboardModals.tsx # Modal system (currencies, modifiers, info)
   CharacterView.tsx   # Character screen + equipment (lazy-loaded)
@@ -75,7 +75,7 @@ components/           # React UI components (47 files, ~16k lines)
   ...                 # 26 more components
 hooks/                # React custom hooks
   useQuestActions.ts  # Quest action handlers (claim, complete, approve, etc.)
-lib/                  # Backend business logic (8 files, ~3800 lines)
+lib/                  # Backend business logic (8 files, ~3750 lines)
   state.js            # Central state, Maps, JSON persistence (~1060 lines)
   helpers.js          # Utility functions, paginate() (~920 lines)
   auth.js             # JWT, refresh tokens, API key auth
@@ -84,7 +84,7 @@ lib/                  # Backend business logic (8 files, ~3800 lines)
   rotation.js         # Daily quest rotation logic
   middleware.js       # Express middleware (auth, master key)
   quest-templates.js  # Quest template interpolation
-routes/               # Express API routes (21 files, ~8500 lines)
+routes/               # Express API routes (21 files, ~9400 lines)
   quests.js           # Quest CRUD, claim, complete (~780 lines)
   habits-inventory.js # Rituals, gear, inventory, effects (~830 lines)
   config-admin.js     # Game config, leaderboard, /api/dashboard batch (~430 lines)
@@ -107,7 +107,7 @@ routes/               # Express API routes (21 files, ~8500 lines)
   battlepass.js       # Season Pass: 40-level reward track
   factions.js         # Die Vier Zirkel: 4 factions with reputation tiers
 public/
-  data/               # Game template data (36 JSON files)
+  data/               # Game template data (38 JSON files)
   images/             # Pixel art assets (~250 files)
     portraits/        # NPC and character portraits
     companions/       # Companion icons

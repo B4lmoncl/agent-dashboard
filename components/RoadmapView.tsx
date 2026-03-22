@@ -67,7 +67,7 @@ export function RoadmapView() {
   const sortedCategories = [...new Set([...categoryOrder, ...Object.keys(byCategory)])].filter(c => byCategory[c]);
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 tab-content-enter">
       <div className="flex items-center gap-3 flex-wrap">
         <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.35)" }}>Roadmap</span>
         <div className="flex items-center gap-1 flex-wrap">

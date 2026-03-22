@@ -717,7 +717,7 @@ export default function GachaView({ onRefresh, onPullComplete }: {
   }
 
   return (
-    <div className="space-y-5">
+    <div className="space-y-5 tab-content-enter">
       {/* Pull animation overlay */}
       {pullResults && (
         <GachaPull

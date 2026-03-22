@@ -110,7 +110,7 @@ export default function LeaderboardView({ entries, agents, mode = "agents", onOp
   const isPlayerMode = mode === "players";
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 tab-content-enter">
       {/* ── Podium ── */}
       <div className="flex items-end justify-center gap-4">
         {[top3[1], top3[0], top3[2]].filter(Boolean).map((entry) => {

@@ -865,7 +865,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
   const cls = (charData?.classId && charData.classId !== "null") ? classesList.find(c => c.id === charData.classId) : null;
 
   return (
-    <div>
+    <div className="tab-content-enter">
     <div
       className="relative overflow-hidden rounded-t-2xl"
       style={{
