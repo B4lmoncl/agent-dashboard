@@ -15,7 +15,13 @@
       { "id": "kartograph", "name": "Kartograph", "rarity": "epic" },
       { "id": "wegbereiter", "name": "Wegbereiter", "rarity": "epic" },
       { "id": "grenzgaenger", "name": "Grenzgänger", "rarity": "epic" },
-      { "id": "kundschafter", "name": "Kundschafter", "rarity": "epic" }
+      { "id": "kundschafter", "name": "Kundschafter", "rarity": "epic" },
+      { "id": "horizontbrecher", "name": "Horizontbrecher", "rarity": "epic" },
+      { "id": "nebelwanderer", "name": "Nebelwanderer", "rarity": "epic" },
+      { "id": "tiefenforscherin", "name": "Tiefenforscherin", "rarity": "epic" },
+      { "id": "sturmtrotzer", "name": "Sturmtrotzer", "rarity": "epic" },
+      { "id": "aschenlaeufer", "name": "Aschenläufer", "rarity": "epic" },
+      { "id": "sterndeuter", "name": "Sterndeuter von Aethermoor", "rarity": "epic" }
     ],
     "templates": [
       {
@@ -73,6 +79,90 @@
         "description": "Die Nebelmoore verschlucken jeden Laut. Irrlichter tanzen zwischen den Bäumen und führen Wanderer in die Irre.",
         "icon": "/images/icons/exp-swamp.png",
         "checkpointNames": ["Moorpfad gefunden", "Sumpfbrücke überquert", "Herz der Moore erreicht", "Irrlichtquelle besänftigt"]
+      },
+      {
+        "id": "aetherspitze",
+        "name": "Aufstieg zur Aetherspitze",
+        "description": "Der höchste Gipfel Aethermoors, wo der Aetherstrom so dicht weht, dass die Luft selbst flüstert. Wenige kehren unverändert zurück.",
+        "icon": "/images/icons/expedition-generic.png",
+        "checkpointNames": ["Windschneise durchquert", "Aetherfeld betreten", "Sturmplateau erreicht", "Gipfel der Aetherspitze erklommen"]
+      },
+      {
+        "id": "eisenwald",
+        "name": "Der Eisenwald von Grimhold",
+        "description": "Die Bäume des Eisenwalds tragen Rinde aus dunklem Metall. Etwas Altes schläft zwischen ihren Wurzeln — und es dreht sich im Schlaf.",
+        "icon": "/images/icons/expedition-generic.png",
+        "checkpointNames": ["Eisentor passiert", "Metallhain durchquert", "Wurzelkammer freigelegt", "Herz des Eisenwalds berührt"]
+      },
+      {
+        "id": "versunkener-turm",
+        "name": "Der Versunkene Turm",
+        "description": "Ein halber Turm ragt aus dem Silbersee. Was einst über den Wolken thronte, ruht nun halb im Wasser. Die unteren Stockwerke birgen noch immer ihre Geheimnisse.",
+        "icon": "/images/icons/expedition-generic.png",
+        "checkpointNames": ["Seeüberquerung geschafft", "Turmeingang gefunden", "Überflutete Hallen erkundet", "Versiegeltes Archiv geborgen"]
+      },
+      {
+        "id": "glutklamm",
+        "name": "Durch die Glutklamm",
+        "description": "Zwischen den Schwarzfelsen fließt noch immer Glut aus einer vergessenen Schmiede. Der Pfad ist schmal, die Hitze erbarmungslos.",
+        "icon": "/images/icons/expedition-generic.png",
+        "checkpointNames": ["Klammeingang erreicht", "Glutbrücke überquert", "Schmiedegrund durchschritten", "Alte Esse entdeckt"]
+      },
+      {
+        "id": "frostmark",
+        "name": "Expedition in die Frostmark",
+        "description": "Jenseits der Nordwinde liegt die Frostmark — eine Ebene aus ewigem Eis, in der selbst die Zeit langsamer zu fließen scheint.",
+        "icon": "/images/icons/expedition-generic.png",
+        "checkpointNames": ["Nordwind überstanden", "Eislabyrinth gemeistert", "Gefrorener Hain erreicht", "Zeitsplitter geborgen"]
+      },
+      {
+        "id": "schattenschlucht",
+        "name": "Die Schattenschlucht",
+        "description": "Eine Schlucht so tief, dass kein Sonnenlicht ihren Grund erreicht. Die Gilde muss sich auf andere Sinne verlassen.",
+        "icon": "/images/icons/expedition-generic.png",
+        "checkpointNames": ["Abstieg begonnen", "Lichtlose Tiefe erreicht", "Echo-Halle durchquert", "Schattenkern gefunden"]
+      },
+      {
+        "id": "windweber-ebene",
+        "name": "Über die Windweber-Ebene",
+        "description": "Die Windweber-Ebene ist berüchtigt für ihre unberechenbaren Aetherströme. Wer hier wandert, braucht festen Willen und gute Gefährten.",
+        "icon": "/images/icons/expedition-generic.png",
+        "checkpointNames": ["Ebene betreten", "Aetherstromfeld navigiert", "Windweber-Steine gefunden", "Auge des Sturms erreicht"]
+      },
+      {
+        "id": "vergessene-bruecke",
+        "name": "Die Vergessene Brücke von Thalmund",
+        "description": "Einst verband eine gewaltige Brücke zwei Reiche über den Abgrund. Ihre Pfeiler stehen noch, doch der Weg ist längst verfallen.",
+        "icon": "/images/icons/expedition-generic.png",
+        "checkpointNames": ["Westpfeiler erreicht", "Brückenreste überquert", "Mittelbogen stabilisiert", "Ostseite betreten"]
+      },
+      {
+        "id": "aschensee",
+        "name": "Der Aschensee",
+        "description": "Aus dem stillen See steigt beständig feiner Ascheregen. Fischer meiden seine Ufer, doch Gelehrte berichten von Lichtern unter der Oberfläche.",
+        "icon": "/images/icons/expedition-generic.png",
+        "checkpointNames": ["Ufer erreicht", "Aschenebel durchdrungen", "Seeboden-Ruinen gesichtet", "Licht unter dem Wasser berührt"]
+      },
+      {
+        "id": "sternfall-krater",
+        "name": "Der Sternfall-Krater",
+        "description": "Vor langer Zeit schlug hier ein Stern ein. Der Krater leuchtet noch immer nachts, und das Gestein summt Melodien, die niemand geschrieben hat.",
+        "icon": "/images/icons/expedition-generic.png",
+        "checkpointNames": ["Kraterrand erreicht", "Inneren Ring betreten", "Sternengestein berührt", "Melodie des Kerns gehört"]
+      },
+      {
+        "id": "dornenpfad",
+        "name": "Der Dornenpfad nach Vael'kor",
+        "description": "Der einzige Landweg nach Vael'kor führt durch einen Wald aus lebenden Dornen. Sie wachsen schneller als ein Wanderer laufen kann.",
+        "icon": "/images/icons/expedition-generic.png",
+        "checkpointNames": ["Ersten Dornenwall durchbrochen", "Lichtung der Stille gefunden", "Dornenherz umgangen", "Tore von Vael'kor erblickt"]
+      },
+      {
+        "id": "echoturm",
+        "name": "Zum Echoturm von Miraval",
+        "description": "Der Echoturm wiederholt nicht Worte, sondern Erinnerungen. Wer ihn betritt, hört Stimmen aus seiner eigenen Vergangenheit. Die meisten finden den Ausgang trotzdem.",
+        "icon": "/images/icons/expedition-generic.png",
+        "checkpointNames": ["Turmbasis betreten", "Halle der Echos durchquert", "Eigene Stimme gehört", "Turmspitze erreicht"]
       }
     ]
   }

@@ -21,7 +21,13 @@
       { "id": "focus", "name": "Woche des Fokus", "description": "Nur ein einziger Quest-Typ zählt 2× für den Sternenpfad. Alle anderen Typen nur 0.5×.", "bonusType": "single_focus", "bonusMultiplier": 2.0, "malusMultiplier": 0.5 },
       { "id": "endurance", "name": "Woche der Ausdauer", "description": "Quests ab dem 5. abgeschlossenen Quest der Woche zählen 1.5×. Frühere Quests zählen normal.", "bonusType": "endurance", "bonusMultiplier": 1.5, "malusMultiplier": 0.75 },
       { "id": "creativity", "name": "Woche der Kreativität", "description": "Creative-Quests zählen 1.5× für den Sternenpfad, andere Typen nur 0.75×.", "bonusType": "creative", "bonusMultiplier": 1.5, "malusMultiplier": 0.75 },
-      { "id": "balance", "name": "Woche der Balance", "description": "Mindestens 2 verschiedene Quest-Typen pro Tag zählen 1.5×. Nur ein Typ am Tag zählt 0.75×.", "bonusType": "balance", "bonusMultiplier": 1.5, "malusMultiplier": 0.75 }
+      { "id": "balance", "name": "Woche der Balance", "description": "Mindestens 2 verschiedene Quest-Typen pro Tag zählen 1.5×. Nur ein Typ am Tag zählt 0.75×.", "bonusType": "balance", "bonusMultiplier": 1.5, "malusMultiplier": 0.75 },
+      { "id": "resonance", "name": "Woche der Resonanz", "description": "Quests desselben Typs wie der vorherige zählen 1.5×. Typwechsel nur 0.75×.", "bonusType": "resonance", "bonusMultiplier": 1.5, "malusMultiplier": 0.75 },
+      { "id": "dawn", "name": "Woche der Morgendämmerung", "description": "Die ersten 3 Quests jedes Tages zählen 1.5×. Weitere Quests am selben Tag nur 0.75×.", "bonusType": "early_bird", "bonusMultiplier": 1.5, "malusMultiplier": 0.75 },
+      { "id": "iron-will", "name": "Woche des Eisernen Willens", "description": "Streak-Tage über 3 verdoppeln den Questwert. Ohne Streak nur 0.5×.", "bonusType": "streak_bonus", "bonusMultiplier": 2.0, "malusMultiplier": 0.5 },
+      { "id": "harvest", "name": "Woche der Ernte", "description": "Health- und Fitness-Quests zählen 1.5×. Alle anderen Typen nur 0.75×.", "bonusType": "body", "bonusMultiplier": 1.5, "malusMultiplier": 0.75 },
+      { "id": "arcana", "name": "Woche der Arkana", "description": "Learning- und Development-Quests zählen 1.5×. Alle anderen Typen nur 0.75×.", "bonusType": "mind", "bonusMultiplier": 1.5, "malusMultiplier": 0.75 },
+      { "id": "convergence", "name": "Woche der Konvergenz", "description": "Jeder 3. abgeschlossene Quest zählt doppelt. Alle anderen zählen normal.", "bonusType": "every_third", "bonusMultiplier": 2.0, "malusMultiplier": 1.0 }
     ],
     "templates": [
       {
@@ -222,6 +228,126 @@
           { "stage": 1, "desc": "Schließe 4 Quests ab. Der Mond steigt.", "requirement": { "type": "total_quests", "count": 4 }, "starThresholds": [4, 5, 7] },
           { "stage": 2, "desc": "Schließe 7 Quests ab.", "requirement": { "type": "total_quests", "count": 7 }, "starThresholds": [7, 9, 11] },
           { "stage": 3, "desc": "Schließe 13 Quests ab, bevor der Mond sinkt.", "requirement": { "type": "total_quests", "count": 13 }, "starThresholds": [13, 16, 20] }
+        ]
+      },
+      {
+        "id": "schattenschritt",
+        "name": "Schattenschritt",
+        "icon": "/images/icons/wc-generic.png",
+        "stages": [
+          { "stage": 1, "desc": "Schließe 2 Social-Quests ab. Bewege dich unter den Lebenden.", "requirement": { "type": "quest_type", "questType": "social", "count": 2 }, "starThresholds": [2, 3, 5] },
+          { "stage": 2, "desc": "Schließe 4 Social-Quests ab und halte den Streak 3 Tage.", "requirement": { "type": "quest_type", "questType": "social", "count": 4 }, "starThresholds": [4, 6, 8] },
+          { "stage": 3, "desc": "Schließe 7 Social-Quests ab — dein Schatten geht voraus.", "requirement": { "type": "quest_type", "questType": "social", "count": 7 }, "starThresholds": [7, 9, 12] }
+        ]
+      },
+      {
+        "id": "glutwache",
+        "name": "Glutwache",
+        "icon": "/images/icons/wc-generic.png",
+        "stages": [
+          { "stage": 1, "desc": "Halte den Streak 2 Tage und schließe 3 Quests ab.", "requirement": { "type": "total_quests", "count": 3 }, "starThresholds": [3, 4, 6] },
+          { "stage": 2, "desc": "Halte den Streak 4 Tage. Die Glut darf nicht erlöschen.", "requirement": { "type": "streak_maintained", "count": 4 }, "starThresholds": [4, 5, 6] },
+          { "stage": 3, "desc": "Halte den Streak 6 Tage und schließe 10 Quests ab.", "requirement": { "type": "streak_maintained", "count": 6 }, "starThresholds": [6, 7, 9] }
+        ]
+      },
+      {
+        "id": "runenweber",
+        "name": "Runenweber",
+        "icon": "/images/icons/wc-generic.png",
+        "stages": [
+          { "stage": 1, "desc": "Schließe 2 Learning-Quests ab. Die Runen erwachen.", "requirement": { "type": "quest_type", "questType": "learning", "count": 2 }, "starThresholds": [2, 3, 5] },
+          { "stage": 2, "desc": "Schließe 3 Development-Quests ab. Wissen wird zu Macht.", "requirement": { "type": "quest_type", "questType": "development", "count": 3 }, "starThresholds": [3, 5, 7] },
+          { "stage": 3, "desc": "Schließe 12 Quests ab, davon mindestens 3 verschiedene Typen.", "requirement": { "type": "total_quests", "count": 12 }, "starThresholds": [12, 15, 18] }
+        ]
+      },
+      {
+        "id": "sturmlaeufer",
+        "name": "Sturmläufer",
+        "icon": "/images/icons/wc-generic.png",
+        "stages": [
+          { "stage": 1, "desc": "Schließe 3 Fitness-Quests ab. Laufe dem Sturm entgegen.", "requirement": { "type": "quest_type", "questType": "fitness", "count": 3 }, "starThresholds": [3, 4, 6] },
+          { "stage": 2, "desc": "Schließe 6 Quests ab und halte den Streak 4 Tage.", "requirement": { "type": "total_quests", "count": 6 }, "starThresholds": [6, 8, 10] },
+          { "stage": 3, "desc": "Schließe 10 Quests ab — der Sturm ist dein Verbündeter.", "requirement": { "type": "total_quests", "count": 10 }, "starThresholds": [10, 13, 16] }
+        ]
+      },
+      {
+        "id": "nebelpakt",
+        "name": "Nebelpakt",
+        "icon": "/images/icons/wc-generic.png",
+        "stages": [
+          { "stage": 1, "desc": "Schließe 2 Companion-Quests ab. Der Nebel birgt Gefährten.", "requirement": { "type": "quest_type", "questType": "companion", "count": 2 }, "starThresholds": [2, 3, 4] },
+          { "stage": 2, "desc": "Schließe Quests aus 3 verschiedenen Kategorien ab.", "requirement": { "type": "unique_types", "count": 3 }, "starThresholds": [3, 4, 5] },
+          { "stage": 3, "desc": "Schließe 9 Quests ab, davon 3 Companion-Quests.", "requirement": { "type": "total_quests", "count": 9 }, "starThresholds": [9, 11, 14] }
+        ]
+      },
+      {
+        "id": "aetherriss",
+        "name": "Ätherriss",
+        "icon": "/images/icons/wc-generic.png",
+        "stages": [
+          { "stage": 1, "desc": "Schließe Quests aus 2 verschiedenen Kategorien ab.", "requirement": { "type": "unique_types", "count": 2 }, "starThresholds": [2, 3, 4] },
+          { "stage": 2, "desc": "Schließe 5 Quests ab. Der Riss wird breiter.", "requirement": { "type": "total_quests", "count": 5 }, "starThresholds": [5, 7, 9] },
+          { "stage": 3, "desc": "Schließe Quests aus 5 verschiedenen Kategorien ab — der Äther strömt.", "requirement": { "type": "unique_types", "count": 5 }, "starThresholds": [5, 6, 7] }
+        ]
+      },
+      {
+        "id": "letzte-bastion",
+        "name": "Letzte Bastion",
+        "icon": "/images/icons/wc-generic.png",
+        "stages": [
+          { "stage": 1, "desc": "Schließe 3 Health-Quests ab. Halte die Stellung.", "requirement": { "type": "quest_type", "questType": "health", "count": 3 }, "starThresholds": [3, 4, 5] },
+          { "stage": 2, "desc": "Schließe 5 Health-Quests ab und halte den Streak 4 Tage.", "requirement": { "type": "quest_type", "questType": "health", "count": 5 }, "starThresholds": [5, 7, 9] },
+          { "stage": 3, "desc": "Schließe 8 Health-Quests ab — die Bastion steht.", "requirement": { "type": "quest_type", "questType": "health", "count": 8 }, "starThresholds": [8, 10, 13] }
+        ]
+      },
+      {
+        "id": "silberfaden",
+        "name": "Silberfaden",
+        "icon": "/images/icons/wc-generic.png",
+        "stages": [
+          { "stage": 1, "desc": "Schließe 2 Creative-Quests ab. Der Faden beginnt zu leuchten.", "requirement": { "type": "quest_type", "questType": "creative", "count": 2 }, "starThresholds": [2, 3, 4] },
+          { "stage": 2, "desc": "Schließe 3 Creative-Quests und 3 Quests beliebigen Typs ab.", "requirement": { "type": "quest_type", "questType": "creative", "count": 3 }, "starThresholds": [3, 5, 7] },
+          { "stage": 3, "desc": "Schließe 11 Quests ab — der Silberfaden verbindet alles.", "requirement": { "type": "total_quests", "count": 11 }, "starThresholds": [11, 14, 17] }
+        ]
+      },
+      {
+        "id": "ewige-flamme",
+        "name": "Ewige Flamme",
+        "icon": "/images/icons/wc-generic.png",
+        "stages": [
+          { "stage": 1, "desc": "Halte den Streak 3 Tage. Die Flamme erwacht.", "requirement": { "type": "streak_maintained", "count": 3 }, "starThresholds": [3, 4, 5] },
+          { "stage": 2, "desc": "Schließe 7 Quests ab. Die Flamme wächst.", "requirement": { "type": "total_quests", "count": 7 }, "starThresholds": [7, 9, 11] },
+          { "stage": 3, "desc": "Halte den Streak 7 Tage und schließe 14 Quests ab.", "requirement": { "type": "streak_maintained", "count": 7 }, "starThresholds": [7, 8, 10] }
+        ]
+      },
+      {
+        "id": "zerbrochener-spiegel",
+        "name": "Zerbrochener Spiegel",
+        "icon": "/images/icons/wc-generic.png",
+        "stages": [
+          { "stage": 1, "desc": "Schließe 3 Quests aus 2 verschiedenen Kategorien ab.", "requirement": { "type": "unique_types", "count": 2 }, "starThresholds": [2, 3, 4] },
+          { "stage": 2, "desc": "Schließe 6 Quests ab — jedes Bruchstück zählt.", "requirement": { "type": "total_quests", "count": 6 }, "starThresholds": [6, 8, 10] },
+          { "stage": 3, "desc": "Schließe Quests aus 5 Kategorien ab und 12 Quests gesamt.", "requirement": { "type": "unique_types", "count": 5 }, "starThresholds": [5, 6, 7] }
+        ]
+      },
+      {
+        "id": "amboss-und-feder",
+        "name": "Amboss und Feder",
+        "icon": "/images/icons/wc-generic.png",
+        "stages": [
+          { "stage": 1, "desc": "Schließe 2 Crafting-Quests ab. Der Amboss singt.", "requirement": { "type": "quest_type", "questType": "crafting", "count": 2 }, "starThresholds": [2, 3, 4] },
+          { "stage": 2, "desc": "Schließe 3 Learning-Quests ab. Die Feder notiert.", "requirement": { "type": "quest_type", "questType": "learning", "count": 3 }, "starThresholds": [3, 5, 7] },
+          { "stage": 3, "desc": "Schließe 10 Quests ab, davon 4 verschiedene Typen.", "requirement": { "type": "unique_types", "count": 4 }, "starThresholds": [4, 5, 6] }
+        ]
+      },
+      {
+        "id": "turmwaechter",
+        "name": "Turmwächter",
+        "icon": "/images/icons/wc-generic.png",
+        "stages": [
+          { "stage": 1, "desc": "Schließe 3 Quests ab. Der Turm braucht Wächter.", "requirement": { "type": "total_quests", "count": 3 }, "starThresholds": [3, 4, 6] },
+          { "stage": 2, "desc": "Schließe 5 Quests ab und halte den Streak 3 Tage.", "requirement": { "type": "streak_maintained", "count": 3 }, "starThresholds": [3, 4, 5] },
+          { "stage": 3, "desc": "Schließe 11 Quests ab — der Turm steht, solange du wachst.", "requirement": { "type": "total_quests", "count": 11 }, "starThresholds": [11, 14, 17] }
         ]
       }
     ]
