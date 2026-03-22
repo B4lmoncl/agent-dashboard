@@ -1,0 +1,53 @@
+{
+  "config": {
+    "spawnIntervalDays": 21,
+    "activeDurationDays": 7,
+    "hpPerPlayer": 500,
+    "minHp": 2000,
+    "damagePerQuest": {
+      "common": 5,
+      "uncommon": 8,
+      "rare": 15,
+      "epic": 25,
+      "legendary": 50
+    }
+  },
+  "bosses": [
+    {
+      "id": "procrastination-wyrm",
+      "name": "The Procrastination Wyrm",
+      "title": "Devourer of Deadlines",
+      "description": "A massive serpent born from abandoned tasks and broken promises. It feeds on delay and grows stronger with every 'I'll do it tomorrow.'",
+      "icon": "\ud83d\udc09",
+      "accent": "#ef4444",
+      "tier": "legendary",
+      "uniqueDrops": ["wyrm-scale-shield"],
+      "titleReward": "Wyrm Slayer",
+      "frameReward": { "id": "wyrm-slayer-frame", "name": "Wyrm Slayer", "color": "#ef4444", "glow": true }
+    },
+    {
+      "id": "burnout-colossus",
+      "name": "The Burnout Colossus",
+      "title": "Herald of Exhaustion",
+      "description": "A towering giant of ash and smoldering embers. It appears when the forge burns too hot and too long without rest.",
+      "icon": "\ud83d\uddff",
+      "accent": "#f97316",
+      "tier": "legendary",
+      "uniqueDrops": ["colossus-ember-amulet"],
+      "titleReward": "Colossus Breaker",
+      "frameReward": { "id": "colossus-frame", "name": "Colossus Breaker", "color": "#f97316", "glow": true }
+    },
+    {
+      "id": "chaos-hydra",
+      "name": "The Chaos Hydra",
+      "title": "Spawner of Scope Creep",
+      "description": "A multi-headed beast \u2014 cut one task and two more appear. Only focused, disciplined effort can fell this creature.",
+      "icon": "\ud83d\udc0d",
+      "accent": "#a855f7",
+      "tier": "legendary",
+      "uniqueDrops": ["hydra-focus-helm"],
+      "titleReward": "Hydra Vanquisher",
+      "frameReward": { "id": "hydra-frame", "name": "Hydra Vanquisher", "color": "#a855f7", "glow": true }
+    }
+  ]
+}
