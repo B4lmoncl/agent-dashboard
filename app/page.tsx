@@ -1110,6 +1110,10 @@ export default function Dashboard() {
 
               {/* Floor header banner */}
               <div className="floor-banner relative overflow-hidden" style={{ background: currentFloor.gradient, borderRadius: 0, padding: "16px 20px", minHeight: 56 }}>
+                {/* Pixel art banner image */}
+                {currentFloor.banner && (
+                  <div className="absolute inset-0" style={{ backgroundImage: `url(${currentFloor.banner})`, backgroundPosition: "right center", backgroundRepeat: "no-repeat", backgroundSize: "auto 100%", imageRendering: "pixelated" }} />
+                )}
                 {/* Dark scrim for text legibility */}
                 <div className="absolute inset-0" style={{ background: "linear-gradient(90deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.25) 60%, rgba(0,0,0,0.1) 100%)" }} />
                 <div className="relative z-10">
