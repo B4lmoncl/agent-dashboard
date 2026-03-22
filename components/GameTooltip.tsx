@@ -690,6 +690,23 @@ const TOOLTIP_REGISTRY: Record<string, TooltipEntry> = {
       </>
     ),
   },
+  gems: {
+    title: "Gem & Socket System",
+    icon: "💎",
+    accent: "#a855f7",
+    body: (
+      <>
+        <p>Socket gems into gear to gain bonus stats. 6 gem types, 5 tiers from Chipped to Royal.</p>
+        <div className="gt-stat-row"><span>Ruby</span><span>+<GTRef k="kraft">Kraft</GTRef></span></div>
+        <div className="gt-stat-row"><span>Sapphire</span><span>+<GTRef k="weisheit">Weisheit</GTRef></span></div>
+        <div className="gt-stat-row"><span>Emerald</span><span>+<GTRef k="glueck">Glück</GTRef></span></div>
+        <div className="gt-stat-row"><span>Topaz</span><span>+<GTRef k="ausdauer">Ausdauer</GTRef></span></div>
+        <div className="gt-stat-row"><span>Amethyst</span><span>+Vitalität</span></div>
+        <div className="gt-stat-row"><span>Diamond</span><span>+Fokus</span></div>
+        <p className="gt-source">Upgrade gems in-place. Salvage to recover lower tiers. Socket via the Gems tab in Character.</p>
+      </>
+    ),
+  },
   affixes: {
     title: "Gear Affixes",
     icon: "✦",
@@ -1261,6 +1278,7 @@ export function GameTooltip({ k, entry: directEntry, children, align: alignProp,
     <span
       ref={triggerRef}
       className={`gt-trigger${loading ? " gt-loading" : ""}${heading ? " gt-heading" : ""}`}
+      style={heading ? { display: "inline-block" } : undefined}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >

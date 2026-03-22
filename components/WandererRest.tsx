@@ -233,7 +233,7 @@ export function WandererRest({
                       <p className="text-xs font-semibold leading-tight" style={{ color: "#e8e8e8" }}>{npc.name}</p>
                       <p className="text-xs mt-0.5" style={{ color: rc, fontSize: 12 }}>{rarityStars[npc.rarity] ?? "●"}</p>
                       {!allDone && (
-                        <p className="text-xs mt-0.5" style={{ color: "#dc2626" }}>
+                        <p className="text-xs mt-0.5" style={{ color: urgent ? "#dc2626" : "#fbbf24" }}>
                           Departs in {urgent ? `${npc.hoursLeft}h` : `${npc.daysLeft}d`}
                         </p>
                       )}
@@ -426,7 +426,7 @@ export function WandererRest({
                   <p className="text-xs mt-0.5" style={{ color: isStarweaver ? "rgba(255,215,0,0.5)" : "rgba(255,255,255,0.35)" }}>{npc.title}</p>
                   <p className="text-xs mt-1 font-semibold" style={{ color: rc }}>{rarityStarsModal[npc.rarity] ?? npc.rarity}</p>
                   {!isStarweaver && !(npc as ActiveNpc & { permanent?: boolean }).permanent && (
-                    <p className="text-xs mt-1" style={{ color: npc.hoursLeft <= 24 ? "#dc2626" : "rgba(255,255,255,0.3)" }}>
+                    <p className="text-xs mt-1" style={{ color: npc.hoursLeft <= 24 ? "#dc2626" : "#fbbf24" }}>
                       {npc.hoursLeft <= 24 ? `Departs in ${npc.hoursLeft}h!` : `Departs in ${npc.daysLeft} day${npc.daysLeft !== 1 ? "s" : ""}`}
                     </p>
                   )}

@@ -1246,7 +1246,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                   cursor: "pointer",
                 }}
               >
-                {tab === "stats" ? "Stats" : tab === "equipment" ? <Tip k="gear">Gear</Tip> : "Gems"}
+                {tab === "stats" ? "Stats" : tab === "equipment" ? <Tip k="gear">Gear</Tip> : <Tip k="gems">Gems</Tip>}
               </button>
             ))}
           </div>
