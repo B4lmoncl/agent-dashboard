@@ -307,6 +307,10 @@ router.post('/api/shop/buy', requireApiKey, (req, res) => {
   if (!u) return res.status(404).json({ error: 'User not found' });
   const item = SHOP_ITEMS.find(i => i.id === itemId);
   if (!item) return res.status(404).json({ error: 'Item not found' });
+  // Block buff purchase if at cap
+  if (item.effect?.questsRemaining && (u.activeBuffs || []).length >= 50) {
+    return res.status(400).json({ error: 'Too many active buffs (max 50). Complete quests to consume existing ones.' });
+  }
   // Apply faction shop discount (max across all factions)
   let discount = 0;
   if (u.factionBonuses) {
