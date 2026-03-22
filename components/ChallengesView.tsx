@@ -129,8 +129,8 @@ function SternenpfadView({
           <div className="flex justify-between mt-2">
             {[
               { stars: 3, label: "3★", reward: "50 Gold" },
-              { stars: 6, label: "6★", reward: "3 Essenz + 100 Gold" },
-              { stars: 9, label: "9★", reward: "1 Sternentaler + 5 Essenz" },
+              { stars: 6, label: "6★", reward: "100 Gold + 3 Essenz" },
+              { stars: 9, label: "9★", reward: "150 Gold + 5 Essenz + 1 Sternentaler" },
             ].map(ms => {
               const reached = totalStars >= ms.stars;
               const claimed = claimedMilestones.includes(ms.stars);

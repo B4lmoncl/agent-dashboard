@@ -350,7 +350,7 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
                     title={tier.name}
                     icon={tier.icon}
                     accent={tier.color}
-                    body={<p>{tier.questCount} quests in {tier.timeLimitHours}h. Base difficulty scales up to {id === "normal" ? "1" : id === "hard" ? "2" : "3.5"}×. Failing triggers a {tier.failCooldownDays}-day cooldown.</p>}
+                    body={<p>{tier.questCount} quests in {tier.timeLimitHours}h. Base difficulty scales up to {1 + (tier.questCount - 1) * 0.5}×. Failing triggers a {tier.failCooldownDays}-day cooldown.</p>}
                   >
                     <p className="text-sm font-bold mt-1 cursor-help" style={{ color: tier.color }}>{tier.name}</p>
                   </TipCustom>
@@ -468,7 +468,7 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
               <TipCustom title="Mythic Time Scaling" icon="⏱️" accent="#ff4444" body={<p>Time limit decreases by 1.5h per Mythic level (minimum 18h). Higher levels demand faster completion.</p>}>
                 <div className="flex justify-between cursor-help"><span>Time Limit</span><span className="font-mono text-w50">{Math.max(18, 30 - selectedMythicLevel * 1.5)}h</span></div>
               </TipCustom>
-              <TipCustom title="Mythic Difficulty" icon="⚔️" accent="#ff4444" body={<p>Each Mythic level adds +0.25× difficulty and +0.3× per stage. At M+{selectedMythicLevel}: base difficulty {(1 + selectedMythicLevel * 0.3).toFixed(1)}× → {(1 + 6 * 0.5 + selectedMythicLevel * 0.3).toFixed(1)}× on final stage. No fail cooldown — retry immediately.</p>}>
+              <TipCustom title="Mythic Difficulty" icon="⚔️" accent="#ff4444" body={<p>Each Mythic level adds +0.3× base difficulty, stages escalate +0.5× each. At M+{selectedMythicLevel}: base difficulty {(1 + selectedMythicLevel * 0.3).toFixed(1)}× → {(1 + 6 * 0.5 + selectedMythicLevel * 0.3).toFixed(1)}× on final stage. No fail cooldown — retry immediately.</p>}>
                 <div className="flex justify-between cursor-help"><span>Difficulty</span><span className="font-mono text-w50">{(1 + selectedMythicLevel * 0.3).toFixed(1)}× – {(1 + 6 * 0.5 + selectedMythicLevel * 0.3).toFixed(1)}×</span></div>
               </TipCustom>
               <div className="flex justify-between"><span>Fail Cooldown</span><span className="font-mono text-w50">None</span></div>
