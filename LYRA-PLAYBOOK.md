@@ -244,7 +244,8 @@ Items haben **keine festen Stats** mehr. Stattdessen definiert jedes Item einen 
 | 1 | Abenteurer | 1-8 |
 | 2 | Veteranen | 9-16 |
 | 3 | Meister | 17-24 |
-| 4 | Legendär | 25-30 |
+| 4 | Legendär | 25-35 |
+| 5 | Mythisch | 36-50 |
 
 ### Set-Boni
 

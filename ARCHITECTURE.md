@@ -32,7 +32,7 @@ public/data/  (DATA_DIR)     → Read-only templates shipped with the image
 data/         (RUNTIME_DIR)  → Mutable runtime state (Docker volume mount)
 ```
 
-Files in `public/data/` are **templates** — they define what items, NPCs, quests etc. exist.
+Files in `public/data/` are **templates** — they define what items, NPCs, quests etc. exist (41 JSON files including `worldBosses.json`, `gems.json`, `uniqueItems.json`).
 Files in `data/` are **runtime state** — they track what players have done, their inventory, quest progress, etc.
 
 On first boot, `ensureRuntimeFiles()` seeds `data/` with empty defaults. `seedMutableFiles()` copies templates that need to be mutable (questCatalog, classes, roadmap) from `public/data/` to `data/`.
@@ -396,6 +396,64 @@ Rest area within "The Breakaway" floor, inspired by Urithiru's gathering halls.
 - **Tier rewards**: Titles, recipes, frames, shop discounts, legendary effects
 - **Endpoints**: `GET /api/factions`, `POST /api/factions/claim-reward`
 - **Files**: `routes/factions.js`, `components/FactionsView.tsx`, `public/data/factions.json`
+
+### World Boss System
+
+Community-wide boss encounters where all players contribute damage via quest completions.
+
+- **3 Boss Tiers**: Champion, Titan, Colossus (escalating HP and rewards)
+- **Contribution tracking**: Per-player damage, multiplied by level and gear score
+- **Unique drops**: Boss-only items including Unique Named Items (handcrafted legendaries with fixed stats)
+- **Spawn cycle**: Bosses appear on a schedule with downtime between encounters
+- **Enrage timer**: Boss must be defeated before timer expires
+- **Ranked rewards**: Top contributors earn bonus loot and exclusive titles
+- **Endpoints**: `GET /api/world-boss`, `POST /api/world-boss/contribute`, `POST /api/world-boss/claim`
+- **Data**: `public/data/worldBosses.json` (boss templates, HP pools, drop tables)
+- **Files**: `routes/world-boss.js`
+
+### Gem & Socket System
+
+Diablo-style gem socketing for gear enhancement.
+
+- **6 Gem Types**: Ruby (kraft), Sapphire (weisheit), Emerald (ausdauer), Topaz (glueck), Amethyst (fokus), Diamond (all stats)
+- **5 Tiers**: Chipped → Flawless → Perfect → Radiant → Pristine (escalating stat bonuses)
+- **Socketing**: Insert gems into gear with sockets; one gem per socket
+- **Upgrading**: Combine 3 same-tier gems → 1 next-tier gem
+- **Salvage**: Recover a lower-tier gem from a socketed item
+- **Endpoints**: `GET /api/gems`, `POST /api/gems/socket`, `POST /api/gems/unsocket`, `POST /api/gems/upgrade`
+- **Data**: `public/data/gems.json` (gem definitions, tier stats, upgrade paths)
+- **Files**: `routes/gems.js`
+
+### Mythic+ Endless Rift
+
+Infinite scaling rift levels beyond Legendary tier, for endgame players.
+
+- **Entry**: Unlocked after completing a Legendary Rift
+- **Scaling**: Starts at Mythic+1, each level adds +0.25x difficulty multiplier
+- **No fail cooldown**: Retry immediately on failure (unlike standard Rift tiers)
+- **Leaderboard**: Tracks highest Mythic+ level per player
+- **Bonus loot tiers**: Enhanced rewards at M+5, M+10, M+15, M+20
+- **Unique rewards**: Exclusive titles and items at milestone levels
+- **Files**: `routes/rift.js` (extended with Mythic+ logic)
+
+### Unique Named Items
+
+Handcrafted legendary items with fixed stats, unique flavor text, and lore.
+
+- **Not randomly rolled**: Unlike standard gear, stats are predetermined
+- **Collection log**: Per-player tracking of discovered unique items
+- **Sources**: World boss drops, Mythic+ Rift rewards, special events
+- **Data**: `public/data/uniqueItems.json` (item definitions, stats, lore, source info)
+
+### Enchanting Overhaul (D3 Mystic Style)
+
+Targeted stat rerolling at the Enchanter (Eldric), replacing the old blanket reroll.
+
+- **Targeted reroll**: Pick one stat on an item to reroll from its affix pool
+- **Other stats preserved**: Only the selected stat changes
+- **Escalating cost**: Each successive reroll on the same item costs more
+- **Locked stat**: Visually marked — once you pick a stat to reroll, that slot is locked for future rerolls
+- **Files**: `routes/crafting.js` (enchanter recipes updated)
 
 ## Security measures
 
