@@ -21,6 +21,9 @@
     { "id": "lucky", "name": "Glückskind", "description": "Einen legendären Gacha-Pull gelandet.", "rarity": "epic", "condition": { "type": "gacha_legendary", "value": 1 } },
     { "id": "completionist", "name": "Perfektionist", "description": "Alle 6 Ausrüstungsslots gefüllt.", "rarity": "uncommon", "condition": { "type": "full_equipment", "value": 1 } },
     { "id": "overachiever", "name": "Übererfüller", "description": "100 Achievement-Punkte gesammelt.", "rarity": "uncommon", "condition": { "type": "achievement_points", "value": 100 } },
-    { "id": "legend_collector", "name": "Legendensammler", "description": "1500 Achievement-Punkte gesammelt.", "rarity": "legendary", "condition": { "type": "achievement_points", "value": 1500 } }
+    { "id": "legend_collector", "name": "Legendensammler", "description": "1500 Achievement-Punkte gesammelt.", "rarity": "legendary", "condition": { "type": "achievement_points", "value": 1500 } },
+    { "id": "bp_s1_10", "name": "Erwachter", "description": "Season Pass Level 10 erreicht — Season 1: Awakening.", "rarity": "uncommon", "condition": { "type": "battlepass_level", "value": 10 } },
+    { "id": "bp_s1_25", "name": "Saisonveteran", "description": "Season Pass Level 25 erreicht — Season 1: Awakening.", "rarity": "rare", "condition": { "type": "battlepass_level", "value": 25 } },
+    { "id": "bp_s1_40", "name": "Erbe der Saison", "description": "Season Pass Level 40 erreicht — Season 1: Awakening. Du hast alles gesehen.", "rarity": "legendary", "condition": { "type": "battlepass_level", "value": 40 } }
   ]
 }

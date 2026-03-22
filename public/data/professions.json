@@ -393,6 +393,58 @@
       "cooldownMinutes": 1440,
       "discovery": { "type": "profLevel", "value": 9 },
       "source": "drop", "dropChance": 0.04, "dropMinQuestRarity": "epic"
+    },
+    {
+      "id": "flask_of_embers",
+      "profession": "alchemist",
+      "name": "Flask of Embers",
+      "desc": "+15% Forge Temperature recovery for 3 quests. A Zirkel der Glut secret.",
+      "reqProfLevel": 4,
+      "xpGain": 18,
+      "cost": { "gold": 80 },
+      "materials": { "feuerwurz": 2, "kraeuterbuendel": 1 },
+      "result": { "type": "forge_temp", "amount": 15, "duration": "3_quests" },
+      "cooldownMinutes": 480,
+      "source": "faction", "factionId": "glut"
+    },
+    {
+      "id": "scholars_ink",
+      "profession": "verzauberer",
+      "name": "Scholar's Ink",
+      "desc": "+10% bonus XP from Learning quests for 5 quests. Zirkel der Tinte knowledge.",
+      "reqProfLevel": 4,
+      "xpGain": 18,
+      "cost": { "gold": 80 },
+      "materials": { "magiestaub": 2, "mondblume": 1 },
+      "result": { "type": "buff", "buffType": "xp_boost_10", "duration": "5_quests" },
+      "cooldownMinutes": 480,
+      "source": "faction", "factionId": "tinte"
+    },
+    {
+      "id": "artisans_whetstone",
+      "profession": "schmied",
+      "name": "Artisan's Whetstone",
+      "desc": "+10% crafting XP for 5 crafts. Zirkel des Amboss precision.",
+      "reqProfLevel": 4,
+      "xpGain": 18,
+      "cost": { "gold": 80 },
+      "materials": { "eisenerz": 2, "kristallsplitter": 1 },
+      "result": { "type": "buff", "buffType": "craft_xp_boost", "duration": "5_quests" },
+      "cooldownMinutes": 480,
+      "source": "faction", "factionId": "amboss"
+    },
+    {
+      "id": "resonance_charm",
+      "profession": "verzauberer",
+      "name": "Resonance Charm",
+      "desc": "+15% Luck for 3 quests. Attuned to the Zirkel des Echos frequencies.",
+      "reqProfLevel": 4,
+      "xpGain": 18,
+      "cost": { "gold": 80 },
+      "materials": { "runenstein": 2, "magiestaub": 1 },
+      "result": { "type": "buff", "buffType": "luck_boost_20", "duration": "3_quests" },
+      "cooldownMinutes": 480,
+      "source": "faction", "factionId": "echo"
     }
   ]
 }
