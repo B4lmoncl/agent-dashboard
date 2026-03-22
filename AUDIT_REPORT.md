@@ -1,6 +1,6 @@
 # Quest Hall — Codebase Audit Report
 
-> Last updated: 2026-03-22 · v1.5.3 · Sessions 1–25
+> Last updated: 2026-03-22 · v1.5.3 · Sessions 1–26
 
 ---
 
@@ -337,6 +337,31 @@ Massive item pool expansion inspired by WoW Classic (item budget, source exclusi
 | `fa83fde` | HIGH | RiftView checkmark fontSize: 8 → 10 (below 12px minimum) |
 | `2dcffda` | MEDIUM | Missing cursor:not-allowed on WorldBoss, BattlePass, Factions disabled buttons |
 | `2dcffda` | MEDIUM | 12 new consumable effect types had no handlers in habits-inventory.js |
+
+## 8. Session 26 — Deep Audit: Modifier Wiring + Data Integrity (2026-03-22)
+
+### Key Finding: "Wired but not applied" pattern
+
+Session 25 added 12 legendary effect types to `getLegendaryModifiers()` and 12 consumable effect handlers — but the modifiers were only *extracted*, never *consumed* by game logic. Session 26 wired all of them into the correct routes.
+
+### Audit Fixes (Session 26)
+
+| Commit | Severity | Fix |
+|--------|----------|-----|
+| `156a477` | CRITICAL | Wire 6 legendary modifiers: critChance (double quest rewards), companionBondBoost (bond XP), factionRepBoost (faction rep), challengeScoreBonus (star calc), forgeTempFlat (forge temp), consumable buff `chargesRemaining` consumption |
+| `156a477` | CRITICAL | Transmute filter used `g.tier === 4` (property doesn't exist on FULL_GEAR_ITEMS) — always returned empty |
+| `156a477` | CRITICAL | Shop gear/buy deducted `u.gold` without syncing `u.currencies.gold` — inconsistent state |
+| `156a477` | MEDIUM | Personal quest type missing from achievement evaluator (`_personalCount` never tracked) |
+| `b519891` | CRITICAL | Wire remaining 6 legendary modifiers: dungeonLootBonus (dungeon rewards), pityReduction (gacha pity), gemPreserve (gem unsocket), salvageBonus (salvage materials), cooldownReduction (craft cooldowns), ritualStreakBonus (ritual XP) |
+| `05b0fa9` | HIGH | Daily rotation ran on server restart (deploy caused unexpected NPC spawns) — now only runs at midnight Berlin |
+
+### Systems Verified Clean
+
+- JSON data file consistency (all template cross-references valid)
+- State Map synchronization (questsById, usersByName, usersByApiKey all in sync)
+- Level system (50 levels, XP thresholds match frontend/backend)
+- Server boot sequence (proper initialization order)
+- Campaign, currency, social, gacha, shop, integration routes
 
 ---
 
