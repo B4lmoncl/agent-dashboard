@@ -80,7 +80,15 @@ const TYPE_ICONS: Record<string, string> = { personal: "🏠", learning: "📚",
 
 // ─── Component ──────────────────────────────────────────────────────────────
 
-export default function RiftView({ onRefresh }: { onRefresh?: () => void }) {
+interface RewardCelebrationData {
+  type: string;
+  title: string;
+  xpEarned: number;
+  goldEarned: number;
+  loot?: { name: string; emoji: string; rarity: string } | null;
+}
+
+export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh?: () => void; onRewardCelebration?: (data: RewardCelebrationData) => void }) {
   const { playerName, reviewApiKey } = useDashboard();
   const [tiers, setTiers] = useState<Record<string, RiftTier>>({});
   const [activeRift, setActiveRift] = useState<ActiveRift | null>(null);
@@ -152,7 +160,19 @@ export default function RiftView({ onRefresh }: { onRefresh?: () => void }) {
       });
       const d = await r.json();
       if (!r.ok) setMessage({ text: d.error || "Failed", type: "error" });
-      else { setMessage({ text: d.message, type: "success" }); fetchRift(); onRefresh?.(); }
+      else {
+        setMessage({ text: d.message, type: "success" });
+        if (onRewardCelebration && d.rewards) {
+          onRewardCelebration({
+            type: "rift",
+            title: d.riftCompleted ? "Rift Complete!" : "Stage Complete!",
+            xpEarned: d.rewards.xp || 0,
+            goldEarned: d.rewards.gold || 0,
+            loot: d.rewards.loot ? { name: d.rewards.loot.name, emoji: "⚔️", rarity: d.rewards.loot.rarity || "rare" } : null,
+          });
+        }
+        fetchRift(); onRefresh?.();
+      }
     } catch { setMessage({ text: "Network error", type: "error" }); }
     setActionLoading(false);
   };
@@ -242,7 +262,7 @@ export default function RiftView({ onRefresh }: { onRefresh?: () => void }) {
                     border: `2px solid ${q.completed ? "#22c55e" : isCurrent ? activeRift.tierColor : "rgba(255,255,255,0.1)"}`,
                     boxShadow: isCurrent ? `0 0 8px ${activeRift.tierColor}40` : "none",
                   }}>
-                    {q.completed && <span style={{ color: "#000", fontSize: 8, fontWeight: 800 }}>✓</span>}
+                    {q.completed && <span style={{ color: "#000", fontSize: 10, fontWeight: 800, lineHeight: 1 }}>✓</span>}
                   </div>
                   <div className="flex-1 rounded-lg p-3" style={{
                     background: isCurrent ? `${activeRift.tierColor}08` : "rgba(255,255,255,0.02)",

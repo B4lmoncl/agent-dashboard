@@ -1321,7 +1321,7 @@ export default function Dashboard() {
 
         {/* ── THE RIFT (Dungeon System) ── */}
         {dashView === "rift" && (
-          <ErrorBoundary><Suspense fallback={<ViewFallback />}><RiftView onRefresh={refresh} /></Suspense></ErrorBoundary>
+          <ErrorBoundary><Suspense fallback={<ViewFallback />}><RiftView onRefresh={refresh} onRewardCelebration={triggerCelebration} /></Suspense></ErrorBoundary>
         )}
 
         {/* ── ROADMAP TAB ── */}
