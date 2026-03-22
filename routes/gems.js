@@ -5,7 +5,7 @@ const fs = require('fs');
 const path = require('path');
 const router = require('express').Router();
 const { state, saveUsers, ensureUserCurrencies } = require('../lib/state');
-const { now, getLevelInfo } = require('../lib/helpers');
+const { now, getLevelInfo, getLegendaryModifiers } = require('../lib/helpers');
 const { requireAuth } = require('../lib/middleware');
 
 // ─── Load gem definitions at boot ──────────────────────────────────────────
@@ -276,9 +276,15 @@ router.post('/api/gems/unsocket', requireAuth, (req, res) => {
   // Deduct gold
   u.currencies.gold -= UNSOCKET_COST;
 
-  // Return gem to inventory
+  // Legendary effect: gemPreserve — chance to keep gem instead of destroying it
+  const gemMods = getLegendaryModifiers(userId);
+  const gemPreserved = Math.random() < (gemMods.gemPreserve || 0);
+
+  // Return gem to inventory only if preserved by legendary effect
   u.gems = u.gems || {};
-  u.gems[currentGem] = (u.gems[currentGem] || 0) + 1;
+  if (gemPreserved) {
+    u.gems[currentGem] = (u.gems[currentGem] || 0) + 1;
+  }
 
   // Clear socket
   item.sockets[idx] = null;
@@ -290,13 +296,16 @@ router.post('/api/gems/unsocket', requireAuth, (req, res) => {
 
   res.json({
     success: true,
-    message: `Removed ${tierDef?.name || currentGem} from ${item.name} (cost: ${UNSOCKET_COST} gold)`,
+    message: gemPreserved
+      ? `Removed ${tierDef?.name || currentGem} from ${item.name} — gem preserved! (cost: ${UNSOCKET_COST} gold)`
+      : `Removed ${tierDef?.name || currentGem} from ${item.name} — gem destroyed (cost: ${UNSOCKET_COST} gold)`,
     item: {
       instanceId: item.instanceId,
       name: item.name,
       sockets: item.sockets,
     },
-    gemReturned: currentGem,
+    gemReturned: gemPreserved ? currentGem : null,
+    gemDestroyed: !gemPreserved,
     goldSpent: UNSOCKET_COST,
   });
 });

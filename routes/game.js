@@ -9,7 +9,7 @@ const {
   getXpMultiplier, getGoldMultiplier, getUserGear, getQuestHoardingMalus,
   hasPassiveEffect, consumePassiveEffect, awardUserGold,
   getUserDropBonus, rollLoot, addLootToInventory, resetLootPity,
-  checkAndAwardAchievements, checkAndAwardTitles,
+  checkAndAwardAchievements, checkAndAwardTitles, getLegendaryModifiers,
 } = require('../lib/helpers');
 const { requireApiKey, requireMasterKey } = require('../lib/middleware');
 
@@ -254,6 +254,12 @@ router.post('/api/rituals/:id/complete', requireApiKey, (req, res) => {
     if (hasPassiveEffect(uid, 'xp_boost_10')) passiveXpBonus += 0.10;
     if (hasPassiveEffect(uid, 'xp_boost_5')) passiveXpBonus += 0.05;
     xpAmount = Math.round(xpBase * (1 + streakBonus) * xpMulti * gearBonus * companionBonus * bondBonus * hoardingMalus * passiveXpBonus);
+
+    // Legendary effect: ritualStreakBonus — extra XP scaled by streak days
+    const ritualMods = getLegendaryModifiers(uid);
+    const streakBonusXp = Math.round(xpBase * (u.streakDays || 0) * (ritualMods.ritualStreakBonus || 0));
+    xpAmount += streakBonusXp;
+
     u.xp = (u.xp || 0) + xpAmount;
 
     // Gold with full multiplier chain

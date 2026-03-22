@@ -8,7 +8,7 @@ const router = require('express').Router();
 const fs = require('fs');
 const path = require('path');
 const { state, saveUsers, saveSocial, ensureUserCurrencies, RUNTIME_DIR, logActivity } = require('../lib/state');
-const { now, getLevelInfo, awardCurrency, getGearScore, getBondLevel, rollLoot, addLootToInventory, createUniqueInstance, trackUniqueInCollection } = require('../lib/helpers');
+const { now, getLevelInfo, awardCurrency, getGearScore, getBondLevel, rollLoot, addLootToInventory, createUniqueInstance, trackUniqueInCollection, getLegendaryModifiers } = require('../lib/helpers');
 const { requireAuth } = require('../lib/middleware');
 
 // ─── Dungeon Templates ──────────────────────────────────────────────────────
@@ -502,6 +502,14 @@ router.post('/api/dungeons/:runId/collect', requireAuth, (req, res) => {
 
   // Roll individual rewards (each player gets own rolls)
   const rewards = rollDungeonRewards(dungeon, isSuccess);
+
+  // Apply legendary dungeon loot bonus to gold/essenz
+  const dungeonMods = getLegendaryModifiers(uid);
+  const lootMulti = 1 + (dungeonMods.dungeonLootBonus || 0);
+  if (lootMulti !== 1) {
+    rewards.gold = Math.round((rewards.gold || 0) * lootMulti);
+    rewards.essenz = Math.round((rewards.essenz || 0) * lootMulti);
+  }
 
   // ── Actual gear drop: roll a real item via rollLoot ──
   if (isSuccess && rewards.gearDrop) {

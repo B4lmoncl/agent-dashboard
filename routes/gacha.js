@@ -4,7 +4,7 @@
 const router = require('express').Router();
 const { state, saveGachaState, logActivity } = require('../lib/state');
 const { requireApiKey } = require('../lib/middleware');
-const { spendCurrency, awardCurrency, hasPassiveEffect, rollAffixStats, INVENTORY_CAP } = require('../lib/helpers');
+const { spendCurrency, awardCurrency, hasPassiveEffect, rollAffixStats, INVENTORY_CAP, getLegendaryModifiers } = require('../lib/helpers');
 
 // ─── Player-level pull lock (prevents concurrent pulls for same player) ────
 const _pullLocks = new Map(); // playerId → true
@@ -95,7 +95,10 @@ function executePull(playerId, banner, { skipPityPassive = false } = {}) {
 
   // Passive: rarity_boost_15 — +15% chance for rare+ rarity
   const hasRarityBoost = hasPassiveEffect(playerId, 'rarity_boost_15');
-  const rarity = rollRarity(gs.pityCounter, gs.epicPityCounter, hasRarityBoost);
+  // Legendary effect: pityReduction — effectively boosts pity counter so thresholds are reached sooner
+  const gachaMods = getLegendaryModifiers(playerId);
+  const effectivePity = gs.pityCounter + (gachaMods.pityReduction || 0);
+  const rarity = rollRarity(effectivePity, gs.epicPityCounter, hasRarityBoost);
   let item = pickItemFromPool(pool, rarity, banner.id);
 
   // 50/50 system for legendaries on featured banner

@@ -192,8 +192,12 @@ router.get('/api/professions', (req, res) => {
       const lastRecipeCraft = recipeCooldowns[r.id] || null;
       let cooldownRemaining = 0;
       if (r.cooldownMinutes > 0 && lastRecipeCraft) {
+        // Legendary effect: cooldownReduction — shorten crafting cooldowns
+        const cdMods = u ? getLegendaryModifiers(u.id) : {};
+        const cdReduce = 1 - (cdMods.cooldownReduction || 0);
+        const effectiveCd = r.cooldownMinutes * cdReduce;
         const elapsed = (Date.now() - new Date(lastRecipeCraft).getTime()) / 1000;
-        cooldownRemaining = Math.max(0, Math.ceil(r.cooldownMinutes * 60 - elapsed));
+        cooldownRemaining = Math.max(0, Math.ceil(effectiveCd * 60 - elapsed));
       }
       return {
         ...r,
@@ -331,9 +335,13 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
   const recipeCooldowns = (u.professions || {})[recipe.profession]?.recipeCooldowns || {};
   const lastRecipeCraft = recipeCooldowns[recipeId] || null;
   if (recipe.cooldownMinutes > 0 && lastRecipeCraft) {
+    // Legendary effect: cooldownReduction — shorten crafting cooldowns
+    const craftMods = getLegendaryModifiers(uid);
+    const cdReduction = 1 - (craftMods.cooldownReduction || 0);
+    const effectiveCooldown = recipe.cooldownMinutes * cdReduction;
     const elapsed = (Date.now() - new Date(lastRecipeCraft).getTime()) / 60000;
-    if (elapsed < recipe.cooldownMinutes) {
-      const remaining = Math.ceil(recipe.cooldownMinutes - elapsed);
+    if (elapsed < effectiveCooldown) {
+      const remaining = Math.ceil(effectiveCooldown - elapsed);
       return res.status(429).json({ error: `Cooldown: ${remaining} minutes remaining` });
     }
   }
