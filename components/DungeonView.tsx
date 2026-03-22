@@ -314,7 +314,7 @@ export default function DungeonView({ onRefresh, onRewardCelebration }: { onRefr
   }
 
   if (loading) return (
-    <div className="space-y-3 tab-content-enter">
+    <div className="space-y-3 tab-content-enter" style={{ minHeight: 400 }}>
       <div className="skeleton-card h-20" />
       <div className="grid grid-cols-3 gap-3">{[1,2,3].map(i => <div key={i} className="skeleton-card h-48" />)}</div>
     </div>

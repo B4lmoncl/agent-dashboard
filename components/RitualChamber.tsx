@@ -107,6 +107,7 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
                 {ritual.streak}
               </span>
               <span className="text-sm font-medium truncate" style={{ color: doneToday ? "rgba(255,255,255,0.4)" : "#e8e8e8", textDecoration: doneToday ? "line-through" : "none" }}>{ritual.title}</span>
+              {doneToday && <span style={{ color: "#22c55e", fontSize: 14, fontWeight: 700 }}>{"\u2713"}</span>}
               {ritual.bloodPact && (
                 <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded text-xs font-bold" style={{ color: "#ef4444", background: "rgba(239,68,68,0.12)", border: "1px solid rgba(239,68,68,0.3)", fontSize: 12, letterSpacing: "0.04em" }}>
                   <Tip k="blood_pact">Blood Pact</Tip>
