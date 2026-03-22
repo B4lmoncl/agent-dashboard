@@ -150,6 +150,7 @@ export default function WorldBossView({ onRefresh }: { onRefresh?: () => void })
   const [message, setMessage] = useState<{ text: string; type: "success" | "error" } | null>(null);
   const [historyOpen, setHistoryOpen] = useState(false);
   const [bossHistory, setBossHistory] = useState<HistoryEntry[]>([]);
+  const [now, setNow] = useState(() => Date.now());
 
   const fetchBoss = useCallback(async () => {
     try {
@@ -184,11 +185,14 @@ export default function WorldBossView({ onRefresh }: { onRefresh?: () => void })
     if (historyOpen && bossHistory.length === 0) fetchHistory();
   }, [historyOpen, bossHistory.length, fetchHistory]);
 
-  // Auto-refresh every 60s when boss is active and not defeated
+  // Update clock + auto-refresh every 60s when boss is active and not defeated
   useEffect(() => {
     if (!data || !data.active) return;
     if (data.active && data.boss.defeated) return;
-    const interval = setInterval(fetchBoss, 60000);
+    const interval = setInterval(() => {
+      setNow(Date.now());
+      fetchBoss();
+    }, 60000);
     return () => clearInterval(interval);
   }, [data, fetchBoss]);
 
@@ -263,6 +267,8 @@ export default function WorldBossView({ onRefresh }: { onRefresh?: () => void })
   const { boss, leaderboard, playerContribution, canClaim } = data as ActiveBossData;
   const hpPercent = boss.maxHp > 0 ? boss.currentHp / boss.maxHp : 0;
   const hpColor = hpBarColor(hpPercent);
+  const expiresIn = new Date(boss.expiresAt).getTime() - now;
+  const isUrgent = expiresIn < 24 * 60 * 60 * 1000;
   const playerRank = playerContribution
     ? leaderboard.findIndex(e => e.name?.toLowerCase() === playerName?.toLowerCase()) + 1
     : 0;
@@ -324,7 +330,7 @@ export default function WorldBossView({ onRefresh }: { onRefresh?: () => void })
               ) : (
                 <>
                   <p className="text-sm font-mono font-bold" style={{
-                    color: new Date(boss.expiresAt).getTime() - Date.now() < 24 * 60 * 60 * 1000 ? "#ef4444" : boss.accent,
+                    color: isUrgent ? "#ef4444" : boss.accent,
                   }}>
                     {daysRemaining(boss.expiresAt)}
                   </p>

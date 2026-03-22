@@ -725,6 +725,14 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
   const [titlesOpen, setTitlesOpen] = useState(false);
   const [earnedTitles, setEarnedTitles] = useState<{ id: string; name: string; description?: string; rarity: string; earnedAt?: string }[]>([]);
   const [equippedTitleId, setEquippedTitleId] = useState<string | null>(null);
+  // Gem system
+  const [gemData, setGemData] = useState<{ gems: { id: string; name: string; type: string; tier: number; stat: string; value: number }[]; inventory: { gemId: string; count: number }[]; socketedGems: Record<string, { slot: string; sockets: ({ gemId: string; gemName: string; gemType: string } | null)[] }> } | null>(null);
+  const [gemsLoading, setGemsLoading] = useState(false);
+  const [gemAction, setGemAction] = useState<string | null>(null);
+  // Collection log
+  const [collectionOpen, setCollectionOpen] = useState(false);
+  const [collectionData, setCollectionData] = useState<{ items: { id: string; name: string; slot: string; rarity: string; stats?: Record<string, number>; source: string; obtained: boolean }[]; completion: number } | null>(null);
+  const [collectionLoading, setCollectionLoading] = useState(false);
 
   useEffect(() => {
     if (!statTooltipOpen) return;
@@ -1206,10 +1214,20 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
         >
           {/* Tab toggle */}
           <div className="flex gap-1 mb-3">
-            {(["stats", "equipment"] as const).map(tab => (
+            {(["stats", "equipment", "gems"] as const).map(tab => (
               <button
                 key={tab}
-                onClick={() => setRightTab(tab)}
+                onClick={() => {
+                  setRightTab(tab);
+                  if (tab === "gems" && !gemData && !gemsLoading) {
+                    setGemsLoading(true);
+                    fetch("/api/gems", { headers: apiKey ? getAuthHeaders(apiKey) : {} })
+                      .then(r => r.ok ? r.json() : null)
+                      .then(d => { if (d) setGemData(d); })
+                      .catch(() => {})
+                      .finally(() => setGemsLoading(false));
+                  }
+                }}
                 className="flex-1 py-1 rounded-lg text-xs font-semibold"
                 style={{
                   background: rightTab === tab ? "rgba(167,139,250,0.15)" : "rgba(255,255,255,0.04)",
@@ -1218,7 +1236,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                   cursor: "pointer",
                 }}
               >
-                {tab === "stats" ? "Stats" : <Tip k="gear">Gear</Tip>}
+                {tab === "stats" ? "Stats" : tab === "equipment" ? <Tip k="gear">Gear</Tip> : "Gems"}
               </button>
             ))}
           </div>
@@ -1581,6 +1599,132 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
               </>
             );
           })()}
+
+          {/* Gems tab */}
+          {rightTab === "gems" && gemsLoading && <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>Loading gems...</p>}
+          {rightTab === "gems" && !gemsLoading && gemData && (() => {
+            const GEM_COLORS: Record<string, string> = { Ruby: "#ef4444", Sapphire: "#3b82f6", Emerald: "#22c55e", Topaz: "#f59e0b", Amethyst: "#a855f7", Diamond: "#e2e8f0" };
+            // Group inventory by type
+            const gemMap = new Map(gemData.gems.map(g => [g.id, g]));
+            const grouped: Record<string, { gem: typeof gemData.gems[0]; count: number }[]> = {};
+            for (const inv of gemData.inventory) {
+              const gem = gemMap.get(inv.gemId);
+              if (!gem) continue;
+              if (!grouped[gem.type]) grouped[gem.type] = [];
+              grouped[gem.type].push({ gem, count: inv.count });
+            }
+            const doGemAction = async (action: string, body: Record<string, unknown>) => {
+              if (!apiKey || gemAction) return;
+              setGemAction(action);
+              try {
+                const r = await fetch(`/api/gems/${action}`, { method: "POST", headers: { ...getAuthHeaders(apiKey), "Content-Type": "application/json" }, body: JSON.stringify(body) });
+                const d = await r.json();
+                if (r.ok) {
+                  addToast?.({ type: "purchase", message: d.message || "Done" });
+                  // Refresh gem data
+                  const gr = await fetch("/api/gems", { headers: getAuthHeaders(apiKey) });
+                  if (gr.ok) setGemData(await gr.json());
+                } else {
+                  addToast?.({ type: "error", message: d.error || "Failed" });
+                }
+              } catch { addToast?.({ type: "error", message: "Network error" }); }
+              setGemAction(null);
+            };
+            return (
+              <div className="space-y-3">
+                {/* Gem Inventory */}
+                <p className="text-xs font-bold uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.35)" }}>Gem Inventory</p>
+                {Object.keys(grouped).length === 0 && (
+                  <p className="text-xs text-w20">No gems found.</p>
+                )}
+                {Object.entries(grouped).map(([type, entries]) => (
+                  <div key={type}>
+                    <p className="text-xs font-semibold mb-1" style={{ color: GEM_COLORS[type] || "#9ca3af" }}>{type}</p>
+                    <div className="space-y-0.5">
+                      {entries.sort((a, b) => a.gem.tier - b.gem.tier).map(({ gem, count }) => (
+                        <div key={gem.id} className="flex items-center justify-between px-2 py-1 rounded" style={{ background: "rgba(255,255,255,0.03)" }}>
+                          <div className="flex items-center gap-1.5">
+                            <span className="w-2.5 h-2.5 rounded-full inline-block" style={{ background: GEM_COLORS[gem.type] || "#9ca3af" }} />
+                            <span className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>{gem.name}</span>
+                            <span className="text-xs text-w20">T{gem.tier}</span>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <span className="text-xs font-mono" style={{ color: GEM_COLORS[gem.type] || "#9ca3af" }}>x{count}</span>
+                            {count >= 3 && (
+                              <button
+                                onClick={() => doGemAction("upgrade", { gemId: gem.id })}
+                                disabled={!!gemAction}
+                                className="text-xs px-1.5 py-0.5 rounded"
+                                style={{ background: "rgba(167,139,250,0.1)", color: "#a78bfa", border: "1px solid rgba(167,139,250,0.25)", cursor: gemAction ? "not-allowed" : "pointer", fontSize: 10 }}
+                              >
+                                Upgrade
+                              </button>
+                            )}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+
+                {/* Socketed Items */}
+                {Object.keys(gemData.socketedGems || {}).length > 0 && (
+                  <>
+                    <p className="text-xs font-bold uppercase tracking-wider mt-3" style={{ color: "rgba(255,255,255,0.35)" }}>Sockets</p>
+                    {Object.entries(gemData.socketedGems).map(([itemId, data]) => (
+                      <div key={itemId} className="rounded-lg p-2" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
+                        <p className="text-xs font-semibold mb-1.5" style={{ color: "rgba(255,255,255,0.55)" }}>{data.slot}</p>
+                        <div className="flex gap-1.5">
+                          {data.sockets.map((socket, si) => (
+                            <div key={si} className="flex flex-col items-center gap-1">
+                              <div
+                                className="w-6 h-6 rounded-full flex items-center justify-center"
+                                style={{
+                                  background: socket ? `${GEM_COLORS[socket.gemType] || "#9ca3af"}20` : "rgba(255,255,255,0.04)",
+                                  border: `2px solid ${socket ? `${GEM_COLORS[socket.gemType] || "#9ca3af"}60` : "rgba(255,255,255,0.1)"}`,
+                                }}
+                                title={socket ? socket.gemName : "Empty socket"}
+                              >
+                                {socket ? (
+                                  <span className="w-2 h-2 rounded-full" style={{ background: GEM_COLORS[socket.gemType] || "#9ca3af" }} />
+                                ) : (
+                                  <span style={{ color: "rgba(255,255,255,0.15)", fontSize: 8 }}>+</span>
+                                )}
+                              </div>
+                              <div className="flex gap-0.5">
+                                {!socket ? (
+                                  <button
+                                    onClick={() => doGemAction("socket", { itemId, socketIndex: si })}
+                                    disabled={!!gemAction}
+                                    className="text-xs px-1 py-0.5 rounded"
+                                    style={{ fontSize: 9, background: "rgba(167,139,250,0.1)", color: "#a78bfa", border: "1px solid rgba(167,139,250,0.2)", cursor: gemAction ? "not-allowed" : "pointer" }}
+                                  >
+                                    Socket
+                                  </button>
+                                ) : (
+                                  <button
+                                    onClick={() => doGemAction("unsocket", { itemId, socketIndex: si })}
+                                    disabled={!!gemAction}
+                                    className="text-xs px-1 py-0.5 rounded"
+                                    style={{ fontSize: 9, background: "rgba(239,68,68,0.08)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.2)", cursor: gemAction ? "not-allowed" : "pointer" }}
+                                  >
+                                    Unsocket 50g
+                                  </button>
+                                )}
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </>
+                )}
+              </div>
+            );
+          })()}
+          {rightTab === "gems" && !gemsLoading && !gemData && (
+            <p className="text-xs text-w20">Could not load gem data.</p>
+          )}
         </div>
       </div>
 
@@ -1646,6 +1790,23 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
           </div>
         </div>
       )}
+      <button
+        onClick={async () => {
+          setCollectionOpen(true);
+          if (!collectionData && !collectionLoading && playerName) {
+            setCollectionLoading(true);
+            try {
+              const r = await fetch(`/api/player/${encodeURIComponent(playerName)}/collection`);
+              if (r.ok) setCollectionData(await r.json());
+            } catch { /* ignore */ }
+            setCollectionLoading(false);
+          }
+        }}
+        className="shrink-0 text-xs px-2.5 py-1.5 rounded-lg font-semibold"
+        style={{ background: "rgba(96,165,250,0.06)", border: "1px solid rgba(96,165,250,0.15)", color: "rgba(96,165,250,0.55)", cursor: "pointer" }}
+      >
+        Collection
+      </button>
       {onNavigate && (
         <button
           onClick={() => onNavigate("forge")}
@@ -1686,6 +1847,101 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
         );
       })()}
     </div>
+
+    {/* Collection Log Modal */}
+    {collectionOpen && createPortal(
+      <div
+        className="fixed inset-0 flex items-center justify-center"
+        style={{ zIndex: 9999, background: "rgba(0,0,0,0.7)", backdropFilter: "blur(4px)" }}
+        onClick={e => { if (e.target === e.currentTarget) setCollectionOpen(false); }}
+      >
+        <div
+          className="rounded-2xl overflow-hidden"
+          style={{ width: 560, maxHeight: "80vh", background: "#0f1117", border: "1px solid rgba(96,165,250,0.2)", boxShadow: "0 8px 32px rgba(0,0,0,0.6)" }}
+        >
+          {/* Header */}
+          <div className="flex items-center justify-between px-5 py-3" style={{ borderBottom: "1px solid rgba(255,255,255,0.08)", background: "rgba(96,165,250,0.04)" }}>
+            <div className="flex items-center gap-2">
+              <span className="text-lg">📖</span>
+              <div>
+                <p className="text-sm font-bold" style={{ color: "#60a5fa" }}>Collection Log</p>
+                {collectionData && (
+                  <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>
+                    {Math.round(collectionData.completion * 100)}% complete
+                  </p>
+                )}
+              </div>
+            </div>
+            <button
+              onClick={() => setCollectionOpen(false)}
+              className="text-sm px-2 py-1 rounded-lg"
+              style={{ color: "rgba(255,255,255,0.4)", cursor: "pointer", background: "rgba(255,255,255,0.04)" }}
+            >
+              ESC
+            </button>
+          </div>
+
+          {/* Completion bar */}
+          {collectionData && (
+            <div className="px-5 pt-3">
+              <div className="rounded-full overflow-hidden" style={{ height: 6, background: "rgba(255,255,255,0.06)" }}>
+                <div className="h-full rounded-full" style={{ width: `${collectionData.completion * 100}%`, background: "linear-gradient(90deg, #3b82f6, #60a5fa)", transition: "width 0.3s" }} />
+              </div>
+              <p className="text-xs text-right mt-1" style={{ color: "rgba(255,255,255,0.3)" }}>
+                {collectionData.items.filter(i => i.obtained).length}/{collectionData.items.length} items
+              </p>
+            </div>
+          )}
+
+          {/* Items grid */}
+          <div className="p-5 overflow-y-auto" style={{ maxHeight: "calc(80vh - 120px)" }}>
+            {collectionLoading && <p className="text-xs text-center py-8" style={{ color: "rgba(255,255,255,0.3)" }}>Loading collection...</p>}
+            {!collectionLoading && !collectionData && <p className="text-xs text-center py-8" style={{ color: "rgba(255,255,255,0.3)" }}>Could not load collection data.</p>}
+            {collectionData && (
+              <div className="grid grid-cols-3 gap-2">
+                {collectionData.items.map(item => {
+                  const rarityColors: Record<string, string> = { common: "#9ca3af", uncommon: "#22c55e", rare: "#60a5fa", epic: "#a855f7", legendary: "#f97316" };
+                  const color = rarityColors[item.rarity] || "#9ca3af";
+                  return (
+                    <div
+                      key={item.id}
+                      className="rounded-lg p-2.5"
+                      style={{
+                        background: item.obtained ? "rgba(255,255,255,0.03)" : "rgba(255,255,255,0.01)",
+                        border: `1px solid ${item.obtained ? `${color}30` : "rgba(255,255,255,0.04)"}`,
+                        opacity: item.obtained ? 1 : 0.45,
+                        filter: item.obtained ? "none" : "grayscale(1)",
+                      }}
+                    >
+                      {item.obtained ? (
+                        <>
+                          <p className="text-xs font-semibold truncate" style={{ color }}>{item.name}</p>
+                          <p className="text-xs text-w20 truncate">{item.slot}</p>
+                          {item.stats && Object.keys(item.stats).length > 0 && (
+                            <div className="mt-1 space-y-0.5">
+                              {Object.entries(item.stats).slice(0, 3).map(([k, v]) => (
+                                <p key={k} className="text-xs" style={{ color: "rgba(255,255,255,0.3)", fontSize: 10 }}>+{v} {k}</p>
+                              ))}
+                            </div>
+                          )}
+                          <p className="text-xs mt-1 truncate" style={{ color: "rgba(255,255,255,0.2)", fontSize: 10 }}>{item.source}</p>
+                        </>
+                      ) : (
+                        <>
+                          <p className="text-xs font-semibold" style={{ color: "rgba(255,255,255,0.25)" }}>???</p>
+                          <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.15)", fontSize: 10 }}>{item.source}</p>
+                        </>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+        </div>
+      </div>,
+      document.body
+    )}
     </div>
   );
 }
