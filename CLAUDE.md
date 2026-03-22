@@ -150,6 +150,121 @@ server.js             # Express entry point, boot sequence (~322 lines)
 - **After state.quests.push(q):** Always add `state.questsById.set(q.id, q)`
 - **After state.quests reassignment:** Always call `rebuildQuestsById()`
 
+## Item & Gear Balancing Rules
+
+Inspired by WoW Classic (item budget system, source exclusivity, set design) and Diablo 3 (primary/secondary affix split, legendary powers, Loot 2.0 philosophy). These rules are MANDATORY for all gear item creation and modification.
+
+### Core Principle: Rarity = Affix Count, Level = Stat Values
+
+**Rarity determines HOW MANY stats roll.** A level 30 common and a level 30 legendary roll from the **same value ranges** — the legendary just has more affix slots.
+
+**Level determines the VALUE RANGES** of individual affixes. Higher level = higher per-affix values, but scaling is deliberately flat (small numbers matter because all multipliers stack multiplicatively).
+
+### Affix Slot Counts by Rarity (D3-style)
+
+| Rarity | Primary Affixes | Minor Affixes | Legendary Effect | Sockets |
+|--------|----------------|---------------|------------------|---------|
+| Common | 1 / 1 | 0 / 0 | — | 0 |
+| Uncommon | 1 / 2 | 0 / 1 | — | 0-1 |
+| Rare | 2 / 2 | 1 / 1 | — | 1 |
+| Epic | 2 / 3 | 1 / 2 | Possible | 1-2 |
+| Legendary | 3 / 3 | 2 / 2 | Yes | 2-3 |
+
+Format: `"count": [min, max]`. Primary stats: kraft, weisheit, ausdauer, glueck. Minor stats: fokus, vitalitaet, charisma, tempo.
+
+### Stat Value Ranges by Level (per individual affix)
+
+These ranges apply **identically regardless of rarity**. An affix pool entry always uses these ranges based on the item's `reqLevel`.
+
+| Level Range | Primary (min-max) | Minor (min-max) |
+|------------|-------------------|-----------------|
+| 1–10 | 1–3 | 1–2 |
+| 11–20 | 2–4 | 1–3 |
+| 21–30 | 3–6 | 2–4 |
+| 31–40 | 4–7 | 3–5 |
+| 41–50 | 5–8 | 3–6 |
+
+**BiS ceiling (Lv50 Legendary):** 3×(5-8) primary + 2×(3-6) minor = 15-24 primary + 6-12 minor total. With kraft cap at 30, this keeps endgame powerful but not broken.
+
+### Tier & SetId Assignment
+
+| Level Range | Tier | SetId |
+|------------|------|-------|
+| 1–8 | 1 | `adventurer` |
+| 9–16 | 2 | `veteran` |
+| 17–24 | 3 | `master` |
+| 25–50 | 4 | `legendary` |
+
+### Legendary Effect Value Ranges
+
+Legendary effects are multiplicative with other systems — keep values **small**.
+
+| Item Level | Effect % Range | Example |
+|-----------|---------------|---------|
+| 20–30 | 1–3% | `"xp_bonus", "min": 1, "max": 3` |
+| 31–40 | 2–5% | `"crit_chance", "min": 2, "max": 5` |
+| 41–50 | 3–6% | `"drop_bonus", "min": 3, "max": 6` |
+| Unique (T5) | 5–20% | Reserved for unique named items |
+
+**All legendary effect types:**
+- Existing: `xp_bonus`, `gold_bonus`, `drop_bonus`, `decay_reduction`, `streak_protection`, `variety_bonus`, `material_double`, `night_double_gold`, `every_nth_bonus`, `auto_streak_shield`
+- New: `crit_chance` (+X% double quest rewards), `companion_bond_boost` (+X% bond XP), `cooldown_reduction` (-X% craft cooldown), `salvage_bonus` (+X% salvage materials), `faction_rep_boost` (+X% faction rep), `challenge_score_bonus` (+X% challenge score), `dungeon_loot_bonus` (+X% dungeon rewards), `forge_temp_flat` (+X flat forge temp/quest), `pity_reduction` (-X pity pulls needed), `expedition_speed` (-X% expedition time), `gem_preserve` (+X% gem preserve on removal), `ritual_streak_bonus` (+X% XP per streak day)
+
+### Loot Source Exclusivity (WoW-style)
+
+Items should feel **earned from their source**. Use `shopHidden: true, price: 0` for drop-only items. ID prefixes indicate source:
+
+| Prefix | Source | Typical Rarity | Binding |
+|--------|--------|---------------|---------|
+| `gen-` | General pool (quests, shop) | Common–Rare | Buyable |
+| `dun-` | Dungeon drops | Rare–Epic | Drop only |
+| `rift-` | Rift drops | Rare–Legendary | Drop only |
+| `wb-` | World Boss | Epic–Legendary | Drop only |
+| `fac-` | Faction vendor | Uncommon–Epic | Rep-gated |
+| `ch-` | Challenge rewards | Rare–Epic | Drop only |
+| `bp-` | Battle Pass | Uncommon–Epic | Pass-gated |
+| `gacha-` | Gacha exclusive | Rare–Legendary | Pull only |
+| `craft-` | Crafting rewards | Uncommon–Rare | Crafted |
+
+### Named Set Design Rules
+
+- **3–4 pieces per set** (not 6 — our 6-slot system makes full sets too dominant)
+- **Partial bonus at 2 pieces**, full bonus at 3–4 pieces
+- Set bonuses: flat stat bonuses (+3–8 per stat) or small % multipliers (5–10%)
+- Never stack with tier-based set bonuses (named sets override generic setId)
+
+### Item Template JSON Format
+
+```json
+{
+  "id": "prefix-unique-name",
+  "name": "German Name",
+  "slot": "weapon|shield|helm|armor|amulet|boots",
+  "tier": 1-4,
+  "reqLevel": 1-50,
+  "rarity": "common|uncommon|rare|epic|legendary",
+  "price": 0,
+  "desc": "German description (Kingkiller Chronicle tone)",
+  "icon": null,
+  "shopHidden": true,
+  "affixes": {
+    "primary": { "count": [min, max], "pool": [{ "stat": "kraft", "min": N, "max": N }] },
+    "minor": { "count": [min, max], "pool": [{ "stat": "fokus", "min": N, "max": N }] }
+  },
+  "legendaryEffect": null,
+  "setId": "adventurer|veteran|master|legendary|named-set-id"
+}
+```
+
+### Balancing Checklist (for every new item)
+
+1. Do affix counts match the rarity table?
+2. Do stat ranges match the level table (not inflated by rarity)?
+3. Is the legendary effect value within the level-appropriate range?
+4. Does the affix pool have 2–3 primary and 1–3 minor options (variety for rolling)?
+5. Is the item source-appropriate (no legendaries in general pool, no commons in raids)?
+6. Does the total stat ceiling stay below the kraft/weisheit cap of 30 for a full 6-slot build?
+
 ## UI Design Guidelines
 
 These rules ensure visual consistency across all features. Follow them for EVERY new component, modal, or UI element.
