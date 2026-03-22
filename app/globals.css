@@ -1280,10 +1280,10 @@ img {
   transform: translateY(-1px);
 }
 
-/* Reward badge shimmer */
-@keyframes today-reward-shimmer {
-  0% { background-position: -100% 0; }
-  100% { background-position: 200% 0; }
+/* Divider traveling light */
+@keyframes today-divider-travel {
+  0% { left: -20px; }
+  100% { left: calc(100% + 20px); }
 }
 
 /* ─── Visual Overhaul: Diablo-Style Progress Bars ──────────────────────── */

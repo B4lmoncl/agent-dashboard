@@ -138,19 +138,18 @@ function NightStars() {
 // ─── Category Divider with traveling light ───────────────────────────────────
 
 function MagicDivider({ color = "rgba(129,140,248,0.3)" }: { color?: string }) {
-  // Brighten color for the traveling light dot by increasing alpha
   const brightColor = color.replace(/[\d.]+\)$/, "0.8)");
   return (
     <div className="relative my-3 mx-2" style={{ height: 1 }}>
       <div className="absolute inset-0" style={{ background: `linear-gradient(90deg, transparent, ${color}, transparent)` }} />
+      {/* Traveling light dot — uses translateX animation to slide across */}
       <div
         className="absolute top-0 rounded-full"
         style={{
           width: 20, height: 1,
-          background: brightColor,
+          background: `linear-gradient(90deg, transparent, ${brightColor}, transparent)`,
           boxShadow: `0 0 6px ${color}`,
-          animation: "today-reward-shimmer 3s linear infinite",
-          backgroundSize: "200% 100%",
+          animation: "today-divider-travel 3s linear infinite",
         }}
       />
     </div>
@@ -195,7 +194,7 @@ function StreakFlame({ streak }: { streak: number }) {
       </svg>
       {isEpic && <div className="absolute inset-0 rounded-full" style={{
         background: `radial-gradient(circle, ${baseColor}30 0%, transparent 70%)`,
-        animation: "today-breathe 2s ease-in-out infinite",
+        animation: "today-hero-breathe 2s ease-in-out infinite",
       }} />}
     </div>
   );
@@ -861,7 +860,7 @@ export default function TodayDrawer({
                         boxShadow: item.urgent
                           ? "inset 0 1px 0 rgba(251,191,36,0.06)"
                           : "inset 0 1px 0 rgba(255,255,255,0.03)",
-                        cursor: item.onClick ? "pointer" : "default",
+                        cursor: item.onClick ? "pointer" : item.done ? "default" : "not-allowed",
                         opacity: item.done && !item.onClick ? 0.55 : 1,
                         animation: entered
                           ? `today-card-enter 0.3s ease-out ${catIdx * 80 + (itemIdx + 1) * 50}ms both${item.urgent ? ", today-urgent-pulse 2.5s ease-in-out infinite" : ""}`
