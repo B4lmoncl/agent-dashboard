@@ -2479,4 +2479,45 @@ All previous fixes from Sessions 15-16 verified clean by parallel subagents:
 
 ---
 
+## 34. Final Verification Sweep — Session 18 (2026-03-22)
+
+### 34.1 Status
+
+Comprehensive sweep across all 10 key files for new features. **Only 1 issue found** — all previous fixes verified clean.
+
+### 34.2 Bugs Found & Fixed
+
+| # | Bug | Severity | Fix | Commit |
+|---|-----|----------|-----|--------|
+| 1 | **DungeonView missing cancel button** — backend `/api/dungeons/cancel` existed but no UI button; users stuck with forming runs | **HIGH** | Added red "Cancel Run" button next to waiting message for run creators | `78b273b` |
+
+### 34.3 Verified Clean (No Issues)
+
+| System | File(s) | Status |
+|--------|---------|--------|
+| Dungeon backend | `routes/dungeons.js` | Clean — cancel, prune, success, rewards all correct |
+| World Boss | `routes/world-boss.js` | Clean — history endpoint, claim guard, history cap working |
+| Gem System | `routes/gems.js` | Clean — socketedGems response, ensureUserCurrencies working |
+| Companion Expeditions | `routes/players.js` | Clean — bond multiplier, race guard, auth working |
+| Rift/Mythic+ | `routes/rift.js` | Clean — mythic progression, time scaling, rewards all correct |
+| Server Boot | `server.js` | Clean — all load functions called in correct order |
+| Navigation | `app/config.ts` | Clean — dungeons registered in Great Halls |
+| Page Routing | `app/page.tsx` | Clean — DungeonView lazy-loaded |
+| WorldBossView | `components/WorldBossView.tsx` | Clean — history integration working |
+
+### 34.4 Remaining Known Issues (Non-Critical)
+
+| # | Issue | Severity | Notes |
+|---|-------|----------|-------|
+| 1 | Gem socket UI auto-picks first available gem | LOW | Should have a picker modal; functional but not ideal UX |
+| 2 | Companion Expeditions have no frontend UI | MEDIUM | Backend complete; needs CompanionsWidget integration |
+
+### 34.5 Changelog (Session 18)
+
+| Commit | Timestamp | Description |
+|--------|-----------|-------------|
+| `78b273b` | 2026-03-22 | QoL: Add cancel button for forming dungeon runs |
+
+---
+
 *End of Audit Report — Updated 2026-03-22*
