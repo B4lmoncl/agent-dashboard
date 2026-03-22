@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState, useEffect, useCallback } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { useDashboard } from "@/app/DashboardContext";
 import { getUserLevel, getUserXpProgress } from "@/app/utils";
 import type { ActiveNpc, Ritual } from "@/app/types";
@@ -276,11 +276,15 @@ export default function TodayDrawer({
     setEntered(false);
   }, [open]);
 
-  // Track recently completed items for celebration
-  const [celebrated, setCelebrated] = useState<Set<string>>(new Set());
-  const markCelebrated = useCallback((id: string) => {
-    setCelebrated(prev => new Set(prev).add(id));
-  }, []);
+  // ESC to close + body scroll lock
+  useEffect(() => {
+    if (!open) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
+    window.addEventListener("keydown", onKey);
+    return () => { document.body.style.overflow = prev; window.removeEventListener("keydown", onKey); };
+  }, [open, onClose]);
 
   // ─── Hero data ───────────────────────────────────────────────────────────
 
@@ -611,7 +615,7 @@ export default function TodayDrawer({
             </div>
             <button
               onClick={onClose}
-              className="w-8 h-8 rounded-lg flex items-center justify-center text-xs"
+              className="w-8 h-8 rounded-lg flex items-center justify-center text-xs btn-interactive"
               style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.4)", cursor: "pointer" }}
             >
               ✕
@@ -625,7 +629,7 @@ export default function TodayDrawer({
           {/* Breathing ambient glow behind hero */}
           <div className="absolute inset-0 pointer-events-none" style={{
             background: `radial-gradient(ellipse at 50% 40%, ${timeInfo.accentGlow} 0%, transparent 70%)`,
-            animation: "today-breathe 4s ease-in-out infinite",
+            animation: "today-hero-breathe 4s ease-in-out infinite",
           }} />
 
           {/* Level Ring - centered */}
@@ -842,10 +846,7 @@ export default function TodayDrawer({
                   {cat.items.map((item, itemIdx) => (
                     <button
                       key={item.id}
-                      onClick={() => {
-                        if (item.done && !celebrated.has(item.id)) markCelebrated(item.id);
-                        item.onClick?.();
-                      }}
+                      onClick={() => { item.onClick?.(); }}
                       disabled={!item.onClick}
                       className="today-item-card rounded-xl p-3 text-left flex flex-col gap-1.5"
                       style={{

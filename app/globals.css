@@ -1183,24 +1183,11 @@ img {
   100% { transform: translate(var(--p-dx, 30px), var(--p-dy, -80px)) scale(0.3); opacity: 0; }
 }
 
-@keyframes today-particle-float {
-  0%, 100% { transform: translateY(0) translateX(0); }
-  25% { transform: translateY(-6px) translateX(3px); }
-  50% { transform: translateY(-2px) translateX(-2px); }
-  75% { transform: translateY(-8px) translateX(1px); }
-}
-
 /* Level ring rotating glow trail */
 @keyframes today-ring-glow {
   0%   { filter: drop-shadow(0 0 3px var(--ring-color, #818cf8)) hue-rotate(0deg); }
   50%  { filter: drop-shadow(0 0 8px var(--ring-color, #818cf8)) hue-rotate(15deg); }
   100% { filter: drop-shadow(0 0 3px var(--ring-color, #818cf8)) hue-rotate(0deg); }
-}
-
-@keyframes today-ring-sparkle {
-  0%   { transform: rotate(var(--spark-start, 0deg)) translateX(30px) scale(0); opacity: 0; }
-  20%  { scale: 1.2; opacity: 1; }
-  100% { transform: rotate(var(--spark-end, 90deg)) translateX(30px) scale(0); opacity: 0; }
 }
 
 /* Streak flame animation */
@@ -1241,8 +1228,8 @@ img {
 }
 
 @keyframes today-urgent-pulse {
-  0%, 100% { border-color: rgba(251,191,36,0.2); box-shadow: 0 0 6px rgba(251,191,36,0.05); }
-  50% { border-color: rgba(251,191,36,0.45); box-shadow: 0 0 14px rgba(251,191,36,0.12); }
+  0%, 100% { border-color: rgba(251,191,36,0.2); box-shadow: inset 0 1px 0 rgba(251,191,36,0.06), 0 0 6px rgba(251,191,36,0.05); }
+  50% { border-color: rgba(251,191,36,0.45); box-shadow: inset 0 1px 0 rgba(251,191,36,0.1), 0 0 14px rgba(251,191,36,0.12); }
 }
 
 /* Completion checkmark pop */
@@ -1265,15 +1252,10 @@ img {
   100% { transform: translate(var(--cx, 20px), var(--cy, -40px)) rotate(var(--cr, 180deg)); opacity: 0; }
 }
 
-/* Progress arc segment glow */
-@keyframes today-arc-segment-fill {
-  from { stroke-dashoffset: var(--arc-from, 100); }
-  to { stroke-dashoffset: var(--arc-to, 0); }
-}
-
-@keyframes today-arc-glow {
-  0%, 100% { filter: drop-shadow(0 0 2px var(--arc-color, #818cf8)); }
-  50% { filter: drop-shadow(0 0 6px var(--arc-color, #818cf8)); }
+/* Hero section breathing glow (opacity-based, not box-shadow) */
+@keyframes today-hero-breathe {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
 }
 
 /* Star night particles for nighttime */
