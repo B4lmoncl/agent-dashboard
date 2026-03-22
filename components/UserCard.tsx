@@ -35,7 +35,7 @@ const TITLE_COLORS: Record<string, string> = {
 function SmartIcon({ src, alt, size = 16, style }: { src: string; alt?: string; size?: number; style?: React.CSSProperties }) {
   if (!src) return null;
   if (src.startsWith("/")) {
-    return <img src={src} alt={alt ?? ""} width={size} height={size} style={{ imageRendering: "smooth", ...style }} onError={e => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} />;
+    return <img src={src} alt={alt ?? ""} width={size} height={size} style={{ imageRendering: "auto", ...style }} onError={e => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} />;
   }
   return <span style={{ fontSize: size, lineHeight: 1, ...style }}>{src}</span>;
 }
@@ -108,7 +108,7 @@ export function UserCard({ user, classes = [], onClick }: { user: User; classes?
               src="/images/portraits/hero-male.png"
               alt={user.name}
               className="w-full h-full object-cover"
-              style={{ imageRendering: "smooth" }}
+              style={{ imageRendering: "auto" }}
               onError={e => {
                 // Fallback to colored letter avatar
                 const t = e.currentTarget;
@@ -226,7 +226,7 @@ export function UserCard({ user, classes = [], onClick }: { user: User; classes?
               <Tip k="bond_level">
                 <div className="flex items-center gap-1.5">
                   {companionSrc ? (
-                    <img src={companionSrc} alt={comp.name} width={18} height={18} className="rounded" style={{ imageRendering: "smooth" }} />
+                    <img src={companionSrc} alt={comp.name} width={18} height={18} className="rounded" style={{ imageRendering: "auto" }} />
                   ) : comp.emoji && comp.emoji !== "x" ? (
                     <span style={{ fontSize: 14 }}>{comp.emoji}</span>
                   ) : null}

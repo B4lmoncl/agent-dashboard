@@ -538,7 +538,7 @@ function TradeOfferDisplay({ offer, label, color }: { offer: TradeOffer; label: 
             const tooltipParts = [item.name, item.slot ? `Slot: ${item.slot}` : "", item.rarity.charAt(0).toUpperCase() + item.rarity.slice(1), statsStr, item.setName ? `Set: ${item.setName}` : "", item.legendaryEffect ? `★ ${item.legendaryEffect.label}` : ""].filter(Boolean);
             return (
               <div key={item.instanceId} className="group relative flex items-center gap-2 text-xs px-2 py-1.5 rounded cursor-default" style={{ background: "rgba(255,255,255,0.03)", borderLeft: `2px solid ${rc}` }}>
-                {item.icon && <img src={item.icon} alt="" width={20} height={20} style={{ imageRendering: "smooth" }} onError={e => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} />}
+                {item.icon && <img src={item.icon} alt="" width={20} height={20} style={{ imageRendering: "auto" }} onError={e => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} />}
                 <span className="font-semibold" style={{ color: rc }}>{item.name}</span>
                 <span className="text-w20 capitalize ml-auto">{item.rarity}</span>
                 {item.slot && <span className="text-w15">({item.slot})</span>}
@@ -615,7 +615,7 @@ function TradeItemGrid({ items, selectedIds, onToggle }: {
                 }}
               >
                 {item.icon ? (
-                  <img src={item.icon} alt={item.name} width={36} height={36} style={{ imageRendering: "smooth", objectFit: "contain" }} />
+                  <img src={item.icon} alt={item.name} width={36} height={36} style={{ imageRendering: "auto", objectFit: "contain" }} />
                 ) : (
                   <span style={{ fontSize: 22 }}>{item.emoji || "📦"}</span>
                 )}

@@ -60,7 +60,7 @@
       "tier": "champion",
       "hp": 15000,
       "enrageHours": 120,
-      "uniqueDrops": ["phantom-clarity-ring"],
+      "uniqueDrops": ["doubt-whisper-boots"],
       "contributionThresholds": { "bronze": 50, "silver": 150, "gold": 400, "legendary": 800 },
       "titleReward": "Zweifelbezwinger",
       "frameReward": { "id": "doubt-frame", "name": "Zweifelbezwinger", "color": "#6366f1", "glow": false }
@@ -76,7 +76,7 @@
       "tier": "champion",
       "hp": 22000,
       "enrageHours": 144,
-      "uniqueDrops": ["weaver-thread-belt"],
+      "uniqueDrops": ["entropy-web-armor"],
       "contributionThresholds": { "bronze": 75, "silver": 200, "gold": 500, "legendary": 1000 },
       "titleReward": "Fadenbrecher",
       "frameReward": { "id": "weaver-frame", "name": "Fadenbrecher", "color": "#ec4899", "glow": false }
@@ -92,7 +92,7 @@
       "tier": "titan",
       "hp": 45000,
       "enrageHours": 144,
-      "uniqueDrops": ["golem-momentum-boots"],
+      "uniqueDrops": ["stagnation-helm"],
       "contributionThresholds": { "bronze": 100, "silver": 300, "gold": 750, "legendary": 1500 },
       "titleReward": "Stillstandbrecher",
       "frameReward": { "id": "golem-frame", "name": "Stillstandbrecher", "color": "#78716c", "glow": true }
@@ -108,7 +108,7 @@
       "tier": "titan",
       "hp": 60000,
       "enrageHours": 120,
-      "uniqueDrops": ["seraph-imperfect-blade"],
+      "uniqueDrops": ["perfection-wings"],
       "contributionThresholds": { "bronze": 125, "silver": 375, "gold": 900, "legendary": 1800 },
       "titleReward": "Der Unvollkommene",
       "frameReward": { "id": "seraph-frame", "name": "Der Unvollkommene", "color": "#fbbf24", "glow": true }
@@ -124,7 +124,7 @@
       "tier": "colossus",
       "hp": 100000,
       "enrageHours": 168,
-      "uniqueDrops": ["leviathan-bond-amulet"],
+      "uniqueDrops": ["isolation-trident"],
       "contributionThresholds": { "bronze": 200, "silver": 500, "gold": 1200, "legendary": 2500 },
       "titleReward": "Brückenbauer",
       "frameReward": { "id": "leviathan-frame", "name": "Brückenbauer", "color": "#1e3a5f", "glow": true }
@@ -140,7 +140,7 @@
       "tier": "colossus",
       "hp": 150000,
       "enrageHours": 168,
-      "uniqueDrops": ["sovereign-purpose-crown"],
+      "uniqueDrops": ["apathy-crown"],
       "contributionThresholds": { "bronze": 250, "silver": 650, "gold": 1500, "legendary": 3000 },
       "titleReward": "Der Erweckte",
       "frameReward": { "id": "sovereign-frame", "name": "Der Erweckte", "color": "#4a1942", "glow": true }

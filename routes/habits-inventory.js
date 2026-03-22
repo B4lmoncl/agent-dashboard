@@ -4,7 +4,7 @@
 const router = require('express').Router();
 const {
   state, EQUIPMENT_SLOTS, SET_BONUSES, RARITY_ORDER,
-  saveUsers, saveHabits, resolveItem, getActiveBuffs,
+  saveUsers, saveHabits, resolveItem, getActiveBuffs, ensureUserCurrencies,
 } = require('../lib/state');
 const {
   now, getLevelInfo, getUserStats, getUserEquipment, getUserDropBonus,
@@ -153,6 +153,8 @@ router.post('/api/player/:name/inventory/use/:itemId', requireAuth, requireSelf(
     case 'gold': {
       const amt = effect.amount || 0;
       u.gold = (u.gold || 0) + amt;
+      ensureUserCurrencies(u);
+      u.currencies.gold = u.gold;
       updatedValues.gold = u.gold;
       message = `+${amt} Gold erhalten!`;
       break;
@@ -374,6 +376,105 @@ router.post('/api/player/:name/inventory/use/:itemId', requireAuth, requireSelf(
       message = `Schmiedeglut +${amt}°! Forge-Temperatur steigt!`;
       break;
     }
+    case 'essenz': {
+      const amt = effect.amount || 50;
+      if (!u.currencies) u.currencies = {};
+      u.currencies.essenz = (u.currencies.essenz || 0) + amt;
+      updatedValues.essenz = u.currencies.essenz;
+      message = `+${amt} Essenz!`;
+      break;
+    }
+    case 'stardust': {
+      const amt = effect.amount || 25;
+      if (!u.currencies) u.currencies = {};
+      u.currencies.stardust = (u.currencies.stardust || 0) + amt;
+      updatedValues.stardust = u.currencies.stardust;
+      message = `+${amt} Stardust!`;
+      break;
+    }
+    case 'runensplitter': {
+      const amt = effect.amount || 10;
+      if (!u.currencies) u.currencies = {};
+      u.currencies.runensplitter = (u.currencies.runensplitter || 0) + amt;
+      updatedValues.runensplitter = u.currencies.runensplitter;
+      message = `+${amt} Runensplitter!`;
+      break;
+    }
+    case 'sternentaler': {
+      const amt = effect.amount || 5;
+      if (!u.currencies) u.currencies = {};
+      u.currencies.sternentaler = (u.currencies.sternentaler || 0) + amt;
+      updatedValues.sternentaler = u.currencies.sternentaler;
+      message = `+${amt} Sternentaler!`;
+      break;
+    }
+    case 'xp_gold_boost': {
+      if (!u.activeBuffs) u.activeBuffs = [];
+      const charges = effect.charges || 5;
+      u.activeBuffs.push({ type: 'xp_gold_boost', xpPercent: effect.xpPercent || 15, goldPercent: effect.goldPercent || 10, chargesRemaining: charges, activatedAt: new Date().toISOString() });
+      updatedValues.activeBuffs = getActiveBuffs(uid);
+      message = `+${effect.xpPercent || 15}% XP & +${effect.goldPercent || 10}% Gold for ${charges} quests!`;
+      break;
+    }
+    case 'luck_boost': {
+      if (!u.activeBuffs) u.activeBuffs = [];
+      const charges = effect.charges || 3;
+      u.activeBuffs.push({ type: 'luck_boost', percent: effect.percent || 20, chargesRemaining: charges, activatedAt: new Date().toISOString() });
+      updatedValues.activeBuffs = getActiveBuffs(uid);
+      message = `+${effect.percent || 20}% Drop Chance for ${charges} quests!`;
+      break;
+    }
+    case 'faction_rep': {
+      const amt = effect.amount || 50;
+      if (!u.factionRepBonus) u.factionRepBonus = 0;
+      u.factionRepBonus += amt;
+      updatedValues.factionRepBonus = u.factionRepBonus;
+      message = `+${amt} Faction Reputation Bonus!`;
+      break;
+    }
+    case 'craft_discount': {
+      if (!u.activeBuffs) u.activeBuffs = [];
+      u.activeBuffs.push({ type: 'craft_discount', percent: effect.percent || 50, chargesRemaining: effect.charges || 1, activatedAt: new Date().toISOString() });
+      updatedValues.activeBuffs = getActiveBuffs(uid);
+      message = `Next crafting costs ${effect.percent || 50}% less Gold!`;
+      break;
+    }
+    case 'expedition_speed': {
+      if (!u.activeBuffs) u.activeBuffs = [];
+      u.activeBuffs.push({ type: 'expedition_speed', percent: effect.percent || 25, chargesRemaining: effect.charges || 1, activatedAt: new Date().toISOString() });
+      updatedValues.activeBuffs = getActiveBuffs(uid);
+      message = `Next companion expedition ${effect.percent || 25}% faster!`;
+      break;
+    }
+    case 'dungeon_reset': {
+      if (!u.activeBuffs) u.activeBuffs = [];
+      u.activeBuffs.push({ type: 'dungeon_reset', chargesRemaining: effect.charges || 1, activatedAt: new Date().toISOString() });
+      updatedValues.activeBuffs = getActiveBuffs(uid);
+      message = 'Dungeon cooldown reset available!';
+      break;
+    }
+    case 'rift_time_extend': {
+      if (!u.activeBuffs) u.activeBuffs = [];
+      u.activeBuffs.push({ type: 'rift_time_extend', percent: effect.percent || 25, chargesRemaining: effect.charges || 1, activatedAt: new Date().toISOString() });
+      updatedValues.activeBuffs = getActiveBuffs(uid);
+      message = `Next rift +${effect.percent || 25}% time!`;
+      break;
+    }
+    case 'multi_reward': {
+      const xp = effect.xp || 0;
+      const gold = effect.gold || 0;
+      const essenz = effect.essenz || 0;
+      u.xp = (u.xp || 0) + xp;
+      u.gold = (u.gold || 0) + gold;
+      ensureUserCurrencies(u);
+      u.currencies.gold = u.gold;
+      u.currencies.essenz = (u.currencies.essenz || 0) + essenz;
+      updatedValues.xp = u.xp;
+      updatedValues.gold = u.gold;
+      updatedValues.essenz = u.currencies.essenz;
+      message = `+${xp} XP, +${gold} Gold, +${essenz} Essenz!`;
+      break;
+    }
     default: {
       // Unknown effect — consume anyway but note it
       message = `Item consumed. (Effect "${effectType}" is not yet supported)`;
@@ -493,6 +594,8 @@ router.post('/api/player/:name/equip/:itemId', requireAuth, requireSelf('name'),
     }
 
     u.gold -= shopItem.cost;
+    ensureUserCurrencies(u);
+    u.currencies.gold = u.gold;
     // Roll stats for the new item
     const instance = createGearInstance(shopItem);
     u.equipment[shopItem.slot] = instance;

@@ -2,14 +2,14 @@
 const router = require('express').Router();
 const {
   state, STREAK_MILESTONES, RARITY_COLORS,
-  saveClasses, saveRoadmap, saveRituals, saveUsers,
+  saveClasses, saveRoadmap, saveRituals, saveUsers, ensureUserCurrencies,
 } = require('../lib/state');
 const {
   now, todayStr, getStreakXpBonus, getLevelInfo,
   getXpMultiplier, getGoldMultiplier, getUserGear, getQuestHoardingMalus,
   hasPassiveEffect, consumePassiveEffect, awardUserGold,
   getUserDropBonus, rollLoot, addLootToInventory, resetLootPity,
-  checkAndAwardAchievements, checkAndAwardTitles,
+  checkAndAwardAchievements, checkAndAwardTitles, getLegendaryModifiers,
 } = require('../lib/helpers');
 const { requireApiKey, requireMasterKey } = require('../lib/middleware');
 
@@ -254,6 +254,12 @@ router.post('/api/rituals/:id/complete', requireApiKey, (req, res) => {
     if (hasPassiveEffect(uid, 'xp_boost_10')) passiveXpBonus += 0.10;
     if (hasPassiveEffect(uid, 'xp_boost_5')) passiveXpBonus += 0.05;
     xpAmount = Math.round(xpBase * (1 + streakBonus) * xpMulti * gearBonus * companionBonus * bondBonus * hoardingMalus * passiveXpBonus);
+
+    // Legendary effect: ritualStreakBonus — extra XP scaled by streak days
+    const ritualMods = getLegendaryModifiers(uid);
+    const streakBonusXp = Math.round(xpBase * (u.streakDays || 0) * (ritualMods.ritualStreakBonus || 0));
+    xpAmount += streakBonusXp;
+
     u.xp = (u.xp || 0) + xpAmount;
 
     // Gold with full multiplier chain
@@ -263,6 +269,8 @@ router.post('/api/rituals/:id/complete', requireApiKey, (req, res) => {
     goldEarnedAmount = Math.round(goldBase * goldMulti * streakGoldMulti);
     if (consumePassiveEffect(uid, 'gold_boost_next')) goldEarnedAmount *= 2;
     u.gold = (u.gold || 0) + goldEarnedAmount;
+    ensureUserCurrencies(u);
+    u.currencies.gold = u.gold;
 
     // ─── Blood Pact completion bonus (one-time at end of commitment) ───
     if (ritual.bloodPact && ritual.commitmentDays && ritual.streak >= ritual.commitmentDays && !ritual.pactCompleted) {
@@ -271,6 +279,7 @@ router.post('/api/rituals/:id/complete', requireApiKey, (req, res) => {
       pactCompletionGold = Math.round(commitBonus.gold * diffScale * pactMulti);
       u.xp = (u.xp || 0) + pactCompletionXp;
       u.gold = (u.gold || 0) + pactCompletionGold;
+      u.currencies.gold = u.gold;
       ritual.pactCompleted = true;
     }
 

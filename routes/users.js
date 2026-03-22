@@ -198,15 +198,15 @@ router.post('/api/auth/login', authLimiter, async (req, res) => {
     const nameLower = name.toLowerCase();
     const user = state.usersByName.get(nameLower);
 
-    if (!user) return res.json({ error: 'Invalid name or password' });
+    if (!user) return res.status(401).json({ error: 'Invalid name or password' });
 
     // Support both new password login and legacy API-key-as-password login
     if (user.passwordHash) {
       const match = await bcrypt.compare(password, user.passwordHash);
-      if (!match) return res.json({ error: 'Invalid name or password' });
+      if (!match) return res.status(401).json({ error: 'Invalid name or password' });
     } else {
       // Legacy: user has no password yet, check if password matches apiKey
-      if (password !== user.apiKey) return res.json({ error: 'Invalid name or password' });
+      if (password !== user.apiKey) return res.status(401).json({ error: 'Invalid name or password' });
     }
 
     const admin = isUserAdmin(user);

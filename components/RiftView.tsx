@@ -80,7 +80,8 @@ const TYPE_ICONS: Record<string, string> = { personal: "🏠", learning: "📚",
 
 // ─── Component ──────────────────────────────────────────────────────────────
 
-export default function RiftView({ onRefresh }: { onRefresh?: () => void }) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh?: () => void; onRewardCelebration?: (data: any) => void }) {
   const { playerName, reviewApiKey } = useDashboard();
   const [tiers, setTiers] = useState<Record<string, RiftTier>>({});
   const [activeRift, setActiveRift] = useState<ActiveRift | null>(null);
@@ -152,7 +153,19 @@ export default function RiftView({ onRefresh }: { onRefresh?: () => void }) {
       });
       const d = await r.json();
       if (!r.ok) setMessage({ text: d.error || "Failed", type: "error" });
-      else { setMessage({ text: d.message, type: "success" }); fetchRift(); onRefresh?.(); }
+      else {
+        setMessage({ text: d.message, type: "success" });
+        if (onRewardCelebration && d.rewards) {
+          onRewardCelebration({
+            type: "rift",
+            title: d.riftCompleted ? "Rift Complete!" : "Stage Complete!",
+            xpEarned: d.rewards.xp || 0,
+            goldEarned: d.rewards.gold || 0,
+            loot: d.rewards.loot ? { name: d.rewards.loot.name, emoji: "⚔️", rarity: d.rewards.loot.rarity || "rare" } : null,
+          });
+        }
+        fetchRift(); onRefresh?.();
+      }
     } catch { setMessage({ text: "Network error", type: "error" }); }
     setActionLoading(false);
   };
@@ -242,7 +255,7 @@ export default function RiftView({ onRefresh }: { onRefresh?: () => void }) {
                     border: `2px solid ${q.completed ? "#22c55e" : isCurrent ? activeRift.tierColor : "rgba(255,255,255,0.1)"}`,
                     boxShadow: isCurrent ? `0 0 8px ${activeRift.tierColor}40` : "none",
                   }}>
-                    {q.completed && <span style={{ color: "#000", fontSize: 8, fontWeight: 800 }}>✓</span>}
+                    {q.completed && <span style={{ color: "#000", fontSize: 10, fontWeight: 800, lineHeight: 1 }}>✓</span>}
                   </div>
                   <div className="flex-1 rounded-lg p-3" style={{
                     background: isCurrent ? `${activeRift.tierColor}08` : "rgba(255,255,255,0.02)",
@@ -275,7 +288,8 @@ export default function RiftView({ onRefresh }: { onRefresh?: () => void }) {
                 onClick={completeStage}
                 disabled={actionLoading}
                 className="btn-interactive flex-1 text-xs font-bold py-2.5 rounded-lg"
-                style={{ background: `linear-gradient(135deg, ${activeRift.tierColor}, ${activeRift.tierColor}cc)`, color: "#000", opacity: actionLoading ? 0.5 : 1 }}
+                style={{ background: `linear-gradient(135deg, ${activeRift.tierColor}, ${activeRift.tierColor}cc)`, color: "#000", opacity: actionLoading ? 0.5 : 1, cursor: actionLoading ? "not-allowed" : "pointer" }}
+                title={actionLoading ? "Action in progress..." : undefined}
               >
                 {actionLoading ? "..." : `Complete Stage ${activeRift.currentStage}`}
               </button>
@@ -285,7 +299,8 @@ export default function RiftView({ onRefresh }: { onRefresh?: () => void }) {
                 onClick={() => setConfirmAbandon(true)}
                 disabled={actionLoading}
                 className="btn-interactive text-xs px-4 py-2.5 rounded-lg"
-                style={{ background: "rgba(239,68,68,0.08)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.2)" }}
+                style={{ background: "rgba(239,68,68,0.08)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.2)", cursor: actionLoading ? "not-allowed" : "pointer" }}
+                title={actionLoading ? "Action in progress..." : undefined}
               >
                 Abandon
               </button>
@@ -335,7 +350,7 @@ export default function RiftView({ onRefresh }: { onRefresh?: () => void }) {
                     title={tier.name}
                     icon={tier.icon}
                     accent={tier.color}
-                    body={<p>{tier.questCount} quests in {tier.timeLimitHours}h. Base difficulty scales up to {id === "normal" ? "1" : id === "hard" ? "2" : "3.5"}×. Failing triggers a {tier.failCooldownDays}-day cooldown.</p>}
+                    body={<p>{tier.questCount} quests in {tier.timeLimitHours}h. Base difficulty scales up to {1 + (tier.questCount - 1) * 0.5}×. Failing triggers a {tier.failCooldownDays}-day cooldown.</p>}
                   >
                     <p className="text-sm font-bold mt-1 cursor-help" style={{ color: tier.color }}>{tier.name}</p>
                   </TipCustom>
@@ -453,7 +468,7 @@ export default function RiftView({ onRefresh }: { onRefresh?: () => void }) {
               <TipCustom title="Mythic Time Scaling" icon="⏱️" accent="#ff4444" body={<p>Time limit decreases by 1.5h per Mythic level (minimum 18h). Higher levels demand faster completion.</p>}>
                 <div className="flex justify-between cursor-help"><span>Time Limit</span><span className="font-mono text-w50">{Math.max(18, 30 - selectedMythicLevel * 1.5)}h</span></div>
               </TipCustom>
-              <TipCustom title="Mythic Difficulty" icon="⚔️" accent="#ff4444" body={<p>Each Mythic level adds +0.25× difficulty and +0.3× per stage. At M+{selectedMythicLevel}: base difficulty {(1 + selectedMythicLevel * 0.3).toFixed(1)}× → {(1 + 6 * 0.5 + selectedMythicLevel * 0.3).toFixed(1)}× on final stage. No fail cooldown — retry immediately.</p>}>
+              <TipCustom title="Mythic Difficulty" icon="⚔️" accent="#ff4444" body={<p>Each Mythic level adds +0.3× base difficulty, stages escalate +0.5× each. At M+{selectedMythicLevel}: base difficulty {(1 + selectedMythicLevel * 0.3).toFixed(1)}× → {(1 + 6 * 0.5 + selectedMythicLevel * 0.3).toFixed(1)}× on final stage. No fail cooldown — retry immediately.</p>}>
                 <div className="flex justify-between cursor-help"><span>Difficulty</span><span className="font-mono text-w50">{(1 + selectedMythicLevel * 0.3).toFixed(1)}× – {(1 + 6 * 0.5 + selectedMythicLevel * 0.3).toFixed(1)}×</span></div>
               </TipCustom>
               <div className="flex justify-between"><span>Fail Cooldown</span><span className="font-mono text-w50">None</span></div>

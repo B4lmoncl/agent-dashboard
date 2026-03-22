@@ -5,7 +5,7 @@ const fs = require('fs');
 const path = require('path');
 const router = require('express').Router();
 const { state, saveUsers, saveUsersSync, ensureUserCurrencies } = require('../lib/state');
-const { now, getLevelInfo, PRIMARY_STATS, MINOR_STATS, createGearInstance } = require('../lib/helpers');
+const { now, getLevelInfo, PRIMARY_STATS, MINOR_STATS, createGearInstance, getLegendaryModifiers } = require('../lib/helpers');
 
 const VALID_SLOTS = ['weapon', 'shield', 'helm', 'armor', 'amulet', 'boots'];
 const RARITY_ORDER = ['common', 'uncommon', 'rare', 'epic', 'legendary'];
@@ -192,8 +192,12 @@ router.get('/api/professions', (req, res) => {
       const lastRecipeCraft = recipeCooldowns[r.id] || null;
       let cooldownRemaining = 0;
       if (r.cooldownMinutes > 0 && lastRecipeCraft) {
+        // Legendary effect: cooldownReduction — shorten crafting cooldowns
+        const cdMods = u ? getLegendaryModifiers(u.id) : {};
+        const cdReduce = 1 - (cdMods.cooldownReduction || 0);
+        const effectiveCd = r.cooldownMinutes * cdReduce;
         const elapsed = (Date.now() - new Date(lastRecipeCraft).getTime()) / 1000;
-        cooldownRemaining = Math.max(0, Math.ceil(r.cooldownMinutes * 60 - elapsed));
+        cooldownRemaining = Math.max(0, Math.ceil(effectiveCd * 60 - elapsed));
       }
       return {
         ...r,
@@ -272,10 +276,10 @@ router.post('/api/professions/learn', requireAuth, (req, res) => {
     return res.status(400).json({ error: `Not enough gold (need ${goldNeeded})` });
   }
 
-  // Deduct gold and learn
+  // Deduct gold and learn — sync both fields
   ensureUserCurrencies(u);
-  if (u.currencies) u.currencies.gold -= goldNeeded;
-  else u.gold = (u.gold || 0) - goldNeeded;
+  u.currencies.gold = (u.currencies.gold || 0) - goldNeeded;
+  u.gold = u.currencies.gold;
   u.learnedRecipes.push(recipeId);
   saveUsers();
 
@@ -331,9 +335,13 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
   const recipeCooldowns = (u.professions || {})[recipe.profession]?.recipeCooldowns || {};
   const lastRecipeCraft = recipeCooldowns[recipeId] || null;
   if (recipe.cooldownMinutes > 0 && lastRecipeCraft) {
+    // Legendary effect: cooldownReduction — shorten crafting cooldowns
+    const craftMods = getLegendaryModifiers(uid);
+    const cdReduction = 1 - (craftMods.cooldownReduction || 0);
+    const effectiveCooldown = recipe.cooldownMinutes * cdReduction;
     const elapsed = (Date.now() - new Date(lastRecipeCraft).getTime()) / 60000;
-    if (elapsed < recipe.cooldownMinutes) {
-      const remaining = Math.ceil(recipe.cooldownMinutes - elapsed);
+    if (elapsed < effectiveCooldown) {
+      const remaining = Math.ceil(effectiveCooldown - elapsed);
       return res.status(429).json({ error: `Cooldown: ${remaining} minutes remaining` });
     }
   }
@@ -395,10 +403,11 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
   // ─── All validation passed — enroll profession + deduct costs ──────────────
   if (needsEnrollment) u.chosenProfessions.push(recipe.profession);
 
-  // Deduct gold (×count)
+  // Deduct gold (×count) — sync both fields
   if (totalGoldCost > 0) {
-    if (u.currencies) u.currencies.gold -= totalGoldCost;
-    else u.gold = (u.gold || 0) - totalGoldCost;
+    ensureUserCurrencies(u);
+    u.currencies.gold = (u.currencies.gold || 0) - totalGoldCost;
+    u.gold = u.currencies.gold;
   }
   // Deduct materials (×count)
   for (const [matId, amount] of Object.entries(recipe.materials || {})) {
@@ -825,6 +834,19 @@ router.post('/api/schmiedekunst/dismantle', requireAuth, (req, res) => {
     }
   }
 
+  // Legendary effect: salvageBonus — extra materials from dismantling
+  const salvageMods = getLegendaryModifiers(uid);
+  const salvageBonusMult = salvageMods.salvageBonus || 0;
+  if (salvageBonusMult > 0) {
+    for (const mat of materialsGained) {
+      const bonus = Math.round(mat.amount * salvageBonusMult);
+      if (bonus > 0) {
+        u.craftingMaterials[mat.id] = (u.craftingMaterials[mat.id] || 0) + bonus;
+        mat.amount += bonus;
+      }
+    }
+  }
+
   // Sync write — dismantle must survive container restarts
   saveUsersSync();
   res.json({
@@ -951,15 +973,16 @@ router.post('/api/schmiedekunst/transmute', requireAuth, (req, res) => {
 
   // Find legendary items in same slot
   const legendaryPool = state.FULL_GEAR_ITEMS.filter(g =>
-    g.slot === slot && g.rarity === 'legendary' && g.tier === 4
+    g.slot === slot && g.rarity === 'legendary'
   );
   if (legendaryPool.length === 0) {
     return res.status(400).json({ error: `No legendary available for slot "${slot}"` });
   }
 
-  // Deduct gold
-  if (u.currencies) u.currencies.gold -= transmuteCost;
-  else u.gold = (u.gold || 0) - transmuteCost;
+  // Deduct gold — sync both fields
+  ensureUserCurrencies(u);
+  u.currencies.gold = (u.currencies.gold || 0) - transmuteCost;
+  u.gold = u.currencies.gold;
 
   // Remove the 3 epic items from inventory
   for (const item of items) {

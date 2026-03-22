@@ -370,5 +370,9 @@
       "icon": "/images/icons/gacha-heiltrank.png"
     }
   ],
-  "featuredPool": []
+  "featuredPool": [],
+  "uniqueDrops": {
+    "wheel-of-stars": { "itemId": "wheel-of-fate-shield", "chance": 0.003 },
+    "astral-radiance": { "itemId": "astral-veil", "chance": 0.005 }
+  }
 }

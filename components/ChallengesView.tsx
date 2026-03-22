@@ -129,8 +129,8 @@ function SternenpfadView({
           <div className="flex justify-between mt-2">
             {[
               { stars: 3, label: "3★", reward: "50 Gold" },
-              { stars: 6, label: "6★", reward: "3 Essenz + 100 Gold" },
-              { stars: 9, label: "9★", reward: "1 Sternentaler + 5 Essenz" },
+              { stars: 6, label: "6★", reward: "100 Gold + 3 Essenz" },
+              { stars: 9, label: "9★", reward: "150 Gold + 5 Essenz + 1 Sternentaler" },
             ].map(ms => {
               const reached = totalStars >= ms.stars;
               const claimed = claimedMilestones.includes(ms.stars);
@@ -343,7 +343,9 @@ function SternenpfadView({
                       background: "linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%)",
                       color: "#000",
                       opacity: claiming ? 0.5 : 1,
+                      cursor: claiming ? "not-allowed" : "pointer",
                     }}
+                    title={claiming ? "Claiming reward..." : undefined}
                   >
                     {claiming ? "Claiming..." : `Claim Stage ${stage.stage}`}
                   </button>
@@ -531,7 +533,9 @@ function ExpeditionView({
                       : "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)",
                     color: "#000",
                     opacity: claiming === cp.number ? 0.5 : 1,
+                    cursor: claiming === cp.number ? "not-allowed" : "pointer",
                   }}
+                  title={claiming === cp.number ? "Claiming reward..." : undefined}
                 >
                   {claiming === cp.number ? "Claiming..." : "Claim Reward"}
                 </button>
@@ -639,7 +643,20 @@ export default function ChallengesView({
         headers: { ...headers, "Content-Type": "application/json" },
       });
       if (resp.ok) {
+        const data = await resp.json().catch(() => ({}));
         await onRefresh();
+        if (onRewardCelebration && data.rewards) {
+          const currencies: { name: string; amount: number; color: string }[] = [];
+          if (data.rewards.essenz) currencies.push({ name: "Essenz", amount: data.rewards.essenz, color: "#3b82f6" });
+          if (data.rewards.sternentaler) currencies.push({ name: "Sternentaler", amount: data.rewards.sternentaler, color: "#fbbf24" });
+          onRewardCelebration({
+            type: "sternenpfad",
+            title: data.message || `Stage Complete (${data.stars ?? 0}★)`,
+            xpEarned: data.rewards.xp || 0,
+            goldEarned: data.rewards.gold || 0,
+            currencies: currencies.length > 0 ? currencies : undefined,
+          });
+        }
       } else {
         const data = await resp.json().catch(() => ({}));
         setClaimError(data.error || "Failed to claim reward");
@@ -650,7 +667,7 @@ export default function ChallengesView({
     } finally {
       setClaimingStage(false);
     }
-  }, [reviewApiKey, onRefresh]);
+  }, [reviewApiKey, onRefresh, onRewardCelebration]);
 
   const handleClaimMilestone = useCallback(async (stars: number) => {
     if (!reviewApiKey) return;

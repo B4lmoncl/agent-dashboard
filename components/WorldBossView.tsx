@@ -331,7 +331,7 @@ export default function WorldBossView({ onRefresh, onRewardCelebration }: { onRe
               background: `${boss.accent}12`,
               border: `1px solid ${boss.accent}30`,
               fontSize: 28,
-              imageRendering: "smooth",
+              imageRendering: "auto",
             }}>
               {boss.icon}
             </div>
@@ -403,6 +403,7 @@ export default function WorldBossView({ onRefresh, onRewardCelebration }: { onRe
                 background: `linear-gradient(135deg, ${boss.accent}, ${boss.accent}cc)`,
                 color: "#000",
                 opacity: claiming ? 0.5 : 1,
+                cursor: claiming ? "not-allowed" : "pointer",
                 boxShadow: `0 0 16px ${boss.accent}40`,
               }}
             >

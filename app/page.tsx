@@ -873,7 +873,17 @@ export default function Dashboard() {
                       cursor: "pointer",
                     }}
                   >
-                    <Tip k="login_calendar">📅</Tip>
+                    <Tip k="login_calendar">
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ display: "inline-block", verticalAlign: "middle" }}>
+                        <rect x="1" y="3" width="14" height="12" rx="2" stroke="rgba(251,191,36,0.6)" strokeWidth="1.5" fill="rgba(251,191,36,0.06)" />
+                        <path d="M1 7h14" stroke="rgba(251,191,36,0.3)" strokeWidth="1" />
+                        <rect x="5" y="1" width="1.5" height="3.5" rx="0.75" fill="rgba(251,191,36,0.5)" />
+                        <rect x="9.5" y="1" width="1.5" height="3.5" rx="0.75" fill="rgba(251,191,36,0.5)" />
+                        <circle cx="5.5" cy="10.5" r="1" fill="rgba(251,191,36,0.5)" />
+                        <circle cx="8" cy="10.5" r="1" fill="rgba(251,191,36,0.4)" />
+                        <circle cx="10.5" cy="10.5" r="1" fill="rgba(251,191,36,0.3)" />
+                      </svg>
+                    </Tip>
                   </button>
                 </div>
               </div>
@@ -1321,7 +1331,7 @@ export default function Dashboard() {
 
         {/* ── THE RIFT (Dungeon System) ── */}
         {dashView === "rift" && (
-          <ErrorBoundary><Suspense fallback={<ViewFallback />}><RiftView onRefresh={refresh} /></Suspense></ErrorBoundary>
+          <ErrorBoundary><Suspense fallback={<ViewFallback />}><RiftView onRefresh={refresh} onRewardCelebration={setRewardCelebration} /></Suspense></ErrorBoundary>
         )}
 
         {/* ── ROADMAP TAB ── */}
@@ -2047,7 +2057,7 @@ export default function Dashboard() {
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
               <div style={{ width: 100, height: 100, borderRadius: "50%", border: "2px solid rgba(255,215,0,0.6)", animation: "levelup-ring 2s ease-out infinite" }} />
             </div>
-            <img src="/images/icons/levelup-icon.png" alt="Level Up" width={80} height={80} className="mx-auto mb-3" style={{ imageRendering: "smooth", filter: "drop-shadow(0 0 16px rgba(255,215,0,0.6))" }} />
+            <img src="/images/icons/levelup-icon.png" alt="Level Up" width={80} height={80} className="mx-auto mb-3" style={{ imageRendering: "auto", filter: "drop-shadow(0 0 16px rgba(255,215,0,0.6))" }} />
             <div className="text-xs font-bold uppercase tracking-[0.3em] mb-2" style={{ color: "rgba(255,215,0,0.6)" }}>Level Up!</div>
             <div className="levelup-title text-3xl font-black mb-1" style={{ color: "#FFD700" }}>Level {levelUpCelebration.level}</div>
             <div className="text-sm font-semibold mb-5" style={{ color: "rgba(255,215,0,0.7)" }}>{levelUpCelebration.title}</div>

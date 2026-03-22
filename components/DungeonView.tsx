@@ -149,6 +149,10 @@ export default function DungeonView({ onRefresh, onRewardCelebration }: { onRefr
 
   // Collect result
   const [collectResult, setCollectResult] = useState<CollectResult | null>(null);
+  const [confirmCancel, setConfirmCancel] = useState(false);
+
+  // Reset confirmation when active run changes
+  useEffect(() => { setConfirmCancel(false); }, [activeRun?.runId]);
 
   const fetchDungeons = useCallback(async () => {
     if (!playerName) return;
@@ -531,7 +535,9 @@ export default function DungeonView({ onRefresh, onRewardCelebration }: { onRefr
                   background: `linear-gradient(135deg, ${activeRun.dungeonAccent}, ${activeRun.dungeonAccent}cc)`,
                   color: "#000",
                   opacity: actionLoading ? 0.5 : 1,
+                  cursor: actionLoading ? "not-allowed" : "pointer",
                 }}
+                title={actionLoading ? "Action in progress..." : undefined}
               >
                 {actionLoading ? "..." : "Join Dungeon"}
               </button>
@@ -549,7 +555,9 @@ export default function DungeonView({ onRefresh, onRewardCelebration }: { onRefr
                   background: `linear-gradient(135deg, ${activeRun.dungeonAccent}, ${activeRun.dungeonAccent}cc)`,
                   color: "#000",
                   opacity: actionLoading ? 0.5 : 1,
+                  cursor: actionLoading ? "not-allowed" : "pointer",
                 }}
+                title={actionLoading ? "Action in progress..." : undefined}
               >
                 {actionLoading ? "..." : "Collect Rewards"}
               </button>
@@ -569,28 +577,51 @@ export default function DungeonView({ onRefresh, onRewardCelebration }: { onRefr
             {activeRun.status === "forming" && activeRun.createdBy === playerName && (
               <div className="flex items-center gap-3 py-2.5">
                 <p className="text-xs text-w20 flex-1">Waiting for invited friends to join. Dungeon starts when minimum players join.</p>
-                <button
-                  onClick={async () => {
-                    if (!reviewApiKey || actionLoading) return;
-                    setActionLoading(true);
-                    try {
-                      const r = await fetch("/api/dungeons/cancel", {
-                        method: "POST",
-                        headers: { ...getAuthHeaders(reviewApiKey), "Content-Type": "application/json" },
-                        body: JSON.stringify({ runId: activeRun.runId }),
-                      });
-                      const d = await r.json();
-                      if (!r.ok) setMessage({ text: d.error || "Failed to cancel", type: "error" });
-                      else { setMessage({ text: d.message || "Run cancelled", type: "success" }); fetchDungeons(); onRefresh?.(); }
-                    } catch { setMessage({ text: "Network error", type: "error" }); }
-                    setActionLoading(false);
-                  }}
-                  disabled={actionLoading}
-                  className="btn-interactive text-xs font-semibold px-3 py-1.5 rounded-lg shrink-0"
-                  style={{ background: "rgba(239,68,68,0.08)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.2)", opacity: actionLoading ? 0.5 : 1 }}
-                >
-                  {actionLoading ? "..." : "Cancel Run"}
-                </button>
+                {!confirmCancel ? (
+                  <button
+                    onClick={() => setConfirmCancel(true)}
+                    disabled={actionLoading}
+                    className="btn-interactive text-xs font-semibold px-3 py-2 rounded-lg shrink-0"
+                    style={{ background: "rgba(239,68,68,0.08)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.2)", cursor: actionLoading ? "not-allowed" : "pointer", opacity: actionLoading ? 0.5 : 1 }}
+                    title={actionLoading ? "Action in progress..." : "Cancel this dungeon run"}
+                  >
+                    Cancel Run
+                  </button>
+                ) : (
+                  <div className="flex items-center gap-2 shrink-0">
+                    <span className="text-xs text-w30">Cancel run?</span>
+                    <button
+                      onClick={async () => {
+                        if (!reviewApiKey || actionLoading) return;
+                        setActionLoading(true);
+                        try {
+                          const r = await fetch("/api/dungeons/cancel", {
+                            method: "POST",
+                            headers: { ...getAuthHeaders(reviewApiKey), "Content-Type": "application/json" },
+                            body: JSON.stringify({ runId: activeRun.runId }),
+                          });
+                          const d = await r.json();
+                          if (!r.ok) setMessage({ text: d.error || "Failed to cancel", type: "error" });
+                          else { setMessage({ text: d.message || "Run cancelled", type: "success" }); fetchDungeons(); onRefresh?.(); }
+                        } catch { setMessage({ text: "Network error", type: "error" }); }
+                        setActionLoading(false);
+                        setConfirmCancel(false);
+                      }}
+                      disabled={actionLoading}
+                      className="btn-interactive text-xs font-bold px-3 py-2 rounded-lg"
+                      style={{ background: "rgba(239,68,68,0.15)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.3)", cursor: actionLoading ? "not-allowed" : "pointer" }}
+                    >
+                      {actionLoading ? "..." : "Yes"}
+                    </button>
+                    <button
+                      onClick={() => setConfirmCancel(false)}
+                      className="btn-interactive text-xs px-3 py-2 rounded-lg"
+                      style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.5)", border: "1px solid rgba(255,255,255,0.08)", cursor: "pointer" }}
+                    >
+                      No
+                    </button>
+                  </div>
+                )}
               </div>
             )}
           </div>

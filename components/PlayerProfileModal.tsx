@@ -267,7 +267,7 @@ export default function PlayerProfileModal({ playerId, onClose, onAddFriend, onM
                       <TipCustom key={slot} title={item.name} icon={item.icon ?? "⚔️"} accent={rc} body={tooltipBody}>
                         <div className="rounded-lg p-2 cursor-help" style={{ background: `${rc}08`, border: `1px solid ${rc}25` }}>
                           <div className="flex items-center gap-1.5">
-                            {item.icon && <img src={item.icon} alt="" width={24} height={24} style={{ imageRendering: "smooth" }} onError={hideOnError} />}
+                            {item.icon && <img src={item.icon} alt="" width={24} height={24} style={{ imageRendering: "auto" }} onError={hideOnError} />}
                             <div className="min-w-0">
                               <p className="text-xs font-semibold truncate" style={{ color: rc }}>{item.name}</p>
                               <p className="text-xs text-w20">{SLOT_LABELS[slot]}</p>
@@ -314,7 +314,7 @@ export default function PlayerProfileModal({ playerId, onClose, onAddFriend, onM
                     return (
                       <Tip k="professions" key={p.id}>
                         <div className="flex items-center gap-2 px-2.5 py-1.5 rounded-lg cursor-help" style={{ background: `${meta.color}10`, border: `1px solid ${meta.color}25` }}>
-                          <img src={meta.icon} alt="" width={18} height={18} style={{ imageRendering: "smooth" }} onError={hideOnError} />
+                          <img src={meta.icon} alt="" width={18} height={18} style={{ imageRendering: "auto" }} onError={hideOnError} />
                           <div>
                             <p className="text-xs font-semibold" style={{ color: meta.color }}>{meta.name}</p>
                             <p className="text-xs text-w25">Lv.{p.level}</p>
@@ -346,7 +346,7 @@ export default function PlayerProfileModal({ playerId, onClose, onAddFriend, onM
                         </div>
                       }>
                         <span className="inline-flex cursor-help">
-                          {a.icon ? <img src={a.icon} alt={a.name} width={22} height={22} style={{ imageRendering: "smooth" }} onError={hideOnError} /> : <span className="text-sm">🏆</span>}
+                          {a.icon ? <img src={a.icon} alt={a.name} width={22} height={22} style={{ imageRendering: "auto" }} onError={hideOnError} /> : <span className="text-sm">🏆</span>}
                         </span>
                       </TipCustom>
                     );
