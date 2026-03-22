@@ -207,12 +207,17 @@ export default function DashboardHeader({
           {onTodayOpen && playerName && (
             <button
               onClick={onTodayOpen}
-              className="btn-interactive text-xs px-2 py-0.5 rounded font-semibold"
-              style={{ background: "rgba(129,140,248,0.1)", color: "#818cf8", border: "1px solid rgba(129,140,248,0.2)" }}
+              className="btn-interactive text-xs px-2.5 py-1 rounded-lg font-bold tracking-wide today-header-btn"
+              style={{
+                background: "linear-gradient(135deg, rgba(129,140,248,0.12) 0%, rgba(167,139,250,0.08) 100%)",
+                color: "#a78bfa",
+                border: "1px solid rgba(129,140,248,0.2)",
+                boxShadow: "0 0 8px rgba(129,140,248,0.08), inset 0 1px 0 rgba(255,255,255,0.04)",
+              }}
               title="Today's tasks"
               aria-label="Open today's task overview"
             >
-              📅 Today
+              ✦ Today
             </button>
           )}
           <button
