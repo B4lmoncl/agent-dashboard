@@ -176,7 +176,7 @@ export default function DashboardHeader({
             onClick={() => { setDashView("questBoard"); window.scrollTo({ top: 0, behavior: "smooth" }); }}
             title="Home — Quest Hall"
           >
-            <img src="/guild-gate.png" alt="Quest Hall" className="h-20 w-20" style={{ imageRendering: "smooth", display: "block", marginBottom: "-8px", marginTop: "4px" }} />
+            <img src="/guild-gate.png" alt="Quest Hall" className="h-20 w-20" style={{ imageRendering: "auto", display: "block", marginBottom: "-8px", marginTop: "4px" }} />
             <span className="font-semibold text-sm tracking-tight text-primary">
               Quest Hall
             </span>
@@ -241,7 +241,7 @@ export default function DashboardHeader({
                     padding: 0,
                   }}
                 >
-                  <img src="/images/portraits/hero-male.png" alt={playerName} style={{ width: "100%", height: "100%", objectFit: "cover", imageRendering: "smooth" }} onError={e => { const t = e.currentTarget as HTMLImageElement; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; (t.nextElementSibling as HTMLElement).style.display = "flex"; }} />
+                  <img src="/images/portraits/hero-male.png" alt={playerName} style={{ width: "100%", height: "100%", objectFit: "cover", imageRendering: "auto" }} onError={e => { const t = e.currentTarget as HTMLImageElement; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; (t.nextElementSibling as HTMLElement).style.display = "flex"; }} />
                   <div style={{ display: "none", width: "100%", height: "100%", alignItems: "center", justifyContent: "center", background: `linear-gradient(135deg, ${loggedInUser?.color ?? "#a78bfa"}, ${loggedInUser?.color ?? "#a78bfa"}88)`, color: "#fff", fontSize: 13, fontWeight: "bold" }}>{playerName.slice(0, 1).toUpperCase()}</div>
                 </button>
                 {settingsPopupOpen && (

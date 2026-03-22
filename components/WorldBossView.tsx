@@ -331,7 +331,7 @@ export default function WorldBossView({ onRefresh, onRewardCelebration }: { onRe
               background: `${boss.accent}12`,
               border: `1px solid ${boss.accent}30`,
               fontSize: 28,
-              imageRendering: "smooth",
+              imageRendering: "auto",
             }}>
               {boss.icon}
             </div>

@@ -23,14 +23,13 @@ body {
   animation: gradient-shift 18s ease infinite;
   color: var(--foreground);
   -webkit-font-smoothing: antialiased;
-  /* GPU-accelerated scrolling */
-  will-change: scroll-position;
   -webkit-overflow-scrolling: touch;
 }
 
-/* Default: smooth rendering for all images (icons, portraits, UI) */
+/* Default: auto rendering for all images (bilinear interpolation, no pixelation) */
 img {
-  image-rendering: smooth;
+  image-rendering: auto;
+  -webkit-image-rendering: auto;
 }
 
 /* Skip rendering for offscreen cards — browser resumes paint when scrolled into view */
@@ -853,7 +852,7 @@ img {
 }
 
 /* Image rendering — auto (bilinear, non-pixelated for all images)           */
-.img-render-auto { image-rendering: smooth; }
+.img-render-auto { image-rendering: auto; }
 
 /* Common input field styling                                                */
 .input-dark {

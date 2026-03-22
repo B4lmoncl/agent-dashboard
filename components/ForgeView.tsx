@@ -428,11 +428,11 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
             </TipCustom>
           )}
           <Tip k="gold"><span className="flex items-center gap-1.5" style={{ color: "#f59e0b" }}>
-            <img src="/images/icons/currency-gold.png" alt="" width={24} height={24} style={{ imageRendering: "smooth" }} onError={hideOnError} />
+            <img src="/images/icons/currency-gold.png" alt="" width={24} height={24} style={{ imageRendering: "auto" }} onError={hideOnError} />
             <span className="font-mono font-bold">{currencies.gold ?? loggedInUser.currencies?.gold ?? loggedInUser.gold ?? 0}</span>
           </span></Tip>
           <Tip k="essenz"><span className="flex items-center gap-1.5" style={{ color: "#ff8c00" }}>
-            <img src="/images/icons/currency-essenz.png" alt="" width={24} height={24} style={{ imageRendering: "smooth" }} onError={hideOnError} />
+            <img src="/images/icons/currency-essenz.png" alt="" width={24} height={24} style={{ imageRendering: "auto" }} onError={hideOnError} />
             <span className="font-mono font-bold">{currencies.essenz ?? loggedInUser.currencies?.essenz ?? 0}</span>
           </span></Tip>
           {onNavigate && (
@@ -450,7 +450,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
           <div className="flex flex-wrap gap-2">
             {materialDefs.filter(m => materials[m.id]).map(m => (
               <div key={m.id} className="flex items-center gap-1.5 px-2 py-1 rounded-lg" style={{ background: "rgba(255,255,255,0.04)", border: `1px solid ${RARITY_COLORS[m.rarity] || "#555"}30` }} title={m.desc}>
-                <img src={m.icon} alt="" width={16} height={16} style={{ imageRendering: "smooth" }} onError={hideOnError} />
+                <img src={m.icon} alt="" width={16} height={16} style={{ imageRendering: "auto" }} onError={hideOnError} />
                 <span className="text-xs" style={{ color: RARITY_COLORS[m.rarity] || "#ccc" }}>{m.name}</span>
                 <span className="text-xs font-mono font-bold" style={{ color: "rgba(255,255,255,0.6)" }}>x{materials[m.id]}</span>
               </div>
@@ -496,7 +496,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
               <div className="flex items-center gap-3 mb-2">
                 {/* NPC portrait — border evolves with rank */}
                 <div className="w-14 h-14 rounded-lg overflow-hidden flex-shrink-0" style={{ background: `${prof.color}12`, border: `2px solid ${prof.rankColor || prof.color}${prof.playerLevel >= 7 ? "80" : prof.playerLevel >= 3 ? "50" : "30"}` }}>
-                  <img src={prof.npcPortrait} alt={prof.npcName} width={56} height={56} style={{ imageRendering: "smooth", width: "100%", height: "100%", objectFit: "cover" }} onError={hideOnError} />
+                  <img src={prof.npcPortrait} alt={prof.npcName} width={56} height={56} style={{ imageRendering: "auto", width: "100%", height: "100%", objectFit: "cover" }} onError={hideOnError} />
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2">
@@ -564,7 +564,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
               <div className="px-4 pb-3 flex flex-wrap gap-1.5">
                 {relevantMats.slice(0, 6).map(m => (
                   <span key={m.id} className="text-xs flex items-center gap-1 px-1.5 py-0.5 rounded" style={{ background: "rgba(255,255,255,0.03)", color: `${RARITY_COLORS[m.rarity]}90` }}>
-                    <img src={m.icon} alt="" width={12} height={12} style={{ imageRendering: "smooth" }} onError={hideOnError} />
+                    <img src={m.icon} alt="" width={12} height={12} style={{ imageRendering: "auto" }} onError={hideOnError} />
                     x{materials[m.id]}
                   </span>
                 ))}
@@ -598,7 +598,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                     border: `1px solid ${owned ? "rgba(99,102,241,0.3)" : "rgba(255,255,255,0.06)"}`,
                     opacity: owned || isNext ? 1 : 0.35,
                   }}>
-                    <img src={gear.icon} alt="" className="w-12 h-12 flex-shrink-0" style={{ imageRendering: "smooth" }} onError={hideOnError} />
+                    <img src={gear.icon} alt="" className="w-12 h-12 flex-shrink-0" style={{ imageRendering: "auto" }} onError={hideOnError} />
                     <div className="flex-1 min-w-0">
                       <p className="text-sm font-semibold" style={{ color: owned ? "#818cf8" : "#e8e8e8" }}>
                         {gear.name} {owned && <span style={{ color: "rgba(129,140,248,0.5)" }}>✓</span>}
@@ -629,7 +629,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                         }}
                       >
                         {buyingTool === gear.id ? "..." : (<>
-                          <img src={gear.currency === "essenz" ? "/images/icons/currency-essenz.png" : "/images/icons/currency-gold.png"} alt="" width={18} height={18} style={{ imageRendering: "smooth", display: "inline", verticalAlign: "middle", marginRight: 3 }} onError={hideOnError} />
+                          <img src={gear.currency === "essenz" ? "/images/icons/currency-essenz.png" : "/images/icons/currency-gold.png"} alt="" width={18} height={18} style={{ imageRendering: "auto", display: "inline", verticalAlign: "middle", marginRight: 3 }} onError={hideOnError} />
                           {gear.cost}
                         </>)}
                       </button>
@@ -658,7 +658,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                   background: maxed ? "rgba(168,85,247,0.08)" : "rgba(255,255,255,0.02)",
                   border: `1px solid ${maxed ? "rgba(168,85,247,0.3)" : "rgba(255,255,255,0.06)"}`,
                 }}>
-                  <img src={up.icon} alt="" className="w-12 h-12 flex-shrink-0" style={{ imageRendering: "smooth" }} onError={hideOnError} />
+                  <img src={up.icon} alt="" className="w-12 h-12 flex-shrink-0" style={{ imageRendering: "auto" }} onError={hideOnError} />
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-semibold" style={{ color: maxed ? "#a78bfa" : "#e8e8e8" }}>
                       {up.name} {maxed && <span style={{ color: "rgba(168,85,247,0.5)" }}>✓ MAX</span>}
@@ -696,7 +696,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                       title={canAfford ? `Buy for ${next.cost} gold` : `Insufficient gold (need ${next.cost})`}
                     >
                       {buyingUpgrade === up.id ? "..." : (<>
-                        <img src="/images/icons/currency-gold.png" alt="" width={18} height={18} style={{ imageRendering: "smooth", display: "inline", verticalAlign: "middle", marginRight: 3 }} onError={hideOnError} />
+                        <img src="/images/icons/currency-gold.png" alt="" width={18} height={18} style={{ imageRendering: "auto", display: "inline", verticalAlign: "middle", marginRight: 3 }} onError={hideOnError} />
                         {next.cost}
                       </>)}
                     </button>
@@ -725,7 +725,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
             <div className="p-5 pb-3" style={{ background: `linear-gradient(180deg, ${selectedNpc.color}12 0%, transparent 100%)` }}>
               <div className="flex items-center gap-4">
                 <div className="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0" style={{ border: `2px solid ${selectedNpc.color}50` }}>
-                  <img src={selectedNpc.npcPortrait} alt="" width={64} height={64} style={{ imageRendering: "smooth", width: "100%", height: "100%", objectFit: "cover" }} onError={hideOnError} />
+                  <img src={selectedNpc.npcPortrait} alt="" width={64} height={64} style={{ imageRendering: "auto", width: "100%", height: "100%", objectFit: "cover" }} onError={hideOnError} />
                 </div>
                 <div>
                   <div className="flex items-center gap-2">
@@ -759,7 +759,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                       {mats.map(m => (
                         <TipCustom key={m.id} title={m.name} icon="🧱" accent={RARITY_COLORS[m.rarity] || "#888"} body={<><p>{m.desc || m.name}</p><p style={{ marginTop: 4, opacity: 0.7 }}>{RARITY_LABELS[m.rarity] || m.rarity} material — drops from {m.rarity} quests</p></>}>
                         <span className="text-sm flex items-center gap-1.5 px-2 py-1 rounded cursor-help" style={{ background: "rgba(255,255,255,0.04)", color: materials[m.id] ? RARITY_COLORS[m.rarity] : "rgba(255,255,255,0.15)" }}>
-                          <img src={m.icon} alt="" width={16} height={16} style={{ imageRendering: "smooth" }} onError={hideOnError} />
+                          <img src={m.icon} alt="" width={16} height={16} style={{ imageRendering: "auto" }} onError={hideOnError} />
                           {m.name} <strong className="font-mono">x{materials[m.id] || 0}</strong>
                         </span>
                         </TipCustom>
@@ -991,7 +991,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                         <div className="flex flex-wrap gap-2 mt-2">
                           {recipe.cost?.gold && (
                             <span className="text-sm flex items-center gap-1" style={{ color: (currencies.gold ?? loggedInUser?.currencies?.gold ?? loggedInUser?.gold ?? 0) >= recipe.cost.gold * effectiveCount ? "#f59e0b" : "#f44" }}>
-                              <img src="/images/icons/currency-gold.png" alt="" width={16} height={16} style={{ imageRendering: "smooth" }} onError={hideOnError} />
+                              <img src="/images/icons/currency-gold.png" alt="" width={16} height={16} style={{ imageRendering: "auto" }} onError={hideOnError} />
                               {recipe.cost.gold * effectiveCount}{effectiveCount > 1 ? ` (${recipe.cost.gold}x${effectiveCount})` : ""}
                             </span>
                           )}
@@ -1001,7 +1001,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                             const has = (materials[matId] || 0) >= needed;
                             return (
                               <span key={matId} className="text-sm flex items-center gap-1" style={{ color: has ? RARITY_COLORS[mat?.rarity || "common"] : "#f44" }}>
-                                <img src={mat?.icon || ""} alt="" width={16} height={16} style={{ imageRendering: "smooth" }} onError={hideOnError} />
+                                <img src={mat?.icon || ""} alt="" width={16} height={16} style={{ imageRendering: "auto" }} onError={hideOnError} />
                                 {materials[matId] || 0}/{needed} {mat?.name || matId}
                               </span>
                             );
@@ -1116,7 +1116,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                                 title={`${item.name} — Dismantle → +${ESSENZ_TABLE[rarity] || 2} Essenz + Materials`}
                               >
                                 {item.icon
-                                  ? <img src={item.icon} alt={item.name} style={{ width: 40, height: 40, imageRendering: "smooth", objectFit: "contain" }} />
+                                  ? <img src={item.icon} alt={item.name} style={{ width: 40, height: 40, imageRendering: "auto", objectFit: "contain" }} />
                                   : <span style={{ fontSize: 18, color: RARITY_COLORS[rarity] }}>◆</span>
                                 }
                               </button>
@@ -1204,7 +1204,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                                       opacity: disabled ? 0.3 : 1,
                                     }} title={item.name}>
                                       {item.icon
-                                        ? <img src={item.icon} alt={item.name} style={{ width: 40, height: 40, imageRendering: "smooth", objectFit: "contain" }} />
+                                        ? <img src={item.icon} alt={item.name} style={{ width: 40, height: 40, imageRendering: "auto", objectFit: "contain" }} />
                                         : <span style={{ fontSize: 18, color: "#a855f7" }}>◆</span>
                                       }
                                       {sel && <span className="absolute top-0.5 right-0.5 text-xs font-bold" style={{ color: "#c084fc", textShadow: "0 0 4px rgba(0,0,0,0.8)" }}>✓</span>}
@@ -1252,7 +1252,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
           >
             <div className="flex items-center gap-3">
               {confirmProf.npcPortrait && (
-                <img src={confirmProf.npcPortrait} alt="" width={40} height={40} className="rounded-lg" style={{ imageRendering: "smooth", border: `1px solid ${confirmProf.color}30` }} />
+                <img src={confirmProf.npcPortrait} alt="" width={40} height={40} className="rounded-lg" style={{ imageRendering: "auto", border: `1px solid ${confirmProf.color}30` }} />
               )}
               <div>
                 <h3 className="text-sm font-bold" style={{ color: confirmProf.color }}>Choose {confirmProf.name}</h3>

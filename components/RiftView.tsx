@@ -80,15 +80,8 @@ const TYPE_ICONS: Record<string, string> = { personal: "🏠", learning: "📚",
 
 // ─── Component ──────────────────────────────────────────────────────────────
 
-interface RewardCelebrationData {
-  type: string;
-  title: string;
-  xpEarned: number;
-  goldEarned: number;
-  loot?: { name: string; emoji: string; rarity: string } | null;
-}
-
-export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh?: () => void; onRewardCelebration?: (data: RewardCelebrationData) => void }) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh?: () => void; onRewardCelebration?: (data: any) => void }) {
   const { playerName, reviewApiKey } = useDashboard();
   const [tiers, setTiers] = useState<Record<string, RiftTier>>({});
   const [activeRift, setActiveRift] = useState<ActiveRift | null>(null);
