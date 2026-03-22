@@ -708,7 +708,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
   const [loading, setLoading] = useState(true);
   const [equipping, setEquipping] = useState<string | null>(null);
   const [unequipping, setUnequipping] = useState<string | null>(null);
-  const [rightTab, setRightTab] = useState<"stats" | "equipment">("stats");
+  const [rightTab, setRightTab] = useState<"stats" | "equipment" | "gems">("stats");
   const [profileSettingsOpen, setProfileSettingsOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState<{ item: CharacterData["inventory"][number]; rect: { x: number; y: number; width: number; height: number } } | null>(null);
   const [statTooltipOpen, setStatTooltipOpen] = useState<string | null>(null);

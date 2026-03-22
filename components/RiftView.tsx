@@ -48,6 +48,13 @@ interface ActiveRift {
   failed?: boolean;
   failedAt?: string;
   reachedStage?: number;
+  mythicLevel?: number;
+}
+
+interface MythicLeaderboardEntry {
+  name: string;
+  level: number;
+  highestMythicCleared: number;
 }
 
 interface RiftHistory {
@@ -82,6 +89,11 @@ export default function RiftView({ onRefresh }: { onRefresh?: () => void }) {
   const [actionLoading, setActionLoading] = useState(false);
   const [message, setMessage] = useState<{ text: string; type: "success" | "error" } | null>(null);
   const [confirmAbandon, setConfirmAbandon] = useState(false);
+  const [mythicUnlocked, setMythicUnlocked] = useState(false);
+  const [highestMythicCleared, setHighestMythicCleared] = useState(0);
+  const [nextMythicLevel, setNextMythicLevel] = useState(1);
+  const [mythicLeaderboard, setMythicLeaderboard] = useState<MythicLeaderboardEntry[]>([]);
+  const [selectedMythicLevel, setSelectedMythicLevel] = useState(1);
 
   const fetchRift = useCallback(async () => {
     if (!playerName) return;
@@ -92,6 +104,10 @@ export default function RiftView({ onRefresh }: { onRefresh?: () => void }) {
         setTiers(data.tiers || {});
         setActiveRift(data.activeRift || null);
         setHistory(data.history || []);
+        setMythicUnlocked(data.mythicUnlocked || false);
+        setHighestMythicCleared(data.highestMythicCleared || 0);
+        setNextMythicLevel(data.nextMythicLevel || 1);
+        setMythicLeaderboard(data.mythicLeaderboard || []);
       }
     } catch { /* ignore */ }
     setLoading(false);
@@ -197,7 +213,9 @@ export default function RiftView({ onRefresh }: { onRefresh?: () => void }) {
             <div className="flex items-center gap-2">
               <span className="text-xl">{activeRift.tierIcon}</span>
               <div>
-                <p className="text-sm font-bold" style={{ color: activeRift.tierColor }}>{activeRift.tierName}</p>
+                <p className="text-sm font-bold" style={{ color: activeRift.tierColor }}>
+                  {activeRift.tier === "mythic" && activeRift.mythicLevel ? `${activeRift.tierName} +${activeRift.mythicLevel}` : activeRift.tierName}
+                </p>
                 <p className="text-xs text-w30">Stage {activeRift.currentStage}/{activeRift.totalStages}</p>
               </div>
             </div>
@@ -362,6 +380,120 @@ export default function RiftView({ onRefresh }: { onRefresh?: () => void }) {
               </div>
             );
           })}
+        </div>
+      )}
+
+      {/* Mythic Tier — unlocked after legendary clear */}
+      {!activeRift && mythicUnlocked && (
+        <div className="rounded-xl p-5 space-y-4" style={{ background: "rgba(255,68,68,0.04)", border: "1px solid rgba(255,68,68,0.2)" }}>
+          <div className="flex items-center gap-3">
+            <span className="text-2xl">💀</span>
+            <div className="flex-1">
+              <p className="text-sm font-bold" style={{ color: "#ff4444" }}>Mythic Rift</p>
+              <p className="text-xs text-w25">Endless scaling difficulty. How deep can you go?</p>
+            </div>
+            {highestMythicCleared > 0 && (
+              <div className="text-right">
+                <p className="text-xs text-w25">Highest Cleared</p>
+                <p className="text-sm font-mono font-bold" style={{ color: "#ff4444" }}>+{highestMythicCleared}</p>
+              </div>
+            )}
+          </div>
+
+          {/* Level selector */}
+          <div className="flex items-center gap-3">
+            <span className="text-xs text-w40">Select Level:</span>
+            <div className="flex items-center gap-1">
+              <button
+                onClick={() => setSelectedMythicLevel(l => Math.max(1, l - 1))}
+                disabled={selectedMythicLevel <= 1}
+                className="btn-interactive w-7 h-7 rounded-lg text-sm font-bold flex items-center justify-center"
+                style={{
+                  background: "rgba(255,68,68,0.08)",
+                  border: "1px solid rgba(255,68,68,0.25)",
+                  color: selectedMythicLevel <= 1 ? "rgba(255,255,255,0.15)" : "#ff4444",
+                  cursor: selectedMythicLevel <= 1 ? "not-allowed" : "pointer",
+                }}
+              >
+                −
+              </button>
+              <span className="text-sm font-mono font-bold px-3 py-1 rounded-lg" style={{ background: "rgba(255,68,68,0.08)", color: "#ff4444", minWidth: 48, textAlign: "center", border: "1px solid rgba(255,68,68,0.15)" }}>
+                +{selectedMythicLevel}
+              </span>
+              <button
+                onClick={() => setSelectedMythicLevel(l => Math.min(nextMythicLevel, l + 1))}
+                disabled={selectedMythicLevel >= nextMythicLevel}
+                className="btn-interactive w-7 h-7 rounded-lg text-sm font-bold flex items-center justify-center"
+                style={{
+                  background: "rgba(255,68,68,0.08)",
+                  border: "1px solid rgba(255,68,68,0.25)",
+                  color: selectedMythicLevel >= nextMythicLevel ? "rgba(255,255,255,0.15)" : "#ff4444",
+                  cursor: selectedMythicLevel >= nextMythicLevel ? "not-allowed" : "pointer",
+                }}
+              >
+                +
+              </button>
+            </div>
+            <span className="text-xs text-w20">(max +{nextMythicLevel})</span>
+          </div>
+
+          {/* Mythic tier stats */}
+          {tiers.mythic && (
+            <div className="space-y-1 text-xs text-w35">
+              <div className="flex justify-between"><span>Stages</span><span className="font-mono text-w50">{tiers.mythic.questCount}</span></div>
+              <div className="flex justify-between"><span>Time Limit</span><span className="font-mono text-w50">{tiers.mythic.timeLimitHours}h</span></div>
+              <div className="flex justify-between"><span>Fail Cooldown</span><span className="font-mono text-w50">{tiers.mythic.failCooldownDays}d</span></div>
+            </div>
+          )}
+
+          {/* Enter button */}
+          <button
+            onClick={() => enterRift(`mythic:${selectedMythicLevel}`)}
+            disabled={actionLoading || (tiers.mythic?.onCooldown ?? false)}
+            className="btn-interactive w-full text-xs font-bold py-2.5 rounded-lg"
+            style={{
+              background: tiers.mythic?.onCooldown ? "rgba(255,255,255,0.03)" : "rgba(255,68,68,0.12)",
+              color: tiers.mythic?.onCooldown ? "rgba(255,255,255,0.2)" : "#ff4444",
+              border: `1px solid ${tiers.mythic?.onCooldown ? "rgba(255,255,255,0.06)" : "rgba(255,68,68,0.35)"}`,
+              cursor: tiers.mythic?.onCooldown ? "not-allowed" : "pointer",
+            }}
+          >
+            {tiers.mythic?.onCooldown ? "On Cooldown" : actionLoading ? "..." : `💀 Enter Mythic +${selectedMythicLevel}`}
+          </button>
+          {tiers.mythic?.onCooldown && tiers.mythic.cooldownEndsAt && (
+            <p className="text-xs text-center" style={{ color: "#ef4444" }}>
+              Cooldown until {new Date(tiers.mythic.cooldownEndsAt).toLocaleDateString()}
+            </p>
+          )}
+
+          {/* Mythic Leaderboard */}
+          {mythicLeaderboard.length > 0 && (
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-wider text-w25 mb-2">💀 Mythic Leaderboard</p>
+              <div className="rounded-lg overflow-hidden" style={{ border: "1px solid rgba(255,68,68,0.12)" }}>
+                <table className="w-full text-xs">
+                  <thead>
+                    <tr style={{ background: "rgba(255,68,68,0.06)" }}>
+                      <th className="text-left px-2.5 py-1.5 font-semibold" style={{ color: "rgba(255,255,255,0.4)" }}>#</th>
+                      <th className="text-left px-2.5 py-1.5 font-semibold" style={{ color: "rgba(255,255,255,0.4)" }}>Player</th>
+                      <th className="text-center px-2.5 py-1.5 font-semibold" style={{ color: "rgba(255,255,255,0.4)" }}>Lv.</th>
+                      <th className="text-right px-2.5 py-1.5 font-semibold" style={{ color: "rgba(255,255,255,0.4)" }}>Highest</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {mythicLeaderboard.slice(0, 10).map((entry, i) => (
+                      <tr key={entry.name} style={{ background: i % 2 === 0 ? "rgba(255,255,255,0.01)" : "transparent" }}>
+                        <td className="px-2.5 py-1.5 font-mono" style={{ color: i === 0 ? "#fbbf24" : i === 1 ? "#cbd5e1" : i === 2 ? "#d97706" : "rgba(255,255,255,0.3)" }}>{i + 1}</td>
+                        <td className="px-2.5 py-1.5 font-semibold" style={{ color: entry.name === playerName ? "#ff4444" : "rgba(255,255,255,0.6)" }}>{entry.name}</td>
+                        <td className="px-2.5 py-1.5 text-center font-mono text-w30">{entry.level}</td>
+                        <td className="px-2.5 py-1.5 text-right font-mono font-bold" style={{ color: "#ff4444" }}>+{entry.highestMythicCleared}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          )}
         </div>
       )}
 

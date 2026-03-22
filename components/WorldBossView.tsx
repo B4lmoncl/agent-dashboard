@@ -1,0 +1,513 @@
+"use client";
+
+import { useState, useEffect, useCallback } from "react";
+import { useDashboard } from "@/app/DashboardContext";
+import { getAuthHeaders } from "@/lib/auth-client";
+import { Tip } from "@/components/GameTooltip";
+
+// ─── Types ──────────────────────────────────────────────────────────────────
+
+interface BossTemplate {
+  id: string;
+  name: string;
+  title: string;
+  icon: string;
+  accent: string;
+  description: string;
+  titleReward?: string;
+  frameReward?: { id: string; name: string; color: string; glow?: boolean };
+  uniqueDrops?: string[];
+}
+
+interface LeaderboardEntry {
+  playerId: string;
+  name: string;
+  damage: number;
+  quests: number;
+}
+
+interface PlayerContribution {
+  damage: number;
+  quests: number;
+}
+
+interface ClaimReward {
+  type: string;
+  amount?: number;
+  name?: string;
+  itemId?: string;
+  slot?: string;
+}
+
+interface ActiveBossData {
+  active: true;
+  boss: BossTemplate & {
+    spawnedAt: string;
+    expiresAt: string;
+    maxHp: number;
+    currentHp: number;
+    defeated: boolean;
+    defeatedAt: string | null;
+    contributorCount: number;
+    totalDamageDealt: number;
+  };
+  leaderboard: LeaderboardEntry[];
+  playerContribution: PlayerContribution | null;
+  canClaim: boolean;
+}
+
+interface InactiveBossData {
+  active: false;
+  nextSpawnEstimate: string | null;
+  lastBoss: {
+    bossId: string;
+    defeatedAt?: string;
+    expiresAt?: string;
+    defeated?: boolean;
+    expired?: boolean;
+    maxHp?: number;
+    contributions?: Record<string, PlayerContribution>;
+  } | null;
+}
+
+interface HistoryEntry {
+  bossId: string;
+  spawnedAt: string;
+  defeatedAt?: string;
+  expiresAt?: string;
+  defeated?: boolean;
+  expired?: boolean;
+  maxHp?: number;
+  contributions?: Record<string, PlayerContribution>;
+}
+
+type BossData = ActiveBossData | InactiveBossData;
+
+// ─── Helpers ────────────────────────────────────────────────────────────────
+
+function daysRemaining(dateStr: string): string {
+  const ms = new Date(dateStr).getTime() - Date.now();
+  if (ms <= 0) return "Expired";
+  const days = Math.floor(ms / (24 * 60 * 60 * 1000));
+  const hours = Math.floor((ms % (24 * 60 * 60 * 1000)) / (60 * 60 * 1000));
+  if (days > 0) return `${days}d ${hours}h`;
+  return `${hours}h`;
+}
+
+function daysUntil(dateStr: string): string {
+  const ms = new Date(dateStr).getTime() - Date.now();
+  if (ms <= 0) return "Soon";
+  const days = Math.ceil(ms / (24 * 60 * 60 * 1000));
+  return `${days} day${days !== 1 ? "s" : ""}`;
+}
+
+function hpBarColor(percent: number): string {
+  if (percent > 0.5) return "#22c55e";
+  if (percent > 0.25) return "#eab308";
+  return "#ef4444";
+}
+
+function formatNumber(n: number): string {
+  if (n >= 1000000) return `${(n / 1000000).toFixed(1)}M`;
+  if (n >= 1000) return `${(n / 1000).toFixed(1)}K`;
+  return n.toLocaleString();
+}
+
+function rewardLabel(r: ClaimReward): string {
+  switch (r.type) {
+    case "gold": return `${r.amount} Gold`;
+    case "essenz": return `${r.amount} Essenz`;
+    case "stardust": return `${r.amount} Stardust`;
+    case "title": return `Title: ${r.name}`;
+    case "frame": return `Frame: ${r.name}`;
+    case "unique-drop": return `${r.name} (${r.slot})`;
+    case "legendary-drop": return `Legendary: ${r.itemId}`;
+    default: return r.type;
+  }
+}
+
+function rewardColor(r: ClaimReward): string {
+  switch (r.type) {
+    case "gold": return "#fbbf24";
+    case "essenz": return "#ef4444";
+    case "stardust": return "#818cf8";
+    case "title": return "#a855f7";
+    case "frame": return "#22d3ee";
+    case "unique-drop":
+    case "legendary-drop": return "#f97316";
+    default: return "#e8e8e8";
+  }
+}
+
+// ─── Component ──────────────────────────────────────────────────────────────
+
+export default function WorldBossView({ onRefresh }: { onRefresh?: () => void }) {
+  const { playerName, reviewApiKey } = useDashboard();
+  const [data, setData] = useState<BossData | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [claiming, setClaiming] = useState(false);
+  const [claimResult, setClaimResult] = useState<{ rewards: ClaimReward[]; rank: number; contributionPercent: number } | null>(null);
+  const [message, setMessage] = useState<{ text: string; type: "success" | "error" } | null>(null);
+  const [historyOpen, setHistoryOpen] = useState(false);
+  const [bossHistory, setBossHistory] = useState<HistoryEntry[]>([]);
+
+  const fetchBoss = useCallback(async () => {
+    try {
+      const url = playerName
+        ? `/api/world-boss?player=${encodeURIComponent(playerName)}`
+        : "/api/world-boss";
+      const r = await fetch(url);
+      if (r.ok) {
+        const d = await r.json();
+        setData(d);
+      }
+    } catch { /* ignore */ }
+    setLoading(false);
+  }, [playerName]);
+
+  useEffect(() => { fetchBoss(); }, [fetchBoss]);
+
+  // Fetch boss history when section is opened
+  const fetchHistory = useCallback(async () => {
+    try {
+      const r = await fetch("/api/world-boss/history");
+      if (r.ok) {
+        const d = await r.json();
+        if (Array.isArray(d.history)) {
+          setBossHistory(d.history.slice(-5).reverse());
+        }
+      }
+    } catch { /* endpoint may not exist yet */ }
+  }, []);
+
+  useEffect(() => {
+    if (historyOpen && bossHistory.length === 0) fetchHistory();
+  }, [historyOpen, bossHistory.length, fetchHistory]);
+
+  // Auto-refresh every 60s when boss is active and not defeated
+  useEffect(() => {
+    if (!data || !data.active) return;
+    if (data.active && data.boss.defeated) return;
+    const interval = setInterval(fetchBoss, 60000);
+    return () => clearInterval(interval);
+  }, [data, fetchBoss]);
+
+  const claimRewards = useCallback(async () => {
+    if (!reviewApiKey || claiming) return;
+    setClaiming(true);
+    setMessage(null);
+    try {
+      const r = await fetch("/api/world-boss/claim", {
+        method: "POST",
+        headers: getAuthHeaders(reviewApiKey),
+      });
+      const d = await r.json();
+      if (!r.ok) {
+        setMessage({ text: d.error || "Failed to claim rewards", type: "error" });
+      } else {
+        setClaimResult(d);
+        setMessage({ text: "Rewards claimed!", type: "success" });
+        fetchBoss();
+        onRefresh?.();
+      }
+    } catch {
+      setMessage({ text: "Network error", type: "error" });
+    }
+    setClaiming(false);
+  }, [reviewApiKey, claiming, fetchBoss, onRefresh]);
+
+  // ─── Loading ────────────────────────────────────────────────────────────────
+
+  if (loading) return (
+    <div className="space-y-3 tab-content-enter">
+      <div className="skeleton-card h-24" />
+      <div className="skeleton-card h-40" />
+      <div className="skeleton-card h-32" />
+    </div>
+  );
+
+  // ─── No Active Boss ─────────────────────────────────────────────────────────
+
+  if (!data || !data.active) {
+    const inactive = data as InactiveBossData | null;
+    return (
+      <div className="space-y-5 tab-content-enter">
+        {/* Header */}
+        <div className="text-center space-y-2">
+          <p className="text-3xl">💀</p>
+          <Tip k="world_boss" heading>
+            <h2 className="text-lg font-bold" style={{ color: "#e8e8e8", cursor: "help" }}>World Boss</h2>
+          </Tip>
+        </div>
+
+        <div className="rounded-xl p-8 text-center space-y-4" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
+          <p className="text-4xl" style={{ opacity: 0.3 }}>🏔️</p>
+          <p className="text-sm font-bold" style={{ color: "rgba(255,255,255,0.4)" }}>No World Boss Active</p>
+          <p className="text-xs" style={{ color: "rgba(255,255,255,0.2)", maxWidth: 360, margin: "0 auto" }}>
+            The land rests in uneasy peace. A new threat will emerge from the darkness when the time is right.
+          </p>
+          {inactive?.nextSpawnEstimate && (
+            <div className="rounded-lg px-4 py-2 inline-block" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
+              <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>
+                Next spawn in <span className="font-mono font-bold" style={{ color: "rgba(255,255,255,0.5)" }}>{daysUntil(inactive.nextSpawnEstimate)}</span>
+              </p>
+            </div>
+          )}
+        </div>
+      </div>
+    );
+  }
+
+  // ─── Active / Defeated Boss ─────────────────────────────────────────────────
+
+  const { boss, leaderboard, playerContribution, canClaim } = data as ActiveBossData;
+  const hpPercent = boss.maxHp > 0 ? boss.currentHp / boss.maxHp : 0;
+  const hpColor = hpBarColor(hpPercent);
+  const playerRank = playerContribution
+    ? leaderboard.findIndex(e => e.name?.toLowerCase() === playerName?.toLowerCase()) + 1
+    : 0;
+
+  return (
+    <div className="space-y-5 tab-content-enter">
+      {/* Header */}
+      <div className="text-center space-y-2">
+        <p className="text-3xl">💀</p>
+        <Tip k="world_boss" heading>
+          <h2 className="text-lg font-bold" style={{ color: "#e8e8e8", cursor: "help" }}>World Boss</h2>
+        </Tip>
+        <p className="text-xs text-w35" style={{ maxWidth: 440, margin: "0 auto" }}>
+          A community-wide threat. Deal damage by completing quests. Claim rewards when defeated.
+        </p>
+      </div>
+
+      {/* Messages */}
+      {message && (
+        <div className="rounded-lg px-4 py-2 text-xs font-semibold tab-content-enter" style={{
+          background: message.type === "success" ? "rgba(34,197,94,0.08)" : "rgba(239,68,68,0.08)",
+          color: message.type === "success" ? "#22c55e" : "#ef4444",
+          border: `1px solid ${message.type === "success" ? "rgba(34,197,94,0.2)" : "rgba(239,68,68,0.2)"}`,
+        }}>
+          {message.text}
+        </div>
+      )}
+
+      {/* Boss Card */}
+      <div className="rounded-xl overflow-hidden" style={{
+        background: `linear-gradient(135deg, ${boss.accent}08 0%, rgba(14,14,18,0.95) 100%)`,
+        border: `1px solid ${boss.accent}30`,
+      }}>
+        {/* Accent bar */}
+        <div style={{ height: 3, background: `linear-gradient(90deg, transparent, ${boss.accent}aa, transparent)` }} />
+
+        {/* Boss Header */}
+        <div className="p-5 pb-4">
+          <div className="flex items-center gap-4">
+            <div className="flex-shrink-0 w-14 h-14 rounded-lg flex items-center justify-center" style={{
+              background: `${boss.accent}12`,
+              border: `1px solid ${boss.accent}30`,
+              fontSize: 28,
+              imageRendering: "smooth",
+            }}>
+              {boss.icon}
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className="text-base font-bold" style={{ color: boss.accent }}>{boss.name}</p>
+              <p className="text-xs italic" style={{ color: `${boss.accent}80` }}>{boss.title}</p>
+              <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.3)" }}>{boss.description}</p>
+            </div>
+            <div className="text-right flex-shrink-0">
+              {boss.defeated ? (
+                <>
+                  <p className="text-sm font-bold" style={{ color: "#22c55e" }}>Defeated!</p>
+                  <p className="text-xs text-w20">{boss.defeatedAt ? new Date(boss.defeatedAt).toLocaleDateString() : ""}</p>
+                </>
+              ) : (
+                <>
+                  <p className="text-sm font-mono font-bold" style={{
+                    color: new Date(boss.expiresAt).getTime() - Date.now() < 24 * 60 * 60 * 1000 ? "#ef4444" : boss.accent,
+                  }}>
+                    {daysRemaining(boss.expiresAt)}
+                  </p>
+                  <p className="text-xs text-w20">Time remaining</p>
+                </>
+              )}
+            </div>
+          </div>
+        </div>
+
+        {/* HP Bar */}
+        <div className="px-5 pb-4">
+          <div className="flex items-center justify-between mb-1.5">
+            <span className="text-xs font-semibold" style={{ color: boss.defeated ? "#22c55e" : hpColor }}>
+              {boss.defeated ? "Vanquished" : "HP"}
+            </span>
+            <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.4)" }}>
+              {formatNumber(boss.currentHp)} / {formatNumber(boss.maxHp)}
+            </span>
+          </div>
+          <div className="rounded-full overflow-hidden" style={{ height: 10, background: "rgba(255,255,255,0.06)" }}>
+            <div
+              className="h-full rounded-full transition-all duration-700"
+              style={{
+                width: `${Math.max(hpPercent * 100, boss.defeated ? 0 : 0.5)}%`,
+                background: boss.defeated
+                  ? "linear-gradient(90deg, #22c55e88, #22c55e)"
+                  : `linear-gradient(90deg, ${hpColor}88, ${hpColor})`,
+                boxShadow: `0 0 8px ${boss.defeated ? "#22c55e" : hpColor}50`,
+              }}
+            />
+          </div>
+          <div className="flex items-center justify-between mt-1">
+            <span className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>
+              {boss.contributorCount} contributor{boss.contributorCount !== 1 ? "s" : ""}
+            </span>
+            <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.2)" }}>
+              {Math.round((1 - hpPercent) * 100)}% dealt
+            </span>
+          </div>
+        </div>
+
+        {/* Defeated — Claim Rewards */}
+        {boss.defeated && canClaim && !claimResult && (
+          <div className="px-5 pb-4">
+            <button
+              onClick={claimRewards}
+              disabled={claiming}
+              className="btn-interactive w-full text-sm font-bold py-3 rounded-lg"
+              style={{
+                background: `linear-gradient(135deg, ${boss.accent}, ${boss.accent}cc)`,
+                color: "#000",
+                opacity: claiming ? 0.5 : 1,
+                boxShadow: `0 0 16px ${boss.accent}40`,
+              }}
+            >
+              {claiming ? "Claiming..." : "Claim Rewards"}
+            </button>
+          </div>
+        )}
+
+        {/* Claim Result */}
+        {claimResult && (
+          <div className="px-5 pb-4">
+            <div className="rounded-lg p-4 space-y-3" style={{ background: "rgba(34,197,94,0.05)", border: "1px solid rgba(34,197,94,0.15)" }}>
+              <p className="text-xs font-bold uppercase tracking-wider" style={{ color: "#22c55e" }}>Rewards Received</p>
+              <div className="flex flex-wrap gap-2">
+                {claimResult.rewards.map((r, i) => (
+                  <span key={i} className="text-xs px-2 py-1 rounded-lg font-semibold" style={{
+                    background: "rgba(255,255,255,0.04)",
+                    color: rewardColor(r),
+                    border: `1px solid ${rewardColor(r)}30`,
+                  }}>
+                    {rewardLabel(r)}
+                  </span>
+                ))}
+              </div>
+              <div className="flex gap-4 text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>
+                <span>Rank #{claimResult.rank}</span>
+                <span>{claimResult.contributionPercent}% contribution</span>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* Your Contribution */}
+      {playerContribution && (
+        <div className="rounded-xl p-4" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
+          <p className="text-xs font-semibold uppercase tracking-wider text-w25 mb-3">Your Contribution</p>
+          <div className="grid grid-cols-3 gap-3 text-center">
+            <div>
+              <p className="text-lg font-bold font-mono" style={{ color: "#ef4444" }}>{formatNumber(playerContribution.damage)}</p>
+              <p className="text-xs text-w20">Damage Dealt</p>
+            </div>
+            <div>
+              <p className="text-lg font-bold font-mono" style={{ color: "#a855f7" }}>{playerContribution.quests}</p>
+              <p className="text-xs text-w20">Quests Completed</p>
+            </div>
+            <div>
+              <p className="text-lg font-bold font-mono" style={{ color: "#fbbf24" }}>
+                {playerRank > 0 ? `#${playerRank}` : "-"}
+              </p>
+              <p className="text-xs text-w20">Rank</p>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Contribution Leaderboard */}
+      {leaderboard.length > 0 && (
+        <div className="rounded-xl overflow-hidden" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
+          <div className="px-4 py-3" style={{ borderBottom: "1px solid rgba(255,255,255,0.04)" }}>
+            <p className="text-xs font-semibold uppercase tracking-wider text-w25">Contribution Leaderboard</p>
+          </div>
+          <div>
+            {leaderboard.slice(0, 10).map((entry, i) => {
+              const isPlayer = entry.name?.toLowerCase() === playerName?.toLowerCase();
+              const rankColor = i === 0 ? "#fbbf24" : i === 1 ? "#c0c0c0" : i === 2 ? "#cd7f32" : "rgba(255,255,255,0.3)";
+              return (
+                <div
+                  key={entry.playerId}
+                  className="flex items-center gap-3 px-4 py-2.5"
+                  style={{
+                    background: isPlayer ? "rgba(255,255,255,0.03)" : "transparent",
+                    borderBottom: "1px solid rgba(255,255,255,0.03)",
+                  }}
+                >
+                  <span className="text-xs font-bold font-mono w-6 text-right" style={{ color: rankColor }}>
+                    {i + 1}
+                  </span>
+                  <span className="flex-1 text-xs font-semibold truncate" style={{ color: isPlayer ? "#e8e8e8" : "rgba(255,255,255,0.5)" }}>
+                    {entry.name}
+                    {isPlayer && <span className="text-xs ml-1" style={{ color: boss.accent }}>(you)</span>}
+                  </span>
+                  <span className="text-xs font-mono" style={{ color: "#ef4444" }}>
+                    {formatNumber(entry.damage)} dmg
+                  </span>
+                  <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.25)", minWidth: 40, textAlign: "right" }}>
+                    {entry.quests}q
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
+      {/* Boss History */}
+      {bossHistory.length > 0 && (
+        <div>
+          <button
+            onClick={() => setHistoryOpen(!historyOpen)}
+            className="btn-interactive flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-w25"
+          >
+            <span style={{ transform: historyOpen ? "rotate(90deg)" : "rotate(0deg)", transition: "transform 0.2s", display: "inline-block" }}>
+              ▸
+            </span>
+            Past World Bosses ({bossHistory.length})
+          </button>
+          {historyOpen && (
+            <div className="mt-2 space-y-1 tab-content-enter">
+              {bossHistory.map((h, i) => {
+                const contributorCount = h.contributions ? Object.keys(h.contributions).length : 0;
+                return (
+                  <div key={i} className="flex items-center justify-between text-xs px-3 py-2 rounded-lg" style={{ background: "rgba(255,255,255,0.02)" }}>
+                    <div className="flex items-center gap-2">
+                      <span style={{ color: h.defeated ? "#22c55e" : "#ef4444" }}>{h.defeated ? "Slain" : "Escaped"}</span>
+                      <span className="text-w40">{h.bossId.replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase())}</span>
+                      {contributorCount > 0 && (
+                        <span className="text-w20">{contributorCount} contributors</span>
+                      )}
+                    </div>
+                    <span className="text-w15">
+                      {new Date(h.defeatedAt || h.expiresAt || h.spawnedAt).toLocaleDateString()}
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
