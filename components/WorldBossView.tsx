@@ -288,6 +288,7 @@ export default function WorldBossView({ onRefresh, onRewardCelebration }: { onRe
   const hpColor = hpBarColor(hpPercent);
   const expiresIn = new Date(boss.expiresAt).getTime() - now;
   const isUrgent = expiresIn < 24 * 60 * 60 * 1000;
+  const isWarning = !isUrgent && expiresIn < 72 * 60 * 60 * 1000;
   const playerRank = playerContribution
     ? leaderboard.findIndex(e => e.name?.toLowerCase() === playerName?.toLowerCase()) + 1
     : 0;
@@ -349,7 +350,7 @@ export default function WorldBossView({ onRefresh, onRewardCelebration }: { onRe
               ) : (
                 <>
                   <p className="text-sm font-mono font-bold" style={{
-                    color: isUrgent ? "#ef4444" : boss.accent,
+                    color: isUrgent ? "#ef4444" : isWarning ? "#eab308" : boss.accent,
                   }}>
                     {daysRemaining(boss.expiresAt)}
                   </p>

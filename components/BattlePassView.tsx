@@ -46,15 +46,15 @@ interface BPPlayer {
 // ─── Reward Type Config ─────────────────────────────────────────────────────
 
 const REWARD_CONFIG: Record<string, { icon: string; color: string; label: string }> = {
-  gold: { icon: "🪙", color: "#f59e0b", label: "Gold" },
-  essenz: { icon: "🔴", color: "#ef4444", label: "Essenz" },
-  runensplitter: { icon: "💎", color: "#a78bfa", label: "Rune Shards" },
-  stardust: { icon: "⭐", color: "#818cf8", label: "Stardust" },
-  sternentaler: { icon: "🌟", color: "#fbbf24", label: "Sternentaler" },
-  mondstaub: { icon: "🌙", color: "#c084fc", label: "Mondstaub" },
-  material: { icon: "🧱", color: "#f59e0b", label: "Material" },
-  title: { icon: "👑", color: "#fbbf24", label: "Title" },
-  frame: { icon: "🖼️", color: "#a78bfa", label: "Frame" },
+  gold: { icon: "/images/icons/currency-gold.png", color: "#f59e0b", label: "Gold" },
+  essenz: { icon: "/images/icons/currency-essenz.png", color: "#ef4444", label: "Essenz" },
+  runensplitter: { icon: "/images/icons/currency-runensplitter.png", color: "#a78bfa", label: "Rune Shards" },
+  stardust: { icon: "/images/icons/currency-stardust.png", color: "#818cf8", label: "Stardust" },
+  sternentaler: { icon: "/images/icons/currency-stardust.png", color: "#fbbf24", label: "Sternentaler" },
+  mondstaub: { icon: "/images/icons/currency-mondstaub.png", color: "#c084fc", label: "Mondstaub" },
+  material: { icon: "/images/icons/equip-weapon.png", color: "#f59e0b", label: "Material" },
+  title: { icon: "/images/icons/currency-gildentaler.png", color: "#fbbf24", label: "Title" },
+  frame: { icon: "/images/icons/currency-gildentaler.png", color: "#a78bfa", label: "Frame" },
 };
 
 // ─── Component ──────────────────────────────────────────────────────────────
@@ -201,7 +201,7 @@ export default function BattlePassView({ onRewardCelebration }: { onRewardCelebr
       {/* Reward track */}
       <div className="space-y-1">
         {rewards.map(r => {
-          const rc = REWARD_CONFIG[r.type] || { icon: "🎁", color: "#888", label: r.type };
+          const rc = REWARD_CONFIG[r.type] || { icon: "/images/icons/currency-gold.png", color: "#888", label: r.type };
           const isReached = player.level >= r.level;
           const isClaimed = player.claimedLevels.includes(r.level);
           const canClaim = isReached && !isClaimed;
@@ -235,7 +235,11 @@ export default function BattlePassView({ onRewardCelebration }: { onRewardCelebr
 
               {/* Reward icon + description */}
               <div className="flex-1 min-w-0 flex items-center gap-2">
-                <span style={{ fontSize: 18 }}>{rc.icon}</span>
+                {rc.icon.startsWith("/") ? (
+                  <img src={rc.icon} alt="" width={20} height={20} className="img-render-auto flex-shrink-0" onError={e => { e.currentTarget.style.display = "none"; }} />
+                ) : (
+                  <span style={{ fontSize: 18 }}>{rc.icon}</span>
+                )}
                 <div className="flex-1 min-w-0">
                   <p className="text-xs font-semibold" style={{ color: isReached ? rc.color : "rgba(255,255,255,0.3)" }}>
                     {r.type === "title" ? r.titleName : r.type === "frame" ? r.frameName : `${r.amount} ${rc.label}`}

@@ -45,7 +45,7 @@ export default function ShopView({ onBuy, onGearBuy }: {
       {/* Boosts & Buffs */}
       {SHOP_ITEMS_LIST.filter(i => i.category === "boost").length > 0 && (
         <div>
-          <p className="text-xs font-semibold uppercase tracking-widest mb-2" style={{ color: "rgba(139,92,246,0.6)" }}>Boosts &amp; Buffs</p>
+          <Tip k="bazaar"><p className="text-xs font-semibold uppercase tracking-widest mb-2" style={{ color: "rgba(139,92,246,0.6)", cursor: "help" }}>Boosts &amp; Buffs</p></Tip>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
             {SHOP_ITEMS_LIST.filter(i => i.category === "boost").map(item => {
               const canAfford = gold >= item.cost;
@@ -83,7 +83,7 @@ export default function ShopView({ onBuy, onGearBuy }: {
 
       {/* Self-Care Rewards */}
       <div>
-        <p className="text-xs font-semibold uppercase tracking-widest mb-2" style={{ color: "rgba(255,255,255,0.3)" }}>Self-Care Rewards</p>
+        <Tip k="bazaar"><p className="text-xs font-semibold uppercase tracking-widest mb-2" style={{ color: "rgba(255,255,255,0.3)", cursor: "help" }}>Self-Care Rewards</p></Tip>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
           {SHOP_ITEMS_LIST.filter(i => !i.category || i.category === "self-care").map(item => {
             const canAfford = gold >= item.cost;
