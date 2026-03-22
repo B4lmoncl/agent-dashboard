@@ -454,8 +454,8 @@ function InventoryTooltip({ item, mousePosRef, equippedItem }: { item: Inventory
         </div>
 
         {/* Flavor text */}
-        {(item as any).flavorText && (
-          <p className="text-xs italic leading-relaxed" style={{ color: "rgba(255,255,255,0.35)" }}>&ldquo;{(item as any).flavorText}&rdquo;</p>
+        {item.flavorText && (
+          <p className="text-xs italic leading-relaxed" style={{ color: "rgba(255,255,255,0.35)" }}>&ldquo;{item.flavorText}&rdquo;</p>
         )}
 
         {/* Description */}
@@ -464,9 +464,9 @@ function InventoryTooltip({ item, mousePosRef, equippedItem }: { item: Inventory
         )}
 
         {/* Legendary effect */}
-        {(item as any).legendaryEffect && (
+        {item.legendaryEffect && (
           <p className="text-xs font-semibold" style={{ color: "#f59e0b" }}>
-            {(item as any).legendaryEffect.label || (item as any).legendaryEffect.type}
+            {item.legendaryEffect.label || item.legendaryEffect.type}
           </p>
         )}
 

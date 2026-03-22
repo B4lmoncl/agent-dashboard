@@ -120,8 +120,8 @@ export default function ItemActionPopup({
         )}
 
         {/* Flavor text */}
-        {"flavorText" in item && (item as any).flavorText && (
-          <p className="text-xs italic" style={{ color: "rgba(255,255,255,0.3)" }}>{(item as any).flavorText}</p>
+        {item.flavorText && (
+          <p className="text-xs italic" style={{ color: "rgba(255,255,255,0.3)" }}>{item.flavorText}</p>
         )}
 
         {/* Stats */}

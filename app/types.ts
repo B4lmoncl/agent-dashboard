@@ -435,13 +435,18 @@ export interface GearInstance {
   slot: string;
   tier: number;
   rarity: string;
-  reqLevel: number;
+  reqLevel?: number;
+  minLevel?: number;
   desc?: string;
+  flavorText?: string;
   icon?: string | null;
   stats: Record<string, number>;
   legendaryEffect?: { type: string; value: number; label?: string } | null;
+  passiveEffect?: string | null;
+  passiveDesc?: string | null;
   setId?: string;
   rolledAt: string;
+  affixes?: { primary: { pool: { stat: string; min: number; max: number }[]; count: [number, number] }; minor: { pool: { stat: string; min: number; max: number }[]; count: [number, number] } } | null;
   affixRolls?: { primary: { stat: string; value: number }[]; minor: { stat: string; value: number }[] };
 }
 
@@ -460,7 +465,7 @@ export interface CharacterData {
   equipment: Record<string, GearInstance | string | null>;
   stats: { kraft: number; ausdauer: number; weisheit: number; glueck: number; fokus?: number; vitalitaet?: number; charisma?: number; tempo?: number; _setBonus?: number };
   baseStats: { kraft: number; ausdauer: number; weisheit: number; glueck: number };
-  inventory: { id: string; slot: string; name: string; emoji?: string; icon?: string; tier: number; minLevel: number; stats: Record<string, number>; rarity: string; desc?: string; type?: string; effect?: any }[];
+  inventory: { id: string; slot: string; name: string; emoji?: string; icon?: string; tier: number; minLevel: number; stats: Record<string, number>; rarity: string; desc?: string; flavorText?: string; type?: string; effect?: { type: string; amount?: number }; legendaryEffect?: { type: string; value: number; label?: string } | null; passiveEffect?: string | null; passiveDesc?: string | null; setId?: string; templateId?: string }[];
   forgeTemp: number;
   season: string;
   setBonusInfo: { name: string; count: number; total: number } | null;
