@@ -29,7 +29,7 @@ function PlayerBadge({ name, avatar, color, size = 24 }: { name: string; avatar:
       className="inline-flex items-center justify-center rounded-full font-bold flex-shrink-0"
       style={{ width: size, height: size, fontSize: size * 0.4, background: color + "20", color, border: `1px solid ${color}40` }}
     >
-      {avatar?.slice(0, 2) || name[0]}
+      {avatar?.slice(0, 2) || name?.[0] || "?"}
     </span>
   );
 }
@@ -1100,25 +1100,25 @@ function ActivityFeedTab({ apiKey, playerName }: { apiKey: string; playerName: s
         let descriptionNode: ReactNode;
         switch (event.type) {
           case "quest_complete":
-            descriptionNode = <>completed <TipCustom title={d.quest} icon="📜" accent={rarityColor} body={<><p className="text-xs" style={{ color: "rgba(255,255,255,0.5)" }}>{d.rarity} quest</p>{d.xp && <p className="text-xs" style={{ color: "#fbbf24" }}>+{d.xp} XP</p>}{d.gold && <p className="text-xs" style={{ color: "#f59e0b" }}>+{d.gold} Gold</p>}</>}><span className="gt-ref" style={{ color: rarityColor }}>{d.quest}</span></TipCustom></>;
+            descriptionNode = <>completed <TipCustom title={d.quest || "Quest"} icon="📜" accent={rarityColor} body={<><p className="text-xs" style={{ color: "rgba(255,255,255,0.5)" }}>{d.rarity || "common"} quest</p>{d.xp && <p className="text-xs" style={{ color: "#fbbf24" }}>+{d.xp} XP</p>}{d.gold && <p className="text-xs" style={{ color: "#f59e0b" }}>+{d.gold} Gold</p>}</>}><span className="gt-ref" style={{ color: rarityColor }}>{d.quest || "a quest"}</span></TipCustom></>;
             break;
           case "level_up":
-            descriptionNode = <>reached <TipCustom title={`Level ${d.level}`} icon="⬆️" accent="#fbbf24" body={<p className="text-xs" style={{ color: "#fbbf24" }}>{d.title}</p>}><span className="gt-ref" style={{ color: "#fbbf24" }}>Level {d.level}</span></TipCustom> — {d.title}</>;
+            descriptionNode = <>reached <TipCustom title={`Level ${d.level ?? "?"}`} icon="⬆️" accent="#fbbf24" body={<p className="text-xs" style={{ color: "#fbbf24" }}>{d.title || ""}</p>}><span className="gt-ref" style={{ color: "#fbbf24" }}>Level {d.level ?? "?"}</span></TipCustom>{d.title ? <> — {d.title}</> : ""}</>;
             break;
           case "achievement":
-            descriptionNode = <>unlocked <TipCustom title={d.name} icon="🏆" accent={rarityColor} body={<><p className="text-xs" style={{ color: "rgba(255,255,255,0.5)" }}>{d.rarity} achievement</p>{d.points && <p className="text-xs" style={{ color: "#fbbf24" }}>+{d.points} AP</p>}</>}><span className="gt-ref" style={{ color: rarityColor }}>{d.name}</span></TipCustom></>;
+            descriptionNode = <>unlocked <TipCustom title={d.name || "Achievement"} icon="🏆" accent={rarityColor} body={<><p className="text-xs" style={{ color: "rgba(255,255,255,0.5)" }}>{d.rarity || "common"} achievement</p>{d.points && <p className="text-xs" style={{ color: "#fbbf24" }}>+{d.points} AP</p>}</>}><span className="gt-ref" style={{ color: rarityColor }}>{d.name || "an achievement"}</span></TipCustom></>;
             break;
           case "gacha_pull":
-            descriptionNode = <>pulled <TipCustom title={d.item} icon="✨" accent={rarityColor} body={<><p className="text-xs" style={{ color: rarityColor }}>{d.rarity}</p>{d.banner && <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>from {d.banner}</p>}</>}><span className="gt-ref" style={{ color: rarityColor }}>{d.item}</span></TipCustom></>;
+            descriptionNode = <>pulled <TipCustom title={d.item || "Item"} icon="✨" accent={rarityColor} body={<><p className="text-xs" style={{ color: rarityColor }}>{d.rarity || "common"}</p>{d.banner && <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>from {d.banner}</p>}</>}><span className="gt-ref" style={{ color: rarityColor }}>{d.item || "an item"}</span></TipCustom></>;
             break;
           case "rare_drop":
-            descriptionNode = <>found <TipCustom title={d.item} icon="💎" accent={rarityColor} body={<p className="text-xs" style={{ color: rarityColor }}>{d.rarity} drop</p>}><span className="gt-ref" style={{ color: rarityColor }}>{d.item}</span></TipCustom></>;
+            descriptionNode = <>found <TipCustom title={d.item || "Item"} icon="💎" accent={rarityColor} body={<p className="text-xs" style={{ color: rarityColor }}>{d.rarity || "rare"} drop</p>}><span className="gt-ref" style={{ color: rarityColor }}>{d.item || "an item"}</span></TipCustom></>;
             break;
           case "trade_complete":
             descriptionNode = <>completed a trade{d.summary && <> — <span className="text-w30">{d.summary}</span></>}</>;
             break;
           case "streak_milestone":
-            descriptionNode = <>hit a <span className="font-semibold" style={{ color: "#f59e0b" }}>{d.days}-day</span> streak</>;
+            descriptionNode = <>hit a <span className="font-semibold" style={{ color: "#f59e0b" }}>{d.days ?? "?"}-day</span> streak</>;
             break;
           default:
             descriptionNode = <>{(event.type as string).replace(/_/g, " ")}</>;
@@ -1128,7 +1128,7 @@ function ActivityFeedTab({ apiKey, playerName }: { apiKey: string; playerName: s
           return (
             <div key={event.id} className="flex items-center gap-2 text-xs px-2 py-1 rounded" style={{ background: d.rarity === "legendary" ? "rgba(255,140,0,0.04)" : "rgba(255,255,255,0.015)", borderLeft: `2px solid ${d.rarity ? (RARITY_COLORS[d.rarity] || "rgba(255,255,255,0.06)") : "rgba(255,255,255,0.06)"}` }}>
               <span style={{ fontSize: 12 }}>{icon}</span>
-              <span className="font-semibold truncate" style={{ color: isOwn ? "#a855f7" : event.playerColor }}>{name}</span>
+              <span className="font-semibold truncate" style={{ color: isOwn ? "#a855f7" : (event.playerColor || "#e8e8e8") }}>{name}</span>
               <span className="text-w30 truncate flex-1">{descriptionNode}</span>
               <span className="text-w15 flex-shrink-0">{timeAgo(event.at)}</span>
             </div>
@@ -1140,7 +1140,7 @@ function ActivityFeedTab({ apiKey, playerName }: { apiKey: string; playerName: s
             <span className="text-sm flex-shrink-0 mt-0.5">{icon}</span>
             <div className="flex-1 min-w-0">
               <p className="text-xs">
-                <span className="font-semibold" style={{ color: isOwn ? "#a855f7" : event.playerColor }}>{name}</span>
+                <span className="font-semibold" style={{ color: isOwn ? "#a855f7" : (event.playerColor || "#e8e8e8") }}>{name}</span>
                 {" "}
                 <span className="text-w40">{descriptionNode}</span>
                 {d.rarity && ["epic", "legendary"].includes(d.rarity) && (
@@ -1150,7 +1150,7 @@ function ActivityFeedTab({ apiKey, playerName }: { apiKey: string; playerName: s
               <p className="text-xs text-w15 mt-0.5">{timeAgo(event.at)}</p>
             </div>
             {!isOwn && (
-              <PlayerBadge name={event.playerName} avatar={event.playerAvatar} color={event.playerColor} size={22} />
+              <PlayerBadge name={event.playerName || "?"} avatar={event.playerAvatar} color={event.playerColor || "#a78bfa"} size={22} />
             )}
           </div>
         );
