@@ -332,6 +332,7 @@ export default function TodayDrawer({
         done: petsDone >= 2,
         sub: `${petsDone}/2`,
         reward: "+Bond XP",
+        rewardIcon: "/images/icons/currency-essenz.png",
         onClick: () => { onNavigate("questBoard"); onClose(); },
       });
     }
@@ -442,6 +443,7 @@ export default function TodayDrawer({
         done: false,
         sub: `${inProgressCount} active`,
         reward: "+XP, +Gold",
+        rewardIcon: "/images/icons/currency-gold.png",
         onClick: () => { onNavigate("questBoard"); onClose(); },
       });
     }
@@ -823,7 +825,7 @@ export default function TodayDrawer({
             const catAllDone = cat.items.every(i => i.done);
             return (
               <div key={cat.id}>
-                {catIdx > 0 && <MagicDivider color={cat.id === "urgent" ? "rgba(251,191,36,0.25)" : undefined} />}
+                {catIdx > 0 && <MagicDivider />}
 
                 {/* Category header */}
                 <div className="flex items-center gap-1.5 mb-2 px-1" style={{
@@ -863,7 +865,7 @@ export default function TodayDrawer({
                         opacity: item.done && !item.onClick ? 0.55 : 1,
                         animation: entered
                           ? `today-card-enter 0.3s ease-out ${catIdx * 80 + (itemIdx + 1) * 50}ms both${item.urgent ? ", today-urgent-pulse 2.5s ease-in-out infinite" : ""}`
-                          : item.urgent ? "today-urgent-pulse 2.5s ease-in-out infinite" : "today-breathe 5s ease-in-out infinite",
+                          : item.urgent ? "today-urgent-pulse 2.5s ease-in-out infinite" : "none",
                       }}
                     >
                       {/* Top row: icon + status */}
