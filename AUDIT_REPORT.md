@@ -2520,4 +2520,90 @@ Comprehensive sweep across all 10 key files for new features. **Only 1 issue fou
 
 ---
 
+## 35. Deep Audit Sweep — Session 19 (2026-03-22)
+
+### 35.1 Methodology
+
+Launched 4 parallel audit agents covering ALL route files + their frontend counterparts:
+- Agent 1: crafting.js + shop.js + battlepass.js
+- Agent 2: social.js + factions.js + rift.js
+- Agent 3: dungeons.js + world-boss.js + gems.js + players.js (companion expeditions)
+- Agent 4: quests.js + habits-inventory.js + gacha.js + challenges-weekly.js + expedition.js
+
+Additionally ran modal consistency audit and QoL review across all 12 major view components.
+
+### 35.2 Bugs Found & Fixed
+
+| # | Bug | Severity | Fix | Commit |
+|---|-----|----------|-----|--------|
+| 1 | **Factions: legendaryEffect + recipe rewards not claimable** — Claim endpoint only handled title/frame/discount; Paragon and Honored rewards were impossible to claim | **CRITICAL** | Added legendaryEffect (stored in user.legendaryEffects) and recipe (stored in user.unlockedRecipes) cases to claim endpoint | `0db9592` |
+| 2 | **Factions: shop discount never applied** — Stored in user.factionBonuses but never read by shop.js; dead feature | **CRITICAL** | Shop buy endpoint now reads max discount across all factions and applies to final price (min 1g) | `0db9592` |
+| 3 | **Equip/unequip: missing legendaryEffects in response** — Frontend had to refetch full character after gear changes to see legendary effect updates | **HIGH** | Added getLegendaryEffects() to all 3 equip/unequip response paths | `d94b980` |
+| 4 | **Companion: pet/ultimate allowed during expedition** — Companion could be petted and use ultimate while away on expedition | **HIGH** | Added expedition-active check to both pet and ultimate endpoints with clear error message | `365f5c1` |
+| 5 | **Rift: Mythic time limit displayed as static 30h** — Frontend showed RIFT_TIERS.mythic.timeLimitHours (30h) regardless of Mythic level; backend scales as max(18, 30 - level*1.5) | **MEDIUM** | Frontend now calculates and displays scaled time limit per selected Mythic level | `eef63c3` |
+| 6 | **Trade: item duplication via API** — validateTradeItems() didn't deduplicate item IDs; same item could be offered twice via manual API call | **MEDIUM** | Added Set-based deduplication before validation loop | `73880e8` |
+| 7 | **QuestCards: legendary color mismatch** — Used #FFD700 (gold) while canonical RARITY_COLORS in state.js uses #f97316 (orange); visual inconsistency across 28+ files | **MEDIUM** | Changed to canonical #f97316 | `73880e8` |
+
+### 35.3 QoL Improvements Added
+
+| # | Improvement | Component | Commit |
+|---|-------------|-----------|--------|
+| 1 | **Mythic difficulty tooltip** — Shows dynamic difficulty range (e.g., "1.3× – 4.3×" for M+1) with explanation of scaling formula | `RiftView.tsx` | `34c113e` |
+| 2 | **Mythic time scaling tooltip** — Explains 1.5h/level decrease with minimum 18h | `RiftView.tsx` | `34c113e` |
+| 3 | **Mythic fail cooldown** — Correctly shows "None" for Mythic (no cooldown, retry immediately) | `RiftView.tsx` | `34c113e` |
+| 4 | **Dungeon success formula tooltip** — "Group Power" header explains GS + bond bonus vs threshold calculation | `DungeonView.tsx` | `34c113e` |
+| 5 | **Faction tier reward preview** — Standing roadmap dots now show tier name, rep requirement, reward description, and claim status on hover | `FactionsView.tsx` | `34c113e` |
+
+### 35.4 Modal Consistency Audit
+
+| Component | Backdrop Close | ESC Key | Close Button | Status |
+|-----------|---------------|---------|-------------|--------|
+| DashboardModals | ✓ | ✓ | ✓ | GOLD STANDARD |
+| QuestDetailModal | ✓ | ✓ (via parent) | ✓ | OK — ESC delegated |
+| PlayerProfileModal | ✓ | ✓ | ✓ | Good |
+| TutorialModal | ✓ | ✓ | ✓ | Good |
+| OnboardingWizard | ✓ | ✓ | Cancel only | By design (wizard) |
+| ItemActionPopup | ✓ | ✓ | None | By design (popup) |
+
+**Result:** All modals support backdrop click and ESC. Minor styling differences acceptable for component type (wizard vs modal vs popup).
+
+### 35.5 Remaining Known Issues (Non-Critical)
+
+| # | Issue | Severity | Notes |
+|---|-------|----------|-------|
+| 1 | Gem socket UI auto-picks first available gem | LOW | Should have picker modal |
+| 2 | Companion Expeditions have no frontend UI | MEDIUM | Backend complete; needs CompanionsWidget integration |
+| 3 | ForgeView: WoW-style skill-up colors (orange/yellow/green/gray) not shown per recipe | LOW | XP efficiency indicator would help |
+| 4 | ForgeView: Daily 2x XP bonus not visible in UI | LOW | Should show badge when available |
+| 5 | BattlePassView: XP source breakdown not explained | LOW | Tooltip could show XP per activity type |
+| 6 | FactionsView: Next tier reward not shown before reaching it | DONE | Fixed in 34c113e |
+| 7 | GachaView: Pity bar visualization could be more prominent | LOW | Visual pity progress bar would help |
+| 8 | Schmiedekunst/dismantle system described in CLAUDE.md but not yet implemented | MEDIUM | Feature planned but not built |
+
+### 35.6 Verified Design Decisions (Not Bugs)
+
+| # | Finding | Reason |
+|---|---------|--------|
+| 1 | Rift stages grant faction rep based on quest type | Intentional — rift simulates varied quest types |
+| 2 | Dungeon cooldown stores start timestamp + adds 7 days | Correct — agent falsely reported as inverted |
+| 3 | Quest RARITY_REWARDS fallback in GET /api/quests | Only applies when quest.rewards is missing/zero — not an override |
+| 4 | Inventory reorder allows duplicate IDs in order array | Map.delete() already prevents duplication |
+| 5 | socketedGems response includes null values | Frontend explicitly handles nulls as empty socket icons |
+| 6 | Expedition contribution is cumulative across checkpoints | Intentional — minimum 1 quest contribution required per player |
+
+### 35.7 Changelog (Session 19)
+
+| Commit | Timestamp | Description |
+|--------|-----------|-------------|
+| `0db9592` | 2026-03-22 | Fix: Factions claim legendaryEffect + recipe + apply shop discount |
+| `d94b980` | 2026-03-22 | Fix: Include legendaryEffects in equip/unequip responses |
+| `365f5c1` | 2026-03-22 | Fix: Block companion pet/ultimate while on expedition |
+| `eef63c3` | 2026-03-22 | Fix: Mythic Rift time limit display shows scaled value |
+| `73880e8` | 2026-03-22 | Fix: Trade item dedup + legendary color consistency |
+| `34c113e` | 2026-03-22 | QoL: Tooltips for Mythic difficulty, dungeon success, faction tiers |
+
+---
+
+*End of Audit Report — Updated 2026-03-22*
+
 *End of Audit Report — Updated 2026-03-22*
