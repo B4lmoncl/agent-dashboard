@@ -181,13 +181,12 @@ export function UserCard({ user, classes = [], onClick }: { user: User; classes?
             {nextLvlEntry ? `${xp - lvl.xpRequired} / ${nextLvlEntry.xpRequired - lvl.xpRequired}` : "MAX"}
           </span>
         </div>
-        <div className="rounded-full overflow-hidden" style={{ height: 3, background: "rgba(255,255,255,0.06)" }}>
+        <div className={`progress-bar-diablo${progress > 0.9 ? " progress-bar-nearly-full" : ""}`}>
           <div
-            className="h-full rounded-full transition-all duration-700"
+            className="progress-bar-diablo-fill"
             style={{
               width: `${Math.round(progress * 100)}%`,
-              background: `linear-gradient(90deg, ${lvl.color}99, ${lvl.color})`,
-              boxShadow: `0 0 6px ${lvl.color}50`,
+              background: `linear-gradient(90deg, ${lvl.color}88, ${lvl.color}, ${lvl.color}cc)`,
             }}
           />
         </div>
