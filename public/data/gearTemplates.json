@@ -2838,6 +2838,3284 @@
         "max": 3,
         "label": "Polyglott: +{value}% XP pro verschiedenem Quest-Typ heute"
       }
+    },
+    {
+      "id": "gen-knochen-dolch",
+      "name": "Knochendolch",
+      "slot": "weapon",
+      "tier": 1,
+      "reqLevel": 1,
+      "rarity": "common",
+      "price": 35,
+      "desc": "Aus einem Knochen geschnitzt. Fragt nicht, von wem.",
+      "icon": null,
+      "shopHidden": false,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 2
+            },
+            {
+              "stat": "glueck",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            0
+          ],
+          "pool": []
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "gen-reisigschild",
+      "name": "Reisigschild",
+      "slot": "shield",
+      "tier": 1,
+      "reqLevel": 1,
+      "rarity": "common",
+      "price": 30,
+      "desc": "Zusammengebundene Äste. Hält einen Schlag aus. Vielleicht zwei.",
+      "icon": null,
+      "shopHidden": false,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            0
+          ],
+          "pool": []
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "gen-flickenhaube",
+      "name": "Flickenhaube",
+      "slot": "helm",
+      "tier": 1,
+      "reqLevel": 1,
+      "rarity": "common",
+      "price": 30,
+      "desc": "Mehr Flicken als Haube. Aber warm.",
+      "icon": null,
+      "shopHidden": false,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 2
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            0
+          ],
+          "pool": []
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "gen-sackleinen-wams",
+      "name": "Sackleinen-Wams",
+      "slot": "armor",
+      "tier": 1,
+      "reqLevel": 1,
+      "rarity": "common",
+      "price": 35,
+      "desc": "Kratzt. Schützt kaum. Aber du siehst beschäftigt aus.",
+      "icon": null,
+      "shopHidden": false,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            0
+          ],
+          "pool": []
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "gen-bindfaden-kette",
+      "name": "Bindfadenkette",
+      "slot": "amulet",
+      "tier": 1,
+      "reqLevel": 1,
+      "rarity": "common",
+      "price": 25,
+      "desc": "Ein Stein an einem Faden. Manchmal reicht das.",
+      "icon": null,
+      "shopHidden": false,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "glueck",
+              "min": 1,
+              "max": 2
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            0
+          ],
+          "pool": []
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "gen-barfuss-wraps",
+      "name": "Barfuß-Wickel",
+      "slot": "boots",
+      "tier": 1,
+      "reqLevel": 1,
+      "rarity": "common",
+      "price": 25,
+      "desc": "Besser als barfuß. Knapp.",
+      "icon": null,
+      "shopHidden": false,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 2
+            },
+            {
+              "stat": "glueck",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            0
+          ],
+          "pool": []
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "gen-kupfer-saebel",
+      "name": "Kupfersäbel",
+      "slot": "weapon",
+      "tier": 1,
+      "reqLevel": 3,
+      "rarity": "common",
+      "price": 55,
+      "desc": "Grün angelaufen, aber die Klinge hält. Meistens.",
+      "icon": null,
+      "shopHidden": false,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            0
+          ],
+          "pool": []
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "gen-hirschhorn-bogen",
+      "name": "Hirschhornbogen",
+      "slot": "weapon",
+      "tier": 1,
+      "reqLevel": 4,
+      "rarity": "uncommon",
+      "price": 80,
+      "desc": "Aus dem Geweih eines Aetherhirsches gefertigt. Surrt beim Spannen.",
+      "icon": null,
+      "shopHidden": false,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "glueck",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "gen-wachsschild",
+      "name": "Gewachster Rundschild",
+      "slot": "shield",
+      "tier": 1,
+      "reqLevel": 5,
+      "rarity": "uncommon",
+      "price": 90,
+      "desc": "Mit Bienenwachs behandelt. Wasser perlt ab. Schwerter leider nicht.",
+      "icon": null,
+      "shopHidden": false,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "gen-kraehen-kappe",
+      "name": "Krähenkappe",
+      "slot": "helm",
+      "tier": 1,
+      "reqLevel": 5,
+      "rarity": "uncommon",
+      "price": 75,
+      "desc": "Schwarz wie die Nacht. Die Krähen halten dich für einen der ihren.",
+      "icon": null,
+      "shopHidden": false,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "glueck",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "charisma",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "gen-wanderer-mantel",
+      "name": "Wanderermantel",
+      "slot": "armor",
+      "tier": 1,
+      "reqLevel": 4,
+      "rarity": "uncommon",
+      "price": 85,
+      "desc": "Jede Naht erzählt von einem anderen Weg. Keiner davon war kurz.",
+      "icon": null,
+      "shopHidden": false,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "gen-bernstein-anhanger",
+      "name": "Bernsteinanhänger",
+      "slot": "amulet",
+      "tier": 1,
+      "reqLevel": 6,
+      "rarity": "uncommon",
+      "price": 70,
+      "desc": "Ein Insekt eingeschlossen in Bernstein. Es sieht überrascht aus.",
+      "icon": null,
+      "shopHidden": false,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "glueck",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "gen-stroh-sandalen",
+      "name": "Strohsandalen",
+      "slot": "boots",
+      "tier": 1,
+      "reqLevel": 3,
+      "rarity": "common",
+      "price": 30,
+      "desc": "Leicht, billig, und nach drei Tagen Kompost.",
+      "icon": null,
+      "shopHidden": false,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "glueck",
+              "min": 1,
+              "max": 2
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            0
+          ],
+          "pool": []
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "gen-wildschwein-speer",
+      "name": "Wildschweinstoßer",
+      "slot": "weapon",
+      "tier": 1,
+      "reqLevel": 7,
+      "rarity": "rare",
+      "price": 180,
+      "desc": "Geschärft an einem Wildschwein. Das Schwein lebt noch. Es ist wütend.",
+      "icon": null,
+      "shopHidden": false,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 2
+            },
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "gen-pelz-stiefel",
+      "name": "Pelzstiefel",
+      "slot": "boots",
+      "tier": 1,
+      "reqLevel": 6,
+      "rarity": "uncommon",
+      "price": 95,
+      "desc": "Warm, weich, und es riecht nur ein bisschen nach Fuchs.",
+      "icon": null,
+      "shopHidden": false,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "gen-nebel-klinge",
+      "name": "Nebelklinge",
+      "slot": "weapon",
+      "tier": 2,
+      "reqLevel": 10,
+      "rarity": "uncommon",
+      "price": 120,
+      "desc": "Die Klinge scheint im Morgennebel zu verschwimmen. Oder du brauchst eine Brille.",
+      "icon": null,
+      "shopHidden": false,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "glueck",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "gen-eisen-streitaxt",
+      "name": "Eiserne Streitaxt",
+      "slot": "weapon",
+      "tier": 2,
+      "reqLevel": 12,
+      "rarity": "rare",
+      "price": 220,
+      "desc": "Kein Schnörkel, kein Zauber. Nur Eisen und eine klare Botschaft.",
+      "icon": null,
+      "shopHidden": false,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "gen-aether-stab",
+      "name": "Aetherstab",
+      "slot": "weapon",
+      "tier": 2,
+      "reqLevel": 14,
+      "rarity": "rare",
+      "price": 280,
+      "desc": "Summt leise. Der Aetherstrom fließt hier dichter als anderswo.",
+      "icon": null,
+      "shopHidden": false,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "glueck",
+              "min": 2,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "charisma",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "gen-spiegel-schild",
+      "name": "Spiegelschild",
+      "slot": "shield",
+      "tier": 2,
+      "reqLevel": 11,
+      "rarity": "uncommon",
+      "price": 130,
+      "desc": "Poliert bis zum Wahnsinn. Blendet Feinde. Und dich. Meistens dich.",
+      "icon": null,
+      "shopHidden": false,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "charisma",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "gen-dorn-schild",
+      "name": "Dornenschild",
+      "slot": "shield",
+      "tier": 2,
+      "reqLevel": 14,
+      "rarity": "rare",
+      "price": 250,
+      "desc": "Umarme mich. Ich wage dich.",
+      "icon": null,
+      "shopHidden": false,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "gen-gelehrten-hut",
+      "name": "Gelehrtenhut",
+      "slot": "helm",
+      "tier": 2,
+      "reqLevel": 10,
+      "rarity": "uncommon",
+      "price": 100,
+      "desc": "Tintenflecken am Rand. Der vorherige Besitzer hat viel geschrieben. Oder geweint.",
+      "icon": null,
+      "shopHidden": false,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "glueck",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "gen-stahl-visier",
+      "name": "Stahlvisier",
+      "slot": "helm",
+      "tier": 2,
+      "reqLevel": 15,
+      "rarity": "rare",
+      "price": 300,
+      "desc": "Schränkt die Sicht ein. Dafür tut der nächste Treffer weniger weh.",
+      "icon": null,
+      "shopHidden": false,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "gen-genietete-weste",
+      "name": "Genietete Lederweste",
+      "slot": "armor",
+      "tier": 2,
+      "reqLevel": 10,
+      "rarity": "uncommon",
+      "price": 110,
+      "desc": "Jede Niete einzeln eingeschlagen. Von Hand. Man sieht's.",
+      "icon": null,
+      "shopHidden": false,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "gen-doppelring-kette",
+      "name": "Doppelringkette",
+      "slot": "armor",
+      "tier": 2,
+      "reqLevel": 14,
+      "rarity": "rare",
+      "price": 280,
+      "desc": "Zwei Lagen Kettenglieder. Doppelt so schwer. Doppelt so sicher. Fast.",
+      "icon": null,
+      "shopHidden": false,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "gen-windlaeufer-amulett",
+      "name": "Windläufer-Amulett",
+      "slot": "amulet",
+      "tier": 2,
+      "reqLevel": 11,
+      "rarity": "uncommon",
+      "price": 110,
+      "desc": "Riecht nach Regen und fernen Horizonten.",
+      "icon": null,
+      "shopHidden": false,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "glueck",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "gen-knorpel-amulett",
+      "name": "Amulett der stillen Pfade",
+      "slot": "amulet",
+      "tier": 2,
+      "reqLevel": 15,
+      "rarity": "rare",
+      "price": 310,
+      "desc": "Wer es trägt, hört den Wind sprechen. Meistens sagt er: 'Lauf schneller.'",
+      "icon": null,
+      "shopHidden": false,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "glueck",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "charisma",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "gen-ranger-stiefel",
+      "name": "Jägerstiefel",
+      "slot": "boots",
+      "tier": 2,
+      "reqLevel": 10,
+      "rarity": "uncommon",
+      "price": 100,
+      "desc": "Leise auf Laub. Laut auf Kies. Perfekt ist relativ.",
+      "icon": null,
+      "shopHidden": false,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "glueck",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "gen-beschlagene-stiefel",
+      "name": "Beschlagene Stiefel",
+      "slot": "boots",
+      "tier": 2,
+      "reqLevel": 13,
+      "rarity": "rare",
+      "price": 260,
+      "desc": "Metallbeschläge an der Sohle. Gut auf Eis. Schlecht auf Marmor.",
+      "icon": null,
+      "shopHidden": false,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "gen-schuppenhemd",
+      "name": "Schuppenhemd",
+      "slot": "armor",
+      "tier": 2,
+      "reqLevel": 12,
+      "rarity": "uncommon",
+      "price": 140,
+      "desc": "Metallschuppen auf Leder. Klingt beim Gehen wie leiser Regen.",
+      "icon": null,
+      "shopHidden": false,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "gen-messingkeule",
+      "name": "Messingkeule",
+      "slot": "weapon",
+      "tier": 2,
+      "reqLevel": 9,
+      "rarity": "common",
+      "price": 65,
+      "desc": "Schwer und dumm. Wie der Besitzer vor dir.",
+      "icon": null,
+      "shopHidden": false,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            0
+          ],
+          "pool": []
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "gen-flammen-hammer",
+      "name": "Flammenhammer",
+      "slot": "weapon",
+      "tier": 3,
+      "reqLevel": 18,
+      "rarity": "rare",
+      "price": 350,
+      "desc": "Die Esse hat Spuren hinterlassen. Der Hammer glüht noch — oder bildet er sich das ein?",
+      "icon": null,
+      "shopHidden": false,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "gen-mondsichel",
+      "name": "Mondsichel",
+      "slot": "weapon",
+      "tier": 3,
+      "reqLevel": 20,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Gebogen wie der abnehmende Mond. Schneidet Schatten.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "glueck",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "gen-schild-der-wacht",
+      "name": "Schild der Morgenwacht",
+      "slot": "shield",
+      "tier": 3,
+      "reqLevel": 17,
+      "rarity": "uncommon",
+      "price": 160,
+      "desc": "Von der Nachtwache getragen. Jede Delle eine Geschichte.",
+      "icon": null,
+      "shopHidden": false,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "gen-runen-pavise",
+      "name": "Runenpavise",
+      "slot": "shield",
+      "tier": 3,
+      "reqLevel": 22,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Eingeritzte Runen leuchten bei Gefahr. Sie leuchten gerade.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "gen-falkner-haube",
+      "name": "Falknerhaube",
+      "slot": "helm",
+      "tier": 3,
+      "reqLevel": 17,
+      "rarity": "rare",
+      "price": 320,
+      "desc": "Falkner sehen weiter als andere. Und sie wissen, wann man zuschlagen muss.",
+      "icon": null,
+      "shopHidden": false,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "glueck",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "charisma",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "gen-kriegs-helm",
+      "name": "Kriegshelm des Veteranen",
+      "slot": "helm",
+      "tier": 3,
+      "reqLevel": 20,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Hundert Schlachten. Keine Niederlage. Aber jede Menge Kopfschmerzen.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "gen-geflochtene-ruestung",
+      "name": "Geflochtene Rüstung",
+      "slot": "armor",
+      "tier": 3,
+      "reqLevel": 18,
+      "rarity": "rare",
+      "price": 380,
+      "desc": "Drahtgeflecht zwischen Lederlagen. Federleicht, erstaunlich widerstandsfähig.",
+      "icon": null,
+      "shopHidden": false,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "gen-aethermantel",
+      "name": "Aethermantel",
+      "slot": "armor",
+      "tier": 3,
+      "reqLevel": 22,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Gewebt aus Fäden des Aetherstroms. Flimmert im Zwielicht.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "glueck",
+              "min": 3,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "charisma",
+              "min": 2,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "gen-silber-medaillon",
+      "name": "Silbermedaillon",
+      "slot": "amulet",
+      "tier": 3,
+      "reqLevel": 17,
+      "rarity": "uncommon",
+      "price": 170,
+      "desc": "Enthält ein Bild. Das Bild ist leer. Das macht es irgendwie bedeutsamer.",
+      "icon": null,
+      "shopHidden": false,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "glueck",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "charisma",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "gen-auge-des-wanderers",
+      "name": "Auge des Wanderers",
+      "slot": "amulet",
+      "tier": 3,
+      "reqLevel": 21,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Der Stein scheint dich anzusehen. Nicht unangenehm. Aber auch nicht... nicht.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "glueck",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "charisma",
+              "min": 2,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "gen-waldschreiter",
+      "name": "Waldschreiterstiefel",
+      "slot": "boots",
+      "tier": 3,
+      "reqLevel": 17,
+      "rarity": "rare",
+      "price": 340,
+      "desc": "Wurzeln weichen dir aus. Oder du ihnen. Schwer zu sagen.",
+      "icon": null,
+      "shopHidden": false,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "glueck",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "gen-wolkenschreiter",
+      "name": "Wolkenschreiter",
+      "slot": "boots",
+      "tier": 3,
+      "reqLevel": 23,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Jeder Schritt fühlt sich an wie auf Wolken. Vielleicht, weil du schwebst. Ein bisschen.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "glueck",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "gen-zinn-keule",
+      "name": "Zinnkeule",
+      "slot": "weapon",
+      "tier": 3,
+      "reqLevel": 17,
+      "rarity": "common",
+      "price": 80,
+      "desc": "Weich für eine Keule. Aber ein Treffer ist ein Treffer.",
+      "icon": null,
+      "shopHidden": false,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            0
+          ],
+          "pool": []
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "gen-rost-brustplatte",
+      "name": "Rostige Brustplatte",
+      "slot": "armor",
+      "tier": 3,
+      "reqLevel": 19,
+      "rarity": "common",
+      "price": 75,
+      "desc": "Rost überall. Aber unter dem Rost ist Stahl. Unter dem Stahl bist du.",
+      "icon": null,
+      "shopHidden": false,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            0
+          ],
+          "pool": []
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "gen-bergarbeiter-helm",
+      "name": "Bergarbeiterhelm",
+      "slot": "helm",
+      "tier": 3,
+      "reqLevel": 19,
+      "rarity": "common",
+      "price": 70,
+      "desc": "Staubig und verbeult. Hält aber Felsbrocken ab. Und Regen. Und Meinungen.",
+      "icon": null,
+      "shopHidden": false,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            0
+          ],
+          "pool": []
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "gen-sturm-hellebarde",
+      "name": "Sturmhellebarde",
+      "slot": "weapon",
+      "tier": 4,
+      "reqLevel": 26,
+      "rarity": "rare",
+      "price": 480,
+      "desc": "Bei Gewitter summt die Klinge. Bei Windstille auch. Das ist beunruhigend.",
+      "icon": null,
+      "shopHidden": false,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary"
+    },
+    {
+      "id": "gen-seelenbrecher",
+      "name": "Seelenbrecher",
+      "slot": "weapon",
+      "tier": 4,
+      "reqLevel": 30,
+      "rarity": "legendary",
+      "price": 0,
+      "desc": "Diese Klinge kannte deinen Namen bevor du geboren wurdest.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            3,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "glueck",
+              "min": 3,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "crit_chance",
+        "min": 1,
+        "max": 3,
+        "label": "Seelenriss: +{value}% Chance auf doppelte Quest-Belohnung"
+      },
+      "setId": "legendary"
+    },
+    {
+      "id": "gen-titan-schild",
+      "name": "Titanenschild",
+      "slot": "shield",
+      "tier": 4,
+      "reqLevel": 28,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Zu groß für normale Arme. Aber wer sagt, dass du normal bist?",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary"
+    },
+    {
+      "id": "gen-aether-krone",
+      "name": "Aetherkrone",
+      "slot": "helm",
+      "tier": 4,
+      "reqLevel": 28,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Der Aetherstrom formt eine Krone über deinem Haupt. Majestätisch. Und dezent angsteinflößend.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "glueck",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "charisma",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary"
+    },
+    {
+      "id": "gen-panzermantel",
+      "name": "Panzermantel der Alten",
+      "slot": "armor",
+      "tier": 4,
+      "reqLevel": 27,
+      "rarity": "rare",
+      "price": 450,
+      "desc": "Aus einer anderen Zeit. Die Schmiedekunst ist verloren. Die Haltbarkeit nicht.",
+      "icon": null,
+      "shopHidden": false,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary"
+    },
+    {
+      "id": "gen-eid-amulett",
+      "name": "Eidamulett",
+      "slot": "amulet",
+      "tier": 4,
+      "reqLevel": 25,
+      "rarity": "rare",
+      "price": 400,
+      "desc": "Wer es anlegt, spürt ein Gewicht. Nicht vom Metall — vom Versprechen.",
+      "icon": null,
+      "shopHidden": false,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "charisma",
+              "min": 2,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary"
+    },
+    {
+      "id": "gen-eisenwurz-treter",
+      "name": "Eisenwurz-Treter",
+      "slot": "boots",
+      "tier": 4,
+      "reqLevel": 26,
+      "rarity": "rare",
+      "price": 420,
+      "desc": "Sohlen aus Eisenwurz-Holz. Härter als Stahl, leichter als Erwartungen.",
+      "icon": null,
+      "shopHidden": false,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "glueck",
+              "min": 3,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary"
+    },
+    {
+      "id": "gen-zerschmetterer",
+      "name": "Der Zerschmetterer",
+      "slot": "weapon",
+      "tier": 4,
+      "reqLevel": 35,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Ein Hammer so groß, dass er einen eigenen Schatten wirft. Und einen eigenen Ruf.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 6
+            },
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary"
+    },
+    {
+      "id": "gen-irrlichter-stab",
+      "name": "Irrlichterstab",
+      "slot": "weapon",
+      "tier": 4,
+      "reqLevel": 38,
+      "rarity": "legendary",
+      "price": 0,
+      "desc": "Kleine Lichter tanzen um den Stab. Sie flüstern. Nicht auf Deutsch.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            3,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "charisma",
+              "min": 3,
+              "max": 5
+            }
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "companion_bond_boost",
+        "min": 2,
+        "max": 5,
+        "label": "Irrlichtertanz: +{value}% Gefährten-Bond-XP"
+      },
+      "setId": "legendary"
+    },
+    {
+      "id": "gen-ewiger-schild",
+      "name": "Ewiger Schild",
+      "slot": "shield",
+      "tier": 4,
+      "reqLevel": 35,
+      "rarity": "legendary",
+      "price": 0,
+      "desc": "Keine Kratzer. Keine Dellen. Kein Alter. Was wurde hier geschmiedet?",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            3,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            }
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "decay_reduction",
+        "min": 2,
+        "max": 5,
+        "label": "Ewige Wacht: -{value}% Forge-Decay"
+      },
+      "setId": "legendary"
+    },
+    {
+      "id": "gen-sternstaub-krone",
+      "name": "Sternstaubkrone",
+      "slot": "helm",
+      "tier": 4,
+      "reqLevel": 40,
+      "rarity": "legendary",
+      "price": 0,
+      "desc": "Jeder Edelstein ein gefallener Stern. Die Nacht trauert um sie. Du nicht.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            3,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "charisma",
+              "min": 3,
+              "max": 5
+            }
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "xp_bonus",
+        "min": 2,
+        "max": 5,
+        "label": "Sternenlicht: +{value}% Quest-XP"
+      },
+      "setId": "legendary"
+    },
+    {
+      "id": "gen-schattenweber-robe",
+      "name": "Schattenweberrobe",
+      "slot": "armor",
+      "tier": 4,
+      "reqLevel": 42,
+      "rarity": "legendary",
+      "price": 0,
+      "desc": "Die Robe ist nicht schwarz. Sie ist die Abwesenheit von Licht. Ein kleiner, aber feiner Unterschied.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            3,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 5,
+              "max": 7
+            },
+            {
+              "stat": "glueck",
+              "min": 5,
+              "max": 7
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "charisma",
+              "min": 3,
+              "max": 5
+            }
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "gold_bonus",
+        "min": 2,
+        "max": 5,
+        "label": "Schattenhandel: +{value}% Gold"
+      },
+      "setId": "legendary"
+    },
+    {
+      "id": "gen-seher-amulett",
+      "name": "Amulett des letzten Sehers",
+      "slot": "amulet",
+      "tier": 4,
+      "reqLevel": 45,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Der letzte Seher sah alles kommen. Sogar, dass du das hier liest.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "glueck",
+              "min": 5,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 5,
+              "max": 7
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "charisma",
+              "min": 3,
+              "max": 5
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary"
+    },
+    {
+      "id": "gen-himmelsschreiter",
+      "name": "Himmelsschreiter",
+      "slot": "boots",
+      "tier": 4,
+      "reqLevel": 38,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Gravitationsvorschläge. Keine Gravitationsgesetze.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 6
+            },
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary"
+    },
+    {
+      "id": "gen-pilger-stiefel",
+      "name": "Pilgerstiefel",
+      "slot": "boots",
+      "tier": 4,
+      "reqLevel": 25,
+      "rarity": "uncommon",
+      "price": 180,
+      "desc": "Tausend Meilen. Kein Loch. Wunder gibt es noch.",
+      "icon": null,
+      "shopHidden": false,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "glueck",
+              "min": 3,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary"
+    },
+    {
+      "id": "gen-grenzgaenger-schwert",
+      "name": "Grenzgängerschwert",
+      "slot": "weapon",
+      "tier": 4,
+      "reqLevel": 46,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Geschmiedet an der Grenze zwischen Wachen und Träumen. Wo genau, weiß niemand.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 7
+            },
+            {
+              "stat": "glueck",
+              "min": 5,
+              "max": 7
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary"
+    },
+    {
+      "id": "gen-frostmantel",
+      "name": "Frostmantel",
+      "slot": "armor",
+      "tier": 4,
+      "reqLevel": 32,
+      "rarity": "rare",
+      "price": 500,
+      "desc": "Kalt wie der Nordwind. Wärmt von innen, wenn man daran glaubt.",
+      "icon": null,
+      "shopHidden": false,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary"
+    },
+    {
+      "id": "gen-alchemisten-ring",
+      "name": "Alchemistenring",
+      "slot": "amulet",
+      "tier": 4,
+      "reqLevel": 30,
+      "rarity": "uncommon",
+      "price": 200,
+      "desc": "Riecht nach Schwefel und gebrochenen Versprechen. Ysolde verkauft ihn trotzdem.",
+      "icon": null,
+      "shopHidden": false,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "glueck",
+              "min": 3,
+              "max": 5
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary"
+    },
+    {
+      "id": "gen-kriegs-gamaschen",
+      "name": "Kriegsgamaschen",
+      "slot": "boots",
+      "tier": 4,
+      "reqLevel": 33,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Schwer gepanzerte Beinschienen. Der Boden zittert. Oder das bist du.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 6
+            },
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary"
+    },
+    {
+      "id": "gen-nebel-helm",
+      "name": "Nebelkrone",
+      "slot": "helm",
+      "tier": 4,
+      "reqLevel": 34,
+      "rarity": "rare",
+      "price": 470,
+      "desc": "Nebel sammelt sich um die Krone wie ein Schal. Er geht nie weg. Nie.",
+      "icon": null,
+      "shopHidden": false,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "charisma",
+              "min": 3,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary"
     }
   ],
   "setBonus": {
