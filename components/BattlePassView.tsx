@@ -259,6 +259,7 @@ export default function BattlePassView({ onRewardCelebration }: { onRewardCelebr
                     color: config.seasonAccent,
                     border: `1px solid ${config.seasonAccent}40`,
                     opacity: claiming === r.level ? 0.5 : 1,
+                    cursor: claiming === r.level ? "not-allowed" : "pointer",
                   }}
                 >
                   {claiming === r.level ? "..." : "Claim"}

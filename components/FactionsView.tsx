@@ -266,6 +266,7 @@ export default function FactionsView({ onRewardCelebration }: { onRewardCelebrat
                       color: f.accent,
                       border: `1px solid ${f.accent}40`,
                       opacity: claiming === f.id ? 0.5 : 1,
+                      cursor: claiming === f.id ? "not-allowed" : "pointer",
                     }}
                   >
                     {claiming === f.id ? "..." : `Claim: ${reward.title || reward.recipeDesc || reward.frameDesc || reward.effectDesc || "Reward"}`}
