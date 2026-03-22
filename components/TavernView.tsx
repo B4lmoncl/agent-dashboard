@@ -183,7 +183,8 @@ export default function TavernView({ onRefresh }: { onRefresh?: () => void }) {
             onClick={leaveTavern}
             disabled={actionLoading}
             className="btn-interactive w-full text-xs font-bold py-2.5 rounded-lg"
-            style={{ background: "rgba(34,197,94,0.15)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.3)", opacity: actionLoading ? 0.5 : 1 }}
+            style={{ background: "rgba(34,197,94,0.15)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.3)", opacity: actionLoading ? 0.5 : 1, cursor: actionLoading ? "not-allowed" : "pointer" }}
+            title={actionLoading ? "Action in progress..." : undefined}
           >
             {actionLoading ? "..." : "Leave the Hearth — Return to Adventure"}
           </button>
@@ -247,7 +248,8 @@ export default function TavernView({ onRefresh }: { onRefresh?: () => void }) {
             onClick={enterTavern}
             disabled={actionLoading}
             className="btn-interactive w-full text-sm font-bold py-3 rounded-xl"
-            style={{ background: "linear-gradient(135deg, #d97706, #f59e0b)", color: "#000", opacity: actionLoading ? 0.5 : 1 }}
+            style={{ background: "linear-gradient(135deg, #d97706, #f59e0b)", color: "#000", opacity: actionLoading ? 0.5 : 1, cursor: actionLoading ? "not-allowed" : "pointer" }}
+            title={actionLoading ? "Action in progress..." : undefined}
           >
             {actionLoading ? "..." : `Enter the Hearth (${selectedDays} day${selectedDays !== 1 ? "s" : ""})`}
           </button>

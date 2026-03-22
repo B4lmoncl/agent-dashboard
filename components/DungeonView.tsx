@@ -532,7 +532,9 @@ export default function DungeonView({ onRefresh, onRewardCelebration }: { onRefr
                   background: `linear-gradient(135deg, ${activeRun.dungeonAccent}, ${activeRun.dungeonAccent}cc)`,
                   color: "#000",
                   opacity: actionLoading ? 0.5 : 1,
+                  cursor: actionLoading ? "not-allowed" : "pointer",
                 }}
+                title={actionLoading ? "Action in progress..." : undefined}
               >
                 {actionLoading ? "..." : "Join Dungeon"}
               </button>
@@ -550,7 +552,9 @@ export default function DungeonView({ onRefresh, onRewardCelebration }: { onRefr
                   background: `linear-gradient(135deg, ${activeRun.dungeonAccent}, ${activeRun.dungeonAccent}cc)`,
                   color: "#000",
                   opacity: actionLoading ? 0.5 : 1,
+                  cursor: actionLoading ? "not-allowed" : "pointer",
                 }}
+                title={actionLoading ? "Action in progress..." : undefined}
               >
                 {actionLoading ? "..." : "Collect Rewards"}
               </button>

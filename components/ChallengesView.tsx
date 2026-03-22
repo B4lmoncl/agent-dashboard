@@ -343,7 +343,9 @@ function SternenpfadView({
                       background: "linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%)",
                       color: "#000",
                       opacity: claiming ? 0.5 : 1,
+                      cursor: claiming ? "not-allowed" : "pointer",
                     }}
+                    title={claiming ? "Claiming reward..." : undefined}
                   >
                     {claiming ? "Claiming..." : `Claim Stage ${stage.stage}`}
                   </button>
@@ -531,7 +533,9 @@ function ExpeditionView({
                       : "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)",
                     color: "#000",
                     opacity: claiming === cp.number ? 0.5 : 1,
+                    cursor: claiming === cp.number ? "not-allowed" : "pointer",
                   }}
+                  title={claiming === cp.number ? "Claiming reward..." : undefined}
                 >
                   {claiming === cp.number ? "Claiming..." : "Claim Reward"}
                 </button>

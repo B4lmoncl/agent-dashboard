@@ -288,7 +288,8 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
                 onClick={completeStage}
                 disabled={actionLoading}
                 className="btn-interactive flex-1 text-xs font-bold py-2.5 rounded-lg"
-                style={{ background: `linear-gradient(135deg, ${activeRift.tierColor}, ${activeRift.tierColor}cc)`, color: "#000", opacity: actionLoading ? 0.5 : 1 }}
+                style={{ background: `linear-gradient(135deg, ${activeRift.tierColor}, ${activeRift.tierColor}cc)`, color: "#000", opacity: actionLoading ? 0.5 : 1, cursor: actionLoading ? "not-allowed" : "pointer" }}
+                title={actionLoading ? "Action in progress..." : undefined}
               >
                 {actionLoading ? "..." : `Complete Stage ${activeRift.currentStage}`}
               </button>
@@ -298,7 +299,8 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
                 onClick={() => setConfirmAbandon(true)}
                 disabled={actionLoading}
                 className="btn-interactive text-xs px-4 py-2.5 rounded-lg"
-                style={{ background: "rgba(239,68,68,0.08)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.2)" }}
+                style={{ background: "rgba(239,68,68,0.08)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.2)", cursor: actionLoading ? "not-allowed" : "pointer" }}
+                title={actionLoading ? "Action in progress..." : undefined}
               >
                 Abandon
               </button>
