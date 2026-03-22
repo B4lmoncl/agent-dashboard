@@ -7,7 +7,7 @@ const router = require('express').Router();
 const fs = require('fs');
 const path = require('path');
 const { state, saveUsers, RUNTIME_DIR } = require('../lib/state');
-const { awardCurrency } = require('../lib/helpers');
+const { awardCurrency, createUniqueInstance, trackUniqueInCollection } = require('../lib/helpers');
 const { requireAuth, requireMasterKey } = require('../lib/middleware');
 
 // ─── Data & Config ──────────────────────────────────────────────────────────
@@ -327,17 +327,36 @@ router.post('/api/world-boss/claim', requireAuth, (req, res) => {
     const dropChance = Math.min(0.05 + contributionPercent * 0.5, 0.25);
     if (Math.random() < dropChance) {
       const dropId = template.uniqueDrops[Math.floor(Math.random() * template.uniqueDrops.length)];
-      if (!user.inventory) user.inventory = [];
-      user.inventory.push({
-        id: `${dropId}-${Date.now()}`,
-        templateId: dropId,
-        name: dropId.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase()),
-        rarity: 'legendary',
-        source: 'world-boss',
-        bossId: template.id,
-        obtainedAt: new Date().toISOString(),
-      });
-      rewards.push({ type: 'legendary-drop', itemId: dropId });
+      // Look up unique template from loaded data
+      const uniqueTemplate = state.uniqueItemsById.get(dropId);
+      if (uniqueTemplate) {
+        // Check if player already owns this unique (only one of each allowed)
+        const alreadyOwns = (user.equipment && Object.values(user.equipment).some(e => e && e.templateId === dropId && e.isUnique))
+          || (user.inventory || []).some(i => i.templateId === dropId && i.isUnique);
+        if (!alreadyOwns) {
+          const gearInstance = createUniqueInstance(uniqueTemplate);
+          if (!user.inventory) user.inventory = [];
+          user.inventory.push(gearInstance);
+          // Track in collection log
+          trackUniqueInCollection(uid, dropId);
+          if (!user.collectionLogDates) user.collectionLogDates = {};
+          user.collectionLogDates[dropId] = new Date().toISOString();
+          rewards.push({ type: 'unique-drop', itemId: dropId, name: uniqueTemplate.name, slot: uniqueTemplate.slot });
+        }
+      } else {
+        // Fallback: unique template not found, use legacy behavior
+        if (!user.inventory) user.inventory = [];
+        user.inventory.push({
+          id: `${dropId}-${Date.now()}`,
+          templateId: dropId,
+          name: dropId.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase()),
+          rarity: 'legendary',
+          source: 'world-boss',
+          bossId: template.id,
+          obtainedAt: new Date().toISOString(),
+        });
+        rewards.push({ type: 'legendary-drop', itemId: dropId });
+      }
     }
   }
 

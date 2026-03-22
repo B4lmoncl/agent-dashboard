@@ -545,6 +545,46 @@ router.get('/api/npcs', (req, res) => {
   res.json(Object.entries(NPC_META).map(([id, meta]) => ({ id, ...meta })));
 });
 
+// ─── Collection Log (Unique Named Items) ─────────────────────────────────────
+
+// GET /api/player/:name/collection — get unique items collection log
+router.get('/api/player/:name/collection', (req, res) => {
+  const uid = req.params.name.toLowerCase();
+  const u = state.users[uid];
+  if (!u) return res.status(404).json({ error: 'Player not found' });
+
+  const allUniques = state.uniqueItems || [];
+  const obtained = new Set(u.collectionLog || []);
+
+  const uniques = allUniques.map(item => {
+    const isObtained = obtained.has(item.id);
+    return {
+      id: item.id,
+      name: item.name,
+      slot: item.slot,
+      rarity: item.rarity,
+      tier: item.tier,
+      desc: item.desc,
+      flavorText: item.flavorText,
+      icon: item.icon,
+      legendaryEffect: item.legendaryEffect,
+      source: item.source,
+      obtained: isObtained,
+      obtainedAt: isObtained ? (u.collectionLogDates || {})[item.id] || null : undefined,
+    };
+  });
+
+  const totalFound = obtained.size;
+  const totalPossible = allUniques.length;
+
+  res.json({
+    uniques,
+    totalFound,
+    totalPossible,
+    completionPercent: totalPossible > 0 ? Math.round((totalFound / totalPossible) * 100) : 0,
+  });
+});
+
 // ─── Tavern / Rest Mode ──────────────────────────────────────────────────────
 
 // GET /api/tavern/status — get current rest mode status
