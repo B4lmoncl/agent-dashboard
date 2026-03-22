@@ -7,7 +7,7 @@ const fs = require('fs');
 const path = require('path');
 const router = require('express').Router();
 const { state, saveUsers, ensureUserCurrencies } = require('../lib/state');
-const { now, getLevelInfo, awardCurrency } = require('../lib/helpers');
+const { now, getLevelInfo, awardCurrency, getLegendaryModifiers } = require('../lib/helpers');
 const { requireAuth } = require('../lib/middleware');
 
 // ─── Load weekly challenge data ─────────────────────────────────────────────
@@ -108,6 +108,10 @@ function calculateStageStars(stageData, progress, u, stageStartedAt, modifier) {
       value = u.streakDays || 0;
       break;
   }
+
+  // Legendary: challenge_score_bonus — effective value boost for star thresholds
+  const csb = getLegendaryModifiers(userId).challengeScoreBonus || 0;
+  if (csb > 0) value = Math.round(value * (1 + csb));
 
   // Count overachievement stars (0, 1, or 2)
   let stars = 0;

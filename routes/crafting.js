@@ -5,7 +5,7 @@ const fs = require('fs');
 const path = require('path');
 const router = require('express').Router();
 const { state, saveUsers, saveUsersSync, ensureUserCurrencies } = require('../lib/state');
-const { now, getLevelInfo, PRIMARY_STATS, MINOR_STATS, createGearInstance } = require('../lib/helpers');
+const { now, getLevelInfo, PRIMARY_STATS, MINOR_STATS, createGearInstance, getLegendaryModifiers } = require('../lib/helpers');
 
 const VALID_SLOTS = ['weapon', 'shield', 'helm', 'armor', 'amulet', 'boots'];
 const RARITY_ORDER = ['common', 'uncommon', 'rare', 'epic', 'legendary'];
@@ -825,6 +825,19 @@ router.post('/api/schmiedekunst/dismantle', requireAuth, (req, res) => {
     }
   }
 
+  // Legendary effect: salvageBonus — extra materials from dismantling
+  const salvageMods = getLegendaryModifiers(uid);
+  const salvageBonusMult = salvageMods.salvageBonus || 0;
+  if (salvageBonusMult > 0) {
+    for (const mat of materialsGained) {
+      const bonus = Math.round(mat.amount * salvageBonusMult);
+      if (bonus > 0) {
+        u.craftingMaterials[mat.id] = (u.craftingMaterials[mat.id] || 0) + bonus;
+        mat.amount += bonus;
+      }
+    }
+  }
+
   // Sync write — dismantle must survive container restarts
   saveUsersSync();
   res.json({
@@ -951,7 +964,7 @@ router.post('/api/schmiedekunst/transmute', requireAuth, (req, res) => {
 
   // Find legendary items in same slot
   const legendaryPool = state.FULL_GEAR_ITEMS.filter(g =>
-    g.slot === slot && g.rarity === 'legendary' && g.tier === 4
+    g.slot === slot && g.rarity === 'legendary'
   );
   if (legendaryPool.length === 0) {
     return res.status(400).json({ error: `No legendary available for slot "${slot}"` });

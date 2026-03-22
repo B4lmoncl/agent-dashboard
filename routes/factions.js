@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { state, saveUsers } = require("../lib/state");
 const { requireAuth } = require("../lib/middleware");
+const { getLegendaryModifiers } = require("../lib/helpers");
 const factionsData = require("../public/data/factions.json");
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
@@ -212,7 +213,8 @@ function grantReputation(user, questType, questRarity) {
       playerData.weeklyBonusUsed++;
     }
 
-    const gained = Math.round(repAmount * multiplier);
+    const legendaryRepBoost = 1 + (getLegendaryModifiers(uid).factionRepBoost || 0);
+    const gained = Math.round(repAmount * multiplier * legendaryRepBoost);
     playerData.rep += gained;
 
     const newStanding = getStanding(playerData.rep);
