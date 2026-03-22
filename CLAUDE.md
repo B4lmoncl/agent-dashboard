@@ -45,14 +45,14 @@ cd electron-quest-app && npm install && npm start
 
 ```
 app/                  # Next.js app directory
-  page.tsx            # Main dashboard component (~2150 lines)
-  types.ts            # Shared TypeScript interfaces (~540 lines)
-  utils.ts            # Fetch helpers, fetchDashboard batch, level utils (~320 lines)
+  page.tsx            # Main dashboard component (~2350 lines)
+  types.ts            # Shared TypeScript interfaces (~725 lines)
+  utils.ts            # Fetch helpers, fetchDashboard batch, level utils (~350 lines)
   config.ts           # UI configuration constants
-  globals.css         # Tailwind + CSS utilities + animations (~720 lines)
+  globals.css         # Tailwind + CSS utilities + animations (~1165 lines)
   layout.tsx          # Root layout wrapper
   DashboardContext.tsx # React context for shared state
-components/           # React UI components (47 files, ~21k lines)
+components/           # React UI components (49 files, ~23k lines)
   DashboardHeader.tsx # Top navigation bar
   DashboardModals.tsx # Modal system (currencies, modifiers, info)
   CharacterView.tsx   # Character screen + equipment (lazy-loaded)
@@ -73,22 +73,22 @@ components/           # React UI components (47 files, ~21k lines)
   TavernView.tsx      # The Hearth: rest mode with streak/forge freeze
   RiftView.tsx        # The Rift: timed dungeon quest chains
   DungeonView.tsx     # The Undercroft: cooperative group dungeons (lazy-loaded)
-  ...                 # 25 more components
+  ...                 # 27 more components
 hooks/                # React custom hooks
   useQuestActions.ts  # Quest action handlers (claim, complete, approve, etc.)
-lib/                  # Backend business logic (8 files, ~3750 lines)
-  state.js            # Central state, Maps, JSON persistence (~1060 lines)
-  helpers.js          # Utility functions, paginate() (~920 lines)
+lib/                  # Backend business logic (8 files, ~3950 lines)
+  state.js            # Central state, Maps, JSON persistence (~1230 lines)
+  helpers.js          # Utility functions, paginate() (~1690 lines)
   auth.js             # JWT, refresh tokens, API key auth
   quest-catalog.js    # Quest template seeding
   npc-engine.js       # NPC rotation & spawning
   rotation.js         # Daily quest rotation logic
   middleware.js       # Express middleware (auth, master key)
   quest-templates.js  # Quest template interpolation
-routes/               # Express API routes (24 files, ~10800 lines)
-  quests.js           # Quest CRUD, claim, complete (~780 lines)
-  habits-inventory.js # Rituals, gear, inventory, effects (~830 lines)
-  config-admin.js     # Game config, leaderboard, /api/dashboard batch (~430 lines)
+routes/               # Express API routes (24 files, ~11400 lines)
+  quests.js           # Quest CRUD, claim, complete (~855 lines)
+  habits-inventory.js # Rituals, gear, inventory, effects (~880 lines)
+  config-admin.js     # Game config, leaderboard, /api/dashboard batch (~607 lines)
   docs.js             # OpenAPI/Swagger documentation (~650 lines)
   agents.js           # Agent CRUD & status
   gacha.js            # Banner pulls with pull lock, pity tracking
@@ -111,14 +111,14 @@ routes/               # Express API routes (24 files, ~10800 lines)
   gems.js             # Gem/Socket system: 6 gem types, 5 tiers, socketing/upgrading
   dungeons.js         # Dungeon system: async coop group dungeons (2-4 players)
 public/
-  data/               # Game template data (41 JSON files)
-  images/             # Pixel art assets (~250 files)
+  data/               # Game template data (43 JSON files)
+  images/             # Pixel art assets (~284 files)
     portraits/        # NPC and character portraits
     companions/       # Companion icons
     npcs/             # NPC portraits
 electron-quest-app/   # Electron desktop companion app (10 files)
 scripts/              # Asset generation & data validation (5 files)
-server.js             # Express entry point, boot sequence (~289 lines)
+server.js             # Express entry point, boot sequence (~322 lines)
 ```
 
 ## Architecture
@@ -170,18 +170,18 @@ Quest system (pool of ~10 open + ~25 max in-progress per player), XP/leveling (5
 
 | File | Role |
 |------|------|
-| `app/page.tsx` | Main dashboard UI (~2150 lines) |
-| `app/types.ts` | All TypeScript interfaces (~540 lines) |
+| `app/page.tsx` | Main dashboard UI (~2350 lines) |
+| `app/types.ts` | All TypeScript interfaces (~725 lines) |
 | `app/utils.ts` | Fetch helpers, `fetchDashboard()` batch, level system |
-| `app/globals.css` | CSS utility classes + animations (~720 lines) |
-| `lib/state.js` | State management, Maps, persistence (~1060 lines) |
-| `lib/helpers.js` | Shared utilities, `paginate()` (~920 lines) |
+| `app/globals.css` | CSS utility classes + animations (~1165 lines) |
+| `lib/state.js` | State management, Maps, persistence (~1230 lines) |
+| `lib/helpers.js` | Shared utilities, `paginate()` (~1690 lines) |
 | `lib/auth.js` | JWT auth, refresh tokens, API key resolution |
 | `server.js` | Express entry, boot sequence, memory pruning |
-| `routes/quests.js` | Core quest API (~780 lines) |
+| `routes/quests.js` | Core quest API (~855 lines) |
 | `routes/config-admin.js` | Game config, leaderboard, `/api/dashboard` batch |
-| `routes/habits-inventory.js` | Rituals, gear, inventory (~830 lines) |
-| `public/data/*.json` | Game data templates (36+ files) |
+| `routes/habits-inventory.js` | Rituals, gear, inventory (~880 lines) |
+| `public/data/*.json` | Game data templates (43 files) |
 | `public/data/titles.json` | Title definitions with conditions |
 | `public/data/gearTemplates.json` | Gear items, set bonuses, legendary effects |
 | `public/data/professions.json` | Crafting professions, materials, recipes |
@@ -208,6 +208,7 @@ Quest system (pool of ~10 open + ~25 max in-progress per player), XP/leveling (5
 | `routes/factions.js` | Die Vier Zirkel: 4 factions with rep tiers |
 | `components/FactionsView.tsx` | Faction UI: rep bars, tier rewards |
 | `components/GameTooltip.tsx` | Tooltip system: 50+ registry entries with cross-refs |
+| `components/WorldBossView.tsx` | World Boss UI: boss HP, contribution, rewards |
 | `routes/world-boss.js` | World Boss: community bosses, contribution tracking, unique drops |
 | `routes/gems.js` | Gem/Socket system: 6 gem types, 5 tiers, socketing/upgrading |
 | `public/data/worldBosses.json` | World boss templates, HP pools, unique drop tables |

@@ -18,7 +18,7 @@ Browser → Express (port 3001) → lib/state.js (in-memory) → /data/*.json (d
 | `lib/` | Backend business logic (state, helpers, engines) | JS (CommonJS) |
 | `routes/` | Express route handlers (24 files) | JS (CommonJS) |
 | `app/` | Next.js app directory (page, types, utils, context) | TypeScript |
-| `components/` | React UI components (47 files) | TypeScript |
+| `components/` | React UI components (49 files) | TypeScript |
 | `public/data/` | Read-only game templates (JSON) | JSON |
 | `data/` | Runtime persistent data (Docker volume) | JSON |
 | `server.js` | Express entry point, boot sequence | JS |
@@ -32,7 +32,7 @@ public/data/  (DATA_DIR)     → Read-only templates shipped with the image
 data/         (RUNTIME_DIR)  → Mutable runtime state (Docker volume mount)
 ```
 
-Files in `public/data/` are **templates** — they define what items, NPCs, quests etc. exist (41 JSON files including `worldBosses.json`, `gems.json`, `uniqueItems.json`).
+Files in `public/data/` are **templates** — they define what items, NPCs, quests etc. exist (43 JSON files including `worldBosses.json`, `gems.json`, `uniqueItems.json`).
 Files in `data/` are **runtime state** — they track what players have done, their inventory, quest progress, etc.
 
 On first boot, `ensureRuntimeFiles()` seeds `data/` with empty defaults. `seedMutableFiles()` copies templates that need to be mutable (questCatalog, classes, roadmap) from `public/data/` to `data/`.
