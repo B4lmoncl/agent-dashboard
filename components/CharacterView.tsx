@@ -388,6 +388,24 @@ const RARITY_BORDER_30: Record<string, string> = {
 
 type InventoryItem = CharacterData["inventory"][number];
 
+// ─── Item Level calculation (mirrors lib/helpers.js getItemLevel) ─────────
+
+const RARITY_ILVL_BONUS: Record<string, number> = { common: 0, uncommon: 5, rare: 15, epic: 30, legendary: 50 };
+
+function getItemLevel(item: InventoryItem | GearInstance): number {
+  const stats = ("stats" in item && item.stats) ? item.stats : {};
+  let ilvl = Object.values(stats).reduce((sum, v) => sum + (typeof v === "number" ? v : 0), 0);
+  ilvl += RARITY_ILVL_BONUS[("rarity" in item ? item.rarity : "") || "common"] || 0;
+  if ("legendaryEffect" in item && item.legendaryEffect) ilvl += 20;
+  if ("sockets" in item && Array.isArray((item as Record<string, unknown>).sockets)) {
+    for (const s of (item as Record<string, unknown>).sockets as (string | null)[]) {
+      if (s) ilvl += 5;
+    }
+  }
+  if ("isUnique" in item && (item as Record<string, unknown>).isUnique) ilvl += 25;
+  return ilvl;
+}
+
 function InventoryTooltip({ item, mousePosRef, equippedItem, playerLevel }: { item: InventoryItem; mousePosRef: React.RefObject<{ x: number; y: number }>; equippedItem?: InventoryItem | null; playerLevel?: number }) {
   const ref = useRef<HTMLDivElement>(null);
   const rarityColor = RARITY_COLORS[item.rarity] || "#9ca3af";
@@ -526,16 +544,14 @@ function InventoryTooltip({ item, mousePosRef, equippedItem, playerLevel }: { it
           );
         })()}
 
-        {/* Level requirement + Slot type + Gear Score */}
+        {/* Level requirement + Slot type + Item Level (Gear Score) */}
         <div className="text-xs pt-1 space-y-0.5" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
-          {hasStats && (
-            <div className="flex items-center justify-between">
-              <span style={{ color: "rgba(255,255,255,0.4)" }}>Gear Score</span>
-              <span className="font-mono font-bold" style={{ color: "#fbbf24" }}>
-                {Object.values(item.stats || {}).reduce((sum, v) => sum + (typeof v === "number" ? v : 0), 0)}
-              </span>
-            </div>
-          )}
+          <div className="flex items-center justify-between">
+            <span style={{ color: "rgba(255,255,255,0.4)" }}>Item Level</span>
+            <span className="font-mono font-bold" style={{ color: "#fbbf24" }}>
+              {getItemLevel(item)}
+            </span>
+          </div>
           {item.minLevel && item.minLevel > 1 && (
             <p style={{ color: playerLevel != null && item.minLevel > playerLevel ? "#ef4444" : "rgba(255,255,255,0.4)" }}>
               Requires Level {item.minLevel}
