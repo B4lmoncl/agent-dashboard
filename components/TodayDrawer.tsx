@@ -750,15 +750,15 @@ export default function TodayDrawer({
                   </svg>
                   <div className="absolute inset-0 flex flex-col items-center justify-center">
                     <span className="text-lg font-bold font-mono" style={{ color: levelInfo.color, lineHeight: 1 }}>{levelInfo.level}</span>
-                    <span style={{ color: "rgba(255,255,255,0.3)", fontSize: 8 }}>LVL</span>
+                    <span style={{ color: "rgba(255,255,255,0.3)", fontSize: 9 }}>LVL</span>
                   </div>
                 </div>
               </div>
               {/* XP bar */}
               <div className="w-full max-w-[180px] mt-1.5">
                 <div className="flex items-center justify-between mb-0.5">
-                  <span className="text-xs font-semibold" style={{ color: levelInfo.color, fontSize: 11 }}>{levelInfo.title}</span>
-                  <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.3)", fontSize: 10 }}>{Math.round(xpProgress * 100)}%</span>
+                  <span className="text-xs font-semibold" style={{ color: levelInfo.color, fontSize: 12 }}>{levelInfo.title}</span>
+                  <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.3)", fontSize: 12 }}>{Math.round(xpProgress * 100)}%</span>
                 </div>
                 <div className="h-1 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.06)" }}>
                   <div className="h-full rounded-full" style={{
@@ -790,7 +790,7 @@ export default function TodayDrawer({
                       transition: "width 0.8s ease-out",
                     }} />
                   </div>
-                  <span className="text-xs block mt-0.5" style={{ color: "rgba(255,255,255,0.2)", fontSize: 10 }}>Forge</span>
+                  <span className="text-xs block mt-0.5" style={{ color: "rgba(255,255,255,0.2)", fontSize: 12 }}>Forge</span>
                 </div>
               </div>
             </div></Tip>
@@ -928,7 +928,7 @@ export default function TodayDrawer({
                           background: item.done ? "rgba(74,222,128,0.15)" : item.urgent ? "rgba(251,191,36,0.15)" : "rgba(255,255,255,0.06)",
                           color: item.done ? "#4ade80" : item.urgent ? "#fbbf24" : "rgba(255,255,255,0.3)",
                           border: `1px solid ${item.done ? "rgba(74,222,128,0.3)" : item.urgent ? "rgba(251,191,36,0.3)" : "rgba(255,255,255,0.08)"}`,
-                          fontSize: 10, fontWeight: 700,
+                          fontSize: 12, fontWeight: 700,
                           animation: item.done ? "today-check-pop 0.4s cubic-bezier(0.34,1.56,0.64,1)" : "none",
                         }}>
                           {item.done ? "✓" : item.urgent ? "!" : "○"}
@@ -947,13 +947,13 @@ export default function TodayDrawer({
                       {/* Sub + Reward row */}
                       <div className="flex items-center justify-between mt-auto">
                         {item.sub && (
-                          <span className="text-xs" style={{ color: "rgba(255,255,255,0.25)", fontSize: 11 }}>{item.sub}</span>
+                          <span className="text-xs" style={{ color: "rgba(255,255,255,0.25)", fontSize: 12 }}>{item.sub}</span>
                         )}
                         {item.reward && !item.done && (
                           <span className="text-xs font-mono flex items-center gap-1 px-1.5 py-0.5 rounded-md" style={{
                             background: "rgba(167,139,250,0.08)",
                             color: "rgba(167,139,250,0.7)",
-                            fontSize: 10,
+                            fontSize: 12,
                             border: "1px solid rgba(167,139,250,0.1)",
                           }}>
                             {item.rewardIcon && (

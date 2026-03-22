@@ -27,7 +27,7 @@ function PlayerBadge({ name, avatar, color, size = 24 }: { name: string; avatar:
   return (
     <span
       className="inline-flex items-center justify-center rounded-full font-bold flex-shrink-0"
-      style={{ width: size, height: size, fontSize: size * 0.4, background: color + "20", color, border: `1px solid ${color}40` }}
+      style={{ width: size, height: size, fontSize: Math.max(size * 0.4, 12), background: color + "20", color, border: `1px solid ${color}40` }}
     >
       {avatar?.slice(0, 2) || name?.[0] || "?"}
     </span>

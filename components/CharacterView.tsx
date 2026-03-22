@@ -2021,14 +2021,14 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                           <p className="text-xs font-semibold truncate" style={{ color }}>{item.name}</p>
                           <p className="text-xs text-w20 truncate capitalize">{item.slot}</p>
                           {item.legendaryEffect?.label && (
-                            <p className="text-xs mt-1 truncate" style={{ color: "#f59e0b", fontSize: 11 }}>{item.legendaryEffect.label}</p>
+                            <p className="text-xs mt-1 truncate" style={{ color: "#f59e0b", fontSize: 12 }}>{item.legendaryEffect.label}</p>
                           )}
-                          <p className="text-xs mt-1 truncate" style={{ color: "rgba(255,255,255,0.2)", fontSize: 11 }}>{sourceLabel}</p>
+                          <p className="text-xs mt-1 truncate" style={{ color: "rgba(255,255,255,0.2)", fontSize: 12 }}>{sourceLabel}</p>
                         </>
                       ) : (
                         <>
                           <p className="text-xs font-semibold" style={{ color: "rgba(255,255,255,0.25)" }}>???</p>
-                          <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.15)", fontSize: 11 }}>{sourceLabel}</p>
+                          <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.15)", fontSize: 12 }}>{sourceLabel}</p>
                         </>
                       )}
                     </div>
