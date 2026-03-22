@@ -210,15 +210,22 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
   // Reset craft count when switching NPC or modal tab
   useEffect(() => { setCraftCount(1); }, [selectedNpc, npcModalTab]);
 
+  const [selectedRerollStat, setSelectedRerollStat] = useState<number | null>(null);
+
   const handleCraft = async (recipeId: string, count = 1) => {
     if (crafting || !reviewApiKey) return;
     setCrafting(true);
     setCraftResult(null);
     try {
+      const body: Record<string, unknown> = { recipeId, targetSlot: selectedSlot, count };
+      // Enchanting Overhaul: pass selected stat index for targeted reroll
+      if ((recipeId === 'reroll_stat' || recipeId === 'reroll_minor') && selectedRerollStat != null) {
+        body.targetStatIndex = selectedRerollStat;
+      }
       const r = await fetch("/api/professions/craft", {
         method: "POST",
         headers: { "Content-Type": "application/json", ...getAuthHeaders(reviewApiKey) },
-        body: JSON.stringify({ recipeId, targetSlot: selectedSlot, count }),
+        body: JSON.stringify(body),
       });
       const data = await r.json();
       if (r.ok) {
@@ -877,16 +884,49 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                                     Current: {Object.entries(currentStats).map(([k, v]) => `${k} +${v}`).join(", ") || "none"}
                                   </p>
                                   {ranges.length > 0 && (
-                                    <div className="flex flex-wrap gap-x-3 gap-y-0.5">
-                                      {ranges.map(r => {
-                                        const current = currentStats[r.stat];
-                                        return (
-                                          <span key={r.stat} className="text-xs" style={{ color: current != null ? "#4ade80" : "rgba(255,255,255,0.2)" }}>
-                                            {r.stat} {r.min}–{r.max}
-                                            {current != null && <span style={{ color: "rgba(255,255,255,0.15)" }}> (now {current})</span>}
-                                          </span>
+                                    <div className="flex flex-wrap gap-x-1 gap-y-1">
+                                      {(() => {
+                                        // For reroll recipes: show current stats as clickable targets
+                                        const isReroll = recipe.id === "reroll_stat" || recipe.id === "reroll_minor";
+                                        const statType = recipe.id === "reroll_stat" ? "primary" : "minor";
+                                        const PRIMARY = ["kraft", "ausdauer", "weisheit", "glueck"];
+                                        const currentStatKeys = Object.keys(currentStats).filter(s =>
+                                          statType === "primary" ? PRIMARY.includes(s) : !PRIMARY.includes(s)
                                         );
-                                      })}
+                                        if (isReroll && currentStatKeys.length > 0) {
+                                          return (
+                                            <>
+                                              <p className="w-full text-xs mb-0.5" style={{ color: "rgba(255,255,255,0.25)" }}>Select stat to reroll:</p>
+                                              {currentStatKeys.map((stat, idx) => (
+                                                <button
+                                                  key={stat}
+                                                  onClick={() => setSelectedRerollStat(selectedRerollStat === idx ? null : idx)}
+                                                  className="text-xs px-2 py-0.5 rounded transition-all"
+                                                  style={{
+                                                    background: selectedRerollStat === idx ? "rgba(168,85,247,0.2)" : "rgba(255,255,255,0.04)",
+                                                    color: selectedRerollStat === idx ? "#a855f7" : "rgba(255,255,255,0.4)",
+                                                    border: `1px solid ${selectedRerollStat === idx ? "rgba(168,85,247,0.5)" : "rgba(255,255,255,0.08)"}`,
+                                                  }}
+                                                >
+                                                  {stat} +{currentStats[stat]}
+                                                </button>
+                                              ))}
+                                              <p className="w-full text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.15)" }}>
+                                                {selectedRerollStat != null ? `Will reroll: ${currentStatKeys[selectedRerollStat]}` : "Random stat if none selected"}
+                                              </p>
+                                            </>
+                                          );
+                                        }
+                                        return ranges.map(r => {
+                                          const current = currentStats[r.stat];
+                                          return (
+                                            <span key={r.stat} className="text-xs" style={{ color: current != null ? "#4ade80" : "rgba(255,255,255,0.2)" }}>
+                                              {r.stat} {r.min}–{r.max}
+                                              {current != null && <span style={{ color: "rgba(255,255,255,0.15)" }}> (now {current})</span>}
+                                            </span>
+                                          );
+                                        });
+                                      })()}
                                     </div>
                                   )}
                                 </div>

@@ -1,0 +1,88 @@
+{
+  "uniques": [
+    {
+      "id": "wyrm-scale-shield",
+      "name": "Wyrm-Scale Aegis",
+      "slot": "shield",
+      "rarity": "legendary",
+      "tier": 5,
+      "desc": "Forged from the scales of a Procrastination Wyrm. Its bearer never delays.",
+      "flavorText": "Every task you postpone feeds the wyrm.",
+      "icon": null,
+      "stats": { "ausdauer": 18, "kraft": 8, "vitalitaet": 12 },
+      "legendaryEffect": { "type": "decay_reduction", "value": 25, "label": "Wyrm's Resolve: -25% forge decay" },
+      "source": "world_boss:procrastination-wyrm",
+      "isUnique": true
+    },
+    {
+      "id": "colossus-ember-amulet",
+      "name": "Ember of the Colossus",
+      "slot": "amulet",
+      "rarity": "legendary",
+      "tier": 5,
+      "desc": "A shard of living flame from the heart of the Burnout Colossus.",
+      "flavorText": "Rest is not weakness. It is the fuel for greater fire.",
+      "icon": null,
+      "stats": { "vitalitaet": 20, "tempo": 10, "ausdauer": 8 },
+      "legendaryEffect": { "type": "xp_bonus", "value": 12, "label": "Colossus Heart: +12% XP" },
+      "source": "world_boss:burnout-colossus",
+      "isUnique": true
+    },
+    {
+      "id": "hydra-focus-helm",
+      "name": "Crown of Clarity",
+      "slot": "helm",
+      "rarity": "legendary",
+      "tier": 5,
+      "desc": "Worn by those who silenced the Chaos Hydra's many voices.",
+      "flavorText": "Focus is the blade that cuts through chaos.",
+      "icon": null,
+      "stats": { "fokus": 22, "weisheit": 12, "charisma": 6 },
+      "legendaryEffect": { "type": "variety_bonus", "value": 8, "label": "Hydra's Focus: +8% variety XP bonus" },
+      "source": "world_boss:chaos-hydra",
+      "isUnique": true
+    },
+    {
+      "id": "mythic-rift-blade",
+      "name": "Voidforged Edge",
+      "slot": "weapon",
+      "rarity": "legendary",
+      "tier": 5,
+      "desc": "A blade tempered in the depths of the mythic rift. It hungers for challenge.",
+      "flavorText": "The deeper you go, the sharper it becomes.",
+      "icon": null,
+      "stats": { "kraft": 20, "glueck": 10, "tempo": 8 },
+      "legendaryEffect": { "type": "every_nth_bonus", "value": 15, "label": "Rift Hunter: +15% every 5th quest XP" },
+      "source": "mythic_rift:5",
+      "isUnique": true
+    },
+    {
+      "id": "mythic-rift-boots",
+      "name": "Striders of the Abyss",
+      "slot": "boots",
+      "rarity": "legendary",
+      "tier": 5,
+      "desc": "Boots that walked the endless depths and returned.",
+      "flavorText": "Each step echoes in the void.",
+      "icon": null,
+      "stats": { "tempo": 18, "ausdauer": 12, "charisma": 8 },
+      "legendaryEffect": { "type": "streak_protection", "value": 2, "label": "Abyssal Stride: +2 streak shields" },
+      "source": "mythic_rift:10",
+      "isUnique": true
+    },
+    {
+      "id": "gem-crown",
+      "name": "Jeweler's Diadem",
+      "slot": "helm",
+      "rarity": "legendary",
+      "tier": 5,
+      "desc": "A crown set with prismatic gems that amplify all socketed stones.",
+      "flavorText": "Every facet reflects a different truth.",
+      "icon": null,
+      "stats": { "weisheit": 14, "glueck": 14, "fokus": 10 },
+      "legendaryEffect": { "type": "drop_bonus", "value": 5, "label": "Gem Affinity: +5% drop chance" },
+      "source": "crafting:master",
+      "isUnique": true
+    }
+  ]
+}
