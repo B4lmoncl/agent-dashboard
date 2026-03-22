@@ -2,7 +2,7 @@
 
 import { useMemo, useState, useEffect, useCallback } from "react";
 import { useDashboard } from "@/app/DashboardContext";
-import { getUserLevel, getUserXpProgress, getForgeTempInfo } from "@/app/utils";
+import { getUserLevel, getUserXpProgress } from "@/app/utils";
 import type { ActiveNpc, Ritual } from "@/app/types";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
@@ -138,6 +138,8 @@ function NightStars() {
 // ─── Category Divider with traveling light ───────────────────────────────────
 
 function MagicDivider({ color = "rgba(129,140,248,0.3)" }: { color?: string }) {
+  // Brighten color for the traveling light dot by increasing alpha
+  const brightColor = color.replace(/[\d.]+\)$/, "0.8)");
   return (
     <div className="relative my-3 mx-2" style={{ height: 1 }}>
       <div className="absolute inset-0" style={{ background: `linear-gradient(90deg, transparent, ${color}, transparent)` }} />
@@ -145,7 +147,7 @@ function MagicDivider({ color = "rgba(129,140,248,0.3)" }: { color?: string }) {
         className="absolute top-0 rounded-full"
         style={{
           width: 20, height: 1,
-          background: color.replace("0.3", "0.8"),
+          background: brightColor,
           boxShadow: `0 0 6px ${color}`,
           animation: "today-reward-shimmer 3s linear infinite",
           backgroundSize: "200% 100%",
@@ -171,7 +173,7 @@ function StreakFlame({ streak }: { streak: number }) {
     <div className="relative" style={{ width: 18, height: 24 }}>
       <svg viewBox="0 0 18 24" width="18" height="24" style={{ animation: "today-flame-flicker 0.8s ease-in-out infinite" }}>
         <defs>
-          <linearGradient id="flame-grad" x1="0" y1="1" x2="0" y2="0">
+          <linearGradient id="today-flame-grad" x1="0" y1="1" x2="0" y2="0">
             <stop offset="0%" stopColor={baseColor} stopOpacity="0.9" />
             <stop offset="60%" stopColor={tipColor} stopOpacity="0.8" />
             <stop offset="100%" stopColor="white" stopOpacity="0.6" />
@@ -180,7 +182,7 @@ function StreakFlame({ streak }: { streak: number }) {
         {/* Outer flame */}
         <path
           d={`M9 ${24 - height} C5 ${24 - height + 4}, 2 ${24 - height / 2}, 4 24 L14 24 C16 ${24 - height / 2}, 13 ${24 - height + 4}, 9 ${24 - height} Z`}
-          fill="url(#flame-grad)"
+          fill="url(#today-flame-grad)"
           style={{ filter: `drop-shadow(0 0 3px ${baseColor})` }}
         />
         {/* Inner core */}
@@ -286,7 +288,6 @@ export default function TodayDrawer({
   const levelInfo = useMemo(() => getUserLevel(xp), [xp]);
   const xpProgress = useMemo(() => getUserXpProgress(xp), [xp]);
   const forgeTemp = Math.min(loggedInUser?.forgeTemp ?? 0, 100);
-  const forgeInfo = useMemo(() => getForgeTempInfo(forgeTemp), [forgeTemp]);
   const streak = loggedInUser?.streakDays ?? 0;
   const timeInfo = useMemo(() => getTimeGreeting(), []);
 
