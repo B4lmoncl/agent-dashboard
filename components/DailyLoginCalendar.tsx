@@ -95,7 +95,7 @@ export default function DailyLoginCalendar({ onClose }: { onClose: () => void })
         </div>
 
         {loading ? (
-          <p className="text-xs text-center py-8" style={{ color: "rgba(255,255,255,0.3)" }}>Loading...</p>
+          <div className="grid grid-cols-7 gap-1 py-4">{Array.from({ length: 28 }, (_, i) => <div key={i} className="skeleton-card" style={{ height: 40 }} />)}</div>
         ) : (
           <>
             {/* Calendar Grid */}

@@ -1078,7 +1078,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
             ))}
           </div>
 
-          {loading && <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>Loading...</p>}
+          {loading && <div className="space-y-2">{Array.from({ length: 6 }, (_, i) => <div key={i} className="skeleton-card" style={{ height: 48 }}><div className="skeleton skeleton-text w-20" /></div>)}</div>}
           {!loading && charData && (() => {
             const equippedIds = new Set(
               Object.values(charData.equipment).filter(Boolean).map(v =>
@@ -1390,7 +1390,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
           )}
 
           {/* Stats tab */}
-          {rightTab === "stats" && loading && <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>Loading...</p>}
+          {rightTab === "stats" && loading && <div className="space-y-2">{Array.from({ length: 4 }, (_, i) => <div key={i} className="skeleton-card" style={{ height: 32 }}><div className="skeleton skeleton-text w-24" /></div>)}</div>}
           {rightTab === "stats" && !loading && charData && (() => {
             const { kraft, ausdauer, weisheit, glueck, fokus, vitalitaet, charisma, tempo } = charData.stats;
             const base = charData.baseStats;
