@@ -1607,6 +1607,222 @@ Idle mechanic — send your companion on timed expeditions to gather resources w
 
 ---
 
+## 30. Rituals & Vows (Rituale & Gelübde)
+
+**Data**: `public/data/ritualVowTemplates.json`
+**Backend**: `routes/habits-inventory.js`
+**Frontend**: `components/RitualChamber.tsx`, `components/VowShrine.tsx`
+
+Rituals are recurring positive habits. Vows are habits to break (anti-rituals).
+
+### Ritual Template Schema
+
+```json
+{
+  "id": "ritual-id",
+  "title": "Morning Meditation",
+  "description": "10 minutes of mindful breathing.",
+  "icon": "🧘",
+  "category": "wellness",
+  "frequency": "daily",
+  "xpReward": 8,
+  "streakBonusThreshold": 7
+}
+```
+
+- **frequency**: `"daily"` | `"weekly"` | `"custom"`
+- Rituals earn Battle Pass XP (8 per completion via `grantBattlePassXP(u, 'ritual_complete')`)
+- Streak tracking: consecutive days of completion
+- Players can create custom rituals — templates are suggested starters
+
+### Vow Schema
+
+```json
+{
+  "id": "vow-id",
+  "title": "No Social Media After 10PM",
+  "description": "Break the late-night scrolling habit.",
+  "icon": "📵",
+  "category": "digital",
+  "cleanDayXp": 5
+}
+```
+
+- Vows track "clean days" (days without breaking the vow)
+- Clean days earn Battle Pass XP (5 per clean day via `grantBattlePassXP(u, 'vow_clean_day')`)
+- "Blood Pact" commitment tier: public vow with social accountability
+- Players create their own vows — templates are suggestions
+
+### Content Needs
+
+- **Ritual/Vow templates** in `ritualVowTemplates.json` — aim for 20-30 suggestions across categories (wellness, productivity, fitness, social, digital)
+- **Achievements** for ritual milestones (7-day streak, 30-day streak, etc.)
+- **Titles** for vow accomplishments ("Iron Will", "Ascetic", etc.)
+
+---
+
+## 31. Campaigns (Quest Chains)
+
+**Data**: `public/data/campaignNpcs.json`
+**Backend**: `routes/campaigns.js`
+**Frontend**: `components/CampaignView.tsx`
+
+Campaigns are multi-quest storylines with sequential progression.
+
+### Campaign NPC Schema
+
+```json
+{
+  "id": "campaign-npc-id",
+  "name": "NPC Name",
+  "portrait": "/images/npcs/campaign-npc.png",
+  "description": "Brief NPC description.",
+  "quests": [
+    {
+      "id": "quest-id-1",
+      "title": "First Quest",
+      "description": "Quest description.",
+      "type": "personal",
+      "rewards": { "xp": 50, "gold": 30 },
+      "rarity": "rare"
+    }
+  ],
+  "completionReward": {
+    "title": "Campaign Finisher",
+    "gold": 500,
+    "xp": 200
+  }
+}
+```
+
+- Quests unlock sequentially (complete quest 1 to unlock quest 2)
+- Campaign NPCs appear in The Observatory (The Pinnacle floor)
+- Completion rewards are given after the final quest
+
+### Content Needs
+
+- **Campaign NPCs** in `campaignNpcs.json` — aim for 5-10 campaigns
+- **Each campaign** should have 3-7 quests telling a coherent story
+- **Campaign portraits** in `public/images/npcs/` (128x128 or 256x256 PNG)
+- **Theme**: Stories about Urithiru, the tower's mysteries, character growth
+
+---
+
+## 32. Quest Flavor Text
+
+**Data**: `public/data/questFlavor.json`
+**Backend**: Used in quest template interpolation (`lib/quest-templates.js`)
+
+Flavor text snippets add atmosphere to generated quests.
+
+### Schema
+
+```json
+[
+  {
+    "id": "flavor-id",
+    "text": "The wind whispers of undone tasks...",
+    "category": "personal",
+    "mood": "mysterious"
+  }
+]
+```
+
+- Displayed on quest cards as italicized subtitle text
+- Categorized by quest type for thematic matching
+- **Moods**: `mysterious`, `urgent`, `encouraging`, `humorous`, `epic`
+- Aim for 5-10 flavors per quest type for variety
+
+---
+
+## 33. Changelog Entries
+
+**Data**: `public/data/changelog.json`
+**Backend**: `routes/players.js` (GET /api/changelog-data)
+**Frontend**: Shown in-game via version notification
+
+### Schema
+
+```json
+[
+  {
+    "version": "1.5.3",
+    "date": "2026-03-22",
+    "title": "The Undercroft Update",
+    "highlights": [
+      "New: Dungeon System — cooperative group dungeons",
+      "New: World Boss encounters with community damage",
+      "Fix: Gem socketing now works correctly"
+    ],
+    "details": "Optional longer description of changes."
+  }
+]
+```
+
+- Newest entries first
+- Players see a notification when a new version is detected
+- Keep entries concise — highlights are bullet points
+
+---
+
+## 34. Game Mechanics Reference
+
+This section documents key backend formulas that affect content design decisions.
+
+### XP & Leveling
+
+- **50 levels** total (30 base + 20 prestige 31-50)
+- XP requirements scale exponentially
+- **Forge Temperature** adds XP multiplier: up to +50% at 100°C
+- **Gear stats** (kraft/weisheit) add XP/gold multipliers
+- **Bond level** adds +1% XP per level above 1
+
+### Gem System Mechanics
+
+- **Socket count by rarity**: common [0,0], uncommon [0,1], rare [1,1], epic [1,2], legendary [2,3]
+- **Upgrade recipe**: 3 gems of tier N + 100 gold → 1 gem of tier N+1
+- **Unsocket cost**: 50 gold (gem returned to inventory)
+- **Tier names**: 1=Chipped, 2=Flawed, 3=[Name], 4=Flawless, 5=Royal
+- **Stat bonus per tier**: 2 → 4 → 7 → 11 → 16
+- **Gear Score contribution**: Each socketed gem adds `floor(statBonus/2)` to GS
+- **Drop chance**: 15% base + quest rarity bonus (0-25%), max tier scales by player level
+
+### Dungeon Mechanics
+
+- **Success formula**: Combined party GS + (total bond × 5) vs threshold × party_size
+  - ≥100% power → 100% success
+  - ≥70% power → 70% success
+  - ≥50% power → 40% success
+  - <50% power → 15% success
+- **Success is per-run** (not per-player): first collector rolls, all get same outcome
+- **Rewards are per-player**: each participant rolls individually
+- **Cooldown**: 7 days per dungeon after collecting
+
+### World Boss Mechanics
+
+- **HP formula**: max(playerCount × hpPerPlayer, minHp) — calculated at spawn
+- **Damage per quest**: common 5, uncommon 8, rare 15, epic 25, legendary 50
+- **Gear Score multiplier**: min(2.0, 1 + floor(GS/50) × 0.10)
+- **Spawn cycle**: every 21 days, active for 7 days
+- **Drop chance**: base 5% + contribution% × 50%, capped at 25%
+- **Top 3 get exclusive title, #1 gets frame**
+
+### Companion Expedition Mechanics
+
+- **Bond multiplier**: 1 + bondLevel × 0.1 (applied to gold, essenz, runensplitter, material count)
+- **Cooldown**: 1 hour between expeditions
+- **No bond XP while companion is on expedition**
+
+### Gacha Pity System
+
+- **Soft pity at pull 55**: increased legendary drop rate
+- **Hard pity at pull 75**: guaranteed legendary
+- **Epic pity at pull 10**: guaranteed epic+
+- **50/50 featured**: if you lose the 50/50, next legendary is guaranteed featured
+- **Duplicate refund**: stardust currency
+
+---
+
 ## Content Generation Checklist
 
 A complete reference of ALL content types Lyra can create, which files they belong to, and whether code changes are needed.
@@ -1647,6 +1863,12 @@ A complete reference of ALL content types Lyra can create, which files they belo
 | 32 | Unique Named Items | `public/data/uniqueItems.json` | No | Fixed-stat legendaries with lore |
 | 33 | World boss portraits | `public/images/bosses/` | No | 256x256px PNG, transparent bg |
 | 34 | Gem icons | `public/images/gems/` | No | One per gem type |
+| 35 | Dungeon templates | `public/data/dungeons.json` | No | 3 tiers, see Section 28 |
+| 36 | Companion expeditions | `public/data/companionExpeditions.json` | No | 4-24h durations, see Section 29 |
+| 37 | Ritual/Vow templates | `public/data/ritualVowTemplates.json` | No | Daily habits/anti-habits |
+| 38 | Campaign NPCs | `public/data/campaignNpcs.json` | No | Multi-quest storylines |
+| 39 | Quest flavor text | `public/data/questFlavor.json` | No | Atmosphere snippets |
+| 40 | Changelog entries | `public/data/changelog.json` | No | Patch notes |
 
 ### Priority Content (Time-Sensitive)
 
@@ -1658,8 +1880,10 @@ These content types need **regular updates** to prevent staleness:
 4. **Quest catalog** (`questCatalog.json`) — Expand regularly to support Rift variety and daily rotation
 5. **NPC quest givers** (`npcQuestGivers.json`) — Add new NPCs periodically for fresh Wanderer's Rest rotation
 6. **World boss templates** (`worldBosses.json`) — Need 8-12 bosses across all tiers for spawn rotation
-7. **Unique Named Items** (`uniqueItems.json`) — 1-3 per world boss + Mythic+ milestones; expand as new bosses are added
-6. **Expedition bonus titles** (`expeditions.json → bonusTitles[]`) — Expand pool to prevent repeats
+7. **Unique Named Items** (`uniqueItems.json`) — 1-3 per world boss + Mythic+ milestones + dungeon drops
+8. **Dungeon templates** (`dungeons.json`) — Need 6-9 total (2-3 per tier) for variety
+9. **Companion expeditions** (`companionExpeditions.json`) — Need 6-8 total across duration tiers
+10. **Expedition bonus titles** (`expeditions.json → bonusTitles[]`) — Expand pool to prevent repeats
 
 ---
 
@@ -1690,6 +1914,9 @@ When creating new content, the following image assets may need to be generated.
 | Companion | Companion icon | 128x128 | `public/images/companions/{companion-id}.png` |
 | Weekly challenge | Challenge icon | 64x64 | `public/images/icons/challenge-{challenge-id}.png` |
 | Expedition | Expedition icon | 64x64 | `public/images/icons/expedition-{expedition-id}.png` |
+| World Boss | Boss portrait | 256x256 | `public/images/bosses/{boss-id}.png` |
+| Dungeon | Dungeon art (optional) | 128x128 | `public/images/icons/dungeon-{dungeon-id}.png` |
+| Companion Expedition | Expedition icon (optional) | 64x64 | Uses emoji `icon` field in JSON |
 
 ### Content Types That Do NOT Require Images
 
