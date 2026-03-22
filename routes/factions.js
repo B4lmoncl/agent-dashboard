@@ -213,7 +213,7 @@ function grantReputation(user, questType, questRarity) {
       playerData.weeklyBonusUsed++;
     }
 
-    const legendaryRepBoost = 1 + (getLegendaryModifiers(uid).factionRepBoost || 0);
+    const legendaryRepBoost = 1 + (getLegendaryModifiers(user.id).factionRepBoost || 0);
     const gained = Math.round(repAmount * multiplier * legendaryRepBoost);
     playerData.rep += gained;
 

@@ -2,7 +2,7 @@
 const router = require('express').Router();
 const {
   state, STREAK_MILESTONES, RARITY_COLORS,
-  saveClasses, saveRoadmap, saveRituals, saveUsers,
+  saveClasses, saveRoadmap, saveRituals, saveUsers, ensureUserCurrencies,
 } = require('../lib/state');
 const {
   now, todayStr, getStreakXpBonus, getLevelInfo,
@@ -269,6 +269,8 @@ router.post('/api/rituals/:id/complete', requireApiKey, (req, res) => {
     goldEarnedAmount = Math.round(goldBase * goldMulti * streakGoldMulti);
     if (consumePassiveEffect(uid, 'gold_boost_next')) goldEarnedAmount *= 2;
     u.gold = (u.gold || 0) + goldEarnedAmount;
+    ensureUserCurrencies(u);
+    u.currencies.gold = u.gold;
 
     // ─── Blood Pact completion bonus (one-time at end of commitment) ───
     if (ritual.bloodPact && ritual.commitmentDays && ritual.streak >= ritual.commitmentDays && !ritual.pactCompleted) {
@@ -277,6 +279,7 @@ router.post('/api/rituals/:id/complete', requireApiKey, (req, res) => {
       pactCompletionGold = Math.round(commitBonus.gold * diffScale * pactMulti);
       u.xp = (u.xp || 0) + pactCompletionXp;
       u.gold = (u.gold || 0) + pactCompletionGold;
+      u.currencies.gold = u.gold;
       ritual.pactCompleted = true;
     }
 

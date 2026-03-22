@@ -156,7 +156,7 @@ function applyDungeonRewards(userId, rewards) {
   if (!u) return;
   ensureUserCurrencies(u);
 
-  u.gold = (u.gold || 0) + (rewards.gold || 0);
+  if (rewards.gold) awardCurrency(userId, 'gold', rewards.gold);
   if (rewards.essenz) awardCurrency(userId, 'essenz', rewards.essenz);
   if (rewards.runensplitter) awardCurrency(userId, 'runensplitter', rewards.runensplitter);
   if (rewards.sternentaler) awardCurrency(userId, 'sternentaler', rewards.sternentaler);

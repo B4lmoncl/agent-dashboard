@@ -276,10 +276,10 @@ router.post('/api/professions/learn', requireAuth, (req, res) => {
     return res.status(400).json({ error: `Not enough gold (need ${goldNeeded})` });
   }
 
-  // Deduct gold and learn
+  // Deduct gold and learn — sync both fields
   ensureUserCurrencies(u);
-  if (u.currencies) u.currencies.gold -= goldNeeded;
-  else u.gold = (u.gold || 0) - goldNeeded;
+  u.currencies.gold = (u.currencies.gold || 0) - goldNeeded;
+  u.gold = u.currencies.gold;
   u.learnedRecipes.push(recipeId);
   saveUsers();
 
@@ -403,10 +403,11 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
   // ─── All validation passed — enroll profession + deduct costs ──────────────
   if (needsEnrollment) u.chosenProfessions.push(recipe.profession);
 
-  // Deduct gold (×count)
+  // Deduct gold (×count) — sync both fields
   if (totalGoldCost > 0) {
-    if (u.currencies) u.currencies.gold -= totalGoldCost;
-    else u.gold = (u.gold || 0) - totalGoldCost;
+    ensureUserCurrencies(u);
+    u.currencies.gold = (u.currencies.gold || 0) - totalGoldCost;
+    u.gold = u.currencies.gold;
   }
   // Deduct materials (×count)
   for (const [matId, amount] of Object.entries(recipe.materials || {})) {

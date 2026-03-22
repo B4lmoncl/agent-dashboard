@@ -4,7 +4,7 @@
 const router = require('express').Router();
 const {
   state, EQUIPMENT_SLOTS, SET_BONUSES, RARITY_ORDER,
-  saveUsers, saveHabits, resolveItem, getActiveBuffs,
+  saveUsers, saveHabits, resolveItem, getActiveBuffs, ensureUserCurrencies,
 } = require('../lib/state');
 const {
   now, getLevelInfo, getUserStats, getUserEquipment, getUserDropBonus,
@@ -591,6 +591,8 @@ router.post('/api/player/:name/equip/:itemId', requireAuth, requireSelf('name'),
     }
 
     u.gold -= shopItem.cost;
+    ensureUserCurrencies(u);
+    u.currencies.gold = u.gold;
     // Roll stats for the new item
     const instance = createGearInstance(shopItem);
     u.equipment[shopItem.slot] = instance;

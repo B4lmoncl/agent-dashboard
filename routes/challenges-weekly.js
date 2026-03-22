@@ -110,7 +110,7 @@ function calculateStageStars(stageData, progress, u, stageStartedAt, modifier) {
   }
 
   // Legendary: challenge_score_bonus — effective value boost for star thresholds
-  const csb = getLegendaryModifiers(userId).challengeScoreBonus || 0;
+  const csb = getLegendaryModifiers(u.id).challengeScoreBonus || 0;
   if (csb > 0) value = Math.round(value * (1 + csb));
 
   // Count overachievement stars (0, 1, or 2)
