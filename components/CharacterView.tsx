@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback, useMemo, useRef } from "react";
 import { createPortal } from "react-dom";
 import { useModalBehavior } from "@/components/ModalPortal";
 import ItemActionPopup from "@/components/ItemActionPopup";
-import { Tip } from "@/components/GameTooltip";
+import { Tip, TipCustom } from "@/components/GameTooltip";
 import type { User, CharacterData, ClassDef, PixelCharacterProps, GearInstance } from "@/app/types";
 import type { ToastInput } from "@/components/ToastStack";
 import { useDashboard } from "@/app/DashboardContext";
@@ -526,8 +526,16 @@ function InventoryTooltip({ item, mousePosRef, equippedItem, playerLevel }: { it
           );
         })()}
 
-        {/* Level requirement + Slot type */}
+        {/* Level requirement + Slot type + Gear Score */}
         <div className="text-xs pt-1 space-y-0.5" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+          {hasStats && (
+            <div className="flex items-center justify-between">
+              <span style={{ color: "rgba(255,255,255,0.4)" }}>Gear Score</span>
+              <span className="font-mono font-bold" style={{ color: "#fbbf24" }}>
+                {Object.values(item.stats || {}).reduce((sum, v) => sum + (typeof v === "number" ? v : 0), 0)}
+              </span>
+            </div>
+          )}
           {item.minLevel && item.minLevel > 1 && (
             <p style={{ color: playerLevel != null && item.minLevel > playerLevel ? "#ef4444" : "rgba(255,255,255,0.4)" }}>
               Requires Level {item.minLevel}
@@ -741,7 +749,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
   const [gemAction, setGemAction] = useState<string | null>(null);
   // Collection log
   const [collectionOpen, setCollectionOpen] = useState(false);
-  const [collectionData, setCollectionData] = useState<{ items: { id: string; name: string; slot: string; rarity: string; stats?: Record<string, number>; source: string; obtained: boolean }[]; completion: number } | null>(null);
+  const [collectionData, setCollectionData] = useState<{ items: { id: string; name: string; slot: string; rarity: string; stats?: Record<string, number>; source: string; obtained: boolean; desc?: string; flavorText?: string; legendaryEffect?: { type: string; label?: string } | null }[]; completion: number } | null>(null);
   const [collectionLoading, setCollectionLoading] = useState(false);
 
   useEffect(() => {
@@ -1428,6 +1436,18 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                   </div>
                 )}
 
+                {/* Gear Score */}
+                {charData.gearScore && (
+                  <div className="mb-3 pt-2" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+                    <Tip k="gear_score">
+                      <div className="flex items-center justify-between cursor-help">
+                        <span className="text-xs font-semibold" style={{ color: "rgba(255,255,255,0.5)" }}>Gear Score</span>
+                        <span className="text-sm font-mono font-bold" style={{ color: "#fbbf24" }}>{charData.gearScore.gearScore}</span>
+                      </div>
+                    </Tip>
+                  </div>
+                )}
+
                 {/* Set Bonus */}
                 {charData.setBonusInfo && (
                   <div className="mb-3 px-2 py-1.5 rounded-lg" style={{ background: "rgba(167,139,250,0.1)", border: "1px solid rgba(167,139,250,0.25)" }}>
@@ -1931,13 +1951,51 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                 {collectionData.items.map(item => {
                   const rarityColors: Record<string, string> = { common: "#9ca3af", uncommon: "#22c55e", rare: "#60a5fa", epic: "#a855f7", legendary: "#f97316" };
                   const color = rarityColors[item.rarity] || "#9ca3af";
+                  // Parse source into readable label
+                  const sourceLabel = (() => {
+                    const [type, id] = item.source.split(":");
+                    const name = (id || "").split("-").map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
+                    if (type === "world_boss") return `World Boss: ${name}`;
+                    if (type === "dungeon") return `Dungeon: ${name}`;
+                    if (type === "gacha") return `Gacha: ${name}`;
+                    if (type === "rift") return `Rift: ${name}`;
+                    return item.source;
+                  })();
                   return (
-                    <div
+                    <TipCustom
                       key={item.id}
-                      className="rounded-lg p-2.5"
+                      title={item.obtained ? item.name : "???"}
+                      accent={item.obtained ? color : "rgba(255,255,255,0.3)"}
+                      hoverDelay={300}
+                      body={<>
+                        {item.obtained ? (
+                          <>
+                            <p className="text-xs capitalize" style={{ color }}>Legendary {item.slot}</p>
+                            {item.desc && <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.5)" }}>{item.desc}</p>}
+                            {item.flavorText && <p className="text-xs italic mt-1" style={{ color: "rgba(255,255,255,0.3)" }}>&ldquo;{item.flavorText}&rdquo;</p>}
+                            {item.legendaryEffect?.label && <p className="text-xs mt-1 font-semibold" style={{ color: "#f59e0b" }}>{item.legendaryEffect.label}</p>}
+                            {item.stats && Object.keys(item.stats).length > 0 && (
+                              <div className="mt-1 space-y-0.5" style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: 4 }}>
+                                {Object.entries(item.stats).map(([k, v]) => (
+                                  <div key={k} className="flex justify-between text-xs">
+                                    <span style={{ color: "rgba(255,255,255,0.5)" }}>{k}</span>
+                                    <span className="font-mono" style={{ color: "#4ade80" }}>+{v}</span>
+                                  </div>
+                                ))}
+                              </div>
+                            )}
+                          </>
+                        ) : (
+                          <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>Not yet discovered. Drops from: {sourceLabel}</p>
+                        )}
+                      </>}
+                    >
+                    <div
+                      className="rounded-lg p-2.5 cursor-help"
                       style={{
                         background: item.obtained ? "rgba(255,255,255,0.03)" : "rgba(255,255,255,0.01)",
                         border: `1px solid ${item.obtained ? `${color}30` : "rgba(255,255,255,0.04)"}`,
+                        borderTop: item.obtained ? `2px solid ${color}` : undefined,
                         opacity: item.obtained ? 1 : 0.45,
                         filter: item.obtained ? "none" : "grayscale(1)",
                       }}
@@ -1945,23 +2003,20 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                       {item.obtained ? (
                         <>
                           <p className="text-xs font-semibold truncate" style={{ color }}>{item.name}</p>
-                          <p className="text-xs text-w20 truncate">{item.slot}</p>
-                          {item.stats && Object.keys(item.stats).length > 0 && (
-                            <div className="mt-1 space-y-0.5">
-                              {Object.entries(item.stats).slice(0, 3).map(([k, v]) => (
-                                <p key={k} className="text-xs" style={{ color: "rgba(255,255,255,0.3)", fontSize: 12 }}>+{v} {k}</p>
-                              ))}
-                            </div>
+                          <p className="text-xs text-w20 truncate capitalize">{item.slot}</p>
+                          {item.legendaryEffect?.label && (
+                            <p className="text-xs mt-1 truncate" style={{ color: "#f59e0b", fontSize: 11 }}>{item.legendaryEffect.label}</p>
                           )}
-                          <p className="text-xs mt-1 truncate" style={{ color: "rgba(255,255,255,0.2)", fontSize: 12 }}>{item.source}</p>
+                          <p className="text-xs mt-1 truncate" style={{ color: "rgba(255,255,255,0.2)", fontSize: 11 }}>{sourceLabel}</p>
                         </>
                       ) : (
                         <>
                           <p className="text-xs font-semibold" style={{ color: "rgba(255,255,255,0.25)" }}>???</p>
-                          <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.15)", fontSize: 12 }}>{item.source}</p>
+                          <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.15)", fontSize: 11 }}>{sourceLabel}</p>
                         </>
                       )}
                     </div>
+                    </TipCustom>
                   );
                 })}
               </div>
