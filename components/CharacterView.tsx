@@ -970,7 +970,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
         {/* LEFT: Inventory Panel */}
         <div
           className="flex-shrink-0 rounded-xl p-2 overflow-y-auto"
-          style={{ width: 310, maxHeight: 490, background: "rgba(0,0,0,0.75)", border: "1px solid rgba(255,255,255,0.1)", minHeight: 0, paddingRight: 12 }}
+          style={{ width: 310, maxHeight: "calc(100vh - 200px)", background: "rgba(0,0,0,0.75)", border: "1px solid rgba(255,255,255,0.1)", minHeight: 0, paddingRight: 12 }}
         >
           {/* Header + Sort */}
           <div className="flex items-center justify-between mb-2">
