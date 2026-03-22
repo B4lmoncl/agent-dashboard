@@ -348,6 +348,7 @@ export default function TodayDrawer({
       done: !dailyBonusAvailable,
       reward: dailyBonusAvailable ? "+Gold, +Stardust" : undefined,
       rewardIcon: "/images/icons/currency-gold.png",
+      tooltipKey: "gold",
       onClick: dailyBonusAvailable ? onClaimDailyBonus : undefined,
     });
 
@@ -432,6 +433,7 @@ export default function TodayDrawer({
         done: craftedToday,
         sub: craftedToday ? "Used" : "Available",
         reward: craftedToday ? undefined : "2× Prof. XP",
+        tooltipKey: "professions",
         onClick: () => { onNavigate("forge"); onClose(); },
       });
     }
@@ -453,6 +455,7 @@ export default function TodayDrawer({
         done: false,
         urgent: true,
         sub: `Leaves in ${hoursLeft}h`,
+        tooltipKey: "npc_quest_board",
         onClick: () => { onNavigate("npcBoard"); onClose(); },
       });
     }
@@ -466,6 +469,7 @@ export default function TodayDrawer({
         done: false,
         urgent: true,
         reward: "Unique drops",
+        tooltipKey: "world_boss",
         onClick: () => { onNavigate("worldboss"); onClose(); },
       });
     }
@@ -482,6 +486,7 @@ export default function TodayDrawer({
         sub: `${inProgressCount} active`,
         reward: "+XP, +Gold",
         rewardIcon: "/images/icons/currency-gold.png",
+        tooltipKey: "quest_board",
         onClick: () => { onNavigate("questBoard"); onClose(); },
       });
     }
@@ -496,6 +501,7 @@ export default function TodayDrawer({
         done: starsEarned >= 3,
         sub: `${starsEarned}/3 stages`,
         reward: starsEarned < 3 ? "Sternentaler" : undefined,
+        tooltipKey: "sternenpfad",
         onClick: () => { onNavigate("challenges"); onClose(); },
       });
     }
@@ -509,6 +515,7 @@ export default function TodayDrawer({
         done: false,
         sub: "Complete your stages",
         reward: "Rift loot",
+        tooltipKey: "rift",
         onClick: () => { onNavigate("rift"); onClose(); },
       });
     }
@@ -522,6 +529,7 @@ export default function TodayDrawer({
         done: false,
         sub: "Contribute quests",
         reward: "Group rewards",
+        tooltipKey: "expedition",
         onClick: () => { onNavigate("challenges"); onClose(); },
       });
     }
@@ -535,6 +543,7 @@ export default function TodayDrawer({
         done: false,
         sub: "Collect rewards",
         reward: "Gear, Gems",
+        tooltipKey: "dungeons",
         onClick: () => { onNavigate("dungeons"); onClose(); },
       });
     }
@@ -548,6 +557,7 @@ export default function TodayDrawer({
         done: false,
         sub: `${vowCount} active`,
         reward: "+XP per clean day",
+        tooltipKey: "vows",
         onClick: () => { onNavigate("vows"); onClose(); },
       });
     }
@@ -563,6 +573,7 @@ export default function TodayDrawer({
           done: false,
           urgent: true,
           sub: `${socialBadge.pendingFriendRequests} pending`,
+          tooltipKey: "breakaway",
           onClick: () => { onNavigate("social"); onClose(); },
         });
       }
@@ -573,6 +584,7 @@ export default function TodayDrawer({
           label: "Open Trades",
           done: false,
           sub: `${socialBadge.activeTrades} active`,
+          tooltipKey: "trading",
           onClick: () => { onNavigate("social"); onClose(); },
         });
       }
@@ -583,6 +595,7 @@ export default function TodayDrawer({
           label: "Unread Messages",
           done: false,
           sub: `${socialBadge.unreadMessages} new`,
+          tooltipKey: "breakaway",
           onClick: () => { onNavigate("social"); onClose(); },
         });
       }
