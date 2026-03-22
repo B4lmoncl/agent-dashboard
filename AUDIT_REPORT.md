@@ -2148,7 +2148,9 @@ Both `POST /:factionId/claim` (faction reward claiming) and `resetWeeklyBonuses(
 
 | Commit | Timestamp | Description |
 |--------|-----------|-------------|
-| (pending) | 2026-03-22 | Fix CRITICAL: battlepass+factions req.playerName, factions saveData, weekly bonus auto-reset |
+| `e9e40e9` | 2026-03-22 | Fix CRITICAL: battlepass+factions req.playerName, factions saveData, weekly bonus auto-reset |
+| `9628fbe` | 2026-03-22 | QoL: tab animations for 9 views, translate DailyLoginCalendar German text, update CLAUDE.md+ARCHITECTURE.md |
+| `8b16a4b` | 2026-03-22 | Cleanup: remove unused saveData import from battlepass.js |
 
 ---
 
