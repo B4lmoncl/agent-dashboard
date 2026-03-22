@@ -28,7 +28,7 @@ export interface Quest {
   product: string | null;
   humanInputRequired: boolean;
   createdBy?: string;
-  status: "open" | "in_progress" | "completed" | "suggested" | "rejected";
+  status: "open" | "claimed" | "in_progress" | "completed" | "suggested" | "rejected" | "done" | "failed";
   createdAt: string;
   claimedBy: string | null;
   completedBy: string | null;
@@ -174,6 +174,10 @@ export interface User {
   equippedTitle?: { id: string; name: string; rarity: string } | null;
   chosenProfessions?: string[];
   inventory?: { id: string; name: string; rarity: string; slot?: string; emoji?: string; effect?: { type: string; amount?: number } }[];
+  workshopUpgrades?: Record<string, number>;
+  tavernRest?: { active: boolean; frozenAt: string; forgeFrozenAt: number; unfreezeAt: string; reason?: string } | null;
+  companionExpedition?: { tier: string; startedAt: string; dueAt: string } | null;
+  activeBuffs?: { type: string; expiresAt?: string; questsRemaining?: number }[];
 }
 
 export interface CampaignQuest {
