@@ -26,6 +26,10 @@ export default function TodayDrawer({
   weeklyChallenge,
   worldBossActive,
   riftActive,
+  vowCount,
+  socialBadge,
+  expeditionActive,
+  dungeonActive,
 }: {
   open: boolean;
   onClose: () => void;
@@ -39,6 +43,10 @@ export default function TodayDrawer({
   weeklyChallenge: { stagesCompleted?: number } | null;
   worldBossActive: boolean;
   riftActive: boolean;
+  vowCount: number;
+  socialBadge: { pendingFriendRequests: number; unreadMessages: number; activeTrades: number } | null;
+  expeditionActive: boolean;
+  dungeonActive: boolean;
 }) {
   const { loggedInUser } = useDashboard();
 
@@ -194,6 +202,77 @@ export default function TodayDrawer({
       done: false,
       sub: "Complete your stages",
       onClick: () => { onNavigate("rift"); onClose(); },
+    });
+  }
+
+  // 11. Vows (clean day tracking)
+  if (vowCount > 0) {
+    items.push({
+      id: "vows",
+      icon: "🩸",
+      label: "Vows",
+      done: false,
+      sub: `${vowCount} active`,
+      onClick: () => { onNavigate("vows"); onClose(); },
+    });
+  }
+
+  // 12. Social — pending friend requests + open trades
+  if (socialBadge) {
+    if (socialBadge.pendingFriendRequests > 0) {
+      items.push({
+        id: "friend-requests",
+        icon: "👥",
+        label: "Friend Requests",
+        done: false,
+        urgent: true,
+        sub: `${socialBadge.pendingFriendRequests} pending`,
+        onClick: () => { onNavigate("social"); onClose(); },
+      });
+    }
+    if (socialBadge.activeTrades > 0) {
+      items.push({
+        id: "active-trades",
+        icon: "🤝",
+        label: "Open Trades",
+        done: false,
+        sub: `${socialBadge.activeTrades} active`,
+        onClick: () => { onNavigate("social"); onClose(); },
+      });
+    }
+    if (socialBadge.unreadMessages > 0) {
+      items.push({
+        id: "unread-messages",
+        icon: "💬",
+        label: "Unread Messages",
+        done: false,
+        sub: `${socialBadge.unreadMessages} new`,
+        onClick: () => { onNavigate("social"); onClose(); },
+      });
+    }
+  }
+
+  // 13. Expedition (cooperative weekly)
+  if (expeditionActive) {
+    items.push({
+      id: "expedition",
+      icon: "🏔️",
+      label: "Expedition",
+      done: false,
+      sub: "Contribute quests",
+      onClick: () => { onNavigate("challenges"); onClose(); },
+    });
+  }
+
+  // 14. Active dungeon run
+  if (dungeonActive) {
+    items.push({
+      id: "dungeon-active",
+      icon: "🏚️",
+      label: "Dungeon Run",
+      done: false,
+      sub: "Collect rewards",
+      onClick: () => { onNavigate("dungeons"); onClose(); },
     });
   }
 

@@ -1976,6 +1976,10 @@ export default function Dashboard() {
           weeklyChallenge={weeklyChallenge ? { stagesCompleted: weeklyChallenge.stages?.filter((s: { completed?: boolean }) => s.completed).length ?? 0 } : null}
           worldBossActive={false}
           riftActive={false}
+          vowCount={0}
+          socialBadge={socialBadge}
+          expeditionActive={!!expedition}
+          dungeonActive={false}
         />
       )}
 
