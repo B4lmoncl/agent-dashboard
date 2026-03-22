@@ -2163,6 +2163,28 @@ Both `POST /:factionId/claim` (faction reward claiming) and `resetWeeklyBonuses(
 | FeedbackOverlay missing useModalBehavior | **Not a bug** — Special overlay mode for feedback collection, not a standard modal |
 | StatBar STAT_LABELS in German | **Intentional** — German stat names (Kraft, Weisheit etc.) are game world proper nouns per A.4 |
 
+### 28.8 Frontend-Backend Consistency (Session 12 — Final Pass)
+
+| # | Frontend Claim | Backend Reality | Severity | Status |
+|---|---------------|-----------------|----------|--------|
+| 1 | Rift max difficulty: 1.5×/2.5×/3.5× for Normal/Hard/Legendary | Formula `1+(i*0.5)` gives 2.0×/3.0×/4.0× | **HIGH** | **Fixed** — `336798d` |
+| 2 | Gacha soft pity: +2.5%/pull | Backend `SOFT_PITY_INCREASE = 0.025` = 2.5% | NONE | **MATCH** ✓ |
+| 3 | Hoarding: -50% at 25+ quests | Backend: `min(50, overLimit*10)` at 25 quests = 50% | NONE | **MATCH** ✓ |
+| 4 | Forge gold below 40% | Backend returns 1.0 (no penalty) — tooltip correctly omits | NONE | **MATCH** ✓ |
+| 5 | All 8 stat effects | Verified matching backend formulas | NONE | **MATCH** ✓ |
+| 6 | Streak bonus +1.5%/day cap 45% | `Math.min(1 + days*0.015, 1.45)` | NONE | **MATCH** ✓ |
+| 7 | Tavern rest 1-7 days, 30-day cooldown | Backend clamps `Math.max(1, Math.min(7, days))` | NONE | **MATCH** ✓ |
+
+### 28.9 Updated Changelog (Session 12)
+
+| Commit | Timestamp | Description |
+|--------|-----------|-------------|
+| `e9e40e9` | 2026-03-22 | Fix CRITICAL: battlepass+factions req.playerName, factions saveData, weekly bonus auto-reset |
+| `9628fbe` | 2026-03-22 | QoL: tab animations for 9 views, translate DailyLoginCalendar, update docs |
+| `8b16a4b` | 2026-03-22 | Cleanup: remove unused saveData import from battlepass.js |
+| `36a5ead` | 2026-03-22 | Fix: add useModalBehavior to DailyLoginCalendar modal |
+| `336798d` | 2026-03-22 | Fix: Rift difficulty max display incorrect (2.0×/3.0×/4.0× not 1.5×/2.5×/3.5×) |
+
 ---
 
 *End of Audit Report — Updated 2026-03-22*
