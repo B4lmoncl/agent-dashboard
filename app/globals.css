@@ -232,6 +232,13 @@ img {
   50%       { box-shadow: 0 0 14px rgba(236,72,153,0.7), 0 0 24px rgba(236,72,153,0.3); }
 }
 
+/* ─── Global disabled button rule ──────────────────────────────────────── */
+button:disabled,
+button[disabled] {
+  cursor: not-allowed !important;
+  opacity: 0.5;
+}
+
 /* ─── Interactive button — nav tabs, header buttons ─────────────────────── */
 .btn-interactive {
   transition: transform 0.15s ease, box-shadow 0.15s ease;
