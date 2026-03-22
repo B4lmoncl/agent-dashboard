@@ -83,6 +83,51 @@
       "legendaryEffect": { "type": "drop_bonus", "value": 5, "label": "Gem Affinity: +5% drop chance" },
       "source": "crafting:master",
       "isUnique": true
+    },
+    {
+      "id": "radiant-plate",
+      "name": "Radiant's Plate",
+      "slot": "armor",
+      "rarity": "legendary",
+      "tier": 5,
+      "desc": "Armor worn by the Radiants of old. It pulses with Stormlight when danger is near.",
+      "flavorText": "Life before death. Strength before weakness. Journey before destination.",
+      "icon": null,
+      "stats": { "ausdauer": 22, "vitalitaet": 15, "kraft": 10 },
+      "legendaryEffect": { "type": "decay_reduction", "value": 20, "label": "Stormlight Infusion: -20% forge decay" },
+      "source": "dungeon:forgotten-halls",
+      "dropChance": 0.08,
+      "isUnique": true
+    },
+    {
+      "id": "honor-blade",
+      "name": "Honorblade Shard",
+      "slot": "weapon",
+      "rarity": "legendary",
+      "tier": 5,
+      "desc": "A fragment of an ancient Honorblade, still thrumming with Investiture.",
+      "flavorText": "The power of a Herald, contained in steel.",
+      "icon": null,
+      "stats": { "kraft": 25, "fokus": 15, "tempo": 12 },
+      "legendaryEffect": { "type": "xp_bonus", "value": 15, "label": "Herald's Might: +15% XP" },
+      "source": "dungeon:stormfather-sanctum",
+      "dropChance": 0.06,
+      "isUnique": true
+    },
+    {
+      "id": "void-amulet",
+      "name": "Amulet of the Unmade",
+      "slot": "amulet",
+      "rarity": "legendary",
+      "tier": 5,
+      "desc": "Torn from one of the Unmade. Its wearer walks between light and darkness.",
+      "flavorText": "Some powers are not meant to be wielded. But you will anyway.",
+      "icon": null,
+      "stats": { "glueck": 20, "charisma": 18, "weisheit": 14 },
+      "legendaryEffect": { "type": "gold_bonus", "value": 18, "label": "Void's Bargain: +18% Gold" },
+      "source": "dungeon:odium-depths",
+      "dropChance": 0.04,
+      "isUnique": true
     }
   ]
 }
