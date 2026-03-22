@@ -100,7 +100,7 @@ export function FlavorToast({ toast, onClose }: { toast: { message: string; icon
       className="fixed bottom-6 right-6 z-[110] rounded-xl px-4 py-3 flex items-center gap-3 shadow-2xl"
       style={{ background: "#1e2a1e", border: "1px solid rgba(34,197,94,0.4)", boxShadow: "0 8px 32px rgba(34,197,94,0.15)", maxWidth: 280 }}
     >
-      {toast.icon.startsWith("/") ? <img src={toast.icon} alt="" style={{width:28,height:28,imageRendering:"smooth"}} className="flex-shrink-0" onError={e => { e.currentTarget.style.display = "none"; }} /> : <span className="text-2xl flex-shrink-0">{toast.icon}</span>}
+      {toast.icon.startsWith("/") ? <img src={toast.icon} alt="" style={{width:28,height:28,imageRendering:"auto"}} className="flex-shrink-0" onError={e => { e.currentTarget.style.display = "none"; }} /> : <span className="text-2xl flex-shrink-0">{toast.icon}</span>}
       <div className="flex-1 min-w-0">
         <p className="text-sm font-bold" style={{ color: "#22c55e" }}>{toast.message}</p>
         {toast.sub && <p className="text-xs mt-0.5 truncate" style={{ color: "rgba(255,255,255,0.35)" }}>{toast.sub}</p>}
