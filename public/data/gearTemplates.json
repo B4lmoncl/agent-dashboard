@@ -1973,11 +1973,6 @@
               "stat": "glueck",
               "min": 3,
               "max": 6
-            },
-            {
-              "stat": "ausdauer",
-              "min": 3,
-              "max": 6
             }
           ]
         },
@@ -2062,7 +2057,7 @@
       "legendaryEffect": {
         "type": "gold_bonus",
         "min": 1,
-        "max": 4,
+        "max": 3,
         "label": "Verschlingen: +{value}% Gold"
       }
     },
@@ -2121,7 +2116,7 @@
       "legendaryEffect": {
         "type": "decay_reduction",
         "min": 1,
-        "max": 4,
+        "max": 3,
         "label": "Unbeugsam: -{value}% Forge-Decay"
       }
     },
@@ -2180,7 +2175,7 @@
       "legendaryEffect": {
         "type": "xp_bonus",
         "min": 1,
-        "max": 4,
+        "max": 3,
         "label": "Erleuchtung: +{value}% Quest-XP"
       }
     },
@@ -2391,11 +2386,6 @@
               "stat": "ausdauer",
               "min": 3,
               "max": 6
-            },
-            {
-              "stat": "glueck",
-              "min": 3,
-              "max": 6
             }
           ]
         },
@@ -2426,7 +2416,7 @@
       "legendaryEffect": {
         "type": "xp_bonus",
         "min": 1,
-        "max": 4,
+        "max": 3,
         "label": "Legende: +{value}% Quest-XP"
       }
     },
@@ -2785,7 +2775,7 @@
       "legendaryEffect": {
         "type": "material_double",
         "min": 1,
-        "max": 4,
+        "max": 3,
         "label": "Midas-Griff: +{value}% Chance auf doppelte Materialien"
       }
     },
@@ -2845,7 +2835,7 @@
       "legendaryEffect": {
         "type": "variety_bonus",
         "min": 1,
-        "max": 4,
+        "max": 3,
         "label": "Polyglott: +{value}% XP pro verschiedenem Quest-Typ heute"
       }
     }
