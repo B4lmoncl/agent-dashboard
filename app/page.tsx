@@ -1423,7 +1423,7 @@ export default function Dashboard() {
                                         if (r.ok) {
                                           const data = await r.json();
                                           const rewardText = Object.entries(data.reward || ms.reward).map(([k, v]) => `+${v} ${k[0].toUpperCase() + k.slice(1)}`).join(", ");
-                                          addToast({ type: "success", message: `Milestone ${ms.threshold} claimed! ${rewardText}` });
+                                          addToast({ type: "flavor", message: `Milestone ${ms.threshold} claimed! ${rewardText}`, icon: "/images/icons/currency-gold.png" });
                                           refresh();
                                         }
                                       } catch { /* ignore */ }
