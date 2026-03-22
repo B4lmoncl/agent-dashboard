@@ -25,7 +25,7 @@
       "id": 4,
       "name": "Legendär",
       "minLevel": 25,
-      "maxLevel": 30,
+      "maxLevel": 50,
       "color": "#7C4DFF"
     }
   ],
@@ -54,7 +54,7 @@
             {
               "stat": "ausdauer",
               "min": 1,
-              "max": 2
+              "max": 3
             }
           ]
         },
@@ -86,12 +86,12 @@
             {
               "stat": "kraft",
               "min": 1,
-              "max": 2
+              "max": 3
             },
             {
               "stat": "glueck",
               "min": 1,
-              "max": 2
+              "max": 3
             }
           ]
         },
@@ -128,7 +128,7 @@
             {
               "stat": "kraft",
               "min": 1,
-              "max": 2
+              "max": 3
             }
           ]
         },
@@ -165,13 +165,13 @@
           "pool": [
             {
               "stat": "kraft",
-              "min": 2,
+              "min": 1,
               "max": 3
             },
             {
               "stat": "ausdauer",
               "min": 1,
-              "max": 2
+              "max": 3
             }
           ]
         },
@@ -214,7 +214,7 @@
             {
               "stat": "kraft",
               "min": 1,
-              "max": 2
+              "max": 3
             }
           ]
         },
@@ -251,7 +251,7 @@
             {
               "stat": "glueck",
               "min": 1,
-              "max": 2
+              "max": 3
             }
           ]
         },
@@ -289,12 +289,12 @@
             {
               "stat": "weisheit",
               "min": 1,
-              "max": 2
+              "max": 3
             },
             {
               "stat": "glueck",
               "min": 1,
-              "max": 2
+              "max": 3
             }
           ]
         },
@@ -331,7 +331,7 @@
             {
               "stat": "weisheit",
               "min": 1,
-              "max": 2
+              "max": 3
             }
           ]
         },
@@ -369,12 +369,12 @@
             {
               "stat": "ausdauer",
               "min": 1,
-              "max": 2
+              "max": 3
             },
             {
               "stat": "kraft",
               "min": 1,
-              "max": 2
+              "max": 3
             }
           ]
         },
@@ -411,7 +411,7 @@
             {
               "stat": "kraft",
               "min": 1,
-              "max": 2
+              "max": 3
             }
           ]
         },
@@ -454,7 +454,7 @@
             {
               "stat": "weisheit",
               "min": 1,
-              "max": 2
+              "max": 3
             }
           ]
         },
@@ -485,13 +485,13 @@
           "pool": [
             {
               "stat": "glueck",
-              "min": 2,
+              "min": 1,
               "max": 3
             },
             {
               "stat": "weisheit",
               "min": 1,
-              "max": 2
+              "max": 3
             }
           ]
         },
@@ -529,12 +529,12 @@
             {
               "stat": "glueck",
               "min": 1,
-              "max": 2
+              "max": 3
             },
             {
               "stat": "kraft",
               "min": 1,
-              "max": 2
+              "max": 3
             }
           ]
         },
@@ -566,12 +566,12 @@
             {
               "stat": "glueck",
               "min": 1,
-              "max": 2
+              "max": 3
             },
             {
               "stat": "kraft",
               "min": 1,
-              "max": 2
+              "max": 3
             }
           ]
         },
@@ -608,18 +608,18 @@
           "pool": [
             {
               "stat": "kraft",
-              "min": 3,
-              "max": 6
+              "min": 1,
+              "max": 3
             },
             {
               "stat": "ausdauer",
-              "min": 2,
-              "max": 4
+              "min": 1,
+              "max": 3
             },
             {
               "stat": "weisheit",
-              "min": 2,
-              "max": 4
+              "min": 1,
+              "max": 3
             }
           ]
         },
@@ -632,12 +632,12 @@
             {
               "stat": "fokus",
               "min": 1,
-              "max": 3
+              "max": 2
             },
             {
               "stat": "tempo",
               "min": 1,
-              "max": 3
+              "max": 2
             }
           ]
         }
@@ -656,13 +656,13 @@
         "primary": {
           "count": [
             2,
-            3
+            2
           ],
           "pool": [
             {
               "stat": "kraft",
-              "min": 3,
-              "max": 6
+              "min": 2,
+              "max": 4
             },
             {
               "stat": "glueck",
@@ -709,13 +709,13 @@
         "primary": {
           "count": [
             2,
-            3
+            2
           ],
           "pool": [
             {
               "stat": "kraft",
-              "min": 4,
-              "max": 6
+              "min": 2,
+              "max": 4
             },
             {
               "stat": "ausdauer",
@@ -757,13 +757,13 @@
           "pool": [
             {
               "stat": "ausdauer",
-              "min": 3,
-              "max": 6
+              "min": 1,
+              "max": 3
             },
             {
               "stat": "kraft",
-              "min": 2,
-              "max": 4
+              "min": 1,
+              "max": 3
             }
           ]
         },
@@ -776,12 +776,12 @@
             {
               "stat": "vitalitaet",
               "min": 1,
-              "max": 3
+              "max": 2
             },
             {
               "stat": "tempo",
               "min": 1,
-              "max": 3
+              "max": 2
             }
           ]
         }
@@ -800,13 +800,13 @@
         "primary": {
           "count": [
             2,
-            3
+            2
           ],
           "pool": [
             {
               "stat": "ausdauer",
-              "min": 3,
-              "max": 6
+              "min": 2,
+              "max": 4
             },
             {
               "stat": "kraft",
@@ -816,7 +816,7 @@
             {
               "stat": "weisheit",
               "min": 2,
-              "max": 3
+              "max": 4
             }
           ]
         },
@@ -853,17 +853,17 @@
           "pool": [
             {
               "stat": "weisheit",
-              "min": 2,
-              "max": 5
+              "min": 1,
+              "max": 3
             },
             {
               "stat": "ausdauer",
-              "min": 2,
-              "max": 4
+              "min": 1,
+              "max": 3
             },
             {
               "stat": "glueck",
-              "min": 2,
+              "min": 1,
               "max": 3
             }
           ]
@@ -877,12 +877,12 @@
             {
               "stat": "fokus",
               "min": 1,
-              "max": 3
+              "max": 2
             },
             {
               "stat": "charisma",
               "min": 1,
-              "max": 3
+              "max": 2
             }
           ]
         }
@@ -901,13 +901,13 @@
         "primary": {
           "count": [
             2,
-            3
+            2
           ],
           "pool": [
             {
               "stat": "weisheit",
-              "min": 3,
-              "max": 5
+              "min": 2,
+              "max": 4
             },
             {
               "stat": "glueck",
@@ -917,7 +917,7 @@
             {
               "stat": "kraft",
               "min": 2,
-              "max": 3
+              "max": 4
             }
           ]
         },
@@ -959,17 +959,17 @@
           "pool": [
             {
               "stat": "ausdauer",
-              "min": 2,
-              "max": 5
+              "min": 1,
+              "max": 3
             },
             {
               "stat": "kraft",
-              "min": 2,
-              "max": 4
+              "min": 1,
+              "max": 3
             },
             {
               "stat": "weisheit",
-              "min": 2,
+              "min": 1,
               "max": 3
             }
           ]
@@ -983,12 +983,12 @@
             {
               "stat": "vitalitaet",
               "min": 1,
-              "max": 3
+              "max": 2
             },
             {
               "stat": "tempo",
               "min": 1,
-              "max": 3
+              "max": 2
             }
           ]
         }
@@ -1007,13 +1007,13 @@
         "primary": {
           "count": [
             2,
-            3
+            2
           ],
           "pool": [
             {
               "stat": "ausdauer",
-              "min": 3,
-              "max": 6
+              "min": 2,
+              "max": 4
             },
             {
               "stat": "kraft",
@@ -1023,7 +1023,7 @@
             {
               "stat": "glueck",
               "min": 2,
-              "max": 3
+              "max": 4
             }
           ]
         },
@@ -1065,13 +1065,13 @@
           "pool": [
             {
               "stat": "glueck",
-              "min": 3,
-              "max": 5
+              "min": 1,
+              "max": 3
             },
             {
               "stat": "weisheit",
-              "min": 2,
-              "max": 4
+              "min": 1,
+              "max": 3
             }
           ]
         },
@@ -1084,12 +1084,12 @@
             {
               "stat": "charisma",
               "min": 1,
-              "max": 3
+              "max": 2
             },
             {
               "stat": "fokus",
               "min": 1,
-              "max": 3
+              "max": 2
             }
           ]
         }
@@ -1108,13 +1108,13 @@
         "primary": {
           "count": [
             2,
-            3
+            2
           ],
           "pool": [
             {
               "stat": "glueck",
               "min": 2,
-              "max": 5
+              "max": 4
             },
             {
               "stat": "weisheit",
@@ -1124,7 +1124,7 @@
             {
               "stat": "ausdauer",
               "min": 2,
-              "max": 3
+              "max": 4
             }
           ]
         },
@@ -1166,17 +1166,17 @@
           "pool": [
             {
               "stat": "glueck",
-              "min": 2,
-              "max": 4
+              "min": 1,
+              "max": 3
             },
             {
               "stat": "ausdauer",
-              "min": 2,
-              "max": 4
+              "min": 1,
+              "max": 3
             },
             {
               "stat": "kraft",
-              "min": 2,
+              "min": 1,
               "max": 3
             }
           ]
@@ -1190,12 +1190,12 @@
             {
               "stat": "tempo",
               "min": 1,
-              "max": 3
+              "max": 2
             },
             {
               "stat": "charisma",
               "min": 1,
-              "max": 3
+              "max": 2
             }
           ]
         }
@@ -1214,13 +1214,13 @@
         "primary": {
           "count": [
             2,
-            3
+            2
           ],
           "pool": [
             {
               "stat": "glueck",
               "min": 2,
-              "max": 5
+              "max": 4
             },
             {
               "stat": "kraft",
@@ -1230,7 +1230,7 @@
             {
               "stat": "ausdauer",
               "min": 2,
-              "max": 3
+              "max": 4
             }
           ]
         },
@@ -1267,23 +1267,23 @@
         "primary": {
           "count": [
             2,
-            3
+            2
           ],
           "pool": [
             {
               "stat": "kraft",
-              "min": 5,
-              "max": 9
+              "min": 2,
+              "max": 4
             },
             {
               "stat": "weisheit",
-              "min": 4,
-              "max": 6
+              "min": 2,
+              "max": 4
             },
             {
               "stat": "ausdauer",
-              "min": 4,
-              "max": 6
+              "min": 2,
+              "max": 4
             }
           ]
         },
@@ -1295,13 +1295,13 @@
           "pool": [
             {
               "stat": "fokus",
-              "min": 2,
-              "max": 4
+              "min": 1,
+              "max": 3
             },
             {
               "stat": "tempo",
-              "min": 2,
-              "max": 4
+              "min": 1,
+              "max": 3
             }
           ]
         }
@@ -1325,18 +1325,18 @@
           "pool": [
             {
               "stat": "kraft",
-              "min": 6,
-              "max": 10
+              "min": 2,
+              "max": 4
             },
             {
               "stat": "ausdauer",
-              "min": 4,
-              "max": 7
+              "min": 2,
+              "max": 4
             },
             {
               "stat": "weisheit",
-              "min": 4,
-              "max": 6
+              "min": 2,
+              "max": 4
             }
           ]
         },
@@ -1348,13 +1348,13 @@
           "pool": [
             {
               "stat": "fokus",
-              "min": 2,
-              "max": 4
+              "min": 1,
+              "max": 3
             },
             {
               "stat": "tempo",
-              "min": 2,
-              "max": 4
+              "min": 1,
+              "max": 3
             }
           ]
         }
@@ -1378,18 +1378,18 @@
           "pool": [
             {
               "stat": "weisheit",
-              "min": 6,
-              "max": 10
+              "min": 2,
+              "max": 4
             },
             {
               "stat": "kraft",
-              "min": 4,
-              "max": 7
+              "min": 2,
+              "max": 4
             },
             {
               "stat": "glueck",
-              "min": 4,
-              "max": 6
+              "min": 2,
+              "max": 4
             }
           ]
         },
@@ -1401,13 +1401,13 @@
           "pool": [
             {
               "stat": "fokus",
-              "min": 2,
-              "max": 4
+              "min": 1,
+              "max": 3
             },
             {
               "stat": "charisma",
-              "min": 2,
-              "max": 4
+              "min": 1,
+              "max": 3
             }
           ]
         }
@@ -1426,23 +1426,23 @@
         "primary": {
           "count": [
             2,
-            3
+            2
           ],
           "pool": [
             {
               "stat": "ausdauer",
-              "min": 4,
-              "max": 8
+              "min": 2,
+              "max": 4
             },
             {
               "stat": "kraft",
-              "min": 4,
-              "max": 6
+              "min": 2,
+              "max": 4
             },
             {
               "stat": "weisheit",
-              "min": 4,
-              "max": 6
+              "min": 2,
+              "max": 4
             }
           ]
         },
@@ -1454,13 +1454,13 @@
           "pool": [
             {
               "stat": "vitalitaet",
-              "min": 2,
-              "max": 4
+              "min": 1,
+              "max": 3
             },
             {
               "stat": "tempo",
-              "min": 2,
-              "max": 4
+              "min": 1,
+              "max": 3
             }
           ]
         }
@@ -1484,17 +1484,17 @@
           "pool": [
             {
               "stat": "ausdauer",
-              "min": 5,
-              "max": 9
+              "min": 3,
+              "max": 6
             },
             {
               "stat": "weisheit",
-              "min": 4,
-              "max": 7
+              "min": 3,
+              "max": 6
             },
             {
               "stat": "kraft",
-              "min": 4,
+              "min": 3,
               "max": 6
             }
           ]
@@ -1532,23 +1532,23 @@
         "primary": {
           "count": [
             2,
-            3
+            2
           ],
           "pool": [
             {
               "stat": "weisheit",
-              "min": 4,
-              "max": 8
+              "min": 2,
+              "max": 4
             },
             {
               "stat": "glueck",
-              "min": 4,
-              "max": 6
+              "min": 2,
+              "max": 4
             },
             {
               "stat": "kraft",
-              "min": 4,
-              "max": 6
+              "min": 2,
+              "max": 4
             }
           ]
         },
@@ -1560,13 +1560,13 @@
           "pool": [
             {
               "stat": "fokus",
-              "min": 2,
-              "max": 4
+              "min": 1,
+              "max": 3
             },
             {
               "stat": "charisma",
-              "min": 2,
-              "max": 4
+              "min": 1,
+              "max": 3
             }
           ]
         }
@@ -1590,17 +1590,17 @@
           "pool": [
             {
               "stat": "weisheit",
-              "min": 5,
-              "max": 9
+              "min": 3,
+              "max": 6
             },
             {
               "stat": "kraft",
-              "min": 4,
-              "max": 7
+              "min": 3,
+              "max": 6
             },
             {
               "stat": "glueck",
-              "min": 4,
+              "min": 3,
               "max": 6
             }
           ]
@@ -1638,23 +1638,23 @@
         "primary": {
           "count": [
             2,
-            3
+            2
           ],
           "pool": [
             {
               "stat": "ausdauer",
-              "min": 4,
-              "max": 7
+              "min": 2,
+              "max": 4
             },
             {
               "stat": "kraft",
-              "min": 4,
-              "max": 6
+              "min": 2,
+              "max": 4
             },
             {
               "stat": "weisheit",
-              "min": 4,
-              "max": 6
+              "min": 2,
+              "max": 4
             }
           ]
         },
@@ -1666,13 +1666,13 @@
           "pool": [
             {
               "stat": "vitalitaet",
-              "min": 2,
-              "max": 4
+              "min": 1,
+              "max": 3
             },
             {
               "stat": "tempo",
-              "min": 2,
-              "max": 4
+              "min": 1,
+              "max": 3
             }
           ]
         }
@@ -1696,17 +1696,17 @@
           "pool": [
             {
               "stat": "ausdauer",
-              "min": 5,
-              "max": 9
+              "min": 3,
+              "max": 6
             },
             {
               "stat": "kraft",
-              "min": 4,
-              "max": 7
+              "min": 3,
+              "max": 6
             },
             {
               "stat": "weisheit",
-              "min": 4,
+              "min": 3,
               "max": 6
             }
           ]
@@ -1744,23 +1744,23 @@
         "primary": {
           "count": [
             2,
-            3
+            2
           ],
           "pool": [
             {
               "stat": "glueck",
-              "min": 4,
-              "max": 8
+              "min": 2,
+              "max": 4
             },
             {
               "stat": "weisheit",
-              "min": 4,
-              "max": 6
+              "min": 2,
+              "max": 4
             },
             {
               "stat": "ausdauer",
-              "min": 4,
-              "max": 6
+              "min": 2,
+              "max": 4
             }
           ]
         },
@@ -1772,13 +1772,13 @@
           "pool": [
             {
               "stat": "charisma",
-              "min": 2,
-              "max": 4
+              "min": 1,
+              "max": 3
             },
             {
               "stat": "fokus",
-              "min": 2,
-              "max": 4
+              "min": 1,
+              "max": 3
             }
           ]
         }
@@ -1802,17 +1802,17 @@
           "pool": [
             {
               "stat": "glueck",
-              "min": 4,
-              "max": 7
+              "min": 3,
+              "max": 6
             },
             {
               "stat": "weisheit",
-              "min": 4,
-              "max": 7
+              "min": 3,
+              "max": 6
             },
             {
               "stat": "kraft",
-              "min": 4,
+              "min": 3,
               "max": 6
             }
           ]
@@ -1850,23 +1850,23 @@
         "primary": {
           "count": [
             2,
-            3
+            2
           ],
           "pool": [
             {
               "stat": "glueck",
-              "min": 4,
-              "max": 6
+              "min": 2,
+              "max": 4
             },
             {
               "stat": "kraft",
-              "min": 4,
-              "max": 6
+              "min": 2,
+              "max": 4
             },
             {
               "stat": "ausdauer",
-              "min": 4,
-              "max": 6
+              "min": 2,
+              "max": 4
             }
           ]
         },
@@ -1878,13 +1878,13 @@
           "pool": [
             {
               "stat": "tempo",
-              "min": 2,
-              "max": 4
+              "min": 1,
+              "max": 3
             },
             {
               "stat": "charisma",
-              "min": 2,
-              "max": 4
+              "min": 1,
+              "max": 3
             }
           ]
         }
@@ -1908,17 +1908,17 @@
           "pool": [
             {
               "stat": "glueck",
-              "min": 4,
-              "max": 7
+              "min": 3,
+              "max": 6
             },
             {
               "stat": "kraft",
-              "min": 4,
-              "max": 7
+              "min": 3,
+              "max": 6
             },
             {
               "stat": "ausdauer",
-              "min": 4,
+              "min": 3,
               "max": 6
             }
           ]
@@ -1956,54 +1956,54 @@
         "primary": {
           "count": [
             3,
-            4
+            3
           ],
           "pool": [
             {
               "stat": "kraft",
-              "min": 7,
-              "max": 12
+              "min": 3,
+              "max": 6
             },
             {
               "stat": "weisheit",
-              "min": 6,
-              "max": 9
+              "min": 3,
+              "max": 6
             },
             {
               "stat": "glueck",
-              "min": 6,
-              "max": 8
+              "min": 3,
+              "max": 6
             },
             {
               "stat": "ausdauer",
-              "min": 6,
-              "max": 8
+              "min": 3,
+              "max": 6
             }
           ]
         },
         "minor": {
           "count": [
-            1,
+            2,
             2
           ],
           "pool": [
             {
               "stat": "fokus",
-              "min": 3,
-              "max": 5
+              "min": 2,
+              "max": 4
             },
             {
               "stat": "tempo",
-              "min": 3,
-              "max": 5
+              "min": 2,
+              "max": 4
             }
           ]
         }
       },
       "legendaryEffect": {
         "type": "xp_bonus",
-        "min": 2,
-        "max": 4,
+        "min": 1,
+        "max": 3,
         "label": "Morgenglut: +{value}% Quest-XP"
       }
     },
@@ -2020,49 +2020,49 @@
         "primary": {
           "count": [
             3,
-            4
+            3
           ],
           "pool": [
             {
               "stat": "kraft",
-              "min": 8,
-              "max": 14
+              "min": 3,
+              "max": 6
             },
             {
               "stat": "ausdauer",
-              "min": 6,
-              "max": 9
+              "min": 3,
+              "max": 6
             },
             {
               "stat": "glueck",
-              "min": 6,
-              "max": 8
+              "min": 3,
+              "max": 6
             }
           ]
         },
         "minor": {
           "count": [
-            1,
+            2,
             2
           ],
           "pool": [
             {
               "stat": "fokus",
-              "min": 3,
-              "max": 5
+              "min": 2,
+              "max": 4
             },
             {
               "stat": "tempo",
-              "min": 3,
-              "max": 5
+              "min": 2,
+              "max": 4
             }
           ]
         }
       },
       "legendaryEffect": {
         "type": "gold_bonus",
-        "min": 3,
-        "max": 7,
+        "min": 1,
+        "max": 4,
         "label": "Verschlingen: +{value}% Gold"
       }
     },
@@ -2079,49 +2079,49 @@
         "primary": {
           "count": [
             3,
-            4
+            3
           ],
           "pool": [
             {
               "stat": "ausdauer",
-              "min": 7,
-              "max": 12
+              "min": 3,
+              "max": 6
             },
             {
               "stat": "kraft",
-              "min": 6,
-              "max": 9
+              "min": 3,
+              "max": 6
             },
             {
               "stat": "weisheit",
-              "min": 6,
-              "max": 8
+              "min": 3,
+              "max": 6
             }
           ]
         },
         "minor": {
           "count": [
-            1,
+            2,
             2
           ],
           "pool": [
             {
               "stat": "vitalitaet",
-              "min": 3,
-              "max": 5
+              "min": 2,
+              "max": 4
             },
             {
               "stat": "tempo",
-              "min": 3,
-              "max": 5
+              "min": 2,
+              "max": 4
             }
           ]
         }
       },
       "legendaryEffect": {
         "type": "decay_reduction",
-        "min": 8,
-        "max": 12,
+        "min": 1,
+        "max": 4,
         "label": "Unbeugsam: -{value}% Forge-Decay"
       }
     },
@@ -2138,49 +2138,49 @@
         "primary": {
           "count": [
             3,
-            4
+            3
           ],
           "pool": [
             {
               "stat": "weisheit",
-              "min": 7,
-              "max": 12
+              "min": 3,
+              "max": 6
             },
             {
               "stat": "glueck",
-              "min": 6,
-              "max": 9
+              "min": 3,
+              "max": 6
             },
             {
               "stat": "kraft",
-              "min": 6,
-              "max": 8
+              "min": 3,
+              "max": 6
             }
           ]
         },
         "minor": {
           "count": [
-            1,
+            2,
             2
           ],
           "pool": [
             {
               "stat": "fokus",
-              "min": 3,
-              "max": 5
+              "min": 2,
+              "max": 4
             },
             {
               "stat": "charisma",
-              "min": 3,
-              "max": 5
+              "min": 2,
+              "max": 4
             }
           ]
         }
       },
       "legendaryEffect": {
         "type": "xp_bonus",
-        "min": 3,
-        "max": 6,
+        "min": 1,
+        "max": 4,
         "label": "Erleuchtung: +{value}% Quest-XP"
       }
     },
@@ -2197,41 +2197,41 @@
         "primary": {
           "count": [
             3,
-            4
+            3
           ],
           "pool": [
             {
               "stat": "ausdauer",
-              "min": 6,
-              "max": 10
+              "min": 3,
+              "max": 6
             },
             {
               "stat": "kraft",
-              "min": 6,
-              "max": 9
+              "min": 3,
+              "max": 6
             },
             {
               "stat": "weisheit",
-              "min": 6,
-              "max": 8
+              "min": 3,
+              "max": 6
             }
           ]
         },
         "minor": {
           "count": [
-            1,
+            2,
             2
           ],
           "pool": [
             {
               "stat": "vitalitaet",
-              "min": 3,
-              "max": 5
+              "min": 2,
+              "max": 4
             },
             {
               "stat": "tempo",
-              "min": 3,
-              "max": 5
+              "min": 2,
+              "max": 4
             }
           ]
         }
@@ -2255,41 +2255,41 @@
         "primary": {
           "count": [
             3,
-            4
+            3
           ],
           "pool": [
             {
               "stat": "glueck",
-              "min": 7,
-              "max": 12
+              "min": 3,
+              "max": 6
             },
             {
               "stat": "weisheit",
-              "min": 6,
-              "max": 9
+              "min": 3,
+              "max": 6
             },
             {
               "stat": "ausdauer",
-              "min": 6,
-              "max": 8
+              "min": 3,
+              "max": 6
             }
           ]
         },
         "minor": {
           "count": [
-            1,
+            2,
             2
           ],
           "pool": [
             {
               "stat": "charisma",
-              "min": 3,
-              "max": 5
+              "min": 2,
+              "max": 4
             },
             {
               "stat": "fokus",
-              "min": 3,
-              "max": 5
+              "min": 2,
+              "max": 4
             }
           ]
         }
@@ -2314,49 +2314,49 @@
         "primary": {
           "count": [
             3,
-            4
+            3
           ],
           "pool": [
             {
               "stat": "glueck",
-              "min": 6,
-              "max": 9
+              "min": 3,
+              "max": 6
             },
             {
               "stat": "kraft",
-              "min": 6,
-              "max": 9
+              "min": 3,
+              "max": 6
             },
             {
               "stat": "ausdauer",
-              "min": 6,
-              "max": 8
+              "min": 3,
+              "max": 6
             }
           ]
         },
         "minor": {
           "count": [
-            1,
+            2,
             2
           ],
           "pool": [
             {
               "stat": "tempo",
-              "min": 3,
-              "max": 5
+              "min": 2,
+              "max": 4
             },
             {
               "stat": "charisma",
-              "min": 3,
-              "max": 5
+              "min": 2,
+              "max": 4
             }
           ]
         }
       },
       "legendaryEffect": {
         "type": "gold_bonus",
-        "min": 2,
-        "max": 4,
+        "min": 1,
+        "max": 3,
         "label": "Fernhandel: +{value}% Gold"
       }
     },
@@ -2374,28 +2374,28 @@
         "primary": {
           "count": [
             3,
-            4
+            3
           ],
           "pool": [
             {
               "stat": "kraft",
-              "min": 10,
-              "max": 15
+              "min": 3,
+              "max": 6
             },
             {
               "stat": "weisheit",
-              "min": 7,
-              "max": 10
+              "min": 3,
+              "max": 6
             },
             {
               "stat": "ausdauer",
-              "min": 7,
-              "max": 10
+              "min": 3,
+              "max": 6
             },
             {
               "stat": "glueck",
-              "min": 7,
-              "max": 10
+              "min": 3,
+              "max": 6
             }
           ]
         },
@@ -2407,26 +2407,26 @@
           "pool": [
             {
               "stat": "fokus",
-              "min": 3,
-              "max": 5
+              "min": 2,
+              "max": 4
             },
             {
               "stat": "tempo",
-              "min": 3,
-              "max": 5
+              "min": 2,
+              "max": 4
             },
             {
               "stat": "charisma",
-              "min": 3,
-              "max": 5
+              "min": 2,
+              "max": 4
             }
           ]
         }
       },
       "legendaryEffect": {
         "type": "xp_bonus",
-        "min": 5,
-        "max": 8,
+        "min": 1,
+        "max": 4,
         "label": "Legende: +{value}% Quest-XP"
       }
     },
@@ -2444,41 +2444,41 @@
         "primary": {
           "count": [
             3,
-            4
+            3
           ],
           "pool": [
             {
               "stat": "ausdauer",
-              "min": 8,
-              "max": 14
+              "min": 3,
+              "max": 6
             },
             {
               "stat": "kraft",
-              "min": 7,
-              "max": 10
+              "min": 3,
+              "max": 6
             },
             {
               "stat": "weisheit",
-              "min": 7,
-              "max": 9
+              "min": 3,
+              "max": 6
             }
           ]
         },
         "minor": {
           "count": [
-            1,
+            2,
             2
           ],
           "pool": [
             {
               "stat": "vitalitaet",
-              "min": 3,
-              "max": 5
+              "min": 2,
+              "max": 4
             },
             {
               "stat": "tempo",
-              "min": 3,
-              "max": 5
+              "min": 2,
+              "max": 4
             }
           ]
         }
@@ -2503,49 +2503,49 @@
         "primary": {
           "count": [
             3,
-            4
+            3
           ],
           "pool": [
             {
               "stat": "glueck",
-              "min": 10,
-              "max": 15
+              "min": 3,
+              "max": 6
             },
             {
               "stat": "weisheit",
-              "min": 7,
-              "max": 10
+              "min": 3,
+              "max": 6
             },
             {
               "stat": "ausdauer",
-              "min": 6,
-              "max": 8
+              "min": 3,
+              "max": 6
             }
           ]
         },
         "minor": {
           "count": [
-            1,
+            2,
             2
           ],
           "pool": [
             {
               "stat": "charisma",
-              "min": 3,
-              "max": 5
+              "min": 2,
+              "max": 4
             },
             {
               "stat": "fokus",
-              "min": 3,
-              "max": 5
+              "min": 2,
+              "max": 4
             }
           ]
         }
       },
       "legendaryEffect": {
         "type": "drop_bonus",
-        "min": 2,
-        "max": 4,
+        "min": 1,
+        "max": 3,
         "label": "Vorsehung: +{value}% Drop-Chance"
       }
     },
@@ -2563,36 +2563,36 @@
         "primary": {
           "count": [
             3,
-            4
+            3
           ],
           "pool": [
             {
               "stat": "kraft",
-              "min": 8,
-              "max": 15
+              "min": 3,
+              "max": 6
             },
             {
               "stat": "weisheit",
-              "min": 6,
-              "max": 12
+              "min": 3,
+              "max": 6
             },
             {
               "stat": "glueck",
-              "min": 4,
-              "max": 8
+              "min": 3,
+              "max": 6
             }
           ]
         },
         "minor": {
           "count": [
-            1,
+            2,
             2
           ],
           "pool": [
             {
               "stat": "fokus",
               "min": 2,
-              "max": 5
+              "max": 4
             },
             {
               "stat": "tempo",
@@ -2604,8 +2604,8 @@
       },
       "legendaryEffect": {
         "type": "night_double_gold",
-        "min": 50,
-        "max": 100,
+        "min": 10,
+        "max": 25,
         "label": "Nachtschatten: +{value}% Gold bei Nacht-Quests (23-5 Uhr)"
       }
     },
@@ -2623,36 +2623,36 @@
         "primary": {
           "count": [
             3,
-            4
+            3
           ],
           "pool": [
             {
               "stat": "kraft",
-              "min": 6,
-              "max": 12
+              "min": 3,
+              "max": 6
             },
             {
               "stat": "ausdauer",
-              "min": 6,
-              "max": 10
+              "min": 3,
+              "max": 6
             },
             {
               "stat": "weisheit",
-              "min": 4,
-              "max": 8
+              "min": 3,
+              "max": 6
             }
           ]
         },
         "minor": {
           "count": [
-            1,
+            2,
             2
           ],
           "pool": [
             {
               "stat": "fokus",
               "min": 2,
-              "max": 5
+              "max": 4
             },
             {
               "stat": "charisma",
@@ -2664,8 +2664,8 @@
       },
       "legendaryEffect": {
         "type": "every_nth_bonus",
-        "min": 25,
-        "max": 50,
+        "min": 10,
+        "max": 25,
         "label": "Rhythmus: Jede 5. Quest gibt +{value}% Bonus-XP"
       }
     },
@@ -2683,36 +2683,36 @@
         "primary": {
           "count": [
             3,
-            4
+            3
           ],
           "pool": [
             {
               "stat": "ausdauer",
-              "min": 8,
-              "max": 15
+              "min": 3,
+              "max": 6
             },
             {
               "stat": "kraft",
-              "min": 4,
-              "max": 8
+              "min": 3,
+              "max": 6
             },
             {
               "stat": "weisheit",
-              "min": 4,
-              "max": 8
+              "min": 3,
+              "max": 6
             }
           ]
         },
         "minor": {
           "count": [
-            1,
+            2,
             2
           ],
           "pool": [
             {
               "stat": "vitalitaet",
-              "min": 3,
-              "max": 6
+              "min": 2,
+              "max": 4
             },
             {
               "stat": "tempo",
@@ -2743,36 +2743,36 @@
         "primary": {
           "count": [
             3,
-            4
+            3
           ],
           "pool": [
             {
               "stat": "weisheit",
-              "min": 8,
-              "max": 14
+              "min": 3,
+              "max": 6
             },
             {
               "stat": "glueck",
-              "min": 6,
-              "max": 10
+              "min": 3,
+              "max": 6
             },
             {
               "stat": "kraft",
-              "min": 4,
-              "max": 8
+              "min": 3,
+              "max": 6
             }
           ]
         },
         "minor": {
           "count": [
-            1,
+            2,
             2
           ],
           "pool": [
             {
               "stat": "charisma",
               "min": 2,
-              "max": 5
+              "max": 4
             },
             {
               "stat": "fokus",
@@ -2784,8 +2784,8 @@
       },
       "legendaryEffect": {
         "type": "material_double",
-        "min": 15,
-        "max": 30,
+        "min": 1,
+        "max": 4,
         "label": "Midas-Griff: +{value}% Chance auf doppelte Materialien"
       }
     },
@@ -2803,18 +2803,18 @@
         "primary": {
           "count": [
             3,
-            4
+            3
           ],
           "pool": [
             {
               "stat": "weisheit",
-              "min": 8,
-              "max": 15
+              "min": 3,
+              "max": 6
             },
             {
               "stat": "glueck",
-              "min": 4,
-              "max": 8
+              "min": 3,
+              "max": 6
             },
             {
               "stat": "fokus",
@@ -2825,14 +2825,14 @@
         },
         "minor": {
           "count": [
-            1,
+            2,
             2
           ],
           "pool": [
             {
               "stat": "charisma",
               "min": 2,
-              "max": 5
+              "max": 4
             },
             {
               "stat": "tempo",
@@ -2844,8 +2844,8 @@
       },
       "legendaryEffect": {
         "type": "variety_bonus",
-        "min": 3,
-        "max": 5,
+        "min": 1,
+        "max": 4,
         "label": "Polyglott: +{value}% XP pro verschiedenem Quest-Typ heute"
       }
     }
