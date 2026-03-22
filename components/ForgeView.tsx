@@ -694,7 +694,6 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                       }}
                       disabled={!canAfford || buyingUpgrade === up.id}
                       className="forge-btn text-xs px-2.5 py-1 rounded-lg font-semibold flex-shrink-0"
-                      title={!canAfford ? "Not enough gold or materials" : "Purchase upgrade"}
                       style={{
                         background: canAfford ? "rgba(168,85,247,0.2)" : "rgba(255,255,255,0.03)",
                         color: canAfford ? "#a78bfa" : "rgba(255,255,255,0.2)",
