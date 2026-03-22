@@ -443,7 +443,7 @@ export default function RiftView({ onRefresh }: { onRefresh?: () => void }) {
           {tiers.mythic && (
             <div className="space-y-1 text-xs text-w35">
               <div className="flex justify-between"><span>Stages</span><span className="font-mono text-w50">{tiers.mythic.questCount}</span></div>
-              <div className="flex justify-between"><span>Time Limit</span><span className="font-mono text-w50">{tiers.mythic.timeLimitHours}h</span></div>
+              <div className="flex justify-between"><span>Time Limit</span><span className="font-mono text-w50">{Math.max(18, 30 - selectedMythicLevel * 1.5)}h</span></div>
               <div className="flex justify-between"><span>Fail Cooldown</span><span className="font-mono text-w50">{tiers.mythic.failCooldownDays}d</span></div>
             </div>
           )}
