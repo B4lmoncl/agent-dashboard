@@ -2430,4 +2430,53 @@ Comprehensive deep audit of all new features (dungeons, world boss, gems, compan
 
 ---
 
+## 33. Frontend-Backend Consistency Deep Audit — Session 17 (2026-03-22)
+
+### 33.1 Critical Bugs Found & Fixed
+
+| # | Bug | Severity | File(s) | Fix | Commit |
+|---|-----|----------|---------|-----|--------|
+| 1 | **Gem upgrade sends wrong param** — frontend sent `{ gemId: "ruby" }` but backend expects `{ gemKey: "ruby_1" }` — upgrade never worked | **CRITICAL** | `CharacterView.tsx` | Use `gemKey` from grouped entries instead of `gem.id` | `123168a` |
+| 2 | **Gem socket sends wrong params** — sent `{ itemId }` but backend expects `{ instanceId, gemKey }` — socket never worked | **CRITICAL** | `CharacterView.tsx` | Send `{ instanceId, socketIndex, gemKey }` with first available gem | `123168a` |
+| 3 | **Gem unsocket sends wrong param** — sent `{ itemId }` but backend expects `{ instanceId }` | **CRITICAL** | `CharacterView.tsx` | Change to `{ instanceId, socketIndex }` | `123168a` |
+| 4 | **Backend /api/gems missing socketedGems** — frontend expected equipped gear socket data but backend didn't return it | **CRITICAL** | `routes/gems.js` | Build socketedGems from equipped gear in GET /api/gems response | `123168a` |
+| 5 | **Missing /api/world-boss/history endpoint** — frontend fetched but got 404; boss history never displayed | **HIGH** | `routes/world-boss.js` | Add GET endpoint returning last 20 bosses with template enrichment | `123168a` |
+| 6 | **Unsocket cost hardcoded "50g"** — if backend cost changes, UI lies | **MEDIUM** | Both files | Backend now returns `unsocketCost` in /api/gems; frontend reads it | `123168a` |
+
+### 33.2 LYRA-PLAYBOOK Expansion
+
+Added 5 completely missing sections + comprehensive game mechanics reference:
+- **Rituals & Vows** (Section 30): Schema, frequency, streak tracking, Battle Pass XP
+- **Campaigns** (Section 31): NPC schema, sequential quest chains
+- **Quest Flavor Text** (Section 32): Schema, categories, moods
+- **Changelog Entries** (Section 33): Versioning schema
+- **Game Mechanics Reference** (Section 34): All backend formulas (gem system, dungeon success, world boss damage, gacha pity, companion expeditions)
+
+Updated Content Generation Checklist (entries 35-40) and Priority Content list.
+
+### 33.3 Verification Status
+
+All previous fixes from Sessions 15-16 verified clean by parallel subagents:
+- Dungeon system: all 9 checks passed
+- World boss: all 4 checks passed
+- Gems: all 3 checks passed
+- Companion expeditions: all 8 checks passed
+
+### 33.4 Remaining Known Issues
+
+| # | Issue | Severity | Notes |
+|---|-------|----------|-------|
+| 1 | Gem socket UI has no gem picker modal | LOW | Currently auto-picks first available gem; should let user choose |
+| 2 | Companion Expeditions have no frontend UI | MEDIUM | Backend complete; needs CompanionsWidget integration |
+| 3 | WorldBossView initial fetch silently fails | LOW | Shows loading skeleton; no error feedback |
+
+### 33.5 Changelog (Session 17)
+
+| Commit | Timestamp | Description |
+|--------|-----------|-------------|
+| `123168a` | 2026-03-22 | Fix: Gem UI broken params + missing socketedGems + world boss history |
+| `fcb3ec6` | 2026-03-22 | Expand LYRA-PLAYBOOK: 5 new sections + game mechanics reference |
+
+---
+
 *End of Audit Report — Updated 2026-03-22*
