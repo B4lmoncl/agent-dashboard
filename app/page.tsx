@@ -119,6 +119,9 @@ export default function Dashboard() {
   const [weeklyChallenge, setWeeklyChallenge] = useState<import("@/app/types").WeeklyChallenge | null>(null);
   const [expedition, setExpedition] = useState<import("@/app/types").Expedition | null>(null);
   const [socialBadge, setSocialBadge] = useState<{ pendingFriendRequests: number; unreadMessages: number; activeTrades: number } | null>(null);
+  const [worldBossActive, setWorldBossActive] = useState(false);
+  const [riftActive, setRiftActive] = useState(false);
+  const [dungeonActive, setDungeonActive] = useState(false);
   const [todayOpen, setTodayOpen] = useState(false);
   const [profilePlayerId, setProfilePlayerId] = useState<string | null>(null);
   const [dailyMissions, setDailyMissions] = useState<{ missions: { id: string; label: string; points: number; done: boolean }[]; earned: number; total: number; milestones: { threshold: number; reward: Record<string, number>; claimed: boolean }[] } | null>(null);
@@ -359,6 +362,9 @@ export default function Dashboard() {
       if (batch.expedition !== undefined) setExpedition(batch.expedition || null);
       if (batch.socialSummary) setSocialBadge(batch.socialSummary);
       if (batch.dailyMissions) setDailyMissions(batch.dailyMissions);
+      if (batch.worldBossActive !== undefined) setWorldBossActive(!!batch.worldBossActive);
+      if (batch.riftActive !== undefined) setRiftActive(!!batch.riftActive);
+      if (batch.dungeonActive !== undefined) setDungeonActive(!!batch.dungeonActive);
     } else {
       // Fallback: individual fetches if batch endpoint not available
       const [a, q, u, lb, ac, camps] = await Promise.all([fetchAgents(), fetchQuests(pName || undefined), fetchUsers(), fetchLeaderboard(), fetchAchievementCatalogue(), fetchCampaigns()]);
@@ -2002,12 +2008,12 @@ export default function Dashboard() {
           onClaimDailyBonus={() => { setClaimingDailyBonus(true); }}
           inProgressCount={quests.inProgress.length}
           weeklyChallenge={weeklyChallenge ? { stagesCompleted: weeklyChallenge.stages?.filter((s: { completed?: boolean }) => s.completed).length ?? 0 } : null}
-          worldBossActive={false}
-          riftActive={false}
+          worldBossActive={worldBossActive}
+          riftActive={riftActive}
           vowCount={rituals.filter(r => r.isAntiRitual).length}
           socialBadge={socialBadge}
           expeditionActive={!!expedition}
-          dungeonActive={false}
+          dungeonActive={dungeonActive}
           onClaimMilestone={async (threshold) => {
             try {
               const { getAuthHeaders } = await import("@/lib/auth-client");

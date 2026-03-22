@@ -738,6 +738,7 @@ export default function DungeonView({ onRefresh, onRewardCelebration }: { onRefr
                     border: `1px solid ${canEnter ? `${d.accent}40` : "rgba(255,255,255,0.06)"}`,
                     cursor: canEnter ? "pointer" : "not-allowed",
                   }}
+                  title={locked ? `Requires Level ${d.minLevel}` : onCd ? `Cooldown: ${timeLeft(d.cooldown.remainingMs || 0)}` : "Create a dungeon run"}
                 >
                   {locked ? "Locked" : onCd ? "On Cooldown" : "Create Run"}
                 </button>
