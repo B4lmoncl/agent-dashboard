@@ -44,9 +44,11 @@ function isItemEquipped(u, instanceId) {
 /** Validate that a player owns and can trade the specified items. Returns { ok, error, items }. */
 function validateTradeItems(u, uid, itemInstanceIds) {
   if (!Array.isArray(itemInstanceIds) || itemInstanceIds.length === 0) return { ok: true, items: [] };
+  // Deduplicate to prevent trading the same item twice
+  const uniqueIds = [...new Set(itemInstanceIds)];
   const inv = u.inventory || [];
   const resolved = [];
-  for (const instanceId of itemInstanceIds) {
+  for (const instanceId of uniqueIds) {
     const item = inv.find(i => i.id === instanceId);
     if (!item) {
       return { ok: false, error: `Item ${instanceId} not found in ${uid}'s inventory` };
