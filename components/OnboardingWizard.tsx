@@ -678,7 +678,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
                       >
                         <div className="flex items-center gap-1.5 mb-1">
                           {vc.iconSrc
-                            ? <img src={vc.iconSrc} alt={vc.name} width={32} height={32} style={{ imageRendering: "auto", borderRadius: 4, objectFit: "cover" }} />
+                            ? <img src={vc.iconSrc} alt={vc.name} width={32} height={32} style={{ imageRendering: "auto", borderRadius: 4, objectFit: "cover" }} onError={e => { e.currentTarget.style.display = "none"; }} />
                             : <span className="text-2xl">{vc.emoji}</span>
                           }
                           <span className="text-xs px-1.5 py-0.5 rounded-full font-semibold" style={{ background: "rgba(167,139,250,0.12)", color: "#a78bfa" }}>{vc.trait}</span>
