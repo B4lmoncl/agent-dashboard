@@ -150,6 +150,80 @@ server.js             # Express entry point, boot sequence (~322 lines)
 - **After state.quests.push(q):** Always add `state.questsById.set(q.id, q)`
 - **After state.quests reassignment:** Always call `rebuildQuestsById()`
 
+## UI Design Guidelines
+
+These rules ensure visual consistency across all features. Follow them for EVERY new component, modal, or UI element.
+
+### Typography & Sizing
+- **Minimum font size:** 12px (`text-xs`) for any readable text — never go below
+- **Headers:** `text-sm font-bold` or `text-lg font-bold` — use visual hierarchy (larger = more important)
+- **Stat values:** `text-2xl font-bold font-mono` for hero numbers (XP, Gold, Level)
+- **Labels:** `text-xs uppercase tracking-widest text-w30` for category labels
+
+### Colors & Theme
+- **Background base:** `#111318` (--background)
+- **Text primary:** `#e8e8e8` (--foreground), secondary: `text-w40` (40% opacity), tertiary: `text-w25`
+- **Accent:** `#ff4444` (--accent)
+- **Rarity colors:** common `#9ca3af`, uncommon `#22c55e`, rare `#3b82f6`, epic `#a855f7`, legendary `#f97316`
+- **Stat names** (Kraft, Weisheit, etc.) are German game-world proper nouns — do NOT translate
+- **Currency names** (Runensplitter, Sternentaler, etc.) are German proper nouns — do NOT translate
+
+### Interactive Elements
+- **Buttons:** Always use `cursor: pointer` when enabled, `cursor: not-allowed` + dimmed opacity when disabled
+- **Disabled buttons:** Must show WHY disabled via `title` tooltip (e.g., "Need 15 more Runensplitter")
+- **Loading states:** Show "Action…" text or spinner during API calls; disable button to prevent double-clicks
+- **Destructive actions** (discard, dismantle, abandon): Always require 2-step confirmation dialog
+- **Click targets:** Minimum 32px height for buttons (`py-2` minimum)
+
+### Feedback & Celebrations
+- **Reward celebration popup** (`RewardCelebration`): Use for ALL flows where player gains XP, gold, items, titles, or currencies (quests, rituals, vows, battle pass, factions, world boss, dungeons, companions, challenges)
+- **Toast notifications** (`addToast`): Use for small confirmations (daily mission milestone, shop purchase, settings saved)
+- **Inline result text:** Use only for repetitive actions (crafting, recipe learn) where a popup would be annoying
+- **Error feedback:** Always show error messages — never silently fail. Auto-dismiss errors after 5 seconds
+
+### Tooltips
+- **GameTooltip system** (`<Tip k="...">` / `<TipCustom>`): Use for stats, currencies, systems, section headers
+- **Heading tooltips** (`heading` prop): Centered alignment, dotted underline, golden loading bar on hover
+- **Inline tooltips:** Subtle opacity shift on hover, 800ms delay
+- **HTML `title` attribute:** Only for simple action buttons (Delete, Claim) and dynamic data — NOT for system explanations
+- **Every stat, currency icon, and system mechanic** visible to the player should have a tooltip explaining what it does
+
+### Modals
+- **All modals** must use `useModalBehavior` hook (ESC to close, body scroll lock)
+- **Backdrop:** Use `modal-backdrop` class (atmospheric radial gradient + blur)
+- **Close button:** Top-right, minimum `w-8 h-8` with hover feedback
+- **Click-outside-to-close:** Required for all modals (via `e.target === e.currentTarget` or ModalPortal)
+- **Z-index:** Modals use `z-[100]`–`z-[200]`; tooltips use `z-[10100]+` (always above modals)
+
+### Visual Depth (RPG Style)
+- **Cards:** Use `inset shadow` for embossed/pressed depth (inset top highlight + inset bottom shadow)
+- **Progress bars:** Use `progress-bar-diablo` class (7px, beveled, segment marks, pulse at >90%)
+- **Stat cards:** Use `stat-card-depth` class (radial gradient + inset shadows)
+- **Quest cards:** Use `quest-card-emboss` class (grain overlay + inset depth)
+- **Rarity indicators:** Glowing top accent bar (`box-shadow` with rarity color) on cards/items
+
+### Animations & Transitions
+- **View transitions:** `tab-content-enter` class on all view wrappers (0.3s slide-up fade-in)
+- **Reward popups:** `reward-burst-enter` class (scale bounce-in)
+- **Skeleton loading:** `skeleton-pulse` animation for placeholder cards during data fetch
+- **Hover effects:** Subtle `translateY(-2px)` lift + enhanced `boxShadow` on cards
+- **No jarring layout shifts:** Use fixed dimensions or min-height on containers that load async data
+
+### Images
+- **Rendering:** `image-rendering: smooth` everywhere (class `img-render-auto`)
+- **Fallback:** Always add `onError` handler to hide broken images gracefully
+- **Alt text:** Required for meaningful images; empty `alt=""` for decorative icons
+
+### Consistency Checklist (for new features)
+1. Does every action give visual feedback (loading → success/error)?
+2. Does every number/stat have a tooltip explaining what it means?
+3. Do destructive actions require confirmation?
+4. Does the new view use `tab-content-enter` animation?
+5. Do modals use `useModalBehavior`?
+6. Are disabled buttons styled with `cursor: not-allowed` + tooltip?
+7. Is minimum font size 12px?
+8. Do reward flows trigger a celebration popup or toast?
+
 ## Environment Variables
 
 | Variable | Purpose |
