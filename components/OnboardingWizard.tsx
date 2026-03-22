@@ -268,12 +268,12 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
                 key={i}
                 className="rounded-full transition-all duration-300 flex-1"
                 style={{
-                  height: 3,
+                  height: i <= step ? 4 : 3,
                   background: i === step
                     ? "#a78bfa"
                     : i < step
-                      ? "rgba(167,139,250,0.5)"
-                      : "rgba(255,255,255,0.08)",
+                      ? "#a78bfa"
+                      : "rgba(255,255,255,0.1)",
                 }}
               />
             ))}

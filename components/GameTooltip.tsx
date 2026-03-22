@@ -1202,7 +1202,7 @@ export function GameTooltip({ k, entry: directEntry, children, align: alignProp,
               position: "absolute",
               top: pos.top,
               left: pos.left,
-              zIndex: 9950 + depth * 10,
+              zIndex: 10100 + depth * 10,
               borderColor: resolvedEntry.accent ? `${resolvedEntry.accent}30` : undefined,
             }}
             onMouseEnter={handleTooltipEnter}

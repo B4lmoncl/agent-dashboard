@@ -148,8 +148,8 @@ export default function HonorsView({ catalogue, highlightedAchievementId, onHigh
                             <span className="text-2xl" style={{ filter: "grayscale(1) brightness(0.5)" }}>?</span>
                           </div>
                           <div className="flex-1 min-w-0">
-                            <p className="text-xs font-semibold" style={{ color: "rgba(255,255,255,0.25)" }}>??? Hidden Achievement</p>
-                            <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.12)" }}>Unlock to reveal...</p>
+                            <p className="text-xs font-semibold" style={{ color: "rgba(255,255,255,0.45)" }}>??? Hidden Achievement</p>
+                            <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.25)" }}>Unlock to reveal...</p>
                           </div>
                         </div>
                       </div>
