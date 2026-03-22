@@ -1,6 +1,6 @@
 # Quest Hall — Codebase Audit Report
 
-> Last updated: 2026-03-22 · v1.5.3 · Sessions 1–26
+> Last updated: 2026-03-22 · v1.5.3 · Sessions 1–27
 
 ---
 
@@ -280,23 +280,7 @@ Quest completion, daily bonus, rituals, vows, battle pass, factions, world boss,
 | Reward burst animation | `RewardCelebration.tsx`, `globals.css` | Scale bounce-in + atmospheric backdrop |
 | Enhanced tab transitions | `globals.css` | 10px translateY, 0.3s cubic-bezier |
 
-### Tooltip Registry Completed
-
-Added 3 missing entries: `gear_score`, `collection_log`, `mythic_rift`. All displayed game mechanics now have tooltip coverage.
-
-### UI Design Guidelines
-
-Added comprehensive design rules to `CLAUDE.md`: typography, colors, interactions, feedback, tooltips, modals, visual depth, animations, 8-point consistency checklist.
-
-### Changelog
-
-| Commit | Description |
-|--------|-------------|
-| `4ef0663` | Visual overhaul: quest emboss, Diablo bars, stat depth, atmospheric modals |
-| `0db1930` | UI Design Guidelines in CLAUDE.md |
-| `e6a60f9` | Compress AUDIT_REPORT.md (2938 → 270 lines) |
-| `be52d3e` | System-wide atmospheric modals + Diablo bars on factions/battlepass/campaigns |
-| `4ddacac` | Missing tooltip registry entries: gear_score, collection_log, mythic_rift |
+Also: 3 tooltip registry entries added, UI Design Guidelines added to CLAUDE.md.
 
 ---
 
@@ -362,6 +346,63 @@ Session 25 added 12 legendary effect types to `getLegendaryModifiers()` and 12 c
 - Level system (50 levels, XP thresholds match frontend/backend)
 - Server boot sequence (proper initialization order)
 - Campaign, currency, social, gacha, shop, integration routes
+
+## 9. Session 27 — Full Codebase Audit + Today Drawer Overhaul (2026-03-22)
+
+### Today Drawer Visual Overhaul
+
+Complete redesign of TodayDrawer.tsx with 13 new visual features:
+- 2-column mini-card grid layout (replacing flat list rows)
+- Centered level ring with animated glow trail + mini companion avatar
+- Streak flame SVG (CSS animated, color scales with streak days)
+- Forge ember particles (rising from temp bar, intensity scales)
+- Floating mote particles (time-of-day colored) + night stars
+- Time-of-day ambient backgrounds (4 gradients)
+- SVG progress arc with category segment dots (replacing flat bar)
+- Staggered card entry animation + magic divider particles
+- Reward badges with currency icons
+- Custom SVG calendar icon (replacing 📅 emoji)
+
+5 self-audit rounds cleaned: dead CSS, animation conflicts, gradient IDs, cursor guidelines, font size minimums.
+
+### Full Codebase Audit Findings & Fixes
+
+3 parallel agents scanned ~35k lines: frontend UI guidelines, backend routes, frontend-backend consistency.
+
+| Commit | Severity | Fix |
+|--------|----------|-----|
+| `a383f8e` | CRITICAL | `factions.js:216` undefined `uid` → `user.id` (ReferenceError on every faction rep gain) |
+| `a383f8e` | CRITICAL | `challenges-weekly.js:113` undefined `userId` → `u.id` (ReferenceError on star calculation) |
+| `a383f8e` | HIGH | Gold desync in 5 routes: dungeons, rituals, shop-equip, crafting learn+craft — `u.gold` not synced with `u.currencies.gold` |
+| `71e1bea` | CRITICAL | DungeonView Cancel Run: added 2-step confirmation (was single-click destructive action) |
+| `71e1bea` | CRITICAL | ChallengesView Sternenpfad stage claim: added RewardCelebration (was silently refreshing) |
+| `98a2689` | HIGH | Disabled button `cursor:not-allowed` + `title` tooltips in RiftView, TavernView, DungeonView, ChallengesView |
+| `f4f8d55` | HIGH | Missing `<img>` onError handlers in CharacterView (11), GachaView, GachaPull, LeaderboardView, CompanionsWidget |
+| `5d850b4` | MEDIUM | Rift tooltip difficulty values wrong (hardcoded "1x/2x/3.5x" → computed formula matching backend) |
+| `5d850b4` | MEDIUM | Rift Mythic tooltip "+0.25x per level" → "+0.3x" (matches `mythicLevel * 0.3` in backend) |
+| `5d850b4` | MEDIUM | Challenge 9-star milestone label missing 150 Gold from reward description |
+| `5d850b4` | MEDIUM | Login error responses return 401 instead of 200 (3 auth paths) |
+
+### Known Remaining (Low/Cosmetic — Not Fixed)
+
+| Item | Reason Not Fixed |
+|------|-----------------|
+| ForgeView hardcoded WORKSHOP_TIERS | Values match backend, would need API refactor to fetch |
+| World Boss tooltip omits gear score multiplier | Simplified, not inaccurate |
+| `npcs-misc.js` feedback endpoint no auth | Admin-only feature, 500-entry cap, text validation exists |
+| `agents.js` NaN propagation on numeric inputs | Agent API is internal-only, not player-facing |
+| `config-admin.js` uses UTC date instead of Berlin for daily bonus check | Edge case near midnight, dashboard is informational only |
+| Small click targets in SocialView, ChallengesView star buttons | Would require layout redesign |
+
+### Systems Verified Clean
+
+- World Boss: all data from API, tooltips accurate
+- Dungeons: success formula matches, data from API
+- Battle Pass: all data from API, no mismatches
+- Factions: all data from API (backend bug was the only issue, now fixed)
+- Gacha: pity counters + rates from API, tooltips match
+- Gems: all data from API, unsocket cost matches
+- Crafting: all data from API (except workshop tiers — values match)
 
 ---
 
