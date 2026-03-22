@@ -1,4 +1,4 @@
-# Lyra Playbook — Content Creation Guide
+# Lyra Playbook — Content Creation Guide & Lore Bible
 
 > Mechanisches Handbuch für LLMs, die neuen Content (NPCs, Quests, Items, Gear etc.) ins System einspeisen. Dieses Dokument beschreibt WO und WIE — nicht WAS. Den Content selbst bestimmst du.
 
@@ -2095,3 +2095,165 @@ Die Berufs-NPCs aus `professions.json` referenzieren Portraits die nicht existie
 | Season Templates | `public/data/seasonTemplates.json` | Nein |
 | Ritual/Vow Templates | `public/data/ritualVowTemplates.json` | Nein |
 | GameTooltip Registry | `components/GameTooltip.tsx` | Ja (Code-Änderung) |
+
+---
+
+## Lore Bible — Quest Hall World Building
+
+> **⚠️ DO NOT MODIFY THIS SECTION. Claude Code darf diese Sektion NIEMALS erweitern, kürzen oder verändern — außer der User sagt es EXPLIZIT. Diese Lore Bible ist die kanonische Quelle für die Welt von Quest Hall und wird ausschließlich vom User gepflegt.**
+
+### Welt: Aethermoor
+- Kosmisch + geerdet. Sterne sind Knotenpunkte des Aetherstroms, nicht nur Deko
+- Alt, geschichtet, voller Narben vergangener Zeitalter
+- Magie = Aetherstrom. Nicht "Hokuspokus" sondern eine Naturkraft die man *verhandelt*
+- Aktuelles Zeitalter: **Wiederkehr** — Risse öffnen sich, Dungeons erwachen, neue Helden nötig
+
+### Tone
+
+**So klingt Quest Hall:**
+- **Poetisch aber nicht kitschig.** Kingkiller Chronicle Vibe, nicht Herr der Ringe Pathos
+- **Trocken humorvoll.** Syl aus Stormlight, Scheibenwelt-Fußnoten-Energie
+- **Ernst wenn's drauf ankommt.** Frieren-Momente: leise, melancholisch, überraschend tief
+- **Zugänglich.** Kein "Prithee, good sir" — eher wie ein kluger Freund der Fantasy liebt
+- **Deutsch.** Alle In-Game Texte deutsch. Raumnamen englisch (The Great Hall, The Arcanum etc.)
+
+**Beispiel-Sätze nach Stimmung:**
+
+**Episch:**
+- "Der Aetherstrom pulsiert. Die Halle hat auf dich gewartet."
+- "Hinter dem Tor liegen Welten, die noch keinen Namen tragen."
+
+**Humorvoll:**
+- "Die Bibliothek beißt zurück. Buchstäblich. Handschuhe empfohlen."
+- "Oma Ilse hat Kekse mitgebracht. Die letzte Heldin die abgelehnt hat, wurde nie wieder gesehen."
+
+**Melancholisch:**
+- "Manche Quests enden nicht mit Fanfaren. Manche enden mit Stille und der Erkenntnis, dass man gewachsen ist."
+- "Die Sterne erinnern sich an jeden Helden. Auch an die, die niemand sonst kennt."
+
+**Ermutigend:**
+- "Du bist hier. Das ist schon mehr als die meisten schaffen."
+- "Jeder Streak begann mit Tag Eins. Auch die legendären."
+
+**Mysteriös:**
+- "Die Sternenwächterin schweigt heute. Das ist selten. Und selten ist selten gut."
+- "Im tiefsten Gewölbe der Schmiede hört man manchmal einen Hammerschlag. Niemand weiß, wer schmiedet."
+
+### Sprach-Regeln
+
+**IMMER:**
+- Spieler = "Wanderer" oder "Held/Heldin" (nie "User")
+- Quests = "Aufträge" oder "Herausforderungen"
+- Tod/Failure = "Scheitern" oder "Fallen" (nie "Game Over")
+- Die Halle lebt, atmet, hat Vorlieben
+- Lyra ist weise aber nie belehrend, frech aber nie gemein
+
+**NIE:**
+- Modern/Corporate Sprache ("Optimiere deine Produktivität!")
+- Cringe-Fantasy ("Grüße, edler Recke!")
+- Passive Stimme wo aktive geht
+- Zu viele Ausrufezeichen!!!
+- Erklärungen die niemand braucht
+
+### Quest-Generierung
+
+**Template:**
+```
+Titel: [Emoji] [Evokativ, nicht beschreibend] — [Untertitel]
+Flavor: [1-2 Sätze Lore/Atmosphäre, in-universe]
+Aufgabe: [Klar, konkret, machbar]
+Rewards: XP, Gold, ggf. Items
+Rarity: Common/Uncommon/Rare/Epic/Legendary
+Tags: classRequired?, minLevel, category
+```
+
+**Quest-Kategorien + Flavor-Vibes:**
+
+| Kategorie | Vibe | Beispiel-Flavor |
+|-----------|------|-----------------|
+| Personal | Warm, ermutigend | "Nicht jede Heldentat findet auf dem Schlachtfeld statt." |
+| Learning | Neugierig, geheimnisvoll | "Wissen ist die schärfste Klinge — und die Bibliothek hat heute geöffnet." |
+| Fitness | Kraftvoll, direkt | "Dein Körper ist deine erste Rüstung. Schmiede sie." |
+| Social | Herzlich, verbindend | "Kein Held wandert allein. Selbst die Sterne leuchten in Gruppen." |
+| Co-op | Episch, zusammen | "Manche Tore öffnen sich nur für zwei Schlüssel gleichzeitig." |
+
+**Rarity-Scaling:**
+
+| Rarity | Quest-Dauer | Rewards | Flavor |
+|--------|------------|---------|--------|
+| Common | 15min-1h | 10-15 XP, 5-10 Gold | Kurz, alltäglich |
+| Uncommon | 1-3h | 20-30 XP, 15-25 Gold | Etwas mehr Lore |
+| Rare | 3h-1 Tag | 40-60 XP, 30-50 Gold | Eigene kleine Geschichte |
+| Epic | Mehrere Tage | 80-120 XP, 60-100 Gold | Narrative Arc |
+| Legendary | 1+ Wochen | 150+ XP, 100+ Gold, Item | Volle Quest-Story |
+
+### Kampagnen-Generierung
+
+**Regeln:**
+- Quests bauen aufeinander auf (Quest 3 braucht was man in Quest 2 gelernt hat)
+- Schwierigkeit steigt graduell
+- Letzte Quest = Boss Quest (schwer, episch, besondere Belohnung)
+- Flavor-Text jeder Quest referenziert den Kampagnen-Bogen
+- Lyra vergibt Kampagnen persönlich ("Die Sternenwächterin hat dich rufen lassen...")
+
+### NPCs — Personality Quick Reference
+
+| NPC | Rarity | Vibe | Spricht wie... |
+|-----|--------|------|----------------|
+| Oma Ilse | Common | Warm, weise, Kekse | Deine Lieblings-Oma |
+| Karim | Uncommon | Gewürze, Geschichten, Handel | Händler auf einem Basar |
+| Finnegan | Uncommon | Laut, chaotisch, gut gemeint | Der Kumpel der immer Ärger macht |
+| Sable Nachtwind | Rare | Mysteriös, diebisch, ehrlich | Kaz Brekker lite |
+| Mirael | Legendary | Formell, alt, mächtig | Gandalf trifft Dumbledore |
+| Lyra (NPC) | Permanent | Frech, weise, nie belehrend | Syl + Cortana + Spice |
+
+### Währungen — In-Game Flavor
+
+| Währung | Kurz | In Flavor-Text |
+|---------|------|----------------|
+| Gold 🪙 | Gold | "das ehrliche Metall", "Münzen" |
+| Astralium ✨ | Astralium | "geronnenes Sternenlicht", "Kristalle" |
+| Essenz 🔥 | Essenz | "der stille Trank", "Bernstein der Beständigkeit" |
+| Runensplitter 💎 | Splitter | "Echos der vergessenen Sprache" |
+| Gildentaler 🤝 | Taler | "Zeichen des Zusammenhalts" |
+| Mondstaub 🌙 | Mondstaub | "Atem der Konzentration" |
+
+### Checkliste: Bevor Content generiert wird
+
+1. Passt der Tone? (Kingkiller, nicht Herr der Ringe)
+2. Ist es deutsch? (außer Raumnamen)
+3. Referenziert es die Welt? (Aethermoor, Aetherstrom, die Halle)
+4. Kein Spoiler für zukünftige Lore?
+5. Passt die Rarity zur Schwierigkeit?
+6. Hat die Quest einen classRequired Tag wenn nötig?
+7. Wäre ICH (als Spieler) motiviert das zu machen?
+
+### Easter Eggs & Referenzen
+
+**Philosophie:**
+- Referenzen sollen **subtil** sein — wer das Werk kennt, schmunzelt. Wer nicht, merkt nichts.
+- NIE direkte Zitate oder Namen kopieren. Immer in-universe umformulieren.
+- Easter Eggs in: Quest-Flavor, NPC-Dialogen, Item-Beschreibungen, Raum-Details, Achievements
+
+**Quellen & Anspielungen:**
+
+- **Skulduggery Pleasant** — Trockener Humor in Kampfsituationen. "Manche Helden tragen ihr Grinsen als Maske."
+- **Cosmere / Brandon Sanderson** — Ehrensprüche als Quest-Titel. "Der wichtigste Schritt ist immer der nächste."
+- **Königsmörder-Chronik (Patrick Rothfuss)** — Der GESAMTE Tone ist von Kvothe inspiriert. Musik/Geschichten als Machtsystem.
+- **Frieren** — Leise, melancholische Quest-Texte über Vergänglichkeit. Lyra selbst hat Frieren-Vibes (unsterblich, Schwierigkeiten mit der Kürze sterblicher Leben).
+- **Solo Leveling** — Das Tor der Quest Hall = direkte Inspiration. "Hinter dem Tor wartet etwas."
+- **Honkai Star Rail / Genshin Impact** — Gacha, Companion-Bonding, sternenbezogene Lore.
+- **Scheibenwelt (Terry Pratchett)** — Fußnoten-Energie in Tooltip-Texten. "Die Bibliothek hat einen eigenen Willen."
+- **Dunkler Turm (Stephen King)** — "Die Welt ist weitergezogen" für verlassene Dungeons. Schicksals-Thematik.
+- **Critical Role / D&D** — NPC-Dialoge die sich anfühlen wie ein DM der improvisiert.
+- **Dungeons and Daddies** — Chaotische Dad-Energie, emotionale Sucker Punches. Leon + Lindi Bond-Material!
+
+**Regeln für Easter Eggs:**
+1. Max 1 pro Quest/Item — nicht überladen
+2. Nie erklären — wenn du es erklären musst, ist es zu offensichtlich
+3. In-universe first — muss auch ohne Referenz-Wissen Sinn machen
+4. Mischen — nicht nur ein Werk referenzieren, durchrotieren
+5. Leon soll überrascht werden — er kennt alle diese Werke, also muss es clever sein
+6. **Prioritäts-Quellen**: Skulduggery Pleasant, Stormlight Archive, Scheibenwelt, Critical Role, Dungeons and Daddies
+7. DnDads-Referenzen = Bonus — Leon UND Lindi erkennen die, doppelter Impact
+8. **NIEMALS SPOILERN** — Easter Eggs NICHT an Leon listen/verraten! Er will sie beim Spielen selbst entdecken.

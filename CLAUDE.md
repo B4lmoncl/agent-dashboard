@@ -297,7 +297,7 @@ Quest system (pool of ~10 open + ~25 max in-progress per player), XP/leveling (5
 
 - `CLAUDE.md` — THIS FILE. Primary reference. Read first. Tech stack, code rules, UI design guidelines, game systems.
 - `ARCHITECTURE.md` — Technical architecture: data flow, component tree, route structure, state management.
-- `LYRA-PLAYBOOK.md` — Content creation schemas. Read when adding content to `public/data/*.json`. Contains exact JSON field schemas, valid values, and examples for: NPCs, quests, items, gear, gacha banners, gems, world bosses, dungeons, achievements, titles, recipes, factions, campaigns, companion expeditions. Also has all backend formulas (XP calc, damage, pity, drop rates, gem scaling).
+- `LYRA-PLAYBOOK.md` — Content creation schemas + **Lore Bible**. Read when adding content to `public/data/*.json`. Contains JSON field schemas for all content types + backend formulas. **IMPORTANT: The "Lore Bible" section at the end is READ-ONLY — do NOT modify it unless the user explicitly asks. It defines world-building, tone, NPC personalities, easter egg rules, and flavor guidelines.**
 - `AUDIT_REPORT.md` — Fix history + Appendix A (verified non-issues, features that exist, agent traps). MUST read Appendix A before any audit.
 - `AUDIT_PROMPT.md` — Reusable audit prompt. User pastes this to start audit sessions.
 - `README.md` — API endpoint docs, deployment, agent setup.
