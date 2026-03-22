@@ -1253,6 +1253,265 @@ A rich tooltip framework with 50+ registry entries that provide hover-to-learn i
 
 ---
 
+## 23. World Boss System
+
+**Data**: `public/data/worldBosses.json`
+**Backend**: `routes/world-boss.js`
+
+Community-wide boss encounters where all players contribute damage via quest completions. Bosses have unique drop tables including Unique Named Items.
+
+### Boss Template Schema
+
+In `worldBosses.json → bosses[]`:
+
+```json
+{
+  "id": "unique-boss-id",
+  "name": "Boss Display Name",
+  "title": "The Destroyer",
+  "portrait": "/images/bosses/boss-portrait.png",
+  "tier": "titan",
+  "description": "Flavor text describing the boss and its threat.",
+  "lore": "Longer lore passage about the boss's origin and motivation.",
+  "hp": 50000,
+  "enrageHours": 72,
+  "uniqueDrops": ["unique-item-id-1", "unique-item-id-2"],
+  "lootTable": {
+    "gold": { "min": 200, "max": 500 },
+    "xp": { "min": 100, "max": 300 },
+    "materials": ["sternenstahl", "drachenschuppe"],
+    "gearPool": ["t4-boss-weapon", "t4-boss-armor"]
+  },
+  "contributionThresholds": {
+    "bronze": 100,
+    "silver": 500,
+    "gold": 1500,
+    "legendary": 5000
+  }
+}
+```
+
+### Boss Tiers
+
+| Tier | HP Range | Enrage Timer | Reward Level |
+|------|----------|-------------|--------------|
+| `champion` | 10,000-25,000 | 48h | Standard |
+| `titan` | 25,000-75,000 | 72h | Enhanced |
+| `colossus` | 75,000-200,000 | 96h | Maximum + unique drops |
+
+### Unique Drop Items
+
+Items in `uniqueDrops[]` must exist in `public/data/uniqueItems.json`. These are the primary source of Unique Named Items.
+
+### Content Needs
+
+**What Lyra should create for World Bosses:**
+- **Boss templates** in `worldBosses.json` — aim for 8-12 bosses across all tiers
+- **Unique Named Items** in `uniqueItems.json` — 1-3 unique drops per boss
+- **Boss portraits** in `public/images/bosses/` — 256x256px recommended, transparent PNG
+- **Flavor text** — each boss needs a description (1-2 sentences) and longer lore passage
+- **Achievements** in `achievementTemplates.json` for boss milestones (e.g., "Defeat first world boss", "Reach Gold contribution tier", "Defeat 10 world bosses")
+- **Titles** in `titles.json` for boss accomplishments (e.g., "Bossslayer", "Champion of the Hall")
+- **Gear items** in `gearTemplates.json` for boss-specific loot pools
+
+### Design Guidelines
+
+- Boss names should feel imposing and RPG-themed (e.g., "Gorvath the Unyielding", "Schattenweberin Nyx")
+- Tier should match narrative weight — Champion bosses are local threats, Colossus bosses are world-ending
+- Lore passages should tie into the QuestHall world (the Tower, factions, NPCs)
+- Unique drops should have memorable names and powerful fixed stats befitting their boss origin
+- Contribution thresholds should be achievable: bronze for casual players, legendary for top contributors
+
+---
+
+## 24. Gem & Socket System
+
+**Data**: `public/data/gems.json`
+**Backend**: `routes/gems.js`
+
+6 gem types across 5 quality tiers. Gems are socketed into gear to provide stat bonuses. Gems can be upgraded by combining 3 of the same tier.
+
+### Gem Type Schema
+
+In `gems.json → gemTypes[]`:
+
+```json
+{
+  "id": "ruby",
+  "name": "Rubin",
+  "stat": "kraft",
+  "color": "#ef4444",
+  "icon": "/images/gems/ruby.png",
+  "description": "Ein feuriger Edelstein, der die Kraft des Trägers stärkt.",
+  "tiers": [
+    { "tier": 1, "name": "Gesplitterter Rubin", "bonus": 1 },
+    { "tier": 2, "name": "Makelloser Rubin", "bonus": 3 },
+    { "tier": 3, "name": "Perfekter Rubin", "bonus": 5 },
+    { "tier": 4, "name": "Strahlender Rubin", "bonus": 8 },
+    { "tier": 5, "name": "Makelloser Rubin", "bonus": 12 }
+  ]
+}
+```
+
+### Current Gem Types
+
+| Gem | Stat | Color | Theme |
+|-----|------|-------|-------|
+| Ruby (Rubin) | kraft | `#ef4444` | Fire/strength |
+| Sapphire (Saphir) | weisheit | `#3b82f6` | Water/wisdom |
+| Emerald (Smaragd) | ausdauer | `#22c55e` | Earth/endurance |
+| Topaz (Topas) | glueck | `#f59e0b` | Lightning/luck |
+| Amethyst (Amethyst) | fokus | `#a855f7` | Arcane/focus |
+| Diamond (Diamant) | all stats | `#e5e7eb` | Light/all |
+
+### Tier Names (German-Themed)
+
+| Tier | English | German | Stat Bonus (approximate) |
+|------|---------|--------|--------------------------|
+| 1 | Chipped | Gesplittert | +1 |
+| 2 | Flawless | Makellos | +3 |
+| 3 | Perfect | Perfekt | +5 |
+| 4 | Radiant | Strahlend | +8 |
+| 5 | Pristine | Makellos/Rein | +12 |
+
+### Content Needs
+
+**What Lyra should create for the Gem System:**
+- **New gem types** in `gems.json` — if new stats or gameplay mechanics are added, new gem types can support them
+- **Gem icons** in `public/images/gems/` — one icon per gem type, ideally with tier variations
+- **Achievements** in `achievementTemplates.json` for gem milestones (e.g., "Socket first gem", "Upgrade a gem to Pristine tier", "Fill all sockets on an item")
+- **Titles** in `titles.json` for gem mastery (e.g., "Juwelier", "Gemcutter")
+- **Loot table entries** in `lootTables.json` — gems can drop from quest completion
+
+### Design Guidelines
+
+- New gem types should map to a clear stat or gameplay effect
+- Gem names should follow the German-themed naming convention
+- Colors should be distinct from existing gems for UI clarity
+- Diamond is the "all stats" gem — avoid adding another all-stats gem
+
+---
+
+## 25. Unique Named Items
+
+**Data**: `public/data/uniqueItems.json`
+**Backend**: Integrated into `routes/habits-inventory.js` and `routes/world-boss.js`
+
+Handcrafted legendary items with fixed stats, unique flavor text, and lore. Unlike standard gear (which uses random affix rolling), unique items have predetermined stats. Players track discovered uniques in a collection log.
+
+### Unique Item Schema
+
+In `uniqueItems.json → items[]`:
+
+```json
+{
+  "id": "gorvaths-fist",
+  "name": "Gorvaths Faust",
+  "slot": "weapon",
+  "rarity": "legendary",
+  "reqLevel": 30,
+  "stats": {
+    "kraft": 12,
+    "ausdauer": 8,
+    "fokus": 4
+  },
+  "legendaryEffect": {
+    "type": "xp_bonus",
+    "value": 5,
+    "label": "Faust des Unaufhaltsamen: +5% Quest-XP"
+  },
+  "lore": "Geschmiedet in den Tiefen des Turms, als Gorvath noch über die Hallen herrschte.",
+  "flavorText": "„Wer diese Waffe führt, kennt keine Furcht."",
+  "source": "world_boss",
+  "sourceId": "gorvath-the-unyielding",
+  "icon": "/images/uniques/gorvaths-fist.png",
+  "collection": true
+}
+```
+
+### Fields Explained
+
+| Field | Description |
+|-------|-------------|
+| `stats` | Fixed stats — NOT randomly rolled. Use exact values. |
+| `legendaryEffect` | Fixed effect with exact `value` (no min/max range). |
+| `lore` | World lore explaining the item's history (1-2 sentences). |
+| `flavorText` | In-character quote, shown in italics. |
+| `source` | Where this item drops: `world_boss`, `mythic_rift`, `event`, `quest_chain` |
+| `sourceId` | ID of the specific source (boss ID, rift level, event ID). |
+| `collection` | Whether this item appears in the collection log (should be `true` for all). |
+
+### Source Types
+
+| Source | Description | Drop Condition |
+|--------|-------------|----------------|
+| `world_boss` | Drops from a specific world boss | Contribution threshold + RNG |
+| `mythic_rift` | Drops from Mythic+ Rift at milestone levels | M+5, M+10, M+15, M+20 |
+| `event` | Drops from special time-limited events | Event-specific |
+| `quest_chain` | Guaranteed reward from a specific quest chain | Quest chain completion |
+
+### Design Guidelines
+
+- Each unique item should tell a story through its name, lore, and flavor text
+- Stats should be competitive with well-rolled random gear but not strictly superior
+- Legendary effects should be thematic — tied to the item's lore and source
+- Names should be memorable and evocative (German or English, matching QuestHall style)
+- Every world boss should have 1-3 associated unique drops
+- Mythic+ Rift uniques should feel like prestige items — they prove endgame mastery
+- **Collection completionism**: Design sets of related uniques (e.g., all drops from one boss, all weapon types) to encourage collection
+
+---
+
+## 26. Mythic+ Endless Rift
+
+**Data**: Runtime state in `data/`, Mythic+ config in rift logic
+**Backend**: `routes/rift.js` (extended)
+**Frontend**: `components/RiftView.tsx` (extended)
+
+Infinite scaling rift levels that unlock after completing a Legendary Rift. Each Mythic+ level increases difficulty. A leaderboard tracks the highest level reached.
+
+### Content Needs
+
+**What Lyra should create for Mythic+ Rift:**
+- **Achievements** in `achievementTemplates.json` for Mythic+ milestones (e.g., "Complete Mythic+1", "Complete Mythic+5", "Complete Mythic+10", "Complete Mythic+20")
+- **Titles** in `titles.json` for Mythic+ accomplishments (e.g., "Riftwanderer" at M+5, "Riftbreaker" at M+10, "Riftlord" at M+20)
+- **Unique Named Items** in `uniqueItems.json` as Mythic+ milestone rewards (source: `mythic_rift`)
+- **Loot table entries** in `lootTables.json` for Mythic+ bonus loot tiers
+- Ensure the **quest catalog** has enough high-difficulty variety to support deep Mythic+ runs
+
+### Design Guidelines
+
+- Mythic+ titles should feel increasingly prestigious with level
+- Unique drops at M+5/10/15/20 should be powerful and visually distinct
+- The system relies on the same quest catalog as standard Rifts — more quest variety = better Mythic+ experience
+
+---
+
+## 27. Enchanting Overhaul (D3 Mystic Style)
+
+**Data**: Recipe definitions in `public/data/professions.json`
+**Backend**: `routes/crafting.js` (enchanter recipes updated)
+**Frontend**: `components/ForgeView.tsx`
+
+The Enchanter (Eldric) now offers **targeted stat rerolling** instead of blanket rerolls. Players pick one stat on an item to reroll from its affix pool, preserving all other stats. Cost escalates with each successive reroll.
+
+### How It Works
+
+1. Player selects an equipped or inventory item at the Enchanter
+2. Player picks **one stat** to reroll (the other stats remain unchanged)
+3. The selected stat is rerolled from the item's original affix pool (same min/max range)
+4. That stat slot becomes **locked** — future rerolls on this item can only target that same stat
+5. Cost increases with each reroll: base cost x (1 + 0.5 * rerollCount)
+
+### Content Needs
+
+**What Lyra should create for the Enchanting Overhaul:**
+- **Achievements** in `achievementTemplates.json` for enchanting milestones (e.g., "Reroll a stat for the first time", "Reroll a stat to its maximum value")
+- **Titles** in `titles.json` for enchanting mastery
+- No new JSON template file needed — the reroll mechanic uses existing gear affix pools from `gearTemplates.json`
+
+---
+
 ## Content Generation Checklist
 
 A complete reference of ALL content types Lyra can create, which files they belong to, and whether code changes are needed.
@@ -1288,6 +1547,11 @@ A complete reference of ALL content types Lyra can create, which files they belo
 | 27 | Ritual/Vow templates | `public/data/ritualVowTemplates.json` | No | Daily ritual definitions |
 | 28 | Season templates | `public/data/seasonTemplates.json` | No | Season theme definitions |
 | 29 | Tooltip registry entries | `components/GameTooltip.tsx` | Yes (code change) | 50+ entries for all game terms |
+| 30 | World boss templates | `public/data/worldBosses.json` | No | Boss HP, tier, drops, lore |
+| 31 | Gem types & tiers | `public/data/gems.json` | Yes (new stats need `routes/gems.js`) | 6 types, 5 tiers currently |
+| 32 | Unique Named Items | `public/data/uniqueItems.json` | No | Fixed-stat legendaries with lore |
+| 33 | World boss portraits | `public/images/bosses/` | No | 256x256px PNG, transparent bg |
+| 34 | Gem icons | `public/images/gems/` | No | One per gem type |
 
 ### Priority Content (Time-Sensitive)
 
@@ -1298,6 +1562,8 @@ These content types need **regular updates** to prevent staleness:
 3. **Battle Pass rewards** (`battlePass.json`) — Full new season every ~90 days
 4. **Quest catalog** (`questCatalog.json`) — Expand regularly to support Rift variety and daily rotation
 5. **NPC quest givers** (`npcQuestGivers.json`) — Add new NPCs periodically for fresh Wanderer's Rest rotation
+6. **World boss templates** (`worldBosses.json`) — Need 8-12 bosses across all tiers for spawn rotation
+7. **Unique Named Items** (`uniqueItems.json`) — 1-3 per world boss + Mythic+ milestones; expand as new bosses are added
 6. **Expedition bonus titles** (`expeditions.json → bonusTitles[]`) — Expand pool to prevent repeats
 
 ---
