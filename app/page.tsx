@@ -2004,7 +2004,7 @@ export default function Dashboard() {
           weeklyChallenge={weeklyChallenge ? { stagesCompleted: weeklyChallenge.stages?.filter((s: { completed?: boolean }) => s.completed).length ?? 0 } : null}
           worldBossActive={false}
           riftActive={false}
-          vowCount={0}
+          vowCount={rituals.filter(r => r.isAntiRitual).length}
           socialBadge={socialBadge}
           expeditionActive={!!expedition}
           dungeonActive={false}
