@@ -13399,6 +13399,523 @@
       },
       "setId": "legendary",
       "flavorText": "Der Weg endet nie. Aber in diesen Stiefeln macht das nichts."
+    },
+
+    {
+      "id": "cloth-helm-t1",
+      "name": "Leinene Kapuze",
+      "slot": "helm",
+      "tier": 1,
+      "reqLevel": 1,
+      "rarity": "common",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Eine einfache Kapuze aus grobem Leinen. Schützt vor Regen, nicht vor Schwertern.",
+      "armorType": "cloth",
+      "trait": { "type": "arkane_resonanz", "value": 1, "label": "+1% XP" },
+      "affixes": {
+        "primary": { "count": [1, 1], "pool": [{ "stat": "weisheit", "min": 1, "max": 3 }, { "stat": "glueck", "min": 1, "max": 3 }] },
+        "minor": { "count": [0, 0], "pool": [] }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer",
+      "flavorText": "Die Kapuze eines Wanderers. Sie hat mehr Regen gesehen als die meisten Eimer."
+    },
+    {
+      "id": "cloth-armor-t1",
+      "name": "Leinene Robe",
+      "slot": "armor",
+      "tier": 1,
+      "reqLevel": 1,
+      "rarity": "common",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Eine schlichte Robe aus Leinenstoff. Bequem, aber nicht beeindruckend.",
+      "armorType": "cloth",
+      "trait": { "type": "arkane_resonanz", "value": 1, "label": "+1% XP" },
+      "affixes": {
+        "primary": { "count": [1, 1], "pool": [{ "stat": "weisheit", "min": 1, "max": 3 }, { "stat": "glueck", "min": 1, "max": 3 }] },
+        "minor": { "count": [0, 0], "pool": [] }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer",
+      "flavorText": "Die Robe sagt: Ich bin ein Gelehrter. Der Fleck darauf sagt: Ich esse auch gerne."
+    },
+    {
+      "id": "cloth-boots-t1",
+      "name": "Leinene Sandalen",
+      "slot": "boots",
+      "tier": 1,
+      "reqLevel": 1,
+      "rarity": "common",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Leichte Sandalen aus Leinen. Leise und wendig.",
+      "armorType": "cloth",
+      "trait": { "type": "arkane_resonanz", "value": 1, "label": "+1% XP" },
+      "affixes": {
+        "primary": { "count": [1, 1], "pool": [{ "stat": "weisheit", "min": 1, "max": 3 }, { "stat": "glueck", "min": 1, "max": 3 }] },
+        "minor": { "count": [0, 0], "pool": [] }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer",
+      "flavorText": "Man hört sie nicht kommen. Man hört sie auch nicht gehen. Ideal für Bibliotheken."
+    },
+    {
+      "id": "cloth-weapon-t1",
+      "name": "Leinener Wanderstab",
+      "slot": "weapon",
+      "tier": 1,
+      "reqLevel": 2,
+      "rarity": "common",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Ein Holzstab, umwickelt mit Leinenstoff. Kanalisiert schwache arkane Ströme.",
+      "armorType": "cloth",
+      "trait": { "type": "arkane_resonanz", "value": 1, "label": "+1% XP" },
+      "affixes": {
+        "primary": { "count": [1, 1], "pool": [{ "stat": "weisheit", "min": 1, "max": 3 }, { "stat": "kraft", "min": 1, "max": 3 }] },
+        "minor": { "count": [0, 0], "pool": [] }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer",
+      "flavorText": "Mehr Stab als Waffe, mehr Gehilfe als Stab. Aber er tut seinen Dienst."
+    },
+    {
+      "id": "cloth-helm-t2",
+      "name": "Wollene Magierkappe",
+      "slot": "helm",
+      "tier": 2,
+      "reqLevel": 9,
+      "rarity": "uncommon",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Eine warme Kappe aus Wollstoff, durchzogen von Schutzfäden.",
+      "armorType": "cloth",
+      "trait": { "type": "arkane_resonanz", "value": 1, "label": "+1% XP" },
+      "affixes": {
+        "primary": { "count": [1, 2], "pool": [{ "stat": "weisheit", "min": 2, "max": 4 }, { "stat": "glueck", "min": 2, "max": 4 }] },
+        "minor": { "count": [0, 1], "pool": [{ "stat": "fokus", "min": 1, "max": 3 }, { "stat": "charisma", "min": 1, "max": 3 }] }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran",
+      "flavorText": "Die Kappe eines Gelehrten der zweiten Generation. Etwas weniger Löcher als die erste."
+    },
+    {
+      "id": "cloth-armor-t2",
+      "name": "Wollene Gelehrtenrobe",
+      "slot": "armor",
+      "tier": 2,
+      "reqLevel": 9,
+      "rarity": "uncommon",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Eine warme Robe aus Wollstoff. Beliebt bei Gelehrten und Magiern.",
+      "armorType": "cloth",
+      "trait": { "type": "arkane_resonanz", "value": 1, "label": "+1% XP" },
+      "affixes": {
+        "primary": { "count": [1, 2], "pool": [{ "stat": "weisheit", "min": 2, "max": 4 }, { "stat": "glueck", "min": 2, "max": 4 }] },
+        "minor": { "count": [0, 1], "pool": [{ "stat": "fokus", "min": 1, "max": 3 }, { "stat": "charisma", "min": 1, "max": 3 }] }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran",
+      "flavorText": "Weich wie eine Umarmung, warm wie ein Kamin. Der Gelehrte friert nicht."
+    },
+    {
+      "id": "cloth-amulet-t2",
+      "name": "Wollenes Talisman-Band",
+      "slot": "amulet",
+      "tier": 2,
+      "reqLevel": 10,
+      "rarity": "uncommon",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Ein gewebtes Band, das als Amulett getragen wird. Summt leise.",
+      "armorType": "cloth",
+      "trait": { "type": "arkane_resonanz", "value": 1, "label": "+1% XP" },
+      "affixes": {
+        "primary": { "count": [1, 2], "pool": [{ "stat": "weisheit", "min": 2, "max": 4 }, { "stat": "glueck", "min": 2, "max": 4 }] },
+        "minor": { "count": [0, 1], "pool": [{ "stat": "fokus", "min": 1, "max": 3 }] }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran",
+      "flavorText": "Es summt ein Lied, das nur der Träger hört. Melodie: unbekannt. Wirkung: beruhigend."
+    },
+    {
+      "id": "cloth-helm-t3",
+      "name": "Seidene Sternenkrone",
+      "slot": "helm",
+      "tier": 3,
+      "reqLevel": 17,
+      "rarity": "rare",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Eine filigrane Krone aus Seidenstoff, bestickt mit Sternenmustern.",
+      "armorType": "cloth",
+      "trait": { "type": "arkane_resonanz", "value": 1, "label": "+1% XP" },
+      "affixes": {
+        "primary": { "count": [2, 2], "pool": [{ "stat": "weisheit", "min": 3, "max": 6 }, { "stat": "glueck", "min": 3, "max": 6 }, { "stat": "kraft", "min": 3, "max": 6 }] },
+        "minor": { "count": [1, 1], "pool": [{ "stat": "fokus", "min": 2, "max": 4 }, { "stat": "charisma", "min": 2, "max": 4 }] }
+      },
+      "legendaryEffect": null,
+      "setId": "master",
+      "flavorText": "Die Sterne darauf sind keine Stickerei. Sie leuchten von selbst."
+    },
+    {
+      "id": "cloth-armor-t3",
+      "name": "Seidene Gelehrtenrobe",
+      "slot": "armor",
+      "tier": 3,
+      "reqLevel": 17,
+      "rarity": "rare",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Eine schimmernde Robe aus Seidenstoff. Arkane Resonanz vibriert im Gewebe.",
+      "armorType": "cloth",
+      "trait": { "type": "arkane_resonanz", "value": 1, "label": "+1% XP" },
+      "affixes": {
+        "primary": { "count": [2, 2], "pool": [{ "stat": "weisheit", "min": 3, "max": 6 }, { "stat": "glueck", "min": 3, "max": 6 }, { "stat": "kraft", "min": 3, "max": 6 }] },
+        "minor": { "count": [1, 1], "pool": [{ "stat": "fokus", "min": 2, "max": 4 }, { "stat": "charisma", "min": 2, "max": 4 }] }
+      },
+      "legendaryEffect": null,
+      "setId": "master",
+      "flavorText": "Die Seide flüstert beim Gehen. Wer genau hinhört, lernt etwas."
+    },
+    {
+      "id": "cloth-weapon-t3",
+      "name": "Seidenstab der Weisheit",
+      "slot": "weapon",
+      "tier": 3,
+      "reqLevel": 18,
+      "rarity": "rare",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Ein Stab, umwickelt mit Seidenstoff. Glüht in der Dämmerung.",
+      "armorType": "cloth",
+      "trait": { "type": "arkane_resonanz", "value": 1, "label": "+1% XP" },
+      "affixes": {
+        "primary": { "count": [2, 2], "pool": [{ "stat": "weisheit", "min": 3, "max": 6 }, { "stat": "kraft", "min": 3, "max": 6 }, { "stat": "glueck", "min": 3, "max": 6 }] },
+        "minor": { "count": [1, 1], "pool": [{ "stat": "fokus", "min": 2, "max": 4 }, { "stat": "tempo", "min": 2, "max": 4 }] }
+      },
+      "legendaryEffect": null,
+      "setId": "master",
+      "flavorText": "Die Seide am Griff ist warm. Der Stab scheint dich zu mögen."
+    },
+    {
+      "id": "cloth-armor-t4-epic",
+      "name": "Magiegewobene Robe",
+      "slot": "armor",
+      "tier": 4,
+      "reqLevel": 25,
+      "rarity": "epic",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Eine Robe aus Magiestoff. Die Fäden sind aus reiner Magie gesponnen.",
+      "armorType": "cloth",
+      "trait": { "type": "arkane_resonanz", "value": 1, "label": "+1% XP" },
+      "affixes": {
+        "primary": { "count": [2, 3], "pool": [{ "stat": "weisheit", "min": 3, "max": 6 }, { "stat": "glueck", "min": 3, "max": 6 }, { "stat": "kraft", "min": 3, "max": 6 }] },
+        "minor": { "count": [1, 2], "pool": [{ "stat": "fokus", "min": 2, "max": 4 }, { "stat": "charisma", "min": 2, "max": 4 }, { "stat": "vitalitaet", "min": 2, "max": 4 }] }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary",
+      "flavorText": "Wer sie anzieht, sieht die Welt in Farben, die keinen Namen haben."
+    },
+    {
+      "id": "cloth-helm-t4-epic",
+      "name": "Krone der Arkanen Sicht",
+      "slot": "helm",
+      "tier": 4,
+      "reqLevel": 27,
+      "rarity": "epic",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Eine Krone aus Magiestoff. Gewährt übernatürliche Wahrnehmung.",
+      "armorType": "cloth",
+      "trait": { "type": "arkane_resonanz", "value": 1, "label": "+1% XP" },
+      "affixes": {
+        "primary": { "count": [2, 3], "pool": [{ "stat": "weisheit", "min": 3, "max": 6 }, { "stat": "glueck", "min": 3, "max": 6 }, { "stat": "kraft", "min": 3, "max": 6 }] },
+        "minor": { "count": [1, 2], "pool": [{ "stat": "fokus", "min": 2, "max": 4 }, { "stat": "charisma", "min": 2, "max": 4 }] }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary",
+      "flavorText": "Die Krone zeigt dir Dinge, die andere nicht sehen. Manchmal wünschst du, sie täte es nicht."
+    },
+    {
+      "id": "cloth-armor-t4",
+      "name": "Runengewobene Meisterrobe",
+      "slot": "armor",
+      "tier": 4,
+      "reqLevel": 30,
+      "rarity": "legendary",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Eine legendäre Robe aus Runenstoff. Uralte Runen leuchten bei jedem Schritt.",
+      "armorType": "cloth",
+      "trait": { "type": "arkane_resonanz", "value": 1, "label": "+1% XP" },
+      "affixes": {
+        "primary": { "count": [3, 3], "pool": [{ "stat": "weisheit", "min": 3, "max": 6 }, { "stat": "glueck", "min": 3, "max": 6 }, { "stat": "kraft", "min": 3, "max": 6 }] },
+        "minor": { "count": [2, 2], "pool": [{ "stat": "fokus", "min": 2, "max": 4 }, { "stat": "charisma", "min": 2, "max": 4 }, { "stat": "vitalitaet", "min": 2, "max": 4 }] }
+      },
+      "legendaryEffect": {
+        "type": "ritual_streak_bonus",
+        "min": 2,
+        "max": 5,
+        "label": "Runenweberin: +{value}% XP pro Ritual-Streak-Tag"
+      },
+      "setId": "legendary",
+      "flavorText": "Jeder Faden wurde einzeln gesprochen. Jede Rune ist ein Wort. Das Gewand ist ein Buch."
+    },
+    {
+      "id": "cloth-weapon-t4",
+      "name": "Stab der Ewigen Fäden",
+      "slot": "weapon",
+      "tier": 4,
+      "reqLevel": 32,
+      "rarity": "legendary",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Ein legendärer Stab, dessen Seidenwicklung nie endet. Flüstert vergessene Zauber.",
+      "armorType": "cloth",
+      "trait": { "type": "arkane_resonanz", "value": 1, "label": "+1% XP" },
+      "affixes": {
+        "primary": { "count": [3, 3], "pool": [{ "stat": "weisheit", "min": 3, "max": 6 }, { "stat": "kraft", "min": 3, "max": 6 }, { "stat": "glueck", "min": 3, "max": 6 }] },
+        "minor": { "count": [2, 2], "pool": [{ "stat": "fokus", "min": 2, "max": 4 }, { "stat": "tempo", "min": 2, "max": 4 }, { "stat": "charisma", "min": 2, "max": 4 }] }
+      },
+      "legendaryEffect": {
+        "type": "companion_bond_boost",
+        "min": 2,
+        "max": 5,
+        "label": "Ewige Fäden: +{value}% Bond-XP"
+      },
+      "setId": "legendary",
+      "flavorText": "Der Faden windet sich endlos. Wie die Zeit. Wie der Weg. Wie die Frage, wohin."
+    },
+
+    {
+      "id": "heavy-helm-t1",
+      "name": "Eiserner Helm",
+      "slot": "helm",
+      "tier": 1,
+      "reqLevel": 1,
+      "rarity": "common",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Ein einfacher Helm aus Eisen. Schwer, aber verlässlich.",
+      "armorType": "heavy",
+      "trait": { "type": "eiserne_haut", "value": 1, "label": "+1 Ausdauer" },
+      "affixes": {
+        "primary": { "count": [1, 1], "pool": [{ "stat": "kraft", "min": 1, "max": 3 }, { "stat": "ausdauer", "min": 1, "max": 3 }] },
+        "minor": { "count": [0, 0], "pool": [] }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer",
+      "flavorText": "Er schützt den Kopf. Mehr kann man von Eisen nicht verlangen."
+    },
+    {
+      "id": "heavy-armor-t1",
+      "name": "Eiserne Rüstung",
+      "slot": "armor",
+      "tier": 1,
+      "reqLevel": 1,
+      "rarity": "common",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Eine einfache Rüstung aus Eisenplatten. Klappert beim Gehen.",
+      "armorType": "heavy",
+      "trait": { "type": "eiserne_haut", "value": 1, "label": "+1 Ausdauer" },
+      "affixes": {
+        "primary": { "count": [1, 1], "pool": [{ "stat": "kraft", "min": 1, "max": 3 }, { "stat": "ausdauer", "min": 1, "max": 3 }] },
+        "minor": { "count": [0, 0], "pool": [] }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer",
+      "flavorText": "Man hört dich drei Straßen weiter. Aber man greift dich nicht an."
+    },
+    {
+      "id": "heavy-boots-t1",
+      "name": "Eiserne Stiefel",
+      "slot": "boots",
+      "tier": 1,
+      "reqLevel": 1,
+      "rarity": "common",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Schwere Stiefel aus Eisen. Hinterlassen tiefe Spuren.",
+      "armorType": "heavy",
+      "trait": { "type": "eiserne_haut", "value": 1, "label": "+1 Ausdauer" },
+      "affixes": {
+        "primary": { "count": [1, 1], "pool": [{ "stat": "kraft", "min": 1, "max": 3 }, { "stat": "ausdauer", "min": 1, "max": 3 }] },
+        "minor": { "count": [0, 0], "pool": [] }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer",
+      "flavorText": "Jeder Schritt ist ein Statement. Das Statement lautet: Ich bin hier."
+    },
+    {
+      "id": "heavy-weapon-t1",
+      "name": "Eisernes Schwert",
+      "slot": "weapon",
+      "tier": 1,
+      "reqLevel": 2,
+      "rarity": "common",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Ein einfaches Schwert aus Eisen. Nicht elegant, aber effektiv.",
+      "armorType": "heavy",
+      "trait": { "type": "eiserne_haut", "value": 1, "label": "+1 Ausdauer" },
+      "affixes": {
+        "primary": { "count": [1, 1], "pool": [{ "stat": "kraft", "min": 1, "max": 3 }, { "stat": "ausdauer", "min": 1, "max": 3 }] },
+        "minor": { "count": [0, 0], "pool": [] }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer",
+      "flavorText": "Es schneidet. Es sticht. Mehr braucht ein Held am Anfang nicht."
+    },
+    {
+      "id": "heavy-shield-t2",
+      "name": "Kristallschild",
+      "slot": "shield",
+      "tier": 2,
+      "reqLevel": 9,
+      "rarity": "uncommon",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Ein Schild, verstärkt mit Kristallsplittern. Schimmert im Licht.",
+      "armorType": "heavy",
+      "trait": { "type": "eiserne_haut", "value": 1, "label": "+1 Ausdauer" },
+      "affixes": {
+        "primary": { "count": [1, 2], "pool": [{ "stat": "kraft", "min": 2, "max": 4 }, { "stat": "ausdauer", "min": 2, "max": 4 }] },
+        "minor": { "count": [0, 1], "pool": [{ "stat": "vitalitaet", "min": 1, "max": 3 }, { "stat": "tempo", "min": 1, "max": 3 }] }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran",
+      "flavorText": "Die Kristalle brechen das Licht. Und manchmal auch den Willen des Angreifers."
+    },
+    {
+      "id": "heavy-armor-t2",
+      "name": "Kristallrüstung",
+      "slot": "armor",
+      "tier": 2,
+      "reqLevel": 9,
+      "rarity": "uncommon",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Eine verstärkte Rüstung aus Eisen und Kristall.",
+      "armorType": "heavy",
+      "trait": { "type": "eiserne_haut", "value": 1, "label": "+1 Ausdauer" },
+      "affixes": {
+        "primary": { "count": [1, 2], "pool": [{ "stat": "kraft", "min": 2, "max": 4 }, { "stat": "ausdauer", "min": 2, "max": 4 }] },
+        "minor": { "count": [0, 1], "pool": [{ "stat": "vitalitaet", "min": 1, "max": 3 }, { "stat": "tempo", "min": 1, "max": 3 }] }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran",
+      "flavorText": "Kristall und Eisen. Wie Eis und Feuer. Aber weniger dramatisch."
+    },
+    {
+      "id": "heavy-helm-t3",
+      "name": "Drachenschuppen-Helm",
+      "slot": "helm",
+      "tier": 3,
+      "reqLevel": 17,
+      "rarity": "rare",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Ein Helm geschmiedet mit Drachenschuppen. Glüht vor innerer Hitze.",
+      "armorType": "heavy",
+      "trait": { "type": "eiserne_haut", "value": 1, "label": "+1 Ausdauer" },
+      "affixes": {
+        "primary": { "count": [2, 2], "pool": [{ "stat": "kraft", "min": 3, "max": 6 }, { "stat": "ausdauer", "min": 3, "max": 6 }, { "stat": "weisheit", "min": 3, "max": 6 }] },
+        "minor": { "count": [1, 1], "pool": [{ "stat": "vitalitaet", "min": 2, "max": 4 }, { "stat": "tempo", "min": 2, "max": 4 }] }
+      },
+      "legendaryEffect": null,
+      "setId": "master",
+      "flavorText": "Er brennt nicht. Aber wer ihn trägt, fühlt die Hitze des Drachen."
+    },
+    {
+      "id": "heavy-armor-t3",
+      "name": "Drachenschuppen-Panzer",
+      "slot": "armor",
+      "tier": 3,
+      "reqLevel": 17,
+      "rarity": "rare",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Schwere Rüstung aus Drachenschuppen. Heiß wie eine Schmiede.",
+      "armorType": "heavy",
+      "trait": { "type": "eiserne_haut", "value": 1, "label": "+1 Ausdauer" },
+      "affixes": {
+        "primary": { "count": [2, 2], "pool": [{ "stat": "kraft", "min": 3, "max": 6 }, { "stat": "ausdauer", "min": 3, "max": 6 }, { "stat": "weisheit", "min": 3, "max": 6 }] },
+        "minor": { "count": [1, 1], "pool": [{ "stat": "vitalitaet", "min": 2, "max": 4 }, { "stat": "tempo", "min": 2, "max": 4 }] }
+      },
+      "legendaryEffect": null,
+      "setId": "master",
+      "flavorText": "Die Schuppen klirren wie Münzen. Aber sie sind mehr wert als Gold."
+    },
+    {
+      "id": "heavy-weapon-t3",
+      "name": "Aetherkern-Klinge",
+      "slot": "weapon",
+      "tier": 3,
+      "reqLevel": 20,
+      "rarity": "epic",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Eine Klinge, durchpulst mit Aetherenergie. Summt beim Schwingen.",
+      "armorType": "heavy",
+      "trait": { "type": "eiserne_haut", "value": 1, "label": "+1 Ausdauer" },
+      "affixes": {
+        "primary": { "count": [2, 3], "pool": [{ "stat": "kraft", "min": 3, "max": 6 }, { "stat": "ausdauer", "min": 3, "max": 6 }, { "stat": "weisheit", "min": 3, "max": 6 }] },
+        "minor": { "count": [1, 2], "pool": [{ "stat": "vitalitaet", "min": 2, "max": 4 }, { "stat": "tempo", "min": 2, "max": 4 }] }
+      },
+      "legendaryEffect": null,
+      "setId": "master",
+      "flavorText": "Sie summt. Nicht wie eine Biene. Wie ein Sturm, der noch nicht losgebrochen ist."
+    },
+    {
+      "id": "heavy-armor-t4-epic",
+      "name": "Aetherkern-Panzer",
+      "slot": "armor",
+      "tier": 4,
+      "reqLevel": 25,
+      "rarity": "epic",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Schwere Rüstung, geschmiedet um einen Aetherkern. Fast unzerstörbar.",
+      "armorType": "heavy",
+      "trait": { "type": "eiserne_haut", "value": 1, "label": "+1 Ausdauer" },
+      "affixes": {
+        "primary": { "count": [2, 3], "pool": [{ "stat": "kraft", "min": 3, "max": 6 }, { "stat": "ausdauer", "min": 3, "max": 6 }, { "stat": "weisheit", "min": 3, "max": 6 }] },
+        "minor": { "count": [1, 2], "pool": [{ "stat": "vitalitaet", "min": 2, "max": 4 }, { "stat": "tempo", "min": 2, "max": 4 }, { "stat": "fokus", "min": 2, "max": 4 }] }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary",
+      "flavorText": "Der Kern pulsiert. Die Rüstung lebt. Oder zumindest fühlt es sich so an."
+    },
+    {
+      "id": "heavy-weapon-t4",
+      "name": "Seelenschwert",
+      "slot": "weapon",
+      "tier": 4,
+      "reqLevel": 30,
+      "rarity": "legendary",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Eine legendäre Klinge, gebunden an ein Seelenfragment. Flüstert im Kampf.",
+      "armorType": "heavy",
+      "trait": { "type": "eiserne_haut", "value": 1, "label": "+1 Ausdauer" },
+      "affixes": {
+        "primary": { "count": [3, 3], "pool": [{ "stat": "kraft", "min": 3, "max": 6 }, { "stat": "ausdauer", "min": 3, "max": 6 }, { "stat": "weisheit", "min": 3, "max": 6 }] },
+        "minor": { "count": [2, 2], "pool": [{ "stat": "vitalitaet", "min": 2, "max": 4 }, { "stat": "tempo", "min": 2, "max": 4 }, { "stat": "fokus", "min": 2, "max": 4 }] }
+      },
+      "legendaryEffect": {
+        "type": "streak_protection",
+        "min": 3,
+        "max": 6,
+        "label": "Seelenband: +{value}% Streak-Schutz"
+      },
+      "setId": "legendary",
+      "flavorText": "Das Schwert erinnert sich an jeden Kampf. An jeden Sieg. An jede Niederlage."
     }
   ],
   "setBonus": {

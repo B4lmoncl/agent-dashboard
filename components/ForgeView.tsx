@@ -50,7 +50,7 @@ interface Recipe {
   trainerCost?: number;
   skillUpColor?: string;
   cooldownRemaining?: number;
-  result?: { type?: string };
+  result?: { type?: string; templateId?: string };
 }
 
 interface MaterialDef {
@@ -92,6 +92,7 @@ const SLOT_LABELS: Record<string, string> = {
 const SYNERGY_HINTS: Record<string, { partner: string; label: string }> = {
   schmied: { partner: "verzauberer", label: "Gear Mastery" },
   verzauberer: { partner: "schmied", label: "Gear Mastery" },
+  schneider: { partner: "verzauberer", label: "Arcane Mastery" },
   alchemist: { partner: "koch", label: "Sustenance" },
   koch: { partner: "alchemist", label: "Sustenance" },
 };
@@ -106,7 +107,8 @@ const SKILL_UP_COLORS: Record<string, { color: string; label: string }> = {
 
 // ─── NPC location metadata ───────────────────────────────────────────────────
 const NPC_LOCATIONS: Record<string, { label: string; color: string; desc: string }> = {
-  schmied: { label: "Deepforge", color: "#f59e0b", desc: "Reroll stats, upgrade rarity" },
+  schmied: { label: "Deepforge", color: "#f59e0b", desc: "Heavy armor crafting, enchanting" },
+  schneider: { label: "Webstube", color: "#c084fc", desc: "Cloth armor crafting" },
   alchemist: { label: "Alchemist Lab", color: "#22c55e", desc: "Potions & elixirs" },
   koch: { label: "Guild Kitchen", color: "#e87b35", desc: "Meals with XP/Gold buffs" },
   verzauberer: { label: "Arcanum", color: "#a78bfa", desc: "Gear enchantments" },
@@ -144,7 +146,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
   const [dismantleResult, setDismantleResult] = useState<{ message: string; essenz?: number; materials?: { id: string; name: string; amount: number }[] } | null>(null);
   const [transmuteResult, setTransmuteResult] = useState<string | null>(null);
   const [selectedTransmute, setSelectedTransmute] = useState<string[]>([]);
-  const [npcModalTab, setNpcModalTab] = useState<"recipes" | "schmiedekunst" | "transmutation">("recipes");
+  const [npcModalTab, setNpcModalTab] = useState<"recipes" | "schmiedekunst" | "transmutation" | "enchanting">("recipes");
   // infoOpen state removed — info now shown via hover tooltip on header
   const [choosingProf, setChoosingProf] = useState(false);
   const [confirmProf, setConfirmProf] = useState<ProfessionDef | null>(null);
@@ -155,6 +157,14 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
   const [slotAffixRanges, setSlotAffixRanges] = useState<Record<string, { primary: { stat: string; min: number; max: number }[]; minor: { stat: string; min: number; max: number }[]; currentStats: Record<string, number>; itemName: string; rarity: string }>>({});
   const [workshopUpgrades, setWorkshopUpgrades] = useState<{ id: string; name: string; desc: string; icon: string; category: string; currentTier: number; maxTier: number; currentValue: number; nextTier: { tier: number; cost: number; currency: string; value: number; label: string } | null }[]>([]);
   const [buyingUpgrade, setBuyingUpgrade] = useState<string | null>(null);
+  // Enchanting (D3-style reroll) state
+  const [enchantSlot, setEnchantSlot] = useState<string>("weapon");
+  const [enchantStat, setEnchantStat] = useState<string | null>(null);
+  const [enchantOptions, setEnchantOptions] = useState<{ label: string; value: number; index: number }[] | null>(null);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [enchantCost, setEnchantCost] = useState<{ gold: number; essenz: number } | null>(null);
+  const [enchantLoading, setEnchantLoading] = useState(false);
+  const [enchantResult, setEnchantResult] = useState<string | null>(null);
 
   // Close callbacks for modal behavior hooks
   const closeNpcModal = useCallback(() => {
@@ -789,6 +799,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                 { key: "recipes", label: "Recipes", color: selectedNpc.color },
               ];
               if (selectedNpc.id === "schmied") {
+                tabs.push({ key: "enchanting", label: "Enchanting", color: "#a855f7" });
                 tabs.push({ key: "schmiedekunst", label: "Salvage & Transmute", color: "#ff8c00" });
               }
               if (selectedNpc.id === "verzauberer") {
@@ -1079,6 +1090,189 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                 )}
               </>
             )}
+
+            {/* ─── Tab: Enchanting (D3-style stat reroll — available to all) */}
+            {npcModalTab === "enchanting" && selectedNpc.id === "schmied" && (() => {
+              const eq = equippedSlots[enchantSlot];
+              const hasItem = eq && typeof eq === "object";
+              const itemStats = hasItem ? ((eq as Record<string, unknown>).stats as Record<string, number> || {}) : {};
+              const lockedStat = hasItem ? (eq as Record<string, unknown>).rerollLocked as string | null : null;
+              const rerollCount = hasItem ? ((eq as Record<string, unknown>).rerollCount as number || 0) : 0;
+              const pending = hasItem ? (eq as Record<string, unknown>).rerollPending as { options: number[]; stat: string } | null : null;
+
+              const handleEnchantRoll = async (stat: string) => {
+                if (enchantLoading || !reviewApiKey) return;
+                setEnchantLoading(true);
+                setEnchantResult(null);
+                setEnchantOptions(null);
+                try {
+                  const r = await fetch("/api/reroll/enchant", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json", ...getAuthHeaders(reviewApiKey) },
+                    body: JSON.stringify({ slot: enchantSlot, statToLock: stat }),
+                  });
+                  const data = await r.json();
+                  if (r.ok && data.options) {
+                    setEnchantOptions(data.options);
+                    setEnchantCost(data.nextCost || data.cost);
+                    setEnchantStat(stat);
+                    fetchData();
+                    onRefresh?.();
+                  } else {
+                    setEnchantResult(data.error || "Enchanting failed");
+                  }
+                } catch { setEnchantResult("Network error"); }
+                setEnchantLoading(false);
+              };
+
+              const handleEnchantChoose = async (idx: number) => {
+                if (enchantLoading || !reviewApiKey) return;
+                setEnchantLoading(true);
+                try {
+                  const r = await fetch("/api/reroll/enchant", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json", ...getAuthHeaders(reviewApiKey) },
+                    body: JSON.stringify({ slot: enchantSlot, statToLock: enchantStat, chosenOption: idx }),
+                  });
+                  const data = await r.json();
+                  if (r.ok) {
+                    setEnchantResult(data.message || "Stat updated!");
+                    setEnchantOptions(null);
+                    setEnchantStat(null);
+                    fetchData();
+                    onRefresh?.();
+                  } else {
+                    setEnchantResult(data.error || "Failed");
+                  }
+                } catch { setEnchantResult("Network error"); }
+                setEnchantLoading(false);
+              };
+
+              return (
+                <div className="px-5 py-4 space-y-4" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
+                  {/* Intro */}
+                  <div>
+                    <p className="text-sm font-bold" style={{ color: "#a855f7" }}>Stat Enchanting</p>
+                    <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.35)" }}>
+                      Pick one stat to reroll. Once chosen, that stat is locked — only it can be rerolled on this item. Cost escalates with each reroll.
+                    </p>
+                  </div>
+
+                  {/* Slot selector */}
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-widest mb-2" style={{ color: "rgba(255,255,255,0.25)" }}>Equipment Slot</p>
+                    <div className="flex flex-wrap gap-1.5">
+                      {Object.entries(SLOT_LABELS).map(([slot, label]) => {
+                        const hasGear = !!(equippedSlots[slot] && typeof equippedSlots[slot] === "object");
+                        return (
+                          <button key={slot} onClick={() => { setEnchantSlot(slot); setEnchantOptions(null); setEnchantResult(null); setEnchantStat(null); }}
+                            className="text-xs px-2.5 py-1.5 rounded-lg transition-all"
+                            style={{
+                              background: enchantSlot === slot ? "rgba(168,85,247,0.15)" : "rgba(255,255,255,0.04)",
+                              color: enchantSlot === slot ? "#a855f7" : hasGear ? "rgba(255,255,255,0.5)" : "rgba(255,255,255,0.2)",
+                              border: `1px solid ${enchantSlot === slot ? "rgba(168,85,247,0.4)" : "rgba(255,255,255,0.06)"}`,
+                              opacity: hasGear ? 1 : 0.35,
+                              cursor: hasGear ? "pointer" : "not-allowed",
+                            }}
+                            disabled={!hasGear}
+                            title={hasGear ? "" : "No item equipped"}
+                          >
+                            {label}{hasGear ? " \u2713" : ""}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  {/* Item stats */}
+                  {hasItem ? (
+                    <div className="rounded-lg p-3" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
+                      <div className="flex items-center justify-between mb-2">
+                        <p className="text-sm font-semibold" style={{ color: RARITY_COLORS[(eq as Record<string, unknown>).rarity as string] || "#fff" }}>
+                          {(eq as Record<string, unknown>).name as string}
+                        </p>
+                        {rerollCount > 0 && (
+                          <span className="text-xs px-1.5 py-0.5 rounded font-mono" style={{ background: "rgba(168,85,247,0.1)", color: "#a855f7" }}>
+                            {rerollCount}x enchanted
+                          </span>
+                        )}
+                      </div>
+
+                      {/* Stat rows */}
+                      <div className="space-y-1">
+                        {Object.entries(itemStats).map(([stat, val]) => {
+                          const isLocked = lockedStat === stat;
+                          const isOtherLocked = lockedStat && lockedStat !== stat;
+                          return (
+                            <button key={stat}
+                              onClick={() => !isOtherLocked && handleEnchantRoll(stat)}
+                              disabled={!!isOtherLocked || enchantLoading}
+                              className="w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm transition-all"
+                              style={{
+                                background: isLocked ? "rgba(168,85,247,0.08)" : isOtherLocked ? "rgba(255,255,255,0.01)" : "rgba(255,255,255,0.03)",
+                                border: `1px solid ${isLocked ? "rgba(168,85,247,0.3)" : "rgba(255,255,255,0.04)"}`,
+                                cursor: isOtherLocked ? "not-allowed" : "pointer",
+                                opacity: isOtherLocked ? 0.35 : 1,
+                              }}
+                              title={isOtherLocked ? `Locked to "${lockedStat}" — cannot reroll other stats` : isLocked ? "This stat is locked for enchanting" : "Click to reroll this stat"}
+                            >
+                              <span style={{ color: isLocked ? "#a855f7" : "rgba(255,255,255,0.6)" }}>
+                                {isLocked && <span style={{ marginRight: 6 }}>&#128274;</span>}
+                                {isOtherLocked && <span style={{ marginRight: 6, opacity: 0.4 }}>&#128275;</span>}
+                                {stat}
+                              </span>
+                              <span className="font-mono font-bold" style={{ color: isLocked ? "#c084fc" : "rgba(255,255,255,0.8)" }}>+{val}</span>
+                            </button>
+                          );
+                        })}
+                      </div>
+
+                      {/* Cost preview */}
+                      {!enchantOptions && (
+                        <div className="mt-3 flex items-center gap-3 text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>
+                          <span>Cost: ~{Math.round(100 * Math.pow(1.5, rerollCount))}g + {2 + Math.floor(rerollCount / 3)} Essenz</span>
+                          {rerollCount >= 5 && <span style={{ color: "#f59e0b" }}>&#9888; Cost escalating</span>}
+                        </div>
+                      )}
+                    </div>
+                  ) : (
+                    <div className="text-center py-6 text-sm" style={{ color: "rgba(255,255,255,0.2)" }}>
+                      No item equipped in this slot
+                    </div>
+                  )}
+
+                  {/* Enchant options (D3-style pick one of three) */}
+                  {enchantOptions && (
+                    <div className="rounded-lg p-3" style={{ background: "rgba(168,85,247,0.05)", border: "1px solid rgba(168,85,247,0.2)" }}>
+                      <p className="text-xs font-semibold uppercase tracking-widest mb-3" style={{ color: "#a855f7" }}>Choose a value for {enchantStat}</p>
+                      <div className="grid grid-cols-3 gap-2">
+                        {enchantOptions.map(opt => (
+                          <button key={opt.index} onClick={() => handleEnchantChoose(opt.index)}
+                            disabled={enchantLoading}
+                            className="flex flex-col items-center gap-1 py-3 px-2 rounded-lg transition-all hover:brightness-125"
+                            style={{
+                              background: opt.index === 0 ? "rgba(255,255,255,0.04)" : "rgba(168,85,247,0.08)",
+                              border: `1px solid ${opt.index === 0 ? "rgba(255,255,255,0.08)" : "rgba(168,85,247,0.25)"}`,
+                              cursor: "pointer",
+                            }}
+                          >
+                            <span className="text-xs" style={{ color: opt.index === 0 ? "rgba(255,255,255,0.4)" : "#c084fc" }}>{opt.label}</span>
+                            <span className="text-xl font-bold font-mono" style={{ color: opt.index === 0 ? "rgba(255,255,255,0.6)" : "#a855f7" }}>+{opt.value}</span>
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Result message */}
+                  {enchantResult && (
+                    <div className="text-sm px-3 py-2 rounded-lg" style={{ background: "rgba(168,85,247,0.08)", color: "#c084fc", border: "1px solid rgba(168,85,247,0.2)" }}>
+                      {enchantResult}
+                    </div>
+                  )}
+                </div>
+              );
+            })()}
 
             {/* ─── Tab: Schmiedekunst (Schmied only) ───────────────────── */}
             {npcModalTab === "schmiedekunst" && selectedNpc.id === "schmied" && (() => {
