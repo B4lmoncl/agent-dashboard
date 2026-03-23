@@ -100,6 +100,7 @@ const SYNERGY_HINTS: Record<string, { partner: string; label: string }> = {
   schneider: { partner: "verzauberer", label: "Arcane Mastery" },
   alchemist: { partner: "koch", label: "Sustenance" },
   koch: { partner: "alchemist", label: "Sustenance" },
+  lederverarbeiter: { partner: "alchemist", label: "Wilderness" },
 };
 
 // ─── Skill-up color labels ──────────────────────────────────────────────────
@@ -117,6 +118,7 @@ const NPC_LOCATIONS: Record<string, { label: string; color: string; desc: string
   alchemist: { label: "Alchemist Lab", color: "#22c55e", desc: "Potions, elixirs & transmutation" },
   koch: { label: "Guild Kitchen", color: "#e87b35", desc: "Meals with XP/Gold buffs" },
   verzauberer: { label: "Arcanum", color: "#a78bfa", desc: "Enchantments & stat rerolling" },
+  lederverarbeiter: { label: "Gerberei", color: "#b45309", desc: "Leather armor crafting" },
 };
 
 // ─── Workshop tool tiers ─────────────────────────────────────────────────────

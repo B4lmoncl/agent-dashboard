@@ -808,8 +808,8 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
           return res.status(400).json({ error: 'Inventory full' });
         }
         const instance = createGearInstance(template);
-        // Apply mastery bonus (cloth_stat_boost or gear_stat_boost)
-        if (masteryDef && (masteryDef.type === 'cloth_stat_boost' || masteryDef.type === 'gear_stat_boost')) {
+        // Apply mastery bonus (cloth_stat_boost, gear_stat_boost, or leather_stat_boost)
+        if (masteryDef && (masteryDef.type === 'cloth_stat_boost' || masteryDef.type === 'gear_stat_boost' || masteryDef.type === 'leather_stat_boost')) {
           const boost = 1 + (masteryDef.value || 10) / 100;
           for (const stat of Object.keys(instance.stats)) {
             instance.stats[stat] = Math.round(instance.stats[stat] * boost);
