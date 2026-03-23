@@ -66,16 +66,66 @@ chance = (grayThreshold - playerSkill) / (grayThreshold - yellowThreshold)
 - [x] 8 new gear templates for new crafting recipes
 - [x] Generic craft handlers (buff, temp_enchant, perm_enchant, transmute_material, forge_temp, streak_shield)
 
-### Remaining TODO
-- [ ] Update CLAUDE.md to reflect 300-skill system and new profession slot count
-- [ ] More recipes per profession for denser skill progression (currently 12-19 per prof, WoW has 50-80)
-- [ ] BoE/BoP flags on crafted items for trade system
+### Remaining TODO — Phase 2 (User-Approved Decisions from Deep Audit #2)
+
+#### Recipe Density: ~100-150 Rezepte pro Beruf (WoW-treu)
+- [ ] Schmied: 19 → ~100 Rezepte (heavy gear für alle 6 Slots × 5 Tiers + Utility)
+- [ ] Schneider: 18 → ~100 Rezepte (cloth gear + Spellthreads + Bags)
+- [ ] Alchemist: 14 → ~100 Rezepte (potions + flasks + transmutes + elixirs)
+- [ ] Koch: 12 → ~100 Rezepte (meals + drinks + feast buffs)
+- [ ] Verzauberer: 12 → ~100 Rezepte (enchants + temp buffs + wards)
+- [ ] **NEU: Lederverarbeiter**: 0 → ~100 Rezepte (leather/medium armor, neuer Beruf)
+
+#### Trade System: Alles BoE (handelbar)
+- [ ] Add `tradeable: true` flag to all crafted items (gear + consumables)
+- [ ] Trading UI already exists via Social System — verify compatibility
+- [ ] Crafted items can be listed in trade window
+
+#### Material-Spezialisierung (Trade-Anreiz)
+- [ ] Each profession drops its own materials with HIGHER rates
+- [ ] Cross-profession materials have LOWER drop rates
+- [ ] Forces players to trade materials they can't farm efficiently
+- [ ] Adjust `gatheringAffinity` and `materialDropRates` in professions.json
+
+#### Neuer Beruf: Lederverarbeiter (Leatherworker)
+- [ ] New profession: "Gerber" / "Tannin the Leatherworker"
+- [ ] New armor type: "leather" (between cloth/heavy)
+- [ ] New material chain: Leichtes Leder → Mittleres Leder → Schweres Leder → Dickes Leder → Raues Leder
+- [ ] ~100 recipes covering leather helm/armor/boots/weapon/amulet across 5 tiers
+- [ ] New gear templates in gearTemplates.json
+- [ ] Leather armor trait: e.g., +1% Crit or +1% Dodge per piece
+
+#### Drop-Raten: Sehr lang (WoW-treu)
+- [ ] Reduce base gathering chance from 5% → 2-3%
+- [ ] Per-level bonus from 3% → 1-2%
+- [ ] Max gathering chance from 35% → 15-20%
+- [ ] Target: 1-300 takes several weeks of daily play
+
+#### Rezept-Quellen: WoW-Verteilung
+- [ ] ~40% Trainer recipes (buy from NPC)
+- [ ] ~30% Quest/World Drops (quest completion rewards)
+- [ ] ~20% Faction/Reputation gated
+- [ ] ~10% Dungeon/Rift exclusive drops
+
+#### Profession Perks: Nur über Items/Rezepte
+- Each profession's unique value comes from what it can MAKE, not special abilities
+- Schmied: Only source of heavy gear
+- Schneider: Only source of cloth gear
+- Lederverarbeiter: Only source of leather gear
+- Alchemist: Only source of potions/flasks/transmutes
+- Koch: Only source of food buffs
+- Verzauberer: Only source of enchants + stat rerolling
+
+#### Craftable Sets: Backlog (later)
+- Good D3-inspired idea, not now
+- 2-3 sets per gear profession (Schmied, Schneider, Lederverarbeiter)
 
 ## Trade System Vision
 Each profession produces things OTHERS need:
-- **Schmied**: Heavy Gear (BoE) — warriors/tanks need this
-- **Schneider**: Cloth Gear (BoE) — casters/healers need this
-- **Alchemist**: Potions/Flasks (tradeable consumables) — everyone needs XP/Gold buffs
+- **Schmied**: Heavy Gear (BoE) — tanks/fighters need this
+- **Schneider**: Cloth Gear (BoE) — casters/scholars need this
+- **Lederverarbeiter**: Leather Gear (BoE) — rogues/rangers need this
+- **Alchemist**: Potions/Flasks (tradeable consumables) — everyone needs XP/Gold/Luck buffs
 - **Koch**: Meals (tradeable consumables) — everyone needs food buffs
 - **Verzauberer**: Enchant services + temp buffs — everyone wants enchants on their gear
 
