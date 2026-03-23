@@ -155,14 +155,20 @@ function isRecipeDiscovered(recipe, profProgress, user) {
   return true;
 }
 
+// ─── Helper: check skill/level requirement (supports reqSkill or legacy reqProfLevel) ─
+function meetsSkillReq(recipe, profProgress) {
+  if (recipe.reqSkill != null) return profProgress.skill >= recipe.reqSkill;
+  return profProgress.level >= (recipe.reqProfLevel || 0);
+}
+
 // ─── Helper: check if recipe is visible (show in UI even if locked) ─────────
 function isRecipeVisible(recipe, profProgress, user) {
-  // Trainer recipes: always visible if profession level is met (show as "learnable")
-  if (recipe.source === 'trainer') return profProgress.level >= recipe.reqProfLevel;
+  // Trainer recipes: always visible if skill/level is met (show as "learnable")
+  if (recipe.source === 'trainer') return meetsSkillReq(recipe, profProgress);
   // Drop recipes: only visible once learned
   if (recipe.source === 'drop') return (user?.learnedRecipes || []).includes(recipe.id);
-  // Faction recipes: visible if profession level met (show as locked until rep earned)
-  if (recipe.source === 'faction') return profProgress.level >= recipe.reqProfLevel;
+  // Faction recipes: visible if skill/level met (show as locked until rep earned)
+  if (recipe.source === 'faction') return meetsSkillReq(recipe, profProgress);
   // Legacy: use discovery gate
   if (!recipe.discovery) return true;
   if (recipe.discovery.type === 'profLevel') return profProgress.level >= recipe.discovery.value;
@@ -296,11 +302,12 @@ router.post('/api/professions/learn', requireAuth, (req, res) => {
     return res.status(400).json({ error: 'You must choose this profession first.' });
   }
 
-  // Check profession level
+  // Check profession skill/level
   const profProgress = getProfLevel(u, recipe.profession);
-  if (profProgress.level < recipe.reqProfLevel) {
+  if (!meetsSkillReq(recipe, profProgress)) {
     const profDef = PROFESSIONS_DATA.professions.find(p => p.id === recipe.profession);
-    return res.status(400).json({ error: `Requires ${profDef?.name || recipe.profession} level ${recipe.reqProfLevel}` });
+    const reqLabel = recipe.reqSkill != null ? `skill ${recipe.reqSkill}` : `level ${recipe.reqProfLevel}`;
+    return res.status(400).json({ error: `Requires ${profDef?.name || recipe.profession} ${reqLabel}` });
   }
 
   // Already learned?
@@ -365,9 +372,10 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
     return res.status(400).json({ error: 'You haven\'t learned this recipe yet.' });
   }
 
-  // Check profession level
-  if (profProgress.level < recipe.reqProfLevel) {
-    return res.status(400).json({ error: `Requires ${profDef.name} level ${recipe.reqProfLevel}` });
+  // Check profession skill/level
+  if (!meetsSkillReq(recipe, profProgress)) {
+    const reqLabel = recipe.reqSkill != null ? `skill ${recipe.reqSkill}` : `level ${recipe.reqProfLevel}`;
+    return res.status(400).json({ error: `Requires ${profDef.name} ${reqLabel}` });
   }
 
   // Check cooldown (per-recipe, not per-profession)
@@ -394,7 +402,8 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
   // Slot-requiring recipes can't batch (they target specific gear)
   const isSlotRecipe = SLOT_RECIPES.includes(recipeId);
   // Block batch crafting on gray recipes (0 XP — prevents wasting materials)
-  const isGrayRecipe = getSkillUpColor(profProgress.level, recipe.reqProfLevel) === 'gray';
+  const recipeReqSkill = recipe.reqSkill || reqProfLevelToSkill(recipe.reqProfLevel);
+  const isGrayRecipe = getSkillUpColor(profProgress.skill, recipeReqSkill) === 'gray';
   const effectiveCount = isSlotRecipe ? 1 : (isGrayRecipe ? Math.min(count, 1) : count);
 
   // Validate slot-requiring recipes have a targetSlot and valid gear

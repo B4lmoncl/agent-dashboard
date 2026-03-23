@@ -436,7 +436,8 @@
         "templateId": "heavy-helm-t1"
       },
       "cooldownMinutes": 0,
-      "source": "trainer"
+      "source": "trainer",
+      "reqSkill": 1
     },
     {
       "id": "craft_heavy_armor_common",
@@ -456,7 +457,8 @@
         "templateId": "heavy-armor-t1"
       },
       "cooldownMinutes": 0,
-      "source": "trainer"
+      "source": "trainer",
+      "reqSkill": 1
     },
     {
       "id": "craft_heavy_boots_common",
@@ -476,7 +478,8 @@
         "templateId": "heavy-boots-t1"
       },
       "cooldownMinutes": 0,
-      "source": "trainer"
+      "source": "trainer",
+      "reqSkill": 1
     },
     {
       "id": "craft_heavy_weapon_common",
@@ -497,7 +500,8 @@
       },
       "cooldownMinutes": 0,
       "source": "trainer",
-      "trainerCost": 50
+      "trainerCost": 50,
+      "reqSkill": 30
     },
     {
       "id": "craft_heavy_shield_uncommon",
@@ -519,7 +523,8 @@
       },
       "cooldownMinutes": 0,
       "source": "trainer",
-      "trainerCost": 100
+      "trainerCost": 100,
+      "reqSkill": 60
     },
     {
       "id": "craft_heavy_armor_uncommon",
@@ -541,7 +546,8 @@
       },
       "cooldownMinutes": 0,
       "source": "trainer",
-      "trainerCost": 120
+      "trainerCost": 120,
+      "reqSkill": 60
     },
     {
       "id": "craft_heavy_helm_rare",
@@ -563,7 +569,8 @@
       },
       "cooldownMinutes": 0,
       "source": "trainer",
-      "trainerCost": 250
+      "trainerCost": 250,
+      "reqSkill": 120
     },
     {
       "id": "craft_heavy_armor_rare",
@@ -585,7 +592,8 @@
       },
       "cooldownMinutes": 0,
       "source": "trainer",
-      "trainerCost": 300
+      "trainerCost": 300,
+      "reqSkill": 120
     },
     {
       "id": "craft_heavy_weapon_epic",
@@ -608,7 +616,8 @@
       "cooldownMinutes": 0,
       "source": "drop",
       "dropChance": 0.06,
-      "dropMinQuestRarity": "rare"
+      "dropMinQuestRarity": "rare",
+      "reqSkill": 180
     },
     {
       "id": "craft_heavy_armor_epic",
@@ -631,7 +640,8 @@
       "cooldownMinutes": 0,
       "source": "drop",
       "dropChance": 0.05,
-      "dropMinQuestRarity": "epic"
+      "dropMinQuestRarity": "epic",
+      "reqSkill": 180
     },
     {
       "id": "craft_heavy_weapon_legendary",
@@ -655,7 +665,8 @@
       "cooldownMinutes": 1440,
       "source": "drop",
       "dropChance": 0.03,
-      "dropMinQuestRarity": "epic"
+      "dropMinQuestRarity": "epic",
+      "reqSkill": 250
     },
     {
       "id": "sharpen_blade",
@@ -681,7 +692,8 @@
       },
       "cooldownMinutes": 0,
       "source": "trainer",
-      "trainerCost": 250
+      "trainerCost": 250,
+      "reqSkill": 120
     },
     {
       "id": "upgrade_rarity",
@@ -708,7 +720,8 @@
       },
       "source": "drop",
       "dropChance": 0.08,
-      "dropMinQuestRarity": "rare"
+      "dropMinQuestRarity": "rare",
+      "reqSkill": 180
     },
     {
       "id": "reinforce_armor",
@@ -740,7 +753,8 @@
       },
       "source": "drop",
       "dropChance": 0.05,
-      "dropMinQuestRarity": "epic"
+      "dropMinQuestRarity": "epic",
+      "reqSkill": 250
     },
     {
       "id": "craft_cloth_helm_common",
@@ -760,7 +774,8 @@
         "templateId": "cloth-helm-t1"
       },
       "cooldownMinutes": 0,
-      "source": "trainer"
+      "source": "trainer",
+      "reqSkill": 1
     },
     {
       "id": "craft_cloth_armor_common",
@@ -780,7 +795,8 @@
         "templateId": "cloth-armor-t1"
       },
       "cooldownMinutes": 0,
-      "source": "trainer"
+      "source": "trainer",
+      "reqSkill": 1
     },
     {
       "id": "craft_cloth_boots_common",
@@ -800,7 +816,8 @@
         "templateId": "cloth-boots-t1"
       },
       "cooldownMinutes": 0,
-      "source": "trainer"
+      "source": "trainer",
+      "reqSkill": 1
     },
     {
       "id": "craft_cloth_weapon_common",
@@ -822,7 +839,8 @@
       },
       "cooldownMinutes": 0,
       "source": "trainer",
-      "trainerCost": 50
+      "trainerCost": 50,
+      "reqSkill": 30
     },
     {
       "id": "craft_cloth_armor_uncommon",
@@ -844,7 +862,8 @@
       },
       "cooldownMinutes": 0,
       "source": "trainer",
-      "trainerCost": 100
+      "trainerCost": 100,
+      "reqSkill": 60
     },
     {
       "id": "craft_cloth_helm_uncommon",
@@ -866,7 +885,8 @@
       },
       "cooldownMinutes": 0,
       "source": "trainer",
-      "trainerCost": 90
+      "trainerCost": 90,
+      "reqSkill": 60
     },
     {
       "id": "craft_cloth_amulet_uncommon",
@@ -888,7 +908,8 @@
       },
       "cooldownMinutes": 0,
       "source": "trainer",
-      "trainerCost": 120
+      "trainerCost": 120,
+      "reqSkill": 90
     },
     {
       "id": "craft_cloth_armor_rare",
@@ -910,7 +931,8 @@
       },
       "cooldownMinutes": 0,
       "source": "trainer",
-      "trainerCost": 250
+      "trainerCost": 250,
+      "reqSkill": 120
     },
     {
       "id": "craft_cloth_helm_rare",
@@ -932,7 +954,8 @@
       },
       "cooldownMinutes": 0,
       "source": "trainer",
-      "trainerCost": 225
+      "trainerCost": 225,
+      "reqSkill": 120
     },
     {
       "id": "craft_cloth_weapon_rare",
@@ -955,7 +978,8 @@
       "cooldownMinutes": 0,
       "source": "drop",
       "dropChance": 0.08,
-      "dropMinQuestRarity": "rare"
+      "dropMinQuestRarity": "rare",
+      "reqSkill": 150
     },
     {
       "id": "craft_cloth_armor_epic",
@@ -978,7 +1002,8 @@
       "cooldownMinutes": 0,
       "source": "drop",
       "dropChance": 0.06,
-      "dropMinQuestRarity": "rare"
+      "dropMinQuestRarity": "rare",
+      "reqSkill": 180
     },
     {
       "id": "craft_cloth_helm_epic",
@@ -1001,7 +1026,8 @@
       "cooldownMinutes": 0,
       "source": "drop",
       "dropChance": 0.05,
-      "dropMinQuestRarity": "epic"
+      "dropMinQuestRarity": "epic",
+      "reqSkill": 210
     },
     {
       "id": "craft_cloth_armor_legendary",
@@ -1025,7 +1051,8 @@
       "cooldownMinutes": 1440,
       "source": "drop",
       "dropChance": 0.03,
-      "dropMinQuestRarity": "epic"
+      "dropMinQuestRarity": "epic",
+      "reqSkill": 250
     },
     {
       "id": "craft_cloth_weapon_legendary",
@@ -1049,7 +1076,8 @@
       "cooldownMinutes": 2880,
       "source": "drop",
       "dropChance": 0.02,
-      "dropMinQuestRarity": "epic"
+      "dropMinQuestRarity": "epic",
+      "reqSkill": 280
     },
     {
       "id": "potion_xp",
@@ -1071,7 +1099,8 @@
         "duration": "3_quests"
       },
       "cooldownMinutes": 0,
-      "source": "trainer"
+      "source": "trainer",
+      "reqSkill": 1
     },
     {
       "id": "potion_gold",
@@ -1094,7 +1123,8 @@
       },
       "cooldownMinutes": 0,
       "source": "trainer",
-      "trainerCost": 50
+      "trainerCost": 50,
+      "reqSkill": 30
     },
     {
       "id": "potion_luck",
@@ -1117,7 +1147,8 @@
       },
       "cooldownMinutes": 0,
       "source": "trainer",
-      "trainerCost": 75
+      "trainerCost": 75,
+      "reqSkill": 90
     },
     {
       "id": "potion_streak",
@@ -1145,7 +1176,8 @@
       },
       "source": "drop",
       "dropChance": 0.1,
-      "dropMinQuestRarity": "uncommon"
+      "dropMinQuestRarity": "uncommon",
+      "reqSkill": 150
     },
     {
       "id": "potion_doubledown",
@@ -1175,7 +1207,8 @@
       },
       "source": "drop",
       "dropChance": 0.06,
-      "dropMinQuestRarity": "rare"
+      "dropMinQuestRarity": "rare",
+      "reqSkill": 210
     },
     {
       "id": "enchant_gear",
@@ -1200,7 +1233,8 @@
         "durationHours": 24
       },
       "cooldownMinutes": 0,
-      "source": "trainer"
+      "source": "trainer",
+      "reqSkill": 1
     },
     {
       "id": "runic_polish",
@@ -1226,7 +1260,8 @@
       },
       "cooldownMinutes": 0,
       "source": "trainer",
-      "trainerCost": 80
+      "trainerCost": 80,
+      "reqSkill": 60
     },
     {
       "id": "glyph_of_warding",
@@ -1254,7 +1289,8 @@
       },
       "source": "drop",
       "dropChance": 0.1,
-      "dropMinQuestRarity": "uncommon"
+      "dropMinQuestRarity": "uncommon",
+      "reqSkill": 150
     },
     {
       "id": "permanent_enchant",
@@ -1286,7 +1322,8 @@
       },
       "source": "drop",
       "dropChance": 0.08,
-      "dropMinQuestRarity": "rare"
+      "dropMinQuestRarity": "rare",
+      "reqSkill": 120
     },
     {
       "id": "enchant_socket",
@@ -1319,7 +1356,8 @@
       },
       "source": "drop",
       "dropChance": 0.04,
-      "dropMinQuestRarity": "epic"
+      "dropMinQuestRarity": "epic",
+      "reqSkill": 210
     },
     {
       "id": "meal_hearty",
@@ -1341,7 +1379,8 @@
         "duration": "5_quests"
       },
       "cooldownMinutes": 0,
-      "source": "trainer"
+      "source": "trainer",
+      "reqSkill": 1
     },
     {
       "id": "meal_golden",
@@ -1365,7 +1404,8 @@
       },
       "cooldownMinutes": 0,
       "source": "trainer",
-      "trainerCost": 30
+      "trainerCost": 30,
+      "reqSkill": 30
     },
     {
       "id": "meal_forge",
@@ -1387,7 +1427,8 @@
       },
       "cooldownMinutes": 0,
       "source": "trainer",
-      "trainerCost": 40
+      "trainerCost": 40,
+      "reqSkill": 60
     },
     {
       "id": "meal_feast",
@@ -1416,7 +1457,8 @@
       },
       "source": "drop",
       "dropChance": 0.12,
-      "dropMinQuestRarity": "uncommon"
+      "dropMinQuestRarity": "uncommon",
+      "reqSkill": 120
     },
     {
       "id": "meal_endurance",
@@ -1444,7 +1486,8 @@
       },
       "source": "drop",
       "dropChance": 0.08,
-      "dropMinQuestRarity": "rare"
+      "dropMinQuestRarity": "rare",
+      "reqSkill": 180
     },
     {
       "id": "meal_champions",
@@ -1474,7 +1517,8 @@
       },
       "source": "drop",
       "dropChance": 0.04,
-      "dropMinQuestRarity": "epic"
+      "dropMinQuestRarity": "epic",
+      "reqSkill": 250
     },
     {
       "id": "flask_of_embers",
@@ -1497,7 +1541,8 @@
       },
       "cooldownMinutes": 0,
       "source": "faction",
-      "factionId": "glut"
+      "factionId": "glut",
+      "reqSkill": 90
     },
     {
       "id": "scholars_ink",
@@ -1520,7 +1565,8 @@
       },
       "cooldownMinutes": 0,
       "source": "faction",
-      "factionId": "tinte"
+      "factionId": "tinte",
+      "reqSkill": 90
     },
     {
       "id": "artisans_whetstone",
@@ -1543,7 +1589,8 @@
       },
       "cooldownMinutes": 0,
       "source": "faction",
-      "factionId": "amboss"
+      "factionId": "amboss",
+      "reqSkill": 90
     },
     {
       "id": "resonance_charm",
@@ -1566,10 +1613,8 @@
       },
       "cooldownMinutes": 0,
       "source": "faction",
-      "factionId": "echo"
-    },
-    {
-      "_comment": "─── NEW: Alchemist skill gap fillers (skill 60-250) ───"
+      "factionId": "echo",
+      "reqSkill": 90
     },
     {
       "id": "potion_minor_heal",
@@ -1590,7 +1635,8 @@
         "duration": "2_quests"
       },
       "cooldownMinutes": 0,
-      "source": "trainer"
+      "source": "trainer",
+      "reqSkill": 1
     },
     {
       "id": "potion_focus",
@@ -1613,7 +1659,8 @@
       },
       "cooldownMinutes": 0,
       "source": "trainer",
-      "trainerCost": 60
+      "trainerCost": 60,
+      "reqSkill": 60
     },
     {
       "id": "potion_resilience",
@@ -1637,7 +1684,8 @@
       },
       "cooldownMinutes": 0,
       "source": "trainer",
-      "trainerCost": 55
+      "trainerCost": 55,
+      "reqSkill": 60
     },
     {
       "id": "potion_iron_skin",
@@ -1659,7 +1707,8 @@
       },
       "cooldownMinutes": 0,
       "source": "trainer",
-      "trainerCost": 100
+      "trainerCost": 100,
+      "reqSkill": 120
     },
     {
       "id": "potion_greater_xp",
@@ -1683,7 +1732,8 @@
       },
       "cooldownMinutes": 0,
       "source": "trainer",
-      "trainerCost": 150
+      "trainerCost": 150,
+      "reqSkill": 150
     },
     {
       "id": "potion_transmute_crystal",
@@ -1705,7 +1755,8 @@
       },
       "cooldownMinutes": 1440,
       "source": "trainer",
-      "trainerCost": 200
+      "trainerCost": 200,
+      "reqSkill": 120
     },
     {
       "id": "potion_transmute_dragon",
@@ -1728,7 +1779,8 @@
       "cooldownMinutes": 1440,
       "source": "drop",
       "dropChance": 0.08,
-      "dropMinQuestRarity": "rare"
+      "dropMinQuestRarity": "rare",
+      "reqSkill": 180
     },
     {
       "id": "potion_mega_gold",
@@ -1753,10 +1805,8 @@
       "cooldownMinutes": 720,
       "source": "drop",
       "dropChance": 0.05,
-      "dropMinQuestRarity": "epic"
-    },
-    {
-      "_comment": "─── NEW: Koch skill gap fillers (skill 30-250) ───"
+      "dropMinQuestRarity": "epic",
+      "reqSkill": 250
     },
     {
       "id": "meal_simple_bread",
@@ -1777,7 +1827,8 @@
         "duration": "3_quests"
       },
       "cooldownMinutes": 0,
-      "source": "trainer"
+      "source": "trainer",
+      "reqSkill": 1
     },
     {
       "id": "meal_spiced_stew",
@@ -1801,7 +1852,8 @@
       },
       "cooldownMinutes": 0,
       "source": "trainer",
-      "trainerCost": 35
+      "trainerCost": 35,
+      "reqSkill": 60
     },
     {
       "id": "meal_travelers_ration",
@@ -1824,7 +1876,8 @@
       },
       "cooldownMinutes": 0,
       "source": "trainer",
-      "trainerCost": 40
+      "trainerCost": 40,
+      "reqSkill": 90
     },
     {
       "id": "meal_grilled_steak",
@@ -1848,7 +1901,8 @@
       },
       "cooldownMinutes": 0,
       "source": "trainer",
-      "trainerCost": 80
+      "trainerCost": 80,
+      "reqSkill": 150
     },
     {
       "id": "meal_dragon_roast",
@@ -1873,7 +1927,8 @@
       "cooldownMinutes": 0,
       "source": "drop",
       "dropChance": 0.08,
-      "dropMinQuestRarity": "rare"
+      "dropMinQuestRarity": "rare",
+      "reqSkill": 210
     },
     {
       "id": "meal_phoenixfire_feast",
@@ -1899,10 +1954,8 @@
       "cooldownMinutes": 1440,
       "source": "drop",
       "dropChance": 0.03,
-      "dropMinQuestRarity": "epic"
-    },
-    {
-      "_comment": "─── NEW: Verzauberer skill gap fillers (skill 30-250) ───"
+      "dropMinQuestRarity": "epic",
+      "reqSkill": 280
     },
     {
       "id": "enchant_minor_ward",
@@ -1926,7 +1979,8 @@
         "durationHours": 24
       },
       "cooldownMinutes": 0,
-      "source": "trainer"
+      "source": "trainer",
+      "reqSkill": 1
     },
     {
       "id": "enchant_arcane_shield",
@@ -1948,7 +2002,8 @@
       },
       "cooldownMinutes": 0,
       "source": "trainer",
-      "trainerCost": 50
+      "trainerCost": 50,
+      "reqSkill": 30
     },
     {
       "id": "enchant_crystal_focus",
@@ -1975,7 +2030,8 @@
       },
       "cooldownMinutes": 0,
       "source": "trainer",
-      "trainerCost": 90
+      "trainerCost": 90,
+      "reqSkill": 90
     },
     {
       "id": "enchant_greater_ward",
@@ -2000,7 +2056,8 @@
       "cooldownMinutes": 0,
       "source": "drop",
       "dropChance": 0.08,
-      "dropMinQuestRarity": "rare"
+      "dropMinQuestRarity": "rare",
+      "reqSkill": 180
     },
     {
       "id": "enchant_soul_infusion",
@@ -2028,10 +2085,8 @@
       "cooldownMinutes": 2880,
       "source": "drop",
       "dropChance": 0.04,
-      "dropMinQuestRarity": "epic"
-    },
-    {
-      "_comment": "─── NEW: Schmied skill gap fillers (skill 90-250) ───"
+      "dropMinQuestRarity": "epic",
+      "reqSkill": 250
     },
     {
       "id": "craft_heavy_amulet_uncommon",
@@ -2053,7 +2108,8 @@
       },
       "cooldownMinutes": 0,
       "source": "trainer",
-      "trainerCost": 100
+      "trainerCost": 100,
+      "reqSkill": 90
     },
     {
       "id": "craft_heavy_boots_rare",
@@ -2075,7 +2131,8 @@
       },
       "cooldownMinutes": 0,
       "source": "trainer",
-      "trainerCost": 250
+      "trainerCost": 250,
+      "reqSkill": 150
     },
     {
       "id": "craft_heavy_shield_rare",
@@ -2098,7 +2155,8 @@
       "cooldownMinutes": 0,
       "source": "drop",
       "dropChance": 0.1,
-      "dropMinQuestRarity": "uncommon"
+      "dropMinQuestRarity": "uncommon",
+      "reqSkill": 150
     },
     {
       "id": "craft_heavy_helm_epic",
@@ -2122,10 +2180,8 @@
       "cooldownMinutes": 0,
       "source": "drop",
       "dropChance": 0.06,
-      "dropMinQuestRarity": "rare"
-    },
-    {
-      "_comment": "─── NEW: Schneider skill gap fillers (skill 90-250) ───"
+      "dropMinQuestRarity": "rare",
+      "reqSkill": 210
     },
     {
       "id": "craft_cloth_boots_uncommon",
@@ -2147,7 +2203,8 @@
       },
       "cooldownMinutes": 0,
       "source": "trainer",
-      "trainerCost": 80
+      "trainerCost": 80,
+      "reqSkill": 60
     },
     {
       "id": "craft_cloth_boots_rare",
@@ -2169,7 +2226,8 @@
       },
       "cooldownMinutes": 0,
       "source": "trainer",
-      "trainerCost": 200
+      "trainerCost": 200,
+      "reqSkill": 150
     },
     {
       "id": "craft_cloth_amulet_rare",
@@ -2192,7 +2250,8 @@
       },
       "cooldownMinutes": 0,
       "source": "trainer",
-      "trainerCost": 180
+      "trainerCost": 180,
+      "reqSkill": 120
     },
     {
       "id": "craft_cloth_weapon_epic",
@@ -2216,7 +2275,8 @@
       "cooldownMinutes": 0,
       "source": "drop",
       "dropChance": 0.06,
-      "dropMinQuestRarity": "rare"
+      "dropMinQuestRarity": "rare",
+      "reqSkill": 210
     }
   ]
 }
