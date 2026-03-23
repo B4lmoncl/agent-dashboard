@@ -1220,16 +1220,11 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                       })()}
 
                       {/* Cost preview */}
-                      {!enchantOptions && (() => {
-                        const previewGold = enchantCost?.gold ?? Math.min(50000, Math.round(100 * Math.pow(1.5, rerollCount)));
-                        const previewEssenz = enchantCost?.essenz ?? 2;
-                        return (
+                      {!enchantOptions && (
                         <div className="mt-3 flex items-center gap-3 text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>
-                          <span>Next reroll: <strong style={{ color: "#f59e0b" }}>{previewGold}g</strong> + <strong style={{ color: "#ff8c00" }}>{previewEssenz} Essenz</strong></span>
+                          <span>Next reroll: <strong style={{ color: "#f59e0b" }}>{enchantCost?.gold ?? Math.min(50000, Math.round(100 * Math.pow(1.5, rerollCount)))}g</strong> + <strong style={{ color: "#ff8c00" }}>{enchantCost?.essenz ?? 2} Essenz</strong></span>
                           {rerollCount >= 5 && <span style={{ color: "#f59e0b" }}>&#9888; Cost escalating</span>}
                         </div>
-                        );
-                      })()
                       )}
                     </div>
                   ) : (
