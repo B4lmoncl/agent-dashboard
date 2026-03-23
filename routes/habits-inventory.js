@@ -593,7 +593,7 @@ router.post('/api/player/:name/equip/:itemId', requireAuth, requireSelf('name'),
       });
     }
 
-    u.gold -= shopItem.cost;
+    u.gold = (u.gold || 0) - shopItem.cost;
     ensureUserCurrencies(u);
     u.currencies.gold = u.gold;
     // Roll stats for the new item

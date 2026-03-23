@@ -457,6 +457,7 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
         result.message = `${statToReroll}: ${oldVal} → ${eq.stats[statToReroll]}`;
       } else {
         // Stat not in pool — pick random from pool
+        if (!template?.affixes?.primary?.pool?.length) { result.message = 'No affix pool available'; break; }
         const randomPool = template.affixes.primary.pool[Math.floor(Math.random() * template.affixes.primary.pool.length)];
         const oldVal = eq.stats[statToReroll];
         delete eq.stats[statToReroll];
@@ -473,6 +474,7 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
       const minorStats = Object.keys(eq.stats || {}).filter(s => MINOR_STATS.includes(s));
       if (minorStats.length === 0) {
         // Add a new minor stat from pool
+        if (!template?.affixes?.minor?.pool?.length) { result.message = 'No minor affix pool available'; break; }
         const pick = template.affixes.minor.pool[Math.floor(Math.random() * template.affixes.minor.pool.length)];
         eq.stats[pick.stat] = pick.min + Math.floor(Math.random() * (pick.max - pick.min + 1));
         result.message = `New minor stat: ${pick.stat} +${eq.stats[pick.stat]}`;
