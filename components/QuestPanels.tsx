@@ -355,6 +355,7 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
                 <span className="font-normal normal-case ml-2" style={{ color: "rgba(165,180,252,0.35)", fontSize: "0.75rem" }}>— track what you don&apos;t do</span>
               </h3>
               <p style={{ color: "rgba(99,102,241,0.6)", fontSize: "1rem", fontWeight: 600, marginTop: 2 }}>Vael the Silent</p>
+              <p className="text-xs italic" style={{ color: "rgba(129,140,248,0.3)", marginTop: 2 }}>Manche Siege werden nicht durch Taten errungen, sondern durch Verzicht.</p>
             </div>
             {playerName && reviewApiKey && (
               <button onClick={() => setCreateOpen(true)} className="action-btn text-xs px-3 py-1.5 rounded-lg font-semibold"
