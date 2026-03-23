@@ -1334,8 +1334,9 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
               <button
                 onClick={() => { const id = confirmProf.id; setConfirmProf(null); handleChooseProfession(id); }}
                 disabled={choosingProf}
+                title={choosingProf ? "Choosing profession..." : "Confirm profession choice"}
                 className="forge-btn flex-1 text-xs font-bold py-2.5 rounded-lg"
-                style={{ background: `${confirmProf.color}18`, color: confirmProf.color, border: `1px solid ${confirmProf.color}40` }}
+                style={{ background: `${confirmProf.color}18`, color: confirmProf.color, border: `1px solid ${confirmProf.color}40`, cursor: choosingProf ? "not-allowed" : "pointer" }}
               >
                 {choosingProf ? "..." : "Learn Profession"}
               </button>

@@ -624,6 +624,7 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
                         setConfirmCancel(false);
                       }}
                       disabled={actionLoading}
+                      title={actionLoading ? "Action in progress..." : "Confirm cancel run"}
                       className="btn-interactive text-xs font-bold px-3 py-2 rounded-lg"
                       style={{ background: "rgba(239,68,68,0.15)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.3)", cursor: actionLoading ? "not-allowed" : "pointer" }}
                     >
@@ -817,6 +818,7 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
                         key={f.id}
                         onClick={() => !disabled && toggleFriend(f.name)}
                         disabled={disabled}
+                        title={disabled ? "Maximum invites reached" : selected ? "Remove from party" : "Add to party"}
                         className="btn-interactive w-full flex items-center gap-2 px-3 py-2 rounded-lg text-left"
                         style={{
                           background: selected ? `${selectedDungeonData.accent}12` : "rgba(255,255,255,0.02)",
@@ -840,7 +842,7 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
                           background: selected ? selectedDungeonData.accent : "transparent",
                           borderColor: selected ? selectedDungeonData.accent : "rgba(255,255,255,0.15)",
                         }}>
-                          {selected && <span style={{ color: "#000", fontSize: 10, fontWeight: 800 }}>&#10003;</span>}
+                          {selected && <span style={{ color: "#000", fontSize: 12, fontWeight: 800 }}>&#10003;</span>}
                         </div>
                       </button>
                     );
@@ -854,12 +856,14 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
               <button
                 onClick={createRun}
                 disabled={actionLoading || selectedFriends.length === 0}
+                title={actionLoading ? "Action in progress..." : selectedFriends.length === 0 ? "Select at least one friend to invite" : "Create dungeon run"}
                 className="btn-interactive flex-1 text-xs font-bold py-2.5 rounded-lg"
                 style={{
                   background: selectedFriends.length > 0 ? `${selectedDungeonData.accent}18` : "rgba(255,255,255,0.03)",
                   color: selectedFriends.length > 0 ? selectedDungeonData.accent : "rgba(255,255,255,0.2)",
                   border: `1px solid ${selectedFriends.length > 0 ? `${selectedDungeonData.accent}40` : "rgba(255,255,255,0.06)"}`,
                   opacity: actionLoading ? 0.5 : 1,
+                  cursor: (actionLoading || selectedFriends.length === 0) ? "not-allowed" : "pointer",
                 }}
               >
                 {actionLoading ? "Creating..." : `Create Run (${selectedFriends.length} invited)`}
