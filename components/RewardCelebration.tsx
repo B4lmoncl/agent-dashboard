@@ -380,14 +380,32 @@ export function RewardCelebration({ data, onClose, onCollect, onAchievementClick
                 )}
               </div>
             )}
-            {data.currencies && data.currencies.map((c, i) => (
-              <div key={i} className="reward-pill" style={{
-                background: `rgba(${hexToRgb(c.color)},0.1)`,
-                border: `1px solid rgba(${hexToRgb(c.color)},0.25)`,
-              }}>
-                <span className="text-sm font-semibold" style={{ color: c.color }}>+{c.amount} {c.name}</span>
-              </div>
-            ))}
+            {data.currencies && data.currencies.map((c, i) => {
+              const spendView = onNavigate ? (
+                c.name === "Gold" || c.name === "Stardust" ? "shop"
+                : c.name === "Runensplitter" ? "gacha"
+                : c.name === "Essenz" ? "forge"
+                : c.name === "Sternentaler" ? "challenges"
+                : null
+              ) : null;
+              return (
+                <div key={i} className="reward-pill" style={{
+                  background: `rgba(${hexToRgb(c.color)},0.1)`,
+                  border: `1px solid rgba(${hexToRgb(c.color)},0.25)`,
+                }}>
+                  <span className="text-sm font-semibold" style={{ color: c.color }}>+{c.amount} {c.name}</span>
+                  {spendView && (
+                    <button
+                      onClick={(e) => { e.stopPropagation(); if (onCollect) onCollect(data); onNavigate!(spendView); onClose(); }}
+                      className="ml-2 text-xs px-1.5 py-0.5 rounded"
+                      style={{ background: "rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.5)", cursor: "pointer" }}
+                    >
+                      Spend {"\u2192"}
+                    </button>
+                  )}
+                </div>
+              );
+            })}
             {data.pactBonus && (
               <div className="reward-pill" style={{
                 background: "rgba(239,68,68,0.1)",

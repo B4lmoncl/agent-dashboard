@@ -123,7 +123,13 @@ export default function LeaderboardView({ entries, agents, mode = "agents", onOp
           const lvl = getLbLevel(entry.xp);
           const cls = isPlayerMode && entry.classId && entry.classId !== "null" ? classMap.get(entry.classId) : null;
           return (
-            <div key={entry.id} className="flex flex-col items-center gap-2" style={{ minWidth: 100 }}>
+            <div
+              key={entry.id}
+              className={`flex flex-col items-center gap-2${isPlayerMode && onOpenProfile ? " cursor-pointer" : ""}`}
+              style={{ minWidth: 100 }}
+              onClick={isPlayerMode && onOpenProfile ? () => onOpenProfile(entry.id) : undefined}
+              title={isPlayerMode && onOpenProfile ? `View ${entry.name}'s profile` : undefined}
+            >
               <div className="text-lg"><RankMedal rank={rank} /></div>
               <div
                 className="w-14 h-14 rounded-2xl flex items-center justify-center font-black text-white text-xl flex-shrink-0"

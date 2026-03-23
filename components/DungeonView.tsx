@@ -133,7 +133,7 @@ const TIER_LABELS: Record<string, string> = {
 
 // ─── Component ──────────────────────────────────────────────────────────────
 
-export default function DungeonView({ onRefresh, onRewardCelebration }: { onRefresh?: () => void; onRewardCelebration?: (data: RewardCelebrationData) => void }) {
+export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate }: { onRefresh?: () => void; onRewardCelebration?: (data: RewardCelebrationData) => void; onNavigate?: (view: string) => void }) {
   const { playerName, reviewApiKey, loggedInUser } = useDashboard();
   const [dungeons, setDungeons] = useState<DungeonTemplate[]>([]);
   const [activeRun, setActiveRun] = useState<ActiveRun | null>(null);
@@ -409,6 +409,17 @@ export default function DungeonView({ onRefresh, onRewardCelebration }: { onRefr
             <div className="text-xs mt-1" style={{ color: "#fbbf24" }}>
               {collectResult.bonusAwarded.title && <span>Title earned: <strong>{collectResult.bonusAwarded.title}</strong></span>}
               {collectResult.bonusAwarded.frame && <span className="ml-2">Frame: <strong>{collectResult.bonusAwarded.frame}</strong></span>}
+            </div>
+          )}
+
+          {onNavigate && (
+            <div className="flex gap-3">
+              {(collectResult.rewards.gearDropItem || collectResult.uniqueDrop) && (
+                <button onClick={() => onNavigate("character")} className="btn-interactive text-xs" style={{ color: "#a855f7", cursor: "pointer" }}>View in Character →</button>
+              )}
+              {(collectResult.rewards.materialCount || 0) > 0 && (
+                <button onClick={() => onNavigate("forge")} className="btn-interactive text-xs" style={{ color: "rgba(255,255,255,0.35)", cursor: "pointer" }}>View in Forge →</button>
+              )}
             </div>
           )}
 
@@ -732,6 +743,13 @@ export default function DungeonView({ onRefresh, onRewardCelebration }: { onRefr
                         </div>
                       </TipCustom>
                     ))}
+                  </div>
+                )}
+
+                {onNavigate && (
+                  <div className="flex gap-3 mt-1">
+                    {d.rewards.gearDrop && <button onClick={() => onNavigate("character")} className="btn-interactive text-xs" style={{ color: "rgba(255,255,255,0.25)", cursor: "pointer" }}>View in Character →</button>}
+                    <button onClick={() => onNavigate("forge")} className="btn-interactive text-xs" style={{ color: "rgba(255,255,255,0.25)", cursor: "pointer" }}>View in Forge →</button>
                   </div>
                 )}
 

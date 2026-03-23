@@ -1259,7 +1259,7 @@ export default function Dashboard() {
               <div>
                 <h3 className="text-xs font-semibold uppercase tracking-widest mb-3 text-w25">Adventurers</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 mb-6">
-                  {users.filter(u => !agents.some(a => a.id === u.id)).map(u => <UserCard key={u.id} user={u} classes={classesList} onClick={() => setProfilePlayerId(u.id)} />)}
+                  {users.filter(u => !agents.some(a => a.id === u.id)).map(u => <UserCard key={u.id} user={u} classes={classesList} onClick={() => setProfilePlayerId(u.id)} onNavigate={(v) => setDashView(v as typeof dashView)} />)}
                 </div>
               </div>
             )}
@@ -1287,22 +1287,22 @@ export default function Dashboard() {
 
         {/* Factions — Die Vier Zirkel */}
         {dashView === "factions" && (
-          <ErrorBoundary><Suspense fallback={<ViewFallback />}><FactionsView onRewardCelebration={setRewardCelebration} /></Suspense></ErrorBoundary>
+          <ErrorBoundary><Suspense fallback={<ViewFallback />}><FactionsView onRewardCelebration={setRewardCelebration} onNavigate={(v) => setDashView(v as typeof dashView)} /></Suspense></ErrorBoundary>
         )}
 
         {/* Season Pass (Battle Pass) */}
         {dashView === "season" && (
-          <ErrorBoundary><Suspense fallback={<ViewFallback />}><BattlePassView onRewardCelebration={setRewardCelebration} /></Suspense></ErrorBoundary>
+          <ErrorBoundary><Suspense fallback={<ViewFallback />}><BattlePassView onRewardCelebration={setRewardCelebration} onNavigate={(v) => setDashView(v as typeof dashView)} /></Suspense></ErrorBoundary>
         )}
 
         {/* World Boss — The Colosseum */}
         {dashView === "worldboss" && (
-          <ErrorBoundary><Suspense fallback={<ViewFallback />}><WorldBossView onRewardCelebration={setRewardCelebration} /></Suspense></ErrorBoundary>
+          <ErrorBoundary><Suspense fallback={<ViewFallback />}><WorldBossView onRewardCelebration={setRewardCelebration} onNavigate={(v) => setDashView(v as typeof dashView)} /></Suspense></ErrorBoundary>
         )}
 
         {/* ── DUNGEONS — The Undercroft ── */}
         {dashView === "dungeons" && (
-          <ErrorBoundary><Suspense fallback={<ViewFallback />}><DungeonView onRefresh={refresh} onRewardCelebration={setRewardCelebration} /></Suspense></ErrorBoundary>
+          <ErrorBoundary><Suspense fallback={<ViewFallback />}><DungeonView onRefresh={refresh} onRewardCelebration={setRewardCelebration} onNavigate={(v) => setDashView(v as typeof dashView)} /></Suspense></ErrorBoundary>
         )}
 
         {/* ── SHOP TAB ── */}
@@ -1310,6 +1310,7 @@ export default function Dashboard() {
           <ErrorBoundary><Suspense fallback={<ViewFallback />}><ShopView
             onBuy={handleShopBuy}
             onGearBuy={handleGearBuy}
+            onNavigate={(v) => setDashView(v as typeof dashView)}
           /></Suspense></ErrorBoundary>
         )}
 
@@ -1439,7 +1440,7 @@ export default function Dashboard() {
               {/* Companions Widget — full experience in the Great Hall */}
               {playerName && (
                 <div className="mb-5" style={{ minHeight: 100 }}>
-                  <CompanionsWidget user={loggedInUser} streak={playerStreak} playerName={playerName} apiKey={reviewApiKey} onDobbieClick={() => { setDashView("npcBoard"); setNpcBoardFilter(null); }} onUserRefresh={refresh} dobbieQuests={dobbieActiveQuests} onRewardCelebration={setRewardCelebration} />
+                  <CompanionsWidget user={loggedInUser} streak={playerStreak} playerName={playerName} apiKey={reviewApiKey} onDobbieClick={() => { setDashView("npcBoard"); setNpcBoardFilter(null); }} onUserRefresh={refresh} dobbieQuests={dobbieActiveQuests} onRewardCelebration={setRewardCelebration} onNavigate={(v) => setDashView(v as typeof dashView)} />
                 </div>
               )}
 
@@ -1742,7 +1743,7 @@ export default function Dashboard() {
 
         {/* ── THE BREAKAWAY (Social & Trade) ── */}
         {dashView === "social" && (
-          <ErrorBoundary><Suspense fallback={<ViewFallback />}><SocialView /></Suspense></ErrorBoundary>
+          <ErrorBoundary><Suspense fallback={<ViewFallback />}><SocialView onNavigate={(v) => setDashView(v as typeof dashView)} /></Suspense></ErrorBoundary>
         )}
 
         {/* ── THE HEARTH (Tavern / Rest Mode) ── */}

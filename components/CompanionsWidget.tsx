@@ -69,7 +69,7 @@ function getCompanionQuotes(companionType?: string, companionName?: string): str
   return templates.map(t => t.replace(/\{name\}/g, name));
 }
 
-export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieClick, onUserRefresh, compact, dobbieQuests, onRewardCelebration }: {
+export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieClick, onUserRefresh, compact, dobbieQuests, onRewardCelebration, onNavigate }: {
   user: User | null | undefined;
   streak: number;
   playerName?: string;
@@ -79,6 +79,7 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
   compact?: boolean;
   dobbieQuests?: Quest[];
   onRewardCelebration?: (data: { type: "companion"; title: string; xpEarned: number; goldEarned: number; loot?: { name: string; emoji: string; rarity: string } | null; bondXp?: number; companionAccent?: string; companionEmoji?: string }) => void;
+  onNavigate?: (view: string) => void;
 }) {
   const companionType = user?.companion?.type || user?.companion?.species;
   const companionQuotes = getCompanionQuotes(companionType, user?.companion?.name);
@@ -331,7 +332,13 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
                     strokeDashoffset={circumference * (1 - bondProgress)}
                     style={{ transition: "stroke-dashoffset 0.8s ease-out" }} />
                 </svg>
-                <div style={{ position: "absolute", top: ringPad, left: ringPad }}>
+                <div
+                  style={{ position: "absolute", top: ringPad, left: ringPad, cursor: onNavigate ? "pointer" : undefined, transition: "transform 0.15s ease" }}
+                  title={onNavigate ? "View companion details" : undefined}
+                  onClick={onNavigate ? () => onNavigate("character") : undefined}
+                  onMouseEnter={onNavigate ? (e) => { e.currentTarget.style.transform = "translateY(-2px)"; } : undefined}
+                  onMouseLeave={onNavigate ? (e) => { e.currentTarget.style.transform = "translateY(0)"; } : undefined}
+                >
                   {portrait}
                 </div>
               </div>

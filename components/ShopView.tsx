@@ -10,9 +10,19 @@ const GEAR_TIERS_CLIENT = shopData.gearTiers;
 const SHOP_ITEMS_LIST: ShopItem[] = shopData.items as ShopItem[];
 
 // ─── Main ShopView (no Gacha — moved to GachaView) ─────────────────────────
-export default function ShopView({ onBuy, onGearBuy }: {
+// Boost → navigation hint mapping
+const BOOST_HINTS: Record<string, { label: string; view?: string }> = {
+  xp_boost_10:      { label: "Works on Quest Board \u2192", view: "questBoard" },
+  gold_boost_10:    { label: "Works on Quest Board \u2192", view: "questBoard" },
+  luck_boost_20:    { label: "Improves drops" },
+  streak_shield:    { label: "Protects Rituals \u2192", view: "rituals" },
+  material_double:  { label: "Works in Forge \u2192", view: "forge" },
+};
+
+export default function ShopView({ onBuy, onGearBuy, onNavigate }: {
   onBuy: (userId: string, itemId: string) => void;
   onGearBuy: (userId: string, gearId: string) => void;
+  onNavigate?: (view: string) => void;
 }) {
   const { users, playerName, reviewApiKey } = useDashboard();
   const loggedIn = playerName && reviewApiKey;
@@ -62,6 +72,14 @@ export default function ShopView({ onBuy, onGearBuy }: {
                   <div className="flex-1 min-w-0">
                     <p className="text-xs font-semibold" style={{ color: "#c4b5fd" }}>{item.name}</p>
                     <p className="text-xs" style={{ color: "rgba(196,181,253,0.5)" }}>{item.desc}</p>
+                    {(() => {
+                      const hint = item.effect?.type ? BOOST_HINTS[item.effect.type] : undefined;
+                      if (!hint) return null;
+                      if (hint.view && onNavigate) return (
+                        <button onClick={() => onNavigate(hint.view!)} className="btn-interactive text-xs mt-0.5 block" style={{ color: "rgba(196,181,253,0.3)", cursor: "pointer" }}>{hint.label}</button>
+                      );
+                      return <p className="text-xs mt-0.5" style={{ color: "rgba(196,181,253,0.25)" }}>{hint.label}</p>;
+                    })()}
                   </div>
                   <button
                     onClick={() => canAfford && onBuy(user.id, item.id)}

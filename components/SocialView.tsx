@@ -1098,7 +1098,17 @@ function TradesTab({ apiKey, playerName }: { apiKey: string; playerName: string 
 
 // ─── Activity Feed Tab ───────────────────────────────────────────────────────
 
-function ActivityFeedTab({ apiKey, playerName }: { apiKey: string; playerName: string }) {
+// Navigation targets for activity feed events
+const EVENT_NAV: Record<string, { view: string; tooltip: string }> = {
+  quest_complete: { view: "questBoard", tooltip: "View Quest Board" },
+  level_up: { view: "character", tooltip: "View Character" },
+  achievement: { view: "honors", tooltip: "View Honors" },
+  gacha_pull: { view: "gacha", tooltip: "View Vault of Fate" },
+  rare_drop: { view: "character", tooltip: "View Character" },
+  streak_milestone: { view: "rituals", tooltip: "View Rituals" },
+};
+
+function ActivityFeedTab({ apiKey, playerName, onNavigate }: { apiKey: string; playerName: string; onNavigate?: (view: string) => void }) {
   const [feed, setFeed] = useState<ActivityEvent[]>([]);
   const [loading, setLoading] = useState(true);
   const [compactView, setCompactView] = useState(false);
@@ -1148,6 +1158,7 @@ function ActivityFeedTab({ apiKey, playerName }: { apiKey: string; playerName: s
         const name = isOwn ? "You" : event.playerName;
         const d = event.data as Record<string, string>;
         const rarityColor = d.rarity ? (RARITY_COLORS[d.rarity] || "#e8e8e8") : "#e8e8e8";
+        const nav = onNavigate ? EVENT_NAV[event.type] : undefined;
 
         // Build description as JSX with tooltips for items/achievements
         let descriptionNode: ReactNode;
@@ -1184,6 +1195,7 @@ function ActivityFeedTab({ apiKey, playerName }: { apiKey: string; playerName: s
               <span className="font-semibold truncate" style={{ color: isOwn ? "#a855f7" : (event.playerColor || "#e8e8e8") }}>{name}</span>
               <span className="text-w30 truncate flex-1">{descriptionNode}</span>
               <span className="text-w15 flex-shrink-0">{timeAgo(event.at)}</span>
+              {nav && <button onClick={() => onNavigate!(nav.view)} title={nav.tooltip} className="flex-shrink-0 cursor-pointer text-w15 hover:text-w40 transition-colors" style={{ fontSize: 12 }}>→</button>}
             </div>
           );
         }
@@ -1205,6 +1217,7 @@ function ActivityFeedTab({ apiKey, playerName }: { apiKey: string; playerName: s
             {!isOwn && (
               <PlayerBadge name={event.playerName || "?"} avatar={event.playerAvatar} color={event.playerColor || "#a78bfa"} size={22} />
             )}
+            {nav && <button onClick={() => onNavigate!(nav.view)} title={nav.tooltip} className="flex-shrink-0 self-center cursor-pointer text-w15 hover:text-w40 transition-colors ml-1" style={{ fontSize: 13 }}>→</button>}
           </div>
         );
       })}
@@ -1214,7 +1227,7 @@ function ActivityFeedTab({ apiKey, playerName }: { apiKey: string; playerName: s
 
 // ─── Main SocialView ────────────────────────────────────────────────────────
 
-export default function SocialView() {
+export default function SocialView({ onNavigate }: { onNavigate?: (view: string) => void } = {}) {
   const { playerName, reviewApiKey } = useDashboard();
   const [activeTab, setActiveTab] = useState<SocialTab>("friends");
   const [profilePlayerId, setProfilePlayerId] = useState<string | null>(null);
@@ -1265,7 +1278,7 @@ export default function SocialView() {
         {activeTab === "friends" && <FriendsTab apiKey={reviewApiKey} playerName={playerName} onOpenProfile={id => setProfilePlayerId(id)} />}
         {activeTab === "messages" && <MessagesTab apiKey={reviewApiKey} playerName={playerName} autoOpenWith={pendingMessageTarget} onAutoOpened={() => setPendingMessageTarget(null)} />}
         {activeTab === "trades" && <TradesTab apiKey={reviewApiKey} playerName={playerName} />}
-        {activeTab === "activity" && <ActivityFeedTab apiKey={reviewApiKey} playerName={playerName} />}
+        {activeTab === "activity" && <ActivityFeedTab apiKey={reviewApiKey} playerName={playerName} onNavigate={onNavigate} />}
       </div>
 
       {/* Player Profile Modal */}

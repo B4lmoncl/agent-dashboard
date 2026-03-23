@@ -214,7 +214,7 @@ function ItemRevealCard({ result }: { result: GachaPullResult }) {
 
 // ─── Single Pull Animation ───────────────────────────────────────────────────
 // ALL rarities: 7s total — charge 5.5s, flash 0.3s, reveal 1.2s
-function SinglePullReveal({ result, onDone }: { result: GachaPullResult; onDone: () => void; onCollect?: (item: string) => void }) {
+function SinglePullReveal({ result, onDone, onNavigate }: { result: GachaPullResult; onDone: () => void; onCollect?: (item: string) => void; onNavigate?: (view: string) => void }) {
   const [phase, setPhase] = useState<"charge" | "flash" | "reveal">("charge");
   const rarity = result.item.rarity;
   const cfg = RARITY_CONFIG[rarity] || RARITY_CONFIG.common;
@@ -296,6 +296,17 @@ function SinglePullReveal({ result, onDone }: { result: GachaPullResult; onDone:
           >
             Claim
           </button>
+          {onNavigate && (
+            <button
+              onClick={() => { onDone(); onNavigate("character"); }}
+              className="text-xs cursor-pointer mt-1"
+              style={{ color: "rgba(255,255,255,0.25)" }}
+              onMouseEnter={e => { e.currentTarget.style.color = "rgba(255,255,255,0.5)"; }}
+              onMouseLeave={e => { e.currentTarget.style.color = "rgba(255,255,255,0.25)"; }}
+            >
+              View in Inventory {"\u2192"}
+            </button>
+          )}
         </div>
       )}
     </div>
@@ -304,7 +315,7 @@ function SinglePullReveal({ result, onDone }: { result: GachaPullResult; onDone:
 
 // ─── Multi Pull (10×) — Sequential reveals ──────────────────────────────────
 // 8s charge, flash shows BEST rarity, then sequential item reveals
-function MultiPullReveal({ results, onDone }: { results: GachaPullResult[]; onDone: () => void; onCollect?: (item: string) => void }) {
+function MultiPullReveal({ results, onDone, onNavigate }: { results: GachaPullResult[]; onDone: () => void; onCollect?: (item: string) => void; onNavigate?: (view: string) => void }) {
   const [phase, setPhase] = useState<"charge" | "flash" | "sequential" | "black" | "summary">("charge");
   const [currentIdx, setCurrentIdx] = useState(0);
 
@@ -518,6 +529,17 @@ function MultiPullReveal({ results, onDone }: { results: GachaPullResult[]; onDo
           >
             Claim
           </button>
+          {onNavigate && (
+            <button
+              onClick={() => { onDone(); onNavigate("character"); }}
+              className="text-xs cursor-pointer mt-1"
+              style={{ color: "rgba(255,255,255,0.25)" }}
+              onMouseEnter={e => { e.currentTarget.style.color = "rgba(255,255,255,0.5)"; }}
+              onMouseLeave={e => { e.currentTarget.style.color = "rgba(255,255,255,0.25)"; }}
+            >
+              View in Inventory {"\u2192"}
+            </button>
+          )}
         </div>
       )}
     </div>
@@ -601,20 +623,22 @@ export default function GachaPull({
   mode,
   onClose,
   onCollect,
+  onNavigate,
 }: {
   results: GachaPullResult[];
   mode: "single" | "multi";
   onClose: () => void;
   onCollect?: (name: string) => void;
+  onNavigate?: (view: string) => void;
 }) {
   return (
     <ModalPortal>
       <GachaStyleInjector />
       {mode === "single" && results.length > 0 && (
-        <SinglePullReveal result={results[0]} onDone={onClose} />
+        <SinglePullReveal result={results[0]} onDone={onClose} onNavigate={onNavigate} />
       )}
       {mode === "multi" && results.length > 0 && (
-        <MultiPullReveal results={results} onDone={onClose} />
+        <MultiPullReveal results={results} onDone={onClose} onNavigate={onNavigate} />
       )}
     </ModalPortal>
   );

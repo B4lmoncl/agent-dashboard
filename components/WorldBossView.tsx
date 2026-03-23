@@ -153,7 +153,7 @@ function rewardColor(r: ClaimReward): string {
 
 // ─── Component ──────────────────────────────────────────────────────────────
 
-export default function WorldBossView({ onRefresh, onRewardCelebration }: { onRefresh?: () => void; onRewardCelebration?: (data: RewardCelebrationData) => void }) {
+export default function WorldBossView({ onRefresh, onRewardCelebration, onNavigate }: { onRefresh?: () => void; onRewardCelebration?: (data: RewardCelebrationData) => void; onNavigate?: (view: string) => void }) {
   const { playerName, reviewApiKey } = useDashboard();
   const [data, setData] = useState<BossData | null>(null);
   const [loading, setLoading] = useState(true);
@@ -431,6 +431,11 @@ export default function WorldBossView({ onRefresh, onRewardCelebration }: { onRe
                 </TipCustom>
               ))}
             </div>
+            {onNavigate && (
+              <button onClick={() => onNavigate("character")} className="btn-interactive text-xs mt-1.5" style={{ color: `${boss.accent}80`, cursor: "pointer" }}>
+                View Collection →
+              </button>
+            )}
           </div>
         )}
 
@@ -474,6 +479,14 @@ export default function WorldBossView({ onRefresh, onRewardCelebration }: { onRe
                 <span>Rank #{claimResult.rank}</span>
                 <span>{claimResult.contributionPercent}% contribution</span>
               </div>
+              {onNavigate && (
+                <div className="flex gap-3 mt-1">
+                  {claimResult.rewards.some(r => r.type === "unique-drop" || r.type === "legendary-drop") && (
+                    <button onClick={() => onNavigate("character")} className="btn-interactive text-xs" style={{ color: "#f59e0b", cursor: "pointer" }}>View in Character →</button>
+                  )}
+                  <button onClick={() => onNavigate("forge")} className="btn-interactive text-xs" style={{ color: "rgba(255,255,255,0.3)", cursor: "pointer" }}>View in Forge →</button>
+                </div>
+              )}
             </div>
           </div>
         )}

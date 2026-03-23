@@ -59,7 +59,7 @@ const REWARD_CONFIG: Record<string, { icon: string; color: string; label: string
 
 // ─── Component ──────────────────────────────────────────────────────────────
 
-export default function BattlePassView({ onRewardCelebration }: { onRewardCelebration?: (data: RewardCelebrationData) => void } = {}) {
+export default function BattlePassView({ onRewardCelebration, onNavigate }: { onRewardCelebration?: (data: RewardCelebrationData) => void; onNavigate?: (view: string) => void } = {}) {
   const { playerName } = useDashboard();
   const [config, setConfig] = useState<BPConfig | null>(null);
   const [rewards, setRewards] = useState<BPReward[]>([]);
@@ -249,6 +249,16 @@ export default function BattlePassView({ onRewardCelebration }: { onRewardCelebr
                     <p className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>
                       {r.titleRarity.charAt(0).toUpperCase() + r.titleRarity.slice(1)} Title
                     </p>
+                  )}
+                  {onNavigate && (r.type === "title" || r.type === "frame") && (
+                    <button onClick={(e) => { e.stopPropagation(); onNavigate("character"); }} className="text-xs cursor-pointer" style={{ color: "rgba(255,255,255,0.25)" }} onMouseEnter={e => { e.currentTarget.style.color = "rgba(255,255,255,0.5)"; }} onMouseLeave={e => { e.currentTarget.style.color = "rgba(255,255,255,0.25)"; }}>
+                      View in Character {"\u2192"}
+                    </button>
+                  )}
+                  {onNavigate && r.type === "material" && (
+                    <button onClick={(e) => { e.stopPropagation(); onNavigate("forge"); }} className="text-xs cursor-pointer" style={{ color: "rgba(255,255,255,0.25)" }} onMouseEnter={e => { e.currentTarget.style.color = "rgba(255,255,255,0.5)"; }} onMouseLeave={e => { e.currentTarget.style.color = "rgba(255,255,255,0.25)"; }}>
+                      View in Forge {"\u2192"}
+                    </button>
                   )}
                 </div>
               </div>
