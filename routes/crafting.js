@@ -734,8 +734,69 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
       break;
     }
 
-    // ─── Gear crafting (Schneider cloth, Schmied heavy) ───────────────────
+    // ─── Gear crafting + generic handlers ──────────────────────────────────
     default: {
+      // Generic buff handler (for new recipes with buff result type)
+      if (recipe.result?.type === 'buff' && recipe.result?.buffType) {
+        u.activeBuffs = u.activeBuffs || [];
+        const buffDuration = parseInt(recipe.result.duration?.replace('_quests', '')) || 3;
+        for (let i = 0; i < effectiveCount; i++) {
+          u.activeBuffs.push({ type: recipe.result.buffType, questsRemaining: buffDuration, activatedAt: now() });
+        }
+        result.message = `${recipe.name} activated! (${buffDuration} quests)${effectiveCount > 1 ? ` (x${effectiveCount})` : ''}`;
+        break;
+      }
+      // Temp enchant handler
+      if (recipe.result?.type === 'temp_enchant') {
+        const allStats = [...PRIMARY_STATS, ...MINOR_STATS];
+        const stat = allStats[Math.floor(Math.random() * allStats.length)];
+        const value = (recipe.result.statBonus?.[0] || 1) + Math.floor(Math.random() * ((recipe.result.statBonus?.[1] || 2) - (recipe.result.statBonus?.[0] || 1) + 1));
+        const hours = recipe.result.durationHours || 24;
+        u.activeBuffs = u.activeBuffs || [];
+        u.activeBuffs.push({ type: `enchant_${stat}`, stat, value, expiresAt: new Date(Date.now() + hours * 60 * 60 * 1000).toISOString(), activatedAt: now() });
+        result.message = `${recipe.name}: +${value} ${stat} for ${hours}h`;
+        break;
+      }
+      // Perm enchant handler (for new soul_infusion etc.)
+      if (recipe.result?.type === 'perm_enchant') {
+        const eq = u.equipment?.[targetSlot];
+        if (!eq || typeof eq === 'string') { result.message = 'No gear in slot'; result.success = false; break; }
+        if (eq.permEnchantCount >= 1 && recipe.result.target === 'minor_stat') { result.message = 'Already has a permanent enchantment.'; result.success = false; break; }
+        if (eq.infusionCount >= 1 && recipe.result.target === 'primary_stat') { result.message = 'Already has an infusion.'; result.success = false; break; }
+        const statPool = recipe.result.target === 'primary_stat' ? PRIMARY_STATS : MINOR_STATS;
+        const stat = statPool[Math.floor(Math.random() * statPool.length)];
+        const value = (recipe.result.statBonus?.[0] || 1) + Math.floor(Math.random() * ((recipe.result.statBonus?.[1] || 2) - (recipe.result.statBonus?.[0] || 1) + 1));
+        eq.stats = eq.stats || {};
+        eq.stats[stat] = (eq.stats[stat] || 0) + value;
+        if (recipe.result.target === 'primary_stat') eq.infusionCount = (eq.infusionCount || 0) + 1;
+        else eq.permEnchantCount = (eq.permEnchantCount || 0) + 1;
+        result.message = `+${value} ${stat} permanently!`;
+        result.updatedGear = eq;
+        break;
+      }
+      // Transmute material handler (alchemist transmutes)
+      if (recipe.result?.type === 'transmute_material') {
+        u.craftingMaterials = u.craftingMaterials || {};
+        const outMat = recipe.result.outputMaterial;
+        const outAmt = (recipe.result.outputAmount || 1) * effectiveCount;
+        u.craftingMaterials[outMat] = (u.craftingMaterials[outMat] || 0) + outAmt;
+        const matDef = PROFESSIONS_DATA.materials?.find(m => m.id === outMat);
+        result.message = `Transmuted! +${outAmt} ${matDef?.name || outMat}`;
+        break;
+      }
+      // Forge temp handler
+      if (recipe.result?.type === 'forge_temp') {
+        const totalAmount = (recipe.result.amount || 15) * effectiveCount;
+        u.forgeTemp = Math.min(100, (u.forgeTemp || 0) + totalAmount);
+        result.message = `Forge temperature raised by ${totalAmount}! (${u.forgeTemp}%)`;
+        break;
+      }
+      // Streak shield handler
+      if (recipe.result?.type === 'streak_shield') {
+        u.streakShields = Math.min(10, (u.streakShields || 0) + effectiveCount);
+        result.message = `Streak Shield received! (Total: ${u.streakShields})`;
+        break;
+      }
       if (recipe.result?.type === 'craft_gear') {
         const templateId = recipe.result.templateId;
         const template = state.gearById.get(templateId) || state.itemTemplates?.get(templateId);

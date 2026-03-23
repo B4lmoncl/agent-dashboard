@@ -13659,8 +13659,8 @@
       },
       "legendaryEffect": {
         "type": "ritual_streak_bonus",
-        "min": 2,
-        "max": 5,
+        "min": 1,
+        "max": 3,
         "label": "Runenweberin: +{value}% XP pro Ritual-Streak-Tag"
       },
       "setId": "legendary",
@@ -13679,8 +13679,8 @@
       "armorType": "cloth",
       "trait": { "type": "arkane_resonanz", "value": 1, "label": "+1% XP" },
       "affixes": {
-        "primary": { "count": [3, 3], "pool": [{ "stat": "weisheit", "min": 3, "max": 6 }, { "stat": "kraft", "min": 3, "max": 6 }, { "stat": "glueck", "min": 3, "max": 6 }] },
-        "minor": { "count": [2, 2], "pool": [{ "stat": "fokus", "min": 2, "max": 4 }, { "stat": "tempo", "min": 2, "max": 4 }, { "stat": "charisma", "min": 2, "max": 4 }] }
+        "primary": { "count": [3, 3], "pool": [{ "stat": "weisheit", "min": 4, "max": 7 }, { "stat": "kraft", "min": 4, "max": 7 }, { "stat": "glueck", "min": 4, "max": 7 }] },
+        "minor": { "count": [2, 2], "pool": [{ "stat": "fokus", "min": 3, "max": 5 }, { "stat": "tempo", "min": 3, "max": 5 }, { "stat": "charisma", "min": 3, "max": 5 }] }
       },
       "legendaryEffect": {
         "type": "companion_bond_boost",
@@ -13910,12 +13910,174 @@
       },
       "legendaryEffect": {
         "type": "streak_protection",
-        "min": 3,
-        "max": 6,
+        "min": 1,
+        "max": 3,
         "label": "Seelenband: +{value}% Streak-Schutz"
       },
       "setId": "legendary",
       "flavorText": "Das Schwert erinnert sich an jeden Kampf. An jeden Sieg. An jede Niederlage."
+    },
+
+    {
+      "id": "heavy-amulet-t2",
+      "name": "Eisernes Kriegeramulett",
+      "slot": "amulet",
+      "tier": 2,
+      "reqLevel": 10,
+      "rarity": "uncommon",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Ein massives Amulett aus Eisen und Kristall. Symbolisiert Standhaftigkeit.",
+      "armorType": "heavy",
+      "trait": { "type": "eiserne_haut", "value": 1, "label": "+1 Ausdauer" },
+      "affixes": {
+        "primary": { "count": [1, 2], "pool": [{ "stat": "kraft", "min": 2, "max": 4 }, { "stat": "ausdauer", "min": 2, "max": 4 }] },
+        "minor": { "count": [0, 1], "pool": [{ "stat": "vitalitaet", "min": 1, "max": 3 }] }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran",
+      "flavorText": "Schwer wie ein Schwur. Und genau so unerschütterlich."
+    },
+    {
+      "id": "heavy-boots-t3",
+      "name": "Drachenschuppen-Stiefel",
+      "slot": "boots",
+      "tier": 3,
+      "reqLevel": 18,
+      "rarity": "rare",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Stiefel aus Drachenschuppen. Jeder Schritt hinterlässt Hitze.",
+      "armorType": "heavy",
+      "trait": { "type": "eiserne_haut", "value": 1, "label": "+1 Ausdauer" },
+      "affixes": {
+        "primary": { "count": [2, 2], "pool": [{ "stat": "kraft", "min": 3, "max": 6 }, { "stat": "ausdauer", "min": 3, "max": 6 }, { "stat": "weisheit", "min": 3, "max": 6 }] },
+        "minor": { "count": [1, 1], "pool": [{ "stat": "tempo", "min": 2, "max": 4 }, { "stat": "vitalitaet", "min": 2, "max": 4 }] }
+      },
+      "legendaryEffect": null,
+      "setId": "master",
+      "flavorText": "Man riecht verbrannte Erde, wo der Träger stand."
+    },
+    {
+      "id": "heavy-shield-t3",
+      "name": "Drachenschuppen-Schild",
+      "slot": "shield",
+      "tier": 3,
+      "reqLevel": 18,
+      "rarity": "rare",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Ein Schild aus Drachenschuppen. Glüht in der Hitze des Kampfes.",
+      "armorType": "heavy",
+      "trait": { "type": "eiserne_haut", "value": 1, "label": "+1 Ausdauer" },
+      "affixes": {
+        "primary": { "count": [2, 2], "pool": [{ "stat": "ausdauer", "min": 3, "max": 6 }, { "stat": "kraft", "min": 3, "max": 6 }] },
+        "minor": { "count": [1, 1], "pool": [{ "stat": "vitalitaet", "min": 2, "max": 4 }, { "stat": "tempo", "min": 2, "max": 4 }] }
+      },
+      "legendaryEffect": null,
+      "setId": "master",
+      "flavorText": "Der Schild erinnert sich an das Feuer, aus dem er geboren wurde."
+    },
+    {
+      "id": "heavy-helm-t4-epic",
+      "name": "Aetherkern-Helm",
+      "slot": "helm",
+      "tier": 4,
+      "reqLevel": 26,
+      "rarity": "epic",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Ein Helm, durchpulst mit Aetherenergie. Vibriert mit Macht.",
+      "armorType": "heavy",
+      "trait": { "type": "eiserne_haut", "value": 1, "label": "+1 Ausdauer" },
+      "affixes": {
+        "primary": { "count": [2, 3], "pool": [{ "stat": "kraft", "min": 3, "max": 6 }, { "stat": "ausdauer", "min": 3, "max": 6 }, { "stat": "weisheit", "min": 3, "max": 6 }] },
+        "minor": { "count": [1, 2], "pool": [{ "stat": "vitalitaet", "min": 2, "max": 4 }, { "stat": "tempo", "min": 2, "max": 4 }, { "stat": "fokus", "min": 2, "max": 4 }] }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary",
+      "flavorText": "Der Aether flüstert. Wer den Helm trägt, hört das Flüstern als Donner."
+    },
+
+    {
+      "id": "cloth-boots-t2",
+      "name": "Wollene Gelehrtenschuhe",
+      "slot": "boots",
+      "tier": 2,
+      "reqLevel": 10,
+      "rarity": "uncommon",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Weiche Schuhe aus Wollstoff. Leise und warm.",
+      "armorType": "cloth",
+      "trait": { "type": "arkane_resonanz", "value": 1, "label": "+1% XP" },
+      "affixes": {
+        "primary": { "count": [1, 2], "pool": [{ "stat": "weisheit", "min": 2, "max": 4 }, { "stat": "glueck", "min": 2, "max": 4 }] },
+        "minor": { "count": [0, 1], "pool": [{ "stat": "tempo", "min": 1, "max": 3 }, { "stat": "fokus", "min": 1, "max": 3 }] }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran",
+      "flavorText": "Man hört kein Geräusch. Nur das leise Rascheln von Wissen."
+    },
+    {
+      "id": "cloth-boots-t3",
+      "name": "Seidene Mondschritte",
+      "slot": "boots",
+      "tier": 3,
+      "reqLevel": 18,
+      "rarity": "rare",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Stiefel aus Seidenstoff. Lautlos wie Mondlicht auf Wasser.",
+      "armorType": "cloth",
+      "trait": { "type": "arkane_resonanz", "value": 1, "label": "+1% XP" },
+      "affixes": {
+        "primary": { "count": [2, 2], "pool": [{ "stat": "weisheit", "min": 3, "max": 6 }, { "stat": "glueck", "min": 3, "max": 6 }, { "stat": "kraft", "min": 3, "max": 6 }] },
+        "minor": { "count": [1, 1], "pool": [{ "stat": "tempo", "min": 2, "max": 4 }, { "stat": "fokus", "min": 2, "max": 4 }] }
+      },
+      "legendaryEffect": null,
+      "setId": "master",
+      "flavorText": "Das Mondlicht folgt dir. Nicht weil es muss, sondern weil es will."
+    },
+    {
+      "id": "cloth-amulet-t3",
+      "name": "Seidenes Sternenband",
+      "slot": "amulet",
+      "tier": 3,
+      "reqLevel": 17,
+      "rarity": "rare",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Ein Amulett aus Seidenstoff, bestickt mit Sternenmotiven.",
+      "armorType": "cloth",
+      "trait": { "type": "arkane_resonanz", "value": 1, "label": "+1% XP" },
+      "affixes": {
+        "primary": { "count": [2, 2], "pool": [{ "stat": "weisheit", "min": 3, "max": 6 }, { "stat": "glueck", "min": 3, "max": 6 }] },
+        "minor": { "count": [1, 1], "pool": [{ "stat": "fokus", "min": 2, "max": 4 }, { "stat": "charisma", "min": 2, "max": 4 }] }
+      },
+      "legendaryEffect": null,
+      "setId": "master",
+      "flavorText": "Die Sterne darauf sind Karten. Wohin sie zeigen, bleibt dir überlassen."
+    },
+    {
+      "id": "cloth-weapon-t4-epic",
+      "name": "Magiegewobener Stab",
+      "slot": "weapon",
+      "tier": 4,
+      "reqLevel": 27,
+      "rarity": "epic",
+      "price": 0,
+      "shopHidden": true,
+      "desc": "Ein Stab aus Magiestoff. Pulsierende arkane Energie.",
+      "armorType": "cloth",
+      "trait": { "type": "arkane_resonanz", "value": 1, "label": "+1% XP" },
+      "affixes": {
+        "primary": { "count": [2, 3], "pool": [{ "stat": "weisheit", "min": 3, "max": 6 }, { "stat": "kraft", "min": 3, "max": 6 }, { "stat": "glueck", "min": 3, "max": 6 }] },
+        "minor": { "count": [1, 2], "pool": [{ "stat": "fokus", "min": 2, "max": 4 }, { "stat": "tempo", "min": 2, "max": 4 }, { "stat": "charisma", "min": 2, "max": 4 }] }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary",
+      "flavorText": "Der Stab summt Melodien, die noch niemand komponiert hat."
     }
   ],
   "setBonus": {
