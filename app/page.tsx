@@ -93,7 +93,7 @@ const PROF_META: Record<string, { name: string; icon: string; color: string }> =
   koch: { name: "Cook", icon: "/images/icons/prof-koch.png", color: "#e87b35" },
 };
 const MAT_RARITY_COLORS: Record<string, string> = {
-  common: "#9ca3af", uncommon: "#22c55e", rare: "#3b82f6", epic: "#a855f7", legendary: "#f59e0b",
+  common: "#9ca3af", uncommon: "#22c55e", rare: "#3b82f6", epic: "#a855f7", legendary: "#f59e0b", unique: "#e6cc80",
 };
 
 const MAT_SOURCES: Record<string, string> = {

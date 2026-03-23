@@ -279,7 +279,7 @@ These rules ensure visual consistency across all features. Follow them for EVERY
 - **Background base:** `#111318` (--background)
 - **Text primary:** `#e8e8e8` (--foreground), secondary: `text-w40` (40% opacity), tertiary: `text-w25`
 - **Accent:** `#ff4444` (--accent)
-- **Rarity colors:** common `#9ca3af`, uncommon `#22c55e`, rare `#3b82f6`, epic `#a855f7`, legendary `#f97316`
+- **Rarity colors:** common `#9ca3af`, uncommon `#22c55e`, rare `#3b82f6`, epic `#a855f7`, legendary `#f97316`, unique `#e6cc80` (WoW artifact gold — handcrafted items only)
 - **Stat names** (Kraft, Weisheit, etc.) are German game-world proper nouns — do NOT translate
 - **Currency names** (Runensplitter, Sternentaler, etc.) are German proper nouns — do NOT translate
 

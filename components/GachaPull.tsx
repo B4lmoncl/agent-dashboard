@@ -12,9 +12,10 @@ const RARITY_CONFIG: Record<string, { color: string; glow: string; bg: string; l
   rare:      { color: "#3b82f6", glow: "rgba(59,130,246,0.5)",  bg: "rgba(59,130,246,0.10)", label: "Rare", border: "rgba(59,130,246,0.5)" },
   epic:      { color: "#a855f7", glow: "rgba(168,85,247,0.6)",  bg: "rgba(168,85,247,0.12)", label: "Epic", border: "rgba(168,85,247,0.6)" },
   legendary: { color: "#f97316", glow: "rgba(249,115,22,0.7)",  bg: "rgba(249,115,22,0.15)", label: "Legendary", border: "rgba(249,115,22,0.7)" },
+  unique:    { color: "#e6cc80", glow: "rgba(230,204,128,0.8)",  bg: "rgba(230,204,128,0.15)", label: "Unique", border: "rgba(230,204,128,0.8)" },
 };
 
-const RARITY_ORDER = ["common", "uncommon", "rare", "epic", "legendary"];
+const RARITY_ORDER = ["common", "uncommon", "rare", "epic", "legendary", "unique"];
 
 // ─── Fisher-Yates shuffle ────────────────────────────────────────────────────
 function fisherYatesShuffle<T>(arr: T[]): T[] {

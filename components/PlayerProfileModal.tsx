@@ -39,7 +39,7 @@ interface ProfileData {
 
 // ─── Constants ──────────────────────────────────────────────────────────────
 
-const RARITY_COLORS: Record<string, string> = { common: "#9ca3af", uncommon: "#22c55e", rare: "#3b82f6", epic: "#a855f7", legendary: "#ff8c00" };
+const RARITY_COLORS: Record<string, string> = { common: "#9ca3af", uncommon: "#22c55e", rare: "#3b82f6", epic: "#a855f7", legendary: "#ff8c00", unique: "#e6cc80" };
 const SLOT_LABELS: Record<string, string> = { weapon: "Weapon", shield: "Shield", helm: "Helm", armor: "Armor", amulet: "Amulet", boots: "Boots" };
 const PROF_META: Record<string, { name: string; color: string; icon: string }> = {
   schmied: { name: "Blacksmith", color: "#f59e0b", icon: "/images/icons/prof-schmied.png" },

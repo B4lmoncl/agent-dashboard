@@ -61,6 +61,7 @@ export function useToastStack() {
 // ─── Individual Toast Renderers ──────────────────────────────────────────────
 
 const RARITY_TOAST_STYLE: Record<string, { bg: string; border: string; shadow: string; color: string; label: string }> = {
+  unique:    { bg: "#2a2510", border: "rgba(230,204,128,0.5)", shadow: "rgba(230,204,128,0.2)", color: "#e6cc80", label: "Unique" },
   legendary: { bg: "#2a1e0e", border: "rgba(249,115,22,0.5)", shadow: "rgba(249,115,22,0.2)", color: "#f97316", label: "Legendary" },
   epic:      { bg: "#1e1a2e", border: "rgba(168,85,247,0.5)", shadow: "rgba(168,85,247,0.2)", color: "#a855f7", label: "Epic" },
   rare:      { bg: "#0e1e2a", border: "rgba(59,130,246,0.5)", shadow: "rgba(59,130,246,0.2)", color: "#3b82f6", label: "Rare" },

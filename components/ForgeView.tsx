@@ -70,6 +70,7 @@ const RARITY_COLORS: Record<string, string> = {
   rare: "#3b82f6",
   epic: "#a855f7",
   legendary: "#f59e0b",
+  unique: "#e6cc80",
 };
 
 const RARITY_ORDER = ["legendary", "epic", "rare", "uncommon", "common"];

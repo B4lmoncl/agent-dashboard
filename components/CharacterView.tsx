@@ -330,6 +330,7 @@ const RARITY_COLORS: Record<string, string> = {
   rare: "#3b82f6",
   epic: "#a855f7",
   legendary: "#f59e0b",
+  unique: "#e6cc80",
 };
 
 const RARITY_LABELS: Record<string, string> = {
@@ -338,7 +339,13 @@ const RARITY_LABELS: Record<string, string> = {
   rare: "Rare",
   epic: "Epic",
   legendary: "Legendary",
+  unique: "Unique",
 };
+
+/** Resolve display rarity — unique items show as "unique" instead of "legendary" */
+function displayRarity(item: Record<string, unknown>): string {
+  return item.isUnique ? "unique" : (String(item.rarity || "common"));
+}
 
 const STAT_LABELS: Record<string, string> = { kraft: "Kraft", ausdauer: "Ausdauer", weisheit: "Weisheit", glueck: "Glück", fokus: "Fokus", vitalitaet: "Vitalität", charisma: "Charisma", tempo: "Tempo" };
 
@@ -376,6 +383,7 @@ const RARITY_BG: Record<string, string> = {
   rare: "rgba(59,130,246,0.12)",
   epic: "rgba(168,85,247,0.15)",
   legendary: "rgba(249,115,22,0.18)",
+  unique: "rgba(230,204,128,0.18)",
 };
 
 const RARITY_BORDER_30: Record<string, string> = {
@@ -384,6 +392,7 @@ const RARITY_BORDER_30: Record<string, string> = {
   rare: "rgba(59,130,246,0.3)",
   epic: "rgba(168,85,247,0.3)",
   legendary: "rgba(249,115,22,0.3)",
+  unique: "rgba(230,204,128,0.4)",
 };
 
 type InventoryItem = CharacterData["inventory"][number];
@@ -408,7 +417,8 @@ function getItemLevel(item: InventoryItem | GearInstance): number {
 
 function InventoryTooltip({ item, mousePosRef, equippedItem, playerLevel }: { item: InventoryItem; mousePosRef: React.RefObject<{ x: number; y: number }>; equippedItem?: InventoryItem | null; playerLevel?: number }) {
   const ref = useRef<HTMLDivElement>(null);
-  const rarityColor = RARITY_COLORS[item.rarity] || "#9ca3af";
+  const dRarity = displayRarity(item);
+  const rarityColor = RARITY_COLORS[dRarity] || "#9ca3af";
   const hasStats = item.stats && Object.keys(item.stats).length > 0;
   const eqStats = equippedItem?.stats || {};
 
@@ -467,7 +477,7 @@ function InventoryTooltip({ item, mousePosRef, equippedItem, playerLevel }: { it
           </div>
           <div className="min-w-0">
             <p className="text-sm font-bold truncate" style={{ color: "#fff" }}>{item.name}</p>
-            <p className="text-xs font-semibold" style={{ color: rarityColor }}>{RARITY_LABELS[item.rarity] || item.rarity}</p>
+            <p className="text-xs font-semibold" style={{ color: rarityColor }}>{RARITY_LABELS[dRarity] || item.rarity}</p>
           </div>
         </div>
 
@@ -620,8 +630,9 @@ function InventorySlot({ item, level, idx, onItemClick, onDragStart, onDragOver,
     );
   }
 
-  const rarityBg = RARITY_BG[item.rarity] ?? "rgba(255,255,255,0.04)";
-  const rarityBorder = RARITY_BORDER_30[item.rarity] ?? "rgba(255,255,255,0.08)";
+  const slotDRarity = displayRarity(item);
+  const rarityBg = RARITY_BG[slotDRarity] ?? "rgba(255,255,255,0.04)";
+  const rarityBorder = RARITY_BORDER_30[slotDRarity] ?? "rgba(255,255,255,0.08)";
 
   return (
     <>
@@ -647,7 +658,7 @@ function InventorySlot({ item, level, idx, onItemClick, onDragStart, onDragOver,
         onMouseEnter={(e) => { mousePosRef.current = { x: e.clientX, y: e.clientY }; setHovered(true); }}
         onMouseMove={(e) => { mousePosRef.current = { x: e.clientX, y: e.clientY }; }}
         onMouseLeave={() => setHovered(false)}
-        className={item.rarity === "legendary" ? "legendary-shimmer" : item.rarity === "epic" ? "epic-glow" : ""}
+        className={(item as Record<string, unknown>).isUnique ? "legendary-shimmer" : item.rarity === "legendary" ? "legendary-shimmer" : item.rarity === "epic" ? "epic-glow" : ""}
         style={{
           width: 56,
           height: 56,
@@ -828,7 +839,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
       if (r.ok) {
         const item = charData?.inventory.find(i => i.id === itemId);
         if (item && addToast) {
-          addToast({ type: "item", itemName: item.name, message: `${item.name} equipped!`, icon: item.icon, rarity: item.rarity || "common" });
+          addToast({ type: "item", itemName: item.name, message: `${item.name} equipped!`, icon: item.icon, rarity: displayRarity(item) });
         }
       } else {
         const data = await r.json().catch(() => null);
@@ -869,7 +880,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
         const data = await r.json();
         const item = charData?.inventory.find(i => i.id === itemId);
         if (addToast && item) {
-          addToast({ type: "item", itemName: item.name, message: data.message || "Item used!", icon: item.icon, rarity: item.rarity || "common" });
+          addToast({ type: "item", itemName: item.name, message: data.message || "Item used!", icon: item.icon, rarity: displayRarity(item) });
         }
       } else if (addToast) {
         const data = await r.json().catch(() => null);
@@ -891,7 +902,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
       });
       if (r.ok) {
         const item = charData?.inventory.find(i => i.id === itemId);
-        if (addToast && item) addToast({ type: "item", itemName: item.name, message: `${item.name} discarded`, icon: item.icon, rarity: item.rarity || "common" });
+        if (addToast && item) addToast({ type: "item", itemName: item.name, message: `${item.name} discarded`, icon: item.icon, rarity: displayRarity(item) });
       } else if (addToast) {
         const data = await r.json().catch(() => null);
         addToast({ type: "error", message: data?.error || "Discard failed" });
