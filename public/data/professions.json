@@ -2,9 +2,7 @@
   "schema_version": "1.2",
   "professionSlots": [
     { "playerLevel": 5, "slot": 1 },
-    { "playerLevel": 15, "slot": 2 },
-    { "playerLevel": 20, "slot": 3 },
-    { "playerLevel": 25, "slot": 4 }
+    { "playerLevel": 15, "slot": 2 }
   ],
   "professions": [
     {

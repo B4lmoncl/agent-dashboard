@@ -1027,14 +1027,13 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                           {recipe.cooldownMinutes > 0 && (
                             <span className="text-sm" style={{ color: "rgba(255,255,255,0.2)" }}>CD: {recipe.cooldownMinutes >= 60 ? `${Math.floor(recipe.cooldownMinutes / 60)}h` : `${recipe.cooldownMinutes}m`}</span>
                           )}
-                          {recipe.xpGain != null && (() => {
+                          {(() => {
                             const skillUp = SKILL_UP_COLORS[recipe.skillUpColor || "orange"];
-                            const multiplier = recipe.skillUpColor === "gray" ? 0 : recipe.skillUpColor === "green" ? 0.25 : recipe.skillUpColor === "yellow" ? 0.75 : 1;
-                            const effectiveXp = Math.floor(recipe.xpGain * (isBatchable ? craftCount : 1) * multiplier);
+                            const chance = recipe.skillUpColor === "gray" ? 0 : recipe.skillUpColor === "green" ? 25 : recipe.skillUpColor === "yellow" ? 75 : 100;
                             const xpColor = recipe.skillUpColor === "gray" ? "#6b7280" : dailyBonusAvailable ? "#facc15" : "rgba(255,255,255,0.25)";
                             return (
-                              <span className="text-sm font-mono" style={{ color: xpColor }} title={skillUp?.label}>
-                                {recipe.skillUpColor === "gray" ? "0" : `+${effectiveXp}${dailyBonusAvailable ? "x2" : ""}`} XP
+                              <span className="text-sm font-mono" style={{ color: xpColor }} title={`${skillUp?.label}: ${chance}% chance`}>
+                                {chance === 0 ? "—" : chance === 100 ? `+1${dailyBonusAvailable ? "x2" : ""} XP` : `${chance}%`}
                               </span>
                             );
                           })()}
@@ -1189,10 +1188,33 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                         })}
                       </div>
 
+                      {/* Affix pool preview (D3-style "?" info) */}
+                      {!enchantOptions && slotAffixRanges[enchantSlot] && (() => {
+                        const rangeData = slotAffixRanges[enchantSlot];
+                        const allRanges = [...(rangeData.primary || []), ...(rangeData.minor || [])];
+                        if (allRanges.length === 0) return null;
+                        return (
+                          <div className="mt-2 rounded-lg px-2.5 py-2" style={{ background: "rgba(168,85,247,0.03)", border: "1px solid rgba(168,85,247,0.08)" }}>
+                            <p className="text-xs mb-1.5" style={{ color: "rgba(168,85,247,0.5)" }}>Possible roll ranges:</p>
+                            <div className="flex flex-wrap gap-x-3 gap-y-0.5">
+                              {allRanges.map(r => {
+                                const currentVal = itemStats[r.stat];
+                                const isPrimary = ["kraft", "ausdauer", "weisheit", "glueck"].includes(r.stat);
+                                return (
+                                  <span key={r.stat} className="text-xs" style={{ color: currentVal != null ? (isPrimary ? "#60a5fa" : "#34d399") : "rgba(255,255,255,0.2)" }}>
+                                    {r.stat} {r.min}–{r.max}{currentVal != null && <span style={{ color: "rgba(255,255,255,0.15)" }}> (now {currentVal})</span>}
+                                  </span>
+                                );
+                              })}
+                            </div>
+                          </div>
+                        );
+                      })()}
+
                       {/* Cost preview */}
                       {!enchantOptions && (() => {
                         const previewGold = enchantCost?.gold ?? Math.min(50000, Math.round(100 * Math.pow(1.5, rerollCount)));
-                        const previewEssenz = enchantCost?.essenz ?? Math.min(10, 2 + Math.floor(rerollCount / 3));
+                        const previewEssenz = enchantCost?.essenz ?? 2;
                         return (
                         <div className="mt-3 flex items-center gap-3 text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>
                           <span>Next reroll: <strong style={{ color: "#f59e0b" }}>{previewGold}g</strong> + <strong style={{ color: "#ff8c00" }}>{previewEssenz} Essenz</strong></span>
@@ -1335,6 +1357,55 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                       ))}
                     </div>
                   )}
+
+                  {/* ─── Reforge Legendary (D3 Kanai's Cube) ──────────────── */}
+                  {(() => {
+                    const legendaryItems = dismantleItems.filter(i => i.rarity === "legendary");
+                    if (legendaryItems.length === 0) return null;
+                    return (
+                      <div className="mt-4 pt-3" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
+                        <p className="text-sm font-semibold mb-1" style={{ color: "#f97316" }}>Reforge Legendary</p>
+                        <p className="text-xs mb-2" style={{ color: "rgba(255,255,255,0.3)" }}>
+                          Re-randomize all stats on a legendary item. Identity stays, stats are rerolled. Costs 1000g + 2 Soul Fragment + 3 Aether Core.
+                        </p>
+                        <div className="grid gap-1.5" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(56px, 1fr))" }}>
+                          {legendaryItems.slice(0, 12).map(item => (
+                            <button
+                              key={item.instanceId || item.id}
+                              onClick={() => {
+                                setConfirmAction({
+                                  message: `Reforge "${item.name}"?\n\nAll stats will be completely re-randomized. The item keeps its identity but gets new rolls.\n\nCost: 1000g + 2 Soul Fragment + 3 Aether Core`,
+                                  onConfirm: async () => {
+                                    setConfirmAction(null);
+                                    try {
+                                      const r = await fetch("/api/schmiedekunst/reforge", {
+                                        method: "POST",
+                                        headers: { "Content-Type": "application/json", ...getAuthHeaders(reviewApiKey!) },
+                                        body: JSON.stringify({ inventoryItemId: item.instanceId || item.id }),
+                                      });
+                                      const data = await r.json();
+                                      setDismantleResult({ message: data.message || data.error || "Error" });
+                                      setTimeout(() => setDismantleResult(null), 5000);
+                                      fetchData();
+                                      onRefresh?.();
+                                    } catch { setDismantleResult({ message: "Network error" }); }
+                                  },
+                                });
+                              }}
+                              className="forge-btn relative flex items-center justify-center rounded-lg aspect-square"
+                              style={{ background: "rgba(249,115,22,0.08)", border: "1px solid rgba(249,115,22,0.3)" }}
+                              title={`${item.name} — Reforge (re-randomize stats)`}
+                            >
+                              {item.icon
+                                ? <img src={item.icon} alt={item.name} style={{ width: 40, height: 40, imageRendering: "auto", objectFit: "contain" }} />
+                                : <span style={{ fontSize: 18, color: "#f97316" }}>◆</span>
+                              }
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    );
+                  })()}
                 </div>
               );
             })()}
@@ -1496,9 +1567,9 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                 </ul>
               </div>
 
-              {maxProfSlots < 4 && (
+              {maxProfSlots < 2 && (
                 <p className="text-xs text-center pt-1" style={{ color: "rgba(255,255,255,0.25)" }}>
-                  More slots unlock through leveling up (Lv5, Lv15, Lv20, Lv25)
+                  Second slot unlocks at Player Level 15
                 </p>
               )}
             </div>

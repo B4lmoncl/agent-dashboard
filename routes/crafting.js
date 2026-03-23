@@ -423,15 +423,21 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
     if (u.craftingMaterials[matId] <= 0) delete u.craftingMaterials[matId];
   }
 
-  // Update profession XP & timestamp — use recipe-specific xpGain with skill-up color scaling + daily bonus
+  // Update profession XP & timestamp — WoW-style: fixed XP per craft, probabilistic skill-up
   u.professions = u.professions || {};
   u.professions[recipe.profession] = u.professions[recipe.profession] || { level: 0, xp: 0 };
-  const rawXp = (recipe.xpGain || profDef.xpPerCraft || 10) * effectiveCount;
-  const skillUpMultiplier = getSkillUpXpMultiplier(profProgress.level, recipe.reqProfLevel);
-  const { dailyBonusAvailable } = getDailyBonusInfo(u);
-  const xpMultiplier = dailyBonusAvailable ? 2 : 1;
-  const totalXpGained = Math.floor(rawXp * skillUpMultiplier * xpMultiplier);
   const skillUpColor = getSkillUpColor(profProgress.level, recipe.reqProfLevel);
+  const skillUpChance = skillUpColor === 'orange' ? 1.0 : skillUpColor === 'yellow' ? 0.75 : skillUpColor === 'green' ? 0.25 : 0;
+  const { dailyBonusAvailable } = getDailyBonusInfo(u);
+  const xpPerPoint = profDef.xpPerCraft || 10; // fixed XP per skill-up point
+  const dailyMultiplier = dailyBonusAvailable ? 2 : 1;
+  // Roll skill-up for each craft in the batch
+  let totalXpGained = 0;
+  for (let i = 0; i < effectiveCount; i++) {
+    if (Math.random() < skillUpChance) {
+      totalXpGained += xpPerPoint * dailyMultiplier;
+    }
+  }
   u.professions[recipe.profession].xp += totalXpGained;
   u.professions[recipe.profession].lastCraftAt = now();
   // Track per-recipe cooldown
@@ -1046,11 +1052,79 @@ router.post('/api/schmiedekunst/transmute', requireAuth, (req, res) => {
   });
 });
 
+// ─── Reforge Legendary (D3 Kanai's Cube "Law of Kulle") ─────────────────────
+// Same item identity, completely re-randomized stats
+router.post('/api/schmiedekunst/reforge', requireAuth, (req, res) => {
+  const uid = req.auth?.userId;
+  const u = state.users[uid];
+  if (!u) return res.status(404).json({ error: 'User not found' });
+  const { inventoryItemId } = req.body;
+  if (!inventoryItemId) return res.status(400).json({ error: 'inventoryItemId required' });
+
+  u.inventory = u.inventory || [];
+  const idx = u.inventory.findIndex(i => (i.instanceId || i.id) === inventoryItemId);
+  if (idx === -1) return res.status(404).json({ error: 'Item not in inventory' });
+  const item = u.inventory[idx];
+
+  // Must be legendary
+  if ((item.rarity || 'common') !== 'legendary') {
+    return res.status(400).json({ error: 'Only legendary items can be reforged' });
+  }
+  // Cannot reforge equipped items
+  if (getEquippedIds(u).has(inventoryItemId)) {
+    return res.status(400).json({ error: 'Unequip the item first' });
+  }
+  // Must have a template to re-roll from
+  const templateId = item.templateId || item.itemId;
+  const template = state.gearById.get(templateId) || state.itemTemplates?.get(templateId);
+  if (!template) {
+    return res.status(400).json({ error: 'Cannot reforge this item (no template)' });
+  }
+
+  // Cost: 1000 gold + 2 seelensplitter + 3 aetherkern
+  const goldCost = 1000;
+  const matCosts = { seelensplitter: 2, aetherkern: 3 };
+
+  ensureUserCurrencies(u);
+  const userGold = u.currencies?.gold ?? u.gold ?? 0;
+  if (userGold < goldCost) {
+    return res.status(400).json({ error: `Not enough gold (${userGold}/${goldCost})` });
+  }
+  u.craftingMaterials = u.craftingMaterials || {};
+  for (const [matId, needed] of Object.entries(matCosts)) {
+    if ((u.craftingMaterials[matId] || 0) < needed) {
+      const matDef = PROFESSIONS_DATA.materials?.find(m => m.id === matId);
+      return res.status(400).json({ error: `Not enough ${matDef?.name || matId} (${u.craftingMaterials[matId] || 0}/${needed})` });
+    }
+  }
+
+  // Deduct costs
+  u.currencies.gold -= goldCost;
+  u.gold = u.currencies.gold;
+  for (const [matId, needed] of Object.entries(matCosts)) {
+    u.craftingMaterials[matId] -= needed;
+    if (u.craftingMaterials[matId] <= 0) delete u.craftingMaterials[matId];
+  }
+
+  // Reforge: create new instance from same template, replace in inventory
+  const reforged = createGearInstance(template);
+  // Preserve instanceId for tracking
+  reforged.instanceId = item.instanceId || reforged.instanceId;
+  u.inventory[idx] = reforged;
+
+  saveUsersSync();
+  res.json({
+    message: `${reforged.name} has been reforged! Stats re-randomized.`,
+    reforged,
+    goldSpent: goldCost,
+    gold: u.currencies?.gold ?? u.gold ?? 0,
+  });
+});
+
 // ─── D3-Style Stat Reroll ("Enchanting") — standalone, no profession needed ─
 const REROLL_BASE_GOLD = 100;
 const REROLL_GOLD_CAP = 50000;
-const REROLL_BASE_ESSENZ = 2;
-const REROLL_ESSENZ_CAP = 10;
+const REROLL_ESSENZ_COST = 2; // D3-style: material cost stays constant, only gold escalates
 
 router.post('/api/reroll/preview', requireAuth, (req, res) => {
   const u = req.user;
@@ -1077,7 +1151,7 @@ router.post('/api/reroll/preview', requireAuth, (req, res) => {
 
   const rerollCount = eq.rerollCount || 0;
   const goldCost = Math.min(REROLL_GOLD_CAP, Math.round(REROLL_BASE_GOLD * Math.pow(1.5, rerollCount)));
-  const essenzCost = Math.min(REROLL_ESSENZ_CAP, REROLL_BASE_ESSENZ + Math.floor(rerollCount / 3));
+  const essenzCost = REROLL_ESSENZ_COST;
 
   // Find affix pool for the locked stat
   const isPrimary = PRIMARY_STATS.includes(lockedStat);
@@ -1120,7 +1194,7 @@ router.post('/api/reroll/enchant', requireAuth, (req, res) => {
 
   const rerollCount = eq.rerollCount || 0;
   const goldCost = Math.min(REROLL_GOLD_CAP, Math.round(REROLL_BASE_GOLD * Math.pow(1.5, rerollCount)));
-  const essenzCost = Math.min(REROLL_ESSENZ_CAP, REROLL_BASE_ESSENZ + Math.floor(rerollCount / 3));
+  const essenzCost = REROLL_ESSENZ_COST;
 
   // Find affix pool
   const isPrimary = PRIMARY_STATS.includes(lockedStat);
@@ -1179,7 +1253,7 @@ router.post('/api/reroll/enchant', requireAuth, (req, res) => {
       rerollCount: rerollCount + 1,
       nextCost: {
         gold: Math.min(REROLL_GOLD_CAP, Math.round(REROLL_BASE_GOLD * Math.pow(1.5, rerollCount + 1))),
-        essenz: Math.min(REROLL_ESSENZ_CAP, REROLL_BASE_ESSENZ + Math.floor((rerollCount + 1) / 3)),
+        essenz: REROLL_ESSENZ_COST,
       },
     });
   }
