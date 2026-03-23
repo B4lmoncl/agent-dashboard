@@ -623,9 +623,10 @@ function BannerPullModal({
 }
 
 // ─── Main GachaView ──────────────────────────────────────────────────────────
-export default function GachaView({ onRefresh, onPullComplete }: {
+export default function GachaView({ onRefresh, onPullComplete, onNavigate }: {
   onRefresh?: () => void;
   onPullComplete?: (items: any[]) => void;
+  onNavigate?: (view: string) => void;
 }) {
   const { users, playerName, reviewApiKey } = useDashboard();
   const [banners, setBanners] = useState<GachaBanner[]>([]);
@@ -729,6 +730,7 @@ export default function GachaView({ onRefresh, onPullComplete }: {
           mode={pullMode}
           onClose={() => { if (pullResults && onPullComplete) onPullComplete(pullResults); setPullResults(null); }}
           onCollect={(name) => {}}
+          onNavigate={onNavigate}
         />
       )}
 
