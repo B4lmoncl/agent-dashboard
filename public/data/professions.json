@@ -14,9 +14,7 @@
       "description": "Forges heavy armor from ore and crystal. Also hosts the Salvage station for dismantling gear.",
       "color": "#f59e0b",
       "icon": "/images/icons/prof-schmied.png",
-      "maxLevel": 10,
-      "xpPerCraft": 10,
-      "levelThresholds": [0, 100, 250, 450, 720, 1100, 1600, 2200, 3000, 4000],
+      "maxSkill": 300,
       "unlockCondition": { "type": "level", "value": 5 },
       "gatheringAffinity": ["eisenerz", "kristallsplitter", "drachenschuppe"],
       "masteryBonus": { "type": "gear_stat_boost", "value": 10, "desc": "+10% gear stat rolls when equipping items" }
@@ -30,9 +28,7 @@
       "description": "Brews potions and elixirs from gathered materials. Also hosts the Transmutation station for upgrading gear.",
       "color": "#22c55e",
       "icon": "/images/icons/prof-alchemist.png",
-      "maxLevel": 10,
-      "xpPerCraft": 10,
-      "levelThresholds": [0, 100, 250, 450, 720, 1100, 1600, 2200, 3000, 4000],
+      "maxSkill": 300,
       "unlockCondition": { "type": "level", "value": 5 },
       "gatheringAffinity": ["kraeuterbuendel", "mondblume", "sternenfrucht"],
       "masteryBonus": { "type": "potion_duration", "value": 2, "desc": "+2 extra quest charges on crafted potions" }
@@ -46,9 +42,7 @@
       "description": "Enchants gear with bonus stats and hosts the Enchanting station for targeted stat rerolling.",
       "color": "#a78bfa",
       "icon": "/images/icons/prof-verzauberer.png",
-      "maxLevel": 10,
-      "xpPerCraft": 10,
-      "levelThresholds": [0, 100, 250, 450, 720, 1100, 1600, 2200, 3000, 4000],
+      "maxSkill": 300,
       "unlockCondition": { "type": "level", "value": 8 },
       "gatheringAffinity": ["magiestaub", "runenstein", "aetherkern"],
       "masteryBonus": { "type": "enchant_power", "value": 2, "desc": "+2 bonus to enchantment stat ranges" }
@@ -62,9 +56,7 @@
       "description": "Crafts cloth armor imbued with arcane resonance. Cloth pieces boost XP per slot equipped.",
       "color": "#c084fc",
       "icon": "/images/icons/prof-schneider.png",
-      "maxLevel": 10,
-      "xpPerCraft": 10,
-      "levelThresholds": [0, 100, 250, 450, 720, 1100, 1600, 2200, 3000, 4000],
+      "maxSkill": 300,
       "unlockCondition": { "type": "level", "value": 5 },
       "gatheringAffinity": ["leinenstoff", "wollstoff", "seidenstoff"],
       "masteryBonus": { "type": "cloth_stat_boost", "value": 10, "desc": "+10% cloth armor stat rolls when crafting" }
@@ -78,9 +70,7 @@
       "description": "Cooks meals from gathered herbs and materials. Meals grant temporary buffs.",
       "color": "#e87b35",
       "icon": "/images/icons/prof-koch.png",
-      "maxLevel": 10,
-      "xpPerCraft": 10,
-      "levelThresholds": [0, 100, 250, 450, 720, 1100, 1600, 2200, 3000, 4000],
+      "maxSkill": 300,
       "unlockCondition": { "type": "level", "value": 3 },
       "gatheringAffinity": ["wildfleisch", "feuerwurz", "phoenixfeder"],
       "masteryBonus": { "type": "meal_duration", "value": 2, "desc": "+2 extra quest charges on crafted meals" }
@@ -93,8 +83,8 @@
     "description": "Active professions passively gather their affinity materials on quest completion. Chance scales with profession level."
   },
   "masteryConfig": {
-    "unlockLevel": 8,
-    "description": "At profession level 8+, a passive mastery bonus activates for that profession."
+    "unlockSkill": 225,
+    "description": "At profession skill 225+, a passive mastery bonus activates for that profession."
   },
   "materials": [
     { "id": "eisenerz", "name": "Iron Ore", "icon": "/images/icons/mat-eisenerz.png", "rarity": "common", "desc": "Base material for smithing." },
@@ -140,7 +130,7 @@
       "cost": { "gold": 75 },
       "materials": { "eisenerz": 4 },
       "result": { "type": "craft_gear", "templateId": "heavy-helm-t1" },
-      "cooldownMinutes": 30,
+      "cooldownMinutes": 0,
       "source": "trainer"
     },
     {
@@ -153,7 +143,7 @@
       "cost": { "gold": 100 },
       "materials": { "eisenerz": 5 },
       "result": { "type": "craft_gear", "templateId": "heavy-armor-t1" },
-      "cooldownMinutes": 30,
+      "cooldownMinutes": 0,
       "source": "trainer"
     },
     {
@@ -166,7 +156,7 @@
       "cost": { "gold": 60 },
       "materials": { "eisenerz": 3 },
       "result": { "type": "craft_gear", "templateId": "heavy-boots-t1" },
-      "cooldownMinutes": 30,
+      "cooldownMinutes": 0,
       "source": "trainer"
     },
     {
@@ -179,7 +169,7 @@
       "cost": { "gold": 90 },
       "materials": { "eisenerz": 5 },
       "result": { "type": "craft_gear", "templateId": "heavy-weapon-t1" },
-      "cooldownMinutes": 30,
+      "cooldownMinutes": 0,
       "source": "trainer", "trainerCost": 50
     },
     {
@@ -192,7 +182,7 @@
       "cost": { "gold": 150 },
       "materials": { "eisenerz": 4, "kristallsplitter": 2 },
       "result": { "type": "craft_gear", "templateId": "heavy-shield-t2" },
-      "cooldownMinutes": 60,
+      "cooldownMinutes": 0,
       "source": "trainer", "trainerCost": 100
     },
     {
@@ -205,7 +195,7 @@
       "cost": { "gold": 175 },
       "materials": { "eisenerz": 5, "kristallsplitter": 2 },
       "result": { "type": "craft_gear", "templateId": "heavy-armor-t2" },
-      "cooldownMinutes": 60,
+      "cooldownMinutes": 0,
       "source": "trainer", "trainerCost": 120
     },
     {
@@ -218,7 +208,7 @@
       "cost": { "gold": 300 },
       "materials": { "kristallsplitter": 3, "drachenschuppe": 2 },
       "result": { "type": "craft_gear", "templateId": "heavy-helm-t3" },
-      "cooldownMinutes": 120,
+      "cooldownMinutes": 0,
       "source": "trainer", "trainerCost": 250
     },
     {
@@ -231,7 +221,7 @@
       "cost": { "gold": 350 },
       "materials": { "kristallsplitter": 4, "drachenschuppe": 2 },
       "result": { "type": "craft_gear", "templateId": "heavy-armor-t3" },
-      "cooldownMinutes": 120,
+      "cooldownMinutes": 0,
       "source": "trainer", "trainerCost": 300
     },
     {
@@ -244,7 +234,7 @@
       "cost": { "gold": 500 },
       "materials": { "drachenschuppe": 3, "aetherkern": 1 },
       "result": { "type": "craft_gear", "templateId": "heavy-weapon-t3" },
-      "cooldownMinutes": 360,
+      "cooldownMinutes": 0,
       "source": "drop", "dropChance": 0.06, "dropMinQuestRarity": "rare"
     },
     {
@@ -257,7 +247,7 @@
       "cost": { "gold": 600 },
       "materials": { "drachenschuppe": 3, "aetherkern": 2 },
       "result": { "type": "craft_gear", "templateId": "heavy-armor-t4-epic" },
-      "cooldownMinutes": 480,
+      "cooldownMinutes": 0,
       "source": "drop", "dropChance": 0.05, "dropMinQuestRarity": "epic"
     },
     {
@@ -283,7 +273,7 @@
       "cost": { "gold": 250 },
       "materials": { "eisenerz": 3, "kristallsplitter": 2 },
       "result": { "type": "reinforce", "statBonus": [1, 3], "target": "primary_stat" },
-      "cooldownMinutes": 180,
+      "cooldownMinutes": 0,
       "source": "trainer", "trainerCost": 250
     },
     {
@@ -324,7 +314,7 @@
       "cost": { "gold": 60 },
       "materials": { "leinenstoff": 4 },
       "result": { "type": "craft_gear", "templateId": "cloth-helm-t1" },
-      "cooldownMinutes": 30,
+      "cooldownMinutes": 0,
       "source": "trainer"
     },
     {
@@ -337,7 +327,7 @@
       "cost": { "gold": 80 },
       "materials": { "leinenstoff": 5 },
       "result": { "type": "craft_gear", "templateId": "cloth-armor-t1" },
-      "cooldownMinutes": 30,
+      "cooldownMinutes": 0,
       "source": "trainer"
     },
     {
@@ -350,7 +340,7 @@
       "cost": { "gold": 50 },
       "materials": { "leinenstoff": 3 },
       "result": { "type": "craft_gear", "templateId": "cloth-boots-t1" },
-      "cooldownMinutes": 30,
+      "cooldownMinutes": 0,
       "source": "trainer"
     },
     {
@@ -363,7 +353,7 @@
       "cost": { "gold": 75 },
       "materials": { "leinenstoff": 4, "magiestaub": 1 },
       "result": { "type": "craft_gear", "templateId": "cloth-weapon-t1" },
-      "cooldownMinutes": 30,
+      "cooldownMinutes": 0,
       "source": "trainer", "trainerCost": 50
     },
     {
@@ -376,7 +366,7 @@
       "cost": { "gold": 150 },
       "materials": { "leinenstoff": 3, "wollstoff": 2 },
       "result": { "type": "craft_gear", "templateId": "cloth-armor-t2" },
-      "cooldownMinutes": 60,
+      "cooldownMinutes": 0,
       "source": "trainer", "trainerCost": 100
     },
     {
@@ -389,7 +379,7 @@
       "cost": { "gold": 140 },
       "materials": { "leinenstoff": 2, "wollstoff": 2 },
       "result": { "type": "craft_gear", "templateId": "cloth-helm-t2" },
-      "cooldownMinutes": 60,
+      "cooldownMinutes": 0,
       "source": "trainer", "trainerCost": 90
     },
     {
@@ -402,7 +392,7 @@
       "cost": { "gold": 175 },
       "materials": { "wollstoff": 3, "magiestaub": 2 },
       "result": { "type": "craft_gear", "templateId": "cloth-amulet-t2" },
-      "cooldownMinutes": 60,
+      "cooldownMinutes": 0,
       "source": "trainer", "trainerCost": 120
     },
     {
@@ -415,7 +405,7 @@
       "cost": { "gold": 300 },
       "materials": { "wollstoff": 3, "seidenstoff": 2 },
       "result": { "type": "craft_gear", "templateId": "cloth-armor-t3" },
-      "cooldownMinutes": 120,
+      "cooldownMinutes": 0,
       "source": "trainer", "trainerCost": 250
     },
     {
@@ -428,7 +418,7 @@
       "cost": { "gold": 275 },
       "materials": { "wollstoff": 2, "seidenstoff": 2 },
       "result": { "type": "craft_gear", "templateId": "cloth-helm-t3" },
-      "cooldownMinutes": 120,
+      "cooldownMinutes": 0,
       "source": "trainer", "trainerCost": 225
     },
     {
@@ -441,7 +431,7 @@
       "cost": { "gold": 350 },
       "materials": { "seidenstoff": 3, "runenstein": 2 },
       "result": { "type": "craft_gear", "templateId": "cloth-weapon-t3" },
-      "cooldownMinutes": 180,
+      "cooldownMinutes": 0,
       "source": "drop", "dropChance": 0.08, "dropMinQuestRarity": "rare"
     },
     {
@@ -454,7 +444,7 @@
       "cost": { "gold": 500 },
       "materials": { "seidenstoff": 3, "magiestoff": 2 },
       "result": { "type": "craft_gear", "templateId": "cloth-armor-t4-epic" },
-      "cooldownMinutes": 360,
+      "cooldownMinutes": 0,
       "source": "drop", "dropChance": 0.06, "dropMinQuestRarity": "rare"
     },
     {
@@ -467,7 +457,7 @@
       "cost": { "gold": 600 },
       "materials": { "magiestoff": 3, "aetherkern": 1 },
       "result": { "type": "craft_gear", "templateId": "cloth-helm-t4-epic" },
-      "cooldownMinutes": 480,
+      "cooldownMinutes": 0,
       "source": "drop", "dropChance": 0.05, "dropMinQuestRarity": "epic"
     },
     {
@@ -573,7 +563,7 @@
       "cost": { "gold": 100 },
       "materials": { "magiestaub": 3, "runenstein": 1 },
       "result": { "type": "temp_enchant", "statBonus": [2, 4], "durationHours": 24 },
-      "cooldownMinutes": 360,
+      "cooldownMinutes": 0,
       "source": "trainer"
     },
     {
@@ -586,7 +576,7 @@
       "cost": { "gold": 120 },
       "materials": { "magiestaub": 2, "runenstein": 2 },
       "result": { "type": "temp_enchant", "statBonus": [1, 2], "durationHours": 48 },
-      "cooldownMinutes": 240,
+      "cooldownMinutes": 0,
       "source": "trainer", "trainerCost": 80
     },
     {
@@ -722,7 +712,7 @@
       "cost": { "gold": 80 },
       "materials": { "feuerwurz": 2, "kraeuterbuendel": 1 },
       "result": { "type": "forge_temp", "amount": 15, "duration": "3_quests" },
-      "cooldownMinutes": 480,
+      "cooldownMinutes": 0,
       "source": "faction", "factionId": "glut"
     },
     {
@@ -735,7 +725,7 @@
       "cost": { "gold": 80 },
       "materials": { "magiestaub": 2, "mondblume": 1 },
       "result": { "type": "buff", "buffType": "xp_boost_10", "duration": "5_quests" },
-      "cooldownMinutes": 480,
+      "cooldownMinutes": 0,
       "source": "faction", "factionId": "tinte"
     },
     {
@@ -748,7 +738,7 @@
       "cost": { "gold": 80 },
       "materials": { "eisenerz": 2, "kristallsplitter": 1 },
       "result": { "type": "buff", "buffType": "craft_xp_boost", "duration": "5_quests" },
-      "cooldownMinutes": 480,
+      "cooldownMinutes": 0,
       "source": "faction", "factionId": "amboss"
     },
     {
@@ -761,7 +751,7 @@
       "cost": { "gold": 80 },
       "materials": { "runenstein": 2, "magiestaub": 1 },
       "result": { "type": "buff", "buffType": "luck_boost_20", "duration": "3_quests" },
-      "cooldownMinutes": 480,
+      "cooldownMinutes": 0,
       "source": "faction", "factionId": "echo"
     }
   ]

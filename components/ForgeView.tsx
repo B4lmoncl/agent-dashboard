@@ -19,6 +19,9 @@ interface ProfessionDef {
   color: string;
   icon: string;
   maxLevel: number;
+  maxSkill?: number;
+  skill?: number;
+  skillCap?: number;
   unlocked: boolean;
   chosen?: boolean;
   canChoose?: boolean;
@@ -40,7 +43,9 @@ interface Recipe {
   name: string;
   desc: string;
   reqProfLevel: number;
+  reqSkill?: number;
   xpGain?: number;
+  skillUpChance?: number;
   cost: { gold?: number };
   materials: Record<string, number>;
   cooldownMinutes: number;
@@ -235,8 +240,9 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
       const data = await r.json();
       if (r.ok) {
         let msg = data.message || "Success!";
-        if (data.xpGained) msg += ` (+${data.xpGained} XP${data.dailyBonusUsed ? " \u2606 Daily Bonus!" : ""})`;
-        if (data.profLevelUp) msg += " LEVEL UP!";
+        if (data.skillGained > 0) msg += ` (+${data.skillGained} Skill${data.dailyBonusUsed ? " \u2606 Daily Bonus!" : ""})`;
+        else if (data.skillGained === 0 && data.skillUpColor !== "gray") msg += " (No skill-up)";
+        if (data.newSkill) msg += ` [${data.newSkill}/300]`;
         setCraftResult(msg);
         setCraftCount(1);
         fetchData();
@@ -566,15 +572,15 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
               {prof.unlocked && (
                 <div className="flex items-center gap-2">
                   <div className="flex-1 h-1.5 rounded-full" style={{ background: "rgba(255,255,255,0.06)" }}>
-                    <div className="h-full rounded-full transition-all" style={{ background: `linear-gradient(90deg, ${prof.color}, ${prof.rankColor || prof.color})`, width: `${prof.nextLevelXp ? Math.min(100, (prof.playerXp / prof.nextLevelXp) * 100) : 100}%` }} />
+                    <div className="h-full rounded-full transition-all" style={{ background: `linear-gradient(90deg, ${prof.color}, ${prof.rankColor || prof.color})`, width: `${(prof.skill || prof.playerXp || 0) / (prof.skillCap || prof.nextLevelXp || 300) * 100}%` }} />
                   </div>
-                  <span className="text-sm font-mono font-semibold" style={{ color: prof.rankColor || prof.color }}>Lv.{prof.playerLevel}</span>
+                  <span className="text-sm font-mono font-semibold" style={{ color: prof.rankColor || prof.color }}>{prof.skill || prof.playerXp || 0}/{prof.skillCap || 300}</span>
                 </div>
               )}
               {prof.masteryBonus && (prof.masteryActive ? (
                 <p className="text-xs mt-1" style={{ color: "#facc15" }} title={prof.masteryBonus.desc}>&#9733; Mastery: {prof.masteryBonus.desc}</p>
-              ) : prof.unlocked && prof.playerLevel > 0 ? (
-                <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.15)" }} title={`Unlocks at Level 8: ${prof.masteryBonus.desc}`}>&#9734; Mastery (Lv.8): {prof.masteryBonus.desc}</p>
+              ) : prof.unlocked && (prof.skill || prof.playerXp || 0) > 0 ? (
+                <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.15)" }} title={`Unlocks at Skill 225: ${prof.masteryBonus.desc}`}>&#9734; Mastery (Skill 225): {prof.masteryBonus.desc}</p>
               ) : null)}
               {isChosen && prof.gatheringAffinity && prof.gatheringAffinity.length > 0 && (
                 <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.3)" }}>
@@ -779,12 +785,12 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                       <span className="text-xs px-1.5 py-0.5 rounded font-semibold" style={{ background: `${selectedNpc.rankColor}15`, color: selectedNpc.rankColor, border: `1px solid ${selectedNpc.rankColor}30` }}>{selectedNpc.rank}</span>
                     )}
                   </div>
-                  <p className="text-sm" style={{ color: "rgba(255,255,255,0.4)" }}>{selectedNpc.name} &middot; Level {selectedNpc.playerLevel}/{selectedNpc.maxLevel}</p>
+                  <p className="text-sm" style={{ color: "rgba(255,255,255,0.4)" }}>{selectedNpc.name} &middot; Skill {selectedNpc.skill || selectedNpc.playerXp || 0}/{selectedNpc.skillCap || 300}</p>
                   <div className="flex items-center gap-2 mt-1">
-                    <div className="w-24 h-1.5 rounded-full" style={{ background: "rgba(255,255,255,0.06)" }}>
-                      <div className="h-full rounded-full" style={{ background: selectedNpc.color, width: `${selectedNpc.nextLevelXp ? Math.min(100, (selectedNpc.playerXp / selectedNpc.nextLevelXp) * 100) : 100}%` }} />
+                    <div className="w-32 h-1.5 rounded-full" style={{ background: "rgba(255,255,255,0.06)" }}>
+                      <div className="h-full rounded-full" style={{ background: selectedNpc.color, width: `${Math.min(100, ((selectedNpc.skill || selectedNpc.playerXp || 0) / (selectedNpc.skillCap || 300)) * 100)}%` }} />
                     </div>
-                    <span className="text-sm font-mono" style={{ color: "rgba(255,255,255,0.35)" }}>{selectedNpc.playerXp}/{selectedNpc.nextLevelXp || "MAX"}</span>
+                    <span className="text-sm font-mono" style={{ color: "rgba(255,255,255,0.35)" }}>{selectedNpc.skill || selectedNpc.playerXp || 0}/{selectedNpc.maxSkill || 300}</span>
                   </div>
                 </div>
               </div>
@@ -949,7 +955,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                               );
                             })()}
                             {!meetsLevel && (
-                              <p className="text-xs mt-1" style={{ color: "#f44" }}>Requires {selectedNpc.name} Lv.{recipe.reqProfLevel}</p>
+                              <p className="text-xs mt-1" style={{ color: "#f44" }}>Requires {selectedNpc.name} Skill {recipe.reqSkill || recipe.reqProfLevel}</p>
                             )}
                             {onCooldown && (
                               <p className="text-xs mt-1" style={{ color: "#f97316" }}>
@@ -1029,11 +1035,11 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                           )}
                           {(() => {
                             const skillUp = SKILL_UP_COLORS[recipe.skillUpColor || "orange"];
-                            const chance = recipe.skillUpColor === "gray" ? 0 : recipe.skillUpColor === "green" ? 25 : recipe.skillUpColor === "yellow" ? 75 : 100;
-                            const xpColor = recipe.skillUpColor === "gray" ? "#6b7280" : dailyBonusAvailable ? "#facc15" : "rgba(255,255,255,0.25)";
+                            const chance = recipe.skillUpChance ?? (recipe.skillUpColor === "gray" ? 0 : recipe.skillUpColor === "green" ? 25 : recipe.skillUpColor === "yellow" ? 75 : 100);
+                            const xpColor = recipe.skillUpColor === "gray" ? "#6b7280" : dailyBonusAvailable ? "#facc15" : skillUp?.color || "rgba(255,255,255,0.25)";
                             return (
-                              <span className="text-sm font-mono" style={{ color: xpColor }} title={`${skillUp?.label}: ${chance}% chance`}>
-                                {chance === 0 ? "—" : chance === 100 ? `+1${dailyBonusAvailable ? "x2" : ""} XP` : `${chance}%`}
+                              <span className="text-sm font-mono" style={{ color: xpColor }} title={`${skillUp?.label}: ${chance}% skill-up chance${dailyBonusAvailable ? " (2x daily)" : ""}`}>
+                                {chance === 0 ? "—" : `${chance}%`}
                               </span>
                             );
                           })()}
