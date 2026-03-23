@@ -665,7 +665,7 @@ Kein Code nötig für bestehende Effekt-Typen. Neue Effekt-Typen brauchen Anpass
 
 ## 12. Artisan's Quarter — Crafting Recipes & Materials
 
-> **Definitive Spec:** See [`PROFESSION-SPEC.md`](./PROFESSION-SPEC.md) for the full profession system specification including WoW Classic references, target recipe/material counts, gear template gap analysis, skill-up color system, buff stacking rules, and prioritized work packages. **Always consult PROFESSION-SPEC.md before adding new recipes, materials, or gear templates.**
+> **Definitive Spec:** See [`WOW-PROFESSION-REFACTOR.md`](./WOW-PROFESSION-REFACTOR.md) for the complete profession refactor plan: 300 max skill, 6 professions (incl. Lederverarbeiter), ~100 recipes per profession (~600 total), material specialization, WoW recipe source distribution. **Always consult WOW-PROFESSION-REFACTOR.md before any profession/crafting work.**
 
 **Data**: `public/data/professions.json`
 **Frontend**: `components/ForgeView.tsx`

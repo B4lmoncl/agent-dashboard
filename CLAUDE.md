@@ -418,6 +418,6 @@ Quest system (pool of ~10 open + ~25 max in-progress per player), XP/leveling (5
 - `README.md` — API endpoint docs, deployment, agent setup.
 - `BACKLOG.md` — Planned features, known bugs, tech debt.
 - `ITEM-SYSTEM-SPEC.md` — Gear/equipment design spec (affix pools, rarity, slots).
-- `PROFESSION-SPEC.md` — **Definitive Profession System spec.** WoW Classic referenced design for all 5 professions, target recipe/material counts, gear template gaps, skill-up system, buff stacking rules, and prioritized work packages. **READ THIS before any profession/crafting work.**
+- `WOW-PROFESSION-REFACTOR.md` — **Definitive Profession Refactor Plan.** WoW Classic referenced design: 300 max skill, 6 professions (incl. Lederverarbeiter), ~100 recipes per profession (~600 total), material specialization, BoE trading, WoW recipe source distribution (40/30/20/10). **READ THIS before any profession/crafting work.**
 - `SCALABILITY-AUDIT.md` — Performance analysis.
 - `TEMPLATES.md` — Quest template format reference.
