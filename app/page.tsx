@@ -2027,8 +2027,19 @@ export default function Dashboard() {
               });
               if (r.ok) {
                 const data = await r.json();
-                const rewardText = Object.entries(data.reward || {}).map(([k, v]) => `+${v} ${k[0].toUpperCase() + k.slice(1)}`).join(", ");
-                addToast({ type: "flavor", message: `Milestone ${threshold} claimed! ${rewardText}`, icon: "/images/icons/currency-gold.png" });
+                const reward = data.reward || {};
+                const currencies: { name: string; amount: number; color: string }[] = [];
+                if (reward.gold) currencies.push({ name: "Gold", amount: reward.gold, color: "#fbbf24" });
+                if (reward.essenz) currencies.push({ name: "Essenz", amount: reward.essenz, color: "#ef4444" });
+                if (reward.runensplitter) currencies.push({ name: "Runensplitter", amount: reward.runensplitter, color: "#818cf8" });
+                if (reward.sternentaler) currencies.push({ name: "Sternentaler", amount: reward.sternentaler, color: "#fbbf24" });
+                setRewardCelebration({
+                  type: "daily-bonus",
+                  title: `${threshold} Milestone Claimed!`,
+                  xpEarned: 0,
+                  goldEarned: 0,
+                  currencies,
+                });
                 refresh();
               }
             } catch { /* ignore */ }
