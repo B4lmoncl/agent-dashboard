@@ -798,10 +798,11 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
               return (
                 <div className="flex gap-0.5 px-5 pt-2" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
                   {tabs.map(t => (
-                    <button key={t.key} onClick={() => setNpcModalTab(t.key)} className="forge-btn text-sm font-semibold px-5 py-2.5 rounded-t-lg" style={{
+                    <button key={t.key} onClick={() => setNpcModalTab(t.key)} className="forge-btn text-sm font-semibold px-5 py-2.5 rounded-t-lg transition-colors hover:brightness-110" style={{
                       background: npcModalTab === t.key ? `${t.color}12` : "transparent",
                       color: npcModalTab === t.key ? t.color : "rgba(255,255,255,0.25)",
                       borderBottom: npcModalTab === t.key ? `2px solid ${t.color}` : "2px solid transparent",
+                      cursor: "pointer",
                     }}>
                       {t.key === "schmiedekunst" ? <Tip k="schmiedekunst">{t.label}</Tip> : t.label}
                     </button>
@@ -824,12 +825,13 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                           <button
                             key={slot}
                             onClick={() => setSelectedSlot(slot)}
-                            className="text-xs px-2.5 py-1 rounded-lg transition-all"
+                            className="text-xs px-2.5 py-1 rounded-lg transition-all hover:brightness-125"
                             style={{
                               background: selectedSlot === slot ? `${selectedNpc.color}20` : "rgba(255,255,255,0.04)",
                               color: selectedSlot === slot ? selectedNpc.color : hasGear ? "rgba(255,255,255,0.5)" : "rgba(255,255,255,0.2)",
                               border: `1px solid ${selectedSlot === slot ? `${selectedNpc.color}40` : "rgba(255,255,255,0.06)"}`,
                               opacity: hasGear ? 1 : 0.4,
+                              cursor: "pointer",
                             }}
                           >
                             {label}
@@ -872,15 +874,16 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                       }
                       return true;
                     })();
-                    // For reroll recipes, check if the equipped item has rerollable stats
+                    // For reroll recipes, check if the equipped item has rerollable stats AND the template has an affix pool
                     const isSlotRecipe = recipe.id === "reroll_stat" || recipe.id === "reroll_minor" || recipe.id === "reinforce_armor" || recipe.id === "enchant_socket";
                     const PRIMARY_STATS = ["kraft", "ausdauer", "weisheit", "glueck"];
                     const slotItem = equippedSlots[selectedSlot];
                     const slotItemStats = (slotItem && typeof slotItem === "object") ? ((slotItem as Record<string, unknown>).stats as Record<string, number> || {}) : {};
+                    const slotRangeData = slotAffixRanges[selectedSlot];
                     const hasRerollableStats = recipe.id === "reroll_stat"
-                      ? Object.keys(slotItemStats).some(s => PRIMARY_STATS.includes(s))
+                      ? Object.keys(slotItemStats).some(s => PRIMARY_STATS.includes(s)) && (slotRangeData?.primary?.length ?? 0) > 0
                       : recipe.id === "reroll_minor"
-                        ? Object.keys(slotItemStats).some(s => !PRIMARY_STATS.includes(s))
+                        ? Object.keys(slotItemStats).some(s => !PRIMARY_STATS.includes(s)) && (slotRangeData?.minor?.length ?? 0) > 0
                         : true;
                     const hasSlotItem = isSlotRecipe ? (slotItem && typeof slotItem === "object") : true;
                     const canDo = isLearned && canAfford && meetsLevel && !onCooldown && hasSlotItem && hasRerollableStats;
@@ -925,19 +928,35 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                                                 <button
                                                   key={stat}
                                                   onClick={() => setSelectedRerollStat(selectedRerollStat === idx ? null : idx)}
-                                                  className="text-xs px-2 py-0.5 rounded transition-all"
+                                                  className="text-xs px-2 py-0.5 rounded transition-all hover:brightness-125"
                                                   style={{
                                                     background: selectedRerollStat === idx ? "rgba(168,85,247,0.2)" : "rgba(255,255,255,0.04)",
                                                     color: selectedRerollStat === idx ? "#a855f7" : "rgba(255,255,255,0.4)",
                                                     border: `1px solid ${selectedRerollStat === idx ? "rgba(168,85,247,0.5)" : "rgba(255,255,255,0.08)"}`,
+                                                    cursor: "pointer",
                                                   }}
                                                 >
                                                   {stat} +{currentStats[stat]}
                                                 </button>
                                               ))}
-                                              <p className="w-full text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.15)" }}>
-                                                {selectedRerollStat != null ? `Will reroll: ${currentStatKeys[selectedRerollStat]}` : "Random stat if none selected"}
-                                              </p>
+                                              {ranges.length > 0 && (
+                                                <div className="w-full mt-1 pt-1" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
+                                                  <p className="text-xs mb-0.5" style={{ color: "rgba(255,255,255,0.25)" }}>Possible outcomes:</p>
+                                                  <div className="flex flex-wrap gap-x-2 gap-y-0.5">
+                                                    {ranges.map(r => {
+                                                      const isCurrent = currentStats[r.stat] != null;
+                                                      return (
+                                                        <span key={r.stat} className="text-xs" style={{ color: isCurrent ? "#4ade80" : "rgba(255,255,255,0.35)" }}>
+                                                          {r.stat} {r.min}–{r.max}{isCurrent && <span style={{ color: "rgba(255,255,255,0.15)" }}> (now {currentStats[r.stat]})</span>}
+                                                        </span>
+                                                      );
+                                                    })}
+                                                  </div>
+                                                </div>
+                                              )}
+                                              {selectedRerollStat == null && (
+                                                <p className="w-full text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.15)" }}>Random stat if none selected</p>
+                                              )}
                                             </>
                                           );
                                         }
