@@ -161,7 +161,6 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
   const [enchantSlot, setEnchantSlot] = useState<string>("weapon");
   const [enchantStat, setEnchantStat] = useState<string | null>(null);
   const [enchantOptions, setEnchantOptions] = useState<{ label: string; value: number; index: number }[] | null>(null);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [enchantCost, setEnchantCost] = useState<{ gold: number; essenz: number } | null>(null);
   const [enchantLoading, setEnchantLoading] = useState(false);
   const [enchantResult, setEnchantResult] = useState<string | null>(null);
@@ -169,6 +168,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
   // Close callbacks for modal behavior hooks
   const closeNpcModal = useCallback(() => {
     setSelectedNpc(null); setCraftResult(null); setDismantleResult(null); setTransmuteResult(null); setSelectedTransmute([]);
+    setEnchantSlot("weapon"); setEnchantStat(null); setEnchantOptions(null); setEnchantCost(null); setEnchantResult(null);
   }, []);
   const closeConfirmProf = useCallback(() => setConfirmProf(null), []);
   const closeConfirmAction = useCallback(() => setConfirmAction(null), []);
@@ -218,10 +218,8 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
     }
   }, [professions, selectedNpc]);
 
-  const [selectedRerollStat, setSelectedRerollStat] = useState<number | null>(null);
-
-  // Reset craft count and reroll selection when switching NPC, tab, or slot
-  useEffect(() => { setCraftCount(1); setSelectedRerollStat(null); }, [selectedNpc, npcModalTab, selectedSlot]);
+  // Reset craft count when switching NPC, tab, or slot
+  useEffect(() => { setCraftCount(1); }, [selectedNpc, npcModalTab, selectedSlot]);
 
   const handleCraft = async (recipeId: string, count = 1) => {
     if (crafting || !reviewApiKey) return;
@@ -229,10 +227,6 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
     setCraftResult(null);
     try {
       const body: Record<string, unknown> = { recipeId, targetSlot: selectedSlot, count };
-      // Enchanting Overhaul: pass selected stat index for targeted reroll
-      if ((recipeId === 'reroll_stat' || recipeId === 'reroll_minor') && selectedRerollStat != null) {
-        body.targetStatIndex = selectedRerollStat;
-      }
       const r = await fetch("/api/professions/craft", {
         method: "POST",
         headers: { "Content-Type": "application/json", ...getAuthHeaders(reviewApiKey) },
@@ -254,10 +248,11 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
       setCraftResult("Network error");
     }
     setCrafting(false);
-    // Auto-scroll craft result into view
+    // Auto-scroll craft result into view, then auto-dismiss after 5s
     requestAnimationFrame(() => {
       document.getElementById("forge-craft-result")?.scrollIntoView({ behavior: "smooth", block: "nearest" });
     });
+    setTimeout(() => setCraftResult(null), 5000);
   };
 
   const handleLearnRecipe = async (recipeId: string) => {
@@ -400,6 +395,32 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
       }
     } catch { setCraftResult("Network error"); }
     setChoosingProf(false);
+  };
+
+  const handleDropProfession = async (profId: string, profName: string) => {
+    if (!reviewApiKey) return;
+    setConfirmAction({
+      message: `Drop ${profName}?\n\nCosts 200 Essenz. All progress (level & XP) will be lost permanently.`,
+      onConfirm: async () => {
+        setConfirmAction(null);
+        try {
+          const r = await fetch("/api/professions/switch", {
+            method: "POST",
+            headers: { "Content-Type": "application/json", ...getAuthHeaders(reviewApiKey) },
+            body: JSON.stringify({ dropProfession: profId }),
+          });
+          const data = await r.json();
+          if (r.ok) {
+            setCraftResult(data.message || "Profession dropped!");
+            closeNpcModal();
+            fetchData();
+            onRefresh?.();
+          } else {
+            setCraftResult(data.error || "Failed to drop profession");
+          }
+        } catch { setCraftResult("Network error"); }
+      },
+    });
   };
 
   // Compute materials used by each profession's recipes
@@ -551,9 +572,11 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                   <span className="text-sm font-mono font-semibold" style={{ color: prof.rankColor || prof.color }}>Lv.{prof.playerLevel}</span>
                 </div>
               )}
-              {prof.masteryActive && prof.masteryBonus && (
+              {prof.masteryBonus && (prof.masteryActive ? (
                 <p className="text-xs mt-1" style={{ color: "#facc15" }} title={prof.masteryBonus.desc}>&#9733; Mastery: {prof.masteryBonus.desc}</p>
-              )}
+              ) : prof.unlocked && prof.playerLevel > 0 ? (
+                <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.15)" }} title={`Unlocks at Level 8: ${prof.masteryBonus.desc}`}>&#9734; Mastery (Lv.8): {prof.masteryBonus.desc}</p>
+              ) : null)}
               {isChosen && prof.gatheringAffinity && prof.gatheringAffinity.length > 0 && (
                 <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.3)" }}>
                   Gathering: {prof.gatheringAffinity.map(id => materialDefs.find(m => m.id === id)?.name || id).join(", ")}
@@ -734,13 +757,13 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
       {/* ─── NPC Popout Modal ────────────────────────────────────────────────── */}
       {selectedNpc && typeof document !== "undefined" && createPortal(
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4"
+          className="fixed inset-0 z-[100] flex items-center justify-center p-4"
           style={{ background: "rgba(0,0,0,0.82)" }}
-          onClick={e => { if (e.target === e.currentTarget) { setSelectedNpc(null); setCraftResult(null); setDismantleResult(null); setTransmuteResult(null); setSelectedTransmute([]); } }}
+          onClick={e => { if (e.target === e.currentTarget) closeNpcModal(); }}
         >
           <div className="relative w-full max-w-xl rounded-xl" style={{ background: "#141418", border: `1px solid ${selectedNpc.color}30`, maxHeight: "85vh", overflowY: "auto", overflowX: "hidden" }}>
             {/* Close */}
-            <button onClick={() => { setSelectedNpc(null); setCraftResult(null); setDismantleResult(null); setTransmuteResult(null); setSelectedTransmute([]); }} className="forge-btn absolute top-3 right-3 z-10 w-8 h-8 rounded-full flex items-center justify-center" style={{ background: "rgba(255,255,255,0.08)" }}>
+            <button onClick={closeNpcModal} className="forge-btn absolute top-3 right-3 z-10 w-8 h-8 rounded-full flex items-center justify-center" style={{ background: "rgba(255,255,255,0.08)" }}>
               <span className="text-white text-sm">&#10005;</span>
             </button>
 
@@ -766,9 +789,21 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                   </div>
                 </div>
               </div>
-              {/* Speech bubble */}
-              <div className="mt-3 px-4 py-2.5 rounded-lg text-sm italic" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.5)", borderLeft: `3px solid ${selectedNpc.color}40` }}>
-                &ldquo;{selectedNpc.npcGreeting}&rdquo;
+              {/* Speech bubble + drop profession */}
+              <div className="mt-3 flex items-start gap-2">
+                <div className="flex-1 px-4 py-2.5 rounded-lg text-sm italic" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.5)", borderLeft: `3px solid ${selectedNpc.color}40` }}>
+                  &ldquo;{selectedNpc.npcGreeting}&rdquo;
+                </div>
+                {selectedNpc.chosen && (
+                  <button
+                    onClick={() => handleDropProfession(selectedNpc.id, selectedNpc.name)}
+                    className="forge-btn text-xs px-2.5 py-2 rounded-lg flex-shrink-0"
+                    style={{ color: "rgba(255,68,68,0.5)", border: "1px solid rgba(255,68,68,0.15)" }}
+                    title={`Drop ${selectedNpc.name} (costs 200 Essenz, resets all progress)`}
+                  >
+                    Drop
+                  </button>
+                )}
               </div>
               {/* Materials available for this profession */}
               {(() => {
@@ -888,18 +923,10 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                       return true;
                     })();
                     // For reroll recipes, check if the equipped item has rerollable stats AND the template has an affix pool
-                    const isSlotRecipe = recipe.id === "reroll_stat" || recipe.id === "reroll_minor" || recipe.id === "reinforce_armor" || recipe.id === "enchant_socket";
-                    const PRIMARY_STATS = ["kraft", "ausdauer", "weisheit", "glueck"];
+                    const isSlotRecipe = recipe.id === "reinforce_armor" || recipe.id === "enchant_socket" || recipe.id === "upgrade_rarity" || recipe.id === "permanent_enchant" || recipe.id === "sharpen_blade";
                     const slotItem = equippedSlots[selectedSlot];
-                    const slotItemStats = (slotItem && typeof slotItem === "object") ? ((slotItem as Record<string, unknown>).stats as Record<string, number> || {}) : {};
-                    const slotRangeData = slotAffixRanges[selectedSlot];
-                    const hasRerollableStats = recipe.id === "reroll_stat"
-                      ? Object.keys(slotItemStats).some(s => PRIMARY_STATS.includes(s)) && (slotRangeData?.primary?.length ?? 0) > 0
-                      : recipe.id === "reroll_minor"
-                        ? Object.keys(slotItemStats).some(s => !PRIMARY_STATS.includes(s)) && (slotRangeData?.minor?.length ?? 0) > 0
-                        : true;
                     const hasSlotItem = isSlotRecipe ? (slotItem && typeof slotItem === "object") : true;
-                    const canDo = isLearned && canAfford && meetsLevel && !onCooldown && hasSlotItem && hasRerollableStats;
+                    const canDo = isLearned && canAfford && meetsLevel && !onCooldown && hasSlotItem;
 
                     return (
                       <div key={recipe.id} className="rounded-lg p-3" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)", borderLeft: `3px solid ${skillUp?.color || "rgba(255,255,255,0.06)"}` }}>
@@ -911,80 +938,14 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                               <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: skillUp?.color || "#6b7280" }} title={skillUp?.label || ""} />
                             </div>
                             <p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,0.4)" }}>{recipe.desc}</p>
-                            {/* Reroll preview: show current stats + possible ranges */}
-                            {meetsLevel && (recipe.id === "reroll_stat" || recipe.id === "reroll_minor" || recipe.id === "reinforce_armor" || recipe.id === "enchant_socket") && equippedSlots[selectedSlot] && typeof equippedSlots[selectedSlot] === "object" && (() => {
-                              const slotData = slotAffixRanges[selectedSlot];
+                            {/* Stat preview for slot-targeting recipes */}
+                            {meetsLevel && (recipe.id === "reinforce_armor" || recipe.id === "enchant_socket" || recipe.id === "sharpen_blade" || recipe.id === "permanent_enchant") && equippedSlots[selectedSlot] && typeof equippedSlots[selectedSlot] === "object" && (() => {
                               const currentStats = (equippedSlots[selectedSlot] as Record<string, unknown>).stats as Record<string, number> || {};
-                              const isRerollPrimary = recipe.id === "reroll_stat";
-                              const isRerollMinor = recipe.id === "reroll_minor";
-                              const ranges = slotData ? (isRerollPrimary ? slotData.primary : isRerollMinor ? slotData.minor : [...slotData.primary, ...slotData.minor]) : [];
                               return (
                                 <div className="mt-1 rounded-lg px-2 py-1.5" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.04)" }}>
-                                  <p className="text-xs mb-1" style={{ color: "rgba(255,255,255,0.3)" }}>
+                                  <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>
                                     Current: {Object.entries(currentStats).map(([k, v]) => `${k} +${v}`).join(", ") || "none"}
                                   </p>
-                                  {ranges.length > 0 && (
-                                    <div className="flex flex-wrap gap-x-1 gap-y-1">
-                                      {(() => {
-                                        // For reroll recipes: show current stats as clickable targets
-                                        const isReroll = recipe.id === "reroll_stat" || recipe.id === "reroll_minor";
-                                        const statType = recipe.id === "reroll_stat" ? "primary" : "minor";
-                                        const PRIMARY = ["kraft", "ausdauer", "weisheit", "glueck"];
-                                        const currentStatKeys = Object.keys(currentStats).filter(s =>
-                                          statType === "primary" ? PRIMARY.includes(s) : !PRIMARY.includes(s)
-                                        );
-                                        if (isReroll && currentStatKeys.length > 0) {
-                                          return (
-                                            <>
-                                              <p className="w-full text-xs mb-0.5" style={{ color: "rgba(255,255,255,0.25)" }}>Select stat to reroll:</p>
-                                              {currentStatKeys.map((stat, idx) => (
-                                                <button
-                                                  key={stat}
-                                                  onClick={() => setSelectedRerollStat(selectedRerollStat === idx ? null : idx)}
-                                                  className="text-xs px-2 py-0.5 rounded transition-all hover:brightness-125"
-                                                  style={{
-                                                    background: selectedRerollStat === idx ? "rgba(168,85,247,0.2)" : "rgba(255,255,255,0.04)",
-                                                    color: selectedRerollStat === idx ? "#a855f7" : "rgba(255,255,255,0.4)",
-                                                    border: `1px solid ${selectedRerollStat === idx ? "rgba(168,85,247,0.5)" : "rgba(255,255,255,0.08)"}`,
-                                                    cursor: "pointer",
-                                                  }}
-                                                >
-                                                  {stat} +{currentStats[stat]}
-                                                </button>
-                                              ))}
-                                              {ranges.length > 0 && (
-                                                <div className="w-full mt-1 pt-1" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
-                                                  <p className="text-xs mb-0.5" style={{ color: "rgba(255,255,255,0.25)" }}>Possible outcomes:</p>
-                                                  <div className="flex flex-wrap gap-x-2 gap-y-0.5">
-                                                    {ranges.map(r => {
-                                                      const isCurrent = currentStats[r.stat] != null;
-                                                      return (
-                                                        <span key={r.stat} className="text-xs" style={{ color: isCurrent ? "#4ade80" : "rgba(255,255,255,0.35)" }}>
-                                                          {r.stat} {r.min}–{r.max}{isCurrent && <span style={{ color: "rgba(255,255,255,0.15)" }}> (now {currentStats[r.stat]})</span>}
-                                                        </span>
-                                                      );
-                                                    })}
-                                                  </div>
-                                                </div>
-                                              )}
-                                              {selectedRerollStat == null && (
-                                                <p className="w-full text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.15)" }}>Random stat if none selected</p>
-                                              )}
-                                            </>
-                                          );
-                                        }
-                                        return ranges.map(r => {
-                                          const current = currentStats[r.stat];
-                                          return (
-                                            <span key={r.stat} className="text-xs" style={{ color: current != null ? "#4ade80" : "rgba(255,255,255,0.2)" }}>
-                                              {r.stat} {r.min}–{r.max}
-                                              {current != null && <span style={{ color: "rgba(255,255,255,0.15)" }}> (now {current})</span>}
-                                            </span>
-                                          );
-                                        });
-                                      })()}
-                                    </div>
-                                  )}
                                 </div>
                               );
                             })()}
@@ -1038,7 +999,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                                   border: `1px solid ${canDo ? `${selectedNpc.color}40` : "rgba(255,255,255,0.06)"}`,
                                   cursor: canDo && !crafting ? "pointer" : "not-allowed",
                                 }}
-                                title={!canDo ? (!isLearned ? "Recipe not learned" : !meetsLevel ? "Profession level too low" : onCooldown ? `On cooldown (${Math.ceil((recipe.cooldownRemaining ?? 0) / 60)}min left)` : !hasSlotItem ? "No gear equipped in this slot" : !hasRerollableStats ? "Item has no rerollable stats of this type" : !canAfford ? "Not enough materials or gold" : "") : `Craft ${recipe.name}`}
+                                title={!canDo ? (!isLearned ? "Recipe not learned" : !meetsLevel ? "Profession level too low" : onCooldown ? `On cooldown (${Math.ceil((recipe.cooldownRemaining ?? 0) / 60)}min left)` : !hasSlotItem ? "No gear equipped in this slot" : !canAfford ? "Not enough materials or gold" : "") : `Craft ${recipe.name}`}
                               >
                                 {crafting ? "Crafting\u2026" : onCooldown ? "On Cooldown" : "Craft"}
                               </button>
@@ -1230,11 +1191,16 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                       </div>
 
                       {/* Cost preview */}
-                      {!enchantOptions && (
+                      {!enchantOptions && (() => {
+                        const previewGold = enchantCost?.gold ?? Math.min(50000, Math.round(100 * Math.pow(1.5, rerollCount)));
+                        const previewEssenz = enchantCost?.essenz ?? Math.min(10, 2 + Math.floor(rerollCount / 3));
+                        return (
                         <div className="mt-3 flex items-center gap-3 text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>
-                          <span>Cost: ~{Math.round(100 * Math.pow(1.5, rerollCount))}g + {2 + Math.floor(rerollCount / 3)} Essenz</span>
+                          <span>Next reroll: <strong style={{ color: "#f59e0b" }}>{previewGold}g</strong> + <strong style={{ color: "#ff8c00" }}>{previewEssenz} Essenz</strong></span>
                           {rerollCount >= 5 && <span style={{ color: "#f59e0b" }}>&#9888; Cost escalating</span>}
                         </div>
+                        );
+                      })()
                       )}
                     </div>
                   ) : (
@@ -1485,7 +1451,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
       )}
       {/* ─── Confirm Profession Modal ─────────────────────────────────── */}
       {confirmProf && createPortal(
-        <div className="modal-backdrop" onClick={() => setConfirmProf(null)} style={{ zIndex: 10000 }}>
+        <div className="modal-backdrop" onClick={() => setConfirmProf(null)} style={{ zIndex: 150 }}>
           <div
             className="rounded-2xl p-6 w-full max-w-md space-y-4"
             onClick={e => e.stopPropagation()}
@@ -1563,7 +1529,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
 
       {/* Confirmation modal (replaces window.confirm) */}
       {confirmAction && createPortal(
-        <div className="fixed inset-0 z-[9999] flex items-center justify-center" style={{ background: "rgba(0,0,0,0.7)" }} onClick={() => setConfirmAction(null)}>
+        <div className="fixed inset-0 z-[150] flex items-center justify-center" style={{ background: "rgba(0,0,0,0.7)" }} onClick={() => setConfirmAction(null)}>
           <div className="w-full max-w-sm rounded-xl p-5" style={{ background: "#1a1509", border: "1px solid rgba(180,140,70,0.35)" }} onClick={e => e.stopPropagation()}>
             <p className="text-sm font-semibold mb-1" style={{ color: "#fbbf24" }}>Confirm Action</p>
             <p className="text-xs mb-4 whitespace-pre-line" style={{ color: "rgba(255,255,255,0.6)" }}>{confirmAction.message}</p>
