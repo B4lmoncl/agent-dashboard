@@ -50,48 +50,65 @@ function loadProfessions() {
   }
 }
 
-// ─── Proficiency ranks (named tiers) ────────────────────────────────────────
+// ─── WoW Classic-style proficiency ranks (4 tiers with skill caps) ───────────
 const PROFICIENCY_RANKS = [
-  { min: 0, max: 0, name: 'Novice', color: '#6b7280' },
-  { min: 1, max: 2, name: 'Apprentice', color: '#22c55e' },
-  { min: 3, max: 4, name: 'Journeyman', color: '#3b82f6' },
-  { min: 5, max: 6, name: 'Expert', color: '#a855f7' },
-  { min: 7, max: 8, name: 'Artisan', color: '#f59e0b' },
-  { min: 9, max: 10, name: 'Master', color: '#ef4444' },
+  { name: 'Apprentice', skillCap: 75, reqPlayerLevel: 5, color: '#22c55e' },
+  { name: 'Journeyman', skillCap: 150, reqPlayerLevel: 15, color: '#3b82f6' },
+  { name: 'Expert', skillCap: 225, reqPlayerLevel: 25, color: '#a855f7' },
+  { name: 'Artisan', skillCap: 300, reqPlayerLevel: 40, color: '#f59e0b' },
 ];
+const MAX_SKILL = 300;
 
-function getProfRank(level) {
+function getProfRank(skill) {
   for (let i = PROFICIENCY_RANKS.length - 1; i >= 0; i--) {
-    if (level >= PROFICIENCY_RANKS[i].min) return PROFICIENCY_RANKS[i];
+    if (skill > (i > 0 ? PROFICIENCY_RANKS[i - 1].skillCap : 0)) return PROFICIENCY_RANKS[i];
   }
   return PROFICIENCY_RANKS[0];
 }
 
-// ─── Skill-up color for recipes (orange/yellow/green/gray) ──────────────────
-function getSkillUpColor(profLevel, reqProfLevel) {
-  const diff = profLevel - reqProfLevel;
-  if (diff <= 0) return 'orange';   // guaranteed skill-up
-  if (diff <= 2) return 'yellow';   // likely skill-up
-  if (diff <= 4) return 'green';    // rare skill-up
-  return 'gray';                     // no skill-up
-}
-
-// XP multiplier based on skill-up color (diminishing returns)
-function getSkillUpXpMultiplier(profLevel, reqProfLevel) {
-  const colors = PROFESSIONS_DATA.skillUpColors;
-  if (colors) {
-    const color = getSkillUpColor(profLevel, reqProfLevel);
-    return colors[color]?.xpMultiplier ?? 1;
+function getSkillCap(playerLevel) {
+  let cap = 0;
+  for (const rank of PROFICIENCY_RANKS) {
+    if (playerLevel >= rank.reqPlayerLevel) cap = rank.skillCap;
   }
-  // Fallback if no config
-  const diff = profLevel - reqProfLevel;
-  if (diff <= 0) return 1.0;
-  if (diff <= 2) return 0.75;
-  if (diff <= 4) return 0.25;
-  return 0;
+  return cap || 75; // default Apprentice cap
 }
 
-// Max profession slots based on player level (configured in professions.json)
+// ─── Convert reqProfLevel (1-10) to reqSkill (1-300) ────────────────────────
+const PROF_LEVEL_TO_SKILL = [0, 1, 30, 60, 90, 120, 150, 180, 210, 250, 280];
+function reqProfLevelToSkill(reqProfLevel) {
+  return PROF_LEVEL_TO_SKILL[reqProfLevel] || reqProfLevel;
+}
+
+// ─── WoW Classic skill-up: per-recipe color breakpoints + sliding probability ─
+function getRecipeBreakpoints(reqSkill) {
+  // WoW-style: ~25 skill span per color zone
+  return {
+    yellow: reqSkill + 25,
+    green: reqSkill + 50,
+    gray: reqSkill + 75,
+  };
+}
+
+function getSkillUpColor(playerSkill, reqSkill) {
+  const bp = getRecipeBreakpoints(reqSkill);
+  if (playerSkill < bp.yellow) return 'orange';
+  if (playerSkill < bp.green) return 'yellow';
+  if (playerSkill < bp.gray) return 'green';
+  return 'gray';
+}
+
+// WoW Classic formula: linear interpolation from yellow→gray
+// At yellow threshold: 100% chance. At gray threshold: 0% chance.
+function getSkillUpChance(playerSkill, reqSkill) {
+  const bp = getRecipeBreakpoints(reqSkill);
+  if (playerSkill < bp.yellow) return 1.0; // orange = guaranteed
+  if (playerSkill >= bp.gray) return 0;     // gray = impossible
+  // Linear slide: (gray - skill) / (gray - yellow)
+  return (bp.gray - playerSkill) / (bp.gray - bp.yellow);
+}
+
+// Max profession slots based on player level
 function getMaxProfessionSlots(playerLevel) {
   const slots = PROFESSIONS_DATA.professionSlots || [{ playerLevel: 5, slot: 1 }, { playerLevel: 15, slot: 2 }];
   let maxSlots = 0;
@@ -101,15 +118,21 @@ function getMaxProfessionSlots(playerLevel) {
   return maxSlots;
 }
 
-function getProfLevel(u, profId) {
+// Get player's profession skill (0-300)
+function getProfSkill(u, profId) {
   const prof = (u.professions || {})[profId];
-  if (!prof) return { level: 0, xp: 0 };
-  const thresholds = PROFESSIONS_DATA.professions.find(p => p.id === profId)?.levelThresholds || [];
+  return { skill: Math.min(prof?.skill || prof?.xp || 0, MAX_SKILL) };
+}
+
+// Backward compat alias
+function getProfLevel(u, profId) {
+  const { skill } = getProfSkill(u, profId);
+  // Map skill back to approximate level for recipe reqProfLevel checks
   let level = 0;
-  for (let i = 0; i < thresholds.length; i++) {
-    if ((prof.xp || 0) >= thresholds[i]) level = i + 1;
+  for (let i = PROF_LEVEL_TO_SKILL.length - 1; i >= 1; i--) {
+    if (skill >= PROF_LEVEL_TO_SKILL[i]) { level = i; break; }
   }
-  return { level: Math.min(level, 10), xp: prof.xp || 0 };
+  return { level, skill, xp: skill };
 }
 
 // ─── Helper: check if recipe is discovered/learned for this player ───────────
@@ -161,22 +184,28 @@ router.get('/api/professions', (req, res) => {
   const professions = PROFESSIONS_DATA.professions.map(p => {
     const playerLevel = u ? getLevelInfo(u.xp || 0).level : 0;
     const unlocked = u ? (p.unlockCondition?.type === 'level' ? playerLevel >= p.unlockCondition.value : true) : false;
-    const profProgress = u ? getProfLevel(u, p.id) : { level: 0, xp: 0 };
+    const profProgress = u ? getProfSkill(u, p.id) : { skill: 0 };
+    const profLevel = u ? getProfLevel(u, p.id) : { level: 0, skill: 0 };
     const lastCraft = (u?.professions || {})[p.id]?.lastCraftAt || null;
     const chosen = (u?.chosenProfessions || []).includes(p.id);
     const pMaxSlots = u ? getMaxProfessionSlots(playerLevel) : 0;
     const canChoose = chosen || (u?.chosenProfessions || []).length < pMaxSlots;
-    const rank = getProfRank(profProgress.level);
-    const masteryUnlockLvl = PROFESSIONS_DATA.masteryConfig?.unlockLevel || 8;
-    const masteryActive = profProgress.level >= masteryUnlockLvl;
+    const rank = getProfRank(profProgress.skill);
+    const skillCap = u ? getSkillCap(playerLevel) : 75;
+    const masterySkill = PROFESSIONS_DATA.masteryConfig?.unlockSkill || 225;
+    const masteryActive = profProgress.skill >= masterySkill;
     return {
       ...p,
       unlocked,
       chosen,
       canChoose,
-      playerLevel: profProgress.level,
-      playerXp: profProgress.xp,
-      nextLevelXp: p.levelThresholds[profProgress.level] || null,
+      skill: profProgress.skill,
+      maxSkill: MAX_SKILL,
+      skillCap,
+      // Legacy compat fields
+      playerLevel: profLevel.level,
+      playerXp: profProgress.skill,
+      nextLevelXp: skillCap,
       lastCraftAt: lastCraft,
       rank: rank.name,
       rankColor: rank.color,
@@ -205,11 +234,15 @@ router.get('/api/professions', (req, res) => {
         const elapsed = (Date.now() - new Date(lastRecipeCraft).getTime()) / 1000;
         cooldownRemaining = Math.max(0, Math.ceil(effectiveCd * 60 - elapsed));
       }
+      const reqSkill = r.reqSkill || reqProfLevelToSkill(r.reqProfLevel);
+      const playerSkill = u ? getProfSkill(u, r.profession).skill : 0;
       return {
         ...r,
+        reqSkill,
         learned,
-        canCraft: learned && profProgress.level >= r.reqProfLevel,
-        skillUpColor: getSkillUpColor(profProgress.level, r.reqProfLevel),
+        canCraft: learned && playerSkill >= reqSkill,
+        skillUpColor: getSkillUpColor(playerSkill, reqSkill),
+        skillUpChance: Math.round(getSkillUpChance(playerSkill, reqSkill) * 100),
         cooldownRemaining,
       };
     });
@@ -424,34 +457,41 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
   }
 
   // Update profession XP & timestamp — WoW-style: fixed XP per craft, probabilistic skill-up
+  // ─── WoW Classic skill-up: 1 point per craft, sliding probability ──────────
   u.professions = u.professions || {};
-  u.professions[recipe.profession] = u.professions[recipe.profession] || { level: 0, xp: 0 };
-  const skillUpColor = getSkillUpColor(profProgress.level, recipe.reqProfLevel);
-  const skillUpChance = skillUpColor === 'orange' ? 1.0 : skillUpColor === 'yellow' ? 0.75 : skillUpColor === 'green' ? 0.25 : 0;
+  u.professions[recipe.profession] = u.professions[recipe.profession] || { skill: 0 };
+  const reqSkill = recipe.reqSkill || reqProfLevelToSkill(recipe.reqProfLevel);
+  const currentSkill = u.professions[recipe.profession].skill || u.professions[recipe.profession].xp || 0;
+  const playerLvl = getLevelInfo(u.xp || 0).level;
+  const skillCap = getSkillCap(playerLvl);
+  const skillUpColor = getSkillUpColor(currentSkill, reqSkill);
+  const skillUpChance = getSkillUpChance(currentSkill, reqSkill);
   const { dailyBonusAvailable } = getDailyBonusInfo(u);
-  const xpPerPoint = profDef.xpPerCraft || 10; // fixed XP per skill-up point
   const dailyMultiplier = dailyBonusAvailable ? 2 : 1;
-  // Roll skill-up for each craft in the batch
-  let totalXpGained = 0;
+  // Roll skill-up for each craft in the batch — WoW: exactly 1 point per success
+  let totalSkillGained = 0;
   for (let i = 0; i < effectiveCount; i++) {
-    if (Math.random() < skillUpChance) {
-      totalXpGained += xpPerPoint * dailyMultiplier;
+    if (currentSkill + totalSkillGained < skillCap && Math.random() < skillUpChance) {
+      totalSkillGained += 1 * dailyMultiplier; // daily bonus: 2 points instead of 1
     }
   }
-  u.professions[recipe.profession].xp += totalXpGained;
+  u.professions[recipe.profession].skill = Math.min(MAX_SKILL, (u.professions[recipe.profession].skill || 0) + totalSkillGained);
+  // Sync legacy xp field
+  u.professions[recipe.profession].xp = u.professions[recipe.profession].skill;
   u.professions[recipe.profession].lastCraftAt = now();
   // Track per-recipe cooldown
   if (recipe.cooldownMinutes > 0) {
     u.professions[recipe.profession].recipeCooldowns = u.professions[recipe.profession].recipeCooldowns || {};
     u.professions[recipe.profession].recipeCooldowns[recipeId] = now();
   }
-  u.lastCraftDate = new Date().toISOString().slice(0, 10); // track daily bonus
+  u.lastCraftDate = new Date().toISOString().slice(0, 10);
+  const newSkill = u.professions[recipe.profession].skill;
   const newProfLevel = getProfLevel(u, recipe.profession);
   u.professions[recipe.profession].level = newProfLevel.level;
 
-  // ─── Mastery bonus check (level 8+) ─────────────────────────────────────────
-  const masteryLevel = PROFESSIONS_DATA.masteryConfig?.unlockLevel || 8;
-  const hasMastery = profProgress.level >= masteryLevel;
+  // ─── Mastery bonus check (skill 225+) ─────────────────────────────────────────
+  const masterySkill = PROFESSIONS_DATA.masteryConfig?.unlockSkill || 225;
+  const hasMastery = currentSkill >= masterySkill;
   const masteryDef = hasMastery ? profDef.masteryBonus : null;
 
   let result = { success: true, message: '' };
@@ -734,7 +774,8 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
     gold: u.currencies?.gold ?? u.gold ?? 0,
     newProfLevel: newProfLevel.level,
     profLevelUp: newProfLevel.level > profProgress.level,
-    xpGained: totalXpGained,
+    skillGained: totalSkillGained,
+    newSkill: newSkill,
     skillUpColor,
     dailyBonusUsed: dailyBonusAvailable,
     craftCount: effectiveCount,
