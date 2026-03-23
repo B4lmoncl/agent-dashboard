@@ -753,7 +753,7 @@ export default function TodayDrawer({
                   </svg>
                   <div className="absolute inset-0 flex flex-col items-center justify-center">
                     <span className="text-lg font-bold font-mono" style={{ color: levelInfo.color, lineHeight: 1 }}>{levelInfo.level}</span>
-                    <span style={{ color: "rgba(255,255,255,0.3)", fontSize: 9 }}>LVL</span>
+                    <span style={{ color: "rgba(255,255,255,0.3)", fontSize: 12 }}>LVL</span>
                   </div>
                 </div>
               </div>
