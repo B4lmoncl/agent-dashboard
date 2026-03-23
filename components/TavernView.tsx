@@ -136,6 +136,7 @@ export default function TavernView({ onRefresh }: { onRefresh?: () => void }) {
         <p className="text-xs text-w35" style={{ maxWidth: 400, margin: "0 auto" }}>
           A place of rest within the tower. Here, weary adventurers can pause their journey without losing their progress. Your streaks and forge temperature will be frozen while you rest.
         </p>
+        <p className="text-xs italic" style={{ color: "rgba(217,119,6,0.35)", maxWidth: 400, margin: "4px auto 0" }}>Selbst Helden brauchen eine Pause. Die Halle versteht das.</p>
       </div>
 
       {/* Status messages */}

@@ -1307,11 +1307,11 @@ export function Tip({ k, children, accent, heading }: { k: string; children: Rea
 
 // ─── Convenience: Ad-hoc tooltip (no registry) ─────────────────────────────
 
-export function TipCustom({ title, icon, accent, body, children, heading, hoverDelay }: {
-  title: string; icon?: string; accent?: string; body: React.ReactNode; children: React.ReactNode; heading?: boolean; hoverDelay?: number;
+export function TipCustom({ title, icon, accent, body, children, heading, hoverDelay, align }: {
+  title: string; icon?: string; accent?: string; body: React.ReactNode; children: React.ReactNode; heading?: boolean; hoverDelay?: number; align?: "left" | "center" | "right";
 }) {
   return (
-    <GameTooltip entry={{ title, icon, accent, body }} heading={heading} hoverDelay={hoverDelay}>
+    <GameTooltip entry={{ title, icon, accent, body }} heading={heading} hoverDelay={hoverDelay} align={align}>
       {children}
     </GameTooltip>
   );

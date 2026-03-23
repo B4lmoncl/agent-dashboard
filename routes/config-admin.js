@@ -6,6 +6,8 @@ const { requireApiKey, requireAuth, requireMasterKey, getMasterKey } = require('
 const { assignRarity, selectDailyQuests } = require('../lib/rotation');
 const { resolveQuest } = require('../lib/quest-templates');
 const { POOL_TYPES, POOL_MIX } = require('./quests');
+const { isWorldBossActive } = require('./world-boss');
+const { isDungeonActiveForPlayer } = require('./dungeons');
 
 // GET /api/config — expose game constants to frontend (no auth required)
 router.get('/api/config', (req, res) => {
@@ -161,19 +163,14 @@ router.get('/api/dashboard', async (req, res) => {
     expedition: expedition?.expedition || null,
     socialSummary,
     dailyMissions,
-    // Lightweight active-content status for Today drawer
-    worldBossActive: (() => {
-      try { const wbs = require('fs').existsSync(require('path').join(require('../lib/state').RUNTIME_DIR, 'worldBoss.json')) ? JSON.parse(require('fs').readFileSync(require('path').join(require('../lib/state').RUNTIME_DIR, 'worldBoss.json'), 'utf8')) : null; return !!(wbs?.activeBoss && !wbs.activeBoss.defeated && new Date(wbs.activeBoss.expiresAt) > new Date()); } catch { return false; }
-    })(),
+    // Lightweight active-content status for Today drawer (uses in-memory state, no FS I/O)
+    worldBossActive: isWorldBossActive(),
     riftActive: (() => {
       if (!playerLower) return false;
       const u = state.users[playerLower];
       return !!(u?.activeRift && !u.activeRift.completed && !u.activeRift.failed && new Date(u.activeRift.expiresAt) > new Date());
     })(),
-    dungeonActive: (() => {
-      if (!playerLower) return false;
-      try { const dsPath = require('path').join(require('../lib/state').RUNTIME_DIR, 'dungeonState.json'); if (!require('fs').existsSync(dsPath)) return false; const ds = JSON.parse(require('fs').readFileSync(dsPath, 'utf8')); return Object.values(ds.activeRuns || {}).some(r => r && r.participants && r.participants.includes(playerLower) && r.status !== 'completed'); } catch { return false; }
-    })(),
+    dungeonActive: isDungeonActiveForPlayer(playerLower),
     apiLive: true,
   });
 });

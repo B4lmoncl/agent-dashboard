@@ -135,6 +135,7 @@ export default function FactionsView({ onRewardCelebration }: { onRewardCelebrat
         <p className="text-xs text-w35" style={{ maxWidth: 440, margin: "0 auto" }}>
           Secret orders of the tower. Earn reputation through quests and unlock exclusive rewards.
         </p>
+        <p className="text-xs italic" style={{ color: "rgba(255,255,255,0.25)", maxWidth: 440, margin: "4px auto 0" }}>Alte Orden, erwacht aus dem langen Schlaf des Turms. Vier Philosophien. Vier Aspekte des Aetherstroms.</p>
       </div>
 
       {/* Messages */}

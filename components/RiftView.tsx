@@ -213,6 +213,9 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
           <p className="text-xs text-w25">Timed quest chains with escalating difficulty. Complete all stages before time runs out.</p>
         </div>
       </div>
+      <div className="rounded-lg px-4 py-2.5" style={{ background: "linear-gradient(135deg, rgba(168,85,247,0.06) 0%, transparent 80%)", borderLeft: "2px solid rgba(168,85,247,0.2)" }}>
+        <p className="text-xs italic leading-relaxed" style={{ color: "rgba(255,255,255,0.3)", maxWidth: 520 }}>Die Risse flüstern. Hör nicht hin. Seit der Wiederkehr öffnen sich die Risse im Aetherstrom häufiger — fragmentierte Realitäten sickern hindurch.</p>
+      </div>
 
       {/* Messages */}
       {message && (

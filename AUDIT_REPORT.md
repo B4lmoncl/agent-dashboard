@@ -1,6 +1,6 @@
 # Quest Hall — Codebase Audit Report
 
-> Last updated: 2026-03-22 · v1.5.3 · Sessions 1–27
+> Last updated: 2026-03-23 · v1.5.3 · Sessions 1–28
 
 ---
 
@@ -406,6 +406,80 @@ Complete redesign of TodayDrawer.tsx with 13 new visual features:
 - Gacha: pity counters + rates from API, tooltips match
 - Gems: all data from API, unsocket cost matches
 - Crafting: all data from API (except workshop tiers — values match)
+
+## 10. Session 28 — Deep Performance & Data Structure Audit (2026-03-23)
+
+### Audit Scope
+
+Full codebase audit focusing on:
+- Backend data structure efficiency and persistence patterns
+- API route performance (O(n) vs O(1) lookups)
+- Frontend rendering efficiency and context patterns
+- Security hardening
+
+### Critical & High Fixes
+
+| Severity | Fix | Files |
+|----------|-----|-------|
+| CRITICAL | `getActiveBuffs()` mutated user state without saving — expired buffs reappeared on restart | `lib/state.js` |
+| CRITICAL | Gold desync in gem unsocket/upgrade — `u.gold` not synced after `u.currencies.gold` deduction | `routes/gems.js` |
+| HIGH | GitHub webhook bypass — `verifyGitHubSignature()` returned `true` when secret not configured (fail-open → fail-closed) | `routes/integrations.js` |
+| HIGH | Campaign PATCH/DELETE used `requireApiKey` — any user could modify/delete campaigns (→ `requireMasterKey`) | `routes/campaigns.js` |
+| HIGH | Weekly challenge backfill (stars/stageStartedAt) never called `saveUsers()` — data lost on restart | `routes/challenges-weekly.js` |
+
+### Performance Optimizations
+
+| Severity | Optimization | Impact | Files |
+|----------|-------------|--------|-------|
+| MEDIUM | Friendship O(1) index — `areFriends()` now uses `Map<playerId, Set<friendId>>` instead of O(n) array scan | Every message, trade, friend request | `routes/social.js` |
+| MEDIUM | Mythic leaderboard cache — `getMythicLeaderboard()` with 1min TTL replaces O(n) user scan on every GET /api/rift | Every rift status request | `routes/rift.js` |
+| MEDIUM | `campaignsById` Map — O(1) campaign lookup replaces 6× `.find()` calls | Campaign CRUD operations | `lib/state.js`, `routes/campaigns.js` |
+| MEDIUM | Dashboard sync FS I/O removed — `worldBossActive` and `dungeonActive` now use in-memory state via exported functions instead of `readFileSync()` on every `/api/dashboard` request | Every dashboard load | `routes/config-admin.js`, `routes/world-boss.js`, `routes/dungeons.js` |
+
+### Architecture Analysis & Recommendations
+
+#### Data Structure Assessment
+
+| Structure | Current | Verdict |
+|-----------|---------|---------|
+| `state.questsById` (Map) | O(1) quest lookup | Good — correctly used |
+| `state.usersByName` (Map) | O(1) user lookup | Good — correctly used |
+| `state.gearById` (Map) | O(1) gear lookup | Good — correctly used |
+| `state.campaignsById` (Map) | **NEW** — O(1) campaign lookup | Added this session |
+| Friendship index (Map→Set) | **NEW** — O(1) friend check | Added this session |
+| Mythic leaderboard (cached) | **NEW** — 1min TTL cache | Added this session |
+| JSON file persistence | Debounced 200ms + atomic writes | Appropriate for <50 users |
+
+#### Identified but NOT Fixed (Low Priority / Architectural)
+
+| Issue | Severity | Reason Not Fixed |
+|-------|----------|-----------------|
+| `getLevelInfo()` linear search (50 levels) | LOW | 50 iterations is negligible; binary search gains <1ms |
+| `questIdToNpc` map rebuilt per call | LOW | Small dataset (<20 NPCs); would need NPC engine refactor |
+| `getStanding()` linear search (6 tiers) | LOW | 6 entries — O(1) gain negligible |
+| No transactional writes across data files | MEDIUM | Architectural; would need WAL or DB migration |
+| `state.users` Object vs Map | LOW | Object is fine for <10k users; Map migration is breaking |
+| Activity log unbounded growth | LOW | Already capped at 500 entries |
+| Boot sequence sequential loads | LOW | <2s total; parallelizing saves ~500ms but adds complexity |
+
+#### Frontend Performance Assessment
+
+| Pattern | Status | Notes |
+|---------|--------|-------|
+| Lazy-loaded views (17) | Good | Proper `React.lazy()` + `Suspense` |
+| `React.memo` on QuestCards/AgentCard | Good | Correctly applied |
+| `content-visibility: auto` on cards | Good | Reduces off-screen rendering |
+| DashboardContext single provider | Acceptable | Splitting into 3 contexts would help at scale but adds complexity |
+| 1s ticker re-renders | Known | Cosmetic "X seconds ago" — low impact |
+| page.tsx monolith (2350 lines) | Known | Functional but hard to maintain; would benefit from splitting |
+
+### Systems Verified Clean
+
+- All O(1) Map lookups (questsById, usersByName, usersByApiKey, gearById, campaignsById) confirmed in sync
+- Gold dual-field sync (`u.gold` ↔ `u.currencies.gold`) now consistent across all routes
+- All mutating campaign endpoints now require admin auth
+- Webhook signature verification fails closed
+- Buff expiration persisted correctly
 
 ---
 

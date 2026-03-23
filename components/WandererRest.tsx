@@ -160,7 +160,7 @@ export function WandererRest({
             <Tip k="npc_quest_board" heading accent="rgba(255,215,0,0.6)"><span style={{ fontSize: "0.85rem", letterSpacing: "0.15em", textTransform: "uppercase" }}>◆ The Wanderer&#39;s Rest ◆</span></Tip>
             <div style={{ flex: 1, height: 1, background: "linear-gradient(90deg, transparent, rgba(255,215,0,0.25), transparent)" }} />
           </div>
-          <p className="text-xs mt-2 italic text-center" style={{ color: "rgba(255,255,255,0.3)" }}>They come. They go. They always return.</p>
+          <p className="text-xs mt-2 italic text-center" style={{ color: "rgba(255,255,255,0.3)" }}>Reisende Seelen und ihre unerzählten Geschichten. Sie kommen. Sie gehen. Sie kehren immer zurück.</p>
         </div>
         {activeNpcs.length === 0 ? (
           <div className="rounded-xl px-4 py-8 text-center" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
@@ -567,7 +567,8 @@ export function WandererRest({
                   {/* Final reward */}
                   {npc.finalReward?.item && (
                     <div className="mt-4 px-4 py-3 rounded-xl flex items-start gap-3" style={{ background: "rgba(255,215,0,0.04)", border: "1px solid rgba(255,215,0,0.12)" }}>
-                      {(npc.finalReward.item as any).icon && (npc.finalReward.item as any).icon.startsWith("/") ? <img src={(npc.finalReward.item as any).icon} alt="" width={96} height={96} style={{ imageRendering: "auto", flexShrink: 0, marginTop: 2 }} /> : <span className="text-xl flex-shrink-0 mt-0.5">{npc.finalReward.item.emoji || "?"}</span>}
+                      {(npc.finalReward.item as any).icon && (npc.finalReward.item as any).icon.startsWith("/") ? <img src={(npc.finalReward.item as any).icon} alt="" width={96} height={96} style={{ imageRendering: "auto", flexShrink: 0, marginTop: 2 }} onError={e => { e.currentTarget.style.display = "none"; if (e.currentTarget.nextElementSibling) (e.currentTarget.nextElementSibling as HTMLElement).style.display = ""; }} /> : null}
+                      <span className="text-xl flex-shrink-0 mt-0.5" style={{ display: (npc.finalReward.item as any).icon ? "none" : "" }}>{npc.finalReward.item.emoji || "🎁"}</span>
                       <div className="flex-1 min-w-0">
                         <p className="text-sm font-semibold" style={{ color: "rgba(255,215,0,0.8)" }}>Chain Reward</p>
                         <p className="text-sm mt-0.5 font-medium" style={{ color: "rgba(255,255,255,0.6)" }}>{npc.finalReward.item.name}</p>

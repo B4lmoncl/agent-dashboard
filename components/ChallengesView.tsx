@@ -110,6 +110,7 @@ function SternenpfadView({
           <div>
             <h3 className="text-sm font-bold" style={{ color: "#e8e8e8" }}>{challenge.name}</h3>
             <p className="text-xs text-w30">Week {challenge.weekId}</p>
+            <p className="text-xs italic" style={{ color: "rgba(255,255,255,0.2)" }}>Die Sterne messen dich. Nicht dein Level — dich.</p>
           </div>
         </div>
         <TipCustom title="Star Rating" icon="★" accent="#fbbf24" body={<><p>Earn up to <strong>3 stars per stage</strong> (9 total). Higher star counts unlock better milestone rewards.</p><p style={{ marginTop: 4, opacity: 0.7 }}>Complete stages quickly for a Speed Bonus star!</p></>}>
@@ -409,6 +410,7 @@ function ExpeditionView({
           <h3 className="text-sm font-bold" style={{ color: "#e8e8e8" }}>{expedition.name}</h3>
           <p className="text-xs text-w30 mt-0.5">{expedition.description}</p>
           <p className="text-xs text-w20 mt-1">{expedition.playerCount} Players · Week {expedition.weekId}</p>
+          <p className="text-xs italic mt-0.5" style={{ color: "rgba(255,255,255,0.2)" }}>Gemeinsam ist kein leeres Wort. Es ist eine Waffe.</p>
         </div>
       </div>
 

@@ -153,6 +153,7 @@ export default function BattlePassView({ onRewardCelebration }: { onRewardCelebr
                 <h2 className="text-lg font-bold" style={{ color: config.seasonAccent }}>{config.seasonName}</h2>
               </Tip>
               <p className="text-xs" style={{ color: `${config.seasonAccent}60` }}>{config.seasonTheme}</p>
+              <p className="text-xs italic mt-0.5" style={{ color: `${config.seasonAccent}30` }}>Die Zeit ist kein Feind. Sie ist ein Lehrer mit einem sehr engen Zeitplan.</p>
             </div>
           </div>
           <div className="text-right">

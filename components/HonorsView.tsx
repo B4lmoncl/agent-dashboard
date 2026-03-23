@@ -84,6 +84,7 @@ export default function HonorsView({ catalogue, highlightedAchievementId, onHigh
             <p className="text-xs" style={{ color: "rgba(212,166,74,0.4)" }}>
               {loggedInUser ? `${loggedInUser.name} — ${playerEarnedIds.size} / ${catalogue.length} achievements` : "Log in to track your achievements"}
             </p>
+            <p className="text-xs italic mt-0.5" style={{ color: "rgba(212,166,74,0.25)" }}>Die Sterne erinnern sich an jeden Helden. Auch an die, die niemand sonst kennt.</p>
           </div>
         </div>
         {/* Progress bar */}

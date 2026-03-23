@@ -55,6 +55,15 @@ interface TodayCategory {
   items: TodayItem[];
 }
 
+// ─── Category Tooltip Descriptions ───────────────────────────────────────────
+
+const CATEGORY_TOOLTIPS: Record<string, { title: string; desc: string }> = {
+  urgent: { title: "Urgent", desc: "Time-sensitive items that need your attention — unclaimed rewards, expiring content, or milestones ready to collect." },
+  daily: { title: "Daily Tasks", desc: "Your core daily routine: claim your bonus, feed your companion, complete rituals, and check daily missions." },
+  content: { title: "Active Content", desc: "Ongoing game systems with active progress: quests, challenges, rifts, world boss, dungeons, and NPC quest chains." },
+  social: { title: "Social", desc: "Stay connected — pending friend requests, unread messages, and active trades with other players." },
+};
+
 // ─── Time-of-day flavor ──────────────────────────────────────────────────────
 
 interface TimeInfo {
@@ -670,12 +679,6 @@ export default function TodayDrawer({
               <span className="text-base">{timeInfo.icon}</span>
               <div>
                 <span className="text-sm font-bold" style={{ color: "#e8e8e8" }}>{timeInfo.greeting}</span>
-                <span className="text-xs font-mono ml-2 px-1.5 py-0.5 rounded" style={{
-                  background: allDone ? "rgba(74,222,128,0.12)" : "rgba(129,140,248,0.12)",
-                  color: allDone ? "#4ade80" : "#818cf8",
-                }}>
-                  {doneCount}/{totalCount}
-                </span>
               </div>
             </div>
             <button
@@ -699,7 +702,7 @@ export default function TodayDrawer({
           {/* Row: Streak | Companion + Level + XP | Forge */}
           <div className="flex items-center gap-3 relative" style={{ zIndex: 1 }}>
             {/* Streak Card — left */}
-            <Tip k="streak"><div className="today-stat-card rounded-xl px-3 py-2 relative overflow-hidden flex-shrink-0" style={{
+            <Tip k="streak"><div className="today-stat-card rounded-xl px-4 py-2.5 relative overflow-hidden" style={{ minWidth: 100,
               background: streak > 0 ? "linear-gradient(135deg, rgba(249,115,22,0.08) 0%, rgba(251,191,36,0.04) 100%)" : "rgba(255,255,255,0.02)",
               border: `1px solid ${streak > 0 ? "rgba(249,115,22,0.15)" : "rgba(255,255,255,0.04)"}`,
               boxShadow: streak > 7 ? "inset 0 1px 0 rgba(249,115,22,0.1)" : "inset 0 1px 0 rgba(255,255,255,0.04)",
@@ -771,7 +774,7 @@ export default function TodayDrawer({
             </div>
 
             {/* Forge Temp Card — right */}
-            <Tip k="forge_temp"><div className="today-stat-card rounded-xl px-3 py-2 relative overflow-hidden flex-shrink-0" style={{
+            <Tip k="forge_temp"><div className="today-stat-card rounded-xl px-4 py-2.5 relative overflow-hidden" style={{ minWidth: 100,
               background: forgeTemp > 0 ? `linear-gradient(135deg, ${forgeTempColor}10 0%, ${forgeTempColor}05 100%)` : "rgba(255,255,255,0.02)",
               border: `1px solid ${forgeTemp > 0 ? `${forgeTempColor}25` : "rgba(255,255,255,0.04)"}`,
               boxShadow: forgeTemp > 60 ? `inset 0 1px 0 ${forgeTempColor}15` : "inset 0 1px 0 rgba(255,255,255,0.04)",
@@ -802,6 +805,7 @@ export default function TodayDrawer({
           title="Tasks Today"
           accent="#818cf8"
           hoverDelay={500}
+          align="center"
           body={<>
             <p className="text-xs" style={{ color: "rgba(255,255,255,0.5)" }}>Your daily checklist: bonus, companion, rituals, missions, active content, and social tasks. Complete them all for the day!</p>
             {categories.map(cat => (
@@ -881,11 +885,22 @@ export default function TodayDrawer({
                   animation: entered ? `today-card-enter 0.3s ease-out ${catIdx * 80}ms both` : "none",
                 }}>
                   <span style={{ fontSize: 13 }}>{cat.icon}</span>
-                  <span className="text-xs font-bold uppercase tracking-widest" style={{
-                    color: cat.id === "urgent" ? "rgba(251,191,36,0.7)" : catAllDone ? "rgba(74,222,128,0.5)" : "rgba(255,255,255,0.3)",
-                  }}>
-                    {cat.label}
-                  </span>
+                  {CATEGORY_TOOLTIPS[cat.id] ? (
+                    <TipCustom title={CATEGORY_TOOLTIPS[cat.id].title} accent={cat.id === "urgent" ? "#fbbf24" : "#818cf8"} body={<p className="text-xs" style={{ color: "rgba(255,255,255,0.5)" }}>{CATEGORY_TOOLTIPS[cat.id].desc}</p>}>
+                      <span className="text-xs font-bold uppercase tracking-widest cursor-help" style={{
+                        color: cat.id === "urgent" ? "rgba(251,191,36,0.7)" : catAllDone ? "rgba(74,222,128,0.5)" : "rgba(255,255,255,0.3)",
+                        borderBottom: "1px dotted rgba(255,255,255,0.15)",
+                      }}>
+                        {cat.label}
+                      </span>
+                    </TipCustom>
+                  ) : (
+                    <span className="text-xs font-bold uppercase tracking-widest" style={{
+                      color: cat.id === "urgent" ? "rgba(251,191,36,0.7)" : catAllDone ? "rgba(74,222,128,0.5)" : "rgba(255,255,255,0.3)",
+                    }}>
+                      {cat.label}
+                    </span>
+                  )}
                   <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.15)" }}>
                     {cat.items.filter(i => i.done).length}/{cat.items.length}
                   </span>

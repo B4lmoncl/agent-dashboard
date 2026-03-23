@@ -17,6 +17,35 @@ function releaseTradeLock(playerId) {
   _tradeLocks.delete(playerId);
 }
 
+// ─── Friendship Index (O(1) lookup instead of O(n) array scan) ───────────────
+// Lazily built on first access, maintained on add/remove
+let _friendIndex = null; // Map<playerId, Set<friendId>>
+
+function ensureFriendIndex() {
+  if (_friendIndex) return;
+  _friendIndex = new Map();
+  for (const f of (state.socialData.friendships || [])) {
+    if (!_friendIndex.has(f.player1)) _friendIndex.set(f.player1, new Set());
+    if (!_friendIndex.has(f.player2)) _friendIndex.set(f.player2, new Set());
+    _friendIndex.get(f.player1).add(f.player2);
+    _friendIndex.get(f.player2).add(f.player1);
+  }
+}
+
+function addToFriendIndex(a, b) {
+  ensureFriendIndex();
+  if (!_friendIndex.has(a)) _friendIndex.set(a, new Set());
+  if (!_friendIndex.has(b)) _friendIndex.set(b, new Set());
+  _friendIndex.get(a).add(b);
+  _friendIndex.get(b).add(a);
+}
+
+function removeFromFriendIndex(a, b) {
+  if (!_friendIndex) return;
+  _friendIndex.get(a)?.delete(b);
+  _friendIndex.get(b)?.delete(a);
+}
+
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
 function genId(prefix) {
@@ -24,9 +53,8 @@ function genId(prefix) {
 }
 
 function areFriends(a, b) {
-  return state.socialData.friendships.some(
-    f => (f.player1 === a && f.player2 === b) || (f.player1 === b && f.player2 === a)
-  );
+  ensureFriendIndex();
+  return _friendIndex.get(a)?.has(b) || false;
 }
 
 /** Check if an item instanceId is currently equipped by a user. */
@@ -160,6 +188,7 @@ router.post('/api/social/friend-request/:requestId/accept', requireAuth, (req, r
     since: now(),
   };
   state.socialData.friendships.push(friendship);
+  addToFriendIndex(friendship.player1, friendship.player2);
   saveSocial();
   console.log(`[social] Friendship created: ${request.from} ↔ ${request.to}`);
   res.json({ ok: true, friendship });
@@ -193,6 +222,7 @@ router.delete('/api/social/friend/:friendId', requireAuth, (req, res) => {
   if (idx === -1) return res.status(404).json({ error: 'Friendship not found' });
 
   state.socialData.friendships.splice(idx, 1);
+  removeFromFriendIndex(userId, friendId);
   saveSocial();
   console.log(`[social] Friendship removed: ${userId} ↔ ${friendId}`);
   res.json({ ok: true });

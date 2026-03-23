@@ -9,7 +9,7 @@ const { rebuildCatalogMeta } = require('../lib/quest-catalog');
 // Verify GitHub webhook signature (HMAC-SHA256)
 function verifyGitHubSignature(req) {
   const secret = process.env.GITHUB_WEBHOOK_SECRET;
-  if (!secret) return true; // Skip verification if no secret configured
+  if (!secret) return false; // Fail closed — require secret to be configured
   const sig = req.headers['x-hub-signature-256'];
   if (!sig) return false;
   const body = JSON.stringify(req.body);

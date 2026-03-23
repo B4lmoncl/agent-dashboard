@@ -275,6 +275,7 @@ router.post('/api/gems/unsocket', requireAuth, (req, res) => {
 
   // Deduct gold
   u.currencies.gold -= UNSOCKET_COST;
+  u.gold = u.currencies.gold;
 
   // Legendary effect: gemPreserve — chance to keep gem instead of destroying it
   const gemMods = getLegendaryModifiers(userId);
@@ -347,6 +348,7 @@ router.post('/api/gems/upgrade', requireAuth, (req, res) => {
 
   // Deduct gold
   u.currencies.gold -= UPGRADE_COST;
+  u.gold = u.currencies.gold;
 
   // Remove source gems, add upgraded gem
   u.gems[gKey] = owned - GEMS_REQUIRED;
