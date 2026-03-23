@@ -27,7 +27,7 @@ export function RoadmapView() {
     fetch("/api/roadmap", { signal: AbortSignal.timeout(2000) })
       .then(r => r.ok ? r.json() : [])
       .then(setItems)
-      .catch(() => {});
+      .catch((err) => { console.error('Failed to fetch roadmap:', err); });
   }, []);
 
   const handleAdd = async () => {

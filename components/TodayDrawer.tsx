@@ -732,7 +732,7 @@ export default function TodayDrawer({
                 <StreakFlame streak={streak} />
                 <div>
                   <span className="text-lg font-bold font-mono" style={{ color: streak > 0 ? "#f97316" : "rgba(255,255,255,0.2)" }}>{streak}</span>
-                  <span className="text-xs block" style={{ color: "rgba(255,255,255,0.25)", marginTop: -2 }}>Streak <span style={{ fontSize: 9, opacity: 0.5 }}>→</span></span>
+                  <span className="text-xs block" style={{ color: "rgba(255,255,255,0.25)", marginTop: -2 }}>Streak <span style={{ fontSize: 10, opacity: 0.5 }}>→</span></span>
                 </div>
               </div>
             </div></Tip>
@@ -768,7 +768,7 @@ export default function TodayDrawer({
                     )}
                     </span>
                     <span className="absolute -bottom-0.5 -right-0.5 text-xs rounded-full flex items-center justify-center"
-                      style={{ width: 16, height: 16, fontSize: 9, background: "rgba(251,191,36,0.9)", color: "#000", fontWeight: 800 }}>
+                      style={{ width: 16, height: 16, fontSize: 10, background: "rgba(251,191,36,0.9)", color: "#000", fontWeight: 800 }}>
                       {comp.bondLevel ?? 1}
                     </span>
                   </button>
@@ -791,7 +791,7 @@ export default function TodayDrawer({
               {/* XP bar */}
               <div className="w-full max-w-[180px] mt-1.5">
                 <div className="flex items-center justify-between mb-0.5">
-                  <span className="text-xs font-semibold" style={{ color: levelInfo.color, fontSize: 12 }}>{levelInfo.title} <span style={{ fontSize: 9, opacity: 0.5 }}>→</span></span>
+                  <span className="text-xs font-semibold" style={{ color: levelInfo.color, fontSize: 12 }}>{levelInfo.title} <span style={{ fontSize: 10, opacity: 0.5 }}>→</span></span>
                   <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.3)", fontSize: 12 }}>{Math.round(xpProgress * 100)}%</span>
                 </div>
                 <div className="h-1 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.06)" }}>
@@ -831,7 +831,7 @@ export default function TodayDrawer({
                       transition: "width 0.8s ease-out",
                     }} />
                   </div>
-                  <span className="text-xs block mt-0.5" style={{ color: "rgba(255,255,255,0.2)", fontSize: 12 }}>Forge <span style={{ fontSize: 9, opacity: 0.5 }}>→</span></span>
+                  <span className="text-xs block mt-0.5" style={{ color: "rgba(255,255,255,0.2)", fontSize: 12 }}>Forge <span style={{ fontSize: 10, opacity: 0.5 }}>→</span></span>
                 </div>
               </div>
             </div></Tip>

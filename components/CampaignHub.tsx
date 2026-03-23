@@ -381,7 +381,8 @@ export default function CampaignHub({ campaigns, quests, reviewApiKey, onRefresh
               <div className="flex gap-2 pt-2">
                 <button onClick={handleCreate} disabled={!form.title.trim() || submitting || !reviewApiKey}
                   className="flex-1 py-2 rounded-lg text-sm font-semibold transition-all"
-                  style={{ background: form.title.trim() && reviewApiKey ? "rgba(139,92,246,0.4)" : "rgba(139,92,246,0.1)", color: form.title.trim() && reviewApiKey ? "#e9d5ff" : "rgba(167,139,250,0.3)", border: "1px solid rgba(139,92,246,0.4)" }}>
+                  title={!reviewApiKey ? "API key required" : !form.title.trim() ? "Enter a campaign title" : submitting ? "Creating…" : ""}
+                  style={{ background: form.title.trim() && reviewApiKey ? "rgba(139,92,246,0.4)" : "rgba(139,92,246,0.1)", color: form.title.trim() && reviewApiKey ? "#e9d5ff" : "rgba(167,139,250,0.3)", border: "1px solid rgba(139,92,246,0.4)", cursor: !form.title.trim() || submitting || !reviewApiKey ? "not-allowed" : "pointer" }}>
                   {submitting ? "Creating…" : !reviewApiKey ? "API key required" : "Create Campaign"}
                 </button>
                 <button onClick={() => setCreateOpen(false)} className="px-4 py-2 rounded-lg text-sm transition-all"

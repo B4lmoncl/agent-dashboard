@@ -937,7 +937,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
           backgroundSize: "100% auto",
           backgroundPosition: "center top",
           backgroundRepeat: "no-repeat",
-          imageRendering: "auto" as any,
+          imageRendering: "auto",
           filter: "brightness(1.3)",
           pointerEvents: "none",
         }}
@@ -1004,7 +1004,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                 }}
               >
                 <span>{INV_SORTS.find(s => s.key === invSort)?.label ?? "Default"}</span>
-                <span style={{ fontSize: 8, opacity: 0.5 }}>{sortDropdownOpen ? "▲" : "▼"}</span>
+                <span style={{ fontSize: 10, opacity: 0.5 }}>{sortDropdownOpen ? "▲" : "▼"}</span>
               </button>
               {sortDropdownOpen && (
                 <div
@@ -1752,7 +1752,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                                 {socket ? (
                                   <span className="w-2 h-2 rounded-full" style={{ background: GEM_COLORS[socket.gemType] || "#9ca3af" }} />
                                 ) : (
-                                  <span style={{ color: "rgba(255,255,255,0.15)", fontSize: 8 }}>+</span>
+                                  <span style={{ color: "rgba(255,255,255,0.15)", fontSize: 10 }}>+</span>
                                 )}
                               </div>
                               <div className="flex gap-0.5">

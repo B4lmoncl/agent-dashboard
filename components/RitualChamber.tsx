@@ -79,7 +79,7 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
     const today = new Date().toISOString().slice(0, 10);
     const doneToday = ritual.lastCompleted === today;
     const isBroken = ritual.status === "broken";
-    const milestone = STREAK_MILESTONES_CLIENT.reduce<{days:number;badge:string;label:string}|null>((acc, m) => ritual.streak >= m.days ? m : acc, null);
+    const milestone = STREAK_MILESTONES_CLIENT.reduce<{days:number;badge:string;label:string;icon?:string}|null>((acc, m) => ritual.streak >= m.days ? m : acc, null);
     const commitGoal = ritual.commitmentDays && ritual.commitmentDays > 0 ? ritual.commitmentDays : null;
     const nextMilestone = commitGoal
       ? (ritual.streak < commitGoal ? { days: commitGoal, badge: "\uD83C\uDFC6", label: "Commitment" } : null)
@@ -113,7 +113,7 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
                   <Tip k="blood_pact">Blood Pact</Tip>
                 </span>
               )}
-              {milestone && ((milestone as any).icon ? <img src={(milestone as any).icon} alt={milestone.badge} width={20} height={20} className="img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} /> : <span className="text-xs">{milestone.badge}</span>)}
+              {milestone && (milestone.icon ? <img src={milestone.icon} alt={milestone.badge} width={20} height={20} className="img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} /> : <span className="text-xs">{milestone.badge}</span>)}
             </div>
             <div className="flex items-center gap-3 text-xs flex-wrap text-w35">
               <span style={{ color: ritual.streak >= 21 ? "#818cf8" : ritual.streak >= 7 ? "#f97316" : "rgba(255,255,255,0.35)" }}>
@@ -361,8 +361,8 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
                       {DIFFICULTY_TIERS.map(d => (
                         <button key={d.id} onClick={() => setNewRitualDifficulty(d.id)} className="ritual-tier-btn text-center p-2 rounded-lg" style={{ background: newRitualDifficulty === d.id ? `${d.color}22` : "rgba(0,0,0,0.2)", border: `1px solid ${newRitualDifficulty === d.id ? d.color : "rgba(255,255,255,0.07)"}`, boxShadow: newRitualDifficulty === d.id ? `0 0 12px ${d.color}44` : "none" }}>
                           <div className="text-xs font-bold" style={{ color: newRitualDifficulty === d.id ? d.color : "rgba(255,255,255,0.55)" }}>{d.label}</div>
-                          <div style={{ fontSize: "0.6rem", color: "rgba(255,255,255,0.28)", marginTop: 2 }}>{d.icon}</div>
-                          <div style={{ fontSize: "0.6rem", color: "rgba(255,255,255,0.22)", lineHeight: 1.3 }}>{d.flavor}</div>
+                          <div style={{ fontSize: "0.75rem", color: "rgba(255,255,255,0.28)", marginTop: 2 }}>{d.icon}</div>
+                          <div style={{ fontSize: "0.75rem", color: "rgba(255,255,255,0.22)", lineHeight: 1.3 }}>{d.flavor}</div>
                         </button>
                       ))}
                     </div>
@@ -373,8 +373,8 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
                       {COMMITMENT_TIERS.map(tier => (
                         <button key={tier.id} onClick={() => { setNewRitualCommitment(tier.id); if (ritualCommitmentError) setRitualCommitmentError(false); }} className="ritual-tier-btn text-left p-2 rounded-lg" style={{ background: newRitualCommitment === tier.id ? `${tier.color}22` : "rgba(0,0,0,0.2)", border: `1px solid ${newRitualCommitment === tier.id ? tier.color : "rgba(255,255,255,0.07)"}`, boxShadow: newRitualCommitment === tier.id ? `0 0 12px ${tier.color}55` : "none" }}>
                           <div className="text-xs font-bold" style={{ color: newRitualCommitment === tier.id ? tier.color : "rgba(255,255,255,0.55)" }}>{tier.label}</div>
-                          <div style={{ fontSize: "0.6rem", color: "rgba(255,255,255,0.28)", marginTop: 2 }}>{tier.days > 0 ? `${tier.days}d` : "—"}</div>
-                          <div style={{ fontSize: "0.6rem", color: "rgba(255,255,255,0.22)", lineHeight: 1.3 }}>{tier.flavorShort}</div>
+                          <div style={{ fontSize: "0.75rem", color: "rgba(255,255,255,0.28)", marginTop: 2 }}>{tier.days > 0 ? `${tier.days}d` : "—"}</div>
+                          <div style={{ fontSize: "0.75rem", color: "rgba(255,255,255,0.22)", lineHeight: 1.3 }}>{tier.flavorShort}</div>
                         </button>
                       ))}
                     </div>
@@ -389,8 +389,8 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
                   <div className="rounded-lg p-3" style={{ background: "rgba(0,0,0,0.2)", border: "1px solid rgba(245,158,11,0.1)" }}>
                     <p className="text-xs font-semibold mb-1.5" style={{ color: "rgba(200,170,100,0.45)" }}>Reward Preview</p>
                     <p className="text-xs mb-1" style={{ color: "rgba(200,170,100,0.35)", fontStyle: "italic", letterSpacing: "0.03em" }}>Daily on check-off:</p>
-                    <p className="text-xs" style={{ color: "rgba(200,170,100,0.65)", display: "flex", alignItems: "center", gap: 4, flexWrap: "wrap" }}>Base <span style={{ color: diffData.color, fontSize: "0.65rem" }}>({diffData.label})</span>: <span style={{ color: "#f59e0b", display: "inline-flex", alignItems: "center", gap: 2 }}>{diffData.gold} <img src="/images/icons/reward-gold.png" width={20} height={20} className="img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} /></span> <span style={{ color: "#a78bfa" }}>{diffData.xp} XP</span></p>
-                    {tierData.id !== "none" && <p className="text-xs mt-0.5" style={{ color: "rgba(200,170,100,0.65)", display: "flex", alignItems: "center", gap: 4, flexWrap: "wrap" }}>Bond Bonus{diffData.bondScale !== 1 && <span style={{ color: diffData.color, fontSize: "0.6rem" }}> ×{diffData.bondScale}</span>}: <span style={{ color: "#f59e0b", display: "inline-flex", alignItems: "center", gap: 2 }}>+{bonusGold} <img src="/images/icons/reward-gold.png" width={20} height={20} className="img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} /></span> <span style={{ color: "#a78bfa" }}>+{bonusXp} XP</span></p>}
+                    <p className="text-xs" style={{ color: "rgba(200,170,100,0.65)", display: "flex", alignItems: "center", gap: 4, flexWrap: "wrap" }}>Base <span style={{ color: diffData.color, fontSize: "0.75rem" }}>({diffData.label})</span>: <span style={{ color: "#f59e0b", display: "inline-flex", alignItems: "center", gap: 2 }}>{diffData.gold} <img src="/images/icons/reward-gold.png" width={20} height={20} className="img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} /></span> <span style={{ color: "#a78bfa" }}>{diffData.xp} XP</span></p>
+                    {tierData.id !== "none" && <p className="text-xs mt-0.5" style={{ color: "rgba(200,170,100,0.65)", display: "flex", alignItems: "center", gap: 4, flexWrap: "wrap" }}>Bond Bonus{diffData.bondScale !== 1 && <span style={{ color: diffData.color, fontSize: "0.75rem" }}> ×{diffData.bondScale}</span>}: <span style={{ color: "#f59e0b", display: "inline-flex", alignItems: "center", gap: 2 }}>+{bonusGold} <img src="/images/icons/reward-gold.png" width={20} height={20} className="img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} /></span> <span style={{ color: "#a78bfa" }}>+{bonusXp} XP</span></p>}
                     {(bonusGold > 0 || bonusXp > 0) && <p className="text-xs mt-1" style={{ color: "rgba(200,170,100,0.85)", display: "flex", alignItems: "center", gap: 4, fontWeight: 600, flexWrap: "wrap" }}>= Täglich: <span style={{ color: "#f59e0b", display: "inline-flex", alignItems: "center", gap: 2 }}>{diffData.gold + bonusGold} <img src="/images/icons/reward-gold.png" width={20} height={20} className="img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} /></span> <span style={{ color: "#a78bfa" }}>{diffData.xp + bonusXp} XP</span></p>}
                     {newRitualBloodPact && pactCompletionXp > 0 && <>
                       <div style={{ borderTop: "1px solid rgba(239,68,68,0.15)", margin: "8px 0 6px" }} />

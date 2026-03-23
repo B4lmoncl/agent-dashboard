@@ -202,7 +202,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
         if (data.maxProfSlots != null) setMaxProfSlots(data.maxProfSlots);
         if (data.slotAffixRanges) setSlotAffixRanges(data.slotAffixRanges);
       }
-    } catch { /* ignore */ }
+    } catch (err) { console.error('Failed to fetch crafting data:', err); }
     // Fetch workshop upgrades
     try {
       const wr = await fetch(`/api/shop/workshop?player=${encodeURIComponent(playerName)}`, { signal: AbortSignal.timeout(3000) });
@@ -210,7 +210,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
         const wData = await wr.json();
         setWorkshopUpgrades(wData.workshopUpgrades || []);
       }
-    } catch { /* ignore */ }
+    } catch (err) { console.error('Failed to fetch workshop upgrades:', err); }
   }, [playerName]);
 
   useEffect(() => { fetchData(); }, [fetchData]);
@@ -252,7 +252,8 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
       } else {
         setCraftResult(data.error || "Crafting failed");
       }
-    } catch {
+    } catch (err) {
+      console.error('Crafting network error:', err);
       setCraftResult("Network error");
     }
     setCrafting(false);
@@ -281,7 +282,8 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
       } else {
         setCraftResult(data.error || "Failed to learn recipe");
       }
-    } catch {
+    } catch (err) {
+      console.error('Learn recipe network error:', err);
       setCraftResult("Network error");
     }
     setCrafting(false);
