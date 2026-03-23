@@ -419,137 +419,6 @@
   },
   "recipes": [
     {
-      "id": "potion_xp",
-      "profession": "alchemist",
-      "name": "Elixir of Experience",
-      "desc": "+10% XP for the next 3 quests.",
-      "reqProfLevel": 1,
-      "xpGain": 10,
-      "cost": {
-        "gold": 50
-      },
-      "materials": {
-        "kraeuterbuendel": 3,
-        "magiestaub": 1
-      },
-      "result": {
-        "type": "buff",
-        "buffType": "xp_boost_10",
-        "duration": "3_quests"
-      },
-      "cooldownMinutes": 0,
-      "source": "trainer",
-      "reqSkill": 1
-    },
-    {
-      "id": "potion_gold",
-      "profession": "alchemist",
-      "name": "Elixir of Wealth",
-      "desc": "+15% Gold for the next 3 quests.",
-      "reqProfLevel": 2,
-      "xpGain": 12,
-      "cost": {
-        "gold": 75
-      },
-      "materials": {
-        "kraeuterbuendel": 2,
-        "mondblume": 1
-      },
-      "result": {
-        "type": "buff",
-        "buffType": "gold_boost_15",
-        "duration": "3_quests"
-      },
-      "cooldownMinutes": 0,
-      "source": "trainer",
-      "trainerCost": 50,
-      "reqSkill": 30
-    },
-    {
-      "id": "potion_luck",
-      "profession": "alchemist",
-      "name": "Potion of Fortune",
-      "desc": "+20% Loot chance for the next 3 quests.",
-      "reqProfLevel": 4,
-      "xpGain": 18,
-      "cost": {
-        "gold": 100
-      },
-      "materials": {
-        "mondblume": 2,
-        "kristallsplitter": 1
-      },
-      "result": {
-        "type": "buff",
-        "buffType": "luck_boost_20",
-        "duration": "3_quests"
-      },
-      "cooldownMinutes": 0,
-      "source": "trainer",
-      "trainerCost": 75,
-      "reqSkill": 90
-    },
-    {
-      "id": "potion_streak",
-      "profession": "alchemist",
-      "name": "Elixir of Perseverance",
-      "desc": "Grants 1 Streak Shield (max 10).",
-      "reqProfLevel": 6,
-      "xpGain": 15,
-      "cost": {
-        "gold": 200
-      },
-      "materials": {
-        "phoenixfeder": 1,
-        "mondblume": 2,
-        "kraeuterbuendel": 3
-      },
-      "result": {
-        "type": "streak_shield",
-        "amount": 1
-      },
-      "cooldownMinutes": 0,
-      "discovery": {
-        "type": "profLevel",
-        "value": 6
-      },
-      "source": "drop",
-      "dropChance": 0.1,
-      "dropMinQuestRarity": "uncommon",
-      "reqSkill": 150
-    },
-    {
-      "id": "potion_doubledown",
-      "profession": "alchemist",
-      "name": "Flask of Ambition",
-      "desc": "+25% XP + 20% Gold for the next 5 quests. Masterwork brew.",
-      "reqProfLevel": 8,
-      "xpGain": 25,
-      "cost": {
-        "gold": 400
-      },
-      "materials": {
-        "sternenfrucht": 2,
-        "mondblume": 3,
-        "phoenixfeder": 1,
-        "kraeuterbuendel": 5
-      },
-      "result": {
-        "type": "buff",
-        "buffType": "ambition_buff",
-        "duration": "5_quests"
-      },
-      "cooldownMinutes": 720,
-      "discovery": {
-        "type": "profLevel",
-        "value": 8
-      },
-      "source": "drop",
-      "dropChance": 0.06,
-      "dropMinQuestRarity": "rare",
-      "reqSkill": 210
-    },
-    {
       "id": "enchant_gear",
       "profession": "verzauberer",
       "name": "Temporary Enchantment",
@@ -860,30 +729,6 @@
       "reqSkill": 250
     },
     {
-      "id": "flask_of_embers",
-      "profession": "alchemist",
-      "name": "Flask of Embers",
-      "desc": "+15% Forge Temperature recovery for 3 quests. A Zirkel der Glut secret.",
-      "reqProfLevel": 4,
-      "xpGain": 18,
-      "cost": {
-        "gold": 80
-      },
-      "materials": {
-        "feuerwurz": 2,
-        "kraeuterbuendel": 1
-      },
-      "result": {
-        "type": "forge_temp",
-        "amount": 15,
-        "duration": "3_quests"
-      },
-      "cooldownMinutes": 0,
-      "source": "faction",
-      "factionId": "glut",
-      "reqSkill": 90
-    },
-    {
       "id": "scholars_ink",
       "profession": "verzauberer",
       "name": "Scholar's Ink",
@@ -930,198 +775,6 @@
       "source": "faction",
       "factionId": "echo",
       "reqSkill": 90
-    },
-    {
-      "id": "potion_minor_heal",
-      "profession": "alchemist",
-      "name": "Minor Healing Draught",
-      "desc": "+3% XP for the next 2 quests. A beginner's brew.",
-      "reqProfLevel": 1,
-      "xpGain": 8,
-      "cost": {
-        "gold": 20
-      },
-      "materials": {
-        "kraeuterbuendel": 2
-      },
-      "result": {
-        "type": "buff",
-        "buffType": "xp_boost_3",
-        "duration": "2_quests"
-      },
-      "cooldownMinutes": 0,
-      "source": "trainer",
-      "reqSkill": 1
-    },
-    {
-      "id": "potion_focus",
-      "profession": "alchemist",
-      "name": "Elixir of Focus",
-      "desc": "+5% XP for the next 3 quests. Sharpens the mind.",
-      "reqProfLevel": 3,
-      "xpGain": 14,
-      "cost": {
-        "gold": 60
-      },
-      "materials": {
-        "kraeuterbuendel": 3,
-        "mondblume": 1
-      },
-      "result": {
-        "type": "buff",
-        "buffType": "xp_boost_5",
-        "duration": "3_quests"
-      },
-      "cooldownMinutes": 0,
-      "source": "trainer",
-      "trainerCost": 60,
-      "reqSkill": 60
-    },
-    {
-      "id": "potion_resilience",
-      "profession": "alchemist",
-      "name": "Elixir of Resilience",
-      "desc": "+8% Gold for the next 3 quests. Hardens resolve.",
-      "reqProfLevel": 3,
-      "xpGain": 14,
-      "cost": {
-        "gold": 65
-      },
-      "materials": {
-        "kraeuterbuendel": 2,
-        "mondblume": 1,
-        "feuerwurz": 1
-      },
-      "result": {
-        "type": "buff",
-        "buffType": "gold_boost_8",
-        "duration": "3_quests"
-      },
-      "cooldownMinutes": 0,
-      "source": "trainer",
-      "trainerCost": 55,
-      "reqSkill": 60
-    },
-    {
-      "id": "potion_iron_skin",
-      "profession": "alchemist",
-      "name": "Iron Skin Tonic",
-      "desc": "Grants 1 Streak Shield. Alchemical protection.",
-      "reqProfLevel": 5,
-      "xpGain": 16,
-      "cost": {
-        "gold": 120
-      },
-      "materials": {
-        "mondblume": 2,
-        "eisenerz": 2
-      },
-      "result": {
-        "type": "streak_shield",
-        "amount": 1
-      },
-      "cooldownMinutes": 0,
-      "source": "trainer",
-      "trainerCost": 100,
-      "reqSkill": 120
-    },
-    {
-      "id": "potion_greater_xp",
-      "profession": "alchemist",
-      "name": "Greater Elixir of Experience",
-      "desc": "+15% XP for the next 3 quests. Advanced brew.",
-      "reqProfLevel": 6,
-      "xpGain": 20,
-      "cost": {
-        "gold": 150
-      },
-      "materials": {
-        "mondblume": 2,
-        "sternenfrucht": 1,
-        "kraeuterbuendel": 2
-      },
-      "result": {
-        "type": "buff",
-        "buffType": "xp_boost_15",
-        "duration": "3_quests"
-      },
-      "cooldownMinutes": 0,
-      "source": "trainer",
-      "trainerCost": 150,
-      "reqSkill": 150
-    },
-    {
-      "id": "potion_transmute_crystal",
-      "profession": "alchemist",
-      "name": "Transmute: Crystal Shard",
-      "desc": "Transmute 5 Iron Ore into 1 Crystal Shard. Alchemy at its finest.",
-      "reqProfLevel": 5,
-      "xpGain": 15,
-      "cost": {
-        "gold": 50
-      },
-      "materials": {
-        "eisenerz": 5
-      },
-      "result": {
-        "type": "transmute_material",
-        "outputMaterial": "kristallsplitter",
-        "outputAmount": 1
-      },
-      "cooldownMinutes": 1440,
-      "source": "trainer",
-      "trainerCost": 200,
-      "reqSkill": 120
-    },
-    {
-      "id": "potion_transmute_dragon",
-      "profession": "alchemist",
-      "name": "Transmute: Dragon Scale",
-      "desc": "Transmute 3 Crystal Shards into 1 Dragon Scale. Rare transmutation.",
-      "reqProfLevel": 7,
-      "xpGain": 22,
-      "cost": {
-        "gold": 100
-      },
-      "materials": {
-        "kristallsplitter": 3
-      },
-      "result": {
-        "type": "transmute_material",
-        "outputMaterial": "drachenschuppe",
-        "outputAmount": 1
-      },
-      "cooldownMinutes": 1440,
-      "source": "drop",
-      "dropChance": 0.08,
-      "dropMinQuestRarity": "rare",
-      "reqSkill": 180
-    },
-    {
-      "id": "potion_mega_gold",
-      "profession": "alchemist",
-      "name": "Flask of Golden Fortune",
-      "desc": "+20% Gold for the next 5 quests. Master alchemist's pride.",
-      "reqProfLevel": 9,
-      "xpGain": 28,
-      "cost": {
-        "gold": 350
-      },
-      "materials": {
-        "sternenfrucht": 2,
-        "phoenixfeder": 1,
-        "mondblume": 3
-      },
-      "result": {
-        "type": "buff",
-        "buffType": "gold_boost_20",
-        "duration": "5_quests"
-      },
-      "cooldownMinutes": 720,
-      "source": "drop",
-      "dropChance": 0.05,
-      "dropMinQuestRarity": "epic",
-      "reqSkill": 250
     },
     {
       "id": "meal_simple_bread",
@@ -7004,6 +6657,1409 @@
       "cooldownMinutes": 0,
       "source": "trainer",
       "trainerCost": 300
+    },
+    {
+      "id": "alch_potion_xp_minor",
+      "profession": "alchemist",
+      "name": "Schwacher Trank der Erfahrung",
+      "desc": "+5% XP für 3 Quests.",
+      "reqProfLevel": 1,
+      "reqSkill": 1,
+      "xpGain": 5,
+      "cost": {
+        "gold": 20
+      },
+      "materials": {
+        "kraeuterbuendel": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "xp_boost_5",
+        "duration": "3_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer"
+    },
+    {
+      "id": "alch_potion_gold_minor",
+      "profession": "alchemist",
+      "name": "Schwacher Trank der Reichtum",
+      "desc": "+5% Gold für 3 Quests.",
+      "reqProfLevel": 1,
+      "reqSkill": 4,
+      "xpGain": 5,
+      "cost": {
+        "gold": 20
+      },
+      "materials": {
+        "kraeuterbuendel": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "gold_boost_5",
+        "duration": "3_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer"
+    },
+    {
+      "id": "alch_potion_luck_minor",
+      "profession": "alchemist",
+      "name": "Schwacher Trank der Glück",
+      "desc": "+5% Glück für 3 Quests.",
+      "reqProfLevel": 1,
+      "reqSkill": 7,
+      "xpGain": 5,
+      "cost": {
+        "gold": 20
+      },
+      "materials": {
+        "kraeuterbuendel": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "luck_boost_5",
+        "duration": "3_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer"
+    },
+    {
+      "id": "alch_potion_kraft_minor",
+      "profession": "alchemist",
+      "name": "Schwacher Trank der Kraft",
+      "desc": "+5% Kraft für 3 Quests.",
+      "reqProfLevel": 1,
+      "reqSkill": 10,
+      "xpGain": 5,
+      "cost": {
+        "gold": 20
+      },
+      "materials": {
+        "kraeuterbuendel": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "kraft_boost_5",
+        "duration": "3_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer"
+    },
+    {
+      "id": "alch_potion_weisheit_minor",
+      "profession": "alchemist",
+      "name": "Schwacher Trank der Weisheit",
+      "desc": "+5% Weisheit für 3 Quests.",
+      "reqProfLevel": 1,
+      "reqSkill": 13,
+      "xpGain": 5,
+      "cost": {
+        "gold": 20
+      },
+      "materials": {
+        "kraeuterbuendel": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "weisheit_boost_5",
+        "duration": "3_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer"
+    },
+    {
+      "id": "alch_potion_xp_lesser",
+      "profession": "alchemist",
+      "name": "Geringer Trank der Erfahrung",
+      "desc": "+8% XP für 3 Quests.",
+      "reqProfLevel": 1,
+      "reqSkill": 40,
+      "xpGain": 7,
+      "cost": {
+        "gold": 40
+      },
+      "materials": {
+        "kraeuterbuendel": 3,
+        "magiestaub": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "xp_boost_8",
+        "duration": "3_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 80
+    },
+    {
+      "id": "alch_potion_gold_lesser",
+      "profession": "alchemist",
+      "name": "Geringer Trank der Reichtum",
+      "desc": "+8% Gold für 3 Quests.",
+      "reqProfLevel": 1,
+      "reqSkill": 43,
+      "xpGain": 7,
+      "cost": {
+        "gold": 40
+      },
+      "materials": {
+        "kraeuterbuendel": 3,
+        "magiestaub": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "gold_boost_8",
+        "duration": "3_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 80
+    },
+    {
+      "id": "alch_potion_luck_lesser",
+      "profession": "alchemist",
+      "name": "Geringer Trank der Glück",
+      "desc": "+8% Glück für 3 Quests.",
+      "reqProfLevel": 1,
+      "reqSkill": 46,
+      "xpGain": 7,
+      "cost": {
+        "gold": 40
+      },
+      "materials": {
+        "kraeuterbuendel": 3,
+        "magiestaub": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "luck_boost_8",
+        "duration": "3_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 80
+    },
+    {
+      "id": "alch_potion_kraft_lesser",
+      "profession": "alchemist",
+      "name": "Geringer Trank der Kraft",
+      "desc": "+8% Kraft für 3 Quests.",
+      "reqProfLevel": 1,
+      "reqSkill": 49,
+      "xpGain": 7,
+      "cost": {
+        "gold": 40
+      },
+      "materials": {
+        "kraeuterbuendel": 3,
+        "magiestaub": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "kraft_boost_8",
+        "duration": "3_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 80
+    },
+    {
+      "id": "alch_potion_weisheit_lesser",
+      "profession": "alchemist",
+      "name": "Geringer Trank der Weisheit",
+      "desc": "+8% Weisheit für 3 Quests.",
+      "reqProfLevel": 1,
+      "reqSkill": 52,
+      "xpGain": 7,
+      "cost": {
+        "gold": 40
+      },
+      "materials": {
+        "kraeuterbuendel": 3,
+        "magiestaub": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "weisheit_boost_8",
+        "duration": "3_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 80
+    },
+    {
+      "id": "alch_potion_xp_standard",
+      "profession": "alchemist",
+      "name": "Normaler Trank der Erfahrung",
+      "desc": "+10% XP für 3 Quests.",
+      "reqProfLevel": 3,
+      "reqSkill": 90,
+      "xpGain": 10,
+      "cost": {
+        "gold": 80
+      },
+      "materials": {
+        "kraeuterbuendel": 4,
+        "mondblume": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "xp_boost_10",
+        "duration": "3_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 160
+    },
+    {
+      "id": "alch_potion_gold_standard",
+      "profession": "alchemist",
+      "name": "Normaler Trank der Reichtum",
+      "desc": "+10% Gold für 3 Quests.",
+      "reqProfLevel": 3,
+      "reqSkill": 93,
+      "xpGain": 10,
+      "cost": {
+        "gold": 80
+      },
+      "materials": {
+        "kraeuterbuendel": 4,
+        "mondblume": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "gold_boost_10",
+        "duration": "3_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "alch_potion_luck_standard",
+      "profession": "alchemist",
+      "name": "Normaler Trank der Glück",
+      "desc": "+10% Glück für 3 Quests.",
+      "reqProfLevel": 3,
+      "reqSkill": 96,
+      "xpGain": 10,
+      "cost": {
+        "gold": 80
+      },
+      "materials": {
+        "kraeuterbuendel": 4,
+        "mondblume": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "luck_boost_10",
+        "duration": "3_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 160
+    },
+    {
+      "id": "alch_potion_kraft_standard",
+      "profession": "alchemist",
+      "name": "Normaler Trank der Kraft",
+      "desc": "+10% Kraft für 3 Quests.",
+      "reqProfLevel": 3,
+      "reqSkill": 99,
+      "xpGain": 10,
+      "cost": {
+        "gold": 80
+      },
+      "materials": {
+        "kraeuterbuendel": 4,
+        "mondblume": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "kraft_boost_10",
+        "duration": "3_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "alch_potion_weisheit_standard",
+      "profession": "alchemist",
+      "name": "Normaler Trank der Weisheit",
+      "desc": "+10% Weisheit für 3 Quests.",
+      "reqProfLevel": 3,
+      "reqSkill": 102,
+      "xpGain": 10,
+      "cost": {
+        "gold": 80
+      },
+      "materials": {
+        "kraeuterbuendel": 4,
+        "mondblume": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "weisheit_boost_10",
+        "duration": "3_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 160
+    },
+    {
+      "id": "alch_potion_xp_greater",
+      "profession": "alchemist",
+      "name": "Großer Trank der Erfahrung",
+      "desc": "+12% XP für 5 Quests.",
+      "reqProfLevel": 5,
+      "reqSkill": 150,
+      "xpGain": 13,
+      "cost": {
+        "gold": 150
+      },
+      "materials": {
+        "mondblume": 3,
+        "sternenfrucht": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "xp_boost_12",
+        "duration": "5_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 300
+    },
+    {
+      "id": "alch_potion_gold_greater",
+      "profession": "alchemist",
+      "name": "Großer Trank der Reichtum",
+      "desc": "+12% Gold für 5 Quests.",
+      "reqProfLevel": 5,
+      "reqSkill": 153,
+      "xpGain": 13,
+      "cost": {
+        "gold": 150
+      },
+      "materials": {
+        "mondblume": 3,
+        "sternenfrucht": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "gold_boost_12",
+        "duration": "5_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "alch_potion_luck_greater",
+      "profession": "alchemist",
+      "name": "Großer Trank der Glück",
+      "desc": "+12% Glück für 5 Quests.",
+      "reqProfLevel": 5,
+      "reqSkill": 156,
+      "xpGain": 13,
+      "cost": {
+        "gold": 150
+      },
+      "materials": {
+        "mondblume": 3,
+        "sternenfrucht": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "luck_boost_12",
+        "duration": "5_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 300
+    },
+    {
+      "id": "alch_potion_kraft_greater",
+      "profession": "alchemist",
+      "name": "Großer Trank der Kraft",
+      "desc": "+12% Kraft für 5 Quests.",
+      "reqProfLevel": 5,
+      "reqSkill": 159,
+      "xpGain": 13,
+      "cost": {
+        "gold": 150
+      },
+      "materials": {
+        "mondblume": 3,
+        "sternenfrucht": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "kraft_boost_12",
+        "duration": "5_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "alch_potion_weisheit_greater",
+      "profession": "alchemist",
+      "name": "Großer Trank der Weisheit",
+      "desc": "+12% Weisheit für 5 Quests.",
+      "reqProfLevel": 5,
+      "reqSkill": 162,
+      "xpGain": 13,
+      "cost": {
+        "gold": 150
+      },
+      "materials": {
+        "mondblume": 3,
+        "sternenfrucht": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "weisheit_boost_12",
+        "duration": "5_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 300
+    },
+    {
+      "id": "alch_potion_xp_superior",
+      "profession": "alchemist",
+      "name": "Überlegener Trank der Erfahrung",
+      "desc": "+15% XP für 5 Quests.",
+      "reqProfLevel": 7,
+      "reqSkill": 210,
+      "xpGain": 16,
+      "cost": {
+        "gold": 300
+      },
+      "materials": {
+        "sternenfrucht": 3,
+        "phoenixfeder": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "xp_boost_15",
+        "duration": "5_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.05,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "alch_potion_gold_superior",
+      "profession": "alchemist",
+      "name": "Überlegener Trank der Reichtum",
+      "desc": "+15% Gold für 5 Quests.",
+      "reqProfLevel": 7,
+      "reqSkill": 213,
+      "xpGain": 16,
+      "cost": {
+        "gold": 300
+      },
+      "materials": {
+        "sternenfrucht": 3,
+        "phoenixfeder": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "gold_boost_15",
+        "duration": "5_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.05,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "alch_potion_luck_superior",
+      "profession": "alchemist",
+      "name": "Überlegener Trank der Glück",
+      "desc": "+15% Glück für 5 Quests.",
+      "reqProfLevel": 7,
+      "reqSkill": 216,
+      "xpGain": 16,
+      "cost": {
+        "gold": 300
+      },
+      "materials": {
+        "sternenfrucht": 3,
+        "phoenixfeder": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "luck_boost_15",
+        "duration": "5_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.05,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "alch_potion_kraft_superior",
+      "profession": "alchemist",
+      "name": "Überlegener Trank der Kraft",
+      "desc": "+15% Kraft für 5 Quests.",
+      "reqProfLevel": 7,
+      "reqSkill": 219,
+      "xpGain": 16,
+      "cost": {
+        "gold": 300
+      },
+      "materials": {
+        "sternenfrucht": 3,
+        "phoenixfeder": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "kraft_boost_15",
+        "duration": "5_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.05,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "alch_potion_weisheit_superior",
+      "profession": "alchemist",
+      "name": "Überlegener Trank der Weisheit",
+      "desc": "+15% Weisheit für 5 Quests.",
+      "reqProfLevel": 7,
+      "reqSkill": 222,
+      "xpGain": 16,
+      "cost": {
+        "gold": 300
+      },
+      "materials": {
+        "sternenfrucht": 3,
+        "phoenixfeder": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "weisheit_boost_15",
+        "duration": "5_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.05,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "alch_potion_xp_major",
+      "profession": "alchemist",
+      "name": "Mächtiger Trank der Erfahrung",
+      "desc": "+20% XP für 5 Quests.",
+      "reqProfLevel": 9,
+      "reqSkill": 270,
+      "xpGain": 19,
+      "cost": {
+        "gold": 600
+      },
+      "materials": {
+        "phoenixfeder": 2,
+        "seelensplitter": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "xp_boost_20",
+        "duration": "5_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.05,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "alch_potion_gold_major",
+      "profession": "alchemist",
+      "name": "Mächtiger Trank der Reichtum",
+      "desc": "+20% Gold für 5 Quests.",
+      "reqProfLevel": 9,
+      "reqSkill": 273,
+      "xpGain": 19,
+      "cost": {
+        "gold": 600
+      },
+      "materials": {
+        "phoenixfeder": 2,
+        "seelensplitter": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "gold_boost_20",
+        "duration": "5_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.05,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "alch_potion_luck_major",
+      "profession": "alchemist",
+      "name": "Mächtiger Trank der Glück",
+      "desc": "+20% Glück für 5 Quests.",
+      "reqProfLevel": 9,
+      "reqSkill": 276,
+      "xpGain": 19,
+      "cost": {
+        "gold": 600
+      },
+      "materials": {
+        "phoenixfeder": 2,
+        "seelensplitter": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "luck_boost_20",
+        "duration": "5_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.05,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "alch_potion_kraft_major",
+      "profession": "alchemist",
+      "name": "Mächtiger Trank der Kraft",
+      "desc": "+20% Kraft für 5 Quests.",
+      "reqProfLevel": 9,
+      "reqSkill": 279,
+      "xpGain": 19,
+      "cost": {
+        "gold": 600
+      },
+      "materials": {
+        "phoenixfeder": 2,
+        "seelensplitter": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "kraft_boost_20",
+        "duration": "5_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.05,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "alch_potion_weisheit_major",
+      "profession": "alchemist",
+      "name": "Mächtiger Trank der Weisheit",
+      "desc": "+20% Weisheit für 5 Quests.",
+      "reqProfLevel": 9,
+      "reqSkill": 282,
+      "xpGain": 19,
+      "cost": {
+        "gold": 600
+      },
+      "materials": {
+        "phoenixfeder": 2,
+        "seelensplitter": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "weisheit_boost_20",
+        "duration": "5_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.05,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "alch_flask_ambition",
+      "profession": "alchemist",
+      "name": "Flakon des Ehrgeizes",
+      "desc": "+15% XP + 10% Gold für 5 Quests.",
+      "reqProfLevel": 7,
+      "reqSkill": 225,
+      "xpGain": 33,
+      "cost": {
+        "gold": 400
+      },
+      "materials": {
+        "sternenfrucht": 3,
+        "phoenixfeder": 1,
+        "mondblume": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "flask_ambition",
+        "duration": "5_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 800
+    },
+    {
+      "id": "alch_flask_fortune",
+      "profession": "alchemist",
+      "name": "Flakon des Schicksals",
+      "desc": "+15% Gold + 10% Glück für 5 Quests.",
+      "reqProfLevel": 8,
+      "reqSkill": 240,
+      "xpGain": 34,
+      "cost": {
+        "gold": 450
+      },
+      "materials": {
+        "sternenfrucht": 3,
+        "phoenixfeder": 1,
+        "kraeuterbuendel": 4
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "flask_fortune",
+        "duration": "5_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.06,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "alch_flask_wisdom",
+      "profession": "alchemist",
+      "name": "Flakon der Weisheit",
+      "desc": "+20% XP für 5 Quests.",
+      "reqProfLevel": 8,
+      "reqSkill": 255,
+      "xpGain": 36,
+      "cost": {
+        "gold": 500
+      },
+      "materials": {
+        "phoenixfeder": 2,
+        "sternenfrucht": 2,
+        "mondblume": 3
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "flask_wisdom",
+        "duration": "5_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "faction",
+      "factionId": "zirkel_der_sterne"
+    },
+    {
+      "id": "alch_flask_titans",
+      "profession": "alchemist",
+      "name": "Flakon der Titanen",
+      "desc": "+10% XP + 10% Gold + 5% Glück für 5 Quests.",
+      "reqProfLevel": 9,
+      "reqSkill": 275,
+      "xpGain": 38,
+      "cost": {
+        "gold": 700
+      },
+      "materials": {
+        "phoenixfeder": 2,
+        "seelensplitter": 1,
+        "sternenfrucht": 3
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "flask_titans",
+        "duration": "5_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.04,
+      "dropMinQuestRarity": "epic"
+    },
+    {
+      "id": "alch_flask_supreme",
+      "profession": "alchemist",
+      "name": "Flakon der Überlegenheit",
+      "desc": "+25% XP für 3 Quests.",
+      "reqProfLevel": 9,
+      "reqSkill": 285,
+      "xpGain": 39,
+      "cost": {
+        "gold": 900
+      },
+      "materials": {
+        "seelensplitter": 1,
+        "phoenixfeder": 2,
+        "sternenfrucht": 4
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "flask_supreme",
+        "duration": "3_quests"
+      },
+      "cooldownMinutes": 1440,
+      "source": "drop",
+      "dropChance": 0.03,
+      "dropMinQuestRarity": "epic"
+    },
+    {
+      "id": "alch_flask_chromatic",
+      "profession": "alchemist",
+      "name": "Chromatischer Flakon",
+      "desc": "+15% XP + 15% Gold + 10% Glück für 3 Quests.",
+      "reqProfLevel": 9,
+      "reqSkill": 295,
+      "xpGain": 40,
+      "cost": {
+        "gold": 1200
+      },
+      "materials": {
+        "seelensplitter": 2,
+        "phoenixfeder": 3,
+        "sternenfrucht": 4
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "flask_chromatic",
+        "duration": "3_quests"
+      },
+      "cooldownMinutes": 1440,
+      "source": "drop",
+      "dropChance": 0.02,
+      "dropMinQuestRarity": "legendary"
+    },
+    {
+      "id": "alch_trans_iron_crystal",
+      "profession": "alchemist",
+      "name": "Transmutation: Eisen → Kristall",
+      "desc": "Verwandelt Eisenerz in Kristallsplitter.",
+      "reqProfLevel": 1,
+      "reqSkill": 50,
+      "xpGain": 11,
+      "cost": {
+        "gold": 30
+      },
+      "materials": {
+        "eisenerz": 6,
+        "magiestaub": 2
+      },
+      "result": {
+        "type": "transmute_material",
+        "output": "iron_crystal",
+        "amount": 1
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer"
+    },
+    {
+      "id": "alch_trans_crystal_dragon",
+      "profession": "alchemist",
+      "name": "Transmutation: Kristall → Drachenschuppe",
+      "desc": "Verwandelt Kristallsplitter in Drachenschuppen.",
+      "reqProfLevel": 4,
+      "reqSkill": 125,
+      "xpGain": 16,
+      "cost": {
+        "gold": 100
+      },
+      "materials": {
+        "kristallsplitter": 4,
+        "mondblume": 2
+      },
+      "result": {
+        "type": "transmute_material",
+        "output": "crystal_dragon",
+        "amount": 1
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 200
+    },
+    {
+      "id": "alch_trans_dragon_aether",
+      "profession": "alchemist",
+      "name": "Transmutation: Drache → Aether",
+      "desc": "Verwandelt Drachenschuppen in Aetherkerne.",
+      "reqProfLevel": 6,
+      "reqSkill": 200,
+      "xpGain": 21,
+      "cost": {
+        "gold": 300
+      },
+      "materials": {
+        "drachenschuppe": 4,
+        "sternenfrucht": 2
+      },
+      "result": {
+        "type": "transmute_material",
+        "output": "dragon_aether",
+        "amount": 1
+      },
+      "cooldownMinutes": 1440,
+      "source": "drop",
+      "dropChance": 0.06,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "alch_trans_aether_soul",
+      "profession": "alchemist",
+      "name": "Transmutation: Aether → Seele",
+      "desc": "Verwandelt Aetherkerne in Seelensplitter.",
+      "reqProfLevel": 9,
+      "reqSkill": 275,
+      "xpGain": 26,
+      "cost": {
+        "gold": 600
+      },
+      "materials": {
+        "aetherkern": 4,
+        "phoenixfeder": 2
+      },
+      "result": {
+        "type": "transmute_material",
+        "output": "aether_soul",
+        "amount": 1
+      },
+      "cooldownMinutes": 2880,
+      "source": "drop",
+      "dropChance": 0.03,
+      "dropMinQuestRarity": "epic"
+    },
+    {
+      "id": "alch_trans_linen_wool",
+      "profession": "alchemist",
+      "name": "Transmutation: Leinen → Wolle",
+      "desc": "Verwandelt Leinenstoff in Wollstoff.",
+      "reqProfLevel": 2,
+      "reqSkill": 60,
+      "xpGain": 12,
+      "cost": {
+        "gold": 35
+      },
+      "materials": {
+        "leinenstoff": 6,
+        "magiestaub": 1
+      },
+      "result": {
+        "type": "transmute_material",
+        "output": "linen_wool",
+        "amount": 1
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer"
+    },
+    {
+      "id": "alch_trans_wool_silk",
+      "profession": "alchemist",
+      "name": "Transmutation: Wolle → Seide",
+      "desc": "Verwandelt Wollstoff in Seidenstoff.",
+      "reqProfLevel": 4,
+      "reqSkill": 140,
+      "xpGain": 17,
+      "cost": {
+        "gold": 120
+      },
+      "materials": {
+        "wollstoff": 4,
+        "mondblume": 1
+      },
+      "result": {
+        "type": "transmute_material",
+        "output": "wool_silk",
+        "amount": 1
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 250
+    },
+    {
+      "id": "alch_trans_silk_mage",
+      "profession": "alchemist",
+      "name": "Transmutation: Seide → Magiestoff",
+      "desc": "Verwandelt Seidenstoff in Magiestoff.",
+      "reqProfLevel": 7,
+      "reqSkill": 220,
+      "xpGain": 23,
+      "cost": {
+        "gold": 350
+      },
+      "materials": {
+        "seidenstoff": 4,
+        "sternenfrucht": 1
+      },
+      "result": {
+        "type": "transmute_material",
+        "output": "silk_mage",
+        "amount": 1
+      },
+      "cooldownMinutes": 1440,
+      "source": "faction",
+      "factionId": "zirkel_der_sterne"
+    },
+    {
+      "id": "alch_trans_light_medium",
+      "profession": "alchemist",
+      "name": "Transmutation: Leicht → Mittleres Leder",
+      "desc": "Verwandelt Leichtleder in Mittleres Leder.",
+      "reqProfLevel": 2,
+      "reqSkill": 70,
+      "xpGain": 13,
+      "cost": {
+        "gold": 35
+      },
+      "materials": {
+        "leichtesleder": 6,
+        "kraeuterbuendel": 2
+      },
+      "result": {
+        "type": "transmute_material",
+        "output": "light_medium",
+        "amount": 1
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer"
+    },
+    {
+      "id": "alch_trans_medium_heavy",
+      "profession": "alchemist",
+      "name": "Transmutation: Mittel → Schweres Leder",
+      "desc": "Verwandelt Mittleres Leder in Schweres Leder.",
+      "reqProfLevel": 5,
+      "reqSkill": 155,
+      "xpGain": 18,
+      "cost": {
+        "gold": 130
+      },
+      "materials": {
+        "mittleresleder": 4,
+        "mondblume": 1
+      },
+      "result": {
+        "type": "transmute_material",
+        "output": "medium_heavy",
+        "amount": 1
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 250
+    },
+    {
+      "id": "alch_trans_heavy_thick",
+      "profession": "alchemist",
+      "name": "Transmutation: Schwer → Dickes Leder",
+      "desc": "Verwandelt Schweres Leder in Dickes Leder.",
+      "reqProfLevel": 7,
+      "reqSkill": 235,
+      "xpGain": 24,
+      "cost": {
+        "gold": 400
+      },
+      "materials": {
+        "schweresleder": 4,
+        "sternenfrucht": 1
+      },
+      "result": {
+        "type": "transmute_material",
+        "output": "heavy_thick",
+        "amount": 1
+      },
+      "cooldownMinutes": 1440,
+      "source": "drop",
+      "dropChance": 0.05,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "alch_trans_herb_moon",
+      "profession": "alchemist",
+      "name": "Transmutation: Kräuter → Mondblume",
+      "desc": "Verwandelt Kräuterbündel in Mondblumen.",
+      "reqProfLevel": 2,
+      "reqSkill": 80,
+      "xpGain": 13,
+      "cost": {
+        "gold": 45
+      },
+      "materials": {
+        "kraeuterbuendel": 6,
+        "magiestaub": 2
+      },
+      "result": {
+        "type": "transmute_material",
+        "output": "herb_moon",
+        "amount": 1
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 80
+    },
+    {
+      "id": "alch_trans_moon_star",
+      "profession": "alchemist",
+      "name": "Transmutation: Mondblume → Sternenfrucht",
+      "desc": "Verwandelt Mondblumen in Sternenfrüchte.",
+      "reqProfLevel": 5,
+      "reqSkill": 175,
+      "xpGain": 20,
+      "cost": {
+        "gold": 200
+      },
+      "materials": {
+        "mondblume": 4,
+        "runenstein": 2
+      },
+      "result": {
+        "type": "transmute_material",
+        "output": "moon_star",
+        "amount": 1
+      },
+      "cooldownMinutes": 1440,
+      "source": "drop",
+      "dropChance": 0.06,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "alch_elixir_perseverance",
+      "profession": "alchemist",
+      "name": "Elixier der Beharrlichkeit",
+      "desc": "Gewährt 1 Streak-Schild.",
+      "reqProfLevel": 3,
+      "reqSkill": 100,
+      "xpGain": 10,
+      "cost": {
+        "gold": 100
+      },
+      "materials": {
+        "mondblume": 2,
+        "kraeuterbuendel": 3
+      },
+      "result": {
+        "type": "streak_shield",
+        "amount": 1
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 200
+    },
+    {
+      "id": "alch_elixir_resilience",
+      "profession": "alchemist",
+      "name": "Elixier der Widerstandskraft",
+      "desc": "Gewährt 2 Streak-Schilde.",
+      "reqProfLevel": 8,
+      "reqSkill": 250,
+      "xpGain": 18,
+      "cost": {
+        "gold": 450
+      },
+      "materials": {
+        "sternenfrucht": 2,
+        "phoenixfeder": 1
+      },
+      "result": {
+        "type": "streak_shield",
+        "amount": 2
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.04,
+      "dropMinQuestRarity": "epic"
+    },
+    {
+      "id": "alch_forge_catalyst",
+      "profession": "alchemist",
+      "name": "Schmiedekatalysator",
+      "desc": "+15 Schmiedetemperatur.",
+      "reqProfLevel": 1,
+      "reqSkill": 30,
+      "xpGain": 7,
+      "cost": {
+        "gold": 25
+      },
+      "materials": {
+        "kraeuterbuendel": 2,
+        "magiestaub": 1
+      },
+      "result": {
+        "type": "forge_temp",
+        "amount": 15
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer"
+    },
+    {
+      "id": "alch_forge_catalyst_lg",
+      "profession": "alchemist",
+      "name": "Großer Katalysator",
+      "desc": "+25 Schmiedetemperatur.",
+      "reqProfLevel": 5,
+      "reqSkill": 160,
+      "xpGain": 13,
+      "cost": {
+        "gold": 150
+      },
+      "materials": {
+        "mondblume": 3,
+        "sternenfrucht": 1
+      },
+      "result": {
+        "type": "forge_temp",
+        "amount": 25
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 300
+    },
+    {
+      "id": "alch_antidote_minor",
+      "profession": "alchemist",
+      "name": "Kleines Gegengift",
+      "desc": "+3 Vitalität für 3 Quests.",
+      "reqProfLevel": 1,
+      "reqSkill": 15,
+      "xpGain": 6,
+      "cost": {
+        "gold": 15
+      },
+      "materials": {
+        "kraeuterbuendel": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "vitalitaet_boost_3",
+        "duration": "3_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer"
+    },
+    {
+      "id": "alch_antidote_greater",
+      "profession": "alchemist",
+      "name": "Großes Gegengift",
+      "desc": "+6 Vitalität für 3 Quests.",
+      "reqProfLevel": 3,
+      "reqSkill": 115,
+      "xpGain": 11,
+      "cost": {
+        "gold": 80
+      },
+      "materials": {
+        "kraeuterbuendel": 3,
+        "mondblume": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "vitalitaet_boost_6",
+        "duration": "3_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 160
+    },
+    {
+      "id": "alch_antidote_master",
+      "profession": "alchemist",
+      "name": "Meister-Gegengift",
+      "desc": "+9 Vitalität für 5 Quests.",
+      "reqProfLevel": 8,
+      "reqSkill": 245,
+      "xpGain": 17,
+      "cost": {
+        "gold": 350
+      },
+      "materials": {
+        "sternenfrucht": 3,
+        "phoenixfeder": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "vitalitaet_boost_9",
+        "duration": "5_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "faction",
+      "factionId": "zirkel_der_sterne"
+    },
+    {
+      "id": "alch_oil_mana",
+      "profession": "alchemist",
+      "name": "Manaöl",
+      "desc": "+4 Fokus für 3 Quests.",
+      "reqProfLevel": 2,
+      "reqSkill": 75,
+      "xpGain": 9,
+      "cost": {
+        "gold": 50
+      },
+      "materials": {
+        "mondblume": 2,
+        "magiestaub": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "fokus_boost_4",
+        "duration": "3_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 100
+    },
+    {
+      "id": "alch_oil_brilliant",
+      "profession": "alchemist",
+      "name": "Brillantes Manaöl",
+      "desc": "+7 Fokus für 5 Quests.",
+      "reqProfLevel": 6,
+      "reqSkill": 190,
+      "xpGain": 15,
+      "cost": {
+        "gold": 200
+      },
+      "materials": {
+        "sternenfrucht": 2,
+        "mondblume": 3
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "fokus_boost_7",
+        "duration": "5_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.06,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "alch_oil_shadow",
+      "profession": "alchemist",
+      "name": "Schattenöl",
+      "desc": "+5 Charisma für 3 Quests.",
+      "reqProfLevel": 4,
+      "reqSkill": 130,
+      "xpGain": 12,
+      "cost": {
+        "gold": 90
+      },
+      "materials": {
+        "mondblume": 3,
+        "kraeuterbuendel": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "charisma_boost_5",
+        "duration": "3_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "uncommon"
     }
   ]
 }
