@@ -642,6 +642,7 @@ export default function GuildHallBackground() {
             userSelect: "none",
             transition: "opacity 2s ease",
           }}
+          onError={e => { e.currentTarget.style.display = "none"; }}
         />
       </div>
     </>

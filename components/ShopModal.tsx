@@ -32,7 +32,7 @@ export function ShopModal({ userId, userName, gold, currentGear, onClose, onBuy,
         <div className="flex items-center justify-between mb-4">
           <div>
             <h3 className="text-sm font-bold" style={{ color: "#f0f0f0" }}>Forge Shop</h3>
-            <p className="text-xs inline-flex items-center gap-1" style={{ color: "rgba(255,255,255,0.3)" }}>{userName} · <img src="/images/icons/currency-gold.png" alt="" width={20} height={20} style={{ imageRendering: "auto" }} onError={e => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} /> {gold} gold</p>
+            <p className="text-xs inline-flex items-center gap-1" style={{ color: "rgba(255,255,255,0.3)" }}>{userName} · <img src="/images/icons/currency-gold.png" alt="" width={20} height={20} style={{ imageRendering: "auto" }} onError={e => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} /> {gold.toLocaleString()} gold</p>
           </div>
           <button onClick={onClose} style={{ color: "rgba(255,255,255,0.3)" }}>×</button>
         </div>
@@ -43,7 +43,7 @@ export function ShopModal({ userId, userName, gold, currentGear, onClose, onBuy,
               className="flex items-center gap-3 p-3 rounded-xl"
               style={{ background: "#252525", border: "1px solid rgba(255,255,255,0.07)" }}
             >
-              <img src={item.icon} alt={item.name} className="w-6 h-6 flex-shrink-0" style={{ imageRendering: "auto" }} />
+              <img src={item.icon} alt={item.name} className="w-6 h-6 flex-shrink-0" style={{ imageRendering: "auto" }} onError={e => { e.currentTarget.style.display = "none"; }} />
               <div className="flex-1 min-w-0">
                 <p className="text-xs font-semibold" style={{ color: "#f0f0f0" }}>{item.name}</p>
                 <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>{item.desc}</p>
@@ -83,7 +83,7 @@ export function ShopModal({ userId, userName, gold, currentGear, onClose, onBuy,
                       opacity: owned || canBuy || gear.tier === currentTier + 1 ? 1 : 0.4,
                     }}
                   >
-                    <img src={gear.icon} alt={gear.name} className="w-6 h-6 flex-shrink-0" style={{ imageRendering: "auto" }} />
+                    <img src={gear.icon} alt={gear.name} className="w-6 h-6 flex-shrink-0" style={{ imageRendering: "auto" }} onError={e => { e.currentTarget.style.display = "none"; }} />
                     <div className="flex-1 min-w-0">
                       <p className="text-xs font-semibold" style={{ color: owned ? "#818cf8" : "#f0f0f0" }}>
                         {gear.name} {owned ? "✓" : ""}

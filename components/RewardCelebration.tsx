@@ -219,9 +219,11 @@ interface RewardCelebrationProps {
   onCollect?: (data: RewardCelebrationData) => void;
   /** Called when user clicks an achievement to navigate to Hall of Honors */
   onAchievementClick?: (achievementId: string) => void;
+  /** Navigate to a view (e.g. "character" to see gear) */
+  onNavigate?: (view: string) => void;
 }
 
-export function RewardCelebration({ data, onClose, onCollect, onAchievementClick }: RewardCelebrationProps) {
+export function RewardCelebration({ data, onClose, onCollect, onAchievementClick, onNavigate }: RewardCelebrationProps) {
   const [flavorIdx] = useState(() => Math.floor(Math.random() * 5));
 
   // Play reward sound on mount
@@ -367,6 +369,15 @@ export function RewardCelebration({ data, onClose, onCollect, onAchievementClick
               }}>
                 <span className="text-sm mr-1">{data.loot.emoji}</span>
                 <span className="text-sm font-semibold" style={{ color: data.loot.rarityColor || "#FFD700" }}>{data.loot.name}</span>
+                {onNavigate && (
+                  <button
+                    onClick={(e) => { e.stopPropagation(); if (onCollect) onCollect(data); onNavigate("character"); onClose(); }}
+                    className="ml-2 text-xs px-1.5 py-0.5 rounded"
+                    style={{ background: "rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.5)", cursor: "pointer" }}
+                  >
+                    View {"\u2192"}
+                  </button>
+                )}
               </div>
             )}
             {data.currencies && data.currencies.map((c, i) => (

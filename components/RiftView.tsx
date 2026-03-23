@@ -398,6 +398,7 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
                     border: `1px solid ${canEnter ? `${tier.color}40` : "rgba(255,255,255,0.06)"}`,
                     cursor: canEnter ? "pointer" : "not-allowed",
                   }}
+                  title={locked ? `Requires higher level to unlock this tier` : onCd ? "On cooldown — wait for it to expire" : "Enter the Rift"}
                 >
                   {locked ? "Locked" : onCd ? "On Cooldown" : actionLoading ? "..." : "Enter Rift"}
                 </button>

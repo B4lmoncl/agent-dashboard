@@ -119,10 +119,12 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
     } catch { /* ignore */ }
   };
 
+  const [vowCreating, setVowCreating] = useState(false);
   const createAntiRitual = async () => {
     if (!newTitle.trim()) { setVowNameError(true); return; }
     if (newVowCommitment === "none") { setVowCommitmentError(true); return; }
-    if (!reviewApiKey || !playerName) return;
+    if (!reviewApiKey || !playerName || vowCreating) return;
+    setVowCreating(true);
     try {
       const tier = COMMITMENT_TIERS_VOW.find(t => t.id === newVowCommitment)!;
       const diff = DIFFICULTY_TIERS_VOW.find(d => d.id === newVowDifficulty)!;
@@ -151,6 +153,7 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
       setCreateOpen(false);
       loadAntiRituals();
     } catch { /* ignore */ }
+    setVowCreating(false);
   };
 
   const getStreakBadge = (days: number) =>
@@ -338,7 +341,7 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
       <div className="flex gap-4 mb-4" style={{ alignItems: "flex-start" }}>
         {/* Portrait column with speech bubble */}
         <div className="flex-none" style={{ width: 195, overflow: "visible" }}>
-          <img src="/images/portraits/npc-vael.png?v=3" alt="Vael the Silent" width={256} height={384} style={{ imageRendering: "auto", width: "100%", height: "auto", display: "block", filter: "drop-shadow(0 0 18px rgba(99,102,241,0.5))", borderRadius: "4px 4px 0 0", pointerEvents: "none" }} />
+          <img src="/images/portraits/npc-vael.png?v=3" alt="Vael the Silent" width={256} height={384} style={{ imageRendering: "auto", width: "100%", height: "auto", display: "block", filter: "drop-shadow(0 0 18px rgba(99,102,241,0.5))", borderRadius: "4px 4px 0 0", pointerEvents: "none" }} onError={e => { e.currentTarget.style.display = "none"; }} />
           <div style={{ background: "rgba(8,8,20,0.9)", border: "1px solid rgba(99,102,241,0.35)", borderTop: "none", borderRadius: "0 0 8px 8px", padding: "8px 10px" }}>
             <p style={{ fontSize: "0.8rem", fontStyle: "italic", color: "#a5b4fc", lineHeight: 1.5, margin: 0 }}>„Sprich. Oder schweig. Beides hat Gewicht."</p>
           </div>
@@ -395,7 +398,7 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
             <div style={{ position: "relative" }} onClick={e => e.stopPropagation()}>
               {/* NPC Portrait — absolute right of modal, hidden on mobile */}
               <div className="hidden md:flex flex-col" style={{ position: "absolute", right: -185, top: "50%", transform: "translateY(-50%)", width: 200, overflow: "visible" }}>
-                <img src="/images/portraits/npc-vael.png?v=3" alt="Vael the Silent" width={256} height={384} style={{ imageRendering: "auto", width: "100%", height: "auto", display: "block", filter: "drop-shadow(0 0 18px rgba(99,102,241,0.5))", borderRadius: "8px 8px 0 0", pointerEvents: "none" }} />
+                <img src="/images/portraits/npc-vael.png?v=3" alt="Vael the Silent" width={256} height={384} style={{ imageRendering: "auto", width: "100%", height: "auto", display: "block", filter: "drop-shadow(0 0 18px rgba(99,102,241,0.5))", borderRadius: "8px 8px 0 0", pointerEvents: "none" }} onError={e => { e.currentTarget.style.display = "none"; }} />
                 <div style={{ background: "rgba(8,8,20,0.92)", border: "1px solid rgba(99,102,241,0.4)", borderTop: "none", borderRadius: "0 0 8px 8px", padding: "10px 12px" }}>
                   <p style={{ fontSize: "0.8rem", fontStyle: "italic", color: "#a5b4fc", lineHeight: 1.5, margin: 0 }}>{getVaelSpeech(newVowCommitment, newVowBloodPact)}</p>
                 </div>
@@ -476,20 +479,20 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
                 <div className="rounded-lg p-3" style={{ background: "rgba(0,0,0,0.2)", border: "1px solid rgba(99,102,241,0.12)" }}>
                   <p className="text-xs font-semibold mb-1.5" style={{ color: "rgba(165,180,252,0.4)" }}>Reward Preview</p>
                   <p className="text-xs mb-1" style={{ color: "rgba(165,180,252,0.3)", fontStyle: "italic", letterSpacing: "0.03em" }}>Täglich bei Check-in:</p>
-                  <p className="text-xs" style={{ color: "rgba(165,180,252,0.65)", display: "flex", alignItems: "center", gap: 4, flexWrap: "wrap" }}>Base <span style={{ color: diffData.color, fontSize: "0.65rem" }}>({diffData.label})</span>: <span style={{ color: "#818cf8", display: "inline-flex", alignItems: "center", gap: 2 }}>{diffData.gold} <img src="/images/icons/reward-gold.png" width={20} height={20} style={{ imageRendering: "auto" }} /></span> <span style={{ color: "#a78bfa" }}>{diffData.xp} XP</span></p>
-                  {tierData.id !== "none" && <p className="text-xs mt-0.5" style={{ color: "rgba(165,180,252,0.65)", display: "flex", alignItems: "center", gap: 4, flexWrap: "wrap" }}>Bond Bonus{diffData.bondScale !== 1 && <span style={{ color: diffData.color, fontSize: "0.6rem" }}> ×{diffData.bondScale}</span>}: <span style={{ color: "#818cf8", display: "inline-flex", alignItems: "center", gap: 2 }}>+{bonusGold} <img src="/images/icons/reward-gold.png" width={20} height={20} style={{ imageRendering: "auto" }} /></span> <span style={{ color: "#a78bfa" }}>+{bonusXp} XP</span></p>}
-                  {(bonusGold > 0 || bonusXp > 0) && <p className="text-xs mt-1" style={{ color: "rgba(165,180,252,0.85)", display: "flex", alignItems: "center", gap: 4, fontWeight: 600, flexWrap: "wrap" }}>= Täglich: <span style={{ color: "#818cf8", display: "inline-flex", alignItems: "center", gap: 2 }}>{diffData.gold + bonusGold} <img src="/images/icons/reward-gold.png" width={20} height={20} style={{ imageRendering: "auto" }} /></span> <span style={{ color: "#a78bfa" }}>{diffData.xp + bonusXp} XP</span></p>}
+                  <p className="text-xs" style={{ color: "rgba(165,180,252,0.65)", display: "flex", alignItems: "center", gap: 4, flexWrap: "wrap" }}>Base <span style={{ color: diffData.color, fontSize: "0.65rem" }}>({diffData.label})</span>: <span style={{ color: "#818cf8", display: "inline-flex", alignItems: "center", gap: 2 }}>{diffData.gold} <img src="/images/icons/reward-gold.png" width={20} height={20} style={{ imageRendering: "auto" }} onError={e => { e.currentTarget.style.display = "none"; }} /></span> <span style={{ color: "#a78bfa" }}>{diffData.xp} XP</span></p>
+                  {tierData.id !== "none" && <p className="text-xs mt-0.5" style={{ color: "rgba(165,180,252,0.65)", display: "flex", alignItems: "center", gap: 4, flexWrap: "wrap" }}>Bond Bonus{diffData.bondScale !== 1 && <span style={{ color: diffData.color, fontSize: "0.6rem" }}> ×{diffData.bondScale}</span>}: <span style={{ color: "#818cf8", display: "inline-flex", alignItems: "center", gap: 2 }}>+{bonusGold} <img src="/images/icons/reward-gold.png" width={20} height={20} style={{ imageRendering: "auto" }} onError={e => { e.currentTarget.style.display = "none"; }} /></span> <span style={{ color: "#a78bfa" }}>+{bonusXp} XP</span></p>}
+                  {(bonusGold > 0 || bonusXp > 0) && <p className="text-xs mt-1" style={{ color: "rgba(165,180,252,0.85)", display: "flex", alignItems: "center", gap: 4, fontWeight: 600, flexWrap: "wrap" }}>= Täglich: <span style={{ color: "#818cf8", display: "inline-flex", alignItems: "center", gap: 2 }}>{diffData.gold + bonusGold} <img src="/images/icons/reward-gold.png" width={20} height={20} style={{ imageRendering: "auto" }} onError={e => { e.currentTarget.style.display = "none"; }} /></span> <span style={{ color: "#a78bfa" }}>{diffData.xp + bonusXp} XP</span></p>}
                   {newVowBloodPact && pactCompletionXp > 0 && <>
                     <div style={{ borderTop: "1px solid rgba(99,102,241,0.15)", margin: "8px 0 6px" }} />
                     <p className="text-xs mb-0.5" style={{ color: "rgba(99,102,241,0.6)", fontStyle: "italic", letterSpacing: "0.03em" }}>Einmalig nach {tierData.days}d Abschluss <span style={{ fontWeight: 600 }}>(Pact ×{pactMulti})</span>:</p>
-                    <p className="text-xs" style={{ color: "rgba(129,140,248,0.9)", display: "flex", alignItems: "center", gap: 4, fontWeight: 600, flexWrap: "wrap" }}><span style={{ color: "#818cf8", display: "inline-flex", alignItems: "center", gap: 2 }}>{pactCompletionGold} <img src="/images/icons/reward-gold.png" width={20} height={20} style={{ imageRendering: "auto" }} /></span> <span style={{ color: "#a78bfa" }}>{pactCompletionXp} XP</span></p>
+                    <p className="text-xs" style={{ color: "rgba(129,140,248,0.9)", display: "flex", alignItems: "center", gap: 4, fontWeight: 600, flexWrap: "wrap" }}><span style={{ color: "#818cf8", display: "inline-flex", alignItems: "center", gap: 2 }}>{pactCompletionGold} <img src="/images/icons/reward-gold.png" width={20} height={20} style={{ imageRendering: "auto" }} onError={e => { e.currentTarget.style.display = "none"; }} /></span> <span style={{ color: "#a78bfa" }}>{pactCompletionXp} XP</span></p>
                   </>}
                   <p className="text-xs mt-2 mb-0.5" style={{ color: "rgba(165,180,252,0.3)", fontStyle: "italic", letterSpacing: "0.03em" }}>Bei Streak-Meilenstein:</p>
                   <p className="text-xs" style={{ color: "rgba(165,180,252,0.45)" }}>Loot-Drops bei 3, 7, 14, 30, 60, 90 Tagen</p>
                 </div>
                 <div className="flex gap-2 pt-1">
                   <button onClick={closeVowModal} className="action-btn text-sm py-2.5 px-5 rounded-xl" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(165,180,252,0.35)", border: "1px solid rgba(255,255,255,0.08)" }}>Cancel</button>
-                  <button onClick={createAntiRitual} className="action-btn flex-1 text-sm py-2.5 rounded-xl font-bold" style={{ background: "rgba(67,56,202,0.32)", color: "#a5b4fc", border: "1px solid rgba(99,102,241,0.6)", boxShadow: "0 0 16px rgba(99,102,241,0.12)" }}>Seal Vow</button>
+                  <button onClick={createAntiRitual} disabled={vowCreating} className="action-btn flex-1 text-sm py-2.5 rounded-xl font-bold" style={{ background: "rgba(67,56,202,0.32)", color: "#a5b4fc", border: "1px solid rgba(99,102,241,0.6)", boxShadow: "0 0 16px rgba(99,102,241,0.12)" }}>{vowCreating ? "Sealing..." : "Seal Vow"}</button>
                 </div>
               </div>
             </div>
@@ -544,7 +547,7 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
             <div style={{ position: "relative" }} onClick={e => e.stopPropagation()}>
               {/* NPC Portrait */}
               <div className="hidden md:flex flex-col" style={{ position: "absolute", right: -185, top: "50%", transform: "translateY(-50%)", width: 200, overflow: "visible" }}>
-                <img src="/images/portraits/npc-vael.png?v=3" alt="Vael the Silent" width={256} height={384} style={{ imageRendering: "auto", width: "100%", height: "auto", display: "block", filter: "drop-shadow(0 0 18px rgba(99,102,241,0.5))", borderRadius: "8px 8px 0 0", pointerEvents: "none" }} />
+                <img src="/images/portraits/npc-vael.png?v=3" alt="Vael the Silent" width={256} height={384} style={{ imageRendering: "auto", width: "100%", height: "auto", display: "block", filter: "drop-shadow(0 0 18px rgba(99,102,241,0.5))", borderRadius: "8px 8px 0 0", pointerEvents: "none" }} onError={e => { e.currentTarget.style.display = "none"; }} />
                 <div style={{ background: "rgba(8,8,20,0.92)", border: "1px solid rgba(99,102,241,0.4)", borderTop: "none", borderRadius: "0 0 8px 8px", padding: "10px 12px" }}>
                   <p style={{ fontSize: "0.8rem", fontStyle: "italic", color: "#a5b4fc", lineHeight: 1.5, margin: 0 }}>&ldquo;Dein Wille vertieft sich. Der Schwur wird stärker.&rdquo;</p>
                 </div>
@@ -609,7 +612,7 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
             <div style={{ position: "relative" }} onClick={e => e.stopPropagation()}>
               {/* NPC Portrait */}
               <div className="hidden md:flex flex-col" style={{ position: "absolute", right: -185, top: "50%", transform: "translateY(-50%)", width: 200, overflow: "visible" }}>
-                <img src="/images/portraits/npc-vael.png?v=3" alt="Vael the Silent" width={256} height={384} style={{ imageRendering: "auto", width: "100%", height: "auto", display: "block", filter: "drop-shadow(0 0 18px rgba(99,102,241,0.5))", borderRadius: "8px 8px 0 0", pointerEvents: "none" }} />
+                <img src="/images/portraits/npc-vael.png?v=3" alt="Vael the Silent" width={256} height={384} style={{ imageRendering: "auto", width: "100%", height: "auto", display: "block", filter: "drop-shadow(0 0 18px rgba(99,102,241,0.5))", borderRadius: "8px 8px 0 0", pointerEvents: "none" }} onError={e => { e.currentTarget.style.display = "none"; }} />
                 <div style={{ background: "rgba(8,8,20,0.92)", border: "1px solid rgba(99,102,241,0.4)", borderTop: "none", borderRadius: "0 0 8px 8px", padding: "10px 12px" }}>
                   <p style={{ fontSize: "0.8rem", fontStyle: "italic", color: "#a5b4fc", lineHeight: 1.5, margin: 0 }}>&ldquo;You fell, adventurer. But you are still here. That is not nothing.&rdquo;</p>
                 </div>

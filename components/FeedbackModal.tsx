@@ -130,6 +130,7 @@ export default function FeedbackModal({ elementPath, playerName, onClose }: Feed
                   onChange={e => setText(e.target.value)}
                   placeholder="Describe the issue or suggestion..."
                   rows={4}
+                  maxLength={2000}
                   className="w-full text-xs px-3 py-2 rounded-lg resize-none"
                   style={{
                     background: "#141414",

@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { useDashboard } from "@/app/DashboardContext";
+import { getUserLevel } from "@/app/utils";
 import { getAuthHeaders } from "@/lib/auth-client";
 import { Tip, TipCustom } from "@/components/GameTooltip";
 import type { RewardCelebrationData } from "@/components/RewardCelebration";
@@ -36,6 +37,7 @@ interface DungeonTemplate {
   };
   unlocked: boolean;
   cooldown: { onCooldown: boolean; endsAt?: string; remainingMs?: number };
+  uniqueItemDetails?: { id: string; name: string; slot: string; desc: string; flavorText?: string; legendaryEffect?: { type: string; label?: string }; icon: string | null }[];
 }
 
 interface Participant {
@@ -132,7 +134,7 @@ const TIER_LABELS: Record<string, string> = {
 // ─── Component ──────────────────────────────────────────────────────────────
 
 export default function DungeonView({ onRefresh, onRewardCelebration }: { onRefresh?: () => void; onRewardCelebration?: (data: RewardCelebrationData) => void }) {
-  const { playerName, reviewApiKey } = useDashboard();
+  const { playerName, reviewApiKey, loggedInUser } = useDashboard();
   const [dungeons, setDungeons] = useState<DungeonTemplate[]>([]);
   const [activeRun, setActiveRun] = useState<ActiveRun | null>(null);
   const [history, setHistory] = useState<DungeonHistory[]>([]);
@@ -312,7 +314,7 @@ export default function DungeonView({ onRefresh, onRewardCelebration }: { onRefr
   }
 
   if (loading) return (
-    <div className="space-y-3 tab-content-enter">
+    <div className="space-y-3 tab-content-enter" style={{ minHeight: 400 }}>
       <div className="skeleton-card h-20" />
       <div className="grid grid-cols-3 gap-3">{[1,2,3].map(i => <div key={i} className="skeleton-card h-48" />)}</div>
     </div>
@@ -646,6 +648,15 @@ export default function DungeonView({ onRefresh, onRewardCelebration }: { onRefr
                   <p className="text-sm font-bold mt-1" style={{ color: d.accent }}>{d.name}</p>
                   <p className="text-xs text-w25 mt-0.5 px-2">{d.description}</p>
                   {locked && <p className="text-xs text-w20 mt-1">Requires Lv.{d.minLevel}</p>}
+                  {!locked && (() => {
+                    const playerLevel = getUserLevel(loggedInUser?.xp ?? 0).level;
+                    const meetsLevel = playerLevel >= d.minLevel;
+                    return (
+                      <p className="text-xs mt-1.5 font-semibold" style={{ color: meetsLevel ? "#22c55e" : "#fbbf24" }}>
+                        {meetsLevel ? "\u2713 Ready" : `Lv.${playerLevel}/${d.minLevel}`} {"\u00b7"} GS {d.gearScoreThreshold}/player
+                      </p>
+                    );
+                  })()}
                 </div>
 
                 <div className="space-y-1 text-xs text-w35">
@@ -694,6 +705,33 @@ export default function DungeonView({ onRefresh, onRewardCelebration }: { onRefr
                   )}
                 </div>
 
+                {/* Unique drops */}
+                {d.uniqueItemDetails && d.uniqueItemDetails.length > 0 && (
+                  <div className="space-y-1">
+                    <p className="text-xs text-w25">Unique Drops:</p>
+                    {d.uniqueItemDetails.map(item => (
+                      <TipCustom
+                        key={item.id}
+                        title={item.name}
+                        accent="#ff8c00"
+                        hoverDelay={300}
+                        body={<>
+                          <p className="text-xs" style={{ color: "#ff8c00" }}>Legendary {item.slot}</p>
+                          {item.desc && <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.5)" }}>{item.desc}</p>}
+                          {item.flavorText && <p className="text-xs italic mt-1" style={{ color: "rgba(255,255,255,0.3)" }}>&ldquo;{item.flavorText}&rdquo;</p>}
+                          {item.legendaryEffect?.label && <p className="text-xs mt-1 font-semibold" style={{ color: "#f59e0b" }}>{item.legendaryEffect.label}</p>}
+                        </>}
+                      >
+                        <div className="flex items-center gap-1.5 px-2 py-1 rounded cursor-help" style={{ background: "rgba(255,140,0,0.04)", border: "1px solid rgba(255,140,0,0.1)", borderLeft: "2px solid #ff8c00" }}>
+                          <span className="text-xs" style={{ color: "#ff8c00" }}>{"\u2726"}</span>
+                          <span className="text-xs font-semibold" style={{ color: "#ff8c00" }}>{item.name}</span>
+                          <span className="text-xs text-w15 ml-auto capitalize">{item.slot}</span>
+                        </div>
+                      </TipCustom>
+                    ))}
+                  </div>
+                )}
+
                 {onCd && d.cooldown.endsAt && (
                   <p className="text-xs text-center" style={{ color: "#ef4444" }}>
                     Cooldown: {timeLeft(d.cooldown.remainingMs || 0)}
@@ -710,6 +748,7 @@ export default function DungeonView({ onRefresh, onRewardCelebration }: { onRefr
                     border: `1px solid ${canEnter ? `${d.accent}40` : "rgba(255,255,255,0.06)"}`,
                     cursor: canEnter ? "pointer" : "not-allowed",
                   }}
+                  title={locked ? `Requires Level ${d.minLevel}` : onCd ? `Cooldown: ${timeLeft(d.cooldown.remainingMs || 0)}` : "Create a dungeon run"}
                 >
                   {locked ? "Locked" : onCd ? "On Cooldown" : "Create Run"}
                 </button>

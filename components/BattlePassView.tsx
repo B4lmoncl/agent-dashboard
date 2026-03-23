@@ -129,7 +129,7 @@ export default function BattlePassView({ onRewardCelebration }: { onRewardCelebr
   }
 
   if (loading || !config || !player) return (
-    <div className="space-y-3 tab-content-enter">
+    <div className="space-y-3 tab-content-enter" style={{ minHeight: 400 }}>
       <div className="skeleton-card h-24" />
       <div className="skeleton-card h-64" />
     </div>

@@ -96,11 +96,16 @@ function spawnBoss(bossId) {
   if (!template) return null;
 
   const now = new Date();
-  const expiresAt = new Date(now.getTime() + bossData.config.activeDurationDays * 24 * 60 * 60 * 1000);
+  const expiresAt = getNextMondayMidnight();
+  // If we're on Monday and it's early, make sure we don't expire immediately
+  if (expiresAt.getTime() - now.getTime() < 12 * 60 * 60 * 1000) {
+    expiresAt.setDate(expiresAt.getDate() + 7);
+  }
   const maxHp = calcMaxHp();
 
   const boss = {
     bossId: template.id,
+    weekId: getWeekId(),
     spawnedAt: now.toISOString(),
     expiresAt: expiresAt.toISOString(),
     maxHp,
@@ -154,29 +159,52 @@ function dealBossDamage(userId, questRarity) {
 }
 
 /**
- * Auto-spawn check — called from checkPeriodicTasks or boot.
- * Spawns a new boss if enough time has passed since the last one.
+ * Get ISO week ID (same as challenges-weekly) for sync.
+ */
+function getWeekId() {
+  const d = new Date();
+  d.setHours(0, 0, 0, 0);
+  d.setDate(d.getDate() + 3 - (d.getDay() + 6) % 7);
+  const week1 = new Date(d.getFullYear(), 0, 4);
+  const weekNum = 1 + Math.round(((d - week1) / 86400000 - 3 + (week1.getDay() + 6) % 7) / 7);
+  return `${d.getFullYear()}-W${String(weekNum).padStart(2, '0')}`;
+}
+
+/**
+ * Get next Monday midnight (Berlin-aware) for boss expiration.
+ */
+function getNextMondayMidnight() {
+  const d = new Date();
+  const day = d.getDay();
+  const daysUntilMonday = day === 0 ? 1 : (8 - day);
+  const next = new Date(d);
+  next.setDate(next.getDate() + daysUntilMonday);
+  next.setHours(0, 0, 0, 0);
+  return next;
+}
+
+/**
+ * Auto-spawn check — synced with weekly challenge cycle.
+ * Spawns a new boss every Monday (ISO week boundary).
  */
 function checkAutoSpawn() {
   // Don't spawn if there's already an active boss
   if (getActiveBoss()) return;
 
-  const intervalMs = bossData.config.spawnIntervalDays * 24 * 60 * 60 * 1000;
-  const lastEnded = worldBossState.history.length > 0
-    ? worldBossState.history[worldBossState.history.length - 1].defeatedAt
-      || worldBossState.history[worldBossState.history.length - 1].expiresAt
+  const weekId = getWeekId();
+
+  // Check if we already spawned a boss this week
+  const lastBoss = worldBossState.history.length > 0
+    ? worldBossState.history[worldBossState.history.length - 1]
     : null;
 
-  if (!lastEnded) {
-    // No history — spawn first boss if we have players
-    if (Object.keys(state.users).length > 0) {
-      spawnBoss();
-    }
+  if (lastBoss && lastBoss.weekId === weekId) {
+    // Already had a boss this week (defeated or expired)
     return;
   }
 
-  const elapsed = Date.now() - new Date(lastEnded).getTime();
-  if (elapsed >= intervalMs) {
+  // Spawn a new boss if we have players
+  if (Object.keys(state.users).length > 0) {
     spawnBoss();
   }
 }
@@ -206,9 +234,8 @@ router.get('/api/world-boss', (req, res) => {
       ? worldBossState.history[worldBossState.history.length - 1].defeatedAt
         || worldBossState.history[worldBossState.history.length - 1].expiresAt
       : null;
-    const nextSpawnEstimate = lastEnded
-      ? new Date(new Date(lastEnded).getTime() + bossData.config.spawnIntervalDays * 24 * 60 * 60 * 1000).toISOString()
-      : null;
+    // Next boss spawns next Monday (synced with weekly challenge reset)
+    const nextSpawnEstimate = getNextMondayMidnight().toISOString();
 
     return res.json({
       active: false,
@@ -227,6 +254,13 @@ router.get('/api/world-boss', (req, res) => {
   const contributorCount = Object.keys(boss.contributions).length;
   const totalDamageDealt = boss.maxHp - boss.currentHp;
 
+  // Resolve unique item details for loot preview
+  const uniqueItemDetails = (template.uniqueDrops || []).map(uid => {
+    const u = state.uniqueItemsById?.get(uid);
+    if (!u) return null;
+    return { id: u.id, name: u.name, slot: u.slot, desc: u.desc, flavorText: u.flavorText, legendaryEffect: u.legendaryEffect, icon: u.icon };
+  }).filter(Boolean);
+
   res.json({
     active: true,
     boss: {
@@ -239,6 +273,7 @@ router.get('/api/world-boss', (req, res) => {
       defeatedAt: boss.defeatedAt,
       contributorCount,
       totalDamageDealt,
+      uniqueItemDetails,
     },
     leaderboard,
     playerContribution,

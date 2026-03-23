@@ -296,6 +296,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
                   value={name}
                   onChange={e => setName(e.target.value)}
                   placeholder="e.g. Luna, Marco, Aria..."
+                  maxLength={50}
                   autoFocus
                 />
               </div>
@@ -388,6 +389,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
                 value={goals}
                 onChange={e => setGoals(e.target.value)}
                 placeholder="e.g. Get fit, advance career, learn new skills..."
+                maxLength={500}
               />
             </div>
             <div className="flex justify-between">
@@ -487,6 +489,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
                     value={customProfession}
                     onChange={e => setCustomProfession(e.target.value)}
                     placeholder="e.g. Electrician, Designer, Nurse..."
+                    maxLength={200}
                   />
                 </div>
                 <div>
@@ -496,6 +499,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
                     value={customFocus}
                     onChange={e => setCustomFocus(e.target.value)}
                     placeholder="e.g. Education, Fitness, Work-Life-Balance..."
+                    maxLength={200}
                   />
                 </div>
                 <div className="flex gap-2">

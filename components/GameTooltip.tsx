@@ -370,9 +370,9 @@ const TOOLTIP_REGISTRY: Record<string, TooltipEntry> = {
     accent: "#ef4444",
     body: (
       <>
-        <p>Community-wide boss encounters. All players deal damage by completing quests. <GTRef k="xp">Gear Score</GTRef> multiplies your damage.</p>
-        <div className="gt-stat-row"><span>Duration</span><span>7 days active</span></div>
-        <div className="gt-stat-row"><span>Spawn</span><span>Every 21 days</span></div>
+        <p>Community-wide boss encounters. All players deal damage by completing quests. <GTRef k="gear_score">Gear Score</GTRef> multiplies your damage.</p>
+        <div className="gt-stat-row"><span>Duration</span><span>Until weekly reset (Monday)</span></div>
+        <div className="gt-stat-row"><span>Spawn</span><span>Every Monday</span></div>
         <p className="gt-source">Top 3 contributors earn exclusive titles. #1 gets a unique frame. All contributors receive <GTRef k="gold">Gold</GTRef>, <GTRef k="essenz">Essenz</GTRef>, and a chance at unique item drops.</p>
       </>
     ),

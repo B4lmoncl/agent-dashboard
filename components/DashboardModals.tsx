@@ -29,6 +29,8 @@ interface DashboardModalsProps {
   setXpInfoOpen: (v: boolean) => void;
   // Quest counts
   inProgressCount: number;
+  // Navigation
+  onNavigate?: (view: string) => void;
 }
 
 export default function DashboardModals({
@@ -42,6 +44,7 @@ export default function DashboardModals({
   activeQuestsInfoOpen, setActiveQuestsInfoOpen,
   xpInfoOpen, setXpInfoOpen,
   inProgressCount,
+  onNavigate,
 }: DashboardModalsProps) {
   // Unified ESC key handler for all modals
   useEffect(() => {
@@ -58,6 +61,15 @@ export default function DashboardModals({
     document.addEventListener("keydown", h);
     return () => document.removeEventListener("keydown", h);
   }, [currenciesOpen, modifierOpen, streakInfoOpen, activeQuestsInfoOpen, xpInfoOpen]);
+
+  const CURRENCY_SOURCE: Record<string, { view: string; label: string }> = {
+    gold: { view: "questBoard", label: "Quest Board" },
+    stardust: { view: "gacha", label: "Vault of Fate" },
+    essenz: { view: "forge", label: "Artisan's Quarter" },
+    runensplitter: { view: "questBoard", label: "Quest Board" },
+    gildentaler: { view: "social", label: "The Breakaway" },
+    sternentaler: { view: "challenges", label: "Challenges" },
+  };
 
   const CURRENCY_HOW: Record<string, string> = {
     gold: "Earned from quests, rituals, and NPC chains. Multiplied by Streak, Forge Temperature, Weisheit stat, and Legendary gear. Used for Bazaar, crafting, and gear. Convertible to Runensplitter and Gildentaler.",
@@ -105,13 +117,22 @@ export default function DashboardModals({
                           <p className="text-xs text-w30">{c.desc}</p>
                         </div>
                         <span className="text-sm font-mono font-bold" style={{ color: c.value === 0 && c.key !== "gold" ? "rgba(255,255,255,0.2)" : c.color }}>
-                          {c.value === 0 && c.key !== "gold" ? "—" : c.value}
+                          {c.value === 0 && c.key !== "gold" ? "—" : c.value.toLocaleString()}
                         </span>
                       </div>
                       {currencyExpanded === c.key && (
                         <div className="rounded-b-xl px-4 py-3 -mt-1" style={{ background: `${c.color}08`, borderLeft: `1px solid ${c.color}30`, borderRight: `1px solid ${c.color}30`, borderBottom: `1px solid ${c.color}30` }}>
                           <p className="text-xs font-bold uppercase tracking-wider mb-1" style={{ color: `${c.color}99` }}>How to earn {c.name}</p>
                           <p className="text-xs leading-relaxed text-w55">{CURRENCY_HOW[c.key]}</p>
+                          {onNavigate && CURRENCY_SOURCE[c.key] && (
+                            <button
+                              onClick={() => { setCurrenciesOpen(false); setCurrencyExpanded(null); onNavigate(CURRENCY_SOURCE[c.key].view); }}
+                              className="mt-2 w-full text-xs font-semibold py-1.5 rounded-lg btn-interactive"
+                              style={{ background: `${c.color}15`, color: c.color, border: `1px solid ${c.color}30`, cursor: "pointer" }}
+                            >
+                              Go to {CURRENCY_SOURCE[c.key].label} {"\u2192"}
+                            </button>
+                          )}
                         </div>
                       )}
                     </div>

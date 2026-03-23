@@ -3,7 +3,7 @@ const router = require('express').Router();
 const fs = require('fs');
 const path = require('path');
 const { state, NPC_META, saveUsers, savePlayerProgress } = require('../lib/state');
-const { now, todayStr, getLevelInfo, getPlayerProgress, calcDynamicForgeTemp, getBondLevel, onQuestCompletedByUser, awardCurrency, rollLoot, addLootToInventory } = require('../lib/helpers');
+const { now, todayStr, getLevelInfo, getPlayerProgress, calcDynamicForgeTemp, getBondLevel, onQuestCompletedByUser, awardCurrency, rollLoot, addLootToInventory, getGearScore } = require('../lib/helpers');
 const { requireAuth, requireSelf } = require('../lib/middleware');
 
 // ─── Companion Expeditions data ─────────────────────────────────────────────
@@ -583,6 +583,7 @@ router.get('/api/player/:name/public-profile', (req, res) => {
     lastActiveAt,
     memberSince: u.createdAt || null,
     friendshipStatus,
+    gearScore: getGearScore(uid).gearScore,
   });
 });
 

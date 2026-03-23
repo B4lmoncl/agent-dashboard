@@ -156,7 +156,7 @@ export default function LeaderboardView({ entries, agents, mode = "agents", onOp
       {/* ── Leaderboard Table ── */}
       <div className="rounded-xl overflow-hidden" style={{ background: "#1e1e1e", border: "1px solid rgba(255,255,255,0.07)" }}>
         <div className="grid px-4 py-2" style={{ gridTemplateColumns: "40px 1fr 80px 80px 80px", color: "rgba(255,255,255,0.3)", fontSize: 12, borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
-          <span>#</span><span>{isPlayerMode ? "Adventurer" : "Agent"}</span><Tip k="player_level"><span className="text-right">Level</span></Tip><Tip k="xp"><span className="text-right">XP</span></Tip><span className="text-right">Quests</span>
+          <span>#</span><span>{isPlayerMode ? "Adventurer" : "Agent"}</span><Tip k="player_level"><span className="text-right">Level</span></Tip><Tip k="xp"><span className="text-right">XP</span></Tip><Tip k="quest_board"><span className="text-right">Quests</span></Tip>
         </div>
         {merged.map((entry) => {
           const meta = agentMetaLb[entry.id?.toLowerCase()] ?? { avatar: entry.avatar ?? entry.id?.slice(0, 2).toUpperCase() ?? "??", color: entry.color ?? "#666" };
@@ -169,7 +169,7 @@ export default function LeaderboardView({ entries, agents, mode = "agents", onOp
           return (
             <div
               key={entry.id}
-              className={`grid px-4 py-3 items-center${isPlayerMode && onOpenProfile ? " cursor-pointer hover:bg-white/[0.03] transition-colors" : ""}`}
+              className={`cv-auto grid px-4 py-3 items-center${isPlayerMode && onOpenProfile ? " cursor-pointer hover:bg-white/[0.03] transition-colors" : ""}`}
               onClick={isPlayerMode && onOpenProfile ? () => onOpenProfile(entry.id) : undefined}
               style={{
                 gridTemplateColumns: "40px 1fr 80px 80px 80px",
@@ -206,8 +206,8 @@ export default function LeaderboardView({ entries, agents, mode = "agents", onOp
                 </div>
               </div>
               <span className="text-right text-xs font-semibold" style={{ color: lvl.color }}>{lvl.name}</span>
-              <span className="text-right text-xs font-mono font-bold" style={{ color: "#a855f7" }}>{entry.xp}</span>
-              <span className="text-right text-xs font-mono" style={{ color: "rgba(255,255,255,0.5)" }}>{entry.questsCompleted}</span>
+              <span className="text-right text-xs font-mono font-bold" style={{ color: "#a855f7" }}>{entry.xp.toLocaleString()}</span>
+              <span className="text-right text-xs font-mono" style={{ color: "rgba(255,255,255,0.5)" }}>{entry.questsCompleted.toLocaleString()}</span>
             </div>
           );
         })}

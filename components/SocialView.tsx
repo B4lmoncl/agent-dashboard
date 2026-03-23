@@ -27,7 +27,7 @@ function PlayerBadge({ name, avatar, color, size = 24 }: { name: string; avatar:
   return (
     <span
       className="inline-flex items-center justify-center rounded-full font-bold flex-shrink-0"
-      style={{ width: size, height: size, fontSize: size * 0.4, background: color + "20", color, border: `1px solid ${color}40` }}
+      style={{ width: size, height: size, fontSize: Math.max(size * 0.4, 12), background: color + "20", color, border: `1px solid ${color}40` }}
     >
       {avatar?.slice(0, 2) || name?.[0] || "?"}
     </span>
@@ -202,6 +202,7 @@ function FriendsTab({ apiKey, playerName, onOpenProfile }: { apiKey: string; pla
             onKeyDown={e => { if (e.key === "Enter") sendRequest(); }}
             onFocus={() => { if (searchResults.length > 0) setSearchOpen(true); }}
             placeholder="Search players..."
+            maxLength={50}
             className="input-dark flex-1 text-xs px-3 py-2 rounded-lg"
           />
           <button
@@ -287,8 +288,8 @@ function FriendsTab({ apiKey, playerName, onOpenProfile }: { apiKey: string; pla
                 {/* Remove button — top right, visible on hover */}
                 {confirmRemove === f.id ? (
                   <div className="absolute top-1.5 right-1.5 flex gap-1">
-                    <button onClick={() => removeFriend(f.id)} className="btn-interactive text-xs px-1.5 py-0.5 rounded font-semibold" style={{ background: "rgba(239,68,68,0.12)", color: "#ef4444", fontSize: 12 }}>Yes</button>
-                    <button onClick={() => setConfirmRemove(null)} className="btn-interactive text-xs px-1.5 py-0.5 rounded text-w30" style={{ fontSize: 12 }}>No</button>
+                    <button onClick={() => removeFriend(f.id)} className="btn-interactive text-xs px-2 py-1 rounded font-semibold" style={{ background: "rgba(239,68,68,0.12)", color: "#ef4444", fontSize: 12 }}>Yes</button>
+                    <button onClick={() => setConfirmRemove(null)} className="btn-interactive text-xs px-2 py-1 rounded text-w30" style={{ fontSize: 12 }}>No</button>
                   </div>
                 ) : (
                   <button onClick={() => setConfirmRemove(f.id)} className="btn-interactive absolute top-1.5 right-1.5 text-xs px-1 py-0.5 rounded text-w15 opacity-0 group-hover:opacity-100 transition-opacity" title="Remove friend">✕</button>
@@ -311,7 +312,7 @@ function FriendsTab({ apiKey, playerName, onOpenProfile }: { apiKey: string; pla
 
 // ─── Messages Tab ───────────────────────────────────────────────────────────
 
-function MessagesTab({ apiKey, playerName }: { apiKey: string; playerName: string }) {
+function MessagesTab({ apiKey, playerName, autoOpenWith, onAutoOpened }: { apiKey: string; playerName: string; autoOpenWith?: string | null; onAutoOpened?: () => void }) {
   const [conversations, setConversations] = useState<Conversation[]>([]);
   const [activeConvo, setActiveConvo] = useState<string | null>(null);
   const [messages, setMessages] = useState<SocialMessage[]>([]);
@@ -331,6 +332,15 @@ function MessagesTab({ apiKey, playerName }: { apiKey: string; playerName: strin
   }, [apiKey, playerName]);
 
   useEffect(() => { fetchConversations(); }, [fetchConversations]);
+
+  // Auto-open conversation when navigated from profile "Message" button
+  useEffect(() => {
+    if (autoOpenWith && !loading) {
+      openConvo(autoOpenWith);
+      onAutoOpened?.();
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [autoOpenWith, loading]);
 
   const openConvo = async (otherPlayerId: string) => {
     setActiveConvo(otherPlayerId);
@@ -1169,7 +1179,7 @@ function ActivityFeedTab({ apiKey, playerName }: { apiKey: string; playerName: s
 
         if (compactView) {
           return (
-            <div key={event.id} className="flex items-center gap-2 text-xs px-2 py-1 rounded" style={{ background: d.rarity === "legendary" ? "rgba(255,140,0,0.04)" : "rgba(255,255,255,0.015)", borderLeft: `2px solid ${d.rarity ? (RARITY_COLORS[d.rarity] || "rgba(255,255,255,0.06)") : "rgba(255,255,255,0.06)"}` }}>
+            <div key={event.id} className="cv-auto flex items-center gap-2 text-xs px-2 py-1 rounded" style={{ background: d.rarity === "legendary" ? "rgba(255,140,0,0.04)" : "rgba(255,255,255,0.015)", borderLeft: `2px solid ${d.rarity ? (RARITY_COLORS[d.rarity] || "rgba(255,255,255,0.06)") : "rgba(255,255,255,0.06)"}` }}>
               <span style={{ fontSize: 12 }}>{icon}</span>
               <span className="font-semibold truncate" style={{ color: isOwn ? "#a855f7" : (event.playerColor || "#e8e8e8") }}>{name}</span>
               <span className="text-w30 truncate flex-1">{descriptionNode}</span>
@@ -1179,7 +1189,7 @@ function ActivityFeedTab({ apiKey, playerName }: { apiKey: string; playerName: s
         }
 
         return (
-          <div key={event.id} className={`flex items-start gap-2.5 rounded-lg px-3 py-2.5 ${d.rarity === "legendary" ? "feed-event-legendary" : d.rarity === "epic" ? "feed-event-epic" : ""}`} style={{ background: d.rarity === "legendary" ? "rgba(255,140,0,0.04)" : d.rarity === "epic" ? "rgba(168,85,247,0.03)" : "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)" }}>
+          <div key={event.id} className={`cv-auto flex items-start gap-2.5 rounded-lg px-3 py-2.5 ${d.rarity === "legendary" ? "feed-event-legendary" : d.rarity === "epic" ? "feed-event-epic" : ""}`} style={{ background: d.rarity === "legendary" ? "rgba(255,140,0,0.04)" : d.rarity === "epic" ? "rgba(168,85,247,0.03)" : "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)" }}>
             <span className="text-sm flex-shrink-0 mt-0.5">{icon}</span>
             <div className="flex-1 min-w-0">
               <p className="text-xs">
@@ -1208,6 +1218,7 @@ export default function SocialView() {
   const { playerName, reviewApiKey } = useDashboard();
   const [activeTab, setActiveTab] = useState<SocialTab>("friends");
   const [profilePlayerId, setProfilePlayerId] = useState<string | null>(null);
+  const [pendingMessageTarget, setPendingMessageTarget] = useState<string | null>(null);
 
   if (!playerName || !reviewApiKey) {
     return (
@@ -1249,7 +1260,7 @@ export default function SocialView() {
       {/* Tab content */}
       <div key={activeTab} className="tab-content-enter">
         {activeTab === "friends" && <FriendsTab apiKey={reviewApiKey} playerName={playerName} onOpenProfile={id => setProfilePlayerId(id)} />}
-        {activeTab === "messages" && <MessagesTab apiKey={reviewApiKey} playerName={playerName} />}
+        {activeTab === "messages" && <MessagesTab apiKey={reviewApiKey} playerName={playerName} autoOpenWith={pendingMessageTarget} onAutoOpened={() => setPendingMessageTarget(null)} />}
         {activeTab === "trades" && <TradesTab apiKey={reviewApiKey} playerName={playerName} />}
         {activeTab === "activity" && <ActivityFeedTab apiKey={reviewApiKey} playerName={playerName} />}
       </div>
@@ -1259,7 +1270,7 @@ export default function SocialView() {
         <PlayerProfileModal
           playerId={profilePlayerId}
           onClose={() => setProfilePlayerId(null)}
-          onMessage={(id) => { setProfilePlayerId(null); setActiveTab("messages"); }}
+          onMessage={(id) => { setProfilePlayerId(null); setPendingMessageTarget(id); setActiveTab("messages"); }}
         />
       )}
     </div>

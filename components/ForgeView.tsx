@@ -620,12 +620,14 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                               headers: { "Content-Type": "application/json", ...getAuthHeaders(reviewApiKey) },
                               body: JSON.stringify({ gearId: gear.id }),
                             });
-                            if (r.ok) { onRefresh?.(); fetchData(); }
-                          } catch { /* ignore */ }
+                            if (r.ok) { onRefresh?.(); fetchData(); setCraftResult("Tool purchased!"); }
+                            else { const d = await r.json().catch(() => ({})); setCraftResult(d.error || "Purchase failed"); }
+                          } catch { setCraftResult("Network error"); }
                           setBuyingTool(null);
                         }}
                         disabled={!canBuy || buyingTool === gear.id}
                         className="forge-btn text-xs px-2.5 py-1 rounded-lg font-semibold flex-shrink-0"
+                        title={!canBuy ? "Not enough gold" : `Buy for ${gear.cost}g`}
                         style={{
                           background: canBuy ? "rgba(99,102,241,0.2)" : "rgba(255,255,255,0.03)",
                           color: canBuy ? "#818cf8" : "rgba(255,255,255,0.2)",
@@ -685,8 +687,9 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                             headers: { "Content-Type": "application/json", ...getAuthHeaders(reviewApiKey) },
                             body: JSON.stringify({ upgradeId: up.id }),
                           });
-                          if (r.ok) { onRefresh?.(); fetchData(); }
-                        } catch { /* ignore */ }
+                          if (r.ok) { onRefresh?.(); fetchData(); setCraftResult("Upgrade purchased!"); }
+                          else { const d = await r.json().catch(() => ({})); setCraftResult(d.error || "Upgrade failed"); }
+                        } catch { setCraftResult("Network error"); }
                         setBuyingUpgrade(null);
                       }}
                       disabled={!canAfford || buyingUpgrade === up.id}
@@ -863,7 +866,18 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                       }
                       return true;
                     })();
-                    const canDo = isLearned && canAfford && meetsLevel && !onCooldown;
+                    // For reroll recipes, check if the equipped item has rerollable stats
+                    const isSlotRecipe = recipe.id === "reroll_stat" || recipe.id === "reroll_minor" || recipe.id === "reinforce_armor" || recipe.id === "enchant_socket";
+                    const PRIMARY_STATS = ["kraft", "ausdauer", "weisheit", "glueck"];
+                    const slotItem = equippedSlots[selectedSlot];
+                    const slotItemStats = (slotItem && typeof slotItem === "object") ? ((slotItem as Record<string, unknown>).stats as Record<string, number> || {}) : {};
+                    const hasRerollableStats = recipe.id === "reroll_stat"
+                      ? Object.keys(slotItemStats).some(s => PRIMARY_STATS.includes(s))
+                      : recipe.id === "reroll_minor"
+                        ? Object.keys(slotItemStats).some(s => !PRIMARY_STATS.includes(s))
+                        : true;
+                    const hasSlotItem = isSlotRecipe ? (slotItem && typeof slotItem === "object") : true;
+                    const canDo = isLearned && canAfford && meetsLevel && !onCooldown && hasSlotItem && hasRerollableStats;
 
                     return (
                       <div key={recipe.id} className="rounded-lg p-3" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)", borderLeft: `3px solid ${skillUp?.color || "rgba(255,255,255,0.06)"}` }}>
@@ -986,7 +1000,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                                   border: `1px solid ${canDo ? `${selectedNpc.color}40` : "rgba(255,255,255,0.06)"}`,
                                   cursor: canDo && !crafting ? "pointer" : "not-allowed",
                                 }}
-                                title={!canDo ? (!isLearned ? "Recipe not learned" : !meetsLevel ? "Profession level too low" : onCooldown ? `On cooldown (${Math.ceil((recipe.cooldownRemaining ?? 0) / 60)}min left)` : !canAfford ? "Not enough materials or gold" : "") : `Craft ${recipe.name}`}
+                                title={!canDo ? (!isLearned ? "Recipe not learned" : !meetsLevel ? "Profession level too low" : onCooldown ? `On cooldown (${Math.ceil((recipe.cooldownRemaining ?? 0) / 60)}min left)` : !hasSlotItem ? "No gear equipped in this slot" : !hasRerollableStats ? "Item has no rerollable stats of this type" : !canAfford ? "Not enough materials or gold" : "") : `Craft ${recipe.name}`}
                               >
                                 {crafting ? "Crafting\u2026" : onCooldown ? "On Cooldown" : "Craft"}
                               </button>

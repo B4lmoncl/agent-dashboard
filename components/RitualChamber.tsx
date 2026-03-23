@@ -107,12 +107,13 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
                 {ritual.streak}
               </span>
               <span className="text-sm font-medium truncate" style={{ color: doneToday ? "rgba(255,255,255,0.4)" : "#e8e8e8", textDecoration: doneToday ? "line-through" : "none" }}>{ritual.title}</span>
+              {doneToday && <span style={{ color: "#22c55e", fontSize: 14, fontWeight: 700 }}>{"\u2713"}</span>}
               {ritual.bloodPact && (
                 <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded text-xs font-bold" style={{ color: "#ef4444", background: "rgba(239,68,68,0.12)", border: "1px solid rgba(239,68,68,0.3)", fontSize: 12, letterSpacing: "0.04em" }}>
                   <Tip k="blood_pact">Blood Pact</Tip>
                 </span>
               )}
-              {milestone && ((milestone as any).icon ? <img src={(milestone as any).icon} alt={milestone.badge} width={20} height={20} className="img-render-auto" /> : <span className="text-xs">{milestone.badge}</span>)}
+              {milestone && ((milestone as any).icon ? <img src={(milestone as any).icon} alt={milestone.badge} width={20} height={20} className="img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} /> : <span className="text-xs">{milestone.badge}</span>)}
             </div>
             <div className="flex items-center gap-3 text-xs flex-wrap text-w35">
               <span style={{ color: ritual.streak >= 21 ? "#818cf8" : ritual.streak >= 7 ? "#f97316" : "rgba(255,255,255,0.35)" }}>
@@ -166,7 +167,8 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
                   onClick={() => setRecommitRitualId(ritual.id)}
                   disabled={!reviewApiKey}
                   className="text-xs px-3 py-1.5 rounded-lg font-bold transition-all"
-                  style={{ background: "rgba(167,139,250,0.15)", color: "#a78bfa", border: "1px solid rgba(167,139,250,0.4)", cursor: "pointer", boxShadow: "0 0 10px rgba(167,139,250,0.1)" }}
+                  style={{ background: "rgba(167,139,250,0.15)", color: "#a78bfa", border: "1px solid rgba(167,139,250,0.4)", cursor: !reviewApiKey ? "not-allowed" : "pointer", boxShadow: "0 0 10px rgba(167,139,250,0.1)", opacity: !reviewApiKey ? 0.5 : 1 }}
+                  title={!reviewApiKey ? "Log in to rise again" : "Recommit to this ritual"}
                 >
                   Rise Again
                 </button>
@@ -201,7 +203,7 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
                         });
                         refresh();
                       }
-                    } catch { /* ignore */ }
+                    } catch { /* network error — retry silently */ }
                   }}
                   className="text-xs px-2.5 py-1.5 rounded-lg font-medium transition-all"
                   style={{
@@ -386,13 +388,13 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
                   <div className="rounded-lg p-3" style={{ background: "rgba(0,0,0,0.2)", border: "1px solid rgba(245,158,11,0.1)" }}>
                     <p className="text-xs font-semibold mb-1.5" style={{ color: "rgba(200,170,100,0.45)" }}>Reward Preview</p>
                     <p className="text-xs mb-1" style={{ color: "rgba(200,170,100,0.35)", fontStyle: "italic", letterSpacing: "0.03em" }}>Daily on check-off:</p>
-                    <p className="text-xs" style={{ color: "rgba(200,170,100,0.65)", display: "flex", alignItems: "center", gap: 4, flexWrap: "wrap" }}>Base <span style={{ color: diffData.color, fontSize: "0.65rem" }}>({diffData.label})</span>: <span style={{ color: "#f59e0b", display: "inline-flex", alignItems: "center", gap: 2 }}>{diffData.gold} <img src="/images/icons/reward-gold.png" width={20} height={20} className="img-render-auto" /></span> <span style={{ color: "#a78bfa" }}>{diffData.xp} XP</span></p>
-                    {tierData.id !== "none" && <p className="text-xs mt-0.5" style={{ color: "rgba(200,170,100,0.65)", display: "flex", alignItems: "center", gap: 4, flexWrap: "wrap" }}>Bond Bonus{diffData.bondScale !== 1 && <span style={{ color: diffData.color, fontSize: "0.6rem" }}> ×{diffData.bondScale}</span>}: <span style={{ color: "#f59e0b", display: "inline-flex", alignItems: "center", gap: 2 }}>+{bonusGold} <img src="/images/icons/reward-gold.png" width={20} height={20} className="img-render-auto" /></span> <span style={{ color: "#a78bfa" }}>+{bonusXp} XP</span></p>}
-                    {(bonusGold > 0 || bonusXp > 0) && <p className="text-xs mt-1" style={{ color: "rgba(200,170,100,0.85)", display: "flex", alignItems: "center", gap: 4, fontWeight: 600, flexWrap: "wrap" }}>= Täglich: <span style={{ color: "#f59e0b", display: "inline-flex", alignItems: "center", gap: 2 }}>{diffData.gold + bonusGold} <img src="/images/icons/reward-gold.png" width={20} height={20} className="img-render-auto" /></span> <span style={{ color: "#a78bfa" }}>{diffData.xp + bonusXp} XP</span></p>}
+                    <p className="text-xs" style={{ color: "rgba(200,170,100,0.65)", display: "flex", alignItems: "center", gap: 4, flexWrap: "wrap" }}>Base <span style={{ color: diffData.color, fontSize: "0.65rem" }}>({diffData.label})</span>: <span style={{ color: "#f59e0b", display: "inline-flex", alignItems: "center", gap: 2 }}>{diffData.gold} <img src="/images/icons/reward-gold.png" width={20} height={20} className="img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} /></span> <span style={{ color: "#a78bfa" }}>{diffData.xp} XP</span></p>
+                    {tierData.id !== "none" && <p className="text-xs mt-0.5" style={{ color: "rgba(200,170,100,0.65)", display: "flex", alignItems: "center", gap: 4, flexWrap: "wrap" }}>Bond Bonus{diffData.bondScale !== 1 && <span style={{ color: diffData.color, fontSize: "0.6rem" }}> ×{diffData.bondScale}</span>}: <span style={{ color: "#f59e0b", display: "inline-flex", alignItems: "center", gap: 2 }}>+{bonusGold} <img src="/images/icons/reward-gold.png" width={20} height={20} className="img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} /></span> <span style={{ color: "#a78bfa" }}>+{bonusXp} XP</span></p>}
+                    {(bonusGold > 0 || bonusXp > 0) && <p className="text-xs mt-1" style={{ color: "rgba(200,170,100,0.85)", display: "flex", alignItems: "center", gap: 4, fontWeight: 600, flexWrap: "wrap" }}>= Täglich: <span style={{ color: "#f59e0b", display: "inline-flex", alignItems: "center", gap: 2 }}>{diffData.gold + bonusGold} <img src="/images/icons/reward-gold.png" width={20} height={20} className="img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} /></span> <span style={{ color: "#a78bfa" }}>{diffData.xp + bonusXp} XP</span></p>}
                     {newRitualBloodPact && pactCompletionXp > 0 && <>
                       <div style={{ borderTop: "1px solid rgba(239,68,68,0.15)", margin: "8px 0 6px" }} />
                       <p className="text-xs mb-0.5" style={{ color: "rgba(239,68,68,0.5)", fontStyle: "italic", letterSpacing: "0.03em" }}>Einmalig nach {tierData.days}d Abschluss <span style={{ fontWeight: 600 }}>(Pact ×{pactMulti})</span>:</p>
-                      <p className="text-xs" style={{ color: "rgba(239,68,68,0.8)", display: "flex", alignItems: "center", gap: 4, fontWeight: 600, flexWrap: "wrap" }}><span style={{ color: "#f59e0b", display: "inline-flex", alignItems: "center", gap: 2 }}>{pactCompletionGold} <img src="/images/icons/reward-gold.png" width={20} height={20} className="img-render-auto" /></span> <span style={{ color: "#a78bfa" }}>{pactCompletionXp} XP</span></p>
+                      <p className="text-xs" style={{ color: "rgba(239,68,68,0.8)", display: "flex", alignItems: "center", gap: 4, fontWeight: 600, flexWrap: "wrap" }}><span style={{ color: "#f59e0b", display: "inline-flex", alignItems: "center", gap: 2 }}>{pactCompletionGold} <img src="/images/icons/reward-gold.png" width={20} height={20} className="img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} /></span> <span style={{ color: "#a78bfa" }}>{pactCompletionXp} XP</span></p>
                     </>}
                     <p className="text-xs mt-2 mb-0.5" style={{ color: "rgba(200,170,100,0.35)", fontStyle: "italic", letterSpacing: "0.03em" }}>Bei Streak-Meilenstein:</p>
                     <p className="text-xs" style={{ color: "rgba(200,170,100,0.5)" }}>Loot-Drops bei 3, 7, 14, 30, 60, 90 Tagen</p>

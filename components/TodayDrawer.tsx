@@ -3,7 +3,7 @@
 import { useMemo, useState, useEffect } from "react";
 import { useDashboard } from "@/app/DashboardContext";
 import { getUserLevel, getUserXpProgress } from "@/app/utils";
-import { Tip } from "@/components/GameTooltip";
+import { Tip, TipCustom } from "@/components/GameTooltip";
 import type { ActiveNpc, Ritual } from "@/app/types";
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
@@ -274,6 +274,7 @@ export default function TodayDrawer({
   socialBadge,
   expeditionActive,
   dungeonActive,
+  onClaimMilestone,
 }: {
   open: boolean;
   onClose: () => void;
@@ -291,6 +292,7 @@ export default function TodayDrawer({
   socialBadge: { pendingFriendRequests: number; unreadMessages: number; activeTrades: number } | null;
   expeditionActive: boolean;
   dungeonActive: boolean;
+  onClaimMilestone?: (threshold: number) => void;
 }) {
   const { loggedInUser } = useDashboard();
 
@@ -346,6 +348,7 @@ export default function TodayDrawer({
       done: !dailyBonusAvailable,
       reward: dailyBonusAvailable ? "+Gold, +Stardust" : undefined,
       rewardIcon: "/images/icons/currency-gold.png",
+      tooltipKey: "gold",
       onClick: dailyBonusAvailable ? onClaimDailyBonus : undefined,
     });
 
@@ -402,17 +405,20 @@ export default function TodayDrawer({
       // Unclaimed milestones → URGENT
       const unclaimedMilestones = dailyMissions.milestones.filter(m => !m.claimed && dailyMissions.earned >= m.threshold);
       if (unclaimedMilestones.length > 0) {
-        urgent.push({
-          id: "milestone-claim",
-          icon: "/images/icons/currency-stardust.png",
-          label: "Claim Milestone",
-          done: false,
-          urgent: true,
-          sub: `${unclaimedMilestones.length} ready`,
-          reward: "Currencies",
-          tooltipKey: "daily_missions",
-          onClick: () => navigateAndScroll(onNavigate, onClose, "questBoard", "daily-missions-section"),
-        });
+        // Add one card per unclaimed milestone so user can claim directly
+        for (const ms of unclaimedMilestones) {
+          urgent.push({
+            id: `milestone-claim-${ms.threshold}`,
+            icon: "/images/icons/currency-stardust.png",
+            label: `Claim ${ms.threshold} Milestone`,
+            done: false,
+            urgent: true,
+            sub: Object.entries(ms.reward).map(([k, v]) => `+${v} ${k}`).join(", "),
+            reward: "Claim now",
+            tooltipKey: "daily_missions",
+            onClick: onClaimMilestone ? () => onClaimMilestone(ms.threshold) : () => navigateAndScroll(onNavigate, onClose, "questBoard", "daily-missions-section"),
+          });
+        }
       }
     }
 
@@ -427,6 +433,7 @@ export default function TodayDrawer({
         done: craftedToday,
         sub: craftedToday ? "Used" : "Available",
         reward: craftedToday ? undefined : "2× Prof. XP",
+        tooltipKey: "professions",
         onClick: () => { onNavigate("forge"); onClose(); },
       });
     }
@@ -448,6 +455,7 @@ export default function TodayDrawer({
         done: false,
         urgent: true,
         sub: `Leaves in ${hoursLeft}h`,
+        tooltipKey: "npc_quest_board",
         onClick: () => { onNavigate("npcBoard"); onClose(); },
       });
     }
@@ -461,6 +469,7 @@ export default function TodayDrawer({
         done: false,
         urgent: true,
         reward: "Unique drops",
+        tooltipKey: "world_boss",
         onClick: () => { onNavigate("worldboss"); onClose(); },
       });
     }
@@ -477,6 +486,7 @@ export default function TodayDrawer({
         sub: `${inProgressCount} active`,
         reward: "+XP, +Gold",
         rewardIcon: "/images/icons/currency-gold.png",
+        tooltipKey: "quest_board",
         onClick: () => { onNavigate("questBoard"); onClose(); },
       });
     }
@@ -491,6 +501,7 @@ export default function TodayDrawer({
         done: starsEarned >= 3,
         sub: `${starsEarned}/3 stages`,
         reward: starsEarned < 3 ? "Sternentaler" : undefined,
+        tooltipKey: "sternenpfad",
         onClick: () => { onNavigate("challenges"); onClose(); },
       });
     }
@@ -504,6 +515,7 @@ export default function TodayDrawer({
         done: false,
         sub: "Complete your stages",
         reward: "Rift loot",
+        tooltipKey: "rift",
         onClick: () => { onNavigate("rift"); onClose(); },
       });
     }
@@ -517,6 +529,7 @@ export default function TodayDrawer({
         done: false,
         sub: "Contribute quests",
         reward: "Group rewards",
+        tooltipKey: "expedition",
         onClick: () => { onNavigate("challenges"); onClose(); },
       });
     }
@@ -530,6 +543,7 @@ export default function TodayDrawer({
         done: false,
         sub: "Collect rewards",
         reward: "Gear, Gems",
+        tooltipKey: "dungeons",
         onClick: () => { onNavigate("dungeons"); onClose(); },
       });
     }
@@ -543,6 +557,7 @@ export default function TodayDrawer({
         done: false,
         sub: `${vowCount} active`,
         reward: "+XP per clean day",
+        tooltipKey: "vows",
         onClick: () => { onNavigate("vows"); onClose(); },
       });
     }
@@ -558,6 +573,7 @@ export default function TodayDrawer({
           done: false,
           urgent: true,
           sub: `${socialBadge.pendingFriendRequests} pending`,
+          tooltipKey: "breakaway",
           onClick: () => { onNavigate("social"); onClose(); },
         });
       }
@@ -568,6 +584,7 @@ export default function TodayDrawer({
           label: "Open Trades",
           done: false,
           sub: `${socialBadge.activeTrades} active`,
+          tooltipKey: "trading",
           onClick: () => { onNavigate("social"); onClose(); },
         });
       }
@@ -578,6 +595,7 @@ export default function TodayDrawer({
           label: "Unread Messages",
           done: false,
           sub: `${socialBadge.unreadMessages} new`,
+          tooltipKey: "breakaway",
           onClick: () => { onNavigate("social"); onClose(); },
         });
       }
@@ -634,7 +652,7 @@ export default function TodayDrawer({
       <div
         className="fixed top-0 right-0 z-[91] h-full flex flex-col"
         style={{
-          width: 720,
+          width: "min(95vw, 720px)",
           background: timeInfo.bg,
           borderLeft: "1px solid rgba(255,255,255,0.06)",
           boxShadow: "-12px 0 40px rgba(0,0,0,0.7)",
@@ -671,107 +689,20 @@ export default function TodayDrawer({
           <p className="text-xs" style={{ color: "rgba(255,255,255,0.25)", lineHeight: 1.4 }}>{timeInfo.flavor}</p>
         </div>
 
-        {/* ─── Hero Section: Centered Ring + Mini-Cards ───────────────── */}
-        <div className="relative px-5 pt-5 pb-4" style={{ borderBottom: "1px solid rgba(255,255,255,0.06)", zIndex: 1 }}>
-          {/* Breathing ambient glow behind hero */}
+        {/* ─── Hero Section: Horizontal layout ─────────────────────── */}
+        <div className="relative px-5 pt-3 pb-3" style={{ borderBottom: "1px solid rgba(255,255,255,0.06)", zIndex: 1 }}>
           <div className="absolute inset-0 pointer-events-none" style={{
             background: `radial-gradient(ellipse at 50% 40%, ${timeInfo.accentGlow} 0%, transparent 70%)`,
             animation: "today-hero-breathe 4s ease-in-out infinite",
           }} />
 
-          {/* Level Ring - centered */}
-          <div className="flex flex-col items-center mb-4">
-            <div className="flex items-center gap-4">
-              {/* Mini Companion Avatar */}
-              {comp && (
-                <button
-                  onClick={() => { onNavigate("questBoard"); onClose(); }}
-                  className="relative flex-shrink-0 rounded-full overflow-hidden today-stat-card"
-                  style={{
-                    width: 36, height: 36, cursor: "pointer",
-                    border: `2px solid rgba(251,191,36,${comp.bondLevel && comp.bondLevel >= 3 ? "0.4" : "0.15"})`,
-                    boxShadow: comp.bondLevel && comp.bondLevel >= 5 ? "0 0 8px rgba(251,191,36,0.2)" : "none",
-                  }}
-                  title={`${comp.name} (Bond ${comp.bondLevel ?? 1})`}
-                >
-                  {companionSrc ? (
-                    <img src={companionSrc} alt={comp.name} width={36} height={36} className="w-full h-full object-cover" style={{ imageRendering: "auto" }} onError={e => { e.currentTarget.style.display = "none"; }} />
-                  ) : (
-                    <span className="flex items-center justify-center w-full h-full text-lg" style={{ color: "rgba(255,255,255,0.4)" }}>{comp.name?.[0] || "?"}</span>
-                  )}
-                  {/* Bond badge */}
-                  <span className="absolute -bottom-0.5 -right-0.5 text-xs rounded-full flex items-center justify-center"
-                    style={{
-                      width: 14, height: 14, fontSize: 8,
-                      background: "rgba(251,191,36,0.9)", color: "#000", fontWeight: 800,
-                    }}>
-                    {comp.bondLevel ?? 1}
-                  </span>
-                </button>
-              )}
-
-              {/* Level Ring with glow */}
-              <div className="relative flex-shrink-0" style={{
-                width: 76, height: 76,
-                "--ring-color": levelInfo.color,
-              } as React.CSSProperties}>
-                <svg width="76" height="76" viewBox="0 0 76 76" className="absolute inset-0" style={{
-                  animation: "today-ring-glow 3s ease-in-out infinite",
-                  "--ring-color": levelInfo.color,
-                } as React.CSSProperties}>
-                  {/* Outer decorative ring */}
-                  <circle cx="38" cy="38" r="35" fill="none" stroke="rgba(255,255,255,0.03)" strokeWidth="1" />
-                  {/* Background ring */}
-                  <circle cx="38" cy="38" r={ringRadius} fill="none" stroke="rgba(255,255,255,0.06)" strokeWidth="4.5" />
-                  {/* Progress ring */}
-                  <circle
-                    cx="38" cy="38" r={ringRadius}
-                    fill="none"
-                    stroke={levelInfo.color}
-                    strokeWidth="4.5"
-                    strokeLinecap="round"
-                    strokeDasharray={ringCircumference}
-                    strokeDashoffset={ringOffset}
-                    transform="rotate(-90 38 38)"
-                    style={{ transition: "stroke-dashoffset 0.8s ease-out" }}
-                  />
-                </svg>
-                <div className="absolute inset-0 flex flex-col items-center justify-center">
-                  <span className="text-xl font-bold font-mono" style={{ color: levelInfo.color, lineHeight: 1 }}>{levelInfo.level}</span>
-                  <span className="text-xs" style={{ color: "rgba(255,255,255,0.3)", fontSize: 9 }}>LVL</span>
-                </div>
-              </div>
-            </div>
-
-            {/* XP bar below ring */}
-            <div className="w-full max-w-[200px] mt-2.5">
-              <div className="flex items-center justify-between mb-0.5">
-                <span className="text-xs font-semibold" style={{ color: levelInfo.color }}>{levelInfo.title}</span>
-                <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.3)" }}>{Math.round(xpProgress * 100)}%</span>
-              </div>
-              <div className="h-1.5 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.06)" }}>
-                <div
-                  className="h-full rounded-full"
-                  style={{
-                    width: `${Math.round(xpProgress * 100)}%`,
-                    background: `linear-gradient(90deg, ${levelInfo.color}88, ${levelInfo.color})`,
-                    boxShadow: xpProgress > 0.8 ? `0 0 6px ${levelInfo.color}60` : "none",
-                    transition: "width 0.8s ease-out",
-                  }}
-                />
-              </div>
-            </div>
-          </div>
-
-          {/* Streak + Forge as Mini-Cards */}
-          <div className="grid grid-cols-2 gap-3">
-            {/* Streak Card */}
-            <Tip k="streak"><div className="today-stat-card rounded-xl px-3 py-2.5 relative overflow-hidden" style={{
-              background: streak > 0
-                ? "linear-gradient(135deg, rgba(249,115,22,0.08) 0%, rgba(251,191,36,0.04) 100%)"
-                : "rgba(255,255,255,0.02)",
+          {/* Row: Streak | Companion + Level + XP | Forge */}
+          <div className="flex items-center gap-3 relative" style={{ zIndex: 1 }}>
+            {/* Streak Card — left */}
+            <Tip k="streak"><div className="today-stat-card rounded-xl px-3 py-2 relative overflow-hidden flex-shrink-0" style={{
+              background: streak > 0 ? "linear-gradient(135deg, rgba(249,115,22,0.08) 0%, rgba(251,191,36,0.04) 100%)" : "rgba(255,255,255,0.02)",
               border: `1px solid ${streak > 0 ? "rgba(249,115,22,0.15)" : "rgba(255,255,255,0.04)"}`,
-              boxShadow: streak > 7 ? `inset 0 1px 0 rgba(249,115,22,0.1), 0 0 8px rgba(249,115,22,0.05)` : "inset 0 1px 0 rgba(255,255,255,0.04)",
+              boxShadow: streak > 7 ? "inset 0 1px 0 rgba(249,115,22,0.1)" : "inset 0 1px 0 rgba(255,255,255,0.04)",
             }}>
               <div className="flex items-center gap-2">
                 <StreakFlame streak={streak} />
@@ -782,32 +713,84 @@ export default function TodayDrawer({
               </div>
             </div></Tip>
 
-            {/* Forge Temp Card */}
-            <Tip k="forge_temp"><div className="today-stat-card rounded-xl px-3 py-2.5 relative overflow-hidden" style={{
-              background: forgeTemp > 0
-                ? `linear-gradient(135deg, ${forgeTempColor}10 0%, ${forgeTempColor}05 100%)`
-                : "rgba(255,255,255,0.02)",
+            {/* Center: Companion + Level Ring + XP */}
+            <div className="flex-1 flex flex-col items-center min-w-0">
+              <div className="flex items-center gap-3">
+                {/* Companion Avatar — bigger */}
+                {comp && (
+                  <button
+                    onClick={() => { onNavigate("questBoard"); onClose(); }}
+                    className="relative flex-shrink-0 rounded-full overflow-hidden today-stat-card"
+                    style={{
+                      width: 52, height: 52, cursor: "pointer",
+                      border: `2px solid rgba(251,191,36,${comp.bondLevel && comp.bondLevel >= 3 ? "0.4" : "0.15"})`,
+                      boxShadow: comp.bondLevel && comp.bondLevel >= 5 ? "0 0 8px rgba(251,191,36,0.2)" : "none",
+                    }}
+                    title={`${comp.name} (Bond ${comp.bondLevel ?? 1})`}
+                  >
+                    {companionSrc ? (
+                      <img src={companionSrc} alt={comp.name} width={52} height={52} className="w-full h-full object-cover" style={{ imageRendering: "auto" }} onError={e => { e.currentTarget.style.display = "none"; }} />
+                    ) : (
+                      <span className="flex items-center justify-center w-full h-full text-xl" style={{ color: "rgba(255,255,255,0.4)" }}>{comp.name?.[0] || "?"}</span>
+                    )}
+                    <span className="absolute -bottom-0.5 -right-0.5 text-xs rounded-full flex items-center justify-center"
+                      style={{ width: 16, height: 16, fontSize: 9, background: "rgba(251,191,36,0.9)", color: "#000", fontWeight: 800 }}>
+                      {comp.bondLevel ?? 1}
+                    </span>
+                  </button>
+                )}
+                {/* Level Ring */}
+                <div className="relative flex-shrink-0" style={{ width: 68, height: 68, "--ring-color": levelInfo.color } as React.CSSProperties}>
+                  <svg width="68" height="68" viewBox="0 0 76 76" className="absolute inset-0" style={{ animation: "today-ring-glow 3s ease-in-out infinite", "--ring-color": levelInfo.color } as React.CSSProperties}>
+                    <circle cx="38" cy="38" r="35" fill="none" stroke="rgba(255,255,255,0.03)" strokeWidth="1" />
+                    <circle cx="38" cy="38" r={ringRadius} fill="none" stroke="rgba(255,255,255,0.06)" strokeWidth="4.5" />
+                    <circle cx="38" cy="38" r={ringRadius} fill="none" stroke={levelInfo.color} strokeWidth="4.5" strokeLinecap="round"
+                      strokeDasharray={ringCircumference} strokeDashoffset={ringOffset} transform="rotate(-90 38 38)"
+                      style={{ transition: "stroke-dashoffset 0.8s ease-out" }} />
+                  </svg>
+                  <div className="absolute inset-0 flex flex-col items-center justify-center">
+                    <span className="text-lg font-bold font-mono" style={{ color: levelInfo.color, lineHeight: 1 }}>{levelInfo.level}</span>
+                    <span style={{ color: "rgba(255,255,255,0.3)", fontSize: 9 }}>LVL</span>
+                  </div>
+                </div>
+              </div>
+              {/* XP bar */}
+              <div className="w-full max-w-[180px] mt-1.5">
+                <div className="flex items-center justify-between mb-0.5">
+                  <span className="text-xs font-semibold" style={{ color: levelInfo.color, fontSize: 12 }}>{levelInfo.title}</span>
+                  <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.3)", fontSize: 12 }}>{Math.round(xpProgress * 100)}%</span>
+                </div>
+                <div className="h-1 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.06)" }}>
+                  <div className="h-full rounded-full" style={{
+                    width: `${Math.round(xpProgress * 100)}%`,
+                    background: `linear-gradient(90deg, ${levelInfo.color}88, ${levelInfo.color})`,
+                    transition: "width 0.8s ease-out",
+                  }} />
+                </div>
+              </div>
+            </div>
+
+            {/* Forge Temp Card — right */}
+            <Tip k="forge_temp"><div className="today-stat-card rounded-xl px-3 py-2 relative overflow-hidden flex-shrink-0" style={{
+              background: forgeTemp > 0 ? `linear-gradient(135deg, ${forgeTempColor}10 0%, ${forgeTempColor}05 100%)` : "rgba(255,255,255,0.02)",
               border: `1px solid ${forgeTemp > 0 ? `${forgeTempColor}25` : "rgba(255,255,255,0.04)"}`,
-              boxShadow: forgeTemp > 60 ? `inset 0 1px 0 ${forgeTempColor}15, 0 0 8px ${forgeTempColor}08` : "inset 0 1px 0 rgba(255,255,255,0.04)",
+              boxShadow: forgeTemp > 60 ? `inset 0 1px 0 ${forgeTempColor}15` : "inset 0 1px 0 rgba(255,255,255,0.04)",
               animation: forgeTemp >= 80 ? "today-forge-pulse 2s ease-in-out infinite" : "none",
               "--forge-color": forgeTempColor,
             } as React.CSSProperties}>
               <ForgeEmbers temp={forgeTemp} color={forgeTempColor} />
               <div className="flex items-center gap-2 relative" style={{ zIndex: 1 }}>
                 <span className="text-sm" style={{ filter: forgeTemp > 0 ? "none" : "grayscale(1) opacity(0.4)", fontFamily: "serif" }}>{"\u2692"}</span>
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm font-mono font-bold" style={{ color: forgeTempColor }}>{forgeTemp}%</span>
-                  </div>
-                  <div className="h-1 rounded-full overflow-hidden mt-0.5" style={{ background: "rgba(255,255,255,0.06)" }}>
+                <div className="min-w-0">
+                  <span className="text-sm font-mono font-bold" style={{ color: forgeTempColor }}>{forgeTemp}%</span>
+                  <div className="h-1 rounded-full overflow-hidden mt-0.5" style={{ background: "rgba(255,255,255,0.06)", width: 50 }}>
                     <div className="h-full rounded-full" style={{
                       width: `${forgeTemp}%`,
                       background: `linear-gradient(90deg, ${forgeTempColor}80, ${forgeTempColor})`,
-                      boxShadow: forgeTemp > 60 ? `0 0 4px ${forgeTempColor}80` : "none",
                       transition: "width 0.8s ease-out",
                     }} />
                   </div>
-                  <span className="text-xs block mt-0.5" style={{ color: "rgba(255,255,255,0.2)", fontSize: 10 }}>Forge</span>
+                  <span className="text-xs block mt-0.5" style={{ color: "rgba(255,255,255,0.2)", fontSize: 12 }}>Forge</span>
                 </div>
               </div>
             </div></Tip>
@@ -815,7 +798,23 @@ export default function TodayDrawer({
         </div>
 
         {/* ─── Progress Arc ─────────────────────────────────────────── */}
-        <div className="relative flex justify-center py-3" style={{ zIndex: 1 }}>
+        <TipCustom
+          title="Tasks Today"
+          accent="#818cf8"
+          hoverDelay={500}
+          body={<>
+            <p className="text-xs" style={{ color: "rgba(255,255,255,0.5)" }}>Your daily checklist: bonus, companion, rituals, missions, active content, and social tasks. Complete them all for the day!</p>
+            {categories.map(cat => (
+              <div key={cat.id} className="flex items-center justify-between mt-1 text-xs">
+                <span style={{ color: "rgba(255,255,255,0.4)" }}>{cat.label}</span>
+                <span className="font-mono" style={{ color: cat.items.every(i => i.done) ? "#4ade80" : "rgba(255,255,255,0.3)" }}>
+                  {cat.items.filter(i => i.done).length}/{cat.items.length}
+                </span>
+              </div>
+            ))}
+          </>}
+        >
+        <div className="relative flex justify-center py-2 cursor-help" style={{ zIndex: 1 }}>
           <svg width="200" height="110" viewBox="0 0 200 110">
             {/* Background arc */}
             <path
@@ -867,6 +866,7 @@ export default function TodayDrawer({
             })}
           </svg>
         </div>
+        </TipCustom>
 
         {/* ─── Categorized Card Grid ──────────────────────────────────── */}
         <div className="flex-1 overflow-y-auto px-4 pb-3 relative today-scroll" style={{ zIndex: 1 }}>
@@ -928,7 +928,7 @@ export default function TodayDrawer({
                           background: item.done ? "rgba(74,222,128,0.15)" : item.urgent ? "rgba(251,191,36,0.15)" : "rgba(255,255,255,0.06)",
                           color: item.done ? "#4ade80" : item.urgent ? "#fbbf24" : "rgba(255,255,255,0.3)",
                           border: `1px solid ${item.done ? "rgba(74,222,128,0.3)" : item.urgent ? "rgba(251,191,36,0.3)" : "rgba(255,255,255,0.08)"}`,
-                          fontSize: 10, fontWeight: 700,
+                          fontSize: 12, fontWeight: 700,
                           animation: item.done ? "today-check-pop 0.4s cubic-bezier(0.34,1.56,0.64,1)" : "none",
                         }}>
                           {item.done ? "✓" : item.urgent ? "!" : "○"}
@@ -947,13 +947,13 @@ export default function TodayDrawer({
                       {/* Sub + Reward row */}
                       <div className="flex items-center justify-between mt-auto">
                         {item.sub && (
-                          <span className="text-xs" style={{ color: "rgba(255,255,255,0.25)", fontSize: 11 }}>{item.sub}</span>
+                          <span className="text-xs" style={{ color: "rgba(255,255,255,0.25)", fontSize: 12 }}>{item.sub}</span>
                         )}
                         {item.reward && !item.done && (
                           <span className="text-xs font-mono flex items-center gap-1 px-1.5 py-0.5 rounded-md" style={{
                             background: "rgba(167,139,250,0.08)",
                             color: "rgba(167,139,250,0.7)",
-                            fontSize: 10,
+                            fontSize: 12,
                             border: "1px solid rgba(167,139,250,0.1)",
                           }}>
                             {item.rewardIcon && (

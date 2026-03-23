@@ -40,6 +40,16 @@ interface ClaimReward {
   slot?: string;
 }
 
+interface UniqueItemPreview {
+  id: string;
+  name: string;
+  slot: string;
+  desc: string;
+  flavorText?: string;
+  legendaryEffect?: { type: string; label?: string; min?: number; max?: number };
+  icon: string | null;
+}
+
 interface ActiveBossData {
   active: true;
   boss: BossTemplate & {
@@ -51,6 +61,7 @@ interface ActiveBossData {
     defeatedAt: string | null;
     contributorCount: number;
     totalDamageDealt: number;
+    uniqueItemDetails?: UniqueItemPreview[];
   };
   leaderboard: LeaderboardEntry[];
   playerContribution: PlayerContribution | null;
@@ -392,6 +403,35 @@ export default function WorldBossView({ onRefresh, onRewardCelebration }: { onRe
             </span>
           </div>
         </div>
+
+        {/* Unique Loot Preview */}
+        {boss.uniqueItemDetails && boss.uniqueItemDetails.length > 0 && (
+          <div className="px-5 pb-4">
+            <p className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: `${boss.accent}90` }}>Unique Drops</p>
+            <div className="space-y-1.5">
+              {boss.uniqueItemDetails.map(item => (
+                <TipCustom
+                  key={item.id}
+                  title={item.name}
+                  accent="#ff8c00"
+                  hoverDelay={300}
+                  body={<>
+                    <p className="text-xs" style={{ color: "#ff8c00" }}>Legendary {item.slot}</p>
+                    {item.desc && <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.5)" }}>{item.desc}</p>}
+                    {item.flavorText && <p className="text-xs italic mt-1" style={{ color: "rgba(255,255,255,0.3)" }}>&ldquo;{item.flavorText}&rdquo;</p>}
+                    {item.legendaryEffect?.label && <p className="text-xs mt-1 font-semibold" style={{ color: "#f59e0b" }}>{item.legendaryEffect.label}</p>}
+                  </>}
+                >
+                  <div className="flex items-center gap-2 px-2.5 py-1.5 rounded-lg cursor-help" style={{ background: "rgba(255,140,0,0.04)", border: "1px solid rgba(255,140,0,0.12)", borderLeft: "2px solid #ff8c00" }}>
+                    <span className="text-sm" style={{ color: "#ff8c00" }}>{"\u2726"}</span>
+                    <span className="text-xs font-semibold" style={{ color: "#ff8c00" }}>{item.name}</span>
+                    <span className="text-xs text-w20 ml-auto capitalize">{item.slot}</span>
+                  </div>
+                </TipCustom>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* Defeated — Claim Rewards */}
         {boss.defeated && canClaim && !claimResult && (
