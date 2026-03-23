@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from "react";
 import { useDashboard } from "@/app/DashboardContext";
 import { getAuthHeaders } from "@/lib/auth-client";
 import { Tip, TipCustom } from "@/components/GameTooltip";
+import { formatLegendaryLabel } from "@/app/utils";
 import type { RewardCelebrationData } from "@/components/RewardCelebration";
 
 // ─── Types ──────────────────────────────────────────────────────────────────
@@ -153,7 +154,7 @@ function rewardColor(r: ClaimReward): string {
 
 // ─── Component ──────────────────────────────────────────────────────────────
 
-export default function WorldBossView({ onRefresh, onRewardCelebration }: { onRefresh?: () => void; onRewardCelebration?: (data: RewardCelebrationData) => void }) {
+export default function WorldBossView({ onRefresh, onRewardCelebration, onNavigate }: { onRefresh?: () => void; onRewardCelebration?: (data: RewardCelebrationData) => void; onNavigate?: (view: string) => void }) {
   const { playerName, reviewApiKey } = useDashboard();
   const [data, setData] = useState<BossData | null>(null);
   const [loading, setLoading] = useState(true);
@@ -420,7 +421,7 @@ export default function WorldBossView({ onRefresh, onRewardCelebration }: { onRe
                     <p className="text-xs" style={{ color: "#ff8c00" }}>Legendary {item.slot}</p>
                     {item.desc && <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.5)" }}>{item.desc}</p>}
                     {item.flavorText && <p className="text-xs italic mt-1" style={{ color: "rgba(255,255,255,0.3)" }}>&ldquo;{item.flavorText}&rdquo;</p>}
-                    {item.legendaryEffect?.label && <p className="text-xs mt-1 font-semibold" style={{ color: "#f59e0b" }}>{item.legendaryEffect.label}</p>}
+                    {item.legendaryEffect?.label && <p className="text-xs mt-1 font-semibold" style={{ color: "#f59e0b" }}>{formatLegendaryLabel(item.legendaryEffect)}</p>}
                   </>}
                 >
                   <div className="flex items-center gap-2 px-2.5 py-1.5 rounded-lg cursor-help" style={{ background: "rgba(255,140,0,0.04)", border: "1px solid rgba(255,140,0,0.12)", borderLeft: "2px solid #ff8c00" }}>
@@ -431,6 +432,11 @@ export default function WorldBossView({ onRefresh, onRewardCelebration }: { onRe
                 </TipCustom>
               ))}
             </div>
+            {onNavigate && (
+              <button onClick={() => onNavigate("character")} className="btn-interactive text-xs mt-1.5" style={{ color: `${boss.accent}80`, cursor: "pointer" }}>
+                View Collection →
+              </button>
+            )}
           </div>
         )}
 
@@ -474,6 +480,14 @@ export default function WorldBossView({ onRefresh, onRewardCelebration }: { onRe
                 <span>Rank #{claimResult.rank}</span>
                 <span>{claimResult.contributionPercent}% contribution</span>
               </div>
+              {onNavigate && (
+                <div className="flex gap-3 mt-1">
+                  {claimResult.rewards.some(r => r.type === "unique-drop" || r.type === "legendary-drop") && (
+                    <button onClick={() => onNavigate("character")} className="btn-interactive text-xs" style={{ color: "#f59e0b", cursor: "pointer" }}>View in Character →</button>
+                  )}
+                  <button onClick={() => onNavigate("forge")} className="btn-interactive text-xs" style={{ color: "rgba(255,255,255,0.3)", cursor: "pointer" }}>View in Forge →</button>
+                </div>
+              )}
             </div>
           </div>
         )}

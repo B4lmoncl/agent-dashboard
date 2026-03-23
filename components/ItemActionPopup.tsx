@@ -151,7 +151,8 @@ export default function ItemActionPopup({
               onClick={() => wrap(() => onEquip(item.id))}
               disabled={busy}
               className="w-full py-1.5 rounded-lg text-xs font-semibold"
-              style={{ background: "rgba(34,197,94,0.15)", color: "#4ade80", border: "1px solid rgba(34,197,94,0.3)", cursor: "pointer" }}
+              style={{ background: "rgba(34,197,94,0.15)", color: "#4ade80", border: "1px solid rgba(34,197,94,0.3)", cursor: busy ? "not-allowed" : "pointer" }}
+              title={busy ? "Action in progress\u2026" : "Equip this item"}
             >{busy ? "…" : "Equip"}</button>
           )}
           {itemType === "equipment" && !isEquipped && !meetsLevel && (
@@ -159,6 +160,7 @@ export default function ItemActionPopup({
               disabled
               className="w-full py-1.5 rounded-lg text-xs font-semibold"
               style={{ background: "rgba(255,255,255,0.03)", color: "rgba(255,255,255,0.2)", border: "1px solid rgba(255,255,255,0.06)", cursor: "not-allowed" }}
+              title={`Level ${item.minLevel} required to equip`}
             >Lv. {item.minLevel} required</button>
           )}
           {itemType === "equipment" && isEquipped && equippedSlot && (
@@ -166,7 +168,8 @@ export default function ItemActionPopup({
               onClick={() => wrap(() => onUnequip(equippedSlot))}
               disabled={busy}
               className="w-full py-1.5 rounded-lg text-xs font-semibold"
-              style={{ background: "rgba(239,68,68,0.12)", color: "#f87171", border: "1px solid rgba(239,68,68,0.25)", cursor: "pointer" }}
+              style={{ background: "rgba(239,68,68,0.12)", color: "#f87171", border: "1px solid rgba(239,68,68,0.25)", cursor: busy ? "not-allowed" : "pointer" }}
+              title={busy ? "Action in progress\u2026" : "Unequip this item"}
             >{busy ? "…" : "Unequip"}</button>
           )}
 
@@ -176,7 +179,8 @@ export default function ItemActionPopup({
               onClick={() => wrap(() => onUse(item.id))}
               disabled={busy}
               className="w-full py-1.5 rounded-lg text-xs font-semibold"
-              style={{ background: "rgba(59,130,246,0.15)", color: "#60a5fa", border: "1px solid rgba(59,130,246,0.3)", cursor: "pointer" }}
+              style={{ background: "rgba(59,130,246,0.15)", color: "#60a5fa", border: "1px solid rgba(59,130,246,0.3)", cursor: busy ? "not-allowed" : "pointer" }}
+              title={busy ? "Action in progress\u2026" : "Use this item"}
             >{busy ? "…" : "Use"}</button>
           )}
 
@@ -198,7 +202,8 @@ export default function ItemActionPopup({
                   onClick={() => wrap(() => onDiscard(item.id))}
                   disabled={busy}
                   className="flex-1 py-1.5 rounded-lg text-xs font-semibold"
-                  style={{ background: "rgba(239,68,68,0.2)", color: "#f87171", border: "1px solid rgba(239,68,68,0.4)", cursor: "pointer" }}
+                  style={{ background: "rgba(239,68,68,0.2)", color: "#f87171", border: "1px solid rgba(239,68,68,0.4)", cursor: busy ? "not-allowed" : "pointer" }}
+                  title={busy ? "Action in progress\u2026" : "Confirm discard"}
                 >{busy ? "…" : "Discard"}</button>
                 <button
                   onClick={() => setConfirmDiscard(false)}

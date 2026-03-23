@@ -50,7 +50,7 @@ interface Faction {
 
 // ─── Component ──────────────────────────────────────────────────────────────
 
-export default function FactionsView({ onRewardCelebration }: { onRewardCelebration?: (data: RewardCelebrationData) => void } = {}) {
+export default function FactionsView({ onRewardCelebration, onNavigate }: { onRewardCelebration?: (data: RewardCelebrationData) => void; onNavigate?: (view: string) => void } = {}) {
   const { playerName } = useDashboard();
   const [factions, setFactions] = useState<Faction[]>([]);
   const [standings, setStandings] = useState<FactionStanding[]>([]);
@@ -255,12 +255,29 @@ export default function FactionsView({ onRewardCelebration }: { onRewardCelebrat
                 </div>
               </div>
 
+              {/* Reward navigation links */}
+              {onNavigate && reward && (
+                <div className="px-4 pb-1 flex gap-3">
+                  {reward.recipe && (
+                    <button onClick={(e) => { e.stopPropagation(); onNavigate("forge"); }} className="text-xs cursor-pointer" style={{ color: "rgba(255,255,255,0.25)" }} onMouseEnter={e => { e.currentTarget.style.color = "rgba(255,255,255,0.5)"; }} onMouseLeave={e => { e.currentTarget.style.color = "rgba(255,255,255,0.25)"; }}>
+                      Unlock in Forge {"\u2192"}
+                    </button>
+                  )}
+                  {reward.frame && (
+                    <button onClick={(e) => { e.stopPropagation(); onNavigate("character"); }} className="text-xs cursor-pointer" style={{ color: "rgba(255,255,255,0.25)" }} onMouseEnter={e => { e.currentTarget.style.color = "rgba(255,255,255,0.5)"; }} onMouseLeave={e => { e.currentTarget.style.color = "rgba(255,255,255,0.25)"; }}>
+                      View in Character {"\u2192"}
+                    </button>
+                  )}
+                </div>
+              )}
+
               {/* Claim button */}
               {canClaim && reward && (
                 <div className="px-4 pb-4">
                   <button
                     onClick={() => claimReward(f.id)}
                     disabled={claiming === f.id}
+                    title={claiming === f.id ? "Claiming reward..." : "Claim faction reward"}
                     className="btn-interactive w-full text-xs font-bold py-2 rounded-lg"
                     style={{
                       background: `${f.accent}15`,

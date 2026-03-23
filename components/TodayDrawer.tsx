@@ -396,20 +396,34 @@ export default function TodayDrawer({
       onClick: () => { onNavigate("rituals"); onClose(); },
     });
 
-    // Daily Missions
+    // Daily Missions — individual mission cards with cross-navigation
     if (dailyMissions) {
-      const allDone = dailyMissions.missions.every(m => m.done);
-      const doneCount = dailyMissions.missions.filter(m => m.done).length;
-      daily.push({
-        id: "daily-missions",
-        icon: "/images/icons/currency-stardust.png",
-        label: "Daily Missions",
-        done: allDone,
-        sub: `${doneCount}/${dailyMissions.missions.length}`,
-        reward: allDone ? undefined : `${dailyMissions.total - dailyMissions.earned} pts left`,
-        tooltipKey: "daily_missions",
-        onClick: () => navigateAndScroll(onNavigate, onClose, "questBoard", "daily-missions-section"),
-      });
+      const missionNav: Record<string, { view: string; icon: string; title: string }> = {
+        login:  { view: "", icon: "/images/icons/currency-gold.png", title: "" },
+        quest1: { view: "questBoard", icon: "/images/icons/equip-weapon.png", title: "Go to Quest Board" },
+        quest3: { view: "questBoard", icon: "/images/icons/equip-weapon.png", title: "Go to Quest Board" },
+        ritual: { view: "rituals", icon: "/images/icons/currency-essenz.png", title: "Go to Rituals" },
+        pet:    { view: "character", icon: "/images/icons/currency-essenz.png", title: "Go to Character" },
+        craft:  { view: "forge", icon: "/images/icons/equip-weapon.png", title: "Go to Forge" },
+      };
+      for (const m of dailyMissions.missions) {
+        const nav = missionNav[m.id];
+        daily.push({
+          id: `dm-${m.id}`,
+          icon: nav?.icon ?? "/images/icons/currency-stardust.png",
+          label: m.label,
+          done: m.done,
+          sub: `${m.points} pts`,
+          reward: m.done ? undefined : `+${m.points}`,
+          rewardIcon: "/images/icons/currency-stardust.png",
+          tooltipKey: "daily_missions",
+          onClick: nav?.view
+            ? () => { onNavigate(nav.view); onClose(); }
+            : m.id === "login" && dailyBonusAvailable
+            ? onClaimDailyBonus
+            : () => navigateAndScroll(onNavigate, onClose, "questBoard", "daily-missions-section"),
+        });
+      }
 
       // Unclaimed milestones → URGENT
       const unclaimedMilestones = dailyMissions.milestones.filter(m => !m.claimed && dailyMissions.earned >= m.threshold);
@@ -702,7 +716,14 @@ export default function TodayDrawer({
           {/* Row: Streak | Companion + Level + XP | Forge */}
           <div className="flex items-center gap-3 relative" style={{ zIndex: 1 }}>
             {/* Streak Card — left */}
-            <Tip k="streak"><div className="today-stat-card rounded-xl px-4 py-2.5 relative overflow-hidden" style={{ minWidth: 100,
+            <Tip k="streak"><div
+              className="today-stat-card rounded-xl px-4 py-2.5 relative overflow-hidden"
+              role="button"
+              tabIndex={0}
+              title="Go to Rituals"
+              onClick={() => { onNavigate("rituals"); onClose(); }}
+              onKeyDown={e => { if (e.key === "Enter") { onNavigate("rituals"); onClose(); } }}
+              style={{ minWidth: 100, cursor: "pointer",
               background: streak > 0 ? "linear-gradient(135deg, rgba(249,115,22,0.08) 0%, rgba(251,191,36,0.04) 100%)" : "rgba(255,255,255,0.02)",
               border: `1px solid ${streak > 0 ? "rgba(249,115,22,0.15)" : "rgba(255,255,255,0.04)"}`,
               boxShadow: streak > 7 ? "inset 0 1px 0 rgba(249,115,22,0.1)" : "inset 0 1px 0 rgba(255,255,255,0.04)",
@@ -711,19 +732,27 @@ export default function TodayDrawer({
                 <StreakFlame streak={streak} />
                 <div>
                   <span className="text-lg font-bold font-mono" style={{ color: streak > 0 ? "#f97316" : "rgba(255,255,255,0.2)" }}>{streak}</span>
-                  <span className="text-xs block" style={{ color: "rgba(255,255,255,0.25)", marginTop: -2 }}>Streak</span>
+                  <span className="text-xs block" style={{ color: "rgba(255,255,255,0.25)", marginTop: -2 }}>Streak <span style={{ fontSize: 9, opacity: 0.5 }}>→</span></span>
                 </div>
               </div>
             </div></Tip>
 
             {/* Center: Companion + Level Ring + XP */}
-            <div className="flex-1 flex flex-col items-center min-w-0">
+            <div
+              className="flex-1 flex flex-col items-center min-w-0"
+              role="button"
+              tabIndex={0}
+              title="Go to Character"
+              onClick={() => { onNavigate("character"); onClose(); }}
+              onKeyDown={e => { if (e.key === "Enter") { onNavigate("character"); onClose(); } }}
+              style={{ cursor: "pointer" }}
+            >
               <div className="flex items-center gap-3">
                 {/* Companion Avatar — bigger */}
                 {comp && (
                   <button
                     onClick={() => { onNavigate("questBoard"); onClose(); }}
-                    className="relative flex-shrink-0 rounded-full overflow-hidden today-stat-card"
+                    className="relative flex-shrink-0 rounded-full today-stat-card"
                     style={{
                       width: 52, height: 52, cursor: "pointer",
                       border: `2px solid rgba(251,191,36,${comp.bondLevel && comp.bondLevel >= 3 ? "0.4" : "0.15"})`,
@@ -731,11 +760,13 @@ export default function TodayDrawer({
                     }}
                     title={`${comp.name} (Bond ${comp.bondLevel ?? 1})`}
                   >
+                    <span className="block w-full h-full rounded-full overflow-hidden">
                     {companionSrc ? (
                       <img src={companionSrc} alt={comp.name} width={52} height={52} className="w-full h-full object-cover" style={{ imageRendering: "auto" }} onError={e => { e.currentTarget.style.display = "none"; }} />
                     ) : (
                       <span className="flex items-center justify-center w-full h-full text-xl" style={{ color: "rgba(255,255,255,0.4)" }}>{comp.name?.[0] || "?"}</span>
                     )}
+                    </span>
                     <span className="absolute -bottom-0.5 -right-0.5 text-xs rounded-full flex items-center justify-center"
                       style={{ width: 16, height: 16, fontSize: 9, background: "rgba(251,191,36,0.9)", color: "#000", fontWeight: 800 }}>
                       {comp.bondLevel ?? 1}
@@ -760,7 +791,7 @@ export default function TodayDrawer({
               {/* XP bar */}
               <div className="w-full max-w-[180px] mt-1.5">
                 <div className="flex items-center justify-between mb-0.5">
-                  <span className="text-xs font-semibold" style={{ color: levelInfo.color, fontSize: 12 }}>{levelInfo.title}</span>
+                  <span className="text-xs font-semibold" style={{ color: levelInfo.color, fontSize: 12 }}>{levelInfo.title} <span style={{ fontSize: 9, opacity: 0.5 }}>→</span></span>
                   <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.3)", fontSize: 12 }}>{Math.round(xpProgress * 100)}%</span>
                 </div>
                 <div className="h-1 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.06)" }}>
@@ -774,7 +805,14 @@ export default function TodayDrawer({
             </div>
 
             {/* Forge Temp Card — right */}
-            <Tip k="forge_temp"><div className="today-stat-card rounded-xl px-4 py-2.5 relative overflow-hidden" style={{ minWidth: 100,
+            <Tip k="forge_temp"><div
+              className="today-stat-card rounded-xl px-4 py-2.5 relative overflow-hidden"
+              role="button"
+              tabIndex={0}
+              title="Go to Forge"
+              onClick={() => { onNavigate("forge"); onClose(); }}
+              onKeyDown={e => { if (e.key === "Enter") { onNavigate("forge"); onClose(); } }}
+              style={{ minWidth: 100, cursor: "pointer",
               background: forgeTemp > 0 ? `linear-gradient(135deg, ${forgeTempColor}10 0%, ${forgeTempColor}05 100%)` : "rgba(255,255,255,0.02)",
               border: `1px solid ${forgeTemp > 0 ? `${forgeTempColor}25` : "rgba(255,255,255,0.04)"}`,
               boxShadow: forgeTemp > 60 ? `inset 0 1px 0 ${forgeTempColor}15` : "inset 0 1px 0 rgba(255,255,255,0.04)",
@@ -793,7 +831,7 @@ export default function TodayDrawer({
                       transition: "width 0.8s ease-out",
                     }} />
                   </div>
-                  <span className="text-xs block mt-0.5" style={{ color: "rgba(255,255,255,0.2)", fontSize: 12 }}>Forge</span>
+                  <span className="text-xs block mt-0.5" style={{ color: "rgba(255,255,255,0.2)", fontSize: 12 }}>Forge <span style={{ fontSize: 9, opacity: 0.5 }}>→</span></span>
                 </div>
               </div>
             </div></Tip>
@@ -801,24 +839,29 @@ export default function TodayDrawer({
         </div>
 
         {/* ─── Progress Arc ─────────────────────────────────────────── */}
-        <TipCustom
-          title="Tasks Today"
-          accent="#818cf8"
-          hoverDelay={500}
-          align="center"
-          body={<>
-            <p className="text-xs" style={{ color: "rgba(255,255,255,0.5)" }}>Your daily checklist: bonus, companion, rituals, missions, active content, and social tasks. Complete them all for the day!</p>
-            {categories.map(cat => (
-              <div key={cat.id} className="flex items-center justify-between mt-1 text-xs">
-                <span style={{ color: "rgba(255,255,255,0.4)" }}>{cat.label}</span>
-                <span className="font-mono" style={{ color: cat.items.every(i => i.done) ? "#4ade80" : "rgba(255,255,255,0.3)" }}>
-                  {cat.items.filter(i => i.done).length}/{cat.items.length}
-                </span>
-              </div>
-            ))}
-          </>}
-        >
-        <div className="relative flex justify-center py-2 cursor-help" style={{ zIndex: 1 }}>
+        <div className="relative flex justify-center py-2" style={{ zIndex: 1 }}>
+          {/* Invisible tooltip trigger centered over the arc */}
+          <div className="absolute left-1/2 top-1/2" style={{ transform: "translate(-50%, -50%)", width: 120, height: 100, zIndex: 2 }}>
+            <TipCustom
+              title="Tasks Today"
+              accent="#818cf8"
+              hoverDelay={500}
+              align="center"
+              body={<>
+                <p className="text-xs" style={{ color: "rgba(255,255,255,0.5)" }}>Your daily checklist: bonus, companion, rituals, missions, active content, and social tasks. Complete them all for the day!</p>
+                {categories.map(cat => (
+                  <div key={cat.id} className="flex items-center justify-between mt-1 text-xs">
+                    <span style={{ color: "rgba(255,255,255,0.4)" }}>{cat.label}</span>
+                    <span className="font-mono" style={{ color: cat.items.every(i => i.done) ? "#4ade80" : "rgba(255,255,255,0.3)" }}>
+                      {cat.items.filter(i => i.done).length}/{cat.items.length}
+                    </span>
+                  </div>
+                ))}
+              </>}
+            >
+              <div className="w-full h-full cursor-help" />
+            </TipCustom>
+          </div>
           <svg width="200" height="110" viewBox="0 0 200 110">
             {/* Background arc */}
             <path
@@ -870,7 +913,6 @@ export default function TodayDrawer({
             })}
           </svg>
         </div>
-        </TipCustom>
 
         {/* ─── Categorized Card Grid ──────────────────────────────────── */}
         <div className="flex-1 overflow-y-auto px-4 pb-3 relative today-scroll" style={{ zIndex: 1 }}>

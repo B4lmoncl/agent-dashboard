@@ -39,6 +39,7 @@ export const RARITY_COLORS: Record<string, string> = {
   rare: "#3b82f6",
   epic: "#a855f7",
   legendary: "#f97316",
+  unique: "#e6cc80",
 };
 
 // ─── Gildenhallen-Stockwerke (Urithiru-inspired navigation) ──────────────────

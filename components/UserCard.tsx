@@ -42,7 +42,7 @@ function SmartIcon({ src, alt, size = 16, style }: { src: string; alt?: string; 
 
 // ─── UserCard Component ──────────────────────────────────────────────────────
 
-export function UserCard({ user, classes = [], onClick }: { user: User; classes?: ClassDef[]; onClick?: () => void }) {
+export function UserCard({ user, classes = [], onClick, onNavigate }: { user: User; classes?: ClassDef[]; onClick?: () => void; onNavigate?: (view: string) => void }) {
   const xp = user.xp ?? 0;
   const lvl = getUserLevel(xp);
   const progress = getUserXpProgress(xp);
@@ -151,7 +151,9 @@ export function UserCard({ user, classes = [], onClick }: { user: User; classes?
               <Tip k="streak">
                 <span
                   className="text-xs font-bold flex-shrink-0"
-                  style={{ color: streak >= 30 ? "#ef4444" : streak >= 7 ? "#f59e0b" : "#fb923c" }}
+                  style={{ color: streak >= 30 ? "#ef4444" : streak >= 7 ? "#f59e0b" : "#fb923c", cursor: onNavigate ? "pointer" : undefined }}
+                  onClick={onNavigate ? (e) => { e.stopPropagation(); onNavigate("rituals"); } : undefined}
+                  title={onNavigate ? "Go to Ritual Chamber" : undefined}
                 >
                   🔥{streak}
                 </span>
@@ -197,19 +199,34 @@ export function UserCard({ user, classes = [], onClick }: { user: User; classes?
         <div className="grid grid-cols-3 gap-2">
           {/* Forge Temp */}
           <Tip k="forge_temp">
-            <div className="rounded-lg px-2 py-1.5 text-center" style={{ background: "rgba(255,255,255,0.03)" }}>
+            <div
+              className="rounded-lg px-2 py-1.5 text-center"
+              style={{ background: "rgba(255,255,255,0.03)", cursor: onNavigate ? "pointer" : undefined }}
+              onClick={onNavigate ? (e) => { e.stopPropagation(); onNavigate("forge"); } : undefined}
+              title={onNavigate ? "Go to Artisan's Quarter" : undefined}
+            >
               <p className="text-xs font-mono font-bold" style={{ color: forgeTier.color }}>{temp}%</p>
               <p className="text-xs" style={{ color: forgeTier.color, opacity: 0.7, fontSize: 12 }}>{forgeTier.label}</p>
             </div>
           </Tip>
           {/* Quests */}
-          <div className="rounded-lg px-2 py-1.5 text-center" style={{ background: "rgba(255,255,255,0.03)" }}>
+          <div
+            className="rounded-lg px-2 py-1.5 text-center"
+            style={{ background: "rgba(255,255,255,0.03)", cursor: onNavigate ? "pointer" : undefined }}
+            onClick={onNavigate ? (e) => { e.stopPropagation(); onNavigate("questBoard"); } : undefined}
+            title={onNavigate ? "Go to Quest Board" : undefined}
+          >
             <p className="text-xs font-mono font-bold" style={{ color: "#8b5cf6" }}>{user.questsCompleted ?? 0}</p>
             <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)", fontSize: 12 }}>Quests</p>
           </div>
           {/* Achievement Points */}
           <Tip k="achievements">
-            <div className="rounded-lg px-2 py-1.5 text-center" style={{ background: "rgba(255,255,255,0.03)" }}>
+            <div
+              className="rounded-lg px-2 py-1.5 text-center"
+              style={{ background: "rgba(255,255,255,0.03)", cursor: onNavigate ? "pointer" : undefined }}
+              onClick={onNavigate ? (e) => { e.stopPropagation(); onNavigate("honors"); } : undefined}
+              title={onNavigate ? "Go to Hall of Honors" : undefined}
+            >
               <p className="text-xs font-mono font-bold" style={{ color: "#d4a64a" }}>{user.achievementPoints ?? 0}</p>
               <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)", fontSize: 12 }}>Points</p>
             </div>
@@ -224,7 +241,12 @@ export function UserCard({ user, classes = [], onClick }: { user: User; classes?
             {/* Companion */}
             {comp && (
               <Tip k="bond_level">
-                <div className="flex items-center gap-1.5">
+                <div
+                  className="flex items-center gap-1.5"
+                  style={{ cursor: onNavigate ? "pointer" : undefined }}
+                  onClick={onNavigate ? (e) => { e.stopPropagation(); onNavigate("character"); } : undefined}
+                  title={onNavigate ? "View companion details" : undefined}
+                >
                   {companionSrc ? (
                     <img src={companionSrc} alt={comp.name} width={18} height={18} className="rounded" style={{ imageRendering: "auto" }} />
                   ) : comp.emoji && comp.emoji !== "x" ? (

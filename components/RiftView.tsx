@@ -258,7 +258,7 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
                     border: `2px solid ${q.completed ? "#22c55e" : isCurrent ? activeRift.tierColor : "rgba(255,255,255,0.1)"}`,
                     boxShadow: isCurrent ? `0 0 8px ${activeRift.tierColor}40` : "none",
                   }}>
-                    {q.completed && <span style={{ color: "#000", fontSize: 10, fontWeight: 800, lineHeight: 1 }}>✓</span>}
+                    {q.completed && <span style={{ color: "#000", fontSize: 12, fontWeight: 800, lineHeight: 1 }}>✓</span>}
                   </div>
                   <div className="flex-1 rounded-lg p-3" style={{
                     background: isCurrent ? `${activeRift.tierColor}08` : "rgba(255,255,255,0.02)",
@@ -314,8 +314,9 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
                 <button
                   onClick={abandonRift}
                   disabled={actionLoading}
+                  title={actionLoading ? "Action in progress..." : "Confirm abandon"}
                   className="btn-interactive text-xs px-3 py-1.5 rounded-lg font-semibold"
-                  style={{ background: "rgba(239,68,68,0.15)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.3)" }}
+                  style={{ background: "rgba(239,68,68,0.15)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.3)", cursor: actionLoading ? "not-allowed" : "pointer" }}
                 >
                   Yes
                 </button>
@@ -435,6 +436,7 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
               <button
                 onClick={() => setSelectedMythicLevel(l => Math.max(1, l - 1))}
                 disabled={selectedMythicLevel <= 1}
+                title={selectedMythicLevel <= 1 ? "Already at minimum level" : "Decrease Mythic level"}
                 className="btn-interactive w-7 h-7 rounded-lg text-sm font-bold flex items-center justify-center"
                 style={{
                   background: "rgba(255,68,68,0.08)",
@@ -451,6 +453,7 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
               <button
                 onClick={() => setSelectedMythicLevel(l => Math.min(nextMythicLevel, l + 1))}
                 disabled={selectedMythicLevel >= nextMythicLevel}
+                title={selectedMythicLevel >= nextMythicLevel ? "Already at maximum level" : "Increase Mythic level"}
                 className="btn-interactive w-7 h-7 rounded-lg text-sm font-bold flex items-center justify-center"
                 style={{
                   background: "rgba(255,68,68,0.08)",
@@ -483,12 +486,13 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
           <button
             onClick={() => enterRift("mythic", selectedMythicLevel)}
             disabled={actionLoading || (tiers.mythic?.onCooldown ?? false)}
+            title={tiers.mythic?.onCooldown ? "On cooldown — wait for it to expire" : actionLoading ? "Action in progress..." : `Enter Mythic +${selectedMythicLevel}`}
             className="btn-interactive w-full text-xs font-bold py-2.5 rounded-lg"
             style={{
               background: tiers.mythic?.onCooldown ? "rgba(255,255,255,0.03)" : "rgba(255,68,68,0.12)",
               color: tiers.mythic?.onCooldown ? "rgba(255,255,255,0.2)" : "#ff4444",
               border: `1px solid ${tiers.mythic?.onCooldown ? "rgba(255,255,255,0.06)" : "rgba(255,68,68,0.35)"}`,
-              cursor: tiers.mythic?.onCooldown ? "not-allowed" : "pointer",
+              cursor: (actionLoading || tiers.mythic?.onCooldown) ? "not-allowed" : "pointer",
             }}
           >
             {tiers.mythic?.onCooldown ? "On Cooldown" : actionLoading ? "..." : `💀 Enter Mythic +${selectedMythicLevel}`}

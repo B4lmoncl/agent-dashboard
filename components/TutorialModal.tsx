@@ -30,7 +30,7 @@ function GuideTip({ children }: { children: React.ReactNode }) {
 
 /** rarity-colored inline label */
 function Rarity({ r, children }: { r: string; children: React.ReactNode }) {
-  const colors: Record<string, string> = { common: "#9ca3af", uncommon: "#22c55e", rare: "#3b82f6", epic: "#a855f7", legendary: "#FFD700" };
+  const colors: Record<string, string> = { common: "#9ca3af", uncommon: "#22c55e", rare: "#3b82f6", epic: "#a855f7", legendary: "#FFD700", unique: "#e6cc80" };
   return <span style={{ color: colors[r] || "#f0f0f0", fontWeight: 600 }}>{children}</span>;
 }
 

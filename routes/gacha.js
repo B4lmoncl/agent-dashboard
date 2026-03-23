@@ -158,7 +158,7 @@ function executePull(playerId, banner, { skipPityPassive = false } = {}) {
       emoji: item.emoji || null,
       icon: item.icon || null,
       rarity: item.rarity,
-      rarityColor: { common: '#9ca3af', uncommon: '#22c55e', rare: '#3b82f6', epic: '#a855f7', legendary: '#f97316' }[item.rarity] || '#9ca3af',
+      rarityColor: { common: '#9ca3af', uncommon: '#22c55e', rare: '#3b82f6', epic: '#a855f7', legendary: '#f97316', unique: '#e6cc80' }[item.isUnique ? 'unique' : item.rarity] || '#9ca3af',
       effect: item.effect || null,
       stats: rolledStats,
       legendaryEffect: rolledLegendaryEffect,

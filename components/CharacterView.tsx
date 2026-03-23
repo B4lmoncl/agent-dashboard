@@ -5,6 +5,7 @@ import { createPortal } from "react-dom";
 import { useModalBehavior } from "@/components/ModalPortal";
 import ItemActionPopup from "@/components/ItemActionPopup";
 import { Tip, TipCustom } from "@/components/GameTooltip";
+import { formatLegendaryLabel } from "@/app/utils";
 import type { User, CharacterData, ClassDef, PixelCharacterProps, GearInstance } from "@/app/types";
 import type { ToastInput } from "@/components/ToastStack";
 import { useDashboard } from "@/app/DashboardContext";
@@ -305,8 +306,9 @@ function ProfileSettingsModal({ playerName, apiKey, initialStatus, initialPartne
           <button
             onClick={handleSave}
             disabled={saving}
+            title={saving ? "Saving…" : undefined}
             className="flex-1 py-2 rounded-xl text-xs font-semibold"
-            style={{ background: "linear-gradient(135deg, #7c3aed, #a78bfa)", color: "#fff" }}
+            style={{ background: "linear-gradient(135deg, #7c3aed, #a78bfa)", color: "#fff", cursor: saving ? "not-allowed" : "pointer" }}
           >{saving ? "…" : "Save"}</button>
         </div>
       </div>
@@ -330,6 +332,7 @@ const RARITY_COLORS: Record<string, string> = {
   rare: "#3b82f6",
   epic: "#a855f7",
   legendary: "#f59e0b",
+  unique: "#e6cc80",
 };
 
 const RARITY_LABELS: Record<string, string> = {
@@ -338,7 +341,13 @@ const RARITY_LABELS: Record<string, string> = {
   rare: "Rare",
   epic: "Epic",
   legendary: "Legendary",
+  unique: "Unique",
 };
+
+/** Resolve display rarity — unique items show as "unique" instead of "legendary" */
+function displayRarity(item: Record<string, unknown>): string {
+  return item.isUnique ? "unique" : (String(item.rarity || "common"));
+}
 
 const STAT_LABELS: Record<string, string> = { kraft: "Kraft", ausdauer: "Ausdauer", weisheit: "Weisheit", glueck: "Glück", fokus: "Fokus", vitalitaet: "Vitalität", charisma: "Charisma", tempo: "Tempo" };
 
@@ -376,6 +385,7 @@ const RARITY_BG: Record<string, string> = {
   rare: "rgba(59,130,246,0.12)",
   epic: "rgba(168,85,247,0.15)",
   legendary: "rgba(249,115,22,0.18)",
+  unique: "rgba(230,204,128,0.18)",
 };
 
 const RARITY_BORDER_30: Record<string, string> = {
@@ -384,6 +394,7 @@ const RARITY_BORDER_30: Record<string, string> = {
   rare: "rgba(59,130,246,0.3)",
   epic: "rgba(168,85,247,0.3)",
   legendary: "rgba(249,115,22,0.3)",
+  unique: "rgba(230,204,128,0.4)",
 };
 
 type InventoryItem = CharacterData["inventory"][number];
@@ -408,7 +419,8 @@ function getItemLevel(item: InventoryItem | GearInstance): number {
 
 function InventoryTooltip({ item, mousePosRef, equippedItem, playerLevel }: { item: InventoryItem; mousePosRef: React.RefObject<{ x: number; y: number }>; equippedItem?: InventoryItem | null; playerLevel?: number }) {
   const ref = useRef<HTMLDivElement>(null);
-  const rarityColor = RARITY_COLORS[item.rarity] || "#9ca3af";
+  const dRarity = displayRarity(item);
+  const rarityColor = RARITY_COLORS[dRarity] || "#9ca3af";
   const hasStats = item.stats && Object.keys(item.stats).length > 0;
   const eqStats = equippedItem?.stats || {};
 
@@ -467,7 +479,7 @@ function InventoryTooltip({ item, mousePosRef, equippedItem, playerLevel }: { it
           </div>
           <div className="min-w-0">
             <p className="text-sm font-bold truncate" style={{ color: "#fff" }}>{item.name}</p>
-            <p className="text-xs font-semibold" style={{ color: rarityColor }}>{RARITY_LABELS[item.rarity] || item.rarity}</p>
+            <p className="text-xs font-semibold" style={{ color: rarityColor }}>{RARITY_LABELS[dRarity] || item.rarity}</p>
           </div>
         </div>
 
@@ -484,7 +496,7 @@ function InventoryTooltip({ item, mousePosRef, equippedItem, playerLevel }: { it
         {/* Legendary effect */}
         {item.legendaryEffect && (
           <p className="text-xs font-semibold" style={{ color: "#f59e0b" }}>
-            {item.legendaryEffect.label || item.legendaryEffect.type}
+            {formatLegendaryLabel(item.legendaryEffect)}
           </p>
         )}
 
@@ -620,8 +632,9 @@ function InventorySlot({ item, level, idx, onItemClick, onDragStart, onDragOver,
     );
   }
 
-  const rarityBg = RARITY_BG[item.rarity] ?? "rgba(255,255,255,0.04)";
-  const rarityBorder = RARITY_BORDER_30[item.rarity] ?? "rgba(255,255,255,0.08)";
+  const slotDRarity = displayRarity(item);
+  const rarityBg = RARITY_BG[slotDRarity] ?? "rgba(255,255,255,0.04)";
+  const rarityBorder = RARITY_BORDER_30[slotDRarity] ?? "rgba(255,255,255,0.08)";
 
   return (
     <>
@@ -647,7 +660,7 @@ function InventorySlot({ item, level, idx, onItemClick, onDragStart, onDragOver,
         onMouseEnter={(e) => { mousePosRef.current = { x: e.clientX, y: e.clientY }; setHovered(true); }}
         onMouseMove={(e) => { mousePosRef.current = { x: e.clientX, y: e.clientY }; }}
         onMouseLeave={() => setHovered(false)}
-        className={item.rarity === "legendary" ? "legendary-shimmer" : item.rarity === "epic" ? "epic-glow" : ""}
+        className={(item as Record<string, unknown>).isUnique ? "legendary-shimmer" : item.rarity === "legendary" ? "legendary-shimmer" : item.rarity === "epic" ? "epic-glow" : ""}
         style={{
           width: 56,
           height: 56,
@@ -724,8 +737,9 @@ function GearSlotRow({ slot, iconSrc, label, item, onUnequip, unequipping }: {
           <button
             onClick={() => onUnequip(slot)}
             disabled={unequipping === slot}
+            title={unequipping === slot ? "Unequipping…" : "Unequip item"}
             className="text-xs px-1.5 py-0.5 rounded"
-            style={{ background: "rgba(239,68,68,0.15)", color: "#f87171", border: "1px solid rgba(239,68,68,0.2)", cursor: "pointer" }}
+            style={{ background: "rgba(239,68,68,0.15)", color: "#f87171", border: "1px solid rgba(239,68,68,0.2)", cursor: unequipping === slot ? "not-allowed" : "pointer" }}
           >
             {unequipping === slot ? "…" : "−"}
           </button>
@@ -828,7 +842,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
       if (r.ok) {
         const item = charData?.inventory.find(i => i.id === itemId);
         if (item && addToast) {
-          addToast({ type: "item", itemName: item.name, message: `${item.name} equipped!`, icon: item.icon, rarity: item.rarity || "common" });
+          addToast({ type: "item", itemName: item.name, message: `${item.name} equipped!`, icon: item.icon, rarity: displayRarity(item) });
         }
       } else {
         const data = await r.json().catch(() => null);
@@ -869,7 +883,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
         const data = await r.json();
         const item = charData?.inventory.find(i => i.id === itemId);
         if (addToast && item) {
-          addToast({ type: "item", itemName: item.name, message: data.message || "Item used!", icon: item.icon, rarity: item.rarity || "common" });
+          addToast({ type: "item", itemName: item.name, message: data.message || "Item used!", icon: item.icon, rarity: displayRarity(item) });
         }
       } else if (addToast) {
         const data = await r.json().catch(() => null);
@@ -891,7 +905,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
       });
       if (r.ok) {
         const item = charData?.inventory.find(i => i.id === itemId);
-        if (addToast && item) addToast({ type: "item", itemName: item.name, message: `${item.name} discarded`, icon: item.icon, rarity: item.rarity || "common" });
+        if (addToast && item) addToast({ type: "item", itemName: item.name, message: `${item.name} discarded`, icon: item.icon, rarity: displayRarity(item) });
       } else if (addToast) {
         const data = await r.json().catch(() => null);
         addToast({ type: "error", message: data?.error || "Discard failed" });
@@ -1703,6 +1717,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                               <button
                                 onClick={() => doGemAction("upgrade", { gemKey })}
                                 disabled={!!gemAction}
+                                title={gemAction ? "Action in progress…" : "Combine 3 gems to upgrade"}
                                 className="text-xs px-1.5 py-0.5 rounded"
                                 style={{ background: "rgba(167,139,250,0.1)", color: "#a78bfa", border: "1px solid rgba(167,139,250,0.25)", cursor: gemAction ? "not-allowed" : "pointer", fontSize: 12 }}
                               >
@@ -1750,8 +1765,9 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                                       doGemAction("socket", { instanceId, socketIndex: si, gemKey: firstGem[0] });
                                     }}
                                     disabled={!!gemAction || Object.keys(gemData.inventory || {}).length === 0}
+                                    title={gemAction ? "Action in progress…" : Object.keys(gemData.inventory || {}).length === 0 ? "No gems available" : "Socket a gem"}
                                     className="text-xs px-1 py-0.5 rounded"
-                                    style={{ fontSize: 12, background: "rgba(167,139,250,0.1)", color: "#a78bfa", border: "1px solid rgba(167,139,250,0.2)", cursor: gemAction ? "not-allowed" : "pointer" }}
+                                    style={{ fontSize: 12, background: "rgba(167,139,250,0.1)", color: "#a78bfa", border: "1px solid rgba(167,139,250,0.2)", cursor: (gemAction || Object.keys(gemData.inventory || {}).length === 0) ? "not-allowed" : "pointer" }}
                                   >
                                     Socket
                                   </button>
@@ -1759,6 +1775,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                                   <button
                                     onClick={() => doGemAction("unsocket", { instanceId, socketIndex: si })}
                                     disabled={!!gemAction}
+                                    title={gemAction ? "Action in progress…" : "Remove socketed gem"}
                                     className="text-xs px-1 py-0.5 rounded"
                                     style={{ fontSize: 12, background: "rgba(239,68,68,0.08)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.2)", cursor: gemAction ? "not-allowed" : "pointer" }}
                                   >
@@ -1989,7 +2006,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                             <p className="text-xs capitalize" style={{ color }}>Legendary {item.slot}</p>
                             {item.desc && <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.5)" }}>{item.desc}</p>}
                             {item.flavorText && <p className="text-xs italic mt-1" style={{ color: "rgba(255,255,255,0.3)" }}>&ldquo;{item.flavorText}&rdquo;</p>}
-                            {item.legendaryEffect?.label && <p className="text-xs mt-1 font-semibold" style={{ color: "#f59e0b" }}>{item.legendaryEffect.label}</p>}
+                            {item.legendaryEffect?.label && <p className="text-xs mt-1 font-semibold" style={{ color: "#f59e0b" }}>{formatLegendaryLabel(item.legendaryEffect)}</p>}
                             {item.stats && Object.keys(item.stats).length > 0 && (
                               <div className="mt-1 space-y-0.5" style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: 4 }}>
                                 {Object.entries(item.stats).map(([k, v]) => (
@@ -2021,7 +2038,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                           <p className="text-xs font-semibold truncate" style={{ color }}>{item.name}</p>
                           <p className="text-xs text-w20 truncate capitalize">{item.slot}</p>
                           {item.legendaryEffect?.label && (
-                            <p className="text-xs mt-1 truncate" style={{ color: "#f59e0b", fontSize: 12 }}>{item.legendaryEffect.label}</p>
+                            <p className="text-xs mt-1 truncate" style={{ color: "#f59e0b", fontSize: 12 }}>{formatLegendaryLabel(item.legendaryEffect)}</p>
                           )}
                           <p className="text-xs mt-1 truncate" style={{ color: "rgba(255,255,255,0.2)", fontSize: 12 }}>{sourceLabel}</p>
                         </>

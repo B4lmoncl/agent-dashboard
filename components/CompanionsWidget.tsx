@@ -69,7 +69,7 @@ function getCompanionQuotes(companionType?: string, companionName?: string): str
   return templates.map(t => t.replace(/\{name\}/g, name));
 }
 
-export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieClick, onUserRefresh, compact, dobbieQuests, onRewardCelebration }: {
+export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieClick, onUserRefresh, compact, dobbieQuests, onRewardCelebration, onNavigate }: {
   user: User | null | undefined;
   streak: number;
   playerName?: string;
@@ -79,6 +79,7 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
   compact?: boolean;
   dobbieQuests?: Quest[];
   onRewardCelebration?: (data: { type: "companion"; title: string; xpEarned: number; goldEarned: number; loot?: { name: string; emoji: string; rarity: string } | null; bondXp?: number; companionAccent?: string; companionEmoji?: string }) => void;
+  onNavigate?: (view: string) => void;
 }) {
   const companionType = user?.companion?.type || user?.companion?.species;
   const companionQuotes = getCompanionQuotes(companionType, user?.companion?.name);
@@ -331,7 +332,13 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
                     strokeDashoffset={circumference * (1 - bondProgress)}
                     style={{ transition: "stroke-dashoffset 0.8s ease-out" }} />
                 </svg>
-                <div style={{ position: "absolute", top: ringPad, left: ringPad }}>
+                <div
+                  style={{ position: "absolute", top: ringPad, left: ringPad, cursor: onNavigate ? "pointer" : undefined, transition: "transform 0.15s ease" }}
+                  title={onNavigate ? "View companion details" : undefined}
+                  onClick={onNavigate ? () => onNavigate("character") : undefined}
+                  onMouseEnter={onNavigate ? (e) => { e.currentTarget.style.transform = "translateY(-2px)"; } : undefined}
+                  onMouseLeave={onNavigate ? (e) => { e.currentTarget.style.transform = "translateY(0)"; } : undefined}
+                >
                   {portrait}
                 </div>
               </div>
@@ -451,7 +458,9 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
                       <button key={q.id} onClick={() => handleUltimate("instant_complete", q.id)} disabled={!!ultimateUsing}
                         className="w-full text-left text-xs px-2 py-1.5 rounded" style={{
                           background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)", color: "#f0d0c0",
-                        }}>
+                          cursor: ultimateUsing ? "not-allowed" : "pointer",
+                        }}
+                        title={ultimateUsing ? "Using ultimate\u2026" : undefined}>
                         {q.title}
                       </button>
                     ))}
@@ -471,7 +480,7 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
                         else handleUltimate(ult.id);
                       }}
                       disabled={!ultimateReady || !!ultimateUsing}
-                      title={ult.desc}
+                      title={ultimateUsing ? "Using ultimate..." : !ultimateReady ? `Ultimate on cooldown (${ultimateDaysLeft}d left)` : ult.desc}
                       className="flex-1 text-xs px-2 py-1.5 rounded-lg font-semibold transition-all text-center"
                       style={{
                         background: ultimateReady ? `rgba(${cColor.accentRgb},0.1)` : "rgba(255,255,255,0.02)",
@@ -534,13 +543,13 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
                               <button
                                 onClick={() => handleCompleteQuest(q.id, q.title)}
                                 disabled={!!completingId || done}
-                                title="Mark quest complete"
+                                title={completingId ? "Action in progress\u2026" : "Mark quest complete"}
                                 style={{
                                   width: 24, height: 24, borderRadius: "50%",
                                   border: done || completingSuccessId === q.id ? "1.5px solid #4ade80" : "1.5px solid rgba(255,107,157,0.4)",
                                   background: completingSuccessId === q.id ? "rgba(34,197,94,0.7)" : done ? "rgba(34,197,94,0.15)" : "rgba(255,107,157,0.08)",
                                   color: done || completingSuccessId === q.id ? "#4ade80" : "#a78bfa",
-                                  cursor: completingId ? "wait" : "pointer",
+                                  cursor: (completingId || done) ? "not-allowed" : "pointer",
                                   display: "flex", alignItems: "center", justifyContent: "center",
                                   fontSize: "0.75rem", fontWeight: 700, flexShrink: 0,
                                   transition: "all 0.2s",

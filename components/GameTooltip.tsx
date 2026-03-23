@@ -402,7 +402,7 @@ const TOOLTIP_REGISTRY: Record<string, TooltipEntry> = {
     accent: "#f97316",
     body: (
       <>
-        <p>Infinite scaling difficulty beyond Legendary. Each level increases the difficulty multiplier by +0.25× and reduces time by 1.5 hours (min 18h).</p>
+        <p>Infinite scaling difficulty beyond Legendary. Each level increases the difficulty multiplier by +0.3× and reduces time by 1.5 hours (min 18h).</p>
         <div className="gt-stat-row"><span>Progression</span><span>+1 level per clear</span></div>
         <div className="gt-stat-row"><span>Fail Cooldown</span><span>None — retry immediately</span></div>
         <p className="gt-source">Leaderboard tracks highest level. Bonus loot at M+5, M+10, M+15, M+20.</p>

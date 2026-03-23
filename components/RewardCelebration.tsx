@@ -380,14 +380,32 @@ export function RewardCelebration({ data, onClose, onCollect, onAchievementClick
                 )}
               </div>
             )}
-            {data.currencies && data.currencies.map((c, i) => (
-              <div key={i} className="reward-pill" style={{
-                background: `rgba(${hexToRgb(c.color)},0.1)`,
-                border: `1px solid rgba(${hexToRgb(c.color)},0.25)`,
-              }}>
-                <span className="text-sm font-semibold" style={{ color: c.color }}>+{c.amount} {c.name}</span>
-              </div>
-            ))}
+            {data.currencies && data.currencies.map((c, i) => {
+              const spendView = onNavigate ? (
+                c.name === "Gold" || c.name === "Stardust" ? "shop"
+                : c.name === "Runensplitter" ? "gacha"
+                : c.name === "Essenz" ? "forge"
+                : c.name === "Sternentaler" ? "challenges"
+                : null
+              ) : null;
+              return (
+                <div key={i} className="reward-pill" style={{
+                  background: `rgba(${hexToRgb(c.color)},0.1)`,
+                  border: `1px solid rgba(${hexToRgb(c.color)},0.25)`,
+                }}>
+                  <span className="text-sm font-semibold" style={{ color: c.color }}>+{c.amount} {c.name}</span>
+                  {spendView && (
+                    <button
+                      onClick={(e) => { e.stopPropagation(); if (onCollect) onCollect(data); onNavigate!(spendView); onClose(); }}
+                      className="ml-2 text-xs px-1.5 py-0.5 rounded"
+                      style={{ background: "rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.5)", cursor: "pointer" }}
+                    >
+                      Spend {"\u2192"}
+                    </button>
+                  )}
+                </div>
+              );
+            })}
             {data.pactBonus && (
               <div className="reward-pill" style={{
                 background: "rgba(239,68,68,0.1)",
@@ -418,7 +436,7 @@ export function RewardCelebration({ data, onClose, onCollect, onAchievementClick
             }}
           >
             {data.achievement.icon && data.achievement.icon.startsWith("/")
-              ? <img src={data.achievement.icon} alt="" width={20} height={20} className="mr-1 img-render-auto" style={{ imageRendering: "auto" }} />
+              ? <img src={data.achievement.icon} alt="" width={20} height={20} className="mr-1 img-render-auto" style={{ imageRendering: "auto" }} onError={e => { e.currentTarget.style.display = "none"; }} />
               : <span className="text-sm mr-1">{data.achievement.icon}</span>}
             <span className="text-sm font-semibold" style={{ color: "#FFD700" }}>{data.achievement.name}</span>
             {onAchievementClick && data.achievement.id && <span className="text-xs ml-1" style={{ color: "rgba(255,215,0,0.5)" }}>→</span>}

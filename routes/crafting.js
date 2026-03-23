@@ -5,11 +5,11 @@ const fs = require('fs');
 const path = require('path');
 const router = require('express').Router();
 const { state, saveUsers, saveUsersSync, ensureUserCurrencies } = require('../lib/state');
-const { now, getLevelInfo, PRIMARY_STATS, MINOR_STATS, createGearInstance, getLegendaryModifiers } = require('../lib/helpers');
+const { now, getLevelInfo, PRIMARY_STATS, MINOR_STATS, createGearInstance, getLegendaryModifiers, rollAffixStats, getArmorTraitBonus, INVENTORY_CAP } = require('../lib/helpers');
 
 const VALID_SLOTS = ['weapon', 'shield', 'helm', 'armor', 'amulet', 'boots'];
 const RARITY_ORDER = ['common', 'uncommon', 'rare', 'epic', 'legendary'];
-const SLOT_RECIPES = ['reroll_stat', 'reroll_minor', 'upgrade_rarity', 'permanent_enchant', 'reinforce_armor', 'enchant_socket', 'sharpen_blade'];
+const SLOT_RECIPES = ['upgrade_rarity', 'permanent_enchant', 'reinforce_armor', 'enchant_socket', 'sharpen_blade'];
 const { requireAuth } = require('../lib/middleware');
 
 // ─── Crafting lock (prevents concurrent craft for same player) ──────────────
@@ -50,48 +50,65 @@ function loadProfessions() {
   }
 }
 
-// ─── Proficiency ranks (named tiers) ────────────────────────────────────────
+// ─── WoW Classic-style proficiency ranks (4 tiers with skill caps) ───────────
 const PROFICIENCY_RANKS = [
-  { min: 0, max: 0, name: 'Novice', color: '#6b7280' },
-  { min: 1, max: 2, name: 'Apprentice', color: '#22c55e' },
-  { min: 3, max: 4, name: 'Journeyman', color: '#3b82f6' },
-  { min: 5, max: 6, name: 'Expert', color: '#a855f7' },
-  { min: 7, max: 8, name: 'Artisan', color: '#f59e0b' },
-  { min: 9, max: 10, name: 'Master', color: '#ef4444' },
+  { name: 'Apprentice', skillCap: 75, reqPlayerLevel: 5, color: '#22c55e' },
+  { name: 'Journeyman', skillCap: 150, reqPlayerLevel: 15, color: '#3b82f6' },
+  { name: 'Expert', skillCap: 225, reqPlayerLevel: 25, color: '#a855f7' },
+  { name: 'Artisan', skillCap: 300, reqPlayerLevel: 40, color: '#f59e0b' },
 ];
+const MAX_SKILL = 300;
 
-function getProfRank(level) {
+function getProfRank(skill) {
   for (let i = PROFICIENCY_RANKS.length - 1; i >= 0; i--) {
-    if (level >= PROFICIENCY_RANKS[i].min) return PROFICIENCY_RANKS[i];
+    if (skill > (i > 0 ? PROFICIENCY_RANKS[i - 1].skillCap : 0)) return PROFICIENCY_RANKS[i];
   }
   return PROFICIENCY_RANKS[0];
 }
 
-// ─── Skill-up color for recipes (orange/yellow/green/gray) ──────────────────
-function getSkillUpColor(profLevel, reqProfLevel) {
-  const diff = profLevel - reqProfLevel;
-  if (diff <= 0) return 'orange';   // guaranteed skill-up
-  if (diff <= 2) return 'yellow';   // likely skill-up
-  if (diff <= 4) return 'green';    // rare skill-up
-  return 'gray';                     // no skill-up
-}
-
-// XP multiplier based on skill-up color (diminishing returns)
-function getSkillUpXpMultiplier(profLevel, reqProfLevel) {
-  const colors = PROFESSIONS_DATA.skillUpColors;
-  if (colors) {
-    const color = getSkillUpColor(profLevel, reqProfLevel);
-    return colors[color]?.xpMultiplier ?? 1;
+function getSkillCap(playerLevel) {
+  let cap = 0;
+  for (const rank of PROFICIENCY_RANKS) {
+    if (playerLevel >= rank.reqPlayerLevel) cap = rank.skillCap;
   }
-  // Fallback if no config
-  const diff = profLevel - reqProfLevel;
-  if (diff <= 0) return 1.0;
-  if (diff <= 2) return 0.75;
-  if (diff <= 4) return 0.25;
-  return 0;
+  return cap || 75; // default Apprentice cap
 }
 
-// Max profession slots based on player level (configured in professions.json)
+// ─── Convert reqProfLevel (1-10) to reqSkill (1-300) ────────────────────────
+const PROF_LEVEL_TO_SKILL = [0, 1, 30, 60, 90, 120, 150, 180, 210, 250, 280];
+function reqProfLevelToSkill(reqProfLevel) {
+  return PROF_LEVEL_TO_SKILL[reqProfLevel] || reqProfLevel;
+}
+
+// ─── WoW Classic skill-up: per-recipe color breakpoints + sliding probability ─
+function getRecipeBreakpoints(reqSkill) {
+  // WoW-style: ~25 skill span per color zone
+  return {
+    yellow: reqSkill + 25,
+    green: reqSkill + 50,
+    gray: reqSkill + 75,
+  };
+}
+
+function getSkillUpColor(playerSkill, reqSkill) {
+  const bp = getRecipeBreakpoints(reqSkill);
+  if (playerSkill < bp.yellow) return 'orange';
+  if (playerSkill < bp.green) return 'yellow';
+  if (playerSkill < bp.gray) return 'green';
+  return 'gray';
+}
+
+// WoW Classic formula: linear interpolation from yellow→gray
+// At yellow threshold: 100% chance. At gray threshold: 0% chance.
+function getSkillUpChance(playerSkill, reqSkill) {
+  const bp = getRecipeBreakpoints(reqSkill);
+  if (playerSkill < bp.yellow) return 1.0; // orange = guaranteed
+  if (playerSkill >= bp.gray) return 0;     // gray = impossible
+  // Linear slide: (gray - skill) / (gray - yellow)
+  return (bp.gray - playerSkill) / (bp.gray - bp.yellow);
+}
+
+// Max profession slots based on player level
 function getMaxProfessionSlots(playerLevel) {
   const slots = PROFESSIONS_DATA.professionSlots || [{ playerLevel: 5, slot: 1 }, { playerLevel: 15, slot: 2 }];
   let maxSlots = 0;
@@ -101,15 +118,21 @@ function getMaxProfessionSlots(playerLevel) {
   return maxSlots;
 }
 
-function getProfLevel(u, profId) {
+// Get player's profession skill (0-300)
+function getProfSkill(u, profId) {
   const prof = (u.professions || {})[profId];
-  if (!prof) return { level: 0, xp: 0 };
-  const thresholds = PROFESSIONS_DATA.professions.find(p => p.id === profId)?.levelThresholds || [];
+  return { skill: Math.min(prof?.skill || prof?.xp || 0, MAX_SKILL) };
+}
+
+// Backward compat alias
+function getProfLevel(u, profId) {
+  const { skill } = getProfSkill(u, profId);
+  // Map skill back to approximate level for recipe reqProfLevel checks
   let level = 0;
-  for (let i = 0; i < thresholds.length; i++) {
-    if ((prof.xp || 0) >= thresholds[i]) level = i + 1;
+  for (let i = PROF_LEVEL_TO_SKILL.length - 1; i >= 1; i--) {
+    if (skill >= PROF_LEVEL_TO_SKILL[i]) { level = i; break; }
   }
-  return { level: Math.min(level, 10), xp: prof.xp || 0 };
+  return { level, skill, xp: skill };
 }
 
 // ─── Helper: check if recipe is discovered/learned for this player ───────────
@@ -120,6 +143,10 @@ function isRecipeDiscovered(recipe, profProgress, user) {
   }
   // Trainer-source recipes with trainerCost: must be purchased (in learnedRecipes)
   if (recipe.source === 'trainer' && recipe.trainerCost > 0) {
+    return (user?.learnedRecipes || []).includes(recipe.id);
+  }
+  // Faction-source recipes: must be in player's learnedRecipes (unlocked via faction rep)
+  if (recipe.source === 'faction') {
     return (user?.learnedRecipes || []).includes(recipe.id);
   }
   // Legacy/free trainer recipes: use old discovery gate system
@@ -134,6 +161,8 @@ function isRecipeVisible(recipe, profProgress, user) {
   if (recipe.source === 'trainer') return profProgress.level >= recipe.reqProfLevel;
   // Drop recipes: only visible once learned
   if (recipe.source === 'drop') return (user?.learnedRecipes || []).includes(recipe.id);
+  // Faction recipes: visible if profession level met (show as locked until rep earned)
+  if (recipe.source === 'faction') return profProgress.level >= recipe.reqProfLevel;
   // Legacy: use discovery gate
   if (!recipe.discovery) return true;
   if (recipe.discovery.type === 'profLevel') return profProgress.level >= recipe.discovery.value;
@@ -155,22 +184,28 @@ router.get('/api/professions', (req, res) => {
   const professions = PROFESSIONS_DATA.professions.map(p => {
     const playerLevel = u ? getLevelInfo(u.xp || 0).level : 0;
     const unlocked = u ? (p.unlockCondition?.type === 'level' ? playerLevel >= p.unlockCondition.value : true) : false;
-    const profProgress = u ? getProfLevel(u, p.id) : { level: 0, xp: 0 };
+    const profProgress = u ? getProfSkill(u, p.id) : { skill: 0 };
+    const profLevel = u ? getProfLevel(u, p.id) : { level: 0, skill: 0 };
     const lastCraft = (u?.professions || {})[p.id]?.lastCraftAt || null;
     const chosen = (u?.chosenProfessions || []).includes(p.id);
     const pMaxSlots = u ? getMaxProfessionSlots(playerLevel) : 0;
     const canChoose = chosen || (u?.chosenProfessions || []).length < pMaxSlots;
-    const rank = getProfRank(profProgress.level);
-    const masteryUnlockLvl = PROFESSIONS_DATA.masteryConfig?.unlockLevel || 8;
-    const masteryActive = profProgress.level >= masteryUnlockLvl;
+    const rank = getProfRank(profProgress.skill);
+    const skillCap = u ? getSkillCap(playerLevel) : 75;
+    const masterySkill = PROFESSIONS_DATA.masteryConfig?.unlockSkill || 225;
+    const masteryActive = profProgress.skill >= masterySkill;
     return {
       ...p,
       unlocked,
       chosen,
       canChoose,
-      playerLevel: profProgress.level,
-      playerXp: profProgress.xp,
-      nextLevelXp: p.levelThresholds[profProgress.level] || null,
+      skill: profProgress.skill,
+      maxSkill: MAX_SKILL,
+      skillCap,
+      // Legacy compat fields
+      playerLevel: profLevel.level,
+      playerXp: profProgress.skill,
+      nextLevelXp: skillCap,
       lastCraftAt: lastCraft,
       rank: rank.name,
       rankColor: rank.color,
@@ -199,11 +234,15 @@ router.get('/api/professions', (req, res) => {
         const elapsed = (Date.now() - new Date(lastRecipeCraft).getTime()) / 1000;
         cooldownRemaining = Math.max(0, Math.ceil(effectiveCd * 60 - elapsed));
       }
+      const reqSkill = r.reqSkill || reqProfLevelToSkill(r.reqProfLevel);
+      const playerSkill = u ? getProfSkill(u, r.profession).skill : 0;
       return {
         ...r,
+        reqSkill,
         learned,
-        canCraft: learned && profProgress.level >= r.reqProfLevel,
-        skillUpColor: getSkillUpColor(profProgress.level, r.reqProfLevel),
+        canCraft: learned && playerSkill >= reqSkill,
+        skillUpColor: getSkillUpColor(playerSkill, reqSkill),
+        skillUpChance: Math.round(getSkillUpChance(playerSkill, reqSkill) * 100),
         cooldownRemaining,
       };
     });
@@ -289,7 +328,7 @@ router.post('/api/professions/learn', requireAuth, (req, res) => {
 
 // ─── POST /api/professions/craft — execute a recipe ─────────────────────────
 router.post('/api/professions/craft', requireAuth, (req, res) => {
-  const { recipeId, targetSlot, targetStatIndex, count: rawCount } = req.body;
+  const { recipeId, targetSlot, count: rawCount } = req.body;
   const count = Math.max(1, Math.min(10, parseInt(rawCount, 10) || 1)); // batch: 1-10
   if (!recipeId) return res.status(400).json({ error: 'recipeId required' });
 
@@ -368,16 +407,18 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
         return res.status(400).json({ error: 'Item is already legendary!' });
       }
     }
-    // Pre-validate reroll has valid template/stats BEFORE deducting costs
-    if (recipeId === 'reroll_stat') {
-      const template = state.gearById.get(eq.templateId) || state.itemTemplates?.get(eq.templateId);
-      if (!template?.affixes?.primary?.pool?.length) return res.status(400).json({ error: 'Item has no rerollable primary stats' });
-      const primaryStats = Object.keys(eq.stats || {}).filter(s => PRIMARY_STATS.includes(s));
-      if (primaryStats.length === 0) return res.status(400).json({ error: 'No primary stats to reroll' });
+    // Pre-validate per-item caps BEFORE deducting costs
+    if (recipeId === 'permanent_enchant' && eq.permEnchantCount >= 1) {
+      return res.status(400).json({ error: 'This item already has a permanent enchantment.' });
     }
-    if (recipeId === 'reroll_minor') {
-      const template = state.gearById.get(eq.templateId) || state.itemTemplates?.get(eq.templateId);
-      if (!template?.affixes?.minor?.pool?.length) return res.status(400).json({ error: 'Item has no rerollable minor stats' });
+    if (recipeId === 'enchant_socket' && eq.infusionCount >= 1) {
+      return res.status(400).json({ error: 'This item already has an Arcane Infusion.' });
+    }
+    if (recipeId === 'reinforce_armor' && eq.reinforceCount >= 1) {
+      return res.status(400).json({ error: 'This item has already been reinforced.' });
+    }
+    if (recipeId === 'sharpen_blade' && eq.sharpenCount >= 1) {
+      return res.status(400).json({ error: 'This blade has already been sharpened.' });
     }
   }
 
@@ -415,87 +456,47 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
     if (u.craftingMaterials[matId] <= 0) delete u.craftingMaterials[matId];
   }
 
-  // Update profession XP & timestamp — use recipe-specific xpGain with skill-up color scaling + daily bonus
+  // Update profession XP & timestamp — WoW-style: fixed XP per craft, probabilistic skill-up
+  // ─── WoW Classic skill-up: 1 point per craft, sliding probability ──────────
   u.professions = u.professions || {};
-  u.professions[recipe.profession] = u.professions[recipe.profession] || { level: 0, xp: 0 };
-  const rawXp = (recipe.xpGain || profDef.xpPerCraft || 10) * effectiveCount;
-  const skillUpMultiplier = getSkillUpXpMultiplier(profProgress.level, recipe.reqProfLevel);
+  u.professions[recipe.profession] = u.professions[recipe.profession] || { skill: 0 };
+  const reqSkill = recipe.reqSkill || reqProfLevelToSkill(recipe.reqProfLevel);
+  const currentSkill = u.professions[recipe.profession].skill || u.professions[recipe.profession].xp || 0;
+  const playerLvl = getLevelInfo(u.xp || 0).level;
+  const skillCap = getSkillCap(playerLvl);
+  const skillUpColor = getSkillUpColor(currentSkill, reqSkill);
+  const skillUpChance = getSkillUpChance(currentSkill, reqSkill);
   const { dailyBonusAvailable } = getDailyBonusInfo(u);
-  const xpMultiplier = dailyBonusAvailable ? 2 : 1;
-  const totalXpGained = Math.floor(rawXp * skillUpMultiplier * xpMultiplier);
-  const skillUpColor = getSkillUpColor(profProgress.level, recipe.reqProfLevel);
-  u.professions[recipe.profession].xp += totalXpGained;
+  const dailyMultiplier = dailyBonusAvailable ? 2 : 1;
+  // Roll skill-up for each craft in the batch — WoW: exactly 1 point per success
+  let totalSkillGained = 0;
+  for (let i = 0; i < effectiveCount; i++) {
+    if (currentSkill + totalSkillGained < skillCap && Math.random() < skillUpChance) {
+      totalSkillGained += 1 * dailyMultiplier; // daily bonus: 2 points instead of 1
+    }
+  }
+  u.professions[recipe.profession].skill = Math.min(MAX_SKILL, (u.professions[recipe.profession].skill || 0) + totalSkillGained);
+  // Sync legacy xp field
+  u.professions[recipe.profession].xp = u.professions[recipe.profession].skill;
   u.professions[recipe.profession].lastCraftAt = now();
   // Track per-recipe cooldown
   if (recipe.cooldownMinutes > 0) {
     u.professions[recipe.profession].recipeCooldowns = u.professions[recipe.profession].recipeCooldowns || {};
     u.professions[recipe.profession].recipeCooldowns[recipeId] = now();
   }
-  u.lastCraftDate = new Date().toISOString().slice(0, 10); // track daily bonus
+  u.lastCraftDate = new Date().toISOString().slice(0, 10);
+  const newSkill = u.professions[recipe.profession].skill;
   const newProfLevel = getProfLevel(u, recipe.profession);
   u.professions[recipe.profession].level = newProfLevel.level;
 
-  // ─── Mastery bonus check (level 8+) ─────────────────────────────────────────
-  const masteryLevel = PROFESSIONS_DATA.masteryConfig?.unlockLevel || 8;
-  const hasMastery = profProgress.level >= masteryLevel;
+  // ─── Mastery bonus check (skill 225+) ─────────────────────────────────────────
+  const masterySkill = PROFESSIONS_DATA.masteryConfig?.unlockSkill || 225;
+  const hasMastery = currentSkill >= masterySkill;
   const masteryDef = hasMastery ? profDef.masteryBonus : null;
 
   let result = { success: true, message: '' };
 
   switch (recipeId) {
-    case 'reroll_stat': {
-      const eq = u.equipment[targetSlot];
-      const template = state.gearById.get(eq.templateId) || state.itemTemplates?.get(eq.templateId);
-      const primaryStats = Object.keys(eq.stats || {}).filter(s => PRIMARY_STATS.includes(s));
-      const rawIdx = targetStatIndex != null ? targetStatIndex : Math.floor(Math.random() * primaryStats.length);
-      const statIdx = Math.max(0, Math.min(rawIdx, primaryStats.length - 1));
-      const statToReroll = primaryStats[statIdx];
-      const poolEntry = template.affixes.primary.pool.find(p => p.stat === statToReroll);
-      if (poolEntry) {
-        const oldVal = eq.stats[statToReroll];
-        eq.stats[statToReroll] = poolEntry.min + Math.floor(Math.random() * (poolEntry.max - poolEntry.min + 1));
-        result.message = `${statToReroll}: ${oldVal} → ${eq.stats[statToReroll]}`;
-      } else {
-        // Stat not in pool — pick random from pool
-        const randomPool = template.affixes.primary.pool[Math.floor(Math.random() * template.affixes.primary.pool.length)];
-        const oldVal = eq.stats[statToReroll];
-        delete eq.stats[statToReroll];
-        eq.stats[randomPool.stat] = randomPool.min + Math.floor(Math.random() * (randomPool.max - randomPool.min + 1));
-        result.message = `${statToReroll} (${oldVal}) → ${randomPool.stat} (${eq.stats[randomPool.stat]})`;
-      }
-      result.updatedGear = eq;
-      break;
-    }
-
-    case 'reroll_minor': {
-      const eq = u.equipment[targetSlot];
-      const template = state.gearById.get(eq.templateId) || state.itemTemplates?.get(eq.templateId);
-      const minorStats = Object.keys(eq.stats || {}).filter(s => MINOR_STATS.includes(s));
-      if (minorStats.length === 0) {
-        // Add a new minor stat from pool
-        const pick = template.affixes.minor.pool[Math.floor(Math.random() * template.affixes.minor.pool.length)];
-        eq.stats[pick.stat] = pick.min + Math.floor(Math.random() * (pick.max - pick.min + 1));
-        result.message = `New minor stat: ${pick.stat} +${eq.stats[pick.stat]}`;
-      } else {
-        const statToReroll = minorStats[Math.floor(Math.random() * minorStats.length)];
-        const poolEntry = template.affixes.minor.pool.find(p => p.stat === statToReroll);
-        if (poolEntry) {
-          const oldVal = eq.stats[statToReroll];
-          eq.stats[statToReroll] = poolEntry.min + Math.floor(Math.random() * (poolEntry.max - poolEntry.min + 1));
-          result.message = `${statToReroll}: ${oldVal} → ${eq.stats[statToReroll]}`;
-        } else {
-          // Stat not in pool — pick random from pool (same logic as reroll_stat)
-          const randomPool = template.affixes.minor.pool[Math.floor(Math.random() * template.affixes.minor.pool.length)];
-          const oldVal = eq.stats[statToReroll];
-          delete eq.stats[statToReroll];
-          eq.stats[randomPool.stat] = randomPool.min + Math.floor(Math.random() * (randomPool.max - randomPool.min + 1));
-          result.message = `${statToReroll} (${oldVal}) → ${randomPool.stat} (${eq.stats[randomPool.stat]})`;
-        }
-      }
-      result.updatedGear = eq;
-      break;
-    }
-
     case 'upgrade_rarity': {
       const eq = u.equipment[targetSlot];
       const currentIdx = RARITY_ORDER.indexOf(eq.rarity || 'common');
@@ -593,11 +594,18 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
 
     case 'permanent_enchant': {
       const eq = u.equipment[targetSlot];
+      // Cap: max 1 permanent enchantment per item
+      if (eq.permEnchantCount >= 1) {
+        result.message = 'This item already has a permanent enchantment. Use Enchanting to reroll stats instead.';
+        result.success = false;
+        break;
+      }
       const stat = MINOR_STATS[Math.floor(Math.random() * MINOR_STATS.length)];
       const enchantBonus = masteryDef?.type === 'enchant_power' ? masteryDef.value : 0;
       const value = 1 + Math.floor(Math.random() * 2) + enchantBonus; // 1-2 + mastery
       eq.stats = eq.stats || {};
       eq.stats[stat] = (eq.stats[stat] || 0) + value;
+      eq.permEnchantCount = (eq.permEnchantCount || 0) + 1;
       result.message = `Permanent enchantment: +${value} ${stat}!${masteryDef ? ' (Mastery)' : ''}`;
       result.updatedGear = eq;
       break;
@@ -605,11 +613,18 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
 
     case 'enchant_socket': {
       const eq = u.equipment[targetSlot];
+      // Cap: max 1 arcane infusion per item
+      if (eq.infusionCount >= 1) {
+        result.message = 'This item already has an Arcane Infusion. Use Enchanting to reroll stats instead.';
+        result.success = false;
+        break;
+      }
       const stat = PRIMARY_STATS[Math.floor(Math.random() * PRIMARY_STATS.length)];
       const enchantBonus = masteryDef?.type === 'enchant_power' ? masteryDef.value : 0;
       const value = 3 + Math.floor(Math.random() * 3) + enchantBonus; // 3-5 + mastery
       eq.stats = eq.stats || {};
       eq.stats[stat] = (eq.stats[stat] || 0) + value;
+      eq.infusionCount = (eq.infusionCount || 0) + 1;
       result.message = `Arcane Infusion: +${value} ${stat} permanently!${masteryDef ? ' (Mastery)' : ''}`;
       result.updatedGear = eq;
       break;
@@ -617,11 +632,18 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
 
     case 'reinforce_armor': {
       const eq = u.equipment[targetSlot];
+      // Cap: max 1 reinforcement per item
+      if (eq.reinforceCount >= 1) {
+        result.message = 'This item has already been reinforced.';
+        result.success = false;
+        break;
+      }
       const stat = PRIMARY_STATS[Math.floor(Math.random() * PRIMARY_STATS.length)];
       let value = 3 + Math.floor(Math.random() * 4); // 3-6
       if (masteryDef?.type === 'gear_stat_boost') value = Math.ceil(value * (1 + masteryDef.value / 100));
       eq.stats = eq.stats || {};
       eq.stats[stat] = (eq.stats[stat] || 0) + value;
+      eq.reinforceCount = (eq.reinforceCount || 0) + 1;
       result.message = `Reinforced! +${value} ${stat} permanently!${masteryDef ? ' (Mastery)' : ''}`;
       result.updatedGear = eq;
       break;
@@ -629,11 +651,18 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
 
     case 'sharpen_blade': {
       const eq = u.equipment[targetSlot];
+      // Cap: max 1 sharpening per item
+      if (eq.sharpenCount >= 1) {
+        result.message = 'This blade has already been sharpened.';
+        result.success = false;
+        break;
+      }
       const stat = PRIMARY_STATS[Math.floor(Math.random() * PRIMARY_STATS.length)];
       let value = 1 + Math.floor(Math.random() * 3); // 1-3
       if (masteryDef?.type === 'gear_stat_boost') value = Math.ceil(value * (1 + masteryDef.value / 100));
       eq.stats = eq.stats || {};
       eq.stats[stat] = (eq.stats[stat] || 0) + value;
+      eq.sharpenCount = (eq.sharpenCount || 0) + 1;
       result.message = `Blade sharpened! +${value} ${stat} permanently!${masteryDef ? ' (Mastery)' : ''}`;
       result.updatedGear = eq;
       break;
@@ -685,8 +714,114 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
       break;
     }
 
-    default:
+    // ─── Faction recipes (buff-type, handled generically) ────────────────────
+    case 'flask_of_embers': {
+      const totalAmount = (recipe.result.amount || 15) * effectiveCount;
+      u.forgeTemp = Math.min(100, (u.forgeTemp || 0) + totalAmount);
+      result.message = `Flask of Embers! Forge temperature raised by ${totalAmount}! (${u.forgeTemp}%)`;
+      break;
+    }
+    case 'scholars_ink':
+    case 'resonance_charm':
+    case 'artisans_whetstone': {
+      u.activeBuffs = u.activeBuffs || [];
+      const buffType = recipe.result.buffType;
+      const buffDuration = 3;
+      for (let i = 0; i < effectiveCount; i++) {
+        u.activeBuffs.push({ type: buffType, questsRemaining: buffDuration, activatedAt: now() });
+      }
+      result.message = `${recipe.name} activated! Buff active for ${buffDuration} quests${effectiveCount > 1 ? ` (x${effectiveCount})` : ''}`;
+      break;
+    }
+
+    // ─── Gear crafting + generic handlers ──────────────────────────────────
+    default: {
+      // Generic buff handler (for new recipes with buff result type)
+      if (recipe.result?.type === 'buff' && recipe.result?.buffType) {
+        u.activeBuffs = u.activeBuffs || [];
+        const buffDuration = parseInt(recipe.result.duration?.replace('_quests', '')) || 3;
+        for (let i = 0; i < effectiveCount; i++) {
+          u.activeBuffs.push({ type: recipe.result.buffType, questsRemaining: buffDuration, activatedAt: now() });
+        }
+        result.message = `${recipe.name} activated! (${buffDuration} quests)${effectiveCount > 1 ? ` (x${effectiveCount})` : ''}`;
+        break;
+      }
+      // Temp enchant handler
+      if (recipe.result?.type === 'temp_enchant') {
+        const allStats = [...PRIMARY_STATS, ...MINOR_STATS];
+        const stat = allStats[Math.floor(Math.random() * allStats.length)];
+        const value = (recipe.result.statBonus?.[0] || 1) + Math.floor(Math.random() * ((recipe.result.statBonus?.[1] || 2) - (recipe.result.statBonus?.[0] || 1) + 1));
+        const hours = recipe.result.durationHours || 24;
+        u.activeBuffs = u.activeBuffs || [];
+        u.activeBuffs.push({ type: `enchant_${stat}`, stat, value, expiresAt: new Date(Date.now() + hours * 60 * 60 * 1000).toISOString(), activatedAt: now() });
+        result.message = `${recipe.name}: +${value} ${stat} for ${hours}h`;
+        break;
+      }
+      // Perm enchant handler (for new soul_infusion etc.)
+      if (recipe.result?.type === 'perm_enchant') {
+        const eq = u.equipment?.[targetSlot];
+        if (!eq || typeof eq === 'string') { result.message = 'No gear in slot'; result.success = false; break; }
+        if (eq.permEnchantCount >= 1 && recipe.result.target === 'minor_stat') { result.message = 'Already has a permanent enchantment.'; result.success = false; break; }
+        if (eq.infusionCount >= 1 && recipe.result.target === 'primary_stat') { result.message = 'Already has an infusion.'; result.success = false; break; }
+        const statPool = recipe.result.target === 'primary_stat' ? PRIMARY_STATS : MINOR_STATS;
+        const stat = statPool[Math.floor(Math.random() * statPool.length)];
+        const value = (recipe.result.statBonus?.[0] || 1) + Math.floor(Math.random() * ((recipe.result.statBonus?.[1] || 2) - (recipe.result.statBonus?.[0] || 1) + 1));
+        eq.stats = eq.stats || {};
+        eq.stats[stat] = (eq.stats[stat] || 0) + value;
+        if (recipe.result.target === 'primary_stat') eq.infusionCount = (eq.infusionCount || 0) + 1;
+        else eq.permEnchantCount = (eq.permEnchantCount || 0) + 1;
+        result.message = `+${value} ${stat} permanently!`;
+        result.updatedGear = eq;
+        break;
+      }
+      // Transmute material handler (alchemist transmutes)
+      if (recipe.result?.type === 'transmute_material') {
+        u.craftingMaterials = u.craftingMaterials || {};
+        const outMat = recipe.result.outputMaterial;
+        const outAmt = (recipe.result.outputAmount || 1) * effectiveCount;
+        u.craftingMaterials[outMat] = (u.craftingMaterials[outMat] || 0) + outAmt;
+        const matDef = PROFESSIONS_DATA.materials?.find(m => m.id === outMat);
+        result.message = `Transmuted! +${outAmt} ${matDef?.name || outMat}`;
+        break;
+      }
+      // Forge temp handler
+      if (recipe.result?.type === 'forge_temp') {
+        const totalAmount = (recipe.result.amount || 15) * effectiveCount;
+        u.forgeTemp = Math.min(100, (u.forgeTemp || 0) + totalAmount);
+        result.message = `Forge temperature raised by ${totalAmount}! (${u.forgeTemp}%)`;
+        break;
+      }
+      // Streak shield handler
+      if (recipe.result?.type === 'streak_shield') {
+        u.streakShields = Math.min(10, (u.streakShields || 0) + effectiveCount);
+        result.message = `Streak Shield received! (Total: ${u.streakShields})`;
+        break;
+      }
+      if (recipe.result?.type === 'craft_gear') {
+        const templateId = recipe.result.templateId;
+        const template = state.gearById.get(templateId) || state.itemTemplates?.get(templateId);
+        if (!template) {
+          return res.status(400).json({ error: `Gear template not found: ${templateId}` });
+        }
+        u.inventory = u.inventory || [];
+        if (u.inventory.length >= (INVENTORY_CAP || 200)) {
+          return res.status(400).json({ error: 'Inventory full' });
+        }
+        const instance = createGearInstance(template);
+        // Apply mastery bonus (cloth_stat_boost or gear_stat_boost)
+        if (masteryDef && (masteryDef.type === 'cloth_stat_boost' || masteryDef.type === 'gear_stat_boost')) {
+          const boost = 1 + (masteryDef.value || 10) / 100;
+          for (const stat of Object.keys(instance.stats)) {
+            instance.stats[stat] = Math.round(instance.stats[stat] * boost);
+          }
+        }
+        u.inventory.push(instance);
+        result.message = `Crafted: ${instance.name} (${instance.rarity})`;
+        result.craftedItem = instance;
+        break;
+      }
       return res.status(400).json({ error: `Unknown recipe: ${recipeId}` });
+    }
   }
 
   // Battle Pass XP
@@ -700,7 +835,8 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
     gold: u.currencies?.gold ?? u.gold ?? 0,
     newProfLevel: newProfLevel.level,
     profLevelUp: newProfLevel.level > profProgress.level,
-    xpGained: totalXpGained,
+    skillGained: totalSkillGained,
+    newSkill: newSkill,
     skillUpColor,
     dailyBonusUsed: dailyBonusAvailable,
     craftCount: effectiveCount,
@@ -772,6 +908,13 @@ router.post('/api/professions/switch', requireAuth, (req, res) => {
   // Reset profession XP
   if (u.professions?.[dropProfession]) {
     u.professions[dropProfession] = { level: 0, xp: 0, lastCraftAt: null };
+  }
+  // Remove all learned recipes for this profession (WoW-style: dropping = lose everything)
+  if (u.learnedRecipes?.length) {
+    const profRecipeIds = new Set(
+      (PROFESSIONS_DATA.recipes || []).filter(r => r.profession === dropProfession).map(r => r.id)
+    );
+    u.learnedRecipes = u.learnedRecipes.filter(rid => !profRecipeIds.has(rid));
   }
 
   saveUsers();
@@ -886,12 +1029,17 @@ router.post('/api/schmiedekunst/dismantle-all', requireAuth, (req, res) => {
   let totalEssenz = 0;
   const allMats = {};
   const dismantleIds = new Set(toDismantle.map(i => i.instanceId || i.id));
+  // Legendary effect: salvageBonus — extra materials from dismantling
+  const salvageMods = getLegendaryModifiers(uid);
+  const salvageBonusMult = salvageMods.salvageBonus || 0;
   for (const item of toDismantle) {
     totalEssenz += DISMANTLE_ESSENZ[rarity] || 2;
     for (const mat of (DISMANTLE_MATERIALS[rarity] || DISMANTLE_MATERIALS.common)) {
       if (Math.random() < mat.chance) {
-        u.craftingMaterials[mat.id] = (u.craftingMaterials[mat.id] || 0) + 1;
-        allMats[mat.id] = (allMats[mat.id] || 0) + 1;
+        let amount = 1;
+        if (salvageBonusMult > 0) amount += Math.round(salvageBonusMult);
+        u.craftingMaterials[mat.id] = (u.craftingMaterials[mat.id] || 0) + amount;
+        allMats[mat.id] = (allMats[mat.id] || 0) + amount;
       }
     }
   }
@@ -1003,6 +1151,232 @@ router.post('/api/schmiedekunst/transmute', requireAuth, (req, res) => {
     created: legendary,
     goldSpent: transmuteCost,
     gold: u.currencies?.gold ?? u.gold ?? 0,
+  });
+});
+
+// ─── Reforge Legendary (D3 Kanai's Cube "Law of Kulle") ─────────────────────
+// Same item identity, completely re-randomized stats
+router.post('/api/schmiedekunst/reforge', requireAuth, (req, res) => {
+  const uid = req.auth?.userId;
+  const u = state.users[uid];
+  if (!u) return res.status(404).json({ error: 'User not found' });
+  const { inventoryItemId } = req.body;
+  if (!inventoryItemId) return res.status(400).json({ error: 'inventoryItemId required' });
+
+  u.inventory = u.inventory || [];
+  const idx = u.inventory.findIndex(i => (i.instanceId || i.id) === inventoryItemId);
+  if (idx === -1) return res.status(404).json({ error: 'Item not in inventory' });
+  const item = u.inventory[idx];
+
+  // Must be legendary
+  if ((item.rarity || 'common') !== 'legendary') {
+    return res.status(400).json({ error: 'Only legendary items can be reforged' });
+  }
+  // Cannot reforge equipped items
+  if (getEquippedIds(u).has(inventoryItemId)) {
+    return res.status(400).json({ error: 'Unequip the item first' });
+  }
+  // Must have a template to re-roll from
+  const templateId = item.templateId || item.itemId;
+  const template = state.gearById.get(templateId) || state.itemTemplates?.get(templateId);
+  if (!template) {
+    return res.status(400).json({ error: 'Cannot reforge this item (no template)' });
+  }
+
+  // Cost: 1000 gold + 2 seelensplitter + 3 aetherkern
+  const goldCost = 1000;
+  const matCosts = { seelensplitter: 2, aetherkern: 3 };
+
+  ensureUserCurrencies(u);
+  const userGold = u.currencies?.gold ?? u.gold ?? 0;
+  if (userGold < goldCost) {
+    return res.status(400).json({ error: `Not enough gold (${userGold}/${goldCost})` });
+  }
+  u.craftingMaterials = u.craftingMaterials || {};
+  for (const [matId, needed] of Object.entries(matCosts)) {
+    if ((u.craftingMaterials[matId] || 0) < needed) {
+      const matDef = PROFESSIONS_DATA.materials?.find(m => m.id === matId);
+      return res.status(400).json({ error: `Not enough ${matDef?.name || matId} (${u.craftingMaterials[matId] || 0}/${needed})` });
+    }
+  }
+
+  // Deduct costs
+  u.currencies.gold -= goldCost;
+  u.gold = u.currencies.gold;
+  for (const [matId, needed] of Object.entries(matCosts)) {
+    u.craftingMaterials[matId] -= needed;
+    if (u.craftingMaterials[matId] <= 0) delete u.craftingMaterials[matId];
+  }
+
+  // Reforge: create new instance from same template, replace in inventory
+  const reforged = createGearInstance(template);
+  // Preserve instanceId for tracking
+  reforged.instanceId = item.instanceId || reforged.instanceId;
+  u.inventory[idx] = reforged;
+
+  saveUsersSync();
+  res.json({
+    message: `${reforged.name} has been reforged! Stats re-randomized.`,
+    reforged,
+    goldSpent: goldCost,
+    gold: u.currencies?.gold ?? u.gold ?? 0,
+  });
+});
+
+// ─── D3-Style Stat Reroll ("Enchanting") — standalone, no profession needed ─
+const REROLL_BASE_GOLD = 100;
+const REROLL_GOLD_CAP = 50000;
+const REROLL_ESSENZ_COST = 2; // D3-style: material cost stays constant, only gold escalates
+
+router.post('/api/reroll/preview', requireAuth, (req, res) => {
+  const u = req.user;
+  const { slot, statToLock } = req.body;
+  if (!slot || !VALID_SLOTS.includes(slot)) return res.status(400).json({ error: 'Invalid slot' });
+
+  const eq = u.equipment?.[slot];
+  if (!eq || typeof eq !== 'object') return res.status(400).json({ error: 'No item equipped in that slot' });
+
+  const template = state.gearById.get(eq.templateId) || state.itemTemplates?.get(eq.templateId);
+  if (!template?.affixes) return res.status(400).json({ error: 'Item has no affix data' });
+
+  // Determine which stat is locked for reroll
+  const lockedStat = eq.rerollLocked || statToLock || null;
+  if (eq.rerollLocked && statToLock && eq.rerollLocked !== statToLock) {
+    return res.status(400).json({ error: `This item is locked to reroll "${eq.rerollLocked}" only` });
+  }
+
+  // Validate stat exists on item
+  const allStats = { ...(eq.stats || {}) };
+  if (lockedStat && !(lockedStat in allStats)) {
+    return res.status(400).json({ error: `Stat "${lockedStat}" not found on this item` });
+  }
+
+  const rerollCount = eq.rerollCount || 0;
+  const goldCost = Math.min(REROLL_GOLD_CAP, Math.round(REROLL_BASE_GOLD * Math.pow(1.5, rerollCount)));
+  const essenzCost = REROLL_ESSENZ_COST;
+
+  // Find affix pool for the locked stat
+  const isPrimary = PRIMARY_STATS.includes(lockedStat);
+  const pool = isPrimary ? template.affixes.primary?.pool : template.affixes.minor?.pool;
+  const poolEntry = pool?.find(p => p.stat === lockedStat);
+
+  res.json({
+    item: eq,
+    lockedStat,
+    currentValue: allStats[lockedStat],
+    rerollCount,
+    cost: { gold: goldCost, essenz: essenzCost },
+    range: poolEntry ? { min: poolEntry.min, max: poolEntry.max } : null,
+    isFirstReroll: !eq.rerollLocked,
+  });
+});
+
+router.post('/api/reroll/enchant', requireAuth, (req, res) => {
+  const u = req.user;
+  const { slot, statToLock, chosenOption } = req.body;
+  if (!slot || !VALID_SLOTS.includes(slot)) return res.status(400).json({ error: 'Invalid slot' });
+
+  const eq = u.equipment?.[slot];
+  if (!eq || typeof eq !== 'object') return res.status(400).json({ error: 'No item equipped in that slot' });
+
+  const template = state.gearById.get(eq.templateId) || state.itemTemplates?.get(eq.templateId);
+  if (!template?.affixes) return res.status(400).json({ error: 'Item has no affix data' });
+
+  // Determine locked stat
+  const lockedStat = eq.rerollLocked || statToLock;
+  if (!lockedStat) return res.status(400).json({ error: 'Must specify statToLock' });
+  if (eq.rerollLocked && eq.rerollLocked !== lockedStat) {
+    return res.status(400).json({ error: `This item is locked to reroll "${eq.rerollLocked}" only` });
+  }
+
+  const allStats = { ...(eq.stats || {}) };
+  if (!(lockedStat in allStats)) {
+    return res.status(400).json({ error: `Stat "${lockedStat}" not found on this item` });
+  }
+
+  const rerollCount = eq.rerollCount || 0;
+  const goldCost = Math.min(REROLL_GOLD_CAP, Math.round(REROLL_BASE_GOLD * Math.pow(1.5, rerollCount)));
+  const essenzCost = REROLL_ESSENZ_COST;
+
+  // Find affix pool
+  const isPrimary = PRIMARY_STATS.includes(lockedStat);
+  const pool = isPrimary ? template.affixes.primary?.pool : template.affixes.minor?.pool;
+  const poolEntry = pool?.find(p => p.stat === lockedStat);
+  if (!poolEntry) {
+    // Stat not in pool — try any pool entry for same category
+    const fallbackPool = isPrimary ? template.affixes.primary?.pool : template.affixes.minor?.pool;
+    if (!fallbackPool?.length) return res.status(400).json({ error: 'No affix pool available for reroll' });
+  }
+
+  const rollMin = poolEntry?.min ?? 1;
+  const rollMax = poolEntry?.max ?? 3;
+
+  // If chosenOption is not provided, this is a "roll" request — roll 2 options
+  if (chosenOption == null) {
+    // Check cost
+    ensureUserCurrencies(u);
+    const gold = u.currencies?.gold ?? u.gold ?? 0;
+    const essenz = u.currencies?.essenz ?? 0;
+    if (gold < goldCost) return res.status(400).json({ error: `Not enough gold (need ${goldCost}, have ${gold})` });
+    if (essenz < essenzCost) return res.status(400).json({ error: `Not enough essenz (need ${essenzCost}, have ${essenz})` });
+
+    // Deduct cost
+    u.currencies.gold -= goldCost;
+    u.gold = u.currencies.gold;
+    u.currencies.essenz -= essenzCost;
+
+    // Roll 2 new options (guaranteed at least one different from current)
+    const currentVal = eq.stats[lockedStat];
+    const rollOnce = () => rollMin + Math.floor(Math.random() * (rollMax - rollMin + 1));
+    let optionA = rollOnce();
+    let optionB = rollOnce();
+    // Ensure at least one differs from current
+    let attempts = 0;
+    while (optionA === currentVal && optionB === currentVal && attempts < 20) {
+      optionA = rollOnce();
+      optionB = rollOnce();
+      attempts++;
+    }
+
+    // Lock the stat on first reroll
+    if (!eq.rerollLocked) eq.rerollLocked = lockedStat;
+
+    // Store pending options (player must choose)
+    eq.rerollPending = { options: [currentVal, optionA, optionB], stat: lockedStat };
+
+    saveUsers();
+    return res.json({
+      options: [
+        { label: 'Keep', value: currentVal, index: 0 },
+        { label: 'Option A', value: optionA, index: 1 },
+        { label: 'Option B', value: optionB, index: 2 },
+      ],
+      cost: { gold: goldCost, essenz: essenzCost },
+      rerollCount: rerollCount + 1,
+      nextCost: {
+        gold: Math.min(REROLL_GOLD_CAP, Math.round(REROLL_BASE_GOLD * Math.pow(1.5, rerollCount + 1))),
+        essenz: REROLL_ESSENZ_COST,
+      },
+    });
+  }
+
+  // chosenOption provided — apply the selection
+  if (!eq.rerollPending) return res.status(400).json({ error: 'No pending reroll options' });
+  const idx = parseInt(chosenOption, 10);
+  if (idx < 0 || idx > 2) return res.status(400).json({ error: 'Invalid option (0=keep, 1=A, 2=B)' });
+
+  const chosenVal = eq.rerollPending.options[idx];
+  const oldVal = eq.stats[lockedStat];
+  eq.stats[lockedStat] = chosenVal;
+  eq.rerollCount = (eq.rerollCount || 0) + 1;
+  delete eq.rerollPending;
+
+  saveUsers();
+  res.json({
+    success: true,
+    message: `${lockedStat}: ${oldVal} → ${chosenVal}`,
+    updatedGear: eq,
+    rerollCount: eq.rerollCount,
   });
 });
 

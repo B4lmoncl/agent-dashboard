@@ -178,12 +178,13 @@ export function PersonalQuestPanel({ reviewApiKey, onRefresh }: {
                 <button
                   onClick={() => handleSpawn(t.id)}
                   disabled={isSpawned || isSpawning}
+                  title={isSpawned ? "Already added to quest board" : isSpawning ? "Adding quest..." : "Add this quest to your board"}
                   className="mt-auto w-full text-xs py-1.5 rounded-lg font-semibold"
                   style={{
                     background: isSpawned ? `${tc.color}20` : isSpawning ? "rgba(255,255,255,0.04)" : "rgba(167,139,250,0.15)",
                     color: isSpawned ? tc.color : isSpawning ? "rgba(255,255,255,0.3)" : "#a78bfa",
                     border: `1px solid ${isSpawned ? tc.border : "rgba(167,139,250,0.35)"}`,
-                    cursor: isSpawned ? "default" : "pointer",
+                    cursor: (isSpawned || isSpawning) ? "not-allowed" : "pointer",
                   }}
                 >
                   {isSpawned ? "✓ Quest Added" : isSpawning ? "Adding…" : "＋ Add to Quest Board"}
@@ -279,12 +280,13 @@ export function ForgeChallengesPanel({ users, reviewApiKey, onRefresh }: {
               <button
                 onClick={() => handleJoin(c.id)}
                 disabled={!!joined || joining === c.id}
+                title={joined ? "Already joined this challenge" : joining === c.id ? "Joining challenge..." : "Join this challenge"}
                 className="w-full text-xs py-1.5 rounded-lg font-semibold"
                 style={{
                   background: joined ? "rgba(34,197,94,0.12)" : joining === c.id ? "rgba(255,255,255,0.04)" : "rgba(249,115,22,0.15)",
                   color: joined ? "#22c55e" : joining === c.id ? "rgba(255,255,255,0.3)" : "#f97316",
                   border: `1px solid ${joined ? "rgba(34,197,94,0.3)" : "rgba(249,115,22,0.35)"}`,
-                  cursor: joined ? "default" : "pointer",
+                  cursor: (joined || joining === c.id) ? "not-allowed" : "pointer",
                 }}
               >
                 {joined ? "✓ Joined" : joining === c.id ? "Joining…" : "Join Challenge"}
@@ -390,6 +392,7 @@ export function RelationshipCoopPanel({ users, reviewApiKey, onRefresh }: {
                 <button
                   onClick={() => createCoopQuest(t)}
                   disabled={!canCreate || !!creating}
+                  title={isDone ? "Co-op quest already created" : creating ? "Creating quest..." : !canCreate ? "Select both partners first" : "Create co-op quest"}
                   className="action-btn w-full text-xs py-1.5 rounded-lg font-semibold"
                   style={{ background: isDone ? "rgba(34,197,94,0.15)" : canCreate ? "rgba(244,63,94,0.15)" : "rgba(255,255,255,0.04)", color: isDone ? "#22c55e" : canCreate ? "#f43f5e" : "rgba(255,255,255,0.2)", border: `1px solid ${isDone ? "rgba(34,197,94,0.3)" : "rgba(244,63,94,0.3)"}`, cursor: canCreate ? "pointer" : "not-allowed" }}
                 >
@@ -531,11 +534,13 @@ export function LearningQuestPanel({ quests, reviewApiKey, onRefresh }: {
                 <button
                   onClick={() => createChain(t)}
                   disabled={!!creating}
+                  title={isDone ? "Quest chain already created" : isCreating ? "Creating quest chain..." : "Start this quest chain"}
                   className="action-btn btn-primary w-full text-xs py-1.5 rounded-lg font-semibold"
                   style={{
                     background: isDone ? "rgba(34,197,94,0.15)" : isCreating ? "rgba(255,255,255,0.04)" : "rgba(59,130,246,0.15)",
                     color: isDone ? "#22c55e" : isCreating ? "rgba(255,255,255,0.3)" : "#3b82f6",
                     border: `1px solid ${isDone ? "rgba(34,197,94,0.3)" : "rgba(59,130,246,0.3)"}`,
+                    cursor: (isDone || isCreating) ? "not-allowed" : "pointer",
                   }}
                 >
                   {isDone ? "✓ Quest Chain Created!" : isCreating ? "Creating…" : "Start Quest Chain"}
@@ -624,8 +629,9 @@ export function HouseholdQuestBoard({ quests, users, reviewApiKey, onRefresh }: 
           <button
             onClick={rotate}
             disabled={rotating || householdQuests.length === 0}
+            title={rotating ? "Rotating assignments..." : householdQuests.length === 0 ? "No chores to rotate" : "Rotate chore assignments"}
             className="action-btn btn-approve ml-auto text-xs px-3 py-1 rounded-lg"
-            style={{ background: "rgba(34,197,94,0.12)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.3)" }}
+            style={{ background: "rgba(34,197,94,0.12)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.3)", cursor: (rotating || householdQuests.length === 0) ? "not-allowed" : "pointer" }}
           >
             {rotating ? "Rotating…" : "↻ Rotate Assignments"}
           </button>
@@ -662,11 +668,13 @@ export function HouseholdQuestBoard({ quests, users, reviewApiKey, onRefresh }: 
               key={c.title}
               onClick={() => addChore(c)}
               disabled={!!adding}
+              title={adding ? "Adding chore..." : `Add ${c.title}`}
               className="action-btn text-xs px-2 py-1.5 rounded-lg text-left truncate"
               style={{
                 background: adding === c.title ? "rgba(34,197,94,0.1)" : "rgba(255,255,255,0.03)",
                 color: "rgba(255,255,255,0.4)",
                 border: "1px solid rgba(255,255,255,0.07)",
+                cursor: adding ? "not-allowed" : "pointer",
               }}
             >
               + {c.title}
@@ -752,11 +760,12 @@ export function ThoughtfulHeroPanel({ quests, reviewApiKey, onRefresh }: {
             key={p.title}
             onClick={() => createPrompt(p)}
             disabled={!reviewApiKey || !!creating}
-            title={p.desc}
+            title={!reviewApiKey ? "Login required" : creating ? "Creating quest..." : p.desc}
             className="action-btn btn-social rounded-xl p-3 flex flex-col items-center gap-1.5"
             style={{
               background: creating === p.title ? "rgba(236,72,153,0.15)" : "#252525",
               border: `1px solid ${creating === p.title ? "rgba(236,72,153,0.45)" : "rgba(255,255,255,0.07)"}`,
+              cursor: (!reviewApiKey || creating) ? "not-allowed" : "pointer",
             }}
           >
             <span className="text-xl">{p.icon}</span>

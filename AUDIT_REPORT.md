@@ -481,6 +481,48 @@ Full codebase audit focusing on:
 - Webhook signature verification fails closed
 - Buff expiration persisted correctly
 
+## 11. Session 29 — Item Lore, Unique Rarity Color, Full Audit + QoL Cross-Links (2026-03-23)
+
+### Item Content
+
+| Change | Files | Description |
+|--------|-------|-------------|
+| Flavor text for all gear | `gearTemplates.json` | 251 items now have `flavorText` (German, Kingkiller Chronicle tone) |
+| Unique item rarity color | 10+ files | `#e6cc80` (WoW artifact gold) for `isUnique: true` items, distinct from legendary orange |
+
+### Audit Fixes
+
+| Commit | Severity | Fix |
+|--------|----------|-----|
+| `dbd5dca` | MEDIUM | GameTooltip Mythic+ scaling says +0.25× but backend uses +0.3× → fixed |
+| `dbd5dca` | CRITICAL | `u.gold -= cost` without null check → NaN corruption risk (habits-inventory.js:596) |
+| `dbd5dca` | HIGH | Unsafe `template.affixes.primary/minor.pool` access without null check (crafting.js:460,476) |
+
+### QoL: Cross-Navigation Links (13 components)
+
+WoW/Diablo/HSR-inspired cross-linking — feature cards, rewards, and stats link to their relevant views:
+
+| Component | Links Added |
+|-----------|-------------|
+| TodayDrawer | Daily mission cards → Quest Board, Rituals, Character, Forge; Stat cards → detail views |
+| UserCard | Forge→Forge, Quests→QuestBoard, Points→Honors, Streak→Rituals, Companion→Character |
+| RewardCelebration | Currency rewards → "Spend →" links (Gold→Shop, Rune→Gacha, Essenz→Forge) |
+| SocialView | Activity feed events clickable with → indicator and navigation |
+| LeaderboardView | Player rows open PlayerProfileModal |
+| BattlePassView | Title/frame rewards → Character, recipe rewards → Forge |
+| FactionsView | Recipe/frame/effect rewards → Forge/Character links |
+| WorldBossView | Unique drops → Collection Log, materials → Forge |
+| DungeonView | Gear rewards → Character, materials → Forge |
+| ShopView | Boost items explain where they apply (Quest Board, Rituals, Forge) |
+| CompanionsWidget | Companion card clickable → Character view |
+| GachaPull | Pull result → "View in Inventory →" → Character |
+
+### Systems Verified Clean
+
+- All 12 cross-link navigations use existing `onNavigate` / `setDashView` callback pattern
+- No new props needed on page.tsx beyond wiring existing `onNavigate`
+- Build passes with 0 TypeScript errors
+
 ---
 
 *End of Audit Report*

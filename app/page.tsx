@@ -93,7 +93,7 @@ const PROF_META: Record<string, { name: string; icon: string; color: string }> =
   koch: { name: "Cook", icon: "/images/icons/prof-koch.png", color: "#e87b35" },
 };
 const MAT_RARITY_COLORS: Record<string, string> = {
-  common: "#9ca3af", uncommon: "#22c55e", rare: "#3b82f6", epic: "#a855f7", legendary: "#f59e0b",
+  common: "#9ca3af", uncommon: "#22c55e", rare: "#3b82f6", epic: "#a855f7", legendary: "#f59e0b", unique: "#e6cc80",
 };
 
 const MAT_SOURCES: Record<string, string> = {
@@ -841,11 +841,11 @@ export default function Dashboard() {
                   })()}
                 </div>
                 <p className="text-xs mb-1.5" style={{ color: "#a78bfa" }}><Tip k="player_level">Lv.{playerLevelInfo.level}</Tip> · {playerLevelInfo.title}</p>
-                {/* XP progress bar */}
-                <div className="h-1.5 rounded-full overflow-hidden bg-w7">
+                {/* XP progress bar — Diablo style */}
+                <div className={`progress-bar-diablo${playerLevelInfo.progress > 0.9 ? " progress-bar-nearly-full" : ""}`}>
                   <div
-                    className="h-full rounded-full transition-all duration-700"
-                    style={{ width: `${(playerLevelInfo.progress * 100).toFixed(1)}%`, background: "linear-gradient(90deg, #7c3aed, #a78bfa)" }}
+                    className="progress-bar-diablo-fill"
+                    style={{ width: `${(playerLevelInfo.progress * 100).toFixed(1)}%`, background: `linear-gradient(90deg, #7c3aed88, #a78bfa, #a78bfacc)` }}
                   />
                 </div>
                 <p className="text-xs mt-1 font-mono text-w20">
@@ -1259,7 +1259,7 @@ export default function Dashboard() {
               <div>
                 <h3 className="text-xs font-semibold uppercase tracking-widest mb-3 text-w25">Adventurers</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 mb-6">
-                  {users.filter(u => !agents.some(a => a.id === u.id)).map(u => <UserCard key={u.id} user={u} classes={classesList} onClick={() => setProfilePlayerId(u.id)} />)}
+                  {users.filter(u => !agents.some(a => a.id === u.id)).map(u => <UserCard key={u.id} user={u} classes={classesList} onClick={() => setProfilePlayerId(u.id)} onNavigate={(v) => setDashView(v as typeof dashView)} />)}
                 </div>
               </div>
             )}
@@ -1287,22 +1287,22 @@ export default function Dashboard() {
 
         {/* Factions — Die Vier Zirkel */}
         {dashView === "factions" && (
-          <ErrorBoundary><Suspense fallback={<ViewFallback />}><FactionsView onRewardCelebration={setRewardCelebration} /></Suspense></ErrorBoundary>
+          <ErrorBoundary><Suspense fallback={<ViewFallback />}><FactionsView onRewardCelebration={setRewardCelebration} onNavigate={(v) => setDashView(v as typeof dashView)} /></Suspense></ErrorBoundary>
         )}
 
         {/* Season Pass (Battle Pass) */}
         {dashView === "season" && (
-          <ErrorBoundary><Suspense fallback={<ViewFallback />}><BattlePassView onRewardCelebration={setRewardCelebration} /></Suspense></ErrorBoundary>
+          <ErrorBoundary><Suspense fallback={<ViewFallback />}><BattlePassView onRewardCelebration={setRewardCelebration} onNavigate={(v) => setDashView(v as typeof dashView)} /></Suspense></ErrorBoundary>
         )}
 
         {/* World Boss — The Colosseum */}
         {dashView === "worldboss" && (
-          <ErrorBoundary><Suspense fallback={<ViewFallback />}><WorldBossView onRewardCelebration={setRewardCelebration} /></Suspense></ErrorBoundary>
+          <ErrorBoundary><Suspense fallback={<ViewFallback />}><WorldBossView onRewardCelebration={setRewardCelebration} onNavigate={(v) => setDashView(v as typeof dashView)} /></Suspense></ErrorBoundary>
         )}
 
         {/* ── DUNGEONS — The Undercroft ── */}
         {dashView === "dungeons" && (
-          <ErrorBoundary><Suspense fallback={<ViewFallback />}><DungeonView onRefresh={refresh} onRewardCelebration={setRewardCelebration} /></Suspense></ErrorBoundary>
+          <ErrorBoundary><Suspense fallback={<ViewFallback />}><DungeonView onRefresh={refresh} onRewardCelebration={setRewardCelebration} onNavigate={(v) => setDashView(v as typeof dashView)} /></Suspense></ErrorBoundary>
         )}
 
         {/* ── SHOP TAB ── */}
@@ -1310,6 +1310,7 @@ export default function Dashboard() {
           <ErrorBoundary><Suspense fallback={<ViewFallback />}><ShopView
             onBuy={handleShopBuy}
             onGearBuy={handleGearBuy}
+            onNavigate={(v) => setDashView(v as typeof dashView)}
           /></Suspense></ErrorBoundary>
         )}
 
@@ -1323,6 +1324,7 @@ export default function Dashboard() {
           <ErrorBoundary><Suspense fallback={<ViewFallback />}><GachaView
             onRefresh={refresh}
             onPullComplete={(items) => { items.forEach((item: { item?: { name?: string; icon?: string; rarity?: string } }, i: number) => { setTimeout(() => addToast({ type: "flavor", message: `${item.item?.name || "Item"} collected!`, icon: item.item?.icon || "/images/icons/vault-of-fate.png", sub: item.item?.rarity || "common" }), i * 50); }); }}
+            onNavigate={(v) => setDashView(v as typeof dashView)}
           /></Suspense></ErrorBoundary>
         )}
 
@@ -1439,7 +1441,7 @@ export default function Dashboard() {
               {/* Companions Widget — full experience in the Great Hall */}
               {playerName && (
                 <div className="mb-5" style={{ minHeight: 100 }}>
-                  <CompanionsWidget user={loggedInUser} streak={playerStreak} playerName={playerName} apiKey={reviewApiKey} onDobbieClick={() => { setDashView("npcBoard"); setNpcBoardFilter(null); }} onUserRefresh={refresh} dobbieQuests={dobbieActiveQuests} onRewardCelebration={setRewardCelebration} />
+                  <CompanionsWidget user={loggedInUser} streak={playerStreak} playerName={playerName} apiKey={reviewApiKey} onDobbieClick={() => { setDashView("npcBoard"); setNpcBoardFilter(null); }} onUserRefresh={refresh} dobbieQuests={dobbieActiveQuests} onRewardCelebration={setRewardCelebration} onNavigate={(v) => setDashView(v as typeof dashView)} />
                 </div>
               )}
 
@@ -1504,12 +1506,12 @@ export default function Dashboard() {
                         <div className="h-1.5 rounded-full" style={{ background: "rgba(255,255,255,0.06)" }}>
                           <div className="h-full rounded-full transition-all duration-700" style={{ width: `${Math.min(100, (dailyMissions.earned / dailyMissions.total) * 100)}%`, background: "linear-gradient(90deg, #818cf8, #a78bfa)" }} />
                         </div>
-                        <div className="flex justify-between mt-1">
+                        <div className="relative mt-1" style={{ height: 20 }}>
                           {dailyMissions.milestones.map(ms => {
                             const reached = dailyMissions.earned >= ms.threshold;
                             const pct = (ms.threshold / dailyMissions.total) * 100;
                             return (
-                              <div key={ms.threshold} className="relative" style={{ left: `${pct - 50/(dailyMissions.milestones.length)}%` }}>
+                              <div key={ms.threshold} className="absolute" style={{ left: `${pct}%`, transform: "translateX(-50%)" }}>
                                 {reached && !ms.claimed ? (
                                   <button
                                     onClick={async () => {
@@ -1742,7 +1744,7 @@ export default function Dashboard() {
 
         {/* ── THE BREAKAWAY (Social & Trade) ── */}
         {dashView === "social" && (
-          <ErrorBoundary><Suspense fallback={<ViewFallback />}><SocialView /></Suspense></ErrorBoundary>
+          <ErrorBoundary><Suspense fallback={<ViewFallback />}><SocialView onNavigate={(v) => setDashView(v as typeof dashView)} /></Suspense></ErrorBoundary>
         )}
 
         {/* ── THE HEARTH (Tavern / Rest Mode) ── */}
@@ -2006,7 +2008,7 @@ export default function Dashboard() {
           dailyMissions={dailyMissions}
           rituals={rituals}
           activeNpcs={activeNpcs}
-          onClaimDailyBonus={() => { setClaimingDailyBonus(true); }}
+          onClaimDailyBonus={handleClaimDailyBonus}
           inProgressCount={quests.inProgress.length}
           weeklyChallenge={weeklyChallenge ? { stagesCompleted: weeklyChallenge.stages?.filter((s: { completed?: boolean }) => s.completed).length ?? 0 } : null}
           worldBossActive={worldBossActive}
@@ -2025,8 +2027,19 @@ export default function Dashboard() {
               });
               if (r.ok) {
                 const data = await r.json();
-                const rewardText = Object.entries(data.reward || {}).map(([k, v]) => `+${v} ${k[0].toUpperCase() + k.slice(1)}`).join(", ");
-                addToast({ type: "flavor", message: `Milestone ${threshold} claimed! ${rewardText}`, icon: "/images/icons/currency-gold.png" });
+                const reward = data.reward || {};
+                const currencies: { name: string; amount: number; color: string }[] = [];
+                if (reward.gold) currencies.push({ name: "Gold", amount: reward.gold, color: "#fbbf24" });
+                if (reward.essenz) currencies.push({ name: "Essenz", amount: reward.essenz, color: "#ef4444" });
+                if (reward.runensplitter) currencies.push({ name: "Runensplitter", amount: reward.runensplitter, color: "#818cf8" });
+                if (reward.sternentaler) currencies.push({ name: "Sternentaler", amount: reward.sternentaler, color: "#fbbf24" });
+                setRewardCelebration({
+                  type: "daily-bonus",
+                  title: `${threshold} Milestone Claimed!`,
+                  xpEarned: 0,
+                  goldEarned: 0,
+                  currencies,
+                });
                 refresh();
               }
             } catch { /* ignore */ }
