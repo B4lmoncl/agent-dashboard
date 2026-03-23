@@ -107,11 +107,11 @@ const SKILL_UP_COLORS: Record<string, { color: string; label: string }> = {
 
 // ─── NPC location metadata ───────────────────────────────────────────────────
 const NPC_LOCATIONS: Record<string, { label: string; color: string; desc: string }> = {
-  schmied: { label: "Deepforge", color: "#f59e0b", desc: "Heavy armor crafting, enchanting" },
+  schmied: { label: "Deepforge", color: "#f59e0b", desc: "Heavy armor crafting, salvage" },
   schneider: { label: "Webstube", color: "#c084fc", desc: "Cloth armor crafting" },
-  alchemist: { label: "Alchemist Lab", color: "#22c55e", desc: "Potions & elixirs" },
+  alchemist: { label: "Alchemist Lab", color: "#22c55e", desc: "Potions, elixirs & transmutation" },
   koch: { label: "Guild Kitchen", color: "#e87b35", desc: "Meals with XP/Gold buffs" },
-  verzauberer: { label: "Arcanum", color: "#a78bfa", desc: "Gear enchantments" },
+  verzauberer: { label: "Arcanum", color: "#a78bfa", desc: "Enchantments & stat rerolling" },
 };
 
 // ─── Workshop tool tiers ─────────────────────────────────────────────────────
@@ -799,10 +799,12 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                 { key: "recipes", label: "Recipes", color: selectedNpc.color },
               ];
               if (selectedNpc.id === "schmied") {
-                tabs.push({ key: "enchanting", label: "Enchanting", color: "#a855f7" });
                 tabs.push({ key: "schmiedekunst", label: "Salvage & Transmute", color: "#ff8c00" });
               }
               if (selectedNpc.id === "verzauberer") {
+                tabs.push({ key: "enchanting", label: "Enchanting", color: "#a855f7" });
+              }
+              if (selectedNpc.id === "alchemist") {
                 tabs.push({ key: "transmutation", label: "Transmutation", color: "#a855f7" });
               }
               if (tabs.length <= 1) return null;
@@ -1092,7 +1094,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
             )}
 
             {/* ─── Tab: Enchanting (D3-style stat reroll — available to all) */}
-            {npcModalTab === "enchanting" && selectedNpc.id === "schmied" && (() => {
+            {npcModalTab === "enchanting" && selectedNpc.id === "verzauberer" && (() => {
               const eq = equippedSlots[enchantSlot];
               const hasItem = eq && typeof eq === "object";
               const itemStats = hasItem ? ((eq as Record<string, unknown>).stats as Record<string, number> || {}) : {};
@@ -1373,7 +1375,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
             })()}
 
             {/* ─── Tab: Transmutation (Verzauberer only) ───────────────── */}
-            {npcModalTab === "transmutation" && selectedNpc.id === "verzauberer" && (() => {
+            {npcModalTab === "transmutation" && selectedNpc.id === "alchemist" && (() => {
               const inv = getUserInventory(loggedInUser);
               // Exclude equipped items from transmutation
               const equippedIds = new Set<string>();
