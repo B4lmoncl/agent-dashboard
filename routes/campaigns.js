@@ -1,7 +1,7 @@
 const router = require('express').Router();
-const { state, saveCampaigns } = require('../lib/state');
+const { state, saveCampaigns, rebuildCampaignsById } = require('../lib/state');
 const { now } = require('../lib/helpers');
-const { requireApiKey } = require('../lib/middleware');
+const { requireApiKey, requireMasterKey } = require('../lib/middleware');
 
 // ─── Campaign Endpoints ──────────────────────────────────────────────────────────
 
@@ -39,6 +39,7 @@ router.post('/api/campaigns', requireApiKey, (req, res) => {
     rewards: { xp: Number(rewards?.xp) || 0, gold: Number(rewards?.gold) || 0, title: rewards?.title || '' },
   };
   state.campaigns.push(campaign);
+  state.campaignsById.set(campaign.id, campaign);
   saveCampaigns();
   console.log(`[campaigns] Created: ${campaign.id} "${campaign.title}"`);
   res.status(201).json(campaign);
@@ -46,7 +47,7 @@ router.post('/api/campaigns', requireApiKey, (req, res) => {
 
 // GET /api/campaigns/:id — single campaign with full quest details
 router.get('/api/campaigns/:id', (req, res) => {
-  const campaign = state.campaigns.find(c => c.id === req.params.id);
+  const campaign = state.campaignsById.get(req.params.id);
   if (!campaign) return res.status(404).json({ error: 'Campaign not found' });
   const questDetails = campaign.questIds.map(id => {
     const q = state.questsById.get(id);
@@ -57,8 +58,8 @@ router.get('/api/campaigns/:id', (req, res) => {
 });
 
 // PATCH /api/campaigns/:id — update campaign fields
-router.patch('/api/campaigns/:id', requireApiKey, (req, res) => {
-  const campaign = state.campaigns.find(c => c.id === req.params.id);
+router.patch('/api/campaigns/:id', requireMasterKey, (req, res) => {
+  const campaign = state.campaignsById.get(req.params.id);
   if (!campaign) return res.status(404).json({ error: 'Campaign not found' });
   const { title, description, icon, lore, status, bossQuestId, rewards, questIds } = req.body;
   if (title !== undefined) campaign.title = String(title).trim();
@@ -74,17 +75,18 @@ router.patch('/api/campaigns/:id', requireApiKey, (req, res) => {
 });
 
 // DELETE /api/campaigns/:id — delete a campaign
-router.delete('/api/campaigns/:id', requireApiKey, (req, res) => {
+router.delete('/api/campaigns/:id', requireMasterKey, (req, res) => {
   const idx = state.campaigns.findIndex(c => c.id === req.params.id);
   if (idx === -1) return res.status(404).json({ error: 'Campaign not found' });
   state.campaigns.splice(idx, 1);
+  state.campaignsById.delete(req.params.id);
   saveCampaigns();
   res.json({ ok: true });
 });
 
 // POST /api/campaigns/:id/add-quest — add a quest to a campaign
 router.post('/api/campaigns/:id/add-quest', requireApiKey, (req, res) => {
-  const campaign = state.campaigns.find(c => c.id === req.params.id);
+  const campaign = state.campaignsById.get(req.params.id);
   if (!campaign) return res.status(404).json({ error: 'Campaign not found' });
   const { questId } = req.body;
   if (!questId) return res.status(400).json({ error: 'questId required' });
@@ -96,7 +98,7 @@ router.post('/api/campaigns/:id/add-quest', requireApiKey, (req, res) => {
 
 // POST /api/campaigns/:id/remove-quest — remove a quest from a campaign
 router.post('/api/campaigns/:id/remove-quest', requireApiKey, (req, res) => {
-  const campaign = state.campaigns.find(c => c.id === req.params.id);
+  const campaign = state.campaignsById.get(req.params.id);
   if (!campaign) return res.status(404).json({ error: 'Campaign not found' });
   const { questId } = req.body;
   if (!questId) return res.status(400).json({ error: 'questId required' });

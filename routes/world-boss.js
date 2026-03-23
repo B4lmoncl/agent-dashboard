@@ -471,7 +471,13 @@ router.post('/api/world-boss/spawn', requireMasterKey, (req, res) => {
 
 // ─── Exports ────────────────────────────────────────────────────────────────
 
+function isWorldBossActive() {
+  const ab = worldBossState.activeBoss;
+  return !!(ab && !ab.defeated && new Date(ab.expiresAt) > new Date());
+}
+
 module.exports = router;
 module.exports.loadWorldBossState = loadWorldBossState;
 module.exports.checkAutoSpawn = checkAutoSpawn;
 module.exports.dealBossDamage = dealBossDamage;
+module.exports.isWorldBossActive = isWorldBossActive;

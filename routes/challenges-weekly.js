@@ -76,8 +76,10 @@ function getActiveChallenge(userId) {
   }
 
   // Backfill stars/stageStartedAt for existing users
-  if (!u.weeklyChallenge.stars) u.weeklyChallenge.stars = [0, 0, 0];
-  if (!u.weeklyChallenge.stageStartedAt) u.weeklyChallenge.stageStartedAt = [u.weeklyChallenge.startedAt || now(), null, null];
+  let backfilled = false;
+  if (!u.weeklyChallenge.stars) { u.weeklyChallenge.stars = [0, 0, 0]; backfilled = true; }
+  if (!u.weeklyChallenge.stageStartedAt) { u.weeklyChallenge.stageStartedAt = [u.weeklyChallenge.startedAt || now(), null, null]; backfilled = true; }
+  if (backfilled) saveUsers();
 
   const template = (WEEKLY_DATA.weeklyChallenge?.templates || []).find(t => t.id === u.weeklyChallenge.templateId);
   return { ...u.weeklyChallenge, template };

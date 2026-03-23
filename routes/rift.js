@@ -10,6 +10,29 @@ const { state, saveUsers, ensureUserCurrencies } = require('../lib/state');
 const { now, getLevelInfo, awardCurrency, onQuestCompletedByUser } = require('../lib/helpers');
 const { requireAuth } = require('../lib/middleware');
 
+// ─── Mythic Leaderboard Cache (avoid O(n) user scan on every GET /api/rift) ──
+let _mythicLeaderboardCache = null;
+let _mythicLeaderboardCacheTime = 0;
+const MYTHIC_LB_CACHE_TTL = 60000; // 1 minute
+
+function getMythicLeaderboard() {
+  const now = Date.now();
+  if (_mythicLeaderboardCache && now - _mythicLeaderboardCacheTime < MYTHIC_LB_CACHE_TTL) {
+    return _mythicLeaderboardCache;
+  }
+  _mythicLeaderboardCache = Object.values(state.users)
+    .filter(p => (p.highestMythicCleared || 0) > 0)
+    .map(p => ({
+      name: p.name,
+      highestMythicCleared: p.highestMythicCleared || 0,
+      level: getLevelInfo(p.xp || 0).level,
+    }))
+    .sort((a, b) => b.highestMythicCleared - a.highestMythicCleared)
+    .slice(0, 10);
+  _mythicLeaderboardCacheTime = now;
+  return _mythicLeaderboardCache;
+}
+
 // ─── Rift Configuration ──────────────────────────────────────────────────────
 
 const RIFT_TIERS = {
@@ -163,16 +186,8 @@ router.get('/api/rift', (req, res) => {
   const hasLegendaryCompletion = (u.riftHistory || []).some(h => h.tier === 'legendary' && h.success);
   const highestMythicCleared = u.highestMythicCleared || 0;
 
-  // Mythic leaderboard — top 10 players by highestMythicCleared
-  const mythicLeaderboard = Object.values(state.users)
-    .filter(p => (p.highestMythicCleared || 0) > 0)
-    .map(p => ({
-      name: p.name,
-      highestMythicCleared: p.highestMythicCleared || 0,
-      level: getLevelInfo(p.xp || 0).level,
-    }))
-    .sort((a, b) => b.highestMythicCleared - a.highestMythicCleared)
-    .slice(0, 10);
+  // Mythic leaderboard — cached top 10 (1min TTL, avoids O(n) user scan per request)
+  const mythicLeaderboard = getMythicLeaderboard();
 
   // Compute effective time limit for active rift (accounts for mythic scaling)
   const effectiveTimeLimit = rift?.timeLimitHours || RIFT_TIERS[rift?.tier]?.timeLimitHours || 72;

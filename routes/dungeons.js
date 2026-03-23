@@ -684,6 +684,14 @@ router.get('/api/dungeons/:runId', (req, res) => {
   });
 });
 
+function isDungeonActiveForPlayer(playerId) {
+  if (!playerId) return false;
+  return Object.values(dungeonState.activeRuns || {}).some(
+    r => r && r.participants?.includes(playerId) && r.status !== 'completed'
+  );
+}
+
 module.exports = router;
 module.exports.loadDungeonTemplates = loadDungeonTemplates;
 module.exports.loadDungeonState = loadDungeonState;
+module.exports.isDungeonActiveForPlayer = isDungeonActiveForPlayer;
