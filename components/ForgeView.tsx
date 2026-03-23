@@ -1053,7 +1053,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
               </>
             )}
 
-            {/* ─── Tab: Enchanting (D3-style stat reroll — available to all) */}
+            {/* ─── Tab: Enchanting (D3-style stat reroll — Verzauberer only) */}
             {npcModalTab === "enchanting" && selectedNpc.id === "verzauberer" && (() => {
               const eq = equippedSlots[enchantSlot];
               const hasItem = eq && typeof eq === "object";
@@ -1339,7 +1339,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
               );
             })()}
 
-            {/* ─── Tab: Transmutation (Verzauberer only) ───────────────── */}
+            {/* ─── Tab: Transmutation (Alchemist only) ────────────────── */}
             {npcModalTab === "transmutation" && selectedNpc.id === "alchemist" && (() => {
               const inv = getUserInventory(loggedInUser);
               // Exclude equipped items from transmutation
