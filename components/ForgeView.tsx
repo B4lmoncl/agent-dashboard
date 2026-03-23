@@ -411,7 +411,6 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
           });
           const data = await r.json();
           if (r.ok) {
-            setCraftResult(data.message || "Profession dropped!");
             closeNpcModal();
             fetchData();
             onRefresh?.();
@@ -834,13 +833,13 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                 { key: "recipes", label: "Recipes", color: selectedNpc.color },
               ];
               if (selectedNpc.id === "schmied") {
-                tabs.push({ key: "schmiedekunst", label: "Salvage & Transmute", color: "#ff8c00" });
+                tabs.push({ key: "schmiedekunst", label: "Salvage", color: "#ff8c00" });
               }
               if (selectedNpc.id === "verzauberer") {
                 tabs.push({ key: "enchanting", label: "Enchanting", color: "#a855f7" });
               }
               if (selectedNpc.id === "alchemist") {
-                tabs.push({ key: "transmutation", label: "Transmutation", color: "#a855f7" });
+                tabs.push({ key: "transmutation", label: "Transmutation", color: "#22c55e" });
               }
               if (tabs.length <= 1) return null;
               return (
@@ -1372,7 +1371,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                   </p>
 
                   {transmuteResult && (
-                    <div className="rounded-lg px-3 py-2 text-xs font-semibold" style={{ background: "rgba(168,85,247,0.08)", border: "1px solid rgba(168,85,247,0.2)", color: "#a855f7" }}>
+                    <div className="rounded-lg px-3 py-2 text-xs font-semibold" style={{ background: "rgba(34,197,94,0.08)", border: "1px solid rgba(34,197,94,0.2)", color: "#22c55e" }}>
                       {transmuteResult}
                     </div>
                   )}
@@ -1393,7 +1392,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                           const slotLocked = lockedSlot && lockedSlot !== slot;
                           return (
                             <div key={slot}>
-                              <p className="text-sm font-semibold uppercase mb-1.5" style={{ color: slotLocked ? "rgba(255,255,255,0.1)" : "rgba(168,85,247,0.5)" }}>
+                              <p className="text-sm font-semibold uppercase mb-1.5" style={{ color: slotLocked ? "rgba(255,255,255,0.1)" : "rgba(34,197,94,0.5)" }}>
                                 {SLOT_LABELS[slot] || slot} ({items.length})
                               </p>
                               <div className="grid gap-1.5" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(56px, 1fr))" }}>
@@ -1406,15 +1405,15 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                                       if (disabled) return;
                                       setSelectedTransmute(prev => sel ? prev.filter(x => x !== iid) : prev.length < 3 ? [...prev, iid] : prev);
                                     }} disabled={disabled} className="forge-btn relative flex items-center justify-center rounded-lg aspect-square" style={{
-                                      background: sel ? "rgba(168,85,247,0.15)" : "rgba(255,255,255,0.03)",
-                                      border: `2px solid ${sel ? "rgba(168,85,247,0.6)" : "rgba(168,85,247,0.15)"}`,
+                                      background: sel ? "rgba(34,197,94,0.15)" : "rgba(255,255,255,0.03)",
+                                      border: `2px solid ${sel ? "rgba(34,197,94,0.6)" : "rgba(34,197,94,0.15)"}`,
                                       opacity: disabled ? 0.3 : 1,
                                     }} title={item.name}>
                                       {item.icon
                                         ? <img src={item.icon} alt={item.name} style={{ width: 40, height: 40, imageRendering: "auto", objectFit: "contain" }} />
-                                        : <span style={{ fontSize: 18, color: "#a855f7" }}>◆</span>
+                                        : <span style={{ fontSize: 18, color: "#22c55e" }}>◆</span>
                                       }
-                                      {sel && <span className="absolute top-0.5 right-0.5 text-xs font-bold" style={{ color: "#c084fc", textShadow: "0 0 4px rgba(0,0,0,0.8)" }}>✓</span>}
+                                      {sel && <span className="absolute top-0.5 right-0.5 text-xs font-bold" style={{ color: "#4ade80", textShadow: "0 0 4px rgba(0,0,0,0.8)" }}>✓</span>}
                                     </button>
                                   );
                                 })}
@@ -1424,7 +1423,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                         })}
                       </div>
                       <div className="flex items-center gap-3 pt-1">
-                        <span className="text-xs font-mono" style={{ color: selectedTransmute.length === 3 ? "#c084fc" : "rgba(255,255,255,0.2)" }}>
+                        <span className="text-xs font-mono" style={{ color: selectedTransmute.length === 3 ? "#4ade80" : "rgba(255,255,255,0.2)" }}>
                           {selectedTransmute.length}/3{lockedSlot ? ` (${SLOT_LABELS[lockedSlot] || lockedSlot})` : ""}
                         </span>
                         {selectedTransmute.length > 0 && selectedTransmute.length < 3 && (
@@ -1434,7 +1433,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                         )}
                         {selectedTransmute.length === 3 && (
                           <button onClick={handleTransmute} className="forge-btn text-xs px-3 py-1.5 rounded-lg font-semibold" style={{
-                            background: "rgba(168,85,247,0.15)", color: "#c084fc", border: "1px solid rgba(168,85,247,0.4)",
+                            background: "rgba(34,197,94,0.15)", color: "#4ade80", border: "1px solid rgba(34,197,94,0.4)",
                           }}>
                             Transmute (500g)
                           </button>

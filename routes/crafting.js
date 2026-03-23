@@ -374,6 +374,19 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
         return res.status(400).json({ error: 'Item is already legendary!' });
       }
     }
+    // Pre-validate per-item caps BEFORE deducting costs
+    if (recipeId === 'permanent_enchant' && eq.permEnchantCount >= 1) {
+      return res.status(400).json({ error: 'This item already has a permanent enchantment.' });
+    }
+    if (recipeId === 'enchant_socket' && eq.infusionCount >= 1) {
+      return res.status(400).json({ error: 'This item already has an Arcane Infusion.' });
+    }
+    if (recipeId === 'reinforce_armor' && eq.reinforceCount >= 1) {
+      return res.status(400).json({ error: 'This item has already been reinforced.' });
+    }
+    if (recipeId === 'sharpen_blade' && eq.sharpenCount >= 1) {
+      return res.status(400).json({ error: 'This blade has already been sharpened.' });
+    }
   }
 
   // Check gold cost (×count for batch)
