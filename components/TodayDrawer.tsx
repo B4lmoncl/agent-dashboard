@@ -752,7 +752,7 @@ export default function TodayDrawer({
                 {comp && (
                   <button
                     onClick={() => { onNavigate("questBoard"); onClose(); }}
-                    className="relative flex-shrink-0 rounded-full overflow-hidden today-stat-card"
+                    className="relative flex-shrink-0 rounded-full today-stat-card"
                     style={{
                       width: 52, height: 52, cursor: "pointer",
                       border: `2px solid rgba(251,191,36,${comp.bondLevel && comp.bondLevel >= 3 ? "0.4" : "0.15"})`,
@@ -760,11 +760,13 @@ export default function TodayDrawer({
                     }}
                     title={`${comp.name} (Bond ${comp.bondLevel ?? 1})`}
                   >
+                    <span className="block w-full h-full rounded-full overflow-hidden">
                     {companionSrc ? (
                       <img src={companionSrc} alt={comp.name} width={52} height={52} className="w-full h-full object-cover" style={{ imageRendering: "auto" }} onError={e => { e.currentTarget.style.display = "none"; }} />
                     ) : (
                       <span className="flex items-center justify-center w-full h-full text-xl" style={{ color: "rgba(255,255,255,0.4)" }}>{comp.name?.[0] || "?"}</span>
                     )}
+                    </span>
                     <span className="absolute -bottom-0.5 -right-0.5 text-xs rounded-full flex items-center justify-center"
                       style={{ width: 16, height: 16, fontSize: 9, background: "rgba(251,191,36,0.9)", color: "#000", fontWeight: 800 }}>
                       {comp.bondLevel ?? 1}
@@ -837,24 +839,29 @@ export default function TodayDrawer({
         </div>
 
         {/* ─── Progress Arc ─────────────────────────────────────────── */}
-        <TipCustom
-          title="Tasks Today"
-          accent="#818cf8"
-          hoverDelay={500}
-          align="center"
-          body={<>
-            <p className="text-xs" style={{ color: "rgba(255,255,255,0.5)" }}>Your daily checklist: bonus, companion, rituals, missions, active content, and social tasks. Complete them all for the day!</p>
-            {categories.map(cat => (
-              <div key={cat.id} className="flex items-center justify-between mt-1 text-xs">
-                <span style={{ color: "rgba(255,255,255,0.4)" }}>{cat.label}</span>
-                <span className="font-mono" style={{ color: cat.items.every(i => i.done) ? "#4ade80" : "rgba(255,255,255,0.3)" }}>
-                  {cat.items.filter(i => i.done).length}/{cat.items.length}
-                </span>
-              </div>
-            ))}
-          </>}
-        >
-        <div className="relative flex justify-center py-2 cursor-help" style={{ zIndex: 1 }}>
+        <div className="relative flex justify-center py-2" style={{ zIndex: 1 }}>
+          {/* Invisible tooltip trigger centered over the arc */}
+          <div className="absolute left-1/2 top-1/2" style={{ transform: "translate(-50%, -50%)", width: 120, height: 100, zIndex: 2 }}>
+            <TipCustom
+              title="Tasks Today"
+              accent="#818cf8"
+              hoverDelay={500}
+              align="center"
+              body={<>
+                <p className="text-xs" style={{ color: "rgba(255,255,255,0.5)" }}>Your daily checklist: bonus, companion, rituals, missions, active content, and social tasks. Complete them all for the day!</p>
+                {categories.map(cat => (
+                  <div key={cat.id} className="flex items-center justify-between mt-1 text-xs">
+                    <span style={{ color: "rgba(255,255,255,0.4)" }}>{cat.label}</span>
+                    <span className="font-mono" style={{ color: cat.items.every(i => i.done) ? "#4ade80" : "rgba(255,255,255,0.3)" }}>
+                      {cat.items.filter(i => i.done).length}/{cat.items.length}
+                    </span>
+                  </div>
+                ))}
+              </>}
+            >
+              <div className="w-full h-full cursor-help" />
+            </TipCustom>
+          </div>
           <svg width="200" height="110" viewBox="0 0 200 110">
             {/* Background arc */}
             <path
@@ -906,7 +913,6 @@ export default function TodayDrawer({
             })}
           </svg>
         </div>
-        </TipCustom>
 
         {/* ─── Categorized Card Grid ──────────────────────────────────── */}
         <div className="flex-1 overflow-y-auto px-4 pb-3 relative today-scroll" style={{ zIndex: 1 }}>

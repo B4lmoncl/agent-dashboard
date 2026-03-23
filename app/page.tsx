@@ -841,11 +841,11 @@ export default function Dashboard() {
                   })()}
                 </div>
                 <p className="text-xs mb-1.5" style={{ color: "#a78bfa" }}><Tip k="player_level">Lv.{playerLevelInfo.level}</Tip> · {playerLevelInfo.title}</p>
-                {/* XP progress bar */}
-                <div className="h-1.5 rounded-full overflow-hidden bg-w7">
+                {/* XP progress bar — Diablo style */}
+                <div className={`progress-bar-diablo${playerLevelInfo.progress > 0.9 ? " progress-bar-nearly-full" : ""}`}>
                   <div
-                    className="h-full rounded-full transition-all duration-700"
-                    style={{ width: `${(playerLevelInfo.progress * 100).toFixed(1)}%`, background: "linear-gradient(90deg, #7c3aed, #a78bfa)" }}
+                    className="progress-bar-diablo-fill"
+                    style={{ width: `${(playerLevelInfo.progress * 100).toFixed(1)}%`, background: `linear-gradient(90deg, #7c3aed88, #a78bfa, #a78bfacc)` }}
                   />
                 </div>
                 <p className="text-xs mt-1 font-mono text-w20">
@@ -2008,7 +2008,7 @@ export default function Dashboard() {
           dailyMissions={dailyMissions}
           rituals={rituals}
           activeNpcs={activeNpcs}
-          onClaimDailyBonus={() => { setClaimingDailyBonus(true); }}
+          onClaimDailyBonus={handleClaimDailyBonus}
           inProgressCount={quests.inProgress.length}
           weeklyChallenge={weeklyChallenge ? { stagesCompleted: weeklyChallenge.stages?.filter((s: { completed?: boolean }) => s.completed).length ?? 0 } : null}
           worldBossActive={worldBossActive}
