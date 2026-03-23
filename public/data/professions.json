@@ -419,329 +419,6 @@
   },
   "recipes": [
     {
-      "id": "craft_cloth_helm_common",
-      "profession": "schneider",
-      "name": "Leinene Kapuze",
-      "desc": "Eine einfache Kapuze aus Leinenstoff. Schützt vor Wind und neugierigen Blicken.",
-      "reqProfLevel": 1,
-      "xpGain": 12,
-      "cost": {
-        "gold": 60
-      },
-      "materials": {
-        "leinenstoff": 4
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "cloth-helm-t1"
-      },
-      "cooldownMinutes": 0,
-      "source": "trainer",
-      "reqSkill": 1
-    },
-    {
-      "id": "craft_cloth_armor_common",
-      "profession": "schneider",
-      "name": "Leinene Robe",
-      "desc": "Eine einfache Robe aus Leinenstoff. Leicht und bequem.",
-      "reqProfLevel": 1,
-      "xpGain": 14,
-      "cost": {
-        "gold": 80
-      },
-      "materials": {
-        "leinenstoff": 5
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "cloth-armor-t1"
-      },
-      "cooldownMinutes": 0,
-      "source": "trainer",
-      "reqSkill": 1
-    },
-    {
-      "id": "craft_cloth_boots_common",
-      "profession": "schneider",
-      "name": "Leinene Sandalen",
-      "desc": "Weiche Sandalen aus Leinenstoff. Leise Schritte.",
-      "reqProfLevel": 1,
-      "xpGain": 10,
-      "cost": {
-        "gold": 50
-      },
-      "materials": {
-        "leinenstoff": 3
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "cloth-boots-t1"
-      },
-      "cooldownMinutes": 0,
-      "source": "trainer",
-      "reqSkill": 1
-    },
-    {
-      "id": "craft_cloth_weapon_common",
-      "profession": "schneider",
-      "name": "Leinener Wanderstab",
-      "desc": "Ein Stab, umwickelt mit Leinenstoff. Kanalisiert arkane Energie.",
-      "reqProfLevel": 2,
-      "xpGain": 14,
-      "cost": {
-        "gold": 75
-      },
-      "materials": {
-        "leinenstoff": 4,
-        "magiestaub": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "cloth-weapon-t1"
-      },
-      "cooldownMinutes": 0,
-      "source": "trainer",
-      "trainerCost": 50,
-      "reqSkill": 30
-    },
-    {
-      "id": "craft_cloth_armor_uncommon",
-      "profession": "schneider",
-      "name": "Wollene Gelehrtenrobe",
-      "desc": "Eine warme Robe aus Wollstoff. Beliebt bei Gelehrten und Magiern.",
-      "reqProfLevel": 3,
-      "xpGain": 16,
-      "cost": {
-        "gold": 150
-      },
-      "materials": {
-        "leinenstoff": 3,
-        "wollstoff": 2
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "cloth-armor-t2"
-      },
-      "cooldownMinutes": 0,
-      "source": "trainer",
-      "trainerCost": 100,
-      "reqSkill": 60
-    },
-    {
-      "id": "craft_cloth_helm_uncommon",
-      "profession": "schneider",
-      "name": "Wollene Magierkappe",
-      "desc": "Eine Kappe aus Wollstoff, durchzogen von Schutzzaubern.",
-      "reqProfLevel": 3,
-      "xpGain": 16,
-      "cost": {
-        "gold": 140
-      },
-      "materials": {
-        "leinenstoff": 2,
-        "wollstoff": 2
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "cloth-helm-t2"
-      },
-      "cooldownMinutes": 0,
-      "source": "trainer",
-      "trainerCost": 90,
-      "reqSkill": 60
-    },
-    {
-      "id": "craft_cloth_amulet_uncommon",
-      "profession": "schneider",
-      "name": "Wollenes Talisman-Band",
-      "desc": "Ein gewebtes Band, das als Amulett getragen wird.",
-      "reqProfLevel": 4,
-      "xpGain": 18,
-      "cost": {
-        "gold": 175
-      },
-      "materials": {
-        "wollstoff": 3,
-        "magiestaub": 2
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "cloth-amulet-t2"
-      },
-      "cooldownMinutes": 0,
-      "source": "trainer",
-      "trainerCost": 120,
-      "reqSkill": 90
-    },
-    {
-      "id": "craft_cloth_armor_rare",
-      "profession": "schneider",
-      "name": "Seidene Gelehrtenrobe",
-      "desc": "Eine schimmernde Robe aus Seidenstoff. Arkane Resonanz vibriert im Gewebe.",
-      "reqProfLevel": 5,
-      "xpGain": 22,
-      "cost": {
-        "gold": 300
-      },
-      "materials": {
-        "wollstoff": 3,
-        "seidenstoff": 2
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "cloth-armor-t3"
-      },
-      "cooldownMinutes": 0,
-      "source": "trainer",
-      "trainerCost": 250,
-      "reqSkill": 120
-    },
-    {
-      "id": "craft_cloth_helm_rare",
-      "profession": "schneider",
-      "name": "Seidene Sternenkrone",
-      "desc": "Eine filigrane Krone aus Seidenstoff, bestickt mit Sternenmustern.",
-      "reqProfLevel": 5,
-      "xpGain": 20,
-      "cost": {
-        "gold": 275
-      },
-      "materials": {
-        "wollstoff": 2,
-        "seidenstoff": 2
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "cloth-helm-t3"
-      },
-      "cooldownMinutes": 0,
-      "source": "trainer",
-      "trainerCost": 225,
-      "reqSkill": 120
-    },
-    {
-      "id": "craft_cloth_weapon_rare",
-      "profession": "schneider",
-      "name": "Seidenstab der Weisheit",
-      "desc": "Ein Stab, umwickelt mit Seidenstoff. Glüht in der Dämmerung.",
-      "reqProfLevel": 6,
-      "xpGain": 24,
-      "cost": {
-        "gold": 350
-      },
-      "materials": {
-        "seidenstoff": 3,
-        "runenstein": 2
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "cloth-weapon-t3"
-      },
-      "cooldownMinutes": 0,
-      "source": "drop",
-      "dropChance": 0.08,
-      "dropMinQuestRarity": "rare",
-      "reqSkill": 150
-    },
-    {
-      "id": "craft_cloth_armor_epic",
-      "profession": "schneider",
-      "name": "Magiegewobene Robe",
-      "desc": "Eine Robe aus Magiestoff. Die Fäden sind aus reiner Magie gesponnen.",
-      "reqProfLevel": 7,
-      "xpGain": 28,
-      "cost": {
-        "gold": 500
-      },
-      "materials": {
-        "seidenstoff": 3,
-        "magiestoff": 2
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "cloth-armor-t4-epic"
-      },
-      "cooldownMinutes": 0,
-      "source": "drop",
-      "dropChance": 0.06,
-      "dropMinQuestRarity": "rare",
-      "reqSkill": 180
-    },
-    {
-      "id": "craft_cloth_helm_epic",
-      "profession": "schneider",
-      "name": "Krone der Arkanen Sicht",
-      "desc": "Eine Krone aus Magiestoff. Gewährt dem Träger übernatürliche Wahrnehmung.",
-      "reqProfLevel": 8,
-      "xpGain": 30,
-      "cost": {
-        "gold": 600
-      },
-      "materials": {
-        "magiestoff": 3,
-        "aetherkern": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "cloth-helm-t4-epic"
-      },
-      "cooldownMinutes": 0,
-      "source": "drop",
-      "dropChance": 0.05,
-      "dropMinQuestRarity": "epic",
-      "reqSkill": 210
-    },
-    {
-      "id": "craft_cloth_armor_legendary",
-      "profession": "schneider",
-      "name": "Runengewobene Meisterrobe",
-      "desc": "Eine legendäre Robe aus Runenstoff. Uralte Runen leuchten bei jedem Schritt.",
-      "reqProfLevel": 9,
-      "xpGain": 35,
-      "cost": {
-        "gold": 1000
-      },
-      "materials": {
-        "magiestoff": 3,
-        "runenstoff": 2,
-        "aetherkern": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "cloth-armor-t4"
-      },
-      "cooldownMinutes": 1440,
-      "source": "drop",
-      "dropChance": 0.03,
-      "dropMinQuestRarity": "epic",
-      "reqSkill": 250
-    },
-    {
-      "id": "craft_cloth_weapon_legendary",
-      "profession": "schneider",
-      "name": "Stab der Ewigen Fäden",
-      "desc": "Ein legendärer Stab, dessen Seidenwicklung nie endet. Flüstert vergessene Zauber.",
-      "reqProfLevel": 10,
-      "xpGain": 40,
-      "cost": {
-        "gold": 1200
-      },
-      "materials": {
-        "runenstoff": 3,
-        "seelensplitter": 1,
-        "aetherkern": 2
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "cloth-weapon-t4"
-      },
-      "cooldownMinutes": 2880,
-      "source": "drop",
-      "dropChance": 0.02,
-      "dropMinQuestRarity": "epic",
-      "reqSkill": 280
-    },
-    {
       "id": "potion_xp",
       "profession": "alchemist",
       "name": "Elixir of Experience",
@@ -1725,101 +1402,6 @@
       "dropChance": 0.04,
       "dropMinQuestRarity": "epic",
       "reqSkill": 250
-    },
-    {
-      "id": "craft_cloth_boots_uncommon",
-      "profession": "schneider",
-      "name": "Wollene Gelehrtenschuhe",
-      "desc": "Weiche Schuhe aus Wollstoff. Leise und warm.",
-      "reqProfLevel": 3,
-      "xpGain": 14,
-      "cost": {
-        "gold": 120
-      },
-      "materials": {
-        "leinenstoff": 2,
-        "wollstoff": 2
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "cloth-boots-t2"
-      },
-      "cooldownMinutes": 0,
-      "source": "trainer",
-      "trainerCost": 80,
-      "reqSkill": 60
-    },
-    {
-      "id": "craft_cloth_boots_rare",
-      "profession": "schneider",
-      "name": "Seidene Mondschritte",
-      "desc": "Stiefel aus Seidenstoff. Lautlos wie Mondlicht auf Wasser.",
-      "reqProfLevel": 6,
-      "xpGain": 22,
-      "cost": {
-        "gold": 280
-      },
-      "materials": {
-        "wollstoff": 2,
-        "seidenstoff": 2
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "cloth-boots-t3"
-      },
-      "cooldownMinutes": 0,
-      "source": "trainer",
-      "trainerCost": 200,
-      "reqSkill": 150
-    },
-    {
-      "id": "craft_cloth_amulet_rare",
-      "profession": "schneider",
-      "name": "Seidenes Sternenband",
-      "desc": "Ein Amulett aus Seidenstoff, bestickt mit Sternenmotiven.",
-      "reqProfLevel": 5,
-      "xpGain": 20,
-      "cost": {
-        "gold": 250
-      },
-      "materials": {
-        "seidenstoff": 2,
-        "wollstoff": 1,
-        "magiestaub": 2
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "cloth-amulet-t3"
-      },
-      "cooldownMinutes": 0,
-      "source": "trainer",
-      "trainerCost": 180,
-      "reqSkill": 120
-    },
-    {
-      "id": "craft_cloth_weapon_epic",
-      "profession": "schneider",
-      "name": "Magiegewobener Stab",
-      "desc": "Ein Stab aus Magiestoff. Pulsierende arkane Energie.",
-      "reqProfLevel": 8,
-      "xpGain": 30,
-      "cost": {
-        "gold": 550
-      },
-      "materials": {
-        "magiestoff": 2,
-        "seidenstoff": 2,
-        "aetherkern": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "cloth-weapon-t4-epic"
-      },
-      "cooldownMinutes": 0,
-      "source": "drop",
-      "dropChance": 0.06,
-      "dropMinQuestRarity": "rare",
-      "reqSkill": 210
     },
     {
       "id": "schmied_gear_helm_common",
@@ -3770,6 +3352,1817 @@
       "source": "drop",
       "dropChance": 0.04,
       "dropMinQuestRarity": "epic"
+    },
+    {
+      "id": "schneider_gear_helm_common",
+      "profession": "schneider",
+      "name": "LeinenHut",
+      "desc": "Webt einfache Hut aus Stoff.",
+      "reqProfLevel": 1,
+      "reqSkill": 1,
+      "xpGain": 8,
+      "cost": {
+        "gold": 25
+      },
+      "materials": {
+        "leinenstoff": 4
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "cloth-helm-t1"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer"
+    },
+    {
+      "id": "schneider_gear_helm_uncommon",
+      "profession": "schneider",
+      "name": "WollHut",
+      "desc": "Webt wollgewebte Hut aus Stoff.",
+      "reqProfLevel": 2,
+      "reqSkill": 50,
+      "xpGain": 12,
+      "cost": {
+        "gold": 70
+      },
+      "materials": {
+        "leinenstoff": 4,
+        "wollstoff": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "cloth-helm-t2"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 140
+    },
+    {
+      "id": "schneider_gear_helm_rare",
+      "profession": "schneider",
+      "name": "SeidenHut",
+      "desc": "Webt seidengewebte Hut aus Stoff.",
+      "reqProfLevel": 5,
+      "reqSkill": 125,
+      "xpGain": 18,
+      "cost": {
+        "gold": 180
+      },
+      "materials": {
+        "wollstoff": 4,
+        "seidenstoff": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "cloth-helm-t3"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 360
+    },
+    {
+      "id": "schneider_gear_helm_epic",
+      "profession": "schneider",
+      "name": "MagieHut",
+      "desc": "Webt magiedurchwirkte Hut aus Stoff.",
+      "reqProfLevel": 7,
+      "reqSkill": 200,
+      "xpGain": 25,
+      "cost": {
+        "gold": 450
+      },
+      "materials": {
+        "seidenstoff": 4,
+        "magiestoff": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "cloth-helm-t4-epic"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.06,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "schneider_gear_helm_legendary",
+      "profession": "schneider",
+      "name": "RunenHut",
+      "desc": "Webt runenbestickte Hut aus Stoff.",
+      "reqProfLevel": 9,
+      "reqSkill": 260,
+      "xpGain": 35,
+      "cost": {
+        "gold": 1100
+      },
+      "materials": {
+        "magiestoff": 4,
+        "runenstoff": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-cloth-legendary-helm"
+      },
+      "cooldownMinutes": 1440,
+      "source": "drop",
+      "dropChance": 0.03,
+      "dropMinQuestRarity": "epic"
+    },
+    {
+      "id": "schneider_gear_armor_common",
+      "profession": "schneider",
+      "name": "LeinenRobe",
+      "desc": "Webt einfache Robe aus Stoff.",
+      "reqProfLevel": 1,
+      "reqSkill": 4,
+      "xpGain": 8,
+      "cost": {
+        "gold": 25
+      },
+      "materials": {
+        "leinenstoff": 4
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "cloth-armor-t1"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer"
+    },
+    {
+      "id": "schneider_gear_armor_uncommon",
+      "profession": "schneider",
+      "name": "WollRobe",
+      "desc": "Webt wollgewebte Robe aus Stoff.",
+      "reqProfLevel": 2,
+      "reqSkill": 53,
+      "xpGain": 12,
+      "cost": {
+        "gold": 70
+      },
+      "materials": {
+        "leinenstoff": 4,
+        "wollstoff": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "cloth-armor-t2"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 140
+    },
+    {
+      "id": "schneider_gear_armor_rare",
+      "profession": "schneider",
+      "name": "SeidenRobe",
+      "desc": "Webt seidengewebte Robe aus Stoff.",
+      "reqProfLevel": 5,
+      "reqSkill": 128,
+      "xpGain": 18,
+      "cost": {
+        "gold": 180
+      },
+      "materials": {
+        "wollstoff": 4,
+        "seidenstoff": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "cloth-armor-t3"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "schneider_gear_armor_epic",
+      "profession": "schneider",
+      "name": "MagieRobe",
+      "desc": "Webt magiedurchwirkte Robe aus Stoff.",
+      "reqProfLevel": 7,
+      "reqSkill": 203,
+      "xpGain": 25,
+      "cost": {
+        "gold": 450
+      },
+      "materials": {
+        "seidenstoff": 4,
+        "magiestoff": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "cloth-armor-t4-epic"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.06,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "schneider_gear_armor_legendary",
+      "profession": "schneider",
+      "name": "RunenRobe",
+      "desc": "Webt runenbestickte Robe aus Stoff.",
+      "reqProfLevel": 9,
+      "reqSkill": 263,
+      "xpGain": 35,
+      "cost": {
+        "gold": 1100
+      },
+      "materials": {
+        "magiestoff": 4,
+        "runenstoff": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "cloth-armor-t4"
+      },
+      "cooldownMinutes": 1440,
+      "source": "drop",
+      "dropChance": 0.03,
+      "dropMinQuestRarity": "epic"
+    },
+    {
+      "id": "schneider_gear_boots_common",
+      "profession": "schneider",
+      "name": "LeinenSchuhe",
+      "desc": "Webt einfache Schuhe aus Stoff.",
+      "reqProfLevel": 1,
+      "reqSkill": 7,
+      "xpGain": 8,
+      "cost": {
+        "gold": 25
+      },
+      "materials": {
+        "leinenstoff": 4
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "cloth-boots-t1"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer"
+    },
+    {
+      "id": "schneider_gear_boots_uncommon",
+      "profession": "schneider",
+      "name": "WollSchuhe",
+      "desc": "Webt wollgewebte Schuhe aus Stoff.",
+      "reqProfLevel": 2,
+      "reqSkill": 56,
+      "xpGain": 12,
+      "cost": {
+        "gold": 70
+      },
+      "materials": {
+        "leinenstoff": 4,
+        "wollstoff": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "cloth-boots-t2"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 140
+    },
+    {
+      "id": "schneider_gear_boots_rare",
+      "profession": "schneider",
+      "name": "SeidenSchuhe",
+      "desc": "Webt seidengewebte Schuhe aus Stoff.",
+      "reqProfLevel": 5,
+      "reqSkill": 131,
+      "xpGain": 18,
+      "cost": {
+        "gold": 180
+      },
+      "materials": {
+        "wollstoff": 4,
+        "seidenstoff": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "cloth-boots-t3"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 360
+    },
+    {
+      "id": "schneider_gear_boots_epic",
+      "profession": "schneider",
+      "name": "MagieSchuhe",
+      "desc": "Webt magiedurchwirkte Schuhe aus Stoff.",
+      "reqProfLevel": 7,
+      "reqSkill": 206,
+      "xpGain": 25,
+      "cost": {
+        "gold": 450
+      },
+      "materials": {
+        "seidenstoff": 4,
+        "magiestoff": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-cloth-epic-boots"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.06,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "schneider_gear_boots_legendary",
+      "profession": "schneider",
+      "name": "RunenSchuhe",
+      "desc": "Webt runenbestickte Schuhe aus Stoff.",
+      "reqProfLevel": 9,
+      "reqSkill": 266,
+      "xpGain": 35,
+      "cost": {
+        "gold": 1100
+      },
+      "materials": {
+        "magiestoff": 4,
+        "runenstoff": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-cloth-legendary-boots"
+      },
+      "cooldownMinutes": 1440,
+      "source": "drop",
+      "dropChance": 0.03,
+      "dropMinQuestRarity": "epic"
+    },
+    {
+      "id": "schneider_gear_weapon_common",
+      "profession": "schneider",
+      "name": "LeinenStab",
+      "desc": "Webt einfache Stab aus Stoff.",
+      "reqProfLevel": 1,
+      "reqSkill": 10,
+      "xpGain": 8,
+      "cost": {
+        "gold": 25
+      },
+      "materials": {
+        "leinenstoff": 4
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "cloth-weapon-t1"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer"
+    },
+    {
+      "id": "schneider_gear_weapon_uncommon",
+      "profession": "schneider",
+      "name": "WollStab",
+      "desc": "Webt wollgewebte Stab aus Stoff.",
+      "reqProfLevel": 2,
+      "reqSkill": 59,
+      "xpGain": 12,
+      "cost": {
+        "gold": 70
+      },
+      "materials": {
+        "leinenstoff": 4,
+        "wollstoff": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-cloth-uncommon-weapon"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 140
+    },
+    {
+      "id": "schneider_gear_weapon_rare",
+      "profession": "schneider",
+      "name": "SeidenStab",
+      "desc": "Webt seidengewebte Stab aus Stoff.",
+      "reqProfLevel": 5,
+      "reqSkill": 134,
+      "xpGain": 18,
+      "cost": {
+        "gold": 180
+      },
+      "materials": {
+        "wollstoff": 4,
+        "seidenstoff": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "cloth-weapon-t3"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "schneider_gear_weapon_epic",
+      "profession": "schneider",
+      "name": "MagieStab",
+      "desc": "Webt magiedurchwirkte Stab aus Stoff.",
+      "reqProfLevel": 7,
+      "reqSkill": 209,
+      "xpGain": 25,
+      "cost": {
+        "gold": 450
+      },
+      "materials": {
+        "seidenstoff": 4,
+        "magiestoff": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "cloth-weapon-t4-epic"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.06,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "schneider_gear_weapon_legendary",
+      "profession": "schneider",
+      "name": "RunenStab",
+      "desc": "Webt runenbestickte Stab aus Stoff.",
+      "reqProfLevel": 9,
+      "reqSkill": 269,
+      "xpGain": 35,
+      "cost": {
+        "gold": 1100
+      },
+      "materials": {
+        "magiestoff": 4,
+        "runenstoff": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "cloth-weapon-t4"
+      },
+      "cooldownMinutes": 1440,
+      "source": "drop",
+      "dropChance": 0.03,
+      "dropMinQuestRarity": "epic"
+    },
+    {
+      "id": "schneider_gear_shield_common",
+      "profession": "schneider",
+      "name": "LeinenSchleier",
+      "desc": "Webt einfache Schleier aus Stoff.",
+      "reqProfLevel": 1,
+      "reqSkill": 13,
+      "xpGain": 8,
+      "cost": {
+        "gold": 25
+      },
+      "materials": {
+        "leinenstoff": 4
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-cloth-common-shield"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer"
+    },
+    {
+      "id": "schneider_gear_shield_uncommon",
+      "profession": "schneider",
+      "name": "WollSchleier",
+      "desc": "Webt wollgewebte Schleier aus Stoff.",
+      "reqProfLevel": 2,
+      "reqSkill": 62,
+      "xpGain": 12,
+      "cost": {
+        "gold": 70
+      },
+      "materials": {
+        "leinenstoff": 4,
+        "wollstoff": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-cloth-uncommon-shield"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 140
+    },
+    {
+      "id": "schneider_gear_shield_rare",
+      "profession": "schneider",
+      "name": "SeidenSchleier",
+      "desc": "Webt seidengewebte Schleier aus Stoff.",
+      "reqProfLevel": 5,
+      "reqSkill": 137,
+      "xpGain": 18,
+      "cost": {
+        "gold": 180
+      },
+      "materials": {
+        "wollstoff": 4,
+        "seidenstoff": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-cloth-rare-shield"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 360
+    },
+    {
+      "id": "schneider_gear_shield_epic",
+      "profession": "schneider",
+      "name": "MagieSchleier",
+      "desc": "Webt magiedurchwirkte Schleier aus Stoff.",
+      "reqProfLevel": 7,
+      "reqSkill": 212,
+      "xpGain": 25,
+      "cost": {
+        "gold": 450
+      },
+      "materials": {
+        "seidenstoff": 4,
+        "magiestoff": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-cloth-epic-shield"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.06,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "schneider_gear_shield_legendary",
+      "profession": "schneider",
+      "name": "RunenSchleier",
+      "desc": "Webt runenbestickte Schleier aus Stoff.",
+      "reqProfLevel": 9,
+      "reqSkill": 272,
+      "xpGain": 35,
+      "cost": {
+        "gold": 1100
+      },
+      "materials": {
+        "magiestoff": 4,
+        "runenstoff": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-cloth-legendary-shield"
+      },
+      "cooldownMinutes": 1440,
+      "source": "drop",
+      "dropChance": 0.03,
+      "dropMinQuestRarity": "epic"
+    },
+    {
+      "id": "schneider_gear_amulet_common",
+      "profession": "schneider",
+      "name": "LeinenTalisman",
+      "desc": "Webt einfache Talisman aus Stoff.",
+      "reqProfLevel": 1,
+      "reqSkill": 16,
+      "xpGain": 8,
+      "cost": {
+        "gold": 25
+      },
+      "materials": {
+        "leinenstoff": 4
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-cloth-common-amulet"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer"
+    },
+    {
+      "id": "schneider_gear_amulet_uncommon",
+      "profession": "schneider",
+      "name": "WollTalisman",
+      "desc": "Webt wollgewebte Talisman aus Stoff.",
+      "reqProfLevel": 2,
+      "reqSkill": 65,
+      "xpGain": 12,
+      "cost": {
+        "gold": 70
+      },
+      "materials": {
+        "leinenstoff": 4,
+        "wollstoff": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "cloth-amulet-t2"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 140
+    },
+    {
+      "id": "schneider_gear_amulet_rare",
+      "profession": "schneider",
+      "name": "SeidenTalisman",
+      "desc": "Webt seidengewebte Talisman aus Stoff.",
+      "reqProfLevel": 5,
+      "reqSkill": 140,
+      "xpGain": 18,
+      "cost": {
+        "gold": 180
+      },
+      "materials": {
+        "wollstoff": 4,
+        "seidenstoff": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "cloth-amulet-t3"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "schneider_gear_amulet_epic",
+      "profession": "schneider",
+      "name": "MagieTalisman",
+      "desc": "Webt magiedurchwirkte Talisman aus Stoff.",
+      "reqProfLevel": 7,
+      "reqSkill": 215,
+      "xpGain": 25,
+      "cost": {
+        "gold": 450
+      },
+      "materials": {
+        "seidenstoff": 4,
+        "magiestoff": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-cloth-epic-amulet"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.06,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "schneider_gear_amulet_legendary",
+      "profession": "schneider",
+      "name": "RunenTalisman",
+      "desc": "Webt runenbestickte Talisman aus Stoff.",
+      "reqProfLevel": 9,
+      "reqSkill": 275,
+      "xpGain": 35,
+      "cost": {
+        "gold": 1100
+      },
+      "materials": {
+        "magiestoff": 4,
+        "runenstoff": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-cloth-legendary-amulet"
+      },
+      "cooldownMinutes": 1440,
+      "source": "drop",
+      "dropChance": 0.03,
+      "dropMinQuestRarity": "epic"
+    },
+    {
+      "id": "schneider_var_helm_uncommon_gelehrter",
+      "profession": "schneider",
+      "name": "WollHut des Gelehrten",
+      "desc": "Weisheit-fokussierte Variante.",
+      "reqProfLevel": 3,
+      "reqSkill": 65,
+      "xpGain": 12,
+      "cost": {
+        "gold": 84
+      },
+      "materials": {
+        "leinenstoff": 4,
+        "wollstoff": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "cloth-helm-t2"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 140
+    },
+    {
+      "id": "schneider_var_helm_uncommon_glueckspilz",
+      "profession": "schneider",
+      "name": "WollHut des Glückspilzes",
+      "desc": "Glueck-fokussierte Variante.",
+      "reqProfLevel": 3,
+      "reqSkill": 65,
+      "xpGain": 12,
+      "cost": {
+        "gold": 84
+      },
+      "materials": {
+        "leinenstoff": 4,
+        "wollstoff": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "cloth-helm-t2"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 140
+    },
+    {
+      "id": "schneider_var_helm_rare_gelehrter",
+      "profession": "schneider",
+      "name": "SeidenHut des Gelehrten",
+      "desc": "Weisheit-fokussierte Variante.",
+      "reqProfLevel": 5,
+      "reqSkill": 140,
+      "xpGain": 18,
+      "cost": {
+        "gold": 216
+      },
+      "materials": {
+        "wollstoff": 4,
+        "seidenstoff": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "cloth-helm-t3"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "schneider_var_helm_rare_glueckspilz",
+      "profession": "schneider",
+      "name": "SeidenHut des Glückspilzes",
+      "desc": "Glueck-fokussierte Variante.",
+      "reqProfLevel": 5,
+      "reqSkill": 140,
+      "xpGain": 18,
+      "cost": {
+        "gold": 216
+      },
+      "materials": {
+        "wollstoff": 4,
+        "seidenstoff": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "cloth-helm-t3"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "schneider_var_helm_epic_gelehrter",
+      "profession": "schneider",
+      "name": "MagieHut des Gelehrten",
+      "desc": "Weisheit-fokussierte Variante.",
+      "reqProfLevel": 8,
+      "reqSkill": 215,
+      "xpGain": 25,
+      "cost": {
+        "gold": 540
+      },
+      "materials": {
+        "seidenstoff": 4,
+        "magiestoff": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "cloth-helm-t4-epic"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "schneider_var_helm_epic_glueckspilz",
+      "profession": "schneider",
+      "name": "MagieHut des Glückspilzes",
+      "desc": "Glueck-fokussierte Variante.",
+      "reqProfLevel": 8,
+      "reqSkill": 215,
+      "xpGain": 25,
+      "cost": {
+        "gold": 540
+      },
+      "materials": {
+        "seidenstoff": 4,
+        "magiestoff": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "cloth-helm-t4-epic"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "schneider_var_armor_uncommon_gelehrter",
+      "profession": "schneider",
+      "name": "WollRobe des Gelehrten",
+      "desc": "Weisheit-fokussierte Variante.",
+      "reqProfLevel": 3,
+      "reqSkill": 68,
+      "xpGain": 12,
+      "cost": {
+        "gold": 84
+      },
+      "materials": {
+        "leinenstoff": 4,
+        "wollstoff": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "cloth-armor-t2"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 140
+    },
+    {
+      "id": "schneider_var_armor_uncommon_glueckspilz",
+      "profession": "schneider",
+      "name": "WollRobe des Glückspilzes",
+      "desc": "Glueck-fokussierte Variante.",
+      "reqProfLevel": 3,
+      "reqSkill": 68,
+      "xpGain": 12,
+      "cost": {
+        "gold": 84
+      },
+      "materials": {
+        "leinenstoff": 4,
+        "wollstoff": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "cloth-armor-t2"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 140
+    },
+    {
+      "id": "schneider_var_armor_rare_gelehrter",
+      "profession": "schneider",
+      "name": "SeidenRobe des Gelehrten",
+      "desc": "Weisheit-fokussierte Variante.",
+      "reqProfLevel": 5,
+      "reqSkill": 143,
+      "xpGain": 18,
+      "cost": {
+        "gold": 216
+      },
+      "materials": {
+        "wollstoff": 4,
+        "seidenstoff": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "cloth-armor-t3"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "schneider_var_armor_rare_glueckspilz",
+      "profession": "schneider",
+      "name": "SeidenRobe des Glückspilzes",
+      "desc": "Glueck-fokussierte Variante.",
+      "reqProfLevel": 5,
+      "reqSkill": 143,
+      "xpGain": 18,
+      "cost": {
+        "gold": 216
+      },
+      "materials": {
+        "wollstoff": 4,
+        "seidenstoff": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "cloth-armor-t3"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "schneider_var_armor_epic_gelehrter",
+      "profession": "schneider",
+      "name": "MagieRobe des Gelehrten",
+      "desc": "Weisheit-fokussierte Variante.",
+      "reqProfLevel": 8,
+      "reqSkill": 218,
+      "xpGain": 25,
+      "cost": {
+        "gold": 540
+      },
+      "materials": {
+        "seidenstoff": 4,
+        "magiestoff": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "cloth-armor-t4-epic"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "schneider_var_armor_epic_glueckspilz",
+      "profession": "schneider",
+      "name": "MagieRobe des Glückspilzes",
+      "desc": "Glueck-fokussierte Variante.",
+      "reqProfLevel": 8,
+      "reqSkill": 218,
+      "xpGain": 25,
+      "cost": {
+        "gold": 540
+      },
+      "materials": {
+        "seidenstoff": 4,
+        "magiestoff": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "cloth-armor-t4-epic"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "schneider_var_weapon_uncommon_gelehrter",
+      "profession": "schneider",
+      "name": "WollStab des Gelehrten",
+      "desc": "Weisheit-fokussierte Variante.",
+      "reqProfLevel": 3,
+      "reqSkill": 74,
+      "xpGain": 12,
+      "cost": {
+        "gold": 84
+      },
+      "materials": {
+        "leinenstoff": 4,
+        "wollstoff": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-cloth-uncommon-weapon"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 140
+    },
+    {
+      "id": "schneider_var_weapon_uncommon_glueckspilz",
+      "profession": "schneider",
+      "name": "WollStab des Glückspilzes",
+      "desc": "Glueck-fokussierte Variante.",
+      "reqProfLevel": 3,
+      "reqSkill": 74,
+      "xpGain": 12,
+      "cost": {
+        "gold": 84
+      },
+      "materials": {
+        "leinenstoff": 4,
+        "wollstoff": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-cloth-uncommon-weapon"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 140
+    },
+    {
+      "id": "schneider_var_weapon_rare_gelehrter",
+      "profession": "schneider",
+      "name": "SeidenStab des Gelehrten",
+      "desc": "Weisheit-fokussierte Variante.",
+      "reqProfLevel": 5,
+      "reqSkill": 149,
+      "xpGain": 18,
+      "cost": {
+        "gold": 216
+      },
+      "materials": {
+        "wollstoff": 4,
+        "seidenstoff": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "cloth-weapon-t3"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "schneider_var_weapon_rare_glueckspilz",
+      "profession": "schneider",
+      "name": "SeidenStab des Glückspilzes",
+      "desc": "Glueck-fokussierte Variante.",
+      "reqProfLevel": 5,
+      "reqSkill": 149,
+      "xpGain": 18,
+      "cost": {
+        "gold": 216
+      },
+      "materials": {
+        "wollstoff": 4,
+        "seidenstoff": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "cloth-weapon-t3"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "schneider_var_weapon_epic_gelehrter",
+      "profession": "schneider",
+      "name": "MagieStab des Gelehrten",
+      "desc": "Weisheit-fokussierte Variante.",
+      "reqProfLevel": 8,
+      "reqSkill": 224,
+      "xpGain": 25,
+      "cost": {
+        "gold": 540
+      },
+      "materials": {
+        "seidenstoff": 4,
+        "magiestoff": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "cloth-weapon-t4-epic"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "schneider_var_weapon_epic_glueckspilz",
+      "profession": "schneider",
+      "name": "MagieStab des Glückspilzes",
+      "desc": "Glueck-fokussierte Variante.",
+      "reqProfLevel": 8,
+      "reqSkill": 224,
+      "xpGain": 25,
+      "cost": {
+        "gold": 540
+      },
+      "materials": {
+        "seidenstoff": 4,
+        "magiestoff": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "cloth-weapon-t4-epic"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "schneider_weave_bolt",
+      "profession": "schneider",
+      "name": "Leinenballen",
+      "desc": "Webt Leinenstoff zu einem festen Ballen.",
+      "reqProfLevel": 1,
+      "reqSkill": 20,
+      "xpGain": 6,
+      "cost": {
+        "gold": 10
+      },
+      "materials": {
+        "leinenstoff": 3
+      },
+      "result": {
+        "type": "transmute_material",
+        "output": "weave_bolt",
+        "amount": 1
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer"
+    },
+    {
+      "id": "schneider_weave_wool",
+      "profession": "schneider",
+      "name": "Wollballen",
+      "desc": "Verarbeitet Wollstoff zu einem Ballen.",
+      "reqProfLevel": 2,
+      "reqSkill": 75,
+      "xpGain": 9,
+      "cost": {
+        "gold": 40
+      },
+      "materials": {
+        "leinenstoff": 4,
+        "wollstoff": 2
+      },
+      "result": {
+        "type": "transmute_material",
+        "output": "weave_wool",
+        "amount": 1
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 80
+    },
+    {
+      "id": "schneider_weave_silk",
+      "profession": "schneider",
+      "name": "Seidenballen",
+      "desc": "Spinn Seidenstoff zu edlem Gewebe.",
+      "reqProfLevel": 5,
+      "reqSkill": 150,
+      "xpGain": 13,
+      "cost": {
+        "gold": 120
+      },
+      "materials": {
+        "wollstoff": 4,
+        "seidenstoff": 1
+      },
+      "result": {
+        "type": "transmute_material",
+        "output": "weave_silk",
+        "amount": 1
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 250
+    },
+    {
+      "id": "schneider_weave_mageweave",
+      "profession": "schneider",
+      "name": "Magiestoff-Ballen",
+      "desc": "Verwebt Magiefäden zu leuchtendem Stoff.",
+      "reqProfLevel": 7,
+      "reqSkill": 225,
+      "xpGain": 16,
+      "cost": {
+        "gold": 350
+      },
+      "materials": {
+        "seidenstoff": 4,
+        "magiestoff": 1
+      },
+      "result": {
+        "type": "transmute_material",
+        "output": "weave_mageweave",
+        "amount": 1
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.06,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "schneider_weave_runic",
+      "profession": "schneider",
+      "name": "Runenstoff-Ballen",
+      "desc": "Bestickt Stoff mit uralten Runen.",
+      "reqProfLevel": 9,
+      "reqSkill": 275,
+      "xpGain": 19,
+      "cost": {
+        "gold": 600
+      },
+      "materials": {
+        "magiestoff": 3,
+        "runenstoff": 1
+      },
+      "result": {
+        "type": "transmute_material",
+        "output": "weave_runic",
+        "amount": 1
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.03,
+      "dropMinQuestRarity": "epic"
+    },
+    {
+      "id": "schneider_dye_starlight",
+      "profession": "schneider",
+      "name": "Sternenlicht-Farbe",
+      "desc": "Magische Stofffarbe aus Mondblumen.",
+      "reqProfLevel": 3,
+      "reqSkill": 100,
+      "xpGain": 10,
+      "cost": {
+        "gold": 60
+      },
+      "materials": {
+        "leinenstoff": 2,
+        "wollstoff": 2
+      },
+      "result": {
+        "type": "transmute_material",
+        "output": "dye_starlight",
+        "amount": 1
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 120
+    },
+    {
+      "id": "schneider_thread_arcane",
+      "profession": "schneider",
+      "name": "Arkaner Faden",
+      "desc": "Magisch verstärkter Nähfaden.",
+      "reqProfLevel": 5,
+      "reqSkill": 175,
+      "xpGain": 14,
+      "cost": {
+        "gold": 150
+      },
+      "materials": {
+        "seidenstoff": 3,
+        "magiestoff": 1
+      },
+      "result": {
+        "type": "transmute_material",
+        "output": "thread_arcane",
+        "amount": 1
+      },
+      "cooldownMinutes": 0,
+      "source": "faction",
+      "factionId": "zirkel_der_sterne"
+    },
+    {
+      "id": "schneider_thread_runic",
+      "profession": "schneider",
+      "name": "Runenfaden",
+      "desc": "Faden, durchzogen mit Runenmacht.",
+      "reqProfLevel": 8,
+      "reqSkill": 250,
+      "xpGain": 18,
+      "cost": {
+        "gold": 400
+      },
+      "materials": {
+        "magiestoff": 2,
+        "runenstoff": 1
+      },
+      "result": {
+        "type": "transmute_material",
+        "output": "thread_runic",
+        "amount": 1
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.04,
+      "dropMinQuestRarity": "epic"
+    },
+    {
+      "id": "schneider_spell_minor",
+      "profession": "schneider",
+      "name": "Kleiner Zauberfaden",
+      "desc": "+2 Weisheit für 3 Quests.",
+      "reqProfLevel": 1,
+      "reqSkill": 1,
+      "xpGain": 5,
+      "cost": {
+        "gold": 15
+      },
+      "materials": {
+        "leinenstoff": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "weisheit_boost_2",
+        "duration": "3_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer"
+    },
+    {
+      "id": "schneider_spell_lesser",
+      "profession": "schneider",
+      "name": "Geringer Zauberfaden",
+      "desc": "+4 Weisheit für 3 Quests.",
+      "reqProfLevel": 1,
+      "reqSkill": 50,
+      "xpGain": 7,
+      "cost": {
+        "gold": 35
+      },
+      "materials": {
+        "leinenstoff": 4,
+        "wollstoff": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "weisheit_boost_4",
+        "duration": "3_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer"
+    },
+    {
+      "id": "schneider_spell_greater",
+      "profession": "schneider",
+      "name": "Großer Zauberfaden",
+      "desc": "+6 Weisheit für 3 Quests.",
+      "reqProfLevel": 4,
+      "reqSkill": 125,
+      "xpGain": 10,
+      "cost": {
+        "gold": 80
+      },
+      "materials": {
+        "wollstoff": 3,
+        "seidenstoff": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "weisheit_boost_6",
+        "duration": "3_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 150
+    },
+    {
+      "id": "schneider_spell_superior",
+      "profession": "schneider",
+      "name": "Überlegener Zauberfaden",
+      "desc": "+8 Weisheit für 3 Quests.",
+      "reqProfLevel": 6,
+      "reqSkill": 200,
+      "xpGain": 13,
+      "cost": {
+        "gold": 180
+      },
+      "materials": {
+        "seidenstoff": 3,
+        "magiestoff": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "weisheit_boost_8",
+        "duration": "3_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "faction",
+      "factionId": "zirkel_der_sterne"
+    },
+    {
+      "id": "schneider_spell_royal",
+      "profession": "schneider",
+      "name": "Königlicher Zauberfaden",
+      "desc": "+10 Weisheit für 5 Quests.",
+      "reqProfLevel": 9,
+      "reqSkill": 270,
+      "xpGain": 16,
+      "cost": {
+        "gold": 400
+      },
+      "materials": {
+        "magiestoff": 3,
+        "runenstoff": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "weisheit_boost_10",
+        "duration": "5_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.04,
+      "dropMinQuestRarity": "epic"
+    },
+    {
+      "id": "schneider_luck_minor",
+      "profession": "schneider",
+      "name": "Glücksfaden",
+      "desc": "+2 Glück für 3 Quests.",
+      "reqProfLevel": 1,
+      "reqSkill": 10,
+      "xpGain": 5,
+      "cost": {
+        "gold": 15
+      },
+      "materials": {
+        "leinenstoff": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "glueck_boost_2",
+        "duration": "3_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer"
+    },
+    {
+      "id": "schneider_luck_greater",
+      "profession": "schneider",
+      "name": "Großer Glücksfaden",
+      "desc": "+4 Glück für 3 Quests.",
+      "reqProfLevel": 2,
+      "reqSkill": 80,
+      "xpGain": 8,
+      "cost": {
+        "gold": 50
+      },
+      "materials": {
+        "wollstoff": 3
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "glueck_boost_4",
+        "duration": "3_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 100
+    },
+    {
+      "id": "schneider_luck_superior",
+      "profession": "schneider",
+      "name": "Überlegener Glücksfaden",
+      "desc": "+6 Glück für 5 Quests.",
+      "reqProfLevel": 6,
+      "reqSkill": 180,
+      "xpGain": 12,
+      "cost": {
+        "gold": 160
+      },
+      "materials": {
+        "seidenstoff": 3,
+        "magiestoff": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "glueck_boost_6",
+        "duration": "5_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "faction",
+      "factionId": "zirkel_der_sterne"
+    },
+    {
+      "id": "schneider_focus_minor",
+      "profession": "schneider",
+      "name": "Konzentrationsfaden",
+      "desc": "+3 Fokus für 3 Quests.",
+      "reqProfLevel": 1,
+      "reqSkill": 35,
+      "xpGain": 6,
+      "cost": {
+        "gold": 25
+      },
+      "materials": {
+        "leinenstoff": 3
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "fokus_boost_3",
+        "duration": "3_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer"
+    },
+    {
+      "id": "schneider_focus_greater",
+      "profession": "schneider",
+      "name": "Großer Konzentrationsfaden",
+      "desc": "+5 Fokus für 3 Quests.",
+      "reqProfLevel": 4,
+      "reqSkill": 140,
+      "xpGain": 11,
+      "cost": {
+        "gold": 100
+      },
+      "materials": {
+        "wollstoff": 3,
+        "seidenstoff": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "fokus_boost_5",
+        "duration": "3_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 200
+    },
+    {
+      "id": "schneider_focus_superior",
+      "profession": "schneider",
+      "name": "Meister-Konzentrationsfaden",
+      "desc": "+7 Fokus für 5 Quests.",
+      "reqProfLevel": 8,
+      "reqSkill": 240,
+      "xpGain": 15,
+      "cost": {
+        "gold": 350
+      },
+      "materials": {
+        "magiestoff": 2,
+        "runenstoff": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "fokus_boost_7",
+        "duration": "5_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.05,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "schneider_charm_minor",
+      "profession": "schneider",
+      "name": "Bezaubernder Faden",
+      "desc": "+3 Charisma für 3 Quests.",
+      "reqProfLevel": 2,
+      "reqSkill": 60,
+      "xpGain": 7,
+      "cost": {
+        "gold": 40
+      },
+      "materials": {
+        "leinenstoff": 3,
+        "wollstoff": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "charisma_boost_3",
+        "duration": "3_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer"
+    },
+    {
+      "id": "schneider_charm_greater",
+      "profession": "schneider",
+      "name": "Großer bezaubernder Faden",
+      "desc": "+5 Charisma für 3 Quests.",
+      "reqProfLevel": 5,
+      "reqSkill": 160,
+      "xpGain": 11,
+      "cost": {
+        "gold": 120
+      },
+      "materials": {
+        "seidenstoff": 3
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "charisma_boost_5",
+        "duration": "3_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "schneider_xp_robe",
+      "profession": "schneider",
+      "name": "Gewand der Erleuchtung",
+      "desc": "+5% XP für 3 Quests.",
+      "reqProfLevel": 3,
+      "reqSkill": 110,
+      "xpGain": 9,
+      "cost": {
+        "gold": 80
+      },
+      "materials": {
+        "wollstoff": 4,
+        "seidenstoff": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "xp_boost_5",
+        "duration": "3_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 160
+    },
+    {
+      "id": "schneider_xp_robe_greater",
+      "profession": "schneider",
+      "name": "Gewand der hohen Erleuchtung",
+      "desc": "+10% XP für 3 Quests.",
+      "reqProfLevel": 7,
+      "reqSkill": 220,
+      "xpGain": 14,
+      "cost": {
+        "gold": 300
+      },
+      "materials": {
+        "magiestoff": 3,
+        "runenstoff": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "xp_boost_10",
+        "duration": "3_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.05,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "schneider_streak_shield",
+      "profession": "schneider",
+      "name": "Seidener Streakschutz",
+      "desc": "Gewährt 1 Streak-Schild.",
+      "reqProfLevel": 5,
+      "reqSkill": 150,
+      "xpGain": 15,
+      "cost": {
+        "gold": 180
+      },
+      "materials": {
+        "seidenstoff": 3,
+        "wollstoff": 2
+      },
+      "result": {
+        "type": "streak_shield",
+        "amount": 1
+      },
+      "cooldownMinutes": 0,
+      "source": "faction",
+      "factionId": "zirkel_der_sterne"
+    },
+    {
+      "id": "schneider_streak_master",
+      "profession": "schneider",
+      "name": "Runen-Streakschutz",
+      "desc": "Gewährt 2 Streak-Schilde.",
+      "reqProfLevel": 8,
+      "reqSkill": 260,
+      "xpGain": 22,
+      "cost": {
+        "gold": 500
+      },
+      "materials": {
+        "magiestoff": 2,
+        "runenstoff": 1
+      },
+      "result": {
+        "type": "streak_shield",
+        "amount": 2
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.04,
+      "dropMinQuestRarity": "epic"
+    },
+    {
+      "id": "schneider_forge_temp",
+      "profession": "schneider",
+      "name": "Feuerfester Stoff",
+      "desc": "+15 Schmiedetemperatur.",
+      "reqProfLevel": 3,
+      "reqSkill": 90,
+      "xpGain": 11,
+      "cost": {
+        "gold": 50
+      },
+      "materials": {
+        "wollstoff": 3,
+        "leinenstoff": 2
+      },
+      "result": {
+        "type": "forge_temp",
+        "amount": 15
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 100
+    },
+    {
+      "id": "schneider_forge_temp_lg",
+      "profession": "schneider",
+      "name": "Hochfeuerfester Stoff",
+      "desc": "+25 Schmiedetemperatur.",
+      "reqProfLevel": 6,
+      "reqSkill": 190,
+      "xpGain": 18,
+      "cost": {
+        "gold": 160
+      },
+      "materials": {
+        "seidenstoff": 3,
+        "magiestoff": 1
+      },
+      "result": {
+        "type": "forge_temp",
+        "amount": 25
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 300
+    },
+    {
+      "id": "schneider_upgrade_rarity",
+      "profession": "schneider",
+      "name": "Stoffveredelung",
+      "desc": "50% Chance: Seltenheit eines Cloth-Items um 1 erhöhen.",
+      "reqProfLevel": 6,
+      "reqSkill": 200,
+      "xpGain": 18,
+      "cost": {
+        "gold": 400
+      },
+      "materials": {
+        "magiestoff": 2,
+        "seidenstoff": 3
+      },
+      "result": {
+        "type": "upgrade_rarity",
+        "successChance": 0.5
+      },
+      "cooldownMinutes": 1440,
+      "source": "drop",
+      "dropChance": 0.06,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "schneider_reinforce",
+      "profession": "schneider",
+      "name": "Stoffverstärkung",
+      "desc": "+3-6 auf einen zufälligen Primärstat (permanent).",
+      "reqProfLevel": 7,
+      "reqSkill": 230,
+      "xpGain": 20,
+      "cost": {
+        "gold": 500
+      },
+      "materials": {
+        "magiestoff": 3,
+        "runenstoff": 1
+      },
+      "result": {
+        "type": "reinforce",
+        "statBonus": [
+          3,
+          6
+        ],
+        "target": "primary_stat"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.05,
+      "dropMinQuestRarity": "rare"
     }
   ]
 }
