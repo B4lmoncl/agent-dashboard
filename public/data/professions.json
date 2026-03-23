@@ -5163,6 +5163,1847 @@
       "source": "drop",
       "dropChance": 0.05,
       "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "leder_gear_helm_common",
+      "profession": "lederverarbeiter",
+      "name": "LederKappe",
+      "desc": "Gerbt einfaches Leder zu Kappe.",
+      "reqProfLevel": 1,
+      "reqSkill": 1,
+      "xpGain": 8,
+      "cost": {
+        "gold": 25
+      },
+      "materials": {
+        "leichtesleder": 4
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leather-common-helm"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer"
+    },
+    {
+      "id": "leder_gear_helm_uncommon",
+      "profession": "lederverarbeiter",
+      "name": "Verstärkte LederKappe",
+      "desc": "Gerbt verstärktes Leder zu Kappe.",
+      "reqProfLevel": 2,
+      "reqSkill": 50,
+      "xpGain": 12,
+      "cost": {
+        "gold": 70
+      },
+      "materials": {
+        "leichtesleder": 4,
+        "mittleresleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leather-uncommon-helm"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 140
+    },
+    {
+      "id": "leder_gear_helm_rare",
+      "profession": "lederverarbeiter",
+      "name": "JägerKappe",
+      "desc": "Gerbt jagdgehärtetes Leder zu Kappe.",
+      "reqProfLevel": 5,
+      "reqSkill": 125,
+      "xpGain": 18,
+      "cost": {
+        "gold": 180
+      },
+      "materials": {
+        "mittleresleder": 4,
+        "schweresleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leather-rare-helm"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 360
+    },
+    {
+      "id": "leder_gear_helm_epic",
+      "profession": "lederverarbeiter",
+      "name": "BestienKappe",
+      "desc": "Gerbt bestiengehärtetes Leder zu Kappe.",
+      "reqProfLevel": 7,
+      "reqSkill": 200,
+      "xpGain": 25,
+      "cost": {
+        "gold": 450
+      },
+      "materials": {
+        "schweresleder": 4,
+        "dickesleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leather-epic-helm"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.06,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "leder_gear_helm_legendary",
+      "profession": "lederverarbeiter",
+      "name": "UrzeitKappe",
+      "desc": "Gerbt urzeitliches Leder zu Kappe.",
+      "reqProfLevel": 9,
+      "reqSkill": 260,
+      "xpGain": 35,
+      "cost": {
+        "gold": 1100
+      },
+      "materials": {
+        "dickesleder": 4,
+        "rauesleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leather-legendary-helm"
+      },
+      "cooldownMinutes": 1440,
+      "source": "drop",
+      "dropChance": 0.03,
+      "dropMinQuestRarity": "epic"
+    },
+    {
+      "id": "leder_gear_armor_common",
+      "profession": "lederverarbeiter",
+      "name": "LederWams",
+      "desc": "Gerbt einfaches Leder zu Wams.",
+      "reqProfLevel": 1,
+      "reqSkill": 4,
+      "xpGain": 8,
+      "cost": {
+        "gold": 25
+      },
+      "materials": {
+        "leichtesleder": 4
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leather-common-armor"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer"
+    },
+    {
+      "id": "leder_gear_armor_uncommon",
+      "profession": "lederverarbeiter",
+      "name": "Verstärkte LederWams",
+      "desc": "Gerbt verstärktes Leder zu Wams.",
+      "reqProfLevel": 2,
+      "reqSkill": 53,
+      "xpGain": 12,
+      "cost": {
+        "gold": 70
+      },
+      "materials": {
+        "leichtesleder": 4,
+        "mittleresleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leather-uncommon-armor"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 140
+    },
+    {
+      "id": "leder_gear_armor_rare",
+      "profession": "lederverarbeiter",
+      "name": "JägerWams",
+      "desc": "Gerbt jagdgehärtetes Leder zu Wams.",
+      "reqProfLevel": 5,
+      "reqSkill": 128,
+      "xpGain": 18,
+      "cost": {
+        "gold": 180
+      },
+      "materials": {
+        "mittleresleder": 4,
+        "schweresleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leather-rare-armor"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "leder_gear_armor_epic",
+      "profession": "lederverarbeiter",
+      "name": "BestienWams",
+      "desc": "Gerbt bestiengehärtetes Leder zu Wams.",
+      "reqProfLevel": 7,
+      "reqSkill": 203,
+      "xpGain": 25,
+      "cost": {
+        "gold": 450
+      },
+      "materials": {
+        "schweresleder": 4,
+        "dickesleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leather-epic-armor"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.06,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "leder_gear_armor_legendary",
+      "profession": "lederverarbeiter",
+      "name": "UrzeitWams",
+      "desc": "Gerbt urzeitliches Leder zu Wams.",
+      "reqProfLevel": 9,
+      "reqSkill": 263,
+      "xpGain": 35,
+      "cost": {
+        "gold": 1100
+      },
+      "materials": {
+        "dickesleder": 4,
+        "rauesleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leather-legendary-armor"
+      },
+      "cooldownMinutes": 1440,
+      "source": "drop",
+      "dropChance": 0.03,
+      "dropMinQuestRarity": "epic"
+    },
+    {
+      "id": "leder_gear_boots_common",
+      "profession": "lederverarbeiter",
+      "name": "LederStiefel",
+      "desc": "Gerbt einfaches Leder zu Stiefel.",
+      "reqProfLevel": 1,
+      "reqSkill": 7,
+      "xpGain": 8,
+      "cost": {
+        "gold": 25
+      },
+      "materials": {
+        "leichtesleder": 4
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leather-common-boots"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer"
+    },
+    {
+      "id": "leder_gear_boots_uncommon",
+      "profession": "lederverarbeiter",
+      "name": "Verstärkte LederStiefel",
+      "desc": "Gerbt verstärktes Leder zu Stiefel.",
+      "reqProfLevel": 2,
+      "reqSkill": 56,
+      "xpGain": 12,
+      "cost": {
+        "gold": 70
+      },
+      "materials": {
+        "leichtesleder": 4,
+        "mittleresleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leather-uncommon-boots"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 140
+    },
+    {
+      "id": "leder_gear_boots_rare",
+      "profession": "lederverarbeiter",
+      "name": "JägerStiefel",
+      "desc": "Gerbt jagdgehärtetes Leder zu Stiefel.",
+      "reqProfLevel": 5,
+      "reqSkill": 131,
+      "xpGain": 18,
+      "cost": {
+        "gold": 180
+      },
+      "materials": {
+        "mittleresleder": 4,
+        "schweresleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leather-rare-boots"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 360
+    },
+    {
+      "id": "leder_gear_boots_epic",
+      "profession": "lederverarbeiter",
+      "name": "BestienStiefel",
+      "desc": "Gerbt bestiengehärtetes Leder zu Stiefel.",
+      "reqProfLevel": 7,
+      "reqSkill": 206,
+      "xpGain": 25,
+      "cost": {
+        "gold": 450
+      },
+      "materials": {
+        "schweresleder": 4,
+        "dickesleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leather-epic-boots"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.06,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "leder_gear_boots_legendary",
+      "profession": "lederverarbeiter",
+      "name": "UrzeitStiefel",
+      "desc": "Gerbt urzeitliches Leder zu Stiefel.",
+      "reqProfLevel": 9,
+      "reqSkill": 266,
+      "xpGain": 35,
+      "cost": {
+        "gold": 1100
+      },
+      "materials": {
+        "dickesleder": 4,
+        "rauesleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leather-legendary-boots"
+      },
+      "cooldownMinutes": 1440,
+      "source": "drop",
+      "dropChance": 0.03,
+      "dropMinQuestRarity": "epic"
+    },
+    {
+      "id": "leder_gear_weapon_common",
+      "profession": "lederverarbeiter",
+      "name": "LederPeitsche",
+      "desc": "Gerbt einfaches Leder zu Peitsche.",
+      "reqProfLevel": 1,
+      "reqSkill": 10,
+      "xpGain": 8,
+      "cost": {
+        "gold": 25
+      },
+      "materials": {
+        "leichtesleder": 4
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leather-common-weapon"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer"
+    },
+    {
+      "id": "leder_gear_weapon_uncommon",
+      "profession": "lederverarbeiter",
+      "name": "Verstärkte LederPeitsche",
+      "desc": "Gerbt verstärktes Leder zu Peitsche.",
+      "reqProfLevel": 2,
+      "reqSkill": 59,
+      "xpGain": 12,
+      "cost": {
+        "gold": 70
+      },
+      "materials": {
+        "leichtesleder": 4,
+        "mittleresleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leather-uncommon-weapon"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 140
+    },
+    {
+      "id": "leder_gear_weapon_rare",
+      "profession": "lederverarbeiter",
+      "name": "JägerPeitsche",
+      "desc": "Gerbt jagdgehärtetes Leder zu Peitsche.",
+      "reqProfLevel": 5,
+      "reqSkill": 134,
+      "xpGain": 18,
+      "cost": {
+        "gold": 180
+      },
+      "materials": {
+        "mittleresleder": 4,
+        "schweresleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leather-rare-weapon"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "leder_gear_weapon_epic",
+      "profession": "lederverarbeiter",
+      "name": "BestienPeitsche",
+      "desc": "Gerbt bestiengehärtetes Leder zu Peitsche.",
+      "reqProfLevel": 7,
+      "reqSkill": 209,
+      "xpGain": 25,
+      "cost": {
+        "gold": 450
+      },
+      "materials": {
+        "schweresleder": 4,
+        "dickesleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leather-epic-weapon"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.06,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "leder_gear_weapon_legendary",
+      "profession": "lederverarbeiter",
+      "name": "UrzeitPeitsche",
+      "desc": "Gerbt urzeitliches Leder zu Peitsche.",
+      "reqProfLevel": 9,
+      "reqSkill": 269,
+      "xpGain": 35,
+      "cost": {
+        "gold": 1100
+      },
+      "materials": {
+        "dickesleder": 4,
+        "rauesleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leather-legendary-weapon"
+      },
+      "cooldownMinutes": 1440,
+      "source": "drop",
+      "dropChance": 0.03,
+      "dropMinQuestRarity": "epic"
+    },
+    {
+      "id": "leder_gear_shield_common",
+      "profession": "lederverarbeiter",
+      "name": "LederArmschutz",
+      "desc": "Gerbt einfaches Leder zu Armschutz.",
+      "reqProfLevel": 1,
+      "reqSkill": 13,
+      "xpGain": 8,
+      "cost": {
+        "gold": 25
+      },
+      "materials": {
+        "leichtesleder": 4
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leather-common-shield"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer"
+    },
+    {
+      "id": "leder_gear_shield_uncommon",
+      "profession": "lederverarbeiter",
+      "name": "Verstärkte LederArmschutz",
+      "desc": "Gerbt verstärktes Leder zu Armschutz.",
+      "reqProfLevel": 2,
+      "reqSkill": 62,
+      "xpGain": 12,
+      "cost": {
+        "gold": 70
+      },
+      "materials": {
+        "leichtesleder": 4,
+        "mittleresleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leather-uncommon-shield"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 140
+    },
+    {
+      "id": "leder_gear_shield_rare",
+      "profession": "lederverarbeiter",
+      "name": "JägerArmschutz",
+      "desc": "Gerbt jagdgehärtetes Leder zu Armschutz.",
+      "reqProfLevel": 5,
+      "reqSkill": 137,
+      "xpGain": 18,
+      "cost": {
+        "gold": 180
+      },
+      "materials": {
+        "mittleresleder": 4,
+        "schweresleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leather-rare-shield"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 360
+    },
+    {
+      "id": "leder_gear_shield_epic",
+      "profession": "lederverarbeiter",
+      "name": "BestienArmschutz",
+      "desc": "Gerbt bestiengehärtetes Leder zu Armschutz.",
+      "reqProfLevel": 7,
+      "reqSkill": 212,
+      "xpGain": 25,
+      "cost": {
+        "gold": 450
+      },
+      "materials": {
+        "schweresleder": 4,
+        "dickesleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leather-epic-shield"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.06,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "leder_gear_shield_legendary",
+      "profession": "lederverarbeiter",
+      "name": "UrzeitArmschutz",
+      "desc": "Gerbt urzeitliches Leder zu Armschutz.",
+      "reqProfLevel": 9,
+      "reqSkill": 272,
+      "xpGain": 35,
+      "cost": {
+        "gold": 1100
+      },
+      "materials": {
+        "dickesleder": 4,
+        "rauesleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leather-legendary-shield"
+      },
+      "cooldownMinutes": 1440,
+      "source": "drop",
+      "dropChance": 0.03,
+      "dropMinQuestRarity": "epic"
+    },
+    {
+      "id": "leder_gear_amulet_common",
+      "profession": "lederverarbeiter",
+      "name": "LederAnhänger",
+      "desc": "Gerbt einfaches Leder zu Anhänger.",
+      "reqProfLevel": 1,
+      "reqSkill": 16,
+      "xpGain": 8,
+      "cost": {
+        "gold": 25
+      },
+      "materials": {
+        "leichtesleder": 4
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leather-common-amulet"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer"
+    },
+    {
+      "id": "leder_gear_amulet_uncommon",
+      "profession": "lederverarbeiter",
+      "name": "Verstärkte LederAnhänger",
+      "desc": "Gerbt verstärktes Leder zu Anhänger.",
+      "reqProfLevel": 2,
+      "reqSkill": 65,
+      "xpGain": 12,
+      "cost": {
+        "gold": 70
+      },
+      "materials": {
+        "leichtesleder": 4,
+        "mittleresleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leather-uncommon-amulet"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 140
+    },
+    {
+      "id": "leder_gear_amulet_rare",
+      "profession": "lederverarbeiter",
+      "name": "JägerAnhänger",
+      "desc": "Gerbt jagdgehärtetes Leder zu Anhänger.",
+      "reqProfLevel": 5,
+      "reqSkill": 140,
+      "xpGain": 18,
+      "cost": {
+        "gold": 180
+      },
+      "materials": {
+        "mittleresleder": 4,
+        "schweresleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leather-rare-amulet"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "leder_gear_amulet_epic",
+      "profession": "lederverarbeiter",
+      "name": "BestienAnhänger",
+      "desc": "Gerbt bestiengehärtetes Leder zu Anhänger.",
+      "reqProfLevel": 7,
+      "reqSkill": 215,
+      "xpGain": 25,
+      "cost": {
+        "gold": 450
+      },
+      "materials": {
+        "schweresleder": 4,
+        "dickesleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leather-epic-amulet"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.06,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "leder_gear_amulet_legendary",
+      "profession": "lederverarbeiter",
+      "name": "UrzeitAnhänger",
+      "desc": "Gerbt urzeitliches Leder zu Anhänger.",
+      "reqProfLevel": 9,
+      "reqSkill": 275,
+      "xpGain": 35,
+      "cost": {
+        "gold": 1100
+      },
+      "materials": {
+        "dickesleder": 4,
+        "rauesleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leather-legendary-amulet"
+      },
+      "cooldownMinutes": 1440,
+      "source": "drop",
+      "dropChance": 0.03,
+      "dropMinQuestRarity": "epic"
+    },
+    {
+      "id": "leder_var_helm_uncommon_jaeger",
+      "profession": "lederverarbeiter",
+      "name": "Verstärkte LederKappe des Jägers",
+      "desc": "Glueck-fokussierte Variante.",
+      "reqProfLevel": 3,
+      "reqSkill": 65,
+      "xpGain": 12,
+      "cost": {
+        "gold": 84
+      },
+      "materials": {
+        "leichtesleder": 4,
+        "mittleresleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leather-uncommon-helm"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 140
+    },
+    {
+      "id": "leder_var_helm_uncommon_wanderer",
+      "profession": "lederverarbeiter",
+      "name": "Verstärkte LederKappe des Wanderers",
+      "desc": "Ausdauer-fokussierte Variante.",
+      "reqProfLevel": 3,
+      "reqSkill": 65,
+      "xpGain": 12,
+      "cost": {
+        "gold": 84
+      },
+      "materials": {
+        "leichtesleder": 4,
+        "mittleresleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leather-uncommon-helm"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 140
+    },
+    {
+      "id": "leder_var_helm_rare_jaeger",
+      "profession": "lederverarbeiter",
+      "name": "JägerKappe des Jägers",
+      "desc": "Glueck-fokussierte Variante.",
+      "reqProfLevel": 5,
+      "reqSkill": 140,
+      "xpGain": 18,
+      "cost": {
+        "gold": 216
+      },
+      "materials": {
+        "mittleresleder": 4,
+        "schweresleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leather-rare-helm"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "leder_var_helm_rare_wanderer",
+      "profession": "lederverarbeiter",
+      "name": "JägerKappe des Wanderers",
+      "desc": "Ausdauer-fokussierte Variante.",
+      "reqProfLevel": 5,
+      "reqSkill": 140,
+      "xpGain": 18,
+      "cost": {
+        "gold": 216
+      },
+      "materials": {
+        "mittleresleder": 4,
+        "schweresleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leather-rare-helm"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "leder_var_helm_epic_jaeger",
+      "profession": "lederverarbeiter",
+      "name": "BestienKappe des Jägers",
+      "desc": "Glueck-fokussierte Variante.",
+      "reqProfLevel": 8,
+      "reqSkill": 215,
+      "xpGain": 25,
+      "cost": {
+        "gold": 540
+      },
+      "materials": {
+        "schweresleder": 4,
+        "dickesleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leather-epic-helm"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "leder_var_helm_epic_wanderer",
+      "profession": "lederverarbeiter",
+      "name": "BestienKappe des Wanderers",
+      "desc": "Ausdauer-fokussierte Variante.",
+      "reqProfLevel": 8,
+      "reqSkill": 215,
+      "xpGain": 25,
+      "cost": {
+        "gold": 540
+      },
+      "materials": {
+        "schweresleder": 4,
+        "dickesleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leather-epic-helm"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "leder_var_armor_uncommon_jaeger",
+      "profession": "lederverarbeiter",
+      "name": "Verstärkte LederWams des Jägers",
+      "desc": "Glueck-fokussierte Variante.",
+      "reqProfLevel": 3,
+      "reqSkill": 68,
+      "xpGain": 12,
+      "cost": {
+        "gold": 84
+      },
+      "materials": {
+        "leichtesleder": 4,
+        "mittleresleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leather-uncommon-armor"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 140
+    },
+    {
+      "id": "leder_var_armor_uncommon_wanderer",
+      "profession": "lederverarbeiter",
+      "name": "Verstärkte LederWams des Wanderers",
+      "desc": "Ausdauer-fokussierte Variante.",
+      "reqProfLevel": 3,
+      "reqSkill": 68,
+      "xpGain": 12,
+      "cost": {
+        "gold": 84
+      },
+      "materials": {
+        "leichtesleder": 4,
+        "mittleresleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leather-uncommon-armor"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 140
+    },
+    {
+      "id": "leder_var_armor_rare_jaeger",
+      "profession": "lederverarbeiter",
+      "name": "JägerWams des Jägers",
+      "desc": "Glueck-fokussierte Variante.",
+      "reqProfLevel": 5,
+      "reqSkill": 143,
+      "xpGain": 18,
+      "cost": {
+        "gold": 216
+      },
+      "materials": {
+        "mittleresleder": 4,
+        "schweresleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leather-rare-armor"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "leder_var_armor_rare_wanderer",
+      "profession": "lederverarbeiter",
+      "name": "JägerWams des Wanderers",
+      "desc": "Ausdauer-fokussierte Variante.",
+      "reqProfLevel": 5,
+      "reqSkill": 143,
+      "xpGain": 18,
+      "cost": {
+        "gold": 216
+      },
+      "materials": {
+        "mittleresleder": 4,
+        "schweresleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leather-rare-armor"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "leder_var_armor_epic_jaeger",
+      "profession": "lederverarbeiter",
+      "name": "BestienWams des Jägers",
+      "desc": "Glueck-fokussierte Variante.",
+      "reqProfLevel": 8,
+      "reqSkill": 218,
+      "xpGain": 25,
+      "cost": {
+        "gold": 540
+      },
+      "materials": {
+        "schweresleder": 4,
+        "dickesleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leather-epic-armor"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "leder_var_armor_epic_wanderer",
+      "profession": "lederverarbeiter",
+      "name": "BestienWams des Wanderers",
+      "desc": "Ausdauer-fokussierte Variante.",
+      "reqProfLevel": 8,
+      "reqSkill": 218,
+      "xpGain": 25,
+      "cost": {
+        "gold": 540
+      },
+      "materials": {
+        "schweresleder": 4,
+        "dickesleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leather-epic-armor"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "leder_var_weapon_uncommon_jaeger",
+      "profession": "lederverarbeiter",
+      "name": "Verstärkte LederPeitsche des Jägers",
+      "desc": "Glueck-fokussierte Variante.",
+      "reqProfLevel": 3,
+      "reqSkill": 74,
+      "xpGain": 12,
+      "cost": {
+        "gold": 84
+      },
+      "materials": {
+        "leichtesleder": 4,
+        "mittleresleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leather-uncommon-weapon"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 140
+    },
+    {
+      "id": "leder_var_weapon_uncommon_wanderer",
+      "profession": "lederverarbeiter",
+      "name": "Verstärkte LederPeitsche des Wanderers",
+      "desc": "Ausdauer-fokussierte Variante.",
+      "reqProfLevel": 3,
+      "reqSkill": 74,
+      "xpGain": 12,
+      "cost": {
+        "gold": 84
+      },
+      "materials": {
+        "leichtesleder": 4,
+        "mittleresleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leather-uncommon-weapon"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 140
+    },
+    {
+      "id": "leder_var_weapon_rare_jaeger",
+      "profession": "lederverarbeiter",
+      "name": "JägerPeitsche des Jägers",
+      "desc": "Glueck-fokussierte Variante.",
+      "reqProfLevel": 5,
+      "reqSkill": 149,
+      "xpGain": 18,
+      "cost": {
+        "gold": 216
+      },
+      "materials": {
+        "mittleresleder": 4,
+        "schweresleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leather-rare-weapon"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "leder_var_weapon_rare_wanderer",
+      "profession": "lederverarbeiter",
+      "name": "JägerPeitsche des Wanderers",
+      "desc": "Ausdauer-fokussierte Variante.",
+      "reqProfLevel": 5,
+      "reqSkill": 149,
+      "xpGain": 18,
+      "cost": {
+        "gold": 216
+      },
+      "materials": {
+        "mittleresleder": 4,
+        "schweresleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leather-rare-weapon"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "leder_var_weapon_epic_jaeger",
+      "profession": "lederverarbeiter",
+      "name": "BestienPeitsche des Jägers",
+      "desc": "Glueck-fokussierte Variante.",
+      "reqProfLevel": 8,
+      "reqSkill": 224,
+      "xpGain": 25,
+      "cost": {
+        "gold": 540
+      },
+      "materials": {
+        "schweresleder": 4,
+        "dickesleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leather-epic-weapon"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "leder_var_weapon_epic_wanderer",
+      "profession": "lederverarbeiter",
+      "name": "BestienPeitsche des Wanderers",
+      "desc": "Ausdauer-fokussierte Variante.",
+      "reqProfLevel": 8,
+      "reqSkill": 224,
+      "xpGain": 25,
+      "cost": {
+        "gold": 540
+      },
+      "materials": {
+        "schweresleder": 4,
+        "dickesleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leather-epic-weapon"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "leder_cure_light",
+      "profession": "lederverarbeiter",
+      "name": "Geheiltes Leichtleder",
+      "desc": "Gerbt und härtet leichtes Leder.",
+      "reqProfLevel": 1,
+      "reqSkill": 20,
+      "xpGain": 6,
+      "cost": {
+        "gold": 10
+      },
+      "materials": {
+        "leichtesleder": 3
+      },
+      "result": {
+        "type": "transmute_material",
+        "output": "cure_light",
+        "amount": 1
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer"
+    },
+    {
+      "id": "leder_cure_medium",
+      "profession": "lederverarbeiter",
+      "name": "Geheiltes Mittleres Leder",
+      "desc": "Gerbt mittleres Leder mit Baumharz.",
+      "reqProfLevel": 2,
+      "reqSkill": 75,
+      "xpGain": 9,
+      "cost": {
+        "gold": 40
+      },
+      "materials": {
+        "leichtesleder": 4,
+        "mittleresleder": 1
+      },
+      "result": {
+        "type": "transmute_material",
+        "output": "cure_medium",
+        "amount": 1
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 80
+    },
+    {
+      "id": "leder_cure_heavy",
+      "profession": "lederverarbeiter",
+      "name": "Gehärtetes Schweres Leder",
+      "desc": "Härtet schweres Leder unter Druck.",
+      "reqProfLevel": 5,
+      "reqSkill": 150,
+      "xpGain": 13,
+      "cost": {
+        "gold": 120
+      },
+      "materials": {
+        "mittleresleder": 4,
+        "schweresleder": 1
+      },
+      "result": {
+        "type": "transmute_material",
+        "output": "cure_heavy",
+        "amount": 1
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 250
+    },
+    {
+      "id": "leder_cure_thick",
+      "profession": "lederverarbeiter",
+      "name": "Bestien-Lederballen",
+      "desc": "Dickes Leder, gegerbt mit seltenen Ölen.",
+      "reqProfLevel": 7,
+      "reqSkill": 225,
+      "xpGain": 16,
+      "cost": {
+        "gold": 350
+      },
+      "materials": {
+        "schweresleder": 4,
+        "dickesleder": 1
+      },
+      "result": {
+        "type": "transmute_material",
+        "output": "cure_thick",
+        "amount": 1
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.06,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "leder_cure_rugged",
+      "profession": "lederverarbeiter",
+      "name": "Urzeitleder-Ballen",
+      "desc": "Uraltes Leder, das fast von selbst hart wird.",
+      "reqProfLevel": 9,
+      "reqSkill": 275,
+      "xpGain": 19,
+      "cost": {
+        "gold": 600
+      },
+      "materials": {
+        "dickesleder": 3,
+        "rauesleder": 1
+      },
+      "result": {
+        "type": "transmute_material",
+        "output": "cure_rugged",
+        "amount": 1
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.03,
+      "dropMinQuestRarity": "epic"
+    },
+    {
+      "id": "leder_oil_neatsfoot",
+      "profession": "lederverarbeiter",
+      "name": "Klauenöl",
+      "desc": "Macht Leder geschmeidig und haltbar.",
+      "reqProfLevel": 3,
+      "reqSkill": 100,
+      "xpGain": 10,
+      "cost": {
+        "gold": 60
+      },
+      "materials": {
+        "leichtesleder": 2,
+        "mittleresleder": 2
+      },
+      "result": {
+        "type": "transmute_material",
+        "output": "oil_neatsfoot",
+        "amount": 1
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 120
+    },
+    {
+      "id": "leder_salt_preserve",
+      "profession": "lederverarbeiter",
+      "name": "Salzgerbung",
+      "desc": "Konserviert Leder für die Ewigkeit.",
+      "reqProfLevel": 5,
+      "reqSkill": 175,
+      "xpGain": 14,
+      "cost": {
+        "gold": 150
+      },
+      "materials": {
+        "schweresleder": 3,
+        "mittleresleder": 2
+      },
+      "result": {
+        "type": "transmute_material",
+        "output": "salt_preserve",
+        "amount": 1
+      },
+      "cooldownMinutes": 0,
+      "source": "faction",
+      "factionId": "pakt_der_wildnis"
+    },
+    {
+      "id": "leder_tannin_ancient",
+      "profession": "lederverarbeiter",
+      "name": "Uraltes Gerbmittel",
+      "desc": "Gerbmittel aus einer vergessenen Ära.",
+      "reqProfLevel": 8,
+      "reqSkill": 250,
+      "xpGain": 18,
+      "cost": {
+        "gold": 400
+      },
+      "materials": {
+        "dickesleder": 2,
+        "rauesleder": 1
+      },
+      "result": {
+        "type": "transmute_material",
+        "output": "tannin_ancient",
+        "amount": 1
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.04,
+      "dropMinQuestRarity": "epic"
+    },
+    {
+      "id": "leder_kit_light",
+      "profession": "lederverarbeiter",
+      "name": "Leichtes Leder-Kit",
+      "desc": "+2 Ausdauer für 3 Quests.",
+      "reqProfLevel": 1,
+      "reqSkill": 1,
+      "xpGain": 5,
+      "cost": {
+        "gold": 15
+      },
+      "materials": {
+        "leichtesleder": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "ausdauer_boost_2",
+        "duration": "3_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer"
+    },
+    {
+      "id": "leder_kit_medium",
+      "profession": "lederverarbeiter",
+      "name": "Mittleres Leder-Kit",
+      "desc": "+4 Ausdauer für 3 Quests.",
+      "reqProfLevel": 1,
+      "reqSkill": 50,
+      "xpGain": 7,
+      "cost": {
+        "gold": 35
+      },
+      "materials": {
+        "leichtesleder": 3,
+        "mittleresleder": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "ausdauer_boost_4",
+        "duration": "3_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer"
+    },
+    {
+      "id": "leder_kit_heavy",
+      "profession": "lederverarbeiter",
+      "name": "Schweres Leder-Kit",
+      "desc": "+6 Ausdauer für 3 Quests.",
+      "reqProfLevel": 4,
+      "reqSkill": 125,
+      "xpGain": 10,
+      "cost": {
+        "gold": 80
+      },
+      "materials": {
+        "mittleresleder": 3,
+        "schweresleder": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "ausdauer_boost_6",
+        "duration": "3_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 150
+    },
+    {
+      "id": "leder_kit_thick",
+      "profession": "lederverarbeiter",
+      "name": "Dickes Leder-Kit",
+      "desc": "+8 Ausdauer für 3 Quests.",
+      "reqProfLevel": 6,
+      "reqSkill": 200,
+      "xpGain": 13,
+      "cost": {
+        "gold": 180
+      },
+      "materials": {
+        "schweresleder": 3,
+        "dickesleder": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "ausdauer_boost_8",
+        "duration": "3_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "faction",
+      "factionId": "pakt_der_wildnis"
+    },
+    {
+      "id": "leder_kit_rugged",
+      "profession": "lederverarbeiter",
+      "name": "Urzeitleder-Kit",
+      "desc": "+10 Ausdauer für 5 Quests.",
+      "reqProfLevel": 9,
+      "reqSkill": 270,
+      "xpGain": 16,
+      "cost": {
+        "gold": 400
+      },
+      "materials": {
+        "dickesleder": 3,
+        "rauesleder": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "ausdauer_boost_10",
+        "duration": "5_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.04,
+      "dropMinQuestRarity": "epic"
+    },
+    {
+      "id": "leder_patch_lucky",
+      "profession": "lederverarbeiter",
+      "name": "Glücksflicken",
+      "desc": "+2 Glück für 3 Quests.",
+      "reqProfLevel": 1,
+      "reqSkill": 10,
+      "xpGain": 5,
+      "cost": {
+        "gold": 15
+      },
+      "materials": {
+        "leichtesleder": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "glueck_boost_2",
+        "duration": "3_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer"
+    },
+    {
+      "id": "leder_patch_greater",
+      "profession": "lederverarbeiter",
+      "name": "Großer Glücksflicken",
+      "desc": "+4 Glück für 3 Quests.",
+      "reqProfLevel": 2,
+      "reqSkill": 80,
+      "xpGain": 8,
+      "cost": {
+        "gold": 50
+      },
+      "materials": {
+        "mittleresleder": 3
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "glueck_boost_4",
+        "duration": "3_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 100
+    },
+    {
+      "id": "leder_patch_superior",
+      "profession": "lederverarbeiter",
+      "name": "Überlegener Glücksflicken",
+      "desc": "+6 Glück für 5 Quests.",
+      "reqProfLevel": 6,
+      "reqSkill": 180,
+      "xpGain": 12,
+      "cost": {
+        "gold": 160
+      },
+      "materials": {
+        "schweresleder": 3,
+        "dickesleder": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "glueck_boost_6",
+        "duration": "5_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "faction",
+      "factionId": "pakt_der_wildnis"
+    },
+    {
+      "id": "leder_quiver_light",
+      "profession": "lederverarbeiter",
+      "name": "Leichter Köcher",
+      "desc": "+3 Tempo für 3 Quests.",
+      "reqProfLevel": 1,
+      "reqSkill": 35,
+      "xpGain": 6,
+      "cost": {
+        "gold": 25
+      },
+      "materials": {
+        "leichtesleder": 3
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "tempo_boost_3",
+        "duration": "3_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer"
+    },
+    {
+      "id": "leder_quiver_heavy",
+      "profession": "lederverarbeiter",
+      "name": "Schwerer Köcher",
+      "desc": "+5 Tempo für 3 Quests.",
+      "reqProfLevel": 4,
+      "reqSkill": 140,
+      "xpGain": 11,
+      "cost": {
+        "gold": 100
+      },
+      "materials": {
+        "mittleresleder": 3,
+        "schweresleder": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "tempo_boost_5",
+        "duration": "3_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 200
+    },
+    {
+      "id": "leder_quiver_master",
+      "profession": "lederverarbeiter",
+      "name": "Meisterköcher",
+      "desc": "+7 Tempo für 5 Quests.",
+      "reqProfLevel": 8,
+      "reqSkill": 240,
+      "xpGain": 15,
+      "cost": {
+        "gold": 350
+      },
+      "materials": {
+        "dickesleder": 2,
+        "rauesleder": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "tempo_boost_7",
+        "duration": "5_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.05,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "leder_pouch_coin",
+      "profession": "lederverarbeiter",
+      "name": "Münzbeutel",
+      "desc": "+5% Gold für 3 Quests.",
+      "reqProfLevel": 2,
+      "reqSkill": 60,
+      "xpGain": 7,
+      "cost": {
+        "gold": 40
+      },
+      "materials": {
+        "leichtesleder": 3,
+        "mittleresleder": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "gold_boost_5",
+        "duration": "3_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer"
+    },
+    {
+      "id": "leder_pouch_treasure",
+      "profession": "lederverarbeiter",
+      "name": "Schatzbeutel",
+      "desc": "+10% Gold für 3 Quests.",
+      "reqProfLevel": 5,
+      "reqSkill": 160,
+      "xpGain": 11,
+      "cost": {
+        "gold": 120
+      },
+      "materials": {
+        "schweresleder": 3,
+        "mittleresleder": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "gold_boost_10",
+        "duration": "3_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "leder_pouch_dragon",
+      "profession": "lederverarbeiter",
+      "name": "Drachenhort-Beutel",
+      "desc": "+15% Gold für 5 Quests.",
+      "reqProfLevel": 7,
+      "reqSkill": 230,
+      "xpGain": 14,
+      "cost": {
+        "gold": 300
+      },
+      "materials": {
+        "dickesleder": 3,
+        "rauesleder": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "gold_boost_15",
+        "duration": "5_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.04,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "leder_pouch_master",
+      "profession": "lederverarbeiter",
+      "name": "Meisterbeutel",
+      "desc": "+20% Gold für 5 Quests.",
+      "reqProfLevel": 9,
+      "reqSkill": 280,
+      "xpGain": 16,
+      "cost": {
+        "gold": 600
+      },
+      "materials": {
+        "rauesleder": 2,
+        "dickesleder": 3
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "gold_boost_20",
+        "duration": "5_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.03,
+      "dropMinQuestRarity": "epic"
+    },
+    {
+      "id": "leder_reinforce",
+      "profession": "lederverarbeiter",
+      "name": "Leder verstärken",
+      "desc": "+3-6 auf einen zufälligen Primärstat (permanent).",
+      "reqProfLevel": 5,
+      "reqSkill": 175,
+      "xpGain": 17,
+      "cost": {
+        "gold": 350
+      },
+      "materials": {
+        "schweresleder": 3,
+        "dickesleder": 1
+      },
+      "result": {
+        "type": "reinforce",
+        "statBonus": [
+          3,
+          6
+        ],
+        "target": "primary_stat"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.06,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "leder_reinforce_master",
+      "profession": "lederverarbeiter",
+      "name": "Meister-Lederverstärkung",
+      "desc": "+5-8 auf einen zufälligen Primärstat.",
+      "reqProfLevel": 9,
+      "reqSkill": 275,
+      "xpGain": 23,
+      "cost": {
+        "gold": 800
+      },
+      "materials": {
+        "rauesleder": 2,
+        "dickesleder": 3
+      },
+      "result": {
+        "type": "reinforce",
+        "statBonus": [
+          5,
+          8
+        ],
+        "target": "primary_stat"
+      },
+      "cooldownMinutes": 1440,
+      "source": "drop",
+      "dropChance": 0.03,
+      "dropMinQuestRarity": "epic"
+    },
+    {
+      "id": "leder_upgrade_rarity",
+      "profession": "lederverarbeiter",
+      "name": "Lederveredelung",
+      "desc": "50% Chance: Seltenheit eines Leather-Items um 1 erhöhen.",
+      "reqProfLevel": 6,
+      "reqSkill": 200,
+      "xpGain": 18,
+      "cost": {
+        "gold": 400
+      },
+      "materials": {
+        "dickesleder": 2,
+        "schweresleder": 3
+      },
+      "result": {
+        "type": "upgrade_rarity",
+        "successChance": 0.5
+      },
+      "cooldownMinutes": 1440,
+      "source": "drop",
+      "dropChance": 0.06,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "leder_streak_shield",
+      "profession": "lederverarbeiter",
+      "name": "Lederner Streakschutz",
+      "desc": "Gewährt 1 Streak-Schild.",
+      "reqProfLevel": 5,
+      "reqSkill": 150,
+      "xpGain": 15,
+      "cost": {
+        "gold": 180
+      },
+      "materials": {
+        "schweresleder": 2,
+        "mittleresleder": 3
+      },
+      "result": {
+        "type": "streak_shield",
+        "amount": 1
+      },
+      "cooldownMinutes": 0,
+      "source": "faction",
+      "factionId": "pakt_der_wildnis"
+    },
+    {
+      "id": "leder_streak_master",
+      "profession": "lederverarbeiter",
+      "name": "Urzeitleder-Streakschutz",
+      "desc": "Gewährt 2 Streak-Schilde.",
+      "reqProfLevel": 8,
+      "reqSkill": 260,
+      "xpGain": 22,
+      "cost": {
+        "gold": 500
+      },
+      "materials": {
+        "dickesleder": 2,
+        "rauesleder": 1
+      },
+      "result": {
+        "type": "streak_shield",
+        "amount": 2
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.04,
+      "dropMinQuestRarity": "epic"
+    },
+    {
+      "id": "leder_forge_temp",
+      "profession": "lederverarbeiter",
+      "name": "Lederner Blasebalg",
+      "desc": "+15 Schmiedetemperatur.",
+      "reqProfLevel": 3,
+      "reqSkill": 90,
+      "xpGain": 11,
+      "cost": {
+        "gold": 50
+      },
+      "materials": {
+        "mittleresleder": 3,
+        "leichtesleder": 2
+      },
+      "result": {
+        "type": "forge_temp",
+        "amount": 15
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 100
+    },
+    {
+      "id": "leder_forge_temp_lg",
+      "profession": "lederverarbeiter",
+      "name": "Großer Lederbalg",
+      "desc": "+25 Schmiedetemperatur.",
+      "reqProfLevel": 6,
+      "reqSkill": 190,
+      "xpGain": 18,
+      "cost": {
+        "gold": 160
+      },
+      "materials": {
+        "schweresleder": 3,
+        "dickesleder": 1
+      },
+      "result": {
+        "type": "forge_temp",
+        "amount": 25
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 300
     }
   ]
 }
