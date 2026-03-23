@@ -57,18 +57,19 @@ chance = (grayThreshold - playerSkill) / (grayThreshold - yellowThreshold)
 - [x] crafting.js: Per-item caps on permanent enchants
 - [x] professions.json: professionSlots reduced to 2
 
-### TODO
-- [ ] professions.json: Remove `levelThresholds` from professions
-- [ ] professions.json: Add `maxSkill: 300` to each profession
-- [ ] professions.json: Update `masteryConfig.unlockSkill: 225`
-- [ ] professions.json: Remove cooldowns from normal recipes (set to 0)
-- [ ] professions.json: Keep cooldowns only on rare/legendary recipes
-- [ ] ForgeView.tsx: Display Skill X/300 instead of Level X/10
-- [ ] ForgeView.tsx: Show rank name (Apprentice/Journeyman/Expert/Artisan)
-- [ ] ForgeView.tsx: Show sliding % chance on recipes instead of fixed colors
-- [ ] ForgeView.tsx: Show skill cap from current rank
-- [ ] Audit 25 gear templates against CLAUDE.md balancing rules
-- [ ] Design new recipes to fill skill gaps (need ~50+ recipes per profession for WoW-like progression)
+- [x] professions.json: maxSkill 300, removed levelThresholds
+- [x] professions.json: masteryConfig.unlockSkill: 225
+- [x] professions.json: Cooldowns removed from normal recipes (only 9 rare/legendary keep CDs)
+- [x] ForgeView.tsx: Skill X/300 display, WoW ranks, sliding % chance
+- [x] Gear template audit: 3 violations fixed (stat ranges, legendary effects)
+- [x] 27 new recipes (Alchemist 8, Koch 6, Verzauberer 5, Schmied 4, Schneider 4)
+- [x] 8 new gear templates for new crafting recipes
+- [x] Generic craft handlers (buff, temp_enchant, perm_enchant, transmute_material, forge_temp, streak_shield)
+
+### Remaining TODO
+- [ ] Update CLAUDE.md to reflect 300-skill system and new profession slot count
+- [ ] More recipes per profession for denser skill progression (currently 12-19 per prof, WoW has 50-80)
+- [ ] BoE/BoP flags on crafted items for trade system
 
 ## Trade System Vision
 Each profession produces things OTHERS need:
