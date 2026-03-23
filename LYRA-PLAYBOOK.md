@@ -665,6 +665,8 @@ Kein Code nötig für bestehende Effekt-Typen. Neue Effekt-Typen brauchen Anpass
 
 ## 12. Artisan's Quarter — Crafting Recipes & Materials
 
+> **Definitive Spec:** See [`PROFESSION-SPEC.md`](./PROFESSION-SPEC.md) for the full profession system specification including WoW Classic references, target recipe/material counts, gear template gap analysis, skill-up color system, buff stacking rules, and prioritized work packages. **Always consult PROFESSION-SPEC.md before adding new recipes, materials, or gear templates.**
+
 **Data**: `public/data/professions.json`
 **Frontend**: `components/ForgeView.tsx`
 **Backend**: `routes/crafting.js`
