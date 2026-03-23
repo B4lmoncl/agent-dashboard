@@ -142,11 +142,12 @@ function SternenpfadView({
                     className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold transition-all"
                     disabled={!canClaim || claimingMilestone !== null}
                     onClick={() => canClaim && onClaimMilestone(ms.stars)}
+                    title={claimed ? "Already claimed" : claimingMilestone !== null ? "Claiming in progress..." : !reached ? `Earn ${ms.stars} stars to unlock` : "Claim milestone reward"}
                     style={{
                       background: claimed ? "#fbbf24" : canClaim ? "rgba(251,191,36,0.25)" : "rgba(255,255,255,0.06)",
                       color: claimed ? "#000" : canClaim ? "#fbbf24" : "rgba(255,255,255,0.2)",
                       boxShadow: claimed ? "0 0 8px rgba(251,191,36,0.3)" : canClaim ? "0 0 12px rgba(251,191,36,0.2)" : "none",
-                      cursor: canClaim ? "pointer" : "default",
+                      cursor: canClaim && claimingMilestone === null ? "pointer" : "not-allowed",
                       animation: canClaim ? "pulse 2s infinite" : "none",
                     }}
                   >

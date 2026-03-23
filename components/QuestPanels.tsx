@@ -233,8 +233,9 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
                 <button
                   onClick={() => setRecommitId(ar.id)}
                   disabled={!reviewApiKey}
+                  title={!reviewApiKey ? "Login required" : undefined}
                   className="text-xs px-3 py-1 rounded font-bold transition-all"
-                  style={{ background: "rgba(139,92,246,0.15)", color: "#a78bfa", border: "1px solid rgba(139,92,246,0.4)", cursor: "pointer", boxShadow: "0 0 10px rgba(139,92,246,0.1)" }}
+                  style={{ background: "rgba(139,92,246,0.15)", color: "#a78bfa", border: "1px solid rgba(139,92,246,0.4)", cursor: !reviewApiKey ? "not-allowed" : "pointer", boxShadow: "0 0 10px rgba(139,92,246,0.1)" }}
                 >
                   Rise Again
                 </button>
@@ -302,8 +303,9 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
                     boxShadow: slipAnimId === ar.id ? "0 0 14px rgba(239,68,68,0.4)" : "none",
                     transform: slipAnimId === ar.id ? "scale(1.15)" : "scale(1)",
                     transition: "all 0.15s cubic-bezier(0.4, 0, 0.2, 1)",
+                    cursor: !reviewApiKey ? "not-allowed" : "pointer",
                   }}
-                  title="I slipped... Streak reset."
+                  title={!reviewApiKey ? "Login required" : "I slipped... Streak reset."}
                 >
                   Slip
                 </button>
@@ -493,7 +495,7 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
                 </div>
                 <div className="flex gap-2 pt-1">
                   <button onClick={closeVowModal} className="action-btn text-sm py-2.5 px-5 rounded-xl" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(165,180,252,0.35)", border: "1px solid rgba(255,255,255,0.08)" }}>Cancel</button>
-                  <button onClick={createAntiRitual} disabled={vowCreating} className="action-btn flex-1 text-sm py-2.5 rounded-xl font-bold" style={{ background: "rgba(67,56,202,0.32)", color: "#a5b4fc", border: "1px solid rgba(99,102,241,0.6)", boxShadow: "0 0 16px rgba(99,102,241,0.12)" }}>{vowCreating ? "Sealing..." : "Seal Vow"}</button>
+                  <button onClick={createAntiRitual} disabled={vowCreating} title={vowCreating ? "Action in progress…" : undefined} className="action-btn flex-1 text-sm py-2.5 rounded-xl font-bold" style={{ background: "rgba(67,56,202,0.32)", color: "#a5b4fc", border: "1px solid rgba(99,102,241,0.6)", boxShadow: "0 0 16px rgba(99,102,241,0.12)", cursor: vowCreating ? "not-allowed" : "pointer" }}>{vowCreating ? "Sealing..." : "Seal Vow"}</button>
                 </div>
               </div>
             </div>
@@ -577,6 +579,7 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
                     <button onClick={closeExtend} className="text-sm py-2.5 px-5 rounded-xl" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(165,180,252,0.35)", border: "1px solid rgba(255,255,255,0.08)" }}>Cancel</button>
                     <button
                       disabled={!canExtend}
+                      title={!canExtend ? "Select a commitment tier first" : undefined}
                       onClick={async () => {
                         if (!canExtend || !selectedTier) return;
                         try {
@@ -925,8 +928,9 @@ export function DobbieQuestPanel({ reviewApiKey, onRefresh, playerName, petName,
                   <button
                     onClick={() => completeDobbieQuest(q.id)}
                     disabled={isCompleting}
+                    title={isCompleting ? "Action in progress…" : undefined}
                     className="action-btn text-xs px-3 py-1.5 rounded font-semibold"
-                    style={{ background: "rgba(34,197,94,0.12)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.3)" }}
+                    style={{ background: "rgba(34,197,94,0.12)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.3)", cursor: isCompleting ? "not-allowed" : "pointer" }}
                   >
                     {isCompleting ? "..." : "Done"}
                   </button>
@@ -935,8 +939,9 @@ export function DobbieQuestPanel({ reviewApiKey, onRefresh, playerName, petName,
                 <button
                   onClick={() => createDobbieQuest(q)}
                   disabled={!!creating}
+                  title={creating ? "Action in progress…" : undefined}
                   className="action-btn w-full text-xs py-1.5 rounded font-semibold"
-                  style={{ background: "rgba(96,165,250,0.12)", color: "#60a5fa", border: "1px solid rgba(96,165,250,0.3)" }}
+                  style={{ background: "rgba(96,165,250,0.12)", color: "#60a5fa", border: "1px solid rgba(96,165,250,0.3)", cursor: creating ? "not-allowed" : "pointer" }}
                 >
                   {isCreating ? "Accepting..." : "Accept Quest"}
                 </button>

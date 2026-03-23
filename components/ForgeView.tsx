@@ -498,6 +498,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
             <button
               onClick={() => { if (!locked) { setSelectedNpc(prof); setNpcModalTab("recipes"); setCraftResult(null); setDismantleResult(null); setTransmuteResult(null); setSelectedTransmute([]); } }}
               disabled={locked}
+              title={locked ? `Requires Player Level ${prof.unlockCondition?.value || "?"}` : `Open ${prof.npcName}'s workshop`}
               className="w-full p-4 pt-2 text-left"
               style={{ cursor: locked ? "not-allowed" : "pointer" }}
             >
@@ -560,8 +561,9 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                 <button
                   onClick={(e) => { e.stopPropagation(); setConfirmProf(prof); }}
                   disabled={choosingProf}
+                  title={choosingProf ? "Choosing profession..." : `Choose ${prof.name}`}
                   className="forge-btn w-full text-xs font-semibold py-2 rounded-lg"
-                  style={{ background: `${prof.color}15`, color: prof.color, border: `1px solid ${prof.color}35` }}
+                  style={{ background: `${prof.color}15`, color: prof.color, border: `1px solid ${prof.color}35`, cursor: choosingProf ? "not-allowed" : "pointer" }}
                 >
                   {choosingProf ? "..." : "Choose Profession"}
                 </button>

@@ -277,6 +277,7 @@ export default function FactionsView({ onRewardCelebration, onNavigate }: { onRe
                   <button
                     onClick={() => claimReward(f.id)}
                     disabled={claiming === f.id}
+                    title={claiming === f.id ? "Claiming reward..." : "Claim faction reward"}
                     className="btn-interactive w-full text-xs font-bold py-2 rounded-lg"
                     style={{
                       background: `${f.accent}15`,

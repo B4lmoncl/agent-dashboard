@@ -268,6 +268,7 @@ export default function BattlePassView({ onRewardCelebration, onNavigate }: { on
                 <button
                   onClick={() => claimLevel(r.level)}
                   disabled={claiming === r.level}
+                  title={claiming === r.level ? "Claiming reward..." : "Claim this reward"}
                   className="btn-interactive text-xs font-bold px-3 py-1.5 rounded-lg flex-shrink-0"
                   style={{
                     background: `${config.seasonAccent}20`,

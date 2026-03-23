@@ -458,7 +458,9 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
                       <button key={q.id} onClick={() => handleUltimate("instant_complete", q.id)} disabled={!!ultimateUsing}
                         className="w-full text-left text-xs px-2 py-1.5 rounded" style={{
                           background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)", color: "#f0d0c0",
-                        }}>
+                          cursor: ultimateUsing ? "not-allowed" : "pointer",
+                        }}
+                        title={ultimateUsing ? "Using ultimate\u2026" : undefined}>
                         {q.title}
                       </button>
                     ))}
@@ -541,13 +543,13 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
                               <button
                                 onClick={() => handleCompleteQuest(q.id, q.title)}
                                 disabled={!!completingId || done}
-                                title="Mark quest complete"
+                                title={completingId ? "Action in progress\u2026" : "Mark quest complete"}
                                 style={{
                                   width: 24, height: 24, borderRadius: "50%",
                                   border: done || completingSuccessId === q.id ? "1.5px solid #4ade80" : "1.5px solid rgba(255,107,157,0.4)",
                                   background: completingSuccessId === q.id ? "rgba(34,197,94,0.7)" : done ? "rgba(34,197,94,0.15)" : "rgba(255,107,157,0.08)",
                                   color: done || completingSuccessId === q.id ? "#4ade80" : "#a78bfa",
-                                  cursor: completingId ? "wait" : "pointer",
+                                  cursor: (completingId || done) ? "not-allowed" : "pointer",
                                   display: "flex", alignItems: "center", justifyContent: "center",
                                   fontSize: "0.75rem", fontWeight: 700, flexShrink: 0,
                                   transition: "all 0.2s",

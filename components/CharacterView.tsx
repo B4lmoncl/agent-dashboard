@@ -305,8 +305,9 @@ function ProfileSettingsModal({ playerName, apiKey, initialStatus, initialPartne
           <button
             onClick={handleSave}
             disabled={saving}
+            title={saving ? "Saving…" : undefined}
             className="flex-1 py-2 rounded-xl text-xs font-semibold"
-            style={{ background: "linear-gradient(135deg, #7c3aed, #a78bfa)", color: "#fff" }}
+            style={{ background: "linear-gradient(135deg, #7c3aed, #a78bfa)", color: "#fff", cursor: saving ? "not-allowed" : "pointer" }}
           >{saving ? "…" : "Save"}</button>
         </div>
       </div>
@@ -735,8 +736,9 @@ function GearSlotRow({ slot, iconSrc, label, item, onUnequip, unequipping }: {
           <button
             onClick={() => onUnequip(slot)}
             disabled={unequipping === slot}
+            title={unequipping === slot ? "Unequipping…" : "Unequip item"}
             className="text-xs px-1.5 py-0.5 rounded"
-            style={{ background: "rgba(239,68,68,0.15)", color: "#f87171", border: "1px solid rgba(239,68,68,0.2)", cursor: "pointer" }}
+            style={{ background: "rgba(239,68,68,0.15)", color: "#f87171", border: "1px solid rgba(239,68,68,0.2)", cursor: unequipping === slot ? "not-allowed" : "pointer" }}
           >
             {unequipping === slot ? "…" : "−"}
           </button>
@@ -1714,6 +1716,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                               <button
                                 onClick={() => doGemAction("upgrade", { gemKey })}
                                 disabled={!!gemAction}
+                                title={gemAction ? "Action in progress…" : "Combine 3 gems to upgrade"}
                                 className="text-xs px-1.5 py-0.5 rounded"
                                 style={{ background: "rgba(167,139,250,0.1)", color: "#a78bfa", border: "1px solid rgba(167,139,250,0.25)", cursor: gemAction ? "not-allowed" : "pointer", fontSize: 12 }}
                               >
@@ -1761,8 +1764,9 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                                       doGemAction("socket", { instanceId, socketIndex: si, gemKey: firstGem[0] });
                                     }}
                                     disabled={!!gemAction || Object.keys(gemData.inventory || {}).length === 0}
+                                    title={gemAction ? "Action in progress…" : Object.keys(gemData.inventory || {}).length === 0 ? "No gems available" : "Socket a gem"}
                                     className="text-xs px-1 py-0.5 rounded"
-                                    style={{ fontSize: 12, background: "rgba(167,139,250,0.1)", color: "#a78bfa", border: "1px solid rgba(167,139,250,0.2)", cursor: gemAction ? "not-allowed" : "pointer" }}
+                                    style={{ fontSize: 12, background: "rgba(167,139,250,0.1)", color: "#a78bfa", border: "1px solid rgba(167,139,250,0.2)", cursor: (gemAction || Object.keys(gemData.inventory || {}).length === 0) ? "not-allowed" : "pointer" }}
                                   >
                                     Socket
                                   </button>
@@ -1770,6 +1774,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                                   <button
                                     onClick={() => doGemAction("unsocket", { instanceId, socketIndex: si })}
                                     disabled={!!gemAction}
+                                    title={gemAction ? "Action in progress…" : "Remove socketed gem"}
                                     className="text-xs px-1 py-0.5 rounded"
                                     style={{ fontSize: 12, background: "rgba(239,68,68,0.08)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.2)", cursor: gemAction ? "not-allowed" : "pointer" }}
                                   >
