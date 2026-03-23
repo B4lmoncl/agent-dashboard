@@ -419,344 +419,6 @@
   },
   "recipes": [
     {
-      "id": "craft_heavy_helm_common",
-      "profession": "schmied",
-      "name": "Eiserner Helm",
-      "desc": "Schmiedet einen einfachen schweren Helm aus Eisenerz.",
-      "reqProfLevel": 1,
-      "xpGain": 12,
-      "cost": {
-        "gold": 75
-      },
-      "materials": {
-        "eisenerz": 4
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "heavy-helm-t1"
-      },
-      "cooldownMinutes": 0,
-      "source": "trainer",
-      "reqSkill": 1
-    },
-    {
-      "id": "craft_heavy_armor_common",
-      "profession": "schmied",
-      "name": "Eiserne Rüstung",
-      "desc": "Schmiedet eine einfache schwere Rüstung aus Eisenerz.",
-      "reqProfLevel": 1,
-      "xpGain": 14,
-      "cost": {
-        "gold": 100
-      },
-      "materials": {
-        "eisenerz": 5
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "heavy-armor-t1"
-      },
-      "cooldownMinutes": 0,
-      "source": "trainer",
-      "reqSkill": 1
-    },
-    {
-      "id": "craft_heavy_boots_common",
-      "profession": "schmied",
-      "name": "Eiserne Stiefel",
-      "desc": "Schmiedet einfache schwere Stiefel aus Eisenerz.",
-      "reqProfLevel": 1,
-      "xpGain": 10,
-      "cost": {
-        "gold": 60
-      },
-      "materials": {
-        "eisenerz": 3
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "heavy-boots-t1"
-      },
-      "cooldownMinutes": 0,
-      "source": "trainer",
-      "reqSkill": 1
-    },
-    {
-      "id": "craft_heavy_weapon_common",
-      "profession": "schmied",
-      "name": "Eisernes Schwert",
-      "desc": "Schmiedet ein einfaches schweres Schwert aus Eisenerz.",
-      "reqProfLevel": 2,
-      "xpGain": 14,
-      "cost": {
-        "gold": 90
-      },
-      "materials": {
-        "eisenerz": 5
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "heavy-weapon-t1"
-      },
-      "cooldownMinutes": 0,
-      "source": "trainer",
-      "trainerCost": 50,
-      "reqSkill": 30
-    },
-    {
-      "id": "craft_heavy_shield_uncommon",
-      "profession": "schmied",
-      "name": "Kristallschild",
-      "desc": "Ein Schild, verstärkt mit Kristallsplittern. Widersteht Magie.",
-      "reqProfLevel": 3,
-      "xpGain": 16,
-      "cost": {
-        "gold": 150
-      },
-      "materials": {
-        "eisenerz": 4,
-        "kristallsplitter": 2
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "heavy-shield-t2"
-      },
-      "cooldownMinutes": 0,
-      "source": "trainer",
-      "trainerCost": 100,
-      "reqSkill": 60
-    },
-    {
-      "id": "craft_heavy_armor_uncommon",
-      "profession": "schmied",
-      "name": "Kristallrüstung",
-      "desc": "Eine verstärkte Rüstung aus Eisen und Kristall.",
-      "reqProfLevel": 3,
-      "xpGain": 18,
-      "cost": {
-        "gold": 175
-      },
-      "materials": {
-        "eisenerz": 5,
-        "kristallsplitter": 2
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "heavy-armor-t2"
-      },
-      "cooldownMinutes": 0,
-      "source": "trainer",
-      "trainerCost": 120,
-      "reqSkill": 60
-    },
-    {
-      "id": "craft_heavy_helm_rare",
-      "profession": "schmied",
-      "name": "Drachenschuppen-Helm",
-      "desc": "Ein Helm, geschmiedet mit Drachenschuppen. Glüht vor innerer Hitze.",
-      "reqProfLevel": 5,
-      "xpGain": 20,
-      "cost": {
-        "gold": 300
-      },
-      "materials": {
-        "kristallsplitter": 3,
-        "drachenschuppe": 2
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "heavy-helm-t3"
-      },
-      "cooldownMinutes": 0,
-      "source": "trainer",
-      "trainerCost": 250,
-      "reqSkill": 120
-    },
-    {
-      "id": "craft_heavy_armor_rare",
-      "profession": "schmied",
-      "name": "Drachenschuppen-Panzer",
-      "desc": "Schwere Rüstung aus Drachenschuppen. Heiß wie eine Schmiede.",
-      "reqProfLevel": 5,
-      "xpGain": 22,
-      "cost": {
-        "gold": 350
-      },
-      "materials": {
-        "kristallsplitter": 4,
-        "drachenschuppe": 2
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "heavy-armor-t3"
-      },
-      "cooldownMinutes": 0,
-      "source": "trainer",
-      "trainerCost": 300,
-      "reqSkill": 120
-    },
-    {
-      "id": "craft_heavy_weapon_epic",
-      "profession": "schmied",
-      "name": "Aetherkern-Klinge",
-      "desc": "Eine Klinge, durchpulst mit Aetherenergie. Summt beim Schwingen.",
-      "reqProfLevel": 7,
-      "xpGain": 28,
-      "cost": {
-        "gold": 500
-      },
-      "materials": {
-        "drachenschuppe": 3,
-        "aetherkern": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "heavy-weapon-t3"
-      },
-      "cooldownMinutes": 0,
-      "source": "drop",
-      "dropChance": 0.06,
-      "dropMinQuestRarity": "rare",
-      "reqSkill": 180
-    },
-    {
-      "id": "craft_heavy_armor_epic",
-      "profession": "schmied",
-      "name": "Aetherkern-Panzer",
-      "desc": "Schwere Rüstung, geschmiedet um einen Aetherkern. Fast unzerstörbar.",
-      "reqProfLevel": 7,
-      "xpGain": 30,
-      "cost": {
-        "gold": 600
-      },
-      "materials": {
-        "drachenschuppe": 3,
-        "aetherkern": 2
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "heavy-armor-t4-epic"
-      },
-      "cooldownMinutes": 0,
-      "source": "drop",
-      "dropChance": 0.05,
-      "dropMinQuestRarity": "epic",
-      "reqSkill": 180
-    },
-    {
-      "id": "craft_heavy_weapon_legendary",
-      "profession": "schmied",
-      "name": "Seelenschwert",
-      "desc": "Eine legendäre Klinge, gebunden an ein Seelenfragment. Flüstert im Kampf.",
-      "reqProfLevel": 9,
-      "xpGain": 35,
-      "cost": {
-        "gold": 1000
-      },
-      "materials": {
-        "aetherkern": 2,
-        "seelensplitter": 1,
-        "drachenschuppe": 3
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "heavy-weapon-t4"
-      },
-      "cooldownMinutes": 1440,
-      "source": "drop",
-      "dropChance": 0.03,
-      "dropMinQuestRarity": "epic",
-      "reqSkill": 250
-    },
-    {
-      "id": "sharpen_blade",
-      "profession": "schmied",
-      "name": "Sharpen Blade",
-      "desc": "Hones a weapon to razor sharpness, adding +1-3 to its primary stat.",
-      "reqProfLevel": 5,
-      "xpGain": 12,
-      "cost": {
-        "gold": 250
-      },
-      "materials": {
-        "eisenerz": 3,
-        "kristallsplitter": 2
-      },
-      "result": {
-        "type": "reinforce",
-        "statBonus": [
-          1,
-          3
-        ],
-        "target": "primary_stat"
-      },
-      "cooldownMinutes": 0,
-      "source": "trainer",
-      "trainerCost": 250,
-      "reqSkill": 120
-    },
-    {
-      "id": "upgrade_rarity",
-      "profession": "schmied",
-      "name": "Rarity Upgrade",
-      "desc": "50% chance to upgrade item rarity by one tier. Materials are consumed on failure.",
-      "reqProfLevel": 7,
-      "xpGain": 20,
-      "cost": {
-        "gold": 500
-      },
-      "materials": {
-        "drachenschuppe": 2,
-        "aetherkern": 1
-      },
-      "result": {
-        "type": "upgrade_rarity",
-        "successChance": 0.5
-      },
-      "cooldownMinutes": 1440,
-      "discovery": {
-        "type": "profLevel",
-        "value": 7
-      },
-      "source": "drop",
-      "dropChance": 0.08,
-      "dropMinQuestRarity": "rare",
-      "reqSkill": 180
-    },
-    {
-      "id": "reinforce_armor",
-      "profession": "schmied",
-      "name": "Reinforce Armor",
-      "desc": "Adds +3-6 to a random primary stat permanently. Master-level smithing.",
-      "reqProfLevel": 9,
-      "xpGain": 30,
-      "cost": {
-        "gold": 800
-      },
-      "materials": {
-        "drachenschuppe": 3,
-        "aetherkern": 2,
-        "seelensplitter": 1
-      },
-      "result": {
-        "type": "reinforce",
-        "statBonus": [
-          3,
-          6
-        ],
-        "target": "primary_stat"
-      },
-      "cooldownMinutes": 2880,
-      "discovery": {
-        "type": "profLevel",
-        "value": 9
-      },
-      "source": "drop",
-      "dropChance": 0.05,
-      "dropMinQuestRarity": "epic",
-      "reqSkill": 250
-    },
-    {
       "id": "craft_cloth_helm_common",
       "profession": "schneider",
       "name": "Leinene Kapuze",
@@ -1569,30 +1231,6 @@
       "reqSkill": 90
     },
     {
-      "id": "artisans_whetstone",
-      "profession": "schmied",
-      "name": "Artisan's Whetstone",
-      "desc": "+10% crafting XP for 5 crafts. Zirkel des Amboss precision.",
-      "reqProfLevel": 4,
-      "xpGain": 18,
-      "cost": {
-        "gold": 80
-      },
-      "materials": {
-        "eisenerz": 2,
-        "kristallsplitter": 1
-      },
-      "result": {
-        "type": "buff",
-        "buffType": "craft_xp_boost",
-        "duration": "5_quests"
-      },
-      "cooldownMinutes": 0,
-      "source": "faction",
-      "factionId": "amboss",
-      "reqSkill": 90
-    },
-    {
       "id": "resonance_charm",
       "profession": "verzauberer",
       "name": "Resonance Charm",
@@ -2089,101 +1727,6 @@
       "reqSkill": 250
     },
     {
-      "id": "craft_heavy_amulet_uncommon",
-      "profession": "schmied",
-      "name": "Eisernes Amulett",
-      "desc": "Ein schweres Amulett aus Eisen und Kristall. Klirrend, aber schützend.",
-      "reqProfLevel": 4,
-      "xpGain": 16,
-      "cost": {
-        "gold": 125
-      },
-      "materials": {
-        "eisenerz": 3,
-        "kristallsplitter": 2
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "heavy-amulet-t2"
-      },
-      "cooldownMinutes": 0,
-      "source": "trainer",
-      "trainerCost": 100,
-      "reqSkill": 90
-    },
-    {
-      "id": "craft_heavy_boots_rare",
-      "profession": "schmied",
-      "name": "Drachenschuppen-Stiefel",
-      "desc": "Schwere Stiefel aus Drachenschuppen. Glühen bei jedem Schritt.",
-      "reqProfLevel": 6,
-      "xpGain": 22,
-      "cost": {
-        "gold": 300
-      },
-      "materials": {
-        "kristallsplitter": 3,
-        "drachenschuppe": 2
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "heavy-boots-t3"
-      },
-      "cooldownMinutes": 0,
-      "source": "trainer",
-      "trainerCost": 250,
-      "reqSkill": 150
-    },
-    {
-      "id": "craft_heavy_shield_rare",
-      "profession": "schmied",
-      "name": "Drachenschuppen-Schild",
-      "desc": "Ein Schild aus Drachenschuppen. Glüht in der Hitze des Kampfes.",
-      "reqProfLevel": 6,
-      "xpGain": 24,
-      "cost": {
-        "gold": 350
-      },
-      "materials": {
-        "drachenschuppe": 3,
-        "kristallsplitter": 2
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "heavy-shield-t3"
-      },
-      "cooldownMinutes": 0,
-      "source": "drop",
-      "dropChance": 0.1,
-      "dropMinQuestRarity": "uncommon",
-      "reqSkill": 150
-    },
-    {
-      "id": "craft_heavy_helm_epic",
-      "profession": "schmied",
-      "name": "Aetherkern-Helm",
-      "desc": "Ein Helm, durchpulst mit Aetherenergie. Vibriert mit Macht.",
-      "reqProfLevel": 8,
-      "xpGain": 30,
-      "cost": {
-        "gold": 550
-      },
-      "materials": {
-        "drachenschuppe": 3,
-        "aetherkern": 1,
-        "kristallsplitter": 2
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "heavy-helm-t4-epic"
-      },
-      "cooldownMinutes": 0,
-      "source": "drop",
-      "dropChance": 0.06,
-      "dropMinQuestRarity": "rare",
-      "reqSkill": 210
-    },
-    {
       "id": "craft_cloth_boots_uncommon",
       "profession": "schneider",
       "name": "Wollene Gelehrtenschuhe",
@@ -2277,6 +1820,1956 @@
       "dropChance": 0.06,
       "dropMinQuestRarity": "rare",
       "reqSkill": 210
+    },
+    {
+      "id": "schmied_gear_helm_common",
+      "profession": "schmied",
+      "name": "EisenHelm",
+      "desc": "Schmiedet einfache schwere Helm aus Erz und Kristall.",
+      "reqProfLevel": 1,
+      "reqSkill": 1,
+      "xpGain": 8,
+      "cost": {
+        "gold": 30
+      },
+      "materials": {
+        "eisenerz": 4
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "heavy-helm-t1"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer"
+    },
+    {
+      "id": "schmied_gear_helm_uncommon",
+      "profession": "schmied",
+      "name": "KristallHelm",
+      "desc": "Schmiedet kristallverstärkte schwere Helm aus Erz und Kristall.",
+      "reqProfLevel": 2,
+      "reqSkill": 50,
+      "xpGain": 12,
+      "cost": {
+        "gold": 80
+      },
+      "materials": {
+        "eisenerz": 6,
+        "kristallsplitter": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-heavy-uncommon-helm"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 160
+    },
+    {
+      "id": "schmied_gear_helm_rare",
+      "profession": "schmied",
+      "name": "DrachenHelm",
+      "desc": "Schmiedet drachenverstärkte schwere Helm aus Erz und Kristall.",
+      "reqProfLevel": 5,
+      "reqSkill": 125,
+      "xpGain": 18,
+      "cost": {
+        "gold": 200
+      },
+      "materials": {
+        "eisenerz": 4,
+        "kristallsplitter": 4,
+        "drachenschuppe": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "heavy-helm-t3"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 400
+    },
+    {
+      "id": "schmied_gear_helm_epic",
+      "profession": "schmied",
+      "name": "AetherHelm",
+      "desc": "Schmiedet aetherdurchpulste schwere Helm aus Erz und Kristall.",
+      "reqProfLevel": 7,
+      "reqSkill": 200,
+      "xpGain": 25,
+      "cost": {
+        "gold": 500
+      },
+      "materials": {
+        "kristallsplitter": 6,
+        "drachenschuppe": 4,
+        "aetherkern": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "heavy-helm-t4-epic"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.06,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "schmied_gear_helm_legendary",
+      "profession": "schmied",
+      "name": "SeelenHelm",
+      "desc": "Schmiedet seelengebundene schwere Helm aus Erz und Kristall.",
+      "reqProfLevel": 9,
+      "reqSkill": 260,
+      "xpGain": 35,
+      "cost": {
+        "gold": 1200
+      },
+      "materials": {
+        "drachenschuppe": 6,
+        "aetherkern": 3,
+        "seelensplitter": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-heavy-legendary-helm"
+      },
+      "cooldownMinutes": 1440,
+      "source": "drop",
+      "dropChance": 0.03,
+      "dropMinQuestRarity": "epic"
+    },
+    {
+      "id": "schmied_gear_armor_common",
+      "profession": "schmied",
+      "name": "EisenRüstung",
+      "desc": "Schmiedet einfache schwere Rüstung aus Erz und Kristall.",
+      "reqProfLevel": 1,
+      "reqSkill": 4,
+      "xpGain": 8,
+      "cost": {
+        "gold": 30
+      },
+      "materials": {
+        "eisenerz": 4
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "heavy-armor-t1"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer"
+    },
+    {
+      "id": "schmied_gear_armor_uncommon",
+      "profession": "schmied",
+      "name": "KristallRüstung",
+      "desc": "Schmiedet kristallverstärkte schwere Rüstung aus Erz und Kristall.",
+      "reqProfLevel": 2,
+      "reqSkill": 53,
+      "xpGain": 12,
+      "cost": {
+        "gold": 80
+      },
+      "materials": {
+        "eisenerz": 6,
+        "kristallsplitter": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "heavy-armor-t2"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 160
+    },
+    {
+      "id": "schmied_gear_armor_rare",
+      "profession": "schmied",
+      "name": "DrachenRüstung",
+      "desc": "Schmiedet drachenverstärkte schwere Rüstung aus Erz und Kristall.",
+      "reqProfLevel": 5,
+      "reqSkill": 128,
+      "xpGain": 18,
+      "cost": {
+        "gold": 200
+      },
+      "materials": {
+        "eisenerz": 4,
+        "kristallsplitter": 4,
+        "drachenschuppe": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "heavy-armor-t3"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "schmied_gear_armor_epic",
+      "profession": "schmied",
+      "name": "AetherRüstung",
+      "desc": "Schmiedet aetherdurchpulste schwere Rüstung aus Erz und Kristall.",
+      "reqProfLevel": 7,
+      "reqSkill": 203,
+      "xpGain": 25,
+      "cost": {
+        "gold": 500
+      },
+      "materials": {
+        "kristallsplitter": 6,
+        "drachenschuppe": 4,
+        "aetherkern": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "heavy-armor-t4-epic"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.06,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "schmied_gear_armor_legendary",
+      "profession": "schmied",
+      "name": "SeelenRüstung",
+      "desc": "Schmiedet seelengebundene schwere Rüstung aus Erz und Kristall.",
+      "reqProfLevel": 9,
+      "reqSkill": 263,
+      "xpGain": 35,
+      "cost": {
+        "gold": 1200
+      },
+      "materials": {
+        "drachenschuppe": 6,
+        "aetherkern": 3,
+        "seelensplitter": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-heavy-legendary-armor"
+      },
+      "cooldownMinutes": 1440,
+      "source": "drop",
+      "dropChance": 0.03,
+      "dropMinQuestRarity": "epic"
+    },
+    {
+      "id": "schmied_gear_boots_common",
+      "profession": "schmied",
+      "name": "EisenStiefel",
+      "desc": "Schmiedet einfache schwere Stiefel aus Erz und Kristall.",
+      "reqProfLevel": 1,
+      "reqSkill": 7,
+      "xpGain": 8,
+      "cost": {
+        "gold": 30
+      },
+      "materials": {
+        "eisenerz": 4
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "heavy-boots-t1"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer"
+    },
+    {
+      "id": "schmied_gear_boots_uncommon",
+      "profession": "schmied",
+      "name": "KristallStiefel",
+      "desc": "Schmiedet kristallverstärkte schwere Stiefel aus Erz und Kristall.",
+      "reqProfLevel": 2,
+      "reqSkill": 56,
+      "xpGain": 12,
+      "cost": {
+        "gold": 80
+      },
+      "materials": {
+        "eisenerz": 6,
+        "kristallsplitter": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-heavy-uncommon-boots"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 160
+    },
+    {
+      "id": "schmied_gear_boots_rare",
+      "profession": "schmied",
+      "name": "DrachenStiefel",
+      "desc": "Schmiedet drachenverstärkte schwere Stiefel aus Erz und Kristall.",
+      "reqProfLevel": 5,
+      "reqSkill": 131,
+      "xpGain": 18,
+      "cost": {
+        "gold": 200
+      },
+      "materials": {
+        "eisenerz": 4,
+        "kristallsplitter": 4,
+        "drachenschuppe": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "heavy-boots-t3"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 400
+    },
+    {
+      "id": "schmied_gear_boots_epic",
+      "profession": "schmied",
+      "name": "AetherStiefel",
+      "desc": "Schmiedet aetherdurchpulste schwere Stiefel aus Erz und Kristall.",
+      "reqProfLevel": 7,
+      "reqSkill": 206,
+      "xpGain": 25,
+      "cost": {
+        "gold": 500
+      },
+      "materials": {
+        "kristallsplitter": 6,
+        "drachenschuppe": 4,
+        "aetherkern": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-heavy-epic-boots"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.06,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "schmied_gear_boots_legendary",
+      "profession": "schmied",
+      "name": "SeelenStiefel",
+      "desc": "Schmiedet seelengebundene schwere Stiefel aus Erz und Kristall.",
+      "reqProfLevel": 9,
+      "reqSkill": 266,
+      "xpGain": 35,
+      "cost": {
+        "gold": 1200
+      },
+      "materials": {
+        "drachenschuppe": 6,
+        "aetherkern": 3,
+        "seelensplitter": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-heavy-legendary-boots"
+      },
+      "cooldownMinutes": 1440,
+      "source": "drop",
+      "dropChance": 0.03,
+      "dropMinQuestRarity": "epic"
+    },
+    {
+      "id": "schmied_gear_weapon_common",
+      "profession": "schmied",
+      "name": "EisenWaffe",
+      "desc": "Schmiedet einfache schwere Waffe aus Erz und Kristall.",
+      "reqProfLevel": 1,
+      "reqSkill": 10,
+      "xpGain": 8,
+      "cost": {
+        "gold": 30
+      },
+      "materials": {
+        "eisenerz": 4
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "heavy-weapon-t1"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer"
+    },
+    {
+      "id": "schmied_gear_weapon_uncommon",
+      "profession": "schmied",
+      "name": "KristallWaffe",
+      "desc": "Schmiedet kristallverstärkte schwere Waffe aus Erz und Kristall.",
+      "reqProfLevel": 2,
+      "reqSkill": 59,
+      "xpGain": 12,
+      "cost": {
+        "gold": 80
+      },
+      "materials": {
+        "eisenerz": 6,
+        "kristallsplitter": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-heavy-uncommon-weapon"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 160
+    },
+    {
+      "id": "schmied_gear_weapon_rare",
+      "profession": "schmied",
+      "name": "DrachenWaffe",
+      "desc": "Schmiedet drachenverstärkte schwere Waffe aus Erz und Kristall.",
+      "reqProfLevel": 5,
+      "reqSkill": 134,
+      "xpGain": 18,
+      "cost": {
+        "gold": 200
+      },
+      "materials": {
+        "eisenerz": 4,
+        "kristallsplitter": 4,
+        "drachenschuppe": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-heavy-rare-weapon"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "schmied_gear_weapon_epic",
+      "profession": "schmied",
+      "name": "AetherWaffe",
+      "desc": "Schmiedet aetherdurchpulste schwere Waffe aus Erz und Kristall.",
+      "reqProfLevel": 7,
+      "reqSkill": 209,
+      "xpGain": 25,
+      "cost": {
+        "gold": 500
+      },
+      "materials": {
+        "kristallsplitter": 6,
+        "drachenschuppe": 4,
+        "aetherkern": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "heavy-weapon-t3"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.06,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "schmied_gear_weapon_legendary",
+      "profession": "schmied",
+      "name": "SeelenWaffe",
+      "desc": "Schmiedet seelengebundene schwere Waffe aus Erz und Kristall.",
+      "reqProfLevel": 9,
+      "reqSkill": 269,
+      "xpGain": 35,
+      "cost": {
+        "gold": 1200
+      },
+      "materials": {
+        "drachenschuppe": 6,
+        "aetherkern": 3,
+        "seelensplitter": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "heavy-weapon-t4"
+      },
+      "cooldownMinutes": 1440,
+      "source": "drop",
+      "dropChance": 0.03,
+      "dropMinQuestRarity": "epic"
+    },
+    {
+      "id": "schmied_gear_shield_common",
+      "profession": "schmied",
+      "name": "EisenSchild",
+      "desc": "Schmiedet einfache schwere Schild aus Erz und Kristall.",
+      "reqProfLevel": 1,
+      "reqSkill": 13,
+      "xpGain": 8,
+      "cost": {
+        "gold": 30
+      },
+      "materials": {
+        "eisenerz": 4
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-heavy-common-shield"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer"
+    },
+    {
+      "id": "schmied_gear_shield_uncommon",
+      "profession": "schmied",
+      "name": "KristallSchild",
+      "desc": "Schmiedet kristallverstärkte schwere Schild aus Erz und Kristall.",
+      "reqProfLevel": 2,
+      "reqSkill": 62,
+      "xpGain": 12,
+      "cost": {
+        "gold": 80
+      },
+      "materials": {
+        "eisenerz": 6,
+        "kristallsplitter": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "heavy-shield-t2"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 160
+    },
+    {
+      "id": "schmied_gear_shield_rare",
+      "profession": "schmied",
+      "name": "DrachenSchild",
+      "desc": "Schmiedet drachenverstärkte schwere Schild aus Erz und Kristall.",
+      "reqProfLevel": 5,
+      "reqSkill": 137,
+      "xpGain": 18,
+      "cost": {
+        "gold": 200
+      },
+      "materials": {
+        "eisenerz": 4,
+        "kristallsplitter": 4,
+        "drachenschuppe": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "heavy-shield-t3"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 400
+    },
+    {
+      "id": "schmied_gear_shield_epic",
+      "profession": "schmied",
+      "name": "AetherSchild",
+      "desc": "Schmiedet aetherdurchpulste schwere Schild aus Erz und Kristall.",
+      "reqProfLevel": 7,
+      "reqSkill": 212,
+      "xpGain": 25,
+      "cost": {
+        "gold": 500
+      },
+      "materials": {
+        "kristallsplitter": 6,
+        "drachenschuppe": 4,
+        "aetherkern": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-heavy-epic-shield"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.06,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "schmied_gear_shield_legendary",
+      "profession": "schmied",
+      "name": "SeelenSchild",
+      "desc": "Schmiedet seelengebundene schwere Schild aus Erz und Kristall.",
+      "reqProfLevel": 9,
+      "reqSkill": 272,
+      "xpGain": 35,
+      "cost": {
+        "gold": 1200
+      },
+      "materials": {
+        "drachenschuppe": 6,
+        "aetherkern": 3,
+        "seelensplitter": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-heavy-legendary-shield"
+      },
+      "cooldownMinutes": 1440,
+      "source": "drop",
+      "dropChance": 0.03,
+      "dropMinQuestRarity": "epic"
+    },
+    {
+      "id": "schmied_gear_amulet_common",
+      "profession": "schmied",
+      "name": "EisenAmulett",
+      "desc": "Schmiedet einfache schwere Amulett aus Erz und Kristall.",
+      "reqProfLevel": 1,
+      "reqSkill": 16,
+      "xpGain": 8,
+      "cost": {
+        "gold": 30
+      },
+      "materials": {
+        "eisenerz": 4
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-heavy-common-amulet"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer"
+    },
+    {
+      "id": "schmied_gear_amulet_uncommon",
+      "profession": "schmied",
+      "name": "KristallAmulett",
+      "desc": "Schmiedet kristallverstärkte schwere Amulett aus Erz und Kristall.",
+      "reqProfLevel": 2,
+      "reqSkill": 65,
+      "xpGain": 12,
+      "cost": {
+        "gold": 80
+      },
+      "materials": {
+        "eisenerz": 6,
+        "kristallsplitter": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "heavy-amulet-t2"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 160
+    },
+    {
+      "id": "schmied_gear_amulet_rare",
+      "profession": "schmied",
+      "name": "DrachenAmulett",
+      "desc": "Schmiedet drachenverstärkte schwere Amulett aus Erz und Kristall.",
+      "reqProfLevel": 5,
+      "reqSkill": 140,
+      "xpGain": 18,
+      "cost": {
+        "gold": 200
+      },
+      "materials": {
+        "eisenerz": 4,
+        "kristallsplitter": 4,
+        "drachenschuppe": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-heavy-rare-amulet"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "schmied_gear_amulet_epic",
+      "profession": "schmied",
+      "name": "AetherAmulett",
+      "desc": "Schmiedet aetherdurchpulste schwere Amulett aus Erz und Kristall.",
+      "reqProfLevel": 7,
+      "reqSkill": 215,
+      "xpGain": 25,
+      "cost": {
+        "gold": 500
+      },
+      "materials": {
+        "kristallsplitter": 6,
+        "drachenschuppe": 4,
+        "aetherkern": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-heavy-epic-amulet"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.06,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "schmied_gear_amulet_legendary",
+      "profession": "schmied",
+      "name": "SeelenAmulett",
+      "desc": "Schmiedet seelengebundene schwere Amulett aus Erz und Kristall.",
+      "reqProfLevel": 9,
+      "reqSkill": 275,
+      "xpGain": 35,
+      "cost": {
+        "gold": 1200
+      },
+      "materials": {
+        "drachenschuppe": 6,
+        "aetherkern": 3,
+        "seelensplitter": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-heavy-legendary-amulet"
+      },
+      "cooldownMinutes": 1440,
+      "source": "drop",
+      "dropChance": 0.03,
+      "dropMinQuestRarity": "epic"
+    },
+    {
+      "id": "schmied_var_helm_uncommon_krieger",
+      "profession": "schmied",
+      "name": "KristallHelm des Kriegers",
+      "desc": "Kraft-fokussierte Variante. Schmiedet schwere Helm mit Kraft-Fokus.",
+      "reqProfLevel": 3,
+      "reqSkill": 65,
+      "xpGain": 12,
+      "cost": {
+        "gold": 96
+      },
+      "materials": {
+        "eisenerz": 6,
+        "kristallsplitter": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-heavy-uncommon-helm"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 160
+    },
+    {
+      "id": "schmied_var_helm_uncommon_waechter",
+      "profession": "schmied",
+      "name": "KristallHelm des Wächters",
+      "desc": "Ausdauer-fokussierte Variante. Schmiedet schwere Helm mit Ausdauer-Fokus.",
+      "reqProfLevel": 3,
+      "reqSkill": 65,
+      "xpGain": 12,
+      "cost": {
+        "gold": 96
+      },
+      "materials": {
+        "eisenerz": 6,
+        "kristallsplitter": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-heavy-uncommon-helm"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 160
+    },
+    {
+      "id": "schmied_var_helm_rare_krieger",
+      "profession": "schmied",
+      "name": "DrachenHelm des Kriegers",
+      "desc": "Kraft-fokussierte Variante. Schmiedet schwere Helm mit Kraft-Fokus.",
+      "reqProfLevel": 5,
+      "reqSkill": 140,
+      "xpGain": 18,
+      "cost": {
+        "gold": 240
+      },
+      "materials": {
+        "eisenerz": 4,
+        "kristallsplitter": 4,
+        "drachenschuppe": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "heavy-helm-t3"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "schmied_var_helm_rare_waechter",
+      "profession": "schmied",
+      "name": "DrachenHelm des Wächters",
+      "desc": "Ausdauer-fokussierte Variante. Schmiedet schwere Helm mit Ausdauer-Fokus.",
+      "reqProfLevel": 5,
+      "reqSkill": 140,
+      "xpGain": 18,
+      "cost": {
+        "gold": 240
+      },
+      "materials": {
+        "eisenerz": 4,
+        "kristallsplitter": 4,
+        "drachenschuppe": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "heavy-helm-t3"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "schmied_var_helm_epic_krieger",
+      "profession": "schmied",
+      "name": "AetherHelm des Kriegers",
+      "desc": "Kraft-fokussierte Variante. Schmiedet schwere Helm mit Kraft-Fokus.",
+      "reqProfLevel": 8,
+      "reqSkill": 215,
+      "xpGain": 25,
+      "cost": {
+        "gold": 600
+      },
+      "materials": {
+        "kristallsplitter": 6,
+        "drachenschuppe": 4,
+        "aetherkern": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "heavy-helm-t4-epic"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "schmied_var_helm_epic_waechter",
+      "profession": "schmied",
+      "name": "AetherHelm des Wächters",
+      "desc": "Ausdauer-fokussierte Variante. Schmiedet schwere Helm mit Ausdauer-Fokus.",
+      "reqProfLevel": 8,
+      "reqSkill": 215,
+      "xpGain": 25,
+      "cost": {
+        "gold": 600
+      },
+      "materials": {
+        "kristallsplitter": 6,
+        "drachenschuppe": 4,
+        "aetherkern": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "heavy-helm-t4-epic"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "schmied_var_armor_uncommon_krieger",
+      "profession": "schmied",
+      "name": "KristallRüstung des Kriegers",
+      "desc": "Kraft-fokussierte Variante. Schmiedet schwere Rüstung mit Kraft-Fokus.",
+      "reqProfLevel": 3,
+      "reqSkill": 68,
+      "xpGain": 12,
+      "cost": {
+        "gold": 96
+      },
+      "materials": {
+        "eisenerz": 6,
+        "kristallsplitter": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "heavy-armor-t2"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 160
+    },
+    {
+      "id": "schmied_var_armor_uncommon_waechter",
+      "profession": "schmied",
+      "name": "KristallRüstung des Wächters",
+      "desc": "Ausdauer-fokussierte Variante. Schmiedet schwere Rüstung mit Ausdauer-Fokus.",
+      "reqProfLevel": 3,
+      "reqSkill": 68,
+      "xpGain": 12,
+      "cost": {
+        "gold": 96
+      },
+      "materials": {
+        "eisenerz": 6,
+        "kristallsplitter": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "heavy-armor-t2"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 160
+    },
+    {
+      "id": "schmied_var_armor_rare_krieger",
+      "profession": "schmied",
+      "name": "DrachenRüstung des Kriegers",
+      "desc": "Kraft-fokussierte Variante. Schmiedet schwere Rüstung mit Kraft-Fokus.",
+      "reqProfLevel": 5,
+      "reqSkill": 143,
+      "xpGain": 18,
+      "cost": {
+        "gold": 240
+      },
+      "materials": {
+        "eisenerz": 4,
+        "kristallsplitter": 4,
+        "drachenschuppe": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "heavy-armor-t3"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "schmied_var_armor_rare_waechter",
+      "profession": "schmied",
+      "name": "DrachenRüstung des Wächters",
+      "desc": "Ausdauer-fokussierte Variante. Schmiedet schwere Rüstung mit Ausdauer-Fokus.",
+      "reqProfLevel": 5,
+      "reqSkill": 143,
+      "xpGain": 18,
+      "cost": {
+        "gold": 240
+      },
+      "materials": {
+        "eisenerz": 4,
+        "kristallsplitter": 4,
+        "drachenschuppe": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "heavy-armor-t3"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "schmied_var_armor_epic_krieger",
+      "profession": "schmied",
+      "name": "AetherRüstung des Kriegers",
+      "desc": "Kraft-fokussierte Variante. Schmiedet schwere Rüstung mit Kraft-Fokus.",
+      "reqProfLevel": 8,
+      "reqSkill": 218,
+      "xpGain": 25,
+      "cost": {
+        "gold": 600
+      },
+      "materials": {
+        "kristallsplitter": 6,
+        "drachenschuppe": 4,
+        "aetherkern": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "heavy-armor-t4-epic"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "schmied_var_armor_epic_waechter",
+      "profession": "schmied",
+      "name": "AetherRüstung des Wächters",
+      "desc": "Ausdauer-fokussierte Variante. Schmiedet schwere Rüstung mit Ausdauer-Fokus.",
+      "reqProfLevel": 8,
+      "reqSkill": 218,
+      "xpGain": 25,
+      "cost": {
+        "gold": 600
+      },
+      "materials": {
+        "kristallsplitter": 6,
+        "drachenschuppe": 4,
+        "aetherkern": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "heavy-armor-t4-epic"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "schmied_var_weapon_uncommon_krieger",
+      "profession": "schmied",
+      "name": "KristallWaffe des Kriegers",
+      "desc": "Kraft-fokussierte Variante. Schmiedet schwere Waffe mit Kraft-Fokus.",
+      "reqProfLevel": 3,
+      "reqSkill": 74,
+      "xpGain": 12,
+      "cost": {
+        "gold": 96
+      },
+      "materials": {
+        "eisenerz": 6,
+        "kristallsplitter": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-heavy-uncommon-weapon"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 160
+    },
+    {
+      "id": "schmied_var_weapon_uncommon_waechter",
+      "profession": "schmied",
+      "name": "KristallWaffe des Wächters",
+      "desc": "Ausdauer-fokussierte Variante. Schmiedet schwere Waffe mit Ausdauer-Fokus.",
+      "reqProfLevel": 3,
+      "reqSkill": 74,
+      "xpGain": 12,
+      "cost": {
+        "gold": 96
+      },
+      "materials": {
+        "eisenerz": 6,
+        "kristallsplitter": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-heavy-uncommon-weapon"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 160
+    },
+    {
+      "id": "schmied_var_weapon_rare_krieger",
+      "profession": "schmied",
+      "name": "DrachenWaffe des Kriegers",
+      "desc": "Kraft-fokussierte Variante. Schmiedet schwere Waffe mit Kraft-Fokus.",
+      "reqProfLevel": 5,
+      "reqSkill": 149,
+      "xpGain": 18,
+      "cost": {
+        "gold": 240
+      },
+      "materials": {
+        "eisenerz": 4,
+        "kristallsplitter": 4,
+        "drachenschuppe": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-heavy-rare-weapon"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "schmied_var_weapon_rare_waechter",
+      "profession": "schmied",
+      "name": "DrachenWaffe des Wächters",
+      "desc": "Ausdauer-fokussierte Variante. Schmiedet schwere Waffe mit Ausdauer-Fokus.",
+      "reqProfLevel": 5,
+      "reqSkill": 149,
+      "xpGain": 18,
+      "cost": {
+        "gold": 240
+      },
+      "materials": {
+        "eisenerz": 4,
+        "kristallsplitter": 4,
+        "drachenschuppe": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-heavy-rare-weapon"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "schmied_var_weapon_epic_krieger",
+      "profession": "schmied",
+      "name": "AetherWaffe des Kriegers",
+      "desc": "Kraft-fokussierte Variante. Schmiedet schwere Waffe mit Kraft-Fokus.",
+      "reqProfLevel": 8,
+      "reqSkill": 224,
+      "xpGain": 25,
+      "cost": {
+        "gold": 600
+      },
+      "materials": {
+        "kristallsplitter": 6,
+        "drachenschuppe": 4,
+        "aetherkern": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "heavy-weapon-t3"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "schmied_var_weapon_epic_waechter",
+      "profession": "schmied",
+      "name": "AetherWaffe des Wächters",
+      "desc": "Ausdauer-fokussierte Variante. Schmiedet schwere Waffe mit Ausdauer-Fokus.",
+      "reqProfLevel": 8,
+      "reqSkill": 224,
+      "xpGain": 25,
+      "cost": {
+        "gold": 600
+      },
+      "materials": {
+        "kristallsplitter": 6,
+        "drachenschuppe": 4,
+        "aetherkern": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "heavy-weapon-t3"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "schmied_smelt_bronze",
+      "profession": "schmied",
+      "name": "Bronzebarren",
+      "desc": "Schmilzt Eisenerz zu einem Bronzebarren.",
+      "reqProfLevel": 1,
+      "reqSkill": 25,
+      "xpGain": 6,
+      "cost": {
+        "gold": 15
+      },
+      "materials": {
+        "eisenerz": 3
+      },
+      "result": {
+        "type": "transmute_material",
+        "output": "bronze",
+        "amount": 1
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer"
+    },
+    {
+      "id": "schmied_smelt_steel",
+      "profession": "schmied",
+      "name": "Stahlbarren",
+      "desc": "Härtet Eisenerz mit Kristallsplittern zu Stahl.",
+      "reqProfLevel": 2,
+      "reqSkill": 75,
+      "xpGain": 9,
+      "cost": {
+        "gold": 40
+      },
+      "materials": {
+        "eisenerz": 6,
+        "kristallsplitter": 1
+      },
+      "result": {
+        "type": "transmute_material",
+        "output": "steel",
+        "amount": 1
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 80
+    },
+    {
+      "id": "schmied_smelt_mithril",
+      "profession": "schmied",
+      "name": "Mithrilbarren",
+      "desc": "Legiert Kristallsplitter zu leuchtendem Mithril.",
+      "reqProfLevel": 5,
+      "reqSkill": 150,
+      "xpGain": 13,
+      "cost": {
+        "gold": 120
+      },
+      "materials": {
+        "kristallsplitter": 4,
+        "drachenschuppe": 1
+      },
+      "result": {
+        "type": "transmute_material",
+        "output": "mithril",
+        "amount": 1
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 250
+    },
+    {
+      "id": "schmied_smelt_arcanite",
+      "profession": "schmied",
+      "name": "Arkanitbarren",
+      "desc": "Schmiedet Aetherkerne zu reinstem Arkanit. Einmal täglich.",
+      "reqProfLevel": 8,
+      "reqSkill": 250,
+      "xpGain": 18,
+      "cost": {
+        "gold": 500
+      },
+      "materials": {
+        "aetherkern": 2,
+        "drachenschuppe": 2
+      },
+      "result": {
+        "type": "transmute_material",
+        "output": "arcanite",
+        "amount": 1
+      },
+      "cooldownMinutes": 1440,
+      "source": "drop",
+      "dropChance": 0.04,
+      "dropMinQuestRarity": "epic"
+    },
+    {
+      "id": "schmied_smelt_hardened",
+      "profession": "schmied",
+      "name": "Gehärteter Stahl",
+      "desc": "Doppelt gehärtete Legierung.",
+      "reqProfLevel": 3,
+      "reqSkill": 100,
+      "xpGain": 10,
+      "cost": {
+        "gold": 60
+      },
+      "materials": {
+        "eisenerz": 8,
+        "kristallsplitter": 2
+      },
+      "result": {
+        "type": "transmute_material",
+        "output": "hardened",
+        "amount": 1
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 120
+    },
+    {
+      "id": "schmied_smelt_enchanted",
+      "profession": "schmied",
+      "name": "Verzauberter Stahl",
+      "desc": "Magisch infundierter Stahl.",
+      "reqProfLevel": 6,
+      "reqSkill": 180,
+      "xpGain": 14,
+      "cost": {
+        "gold": 200
+      },
+      "materials": {
+        "kristallsplitter": 5,
+        "aetherkern": 1
+      },
+      "result": {
+        "type": "transmute_material",
+        "output": "enchanted",
+        "amount": 1
+      },
+      "cooldownMinutes": 0,
+      "source": "faction",
+      "factionId": "orden_der_klinge"
+    },
+    {
+      "id": "schmied_smelt_thorium",
+      "profession": "schmied",
+      "name": "Thoriumbarren",
+      "desc": "Seltenes Metall, geschmiedet unter extremer Hitze.",
+      "reqProfLevel": 7,
+      "reqSkill": 220,
+      "xpGain": 16,
+      "cost": {
+        "gold": 350
+      },
+      "materials": {
+        "drachenschuppe": 3,
+        "aetherkern": 1
+      },
+      "result": {
+        "type": "transmute_material",
+        "output": "thorium",
+        "amount": 1
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.06,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "schmied_smelt_soul",
+      "profession": "schmied",
+      "name": "Seelenlegierung",
+      "desc": "Seelensplitter, gebunden an Metall.",
+      "reqProfLevel": 9,
+      "reqSkill": 280,
+      "xpGain": 19,
+      "cost": {
+        "gold": 800
+      },
+      "materials": {
+        "seelensplitter": 1,
+        "aetherkern": 2,
+        "drachenschuppe": 3
+      },
+      "result": {
+        "type": "transmute_material",
+        "output": "soul",
+        "amount": 1
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.03,
+      "dropMinQuestRarity": "epic"
+    },
+    {
+      "id": "schmied_sharp_rough",
+      "profession": "schmied",
+      "name": "Grober Schärfstein",
+      "desc": "+2 Kraft für 3 Quests.",
+      "reqProfLevel": 1,
+      "reqSkill": 1,
+      "xpGain": 5,
+      "cost": {
+        "gold": 15
+      },
+      "materials": {
+        "eisenerz": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "kraft_boost_2",
+        "duration": "3_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer"
+    },
+    {
+      "id": "schmied_sharp_coarse",
+      "profession": "schmied",
+      "name": "Rauer Schärfstein",
+      "desc": "+4 Kraft für 3 Quests.",
+      "reqProfLevel": 1,
+      "reqSkill": 50,
+      "xpGain": 7,
+      "cost": {
+        "gold": 35
+      },
+      "materials": {
+        "eisenerz": 4
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "kraft_boost_4",
+        "duration": "3_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer"
+    },
+    {
+      "id": "schmied_sharp_heavy",
+      "profession": "schmied",
+      "name": "Schwerer Schärfstein",
+      "desc": "+6 Kraft für 3 Quests.",
+      "reqProfLevel": 4,
+      "reqSkill": 125,
+      "xpGain": 10,
+      "cost": {
+        "gold": 80
+      },
+      "materials": {
+        "eisenerz": 4,
+        "kristallsplitter": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "kraft_boost_6",
+        "duration": "3_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 150
+    },
+    {
+      "id": "schmied_sharp_dense",
+      "profession": "schmied",
+      "name": "Dichter Schärfstein",
+      "desc": "+8 Kraft für 3 Quests.",
+      "reqProfLevel": 6,
+      "reqSkill": 200,
+      "xpGain": 13,
+      "cost": {
+        "gold": 180
+      },
+      "materials": {
+        "kristallsplitter": 4,
+        "drachenschuppe": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "kraft_boost_8",
+        "duration": "3_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "faction",
+      "factionId": "orden_der_klinge"
+    },
+    {
+      "id": "schmied_sharp_elemental",
+      "profession": "schmied",
+      "name": "Elementar-Schärfstein",
+      "desc": "+10 Kraft für 5 Quests.",
+      "reqProfLevel": 9,
+      "reqSkill": 270,
+      "xpGain": 16,
+      "cost": {
+        "gold": 400
+      },
+      "materials": {
+        "drachenschuppe": 3,
+        "aetherkern": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "kraft_boost_10",
+        "duration": "5_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.04,
+      "dropMinQuestRarity": "epic"
+    },
+    {
+      "id": "schmied_weight_rough",
+      "profession": "schmied",
+      "name": "Grober Gewichtstein",
+      "desc": "+2 Ausdauer für 3 Quests.",
+      "reqProfLevel": 1,
+      "reqSkill": 10,
+      "xpGain": 5,
+      "cost": {
+        "gold": 15
+      },
+      "materials": {
+        "eisenerz": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "ausdauer_boost_2",
+        "duration": "3_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer"
+    },
+    {
+      "id": "schmied_weight_coarse",
+      "profession": "schmied",
+      "name": "Rauer Gewichtstein",
+      "desc": "+4 Ausdauer für 3 Quests.",
+      "reqProfLevel": 2,
+      "reqSkill": 60,
+      "xpGain": 7,
+      "cost": {
+        "gold": 40
+      },
+      "materials": {
+        "eisenerz": 4,
+        "kristallsplitter": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "ausdauer_boost_4",
+        "duration": "3_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer"
+    },
+    {
+      "id": "schmied_weight_heavy",
+      "profession": "schmied",
+      "name": "Schwerer Gewichtstein",
+      "desc": "+6 Ausdauer für 3 Quests.",
+      "reqProfLevel": 4,
+      "reqSkill": 140,
+      "xpGain": 11,
+      "cost": {
+        "gold": 100
+      },
+      "materials": {
+        "kristallsplitter": 3,
+        "drachenschuppe": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "ausdauer_boost_6",
+        "duration": "3_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 200
+    },
+    {
+      "id": "schmied_weight_dense",
+      "profession": "schmied",
+      "name": "Dichter Gewichtstein",
+      "desc": "+8 Ausdauer für 3 Quests.",
+      "reqProfLevel": 7,
+      "reqSkill": 210,
+      "xpGain": 13,
+      "cost": {
+        "gold": 200
+      },
+      "materials": {
+        "kristallsplitter": 4,
+        "drachenschuppe": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "ausdauer_boost_8",
+        "duration": "3_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "faction",
+      "factionId": "orden_der_klinge"
+    },
+    {
+      "id": "schmied_spike_iron",
+      "profession": "schmied",
+      "name": "Eiserne Schilddornen",
+      "desc": "+3 Tempo für 3 Quests.",
+      "reqProfLevel": 2,
+      "reqSkill": 80,
+      "xpGain": 8,
+      "cost": {
+        "gold": 50
+      },
+      "materials": {
+        "eisenerz": 6,
+        "kristallsplitter": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "tempo_boost_3",
+        "duration": "3_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 100
+    },
+    {
+      "id": "schmied_spike_mithril",
+      "profession": "schmied",
+      "name": "Mithril-Schilddornen",
+      "desc": "+5 Tempo für 3 Quests.",
+      "reqProfLevel": 5,
+      "reqSkill": 170,
+      "xpGain": 12,
+      "cost": {
+        "gold": 150
+      },
+      "materials": {
+        "kristallsplitter": 4,
+        "drachenschuppe": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "tempo_boost_5",
+        "duration": "3_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "schmied_spike_thorium",
+      "profession": "schmied",
+      "name": "Thorium-Schilddornen",
+      "desc": "+7 Tempo für 5 Quests.",
+      "reqProfLevel": 8,
+      "reqSkill": 240,
+      "xpGain": 15,
+      "cost": {
+        "gold": 350
+      },
+      "materials": {
+        "drachenschuppe": 4,
+        "aetherkern": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "tempo_boost_7",
+        "duration": "5_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.05,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "schmied_reinf_light",
+      "profession": "schmied",
+      "name": "Leichte Panzerverstärkung",
+      "desc": "+2 Vitalität für 3 Quests.",
+      "reqProfLevel": 1,
+      "reqSkill": 35,
+      "xpGain": 6,
+      "cost": {
+        "gold": 25
+      },
+      "materials": {
+        "eisenerz": 3
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "vitalitaet_boost_2",
+        "duration": "3_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer"
+    },
+    {
+      "id": "schmied_reinf_medium",
+      "profession": "schmied",
+      "name": "Mittlere Panzerverstärkung",
+      "desc": "+4 Vitalität für 3 Quests.",
+      "reqProfLevel": 3,
+      "reqSkill": 110,
+      "xpGain": 9,
+      "cost": {
+        "gold": 75
+      },
+      "materials": {
+        "eisenerz": 4,
+        "kristallsplitter": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "vitalitaet_boost_4",
+        "duration": "3_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 150
+    },
+    {
+      "id": "schmied_reinf_heavy",
+      "profession": "schmied",
+      "name": "Schwere Panzerverstärkung",
+      "desc": "+6 Vitalität für 5 Quests.",
+      "reqProfLevel": 6,
+      "reqSkill": 190,
+      "xpGain": 13,
+      "cost": {
+        "gold": 200
+      },
+      "materials": {
+        "kristallsplitter": 5,
+        "drachenschuppe": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "vitalitaet_boost_6",
+        "duration": "5_quests"
+      },
+      "cooldownMinutes": 0,
+      "source": "faction",
+      "factionId": "orden_der_klinge"
+    },
+    {
+      "id": "schmied_sharpen_blade",
+      "profession": "schmied",
+      "name": "Klinge schärfen",
+      "desc": "+1-3 auf einen zufälligen Primärstat (permanent).",
+      "reqProfLevel": 2,
+      "reqSkill": 75,
+      "xpGain": 10,
+      "cost": {
+        "gold": 150
+      },
+      "materials": {
+        "eisenerz": 3,
+        "kristallsplitter": 2
+      },
+      "result": {
+        "type": "reinforce",
+        "statBonus": [
+          1,
+          3
+        ],
+        "target": "primary_stat"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 250
+    },
+    {
+      "id": "schmied_reinforce_armor",
+      "profession": "schmied",
+      "name": "Rüstung verstärken",
+      "desc": "+3-6 auf einen zufälligen Primärstat (permanent).",
+      "reqProfLevel": 6,
+      "reqSkill": 200,
+      "xpGain": 18,
+      "cost": {
+        "gold": 400
+      },
+      "materials": {
+        "drachenschuppe": 3,
+        "aetherkern": 1
+      },
+      "result": {
+        "type": "reinforce",
+        "statBonus": [
+          3,
+          6
+        ],
+        "target": "primary_stat"
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.06,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "schmied_temper_weapon",
+      "profession": "schmied",
+      "name": "Waffe temperieren",
+      "desc": "+2-4 auf einen zufälligen Primärstat (permanent, nur Waffen).",
+      "reqProfLevel": 4,
+      "reqSkill": 125,
+      "xpGain": 13,
+      "cost": {
+        "gold": 250
+      },
+      "materials": {
+        "kristallsplitter": 4,
+        "drachenschuppe": 1
+      },
+      "result": {
+        "type": "sharpen_blade",
+        "statBonus": [
+          1,
+          3
+        ],
+        "target": "primary_stat"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 400
+    },
+    {
+      "id": "schmied_polish_shield",
+      "profession": "schmied",
+      "name": "Schild polieren",
+      "desc": "+1-3 auf einen zufälligen Primärstat (permanent, nur Schild).",
+      "reqProfLevel": 3,
+      "reqSkill": 100,
+      "xpGain": 12,
+      "cost": {
+        "gold": 180
+      },
+      "materials": {
+        "eisenerz": 4,
+        "kristallsplitter": 3
+      },
+      "result": {
+        "type": "reinforce",
+        "statBonus": [
+          1,
+          3
+        ],
+        "target": "primary_stat"
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 300
+    },
+    {
+      "id": "schmied_upgrade_rarity",
+      "profession": "schmied",
+      "name": "Seltenheit aufwerten",
+      "desc": "50% Chance, die Seltenheit eines Items um eine Stufe zu erhöhen.",
+      "reqProfLevel": 5,
+      "reqSkill": 175,
+      "xpGain": 17,
+      "cost": {
+        "gold": 500
+      },
+      "materials": {
+        "drachenschuppe": 3,
+        "aetherkern": 1
+      },
+      "result": {
+        "type": "upgrade_rarity",
+        "successChance": 0.5
+      },
+      "cooldownMinutes": 1440,
+      "source": "drop",
+      "dropChance": 0.06,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "schmied_masterwork_reinforce",
+      "profession": "schmied",
+      "name": "Meisterwerk-Verstärkung",
+      "desc": "+5-8 auf einen zufälligen Primärstat. Nur für Artisans.",
+      "reqProfLevel": 9,
+      "reqSkill": 275,
+      "xpGain": 23,
+      "cost": {
+        "gold": 1000
+      },
+      "materials": {
+        "seelensplitter": 1,
+        "aetherkern": 2,
+        "drachenschuppe": 4
+      },
+      "result": {
+        "type": "reinforce",
+        "statBonus": [
+          3,
+          8
+        ],
+        "target": "primary_stat"
+      },
+      "cooldownMinutes": 1440,
+      "source": "drop",
+      "dropChance": 0.03,
+      "dropMinQuestRarity": "epic"
+    },
+    {
+      "id": "schmied_forge_temp_small",
+      "profession": "schmied",
+      "name": "Kleine Schmiedereparatur",
+      "desc": "+10 Schmiedetemperatur.",
+      "reqProfLevel": 1,
+      "reqSkill": 30,
+      "xpGain": 7,
+      "cost": {
+        "gold": 20
+      },
+      "materials": {
+        "eisenerz": 2
+      },
+      "result": {
+        "type": "forge_temp",
+        "amount": 10
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer"
+    },
+    {
+      "id": "schmied_forge_temp_large",
+      "profession": "schmied",
+      "name": "Große Schmiedereparatur",
+      "desc": "+25 Schmiedetemperatur.",
+      "reqProfLevel": 5,
+      "reqSkill": 150,
+      "xpGain": 15,
+      "cost": {
+        "gold": 120
+      },
+      "materials": {
+        "kristallsplitter": 3,
+        "drachenschuppe": 1
+      },
+      "result": {
+        "type": "forge_temp",
+        "amount": 25
+      },
+      "cooldownMinutes": 0,
+      "source": "trainer",
+      "trainerCost": 200
+    },
+    {
+      "id": "schmied_streak_shield",
+      "profession": "schmied",
+      "name": "Eiserner Streakschutz",
+      "desc": "Gewährt 1 Streak-Schild (max 10).",
+      "reqProfLevel": 5,
+      "reqSkill": 160,
+      "xpGain": 16,
+      "cost": {
+        "gold": 200
+      },
+      "materials": {
+        "drachenschuppe": 2,
+        "kristallsplitter": 3
+      },
+      "result": {
+        "type": "streak_shield",
+        "amount": 1
+      },
+      "cooldownMinutes": 0,
+      "source": "faction",
+      "factionId": "orden_der_klinge"
+    },
+    {
+      "id": "schmied_master_streak",
+      "profession": "schmied",
+      "name": "Meister-Streakschutz",
+      "desc": "Gewährt 2 Streak-Schilde (max 10).",
+      "reqProfLevel": 8,
+      "reqSkill": 260,
+      "xpGain": 22,
+      "cost": {
+        "gold": 500
+      },
+      "materials": {
+        "aetherkern": 2,
+        "drachenschuppe": 3
+      },
+      "result": {
+        "type": "streak_shield",
+        "amount": 2
+      },
+      "cooldownMinutes": 0,
+      "source": "drop",
+      "dropChance": 0.04,
+      "dropMinQuestRarity": "epic"
     }
   ]
 }
