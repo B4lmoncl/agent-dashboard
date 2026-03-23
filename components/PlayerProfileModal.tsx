@@ -5,7 +5,7 @@ import { createPortal } from "react-dom";
 import { useModalBehavior } from "@/components/ModalPortal";
 import { useDashboard } from "@/app/DashboardContext";
 import { getAuthHeaders } from "@/lib/auth-client";
-import { getUserLevel } from "@/app/utils";
+import { getUserLevel, formatLegendaryLabel } from "@/app/utils";
 import { Tip, TipCustom } from "@/components/GameTooltip";
 
 // ─── Types ──────────────────────────────────────────────────────────────────
@@ -261,7 +261,7 @@ export default function PlayerProfileModal({ playerId, onClose, onAddFriend, onM
                         <p className="text-xs font-semibold" style={{ color: rc }}>{item.rarity.charAt(0).toUpperCase() + item.rarity.slice(1)} · {SLOT_LABELS[slot]}</p>
                         {statLines.length > 0 && <div>{statLines}</div>}
                         {item.setId && <p className="text-xs" style={{ color: "#22c55e" }}>Set: {item.setId}</p>}
-                        {item.legendaryEffect && <p className="text-xs" style={{ color: "#f59e0b" }}>★ {item.legendaryEffect.label}</p>}
+                        {item.legendaryEffect && <p className="text-xs" style={{ color: "#f59e0b" }}>★ {formatLegendaryLabel(item.legendaryEffect)}</p>}
                         {item.desc && <p className="text-xs italic" style={{ color: "rgba(255,255,255,0.3)" }}>&quot;{item.desc}&quot;</p>}
                       </div>
                     );
@@ -276,7 +276,7 @@ export default function PlayerProfileModal({ playerId, onClose, onAddFriend, onM
                             </div>
                           </div>
                           {item.legendaryEffect && (
-                            <p className="text-xs mt-1 truncate" style={{ color: "#f59e0b", fontSize: 12 }}>★ {item.legendaryEffect.label}</p>
+                            <p className="text-xs mt-1 truncate" style={{ color: "#f59e0b", fontSize: 12 }}>★ {formatLegendaryLabel(item.legendaryEffect)}</p>
                           )}
                         </div>
                       </TipCustom>

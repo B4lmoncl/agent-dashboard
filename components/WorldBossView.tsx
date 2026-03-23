@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from "react";
 import { useDashboard } from "@/app/DashboardContext";
 import { getAuthHeaders } from "@/lib/auth-client";
 import { Tip, TipCustom } from "@/components/GameTooltip";
+import { formatLegendaryLabel } from "@/app/utils";
 import type { RewardCelebrationData } from "@/components/RewardCelebration";
 
 // ─── Types ──────────────────────────────────────────────────────────────────
@@ -420,7 +421,7 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
                     <p className="text-xs" style={{ color: "#ff8c00" }}>Legendary {item.slot}</p>
                     {item.desc && <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.5)" }}>{item.desc}</p>}
                     {item.flavorText && <p className="text-xs italic mt-1" style={{ color: "rgba(255,255,255,0.3)" }}>&ldquo;{item.flavorText}&rdquo;</p>}
-                    {item.legendaryEffect?.label && <p className="text-xs mt-1 font-semibold" style={{ color: "#f59e0b" }}>{item.legendaryEffect.label}</p>}
+                    {item.legendaryEffect?.label && <p className="text-xs mt-1 font-semibold" style={{ color: "#f59e0b" }}>{formatLegendaryLabel(item.legendaryEffect)}</p>}
                   </>}
                 >
                   <div className="flex items-center gap-2 px-2.5 py-1.5 rounded-lg cursor-help" style={{ background: "rgba(255,140,0,0.04)", border: "1px solid rgba(255,140,0,0.12)", borderLeft: "2px solid #ff8c00" }}>

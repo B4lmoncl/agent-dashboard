@@ -1506,12 +1506,12 @@ export default function Dashboard() {
                         <div className="h-1.5 rounded-full" style={{ background: "rgba(255,255,255,0.06)" }}>
                           <div className="h-full rounded-full transition-all duration-700" style={{ width: `${Math.min(100, (dailyMissions.earned / dailyMissions.total) * 100)}%`, background: "linear-gradient(90deg, #818cf8, #a78bfa)" }} />
                         </div>
-                        <div className="flex justify-between mt-1">
+                        <div className="relative mt-1" style={{ height: 20 }}>
                           {dailyMissions.milestones.map(ms => {
                             const reached = dailyMissions.earned >= ms.threshold;
                             const pct = (ms.threshold / dailyMissions.total) * 100;
                             return (
-                              <div key={ms.threshold} className="relative" style={{ left: `${pct - 50/(dailyMissions.milestones.length)}%` }}>
+                              <div key={ms.threshold} className="absolute" style={{ left: `${pct}%`, transform: "translateX(-50%)" }}>
                                 {reached && !ms.claimed ? (
                                   <button
                                     onClick={async () => {

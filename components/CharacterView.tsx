@@ -5,6 +5,7 @@ import { createPortal } from "react-dom";
 import { useModalBehavior } from "@/components/ModalPortal";
 import ItemActionPopup from "@/components/ItemActionPopup";
 import { Tip, TipCustom } from "@/components/GameTooltip";
+import { formatLegendaryLabel } from "@/app/utils";
 import type { User, CharacterData, ClassDef, PixelCharacterProps, GearInstance } from "@/app/types";
 import type { ToastInput } from "@/components/ToastStack";
 import { useDashboard } from "@/app/DashboardContext";
@@ -495,7 +496,7 @@ function InventoryTooltip({ item, mousePosRef, equippedItem, playerLevel }: { it
         {/* Legendary effect */}
         {item.legendaryEffect && (
           <p className="text-xs font-semibold" style={{ color: "#f59e0b" }}>
-            {item.legendaryEffect.label || item.legendaryEffect.type}
+            {formatLegendaryLabel(item.legendaryEffect)}
           </p>
         )}
 
@@ -2005,7 +2006,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                             <p className="text-xs capitalize" style={{ color }}>Legendary {item.slot}</p>
                             {item.desc && <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.5)" }}>{item.desc}</p>}
                             {item.flavorText && <p className="text-xs italic mt-1" style={{ color: "rgba(255,255,255,0.3)" }}>&ldquo;{item.flavorText}&rdquo;</p>}
-                            {item.legendaryEffect?.label && <p className="text-xs mt-1 font-semibold" style={{ color: "#f59e0b" }}>{item.legendaryEffect.label}</p>}
+                            {item.legendaryEffect?.label && <p className="text-xs mt-1 font-semibold" style={{ color: "#f59e0b" }}>{formatLegendaryLabel(item.legendaryEffect)}</p>}
                             {item.stats && Object.keys(item.stats).length > 0 && (
                               <div className="mt-1 space-y-0.5" style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: 4 }}>
                                 {Object.entries(item.stats).map(([k, v]) => (
@@ -2037,7 +2038,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                           <p className="text-xs font-semibold truncate" style={{ color }}>{item.name}</p>
                           <p className="text-xs text-w20 truncate capitalize">{item.slot}</p>
                           {item.legendaryEffect?.label && (
-                            <p className="text-xs mt-1 truncate" style={{ color: "#f59e0b", fontSize: 12 }}>{item.legendaryEffect.label}</p>
+                            <p className="text-xs mt-1 truncate" style={{ color: "#f59e0b", fontSize: 12 }}>{formatLegendaryLabel(item.legendaryEffect)}</p>
                           )}
                           <p className="text-xs mt-1 truncate" style={{ color: "rgba(255,255,255,0.2)", fontSize: 12 }}>{sourceLabel}</p>
                         </>

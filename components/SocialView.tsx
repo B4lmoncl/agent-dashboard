@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback, useRef, type ReactNode } from "react"
 import { useDashboard } from "@/app/DashboardContext";
 import { getAuthHeaders } from "@/lib/auth-client";
 import { Tip, TipCustom } from "@/components/GameTooltip";
+import { formatLegendaryLabel } from "@/app/utils";
 import PlayerProfileModal from "@/components/PlayerProfileModal";
 import type {
   FriendInfo, FriendRequest, Conversation, SocialMessage,
@@ -555,7 +556,7 @@ function TradeOfferDisplay({ offer, label, color }: { offer: TradeOffer; label: 
                 hoverDelay={300}
                 body={<>
                   <p className="text-xs capitalize" style={{ color: rc }}>{item.rarity}{item.slot ? ` \u00b7 ${item.slot}` : ""}</p>
-                  {item.legendaryEffect && <p className="text-xs mt-1 font-semibold" style={{ color: "#f59e0b" }}>{item.legendaryEffect.label}</p>}
+                  {item.legendaryEffect && <p className="text-xs mt-1 font-semibold" style={{ color: "#f59e0b" }}>{formatLegendaryLabel(item.legendaryEffect)}</p>}
                   {item.stats && Object.keys(item.stats).length > 0 && (
                     <div className="mt-1 space-y-0.5" style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: 4 }}>
                       {Object.entries(item.stats).map(([stat, val]) => (
@@ -639,7 +640,7 @@ function TradeItemGrid({ items, selectedIds, onToggle, sortKey, onSortChange }: 
                   <p className="text-xs capitalize" style={{ color: rc }}>{item.rarity}{item.slot ? ` \u00b7 ${item.slot}` : ""}</p>
                   {item.desc && <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.4)" }}>{item.desc}</p>}
                   {item.flavorText && <p className="text-xs italic mt-1" style={{ color: "rgba(255,255,255,0.3)" }}>&ldquo;{item.flavorText}&rdquo;</p>}
-                  {item.legendaryEffect && <p className="text-xs mt-1 font-semibold" style={{ color: "#f59e0b" }}>{item.legendaryEffect.label || item.legendaryEffect.type}</p>}
+                  {item.legendaryEffect && <p className="text-xs mt-1 font-semibold" style={{ color: "#f59e0b" }}>{formatLegendaryLabel(item.legendaryEffect)}</p>}
                   {item.stats && Object.entries(item.stats).filter(([, v]) => v > 0).length > 0 && (
                     <div className="mt-1 space-y-0.5" style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: 4 }}>
                       {Object.entries(item.stats).filter(([, v]) => v > 0).map(([k, v]) => (

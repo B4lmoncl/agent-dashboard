@@ -353,3 +353,11 @@ export function getLbXpProgress(xp: number): number {
   if (!next) return 1;
   return (xp - lvl.min) / (next.min - lvl.min);
 }
+
+/** Replace {value} in legendary effect labels with the actual value or min-max range. */
+export function formatLegendaryLabel(le: { type?: string; label?: string; value?: number; min?: number; max?: number } | null | undefined): string {
+  if (!le?.label) return le?.type ?? "";
+  if (le.value != null) return le.label.replace(/\{value\}/g, String(le.value));
+  if (le.min != null && le.max != null) return le.label.replace(/\{value\}/g, le.min === le.max ? String(le.min) : `${le.min}-${le.max}`);
+  return le.label.replace(/\{value\}/g, "?");
+}

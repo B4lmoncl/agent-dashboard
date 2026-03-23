@@ -251,8 +251,8 @@ export default function GuildHallBackground() {
       };
     });
 
-    // Seasonal particles
-    const showParticles = season !== "summer" || tod === "night" || tod === "dawn" || tod === "sunset";
+    // Seasonal particles (hide during full daytime — small particles look like pixel artifacts against bright sky)
+    const showParticles = tod !== "day" && (season !== "summer" || tod === "night" || tod === "dawn" || tod === "sunset");
     const maxP = mobile() ? 12 : 26;
     const particles: Particle[] = showParticles
       ? Array.from({ length: maxP }, (_, i) => mkParticle(window.innerWidth, window.innerHeight, season, i < maxP * 0.6))
