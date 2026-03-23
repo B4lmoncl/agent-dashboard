@@ -58,7 +58,7 @@
     {
       "id": "schneider",
       "name": "Tailor",
-      "npcName": "Selina die Weberin",
+      "npcName": "Selina the Weaver",
       "npcPortrait": null,
       "npcGreeting": "Every thread tells a story. Let me see which one becomes yours.",
       "description": "Crafts cloth armor imbued with arcane resonance. Cloth pieces boost XP per slot equipped.",
@@ -757,7 +757,7 @@
       "id": "resonance_charm",
       "profession": "verzauberer",
       "name": "Resonance Charm",
-      "desc": "+15% Luck for 3 quests. Attuned to the Zirkel des Echos frequencies.",
+      "desc": "+20% Luck for 3 quests. Attuned to the Zirkel des Echos frequencies.",
       "reqProfLevel": 4,
       "xpGain": 18,
       "cost": { "gold": 80 },

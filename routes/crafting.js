@@ -668,6 +668,26 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
       break;
     }
 
+    // ─── Faction recipes (buff-type, handled generically) ────────────────────
+    case 'flask_of_embers': {
+      const totalAmount = (recipe.result.amount || 15) * effectiveCount;
+      u.forgeTemp = Math.min(100, (u.forgeTemp || 0) + totalAmount);
+      result.message = `Flask of Embers! Forge temperature raised by ${totalAmount}! (${u.forgeTemp}%)`;
+      break;
+    }
+    case 'scholars_ink':
+    case 'resonance_charm':
+    case 'artisans_whetstone': {
+      u.activeBuffs = u.activeBuffs || [];
+      const buffType = recipe.result.buffType;
+      const buffDuration = 3;
+      for (let i = 0; i < effectiveCount; i++) {
+        u.activeBuffs.push({ type: buffType, questsRemaining: buffDuration, activatedAt: now() });
+      }
+      result.message = `${recipe.name} activated! Buff active for ${buffDuration} quests${effectiveCount > 1 ? ` (x${effectiveCount})` : ''}`;
+      break;
+    }
+
     // ─── Gear crafting (Schneider cloth, Schmied heavy) ───────────────────
     default: {
       if (recipe.result?.type === 'craft_gear') {
