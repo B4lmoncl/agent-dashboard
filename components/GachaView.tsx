@@ -773,6 +773,7 @@ export default function GachaView({ onRefresh, onPullComplete }: {
         <p className="text-xs italic leading-relaxed max-w-2xl" style={{ color: "rgba(255,255,255,0.3)" }}>
           A circular chamber with a single, floating astrolabe structure at its center: the Wheel of Stars. Here, heroes draw items, companions, and artifacts from the Aetherstream. The Vault remembers every pull — and rewards persistence.
         </p>
+        <p className="text-xs italic mt-1" style={{ color: "rgba(167,139,250,0.3)" }}>Das Schicksal lässt sich nicht kaufen. Aber verhandeln... manchmal.</p>
       </div>
 
       {/* Banner Preview Cards — atmospheric, click to open */}

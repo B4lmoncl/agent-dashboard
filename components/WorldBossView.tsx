@@ -315,6 +315,7 @@ export default function WorldBossView({ onRefresh, onRewardCelebration }: { onRe
         <p className="text-xs text-w35" style={{ maxWidth: 440, margin: "0 auto" }}>
           A community-wide threat. Deal damage by completing quests. Claim rewards when defeated.
         </p>
+        <p className="text-xs italic" style={{ color: "rgba(255,255,255,0.25)", maxWidth: 440, margin: "4px auto 0" }}>Der Turm bebt. Etwas Uraltes ist erwacht.</p>
       </div>
 
       {/* Messages */}

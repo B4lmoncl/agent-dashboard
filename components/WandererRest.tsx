@@ -160,7 +160,7 @@ export function WandererRest({
             <Tip k="npc_quest_board" heading accent="rgba(255,215,0,0.6)"><span style={{ fontSize: "0.85rem", letterSpacing: "0.15em", textTransform: "uppercase" }}>◆ The Wanderer&#39;s Rest ◆</span></Tip>
             <div style={{ flex: 1, height: 1, background: "linear-gradient(90deg, transparent, rgba(255,215,0,0.25), transparent)" }} />
           </div>
-          <p className="text-xs mt-2 italic text-center" style={{ color: "rgba(255,255,255,0.3)" }}>They come. They go. They always return.</p>
+          <p className="text-xs mt-2 italic text-center" style={{ color: "rgba(255,255,255,0.3)" }}>Reisende Seelen und ihre unerzählten Geschichten. Sie kommen. Sie gehen. Sie kehren immer zurück.</p>
         </div>
         {activeNpcs.length === 0 ? (
           <div className="rounded-xl px-4 py-8 text-center" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>

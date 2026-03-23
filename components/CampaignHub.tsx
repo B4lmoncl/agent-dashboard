@@ -202,6 +202,7 @@ export default function CampaignHub({ campaigns, quests, reviewApiKey, onRefresh
           <div>
             <Tip k="campaigns" heading accent="#e9d5ff"><h2 className="text-lg font-bold">Campaign Hub</h2></Tip>
             <p className="text-xs" style={{ color: "rgba(167,139,250,0.5)" }}>Long-form quest chains and story arcs</p>
+            <p className="text-xs italic mt-0.5" style={{ color: "rgba(167,139,250,0.3)" }}>Die Sternenwächterin hat dich rufen lassen. Langform-Geschichten. Dein Vermächtnis.</p>
           </div>
         </div>
         <button

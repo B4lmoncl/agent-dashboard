@@ -256,6 +256,7 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
               <div>
                 <h3 className="font-bold uppercase tracking-widest" style={{ color: "#f59e0b", fontSize: "1rem" }}><Tip k="rituals" heading>Ritual Chamber</Tip></h3>
                 <p style={{ color: "rgba(245,158,11,0.6)", fontSize: "1rem", fontWeight: 600, marginTop: 2 }}>Seraine Ashwell</p>
+                <p className="text-xs italic" style={{ color: "rgba(245,158,11,0.3)", marginTop: 2 }}>Wo tägliche Hingabe zu außergewöhnlicher Kraft wird.</p>
               </div>
               {playerName && reviewApiKey && (
                 <button onClick={() => setCreateRitualOpen(true)} className="action-btn text-xs px-3 py-1.5 rounded-lg font-semibold"

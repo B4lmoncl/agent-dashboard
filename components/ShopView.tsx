@@ -35,7 +35,10 @@ export default function ShopView({ onBuy, onGearBuy }: {
     <div className="space-y-4 tab-content-enter">
       {/* Header */}
       <div className="flex items-center gap-3 flex-wrap">
-        <Tip k="bazaar" heading><span className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.35)" }}>The Bazaar</span></Tip>
+        <div>
+          <Tip k="bazaar" heading><span className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.35)" }}>The Bazaar</span></Tip>
+          <p className="text-xs italic mt-0.5" style={{ color: "rgba(255,255,255,0.2)" }}>Handel und Komfort. Jeder Held braucht eine Pause zwischen den Quests.</p>
+        </div>
         <div className="flex items-center gap-2 ml-auto">
           <img src="/images/icons/currency-gold.png" alt="" width={24} height={24} style={{ imageRendering: "auto" }} onError={e => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} />
           <span className="text-base font-mono font-bold" style={{ color: "#f59e0b" }}>{gold.toLocaleString()}</span>

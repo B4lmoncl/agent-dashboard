@@ -1232,8 +1232,11 @@ export default function SocialView() {
   return (
     <div className="space-y-4">
       {/* Section header */}
-      <div className="flex items-center gap-2">
-        <Tip k="breakaway" heading><span className="text-xs font-semibold uppercase tracking-widest text-w35">The Breakaway</span></Tip>
+      <div>
+        <div className="flex items-center gap-2">
+          <Tip k="breakaway" heading><span className="text-xs font-semibold uppercase tracking-widest text-w35">The Breakaway</span></Tip>
+        </div>
+        <p className="text-xs italic mt-1" style={{ color: "rgba(255,255,255,0.2)" }}>Die stärksten Bande werden nicht in der Schlacht geschmiedet, sondern danach.</p>
       </div>
 
       {/* Tab navigation */}
