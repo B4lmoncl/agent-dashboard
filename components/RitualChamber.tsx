@@ -245,7 +245,7 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
         <div className="flex gap-4 mb-4" style={{ alignItems: "flex-start" }}>
           {/* Portrait column with speech bubble */}
           <div className="flex-none" style={{ width: 195, overflow: "visible" }}>
-            <img src="/images/portraits/npc-seraine.png?v=3" alt="Seraine Ashwell" width={256} height={384} className="img-render-auto" style={{ width: "100%", height: "auto", display: "block", filter: "drop-shadow(0 0 14px rgba(245,158,11,0.35))", borderRadius: "4px 4px 0 0", pointerEvents: "none" }} />
+            <img src="/images/portraits/npc-seraine.png?v=3" alt="Seraine Ashwell" width={256} height={384} className="img-render-auto" style={{ width: "100%", height: "auto", display: "block", filter: "drop-shadow(0 0 14px rgba(245,158,11,0.35))", borderRadius: "4px 4px 0 0", pointerEvents: "none" }} onError={e => { e.currentTarget.style.display = "none"; }} />
             <div style={{ background: "rgba(25,17,5,0.88)", border: "1px solid rgba(245,158,11,0.3)", borderTop: "none", borderRadius: "0 0 8px 8px", padding: "8px 10px" }}>
               <p style={{ fontSize: "0.8rem", fontStyle: "italic", color: "#c9a46a", lineHeight: 1.5, margin: 0 }}>„Jedes Feuer beginnt mit einem Funken. Deins auch."</p>
             </div>
@@ -308,7 +308,7 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
               <div style={{ position: "relative" }} onClick={e => e.stopPropagation()}>
                 {/* NPC Portrait — absolute left of modal, hidden on mobile */}
                 <div className="hidden md:flex flex-col" style={{ position: "absolute", right: "calc(100% + 4px)", top: "50%", transform: "translateY(-50%)", width: 200, overflow: "visible" }}>
-                  <img src="/images/portraits/npc-seraine.png?v=3" alt="Seraine Ashwell" width={256} height={384} className="img-render-auto" style={{ width: "100%", height: "auto", display: "block", filter: "drop-shadow(0 0 14px rgba(245,158,11,0.4))", borderRadius: "8px 8px 0 0", pointerEvents: "none" }} />
+                  <img src="/images/portraits/npc-seraine.png?v=3" alt="Seraine Ashwell" width={256} height={384} className="img-render-auto" style={{ width: "100%", height: "auto", display: "block", filter: "drop-shadow(0 0 14px rgba(245,158,11,0.4))", borderRadius: "8px 8px 0 0", pointerEvents: "none" }} onError={e => { e.currentTarget.style.display = "none"; }} />
                   <div style={{ background: "rgba(25,17,5,0.92)", border: "1px solid rgba(245,158,11,0.4)", borderTop: "none", borderRadius: "0 0 8px 8px", padding: "10px 12px" }}>
                     <p style={{ fontSize: "0.8rem", fontStyle: "italic", color: "#c9a46a", lineHeight: 1.5, margin: 0 }}>{getSeraineSpeech(newRitualCommitment, newRitualBloodPact)}</p>
                   </div>
@@ -459,7 +459,7 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: "rgba(0,0,0,0.88)" }} onClick={closeExtend}>
             <div style={{ position: "relative" }} onClick={e => e.stopPropagation()}>
               <div className="hidden md:flex flex-col" style={{ position: "absolute", right: "calc(100% + 4px)", top: "50%", transform: "translateY(-50%)", width: 200, overflow: "visible" }}>
-                <img src="/images/portraits/npc-seraine.png?v=3" alt="Seraine Ashwell" width={256} height={384} className="img-render-auto" style={{ width: "100%", height: "auto", display: "block", filter: "drop-shadow(0 0 14px rgba(245,158,11,0.4))", borderRadius: "8px 8px 0 0", pointerEvents: "none" }} />
+                <img src="/images/portraits/npc-seraine.png?v=3" alt="Seraine Ashwell" width={256} height={384} className="img-render-auto" style={{ width: "100%", height: "auto", display: "block", filter: "drop-shadow(0 0 14px rgba(245,158,11,0.4))", borderRadius: "8px 8px 0 0", pointerEvents: "none" }} onError={e => { e.currentTarget.style.display = "none"; }} />
                 <div style={{ background: "rgba(25,17,5,0.92)", border: "1px solid rgba(245,158,11,0.4)", borderTop: "none", borderRadius: "0 0 8px 8px", padding: "10px 12px" }}>
                   <p style={{ fontSize: "0.8rem", fontStyle: "italic", color: "#c9a46a", lineHeight: 1.5, margin: 0 }}>&ldquo;Das Feuer wächst. Gut. Nähre es.&rdquo;</p>
                 </div>
@@ -523,7 +523,7 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: "rgba(0,0,0,0.88)" }} onClick={() => setRecommitRitualId(null)}>
             <div style={{ position: "relative" }} onClick={e => e.stopPropagation()}>
               <div className="hidden md:flex flex-col" style={{ position: "absolute", right: "calc(100% + 4px)", top: "50%", transform: "translateY(-50%)", width: 200, overflow: "visible" }}>
-                <img src="/images/portraits/npc-seraine.png?v=3" alt="Seraine Ashwell" width={256} height={384} className="img-render-auto" style={{ width: "100%", height: "auto", display: "block", filter: "drop-shadow(0 0 14px rgba(245,158,11,0.4))", borderRadius: "8px 8px 0 0", pointerEvents: "none" }} />
+                <img src="/images/portraits/npc-seraine.png?v=3" alt="Seraine Ashwell" width={256} height={384} className="img-render-auto" style={{ width: "100%", height: "auto", display: "block", filter: "drop-shadow(0 0 14px rgba(245,158,11,0.4))", borderRadius: "8px 8px 0 0", pointerEvents: "none" }} onError={e => { e.currentTarget.style.display = "none"; }} />
                 <div style={{ background: "rgba(25,17,5,0.92)", border: "1px solid rgba(245,158,11,0.4)", borderTop: "none", borderRadius: "0 0 8px 8px", padding: "10px 12px" }}>
                   <p style={{ fontSize: "0.8rem", fontStyle: "italic", color: "#c9a46a", lineHeight: 1.5, margin: 0 }}>&ldquo;The flame went out. But the ember remembers. Do you?&rdquo;</p>
                 </div>

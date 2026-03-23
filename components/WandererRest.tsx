@@ -72,6 +72,7 @@ function CompanionHearthPanel({ petName, companionType, companionEmoji, reviewAp
               src={portraitSrc}
               alt={petName ?? "Companion"}
               style={{ width: 128, height: 160, imageRendering: "auto", borderRadius: 4, border: `2px solid ${cc.border}`, boxShadow: `0 0 12px rgba(${cc.accentRgb},0.15)`, flexShrink: 0 }}
+              onError={e => { e.currentTarget.style.display = "none"; }}
             />
           ) : (
             <div style={{
@@ -200,6 +201,7 @@ export function WandererRest({
                           width={148}
                           height={148}
                           style={{ imageRendering: "auto", display: "block", width: "100%", height: "100%", objectFit: "cover" }}
+                          onError={e => { e.currentTarget.style.display = "none"; }}
                         />
                       ) : (
                         <div className="w-full h-full flex items-center justify-center" style={{ background: "rgba(255,255,255,0.04)", fontSize: 56 }}>
