@@ -1,6 +1,6 @@
 # Quest Hall — Codebase Audit Report
 
-> Last updated: 2026-03-23 · v1.5.3 · Sessions 1–28
+> Last updated: 2026-03-23 · v1.5.3 · Sessions 1–29
 
 ---
 
@@ -522,6 +522,35 @@ WoW/Diablo/HSR-inspired cross-linking — feature cards, rewards, and stats link
 - All 12 cross-link navigations use existing `onNavigate` / `setDashView` callback pattern
 - No new props needed on page.tsx beyond wiring existing `onNavigate`
 - Build passes with 0 TypeScript errors
+
+---
+
+## 11. Session 29 — UI/UX Consistency & Type Safety Audit (2026-03-23)
+
+### Audit Scope
+
+Full codebase audit: frontend-backend consistency, UI Design Guidelines compliance, code quality.
+
+**Frontend-Backend Consistency: No issues found.** All API calls match endpoints, response fields consistent.
+
+### Fixes
+
+| Severity | Fix | Files |
+|----------|-----|-------|
+| CRITICAL | 17 font sizes below 12px minimum raised (decorative icons→10px, readable text→12px) | CharacterView, DailyLoginCalendar, QuestCards, QuestDetailModal, SocialView, TodayDrawer, RitualChamber |
+| CRITICAL | 9 `as any` casts removed with proper TypeScript types | CharacterView, RitualChamber, WandererRest, GachaView, types.ts |
+| HIGH | Shop gold deduction null-safety — validate `cost` is finite before arithmetic | habits-inventory.js |
+| HIGH | 3 disabled buttons missing `cursor: not-allowed` + tooltip | CompanionsWidget, PlayerProfileModal, CampaignHub |
+| MEDIUM | 7 silent error catches now log to console.error | RoadmapView, OnboardingWizard (2), ForgeView (4) |
+
+Also fixed: Turbopack parse error in ForgeView (IIFE in JSX replaced with conditional render).
+
+### Commits
+
+| Commit | Severity | Description |
+|--------|----------|-------------|
+| `88dad38` | CRITICAL | Fix Turbopack parse error in ForgeView cost preview IIFE |
+| `41df85a` | CRITICAL | 17 font size fixes, 9 `as any` removals, null safety, disabled buttons, silent catches |
 
 ---
 
