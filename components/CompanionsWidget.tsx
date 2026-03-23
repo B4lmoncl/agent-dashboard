@@ -480,7 +480,7 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
                         else handleUltimate(ult.id);
                       }}
                       disabled={!ultimateReady || !!ultimateUsing}
-                      title={ult.desc}
+                      title={ultimateUsing ? "Using ultimate..." : !ultimateReady ? `Ultimate on cooldown (${ultimateDaysLeft}d left)` : ult.desc}
                       className="flex-1 text-xs px-2 py-1.5 rounded-lg font-semibold transition-all text-center"
                       style={{
                         background: ultimateReady ? `rgba(${cColor.accentRgb},0.1)` : "rgba(255,255,255,0.02)",

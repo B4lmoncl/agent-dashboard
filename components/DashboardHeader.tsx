@@ -297,8 +297,9 @@ export default function DashboardHeader({
                           <button
                             onClick={handleLogin}
                             disabled={authLoading}
+                            title={authLoading ? "Signing in..." : "Sign in to your account"}
                             className="flex-1 text-xs px-3 py-1 rounded font-medium"
-                            style={{ background: "rgba(139,92,246,0.2)", color: "#a78bfa", border: "1px solid rgba(139,92,246,0.4)", opacity: authLoading ? 0.5 : 1 }}
+                            style={{ background: "rgba(139,92,246,0.2)", color: "#a78bfa", border: "1px solid rgba(139,92,246,0.4)", opacity: authLoading ? 0.5 : 1, cursor: authLoading ? "not-allowed" : "pointer" }}
                           >
                             {authLoading ? "Signing in…" : "Sign In"}
                           </button>
@@ -331,7 +332,7 @@ export default function DashboardHeader({
                         <input type="password" value={registerPasswordConfirm} onChange={e => setRegisterPasswordConfirm(e.target.value)} placeholder="Confirm password" className="text-xs px-2 py-1 rounded input-dark" />
                         {registerError && <p role="alert" className="text-xs" style={{ color: "#ef4444" }}>{registerError}</p>}
                         <div className="flex gap-1">
-                          <button onClick={handleRegister} disabled={authLoading} className="flex-1 text-xs px-3 py-1 rounded font-medium" style={{ background: "rgba(34,197,94,0.15)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.3)", opacity: authLoading ? 0.5 : 1 }}>{authLoading ? "Creating…" : "Create"}</button>
+                          <button onClick={handleRegister} disabled={authLoading} title={authLoading ? "Creating account..." : "Create your account"} className="flex-1 text-xs px-3 py-1 rounded font-medium" style={{ background: "rgba(34,197,94,0.15)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.3)", opacity: authLoading ? 0.5 : 1, cursor: authLoading ? "not-allowed" : "pointer" }}>{authLoading ? "Creating…" : "Create"}</button>
                           <button onClick={() => { setRegisterOpen(false); setRegisterError(""); setRegisterPassword(""); setRegisterPasswordConfirm(""); }} className="text-xs px-2 py-1 rounded text-w30 bg-w4 border-w8">Back</button>
                         </div>
                       </div>
