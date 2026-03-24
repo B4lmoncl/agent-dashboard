@@ -417,5 +417,58 @@
       "rauesleder": 0.03
     }
   },
-  "recipes": []
+  "recipes": [
+    {
+      "id": "flask_of_embers",
+      "name": "Flask of Embers",
+      "profession": "alchemist",
+      "source": "faction",
+      "reqSkill": 50,
+      "cooldownMinutes": 120,
+      "cost": { "gold": 50 },
+      "materials": { "kraeuterbuendel": 3, "mondblume": 1 },
+      "result": { "type": "forge_temp", "amount": 15 },
+      "xp": 15,
+      "description": "Recovers 15% Forge Temperature."
+    },
+    {
+      "id": "scholars_ink",
+      "name": "Scholar's Ink",
+      "profession": "verzauberer",
+      "source": "faction",
+      "reqSkill": 50,
+      "cooldownMinutes": 120,
+      "cost": { "gold": 60 },
+      "materials": { "magiestaub": 3, "runenstein": 1 },
+      "result": { "type": "buff", "buffType": "xp_boost_10", "duration": "3_quests" },
+      "xp": 15,
+      "description": "+10% bonus XP for 3 quests."
+    },
+    {
+      "id": "artisans_whetstone",
+      "name": "Artisan's Whetstone",
+      "profession": "schmied",
+      "source": "faction",
+      "reqSkill": 50,
+      "cooldownMinutes": 120,
+      "cost": { "gold": 60 },
+      "materials": { "eisenerz": 3, "kristallsplitter": 1 },
+      "result": { "type": "buff", "buffType": "craft_xp_boost", "duration": "3_quests" },
+      "xp": 15,
+      "description": "+1 profession XP per craft for 3 quests."
+    },
+    {
+      "id": "resonance_charm",
+      "name": "Resonance Charm",
+      "profession": "verzauberer",
+      "source": "faction",
+      "reqSkill": 50,
+      "cooldownMinutes": 120,
+      "cost": { "gold": 60 },
+      "materials": { "magiestaub": 2, "aetherkern": 1 },
+      "result": { "type": "buff", "buffType": "companion_bond_boost", "duration": "3_quests" },
+      "xp": 15,
+      "description": "+5% Bond XP for companions for 3 quests."
+    }
+  ]
 }

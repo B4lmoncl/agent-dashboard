@@ -102,7 +102,7 @@ function getActiveRunForPlayer(userId) {
 }
 
 function areFriends(a, b) {
-  return state.socialData.friendships.some(
+  return (state.socialData?.friendships || []).some(
     f => (f.player1 === a && f.player2 === b) || (f.player1 === b && f.player2 === a)
   );
 }

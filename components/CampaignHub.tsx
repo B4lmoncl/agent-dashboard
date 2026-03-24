@@ -101,7 +101,7 @@ export default function CampaignHub({ campaigns, quests, reviewApiKey, onRefresh
         setSelectedQuestIds([]);
         onRefresh();
       }
-    } catch { /* ignore */ }
+    } catch (err) { console.error("[CampaignHub] Create failed:", err); }
     setSubmitting(false);
   };
 
@@ -112,7 +112,7 @@ export default function CampaignHub({ campaigns, quests, reviewApiKey, onRefresh
       setDeleteConfirm(null);
       if (expandedId === id) setExpandedId(null);
       onRefresh();
-    } catch { /* ignore */ }
+    } catch (err) { console.error("[CampaignHub] Delete failed:", err); }
   };
 
   const statusColors: Record<string, { color: string; bg: string; border: string; label: string }> = {

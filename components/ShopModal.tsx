@@ -56,7 +56,9 @@ export function ShopModal({ userId, userName, gold, currentGear, onClose, onBuy,
                   background: gold >= item.cost ? "rgba(245,158,11,0.2)" : "rgba(255,255,255,0.04)",
                   color: gold >= item.cost ? "#f59e0b" : "rgba(255,255,255,0.2)",
                   border: `1px solid ${gold >= item.cost ? "rgba(245,158,11,0.4)" : "rgba(255,255,255,0.08)"}`,
+                  cursor: gold < item.cost ? "not-allowed" : "pointer",
                 }}
+                title={gold < item.cost ? `Need ${item.cost - gold} more gold` : undefined}
               >
                 <img src="/images/icons/currency-gold.png" alt="" width={20} height={20} style={{ imageRendering: "auto", display: "inline", verticalAlign: "middle", marginRight: 2 }} onError={e => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} /> {item.cost}
               </button>
@@ -99,7 +101,9 @@ export function ShopModal({ userId, userName, gold, currentGear, onClose, onBuy,
                           background: canBuy ? "rgba(99,102,241,0.2)" : "rgba(255,255,255,0.04)",
                           color: canBuy ? "#818cf8" : "rgba(255,255,255,0.2)",
                           border: `1px solid ${canBuy ? "rgba(99,102,241,0.4)" : "rgba(255,255,255,0.08)"}`,
+                          cursor: !canBuy ? "not-allowed" : "pointer",
                         }}
+                        title={owned ? "Already owned" : gold < gear.cost ? `Need ${gear.cost - gold} more gold` : gear.tier > currentTier + 1 ? "Unlock previous tier first" : undefined}
                       >
                         <img src="/images/icons/currency-gold.png" alt="" width={20} height={20} style={{ imageRendering: "auto", display: "inline", verticalAlign: "middle", marginRight: 2 }} onError={e => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} /> {gear.cost}
                       </button>

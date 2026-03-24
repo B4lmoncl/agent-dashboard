@@ -247,6 +247,11 @@ router.post('/api/gacha/pull', requireApiKey, (req, res) => {
   const { playerId, bannerId } = req.body;
   if (!playerId || !bannerId) return res.status(400).json({ error: 'playerId and bannerId required' });
   const uid = playerId.toLowerCase();
+  // Self-check: only pull for yourself (admin bypass)
+  const callerId = req.auth?.userId?.toLowerCase();
+  if (!req.auth?.isAdmin && callerId !== uid) {
+    return res.status(403).json({ error: 'You can only pull for yourself' });
+  }
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'Player not found' });
 
@@ -293,6 +298,11 @@ router.post('/api/gacha/pull10', requireApiKey, (req, res) => {
   const { playerId, bannerId } = req.body;
   if (!playerId || !bannerId) return res.status(400).json({ error: 'playerId and bannerId required' });
   const uid = playerId.toLowerCase();
+  // Self-check: only pull for yourself (admin bypass)
+  const callerId = req.auth?.userId?.toLowerCase();
+  if (!req.auth?.isAdmin && callerId !== uid) {
+    return res.status(403).json({ error: 'You can only pull for yourself' });
+  }
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'Player not found' });
 

@@ -8,7 +8,7 @@
       "emoji": null,
       "affixes": {
         "primary": {
-          "count": [3, 4],
+          "count": [3, 3],
           "pool": [
             { "stat": "kraft", "min": 8, "max": 20 },
             { "stat": "weisheit", "min": 8, "max": 20 },
@@ -16,7 +16,7 @@
           ]
         },
         "minor": {
-          "count": [1, 2],
+          "count": [2, 2],
           "pool": [
             { "stat": "fokus", "min": 3, "max": 8 },
             { "stat": "tempo", "min": 3, "max": 8 }
@@ -35,7 +35,7 @@
       "emoji": null,
       "affixes": {
         "primary": {
-          "count": [3, 4],
+          "count": [3, 3],
           "pool": [
             { "stat": "ausdauer", "min": 8, "max": 20 },
             { "stat": "kraft", "min": 8, "max": 20 },
@@ -43,7 +43,7 @@
           ]
         },
         "minor": {
-          "count": [1, 2],
+          "count": [2, 2],
           "pool": [
             { "stat": "vitalitaet", "min": 3, "max": 8 },
             { "stat": "tempo", "min": 3, "max": 8 }
@@ -149,7 +149,7 @@
       "emoji": null,
       "affixes": {
         "primary": {
-          "count": [2, 3],
+          "count": [2, 2],
           "pool": [
             { "stat": "kraft", "min": 4, "max": 9 },
             { "stat": "weisheit", "min": 4, "max": 9 },
@@ -176,7 +176,7 @@
       "emoji": null,
       "affixes": {
         "primary": {
-          "count": [2, 3],
+          "count": [2, 2],
           "pool": [
             { "stat": "ausdauer", "min": 4, "max": 9 },
             { "stat": "kraft", "min": 4, "max": 9 },

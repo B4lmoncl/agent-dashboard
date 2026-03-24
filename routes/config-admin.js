@@ -483,7 +483,7 @@ function generatePlayerQuests(playerName, playerLevel) {
 }
 
 // GET /api/quests/pool?player=X — get or initialize the quest pool
-router.get('/api/quests/pool', (req, res) => {
+router.get('/api/quests/pool', requireApiKey, (req, res) => {
   const playerParam = req.query.player ? String(req.query.player).toLowerCase() : null;
   if (!playerParam) return res.status(400).json({ error: 'player parameter required' });
   const userRecord = state.users[playerParam];
@@ -552,8 +552,15 @@ router.post('/api/quests/pool/refresh', requireApiKey, (req, res) => {
   res.json({ ok: true, pool: poolQuests, generated: pp.generatedQuests.length, lastRefresh: pp.lastPoolRefresh });
 });
 
-// GET /api/quests/reset-recurring — reset completed recurring quests based on interval
+// POST /api/quests/reset-recurring — reset completed recurring quests based on interval
+// Also kept as GET for backward compatibility
+router.post('/api/quests/reset-recurring', requireApiKey, (req, res) => {
+  return resetRecurringHandler(req, res);
+});
 router.get('/api/quests/reset-recurring', requireApiKey, (req, res) => {
+  return resetRecurringHandler(req, res);
+});
+function resetRecurringHandler(req, res) {
   const nowMs = Date.now();
   const INTERVAL_MS = { daily: 24*3600*1000, weekly: 7*24*3600*1000, monthly: 30*24*3600*1000 };
   let resetCount = 0;
@@ -573,7 +580,7 @@ router.get('/api/quests/reset-recurring', requireApiKey, (req, res) => {
   if (resetCount > 0) saveQuests();
   console.log(`[recurring] reset ${resetCount} recurring quest(s)`);
   res.json({ ok: true, reset: resetCount });
-});
+}
 
 // GET /api/admin/keys
 router.get('/api/admin/keys', requireMasterKey, (req, res) => {

@@ -451,11 +451,12 @@ router.post('/api/world-boss/claim', requireAuth, (req, res) => {
 router.post('/api/world-boss/spawn', requireMasterKey, (req, res) => {
   const { bossId } = req.body;
 
-  // If there's an active boss, move it to history first
+  // If there's an active boss, move it to history first (strip contributions like regular expiry)
   const current = getActiveBoss();
   if (current) {
     current.expired = true;
-    worldBossState.history.push({ ...current });
+    const { contributions, ...archiveSafe } = current;
+    worldBossState.history.push(archiveSafe);
     worldBossState.activeBoss = null;
   }
 
