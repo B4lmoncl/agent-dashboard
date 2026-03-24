@@ -418,5 +418,6 @@ Quest system (pool of ~10 open + ~25 max in-progress per player), XP/leveling (5
 - `README.md` — API endpoint docs, deployment, agent setup.
 - `BACKLOG.md` — Planned features, known bugs, tech debt.
 - `ITEM-SYSTEM-SPEC.md` — Gear/equipment design spec (affix pools, rarity, slots).
+- `WOW-PROFESSION-REFACTOR.md` — **Definitive Profession Refactor Plan.** WoW Classic style: 300 max skill, 6 professions (incl. Lederverarbeiter), ~150 recipes per gear prof / ~80-100 per consumable prof (~850 total), every recipe = unique named item template, intermediate materials (bars/bolts/cured leather), material specialization, BoE trading, WoW source distribution (40/30/20/10). Contains all design decisions + session-based implementation order. **READ THIS before any profession/crafting work.**
 - `SCALABILITY-AUDIT.md` — Performance analysis.
 - `TEMPLATES.md` — Quest template format reference.

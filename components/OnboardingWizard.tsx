@@ -97,7 +97,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
     fetch("/api/classes")
       .then(r => r.ok ? r.json() : [])
       .then(setClasses)
-      .catch(() => {});
+      .catch((err) => { console.error('Failed to fetch classes:', err); });
   }, []);
 
   const selectedClass = classes.find(c => c.id === selectedClassId);
@@ -141,7 +141,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
           createdBy: name.trim() || "unknown",
         }),
       });
-    } catch { /* ignore */ }
+    } catch (err) { console.error('Failed to submit custom class:', err); }
     setCustomClassSubmitted(true);
   };
 

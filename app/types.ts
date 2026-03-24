@@ -88,7 +88,7 @@ export interface ActiveNpc {
   expiresAt: string;
   daysLeft: number;
   hoursLeft: number;
-  finalReward: { type: string; item: { id: string; name: string; emoji: string; rarity: string; desc: string } } | null;
+  finalReward: { type: string; item: { id: string; name: string; emoji: string; rarity: string; desc: string; icon?: string } } | null;
   questChain: NpcQuestChainEntry[];
 }
 

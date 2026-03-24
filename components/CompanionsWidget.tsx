@@ -403,11 +403,13 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
                           ))}
                         </div>
                       )}
-                      <button onClick={handlePet} disabled={petting} className="text-xs px-2.5 py-1 rounded-lg font-semibold transition-all" style={{
+                      <button onClick={handlePet} disabled={petting} className="text-xs px-2.5 py-1 rounded-lg font-semibold transition-all"
+                        title={petting ? "Petting in progress…" : ""}
+                        style={{
                         background: heartAnim ? "linear-gradient(135deg, rgba(255,107,157,0.3), rgba(255,107,157,0.15))" : "linear-gradient(135deg, rgba(255,107,157,0.12), rgba(255,107,157,0.06))",
                         color: "#a78bfa", border: "1px solid rgba(167,139,250,0.3)",
                         boxShadow: heartAnim ? "0 0 12px rgba(255,107,157,0.3)" : "0 0 6px rgba(255,107,157,0.1)",
-                        cursor: petting ? "wait" : "pointer",
+                        cursor: petting ? "not-allowed" : "pointer",
                       }}>
                         <TipCustom title="Pet Companion" icon="🐾" accent="#a78bfa" body={<p>Give your companion a belly rub! Grants <strong>+0.5 bond XP</strong> per pet, up to <strong>2x per day</strong>.</p>}>
                           <span>🐾 Pet</span>

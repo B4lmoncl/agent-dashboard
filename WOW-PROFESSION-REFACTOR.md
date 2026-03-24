@@ -52,130 +52,170 @@
 - `ForgeView.tsx`: Add NPC_LOCATIONS entry + SYNERGY_HINTS
 - `globals.css`: Possibly add leather-themed color variables
 
-### 2.2 — Recipe Density: ~100 Rezepte pro Beruf
+### 2.2 — WoW-Classic-Style Recipe Design
 
-**WoW Classic recipe density per skill bracket:**
+**Kernprinzip:** Jedes Rezept craftet ein **einzigartig benanntes Item** mit eigenem Gear-Template.
+Kein "Common Helm → Uncommon Helm" — stattdessen "Eiserne Sturmhaube", "Kristall-Visier", "Drachenzahn-Helm" etc.
 
-| Skill Bracket | Rank | Recipes | Mat Count per Craft | Mat Tiers Used |
-|--------------|------|---------|--------------------|-|
-| 1-75 | Apprentice | 15-20 | 1-4 mats | T1 (common) |
-| 75-150 | Journeyman | 20-25 | 3-6 mats | T1-T2 (common+uncommon) |
-| 150-225 | Expert | 25-30 | 5-10 mats | T2-T3 (uncommon+rare) |
-| 225-300 | Artisan | 35-40 | 8-16 mats | T3-T5 (rare+epic+legendary) |
+**Recipe density per skill bracket (WoW-Classic-treu):**
 
-**Recipe types per profession:**
+| Skill Bracket | Rank | Recipes | Items | Mat Tiers |
+|--------------|------|---------|-------|-----------|
+| 1-75 | Apprentice | 25-35 | ~70% Filler (grün), ~30% Ziel (blau) | T1 (common) |
+| 75-150 | Journeyman | 30-40 | ~70% Filler, ~30% Ziel | T1-T2 (common+uncommon) |
+| 150-225 | Expert | 35-45 | ~60% Filler, ~40% Ziel (blau/lila) | T2-T3 (uncommon+rare) |
+| 225-300 | Artisan | 40-50 | ~50% Filler, ~50% Ziel (lila/legendär) | T3-T5 (rare+epic+legendary) |
 
-#### Schmied (Blacksmith) — 19 → ~100
+**Item-Qualität:**
+- **Filler-Items (~70%):** Grüne Qualität (common/uncommon). Feste Stats, kein Affix-Rolling. Existieren primär zum Skill-Up. Handelbar (BoE).
+- **Ziel-Items (~30%):** Blaue/Lila Qualität (rare/epic/legendary). Volles Affix-Rolling per CLAUDE.md Regeln. Spieler craften diese gezielt. Handelbar (BoE).
+
+**Naming Convention:** Material-basiert (WoW-Style)
 ```
-Gear recipes (6 slots × 5 rarity tiers = 30 base):
-  Helm:     Common, Uncommon, Rare, Epic, Legendary
-  Armor:    Common, Uncommon, Rare, Epic, Legendary
-  Boots:    Common, Uncommon, Rare, Epic, Legendary
-  Weapon:   Common, Uncommon, Rare, Epic, Legendary
-  Shield:   Common, Uncommon, Rare, Epic, Legendary
-  Amulet:   Common, Uncommon, Rare, Epic, Legendary
-
-Utility recipes (~20):
-  Sharpening Stones (Lv1-10, weapon temp buff: +kraft for N quests)
-  Weightstones (Lv3-8, weapon temp buff: +ausdauer for N quests)
-  Shield Spikes (Lv5-9, shield temp buff: +vitalitaet)
-  Armor Reinforcements (Lv4-8, armor temp buff: +ausdauer)
-
-Service recipes (~10):
-  Sharpen Blade, Reinforce Armor, Upgrade Rarity (existing)
-  + new: Temper Weapon, Polish Shield, Repair Kit
-
-Intermediate materials (~10):
-  Bronze Bar (2 eisenerz + 1 magiestaub)
-  Steel Bar (3 eisenerz + 1 kristallsplitter)
-  Mithril Bar (4 kristallsplitter + 1 drachenschuppe)
-  Arcanite Bar (1 drachenschuppe + 1 aetherkern) — 24h CD, WoW homage
-
-Trainer-learnable variants (~30):
-  Duplicate slot recipes with different stat pools at same tier
-  E.g., "Eiserner Helm des Kriegers" (kraft/ausdauer) vs
-        "Eiserner Helm des Wächters" (ausdauer/vitalitaet)
+Skill 1-75:    Eiserne [Slot]      → "Eiserne Sturmhaube", "Eiserner Brustpanzer"
+Skill 75-150:  Kristall-[Slot]     → "Kristall-Visier", "Kristall-Kettenhemd"
+Skill 150-225: Drachenschuppen-[Slot] → "Drachenzahn-Helm", "Drachenschuppen-Harnisch"
+Skill 225-275: Aether-[Slot]       → "Aetherkern-Krone", "Aether-Prunkrüstung"
+Skill 275-300: Seelen-[Slot]       → "Seelenbrecher-Helm", "Seelengeschmiedeter Panzer"
 ```
 
-#### Schneider (Tailor) — 18 → ~100
+#### Schmied (Blacksmith) — ~150 Rezepte
+
 ```
-Same structure as Schmied but cloth:
-  30 base gear (6 slots × 5 tiers)
-  20 utility (Spellthreads: leg enchants, Bags: inventory expansion)
-  10 service (existing enchant recipes stay at Verzauberer)
-  10 intermediate cloth (combine lower cloth → higher)
-  30 trainer variants (different stat pools)
-```
+Unique Gear Items (~100):
+  Jedes ein eigenes benanntes Template mit eigenem Flavor-Text.
+  Verteilt über alle 6 Slots (helm, armor, boots, weapon, shield, amulet).
+  Skill 1-75:   ~20 Items (Eiserne Serie, einfache Waffen/Rüstungen)
+  Skill 75-150:  ~25 Items (Kristall-Serie, verstärkte Platten)
+  Skill 150-225: ~25 Items (Drachenschuppen-Serie, Elite-Rüstungen)
+  Skill 225-300: ~30 Items (Aether/Seelen-Serie, legendäre Schmiedekunst)
 
-#### Lederverarbeiter (Leatherworker) — NEW → ~100
-```
-Same structure but leather:
-  30 base gear (6 slots × 5 tiers)
-  20 utility (Armor Kits: +ausdauer temp buff, Leg Patches)
-  10 intermediate leather (combine lower leather → higher)
-  10 special (Quivers, Ammo Pouches → tempo buffs)
-  30 trainer variants
-```
+Zwischenprodukte (~15):
+  Eisenbarren (3× Eisenerz)
+  Kristallbarren (2× Eisenerz + 2× Kristallsplitter)
+  Gehärteter Stahl (4× Eisenerz + 1× Kristallsplitter)
+  Drachenstahl (3× Kristallsplitter + 2× Drachenschuppe)
+  Aetherlegierung (2× Drachenschuppe + 1× Aetherkern)
+  Seelenlegierung (2× Aetherkern + 1× Seelensplitter) — 24h CD
+  + weitere Zwischen-Legierungen für Skill-Lücken
 
-#### Alchemist — 14 → ~100
-```
-Potions (40): XP/Gold/Luck/Streak buffs at every 15 skill levels
-  Minor → Lesser → Standard → Greater → Superior → Major versions
-  Each buff type has 6 tiers scaling in potency
+Utility (~20):
+  Schärfsteine (5 Tiers: Grob → Rau → Schwer → Dicht → Elementar)
+  Gewichtsteine (4 Tiers)
+  Schilddornen (3 Tiers)
+  Panzerverstärkungen (3 Tiers)
+  Schmiedetemperatur-Rezepte (2 Tiers)
+  Streak-Schilde (2 Tiers)
 
-Flasks (10): Endgame multi-buff consumables (skill 200+)
-  Flask of Ambition, Flask of Fortune, Flask of Wisdom, etc.
-
-Transmutes (15): Material upgrades, 24-48h CD
-  Transmute: Iron Ore → Crystal Shard
-  Transmute: Crystal → Dragon Scale
-  Transmute: Dragon → Aether Core
-  Transmute: Cloth tier upgrades (leinenstoff → wollstoff etc.)
-  Transmute: Leather tier upgrades
-
-Elixirs (20): Single-stat buff consumables
-  Elixir of Kraft, Elixir of Weisheit, etc.
-
-Utility (15): Resistance potions, antidotes, mana oils
+Service (~15):
+  Klinge schärfen, Rüstung verstärken, Seltenheit aufwerten
+  Waffe temperieren, Schild polieren
+  Meisterwerk-Verstärkung (Skill 275+, 24h CD)
 ```
 
-#### Koch (Cook) — 12 → ~100
+#### Schneider (Tailor) — ~150 Rezepte
+
 ```
-Meals (50): Food buffs at every 10 skill levels
-  6 tiers × 8 meal types (XP, Gold, Luck, Forge Temp, Streak Shield,
-  combined XP+Gold, combined XP+Luck, full feast)
+Unique Gear Items (~100):
+  Skill 1-75:   ~20 Items (Leinen-Serie: Hüte, Roben, Schleier)
+  Skill 75-150:  ~25 Items (Woll-Serie: verstärkte Gewänder)
+  Skill 150-225: ~25 Items (Seiden-Serie: Mondschein-Roben, Seidenschleier)
+  Skill 225-300: ~30 Items (Magie/Runen-Serie: arkane Gewänder)
 
-Drinks (20): Minor stat buffs, short duration
-  Tea, Wine, Mead, etc.
+Zwischenprodukte (~12):
+  Leinenballen, Wollballen, Seidenballen, Magiestoff-Ballen, Runenstoff-Ballen
+  Sternenlicht-Farbe, Arkaner Faden, Runenfaden
+  + weitere Stoffverarbeitungen
 
-Feasts (10): Group-wide buffs (skill 200+)
-  Shared buff that affects all party/guild members
+Utility (~20):
+  Zauberfäden (5 Tiers: +weisheit temp buff)
+  Glücksfäden (3 Tiers: +glueck temp buff)
+  Konzentrationsfäden (3 Tiers: +fokus temp buff)
+  Bezaubernde Fäden (2 Tiers: +charisma temp buff)
+  Gewänder der Erleuchtung (2 Tiers: +XP temp buff)
 
-Snacks (15): Instant-use minor effects
-  Trail mix, dried fruit, etc.
-
-Intermediate (5): Prepare ingredients
-  Spice Blend, Herb Butter, etc.
+Service (~15+):
+  Streak-Schilde, Schmiedetemperatur, Stoffveredelung, Stoffverstärkung
 ```
 
-#### Verzauberer (Enchanter) — 12 → ~100
+#### Lederverarbeiter (Leatherworker) — ~150 Rezepte (komplett neu)
+
 ```
-Temporary Enchants (30): Stat buffs for 24-48h
-  One for each stat at 6 tiers: Minor → Lesser → Standard →
-  Greater → Superior → Major
+Unique Gear Items (~100):
+  Skill 1-75:   ~20 Items (Leichtleder-Serie: Kappen, Wämser, Stiefel)
+  Skill 75-150:  ~25 Items (Mittleres-Leder-Serie: verstärkte Jagdkleidung)
+  Skill 150-225: ~25 Items (Schwerleder-Serie: Jäger-Rüstungen)
+  Skill 225-300: ~30 Items (Bestien/Urzeit-Serie: legendäre Pelze)
 
-Permanent Enchants (15): +stat to gear slot (existing, expand)
-  One per slot per tier (weapon/armor/boots/helm/shield/amulet)
+Zwischenprodukte (~12):
+  Geheiltes Leichtleder, Geheiltes Mittleres Leder, Gehärtetes Schwerleder
+  Bestien-Lederballen, Urzeitleder-Ballen
+  Klauenöl, Salzgerbung, Uraltes Gerbmittel
+  + weitere Lederverarbeitungen
 
-Wards/Glyphs (20): Quest-duration buffs
-  Protection, Speed, Power, etc.
+Utility (~20):
+  Leder-Kits (5 Tiers: +ausdauer temp buff)
+  Glücksflicken (3 Tiers: +glueck temp buff)
+  Köcher (3 Tiers: +tempo temp buff)
+  Gold-Beutel (4 Tiers: +gold% temp buff) — Leder-Spezialität
+  Schmiedetemperatur-Rezepte (2 Tiers)
 
-Scrolls (20): Tradeable buff items
-  Scroll of Kraft, Scroll of Weisheit, etc.
-  Consumable items that grant temp buffs (like WoW scrolls)
+Service (~15+):
+  Leder verstärken, Lederveredelung, Streak-Schilde
+```
 
-Oils (15): Weapon/Armor coatings
-  Brilliant Oil (+weisheit), Savage Oil (+kraft), etc.
+#### Alchemist — ~80-100 Rezepte
+
+```
+Potions (~30): 6 Tiers × 5 Buff-Typen (XP/Gold/Luck/Kraft/Weisheit)
+  Schwacher → Geringer → Normaler → Großer → Überlegener → Mächtiger Trank
+
+Flasks (~6): Endgame Multi-Buffs (Skill 225+)
+  Flakon des Ehrgeizes, des Schicksals, der Weisheit, der Titanen etc.
+
+Transmutes (~12): Material-Tier-Upgrades + Cross-Profession
+  Eisen→Kristall, Kristall→Drache, Drache→Aether, Aether→Seele
+  Leinen→Wolle, Wolle→Seide, Seide→Magiestoff
+  Leicht→Mittel Leder, Mittel→Schwer Leder
+  24-48h Cooldowns auf hohe Transmutes
+
+Utility (~15): Gegengift-Tiers, Manaöle, Schattenöle
+  Streak-Schilde, Schmiedekatalysatoren
+
+Elixirs (~15): Single-Stat Buffs
+```
+
+#### Koch (Cook) — ~80-100 Rezepte
+
+```
+Meals (~40): 6 Tiers × Buff-Typen (XP, Gold, Luck, Forge Temp, Combined)
+  Einfache Mahlzeit → Deftige Mahlzeit → Feine Mahlzeit → Meistermenü
+
+Drinks (~15): Kurze Stat-Buffs (Tee, Wein, Met)
+
+Feasts (~6): Gruppen-Buffs (Skill 200+)
+
+Snacks (~10): Sofort-Effekte (Studentenfutter, Trockenobst)
+
+Intermediate (~8): Gewürzmischung, Kräuterbutter, Marinaden
+  Streak-Schilde, Schmiedetemperatur
+```
+
+#### Verzauberer (Enchanter) — ~80-100 Rezepte
+
+```
+Temporary Enchants (~25): Stat-Buffs für 24-48h
+  6 Tiers pro Stat (Kraft, Weisheit, Ausdauer, Glueck)
+
+Permanent Enchants (~15): +Stat permanent auf Gear-Slot
+  Pro Slot pro Tier (weapon/armor/boots/helm/shield/amulet)
+
+Wards/Glyphs (~15): Quest-Dauer-Buffs (Schutz, Tempo, Macht)
+
+Scrolls (~15): Handelbare Buff-Items (Schriftrolle der Kraft etc.)
+
+Oils (~10): Waffen-/Rüstungs-Beschichtungen
+  Brillantes Öl (+weisheit), Wildes Öl (+kraft) etc.
 ```
 
 ### 2.3 — Recipe Source Distribution
@@ -216,66 +256,153 @@ New system:
 This means a Schmied gets ~23% chance for eisenerz but only ~6% for kraeuterbuendel.
 To get kraeuterbuendel efficiently, they need to trade with an Alchemist.
 
-### 2.6 — Gear Template Structure
+### 2.6 — Gear Template Structure (WoW-Classic-Style)
 
-**Per gear-crafting profession (Schmied, Schneider, Lederverarbeiter):**
+**Kernprinzip:** Jedes Rezept erzeugt ein **eigenes, einzigartig benanntes Gear-Template**.
+Keine generischen "Tier × Slot × Rarity"-Matrizen mehr.
 
-| Tier | Rarity | reqLevel | Slots | Templates | Material Tier |
-|------|--------|----------|-------|-----------|---------------|
-| T1 | Common | 1-5 | 6 | 6 | T1 (common) |
-| T2 | Uncommon | 9-12 | 6 | 6 | T1+T2 |
-| T3 | Rare | 17-20 | 6 | 6 | T2+T3 |
-| T4 | Epic | 25-28 | 6 | 6 | T3+T4 |
-| T5 | Legendary | 30-35 | 6 | 6 | T4+T5 |
+**Pro Gear-Profession (Schmied, Schneider, Lederverarbeiter):**
 
-= 30 templates per profession × 3 gear professions = **90 gear templates**
-Currently: 33 → need ~57 new templates
+| Skill-Bereich | Anzahl Items | Typische Rarity | Affix-System |
+|--------------|-------------|-----------------|--------------|
+| 1-75 | ~20 | common/uncommon | Feste Stats (kein Rolling) |
+| 75-150 | ~25 | uncommon/rare | Feste Stats / teilweise Rolling |
+| 150-225 | ~25 | rare/epic | Mix (Filler fest, Ziel-Items Rolling) |
+| 225-300 | ~30 | epic/legendary | Überwiegend Affix-Rolling |
 
-### 2.7 — New Leather Gear Templates
+= ~100 unique gear templates per profession × 3 gear professions = **~300 gear templates**
+Plus Utility/Intermediate = **~450 Rezepte total** für die 3 Gear-Professions.
 
-**Leather trait: `geschmeidige_haut` (+1% Gold per piece)**
-**Stat focus:** Balanced (glueck, ausdauer, kraft as primary; tempo, fokus as minor)
+**Filler-Items (feste Stats):**
+```json
+{
+  "id": "craft-schmied-eiserne-sturmhaube",
+  "name": "Eiserne Sturmhaube",
+  "slot": "helm",
+  "rarity": "common",
+  "armorType": "heavy",
+  "fixedStats": { "kraft": 2, "ausdauer": 1 },
+  "reqLevel": 1,
+  "tier": 1,
+  "setId": "adventurer",
+  "flavorText": "Schwer, aber zuverlässig."
+}
+```
 
-Templates follow exact same CLAUDE.md balancing rules:
-- Affix counts match rarity table
-- Stat ranges match level table
-- Tier/SetId assignment matches level ranges
+**Ziel-Items (Affix-Rolling per CLAUDE.md):**
+```json
+{
+  "id": "craft-schmied-drachenzahn-helm",
+  "name": "Drachenzahn-Helm",
+  "slot": "helm",
+  "rarity": "rare",
+  "armorType": "heavy",
+  "affixes": {
+    "primary": { "count": [2, 2], "pool": [{ "stat": "kraft", "min": 3, "max": 6 }, ...] },
+    "minor": { "count": [1, 1], "pool": [{ "stat": "vitalitaet", "min": 2, "max": 4 }, ...] }
+  },
+  "reqLevel": 17,
+  "tier": 3,
+  "setId": "master",
+  "flavorText": "Er brennt nicht. Aber wer ihn trägt, fühlt die Hitze."
+}
+```
+
+**Armor-Type Traits (Passive Boni pro ausgerüstetem Teil):**
+- Heavy: `eiserne_haut` — +1 Ausdauer pro Teil
+- Cloth: `arkanes_weben` — +1% XP pro Teil
+- Leather: `geschmeidige_haut` — +1% Gold pro Teil
+
+---
+
+## Design-Entscheidungen (Final)
+
+Diese Entscheidungen sind verbindlich für alle zukünftigen Implementierungs-Sessions.
+
+| Thema | Entscheidung | Begründung |
+|-------|-------------|------------|
+| Professions | 6 total: Schmied, Schneider, Lederverarbeiter (neu), Alchemist, Koch, Verzauberer | WoW Classic hat mehr, aber 6 passt zu unserem 2-Slot-System |
+| Profession-Slots | Fix 2 pro Spieler | Zwingt Spieler zum Traden und spezialisieren |
+| Equipment-Slots | 6 bestehende: helm, armor, boots, weapon, shield, amulet | Keine Erweiterung nötig |
+| Spezialisierungen | Keine | Weniger Komplexität, alle Rezepte für jeden zugänglich |
+| Rezeptdichte Gear-Prof | ~150 pro Profession (WoW-treu) | Genug Filler für flüssiges 1-300 Leveln |
+| Rezeptdichte Consumable-Prof | ~80-100 pro Profession | Consumables brauchen weniger Variety |
+| Item-Templates | Jedes Rezept = eigenes unique benanntes Template | WoW-Classic-treu: "Eiserne Sturmhaube", nicht "Common Helm" |
+| Naming Convention | Material-basiert (Eisen→Kristall→Drachen→Aether→Seelen) | Wie WoW: Kupfer→Bronze→Eisen→Mithril→Thorium |
+| Filler vs Ziel-Items | ~70% Filler (feste Stats), ~30% Ziel-Items (Affix-Rolling) | Filler zum Skillen, Ziel-Items als Motivation |
+| Zwischenprodukte | Ja (Barren, Ballen, Gehärtetes Leder) | WoW-treu: Rohmaterial → Verarbeitung → Item |
+| BoE | Alles handelbar | Wirtschaft und Trading fördern |
+| Crafted Sets | Später (Backlog) | Erstmal Basis-System fertig |
+| Material-Abhängigkeiten | Material-Spezialisierung (eigene Mats höhere Drop-Rate) | Zwingt zum Cross-Profession-Trading |
+| Profession-Perks | Nur über Items/Rezepte (keine Sonder-Abilities) | Einfacher, konsistenter |
+| Grind-Länge | Sehr lang (WoW-treu, Wochen für 1-300) | Langzeit-Motivation |
+| Rezept-Quellen | WoW-Verteilung: 40% Trainer / 30% Drop / 20% Faction / 10% Dungeon | Exploration und Progression belohnen |
+| Implementierung | Eine Profession pro Session | Gründlich, jede Profession wird perfekt |
+| Bestehende Daten | Clean Slate (alles Neue von Phase 2 löschen, Phase 1 behalten) | Sauberer Neustart mit richtigem WoW-Ansatz |
 
 ---
 
 ## Implementation Order
 
-### Step 1: New Materials + Profession Definition
-- Add 5 leather materials to professions.json
-- Add Lederverarbeiter profession definition
-- Update materialDropRates for all professions
-- Adjust gathering rates for long grind
+### Session 0: Clean Slate
+- Alle in Phase 2 erstellten Rezepte und generischen Gear-Templates löschen
+- Lederverarbeiter-Profession-Definition + Materialien behalten (sind korrekt)
+- Backend-Änderungen behalten (reqSkill-Support, meetsSkillReq(), leather_stat_boost)
+- ForgeView-Änderungen behalten (NPC_LOCATIONS, SYNERGY_HINTS)
 
-### Step 2: Gear Templates
-- Create missing heavy gear templates (fill all 6 slots × 5 tiers)
-- Create missing cloth gear templates (fill all 6 slots × 5 tiers)
-- Create all leather gear templates (6 slots × 5 tiers = 30 new)
+### Session 1: Schmied (~150 Rezepte + ~100 Gear-Templates)
+- ~100 unique benannte Heavy-Gear-Templates erstellen
+- ~15 Zwischenprodukt-Rezepte (Barren-Chain)
+- ~100 Gear-Rezepte (je eins pro Template)
+- ~20 Utility-Rezepte (Schärfsteine, Gewichtsteine etc.)
+- ~15 Service-Rezepte (Verstärken, Temperieren etc.)
+- Balance-Check: Skill-Lücken, Material-Kosten, CLAUDE.md Affix-Regeln
 
-### Step 3: Recipes — Gear Professions
-- Schmied: Add ~80 new recipes (gear variants + utility + intermediates)
-- Schneider: Add ~80 new recipes
-- Lederverarbeiter: Add ~100 new recipes (all new)
+### Session 2: Schneider (~150 Rezepte + ~100 Gear-Templates)
+- ~100 unique benannte Cloth-Gear-Templates erstellen
+- ~12 Zwischenprodukte (Stoff-Ballen-Chain)
+- ~100 Gear-Rezepte
+- ~20 Utility-Rezepte (Zauberfäden, Glücksfäden etc.)
+- ~15 Service-Rezepte
+- Balance-Check
 
-### Step 4: Recipes — Consumable Professions
-- Alchemist: Add ~85 new recipes (potions + flasks + transmutes + elixirs)
-- Koch: Add ~88 new recipes (meals + drinks + feasts + snacks)
-- Verzauberer: Add ~88 new recipes (enchants + wards + scrolls + oils)
+### Session 3: Lederverarbeiter (~150 Rezepte + ~100 Gear-Templates)
+- ~100 unique benannte Leather-Gear-Templates erstellen
+- ~12 Zwischenprodukte (Leder-Verarbeitungs-Chain)
+- ~100 Gear-Rezepte
+- ~20 Utility-Rezepte (Leder-Kits, Köcher, Gold-Beutel)
+- ~15 Service-Rezepte
+- Balance-Check
 
-### Step 5: Frontend
-- Add Lederverarbeiter to ForgeView (NPC card, location, synergy)
-- Update recipe display for new recipe types (scrolls, oils, etc.)
-- BoE badge on tradeable items
+### Session 4: Alchemist (~80-100 Rezepte)
+- ~30 Potions (6 Tiers × 5 Buff-Typen)
+- ~6 Flasks (Endgame Multi-Buffs)
+- ~12 Transmutes (Material-Upgrades + Cross-Profession)
+- ~15 Elixirs (Single-Stat Buffs)
+- ~15 Utility (Gegengifte, Öle, Streak-Schilde)
+- Balance-Check
 
-### Step 6: Balance Pass
-- Verify all new recipes follow skill-up color spacing
-- Verify material costs scale correctly
-- Verify gathering rates produce weeks-long grind
-- Full CLAUDE.md balancing rules audit on all new gear templates
+### Session 5: Koch (~80-100 Rezepte)
+- ~40 Meals (6 Tiers × Buff-Typen)
+- ~15 Drinks (Tee, Wein, Met)
+- ~6 Feasts (Gruppen-Buffs)
+- ~10 Snacks (Sofort-Effekte)
+- ~8 Intermediate (Gewürze, Marinaden)
+- Balance-Check
+
+### Session 6: Verzauberer (~80-100 Rezepte)
+- ~25 Temporary Enchants
+- ~15 Permanent Enchants
+- ~15 Wards/Glyphs
+- ~15 Scrolls
+- ~10 Oils
+- Balance-Check
+
+### Session 7: Final Balance Pass + Frontend
+- Gesamter Balance-Audit über alle 6 Professions
+- Frontend-Anpassungen (BoE-Badge, neue Rezepttypen-Display)
+- CLAUDE.md updaten (neues Profession-System dokumentieren)
+- Material-Spezialisierung Gathering-Raten finalisieren
 
 ---
 
@@ -283,8 +410,9 @@ Templates follow exact same CLAUDE.md balancing rules:
 
 | File | Changes |
 |------|---------|
-| `professions.json` | +5 materials, +1 profession, +~500 recipes, adjusted drop rates |
-| `gearTemplates.json` | +~57 new gear templates |
-| `crafting.js` | Minimal — generic handlers already cover all recipe types |
-| `ForgeView.tsx` | +1 NPC location, +1 synergy hint, BoE badge |
-| `CLAUDE.md` | Update profession count, skill system docs |
+| `professions.json` | +5 materials (done), +1 profession (done), +~750 recipes, adjusted drop rates |
+| `gearTemplates.json` | +~300 new unique gear templates (replace generic ones) |
+| `crafting.js` | reqSkill support (done), `fixedStats` handling for Filler-Items (new) |
+| `ForgeView.tsx` | NPC_LOCATIONS + SYNERGY_HINTS (done), BoE badge (Session 7) |
+| `lib/helpers.js` | leather armor trait (done), possible `fixedStats` gear instance creation |
+| `CLAUDE.md` | Update profession count, skill system docs (Session 7) |

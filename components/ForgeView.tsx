@@ -100,6 +100,7 @@ const SYNERGY_HINTS: Record<string, { partner: string; label: string }> = {
   schneider: { partner: "verzauberer", label: "Arcane Mastery" },
   alchemist: { partner: "koch", label: "Sustenance" },
   koch: { partner: "alchemist", label: "Sustenance" },
+  lederverarbeiter: { partner: "alchemist", label: "Wilderness" },
 };
 
 // ─── Skill-up color labels ──────────────────────────────────────────────────
@@ -117,6 +118,7 @@ const NPC_LOCATIONS: Record<string, { label: string; color: string; desc: string
   alchemist: { label: "Alchemist Lab", color: "#22c55e", desc: "Potions, elixirs & transmutation" },
   koch: { label: "Guild Kitchen", color: "#e87b35", desc: "Meals with XP/Gold buffs" },
   verzauberer: { label: "Arcanum", color: "#a78bfa", desc: "Enchantments & stat rerolling" },
+  lederverarbeiter: { label: "Gerberei", color: "#b45309", desc: "Leather armor crafting" },
 };
 
 // ─── Workshop tool tiers ─────────────────────────────────────────────────────
@@ -200,7 +202,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
         if (data.maxProfSlots != null) setMaxProfSlots(data.maxProfSlots);
         if (data.slotAffixRanges) setSlotAffixRanges(data.slotAffixRanges);
       }
-    } catch { /* ignore */ }
+    } catch (err) { console.error('Failed to fetch crafting data:', err); }
     // Fetch workshop upgrades
     try {
       const wr = await fetch(`/api/shop/workshop?player=${encodeURIComponent(playerName)}`, { signal: AbortSignal.timeout(3000) });
@@ -208,7 +210,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
         const wData = await wr.json();
         setWorkshopUpgrades(wData.workshopUpgrades || []);
       }
-    } catch { /* ignore */ }
+    } catch (err) { console.error('Failed to fetch workshop upgrades:', err); }
   }, [playerName]);
 
   useEffect(() => { fetchData(); }, [fetchData]);
@@ -250,7 +252,8 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
       } else {
         setCraftResult(data.error || "Crafting failed");
       }
-    } catch {
+    } catch (err) {
+      console.error('Crafting network error:', err);
       setCraftResult("Network error");
     }
     setCrafting(false);
@@ -279,7 +282,8 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
       } else {
         setCraftResult(data.error || "Failed to learn recipe");
       }
-    } catch {
+    } catch (err) {
+      console.error('Learn recipe network error:', err);
       setCraftResult("Network error");
     }
     setCrafting(false);
@@ -1218,16 +1222,11 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                       })()}
 
                       {/* Cost preview */}
-                      {!enchantOptions && (() => {
-                        const previewGold = enchantCost?.gold ?? Math.min(50000, Math.round(100 * Math.pow(1.5, rerollCount)));
-                        const previewEssenz = enchantCost?.essenz ?? 2;
-                        return (
+                      {!enchantOptions && (
                         <div className="mt-3 flex items-center gap-3 text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>
-                          <span>Next reroll: <strong style={{ color: "#f59e0b" }}>{previewGold}g</strong> + <strong style={{ color: "#ff8c00" }}>{previewEssenz} Essenz</strong></span>
+                          <span>Next reroll: <strong style={{ color: "#f59e0b" }}>{enchantCost?.gold ?? Math.min(50000, Math.round(100 * Math.pow(1.5, rerollCount)))}g</strong> + <strong style={{ color: "#ff8c00" }}>{enchantCost?.essenz ?? 2} Essenz</strong></span>
                           {rerollCount >= 5 && <span style={{ color: "#f59e0b" }}>&#9888; Cost escalating</span>}
                         </div>
-                        );
-                      })()
                       )}
                     </div>
                   ) : (
