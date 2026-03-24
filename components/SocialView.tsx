@@ -442,7 +442,8 @@ function MessagesTab({ apiKey, playerName, autoOpenWith, onAutoOpened }: { apiKe
             onClick={sendMessage}
             disabled={!msgInput.trim()}
             className="btn-interactive text-xs font-semibold px-4 py-2 rounded-lg"
-            style={{ background: "rgba(168,85,247,0.15)", color: "#a855f7", border: "1px solid rgba(168,85,247,0.3)", opacity: msgInput.trim() ? 1 : 0.4 }}
+            style={{ background: "rgba(168,85,247,0.15)", color: "#a855f7", border: "1px solid rgba(168,85,247,0.3)", opacity: msgInput.trim() ? 1 : 0.4, cursor: msgInput.trim() ? "pointer" : "not-allowed" }}
+            title={!msgInput.trim() ? "Type a message first" : undefined}
           >
             Send
           </button>
@@ -857,7 +858,8 @@ function TradesTab({ apiKey, playerName }: { apiKey: string; playerName: string 
                 onClick={() => handleTradeAction(t.id, "accept")}
                 disabled={actionLoading}
                 className="btn-interactive flex-1 text-xs font-bold py-2.5 rounded-lg"
-                style={{ background: "linear-gradient(135deg, #22c55e, #16a34a)", color: "#000", opacity: actionLoading ? 0.5 : 1 }}
+                style={{ background: "linear-gradient(135deg, #22c55e, #16a34a)", color: "#000", opacity: actionLoading ? 0.5 : 1, cursor: actionLoading ? "not-allowed" : "pointer" }}
+                title={actionLoading ? "Processing..." : undefined}
               >
                 Accept Trade
               </button>
@@ -865,7 +867,8 @@ function TradesTab({ apiKey, playerName }: { apiKey: string; playerName: string 
                 onClick={() => handleTradeAction(t.id, "decline")}
                 disabled={actionLoading}
                 className="btn-interactive text-xs font-semibold py-2.5 px-4 rounded-lg"
-                style={{ background: "rgba(239,68,68,0.1)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.2)", opacity: actionLoading ? 0.5 : 1 }}
+                style={{ background: "rgba(239,68,68,0.1)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.2)", opacity: actionLoading ? 0.5 : 1, cursor: actionLoading ? "not-allowed" : "pointer" }}
+                title={actionLoading ? "Processing..." : undefined}
               >
                 Decline
               </button>
@@ -905,7 +908,8 @@ function TradesTab({ apiKey, playerName }: { apiKey: string; playerName: string 
                 onClick={() => sendCounter(t.id)}
                 disabled={actionLoading}
                 className="btn-interactive w-full text-xs font-bold py-2 rounded-lg"
-                style={{ background: "rgba(251,191,36,0.15)", color: "#fbbf24", border: "1px solid rgba(251,191,36,0.3)", opacity: actionLoading ? 0.5 : 1 }}
+                style={{ background: "rgba(251,191,36,0.15)", color: "#fbbf24", border: "1px solid rgba(251,191,36,0.3)", opacity: actionLoading ? 0.5 : 1, cursor: actionLoading ? "not-allowed" : "pointer" }}
+                title={actionLoading ? "Processing..." : undefined}
               >
                 Send Counter-Offer
               </button>
@@ -920,7 +924,8 @@ function TradesTab({ apiKey, playerName }: { apiKey: string; playerName: string 
               onClick={() => handleTradeAction(t.id, "decline")}
               disabled={actionLoading}
               className="btn-interactive mt-2 text-xs px-4 py-1.5 rounded-lg"
-              style={{ background: "rgba(239,68,68,0.08)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.15)" }}
+              style={{ background: "rgba(239,68,68,0.08)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.15)", cursor: actionLoading ? "not-allowed" : "pointer", opacity: actionLoading ? 0.5 : 1 }}
+              title={actionLoading ? "Processing..." : undefined}
             >
               Cancel Trade
             </button>
@@ -1010,7 +1015,8 @@ function TradesTab({ apiKey, playerName }: { apiKey: string; playerName: string 
               onClick={proposeTrade}
               disabled={actionLoading || !newTradeTarget.trim()}
               className="btn-interactive flex-1 text-xs font-bold py-2 rounded-lg"
-              style={{ background: "linear-gradient(135deg, #a855f7, #7c3aed)", color: "#fff", opacity: actionLoading || !newTradeTarget.trim() ? 0.5 : 1 }}
+              style={{ background: "linear-gradient(135deg, #a855f7, #7c3aed)", color: "#fff", opacity: actionLoading || !newTradeTarget.trim() ? 0.5 : 1, cursor: actionLoading || !newTradeTarget.trim() ? "not-allowed" : "pointer" }}
+              title={!newTradeTarget.trim() ? "Select a trade partner first" : actionLoading ? "Processing..." : undefined}
             >
               Send Proposal
             </button>

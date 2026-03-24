@@ -483,7 +483,7 @@ function generatePlayerQuests(playerName, playerLevel) {
 }
 
 // GET /api/quests/pool?player=X — get or initialize the quest pool
-router.get('/api/quests/pool', (req, res) => {
+router.get('/api/quests/pool', requireApiKey, (req, res) => {
   const playerParam = req.query.player ? String(req.query.player).toLowerCase() : null;
   if (!playerParam) return res.status(400).json({ error: 'player parameter required' });
   const userRecord = state.users[playerParam];

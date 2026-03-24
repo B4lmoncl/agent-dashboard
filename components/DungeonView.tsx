@@ -5,6 +5,7 @@ import { useDashboard } from "@/app/DashboardContext";
 import { getUserLevel, formatLegendaryLabel } from "@/app/utils";
 import { getAuthHeaders } from "@/lib/auth-client";
 import { Tip, TipCustom } from "@/components/GameTooltip";
+import { useModalBehavior } from "@/components/ModalPortal";
 import type { RewardCelebrationData } from "@/components/RewardCelebration";
 
 // ─── Types ──────────────────────────────────────────────────────────────────
@@ -172,13 +173,9 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
 
   useEffect(() => { fetchDungeons(); }, [fetchDungeons]);
 
-  // ESC key to close create modal
-  useEffect(() => {
-    if (!showCreate) return;
-    const handler = (e: KeyboardEvent) => { if (e.key === "Escape") setShowCreate(false); };
-    document.addEventListener("keydown", handler);
-    return () => document.removeEventListener("keydown", handler);
-  }, [showCreate]);
+  // Modal behavior: ESC to close + body scroll lock
+  const closeCreate = useCallback(() => setShowCreate(false), []);
+  useModalBehavior(showCreate, closeCreate);
 
   // Auto-refresh for active runs
   useEffect(() => {

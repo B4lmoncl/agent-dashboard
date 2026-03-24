@@ -2861,7 +2861,7 @@
               "max": 6
             },
             {
-              "stat": "fokus",
+              "stat": "ausdauer",
               "min": 3,
               "max": 6
             }
@@ -2874,7 +2874,7 @@
           ],
           "pool": [
             {
-              "stat": "charisma",
+              "stat": "fokus",
               "min": 2,
               "max": 4
             },

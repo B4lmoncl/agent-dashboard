@@ -3,7 +3,7 @@
  */
 const router = require('express').Router();
 const { state, saveUsers, ensureUserCurrencies } = require('../lib/state');
-const { requireApiKey, getMasterKey } = require('../lib/middleware');
+const { requireApiKey } = require('../lib/middleware');
 const { now, awardCurrency, getStreakMilestone, getTodayBerlin } = require('../lib/helpers');
 
 // GET /api/currency/:playerId — read all balances
@@ -29,12 +29,17 @@ router.post('/api/currency/:playerId', requireApiKey, (req, res) => {
   if (!['earn', 'spend'].includes(action)) {
     return res.status(400).json({ error: 'action must be "earn" or "spend"' });
   }
-  // "earn" requires master key to prevent unlimited currency minting
+  // "earn" requires admin (master key) to prevent unlimited currency minting
   if (action === 'earn') {
-    const master = getMasterKey();
-    const callerKey = req.headers['x-api-key'] || req.headers['authorization']?.replace('Bearer ', '');
-    if (!master || callerKey !== master) {
+    if (!req.auth?.isAdmin) {
       return res.status(403).json({ error: 'Earning currency requires master key' });
+    }
+  }
+  // "spend" requires self or admin
+  if (action === 'spend') {
+    const callerId = req.auth?.userId?.toLowerCase();
+    if (!req.auth?.isAdmin && callerId !== uid) {
+      return res.status(403).json({ error: 'You can only spend your own currency' });
     }
   }
   ensureUserCurrencies(u);
@@ -62,6 +67,11 @@ router.post('/api/currency/:playerId', requireApiKey, (req, res) => {
 // body: { from: string, to: string, amount: number }
 router.post('/api/currency/:playerId/convert', requireApiKey, (req, res) => {
   const uid = req.params.playerId.toLowerCase();
+  // Self-check: only convert own currency (admin bypass)
+  const callerId = req.auth?.userId?.toLowerCase();
+  if (!req.auth?.isAdmin && callerId !== uid) {
+    return res.status(403).json({ error: 'You can only convert your own currency' });
+  }
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'Player not found' });
 
@@ -112,6 +122,11 @@ router.get('/api/currency/templates', (req, res) => {
 // POST /api/daily-bonus/claim — player actively claims daily login rewards
 router.post('/api/daily-bonus/claim', requireApiKey, (req, res) => {
   const uid = (req.body.player || req.body.playerId || '').toLowerCase();
+  // Self-check: only claim own daily bonus (admin bypass)
+  const callerId = req.auth?.userId?.toLowerCase();
+  if (!req.auth?.isAdmin && callerId !== uid) {
+    return res.status(403).json({ error: 'You can only claim your own daily bonus' });
+  }
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'Player not found' });
   ensureUserCurrencies(u);
