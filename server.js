@@ -238,6 +238,19 @@ require('./routes/dungeons').loadDungeonState();
   }
 })();
 
+// Clean up legacy development-type quests (agent system retired)
+{
+  const before = state.quests.length;
+  state.quests = state.quests.filter(q => q.type !== 'development' || q.status === 'completed');
+  const removed = before - state.quests.length;
+  if (removed > 0) {
+    const { rebuildQuestsById, saveQuests } = require('./lib/state');
+    rebuildQuestsById();
+    saveQuests();
+    console.log(`[cleanup] Removed ${removed} legacy development-type quests`);
+  }
+}
+
 // NPC & rotation systems
 startupNpcCheck();
 const npcInterval = setInterval(checkPeriodicTasks, NPC_ROTATION_MS);

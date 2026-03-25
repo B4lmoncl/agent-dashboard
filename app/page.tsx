@@ -1040,7 +1040,7 @@ export default function Dashboard() {
                           return (
                             <div key={m.id} className="rounded-lg px-2.5 py-1.5" style={{ background: count > 0 ? "rgba(255,255,255,0.03)" : "transparent", opacity: count > 0 ? 1 : 0.35 }}>
                               <div className="flex items-center gap-2">
-                                <img src={m.icon} alt="" width={18} height={18} className="img-render-auto" onError={e => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} />
+                                <img src={m.icon || undefined} alt="" width={18} height={18} className="img-render-auto" onError={e => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} />
                                 <div className="flex-1 min-w-0">
                                   <span className="text-xs truncate block" style={{ color: rarColor }}>{m.name}</span>
                                 </div>
