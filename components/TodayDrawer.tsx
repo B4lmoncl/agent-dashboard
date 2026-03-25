@@ -46,6 +46,7 @@ interface TodayItem {
   rewardIcon?: string;
   tooltipKey?: string; // GameTooltip registry key
   onClick?: () => void;
+  onClaim?: () => void;  // separate claim action (rendered as button inside card)
 }
 
 interface TodayCategory {
@@ -358,7 +359,8 @@ export default function TodayDrawer({
       reward: dailyBonusAvailable ? "+Gold, +Stardust" : undefined,
       rewardIcon: "/images/icons/currency-gold.png",
       tooltipKey: "gold",
-      onClick: dailyBonusAvailable ? onClaimDailyBonus : undefined,
+      onClick: () => { onNavigate("questBoard"); onClose(); },
+      onClaim: dailyBonusAvailable ? onClaimDailyBonus : undefined,
     });
 
     // Companion Pet (2x/day)
@@ -408,7 +410,7 @@ export default function TodayDrawer({
       };
       for (const m of dailyMissions.missions) {
         const nav = missionNav[m.id];
-        daily.push({
+        const item: TodayItem = {
           id: `dm-${m.id}`,
           icon: nav?.icon ?? "/images/icons/currency-stardust.png",
           label: m.label,
@@ -419,10 +421,13 @@ export default function TodayDrawer({
           tooltipKey: "daily_missions",
           onClick: nav?.view
             ? () => { onNavigate(nav.view); onClose(); }
-            : m.id === "login" && dailyBonusAvailable
-            ? onClaimDailyBonus
             : () => navigateAndScroll(onNavigate, onClose, "questBoard", "daily-missions-section"),
-        });
+        };
+        // Login mission gets a separate claim button when daily bonus is available
+        if (m.id === "login" && dailyBonusAvailable) {
+          item.onClaim = onClaimDailyBonus;
+        }
+        daily.push(item);
       }
 
       // Unclaimed milestones → URGENT
@@ -439,7 +444,8 @@ export default function TodayDrawer({
             sub: Object.entries(ms.reward).map(([k, v]) => `+${v} ${k}`).join(", "),
             reward: "Claim now",
             tooltipKey: "daily_missions",
-            onClick: onClaimMilestone ? () => onClaimMilestone(ms.threshold) : () => navigateAndScroll(onNavigate, onClose, "questBoard", "daily-missions-section"),
+            onClick: () => navigateAndScroll(onNavigate, onClose, "questBoard", "daily-missions-section"),
+            onClaim: onClaimMilestone ? () => onClaimMilestone(ms.threshold) : undefined,
           });
         }
       }
@@ -788,19 +794,10 @@ export default function TodayDrawer({
                   </div>
                 </div>
               </div>
-              {/* XP bar */}
-              <div className="w-full max-w-[180px] mt-1.5">
-                <div className="flex items-center justify-between mb-0.5">
-                  <span className="text-xs font-semibold" style={{ color: levelInfo.color, fontSize: 12 }}>{levelInfo.title} <span style={{ fontSize: 10, opacity: 0.5 }}>→</span></span>
-                  <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.3)", fontSize: 12 }}>{Math.round(xpProgress * 100)}%</span>
-                </div>
-                <div className="h-1 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.06)" }}>
-                  <div className="h-full rounded-full" style={{
-                    width: `${Math.round(xpProgress * 100)}%`,
-                    background: `linear-gradient(90deg, ${levelInfo.color}88, ${levelInfo.color})`,
-                    transition: "width 0.8s ease-out",
-                  }} />
-                </div>
+              {/* XP percentage text */}
+              <div className="mt-1.5 text-center">
+                <span className="text-xs font-semibold" style={{ color: levelInfo.color, fontSize: 12 }}>{levelInfo.title}</span>
+                <span className="text-xs font-mono ml-1.5" style={{ color: "rgba(255,255,255,0.3)", fontSize: 12 }}>{Math.round(xpProgress * 100)}% XP</span>
               </div>
             </div>
 
@@ -1006,7 +1003,7 @@ export default function TodayDrawer({
                         {item.sub && (
                           <span className="text-xs" style={{ color: "rgba(255,255,255,0.25)", fontSize: 12 }}>{item.sub}</span>
                         )}
-                        {item.reward && !item.done && (
+                        {item.reward && !item.done && !item.onClaim && (
                           <span className="text-xs font-mono flex items-center gap-1 px-1.5 py-0.5 rounded-md" style={{
                             background: "rgba(167,139,250,0.08)",
                             color: "rgba(167,139,250,0.7)",
@@ -1019,8 +1016,26 @@ export default function TodayDrawer({
                             {item.reward}
                           </span>
                         )}
-                        {!item.sub && !item.reward && <span />}
+                        {!item.sub && !item.reward && !item.onClaim && <span />}
                       </div>
+
+                      {/* Claim button (separate from card navigation) */}
+                      {item.onClaim && !item.done && (
+                        <button
+                          onClick={(e) => { e.stopPropagation(); item.onClaim?.(); }}
+                          className="w-full mt-1 py-1.5 rounded-lg text-xs font-bold"
+                          style={{
+                            background: item.urgent
+                              ? "linear-gradient(135deg, rgba(251,191,36,0.2) 0%, rgba(251,191,36,0.1) 100%)"
+                              : "linear-gradient(135deg, rgba(255,68,68,0.2) 0%, rgba(255,68,68,0.1) 100%)",
+                            color: item.urgent ? "#fbbf24" : "#ff4444",
+                            border: `1px solid ${item.urgent ? "rgba(251,191,36,0.3)" : "rgba(255,68,68,0.3)"}`,
+                            cursor: "pointer",
+                          }}
+                        >
+                          {item.urgent ? "Claim!" : "Claim"}
+                        </button>
+                      )}
                     </button>
                   ))}
                 </div>
