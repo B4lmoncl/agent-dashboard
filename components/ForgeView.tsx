@@ -807,7 +807,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                           });
                           if (r.ok) { onRefresh?.(); fetchData(); setCraftResult("Upgrade purchased!"); }
                           else { const d = await r.json().catch(() => ({})); setCraftResult(d.error || "Upgrade failed"); }
-                        } catch { setCraftResult("Network error"); }
+                        } catch (err) { console.error('[forge] buy_upgrade error:', err); setCraftResult("Network error"); }
                         setBuyingUpgrade(null);
                       }}
                       disabled={!canAfford || buyingUpgrade === up.id}
@@ -1240,7 +1240,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                   } else {
                     setEnchantResult(data.error || "Enchanting failed");
                   }
-                } catch { setEnchantResult("Network error"); }
+                } catch (err) { console.error('[forge] enchant_roll error:', err); setEnchantResult("Network error"); }
                 setEnchantLoading(false);
               };
 
@@ -1263,7 +1263,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                   } else {
                     setEnchantResult(data.error || "Failed");
                   }
-                } catch { setEnchantResult("Network error"); }
+                } catch (err) { console.error('[forge] enchant_choose error:', err); setEnchantResult("Network error"); }
                 setEnchantLoading(false);
               };
 
@@ -1541,7 +1541,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                                       setTimeout(() => setDismantleResult(null), 5000);
                                       fetchData();
                                       onRefresh?.();
-                                    } catch { setDismantleResult({ message: "Network error" }); }
+                                    } catch (err) { console.error('[forge] reforge error:', err); setDismantleResult({ message: "Network error" }); }
                                   },
                                 });
                               }}
