@@ -462,6 +462,22 @@ function ExpeditionView({
         </div>
       </div>
 
+      {/* Progress flavor message */}
+      {(() => {
+        const msgs = expedition.progressMessages;
+        if (!msgs?.length) return null;
+        const currentCp = expedition.checkpoints.find((cp: ExpeditionCheckpoint) => !cp.reached);
+        if (!currentCp) return null;
+        const pct = currentCp.required > 0 ? expedition.progress / currentCp.required : 0;
+        const msgIdx = pct >= 0.75 ? 2 : pct >= 0.50 ? 1 : pct >= 0.25 ? 0 : -1;
+        if (msgIdx < 0 || !msgs[msgIdx]) return null;
+        return (
+          <p className="text-xs italic text-center py-1.5" style={{ color: "rgba(255,255,255,0.3)" }}>
+            &ldquo;{msgs[msgIdx]}&rdquo;
+          </p>
+        );
+      })()}
+
       {/* Checkpoints */}
       <div className="space-y-3">
         {expedition.checkpoints.map((cp: ExpeditionCheckpoint) => {
@@ -510,6 +526,11 @@ function ExpeditionView({
                       {cp.name}
                       {cp.isBonus && <span className="ml-1 text-xs text-w20">(Bonus)</span>}
                     </p>
+                    {cp.flavor && (cp.reached || isCurrent) && (
+                      <p className="text-xs italic mt-0.5" style={{ color: "rgba(255,255,255,0.25)", lineHeight: 1.4 }}>
+                        {cp.flavor}
+                      </p>
+                    )}
                     <p className="text-xs text-w20 mt-0.5">
                       {cp.required} quests required
                       {cp.claimedByPlayer && <span style={{ color: "#22c55e" }}> · Claimed</span>}

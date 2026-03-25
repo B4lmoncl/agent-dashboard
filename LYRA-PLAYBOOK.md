@@ -14,6 +14,30 @@
 
 ---
 
+## 0. Tone & Voice Guide — Pflichtlektüre vor jedem Content
+
+**Primäre Tone-Quellen (in Prioritätsreihenfolge):**
+
+1. **Skulduggery Pleasant** — DIE Kern-Stimme für Quest Hall. Trockener Humor in jeder Situation. Eleganz als Waffe. Selbstbewusstsein das so absurd ist, dass es schon wieder charmant wird. "Die beste Verteidigung ist ein gut sitzender Anzug und eine schnelle Zunge." Flavor-Text soll klingen, als würde ein unsterbliches Skelett im Maßanzug es dir erzählen — mit einem Grinsen, das man nicht sehen kann. Kampf und Gefahr? Kommentiert mit der Gelassenheit eines Mannes, der schon alles überlebt hat (wortwörtlich).
+2. **Königsmörder-Chronik (Rothfuss)** — Poetisch aber nie kitschig. Musik und Worte haben Gewicht. Beschreibungen die sich anfühlen wie ein perfekt gesprochener Satz in einem leisen Raum.
+3. **Stormlight Archive (Sanderson)** — "Reise vor Ziel." Syl-Energie: neugierig, leicht, überraschend tiefgründig. Die Ideale durchziehen alles, immer paraphrasiert, nie direkt zitiert.
+4. **Scheibenwelt (Pratchett)** — Fußnoten-Energie. Die Art, wie die Welt sich selbst kommentiert. Absurdes wird mit akademischer Ernsthaftigkeit behandelt.
+5. **Critical Role / Dungeons and Daddies** — Tischgefühl. Momente die sich anfühlen wie ein perfekter Würfelwurf oder ein Spieler der etwas Unerwartetes tut.
+
+**Die Mischung macht's:**
+- Ein NPC-Zitat: Skulduggery-trocken + Rothfuss-poetisch
+- Ein Checkpoint-Flavor: Stormlight-atmosphärisch + Pratchett-Fußnote
+- Ein Item-Desc: Skulduggery-Eleganz + Kingkiller-Wortwahl
+- **Durchrotieren** — nie nur eine Quelle pro Text. Leon kennt alle Werke, also muss es clever sein.
+
+**Anti-Pattern:**
+- KEIN Herr-der-Ringe-Pathos (zu pompös)
+- KEIN Marvel-Quip-Humor (zu oberflächlich)
+- KEINE direkten Zitate (paraphrasieren/channeln)
+- NIEMALS spoilern (Easter Eggs soll der User selbst finden)
+
+---
+
 ## 1. Neuen NPC erstellen
 
 **Datei**: `public/data/npcQuestGivers.json`

@@ -29,140 +29,280 @@
         "name": "Durchquerung des Nebelwalds",
         "description": "Dichter Nebel hüllt den uralten Wald ein. Die Gilde muss einen sicheren Pfad durch die trügerischen Lichtungen finden.",
         "icon": "/images/icons/exp-forest.png",
-        "checkpointNames": ["Waldrand erreicht", "Lichtung durchquert", "Nebelkern bezwungen", "Geheimpfad entdeckt"]
+        "checkpointNames": ["Waldrand erreicht", "Lichtung durchquert", "Nebelkern bezwungen", "Geheimpfad entdeckt"],
+        "checkpointFlavor": [
+          "Die ersten Bäume weichen zurück. Hinter euch schließt sich der Nebel wie ein Vorhang.",
+          "Stille liegt über der Lichtung. Die Luft schmeckt nach Regen und altem Holz — der Wald beobachtet euch.",
+          "Im Herzen des Nebels pulsiert etwas Altes. Die Gilde hat es bezwungen — vorerst.",
+          "Zwischen verwachsenen Wurzeln führt ein Pfad ins Nirgendwo. Oder vielmehr: ins Geheimnis."
+        ],
+        "progressMessages": ["Der Nebel weicht langsam zurück...", "Ihr könnt die Lichtung schon erahnen.", "Fast am Ziel — der Wald gibt nach."]
       },
       {
         "id": "bergpass",
         "name": "Der Bergpass von Kaltstein",
         "description": "Ein eisiger Bergpass versperrt den Weg nach Norden. Nur gemeinsam kann die Gilde den Aufstieg meistern.",
         "icon": "/images/icons/exp-mountain.png",
-        "checkpointNames": ["Basislager errichtet", "Felswand erklommen", "Gipfel erreicht", "Versteckter Schrein gefunden"]
+        "checkpointNames": ["Basislager errichtet", "Felswand erklommen", "Gipfel erreicht", "Versteckter Schrein gefunden"],
+        "checkpointFlavor": [
+          "Zelte stehen, das Feuer brennt. Über euch türmt sich der Berg wie ein schlafender Riese.",
+          "Stein für Stein, Griff für Griff. Der Wind zerrt an euch, doch die Gilde hält zusammen.",
+          "Die Welt liegt unter euch. Für einen Moment ist alles still — nur der Himmel und ihr.",
+          "Hinter einer Eiswand verbirgt sich ein Schrein, den seit Generationen niemand betreten hat."
+        ],
+        "progressMessages": ["Der Aufstieg hat begonnen — jeder Schritt zählt.", "Halbzeit! Der Gipfel kommt näher.", "Die Luft wird dünn, aber euer Wille ist stärker."]
       },
       {
         "id": "ruinen",
         "name": "Die Ruinen von Aldrath",
         "description": "Vergessene Ruinen einer alten Zivilisation. In ihren Hallen liegen verlorene Schätze — und vergessene Gefahren.",
         "icon": "/images/icons/exp-ruins.png",
-        "checkpointNames": ["Eingang freigelegt", "Innere Hallen erkundet", "Schatzkammer geöffnet", "Verborgene Bibliothek entdeckt"]
+        "checkpointNames": ["Eingang freigelegt", "Innere Hallen erkundet", "Schatzkammer geöffnet", "Verborgene Bibliothek entdeckt"],
+        "checkpointFlavor": [
+          "Der Staub von Jahrhunderten wirbelt auf, als die Tür nachgibt. Dahinter wartet die Stille der Vergessenen.",
+          "Säulen, so hoch, dass ihre Spitzen im Dunkel verschwinden. An den Wänden erzählen Reliefs Geschichten, die kein Buch bewahrt hat.",
+          "Gold glänzt im Fackelschein — doch der wahre Schatz einer toten Zivilisation war nie das Gold.",
+          "Zwischen verstaubten Regalen flüstert das Wissen der Alten. Manche Bücher schlagen sich von selbst auf."
+        ],
+        "progressMessages": ["Die Ruinen beginnen, ihre Geheimnisse preiszugeben.", "Tiefer hinein — die Hallen werden älter.", "Die letzte Kammer liegt nur noch wenige Schritte entfernt."]
       },
       {
         "id": "sternentempel",
         "name": "Reise zum Sternentempel",
         "description": "Am Horizont leuchtet der legendäre Sternentempel. Der Weg dorthin führt durch unwirtliches Land.",
         "icon": "/images/icons/exp-temple.png",
-        "checkpointNames": ["Karawane gestartet", "Oase erreicht", "Tempeltor erreicht", "Sternenkammer betreten"]
+        "checkpointNames": ["Karawane gestartet", "Oase erreicht", "Tempeltor erreicht", "Sternenkammer betreten"],
+        "checkpointFlavor": [
+          "Die Karawane setzt sich in Bewegung. Am Horizont schimmert etwas, das Hoffnung oder Hitzeflimmern sein könnte.",
+          "Wasser! Und Schatten. Die Oase ist real — was in einer Welt voller Illusionen nicht selbstverständlich ist.",
+          "Das Tempeltor ragt empor, graviert mit Sternenmustern, die sich mit dem Nachthimmel zu bewegen scheinen.",
+          "Die Sternenkammer öffnet sich, und für einen Atemzug ist der Unterschied zwischen Decke und Firmament nicht mehr erkennbar."
+        ],
+        "progressMessages": ["Die Sterne zeigen den Weg — folgt ihnen.", "Der Tempel zeichnet sich am Horizont ab.", "Die Sternenkammer ruft — ihr seid beinahe da."]
       },
       {
         "id": "kueste",
         "name": "Expedition zur Sturmküste",
         "description": "Die raue Sturmküste birgt ein gestrandetes Schiff voller Geheimnisse. Doch der Weg entlang der Klippen ist tückisch.",
         "icon": "/images/icons/exp-coast.png",
-        "checkpointNames": ["Klippenpfad gemeistert", "Wrack gesichtet", "Schiffsrumpf betreten", "Kapitänskajüte geöffnet"]
+        "checkpointNames": ["Klippenpfad gemeistert", "Wrack gesichtet", "Schiffsrumpf betreten", "Kapitänskajüte geöffnet"],
+        "checkpointFlavor": [
+          "Die Klippen sind bezwungen. Unten schäumt das Meer, als hätte es eine persönliche Meinung zu eurem Vorhaben.",
+          "Zwischen Gischt und Fels liegt das Wrack — größer als erwartet, schiefer als gehofft.",
+          "Salzwasser tropft von den Decken. Das Schiff knarrt, als erinnere es sich an bessere Tage.",
+          "Die Kajüte des Kapitäns. Sein Logbuch liegt aufgeschlagen, als hätte er euch erwartet."
+        ],
+        "progressMessages": ["Die Brandung ist laut, aber euer Fortschritt lauter.", "Das Wrack nimmt Gestalt an — weiter!", "Nur noch die Kajüte trennt euch vom Ziel."]
       },
       {
         "id": "unterwelt",
         "name": "Abstieg in die Kristallhöhlen",
         "description": "Tief unter der Erde glühen Kristalle in allen Farben. Die Höhlen sind wunderschön — und voller Überraschungen.",
         "icon": "/images/icons/exp-cave.png",
-        "checkpointNames": ["Höhleneingang betreten", "Kristallgrotte erreicht", "Tiefste Kammer erforscht", "Urkristall gefunden"]
+        "checkpointNames": ["Höhleneingang betreten", "Kristallgrotte erreicht", "Tiefste Kammer erforscht", "Urkristall gefunden"],
+        "checkpointFlavor": [
+          "Die Dunkelheit verschluckt euch — dann beginnen die Wände zu leuchten. Sanft, wie ein Puls.",
+          "Die Grotte erstrahlt in Farben, für die es vermutlich noch keine Namen gibt. Jemand sollte sich welche ausdenken.",
+          "In der tiefsten Kammer ist die Stille so vollkommen, dass man den eigenen Herzschlag als Störung empfindet.",
+          "Der Urkristall summt in einer Frequenz, die nicht gehört, sondern gefühlt wird. Er hat auf euch gewartet."
+        ],
+        "progressMessages": ["Das Licht der Kristalle weist den Weg nach unten.", "Tiefer — die Kristalle werden größer und heller.", "Der Urkristall ist nah. Ihr spürt sein Summen."]
       },
       {
         "id": "wueste",
         "name": "Durchquerung der Sandmeere",
         "description": "Endlose Dünen erstrecken sich bis zum Horizont. Wasser ist knapp, der Sand unerbittlich.",
         "icon": "/images/icons/exp-desert.png",
-        "checkpointNames": ["Erste Düne überwunden", "Verborgene Oase gefunden", "Sandsturm überstanden", "Vergessene Stadt entdeckt"]
+        "checkpointNames": ["Erste Düne überwunden", "Verborgene Oase gefunden", "Sandsturm überstanden", "Vergessene Stadt entdeckt"],
+        "checkpointFlavor": [
+          "Die erste Düne liegt hinter euch. Die nächste sieht exakt gleich aus. Und die danach auch. Willkommen in der Wüste.",
+          "Eine Oase, versteckt zwischen Felsen, als wollte sie nicht gefunden werden. Aber ihr seid hartnäckiger als die Wüste.",
+          "Sand in den Augen, Sand in den Stiefeln, Sand in Gedanken, die eigentlich sandfrei sein sollten. Aber ihr steht noch.",
+          "Aus dem Sand ragen Türme einer Stadt, die auf keiner Karte verzeichnet ist. Vielleicht aus gutem Grund."
+        ],
+        "progressMessages": ["Der Sand ist tief, aber euer Wille tiefer.", "Die Hitze flimmert, doch ihr haltet Kurs.", "Am Horizont — dort! Die Umrisse einer vergessenen Stadt."]
       },
       {
         "id": "sumpf",
         "name": "Durch die Nebelmoore",
         "description": "Die Nebelmoore verschlucken jeden Laut. Irrlichter tanzen zwischen den Bäumen und führen Wanderer in die Irre.",
         "icon": "/images/icons/exp-swamp.png",
-        "checkpointNames": ["Moorpfad gefunden", "Sumpfbrücke überquert", "Herz der Moore erreicht", "Irrlichtquelle besänftigt"]
+        "checkpointNames": ["Moorpfad gefunden", "Sumpfbrücke überquert", "Herz der Moore erreicht", "Irrlichtquelle besänftigt"],
+        "checkpointFlavor": [
+          "Ein Pfad — wenn man großzügig ist mit dem Wort. Zwei Bretter und eine Hoffnung, dass der Sumpf heute gnädig ist.",
+          "Die Brücke schwankt, das Moor blubbert unzufrieden. Aber ihr seid drüben, und das ist alles, was zählt.",
+          "Im Herzen der Moore ist die Luft so dick, dass man sie kauen könnte. Die Irrlichter tanzen näher.",
+          "Die Quelle der Irrlichter ist besänftigt. Sie leuchten nun sanft statt tückisch — ein dezenter, aber wichtiger Unterschied."
+        ],
+        "progressMessages": ["Der Moorpfad hält — vorerst.", "Durch den Nebel schimmert Fortschritt.", "Die Irrlichter weichen zurück. Ihr seid fast da."]
       },
       {
         "id": "aetherspitze",
         "name": "Aufstieg zur Aetherspitze",
         "description": "Der höchste Gipfel Aethermoors, wo der Aetherstrom so dicht weht, dass die Luft selbst flüstert. Wenige kehren unverändert zurück.",
         "icon": "/images/icons/expedition-generic.png",
-        "checkpointNames": ["Windschneise durchquert", "Aetherfeld betreten", "Sturmplateau erreicht", "Gipfel der Aetherspitze erklommen"]
+        "checkpointNames": ["Windschneise durchquert", "Aetherfeld betreten", "Sturmplateau erreicht", "Gipfel der Aetherspitze erklommen"],
+        "checkpointFlavor": [
+          "Der Wind heult durch die Schneise, als hätte er eine Nachricht, die er nicht in Worte fassen kann.",
+          "Das Aetherfeld kribbelt auf der Haut. Die Realität fühlt sich hier dünner an, als wäre die Welt nur eine Skizze.",
+          "Auf dem Sturmplateau stehen Steine, die langsam schweben. Niemand fragt warum. Manche Dinge sind einfach so.",
+          "Der Gipfel. Der Aether strömt hier so dicht, dass die Gedanken klarer werden — oder verrückter. Schwer zu unterscheiden."
+        ],
+        "progressMessages": ["Der Wind trägt euch aufwärts — nutzt den Schwung.", "Das Aetherfeld lichtet sich vor euch.", "Der Gipfel ist zum Greifen nah. Atmet tief."]
       },
       {
         "id": "eisenwald",
         "name": "Der Eisenwald von Grimhold",
         "description": "Die Bäume des Eisenwalds tragen Rinde aus dunklem Metall. Etwas Altes schläft zwischen ihren Wurzeln — und es dreht sich im Schlaf.",
         "icon": "/images/icons/expedition-generic.png",
-        "checkpointNames": ["Eisentor passiert", "Metallhain durchquert", "Wurzelkammer freigelegt", "Herz des Eisenwalds berührt"]
+        "checkpointNames": ["Eisentor passiert", "Metallhain durchquert", "Wurzelkammer freigelegt", "Herz des Eisenwalds berührt"],
+        "checkpointFlavor": [
+          "Das Eisentor schwingt auf mit einem Klang, der noch minutenlang zwischen den Stämmen nachhallt. Willkommen im Wald, der nicht brennt.",
+          "Die Bäume hier klingen, wenn der Wind sie streift. Es ist beinahe Musik — wenn man großzügig mit dem Begriff umgeht.",
+          "Unter den Wurzeln liegt eine Kammer, älter als der Wald selbst. Jemand hat hier geschmiedet, lange bevor Schmiede erfunden wurden.",
+          "Das Herz des Eisenwalds pulsiert — ein tiefer, metallischer Herzschlag. Es schläft noch. Lasst es dabei."
+        ],
+        "progressMessages": ["Die Metallbäume knarren zustimmend — ihr seid auf dem richtigen Weg.", "Der Wald lichtet sich widerwillig.", "Das Herz des Waldes schlägt lauter. Ihr seid nah."]
       },
       {
         "id": "versunkener-turm",
         "name": "Der Versunkene Turm",
         "description": "Ein halber Turm ragt aus dem Silbersee. Was einst über den Wolken thronte, ruht nun halb im Wasser. Die unteren Stockwerke birgen noch immer ihre Geheimnisse.",
         "icon": "/images/icons/expedition-generic.png",
-        "checkpointNames": ["Seeüberquerung geschafft", "Turmeingang gefunden", "Überflutete Hallen erkundet", "Versiegeltes Archiv geborgen"]
+        "checkpointNames": ["Seeüberquerung geschafft", "Turmeingang gefunden", "Überflutete Hallen erkundet", "Versiegeltes Archiv geborgen"],
+        "checkpointFlavor": [
+          "Der Silbersee ist still wie ein Spiegel, der lieber nicht zeigt, was unter ihm liegt. Ihr seid drüben — trocken ist relativ.",
+          "Der Turmeingang liegt halb unter Wasser. Die Tür öffnet sich nach innen, was in diesem Fall bedeutet: nach unten.",
+          "Die Hallen sind überflutet, aber die Wandmalereien leuchten noch immer. Wasser konserviert besser als jedes Museum.",
+          "Das Archiv war versiegelt — vermutlich nicht, um etwas drinnen zu halten. Vermutlich."
+        ],
+        "progressMessages": ["Der Turm ragt geduldig aus dem See. Ihr nähert euch.", "Die überfluteten Hallen öffnen sich vor euch.", "Das versiegelte Archiv wartet — nur noch ein Stockwerk."]
       },
       {
         "id": "glutklamm",
         "name": "Durch die Glutklamm",
         "description": "Zwischen den Schwarzfelsen fließt noch immer Glut aus einer vergessenen Schmiede. Der Pfad ist schmal, die Hitze erbarmungslos.",
         "icon": "/images/icons/expedition-generic.png",
-        "checkpointNames": ["Klammeingang erreicht", "Glutbrücke überquert", "Schmiedegrund durchschritten", "Alte Esse entdeckt"]
+        "checkpointNames": ["Klammeingang erreicht", "Glutbrücke überquert", "Schmiedegrund durchschritten", "Alte Esse entdeckt"],
+        "checkpointFlavor": [
+          "Die Hitze trifft euch wie eine Wand. Die Felsen glühen dunkelrot — gemütlich ist anders, aber beeindruckend allemal.",
+          "Die Glutbrücke ist genau so breit, wie man es sich nicht wünscht. Unten fließt etwas, das früher Stein war.",
+          "Der Schmiedegrund dampft und zischt. Wer auch immer hier geschmiedet hat, kannte kein Maß — und brauchte auch keins.",
+          "Die alte Esse steht noch, ihr Feuer nie erloschen. Manche Flammen sind zu stur zum Sterben."
+        ],
+        "progressMessages": ["Die Hitze steigt, aber so auch euer Fortschritt.", "Halbzeit — die Glutbrücke liegt hinter euch.", "Die alte Esse glüht am Ende der Klamm. Fast geschafft."]
       },
       {
         "id": "frostmark",
         "name": "Expedition in die Frostmark",
         "description": "Jenseits der Nordwinde liegt die Frostmark — eine Ebene aus ewigem Eis, in der selbst die Zeit langsamer zu fließen scheint.",
         "icon": "/images/icons/expedition-generic.png",
-        "checkpointNames": ["Nordwind überstanden", "Eislabyrinth gemeistert", "Gefrorener Hain erreicht", "Zeitsplitter geborgen"]
+        "checkpointNames": ["Nordwind überstanden", "Eislabyrinth gemeistert", "Gefrorener Hain erreicht", "Zeitsplitter geborgen"],
+        "checkpointFlavor": [
+          "Der Nordwind hat alles gegeben. Ihr habt mehr gegeben. Vorläufiger Stand: Gilde 1, Wind 0.",
+          "Das Eislabyrinth wechselt seine Wege bei Nacht. Ihr habt es bei Tag geschafft, was vermutlich klüger war.",
+          "Der Hain ist gefroren — Bäume, Vögel, sogar der Regen steht still in der Luft. Schön, auf eine beunruhigende Art.",
+          "Der Zeitsplitter schimmert in euren Händen. Die Zeit um ihn herum fließt etwas langsamer. Oder ihr werdet etwas schneller."
+        ],
+        "progressMessages": ["Die Kälte beißt, aber ihr beißt zurück.", "Das Eis wird dünner — oder euer Wille dicker.", "Der Zeitsplitter flimmert am Horizont. Haltet durch."]
       },
       {
         "id": "schattenschlucht",
         "name": "Die Schattenschlucht",
         "description": "Eine Schlucht so tief, dass kein Sonnenlicht ihren Grund erreicht. Die Gilde muss sich auf andere Sinne verlassen.",
         "icon": "/images/icons/expedition-generic.png",
-        "checkpointNames": ["Abstieg begonnen", "Lichtlose Tiefe erreicht", "Echo-Halle durchquert", "Schattenkern gefunden"]
+        "checkpointNames": ["Abstieg begonnen", "Lichtlose Tiefe erreicht", "Echo-Halle durchquert", "Schattenkern gefunden"],
+        "checkpointFlavor": [
+          "Der erste Schritt hinab, und das Licht über euch wird zu einer fernen Erinnerung. Die Schlucht atmet kalt.",
+          "Hier unten gibt es kein Licht. Dafür Geräusche, die kein Licht brauchen, um beunruhigend zu sein.",
+          "Die Echo-Halle wiederholt nicht nur Geräusche — sie fügt eigene hinzu. Dezent, aber unmissverständlich.",
+          "Der Schattenkern ist kein Ort. Er ist eine Abwesenheit von Ort. Und doch steht ihr mittendrin."
+        ],
+        "progressMessages": ["Tiefer hinab — die Schatten heißen euch willkommen.", "Die Echo-Halle liegt vor euch. Hört genau hin.", "Der Schattenkern pulsiert in der Finsternis. Beinahe da."]
       },
       {
         "id": "windweber-ebene",
         "name": "Über die Windweber-Ebene",
         "description": "Die Windweber-Ebene ist berüchtigt für ihre unberechenbaren Aetherströme. Wer hier wandert, braucht festen Willen und gute Gefährten.",
         "icon": "/images/icons/expedition-generic.png",
-        "checkpointNames": ["Ebene betreten", "Aetherstromfeld navigiert", "Windweber-Steine gefunden", "Auge des Sturms erreicht"]
+        "checkpointNames": ["Ebene betreten", "Aetherstromfeld navigiert", "Windweber-Steine gefunden", "Auge des Sturms erreicht"],
+        "checkpointFlavor": [
+          "Die Ebene empfängt euch mit einem Windstoß, der nach Ozon schmeckt und nach schlechten Entscheidungen klingt.",
+          "Die Aetherströme weben Muster in die Luft — sichtbar, greifbar, gelegentlich feindselig. Navigation ist hier ein starkes Wort.",
+          "Die Windweber-Steine stehen in perfekter Formation. Wer sie aufgestellt hat, verstand etwas über Wind, das wir vergessen haben.",
+          "Im Auge des Sturms herrscht absolute Stille. Ringsum tobt der Aether. Es ist der friedlichste und bedrohlichste Ort zugleich."
+        ],
+        "progressMessages": ["Die Winde tragen euch voran — ob ihr wollt oder nicht.", "Die Steine sind in Sichtweite. Haltet Kurs.", "Das Auge des Sturms wartet. Ein letzter Kraftakt."]
       },
       {
         "id": "vergessene-bruecke",
         "name": "Die Vergessene Brücke von Thalmund",
         "description": "Einst verband eine gewaltige Brücke zwei Reiche über den Abgrund. Ihre Pfeiler stehen noch, doch der Weg ist längst verfallen.",
         "icon": "/images/icons/expedition-generic.png",
-        "checkpointNames": ["Westpfeiler erreicht", "Brückenreste überquert", "Mittelbogen stabilisiert", "Ostseite betreten"]
+        "checkpointNames": ["Westpfeiler erreicht", "Brückenreste überquert", "Mittelbogen stabilisiert", "Ostseite betreten"],
+        "checkpointFlavor": [
+          "Der Westpfeiler steht noch — trotzig, verwittert, und mit der Gelassenheit von etwas, das Jahrhunderte überlebt hat.",
+          "Die Brückenreste sind weniger Brücke und mehr Vorschlag. Aber ein Vorschlag, dem die Gilde folgt.",
+          "Der Mittelbogen hält wieder. Provisorisch, aber mit Überzeugung. Manchmal reicht das.",
+          "Die Ostseite — das andere Ufer eines Abgrunds, der zwei Reiche trennte. Ihr habt gerade Geschichte rückgängig gemacht."
+        ],
+        "progressMessages": ["Der Westpfeiler steht fest. Weiter zum nächsten.", "Die Brücke nimmt Form an unter euren Händen.", "Nur noch der letzte Bogen — die Ostseite wartet."]
       },
       {
         "id": "aschensee",
         "name": "Der Aschensee",
         "description": "Aus dem stillen See steigt beständig feiner Ascheregen. Fischer meiden seine Ufer, doch Gelehrte berichten von Lichtern unter der Oberfläche.",
         "icon": "/images/icons/expedition-generic.png",
-        "checkpointNames": ["Ufer erreicht", "Aschenebel durchdrungen", "Seeboden-Ruinen gesichtet", "Licht unter dem Wasser berührt"]
+        "checkpointNames": ["Ufer erreicht", "Aschenebel durchdrungen", "Seeboden-Ruinen gesichtet", "Licht unter dem Wasser berührt"],
+        "checkpointFlavor": [
+          "Das Ufer knirscht unter euren Füßen. Feine Asche fällt wie Schnee — nur wärmer und deutlich ungemütlicher.",
+          "Der Aschenebel verschluckt Geräusche und Sicht. Nur der See selbst leuchtet schwach, als wolle er den Weg weisen.",
+          "Unter der Oberfläche schimmern Ruinen — eine Stadt, die lieber untergegangen ist als vergessen zu werden.",
+          "Das Licht unter dem Wasser reagiert auf eure Berührung. Es ist alt, es ist warm, und es erkennt euch."
+        ],
+        "progressMessages": ["Die Asche fällt leise. Euer Fortschritt ist lauter.", "Der Nebel lichtet sich — der See gibt nach.", "Das Licht unter der Oberfläche wird heller. Ihr seid fast da."]
       },
       {
         "id": "sternfall-krater",
         "name": "Der Sternfall-Krater",
         "description": "Vor langer Zeit schlug hier ein Stern ein. Der Krater leuchtet noch immer nachts, und das Gestein summt Melodien, die niemand geschrieben hat.",
         "icon": "/images/icons/expedition-generic.png",
-        "checkpointNames": ["Kraterrand erreicht", "Inneren Ring betreten", "Sternengestein berührt", "Melodie des Kerns gehört"]
+        "checkpointNames": ["Kraterrand erreicht", "Inneren Ring betreten", "Sternengestein berührt", "Melodie des Kerns gehört"],
+        "checkpointFlavor": [
+          "Vom Kraterrand aus sieht man das Leuchten — pulsierend, rhythmisch, wie der Herzschlag von etwas, das vom Himmel fiel und überlebte.",
+          "Der innere Ring vibriert unter euren Füßen. Das Gestein hier ist nicht von dieser Welt, und es möchte, dass ihr das wisst.",
+          "Das Sternengestein ist warm. Nicht heiß — warm, wie eine Hand, die man zu lange gehalten hat. Es summt bei Berührung.",
+          "Die Melodie des Kerns ist keine Melodie im eigentlichen Sinne. Es ist eher das Gefühl, dass das Universum leise vor sich hin pfeift."
+        ],
+        "progressMessages": ["Der Krater leuchtet heller, je näher ihr kommt.", "Das Sternengestein summt — es spürt euch.", "Die Melodie wird klarer. Der Kern erwartet euch."]
       },
       {
         "id": "dornenpfad",
         "name": "Der Dornenpfad nach Vael'kor",
         "description": "Der einzige Landweg nach Vael'kor führt durch einen Wald aus lebenden Dornen. Sie wachsen schneller als ein Wanderer laufen kann.",
         "icon": "/images/icons/expedition-generic.png",
-        "checkpointNames": ["Ersten Dornenwall durchbrochen", "Lichtung der Stille gefunden", "Dornenherz umgangen", "Tore von Vael'kor erblickt"]
+        "checkpointNames": ["Ersten Dornenwall durchbrochen", "Lichtung der Stille gefunden", "Dornenherz umgangen", "Tore von Vael'kor erblickt"],
+        "checkpointFlavor": [
+          "Der erste Wall ist durchbrochen. Hinter euch schließen sich die Dornen wieder, langsam und mit einer gewissen Gelassenheit.",
+          "Eine Lichtung, auf der nichts wächst und nichts klingt. Selbst die Dornen meiden diesen Ort. Das ist entweder beruhigend oder das Gegenteil.",
+          "Das Dornenherz schlägt — langsam, vegetabil, und mit der Entschlossenheit von etwas, das seit Äonen wächst. Ihr geht lieber drumherum.",
+          "Die Tore von Vael'kor erheben sich hinter dem letzten Dornenwall. Sie waren die ganze Zeit da — verborgen, aber nie verschwunden."
+        ],
+        "progressMessages": ["Die Dornen weichen — langsam, aber sicher.", "Die Lichtung gewährt eine Verschnaufpause. Nutzt sie.", "Vael'kor schimmert durch das Gestrüpp. Der letzte Wall."]
       },
       {
         "id": "echoturm",
         "name": "Zum Echoturm von Miraval",
         "description": "Der Echoturm wiederholt nicht Worte, sondern Erinnerungen. Wer ihn betritt, hört Stimmen aus seiner eigenen Vergangenheit. Die meisten finden den Ausgang trotzdem.",
         "icon": "/images/icons/expedition-generic.png",
-        "checkpointNames": ["Turmbasis betreten", "Halle der Echos durchquert", "Eigene Stimme gehört", "Turmspitze erreicht"]
+        "checkpointNames": ["Turmbasis betreten", "Halle der Echos durchquert", "Eigene Stimme gehört", "Turmspitze erreicht"],
+        "checkpointFlavor": [
+          "Die Turmbasis flüstert. Nicht bedrohlich — eher so, als würde ein altes Gebäude Smalltalk versuchen.",
+          "Die Halle der Echos gibt nicht zurück, was man hineinruft. Sie gibt zurück, was man meint. Das ist irritierender, als es klingt.",
+          "Eure eigene Stimme, aber von vor langer Zeit. Sie sagt Dinge, die ihr vergessen hattet. Manche davon sind sogar hilfreich.",
+          "Die Turmspitze. Von hier aus kann man alles sehen — und der Turm kann sich an alles erinnern. Eine faire Vereinbarung."
+        ],
+        "progressMessages": ["Die Echos werden lauter — ihr steigt richtig.", "Die Halle summt mit Erinnerungen. Weiter nach oben.", "Die Spitze ist nah. Der Turm erwartet euch."]
       }
     ]
   }

@@ -528,6 +528,7 @@ export interface WeeklyChallenge {
 export interface ExpeditionCheckpoint {
   number: number;
   name: string;
+  flavor?: string | null;
   required: number;
   reached: boolean;
   rewards: Record<string, number>;
@@ -556,6 +557,7 @@ export interface Expedition {
   contributions: ExpeditionContribution[];
   playerContribution: number;
   startedAt: string;
+  progressMessages?: string[] | null;
 }
 
 // ─── Social System Types ─────────────────────────────────────────────────────
