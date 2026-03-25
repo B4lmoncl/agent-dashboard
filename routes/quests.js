@@ -318,7 +318,7 @@ router.post('/api/quest/:id/complete', requireApiKey, (req, res) => {
         const item = giver.finalReward.item;
         addLootToInventory(agentKey, item);
         npcFinalReward = item;
-        saveData();
+        saveUsers();
         console.log(`[npc] Final reward '${item.id}' granted to ${agentKey} for completing ${giver.name}'s chain`);
       }
     }
