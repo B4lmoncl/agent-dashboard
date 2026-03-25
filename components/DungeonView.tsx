@@ -167,7 +167,7 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
         setActiveRun(data.activeRun || null);
         setHistory(data.history || []);
       }
-    } catch { /* ignore */ }
+    } catch (e) { console.error('[dungeon]', e); }
     setLoading(false);
   }, [playerName]);
 
@@ -195,7 +195,7 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
         const data = await r.json();
         setFriends(data.friends || []);
       }
-    } catch { /* ignore */ }
+    } catch (e) { console.error('[dungeon]', e); }
     setFriendsLoading(false);
   }, [playerName, reviewApiKey]);
 

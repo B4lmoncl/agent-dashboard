@@ -30,6 +30,11 @@
     { "id": "bp_s2_40", "name": "Herz der Asche", "description": "Season Pass Level 40 — Season 2: Aschenstrom. Die Flammen haben dich geformt.", "rarity": "epic", "condition": { "type": "battlepass_level", "value": 40 } },
     { "id": "bp_s3_10", "name": "Sternenrufer", "description": "Season Pass Level 10 — Season 3: Sternensturm.", "rarity": "uncommon", "condition": { "type": "battlepass_level", "value": 10 } },
     { "id": "bp_s3_25", "name": "Sturmwandler", "description": "Season Pass Level 25 — Season 3: Sternensturm.", "rarity": "rare", "condition": { "type": "battlepass_level", "value": 25 } },
-    { "id": "bp_s3_40", "name": "Auge des Sturms", "description": "Season Pass Level 40 — Season 3: Sternensturm. Der Sturm beugt sich deinem Willen.", "rarity": "epic", "condition": { "type": "battlepass_level", "value": 40 } }
+    { "id": "bp_s3_40", "name": "Auge des Sturms", "description": "Season Pass Level 40 — Season 3: Sternensturm. Der Sturm beugt sich deinem Willen.", "rarity": "epic", "condition": { "type": "battlepass_level", "value": 40 } },
+    { "id": "sternkind", "name": "Sternkind", "description": "Erworben im Sternentaler-Shop. Die Sterne haben dich als eines der Ihren erkannt.", "rarity": "epic", "condition": { "type": "shop_purchase", "value": 1 } },
+    { "id": "sternjager", "name": "Sternjäger", "description": "Erworben im Sternentaler-Shop. Du jagst Sterne. Manche jagen zurück.", "rarity": "legendary", "condition": { "type": "shop_purchase", "value": 1 } },
+    { "id": "gildenherz", "name": "Gildenherz", "description": "Erworben im Gildentaler-Shop. Das Herz der Gilde schlägt in dir.", "rarity": "epic", "condition": { "type": "shop_purchase", "value": 1 } },
+    { "id": "botschafter", "name": "Botschafter", "description": "Erworben im Gildentaler-Shop. Dein Ruf eilt dir voraus — und er ist makellos.", "rarity": "legendary", "condition": { "type": "shop_purchase", "value": 1 } },
+    { "id": "mondwandler", "name": "Mondwandler", "description": "Erworben im Mondstaub-Shop. Du wandelst auf Monden. Welchen? Allen, vermutlich.", "rarity": "legendary", "condition": { "type": "shop_purchase", "value": 1 } }
   ]
 }

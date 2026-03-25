@@ -1306,7 +1306,9 @@ const REROLL_GOLD_CAP = 50000;
 const REROLL_ESSENZ_COST = 2; // D3-style: material cost stays constant, only gold escalates
 
 router.post('/api/reroll/preview', requireAuth, (req, res) => {
-  const u = req.user;
+  const uid = (req.auth?.userId || '').toLowerCase();
+  const u = state.users[uid];
+  if (!u) return res.status(404).json({ error: 'User not found' });
   const { slot, statToLock } = req.body;
   if (!slot || !VALID_SLOTS.includes(slot)) return res.status(400).json({ error: 'Invalid slot' });
 
@@ -1349,7 +1351,9 @@ router.post('/api/reroll/preview', requireAuth, (req, res) => {
 });
 
 router.post('/api/reroll/enchant', requireAuth, (req, res) => {
-  const u = req.user;
+  const uid = (req.auth?.userId || '').toLowerCase();
+  const u = state.users[uid];
+  if (!u) return res.status(404).json({ error: 'User not found' });
   const { slot, statToLock, chosenOption } = req.body;
   if (!slot || !VALID_SLOTS.includes(slot)) return res.status(400).json({ error: 'Invalid slot' });
 

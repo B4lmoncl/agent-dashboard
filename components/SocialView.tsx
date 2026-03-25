@@ -97,7 +97,7 @@ function FriendsTab({ apiKey, playerName, onOpenProfile }: { apiKey: string; pla
         setIncomingRequests(data.incoming || []);
         setOutgoingRequests(data.outgoing || []);
       }
-    } catch { /* ignore */ }
+    } catch (e) { console.error('[social]', e); }
     setLoading(false);
   }, [apiKey, playerName]);
 
@@ -123,7 +123,7 @@ function FriendsTab({ apiKey, playerName, onOpenProfile }: { apiKey: string; pla
           setSearchResults(filtered);
           setSearchOpen(filtered.length > 0);
         }
-      } catch { /* ignore */ }
+      } catch (e) { console.error('[social]', e); }
     }, 300);
     return () => clearTimeout(timer);
   }, [addInput, playerName, friends]);
@@ -164,7 +164,7 @@ function FriendsTab({ apiKey, playerName, onOpenProfile }: { apiKey: string; pla
         headers: getAuthHeaders(apiKey),
       });
       fetchFriends();
-    } catch { /* ignore */ }
+    } catch (e) { console.error('[social]', e); }
   };
 
   const [confirmRemove, setConfirmRemove] = useState<string | null>(null);
@@ -177,7 +177,7 @@ function FriendsTab({ apiKey, playerName, onOpenProfile }: { apiKey: string; pla
       });
       setConfirmRemove(null);
       fetchFriends();
-    } catch { /* ignore */ }
+    } catch (e) { console.error('[social]', e); }
   };
 
   const incoming = incomingRequests;
@@ -328,7 +328,7 @@ function MessagesTab({ apiKey, playerName, autoOpenWith, onAutoOpened }: { apiKe
     try {
       const r = await fetch(`/api/social/${encodeURIComponent(playerName)}/conversations`, { headers: getAuthHeaders(apiKey) });
       if (r.ok) setConversations((await r.json()).conversations || []);
-    } catch { /* ignore */ }
+    } catch (e) { console.error('[social]', e); }
     setLoading(false);
   }, [apiKey, playerName]);
 
@@ -348,7 +348,7 @@ function MessagesTab({ apiKey, playerName, autoOpenWith, onAutoOpened }: { apiKe
     try {
       const r = await fetch(`/api/social/${encodeURIComponent(playerName)}/messages/${encodeURIComponent(otherPlayerId)}`, { headers: getAuthHeaders(apiKey) });
       if (r.ok) setMessages((await r.json()).messages || []);
-    } catch { /* ignore */ }
+    } catch (e) { console.error('[social]', e); }
   };
 
   // Auto-refresh messages every 10s when a conversation is active
@@ -384,7 +384,7 @@ function MessagesTab({ apiKey, playerName, autoOpenWith, onAutoOpened }: { apiKe
         const data = await r.json().catch(() => null);
         setSendError(data?.error || "Failed to send message");
       }
-    } catch { /* ignore */ }
+    } catch (e) { console.error('[social]', e); }
   };
 
   if (loading) return (
@@ -461,7 +461,7 @@ function MessagesTab({ apiKey, playerName, autoOpenWith, onAutoOpened }: { apiKe
         const existing = new Set(conversations.map(c => c.playerId));
         setFriendsList((data.friends || []).filter((f: { id: string }) => !existing.has(f.id)));
       }
-    } catch { /* ignore */ }
+    } catch (e) { console.error('[social]', e); }
     setShowNewMsg(true);
   };
 
@@ -730,7 +730,7 @@ function TradesTab({ apiKey, playerName }: { apiKey: string; playerName: string 
     try {
       const r = await fetch(`/api/social/${encodeURIComponent(playerName)}/trades`, { headers: getAuthHeaders(apiKey) });
       if (r.ok) setTrades((await r.json()).trades || []);
-    } catch { /* ignore */ }
+    } catch (e) { console.error('[social]', e); }
     setLoading(false);
   }, [apiKey, playerName]);
 
@@ -1124,7 +1124,7 @@ function ActivityFeedTab({ apiKey, playerName, onNavigate, onNavigateToAchieveme
     try {
       const r = await fetch(`/api/social/${encodeURIComponent(playerName)}/activity-feed?limit=30`, { headers: getAuthHeaders(apiKey) });
       if (r.ok) setFeed((await r.json()).feed || []);
-    } catch { /* ignore */ }
+    } catch (e) { console.error('[social]', e); }
     setLoading(false);
   }, [apiKey, playerName]);
 
