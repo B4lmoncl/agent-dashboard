@@ -512,9 +512,24 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
         </div>
       )}
 
-      {/* ─── NPC Grid ──────────────────────────────────────────────────── */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-      {professions.map(prof => {
+      {/* ─── NPC Grid (categorized) ─────────────────────────────────────── */}
+      {[
+        { label: "Armor Professions", desc: "Helm, Armor, Boots", ids: ["schmied","schneider","lederverarbeiter"] },
+        { label: "Weapon & Jewelry", desc: "Weapons, Shields, Rings, Amulets", ids: ["waffenschmied","juwelier"] },
+        { label: "Consumables", desc: "Potions, Meals, Enchants", ids: ["alchemist","koch","verzauberer"] },
+      ].map(cat => {
+        const catProfs = professions.filter(p => cat.ids.includes(p.id));
+        if (catProfs.length === 0) return null;
+        return (
+          <div key={cat.label} className="mb-4">
+            <div className="flex items-center gap-2 mb-2 px-1">
+              <div style={{ flex: 1, height: 1, background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent)" }} />
+              <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.2)" }}>{cat.label}</span>
+              <span className="text-xs" style={{ color: "rgba(255,255,255,0.1)" }}>{cat.desc}</span>
+              <div style={{ flex: 1, height: 1, background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent)" }} />
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {catProfs.map(prof => {
         const locked = !prof.unlocked;
         const loc = NPC_LOCATIONS[prof.id] || { label: prof.name, color: prof.color, desc: "" };
         const isChosen = prof.chosen;
@@ -630,7 +645,10 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
           </div>
         );
       })}
-      </div>
+            </div>
+          </div>
+        );
+      })}
 
       {/* ─── Workshop Tools — permanent upgrades ────────────────────────────── */}
       {(() => {

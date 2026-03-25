@@ -16,7 +16,7 @@
       "name": "Blacksmith",
       "npcName": "Grimvar the Smith",
       "npcPortrait": "/images/npcs/grimvar-schmied.png",
-      "npcGreeting": "The iron calls, adventurer. Place your piece on the anvil — I'll make something of it.",
+      "npcGreeting": "Das Eisen ruft, Wanderer. Leg dein Stück auf den Amboss — ich mach was draus.",
       "description": "Forges heavy armor from ore and crystal. Also hosts the Salvage station for dismantling gear.",
       "color": "#f59e0b",
       "icon": "/images/icons/prof-schmied.png",
@@ -41,7 +41,7 @@
       "name": "Alchemist",
       "npcName": "Ysolde the Alchemist",
       "npcPortrait": "/images/npcs/ysolde-alchemist.png",
-      "npcGreeting": "Every drop counts, every herb has its purpose. What shall I brew for you?",
+      "npcGreeting": "Jeder Tropfen zählt, jedes Kraut hat seinen Zweck. Was soll es sein?",
       "description": "Brews potions and elixirs from gathered materials. Also hosts the Transmutation station for upgrading gear.",
       "color": "#22c55e",
       "icon": "/images/icons/prof-alchemist.png",
@@ -66,7 +66,7 @@
       "name": "Enchanter",
       "npcName": "Eldric the Enchanter",
       "npcPortrait": "/images/npcs/eldric-verzauberer.png",
-      "npcGreeting": "Show me your gear... I can awaken the hidden magic within.",
+      "npcGreeting": "Zeig mir deine Ausrüstung... ich kann die verborgene Magie darin erwecken.",
       "description": "Enchants gear with bonus stats and hosts the Enchanting station for targeted stat rerolling.",
       "color": "#a78bfa",
       "icon": "/images/icons/prof-verzauberer.png",
@@ -91,7 +91,7 @@
       "name": "Tailor",
       "npcName": "Selina the Weaver",
       "npcPortrait": null,
-      "npcGreeting": "Every thread tells a story. Let me see which one becomes yours.",
+      "npcGreeting": "Jeder Faden erzählt eine Geschichte. Mal sehen, welche zu dir passt.",
       "description": "Crafts cloth armor imbued with arcane resonance. Cloth pieces boost XP per slot equipped.",
       "color": "#c084fc",
       "icon": "/images/icons/prof-schneider.png",
@@ -116,7 +116,7 @@
       "name": "Cook",
       "npcName": "Bruna the Cook",
       "npcPortrait": "/images/npcs/bruna-koch.png",
-      "npcGreeting": "Hungry? Sit down! My stew heals body and soul.",
+      "npcGreeting": "Hungrig? Setz dich! Mein Eintopf heilt Leib und Seele.",
       "description": "Cooks meals from gathered herbs and materials. Meals grant temporary buffs.",
       "color": "#e87b35",
       "icon": "/images/icons/prof-koch.png",
@@ -141,7 +141,7 @@
       "name": "Leatherworker",
       "npcName": "Roderic the Tanner",
       "npcPortrait": "/images/npcs/roderic-lederverarbeiter.png",
-      "npcGreeting": "Good leather tells a story, friend. Let me see what hide you've brought — I'll shape it into something worth wearing.",
+      "npcGreeting": "Gutes Leder erzählt eine Geschichte, Freund. Zeig mir, was du hast.",
       "description": "Tans and shapes leather into flexible armor. Specializes in balanced gear with gold-finding properties.",
       "color": "#b45309",
       "icon": "/images/icons/prof-lederverarbeiter.png",
@@ -166,7 +166,7 @@
       "name": "Weaponsmith",
       "npcName": "Varn the Blademaster",
       "npcPortrait": "/images/npcs/varn-waffenschmied.png",
-      "npcGreeting": "A weapon is an extension of will. Show me yours — and I will make it sharper.",
+      "npcGreeting": "Eine Waffe ist eine Verlängerung des Willens. Zeig mir deinen — und ich mach ihn schärfer.",
       "description": "Forges weapons and shields from ore and dragonscale. The offensive counterpart to the armor professions.",
       "color": "#dc2626",
       "icon": "/images/icons/prof-waffenschmied.png",
@@ -191,7 +191,7 @@
       "name": "Jewelcrafter",
       "npcName": "Mirael the Gem Sage",
       "npcPortrait": "/images/npcs/mirael-juwelier.png",
-      "npcGreeting": "Every gem holds a secret. Let me show you how to listen.",
+      "npcGreeting": "Jeder Edelstein birgt ein Geheimnis. Lass mich dir zeigen, wie man zuhört.",
       "description": "Crafts rings, amulets, and cut gems. The only profession that works with the Gem socket system.",
       "color": "#ec4899",
       "icon": "/images/icons/prof-juwelier.png",
@@ -694,7 +694,7 @@
   "recipes": [
     {
       "id": "flask_of_embers",
-      "name": "Flask of Embers",
+      "name": "Flakon der Glut",
       "profession": "alchemist",
       "source": "faction",
       "reqSkill": 50,
@@ -708,11 +708,11 @@
         "amount": 15
       },
       "xp": 15,
-      "description": "Recovers 15% Forge Temperature."
+      "description": "Stellt 15% Schmiedetemperatur wieder her."
     },
     {
       "id": "scholars_ink",
-      "name": "Scholar's Ink",
+      "name": "Gelehrtentinte",
       "profession": "verzauberer",
       "source": "faction",
       "reqSkill": 50,
@@ -727,11 +727,11 @@
         "duration": "3_quests"
       },
       "xp": 15,
-      "description": "+10% bonus XP for 3 quests."
+      "description": "Verzaubert: +2 Weisheit für 3 Quests."
     },
     {
       "id": "artisans_whetstone",
-      "name": "Artisan's Whetstone",
+      "name": "Meister-Wetzstein",
       "profession": "schmied",
       "source": "faction",
       "reqSkill": 50,
@@ -746,11 +746,11 @@
         "duration": "3_quests"
       },
       "xp": 15,
-      "description": "+1 profession XP per craft for 3 quests."
+      "description": "+1 Berufs-XP pro Craft für 3 Quests."
     },
     {
       "id": "resonance_charm",
-      "name": "Resonance Charm",
+      "name": "Resonanz-Amulett",
       "profession": "verzauberer",
       "source": "faction",
       "reqSkill": 50,
@@ -765,7 +765,7 @@
         "duration": "3_quests"
       },
       "xp": 15,
-      "description": "+5% Bond XP for companions for 3 quests."
+      "description": "Verzaubert: +2 Fokus für 3 Quests."
     },
     {
       "id": "recipe-schmied-eisenbarren",
