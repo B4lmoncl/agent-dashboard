@@ -539,7 +539,7 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
           {/* Actions */}
           <div className="flex gap-2">
             {/* Join button — for invited players who haven't joined */}
-            {activeRun.status === "forming" && activeRun.invitedPlayers.some(p => p.name === playerName) && (
+            {activeRun.status === "forming" && activeRun.invitedPlayers.some(p => p.name.toLowerCase() === playerName?.toLowerCase()) && (
               <button
                 onClick={() => joinRun(activeRun.runId)}
                 disabled={actionLoading}
@@ -559,7 +559,7 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
             {/* Collect button — when dungeon is done */}
             {activeRun.status === "active" && activeRun.completesAt &&
               new Date(activeRun.completesAt).getTime() - Date.now() <= 0 &&
-              !activeRun.collected.includes(playerName || "") && (
+              !activeRun.collected.some(c => c.toLowerCase() === playerName?.toLowerCase()) && (
               <button
                 onClick={() => collectRewards(activeRun.runId)}
                 disabled={actionLoading}
@@ -577,7 +577,7 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
             )}
 
             {/* Already collected */}
-            {activeRun.collected.includes(playerName || "") && (
+            {activeRun.collected.some(c => c.toLowerCase() === playerName?.toLowerCase()) && (
               <p className="text-xs text-w25 py-2.5">Rewards collected. Waiting for other party members.</p>
             )}
 
@@ -587,7 +587,7 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
               <p className="text-xs text-w25 py-2.5">Your party is in the dungeon. Come back when the timer completes.</p>
             )}
 
-            {activeRun.status === "forming" && activeRun.createdBy === playerName && (
+            {activeRun.status === "forming" && activeRun.createdBy?.toLowerCase() === playerName?.toLowerCase() && (
               <div className="flex items-center gap-3 py-2.5">
                 <p className="text-xs text-w20 flex-1">Waiting for invited friends to join. Dungeon starts when minimum players join.</p>
                 {!confirmCancel ? (

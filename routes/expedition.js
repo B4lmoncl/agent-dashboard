@@ -142,6 +142,7 @@ router.get('/api/expedition', (req, res) => {
     return {
       number: cpNum,
       name: template.checkpointNames[i] || `Checkpoint ${cpNum}`,
+      flavor: (template.checkpointFlavor || [])[i] || null,
       required,
       reached: exp.checkpointsReached.includes(cpNum),
       rewards: rewards[rewardKey] || {},
@@ -172,6 +173,7 @@ router.get('/api/expedition', (req, res) => {
       contributions,
       playerContribution: u ? (exp.contributions[u.id] || 0) : 0,
       startedAt: exp.startedAt,
+      progressMessages: template.progressMessages || null,
     },
   });
 });

@@ -83,7 +83,8 @@ router.get('/api/dashboard', async (req, res) => {
     rituals = (state.rituals || []).filter(r => r.playerId === playerLower && !r.isAntiRitual);
     habits = state.habits.filter(h => h.playerId === playerLower);
     const u = state.users[playerLower];
-    favorites = u?.favorites || [];
+    const pp = state.playerProgress[playerLower];
+    favorites = pp?.favorites || [];
   }
 
   const activeNpcs = (npcsData && npcsData.npcs) || [];

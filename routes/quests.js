@@ -325,7 +325,7 @@ router.post('/api/quest/:id/complete', requireApiKey, (req, res) => {
     // Activity feed
     logActivity(agentKey, 'quest_complete', { quest: quest.title || quest.id, rarity: quest.rarity || 'common', xp: xpEarned, gold: goldEarned });
     if (u && newLevelInfo.level > prevLevel) logActivity(agentKey, 'level_up', { level: newLevelInfo.level, title: newLevelInfo.title });
-    if (newAchievements.length > 0) for (const ach of newAchievements) logActivity(agentKey, 'achievement', { name: ach.name || ach.id, rarity: ach.rarity, points: ach.points || 0 });
+    if (newAchievements.length > 0) for (const ach of newAchievements) logActivity(agentKey, 'achievement', { achievementId: ach.id, name: ach.name || ach.id, rarity: ach.rarity, points: ach.points || 0 });
     console.log(`[quest] ${quest.id} completed (npc per-player) by ${agentKey}`);
     return res.json({
       ok: true,
@@ -369,7 +369,7 @@ router.post('/api/quest/:id/complete', requireApiKey, (req, res) => {
     // Activity feed
     logActivity(agentKey, 'quest_complete', { quest: quest.title || quest.id, rarity: quest.rarity || 'common', xp: xpEarned, gold: goldEarned });
     if (u2 && newLevelInfo2.level > prevLevel2) logActivity(agentKey, 'level_up', { level: newLevelInfo2.level, title: newLevelInfo2.title });
-    if (newAchievements.length > 0) for (const ach of newAchievements) logActivity(agentKey, 'achievement', { name: ach.name || ach.id, rarity: ach.rarity, points: ach.points || 0 });
+    if (newAchievements.length > 0) for (const ach of newAchievements) logActivity(agentKey, 'achievement', { achievementId: ach.id, name: ach.name || ach.id, rarity: ach.rarity, points: ach.points || 0 });
     console.log(`[quest] ${quest.id} completed (per-player) by ${agentKey}`);
     return res.json({
       ok: true,
@@ -417,7 +417,7 @@ router.post('/api/quest/:id/complete', requireApiKey, (req, res) => {
     }
     if (newAchievements.length > 0) {
       for (const ach of newAchievements) {
-        logActivity(agentKey, 'achievement', { name: ach.name || ach.id, rarity: ach.rarity || 'common', points: ach.points || 0 });
+        logActivity(agentKey, 'achievement', { achievementId: ach.id, name: ach.name || ach.id, rarity: ach.rarity || 'common', points: ach.points || 0 });
       }
     }
     if (lootDrop && (lootDrop.rarity === 'epic' || lootDrop.rarity === 'legendary')) {

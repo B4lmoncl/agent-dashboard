@@ -331,7 +331,7 @@ const TOOLTIP_REGISTRY: Record<string, TooltipEntry> = {
     accent: "#f59e0b",
     body: (
       <>
-        <p>Permanent bonus items purchasable in the Artisan&apos;s Quarter. All bonuses are additive.</p>
+        <p>Permanent bonus items purchasable in the Artisan's Quarter. All bonuses are additive.</p>
         <div className="gt-stat-row"><span><GTRef k="gold">Gold</GTRef>-Forged Tools</span><span>+2/3/4/5% <GTRef k="gold">Gold</GTRef></span></div>
         <div className="gt-stat-row"><span>Loot Chance Amulet</span><span>+1/2/3% Loot</span></div>
         <div className="gt-stat-row"><span><GTRef k="streak">Streak</GTRef> Shield Charm</span><span>Auto-save 1-2×/week</span></div>
@@ -490,7 +490,7 @@ const TOOLTIP_REGISTRY: Record<string, TooltipEntry> = {
     ),
   },
   artisans_quarter: {
-    title: "Artisan&apos;s Quarter",
+    title: "Artisan's Quarter",
     icon: "⚒️",
     accent: "#f59e0b",
     body: (

@@ -67,6 +67,7 @@ interface ActiveBossData {
   leaderboard: LeaderboardEntry[];
   playerContribution: PlayerContribution | null;
   canClaim: boolean;
+  projectedDamage?: { gearScore: number; gsMultiplier: number; perQuest: Record<string, number> } | null;
 }
 
 interface InactiveBossData {
@@ -295,7 +296,7 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
 
   // ─── Active / Defeated Boss ─────────────────────────────────────────────────
 
-  const { boss, leaderboard, playerContribution, canClaim } = data as ActiveBossData;
+  const { boss, leaderboard, playerContribution, canClaim, projectedDamage } = data as ActiveBossData;
   const hpPercent = boss.maxHp > 0 ? boss.currentHp / boss.maxHp : 0;
   const hpColor = hpBarColor(hpPercent);
   const expiresIn = new Date(boss.expiresAt).getTime() - now;
@@ -514,6 +515,31 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
               </p>
               <p className="text-xs text-w20">Rank</p>
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* Projected Damage */}
+      {projectedDamage && !boss.defeated && (
+        <div className="rounded-xl p-4" style={{ background: "rgba(239,68,68,0.03)", border: "1px solid rgba(239,68,68,0.1)" }}>
+          <div className="flex items-center justify-between mb-2">
+            <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: "rgba(239,68,68,0.6)" }}>Damage per Quest</p>
+            <TipCustom title="Damage Calculation" icon="⚔️" accent="#ef4444" body={<><p>Base damage depends on quest rarity. Your Gear Score adds a multiplier: +10% per 50 GS (max +100%).</p><p style={{ marginTop: 4, opacity: 0.7 }}>Your GS: {projectedDamage.gearScore} → ×{projectedDamage.gsMultiplier.toFixed(1)}</p></>}>
+              <span className="text-xs cursor-help" style={{ color: "rgba(255,255,255,0.3)" }}>GS {projectedDamage.gearScore} · ×{projectedDamage.gsMultiplier.toFixed(1)}</span>
+            </TipCustom>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            {(["common", "uncommon", "rare", "epic", "legendary"] as const).map(rarity => {
+              const dmg = projectedDamage.perQuest[rarity];
+              if (!dmg) return null;
+              const RARITY_CLR: Record<string, string> = { common: "#9ca3af", uncommon: "#22c55e", rare: "#3b82f6", epic: "#a855f7", legendary: "#f97316" };
+              return (
+                <div key={rarity} className="flex items-center gap-1.5 px-2 py-1 rounded-lg" style={{ background: "rgba(255,255,255,0.03)" }}>
+                  <span className="w-2 h-2 rounded-full" style={{ background: RARITY_CLR[rarity] }} />
+                  <span className="text-xs font-mono font-bold" style={{ color: RARITY_CLR[rarity] }}>{dmg}</span>
+                </div>
+              );
+            })}
           </div>
         </div>
       )}

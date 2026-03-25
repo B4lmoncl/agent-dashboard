@@ -77,11 +77,11 @@ function validateTradeItems(u, uid, itemInstanceIds) {
   const inv = u.inventory || [];
   const resolved = [];
   for (const instanceId of uniqueIds) {
-    const item = inv.find(i => i.id === instanceId);
+    const item = inv.find(i => i.id === instanceId || i.instanceId === instanceId);
     if (!item) {
       return { ok: false, error: `Item ${instanceId} not found in ${uid}'s inventory` };
     }
-    if (isItemEquipped(u, instanceId)) {
+    if (isItemEquipped(u, item.id || item.instanceId || instanceId)) {
       return { ok: false, error: `Item ${instanceId} is currently equipped and cannot be traded` };
     }
     resolved.push(item);
@@ -449,7 +449,8 @@ function enrichOffer(offer, ownerId) {
   const itemIds = offer?.items || [];
   const owner = state.users[ownerId];
   const items = itemIds.map(instanceId => {
-    const invItem = owner ? (owner.inventory || []).find(i => i.id === instanceId) : null;
+    // Search by both `id` (loot/gacha items) and `instanceId` (gear instances)
+    const invItem = owner ? (owner.inventory || []).find(i => i.id === instanceId || i.instanceId === instanceId) : null;
     return {
       instanceId,
       name: invItem?.name || instanceId,
@@ -457,7 +458,7 @@ function enrichOffer(offer, ownerId) {
       icon: invItem?.icon || null,
       slot: invItem?.slot || null,
       stats: invItem?.stats || null,
-      setName: invItem?.setName || null,
+      setName: invItem?.setName || invItem?.setId || null,
       legendaryEffect: invItem?.legendaryEffect || null,
     };
   });

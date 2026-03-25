@@ -48,8 +48,8 @@ function rollRarity(pityCounter, epicPityCounter, hasRarityBoost = false) {
   const legendaryRate = getEffectiveLegendaryRate(pityCounter);
   // Passive: rarity_boost_15 adds +15% to rare+ rates
   const boostMult = hasRarityBoost ? 1.15 : 1.0;
-  const epicRate = 0.13 * boostMult;
-  const rareRate = 0.35 * boostMult;
+  const epicRate = 0.08 * boostMult;
+  const rareRate = 0.38 * boostMult;
   const uncommonRate = 0.40;
   // common fills the rest
 

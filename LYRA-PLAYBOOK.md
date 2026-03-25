@@ -14,6 +14,30 @@
 
 ---
 
+## 0. Tone & Voice Guide — Pflichtlektüre vor jedem Content
+
+**Primäre Tone-Quellen (in Prioritätsreihenfolge):**
+
+1. **Skulduggery Pleasant** — DIE Kern-Stimme für Quest Hall. Trockener Humor in jeder Situation. Eleganz als Waffe. Selbstbewusstsein das so absurd ist, dass es schon wieder charmant wird. "Die beste Verteidigung ist ein gut sitzender Anzug und eine schnelle Zunge." Flavor-Text soll klingen, als würde ein unsterbliches Skelett im Maßanzug es dir erzählen — mit einem Grinsen, das man nicht sehen kann. Kampf und Gefahr? Kommentiert mit der Gelassenheit eines Mannes, der schon alles überlebt hat (wortwörtlich).
+2. **Königsmörder-Chronik (Rothfuss)** — Poetisch aber nie kitschig. Musik und Worte haben Gewicht. Beschreibungen die sich anfühlen wie ein perfekt gesprochener Satz in einem leisen Raum.
+3. **Stormlight Archive (Sanderson)** — "Reise vor Ziel." Syl-Energie: neugierig, leicht, überraschend tiefgründig. Die Ideale durchziehen alles, immer paraphrasiert, nie direkt zitiert.
+4. **Scheibenwelt (Pratchett)** — Fußnoten-Energie. Die Art, wie die Welt sich selbst kommentiert. Absurdes wird mit akademischer Ernsthaftigkeit behandelt.
+5. **Critical Role / Dungeons and Daddies** — Tischgefühl. Momente die sich anfühlen wie ein perfekter Würfelwurf oder ein Spieler der etwas Unerwartetes tut.
+
+**Die Mischung macht's:**
+- Ein NPC-Zitat: Skulduggery-trocken + Rothfuss-poetisch
+- Ein Checkpoint-Flavor: Stormlight-atmosphärisch + Pratchett-Fußnote
+- Ein Item-Desc: Skulduggery-Eleganz + Kingkiller-Wortwahl
+- **Durchrotieren** — nie nur eine Quelle pro Text. Leon kennt alle Werke, also muss es clever sein.
+
+**Anti-Pattern:**
+- KEIN Herr-der-Ringe-Pathos (zu pompös)
+- KEIN Marvel-Quip-Humor (zu oberflächlich)
+- KEINE direkten Zitate (paraphrasieren/channeln)
+- NIEMALS spoilern (Easter Eggs soll der User selbst finden)
+
+---
+
 ## 1. Neuen NPC erstellen
 
 **Datei**: `public/data/npcQuestGivers.json`
@@ -2230,12 +2254,32 @@ Bei JEDER Erweiterung der Quest Hall (neue Floors, Räume, Features) frag dich: 
 
 ### Tone
 
-**So klingt Quest Hall:**
-- **Poetisch aber nicht kitschig.** Kingkiller Chronicle Vibe, nicht Herr der Ringe Pathos
-- **Trocken humorvoll.** Syl aus Stormlight, Scheibenwelt-Fußnoten-Energie
-- **Ernst wenn's drauf ankommt.** Frieren-Momente: leise, melancholisch, überraschend tief
-- **Zugänglich.** Kein "Prithee, good sir" — eher wie ein kluger Freund der Fantasy liebt
-- **Deutsch.** Alle In-Game Texte deutsch. Raumnamen englisch (The Great Hall, The Arcanum etc.)
+**So klingt Quest Hall — die drei Säulen:**
+
+1. **Skulduggery Pleasant** (Kern-Stimme, höchste Priorität)
+   - Trockener Humor in JEDER Situation, auch den ernsten. Besonders den ernsten.
+   - Eleganz als Charakterzug. Selbstbewusstsein das an Größenwahn grenzt, aber irgendwie sympathisch bleibt.
+   - Wie Derek Landy Dialoge schreibt: kurz, schlagfertig, mit einem Timing das sich anfühlt wie perfekte Comedic Delivery. Der Witz kommt nach dem Punkt. Nicht davor.
+   - Gefahr wird kommentiert, nicht dramatisiert. "Das hätte mich fast umgebracht." "Fast?" "Fast. Ich bin bekanntlich schwer umzubringen."
+   - Charaktere die sich selbst nicht zu ernst nehmen, aber ihre Aufgabe todernst. Das Grinsen ist die Rüstung.
+   - NPCs sollen klingen wie Leute die zu viel gesehen haben um sich aufzuregen, aber zu stolz sind um aufzugeben.
+   - Items und Flavor-Texte: als hätte jemand mit trockenem Humor die Inventar-Beschreibung geschrieben. "Schützt vor den meisten Dingen. Die Betonung liegt auf 'meisten'."
+
+2. **Königsmörder-Chronik (Rothfuss)**
+   - Die Wortwahl. Jeder Satz klingt wie absichtlich gewählt, nie zufällig.
+   - Poetisch aber nie kitschig. Metaphern die sitzen, nicht solche die sich aufdrängen.
+   - Musik und Stille als Werkzeuge — manche Momente brauchen weniger Worte, nicht mehr.
+
+3. **Stormlight Archive (Sanderson)**
+   - Die Ideale ("Reise vor Ziel") als Lebensphilosophie, nie als Predigt.
+   - Syl-Energie: neugierig, leicht, überraschend weise. Windspren-Humor.
+   - Die Welt fühlt sich alt und geschichtet an. Jeder Ort hat eine Geschichte.
+
+**Sekundäre Stimmen:**
+- **Scheibenwelt (Pratchett)** — Fußnoten-Energie. Die Welt kommentiert sich selbst mit akademischer Ernsthaftigkeit.
+- **Frieren** — Leise, melancholische Momente. Überraschend tief wenn man's nicht erwartet.
+
+**Die Mischung:** Quest Hall klingt wie Skulduggery Pleasant in einer Kingkiller-Welt, gebaut wie Urithiru, mit Pratchett-Fußnoten am Rand. Der Humor ist die Grundlage, die Poesie ist die Veredelung.
 
 **Beispiel-Sätze nach Stimmung:**
 
@@ -2243,9 +2287,11 @@ Bei JEDER Erweiterung der Quest Hall (neue Floors, Räume, Features) frag dich: 
 - "Der Aetherstrom pulsiert. Die Halle hat auf dich gewartet."
 - "Hinter dem Tor liegen Welten, die noch keinen Namen tragen."
 
-**Humorvoll:**
+**Humorvoll (Skulduggery-Kern):**
 - "Die Bibliothek beißt zurück. Buchstäblich. Handschuhe empfohlen."
 - "Oma Ilse hat Kekse mitgebracht. Die letzte Heldin die abgelehnt hat, wurde nie wieder gesehen."
+- "Die beste Verteidigung ist ein gut sitzender Anzug und eine schnelle Zunge. Beides haben wir nicht. Improvisieren wir."
+- "Der Sumpf blubbert unzufrieden. Das ist sein Standardzustand. Nimm's nicht persönlich."
 
 **Melancholisch:**
 - "Manche Quests enden nicht mit Fanfaren. Manche enden mit Stille und der Erkenntnis, dass man gewachsen ist."
@@ -2258,6 +2304,11 @@ Bei JEDER Erweiterung der Quest Hall (neue Floors, Räume, Features) frag dich: 
 **Mysteriös:**
 - "Die Sternenwächterin schweigt heute. Das ist selten. Und selten ist selten gut."
 - "Im tiefsten Gewölbe der Schmiede hört man manchmal einen Hammerschlag. Niemand weiß, wer schmiedet."
+
+**Skulduggery-Eleganz (für Items/NPCs):**
+- "Schützt vor den meisten Dingen. Die Betonung liegt auf 'meisten'."
+- "Hergestellt für jemanden, der wusste was er tat. Ob das auf dich zutrifft, wird sich zeigen."
+- "Er verbeugte sich. Nicht aus Höflichkeit — aus Gewohnheit. Und weil es gut aussah."
 
 ### Sprach-Regeln
 
@@ -2437,7 +2488,7 @@ Lyra ist die permanente NPC-Präsenz in der Quest Hall. Sie ist alt — älter a
 
 ### Checkliste: Bevor Content generiert wird
 
-1. Passt der Tone? (Kingkiller, nicht Herr der Ringe)
+1. Passt der Tone? (Skulduggery-trocken + Kingkiller-poetisch, nicht Herr der Ringe)
 2. Ist es deutsch? (außer Raumnamen)
 3. Referenziert es die Welt? (Aethermoor, Aetherstrom, die Halle)
 4. Kein Spoiler für zukünftige Lore?
@@ -2454,7 +2505,13 @@ Lyra ist die permanente NPC-Präsenz in der Quest Hall. Sie ist alt — älter a
 
 **Quellen & Anspielungen:**
 
-- **Skulduggery Pleasant** — Trockener Humor in Kampfsituationen. Eleganz als Waffe. NPCs die absurd selbstsicher sind und es irgendwie rechtfertigen. "Manche Helden tragen ihr Grinsen als Maske. Andere haben keine andere Wahl." Items wie "Mantel der Eleganz" (erhöht Charisma: "Sieht gut aus. Selbst auf Knochen."). "Die beste Verteidigung ist ein gut sitzender Anzug und eine schnelle Zunge." Ein Skelett in feiner Kleidung als NPC-Gerücht — nie bestätigt.
+- **Skulduggery Pleasant (KERN-REFERENZ für Humor & Charakter-Stimme)** — Die Art wie Derek Landy Charaktere schreibt ist DAS Vorbild für Quest Hall. Konkret:
+  - **Humor in JEDER Situation.** Skulduggery kommentiert einen Kampf auf Leben und Tod genauso trocken wie ein Gespräch über Wetter. Diese Gelassenheit angesichts von Gefahr ist der Kern. NPCs sollen klingen, als hätten sie zu viel erlebt um sich aufzuregen — aber genug Stolz um trotzdem eine gute Figur zu machen.
+  - **Eleganz als Persönlichkeitsmerkmal.** Skulduggery trägt einen Maßanzug in den Kampf. Diese Haltung — Stil über Substanz, aber die Substanz ist auch da — soll sich in Item-Beschreibungen, NPC-Dialogen und Flavor-Text widerspiegeln. "Er sah aus, als hätte er gerade in einem Fünf-Sterne-Restaurant gespeist und nicht in einer Höhle voller Spinnen."
+  - **Dialog-Timing.** Landys Dialoge funktionieren durch Timing und Understatement. Der Witz sitzt NACH dem Punkt, nicht davor. Nicht: "Oh nein, das ist gefährlich!" Sondern: "Das war unerwartet." Pause. "Und unangenehm." Pause. "Überwiegend unangenehm."
+  - **Absurdes Selbstbewusstsein das charmt statt nervt.** Skulduggery sagt "Ich bin sehr gut in dem was ich tue" und man glaubt es ihm, weil er es mit einem Grinsen sagt das man nicht sehen kann (weil Skelett). NPCs dürfen arrogant sein — wenn die Arroganz mit Kompetenz und Humor unterfüttert ist.
+  - **Emotionale Tiefe UNTER dem Humor.** Das ist das Wichtigste: Skulduggery ist lustig WEIL er Dinge erlebt hat die nicht lustig waren. Der Humor ist die Verarbeitung, nicht die Vermeidung. Quest-Texte die ernst sind, dürfen ernst sein — aber der Weg dorthin führt immer durch einen trockenen Kommentar.
+  - **Konkrete Anwendung:** "Manche Helden tragen ihr Grinsen als Maske. Andere haben keine andere Wahl." Items wie "Mantel der Eleganz" (erhöht Charisma: "Sieht gut aus. Selbst auf Knochen."). "Die beste Verteidigung ist ein gut sitzender Anzug und eine schnelle Zunge." Ein Skelett in feiner Kleidung als NPC-Gerücht — nie bestätigt.
 - **Cosmere / Brandon Sanderson** — Ehrensprüche als Quest-Titel. "Der wichtigste Schritt ist immer der nächste."
 - **Königsmörder-Chronik (Patrick Rothfuss)** — Der GESAMTE Tone ist von Kvothe inspiriert. Musik/Geschichten als Machtsystem.
 - **Frieren** — Leise, melancholische Quest-Texte über Vergänglichkeit. Lyra selbst hat Frieren-Vibes (unsterblich, Schwierigkeiten mit der Kürze sterblicher Leben).

@@ -12,10 +12,10 @@
     "lore": "The ancient portal of the Guild opens. Each turn of the Wheel reveals an artifact drawn from the depths of the Aether. What will fate whisper to you?",
     "dropRates": {
       "legendary": "0.8%",
-      "epic": "13%",
-      "rare": "35%",
+      "epic": "8%",
+      "rare": "38%",
       "uncommon": "40%",
-      "common": "11.2%"
+      "common": "13.2%"
     }
   },
   {
@@ -31,10 +31,10 @@
     "lore": "Starlight pierces the darkness. Within its glow lie the mightiest artifacts of the Guild. Only the worthy shall wield them.",
     "dropRates": {
       "legendary": "0.8% (50/50 Featured)",
-      "epic": "13%",
-      "rare": "35%",
+      "epic": "8%",
+      "rare": "38%",
       "uncommon": "40%",
-      "common": "11.2%"
+      "common": "13.2%"
     }
   }
 ]

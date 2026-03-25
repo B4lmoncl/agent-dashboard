@@ -1232,6 +1232,74 @@ router.post('/api/schmiedekunst/reforge', requireAuth, (req, res) => {
   });
 });
 
+// ─── General Gear Reforge (Gold Sink) — all rarities, gold-only ─────────────
+const REFORGE_GOLD_BY_RARITY = { common: 50, uncommon: 150, rare: 500, epic: 1500, legendary: 5000 };
+
+router.post('/api/schmiedekunst/reforge-stats', requireAuth, (req, res) => {
+  const uid = req.auth?.userId;
+  const u = state.users[uid];
+  if (!u) return res.status(404).json({ error: 'User not found' });
+  const { inventoryItemId } = req.body;
+  if (!inventoryItemId) return res.status(400).json({ error: 'inventoryItemId required' });
+
+  u.inventory = u.inventory || [];
+  const idx = u.inventory.findIndex(i => (i.instanceId || i.id) === inventoryItemId);
+  if (idx === -1) return res.status(404).json({ error: 'Item not in inventory' });
+  const item = u.inventory[idx];
+
+  // Cannot reforge equipped items
+  if (getEquippedIds(u).has(inventoryItemId)) {
+    return res.status(400).json({ error: 'Unequip the item first' });
+  }
+
+  // Must have a template to re-roll from
+  const templateId = item.templateId || item.itemId;
+  const template = state.gearById.get(templateId) || state.itemTemplates?.get(templateId);
+  if (!template) {
+    return res.status(400).json({ error: 'Cannot reforge this item (no template)' });
+  }
+
+  // Items with fixedStats cannot be reforged
+  if (item.fixedStats || template.fixedStats) {
+    return res.status(400).json({ error: 'Items with fixed stats cannot be reforged' });
+  }
+
+  // Must have affixes
+  if (!template.affixes) {
+    return res.status(400).json({ error: 'This item has no affixes to reforge' });
+  }
+
+  // Gold cost scales with rarity
+  const rarity = (item.rarity || 'common').toLowerCase();
+  const goldCost = REFORGE_GOLD_BY_RARITY[rarity] || REFORGE_GOLD_BY_RARITY.common;
+
+  ensureUserCurrencies(u);
+  const userGold = u.currencies?.gold ?? u.gold ?? 0;
+  if (userGold < goldCost) {
+    return res.status(400).json({ error: `Not enough gold — need ${goldCost}, have ${userGold}` });
+  }
+
+  // Deduct gold
+  u.currencies.gold -= goldCost;
+  u.gold = u.currencies.gold;
+
+  // Re-roll all stats (and legendary effect if applicable)
+  const { stats, legendaryEffect } = rollAffixStats(template);
+  item.stats = stats;
+  if (template.legendaryEffect) {
+    item.legendaryEffect = legendaryEffect;
+  }
+  // Preserve instanceId, sockets, setId — they stay on the item object untouched
+
+  saveUsersSync();
+  res.json({
+    message: `${item.name} has been reforged! All stats re-rolled.`,
+    reforged: item,
+    goldSpent: goldCost,
+    gold: u.currencies?.gold ?? u.gold ?? 0,
+  });
+});
+
 // ─── D3-Style Stat Reroll ("Enchanting") — standalone, no profession needed ─
 const REROLL_BASE_GOLD = 100;
 const REROLL_GOLD_CAP = 50000;

@@ -88,11 +88,17 @@ export default function DailyLoginCalendar({ onClose }: { onClose: () => void })
             <h2 className="text-base font-bold" style={{ color: "#fbbf24" }}>Login Calendar</h2>
             <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>{monthNames[month]} {year}</p>
           </div>
-          <div className="text-right">
-            <p className="text-sm font-bold" style={{ color: "#fbbf24" }}>{streakDays} Day Streak</p>
-            <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>{claimedThisMonth}/{daysInMonth} this month</p>
+          <div className="flex items-center gap-3">
+            <div className="text-right">
+              <p className="text-sm font-bold" style={{ color: "#fbbf24" }}>{streakDays} Day Streak</p>
+              <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>{claimedThisMonth}/{daysInMonth} this month</p>
+            </div>
+            <button onClick={onClose} className="text-xs px-2 py-1 rounded-lg" style={{ color: "rgba(255,255,255,0.4)", cursor: "pointer", background: "rgba(255,255,255,0.04)" }}>ESC</button>
           </div>
         </div>
+        <p className="text-xs mt-2" style={{ color: "rgba(255,255,255,0.25)" }}>
+          Log in daily to build your streak. Claim your daily bonus in the Great Hall to earn Runensplitter, Essenz, and streak milestone rewards.
+        </p>
 
         {loading ? (
           <div className="grid grid-cols-7 gap-1 py-4">{Array.from({ length: 28 }, (_, i) => <div key={i} className="skeleton-card" style={{ height: 40 }} />)}</div>
