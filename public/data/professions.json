@@ -185,6 +185,31 @@
         "value": 10,
         "desc": "+10% weapon/shield stat rolls when crafting"
       }
+    },
+    {
+      "id": "juwelier",
+      "name": "Jewelcrafter",
+      "npcName": "Mirael the Gem Sage",
+      "npcPortrait": "/images/npcs/mirael-juwelier.png",
+      "npcGreeting": "Every gem holds a secret. Let me show you how to listen.",
+      "description": "Crafts rings, amulets, and cut gems. The only profession that works with the Gem socket system.",
+      "color": "#ec4899",
+      "icon": "/images/icons/prof-juwelier.png",
+      "maxSkill": 300,
+      "unlockCondition": {
+        "type": "level",
+        "value": 5
+      },
+      "gatheringAffinity": [
+        "kristallsplitter",
+        "runenstein",
+        "aetherkern"
+      ],
+      "masteryBonus": {
+        "type": "gem_quality_boost",
+        "value": 1,
+        "desc": "+1 gem tier chance when cutting gems"
+      }
     }
   ],
   "gatheringConfig": {
@@ -1034,47 +1059,6 @@
       "trainerCost": 10
     },
     {
-      "id": "recipe-schmied-eiserner-anhaenger",
-      "name": "Eiserner Anhänger",
-      "profession": "schmied",
-      "source": "trainer",
-      "reqSkill": 26,
-      "cost": {
-        "gold": 28
-      },
-      "materials": {
-        "eisenerz": 2
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schmied-eiserner-anhaenger"
-      },
-      "xp": 8,
-      "description": "Schmiedet: Eiserner Anhänger.",
-      "trainerCost": 10
-    },
-    {
-      "id": "recipe-schmied-eisenkragen",
-      "name": "Eisenkragen",
-      "profession": "schmied",
-      "source": "drop",
-      "reqSkill": 30,
-      "cost": {
-        "gold": 31
-      },
-      "materials": {
-        "eisenerz": 3
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schmied-eisenkragen"
-      },
-      "xp": 8,
-      "description": "Schmiedet: Eisenkragen.",
-      "dropChance": 0.09,
-      "dropMinQuestRarity": "uncommon"
-    },
-    {
       "id": "recipe-schmied-eiserne-panzerhaube",
       "name": "Eiserne Panzerhaube",
       "profession": "schmied",
@@ -1180,27 +1164,6 @@
       "factionMinRep": "friendly"
     },
     {
-      "id": "recipe-schmied-eisernes-amulett",
-      "name": "Eisernes Amulett",
-      "profession": "schmied",
-      "source": "faction",
-      "reqSkill": 59,
-      "cost": {
-        "gold": 52
-      },
-      "materials": {
-        "eisenerz": 3
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schmied-eisernes-amulett"
-      },
-      "xp": 11,
-      "description": "Schmiedet: Eisernes Amulett.",
-      "factionId": "glut",
-      "factionMinRep": "honored"
-    },
-    {
       "id": "recipe-schmied-eisenkappe",
       "name": "Eisenkappe",
       "profession": "schmied",
@@ -1262,27 +1225,6 @@
       "xp": 12,
       "description": "Schmiedet: Stählerner Drachenhelm.",
       "trainerCost": 50
-    },
-    {
-      "id": "recipe-schmied-kristall-amulett",
-      "name": "Kristall-Amulett",
-      "profession": "schmied",
-      "source": "trainer",
-      "reqSkill": 78,
-      "cost": {
-        "gold": 58
-      },
-      "materials": {
-        "kristallsplitter": 1,
-        "eisenbarren": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schmied-kristall-amulett"
-      },
-      "xp": 12,
-      "description": "Schmiedet: Kristall-Amulett.",
-      "trainerCost": 54
     },
     {
       "id": "recipe-schmied-staehlerne-marschtreters",
@@ -1391,28 +1333,6 @@
       "dropMinQuestRarity": "uncommon"
     },
     {
-      "id": "recipe-schmied-kristall-reif",
-      "name": "Kristall-Eidreif",
-      "profession": "schmied",
-      "source": "drop",
-      "reqSkill": 108,
-      "cost": {
-        "gold": 142
-      },
-      "materials": {
-        "kristallsplitter": 3,
-        "kristallbarren": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schmied-kristall-reif"
-      },
-      "xp": 17,
-      "description": "Schmiedet: Kristall-Eidreif.",
-      "dropChance": 0.09,
-      "dropMinQuestRarity": "uncommon"
-    },
-    {
       "id": "recipe-schmied-staehlerne-sturmstiefel",
       "name": "Stählerne Sturmstiefel",
       "profession": "schmied",
@@ -1453,28 +1373,6 @@
       },
       "xp": 17,
       "description": "Schmiedet: Kristall-Visierhelm.",
-      "dropChance": 0.12,
-      "dropMinQuestRarity": "rare"
-    },
-    {
-      "id": "recipe-schmied-staehlerne-kette",
-      "name": "Stählerne Schwurkette",
-      "profession": "schmied",
-      "source": "drop",
-      "reqSkill": 118,
-      "cost": {
-        "gold": 167
-      },
-      "materials": {
-        "kristallsplitter": 2,
-        "eisenbarren": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schmied-staehlerne-kette"
-      },
-      "xp": 18,
-      "description": "Schmiedet: Stählerne Schwurkette.",
       "dropChance": 0.12,
       "dropMinQuestRarity": "rare"
     },
@@ -1521,28 +1419,6 @@
       "description": "Schmiedet: Kristall-Stiefel.",
       "dropChance": 0.12,
       "dropMinQuestRarity": "rare"
-    },
-    {
-      "id": "recipe-schmied-staehlernes-siegelamulett",
-      "name": "Stählernes Siegelamulett",
-      "profession": "schmied",
-      "source": "faction",
-      "reqSkill": 130,
-      "cost": {
-        "gold": 200
-      },
-      "materials": {
-        "kristallsplitter": 4,
-        "kristallbarren": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schmied-staehlernes-siegelamulett"
-      },
-      "xp": 20,
-      "description": "Schmiedet: Stählernes Siegelamulett.",
-      "factionId": "glut",
-      "factionMinRep": "friendly"
     },
     {
       "id": "recipe-schmied-kristall-kettenhemd",
@@ -1733,27 +1609,6 @@
       "trainerCost": 230
     },
     {
-      "id": "recipe-schmied-drachenstahl-medaillon",
-      "name": "Drachenstahl-Medaillon",
-      "profession": "schmied",
-      "source": "trainer",
-      "reqSkill": 177,
-      "cost": {
-        "gold": 313
-      },
-      "materials": {
-        "drachenschuppe": 1,
-        "drachenstahl": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schmied-drachenstahl-medaillon"
-      },
-      "xp": 24,
-      "description": "Schmiedet: Drachenstahl-Medaillon.",
-      "trainerCost": 240
-    },
-    {
       "id": "recipe-schmied-drachenstahl-helm",
       "name": "Drachenstahl-Helm",
       "profession": "schmied",
@@ -1928,50 +1783,6 @@
       "description": "Schmiedet: Drachenzahn-Kettenhemd.",
       "factionId": "amboss",
       "factionMinRep": "friendly"
-    },
-    {
-      "id": "recipe-schmied-drachenzahn-amulett",
-      "name": "Drachenzahn-Amulett",
-      "profession": "schmied",
-      "source": "drop",
-      "reqSkill": 220,
-      "cost": {
-        "gold": 488
-      },
-      "materials": {
-        "drachenstahl": 4,
-        "drachenkern": 2
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schmied-drachenzahn-amulett"
-      },
-      "xp": 30,
-      "description": "Schmiedet: Drachenzahn-Amulett.",
-      "dropChance": 0.02,
-      "dropMinQuestRarity": "epic"
-    },
-    {
-      "id": "recipe-schmied-drachenschuppen-reif",
-      "name": "Drachenschuppen-Reif",
-      "profession": "schmied",
-      "source": "drop",
-      "reqSkill": 223,
-      "cost": {
-        "gold": 500
-      },
-      "materials": {
-        "drachenstahl": 4,
-        "drachenkern": 2
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schmied-drachenschuppen-reif"
-      },
-      "xp": 30,
-      "description": "Schmiedet: Drachenschuppen-Reif.",
-      "dropChance": 0.02,
-      "dropMinQuestRarity": "epic"
     },
     {
       "id": "recipe-schmied-seelenkrone-des-meisters",
@@ -2224,49 +2035,6 @@
       "dropMinQuestRarity": "uncommon"
     },
     {
-      "id": "recipe-schmied-aetherkern-medaillon",
-      "name": "Aetherkern-Medaillon",
-      "profession": "schmied",
-      "source": "drop",
-      "reqSkill": 270,
-      "cost": {
-        "gold": 1083
-      },
-      "materials": {
-        "aetherlegierung": 4,
-        "aetherbarren": 2
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schmied-aetherkern-medaillon"
-      },
-      "xp": 42,
-      "description": "Schmiedet: Aetherkern-Medaillon.",
-      "dropChance": 0.12,
-      "dropMinQuestRarity": "rare"
-    },
-    {
-      "id": "recipe-schmied-seelen-siegel",
-      "name": "Seelen-Siegel",
-      "profession": "schmied",
-      "source": "drop",
-      "reqSkill": 275,
-      "cost": {
-        "gold": 1159
-      },
-      "materials": {
-        "seelenlegierung": 2
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schmied-seelen-siegel"
-      },
-      "xp": 43,
-      "description": "Schmiedet: Seelen-Siegel.",
-      "dropChance": 0.12,
-      "dropMinQuestRarity": "rare"
-    },
-    {
       "id": "recipe-schmied-seelengeschmiedeter-panzer",
       "name": "Seelengeschmiedeter Panzer",
       "profession": "schmied",
@@ -2286,28 +2054,6 @@
       "description": "Schmiedet: Seelengeschmiedeter Panzer.",
       "factionId": "amboss",
       "factionMinRep": "friendly"
-    },
-    {
-      "id": "recipe-schmied-aetherkern-reif",
-      "name": "Aetherkern-Reif",
-      "profession": "schmied",
-      "source": "faction",
-      "reqSkill": 283,
-      "cost": {
-        "gold": 1272
-      },
-      "materials": {
-        "seelenlegierung": 2,
-        "seelenstahl": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schmied-aetherkern-reif"
-      },
-      "xp": 45,
-      "description": "Schmiedet: Aetherkern-Reif.",
-      "factionId": "amboss",
-      "factionMinRep": "honored"
     },
     {
       "id": "recipe-schmied-aether-marschtritt",
@@ -2330,28 +2076,6 @@
       "description": "Schmiedet: Aether-Marschtritt.",
       "factionId": "glut",
       "factionMinRep": "honored"
-    },
-    {
-      "id": "recipe-schmied-seelen-talisman",
-      "name": "Seelen-Talisman",
-      "profession": "schmied",
-      "source": "faction",
-      "reqSkill": 288,
-      "cost": {
-        "gold": 1348
-      },
-      "materials": {
-        "seelenlegierung": 2,
-        "seelenstahl": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schmied-seelen-talisman"
-      },
-      "xp": 47,
-      "description": "Schmiedet: Seelen-Talisman.",
-      "factionId": "amboss",
-      "factionMinRep": "revered"
     },
     {
       "id": "recipe-schmied-aetherkern-visier",
@@ -3291,26 +3015,6 @@
       "trainerCost": 800
     },
     {
-      "id": "recipe-schneider-leinenkette",
-      "name": "Leinenkette",
-      "profession": "schneider",
-      "source": "trainer",
-      "reqSkill": 5,
-      "cost": {
-        "gold": 13
-      },
-      "materials": {
-        "leinenstoff": 2
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schneider-leinenkette"
-      },
-      "xp": 5,
-      "description": "Webt: Leinenkette.",
-      "trainerCost": 10
-    },
-    {
       "id": "recipe-schneider-leinenkappe",
       "name": "Leinenkappe",
       "profession": "schneider",
@@ -3328,26 +3032,6 @@
       },
       "xp": 6,
       "description": "Webt: Leinenkappe.",
-      "trainerCost": 10
-    },
-    {
-      "id": "recipe-schneider-leinenmedaillon",
-      "name": "Leinenmedaillon",
-      "profession": "schneider",
-      "source": "trainer",
-      "reqSkill": 19,
-      "cost": {
-        "gold": 23
-      },
-      "materials": {
-        "leinenstoff": 2
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schneider-leinenmedaillon"
-      },
-      "xp": 7,
-      "description": "Webt: Leinenmedaillon.",
       "trainerCost": 10
     },
     {
@@ -3475,27 +3159,6 @@
       "dropMinQuestRarity": "rare"
     },
     {
-      "id": "recipe-schneider-leinenanhaenger",
-      "name": "Leinenanhänger",
-      "profession": "schneider",
-      "source": "faction",
-      "reqSkill": 55,
-      "cost": {
-        "gold": 49
-      },
-      "materials": {
-        "leinenstoff": 4
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schneider-leinenanhaenger"
-      },
-      "xp": 11,
-      "description": "Webt: Leinenanhänger.",
-      "factionId": "echo",
-      "factionMinRep": "friendly"
-    },
-    {
       "id": "recipe-schneider-leinentunika",
       "name": "Leinentunika",
       "profession": "schneider",
@@ -3620,26 +3283,6 @@
       "trainerCost": 74
     },
     {
-      "id": "recipe-schneider-gewobener-anhaenger",
-      "name": "Gewobener Anhänger",
-      "profession": "schneider",
-      "source": "trainer",
-      "reqSkill": 96,
-      "cost": {
-        "gold": 108
-      },
-      "materials": {
-        "wollstoff": 2
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schneider-gewobener-anhaenger"
-      },
-      "xp": 15,
-      "description": "Webt: Gewobener Anhänger.",
-      "trainerCost": 78
-    },
-    {
       "id": "recipe-schneider-wollhut",
       "name": "Wollhut",
       "profession": "schneider",
@@ -3682,50 +3325,6 @@
       "description": "Webt: Wollrobe.",
       "dropChance": 0.13,
       "dropMinQuestRarity": "uncommon"
-    },
-    {
-      "id": "recipe-schneider-wollmedaillon",
-      "name": "Wollmedaillon",
-      "profession": "schneider",
-      "source": "drop",
-      "reqSkill": 118,
-      "cost": {
-        "gold": 167
-      },
-      "materials": {
-        "wollstoff": 3,
-        "wollballen": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schneider-wollmedaillon"
-      },
-      "xp": 18,
-      "description": "Webt: Wollmedaillon.",
-      "dropChance": 0.13,
-      "dropMinQuestRarity": "uncommon"
-    },
-    {
-      "id": "recipe-schneider-wollkette",
-      "name": "Wollkette",
-      "profession": "schneider",
-      "source": "drop",
-      "reqSkill": 121,
-      "cost": {
-        "gold": 175
-      },
-      "materials": {
-        "wollstoff": 3,
-        "wollballen": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schneider-wollkette"
-      },
-      "xp": 18,
-      "description": "Webt: Wollkette.",
-      "dropChance": 0.15,
-      "dropMinQuestRarity": "rare"
     },
     {
       "id": "recipe-schneider-gewobene-kappe",
@@ -3860,28 +3459,6 @@
       "dropMinQuestRarity": "epic"
     },
     {
-      "id": "recipe-schneider-gewobenes-amulett",
-      "name": "Gewobenes Amulett",
-      "profession": "schneider",
-      "source": "drop",
-      "reqSkill": 148,
-      "cost": {
-        "gold": 250
-      },
-      "materials": {
-        "wollstoff": 4,
-        "wollballen": 2
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schneider-gewobenes-amulett"
-      },
-      "xp": 22,
-      "description": "Webt: Gewobenes Amulett.",
-      "dropChance": 0.02,
-      "dropMinQuestRarity": "epic"
-    },
-    {
       "id": "recipe-schneider-mondschein-kutte",
       "name": "Mondschein-Kutte",
       "profession": "schneider",
@@ -3969,28 +3546,6 @@
       "trainerCost": 180
     },
     {
-      "id": "recipe-schneider-seidenreif",
-      "name": "Seidenreif",
-      "profession": "schneider",
-      "source": "trainer",
-      "reqSkill": 162,
-      "cost": {
-        "gold": 250
-      },
-      "materials": {
-        "seidenstoff": 2,
-        "seidenballen": 1,
-        "sternenlichtfarbe": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schneider-seidenreif"
-      },
-      "xp": 22,
-      "description": "Webt: Seidenreif.",
-      "trainerCost": 190
-    },
-    {
       "id": "recipe-schneider-seidenmantel",
       "name": "Seidenmantel",
       "profession": "schneider",
@@ -4011,28 +3566,6 @@
       "xp": 22,
       "description": "Webt: Seidenmantel.",
       "trainerCost": 200
-    },
-    {
-      "id": "recipe-schneider-mondschein-amulett",
-      "name": "Mondschein-Amulett",
-      "profession": "schneider",
-      "source": "trainer",
-      "reqSkill": 174,
-      "cost": {
-        "gold": 300
-      },
-      "materials": {
-        "seidenstoff": 2,
-        "seidenballen": 1,
-        "sternenlichtfarbe": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schneider-mondschein-amulett"
-      },
-      "xp": 23,
-      "description": "Webt: Mondschein-Amulett.",
-      "trainerCost": 230
     },
     {
       "id": "recipe-schneider-seidensandalen",
@@ -4145,29 +3678,6 @@
       "dropMinQuestRarity": "uncommon"
     },
     {
-      "id": "recipe-schneider-seidenkette-i",
-      "name": "Seidenkette I",
-      "profession": "schneider",
-      "source": "drop",
-      "reqSkill": 199,
-      "cost": {
-        "gold": 400
-      },
-      "materials": {
-        "seidenstoff": 3,
-        "seidenballen": 1,
-        "sternenlichtfarbe": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schneider-seidenkette-i"
-      },
-      "xp": 27,
-      "description": "Webt: Seidenkette I.",
-      "dropChance": 0.15,
-      "dropMinQuestRarity": "rare"
-    },
-    {
       "id": "recipe-schneider-mondschein-haube",
       "name": "Mondschein-Haube",
       "profession": "schneider",
@@ -4188,29 +3698,6 @@
       "description": "Webt: Mondschein-Haube.",
       "dropChance": 0.15,
       "dropMinQuestRarity": "rare"
-    },
-    {
-      "id": "recipe-schneider-seidenkette",
-      "name": "Seidenkette",
-      "profession": "schneider",
-      "source": "faction",
-      "reqSkill": 214,
-      "cost": {
-        "gold": 463
-      },
-      "materials": {
-        "seidenstoff": 4,
-        "seidenballen": 1,
-        "sternenlichtfarbe": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schneider-seidenkette"
-      },
-      "xp": 29,
-      "description": "Webt: Seidenkette.",
-      "factionId": "echo",
-      "factionMinRep": "honored"
     },
     {
       "id": "recipe-schneider-mondschein-pantoffeln",
@@ -4280,28 +3767,6 @@
       "trainerCost": 440
     },
     {
-      "id": "recipe-schneider-arkanes-amulett",
-      "name": "Arkanes Amulett",
-      "profession": "schneider",
-      "source": "trainer",
-      "reqSkill": 233,
-      "cost": {
-        "gold": 514
-      },
-      "materials": {
-        "magiestoff": 2,
-        "arkanerfaden": 1,
-        "magiestoffballen": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schneider-arkanes-amulett"
-      },
-      "xp": 30,
-      "description": "Webt: Arkanes Amulett.",
-      "trainerCost": 464
-    },
-    {
       "id": "recipe-schneider-runensandalen",
       "name": "Runensandalen",
       "profession": "schneider",
@@ -4344,28 +3809,6 @@
       "xp": 34,
       "description": "Webt: Äthergewand.",
       "trainerCost": 560
-    },
-    {
-      "id": "recipe-schneider-seelenamulett",
-      "name": "Seelenamulett",
-      "profession": "schneider",
-      "source": "trainer",
-      "reqSkill": 248,
-      "cost": {
-        "gold": 741
-      },
-      "materials": {
-        "magiestoff": 3,
-        "arkanerfaden": 1,
-        "magiestoffballen": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schneider-seelenamulett"
-      },
-      "xp": 35,
-      "description": "Webt: Seelenamulett.",
-      "trainerCost": 584
     },
     {
       "id": "recipe-schneider-runenschleier",
@@ -4431,75 +3874,6 @@
       "description": "Webt: Ätherkrone.",
       "dropChance": 0.11,
       "dropMinQuestRarity": "common"
-    },
-    {
-      "id": "recipe-schneider-sternenkette",
-      "name": "Sternenkette",
-      "profession": "schneider",
-      "source": "drop",
-      "reqSkill": 260,
-      "cost": {
-        "gold": 931
-      },
-      "materials": {
-        "magiestoff": 3,
-        "arkanerfaden": 1,
-        "magiestoffballen": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schneider-sternenkette"
-      },
-      "xp": 39,
-      "description": "Webt: Sternenkette.",
-      "dropChance": 0.11,
-      "dropMinQuestRarity": "common"
-    },
-    {
-      "id": "recipe-schneider-runenkette",
-      "name": "Runenkette",
-      "profession": "schneider",
-      "source": "drop",
-      "reqSkill": 268,
-      "cost": {
-        "gold": 1045
-      },
-      "materials": {
-        "magiestoff": 4,
-        "arkanerfaden": 1,
-        "magiestoffballen": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schneider-runenkette"
-      },
-      "xp": 41,
-      "description": "Webt: Runenkette.",
-      "dropChance": 0.13,
-      "dropMinQuestRarity": "uncommon"
-    },
-    {
-      "id": "recipe-schneider-arkanes-amulett-i",
-      "name": "Arkanes Amulett I",
-      "profession": "schneider",
-      "source": "drop",
-      "reqSkill": 270,
-      "cost": {
-        "gold": 1083
-      },
-      "materials": {
-        "magiestoff": 4,
-        "arkanerfaden": 1,
-        "magiestoffballen": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schneider-arkanes-amulett-i"
-      },
-      "xp": 42,
-      "description": "Webt: Arkanes Amulett I.",
-      "dropChance": 0.15,
-      "dropMinQuestRarity": "rare"
     },
     {
       "id": "recipe-schneider-sternenrobe",
@@ -5623,26 +4997,6 @@
       "trainerCost": 10
     },
     {
-      "id": "recipe-leder-leichtleder-anhaenger",
-      "name": "Leichtleder-Anhänger",
-      "profession": "lederverarbeiter",
-      "source": "trainer",
-      "reqSkill": 12,
-      "cost": {
-        "gold": 18
-      },
-      "materials": {
-        "leichtesleder": 2
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-leder-leichtleder-anhaenger"
-      },
-      "xp": 6,
-      "description": "Gerbt: Leichtleder-Anhänger.",
-      "trainerCost": 10
-    },
-    {
       "id": "recipe-leder-leichtleder-kappe",
       "name": "Leichtleder-Kappe",
       "profession": "lederverarbeiter",
@@ -5704,27 +5058,6 @@
       "dropMinQuestRarity": "common"
     },
     {
-      "id": "recipe-leder-leichtleder-band",
-      "name": "Leichtleder-Band",
-      "profession": "lederverarbeiter",
-      "source": "drop",
-      "reqSkill": 41,
-      "cost": {
-        "gold": 39
-      },
-      "materials": {
-        "leichtesleder": 4
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-leder-leichtleder-band"
-      },
-      "xp": 9,
-      "description": "Gerbt: Leichtleder-Band.",
-      "dropChance": 0.13,
-      "dropMinQuestRarity": "uncommon"
-    },
-    {
       "id": "recipe-leder-leichtleder-haube",
       "name": "Leichtleder-Haube",
       "profession": "lederverarbeiter",
@@ -5765,27 +5098,6 @@
       "description": "Gerbt: Leichtleder-Jacke.",
       "dropChance": 0.15,
       "dropMinQuestRarity": "rare"
-    },
-    {
-      "id": "recipe-leder-leichtleder-kette",
-      "name": "Leichtleder-Kette",
-      "profession": "lederverarbeiter",
-      "source": "faction",
-      "reqSkill": 52,
-      "cost": {
-        "gold": 47
-      },
-      "materials": {
-        "leichtesleder": 4
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-leder-leichtleder-kette"
-      },
-      "xp": 10,
-      "description": "Gerbt: Leichtleder-Kette.",
-      "factionId": "glut",
-      "factionMinRep": "friendly"
     },
     {
       "id": "recipe-leder-leichtleder-treter",
@@ -6041,72 +5353,6 @@
       "dropMinQuestRarity": "uncommon"
     },
     {
-      "id": "recipe-leder-jaeger-amulett",
-      "name": "Jäger-Amulett",
-      "profession": "lederverarbeiter",
-      "source": "drop",
-      "reqSkill": 121,
-      "cost": {
-        "gold": 175
-      },
-      "materials": {
-        "mittleresleder": 3,
-        "geheiltesmittleresleder": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-leder-jaeger-amulett"
-      },
-      "xp": 18,
-      "description": "Gerbt: Jäger-Amulett.",
-      "dropChance": 0.15,
-      "dropMinQuestRarity": "rare"
-    },
-    {
-      "id": "recipe-leder-wildnis-anhaenger",
-      "name": "Wildnis-Anhänger",
-      "profession": "lederverarbeiter",
-      "source": "faction",
-      "reqSkill": 130,
-      "cost": {
-        "gold": 200
-      },
-      "materials": {
-        "mittleresleder": 4,
-        "geheiltesmittleresleder": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-leder-wildnis-anhaenger"
-      },
-      "xp": 20,
-      "description": "Gerbt: Wildnis-Anhänger.",
-      "factionId": "glut",
-      "factionMinRep": "friendly"
-    },
-    {
-      "id": "recipe-leder-mittelleder-kette",
-      "name": "Mittelleder-Kette",
-      "profession": "lederverarbeiter",
-      "source": "faction",
-      "reqSkill": 133,
-      "cost": {
-        "gold": 208
-      },
-      "materials": {
-        "mittleresleder": 4,
-        "geheiltesmittleresleder": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-leder-mittelleder-kette"
-      },
-      "xp": 20,
-      "description": "Gerbt: Mittelleder-Kette.",
-      "factionId": "amboss",
-      "factionMinRep": "friendly"
-    },
-    {
       "id": "recipe-leder-mittelleder-harnisch",
       "name": "Mittelleder-Harnisch",
       "profession": "lederverarbeiter",
@@ -6171,72 +5417,6 @@
       "description": "Gerbt: Wildnis-Stiefel.",
       "dropChance": 0.02,
       "dropMinQuestRarity": "epic"
-    },
-    {
-      "id": "recipe-leder-jagd-talisman",
-      "name": "Jagd-Talisman",
-      "profession": "lederverarbeiter",
-      "source": "drop",
-      "reqSkill": 148,
-      "cost": {
-        "gold": 250
-      },
-      "materials": {
-        "mittleresleder": 4,
-        "geheiltesmittleresleder": 2
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-leder-jagd-talisman"
-      },
-      "xp": 22,
-      "description": "Gerbt: Jagd-Talisman.",
-      "dropChance": 0.02,
-      "dropMinQuestRarity": "epic"
-    },
-    {
-      "id": "recipe-leder-schwerleder-talisman",
-      "name": "Schwerleder-Talisman",
-      "profession": "lederverarbeiter",
-      "source": "trainer",
-      "reqSkill": 153,
-      "cost": {
-        "gold": 213
-      },
-      "materials": {
-        "schweresleder": 2,
-        "gehaertetesschwerleder": 1,
-        "salzgerbung": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-leder-schwerleder-talisman"
-      },
-      "xp": 20,
-      "description": "Gerbt: Schwerleder-Talisman.",
-      "trainerCost": 160
-    },
-    {
-      "id": "recipe-leder-schwerleder-reif",
-      "name": "Schwerleder-Reif",
-      "profession": "lederverarbeiter",
-      "source": "trainer",
-      "reqSkill": 156,
-      "cost": {
-        "gold": 225
-      },
-      "materials": {
-        "schweresleder": 2,
-        "gehaertetesschwerleder": 1,
-        "salzgerbung": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-leder-schwerleder-reif"
-      },
-      "xp": 21,
-      "description": "Gerbt: Schwerleder-Reif.",
-      "trainerCost": 170
     },
     {
       "id": "recipe-leder-bestien-jacke",
@@ -6304,28 +5484,6 @@
       "trainerCost": 230
     },
     {
-      "id": "recipe-leder-bestien-amulett",
-      "name": "Bestien-Amulett",
-      "profession": "lederverarbeiter",
-      "source": "trainer",
-      "reqSkill": 177,
-      "cost": {
-        "gold": 313
-      },
-      "materials": {
-        "schweresleder": 3,
-        "gehaertetesschwerleder": 1,
-        "salzgerbung": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-leder-bestien-amulett"
-      },
-      "xp": 24,
-      "description": "Gerbt: Bestien-Amulett.",
-      "trainerCost": 240
-    },
-    {
       "id": "recipe-leder-schwerleder-helm",
       "name": "Schwerleder-Helm",
       "profession": "lederverarbeiter",
@@ -6389,29 +5547,6 @@
       },
       "xp": 25,
       "description": "Gerbt: Schwerleder-Tritte.",
-      "dropChance": 0.13,
-      "dropMinQuestRarity": "uncommon"
-    },
-    {
-      "id": "recipe-leder-schwerleder-talisman-ii",
-      "name": "Schwerleder-Talisman II",
-      "profession": "lederverarbeiter",
-      "source": "drop",
-      "reqSkill": 193,
-      "cost": {
-        "gold": 375
-      },
-      "materials": {
-        "schweresleder": 3,
-        "gehaertetesschwerleder": 1,
-        "salzgerbung": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-leder-schwerleder-talisman-ii"
-      },
-      "xp": 26,
-      "description": "Gerbt: Schwerleder-Talisman II.",
       "dropChance": 0.13,
       "dropMinQuestRarity": "uncommon"
     },
@@ -6681,28 +5816,6 @@
       "trainerCost": 560
     },
     {
-      "id": "recipe-leder-seelenjaeger-amulett",
-      "name": "Seelenjäger-Amulett",
-      "profession": "lederverarbeiter",
-      "source": "trainer",
-      "reqSkill": 248,
-      "cost": {
-        "gold": 741
-      },
-      "materials": {
-        "dickesleder": 3,
-        "bestienlederballen": 1,
-        "klauenoel": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-leder-seelenjaeger-amulett"
-      },
-      "xp": 35,
-      "description": "Gerbt: Seelenjäger-Amulett.",
-      "trainerCost": 584
-    },
-    {
       "id": "recipe-leder-seelenjaeger-haube",
       "name": "Seelenjäger-Haube",
       "profession": "lederverarbeiter",
@@ -6722,28 +5835,6 @@
       "xp": 36,
       "description": "Gerbt: Seelenjäger-Haube.",
       "trainerCost": 600
-    },
-    {
-      "id": "recipe-leder-urzeit-kette",
-      "name": "Urzeit-Kette",
-      "profession": "lederverarbeiter",
-      "source": "trainer",
-      "reqSkill": 253,
-      "cost": {
-        "gold": 817
-      },
-      "materials": {
-        "dickesleder": 3,
-        "bestienlederballen": 1,
-        "klauenoel": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-leder-urzeit-kette"
-      },
-      "xp": 36,
-      "description": "Gerbt: Urzeit-Kette.",
-      "trainerCost": 624
     },
     {
       "id": "recipe-leder-seelenjaeger-wams",
@@ -6884,29 +5975,6 @@
       "dropMinQuestRarity": "uncommon"
     },
     {
-      "id": "recipe-leder-bestien-anhaenger",
-      "name": "Bestien-Anhänger",
-      "profession": "lederverarbeiter",
-      "source": "drop",
-      "reqSkill": 270,
-      "cost": {
-        "gold": 1083
-      },
-      "materials": {
-        "dickesleder": 4,
-        "bestienlederballen": 1,
-        "klauenoel": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-leder-bestien-anhaenger"
-      },
-      "xp": 42,
-      "description": "Gerbt: Bestien-Anhänger.",
-      "dropChance": 0.15,
-      "dropMinQuestRarity": "rare"
-    },
-    {
       "id": "recipe-leder-bestien-krone",
       "name": "Bestien-Krone",
       "profession": "lederverarbeiter",
@@ -6927,52 +5995,6 @@
       "description": "Gerbt: Bestien-Krone.",
       "dropChance": 0.15,
       "dropMinQuestRarity": "rare"
-    },
-    {
-      "id": "recipe-leder-urzeit-talisman-ii",
-      "name": "Urzeit-Talisman II",
-      "profession": "lederverarbeiter",
-      "source": "drop",
-      "reqSkill": 275,
-      "cost": {
-        "gold": 1159
-      },
-      "materials": {
-        "rauesleder": 2,
-        "urzeitleder": 1,
-        "uraltesgerbmittel": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-leder-urzeit-talisman-ii"
-      },
-      "xp": 43,
-      "description": "Gerbt: Urzeit-Talisman II.",
-      "dropChance": 0.15,
-      "dropMinQuestRarity": "rare"
-    },
-    {
-      "id": "recipe-leder-urzeit-talisman",
-      "name": "Urzeit-Talisman",
-      "profession": "lederverarbeiter",
-      "source": "faction",
-      "reqSkill": 285,
-      "cost": {
-        "gold": 1310
-      },
-      "materials": {
-        "rauesleder": 2,
-        "urzeitleder": 1,
-        "uraltesgerbmittel": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-leder-urzeit-talisman"
-      },
-      "xp": 46,
-      "description": "Gerbt: Urzeit-Talisman.",
-      "factionId": "glut",
-      "factionMinRep": "honored"
     },
     {
       "id": "recipe-leder-urzeit-visier",
@@ -14891,151 +13913,6 @@
       "description": "Stellt her: Drachenstahl-Kriegstiefel."
     },
     {
-      "id": "recipe-schmied-aetherkern-schutzreif",
-      "name": "Aetherkern-Schutzreif",
-      "profession": "schmied",
-      "source": "trainer",
-      "reqSkill": 261,
-      "cost": {
-        "gold": 782
-      },
-      "materials": {
-        "aetherlegierung": 2,
-        "aetherbarren": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schmied-aetherkern-schutzreif"
-      },
-      "xp": 35,
-      "trainerCost": 782,
-      "description": "Stellt her: Aetherkern-Schutzreif."
-    },
-    {
-      "id": "recipe-schmied-eisernes-schutzamulett",
-      "name": "Eisernes Schutzamulett",
-      "profession": "schmied",
-      "source": "trainer",
-      "reqSkill": 10,
-      "cost": {
-        "gold": 20
-      },
-      "materials": {
-        "eisenerz": 2
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schmied-eisernes-schutzamulett"
-      },
-      "xp": 8,
-      "trainerCost": 20,
-      "description": "Stellt her: Eisernes Schutzamulett."
-    },
-    {
-      "id": "recipe-schmied-kristall-talisman",
-      "name": "Kristall-Talisman",
-      "profession": "schmied",
-      "source": "trainer",
-      "reqSkill": 96,
-      "cost": {
-        "gold": 166
-      },
-      "materials": {
-        "kristallsplitter": 2,
-        "eisenbarren": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schmied-kristall-talisman"
-      },
-      "xp": 16,
-      "trainerCost": 166,
-      "description": "Stellt her: Kristall-Talisman."
-    },
-    {
-      "id": "recipe-schmied-drachenstahl-siegelamulett",
-      "name": "Drachenstahl-Siegelamulett",
-      "profession": "schmied",
-      "source": "trainer",
-      "reqSkill": 212,
-      "cost": {
-        "gold": 423
-      },
-      "materials": {
-        "drachenschuppe": 2,
-        "drachenstahl": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schmied-drachenstahl-siegelamulett"
-      },
-      "xp": 24,
-      "trainerCost": 423,
-      "description": "Stellt her: Drachenstahl-Siegelamulett."
-    },
-    {
-      "id": "recipe-schmied-aether-siegelamulett",
-      "name": "Aether-Siegelamulett",
-      "profession": "schmied",
-      "source": "trainer",
-      "reqSkill": 284,
-      "cost": {
-        "gold": 1227
-      },
-      "materials": {
-        "aetherlegierung": 2,
-        "aetherbarren": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schmied-aether-siegelamulett"
-      },
-      "xp": 35,
-      "trainerCost": 1227,
-      "description": "Stellt her: Aether-Siegelamulett."
-    },
-    {
-      "id": "recipe-schmied-geschmiedeter-talisman",
-      "name": "Geschmiedeter Talisman",
-      "profession": "schmied",
-      "source": "trainer",
-      "reqSkill": 45,
-      "cost": {
-        "gold": 51
-      },
-      "materials": {
-        "eisenerz": 2
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schmied-geschmiedeter-talisman"
-      },
-      "xp": 8,
-      "trainerCost": 51,
-      "description": "Stellt her: Geschmiedeter Talisman."
-    },
-    {
-      "id": "recipe-schmied-staehlernes-schutzamulett",
-      "name": "Stählernes Schutzamulett",
-      "profession": "schmied",
-      "source": "trainer",
-      "reqSkill": 124,
-      "cost": {
-        "gold": 160
-      },
-      "materials": {
-        "kristallsplitter": 2,
-        "eisenbarren": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schmied-staehlernes-schutzamulett"
-      },
-      "xp": 16,
-      "trainerCost": 160,
-      "description": "Stellt her: Stählernes Schutzamulett."
-    },
-    {
       "id": "recipe-schneider-leinenschleier-des-gelehrten",
       "name": "Leinenschleier des Gelehrten",
       "profession": "schneider",
@@ -15428,110 +14305,6 @@
       "xp": 24,
       "trainerCost": 298,
       "description": "Stellt her: Mondschein-Schritte."
-    },
-    {
-      "id": "recipe-schneider-sternentalisman",
-      "name": "Sternentalisman",
-      "profession": "schneider",
-      "source": "trainer",
-      "reqSkill": 240,
-      "cost": {
-        "gold": 784
-      },
-      "materials": {
-        "magiestoff": 2,
-        "arkanerfaden": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schneider-sternentalisman"
-      },
-      "xp": 35,
-      "trainerCost": 784,
-      "description": "Stellt her: Sternentalisman."
-    },
-    {
-      "id": "recipe-schneider-leinenkette-des-wissens",
-      "name": "Leinenkette des Wissens",
-      "profession": "schneider",
-      "source": "trainer",
-      "reqSkill": 55,
-      "cost": {
-        "gold": 52
-      },
-      "materials": {
-        "leinenstoff": 2
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schneider-leinenkette-des-wissens"
-      },
-      "xp": 8,
-      "trainerCost": 52,
-      "description": "Stellt her: Leinenkette des Wissens."
-    },
-    {
-      "id": "recipe-schneider-wollkette-des-gelehrten",
-      "name": "Wollkette des Gelehrten",
-      "profession": "schneider",
-      "source": "trainer",
-      "reqSkill": 89,
-      "cost": {
-        "gold": 130
-      },
-      "materials": {
-        "wollstoff": 2,
-        "leinenballen": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schneider-wollkette-des-gelehrten"
-      },
-      "xp": 16,
-      "trainerCost": 130,
-      "description": "Stellt her: Wollkette des Gelehrten."
-    },
-    {
-      "id": "recipe-schneider-seidenkette-der-sterne",
-      "name": "Seidenkette der Sterne",
-      "profession": "schneider",
-      "source": "trainer",
-      "reqSkill": 199,
-      "cost": {
-        "gold": 307
-      },
-      "materials": {
-        "seidenstoff": 2,
-        "seidenballen": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schneider-seidenkette-der-sterne"
-      },
-      "xp": 24,
-      "trainerCost": 307,
-      "description": "Stellt her: Seidenkette der Sterne."
-    },
-    {
-      "id": "recipe-schneider-arkanes-meisteramulett",
-      "name": "Arkanes Meisteramulett",
-      "profession": "schneider",
-      "source": "trainer",
-      "reqSkill": 294,
-      "cost": {
-        "gold": 827
-      },
-      "materials": {
-        "magiestoff": 2,
-        "arkanerfaden": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schneider-arkanes-meisteramulett"
-      },
-      "xp": 35,
-      "trainerCost": 827,
-      "description": "Stellt her: Arkanes Meisteramulett."
     },
     {
       "id": "recipe-lederverarbeiter-leichtleder-jaegerkappe",
@@ -16006,126 +14779,2495 @@
       "description": "Stellt her: Schwerleder-Jagdstiefel."
     },
     {
-      "id": "recipe-lederverarbeiter-raues-leder-amulett",
-      "name": "Raues Leder-Amulett",
-      "profession": "lederverarbeiter",
+      "id": "recipe-juwelier-eiserner-ring",
+      "name": "Eiserner Ring",
+      "profession": "juwelier",
       "source": "trainer",
-      "reqSkill": 253,
+      "reqSkill": 1,
       "cost": {
-        "gold": 467
+        "gold": 10
       },
       "materials": {
-        "dickesleder": 2
+        "kristallsplitter": 1
       },
       "result": {
         "type": "craft_gear",
-        "templateId": "craft-lederverarbeiter-raues-leder-amulett"
+        "templateId": "craft-juwelier-eiserner-ring"
       },
-      "xp": 35,
-      "trainerCost": 467,
-      "description": "Stellt her: Raues Leder-Amulett."
+      "xp": 5,
+      "description": "Fasst: Eiserner Ring.",
+      "trainerCost": 8
     },
     {
-      "id": "recipe-lederverarbeiter-einfaches-lederband",
-      "name": "Einfaches Lederband",
-      "profession": "lederverarbeiter",
+      "id": "recipe-juwelier-schlichter-kupferring",
+      "name": "Schlichter Kupferring",
+      "profession": "juwelier",
       "source": "trainer",
-      "reqSkill": 58,
+      "reqSkill": 7,
+      "cost": {
+        "gold": 13
+      },
+      "materials": {
+        "kristallsplitter": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-juwelier-schlichter-kupferring"
+      },
+      "xp": 6,
+      "description": "Fasst: Schlichter Kupferring.",
+      "trainerCost": 10
+    },
+    {
+      "id": "recipe-juwelier-grober-siegelring",
+      "name": "Grober Siegelring",
+      "profession": "juwelier",
+      "source": "trainer",
+      "reqSkill": 13,
+      "cost": {
+        "gold": 17
+      },
+      "materials": {
+        "kristallsplitter": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-juwelier-grober-siegelring"
+      },
+      "xp": 6,
+      "description": "Fasst: Grober Siegelring.",
+      "trainerCost": 14
+    },
+    {
+      "id": "recipe-juwelier-eisenband",
+      "name": "Eisenband",
+      "profession": "juwelier",
+      "source": "trainer",
+      "reqSkill": 18,
+      "cost": {
+        "gold": 20
+      },
+      "materials": {
+        "kristallsplitter": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-juwelier-eisenband"
+      },
+      "xp": 7,
+      "description": "Fasst: Eisenband.",
+      "trainerCost": 16
+    },
+    {
+      "id": "recipe-juwelier-einfacher-steinring",
+      "name": "Einfacher Steinring",
+      "profession": "juwelier",
+      "source": "trainer",
+      "reqSkill": 24,
+      "cost": {
+        "gold": 23
+      },
+      "materials": {
+        "kristallsplitter": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-juwelier-einfacher-steinring"
+      },
+      "xp": 7,
+      "description": "Fasst: Einfacher Steinring.",
+      "trainerCost": 18
+    },
+    {
+      "id": "recipe-juwelier-ring-des-lehrlings",
+      "name": "Ring des Lehrlings",
+      "profession": "juwelier",
+      "source": "trainer",
+      "reqSkill": 30,
+      "cost": {
+        "gold": 27
+      },
+      "materials": {
+        "kristallsplitter": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-juwelier-ring-des-lehrlings"
+      },
+      "xp": 8,
+      "description": "Fasst: Ring des Lehrlings.",
+      "trainerCost": 22
+    },
+    {
+      "id": "recipe-juwelier-kupferreif",
+      "name": "Kupferreif",
+      "profession": "juwelier",
+      "source": "drop",
+      "reqSkill": 36,
+      "cost": {
+        "gold": 30
+      },
+      "materials": {
+        "kristallsplitter": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-juwelier-kupferreif"
+      },
+      "xp": 9,
+      "description": "Fasst: Kupferreif.",
+      "dropChance": 0.06,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "recipe-juwelier-eisenring-des-wanderers",
+      "name": "Eisenring des Wanderers",
+      "profession": "juwelier",
+      "source": "drop",
+      "reqSkill": 41,
+      "cost": {
+        "gold": 33
+      },
+      "materials": {
+        "kristallsplitter": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-juwelier-eisenring-des-wanderers"
+      },
+      "xp": 9,
+      "description": "Fasst: Eisenring des Wanderers.",
+      "dropChance": 0.06,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "recipe-juwelier-kupferkette",
+      "name": "Kupferkette",
+      "profession": "juwelier",
+      "source": "drop",
+      "reqSkill": 47,
+      "cost": {
+        "gold": 37
+      },
+      "materials": {
+        "kristallsplitter": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-juwelier-kupferkette"
+      },
+      "xp": 10,
+      "description": "Fasst: Kupferkette.",
+      "dropChance": 0.06,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "recipe-juwelier-eisernes-medaillon",
+      "name": "Eisernes Medaillon",
+      "profession": "juwelier",
+      "source": "drop",
+      "reqSkill": 53,
+      "cost": {
+        "gold": 40
+      },
+      "materials": {
+        "kristallsplitter": 3
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-juwelier-eisernes-medaillon"
+      },
+      "xp": 10,
+      "description": "Fasst: Eisernes Medaillon.",
+      "dropChance": 0.06,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "recipe-juwelier-schlichter-anhaenger",
+      "name": "Schlichter Anhänger",
+      "profession": "juwelier",
+      "source": "faction",
+      "reqSkill": 59,
+      "cost": {
+        "gold": 43
+      },
+      "materials": {
+        "kristallsplitter": 2,
+        "runenstein": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-juwelier-schlichter-anhaenger"
+      },
+      "xp": 11,
+      "description": "Fasst: Schlichter Anhänger.",
+      "factionId": "tinte",
+      "factionMinRep": "friendly"
+    },
+    {
+      "id": "recipe-juwelier-steinamulett",
+      "name": "Steinamulett",
+      "profession": "juwelier",
+      "source": "faction",
+      "reqSkill": 64,
+      "cost": {
+        "gold": 47
+      },
+      "materials": {
+        "kristallsplitter": 2,
+        "runenstein": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-juwelier-steinamulett"
+      },
+      "xp": 11,
+      "description": "Fasst: Steinamulett.",
+      "factionId": "tinte",
+      "factionMinRep": "friendly"
+    },
+    {
+      "id": "recipe-juwelier-einfache-kette",
+      "name": "Einfache Kette",
+      "profession": "juwelier",
+      "source": "drop",
+      "reqSkill": 70,
       "cost": {
         "gold": 50
       },
       "materials": {
-        "leichtesleder": 2
+        "kristallsplitter": 2,
+        "runenstein": 1
       },
       "result": {
         "type": "craft_gear",
-        "templateId": "craft-lederverarbeiter-einfaches-lederband"
+        "templateId": "craft-juwelier-einfache-kette"
       },
-      "xp": 8,
-      "trainerCost": 50,
-      "description": "Stellt her: Einfaches Lederband."
+      "xp": 12,
+      "description": "Fasst: Einfache Kette.",
+      "dropChance": 0.02,
+      "dropMinQuestRarity": "epic"
     },
     {
-      "id": "recipe-lederverarbeiter-gehaertetes-lederband",
-      "name": "Gehärtetes Lederband",
-      "profession": "lederverarbeiter",
+      "id": "recipe-juwelier-kristallring",
+      "name": "Kristallring",
+      "profession": "juwelier",
       "source": "trainer",
-      "reqSkill": 107,
+      "reqSkill": 75,
+      "cost": {
+        "gold": 50
+      },
+      "materials": {
+        "runenstein": 1,
+        "kristallsplitter": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-juwelier-kristallring"
+      },
+      "xp": 12,
+      "description": "Fasst: Kristallring.",
+      "trainerCost": 40
+    },
+    {
+      "id": "recipe-juwelier-staehlerner-siegelring",
+      "name": "Stählerner Siegelring",
+      "profession": "juwelier",
+      "source": "trainer",
+      "reqSkill": 80,
+      "cost": {
+        "gold": 60
+      },
+      "materials": {
+        "runenstein": 1,
+        "kristallsplitter": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-juwelier-staehlerner-siegelring"
+      },
+      "xp": 13,
+      "description": "Fasst: Stählerner Siegelring.",
+      "trainerCost": 48
+    },
+    {
+      "id": "recipe-juwelier-kristallband",
+      "name": "Kristallband",
+      "profession": "juwelier",
+      "source": "trainer",
+      "reqSkill": 85,
+      "cost": {
+        "gold": 70
+      },
+      "materials": {
+        "runenstein": 1,
+        "kristallsplitter": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-juwelier-kristallband"
+      },
+      "xp": 13,
+      "description": "Fasst: Kristallband.",
+      "trainerCost": 56
+    },
+    {
+      "id": "recipe-juwelier-ring-des-forschers",
+      "name": "Ring des Forschers",
+      "profession": "juwelier",
+      "source": "trainer",
+      "reqSkill": 90,
+      "cost": {
+        "gold": 80
+      },
+      "materials": {
+        "runenstein": 1,
+        "kristallsplitter": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-juwelier-ring-des-forschers"
+      },
+      "xp": 14,
+      "description": "Fasst: Ring des Forschers.",
+      "trainerCost": 64
+    },
+    {
+      "id": "recipe-juwelier-staehlerner-reif",
+      "name": "Stählerner Reif",
+      "profession": "juwelier",
+      "source": "trainer",
+      "reqSkill": 94,
+      "cost": {
+        "gold": 90
+      },
+      "materials": {
+        "runenstein": 1,
+        "kristallsplitter": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-juwelier-staehlerner-reif"
+      },
+      "xp": 15,
+      "description": "Fasst: Stählerner Reif.",
+      "trainerCost": 72
+    },
+    {
+      "id": "recipe-juwelier-kristall-siegelring",
+      "name": "Kristall-Siegelring",
+      "profession": "juwelier",
+      "source": "trainer",
+      "reqSkill": 99,
+      "cost": {
+        "gold": 100
+      },
+      "materials": {
+        "runenstein": 1,
+        "kristallsplitter": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-juwelier-kristall-siegelring"
+      },
+      "xp": 15,
+      "description": "Fasst: Kristall-Siegelring.",
+      "trainerCost": 80
+    },
+    {
+      "id": "recipe-juwelier-mondsteinring",
+      "name": "Mondsteinring",
+      "profession": "juwelier",
+      "source": "trainer",
+      "reqSkill": 104,
+      "cost": {
+        "gold": 110
+      },
+      "materials": {
+        "runenstein": 1,
+        "kristallsplitter": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-juwelier-mondsteinring"
+      },
+      "xp": 16,
+      "description": "Fasst: Mondsteinring.",
+      "trainerCost": 88
+    },
+    {
+      "id": "recipe-juwelier-ring-der-erkenntnis",
+      "name": "Ring der Erkenntnis",
+      "profession": "juwelier",
+      "source": "drop",
+      "reqSkill": 109,
+      "cost": {
+        "gold": 120
+      },
+      "materials": {
+        "runenstein": 2,
+        "kristallsplitter": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-juwelier-ring-der-erkenntnis"
+      },
+      "xp": 17,
+      "description": "Fasst: Ring der Erkenntnis.",
+      "dropChance": 0.06,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "recipe-juwelier-staehlerner-gelehrtenring",
+      "name": "Stählerner Gelehrtenring",
+      "profession": "juwelier",
+      "source": "drop",
+      "reqSkill": 114,
+      "cost": {
+        "gold": 130
+      },
+      "materials": {
+        "runenstein": 2,
+        "kristallsplitter": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-juwelier-staehlerner-gelehrtenring"
+      },
+      "xp": 17,
+      "description": "Fasst: Stählerner Gelehrtenring.",
+      "dropChance": 0.06,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "recipe-juwelier-kristallreif-des-wanderers",
+      "name": "Kristallreif des Wanderers",
+      "profession": "juwelier",
+      "source": "drop",
+      "reqSkill": 119,
+      "cost": {
+        "gold": 140
+      },
+      "materials": {
+        "runenstein": 2,
+        "kristallsplitter": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-juwelier-kristallreif-des-wanderers"
+      },
+      "xp": 18,
+      "description": "Fasst: Kristallreif des Wanderers.",
+      "dropChance": 0.06,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "recipe-juwelier-kristallkette",
+      "name": "Kristallkette",
+      "profession": "juwelier",
+      "source": "drop",
+      "reqSkill": 124,
+      "cost": {
+        "gold": 150
+      },
+      "materials": {
+        "runenstein": 2,
+        "kristallsplitter": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-juwelier-kristallkette"
+      },
+      "xp": 19,
+      "description": "Fasst: Kristallkette.",
+      "dropChance": 0.06,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "recipe-juwelier-staehlernes-medaillon",
+      "name": "Stählernes Medaillon",
+      "profession": "juwelier",
+      "source": "drop",
+      "reqSkill": 129,
+      "cost": {
+        "gold": 160
+      },
+      "materials": {
+        "runenstein": 2,
+        "kristallsplitter": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-juwelier-staehlernes-medaillon"
+      },
+      "xp": 19,
+      "description": "Fasst: Stählernes Medaillon.",
+      "dropChance": 0.06,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "recipe-juwelier-mondstein-anhaenger",
+      "name": "Mondstein-Anhänger",
+      "profession": "juwelier",
+      "source": "faction",
+      "reqSkill": 133,
       "cost": {
         "gold": 170
       },
       "materials": {
-        "mittleresleder": 2,
-        "geheiltes_leichtleder": 1
+        "runenstein": 2,
+        "kristallsplitter": 2
       },
       "result": {
         "type": "craft_gear",
-        "templateId": "craft-lederverarbeiter-gehaertetes-lederband"
+        "templateId": "craft-juwelier-mondstein-anhaenger"
       },
-      "xp": 16,
-      "trainerCost": 170,
-      "description": "Stellt her: Gehärtetes Lederband."
+      "xp": 20,
+      "description": "Fasst: Mondstein-Anhänger.",
+      "factionId": "tinte",
+      "factionMinRep": "friendly"
     },
     {
-      "id": "recipe-lederverarbeiter-bestien-talisman",
-      "name": "Bestien-Talisman",
-      "profession": "lederverarbeiter",
+      "id": "recipe-juwelier-kristall-amulett",
+      "name": "Kristall-Amulett",
+      "profession": "juwelier",
+      "source": "faction",
+      "reqSkill": 138,
+      "cost": {
+        "gold": 180
+      },
+      "materials": {
+        "runenstein": 2,
+        "kristallsplitter": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-juwelier-kristall-amulett"
+      },
+      "xp": 21,
+      "description": "Fasst: Kristall-Amulett.",
+      "factionId": "tinte",
+      "factionMinRep": "friendly"
+    },
+    {
+      "id": "recipe-juwelier-staehlerne-kette",
+      "name": "Stählerne Kette",
+      "profession": "juwelier",
+      "source": "faction",
+      "reqSkill": 143,
+      "cost": {
+        "gold": 190
+      },
+      "materials": {
+        "runenstein": 2,
+        "kristallsplitter": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-juwelier-staehlerne-kette"
+      },
+      "xp": 21,
+      "description": "Fasst: Stählerne Kette.",
+      "factionId": "tinte",
+      "factionMinRep": "friendly"
+    },
+    {
+      "id": "recipe-juwelier-kristall-medaillon",
+      "name": "Kristall-Medaillon",
+      "profession": "juwelier",
+      "source": "drop",
+      "reqSkill": 148,
+      "cost": {
+        "gold": 200
+      },
+      "materials": {
+        "runenstein": 2,
+        "kristallsplitter": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-juwelier-kristall-medaillon"
+      },
+      "xp": 22,
+      "description": "Fasst: Kristall-Medaillon.",
+      "dropChance": 0.02,
+      "dropMinQuestRarity": "epic"
+    },
+    {
+      "id": "recipe-juwelier-saphirring",
+      "name": "Saphirring",
+      "profession": "juwelier",
+      "source": "trainer",
+      "reqSkill": 150,
+      "cost": {
+        "gold": 200
+      },
+      "materials": {
+        "runenstein": 2,
+        "aetherkern": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-juwelier-saphirring"
+      },
+      "xp": 20,
+      "description": "Fasst: Saphirring.",
+      "trainerCost": 160
+    },
+    {
+      "id": "recipe-juwelier-drachenauge-ring",
+      "name": "Drachenauge-Ring",
+      "profession": "juwelier",
+      "source": "trainer",
+      "reqSkill": 155,
+      "cost": {
+        "gold": 219
+      },
+      "materials": {
+        "runenstein": 2,
+        "aetherkern": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-juwelier-drachenauge-ring"
+      },
+      "xp": 21,
+      "description": "Fasst: Drachenauge-Ring.",
+      "trainerCost": 175
+    },
+    {
+      "id": "recipe-juwelier-ring-des-meisters",
+      "name": "Ring des Meisters",
+      "profession": "juwelier",
+      "source": "trainer",
+      "reqSkill": 159,
+      "cost": {
+        "gold": 238
+      },
+      "materials": {
+        "runenstein": 2,
+        "aetherkern": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-juwelier-ring-des-meisters"
+      },
+      "xp": 21,
+      "description": "Fasst: Ring des Meisters.",
+      "trainerCost": 190
+    },
+    {
+      "id": "recipe-juwelier-smaragdband",
+      "name": "Smaragdband",
+      "profession": "juwelier",
+      "source": "trainer",
+      "reqSkill": 164,
+      "cost": {
+        "gold": 256
+      },
+      "materials": {
+        "runenstein": 2,
+        "aetherkern": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-juwelier-smaragdband"
+      },
+      "xp": 22,
+      "description": "Fasst: Smaragdband.",
+      "trainerCost": 205
+    },
+    {
+      "id": "recipe-juwelier-mondschein-siegelring",
+      "name": "Mondschein-Siegelring",
+      "profession": "juwelier",
+      "source": "trainer",
+      "reqSkill": 168,
+      "cost": {
+        "gold": 275
+      },
+      "materials": {
+        "runenstein": 2,
+        "aetherkern": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-juwelier-mondschein-siegelring"
+      },
+      "xp": 23,
+      "description": "Fasst: Mondschein-Siegelring.",
+      "trainerCost": 220
+    },
+    {
+      "id": "recipe-juwelier-ring-der-sterne",
+      "name": "Ring der Sterne",
+      "profession": "juwelier",
       "source": "trainer",
       "reqSkill": 173,
       "cost": {
-        "gold": 224
+        "gold": 294
       },
       "materials": {
-        "schweresleder": 2,
-        "gehaertetes_schwerleder": 1
+        "runenstein": 2,
+        "aetherkern": 1
       },
       "result": {
         "type": "craft_gear",
-        "templateId": "craft-lederverarbeiter-bestien-talisman"
+        "templateId": "craft-juwelier-ring-der-sterne"
+      },
+      "xp": 23,
+      "description": "Fasst: Ring der Sterne.",
+      "trainerCost": 235
+    },
+    {
+      "id": "recipe-juwelier-drachenschuppen-reif",
+      "name": "Drachenschuppen-Reif",
+      "profession": "juwelier",
+      "source": "trainer",
+      "reqSkill": 177,
+      "cost": {
+        "gold": 313
+      },
+      "materials": {
+        "runenstein": 2,
+        "aetherkern": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-juwelier-drachenschuppen-reif"
       },
       "xp": 24,
-      "trainerCost": 224,
-      "description": "Stellt her: Bestien-Talisman."
+      "description": "Fasst: Drachenschuppen-Reif.",
+      "trainerCost": 250
     },
     {
-      "id": "recipe-lederverarbeiter-urzeitleder-kette",
-      "name": "Urzeitleder-Kette",
-      "profession": "lederverarbeiter",
-      "source": "trainer",
-      "reqSkill": 264,
+      "id": "recipe-juwelier-saphir-gelehrtenring",
+      "name": "Saphir-Gelehrtenring",
+      "profession": "juwelier",
+      "source": "drop",
+      "reqSkill": 182,
       "cost": {
-        "gold": 627
+        "gold": 331
       },
       "materials": {
-        "dickesleder": 2
+        "runenstein": 2,
+        "aetherkern": 1
       },
       "result": {
         "type": "craft_gear",
-        "templateId": "craft-lederverarbeiter-urzeitleder-kette"
+        "templateId": "craft-juwelier-saphir-gelehrtenring"
+      },
+      "xp": 24,
+      "description": "Fasst: Saphir-Gelehrtenring.",
+      "dropChance": 0.06,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "recipe-juwelier-ring-des-weisen",
+      "name": "Ring des Weisen",
+      "profession": "juwelier",
+      "source": "drop",
+      "reqSkill": 187,
+      "cost": {
+        "gold": 350
+      },
+      "materials": {
+        "runenstein": 2,
+        "aetherkern": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-juwelier-ring-des-weisen"
+      },
+      "xp": 25,
+      "description": "Fasst: Ring des Weisen.",
+      "dropChance": 0.06,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "recipe-juwelier-smaragdreif",
+      "name": "Smaragdreif",
+      "profession": "juwelier",
+      "source": "drop",
+      "reqSkill": 191,
+      "cost": {
+        "gold": 369
+      },
+      "materials": {
+        "runenstein": 2,
+        "aetherkern": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-juwelier-smaragdreif"
+      },
+      "xp": 26,
+      "description": "Fasst: Smaragdreif.",
+      "dropChance": 0.06,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "recipe-juwelier-saphir-kette",
+      "name": "Saphir-Kette",
+      "profession": "juwelier",
+      "source": "drop",
+      "reqSkill": 196,
+      "cost": {
+        "gold": 388
+      },
+      "materials": {
+        "aetherkern": 2,
+        "runenstein": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-juwelier-saphir-kette"
+      },
+      "xp": 26,
+      "description": "Fasst: Saphir-Kette.",
+      "dropChance": 0.06,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "recipe-juwelier-drachenzahn-medaillon",
+      "name": "Drachenzahn-Medaillon",
+      "profession": "juwelier",
+      "source": "drop",
+      "reqSkill": 200,
+      "cost": {
+        "gold": 406
+      },
+      "materials": {
+        "aetherkern": 2,
+        "runenstein": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-juwelier-drachenzahn-medaillon"
+      },
+      "xp": 27,
+      "description": "Fasst: Drachenzahn-Medaillon.",
+      "dropChance": 0.06,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "recipe-juwelier-smaragd-anhaenger",
+      "name": "Smaragd-Anhänger",
+      "profession": "juwelier",
+      "source": "faction",
+      "reqSkill": 205,
+      "cost": {
+        "gold": 425
+      },
+      "materials": {
+        "aetherkern": 2,
+        "runenstein": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-juwelier-smaragd-anhaenger"
+      },
+      "xp": 28,
+      "description": "Fasst: Smaragd-Anhänger.",
+      "factionId": "tinte",
+      "factionMinRep": "friendly"
+    },
+    {
+      "id": "recipe-juwelier-mondschein-amulett",
+      "name": "Mondschein-Amulett",
+      "profession": "juwelier",
+      "source": "faction",
+      "reqSkill": 209,
+      "cost": {
+        "gold": 444
+      },
+      "materials": {
+        "aetherkern": 2,
+        "runenstein": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-juwelier-mondschein-amulett"
+      },
+      "xp": 28,
+      "description": "Fasst: Mondschein-Amulett.",
+      "factionId": "tinte",
+      "factionMinRep": "friendly"
+    },
+    {
+      "id": "recipe-juwelier-drachenschuppen-kette",
+      "name": "Drachenschuppen-Kette",
+      "profession": "juwelier",
+      "source": "faction",
+      "reqSkill": 214,
+      "cost": {
+        "gold": 463
+      },
+      "materials": {
+        "aetherkern": 2,
+        "runenstein": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-juwelier-drachenschuppen-kette"
+      },
+      "xp": 29,
+      "description": "Fasst: Drachenschuppen-Kette.",
+      "factionId": "tinte",
+      "factionMinRep": "friendly"
+    },
+    {
+      "id": "recipe-juwelier-saphir-medaillon",
+      "name": "Saphir-Medaillon",
+      "profession": "juwelier",
+      "source": "faction",
+      "reqSkill": 218,
+      "cost": {
+        "gold": 481
+      },
+      "materials": {
+        "aetherkern": 2,
+        "runenstein": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-juwelier-saphir-medaillon"
+      },
+      "xp": 29,
+      "description": "Fasst: Saphir-Medaillon.",
+      "factionId": "tinte",
+      "factionMinRep": "friendly"
+    },
+    {
+      "id": "recipe-juwelier-smaragd-amulett",
+      "name": "Smaragd-Amulett",
+      "profession": "juwelier",
+      "source": "drop",
+      "reqSkill": 223,
+      "cost": {
+        "gold": 500
+      },
+      "materials": {
+        "aetherkern": 2,
+        "runenstein": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-juwelier-smaragd-amulett"
+      },
+      "xp": 30,
+      "description": "Fasst: Smaragd-Amulett.",
+      "dropChance": 0.02,
+      "dropMinQuestRarity": "epic"
+    },
+    {
+      "id": "recipe-juwelier-aetherring",
+      "name": "Aetherring",
+      "profession": "juwelier",
+      "source": "trainer",
+      "reqSkill": 225,
+      "cost": {
+        "gold": 400
+      },
+      "materials": {
+        "aetherkern": 2,
+        "seelensplitter": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-juwelier-aetherring"
+      },
+      "xp": 28,
+      "description": "Fasst: Aetherring.",
+      "trainerCost": 320
+    },
+    {
+      "id": "recipe-juwelier-ring-der-leere",
+      "name": "Ring der Leere",
+      "profession": "juwelier",
+      "source": "trainer",
+      "reqSkill": 229,
+      "cost": {
+        "gold": 455
+      },
+      "materials": {
+        "aetherkern": 2,
+        "seelensplitter": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-juwelier-ring-der-leere"
+      },
+      "xp": 29,
+      "description": "Fasst: Ring der Leere.",
+      "trainerCost": 364
+    },
+    {
+      "id": "recipe-juwelier-seelen-siegelring",
+      "name": "Seelen-Siegelring",
+      "profession": "juwelier",
+      "source": "trainer",
+      "reqSkill": 232,
+      "cost": {
+        "gold": 510
+      },
+      "materials": {
+        "aetherkern": 2,
+        "seelensplitter": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-juwelier-seelen-siegelring"
+      },
+      "xp": 30,
+      "description": "Fasst: Seelen-Siegelring.",
+      "trainerCost": 408
+    },
+    {
+      "id": "recipe-juwelier-runenring",
+      "name": "Runenring",
+      "profession": "juwelier",
+      "source": "trainer",
+      "reqSkill": 236,
+      "cost": {
+        "gold": 565
+      },
+      "materials": {
+        "aetherkern": 2,
+        "seelensplitter": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-juwelier-runenring"
+      },
+      "xp": 31,
+      "description": "Fasst: Runenring.",
+      "trainerCost": 452
+    },
+    {
+      "id": "recipe-juwelier-sternenring",
+      "name": "Sternenring",
+      "profession": "juwelier",
+      "source": "trainer",
+      "reqSkill": 240,
+      "cost": {
+        "gold": 620
+      },
+      "materials": {
+        "aetherkern": 2,
+        "seelensplitter": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-juwelier-sternenring"
+      },
+      "xp": 32,
+      "description": "Fasst: Sternenring.",
+      "trainerCost": 496
+    },
+    {
+      "id": "recipe-juwelier-aetherkern-band",
+      "name": "Aetherkern-Band",
+      "profession": "juwelier",
+      "source": "trainer",
+      "reqSkill": 243,
+      "cost": {
+        "gold": 675
+      },
+      "materials": {
+        "aetherkern": 2,
+        "seelensplitter": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-juwelier-aetherkern-band"
+      },
+      "xp": 34,
+      "description": "Fasst: Aetherkern-Band.",
+      "trainerCost": 540
+    },
+    {
+      "id": "recipe-juwelier-seelenreif",
+      "name": "Seelenreif",
+      "profession": "juwelier",
+      "source": "trainer",
+      "reqSkill": 247,
+      "cost": {
+        "gold": 730
+      },
+      "materials": {
+        "aetherkern": 2,
+        "seelensplitter": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-juwelier-seelenreif"
       },
       "xp": 35,
-      "trainerCost": 627,
-      "description": "Stellt her: Urzeitleder-Kette."
+      "description": "Fasst: Seelenreif.",
+      "trainerCost": 584
     },
     {
-      "id": "recipe-lederverarbeiter-leichtleder-kette",
-      "name": "Leichtleder-Kette",
-      "profession": "lederverarbeiter",
+      "id": "recipe-juwelier-ring-des-schicksals",
+      "name": "Ring des Schicksals",
+      "profession": "juwelier",
       "source": "trainer",
-      "reqSkill": 55,
+      "reqSkill": 251,
       "cost": {
-        "gold": 45
+        "gold": 785
       },
       "materials": {
-        "leichtesleder": 2
+        "aetherkern": 2,
+        "seelensplitter": 1
       },
       "result": {
         "type": "craft_gear",
-        "templateId": "craft-lederverarbeiter-leichtleder-kette"
+        "templateId": "craft-juwelier-ring-des-schicksals"
+      },
+      "xp": 36,
+      "description": "Fasst: Ring des Schicksals.",
+      "trainerCost": 628
+    },
+    {
+      "id": "recipe-juwelier-arkaner-siegelring",
+      "name": "Arkaner Siegelring",
+      "profession": "juwelier",
+      "source": "trainer",
+      "reqSkill": 254,
+      "cost": {
+        "gold": 840
+      },
+      "materials": {
+        "aetherkern": 2,
+        "seelensplitter": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-juwelier-arkaner-siegelring"
+      },
+      "xp": 37,
+      "description": "Fasst: Arkaner Siegelring.",
+      "trainerCost": 672
+    },
+    {
+      "id": "recipe-juwelier-seelen-gelehrtenring",
+      "name": "Seelen-Gelehrtenring",
+      "profession": "juwelier",
+      "source": "drop",
+      "reqSkill": 258,
+      "cost": {
+        "gold": 895
+      },
+      "materials": {
+        "aetherkern": 2,
+        "seelensplitter": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-juwelier-seelen-gelehrtenring"
+      },
+      "xp": 38,
+      "description": "Fasst: Seelen-Gelehrtenring.",
+      "dropChance": 0.06,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "recipe-juwelier-ring-der-ewigkeit",
+      "name": "Ring der Ewigkeit",
+      "profession": "juwelier",
+      "source": "drop",
+      "reqSkill": 262,
+      "cost": {
+        "gold": 950
+      },
+      "materials": {
+        "seelensplitter": 2,
+        "aetherkern": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-juwelier-ring-der-ewigkeit"
+      },
+      "xp": 39,
+      "description": "Fasst: Ring der Ewigkeit.",
+      "dropChance": 0.06,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "recipe-juwelier-sternenband-des-webers",
+      "name": "Sternenband des Webers",
+      "profession": "juwelier",
+      "source": "drop",
+      "reqSkill": 265,
+      "cost": {
+        "gold": 1005
+      },
+      "materials": {
+        "seelensplitter": 2,
+        "aetherkern": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-juwelier-sternenband-des-webers"
+      },
+      "xp": 40,
+      "description": "Fasst: Sternenband des Webers.",
+      "dropChance": 0.06,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "recipe-juwelier-aether-kette",
+      "name": "Aether-Kette",
+      "profession": "juwelier",
+      "source": "drop",
+      "reqSkill": 269,
+      "cost": {
+        "gold": 1060
+      },
+      "materials": {
+        "seelensplitter": 2,
+        "aetherkern": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-juwelier-aether-kette"
+      },
+      "xp": 41,
+      "description": "Fasst: Aether-Kette.",
+      "dropChance": 0.06,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "recipe-juwelier-seelen-medaillon",
+      "name": "Seelen-Medaillon",
+      "profession": "juwelier",
+      "source": "drop",
+      "reqSkill": 272,
+      "cost": {
+        "gold": 1115
+      },
+      "materials": {
+        "seelensplitter": 2,
+        "aetherkern": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-juwelier-seelen-medaillon"
+      },
+      "xp": 42,
+      "description": "Fasst: Seelen-Medaillon.",
+      "dropChance": 0.06,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "recipe-juwelier-sternen-anhaenger",
+      "name": "Sternen-Anhänger",
+      "profession": "juwelier",
+      "source": "drop",
+      "reqSkill": 276,
+      "cost": {
+        "gold": 1170
+      },
+      "materials": {
+        "seelensplitter": 2,
+        "aetherkern": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-juwelier-sternen-anhaenger"
+      },
+      "xp": 43,
+      "description": "Fasst: Sternen-Anhänger.",
+      "dropChance": 0.06,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "recipe-juwelier-runen-amulett",
+      "name": "Runen-Amulett",
+      "profession": "juwelier",
+      "source": "faction",
+      "reqSkill": 280,
+      "cost": {
+        "gold": 1225
+      },
+      "materials": {
+        "seelensplitter": 2,
+        "aetherkern": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-juwelier-runen-amulett"
+      },
+      "xp": 45,
+      "description": "Fasst: Runen-Amulett.",
+      "factionId": "tinte",
+      "factionMinRep": "friendly"
+    },
+    {
+      "id": "recipe-juwelier-aetherkern-kette",
+      "name": "Aetherkern-Kette",
+      "profession": "juwelier",
+      "source": "faction",
+      "reqSkill": 283,
+      "cost": {
+        "gold": 1280
+      },
+      "materials": {
+        "seelensplitter": 2,
+        "aetherkern": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-juwelier-aetherkern-kette"
+      },
+      "xp": 46,
+      "description": "Fasst: Aetherkern-Kette.",
+      "factionId": "tinte",
+      "factionMinRep": "friendly"
+    },
+    {
+      "id": "recipe-juwelier-seelen-amulett",
+      "name": "Seelen-Amulett",
+      "profession": "juwelier",
+      "source": "faction",
+      "reqSkill": 287,
+      "cost": {
+        "gold": 1335
+      },
+      "materials": {
+        "seelensplitter": 2,
+        "aetherkern": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-juwelier-seelen-amulett"
+      },
+      "xp": 47,
+      "description": "Fasst: Seelen-Amulett.",
+      "factionId": "tinte",
+      "factionMinRep": "friendly"
+    },
+    {
+      "id": "recipe-juwelier-sternen-medaillon",
+      "name": "Sternen-Medaillon",
+      "profession": "juwelier",
+      "source": "faction",
+      "reqSkill": 291,
+      "cost": {
+        "gold": 1390
+      },
+      "materials": {
+        "seelensplitter": 2,
+        "aetherkern": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-juwelier-sternen-medaillon"
+      },
+      "xp": 48,
+      "description": "Fasst: Sternen-Medaillon.",
+      "factionId": "tinte",
+      "factionMinRep": "friendly"
+    },
+    {
+      "id": "recipe-juwelier-arkaner-anhaenger",
+      "name": "Arkaner Anhänger",
+      "profession": "juwelier",
+      "source": "drop",
+      "reqSkill": 294,
+      "cost": {
+        "gold": 1445
+      },
+      "materials": {
+        "seelensplitter": 2,
+        "aetherkern": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-juwelier-arkaner-anhaenger"
+      },
+      "xp": 49,
+      "description": "Fasst: Arkaner Anhänger.",
+      "dropChance": 0.02,
+      "dropMinQuestRarity": "epic"
+    },
+    {
+      "id": "recipe-juwelier-seelensiegel-kette",
+      "name": "Seelensiegel-Kette",
+      "profession": "juwelier",
+      "source": "drop",
+      "reqSkill": 298,
+      "cost": {
+        "gold": 1500
+      },
+      "materials": {
+        "seelensplitter": 2,
+        "aetherkern": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-juwelier-seelensiegel-kette"
+      },
+      "xp": 50,
+      "description": "Fasst: Seelensiegel-Kette.",
+      "dropChance": 0.02,
+      "dropMinQuestRarity": "epic"
+    },
+    {
+      "id": "recipe-juwelier-gem-ruby-1",
+      "name": "Gesplitterter Rubin",
+      "profession": "juwelier",
+      "source": "trainer",
+      "reqSkill": 0,
+      "cost": {
+        "gold": 100
+      },
+      "materials": {
+        "kristallsplitter": 1
+      },
+      "result": {
+        "type": "gem_cut",
+        "gemType": "ruby",
+        "gemTier": 1
+      },
+      "xp": 13,
+      "description": "Schleift: Gesplitterter Rubin.",
+      "trainerCost": 100
+    },
+    {
+      "id": "recipe-juwelier-gem-ruby-2",
+      "name": "Fehlerhafter Rubin",
+      "profession": "juwelier",
+      "source": "trainer",
+      "reqSkill": 60,
+      "cost": {
+        "gold": 200
+      },
+      "materials": {
+        "kristallsplitter": 2
+      },
+      "result": {
+        "type": "gem_cut",
+        "gemType": "ruby",
+        "gemTier": 2
+      },
+      "xp": 21,
+      "description": "Schleift: Fehlerhafter Rubin.",
+      "trainerCost": 200
+    },
+    {
+      "id": "recipe-juwelier-gem-ruby-3",
+      "name": "Geschliffener Rubin",
+      "profession": "juwelier",
+      "source": "trainer",
+      "reqSkill": 120,
+      "cost": {
+        "gold": 300
+      },
+      "materials": {
+        "kristallsplitter": 3,
+        "runenstein": 1
+      },
+      "result": {
+        "type": "gem_cut",
+        "gemType": "ruby",
+        "gemTier": 3
+      },
+      "xp": 29,
+      "description": "Schleift: Geschliffener Rubin.",
+      "trainerCost": 300
+    },
+    {
+      "id": "recipe-juwelier-gem-ruby-4",
+      "name": "Makelloser Rubin",
+      "profession": "juwelier",
+      "source": "drop",
+      "reqSkill": 180,
+      "cost": {
+        "gold": 400
+      },
+      "materials": {
+        "kristallsplitter": 4,
+        "runenstein": 2
+      },
+      "result": {
+        "type": "gem_cut",
+        "gemType": "ruby",
+        "gemTier": 4
+      },
+      "xp": 37,
+      "description": "Schleift: Makelloser Rubin.",
+      "dropChance": 0.04,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "recipe-juwelier-gem-ruby-5",
+      "name": "Königlicher Rubin",
+      "profession": "juwelier",
+      "source": "drop",
+      "reqSkill": 240,
+      "cost": {
+        "gold": 500
+      },
+      "materials": {
+        "kristallsplitter": 5,
+        "runenstein": 3
+      },
+      "result": {
+        "type": "gem_cut",
+        "gemType": "ruby",
+        "gemTier": 5
+      },
+      "xp": 45,
+      "description": "Schleift: Königlicher Rubin.",
+      "dropChance": 0.04,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "recipe-juwelier-gem-sapphire-1",
+      "name": "Gesplitterter Saphir",
+      "profession": "juwelier",
+      "source": "trainer",
+      "reqSkill": 5,
+      "cost": {
+        "gold": 100
+      },
+      "materials": {
+        "kristallsplitter": 1
+      },
+      "result": {
+        "type": "gem_cut",
+        "gemType": "sapphire",
+        "gemTier": 1
+      },
+      "xp": 13,
+      "description": "Schleift: Gesplitterter Saphir.",
+      "trainerCost": 100
+    },
+    {
+      "id": "recipe-juwelier-gem-sapphire-2",
+      "name": "Fehlerhafter Saphir",
+      "profession": "juwelier",
+      "source": "trainer",
+      "reqSkill": 65,
+      "cost": {
+        "gold": 200
+      },
+      "materials": {
+        "kristallsplitter": 2
+      },
+      "result": {
+        "type": "gem_cut",
+        "gemType": "sapphire",
+        "gemTier": 2
+      },
+      "xp": 21,
+      "description": "Schleift: Fehlerhafter Saphir.",
+      "trainerCost": 200
+    },
+    {
+      "id": "recipe-juwelier-gem-sapphire-3",
+      "name": "Geschliffener Saphir",
+      "profession": "juwelier",
+      "source": "trainer",
+      "reqSkill": 125,
+      "cost": {
+        "gold": 300
+      },
+      "materials": {
+        "kristallsplitter": 3,
+        "runenstein": 1
+      },
+      "result": {
+        "type": "gem_cut",
+        "gemType": "sapphire",
+        "gemTier": 3
+      },
+      "xp": 29,
+      "description": "Schleift: Geschliffener Saphir.",
+      "trainerCost": 300
+    },
+    {
+      "id": "recipe-juwelier-gem-sapphire-4",
+      "name": "Makelloser Saphir",
+      "profession": "juwelier",
+      "source": "drop",
+      "reqSkill": 185,
+      "cost": {
+        "gold": 400
+      },
+      "materials": {
+        "kristallsplitter": 4,
+        "runenstein": 2
+      },
+      "result": {
+        "type": "gem_cut",
+        "gemType": "sapphire",
+        "gemTier": 4
+      },
+      "xp": 37,
+      "description": "Schleift: Makelloser Saphir.",
+      "dropChance": 0.04,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "recipe-juwelier-gem-sapphire-5",
+      "name": "Königlicher Saphir",
+      "profession": "juwelier",
+      "source": "drop",
+      "reqSkill": 245,
+      "cost": {
+        "gold": 500
+      },
+      "materials": {
+        "kristallsplitter": 5,
+        "runenstein": 3
+      },
+      "result": {
+        "type": "gem_cut",
+        "gemType": "sapphire",
+        "gemTier": 5
+      },
+      "xp": 45,
+      "description": "Schleift: Königlicher Saphir.",
+      "dropChance": 0.04,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "recipe-juwelier-gem-emerald-1",
+      "name": "Gesplitterter Smaragd",
+      "profession": "juwelier",
+      "source": "trainer",
+      "reqSkill": 10,
+      "cost": {
+        "gold": 100
+      },
+      "materials": {
+        "kristallsplitter": 1
+      },
+      "result": {
+        "type": "gem_cut",
+        "gemType": "emerald",
+        "gemTier": 1
+      },
+      "xp": 13,
+      "description": "Schleift: Gesplitterter Smaragd.",
+      "trainerCost": 100
+    },
+    {
+      "id": "recipe-juwelier-gem-emerald-2",
+      "name": "Fehlerhafter Smaragd",
+      "profession": "juwelier",
+      "source": "trainer",
+      "reqSkill": 70,
+      "cost": {
+        "gold": 200
+      },
+      "materials": {
+        "kristallsplitter": 2
+      },
+      "result": {
+        "type": "gem_cut",
+        "gemType": "emerald",
+        "gemTier": 2
+      },
+      "xp": 21,
+      "description": "Schleift: Fehlerhafter Smaragd.",
+      "trainerCost": 200
+    },
+    {
+      "id": "recipe-juwelier-gem-emerald-3",
+      "name": "Geschliffener Smaragd",
+      "profession": "juwelier",
+      "source": "trainer",
+      "reqSkill": 130,
+      "cost": {
+        "gold": 300
+      },
+      "materials": {
+        "kristallsplitter": 3,
+        "runenstein": 1
+      },
+      "result": {
+        "type": "gem_cut",
+        "gemType": "emerald",
+        "gemTier": 3
+      },
+      "xp": 29,
+      "description": "Schleift: Geschliffener Smaragd.",
+      "trainerCost": 300
+    },
+    {
+      "id": "recipe-juwelier-gem-emerald-4",
+      "name": "Makelloser Smaragd",
+      "profession": "juwelier",
+      "source": "drop",
+      "reqSkill": 190,
+      "cost": {
+        "gold": 400
+      },
+      "materials": {
+        "kristallsplitter": 4,
+        "runenstein": 2
+      },
+      "result": {
+        "type": "gem_cut",
+        "gemType": "emerald",
+        "gemTier": 4
+      },
+      "xp": 37,
+      "description": "Schleift: Makelloser Smaragd.",
+      "dropChance": 0.04,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "recipe-juwelier-gem-emerald-5",
+      "name": "Königlicher Smaragd",
+      "profession": "juwelier",
+      "source": "drop",
+      "reqSkill": 250,
+      "cost": {
+        "gold": 500
+      },
+      "materials": {
+        "kristallsplitter": 5,
+        "runenstein": 3
+      },
+      "result": {
+        "type": "gem_cut",
+        "gemType": "emerald",
+        "gemTier": 5
+      },
+      "xp": 45,
+      "description": "Schleift: Königlicher Smaragd.",
+      "dropChance": 0.04,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "recipe-juwelier-gem-topaz-1",
+      "name": "Gesplitterter Topas",
+      "profession": "juwelier",
+      "source": "trainer",
+      "reqSkill": 15,
+      "cost": {
+        "gold": 100
+      },
+      "materials": {
+        "kristallsplitter": 1
+      },
+      "result": {
+        "type": "gem_cut",
+        "gemType": "topaz",
+        "gemTier": 1
+      },
+      "xp": 13,
+      "description": "Schleift: Gesplitterter Topas.",
+      "trainerCost": 100
+    },
+    {
+      "id": "recipe-juwelier-gem-topaz-2",
+      "name": "Fehlerhafter Topas",
+      "profession": "juwelier",
+      "source": "trainer",
+      "reqSkill": 75,
+      "cost": {
+        "gold": 200
+      },
+      "materials": {
+        "kristallsplitter": 2
+      },
+      "result": {
+        "type": "gem_cut",
+        "gemType": "topaz",
+        "gemTier": 2
+      },
+      "xp": 21,
+      "description": "Schleift: Fehlerhafter Topas.",
+      "trainerCost": 200
+    },
+    {
+      "id": "recipe-juwelier-gem-topaz-3",
+      "name": "Geschliffener Topas",
+      "profession": "juwelier",
+      "source": "trainer",
+      "reqSkill": 135,
+      "cost": {
+        "gold": 300
+      },
+      "materials": {
+        "kristallsplitter": 3,
+        "runenstein": 1
+      },
+      "result": {
+        "type": "gem_cut",
+        "gemType": "topaz",
+        "gemTier": 3
+      },
+      "xp": 29,
+      "description": "Schleift: Geschliffener Topas.",
+      "trainerCost": 300
+    },
+    {
+      "id": "recipe-juwelier-gem-topaz-4",
+      "name": "Makelloser Topas",
+      "profession": "juwelier",
+      "source": "drop",
+      "reqSkill": 195,
+      "cost": {
+        "gold": 400
+      },
+      "materials": {
+        "kristallsplitter": 4,
+        "runenstein": 2
+      },
+      "result": {
+        "type": "gem_cut",
+        "gemType": "topaz",
+        "gemTier": 4
+      },
+      "xp": 37,
+      "description": "Schleift: Makelloser Topas.",
+      "dropChance": 0.04,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "recipe-juwelier-gem-topaz-5",
+      "name": "Königlicher Topas",
+      "profession": "juwelier",
+      "source": "drop",
+      "reqSkill": 255,
+      "cost": {
+        "gold": 500
+      },
+      "materials": {
+        "kristallsplitter": 5,
+        "runenstein": 3
+      },
+      "result": {
+        "type": "gem_cut",
+        "gemType": "topaz",
+        "gemTier": 5
+      },
+      "xp": 45,
+      "description": "Schleift: Königlicher Topas.",
+      "dropChance": 0.04,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "recipe-juwelier-gem-amethyst-1",
+      "name": "Gesplitterter Amethyst",
+      "profession": "juwelier",
+      "source": "trainer",
+      "reqSkill": 20,
+      "cost": {
+        "gold": 100
+      },
+      "materials": {
+        "kristallsplitter": 1
+      },
+      "result": {
+        "type": "gem_cut",
+        "gemType": "amethyst",
+        "gemTier": 1
+      },
+      "xp": 13,
+      "description": "Schleift: Gesplitterter Amethyst.",
+      "trainerCost": 100
+    },
+    {
+      "id": "recipe-juwelier-gem-amethyst-2",
+      "name": "Fehlerhafter Amethyst",
+      "profession": "juwelier",
+      "source": "trainer",
+      "reqSkill": 80,
+      "cost": {
+        "gold": 200
+      },
+      "materials": {
+        "kristallsplitter": 2
+      },
+      "result": {
+        "type": "gem_cut",
+        "gemType": "amethyst",
+        "gemTier": 2
+      },
+      "xp": 21,
+      "description": "Schleift: Fehlerhafter Amethyst.",
+      "trainerCost": 200
+    },
+    {
+      "id": "recipe-juwelier-gem-amethyst-3",
+      "name": "Geschliffener Amethyst",
+      "profession": "juwelier",
+      "source": "trainer",
+      "reqSkill": 140,
+      "cost": {
+        "gold": 300
+      },
+      "materials": {
+        "kristallsplitter": 3,
+        "runenstein": 1
+      },
+      "result": {
+        "type": "gem_cut",
+        "gemType": "amethyst",
+        "gemTier": 3
+      },
+      "xp": 29,
+      "description": "Schleift: Geschliffener Amethyst.",
+      "trainerCost": 300
+    },
+    {
+      "id": "recipe-juwelier-gem-amethyst-4",
+      "name": "Makelloser Amethyst",
+      "profession": "juwelier",
+      "source": "drop",
+      "reqSkill": 200,
+      "cost": {
+        "gold": 400
+      },
+      "materials": {
+        "kristallsplitter": 4,
+        "runenstein": 2
+      },
+      "result": {
+        "type": "gem_cut",
+        "gemType": "amethyst",
+        "gemTier": 4
+      },
+      "xp": 37,
+      "description": "Schleift: Makelloser Amethyst.",
+      "dropChance": 0.04,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "recipe-juwelier-gem-amethyst-5",
+      "name": "Königlicher Amethyst",
+      "profession": "juwelier",
+      "source": "drop",
+      "reqSkill": 260,
+      "cost": {
+        "gold": 500
+      },
+      "materials": {
+        "kristallsplitter": 5,
+        "runenstein": 3
+      },
+      "result": {
+        "type": "gem_cut",
+        "gemType": "amethyst",
+        "gemTier": 5
+      },
+      "xp": 45,
+      "description": "Schleift: Königlicher Amethyst.",
+      "dropChance": 0.04,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "recipe-juwelier-gem-diamond-1",
+      "name": "Gesplitterter Diamant",
+      "profession": "juwelier",
+      "source": "trainer",
+      "reqSkill": 25,
+      "cost": {
+        "gold": 100
+      },
+      "materials": {
+        "kristallsplitter": 1
+      },
+      "result": {
+        "type": "gem_cut",
+        "gemType": "diamond",
+        "gemTier": 1
+      },
+      "xp": 13,
+      "description": "Schleift: Gesplitterter Diamant.",
+      "trainerCost": 100
+    },
+    {
+      "id": "recipe-juwelier-gem-diamond-2",
+      "name": "Fehlerhafter Diamant",
+      "profession": "juwelier",
+      "source": "trainer",
+      "reqSkill": 85,
+      "cost": {
+        "gold": 200
+      },
+      "materials": {
+        "kristallsplitter": 2
+      },
+      "result": {
+        "type": "gem_cut",
+        "gemType": "diamond",
+        "gemTier": 2
+      },
+      "xp": 21,
+      "description": "Schleift: Fehlerhafter Diamant.",
+      "trainerCost": 200
+    },
+    {
+      "id": "recipe-juwelier-gem-diamond-3",
+      "name": "Geschliffener Diamant",
+      "profession": "juwelier",
+      "source": "trainer",
+      "reqSkill": 145,
+      "cost": {
+        "gold": 300
+      },
+      "materials": {
+        "kristallsplitter": 3,
+        "runenstein": 1
+      },
+      "result": {
+        "type": "gem_cut",
+        "gemType": "diamond",
+        "gemTier": 3
+      },
+      "xp": 29,
+      "description": "Schleift: Geschliffener Diamant.",
+      "trainerCost": 300
+    },
+    {
+      "id": "recipe-juwelier-gem-diamond-4",
+      "name": "Makelloser Diamant",
+      "profession": "juwelier",
+      "source": "drop",
+      "reqSkill": 205,
+      "cost": {
+        "gold": 400
+      },
+      "materials": {
+        "kristallsplitter": 4,
+        "runenstein": 2
+      },
+      "result": {
+        "type": "gem_cut",
+        "gemType": "diamond",
+        "gemTier": 4
+      },
+      "xp": 37,
+      "description": "Schleift: Makelloser Diamant.",
+      "dropChance": 0.04,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "recipe-juwelier-gem-diamond-5",
+      "name": "Königlicher Diamant",
+      "profession": "juwelier",
+      "source": "drop",
+      "reqSkill": 265,
+      "cost": {
+        "gold": 500
+      },
+      "materials": {
+        "kristallsplitter": 5,
+        "runenstein": 3
+      },
+      "result": {
+        "type": "gem_cut",
+        "gemType": "diamond",
+        "gemTier": 5
+      },
+      "xp": 45,
+      "description": "Schleift: Königlicher Diamant.",
+      "dropChance": 0.04,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "recipe-juwelier-gem-merge-1",
+      "name": "Gem-Verschmelzung Stufe 1",
+      "profession": "juwelier",
+      "source": "trainer",
+      "reqSkill": 50,
+      "cost": {
+        "gold": 200
+      },
+      "materials": {},
+      "result": {
+        "type": "gem_merge",
+        "fromTier": 1,
+        "toTier": 2
+      },
+      "xp": 20,
+      "trainerCost": 150,
+      "description": "Verschmelzt 3 Gems der Stufe 1 zu einem Gem der Stufe 2."
+    },
+    {
+      "id": "recipe-juwelier-gem-merge-2",
+      "name": "Gem-Verschmelzung Stufe 2",
+      "profession": "juwelier",
+      "source": "trainer",
+      "reqSkill": 100,
+      "cost": {
+        "gold": 400
+      },
+      "materials": {},
+      "result": {
+        "type": "gem_merge",
+        "fromTier": 2,
+        "toTier": 3
+      },
+      "xp": 30,
+      "trainerCost": 300,
+      "description": "Verschmelzt 3 Gems der Stufe 2 zu einem Gem der Stufe 3."
+    },
+    {
+      "id": "recipe-juwelier-gem-merge-3",
+      "name": "Gem-Verschmelzung Stufe 3",
+      "profession": "juwelier",
+      "source": "trainer",
+      "reqSkill": 150,
+      "cost": {
+        "gold": 600
+      },
+      "materials": {},
+      "result": {
+        "type": "gem_merge",
+        "fromTier": 3,
+        "toTier": 4
+      },
+      "xp": 40,
+      "trainerCost": 450,
+      "description": "Verschmelzt 3 Gems der Stufe 3 zu einem Gem der Stufe 4."
+    },
+    {
+      "id": "recipe-juwelier-gem-merge-4",
+      "name": "Gem-Verschmelzung Stufe 4",
+      "profession": "juwelier",
+      "source": "trainer",
+      "reqSkill": 200,
+      "cost": {
+        "gold": 800
+      },
+      "materials": {},
+      "result": {
+        "type": "gem_merge",
+        "fromTier": 4,
+        "toTier": 5
+      },
+      "xp": 50,
+      "trainerCost": 600,
+      "description": "Verschmelzt 3 Gems der Stufe 4 zu einem Gem der Stufe 5."
+    },
+    {
+      "id": "recipe-juwelier-poliertuch-1",
+      "name": "Einfaches Poliertuch",
+      "profession": "juwelier",
+      "source": "trainer",
+      "reqSkill": 20,
+      "cost": {
+        "gold": 15
+      },
+      "materials": {
+        "kristallsplitter": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "glueck_boost",
+        "amount": 2,
+        "questsRemaining": 3
       },
       "xp": 8,
-      "trainerCost": 45,
-      "description": "Stellt her: Leichtleder-Kette."
+      "trainerCost": 15,
+      "description": "Stellt her: Einfaches Poliertuch."
+    },
+    {
+      "id": "recipe-juwelier-poliertuch-2",
+      "name": "Feines Poliertuch",
+      "profession": "juwelier",
+      "source": "trainer",
+      "reqSkill": 100,
+      "cost": {
+        "gold": 80
+      },
+      "materials": {
+        "runenstein": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "glueck_boost",
+        "amount": 5,
+        "questsRemaining": 3
+      },
+      "xp": 18,
+      "trainerCost": 80,
+      "description": "Stellt her: Feines Poliertuch."
+    },
+    {
+      "id": "recipe-juwelier-poliertuch-3",
+      "name": "Arkanes Poliertuch",
+      "profession": "juwelier",
+      "source": "trainer",
+      "reqSkill": 225,
+      "cost": {
+        "gold": 350
+      },
+      "materials": {
+        "aetherkern": 1,
+        "runenstein": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "glueck_boost",
+        "amount": 8,
+        "questsRemaining": 4
+      },
+      "xp": 32,
+      "trainerCost": 350,
+      "description": "Stellt her: Arkanes Poliertuch."
+    },
+    {
+      "id": "recipe-juwelier-charisma-ring-buff-1",
+      "name": "Ring der Anmut",
+      "profession": "juwelier",
+      "source": "trainer",
+      "reqSkill": 50,
+      "cost": {
+        "gold": 40
+      },
+      "materials": {
+        "kristallsplitter": 3
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "charisma_boost",
+        "amount": 3,
+        "questsRemaining": 3
+      },
+      "xp": 12,
+      "trainerCost": 40,
+      "description": "Stellt her: Ring der Anmut."
+    },
+    {
+      "id": "recipe-juwelier-charisma-ring-buff-2",
+      "name": "Ring der Majestät",
+      "profession": "juwelier",
+      "source": "trainer",
+      "reqSkill": 200,
+      "cost": {
+        "gold": 300
+      },
+      "materials": {
+        "aetherkern": 1,
+        "runenstein": 3
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "charisma_boost",
+        "amount": 7,
+        "questsRemaining": 4
+      },
+      "xp": 28,
+      "trainerCost": 300,
+      "description": "Stellt her: Ring der Majestät."
+    },
+    {
+      "id": "recipe-juwelier-streakschutz",
+      "name": "Juwelen-Streakschutz",
+      "profession": "juwelier",
+      "source": "trainer",
+      "reqSkill": 125,
+      "cost": {
+        "gold": 120
+      },
+      "materials": {
+        "runenstein": 3,
+        "kristallsplitter": 2
+      },
+      "result": {
+        "type": "streak_shield",
+        "amount": 1
+      },
+      "xp": 20,
+      "trainerCost": 120,
+      "description": "Stellt her: Juwelen-Streakschutz."
+    },
+    {
+      "id": "recipe-juwelier-meister-streakschutz",
+      "name": "Meister-Juwelen-Streakschutz",
+      "profession": "juwelier",
+      "source": "trainer",
+      "reqSkill": 260,
+      "cost": {
+        "gold": 500
+      },
+      "materials": {
+        "aetherkern": 2,
+        "seelensplitter": 1
+      },
+      "result": {
+        "type": "streak_shield",
+        "amount": 1
+      },
+      "xp": 38,
+      "trainerCost": 500,
+      "description": "Stellt her: Meister-Juwelen-Streakschutz."
+    },
+    {
+      "id": "recipe-juwelier-forge-temp-1",
+      "name": "Glühender Edelstein",
+      "profession": "juwelier",
+      "source": "trainer",
+      "reqSkill": 80,
+      "cost": {
+        "gold": 50
+      },
+      "materials": {
+        "kristallsplitter": 3
+      },
+      "result": {
+        "type": "forge_temp",
+        "amount": 10
+      },
+      "xp": 14,
+      "trainerCost": 50,
+      "description": "Stellt her: Glühender Edelstein."
+    },
+    {
+      "id": "recipe-juwelier-forge-temp-2",
+      "name": "Aether-Edelstein",
+      "profession": "juwelier",
+      "source": "trainer",
+      "reqSkill": 240,
+      "cost": {
+        "gold": 450
+      },
+      "materials": {
+        "aetherkern": 2
+      },
+      "result": {
+        "type": "forge_temp",
+        "amount": 20
+      },
+      "xp": 35,
+      "trainerCost": 450,
+      "description": "Stellt her: Aether-Edelstein."
+    },
+    {
+      "id": "recipe-juwelier-ring-segnen-1",
+      "name": "Ring segnen I",
+      "profession": "juwelier",
+      "source": "trainer",
+      "reqSkill": 40,
+      "cost": {
+        "gold": 30
+      },
+      "materials": {
+        "kristallsplitter": 2
+      },
+      "result": {
+        "type": "gear_enhance",
+        "stat": "glueck",
+        "amount": 1
+      },
+      "xp": 10,
+      "trainerCost": 30,
+      "description": "Ring segnen I."
+    },
+    {
+      "id": "recipe-juwelier-ring-segnen-2",
+      "name": "Ring segnen II",
+      "profession": "juwelier",
+      "source": "trainer",
+      "reqSkill": 125,
+      "cost": {
+        "gold": 120
+      },
+      "materials": {
+        "runenstein": 2
+      },
+      "result": {
+        "type": "gear_enhance",
+        "stat": "glueck",
+        "amount": 1
+      },
+      "xp": 18,
+      "trainerCost": 120,
+      "description": "Ring segnen II."
+    },
+    {
+      "id": "recipe-juwelier-ring-segnen-3",
+      "name": "Ring segnen III",
+      "profession": "juwelier",
+      "source": "trainer",
+      "reqSkill": 225,
+      "cost": {
+        "gold": 400
+      },
+      "materials": {
+        "aetherkern": 1
+      },
+      "result": {
+        "type": "gear_enhance",
+        "stat": "glueck",
+        "amount": 2
+      },
+      "xp": 30,
+      "trainerCost": 400,
+      "description": "Ring segnen III."
+    },
+    {
+      "id": "recipe-juwelier-amulett-segnen-1",
+      "name": "Amulett verzieren I",
+      "profession": "juwelier",
+      "source": "trainer",
+      "reqSkill": 60,
+      "cost": {
+        "gold": 40
+      },
+      "materials": {
+        "kristallsplitter": 3
+      },
+      "result": {
+        "type": "gear_enhance",
+        "stat": "charisma",
+        "amount": 1
+      },
+      "xp": 12,
+      "trainerCost": 40,
+      "description": "Amulett verzieren I."
+    },
+    {
+      "id": "recipe-juwelier-amulett-segnen-2",
+      "name": "Amulett verzieren II",
+      "profession": "juwelier",
+      "source": "trainer",
+      "reqSkill": 150,
+      "cost": {
+        "gold": 180
+      },
+      "materials": {
+        "runenstein": 3
+      },
+      "result": {
+        "type": "gear_enhance",
+        "stat": "charisma",
+        "amount": 2
+      },
+      "xp": 22,
+      "trainerCost": 180,
+      "description": "Amulett verzieren II."
+    },
+    {
+      "id": "recipe-juwelier-amulett-segnen-3",
+      "name": "Amulett verzieren III",
+      "profession": "juwelier",
+      "source": "trainer",
+      "reqSkill": 260,
+      "cost": {
+        "gold": 600
+      },
+      "materials": {
+        "aetherkern": 2
+      },
+      "result": {
+        "type": "gear_enhance",
+        "stat": "charisma",
+        "amount": 2
+      },
+      "xp": 38,
+      "trainerCost": 600,
+      "description": "Amulett verzieren III."
     }
   ]
 }
