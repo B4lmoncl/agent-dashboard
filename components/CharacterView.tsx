@@ -773,6 +773,9 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
   const [titlesOpen, setTitlesOpen] = useState(false);
   const [earnedTitles, setEarnedTitles] = useState<{ id: string; name: string; description?: string; rarity: string; earnedAt?: string }[]>([]);
   const [equippedTitleId, setEquippedTitleId] = useState<string | null>(null);
+  const [allTitleDefs, setAllTitleDefs] = useState<{ id: string; name: string; description?: string; rarity: string; condition?: { type: string; value: number } }[]>([]);
+  const [titleCategory, setTitleCategory] = useState<string>("all");
+  const [titleEquipping, setTitleEquipping] = useState<string | null>(null);
   // Gem system
   const [gemData, setGemData] = useState<{ gems: { id: string; name: string; type: string; tier: number; stat: string; value: number }[]; inventory: Record<string, { gemId: string; count: number; gemType: string; tier: number; name: string; statBonus: number }>; socketedGems: Record<string, { slot: string; sockets: ({ gemId: string; gemName: string; gemType: string } | null)[] }>; unsocketCost?: number } | null>(null);
   const [gemsLoading, setGemsLoading] = useState(false);
@@ -1537,20 +1540,28 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                   </Tip>
                 )}
 
-                {/* Title */}
+                {/* Title — WoW Achievement Panel */}
                 <div className="mb-3">
                   <button
                     className="w-full flex items-center justify-between px-2 py-1.5 rounded-lg text-left"
                     style={{ background: "rgba(251,191,36,0.06)", border: "1px solid rgba(251,191,36,0.15)" }}
                     onClick={async () => {
-                      setTitlesOpen(!titlesOpen);
-                      if (!titlesOpen && playerName) {
+                      const opening = !titlesOpen;
+                      setTitlesOpen(opening);
+                      if (opening && playerName) {
                         try {
-                          const r = await fetch(`/api/player/${encodeURIComponent(playerName)}/titles`, { signal: AbortSignal.timeout(3000) });
-                          if (r.ok) {
-                            const data = await r.json();
+                          const [titlesRes, defsRes] = await Promise.all([
+                            fetch(`/api/player/${encodeURIComponent(playerName)}/titles`, { signal: AbortSignal.timeout(3000) }),
+                            fetch(`/api/titles`, { signal: AbortSignal.timeout(3000) }),
+                          ]);
+                          if (titlesRes.ok) {
+                            const data = await titlesRes.json();
                             setEarnedTitles(data.earned || []);
                             setEquippedTitleId(data.equipped?.id || null);
+                          }
+                          if (defsRes.ok) {
+                            const defs = await defsRes.json();
+                            setAllTitleDefs(Array.isArray(defs) ? defs : defs.titles || []);
                           }
                         } catch { /* ignore */ }
                       }
@@ -1566,49 +1577,238 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                     </div>
                     <span className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>{titlesOpen ? "▲" : "▼"}</span>
                   </button>
-                  {titlesOpen && (
-                    <div className="mt-1.5 space-y-1 max-h-40 overflow-y-auto" style={{ overscrollBehavior: "contain" }}>
-                      {/* Unequip option */}
-                      <button
-                        className="w-full text-left px-2 py-1 rounded text-xs"
-                        style={{ background: !equippedTitleId ? "rgba(251,191,36,0.12)" : "rgba(255,255,255,0.03)", color: "rgba(255,255,255,0.4)" }}
-                        onClick={async () => {
-                          try {
-                            const r = await fetch(`/api/player/${encodeURIComponent(playerName!)}/title/equip`, {
-                              method: "POST", headers: { "Content-Type": "application/json", ...getAuthHeaders(apiKey) },
-                              body: JSON.stringify({ titleId: null }),
-                            });
-                            if (r.ok) { setEquippedTitleId(null); addToast?.({ type: "purchase", message: "Title removed" }); }
-                          } catch { /* ignore */ }
-                        }}
-                      >
-                        — No Title —
-                      </button>
-                      {earnedTitles.map(t => {
-                        const tc: Record<string,string> = { common: "#9ca3af", uncommon: "#22c55e", rare: "#60a5fa", epic: "#a855f7", legendary: "#f97316" };
-                        const c = tc[t.rarity] ?? "#9ca3af";
-                        return (
-                          <button
-                            key={t.id}
-                            className="w-full text-left px-2 py-1 rounded text-xs flex items-center justify-between"
-                            style={{ background: equippedTitleId === t.id ? `${c}18` : "rgba(255,255,255,0.03)", border: equippedTitleId === t.id ? `1px solid ${c}40` : "1px solid transparent" }}
-                            onClick={async () => {
-                              try {
-                                const r = await fetch(`/api/player/${encodeURIComponent(playerName!)}/title/equip`, {
-                                  method: "POST", headers: { "Content-Type": "application/json", ...getAuthHeaders(apiKey) },
-                                  body: JSON.stringify({ titleId: t.id }),
-                                });
-                                if (r.ok) { setEquippedTitleId(t.id); addToast?.({ type: "purchase", message: `Title: ${t.name}` }); }
-                              } catch { /* ignore */ }
+                  {titlesOpen && (() => {
+                    const earnedIds = new Set(earnedTitles.map(t => t.id));
+                    const earnedMap = new Map(earnedTitles.map(t => [t.id, t]));
+
+                    // Category definitions
+                    const TITLE_CATEGORIES: { key: string; label: string; condTypes: string[] }[] = [
+                      { key: "all", label: "All", condTypes: [] },
+                      { key: "level", label: "Level", condTypes: ["level"] },
+                      { key: "quests", label: "Quests", condTypes: ["quests_completed"] },
+                      { key: "streak", label: "Streak", condTypes: ["streak"] },
+                      { key: "collection", label: "Collection", condTypes: ["inventory_count"] },
+                      { key: "wealth", label: "Wealth", condTypes: ["gold"] },
+                      { key: "npc", label: "NPC", condTypes: ["npc_chains"] },
+                      { key: "forge", label: "Forge", condTypes: ["forge_temp"] },
+                      { key: "gacha", label: "Gacha", condTypes: ["gacha_legendary"] },
+                      { key: "equipment", label: "Equipment", condTypes: ["full_equipment"] },
+                      { key: "battlepass", label: "Battle Pass", condTypes: ["battlepass_level"] },
+                      { key: "achievement", label: "Achievements", condTypes: ["achievement_points"] },
+                      { key: "other", label: "Other", condTypes: [] },
+                    ];
+                    const knownCondTypes = new Set(TITLE_CATEGORIES.flatMap(c => c.condTypes));
+
+                    // Merge all defs with earned info — normalize to common shape
+                    const allTitles: { id: string; name: string; description?: string; rarity: string; condition?: { type: string; value: number } }[] =
+                      allTitleDefs.length > 0 ? allTitleDefs : earnedTitles.map(t => ({ id: t.id, name: t.name, description: t.description, rarity: t.rarity }));
+
+                    // Categorize
+                    const getCatKey = (t: { condition?: { type: string } }) => {
+                      const ct = t.condition?.type;
+                      if (!ct) return "other";
+                      if (knownCondTypes.has(ct)) {
+                        const found = TITLE_CATEGORIES.find(c => c.condTypes.includes(ct));
+                        return found?.key || "other";
+                      }
+                      return "other";
+                    };
+
+                    const filtered = titleCategory === "all"
+                      ? allTitles
+                      : allTitles.filter(t => getCatKey(t) === titleCategory);
+
+                    // Sort: earned first, then by rarity weight
+                    const rarityWeight: Record<string, number> = { common: 0, uncommon: 1, rare: 2, epic: 3, legendary: 4, unique: 5 };
+                    const sorted = [...filtered].sort((a, b) => {
+                      const aE = earnedIds.has(a.id) ? 0 : 1;
+                      const bE = earnedIds.has(b.id) ? 0 : 1;
+                      if (aE !== bE) return aE - bE;
+                      return (rarityWeight[b.rarity] ?? 0) - (rarityWeight[a.rarity] ?? 0);
+                    });
+
+                    // Condition label helper
+                    const condLabel = (cond?: { type: string; value: number }) => {
+                      if (!cond) return "Dynamically earned";
+                      const v = cond.value;
+                      switch (cond.type) {
+                        case "level": return `Reach Level ${v}`;
+                        case "quests_completed": return `Complete ${v} Quests`;
+                        case "streak": return `${v}-Day Streak`;
+                        case "inventory_count": return `${v} Items in Inventory`;
+                        case "gold": return `Collect ${v.toLocaleString()} Gold`;
+                        case "npc_chains": return `${v} NPC Chains Completed`;
+                        case "forge_temp": return `Forge Temp ${v}%`;
+                        case "gacha_legendary": return `${v} Legendary Gacha Pull${v > 1 ? "s" : ""}`;
+                        case "full_equipment": return "All 6 Slots Equipped";
+                        case "achievement_points": return `${v.toLocaleString()} Achievement Points`;
+                        case "battlepass_level": return `Season Pass Level ${v}`;
+                        default: return "Dynamically earned";
+                      }
+                    };
+
+                    // Category counts
+                    const catCounts = TITLE_CATEGORIES.map(cat => {
+                      const titles = cat.key === "all" ? allTitles : allTitles.filter(t => getCatKey(t) === cat.key);
+                      const earned = titles.filter(t => earnedIds.has(t.id)).length;
+                      return { ...cat, earned, total: titles.length };
+                    });
+
+                    const handleEquip = async (titleId: string | null) => {
+                      if (!playerName || !apiKey) return;
+                      setTitleEquipping(titleId);
+                      try {
+                        const r = await fetch(`/api/player/${encodeURIComponent(playerName)}/title/equip`, {
+                          method: "POST",
+                          headers: { "Content-Type": "application/json", ...getAuthHeaders(apiKey) },
+                          body: JSON.stringify({ titleId }),
+                        });
+                        if (r.ok) {
+                          setEquippedTitleId(titleId);
+                          addToast?.({ type: "purchase", message: titleId ? `Title equipped: ${allTitles.find(t => t.id === titleId)?.name || titleId}` : "Title removed" });
+                        }
+                      } catch { /* ignore */ }
+                      setTitleEquipping(null);
+                    };
+
+                    const equippedDef = allTitles.find(t => t.id === equippedTitleId);
+                    const eqColor = equippedDef ? (RARITY_COLORS[equippedDef.rarity] || "#fbbf24") : "#fbbf24";
+
+                    return (
+                      <div className="mt-2 tab-content-enter">
+                        {/* Equipped Title Display */}
+                        {equippedDef && (
+                          <div
+                            className="mb-3 px-3 py-2 rounded-lg flex items-center justify-between"
+                            style={{
+                              background: `linear-gradient(135deg, ${eqColor}12 0%, transparent 70%)`,
+                              border: `1px solid ${eqColor}40`,
+                              boxShadow: `inset 0 1px 0 ${eqColor}18, 0 0 12px ${eqColor}10`,
                             }}
                           >
-                            <span style={{ color: c }}>{t.name}</span>
-                            {t.description && <span className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>{t.description}</span>}
-                          </button>
-                        );
-                      })}
-                    </div>
-                  )}
+                            <div className="flex items-center gap-2">
+                              <span style={{ color: eqColor, fontSize: 16 }}>★</span>
+                              <div>
+                                <p className="text-sm font-bold" style={{ color: eqColor }}>{equippedDef.name}</p>
+                                <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>{equippedDef.description}</p>
+                              </div>
+                            </div>
+                            <button
+                              className="text-xs px-2 py-1 rounded"
+                              style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.4)", cursor: titleEquipping ? "not-allowed" : "pointer" }}
+                              title="Unequip title"
+                              disabled={!!titleEquipping}
+                              onClick={() => handleEquip(null)}
+                            >
+                              {titleEquipping === null ? "..." : "Unequip"}
+                            </button>
+                          </div>
+                        )}
+
+                        {/* Section Header */}
+                        <div className="flex items-center justify-between mb-2 px-1">
+                          <p className="text-xs font-bold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.5)" }}>Titles</p>
+                          <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>
+                            {earnedTitles.length} / {allTitleDefs.length || earnedTitles.length} earned
+                          </p>
+                        </div>
+
+                        {/* Category Tabs */}
+                        <div className="flex flex-wrap gap-1 mb-2 px-1">
+                          {catCounts.filter(c => c.key === "all" || c.total > 0).map(cat => (
+                            <button
+                              key={cat.key}
+                              className="text-xs px-2 py-0.5 rounded-full"
+                              style={{
+                                background: titleCategory === cat.key ? "rgba(251,191,36,0.15)" : "rgba(255,255,255,0.04)",
+                                border: titleCategory === cat.key ? "1px solid rgba(251,191,36,0.3)" : "1px solid rgba(255,255,255,0.08)",
+                                color: titleCategory === cat.key ? "#fbbf24" : "rgba(255,255,255,0.4)",
+                                cursor: "pointer",
+                              }}
+                              onClick={() => setTitleCategory(cat.key)}
+                            >
+                              {cat.label} {cat.key !== "all" && <span style={{ color: "rgba(255,255,255,0.2)" }}>{cat.earned}/{cat.total}</span>}
+                            </button>
+                          ))}
+                        </div>
+
+                        {/* Title Cards */}
+                        <div className="space-y-1.5 max-h-60 overflow-y-auto pr-1" style={{ overscrollBehavior: "contain" }}>
+                          {sorted.map(t => {
+                            const isEarned = earnedIds.has(t.id);
+                            const isEquipped = equippedTitleId === t.id;
+                            const c = RARITY_COLORS[t.rarity] || "#9ca3af";
+                            const earnedInfo = earnedMap.get(t.id);
+                            const earnedDate = earnedInfo?.earnedAt ? new Date(earnedInfo.earnedAt).toLocaleDateString() : null;
+
+                            return (
+                              <button
+                                key={t.id}
+                                className="w-full text-left rounded-lg flex items-stretch"
+                                style={{
+                                  opacity: isEarned ? 1 : 0.4,
+                                  cursor: isEarned ? (isEquipped ? "default" : "pointer") : "not-allowed",
+                                  border: isEquipped ? `1px solid ${c}60` : "1px solid rgba(255,255,255,0.06)",
+                                  background: isEquipped
+                                    ? `linear-gradient(90deg, ${c}14 0%, transparent 100%)`
+                                    : "rgba(255,255,255,0.02)",
+                                  boxShadow: isEquipped
+                                    ? `inset 0 1px 0 rgba(255,255,255,0.05), 0 0 8px ${c}15`
+                                    : "inset 0 1px 0 rgba(255,255,255,0.03), inset 0 -1px 0 rgba(0,0,0,0.2)",
+                                  overflow: "hidden",
+                                }}
+                                disabled={!isEarned || !!titleEquipping}
+                                title={!isEarned ? condLabel(t.condition) : isEquipped ? "Currently equipped" : `Click to equip "${t.name}"`}
+                                onClick={() => {
+                                  if (isEarned && !isEquipped) handleEquip(t.id);
+                                }}
+                              >
+                                {/* Rarity left border */}
+                                <div style={{ width: 3, flexShrink: 0, background: c, borderRadius: "6px 0 0 6px" }} />
+
+                                {/* Card content */}
+                                <div className="flex-1 px-2.5 py-1.5 flex items-center justify-between gap-2 min-w-0">
+                                  <div className="min-w-0 flex-1">
+                                    <div className="flex items-center gap-1.5">
+                                      <span className="text-xs font-semibold truncate" style={{ color: isEarned ? c : "rgba(255,255,255,0.5)" }}>
+                                        {isEarned ? t.name : "???"}
+                                      </span>
+                                      {isEquipped && (
+                                        <span
+                                          className="text-xs px-1.5 py-0 rounded-full font-medium flex-shrink-0"
+                                          style={{ background: `${c}20`, color: c, fontSize: 10, lineHeight: "16px" }}
+                                        >
+                                          Equipped
+                                        </span>
+                                      )}
+                                    </div>
+                                    <p className="text-xs truncate" style={{ color: "rgba(255,255,255,0.3)", fontSize: 11 }}>
+                                      {t.description || condLabel(t.condition)}
+                                    </p>
+                                  </div>
+
+                                  {/* Right side: status */}
+                                  <div className="flex-shrink-0 flex items-center gap-1">
+                                    {isEarned ? (
+                                      <div className="flex flex-col items-end">
+                                        <span style={{ color: "#22c55e", fontSize: 12 }}>✓</span>
+                                        {earnedDate && <span className="text-xs" style={{ color: "rgba(255,255,255,0.2)", fontSize: 10 }}>{earnedDate}</span>}
+                                      </div>
+                                    ) : (
+                                      <span style={{ color: "rgba(255,255,255,0.2)", fontSize: 12 }}>🔒</span>
+                                    )}
+                                  </div>
+                                </div>
+                              </button>
+                            );
+                          })}
+                          {sorted.length === 0 && (
+                            <p className="text-xs text-center py-3" style={{ color: "rgba(255,255,255,0.25)" }}>No titles in this category</p>
+                          )}
+                        </div>
+                      </div>
+                    );
+                  })()}
                 </div>
 
                 {/* Gear Score (prominent, replaces Forge Temp which is shown elsewhere) */}

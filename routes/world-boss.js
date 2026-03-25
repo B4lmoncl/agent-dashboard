@@ -6,8 +6,8 @@
 const router = require('express').Router();
 const fs = require('fs');
 const path = require('path');
-const { state, saveUsers, RUNTIME_DIR } = require('../lib/state');
-const { awardCurrency, createUniqueInstance, trackUniqueInCollection } = require('../lib/helpers');
+const { state, saveUsers, ensureUserCurrencies, RUNTIME_DIR } = require('../lib/state');
+const { awardCurrency, spendCurrency, createUniqueInstance, trackUniqueInCollection } = require('../lib/helpers');
 const { requireAuth, requireMasterKey } = require('../lib/middleware');
 
 // ─── Data & Config ──────────────────────────────────────────────────────────
@@ -137,7 +137,21 @@ function dealBossDamage(userId, questRarity) {
   const { getGearScore } = require('../lib/helpers');
   const { gearScore } = getGearScore(userId);
   const gsMulti = Math.min(2.0, 1 + Math.floor(gearScore / 50) * 0.10);
-  const dmg = Math.round(baseDmg * gsMulti);
+  let dmg = Math.round(baseDmg * gsMulti);
+
+  // Check for world_boss_damage_boost buff
+  const u = state.users[userId];
+  if (u && u.activeBuffs && Array.isArray(u.activeBuffs)) {
+    const boostIdx = u.activeBuffs.findIndex(b => b.type === 'world_boss_damage_boost' && (b.questsRemaining || 0) > 0);
+    if (boostIdx !== -1) {
+      const boost = u.activeBuffs[boostIdx];
+      dmg = Math.round(dmg * (1 + (boost.value || 25) / 100));
+      boost.questsRemaining -= 1;
+      if (boost.questsRemaining <= 0) {
+        u.activeBuffs.splice(boostIdx, 1);
+      }
+    }
+  }
 
   // Update contribution
   if (!boss.contributions[userId]) {
@@ -481,6 +495,58 @@ router.post('/api/world-boss/spawn', requireMasterKey, (req, res) => {
     message: `Spawned ${template?.name || boss.bossId}`,
     boss: { ...template, ...boss },
   });
+});
+
+// ─── POST /api/world-boss/boost — Mondstaub damage boost ─────────────────────
+
+router.post('/api/world-boss/boost', requireAuth, (req, res) => {
+  const uid = (req.auth?.userId || '').toLowerCase();
+  const u = uid ? state.users[uid] : null;
+  if (!u) return res.status(404).json({ error: 'User not found' });
+
+  const boss = getActiveBoss();
+  if (!boss || boss.defeated) {
+    return res.status(400).json({ error: 'No active boss to boost against' });
+  }
+
+  // Max 1 active boss boost at a time
+  u.activeBuffs = u.activeBuffs || [];
+  const existingBoost = u.activeBuffs.find(b => b.type === 'world_boss_damage_boost' && (b.questsRemaining || 0) > 0);
+  if (existingBoost) {
+    return res.status(400).json({ error: `Already have an active boss damage boost (${existingBoost.questsRemaining} quests remaining)` });
+  }
+
+  // Cost: 50 mondstaub
+  const cost = 50;
+  ensureUserCurrencies(u);
+  const hasMondstaub = (u.currencies?.mondstaub ?? 0);
+  if (hasMondstaub < cost) {
+    return res.status(400).json({ error: `Not enough Mondstaub — need ${cost}, have ${hasMondstaub}` });
+  }
+
+  // Deduct mondstaub
+  if (!spendCurrency(uid, 'mondstaub', cost)) {
+    return res.status(400).json({ error: 'Failed to deduct Mondstaub' });
+  }
+
+  // Grant buff
+  u.activeBuffs.push({
+    type: 'world_boss_damage_boost',
+    value: 25,
+    questsRemaining: 10,
+    activatedAt: new Date().toISOString(),
+  });
+
+  saveUsers();
+
+  res.json({
+    success: true,
+    message: 'Mondstaub-Boost activated! +25% boss damage for next 10 quests.',
+    buff: { type: 'world_boss_damage_boost', value: 25, questsRemaining: 10 },
+    mondstaubSpent: cost,
+    mondstaubRemaining: u.currencies?.mondstaub ?? 0,
+  });
+  console.log(`[world-boss] ${uid} activated mondstaub boost (+25% dmg, 10 quests)`);
 });
 
 // ─── Exports ────────────────────────────────────────────────────────────────

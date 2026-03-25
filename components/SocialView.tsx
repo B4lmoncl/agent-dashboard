@@ -1115,7 +1115,7 @@ const EVENT_NAV: Record<string, { view: string; tooltip: string }> = {
   streak_milestone: { view: "rituals", tooltip: "View Rituals" },
 };
 
-function ActivityFeedTab({ apiKey, playerName, onNavigate }: { apiKey: string; playerName: string; onNavigate?: (view: string) => void }) {
+function ActivityFeedTab({ apiKey, playerName, onNavigate, onNavigateToAchievement }: { apiKey: string; playerName: string; onNavigate?: (view: string) => void; onNavigateToAchievement?: (achievementId: string) => void }) {
   const [feed, setFeed] = useState<ActivityEvent[]>([]);
   const [loading, setLoading] = useState(true);
   const [compactView, setCompactView] = useState(false);
@@ -1202,7 +1202,7 @@ function ActivityFeedTab({ apiKey, playerName, onNavigate }: { apiKey: string; p
               <span className="font-semibold truncate" style={{ color: isOwn ? "#a855f7" : (event.playerColor || "#e8e8e8") }}>{name}</span>
               <span className="text-w30 truncate flex-1">{descriptionNode}</span>
               <span className="text-w15 flex-shrink-0">{timeAgo(event.at)}</span>
-              {nav && <button onClick={() => onNavigate!(nav.view)} title={nav.tooltip} className="flex-shrink-0 cursor-pointer text-w15 hover:text-w40 transition-colors" style={{ fontSize: 12 }}>→</button>}
+              {nav && <button onClick={() => { if (event.type === "achievement" && d.achievementId && onNavigateToAchievement) { onNavigateToAchievement(d.achievementId as string); } else { onNavigate!(nav.view); } }} title={nav.tooltip} className="flex-shrink-0 cursor-pointer text-w15 hover:text-w40 transition-colors" style={{ fontSize: 12 }}>→</button>}
             </div>
           );
         }
@@ -1224,7 +1224,7 @@ function ActivityFeedTab({ apiKey, playerName, onNavigate }: { apiKey: string; p
             {!isOwn && (
               <PlayerBadge name={event.playerName || "?"} avatar={event.playerAvatar} color={event.playerColor || "#a78bfa"} size={22} />
             )}
-            {nav && <button onClick={() => onNavigate!(nav.view)} title={nav.tooltip} className="flex-shrink-0 self-center cursor-pointer text-w15 hover:text-w40 transition-colors ml-1" style={{ fontSize: 13 }}>→</button>}
+            {nav && <button onClick={() => { if (event.type === "achievement" && d.achievementId && onNavigateToAchievement) { onNavigateToAchievement(d.achievementId as string); } else { onNavigate!(nav.view); } }} title={nav.tooltip} className="flex-shrink-0 self-center cursor-pointer text-w15 hover:text-w40 transition-colors ml-1" style={{ fontSize: 13 }}>→</button>}
           </div>
         );
       })}
@@ -1234,7 +1234,7 @@ function ActivityFeedTab({ apiKey, playerName, onNavigate }: { apiKey: string; p
 
 // ─── Main SocialView ────────────────────────────────────────────────────────
 
-export default function SocialView({ onNavigate }: { onNavigate?: (view: string) => void } = {}) {
+export default function SocialView({ onNavigate, onNavigateToAchievement }: { onNavigate?: (view: string) => void; onNavigateToAchievement?: (achievementId: string) => void } = {}) {
   const { playerName, reviewApiKey } = useDashboard();
   const [activeTab, setActiveTab] = useState<SocialTab>("friends");
   const [profilePlayerId, setProfilePlayerId] = useState<string | null>(null);
@@ -1285,7 +1285,7 @@ export default function SocialView({ onNavigate }: { onNavigate?: (view: string)
         {activeTab === "friends" && <FriendsTab apiKey={reviewApiKey} playerName={playerName} onOpenProfile={id => setProfilePlayerId(id)} />}
         {activeTab === "messages" && <MessagesTab apiKey={reviewApiKey} playerName={playerName} autoOpenWith={pendingMessageTarget} onAutoOpened={() => setPendingMessageTarget(null)} />}
         {activeTab === "trades" && <TradesTab apiKey={reviewApiKey} playerName={playerName} />}
-        {activeTab === "activity" && <ActivityFeedTab apiKey={reviewApiKey} playerName={playerName} onNavigate={onNavigate} />}
+        {activeTab === "activity" && <ActivityFeedTab apiKey={reviewApiKey} playerName={playerName} onNavigate={onNavigate} onNavigateToAchievement={onNavigateToAchievement} />}
       </div>
 
       {/* Player Profile Modal */}

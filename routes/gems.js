@@ -378,5 +378,156 @@ router.post('/api/gems/upgrade', requireAuth, (req, res) => {
   });
 });
 
+// ─── POST /api/gems/unlock-socket — Unlock a new socket on equipped gear ────
+router.post('/api/gems/unlock-socket', requireAuth, (req, res) => {
+  const userId = (req.auth.userId || req.auth.userName || '').toLowerCase();
+  const u = state.users[userId];
+  if (!u) return res.status(404).json({ error: 'Player not found' });
+
+  const { inventoryItemId, slot } = req.body;
+  if (!inventoryItemId && !slot) {
+    return res.status(400).json({ error: 'Missing inventoryItemId or slot' });
+  }
+
+  // Find item in equipment (must be equipped to add socket)
+  let item = null;
+  let equipSlot = null;
+  if (u.equipment) {
+    if (slot && u.equipment[slot] && typeof u.equipment[slot] === 'object') {
+      item = u.equipment[slot];
+      equipSlot = slot;
+    } else {
+      // Search by instanceId
+      for (const [s, eq] of Object.entries(u.equipment)) {
+        if (eq && typeof eq === 'object' && (eq.instanceId === inventoryItemId || eq.id === inventoryItemId)) {
+          item = eq;
+          equipSlot = s;
+          break;
+        }
+      }
+    }
+  }
+
+  if (!item) {
+    return res.status(404).json({ error: 'Item not found in equipment — must be equipped to unlock sockets' });
+  }
+
+  // Determine max sockets for this rarity
+  const rarity = (item.rarity || 'common').toLowerCase();
+  const maxSocketRange = GEMS_DATA.socketsByRarity[rarity] || [0, 0];
+  const maxSockets = maxSocketRange[1] || 0;
+  item.sockets = item.sockets || [];
+  const currentSockets = item.sockets.length;
+
+  if (currentSockets >= maxSockets) {
+    return res.status(400).json({ error: `This ${rarity} item already has the maximum ${maxSockets} socket(s)` });
+  }
+
+  // Cost: 1000 gold + 5 essenz per socket
+  const goldCost = 1000;
+  const essenzCost = 5;
+
+  ensureUserCurrencies(u);
+  const userGold = u.currencies?.gold ?? 0;
+  const userEssenz = u.currencies?.essenz ?? 0;
+
+  if (userGold < goldCost) {
+    return res.status(400).json({ error: `Not enough gold — need ${goldCost}, have ${userGold}` });
+  }
+  if (userEssenz < essenzCost) {
+    return res.status(400).json({ error: `Not enough Essenz — need ${essenzCost}, have ${userEssenz}` });
+  }
+
+  // Deduct costs
+  u.currencies.gold -= goldCost;
+  u.gold = u.currencies.gold;
+  u.currencies.essenz -= essenzCost;
+
+  // Add empty socket
+  item.sockets.push(null);
+
+  saveUsers();
+
+  res.json({
+    success: true,
+    message: `Unlocked socket ${item.sockets.length} on ${item.name} (${currentSockets} → ${item.sockets.length})`,
+    item: {
+      instanceId: item.instanceId,
+      name: item.name,
+      sockets: item.sockets,
+      maxSockets,
+    },
+    goldSpent: goldCost,
+    essenzSpent: essenzCost,
+  });
+  console.log(`[gems] ${userId} unlocked socket on ${item.name} (now ${item.sockets.length}/${maxSockets})`);
+});
+
+// ─── POST /api/gems/polish — Upgrade 1 gem via gold (alternative to 3→1 combine)
+router.post('/api/gems/polish', requireAuth, (req, res) => {
+  const userId = (req.auth.userId || req.auth.userName || '').toLowerCase();
+  const u = state.users[userId];
+  if (!u) return res.status(404).json({ error: 'Player not found' });
+
+  const { gemKey: gKey } = req.body;
+  if (!gKey) return res.status(400).json({ error: 'Missing gemKey' });
+
+  const parsed = parseGemKey(gKey);
+  if (!parsed) return res.status(400).json({ error: 'Invalid gem key' });
+
+  // Can't polish tier 5 (Royal)
+  if (parsed.tier >= 5) {
+    return res.status(400).json({ error: 'Royal gems (tier 5) cannot be polished further' });
+  }
+
+  // Check player owns at least 1
+  u.gems = u.gems || {};
+  const owned = u.gems[gKey] || 0;
+  if (owned < 1) {
+    return res.status(400).json({ error: 'You do not own this gem' });
+  }
+
+  // Gold cost: 500 × currentTier
+  const goldCost = 500 * parsed.tier;
+
+  ensureUserCurrencies(u);
+  const userGold = u.currencies?.gold ?? 0;
+  if (userGold < goldCost) {
+    return res.status(400).json({ error: `Not enough gold — need ${goldCost}, have ${userGold}` });
+  }
+
+  // Deduct gold
+  u.currencies.gold -= goldCost;
+  u.gold = u.currencies.gold;
+
+  // Remove 1 of current gem, add 1 of next tier
+  u.gems[gKey] = owned - 1;
+  if (u.gems[gKey] <= 0) delete u.gems[gKey];
+
+  const upgradedKey = gemKey(parsed.type, parsed.tier + 1);
+  u.gems[upgradedKey] = (u.gems[upgradedKey] || 0) + 1;
+
+  saveUsers();
+
+  const def = getGemDef(parsed.type);
+  const fromTier = getGemTier(parsed.type, parsed.tier);
+  const toTier = getGemTier(parsed.type, parsed.tier + 1);
+
+  res.json({
+    success: true,
+    message: `Polished ${fromTier?.name || gKey} into ${toTier?.name || upgradedKey}`,
+    consumed: { key: gKey, count: 1 },
+    result: {
+      key: upgradedKey,
+      name: toTier?.name,
+      tier: parsed.tier + 1,
+      stat: def?.stat,
+      statBonus: toTier?.statBonus,
+    },
+    goldSpent: goldCost,
+  });
+  console.log(`[gems] ${userId} polished ${gKey} → ${upgradedKey} (${goldCost}g)`);
+});
+
 module.exports = router;
 module.exports.loadGems = loadGems;

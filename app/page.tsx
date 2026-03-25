@@ -1753,7 +1753,7 @@ export default function Dashboard() {
 
         {/* ── THE BREAKAWAY (Social & Trade) ── */}
         {dashView === "social" && (
-          <ErrorBoundary><Suspense fallback={<ViewFallback />}><SocialView onNavigate={(v) => setDashView(v as typeof dashView)} /></Suspense></ErrorBoundary>
+          <ErrorBoundary><Suspense fallback={<ViewFallback />}><SocialView onNavigate={(v) => setDashView(v as typeof dashView)} onNavigateToAchievement={navigateToAchievement} /></Suspense></ErrorBoundary>
         )}
 
         {/* ── THE HEARTH (Tavern / Rest Mode) ── */}

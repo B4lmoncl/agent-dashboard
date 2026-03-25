@@ -7,7 +7,7 @@
  */
 const router = require('express').Router();
 const { state, saveUsers, ensureUserCurrencies } = require('../lib/state');
-const { now, getLevelInfo, awardCurrency, onQuestCompletedByUser } = require('../lib/helpers');
+const { now, getLevelInfo, awardCurrency, spendCurrency, onQuestCompletedByUser } = require('../lib/helpers');
 const { requireAuth } = require('../lib/middleware');
 
 // ─── Mythic Leaderboard Cache (avoid O(n) user scan on every GET /api/rift) ──
@@ -438,6 +438,62 @@ router.post('/api/rift/abandon', requireAuth, (req, res) => {
   const displayName = mythicLvl > 0 ? `${tier?.name || 'Mythic Rift'} +${mythicLvl}` : (tier?.name || rift.tier);
   console.log(`[rift] ${uid} abandoned ${displayName} rift`);
   res.json({ ok: true, message: `Rift abandoned. ${tier?.failCooldownDays || 3}-day cooldown applied.` });
+});
+
+// ─── POST /api/rift/extend — Extend rift timer with Mondstaub ───────────────
+router.post('/api/rift/extend', requireAuth, (req, res) => {
+  const uid = req.auth?.userId;
+  const u = state.users[uid];
+  if (!u) return res.status(404).json({ error: 'User not found' });
+
+  const rift = u.activeRift;
+  if (!rift?.active) return res.status(400).json({ error: 'No active rift' });
+
+  // Check if rift has already expired
+  const tier = RIFT_TIERS[rift.tier];
+  if (!tier) return res.status(400).json({ error: 'Invalid rift tier' });
+  const effectiveTimeLimit = rift.timeLimitHours || tier.timeLimitHours;
+  const startedAt = new Date(rift.startedAt).getTime();
+  const expiresAt = startedAt + effectiveTimeLimit * 3600000;
+  if (Date.now() > expiresAt) {
+    return res.status(400).json({ error: 'Rift has already expired' });
+  }
+
+  // Max 1 extension per rift run
+  if (rift.extended) {
+    return res.status(400).json({ error: 'Rift timer already extended once this run' });
+  }
+
+  // Cost: 30 mondstaub
+  const cost = 30;
+  ensureUserCurrencies(u);
+  const hasMondstaub = u.currencies?.mondstaub ?? 0;
+  if (hasMondstaub < cost) {
+    return res.status(400).json({ error: `Not enough Mondstaub — need ${cost}, have ${hasMondstaub}` });
+  }
+
+  // Deduct mondstaub
+  if (!spendCurrency(uid, 'mondstaub', cost)) {
+    return res.status(400).json({ error: 'Failed to deduct Mondstaub' });
+  }
+
+  // Extend by 6 hours
+  const extensionHours = 6;
+  rift.timeLimitHours = effectiveTimeLimit + extensionHours;
+  rift.extended = true;
+
+  saveUsers();
+
+  const newExpiresAt = new Date(startedAt + rift.timeLimitHours * 3600000).toISOString();
+  console.log(`[rift] ${uid} extended rift timer by ${extensionHours}h (new expiry: ${newExpiresAt})`);
+
+  res.json({
+    success: true,
+    message: `Rift timer extended by ${extensionHours} hours!`,
+    newExpiresAt,
+    mondstaubSpent: cost,
+    mondstaubRemaining: u.currencies?.mondstaub ?? 0,
+  });
 });
 
 module.exports = router;
