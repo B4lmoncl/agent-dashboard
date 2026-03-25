@@ -698,6 +698,7 @@ const EQUIP_SLOT_LABELS: { slot: string; emoji: string; label: string; iconSrc?:
   { slot: "shield", emoji: "", iconSrc: "/images/icons/equip-shield.png", label: "Shield" },
   { slot: "armor", emoji: "", iconSrc: "/images/icons/equip-armor.png", label: "Armor" },
   { slot: "amulet", emoji: "", iconSrc: "/images/icons/equip-amulet.png", label: "Amulet" },
+  { slot: "ring", emoji: "", iconSrc: "/images/icons/equip-ring.png", label: "Ring" },
   { slot: "boots", emoji: "", iconSrc: "/images/icons/equip-boots.png", label: "Boots" },
 ];
 
