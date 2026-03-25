@@ -417,7 +417,7 @@ router.post('/api/quest/:id/complete', requireApiKey, (req, res) => {
     }
     if (newAchievements.length > 0) {
       for (const ach of newAchievements) {
-        logActivity(agentKey, 'achievement', { achievementId: ach.id, name: ach.name || ach.id, rarity: ach.rarity || 'common', points: ach.points || 0 });
+        logActivity(agentKey, 'achievement', { name: ach.name || ach.id, rarity: ach.rarity || 'common', points: ach.points || 0 });
       }
     }
     if (lootDrop && (lootDrop.rarity === 'epic' || lootDrop.rarity === 'legendary')) {
@@ -585,9 +585,10 @@ router.get('/api/quests', (req, res) => {
     const completedIds = new Set(Object.keys(pp.completedQuests || {}));
     const claimedIds   = new Set(pp.claimedQuests || []);
 
-    // All quests are player quests (dev/agent system retired)
+    // Partition quests into player-type vs dev-type
     const allTopLevel = state.quests.filter(q => !q.parentQuestId && !allCampaignQuestIds.has(q.id));
-    const playerTypeQuests = allTopLevel;
+    const playerTypeQuests = allTopLevel.filter(q => PLAYER_QUEST_TYPES.includes(q.type || 'development'));
+    const devTypeQuests    = allTopLevel.filter(q => !PLAYER_QUEST_TYPES.includes(q.type || 'development'));
 
     // Apply per-player status overlay to player quest types
     const openPlayer       = [];
@@ -631,29 +632,25 @@ router.get('/api/quests', (req, res) => {
       }
     }
 
-    // Per-player pool: limit visible open quests to max 10
-    // If activeQuestPool exists and is reasonable, use it as filter
-    // Otherwise, auto-build a pool of 10 random quests from openPlayer
-    let poolIds = (pp.activeQuestPool && pp.activeQuestPool.length > 0 && pp.activeQuestPool.length <= 15)
+    // Per-player pool: only show quests from this player's generated pool
+    // activeQuestPool = visible subset (~11), generatedQuests = full 18
+    // Prefer activeQuestPool if populated, else fall back to generatedQuests
+    const poolIds = pp.activeQuestPool && pp.activeQuestPool.length > 0
       ? pp.activeQuestPool
-      : null;
-    if (!poolIds) {
-      // Build fresh pool: shuffle open quests, pick 10
-      const shuffled = [...openPlayer].sort(() => Math.random() - 0.5);
-      poolIds = shuffled.slice(0, 10).map(q => q.id);
-      pp.activeQuestPool = poolIds;
-      savePlayerProgress();
-    }
-    // Filter: only keep quests that are in the pool AND still open
+      : (pp.generatedQuests || []).slice(0, 11);
     const visibleIds = new Set(poolIds);
-    const poolFilteredOpen = openPlayer.filter(q => visibleIds.has(q.id));
+    const poolFilteredOpen = visibleIds.size > 0
+      ? openPlayer.filter(q => visibleIds.has(q.id))
+      : openPlayer;
 
+    // Dev quest types use global status as-is
     return res.json({
-      open:       enrichEpics(poolFilteredOpen).map(ensureRewards),
-      inProgress: enrichEpics(inProgressPlayer).map(ensureRewards),
-      completed:  enrichEpics(completedPlayer).map(ensureRewards),
-      suggested:  [],
-      rejected:   [],
+      open:       [...enrichEpics(poolFilteredOpen),  ...filterAndEnrich('open',        devTypeQuests)].map(ensureRewards),
+      inProgress: [...enrichEpics(inProgressPlayer), ...filterAndEnrich('in_progress', devTypeQuests)].map(ensureRewards),
+      completed:  [...enrichEpics(completedPlayer),  ...filterAndEnrich('completed',   devTypeQuests)].map(ensureRewards),
+      suggested:  filterAndEnrich('suggested', devTypeQuests).map(ensureRewards),
+      rejected:   filterAndEnrich('rejected',  devTypeQuests).map(ensureRewards),
+      // Show up to 3 locked quests as teaser, sorted by minLevel ascending
       locked: lockedPlayer.sort((a, b) => (a.minLevel || 1) - (b.minLevel || 1)).slice(0, 3).map(ensureRewards),
     });
   }
