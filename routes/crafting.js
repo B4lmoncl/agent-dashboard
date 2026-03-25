@@ -108,14 +108,9 @@ function getSkillUpChance(playerSkill, reqSkill) {
   return (bp.gray - playerSkill) / (bp.gray - bp.yellow);
 }
 
-// Max profession slots based on player level
+// Max profession slots — always 2 (no level gate)
 function getMaxProfessionSlots(playerLevel) {
-  const slots = PROFESSIONS_DATA.professionSlots || [{ playerLevel: 5, slot: 1 }, { playerLevel: 15, slot: 2 }];
-  let maxSlots = 0;
-  for (const s of slots) {
-    if (playerLevel >= s.playerLevel) maxSlots = s.slot;
-  }
-  return maxSlots;
+  return 2;
 }
 
 // Get player's profession skill (0-300)
