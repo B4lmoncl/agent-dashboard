@@ -280,6 +280,17 @@ router.get('/api/world-boss', (req, res) => {
     leaderboard,
     playerContribution,
     canClaim: boss.defeated && playerId && playerContribution && !boss.rewardsClaimed.includes(playerId),
+    projectedDamage: (() => {
+      if (!playerId) return null;
+      const { getGearScore } = require('../lib/helpers');
+      const { gearScore } = getGearScore(playerId);
+      const gsMulti = Math.min(2.0, 1 + Math.floor(gearScore / 50) * 0.10);
+      const dmgPerRarity = {};
+      for (const [rarity, base] of Object.entries(bossData.config.damagePerQuest)) {
+        dmgPerRarity[rarity] = Math.round(base * gsMulti);
+      }
+      return { gearScore, gsMultiplier: gsMulti, perQuest: dmgPerRarity };
+    })(),
   });
 });
 
