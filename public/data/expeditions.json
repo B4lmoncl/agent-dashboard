@@ -31,12 +31,12 @@
         "icon": "/images/icons/exp-forest.png",
         "checkpointNames": ["Waldrand erreicht", "Lichtung durchquert", "Nebelkern bezwungen", "Geheimpfad entdeckt"],
         "checkpointFlavor": [
-          "Die ersten Bäume weichen zurück. Hinter euch schließt sich der Nebel wie ein Vorhang.",
-          "Stille liegt über der Lichtung. Die Luft schmeckt nach Regen und altem Holz — der Wald beobachtet euch.",
-          "Im Herzen des Nebels pulsiert etwas Altes. Die Gilde hat es bezwungen — vorerst.",
-          "Zwischen verwachsenen Wurzeln führt ein Pfad ins Nirgendwo. Oder vielmehr: ins Geheimnis."
+          "Die alten Karten warnen: Wer den Nebelwald betritt, findet nicht immer denselben Weg zurück. Hinter euch schließt sich der Nebel wie ein Vorhang, der keine Zugabe erlaubt.",
+          "Auf der Lichtung steht eine Steinsäule, überwachsen und vergessen. Die Runen darauf leuchten schwach — als hättet ihr sie geweckt, indem ihr sie gelesen habt. Der Wald wird stiller, als ob er zuhört.",
+          "Der Nebel verdichtet sich zu etwas, das beinahe eine Gestalt hat. Es ist alt, es ist hungrig, und es mag keine Besucher. Die Gilde hat es zurückgedrängt — aber die Kratzer an der Steinsäule sind frisch.",
+          "Wo die Gestalt stand, liegt nun ein Pfad frei, der auf keiner Karte existiert. Er führt tiefer in den Wald, als der Wald eigentlich tief sein sollte. Die Runen auf der Säule haben aufgehört zu leuchten — sie zeigen jetzt in seine Richtung."
         ],
-        "progressMessages": ["Der Nebel weicht langsam zurück...", "Ihr könnt die Lichtung schon erahnen.", "Fast am Ziel — der Wald gibt nach."]
+        "progressMessages": ["Der Nebel flüstert, aber ihr hört nicht hin.", "Die Lichtung ist nah — etwas wartet dort.", "Der Wald gibt nach. Widerwillig, aber er gibt nach."]
       },
       {
         "id": "bergpass",
@@ -45,12 +45,12 @@
         "icon": "/images/icons/exp-mountain.png",
         "checkpointNames": ["Basislager errichtet", "Felswand erklommen", "Gipfel erreicht", "Versteckter Schrein gefunden"],
         "checkpointFlavor": [
-          "Zelte stehen, das Feuer brennt. Über euch türmt sich der Berg wie ein schlafender Riese.",
-          "Stein für Stein, Griff für Griff. Der Wind zerrt an euch, doch die Gilde hält zusammen.",
-          "Die Welt liegt unter euch. Für einen Moment ist alles still — nur der Himmel und ihr.",
-          "Hinter einer Eiswand verbirgt sich ein Schrein, den seit Generationen niemand betreten hat."
+          "Das Basislager steht am Fuß von Kaltstein, und der alte Bergführer hat nur eines gesagt: 'Der Berg nimmt sich, was er will. Gebt ihm keinen Grund.' Dann ging er schlafen. Hilfreicher Typ.",
+          "Auf halber Höhe findet ihr Seile — nicht eure. Jemand war vor euch hier, und die Tatsache, dass die Seile noch hängen, ihr Besitzer aber nicht, ist ein Detail, über das niemand laut nachdenkt.",
+          "Der Gipfel. Die Wolken liegen unter euch wie ein zweiter Boden. Zwischen den Felsen steckt ein Eispickel mit eingravierten Initialen — derselbe Name wie auf den Seilen. Er hat es also doch geschafft.",
+          "Hinter der Eiswand, die der Wind freigelegt hat, steht ein Schrein mit einer einzelnen Kerze. Sie brennt. Seit wann, lässt sich nicht sagen. Der Eispickel-Besitzer wusste von diesem Ort. Sein Logbuch liegt daneben, die letzte Seite leer — als hätte er keine Worte mehr gebraucht."
         ],
-        "progressMessages": ["Der Aufstieg hat begonnen — jeder Schritt zählt.", "Halbzeit! Der Gipfel kommt näher.", "Die Luft wird dünn, aber euer Wille ist stärker."]
+        "progressMessages": ["Der Berg ist geduldig. Seid es auch.", "Die Felswand ist bezwungen — der Gipfel ruft.", "Die Luft wird dünn. Euer Wille nicht."]
       },
       {
         "id": "ruinen",
@@ -59,12 +59,12 @@
         "icon": "/images/icons/exp-ruins.png",
         "checkpointNames": ["Eingang freigelegt", "Innere Hallen erkundet", "Schatzkammer geöffnet", "Verborgene Bibliothek entdeckt"],
         "checkpointFlavor": [
-          "Der Staub von Jahrhunderten wirbelt auf, als die Tür nachgibt. Dahinter wartet die Stille der Vergessenen.",
-          "Säulen, so hoch, dass ihre Spitzen im Dunkel verschwinden. An den Wänden erzählen Reliefs Geschichten, die kein Buch bewahrt hat.",
-          "Gold glänzt im Fackelschein — doch der wahre Schatz einer toten Zivilisation war nie das Gold.",
-          "Zwischen verstaubten Regalen flüstert das Wissen der Alten. Manche Bücher schlagen sich von selbst auf."
+          "Die Tür gibt nach, und der Staub von Jahrhunderten wirbelt auf wie eine Begrüßung, die zu lange geprobt wurde. An der Schwelle liegt ein zerbrochenes Mosaik — es zeigt eine Stadt voller Menschen. Sie lachen.",
+          "Die inneren Hallen erzählen eine andere Geschichte. Reliefs an den Wänden zeigen dieselben Menschen, aber sie lachen nicht mehr. Sie bauen etwas. Etwas Großes, Verzweifeltes. Die Säulen hier sind nicht zur Zierde — sie sind Stützen gegen etwas, das von oben drückte.",
+          "Die Schatzkammer ist offen, das Gold unberührt. Wer auch immer zuletzt hier war, hat stattdessen die Werkzeuge mitgenommen. Jedes einzelne. Das Gold war ihnen gleichgültig — sie brauchten etwas, das sich nicht kaufen lässt.",
+          "Hinter der Schatzkammer liegt eine Bibliothek, die auf keinem Grundriss verzeichnet ist. Die Bücher beschreiben, was die Aldrath bauten: eine Maschine gegen das Vergessen. Sie funktionierte. Deshalb ist die Stadt leer — die Menschen sind nicht gestorben. Sie sind darin verschwunden."
         ],
-        "progressMessages": ["Die Ruinen beginnen, ihre Geheimnisse preiszugeben.", "Tiefer hinein — die Hallen werden älter.", "Die letzte Kammer liegt nur noch wenige Schritte entfernt."]
+        "progressMessages": ["Aldrath beginnt zu sprechen. Hört genau hin.", "Tiefer — die Wahrheit liegt weiter unten.", "Die letzte Kammer ist nah. Was sie birgt, ist keine Vermutung mehr."]
       },
       {
         "id": "sternentempel",
