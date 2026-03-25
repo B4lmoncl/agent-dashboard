@@ -585,10 +585,9 @@ router.get('/api/quests', (req, res) => {
     const completedIds = new Set(Object.keys(pp.completedQuests || {}));
     const claimedIds   = new Set(pp.claimedQuests || []);
 
-    // Partition quests into player-type vs dev-type
+    // All quests are player quests (dev/agent system retired)
     const allTopLevel = state.quests.filter(q => !q.parentQuestId && !allCampaignQuestIds.has(q.id));
-    const playerTypeQuests = allTopLevel.filter(q => PLAYER_QUEST_TYPES.includes(q.type || 'development'));
-    const devTypeQuests    = allTopLevel.filter(q => !PLAYER_QUEST_TYPES.includes(q.type || 'development'));
+    const playerTypeQuests = allTopLevel;
 
     // Apply per-player status overlay to player quest types
     const openPlayer       = [];
@@ -643,14 +642,12 @@ router.get('/api/quests', (req, res) => {
       ? openPlayer.filter(q => visibleIds.has(q.id))
       : openPlayer;
 
-    // Dev quest types use global status as-is
     return res.json({
-      open:       [...enrichEpics(poolFilteredOpen),  ...filterAndEnrich('open',        devTypeQuests)].map(ensureRewards),
-      inProgress: [...enrichEpics(inProgressPlayer), ...filterAndEnrich('in_progress', devTypeQuests)].map(ensureRewards),
-      completed:  [...enrichEpics(completedPlayer),  ...filterAndEnrich('completed',   devTypeQuests)].map(ensureRewards),
-      suggested:  filterAndEnrich('suggested', devTypeQuests).map(ensureRewards),
-      rejected:   filterAndEnrich('rejected',  devTypeQuests).map(ensureRewards),
-      // Show up to 3 locked quests as teaser, sorted by minLevel ascending
+      open:       enrichEpics(poolFilteredOpen).map(ensureRewards),
+      inProgress: enrichEpics(inProgressPlayer).map(ensureRewards),
+      completed:  enrichEpics(completedPlayer).map(ensureRewards),
+      suggested:  [],
+      rejected:   [],
       locked: lockedPlayer.sort((a, b) => (a.minLevel || 1) - (b.minLevel || 1)).slice(0, 3).map(ensureRewards),
     });
   }
