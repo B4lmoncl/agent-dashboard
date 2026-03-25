@@ -776,7 +776,7 @@ router.post('/api/quests/bulk-update', requireApiKey, (req, res) => {
     }
     updated.push(id);
   }
-  if (updated.length > 0) { saveQuests(); saveData(); }
+  if (updated.length > 0) { saveQuests(); }
   console.log(`[bulk-update] status=${status} updated=${updated.length} notFound=${notFound.length}`);
   res.json({ ok: true, updated, notFound });
 });

@@ -276,7 +276,11 @@ router.post('/api/gacha/pull', requireApiKey, (req, res) => {
     }
 
     const result = executePull(uid, banner);
-    if (!result) return res.status(500).json({ error: 'Pull failed — pool empty?' });
+    if (!result) {
+      // Refund currency if pull fails
+      awardCurrency(uid, currency, cost);
+      return res.status(500).json({ error: 'Pull failed — pool empty?' });
+    }
 
     const { saveUsers } = require('../lib/state');
     saveUsers();
