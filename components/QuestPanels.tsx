@@ -840,7 +840,9 @@ export function DobbieQuestPanel({ reviewApiKey, onRefresh, playerName, petName,
     if (quests && playerName) {
       (quests.inProgress ?? []).forEach(aq => {
         const cb = (aq.createdBy ?? "").toLowerCase();
-        if (cb !== "dobbie" && cb !== "companion") return;
+        // Match companion quests: created by "companion", "dobbie", or "system" (auto-generated)
+        const isCompanionQuest = cb === "dobbie" || cb === "companion" || (cb === "system" && (aq.rarity === "companion" || (aq as { type?: string }).type === "companion"));
+        if (!isCompanionQuest) return;
         if (aq.claimedBy?.toLowerCase() !== playerName.toLowerCase()) return;
         const t = COMPANION_QUESTS.find(dt => dt.title === aq.title);
         if (t && !map.has(t.id)) map.set(t.id, aq.id);
