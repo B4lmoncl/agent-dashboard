@@ -403,6 +403,62 @@
       "icon": null,
       "rarity": "legendary",
       "desc": "The rarest alloy known to smiths. Said to remember every blow of the hammer."
+    },
+    {
+      "id": "leinenballen",
+      "name": "Leinenballen",
+      "icon": null,
+      "rarity": "common",
+      "desc": "Ein Ballen verarbeitetes Leinen. Grundlage für einfache Gewänder."
+    },
+    {
+      "id": "wollballen",
+      "name": "Wollballen",
+      "icon": null,
+      "rarity": "uncommon",
+      "desc": "Dichter Wollballen. Wärmt und schützt — beides ist nützlich."
+    },
+    {
+      "id": "seidenballen",
+      "name": "Seidenballen",
+      "icon": null,
+      "rarity": "rare",
+      "desc": "Mondschein-Seide, verwoben zu einem Ballen von beunruhigender Schönheit."
+    },
+    {
+      "id": "magiestoffballen",
+      "name": "Magiestoff-Ballen",
+      "icon": null,
+      "rarity": "epic",
+      "desc": "Ein Ballen Magiestoff. Leuchtet dezent. Nicht anfassen ohne Handschuhe."
+    },
+    {
+      "id": "runenstoffballen",
+      "name": "Runenstoff-Ballen",
+      "icon": null,
+      "rarity": "legendary",
+      "desc": "Runenstoff — das edelste Gewebe der Gilde. Jeder Faden trägt eine Erinnerung."
+    },
+    {
+      "id": "sternenlichtfarbe",
+      "name": "Sternenlicht-Farbe",
+      "icon": null,
+      "rarity": "rare",
+      "desc": "Farbe aus kondensiertem Sternenlicht. Verblasst nie. Riecht nach Möglichkeiten."
+    },
+    {
+      "id": "arkanerfaden",
+      "name": "Arkaner Faden",
+      "icon": null,
+      "rarity": "epic",
+      "desc": "Ein Faden aus reiner Arkaner Energie. Hält besser als jede Naht."
+    },
+    {
+      "id": "runenfaden",
+      "name": "Runenfaden",
+      "icon": null,
+      "rarity": "legendary",
+      "desc": "Ein Faden der Runen in den Stoff webt. Was er schreibt, kann niemand lesen — aber alle spüren es."
     }
   ],
   "skillUpColors": {
