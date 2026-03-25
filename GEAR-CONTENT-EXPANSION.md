@@ -4,8 +4,66 @@
 
 ## Referenzen
 
-- **WoW Classic:** Source-Exclusive Drops (jeder Dungeon hat eigene Items), World Drops, Reputation Vendor Items, Random Suffixes ("des Adlers", "des Bären")
-- **Diablo 3:** Named Sets (2/4-Piece Boni), Legendary Powers als Build-Changer, Loot 2.0 ("weniger aber besser"), Smart Loot
+- **WoW Classic:** Source-Exclusive Drops (jeder Dungeon hat eigene Items), World Drops, Reputation Vendor Items, Random Suffixes ("des Adlers", "des Bären"), Crafted = Pre-Raid BiS (Lionheart Helm Prinzip)
+- **Diablo 3:** Named Sets (2/4-Piece Boni), Legendary Powers als Build-Changer, Loot 2.0 ("weniger aber besser"), Smart Loot, Additive-Kategorie-Stacking
+
+---
+
+## Verbindliche Design-Entscheidungen
+
+### Modifier Stacking (Diablo 3 Style)
+**Gleiche Kategorie = ADDITIV untereinander. Verschiedene Kategorien = MULTIPLIKATIV.**
+
+Beispiel: Zwei xp_bonus Items (5% + 3%) = +8% total (additiv), NICHT 1.05×1.03.
+Aber: xp_bonus (8%) × forge_temp_multi (1.25) × kraft_bonus (1.05) = multiplikativ.
+
+**Kategorien:**
+| Kategorie | Beispiele | Stacking |
+|-----------|-----------|----------|
+| XP-Boni (Gear) | xp_bonus, variety_bonus | Additiv untereinander |
+| Gold-Boni (Gear) | gold_bonus, night_double_gold | Additiv untereinander |
+| Drop-Boni (Gear) | drop_bonus, material_double | Additiv untereinander |
+| Base-Multiplikatoren | Forge Temp, Kraft-Stat, Streak | Multiplikativ (eigene Kategorie) |
+| Aktive Buffs | Potions, Feasts, Scrolls | Additiv untereinander |
+| Set-Boni | Named Set 2/4-Piece | Eigener Multiplikator |
+
+→ **Backend-Change nötig:** `onQuestCompletedByUser()` in helpers.js muss umgebaut werden.
+
+### Item Power Hierarchie (Linear, klar definiert)
+```
+Quest Drops (common-rare)
+  < Crafted Gear (Skill 275+, Tier 4 Legendary)
+    < Dungeon Normal (uncommon-epic)
+      < Dungeon Hard (rare-legendary)
+        < World Boss Drops (epic-legendary)
+          < Rift Legendary (epic-legendary)
+            < Named Sets (vollständig, mit Set-Bonus)
+              < Mythic+ Drops (legendary only)
+                < Unique Named Items (Tier 5, handcrafted)
+```
+
+**Crafted = Pre-Content BiS (WoW Classic Lionheart Helm Prinzip):**
+- Crafted Skill 275-300 Items sind BESSER als Normal-Dungeon-Drops
+- Crafted Items werden ÜBERHOLT durch Hard-Dungeon und höher
+- Motivation: Berufe-Grind lohnt sich für den Einstieg ins Endgame
+- Langfristig: Drops ersetzen Crafted, aber Crafted bleibt relevant für Alts/Twinks
+
+### Random Suffix System
+- **30% Chance** bei JEDEM Drop (Quest, Dungeon, Rift, WB)
+- Suffix addiert **Flat-Stats** (~30-50% eines normalen Affix-Rolls)
+- 10 Suffixes (des Adlers, des Bären, des Tigers etc.)
+- Suffix-Stats skalieren mit Item-Level
+- Crafted Items haben KEINE Suffixes (nur Drops)
+
+### Set Acquisition (WoW Classic Source-Locked)
+- Set-Pieces droppen NUR aus ihrer spezifischen Quelle
+- Man muss den Content wiederholt spielen
+- Kein Cross-Contamination
+
+### Flavor-Text
+- Alle Items: Deutsch, Skulduggery/Kingkiller Tone
+- Per Script generiert mit thematischen Templates pro Source
+- Dungeon = mysteriös, Rift = kosmisch, WB = episch, Crafted = handwerklich
 
 ## Aktuelle Lage
 
