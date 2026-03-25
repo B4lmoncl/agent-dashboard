@@ -219,7 +219,7 @@ router.get('/api/professions', (req, res) => {
       playerXp: profProgress.skill,
       nextLevelXp: skillCap,
       lastCraftAt: lastCraft,
-      rank: rank.name,
+      rank: chosen ? rank.name : null,
       rankColor: rank.color,
       masteryActive,
       masteryBonus: p.masteryBonus || null,
@@ -918,13 +918,7 @@ router.post('/api/professions/switch', requireAuth, (req, res) => {
     return res.status(400).json({ error: `${dropProfession} is not an active profession` });
   }
 
-  // Cost: 200 essenz to switch (lose all profession XP)
-  ensureUserCurrencies(u);
-  const switchCost = 200;
-  if ((u.currencies.essenz || 0) < switchCost) {
-    return res.status(400).json({ error: `Switching professions costs ${switchCost} Essenz (you have ${u.currencies.essenz || 0})` });
-  }
-  u.currencies.essenz -= switchCost;
+  // Free to drop (WoW Classic: no cost, just lose all progress)
 
   // Remove profession
   u.chosenProfessions = u.chosenProfessions.filter(p => p !== dropProfession);
@@ -1179,9 +1173,9 @@ router.post('/api/schmiedekunst/transmute', requireAuth, (req, res) => {
 
 // ─── Rank Training (WoW-style: pay gold to unlock next skill cap) ────────────
 const RANK_TRAINING_COSTS = [
-  { rank: 'Journeyman', fromCap: 75, toCap: 150, cost: 500, reqPlayerLevel: 15 },
-  { rank: 'Expert', fromCap: 150, toCap: 225, cost: 2000, reqPlayerLevel: 25 },
-  { rank: 'Artisan', fromCap: 225, toCap: 300, cost: 5000, reqPlayerLevel: 40 },
+  { rank: 'Journeyman', fromCap: 75, toCap: 150, cost: 500, reqPlayerLevel: 15, reqSkill: 50 },
+  { rank: 'Expert', fromCap: 150, toCap: 225, cost: 2000, reqPlayerLevel: 25, reqSkill: 125 },
+  { rank: 'Artisan', fromCap: 225, toCap: 300, cost: 5000, reqPlayerLevel: 40, reqSkill: 200 },
 ];
 
 router.post('/api/crafting/train-rank', requireAuth, (req, res) => {
@@ -1202,6 +1196,7 @@ router.post('/api/crafting/train-rank', requireAuth, (req, res) => {
   const nextRank = RANK_TRAINING_COSTS.find(r => skill >= r.fromCap - 10 && (!profData.trainedRanks || !profData.trainedRanks.includes(r.rank)));
   if (!nextRank) return res.status(400).json({ error: 'No rank available to train' });
   if (playerLevel < nextRank.reqPlayerLevel) return res.status(400).json({ error: `Requires player level ${nextRank.reqPlayerLevel} (you are ${playerLevel})` });
+  if (nextRank.reqSkill && skill < nextRank.reqSkill) return res.status(400).json({ error: `Requires skill ${nextRank.reqSkill} (you have ${skill})` });
 
   ensureUserCurrencies(u);
   if (u.currencies.gold < nextRank.cost) return res.status(400).json({ error: `Not enough gold (need ${nextRank.cost}, have ${u.currencies.gold})` });

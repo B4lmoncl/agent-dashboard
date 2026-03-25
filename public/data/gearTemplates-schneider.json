@@ -2284,6 +2284,688 @@
         "weisheit": 3
       },
       "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schneider-einfache-leinentunika",
+      "name": "Einfache Leinentunika",
+      "slot": "armor",
+      "tier": 1,
+      "reqLevel": 8,
+      "setId": "adventurer",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "weisheit": 3
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schneider-gewobene-wolltunika",
+      "name": "Gewobene Wolltunika",
+      "slot": "armor",
+      "tier": 2,
+      "reqLevel": 15,
+      "setId": "veteran",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "weisheit": 4,
+        "kraft": 2
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schneider-mondschein-wandergewand",
+      "name": "Mondschein-Wandergewand",
+      "slot": "armor",
+      "tier": 3,
+      "reqLevel": 24,
+      "setId": "master",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "weisheit": 3,
+        "kraft": 3
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schneider-runenschritte",
+      "name": "Runenschritte",
+      "slot": "boots",
+      "tier": 4,
+      "reqLevel": 25,
+      "setId": "legendary",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "weisheit": 4,
+        "kraft": 5
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schneider-leinenkette-des-wissens",
+      "name": "Leinenkette des Wissens",
+      "slot": "amulet",
+      "tier": 1,
+      "reqLevel": 4,
+      "setId": "adventurer",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "weisheit": 3
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schneider-wollkette-des-gelehrten",
+      "name": "Wollkette des Gelehrten",
+      "slot": "amulet",
+      "tier": 2,
+      "reqLevel": 13,
+      "setId": "veteran",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "weisheit": 2,
+        "kraft": 3
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schneider-seidenkette-der-sterne",
+      "name": "Seidenkette der Sterne",
+      "slot": "amulet",
+      "tier": 3,
+      "reqLevel": 23,
+      "setId": "master",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "weisheit": 5,
+        "kraft": 4
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schneider-runenkette",
+      "name": "Runenkette",
+      "slot": "amulet",
+      "tier": 4,
+      "reqLevel": 48,
+      "setId": "legendary",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "epic",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schneider-einfaches-leinenband",
+      "name": "Einfaches Leinenband",
+      "slot": "amulet",
+      "tier": 1,
+      "reqLevel": 5,
+      "setId": "adventurer",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "weisheit": 3,
+        "kraft": 1
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schneider-gewobenes-wollband",
+      "name": "Gewobenes Wollband",
+      "slot": "amulet",
+      "tier": 2,
+      "reqLevel": 13,
+      "setId": "veteran",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "rare",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 3
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schneider-mondschein-amulett",
+      "name": "Mondschein-Amulett",
+      "slot": "amulet",
+      "tier": 3,
+      "reqLevel": 19,
+      "setId": "master",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "weisheit": 3
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schneider-sternentalisman",
+      "name": "Sternentalisman",
+      "slot": "amulet",
+      "tier": 4,
+      "reqLevel": 39,
+      "setId": "legendary",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "epic",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schneider-leinen-kappe-ii",
+      "name": "Leinen Kappe II",
+      "slot": "helm",
+      "tier": 1,
+      "reqLevel": 3,
+      "setId": "adventurer",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "rare",
+      "fixedStats": {
+        "weisheit": 3,
+        "kraft": 2
+      },
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schneider-woll-robe-ii",
+      "name": "Woll Robe II",
+      "slot": "armor",
+      "tier": 2,
+      "reqLevel": 14,
+      "setId": "veteran",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "rare",
+      "fixedStats": {
+        "weisheit": 2
+      },
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schneider-seiden-marschtritt-ii",
+      "name": "Seiden Marschtritt II",
+      "slot": "boots",
+      "tier": 3,
+      "reqLevel": 18,
+      "setId": "master",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "weisheit": 3
+      },
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schneider-arkan-haube-ii",
+      "name": "Arkan Haube II",
+      "slot": "helm",
+      "tier": 4,
+      "reqLevel": 30,
+      "setId": "legendary",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "weisheit": 6,
+        "kraft": 5
+      },
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schneider-leinen-mantel-ii",
+      "name": "Leinen Mantel II",
+      "slot": "armor",
+      "tier": 1,
+      "reqLevel": 2,
+      "setId": "adventurer",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "weisheit": 3,
+        "kraft": 1
+      },
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schneider-woll-stiefel-ii",
+      "name": "Woll Stiefel II",
+      "slot": "boots",
+      "tier": 2,
+      "reqLevel": 13,
+      "setId": "veteran",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "rare",
+      "fixedStats": {
+        "weisheit": 4
+      },
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schneider-seiden-helm-ii",
+      "name": "Seiden Helm II",
+      "slot": "helm",
+      "tier": 3,
+      "reqLevel": 18,
+      "setId": "master",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "weisheit": 4,
+        "kraft": 4
+      },
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schneider-arkan-platte-ii",
+      "name": "Arkan Platte II",
+      "slot": "armor",
+      "tier": 4,
+      "reqLevel": 30,
+      "setId": "legendary",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "rare",
+      "fixedStats": {
+        "weisheit": 5,
+        "kraft": 4
+      },
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schneider-leinen-treter-ii",
+      "name": "Leinen Treter II",
+      "slot": "boots",
+      "tier": 1,
+      "reqLevel": 3,
+      "setId": "adventurer",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "weisheit": 1
+      },
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schneider-woll-visier-ii",
+      "name": "Woll Visier II",
+      "slot": "helm",
+      "tier": 2,
+      "reqLevel": 15,
+      "setId": "veteran",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "rare",
+      "fixedStats": {
+        "weisheit": 4
+      },
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schneider-seiden-panzer-ii",
+      "name": "Seiden Panzer II",
+      "slot": "armor",
+      "tier": 3,
+      "reqLevel": 23,
+      "setId": "master",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "weisheit": 4
+      },
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schneider-arkan-schuhe-ii",
+      "name": "Arkan Schuhe II",
+      "slot": "boots",
+      "tier": 4,
+      "reqLevel": 42,
+      "setId": "legendary",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "rare",
+      "fixedStats": {
+        "weisheit": 4,
+        "kraft": 5
+      },
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schneider-leinen-schleier-iii",
+      "name": "Leinen Schleier III",
+      "slot": "helm",
+      "tier": 1,
+      "reqLevel": 4,
+      "setId": "adventurer",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "rare",
+      "fixedStats": {
+        "weisheit": 1,
+        "kraft": 2
+      },
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schneider-woll-wams-iii",
+      "name": "Woll Wams III",
+      "slot": "armor",
+      "tier": 2,
+      "reqLevel": 15,
+      "setId": "veteran",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "weisheit": 4
+      },
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schneider-seiden-sandalen-iii",
+      "name": "Seiden Sandalen III",
+      "slot": "boots",
+      "tier": 3,
+      "reqLevel": 22,
+      "setId": "master",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "rare",
+      "fixedStats": {
+        "weisheit": 4,
+        "kraft": 4
+      },
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schneider-arkan-kappe-iii",
+      "name": "Arkan Kappe III",
+      "slot": "helm",
+      "tier": 4,
+      "reqLevel": 39,
+      "setId": "legendary",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "weisheit": 4,
+        "kraft": 4
+      },
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schneider-leinen-robe-iii",
+      "name": "Leinen Robe III",
+      "slot": "armor",
+      "tier": 1,
+      "reqLevel": 3,
+      "setId": "adventurer",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "weisheit": 1
+      },
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schneider-woll-marschtritt-iii",
+      "name": "Woll Marschtritt III",
+      "slot": "boots",
+      "tier": 2,
+      "reqLevel": 15,
+      "setId": "veteran",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "weisheit": 2
+      },
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schneider-seiden-haube-iii",
+      "name": "Seiden Haube III",
+      "slot": "helm",
+      "tier": 3,
+      "reqLevel": 18,
+      "setId": "master",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "weisheit": 4,
+        "kraft": 3
+      },
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schneider-arkan-mantel-iii",
+      "name": "Arkan Mantel III",
+      "slot": "armor",
+      "tier": 4,
+      "reqLevel": 29,
+      "setId": "legendary",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "weisheit": 7
+      },
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schneider-leinen-stiefel-iii",
+      "name": "Leinen Stiefel III",
+      "slot": "boots",
+      "tier": 1,
+      "reqLevel": 2,
+      "setId": "adventurer",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "rare",
+      "fixedStats": {
+        "weisheit": 2
+      },
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger."
     }
   ]
 }

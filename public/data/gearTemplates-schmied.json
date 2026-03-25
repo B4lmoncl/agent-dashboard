@@ -2305,6 +2305,622 @@
         "kraft": 3
       },
       "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schmied-eisernes-schutzamulett",
+      "name": "Eisernes Schutzamulett",
+      "slot": "amulet",
+      "tier": 1,
+      "reqLevel": 4,
+      "setId": "adventurer",
+      "armorType": "heavy",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "rare",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 2
+            },
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 2
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schmied-kristall-talisman",
+      "name": "Kristall-Talisman",
+      "slot": "amulet",
+      "tier": 2,
+      "reqLevel": 11,
+      "setId": "veteran",
+      "armorType": "heavy",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "ausdauer": 3
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schmied-drachenstahl-siegelamulett",
+      "name": "Drachenstahl-Siegelamulett",
+      "slot": "amulet",
+      "tier": 3,
+      "reqLevel": 21,
+      "setId": "master",
+      "armorType": "heavy",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "ausdauer": 4
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schmied-aether-siegelamulett",
+      "name": "Aether-Siegelamulett",
+      "slot": "amulet",
+      "tier": 4,
+      "reqLevel": 49,
+      "setId": "legendary",
+      "armorType": "heavy",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "ausdauer": 6,
+        "kraft": 5
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schmied-geschmiedeter-talisman",
+      "name": "Geschmiedeter Talisman",
+      "slot": "amulet",
+      "tier": 1,
+      "reqLevel": 1,
+      "setId": "adventurer",
+      "armorType": "heavy",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "ausdauer": 2,
+        "kraft": 2
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schmied-staehlernes-schutzamulett",
+      "name": "Stählernes Schutzamulett",
+      "slot": "amulet",
+      "tier": 2,
+      "reqLevel": 12,
+      "setId": "veteran",
+      "armorType": "heavy",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "ausdauer": 2,
+        "kraft": 2
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schmied-drachenschuppen-talisman",
+      "name": "Drachenschuppen-Talisman",
+      "slot": "amulet",
+      "tier": 3,
+      "reqLevel": 22,
+      "setId": "master",
+      "armorType": "heavy",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "rare",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schmied-seelen-talisman",
+      "name": "Seelen-Talisman",
+      "slot": "amulet",
+      "tier": 4,
+      "reqLevel": 44,
+      "setId": "legendary",
+      "armorType": "heavy",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "epic",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schmied-eisern-kappe-ii",
+      "name": "Eisern Kappe II",
+      "slot": "helm",
+      "tier": 1,
+      "reqLevel": 7,
+      "setId": "adventurer",
+      "armorType": "heavy",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "ausdauer": 3,
+        "kraft": 1
+      },
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schmied-staehlern-robe-ii",
+      "name": "Stählern Robe II",
+      "slot": "armor",
+      "tier": 2,
+      "reqLevel": 12,
+      "setId": "veteran",
+      "armorType": "heavy",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "ausdauer": 4,
+        "kraft": 3
+      },
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schmied-drachen-marschtritt-ii",
+      "name": "Drachen Marschtritt II",
+      "slot": "boots",
+      "tier": 3,
+      "reqLevel": 22,
+      "setId": "master",
+      "armorType": "heavy",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "rare",
+      "fixedStats": {
+        "ausdauer": 4,
+        "kraft": 4
+      },
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schmied-aether-haube-ii",
+      "name": "Aether Haube II",
+      "slot": "helm",
+      "tier": 4,
+      "reqLevel": 41,
+      "setId": "legendary",
+      "armorType": "heavy",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "ausdauer": 4
+      },
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schmied-eisern-mantel-ii",
+      "name": "Eisern Mantel II",
+      "slot": "armor",
+      "tier": 1,
+      "reqLevel": 3,
+      "setId": "adventurer",
+      "armorType": "heavy",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "ausdauer": 1
+      },
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schmied-staehlern-stiefel-ii",
+      "name": "Stählern Stiefel II",
+      "slot": "boots",
+      "tier": 2,
+      "reqLevel": 12,
+      "setId": "veteran",
+      "armorType": "heavy",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "ausdauer": 2,
+        "kraft": 3
+      },
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schmied-drachen-helm-ii",
+      "name": "Drachen Helm II",
+      "slot": "helm",
+      "tier": 3,
+      "reqLevel": 23,
+      "setId": "master",
+      "armorType": "heavy",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "ausdauer": 3
+      },
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schmied-aether-platte-ii",
+      "name": "Aether Platte II",
+      "slot": "armor",
+      "tier": 4,
+      "reqLevel": 39,
+      "setId": "legendary",
+      "armorType": "heavy",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "rare",
+      "fixedStats": {
+        "ausdauer": 5
+      },
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schmied-eisern-treter-ii",
+      "name": "Eisern Treter II",
+      "slot": "boots",
+      "tier": 1,
+      "reqLevel": 3,
+      "setId": "adventurer",
+      "armorType": "heavy",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "ausdauer": 1,
+        "kraft": 1
+      },
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schmied-staehlern-visier-ii",
+      "name": "Stählern Visier II",
+      "slot": "helm",
+      "tier": 2,
+      "reqLevel": 12,
+      "setId": "veteran",
+      "armorType": "heavy",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "ausdauer": 2,
+        "kraft": 3
+      },
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schmied-drachen-panzer-ii",
+      "name": "Drachen Panzer II",
+      "slot": "armor",
+      "tier": 3,
+      "reqLevel": 20,
+      "setId": "master",
+      "armorType": "heavy",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "ausdauer": 4,
+        "kraft": 3
+      },
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schmied-aether-schuhe-ii",
+      "name": "Aether Schuhe II",
+      "slot": "boots",
+      "tier": 4,
+      "reqLevel": 36,
+      "setId": "legendary",
+      "armorType": "heavy",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "rare",
+      "fixedStats": {
+        "ausdauer": 5
+      },
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schmied-eisern-schleier-iii",
+      "name": "Eisern Schleier III",
+      "slot": "helm",
+      "tier": 1,
+      "reqLevel": 5,
+      "setId": "adventurer",
+      "armorType": "heavy",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "rare",
+      "fixedStats": {
+        "ausdauer": 3,
+        "kraft": 2
+      },
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schmied-staehlern-wams-iii",
+      "name": "Stählern Wams III",
+      "slot": "armor",
+      "tier": 2,
+      "reqLevel": 15,
+      "setId": "veteran",
+      "armorType": "heavy",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "ausdauer": 4,
+        "kraft": 2
+      },
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schmied-drachen-sandalen-iii",
+      "name": "Drachen Sandalen III",
+      "slot": "boots",
+      "tier": 3,
+      "reqLevel": 18,
+      "setId": "master",
+      "armorType": "heavy",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "ausdauer": 3,
+        "kraft": 4
+      },
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schmied-aether-kappe-iii",
+      "name": "Aether Kappe III",
+      "slot": "helm",
+      "tier": 4,
+      "reqLevel": 33,
+      "setId": "legendary",
+      "armorType": "heavy",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "rare",
+      "fixedStats": {
+        "ausdauer": 4,
+        "kraft": 6
+      },
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schmied-eisern-robe-iii",
+      "name": "Eisern Robe III",
+      "slot": "armor",
+      "tier": 1,
+      "reqLevel": 7,
+      "setId": "adventurer",
+      "armorType": "heavy",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "ausdauer": 2,
+        "kraft": 1
+      },
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schmied-staehlern-marschtritt-iii",
+      "name": "Stählern Marschtritt III",
+      "slot": "boots",
+      "tier": 2,
+      "reqLevel": 12,
+      "setId": "veteran",
+      "armorType": "heavy",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "ausdauer": 2,
+        "kraft": 3
+      },
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schmied-drachen-haube-iii",
+      "name": "Drachen Haube III",
+      "slot": "helm",
+      "tier": 3,
+      "reqLevel": 23,
+      "setId": "master",
+      "armorType": "heavy",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "ausdauer": 4,
+        "kraft": 4
+      },
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schmied-aether-mantel-iii",
+      "name": "Aether Mantel III",
+      "slot": "armor",
+      "tier": 4,
+      "reqLevel": 35,
+      "setId": "legendary",
+      "armorType": "heavy",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "ausdauer": 7,
+        "kraft": 4
+      },
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schmied-eisern-stiefel-iii",
+      "name": "Eisern Stiefel III",
+      "slot": "boots",
+      "tier": 1,
+      "reqLevel": 7,
+      "setId": "adventurer",
+      "armorType": "heavy",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "ausdauer": 1
+      },
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger."
     }
   ]
 }
