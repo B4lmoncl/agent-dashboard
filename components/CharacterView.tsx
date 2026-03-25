@@ -1466,18 +1466,6 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                   </div>
                 )}
 
-                {/* Gear Score */}
-                {charData.gearScore && (
-                  <div className="mb-3 pt-2" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
-                    <Tip k="gear_score">
-                      <div className="flex items-center justify-between cursor-help">
-                        <span className="text-xs font-semibold" style={{ color: "rgba(255,255,255,0.5)" }}>Gear Score</span>
-                        <span className="text-sm font-mono font-bold" style={{ color: "#fbbf24" }}>{charData.gearScore.gearScore}</span>
-                      </div>
-                    </Tip>
-                  </div>
-                )}
-
                 {/* Set Bonus */}
                 {charData.setBonusInfo && (
                   <div className="mb-3 px-2 py-1.5 rounded-lg" style={{ background: "rgba(167,139,250,0.1)", border: "1px solid rgba(167,139,250,0.25)" }}>
@@ -1622,41 +1610,28 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                   )}
                 </div>
 
-                {/* Forge Temp */}
-                <Tip k="forge_temp">
-                <div>
-                  <div className="flex items-center justify-between mb-1">
-                    <span className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>Forge Temp</span>
-                    <span className="flex items-center gap-1 text-xs font-mono" style={{ color: charData.forgeTemp >= 70 ? "#f97316" : charData.forgeTemp >= 40 ? "#facc15" : "#9ca3af" }}>
-                      <img
-                        src="/images/icons/ach-forge-novice.png"
-                        alt="forge"
-                        width={16}
-                        height={16}
+                {/* Gear Score (prominent, replaces Forge Temp which is shown elsewhere) */}
+                {charData.gearScore && charData.gearScore.gearScore > 0 && (
+                  <Tip k="gear_score">
+                  <div className="cursor-help">
+                    <div className="flex items-center justify-between mb-1">
+                      <span className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>Gear Score</span>
+                      <span className="text-sm font-mono font-bold" style={{ color: charData.gearScore.gearScore >= 400 ? "#f97316" : charData.gearScore.gearScore >= 200 ? "#fbbf24" : charData.gearScore.gearScore >= 100 ? "#22c55e" : "#9ca3af" }}>
+                        {charData.gearScore.gearScore}
+                      </span>
+                    </div>
+                    <div className="rounded-full overflow-hidden" style={{ height: 3, background: "rgba(255,255,255,0.07)" }}>
+                      <div
+                        className="h-full rounded-full"
                         style={{
-                          imageRendering: "auto",
-                          filter: charData.forgeTemp >= 70
-                            ? "brightness(1.2) sepia(1) saturate(3) hue-rotate(-10deg)"
-                            : charData.forgeTemp >= 40
-                            ? "brightness(1.1) sepia(1) saturate(2) hue-rotate(10deg)"
-                            : "brightness(0.6) grayscale(0.8)",
+                          width: `${Math.min(100, (charData.gearScore.gearScore / 600) * 100)}%`,
+                          background: charData.gearScore.gearScore >= 400 ? "linear-gradient(90deg, #ea580c, #f97316)" : charData.gearScore.gearScore >= 200 ? "linear-gradient(90deg, #ca8a04, #fbbf24)" : "linear-gradient(90deg, #166534, #22c55e)",
                         }}
-                        onError={e => { e.currentTarget.style.display = "none"; }}
                       />
-                      {charData.forgeTemp}%
-                    </span>
+                    </div>
                   </div>
-                  <div className="rounded-full overflow-hidden" style={{ height: 3, background: "rgba(255,255,255,0.07)" }}>
-                    <div
-                      className="h-full rounded-full"
-                      style={{
-                        width: `${charData.forgeTemp}%`,
-                        background: charData.forgeTemp >= 70 ? "linear-gradient(90deg, #ea580c, #f97316)" : charData.forgeTemp >= 40 ? "linear-gradient(90deg, #ca8a04, #facc15)" : "linear-gradient(90deg, #374151, #6b7280)",
-                      }}
-                    />
-                  </div>
-                </div>
-                </Tip>
+                  </Tip>
+                )}
               </>
             );
           })()}
