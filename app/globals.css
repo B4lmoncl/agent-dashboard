@@ -1394,3 +1394,51 @@ button[disabled] {
   background: radial-gradient(ellipse at 50% 0%, rgba(50,50,60,0.3) 0%, #181818 65%) !important;
   box-shadow: inset 0 1px 2px rgba(255,255,255,0.06), inset 0 -2px 4px rgba(0,0,0,0.6), 0 4px 12px rgba(0,0,0,0.4) !important;
 }
+
+/* ─── Forge Visual Polish ──────────────────────────────────────────────── */
+
+/* 1. NPC Modal Entrance Animation */
+@keyframes npc-modal-enter {
+  from { opacity: 0; backdrop-filter: blur(0px); }
+  to { opacity: 1; backdrop-filter: blur(3px); }
+}
+@keyframes npc-modal-content-in {
+  from { opacity: 0; transform: scale(0.94) translateY(-20px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+.npc-modal-backdrop { animation: npc-modal-enter 0.3s ease-out; }
+.npc-modal-content { animation: npc-modal-content-in 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+
+/* 2. Recipe Card Hover Lift */
+.forge-recipe-card { transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease; }
+.forge-recipe-card:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,0.3); }
+
+/* 4. Craft Completion Sparkle */
+@keyframes craft-sparkle-rise {
+  0% { opacity: 0; transform: translateY(0) scale(0.5); }
+  30% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(-50px) scale(0.3); }
+}
+@keyframes craft-result-enter {
+  from { opacity: 0; transform: translateY(8px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.craft-result-celebrate { animation: craft-result-enter 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
+
+/* 5. Skill-Up Flash + Float */
+@keyframes skill-up-flash {
+  0%, 100% { background: transparent; }
+  50% { background: rgba(251,191,36,0.15); }
+}
+@keyframes skill-float-up {
+  0% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-30px); }
+}
+.skill-bar-flash { animation: skill-up-flash 0.6s ease-out; }
+
+/* 7. Material Count Pulsing */
+@keyframes material-almost-ready {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 0.9; color: rgba(251,191,36,0.8); }
+}
+.mat-almost-ready { animation: material-almost-ready 2s ease-in-out infinite; }

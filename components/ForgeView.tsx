@@ -179,6 +179,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
   const [enchantCost, setEnchantCost] = useState<{ gold: number; essenz: number } | null>(null);
   const [enchantLoading, setEnchantLoading] = useState(false);
   const [enchantResult, setEnchantResult] = useState<string | null>(null);
+  const [skillUpFlash, setSkillUpFlash] = useState(false);
 
   // Close callbacks for modal behavior hooks
   const closeNpcModal = useCallback(() => {
@@ -295,6 +296,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
         else if (data.skillGained === 0 && data.skillUpColor !== "gray") msg += " (No skill-up)";
         if (data.newSkill) msg += ` [${data.newSkill}/300]`;
         setCraftResult(msg);
+        if (data.skillGained > 0) { setSkillUpFlash(true); setTimeout(() => setSkillUpFlash(false), 1000); }
         setCraftCount(1);
         fetchData();
         onRefresh?.();
@@ -836,11 +838,11 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
       {/* ─── NPC Popout Modal ────────────────────────────────────────────────── */}
       {selectedNpc && typeof document !== "undefined" && createPortal(
         <div
-          className="fixed inset-0 z-[100] flex items-center justify-center p-4"
+          className="fixed inset-0 z-[100] flex items-center justify-center p-4 npc-modal-backdrop"
           style={{ background: "rgba(0,0,0,0.82)" }}
           onClick={e => { if (e.target === e.currentTarget) closeNpcModal(); }}
         >
-          <div className="relative w-full max-w-xl rounded-xl" style={{ background: "#141418", border: `1px solid ${selectedNpc.color}30`, maxHeight: "85vh", overflowY: "auto", overflowX: "hidden" }}>
+          <div className="relative w-full max-w-xl rounded-xl npc-modal-content" style={{ background: "#141418", border: `1px solid ${selectedNpc.color}30`, maxHeight: "85vh", overflowY: "auto", overflowX: "hidden" }}>
             {/* Close */}
             <button onClick={closeNpcModal} className="forge-btn absolute top-3 right-3 z-10 w-8 h-8 rounded-full flex items-center justify-center" style={{ background: "rgba(255,255,255,0.08)" }}>
               <span className="text-white text-sm">&#10005;</span>
@@ -861,7 +863,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                   </div>
                   <p className="text-sm" style={{ color: "rgba(255,255,255,0.4)" }}>{selectedNpc.name} &middot; Skill {selectedNpc.skill || selectedNpc.playerXp || 0}/{selectedNpc.skillCap || 300}</p>
                   <div className="flex items-center gap-2 mt-1">
-                    <div className="w-32 progress-bar-diablo" style={{ height: 7 }}>
+                    <div className={`w-32 progress-bar-diablo${skillUpFlash ? " skill-bar-flash" : ""}`} style={{ height: 7 }}>
                       <div className="h-full rounded-full" style={{ background: `linear-gradient(90deg, ${selectedNpc.color}cc, ${selectedNpc.color})`, width: `${Math.min(100, ((selectedNpc.skill || selectedNpc.playerXp || 0) / (selectedNpc.skillCap || 300)) * 100)}%`, boxShadow: `0 0 6px ${selectedNpc.color}40` }} />
                     </div>
                     <span className="text-sm font-mono" style={{ color: "rgba(255,255,255,0.35)" }}>{selectedNpc.skill || selectedNpc.playerXp || 0}/{selectedNpc.maxSkill || 300}</span>
@@ -940,7 +942,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
 
             {/* ─── Tab: Recipes ──────────────────────────────────────────── */}
             {npcModalTab === "recipes" && (
-              <>
+              <div className="tab-content-enter">
                 {/* Slot selector for Schmied/Verzauberer */}
                 {(selectedNpc.id === "schmied" || selectedNpc.id === "verzauberer") && (
                   <div className="px-5 py-3" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
@@ -1066,7 +1068,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                     const canDo = isLearned && canAfford && meetsLevel && !onCooldown && hasSlotItem;
 
                     return (
-                      <div key={recipe.id} className="rounded-lg p-3" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)", borderLeft: `3px solid ${skillUp?.color || "rgba(255,255,255,0.06)"}` }}>
+                      <div key={recipe.id} className="forge-recipe-card rounded-lg p-3" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)", borderLeft: `3px solid ${skillUp?.color || "rgba(255,255,255,0.06)"}` }}>
                         <div className="flex items-start justify-between gap-2">
                           <div>
                             <div className="flex items-center gap-2">
@@ -1151,7 +1153,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                                   </div>
                                 )}
                                 <span className="relative" style={{ zIndex: 1 }}>
-                                  {craftProgress && craftProgress.recipeId === recipe.id ? `Crafting\u2026 ${castCountdown ?? ""}s` : crafting ? "Crafting\u2026" : onCooldown ? "On Cooldown" : "Craft"}
+                                  {craftProgress && craftProgress.recipeId === recipe.id ? `Crafting\u2026 ${craftProgress.total > 1 ? `${Math.min(craftProgress.current + 1, craftProgress.total)}/${craftProgress.total} ` : ''}${castCountdown ?? ""}s` : crafting ? "Crafting\u2026" : onCooldown ? "On Cooldown" : "Craft"}
                                 </span>
                               </button>
                             )}
@@ -1168,12 +1170,14 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                           {Object.entries(recipe.materials || {}).map(([matId, amt]) => {
                             const mat = materialDefs.find(m => m.id === matId);
                             const needed = (amt as number) * effectiveCount;
-                            const has = (materials[matId] || 0) >= needed;
+                            const owned = materials[matId] || 0;
+                            const has = owned >= needed;
+                            const almostReady = !has && needed > 0 && owned >= needed * 0.6;
                             return (
-                              <span key={matId} className="text-sm flex items-center gap-1" style={{ color: has ? RARITY_COLORS[mat?.rarity || "common"] : "#f44", fontWeight: has ? "normal" : "bold" }}>
+                              <span key={matId} className={`text-sm flex items-center gap-1${almostReady ? " mat-almost-ready" : ""}`} style={{ color: has ? RARITY_COLORS[mat?.rarity || "common"] : "#f44", fontWeight: has ? "normal" : "bold" }}>
                                 {!has && <span style={{ color: "#f44", fontSize: 10, lineHeight: 1 }}>●</span>}
                                 <img src={mat?.icon || ""} alt="" width={16} height={16} style={{ imageRendering: "auto" }} onError={hideOnError} />
-                                {materials[matId] || 0}/{needed} {mat?.name || matId}
+                                {owned}/{needed} {mat?.name || matId}
                               </span>
                             );
                           })}
@@ -1203,11 +1207,22 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
 
                 {/* Craft result toast */}
                 {craftResult && (
-                  <div id="forge-craft-result" className="mx-5 mb-4 px-3 py-2 rounded-lg text-xs font-semibold text-center" style={{ background: `${selectedNpc.color}15`, color: selectedNpc.color, border: `1px solid ${selectedNpc.color}30` }}>
-                    {craftResult}
+                  <div className="relative mx-5 mb-4">
+                    <div id="forge-craft-result" className="craft-result-celebrate px-3 py-2 rounded-lg text-xs font-semibold text-center" style={{ background: `${selectedNpc.color}15`, color: selectedNpc.color, border: `1px solid ${selectedNpc.color}30` }}>
+                      {craftResult}
+                    </div>
+                    {craftResult.includes("+") && [0,1,2,3].map(i => (
+                      <span key={i} className="absolute pointer-events-none" style={{
+                        left: `${20 + i * 20}%`, bottom: '100%',
+                        width: 4, height: 4, borderRadius: '50%',
+                        background: selectedNpc.color || '#fbbf24',
+                        animation: `craft-sparkle-rise 0.8s ease-out ${i * 0.1}s forwards`,
+                        opacity: 0,
+                      }} />
+                    ))}
                   </div>
                 )}
-              </>
+              </div>
             )}
 
             {/* ─── Tab: Enchanting (D3-style stat reroll — Verzauberer only) */}
@@ -1268,7 +1283,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
               };
 
               return (
-                <div className="px-5 py-4 space-y-4" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
+                <div className="tab-content-enter px-5 py-4 space-y-4" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
                   {/* Intro */}
                   <div>
                     <p className="text-sm font-bold" style={{ color: "#a855f7" }}>Stat Enchanting</p>
@@ -1437,7 +1452,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                 grouped[item.rarity].push(item);
               }
               return (
-                <div className="px-5 py-4 space-y-3" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
+                <div className="tab-content-enter px-5 py-4 space-y-3" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
                   <p className="text-sm" style={{ color: "rgba(255,255,255,0.35)" }}>
                     Dismantle gear into <strong style={{ color: "#ff8c00" }}>Essenz</strong> + <strong style={{ color: "#22c55e" }}>Materials</strong>. Essenz is used for recipes and profession switching.
                   </p>
@@ -1589,7 +1604,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                 : null;
               const lockedSlot = firstSelected?.slot || null;
               return (
-                <div className="px-5 py-4 space-y-3" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
+                <div className="tab-content-enter px-5 py-4 space-y-3" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
                   <p className="text-sm" style={{ color: "rgba(255,255,255,0.35)" }}>
                     Combine 3 Epic gear pieces from the same slot + 500 Gold to create a Legendary item.
                   </p>
