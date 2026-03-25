@@ -459,6 +459,62 @@
       "icon": null,
       "rarity": "legendary",
       "desc": "Ein Faden der Runen in den Stoff webt. Was er schreibt, kann niemand lesen — aber alle spüren es."
+    },
+    {
+      "id": "geheiltesleichtleder",
+      "name": "Geheiltes Leichtleder",
+      "icon": null,
+      "rarity": "common",
+      "desc": "Verarbeitetes Leder: Geheiltes Leichtleder."
+    },
+    {
+      "id": "geheiltesmittleresleder",
+      "name": "Geheiltes Mittleres Leder",
+      "icon": null,
+      "rarity": "common",
+      "desc": "Verarbeitetes Leder: Geheiltes Mittleres Leder."
+    },
+    {
+      "id": "gehaertetesschwerleder",
+      "name": "Gehärtetes Schwerleder",
+      "icon": null,
+      "rarity": "uncommon",
+      "desc": "Verarbeitetes Leder: Gehärtetes Schwerleder."
+    },
+    {
+      "id": "bestienlederballen",
+      "name": "Bestien-Lederballen",
+      "icon": null,
+      "rarity": "rare",
+      "desc": "Verarbeitetes Leder: Bestien-Lederballen."
+    },
+    {
+      "id": "urzeitleder",
+      "name": "Urzeitleder-Ballen",
+      "icon": null,
+      "rarity": "epic",
+      "desc": "Verarbeitetes Leder: Urzeitleder-Ballen."
+    },
+    {
+      "id": "klauenoel",
+      "name": "Klauenöl",
+      "icon": null,
+      "rarity": "common",
+      "desc": "Verarbeitetes Leder: Klauenöl."
+    },
+    {
+      "id": "salzgerbung",
+      "name": "Salzgerbung",
+      "icon": null,
+      "rarity": "uncommon",
+      "desc": "Verarbeitetes Leder: Salzgerbung."
+    },
+    {
+      "id": "uraltesgerbmittel",
+      "name": "Uraltes Gerbmittel",
+      "icon": null,
+      "rarity": "epic",
+      "desc": "Verarbeitetes Leder: Uraltes Gerbmittel."
     }
   ],
   "skillUpColors": {
@@ -6635,6 +6691,3001 @@
       },
       "xp": 42,
       "description": "Glück weben III."
+    },
+    {
+      "id": "recipe-leder-geheiltes-leichtleder",
+      "name": "Geheiltes Leichtleder",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 1,
+      "cost": {
+        "gold": 5
+      },
+      "materials": {
+        "leichtesleder": 3
+      },
+      "result": {
+        "type": "material",
+        "materialId": "geheiltesleichtleder",
+        "amount": 1
+      },
+      "xp": 5,
+      "description": "Verarbeitet: Geheiltes Leichtleder."
+    },
+    {
+      "id": "recipe-leder-geheiltes-mittleres-leder",
+      "name": "Geheiltes Mittleres Leder",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 50,
+      "cost": {
+        "gold": 20
+      },
+      "materials": {
+        "mittleresleder": 3
+      },
+      "result": {
+        "type": "material",
+        "materialId": "geheiltesmittleresleder",
+        "amount": 1
+      },
+      "xp": 12,
+      "description": "Verarbeitet: Geheiltes Mittleres Leder."
+    },
+    {
+      "id": "recipe-leder-gehaertetes-schwerleder",
+      "name": "Gehärtetes Schwerleder",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 120,
+      "cost": {
+        "gold": 80
+      },
+      "materials": {
+        "schweresleder": 3
+      },
+      "result": {
+        "type": "material",
+        "materialId": "gehaertetesschwerleder",
+        "amount": 1
+      },
+      "xp": 20,
+      "description": "Verarbeitet: Gehärtetes Schwerleder."
+    },
+    {
+      "id": "recipe-leder-bestien-lederballen",
+      "name": "Bestien-Lederballen",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 200,
+      "cost": {
+        "gold": 200
+      },
+      "materials": {
+        "dickesleder": 3
+      },
+      "result": {
+        "type": "material",
+        "materialId": "bestienlederballen",
+        "amount": 1
+      },
+      "xp": 28,
+      "description": "Verarbeitet: Bestien-Lederballen."
+    },
+    {
+      "id": "recipe-leder-urzeitleder-ballen",
+      "name": "Urzeitleder-Ballen",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 270,
+      "cost": {
+        "gold": 500
+      },
+      "materials": {
+        "rauesleder": 3
+      },
+      "result": {
+        "type": "material",
+        "materialId": "urzeitleder",
+        "amount": 1
+      },
+      "xp": 40,
+      "description": "Verarbeitet: Urzeitleder-Ballen."
+    },
+    {
+      "id": "recipe-leder-klauenoel",
+      "name": "Klauenöl",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 75,
+      "cost": {
+        "gold": 40
+      },
+      "materials": {
+        "leichtesleder": 2,
+        "mittleresleder": 1
+      },
+      "result": {
+        "type": "material",
+        "materialId": "klauenoel",
+        "amount": 1
+      },
+      "xp": 14,
+      "description": "Verarbeitet: Klauenöl."
+    },
+    {
+      "id": "recipe-leder-salzgerbung",
+      "name": "Salzgerbung",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 175,
+      "cost": {
+        "gold": 150
+      },
+      "materials": {
+        "schweresleder": 2,
+        "mittleresleder": 2
+      },
+      "result": {
+        "type": "material",
+        "materialId": "salzgerbung",
+        "amount": 1
+      },
+      "xp": 25,
+      "description": "Verarbeitet: Salzgerbung."
+    },
+    {
+      "id": "recipe-leder-uraltes-gerbmittel",
+      "name": "Uraltes Gerbmittel",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 260,
+      "cost": {
+        "gold": 400
+      },
+      "materials": {
+        "dickesleder": 2,
+        "rauesleder": 1
+      },
+      "result": {
+        "type": "material",
+        "materialId": "uraltesgerbmittel",
+        "amount": 1
+      },
+      "xp": 38,
+      "description": "Verarbeitet: Uraltes Gerbmittel."
+    },
+    {
+      "id": "recipe-leder-leichtleder-dolch-ii",
+      "name": "Leichtleder-Dolch II",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 1,
+      "cost": {
+        "gold": 10
+      },
+      "materials": {
+        "leichtesleder": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-leichtleder-dolch-ii"
+      },
+      "xp": 5,
+      "description": "Gerbt: Leichtleder-Dolch II."
+    },
+    {
+      "id": "recipe-leder-leichtleder-peitsche",
+      "name": "Leichtleder-Peitsche",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 5,
+      "cost": {
+        "gold": 13
+      },
+      "materials": {
+        "leichtesleder": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-leichtleder-peitsche"
+      },
+      "xp": 5,
+      "description": "Gerbt: Leichtleder-Peitsche."
+    },
+    {
+      "id": "recipe-leder-leichtleder-stiefel",
+      "name": "Leichtleder-Stiefel",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 8,
+      "cost": {
+        "gold": 15
+      },
+      "materials": {
+        "leichtesleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-leichtleder-stiefel"
+      },
+      "xp": 6,
+      "description": "Gerbt: Leichtleder-Stiefel."
+    },
+    {
+      "id": "recipe-leder-leichtleder-anhaenger",
+      "name": "Leichtleder-Anhänger",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 12,
+      "cost": {
+        "gold": 18
+      },
+      "materials": {
+        "leichtesleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-leichtleder-anhaenger"
+      },
+      "xp": 6,
+      "description": "Gerbt: Leichtleder-Anhänger."
+    },
+    {
+      "id": "recipe-leder-leichtleder-kappe",
+      "name": "Leichtleder-Kappe",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 16,
+      "cost": {
+        "gold": 21
+      },
+      "materials": {
+        "leichtesleder": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-leichtleder-kappe"
+      },
+      "xp": 6,
+      "description": "Gerbt: Leichtleder-Kappe."
+    },
+    {
+      "id": "recipe-leder-leichtleder-armschutz",
+      "name": "Leichtleder-Armschutz",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 19,
+      "cost": {
+        "gold": 23
+      },
+      "materials": {
+        "leichtesleder": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-leichtleder-armschutz"
+      },
+      "xp": 7,
+      "description": "Gerbt: Leichtleder-Armschutz."
+    },
+    {
+      "id": "recipe-leder-leichtleder-sandalen",
+      "name": "Leichtleder-Sandalen",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 23,
+      "cost": {
+        "gold": 26
+      },
+      "materials": {
+        "leichtesleder": 3
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-leichtleder-sandalen"
+      },
+      "xp": 7,
+      "description": "Gerbt: Leichtleder-Sandalen."
+    },
+    {
+      "id": "recipe-leder-leichtleder-buckler",
+      "name": "Leichtleder-Buckler",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 26,
+      "cost": {
+        "gold": 28
+      },
+      "materials": {
+        "leichtesleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-leichtleder-buckler"
+      },
+      "xp": 8,
+      "description": "Gerbt: Leichtleder-Buckler."
+    },
+    {
+      "id": "recipe-leder-leichtleder-bogen",
+      "name": "Leichtleder-Bogen",
+      "profession": "lederverarbeiter",
+      "source": "drop",
+      "reqSkill": 30,
+      "cost": {
+        "gold": 31
+      },
+      "materials": {
+        "leichtesleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-leichtleder-bogen"
+      },
+      "xp": 8,
+      "description": "Gerbt: Leichtleder-Bogen.",
+      "dropChance": 0.11,
+      "dropMinQuestRarity": "common"
+    },
+    {
+      "id": "recipe-leder-leichtleder-tunika",
+      "name": "Leichtleder-Tunika",
+      "profession": "lederverarbeiter",
+      "source": "drop",
+      "reqSkill": 34,
+      "cost": {
+        "gold": 34
+      },
+      "materials": {
+        "leichtesleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-leichtleder-tunika"
+      },
+      "xp": 8,
+      "description": "Gerbt: Leichtleder-Tunika.",
+      "dropChance": 0.11,
+      "dropMinQuestRarity": "common"
+    },
+    {
+      "id": "recipe-leder-leichtleder-dolch",
+      "name": "Leichtleder-Dolch",
+      "profession": "lederverarbeiter",
+      "source": "drop",
+      "reqSkill": 37,
+      "cost": {
+        "gold": 36
+      },
+      "materials": {
+        "leichtesleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-leichtleder-dolch"
+      },
+      "xp": 9,
+      "description": "Gerbt: Leichtleder-Dolch.",
+      "dropChance": 0.13,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "recipe-leder-leichtleder-band",
+      "name": "Leichtleder-Band",
+      "profession": "lederverarbeiter",
+      "source": "drop",
+      "reqSkill": 41,
+      "cost": {
+        "gold": 39
+      },
+      "materials": {
+        "leichtesleder": 4
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-leichtleder-band"
+      },
+      "xp": 9,
+      "description": "Gerbt: Leichtleder-Band.",
+      "dropChance": 0.13,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "recipe-leder-leichtleder-haube",
+      "name": "Leichtleder-Haube",
+      "profession": "lederverarbeiter",
+      "source": "drop",
+      "reqSkill": 45,
+      "cost": {
+        "gold": 42
+      },
+      "materials": {
+        "leichtesleder": 3
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-leichtleder-haube"
+      },
+      "xp": 9,
+      "description": "Gerbt: Leichtleder-Haube.",
+      "dropChance": 0.15,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "recipe-leder-leichtleder-jacke",
+      "name": "Leichtleder-Jacke",
+      "profession": "lederverarbeiter",
+      "source": "drop",
+      "reqSkill": 48,
+      "cost": {
+        "gold": 44
+      },
+      "materials": {
+        "leichtesleder": 3
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-leichtleder-jacke"
+      },
+      "xp": 10,
+      "description": "Gerbt: Leichtleder-Jacke.",
+      "dropChance": 0.15,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "recipe-leder-leichtleder-kette",
+      "name": "Leichtleder-Kette",
+      "profession": "lederverarbeiter",
+      "source": "faction",
+      "reqSkill": 52,
+      "cost": {
+        "gold": 47
+      },
+      "materials": {
+        "leichtesleder": 4
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-leichtleder-kette"
+      },
+      "xp": 10,
+      "description": "Gerbt: Leichtleder-Kette.",
+      "factionId": "glut",
+      "factionMinRep": "friendly"
+    },
+    {
+      "id": "recipe-leder-leichtleder-treter",
+      "name": "Leichtleder-Treter",
+      "profession": "lederverarbeiter",
+      "source": "faction",
+      "reqSkill": 55,
+      "cost": {
+        "gold": 49
+      },
+      "materials": {
+        "leichtesleder": 4
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-leichtleder-treter"
+      },
+      "xp": 11,
+      "description": "Gerbt: Leichtleder-Treter.",
+      "factionId": "amboss",
+      "factionMinRep": "friendly"
+    },
+    {
+      "id": "recipe-leder-leichtleder-stirnband",
+      "name": "Leichtleder-Stirnband",
+      "profession": "lederverarbeiter",
+      "source": "faction",
+      "reqSkill": 59,
+      "cost": {
+        "gold": 52
+      },
+      "materials": {
+        "leichtesleder": 3
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-leichtleder-stirnband"
+      },
+      "xp": 11,
+      "description": "Gerbt: Leichtleder-Stirnband.",
+      "factionId": "glut",
+      "factionMinRep": "honored"
+    },
+    {
+      "id": "recipe-leder-leichtleder-armschutz-iii",
+      "name": "Leichtleder-Armschutz III",
+      "profession": "lederverarbeiter",
+      "source": "faction",
+      "reqSkill": 63,
+      "cost": {
+        "gold": 55
+      },
+      "materials": {
+        "leichtesleder": 4
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-leichtleder-armschutz-iii"
+      },
+      "xp": 11,
+      "description": "Gerbt: Leichtleder-Armschutz III.",
+      "factionId": "amboss",
+      "factionMinRep": "honored"
+    },
+    {
+      "id": "recipe-leder-leichtleder-buckler-ii",
+      "name": "Leichtleder-Buckler II",
+      "profession": "lederverarbeiter",
+      "source": "drop",
+      "reqSkill": 66,
+      "cost": {
+        "gold": 57
+      },
+      "materials": {
+        "leichtesleder": 4
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-leichtleder-buckler-ii"
+      },
+      "xp": 12,
+      "description": "Gerbt: Leichtleder-Buckler II.",
+      "dropChance": 0.02,
+      "dropMinQuestRarity": "epic"
+    },
+    {
+      "id": "recipe-leder-leichtleder-wams",
+      "name": "Leichtleder-Wams",
+      "profession": "lederverarbeiter",
+      "source": "drop",
+      "reqSkill": 70,
+      "cost": {
+        "gold": 60
+      },
+      "materials": {
+        "leichtesleder": 4
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-leichtleder-wams"
+      },
+      "xp": 12,
+      "description": "Gerbt: Leichtleder-Wams.",
+      "dropChance": 0.02,
+      "dropMinQuestRarity": "epic"
+    },
+    {
+      "id": "recipe-leder-jagd-jacke",
+      "name": "Jagd-Jacke",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 75,
+      "cost": {
+        "gold": 50
+      },
+      "materials": {
+        "mittleresleder": 1,
+        "geheiltesleichtleder": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-jagd-jacke"
+      },
+      "xp": 12,
+      "description": "Gerbt: Jagd-Jacke."
+    },
+    {
+      "id": "recipe-leder-mittelleder-dolch-ii",
+      "name": "Mittelleder-Dolch II",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 78,
+      "cost": {
+        "gold": 58
+      },
+      "materials": {
+        "mittleresleder": 1,
+        "geheiltesleichtleder": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-mittelleder-dolch-ii"
+      },
+      "xp": 12,
+      "description": "Gerbt: Mittelleder-Dolch II."
+    },
+    {
+      "id": "recipe-leder-jaeger-kappe",
+      "name": "Jäger-Kappe",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 81,
+      "cost": {
+        "gold": 67
+      },
+      "materials": {
+        "mittleresleder": 1,
+        "geheiltesleichtleder": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-jaeger-kappe"
+      },
+      "xp": 13,
+      "description": "Gerbt: Jäger-Kappe."
+    },
+    {
+      "id": "recipe-leder-jagd-maske",
+      "name": "Jagd-Maske",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 84,
+      "cost": {
+        "gold": 75
+      },
+      "materials": {
+        "mittleresleder": 1,
+        "geheiltesleichtleder": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-jagd-maske"
+      },
+      "xp": 13,
+      "description": "Gerbt: Jagd-Maske."
+    },
+    {
+      "id": "recipe-leder-wildnis-klinge",
+      "name": "Wildnis-Klinge",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 87,
+      "cost": {
+        "gold": 83
+      },
+      "materials": {
+        "mittleresleder": 1,
+        "geheiltesleichtleder": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-wildnis-klinge"
+      },
+      "xp": 14,
+      "description": "Gerbt: Wildnis-Klinge."
+    },
+    {
+      "id": "recipe-leder-jaeger-stiefel",
+      "name": "Jäger-Stiefel",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 90,
+      "cost": {
+        "gold": 92
+      },
+      "materials": {
+        "mittleresleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-jaeger-stiefel"
+      },
+      "xp": 14,
+      "description": "Gerbt: Jäger-Stiefel."
+    },
+    {
+      "id": "recipe-leder-mittelleder-dolch",
+      "name": "Mittelleder-Dolch",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 93,
+      "cost": {
+        "gold": 100
+      },
+      "materials": {
+        "mittleresleder": 1,
+        "geheiltesleichtleder": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-mittelleder-dolch"
+      },
+      "xp": 15,
+      "description": "Gerbt: Mittelleder-Dolch."
+    },
+    {
+      "id": "recipe-leder-mittelleder-kapuze",
+      "name": "Mittelleder-Kapuze",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 96,
+      "cost": {
+        "gold": 108
+      },
+      "materials": {
+        "mittleresleder": 1,
+        "geheiltesleichtleder": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-mittelleder-kapuze"
+      },
+      "xp": 15,
+      "description": "Gerbt: Mittelleder-Kapuze."
+    },
+    {
+      "id": "recipe-leder-wildnis-weste",
+      "name": "Wildnis-Weste",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 99,
+      "cost": {
+        "gold": 117
+      },
+      "materials": {
+        "mittleresleder": 1,
+        "geheiltesleichtleder": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-wildnis-weste"
+      },
+      "xp": 15,
+      "description": "Gerbt: Wildnis-Weste."
+    },
+    {
+      "id": "recipe-leder-mittelleder-treter",
+      "name": "Mittelleder-Treter",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 102,
+      "cost": {
+        "gold": 125
+      },
+      "materials": {
+        "mittleresleder": 3,
+        "geheiltesmittleresleder": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-mittelleder-treter"
+      },
+      "xp": 16,
+      "description": "Gerbt: Mittelleder-Treter."
+    },
+    {
+      "id": "recipe-leder-jagd-kurzschwert",
+      "name": "Jagd-Kurzschwert",
+      "profession": "lederverarbeiter",
+      "source": "drop",
+      "reqSkill": 105,
+      "cost": {
+        "gold": 133
+      },
+      "materials": {
+        "mittleresleder": 2,
+        "geheiltesleichtleder": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-jagd-kurzschwert"
+      },
+      "xp": 16,
+      "description": "Gerbt: Jagd-Kurzschwert.",
+      "dropChance": 0.11,
+      "dropMinQuestRarity": "common"
+    },
+    {
+      "id": "recipe-leder-mittelleder-bogen",
+      "name": "Mittelleder-Bogen",
+      "profession": "lederverarbeiter",
+      "source": "drop",
+      "reqSkill": 108,
+      "cost": {
+        "gold": 142
+      },
+      "materials": {
+        "mittleresleder": 2,
+        "geheiltesleichtleder": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-mittelleder-bogen"
+      },
+      "xp": 17,
+      "description": "Gerbt: Mittelleder-Bogen.",
+      "dropChance": 0.11,
+      "dropMinQuestRarity": "common"
+    },
+    {
+      "id": "recipe-leder-jagd-schild",
+      "name": "Jagd-Schild",
+      "profession": "lederverarbeiter",
+      "source": "drop",
+      "reqSkill": 112,
+      "cost": {
+        "gold": 150
+      },
+      "materials": {
+        "mittleresleder": 2,
+        "geheiltesleichtleder": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-jagd-schild"
+      },
+      "xp": 17,
+      "description": "Gerbt: Jagd-Schild.",
+      "dropChance": 0.11,
+      "dropMinQuestRarity": "common"
+    },
+    {
+      "id": "recipe-leder-jagd-schuhe",
+      "name": "Jagd-Schuhe",
+      "profession": "lederverarbeiter",
+      "source": "drop",
+      "reqSkill": 115,
+      "cost": {
+        "gold": 158
+      },
+      "materials": {
+        "mittleresleder": 3,
+        "geheiltesmittleresleder": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-jagd-schuhe"
+      },
+      "xp": 17,
+      "description": "Gerbt: Jagd-Schuhe.",
+      "dropChance": 0.13,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "recipe-leder-wildnis-haube",
+      "name": "Wildnis-Haube",
+      "profession": "lederverarbeiter",
+      "source": "drop",
+      "reqSkill": 118,
+      "cost": {
+        "gold": 167
+      },
+      "materials": {
+        "mittleresleder": 2,
+        "geheiltesleichtleder": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-wildnis-haube"
+      },
+      "xp": 18,
+      "description": "Gerbt: Wildnis-Haube.",
+      "dropChance": 0.13,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "recipe-leder-jaeger-amulett",
+      "name": "Jäger-Amulett",
+      "profession": "lederverarbeiter",
+      "source": "drop",
+      "reqSkill": 121,
+      "cost": {
+        "gold": 175
+      },
+      "materials": {
+        "mittleresleder": 3,
+        "geheiltesmittleresleder": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-jaeger-amulett"
+      },
+      "xp": 18,
+      "description": "Gerbt: Jäger-Amulett.",
+      "dropChance": 0.15,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "recipe-leder-mittelleder-tartsche",
+      "name": "Mittelleder-Tartsche",
+      "profession": "lederverarbeiter",
+      "source": "drop",
+      "reqSkill": 124,
+      "cost": {
+        "gold": 183
+      },
+      "materials": {
+        "mittleresleder": 2,
+        "geheiltesleichtleder": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-mittelleder-tartsche"
+      },
+      "xp": 19,
+      "description": "Gerbt: Mittelleder-Tartsche.",
+      "dropChance": 0.15,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "recipe-leder-mittelleder-buckler",
+      "name": "Mittelleder-Buckler",
+      "profession": "lederverarbeiter",
+      "source": "drop",
+      "reqSkill": 127,
+      "cost": {
+        "gold": 192
+      },
+      "materials": {
+        "mittleresleder": 2,
+        "geheiltesleichtleder": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-mittelleder-buckler"
+      },
+      "xp": 19,
+      "description": "Gerbt: Mittelleder-Buckler.",
+      "dropChance": 0.15,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "recipe-leder-wildnis-anhaenger",
+      "name": "Wildnis-Anhänger",
+      "profession": "lederverarbeiter",
+      "source": "faction",
+      "reqSkill": 130,
+      "cost": {
+        "gold": 200
+      },
+      "materials": {
+        "mittleresleder": 4,
+        "geheiltesmittleresleder": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-wildnis-anhaenger"
+      },
+      "xp": 20,
+      "description": "Gerbt: Wildnis-Anhänger.",
+      "factionId": "glut",
+      "factionMinRep": "friendly"
+    },
+    {
+      "id": "recipe-leder-mittelleder-kette",
+      "name": "Mittelleder-Kette",
+      "profession": "lederverarbeiter",
+      "source": "faction",
+      "reqSkill": 133,
+      "cost": {
+        "gold": 208
+      },
+      "materials": {
+        "mittleresleder": 4,
+        "geheiltesmittleresleder": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-mittelleder-kette"
+      },
+      "xp": 20,
+      "description": "Gerbt: Mittelleder-Kette.",
+      "factionId": "amboss",
+      "factionMinRep": "friendly"
+    },
+    {
+      "id": "recipe-leder-jaeger-armschutz",
+      "name": "Jäger-Armschutz",
+      "profession": "lederverarbeiter",
+      "source": "faction",
+      "reqSkill": 136,
+      "cost": {
+        "gold": 217
+      },
+      "materials": {
+        "mittleresleder": 3,
+        "geheiltesleichtleder": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-jaeger-armschutz"
+      },
+      "xp": 20,
+      "description": "Gerbt: Jäger-Armschutz.",
+      "factionId": "glut",
+      "factionMinRep": "honored"
+    },
+    {
+      "id": "recipe-leder-mittelleder-harnisch",
+      "name": "Mittelleder-Harnisch",
+      "profession": "lederverarbeiter",
+      "source": "faction",
+      "reqSkill": 139,
+      "cost": {
+        "gold": 225
+      },
+      "materials": {
+        "mittleresleder": 3,
+        "geheiltesleichtleder": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-mittelleder-harnisch"
+      },
+      "xp": 21,
+      "description": "Gerbt: Mittelleder-Harnisch.",
+      "factionId": "amboss",
+      "factionMinRep": "honored"
+    },
+    {
+      "id": "recipe-leder-jaeger-wams",
+      "name": "Jäger-Wams",
+      "profession": "lederverarbeiter",
+      "source": "faction",
+      "reqSkill": 142,
+      "cost": {
+        "gold": 233
+      },
+      "materials": {
+        "mittleresleder": 3,
+        "geheiltesleichtleder": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-jaeger-wams"
+      },
+      "xp": 21,
+      "description": "Gerbt: Jäger-Wams.",
+      "factionId": "glut",
+      "factionMinRep": "honored"
+    },
+    {
+      "id": "recipe-leder-wildnis-stiefel",
+      "name": "Wildnis-Stiefel",
+      "profession": "lederverarbeiter",
+      "source": "drop",
+      "reqSkill": 145,
+      "cost": {
+        "gold": 242
+      },
+      "materials": {
+        "mittleresleder": 4,
+        "geheiltesmittleresleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-wildnis-stiefel"
+      },
+      "xp": 22,
+      "description": "Gerbt: Wildnis-Stiefel.",
+      "dropChance": 0.02,
+      "dropMinQuestRarity": "epic"
+    },
+    {
+      "id": "recipe-leder-jagd-talisman",
+      "name": "Jagd-Talisman",
+      "profession": "lederverarbeiter",
+      "source": "drop",
+      "reqSkill": 148,
+      "cost": {
+        "gold": 250
+      },
+      "materials": {
+        "mittleresleder": 4,
+        "geheiltesmittleresleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-jagd-talisman"
+      },
+      "xp": 22,
+      "description": "Gerbt: Jagd-Talisman.",
+      "dropChance": 0.02,
+      "dropMinQuestRarity": "epic"
+    },
+    {
+      "id": "recipe-leder-schwerleder-schild",
+      "name": "Schwerleder-Schild",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 150,
+      "cost": {
+        "gold": 200
+      },
+      "materials": {
+        "schweresleder": 1,
+        "gehaertetesschwerleder": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-schwerleder-schild"
+      },
+      "xp": 20,
+      "description": "Gerbt: Schwerleder-Schild."
+    },
+    {
+      "id": "recipe-leder-schwerleder-talisman",
+      "name": "Schwerleder-Talisman",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 153,
+      "cost": {
+        "gold": 213
+      },
+      "materials": {
+        "schweresleder": 2,
+        "gehaertetesschwerleder": 1,
+        "salzgerbung": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-schwerleder-talisman"
+      },
+      "xp": 20,
+      "description": "Gerbt: Schwerleder-Talisman."
+    },
+    {
+      "id": "recipe-leder-schwerleder-reif",
+      "name": "Schwerleder-Reif",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 156,
+      "cost": {
+        "gold": 225
+      },
+      "materials": {
+        "schweresleder": 2,
+        "gehaertetesschwerleder": 1,
+        "salzgerbung": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-schwerleder-reif"
+      },
+      "xp": 21,
+      "description": "Gerbt: Schwerleder-Reif."
+    },
+    {
+      "id": "recipe-leder-schwerleder-klinge",
+      "name": "Schwerleder-Klinge",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 159,
+      "cost": {
+        "gold": 238
+      },
+      "materials": {
+        "schweresleder": 1,
+        "gehaertetesschwerleder": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-schwerleder-klinge"
+      },
+      "xp": 21,
+      "description": "Gerbt: Schwerleder-Klinge."
+    },
+    {
+      "id": "recipe-leder-schwerleder-bogen",
+      "name": "Schwerleder-Bogen",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 162,
+      "cost": {
+        "gold": 250
+      },
+      "materials": {
+        "schweresleder": 1,
+        "gehaertetesschwerleder": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-schwerleder-bogen"
+      },
+      "xp": 22,
+      "description": "Gerbt: Schwerleder-Bogen."
+    },
+    {
+      "id": "recipe-leder-bestien-jacke",
+      "name": "Bestien-Jacke",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 165,
+      "cost": {
+        "gold": 263
+      },
+      "materials": {
+        "schweresleder": 2,
+        "gehaertetesschwerleder": 1,
+        "salzgerbung": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-bestien-jacke"
+      },
+      "xp": 22,
+      "description": "Gerbt: Bestien-Jacke."
+    },
+    {
+      "id": "recipe-leder-bestien-buckler",
+      "name": "Bestien-Buckler",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 168,
+      "cost": {
+        "gold": 275
+      },
+      "materials": {
+        "schweresleder": 1,
+        "gehaertetesschwerleder": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-bestien-buckler"
+      },
+      "xp": 23,
+      "description": "Gerbt: Bestien-Buckler."
+    },
+    {
+      "id": "recipe-leder-schwerleder-ruestung",
+      "name": "Schwerleder-Rüstung",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 171,
+      "cost": {
+        "gold": 288
+      },
+      "materials": {
+        "schweresleder": 2,
+        "gehaertetesschwerleder": 1,
+        "salzgerbung": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-schwerleder-ruestung"
+      },
+      "xp": 23,
+      "description": "Gerbt: Schwerleder-Rüstung."
+    },
+    {
+      "id": "recipe-leder-schwerleder-harnisch",
+      "name": "Schwerleder-Harnisch",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 174,
+      "cost": {
+        "gold": 300
+      },
+      "materials": {
+        "schweresleder": 1,
+        "gehaertetesschwerleder": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-schwerleder-harnisch"
+      },
+      "xp": 23,
+      "description": "Gerbt: Schwerleder-Harnisch."
+    },
+    {
+      "id": "recipe-leder-bestien-amulett",
+      "name": "Bestien-Amulett",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 177,
+      "cost": {
+        "gold": 313
+      },
+      "materials": {
+        "schweresleder": 3,
+        "gehaertetesschwerleder": 1,
+        "salzgerbung": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-bestien-amulett"
+      },
+      "xp": 24,
+      "description": "Gerbt: Bestien-Amulett."
+    },
+    {
+      "id": "recipe-leder-schwerleder-helm",
+      "name": "Schwerleder-Helm",
+      "profession": "lederverarbeiter",
+      "source": "drop",
+      "reqSkill": 180,
+      "cost": {
+        "gold": 325
+      },
+      "materials": {
+        "schweresleder": 2,
+        "gehaertetesschwerleder": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-schwerleder-helm"
+      },
+      "xp": 24,
+      "description": "Gerbt: Schwerleder-Helm.",
+      "dropChance": 0.11,
+      "dropMinQuestRarity": "common"
+    },
+    {
+      "id": "recipe-leder-schwerleder-peitsche",
+      "name": "Schwerleder-Peitsche",
+      "profession": "lederverarbeiter",
+      "source": "drop",
+      "reqSkill": 183,
+      "cost": {
+        "gold": 338
+      },
+      "materials": {
+        "schweresleder": 2,
+        "gehaertetesschwerleder": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-schwerleder-peitsche"
+      },
+      "xp": 25,
+      "description": "Gerbt: Schwerleder-Peitsche.",
+      "dropChance": 0.11,
+      "dropMinQuestRarity": "common"
+    },
+    {
+      "id": "recipe-leder-bestien-kapuze",
+      "name": "Bestien-Kapuze",
+      "profession": "lederverarbeiter",
+      "source": "drop",
+      "reqSkill": 187,
+      "cost": {
+        "gold": 350
+      },
+      "materials": {
+        "schweresleder": 2,
+        "gehaertetesschwerleder": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-bestien-kapuze"
+      },
+      "xp": 25,
+      "description": "Gerbt: Bestien-Kapuze.",
+      "dropChance": 0.11,
+      "dropMinQuestRarity": "common"
+    },
+    {
+      "id": "recipe-leder-schwerleder-tritte",
+      "name": "Schwerleder-Tritte",
+      "profession": "lederverarbeiter",
+      "source": "drop",
+      "reqSkill": 190,
+      "cost": {
+        "gold": 363
+      },
+      "materials": {
+        "schweresleder": 3,
+        "gehaertetesschwerleder": 1,
+        "salzgerbung": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-schwerleder-tritte"
+      },
+      "xp": 25,
+      "description": "Gerbt: Schwerleder-Tritte.",
+      "dropChance": 0.13,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "recipe-leder-schwerleder-talisman-ii",
+      "name": "Schwerleder-Talisman II",
+      "profession": "lederverarbeiter",
+      "source": "drop",
+      "reqSkill": 193,
+      "cost": {
+        "gold": 375
+      },
+      "materials": {
+        "schweresleder": 3,
+        "gehaertetesschwerleder": 1,
+        "salzgerbung": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-schwerleder-talisman-ii"
+      },
+      "xp": 26,
+      "description": "Gerbt: Schwerleder-Talisman II.",
+      "dropChance": 0.13,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "recipe-leder-schwerleder-tartsche",
+      "name": "Schwerleder-Tartsche",
+      "profession": "lederverarbeiter",
+      "source": "drop",
+      "reqSkill": 196,
+      "cost": {
+        "gold": 388
+      },
+      "materials": {
+        "schweresleder": 2,
+        "gehaertetesschwerleder": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-schwerleder-tartsche"
+      },
+      "xp": 26,
+      "description": "Gerbt: Schwerleder-Tartsche.",
+      "dropChance": 0.15,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "recipe-leder-bestien-saebel",
+      "name": "Bestien-Säbel",
+      "profession": "lederverarbeiter",
+      "source": "drop",
+      "reqSkill": 199,
+      "cost": {
+        "gold": 400
+      },
+      "materials": {
+        "schweresleder": 2,
+        "gehaertetesschwerleder": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-bestien-saebel"
+      },
+      "xp": 27,
+      "description": "Gerbt: Bestien-Säbel.",
+      "dropChance": 0.15,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "recipe-leder-schwerleder-schild-ii",
+      "name": "Schwerleder-Schild II",
+      "profession": "lederverarbeiter",
+      "source": "drop",
+      "reqSkill": 202,
+      "cost": {
+        "gold": 413
+      },
+      "materials": {
+        "schweresleder": 2,
+        "gehaertetesschwerleder": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-schwerleder-schild-ii"
+      },
+      "xp": 27,
+      "description": "Gerbt: Schwerleder-Schild II.",
+      "dropChance": 0.15,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "recipe-leder-schwerleder-stiefel",
+      "name": "Schwerleder-Stiefel",
+      "profession": "lederverarbeiter",
+      "source": "faction",
+      "reqSkill": 205,
+      "cost": {
+        "gold": 425
+      },
+      "materials": {
+        "schweresleder": 4,
+        "gehaertetesschwerleder": 1,
+        "salzgerbung": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-schwerleder-stiefel"
+      },
+      "xp": 28,
+      "description": "Gerbt: Schwerleder-Stiefel.",
+      "factionId": "glut",
+      "factionMinRep": "friendly"
+    },
+    {
+      "id": "recipe-leder-schwerleder-maske",
+      "name": "Schwerleder-Maske",
+      "profession": "lederverarbeiter",
+      "source": "faction",
+      "reqSkill": 208,
+      "cost": {
+        "gold": 438
+      },
+      "materials": {
+        "schweresleder": 2,
+        "gehaertetesschwerleder": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-schwerleder-maske"
+      },
+      "xp": 28,
+      "description": "Gerbt: Schwerleder-Maske.",
+      "factionId": "amboss",
+      "factionMinRep": "friendly"
+    },
+    {
+      "id": "recipe-leder-bestien-dolch",
+      "name": "Bestien-Dolch",
+      "profession": "lederverarbeiter",
+      "source": "faction",
+      "reqSkill": 211,
+      "cost": {
+        "gold": 450
+      },
+      "materials": {
+        "schweresleder": 3,
+        "gehaertetesschwerleder": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-bestien-dolch"
+      },
+      "xp": 28,
+      "description": "Gerbt: Bestien-Dolch.",
+      "factionId": "glut",
+      "factionMinRep": "honored"
+    },
+    {
+      "id": "recipe-leder-bestien-schuhe",
+      "name": "Bestien-Schuhe",
+      "profession": "lederverarbeiter",
+      "source": "faction",
+      "reqSkill": 214,
+      "cost": {
+        "gold": 463
+      },
+      "materials": {
+        "schweresleder": 4,
+        "gehaertetesschwerleder": 1,
+        "salzgerbung": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-bestien-schuhe"
+      },
+      "xp": 29,
+      "description": "Gerbt: Bestien-Schuhe.",
+      "factionId": "amboss",
+      "factionMinRep": "honored"
+    },
+    {
+      "id": "recipe-leder-bestien-wams",
+      "name": "Bestien-Wams",
+      "profession": "lederverarbeiter",
+      "source": "faction",
+      "reqSkill": 217,
+      "cost": {
+        "gold": 475
+      },
+      "materials": {
+        "schweresleder": 3,
+        "gehaertetesschwerleder": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-bestien-wams"
+      },
+      "xp": 29,
+      "description": "Gerbt: Bestien-Wams.",
+      "factionId": "glut",
+      "factionMinRep": "honored"
+    },
+    {
+      "id": "recipe-leder-bestien-treter",
+      "name": "Bestien-Treter",
+      "profession": "lederverarbeiter",
+      "source": "drop",
+      "reqSkill": 220,
+      "cost": {
+        "gold": 488
+      },
+      "materials": {
+        "schweresleder": 4,
+        "gehaertetesschwerleder": 1,
+        "salzgerbung": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-bestien-treter"
+      },
+      "xp": 30,
+      "description": "Gerbt: Bestien-Treter.",
+      "dropChance": 0.02,
+      "dropMinQuestRarity": "epic"
+    },
+    {
+      "id": "recipe-leder-bestien-kappe",
+      "name": "Bestien-Kappe",
+      "profession": "lederverarbeiter",
+      "source": "drop",
+      "reqSkill": 223,
+      "cost": {
+        "gold": 500
+      },
+      "materials": {
+        "schweresleder": 3,
+        "gehaertetesschwerleder": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-bestien-kappe"
+      },
+      "xp": 30,
+      "description": "Gerbt: Bestien-Kappe.",
+      "dropChance": 0.02,
+      "dropMinQuestRarity": "epic"
+    },
+    {
+      "id": "recipe-leder-bestien-richtschwert",
+      "name": "Bestien-Richtschwert",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 225,
+      "cost": {
+        "gold": 400
+      },
+      "materials": {
+        "dickesleder": 1,
+        "bestienlederballen": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-bestien-richtschwert"
+      },
+      "xp": 28,
+      "description": "Gerbt: Bestien-Richtschwert."
+    },
+    {
+      "id": "recipe-leder-urzeit-bogen",
+      "name": "Urzeit-Bogen",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 228,
+      "cost": {
+        "gold": 438
+      },
+      "materials": {
+        "dickesleder": 1,
+        "bestienlederballen": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-urzeit-bogen"
+      },
+      "xp": 29,
+      "description": "Gerbt: Urzeit-Bogen."
+    },
+    {
+      "id": "recipe-leder-bestien-treter-fxf",
+      "name": "Bestien-Treter",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 230,
+      "cost": {
+        "gold": 476
+      },
+      "materials": {
+        "dickesleder": 2,
+        "bestienlederballen": 1,
+        "klauenoel": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-bestien-treter-fxf"
+      },
+      "xp": 30,
+      "description": "Gerbt: Bestien-Treter."
+    },
+    {
+      "id": "recipe-leder-urzeit-kappe",
+      "name": "Urzeit-Kappe",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 233,
+      "cost": {
+        "gold": 514
+      },
+      "materials": {
+        "dickesleder": 1,
+        "bestienlederballen": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-urzeit-kappe"
+      },
+      "xp": 30,
+      "description": "Gerbt: Urzeit-Kappe."
+    },
+    {
+      "id": "recipe-leder-seelenjaeger-stiefel",
+      "name": "Seelenjäger-Stiefel",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 235,
+      "cost": {
+        "gold": 552
+      },
+      "materials": {
+        "dickesleder": 2,
+        "bestienlederballen": 1,
+        "klauenoel": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-seelenjaeger-stiefel"
+      },
+      "xp": 31,
+      "description": "Gerbt: Seelenjäger-Stiefel."
+    },
+    {
+      "id": "recipe-leder-urzeit-tritte",
+      "name": "Urzeit-Tritte",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 238,
+      "cost": {
+        "gold": 590
+      },
+      "materials": {
+        "dickesleder": 2,
+        "bestienlederballen": 1,
+        "klauenoel": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-urzeit-tritte"
+      },
+      "xp": 32,
+      "description": "Gerbt: Urzeit-Tritte."
+    },
+    {
+      "id": "recipe-leder-seelenjaeger-klinge",
+      "name": "Seelenjäger-Klinge",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 240,
+      "cost": {
+        "gold": 628
+      },
+      "materials": {
+        "dickesleder": 1,
+        "bestienlederballen": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-seelenjaeger-klinge"
+      },
+      "xp": 33,
+      "description": "Gerbt: Seelenjäger-Klinge."
+    },
+    {
+      "id": "recipe-leder-urzeit-helm",
+      "name": "Urzeit-Helm",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 243,
+      "cost": {
+        "gold": 666
+      },
+      "materials": {
+        "dickesleder": 1,
+        "bestienlederballen": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-urzeit-helm"
+      },
+      "xp": 33,
+      "description": "Gerbt: Urzeit-Helm."
+    },
+    {
+      "id": "recipe-leder-urzeit-harnisch",
+      "name": "Urzeit-Harnisch",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 245,
+      "cost": {
+        "gold": 703
+      },
+      "materials": {
+        "dickesleder": 3,
+        "bestienlederballen": 1,
+        "klauenoel": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-urzeit-harnisch"
+      },
+      "xp": 34,
+      "description": "Gerbt: Urzeit-Harnisch."
+    },
+    {
+      "id": "recipe-leder-seelenjaeger-amulett",
+      "name": "Seelenjäger-Amulett",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 248,
+      "cost": {
+        "gold": 741
+      },
+      "materials": {
+        "dickesleder": 3,
+        "bestienlederballen": 1,
+        "klauenoel": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-seelenjaeger-amulett"
+      },
+      "xp": 35,
+      "description": "Gerbt: Seelenjäger-Amulett."
+    },
+    {
+      "id": "recipe-leder-seelenjaeger-haube",
+      "name": "Seelenjäger-Haube",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 250,
+      "cost": {
+        "gold": 779
+      },
+      "materials": {
+        "dickesleder": 2,
+        "bestienlederballen": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-seelenjaeger-haube"
+      },
+      "xp": 36,
+      "description": "Gerbt: Seelenjäger-Haube."
+    },
+    {
+      "id": "recipe-leder-urzeit-kette",
+      "name": "Urzeit-Kette",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 253,
+      "cost": {
+        "gold": 817
+      },
+      "materials": {
+        "dickesleder": 3,
+        "bestienlederballen": 1,
+        "klauenoel": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-urzeit-kette"
+      },
+      "xp": 36,
+      "description": "Gerbt: Urzeit-Kette."
+    },
+    {
+      "id": "recipe-leder-seelenjaeger-wams",
+      "name": "Seelenjäger-Wams",
+      "profession": "lederverarbeiter",
+      "source": "drop",
+      "reqSkill": 255,
+      "cost": {
+        "gold": 855
+      },
+      "materials": {
+        "dickesleder": 3,
+        "bestienlederballen": 1,
+        "klauenoel": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-seelenjaeger-wams"
+      },
+      "xp": 37,
+      "description": "Gerbt: Seelenjäger-Wams.",
+      "dropChance": 0.11,
+      "dropMinQuestRarity": "common"
+    },
+    {
+      "id": "recipe-leder-urzeit-stiefel",
+      "name": "Urzeit-Stiefel",
+      "profession": "lederverarbeiter",
+      "source": "drop",
+      "reqSkill": 258,
+      "cost": {
+        "gold": 893
+      },
+      "materials": {
+        "dickesleder": 3,
+        "bestienlederballen": 1,
+        "klauenoel": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-urzeit-stiefel"
+      },
+      "xp": 38,
+      "description": "Gerbt: Urzeit-Stiefel.",
+      "dropChance": 0.11,
+      "dropMinQuestRarity": "common"
+    },
+    {
+      "id": "recipe-leder-seelenjaeger-schuhe",
+      "name": "Seelenjäger-Schuhe",
+      "profession": "lederverarbeiter",
+      "source": "drop",
+      "reqSkill": 260,
+      "cost": {
+        "gold": 931
+      },
+      "materials": {
+        "dickesleder": 3,
+        "bestienlederballen": 1,
+        "klauenoel": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-seelenjaeger-schuhe"
+      },
+      "xp": 39,
+      "description": "Gerbt: Seelenjäger-Schuhe.",
+      "dropChance": 0.11,
+      "dropMinQuestRarity": "common"
+    },
+    {
+      "id": "recipe-leder-bestien-ruestung",
+      "name": "Bestien-Rüstung",
+      "profession": "lederverarbeiter",
+      "source": "drop",
+      "reqSkill": 263,
+      "cost": {
+        "gold": 969
+      },
+      "materials": {
+        "dickesleder": 3,
+        "bestienlederballen": 1,
+        "klauenoel": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-bestien-ruestung"
+      },
+      "xp": 39,
+      "description": "Gerbt: Bestien-Rüstung.",
+      "dropChance": 0.13,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "recipe-leder-urzeit-jacke",
+      "name": "Urzeit-Jacke",
+      "profession": "lederverarbeiter",
+      "source": "drop",
+      "reqSkill": 265,
+      "cost": {
+        "gold": 1007
+      },
+      "materials": {
+        "dickesleder": 4,
+        "bestienlederballen": 1,
+        "klauenoel": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-urzeit-jacke"
+      },
+      "xp": 40,
+      "description": "Gerbt: Urzeit-Jacke.",
+      "dropChance": 0.13,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "recipe-leder-urzeit-mantel",
+      "name": "Urzeit-Mantel",
+      "profession": "lederverarbeiter",
+      "source": "drop",
+      "reqSkill": 268,
+      "cost": {
+        "gold": 1045
+      },
+      "materials": {
+        "dickesleder": 4,
+        "bestienlederballen": 1,
+        "klauenoel": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-urzeit-mantel"
+      },
+      "xp": 41,
+      "description": "Gerbt: Urzeit-Mantel.",
+      "dropChance": 0.13,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "recipe-leder-bestien-anhaenger",
+      "name": "Bestien-Anhänger",
+      "profession": "lederverarbeiter",
+      "source": "drop",
+      "reqSkill": 270,
+      "cost": {
+        "gold": 1083
+      },
+      "materials": {
+        "dickesleder": 4,
+        "bestienlederballen": 1,
+        "klauenoel": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-bestien-anhaenger"
+      },
+      "xp": 42,
+      "description": "Gerbt: Bestien-Anhänger.",
+      "dropChance": 0.15,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "recipe-leder-bestien-krone",
+      "name": "Bestien-Krone",
+      "profession": "lederverarbeiter",
+      "source": "drop",
+      "reqSkill": 273,
+      "cost": {
+        "gold": 1121
+      },
+      "materials": {
+        "dickesleder": 2,
+        "bestienlederballen": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-bestien-krone"
+      },
+      "xp": 42,
+      "description": "Gerbt: Bestien-Krone.",
+      "dropChance": 0.15,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "recipe-leder-urzeit-talisman-ii",
+      "name": "Urzeit-Talisman II",
+      "profession": "lederverarbeiter",
+      "source": "drop",
+      "reqSkill": 275,
+      "cost": {
+        "gold": 1159
+      },
+      "materials": {
+        "rauesleder": 2,
+        "urzeitleder": 1,
+        "uraltesgerbmittel": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-urzeit-talisman-ii"
+      },
+      "xp": 43,
+      "description": "Gerbt: Urzeit-Talisman II.",
+      "dropChance": 0.15,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "recipe-leder-urzeit-dolch",
+      "name": "Urzeit-Dolch",
+      "profession": "lederverarbeiter",
+      "source": "faction",
+      "reqSkill": 278,
+      "cost": {
+        "gold": 1197
+      },
+      "materials": {
+        "dickesleder": 3,
+        "bestienlederballen": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-urzeit-dolch"
+      },
+      "xp": 44,
+      "description": "Gerbt: Urzeit-Dolch.",
+      "factionId": "amboss",
+      "factionMinRep": "friendly"
+    },
+    {
+      "id": "recipe-leder-urzeit-klinge",
+      "name": "Urzeit-Klinge",
+      "profession": "lederverarbeiter",
+      "source": "faction",
+      "reqSkill": 280,
+      "cost": {
+        "gold": 1234
+      },
+      "materials": {
+        "dickesleder": 3,
+        "bestienlederballen": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-urzeit-klinge"
+      },
+      "xp": 45,
+      "description": "Gerbt: Urzeit-Klinge.",
+      "factionId": "glut",
+      "factionMinRep": "friendly"
+    },
+    {
+      "id": "recipe-leder-urzeit-tartsche",
+      "name": "Urzeit-Tartsche",
+      "profession": "lederverarbeiter",
+      "source": "faction",
+      "reqSkill": 283,
+      "cost": {
+        "gold": 1272
+      },
+      "materials": {
+        "dickesleder": 3,
+        "bestienlederballen": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-urzeit-tartsche"
+      },
+      "xp": 45,
+      "description": "Gerbt: Urzeit-Tartsche.",
+      "factionId": "amboss",
+      "factionMinRep": "friendly"
+    },
+    {
+      "id": "recipe-leder-urzeit-talisman",
+      "name": "Urzeit-Talisman",
+      "profession": "lederverarbeiter",
+      "source": "faction",
+      "reqSkill": 285,
+      "cost": {
+        "gold": 1310
+      },
+      "materials": {
+        "rauesleder": 2,
+        "urzeitleder": 1,
+        "uraltesgerbmittel": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-urzeit-talisman"
+      },
+      "xp": 46,
+      "description": "Gerbt: Urzeit-Talisman.",
+      "factionId": "glut",
+      "factionMinRep": "honored"
+    },
+    {
+      "id": "recipe-leder-urzeit-visier",
+      "name": "Urzeit-Visier",
+      "profession": "lederverarbeiter",
+      "source": "faction",
+      "reqSkill": 288,
+      "cost": {
+        "gold": 1348
+      },
+      "materials": {
+        "dickesleder": 3,
+        "bestienlederballen": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-urzeit-visier"
+      },
+      "xp": 47,
+      "description": "Gerbt: Urzeit-Visier.",
+      "factionId": "amboss",
+      "factionMinRep": "honored"
+    },
+    {
+      "id": "recipe-leder-urzeit-buckler",
+      "name": "Urzeit-Buckler",
+      "profession": "lederverarbeiter",
+      "source": "faction",
+      "reqSkill": 290,
+      "cost": {
+        "gold": 1386
+      },
+      "materials": {
+        "dickesleder": 3,
+        "bestienlederballen": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-urzeit-buckler"
+      },
+      "xp": 48,
+      "description": "Gerbt: Urzeit-Buckler.",
+      "factionId": "glut",
+      "factionMinRep": "honored"
+    },
+    {
+      "id": "recipe-leder-urzeit-schild",
+      "name": "Urzeit-Schild",
+      "profession": "lederverarbeiter",
+      "source": "drop",
+      "reqSkill": 293,
+      "cost": {
+        "gold": 1424
+      },
+      "materials": {
+        "dickesleder": 3,
+        "bestienlederballen": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-urzeit-schild"
+      },
+      "xp": 48,
+      "description": "Gerbt: Urzeit-Schild.",
+      "dropChance": 0.02,
+      "dropMinQuestRarity": "epic"
+    },
+    {
+      "id": "recipe-leder-seelenjaeger-schutz",
+      "name": "Seelenjäger-Schutz",
+      "profession": "lederverarbeiter",
+      "source": "drop",
+      "reqSkill": 295,
+      "cost": {
+        "gold": 1462
+      },
+      "materials": {
+        "dickesleder": 3,
+        "bestienlederballen": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-seelenjaeger-schutz"
+      },
+      "xp": 49,
+      "description": "Gerbt: Seelenjäger-Schutz.",
+      "dropChance": 0.02,
+      "dropMinQuestRarity": "epic"
+    },
+    {
+      "id": "recipe-leder-bestien-schildwall",
+      "name": "Bestien-Schildwall",
+      "profession": "lederverarbeiter",
+      "source": "drop",
+      "reqSkill": 298,
+      "cost": {
+        "gold": 1500
+      },
+      "materials": {
+        "dickesleder": 3,
+        "bestienlederballen": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-bestien-schildwall"
+      },
+      "xp": 50,
+      "description": "Gerbt: Bestien-Schildwall.",
+      "dropChance": 0.02,
+      "dropMinQuestRarity": "epic"
+    },
+    {
+      "id": "recipe-leder-einfaches-lederkit",
+      "name": "Einfaches Leder-Kit",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 10,
+      "cost": {
+        "gold": 15
+      },
+      "materials": {
+        "leichtesleder": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "ausdauer_boost",
+        "amount": 2,
+        "questsRemaining": 3
+      },
+      "xp": 8,
+      "description": "Stellt her: Einfaches Leder-Kit."
+    },
+    {
+      "id": "recipe-leder-mittleres-lederkit",
+      "name": "Mittleres Leder-Kit",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 60,
+      "cost": {
+        "gold": 40
+      },
+      "materials": {
+        "mittleresleder": 2,
+        "geheiltesleichtleder": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "ausdauer_boost",
+        "amount": 3,
+        "questsRemaining": 3
+      },
+      "xp": 14,
+      "description": "Stellt her: Mittleres Leder-Kit."
+    },
+    {
+      "id": "recipe-leder-schweres-lederkit",
+      "name": "Schweres Leder-Kit",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 130,
+      "cost": {
+        "gold": 100
+      },
+      "materials": {
+        "schweresleder": 2,
+        "gehaertetesschwerleder": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "ausdauer_boost",
+        "amount": 5,
+        "questsRemaining": 3
+      },
+      "xp": 20,
+      "description": "Stellt her: Schweres Leder-Kit."
+    },
+    {
+      "id": "recipe-leder-bestien-lederkit",
+      "name": "Bestien-Leder-Kit",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 200,
+      "cost": {
+        "gold": 250
+      },
+      "materials": {
+        "dickesleder": 2,
+        "bestienlederballen": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "ausdauer_boost",
+        "amount": 7,
+        "questsRemaining": 3
+      },
+      "xp": 28,
+      "description": "Stellt her: Bestien-Leder-Kit."
+    },
+    {
+      "id": "recipe-leder-urzeit-lederkit",
+      "name": "Urzeit-Leder-Kit",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 270,
+      "cost": {
+        "gold": 600
+      },
+      "materials": {
+        "rauesleder": 2,
+        "urzeitleder": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "ausdauer_boost",
+        "amount": 10,
+        "questsRemaining": 3
+      },
+      "xp": 40,
+      "description": "Stellt her: Urzeit-Leder-Kit."
+    },
+    {
+      "id": "recipe-leder-einfacher-gluecksflicken",
+      "name": "Einfacher Glücksflicken",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 40,
+      "cost": {
+        "gold": 30
+      },
+      "materials": {
+        "leichtesleder": 3
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "glueck_boost",
+        "amount": 2,
+        "questsRemaining": 3
+      },
+      "xp": 10,
+      "description": "Stellt her: Einfacher Glücksflicken."
+    },
+    {
+      "id": "recipe-leder-schwerer-gluecksflicken",
+      "name": "Schwerer Glücksflicken",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 150,
+      "cost": {
+        "gold": 150
+      },
+      "materials": {
+        "gehaertetesschwerleder": 1,
+        "salzgerbung": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "glueck_boost",
+        "amount": 4,
+        "questsRemaining": 3
+      },
+      "xp": 22,
+      "description": "Stellt her: Schwerer Glücksflicken."
+    },
+    {
+      "id": "recipe-leder-bestien-gluecksflicken",
+      "name": "Bestien-Glücksflicken",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 250,
+      "cost": {
+        "gold": 450
+      },
+      "materials": {
+        "bestienlederballen": 1,
+        "uraltesgerbmittel": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "glueck_boost",
+        "amount": 7,
+        "questsRemaining": 3
+      },
+      "xp": 35,
+      "description": "Stellt her: Bestien-Glücksflicken."
+    },
+    {
+      "id": "recipe-leder-leichter-koecher",
+      "name": "Leichter Köcher",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 50,
+      "cost": {
+        "gold": 35
+      },
+      "materials": {
+        "leichtesleder": 3,
+        "geheiltesleichtleder": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "tempo_boost",
+        "amount": 2,
+        "questsRemaining": 3
+      },
+      "xp": 12,
+      "description": "Stellt her: Leichter Köcher."
+    },
+    {
+      "id": "recipe-leder-schwerer-koecher",
+      "name": "Schwerer Köcher",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 150,
+      "cost": {
+        "gold": 180
+      },
+      "materials": {
+        "gehaertetesschwerleder": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "tempo_boost",
+        "amount": 4,
+        "questsRemaining": 3
+      },
+      "xp": 22,
+      "description": "Stellt her: Schwerer Köcher."
+    },
+    {
+      "id": "recipe-leder-bestien-koecher",
+      "name": "Bestien-Köcher",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 250,
+      "cost": {
+        "gold": 500
+      },
+      "materials": {
+        "bestienlederballen": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "tempo_boost",
+        "amount": 7,
+        "questsRemaining": 3
+      },
+      "xp": 35,
+      "description": "Stellt her: Bestien-Köcher."
+    },
+    {
+      "id": "recipe-leder-kleiner-goldbeutel",
+      "name": "Kleiner Goldbeutel",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 25,
+      "cost": {
+        "gold": 20
+      },
+      "materials": {
+        "leichtesleder": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "gold_boost_5",
+        "amount": 5,
+        "questsRemaining": 3
+      },
+      "xp": 8,
+      "description": "Stellt her: Kleiner Goldbeutel."
+    },
+    {
+      "id": "recipe-leder-mittlerer-goldbeutel",
+      "name": "Mittlerer Goldbeutel",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 100,
+      "cost": {
+        "gold": 80
+      },
+      "materials": {
+        "geheiltesmittleresleder": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "gold_boost_10",
+        "amount": 10,
+        "questsRemaining": 3
+      },
+      "xp": 18,
+      "description": "Stellt her: Mittlerer Goldbeutel."
+    },
+    {
+      "id": "recipe-leder-grosser-goldbeutel",
+      "name": "Großer Goldbeutel",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 200,
+      "cost": {
+        "gold": 300
+      },
+      "materials": {
+        "bestienlederballen": 1,
+        "salzgerbung": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "gold_boost_15",
+        "amount": 15,
+        "questsRemaining": 3
+      },
+      "xp": 28,
+      "description": "Stellt her: Großer Goldbeutel."
+    },
+    {
+      "id": "recipe-leder-urzeit-goldbeutel",
+      "name": "Urzeit-Goldbeutel",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 275,
+      "cost": {
+        "gold": 700
+      },
+      "materials": {
+        "urzeitleder": 1,
+        "uraltesgerbmittel": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "gold_boost_20",
+        "amount": 20,
+        "questsRemaining": 3
+      },
+      "xp": 42,
+      "description": "Stellt her: Urzeit-Goldbeutel."
+    },
+    {
+      "id": "recipe-leder-streakschutz",
+      "name": "Leder-Streakschutz",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 80,
+      "cost": {
+        "gold": 60
+      },
+      "materials": {
+        "geheiltesleichtleder": 2,
+        "mittleresleder": 2
+      },
+      "result": {
+        "type": "streak_shield",
+        "amount": 1
+      },
+      "xp": 15,
+      "description": "Stellt her: Leder-Streakschutz."
+    },
+    {
+      "id": "recipe-leder-bestien-streakschutz",
+      "name": "Bestien-Streakschutz",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 225,
+      "cost": {
+        "gold": 400
+      },
+      "materials": {
+        "bestienlederballen": 1,
+        "salzgerbung": 1
+      },
+      "result": {
+        "type": "streak_shield",
+        "amount": 1
+      },
+      "xp": 30,
+      "description": "Stellt her: Bestien-Streakschutz."
+    },
+    {
+      "id": "recipe-leder-waermendes-fell",
+      "name": "Wärmendes Fell",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 100,
+      "cost": {
+        "gold": 80
+      },
+      "materials": {
+        "geheiltesmittleresleder": 2,
+        "schweresleder": 1
+      },
+      "result": {
+        "type": "forge_temp",
+        "amount": 10
+      },
+      "xp": 18,
+      "description": "Stellt her: Wärmendes Fell."
+    },
+    {
+      "id": "recipe-leder-urzeit-waermefell",
+      "name": "Urzeit-Wärmefell",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 240,
+      "cost": {
+        "gold": 450
+      },
+      "materials": {
+        "bestienlederballen": 1,
+        "uraltesgerbmittel": 1
+      },
+      "result": {
+        "type": "forge_temp",
+        "amount": 20
+      },
+      "xp": 35,
+      "description": "Stellt her: Urzeit-Wärmefell."
+    },
+    {
+      "id": "recipe-leder-verstaerken-1",
+      "name": "Leder verstärken I",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 25,
+      "cost": {
+        "gold": 30
+      },
+      "materials": {
+        "leichtesleder": 3
+      },
+      "result": {
+        "type": "gear_enhance",
+        "stat": "ausdauer",
+        "amount": 1
+      },
+      "xp": 10,
+      "description": "Leder verstärken I."
+    },
+    {
+      "id": "recipe-leder-verstaerken-2",
+      "name": "Leder verstärken II",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 75,
+      "cost": {
+        "gold": 70
+      },
+      "materials": {
+        "mittleresleder": 3
+      },
+      "result": {
+        "type": "gear_enhance",
+        "stat": "ausdauer",
+        "amount": 1
+      },
+      "xp": 15,
+      "description": "Leder verstärken II."
+    },
+    {
+      "id": "recipe-leder-verstaerken-3",
+      "name": "Leder verstärken III",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 150,
+      "cost": {
+        "gold": 200
+      },
+      "materials": {
+        "gehaertetesschwerleder": 1
+      },
+      "result": {
+        "type": "gear_enhance",
+        "stat": "ausdauer",
+        "amount": 2
+      },
+      "xp": 22,
+      "description": "Leder verstärken III."
+    },
+    {
+      "id": "recipe-leder-verstaerken-4",
+      "name": "Leder verstärken IV",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 225,
+      "cost": {
+        "gold": 500
+      },
+      "materials": {
+        "bestienlederballen": 1
+      },
+      "result": {
+        "type": "gear_enhance",
+        "stat": "ausdauer",
+        "amount": 2
+      },
+      "xp": 30,
+      "description": "Leder verstärken IV."
+    },
+    {
+      "id": "recipe-leder-verstaerken-5",
+      "name": "Leder verstärken V",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 275,
+      "cost": {
+        "gold": 1000
+      },
+      "materials": {
+        "urzeitleder": 1,
+        "uraltesgerbmittel": 1
+      },
+      "result": {
+        "type": "gear_enhance",
+        "stat": "ausdauer",
+        "amount": 3
+      },
+      "xp": 42,
+      "description": "Leder verstärken V."
+    },
+    {
+      "id": "recipe-leder-tempo-1",
+      "name": "Tempo einarbeiten I",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 30,
+      "cost": {
+        "gold": 30
+      },
+      "materials": {
+        "leichtesleder": 3
+      },
+      "result": {
+        "type": "gear_enhance",
+        "stat": "tempo",
+        "amount": 1
+      },
+      "xp": 10,
+      "description": "Tempo einarbeiten I."
+    },
+    {
+      "id": "recipe-leder-tempo-2",
+      "name": "Tempo einarbeiten II",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 100,
+      "cost": {
+        "gold": 100
+      },
+      "materials": {
+        "geheiltesmittleresleder": 2
+      },
+      "result": {
+        "type": "gear_enhance",
+        "stat": "tempo",
+        "amount": 1
+      },
+      "xp": 18,
+      "description": "Tempo einarbeiten II."
+    },
+    {
+      "id": "recipe-leder-tempo-3",
+      "name": "Tempo einarbeiten III",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 175,
+      "cost": {
+        "gold": 250
+      },
+      "materials": {
+        "gehaertetesschwerleder": 1,
+        "salzgerbung": 1
+      },
+      "result": {
+        "type": "gear_enhance",
+        "stat": "tempo",
+        "amount": 2
+      },
+      "xp": 25,
+      "description": "Tempo einarbeiten III."
+    },
+    {
+      "id": "recipe-leder-tempo-4",
+      "name": "Tempo einarbeiten IV",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 250,
+      "cost": {
+        "gold": 600
+      },
+      "materials": {
+        "bestienlederballen": 2
+      },
+      "result": {
+        "type": "gear_enhance",
+        "stat": "tempo",
+        "amount": 3
+      },
+      "xp": 35,
+      "description": "Tempo einarbeiten IV."
+    },
+    {
+      "id": "recipe-leder-glueck-1",
+      "name": "Glück einarbeiten I",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 50,
+      "cost": {
+        "gold": 40
+      },
+      "materials": {
+        "geheiltesleichtleder": 2
+      },
+      "result": {
+        "type": "gear_enhance",
+        "stat": "glueck",
+        "amount": 1
+      },
+      "xp": 12,
+      "description": "Glück einarbeiten I."
+    },
+    {
+      "id": "recipe-leder-glueck-2",
+      "name": "Glück einarbeiten II",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 150,
+      "cost": {
+        "gold": 200
+      },
+      "materials": {
+        "gehaertetesschwerleder": 1
+      },
+      "result": {
+        "type": "gear_enhance",
+        "stat": "glueck",
+        "amount": 1
+      },
+      "xp": 22,
+      "description": "Glück einarbeiten II."
+    },
+    {
+      "id": "recipe-leder-glueck-3",
+      "name": "Glück einarbeiten III",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 250,
+      "cost": {
+        "gold": 500
+      },
+      "materials": {
+        "bestienlederballen": 1,
+        "uraltesgerbmittel": 1
+      },
+      "result": {
+        "type": "gear_enhance",
+        "stat": "glueck",
+        "amount": 2
+      },
+      "xp": 35,
+      "description": "Glück einarbeiten III."
+    },
+    {
+      "id": "recipe-leder-kraft-1",
+      "name": "Kraft einarbeiten I",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 75,
+      "cost": {
+        "gold": 60
+      },
+      "materials": {
+        "mittleresleder": 3
+      },
+      "result": {
+        "type": "gear_enhance",
+        "stat": "kraft",
+        "amount": 1
+      },
+      "xp": 14,
+      "description": "Kraft einarbeiten I."
+    },
+    {
+      "id": "recipe-leder-kraft-2",
+      "name": "Kraft einarbeiten II",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 175,
+      "cost": {
+        "gold": 250
+      },
+      "materials": {
+        "salzgerbung": 2
+      },
+      "result": {
+        "type": "gear_enhance",
+        "stat": "kraft",
+        "amount": 1
+      },
+      "xp": 25,
+      "description": "Kraft einarbeiten II."
+    },
+    {
+      "id": "recipe-leder-kraft-3",
+      "name": "Kraft einarbeiten III",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 275,
+      "cost": {
+        "gold": 800
+      },
+      "materials": {
+        "urzeitleder": 1,
+        "uraltesgerbmittel": 1
+      },
+      "result": {
+        "type": "gear_enhance",
+        "stat": "kraft",
+        "amount": 2
+      },
+      "xp": 42,
+      "description": "Kraft einarbeiten III."
     }
   ]
 }
