@@ -1,0 +1,2224 @@
+{
+  "items": [
+    {
+      "id": "craft-juwelier-eiserner-ring",
+      "name": "Eiserner Ring",
+      "slot": "ring",
+      "tier": 1,
+      "reqLevel": 1,
+      "setId": "adventurer",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "glueck": 2,
+        "charisma": 1
+      },
+      "flavorText": "Ein Ring ist ein Versprechen. Dieser hier verspricht bessere Stats."
+    },
+    {
+      "id": "craft-juwelier-schlichter-kupferring",
+      "name": "Schlichter Kupferring",
+      "slot": "ring",
+      "tier": 1,
+      "reqLevel": 2,
+      "setId": "adventurer",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "glueck": 1,
+        "charisma": 1
+      },
+      "flavorText": "Jeder Stein hat eine Geschichte. Dieser hier schweigt beharrlich."
+    },
+    {
+      "id": "craft-juwelier-grober-siegelring",
+      "name": "Grober Siegelring",
+      "slot": "ring",
+      "tier": 1,
+      "reqLevel": 2,
+      "setId": "adventurer",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "glueck": 3
+      },
+      "flavorText": "Schmuck mit Funktion. Eleganz optional, aber empfohlen."
+    },
+    {
+      "id": "craft-juwelier-eisenband",
+      "name": "Eisenband",
+      "slot": "ring",
+      "tier": 1,
+      "reqLevel": 3,
+      "setId": "adventurer",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "glueck": 3,
+        "charisma": 1
+      },
+      "flavorText": "Die Fassung hält den Stein. Der Stein hält die Kraft. Du hältst den Ring. Alle zufrieden."
+    },
+    {
+      "id": "craft-juwelier-einfacher-steinring",
+      "name": "Einfacher Steinring",
+      "slot": "ring",
+      "tier": 1,
+      "reqLevel": 3,
+      "setId": "adventurer",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "glueck": 1
+      },
+      "flavorText": "Mondschein gefangen in Metall. Klingt poetisch, ist aber hauptsächlich nützlich."
+    },
+    {
+      "id": "craft-juwelier-ring-des-lehrlings",
+      "name": "Ring des Lehrlings",
+      "slot": "ring",
+      "tier": 1,
+      "reqLevel": 4,
+      "setId": "adventurer",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "glueck": 2,
+        "charisma": 1
+      },
+      "flavorText": "Seelenstein. Er kennt deinen Namen. Ob das gut ist, hängt von deinem Namen ab."
+    },
+    {
+      "id": "craft-juwelier-kupferreif",
+      "name": "Kupferreif",
+      "slot": "ring",
+      "tier": 1,
+      "reqLevel": 5,
+      "setId": "adventurer",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "glueck": 3
+      },
+      "flavorText": "Ein Ring ist ein Versprechen. Dieser hier verspricht bessere Stats."
+    },
+    {
+      "id": "craft-juwelier-eisenring-des-wanderers",
+      "name": "Eisenring des Wanderers",
+      "slot": "ring",
+      "tier": 1,
+      "reqLevel": 5,
+      "setId": "adventurer",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "glueck": 1,
+        "charisma": 1
+      },
+      "flavorText": "Jeder Stein hat eine Geschichte. Dieser hier schweigt beharrlich."
+    },
+    {
+      "id": "craft-juwelier-kupferkette",
+      "name": "Kupferkette",
+      "slot": "amulet",
+      "tier": 1,
+      "reqLevel": 6,
+      "setId": "adventurer",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "weisheit": 2
+      },
+      "flavorText": "Schmuck mit Funktion. Eleganz optional, aber empfohlen."
+    },
+    {
+      "id": "craft-juwelier-eisernes-medaillon",
+      "name": "Eisernes Medaillon",
+      "slot": "amulet",
+      "tier": 1,
+      "reqLevel": 6,
+      "setId": "adventurer",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "weisheit": 1,
+        "charisma": 1
+      },
+      "flavorText": "Die Fassung hält den Stein. Der Stein hält die Kraft. Du hältst den Ring. Alle zufrieden."
+    },
+    {
+      "id": "craft-juwelier-schlichter-anhaenger",
+      "name": "Schlichter Anhänger",
+      "slot": "amulet",
+      "tier": 1,
+      "reqLevel": 7,
+      "setId": "adventurer",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "rare",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "glueck",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "charisma",
+              "min": 1,
+              "max": 3
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 2
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 2
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Mondschein gefangen in Metall. Klingt poetisch, ist aber hauptsächlich nützlich."
+    },
+    {
+      "id": "craft-juwelier-steinamulett",
+      "name": "Steinamulett",
+      "slot": "amulet",
+      "tier": 1,
+      "reqLevel": 7,
+      "setId": "adventurer",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "rare",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "glueck",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "charisma",
+              "min": 1,
+              "max": 3
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 2
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 2
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Seelenstein. Er kennt deinen Namen. Ob das gut ist, hängt von deinem Namen ab."
+    },
+    {
+      "id": "craft-juwelier-einfache-kette",
+      "name": "Einfache Kette",
+      "slot": "amulet",
+      "tier": 1,
+      "reqLevel": 8,
+      "setId": "adventurer",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "rare",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "glueck",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "charisma",
+              "min": 1,
+              "max": 3
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 2
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 2
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Ein Ring ist ein Versprechen. Dieser hier verspricht bessere Stats."
+    },
+    {
+      "id": "craft-juwelier-kristallring",
+      "name": "Kristallring",
+      "slot": "ring",
+      "tier": 2,
+      "reqLevel": 9,
+      "setId": "veteran",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "glueck": 2
+      },
+      "flavorText": "Ein Ring ist ein Versprechen. Dieser hier verspricht bessere Stats."
+    },
+    {
+      "id": "craft-juwelier-staehlerner-siegelring",
+      "name": "Stählerner Siegelring",
+      "slot": "ring",
+      "tier": 2,
+      "reqLevel": 9,
+      "setId": "veteran",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "glueck": 3,
+        "charisma": 2
+      },
+      "flavorText": "Jeder Stein hat eine Geschichte. Dieser hier schweigt beharrlich."
+    },
+    {
+      "id": "craft-juwelier-kristallband",
+      "name": "Kristallband",
+      "slot": "ring",
+      "tier": 2,
+      "reqLevel": 10,
+      "setId": "veteran",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "glueck": 3,
+        "charisma": 2
+      },
+      "flavorText": "Schmuck mit Funktion. Eleganz optional, aber empfohlen."
+    },
+    {
+      "id": "craft-juwelier-ring-des-forschers",
+      "name": "Ring des Forschers",
+      "slot": "ring",
+      "tier": 2,
+      "reqLevel": 10,
+      "setId": "veteran",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "glueck": 4
+      },
+      "flavorText": "Die Fassung hält den Stein. Der Stein hält die Kraft. Du hältst den Ring. Alle zufrieden."
+    },
+    {
+      "id": "craft-juwelier-staehlerner-reif",
+      "name": "Stählerner Reif",
+      "slot": "ring",
+      "tier": 2,
+      "reqLevel": 11,
+      "setId": "veteran",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "glueck": 3,
+        "charisma": 2
+      },
+      "flavorText": "Mondschein gefangen in Metall. Klingt poetisch, ist aber hauptsächlich nützlich."
+    },
+    {
+      "id": "craft-juwelier-kristall-siegelring",
+      "name": "Kristall-Siegelring",
+      "slot": "ring",
+      "tier": 2,
+      "reqLevel": 11,
+      "setId": "veteran",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "glueck": 3
+      },
+      "flavorText": "Seelenstein. Er kennt deinen Namen. Ob das gut ist, hängt von deinem Namen ab."
+    },
+    {
+      "id": "craft-juwelier-mondsteinring",
+      "name": "Mondsteinring",
+      "slot": "ring",
+      "tier": 2,
+      "reqLevel": 12,
+      "setId": "veteran",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "glueck": 3
+      },
+      "flavorText": "Ein Ring ist ein Versprechen. Dieser hier verspricht bessere Stats."
+    },
+    {
+      "id": "craft-juwelier-ring-der-erkenntnis",
+      "name": "Ring der Erkenntnis",
+      "slot": "ring",
+      "tier": 2,
+      "reqLevel": 12,
+      "setId": "veteran",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "glueck": 2
+      },
+      "flavorText": "Jeder Stein hat eine Geschichte. Dieser hier schweigt beharrlich."
+    },
+    {
+      "id": "craft-juwelier-staehlerner-gelehrtenring",
+      "name": "Stählerner Gelehrtenring",
+      "slot": "ring",
+      "tier": 2,
+      "reqLevel": 13,
+      "setId": "veteran",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "glueck": 4,
+        "charisma": 2
+      },
+      "flavorText": "Schmuck mit Funktion. Eleganz optional, aber empfohlen."
+    },
+    {
+      "id": "craft-juwelier-kristallreif-des-wanderers",
+      "name": "Kristallreif des Wanderers",
+      "slot": "ring",
+      "tier": 2,
+      "reqLevel": 13,
+      "setId": "veteran",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "glueck": 3,
+        "charisma": 2
+      },
+      "flavorText": "Die Fassung hält den Stein. Der Stein hält die Kraft. Du hältst den Ring. Alle zufrieden."
+    },
+    {
+      "id": "craft-juwelier-kristallkette",
+      "name": "Kristallkette",
+      "slot": "amulet",
+      "tier": 2,
+      "reqLevel": 14,
+      "setId": "veteran",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "weisheit": 4
+      },
+      "flavorText": "Mondschein gefangen in Metall. Klingt poetisch, ist aber hauptsächlich nützlich."
+    },
+    {
+      "id": "craft-juwelier-staehlernes-medaillon",
+      "name": "Stählernes Medaillon",
+      "slot": "amulet",
+      "tier": 2,
+      "reqLevel": 14,
+      "setId": "veteran",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "rare",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "glueck",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "charisma",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Seelenstein. Er kennt deinen Namen. Ob das gut ist, hängt von deinem Namen ab."
+    },
+    {
+      "id": "craft-juwelier-mondstein-anhaenger",
+      "name": "Mondstein-Anhänger",
+      "slot": "amulet",
+      "tier": 2,
+      "reqLevel": 15,
+      "setId": "veteran",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "rare",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "glueck",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "charisma",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Ein Ring ist ein Versprechen. Dieser hier verspricht bessere Stats."
+    },
+    {
+      "id": "craft-juwelier-kristall-amulett",
+      "name": "Kristall-Amulett",
+      "slot": "amulet",
+      "tier": 2,
+      "reqLevel": 15,
+      "setId": "veteran",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "rare",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "glueck",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "charisma",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Jeder Stein hat eine Geschichte. Dieser hier schweigt beharrlich."
+    },
+    {
+      "id": "craft-juwelier-staehlerne-kette",
+      "name": "Stählerne Kette",
+      "slot": "amulet",
+      "tier": 2,
+      "reqLevel": 16,
+      "setId": "veteran",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "rare",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "glueck",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "charisma",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Schmuck mit Funktion. Eleganz optional, aber empfohlen."
+    },
+    {
+      "id": "craft-juwelier-kristall-medaillon",
+      "name": "Kristall-Medaillon",
+      "slot": "amulet",
+      "tier": 2,
+      "reqLevel": 16,
+      "setId": "veteran",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "rare",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "glueck",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "charisma",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Die Fassung hält den Stein. Der Stein hält die Kraft. Du hältst den Ring. Alle zufrieden."
+    },
+    {
+      "id": "craft-juwelier-saphirring",
+      "name": "Saphirring",
+      "slot": "ring",
+      "tier": 3,
+      "reqLevel": 17,
+      "setId": "master",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "glueck": 4,
+        "charisma": 3
+      },
+      "flavorText": "Ein Ring ist ein Versprechen. Dieser hier verspricht bessere Stats."
+    },
+    {
+      "id": "craft-juwelier-drachenauge-ring",
+      "name": "Drachenauge-Ring",
+      "slot": "ring",
+      "tier": 3,
+      "reqLevel": 17,
+      "setId": "master",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "glueck": 4,
+        "charisma": 3
+      },
+      "flavorText": "Jeder Stein hat eine Geschichte. Dieser hier schweigt beharrlich."
+    },
+    {
+      "id": "craft-juwelier-ring-des-meisters",
+      "name": "Ring des Meisters",
+      "slot": "ring",
+      "tier": 3,
+      "reqLevel": 18,
+      "setId": "master",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "glueck": 5,
+        "charisma": 3
+      },
+      "flavorText": "Schmuck mit Funktion. Eleganz optional, aber empfohlen."
+    },
+    {
+      "id": "craft-juwelier-smaragdband",
+      "name": "Smaragdband",
+      "slot": "ring",
+      "tier": 3,
+      "reqLevel": 18,
+      "setId": "master",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "glueck": 4
+      },
+      "flavorText": "Die Fassung hält den Stein. Der Stein hält die Kraft. Du hältst den Ring. Alle zufrieden."
+    },
+    {
+      "id": "craft-juwelier-mondschein-siegelring",
+      "name": "Mondschein-Siegelring",
+      "slot": "ring",
+      "tier": 3,
+      "reqLevel": 19,
+      "setId": "master",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "glueck": 3
+      },
+      "flavorText": "Mondschein gefangen in Metall. Klingt poetisch, ist aber hauptsächlich nützlich."
+    },
+    {
+      "id": "craft-juwelier-ring-der-sterne",
+      "name": "Ring der Sterne",
+      "slot": "ring",
+      "tier": 3,
+      "reqLevel": 19,
+      "setId": "master",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "glueck": 4,
+        "charisma": 3
+      },
+      "flavorText": "Seelenstein. Er kennt deinen Namen. Ob das gut ist, hängt von deinem Namen ab."
+    },
+    {
+      "id": "craft-juwelier-drachenschuppen-reif",
+      "name": "Drachenschuppen-Reif",
+      "slot": "ring",
+      "tier": 3,
+      "reqLevel": 20,
+      "setId": "master",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "glueck": 4,
+        "charisma": 3
+      },
+      "flavorText": "Ein Ring ist ein Versprechen. Dieser hier verspricht bessere Stats."
+    },
+    {
+      "id": "craft-juwelier-saphir-gelehrtenring",
+      "name": "Saphir-Gelehrtenring",
+      "slot": "ring",
+      "tier": 3,
+      "reqLevel": 20,
+      "setId": "master",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "glueck": 5
+      },
+      "flavorText": "Jeder Stein hat eine Geschichte. Dieser hier schweigt beharrlich."
+    },
+    {
+      "id": "craft-juwelier-ring-des-weisen",
+      "name": "Ring des Weisen",
+      "slot": "ring",
+      "tier": 3,
+      "reqLevel": 21,
+      "setId": "master",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "glueck": 5
+      },
+      "flavorText": "Schmuck mit Funktion. Eleganz optional, aber empfohlen."
+    },
+    {
+      "id": "craft-juwelier-smaragdreif",
+      "name": "Smaragdreif",
+      "slot": "ring",
+      "tier": 3,
+      "reqLevel": 21,
+      "setId": "master",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "glueck": 4,
+        "charisma": 3
+      },
+      "flavorText": "Die Fassung hält den Stein. Der Stein hält die Kraft. Du hältst den Ring. Alle zufrieden."
+    },
+    {
+      "id": "craft-juwelier-saphir-kette",
+      "name": "Saphir-Kette",
+      "slot": "amulet",
+      "tier": 3,
+      "reqLevel": 21,
+      "setId": "master",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "epic",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "glueck",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "charisma",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Mondschein gefangen in Metall. Klingt poetisch, ist aber hauptsächlich nützlich."
+    },
+    {
+      "id": "craft-juwelier-drachenzahn-medaillon",
+      "name": "Drachenzahn-Medaillon",
+      "slot": "amulet",
+      "tier": 3,
+      "reqLevel": 22,
+      "setId": "master",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "epic",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "glueck",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "charisma",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Seelenstein. Er kennt deinen Namen. Ob das gut ist, hängt von deinem Namen ab."
+    },
+    {
+      "id": "craft-juwelier-smaragd-anhaenger",
+      "name": "Smaragd-Anhänger",
+      "slot": "amulet",
+      "tier": 3,
+      "reqLevel": 22,
+      "setId": "master",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "epic",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "glueck",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "charisma",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Ein Ring ist ein Versprechen. Dieser hier verspricht bessere Stats."
+    },
+    {
+      "id": "craft-juwelier-mondschein-amulett",
+      "name": "Mondschein-Amulett",
+      "slot": "amulet",
+      "tier": 3,
+      "reqLevel": 23,
+      "setId": "master",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "epic",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "glueck",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "charisma",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Jeder Stein hat eine Geschichte. Dieser hier schweigt beharrlich."
+    },
+    {
+      "id": "craft-juwelier-drachenschuppen-kette",
+      "name": "Drachenschuppen-Kette",
+      "slot": "amulet",
+      "tier": 3,
+      "reqLevel": 23,
+      "setId": "master",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "epic",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "glueck",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "charisma",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Schmuck mit Funktion. Eleganz optional, aber empfohlen."
+    },
+    {
+      "id": "craft-juwelier-saphir-medaillon",
+      "name": "Saphir-Medaillon",
+      "slot": "amulet",
+      "tier": 3,
+      "reqLevel": 24,
+      "setId": "master",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "epic",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "glueck",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "charisma",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Die Fassung hält den Stein. Der Stein hält die Kraft. Du hältst den Ring. Alle zufrieden."
+    },
+    {
+      "id": "craft-juwelier-smaragd-amulett",
+      "name": "Smaragd-Amulett",
+      "slot": "amulet",
+      "tier": 3,
+      "reqLevel": 24,
+      "setId": "master",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "epic",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "glueck",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "charisma",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Mondschein gefangen in Metall. Klingt poetisch, ist aber hauptsächlich nützlich."
+    },
+    {
+      "id": "craft-juwelier-aetherring",
+      "name": "Aetherring",
+      "slot": "ring",
+      "tier": 4,
+      "reqLevel": 25,
+      "setId": "legendary",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "glueck": 7,
+        "charisma": 4
+      },
+      "flavorText": "Ein Ring ist ein Versprechen. Dieser hier verspricht bessere Stats."
+    },
+    {
+      "id": "craft-juwelier-ring-der-leere",
+      "name": "Ring der Leere",
+      "slot": "ring",
+      "tier": 4,
+      "reqLevel": 26,
+      "setId": "legendary",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "glueck": 7,
+        "charisma": 4
+      },
+      "flavorText": "Jeder Stein hat eine Geschichte. Dieser hier schweigt beharrlich."
+    },
+    {
+      "id": "craft-juwelier-seelen-siegelring",
+      "name": "Seelen-Siegelring",
+      "slot": "ring",
+      "tier": 4,
+      "reqLevel": 28,
+      "setId": "legendary",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "glueck": 4,
+        "charisma": 4
+      },
+      "flavorText": "Schmuck mit Funktion. Eleganz optional, aber empfohlen."
+    },
+    {
+      "id": "craft-juwelier-runenring",
+      "name": "Runenring",
+      "slot": "ring",
+      "tier": 4,
+      "reqLevel": 29,
+      "setId": "legendary",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "glueck": 7,
+        "charisma": 4
+      },
+      "flavorText": "Die Fassung hält den Stein. Der Stein hält die Kraft. Du hältst den Ring. Alle zufrieden."
+    },
+    {
+      "id": "craft-juwelier-sternenring",
+      "name": "Sternenring",
+      "slot": "ring",
+      "tier": 4,
+      "reqLevel": 30,
+      "setId": "legendary",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "glueck": 6
+      },
+      "flavorText": "Mondschein gefangen in Metall. Klingt poetisch, ist aber hauptsächlich nützlich."
+    },
+    {
+      "id": "craft-juwelier-aetherkern-band",
+      "name": "Aetherkern-Band",
+      "slot": "ring",
+      "tier": 4,
+      "reqLevel": 31,
+      "setId": "legendary",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "glueck": 7
+      },
+      "flavorText": "Seelenstein. Er kennt deinen Namen. Ob das gut ist, hängt von deinem Namen ab."
+    },
+    {
+      "id": "craft-juwelier-seelenreif",
+      "name": "Seelenreif",
+      "slot": "ring",
+      "tier": 4,
+      "reqLevel": 33,
+      "setId": "legendary",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "glueck": 4,
+        "charisma": 4
+      },
+      "flavorText": "Ein Ring ist ein Versprechen. Dieser hier verspricht bessere Stats."
+    },
+    {
+      "id": "craft-juwelier-ring-des-schicksals",
+      "name": "Ring des Schicksals",
+      "slot": "ring",
+      "tier": 4,
+      "reqLevel": 34,
+      "setId": "legendary",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "glueck": 4,
+        "charisma": 4
+      },
+      "flavorText": "Jeder Stein hat eine Geschichte. Dieser hier schweigt beharrlich."
+    },
+    {
+      "id": "craft-juwelier-arkaner-siegelring",
+      "name": "Arkaner Siegelring",
+      "slot": "ring",
+      "tier": 4,
+      "reqLevel": 35,
+      "setId": "legendary",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "glueck": 7
+      },
+      "flavorText": "Schmuck mit Funktion. Eleganz optional, aber empfohlen."
+    },
+    {
+      "id": "craft-juwelier-seelen-gelehrtenring",
+      "name": "Seelen-Gelehrtenring",
+      "slot": "ring",
+      "tier": 4,
+      "reqLevel": 36,
+      "setId": "legendary",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "glueck": 6
+      },
+      "flavorText": "Die Fassung hält den Stein. Der Stein hält die Kraft. Du hältst den Ring. Alle zufrieden."
+    },
+    {
+      "id": "craft-juwelier-ring-der-ewigkeit",
+      "name": "Ring der Ewigkeit",
+      "slot": "ring",
+      "tier": 4,
+      "reqLevel": 38,
+      "setId": "legendary",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "epic",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "charisma",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Mondschein gefangen in Metall. Klingt poetisch, ist aber hauptsächlich nützlich."
+    },
+    {
+      "id": "craft-juwelier-sternenband-des-webers",
+      "name": "Sternenband des Webers",
+      "slot": "ring",
+      "tier": 4,
+      "reqLevel": 39,
+      "setId": "legendary",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "epic",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "charisma",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Seelenstein. Er kennt deinen Namen. Ob das gut ist, hängt von deinem Namen ab."
+    },
+    {
+      "id": "craft-juwelier-aether-kette",
+      "name": "Aether-Kette",
+      "slot": "amulet",
+      "tier": 4,
+      "reqLevel": 40,
+      "setId": "legendary",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "epic",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "charisma",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Ein Ring ist ein Versprechen. Dieser hier verspricht bessere Stats."
+    },
+    {
+      "id": "craft-juwelier-seelen-medaillon",
+      "name": "Seelen-Medaillon",
+      "slot": "amulet",
+      "tier": 4,
+      "reqLevel": 41,
+      "setId": "legendary",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "epic",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "charisma",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Jeder Stein hat eine Geschichte. Dieser hier schweigt beharrlich."
+    },
+    {
+      "id": "craft-juwelier-sternen-anhaenger",
+      "name": "Sternen-Anhänger",
+      "slot": "amulet",
+      "tier": 4,
+      "reqLevel": 43,
+      "setId": "legendary",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "epic",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "charisma",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Schmuck mit Funktion. Eleganz optional, aber empfohlen."
+    },
+    {
+      "id": "craft-juwelier-runen-amulett",
+      "name": "Runen-Amulett",
+      "slot": "amulet",
+      "tier": 4,
+      "reqLevel": 44,
+      "setId": "legendary",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "epic",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "charisma",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Die Fassung hält den Stein. Der Stein hält die Kraft. Du hältst den Ring. Alle zufrieden."
+    },
+    {
+      "id": "craft-juwelier-aetherkern-kette",
+      "name": "Aetherkern-Kette",
+      "slot": "amulet",
+      "tier": 4,
+      "reqLevel": 45,
+      "setId": "legendary",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "epic",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "charisma",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Mondschein gefangen in Metall. Klingt poetisch, ist aber hauptsächlich nützlich."
+    },
+    {
+      "id": "craft-juwelier-seelen-amulett",
+      "name": "Seelen-Amulett",
+      "slot": "amulet",
+      "tier": 4,
+      "reqLevel": 46,
+      "setId": "legendary",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "epic",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "charisma",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Seelenstein. Er kennt deinen Namen. Ob das gut ist, hängt von deinem Namen ab."
+    },
+    {
+      "id": "craft-juwelier-sternen-medaillon",
+      "name": "Sternen-Medaillon",
+      "slot": "amulet",
+      "tier": 4,
+      "reqLevel": 48,
+      "setId": "legendary",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "legendary",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "charisma",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            3,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "drop_bonus",
+        "min": 3,
+        "max": 6,
+        "label": "Juwelenauge: +{value}% Drop-Chance"
+      },
+      "flavorText": "Ein Ring ist ein Versprechen. Dieser hier verspricht bessere Stats."
+    },
+    {
+      "id": "craft-juwelier-arkaner-anhaenger",
+      "name": "Arkaner Anhänger",
+      "slot": "amulet",
+      "tier": 4,
+      "reqLevel": 49,
+      "setId": "legendary",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "legendary",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "charisma",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            3,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "gold_bonus",
+        "min": 3,
+        "max": 6,
+        "label": "Goldener Glanz: +{value}% Gold"
+      },
+      "flavorText": "Jeder Stein hat eine Geschichte. Dieser hier schweigt beharrlich."
+    },
+    {
+      "id": "craft-juwelier-seelensiegel-kette",
+      "name": "Seelensiegel-Kette",
+      "slot": "amulet",
+      "tier": 4,
+      "reqLevel": 50,
+      "setId": "legendary",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "legendary",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "charisma",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            3,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "crit_chance",
+        "min": 3,
+        "max": 6,
+        "label": "Funkelnder Schnitt: +{value}% Crit Chance"
+      },
+      "flavorText": "Schmuck mit Funktion. Eleganz optional, aber empfohlen."
+    }
+  ]
+}

@@ -120,6 +120,7 @@ const NPC_LOCATIONS: Record<string, { label: string; color: string; desc: string
   verzauberer: { label: "Arcanum", color: "#a78bfa", desc: "Enchantments & stat rerolling" },
   lederverarbeiter: { label: "Gerberei", color: "#b45309", desc: "Leather armor crafting" },
   waffenschmied: { label: "Waffenkammer", color: "#dc2626", desc: "Weapons & shields" },
+  juwelier: { label: "Edelsteinkammer", color: "#ec4899", desc: "Rings, amulets & gem cutting" },
 };
 
 // ─── Workshop tool tiers ─────────────────────────────────────────────────────

@@ -383,105 +383,60 @@ Diese Entscheidungen sind verbindlich für alle zukünftigen Implementierungs-Se
 - gearTemplates-lederverarbeiter.json: 100 leather items
 - Server auto-discovers gearTemplates-*.json at boot and merges
 
-### Session 7: Waffenschmied (neue Profession) + Waffen aus Schmied/Schneider/Leder entfernen
+### Session 7: Waffenschmied ✅ (2026-03-25)
+- New profession: Waffenschmied (Varn the Blademaster, color #dc2626)
+- 100 weapon/shield templates (gearTemplates-waffenschmied.json, 60 weapons + 40 shields)
+- 116 recipes (100 gear + weapon services moved from Schmied)
+- Removed all weapons/shields from Schmied (-34), Schneider (-36), Lederverarbeiter (-36)
+- Armor profs refilled with new helm/armor/boots items
+- Shares gathering affinity with Schmied (eisenerz, kristallsplitter, drachenschuppe)
 
-**Problem:** Aktuell bauen ALLE 3 Gear-Professions Waffen + Schilde (~19 Waffen + ~15-17 Schilde pro Beruf = ~100 Waffen/Schilde total). In WoW Classic gibt es keine Stoff-Schwerter oder Leder-Äxte — Waffen kommen vom Schmied (und in unserem Fall vom neuen Waffenschmied).
+### Session 8: Juwelier + Ring-Slot ✅ (2026-03-25)
+- New equipment slot: Ring (7 total, was 6)
+- Set bonus thresholds: 4-piece +5%, 7-piece +10% (was 3/6)
+- New profession: Juwelier (Mirael the Gem Sage, color #ec4899)
+- 67 gear templates (40 rings + 27 amulets) in gearTemplates-juwelier.json
+- 116 recipes: 67 gear + 30 gem cuts (6 types × 5 tiers) + 4 gem merges + 15 utility/service
+- Removed all amulets from Schmied (-21), Schneider (-21), Lederverarbeiter (-22)
+- Juwelier now sole source of rings AND amulets
+- Gathering affinity: kristallsplitter, runenstein, aetherkern
 
-**Lösung:**
-1. **Neue Profession: Waffenschmied** — eigene Profession, eigener NPC, eigener Slot
-2. **Waffen + Schilde aus Schmied/Schneider/Leder entfernen** → diese 3 machen NUR Rüstung (Helm, Armor, Boots + Amulet)
-3. **Schmied auffüllen** — die entfernten ~34 Waffen/Schild-Rezepte durch neue Rüstungs-Rezepte ersetzen
-4. **Schneider/Leder auffüllen** — gleich, ~36 Waffen/Schilde ersetzen durch Rüstung
+### Final Slot Ownership:
+| Slot(s) | Profession Category | Professions |
+|---------|-------------------|-------------|
+| helm, armor, boots | Rüstung | Schmied (heavy), Schneider (cloth), Lederverarbeiter (leather) |
+| weapon, shield | Waffen | Waffenschmied |
+| ring, amulet | Schmuck | Juwelier |
+| — | Consumables | Alchemist, Koch, Verzauberer |
 
-**Waffenschmied — NPC & Design:**
-- **NPC:** Varn the Blademaster (oder ähnlich)
-- **Color:** `#dc2626` (Blutrot/Stahlgrau)
-- **Location:** Die Waffenkammer (The Armory)
-- **Armor Type:** Keine — baut nur Waffen + Schilde
-- **Mastery (225+):** `weapon_damage_boost` — +10% Waffen-Stat-Rolls beim Craften
-- **Gathering Affinity:** eisenerz, kristallsplitter, drachenschuppe (teilt sich Mats mit Schmied → erzwingt Entscheidung beim 2-Slot-System)
-
-**Waffenschmied Gear-Templates (~100):**
-- Alle 6 Waffen-Typen: Schwerter, Äxte, Hämmer, Stäbe, Dolche, Zauberstäbe
-- Alle Schilde: Rundschilde, Turmschilde, Buckler, Folianten, Foki
-- T1 (Skill 1-75): ~20 Items — Eiserne Waffen + Grobe Schilde
-- T2 (75-150): ~25 Items — Kristall-Waffen + Stählerne Schilde
-- T3 (150-225): ~25 Items — Drachenzahn-Waffen + Drachenschuppen-Schilde
-- T4 (225-300): ~30 Items — Aether/Seelen-Waffen + Seelen-Schilde (inkl. 5 Legendary mit Effects)
-- armorType: null (Waffen haben keinen Armor-Type)
-
-**Waffenschmied Rezepte (~150):**
-- ~100 Gear-Rezepte (Waffen + Schilde)
-- ~10 Intermediates (teilt Barren-Chain mit Schmied)
-- ~20 Utility: Schärfsteine (übernommen vom Schmied), Waffenöle, Schildpolituren
-- ~15 Service: Klinge schärfen, Schild polieren (übernommen vom Schmied)
-- Sources: 40% Trainer / 30% Drop / 20% Faction / 10% Dungeon
-
-**Änderungen an bestehenden Professions:**
-- **Schmied:** Alle weapon/shield Templates + Rezepte entfernen. Schmied baut NUR: helm, armor, boots, amulet (heavy). ~34 Rezepte raus, ~34 neue Rüstungs-Rezepte rein. Schärfstein/Klinge-schärfen Services wandern zum Waffenschmied.
-- **Schneider:** Alle weapon/shield Templates + Rezepte entfernen. ~36 raus, ~36 neue cloth helm/armor/boots/amulet rein.
-- **Lederverarbeiter:** Gleich — ~36 raus, ~36 neue leather Rüstung rein.
-- **Alle 3:** Amulet bleibt bei Rüstungs-Professions (ist kein Schmuck, sondern Teil der Rüstung)
-
-### Session 8: Juwelier (neue Profession) + Ring-Slot
-
-**Problem:** Es gibt keinen Ring-Slot und keine Profession die Schmuck/Gems craftet. Unser Gem-System (6 Types, 5 Tiers) existiert aber hat keine Crafting-Verbindung.
-
-**Neuer Equipment-Slot: Ring**
-- EQUIPMENT_SLOTS erweitern: `['weapon', 'shield', 'helm', 'armor', 'amulet', 'boots', 'ring']`
-- 7 Gear-Slots statt 6
-- Set-Bonuses anpassen (3er/6er Thresholds → 3er/7er oder 4er/7er)
-- Frontend CharacterView: Ring-Slot hinzufügen
-- Alle bestehenden Set-Definitionen prüfen (named sets mit 3-4 Teilen bleiben unverändert)
-
-**Juwelier — NPC & Design:**
-- **NPC:** Mirael the Gem Sage (oder ähnlich)
-- **Color:** `#ec4899` (Pink/Juwelen-Glanz)
-- **Location:** Die Edelsteinkammer (The Gem Chamber)
-- **Was er craftet:** Ringe (neuer Slot) + Amulette + geschliffene Gems
-- **Mastery (225+):** `gem_quality_boost` — +1 Gem-Tier-Chance beim Schleifen
-- **Gathering Affinity:** kristallsplitter, runenstein, aetherkern (Edelsteine/arkane Materialien)
-
-**Juwelier Gear-Templates (~60-80):**
-- Ringe: ~50 (T1-T4, neuer Slot, alle Raritäten)
-- Amulette: ~20-30 (übernimmt Amulett-Produktion von allen 3 Rüstungs-Professions)
-- armorType: null (Schmuck hat keinen Armor-Type)
-
-**Juwelier Rezepte (~120-150):**
-- ~60-80 Ring/Amulett-Rezepte
-- ~30 Gem-Schleifen-Rezepte (Rohgem → geschliffener Gem, alle 6 Typen × 5 Tiers)
-- ~15 Gem-Upgrade-Rezepte (3 gleiche Gems → 1 höherer Tier, alternative zum Gold-Polish)
-- ~10 Utility: Gem-Poliertücher, Schmuck-Reiniger
-- ~10 Service: Gem einsetzen, Gem verbessern
-- Sources: 40% Trainer / 30% Drop / 20% Faction / 10% Dungeon
-
-**Änderungen an bestehenden Professions:**
-- **Schmied/Schneider/Leder:** Amulett-Templates + Rezepte entfernen → Juwelier übernimmt
-- **Gem-System:** Gem-Polish/Upgrade Endpoints bleiben, aber Juwelier-Rezepte bieten günstigere Alternative
-- **gems.js:** Socket/Unsocket bleibt system-weit (kein Beruf nötig), aber Juwelier bekommt Bonus
-
-**Konsequenz für Equipment-Slots:**
-- Nach Session 7+8: Rüstungs-Professions (Schmied/Schneider/Leder) bauen: helm, armor, boots (3 Slots)
-- Waffenschmied baut: weapon, shield (2 Slots)
-- Juwelier baut: ring, amulet (2 Slots)
-- Total: 7 Slots, jeder von genau einer Profession-Kategorie
-
-### Session 9: Final Balance Pass + Frontend
-- Gesamter Balance-Audit über alle 8 Professions
-- Frontend-Anpassungen (BoE-Badge, neue Rezepttypen-Display, Ring-Slot UI)
-- CLAUDE.md updaten (neues Profession-System dokumentieren)
-- Material-Spezialisierung Gathering-Raten finalisieren
-- Set-Bonus-System anpassen für 7 Slots
+### Session 9: Final Balance Pass + Frontend (TODO)
+- [ ] Skill-gap analysis: ensure no skill brackets without recipes
+- [ ] Material cost audit: costs scale linearly per WoW-PROFESSION-REFACTOR table
+- [ ] CLAUDE.md: update profession count (8), skill system, slot ownership
+- [ ] CharacterView: Ring slot in equipment UI
+- [ ] ForgeView: BoE badge, gem-cut/gem-merge recipe display
+- [ ] Rank training endpoint working + UI button
+- [ ] Trainer recipe learning cost UI (Learn button + gold)
+- [ ] Unlearn profession UI (2-step confirm)
+- [ ] Material drops gate: only with profession + only affinity mats (backend done, needs testing)
+- [ ] Synergy hints update for 8 professions
 
 ---
 
-## Quick Reference: Files to Modify
+## Quick Reference: Files Modified
 
-| File | Changes |
-|------|---------|
-| `professions.json` | +5 materials (done), +1 profession (done), +~750 recipes, adjusted drop rates |
-| `gearTemplates.json` | +~300 new unique gear templates (replace generic ones) |
-| `crafting.js` | reqSkill support (done), `fixedStats` handling for Filler-Items (new) |
-| `ForgeView.tsx` | NPC_LOCATIONS + SYNERGY_HINTS (done), BoE badge (Session 7) |
-| `lib/helpers.js` | leather armor trait (done), possible `fixedStats` gear instance creation |
-| `CLAUDE.md` | Update profession count, skill system docs (Session 7) |
+| File | Status |
+|------|--------|
+| `professions.json` | 8 professions, 55 materials, 760 recipes ✅ |
+| `gearTemplates.json` | 251 general items (unchanged) ✅ |
+| `gearTemplates-schmied.json` | 71 heavy armor (helm/armor/boots) ✅ |
+| `gearTemplates-schneider.json` | 67 cloth armor ✅ |
+| `gearTemplates-lederverarbeiter.json` | 71 leather armor ✅ |
+| `gearTemplates-waffenschmied.json` | 100 weapons + shields ✅ |
+| `gearTemplates-juwelier.json` | 67 rings + amulets ✅ |
+| `lib/state.js` | EQUIPMENT_SLOTS +ring, auto-merge gearTemplates-*.json ✅ |
+| `lib/helpers.js` | Set bonus 4/7, material drops gated by profession ✅ |
+| `crafting.js` | reqSkill, fixedStats, rank training, unlearn, reforge-stats ✅ |
+| `ForgeView.tsx` | NPC_LOCATIONS for 8 professions ✅ |
+| `GameTooltip.tsx` | 8 profession tooltips + artisans_quarter updated ✅ |
+| `CLAUDE.md` | TODO: update profession system docs |

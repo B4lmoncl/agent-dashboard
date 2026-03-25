@@ -1976,7 +1976,7 @@ When adding new visual content:
 - [ ] `node scripts/verify-items.js` läuft ohne Fehler
 - [ ] Server startet ohne Fehler nach der Änderung
 
-## Fehlende Assets & Content (Stand: 2026-03-22)
+## Fehlende Assets & Content (Stand: 2026-03-25)
 
 Folgende Bilder, Portraits und Icons werden im Code referenziert, existieren aber noch nicht. Müssen als PNG erstellt werden (transparenter Hintergrund).
 
@@ -1984,22 +1984,94 @@ Folgende Bilder, Portraits und Icons werden im Code referenziert, existieren abe
 
 | Kategorie | Fehlend | Größe | Priorität |
 |-----------|---------|-------|-----------|
-| Floor-Banner | 5 | 1200×200px | HOCH |
-| Gear Item Icons | 251 | 128×128px | HOCH |
+| Craft Gear Icons (Schmied) | 71 | 128×128px | HOCH |
+| Craft Gear Icons (Schneider) | 67 | 128×128px | HOCH |
+| Craft Gear Icons (Lederverarbeiter) | 71 | 128×128px | HOCH |
+| Craft Gear Icons (Waffenschmied) | 100 | 128×128px | HOCH |
+| Craft Gear Icons (Juwelier) | 67 | 128×128px | HOCH |
+| General Gear Icons | 251 | 128×128px | HOCH |
 | Unique Item Icons | 14 | 128×128px | HOCH |
 | Consumable Icons | 18 | 128×128px | HOCH |
-| Crafting Materials | 13 | 24×24px | MITTEL |
-| Shop/Workshop | 18 | 32×32px | MITTEL |
+| Profession NPC Portraits | 8 | 128×128px | HOCH |
+| Profession Icons | 8 | 32×32px | HOCH |
+| Material Icons (raw + intermediate) | 32 | 24×24px | MITTEL |
+| Currency Shop Icons | 14 | 32×32px | MITTEL |
+| Floor-Banner | 5 | 1200×200px | MITTEL |
+| Shop/Workshop Icons | 18 | 32×32px | MITTEL |
 | Nav/Room Icons | 4 | 24×24px | MITTEL |
-| Profession Icons | 4 | 32×32px | MITTEL |
-| Profession NPC Portraits | 4 | 128×128px | MITTEL |
 | Weekly Challenges | 8 | 24×24px | NIEDRIG |
-| Expedition Locations | 8 | 64×64px | NIEDRIG |
+| Expedition Locations | 12 | 64×64px | NIEDRIG |
 | Companion Ultimates | 3 | 32×32px | NIEDRIG |
 | Achievement Icons | 31 | 64×64px | NIEDRIG |
 | NPC Role Icons | 2 | 24×24px | NIEDRIG |
 | Klassen-Assets | 6 | 64×64px | NIEDRIG |
-| **GESAMT** | **~389** | | |
+| **GESAMT** | **~804** | | |
+
+### Profession NPC Portraits (8 fehlend) — 128×128px
+
+| NPC | Beruf | Pfad |
+|-----|-------|------|
+| Grimvar der Schmied | Schmied | `public/images/npcs/grimvar-schmied.png` |
+| Ysolde die Alchemistin | Alchemist | `public/images/npcs/ysolde-alchemist.png` |
+| Eldric der Verzauberer | Verzauberer | `public/images/npcs/eldric-verzauberer.png` |
+| Bruna die Köchin | Koch | `public/images/npcs/bruna-koch.png` |
+| Selina die Weberin | Schneider | `public/images/npcs/selina-schneider.png` |
+| Roderic der Gerber | Lederverarbeiter | `public/images/npcs/roderic-lederverarbeiter.png` |
+| Varn der Klingenmeister | Waffenschmied | `public/images/npcs/varn-waffenschmied.png` |
+| Mirael die Edelsteinweise | Juwelier | `public/images/npcs/mirael-juwelier.png` |
+
+### Profession Icons (8 fehlend) — 32×32px
+
+| Beruf | Pfad |
+|-------|------|
+| Schmied | `public/images/icons/prof-schmied.png` |
+| Alchemist | `public/images/icons/prof-alchemist.png` |
+| Verzauberer | `public/images/icons/prof-verzauberer.png` |
+| Schneider | `public/images/icons/prof-schneider.png` |
+| Koch | `public/images/icons/prof-koch.png` |
+| Lederverarbeiter | `public/images/icons/prof-lederverarbeiter.png` |
+| Waffenschmied | `public/images/icons/prof-waffenschmied.png` |
+| Juwelier | `public/images/icons/prof-juwelier.png` |
+
+### Craft Gear Icons (376 fehlend) — 128×128px
+
+Alle Items aus `gearTemplates-*.json`. Pfad-Format: `public/images/items/icons/{id}.png`
+
+**Schmied (71 Items):** Heavy armor — helm, armor, boots. Eiserne→Kristall→Drachen→Aether→Seelen Serie.
+**Schneider (67 Items):** Cloth armor — Leinen→Woll→Seiden→Magie→Runen Serie.
+**Lederverarbeiter (71 Items):** Leather armor — Leichtleder→Mittleres→Schwer→Bestien→Urzeit Serie.
+**Waffenschmied (100 Items):** Weapons (60) + Shields (40). Alle Tiers.
+**Juwelier (67 Items):** Rings (40) + Amulets (27). Alle Tiers.
+
+### Material Icons (32 fehlend) — 24×24px
+
+**Raw Materials (13):**
+| Material | Pfad |
+|----------|------|
+| Eisenerz | `public/images/icons/mat-eisenerz.png` |
+| Magiestaub | `public/images/icons/mat-magiestaub.png` |
+| Kristallsplitter | `public/images/icons/mat-kristallsplitter.png` |
+| Drachenschuppe | `public/images/icons/mat-drachenschuppe.png` |
+| Ätherkern | `public/images/icons/mat-aetherkern.png` |
+| Kräuterbündel | `public/images/icons/mat-kraeuter.png` |
+| Mondblume | `public/images/icons/mat-mondblume.png` |
+| Phoenixfeder | `public/images/icons/mat-phoenixfeder.png` |
+| Runenstein | `public/images/icons/mat-runenstein.png` |
+| Seelensplitter | `public/images/icons/mat-seelensplitter.png` |
+| Wildfleisch | `public/images/icons/mat-wildfleisch.png` |
+| Feuerwurz | `public/images/icons/mat-feuerwurz.png` |
+| Sternenfrucht | `public/images/icons/mat-sternenfrucht.png` |
+
+**Intermediate Materials — Schmied (10):** Eisenbarren, Stahlbarren, Kristallbarren, Verstärkter Stahl, Drachenstahl, Drachenkern, Aetherlegierung, Aetherbarren, Seelenlegierung, Seelenstahl
+**Intermediate Materials — Schneider (8):** Leinenballen, Wollballen, Seidenballen, Magiestoff-Ballen, Runenstoff-Ballen, Sternenlicht-Farbe, Arkaner Faden, Runenfaden
+**Intermediate Materials — Lederverarbeiter (5):** Geheiltes Leichtleder, Geheiltes Mittleres Leder, Gehärtetes Schwerleder, Bestien-Lederballen, Urzeitleder
+**Intermediate Materials — Koch (6):** Gewürzmischung, Kräuterbutter, Scharfe Marinade, Sternen-Essenz, Phoenix-Gewürz, Mondstaub-Salz
+
+### Currency Shop Icons (14 fehlend) — 32×32px
+
+**Sternentaler Shop (5):** shop-frame-star, shop-frame-eclipse, shop-title-star, shop-companion-glow, shop-xp-scroll (reuse?)
+**Gildentaler Shop (5):** shop-frame-guild, shop-frame-diplomat, shop-title-guild, shop-social (reuse?)
+**Mondstaub Shop (4):** shop-boss-boost, shop-rift-extend, shop-frame-moon, shop-title-moon
 
 ### Shop-Icons (14 fehlend)
 
@@ -2183,18 +2255,7 @@ Folgende Achievements nutzen `"?"` als Icon statt echtem Bild. Empfohlener Pfad:
 ### Flavor-Text / Beschreibungen
 
 - Alle Klassen-Skills und -Achievements haben keine ausführlichen Beschreibungen (nur Namen)
-### Profession-NPC-Portraits (4 fehlend)
-
-Die Berufs-NPCs aus `professions.json` referenzieren Portraits die nicht existieren:
-
-| NPC | Pfad |
-|-----|------|
-| Grimvar der Schmied | `public/images/npcs/grimvar-schmied.png` |
-| Ysolde die Alchemistin | `public/images/npcs/ysolde-alchemist.png` |
-| Eldric der Verzauberer | `public/images/npcs/eldric-verzauberer.png` |
-| Bruna die Köchin | `public/images/npcs/bruna-koch.png` |
-
-**Hinweis:** Quest-Giver-NPC-Portraits (aus `npcQuestGivers.json`) sind alle vorhanden — nur die Crafting-NPCs fehlen
+**Hinweis:** Quest-Giver-NPC-Portraits (aus `npcQuestGivers.json`) sind alle vorhanden — nur die Crafting-NPCs fehlen. Portraits für Selina (Schneider), Roderic (Lederverarbeiter), Varn (Waffenschmied) und Mirael (Juwelier) sind NEU und wurden noch nie erstellt.
 
 ---
 

@@ -760,6 +760,24 @@ const TOOLTIP_REGISTRY: Record<string, TooltipEntry> = {
       </>
     ),
   },
+  prof_juwelier: {
+    title: "Jewelcrafter — Mirael the Gem Sage",
+    icon: "💎",
+    accent: "#ec4899",
+    body: (
+      <>
+        <p>Crafts rings, amulets, and cut gems. The only profession connected to the Gem socket system — and the sole source of the new Ring slot.</p>
+        <div className="gt-stat-row"><span>Crafts</span><span>Rings (new slot!) + Amulets + Cut Gems</span></div>
+        <div className="gt-stat-row"><span>Gear Templates</span><span>67 unique items (40 rings + 27 amulets)</span></div>
+        <div className="gt-stat-row"><span>Recipes</span><span>116 total (67 gear + 30 gem cuts + 4 gem merges + 15 utility/service)</span></div>
+        <div className="gt-stat-row"><span>Materials</span><span>Kristallsplitter, Runenstein, Aetherkern</span></div>
+        <div className="gt-stat-row"><span>Gem Cutting</span><span>6 gem types × 5 tiers (Gesplittert → Königlich)</span></div>
+        <div className="gt-stat-row"><span>Gem Merging</span><span>3 same-tier gems → 1 higher tier (alternative to Gold polish)</span></div>
+        <div className="gt-stat-row"><span>Mastery (225+)</span><span>+1 gem tier chance when cutting</span></div>
+        <p className="gt-source">The luxury profession. Rings and amulets boost <GTRef k="glueck">Glück</GTRef> and <GTRef k="charisma">Charisma</GTRef> — stats no other profession focuses on.</p>
+      </>
+    ),
+  },
   recipes: {
     title: "Recipes",
     icon: "📖",
