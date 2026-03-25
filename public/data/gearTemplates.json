@@ -13989,6 +13989,1688 @@
       },
       "setId": "adventurer",
       "flavorText": "Mit diesen Stiefeln übersteht man jeden Marsch. Die Blasen danach sind rein optional."
+    },
+    {
+      "id": "craft-schmied-kristall-klinge",
+      "name": "Kristall-Klinge",
+      "slot": "weapon",
+      "tier": 2,
+      "reqLevel": 9,
+      "rarity": "common",
+      "price": 0,
+      "desc": "Eine Klinge aus kristallverstärktem Stahl.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "fixedStats": {
+        "kraft": 3,
+        "ausdauer": 2
+      },
+      "setId": "veteran",
+      "flavorText": "Sie glitzert im Licht. Das ist das Einzige, was an ihr beeindruckend ist."
+    },
+    {
+      "id": "craft-schmied-staehlernes-breitschwert",
+      "name": "Stählernes Breitschwert",
+      "slot": "weapon",
+      "tier": 2,
+      "reqLevel": 11,
+      "rarity": "uncommon",
+      "price": 0,
+      "desc": "Ein solides Breitschwert aus gehärtetem Stahl.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "fixedStats": {
+        "kraft": 4,
+        "ausdauer": 3
+      },
+      "setId": "veteran",
+      "flavorText": "Breit genug, um dahinter Deckung zu suchen. Scharf genug, um es nicht zu müssen."
+    },
+    {
+      "id": "craft-schmied-kristall-streitaxt",
+      "name": "Kristall-Streitaxt",
+      "slot": "weapon",
+      "tier": 2,
+      "reqLevel": 13,
+      "rarity": "common",
+      "price": 0,
+      "desc": "Eine Streitaxt mit kristalliner Schneide.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "fixedStats": {
+        "kraft": 3,
+        "glueck": 2
+      },
+      "setId": "veteran",
+      "flavorText": "Der Kristall splittert beim dritten Hieb. Bis dahin ist alles erledigt."
+    },
+    {
+      "id": "craft-schmied-staehlerner-kriegshammer",
+      "name": "Stählerner Kriegshammer",
+      "slot": "weapon",
+      "tier": 2,
+      "reqLevel": 15,
+      "rarity": "rare",
+      "price": 0,
+      "desc": "Ein Kriegshammer, der Rüstungen wie Eierschalen behandelt.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "glueck",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "setId": "veteran",
+      "flavorText": "Finesse ist überbewertet. Masse mal Beschleunigung hat noch nie jemanden enttäuscht."
+    },
+    {
+      "id": "craft-schmied-kristall-buckler",
+      "name": "Kristall-Buckler",
+      "slot": "shield",
+      "tier": 2,
+      "reqLevel": 9,
+      "rarity": "common",
+      "price": 0,
+      "desc": "Ein kompakter Faustschild mit Kristalleinlage.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "fixedStats": {
+        "ausdauer": 3,
+        "kraft": 2
+      },
+      "setId": "veteran",
+      "flavorText": "Klein, rund, und genau so nützlich wie ein Topfdeckel — erstaunlich nützlich."
+    },
+    {
+      "id": "craft-schmied-staehlerner-turmschild",
+      "name": "Stählerner Turmschild",
+      "slot": "shield",
+      "tier": 2,
+      "reqLevel": 12,
+      "rarity": "uncommon",
+      "price": 0,
+      "desc": "Ein mannshoher Schild aus geschmiedetem Stahl.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "fixedStats": {
+        "ausdauer": 4,
+        "kraft": 2
+      },
+      "setId": "veteran",
+      "flavorText": "Dahinter zu stehen fühlt sich an wie eine Mauer. Ihn zu tragen fühlt sich an wie eine Strafe."
+    },
+    {
+      "id": "craft-schmied-kristall-rundschild",
+      "name": "Kristall-Rundschild",
+      "slot": "shield",
+      "tier": 2,
+      "reqLevel": 14,
+      "rarity": "common",
+      "price": 0,
+      "desc": "Ein runder Schild mit kristallverstärktem Rand.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "fixedStats": {
+        "ausdauer": 3,
+        "weisheit": 2
+      },
+      "setId": "veteran",
+      "flavorText": "Der Rand leuchtet schwach. Das hilft beim Blocken kein bisschen, sieht aber gut aus."
+    },
+    {
+      "id": "craft-schmied-staehlerner-wappenschild",
+      "name": "Stählerner Wappenschild",
+      "slot": "shield",
+      "tier": 2,
+      "reqLevel": 16,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Ein Prunkschild mit dem Wappen eines vergessenen Hauses.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "charisma",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "setId": "veteran",
+      "flavorText": "Das Haus ist vergessen. Der Schild nicht. Manche Dinge überdauern ihre Besitzer."
+    },
+    {
+      "id": "craft-schmied-kristall-visierhelm",
+      "name": "Kristall-Visierhelm",
+      "slot": "helm",
+      "tier": 2,
+      "reqLevel": 10,
+      "rarity": "common",
+      "price": 0,
+      "desc": "Ein geschlossener Helm mit Kristallvisier.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "fixedStats": {
+        "ausdauer": 3,
+        "weisheit": 2
+      },
+      "setId": "veteran",
+      "flavorText": "Man sieht die Welt in einem leichten Blauton. Das ist entweder der Kristall oder der Sauerstoffmangel."
+    },
+    {
+      "id": "craft-schmied-staehlerne-sturmhaube",
+      "name": "Stählerne Sturmhaube",
+      "slot": "helm",
+      "tier": 2,
+      "reqLevel": 12,
+      "rarity": "uncommon",
+      "price": 0,
+      "desc": "Eine Sturmhaube aus gehärtetem Stahl.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "fixedStats": {
+        "ausdauer": 4,
+        "kraft": 2
+      },
+      "setId": "veteran",
+      "flavorText": "Schützt den Kopf. Nicht vor dummen Entscheidungen, aber vor allem anderen."
+    },
+    {
+      "id": "craft-schmied-kristall-spangenhelm",
+      "name": "Kristall-Spangenhelm",
+      "slot": "helm",
+      "tier": 2,
+      "reqLevel": 14,
+      "rarity": "uncommon",
+      "price": 0,
+      "desc": "Spangen aus kristallverstärktem Stahl schützen die Schläfen.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "fixedStats": {
+        "kraft": 3,
+        "ausdauer": 3
+      },
+      "setId": "veteran",
+      "flavorText": "Die Spangen klingen bei jedem Schritt. Man hört den Träger kommen. Und gehen. Meistens gehen."
+    },
+    {
+      "id": "craft-schmied-staehlerner-drachenhelm",
+      "name": "Stählerner Drachenhelm",
+      "slot": "helm",
+      "tier": 2,
+      "reqLevel": 16,
+      "rarity": "rare",
+      "price": 0,
+      "desc": "Geschmiedet in der Form eines Drachenschädels.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "setId": "veteran",
+      "flavorText": "Er sieht aus wie ein Drache. Leider kämpft er nicht wie einer."
+    },
+    {
+      "id": "craft-schmied-kristall-kettenhemd",
+      "name": "Kristall-Kettenhemd",
+      "slot": "armor",
+      "tier": 2,
+      "reqLevel": 9,
+      "rarity": "common",
+      "price": 0,
+      "desc": "Kettenringe durchsetzt mit kristallinen Splittern.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "fixedStats": {
+        "ausdauer": 3,
+        "kraft": 2
+      },
+      "setId": "veteran",
+      "flavorText": "Die Splitter piksen. Aber sie piksen den Feind mehr."
+    },
+    {
+      "id": "craft-schmied-staehlerne-bruenne",
+      "name": "Stählerne Brünne",
+      "slot": "armor",
+      "tier": 2,
+      "reqLevel": 11,
+      "rarity": "uncommon",
+      "price": 0,
+      "desc": "Eine klassische Kettenbrünne aus feinstem Stahl.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "fixedStats": {
+        "ausdauer": 4,
+        "weisheit": 2
+      },
+      "setId": "veteran",
+      "flavorText": "Fünftausend Ringe. Jeder einzeln geschmiedet. Man fragt sich, ob Grimvar je schläft."
+    },
+    {
+      "id": "craft-schmied-kristall-schuppenpanzer",
+      "name": "Kristall-Schuppenpanzer",
+      "slot": "armor",
+      "tier": 2,
+      "reqLevel": 13,
+      "rarity": "common",
+      "price": 0,
+      "desc": "Überlappende Kristallschuppen auf Stahlträger genietet.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "fixedStats": {
+        "ausdauer": 3,
+        "glueck": 2
+      },
+      "setId": "veteran",
+      "flavorText": "Klingt wie ein Windspiel im Kampf. Der Feind hält inne. Nicht aus Angst, aus Verwirrung."
+    },
+    {
+      "id": "craft-schmied-staehlerner-plattenpanzer",
+      "name": "Stählerner Plattenpanzer",
+      "slot": "armor",
+      "tier": 2,
+      "reqLevel": 15,
+      "rarity": "rare",
+      "price": 0,
+      "desc": "Vollplatte aus stählernen Segmenten. Schwer, aber undurchdringlich.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "charisma",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "setId": "veteran",
+      "flavorText": "Man bewegt sich darin wie ein Eisberg. Langsam, unaufhaltsam, und mit erschreckender Endgültigkeit."
+    },
+    {
+      "id": "craft-schmied-kristall-koenigsruestung",
+      "name": "Kristall-Königsrüstung",
+      "slot": "armor",
+      "tier": 2,
+      "reqLevel": 16,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Eine zeremonielle Rüstung mit kristallinen Verzierungen, die mehr aushält als erwartet.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "charisma",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "setId": "veteran",
+      "flavorText": "Für Könige entworfen. Von Schmieden getragen. Die Ironie entgeht niemandem."
+    },
+    {
+      "id": "craft-schmied-kristall-amulett",
+      "name": "Kristall-Amulett",
+      "slot": "amulet",
+      "tier": 2,
+      "reqLevel": 10,
+      "rarity": "common",
+      "price": 0,
+      "desc": "Ein schlichtes Amulett mit eingelassenem Kristallsplitter.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "fixedStats": {
+        "weisheit": 3,
+        "glueck": 2
+      },
+      "setId": "veteran",
+      "flavorText": "Der Splitter summt leise. Oder das ist Tinnitus. Schwer zu sagen."
+    },
+    {
+      "id": "craft-schmied-staehlerne-kette",
+      "name": "Stählerne Schwurkette",
+      "slot": "amulet",
+      "tier": 2,
+      "reqLevel": 12,
+      "rarity": "uncommon",
+      "price": 0,
+      "desc": "Eine schwere Kette mit einem stählernen Medaillon.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "fixedStats": {
+        "kraft": 3,
+        "weisheit": 3
+      },
+      "setId": "veteran",
+      "flavorText": "Das Medaillon enthielt einmal ein Porträt. Jetzt enthält es Schleifstaub und Enttäuschung."
+    },
+    {
+      "id": "craft-schmied-kristall-reif",
+      "name": "Kristall-Eidreif",
+      "slot": "amulet",
+      "tier": 2,
+      "reqLevel": 14,
+      "rarity": "rare",
+      "price": 0,
+      "desc": "Ein Halsreif aus kristallverstärktem Stahl, der kühl auf der Haut liegt.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "glueck",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "charisma",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "setId": "veteran",
+      "flavorText": "Wer einen Eid auf Kristall schwört, meint es ernst. Oder ist sehr, sehr leichtgläubig."
+    },
+    {
+      "id": "craft-schmied-staehlernes-siegelamulett",
+      "name": "Stählernes Siegelamulett",
+      "slot": "amulet",
+      "tier": 2,
+      "reqLevel": 16,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Ein Amulett mit dem Siegel eines Meisterschmieds — eine Ehre, die man sich verdient.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "charisma",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "setId": "veteran",
+      "flavorText": "Das Siegel öffnet keine Türen. Aber es öffnet Gespräche. Und manchmal ist das wertvoller."
+    },
+    {
+      "id": "craft-schmied-kristall-stiefel",
+      "name": "Kristall-Stiefel",
+      "slot": "boots",
+      "tier": 2,
+      "reqLevel": 9,
+      "rarity": "common",
+      "price": 0,
+      "desc": "Schwere Stiefel mit kristallverstärkten Sohlen.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "fixedStats": {
+        "ausdauer": 3,
+        "kraft": 2
+      },
+      "setId": "veteran",
+      "flavorText": "Man hinterlässt Kratzer im Steinboden. Die Gastwirte lieben das."
+    },
+    {
+      "id": "craft-schmied-staehlerne-marschtreters",
+      "name": "Stählerne Marschtreter",
+      "slot": "boots",
+      "tier": 2,
+      "reqLevel": 11,
+      "rarity": "uncommon",
+      "price": 0,
+      "desc": "Verstärkte Stiefel für lange Märsche in schwerem Gelände.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "fixedStats": {
+        "ausdauer": 4,
+        "glueck": 2
+      },
+      "setId": "veteran",
+      "flavorText": "Bequem ist relativ. Relativ zu barfuß auf Glasscherben sind sie ein Traum."
+    },
+    {
+      "id": "craft-schmied-kristall-beinschienen",
+      "name": "Kristall-Beinschienen",
+      "slot": "boots",
+      "tier": 2,
+      "reqLevel": 13,
+      "rarity": "common",
+      "price": 0,
+      "desc": "Beinschienen mit eingearbeiteten Kristallfragmenten.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "fixedStats": {
+        "kraft": 2,
+        "ausdauer": 3
+      },
+      "setId": "veteran",
+      "flavorText": "Die Fragmente leuchten bei Mondlicht. Perfekt für alle, die nachts auf Patrouille auffallen wollen."
+    },
+    {
+      "id": "craft-schmied-staehlerne-sturmstiefel",
+      "name": "Stählerne Sturmstiefel",
+      "slot": "boots",
+      "tier": 2,
+      "reqLevel": 15,
+      "rarity": "rare",
+      "price": 0,
+      "desc": "Stiefel für den Sturmangriff — federnd trotz des Gewichts.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "glueck",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "setId": "veteran",
+      "flavorText": "Man rennt darin nicht. Man donnert. Der Unterschied ist subtil, aber der Boden spürt ihn."
+    },
+    {
+      "id": "craft-schmied-drachenstahl-klinge",
+      "name": "Drachenstahl-Klinge",
+      "slot": "weapon",
+      "tier": 3,
+      "reqLevel": 17,
+      "rarity": "uncommon",
+      "price": 0,
+      "desc": "Geschmiedet aus Stahl, der in Drachenfeuer gehärtet wurde.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "fixedStats": {
+        "kraft": 4,
+        "ausdauer": 3
+      },
+      "setId": "master",
+      "flavorText": "Der Stahl erinnert sich an das Feuer. Man spürt es im Griff — ein leises Summen, das nie ganz verstummt."
+    },
+    {
+      "id": "craft-schmied-drachenzahn-saebel",
+      "name": "Drachenzahn-Säbel",
+      "slot": "weapon",
+      "tier": 3,
+      "reqLevel": 19,
+      "rarity": "uncommon",
+      "price": 0,
+      "desc": "Die Schneide schimmert wie poliertes Elfenbein.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "fixedStats": {
+        "kraft": 5,
+        "glueck": 3
+      },
+      "setId": "master",
+      "flavorText": "Ein Zahn, der einem Drachen nichts mehr nützt. Dem Träger allerdings schon."
+    },
+    {
+      "id": "craft-schmied-drachenschuppen-streitaxt",
+      "name": "Drachenschuppen-Streitaxt",
+      "slot": "weapon",
+      "tier": 3,
+      "reqLevel": 21,
+      "rarity": "rare",
+      "price": 0,
+      "desc": "Schuppenbesetzter Schaft, Drachenstahl-Schneide.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "fixedStats": {
+        "kraft": 5,
+        "ausdauer": 4
+      },
+      "setId": "master",
+      "flavorText": "Sie spaltet Holz, Stein und gelegentlich auch Meinungsverschiedenheiten."
+    },
+    {
+      "id": "craft-schmied-drachenstahl-rundschild",
+      "name": "Drachenstahl-Rundschild",
+      "slot": "shield",
+      "tier": 3,
+      "reqLevel": 17,
+      "rarity": "uncommon",
+      "price": 0,
+      "desc": "Ein Schild, der Hitze trotzt wie sein Namensgeber.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "fixedStats": {
+        "ausdauer": 4,
+        "kraft": 3
+      },
+      "setId": "master",
+      "flavorText": "Die Oberfläche trägt noch die Spuren des Feuers. Der Schmied nennt es Patina. Sein Lehrling nennt es Brandflecken."
+    },
+    {
+      "id": "craft-schmied-drachenschuppen-turmschild",
+      "name": "Drachenschuppen-Turmschild",
+      "slot": "shield",
+      "tier": 3,
+      "reqLevel": 20,
+      "rarity": "rare",
+      "price": 0,
+      "desc": "Überzogen mit echten Drachenschuppen. Beinahe unzerstörbar.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "fixedStats": {
+        "ausdauer": 5,
+        "kraft": 4
+      },
+      "setId": "master",
+      "flavorText": "Drei Armbrustbolzen, ein Rammbock und ein sehr zorniger Koch — nichts davon hat eine Delle hinterlassen."
+    },
+    {
+      "id": "craft-schmied-drachenstahl-helm",
+      "name": "Drachenstahl-Helm",
+      "slot": "helm",
+      "tier": 3,
+      "reqLevel": 17,
+      "rarity": "uncommon",
+      "price": 0,
+      "desc": "Ein Helm aus Drachenstahl. Schützt den Kopf und die Hoffnung.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "fixedStats": {
+        "weisheit": 4,
+        "ausdauer": 3
+      },
+      "setId": "master",
+      "flavorText": "Er wiegt weniger als erwartet. Vielleicht liegt es am Stahl. Vielleicht an den Gedanken, die man darin denkt."
+    },
+    {
+      "id": "craft-schmied-drachenzahn-sturmhaube",
+      "name": "Drachenzahn-Sturmhaube",
+      "slot": "helm",
+      "tier": 3,
+      "reqLevel": 19,
+      "rarity": "uncommon",
+      "price": 0,
+      "desc": "Verziert mit Zähnen, die einst Berge zerbissen.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "fixedStats": {
+        "weisheit": 3,
+        "ausdauer": 4
+      },
+      "setId": "master",
+      "flavorText": "Die Zähne am Kamm sind dekorativ. Meistens."
+    },
+    {
+      "id": "craft-schmied-drachenschuppen-kronenhelm",
+      "name": "Drachenschuppen-Kronenhelm",
+      "slot": "helm",
+      "tier": 3,
+      "reqLevel": 22,
+      "rarity": "rare",
+      "price": 0,
+      "desc": "Halb Helm, halb Krone. Für den, der beides braucht.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "fixedStats": {
+        "weisheit": 5,
+        "ausdauer": 4
+      },
+      "setId": "master",
+      "flavorText": "Der Schmied wollte einen Helm machen. Das Feuer hatte andere Pläne. Beide hatten recht."
+    },
+    {
+      "id": "craft-schmied-drachenstahl-brustplatte",
+      "name": "Drachenstahl-Brustplatte",
+      "slot": "armor",
+      "tier": 3,
+      "reqLevel": 18,
+      "rarity": "uncommon",
+      "price": 0,
+      "desc": "Warm wie ein Drachenatem, hart wie sein Zorn.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "fixedStats": {
+        "ausdauer": 4,
+        "kraft": 4
+      },
+      "setId": "master",
+      "flavorText": "Sie kühlt nie ganz ab. Im Winter ein Segen, im Sommer eine Prüfung."
+    },
+    {
+      "id": "craft-schmied-drachenzahn-kettenhemd",
+      "name": "Drachenzahn-Kettenhemd",
+      "slot": "armor",
+      "tier": 3,
+      "reqLevel": 20,
+      "rarity": "uncommon",
+      "price": 0,
+      "desc": "Jedes Glied aus Drachenzahn-Legierung — leicht und zäh.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "fixedStats": {
+        "ausdauer": 5,
+        "glueck": 3
+      },
+      "setId": "master",
+      "flavorText": "Viertausend Glieder. Der Lehrling hat jedes einzelne gezählt. Zweimal, weil er sich beim ersten Mal verzählt hat."
+    },
+    {
+      "id": "craft-schmied-drachenschuppen-plattenpanzer",
+      "name": "Drachenschuppen-Plattenpanzer",
+      "slot": "armor",
+      "tier": 3,
+      "reqLevel": 22,
+      "rarity": "rare",
+      "price": 0,
+      "desc": "Vollständig mit Schuppen verkleidet. Ein wandelnder Drache.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "fixedStats": {
+        "ausdauer": 5,
+        "kraft": 5
+      },
+      "setId": "master",
+      "flavorText": "Man sagt, der Schmied habe drei Wochen daran gearbeitet. Danach brauchte er drei Wochen Schlaf."
+    },
+    {
+      "id": "craft-schmied-drachenstahl-medaillon",
+      "name": "Drachenstahl-Medaillon",
+      "slot": "amulet",
+      "tier": 3,
+      "reqLevel": 18,
+      "rarity": "uncommon",
+      "price": 0,
+      "desc": "Ein Medaillon, das im Dunkeln schwach glüht.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "fixedStats": {
+        "weisheit": 4,
+        "glueck": 3
+      },
+      "setId": "master",
+      "flavorText": "Es pocht. Nicht wie ein Herz — eher wie eine Erinnerung, die nicht vergessen werden will."
+    },
+    {
+      "id": "craft-schmied-drachenzahn-amulett",
+      "name": "Drachenzahn-Amulett",
+      "slot": "amulet",
+      "tier": 3,
+      "reqLevel": 21,
+      "rarity": "rare",
+      "price": 0,
+      "desc": "Ein polierter Reißzahn, gefasst in Drachenstahl.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "fixedStats": {
+        "glueck": 5,
+        "weisheit": 4
+      },
+      "setId": "master",
+      "flavorText": "Der Zahn stammt von einem Drachen, der freiwillig gegeben hat. So erzählt es der Schmied. Der Drache erzählt es anders."
+    },
+    {
+      "id": "craft-schmied-drachenstahl-stiefel",
+      "name": "Drachenstahl-Stiefel",
+      "slot": "boots",
+      "tier": 3,
+      "reqLevel": 18,
+      "rarity": "uncommon",
+      "price": 0,
+      "desc": "Schwere Stiefel, die jeden Schritt zur Aussage machen.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "fixedStats": {
+        "ausdauer": 4,
+        "glueck": 3
+      },
+      "setId": "master",
+      "flavorText": "Man hört den Träger kommen. Man hört ihn auch gehen. Dazwischen liegt die interessante Geschichte."
+    },
+    {
+      "id": "craft-schmied-drachenschuppen-beinschienen",
+      "name": "Drachenschuppen-Beinschienen",
+      "slot": "boots",
+      "tier": 3,
+      "reqLevel": 21,
+      "rarity": "rare",
+      "price": 0,
+      "desc": "Schuppenbesetzt vom Knöchel bis zum Knie.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "fixedStats": {
+        "ausdauer": 5,
+        "glueck": 4
+      },
+      "setId": "master",
+      "flavorText": "Sie klirren beim Gehen wie leiser Applaus. Oder wie eine Warnung. Kommt auf die Perspektive an."
+    },
+    {
+      "id": "craft-schmied-drachenstahl-kriegsklinge",
+      "name": "Drachenstahl-Kriegsklinge",
+      "slot": "weapon",
+      "tier": 3,
+      "reqLevel": 22,
+      "rarity": "rare",
+      "price": 0,
+      "desc": "Eine Kriegsklinge für den, der das Schmieden als Kunst begreift.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "glueck",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "setId": "master",
+      "flavorText": "Nicht jede Klinge hat einen Namen. Diese hier wartet noch darauf, sich einen zu verdienen."
+    },
+    {
+      "id": "craft-schmied-drachenschuppen-schlachtbeil",
+      "name": "Drachenschuppen-Schlachtbeil",
+      "slot": "weapon",
+      "tier": 3,
+      "reqLevel": 24,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Ein Meisterstück. Die Schneide singt, wenn sie die Luft teilt.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "glueck",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "charisma",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "setId": "master",
+      "flavorText": "Der Schmied hat gelacht, als es fertig war. Nicht vor Freude — vor Erleichterung, dass es ihn nicht umgebracht hat."
+    },
+    {
+      "id": "craft-schmied-drachenzahn-bollwerk",
+      "name": "Drachenzahn-Bollwerk",
+      "slot": "shield",
+      "tier": 3,
+      "reqLevel": 23,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Ein Schild, der selbst Drachenfeuer standhält. Theoretisch.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "charisma",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "setId": "master",
+      "flavorText": "Die Zähne an der Kante sind keine Verzierung. Sie sind eine Verhandlungstaktik."
+    },
+    {
+      "id": "craft-schmied-drachenstahl-visierhelm",
+      "name": "Drachenstahl-Visierhelm",
+      "slot": "helm",
+      "tier": 3,
+      "reqLevel": 22,
+      "rarity": "rare",
+      "price": 0,
+      "desc": "Das Visier schließt lautlos. Was dahinter liegt, ist Entschlossenheit.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "setId": "master",
+      "flavorText": "Hinter dem Visier sieht man die Welt klarer. Vielleicht, weil man weniger davon sieht."
+    },
+    {
+      "id": "craft-schmied-drachenschuppen-drachenhelm",
+      "name": "Drachenschuppen-Drachenhelm",
+      "slot": "helm",
+      "tier": 3,
+      "reqLevel": 24,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Geformt wie ein Drachenkopf. Einschüchternd und zweckmäßig.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "charisma",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "setId": "master",
+      "flavorText": "Wer ihn trägt, wird von Kindern angestarrt und von Hunden angebellt. Beides Zeichen von Respekt."
+    },
+    {
+      "id": "craft-schmied-drachenstahl-kriegspanzer",
+      "name": "Drachenstahl-Kriegspanzer",
+      "slot": "armor",
+      "tier": 3,
+      "reqLevel": 23,
+      "rarity": "rare",
+      "price": 0,
+      "desc": "Volle Deckung. Voller Stahl. Volle Zuversicht.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "setId": "master",
+      "flavorText": "Zwölf Kilo Stahl zwischen dir und dem Rest der Welt. Manche nennen es Last. Andere nennen es Frieden."
+    },
+    {
+      "id": "craft-schmied-drachenzahn-koenigsruestung",
+      "name": "Drachenzahn-Königsrüstung",
+      "slot": "armor",
+      "tier": 3,
+      "reqLevel": 24,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Für den, der nicht nur überleben, sondern herrschen will.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "charisma",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "setId": "master",
+      "flavorText": "Der letzte König, der sie trug, dankte ab. Nicht wegen der Rüstung — wegen allem anderen."
+    },
+    {
+      "id": "craft-schmied-drachenschuppen-reif",
+      "name": "Drachenschuppen-Reif",
+      "slot": "amulet",
+      "tier": 3,
+      "reqLevel": 23,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Ein Halsreif aus verschmolzenen Schuppen. Warm auf der Haut.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "glueck",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "charisma",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "setId": "master",
+      "flavorText": "Er flüstert. Nicht wirklich — aber wer ihn trägt, schwört darauf."
+    },
+    {
+      "id": "craft-schmied-drachenzahn-kriegsstiefel",
+      "name": "Drachenzahn-Kriegsstiefel",
+      "slot": "boots",
+      "tier": 3,
+      "reqLevel": 22,
+      "rarity": "rare",
+      "price": 0,
+      "desc": "Verstärkt mit Drachenzahn-Nieten. Jeder Tritt hinterlässt einen Eindruck.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "glueck",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "setId": "master",
+      "flavorText": "Die Nieten stammen von einem Drachen, der es nicht mehr brauchte. Das Leder auch. Frag nicht weiter."
+    },
+    {
+      "id": "craft-schmied-drachenschuppen-panzerstiefel",
+      "name": "Drachenschuppen-Panzerstiefel",
+      "slot": "boots",
+      "tier": 3,
+      "reqLevel": 24,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Volle Schuppenpanzerung bis zum Knöchel. Unaufhaltsam.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "glueck",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "setId": "master",
+      "flavorText": "Der Boden zittert. Nicht vor Angst — vor Vorfreude."
     }
   ],
   "setBonus": {
