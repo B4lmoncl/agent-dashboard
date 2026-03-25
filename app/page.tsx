@@ -139,8 +139,8 @@ export default function Dashboard() {
   const [typeFilter, setTypeFilter] = useState<string>("all");
   const [dashViewRaw, setDashViewRaw] = useState<"questBoard" | "npcBoard" | "klassenquests" | "character" | "campaign" | "leaderboard" | "honors" | "season" | "shop" | "forge" | "gacha" | "roadmap" | "changelog" | "challenges" | "rituals" | "vows" | "social" | "tavern" | "rift" | "factions" | "worldboss" | "dungeons">(() => {
     if (typeof window !== "undefined") {
-      const saved = localStorage.getItem("dash_view");
-      if (saved) return saved as typeof dashViewRaw;
+      const saved = localStorage.getItem("dash_view") as typeof dashViewRaw | null;
+      if (saved) return saved;
     }
     return "questBoard";
   });
