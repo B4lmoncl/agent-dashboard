@@ -847,34 +847,12 @@ function TradesTab({ apiKey, playerName }: { apiKey: string; playerName: string 
           />
         </div>
 
-        {/* Actions — directly under offers */}
+        {/* Actions — counter-offer first, then accept/decline at the bottom */}
         {t.status === "pending" && isMyTurn && (
           <div className="space-y-3 pt-2">
             {error && <p className="text-xs" style={{ color: "#ef4444" }}>{error}</p>}
 
-            {/* Accept / Decline */}
-            <div className="flex gap-2">
-              <button
-                onClick={() => handleTradeAction(t.id, "accept")}
-                disabled={actionLoading}
-                className="btn-interactive flex-1 text-xs font-bold py-2.5 rounded-lg"
-                style={{ background: "linear-gradient(135deg, #22c55e, #16a34a)", color: "#000", opacity: actionLoading ? 0.5 : 1, cursor: actionLoading ? "not-allowed" : "pointer" }}
-                title={actionLoading ? "Processing..." : undefined}
-              >
-                Accept Trade
-              </button>
-              <button
-                onClick={() => handleTradeAction(t.id, "decline")}
-                disabled={actionLoading}
-                className="btn-interactive text-xs font-semibold py-2.5 px-4 rounded-lg"
-                style={{ background: "rgba(239,68,68,0.1)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.2)", opacity: actionLoading ? 0.5 : 1, cursor: actionLoading ? "not-allowed" : "pointer" }}
-                title={actionLoading ? "Processing..." : undefined}
-              >
-                Decline
-              </button>
-            </div>
-
-            {/* Counter-offer */}
+            {/* Counter-offer (shown first so player can adjust before deciding) */}
             <div className="rounded-xl p-4" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
               <p className="text-xs font-semibold uppercase tracking-wider text-w35 mb-3">Counter-Offer</p>
               <div className="flex gap-3 mb-3">
@@ -912,6 +890,28 @@ function TradesTab({ apiKey, playerName }: { apiKey: string; playerName: string 
                 title={actionLoading ? "Processing..." : undefined}
               >
                 Send Counter-Offer
+              </button>
+            </div>
+
+            {/* Accept / Decline — at the bottom after reviewing offers + items */}
+            <div className="flex gap-2">
+              <button
+                onClick={() => handleTradeAction(t.id, "accept")}
+                disabled={actionLoading}
+                className="btn-interactive flex-1 text-xs font-bold py-2.5 rounded-lg"
+                style={{ background: "linear-gradient(135deg, #22c55e, #16a34a)", color: "#000", opacity: actionLoading ? 0.5 : 1, cursor: actionLoading ? "not-allowed" : "pointer" }}
+                title={actionLoading ? "Processing..." : undefined}
+              >
+                Accept Trade
+              </button>
+              <button
+                onClick={() => handleTradeAction(t.id, "decline")}
+                disabled={actionLoading}
+                className="btn-interactive text-xs font-semibold py-2.5 px-4 rounded-lg"
+                style={{ background: "rgba(239,68,68,0.1)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.2)", opacity: actionLoading ? 0.5 : 1, cursor: actionLoading ? "not-allowed" : "pointer" }}
+                title={actionLoading ? "Processing..." : undefined}
+              >
+                Decline
               </button>
             </div>
           </div>

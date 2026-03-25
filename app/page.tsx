@@ -879,8 +879,7 @@ export default function Dashboard() {
                       cursor: "pointer",
                     }}
                   >
-                    <Tip k="login_calendar">
-                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ display: "inline-block", verticalAlign: "middle" }}>
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ display: "inline-block", verticalAlign: "middle" }}>
                         <rect x="1" y="3" width="14" height="12" rx="2" stroke="rgba(251,191,36,0.6)" strokeWidth="1.5" fill="rgba(251,191,36,0.06)" />
                         <path d="M1 7h14" stroke="rgba(251,191,36,0.3)" strokeWidth="1" />
                         <rect x="5" y="1" width="1.5" height="3.5" rx="0.75" fill="rgba(251,191,36,0.5)" />
@@ -889,7 +888,6 @@ export default function Dashboard() {
                         <circle cx="8" cy="10.5" r="1" fill="rgba(251,191,36,0.4)" />
                         <circle cx="10.5" cy="10.5" r="1" fill="rgba(251,191,36,0.3)" />
                       </svg>
-                    </Tip>
                   </button>
                 </div>
               </div>
@@ -1548,16 +1546,27 @@ export default function Dashboard() {
                       </div>
                       {/* Mission list — compact */}
                       <div className="flex flex-wrap gap-1.5">
-                        {dailyMissions.missions.map(m => (
-                          <span key={m.id} className="text-xs px-2 py-1 rounded-lg inline-flex items-center gap-1" style={{
-                            background: m.done ? "rgba(74,222,128,0.08)" : "rgba(255,255,255,0.03)",
-                            color: m.done ? "#4ade80" : "rgba(255,255,255,0.3)",
-                            border: `1px solid ${m.done ? "rgba(74,222,128,0.15)" : "rgba(255,255,255,0.05)"}`,
-                            textDecoration: m.done ? "line-through" : "none",
-                          }}>
-                            {m.done ? "✓" : "○"} {m.label} <span className="font-mono" style={{ color: m.done ? "rgba(74,222,128,0.5)" : "rgba(255,255,255,0.15)" }}>+{m.points}</span>
-                          </span>
-                        ))}
+                        {dailyMissions.missions.map(m => {
+                          const navMap: Record<string, string> = { quests: "questBoard", rituals: "rituals", companion: "character", crafting: "forge", login: "questBoard", social: "social" };
+                          const target = navMap[m.id];
+                          return (
+                            <button
+                              key={m.id}
+                              onClick={() => target && setDashView(target as typeof dashViewRaw)}
+                              className="text-xs px-2 py-1 rounded-lg inline-flex items-center gap-1"
+                              style={{
+                                background: m.done ? "rgba(74,222,128,0.08)" : "rgba(255,255,255,0.03)",
+                                color: m.done ? "#4ade80" : "rgba(255,255,255,0.3)",
+                                border: `1px solid ${m.done ? "rgba(74,222,128,0.15)" : "rgba(255,255,255,0.05)"}`,
+                                textDecoration: m.done ? "line-through" : "none",
+                                cursor: target && !m.done ? "pointer" : "default",
+                              }}
+                              title={target && !m.done ? `Go to ${target}` : undefined}
+                            >
+                              {m.done ? "✓" : "○"} {m.label} <span className="font-mono" style={{ color: m.done ? "rgba(74,222,128,0.5)" : "rgba(255,255,255,0.15)" }}>+{m.points}</span>
+                            </button>
+                          );
+                        })}
                       </div>
                     </div>
                   )}
