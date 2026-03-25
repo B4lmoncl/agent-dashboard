@@ -73,12 +73,12 @@
         "icon": "/images/icons/exp-temple.png",
         "checkpointNames": ["Karawane gestartet", "Oase erreicht", "Tempeltor erreicht", "Sternenkammer betreten"],
         "checkpointFlavor": [
-          "Die Karawane setzt sich in Bewegung. Am Horizont schimmert etwas, das Hoffnung oder Hitzeflimmern sein könnte.",
-          "Wasser! Und Schatten. Die Oase ist real — was in einer Welt voller Illusionen nicht selbstverständlich ist.",
-          "Das Tempeltor ragt empor, graviert mit Sternenmustern, die sich mit dem Nachthimmel zu bewegen scheinen.",
-          "Die Sternenkammer öffnet sich, und für einen Atemzug ist der Unterschied zwischen Decke und Firmament nicht mehr erkennbar."
+          "Die Karawane folgt einer Sternenkarte, die nur nachts lesbar ist. Am Tag wandert ihr blind, geleitet von Markierungen, die jemand in den Fels geritzt hat — jemand, der den Weg kannte, aber offenbar nicht zurückkehren wollte.",
+          "Die Oase existiert nicht auf gewöhnlichen Karten, aber die Sternenkarte zeigt sie präzise. Am Wasser sitzt eine Steinfigur, die Hände zum Himmel gestreckt. Zu ihren Füßen eine Inschrift: 'Ich habe die Kammer gesehen. Sie hat zurückgesehen.'",
+          "Das Tempeltor erkennt die Sternenkarte — die Gravuren beginnen zu rotieren, als ihr sie anlegt. Doch das Tor öffnet sich nicht. Es wartet auf die richtige Konstellation. Drei Stunden später stimmen die Sterne überein, und der Stein weicht zurück. Der Tempel hat Geduld. Mehr als ihr.",
+          "Die Sternenkammer ist kein Raum. Sie ist ein Loch im Dach der Welt, durch das man das Universum ungefiltert sieht. Wer zu lange hinaufstarrt, schwört, dass die Sterne ein Muster formen — einen Weg zu einem Ort, der noch weiter entfernt ist als der Tempel selbst."
         ],
-        "progressMessages": ["Die Sterne zeigen den Weg — folgt ihnen.", "Der Tempel zeichnet sich am Horizont ab.", "Die Sternenkammer ruft — ihr seid beinahe da."]
+        "progressMessages": ["Die Sterne verschieben sich. Folgt der Karte.", "Der Tempel ist mehr als ein Schimmern am Horizont.", "Die Konstellation stimmt bald. Beeilt euch."]
       },
       {
         "id": "kueste",
@@ -87,12 +87,12 @@
         "icon": "/images/icons/exp-coast.png",
         "checkpointNames": ["Klippenpfad gemeistert", "Wrack gesichtet", "Schiffsrumpf betreten", "Kapitänskajüte geöffnet"],
         "checkpointFlavor": [
-          "Die Klippen sind bezwungen. Unten schäumt das Meer, als hätte es eine persönliche Meinung zu eurem Vorhaben.",
-          "Zwischen Gischt und Fels liegt das Wrack — größer als erwartet, schiefer als gehofft.",
-          "Salzwasser tropft von den Decken. Das Schiff knarrt, als erinnere es sich an bessere Tage.",
-          "Die Kajüte des Kapitäns. Sein Logbuch liegt aufgeschlagen, als hätte er euch erwartet."
+          "Der Klippenpfad war einst eine Handelsroute. Davon zeugen rostige Haken in den Felsen und das Skelett eines Lastesels, der es fast geschafft hätte. Das Meer unten applaudiert sardonisch bei jedem Windstoß.",
+          "Das Wrack der 'Sturmbraut' liegt auf der Seite wie jemand, der beschlossen hat, sich hinzulegen und nie wieder aufzustehen. Am Bug prangt noch der Name, und darunter, in kleinerer Schrift: 'Letzte Fahrt: freiwillig.'",
+          "Unter Deck riecht es nach Salz und Geheimnissen. Die Fracht ist verschwunden — bis auf eine Kiste, die jemand an den Mast gekettet hat. Sie ist leer, aber die Ketten sind von innen verschlossen. Was auch immer drin war, es hat sich selbst befreit.",
+          "Das Logbuch des Kapitäns endet nicht mit einem Sturm oder einer Katastrophe. Der letzte Eintrag lautet: 'Sie ist zurückgekehrt. Wir lassen das Schiff hier. Wir brauchen es nicht mehr, wo wir hingehen.' Die Tinte ist noch feucht."
         ],
-        "progressMessages": ["Die Brandung ist laut, aber euer Fortschritt lauter.", "Das Wrack nimmt Gestalt an — weiter!", "Nur noch die Kajüte trennt euch vom Ziel."]
+        "progressMessages": ["Die Klippen liegen hinter euch. Das Wrack wartet.", "An Bord — aber die Antworten liegen tiefer.", "Die Kajüte ist nah. Was hat der Kapitän zurückgelassen?"]
       },
       {
         "id": "unterwelt",
@@ -101,12 +101,12 @@
         "icon": "/images/icons/exp-cave.png",
         "checkpointNames": ["Höhleneingang betreten", "Kristallgrotte erreicht", "Tiefste Kammer erforscht", "Urkristall gefunden"],
         "checkpointFlavor": [
-          "Die Dunkelheit verschluckt euch — dann beginnen die Wände zu leuchten. Sanft, wie ein Puls.",
-          "Die Grotte erstrahlt in Farben, für die es vermutlich noch keine Namen gibt. Jemand sollte sich welche ausdenken.",
-          "In der tiefsten Kammer ist die Stille so vollkommen, dass man den eigenen Herzschlag als Störung empfindet.",
-          "Der Urkristall summt in einer Frequenz, die nicht gehört, sondern gefühlt wird. Er hat auf euch gewartet."
+          "Am Höhleneingang hängt ein Schild, so alt, dass die Schrift kaum lesbar ist: 'Nicht die Kristalle leuchten. Sie reflektieren.' Was genau sie reflektieren, steht nicht dabei. Die Dunkelheit schluckt euch, und dann — Licht. Sanft, pulsierend, wie ein Herzschlag.",
+          "Die Kristallgrotte ist überwältigend schön, aber etwas stimmt nicht. Die Kristalle leuchten heller, wenn ihr euch nähert, und dunkler, wenn ihr geht. Sie reagieren nicht auf Licht. Sie reagieren auf euch. Auf eure Gedanken, genauer gesagt.",
+          "In der tiefsten Kammer ist die Stille absolut. Hier unten zeigen die Kristalle Bilder — Erinnerungen, die nicht eure sind. Eine Stadt unter der Erde, bevölkert von Menschen, die nie die Sonne gesehen haben. Sie brauchten sie nicht. Sie hatten die Kristalle.",
+          "Der Urkristall ist kein Kristall. Er ist ein Auge. Alt, riesig, und seit Äonen geschlossen. Das Schild am Eingang ergibt jetzt Sinn: Die Kristalle reflektieren die Träume dessen, was hier schläft. Es träumt von euch. Seit ihr den Eingang betreten habt."
         ],
-        "progressMessages": ["Das Licht der Kristalle weist den Weg nach unten.", "Tiefer — die Kristalle werden größer und heller.", "Der Urkristall ist nah. Ihr spürt sein Summen."]
+        "progressMessages": ["Die Kristalle leuchten heller. Sie wissen, dass ihr kommt.", "Tiefer — die Bilder in den Kristallen werden klarer.", "Das Summen wird lauter. Der Urkristall ist nah."]
       },
       {
         "id": "wueste",
@@ -115,12 +115,12 @@
         "icon": "/images/icons/exp-desert.png",
         "checkpointNames": ["Erste Düne überwunden", "Verborgene Oase gefunden", "Sandsturm überstanden", "Vergessene Stadt entdeckt"],
         "checkpointFlavor": [
-          "Die erste Düne liegt hinter euch. Die nächste sieht exakt gleich aus. Und die danach auch. Willkommen in der Wüste.",
-          "Eine Oase, versteckt zwischen Felsen, als wollte sie nicht gefunden werden. Aber ihr seid hartnäckiger als die Wüste.",
-          "Sand in den Augen, Sand in den Stiefeln, Sand in Gedanken, die eigentlich sandfrei sein sollten. Aber ihr steht noch.",
-          "Aus dem Sand ragen Türme einer Stadt, die auf keiner Karte verzeichnet ist. Vielleicht aus gutem Grund."
+          "Die erste Düne offenbart das Problem: Der Sand bewegt sich. Nicht mit dem Wind — gegen ihn. Dünen wandern hier wie lebende Dinge, und die Spuren von gestern sind heute Meter tief begraben. Die Wüste will nicht durchquert werden.",
+          "Die Oase liegt genau dort, wo der Sand aufgehört hat, sich zu bewegen. Ein perfekter Kreis aus Ruhe inmitten wandernder Dünen. Im Wasser spiegelt sich kein Himmel — nur die Umrisse einer Stadt, die es an der Oberfläche nicht gibt.",
+          "Der Sandsturm kommt aus der Richtung der Stadt. Er trägt nicht nur Sand, sondern Geräusche mit sich — Stimmen, Marktrufe, das Lachen von Kindern. Eine ganze Zivilisation, konserviert im Wind. Die Gilde gräbt sich ein und wartet. Die Stadt wartet auch.",
+          "Die Türme ragen aus dem Sand wie Finger einer begrabenen Hand. Die Stadt ist nicht verlassen — sie ist versunken. Durch ein Fenster in einem der Türme seht ihr Treppen, die nach unten führen, und an den Wänden Lichter, die noch immer brennen. Jemand lebt dort unten. Oder etwas."
         ],
-        "progressMessages": ["Der Sand ist tief, aber euer Wille tiefer.", "Die Hitze flimmert, doch ihr haltet Kurs.", "Am Horizont — dort! Die Umrisse einer vergessenen Stadt."]
+        "progressMessages": ["Der Sand bewegt sich, aber ihr bewegt euch schneller.", "Die Stimmen im Wind werden lauter.", "Die Türme ragen aus dem Sand. Ihr seid fast da."]
       },
       {
         "id": "sumpf",
@@ -129,12 +129,12 @@
         "icon": "/images/icons/exp-swamp.png",
         "checkpointNames": ["Moorpfad gefunden", "Sumpfbrücke überquert", "Herz der Moore erreicht", "Irrlichtquelle besänftigt"],
         "checkpointFlavor": [
-          "Ein Pfad — wenn man großzügig ist mit dem Wort. Zwei Bretter und eine Hoffnung, dass der Sumpf heute gnädig ist.",
-          "Die Brücke schwankt, das Moor blubbert unzufrieden. Aber ihr seid drüben, und das ist alles, was zählt.",
-          "Im Herzen der Moore ist die Luft so dick, dass man sie kauen könnte. Die Irrlichter tanzen näher.",
-          "Die Quelle der Irrlichter ist besänftigt. Sie leuchten nun sanft statt tückisch — ein dezenter, aber wichtiger Unterschied."
+          "Der Moorpfad besteht aus Brettern, die jemand vor langer Zeit gelegt hat. Manche tragen Kerben — Zählstriche. Jemand hat gezählt, wie oft er diesen Weg gegangen ist. Bei dreiundsechzig hat er aufgehört. Oder das Brett ist voll geworden.",
+          "Die Brücke ist alt, aber solide. Das Moor darunter blubbert vorwurfsvoll, als wäre die Brücke eine persönliche Beleidigung. Auf der anderen Seite findet ihr ein verlassenes Lager — ordentlich aufgeräumt, Feuer korrekt gelöscht. Wer auch immer hier war, ist nicht geflohen. Er ist einfach weitergegangen. Ins Moor.",
+          "Im Herzen der Moore tanzen die Irrlichter in Formation. Kein Zufall — ein Muster. Sie umkreisen etwas am Grund des Moors, etwas, das schwach pulsiert. Die Luft schmeckt nach Kupfer und alten Entscheidungen. Das verlassene Lager ergibt plötzlich Sinn: Er ist nicht ins Moor gegangen. Er ist zu ihnen gegangen.",
+          "Die Irrlichter reagieren auf Musik. Ein Summen genügt, und sie ordnen sich neu — nicht feindselig, sondern neugierig. Sie führen euch zu ihrer Quelle: einem versunkenen Stein, in den eine Melodie eingraviert ist. Dieselben Kerben wie auf den Brettern. Dreiundsechzig Versuche, bis die richtige Melodie gefunden war."
         ],
-        "progressMessages": ["Der Moorpfad hält — vorerst.", "Durch den Nebel schimmert Fortschritt.", "Die Irrlichter weichen zurück. Ihr seid fast da."]
+        "progressMessages": ["Das Moor blubbert. Das ist normal. Wahrscheinlich.", "Die Irrlichter tanzen näher. Sie sind neugierig.", "Die Quelle pulsiert. Nur noch ein Stück durch den Nebel."]
       },
       {
         "id": "aetherspitze",
@@ -143,12 +143,12 @@
         "icon": "/images/icons/expedition-generic.png",
         "checkpointNames": ["Windschneise durchquert", "Aetherfeld betreten", "Sturmplateau erreicht", "Gipfel der Aetherspitze erklommen"],
         "checkpointFlavor": [
-          "Der Wind heult durch die Schneise, als hätte er eine Nachricht, die er nicht in Worte fassen kann.",
-          "Das Aetherfeld kribbelt auf der Haut. Die Realität fühlt sich hier dünner an, als wäre die Welt nur eine Skizze.",
-          "Auf dem Sturmplateau stehen Steine, die langsam schweben. Niemand fragt warum. Manche Dinge sind einfach so.",
-          "Der Gipfel. Der Aether strömt hier so dicht, dass die Gedanken klarer werden — oder verrückter. Schwer zu unterscheiden."
+          "Die Windschneise ist der einzige Weg nach oben, und sie heult wie etwas, das Schmerzen hat. Zwischen den Böen hört ihr Fragmente — Worte, die nicht zusammenpassen. Der Aether ist hier so dicht, dass die Luft Erinnerungen trägt. Nicht eure.",
+          "Im Aetherfeld lösen sich die Ränder der Dinge auf. Eure Schatten fallen in die falsche Richtung, und manchmal — nur für einen Wimpernschlag — seht ihr eine zweite Version des Berges, überlagert über die erste. Dünner, durchsichtiger. Als gäbe es zwei Aetherspitzen, und ihr wandert auf beiden gleichzeitig.",
+          "Das Sturmplateau erklärt die Doppelbilder. Die schwebenden Steine tragen Inschriften in einer Sprache, die sich verändert, während man sie liest. Sie beschreiben einen Riss — nicht im Berg, sondern in der Welt. Die Aetherspitze ist der Ort, an dem die Realität am dünnsten ist. Deshalb flüstert der Wind.",
+          "Auf dem Gipfel hört der Wind auf. Vollständig. In der Stille seht ihr es klar: Die zweite Aetherspitze steht direkt vor euch, spiegelverkehrt, aus reinem Aether gewoven. Ein Gipfel, der in eine andere Welt ragt. Der Riss ist keine Wunde — er ist eine Tür. Sie steht offen."
         ],
-        "progressMessages": ["Der Wind trägt euch aufwärts — nutzt den Schwung.", "Das Aetherfeld lichtet sich vor euch.", "Der Gipfel ist zum Greifen nah. Atmet tief."]
+        "progressMessages": ["Der Aether flüstert lauter. Hört nicht hin.", "Die Doppelbilder werden stärker. Vertraut euren Füßen.", "Der Gipfel ist nah. Die Stille auch."]
       },
       {
         "id": "eisenwald",
@@ -157,12 +157,12 @@
         "icon": "/images/icons/expedition-generic.png",
         "checkpointNames": ["Eisentor passiert", "Metallhain durchquert", "Wurzelkammer freigelegt", "Herz des Eisenwalds berührt"],
         "checkpointFlavor": [
-          "Das Eisentor schwingt auf mit einem Klang, der noch minutenlang zwischen den Stämmen nachhallt. Willkommen im Wald, der nicht brennt.",
-          "Die Bäume hier klingen, wenn der Wind sie streift. Es ist beinahe Musik — wenn man großzügig mit dem Begriff umgeht.",
-          "Unter den Wurzeln liegt eine Kammer, älter als der Wald selbst. Jemand hat hier geschmiedet, lange bevor Schmiede erfunden wurden.",
-          "Das Herz des Eisenwalds pulsiert — ein tiefer, metallischer Herzschlag. Es schläft noch. Lasst es dabei."
+          "Das Eisentor schwingt auf, und der Klang — tief, resonant, endlos — verrät sofort: Dieser Wald ist hohl. Die Metallstämme sind Röhren, und etwas darin zirkuliert. Nicht Saft, nicht Wasser. Etwas Wärmeres.",
+          "Im Metallhain wird klar, was in den Stämmen fließt. An einer Bruchstelle tropft es heraus: flüssiges Eisen, rotglühend, aber langsam erkaltend. Der Wald blutet. Und die Wunde heilt sich selbst — der Stamm versiegelt sich, während ihr zuseht. Dieser Wald ist nicht aus Metall gewachsen. Er ist ein Organismus.",
+          "Die Wurzelkammer liegt tief unter dem Waldboden, und hier fließen die Eisenadern zusammen. In der Mitte steht ein Amboss, der keiner ist — er ist aus dem Boden gewachsen, Teil des Waldes, wie ein Organ. Die Schlagspuren darauf stammen von einem Hammer, der größer war als jeder Schmied, der ihn hätte schwingen können.",
+          "Das Herz des Eisenwalds schlägt langsam und schwer. Es ist kein Kern, kein Kristall — es ist ein tatsächliches Herz, aus Eisen, so groß wie ein Haus, und es pumpt flüssiges Metall durch den gesamten Wald. Wer den Amboss benutzt hat, hat nicht im Wald geschmiedet. Er hat den Wald geschmiedet."
         ],
-        "progressMessages": ["Die Metallbäume knarren zustimmend — ihr seid auf dem richtigen Weg.", "Der Wald lichtet sich widerwillig.", "Das Herz des Waldes schlägt lauter. Ihr seid nah."]
+        "progressMessages": ["Die Stämme klingen bei eurem Näherkommen.", "Das flüssige Eisen zeigt euch den Weg nach unten.", "Das Herz schlägt lauter. Folgt dem Rhythmus."]
       },
       {
         "id": "versunkener-turm",
@@ -171,12 +171,12 @@
         "icon": "/images/icons/expedition-generic.png",
         "checkpointNames": ["Seeüberquerung geschafft", "Turmeingang gefunden", "Überflutete Hallen erkundet", "Versiegeltes Archiv geborgen"],
         "checkpointFlavor": [
-          "Der Silbersee ist still wie ein Spiegel, der lieber nicht zeigt, was unter ihm liegt. Ihr seid drüben — trocken ist relativ.",
-          "Der Turmeingang liegt halb unter Wasser. Die Tür öffnet sich nach innen, was in diesem Fall bedeutet: nach unten.",
-          "Die Hallen sind überflutet, aber die Wandmalereien leuchten noch immer. Wasser konserviert besser als jedes Museum.",
-          "Das Archiv war versiegelt — vermutlich nicht, um etwas drinnen zu halten. Vermutlich."
+          "Der Silbersee ist so still, dass eure Ruderschläge wie Sakrileg klingen. Auf halbem Weg seht ihr den Turm unter der Oberfläche weitergehen — Stockwerk um Stockwerk, tiefer als der See tief sein sollte. Dieser Turm ist nicht ins Wasser gesunken. Das Wasser ist zu ihm gekommen.",
+          "Der Turmeingang liegt halb unter Wasser, die Treppe führt abwärts in die Dunkelheit. An der Wand hängt ein Porträt — eine Gelehrte, den Blick auf etwas gerichtet, das außerhalb des Rahmens liegt. Ihre Augen sind offen, aufmerksam. Die Plakette darunter: 'Die Letzte Archivarin.'",
+          "Die überfluteten Hallen sind seltsam gut erhalten. Die Wandmalereien zeigen die Geschichte des Turms in umgekehrter Reihenfolge — je tiefer ihr geht, desto weiter reichen sie in die Zukunft. Die unterste zeigt den See, den Turm, und winzige Gestalten in einem Boot. Sie zeigt euch. Gemalt vor Jahrhunderten.",
+          "Das versiegelte Archiv enthält ein einziges Buch, aufgeschlagen auf einer Seite, die heute datiert ist. Die Handschrift gehört der Archivarin vom Porträt. Sie beschreibt euren Besuch in perfektem Detail — bis zu diesem Moment. Der nächste Satz lautet: 'Sie haben das Buch geschlossen. Kluge Entscheidung.'"
         ],
-        "progressMessages": ["Der Turm ragt geduldig aus dem See. Ihr nähert euch.", "Die überfluteten Hallen öffnen sich vor euch.", "Das versiegelte Archiv wartet — nur noch ein Stockwerk."]
+        "progressMessages": ["Der Turm wartet. Er hat Übung darin.", "Die Hallen werden älter — oder jünger. Schwer zu sagen.", "Das Archiv ist nah. Eine Treppe noch."]
       },
       {
         "id": "glutklamm",
@@ -185,12 +185,12 @@
         "icon": "/images/icons/expedition-generic.png",
         "checkpointNames": ["Klammeingang erreicht", "Glutbrücke überquert", "Schmiedegrund durchschritten", "Alte Esse entdeckt"],
         "checkpointFlavor": [
-          "Die Hitze trifft euch wie eine Wand. Die Felsen glühen dunkelrot — gemütlich ist anders, aber beeindruckend allemal.",
-          "Die Glutbrücke ist genau so breit, wie man es sich nicht wünscht. Unten fließt etwas, das früher Stein war.",
-          "Der Schmiedegrund dampft und zischt. Wer auch immer hier geschmiedet hat, kannte kein Maß — und brauchte auch keins.",
-          "Die alte Esse steht noch, ihr Feuer nie erloschen. Manche Flammen sind zu stur zum Sterben."
+          "Am Klammeingang liegt ein Handschuh aus Drachenleder, verbrannt an den Fingerspitzen. Daneben ein Zettel in krakeliger Schrift: 'Die Klamm ist nicht gefährlich. Die Klamm ist wütend. Es gibt einen Unterschied.' Die Hitze trifft euch wie ein Vorwurf.",
+          "Die Glutbrücke überspannt einen Fluss aus geschmolzenem Gestein. Auf halber Strecke bemerkt ihr die Handabdrücke — hunderte, eingebrannt in den Brückenrand, als hätten sich Generationen von Schmieden hier festgehalten. Die Brücke wurde nicht gebaut. Sie wurde gehalten.",
+          "Der Schmiedegrund erzählt die Geschichte zu Ende. Hier standen einst die Öfen der Feuerschmiede — nicht einer, sondern Dutzende, in konzentrischen Ringen. In der Mitte ein leerer Sockel, auf dem etwas stand, das so heiß war, dass der Stein darunter zu Glas geschmolzen ist. Es ist nicht mehr da. Aber die Hitze, die es hinterlassen hat, lodert noch immer.",
+          "Die alte Esse ist der letzte Ofen — und der einzige, der noch brennt. In ihrer Flamme seht ihr Bilder: einen Schmied, der etwas formt, das gleichzeitig Waffe und Schlüssel ist. Er hat die Klamm nicht wütend gemacht. Er hat ihr den Schlüssel weggenommen. Und die Klamm wartet, seit Jahrhunderten, dass jemand ihn zurückbringt."
         ],
-        "progressMessages": ["Die Hitze steigt, aber so auch euer Fortschritt.", "Halbzeit — die Glutbrücke liegt hinter euch.", "Die alte Esse glüht am Ende der Klamm. Fast geschafft."]
+        "progressMessages": ["Die Klamm grummelt. Weiter.", "Die Glutbrücke ist überstanden. Der Schmiedegrund wartet.", "Die Esse brennt am Ende des Pfads. Spürt ihr die Hitze?"]
       },
       {
         "id": "frostmark",
@@ -199,12 +199,12 @@
         "icon": "/images/icons/expedition-generic.png",
         "checkpointNames": ["Nordwind überstanden", "Eislabyrinth gemeistert", "Gefrorener Hain erreicht", "Zeitsplitter geborgen"],
         "checkpointFlavor": [
-          "Der Nordwind hat alles gegeben. Ihr habt mehr gegeben. Vorläufiger Stand: Gilde 1, Wind 0.",
-          "Das Eislabyrinth wechselt seine Wege bei Nacht. Ihr habt es bei Tag geschafft, was vermutlich klüger war.",
-          "Der Hain ist gefroren — Bäume, Vögel, sogar der Regen steht still in der Luft. Schön, auf eine beunruhigende Art.",
-          "Der Zeitsplitter schimmert in euren Händen. Die Zeit um ihn herum fließt etwas langsamer. Oder ihr werdet etwas schneller."
+          "Der Nordwind trägt Eiskristalle, die zu perfekt sind, um natürlich zu sein. Jeder einzelne hat sechs Seiten, und auf jeder Seite steht dasselbe Wort, zu klein zum Lesen, aber zu präzise für Zufall. Die Frostmark markiert ihr Territorium.",
+          "Das Eislabyrinth erklärt die Kristalle. Seine Wände bestehen aus demselben perfekten Eis, und das Wort ist jetzt lesbar: 'Bleib.' Das Labyrinth verändert sich nicht bei Nacht — es verändert sich, wenn man stehenbleibt. Die Lösung ist simpel: Niemals aufhören zu gehen. Einfacher gesagt als getan bei minus dreißig Grad.",
+          "Der Gefrorene Hain ist kein gefrorener Wald. Es ist ein Moment, eingefroren in der Zeit. Regentropfen hängen in der Luft. Ein Vogel steht mitten im Flug. Zwischen den Bäumen liegt ein Wanderer — lächelnd, mitten im Schritt, seit Jahrhunderten auf dem Weg irgendwohin. Er trägt einen Splitter am Hals, identisch zu dem, den ihr sucht.",
+          "Der Zeitsplitter liegt dort, wo die Zeit am stillsten steht — im Zentrum des Hains, auf einem Sockel aus gefrorenem Licht. Als ihr ihn aufhebt, bewegt sich der Vogel einen Flügelschlag weiter. Der Wanderer macht einen Schritt. Der Regen fällt einen Zentimeter. Nicht genug, um die Zeit zu heilen — aber genug, um zu wissen, dass es möglich wäre."
         ],
-        "progressMessages": ["Die Kälte beißt, aber ihr beißt zurück.", "Das Eis wird dünner — oder euer Wille dicker.", "Der Zeitsplitter flimmert am Horizont. Haltet durch."]
+        "progressMessages": ["Die Kristalle fallen dichter. Ihr seid auf dem richtigen Weg.", "Das Labyrinth verändert sich. Bleibt nicht stehen.", "Der Hain schimmert am Horizont. Fast da."]
       },
       {
         "id": "schattenschlucht",
@@ -213,12 +213,12 @@
         "icon": "/images/icons/expedition-generic.png",
         "checkpointNames": ["Abstieg begonnen", "Lichtlose Tiefe erreicht", "Echo-Halle durchquert", "Schattenkern gefunden"],
         "checkpointFlavor": [
-          "Der erste Schritt hinab, und das Licht über euch wird zu einer fernen Erinnerung. Die Schlucht atmet kalt.",
-          "Hier unten gibt es kein Licht. Dafür Geräusche, die kein Licht brauchen, um beunruhigend zu sein.",
-          "Die Echo-Halle wiederholt nicht nur Geräusche — sie fügt eigene hinzu. Dezent, aber unmissverständlich.",
-          "Der Schattenkern ist kein Ort. Er ist eine Abwesenheit von Ort. Und doch steht ihr mittendrin."
+          "Der Abstieg beginnt mit einer Entdeckung: Die Felswände tragen Kratzspuren, immer nach unten zeigend, als hätte sich etwas aus der Tiefe nach oben geschleppt. Die Spuren enden abrupt, hundert Meter unter dem Rand. Was auch immer es war — es hat aufgegeben. Oder es hat etwas Besseres gefunden.",
+          "In der lichtlosen Tiefe hört ihr Schritte, die nicht eure sind. Sie gehen im selben Rhythmus wie eure, aber in die entgegengesetzte Richtung — nach oben. Als ihr stehenbleibt, bleiben sie auch stehen. Als ihr wartet, warten sie auch. Dann, nach einer Minute Stille, ein einzelnes Wort, geflüstert aus der Dunkelheit: 'Weiter.'",
+          "Die Echo-Halle macht alles klar. Sie wiederholt nicht Geräusche — sie gibt sie zurück, bevor man sie macht. Ihr hört eure eigenen Worte eine Sekunde, bevor ihr sie aussprecht. Das ist nicht Magie. Das ist Geometrie. Die Halle ist so geformt, dass die Zeit in ihr eine Kurve macht. Die Schritte von vorhin waren eure — von morgen.",
+          "Am Schattenkern gibt es keine Dunkelheit mehr. Es gibt auch kein Licht. Es gibt nichts — und in diesem Nichts steht eine Tür, die in beide Richtungen gleichzeitig offen ist. Dahinter liegt derselbe Raum, in dem ihr steht, aber leer. Ein Spiegel ohne Spiegelung. Die Gilde beschließt einstimmig, nicht hindurchzugehen. Manche Türen sind interessanter geschlossen."
         ],
-        "progressMessages": ["Tiefer hinab — die Schatten heißen euch willkommen.", "Die Echo-Halle liegt vor euch. Hört genau hin.", "Der Schattenkern pulsiert in der Finsternis. Beinahe da."]
+        "progressMessages": ["Die Kratzspuren werden frischer. Weiter nach unten.", "Die Schritte sind zu hören. Nicht stehenbleiben.", "Der Schattenkern ist nah. Das Nichts auch."]
       },
       {
         "id": "windweber-ebene",
@@ -227,12 +227,12 @@
         "icon": "/images/icons/expedition-generic.png",
         "checkpointNames": ["Ebene betreten", "Aetherstromfeld navigiert", "Windweber-Steine gefunden", "Auge des Sturms erreicht"],
         "checkpointFlavor": [
-          "Die Ebene empfängt euch mit einem Windstoß, der nach Ozon schmeckt und nach schlechten Entscheidungen klingt.",
-          "Die Aetherströme weben Muster in die Luft — sichtbar, greifbar, gelegentlich feindselig. Navigation ist hier ein starkes Wort.",
-          "Die Windweber-Steine stehen in perfekter Formation. Wer sie aufgestellt hat, verstand etwas über Wind, das wir vergessen haben.",
-          "Im Auge des Sturms herrscht absolute Stille. Ringsum tobt der Aether. Es ist der friedlichste und bedrohlichste Ort zugleich."
+          "Die Ebene hat keinen Horizont. Der Himmel und der Boden gehen ineinander über, vernäht von Aetherströmen, die wie leuchtende Fäden durch die Luft weben. Man kann hier nicht verloren gehen — man kann nur vergessen, wohin man wollte. Die Gilde bindet sich vorsorglich aneinander fest.",
+          "Die Aetherströme werden dichter, und jetzt seht ihr es: Sie weben tatsächlich etwas. Zwischen den Fäden entsteht Stoff — Realität, buchstäblich gewebt aus rohem Aether. Manche Stellen sind dünner, durchscheinend, und dahinter schimmert etwas, das aussieht wie eine andere Version dieser Ebene. Eine fertige Version.",
+          "Die Windweber-Steine sind keine Steine. Sie sind Webstühle — riesig, aus einem Material, das nicht existieren sollte, und die Aetherströme laufen durch sie hindurch wie Fäden durch Nadeln. Einer der Stühle bewegt sich noch, langsam, methodisch. Er webt seit Jahrhunderten an einem Stück Realität, das noch nicht fertig ist.",
+          "Im Auge des Sturms liegt das fertige Stück. Es ist ein Kreis aus perfekter Stille — kein Laut, kein Wind, kein Aether. Ein Ort, der fertig gewebt wurde. In seiner Mitte steht ein einzelner Stuhl, leer, und daneben eine Notiz: 'Jemand muss sich hinsetzen und die letzten Fäden halten. Ich komme wieder.' Die Notiz ist alt. Sehr alt."
         ],
-        "progressMessages": ["Die Winde tragen euch voran — ob ihr wollt oder nicht.", "Die Steine sind in Sichtweite. Haltet Kurs.", "Das Auge des Sturms wartet. Ein letzter Kraftakt."]
+        "progressMessages": ["Die Fäden leuchten heller. Folgt ihnen.", "Die Webstühle sind in Sicht. Der Aether singt.", "Das Auge des Sturms — ein letzter Schritt durch den Wind."]
       },
       {
         "id": "vergessene-bruecke",
@@ -241,12 +241,12 @@
         "icon": "/images/icons/expedition-generic.png",
         "checkpointNames": ["Westpfeiler erreicht", "Brückenreste überquert", "Mittelbogen stabilisiert", "Ostseite betreten"],
         "checkpointFlavor": [
-          "Der Westpfeiler steht noch — trotzig, verwittert, und mit der Gelassenheit von etwas, das Jahrhunderte überlebt hat.",
-          "Die Brückenreste sind weniger Brücke und mehr Vorschlag. Aber ein Vorschlag, dem die Gilde folgt.",
-          "Der Mittelbogen hält wieder. Provisorisch, aber mit Überzeugung. Manchmal reicht das.",
-          "Die Ostseite — das andere Ufer eines Abgrunds, der zwei Reiche trennte. Ihr habt gerade Geschichte rückgängig gemacht."
+          "Der Westpfeiler trägt Inschriften zweier Reiche — auf der einen Seite Thalmund, auf der anderen ein Name, der so gründlich ausgemeißelt wurde, dass der Stein Narben hat. Jemand wollte nicht nur vergessen werden, sondern sicherstellen, dass das Vergessen wehtat.",
+          "Auf den Brückenresten liegen Gegenstände: ein Schwert, ein Buch, ein Kinderspielzeug, ein Ring. Dinge, die man auf einer Brücke zurücklässt, wenn man beschließt, nicht mehr zurückzukehren. Die Gilde geht vorsichtig an ihnen vorbei. Manche Geschichten liest man besser nicht zu Ende.",
+          "Der Mittelbogen war gesprengt — nicht eingestürzt, gesprengt. Absichtlich, präzise, von jemandem, der wusste, was er tat. In den Trümmern findet ihr die Sprengladungen: Runenwerk, kunstvoll, aus beiden Reichen stammend. Sie haben die Brücke gemeinsam zerstört. Die einzige Sache, auf die sie sich einigen konnten.",
+          "Die Ostseite trägt denselben ausgemeißelten Namen, diesmal tiefer, wütender. Aber darunter, in frischer Schrift, hat jemand kürzlich drei Worte hinterlassen: 'Es tut mir leid.' Die Tinte ist kaum trocken. Jemand war vor euch hier. Jemand, der den Namen kannte."
         ],
-        "progressMessages": ["Der Westpfeiler steht fest. Weiter zum nächsten.", "Die Brücke nimmt Form an unter euren Händen.", "Nur noch der letzte Bogen — die Ostseite wartet."]
+        "progressMessages": ["Der Westpfeiler steht. Die Geschichte beginnt.", "Die Brücke erzählt — Schritt für Schritt.", "Der letzte Bogen. Die Ostseite wartet mit Antworten."]
       },
       {
         "id": "aschensee",
@@ -255,12 +255,12 @@
         "icon": "/images/icons/expedition-generic.png",
         "checkpointNames": ["Ufer erreicht", "Aschenebel durchdrungen", "Seeboden-Ruinen gesichtet", "Licht unter dem Wasser berührt"],
         "checkpointFlavor": [
-          "Das Ufer knirscht unter euren Füßen. Feine Asche fällt wie Schnee — nur wärmer und deutlich ungemütlicher.",
-          "Der Aschenebel verschluckt Geräusche und Sicht. Nur der See selbst leuchtet schwach, als wolle er den Weg weisen.",
-          "Unter der Oberfläche schimmern Ruinen — eine Stadt, die lieber untergegangen ist als vergessen zu werden.",
-          "Das Licht unter dem Wasser reagiert auf eure Berührung. Es ist alt, es ist warm, und es erkennt euch."
+          "Das Ufer besteht aus Asche, nicht aus Sand. Feine, warme Asche, die vom See selbst aufsteigt und langsam herabfällt. Die Fischer am Hafen haben euch gewarnt: 'Der See trauert. Seit dem Brand trauert er.' Welcher Brand, wollten sie nicht sagen.",
+          "Im Aschenebel tauchen Umrisse auf — Häuser, Straßen, ein Marktplatz. Nicht am Ufer, sondern auf dem Wasser, als Projektion aus Asche und Licht. Die Stadt, die hier stand, bevor der See sie verschluckte. Der Brand war kein Unfall. Die Stadt hat sich selbst angezündet, um etwas zu zerstören, das schlimmer war als Feuer.",
+          "Unter der Oberfläche liegen die echten Ruinen, und zwischen ihnen das Licht, das die Fischer fürchten. Es pulsiert in einem Rhythmus, der an Atemzüge erinnert — langsam, gleichmäßig, geduldig. Was die Stadt verbrennen wollte, hat den Brand überlebt. Es liegt auf dem Seegrund und atmet.",
+          "Das Licht reagiert auf eure Berührung wie ein Tier, das gestreichelt wird — es wird wärmer, weicher. Es ist nicht gefährlich. Es ist einsam. Die Stadt hat sich für nichts geopfert. Oder vielleicht hat es sich seit dem Brand verändert. Manche Dinge werden sanfter, wenn man lange genug allein ist."
         ],
-        "progressMessages": ["Die Asche fällt leise. Euer Fortschritt ist lauter.", "Der Nebel lichtet sich — der See gibt nach.", "Das Licht unter der Oberfläche wird heller. Ihr seid fast da."]
+        "progressMessages": ["Die Asche fällt dichter. Der See spürt euch.", "Die Projektion wird klarer. Die Geschichte entfaltet sich.", "Das Licht am Seegrund pulsiert stärker. Beinahe da."]
       },
       {
         "id": "sternfall-krater",
@@ -269,12 +269,12 @@
         "icon": "/images/icons/expedition-generic.png",
         "checkpointNames": ["Kraterrand erreicht", "Inneren Ring betreten", "Sternengestein berührt", "Melodie des Kerns gehört"],
         "checkpointFlavor": [
-          "Vom Kraterrand aus sieht man das Leuchten — pulsierend, rhythmisch, wie der Herzschlag von etwas, das vom Himmel fiel und überlebte.",
-          "Der innere Ring vibriert unter euren Füßen. Das Gestein hier ist nicht von dieser Welt, und es möchte, dass ihr das wisst.",
-          "Das Sternengestein ist warm. Nicht heiß — warm, wie eine Hand, die man zu lange gehalten hat. Es summt bei Berührung.",
-          "Die Melodie des Kerns ist keine Melodie im eigentlichen Sinne. Es ist eher das Gefühl, dass das Universum leise vor sich hin pfeift."
+          "Vom Kraterrand seht ihr, was kein Teleskop zeigt: Der Einschlag hat den Boden nicht zerstört, er hat ihn umgeschrieben. Das Gestein ist in Mustern erstarrt, die an Schrift erinnern — als hätte der Stern beim Aufprall eine Nachricht hinterlassen, eingebrannt in den Planeten selbst.",
+          "Im inneren Ring wird die Schrift lesbar, und sie sagt etwas Verstörendes: Es sind Koordinaten. Nicht von hier — von dort, woher der Stern kam. Er wurde nicht abgestoßen. Er wurde geschickt. Und die Vibration unter euren Füßen ist kein Nachbeben. Es ist eine Antwort, die seit dem Einschlag gesendet wird.",
+          "Das Sternengestein im Zentrum ist warm, und seine Oberfläche verändert sich bei Berührung. Die Muster formen sich neu, reagieren auf Körperwärme, auf Herzschlag. Es versucht zu kommunizieren. Die Melodie, die es summt, besteht aus denselben Koordinaten, übersetzt in Klang. Es ruft nach Hause.",
+          "Die Melodie des Kerns ist vollständig, und jetzt versteht ihr ihren Zweck: Sie ist keine Nachricht nach Hause. Sie ist eine Warnung davor. Der Stern ist nicht gefallen — er ist geflohen. Was auch immer an diesen Koordinaten wartet, der Stern hat die halbe Galaxie durchquert, um ihm zu entkommen. Und die Antwort, die der Krater sendet, verrät seine Position."
         ],
-        "progressMessages": ["Der Krater leuchtet heller, je näher ihr kommt.", "Das Sternengestein summt — es spürt euch.", "Die Melodie wird klarer. Der Kern erwartet euch."]
+        "progressMessages": ["Die Schrift im Gestein wird schärfer. Nähert euch.", "Die Vibration ändert ihren Rhythmus. Der Kern reagiert.", "Die Melodie ist fast vollständig. Ein letzter Ring."]
       },
       {
         "id": "dornenpfad",
@@ -283,12 +283,12 @@
         "icon": "/images/icons/expedition-generic.png",
         "checkpointNames": ["Ersten Dornenwall durchbrochen", "Lichtung der Stille gefunden", "Dornenherz umgangen", "Tore von Vael'kor erblickt"],
         "checkpointFlavor": [
-          "Der erste Wall ist durchbrochen. Hinter euch schließen sich die Dornen wieder, langsam und mit einer gewissen Gelassenheit.",
-          "Eine Lichtung, auf der nichts wächst und nichts klingt. Selbst die Dornen meiden diesen Ort. Das ist entweder beruhigend oder das Gegenteil.",
-          "Das Dornenherz schlägt — langsam, vegetabil, und mit der Entschlossenheit von etwas, das seit Äonen wächst. Ihr geht lieber drumherum.",
-          "Die Tore von Vael'kor erheben sich hinter dem letzten Dornenwall. Sie waren die ganze Zeit da — verborgen, aber nie verschwunden."
+          "Der erste Dornenwall schließt sich hinter euch, und damit wird klar: Dies ist keine Wildnis. Die Dornen wachsen in Reihen, in Schichten, mit der Präzision eines Architekten. Jemand hat diesen Wald gepflanzt. Nicht um zu schützen, was dahinter liegt — sondern um sicherzustellen, dass nur die Hartnäckigen durchkommen.",
+          "Die Lichtung der Stille ist ein perfekter Kreis, und in seiner Mitte steht ein Tisch aus lebendem Holz, gedeckt für zwei. Die Teller sind aus Blättern, die Becher aus Rinde. Alles wächst noch. Eine Einladung — alt, geduldig, und eindeutig für jemanden bestimmt, der den Dornenwald überlebt hat. Nur ist unklar, wer der Gastgeber ist.",
+          "Am Dornenherz wird der Gastgeber sichtbar: Die Dornen selbst bilden eine Gestalt — riesig, langsam, mit Augen aus Bernstein und einem Puls aus Saft. Sie beobachtet euch ohne Feindseligkeit. Die Lichtung war ihr Wartezimmer. Der gedeckte Tisch war ihr Test. Wer sich setzt und isst, wird durchgelassen. Wer kämpft, wird zum Dünger.",
+          "Hinter dem letzten Wall stehen die Tore von Vael'kor — nicht trotz der Dornen, sondern wegen ihnen. Die Stadt und der Wald sind eins. Die Dornengestalt ist der Torwächter, und die Becher auf der Lichtung waren das Passwort. Vael'kor hat seine Besucher immer selbst ausgewählt. Ihr wart offenbar auf der Gästeliste."
         ],
-        "progressMessages": ["Die Dornen weichen — langsam, aber sicher.", "Die Lichtung gewährt eine Verschnaufpause. Nutzt sie.", "Vael'kor schimmert durch das Gestrüpp. Der letzte Wall."]
+        "progressMessages": ["Die Dornen ordnen sich um euch. Nicht feindlich — prüfend.", "Die Lichtung wartet. Setzt euch.", "Der letzte Wall lichtet sich. Vael'kor öffnet seine Tore."]
       },
       {
         "id": "echoturm",
@@ -297,12 +297,12 @@
         "icon": "/images/icons/expedition-generic.png",
         "checkpointNames": ["Turmbasis betreten", "Halle der Echos durchquert", "Eigene Stimme gehört", "Turmspitze erreicht"],
         "checkpointFlavor": [
-          "Die Turmbasis flüstert. Nicht bedrohlich — eher so, als würde ein altes Gebäude Smalltalk versuchen.",
-          "Die Halle der Echos gibt nicht zurück, was man hineinruft. Sie gibt zurück, was man meint. Das ist irritierender, als es klingt.",
-          "Eure eigene Stimme, aber von vor langer Zeit. Sie sagt Dinge, die ihr vergessen hattet. Manche davon sind sogar hilfreich.",
-          "Die Turmspitze. Von hier aus kann man alles sehen — und der Turm kann sich an alles erinnern. Eine faire Vereinbarung."
+          "Die Turmbasis begrüßt euch mit einer Stimme, die ihr kennt — eure eigene, aber jünger, aufgeregter. Sie sagt: 'Endlich.' Der Turm erinnert sich nicht an alle. Er erinnert sich an die, die irgendwann kommen mussten. Offenbar gehört ihr dazu.",
+          "Die Halle der Echos ist ein Archiv aus Stimmen. Tausende Gespräche, übereinander gelagert wie Sedimentschichten. Die meisten sind unverständlich, aber eines ist klar — ein Streit zwischen zwei Gelehrten, die sich nicht einigen konnten, ob der Turm Erinnerungen speichert oder erschafft. Der Streit endet abrupt. Einer der beiden hat es herausgefunden.",
+          "In der oberen Kammer hört ihr eure eigene Stimme, aber aus der Zukunft. Sie klingt müde und zufrieden. Sie sagt Dinge, die noch keinen Sinn ergeben, Ratschläge für Situationen, die noch nicht eingetreten sind. Einer davon: 'Wenn du oben ankommst, lies nicht die letzte Seite.' Der Turm gibt nicht nur Echos zurück. Er gibt Vorschauen.",
+          "Die Turmspitze ist ein runder Raum mit einem einzigen Buch auf einem Pult. Es enthält die gesammelten Echos jedes Besuchers — vergangenheit, Gegenwart, Zukunft, fein säuberlich notiert. Euer Kapitel ist fast voll. Die letzte Seite ist leer, bis auf einen Satz: 'Du hast es trotzdem gelesen.' Der Turm kennt euch besser, als euch lieb ist."
         ],
-        "progressMessages": ["Die Echos werden lauter — ihr steigt richtig.", "Die Halle summt mit Erinnerungen. Weiter nach oben.", "Die Spitze ist nah. Der Turm erwartet euch."]
+        "progressMessages": ["Die Stimmen werden persönlicher. Steigt weiter.", "Der Streit in der Halle wird leiser. Ihr seid fast durch.", "Die Spitze flüstert euren Namen. Ein Stockwerk noch."]
       }
     ]
   }
