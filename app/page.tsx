@@ -137,14 +137,27 @@ export default function Dashboard() {
   });
   // selectedIds, bulkLoading, reviewComments moved to useQuestActions hook
   const [typeFilter, setTypeFilter] = useState<string>("all");
-  const [dashViewRaw, setDashViewRaw] = useState<"questBoard" | "npcBoard" | "klassenquests" | "character" | "campaign" | "leaderboard" | "honors" | "season" | "shop" | "forge" | "gacha" | "roadmap" | "changelog" | "challenges" | "rituals" | "vows" | "social" | "tavern" | "rift" | "factions" | "worldboss" | "dungeons">("questBoard");
-  const [activeFloor, setActiveFloor] = useState("haupthalle");
-  // Wrap setDashView to auto-sync the active floor
+  const [dashViewRaw, setDashViewRaw] = useState<"questBoard" | "npcBoard" | "klassenquests" | "character" | "campaign" | "leaderboard" | "honors" | "season" | "shop" | "forge" | "gacha" | "roadmap" | "changelog" | "challenges" | "rituals" | "vows" | "social" | "tavern" | "rift" | "factions" | "worldboss" | "dungeons">(() => {
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("dash_view");
+      if (saved) return saved as typeof dashViewRaw;
+    }
+    return "questBoard";
+  });
+  const [activeFloor, setActiveFloor] = useState(() => {
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("dash_view");
+      if (saved) { const f = getFloorForRoom(saved); if (f) return f.id; }
+    }
+    return "haupthalle";
+  });
+  // Wrap setDashView to auto-sync the active floor + persist
   const dashView = dashViewRaw;
   const setDashView = useCallback((view: typeof dashViewRaw) => {
     setDashViewRaw(view);
     const floor = getFloorForRoom(view);
     if (floor) setActiveFloor(floor.id);
+    try { localStorage.setItem("dash_view", view); } catch { /* private browsing */ }
   }, []);
   // Track seen content for notification dots (persists across renders via ref)
   const seenQuestIdsRef = useRef<Set<string>>(new Set());
