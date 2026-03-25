@@ -495,9 +495,17 @@
       "source": "faction",
       "reqSkill": 50,
       "cooldownMinutes": 120,
-      "cost": { "gold": 50 },
-      "materials": { "kraeuterbuendel": 3, "mondblume": 1 },
-      "result": { "type": "forge_temp", "amount": 15 },
+      "cost": {
+        "gold": 50
+      },
+      "materials": {
+        "kraeuterbuendel": 3,
+        "mondblume": 1
+      },
+      "result": {
+        "type": "forge_temp",
+        "amount": 15
+      },
       "xp": 15,
       "description": "Recovers 15% Forge Temperature."
     },
@@ -508,9 +516,18 @@
       "source": "faction",
       "reqSkill": 50,
       "cooldownMinutes": 120,
-      "cost": { "gold": 60 },
-      "materials": { "magiestaub": 3, "runenstein": 1 },
-      "result": { "type": "buff", "buffType": "xp_boost_10", "duration": "3_quests" },
+      "cost": {
+        "gold": 60
+      },
+      "materials": {
+        "magiestaub": 3,
+        "runenstein": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "xp_boost_10",
+        "duration": "3_quests"
+      },
       "xp": 15,
       "description": "+10% bonus XP for 3 quests."
     },
@@ -521,9 +538,18 @@
       "source": "faction",
       "reqSkill": 50,
       "cooldownMinutes": 120,
-      "cost": { "gold": 60 },
-      "materials": { "eisenerz": 3, "kristallsplitter": 1 },
-      "result": { "type": "buff", "buffType": "craft_xp_boost", "duration": "3_quests" },
+      "cost": {
+        "gold": 60
+      },
+      "materials": {
+        "eisenerz": 3,
+        "kristallsplitter": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "craft_xp_boost",
+        "duration": "3_quests"
+      },
       "xp": 15,
       "description": "+1 profession XP per craft for 3 quests."
     },
@@ -534,11 +560,3026 @@
       "source": "faction",
       "reqSkill": 50,
       "cooldownMinutes": 120,
-      "cost": { "gold": 60 },
-      "materials": { "magiestaub": 2, "aetherkern": 1 },
-      "result": { "type": "buff", "buffType": "companion_bond_boost", "duration": "3_quests" },
+      "cost": {
+        "gold": 60
+      },
+      "materials": {
+        "magiestaub": 2,
+        "aetherkern": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "companion_bond_boost",
+        "duration": "3_quests"
+      },
       "xp": 15,
       "description": "+5% Bond XP for companions for 3 quests."
+    },
+    {
+      "id": "recipe-schmied-eisenbarren",
+      "name": "Eisenbarren",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 1,
+      "cost": {
+        "gold": 5
+      },
+      "materials": {
+        "eisenerz": 3
+      },
+      "result": {
+        "type": "material",
+        "materialId": "eisenbarren",
+        "amount": 1
+      },
+      "xp": 5,
+      "description": "Schmilzt Eisenerz zu einem Barren."
+    },
+    {
+      "id": "recipe-schmied-stahlbarren",
+      "name": "Gehärteter Stahl",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 30,
+      "cost": {
+        "gold": 15
+      },
+      "materials": {
+        "eisenerz": 4,
+        "kristallsplitter": 1
+      },
+      "result": {
+        "type": "material",
+        "materialId": "stahlbarren",
+        "amount": 1
+      },
+      "xp": 10,
+      "description": "Härtet Eisen mit Kristall zu Stahl."
+    },
+    {
+      "id": "recipe-schmied-kristallbarren",
+      "name": "Kristallbarren",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 75,
+      "cost": {
+        "gold": 30
+      },
+      "materials": {
+        "eisenerz": 2,
+        "kristallsplitter": 2
+      },
+      "result": {
+        "type": "material",
+        "materialId": "kristallbarren",
+        "amount": 1
+      },
+      "xp": 15,
+      "description": "Verschmelzt Kristall und Eisen."
+    },
+    {
+      "id": "recipe-schmied-verstaerkterstahl",
+      "name": "Verstärkter Stahl",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 110,
+      "cost": {
+        "gold": 60
+      },
+      "materials": {
+        "kristallsplitter": 3,
+        "eisenerz": 2
+      },
+      "result": {
+        "type": "material",
+        "materialId": "verstaerkterstahl",
+        "amount": 1
+      },
+      "xp": 18,
+      "description": "Dreifach kristallverstärkter Stahl."
+    },
+    {
+      "id": "recipe-schmied-drachenstahl",
+      "name": "Drachenstahl",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 150,
+      "cost": {
+        "gold": 100
+      },
+      "materials": {
+        "kristallsplitter": 3,
+        "drachenschuppe": 2
+      },
+      "result": {
+        "type": "material",
+        "materialId": "drachenstahl",
+        "amount": 1
+      },
+      "xp": 22,
+      "description": "Drachenschuppen verleihen dem Stahl Feuerresistenz."
+    },
+    {
+      "id": "recipe-schmied-drachenkern",
+      "name": "Drachenkern",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 180,
+      "cost": {
+        "gold": 150
+      },
+      "materials": {
+        "drachenschuppe": 3,
+        "kristallsplitter": 2
+      },
+      "result": {
+        "type": "material",
+        "materialId": "drachenkern",
+        "amount": 1
+      },
+      "xp": 25,
+      "description": "Ein Kern aus reinem Drachenfeuer."
+    },
+    {
+      "id": "recipe-schmied-aetherlegierung",
+      "name": "Aetherlegierung",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 225,
+      "cost": {
+        "gold": 250
+      },
+      "materials": {
+        "drachenschuppe": 2,
+        "aetherkern": 1
+      },
+      "result": {
+        "type": "material",
+        "materialId": "aetherlegierung",
+        "amount": 1
+      },
+      "xp": 30,
+      "description": "Aether und Drache verschmelzen."
+    },
+    {
+      "id": "recipe-schmied-aetherbarren",
+      "name": "Aetherbarren",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 250,
+      "cost": {
+        "gold": 400
+      },
+      "materials": {
+        "aetherkern": 2,
+        "drachenschuppe": 1
+      },
+      "result": {
+        "type": "material",
+        "materialId": "aetherbarren",
+        "amount": 1
+      },
+      "xp": 35,
+      "description": "Reiner Aether in Barrenform."
+    },
+    {
+      "id": "recipe-schmied-seelenlegierung",
+      "name": "Seelenlegierung",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 275,
+      "cost": {
+        "gold": 600
+      },
+      "materials": {
+        "aetherkern": 2,
+        "seelensplitter": 1
+      },
+      "result": {
+        "type": "material",
+        "materialId": "seelenlegierung",
+        "amount": 1
+      },
+      "xp": 40,
+      "description": "Seele trifft Aether. Das Ergebnis flüstert."
+    },
+    {
+      "id": "recipe-schmied-seelenstahl",
+      "name": "Seelenstahl",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 290,
+      "cost": {
+        "gold": 800
+      },
+      "materials": {
+        "seelensplitter": 2,
+        "aetherkern": 1
+      },
+      "result": {
+        "type": "material",
+        "materialId": "seelenstahl",
+        "amount": 1
+      },
+      "xp": 45,
+      "description": "Das edelste Metall der Gilde."
+    },
+    {
+      "id": "recipe-schmied-eiserne-klinge",
+      "name": "Eiserne Klinge",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 1,
+      "cost": {
+        "gold": 10
+      },
+      "materials": {
+        "eisenerz": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-eiserne-klinge"
+      },
+      "xp": 5,
+      "description": "Schmiedet: Eiserne Klinge."
+    },
+    {
+      "id": "recipe-schmied-eiserner-rundschild",
+      "name": "Eiserner Rundschild",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 5,
+      "cost": {
+        "gold": 13
+      },
+      "materials": {
+        "eisenerz": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-eiserner-rundschild"
+      },
+      "xp": 5,
+      "description": "Schmiedet: Eiserner Rundschild."
+    },
+    {
+      "id": "recipe-schmied-eiserne-brustplatte",
+      "name": "Eiserne Brustplatte",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 8,
+      "cost": {
+        "gold": 15
+      },
+      "materials": {
+        "eisenerz": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-eiserne-brustplatte"
+      },
+      "xp": 6,
+      "description": "Schmiedet: Eiserne Brustplatte."
+    },
+    {
+      "id": "recipe-schmied-geschliffenes-breitschwert",
+      "name": "Geschliffenes Breitschwert",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 12,
+      "cost": {
+        "gold": 18
+      },
+      "materials": {
+        "eisenerz": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-geschliffenes-breitschwert"
+      },
+      "xp": 6,
+      "description": "Schmiedet: Geschliffenes Breitschwert."
+    },
+    {
+      "id": "recipe-schmied-grober-schild",
+      "name": "Grober Schild",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 16,
+      "cost": {
+        "gold": 21
+      },
+      "materials": {
+        "eisenerz": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-grober-schild"
+      },
+      "xp": 6,
+      "description": "Schmiedet: Grober Schild."
+    },
+    {
+      "id": "recipe-schmied-geschlossener-eisenhelm",
+      "name": "Geschlossener Eisenhelm",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 19,
+      "cost": {
+        "gold": 23
+      },
+      "materials": {
+        "eisenerz": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-geschlossener-eisenhelm"
+      },
+      "xp": 7,
+      "description": "Schmiedet: Geschlossener Eisenhelm."
+    },
+    {
+      "id": "recipe-schmied-eiserne-sturmhaube",
+      "name": "Eiserne Sturmhaube",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 23,
+      "cost": {
+        "gold": 26
+      },
+      "materials": {
+        "eisenerz": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-eiserne-sturmhaube"
+      },
+      "xp": 7,
+      "description": "Schmiedet: Eiserne Sturmhaube."
+    },
+    {
+      "id": "recipe-schmied-eiserner-anhaenger",
+      "name": "Eiserner Anhänger",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 26,
+      "cost": {
+        "gold": 28
+      },
+      "materials": {
+        "eisenerz": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-eiserner-anhaenger"
+      },
+      "xp": 8,
+      "description": "Schmiedet: Eiserner Anhänger."
+    },
+    {
+      "id": "recipe-schmied-eisenkragen",
+      "name": "Eisenkragen",
+      "profession": "schmied",
+      "source": "drop",
+      "reqSkill": 30,
+      "cost": {
+        "gold": 31
+      },
+      "materials": {
+        "eisenerz": 3
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-eisenkragen"
+      },
+      "xp": 8,
+      "description": "Schmiedet: Eisenkragen.",
+      "dropChance": 0.09,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "recipe-schmied-eiserne-panzerhaube",
+      "name": "Eiserne Panzerhaube",
+      "profession": "schmied",
+      "source": "drop",
+      "reqSkill": 34,
+      "cost": {
+        "gold": 34
+      },
+      "materials": {
+        "eisenerz": 3
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-eiserne-panzerhaube"
+      },
+      "xp": 8,
+      "description": "Schmiedet: Eiserne Panzerhaube.",
+      "dropChance": 0.09,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "recipe-schmied-grober-streitkolben",
+      "name": "Grober Streitkolben",
+      "profession": "schmied",
+      "source": "drop",
+      "reqSkill": 37,
+      "cost": {
+        "gold": 36
+      },
+      "materials": {
+        "eisenerz": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-grober-streitkolben"
+      },
+      "xp": 9,
+      "description": "Schmiedet: Grober Streitkolben.",
+      "dropChance": 0.09,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "recipe-schmied-eiserne-stiefel",
+      "name": "Eiserne Stiefel",
+      "profession": "schmied",
+      "source": "drop",
+      "reqSkill": 41,
+      "cost": {
+        "gold": 39
+      },
+      "materials": {
+        "eisenerz": 3
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-eiserne-stiefel"
+      },
+      "xp": 9,
+      "description": "Schmiedet: Eiserne Stiefel.",
+      "dropChance": 0.12,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "recipe-schmied-gehaertete-eisenstiefel",
+      "name": "Gehärtete Eisenstiefel",
+      "profession": "schmied",
+      "source": "drop",
+      "reqSkill": 45,
+      "cost": {
+        "gold": 42
+      },
+      "materials": {
+        "eisenerz": 3
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-gehaertete-eisenstiefel"
+      },
+      "xp": 9,
+      "description": "Schmiedet: Gehärtete Eisenstiefel.",
+      "dropChance": 0.12,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "recipe-schmied-eiserner-brustpanzer",
+      "name": "Eiserner Brustpanzer",
+      "profession": "schmied",
+      "source": "drop",
+      "reqSkill": 48,
+      "cost": {
+        "gold": 44
+      },
+      "materials": {
+        "eisenerz": 3
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-eiserner-brustpanzer"
+      },
+      "xp": 10,
+      "description": "Schmiedet: Eiserner Brustpanzer.",
+      "dropChance": 0.12,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "recipe-schmied-eiserne-beinschienen",
+      "name": "Eiserne Beinschienen",
+      "profession": "schmied",
+      "source": "faction",
+      "reqSkill": 52,
+      "cost": {
+        "gold": 47
+      },
+      "materials": {
+        "eisenerz": 3
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-eiserne-beinschienen"
+      },
+      "xp": 10,
+      "description": "Schmiedet: Eiserne Beinschienen.",
+      "factionId": "glut",
+      "factionMinRep": "friendly"
+    },
+    {
+      "id": "recipe-schmied-eiserner-kriegshammer",
+      "name": "Eiserner Kriegshammer",
+      "profession": "schmied",
+      "source": "faction",
+      "reqSkill": 55,
+      "cost": {
+        "gold": 49
+      },
+      "materials": {
+        "eisenerz": 4
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-eiserner-kriegshammer"
+      },
+      "xp": 11,
+      "description": "Schmiedet: Eiserner Kriegshammer.",
+      "factionId": "amboss",
+      "factionMinRep": "friendly"
+    },
+    {
+      "id": "recipe-schmied-eisernes-amulett",
+      "name": "Eisernes Amulett",
+      "profession": "schmied",
+      "source": "faction",
+      "reqSkill": 59,
+      "cost": {
+        "gold": 52
+      },
+      "materials": {
+        "eisenerz": 3
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-eisernes-amulett"
+      },
+      "xp": 11,
+      "description": "Schmiedet: Eisernes Amulett.",
+      "factionId": "glut",
+      "factionMinRep": "honored"
+    },
+    {
+      "id": "recipe-schmied-eiserner-turmschild",
+      "name": "Eiserner Turmschild",
+      "profession": "schmied",
+      "source": "faction",
+      "reqSkill": 63,
+      "cost": {
+        "gold": 55
+      },
+      "materials": {
+        "eisenerz": 4,
+        "eisenbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-eiserner-turmschild"
+      },
+      "xp": 11,
+      "description": "Schmiedet: Eiserner Turmschild.",
+      "factionId": "amboss",
+      "factionMinRep": "revered"
+    },
+    {
+      "id": "recipe-schmied-eisenkappe",
+      "name": "Eisenkappe",
+      "profession": "schmied",
+      "source": "drop",
+      "reqSkill": 66,
+      "cost": {
+        "gold": 57
+      },
+      "materials": {
+        "eisenerz": 4
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-eisenkappe"
+      },
+      "xp": 12,
+      "description": "Schmiedet: Eisenkappe.",
+      "dropChance": 0.02,
+      "dropMinQuestRarity": "epic"
+    },
+    {
+      "id": "recipe-schmied-gehaerteter-plattenpanzer",
+      "name": "Gehärteter Plattenpanzer",
+      "profession": "schmied",
+      "source": "drop",
+      "reqSkill": 70,
+      "cost": {
+        "gold": 60
+      },
+      "materials": {
+        "eisenerz": 4,
+        "eisenbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-gehaerteter-plattenpanzer"
+      },
+      "xp": 12,
+      "description": "Schmiedet: Gehärteter Plattenpanzer.",
+      "dropChance": 0.02,
+      "dropMinQuestRarity": "epic"
+    },
+    {
+      "id": "recipe-schmied-staehlerner-drachenhelm",
+      "name": "Stählerner Drachenhelm",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 75,
+      "cost": {
+        "gold": 50
+      },
+      "materials": {
+        "kristallsplitter": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-staehlerner-drachenhelm"
+      },
+      "xp": 12,
+      "description": "Schmiedet: Stählerner Drachenhelm."
+    },
+    {
+      "id": "recipe-schmied-kristall-amulett",
+      "name": "Kristall-Amulett",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 78,
+      "cost": {
+        "gold": 58
+      },
+      "materials": {
+        "kristallsplitter": 1,
+        "eisenbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-kristall-amulett"
+      },
+      "xp": 12,
+      "description": "Schmiedet: Kristall-Amulett."
+    },
+    {
+      "id": "recipe-schmied-staehlerne-marschtreters",
+      "name": "Stählerne Marschtreter",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 81,
+      "cost": {
+        "gold": 67
+      },
+      "materials": {
+        "kristallsplitter": 1,
+        "eisenbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-staehlerne-marschtreters"
+      },
+      "xp": 13,
+      "description": "Schmiedet: Stählerne Marschtreter."
+    },
+    {
+      "id": "recipe-schmied-kristall-klinge",
+      "name": "Kristall-Klinge",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 84,
+      "cost": {
+        "gold": 75
+      },
+      "materials": {
+        "kristallsplitter": 1,
+        "eisenbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-kristall-klinge"
+      },
+      "xp": 13,
+      "description": "Schmiedet: Kristall-Klinge."
+    },
+    {
+      "id": "recipe-schmied-kristall-rundschild",
+      "name": "Kristall-Rundschild",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 87,
+      "cost": {
+        "gold": 83
+      },
+      "materials": {
+        "kristallsplitter": 1,
+        "eisenbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-kristall-rundschild"
+      },
+      "xp": 14,
+      "description": "Schmiedet: Kristall-Rundschild."
+    },
+    {
+      "id": "recipe-schmied-staehlerner-turmschild",
+      "name": "Stählerner Turmschild",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 90,
+      "cost": {
+        "gold": 92
+      },
+      "materials": {
+        "kristallsplitter": 1,
+        "eisenbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-staehlerner-turmschild"
+      },
+      "xp": 14,
+      "description": "Schmiedet: Stählerner Turmschild."
+    },
+    {
+      "id": "recipe-schmied-staehlernes-breitschwert",
+      "name": "Stählernes Breitschwert",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 93,
+      "cost": {
+        "gold": 100
+      },
+      "materials": {
+        "kristallsplitter": 1,
+        "eisenbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-staehlernes-breitschwert"
+      },
+      "xp": 15,
+      "description": "Schmiedet: Stählernes Breitschwert."
+    },
+    {
+      "id": "recipe-schmied-staehlerne-sturmhaube",
+      "name": "Stählerne Sturmhaube",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 96,
+      "cost": {
+        "gold": 108
+      },
+      "materials": {
+        "kristallsplitter": 1,
+        "eisenbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-staehlerne-sturmhaube"
+      },
+      "xp": 15,
+      "description": "Schmiedet: Stählerne Sturmhaube."
+    },
+    {
+      "id": "recipe-schmied-kristall-beinschienen",
+      "name": "Kristall-Beinschienen",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 99,
+      "cost": {
+        "gold": 117
+      },
+      "materials": {
+        "kristallsplitter": 1,
+        "eisenbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-kristall-beinschienen"
+      },
+      "xp": 15,
+      "description": "Schmiedet: Kristall-Beinschienen."
+    },
+    {
+      "id": "recipe-schmied-staehlerne-bruenne",
+      "name": "Stählerne Brünne",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 102,
+      "cost": {
+        "gold": 125
+      },
+      "materials": {
+        "kristallsplitter": 1,
+        "eisenbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-staehlerne-bruenne"
+      },
+      "xp": 16,
+      "description": "Schmiedet: Stählerne Brünne."
+    },
+    {
+      "id": "recipe-schmied-kristall-koenigsruestung",
+      "name": "Kristall-Königsrüstung",
+      "profession": "schmied",
+      "source": "drop",
+      "reqSkill": 105,
+      "cost": {
+        "gold": 133
+      },
+      "materials": {
+        "kristallsplitter": 3,
+        "kristallbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-kristall-koenigsruestung"
+      },
+      "xp": 16,
+      "description": "Schmiedet: Kristall-Königsrüstung.",
+      "dropChance": 0.09,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "recipe-schmied-kristall-reif",
+      "name": "Kristall-Eidreif",
+      "profession": "schmied",
+      "source": "drop",
+      "reqSkill": 108,
+      "cost": {
+        "gold": 142
+      },
+      "materials": {
+        "kristallsplitter": 3,
+        "kristallbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-kristall-reif"
+      },
+      "xp": 17,
+      "description": "Schmiedet: Kristall-Eidreif.",
+      "dropChance": 0.09,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "recipe-schmied-staehlerne-sturmstiefel",
+      "name": "Stählerne Sturmstiefel",
+      "profession": "schmied",
+      "source": "drop",
+      "reqSkill": 112,
+      "cost": {
+        "gold": 150
+      },
+      "materials": {
+        "kristallsplitter": 3,
+        "kristallbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-staehlerne-sturmstiefel"
+      },
+      "xp": 17,
+      "description": "Schmiedet: Stählerne Sturmstiefel.",
+      "dropChance": 0.09,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "recipe-schmied-kristall-visierhelm",
+      "name": "Kristall-Visierhelm",
+      "profession": "schmied",
+      "source": "drop",
+      "reqSkill": 115,
+      "cost": {
+        "gold": 158
+      },
+      "materials": {
+        "kristallsplitter": 2,
+        "eisenbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-kristall-visierhelm"
+      },
+      "xp": 17,
+      "description": "Schmiedet: Kristall-Visierhelm.",
+      "dropChance": 0.12,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "recipe-schmied-staehlerne-kette",
+      "name": "Stählerne Schwurkette",
+      "profession": "schmied",
+      "source": "drop",
+      "reqSkill": 118,
+      "cost": {
+        "gold": 167
+      },
+      "materials": {
+        "kristallsplitter": 2,
+        "eisenbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-staehlerne-kette"
+      },
+      "xp": 18,
+      "description": "Schmiedet: Stählerne Schwurkette.",
+      "dropChance": 0.12,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "recipe-schmied-kristall-schuppenpanzer",
+      "name": "Kristall-Schuppenpanzer",
+      "profession": "schmied",
+      "source": "drop",
+      "reqSkill": 121,
+      "cost": {
+        "gold": 175
+      },
+      "materials": {
+        "kristallsplitter": 2,
+        "eisenbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-kristall-schuppenpanzer"
+      },
+      "xp": 18,
+      "description": "Schmiedet: Kristall-Schuppenpanzer.",
+      "dropChance": 0.12,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "recipe-schmied-kristall-stiefel",
+      "name": "Kristall-Stiefel",
+      "profession": "schmied",
+      "source": "drop",
+      "reqSkill": 124,
+      "cost": {
+        "gold": 183
+      },
+      "materials": {
+        "kristallsplitter": 2,
+        "eisenbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-kristall-stiefel"
+      },
+      "xp": 19,
+      "description": "Schmiedet: Kristall-Stiefel.",
+      "dropChance": 0.12,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "recipe-schmied-kristall-streitaxt",
+      "name": "Kristall-Streitaxt",
+      "profession": "schmied",
+      "source": "drop",
+      "reqSkill": 127,
+      "cost": {
+        "gold": 192
+      },
+      "materials": {
+        "kristallsplitter": 2,
+        "eisenbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-kristall-streitaxt"
+      },
+      "xp": 19,
+      "description": "Schmiedet: Kristall-Streitaxt.",
+      "dropChance": 0.12,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "recipe-schmied-staehlernes-siegelamulett",
+      "name": "Stählernes Siegelamulett",
+      "profession": "schmied",
+      "source": "faction",
+      "reqSkill": 130,
+      "cost": {
+        "gold": 200
+      },
+      "materials": {
+        "kristallsplitter": 4,
+        "kristallbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-staehlernes-siegelamulett"
+      },
+      "xp": 20,
+      "description": "Schmiedet: Stählernes Siegelamulett.",
+      "factionId": "glut",
+      "factionMinRep": "friendly"
+    },
+    {
+      "id": "recipe-schmied-staehlerner-kriegshammer",
+      "name": "Stählerner Kriegshammer",
+      "profession": "schmied",
+      "source": "faction",
+      "reqSkill": 133,
+      "cost": {
+        "gold": 208
+      },
+      "materials": {
+        "kristallsplitter": 4,
+        "kristallbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-staehlerner-kriegshammer"
+      },
+      "xp": 20,
+      "description": "Schmiedet: Stählerner Kriegshammer.",
+      "factionId": "amboss",
+      "factionMinRep": "friendly"
+    },
+    {
+      "id": "recipe-schmied-kristall-kettenhemd",
+      "name": "Kristall-Kettenhemd",
+      "profession": "schmied",
+      "source": "faction",
+      "reqSkill": 136,
+      "cost": {
+        "gold": 217
+      },
+      "materials": {
+        "kristallsplitter": 3,
+        "eisenbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-kristall-kettenhemd"
+      },
+      "xp": 20,
+      "description": "Schmiedet: Kristall-Kettenhemd.",
+      "factionId": "glut",
+      "factionMinRep": "honored"
+    },
+    {
+      "id": "recipe-schmied-staehlerner-wappenschild",
+      "name": "Stählerner Wappenschild",
+      "profession": "schmied",
+      "source": "faction",
+      "reqSkill": 139,
+      "cost": {
+        "gold": 225
+      },
+      "materials": {
+        "kristallsplitter": 4,
+        "kristallbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-staehlerner-wappenschild"
+      },
+      "xp": 21,
+      "description": "Schmiedet: Stählerner Wappenschild.",
+      "factionId": "amboss",
+      "factionMinRep": "revered"
+    },
+    {
+      "id": "recipe-schmied-kristall-spangenhelm",
+      "name": "Kristall-Spangenhelm",
+      "profession": "schmied",
+      "source": "faction",
+      "reqSkill": 142,
+      "cost": {
+        "gold": 233
+      },
+      "materials": {
+        "kristallsplitter": 3,
+        "eisenbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-kristall-spangenhelm"
+      },
+      "xp": 21,
+      "description": "Schmiedet: Kristall-Spangenhelm.",
+      "factionId": "glut",
+      "factionMinRep": "revered"
+    },
+    {
+      "id": "recipe-schmied-staehlerner-plattenpanzer",
+      "name": "Stählerner Plattenpanzer",
+      "profession": "schmied",
+      "source": "drop",
+      "reqSkill": 145,
+      "cost": {
+        "gold": 242
+      },
+      "materials": {
+        "kristallsplitter": 4,
+        "kristallbarren": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-staehlerner-plattenpanzer"
+      },
+      "xp": 22,
+      "description": "Schmiedet: Stählerner Plattenpanzer.",
+      "dropChance": 0.02,
+      "dropMinQuestRarity": "epic"
+    },
+    {
+      "id": "recipe-schmied-kristall-buckler",
+      "name": "Kristall-Buckler",
+      "profession": "schmied",
+      "source": "drop",
+      "reqSkill": 148,
+      "cost": {
+        "gold": 250
+      },
+      "materials": {
+        "kristallsplitter": 3,
+        "eisenbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-kristall-buckler"
+      },
+      "xp": 22,
+      "description": "Schmiedet: Kristall-Buckler.",
+      "dropChance": 0.02,
+      "dropMinQuestRarity": "epic"
+    },
+    {
+      "id": "recipe-schmied-drachenschuppen-streitaxt",
+      "name": "Drachenschuppen-Streitaxt",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 150,
+      "cost": {
+        "gold": 200
+      },
+      "materials": {
+        "drachenstahl": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-drachenschuppen-streitaxt"
+      },
+      "xp": 20,
+      "description": "Schmiedet: Drachenschuppen-Streitaxt."
+    },
+    {
+      "id": "recipe-schmied-drachenstahl-stiefel",
+      "name": "Drachenstahl-Stiefel",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 153,
+      "cost": {
+        "gold": 213
+      },
+      "materials": {
+        "drachenschuppe": 1,
+        "drachenstahl": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-drachenstahl-stiefel"
+      },
+      "xp": 20,
+      "description": "Schmiedet: Drachenstahl-Stiefel."
+    },
+    {
+      "id": "recipe-schmied-drachenschuppen-kronenhelm",
+      "name": "Drachenschuppen-Kronenhelm",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 156,
+      "cost": {
+        "gold": 225
+      },
+      "materials": {
+        "drachenstahl": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-drachenschuppen-kronenhelm"
+      },
+      "xp": 21,
+      "description": "Schmiedet: Drachenschuppen-Kronenhelm."
+    },
+    {
+      "id": "recipe-schmied-drachenschuppen-panzerstiefel",
+      "name": "Drachenschuppen-Panzerstiefel",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 159,
+      "cost": {
+        "gold": 238
+      },
+      "materials": {
+        "drachenstahl": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-drachenschuppen-panzerstiefel"
+      },
+      "xp": 21,
+      "description": "Schmiedet: Drachenschuppen-Panzerstiefel."
+    },
+    {
+      "id": "recipe-schmied-drachenzahn-bollwerk",
+      "name": "Drachenzahn-Bollwerk",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 162,
+      "cost": {
+        "gold": 250
+      },
+      "materials": {
+        "drachenstahl": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-drachenzahn-bollwerk"
+      },
+      "xp": 22,
+      "description": "Schmiedet: Drachenzahn-Bollwerk."
+    },
+    {
+      "id": "recipe-schmied-drachenschuppen-drachenhelm",
+      "name": "Drachenschuppen-Drachenhelm",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 165,
+      "cost": {
+        "gold": 263
+      },
+      "materials": {
+        "drachenstahl": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-drachenschuppen-drachenhelm"
+      },
+      "xp": 22,
+      "description": "Schmiedet: Drachenschuppen-Drachenhelm."
+    },
+    {
+      "id": "recipe-schmied-drachenstahl-klinge",
+      "name": "Drachenstahl-Klinge",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 168,
+      "cost": {
+        "gold": 275
+      },
+      "materials": {
+        "drachenschuppe": 1,
+        "drachenstahl": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-drachenstahl-klinge"
+      },
+      "xp": 23,
+      "description": "Schmiedet: Drachenstahl-Klinge."
+    },
+    {
+      "id": "recipe-schmied-drachenstahl-brustplatte",
+      "name": "Drachenstahl-Brustplatte",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 171,
+      "cost": {
+        "gold": 288
+      },
+      "materials": {
+        "drachenschuppe": 1,
+        "drachenstahl": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-drachenstahl-brustplatte"
+      },
+      "xp": 23,
+      "description": "Schmiedet: Drachenstahl-Brustplatte."
+    },
+    {
+      "id": "recipe-schmied-drachenschuppen-plattenpanzer",
+      "name": "Drachenschuppen-Plattenpanzer",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 174,
+      "cost": {
+        "gold": 300
+      },
+      "materials": {
+        "drachenstahl": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-drachenschuppen-plattenpanzer"
+      },
+      "xp": 23,
+      "description": "Schmiedet: Drachenschuppen-Plattenpanzer."
+    },
+    {
+      "id": "recipe-schmied-drachenstahl-medaillon",
+      "name": "Drachenstahl-Medaillon",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 177,
+      "cost": {
+        "gold": 313
+      },
+      "materials": {
+        "drachenschuppe": 1,
+        "drachenstahl": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-drachenstahl-medaillon"
+      },
+      "xp": 24,
+      "description": "Schmiedet: Drachenstahl-Medaillon."
+    },
+    {
+      "id": "recipe-schmied-drachenstahl-helm",
+      "name": "Drachenstahl-Helm",
+      "profession": "schmied",
+      "source": "drop",
+      "reqSkill": 180,
+      "cost": {
+        "gold": 325
+      },
+      "materials": {
+        "drachenschuppe": 2,
+        "drachenstahl": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-drachenstahl-helm"
+      },
+      "xp": 24,
+      "description": "Schmiedet: Drachenstahl-Helm.",
+      "dropChance": 0.09,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "recipe-schmied-drachenzahn-koenigsruestung",
+      "name": "Drachenzahn-Königsrüstung",
+      "profession": "schmied",
+      "source": "drop",
+      "reqSkill": 183,
+      "cost": {
+        "gold": 338
+      },
+      "materials": {
+        "drachenstahl": 3,
+        "drachenkern": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-drachenzahn-koenigsruestung"
+      },
+      "xp": 25,
+      "description": "Schmiedet: Drachenzahn-Königsrüstung.",
+      "dropChance": 0.09,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "recipe-schmied-drachenzahn-kriegsstiefel",
+      "name": "Drachenzahn-Kriegsstiefel",
+      "profession": "schmied",
+      "source": "drop",
+      "reqSkill": 187,
+      "cost": {
+        "gold": 350
+      },
+      "materials": {
+        "drachenstahl": 3,
+        "drachenkern": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-drachenzahn-kriegsstiefel"
+      },
+      "xp": 25,
+      "description": "Schmiedet: Drachenzahn-Kriegsstiefel.",
+      "dropChance": 0.09,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "recipe-schmied-drachenschuppen-beinschienen",
+      "name": "Drachenschuppen-Beinschienen",
+      "profession": "schmied",
+      "source": "drop",
+      "reqSkill": 190,
+      "cost": {
+        "gold": 363
+      },
+      "materials": {
+        "drachenstahl": 3,
+        "drachenkern": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-drachenschuppen-beinschienen"
+      },
+      "xp": 25,
+      "description": "Schmiedet: Drachenschuppen-Beinschienen.",
+      "dropChance": 0.12,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "recipe-schmied-drachenstahl-rundschild",
+      "name": "Drachenstahl-Rundschild",
+      "profession": "schmied",
+      "source": "drop",
+      "reqSkill": 193,
+      "cost": {
+        "gold": 375
+      },
+      "materials": {
+        "drachenschuppe": 2,
+        "drachenstahl": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-drachenstahl-rundschild"
+      },
+      "xp": 26,
+      "description": "Schmiedet: Drachenstahl-Rundschild.",
+      "dropChance": 0.12,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "recipe-schmied-drachenzahn-sturmhaube",
+      "name": "Drachenzahn-Sturmhaube",
+      "profession": "schmied",
+      "source": "drop",
+      "reqSkill": 196,
+      "cost": {
+        "gold": 388
+      },
+      "materials": {
+        "drachenschuppe": 2,
+        "drachenstahl": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-drachenzahn-sturmhaube"
+      },
+      "xp": 26,
+      "description": "Schmiedet: Drachenzahn-Sturmhaube.",
+      "dropChance": 0.12,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "recipe-schmied-drachenstahl-kriegsklinge",
+      "name": "Drachenstahl-Kriegsklinge",
+      "profession": "schmied",
+      "source": "drop",
+      "reqSkill": 199,
+      "cost": {
+        "gold": 400
+      },
+      "materials": {
+        "drachenstahl": 3,
+        "drachenkern": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-drachenstahl-kriegsklinge"
+      },
+      "xp": 27,
+      "description": "Schmiedet: Drachenstahl-Kriegsklinge.",
+      "dropChance": 0.12,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "recipe-schmied-drachenstahl-visierhelm",
+      "name": "Drachenstahl-Visierhelm",
+      "profession": "schmied",
+      "source": "drop",
+      "reqSkill": 202,
+      "cost": {
+        "gold": 413
+      },
+      "materials": {
+        "drachenstahl": 3,
+        "drachenkern": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-drachenstahl-visierhelm"
+      },
+      "xp": 27,
+      "description": "Schmiedet: Drachenstahl-Visierhelm.",
+      "dropChance": 0.12,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "recipe-schmied-drachenstahl-kriegspanzer",
+      "name": "Drachenstahl-Kriegspanzer",
+      "profession": "schmied",
+      "source": "faction",
+      "reqSkill": 205,
+      "cost": {
+        "gold": 425
+      },
+      "materials": {
+        "drachenstahl": 3,
+        "drachenkern": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-drachenstahl-kriegspanzer"
+      },
+      "xp": 28,
+      "description": "Schmiedet: Drachenstahl-Kriegspanzer.",
+      "factionId": "glut",
+      "factionMinRep": "friendly"
+    },
+    {
+      "id": "recipe-schmied-drachenzahn-kettenhemd",
+      "name": "Drachenzahn-Kettenhemd",
+      "profession": "schmied",
+      "source": "faction",
+      "reqSkill": 208,
+      "cost": {
+        "gold": 438
+      },
+      "materials": {
+        "drachenschuppe": 2,
+        "drachenstahl": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-drachenzahn-kettenhemd"
+      },
+      "xp": 28,
+      "description": "Schmiedet: Drachenzahn-Kettenhemd.",
+      "factionId": "amboss",
+      "factionMinRep": "friendly"
+    },
+    {
+      "id": "recipe-schmied-drachenschuppen-schlachtbeil",
+      "name": "Drachenschuppen-Schlachtbeil",
+      "profession": "schmied",
+      "source": "faction",
+      "reqSkill": 211,
+      "cost": {
+        "gold": 450
+      },
+      "materials": {
+        "drachenstahl": 4,
+        "drachenkern": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-drachenschuppen-schlachtbeil"
+      },
+      "xp": 28,
+      "description": "Schmiedet: Drachenschuppen-Schlachtbeil.",
+      "factionId": "glut",
+      "factionMinRep": "honored"
+    },
+    {
+      "id": "recipe-schmied-drachenschuppen-turmschild",
+      "name": "Drachenschuppen-Turmschild",
+      "profession": "schmied",
+      "source": "faction",
+      "reqSkill": 214,
+      "cost": {
+        "gold": 463
+      },
+      "materials": {
+        "drachenstahl": 4,
+        "drachenkern": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-drachenschuppen-turmschild"
+      },
+      "xp": 29,
+      "description": "Schmiedet: Drachenschuppen-Turmschild.",
+      "factionId": "amboss",
+      "factionMinRep": "revered"
+    },
+    {
+      "id": "recipe-schmied-drachenzahn-saebel",
+      "name": "Drachenzahn-Säbel",
+      "profession": "schmied",
+      "source": "faction",
+      "reqSkill": 217,
+      "cost": {
+        "gold": 475
+      },
+      "materials": {
+        "drachenschuppe": 3,
+        "drachenstahl": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-drachenzahn-saebel"
+      },
+      "xp": 29,
+      "description": "Schmiedet: Drachenzahn-Säbel.",
+      "factionId": "glut",
+      "factionMinRep": "revered"
+    },
+    {
+      "id": "recipe-schmied-drachenzahn-amulett",
+      "name": "Drachenzahn-Amulett",
+      "profession": "schmied",
+      "source": "drop",
+      "reqSkill": 220,
+      "cost": {
+        "gold": 488
+      },
+      "materials": {
+        "drachenstahl": 4,
+        "drachenkern": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-drachenzahn-amulett"
+      },
+      "xp": 30,
+      "description": "Schmiedet: Drachenzahn-Amulett.",
+      "dropChance": 0.02,
+      "dropMinQuestRarity": "epic"
+    },
+    {
+      "id": "recipe-schmied-drachenschuppen-reif",
+      "name": "Drachenschuppen-Reif",
+      "profession": "schmied",
+      "source": "drop",
+      "reqSkill": 223,
+      "cost": {
+        "gold": 500
+      },
+      "materials": {
+        "drachenstahl": 4,
+        "drachenkern": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-drachenschuppen-reif"
+      },
+      "xp": 30,
+      "description": "Schmiedet: Drachenschuppen-Reif.",
+      "dropChance": 0.02,
+      "dropMinQuestRarity": "epic"
+    },
+    {
+      "id": "recipe-schmied-seelenkrone-des-meisters",
+      "name": "Seelenkrone des Meisters",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 225,
+      "cost": {
+        "gold": 400
+      },
+      "materials": {
+        "aetherlegierung": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-seelenkrone-des-meisters"
+      },
+      "xp": 28,
+      "description": "Schmiedet: Seelenkrone des Meisters."
+    },
+    {
+      "id": "recipe-schmied-aether-turmschild",
+      "name": "Aether-Turmschild",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 228,
+      "cost": {
+        "gold": 438
+      },
+      "materials": {
+        "aetherlegierung": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-aether-turmschild"
+      },
+      "xp": 29,
+      "description": "Schmiedet: Aether-Turmschild."
+    },
+    {
+      "id": "recipe-schmied-aether-kettenhemd",
+      "name": "Aether-Kettenhemd",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 230,
+      "cost": {
+        "gold": 476
+      },
+      "materials": {
+        "aetherlegierung": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-aether-kettenhemd"
+      },
+      "xp": 30,
+      "description": "Schmiedet: Aether-Kettenhemd."
+    },
+    {
+      "id": "recipe-schmied-seelen-kettenruestung",
+      "name": "Seelen-Kettenrüstung",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 233,
+      "cost": {
+        "gold": 514
+      },
+      "materials": {
+        "aetherlegierung": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-seelen-kettenruestung"
+      },
+      "xp": 30,
+      "description": "Schmiedet: Seelen-Kettenrüstung."
+    },
+    {
+      "id": "recipe-schmied-seelen-richtschwert",
+      "name": "Seelengeschmiedetes Richtschwert",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 235,
+      "cost": {
+        "gold": 552
+      },
+      "materials": {
+        "aetherlegierung": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-seelen-richtschwert"
+      },
+      "xp": 31,
+      "description": "Schmiedet: Seelengeschmiedetes Richtschwert."
+    },
+    {
+      "id": "recipe-schmied-seelen-krone",
+      "name": "Seelen-Krone",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 238,
+      "cost": {
+        "gold": 590
+      },
+      "materials": {
+        "aetherlegierung": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-seelen-krone"
+      },
+      "xp": 32,
+      "description": "Schmiedet: Seelen-Krone."
+    },
+    {
+      "id": "recipe-schmied-aetherkern-panzer",
+      "name": "Aetherkern-Panzer",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 240,
+      "cost": {
+        "gold": 628
+      },
+      "materials": {
+        "aetherlegierung": 2,
+        "aetherbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-aetherkern-panzer"
+      },
+      "xp": 33,
+      "description": "Schmiedet: Aetherkern-Panzer."
+    },
+    {
+      "id": "recipe-schmied-seelengeschmiedete-platte",
+      "name": "Seelengeschmiedete Platte",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 243,
+      "cost": {
+        "gold": 666
+      },
+      "materials": {
+        "aetherlegierung": 2,
+        "aetherbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-seelengeschmiedete-platte"
+      },
+      "xp": 33,
+      "description": "Schmiedet: Seelengeschmiedete Platte."
+    },
+    {
+      "id": "recipe-schmied-aether-brustplatte",
+      "name": "Aether-Brustplatte",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 245,
+      "cost": {
+        "gold": 703
+      },
+      "materials": {
+        "aetherlegierung": 3,
+        "aetherbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-aether-brustplatte"
+      },
+      "xp": 34,
+      "description": "Schmiedet: Aether-Brustplatte."
+    },
+    {
+      "id": "recipe-schmied-aetherkern-sturmkappe",
+      "name": "Aetherkern-Sturmkappe",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 248,
+      "cost": {
+        "gold": 741
+      },
+      "materials": {
+        "aetherlegierung": 3,
+        "aetherbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-aetherkern-sturmkappe"
+      },
+      "xp": 35,
+      "description": "Schmiedet: Aetherkern-Sturmkappe."
+    },
+    {
+      "id": "recipe-schmied-seelen-schulterwacht",
+      "name": "Seelen-Schulterwacht",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 250,
+      "cost": {
+        "gold": 779
+      },
+      "materials": {
+        "aetherlegierung": 3,
+        "aetherbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-seelen-schulterwacht"
+      },
+      "xp": 36,
+      "description": "Schmiedet: Seelen-Schulterwacht."
+    },
+    {
+      "id": "recipe-schmied-seelen-wanderstiefel",
+      "name": "Seelengeschmiedete Wanderstiefel",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 253,
+      "cost": {
+        "gold": 817
+      },
+      "materials": {
+        "aetherlegierung": 3,
+        "aetherbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-seelen-wanderstiefel"
+      },
+      "xp": 36,
+      "description": "Schmiedet: Seelengeschmiedete Wanderstiefel."
+    },
+    {
+      "id": "recipe-schmied-aether-schreitstiefel",
+      "name": "Aether-Schreitstiefel",
+      "profession": "schmied",
+      "source": "drop",
+      "reqSkill": 255,
+      "cost": {
+        "gold": 855
+      },
+      "materials": {
+        "aetherlegierung": 3,
+        "aetherbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-aether-schreitstiefel"
+      },
+      "xp": 37,
+      "description": "Schmiedet: Aether-Schreitstiefel.",
+      "dropChance": 0.09,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "recipe-schmied-seelenklinge",
+      "name": "Seelenklinge des Schmieds",
+      "profession": "schmied",
+      "source": "drop",
+      "reqSkill": 258,
+      "cost": {
+        "gold": 893
+      },
+      "materials": {
+        "aetherlegierung": 3,
+        "aetherbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-seelenklinge"
+      },
+      "xp": 38,
+      "description": "Schmiedet: Seelenklinge des Schmieds.",
+      "dropChance": 0.09,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "recipe-schmied-seelenbollwerk",
+      "name": "Seelen-Bollwerk des Wächters",
+      "profession": "schmied",
+      "source": "drop",
+      "reqSkill": 260,
+      "cost": {
+        "gold": 931
+      },
+      "materials": {
+        "aetherlegierung": 3,
+        "aetherbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-seelenbollwerk"
+      },
+      "xp": 39,
+      "description": "Schmiedet: Seelen-Bollwerk des Wächters.",
+      "dropChance": 0.09,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "recipe-schmied-seelenstiefel-des-wanderers",
+      "name": "Seelenstiefel des Wanderers",
+      "profession": "schmied",
+      "source": "drop",
+      "reqSkill": 263,
+      "cost": {
+        "gold": 969
+      },
+      "materials": {
+        "aetherlegierung": 3,
+        "aetherbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-seelenstiefel-des-wanderers"
+      },
+      "xp": 39,
+      "description": "Schmiedet: Seelenstiefel des Wanderers.",
+      "dropChance": 0.09,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "recipe-schmied-aetherkern-klinge",
+      "name": "Aetherkern-Klinge",
+      "profession": "schmied",
+      "source": "drop",
+      "reqSkill": 265,
+      "cost": {
+        "gold": 1007
+      },
+      "materials": {
+        "aetherlegierung": 4,
+        "aetherbarren": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-aetherkern-klinge"
+      },
+      "xp": 40,
+      "description": "Schmiedet: Aetherkern-Klinge.",
+      "dropChance": 0.12,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "recipe-schmied-aetherkern-wachtschwert",
+      "name": "Aetherkern-Wachtschwert",
+      "profession": "schmied",
+      "source": "drop",
+      "reqSkill": 268,
+      "cost": {
+        "gold": 1045
+      },
+      "materials": {
+        "aetherlegierung": 4,
+        "aetherbarren": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-aetherkern-wachtschwert"
+      },
+      "xp": 41,
+      "description": "Schmiedet: Aetherkern-Wachtschwert.",
+      "dropChance": 0.12,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "recipe-schmied-aetherkern-medaillon",
+      "name": "Aetherkern-Medaillon",
+      "profession": "schmied",
+      "source": "drop",
+      "reqSkill": 270,
+      "cost": {
+        "gold": 1083
+      },
+      "materials": {
+        "aetherlegierung": 4,
+        "aetherbarren": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-aetherkern-medaillon"
+      },
+      "xp": 42,
+      "description": "Schmiedet: Aetherkern-Medaillon.",
+      "dropChance": 0.12,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "recipe-schmied-aetherkern-kriegsschwert",
+      "name": "Aetherkern-Kriegsschwert",
+      "profession": "schmied",
+      "source": "drop",
+      "reqSkill": 273,
+      "cost": {
+        "gold": 1121
+      },
+      "materials": {
+        "aetherlegierung": 4,
+        "aetherbarren": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-aetherkern-kriegsschwert"
+      },
+      "xp": 42,
+      "description": "Schmiedet: Aetherkern-Kriegsschwert.",
+      "dropChance": 0.12,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "recipe-schmied-seelen-siegel",
+      "name": "Seelen-Siegel",
+      "profession": "schmied",
+      "source": "drop",
+      "reqSkill": 275,
+      "cost": {
+        "gold": 1159
+      },
+      "materials": {
+        "seelenlegierung": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-seelen-siegel"
+      },
+      "xp": 43,
+      "description": "Schmiedet: Seelen-Siegel.",
+      "dropChance": 0.12,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "recipe-schmied-seelengeschmiedeter-panzer",
+      "name": "Seelengeschmiedeter Panzer",
+      "profession": "schmied",
+      "source": "faction",
+      "reqSkill": 278,
+      "cost": {
+        "gold": 1197
+      },
+      "materials": {
+        "seelenlegierung": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-seelengeschmiedeter-panzer"
+      },
+      "xp": 44,
+      "description": "Schmiedet: Seelengeschmiedeter Panzer.",
+      "factionId": "amboss",
+      "factionMinRep": "friendly"
+    },
+    {
+      "id": "recipe-schmied-seelen-aegis",
+      "name": "Seelen-Aegis",
+      "profession": "schmied",
+      "source": "faction",
+      "reqSkill": 280,
+      "cost": {
+        "gold": 1234
+      },
+      "materials": {
+        "seelenlegierung": 2,
+        "seelenstahl": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-seelen-aegis"
+      },
+      "xp": 45,
+      "description": "Schmiedet: Seelen-Aegis.",
+      "factionId": "glut",
+      "factionMinRep": "friendly"
+    },
+    {
+      "id": "recipe-schmied-aetherkern-reif",
+      "name": "Aetherkern-Reif",
+      "profession": "schmied",
+      "source": "faction",
+      "reqSkill": 283,
+      "cost": {
+        "gold": 1272
+      },
+      "materials": {
+        "seelenlegierung": 2,
+        "seelenstahl": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-aetherkern-reif"
+      },
+      "xp": 45,
+      "description": "Schmiedet: Aetherkern-Reif.",
+      "factionId": "amboss",
+      "factionMinRep": "honored"
+    },
+    {
+      "id": "recipe-schmied-aether-marschtritt",
+      "name": "Aether-Marschtritt",
+      "profession": "schmied",
+      "source": "faction",
+      "reqSkill": 285,
+      "cost": {
+        "gold": 1310
+      },
+      "materials": {
+        "seelenlegierung": 2,
+        "seelenstahl": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-aether-marschtritt"
+      },
+      "xp": 46,
+      "description": "Schmiedet: Aether-Marschtritt.",
+      "factionId": "glut",
+      "factionMinRep": "honored"
+    },
+    {
+      "id": "recipe-schmied-seelen-talisman",
+      "name": "Seelen-Talisman",
+      "profession": "schmied",
+      "source": "faction",
+      "reqSkill": 288,
+      "cost": {
+        "gold": 1348
+      },
+      "materials": {
+        "seelenlegierung": 2,
+        "seelenstahl": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-seelen-talisman"
+      },
+      "xp": 47,
+      "description": "Schmiedet: Seelen-Talisman.",
+      "factionId": "amboss",
+      "factionMinRep": "revered"
+    },
+    {
+      "id": "recipe-schmied-aether-bollwerk",
+      "name": "Aether-Bollwerk",
+      "profession": "schmied",
+      "source": "faction",
+      "reqSkill": 290,
+      "cost": {
+        "gold": 1386
+      },
+      "materials": {
+        "seelenlegierung": 3,
+        "seelenstahl": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-aether-bollwerk"
+      },
+      "xp": 48,
+      "description": "Schmiedet: Aether-Bollwerk.",
+      "factionId": "glut",
+      "factionMinRep": "revered"
+    },
+    {
+      "id": "recipe-schmied-aetherkern-visier",
+      "name": "Aetherkern-Visier",
+      "profession": "schmied",
+      "source": "drop",
+      "reqSkill": 293,
+      "cost": {
+        "gold": 1424
+      },
+      "materials": {
+        "seelenlegierung": 3,
+        "seelenstahl": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-aetherkern-visier"
+      },
+      "xp": 48,
+      "description": "Schmiedet: Aetherkern-Visier.",
+      "dropChance": 0.02,
+      "dropMinQuestRarity": "epic"
+    },
+    {
+      "id": "recipe-schmied-aether-schildwall",
+      "name": "Aether-Schildwall",
+      "profession": "schmied",
+      "source": "drop",
+      "reqSkill": 295,
+      "cost": {
+        "gold": 1462
+      },
+      "materials": {
+        "seelenlegierung": 3,
+        "seelenstahl": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-aether-schildwall"
+      },
+      "xp": 49,
+      "description": "Schmiedet: Aether-Schildwall.",
+      "dropChance": 0.02,
+      "dropMinQuestRarity": "epic"
+    },
+    {
+      "id": "recipe-schmied-seelen-breitschwert",
+      "name": "Seelen-Breitschwert",
+      "profession": "schmied",
+      "source": "drop",
+      "reqSkill": 298,
+      "cost": {
+        "gold": 1500
+      },
+      "materials": {
+        "seelenlegierung": 3,
+        "seelenstahl": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-seelen-breitschwert"
+      },
+      "xp": 50,
+      "description": "Schmiedet: Seelen-Breitschwert.",
+      "dropChance": 0.02,
+      "dropMinQuestRarity": "epic"
+    },
+    {
+      "id": "recipe-schmied-grober-schaerfstein",
+      "name": "Grober Schärfstein",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 10,
+      "cost": {
+        "gold": 15
+      },
+      "materials": {
+        "eisenerz": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "kraft_boost",
+        "amount": 2,
+        "questsRemaining": 3
+      },
+      "xp": 8,
+      "description": "Stellt her: Grober Schärfstein."
+    },
+    {
+      "id": "recipe-schmied-rauer-schaerfstein",
+      "name": "Rauer Schärfstein",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 50,
+      "cost": {
+        "gold": 40
+      },
+      "materials": {
+        "eisenerz": 3,
+        "eisenbarren": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "kraft_boost",
+        "amount": 3,
+        "questsRemaining": 3
+      },
+      "xp": 12,
+      "description": "Stellt her: Rauer Schärfstein."
+    },
+    {
+      "id": "recipe-schmied-schwerer-schaerfstein",
+      "name": "Schwerer Schärfstein",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 100,
+      "cost": {
+        "gold": 80
+      },
+      "materials": {
+        "kristallsplitter": 2,
+        "kristallbarren": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "kraft_boost",
+        "amount": 5,
+        "questsRemaining": 3
+      },
+      "xp": 18,
+      "description": "Stellt her: Schwerer Schärfstein."
+    },
+    {
+      "id": "recipe-schmied-dichter-schaerfstein",
+      "name": "Dichter Schärfstein",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 175,
+      "cost": {
+        "gold": 200
+      },
+      "materials": {
+        "drachenschuppe": 2,
+        "drachenstahl": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "kraft_boost",
+        "amount": 7,
+        "questsRemaining": 3
+      },
+      "xp": 25,
+      "description": "Stellt her: Dichter Schärfstein."
+    },
+    {
+      "id": "recipe-schmied-elementar-schaerfstein",
+      "name": "Elementarer Schärfstein",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 250,
+      "cost": {
+        "gold": 500
+      },
+      "materials": {
+        "aetherkern": 1,
+        "aetherlegierung": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "kraft_boost",
+        "amount": 10,
+        "questsRemaining": 3
+      },
+      "xp": 35,
+      "description": "Stellt her: Elementarer Schärfstein."
+    },
+    {
+      "id": "recipe-schmied-leichter-gewichtstein",
+      "name": "Leichter Gewichtstein",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 15,
+      "cost": {
+        "gold": 15
+      },
+      "materials": {
+        "eisenerz": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "ausdauer_boost",
+        "amount": 2,
+        "questsRemaining": 3
+      },
+      "xp": 8,
+      "description": "Stellt her: Leichter Gewichtstein."
+    },
+    {
+      "id": "recipe-schmied-mittlerer-gewichtstein",
+      "name": "Mittlerer Gewichtstein",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 75,
+      "cost": {
+        "gold": 50
+      },
+      "materials": {
+        "kristallsplitter": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "ausdauer_boost",
+        "amount": 4,
+        "questsRemaining": 3
+      },
+      "xp": 15,
+      "description": "Stellt her: Mittlerer Gewichtstein."
+    },
+    {
+      "id": "recipe-schmied-schwerer-gewichtstein",
+      "name": "Schwerer Gewichtstein",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 150,
+      "cost": {
+        "gold": 150
+      },
+      "materials": {
+        "drachenschuppe": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "ausdauer_boost",
+        "amount": 6,
+        "questsRemaining": 3
+      },
+      "xp": 22,
+      "description": "Stellt her: Schwerer Gewichtstein."
+    },
+    {
+      "id": "recipe-schmied-titanischer-gewichtstein",
+      "name": "Titanischer Gewichtstein",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 225,
+      "cost": {
+        "gold": 400
+      },
+      "materials": {
+        "aetherlegierung": 1,
+        "drachenkern": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "ausdauer_boost",
+        "amount": 9,
+        "questsRemaining": 3
+      },
+      "xp": 30,
+      "description": "Stellt her: Titanischer Gewichtstein."
+    },
+    {
+      "id": "recipe-schmied-eiserne-schilddornen",
+      "name": "Eiserne Schilddornen",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 50,
+      "cost": {
+        "gold": 35
+      },
+      "materials": {
+        "eisenerz": 3,
+        "eisenbarren": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "glueck_boost",
+        "amount": 2,
+        "questsRemaining": 3
+      },
+      "xp": 10,
+      "description": "Stellt her: Eiserne Schilddornen."
+    },
+    {
+      "id": "recipe-schmied-kristall-schilddornen",
+      "name": "Kristall-Schilddornen",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 150,
+      "cost": {
+        "gold": 180
+      },
+      "materials": {
+        "kristallbarren": 2,
+        "drachenschuppe": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "glueck_boost",
+        "amount": 4,
+        "questsRemaining": 3
+      },
+      "xp": 22,
+      "description": "Stellt her: Kristall-Schilddornen."
+    },
+    {
+      "id": "recipe-schmied-aether-schilddornen",
+      "name": "Aether-Schilddornen",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 250,
+      "cost": {
+        "gold": 500
+      },
+      "materials": {
+        "aetherlegierung": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "glueck_boost",
+        "amount": 7,
+        "questsRemaining": 3
+      },
+      "xp": 35,
+      "description": "Stellt her: Aether-Schilddornen."
+    },
+    {
+      "id": "recipe-schmied-leichte-panzerverstaerkung",
+      "name": "Leichte Panzerverstärkung",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 75,
+      "cost": {
+        "gold": 50
+      },
+      "materials": {
+        "eisenbarren": 2,
+        "kristallsplitter": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "vitalitaet_boost",
+        "amount": 3,
+        "questsRemaining": 3
+      },
+      "xp": 14,
+      "description": "Stellt her: Leichte Panzerverstärkung."
+    },
+    {
+      "id": "recipe-schmied-schwere-panzerverstaerkung",
+      "name": "Schwere Panzerverstärkung",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 175,
+      "cost": {
+        "gold": 250
+      },
+      "materials": {
+        "drachenstahl": 2,
+        "drachenkern": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "vitalitaet_boost",
+        "amount": 5,
+        "questsRemaining": 3
+      },
+      "xp": 25,
+      "description": "Stellt her: Schwere Panzerverstärkung."
+    },
+    {
+      "id": "recipe-schmied-aether-panzerverstaerkung",
+      "name": "Aether-Panzerverstärkung",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 275,
+      "cost": {
+        "gold": 600
+      },
+      "materials": {
+        "seelenlegierung": 1,
+        "aetherbarren": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "vitalitaet_boost",
+        "amount": 8,
+        "questsRemaining": 3
+      },
+      "xp": 40,
+      "description": "Stellt her: Aether-Panzerverstärkung."
+    },
+    {
+      "id": "recipe-schmied-eiserner-streakschild",
+      "name": "Eiserner Streakschild",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 100,
+      "cost": {
+        "gold": 100
+      },
+      "materials": {
+        "kristallbarren": 2,
+        "eisenbarren": 2
+      },
+      "result": {
+        "type": "streak_shield",
+        "amount": 1
+      },
+      "xp": 18,
+      "description": "Stellt her: Eiserner Streakschild."
+    },
+    {
+      "id": "recipe-schmied-seelen-streakschild",
+      "name": "Seelen-Streakschild",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 225,
+      "cost": {
+        "gold": 400
+      },
+      "materials": {
+        "aetherlegierung": 1,
+        "drachenkern": 2
+      },
+      "result": {
+        "type": "streak_shield",
+        "amount": 1
+      },
+      "xp": 30,
+      "description": "Stellt her: Seelen-Streakschild."
+    },
+    {
+      "id": "recipe-schmied-gluthammer",
+      "name": "Gluthammer",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 125,
+      "cost": {
+        "gold": 120
+      },
+      "materials": {
+        "drachenschuppe": 1,
+        "kristallbarren": 2
+      },
+      "result": {
+        "type": "forge_temp",
+        "amount": 10
+      },
+      "xp": 20,
+      "description": "Stellt her: Gluthammer."
+    },
+    {
+      "id": "recipe-schmied-seelenglut",
+      "name": "Seelenglut",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 250,
+      "cost": {
+        "gold": 500
+      },
+      "materials": {
+        "aetherbarren": 1,
+        "seelenlegierung": 1
+      },
+      "result": {
+        "type": "forge_temp",
+        "amount": 20
+      },
+      "xp": 35,
+      "description": "Stellt her: Seelenglut."
+    },
+    {
+      "id": "recipe-schmied-klinge-schaerfen-1",
+      "name": "Klinge schärfen I",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 25,
+      "cost": {
+        "gold": 30
+      },
+      "materials": {
+        "eisenerz": 3
+      },
+      "result": {
+        "type": "gear_enhance",
+        "stat": "kraft",
+        "amount": 1
+      },
+      "xp": 10,
+      "description": "Klinge schärfen I."
+    },
+    {
+      "id": "recipe-schmied-klinge-schaerfen-2",
+      "name": "Klinge schärfen II",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 75,
+      "cost": {
+        "gold": 80
+      },
+      "materials": {
+        "kristallsplitter": 2
+      },
+      "result": {
+        "type": "gear_enhance",
+        "stat": "kraft",
+        "amount": 1
+      },
+      "xp": 15,
+      "description": "Klinge schärfen II."
+    },
+    {
+      "id": "recipe-schmied-klinge-schaerfen-3",
+      "name": "Klinge schärfen III",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 150,
+      "cost": {
+        "gold": 200
+      },
+      "materials": {
+        "drachenstahl": 1,
+        "drachenschuppe": 1
+      },
+      "result": {
+        "type": "gear_enhance",
+        "stat": "kraft",
+        "amount": 2
+      },
+      "xp": 22,
+      "description": "Klinge schärfen III."
+    },
+    {
+      "id": "recipe-schmied-klinge-schaerfen-4",
+      "name": "Klinge schärfen IV",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 225,
+      "cost": {
+        "gold": 500
+      },
+      "materials": {
+        "aetherlegierung": 1,
+        "aetherbarren": 1
+      },
+      "result": {
+        "type": "gear_enhance",
+        "stat": "kraft",
+        "amount": 2
+      },
+      "xp": 30,
+      "description": "Klinge schärfen IV."
+    },
+    {
+      "id": "recipe-schmied-klinge-schaerfen-5",
+      "name": "Klinge schärfen V",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 275,
+      "cost": {
+        "gold": 1000
+      },
+      "materials": {
+        "seelenlegierung": 1,
+        "seelenstahl": 1
+      },
+      "result": {
+        "type": "gear_enhance",
+        "stat": "kraft",
+        "amount": 3
+      },
+      "xp": 40,
+      "description": "Klinge schärfen V."
+    },
+    {
+      "id": "recipe-schmied-ruestung-verstaerken-1",
+      "name": "Rüstung verstärken I",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 30,
+      "cost": {
+        "gold": 30
+      },
+      "materials": {
+        "eisenerz": 3
+      },
+      "result": {
+        "type": "gear_enhance",
+        "stat": "ausdauer",
+        "amount": 1
+      },
+      "xp": 10,
+      "description": "Rüstung verstärken I."
+    },
+    {
+      "id": "recipe-schmied-ruestung-verstaerken-2",
+      "name": "Rüstung verstärken II",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 100,
+      "cost": {
+        "gold": 100
+      },
+      "materials": {
+        "kristallbarren": 2
+      },
+      "result": {
+        "type": "gear_enhance",
+        "stat": "ausdauer",
+        "amount": 1
+      },
+      "xp": 18,
+      "description": "Rüstung verstärken II."
+    },
+    {
+      "id": "recipe-schmied-ruestung-verstaerken-3",
+      "name": "Rüstung verstärken III",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 175,
+      "cost": {
+        "gold": 300
+      },
+      "materials": {
+        "drachenkern": 1,
+        "drachenstahl": 1
+      },
+      "result": {
+        "type": "gear_enhance",
+        "stat": "ausdauer",
+        "amount": 2
+      },
+      "xp": 25,
+      "description": "Rüstung verstärken III."
+    },
+    {
+      "id": "recipe-schmied-ruestung-verstaerken-4",
+      "name": "Rüstung verstärken IV",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 250,
+      "cost": {
+        "gold": 700
+      },
+      "materials": {
+        "aetherbarren": 2
+      },
+      "result": {
+        "type": "gear_enhance",
+        "stat": "ausdauer",
+        "amount": 3
+      },
+      "xp": 35,
+      "description": "Rüstung verstärken IV."
+    },
+    {
+      "id": "recipe-schmied-schild-polieren-1",
+      "name": "Schild polieren I",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 50,
+      "cost": {
+        "gold": 40
+      },
+      "materials": {
+        "eisenbarren": 2
+      },
+      "result": {
+        "type": "gear_enhance",
+        "stat": "weisheit",
+        "amount": 1
+      },
+      "xp": 12,
+      "description": "Schild polieren I."
+    },
+    {
+      "id": "recipe-schmied-schild-polieren-2",
+      "name": "Schild polieren II",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 150,
+      "cost": {
+        "gold": 200
+      },
+      "materials": {
+        "drachenstahl": 1
+      },
+      "result": {
+        "type": "gear_enhance",
+        "stat": "weisheit",
+        "amount": 2
+      },
+      "xp": 22,
+      "description": "Schild polieren II."
+    },
+    {
+      "id": "recipe-schmied-schild-polieren-3",
+      "name": "Schild polieren III",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 250,
+      "cost": {
+        "gold": 600
+      },
+      "materials": {
+        "aetherlegierung": 2
+      },
+      "result": {
+        "type": "gear_enhance",
+        "stat": "weisheit",
+        "amount": 2
+      },
+      "xp": 35,
+      "description": "Schild polieren III."
+    },
+    {
+      "id": "recipe-schmied-amulett-segnen-1",
+      "name": "Amulett segnen I",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 75,
+      "cost": {
+        "gold": 60
+      },
+      "materials": {
+        "kristallsplitter": 3
+      },
+      "result": {
+        "type": "gear_enhance",
+        "stat": "glueck",
+        "amount": 1
+      },
+      "xp": 14,
+      "description": "Amulett segnen I."
+    },
+    {
+      "id": "recipe-schmied-amulett-segnen-2",
+      "name": "Amulett segnen II",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 175,
+      "cost": {
+        "gold": 300
+      },
+      "materials": {
+        "drachenkern": 2
+      },
+      "result": {
+        "type": "gear_enhance",
+        "stat": "glueck",
+        "amount": 1
+      },
+      "xp": 25,
+      "description": "Amulett segnen II."
+    },
+    {
+      "id": "recipe-schmied-amulett-segnen-3",
+      "name": "Amulett segnen III",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 275,
+      "cost": {
+        "gold": 800
+      },
+      "materials": {
+        "seelenlegierung": 1,
+        "seelenstahl": 1
+      },
+      "result": {
+        "type": "gear_enhance",
+        "stat": "glueck",
+        "amount": 2
+      },
+      "xp": 40,
+      "description": "Amulett segnen III."
     }
   ]
 }
