@@ -225,234 +225,234 @@
   "materials": [
     {
       "id": "eisenerz",
-      "name": "Iron Ore",
+      "name": "Eisenerz",
       "icon": "/images/icons/mat-eisenerz.png",
       "rarity": "common",
-      "desc": "Base material for smithing."
+      "desc": "Rohes Erz aus den Tiefen der Minen. Klingt nicht nach viel — ist aber der Anfang von allem."
     },
     {
       "id": "magiestaub",
-      "name": "Arcane Dust",
+      "name": "Magiestaub",
       "icon": "/images/icons/mat-magiestaub.png",
       "rarity": "common",
-      "desc": "Fine dust with magical resonance."
+      "desc": "Feiner Staub aus zerfallener Magie. Rieselt durch die Finger, aber hinterlässt Spuren."
     },
     {
       "id": "kristallsplitter",
-      "name": "Crystal Shard",
+      "name": "Kristallsplitter",
       "icon": "/images/icons/mat-kristallsplitter.png",
       "rarity": "uncommon",
-      "desc": "A shimmering shard from the depths."
+      "desc": "Ein Splitter aus den Kristallhöhlen. Scharf, schimmernd, und leicht unberechenbar."
     },
     {
       "id": "drachenschuppe",
-      "name": "Dragon Scale",
+      "name": "Drachenschuppe",
       "icon": "/images/icons/mat-drachenschuppe.png",
       "rarity": "rare",
-      "desc": "A rare scale infused with primal magic."
+      "desc": "Eine Schuppe, die Feuer gesehen hat und es langweilig fand."
     },
     {
       "id": "aetherkern",
-      "name": "Aether Core",
+      "name": "Ätherkern",
       "icon": "/images/icons/mat-aetherkern.png",
       "rarity": "epic",
-      "desc": "A pulsing core of pure energy."
+      "desc": "Ein Kern aus kondensiertem Aetherstrom. Summt leise. Nicht fallen lassen."
     },
     {
       "id": "kraeuterbuendel",
-      "name": "Herb Bundle",
+      "name": "Kräuterbündel",
       "icon": "/images/icons/mat-kraeuter.png",
       "rarity": "common",
-      "desc": "Freshly gathered herbs for potions."
+      "desc": "Ein Bündel wilder Kräuter. Riecht nach Möglichkeiten und ein bisschen nach Salbei."
     },
     {
       "id": "mondblume",
-      "name": "Moonpetal",
+      "name": "Mondblume",
       "icon": "/images/icons/mat-mondblume.png",
       "rarity": "uncommon",
-      "desc": "Blooms only under moonlight."
+      "desc": "Eine Blume die nur bei Mondlicht blüht. Oder wenn niemand hinschaut. Schwer zu sagen."
     },
     {
       "id": "phoenixfeder",
-      "name": "Phoenix Feather",
+      "name": "Phoenixfeder",
       "icon": "/images/icons/mat-phoenixfeder.png",
       "rarity": "epic",
-      "desc": "A glowing feather full of life force."
+      "desc": "Eine Feder die niemals verbrennt. Der Phoenix will sie trotzdem zurück."
     },
     {
       "id": "runenstein",
-      "name": "Runestone",
+      "name": "Runenstein",
       "icon": "/images/icons/mat-runenstein.png",
       "rarity": "uncommon",
-      "desc": "A stone engraved with ancient runes."
+      "desc": "Ein Stein mit eingravierten Runen. Lesen kann sie niemand — aber alle spüren ihre Wirkung."
     },
     {
       "id": "seelensplitter",
-      "name": "Soul Fragment",
+      "name": "Seelensplitter",
       "icon": "/images/icons/mat-seelensplitter.png",
       "rarity": "legendary",
-      "desc": "A fragment of an ancient soul. Extremely rare."
+      "desc": "Ein Fragment reiner Seelenenergie. Flüstert. Hör nicht zu."
     },
     {
       "id": "leinenstoff",
       "name": "Leinenstoff",
       "icon": "/images/icons/mat-leinenstoff.png",
       "rarity": "common",
-      "desc": "Grobes Leinen, gewebt aus Pflanzenfasern. Grundlage jeder Schneiderarbeit."
+      "desc": "Einfacher Leinenstoff. Nicht elegant, aber ehrlich. Wie die meisten guten Dinge."
     },
     {
       "id": "wollstoff",
       "name": "Wollstoff",
       "icon": "/images/icons/mat-wollstoff.png",
       "rarity": "uncommon",
-      "desc": "Weiches Gewebe aus Bergwolle. Warm und widerstandsfähig."
+      "desc": "Dichte Wolle. Wärmt und schützt — beides unterschätzt."
     },
     {
       "id": "seidenstoff",
       "name": "Seidenstoff",
       "icon": "/images/icons/mat-seidenstoff.png",
       "rarity": "rare",
-      "desc": "Schimmerndes Tuch, durchzogen von arkaner Resonanz."
+      "desc": "Mondschein-Seide. So fein, dass man vergisst, dass sie aus Fäden besteht."
     },
     {
       "id": "magiestoff",
       "name": "Magiestoff",
       "icon": "/images/icons/mat-magiestoff.png",
       "rarity": "epic",
-      "desc": "Mit reiner Magie durchwirktes Gewebe. Vibriert bei Berührung."
+      "desc": "Stoff durchwoben mit arkaner Energie. Leuchtet dezent. Nicht anfassen ohne Handschuhe."
     },
     {
       "id": "runenstoff",
       "name": "Runenstoff",
       "icon": "/images/icons/mat-runenstoff.png",
       "rarity": "legendary",
-      "desc": "Legendärer Stoff, in den uralte Runen eingewebt sind. Flüstert vergessene Worte."
+      "desc": "Das edelste Gewebe der Gilde. Jeder Faden trägt eine Erinnerung."
     },
     {
       "id": "wildfleisch",
-      "name": "Wild Game",
+      "name": "Wildfleisch",
       "icon": "/images/icons/mat-wildfleisch.png",
       "rarity": "common",
-      "desc": "Fresh meat from the wilderness."
+      "desc": "Frisches Fleisch aus der Wildnis. Enthält Protein und Geschichten."
     },
     {
       "id": "feuerwurz",
-      "name": "Fireroot",
+      "name": "Feuerwurz",
       "icon": "/images/icons/mat-feuerwurz.png",
       "rarity": "uncommon",
-      "desc": "A spicy root that warms from within."
+      "desc": "Eine scharfe Wurzel die von innen wärmt. Vorsicht: die Schärfe ist keine Metapher."
     },
     {
       "id": "sternenfrucht",
-      "name": "Starfruit",
+      "name": "Sternenfrucht",
       "icon": "/images/icons/mat-sternenfrucht.png",
       "rarity": "rare",
-      "desc": "A luminous fruit from the celestial gardens."
+      "desc": "Eine leuchtende Frucht aus den Himmelsgärten. Schmeckt wie ein Sonnenaufgang."
     },
     {
       "id": "leichtesleder",
       "name": "Leichtes Leder",
       "icon": "/images/icons/mat-leichtesleder.png",
       "rarity": "common",
-      "desc": "Supple hide from common beasts. The foundation of any tanner's craft."
+      "desc": "Weiches Leder von kleineren Tieren. Riecht nach Abenteuer und Anfang."
     },
     {
       "id": "mittleresleder",
       "name": "Mittleres Leder",
       "icon": "/images/icons/mat-mittleresleder.png",
       "rarity": "uncommon",
-      "desc": "Thicker leather with a natural sheen. Takes well to tooling and dyeing."
+      "desc": "Festes Leder. Hält einiges aus — wie sein Träger."
     },
     {
       "id": "schweresleder",
       "name": "Schweres Leder",
       "icon": "/images/icons/mat-schweresleder.png",
       "rarity": "rare",
-      "desc": "Dense, weather-hardened hide. Nearly as tough as chain when properly treated."
+      "desc": "Dickes, widerstandsfähiges Leder. Die Bestie die es trug, hatte Besseres vor."
     },
     {
       "id": "dickesleder",
       "name": "Dickes Leder",
       "icon": "/images/icons/mat-dickesleder.png",
       "rarity": "epic",
-      "desc": "Exceptionally thick hide from apex predators. Each piece tells of a dangerous hunt."
+      "desc": "Leder so dick, dass es fast von allein steht. Beeindruckend und leicht beunruhigend."
     },
     {
       "id": "rauesleder",
       "name": "Raues Leder",
       "icon": "/images/icons/mat-rauesleder.png",
       "rarity": "legendary",
-      "desc": "Primordial leather from creatures older than the world. Almost alive beneath the needle."
+      "desc": "Das härteste Leder der Wildnis. Wer es trägt, wird respektiert. Oder gefürchtet."
     },
     {
       "id": "eisenbarren",
-      "name": "Iron Bar",
+      "name": "Eisenbarren",
       "icon": null,
       "rarity": "common",
-      "desc": "Smelted iron, shaped into a sturdy bar. The backbone of every smith's work."
+      "desc": "Geschmolzenes Eisen in Barrenform. Das Rückgrat jeder Schmiede."
     },
     {
       "id": "stahlbarren",
-      "name": "Hardened Steel Bar",
+      "name": "Gehärteter Stahl",
       "icon": null,
       "rarity": "uncommon",
-      "desc": "Iron tempered with crystal resonance. Harder than ordinary steel."
+      "desc": "Stahl, gehärtet mit Kristall. Stärker als er aussieht — und er sieht schon stark aus."
     },
     {
       "id": "kristallbarren",
-      "name": "Crystal Bar",
+      "name": "Kristallbarren",
       "icon": null,
       "rarity": "uncommon",
-      "desc": "A bar infused with crystalline energy. Hums faintly when struck."
+      "desc": "Eine Verschmelzung von Kristall und Eisen. Schimmert bei Temperaturwechsel."
     },
     {
       "id": "verstaerkterstahl",
-      "name": "Reinforced Steel",
+      "name": "Verstärkter Stahl",
       "icon": null,
       "rarity": "rare",
-      "desc": "Steel reinforced with deep-earth crystals. Holds an edge like nothing else."
+      "desc": "Dreifach kristallverstärkter Stahl. Übertrieben? Vielleicht. Effektiv? Definitiv."
     },
     {
       "id": "drachenstahl",
-      "name": "Dragonsteel",
+      "name": "Drachenstahl",
       "icon": null,
       "rarity": "rare",
-      "desc": "An alloy forged with dragon scale. The heat alone would kill a lesser smith."
+      "desc": "Stahl geschmiedet mit Drachenschuppen. Feuerfest und leicht dramatisch."
     },
     {
       "id": "drachenkern",
-      "name": "Dragon Core",
+      "name": "Drachenkern",
       "icon": null,
       "rarity": "rare",
-      "desc": "The molten heart of dragon scale, compressed into solid form. Radiates warmth."
+      "desc": "Ein Kern aus reinem Drachenfeuer. Warm in der Hand, heiß im Kampf."
     },
     {
       "id": "aetherlegierung",
-      "name": "Aether Alloy",
+      "name": "Ätherlegierung",
       "icon": null,
       "rarity": "epic",
-      "desc": "Dragon scale fused with aether energy. Shifts color in different light."
+      "desc": "Aether und Drache verschmolzen. Die Legierung summt wie ein zufriedenes Tier."
     },
     {
       "id": "aetherbarren",
-      "name": "Aether Bar",
+      "name": "Ätherbarren",
       "icon": null,
       "rarity": "epic",
-      "desc": "Pure aether condensed into metal. Weighs almost nothing."
+      "desc": "Reiner Aether in Barrenform. Wiegt weniger als erwartet — und mehr als man denkt."
     },
     {
       "id": "seelenlegierung",
-      "name": "Soul Alloy",
+      "name": "Seelenlegierung",
       "icon": null,
       "rarity": "legendary",
-      "desc": "Aether and soul fragment merged at impossible temperatures. Whispers when cooling."
+      "desc": "Seele trifft Aether. Das Ergebnis flüstert. Manchmal hilfreich."
     },
     {
       "id": "seelenstahl",
-      "name": "Soulsteel",
+      "name": "Seelenstahl",
       "icon": null,
       "rarity": "legendary",
-      "desc": "The rarest alloy known to smiths. Said to remember every blow of the hammer."
+      "desc": "Das edelste Metall der Gilde. Es erinnert sich an jeden Hammerschlag."
     },
     {
       "id": "leinenballen",
