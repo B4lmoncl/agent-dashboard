@@ -75,10 +75,12 @@ function getBossTemplate(bossId) {
   return bossData.bosses.find(b => b.id === bossId) || null;
 }
 
-function calcMaxHp() {
+function calcMaxHp(template) {
   const playerCount = Object.keys(state.users).length;
   const scaled = playerCount * bossData.config.hpPerPlayer;
-  return Math.max(scaled, bossData.config.minHp);
+  // Use template HP if available (individual boss difficulty), scale up with player count
+  const templateHp = template?.hp || 0;
+  return Math.max(templateHp, scaled, bossData.config.minHp);
 }
 
 function pickNextBoss() {
@@ -101,7 +103,7 @@ function spawnBoss(bossId) {
   if (expiresAt.getTime() - now.getTime() < 12 * 60 * 60 * 1000) {
     expiresAt.setDate(expiresAt.getDate() + 7);
   }
-  const maxHp = calcMaxHp();
+  const maxHp = calcMaxHp(template);
 
   const boss = {
     bossId: template.id,
