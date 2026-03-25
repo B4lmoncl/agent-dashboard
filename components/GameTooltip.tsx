@@ -639,16 +639,34 @@ const TOOLTIP_REGISTRY: Record<string, TooltipEntry> = {
       </>
     ),
   },
+  prof_waffenschmied: {
+    title: "Weaponsmith — Varn the Blademaster",
+    icon: "⚔️",
+    accent: "#dc2626",
+    body: (
+      <>
+        <p>Forges all weapons and shields — swords, axes, hammers, daggers, staves, wands, bucklers, tower shields, and foci. The offensive arm of the Guild.</p>
+        <div className="gt-stat-row"><span>Crafts</span><span>Weapons + Shields (all types)</span></div>
+        <div className="gt-stat-row"><span>Gear Templates</span><span>100 unique items (60 weapons + 40 shields)</span></div>
+        <div className="gt-stat-row"><span>Recipes</span><span>116 total (100 gear + weapon services)</span></div>
+        <div className="gt-stat-row"><span>Materials</span><span>Eisenerz, Kristallsplitter, Drachenschuppe</span></div>
+        <div className="gt-stat-row"><span>Key Utility</span><span>Schärfsteine (+Kraft), Schilddornen (+Glück)</span></div>
+        <div className="gt-stat-row"><span>Key Service</span><span>Klinge schärfen (+Kraft), Schild polieren (+Weisheit)</span></div>
+        <div className="gt-stat-row"><span>Mastery (225+)</span><span>+10% weapon/shield stat rolls</span></div>
+        <p className="gt-source">Shares materials with <GTRef k="prof_schmied">Blacksmith</GTRef> — choose wisely between offense and defense.</p>
+      </>
+    ),
+  },
   prof_schmied: {
     title: "Blacksmith — Grimvar the Smith",
     icon: "🔨",
     accent: "#f59e0b",
     body: (
       <>
-        <p>Forges heavy plate armor and weapons from ore, crystal, and dragonscale. The backbone of any well-equipped adventurer.</p>
+        <p>Forges heavy plate armor from ore, crystal, and dragonscale. Helm, armor, and boots — the defensive backbone of any adventurer.</p>
         <div className="gt-stat-row"><span>Armor Type</span><span>Heavy (+1 <GTRef k="ausdauer">Ausdauer</GTRef> per piece)</span></div>
-        <div className="gt-stat-row"><span>Gear Templates</span><span>100 unique items (Eisern → Kristall → Drachen → Aether → Seelen)</span></div>
-        <div className="gt-stat-row"><span>Recipes</span><span>145 total (100 gear + 10 bars + 19 utility + 15 service)</span></div>
+        <div className="gt-stat-row"><span>Crafts</span><span>Helm, Armor, Boots (no weapons — see <GTRef k="prof_waffenschmied">Weaponsmith</GTRef>)</span></div>
+        <div className="gt-stat-row"><span>Recipes</span><span>~120 total (gear + bars + utility + service)</span></div>
         <div className="gt-stat-row"><span>Materials</span><span>Eisenerz, Kristallsplitter, Drachenschuppe</span></div>
         <div className="gt-stat-row"><span>Key Utility</span><span>Schärfsteine (+Kraft), Gewichtsteine (+Ausdauer), Streak-Schilde</span></div>
         <div className="gt-stat-row"><span>Key Service</span><span>Klinge schärfen, Rüstung verstärken, Schild polieren, Amulett segnen</span></div>

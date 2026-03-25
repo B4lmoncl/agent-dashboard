@@ -119,6 +119,7 @@ const NPC_LOCATIONS: Record<string, { label: string; color: string; desc: string
   koch: { label: "Guild Kitchen", color: "#e87b35", desc: "Meals with XP/Gold buffs" },
   verzauberer: { label: "Arcanum", color: "#a78bfa", desc: "Enchantments & stat rerolling" },
   lederverarbeiter: { label: "Gerberei", color: "#b45309", desc: "Leather armor crafting" },
+  waffenschmied: { label: "Waffenkammer", color: "#dc2626", desc: "Weapons & shields" },
 };
 
 // ─── Workshop tool tiers ─────────────────────────────────────────────────────

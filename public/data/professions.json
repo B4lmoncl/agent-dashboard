@@ -160,6 +160,31 @@
         "value": 10,
         "desc": "+10% leather armor stat rolls when equipping items"
       }
+    },
+    {
+      "id": "waffenschmied",
+      "name": "Weaponsmith",
+      "npcName": "Varn the Blademaster",
+      "npcPortrait": "/images/npcs/varn-waffenschmied.png",
+      "npcGreeting": "A weapon is an extension of will. Show me yours — and I will make it sharper.",
+      "description": "Forges weapons and shields from ore and dragonscale. The offensive counterpart to the armor professions.",
+      "color": "#dc2626",
+      "icon": "/images/icons/prof-waffenschmied.png",
+      "maxSkill": 300,
+      "unlockCondition": {
+        "type": "level",
+        "value": 5
+      },
+      "gatheringAffinity": [
+        "eisenerz",
+        "kristallsplitter",
+        "drachenschuppe"
+      ],
+      "masteryBonus": {
+        "type": "weapon_stat_boost",
+        "value": 10,
+        "desc": "+10% weapon/shield stat rolls when crafting"
+      }
     }
   ],
   "gatheringConfig": {
@@ -949,46 +974,6 @@
       "trainerCost": 1100
     },
     {
-      "id": "recipe-schmied-eiserne-klinge",
-      "name": "Eiserne Klinge",
-      "profession": "schmied",
-      "source": "trainer",
-      "reqSkill": 1,
-      "cost": {
-        "gold": 10
-      },
-      "materials": {
-        "eisenerz": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schmied-eiserne-klinge"
-      },
-      "xp": 5,
-      "description": "Schmiedet: Eiserne Klinge.",
-      "trainerCost": 10
-    },
-    {
-      "id": "recipe-schmied-eiserner-rundschild",
-      "name": "Eiserner Rundschild",
-      "profession": "schmied",
-      "source": "trainer",
-      "reqSkill": 5,
-      "cost": {
-        "gold": 13
-      },
-      "materials": {
-        "eisenerz": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schmied-eiserner-rundschild"
-      },
-      "xp": 5,
-      "description": "Schmiedet: Eiserner Rundschild.",
-      "trainerCost": 10
-    },
-    {
       "id": "recipe-schmied-eiserne-brustplatte",
       "name": "Eiserne Brustplatte",
       "profession": "schmied",
@@ -1006,46 +991,6 @@
       },
       "xp": 6,
       "description": "Schmiedet: Eiserne Brustplatte.",
-      "trainerCost": 10
-    },
-    {
-      "id": "recipe-schmied-geschliffenes-breitschwert",
-      "name": "Geschliffenes Breitschwert",
-      "profession": "schmied",
-      "source": "trainer",
-      "reqSkill": 12,
-      "cost": {
-        "gold": 18
-      },
-      "materials": {
-        "eisenerz": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schmied-geschliffenes-breitschwert"
-      },
-      "xp": 6,
-      "description": "Schmiedet: Geschliffenes Breitschwert.",
-      "trainerCost": 10
-    },
-    {
-      "id": "recipe-schmied-grober-schild",
-      "name": "Grober Schild",
-      "profession": "schmied",
-      "source": "trainer",
-      "reqSkill": 16,
-      "cost": {
-        "gold": 21
-      },
-      "materials": {
-        "eisenerz": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schmied-grober-schild"
-      },
-      "xp": 6,
-      "description": "Schmiedet: Grober Schild.",
       "trainerCost": 10
     },
     {
@@ -1151,27 +1096,6 @@
       "dropMinQuestRarity": "uncommon"
     },
     {
-      "id": "recipe-schmied-grober-streitkolben",
-      "name": "Grober Streitkolben",
-      "profession": "schmied",
-      "source": "drop",
-      "reqSkill": 37,
-      "cost": {
-        "gold": 36
-      },
-      "materials": {
-        "eisenerz": 2
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schmied-grober-streitkolben"
-      },
-      "xp": 9,
-      "description": "Schmiedet: Grober Streitkolben.",
-      "dropChance": 0.09,
-      "dropMinQuestRarity": "uncommon"
-    },
-    {
       "id": "recipe-schmied-eiserne-stiefel",
       "name": "Eiserne Stiefel",
       "profession": "schmied",
@@ -1256,27 +1180,6 @@
       "factionMinRep": "friendly"
     },
     {
-      "id": "recipe-schmied-eiserner-kriegshammer",
-      "name": "Eiserner Kriegshammer",
-      "profession": "schmied",
-      "source": "faction",
-      "reqSkill": 55,
-      "cost": {
-        "gold": 49
-      },
-      "materials": {
-        "eisenerz": 4
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schmied-eiserner-kriegshammer"
-      },
-      "xp": 11,
-      "description": "Schmiedet: Eiserner Kriegshammer.",
-      "factionId": "amboss",
-      "factionMinRep": "friendly"
-    },
-    {
       "id": "recipe-schmied-eisernes-amulett",
       "name": "Eisernes Amulett",
       "profession": "schmied",
@@ -1296,28 +1199,6 @@
       "description": "Schmiedet: Eisernes Amulett.",
       "factionId": "glut",
       "factionMinRep": "honored"
-    },
-    {
-      "id": "recipe-schmied-eiserner-turmschild",
-      "name": "Eiserner Turmschild",
-      "profession": "schmied",
-      "source": "faction",
-      "reqSkill": 63,
-      "cost": {
-        "gold": 55
-      },
-      "materials": {
-        "eisenerz": 4,
-        "eisenbarren": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schmied-eiserner-turmschild"
-      },
-      "xp": 11,
-      "description": "Schmiedet: Eiserner Turmschild.",
-      "factionId": "amboss",
-      "factionMinRep": "revered"
     },
     {
       "id": "recipe-schmied-eisenkappe",
@@ -1423,90 +1304,6 @@
       "xp": 13,
       "description": "Schmiedet: Stählerne Marschtreter.",
       "trainerCost": 58
-    },
-    {
-      "id": "recipe-schmied-kristall-klinge",
-      "name": "Kristall-Klinge",
-      "profession": "schmied",
-      "source": "trainer",
-      "reqSkill": 84,
-      "cost": {
-        "gold": 75
-      },
-      "materials": {
-        "kristallsplitter": 1,
-        "eisenbarren": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schmied-kristall-klinge"
-      },
-      "xp": 13,
-      "description": "Schmiedet: Kristall-Klinge.",
-      "trainerCost": 62
-    },
-    {
-      "id": "recipe-schmied-kristall-rundschild",
-      "name": "Kristall-Rundschild",
-      "profession": "schmied",
-      "source": "trainer",
-      "reqSkill": 87,
-      "cost": {
-        "gold": 83
-      },
-      "materials": {
-        "kristallsplitter": 1,
-        "eisenbarren": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schmied-kristall-rundschild"
-      },
-      "xp": 14,
-      "description": "Schmiedet: Kristall-Rundschild.",
-      "trainerCost": 66
-    },
-    {
-      "id": "recipe-schmied-staehlerner-turmschild",
-      "name": "Stählerner Turmschild",
-      "profession": "schmied",
-      "source": "trainer",
-      "reqSkill": 90,
-      "cost": {
-        "gold": 92
-      },
-      "materials": {
-        "kristallsplitter": 1,
-        "eisenbarren": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schmied-staehlerner-turmschild"
-      },
-      "xp": 14,
-      "description": "Schmiedet: Stählerner Turmschild.",
-      "trainerCost": 70
-    },
-    {
-      "id": "recipe-schmied-staehlernes-breitschwert",
-      "name": "Stählernes Breitschwert",
-      "profession": "schmied",
-      "source": "trainer",
-      "reqSkill": 93,
-      "cost": {
-        "gold": 100
-      },
-      "materials": {
-        "kristallsplitter": 1,
-        "eisenbarren": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schmied-staehlernes-breitschwert"
-      },
-      "xp": 15,
-      "description": "Schmiedet: Stählernes Breitschwert.",
-      "trainerCost": 74
     },
     {
       "id": "recipe-schmied-staehlerne-sturmhaube",
@@ -1726,28 +1523,6 @@
       "dropMinQuestRarity": "rare"
     },
     {
-      "id": "recipe-schmied-kristall-streitaxt",
-      "name": "Kristall-Streitaxt",
-      "profession": "schmied",
-      "source": "drop",
-      "reqSkill": 127,
-      "cost": {
-        "gold": 192
-      },
-      "materials": {
-        "kristallsplitter": 2,
-        "eisenbarren": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schmied-kristall-streitaxt"
-      },
-      "xp": 19,
-      "description": "Schmiedet: Kristall-Streitaxt.",
-      "dropChance": 0.12,
-      "dropMinQuestRarity": "rare"
-    },
-    {
       "id": "recipe-schmied-staehlernes-siegelamulett",
       "name": "Stählernes Siegelamulett",
       "profession": "schmied",
@@ -1767,28 +1542,6 @@
       "xp": 20,
       "description": "Schmiedet: Stählernes Siegelamulett.",
       "factionId": "glut",
-      "factionMinRep": "friendly"
-    },
-    {
-      "id": "recipe-schmied-staehlerner-kriegshammer",
-      "name": "Stählerner Kriegshammer",
-      "profession": "schmied",
-      "source": "faction",
-      "reqSkill": 133,
-      "cost": {
-        "gold": 208
-      },
-      "materials": {
-        "kristallsplitter": 4,
-        "kristallbarren": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schmied-staehlerner-kriegshammer"
-      },
-      "xp": 20,
-      "description": "Schmiedet: Stählerner Kriegshammer.",
-      "factionId": "amboss",
       "factionMinRep": "friendly"
     },
     {
@@ -1812,28 +1565,6 @@
       "description": "Schmiedet: Kristall-Kettenhemd.",
       "factionId": "glut",
       "factionMinRep": "honored"
-    },
-    {
-      "id": "recipe-schmied-staehlerner-wappenschild",
-      "name": "Stählerner Wappenschild",
-      "profession": "schmied",
-      "source": "faction",
-      "reqSkill": 139,
-      "cost": {
-        "gold": 225
-      },
-      "materials": {
-        "kristallsplitter": 4,
-        "kristallbarren": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schmied-staehlerner-wappenschild"
-      },
-      "xp": 21,
-      "description": "Schmiedet: Stählerner Wappenschild.",
-      "factionId": "amboss",
-      "factionMinRep": "revered"
     },
     {
       "id": "recipe-schmied-kristall-spangenhelm",
@@ -1878,48 +1609,6 @@
       "description": "Schmiedet: Stählerner Plattenpanzer.",
       "dropChance": 0.02,
       "dropMinQuestRarity": "epic"
-    },
-    {
-      "id": "recipe-schmied-kristall-buckler",
-      "name": "Kristall-Buckler",
-      "profession": "schmied",
-      "source": "drop",
-      "reqSkill": 148,
-      "cost": {
-        "gold": 250
-      },
-      "materials": {
-        "kristallsplitter": 3,
-        "eisenbarren": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schmied-kristall-buckler"
-      },
-      "xp": 22,
-      "description": "Schmiedet: Kristall-Buckler.",
-      "dropChance": 0.02,
-      "dropMinQuestRarity": "epic"
-    },
-    {
-      "id": "recipe-schmied-drachenschuppen-streitaxt",
-      "name": "Drachenschuppen-Streitaxt",
-      "profession": "schmied",
-      "source": "trainer",
-      "reqSkill": 150,
-      "cost": {
-        "gold": 200
-      },
-      "materials": {
-        "drachenstahl": 2
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schmied-drachenschuppen-streitaxt"
-      },
-      "xp": 20,
-      "description": "Schmiedet: Drachenschuppen-Streitaxt.",
-      "trainerCost": 150
     },
     {
       "id": "recipe-schmied-drachenstahl-stiefel",
@@ -1983,26 +1672,6 @@
       "trainerCost": 180
     },
     {
-      "id": "recipe-schmied-drachenzahn-bollwerk",
-      "name": "Drachenzahn-Bollwerk",
-      "profession": "schmied",
-      "source": "trainer",
-      "reqSkill": 162,
-      "cost": {
-        "gold": 250
-      },
-      "materials": {
-        "drachenstahl": 2
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schmied-drachenzahn-bollwerk"
-      },
-      "xp": 22,
-      "description": "Schmiedet: Drachenzahn-Bollwerk.",
-      "trainerCost": 190
-    },
-    {
       "id": "recipe-schmied-drachenschuppen-drachenhelm",
       "name": "Drachenschuppen-Drachenhelm",
       "profession": "schmied",
@@ -2021,27 +1690,6 @@
       "xp": 22,
       "description": "Schmiedet: Drachenschuppen-Drachenhelm.",
       "trainerCost": 200
-    },
-    {
-      "id": "recipe-schmied-drachenstahl-klinge",
-      "name": "Drachenstahl-Klinge",
-      "profession": "schmied",
-      "source": "trainer",
-      "reqSkill": 168,
-      "cost": {
-        "gold": 275
-      },
-      "materials": {
-        "drachenschuppe": 1,
-        "drachenstahl": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schmied-drachenstahl-klinge"
-      },
-      "xp": 23,
-      "description": "Schmiedet: Drachenstahl-Klinge.",
-      "trainerCost": 210
     },
     {
       "id": "recipe-schmied-drachenstahl-brustplatte",
@@ -2194,28 +1842,6 @@
       "dropMinQuestRarity": "rare"
     },
     {
-      "id": "recipe-schmied-drachenstahl-rundschild",
-      "name": "Drachenstahl-Rundschild",
-      "profession": "schmied",
-      "source": "drop",
-      "reqSkill": 193,
-      "cost": {
-        "gold": 375
-      },
-      "materials": {
-        "drachenschuppe": 2,
-        "drachenstahl": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schmied-drachenstahl-rundschild"
-      },
-      "xp": 26,
-      "description": "Schmiedet: Drachenstahl-Rundschild.",
-      "dropChance": 0.12,
-      "dropMinQuestRarity": "rare"
-    },
-    {
       "id": "recipe-schmied-drachenzahn-sturmhaube",
       "name": "Drachenzahn-Sturmhaube",
       "profession": "schmied",
@@ -2234,28 +1860,6 @@
       },
       "xp": 26,
       "description": "Schmiedet: Drachenzahn-Sturmhaube.",
-      "dropChance": 0.12,
-      "dropMinQuestRarity": "rare"
-    },
-    {
-      "id": "recipe-schmied-drachenstahl-kriegsklinge",
-      "name": "Drachenstahl-Kriegsklinge",
-      "profession": "schmied",
-      "source": "drop",
-      "reqSkill": 199,
-      "cost": {
-        "gold": 400
-      },
-      "materials": {
-        "drachenstahl": 3,
-        "drachenkern": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schmied-drachenstahl-kriegsklinge"
-      },
-      "xp": 27,
-      "description": "Schmiedet: Drachenstahl-Kriegsklinge.",
       "dropChance": 0.12,
       "dropMinQuestRarity": "rare"
     },
@@ -2326,72 +1930,6 @@
       "factionMinRep": "friendly"
     },
     {
-      "id": "recipe-schmied-drachenschuppen-schlachtbeil",
-      "name": "Drachenschuppen-Schlachtbeil",
-      "profession": "schmied",
-      "source": "faction",
-      "reqSkill": 211,
-      "cost": {
-        "gold": 450
-      },
-      "materials": {
-        "drachenstahl": 4,
-        "drachenkern": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schmied-drachenschuppen-schlachtbeil"
-      },
-      "xp": 28,
-      "description": "Schmiedet: Drachenschuppen-Schlachtbeil.",
-      "factionId": "glut",
-      "factionMinRep": "honored"
-    },
-    {
-      "id": "recipe-schmied-drachenschuppen-turmschild",
-      "name": "Drachenschuppen-Turmschild",
-      "profession": "schmied",
-      "source": "faction",
-      "reqSkill": 214,
-      "cost": {
-        "gold": 463
-      },
-      "materials": {
-        "drachenstahl": 4,
-        "drachenkern": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schmied-drachenschuppen-turmschild"
-      },
-      "xp": 29,
-      "description": "Schmiedet: Drachenschuppen-Turmschild.",
-      "factionId": "amboss",
-      "factionMinRep": "revered"
-    },
-    {
-      "id": "recipe-schmied-drachenzahn-saebel",
-      "name": "Drachenzahn-Säbel",
-      "profession": "schmied",
-      "source": "faction",
-      "reqSkill": 217,
-      "cost": {
-        "gold": 475
-      },
-      "materials": {
-        "drachenschuppe": 3,
-        "drachenstahl": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schmied-drachenzahn-saebel"
-      },
-      "xp": 29,
-      "description": "Schmiedet: Drachenzahn-Säbel.",
-      "factionId": "glut",
-      "factionMinRep": "revered"
-    },
-    {
       "id": "recipe-schmied-drachenzahn-amulett",
       "name": "Drachenzahn-Amulett",
       "profession": "schmied",
@@ -2456,26 +1994,6 @@
       "trainerCost": 400
     },
     {
-      "id": "recipe-schmied-aether-turmschild",
-      "name": "Aether-Turmschild",
-      "profession": "schmied",
-      "source": "trainer",
-      "reqSkill": 228,
-      "cost": {
-        "gold": 438
-      },
-      "materials": {
-        "aetherlegierung": 2
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schmied-aether-turmschild"
-      },
-      "xp": 29,
-      "description": "Schmiedet: Aether-Turmschild.",
-      "trainerCost": 424
-    },
-    {
       "id": "recipe-schmied-aether-kettenhemd",
       "name": "Aether-Kettenhemd",
       "profession": "schmied",
@@ -2514,26 +2032,6 @@
       "xp": 30,
       "description": "Schmiedet: Seelen-Kettenrüstung.",
       "trainerCost": 464
-    },
-    {
-      "id": "recipe-schmied-seelen-richtschwert",
-      "name": "Seelengeschmiedetes Richtschwert",
-      "profession": "schmied",
-      "source": "trainer",
-      "reqSkill": 235,
-      "cost": {
-        "gold": 552
-      },
-      "materials": {
-        "aetherlegierung": 2
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schmied-seelen-richtschwert"
-      },
-      "xp": 31,
-      "description": "Schmiedet: Seelengeschmiedetes Richtschwert.",
-      "trainerCost": 480
     },
     {
       "id": "recipe-schmied-seelen-krone",
@@ -2704,50 +2202,6 @@
       "dropMinQuestRarity": "uncommon"
     },
     {
-      "id": "recipe-schmied-seelenklinge",
-      "name": "Seelenklinge des Schmieds",
-      "profession": "schmied",
-      "source": "drop",
-      "reqSkill": 258,
-      "cost": {
-        "gold": 893
-      },
-      "materials": {
-        "aetherlegierung": 3,
-        "aetherbarren": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schmied-seelenklinge"
-      },
-      "xp": 38,
-      "description": "Schmiedet: Seelenklinge des Schmieds.",
-      "dropChance": 0.09,
-      "dropMinQuestRarity": "uncommon"
-    },
-    {
-      "id": "recipe-schmied-seelenbollwerk",
-      "name": "Seelen-Bollwerk des Wächters",
-      "profession": "schmied",
-      "source": "drop",
-      "reqSkill": 260,
-      "cost": {
-        "gold": 931
-      },
-      "materials": {
-        "aetherlegierung": 3,
-        "aetherbarren": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schmied-seelenbollwerk"
-      },
-      "xp": 39,
-      "description": "Schmiedet: Seelen-Bollwerk des Wächters.",
-      "dropChance": 0.09,
-      "dropMinQuestRarity": "uncommon"
-    },
-    {
       "id": "recipe-schmied-seelenstiefel-des-wanderers",
       "name": "Seelenstiefel des Wanderers",
       "profession": "schmied",
@@ -2770,50 +2224,6 @@
       "dropMinQuestRarity": "uncommon"
     },
     {
-      "id": "recipe-schmied-aetherkern-klinge",
-      "name": "Aetherkern-Klinge",
-      "profession": "schmied",
-      "source": "drop",
-      "reqSkill": 265,
-      "cost": {
-        "gold": 1007
-      },
-      "materials": {
-        "aetherlegierung": 4,
-        "aetherbarren": 2
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schmied-aetherkern-klinge"
-      },
-      "xp": 40,
-      "description": "Schmiedet: Aetherkern-Klinge.",
-      "dropChance": 0.12,
-      "dropMinQuestRarity": "rare"
-    },
-    {
-      "id": "recipe-schmied-aetherkern-wachtschwert",
-      "name": "Aetherkern-Wachtschwert",
-      "profession": "schmied",
-      "source": "drop",
-      "reqSkill": 268,
-      "cost": {
-        "gold": 1045
-      },
-      "materials": {
-        "aetherlegierung": 4,
-        "aetherbarren": 2
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schmied-aetherkern-wachtschwert"
-      },
-      "xp": 41,
-      "description": "Schmiedet: Aetherkern-Wachtschwert.",
-      "dropChance": 0.12,
-      "dropMinQuestRarity": "rare"
-    },
-    {
       "id": "recipe-schmied-aetherkern-medaillon",
       "name": "Aetherkern-Medaillon",
       "profession": "schmied",
@@ -2832,28 +2242,6 @@
       },
       "xp": 42,
       "description": "Schmiedet: Aetherkern-Medaillon.",
-      "dropChance": 0.12,
-      "dropMinQuestRarity": "rare"
-    },
-    {
-      "id": "recipe-schmied-aetherkern-kriegsschwert",
-      "name": "Aetherkern-Kriegsschwert",
-      "profession": "schmied",
-      "source": "drop",
-      "reqSkill": 273,
-      "cost": {
-        "gold": 1121
-      },
-      "materials": {
-        "aetherlegierung": 4,
-        "aetherbarren": 2
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schmied-aetherkern-kriegsschwert"
-      },
-      "xp": 42,
-      "description": "Schmiedet: Aetherkern-Kriegsschwert.",
       "dropChance": 0.12,
       "dropMinQuestRarity": "rare"
     },
@@ -2897,28 +2285,6 @@
       "xp": 44,
       "description": "Schmiedet: Seelengeschmiedeter Panzer.",
       "factionId": "amboss",
-      "factionMinRep": "friendly"
-    },
-    {
-      "id": "recipe-schmied-seelen-aegis",
-      "name": "Seelen-Aegis",
-      "profession": "schmied",
-      "source": "faction",
-      "reqSkill": 280,
-      "cost": {
-        "gold": 1234
-      },
-      "materials": {
-        "seelenlegierung": 2,
-        "seelenstahl": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schmied-seelen-aegis"
-      },
-      "xp": 45,
-      "description": "Schmiedet: Seelen-Aegis.",
-      "factionId": "glut",
       "factionMinRep": "friendly"
     },
     {
@@ -2988,28 +2354,6 @@
       "factionMinRep": "revered"
     },
     {
-      "id": "recipe-schmied-aether-bollwerk",
-      "name": "Aether-Bollwerk",
-      "profession": "schmied",
-      "source": "faction",
-      "reqSkill": 290,
-      "cost": {
-        "gold": 1386
-      },
-      "materials": {
-        "seelenlegierung": 3,
-        "seelenstahl": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schmied-aether-bollwerk"
-      },
-      "xp": 48,
-      "description": "Schmiedet: Aether-Bollwerk.",
-      "factionId": "glut",
-      "factionMinRep": "revered"
-    },
-    {
       "id": "recipe-schmied-aetherkern-visier",
       "name": "Aetherkern-Visier",
       "profession": "schmied",
@@ -3032,53 +2376,9 @@
       "dropMinQuestRarity": "epic"
     },
     {
-      "id": "recipe-schmied-aether-schildwall",
-      "name": "Aether-Schildwall",
-      "profession": "schmied",
-      "source": "drop",
-      "reqSkill": 295,
-      "cost": {
-        "gold": 1462
-      },
-      "materials": {
-        "seelenlegierung": 3,
-        "seelenstahl": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schmied-aether-schildwall"
-      },
-      "xp": 49,
-      "description": "Schmiedet: Aether-Schildwall.",
-      "dropChance": 0.02,
-      "dropMinQuestRarity": "epic"
-    },
-    {
-      "id": "recipe-schmied-seelen-breitschwert",
-      "name": "Seelen-Breitschwert",
-      "profession": "schmied",
-      "source": "drop",
-      "reqSkill": 298,
-      "cost": {
-        "gold": 1500
-      },
-      "materials": {
-        "seelenlegierung": 3,
-        "seelenstahl": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schmied-seelen-breitschwert"
-      },
-      "xp": 50,
-      "description": "Schmiedet: Seelen-Breitschwert.",
-      "dropChance": 0.02,
-      "dropMinQuestRarity": "epic"
-    },
-    {
       "id": "recipe-schmied-grober-schaerfstein",
       "name": "Grober Schärfstein",
-      "profession": "schmied",
+      "profession": "waffenschmied",
       "source": "trainer",
       "reqSkill": 10,
       "cost": {
@@ -3100,7 +2400,7 @@
     {
       "id": "recipe-schmied-rauer-schaerfstein",
       "name": "Rauer Schärfstein",
-      "profession": "schmied",
+      "profession": "waffenschmied",
       "source": "trainer",
       "reqSkill": 50,
       "cost": {
@@ -3123,7 +2423,7 @@
     {
       "id": "recipe-schmied-schwerer-schaerfstein",
       "name": "Schwerer Schärfstein",
-      "profession": "schmied",
+      "profession": "waffenschmied",
       "source": "trainer",
       "reqSkill": 100,
       "cost": {
@@ -3146,7 +2446,7 @@
     {
       "id": "recipe-schmied-dichter-schaerfstein",
       "name": "Dichter Schärfstein",
-      "profession": "schmied",
+      "profession": "waffenschmied",
       "source": "trainer",
       "reqSkill": 175,
       "cost": {
@@ -3169,7 +2469,7 @@
     {
       "id": "recipe-schmied-elementar-schaerfstein",
       "name": "Elementarer Schärfstein",
-      "profession": "schmied",
+      "profession": "waffenschmied",
       "source": "trainer",
       "reqSkill": 250,
       "cost": {
@@ -3281,7 +2581,7 @@
     {
       "id": "recipe-schmied-eiserne-schilddornen",
       "name": "Eiserne Schilddornen",
-      "profession": "schmied",
+      "profession": "waffenschmied",
       "source": "trainer",
       "reqSkill": 50,
       "cost": {
@@ -3304,7 +2604,7 @@
     {
       "id": "recipe-schmied-kristall-schilddornen",
       "name": "Kristall-Schilddornen",
-      "profession": "schmied",
+      "profession": "waffenschmied",
       "source": "trainer",
       "reqSkill": 150,
       "cost": {
@@ -3327,7 +2627,7 @@
     {
       "id": "recipe-schmied-aether-schilddornen",
       "name": "Aether-Schilddornen",
-      "profession": "schmied",
+      "profession": "waffenschmied",
       "source": "trainer",
       "reqSkill": 250,
       "cost": {
@@ -3502,7 +2802,7 @@
     {
       "id": "recipe-schmied-klinge-schaerfen-1",
       "name": "Klinge schärfen I",
-      "profession": "schmied",
+      "profession": "waffenschmied",
       "source": "trainer",
       "reqSkill": 25,
       "cost": {
@@ -3523,7 +2823,7 @@
     {
       "id": "recipe-schmied-klinge-schaerfen-2",
       "name": "Klinge schärfen II",
-      "profession": "schmied",
+      "profession": "waffenschmied",
       "source": "trainer",
       "reqSkill": 75,
       "cost": {
@@ -3544,7 +2844,7 @@
     {
       "id": "recipe-schmied-klinge-schaerfen-3",
       "name": "Klinge schärfen III",
-      "profession": "schmied",
+      "profession": "waffenschmied",
       "source": "trainer",
       "reqSkill": 150,
       "cost": {
@@ -3566,7 +2866,7 @@
     {
       "id": "recipe-schmied-klinge-schaerfen-4",
       "name": "Klinge schärfen IV",
-      "profession": "schmied",
+      "profession": "waffenschmied",
       "source": "trainer",
       "reqSkill": 225,
       "cost": {
@@ -3588,7 +2888,7 @@
     {
       "id": "recipe-schmied-klinge-schaerfen-5",
       "name": "Klinge schärfen V",
-      "profession": "schmied",
+      "profession": "waffenschmied",
       "source": "trainer",
       "reqSkill": 275,
       "cost": {
@@ -3695,7 +2995,7 @@
     {
       "id": "recipe-schmied-schild-polieren-1",
       "name": "Schild polieren I",
-      "profession": "schmied",
+      "profession": "waffenschmied",
       "source": "trainer",
       "reqSkill": 50,
       "cost": {
@@ -3716,7 +3016,7 @@
     {
       "id": "recipe-schmied-schild-polieren-2",
       "name": "Schild polieren II",
-      "profession": "schmied",
+      "profession": "waffenschmied",
       "source": "trainer",
       "reqSkill": 150,
       "cost": {
@@ -3737,7 +3037,7 @@
     {
       "id": "recipe-schmied-schild-polieren-3",
       "name": "Schild polieren III",
-      "profession": "schmied",
+      "profession": "waffenschmied",
       "source": "trainer",
       "reqSkill": 250,
       "cost": {
@@ -3991,26 +3291,6 @@
       "trainerCost": 800
     },
     {
-      "id": "recipe-schneider-leinenrute",
-      "name": "Leinenrute",
-      "profession": "schneider",
-      "source": "trainer",
-      "reqSkill": 1,
-      "cost": {
-        "gold": 10
-      },
-      "materials": {
-        "leinenstoff": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schneider-leinenrute"
-      },
-      "xp": 5,
-      "description": "Webt: Leinenrute.",
-      "trainerCost": 10
-    },
-    {
       "id": "recipe-schneider-leinenkette",
       "name": "Leinenkette",
       "profession": "schneider",
@@ -4028,46 +3308,6 @@
       },
       "xp": 5,
       "description": "Webt: Leinenkette.",
-      "trainerCost": 10
-    },
-    {
-      "id": "recipe-schneider-leinenstab-i",
-      "name": "Leinenstab I",
-      "profession": "schneider",
-      "source": "trainer",
-      "reqSkill": 8,
-      "cost": {
-        "gold": 15
-      },
-      "materials": {
-        "leinenstoff": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schneider-leinenstab-i"
-      },
-      "xp": 6,
-      "description": "Webt: Leinenstab I.",
-      "trainerCost": 10
-    },
-    {
-      "id": "recipe-schneider-leinenfolio-i",
-      "name": "Leinenfolio I",
-      "profession": "schneider",
-      "source": "trainer",
-      "reqSkill": 12,
-      "cost": {
-        "gold": 18
-      },
-      "materials": {
-        "leinenstoff": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schneider-leinenfolio-i"
-      },
-      "xp": 6,
-      "description": "Webt: Leinenfolio I.",
       "trainerCost": 10
     },
     {
@@ -4172,27 +3412,6 @@
       "dropMinQuestRarity": "common"
     },
     {
-      "id": "recipe-schneider-leinenfolio",
-      "name": "Leinenfolio",
-      "profession": "schneider",
-      "source": "drop",
-      "reqSkill": 34,
-      "cost": {
-        "gold": 34
-      },
-      "materials": {
-        "leinenstoff": 2
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schneider-leinenfolio"
-      },
-      "xp": 8,
-      "description": "Webt: Leinenfolio.",
-      "dropChance": 0.11,
-      "dropMinQuestRarity": "common"
-    },
-    {
       "id": "recipe-schneider-leinengewand",
       "name": "Leinengewand",
       "profession": "schneider",
@@ -4256,48 +3475,6 @@
       "dropMinQuestRarity": "rare"
     },
     {
-      "id": "recipe-schneider-einfacher-zauberstab",
-      "name": "Einfacher Zauberstab",
-      "profession": "schneider",
-      "source": "drop",
-      "reqSkill": 48,
-      "cost": {
-        "gold": 44
-      },
-      "materials": {
-        "leinenstoff": 3
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schneider-einfacher-zauberstab"
-      },
-      "xp": 10,
-      "description": "Webt: Einfacher Zauberstab.",
-      "dropChance": 0.15,
-      "dropMinQuestRarity": "rare"
-    },
-    {
-      "id": "recipe-schneider-leinenfokus-ii",
-      "name": "Leinenfokus II",
-      "profession": "schneider",
-      "source": "faction",
-      "reqSkill": 52,
-      "cost": {
-        "gold": 47
-      },
-      "materials": {
-        "leinenstoff": 3
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schneider-leinenfokus-ii"
-      },
-      "xp": 10,
-      "description": "Webt: Leinenfokus II.",
-      "factionId": "tinte",
-      "factionMinRep": "friendly"
-    },
-    {
       "id": "recipe-schneider-leinenanhaenger",
       "name": "Leinenanhänger",
       "profession": "schneider",
@@ -4338,48 +3515,6 @@
       "description": "Webt: Leinentunika.",
       "factionId": "tinte",
       "factionMinRep": "honored"
-    },
-    {
-      "id": "recipe-schneider-leinenstab",
-      "name": "Leinenstab",
-      "profession": "schneider",
-      "source": "faction",
-      "reqSkill": 63,
-      "cost": {
-        "gold": 55
-      },
-      "materials": {
-        "leinenstoff": 4
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schneider-leinenstab"
-      },
-      "xp": 11,
-      "description": "Webt: Leinenstab.",
-      "factionId": "echo",
-      "factionMinRep": "honored"
-    },
-    {
-      "id": "recipe-schneider-leinenfokus",
-      "name": "Leinenfokus",
-      "profession": "schneider",
-      "source": "drop",
-      "reqSkill": 66,
-      "cost": {
-        "gold": 57
-      },
-      "materials": {
-        "leinenstoff": 4
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schneider-leinenfokus"
-      },
-      "xp": 12,
-      "description": "Webt: Leinenfokus.",
-      "dropChance": 0.02,
-      "dropMinQuestRarity": "epic"
     },
     {
       "id": "recipe-schneider-leinenhaube",
@@ -4423,27 +3558,6 @@
       "trainerCost": 50
     },
     {
-      "id": "recipe-schneider-gewobener-fokus",
-      "name": "Gewobener Fokus",
-      "profession": "schneider",
-      "source": "trainer",
-      "reqSkill": 78,
-      "cost": {
-        "gold": 58
-      },
-      "materials": {
-        "wollstoff": 1,
-        "leinenballen": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schneider-gewobener-fokus"
-      },
-      "xp": 12,
-      "description": "Webt: Gewobener Fokus.",
-      "trainerCost": 54
-    },
-    {
       "id": "recipe-schneider-wollsandalen",
       "name": "Wollsandalen",
       "profession": "schneider",
@@ -4462,27 +3576,6 @@
       "xp": 13,
       "description": "Webt: Wollsandalen.",
       "trainerCost": 58
-    },
-    {
-      "id": "recipe-schneider-wollfoliant-i",
-      "name": "Wollfoliant I",
-      "profession": "schneider",
-      "source": "trainer",
-      "reqSkill": 84,
-      "cost": {
-        "gold": 75
-      },
-      "materials": {
-        "wollstoff": 1,
-        "leinenballen": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schneider-wollfoliant-i"
-      },
-      "xp": 13,
-      "description": "Webt: Wollfoliant I.",
-      "trainerCost": 62
     },
     {
       "id": "recipe-schneider-wollgewand",
@@ -4504,27 +3597,6 @@
       "xp": 14,
       "description": "Webt: Wollgewand.",
       "trainerCost": 66
-    },
-    {
-      "id": "recipe-schneider-wollstab-i",
-      "name": "Wollstab I",
-      "profession": "schneider",
-      "source": "trainer",
-      "reqSkill": 90,
-      "cost": {
-        "gold": 92
-      },
-      "materials": {
-        "wollstoff": 1,
-        "leinenballen": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schneider-wollstab-i"
-      },
-      "xp": 14,
-      "description": "Webt: Wollstab I.",
-      "trainerCost": 70
     },
     {
       "id": "recipe-schneider-wollmantel",
@@ -4566,92 +3638,6 @@
       "xp": 15,
       "description": "Webt: Gewobener Anhänger.",
       "trainerCost": 78
-    },
-    {
-      "id": "recipe-schneider-wollzepter",
-      "name": "Wollzepter",
-      "profession": "schneider",
-      "source": "trainer",
-      "reqSkill": 99,
-      "cost": {
-        "gold": 117
-      },
-      "materials": {
-        "wollstoff": 1,
-        "leinenballen": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schneider-wollzepter"
-      },
-      "xp": 15,
-      "description": "Webt: Wollzepter.",
-      "trainerCost": 82
-    },
-    {
-      "id": "recipe-schneider-gewobener-zauberstab-ii",
-      "name": "Gewobener Zauberstab II",
-      "profession": "schneider",
-      "source": "trainer",
-      "reqSkill": 102,
-      "cost": {
-        "gold": 125
-      },
-      "materials": {
-        "wollstoff": 1,
-        "leinenballen": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schneider-gewobener-zauberstab-ii"
-      },
-      "xp": 16,
-      "description": "Webt: Gewobener Zauberstab II.",
-      "trainerCost": 86
-    },
-    {
-      "id": "recipe-schneider-wollkodex",
-      "name": "Wollkodex",
-      "profession": "schneider",
-      "source": "drop",
-      "reqSkill": 105,
-      "cost": {
-        "gold": 133
-      },
-      "materials": {
-        "wollstoff": 2,
-        "leinenballen": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schneider-wollkodex"
-      },
-      "xp": 16,
-      "description": "Webt: Wollkodex.",
-      "dropChance": 0.11,
-      "dropMinQuestRarity": "common"
-    },
-    {
-      "id": "recipe-schneider-gewobener-zauberstab",
-      "name": "Gewobener Zauberstab",
-      "profession": "schneider",
-      "source": "drop",
-      "reqSkill": 108,
-      "cost": {
-        "gold": 142
-      },
-      "materials": {
-        "wollstoff": 2,
-        "leinenballen": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schneider-gewobener-zauberstab"
-      },
-      "xp": 17,
-      "description": "Webt: Gewobener Zauberstab.",
-      "dropChance": 0.11,
-      "dropMinQuestRarity": "common"
     },
     {
       "id": "recipe-schneider-wollhut",
@@ -4762,50 +3748,6 @@
       "description": "Webt: Gewobene Kappe.",
       "dropChance": 0.15,
       "dropMinQuestRarity": "rare"
-    },
-    {
-      "id": "recipe-schneider-wollstab",
-      "name": "Wollstab",
-      "profession": "schneider",
-      "source": "drop",
-      "reqSkill": 127,
-      "cost": {
-        "gold": 192
-      },
-      "materials": {
-        "wollstoff": 2,
-        "leinenballen": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schneider-wollstab"
-      },
-      "xp": 19,
-      "description": "Webt: Wollstab.",
-      "dropChance": 0.15,
-      "dropMinQuestRarity": "rare"
-    },
-    {
-      "id": "recipe-schneider-wollfoliant",
-      "name": "Wollfoliant",
-      "profession": "schneider",
-      "source": "faction",
-      "reqSkill": 130,
-      "cost": {
-        "gold": 200
-      },
-      "materials": {
-        "wollstoff": 2,
-        "leinenballen": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schneider-wollfoliant"
-      },
-      "xp": 20,
-      "description": "Webt: Wollfoliant.",
-      "factionId": "tinte",
-      "factionMinRep": "friendly"
     },
     {
       "id": "recipe-schneider-gewobene-schuhe",
@@ -5071,48 +4013,6 @@
       "trainerCost": 200
     },
     {
-      "id": "recipe-schneider-mondschein-fokus",
-      "name": "Mondschein-Fokus",
-      "profession": "schneider",
-      "source": "trainer",
-      "reqSkill": 168,
-      "cost": {
-        "gold": 275
-      },
-      "materials": {
-        "seidenstoff": 1,
-        "seidenballen": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schneider-mondschein-fokus"
-      },
-      "xp": 23,
-      "description": "Webt: Mondschein-Fokus.",
-      "trainerCost": 210
-    },
-    {
-      "id": "recipe-schneider-seidenstab-i",
-      "name": "Seidenstab I",
-      "profession": "schneider",
-      "source": "trainer",
-      "reqSkill": 171,
-      "cost": {
-        "gold": 288
-      },
-      "materials": {
-        "seidenstoff": 1,
-        "seidenballen": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schneider-seidenstab-i"
-      },
-      "xp": 23,
-      "description": "Webt: Seidenstab I.",
-      "trainerCost": 220
-    },
-    {
       "id": "recipe-schneider-mondschein-amulett",
       "name": "Mondschein-Amulett",
       "profession": "schneider",
@@ -5175,28 +4075,6 @@
       },
       "xp": 24,
       "description": "Webt: Seidenschleier.",
-      "dropChance": 0.11,
-      "dropMinQuestRarity": "common"
-    },
-    {
-      "id": "recipe-schneider-mondschein-zauberstab-ii",
-      "name": "Mondschein-Zauberstab II",
-      "profession": "schneider",
-      "source": "drop",
-      "reqSkill": 183,
-      "cost": {
-        "gold": 338
-      },
-      "materials": {
-        "seidenstoff": 2,
-        "seidenballen": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schneider-mondschein-zauberstab-ii"
-      },
-      "xp": 25,
-      "description": "Webt: Mondschein-Zauberstab II.",
       "dropChance": 0.11,
       "dropMinQuestRarity": "common"
     },
@@ -5267,28 +4145,6 @@
       "dropMinQuestRarity": "uncommon"
     },
     {
-      "id": "recipe-schneider-seidenfoliant",
-      "name": "Seidenfoliant",
-      "profession": "schneider",
-      "source": "drop",
-      "reqSkill": 196,
-      "cost": {
-        "gold": 388
-      },
-      "materials": {
-        "seidenstoff": 2,
-        "seidenballen": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schneider-seidenfoliant"
-      },
-      "xp": 26,
-      "description": "Webt: Seidenfoliant.",
-      "dropChance": 0.15,
-      "dropMinQuestRarity": "rare"
-    },
-    {
       "id": "recipe-schneider-seidenkette-i",
       "name": "Seidenkette I",
       "profession": "schneider",
@@ -5334,72 +4190,6 @@
       "dropMinQuestRarity": "rare"
     },
     {
-      "id": "recipe-schneider-seidenstab",
-      "name": "Seidenstab",
-      "profession": "schneider",
-      "source": "faction",
-      "reqSkill": 205,
-      "cost": {
-        "gold": 425
-      },
-      "materials": {
-        "seidenstoff": 2,
-        "seidenballen": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schneider-seidenstab"
-      },
-      "xp": 28,
-      "description": "Webt: Seidenstab.",
-      "factionId": "tinte",
-      "factionMinRep": "friendly"
-    },
-    {
-      "id": "recipe-schneider-mondschein-zauberstab",
-      "name": "Mondschein-Zauberstab",
-      "profession": "schneider",
-      "source": "faction",
-      "reqSkill": 208,
-      "cost": {
-        "gold": 438
-      },
-      "materials": {
-        "seidenstoff": 2,
-        "seidenballen": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schneider-mondschein-zauberstab"
-      },
-      "xp": 28,
-      "description": "Webt: Mondschein-Zauberstab.",
-      "factionId": "echo",
-      "factionMinRep": "friendly"
-    },
-    {
-      "id": "recipe-schneider-seidenkodex",
-      "name": "Seidenkodex",
-      "profession": "schneider",
-      "source": "faction",
-      "reqSkill": 211,
-      "cost": {
-        "gold": 450
-      },
-      "materials": {
-        "seidenstoff": 3,
-        "seidenballen": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schneider-seidenkodex"
-      },
-      "xp": 28,
-      "description": "Webt: Seidenkodex.",
-      "factionId": "tinte",
-      "factionMinRep": "honored"
-    },
-    {
       "id": "recipe-schneider-seidenkette",
       "name": "Seidenkette",
       "profession": "schneider",
@@ -5420,28 +4210,6 @@
       "xp": 29,
       "description": "Webt: Seidenkette.",
       "factionId": "echo",
-      "factionMinRep": "honored"
-    },
-    {
-      "id": "recipe-schneider-seidenfoliant-i",
-      "name": "Seidenfoliant I",
-      "profession": "schneider",
-      "source": "faction",
-      "reqSkill": 217,
-      "cost": {
-        "gold": 475
-      },
-      "materials": {
-        "seidenstoff": 3,
-        "seidenballen": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schneider-seidenfoliant-i"
-      },
-      "xp": 29,
-      "description": "Webt: Seidenfoliant I.",
-      "factionId": "tinte",
       "factionMinRep": "honored"
     },
     {
@@ -5466,49 +4234,6 @@
       "description": "Webt: Mondschein-Pantoffeln.",
       "dropChance": 0.02,
       "dropMinQuestRarity": "epic"
-    },
-    {
-      "id": "recipe-schneider-seidenzepter",
-      "name": "Seidenzepter",
-      "profession": "schneider",
-      "source": "drop",
-      "reqSkill": 223,
-      "cost": {
-        "gold": 500
-      },
-      "materials": {
-        "seidenstoff": 3,
-        "seidenballen": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schneider-seidenzepter"
-      },
-      "xp": 30,
-      "description": "Webt: Seidenzepter.",
-      "dropChance": 0.02,
-      "dropMinQuestRarity": "epic"
-    },
-    {
-      "id": "recipe-schneider-magiestab",
-      "name": "Magiestab",
-      "profession": "schneider",
-      "source": "trainer",
-      "reqSkill": 225,
-      "cost": {
-        "gold": 400
-      },
-      "materials": {
-        "magiestoff": 1,
-        "magiestoffballen": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schneider-magiestab"
-      },
-      "xp": 28,
-      "description": "Webt: Magiestab.",
-      "trainerCost": 400
     },
     {
       "id": "recipe-schneider-seelenstiefel",
@@ -5577,48 +4302,6 @@
       "trainerCost": 464
     },
     {
-      "id": "recipe-schneider-aetherfoliant",
-      "name": "Ätherfoliant",
-      "profession": "schneider",
-      "source": "trainer",
-      "reqSkill": 235,
-      "cost": {
-        "gold": 552
-      },
-      "materials": {
-        "magiestoff": 1,
-        "magiestoffballen": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schneider-aetherfoliant"
-      },
-      "xp": 31,
-      "description": "Webt: Ätherfoliant.",
-      "trainerCost": 480
-    },
-    {
-      "id": "recipe-schneider-runenfokus",
-      "name": "Runenfokus",
-      "profession": "schneider",
-      "source": "trainer",
-      "reqSkill": 238,
-      "cost": {
-        "gold": 590
-      },
-      "materials": {
-        "magiestoff": 1,
-        "magiestoffballen": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schneider-runenfokus"
-      },
-      "xp": 32,
-      "description": "Webt: Runenfokus.",
-      "trainerCost": 504
-    },
-    {
       "id": "recipe-schneider-runensandalen",
       "name": "Runensandalen",
       "profession": "schneider",
@@ -5639,27 +4322,6 @@
       "xp": 33,
       "description": "Webt: Runensandalen.",
       "trainerCost": 520
-    },
-    {
-      "id": "recipe-schneider-arkanfoliant",
-      "name": "Arkanfoliant",
-      "profession": "schneider",
-      "source": "trainer",
-      "reqSkill": 243,
-      "cost": {
-        "gold": 666
-      },
-      "materials": {
-        "magiestoff": 1,
-        "magiestoffballen": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schneider-arkanfoliant"
-      },
-      "xp": 33,
-      "description": "Webt: Arkanfoliant.",
-      "trainerCost": 544
     },
     {
       "id": "recipe-schneider-aethergewand",
@@ -5704,27 +4366,6 @@
       "xp": 35,
       "description": "Webt: Seelenamulett.",
       "trainerCost": 584
-    },
-    {
-      "id": "recipe-schneider-seelenkodex",
-      "name": "Seelenkodex",
-      "profession": "schneider",
-      "source": "trainer",
-      "reqSkill": 250,
-      "cost": {
-        "gold": 779
-      },
-      "materials": {
-        "magiestoff": 2,
-        "magiestoffballen": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schneider-seelenkodex"
-      },
-      "xp": 36,
-      "description": "Webt: Seelenkodex.",
-      "trainerCost": 600
     },
     {
       "id": "recipe-schneider-runenschleier",
@@ -5815,50 +4456,6 @@
       "dropMinQuestRarity": "common"
     },
     {
-      "id": "recipe-schneider-aetherstab",
-      "name": "Ätherstab",
-      "profession": "schneider",
-      "source": "drop",
-      "reqSkill": 263,
-      "cost": {
-        "gold": 969
-      },
-      "materials": {
-        "magiestoff": 2,
-        "magiestoffballen": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schneider-aetherstab"
-      },
-      "xp": 39,
-      "description": "Webt: Ätherstab.",
-      "dropChance": 0.13,
-      "dropMinQuestRarity": "uncommon"
-    },
-    {
-      "id": "recipe-schneider-arkaner-zauberstab",
-      "name": "Arkaner Zauberstab",
-      "profession": "schneider",
-      "source": "drop",
-      "reqSkill": 265,
-      "cost": {
-        "gold": 1007
-      },
-      "materials": {
-        "magiestoff": 2,
-        "magiestoffballen": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schneider-arkaner-zauberstab"
-      },
-      "xp": 40,
-      "description": "Webt: Arkaner Zauberstab.",
-      "dropChance": 0.13,
-      "dropMinQuestRarity": "uncommon"
-    },
-    {
       "id": "recipe-schneider-runenkette",
       "name": "Runenkette",
       "profession": "schneider",
@@ -5905,50 +4502,6 @@
       "dropMinQuestRarity": "rare"
     },
     {
-      "id": "recipe-schneider-sternenstab",
-      "name": "Sternenstab",
-      "profession": "schneider",
-      "source": "drop",
-      "reqSkill": 273,
-      "cost": {
-        "gold": 1121
-      },
-      "materials": {
-        "magiestoff": 2,
-        "magiestoffballen": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schneider-sternenstab"
-      },
-      "xp": 42,
-      "description": "Webt: Sternenstab.",
-      "dropChance": 0.15,
-      "dropMinQuestRarity": "rare"
-    },
-    {
-      "id": "recipe-schneider-sternenfokus",
-      "name": "Sternenfokus",
-      "profession": "schneider",
-      "source": "drop",
-      "reqSkill": 275,
-      "cost": {
-        "gold": 1159
-      },
-      "materials": {
-        "magiestoff": 3,
-        "magiestoffballen": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schneider-sternenfokus"
-      },
-      "xp": 43,
-      "description": "Webt: Sternenfokus.",
-      "dropChance": 0.15,
-      "dropMinQuestRarity": "rare"
-    },
-    {
       "id": "recipe-schneider-sternenrobe",
       "name": "Sternenrobe",
       "profession": "schneider",
@@ -5969,28 +4522,6 @@
       "xp": 44,
       "description": "Webt: Sternenrobe.",
       "factionId": "echo",
-      "factionMinRep": "friendly"
-    },
-    {
-      "id": "recipe-schneider-runenstab",
-      "name": "Runenstab",
-      "profession": "schneider",
-      "source": "faction",
-      "reqSkill": 280,
-      "cost": {
-        "gold": 1234
-      },
-      "materials": {
-        "magiestoff": 3,
-        "magiestoffballen": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-schneider-runenstab"
-      },
-      "xp": 45,
-      "description": "Webt: Runenstab.",
-      "factionId": "tinte",
       "factionMinRep": "friendly"
     },
     {
@@ -7072,46 +5603,6 @@
       "trainerCost": 680
     },
     {
-      "id": "recipe-leder-leichtleder-dolch-ii",
-      "name": "Leichtleder-Dolch II",
-      "profession": "lederverarbeiter",
-      "source": "trainer",
-      "reqSkill": 1,
-      "cost": {
-        "gold": 10
-      },
-      "materials": {
-        "leichtesleder": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-leder-leichtleder-dolch-ii"
-      },
-      "xp": 5,
-      "description": "Gerbt: Leichtleder-Dolch II.",
-      "trainerCost": 10
-    },
-    {
-      "id": "recipe-leder-leichtleder-peitsche",
-      "name": "Leichtleder-Peitsche",
-      "profession": "lederverarbeiter",
-      "source": "trainer",
-      "reqSkill": 5,
-      "cost": {
-        "gold": 13
-      },
-      "materials": {
-        "leichtesleder": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-leder-leichtleder-peitsche"
-      },
-      "xp": 5,
-      "description": "Gerbt: Leichtleder-Peitsche.",
-      "trainerCost": 10
-    },
-    {
       "id": "recipe-leder-leichtleder-stiefel",
       "name": "Leichtleder-Stiefel",
       "profession": "lederverarbeiter",
@@ -7172,26 +5663,6 @@
       "trainerCost": 10
     },
     {
-      "id": "recipe-leder-leichtleder-armschutz",
-      "name": "Leichtleder-Armschutz",
-      "profession": "lederverarbeiter",
-      "source": "trainer",
-      "reqSkill": 19,
-      "cost": {
-        "gold": 23
-      },
-      "materials": {
-        "leichtesleder": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-leder-leichtleder-armschutz"
-      },
-      "xp": 7,
-      "description": "Gerbt: Leichtleder-Armschutz.",
-      "trainerCost": 10
-    },
-    {
       "id": "recipe-leder-leichtleder-sandalen",
       "name": "Leichtleder-Sandalen",
       "profession": "lederverarbeiter",
@@ -7210,47 +5681,6 @@
       "xp": 7,
       "description": "Gerbt: Leichtleder-Sandalen.",
       "trainerCost": 10
-    },
-    {
-      "id": "recipe-leder-leichtleder-buckler",
-      "name": "Leichtleder-Buckler",
-      "profession": "lederverarbeiter",
-      "source": "trainer",
-      "reqSkill": 26,
-      "cost": {
-        "gold": 28
-      },
-      "materials": {
-        "leichtesleder": 2
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-leder-leichtleder-buckler"
-      },
-      "xp": 8,
-      "description": "Gerbt: Leichtleder-Buckler.",
-      "trainerCost": 10
-    },
-    {
-      "id": "recipe-leder-leichtleder-bogen",
-      "name": "Leichtleder-Bogen",
-      "profession": "lederverarbeiter",
-      "source": "drop",
-      "reqSkill": 30,
-      "cost": {
-        "gold": 31
-      },
-      "materials": {
-        "leichtesleder": 2
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-leder-leichtleder-bogen"
-      },
-      "xp": 8,
-      "description": "Gerbt: Leichtleder-Bogen.",
-      "dropChance": 0.11,
-      "dropMinQuestRarity": "common"
     },
     {
       "id": "recipe-leder-leichtleder-tunika",
@@ -7272,27 +5702,6 @@
       "description": "Gerbt: Leichtleder-Tunika.",
       "dropChance": 0.11,
       "dropMinQuestRarity": "common"
-    },
-    {
-      "id": "recipe-leder-leichtleder-dolch",
-      "name": "Leichtleder-Dolch",
-      "profession": "lederverarbeiter",
-      "source": "drop",
-      "reqSkill": 37,
-      "cost": {
-        "gold": 36
-      },
-      "materials": {
-        "leichtesleder": 2
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-leder-leichtleder-dolch"
-      },
-      "xp": 9,
-      "description": "Gerbt: Leichtleder-Dolch.",
-      "dropChance": 0.13,
-      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-leder-leichtleder-band",
@@ -7421,48 +5830,6 @@
       "factionMinRep": "honored"
     },
     {
-      "id": "recipe-leder-leichtleder-armschutz-iii",
-      "name": "Leichtleder-Armschutz III",
-      "profession": "lederverarbeiter",
-      "source": "faction",
-      "reqSkill": 63,
-      "cost": {
-        "gold": 55
-      },
-      "materials": {
-        "leichtesleder": 4
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-leder-leichtleder-armschutz-iii"
-      },
-      "xp": 11,
-      "description": "Gerbt: Leichtleder-Armschutz III.",
-      "factionId": "amboss",
-      "factionMinRep": "honored"
-    },
-    {
-      "id": "recipe-leder-leichtleder-buckler-ii",
-      "name": "Leichtleder-Buckler II",
-      "profession": "lederverarbeiter",
-      "source": "drop",
-      "reqSkill": 66,
-      "cost": {
-        "gold": 57
-      },
-      "materials": {
-        "leichtesleder": 4
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-leder-leichtleder-buckler-ii"
-      },
-      "xp": 12,
-      "description": "Gerbt: Leichtleder-Buckler II.",
-      "dropChance": 0.02,
-      "dropMinQuestRarity": "epic"
-    },
-    {
       "id": "recipe-leder-leichtleder-wams",
       "name": "Leichtleder-Wams",
       "profession": "lederverarbeiter",
@@ -7503,27 +5870,6 @@
       "xp": 12,
       "description": "Gerbt: Jagd-Jacke.",
       "trainerCost": 50
-    },
-    {
-      "id": "recipe-leder-mittelleder-dolch-ii",
-      "name": "Mittelleder-Dolch II",
-      "profession": "lederverarbeiter",
-      "source": "trainer",
-      "reqSkill": 78,
-      "cost": {
-        "gold": 58
-      },
-      "materials": {
-        "mittleresleder": 1,
-        "geheiltesleichtleder": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-leder-mittelleder-dolch-ii"
-      },
-      "xp": 12,
-      "description": "Gerbt: Mittelleder-Dolch II.",
-      "trainerCost": 54
     },
     {
       "id": "recipe-leder-jaeger-kappe",
@@ -7568,27 +5914,6 @@
       "trainerCost": 62
     },
     {
-      "id": "recipe-leder-wildnis-klinge",
-      "name": "Wildnis-Klinge",
-      "profession": "lederverarbeiter",
-      "source": "trainer",
-      "reqSkill": 87,
-      "cost": {
-        "gold": 83
-      },
-      "materials": {
-        "mittleresleder": 1,
-        "geheiltesleichtleder": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-leder-wildnis-klinge"
-      },
-      "xp": 14,
-      "description": "Gerbt: Wildnis-Klinge.",
-      "trainerCost": 66
-    },
-    {
       "id": "recipe-leder-jaeger-stiefel",
       "name": "Jäger-Stiefel",
       "profession": "lederverarbeiter",
@@ -7607,27 +5932,6 @@
       "xp": 14,
       "description": "Gerbt: Jäger-Stiefel.",
       "trainerCost": 70
-    },
-    {
-      "id": "recipe-leder-mittelleder-dolch",
-      "name": "Mittelleder-Dolch",
-      "profession": "lederverarbeiter",
-      "source": "trainer",
-      "reqSkill": 93,
-      "cost": {
-        "gold": 100
-      },
-      "materials": {
-        "mittleresleder": 1,
-        "geheiltesleichtleder": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-leder-mittelleder-dolch"
-      },
-      "xp": 15,
-      "description": "Gerbt: Mittelleder-Dolch.",
-      "trainerCost": 74
     },
     {
       "id": "recipe-leder-mittelleder-kapuze",
@@ -7691,72 +5995,6 @@
       "xp": 16,
       "description": "Gerbt: Mittelleder-Treter.",
       "trainerCost": 86
-    },
-    {
-      "id": "recipe-leder-jagd-kurzschwert",
-      "name": "Jagd-Kurzschwert",
-      "profession": "lederverarbeiter",
-      "source": "drop",
-      "reqSkill": 105,
-      "cost": {
-        "gold": 133
-      },
-      "materials": {
-        "mittleresleder": 2,
-        "geheiltesleichtleder": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-leder-jagd-kurzschwert"
-      },
-      "xp": 16,
-      "description": "Gerbt: Jagd-Kurzschwert.",
-      "dropChance": 0.11,
-      "dropMinQuestRarity": "common"
-    },
-    {
-      "id": "recipe-leder-mittelleder-bogen",
-      "name": "Mittelleder-Bogen",
-      "profession": "lederverarbeiter",
-      "source": "drop",
-      "reqSkill": 108,
-      "cost": {
-        "gold": 142
-      },
-      "materials": {
-        "mittleresleder": 2,
-        "geheiltesleichtleder": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-leder-mittelleder-bogen"
-      },
-      "xp": 17,
-      "description": "Gerbt: Mittelleder-Bogen.",
-      "dropChance": 0.11,
-      "dropMinQuestRarity": "common"
-    },
-    {
-      "id": "recipe-leder-jagd-schild",
-      "name": "Jagd-Schild",
-      "profession": "lederverarbeiter",
-      "source": "drop",
-      "reqSkill": 112,
-      "cost": {
-        "gold": 150
-      },
-      "materials": {
-        "mittleresleder": 2,
-        "geheiltesleichtleder": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-leder-jagd-schild"
-      },
-      "xp": 17,
-      "description": "Gerbt: Jagd-Schild.",
-      "dropChance": 0.11,
-      "dropMinQuestRarity": "common"
     },
     {
       "id": "recipe-leder-jagd-schuhe",
@@ -7825,50 +6063,6 @@
       "dropMinQuestRarity": "rare"
     },
     {
-      "id": "recipe-leder-mittelleder-tartsche",
-      "name": "Mittelleder-Tartsche",
-      "profession": "lederverarbeiter",
-      "source": "drop",
-      "reqSkill": 124,
-      "cost": {
-        "gold": 183
-      },
-      "materials": {
-        "mittleresleder": 2,
-        "geheiltesleichtleder": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-leder-mittelleder-tartsche"
-      },
-      "xp": 19,
-      "description": "Gerbt: Mittelleder-Tartsche.",
-      "dropChance": 0.15,
-      "dropMinQuestRarity": "rare"
-    },
-    {
-      "id": "recipe-leder-mittelleder-buckler",
-      "name": "Mittelleder-Buckler",
-      "profession": "lederverarbeiter",
-      "source": "drop",
-      "reqSkill": 127,
-      "cost": {
-        "gold": 192
-      },
-      "materials": {
-        "mittleresleder": 2,
-        "geheiltesleichtleder": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-leder-mittelleder-buckler"
-      },
-      "xp": 19,
-      "description": "Gerbt: Mittelleder-Buckler.",
-      "dropChance": 0.15,
-      "dropMinQuestRarity": "rare"
-    },
-    {
       "id": "recipe-leder-wildnis-anhaenger",
       "name": "Wildnis-Anhänger",
       "profession": "lederverarbeiter",
@@ -7911,28 +6105,6 @@
       "description": "Gerbt: Mittelleder-Kette.",
       "factionId": "amboss",
       "factionMinRep": "friendly"
-    },
-    {
-      "id": "recipe-leder-jaeger-armschutz",
-      "name": "Jäger-Armschutz",
-      "profession": "lederverarbeiter",
-      "source": "faction",
-      "reqSkill": 136,
-      "cost": {
-        "gold": 217
-      },
-      "materials": {
-        "mittleresleder": 3,
-        "geheiltesleichtleder": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-leder-jaeger-armschutz"
-      },
-      "xp": 20,
-      "description": "Gerbt: Jäger-Armschutz.",
-      "factionId": "glut",
-      "factionMinRep": "honored"
     },
     {
       "id": "recipe-leder-mittelleder-harnisch",
@@ -8023,27 +6195,6 @@
       "dropMinQuestRarity": "epic"
     },
     {
-      "id": "recipe-leder-schwerleder-schild",
-      "name": "Schwerleder-Schild",
-      "profession": "lederverarbeiter",
-      "source": "trainer",
-      "reqSkill": 150,
-      "cost": {
-        "gold": 200
-      },
-      "materials": {
-        "schweresleder": 1,
-        "gehaertetesschwerleder": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-leder-schwerleder-schild"
-      },
-      "xp": 20,
-      "description": "Gerbt: Schwerleder-Schild.",
-      "trainerCost": 150
-    },
-    {
       "id": "recipe-leder-schwerleder-talisman",
       "name": "Schwerleder-Talisman",
       "profession": "lederverarbeiter",
@@ -8088,48 +6239,6 @@
       "trainerCost": 170
     },
     {
-      "id": "recipe-leder-schwerleder-klinge",
-      "name": "Schwerleder-Klinge",
-      "profession": "lederverarbeiter",
-      "source": "trainer",
-      "reqSkill": 159,
-      "cost": {
-        "gold": 238
-      },
-      "materials": {
-        "schweresleder": 1,
-        "gehaertetesschwerleder": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-leder-schwerleder-klinge"
-      },
-      "xp": 21,
-      "description": "Gerbt: Schwerleder-Klinge.",
-      "trainerCost": 180
-    },
-    {
-      "id": "recipe-leder-schwerleder-bogen",
-      "name": "Schwerleder-Bogen",
-      "profession": "lederverarbeiter",
-      "source": "trainer",
-      "reqSkill": 162,
-      "cost": {
-        "gold": 250
-      },
-      "materials": {
-        "schweresleder": 1,
-        "gehaertetesschwerleder": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-leder-schwerleder-bogen"
-      },
-      "xp": 22,
-      "description": "Gerbt: Schwerleder-Bogen.",
-      "trainerCost": 190
-    },
-    {
       "id": "recipe-leder-bestien-jacke",
       "name": "Bestien-Jacke",
       "profession": "lederverarbeiter",
@@ -8150,27 +6259,6 @@
       "xp": 22,
       "description": "Gerbt: Bestien-Jacke.",
       "trainerCost": 200
-    },
-    {
-      "id": "recipe-leder-bestien-buckler",
-      "name": "Bestien-Buckler",
-      "profession": "lederverarbeiter",
-      "source": "trainer",
-      "reqSkill": 168,
-      "cost": {
-        "gold": 275
-      },
-      "materials": {
-        "schweresleder": 1,
-        "gehaertetesschwerleder": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-leder-bestien-buckler"
-      },
-      "xp": 23,
-      "description": "Gerbt: Bestien-Buckler.",
-      "trainerCost": 210
     },
     {
       "id": "recipe-leder-schwerleder-ruestung",
@@ -8260,28 +6348,6 @@
       "dropMinQuestRarity": "common"
     },
     {
-      "id": "recipe-leder-schwerleder-peitsche",
-      "name": "Schwerleder-Peitsche",
-      "profession": "lederverarbeiter",
-      "source": "drop",
-      "reqSkill": 183,
-      "cost": {
-        "gold": 338
-      },
-      "materials": {
-        "schweresleder": 2,
-        "gehaertetesschwerleder": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-leder-schwerleder-peitsche"
-      },
-      "xp": 25,
-      "description": "Gerbt: Schwerleder-Peitsche.",
-      "dropChance": 0.11,
-      "dropMinQuestRarity": "common"
-    },
-    {
       "id": "recipe-leder-bestien-kapuze",
       "name": "Bestien-Kapuze",
       "profession": "lederverarbeiter",
@@ -8350,72 +6416,6 @@
       "dropMinQuestRarity": "uncommon"
     },
     {
-      "id": "recipe-leder-schwerleder-tartsche",
-      "name": "Schwerleder-Tartsche",
-      "profession": "lederverarbeiter",
-      "source": "drop",
-      "reqSkill": 196,
-      "cost": {
-        "gold": 388
-      },
-      "materials": {
-        "schweresleder": 2,
-        "gehaertetesschwerleder": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-leder-schwerleder-tartsche"
-      },
-      "xp": 26,
-      "description": "Gerbt: Schwerleder-Tartsche.",
-      "dropChance": 0.15,
-      "dropMinQuestRarity": "rare"
-    },
-    {
-      "id": "recipe-leder-bestien-saebel",
-      "name": "Bestien-Säbel",
-      "profession": "lederverarbeiter",
-      "source": "drop",
-      "reqSkill": 199,
-      "cost": {
-        "gold": 400
-      },
-      "materials": {
-        "schweresleder": 2,
-        "gehaertetesschwerleder": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-leder-bestien-saebel"
-      },
-      "xp": 27,
-      "description": "Gerbt: Bestien-Säbel.",
-      "dropChance": 0.15,
-      "dropMinQuestRarity": "rare"
-    },
-    {
-      "id": "recipe-leder-schwerleder-schild-ii",
-      "name": "Schwerleder-Schild II",
-      "profession": "lederverarbeiter",
-      "source": "drop",
-      "reqSkill": 202,
-      "cost": {
-        "gold": 413
-      },
-      "materials": {
-        "schweresleder": 2,
-        "gehaertetesschwerleder": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-leder-schwerleder-schild-ii"
-      },
-      "xp": 27,
-      "description": "Gerbt: Schwerleder-Schild II.",
-      "dropChance": 0.15,
-      "dropMinQuestRarity": "rare"
-    },
-    {
       "id": "recipe-leder-schwerleder-stiefel",
       "name": "Schwerleder-Stiefel",
       "profession": "lederverarbeiter",
@@ -8459,28 +6459,6 @@
       "description": "Gerbt: Schwerleder-Maske.",
       "factionId": "amboss",
       "factionMinRep": "friendly"
-    },
-    {
-      "id": "recipe-leder-bestien-dolch",
-      "name": "Bestien-Dolch",
-      "profession": "lederverarbeiter",
-      "source": "faction",
-      "reqSkill": 211,
-      "cost": {
-        "gold": 450
-      },
-      "materials": {
-        "schweresleder": 3,
-        "gehaertetesschwerleder": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-leder-bestien-dolch"
-      },
-      "xp": 28,
-      "description": "Gerbt: Bestien-Dolch.",
-      "factionId": "glut",
-      "factionMinRep": "honored"
     },
     {
       "id": "recipe-leder-bestien-schuhe",
@@ -8573,48 +6551,6 @@
       "dropMinQuestRarity": "epic"
     },
     {
-      "id": "recipe-leder-bestien-richtschwert",
-      "name": "Bestien-Richtschwert",
-      "profession": "lederverarbeiter",
-      "source": "trainer",
-      "reqSkill": 225,
-      "cost": {
-        "gold": 400
-      },
-      "materials": {
-        "dickesleder": 1,
-        "bestienlederballen": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-leder-bestien-richtschwert"
-      },
-      "xp": 28,
-      "description": "Gerbt: Bestien-Richtschwert.",
-      "trainerCost": 400
-    },
-    {
-      "id": "recipe-leder-urzeit-bogen",
-      "name": "Urzeit-Bogen",
-      "profession": "lederverarbeiter",
-      "source": "trainer",
-      "reqSkill": 228,
-      "cost": {
-        "gold": 438
-      },
-      "materials": {
-        "dickesleder": 1,
-        "bestienlederballen": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-leder-urzeit-bogen"
-      },
-      "xp": 29,
-      "description": "Gerbt: Urzeit-Bogen.",
-      "trainerCost": 424
-    },
-    {
       "id": "recipe-leder-bestien-treter-fxf",
       "name": "Bestien-Treter",
       "profession": "lederverarbeiter",
@@ -8700,27 +6636,6 @@
       "xp": 32,
       "description": "Gerbt: Urzeit-Tritte.",
       "trainerCost": 504
-    },
-    {
-      "id": "recipe-leder-seelenjaeger-klinge",
-      "name": "Seelenjäger-Klinge",
-      "profession": "lederverarbeiter",
-      "source": "trainer",
-      "reqSkill": 240,
-      "cost": {
-        "gold": 628
-      },
-      "materials": {
-        "dickesleder": 1,
-        "bestienlederballen": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-leder-seelenjaeger-klinge"
-      },
-      "xp": 33,
-      "description": "Gerbt: Seelenjäger-Klinge.",
-      "trainerCost": 520
     },
     {
       "id": "recipe-leder-urzeit-helm",
@@ -9037,72 +6952,6 @@
       "dropMinQuestRarity": "rare"
     },
     {
-      "id": "recipe-leder-urzeit-dolch",
-      "name": "Urzeit-Dolch",
-      "profession": "lederverarbeiter",
-      "source": "faction",
-      "reqSkill": 278,
-      "cost": {
-        "gold": 1197
-      },
-      "materials": {
-        "dickesleder": 3,
-        "bestienlederballen": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-leder-urzeit-dolch"
-      },
-      "xp": 44,
-      "description": "Gerbt: Urzeit-Dolch.",
-      "factionId": "amboss",
-      "factionMinRep": "friendly"
-    },
-    {
-      "id": "recipe-leder-urzeit-klinge",
-      "name": "Urzeit-Klinge",
-      "profession": "lederverarbeiter",
-      "source": "faction",
-      "reqSkill": 280,
-      "cost": {
-        "gold": 1234
-      },
-      "materials": {
-        "dickesleder": 3,
-        "bestienlederballen": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-leder-urzeit-klinge"
-      },
-      "xp": 45,
-      "description": "Gerbt: Urzeit-Klinge.",
-      "factionId": "glut",
-      "factionMinRep": "friendly"
-    },
-    {
-      "id": "recipe-leder-urzeit-tartsche",
-      "name": "Urzeit-Tartsche",
-      "profession": "lederverarbeiter",
-      "source": "faction",
-      "reqSkill": 283,
-      "cost": {
-        "gold": 1272
-      },
-      "materials": {
-        "dickesleder": 3,
-        "bestienlederballen": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-leder-urzeit-tartsche"
-      },
-      "xp": 45,
-      "description": "Gerbt: Urzeit-Tartsche.",
-      "factionId": "amboss",
-      "factionMinRep": "friendly"
-    },
-    {
       "id": "recipe-leder-urzeit-talisman",
       "name": "Urzeit-Talisman",
       "profession": "lederverarbeiter",
@@ -9146,94 +6995,6 @@
       "description": "Gerbt: Urzeit-Visier.",
       "factionId": "amboss",
       "factionMinRep": "honored"
-    },
-    {
-      "id": "recipe-leder-urzeit-buckler",
-      "name": "Urzeit-Buckler",
-      "profession": "lederverarbeiter",
-      "source": "faction",
-      "reqSkill": 290,
-      "cost": {
-        "gold": 1386
-      },
-      "materials": {
-        "dickesleder": 3,
-        "bestienlederballen": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-leder-urzeit-buckler"
-      },
-      "xp": 48,
-      "description": "Gerbt: Urzeit-Buckler.",
-      "factionId": "glut",
-      "factionMinRep": "honored"
-    },
-    {
-      "id": "recipe-leder-urzeit-schild",
-      "name": "Urzeit-Schild",
-      "profession": "lederverarbeiter",
-      "source": "drop",
-      "reqSkill": 293,
-      "cost": {
-        "gold": 1424
-      },
-      "materials": {
-        "dickesleder": 3,
-        "bestienlederballen": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-leder-urzeit-schild"
-      },
-      "xp": 48,
-      "description": "Gerbt: Urzeit-Schild.",
-      "dropChance": 0.02,
-      "dropMinQuestRarity": "epic"
-    },
-    {
-      "id": "recipe-leder-seelenjaeger-schutz",
-      "name": "Seelenjäger-Schutz",
-      "profession": "lederverarbeiter",
-      "source": "drop",
-      "reqSkill": 295,
-      "cost": {
-        "gold": 1462
-      },
-      "materials": {
-        "dickesleder": 3,
-        "bestienlederballen": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-leder-seelenjaeger-schutz"
-      },
-      "xp": 49,
-      "description": "Gerbt: Seelenjäger-Schutz.",
-      "dropChance": 0.02,
-      "dropMinQuestRarity": "epic"
-    },
-    {
-      "id": "recipe-leder-bestien-schildwall",
-      "name": "Bestien-Schildwall",
-      "profession": "lederverarbeiter",
-      "source": "drop",
-      "reqSkill": 298,
-      "cost": {
-        "gold": 1500
-      },
-      "materials": {
-        "dickesleder": 3,
-        "bestienlederballen": 1
-      },
-      "result": {
-        "type": "craft_gear",
-        "templateId": "craft-leder-bestien-schildwall"
-      },
-      "xp": 50,
-      "description": "Gerbt: Bestien-Schildwall.",
-      "dropChance": 0.02,
-      "dropMinQuestRarity": "epic"
     },
     {
       "id": "recipe-leder-einfaches-lederkit",
@@ -14588,6 +12349,3783 @@
       "description": "Braut: Seelenöl.",
       "factionId": "tinte",
       "factionMinRep": "revered"
+    },
+    {
+      "id": "recipe-waffenschmied-eiserner-rundschild",
+      "name": "Eiserner Rundschild",
+      "profession": "waffenschmied",
+      "source": "trainer",
+      "reqSkill": 1,
+      "cost": {
+        "gold": 10
+      },
+      "materials": {
+        "eisenerz": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-eiserner-rundschild"
+      },
+      "xp": 5,
+      "description": "Schmiedet: Eiserner Rundschild.",
+      "trainerCost": 10
+    },
+    {
+      "id": "recipe-waffenschmied-eisernes-kurzschwert",
+      "name": "Eisernes Kurzschwert",
+      "profession": "waffenschmied",
+      "source": "trainer",
+      "reqSkill": 5,
+      "cost": {
+        "gold": 13
+      },
+      "materials": {
+        "eisenerz": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-eisernes-kurzschwert"
+      },
+      "xp": 5,
+      "description": "Schmiedet: Eisernes Kurzschwert.",
+      "trainerCost": 10
+    },
+    {
+      "id": "recipe-waffenschmied-eiserner-buckler",
+      "name": "Eiserner Buckler",
+      "profession": "waffenschmied",
+      "source": "trainer",
+      "reqSkill": 8,
+      "cost": {
+        "gold": 15
+      },
+      "materials": {
+        "eisenerz": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-eiserner-buckler"
+      },
+      "xp": 6,
+      "description": "Schmiedet: Eiserner Buckler.",
+      "trainerCost": 10
+    },
+    {
+      "id": "recipe-waffenschmied-einfacher-zauberstab",
+      "name": "Einfacher Zauberstab",
+      "profession": "waffenschmied",
+      "source": "trainer",
+      "reqSkill": 12,
+      "cost": {
+        "gold": 18
+      },
+      "materials": {
+        "eisenerz": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-einfacher-zauberstab"
+      },
+      "xp": 6,
+      "description": "Schmiedet: Einfacher Zauberstab.",
+      "trainerCost": 10
+    },
+    {
+      "id": "recipe-waffenschmied-eisenstab",
+      "name": "Eisenstab",
+      "profession": "waffenschmied",
+      "source": "trainer",
+      "reqSkill": 16,
+      "cost": {
+        "gold": 21
+      },
+      "materials": {
+        "eisenerz": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-eisenstab"
+      },
+      "xp": 6,
+      "description": "Schmiedet: Eisenstab.",
+      "trainerCost": 10
+    },
+    {
+      "id": "recipe-waffenschmied-eiserne-streitaxt",
+      "name": "Eiserne Streitaxt",
+      "profession": "waffenschmied",
+      "source": "trainer",
+      "reqSkill": 19,
+      "cost": {
+        "gold": 23
+      },
+      "materials": {
+        "eisenerz": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-eiserne-streitaxt"
+      },
+      "xp": 7,
+      "description": "Schmiedet: Eiserne Streitaxt.",
+      "trainerCost": 10
+    },
+    {
+      "id": "recipe-waffenschmied-rostiger-dolch",
+      "name": "Rostiger Dolch",
+      "profession": "waffenschmied",
+      "source": "trainer",
+      "reqSkill": 23,
+      "cost": {
+        "gold": 26
+      },
+      "materials": {
+        "eisenerz": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-rostiger-dolch"
+      },
+      "xp": 7,
+      "description": "Schmiedet: Rostiger Dolch.",
+      "trainerCost": 10
+    },
+    {
+      "id": "recipe-waffenschmied-grober-kriegshammer",
+      "name": "Grober Kriegshammer",
+      "profession": "waffenschmied",
+      "source": "trainer",
+      "reqSkill": 26,
+      "cost": {
+        "gold": 28
+      },
+      "materials": {
+        "eisenerz": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-grober-kriegshammer"
+      },
+      "xp": 8,
+      "description": "Schmiedet: Grober Kriegshammer.",
+      "trainerCost": 10
+    },
+    {
+      "id": "recipe-waffenschmied-einfacher-fokus",
+      "name": "Einfacher Fokus",
+      "profession": "waffenschmied",
+      "source": "drop",
+      "reqSkill": 30,
+      "cost": {
+        "gold": 31
+      },
+      "materials": {
+        "eisenerz": 3,
+        "eisenbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-einfacher-fokus"
+      },
+      "xp": 8,
+      "description": "Schmiedet: Einfacher Fokus.",
+      "dropChance": 0.05,
+      "dropMinQuestRarity": "common"
+    },
+    {
+      "id": "recipe-waffenschmied-eisernes-beil",
+      "name": "Eisernes Beil",
+      "profession": "waffenschmied",
+      "source": "drop",
+      "reqSkill": 34,
+      "cost": {
+        "gold": 34
+      },
+      "materials": {
+        "eisenerz": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-eisernes-beil"
+      },
+      "xp": 8,
+      "description": "Schmiedet: Eisernes Beil.",
+      "dropChance": 0.05,
+      "dropMinQuestRarity": "common"
+    },
+    {
+      "id": "recipe-waffenschmied-grober-streitkolben",
+      "name": "Grober Streitkolben",
+      "profession": "waffenschmied",
+      "source": "drop",
+      "reqSkill": 37,
+      "cost": {
+        "gold": 36
+      },
+      "materials": {
+        "eisenerz": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-grober-streitkolben"
+      },
+      "xp": 9,
+      "description": "Schmiedet: Grober Streitkolben.",
+      "dropChance": 0.05,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "recipe-waffenschmied-eiserner-langschild",
+      "name": "Eiserner Langschild",
+      "profession": "waffenschmied",
+      "source": "drop",
+      "reqSkill": 41,
+      "cost": {
+        "gold": 39
+      },
+      "materials": {
+        "eisenerz": 3,
+        "eisenbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-eiserner-langschild"
+      },
+      "xp": 9,
+      "description": "Schmiedet: Eiserner Langschild.",
+      "dropChance": 0.05,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "recipe-waffenschmied-einfaches-schutzbuch",
+      "name": "Einfaches Schutzbuch",
+      "profession": "waffenschmied",
+      "source": "drop",
+      "reqSkill": 45,
+      "cost": {
+        "gold": 42
+      },
+      "materials": {
+        "eisenerz": 3,
+        "eisenbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-einfaches-schutzbuch"
+      },
+      "xp": 9,
+      "description": "Schmiedet: Einfaches Schutzbuch.",
+      "dropChance": 0.05,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "recipe-waffenschmied-grober-schild",
+      "name": "Grober Schild",
+      "profession": "waffenschmied",
+      "source": "drop",
+      "reqSkill": 48,
+      "cost": {
+        "gold": 44
+      },
+      "materials": {
+        "eisenerz": 3
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-grober-schild"
+      },
+      "xp": 10,
+      "description": "Schmiedet: Grober Schild.",
+      "dropChance": 0.05,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "recipe-waffenschmied-geschmiedeter-buckler",
+      "name": "Geschmiedeter Buckler",
+      "profession": "waffenschmied",
+      "source": "faction",
+      "reqSkill": 52,
+      "cost": {
+        "gold": 47
+      },
+      "materials": {
+        "eisenerz": 4,
+        "eisenbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-geschmiedeter-buckler"
+      },
+      "xp": 10,
+      "description": "Schmiedet: Geschmiedeter Buckler.",
+      "factionId": "glut",
+      "factionMinRep": "friendly"
+    },
+    {
+      "id": "recipe-waffenschmied-eiserne-tartsche",
+      "name": "Eiserne Tartsche",
+      "profession": "waffenschmied",
+      "source": "faction",
+      "reqSkill": 55,
+      "cost": {
+        "gold": 49
+      },
+      "materials": {
+        "eisenerz": 4,
+        "eisenbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-eiserne-tartsche"
+      },
+      "xp": 11,
+      "description": "Schmiedet: Eiserne Tartsche.",
+      "factionId": "amboss",
+      "factionMinRep": "friendly"
+    },
+    {
+      "id": "recipe-waffenschmied-eiserne-klinge",
+      "name": "Eiserne Klinge",
+      "profession": "waffenschmied",
+      "source": "faction",
+      "reqSkill": 59,
+      "cost": {
+        "gold": 52
+      },
+      "materials": {
+        "eisenerz": 3
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-eiserne-klinge"
+      },
+      "xp": 11,
+      "description": "Schmiedet: Eiserne Klinge.",
+      "factionId": "glut",
+      "factionMinRep": "honored"
+    },
+    {
+      "id": "recipe-waffenschmied-schlichter-wanderstab",
+      "name": "Schlichter Wanderstab",
+      "profession": "waffenschmied",
+      "source": "faction",
+      "reqSkill": 63,
+      "cost": {
+        "gold": 55
+      },
+      "materials": {
+        "eisenerz": 4
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-schlichter-wanderstab"
+      },
+      "xp": 11,
+      "description": "Schmiedet: Schlichter Wanderstab.",
+      "factionId": "amboss",
+      "factionMinRep": "honored"
+    },
+    {
+      "id": "recipe-waffenschmied-eiserner-turmschild",
+      "name": "Eiserner Turmschild",
+      "profession": "waffenschmied",
+      "source": "drop",
+      "reqSkill": 66,
+      "cost": {
+        "gold": 57
+      },
+      "materials": {
+        "eisenerz": 4
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-eiserner-turmschild"
+      },
+      "xp": 12,
+      "description": "Schmiedet: Eiserner Turmschild.",
+      "dropChance": 0.02,
+      "dropMinQuestRarity": "epic"
+    },
+    {
+      "id": "recipe-waffenschmied-grobes-foliant",
+      "name": "Grobes Foliant",
+      "profession": "waffenschmied",
+      "source": "drop",
+      "reqSkill": 70,
+      "cost": {
+        "gold": 60
+      },
+      "materials": {
+        "eisenerz": 4,
+        "eisenbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-grobes-foliant"
+      },
+      "xp": 12,
+      "description": "Schmiedet: Grobes Foliant.",
+      "dropChance": 0.02,
+      "dropMinQuestRarity": "epic"
+    },
+    {
+      "id": "recipe-waffenschmied-kristall-tartsche",
+      "name": "Kristall-Tartsche",
+      "profession": "waffenschmied",
+      "source": "trainer",
+      "reqSkill": 75,
+      "cost": {
+        "gold": 50
+      },
+      "materials": {
+        "kristallsplitter": 1,
+        "eisenbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-kristall-tartsche"
+      },
+      "xp": 12,
+      "description": "Schmiedet: Kristall-Tartsche.",
+      "trainerCost": 30
+    },
+    {
+      "id": "recipe-waffenschmied-kristall-buckler",
+      "name": "Kristall-Buckler",
+      "profession": "waffenschmied",
+      "source": "trainer",
+      "reqSkill": 78,
+      "cost": {
+        "gold": 58
+      },
+      "materials": {
+        "kristallsplitter": 1,
+        "eisenbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-kristall-buckler"
+      },
+      "xp": 12,
+      "description": "Schmiedet: Kristall-Buckler.",
+      "trainerCost": 100
+    },
+    {
+      "id": "recipe-waffenschmied-kristallklinge",
+      "name": "Kristallklinge",
+      "profession": "waffenschmied",
+      "source": "trainer",
+      "reqSkill": 81,
+      "cost": {
+        "gold": 67
+      },
+      "materials": {
+        "kristallsplitter": 1,
+        "eisenbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-kristallklinge"
+      },
+      "xp": 13,
+      "description": "Schmiedet: Kristallklinge.",
+      "trainerCost": 100
+    },
+    {
+      "id": "recipe-waffenschmied-staehlernes-langschwert",
+      "name": "Stählernes Langschwert",
+      "profession": "waffenschmied",
+      "source": "trainer",
+      "reqSkill": 84,
+      "cost": {
+        "gold": 75
+      },
+      "materials": {
+        "kristallsplitter": 1,
+        "eisenbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-staehlernes-langschwert"
+      },
+      "xp": 13,
+      "description": "Schmiedet: Stählernes Langschwert.",
+      "trainerCost": 100
+    },
+    {
+      "id": "recipe-waffenschmied-staehlerner-zauberstab",
+      "name": "Stählerner Zauberstab",
+      "profession": "waffenschmied",
+      "source": "trainer",
+      "reqSkill": 87,
+      "cost": {
+        "gold": 83
+      },
+      "materials": {
+        "kristallsplitter": 1,
+        "eisenbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-staehlerner-zauberstab"
+      },
+      "xp": 14,
+      "description": "Schmiedet: Stählerner Zauberstab.",
+      "trainerCost": 100
+    },
+    {
+      "id": "recipe-waffenschmied-kristall-prunkschild",
+      "name": "Kristall-Prunkschild",
+      "profession": "waffenschmied",
+      "source": "trainer",
+      "reqSkill": 90,
+      "cost": {
+        "gold": 92
+      },
+      "materials": {
+        "kristallsplitter": 2,
+        "kristallbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-kristall-prunkschild"
+      },
+      "xp": 14,
+      "description": "Schmiedet: Kristall-Prunkschild.",
+      "trainerCost": 100
+    },
+    {
+      "id": "recipe-waffenschmied-kristall-kriegsbeil",
+      "name": "Kristall-Kriegsbeil",
+      "profession": "waffenschmied",
+      "source": "trainer",
+      "reqSkill": 93,
+      "cost": {
+        "gold": 100
+      },
+      "materials": {
+        "kristallsplitter": 1,
+        "eisenbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-kristall-kriegsbeil"
+      },
+      "xp": 15,
+      "description": "Schmiedet: Kristall-Kriegsbeil.",
+      "trainerCost": 100
+    },
+    {
+      "id": "recipe-waffenschmied-kristall-fokus",
+      "name": "Kristall-Fokus",
+      "profession": "waffenschmied",
+      "source": "trainer",
+      "reqSkill": 96,
+      "cost": {
+        "gold": 108
+      },
+      "materials": {
+        "kristallsplitter": 1,
+        "eisenbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-kristall-fokus"
+      },
+      "xp": 15,
+      "description": "Schmiedet: Kristall-Fokus.",
+      "trainerCost": 100
+    },
+    {
+      "id": "recipe-waffenschmied-staehlerner-turmschild",
+      "name": "Stählerner Turmschild",
+      "profession": "waffenschmied",
+      "source": "trainer",
+      "reqSkill": 99,
+      "cost": {
+        "gold": 117
+      },
+      "materials": {
+        "kristallsplitter": 1,
+        "eisenbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-staehlerner-turmschild"
+      },
+      "xp": 15,
+      "description": "Schmiedet: Stählerner Turmschild.",
+      "trainerCost": 100
+    },
+    {
+      "id": "recipe-waffenschmied-staehlerner-schutzschild",
+      "name": "Stählerner Schutzschild",
+      "profession": "waffenschmied",
+      "source": "trainer",
+      "reqSkill": 102,
+      "cost": {
+        "gold": 125
+      },
+      "materials": {
+        "kristallsplitter": 3,
+        "kristallbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-staehlerner-schutzschild"
+      },
+      "xp": 16,
+      "description": "Schmiedet: Stählerner Schutzschild.",
+      "trainerCost": 100
+    },
+    {
+      "id": "recipe-waffenschmied-staehlernes-foliant",
+      "name": "Stählernes Foliant",
+      "profession": "waffenschmied",
+      "source": "drop",
+      "reqSkill": 105,
+      "cost": {
+        "gold": 133
+      },
+      "materials": {
+        "kristallsplitter": 2,
+        "eisenbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-staehlernes-foliant"
+      },
+      "xp": 16,
+      "description": "Schmiedet: Stählernes Foliant.",
+      "dropChance": 0.05,
+      "dropMinQuestRarity": "common"
+    },
+    {
+      "id": "recipe-waffenschmied-staehlernes-breitschwert",
+      "name": "Stählernes Breitschwert",
+      "profession": "waffenschmied",
+      "source": "drop",
+      "reqSkill": 108,
+      "cost": {
+        "gold": 142
+      },
+      "materials": {
+        "kristallsplitter": 2,
+        "eisenbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-staehlernes-breitschwert"
+      },
+      "xp": 17,
+      "description": "Schmiedet: Stählernes Breitschwert.",
+      "dropChance": 0.05,
+      "dropMinQuestRarity": "common"
+    },
+    {
+      "id": "recipe-waffenschmied-gewobener-fokuskristall",
+      "name": "Gewobener Fokuskristall",
+      "profession": "waffenschmied",
+      "source": "drop",
+      "reqSkill": 112,
+      "cost": {
+        "gold": 150
+      },
+      "materials": {
+        "kristallsplitter": 3,
+        "kristallbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-gewobener-fokuskristall"
+      },
+      "xp": 17,
+      "description": "Schmiedet: Gewobener Fokuskristall.",
+      "dropChance": 0.05,
+      "dropMinQuestRarity": "common"
+    },
+    {
+      "id": "recipe-waffenschmied-kristall-rundschild",
+      "name": "Kristall-Rundschild",
+      "profession": "waffenschmied",
+      "source": "drop",
+      "reqSkill": 115,
+      "cost": {
+        "gold": 158
+      },
+      "materials": {
+        "kristallsplitter": 2,
+        "eisenbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-kristall-rundschild"
+      },
+      "xp": 17,
+      "description": "Schmiedet: Kristall-Rundschild.",
+      "dropChance": 0.05,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "recipe-waffenschmied-staehlerner-zeremonialstab",
+      "name": "Stählerner Zeremonialstab",
+      "profession": "waffenschmied",
+      "source": "drop",
+      "reqSkill": 118,
+      "cost": {
+        "gold": 167
+      },
+      "materials": {
+        "kristallsplitter": 3,
+        "kristallbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-staehlerner-zeremonialstab"
+      },
+      "xp": 18,
+      "description": "Schmiedet: Stählerner Zeremonialstab.",
+      "dropChance": 0.05,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "recipe-waffenschmied-kristall-kampfstab",
+      "name": "Kristall-Kampfstab",
+      "profession": "waffenschmied",
+      "source": "drop",
+      "reqSkill": 121,
+      "cost": {
+        "gold": 175
+      },
+      "materials": {
+        "kristallsplitter": 3,
+        "kristallbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-kristall-kampfstab"
+      },
+      "xp": 18,
+      "description": "Schmiedet: Kristall-Kampfstab.",
+      "dropChance": 0.05,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "recipe-waffenschmied-kristall-streitaxt",
+      "name": "Kristall-Streitaxt",
+      "profession": "waffenschmied",
+      "source": "drop",
+      "reqSkill": 124,
+      "cost": {
+        "gold": 183
+      },
+      "materials": {
+        "kristallsplitter": 2,
+        "eisenbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-kristall-streitaxt"
+      },
+      "xp": 19,
+      "description": "Schmiedet: Kristall-Streitaxt.",
+      "dropChance": 0.05,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "recipe-waffenschmied-kristalldolch",
+      "name": "Kristalldolch",
+      "profession": "waffenschmied",
+      "source": "drop",
+      "reqSkill": 127,
+      "cost": {
+        "gold": 192
+      },
+      "materials": {
+        "kristallsplitter": 2,
+        "eisenbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-kristalldolch"
+      },
+      "xp": 19,
+      "description": "Schmiedet: Kristalldolch.",
+      "dropChance": 0.05,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "recipe-waffenschmied-kristall-schutzfolio",
+      "name": "Kristall-Schutzfolio",
+      "profession": "waffenschmied",
+      "source": "faction",
+      "reqSkill": 130,
+      "cost": {
+        "gold": 200
+      },
+      "materials": {
+        "kristallsplitter": 4,
+        "kristallbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-kristall-schutzfolio"
+      },
+      "xp": 20,
+      "description": "Schmiedet: Kristall-Schutzfolio.",
+      "factionId": "glut",
+      "factionMinRep": "friendly"
+    },
+    {
+      "id": "recipe-waffenschmied-kristallstab",
+      "name": "Kristallstab",
+      "profession": "waffenschmied",
+      "source": "faction",
+      "reqSkill": 133,
+      "cost": {
+        "gold": 208
+      },
+      "materials": {
+        "kristallsplitter": 2,
+        "eisenbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-kristallstab"
+      },
+      "xp": 20,
+      "description": "Schmiedet: Kristallstab.",
+      "factionId": "amboss",
+      "factionMinRep": "friendly"
+    },
+    {
+      "id": "recipe-waffenschmied-staehlerner-wanderstab",
+      "name": "Stählerner Wanderstab",
+      "profession": "waffenschmied",
+      "source": "faction",
+      "reqSkill": 136,
+      "cost": {
+        "gold": 217
+      },
+      "materials": {
+        "kristallsplitter": 3,
+        "eisenbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-staehlerner-wanderstab"
+      },
+      "xp": 20,
+      "description": "Schmiedet: Stählerner Wanderstab.",
+      "factionId": "glut",
+      "factionMinRep": "honored"
+    },
+    {
+      "id": "recipe-waffenschmied-kristall-ritualklinge",
+      "name": "Kristall-Ritualklinge",
+      "profession": "waffenschmied",
+      "source": "faction",
+      "reqSkill": 139,
+      "cost": {
+        "gold": 225
+      },
+      "materials": {
+        "kristallsplitter": 4,
+        "kristallbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-kristall-ritualklinge"
+      },
+      "xp": 21,
+      "description": "Schmiedet: Kristall-Ritualklinge.",
+      "factionId": "amboss",
+      "factionMinRep": "honored"
+    },
+    {
+      "id": "recipe-waffenschmied-staehlerne-streitaxt",
+      "name": "Stählerne Streitaxt",
+      "profession": "waffenschmied",
+      "source": "faction",
+      "reqSkill": 142,
+      "cost": {
+        "gold": 233
+      },
+      "materials": {
+        "kristallsplitter": 4,
+        "kristallbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-staehlerne-streitaxt"
+      },
+      "xp": 21,
+      "description": "Schmiedet: Stählerne Streitaxt.",
+      "factionId": "glut",
+      "factionMinRep": "honored"
+    },
+    {
+      "id": "recipe-waffenschmied-staehlerner-kriegshammer",
+      "name": "Stählerner Kriegshammer",
+      "profession": "waffenschmied",
+      "source": "drop",
+      "reqSkill": 145,
+      "cost": {
+        "gold": 242
+      },
+      "materials": {
+        "kristallsplitter": 3,
+        "eisenbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-staehlerner-kriegshammer"
+      },
+      "xp": 22,
+      "description": "Schmiedet: Stählerner Kriegshammer.",
+      "dropChance": 0.02,
+      "dropMinQuestRarity": "epic"
+    },
+    {
+      "id": "recipe-waffenschmied-staehlerner-wappenschild",
+      "name": "Stählerner Wappenschild",
+      "profession": "waffenschmied",
+      "source": "drop",
+      "reqSkill": 148,
+      "cost": {
+        "gold": 250
+      },
+      "materials": {
+        "kristallsplitter": 3,
+        "eisenbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-staehlerner-wappenschild"
+      },
+      "xp": 22,
+      "description": "Schmiedet: Stählerner Wappenschild.",
+      "dropChance": 0.02,
+      "dropMinQuestRarity": "epic"
+    },
+    {
+      "id": "recipe-waffenschmied-drachenzahn-foliant",
+      "name": "Drachenzahn-Foliant",
+      "profession": "waffenschmied",
+      "source": "trainer",
+      "reqSkill": 150,
+      "cost": {
+        "gold": 200
+      },
+      "materials": {
+        "drachenstahl": 2,
+        "drachenkern": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-drachenzahn-foliant"
+      },
+      "xp": 20,
+      "description": "Schmiedet: Drachenzahn-Foliant.",
+      "trainerCost": 100
+    },
+    {
+      "id": "recipe-waffenschmied-drachenstahl-breitschwert",
+      "name": "Drachenstahl-Breitschwert",
+      "profession": "waffenschmied",
+      "source": "trainer",
+      "reqSkill": 153,
+      "cost": {
+        "gold": 213
+      },
+      "materials": {
+        "drachenschuppe": 1,
+        "drachenstahl": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-drachenstahl-breitschwert"
+      },
+      "xp": 20,
+      "description": "Schmiedet: Drachenstahl-Breitschwert.",
+      "trainerCost": 300
+    },
+    {
+      "id": "recipe-waffenschmied-drachenschuppen-hammer",
+      "name": "Drachenschuppen-Hammer",
+      "profession": "waffenschmied",
+      "source": "trainer",
+      "reqSkill": 156,
+      "cost": {
+        "gold": 225
+      },
+      "materials": {
+        "drachenschuppe": 1,
+        "drachenstahl": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-drachenschuppen-hammer"
+      },
+      "xp": 21,
+      "description": "Schmiedet: Drachenschuppen-Hammer.",
+      "trainerCost": 300
+    },
+    {
+      "id": "recipe-waffenschmied-drachenzahn-kriegsbeil",
+      "name": "Drachenzahn-Kriegsbeil",
+      "profession": "waffenschmied",
+      "source": "trainer",
+      "reqSkill": 159,
+      "cost": {
+        "gold": 238
+      },
+      "materials": {
+        "drachenschuppe": 1,
+        "drachenstahl": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-drachenzahn-kriegsbeil"
+      },
+      "xp": 21,
+      "description": "Schmiedet: Drachenzahn-Kriegsbeil.",
+      "trainerCost": 300
+    },
+    {
+      "id": "recipe-waffenschmied-drachenstahl-wappenschild",
+      "name": "Drachenstahl-Wappenschild",
+      "profession": "waffenschmied",
+      "source": "trainer",
+      "reqSkill": 162,
+      "cost": {
+        "gold": 250
+      },
+      "materials": {
+        "drachenschuppe": 1,
+        "drachenstahl": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-drachenstahl-wappenschild"
+      },
+      "xp": 22,
+      "description": "Schmiedet: Drachenstahl-Wappenschild.",
+      "trainerCost": 300
+    },
+    {
+      "id": "recipe-waffenschmied-drachenzahn-tartsche",
+      "name": "Drachenzahn-Tartsche",
+      "profession": "waffenschmied",
+      "source": "trainer",
+      "reqSkill": 165,
+      "cost": {
+        "gold": 263
+      },
+      "materials": {
+        "drachenstahl": 2,
+        "drachenkern": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-drachenzahn-tartsche"
+      },
+      "xp": 22,
+      "description": "Schmiedet: Drachenzahn-Tartsche.",
+      "trainerCost": 300
+    },
+    {
+      "id": "recipe-waffenschmied-drachenzahn-schattenklinge",
+      "name": "Drachenzahn-Schattenklinge",
+      "profession": "waffenschmied",
+      "source": "trainer",
+      "reqSkill": 168,
+      "cost": {
+        "gold": 275
+      },
+      "materials": {
+        "drachenstahl": 2,
+        "drachenkern": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-drachenzahn-schattenklinge"
+      },
+      "xp": 23,
+      "description": "Schmiedet: Drachenzahn-Schattenklinge.",
+      "trainerCost": 300
+    },
+    {
+      "id": "recipe-waffenschmied-drachenstahl-ritualstab",
+      "name": "Drachenstahl-Ritualstab",
+      "profession": "waffenschmied",
+      "source": "trainer",
+      "reqSkill": 171,
+      "cost": {
+        "gold": 288
+      },
+      "materials": {
+        "drachenschuppe": 1,
+        "drachenstahl": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-drachenstahl-ritualstab"
+      },
+      "xp": 23,
+      "description": "Schmiedet: Drachenstahl-Ritualstab.",
+      "trainerCost": 300
+    },
+    {
+      "id": "recipe-waffenschmied-drachenzahn-meisterschwert",
+      "name": "Drachenzahn-Meisterschwert",
+      "profession": "waffenschmied",
+      "source": "trainer",
+      "reqSkill": 174,
+      "cost": {
+        "gold": 300
+      },
+      "materials": {
+        "drachenstahl": 2,
+        "drachenkern": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-drachenzahn-meisterschwert"
+      },
+      "xp": 23,
+      "description": "Schmiedet: Drachenzahn-Meisterschwert.",
+      "trainerCost": 300
+    },
+    {
+      "id": "recipe-waffenschmied-drachenstahl-kampfschild",
+      "name": "Drachenstahl-Kampfschild",
+      "profession": "waffenschmied",
+      "source": "trainer",
+      "reqSkill": 177,
+      "cost": {
+        "gold": 313
+      },
+      "materials": {
+        "drachenstahl": 2,
+        "drachenkern": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-drachenstahl-kampfschild"
+      },
+      "xp": 24,
+      "description": "Schmiedet: Drachenstahl-Kampfschild.",
+      "trainerCost": 300
+    },
+    {
+      "id": "recipe-waffenschmied-drachenstahl-stab",
+      "name": "Drachenstahl-Stab",
+      "profession": "waffenschmied",
+      "source": "drop",
+      "reqSkill": 180,
+      "cost": {
+        "gold": 325
+      },
+      "materials": {
+        "drachenschuppe": 2,
+        "drachenstahl": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-drachenstahl-stab"
+      },
+      "xp": 24,
+      "description": "Schmiedet: Drachenstahl-Stab.",
+      "dropChance": 0.05,
+      "dropMinQuestRarity": "common"
+    },
+    {
+      "id": "recipe-waffenschmied-drachenzahn-dolch",
+      "name": "Drachenzahn-Dolch",
+      "profession": "waffenschmied",
+      "source": "drop",
+      "reqSkill": 183,
+      "cost": {
+        "gold": 338
+      },
+      "materials": {
+        "drachenschuppe": 2,
+        "drachenstahl": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-drachenzahn-dolch"
+      },
+      "xp": 25,
+      "description": "Schmiedet: Drachenzahn-Dolch.",
+      "dropChance": 0.05,
+      "dropMinQuestRarity": "common"
+    },
+    {
+      "id": "recipe-waffenschmied-drachenschuppen-fokus",
+      "name": "Drachenschuppen-Fokus",
+      "profession": "waffenschmied",
+      "source": "drop",
+      "reqSkill": 187,
+      "cost": {
+        "gold": 350
+      },
+      "materials": {
+        "drachenschuppe": 2,
+        "drachenstahl": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-drachenschuppen-fokus"
+      },
+      "xp": 25,
+      "description": "Schmiedet: Drachenschuppen-Fokus.",
+      "dropChance": 0.05,
+      "dropMinQuestRarity": "common"
+    },
+    {
+      "id": "recipe-waffenschmied-drachenstahl-prunkfokus",
+      "name": "Drachenstahl-Prunkfokus",
+      "profession": "waffenschmied",
+      "source": "drop",
+      "reqSkill": 190,
+      "cost": {
+        "gold": 363
+      },
+      "materials": {
+        "drachenstahl": 3,
+        "drachenkern": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-drachenstahl-prunkfokus"
+      },
+      "xp": 25,
+      "description": "Schmiedet: Drachenstahl-Prunkfokus.",
+      "dropChance": 0.05,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "recipe-waffenschmied-drachenstahl-axt",
+      "name": "Drachenstahl-Axt",
+      "profession": "waffenschmied",
+      "source": "drop",
+      "reqSkill": 193,
+      "cost": {
+        "gold": 375
+      },
+      "materials": {
+        "drachenschuppe": 2,
+        "drachenstahl": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-drachenstahl-axt"
+      },
+      "xp": 26,
+      "description": "Schmiedet: Drachenstahl-Axt.",
+      "dropChance": 0.05,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "recipe-waffenschmied-drachenschuppen-streitkolben",
+      "name": "Drachenschuppen-Streitkolben",
+      "profession": "waffenschmied",
+      "source": "drop",
+      "reqSkill": 196,
+      "cost": {
+        "gold": 388
+      },
+      "materials": {
+        "drachenschuppe": 2,
+        "drachenstahl": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-drachenschuppen-streitkolben"
+      },
+      "xp": 26,
+      "description": "Schmiedet: Drachenschuppen-Streitkolben.",
+      "dropChance": 0.05,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "recipe-waffenschmied-drachenschuppen-aegis",
+      "name": "Drachenschuppen-Aegis",
+      "profession": "waffenschmied",
+      "source": "drop",
+      "reqSkill": 199,
+      "cost": {
+        "gold": 400
+      },
+      "materials": {
+        "drachenstahl": 3,
+        "drachenkern": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-drachenschuppen-aegis"
+      },
+      "xp": 27,
+      "description": "Schmiedet: Drachenschuppen-Aegis.",
+      "dropChance": 0.05,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "recipe-waffenschmied-drachenschuppen-turmschild",
+      "name": "Drachenschuppen-Turmschild",
+      "profession": "waffenschmied",
+      "source": "drop",
+      "reqSkill": 202,
+      "cost": {
+        "gold": 413
+      },
+      "materials": {
+        "drachenschuppe": 2,
+        "drachenstahl": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-drachenschuppen-turmschild"
+      },
+      "xp": 27,
+      "description": "Schmiedet: Drachenschuppen-Turmschild.",
+      "dropChance": 0.05,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "recipe-waffenschmied-drachenzahn-schwert",
+      "name": "Drachenzahn-Schwert",
+      "profession": "waffenschmied",
+      "source": "faction",
+      "reqSkill": 205,
+      "cost": {
+        "gold": 425
+      },
+      "materials": {
+        "drachenschuppe": 2,
+        "drachenstahl": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-drachenzahn-schwert"
+      },
+      "xp": 28,
+      "description": "Schmiedet: Drachenzahn-Schwert.",
+      "factionId": "glut",
+      "factionMinRep": "friendly"
+    },
+    {
+      "id": "recipe-waffenschmied-drachenstahl-zeremonialstab",
+      "name": "Drachenstahl-Zeremonialstab",
+      "profession": "waffenschmied",
+      "source": "faction",
+      "reqSkill": 208,
+      "cost": {
+        "gold": 438
+      },
+      "materials": {
+        "drachenstahl": 3,
+        "drachenkern": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-drachenstahl-zeremonialstab"
+      },
+      "xp": 28,
+      "description": "Schmiedet: Drachenstahl-Zeremonialstab.",
+      "factionId": "amboss",
+      "factionMinRep": "friendly"
+    },
+    {
+      "id": "recipe-waffenschmied-drachenschuppen-zauberstab",
+      "name": "Drachenschuppen-Zauberstab",
+      "profession": "waffenschmied",
+      "source": "faction",
+      "reqSkill": 211,
+      "cost": {
+        "gold": 450
+      },
+      "materials": {
+        "drachenschuppe": 3,
+        "drachenstahl": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-drachenschuppen-zauberstab"
+      },
+      "xp": 28,
+      "description": "Schmiedet: Drachenschuppen-Zauberstab.",
+      "factionId": "glut",
+      "factionMinRep": "honored"
+    },
+    {
+      "id": "recipe-waffenschmied-drachenstahl-buckler",
+      "name": "Drachenstahl-Buckler",
+      "profession": "waffenschmied",
+      "source": "faction",
+      "reqSkill": 214,
+      "cost": {
+        "gold": 463
+      },
+      "materials": {
+        "drachenschuppe": 3,
+        "drachenstahl": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-drachenstahl-buckler"
+      },
+      "xp": 29,
+      "description": "Schmiedet: Drachenstahl-Buckler.",
+      "factionId": "amboss",
+      "factionMinRep": "honored"
+    },
+    {
+      "id": "recipe-waffenschmied-drachenschuppen-schlachtbeil",
+      "name": "Drachenschuppen-Schlachtbeil",
+      "profession": "waffenschmied",
+      "source": "faction",
+      "reqSkill": 217,
+      "cost": {
+        "gold": 475
+      },
+      "materials": {
+        "drachenstahl": 4,
+        "drachenkern": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-drachenschuppen-schlachtbeil"
+      },
+      "xp": 29,
+      "description": "Schmiedet: Drachenschuppen-Schlachtbeil.",
+      "factionId": "glut",
+      "factionMinRep": "honored"
+    },
+    {
+      "id": "recipe-waffenschmied-drachenzahn-rundschild",
+      "name": "Drachenzahn-Rundschild",
+      "profession": "waffenschmied",
+      "source": "drop",
+      "reqSkill": 220,
+      "cost": {
+        "gold": 488
+      },
+      "materials": {
+        "drachenschuppe": 3,
+        "drachenstahl": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-drachenzahn-rundschild"
+      },
+      "xp": 30,
+      "description": "Schmiedet: Drachenzahn-Rundschild.",
+      "dropChance": 0.02,
+      "dropMinQuestRarity": "epic"
+    },
+    {
+      "id": "recipe-waffenschmied-drachenschuppen-klingenbrecher",
+      "name": "Drachenschuppen-Klingenbrecher",
+      "profession": "waffenschmied",
+      "source": "drop",
+      "reqSkill": 223,
+      "cost": {
+        "gold": 500
+      },
+      "materials": {
+        "drachenstahl": 4,
+        "drachenkern": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-drachenschuppen-klingenbrecher"
+      },
+      "xp": 30,
+      "description": "Schmiedet: Drachenschuppen-Klingenbrecher.",
+      "dropChance": 0.02,
+      "dropMinQuestRarity": "epic"
+    },
+    {
+      "id": "recipe-waffenschmied-seelen-kodex",
+      "name": "Seelen-Kodex",
+      "profession": "waffenschmied",
+      "source": "trainer",
+      "reqSkill": 225,
+      "cost": {
+        "gold": 400
+      },
+      "materials": {
+        "aetherlegierung": 2,
+        "aetherbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-seelen-kodex"
+      },
+      "xp": 28,
+      "description": "Schmiedet: Seelen-Kodex.",
+      "trainerCost": 300
+    },
+    {
+      "id": "recipe-waffenschmied-seelen-fokuskristall",
+      "name": "Seelen-Fokuskristall",
+      "profession": "waffenschmied",
+      "source": "trainer",
+      "reqSkill": 228,
+      "cost": {
+        "gold": 438
+      },
+      "materials": {
+        "aetherlegierung": 2,
+        "aetherbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-seelen-fokuskristall"
+      },
+      "xp": 29,
+      "description": "Schmiedet: Seelen-Fokuskristall.",
+      "trainerCost": 800
+    },
+    {
+      "id": "recipe-waffenschmied-aether-hammer",
+      "name": "Aether-Hammer",
+      "profession": "waffenschmied",
+      "source": "trainer",
+      "reqSkill": 230,
+      "cost": {
+        "gold": 476
+      },
+      "materials": {
+        "aetherlegierung": 1,
+        "aetherbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-aether-hammer"
+      },
+      "xp": 30,
+      "description": "Schmiedet: Aether-Hammer.",
+      "trainerCost": 800
+    },
+    {
+      "id": "recipe-waffenschmied-aether-buckler",
+      "name": "Aether-Buckler",
+      "profession": "waffenschmied",
+      "source": "trainer",
+      "reqSkill": 233,
+      "cost": {
+        "gold": 514
+      },
+      "materials": {
+        "aetherlegierung": 1,
+        "aetherbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-aether-buckler"
+      },
+      "xp": 30,
+      "description": "Schmiedet: Aether-Buckler.",
+      "trainerCost": 800
+    },
+    {
+      "id": "recipe-waffenschmied-aetherkern-axt",
+      "name": "Aetherkern-Axt",
+      "profession": "waffenschmied",
+      "source": "trainer",
+      "reqSkill": 235,
+      "cost": {
+        "gold": 552
+      },
+      "materials": {
+        "aetherlegierung": 1,
+        "aetherbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-aetherkern-axt"
+      },
+      "xp": 31,
+      "description": "Schmiedet: Aetherkern-Axt.",
+      "trainerCost": 800
+    },
+    {
+      "id": "recipe-waffenschmied-aether-zeremonialstab",
+      "name": "Aether-Zeremonialstab",
+      "profession": "waffenschmied",
+      "source": "trainer",
+      "reqSkill": 238,
+      "cost": {
+        "gold": 590
+      },
+      "materials": {
+        "aetherlegierung": 1,
+        "aetherbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-aether-zeremonialstab"
+      },
+      "xp": 32,
+      "description": "Schmiedet: Aether-Zeremonialstab.",
+      "trainerCost": 800
+    },
+    {
+      "id": "recipe-waffenschmied-seelen-sternenstab",
+      "name": "Seelen-Sternenstab",
+      "profession": "waffenschmied",
+      "source": "trainer",
+      "reqSkill": 240,
+      "cost": {
+        "gold": 628
+      },
+      "materials": {
+        "aetherlegierung": 2,
+        "aetherbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-seelen-sternenstab"
+      },
+      "xp": 33,
+      "description": "Schmiedet: Seelen-Sternenstab.",
+      "trainerCost": 800
+    },
+    {
+      "id": "recipe-waffenschmied-seelen-donnerhammer",
+      "name": "Seelen-Donnerhammer",
+      "profession": "waffenschmied",
+      "source": "trainer",
+      "reqSkill": 243,
+      "cost": {
+        "gold": 666
+      },
+      "materials": {
+        "aetherlegierung": 2,
+        "aetherbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-seelen-donnerhammer"
+      },
+      "xp": 33,
+      "description": "Schmiedet: Seelen-Donnerhammer.",
+      "trainerCost": 800
+    },
+    {
+      "id": "recipe-waffenschmied-aether-kriegsklinge",
+      "name": "Aether-Kriegsklinge",
+      "profession": "waffenschmied",
+      "source": "trainer",
+      "reqSkill": 245,
+      "cost": {
+        "gold": 703
+      },
+      "materials": {
+        "aetherlegierung": 1,
+        "aetherbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-aether-kriegsklinge"
+      },
+      "xp": 34,
+      "description": "Schmiedet: Aether-Kriegsklinge.",
+      "trainerCost": 800
+    },
+    {
+      "id": "recipe-waffenschmied-aetherkern-turmschild",
+      "name": "Aetherkern-Turmschild",
+      "profession": "waffenschmied",
+      "source": "trainer",
+      "reqSkill": 248,
+      "cost": {
+        "gold": 741
+      },
+      "materials": {
+        "aetherlegierung": 1,
+        "aetherbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-aetherkern-turmschild"
+      },
+      "xp": 35,
+      "description": "Schmiedet: Aetherkern-Turmschild.",
+      "trainerCost": 800
+    },
+    {
+      "id": "recipe-waffenschmied-aetherkern-zauberstab",
+      "name": "Aetherkern-Zauberstab",
+      "profession": "waffenschmied",
+      "source": "trainer",
+      "reqSkill": 250,
+      "cost": {
+        "gold": 779
+      },
+      "materials": {
+        "aetherlegierung": 2,
+        "aetherbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-aetherkern-zauberstab"
+      },
+      "xp": 36,
+      "description": "Schmiedet: Aetherkern-Zauberstab.",
+      "trainerCost": 800
+    },
+    {
+      "id": "recipe-waffenschmied-seelen-aegis",
+      "name": "Seelen-Aegis",
+      "profession": "waffenschmied",
+      "source": "trainer",
+      "reqSkill": 253,
+      "cost": {
+        "gold": 817
+      },
+      "materials": {
+        "aetherlegierung": 2,
+        "aetherbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-seelen-aegis"
+      },
+      "xp": 36,
+      "description": "Schmiedet: Seelen-Aegis.",
+      "trainerCost": 800
+    },
+    {
+      "id": "recipe-waffenschmied-seelenwaechter-schild",
+      "name": "Seelenwächter-Schild",
+      "profession": "waffenschmied",
+      "source": "drop",
+      "reqSkill": 255,
+      "cost": {
+        "gold": 855
+      },
+      "materials": {
+        "aetherlegierung": 2,
+        "aetherbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-seelenwaechter-schild"
+      },
+      "xp": 37,
+      "description": "Schmiedet: Seelenwächter-Schild.",
+      "dropChance": 0.05,
+      "dropMinQuestRarity": "common"
+    },
+    {
+      "id": "recipe-waffenschmied-aetherkern-schlachtbeil",
+      "name": "Aetherkern-Schlachtbeil",
+      "profession": "waffenschmied",
+      "source": "drop",
+      "reqSkill": 258,
+      "cost": {
+        "gold": 893
+      },
+      "materials": {
+        "aetherlegierung": 2,
+        "aetherbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-aetherkern-schlachtbeil"
+      },
+      "xp": 38,
+      "description": "Schmiedet: Aetherkern-Schlachtbeil.",
+      "dropChance": 0.05,
+      "dropMinQuestRarity": "common"
+    },
+    {
+      "id": "recipe-waffenschmied-seelengeschmiedeter-stab",
+      "name": "Seelengeschmiedeter Stab",
+      "profession": "waffenschmied",
+      "source": "drop",
+      "reqSkill": 260,
+      "cost": {
+        "gold": 931
+      },
+      "materials": {
+        "aetherlegierung": 2,
+        "aetherbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-seelengeschmiedeter-stab"
+      },
+      "xp": 39,
+      "description": "Schmiedet: Seelengeschmiedeter Stab.",
+      "dropChance": 0.05,
+      "dropMinQuestRarity": "common"
+    },
+    {
+      "id": "recipe-waffenschmied-seelensiegel-fokus",
+      "name": "Seelensiegel-Fokus",
+      "profession": "waffenschmied",
+      "source": "drop",
+      "reqSkill": 263,
+      "cost": {
+        "gold": 969
+      },
+      "materials": {
+        "aetherlegierung": 2,
+        "aetherbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-seelensiegel-fokus"
+      },
+      "xp": 39,
+      "description": "Schmiedet: Seelensiegel-Fokus.",
+      "dropChance": 0.05,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "recipe-waffenschmied-seelen-schattenklinge",
+      "name": "Seelen-Schattenklinge",
+      "profession": "waffenschmied",
+      "source": "drop",
+      "reqSkill": 265,
+      "cost": {
+        "gold": 1007
+      },
+      "materials": {
+        "aetherlegierung": 2,
+        "aetherbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-seelen-schattenklinge"
+      },
+      "xp": 40,
+      "description": "Schmiedet: Seelen-Schattenklinge.",
+      "dropChance": 0.05,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "recipe-waffenschmied-seelen-kriegsaxt",
+      "name": "Seelen-Kriegsaxt",
+      "profession": "waffenschmied",
+      "source": "drop",
+      "reqSkill": 268,
+      "cost": {
+        "gold": 1045
+      },
+      "materials": {
+        "aetherlegierung": 2,
+        "aetherbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-seelen-kriegsaxt"
+      },
+      "xp": 41,
+      "description": "Schmiedet: Seelen-Kriegsaxt.",
+      "dropChance": 0.05,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "recipe-waffenschmied-aether-stab",
+      "name": "Aether-Stab",
+      "profession": "waffenschmied",
+      "source": "drop",
+      "reqSkill": 270,
+      "cost": {
+        "gold": 1083
+      },
+      "materials": {
+        "aetherlegierung": 2,
+        "aetherbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-aether-stab"
+      },
+      "xp": 42,
+      "description": "Schmiedet: Aether-Stab.",
+      "dropChance": 0.05,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "recipe-waffenschmied-aetherkern-fokus",
+      "name": "Aetherkern-Fokus",
+      "profession": "waffenschmied",
+      "source": "drop",
+      "reqSkill": 273,
+      "cost": {
+        "gold": 1121
+      },
+      "materials": {
+        "aetherlegierung": 2,
+        "aetherbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-aetherkern-fokus"
+      },
+      "xp": 42,
+      "description": "Schmiedet: Aetherkern-Fokus.",
+      "dropChance": 0.05,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "recipe-waffenschmied-seelen-richtschwert",
+      "name": "Seelen-Richtschwert",
+      "profession": "waffenschmied",
+      "source": "drop",
+      "reqSkill": 275,
+      "cost": {
+        "gold": 1159
+      },
+      "materials": {
+        "seelenlegierung": 2,
+        "seelenstahl": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-seelen-richtschwert"
+      },
+      "xp": 43,
+      "description": "Schmiedet: Seelen-Richtschwert.",
+      "dropChance": 0.05,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "recipe-waffenschmied-aetherkern-dolch",
+      "name": "Aetherkern-Dolch",
+      "profession": "waffenschmied",
+      "source": "faction",
+      "reqSkill": 278,
+      "cost": {
+        "gold": 1197
+      },
+      "materials": {
+        "aetherlegierung": 3,
+        "aetherbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-aetherkern-dolch"
+      },
+      "xp": 44,
+      "description": "Schmiedet: Aetherkern-Dolch.",
+      "factionId": "amboss",
+      "factionMinRep": "friendly"
+    },
+    {
+      "id": "recipe-waffenschmied-aether-schwert",
+      "name": "Aether-Schwert",
+      "profession": "waffenschmied",
+      "source": "faction",
+      "reqSkill": 280,
+      "cost": {
+        "gold": 1234
+      },
+      "materials": {
+        "aetherlegierung": 3,
+        "aetherbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-aether-schwert"
+      },
+      "xp": 45,
+      "description": "Schmiedet: Aether-Schwert.",
+      "factionId": "glut",
+      "factionMinRep": "friendly"
+    },
+    {
+      "id": "recipe-waffenschmied-seelen-bollwerk",
+      "name": "Seelen-Bollwerk",
+      "profession": "waffenschmied",
+      "source": "faction",
+      "reqSkill": 283,
+      "cost": {
+        "gold": 1272
+      },
+      "materials": {
+        "seelenlegierung": 2,
+        "seelenstahl": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-seelen-bollwerk"
+      },
+      "xp": 45,
+      "description": "Schmiedet: Seelen-Bollwerk.",
+      "factionId": "amboss",
+      "factionMinRep": "friendly"
+    },
+    {
+      "id": "recipe-waffenschmied-aether-foliant",
+      "name": "Aether-Foliant",
+      "profession": "waffenschmied",
+      "source": "faction",
+      "reqSkill": 285,
+      "cost": {
+        "gold": 1310
+      },
+      "materials": {
+        "aetherlegierung": 3,
+        "aetherbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-aether-foliant"
+      },
+      "xp": 46,
+      "description": "Schmiedet: Aether-Foliant.",
+      "factionId": "glut",
+      "factionMinRep": "honored"
+    },
+    {
+      "id": "recipe-waffenschmied-seelenklinge-des-meisters",
+      "name": "Seelenklinge des Meisters",
+      "profession": "waffenschmied",
+      "source": "faction",
+      "reqSkill": 288,
+      "cost": {
+        "gold": 1348
+      },
+      "materials": {
+        "seelenlegierung": 2,
+        "seelenstahl": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-seelenklinge-des-meisters"
+      },
+      "xp": 47,
+      "description": "Schmiedet: Seelenklinge des Meisters.",
+      "factionId": "amboss",
+      "factionMinRep": "honored"
+    },
+    {
+      "id": "recipe-waffenschmied-aetherkern-ritualklinge",
+      "name": "Aetherkern-Ritualklinge",
+      "profession": "waffenschmied",
+      "source": "faction",
+      "reqSkill": 290,
+      "cost": {
+        "gold": 1386
+      },
+      "materials": {
+        "aetherlegierung": 3,
+        "aetherbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-aetherkern-ritualklinge"
+      },
+      "xp": 48,
+      "description": "Schmiedet: Aetherkern-Ritualklinge.",
+      "factionId": "glut",
+      "factionMinRep": "honored"
+    },
+    {
+      "id": "recipe-waffenschmied-seelenbrecher-axt",
+      "name": "Seelenbrecher-Axt",
+      "profession": "waffenschmied",
+      "source": "drop",
+      "reqSkill": 293,
+      "cost": {
+        "gold": 1424
+      },
+      "materials": {
+        "seelenlegierung": 2,
+        "seelenstahl": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-seelenbrecher-axt"
+      },
+      "xp": 48,
+      "description": "Schmiedet: Seelenbrecher-Axt.",
+      "dropChance": 0.02,
+      "dropMinQuestRarity": "epic"
+    },
+    {
+      "id": "recipe-waffenschmied-aether-wappenschild",
+      "name": "Aether-Wappenschild",
+      "profession": "waffenschmied",
+      "source": "drop",
+      "reqSkill": 295,
+      "cost": {
+        "gold": 1462
+      },
+      "materials": {
+        "aetherlegierung": 3,
+        "aetherbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-aether-wappenschild"
+      },
+      "xp": 49,
+      "description": "Schmiedet: Aether-Wappenschild.",
+      "dropChance": 0.02,
+      "dropMinQuestRarity": "epic"
+    },
+    {
+      "id": "recipe-waffenschmied-seelen-prunkschild",
+      "name": "Seelen-Prunkschild",
+      "profession": "waffenschmied",
+      "source": "drop",
+      "reqSkill": 298,
+      "cost": {
+        "gold": 1500
+      },
+      "materials": {
+        "seelenlegierung": 2,
+        "seelenstahl": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-seelen-prunkschild"
+      },
+      "xp": 50,
+      "description": "Schmiedet: Seelen-Prunkschild.",
+      "dropChance": 0.02,
+      "dropMinQuestRarity": "epic"
+    },
+    {
+      "id": "recipe-schmied-eisenkappe-des-waechters",
+      "name": "Eisenkappe des Wächters",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 60,
+      "cost": {
+        "gold": 21
+      },
+      "materials": {
+        "eisenerz": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-eisenkappe-des-waechters"
+      },
+      "xp": 8,
+      "trainerCost": 21,
+      "description": "Stellt her: Eisenkappe des Wächters."
+    },
+    {
+      "id": "recipe-schmied-kristall-waechterhelm",
+      "name": "Kristall-Wächterhelm",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 129,
+      "cost": {
+        "gold": 109
+      },
+      "materials": {
+        "kristallsplitter": 2,
+        "eisenbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-kristall-waechterhelm"
+      },
+      "xp": 16,
+      "trainerCost": 109,
+      "description": "Stellt her: Kristall-Wächterhelm."
+    },
+    {
+      "id": "recipe-schmied-drachenstahl-waechterhelm",
+      "name": "Drachenstahl-Wächterhelm",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 219,
+      "cost": {
+        "gold": 376
+      },
+      "materials": {
+        "drachenschuppe": 2,
+        "drachenstahl": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-drachenstahl-waechterhelm"
+      },
+      "xp": 24,
+      "trainerCost": 376,
+      "description": "Stellt her: Drachenstahl-Wächterhelm."
+    },
+    {
+      "id": "recipe-schmied-aether-waechterhelm",
+      "name": "Aether-Wächterhelm",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 247,
+      "cost": {
+        "gold": 686
+      },
+      "materials": {
+        "aetherlegierung": 2,
+        "aetherbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-aether-waechterhelm"
+      },
+      "xp": 35,
+      "trainerCost": 686,
+      "description": "Stellt her: Aether-Wächterhelm."
+    },
+    {
+      "id": "recipe-schmied-geschmiedete-schutzhaube",
+      "name": "Geschmiedete Schutzhaube",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 45,
+      "cost": {
+        "gold": 44
+      },
+      "materials": {
+        "eisenerz": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-geschmiedete-schutzhaube"
+      },
+      "xp": 8,
+      "trainerCost": 44,
+      "description": "Stellt her: Geschmiedete Schutzhaube."
+    },
+    {
+      "id": "recipe-schmied-staehlerne-schutzkappe",
+      "name": "Stählerne Schutzkappe",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 115,
+      "cost": {
+        "gold": 138
+      },
+      "materials": {
+        "kristallsplitter": 2,
+        "eisenbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-staehlerne-schutzkappe"
+      },
+      "xp": 16,
+      "trainerCost": 138,
+      "description": "Stellt her: Stählerne Schutzkappe."
+    },
+    {
+      "id": "recipe-schmied-drachenstahl-plattenpanzer",
+      "name": "Drachenstahl-Plattenpanzer",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 181,
+      "cost": {
+        "gold": 353
+      },
+      "materials": {
+        "drachenschuppe": 2,
+        "drachenstahl": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-drachenstahl-plattenpanzer"
+      },
+      "xp": 24,
+      "trainerCost": 353,
+      "description": "Stellt her: Drachenstahl-Plattenpanzer."
+    },
+    {
+      "id": "recipe-schmied-aetherkern-ruestung",
+      "name": "Aetherkern-Rüstung",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 247,
+      "cost": {
+        "gold": 1054
+      },
+      "materials": {
+        "aetherlegierung": 2,
+        "aetherbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-aetherkern-ruestung"
+      },
+      "xp": 35,
+      "trainerCost": 1054,
+      "description": "Stellt her: Aetherkern-Rüstung."
+    },
+    {
+      "id": "recipe-schmied-eiserner-kettenpanzer",
+      "name": "Eiserner Kettenpanzer",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 69,
+      "cost": {
+        "gold": 24
+      },
+      "materials": {
+        "eisenerz": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-eiserner-kettenpanzer"
+      },
+      "xp": 8,
+      "trainerCost": 24,
+      "description": "Stellt her: Eiserner Kettenpanzer."
+    },
+    {
+      "id": "recipe-schmied-kristall-kettenpanzer",
+      "name": "Kristall-Kettenpanzer",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 89,
+      "cost": {
+        "gold": 186
+      },
+      "materials": {
+        "kristallsplitter": 2,
+        "eisenbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-kristall-kettenpanzer"
+      },
+      "xp": 16,
+      "trainerCost": 186,
+      "description": "Stellt her: Kristall-Kettenpanzer."
+    },
+    {
+      "id": "recipe-schmied-drachenschuppen-kettenhemd",
+      "name": "Drachenschuppen-Kettenhemd",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 199,
+      "cost": {
+        "gold": 433
+      },
+      "materials": {
+        "drachenschuppe": 2,
+        "drachenstahl": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-drachenschuppen-kettenhemd"
+      },
+      "xp": 24,
+      "trainerCost": 433,
+      "description": "Stellt her: Drachenschuppen-Kettenhemd."
+    },
+    {
+      "id": "recipe-schmied-aetherkern-marschtritt",
+      "name": "Aetherkern-Marschtritt",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 275,
+      "cost": {
+        "gold": 995
+      },
+      "materials": {
+        "aetherlegierung": 2,
+        "aetherbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-aetherkern-marschtritt"
+      },
+      "xp": 35,
+      "trainerCost": 995,
+      "description": "Stellt her: Aetherkern-Marschtritt."
+    },
+    {
+      "id": "recipe-schmied-geschmiedete-stiefel",
+      "name": "Geschmiedete Stiefel",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 57,
+      "cost": {
+        "gold": 28
+      },
+      "materials": {
+        "eisenerz": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-geschmiedete-stiefel"
+      },
+      "xp": 8,
+      "trainerCost": 28,
+      "description": "Stellt her: Geschmiedete Stiefel."
+    },
+    {
+      "id": "recipe-schmied-staehlerne-treter",
+      "name": "Stählerne Treter",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 134,
+      "cost": {
+        "gold": 87
+      },
+      "materials": {
+        "kristallsplitter": 2,
+        "eisenbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-staehlerne-treter"
+      },
+      "xp": 16,
+      "trainerCost": 87,
+      "description": "Stellt her: Stählerne Treter."
+    },
+    {
+      "id": "recipe-schmied-drachenschuppen-treter",
+      "name": "Drachenschuppen-Treter",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 209,
+      "cost": {
+        "gold": 303
+      },
+      "materials": {
+        "drachenschuppe": 2,
+        "drachenstahl": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-drachenschuppen-treter"
+      },
+      "xp": 24,
+      "trainerCost": 303,
+      "description": "Stellt her: Drachenschuppen-Treter."
+    },
+    {
+      "id": "recipe-schmied-seelen-treter",
+      "name": "Seelen-Treter",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 252,
+      "cost": {
+        "gold": 827
+      },
+      "materials": {
+        "aetherlegierung": 2,
+        "aetherbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-seelen-treter"
+      },
+      "xp": 35,
+      "trainerCost": 827,
+      "description": "Stellt her: Seelen-Treter."
+    },
+    {
+      "id": "recipe-schmied-eiserne-marschtreters",
+      "name": "Eiserne Marschtreters",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 54,
+      "cost": {
+        "gold": 25
+      },
+      "materials": {
+        "eisenerz": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-eiserne-marschtreters"
+      },
+      "xp": 8,
+      "trainerCost": 25,
+      "description": "Stellt her: Eiserne Marschtreters."
+    },
+    {
+      "id": "recipe-schmied-kristall-marschtreters",
+      "name": "Kristall-Marschtreters",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 85,
+      "cost": {
+        "gold": 108
+      },
+      "materials": {
+        "kristallsplitter": 2,
+        "eisenbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-kristall-marschtreters"
+      },
+      "xp": 16,
+      "trainerCost": 108,
+      "description": "Stellt her: Kristall-Marschtreters."
+    },
+    {
+      "id": "recipe-schmied-drachenstahl-kriegstiefel",
+      "name": "Drachenstahl-Kriegstiefel",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 215,
+      "cost": {
+        "gold": 437
+      },
+      "materials": {
+        "drachenschuppe": 2,
+        "drachenstahl": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-drachenstahl-kriegstiefel"
+      },
+      "xp": 24,
+      "trainerCost": 437,
+      "description": "Stellt her: Drachenstahl-Kriegstiefel."
+    },
+    {
+      "id": "recipe-schmied-aetherkern-schutzreif",
+      "name": "Aetherkern-Schutzreif",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 261,
+      "cost": {
+        "gold": 782
+      },
+      "materials": {
+        "aetherlegierung": 2,
+        "aetherbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-aetherkern-schutzreif"
+      },
+      "xp": 35,
+      "trainerCost": 782,
+      "description": "Stellt her: Aetherkern-Schutzreif."
+    },
+    {
+      "id": "recipe-schmied-eisernes-schutzamulett",
+      "name": "Eisernes Schutzamulett",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 10,
+      "cost": {
+        "gold": 20
+      },
+      "materials": {
+        "eisenerz": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-eisernes-schutzamulett"
+      },
+      "xp": 8,
+      "trainerCost": 20,
+      "description": "Stellt her: Eisernes Schutzamulett."
+    },
+    {
+      "id": "recipe-schmied-kristall-talisman",
+      "name": "Kristall-Talisman",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 96,
+      "cost": {
+        "gold": 166
+      },
+      "materials": {
+        "kristallsplitter": 2,
+        "eisenbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-kristall-talisman"
+      },
+      "xp": 16,
+      "trainerCost": 166,
+      "description": "Stellt her: Kristall-Talisman."
+    },
+    {
+      "id": "recipe-schmied-drachenstahl-siegelamulett",
+      "name": "Drachenstahl-Siegelamulett",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 212,
+      "cost": {
+        "gold": 423
+      },
+      "materials": {
+        "drachenschuppe": 2,
+        "drachenstahl": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-drachenstahl-siegelamulett"
+      },
+      "xp": 24,
+      "trainerCost": 423,
+      "description": "Stellt her: Drachenstahl-Siegelamulett."
+    },
+    {
+      "id": "recipe-schmied-aether-siegelamulett",
+      "name": "Aether-Siegelamulett",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 284,
+      "cost": {
+        "gold": 1227
+      },
+      "materials": {
+        "aetherlegierung": 2,
+        "aetherbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-aether-siegelamulett"
+      },
+      "xp": 35,
+      "trainerCost": 1227,
+      "description": "Stellt her: Aether-Siegelamulett."
+    },
+    {
+      "id": "recipe-schmied-geschmiedeter-talisman",
+      "name": "Geschmiedeter Talisman",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 45,
+      "cost": {
+        "gold": 51
+      },
+      "materials": {
+        "eisenerz": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-geschmiedeter-talisman"
+      },
+      "xp": 8,
+      "trainerCost": 51,
+      "description": "Stellt her: Geschmiedeter Talisman."
+    },
+    {
+      "id": "recipe-schmied-staehlernes-schutzamulett",
+      "name": "Stählernes Schutzamulett",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 124,
+      "cost": {
+        "gold": 160
+      },
+      "materials": {
+        "kristallsplitter": 2,
+        "eisenbarren": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-staehlernes-schutzamulett"
+      },
+      "xp": 16,
+      "trainerCost": 160,
+      "description": "Stellt her: Stählernes Schutzamulett."
+    },
+    {
+      "id": "recipe-schneider-leinenschleier-des-gelehrten",
+      "name": "Leinenschleier des Gelehrten",
+      "profession": "schneider",
+      "source": "trainer",
+      "reqSkill": 27,
+      "cost": {
+        "gold": 31
+      },
+      "materials": {
+        "leinenstoff": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schneider-leinenschleier-des-gelehrten"
+      },
+      "xp": 8,
+      "trainerCost": 31,
+      "description": "Stellt her: Leinenschleier des Gelehrten."
+    },
+    {
+      "id": "recipe-schneider-wollkappe-des-forschers",
+      "name": "Wollkappe des Forschers",
+      "profession": "schneider",
+      "source": "trainer",
+      "reqSkill": 81,
+      "cost": {
+        "gold": 91
+      },
+      "materials": {
+        "wollstoff": 2,
+        "leinenballen": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schneider-wollkappe-des-forschers"
+      },
+      "xp": 16,
+      "trainerCost": 91,
+      "description": "Stellt her: Wollkappe des Forschers."
+    },
+    {
+      "id": "recipe-schneider-seidenschleier-des-weisen",
+      "name": "Seidenschleier des Weisen",
+      "profession": "schneider",
+      "source": "trainer",
+      "reqSkill": 181,
+      "cost": {
+        "gold": 357
+      },
+      "materials": {
+        "seidenstoff": 2,
+        "seidenballen": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schneider-seidenschleier-des-weisen"
+      },
+      "xp": 24,
+      "trainerCost": 357,
+      "description": "Stellt her: Seidenschleier des Weisen."
+    },
+    {
+      "id": "recipe-schneider-arkane-weisenkrone",
+      "name": "Arkane Weisenkrone",
+      "profession": "schneider",
+      "source": "trainer",
+      "reqSkill": 241,
+      "cost": {
+        "gold": 1142
+      },
+      "materials": {
+        "magiestoff": 2,
+        "arkanerfaden": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schneider-arkane-weisenkrone"
+      },
+      "xp": 35,
+      "trainerCost": 1142,
+      "description": "Stellt her: Arkane Weisenkrone."
+    },
+    {
+      "id": "recipe-schneider-einfache-leinenkappe",
+      "name": "Einfache Leinenkappe",
+      "profession": "schneider",
+      "source": "trainer",
+      "reqSkill": 51,
+      "cost": {
+        "gold": 18
+      },
+      "materials": {
+        "leinenstoff": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schneider-einfache-leinenkappe"
+      },
+      "xp": 8,
+      "trainerCost": 18,
+      "description": "Stellt her: Einfache Leinenkappe."
+    },
+    {
+      "id": "recipe-schneider-gewobener-wollschleier",
+      "name": "Gewobener Wollschleier",
+      "profession": "schneider",
+      "source": "trainer",
+      "reqSkill": 107,
+      "cost": {
+        "gold": 127
+      },
+      "materials": {
+        "wollstoff": 2,
+        "leinenballen": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schneider-gewobener-wollschleier"
+      },
+      "xp": 16,
+      "trainerCost": 127,
+      "description": "Stellt her: Gewobener Wollschleier."
+    },
+    {
+      "id": "recipe-schneider-mondschein-gelehrtenkappe",
+      "name": "Mondschein-Gelehrtenkappe",
+      "profession": "schneider",
+      "source": "trainer",
+      "reqSkill": 156,
+      "cost": {
+        "gold": 244
+      },
+      "materials": {
+        "seidenstoff": 2,
+        "seidenballen": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schneider-mondschein-gelehrtenkappe"
+      },
+      "xp": 24,
+      "trainerCost": 244,
+      "description": "Stellt her: Mondschein-Gelehrtenkappe."
+    },
+    {
+      "id": "recipe-schneider-sternenmantel",
+      "name": "Sternenmantel",
+      "profession": "schneider",
+      "source": "trainer",
+      "reqSkill": 245,
+      "cost": {
+        "gold": 911
+      },
+      "materials": {
+        "magiestoff": 2,
+        "arkanerfaden": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schneider-sternenmantel"
+      },
+      "xp": 35,
+      "trainerCost": 911,
+      "description": "Stellt her: Sternenmantel."
+    },
+    {
+      "id": "recipe-schneider-leinengewand-des-wanderers",
+      "name": "Leinengewand des Wanderers",
+      "profession": "schneider",
+      "source": "trainer",
+      "reqSkill": 46,
+      "cost": {
+        "gold": 16
+      },
+      "materials": {
+        "leinenstoff": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schneider-leinengewand-des-wanderers"
+      },
+      "xp": 8,
+      "trainerCost": 16,
+      "description": "Stellt her: Leinengewand des Wanderers."
+    },
+    {
+      "id": "recipe-schneider-wollrobe-des-wanderers",
+      "name": "Wollrobe des Wanderers",
+      "profession": "schneider",
+      "source": "trainer",
+      "reqSkill": 101,
+      "cost": {
+        "gold": 179
+      },
+      "materials": {
+        "wollstoff": 2,
+        "leinenballen": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schneider-wollrobe-des-wanderers"
+      },
+      "xp": 16,
+      "trainerCost": 179,
+      "description": "Stellt her: Wollrobe des Wanderers."
+    },
+    {
+      "id": "recipe-schneider-seidenrobe-der-erleuchtung",
+      "name": "Seidenrobe der Erleuchtung",
+      "profession": "schneider",
+      "source": "trainer",
+      "reqSkill": 196,
+      "cost": {
+        "gold": 226
+      },
+      "materials": {
+        "seidenstoff": 2,
+        "seidenballen": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schneider-seidenrobe-der-erleuchtung"
+      },
+      "xp": 24,
+      "trainerCost": 226,
+      "description": "Stellt her: Seidenrobe der Erleuchtung."
+    },
+    {
+      "id": "recipe-schneider-arkane-meisterrobe",
+      "name": "Arkane Meisterrobe",
+      "profession": "schneider",
+      "source": "trainer",
+      "reqSkill": 276,
+      "cost": {
+        "gold": 914
+      },
+      "materials": {
+        "magiestoff": 2,
+        "arkanerfaden": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schneider-arkane-meisterrobe"
+      },
+      "xp": 35,
+      "trainerCost": 914,
+      "description": "Stellt her: Arkane Meisterrobe."
+    },
+    {
+      "id": "recipe-schneider-leinenpantoffeln-des-lesers",
+      "name": "Leinenpantoffeln des Lesers",
+      "profession": "schneider",
+      "source": "trainer",
+      "reqSkill": 43,
+      "cost": {
+        "gold": 47
+      },
+      "materials": {
+        "leinenstoff": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schneider-leinenpantoffeln-des-lesers"
+      },
+      "xp": 8,
+      "trainerCost": 47,
+      "description": "Stellt her: Leinenpantoffeln des Lesers."
+    },
+    {
+      "id": "recipe-schneider-wollstiefel-des-reisenden",
+      "name": "Wollstiefel des Reisenden",
+      "profession": "schneider",
+      "source": "trainer",
+      "reqSkill": 94,
+      "cost": {
+        "gold": 106
+      },
+      "materials": {
+        "wollstoff": 2,
+        "leinenballen": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schneider-wollstiefel-des-reisenden"
+      },
+      "xp": 16,
+      "trainerCost": 106,
+      "description": "Stellt her: Wollstiefel des Reisenden."
+    },
+    {
+      "id": "recipe-schneider-seidenpantoffeln-des-meisters",
+      "name": "Seidenpantoffeln des Meisters",
+      "profession": "schneider",
+      "source": "trainer",
+      "reqSkill": 197,
+      "cost": {
+        "gold": 229
+      },
+      "materials": {
+        "seidenstoff": 2,
+        "seidenballen": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schneider-seidenpantoffeln-des-meisters"
+      },
+      "xp": 24,
+      "trainerCost": 229,
+      "description": "Stellt her: Seidenpantoffeln des Meisters."
+    },
+    {
+      "id": "recipe-schneider-arkane-meisterschuhe",
+      "name": "Arkane Meisterschuhe",
+      "profession": "schneider",
+      "source": "trainer",
+      "reqSkill": 237,
+      "cost": {
+        "gold": 544
+      },
+      "materials": {
+        "magiestoff": 2,
+        "arkanerfaden": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schneider-arkane-meisterschuhe"
+      },
+      "xp": 35,
+      "trainerCost": 544,
+      "description": "Stellt her: Arkane Meisterschuhe."
+    },
+    {
+      "id": "recipe-schneider-einfache-leinenschuhe",
+      "name": "Einfache Leinenschuhe",
+      "profession": "schneider",
+      "source": "trainer",
+      "reqSkill": 24,
+      "cost": {
+        "gold": 22
+      },
+      "materials": {
+        "leinenstoff": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schneider-einfache-leinenschuhe"
+      },
+      "xp": 8,
+      "trainerCost": 22,
+      "description": "Stellt her: Einfache Leinenschuhe."
+    },
+    {
+      "id": "recipe-schneider-gewobene-wollschuhe",
+      "name": "Gewobene Wollschuhe",
+      "profession": "schneider",
+      "source": "trainer",
+      "reqSkill": 111,
+      "cost": {
+        "gold": 204
+      },
+      "materials": {
+        "wollstoff": 2,
+        "leinenballen": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schneider-gewobene-wollschuhe"
+      },
+      "xp": 16,
+      "trainerCost": 204,
+      "description": "Stellt her: Gewobene Wollschuhe."
+    },
+    {
+      "id": "recipe-schneider-mondschein-schritte",
+      "name": "Mondschein-Schritte",
+      "profession": "schneider",
+      "source": "trainer",
+      "reqSkill": 168,
+      "cost": {
+        "gold": 298
+      },
+      "materials": {
+        "seidenstoff": 2,
+        "seidenballen": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schneider-mondschein-schritte"
+      },
+      "xp": 24,
+      "trainerCost": 298,
+      "description": "Stellt her: Mondschein-Schritte."
+    },
+    {
+      "id": "recipe-schneider-sternentalisman",
+      "name": "Sternentalisman",
+      "profession": "schneider",
+      "source": "trainer",
+      "reqSkill": 240,
+      "cost": {
+        "gold": 784
+      },
+      "materials": {
+        "magiestoff": 2,
+        "arkanerfaden": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schneider-sternentalisman"
+      },
+      "xp": 35,
+      "trainerCost": 784,
+      "description": "Stellt her: Sternentalisman."
+    },
+    {
+      "id": "recipe-schneider-leinenkette-des-wissens",
+      "name": "Leinenkette des Wissens",
+      "profession": "schneider",
+      "source": "trainer",
+      "reqSkill": 55,
+      "cost": {
+        "gold": 52
+      },
+      "materials": {
+        "leinenstoff": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schneider-leinenkette-des-wissens"
+      },
+      "xp": 8,
+      "trainerCost": 52,
+      "description": "Stellt her: Leinenkette des Wissens."
+    },
+    {
+      "id": "recipe-schneider-wollkette-des-gelehrten",
+      "name": "Wollkette des Gelehrten",
+      "profession": "schneider",
+      "source": "trainer",
+      "reqSkill": 89,
+      "cost": {
+        "gold": 130
+      },
+      "materials": {
+        "wollstoff": 2,
+        "leinenballen": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schneider-wollkette-des-gelehrten"
+      },
+      "xp": 16,
+      "trainerCost": 130,
+      "description": "Stellt her: Wollkette des Gelehrten."
+    },
+    {
+      "id": "recipe-schneider-seidenkette-der-sterne",
+      "name": "Seidenkette der Sterne",
+      "profession": "schneider",
+      "source": "trainer",
+      "reqSkill": 199,
+      "cost": {
+        "gold": 307
+      },
+      "materials": {
+        "seidenstoff": 2,
+        "seidenballen": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schneider-seidenkette-der-sterne"
+      },
+      "xp": 24,
+      "trainerCost": 307,
+      "description": "Stellt her: Seidenkette der Sterne."
+    },
+    {
+      "id": "recipe-schneider-arkanes-meisteramulett",
+      "name": "Arkanes Meisteramulett",
+      "profession": "schneider",
+      "source": "trainer",
+      "reqSkill": 294,
+      "cost": {
+        "gold": 827
+      },
+      "materials": {
+        "magiestoff": 2,
+        "arkanerfaden": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schneider-arkanes-meisteramulett"
+      },
+      "xp": 35,
+      "trainerCost": 827,
+      "description": "Stellt her: Arkanes Meisteramulett."
+    },
+    {
+      "id": "recipe-lederverarbeiter-leichtleder-jaegerkappe",
+      "name": "Leichtleder-Jägerkappe",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 7,
+      "cost": {
+        "gold": 40
+      },
+      "materials": {
+        "leichtesleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-lederverarbeiter-leichtleder-jaegerkappe"
+      },
+      "xp": 8,
+      "trainerCost": 40,
+      "description": "Stellt her: Leichtleder-Jägerkappe."
+    },
+    {
+      "id": "recipe-lederverarbeiter-mittlere-leder-jaegerkappe",
+      "name": "Mittlere Leder-Jägerkappe",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 103,
+      "cost": {
+        "gold": 80
+      },
+      "materials": {
+        "mittleresleder": 2,
+        "geheiltes_leichtleder": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-lederverarbeiter-mittlere-leder-jaegerkappe"
+      },
+      "xp": 16,
+      "trainerCost": 80,
+      "description": "Stellt her: Mittlere Leder-Jägerkappe."
+    },
+    {
+      "id": "recipe-lederverarbeiter-schwerleder-jaegerkrone",
+      "name": "Schwerleder-Jägerkrone",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 194,
+      "cost": {
+        "gold": 266
+      },
+      "materials": {
+        "schweresleder": 2,
+        "gehaertetes_schwerleder": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-lederverarbeiter-schwerleder-jaegerkrone"
+      },
+      "xp": 24,
+      "trainerCost": 266,
+      "description": "Stellt her: Schwerleder-Jägerkrone."
+    },
+    {
+      "id": "recipe-lederverarbeiter-urzeitleder-krone",
+      "name": "Urzeitleder-Krone",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 263,
+      "cost": {
+        "gold": 741
+      },
+      "materials": {
+        "dickesleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-lederverarbeiter-urzeitleder-krone"
+      },
+      "xp": 35,
+      "trainerCost": 741,
+      "description": "Stellt her: Urzeitleder-Krone."
+    },
+    {
+      "id": "recipe-lederverarbeiter-einfache-lederkappe",
+      "name": "Einfache Lederkappe",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 60,
+      "cost": {
+        "gold": 54
+      },
+      "materials": {
+        "leichtesleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-lederverarbeiter-einfache-lederkappe"
+      },
+      "xp": 8,
+      "trainerCost": 54,
+      "description": "Stellt her: Einfache Lederkappe."
+    },
+    {
+      "id": "recipe-lederverarbeiter-gehaertete-lederkappe",
+      "name": "Gehärtete Lederkappe",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 133,
+      "cost": {
+        "gold": 88
+      },
+      "materials": {
+        "mittleresleder": 2,
+        "geheiltes_leichtleder": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-lederverarbeiter-gehaertete-lederkappe"
+      },
+      "xp": 16,
+      "trainerCost": 88,
+      "description": "Stellt her: Gehärtete Lederkappe."
+    },
+    {
+      "id": "recipe-lederverarbeiter-bestien-lederkappe",
+      "name": "Bestien-Lederkappe",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 187,
+      "cost": {
+        "gold": 443
+      },
+      "materials": {
+        "schweresleder": 2,
+        "gehaertetes_schwerleder": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-lederverarbeiter-bestien-lederkappe"
+      },
+      "xp": 24,
+      "trainerCost": 443,
+      "description": "Stellt her: Bestien-Lederkappe."
+    },
+    {
+      "id": "recipe-lederverarbeiter-bestien-meisterwams",
+      "name": "Bestien-Meisterwams",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 245,
+      "cost": {
+        "gold": 1192
+      },
+      "materials": {
+        "dickesleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-lederverarbeiter-bestien-meisterwams"
+      },
+      "xp": 35,
+      "trainerCost": 1192,
+      "description": "Stellt her: Bestien-Meisterwams."
+    },
+    {
+      "id": "recipe-lederverarbeiter-einfacher-lederpanzer",
+      "name": "Einfacher Lederpanzer",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 47,
+      "cost": {
+        "gold": 18
+      },
+      "materials": {
+        "leichtesleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-lederverarbeiter-einfacher-lederpanzer"
+      },
+      "xp": 8,
+      "trainerCost": 18,
+      "description": "Stellt her: Einfacher Lederpanzer."
+    },
+    {
+      "id": "recipe-lederverarbeiter-gehaerteter-lederpanzer",
+      "name": "Gehärteter Lederpanzer",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 125,
+      "cost": {
+        "gold": 155
+      },
+      "materials": {
+        "mittleresleder": 2,
+        "geheiltes_leichtleder": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-lederverarbeiter-gehaerteter-lederpanzer"
+      },
+      "xp": 16,
+      "trainerCost": 155,
+      "description": "Stellt her: Gehärteter Lederpanzer."
+    },
+    {
+      "id": "recipe-lederverarbeiter-bestien-lederwams",
+      "name": "Bestien-Lederwams",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 218,
+      "cost": {
+        "gold": 223
+      },
+      "materials": {
+        "schweresleder": 2,
+        "gehaertetes_schwerleder": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-lederverarbeiter-bestien-lederwams"
+      },
+      "xp": 24,
+      "trainerCost": 223,
+      "description": "Stellt her: Bestien-Lederwams."
+    },
+    {
+      "id": "recipe-lederverarbeiter-urzeitleder-panzer",
+      "name": "Urzeitleder-Panzer",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 245,
+      "cost": {
+        "gold": 613
+      },
+      "materials": {
+        "dickesleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-lederverarbeiter-urzeitleder-panzer"
+      },
+      "xp": 35,
+      "trainerCost": 613,
+      "description": "Stellt her: Urzeitleder-Panzer."
+    },
+    {
+      "id": "recipe-lederverarbeiter-leichtleder-wams",
+      "name": "Leichtleder-Wams",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 22,
+      "cost": {
+        "gold": 49
+      },
+      "materials": {
+        "leichtesleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-lederverarbeiter-leichtleder-wams"
+      },
+      "xp": 8,
+      "trainerCost": 49,
+      "description": "Stellt her: Leichtleder-Wams."
+    },
+    {
+      "id": "recipe-lederverarbeiter-mittleres-leder-wams",
+      "name": "Mittleres Leder-Wams",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 106,
+      "cost": {
+        "gold": 183
+      },
+      "materials": {
+        "mittleresleder": 2,
+        "geheiltes_leichtleder": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-lederverarbeiter-mittleres-leder-wams"
+      },
+      "xp": 16,
+      "trainerCost": 183,
+      "description": "Stellt her: Mittleres Leder-Wams."
+    },
+    {
+      "id": "recipe-lederverarbeiter-schwerleder-jagdpanzer",
+      "name": "Schwerleder-Jagdpanzer",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 218,
+      "cost": {
+        "gold": 355
+      },
+      "materials": {
+        "schweresleder": 2,
+        "gehaertetes_schwerleder": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-lederverarbeiter-schwerleder-jagdpanzer"
+      },
+      "xp": 24,
+      "trainerCost": 355,
+      "description": "Stellt her: Schwerleder-Jagdpanzer."
+    },
+    {
+      "id": "recipe-lederverarbeiter-urzeitleder-stiefel",
+      "name": "Urzeitleder-Stiefel",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 236,
+      "cost": {
+        "gold": 1143
+      },
+      "materials": {
+        "dickesleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-lederverarbeiter-urzeitleder-stiefel"
+      },
+      "xp": 35,
+      "trainerCost": 1143,
+      "description": "Stellt her: Urzeitleder-Stiefel."
+    },
+    {
+      "id": "recipe-lederverarbeiter-einfache-lederschuhe",
+      "name": "Einfache Lederschuhe",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 6,
+      "cost": {
+        "gold": 18
+      },
+      "materials": {
+        "leichtesleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-lederverarbeiter-einfache-lederschuhe"
+      },
+      "xp": 8,
+      "trainerCost": 18,
+      "description": "Stellt her: Einfache Lederschuhe."
+    },
+    {
+      "id": "recipe-lederverarbeiter-gehaertete-lederschuhe",
+      "name": "Gehärtete Lederschuhe",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 89,
+      "cost": {
+        "gold": 113
+      },
+      "materials": {
+        "mittleresleder": 2,
+        "geheiltes_leichtleder": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-lederverarbeiter-gehaertete-lederschuhe"
+      },
+      "xp": 16,
+      "trainerCost": 113,
+      "description": "Stellt her: Gehärtete Lederschuhe."
+    },
+    {
+      "id": "recipe-lederverarbeiter-bestien-treter",
+      "name": "Bestien-Treter",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 215,
+      "cost": {
+        "gold": 389
+      },
+      "materials": {
+        "schweresleder": 2,
+        "gehaertetes_schwerleder": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-lederverarbeiter-bestien-treter"
+      },
+      "xp": 24,
+      "trainerCost": 389,
+      "description": "Stellt her: Bestien-Treter."
+    },
+    {
+      "id": "recipe-lederverarbeiter-raues-leder-marsch",
+      "name": "Raues Leder-Marsch",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 286,
+      "cost": {
+        "gold": 1139
+      },
+      "materials": {
+        "dickesleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-lederverarbeiter-raues-leder-marsch"
+      },
+      "xp": 35,
+      "trainerCost": 1139,
+      "description": "Stellt her: Raues Leder-Marsch."
+    },
+    {
+      "id": "recipe-lederverarbeiter-leichtleder-stiefel",
+      "name": "Leichtleder-Stiefel",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 25,
+      "cost": {
+        "gold": 26
+      },
+      "materials": {
+        "leichtesleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-lederverarbeiter-leichtleder-stiefel"
+      },
+      "xp": 8,
+      "trainerCost": 26,
+      "description": "Stellt her: Leichtleder-Stiefel."
+    },
+    {
+      "id": "recipe-lederverarbeiter-mittlere-leder-stiefel",
+      "name": "Mittlere Leder-Stiefel",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 129,
+      "cost": {
+        "gold": 102
+      },
+      "materials": {
+        "mittleresleder": 2,
+        "geheiltes_leichtleder": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-lederverarbeiter-mittlere-leder-stiefel"
+      },
+      "xp": 16,
+      "trainerCost": 102,
+      "description": "Stellt her: Mittlere Leder-Stiefel."
+    },
+    {
+      "id": "recipe-lederverarbeiter-schwerleder-jagdstiefel",
+      "name": "Schwerleder-Jagdstiefel",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 217,
+      "cost": {
+        "gold": 330
+      },
+      "materials": {
+        "schweresleder": 2,
+        "gehaertetes_schwerleder": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-lederverarbeiter-schwerleder-jagdstiefel"
+      },
+      "xp": 24,
+      "trainerCost": 330,
+      "description": "Stellt her: Schwerleder-Jagdstiefel."
+    },
+    {
+      "id": "recipe-lederverarbeiter-raues-leder-amulett",
+      "name": "Raues Leder-Amulett",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 253,
+      "cost": {
+        "gold": 467
+      },
+      "materials": {
+        "dickesleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-lederverarbeiter-raues-leder-amulett"
+      },
+      "xp": 35,
+      "trainerCost": 467,
+      "description": "Stellt her: Raues Leder-Amulett."
+    },
+    {
+      "id": "recipe-lederverarbeiter-einfaches-lederband",
+      "name": "Einfaches Lederband",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 58,
+      "cost": {
+        "gold": 50
+      },
+      "materials": {
+        "leichtesleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-lederverarbeiter-einfaches-lederband"
+      },
+      "xp": 8,
+      "trainerCost": 50,
+      "description": "Stellt her: Einfaches Lederband."
+    },
+    {
+      "id": "recipe-lederverarbeiter-gehaertetes-lederband",
+      "name": "Gehärtetes Lederband",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 107,
+      "cost": {
+        "gold": 170
+      },
+      "materials": {
+        "mittleresleder": 2,
+        "geheiltes_leichtleder": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-lederverarbeiter-gehaertetes-lederband"
+      },
+      "xp": 16,
+      "trainerCost": 170,
+      "description": "Stellt her: Gehärtetes Lederband."
+    },
+    {
+      "id": "recipe-lederverarbeiter-bestien-talisman",
+      "name": "Bestien-Talisman",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 173,
+      "cost": {
+        "gold": 224
+      },
+      "materials": {
+        "schweresleder": 2,
+        "gehaertetes_schwerleder": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-lederverarbeiter-bestien-talisman"
+      },
+      "xp": 24,
+      "trainerCost": 224,
+      "description": "Stellt her: Bestien-Talisman."
+    },
+    {
+      "id": "recipe-lederverarbeiter-urzeitleder-kette",
+      "name": "Urzeitleder-Kette",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 264,
+      "cost": {
+        "gold": 627
+      },
+      "materials": {
+        "dickesleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-lederverarbeiter-urzeitleder-kette"
+      },
+      "xp": 35,
+      "trainerCost": 627,
+      "description": "Stellt her: Urzeitleder-Kette."
+    },
+    {
+      "id": "recipe-lederverarbeiter-leichtleder-kette",
+      "name": "Leichtleder-Kette",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 55,
+      "cost": {
+        "gold": 45
+      },
+      "materials": {
+        "leichtesleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-lederverarbeiter-leichtleder-kette"
+      },
+      "xp": 8,
+      "trainerCost": 45,
+      "description": "Stellt her: Leichtleder-Kette."
     }
   ]
 }
