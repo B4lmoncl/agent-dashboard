@@ -66,12 +66,22 @@ function getProfRank(skill) {
   return PROFICIENCY_RANKS[0];
 }
 
-function getSkillCap(playerLevel) {
+// Skill cap based on trained ranks (not auto-level). Falls back to player level for backward compat.
+function getSkillCap(playerLevel, trainedRanks) {
+  if (trainedRanks && trainedRanks.length > 0) {
+    // Use highest trained rank's cap
+    let cap = 75; // Apprentice default
+    for (const rank of PROFICIENCY_RANKS) {
+      if (trainedRanks.includes(rank.name)) cap = rank.skillCap;
+    }
+    return cap;
+  }
+  // Backward compat: auto-cap by player level (for players who haven't trained yet)
   let cap = 0;
   for (const rank of PROFICIENCY_RANKS) {
     if (playerLevel >= rank.reqPlayerLevel) cap = rank.skillCap;
   }
-  return cap || 75; // default Apprentice cap
+  return cap || 75;
 }
 
 // ─── Convert reqProfLevel (1-10) to reqSkill (1-300) ────────────────────────
@@ -192,7 +202,7 @@ router.get('/api/professions', (req, res) => {
     const pMaxSlots = u ? getMaxProfessionSlots(playerLevel) : 0;
     const canChoose = chosen || (u?.chosenProfessions || []).length < pMaxSlots;
     const rank = getProfRank(profProgress.skill);
-    const skillCap = u ? getSkillCap(playerLevel) : 75;
+    const skillCap = u ? getSkillCap(playerLevel, profData?.trainedRanks) : 75;
     const masterySkill = PROFESSIONS_DATA.masteryConfig?.unlockSkill || 225;
     const masteryActive = profProgress.skill >= masterySkill;
     return {
@@ -467,7 +477,7 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
   const reqSkill = recipe.reqSkill || reqProfLevelToSkill(recipe.reqProfLevel);
   const currentSkill = u.professions[recipe.profession].skill || u.professions[recipe.profession].xp || 0;
   const playerLvl = getLevelInfo(u.xp || 0).level;
-  const skillCap = getSkillCap(playerLvl);
+  const skillCap = getSkillCap(playerLvl, profData?.trainedRanks);
   const skillUpColor = getSkillUpColor(currentSkill, reqSkill);
   const skillUpChance = getSkillUpChance(currentSkill, reqSkill);
   const { dailyBonusAvailable } = getDailyBonusInfo(u);
@@ -1156,6 +1166,67 @@ router.post('/api/schmiedekunst/transmute', requireAuth, (req, res) => {
     goldSpent: transmuteCost,
     gold: u.currencies?.gold ?? u.gold ?? 0,
   });
+});
+
+// ─── Rank Training (WoW-style: pay gold to unlock next skill cap) ────────────
+const RANK_TRAINING_COSTS = [
+  { rank: 'Journeyman', fromCap: 75, toCap: 150, cost: 500, reqPlayerLevel: 15 },
+  { rank: 'Expert', fromCap: 150, toCap: 225, cost: 2000, reqPlayerLevel: 25 },
+  { rank: 'Artisan', fromCap: 225, toCap: 300, cost: 5000, reqPlayerLevel: 40 },
+];
+
+router.post('/api/crafting/train-rank', requireAuth, (req, res) => {
+  const uid = (req.auth?.userId || '').toLowerCase();
+  const u = state.users[uid];
+  if (!u) return res.status(404).json({ error: 'User not found' });
+  const { professionId } = req.body;
+  if (!professionId) return res.status(400).json({ error: 'professionId required' });
+  if (!(u.chosenProfessions || []).includes(professionId)) return res.status(400).json({ error: 'Not your profession' });
+
+  const profData = u.professions?.[professionId];
+  if (!profData) return res.status(400).json({ error: 'Profession not started' });
+  const playerLevel = getLevelInfo(u.xp || 0).level;
+  const currentCap = getSkillCap(playerLevel, profData?.trainedRanks);
+  const skill = profData.skill || 0;
+
+  // Find next rank to train
+  const nextRank = RANK_TRAINING_COSTS.find(r => skill >= r.fromCap - 10 && (!profData.trainedRanks || !profData.trainedRanks.includes(r.rank)));
+  if (!nextRank) return res.status(400).json({ error: 'No rank available to train' });
+  if (playerLevel < nextRank.reqPlayerLevel) return res.status(400).json({ error: `Requires player level ${nextRank.reqPlayerLevel} (you are ${playerLevel})` });
+
+  ensureUserCurrencies(u);
+  if (u.currencies.gold < nextRank.cost) return res.status(400).json({ error: `Not enough gold (need ${nextRank.cost}, have ${u.currencies.gold})` });
+
+  u.currencies.gold -= nextRank.cost;
+  u.gold = u.currencies.gold;
+  profData.trainedRanks = profData.trainedRanks || ['Apprentice'];
+  profData.trainedRanks.push(nextRank.rank);
+  saveUsers();
+  console.log(`[crafting] ${uid} trained ${professionId} rank: ${nextRank.rank} for ${nextRank.cost}g`);
+  res.json({ ok: true, rank: nextRank.rank, cost: nextRank.cost, newCap: nextRank.toCap, remainingGold: u.currencies.gold });
+});
+
+// ─── Profession Unlearn (WoW-style: lose all progress, free up slot) ────────
+router.post('/api/crafting/unlearn', requireAuth, (req, res) => {
+  const uid = (req.auth?.userId || '').toLowerCase();
+  const u = state.users[uid];
+  if (!u) return res.status(404).json({ error: 'User not found' });
+  const { professionId } = req.body;
+  if (!professionId) return res.status(400).json({ error: 'professionId required' });
+  if (!(u.chosenProfessions || []).includes(professionId)) return res.status(400).json({ error: 'Not your profession' });
+
+  // Remove from chosen professions
+  u.chosenProfessions = (u.chosenProfessions || []).filter(p => p !== professionId);
+  // Reset profession data (skill, xp, learned recipes)
+  if (u.professions) delete u.professions[professionId];
+  // Remove all learned recipes for this profession
+  if (u.learnedRecipes) {
+    const profRecipeIds = new Set(PROFESSIONS_DATA.recipes.filter(r => r.profession === professionId).map(r => r.id));
+    u.learnedRecipes = u.learnedRecipes.filter(id => !profRecipeIds.has(id));
+  }
+  saveUsers();
+  console.log(`[crafting] ${uid} unlearned profession: ${professionId}`);
+  res.json({ ok: true, unlearned: professionId, chosenProfessions: u.chosenProfessions });
 });
 
 // ─── Reforge Legendary (D3 Kanai's Cube "Law of Kulle") ─────────────────────

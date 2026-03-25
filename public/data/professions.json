@@ -747,7 +747,8 @@
         "amount": 1
       },
       "xp": 5,
-      "description": "Schmilzt Eisenerz zu einem Barren."
+      "description": "Schmilzt Eisenerz zu einem Barren.",
+      "trainerCost": 10
     },
     {
       "id": "recipe-schmied-stahlbarren",
@@ -768,7 +769,8 @@
         "amount": 1
       },
       "xp": 10,
-      "description": "Härtet Eisen mit Kristall zu Stahl."
+      "description": "Härtet Eisen mit Kristall zu Stahl.",
+      "trainerCost": 10
     },
     {
       "id": "recipe-schmied-kristallbarren",
@@ -789,7 +791,8 @@
         "amount": 1
       },
       "xp": 15,
-      "description": "Verschmelzt Kristall und Eisen."
+      "description": "Verschmelzt Kristall und Eisen.",
+      "trainerCost": 50
     },
     {
       "id": "recipe-schmied-verstaerkterstahl",
@@ -810,7 +813,8 @@
         "amount": 1
       },
       "xp": 18,
-      "description": "Dreifach kristallverstärkter Stahl."
+      "description": "Dreifach kristallverstärkter Stahl.",
+      "trainerCost": 97
     },
     {
       "id": "recipe-schmied-drachenstahl",
@@ -831,7 +835,8 @@
         "amount": 1
       },
       "xp": 22,
-      "description": "Drachenschuppen verleihen dem Stahl Feuerresistenz."
+      "description": "Drachenschuppen verleihen dem Stahl Feuerresistenz.",
+      "trainerCost": 150
     },
     {
       "id": "recipe-schmied-drachenkern",
@@ -852,7 +857,8 @@
         "amount": 1
       },
       "xp": 25,
-      "description": "Ein Kern aus reinem Drachenfeuer."
+      "description": "Ein Kern aus reinem Drachenfeuer.",
+      "trainerCost": 250
     },
     {
       "id": "recipe-schmied-aetherlegierung",
@@ -873,7 +879,8 @@
         "amount": 1
       },
       "xp": 30,
-      "description": "Aether und Drache verschmelzen."
+      "description": "Aether und Drache verschmelzen.",
+      "trainerCost": 400
     },
     {
       "id": "recipe-schmied-aetherbarren",
@@ -894,7 +901,8 @@
         "amount": 1
       },
       "xp": 35,
-      "description": "Reiner Aether in Barrenform."
+      "description": "Reiner Aether in Barrenform.",
+      "trainerCost": 600
     },
     {
       "id": "recipe-schmied-seelenlegierung",
@@ -915,7 +923,8 @@
         "amount": 1
       },
       "xp": 40,
-      "description": "Seele trifft Aether. Das Ergebnis flüstert."
+      "description": "Seele trifft Aether. Das Ergebnis flüstert.",
+      "trainerCost": 800
     },
     {
       "id": "recipe-schmied-seelenstahl",
@@ -936,7 +945,8 @@
         "amount": 1
       },
       "xp": 45,
-      "description": "Das edelste Metall der Gilde."
+      "description": "Das edelste Metall der Gilde.",
+      "trainerCost": 1100
     },
     {
       "id": "recipe-schmied-eiserne-klinge",
@@ -955,7 +965,8 @@
         "templateId": "craft-schmied-eiserne-klinge"
       },
       "xp": 5,
-      "description": "Schmiedet: Eiserne Klinge."
+      "description": "Schmiedet: Eiserne Klinge.",
+      "trainerCost": 10
     },
     {
       "id": "recipe-schmied-eiserner-rundschild",
@@ -974,7 +985,8 @@
         "templateId": "craft-schmied-eiserner-rundschild"
       },
       "xp": 5,
-      "description": "Schmiedet: Eiserner Rundschild."
+      "description": "Schmiedet: Eiserner Rundschild.",
+      "trainerCost": 10
     },
     {
       "id": "recipe-schmied-eiserne-brustplatte",
@@ -993,7 +1005,8 @@
         "templateId": "craft-schmied-eiserne-brustplatte"
       },
       "xp": 6,
-      "description": "Schmiedet: Eiserne Brustplatte."
+      "description": "Schmiedet: Eiserne Brustplatte.",
+      "trainerCost": 10
     },
     {
       "id": "recipe-schmied-geschliffenes-breitschwert",
@@ -1012,7 +1025,8 @@
         "templateId": "craft-schmied-geschliffenes-breitschwert"
       },
       "xp": 6,
-      "description": "Schmiedet: Geschliffenes Breitschwert."
+      "description": "Schmiedet: Geschliffenes Breitschwert.",
+      "trainerCost": 10
     },
     {
       "id": "recipe-schmied-grober-schild",
@@ -1031,7 +1045,8 @@
         "templateId": "craft-schmied-grober-schild"
       },
       "xp": 6,
-      "description": "Schmiedet: Grober Schild."
+      "description": "Schmiedet: Grober Schild.",
+      "trainerCost": 10
     },
     {
       "id": "recipe-schmied-geschlossener-eisenhelm",
@@ -1050,7 +1065,8 @@
         "templateId": "craft-schmied-geschlossener-eisenhelm"
       },
       "xp": 7,
-      "description": "Schmiedet: Geschlossener Eisenhelm."
+      "description": "Schmiedet: Geschlossener Eisenhelm.",
+      "trainerCost": 10
     },
     {
       "id": "recipe-schmied-eiserne-sturmhaube",
@@ -1069,7 +1085,8 @@
         "templateId": "craft-schmied-eiserne-sturmhaube"
       },
       "xp": 7,
-      "description": "Schmiedet: Eiserne Sturmhaube."
+      "description": "Schmiedet: Eiserne Sturmhaube.",
+      "trainerCost": 10
     },
     {
       "id": "recipe-schmied-eiserner-anhaenger",
@@ -1088,7 +1105,8 @@
         "templateId": "craft-schmied-eiserner-anhaenger"
       },
       "xp": 8,
-      "description": "Schmiedet: Eiserner Anhänger."
+      "description": "Schmiedet: Eiserner Anhänger.",
+      "trainerCost": 10
     },
     {
       "id": "recipe-schmied-eisenkragen",
@@ -1361,7 +1379,8 @@
         "templateId": "craft-schmied-staehlerner-drachenhelm"
       },
       "xp": 12,
-      "description": "Schmiedet: Stählerner Drachenhelm."
+      "description": "Schmiedet: Stählerner Drachenhelm.",
+      "trainerCost": 50
     },
     {
       "id": "recipe-schmied-kristall-amulett",
@@ -1381,7 +1400,8 @@
         "templateId": "craft-schmied-kristall-amulett"
       },
       "xp": 12,
-      "description": "Schmiedet: Kristall-Amulett."
+      "description": "Schmiedet: Kristall-Amulett.",
+      "trainerCost": 54
     },
     {
       "id": "recipe-schmied-staehlerne-marschtreters",
@@ -1401,7 +1421,8 @@
         "templateId": "craft-schmied-staehlerne-marschtreters"
       },
       "xp": 13,
-      "description": "Schmiedet: Stählerne Marschtreter."
+      "description": "Schmiedet: Stählerne Marschtreter.",
+      "trainerCost": 58
     },
     {
       "id": "recipe-schmied-kristall-klinge",
@@ -1421,7 +1442,8 @@
         "templateId": "craft-schmied-kristall-klinge"
       },
       "xp": 13,
-      "description": "Schmiedet: Kristall-Klinge."
+      "description": "Schmiedet: Kristall-Klinge.",
+      "trainerCost": 62
     },
     {
       "id": "recipe-schmied-kristall-rundschild",
@@ -1441,7 +1463,8 @@
         "templateId": "craft-schmied-kristall-rundschild"
       },
       "xp": 14,
-      "description": "Schmiedet: Kristall-Rundschild."
+      "description": "Schmiedet: Kristall-Rundschild.",
+      "trainerCost": 66
     },
     {
       "id": "recipe-schmied-staehlerner-turmschild",
@@ -1461,7 +1484,8 @@
         "templateId": "craft-schmied-staehlerner-turmschild"
       },
       "xp": 14,
-      "description": "Schmiedet: Stählerner Turmschild."
+      "description": "Schmiedet: Stählerner Turmschild.",
+      "trainerCost": 70
     },
     {
       "id": "recipe-schmied-staehlernes-breitschwert",
@@ -1481,7 +1505,8 @@
         "templateId": "craft-schmied-staehlernes-breitschwert"
       },
       "xp": 15,
-      "description": "Schmiedet: Stählernes Breitschwert."
+      "description": "Schmiedet: Stählernes Breitschwert.",
+      "trainerCost": 74
     },
     {
       "id": "recipe-schmied-staehlerne-sturmhaube",
@@ -1501,7 +1526,8 @@
         "templateId": "craft-schmied-staehlerne-sturmhaube"
       },
       "xp": 15,
-      "description": "Schmiedet: Stählerne Sturmhaube."
+      "description": "Schmiedet: Stählerne Sturmhaube.",
+      "trainerCost": 78
     },
     {
       "id": "recipe-schmied-kristall-beinschienen",
@@ -1521,7 +1547,8 @@
         "templateId": "craft-schmied-kristall-beinschienen"
       },
       "xp": 15,
-      "description": "Schmiedet: Kristall-Beinschienen."
+      "description": "Schmiedet: Kristall-Beinschienen.",
+      "trainerCost": 82
     },
     {
       "id": "recipe-schmied-staehlerne-bruenne",
@@ -1541,7 +1568,8 @@
         "templateId": "craft-schmied-staehlerne-bruenne"
       },
       "xp": 16,
-      "description": "Schmiedet: Stählerne Brünne."
+      "description": "Schmiedet: Stählerne Brünne.",
+      "trainerCost": 86
     },
     {
       "id": "recipe-schmied-kristall-koenigsruestung",
@@ -1890,7 +1918,8 @@
         "templateId": "craft-schmied-drachenschuppen-streitaxt"
       },
       "xp": 20,
-      "description": "Schmiedet: Drachenschuppen-Streitaxt."
+      "description": "Schmiedet: Drachenschuppen-Streitaxt.",
+      "trainerCost": 150
     },
     {
       "id": "recipe-schmied-drachenstahl-stiefel",
@@ -1910,7 +1939,8 @@
         "templateId": "craft-schmied-drachenstahl-stiefel"
       },
       "xp": 20,
-      "description": "Schmiedet: Drachenstahl-Stiefel."
+      "description": "Schmiedet: Drachenstahl-Stiefel.",
+      "trainerCost": 160
     },
     {
       "id": "recipe-schmied-drachenschuppen-kronenhelm",
@@ -1929,7 +1959,8 @@
         "templateId": "craft-schmied-drachenschuppen-kronenhelm"
       },
       "xp": 21,
-      "description": "Schmiedet: Drachenschuppen-Kronenhelm."
+      "description": "Schmiedet: Drachenschuppen-Kronenhelm.",
+      "trainerCost": 170
     },
     {
       "id": "recipe-schmied-drachenschuppen-panzerstiefel",
@@ -1948,7 +1979,8 @@
         "templateId": "craft-schmied-drachenschuppen-panzerstiefel"
       },
       "xp": 21,
-      "description": "Schmiedet: Drachenschuppen-Panzerstiefel."
+      "description": "Schmiedet: Drachenschuppen-Panzerstiefel.",
+      "trainerCost": 180
     },
     {
       "id": "recipe-schmied-drachenzahn-bollwerk",
@@ -1967,7 +1999,8 @@
         "templateId": "craft-schmied-drachenzahn-bollwerk"
       },
       "xp": 22,
-      "description": "Schmiedet: Drachenzahn-Bollwerk."
+      "description": "Schmiedet: Drachenzahn-Bollwerk.",
+      "trainerCost": 190
     },
     {
       "id": "recipe-schmied-drachenschuppen-drachenhelm",
@@ -1986,7 +2019,8 @@
         "templateId": "craft-schmied-drachenschuppen-drachenhelm"
       },
       "xp": 22,
-      "description": "Schmiedet: Drachenschuppen-Drachenhelm."
+      "description": "Schmiedet: Drachenschuppen-Drachenhelm.",
+      "trainerCost": 200
     },
     {
       "id": "recipe-schmied-drachenstahl-klinge",
@@ -2006,7 +2040,8 @@
         "templateId": "craft-schmied-drachenstahl-klinge"
       },
       "xp": 23,
-      "description": "Schmiedet: Drachenstahl-Klinge."
+      "description": "Schmiedet: Drachenstahl-Klinge.",
+      "trainerCost": 210
     },
     {
       "id": "recipe-schmied-drachenstahl-brustplatte",
@@ -2026,7 +2061,8 @@
         "templateId": "craft-schmied-drachenstahl-brustplatte"
       },
       "xp": 23,
-      "description": "Schmiedet: Drachenstahl-Brustplatte."
+      "description": "Schmiedet: Drachenstahl-Brustplatte.",
+      "trainerCost": 220
     },
     {
       "id": "recipe-schmied-drachenschuppen-plattenpanzer",
@@ -2045,7 +2081,8 @@
         "templateId": "craft-schmied-drachenschuppen-plattenpanzer"
       },
       "xp": 23,
-      "description": "Schmiedet: Drachenschuppen-Plattenpanzer."
+      "description": "Schmiedet: Drachenschuppen-Plattenpanzer.",
+      "trainerCost": 230
     },
     {
       "id": "recipe-schmied-drachenstahl-medaillon",
@@ -2065,7 +2102,8 @@
         "templateId": "craft-schmied-drachenstahl-medaillon"
       },
       "xp": 24,
-      "description": "Schmiedet: Drachenstahl-Medaillon."
+      "description": "Schmiedet: Drachenstahl-Medaillon.",
+      "trainerCost": 240
     },
     {
       "id": "recipe-schmied-drachenstahl-helm",
@@ -2414,7 +2452,8 @@
         "templateId": "craft-schmied-seelenkrone-des-meisters"
       },
       "xp": 28,
-      "description": "Schmiedet: Seelenkrone des Meisters."
+      "description": "Schmiedet: Seelenkrone des Meisters.",
+      "trainerCost": 400
     },
     {
       "id": "recipe-schmied-aether-turmschild",
@@ -2433,7 +2472,8 @@
         "templateId": "craft-schmied-aether-turmschild"
       },
       "xp": 29,
-      "description": "Schmiedet: Aether-Turmschild."
+      "description": "Schmiedet: Aether-Turmschild.",
+      "trainerCost": 424
     },
     {
       "id": "recipe-schmied-aether-kettenhemd",
@@ -2452,7 +2492,8 @@
         "templateId": "craft-schmied-aether-kettenhemd"
       },
       "xp": 30,
-      "description": "Schmiedet: Aether-Kettenhemd."
+      "description": "Schmiedet: Aether-Kettenhemd.",
+      "trainerCost": 440
     },
     {
       "id": "recipe-schmied-seelen-kettenruestung",
@@ -2471,7 +2512,8 @@
         "templateId": "craft-schmied-seelen-kettenruestung"
       },
       "xp": 30,
-      "description": "Schmiedet: Seelen-Kettenrüstung."
+      "description": "Schmiedet: Seelen-Kettenrüstung.",
+      "trainerCost": 464
     },
     {
       "id": "recipe-schmied-seelen-richtschwert",
@@ -2490,7 +2532,8 @@
         "templateId": "craft-schmied-seelen-richtschwert"
       },
       "xp": 31,
-      "description": "Schmiedet: Seelengeschmiedetes Richtschwert."
+      "description": "Schmiedet: Seelengeschmiedetes Richtschwert.",
+      "trainerCost": 480
     },
     {
       "id": "recipe-schmied-seelen-krone",
@@ -2509,7 +2552,8 @@
         "templateId": "craft-schmied-seelen-krone"
       },
       "xp": 32,
-      "description": "Schmiedet: Seelen-Krone."
+      "description": "Schmiedet: Seelen-Krone.",
+      "trainerCost": 504
     },
     {
       "id": "recipe-schmied-aetherkern-panzer",
@@ -2529,7 +2573,8 @@
         "templateId": "craft-schmied-aetherkern-panzer"
       },
       "xp": 33,
-      "description": "Schmiedet: Aetherkern-Panzer."
+      "description": "Schmiedet: Aetherkern-Panzer.",
+      "trainerCost": 520
     },
     {
       "id": "recipe-schmied-seelengeschmiedete-platte",
@@ -2549,7 +2594,8 @@
         "templateId": "craft-schmied-seelengeschmiedete-platte"
       },
       "xp": 33,
-      "description": "Schmiedet: Seelengeschmiedete Platte."
+      "description": "Schmiedet: Seelengeschmiedete Platte.",
+      "trainerCost": 544
     },
     {
       "id": "recipe-schmied-aether-brustplatte",
@@ -2569,7 +2615,8 @@
         "templateId": "craft-schmied-aether-brustplatte"
       },
       "xp": 34,
-      "description": "Schmiedet: Aether-Brustplatte."
+      "description": "Schmiedet: Aether-Brustplatte.",
+      "trainerCost": 560
     },
     {
       "id": "recipe-schmied-aetherkern-sturmkappe",
@@ -2589,7 +2636,8 @@
         "templateId": "craft-schmied-aetherkern-sturmkappe"
       },
       "xp": 35,
-      "description": "Schmiedet: Aetherkern-Sturmkappe."
+      "description": "Schmiedet: Aetherkern-Sturmkappe.",
+      "trainerCost": 584
     },
     {
       "id": "recipe-schmied-seelen-schulterwacht",
@@ -2609,7 +2657,8 @@
         "templateId": "craft-schmied-seelen-schulterwacht"
       },
       "xp": 36,
-      "description": "Schmiedet: Seelen-Schulterwacht."
+      "description": "Schmiedet: Seelen-Schulterwacht.",
+      "trainerCost": 600
     },
     {
       "id": "recipe-schmied-seelen-wanderstiefel",
@@ -2629,7 +2678,8 @@
         "templateId": "craft-schmied-seelen-wanderstiefel"
       },
       "xp": 36,
-      "description": "Schmiedet: Seelengeschmiedete Wanderstiefel."
+      "description": "Schmiedet: Seelengeschmiedete Wanderstiefel.",
+      "trainerCost": 624
     },
     {
       "id": "recipe-schmied-aether-schreitstiefel",
@@ -3044,7 +3094,8 @@
         "questsRemaining": 3
       },
       "xp": 8,
-      "description": "Stellt her: Grober Schärfstein."
+      "description": "Stellt her: Grober Schärfstein.",
+      "trainerCost": 10
     },
     {
       "id": "recipe-schmied-rauer-schaerfstein",
@@ -3066,7 +3117,8 @@
         "questsRemaining": 3
       },
       "xp": 12,
-      "description": "Stellt her: Rauer Schärfstein."
+      "description": "Stellt her: Rauer Schärfstein.",
+      "trainerCost": 33
     },
     {
       "id": "recipe-schmied-schwerer-schaerfstein",
@@ -3088,7 +3140,8 @@
         "questsRemaining": 3
       },
       "xp": 18,
-      "description": "Stellt her: Schwerer Schärfstein."
+      "description": "Stellt her: Schwerer Schärfstein.",
+      "trainerCost": 83
     },
     {
       "id": "recipe-schmied-dichter-schaerfstein",
@@ -3110,7 +3163,8 @@
         "questsRemaining": 3
       },
       "xp": 25,
-      "description": "Stellt her: Dichter Schärfstein."
+      "description": "Stellt her: Dichter Schärfstein.",
+      "trainerCost": 233
     },
     {
       "id": "recipe-schmied-elementar-schaerfstein",
@@ -3132,7 +3186,8 @@
         "questsRemaining": 3
       },
       "xp": 35,
-      "description": "Stellt her: Elementarer Schärfstein."
+      "description": "Stellt her: Elementarer Schärfstein.",
+      "trainerCost": 600
     },
     {
       "id": "recipe-schmied-leichter-gewichtstein",
@@ -3153,7 +3208,8 @@
         "questsRemaining": 3
       },
       "xp": 8,
-      "description": "Stellt her: Leichter Gewichtstein."
+      "description": "Stellt her: Leichter Gewichtstein.",
+      "trainerCost": 10
     },
     {
       "id": "recipe-schmied-mittlerer-gewichtstein",
@@ -3174,7 +3230,8 @@
         "questsRemaining": 3
       },
       "xp": 15,
-      "description": "Stellt her: Mittlerer Gewichtstein."
+      "description": "Stellt her: Mittlerer Gewichtstein.",
+      "trainerCost": 50
     },
     {
       "id": "recipe-schmied-schwerer-gewichtstein",
@@ -3195,7 +3252,8 @@
         "questsRemaining": 3
       },
       "xp": 22,
-      "description": "Stellt her: Schwerer Gewichtstein."
+      "description": "Stellt her: Schwerer Gewichtstein.",
+      "trainerCost": 150
     },
     {
       "id": "recipe-schmied-titanischer-gewichtstein",
@@ -3217,7 +3275,8 @@
         "questsRemaining": 3
       },
       "xp": 30,
-      "description": "Stellt her: Titanischer Gewichtstein."
+      "description": "Stellt her: Titanischer Gewichtstein.",
+      "trainerCost": 400
     },
     {
       "id": "recipe-schmied-eiserne-schilddornen",
@@ -3239,7 +3298,8 @@
         "questsRemaining": 3
       },
       "xp": 10,
-      "description": "Stellt her: Eiserne Schilddornen."
+      "description": "Stellt her: Eiserne Schilddornen.",
+      "trainerCost": 33
     },
     {
       "id": "recipe-schmied-kristall-schilddornen",
@@ -3261,7 +3321,8 @@
         "questsRemaining": 3
       },
       "xp": 22,
-      "description": "Stellt her: Kristall-Schilddornen."
+      "description": "Stellt her: Kristall-Schilddornen.",
+      "trainerCost": 150
     },
     {
       "id": "recipe-schmied-aether-schilddornen",
@@ -3282,7 +3343,8 @@
         "questsRemaining": 3
       },
       "xp": 35,
-      "description": "Stellt her: Aether-Schilddornen."
+      "description": "Stellt her: Aether-Schilddornen.",
+      "trainerCost": 600
     },
     {
       "id": "recipe-schmied-leichte-panzerverstaerkung",
@@ -3304,7 +3366,8 @@
         "questsRemaining": 3
       },
       "xp": 14,
-      "description": "Stellt her: Leichte Panzerverstärkung."
+      "description": "Stellt her: Leichte Panzerverstärkung.",
+      "trainerCost": 50
     },
     {
       "id": "recipe-schmied-schwere-panzerverstaerkung",
@@ -3326,7 +3389,8 @@
         "questsRemaining": 3
       },
       "xp": 25,
-      "description": "Stellt her: Schwere Panzerverstärkung."
+      "description": "Stellt her: Schwere Panzerverstärkung.",
+      "trainerCost": 233
     },
     {
       "id": "recipe-schmied-aether-panzerverstaerkung",
@@ -3348,7 +3412,8 @@
         "questsRemaining": 3
       },
       "xp": 40,
-      "description": "Stellt her: Aether-Panzerverstärkung."
+      "description": "Stellt her: Aether-Panzerverstärkung.",
+      "trainerCost": 800
     },
     {
       "id": "recipe-schmied-eiserner-streakschild",
@@ -3368,7 +3433,8 @@
         "amount": 1
       },
       "xp": 18,
-      "description": "Stellt her: Eiserner Streakschild."
+      "description": "Stellt her: Eiserner Streakschild.",
+      "trainerCost": 83
     },
     {
       "id": "recipe-schmied-seelen-streakschild",
@@ -3388,7 +3454,8 @@
         "amount": 1
       },
       "xp": 30,
-      "description": "Stellt her: Seelen-Streakschild."
+      "description": "Stellt her: Seelen-Streakschild.",
+      "trainerCost": 400
     },
     {
       "id": "recipe-schmied-gluthammer",
@@ -3408,7 +3475,8 @@
         "amount": 10
       },
       "xp": 20,
-      "description": "Stellt her: Gluthammer."
+      "description": "Stellt her: Gluthammer.",
+      "trainerCost": 117
     },
     {
       "id": "recipe-schmied-seelenglut",
@@ -3428,7 +3496,8 @@
         "amount": 20
       },
       "xp": 35,
-      "description": "Stellt her: Seelenglut."
+      "description": "Stellt her: Seelenglut.",
+      "trainerCost": 600
     },
     {
       "id": "recipe-schmied-klinge-schaerfen-1",
@@ -3448,7 +3517,8 @@
         "amount": 1
       },
       "xp": 10,
-      "description": "Klinge schärfen I."
+      "description": "Klinge schärfen I.",
+      "trainerCost": 10
     },
     {
       "id": "recipe-schmied-klinge-schaerfen-2",
@@ -3468,7 +3538,8 @@
         "amount": 1
       },
       "xp": 15,
-      "description": "Klinge schärfen II."
+      "description": "Klinge schärfen II.",
+      "trainerCost": 50
     },
     {
       "id": "recipe-schmied-klinge-schaerfen-3",
@@ -3489,7 +3560,8 @@
         "amount": 2
       },
       "xp": 22,
-      "description": "Klinge schärfen III."
+      "description": "Klinge schärfen III.",
+      "trainerCost": 150
     },
     {
       "id": "recipe-schmied-klinge-schaerfen-4",
@@ -3510,7 +3582,8 @@
         "amount": 2
       },
       "xp": 30,
-      "description": "Klinge schärfen IV."
+      "description": "Klinge schärfen IV.",
+      "trainerCost": 400
     },
     {
       "id": "recipe-schmied-klinge-schaerfen-5",
@@ -3531,7 +3604,8 @@
         "amount": 3
       },
       "xp": 40,
-      "description": "Klinge schärfen V."
+      "description": "Klinge schärfen V.",
+      "trainerCost": 800
     },
     {
       "id": "recipe-schmied-ruestung-verstaerken-1",
@@ -3551,7 +3625,8 @@
         "amount": 1
       },
       "xp": 10,
-      "description": "Rüstung verstärken I."
+      "description": "Rüstung verstärken I.",
+      "trainerCost": 10
     },
     {
       "id": "recipe-schmied-ruestung-verstaerken-2",
@@ -3571,7 +3646,8 @@
         "amount": 1
       },
       "xp": 18,
-      "description": "Rüstung verstärken II."
+      "description": "Rüstung verstärken II.",
+      "trainerCost": 83
     },
     {
       "id": "recipe-schmied-ruestung-verstaerken-3",
@@ -3592,7 +3668,8 @@
         "amount": 2
       },
       "xp": 25,
-      "description": "Rüstung verstärken III."
+      "description": "Rüstung verstärken III.",
+      "trainerCost": 233
     },
     {
       "id": "recipe-schmied-ruestung-verstaerken-4",
@@ -3612,7 +3689,8 @@
         "amount": 3
       },
       "xp": 35,
-      "description": "Rüstung verstärken IV."
+      "description": "Rüstung verstärken IV.",
+      "trainerCost": 600
     },
     {
       "id": "recipe-schmied-schild-polieren-1",
@@ -3632,7 +3710,8 @@
         "amount": 1
       },
       "xp": 12,
-      "description": "Schild polieren I."
+      "description": "Schild polieren I.",
+      "trainerCost": 33
     },
     {
       "id": "recipe-schmied-schild-polieren-2",
@@ -3652,7 +3731,8 @@
         "amount": 2
       },
       "xp": 22,
-      "description": "Schild polieren II."
+      "description": "Schild polieren II.",
+      "trainerCost": 150
     },
     {
       "id": "recipe-schmied-schild-polieren-3",
@@ -3672,7 +3752,8 @@
         "amount": 2
       },
       "xp": 35,
-      "description": "Schild polieren III."
+      "description": "Schild polieren III.",
+      "trainerCost": 600
     },
     {
       "id": "recipe-schmied-amulett-segnen-1",
@@ -3692,7 +3773,8 @@
         "amount": 1
       },
       "xp": 14,
-      "description": "Amulett segnen I."
+      "description": "Amulett segnen I.",
+      "trainerCost": 50
     },
     {
       "id": "recipe-schmied-amulett-segnen-2",
@@ -3712,7 +3794,8 @@
         "amount": 1
       },
       "xp": 25,
-      "description": "Amulett segnen II."
+      "description": "Amulett segnen II.",
+      "trainerCost": 233
     },
     {
       "id": "recipe-schmied-amulett-segnen-3",
@@ -3733,7 +3816,8 @@
         "amount": 2
       },
       "xp": 40,
-      "description": "Amulett segnen III."
+      "description": "Amulett segnen III.",
+      "trainerCost": 800
     },
     {
       "id": "recipe-schneider-leinenballen",
@@ -3753,7 +3837,8 @@
         "amount": 1
       },
       "xp": 5,
-      "description": "Verarbeitet Leinenstoff zu einem Ballen."
+      "description": "Verarbeitet Leinenstoff zu einem Ballen.",
+      "trainerCost": 10
     },
     {
       "id": "recipe-schneider-wollballen",
@@ -3773,7 +3858,8 @@
         "amount": 1
       },
       "xp": 12,
-      "description": "Dichter Wollballen — warm und vielseitig."
+      "description": "Dichter Wollballen — warm und vielseitig.",
+      "trainerCost": 33
     },
     {
       "id": "recipe-schneider-seidenballen",
@@ -3793,7 +3879,8 @@
         "amount": 1
       },
       "xp": 20,
-      "description": "Mondschein-Seide, zu einem Ballen verwoben."
+      "description": "Mondschein-Seide, zu einem Ballen verwoben.",
+      "trainerCost": 110
     },
     {
       "id": "recipe-schneider-magiestoffballen",
@@ -3813,7 +3900,8 @@
         "amount": 1
       },
       "xp": 28,
-      "description": "Magiestoff-Ballen. Leuchtet dezent. Nicht fallen lassen."
+      "description": "Magiestoff-Ballen. Leuchtet dezent. Nicht fallen lassen.",
+      "trainerCost": 317
     },
     {
       "id": "recipe-schneider-runenstoffballen",
@@ -3833,7 +3921,8 @@
         "amount": 1
       },
       "xp": 40,
-      "description": "Runenstoff — jeder Faden eine Geschichte."
+      "description": "Runenstoff — jeder Faden eine Geschichte.",
+      "trainerCost": 760
     },
     {
       "id": "recipe-schneider-sternenlichtfarbe",
@@ -3854,7 +3943,8 @@
         "amount": 1
       },
       "xp": 22,
-      "description": "Farbe aus kondensiertem Sternenlicht."
+      "description": "Farbe aus kondensiertem Sternenlicht.",
+      "trainerCost": 150
     },
     {
       "id": "recipe-schneider-arkanerfaden",
@@ -3875,7 +3965,8 @@
         "amount": 1
       },
       "xp": 30,
-      "description": "Ein Faden aus arkaner Energie."
+      "description": "Ein Faden aus arkaner Energie.",
+      "trainerCost": 400
     },
     {
       "id": "recipe-schneider-runenfaden",
@@ -3896,7 +3987,8 @@
         "amount": 1
       },
       "xp": 42,
-      "description": "Runen weben sich in den Faden. Von allein."
+      "description": "Runen weben sich in den Faden. Von allein.",
+      "trainerCost": 800
     },
     {
       "id": "recipe-schneider-leinenrute",
@@ -3915,7 +4007,8 @@
         "templateId": "craft-schneider-leinenrute"
       },
       "xp": 5,
-      "description": "Webt: Leinenrute."
+      "description": "Webt: Leinenrute.",
+      "trainerCost": 10
     },
     {
       "id": "recipe-schneider-leinenkette",
@@ -3934,7 +4027,8 @@
         "templateId": "craft-schneider-leinenkette"
       },
       "xp": 5,
-      "description": "Webt: Leinenkette."
+      "description": "Webt: Leinenkette.",
+      "trainerCost": 10
     },
     {
       "id": "recipe-schneider-leinenstab-i",
@@ -3953,7 +4047,8 @@
         "templateId": "craft-schneider-leinenstab-i"
       },
       "xp": 6,
-      "description": "Webt: Leinenstab I."
+      "description": "Webt: Leinenstab I.",
+      "trainerCost": 10
     },
     {
       "id": "recipe-schneider-leinenfolio-i",
@@ -3972,7 +4067,8 @@
         "templateId": "craft-schneider-leinenfolio-i"
       },
       "xp": 6,
-      "description": "Webt: Leinenfolio I."
+      "description": "Webt: Leinenfolio I.",
+      "trainerCost": 10
     },
     {
       "id": "recipe-schneider-leinenkappe",
@@ -3991,7 +4087,8 @@
         "templateId": "craft-schneider-leinenkappe"
       },
       "xp": 6,
-      "description": "Webt: Leinenkappe."
+      "description": "Webt: Leinenkappe.",
+      "trainerCost": 10
     },
     {
       "id": "recipe-schneider-leinenmedaillon",
@@ -4010,7 +4107,8 @@
         "templateId": "craft-schneider-leinenmedaillon"
       },
       "xp": 7,
-      "description": "Webt: Leinenmedaillon."
+      "description": "Webt: Leinenmedaillon.",
+      "trainerCost": 10
     },
     {
       "id": "recipe-schneider-leinenhut",
@@ -4029,7 +4127,8 @@
         "templateId": "craft-schneider-leinenhut"
       },
       "xp": 7,
-      "description": "Webt: Leinenhut."
+      "description": "Webt: Leinenhut.",
+      "trainerCost": 10
     },
     {
       "id": "recipe-schneider-leinensandalen",
@@ -4048,7 +4147,8 @@
         "templateId": "craft-schneider-leinensandalen"
       },
       "xp": 8,
-      "description": "Webt: Leinensandalen."
+      "description": "Webt: Leinensandalen.",
+      "trainerCost": 10
     },
     {
       "id": "recipe-schneider-leinenrobe",
@@ -4319,7 +4419,8 @@
         "templateId": "craft-schneider-wollstiefel"
       },
       "xp": 12,
-      "description": "Webt: Wollstiefel."
+      "description": "Webt: Wollstiefel.",
+      "trainerCost": 50
     },
     {
       "id": "recipe-schneider-gewobener-fokus",
@@ -4339,7 +4440,8 @@
         "templateId": "craft-schneider-gewobener-fokus"
       },
       "xp": 12,
-      "description": "Webt: Gewobener Fokus."
+      "description": "Webt: Gewobener Fokus.",
+      "trainerCost": 54
     },
     {
       "id": "recipe-schneider-wollsandalen",
@@ -4358,7 +4460,8 @@
         "templateId": "craft-schneider-wollsandalen"
       },
       "xp": 13,
-      "description": "Webt: Wollsandalen."
+      "description": "Webt: Wollsandalen.",
+      "trainerCost": 58
     },
     {
       "id": "recipe-schneider-wollfoliant-i",
@@ -4378,7 +4481,8 @@
         "templateId": "craft-schneider-wollfoliant-i"
       },
       "xp": 13,
-      "description": "Webt: Wollfoliant I."
+      "description": "Webt: Wollfoliant I.",
+      "trainerCost": 62
     },
     {
       "id": "recipe-schneider-wollgewand",
@@ -4398,7 +4502,8 @@
         "templateId": "craft-schneider-wollgewand"
       },
       "xp": 14,
-      "description": "Webt: Wollgewand."
+      "description": "Webt: Wollgewand.",
+      "trainerCost": 66
     },
     {
       "id": "recipe-schneider-wollstab-i",
@@ -4418,7 +4523,8 @@
         "templateId": "craft-schneider-wollstab-i"
       },
       "xp": 14,
-      "description": "Webt: Wollstab I."
+      "description": "Webt: Wollstab I.",
+      "trainerCost": 70
     },
     {
       "id": "recipe-schneider-wollmantel",
@@ -4438,7 +4544,8 @@
         "templateId": "craft-schneider-wollmantel"
       },
       "xp": 15,
-      "description": "Webt: Wollmantel."
+      "description": "Webt: Wollmantel.",
+      "trainerCost": 74
     },
     {
       "id": "recipe-schneider-gewobener-anhaenger",
@@ -4457,7 +4564,8 @@
         "templateId": "craft-schneider-gewobener-anhaenger"
       },
       "xp": 15,
-      "description": "Webt: Gewobener Anhänger."
+      "description": "Webt: Gewobener Anhänger.",
+      "trainerCost": 78
     },
     {
       "id": "recipe-schneider-wollzepter",
@@ -4477,7 +4585,8 @@
         "templateId": "craft-schneider-wollzepter"
       },
       "xp": 15,
-      "description": "Webt: Wollzepter."
+      "description": "Webt: Wollzepter.",
+      "trainerCost": 82
     },
     {
       "id": "recipe-schneider-gewobener-zauberstab-ii",
@@ -4497,7 +4606,8 @@
         "templateId": "craft-schneider-gewobener-zauberstab-ii"
       },
       "xp": 16,
-      "description": "Webt: Gewobener Zauberstab II."
+      "description": "Webt: Gewobener Zauberstab II.",
+      "trainerCost": 86
     },
     {
       "id": "recipe-schneider-wollkodex",
@@ -4848,7 +4958,8 @@
         "templateId": "craft-schneider-mondschein-kutte"
       },
       "xp": 20,
-      "description": "Webt: Mondschein-Kutte."
+      "description": "Webt: Mondschein-Kutte.",
+      "trainerCost": 150
     },
     {
       "id": "recipe-schneider-mondschein-tiara",
@@ -4868,7 +4979,8 @@
         "templateId": "craft-schneider-mondschein-tiara"
       },
       "xp": 20,
-      "description": "Webt: Mondschein-Tiara."
+      "description": "Webt: Mondschein-Tiara.",
+      "trainerCost": 160
     },
     {
       "id": "recipe-schneider-mondschein-treter",
@@ -4889,7 +5001,8 @@
         "templateId": "craft-schneider-mondschein-treter"
       },
       "xp": 21,
-      "description": "Webt: Mondschein-Treter."
+      "description": "Webt: Mondschein-Treter.",
+      "trainerCost": 170
     },
     {
       "id": "recipe-schneider-seidenschuhe",
@@ -4910,7 +5023,8 @@
         "templateId": "craft-schneider-seidenschuhe"
       },
       "xp": 21,
-      "description": "Webt: Seidenschuhe."
+      "description": "Webt: Seidenschuhe.",
+      "trainerCost": 180
     },
     {
       "id": "recipe-schneider-seidenreif",
@@ -4931,7 +5045,8 @@
         "templateId": "craft-schneider-seidenreif"
       },
       "xp": 22,
-      "description": "Webt: Seidenreif."
+      "description": "Webt: Seidenreif.",
+      "trainerCost": 190
     },
     {
       "id": "recipe-schneider-seidenmantel",
@@ -4952,7 +5067,8 @@
         "templateId": "craft-schneider-seidenmantel"
       },
       "xp": 22,
-      "description": "Webt: Seidenmantel."
+      "description": "Webt: Seidenmantel.",
+      "trainerCost": 200
     },
     {
       "id": "recipe-schneider-mondschein-fokus",
@@ -4972,7 +5088,8 @@
         "templateId": "craft-schneider-mondschein-fokus"
       },
       "xp": 23,
-      "description": "Webt: Mondschein-Fokus."
+      "description": "Webt: Mondschein-Fokus.",
+      "trainerCost": 210
     },
     {
       "id": "recipe-schneider-seidenstab-i",
@@ -4992,7 +5109,8 @@
         "templateId": "craft-schneider-seidenstab-i"
       },
       "xp": 23,
-      "description": "Webt: Seidenstab I."
+      "description": "Webt: Seidenstab I.",
+      "trainerCost": 220
     },
     {
       "id": "recipe-schneider-mondschein-amulett",
@@ -5013,7 +5131,8 @@
         "templateId": "craft-schneider-mondschein-amulett"
       },
       "xp": 23,
-      "description": "Webt: Mondschein-Amulett."
+      "description": "Webt: Mondschein-Amulett.",
+      "trainerCost": 230
     },
     {
       "id": "recipe-schneider-seidensandalen",
@@ -5034,7 +5153,8 @@
         "templateId": "craft-schneider-seidensandalen"
       },
       "xp": 24,
-      "description": "Webt: Seidensandalen."
+      "description": "Webt: Seidensandalen.",
+      "trainerCost": 240
     },
     {
       "id": "recipe-schneider-seidenschleier",
@@ -5387,7 +5507,8 @@
         "templateId": "craft-schneider-magiestab"
       },
       "xp": 28,
-      "description": "Webt: Magiestab."
+      "description": "Webt: Magiestab.",
+      "trainerCost": 400
     },
     {
       "id": "recipe-schneider-seelenstiefel",
@@ -5408,7 +5529,8 @@
         "templateId": "craft-schneider-seelenstiefel"
       },
       "xp": 29,
-      "description": "Webt: Seelenstiefel."
+      "description": "Webt: Seelenstiefel.",
+      "trainerCost": 424
     },
     {
       "id": "recipe-schneider-seelenrobe",
@@ -5429,7 +5551,8 @@
         "templateId": "craft-schneider-seelenrobe"
       },
       "xp": 30,
-      "description": "Webt: Seelenrobe."
+      "description": "Webt: Seelenrobe.",
+      "trainerCost": 440
     },
     {
       "id": "recipe-schneider-arkanes-amulett",
@@ -5450,7 +5573,8 @@
         "templateId": "craft-schneider-arkanes-amulett"
       },
       "xp": 30,
-      "description": "Webt: Arkanes Amulett."
+      "description": "Webt: Arkanes Amulett.",
+      "trainerCost": 464
     },
     {
       "id": "recipe-schneider-aetherfoliant",
@@ -5470,7 +5594,8 @@
         "templateId": "craft-schneider-aetherfoliant"
       },
       "xp": 31,
-      "description": "Webt: Ätherfoliant."
+      "description": "Webt: Ätherfoliant.",
+      "trainerCost": 480
     },
     {
       "id": "recipe-schneider-runenfokus",
@@ -5490,7 +5615,8 @@
         "templateId": "craft-schneider-runenfokus"
       },
       "xp": 32,
-      "description": "Webt: Runenfokus."
+      "description": "Webt: Runenfokus.",
+      "trainerCost": 504
     },
     {
       "id": "recipe-schneider-runensandalen",
@@ -5511,7 +5637,8 @@
         "templateId": "craft-schneider-runensandalen"
       },
       "xp": 33,
-      "description": "Webt: Runensandalen."
+      "description": "Webt: Runensandalen.",
+      "trainerCost": 520
     },
     {
       "id": "recipe-schneider-arkanfoliant",
@@ -5531,7 +5658,8 @@
         "templateId": "craft-schneider-arkanfoliant"
       },
       "xp": 33,
-      "description": "Webt: Arkanfoliant."
+      "description": "Webt: Arkanfoliant.",
+      "trainerCost": 544
     },
     {
       "id": "recipe-schneider-aethergewand",
@@ -5552,7 +5680,8 @@
         "templateId": "craft-schneider-aethergewand"
       },
       "xp": 34,
-      "description": "Webt: Äthergewand."
+      "description": "Webt: Äthergewand.",
+      "trainerCost": 560
     },
     {
       "id": "recipe-schneider-seelenamulett",
@@ -5573,7 +5702,8 @@
         "templateId": "craft-schneider-seelenamulett"
       },
       "xp": 35,
-      "description": "Webt: Seelenamulett."
+      "description": "Webt: Seelenamulett.",
+      "trainerCost": 584
     },
     {
       "id": "recipe-schneider-seelenkodex",
@@ -5593,7 +5723,8 @@
         "templateId": "craft-schneider-seelenkodex"
       },
       "xp": 36,
-      "description": "Webt: Seelenkodex."
+      "description": "Webt: Seelenkodex.",
+      "trainerCost": 600
     },
     {
       "id": "recipe-schneider-runenschleier",
@@ -5613,7 +5744,8 @@
         "templateId": "craft-schneider-runenschleier"
       },
       "xp": 36,
-      "description": "Webt: Runenschleier."
+      "description": "Webt: Runenschleier.",
+      "trainerCost": 624
     },
     {
       "id": "recipe-schneider-sternenhaube",
@@ -6039,7 +6171,8 @@
         "questsRemaining": 3
       },
       "xp": 8,
-      "description": "Stellt her: Einfacher Zauberfaden."
+      "description": "Stellt her: Einfacher Zauberfaden.",
+      "trainerCost": 10
     },
     {
       "id": "recipe-schneider-wollener-zauberfaden",
@@ -6061,7 +6194,8 @@
         "questsRemaining": 3
       },
       "xp": 14,
-      "description": "Stellt her: Wollener Zauberfaden."
+      "description": "Stellt her: Wollener Zauberfaden.",
+      "trainerCost": 40
     },
     {
       "id": "recipe-schneider-seidener-zauberfaden",
@@ -6083,7 +6217,8 @@
         "questsRemaining": 3
       },
       "xp": 20,
-      "description": "Stellt her: Seidener Zauberfaden."
+      "description": "Stellt her: Seidener Zauberfaden.",
+      "trainerCost": 123
     },
     {
       "id": "recipe-schneider-arkaner-zauberfaden",
@@ -6105,7 +6240,8 @@
         "questsRemaining": 3
       },
       "xp": 28,
-      "description": "Stellt her: Arkaner Zauberfaden."
+      "description": "Stellt her: Arkaner Zauberfaden.",
+      "trainerCost": 317
     },
     {
       "id": "recipe-schneider-runen-zauberfaden",
@@ -6127,7 +6263,8 @@
         "questsRemaining": 3
       },
       "xp": 40,
-      "description": "Stellt her: Runen-Zauberfaden."
+      "description": "Stellt her: Runen-Zauberfaden.",
+      "trainerCost": 760
     },
     {
       "id": "recipe-schneider-einfacher-gluecksfaden",
@@ -6148,7 +6285,8 @@
         "questsRemaining": 3
       },
       "xp": 10,
-      "description": "Stellt her: Einfacher Glücksfaden."
+      "description": "Stellt her: Einfacher Glücksfaden.",
+      "trainerCost": 27
     },
     {
       "id": "recipe-schneider-seidener-gluecksfaden",
@@ -6170,7 +6308,8 @@
         "questsRemaining": 3
       },
       "xp": 22,
-      "description": "Stellt her: Seidener Glücksfaden."
+      "description": "Stellt her: Seidener Glücksfaden.",
+      "trainerCost": 150
     },
     {
       "id": "recipe-schneider-arkaner-gluecksfaden",
@@ -6192,7 +6331,8 @@
         "questsRemaining": 3
       },
       "xp": 35,
-      "description": "Stellt her: Arkaner Glücksfaden."
+      "description": "Stellt her: Arkaner Glücksfaden.",
+      "trainerCost": 600
     },
     {
       "id": "recipe-schneider-fokus-faden",
@@ -6214,7 +6354,8 @@
         "questsRemaining": 3
       },
       "xp": 14,
-      "description": "Stellt her: Konzentrationsfaden."
+      "description": "Stellt her: Konzentrationsfaden.",
+      "trainerCost": 50
     },
     {
       "id": "recipe-schneider-seidener-fokusfaden",
@@ -6235,7 +6376,8 @@
         "questsRemaining": 3
       },
       "xp": 25,
-      "description": "Stellt her: Seidener Konzentrationsfaden."
+      "description": "Stellt her: Seidener Konzentrationsfaden.",
+      "trainerCost": 233
     },
     {
       "id": "recipe-schneider-arkaner-fokusfaden",
@@ -6257,7 +6399,8 @@
         "questsRemaining": 3
       },
       "xp": 38,
-      "description": "Stellt her: Arkaner Konzentrationsfaden."
+      "description": "Stellt her: Arkaner Konzentrationsfaden.",
+      "trainerCost": 680
     },
     {
       "id": "recipe-schneider-charisma-faden",
@@ -6279,7 +6422,8 @@
         "questsRemaining": 3
       },
       "xp": 18,
-      "description": "Stellt her: Bezaubernder Faden."
+      "description": "Stellt her: Bezaubernder Faden.",
+      "trainerCost": 83
     },
     {
       "id": "recipe-schneider-seidener-charismafaden",
@@ -6301,7 +6445,8 @@
         "questsRemaining": 3
       },
       "xp": 30,
-      "description": "Stellt her: Seidener Bezaubernder Faden."
+      "description": "Stellt her: Seidener Bezaubernder Faden.",
+      "trainerCost": 400
     },
     {
       "id": "recipe-schneider-leinener-streakschutz",
@@ -6321,7 +6466,8 @@
         "amount": 1
       },
       "xp": 15,
-      "description": "Stellt her: Leinener Streakschutz."
+      "description": "Stellt her: Leinener Streakschutz.",
+      "trainerCost": 57
     },
     {
       "id": "recipe-schneider-arkaner-streakschutz",
@@ -6341,7 +6487,8 @@
         "amount": 1
       },
       "xp": 30,
-      "description": "Stellt her: Arkaner Streakschutz."
+      "description": "Stellt her: Arkaner Streakschutz.",
+      "trainerCost": 400
     },
     {
       "id": "recipe-schneider-waermender-stoff",
@@ -6361,7 +6508,8 @@
         "amount": 10
       },
       "xp": 18,
-      "description": "Stellt her: Wärmender Stoff."
+      "description": "Stellt her: Wärmender Stoff.",
+      "trainerCost": 83
     },
     {
       "id": "recipe-schneider-arkaner-waermestoff",
@@ -6381,7 +6529,8 @@
         "amount": 20
       },
       "xp": 35,
-      "description": "Stellt her: Arkaner Wärmestoff."
+      "description": "Stellt her: Arkaner Wärmestoff.",
+      "trainerCost": 520
     },
     {
       "id": "recipe-schneider-xp-gewand-1",
@@ -6403,7 +6552,8 @@
         "questsRemaining": 5
       },
       "xp": 22,
-      "description": "Stellt her: Gewand der Erleuchtung I."
+      "description": "Stellt her: Gewand der Erleuchtung I.",
+      "trainerCost": 150
     },
     {
       "id": "recipe-schneider-xp-gewand-2",
@@ -6425,7 +6575,8 @@
         "questsRemaining": 5
       },
       "xp": 38,
-      "description": "Stellt her: Gewand der Erleuchtung II."
+      "description": "Stellt her: Gewand der Erleuchtung II.",
+      "trainerCost": 680
     },
     {
       "id": "recipe-schneider-stoff-veredeln-1",
@@ -6445,7 +6596,8 @@
         "amount": 1
       },
       "xp": 10,
-      "description": "Stoff veredeln I."
+      "description": "Stoff veredeln I.",
+      "trainerCost": 10
     },
     {
       "id": "recipe-schneider-stoff-veredeln-2",
@@ -6465,7 +6617,8 @@
         "amount": 1
       },
       "xp": 15,
-      "description": "Stoff veredeln II."
+      "description": "Stoff veredeln II.",
+      "trainerCost": 50
     },
     {
       "id": "recipe-schneider-stoff-veredeln-3",
@@ -6485,7 +6638,8 @@
         "amount": 2
       },
       "xp": 22,
-      "description": "Stoff veredeln III."
+      "description": "Stoff veredeln III.",
+      "trainerCost": 150
     },
     {
       "id": "recipe-schneider-stoff-veredeln-4",
@@ -6505,7 +6659,8 @@
         "amount": 2
       },
       "xp": 30,
-      "description": "Stoff veredeln IV."
+      "description": "Stoff veredeln IV.",
+      "trainerCost": 400
     },
     {
       "id": "recipe-schneider-stoff-veredeln-5",
@@ -6526,7 +6681,8 @@
         "amount": 3
       },
       "xp": 42,
-      "description": "Stoff veredeln V."
+      "description": "Stoff veredeln V.",
+      "trainerCost": 800
     },
     {
       "id": "recipe-schneider-fokus-weben-1",
@@ -6546,7 +6702,8 @@
         "amount": 1
       },
       "xp": 10,
-      "description": "Fokus weben I."
+      "description": "Fokus weben I.",
+      "trainerCost": 10
     },
     {
       "id": "recipe-schneider-fokus-weben-2",
@@ -6567,7 +6724,8 @@
         "amount": 1
       },
       "xp": 18,
-      "description": "Fokus weben II."
+      "description": "Fokus weben II.",
+      "trainerCost": 83
     },
     {
       "id": "recipe-schneider-fokus-weben-3",
@@ -6588,7 +6746,8 @@
         "amount": 2
       },
       "xp": 25,
-      "description": "Fokus weben III."
+      "description": "Fokus weben III.",
+      "trainerCost": 233
     },
     {
       "id": "recipe-schneider-fokus-weben-4",
@@ -6608,7 +6767,8 @@
         "amount": 3
       },
       "xp": 35,
-      "description": "Fokus weben IV."
+      "description": "Fokus weben IV.",
+      "trainerCost": 600
     },
     {
       "id": "recipe-schneider-charisma-sticken-1",
@@ -6629,7 +6789,8 @@
         "amount": 1
       },
       "xp": 12,
-      "description": "Charisma sticken I."
+      "description": "Charisma sticken I.",
+      "trainerCost": 33
     },
     {
       "id": "recipe-schneider-charisma-sticken-2",
@@ -6649,7 +6810,8 @@
         "amount": 1
       },
       "xp": 22,
-      "description": "Charisma sticken II."
+      "description": "Charisma sticken II.",
+      "trainerCost": 150
     },
     {
       "id": "recipe-schneider-charisma-sticken-3",
@@ -6670,7 +6832,8 @@
         "amount": 2
       },
       "xp": 35,
-      "description": "Charisma sticken III."
+      "description": "Charisma sticken III.",
+      "trainerCost": 600
     },
     {
       "id": "recipe-schneider-glueck-weben-1",
@@ -6691,7 +6854,8 @@
         "amount": 1
       },
       "xp": 14,
-      "description": "Glück weben I."
+      "description": "Glück weben I.",
+      "trainerCost": 50
     },
     {
       "id": "recipe-schneider-glueck-weben-2",
@@ -6711,7 +6875,8 @@
         "amount": 1
       },
       "xp": 25,
-      "description": "Glück weben II."
+      "description": "Glück weben II.",
+      "trainerCost": 233
     },
     {
       "id": "recipe-schneider-glueck-weben-3",
@@ -6732,7 +6897,8 @@
         "amount": 2
       },
       "xp": 42,
-      "description": "Glück weben III."
+      "description": "Glück weben III.",
+      "trainerCost": 800
     },
     {
       "id": "recipe-leder-geheiltes-leichtleder",
@@ -6752,7 +6918,8 @@
         "amount": 1
       },
       "xp": 5,
-      "description": "Verarbeitet: Geheiltes Leichtleder."
+      "description": "Verarbeitet: Geheiltes Leichtleder.",
+      "trainerCost": 10
     },
     {
       "id": "recipe-leder-geheiltes-mittleres-leder",
@@ -6772,7 +6939,8 @@
         "amount": 1
       },
       "xp": 12,
-      "description": "Verarbeitet: Geheiltes Mittleres Leder."
+      "description": "Verarbeitet: Geheiltes Mittleres Leder.",
+      "trainerCost": 33
     },
     {
       "id": "recipe-leder-gehaertetes-schwerleder",
@@ -6792,7 +6960,8 @@
         "amount": 1
       },
       "xp": 20,
-      "description": "Verarbeitet: Gehärtetes Schwerleder."
+      "description": "Verarbeitet: Gehärtetes Schwerleder.",
+      "trainerCost": 110
     },
     {
       "id": "recipe-leder-bestien-lederballen",
@@ -6812,7 +6981,8 @@
         "amount": 1
       },
       "xp": 28,
-      "description": "Verarbeitet: Bestien-Lederballen."
+      "description": "Verarbeitet: Bestien-Lederballen.",
+      "trainerCost": 317
     },
     {
       "id": "recipe-leder-urzeitleder-ballen",
@@ -6832,7 +7002,8 @@
         "amount": 1
       },
       "xp": 40,
-      "description": "Verarbeitet: Urzeitleder-Ballen."
+      "description": "Verarbeitet: Urzeitleder-Ballen.",
+      "trainerCost": 760
     },
     {
       "id": "recipe-leder-klauenoel",
@@ -6853,7 +7024,8 @@
         "amount": 1
       },
       "xp": 14,
-      "description": "Verarbeitet: Klauenöl."
+      "description": "Verarbeitet: Klauenöl.",
+      "trainerCost": 50
     },
     {
       "id": "recipe-leder-salzgerbung",
@@ -6874,7 +7046,8 @@
         "amount": 1
       },
       "xp": 25,
-      "description": "Verarbeitet: Salzgerbung."
+      "description": "Verarbeitet: Salzgerbung.",
+      "trainerCost": 233
     },
     {
       "id": "recipe-leder-uraltes-gerbmittel",
@@ -6895,7 +7068,8 @@
         "amount": 1
       },
       "xp": 38,
-      "description": "Verarbeitet: Uraltes Gerbmittel."
+      "description": "Verarbeitet: Uraltes Gerbmittel.",
+      "trainerCost": 680
     },
     {
       "id": "recipe-leder-leichtleder-dolch-ii",
@@ -6914,7 +7088,8 @@
         "templateId": "craft-leder-leichtleder-dolch-ii"
       },
       "xp": 5,
-      "description": "Gerbt: Leichtleder-Dolch II."
+      "description": "Gerbt: Leichtleder-Dolch II.",
+      "trainerCost": 10
     },
     {
       "id": "recipe-leder-leichtleder-peitsche",
@@ -6933,7 +7108,8 @@
         "templateId": "craft-leder-leichtleder-peitsche"
       },
       "xp": 5,
-      "description": "Gerbt: Leichtleder-Peitsche."
+      "description": "Gerbt: Leichtleder-Peitsche.",
+      "trainerCost": 10
     },
     {
       "id": "recipe-leder-leichtleder-stiefel",
@@ -6952,7 +7128,8 @@
         "templateId": "craft-leder-leichtleder-stiefel"
       },
       "xp": 6,
-      "description": "Gerbt: Leichtleder-Stiefel."
+      "description": "Gerbt: Leichtleder-Stiefel.",
+      "trainerCost": 10
     },
     {
       "id": "recipe-leder-leichtleder-anhaenger",
@@ -6971,7 +7148,8 @@
         "templateId": "craft-leder-leichtleder-anhaenger"
       },
       "xp": 6,
-      "description": "Gerbt: Leichtleder-Anhänger."
+      "description": "Gerbt: Leichtleder-Anhänger.",
+      "trainerCost": 10
     },
     {
       "id": "recipe-leder-leichtleder-kappe",
@@ -6990,7 +7168,8 @@
         "templateId": "craft-leder-leichtleder-kappe"
       },
       "xp": 6,
-      "description": "Gerbt: Leichtleder-Kappe."
+      "description": "Gerbt: Leichtleder-Kappe.",
+      "trainerCost": 10
     },
     {
       "id": "recipe-leder-leichtleder-armschutz",
@@ -7009,7 +7188,8 @@
         "templateId": "craft-leder-leichtleder-armschutz"
       },
       "xp": 7,
-      "description": "Gerbt: Leichtleder-Armschutz."
+      "description": "Gerbt: Leichtleder-Armschutz.",
+      "trainerCost": 10
     },
     {
       "id": "recipe-leder-leichtleder-sandalen",
@@ -7028,7 +7208,8 @@
         "templateId": "craft-leder-leichtleder-sandalen"
       },
       "xp": 7,
-      "description": "Gerbt: Leichtleder-Sandalen."
+      "description": "Gerbt: Leichtleder-Sandalen.",
+      "trainerCost": 10
     },
     {
       "id": "recipe-leder-leichtleder-buckler",
@@ -7047,7 +7228,8 @@
         "templateId": "craft-leder-leichtleder-buckler"
       },
       "xp": 8,
-      "description": "Gerbt: Leichtleder-Buckler."
+      "description": "Gerbt: Leichtleder-Buckler.",
+      "trainerCost": 10
     },
     {
       "id": "recipe-leder-leichtleder-bogen",
@@ -7319,7 +7501,8 @@
         "templateId": "craft-leder-jagd-jacke"
       },
       "xp": 12,
-      "description": "Gerbt: Jagd-Jacke."
+      "description": "Gerbt: Jagd-Jacke.",
+      "trainerCost": 50
     },
     {
       "id": "recipe-leder-mittelleder-dolch-ii",
@@ -7339,7 +7522,8 @@
         "templateId": "craft-leder-mittelleder-dolch-ii"
       },
       "xp": 12,
-      "description": "Gerbt: Mittelleder-Dolch II."
+      "description": "Gerbt: Mittelleder-Dolch II.",
+      "trainerCost": 54
     },
     {
       "id": "recipe-leder-jaeger-kappe",
@@ -7359,7 +7543,8 @@
         "templateId": "craft-leder-jaeger-kappe"
       },
       "xp": 13,
-      "description": "Gerbt: Jäger-Kappe."
+      "description": "Gerbt: Jäger-Kappe.",
+      "trainerCost": 58
     },
     {
       "id": "recipe-leder-jagd-maske",
@@ -7379,7 +7564,8 @@
         "templateId": "craft-leder-jagd-maske"
       },
       "xp": 13,
-      "description": "Gerbt: Jagd-Maske."
+      "description": "Gerbt: Jagd-Maske.",
+      "trainerCost": 62
     },
     {
       "id": "recipe-leder-wildnis-klinge",
@@ -7399,7 +7585,8 @@
         "templateId": "craft-leder-wildnis-klinge"
       },
       "xp": 14,
-      "description": "Gerbt: Wildnis-Klinge."
+      "description": "Gerbt: Wildnis-Klinge.",
+      "trainerCost": 66
     },
     {
       "id": "recipe-leder-jaeger-stiefel",
@@ -7418,7 +7605,8 @@
         "templateId": "craft-leder-jaeger-stiefel"
       },
       "xp": 14,
-      "description": "Gerbt: Jäger-Stiefel."
+      "description": "Gerbt: Jäger-Stiefel.",
+      "trainerCost": 70
     },
     {
       "id": "recipe-leder-mittelleder-dolch",
@@ -7438,7 +7626,8 @@
         "templateId": "craft-leder-mittelleder-dolch"
       },
       "xp": 15,
-      "description": "Gerbt: Mittelleder-Dolch."
+      "description": "Gerbt: Mittelleder-Dolch.",
+      "trainerCost": 74
     },
     {
       "id": "recipe-leder-mittelleder-kapuze",
@@ -7458,7 +7647,8 @@
         "templateId": "craft-leder-mittelleder-kapuze"
       },
       "xp": 15,
-      "description": "Gerbt: Mittelleder-Kapuze."
+      "description": "Gerbt: Mittelleder-Kapuze.",
+      "trainerCost": 78
     },
     {
       "id": "recipe-leder-wildnis-weste",
@@ -7478,7 +7668,8 @@
         "templateId": "craft-leder-wildnis-weste"
       },
       "xp": 15,
-      "description": "Gerbt: Wildnis-Weste."
+      "description": "Gerbt: Wildnis-Weste.",
+      "trainerCost": 82
     },
     {
       "id": "recipe-leder-mittelleder-treter",
@@ -7498,7 +7689,8 @@
         "templateId": "craft-leder-mittelleder-treter"
       },
       "xp": 16,
-      "description": "Gerbt: Mittelleder-Treter."
+      "description": "Gerbt: Mittelleder-Treter.",
+      "trainerCost": 86
     },
     {
       "id": "recipe-leder-jagd-kurzschwert",
@@ -7848,7 +8040,8 @@
         "templateId": "craft-leder-schwerleder-schild"
       },
       "xp": 20,
-      "description": "Gerbt: Schwerleder-Schild."
+      "description": "Gerbt: Schwerleder-Schild.",
+      "trainerCost": 150
     },
     {
       "id": "recipe-leder-schwerleder-talisman",
@@ -7869,7 +8062,8 @@
         "templateId": "craft-leder-schwerleder-talisman"
       },
       "xp": 20,
-      "description": "Gerbt: Schwerleder-Talisman."
+      "description": "Gerbt: Schwerleder-Talisman.",
+      "trainerCost": 160
     },
     {
       "id": "recipe-leder-schwerleder-reif",
@@ -7890,7 +8084,8 @@
         "templateId": "craft-leder-schwerleder-reif"
       },
       "xp": 21,
-      "description": "Gerbt: Schwerleder-Reif."
+      "description": "Gerbt: Schwerleder-Reif.",
+      "trainerCost": 170
     },
     {
       "id": "recipe-leder-schwerleder-klinge",
@@ -7910,7 +8105,8 @@
         "templateId": "craft-leder-schwerleder-klinge"
       },
       "xp": 21,
-      "description": "Gerbt: Schwerleder-Klinge."
+      "description": "Gerbt: Schwerleder-Klinge.",
+      "trainerCost": 180
     },
     {
       "id": "recipe-leder-schwerleder-bogen",
@@ -7930,7 +8126,8 @@
         "templateId": "craft-leder-schwerleder-bogen"
       },
       "xp": 22,
-      "description": "Gerbt: Schwerleder-Bogen."
+      "description": "Gerbt: Schwerleder-Bogen.",
+      "trainerCost": 190
     },
     {
       "id": "recipe-leder-bestien-jacke",
@@ -7951,7 +8148,8 @@
         "templateId": "craft-leder-bestien-jacke"
       },
       "xp": 22,
-      "description": "Gerbt: Bestien-Jacke."
+      "description": "Gerbt: Bestien-Jacke.",
+      "trainerCost": 200
     },
     {
       "id": "recipe-leder-bestien-buckler",
@@ -7971,7 +8169,8 @@
         "templateId": "craft-leder-bestien-buckler"
       },
       "xp": 23,
-      "description": "Gerbt: Bestien-Buckler."
+      "description": "Gerbt: Bestien-Buckler.",
+      "trainerCost": 210
     },
     {
       "id": "recipe-leder-schwerleder-ruestung",
@@ -7992,7 +8191,8 @@
         "templateId": "craft-leder-schwerleder-ruestung"
       },
       "xp": 23,
-      "description": "Gerbt: Schwerleder-Rüstung."
+      "description": "Gerbt: Schwerleder-Rüstung.",
+      "trainerCost": 220
     },
     {
       "id": "recipe-leder-schwerleder-harnisch",
@@ -8012,7 +8212,8 @@
         "templateId": "craft-leder-schwerleder-harnisch"
       },
       "xp": 23,
-      "description": "Gerbt: Schwerleder-Harnisch."
+      "description": "Gerbt: Schwerleder-Harnisch.",
+      "trainerCost": 230
     },
     {
       "id": "recipe-leder-bestien-amulett",
@@ -8033,7 +8234,8 @@
         "templateId": "craft-leder-bestien-amulett"
       },
       "xp": 24,
-      "description": "Gerbt: Bestien-Amulett."
+      "description": "Gerbt: Bestien-Amulett.",
+      "trainerCost": 240
     },
     {
       "id": "recipe-leder-schwerleder-helm",
@@ -8388,7 +8590,8 @@
         "templateId": "craft-leder-bestien-richtschwert"
       },
       "xp": 28,
-      "description": "Gerbt: Bestien-Richtschwert."
+      "description": "Gerbt: Bestien-Richtschwert.",
+      "trainerCost": 400
     },
     {
       "id": "recipe-leder-urzeit-bogen",
@@ -8408,7 +8611,8 @@
         "templateId": "craft-leder-urzeit-bogen"
       },
       "xp": 29,
-      "description": "Gerbt: Urzeit-Bogen."
+      "description": "Gerbt: Urzeit-Bogen.",
+      "trainerCost": 424
     },
     {
       "id": "recipe-leder-bestien-treter-fxf",
@@ -8429,7 +8633,8 @@
         "templateId": "craft-leder-bestien-treter-fxf"
       },
       "xp": 30,
-      "description": "Gerbt: Bestien-Treter."
+      "description": "Gerbt: Bestien-Treter.",
+      "trainerCost": 440
     },
     {
       "id": "recipe-leder-urzeit-kappe",
@@ -8449,7 +8654,8 @@
         "templateId": "craft-leder-urzeit-kappe"
       },
       "xp": 30,
-      "description": "Gerbt: Urzeit-Kappe."
+      "description": "Gerbt: Urzeit-Kappe.",
+      "trainerCost": 464
     },
     {
       "id": "recipe-leder-seelenjaeger-stiefel",
@@ -8470,7 +8676,8 @@
         "templateId": "craft-leder-seelenjaeger-stiefel"
       },
       "xp": 31,
-      "description": "Gerbt: Seelenjäger-Stiefel."
+      "description": "Gerbt: Seelenjäger-Stiefel.",
+      "trainerCost": 480
     },
     {
       "id": "recipe-leder-urzeit-tritte",
@@ -8491,7 +8698,8 @@
         "templateId": "craft-leder-urzeit-tritte"
       },
       "xp": 32,
-      "description": "Gerbt: Urzeit-Tritte."
+      "description": "Gerbt: Urzeit-Tritte.",
+      "trainerCost": 504
     },
     {
       "id": "recipe-leder-seelenjaeger-klinge",
@@ -8511,7 +8719,8 @@
         "templateId": "craft-leder-seelenjaeger-klinge"
       },
       "xp": 33,
-      "description": "Gerbt: Seelenjäger-Klinge."
+      "description": "Gerbt: Seelenjäger-Klinge.",
+      "trainerCost": 520
     },
     {
       "id": "recipe-leder-urzeit-helm",
@@ -8531,7 +8740,8 @@
         "templateId": "craft-leder-urzeit-helm"
       },
       "xp": 33,
-      "description": "Gerbt: Urzeit-Helm."
+      "description": "Gerbt: Urzeit-Helm.",
+      "trainerCost": 544
     },
     {
       "id": "recipe-leder-urzeit-harnisch",
@@ -8552,7 +8762,8 @@
         "templateId": "craft-leder-urzeit-harnisch"
       },
       "xp": 34,
-      "description": "Gerbt: Urzeit-Harnisch."
+      "description": "Gerbt: Urzeit-Harnisch.",
+      "trainerCost": 560
     },
     {
       "id": "recipe-leder-seelenjaeger-amulett",
@@ -8573,7 +8784,8 @@
         "templateId": "craft-leder-seelenjaeger-amulett"
       },
       "xp": 35,
-      "description": "Gerbt: Seelenjäger-Amulett."
+      "description": "Gerbt: Seelenjäger-Amulett.",
+      "trainerCost": 584
     },
     {
       "id": "recipe-leder-seelenjaeger-haube",
@@ -8593,7 +8805,8 @@
         "templateId": "craft-leder-seelenjaeger-haube"
       },
       "xp": 36,
-      "description": "Gerbt: Seelenjäger-Haube."
+      "description": "Gerbt: Seelenjäger-Haube.",
+      "trainerCost": 600
     },
     {
       "id": "recipe-leder-urzeit-kette",
@@ -8614,7 +8827,8 @@
         "templateId": "craft-leder-urzeit-kette"
       },
       "xp": 36,
-      "description": "Gerbt: Urzeit-Kette."
+      "description": "Gerbt: Urzeit-Kette.",
+      "trainerCost": 624
     },
     {
       "id": "recipe-leder-seelenjaeger-wams",
@@ -9040,7 +9254,8 @@
         "questsRemaining": 3
       },
       "xp": 8,
-      "description": "Stellt her: Einfaches Leder-Kit."
+      "description": "Stellt her: Einfaches Leder-Kit.",
+      "trainerCost": 10
     },
     {
       "id": "recipe-leder-mittleres-lederkit",
@@ -9062,7 +9277,8 @@
         "questsRemaining": 3
       },
       "xp": 14,
-      "description": "Stellt her: Mittleres Leder-Kit."
+      "description": "Stellt her: Mittleres Leder-Kit.",
+      "trainerCost": 40
     },
     {
       "id": "recipe-leder-schweres-lederkit",
@@ -9084,7 +9300,8 @@
         "questsRemaining": 3
       },
       "xp": 20,
-      "description": "Stellt her: Schweres Leder-Kit."
+      "description": "Stellt her: Schweres Leder-Kit.",
+      "trainerCost": 123
     },
     {
       "id": "recipe-leder-bestien-lederkit",
@@ -9106,7 +9323,8 @@
         "questsRemaining": 3
       },
       "xp": 28,
-      "description": "Stellt her: Bestien-Leder-Kit."
+      "description": "Stellt her: Bestien-Leder-Kit.",
+      "trainerCost": 317
     },
     {
       "id": "recipe-leder-urzeit-lederkit",
@@ -9128,7 +9346,8 @@
         "questsRemaining": 3
       },
       "xp": 40,
-      "description": "Stellt her: Urzeit-Leder-Kit."
+      "description": "Stellt her: Urzeit-Leder-Kit.",
+      "trainerCost": 760
     },
     {
       "id": "recipe-leder-einfacher-gluecksflicken",
@@ -9149,7 +9368,8 @@
         "questsRemaining": 3
       },
       "xp": 10,
-      "description": "Stellt her: Einfacher Glücksflicken."
+      "description": "Stellt her: Einfacher Glücksflicken.",
+      "trainerCost": 27
     },
     {
       "id": "recipe-leder-schwerer-gluecksflicken",
@@ -9171,7 +9391,8 @@
         "questsRemaining": 3
       },
       "xp": 22,
-      "description": "Stellt her: Schwerer Glücksflicken."
+      "description": "Stellt her: Schwerer Glücksflicken.",
+      "trainerCost": 150
     },
     {
       "id": "recipe-leder-bestien-gluecksflicken",
@@ -9193,7 +9414,8 @@
         "questsRemaining": 3
       },
       "xp": 35,
-      "description": "Stellt her: Bestien-Glücksflicken."
+      "description": "Stellt her: Bestien-Glücksflicken.",
+      "trainerCost": 600
     },
     {
       "id": "recipe-leder-leichter-koecher",
@@ -9215,7 +9437,8 @@
         "questsRemaining": 3
       },
       "xp": 12,
-      "description": "Stellt her: Leichter Köcher."
+      "description": "Stellt her: Leichter Köcher.",
+      "trainerCost": 33
     },
     {
       "id": "recipe-leder-schwerer-koecher",
@@ -9236,7 +9459,8 @@
         "questsRemaining": 3
       },
       "xp": 22,
-      "description": "Stellt her: Schwerer Köcher."
+      "description": "Stellt her: Schwerer Köcher.",
+      "trainerCost": 150
     },
     {
       "id": "recipe-leder-bestien-koecher",
@@ -9257,7 +9481,8 @@
         "questsRemaining": 3
       },
       "xp": 35,
-      "description": "Stellt her: Bestien-Köcher."
+      "description": "Stellt her: Bestien-Köcher.",
+      "trainerCost": 600
     },
     {
       "id": "recipe-leder-kleiner-goldbeutel",
@@ -9278,7 +9503,8 @@
         "questsRemaining": 3
       },
       "xp": 8,
-      "description": "Stellt her: Kleiner Goldbeutel."
+      "description": "Stellt her: Kleiner Goldbeutel.",
+      "trainerCost": 10
     },
     {
       "id": "recipe-leder-mittlerer-goldbeutel",
@@ -9299,7 +9525,8 @@
         "questsRemaining": 3
       },
       "xp": 18,
-      "description": "Stellt her: Mittlerer Goldbeutel."
+      "description": "Stellt her: Mittlerer Goldbeutel.",
+      "trainerCost": 83
     },
     {
       "id": "recipe-leder-grosser-goldbeutel",
@@ -9321,7 +9548,8 @@
         "questsRemaining": 3
       },
       "xp": 28,
-      "description": "Stellt her: Großer Goldbeutel."
+      "description": "Stellt her: Großer Goldbeutel.",
+      "trainerCost": 317
     },
     {
       "id": "recipe-leder-urzeit-goldbeutel",
@@ -9343,7 +9571,8 @@
         "questsRemaining": 3
       },
       "xp": 42,
-      "description": "Stellt her: Urzeit-Goldbeutel."
+      "description": "Stellt her: Urzeit-Goldbeutel.",
+      "trainerCost": 800
     },
     {
       "id": "recipe-leder-streakschutz",
@@ -9363,7 +9592,8 @@
         "amount": 1
       },
       "xp": 15,
-      "description": "Stellt her: Leder-Streakschutz."
+      "description": "Stellt her: Leder-Streakschutz.",
+      "trainerCost": 57
     },
     {
       "id": "recipe-leder-bestien-streakschutz",
@@ -9383,7 +9613,8 @@
         "amount": 1
       },
       "xp": 30,
-      "description": "Stellt her: Bestien-Streakschutz."
+      "description": "Stellt her: Bestien-Streakschutz.",
+      "trainerCost": 400
     },
     {
       "id": "recipe-leder-waermendes-fell",
@@ -9403,7 +9634,8 @@
         "amount": 10
       },
       "xp": 18,
-      "description": "Stellt her: Wärmendes Fell."
+      "description": "Stellt her: Wärmendes Fell.",
+      "trainerCost": 83
     },
     {
       "id": "recipe-leder-urzeit-waermefell",
@@ -9423,7 +9655,8 @@
         "amount": 20
       },
       "xp": 35,
-      "description": "Stellt her: Urzeit-Wärmefell."
+      "description": "Stellt her: Urzeit-Wärmefell.",
+      "trainerCost": 520
     },
     {
       "id": "recipe-leder-verstaerken-1",
@@ -9443,7 +9676,8 @@
         "amount": 1
       },
       "xp": 10,
-      "description": "Leder verstärken I."
+      "description": "Leder verstärken I.",
+      "trainerCost": 10
     },
     {
       "id": "recipe-leder-verstaerken-2",
@@ -9463,7 +9697,8 @@
         "amount": 1
       },
       "xp": 15,
-      "description": "Leder verstärken II."
+      "description": "Leder verstärken II.",
+      "trainerCost": 50
     },
     {
       "id": "recipe-leder-verstaerken-3",
@@ -9483,7 +9718,8 @@
         "amount": 2
       },
       "xp": 22,
-      "description": "Leder verstärken III."
+      "description": "Leder verstärken III.",
+      "trainerCost": 150
     },
     {
       "id": "recipe-leder-verstaerken-4",
@@ -9503,7 +9739,8 @@
         "amount": 2
       },
       "xp": 30,
-      "description": "Leder verstärken IV."
+      "description": "Leder verstärken IV.",
+      "trainerCost": 400
     },
     {
       "id": "recipe-leder-verstaerken-5",
@@ -9524,7 +9761,8 @@
         "amount": 3
       },
       "xp": 42,
-      "description": "Leder verstärken V."
+      "description": "Leder verstärken V.",
+      "trainerCost": 800
     },
     {
       "id": "recipe-leder-tempo-1",
@@ -9544,7 +9782,8 @@
         "amount": 1
       },
       "xp": 10,
-      "description": "Tempo einarbeiten I."
+      "description": "Tempo einarbeiten I.",
+      "trainerCost": 10
     },
     {
       "id": "recipe-leder-tempo-2",
@@ -9564,7 +9803,8 @@
         "amount": 1
       },
       "xp": 18,
-      "description": "Tempo einarbeiten II."
+      "description": "Tempo einarbeiten II.",
+      "trainerCost": 83
     },
     {
       "id": "recipe-leder-tempo-3",
@@ -9585,7 +9825,8 @@
         "amount": 2
       },
       "xp": 25,
-      "description": "Tempo einarbeiten III."
+      "description": "Tempo einarbeiten III.",
+      "trainerCost": 233
     },
     {
       "id": "recipe-leder-tempo-4",
@@ -9605,7 +9846,8 @@
         "amount": 3
       },
       "xp": 35,
-      "description": "Tempo einarbeiten IV."
+      "description": "Tempo einarbeiten IV.",
+      "trainerCost": 600
     },
     {
       "id": "recipe-leder-glueck-1",
@@ -9625,7 +9867,8 @@
         "amount": 1
       },
       "xp": 12,
-      "description": "Glück einarbeiten I."
+      "description": "Glück einarbeiten I.",
+      "trainerCost": 33
     },
     {
       "id": "recipe-leder-glueck-2",
@@ -9645,7 +9888,8 @@
         "amount": 1
       },
       "xp": 22,
-      "description": "Glück einarbeiten II."
+      "description": "Glück einarbeiten II.",
+      "trainerCost": 150
     },
     {
       "id": "recipe-leder-glueck-3",
@@ -9666,7 +9910,8 @@
         "amount": 2
       },
       "xp": 35,
-      "description": "Glück einarbeiten III."
+      "description": "Glück einarbeiten III.",
+      "trainerCost": 600
     },
     {
       "id": "recipe-leder-kraft-1",
@@ -9686,7 +9931,8 @@
         "amount": 1
       },
       "xp": 14,
-      "description": "Kraft einarbeiten I."
+      "description": "Kraft einarbeiten I.",
+      "trainerCost": 50
     },
     {
       "id": "recipe-leder-kraft-2",
@@ -9706,7 +9952,8 @@
         "amount": 1
       },
       "xp": 25,
-      "description": "Kraft einarbeiten II."
+      "description": "Kraft einarbeiten II.",
+      "trainerCost": 233
     },
     {
       "id": "recipe-leder-kraft-3",
@@ -9727,7 +9974,8 @@
         "amount": 2
       },
       "xp": 42,
-      "description": "Kraft einarbeiten III."
+      "description": "Kraft einarbeiten III.",
+      "trainerCost": 800
     },
     {
       "id": "recipe-alch-schwacher-trank-der-kraft",
@@ -9748,7 +9996,8 @@
         "questsRemaining": 3
       },
       "xp": 5,
-      "description": "Braut: Schwacher Trank der Kraft."
+      "description": "Braut: Schwacher Trank der Kraft.",
+      "trainerCost": 10
     },
     {
       "id": "recipe-alch-schwacher-trank-der-weisheit",
@@ -9769,7 +10018,8 @@
         "questsRemaining": 3
       },
       "xp": 5,
-      "description": "Braut: Schwacher Trank der Weisheit."
+      "description": "Braut: Schwacher Trank der Weisheit.",
+      "trainerCost": 10
     },
     {
       "id": "recipe-alch-schwacher-trank-des-gluecks",
@@ -9790,7 +10040,8 @@
         "questsRemaining": 3
       },
       "xp": 5,
-      "description": "Braut: Schwacher Trank des Glücks."
+      "description": "Braut: Schwacher Trank des Glücks.",
+      "trainerCost": 10
     },
     {
       "id": "recipe-alch-schwacher-trank-der-ausdauer",
@@ -9811,7 +10062,8 @@
         "questsRemaining": 3
       },
       "xp": 5,
-      "description": "Braut: Schwacher Trank der Ausdauer."
+      "description": "Braut: Schwacher Trank der Ausdauer.",
+      "trainerCost": 10
     },
     {
       "id": "recipe-alch-schwacher-elixier-der-eile",
@@ -9832,7 +10084,8 @@
         "questsRemaining": 3
       },
       "xp": 5,
-      "description": "Braut: Schwacher Elixier der Eile."
+      "description": "Braut: Schwacher Elixier der Eile.",
+      "trainerCost": 10
     },
     {
       "id": "recipe-alch-geringer-trank-der-kraft",
@@ -9854,7 +10107,8 @@
         "questsRemaining": 3
       },
       "xp": 10,
-      "description": "Braut: Geringer Trank der Kraft."
+      "description": "Braut: Geringer Trank der Kraft.",
+      "trainerCost": 27
     },
     {
       "id": "recipe-alch-geringer-trank-der-weisheit",
@@ -9876,7 +10130,8 @@
         "questsRemaining": 3
       },
       "xp": 10,
-      "description": "Braut: Geringer Trank der Weisheit."
+      "description": "Braut: Geringer Trank der Weisheit.",
+      "trainerCost": 29
     },
     {
       "id": "recipe-alch-geringer-trank-des-gluecks",
@@ -9898,7 +10153,8 @@
         "questsRemaining": 3
       },
       "xp": 10,
-      "description": "Braut: Geringer Trank des Glücks."
+      "description": "Braut: Geringer Trank des Glücks.",
+      "trainerCost": 31
     },
     {
       "id": "recipe-alch-geringer-trank-der-ausdauer",
@@ -9920,7 +10176,8 @@
         "questsRemaining": 3
       },
       "xp": 10,
-      "description": "Braut: Geringer Trank der Ausdauer."
+      "description": "Braut: Geringer Trank der Ausdauer.",
+      "trainerCost": 33
     },
     {
       "id": "recipe-alch-geringer-elixier-der-eile",
@@ -9942,7 +10199,8 @@
         "questsRemaining": 3
       },
       "xp": 10,
-      "description": "Braut: Geringer Elixier der Eile."
+      "description": "Braut: Geringer Elixier der Eile.",
+      "trainerCost": 35
     },
     {
       "id": "recipe-alch-normaler-trank-der-kraft",
@@ -9964,7 +10222,8 @@
         "questsRemaining": 4
       },
       "xp": 15,
-      "description": "Braut: Normaler Trank der Kraft."
+      "description": "Braut: Normaler Trank der Kraft.",
+      "trainerCost": 57
     },
     {
       "id": "recipe-alch-normaler-trank-der-weisheit",
@@ -9986,7 +10245,8 @@
         "questsRemaining": 4
       },
       "xp": 15,
-      "description": "Braut: Normaler Trank der Weisheit."
+      "description": "Braut: Normaler Trank der Weisheit.",
+      "trainerCost": 61
     },
     {
       "id": "recipe-alch-normaler-trank-des-gluecks",
@@ -10008,7 +10268,8 @@
         "questsRemaining": 4
       },
       "xp": 15,
-      "description": "Braut: Normaler Trank des Glücks."
+      "description": "Braut: Normaler Trank des Glücks.",
+      "trainerCost": 65
     },
     {
       "id": "recipe-alch-normaler-trank-der-ausdauer",
@@ -10030,7 +10291,8 @@
         "questsRemaining": 4
       },
       "xp": 15,
-      "description": "Braut: Normaler Trank der Ausdauer."
+      "description": "Braut: Normaler Trank der Ausdauer.",
+      "trainerCost": 69
     },
     {
       "id": "recipe-alch-normaler-elixier-der-eile",
@@ -10052,7 +10314,8 @@
         "questsRemaining": 4
       },
       "xp": 15,
-      "description": "Braut: Normaler Elixier der Eile."
+      "description": "Braut: Normaler Elixier der Eile.",
+      "trainerCost": 73
     },
     {
       "id": "recipe-alch-gro-er-trank-der-kraft",
@@ -10581,7 +10844,8 @@
         "amount": 1
       },
       "xp": 15,
-      "description": "Transmutation: Eisen → Kristall."
+      "description": "Transmutation: Eisen → Kristall.",
+      "trainerCost": 50
     },
     {
       "id": "recipe-alch-transmute-kristall-drache",
@@ -10601,7 +10865,8 @@
         "amount": 1
       },
       "xp": 22,
-      "description": "Transmutation: Kristall → Drache."
+      "description": "Transmutation: Kristall → Drache.",
+      "trainerCost": 150
     },
     {
       "id": "recipe-alch-transmute-drache-aether",
@@ -10667,7 +10932,8 @@
         "amount": 1
       },
       "xp": 12,
-      "description": "Transmutation: Leinen → Wolle."
+      "description": "Transmutation: Leinen → Wolle.",
+      "trainerCost": 40
     },
     {
       "id": "recipe-alch-transmute-wolle-seide",
@@ -10687,7 +10953,8 @@
         "amount": 1
       },
       "xp": 18,
-      "description": "Transmutation: Wolle → Seide."
+      "description": "Transmutation: Wolle → Seide.",
+      "trainerCost": 110
     },
     {
       "id": "recipe-alch-transmute-seide-magie",
@@ -10729,7 +10996,8 @@
         "amount": 1
       },
       "xp": 12,
-      "description": "Transmutation: Leicht → Mittel Leder."
+      "description": "Transmutation: Leicht → Mittel Leder.",
+      "trainerCost": 40
     },
     {
       "id": "recipe-alch-transmute-mittel-schwer",
@@ -10749,7 +11017,8 @@
         "amount": 1
       },
       "xp": 18,
-      "description": "Transmutation: Mittel → Schwer Leder."
+      "description": "Transmutation: Mittel → Schwer Leder.",
+      "trainerCost": 110
     },
     {
       "id": "recipe-alch-transmute-schwer-dick",
@@ -10837,7 +11106,8 @@
         "questsRemaining": 3
       },
       "xp": 8,
-      "description": "Braut: Schwaches Elixier des Fokus."
+      "description": "Braut: Schwaches Elixier des Fokus.",
+      "trainerCost": 10
     },
     {
       "id": "recipe-alch-schwaches-elixier-der-vitalitaet",
@@ -10856,7 +11126,8 @@
         "questsRemaining": 3
       },
       "xp": 8,
-      "description": "Braut: Schwaches Elixier der Vitalität."
+      "description": "Braut: Schwaches Elixier der Vitalität.",
+      "trainerCost": 10
     },
     {
       "id": "recipe-alch-schwaches-elixier-des-charisma",
@@ -10875,7 +11146,8 @@
         "questsRemaining": 3
       },
       "xp": 8,
-      "description": "Braut: Schwaches Elixier des Charisma."
+      "description": "Braut: Schwaches Elixier des Charisma.",
+      "trainerCost": 10
     },
     {
       "id": "recipe-alch-elixier-des-fokus",
@@ -10894,7 +11166,8 @@
         "questsRemaining": 3
       },
       "xp": 14,
-      "description": "Braut: Elixier des Fokus."
+      "description": "Braut: Elixier des Fokus.",
+      "trainerCost": 47
     },
     {
       "id": "recipe-alch-elixier-der-vitalitaet",
@@ -10913,7 +11186,8 @@
         "questsRemaining": 3
       },
       "xp": 14,
-      "description": "Braut: Elixier der Vitalität."
+      "description": "Braut: Elixier der Vitalität.",
+      "trainerCost": 50
     },
     {
       "id": "recipe-alch-elixier-des-charisma",
@@ -10932,7 +11206,8 @@
         "questsRemaining": 3
       },
       "xp": 14,
-      "description": "Braut: Elixier des Charisma."
+      "description": "Braut: Elixier des Charisma.",
+      "trainerCost": 57
     },
     {
       "id": "recipe-alch-starkes-elixier-des-fokus",
@@ -10951,7 +11226,8 @@
         "questsRemaining": 4
       },
       "xp": 20,
-      "description": "Braut: Starkes Elixier des Fokus."
+      "description": "Braut: Starkes Elixier des Fokus.",
+      "trainerCost": 136
     },
     {
       "id": "recipe-alch-starkes-elixier-der-vitalitaet",
@@ -10970,7 +11246,8 @@
         "questsRemaining": 4
       },
       "xp": 20,
-      "description": "Braut: Starkes Elixier der Vitalität."
+      "description": "Braut: Starkes Elixier der Vitalität.",
+      "trainerCost": 143
     },
     {
       "id": "recipe-alch-starkes-elixier-des-charisma",
@@ -10989,7 +11266,8 @@
         "questsRemaining": 4
       },
       "xp": 20,
-      "description": "Braut: Starkes Elixier des Charisma."
+      "description": "Braut: Starkes Elixier des Charisma.",
+      "trainerCost": 150
     },
     {
       "id": "recipe-alch-ueberragendes-elixier-des-fokus",
@@ -11008,7 +11286,8 @@
         "questsRemaining": 4
       },
       "xp": 28,
-      "description": "Braut: Überragendes Elixier des Fokus."
+      "description": "Braut: Überragendes Elixier des Fokus.",
+      "trainerCost": 350
     },
     {
       "id": "recipe-alch-ueberragendes-elixier-der-vitalitaet",
@@ -11027,7 +11306,8 @@
         "questsRemaining": 4
       },
       "xp": 28,
-      "description": "Braut: Überragendes Elixier der Vitalität."
+      "description": "Braut: Überragendes Elixier der Vitalität.",
+      "trainerCost": 366
     },
     {
       "id": "recipe-alch-ueberragendes-elixier-des-charisma",
@@ -11046,7 +11326,8 @@
         "questsRemaining": 4
       },
       "xp": 28,
-      "description": "Braut: Überragendes Elixier des Charisma."
+      "description": "Braut: Überragendes Elixier des Charisma.",
+      "trainerCost": 383
     },
     {
       "id": "recipe-alch-legendaeres-elixier-des-fokus",
@@ -11065,7 +11346,8 @@
         "questsRemaining": 5
       },
       "xp": 40,
-      "description": "Braut: Legendäres Elixier des Fokus."
+      "description": "Braut: Legendäres Elixier des Fokus.",
+      "trainerCost": 760
     },
     {
       "id": "recipe-alch-legendaeres-elixier-der-vitalitaet",
@@ -11084,7 +11366,8 @@
         "questsRemaining": 5
       },
       "xp": 40,
-      "description": "Braut: Legendäres Elixier der Vitalität."
+      "description": "Braut: Legendäres Elixier der Vitalität.",
+      "trainerCost": 800
     },
     {
       "id": "recipe-alch-legendaeres-elixier-des-charisma",
@@ -11103,7 +11386,8 @@
         "questsRemaining": 5
       },
       "xp": 40,
-      "description": "Braut: Legendäres Elixier des Charisma."
+      "description": "Braut: Legendäres Elixier des Charisma.",
+      "trainerCost": 900
     },
     {
       "id": "recipe-alch-gegengift-1",
@@ -11124,7 +11408,8 @@
         "questsRemaining": 2
       },
       "xp": 8,
-      "description": "Braut: Schwaches Gegengift."
+      "description": "Braut: Schwaches Gegengift.",
+      "trainerCost": 10
     },
     {
       "id": "recipe-alch-gegengift-2",
@@ -11146,7 +11431,8 @@
         "questsRemaining": 3
       },
       "xp": 18,
-      "description": "Braut: Starkes Gegengift."
+      "description": "Braut: Starkes Gegengift.",
+      "trainerCost": 83
     },
     {
       "id": "recipe-alch-gegengift-3",
@@ -11168,7 +11454,8 @@
         "questsRemaining": 4
       },
       "xp": 30,
-      "description": "Braut: Meister-Gegengift."
+      "description": "Braut: Meister-Gegengift.",
+      "trainerCost": 400
     },
     {
       "id": "recipe-alch-schmiedekatalysator-1",
@@ -11188,7 +11475,8 @@
         "amount": 8
       },
       "xp": 12,
-      "description": "Braut: Schwacher Schmiedekatalysator."
+      "description": "Braut: Schwacher Schmiedekatalysator.",
+      "trainerCost": 33
     },
     {
       "id": "recipe-alch-schmiedekatalysator-2",
@@ -11208,7 +11496,8 @@
         "amount": 15
       },
       "xp": 22,
-      "description": "Braut: Starker Schmiedekatalysator."
+      "description": "Braut: Starker Schmiedekatalysator.",
+      "trainerCost": 150
     },
     {
       "id": "recipe-alch-schmiedekatalysator-3",
@@ -11228,7 +11517,8 @@
         "amount": 25
       },
       "xp": 38,
-      "description": "Braut: Meister-Schmiedekatalysator."
+      "description": "Braut: Meister-Schmiedekatalysator.",
+      "trainerCost": 600
     },
     {
       "id": "recipe-alch-streakschutz-1",
@@ -11248,7 +11538,8 @@
         "amount": 1
       },
       "xp": 15,
-      "description": "Braut: Alchemistischer Streakschutz."
+      "description": "Braut: Alchemistischer Streakschutz.",
+      "trainerCost": 50
     },
     {
       "id": "recipe-alch-streakschutz-2",
@@ -11268,7 +11559,8 @@
         "amount": 1
       },
       "xp": 28,
-      "description": "Braut: Verstärkter Streakschutz."
+      "description": "Braut: Verstärkter Streakschutz.",
+      "trainerCost": 317
     },
     {
       "id": "recipe-alch-manaoel",
@@ -11290,7 +11582,8 @@
         "questsRemaining": 4
       },
       "xp": 22,
-      "description": "Braut: Brillantes Manaöl."
+      "description": "Braut: Brillantes Manaöl.",
+      "trainerCost": 183
     },
     {
       "id": "recipe-alch-schattenoel",
@@ -11312,7 +11605,8 @@
         "questsRemaining": 4
       },
       "xp": 25,
-      "description": "Braut: Schattenöl."
+      "description": "Braut: Schattenöl.",
+      "trainerCost": 250
     },
     {
       "id": "recipe-alch-wildes-oel",
@@ -11334,7 +11628,8 @@
         "questsRemaining": 4
       },
       "xp": 24,
-      "description": "Braut: Wildes Öl."
+      "description": "Braut: Wildes Öl.",
+      "trainerCost": 217
     },
     {
       "id": "recipe-alch-luck-potion",
@@ -11356,7 +11651,8 @@
         "questsRemaining": 3
       },
       "xp": 32,
-      "description": "Braut: Trank des Glücksregens."
+      "description": "Braut: Trank des Glücksregens.",
+      "trainerCost": 440
     },
     {
       "id": "recipe-koch-einfachemahlzeit-der-staerke",
@@ -11377,7 +11673,8 @@
         "questsRemaining": 3
       },
       "xp": 5,
-      "description": "Kocht: EinfacheMahlzeit der Stärke."
+      "description": "Kocht: EinfacheMahlzeit der Stärke.",
+      "trainerCost": 10
     },
     {
       "id": "recipe-koch-einfachemahlzeit-der-weisheit",
@@ -11398,7 +11695,8 @@
         "questsRemaining": 3
       },
       "xp": 5,
-      "description": "Kocht: EinfacheMahlzeit der Weisheit."
+      "description": "Kocht: EinfacheMahlzeit der Weisheit.",
+      "trainerCost": 10
     },
     {
       "id": "recipe-koch-einfachemahlzeit-des-gluecks",
@@ -11419,7 +11717,8 @@
         "questsRemaining": 3
       },
       "xp": 5,
-      "description": "Kocht: EinfacheMahlzeit des Glücks."
+      "description": "Kocht: EinfacheMahlzeit des Glücks.",
+      "trainerCost": 10
     },
     {
       "id": "recipe-koch-einfachemahlzeit-der-ausdauer",
@@ -11440,7 +11739,8 @@
         "questsRemaining": 3
       },
       "xp": 5,
-      "description": "Kocht: EinfacheMahlzeit der Ausdauer."
+      "description": "Kocht: EinfacheMahlzeit der Ausdauer.",
+      "trainerCost": 10
     },
     {
       "id": "recipe-koch-einfachemahlzeit-der-eile",
@@ -11461,7 +11761,8 @@
         "questsRemaining": 3
       },
       "xp": 5,
-      "description": "Kocht: EinfacheMahlzeit der Eile."
+      "description": "Kocht: EinfacheMahlzeit der Eile.",
+      "trainerCost": 10
     },
     {
       "id": "recipe-koch-einfachemahlzeit-des-fokus",
@@ -11482,7 +11783,8 @@
         "questsRemaining": 3
       },
       "xp": 5,
-      "description": "Kocht: EinfacheMahlzeit des Fokus."
+      "description": "Kocht: EinfacheMahlzeit des Fokus.",
+      "trainerCost": 10
     },
     {
       "id": "recipe-koch-deftigemahlzeit-der-staerke",
@@ -11504,7 +11806,8 @@
         "questsRemaining": 3
       },
       "xp": 10,
-      "description": "Kocht: DeftigeMahlzeit der Stärke."
+      "description": "Kocht: DeftigeMahlzeit der Stärke.",
+      "trainerCost": 27
     },
     {
       "id": "recipe-koch-deftigemahlzeit-der-weisheit",
@@ -11526,7 +11829,8 @@
         "questsRemaining": 3
       },
       "xp": 10,
-      "description": "Kocht: DeftigeMahlzeit der Weisheit."
+      "description": "Kocht: DeftigeMahlzeit der Weisheit.",
+      "trainerCost": 29
     },
     {
       "id": "recipe-koch-deftigemahlzeit-des-gluecks",
@@ -11548,7 +11852,8 @@
         "questsRemaining": 3
       },
       "xp": 10,
-      "description": "Kocht: DeftigeMahlzeit des Glücks."
+      "description": "Kocht: DeftigeMahlzeit des Glücks.",
+      "trainerCost": 31
     },
     {
       "id": "recipe-koch-deftigemahlzeit-der-ausdauer",
@@ -11570,7 +11875,8 @@
         "questsRemaining": 3
       },
       "xp": 10,
-      "description": "Kocht: DeftigeMahlzeit der Ausdauer."
+      "description": "Kocht: DeftigeMahlzeit der Ausdauer.",
+      "trainerCost": 33
     },
     {
       "id": "recipe-koch-deftigemahlzeit-der-eile",
@@ -11592,7 +11898,8 @@
         "questsRemaining": 3
       },
       "xp": 10,
-      "description": "Kocht: DeftigeMahlzeit der Eile."
+      "description": "Kocht: DeftigeMahlzeit der Eile.",
+      "trainerCost": 35
     },
     {
       "id": "recipe-koch-deftigemahlzeit-des-fokus",
@@ -11614,7 +11921,8 @@
         "questsRemaining": 3
       },
       "xp": 10,
-      "description": "Kocht: DeftigeMahlzeit des Fokus."
+      "description": "Kocht: DeftigeMahlzeit des Fokus.",
+      "trainerCost": 37
     },
     {
       "id": "recipe-koch-feinemahlzeit-der-staerke",
@@ -11636,7 +11944,8 @@
         "questsRemaining": 4
       },
       "xp": 16,
-      "description": "Kocht: FeineMahlzeit der Stärke."
+      "description": "Kocht: FeineMahlzeit der Stärke.",
+      "trainerCost": 70
     },
     {
       "id": "recipe-koch-feinemahlzeit-der-weisheit",
@@ -11658,7 +11967,8 @@
         "questsRemaining": 4
       },
       "xp": 16,
-      "description": "Kocht: FeineMahlzeit der Weisheit."
+      "description": "Kocht: FeineMahlzeit der Weisheit.",
+      "trainerCost": 74
     },
     {
       "id": "recipe-koch-feinemahlzeit-des-gluecks",
@@ -11680,7 +11990,8 @@
         "questsRemaining": 4
       },
       "xp": 16,
-      "description": "Kocht: FeineMahlzeit des Glücks."
+      "description": "Kocht: FeineMahlzeit des Glücks.",
+      "trainerCost": 78
     },
     {
       "id": "recipe-koch-feinemahlzeit-der-ausdauer",
@@ -11702,7 +12013,8 @@
         "questsRemaining": 4
       },
       "xp": 16,
-      "description": "Kocht: FeineMahlzeit der Ausdauer."
+      "description": "Kocht: FeineMahlzeit der Ausdauer.",
+      "trainerCost": 82
     },
     {
       "id": "recipe-koch-feinemahlzeit-der-eile",
@@ -11724,7 +12036,8 @@
         "questsRemaining": 4
       },
       "xp": 16,
-      "description": "Kocht: FeineMahlzeit der Eile."
+      "description": "Kocht: FeineMahlzeit der Eile.",
+      "trainerCost": 86
     },
     {
       "id": "recipe-koch-feinemahlzeit-des-fokus",
@@ -11746,7 +12059,8 @@
         "questsRemaining": 4
       },
       "xp": 16,
-      "description": "Kocht: FeineMahlzeit des Fokus."
+      "description": "Kocht: FeineMahlzeit des Fokus.",
+      "trainerCost": 90
     },
     {
       "id": "recipe-koch-erlesenemahlzeit-der-staerke",
@@ -12055,7 +12369,8 @@
         "questsRemaining": 2
       },
       "xp": 6,
-      "description": "Braut: Kräutertee."
+      "description": "Braut: Kräutertee.",
+      "trainerCost": 10
     },
     {
       "id": "recipe-koch-feuerwurz-tee",
@@ -12077,7 +12392,8 @@
         "questsRemaining": 2
       },
       "xp": 12,
-      "description": "Braut: Feuerwurz-Tee."
+      "description": "Braut: Feuerwurz-Tee.",
+      "trainerCost": 40
     },
     {
       "id": "recipe-koch-sternen-tee",
@@ -12099,7 +12415,8 @@
         "questsRemaining": 3
       },
       "xp": 20,
-      "description": "Braut: Sternen-Tee."
+      "description": "Braut: Sternen-Tee.",
+      "trainerCost": 150
     },
     {
       "id": "recipe-koch-honigwein",
@@ -12121,7 +12438,8 @@
         "questsRemaining": 3
       },
       "xp": 8,
-      "description": "Braut: Honigwein."
+      "description": "Braut: Honigwein.",
+      "trainerCost": 10
     },
     {
       "id": "recipe-koch-gewuerzwein",
@@ -12143,7 +12461,8 @@
         "questsRemaining": 3
       },
       "xp": 16,
-      "description": "Braut: Gewürzwein."
+      "description": "Braut: Gewürzwein.",
+      "trainerCost": 83
     },
     {
       "id": "recipe-koch-sternen-wein",
@@ -12165,7 +12484,8 @@
         "questsRemaining": 4
       },
       "xp": 28,
-      "description": "Braut: Sternenwein."
+      "description": "Braut: Sternenwein.",
+      "trainerCost": 317
     },
     {
       "id": "recipe-koch-einfacher-met",
@@ -12187,7 +12507,8 @@
         "questsRemaining": 2
       },
       "xp": 10,
-      "description": "Braut: Einfacher Met."
+      "description": "Braut: Einfacher Met.",
+      "trainerCost": 33
     },
     {
       "id": "recipe-koch-starker-met",
@@ -12209,7 +12530,8 @@
         "questsRemaining": 3
       },
       "xp": 20,
-      "description": "Braut: Starker Met."
+      "description": "Braut: Starker Met.",
+      "trainerCost": 123
     },
     {
       "id": "recipe-koch-drachenmet",
@@ -12231,7 +12553,8 @@
         "questsRemaining": 4
       },
       "xp": 32,
-      "description": "Braut: Drachenmet."
+      "description": "Braut: Drachenmet.",
+      "trainerCost": 440
     },
     {
       "id": "recipe-koch-beruhigender-tee",
@@ -12253,7 +12576,8 @@
         "questsRemaining": 3
       },
       "xp": 14,
-      "description": "Braut: Beruhigender Tee."
+      "description": "Braut: Beruhigender Tee.",
+      "trainerCost": 57
     },
     {
       "id": "recipe-koch-mondblumen-tee",
@@ -12275,7 +12599,8 @@
         "questsRemaining": 4
       },
       "xp": 24,
-      "description": "Braut: Mondblumen-Tee."
+      "description": "Braut: Mondblumen-Tee.",
+      "trainerCost": 217
     },
     {
       "id": "recipe-koch-lebenselixier",
@@ -12297,7 +12622,8 @@
         "questsRemaining": 5
       },
       "xp": 40,
-      "description": "Braut: Lebenselixier."
+      "description": "Braut: Lebenselixier.",
+      "trainerCost": 680
     },
     {
       "id": "recipe-koch-einfaches-festmahl",
@@ -12460,7 +12786,8 @@
         "amount": 5
       },
       "xp": 5,
-      "description": "Kocht: Studentenfutter."
+      "description": "Kocht: Studentenfutter.",
+      "trainerCost": 10
     },
     {
       "id": "recipe-koch-trockenobst",
@@ -12479,7 +12806,8 @@
         "amount": 8
       },
       "xp": 8,
-      "description": "Kocht: Trockenobst."
+      "description": "Kocht: Trockenobst.",
+      "trainerCost": 10
     },
     {
       "id": "recipe-koch-energieriegel",
@@ -12499,7 +12827,8 @@
         "amount": 12
       },
       "xp": 14,
-      "description": "Kocht: Energieriegel."
+      "description": "Kocht: Energieriegel.",
+      "trainerCost": 50
     },
     {
       "id": "recipe-koch-reiseproviant",
@@ -12519,7 +12848,8 @@
         "amount": 15
       },
       "xp": 18,
-      "description": "Kocht: Reiseproviant."
+      "description": "Kocht: Reiseproviant.",
+      "trainerCost": 110
     },
     {
       "id": "recipe-koch-sternenfrucht-happen",
@@ -12539,7 +12869,8 @@
         "amount": 20
       },
       "xp": 25,
-      "description": "Kocht: Sternenfrucht-Happen."
+      "description": "Kocht: Sternenfrucht-Happen.",
+      "trainerCost": 250
     },
     {
       "id": "recipe-koch-streakschutz-keks",
@@ -12560,7 +12891,8 @@
         "amount": 1
       },
       "xp": 16,
-      "description": "Kocht: Streakschutz-Keks."
+      "description": "Kocht: Streakschutz-Keks.",
+      "trainerCost": 83
     },
     {
       "id": "recipe-koch-meister-streakkeks",
@@ -12581,7 +12913,8 @@
         "amount": 1
       },
       "xp": 30,
-      "description": "Kocht: Meister-Streakkeks."
+      "description": "Kocht: Meister-Streakkeks.",
+      "trainerCost": 400
     },
     {
       "id": "recipe-koch-luck-cookie",
@@ -12602,7 +12935,8 @@
         "questsRemaining": 2
       },
       "xp": 22,
-      "description": "Kocht: Glückskeks."
+      "description": "Kocht: Glückskeks.",
+      "trainerCost": 183
     },
     {
       "id": "recipe-koch-gewuerzmischung",
@@ -12622,7 +12956,8 @@
         "amount": 1
       },
       "xp": 8,
-      "description": "Bereitet zu: Gewürzmischung."
+      "description": "Bereitet zu: Gewürzmischung.",
+      "trainerCost": 10
     },
     {
       "id": "recipe-koch-kraeuterbutter",
@@ -12643,7 +12978,8 @@
         "amount": 1
       },
       "xp": 12,
-      "description": "Bereitet zu: Kräuterbutter."
+      "description": "Bereitet zu: Kräuterbutter.",
+      "trainerCost": 40
     },
     {
       "id": "recipe-koch-scharfe-marinade",
@@ -12664,7 +13000,8 @@
         "amount": 1
       },
       "xp": 16,
-      "description": "Bereitet zu: Scharfe Marinade."
+      "description": "Bereitet zu: Scharfe Marinade.",
+      "trainerCost": 83
     },
     {
       "id": "recipe-koch-sternen-essenz",
@@ -12685,7 +13022,8 @@
         "amount": 1
       },
       "xp": 24,
-      "description": "Bereitet zu: Sternen-Essenz."
+      "description": "Bereitet zu: Sternen-Essenz.",
+      "trainerCost": 233
     },
     {
       "id": "recipe-koch-phoenix-gewuerz",
@@ -12706,7 +13044,8 @@
         "amount": 1
       },
       "xp": 38,
-      "description": "Bereitet zu: Phoenix-Gewürz."
+      "description": "Bereitet zu: Phoenix-Gewürz.",
+      "trainerCost": 600
     },
     {
       "id": "recipe-koch-mondstaub-salz",
@@ -12727,7 +13066,8 @@
         "amount": 1
       },
       "xp": 30,
-      "description": "Bereitet zu: Mondstaub-Salz."
+      "description": "Bereitet zu: Mondstaub-Salz.",
+      "trainerCost": 383
     },
     {
       "id": "recipe-verz-schwache-verzauberung-der-kraft",
@@ -12748,7 +13088,8 @@
         "questsRemaining": 3
       },
       "xp": 5,
-      "description": "Verzaubert: Schwache Verzauberung der Kraft."
+      "description": "Verzaubert: Schwache Verzauberung der Kraft.",
+      "trainerCost": 10
     },
     {
       "id": "recipe-verz-schwache-verzauberung-der-weisheit",
@@ -12769,7 +13110,8 @@
         "questsRemaining": 3
       },
       "xp": 5,
-      "description": "Verzaubert: Schwache Verzauberung der Weisheit."
+      "description": "Verzaubert: Schwache Verzauberung der Weisheit.",
+      "trainerCost": 10
     },
     {
       "id": "recipe-verz-schwache-verzauberung-der-ausdauer",
@@ -12790,7 +13132,8 @@
         "questsRemaining": 3
       },
       "xp": 5,
-      "description": "Verzaubert: Schwache Verzauberung der Ausdauer."
+      "description": "Verzaubert: Schwache Verzauberung der Ausdauer.",
+      "trainerCost": 10
     },
     {
       "id": "recipe-verz-schwache-verzauberung-des-gluecks",
@@ -12811,7 +13154,8 @@
         "questsRemaining": 3
       },
       "xp": 5,
-      "description": "Verzaubert: Schwache Verzauberung des Glücks."
+      "description": "Verzaubert: Schwache Verzauberung des Glücks.",
+      "trainerCost": 10
     },
     {
       "id": "recipe-verz-verzauberung-der-kraft",
@@ -12833,7 +13177,8 @@
         "questsRemaining": 3
       },
       "xp": 10,
-      "description": "Verzaubert: Verzauberung der Kraft."
+      "description": "Verzaubert: Verzauberung der Kraft.",
+      "trainerCost": 27
     },
     {
       "id": "recipe-verz-verzauberung-der-weisheit",
@@ -12855,7 +13200,8 @@
         "questsRemaining": 3
       },
       "xp": 10,
-      "description": "Verzaubert: Verzauberung der Weisheit."
+      "description": "Verzaubert: Verzauberung der Weisheit.",
+      "trainerCost": 30
     },
     {
       "id": "recipe-verz-verzauberung-der-ausdauer",
@@ -12877,7 +13223,8 @@
         "questsRemaining": 3
       },
       "xp": 10,
-      "description": "Verzaubert: Verzauberung der Ausdauer."
+      "description": "Verzaubert: Verzauberung der Ausdauer.",
+      "trainerCost": 33
     },
     {
       "id": "recipe-verz-verzauberung-des-gluecks",
@@ -12899,7 +13246,8 @@
         "questsRemaining": 3
       },
       "xp": 10,
-      "description": "Verzaubert: Verzauberung des Glücks."
+      "description": "Verzaubert: Verzauberung des Glücks.",
+      "trainerCost": 37
     },
     {
       "id": "recipe-verz-starke-verzauberung-der-kraft",
@@ -12921,7 +13269,8 @@
         "questsRemaining": 4
       },
       "xp": 16,
-      "description": "Verzaubert: Starke Verzauberung der Kraft."
+      "description": "Verzaubert: Starke Verzauberung der Kraft.",
+      "trainerCost": 70
     },
     {
       "id": "recipe-verz-starke-verzauberung-der-weisheit",
@@ -12943,7 +13292,8 @@
         "questsRemaining": 4
       },
       "xp": 16,
-      "description": "Verzaubert: Starke Verzauberung der Weisheit."
+      "description": "Verzaubert: Starke Verzauberung der Weisheit.",
+      "trainerCost": 77
     },
     {
       "id": "recipe-verz-starke-verzauberung-der-ausdauer",
@@ -12965,7 +13315,8 @@
         "questsRemaining": 4
       },
       "xp": 16,
-      "description": "Verzaubert: Starke Verzauberung der Ausdauer."
+      "description": "Verzaubert: Starke Verzauberung der Ausdauer.",
+      "trainerCost": 83
     },
     {
       "id": "recipe-verz-starke-verzauberung-des-gluecks",
@@ -12987,7 +13338,8 @@
         "questsRemaining": 4
       },
       "xp": 16,
-      "description": "Verzaubert: Starke Verzauberung des Glücks."
+      "description": "Verzaubert: Starke Verzauberung des Glücks.",
+      "trainerCost": 90
     },
     {
       "id": "recipe-verz-maechtige-verzauberung-der-kraft",
@@ -13296,7 +13648,8 @@
         "amount": 1
       },
       "xp": 18,
-      "description": "Verzaubert permanent: +1 kraft auf Waffe."
+      "description": "Verzaubert permanent: +1 kraft auf Waffe.",
+      "trainerCost": 83
     },
     {
       "id": "recipe-verz-perm-armor-1",
@@ -13317,7 +13670,8 @@
         "amount": 1
       },
       "xp": 18,
-      "description": "Verzaubert permanent: +1 ausdauer auf Rüstung."
+      "description": "Verzaubert permanent: +1 ausdauer auf Rüstung.",
+      "trainerCost": 90
     },
     {
       "id": "recipe-verz-perm-boots-1",
@@ -13338,7 +13692,8 @@
         "amount": 1
       },
       "xp": 18,
-      "description": "Verzaubert permanent: +1 tempo auf Stiefel."
+      "description": "Verzaubert permanent: +1 tempo auf Stiefel.",
+      "trainerCost": 97
     },
     {
       "id": "recipe-verz-perm-helm-1",
@@ -13359,7 +13714,8 @@
         "amount": 1
       },
       "xp": 18,
-      "description": "Verzaubert permanent: +1 weisheit auf Helm."
+      "description": "Verzaubert permanent: +1 weisheit auf Helm.",
+      "trainerCost": 103
     },
     {
       "id": "recipe-verz-perm-shield-1",
@@ -13380,7 +13736,8 @@
         "amount": 1
       },
       "xp": 18,
-      "description": "Verzaubert permanent: +1 vitalitaet auf Schild."
+      "description": "Verzaubert permanent: +1 vitalitaet auf Schild.",
+      "trainerCost": 110
     },
     {
       "id": "recipe-verz-perm-amulet-1",
@@ -13401,7 +13758,8 @@
         "amount": 1
       },
       "xp": 18,
-      "description": "Verzaubert permanent: +1 glueck auf Amulett."
+      "description": "Verzaubert permanent: +1 glueck auf Amulett.",
+      "trainerCost": 117
     },
     {
       "id": "recipe-verz-perm-weapon-2",
@@ -13567,7 +13925,8 @@
         "questsRemaining": 3
       },
       "xp": 12,
-      "description": "Schreibt: Schriftrolle der Kraft."
+      "description": "Schreibt: Schriftrolle der Kraft.",
+      "trainerCost": 33
     },
     {
       "id": "recipe-verz-scroll-weisheit-3",
@@ -13589,7 +13948,8 @@
         "questsRemaining": 3
       },
       "xp": 12,
-      "description": "Schreibt: Schriftrolle der Weisheit."
+      "description": "Schreibt: Schriftrolle der Weisheit.",
+      "trainerCost": 35
     },
     {
       "id": "recipe-verz-scroll-ausdauer-3",
@@ -13611,7 +13971,8 @@
         "questsRemaining": 3
       },
       "xp": 12,
-      "description": "Schreibt: Schriftrolle der Ausdauer."
+      "description": "Schreibt: Schriftrolle der Ausdauer.",
+      "trainerCost": 37
     },
     {
       "id": "recipe-verz-scroll-glueck-3",
@@ -13633,7 +13994,8 @@
         "questsRemaining": 3
       },
       "xp": 12,
-      "description": "Schreibt: Schriftrolle des Glücks."
+      "description": "Schreibt: Schriftrolle des Glücks.",
+      "trainerCost": 39
     },
     {
       "id": "recipe-verz-scroll-fokus-3",
@@ -13655,7 +14017,8 @@
         "questsRemaining": 3
       },
       "xp": 12,
-      "description": "Schreibt: Schriftrolle des Fokus."
+      "description": "Schreibt: Schriftrolle des Fokus.",
+      "trainerCost": 41
     },
     {
       "id": "recipe-verz-scroll-tempo-3",
@@ -13677,7 +14040,8 @@
         "questsRemaining": 3
       },
       "xp": 12,
-      "description": "Schreibt: Schriftrolle der Eile."
+      "description": "Schreibt: Schriftrolle der Eile.",
+      "trainerCost": 43
     },
     {
       "id": "recipe-verz-scroll-kraft-6",
@@ -13699,7 +14063,8 @@
         "questsRemaining": 4
       },
       "xp": 25,
-      "description": "Schreibt: Große Schriftrolle der Kraft."
+      "description": "Schreibt: Große Schriftrolle der Kraft.",
+      "trainerCost": 233
     },
     {
       "id": "recipe-verz-scroll-weisheit-6",
@@ -13721,7 +14086,8 @@
         "questsRemaining": 4
       },
       "xp": 25,
-      "description": "Schreibt: Große Schriftrolle der Weisheit."
+      "description": "Schreibt: Große Schriftrolle der Weisheit.",
+      "trainerCost": 243
     },
     {
       "id": "recipe-verz-scroll-ausdauer-6",
@@ -13743,7 +14109,8 @@
         "questsRemaining": 4
       },
       "xp": 25,
-      "description": "Schreibt: Große Schriftrolle der Ausdauer."
+      "description": "Schreibt: Große Schriftrolle der Ausdauer.",
+      "trainerCost": 253
     },
     {
       "id": "recipe-verz-scroll-glueck-6",
@@ -13765,7 +14132,8 @@
         "questsRemaining": 4
       },
       "xp": 25,
-      "description": "Schreibt: Große Schriftrolle des Glücks."
+      "description": "Schreibt: Große Schriftrolle des Glücks.",
+      "trainerCost": 263
     },
     {
       "id": "recipe-verz-scroll-fokus-6",
@@ -13787,7 +14155,8 @@
         "questsRemaining": 4
       },
       "xp": 25,
-      "description": "Schreibt: Große Schriftrolle des Fokus."
+      "description": "Schreibt: Große Schriftrolle des Fokus.",
+      "trainerCost": 273
     },
     {
       "id": "recipe-verz-scroll-tempo-6",
@@ -13809,7 +14178,8 @@
         "questsRemaining": 4
       },
       "xp": 25,
-      "description": "Schreibt: Große Schriftrolle der Eile."
+      "description": "Schreibt: Große Schriftrolle der Eile.",
+      "trainerCost": 283
     },
     {
       "id": "recipe-verz-schutzglyphe-1",
@@ -13830,7 +14200,8 @@
         "questsRemaining": 3
       },
       "xp": 8,
-      "description": "Erschafft: Schutzglyphe I."
+      "description": "Erschafft: Schutzglyphe I.",
+      "trainerCost": 10
     },
     {
       "id": "recipe-verz-schutzglyphe-2",
@@ -13852,7 +14223,8 @@
         "questsRemaining": 4
       },
       "xp": 18,
-      "description": "Erschafft: Schutzglyphe II."
+      "description": "Erschafft: Schutzglyphe II.",
+      "trainerCost": 110
     },
     {
       "id": "recipe-verz-schutzglyphe-3",
@@ -13874,7 +14246,8 @@
         "questsRemaining": 5
       },
       "xp": 35,
-      "description": "Erschafft: Schutzglyphe III."
+      "description": "Erschafft: Schutzglyphe III.",
+      "trainerCost": 520
     },
     {
       "id": "recipe-verz-tempoward-1",
@@ -13895,7 +14268,8 @@
         "questsRemaining": 3
       },
       "xp": 12,
-      "description": "Erschafft: Glyphe der Eile I."
+      "description": "Erschafft: Glyphe der Eile I.",
+      "trainerCost": 40
     },
     {
       "id": "recipe-verz-tempoward-2",
@@ -13917,7 +14291,8 @@
         "questsRemaining": 4
       },
       "xp": 22,
-      "description": "Erschafft: Glyphe der Eile II."
+      "description": "Erschafft: Glyphe der Eile II.",
+      "trainerCost": 183
     },
     {
       "id": "recipe-verz-tempoward-3",
@@ -13939,7 +14314,8 @@
         "questsRemaining": 5
       },
       "xp": 38,
-      "description": "Erschafft: Glyphe der Eile III."
+      "description": "Erschafft: Glyphe der Eile III.",
+      "trainerCost": 680
     },
     {
       "id": "recipe-verz-machtward-1",
@@ -13960,7 +14336,8 @@
         "questsRemaining": 4
       },
       "xp": 14,
-      "description": "Erschafft: Glyphe der Macht I."
+      "description": "Erschafft: Glyphe der Macht I.",
+      "trainerCost": 57
     },
     {
       "id": "recipe-verz-machtward-2",
@@ -13981,7 +14358,8 @@
         "questsRemaining": 4
       },
       "xp": 28,
-      "description": "Erschafft: Glyphe der Macht II."
+      "description": "Erschafft: Glyphe der Macht II.",
+      "trainerCost": 283
     },
     {
       "id": "recipe-verz-streakward",
@@ -14001,7 +14379,8 @@
         "amount": 1
       },
       "xp": 18,
-      "description": "Erschafft: Arkaner Streakschutz."
+      "description": "Erschafft: Arkaner Streakschutz.",
+      "trainerCost": 97
     },
     {
       "id": "recipe-verz-meister-streakward",
@@ -14021,7 +14400,8 @@
         "amount": 1
       },
       "xp": 38,
-      "description": "Erschafft: Meister-Streakschutz."
+      "description": "Erschafft: Meister-Streakschutz.",
+      "trainerCost": 600
     },
     {
       "id": "recipe-verz-brillantes-oel",
@@ -14043,7 +14423,8 @@
         "questsRemaining": 3
       },
       "xp": 14,
-      "description": "Braut: Brillantes Öl."
+      "description": "Braut: Brillantes Öl.",
+      "trainerCost": 47
     },
     {
       "id": "recipe-verz-wildes-oel",
@@ -14065,7 +14446,8 @@
         "questsRemaining": 3
       },
       "xp": 14,
-      "description": "Braut: Wildes Öl."
+      "description": "Braut: Wildes Öl.",
+      "trainerCost": 47
     },
     {
       "id": "recipe-verz-gluecksoel",
@@ -14087,7 +14469,8 @@
         "questsRemaining": 3
       },
       "xp": 18,
-      "description": "Braut: Glücksöl."
+      "description": "Braut: Glücksöl.",
+      "trainerCost": 83
     },
     {
       "id": "recipe-verz-grosses-brillantes-oel",
@@ -14109,7 +14492,8 @@
         "questsRemaining": 4
       },
       "xp": 28,
-      "description": "Braut: Großes Brillantes Öl."
+      "description": "Braut: Großes Brillantes Öl.",
+      "trainerCost": 317
     },
     {
       "id": "recipe-verz-grosses-wildes-oel",
@@ -14131,7 +14515,8 @@
         "questsRemaining": 4
       },
       "xp": 28,
-      "description": "Braut: Großes Wildes Öl."
+      "description": "Braut: Großes Wildes Öl.",
+      "trainerCost": 317
     },
     {
       "id": "recipe-verz-grosses-gluecksoel",
@@ -14153,7 +14538,8 @@
         "questsRemaining": 4
       },
       "xp": 32,
-      "description": "Braut: Großes Glücksöl."
+      "description": "Braut: Großes Glücksöl.",
+      "trainerCost": 440
     },
     {
       "id": "recipe-verz-aetheroel",
