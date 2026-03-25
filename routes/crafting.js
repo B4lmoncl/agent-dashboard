@@ -386,15 +386,19 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
   // Check cooldown (per-recipe, not per-profession)
   const recipeCooldowns = (u.professions || {})[recipe.profession]?.recipeCooldowns || {};
   const lastRecipeCraft = recipeCooldowns[recipeId] || null;
-  if (recipe.cooldownMinutes > 0 && lastRecipeCraft) {
+  // Transmutes share a global cooldown (WoW Classic style)
+  const isTransmute = recipe.result?.type === 'material' && recipe.id.includes('transmute');
+  const lastTransmute = isTransmute ? (u._lastTransmuteAt || null) : null;
+  const effectiveLast = isTransmute ? (lastTransmute && (!lastRecipeCraft || new Date(lastTransmute) > new Date(lastRecipeCraft)) ? lastTransmute : lastRecipeCraft) : lastRecipeCraft;
+  if (recipe.cooldownMinutes > 0 && effectiveLast) {
     // Legendary effect: cooldownReduction — shorten crafting cooldowns
     const craftMods = getLegendaryModifiers(uid);
     const cdReduction = 1 - (craftMods.cooldownReduction || 0);
     const effectiveCooldown = recipe.cooldownMinutes * cdReduction;
-    const elapsed = (Date.now() - new Date(lastRecipeCraft).getTime()) / 60000;
+    const elapsed = (Date.now() - new Date(effectiveLast).getTime()) / 60000;
     if (elapsed < effectiveCooldown) {
       const remaining = Math.ceil(effectiveCooldown - elapsed);
-      return res.status(429).json({ error: `Cooldown: ${remaining} minutes remaining` });
+      return res.status(429).json({ error: `Cooldown: ${remaining} minutes remaining${isTransmute ? ' (shared transmute cooldown)' : ''}` });
     }
   }
 
@@ -497,6 +501,9 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
   if (recipe.cooldownMinutes > 0) {
     u.professions[recipe.profession].recipeCooldowns = u.professions[recipe.profession].recipeCooldowns || {};
     u.professions[recipe.profession].recipeCooldowns[recipeId] = now();
+    // Shared transmute cooldown (WoW Classic: all transmutes share one CD)
+    const isTransmuteRecipe = recipe.result?.type === 'material' && recipe.id.includes('transmute');
+    if (isTransmuteRecipe) u._lastTransmuteAt = now();
   }
   u.lastCraftDate = new Date().toISOString().slice(0, 10);
   const newSkill = u.professions[recipe.profession].skill;
