@@ -515,6 +515,48 @@
       "icon": null,
       "rarity": "epic",
       "desc": "Verarbeitetes Leder: Uraltes Gerbmittel."
+    },
+    {
+      "id": "gewuerzmischung",
+      "name": "Gewürzmischung",
+      "icon": null,
+      "rarity": "common",
+      "desc": "Koch-Zutat: Gewürzmischung."
+    },
+    {
+      "id": "kraeuterbutter",
+      "name": "Kräuterbutter",
+      "icon": null,
+      "rarity": "common",
+      "desc": "Koch-Zutat: Kräuterbutter."
+    },
+    {
+      "id": "scharfemarinade",
+      "name": "Scharfe Marinade",
+      "icon": null,
+      "rarity": "uncommon",
+      "desc": "Koch-Zutat: Scharfe Marinade."
+    },
+    {
+      "id": "sternenessenz",
+      "name": "Sternen-Essenz",
+      "icon": null,
+      "rarity": "uncommon",
+      "desc": "Koch-Zutat: Sternen-Essenz."
+    },
+    {
+      "id": "phoenixgewuerz",
+      "name": "Phoenix-Gewürz",
+      "icon": null,
+      "rarity": "rare",
+      "desc": "Koch-Zutat: Phoenix-Gewürz."
+    },
+    {
+      "id": "mondstaubsalz",
+      "name": "Mondstaub-Salz",
+      "icon": null,
+      "rarity": "rare",
+      "desc": "Koch-Zutat: Mondstaub-Salz."
     }
   ],
   "skillUpColors": {
@@ -9686,6 +9728,4480 @@
       },
       "xp": 42,
       "description": "Kraft einarbeiten III."
+    },
+    {
+      "id": "recipe-alch-schwacher-trank-der-kraft",
+      "name": "Schwacher Trank der Kraft",
+      "profession": "alchemist",
+      "source": "trainer",
+      "reqSkill": 1,
+      "cost": {
+        "gold": 10
+      },
+      "materials": {
+        "kraeuterbuendel": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "kraft_boost",
+        "amount": 2,
+        "questsRemaining": 3
+      },
+      "xp": 5,
+      "description": "Braut: Schwacher Trank der Kraft."
+    },
+    {
+      "id": "recipe-alch-schwacher-trank-der-weisheit",
+      "name": "Schwacher Trank der Weisheit",
+      "profession": "alchemist",
+      "source": "trainer",
+      "reqSkill": 4,
+      "cost": {
+        "gold": 10
+      },
+      "materials": {
+        "kraeuterbuendel": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "weisheit_boost",
+        "amount": 2,
+        "questsRemaining": 3
+      },
+      "xp": 5,
+      "description": "Braut: Schwacher Trank der Weisheit."
+    },
+    {
+      "id": "recipe-alch-schwacher-trank-des-gluecks",
+      "name": "Schwacher Trank des Glücks",
+      "profession": "alchemist",
+      "source": "trainer",
+      "reqSkill": 7,
+      "cost": {
+        "gold": 10
+      },
+      "materials": {
+        "kraeuterbuendel": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "glueck_boost",
+        "amount": 2,
+        "questsRemaining": 3
+      },
+      "xp": 5,
+      "description": "Braut: Schwacher Trank des Glücks."
+    },
+    {
+      "id": "recipe-alch-schwacher-trank-der-ausdauer",
+      "name": "Schwacher Trank der Ausdauer",
+      "profession": "alchemist",
+      "source": "trainer",
+      "reqSkill": 10,
+      "cost": {
+        "gold": 10
+      },
+      "materials": {
+        "kraeuterbuendel": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "ausdauer_boost",
+        "amount": 2,
+        "questsRemaining": 3
+      },
+      "xp": 5,
+      "description": "Braut: Schwacher Trank der Ausdauer."
+    },
+    {
+      "id": "recipe-alch-schwacher-elixier-der-eile",
+      "name": "Schwacher Elixier der Eile",
+      "profession": "alchemist",
+      "source": "trainer",
+      "reqSkill": 13,
+      "cost": {
+        "gold": 10
+      },
+      "materials": {
+        "kraeuterbuendel": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "tempo_boost",
+        "amount": 2,
+        "questsRemaining": 3
+      },
+      "xp": 5,
+      "description": "Braut: Schwacher Elixier der Eile."
+    },
+    {
+      "id": "recipe-alch-geringer-trank-der-kraft",
+      "name": "Geringer Trank der Kraft",
+      "profession": "alchemist",
+      "source": "trainer",
+      "reqSkill": 40,
+      "cost": {
+        "gold": 30
+      },
+      "materials": {
+        "kraeuterbuendel": 3,
+        "mondblume": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "kraft_boost",
+        "amount": 3,
+        "questsRemaining": 3
+      },
+      "xp": 10,
+      "description": "Braut: Geringer Trank der Kraft."
+    },
+    {
+      "id": "recipe-alch-geringer-trank-der-weisheit",
+      "name": "Geringer Trank der Weisheit",
+      "profession": "alchemist",
+      "source": "trainer",
+      "reqSkill": 43,
+      "cost": {
+        "gold": 30
+      },
+      "materials": {
+        "kraeuterbuendel": 3,
+        "mondblume": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "weisheit_boost",
+        "amount": 3,
+        "questsRemaining": 3
+      },
+      "xp": 10,
+      "description": "Braut: Geringer Trank der Weisheit."
+    },
+    {
+      "id": "recipe-alch-geringer-trank-des-gluecks",
+      "name": "Geringer Trank des Glücks",
+      "profession": "alchemist",
+      "source": "trainer",
+      "reqSkill": 46,
+      "cost": {
+        "gold": 30
+      },
+      "materials": {
+        "kraeuterbuendel": 3,
+        "mondblume": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "glueck_boost",
+        "amount": 3,
+        "questsRemaining": 3
+      },
+      "xp": 10,
+      "description": "Braut: Geringer Trank des Glücks."
+    },
+    {
+      "id": "recipe-alch-geringer-trank-der-ausdauer",
+      "name": "Geringer Trank der Ausdauer",
+      "profession": "alchemist",
+      "source": "trainer",
+      "reqSkill": 49,
+      "cost": {
+        "gold": 30
+      },
+      "materials": {
+        "kraeuterbuendel": 3,
+        "mondblume": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "ausdauer_boost",
+        "amount": 3,
+        "questsRemaining": 3
+      },
+      "xp": 10,
+      "description": "Braut: Geringer Trank der Ausdauer."
+    },
+    {
+      "id": "recipe-alch-geringer-elixier-der-eile",
+      "name": "Geringer Elixier der Eile",
+      "profession": "alchemist",
+      "source": "trainer",
+      "reqSkill": 52,
+      "cost": {
+        "gold": 30
+      },
+      "materials": {
+        "kraeuterbuendel": 3,
+        "mondblume": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "tempo_boost",
+        "amount": 3,
+        "questsRemaining": 3
+      },
+      "xp": 10,
+      "description": "Braut: Geringer Elixier der Eile."
+    },
+    {
+      "id": "recipe-alch-normaler-trank-der-kraft",
+      "name": "Normaler Trank der Kraft",
+      "profession": "alchemist",
+      "source": "trainer",
+      "reqSkill": 80,
+      "cost": {
+        "gold": 60
+      },
+      "materials": {
+        "mondblume": 2,
+        "kraeuterbuendel": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "kraft_boost",
+        "amount": 5,
+        "questsRemaining": 4
+      },
+      "xp": 15,
+      "description": "Braut: Normaler Trank der Kraft."
+    },
+    {
+      "id": "recipe-alch-normaler-trank-der-weisheit",
+      "name": "Normaler Trank der Weisheit",
+      "profession": "alchemist",
+      "source": "trainer",
+      "reqSkill": 83,
+      "cost": {
+        "gold": 60
+      },
+      "materials": {
+        "mondblume": 2,
+        "kraeuterbuendel": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "weisheit_boost",
+        "amount": 5,
+        "questsRemaining": 4
+      },
+      "xp": 15,
+      "description": "Braut: Normaler Trank der Weisheit."
+    },
+    {
+      "id": "recipe-alch-normaler-trank-des-gluecks",
+      "name": "Normaler Trank des Glücks",
+      "profession": "alchemist",
+      "source": "trainer",
+      "reqSkill": 86,
+      "cost": {
+        "gold": 60
+      },
+      "materials": {
+        "mondblume": 2,
+        "kraeuterbuendel": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "glueck_boost",
+        "amount": 4,
+        "questsRemaining": 4
+      },
+      "xp": 15,
+      "description": "Braut: Normaler Trank des Glücks."
+    },
+    {
+      "id": "recipe-alch-normaler-trank-der-ausdauer",
+      "name": "Normaler Trank der Ausdauer",
+      "profession": "alchemist",
+      "source": "trainer",
+      "reqSkill": 89,
+      "cost": {
+        "gold": 60
+      },
+      "materials": {
+        "mondblume": 2,
+        "kraeuterbuendel": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "ausdauer_boost",
+        "amount": 5,
+        "questsRemaining": 4
+      },
+      "xp": 15,
+      "description": "Braut: Normaler Trank der Ausdauer."
+    },
+    {
+      "id": "recipe-alch-normaler-elixier-der-eile",
+      "name": "Normaler Elixier der Eile",
+      "profession": "alchemist",
+      "source": "trainer",
+      "reqSkill": 92,
+      "cost": {
+        "gold": 60
+      },
+      "materials": {
+        "mondblume": 2,
+        "kraeuterbuendel": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "tempo_boost",
+        "amount": 4,
+        "questsRemaining": 4
+      },
+      "xp": 15,
+      "description": "Braut: Normaler Elixier der Eile."
+    },
+    {
+      "id": "recipe-alch-gro-er-trank-der-kraft",
+      "name": "Großer Trank der Kraft",
+      "profession": "alchemist",
+      "source": "drop",
+      "reqSkill": 130,
+      "cost": {
+        "gold": 120
+      },
+      "materials": {
+        "mondblume": 3,
+        "runenstein": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "kraft_boost",
+        "amount": 7,
+        "questsRemaining": 4
+      },
+      "xp": 20,
+      "description": "Braut: Großer Trank der Kraft.",
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "recipe-alch-gro-er-trank-der-weisheit",
+      "name": "Großer Trank der Weisheit",
+      "profession": "alchemist",
+      "source": "drop",
+      "reqSkill": 133,
+      "cost": {
+        "gold": 120
+      },
+      "materials": {
+        "mondblume": 3,
+        "runenstein": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "weisheit_boost",
+        "amount": 7,
+        "questsRemaining": 4
+      },
+      "xp": 20,
+      "description": "Braut: Großer Trank der Weisheit.",
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "recipe-alch-gro-er-trank-des-gluecks",
+      "name": "Großer Trank des Glücks",
+      "profession": "alchemist",
+      "source": "drop",
+      "reqSkill": 136,
+      "cost": {
+        "gold": 120
+      },
+      "materials": {
+        "mondblume": 3,
+        "runenstein": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "glueck_boost",
+        "amount": 6,
+        "questsRemaining": 4
+      },
+      "xp": 20,
+      "description": "Braut: Großer Trank des Glücks.",
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "recipe-alch-gro-er-trank-der-ausdauer",
+      "name": "Großer Trank der Ausdauer",
+      "profession": "alchemist",
+      "source": "drop",
+      "reqSkill": 139,
+      "cost": {
+        "gold": 120
+      },
+      "materials": {
+        "mondblume": 3,
+        "runenstein": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "ausdauer_boost",
+        "amount": 7,
+        "questsRemaining": 4
+      },
+      "xp": 20,
+      "description": "Braut: Großer Trank der Ausdauer.",
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "recipe-alch-gro-er-elixier-der-eile",
+      "name": "Großer Elixier der Eile",
+      "profession": "alchemist",
+      "source": "drop",
+      "reqSkill": 142,
+      "cost": {
+        "gold": 120
+      },
+      "materials": {
+        "mondblume": 3,
+        "runenstein": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "tempo_boost",
+        "amount": 6,
+        "questsRemaining": 4
+      },
+      "xp": 20,
+      "description": "Braut: Großer Elixier der Eile.",
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "recipe-alch-ueberlegener-trank-der-kraft",
+      "name": "Überlegener Trank der Kraft",
+      "profession": "alchemist",
+      "source": "drop",
+      "reqSkill": 190,
+      "cost": {
+        "gold": 250
+      },
+      "materials": {
+        "mondblume": 4,
+        "phoenixfeder": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "kraft_boost",
+        "amount": 9,
+        "questsRemaining": 5
+      },
+      "xp": 28,
+      "description": "Braut: Überlegener Trank der Kraft.",
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "recipe-alch-ueberlegener-trank-der-weisheit",
+      "name": "Überlegener Trank der Weisheit",
+      "profession": "alchemist",
+      "source": "drop",
+      "reqSkill": 193,
+      "cost": {
+        "gold": 250
+      },
+      "materials": {
+        "mondblume": 4,
+        "phoenixfeder": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "weisheit_boost",
+        "amount": 9,
+        "questsRemaining": 5
+      },
+      "xp": 28,
+      "description": "Braut: Überlegener Trank der Weisheit.",
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "recipe-alch-ueberlegener-trank-des-gluecks",
+      "name": "Überlegener Trank des Glücks",
+      "profession": "alchemist",
+      "source": "drop",
+      "reqSkill": 196,
+      "cost": {
+        "gold": 250
+      },
+      "materials": {
+        "mondblume": 4,
+        "phoenixfeder": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "glueck_boost",
+        "amount": 8,
+        "questsRemaining": 5
+      },
+      "xp": 28,
+      "description": "Braut: Überlegener Trank des Glücks.",
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "recipe-alch-ueberlegener-trank-der-ausdauer",
+      "name": "Überlegener Trank der Ausdauer",
+      "profession": "alchemist",
+      "source": "drop",
+      "reqSkill": 199,
+      "cost": {
+        "gold": 250
+      },
+      "materials": {
+        "mondblume": 4,
+        "phoenixfeder": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "ausdauer_boost",
+        "amount": 9,
+        "questsRemaining": 5
+      },
+      "xp": 28,
+      "description": "Braut: Überlegener Trank der Ausdauer.",
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "recipe-alch-ueberlegener-elixier-der-eile",
+      "name": "Überlegener Elixier der Eile",
+      "profession": "alchemist",
+      "source": "drop",
+      "reqSkill": 202,
+      "cost": {
+        "gold": 250
+      },
+      "materials": {
+        "mondblume": 4,
+        "phoenixfeder": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "tempo_boost",
+        "amount": 8,
+        "questsRemaining": 5
+      },
+      "xp": 28,
+      "description": "Braut: Überlegener Elixier der Eile.",
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "recipe-alch-maechtiger-trank-der-kraft",
+      "name": "Mächtiger Trank der Kraft",
+      "profession": "alchemist",
+      "source": "faction",
+      "reqSkill": 260,
+      "cost": {
+        "gold": 500
+      },
+      "materials": {
+        "phoenixfeder": 2,
+        "mondblume": 3
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "kraft_boost",
+        "amount": 12,
+        "questsRemaining": 5
+      },
+      "xp": 40,
+      "description": "Braut: Mächtiger Trank der Kraft.",
+      "factionId": "tinte",
+      "factionMinRep": "honored"
+    },
+    {
+      "id": "recipe-alch-maechtiger-trank-der-weisheit",
+      "name": "Mächtiger Trank der Weisheit",
+      "profession": "alchemist",
+      "source": "faction",
+      "reqSkill": 263,
+      "cost": {
+        "gold": 500
+      },
+      "materials": {
+        "phoenixfeder": 2,
+        "mondblume": 3
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "weisheit_boost",
+        "amount": 12,
+        "questsRemaining": 5
+      },
+      "xp": 40,
+      "description": "Braut: Mächtiger Trank der Weisheit.",
+      "factionId": "tinte",
+      "factionMinRep": "honored"
+    },
+    {
+      "id": "recipe-alch-maechtiger-trank-des-gluecks",
+      "name": "Mächtiger Trank des Glücks",
+      "profession": "alchemist",
+      "source": "faction",
+      "reqSkill": 266,
+      "cost": {
+        "gold": 500
+      },
+      "materials": {
+        "phoenixfeder": 2,
+        "mondblume": 3
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "glueck_boost",
+        "amount": 10,
+        "questsRemaining": 5
+      },
+      "xp": 40,
+      "description": "Braut: Mächtiger Trank des Glücks.",
+      "factionId": "tinte",
+      "factionMinRep": "honored"
+    },
+    {
+      "id": "recipe-alch-maechtiger-trank-der-ausdauer",
+      "name": "Mächtiger Trank der Ausdauer",
+      "profession": "alchemist",
+      "source": "faction",
+      "reqSkill": 269,
+      "cost": {
+        "gold": 500
+      },
+      "materials": {
+        "phoenixfeder": 2,
+        "mondblume": 3
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "ausdauer_boost",
+        "amount": 12,
+        "questsRemaining": 5
+      },
+      "xp": 40,
+      "description": "Braut: Mächtiger Trank der Ausdauer.",
+      "factionId": "tinte",
+      "factionMinRep": "honored"
+    },
+    {
+      "id": "recipe-alch-maechtiger-elixier-der-eile",
+      "name": "Mächtiger Elixier der Eile",
+      "profession": "alchemist",
+      "source": "faction",
+      "reqSkill": 272,
+      "cost": {
+        "gold": 500
+      },
+      "materials": {
+        "phoenixfeder": 2,
+        "mondblume": 3
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "tempo_boost",
+        "amount": 10,
+        "questsRemaining": 5
+      },
+      "xp": 40,
+      "description": "Braut: Mächtiger Elixier der Eile.",
+      "factionId": "tinte",
+      "factionMinRep": "honored"
+    },
+    {
+      "id": "recipe-alch-flakon-des-ehrgeizes",
+      "name": "Flakon des Ehrgeizes",
+      "profession": "alchemist",
+      "source": "faction",
+      "factionId": "tinte",
+      "factionMinRep": "revered",
+      "reqSkill": 240,
+      "cost": {
+        "gold": 600
+      },
+      "materials": {
+        "phoenixfeder": 2,
+        "mondblume": 4,
+        "runenstein": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "xp_boost_10",
+        "amount": 10,
+        "questsRemaining": 5
+      },
+      "xp": 35,
+      "description": "Braut: Flakon des Ehrgeizes. Ein Meisterwerk."
+    },
+    {
+      "id": "recipe-alch-flakon-des-schicksals",
+      "name": "Flakon des Schicksals",
+      "profession": "alchemist",
+      "source": "faction",
+      "factionId": "tinte",
+      "factionMinRep": "revered",
+      "reqSkill": 250,
+      "cost": {
+        "gold": 700
+      },
+      "materials": {
+        "phoenixfeder": 2,
+        "mondblume": 3,
+        "runenstein": 3
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "glueck_boost",
+        "amount": 8,
+        "questsRemaining": 5
+      },
+      "xp": 38,
+      "description": "Braut: Flakon des Schicksals. Ein Meisterwerk."
+    },
+    {
+      "id": "recipe-alch-flakon-der-weisheit",
+      "name": "Flakon der Weisheit",
+      "profession": "alchemist",
+      "source": "faction",
+      "factionId": "tinte",
+      "factionMinRep": "revered",
+      "reqSkill": 260,
+      "cost": {
+        "gold": 700
+      },
+      "materials": {
+        "phoenixfeder": 3,
+        "mondblume": 4
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "weisheit_boost",
+        "amount": 10,
+        "questsRemaining": 5
+      },
+      "xp": 40,
+      "description": "Braut: Flakon der Weisheit. Ein Meisterwerk."
+    },
+    {
+      "id": "recipe-alch-flakon-der-titanen",
+      "name": "Flakon der Titanen",
+      "profession": "alchemist",
+      "source": "faction",
+      "factionId": "tinte",
+      "factionMinRep": "revered",
+      "reqSkill": 275,
+      "cost": {
+        "gold": 800
+      },
+      "materials": {
+        "phoenixfeder": 3,
+        "runenstein": 3,
+        "mondblume": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "kraft_boost",
+        "amount": 10,
+        "questsRemaining": 5
+      },
+      "xp": 42,
+      "description": "Braut: Flakon der Titanen. Ein Meisterwerk."
+    },
+    {
+      "id": "recipe-alch-flakon-der-sterne",
+      "name": "Flakon der Sterne",
+      "profession": "alchemist",
+      "source": "faction",
+      "factionId": "tinte",
+      "factionMinRep": "revered",
+      "reqSkill": 285,
+      "cost": {
+        "gold": 1000
+      },
+      "materials": {
+        "phoenixfeder": 4,
+        "mondblume": 4,
+        "runenstein": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "xp_gold_boost",
+        "xpPercent": 10,
+        "goldPercent": 10,
+        "questsRemaining": 5
+      },
+      "xp": 45,
+      "description": "Braut: Flakon der Sterne. Ein Meisterwerk."
+    },
+    {
+      "id": "recipe-alch-flakon-der-ewigkeit",
+      "name": "Flakon der Ewigkeit",
+      "profession": "alchemist",
+      "source": "faction",
+      "factionId": "tinte",
+      "factionMinRep": "revered",
+      "reqSkill": 295,
+      "cost": {
+        "gold": 1200
+      },
+      "materials": {
+        "phoenixfeder": 5,
+        "mondblome": 5,
+        "runenstein": 3
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "double_reward",
+        "questsRemaining": 3
+      },
+      "xp": 50,
+      "description": "Braut: Flakon der Ewigkeit. Ein Meisterwerk."
+    },
+    {
+      "id": "recipe-alch-transmute-eisen-kristall",
+      "name": "Transmutation: Eisen → Kristall",
+      "profession": "alchemist",
+      "source": "trainer",
+      "reqSkill": 75,
+      "cost": {
+        "gold": 50
+      },
+      "materials": {
+        "eisenerz": 4
+      },
+      "result": {
+        "type": "material",
+        "materialId": "kristallsplitter",
+        "amount": 1
+      },
+      "xp": 15,
+      "description": "Transmutation: Eisen → Kristall."
+    },
+    {
+      "id": "recipe-alch-transmute-kristall-drache",
+      "name": "Transmutation: Kristall → Drache",
+      "profession": "alchemist",
+      "source": "trainer",
+      "reqSkill": 150,
+      "cost": {
+        "gold": 150
+      },
+      "materials": {
+        "kristallsplitter": 4
+      },
+      "result": {
+        "type": "material",
+        "materialId": "drachenschuppe",
+        "amount": 1
+      },
+      "xp": 22,
+      "description": "Transmutation: Kristall → Drache."
+    },
+    {
+      "id": "recipe-alch-transmute-drache-aether",
+      "name": "Transmutation: Drache → Aether",
+      "profession": "alchemist",
+      "source": "faction",
+      "reqSkill": 225,
+      "cost": {
+        "gold": 400
+      },
+      "materials": {
+        "drachenschuppe": 4
+      },
+      "result": {
+        "type": "material",
+        "materialId": "aetherkern",
+        "amount": 1
+      },
+      "xp": 30,
+      "description": "Transmutation: Drache → Aether.",
+      "cooldownMinutes": 1440,
+      "factionId": "tinte",
+      "factionMinRep": "honored"
+    },
+    {
+      "id": "recipe-alch-transmute-aether-seele",
+      "name": "Transmutation: Aether → Seele",
+      "profession": "alchemist",
+      "source": "faction",
+      "reqSkill": 280,
+      "cost": {
+        "gold": 800
+      },
+      "materials": {
+        "aetherkern": 4
+      },
+      "result": {
+        "type": "material",
+        "materialId": "seelensplitter",
+        "amount": 1
+      },
+      "xp": 45,
+      "description": "Transmutation: Aether → Seele.",
+      "cooldownMinutes": 2880,
+      "factionId": "tinte",
+      "factionMinRep": "honored"
+    },
+    {
+      "id": "recipe-alch-transmute-leinen-wolle",
+      "name": "Transmutation: Leinen → Wolle",
+      "profession": "alchemist",
+      "source": "trainer",
+      "reqSkill": 60,
+      "cost": {
+        "gold": 40
+      },
+      "materials": {
+        "leinenstoff": 4
+      },
+      "result": {
+        "type": "material",
+        "materialId": "wollstoff",
+        "amount": 1
+      },
+      "xp": 12,
+      "description": "Transmutation: Leinen → Wolle."
+    },
+    {
+      "id": "recipe-alch-transmute-wolle-seide",
+      "name": "Transmutation: Wolle → Seide",
+      "profession": "alchemist",
+      "source": "trainer",
+      "reqSkill": 120,
+      "cost": {
+        "gold": 100
+      },
+      "materials": {
+        "wollstoff": 4
+      },
+      "result": {
+        "type": "material",
+        "materialId": "seidenstoff",
+        "amount": 1
+      },
+      "xp": 18,
+      "description": "Transmutation: Wolle → Seide."
+    },
+    {
+      "id": "recipe-alch-transmute-seide-magie",
+      "name": "Transmutation: Seide → Magiestoff",
+      "profession": "alchemist",
+      "source": "drop",
+      "reqSkill": 200,
+      "cost": {
+        "gold": 300
+      },
+      "materials": {
+        "seidenstoff": 4
+      },
+      "result": {
+        "type": "material",
+        "materialId": "magiestoff",
+        "amount": 1
+      },
+      "xp": 28,
+      "description": "Transmutation: Seide → Magiestoff.",
+      "dropChance": 0.05,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "recipe-alch-transmute-leicht-mittel",
+      "name": "Transmutation: Leicht → Mittel Leder",
+      "profession": "alchemist",
+      "source": "trainer",
+      "reqSkill": 60,
+      "cost": {
+        "gold": 40
+      },
+      "materials": {
+        "leichtesleder": 4
+      },
+      "result": {
+        "type": "material",
+        "materialId": "mittleresleder",
+        "amount": 1
+      },
+      "xp": 12,
+      "description": "Transmutation: Leicht → Mittel Leder."
+    },
+    {
+      "id": "recipe-alch-transmute-mittel-schwer",
+      "name": "Transmutation: Mittel → Schwer Leder",
+      "profession": "alchemist",
+      "source": "trainer",
+      "reqSkill": 120,
+      "cost": {
+        "gold": 100
+      },
+      "materials": {
+        "mittleresleder": 4
+      },
+      "result": {
+        "type": "material",
+        "materialId": "schweresleder",
+        "amount": 1
+      },
+      "xp": 18,
+      "description": "Transmutation: Mittel → Schwer Leder."
+    },
+    {
+      "id": "recipe-alch-transmute-schwer-dick",
+      "name": "Transmutation: Schwer → Dick Leder",
+      "profession": "alchemist",
+      "source": "faction",
+      "reqSkill": 200,
+      "cost": {
+        "gold": 300
+      },
+      "materials": {
+        "schweresleder": 4
+      },
+      "result": {
+        "type": "material",
+        "materialId": "dickesleder",
+        "amount": 1
+      },
+      "xp": 28,
+      "description": "Transmutation: Schwer → Dick Leder.",
+      "cooldownMinutes": 1440,
+      "factionId": "tinte",
+      "factionMinRep": "honored"
+    },
+    {
+      "id": "recipe-alch-transmute-magie-runen",
+      "name": "Transmutation: Magie → Runenstoff",
+      "profession": "alchemist",
+      "source": "faction",
+      "reqSkill": 260,
+      "cost": {
+        "gold": 500
+      },
+      "materials": {
+        "magiestoff": 4
+      },
+      "result": {
+        "type": "material",
+        "materialId": "runenstoff",
+        "amount": 1
+      },
+      "xp": 38,
+      "description": "Transmutation: Magie → Runenstoff.",
+      "cooldownMinutes": 1440,
+      "factionId": "tinte",
+      "factionMinRep": "honored"
+    },
+    {
+      "id": "recipe-alch-transmute-dick-rau",
+      "name": "Transmutation: Dick → Rau Leder",
+      "profession": "alchemist",
+      "source": "faction",
+      "reqSkill": 270,
+      "cost": {
+        "gold": 600
+      },
+      "materials": {
+        "dickesleder": 4
+      },
+      "result": {
+        "type": "material",
+        "materialId": "rauesleder",
+        "amount": 1
+      },
+      "xp": 40,
+      "description": "Transmutation: Dick → Rau Leder.",
+      "cooldownMinutes": 2880,
+      "factionId": "tinte",
+      "factionMinRep": "honored"
+    },
+    {
+      "id": "recipe-alch-schwaches-elixier-des-fokus",
+      "name": "Schwaches Elixier des Fokus",
+      "profession": "alchemist",
+      "source": "trainer",
+      "reqSkill": 20,
+      "cost": {
+        "gold": 15
+      },
+      "materials": {},
+      "result": {
+        "type": "buff",
+        "buffType": "fokus_boost",
+        "amount": 2,
+        "questsRemaining": 3
+      },
+      "xp": 8,
+      "description": "Braut: Schwaches Elixier des Fokus."
+    },
+    {
+      "id": "recipe-alch-schwaches-elixier-der-vitalitaet",
+      "name": "Schwaches Elixier der Vitalität",
+      "profession": "alchemist",
+      "source": "trainer",
+      "reqSkill": 25,
+      "cost": {
+        "gold": 15
+      },
+      "materials": {},
+      "result": {
+        "type": "buff",
+        "buffType": "vitalitaet_boost",
+        "amount": 2,
+        "questsRemaining": 3
+      },
+      "xp": 8,
+      "description": "Braut: Schwaches Elixier der Vitalität."
+    },
+    {
+      "id": "recipe-alch-schwaches-elixier-des-charisma",
+      "name": "Schwaches Elixier des Charisma",
+      "profession": "alchemist",
+      "source": "trainer",
+      "reqSkill": 30,
+      "cost": {
+        "gold": 15
+      },
+      "materials": {},
+      "result": {
+        "type": "buff",
+        "buffType": "charisma_boost",
+        "amount": 2,
+        "questsRemaining": 3
+      },
+      "xp": 8,
+      "description": "Braut: Schwaches Elixier des Charisma."
+    },
+    {
+      "id": "recipe-alch-elixier-des-fokus",
+      "name": "Elixier des Fokus",
+      "profession": "alchemist",
+      "source": "trainer",
+      "reqSkill": 70,
+      "cost": {
+        "gold": 40
+      },
+      "materials": {},
+      "result": {
+        "type": "buff",
+        "buffType": "fokus_boost",
+        "amount": 3,
+        "questsRemaining": 3
+      },
+      "xp": 14,
+      "description": "Braut: Elixier des Fokus."
+    },
+    {
+      "id": "recipe-alch-elixier-der-vitalitaet",
+      "name": "Elixier der Vitalität",
+      "profession": "alchemist",
+      "source": "trainer",
+      "reqSkill": 75,
+      "cost": {
+        "gold": 40
+      },
+      "materials": {},
+      "result": {
+        "type": "buff",
+        "buffType": "vitalitaet_boost",
+        "amount": 3,
+        "questsRemaining": 3
+      },
+      "xp": 14,
+      "description": "Braut: Elixier der Vitalität."
+    },
+    {
+      "id": "recipe-alch-elixier-des-charisma",
+      "name": "Elixier des Charisma",
+      "profession": "alchemist",
+      "source": "trainer",
+      "reqSkill": 80,
+      "cost": {
+        "gold": 40
+      },
+      "materials": {},
+      "result": {
+        "type": "buff",
+        "buffType": "charisma_boost",
+        "amount": 3,
+        "questsRemaining": 3
+      },
+      "xp": 14,
+      "description": "Braut: Elixier des Charisma."
+    },
+    {
+      "id": "recipe-alch-starkes-elixier-des-fokus",
+      "name": "Starkes Elixier des Fokus",
+      "profession": "alchemist",
+      "source": "trainer",
+      "reqSkill": 140,
+      "cost": {
+        "gold": 100
+      },
+      "materials": {},
+      "result": {
+        "type": "buff",
+        "buffType": "fokus_boost",
+        "amount": 5,
+        "questsRemaining": 4
+      },
+      "xp": 20,
+      "description": "Braut: Starkes Elixier des Fokus."
+    },
+    {
+      "id": "recipe-alch-starkes-elixier-der-vitalitaet",
+      "name": "Starkes Elixier der Vitalität",
+      "profession": "alchemist",
+      "source": "trainer",
+      "reqSkill": 145,
+      "cost": {
+        "gold": 100
+      },
+      "materials": {},
+      "result": {
+        "type": "buff",
+        "buffType": "vitalitaet_boost",
+        "amount": 5,
+        "questsRemaining": 4
+      },
+      "xp": 20,
+      "description": "Braut: Starkes Elixier der Vitalität."
+    },
+    {
+      "id": "recipe-alch-starkes-elixier-des-charisma",
+      "name": "Starkes Elixier des Charisma",
+      "profession": "alchemist",
+      "source": "trainer",
+      "reqSkill": 150,
+      "cost": {
+        "gold": 100
+      },
+      "materials": {},
+      "result": {
+        "type": "buff",
+        "buffType": "charisma_boost",
+        "amount": 5,
+        "questsRemaining": 4
+      },
+      "xp": 20,
+      "description": "Braut: Starkes Elixier des Charisma."
+    },
+    {
+      "id": "recipe-alch-ueberragendes-elixier-des-fokus",
+      "name": "Überragendes Elixier des Fokus",
+      "profession": "alchemist",
+      "source": "trainer",
+      "reqSkill": 210,
+      "cost": {
+        "gold": 250
+      },
+      "materials": {},
+      "result": {
+        "type": "buff",
+        "buffType": "fokus_boost",
+        "amount": 7,
+        "questsRemaining": 4
+      },
+      "xp": 28,
+      "description": "Braut: Überragendes Elixier des Fokus."
+    },
+    {
+      "id": "recipe-alch-ueberragendes-elixier-der-vitalitaet",
+      "name": "Überragendes Elixier der Vitalität",
+      "profession": "alchemist",
+      "source": "trainer",
+      "reqSkill": 215,
+      "cost": {
+        "gold": 250
+      },
+      "materials": {},
+      "result": {
+        "type": "buff",
+        "buffType": "vitalitaet_boost",
+        "amount": 7,
+        "questsRemaining": 4
+      },
+      "xp": 28,
+      "description": "Braut: Überragendes Elixier der Vitalität."
+    },
+    {
+      "id": "recipe-alch-ueberragendes-elixier-des-charisma",
+      "name": "Überragendes Elixier des Charisma",
+      "profession": "alchemist",
+      "source": "trainer",
+      "reqSkill": 220,
+      "cost": {
+        "gold": 250
+      },
+      "materials": {},
+      "result": {
+        "type": "buff",
+        "buffType": "charisma_boost",
+        "amount": 7,
+        "questsRemaining": 4
+      },
+      "xp": 28,
+      "description": "Braut: Überragendes Elixier des Charisma."
+    },
+    {
+      "id": "recipe-alch-legendaeres-elixier-des-fokus",
+      "name": "Legendäres Elixier des Fokus",
+      "profession": "alchemist",
+      "source": "trainer",
+      "reqSkill": 270,
+      "cost": {
+        "gold": 600
+      },
+      "materials": {},
+      "result": {
+        "type": "buff",
+        "buffType": "fokus_boost",
+        "amount": 10,
+        "questsRemaining": 5
+      },
+      "xp": 40,
+      "description": "Braut: Legendäres Elixier des Fokus."
+    },
+    {
+      "id": "recipe-alch-legendaeres-elixier-der-vitalitaet",
+      "name": "Legendäres Elixier der Vitalität",
+      "profession": "alchemist",
+      "source": "trainer",
+      "reqSkill": 275,
+      "cost": {
+        "gold": 600
+      },
+      "materials": {},
+      "result": {
+        "type": "buff",
+        "buffType": "vitalitaet_boost",
+        "amount": 10,
+        "questsRemaining": 5
+      },
+      "xp": 40,
+      "description": "Braut: Legendäres Elixier der Vitalität."
+    },
+    {
+      "id": "recipe-alch-legendaeres-elixier-des-charisma",
+      "name": "Legendäres Elixier des Charisma",
+      "profession": "alchemist",
+      "source": "trainer",
+      "reqSkill": 280,
+      "cost": {
+        "gold": 600
+      },
+      "materials": {},
+      "result": {
+        "type": "buff",
+        "buffType": "charisma_boost",
+        "amount": 10,
+        "questsRemaining": 5
+      },
+      "xp": 40,
+      "description": "Braut: Legendäres Elixier des Charisma."
+    },
+    {
+      "id": "recipe-alch-gegengift-1",
+      "name": "Schwaches Gegengift",
+      "profession": "alchemist",
+      "source": "trainer",
+      "reqSkill": 15,
+      "cost": {
+        "gold": 10
+      },
+      "materials": {
+        "kraeuterbuendel": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "vitalitaet_boost",
+        "amount": 3,
+        "questsRemaining": 2
+      },
+      "xp": 8,
+      "description": "Braut: Schwaches Gegengift."
+    },
+    {
+      "id": "recipe-alch-gegengift-2",
+      "name": "Starkes Gegengift",
+      "profession": "alchemist",
+      "source": "trainer",
+      "reqSkill": 100,
+      "cost": {
+        "gold": 60
+      },
+      "materials": {
+        "mondblume": 2,
+        "kraeuterbuendel": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "vitalitaet_boost",
+        "amount": 6,
+        "questsRemaining": 3
+      },
+      "xp": 18,
+      "description": "Braut: Starkes Gegengift."
+    },
+    {
+      "id": "recipe-alch-gegengift-3",
+      "name": "Meister-Gegengift",
+      "profession": "alchemist",
+      "source": "trainer",
+      "reqSkill": 225,
+      "cost": {
+        "gold": 300
+      },
+      "materials": {
+        "phoenixfeder": 1,
+        "mondblume": 3
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "vitalitaet_boost",
+        "amount": 10,
+        "questsRemaining": 4
+      },
+      "xp": 30,
+      "description": "Braut: Meister-Gegengift."
+    },
+    {
+      "id": "recipe-alch-schmiedekatalysator-1",
+      "name": "Schwacher Schmiedekatalysator",
+      "profession": "alchemist",
+      "source": "trainer",
+      "reqSkill": 50,
+      "cost": {
+        "gold": 30
+      },
+      "materials": {
+        "kraeuterbuendel": 3,
+        "magiestaub": 1
+      },
+      "result": {
+        "type": "forge_temp",
+        "amount": 8
+      },
+      "xp": 12,
+      "description": "Braut: Schwacher Schmiedekatalysator."
+    },
+    {
+      "id": "recipe-alch-schmiedekatalysator-2",
+      "name": "Starker Schmiedekatalysator",
+      "profession": "alchemist",
+      "source": "trainer",
+      "reqSkill": 150,
+      "cost": {
+        "gold": 150
+      },
+      "materials": {
+        "mondblume": 2,
+        "magiestaub": 3
+      },
+      "result": {
+        "type": "forge_temp",
+        "amount": 15
+      },
+      "xp": 22,
+      "description": "Braut: Starker Schmiedekatalysator."
+    },
+    {
+      "id": "recipe-alch-schmiedekatalysator-3",
+      "name": "Meister-Schmiedekatalysator",
+      "profession": "alchemist",
+      "source": "trainer",
+      "reqSkill": 250,
+      "cost": {
+        "gold": 500
+      },
+      "materials": {
+        "phoenixfeder": 1,
+        "runenstein": 2
+      },
+      "result": {
+        "type": "forge_temp",
+        "amount": 25
+      },
+      "xp": 38,
+      "description": "Braut: Meister-Schmiedekatalysator."
+    },
+    {
+      "id": "recipe-alch-streakschutz-1",
+      "name": "Alchemistischer Streakschutz",
+      "profession": "alchemist",
+      "source": "trainer",
+      "reqSkill": 75,
+      "cost": {
+        "gold": 50
+      },
+      "materials": {
+        "mondblume": 2,
+        "kraeuterbuendel": 2
+      },
+      "result": {
+        "type": "streak_shield",
+        "amount": 1
+      },
+      "xp": 15,
+      "description": "Braut: Alchemistischer Streakschutz."
+    },
+    {
+      "id": "recipe-alch-streakschutz-2",
+      "name": "Verstärkter Streakschutz",
+      "profession": "alchemist",
+      "source": "trainer",
+      "reqSkill": 200,
+      "cost": {
+        "gold": 300
+      },
+      "materials": {
+        "phoenixfeder": 1,
+        "mondblume": 3
+      },
+      "result": {
+        "type": "streak_shield",
+        "amount": 1
+      },
+      "xp": 28,
+      "description": "Braut: Verstärkter Streakschutz."
+    },
+    {
+      "id": "recipe-alch-manaoel",
+      "name": "Brillantes Manaöl",
+      "profession": "alchemist",
+      "source": "trainer",
+      "reqSkill": 160,
+      "cost": {
+        "gold": 180
+      },
+      "materials": {
+        "mondblome": 3,
+        "magiestaub": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "weisheit_boost",
+        "amount": 6,
+        "questsRemaining": 4
+      },
+      "xp": 22,
+      "description": "Braut: Brillantes Manaöl."
+    },
+    {
+      "id": "recipe-alch-schattenoel",
+      "name": "Schattenöl",
+      "profession": "alchemist",
+      "source": "trainer",
+      "reqSkill": 180,
+      "cost": {
+        "gold": 200
+      },
+      "materials": {
+        "mondblume": 3,
+        "runenstein": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "glueck_boost",
+        "amount": 5,
+        "questsRemaining": 4
+      },
+      "xp": 25,
+      "description": "Braut: Schattenöl."
+    },
+    {
+      "id": "recipe-alch-wildes-oel",
+      "name": "Wildes Öl",
+      "profession": "alchemist",
+      "source": "trainer",
+      "reqSkill": 170,
+      "cost": {
+        "gold": 180
+      },
+      "materials": {
+        "kraeuterbuendel": 4,
+        "mondblume": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "kraft_boost",
+        "amount": 6,
+        "questsRemaining": 4
+      },
+      "xp": 24,
+      "description": "Braut: Wildes Öl."
+    },
+    {
+      "id": "recipe-alch-luck-potion",
+      "name": "Trank des Glücksregens",
+      "profession": "alchemist",
+      "source": "trainer",
+      "reqSkill": 230,
+      "cost": {
+        "gold": 400
+      },
+      "materials": {
+        "phoenixfeder": 1,
+        "mondblume": 4,
+        "runenstein": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "luck_boost_20",
+        "questsRemaining": 3
+      },
+      "xp": 32,
+      "description": "Braut: Trank des Glücksregens."
+    },
+    {
+      "id": "recipe-koch-einfachemahlzeit-der-staerke",
+      "name": "EinfacheMahlzeit der Stärke",
+      "profession": "koch",
+      "source": "trainer",
+      "reqSkill": 1,
+      "cost": {
+        "gold": 10
+      },
+      "materials": {
+        "wildfleisch": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "kraft_boost",
+        "amount": 2,
+        "questsRemaining": 3
+      },
+      "xp": 5,
+      "description": "Kocht: EinfacheMahlzeit der Stärke."
+    },
+    {
+      "id": "recipe-koch-einfachemahlzeit-der-weisheit",
+      "name": "EinfacheMahlzeit der Weisheit",
+      "profession": "koch",
+      "source": "trainer",
+      "reqSkill": 4,
+      "cost": {
+        "gold": 10
+      },
+      "materials": {
+        "wildfleisch": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "weisheit_boost",
+        "amount": 2,
+        "questsRemaining": 3
+      },
+      "xp": 5,
+      "description": "Kocht: EinfacheMahlzeit der Weisheit."
+    },
+    {
+      "id": "recipe-koch-einfachemahlzeit-des-gluecks",
+      "name": "EinfacheMahlzeit des Glücks",
+      "profession": "koch",
+      "source": "trainer",
+      "reqSkill": 7,
+      "cost": {
+        "gold": 10
+      },
+      "materials": {
+        "wildfleisch": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "glueck_boost",
+        "amount": 2,
+        "questsRemaining": 3
+      },
+      "xp": 5,
+      "description": "Kocht: EinfacheMahlzeit des Glücks."
+    },
+    {
+      "id": "recipe-koch-einfachemahlzeit-der-ausdauer",
+      "name": "EinfacheMahlzeit der Ausdauer",
+      "profession": "koch",
+      "source": "trainer",
+      "reqSkill": 10,
+      "cost": {
+        "gold": 10
+      },
+      "materials": {
+        "wildfleisch": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "ausdauer_boost",
+        "amount": 2,
+        "questsRemaining": 3
+      },
+      "xp": 5,
+      "description": "Kocht: EinfacheMahlzeit der Ausdauer."
+    },
+    {
+      "id": "recipe-koch-einfachemahlzeit-der-eile",
+      "name": "EinfacheMahlzeit der Eile",
+      "profession": "koch",
+      "source": "trainer",
+      "reqSkill": 13,
+      "cost": {
+        "gold": 10
+      },
+      "materials": {
+        "wildfleisch": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "tempo_boost",
+        "amount": 2,
+        "questsRemaining": 3
+      },
+      "xp": 5,
+      "description": "Kocht: EinfacheMahlzeit der Eile."
+    },
+    {
+      "id": "recipe-koch-einfachemahlzeit-des-fokus",
+      "name": "EinfacheMahlzeit des Fokus",
+      "profession": "koch",
+      "source": "trainer",
+      "reqSkill": 16,
+      "cost": {
+        "gold": 10
+      },
+      "materials": {
+        "wildfleisch": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "fokus_boost",
+        "amount": 2,
+        "questsRemaining": 3
+      },
+      "xp": 5,
+      "description": "Kocht: EinfacheMahlzeit des Fokus."
+    },
+    {
+      "id": "recipe-koch-deftigemahlzeit-der-staerke",
+      "name": "DeftigeMahlzeit der Stärke",
+      "profession": "koch",
+      "source": "trainer",
+      "reqSkill": 40,
+      "cost": {
+        "gold": 25
+      },
+      "materials": {
+        "wildfleisch": 3,
+        "kraeuterbuendel": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "kraft_boost",
+        "amount": 3,
+        "questsRemaining": 3
+      },
+      "xp": 10,
+      "description": "Kocht: DeftigeMahlzeit der Stärke."
+    },
+    {
+      "id": "recipe-koch-deftigemahlzeit-der-weisheit",
+      "name": "DeftigeMahlzeit der Weisheit",
+      "profession": "koch",
+      "source": "trainer",
+      "reqSkill": 43,
+      "cost": {
+        "gold": 25
+      },
+      "materials": {
+        "wildfleisch": 3,
+        "kraeuterbuendel": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "weisheit_boost",
+        "amount": 3,
+        "questsRemaining": 3
+      },
+      "xp": 10,
+      "description": "Kocht: DeftigeMahlzeit der Weisheit."
+    },
+    {
+      "id": "recipe-koch-deftigemahlzeit-des-gluecks",
+      "name": "DeftigeMahlzeit des Glücks",
+      "profession": "koch",
+      "source": "trainer",
+      "reqSkill": 46,
+      "cost": {
+        "gold": 25
+      },
+      "materials": {
+        "wildfleisch": 3,
+        "kraeuterbuendel": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "glueck_boost",
+        "amount": 3,
+        "questsRemaining": 3
+      },
+      "xp": 10,
+      "description": "Kocht: DeftigeMahlzeit des Glücks."
+    },
+    {
+      "id": "recipe-koch-deftigemahlzeit-der-ausdauer",
+      "name": "DeftigeMahlzeit der Ausdauer",
+      "profession": "koch",
+      "source": "trainer",
+      "reqSkill": 49,
+      "cost": {
+        "gold": 25
+      },
+      "materials": {
+        "wildfleisch": 3,
+        "kraeuterbuendel": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "ausdauer_boost",
+        "amount": 3,
+        "questsRemaining": 3
+      },
+      "xp": 10,
+      "description": "Kocht: DeftigeMahlzeit der Ausdauer."
+    },
+    {
+      "id": "recipe-koch-deftigemahlzeit-der-eile",
+      "name": "DeftigeMahlzeit der Eile",
+      "profession": "koch",
+      "source": "trainer",
+      "reqSkill": 52,
+      "cost": {
+        "gold": 25
+      },
+      "materials": {
+        "wildfleisch": 3,
+        "kraeuterbuendel": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "tempo_boost",
+        "amount": 3,
+        "questsRemaining": 3
+      },
+      "xp": 10,
+      "description": "Kocht: DeftigeMahlzeit der Eile."
+    },
+    {
+      "id": "recipe-koch-deftigemahlzeit-des-fokus",
+      "name": "DeftigeMahlzeit des Fokus",
+      "profession": "koch",
+      "source": "trainer",
+      "reqSkill": 55,
+      "cost": {
+        "gold": 25
+      },
+      "materials": {
+        "wildfleisch": 3,
+        "kraeuterbuendel": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "fokus_boost",
+        "amount": 3,
+        "questsRemaining": 3
+      },
+      "xp": 10,
+      "description": "Kocht: DeftigeMahlzeit des Fokus."
+    },
+    {
+      "id": "recipe-koch-feinemahlzeit-der-staerke",
+      "name": "FeineMahlzeit der Stärke",
+      "profession": "koch",
+      "source": "trainer",
+      "reqSkill": 90,
+      "cost": {
+        "gold": 60
+      },
+      "materials": {
+        "wildfleisch": 2,
+        "feuerwurz": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "kraft_boost",
+        "amount": 5,
+        "questsRemaining": 4
+      },
+      "xp": 16,
+      "description": "Kocht: FeineMahlzeit der Stärke."
+    },
+    {
+      "id": "recipe-koch-feinemahlzeit-der-weisheit",
+      "name": "FeineMahlzeit der Weisheit",
+      "profession": "koch",
+      "source": "trainer",
+      "reqSkill": 93,
+      "cost": {
+        "gold": 60
+      },
+      "materials": {
+        "wildfleisch": 2,
+        "feuerwurz": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "weisheit_boost",
+        "amount": 5,
+        "questsRemaining": 4
+      },
+      "xp": 16,
+      "description": "Kocht: FeineMahlzeit der Weisheit."
+    },
+    {
+      "id": "recipe-koch-feinemahlzeit-des-gluecks",
+      "name": "FeineMahlzeit des Glücks",
+      "profession": "koch",
+      "source": "trainer",
+      "reqSkill": 96,
+      "cost": {
+        "gold": 60
+      },
+      "materials": {
+        "wildfleisch": 2,
+        "feuerwurz": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "glueck_boost",
+        "amount": 4,
+        "questsRemaining": 4
+      },
+      "xp": 16,
+      "description": "Kocht: FeineMahlzeit des Glücks."
+    },
+    {
+      "id": "recipe-koch-feinemahlzeit-der-ausdauer",
+      "name": "FeineMahlzeit der Ausdauer",
+      "profession": "koch",
+      "source": "trainer",
+      "reqSkill": 99,
+      "cost": {
+        "gold": 60
+      },
+      "materials": {
+        "wildfleisch": 2,
+        "feuerwurz": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "ausdauer_boost",
+        "amount": 5,
+        "questsRemaining": 4
+      },
+      "xp": 16,
+      "description": "Kocht: FeineMahlzeit der Ausdauer."
+    },
+    {
+      "id": "recipe-koch-feinemahlzeit-der-eile",
+      "name": "FeineMahlzeit der Eile",
+      "profession": "koch",
+      "source": "trainer",
+      "reqSkill": 102,
+      "cost": {
+        "gold": 60
+      },
+      "materials": {
+        "wildfleisch": 2,
+        "feuerwurz": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "tempo_boost",
+        "amount": 4,
+        "questsRemaining": 4
+      },
+      "xp": 16,
+      "description": "Kocht: FeineMahlzeit der Eile."
+    },
+    {
+      "id": "recipe-koch-feinemahlzeit-des-fokus",
+      "name": "FeineMahlzeit des Fokus",
+      "profession": "koch",
+      "source": "trainer",
+      "reqSkill": 105,
+      "cost": {
+        "gold": 60
+      },
+      "materials": {
+        "wildfleisch": 2,
+        "feuerwurz": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "fokus_boost",
+        "amount": 4,
+        "questsRemaining": 4
+      },
+      "xp": 16,
+      "description": "Kocht: FeineMahlzeit des Fokus."
+    },
+    {
+      "id": "recipe-koch-erlesenemahlzeit-der-staerke",
+      "name": "ErleseneMahlzeit der Stärke",
+      "profession": "koch",
+      "source": "drop",
+      "reqSkill": 160,
+      "cost": {
+        "gold": 150
+      },
+      "materials": {
+        "feuerwurz": 3,
+        "sternenfrucht": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "kraft_boost",
+        "amount": 7,
+        "questsRemaining": 4
+      },
+      "xp": 22,
+      "description": "Kocht: ErleseneMahlzeit der Stärke.",
+      "dropChance": 0.06,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "recipe-koch-erlesenemahlzeit-der-weisheit",
+      "name": "ErleseneMahlzeit der Weisheit",
+      "profession": "koch",
+      "source": "drop",
+      "reqSkill": 163,
+      "cost": {
+        "gold": 150
+      },
+      "materials": {
+        "feuerwurz": 3,
+        "sternenfrucht": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "weisheit_boost",
+        "amount": 7,
+        "questsRemaining": 4
+      },
+      "xp": 22,
+      "description": "Kocht: ErleseneMahlzeit der Weisheit.",
+      "dropChance": 0.06,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "recipe-koch-erlesenemahlzeit-des-gluecks",
+      "name": "ErleseneMahlzeit des Glücks",
+      "profession": "koch",
+      "source": "drop",
+      "reqSkill": 166,
+      "cost": {
+        "gold": 150
+      },
+      "materials": {
+        "feuerwurz": 3,
+        "sternenfrucht": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "glueck_boost",
+        "amount": 6,
+        "questsRemaining": 4
+      },
+      "xp": 22,
+      "description": "Kocht: ErleseneMahlzeit des Glücks.",
+      "dropChance": 0.06,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "recipe-koch-erlesenemahlzeit-der-ausdauer",
+      "name": "ErleseneMahlzeit der Ausdauer",
+      "profession": "koch",
+      "source": "drop",
+      "reqSkill": 169,
+      "cost": {
+        "gold": 150
+      },
+      "materials": {
+        "feuerwurz": 3,
+        "sternenfrucht": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "ausdauer_boost",
+        "amount": 7,
+        "questsRemaining": 4
+      },
+      "xp": 22,
+      "description": "Kocht: ErleseneMahlzeit der Ausdauer.",
+      "dropChance": 0.06,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "recipe-koch-erlesenemahlzeit-der-eile",
+      "name": "ErleseneMahlzeit der Eile",
+      "profession": "koch",
+      "source": "drop",
+      "reqSkill": 172,
+      "cost": {
+        "gold": 150
+      },
+      "materials": {
+        "feuerwurz": 3,
+        "sternenfrucht": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "tempo_boost",
+        "amount": 6,
+        "questsRemaining": 4
+      },
+      "xp": 22,
+      "description": "Kocht: ErleseneMahlzeit der Eile.",
+      "dropChance": 0.06,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "recipe-koch-erlesenemahlzeit-des-fokus",
+      "name": "ErleseneMahlzeit des Fokus",
+      "profession": "koch",
+      "source": "drop",
+      "reqSkill": 175,
+      "cost": {
+        "gold": 150
+      },
+      "materials": {
+        "feuerwurz": 3,
+        "sternenfrucht": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "fokus_boost",
+        "amount": 6,
+        "questsRemaining": 4
+      },
+      "xp": 22,
+      "description": "Kocht: ErleseneMahlzeit des Fokus.",
+      "dropChance": 0.06,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "recipe-koch-meister-mahlzeit-der-staerke",
+      "name": "Meister-Mahlzeit der Stärke",
+      "profession": "koch",
+      "source": "drop",
+      "reqSkill": 240,
+      "cost": {
+        "gold": 400
+      },
+      "materials": {
+        "sternenfrucht": 2,
+        "feuerwurz": 3
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "kraft_boost",
+        "amount": 10,
+        "questsRemaining": 5
+      },
+      "xp": 35,
+      "description": "Kocht: Meister-Mahlzeit der Stärke.",
+      "dropChance": 0.06,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "recipe-koch-meister-mahlzeit-der-weisheit",
+      "name": "Meister-Mahlzeit der Weisheit",
+      "profession": "koch",
+      "source": "drop",
+      "reqSkill": 243,
+      "cost": {
+        "gold": 400
+      },
+      "materials": {
+        "sternenfrucht": 2,
+        "feuerwurz": 3
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "weisheit_boost",
+        "amount": 10,
+        "questsRemaining": 5
+      },
+      "xp": 35,
+      "description": "Kocht: Meister-Mahlzeit der Weisheit.",
+      "dropChance": 0.06,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "recipe-koch-meister-mahlzeit-des-gluecks",
+      "name": "Meister-Mahlzeit des Glücks",
+      "profession": "koch",
+      "source": "drop",
+      "reqSkill": 246,
+      "cost": {
+        "gold": 400
+      },
+      "materials": {
+        "sternenfrucht": 2,
+        "feuerwurz": 3
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "glueck_boost",
+        "amount": 8,
+        "questsRemaining": 5
+      },
+      "xp": 35,
+      "description": "Kocht: Meister-Mahlzeit des Glücks.",
+      "dropChance": 0.06,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "recipe-koch-meister-mahlzeit-der-ausdauer",
+      "name": "Meister-Mahlzeit der Ausdauer",
+      "profession": "koch",
+      "source": "drop",
+      "reqSkill": 249,
+      "cost": {
+        "gold": 400
+      },
+      "materials": {
+        "sternenfrucht": 2,
+        "feuerwurz": 3
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "ausdauer_boost",
+        "amount": 10,
+        "questsRemaining": 5
+      },
+      "xp": 35,
+      "description": "Kocht: Meister-Mahlzeit der Ausdauer.",
+      "dropChance": 0.06,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "recipe-koch-meister-mahlzeit-der-eile",
+      "name": "Meister-Mahlzeit der Eile",
+      "profession": "koch",
+      "source": "drop",
+      "reqSkill": 252,
+      "cost": {
+        "gold": 400
+      },
+      "materials": {
+        "sternenfrucht": 2,
+        "feuerwurz": 3
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "tempo_boost",
+        "amount": 8,
+        "questsRemaining": 5
+      },
+      "xp": 35,
+      "description": "Kocht: Meister-Mahlzeit der Eile.",
+      "dropChance": 0.06,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "recipe-koch-meister-mahlzeit-des-fokus",
+      "name": "Meister-Mahlzeit des Fokus",
+      "profession": "koch",
+      "source": "drop",
+      "reqSkill": 255,
+      "cost": {
+        "gold": 400
+      },
+      "materials": {
+        "sternenfrucht": 2,
+        "feuerwurz": 3
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "fokus_boost",
+        "amount": 8,
+        "questsRemaining": 5
+      },
+      "xp": 35,
+      "description": "Kocht: Meister-Mahlzeit des Fokus.",
+      "dropChance": 0.06,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "recipe-koch-kraeutertee",
+      "name": "Kräutertee",
+      "profession": "koch",
+      "source": "trainer",
+      "reqSkill": 10,
+      "cost": {
+        "gold": 10
+      },
+      "materials": {
+        "kraeuterbuendel": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "vitalitaet_boost",
+        "amount": 2,
+        "questsRemaining": 2
+      },
+      "xp": 6,
+      "description": "Braut: Kräutertee."
+    },
+    {
+      "id": "recipe-koch-feuerwurz-tee",
+      "name": "Feuerwurz-Tee",
+      "profession": "koch",
+      "source": "trainer",
+      "reqSkill": 60,
+      "cost": {
+        "gold": 30
+      },
+      "materials": {
+        "feuerwurz": 1,
+        "kraeuterbuendel": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "tempo_boost",
+        "amount": 3,
+        "questsRemaining": 2
+      },
+      "xp": 12,
+      "description": "Braut: Feuerwurz-Tee."
+    },
+    {
+      "id": "recipe-koch-sternen-tee",
+      "name": "Sternen-Tee",
+      "profession": "koch",
+      "source": "trainer",
+      "reqSkill": 150,
+      "cost": {
+        "gold": 120
+      },
+      "materials": {
+        "sternenfrucht": 1,
+        "kraeuterbuendel": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "fokus_boost",
+        "amount": 5,
+        "questsRemaining": 3
+      },
+      "xp": 20,
+      "description": "Braut: Sternen-Tee."
+    },
+    {
+      "id": "recipe-koch-honigwein",
+      "name": "Honigwein",
+      "profession": "koch",
+      "source": "trainer",
+      "reqSkill": 30,
+      "cost": {
+        "gold": 20
+      },
+      "materials": {
+        "wildfleisch": 1,
+        "kraeuterbuendel": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "charisma_boost",
+        "amount": 2,
+        "questsRemaining": 3
+      },
+      "xp": 8,
+      "description": "Braut: Honigwein."
+    },
+    {
+      "id": "recipe-koch-gewuerzwein",
+      "name": "Gewürzwein",
+      "profession": "koch",
+      "source": "trainer",
+      "reqSkill": 100,
+      "cost": {
+        "gold": 70
+      },
+      "materials": {
+        "feuerwurz": 2,
+        "kraeuterbuendel": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "charisma_boost",
+        "amount": 4,
+        "questsRemaining": 3
+      },
+      "xp": 16,
+      "description": "Braut: Gewürzwein."
+    },
+    {
+      "id": "recipe-koch-sternen-wein",
+      "name": "Sternenwein",
+      "profession": "koch",
+      "source": "trainer",
+      "reqSkill": 200,
+      "cost": {
+        "gold": 250
+      },
+      "materials": {
+        "sternenfrucht": 2,
+        "feuerwurz": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "charisma_boost",
+        "amount": 7,
+        "questsRemaining": 4
+      },
+      "xp": 28,
+      "description": "Braut: Sternenwein."
+    },
+    {
+      "id": "recipe-koch-einfacher-met",
+      "name": "Einfacher Met",
+      "profession": "koch",
+      "source": "trainer",
+      "reqSkill": 50,
+      "cost": {
+        "gold": 30
+      },
+      "materials": {
+        "wildfleisch": 2,
+        "kraeuterbuendel": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "kraft_boost",
+        "amount": 3,
+        "questsRemaining": 2
+      },
+      "xp": 10,
+      "description": "Braut: Einfacher Met."
+    },
+    {
+      "id": "recipe-koch-starker-met",
+      "name": "Starker Met",
+      "profession": "koch",
+      "source": "trainer",
+      "reqSkill": 130,
+      "cost": {
+        "gold": 100
+      },
+      "materials": {
+        "feuerwurz": 2,
+        "wildfleisch": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "kraft_boost",
+        "amount": 6,
+        "questsRemaining": 3
+      },
+      "xp": 20,
+      "description": "Braut: Starker Met."
+    },
+    {
+      "id": "recipe-koch-drachenmet",
+      "name": "Drachenmet",
+      "profession": "koch",
+      "source": "trainer",
+      "reqSkill": 230,
+      "cost": {
+        "gold": 400
+      },
+      "materials": {
+        "sternenfrucht": 2,
+        "feuerwurz": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "kraft_boost",
+        "amount": 9,
+        "questsRemaining": 4
+      },
+      "xp": 32,
+      "description": "Braut: Drachenmet."
+    },
+    {
+      "id": "recipe-koch-beruhigender-tee",
+      "name": "Beruhigender Tee",
+      "profession": "koch",
+      "source": "trainer",
+      "reqSkill": 80,
+      "cost": {
+        "gold": 50
+      },
+      "materials": {
+        "kraeuterbuendel": 3,
+        "feuerwurz": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "vitalitaet_boost",
+        "amount": 4,
+        "questsRemaining": 3
+      },
+      "xp": 14,
+      "description": "Braut: Beruhigender Tee."
+    },
+    {
+      "id": "recipe-koch-mondblumen-tee",
+      "name": "Mondblumen-Tee",
+      "profession": "koch",
+      "source": "trainer",
+      "reqSkill": 170,
+      "cost": {
+        "gold": 180
+      },
+      "materials": {
+        "mondblume": 2,
+        "kraeuterbuendel": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "vitalitaet_boost",
+        "amount": 7,
+        "questsRemaining": 4
+      },
+      "xp": 24,
+      "description": "Braut: Mondblumen-Tee."
+    },
+    {
+      "id": "recipe-koch-lebenselixier",
+      "name": "Lebenselixier",
+      "profession": "koch",
+      "source": "trainer",
+      "reqSkill": 260,
+      "cost": {
+        "gold": 500
+      },
+      "materials": {
+        "sternenfrucht": 3,
+        "mondblume": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "vitalitaet_boost",
+        "amount": 10,
+        "questsRemaining": 5
+      },
+      "xp": 40,
+      "description": "Braut: Lebenselixier."
+    },
+    {
+      "id": "recipe-koch-einfaches-festmahl",
+      "name": "Einfaches Festmahl",
+      "profession": "koch",
+      "source": "faction",
+      "factionId": "echo",
+      "factionMinRep": "honored",
+      "reqSkill": 200,
+      "cost": {
+        "gold": 300
+      },
+      "materials": {
+        "wildfleisch": 6,
+        "feuerwurz": 3,
+        "kraeuterbuendel": 4
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "feast_buff",
+        "questsRemaining": 5
+      },
+      "xp": 28,
+      "description": "Kocht: Einfaches Festmahl. Für die ganze Gilde."
+    },
+    {
+      "id": "recipe-koch-festmahl-der-gilde",
+      "name": "Festmahl der Gilde",
+      "profession": "koch",
+      "source": "faction",
+      "factionId": "echo",
+      "factionMinRep": "honored",
+      "reqSkill": 225,
+      "cost": {
+        "gold": 500
+      },
+      "materials": {
+        "wildfleisch": 8,
+        "sternenfrucht": 2,
+        "feuerwurz": 4
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "feast_buff",
+        "questsRemaining": 5
+      },
+      "xp": 32,
+      "description": "Kocht: Festmahl der Gilde. Für die ganze Gilde."
+    },
+    {
+      "id": "recipe-koch-grosses-festmahl",
+      "name": "Großes Festmahl",
+      "profession": "koch",
+      "source": "faction",
+      "factionId": "echo",
+      "factionMinRep": "honored",
+      "reqSkill": 250,
+      "cost": {
+        "gold": 700
+      },
+      "materials": {
+        "sternenfrucht": 3,
+        "feuerwurz": 5,
+        "wildfleisch": 6
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "feast_buff",
+        "questsRemaining": 5
+      },
+      "xp": 38,
+      "description": "Kocht: Großes Festmahl. Für die ganze Gilde."
+    },
+    {
+      "id": "recipe-koch-meisterfestmahl",
+      "name": "Meisterfestmahl",
+      "profession": "koch",
+      "source": "faction",
+      "factionId": "echo",
+      "factionMinRep": "revered",
+      "reqSkill": 275,
+      "cost": {
+        "gold": 1000
+      },
+      "materials": {
+        "sternenfrucht": 4,
+        "feuerwurz": 4,
+        "mondblume": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "feast_buff",
+        "questsRemaining": 5
+      },
+      "xp": 42,
+      "description": "Kocht: Meisterfestmahl. Für die ganze Gilde."
+    },
+    {
+      "id": "recipe-koch-legendaeres-bankett",
+      "name": "Legendäres Bankett",
+      "profession": "koch",
+      "source": "faction",
+      "factionId": "echo",
+      "factionMinRep": "revered",
+      "reqSkill": 290,
+      "cost": {
+        "gold": 1500
+      },
+      "materials": {
+        "sternenfrucht": 6,
+        "feuerwurz": 6,
+        "phoenixfeder": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "feast_buff",
+        "questsRemaining": 5
+      },
+      "xp": 48,
+      "description": "Kocht: Legendäres Bankett. Für die ganze Gilde."
+    },
+    {
+      "id": "recipe-koch-sternenmahl",
+      "name": "Sternenmahl",
+      "profession": "koch",
+      "source": "faction",
+      "factionId": "echo",
+      "factionMinRep": "revered",
+      "reqSkill": 298,
+      "cost": {
+        "gold": 2000
+      },
+      "materials": {
+        "sternenfrucht": 8,
+        "phoenixfeder": 2,
+        "mondblume": 4
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "double_reward",
+        "questsRemaining": 3
+      },
+      "xp": 50,
+      "description": "Kocht: Sternenmahl. Für die ganze Gilde."
+    },
+    {
+      "id": "recipe-koch-studentenfutter",
+      "name": "Studentenfutter",
+      "profession": "koch",
+      "source": "trainer",
+      "reqSkill": 5,
+      "cost": {
+        "gold": 5
+      },
+      "materials": {
+        "wildfleisch": 1
+      },
+      "result": {
+        "type": "forge_temp",
+        "amount": 5
+      },
+      "xp": 5,
+      "description": "Kocht: Studentenfutter."
+    },
+    {
+      "id": "recipe-koch-trockenobst",
+      "name": "Trockenobst",
+      "profession": "koch",
+      "source": "trainer",
+      "reqSkill": 25,
+      "cost": {
+        "gold": 15
+      },
+      "materials": {
+        "kraeuterbuendel": 2
+      },
+      "result": {
+        "type": "forge_temp",
+        "amount": 8
+      },
+      "xp": 8,
+      "description": "Kocht: Trockenobst."
+    },
+    {
+      "id": "recipe-koch-energieriegel",
+      "name": "Energieriegel",
+      "profession": "koch",
+      "source": "trainer",
+      "reqSkill": 75,
+      "cost": {
+        "gold": 40
+      },
+      "materials": {
+        "wildfleisch": 2,
+        "feuerwurz": 1
+      },
+      "result": {
+        "type": "forge_temp",
+        "amount": 12
+      },
+      "xp": 14,
+      "description": "Kocht: Energieriegel."
+    },
+    {
+      "id": "recipe-koch-reiseproviant",
+      "name": "Reiseproviant",
+      "profession": "koch",
+      "source": "trainer",
+      "reqSkill": 120,
+      "cost": {
+        "gold": 80
+      },
+      "materials": {
+        "wildfleisch": 3,
+        "kraeuterbuendel": 2
+      },
+      "result": {
+        "type": "forge_temp",
+        "amount": 15
+      },
+      "xp": 18,
+      "description": "Kocht: Reiseproviant."
+    },
+    {
+      "id": "recipe-koch-sternenfrucht-happen",
+      "name": "Sternenfrucht-Happen",
+      "profession": "koch",
+      "source": "trainer",
+      "reqSkill": 180,
+      "cost": {
+        "gold": 200
+      },
+      "materials": {
+        "sternenfrucht": 1,
+        "feuerwurz": 1
+      },
+      "result": {
+        "type": "forge_temp",
+        "amount": 20
+      },
+      "xp": 25,
+      "description": "Kocht: Sternenfrucht-Happen."
+    },
+    {
+      "id": "recipe-koch-streakschutz-keks",
+      "name": "Streakschutz-Keks",
+      "profession": "koch",
+      "source": "trainer",
+      "reqSkill": 100,
+      "cost": {
+        "gold": 80
+      },
+      "materials": {
+        "wildfleisch": 2,
+        "feuerwurz": 1,
+        "kraeuterbuendel": 2
+      },
+      "result": {
+        "type": "streak_shield",
+        "amount": 1
+      },
+      "xp": 16,
+      "description": "Kocht: Streakschutz-Keks."
+    },
+    {
+      "id": "recipe-koch-meister-streakkeks",
+      "name": "Meister-Streakkeks",
+      "profession": "koch",
+      "source": "trainer",
+      "reqSkill": 225,
+      "cost": {
+        "gold": 350
+      },
+      "materials": {
+        "sternenfrucht": 1,
+        "feuerwurz": 2,
+        "wildfleisch": 3
+      },
+      "result": {
+        "type": "streak_shield",
+        "amount": 1
+      },
+      "xp": 30,
+      "description": "Kocht: Meister-Streakkeks."
+    },
+    {
+      "id": "recipe-koch-luck-cookie",
+      "name": "Glückskeks",
+      "profession": "koch",
+      "source": "trainer",
+      "reqSkill": 160,
+      "cost": {
+        "gold": 150
+      },
+      "materials": {
+        "feuerwurz": 2,
+        "wildfleisch": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "luck_boost_20",
+        "questsRemaining": 2
+      },
+      "xp": 22,
+      "description": "Kocht: Glückskeks."
+    },
+    {
+      "id": "recipe-koch-gewuerzmischung",
+      "name": "Gewürzmischung",
+      "profession": "koch",
+      "source": "trainer",
+      "reqSkill": 30,
+      "cost": {
+        "gold": 15
+      },
+      "materials": {
+        "kraeuterbuendel": 3
+      },
+      "result": {
+        "type": "material",
+        "materialId": "gewuerzmischung",
+        "amount": 1
+      },
+      "xp": 8,
+      "description": "Bereitet zu: Gewürzmischung."
+    },
+    {
+      "id": "recipe-koch-kraeuterbutter",
+      "name": "Kräuterbutter",
+      "profession": "koch",
+      "source": "trainer",
+      "reqSkill": 60,
+      "cost": {
+        "gold": 30
+      },
+      "materials": {
+        "kraeuterbuendel": 2,
+        "wildfleisch": 1
+      },
+      "result": {
+        "type": "material",
+        "materialId": "kraeuterbutter",
+        "amount": 1
+      },
+      "xp": 12,
+      "description": "Bereitet zu: Kräuterbutter."
+    },
+    {
+      "id": "recipe-koch-scharfe-marinade",
+      "name": "Scharfe Marinade",
+      "profession": "koch",
+      "source": "trainer",
+      "reqSkill": 100,
+      "cost": {
+        "gold": 60
+      },
+      "materials": {
+        "feuerwurz": 2,
+        "kraeuterbuendel": 1
+      },
+      "result": {
+        "type": "material",
+        "materialId": "scharfemarinade",
+        "amount": 1
+      },
+      "xp": 16,
+      "description": "Bereitet zu: Scharfe Marinade."
+    },
+    {
+      "id": "recipe-koch-sternen-essenz",
+      "name": "Sternen-Essenz",
+      "profession": "koch",
+      "source": "trainer",
+      "reqSkill": 175,
+      "cost": {
+        "gold": 150
+      },
+      "materials": {
+        "sternenfrucht": 1,
+        "feuerwurz": 1
+      },
+      "result": {
+        "type": "material",
+        "materialId": "sternenessenz",
+        "amount": 1
+      },
+      "xp": 24,
+      "description": "Bereitet zu: Sternen-Essenz."
+    },
+    {
+      "id": "recipe-koch-phoenix-gewuerz",
+      "name": "Phoenix-Gewürz",
+      "profession": "koch",
+      "source": "trainer",
+      "reqSkill": 250,
+      "cost": {
+        "gold": 400
+      },
+      "materials": {
+        "phoenixfeder": 1,
+        "feuerwurz": 3
+      },
+      "result": {
+        "type": "material",
+        "materialId": "phoenixgewuerz",
+        "amount": 1
+      },
+      "xp": 38,
+      "description": "Bereitet zu: Phoenix-Gewürz."
+    },
+    {
+      "id": "recipe-koch-mondstaub-salz",
+      "name": "Mondstaub-Salz",
+      "profession": "koch",
+      "source": "trainer",
+      "reqSkill": 220,
+      "cost": {
+        "gold": 300
+      },
+      "materials": {
+        "mondblume": 2,
+        "magiestaub": 2
+      },
+      "result": {
+        "type": "material",
+        "materialId": "mondstaubsalz",
+        "amount": 1
+      },
+      "xp": 30,
+      "description": "Bereitet zu: Mondstaub-Salz."
+    },
+    {
+      "id": "recipe-verz-schwache-verzauberung-der-kraft",
+      "name": "Schwache Verzauberung der Kraft",
+      "profession": "verzauberer",
+      "source": "trainer",
+      "reqSkill": 1,
+      "cost": {
+        "gold": 10
+      },
+      "materials": {
+        "magiestaub": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "kraft_boost",
+        "amount": 2,
+        "questsRemaining": 3
+      },
+      "xp": 5,
+      "description": "Verzaubert: Schwache Verzauberung der Kraft."
+    },
+    {
+      "id": "recipe-verz-schwache-verzauberung-der-weisheit",
+      "name": "Schwache Verzauberung der Weisheit",
+      "profession": "verzauberer",
+      "source": "trainer",
+      "reqSkill": 6,
+      "cost": {
+        "gold": 10
+      },
+      "materials": {
+        "magiestaub": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "weisheit_boost",
+        "amount": 2,
+        "questsRemaining": 3
+      },
+      "xp": 5,
+      "description": "Verzaubert: Schwache Verzauberung der Weisheit."
+    },
+    {
+      "id": "recipe-verz-schwache-verzauberung-der-ausdauer",
+      "name": "Schwache Verzauberung der Ausdauer",
+      "profession": "verzauberer",
+      "source": "trainer",
+      "reqSkill": 11,
+      "cost": {
+        "gold": 10
+      },
+      "materials": {
+        "magiestaub": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "ausdauer_boost",
+        "amount": 2,
+        "questsRemaining": 3
+      },
+      "xp": 5,
+      "description": "Verzaubert: Schwache Verzauberung der Ausdauer."
+    },
+    {
+      "id": "recipe-verz-schwache-verzauberung-des-gluecks",
+      "name": "Schwache Verzauberung des Glücks",
+      "profession": "verzauberer",
+      "source": "trainer",
+      "reqSkill": 16,
+      "cost": {
+        "gold": 10
+      },
+      "materials": {
+        "magiestaub": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "glueck_boost",
+        "amount": 2,
+        "questsRemaining": 3
+      },
+      "xp": 5,
+      "description": "Verzaubert: Schwache Verzauberung des Glücks."
+    },
+    {
+      "id": "recipe-verz-verzauberung-der-kraft",
+      "name": "Verzauberung der Kraft",
+      "profession": "verzauberer",
+      "source": "trainer",
+      "reqSkill": 40,
+      "cost": {
+        "gold": 25
+      },
+      "materials": {
+        "magiestaub": 3,
+        "runenstein": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "kraft_boost",
+        "amount": 3,
+        "questsRemaining": 3
+      },
+      "xp": 10,
+      "description": "Verzaubert: Verzauberung der Kraft."
+    },
+    {
+      "id": "recipe-verz-verzauberung-der-weisheit",
+      "name": "Verzauberung der Weisheit",
+      "profession": "verzauberer",
+      "source": "trainer",
+      "reqSkill": 45,
+      "cost": {
+        "gold": 25
+      },
+      "materials": {
+        "magiestaub": 3,
+        "runenstein": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "weisheit_boost",
+        "amount": 3,
+        "questsRemaining": 3
+      },
+      "xp": 10,
+      "description": "Verzaubert: Verzauberung der Weisheit."
+    },
+    {
+      "id": "recipe-verz-verzauberung-der-ausdauer",
+      "name": "Verzauberung der Ausdauer",
+      "profession": "verzauberer",
+      "source": "trainer",
+      "reqSkill": 50,
+      "cost": {
+        "gold": 25
+      },
+      "materials": {
+        "magiestaub": 3,
+        "runenstein": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "ausdauer_boost",
+        "amount": 3,
+        "questsRemaining": 3
+      },
+      "xp": 10,
+      "description": "Verzaubert: Verzauberung der Ausdauer."
+    },
+    {
+      "id": "recipe-verz-verzauberung-des-gluecks",
+      "name": "Verzauberung des Glücks",
+      "profession": "verzauberer",
+      "source": "trainer",
+      "reqSkill": 55,
+      "cost": {
+        "gold": 25
+      },
+      "materials": {
+        "magiestaub": 3,
+        "runenstein": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "glueck_boost",
+        "amount": 3,
+        "questsRemaining": 3
+      },
+      "xp": 10,
+      "description": "Verzaubert: Verzauberung des Glücks."
+    },
+    {
+      "id": "recipe-verz-starke-verzauberung-der-kraft",
+      "name": "Starke Verzauberung der Kraft",
+      "profession": "verzauberer",
+      "source": "trainer",
+      "reqSkill": 90,
+      "cost": {
+        "gold": 60
+      },
+      "materials": {
+        "runenstein": 2,
+        "magiestaub": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "kraft_boost",
+        "amount": 5,
+        "questsRemaining": 4
+      },
+      "xp": 16,
+      "description": "Verzaubert: Starke Verzauberung der Kraft."
+    },
+    {
+      "id": "recipe-verz-starke-verzauberung-der-weisheit",
+      "name": "Starke Verzauberung der Weisheit",
+      "profession": "verzauberer",
+      "source": "trainer",
+      "reqSkill": 95,
+      "cost": {
+        "gold": 60
+      },
+      "materials": {
+        "runenstein": 2,
+        "magiestaub": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "weisheit_boost",
+        "amount": 5,
+        "questsRemaining": 4
+      },
+      "xp": 16,
+      "description": "Verzaubert: Starke Verzauberung der Weisheit."
+    },
+    {
+      "id": "recipe-verz-starke-verzauberung-der-ausdauer",
+      "name": "Starke Verzauberung der Ausdauer",
+      "profession": "verzauberer",
+      "source": "trainer",
+      "reqSkill": 100,
+      "cost": {
+        "gold": 60
+      },
+      "materials": {
+        "runenstein": 2,
+        "magiestaub": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "ausdauer_boost",
+        "amount": 5,
+        "questsRemaining": 4
+      },
+      "xp": 16,
+      "description": "Verzaubert: Starke Verzauberung der Ausdauer."
+    },
+    {
+      "id": "recipe-verz-starke-verzauberung-des-gluecks",
+      "name": "Starke Verzauberung des Glücks",
+      "profession": "verzauberer",
+      "source": "trainer",
+      "reqSkill": 105,
+      "cost": {
+        "gold": 60
+      },
+      "materials": {
+        "runenstein": 2,
+        "magiestaub": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "glueck_boost",
+        "amount": 5,
+        "questsRemaining": 4
+      },
+      "xp": 16,
+      "description": "Verzaubert: Starke Verzauberung des Glücks."
+    },
+    {
+      "id": "recipe-verz-maechtige-verzauberung-der-kraft",
+      "name": "Mächtige Verzauberung der Kraft",
+      "profession": "verzauberer",
+      "source": "drop",
+      "reqSkill": 150,
+      "cost": {
+        "gold": 150
+      },
+      "materials": {
+        "runenstein": 3,
+        "kristallsplitter": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "kraft_boost",
+        "amount": 7,
+        "questsRemaining": 4
+      },
+      "xp": 22,
+      "description": "Verzaubert: Mächtige Verzauberung der Kraft.",
+      "dropChance": 0.06,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "recipe-verz-maechtige-verzauberung-der-weisheit",
+      "name": "Mächtige Verzauberung der Weisheit",
+      "profession": "verzauberer",
+      "source": "drop",
+      "reqSkill": 155,
+      "cost": {
+        "gold": 150
+      },
+      "materials": {
+        "runenstein": 3,
+        "kristallsplitter": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "weisheit_boost",
+        "amount": 7,
+        "questsRemaining": 4
+      },
+      "xp": 22,
+      "description": "Verzaubert: Mächtige Verzauberung der Weisheit.",
+      "dropChance": 0.06,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "recipe-verz-maechtige-verzauberung-der-ausdauer",
+      "name": "Mächtige Verzauberung der Ausdauer",
+      "profession": "verzauberer",
+      "source": "drop",
+      "reqSkill": 160,
+      "cost": {
+        "gold": 150
+      },
+      "materials": {
+        "runenstein": 3,
+        "kristallsplitter": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "ausdauer_boost",
+        "amount": 7,
+        "questsRemaining": 4
+      },
+      "xp": 22,
+      "description": "Verzaubert: Mächtige Verzauberung der Ausdauer.",
+      "dropChance": 0.06,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "recipe-verz-maechtige-verzauberung-des-gluecks",
+      "name": "Mächtige Verzauberung des Glücks",
+      "profession": "verzauberer",
+      "source": "drop",
+      "reqSkill": 165,
+      "cost": {
+        "gold": 150
+      },
+      "materials": {
+        "runenstein": 3,
+        "kristallsplitter": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "glueck_boost",
+        "amount": 7,
+        "questsRemaining": 4
+      },
+      "xp": 22,
+      "description": "Verzaubert: Mächtige Verzauberung des Glücks.",
+      "dropChance": 0.06,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "recipe-verz-ueberlegene-verzauberung-der-kraft",
+      "name": "Überlegene Verzauberung der Kraft",
+      "profession": "verzauberer",
+      "source": "drop",
+      "reqSkill": 220,
+      "cost": {
+        "gold": 350
+      },
+      "materials": {
+        "kristallsplitter": 2,
+        "aetherkern": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "kraft_boost",
+        "amount": 9,
+        "questsRemaining": 5
+      },
+      "xp": 30,
+      "description": "Verzaubert: Überlegene Verzauberung der Kraft.",
+      "dropChance": 0.06,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "recipe-verz-ueberlegene-verzauberung-der-weisheit",
+      "name": "Überlegene Verzauberung der Weisheit",
+      "profession": "verzauberer",
+      "source": "drop",
+      "reqSkill": 225,
+      "cost": {
+        "gold": 350
+      },
+      "materials": {
+        "kristallsplitter": 2,
+        "aetherkern": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "weisheit_boost",
+        "amount": 9,
+        "questsRemaining": 5
+      },
+      "xp": 30,
+      "description": "Verzaubert: Überlegene Verzauberung der Weisheit.",
+      "dropChance": 0.06,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "recipe-verz-ueberlegene-verzauberung-der-ausdauer",
+      "name": "Überlegene Verzauberung der Ausdauer",
+      "profession": "verzauberer",
+      "source": "drop",
+      "reqSkill": 230,
+      "cost": {
+        "gold": 350
+      },
+      "materials": {
+        "kristallsplitter": 2,
+        "aetherkern": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "ausdauer_boost",
+        "amount": 9,
+        "questsRemaining": 5
+      },
+      "xp": 30,
+      "description": "Verzaubert: Überlegene Verzauberung der Ausdauer.",
+      "dropChance": 0.06,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "recipe-verz-ueberlegene-verzauberung-des-gluecks",
+      "name": "Überlegene Verzauberung des Glücks",
+      "profession": "verzauberer",
+      "source": "drop",
+      "reqSkill": 235,
+      "cost": {
+        "gold": 350
+      },
+      "materials": {
+        "kristallsplitter": 2,
+        "aetherkern": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "glueck_boost",
+        "amount": 9,
+        "questsRemaining": 5
+      },
+      "xp": 30,
+      "description": "Verzaubert: Überlegene Verzauberung des Glücks.",
+      "dropChance": 0.06,
+      "dropMinQuestRarity": "rare"
+    },
+    {
+      "id": "recipe-verz-legendaere-verzauberung-der-kraft",
+      "name": "Legendäre Verzauberung der Kraft",
+      "profession": "verzauberer",
+      "source": "faction",
+      "reqSkill": 280,
+      "cost": {
+        "gold": 700
+      },
+      "materials": {
+        "aetherkern": 2,
+        "seelensplitter": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "kraft_boost",
+        "amount": 12,
+        "questsRemaining": 5
+      },
+      "xp": 42,
+      "description": "Verzaubert: Legendäre Verzauberung der Kraft.",
+      "factionId": "tinte",
+      "factionMinRep": "revered"
+    },
+    {
+      "id": "recipe-verz-legendaere-verzauberung-der-weisheit",
+      "name": "Legendäre Verzauberung der Weisheit",
+      "profession": "verzauberer",
+      "source": "faction",
+      "reqSkill": 285,
+      "cost": {
+        "gold": 700
+      },
+      "materials": {
+        "aetherkern": 2,
+        "seelensplitter": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "weisheit_boost",
+        "amount": 12,
+        "questsRemaining": 5
+      },
+      "xp": 42,
+      "description": "Verzaubert: Legendäre Verzauberung der Weisheit.",
+      "factionId": "tinte",
+      "factionMinRep": "revered"
+    },
+    {
+      "id": "recipe-verz-legendaere-verzauberung-der-ausdauer",
+      "name": "Legendäre Verzauberung der Ausdauer",
+      "profession": "verzauberer",
+      "source": "faction",
+      "reqSkill": 290,
+      "cost": {
+        "gold": 700
+      },
+      "materials": {
+        "aetherkern": 2,
+        "seelensplitter": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "ausdauer_boost",
+        "amount": 12,
+        "questsRemaining": 5
+      },
+      "xp": 42,
+      "description": "Verzaubert: Legendäre Verzauberung der Ausdauer.",
+      "factionId": "tinte",
+      "factionMinRep": "revered"
+    },
+    {
+      "id": "recipe-verz-legendaere-verzauberung-des-gluecks",
+      "name": "Legendäre Verzauberung des Glücks",
+      "profession": "verzauberer",
+      "source": "faction",
+      "reqSkill": 295,
+      "cost": {
+        "gold": 700
+      },
+      "materials": {
+        "aetherkern": 2,
+        "seelensplitter": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "glueck_boost",
+        "amount": 12,
+        "questsRemaining": 5
+      },
+      "xp": 42,
+      "description": "Verzaubert: Legendäre Verzauberung des Glücks.",
+      "factionId": "tinte",
+      "factionMinRep": "revered"
+    },
+    {
+      "id": "recipe-verz-perm-weapon-1",
+      "name": "Permanente Verzauberung: Waffe",
+      "profession": "verzauberer",
+      "source": "trainer",
+      "reqSkill": 100,
+      "cost": {
+        "gold": 150
+      },
+      "materials": {
+        "runenstein": 3,
+        "magiestaub": 4
+      },
+      "result": {
+        "type": "gear_enhance",
+        "stat": "kraft",
+        "amount": 1
+      },
+      "xp": 18,
+      "description": "Verzaubert permanent: +1 kraft auf Waffe."
+    },
+    {
+      "id": "recipe-verz-perm-armor-1",
+      "name": "Permanente Verzauberung: Rüstung",
+      "profession": "verzauberer",
+      "source": "trainer",
+      "reqSkill": 105,
+      "cost": {
+        "gold": 150
+      },
+      "materials": {
+        "runenstein": 3,
+        "magiestaub": 4
+      },
+      "result": {
+        "type": "gear_enhance",
+        "stat": "ausdauer",
+        "amount": 1
+      },
+      "xp": 18,
+      "description": "Verzaubert permanent: +1 ausdauer auf Rüstung."
+    },
+    {
+      "id": "recipe-verz-perm-boots-1",
+      "name": "Permanente Verzauberung: Stiefel",
+      "profession": "verzauberer",
+      "source": "trainer",
+      "reqSkill": 110,
+      "cost": {
+        "gold": 150
+      },
+      "materials": {
+        "runenstein": 3,
+        "magiestaub": 4
+      },
+      "result": {
+        "type": "gear_enhance",
+        "stat": "tempo",
+        "amount": 1
+      },
+      "xp": 18,
+      "description": "Verzaubert permanent: +1 tempo auf Stiefel."
+    },
+    {
+      "id": "recipe-verz-perm-helm-1",
+      "name": "Permanente Verzauberung: Helm",
+      "profession": "verzauberer",
+      "source": "trainer",
+      "reqSkill": 115,
+      "cost": {
+        "gold": 150
+      },
+      "materials": {
+        "runenstein": 3,
+        "magiestaub": 4
+      },
+      "result": {
+        "type": "gear_enhance",
+        "stat": "weisheit",
+        "amount": 1
+      },
+      "xp": 18,
+      "description": "Verzaubert permanent: +1 weisheit auf Helm."
+    },
+    {
+      "id": "recipe-verz-perm-shield-1",
+      "name": "Permanente Verzauberung: Schild",
+      "profession": "verzauberer",
+      "source": "trainer",
+      "reqSkill": 120,
+      "cost": {
+        "gold": 150
+      },
+      "materials": {
+        "runenstein": 3,
+        "magiestaub": 4
+      },
+      "result": {
+        "type": "gear_enhance",
+        "stat": "vitalitaet",
+        "amount": 1
+      },
+      "xp": 18,
+      "description": "Verzaubert permanent: +1 vitalitaet auf Schild."
+    },
+    {
+      "id": "recipe-verz-perm-amulet-1",
+      "name": "Permanente Verzauberung: Amulett",
+      "profession": "verzauberer",
+      "source": "trainer",
+      "reqSkill": 125,
+      "cost": {
+        "gold": 150
+      },
+      "materials": {
+        "runenstein": 3,
+        "magiestaub": 4
+      },
+      "result": {
+        "type": "gear_enhance",
+        "stat": "glueck",
+        "amount": 1
+      },
+      "xp": 18,
+      "description": "Verzaubert permanent: +1 glueck auf Amulett."
+    },
+    {
+      "id": "recipe-verz-perm-weapon-2",
+      "name": "Große Permanente Verzauberung: Waffe",
+      "profession": "verzauberer",
+      "source": "faction",
+      "reqSkill": 225,
+      "cost": {
+        "gold": 500
+      },
+      "materials": {
+        "aetherkern": 1,
+        "runenstein": 4,
+        "kristallsplitter": 2
+      },
+      "result": {
+        "type": "gear_enhance",
+        "stat": "kraft",
+        "amount": 2
+      },
+      "xp": 32,
+      "description": "Verzaubert permanent: +2 kraft auf Waffe.",
+      "factionId": "tinte",
+      "factionMinRep": "honored"
+    },
+    {
+      "id": "recipe-verz-perm-armor-2",
+      "name": "Große Permanente Verzauberung: Rüstung",
+      "profession": "verzauberer",
+      "source": "faction",
+      "reqSkill": 230,
+      "cost": {
+        "gold": 500
+      },
+      "materials": {
+        "aetherkern": 1,
+        "runenstein": 4,
+        "kristallsplitter": 2
+      },
+      "result": {
+        "type": "gear_enhance",
+        "stat": "ausdauer",
+        "amount": 2
+      },
+      "xp": 32,
+      "description": "Verzaubert permanent: +2 ausdauer auf Rüstung.",
+      "factionId": "tinte",
+      "factionMinRep": "honored"
+    },
+    {
+      "id": "recipe-verz-perm-boots-2",
+      "name": "Große Permanente Verzauberung: Stiefel",
+      "profession": "verzauberer",
+      "source": "faction",
+      "reqSkill": 235,
+      "cost": {
+        "gold": 500
+      },
+      "materials": {
+        "aetherkern": 1,
+        "runenstein": 4,
+        "kristallsplitter": 2
+      },
+      "result": {
+        "type": "gear_enhance",
+        "stat": "tempo",
+        "amount": 2
+      },
+      "xp": 32,
+      "description": "Verzaubert permanent: +2 tempo auf Stiefel.",
+      "factionId": "tinte",
+      "factionMinRep": "honored"
+    },
+    {
+      "id": "recipe-verz-perm-helm-2",
+      "name": "Große Permanente Verzauberung: Helm",
+      "profession": "verzauberer",
+      "source": "faction",
+      "reqSkill": 240,
+      "cost": {
+        "gold": 500
+      },
+      "materials": {
+        "aetherkern": 1,
+        "runenstein": 4,
+        "kristallsplitter": 2
+      },
+      "result": {
+        "type": "gear_enhance",
+        "stat": "weisheit",
+        "amount": 2
+      },
+      "xp": 32,
+      "description": "Verzaubert permanent: +2 weisheit auf Helm.",
+      "factionId": "tinte",
+      "factionMinRep": "honored"
+    },
+    {
+      "id": "recipe-verz-perm-shield-2",
+      "name": "Große Permanente Verzauberung: Schild",
+      "profession": "verzauberer",
+      "source": "faction",
+      "reqSkill": 245,
+      "cost": {
+        "gold": 500
+      },
+      "materials": {
+        "aetherkern": 1,
+        "runenstein": 4,
+        "kristallsplitter": 2
+      },
+      "result": {
+        "type": "gear_enhance",
+        "stat": "vitalitaet",
+        "amount": 2
+      },
+      "xp": 32,
+      "description": "Verzaubert permanent: +2 vitalitaet auf Schild.",
+      "factionId": "tinte",
+      "factionMinRep": "honored"
+    },
+    {
+      "id": "recipe-verz-perm-amulet-2",
+      "name": "Große Permanente Verzauberung: Amulett",
+      "profession": "verzauberer",
+      "source": "faction",
+      "reqSkill": 250,
+      "cost": {
+        "gold": 500
+      },
+      "materials": {
+        "aetherkern": 1,
+        "runenstein": 4,
+        "kristallsplitter": 2
+      },
+      "result": {
+        "type": "gear_enhance",
+        "stat": "glueck",
+        "amount": 2
+      },
+      "xp": 32,
+      "description": "Verzaubert permanent: +2 glueck auf Amulett.",
+      "factionId": "tinte",
+      "factionMinRep": "honored"
+    },
+    {
+      "id": "recipe-verz-scroll-kraft-3",
+      "name": "Schriftrolle der Kraft",
+      "profession": "verzauberer",
+      "source": "trainer",
+      "reqSkill": 50,
+      "cost": {
+        "gold": 30
+      },
+      "materials": {
+        "magiestaub": 3,
+        "runenstein": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "kraft_boost",
+        "amount": 3,
+        "questsRemaining": 3
+      },
+      "xp": 12,
+      "description": "Schreibt: Schriftrolle der Kraft."
+    },
+    {
+      "id": "recipe-verz-scroll-weisheit-3",
+      "name": "Schriftrolle der Weisheit",
+      "profession": "verzauberer",
+      "source": "trainer",
+      "reqSkill": 53,
+      "cost": {
+        "gold": 30
+      },
+      "materials": {
+        "magiestaub": 3,
+        "runenstein": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "weisheit_boost",
+        "amount": 3,
+        "questsRemaining": 3
+      },
+      "xp": 12,
+      "description": "Schreibt: Schriftrolle der Weisheit."
+    },
+    {
+      "id": "recipe-verz-scroll-ausdauer-3",
+      "name": "Schriftrolle der Ausdauer",
+      "profession": "verzauberer",
+      "source": "trainer",
+      "reqSkill": 56,
+      "cost": {
+        "gold": 30
+      },
+      "materials": {
+        "magiestaub": 3,
+        "runenstein": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "ausdauer_boost",
+        "amount": 3,
+        "questsRemaining": 3
+      },
+      "xp": 12,
+      "description": "Schreibt: Schriftrolle der Ausdauer."
+    },
+    {
+      "id": "recipe-verz-scroll-glueck-3",
+      "name": "Schriftrolle des Glücks",
+      "profession": "verzauberer",
+      "source": "trainer",
+      "reqSkill": 59,
+      "cost": {
+        "gold": 30
+      },
+      "materials": {
+        "magiestaub": 3,
+        "runenstein": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "glueck_boost",
+        "amount": 3,
+        "questsRemaining": 3
+      },
+      "xp": 12,
+      "description": "Schreibt: Schriftrolle des Glücks."
+    },
+    {
+      "id": "recipe-verz-scroll-fokus-3",
+      "name": "Schriftrolle des Fokus",
+      "profession": "verzauberer",
+      "source": "trainer",
+      "reqSkill": 62,
+      "cost": {
+        "gold": 30
+      },
+      "materials": {
+        "magiestaub": 3,
+        "runenstein": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "fokus_boost",
+        "amount": 3,
+        "questsRemaining": 3
+      },
+      "xp": 12,
+      "description": "Schreibt: Schriftrolle des Fokus."
+    },
+    {
+      "id": "recipe-verz-scroll-tempo-3",
+      "name": "Schriftrolle der Eile",
+      "profession": "verzauberer",
+      "source": "trainer",
+      "reqSkill": 65,
+      "cost": {
+        "gold": 30
+      },
+      "materials": {
+        "magiestaub": 3,
+        "runenstein": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "tempo_boost",
+        "amount": 3,
+        "questsRemaining": 3
+      },
+      "xp": 12,
+      "description": "Schreibt: Schriftrolle der Eile."
+    },
+    {
+      "id": "recipe-verz-scroll-kraft-6",
+      "name": "Große Schriftrolle der Kraft",
+      "profession": "verzauberer",
+      "source": "trainer",
+      "reqSkill": 175,
+      "cost": {
+        "gold": 200
+      },
+      "materials": {
+        "runenstein": 3,
+        "kristallsplitter": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "kraft_boost",
+        "amount": 6,
+        "questsRemaining": 4
+      },
+      "xp": 25,
+      "description": "Schreibt: Große Schriftrolle der Kraft."
+    },
+    {
+      "id": "recipe-verz-scroll-weisheit-6",
+      "name": "Große Schriftrolle der Weisheit",
+      "profession": "verzauberer",
+      "source": "trainer",
+      "reqSkill": 178,
+      "cost": {
+        "gold": 200
+      },
+      "materials": {
+        "runenstein": 3,
+        "kristallsplitter": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "weisheit_boost",
+        "amount": 6,
+        "questsRemaining": 4
+      },
+      "xp": 25,
+      "description": "Schreibt: Große Schriftrolle der Weisheit."
+    },
+    {
+      "id": "recipe-verz-scroll-ausdauer-6",
+      "name": "Große Schriftrolle der Ausdauer",
+      "profession": "verzauberer",
+      "source": "trainer",
+      "reqSkill": 181,
+      "cost": {
+        "gold": 200
+      },
+      "materials": {
+        "runenstein": 3,
+        "kristallsplitter": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "ausdauer_boost",
+        "amount": 6,
+        "questsRemaining": 4
+      },
+      "xp": 25,
+      "description": "Schreibt: Große Schriftrolle der Ausdauer."
+    },
+    {
+      "id": "recipe-verz-scroll-glueck-6",
+      "name": "Große Schriftrolle des Glücks",
+      "profession": "verzauberer",
+      "source": "trainer",
+      "reqSkill": 184,
+      "cost": {
+        "gold": 200
+      },
+      "materials": {
+        "runenstein": 3,
+        "kristallsplitter": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "glueck_boost",
+        "amount": 6,
+        "questsRemaining": 4
+      },
+      "xp": 25,
+      "description": "Schreibt: Große Schriftrolle des Glücks."
+    },
+    {
+      "id": "recipe-verz-scroll-fokus-6",
+      "name": "Große Schriftrolle des Fokus",
+      "profession": "verzauberer",
+      "source": "trainer",
+      "reqSkill": 187,
+      "cost": {
+        "gold": 200
+      },
+      "materials": {
+        "runenstein": 3,
+        "kristallsplitter": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "fokus_boost",
+        "amount": 6,
+        "questsRemaining": 4
+      },
+      "xp": 25,
+      "description": "Schreibt: Große Schriftrolle des Fokus."
+    },
+    {
+      "id": "recipe-verz-scroll-tempo-6",
+      "name": "Große Schriftrolle der Eile",
+      "profession": "verzauberer",
+      "source": "trainer",
+      "reqSkill": 190,
+      "cost": {
+        "gold": 200
+      },
+      "materials": {
+        "runenstein": 3,
+        "kristallsplitter": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "tempo_boost",
+        "amount": 6,
+        "questsRemaining": 4
+      },
+      "xp": 25,
+      "description": "Schreibt: Große Schriftrolle der Eile."
+    },
+    {
+      "id": "recipe-verz-schutzglyphe-1",
+      "name": "Schutzglyphe I",
+      "profession": "verzauberer",
+      "source": "trainer",
+      "reqSkill": 30,
+      "cost": {
+        "gold": 20
+      },
+      "materials": {
+        "magiestaub": 3
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "vitalitaet_boost",
+        "amount": 3,
+        "questsRemaining": 3
+      },
+      "xp": 8,
+      "description": "Erschafft: Schutzglyphe I."
+    },
+    {
+      "id": "recipe-verz-schutzglyphe-2",
+      "name": "Schutzglyphe II",
+      "profession": "verzauberer",
+      "source": "trainer",
+      "reqSkill": 120,
+      "cost": {
+        "gold": 100
+      },
+      "materials": {
+        "runenstein": 2,
+        "magiestaub": 3
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "vitalitaet_boost",
+        "amount": 6,
+        "questsRemaining": 4
+      },
+      "xp": 18,
+      "description": "Erschafft: Schutzglyphe II."
+    },
+    {
+      "id": "recipe-verz-schutzglyphe-3",
+      "name": "Schutzglyphe III",
+      "profession": "verzauberer",
+      "source": "trainer",
+      "reqSkill": 240,
+      "cost": {
+        "gold": 400
+      },
+      "materials": {
+        "aetherkern": 1,
+        "runenstein": 3
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "vitalitaet_boost",
+        "amount": 10,
+        "questsRemaining": 5
+      },
+      "xp": 35,
+      "description": "Erschafft: Schutzglyphe III."
+    },
+    {
+      "id": "recipe-verz-tempoward-1",
+      "name": "Glyphe der Eile I",
+      "profession": "verzauberer",
+      "source": "trainer",
+      "reqSkill": 60,
+      "cost": {
+        "gold": 35
+      },
+      "materials": {
+        "magiestaub": 4
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "tempo_boost",
+        "amount": 3,
+        "questsRemaining": 3
+      },
+      "xp": 12,
+      "description": "Erschafft: Glyphe der Eile I."
+    },
+    {
+      "id": "recipe-verz-tempoward-2",
+      "name": "Glyphe der Eile II",
+      "profession": "verzauberer",
+      "source": "trainer",
+      "reqSkill": 160,
+      "cost": {
+        "gold": 180
+      },
+      "materials": {
+        "runenstein": 3,
+        "kristallsplitter": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "tempo_boost",
+        "amount": 6,
+        "questsRemaining": 4
+      },
+      "xp": 22,
+      "description": "Erschafft: Glyphe der Eile II."
+    },
+    {
+      "id": "recipe-verz-tempoward-3",
+      "name": "Glyphe der Eile III",
+      "profession": "verzauberer",
+      "source": "trainer",
+      "reqSkill": 260,
+      "cost": {
+        "gold": 500
+      },
+      "materials": {
+        "aetherkern": 2,
+        "runenstein": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "tempo_boost",
+        "amount": 10,
+        "questsRemaining": 5
+      },
+      "xp": 38,
+      "description": "Erschafft: Glyphe der Eile III."
+    },
+    {
+      "id": "recipe-verz-machtward-1",
+      "name": "Glyphe der Macht I",
+      "profession": "verzauberer",
+      "source": "trainer",
+      "reqSkill": 80,
+      "cost": {
+        "gold": 50
+      },
+      "materials": {
+        "runenstein": 2,
+        "magiestaub": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "xp_boost_5",
+        "questsRemaining": 4
+      },
+      "xp": 14,
+      "description": "Erschafft: Glyphe der Macht I."
+    },
+    {
+      "id": "recipe-verz-machtward-2",
+      "name": "Glyphe der Macht II",
+      "profession": "verzauberer",
+      "source": "trainer",
+      "reqSkill": 190,
+      "cost": {
+        "gold": 250
+      },
+      "materials": {
+        "kristallsplitter": 3,
+        "runenstein": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "xp_boost_10",
+        "questsRemaining": 4
+      },
+      "xp": 28,
+      "description": "Erschafft: Glyphe der Macht II."
+    },
+    {
+      "id": "recipe-verz-streakward",
+      "name": "Arkaner Streakschutz",
+      "profession": "verzauberer",
+      "source": "trainer",
+      "reqSkill": 110,
+      "cost": {
+        "gold": 80
+      },
+      "materials": {
+        "runenstein": 2,
+        "magiestaub": 3
+      },
+      "result": {
+        "type": "streak_shield",
+        "amount": 1
+      },
+      "xp": 18,
+      "description": "Erschafft: Arkaner Streakschutz."
+    },
+    {
+      "id": "recipe-verz-meister-streakward",
+      "name": "Meister-Streakschutz",
+      "profession": "verzauberer",
+      "source": "trainer",
+      "reqSkill": 250,
+      "cost": {
+        "gold": 500
+      },
+      "materials": {
+        "aetherkern": 1,
+        "seelensplitter": 1
+      },
+      "result": {
+        "type": "streak_shield",
+        "amount": 1
+      },
+      "xp": 38,
+      "description": "Erschafft: Meister-Streakschutz."
+    },
+    {
+      "id": "recipe-verz-brillantes-oel",
+      "name": "Brillantes Öl",
+      "profession": "verzauberer",
+      "source": "trainer",
+      "reqSkill": 70,
+      "cost": {
+        "gold": 40
+      },
+      "materials": {
+        "magiestaub": 3,
+        "runenstein": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "weisheit_boost",
+        "amount": 4,
+        "questsRemaining": 3
+      },
+      "xp": 14,
+      "description": "Braut: Brillantes Öl."
+    },
+    {
+      "id": "recipe-verz-wildes-oel",
+      "name": "Wildes Öl",
+      "profession": "verzauberer",
+      "source": "trainer",
+      "reqSkill": 70,
+      "cost": {
+        "gold": 40
+      },
+      "materials": {
+        "magiestaub": 3,
+        "runenstein": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "kraft_boost",
+        "amount": 4,
+        "questsRemaining": 3
+      },
+      "xp": 14,
+      "description": "Braut: Wildes Öl."
+    },
+    {
+      "id": "recipe-verz-gluecksoel",
+      "name": "Glücksöl",
+      "profession": "verzauberer",
+      "source": "trainer",
+      "reqSkill": 100,
+      "cost": {
+        "gold": 60
+      },
+      "materials": {
+        "runenstein": 2,
+        "magiestaub": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "glueck_boost",
+        "amount": 4,
+        "questsRemaining": 3
+      },
+      "xp": 18,
+      "description": "Braut: Glücksöl."
+    },
+    {
+      "id": "recipe-verz-grosses-brillantes-oel",
+      "name": "Großes Brillantes Öl",
+      "profession": "verzauberer",
+      "source": "trainer",
+      "reqSkill": 200,
+      "cost": {
+        "gold": 250
+      },
+      "materials": {
+        "kristallsplitter": 2,
+        "runenstein": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "weisheit_boost",
+        "amount": 7,
+        "questsRemaining": 4
+      },
+      "xp": 28,
+      "description": "Braut: Großes Brillantes Öl."
+    },
+    {
+      "id": "recipe-verz-grosses-wildes-oel",
+      "name": "Großes Wildes Öl",
+      "profession": "verzauberer",
+      "source": "trainer",
+      "reqSkill": 200,
+      "cost": {
+        "gold": 250
+      },
+      "materials": {
+        "kristallsplitter": 2,
+        "runenstein": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "kraft_boost",
+        "amount": 7,
+        "questsRemaining": 4
+      },
+      "xp": 28,
+      "description": "Braut: Großes Wildes Öl."
+    },
+    {
+      "id": "recipe-verz-grosses-gluecksoel",
+      "name": "Großes Glücksöl",
+      "profession": "verzauberer",
+      "source": "trainer",
+      "reqSkill": 230,
+      "cost": {
+        "gold": 350
+      },
+      "materials": {
+        "aetherkern": 1,
+        "runenstein": 3
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "glueck_boost",
+        "amount": 7,
+        "questsRemaining": 4
+      },
+      "xp": 32,
+      "description": "Braut: Großes Glücksöl."
+    },
+    {
+      "id": "recipe-verz-aetheroel",
+      "name": "Ätheröl",
+      "profession": "verzauberer",
+      "source": "faction",
+      "reqSkill": 270,
+      "cost": {
+        "gold": 600
+      },
+      "materials": {
+        "aetherkern": 2,
+        "seelensplitter": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "xp_boost_10",
+        "questsRemaining": 5
+      },
+      "xp": 42,
+      "description": "Braut: Ätheröl.",
+      "factionId": "tinte",
+      "factionMinRep": "revered"
+    },
+    {
+      "id": "recipe-verz-seelenoel",
+      "name": "Seelenöl",
+      "profession": "verzauberer",
+      "source": "faction",
+      "reqSkill": 290,
+      "cost": {
+        "gold": 1000
+      },
+      "materials": {
+        "seelensplitter": 2,
+        "aetherkern": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "xp_gold_boost",
+        "questsRemaining": 5,
+        "xpPercent": 15,
+        "goldPercent": 10
+      },
+      "xp": 48,
+      "description": "Braut: Seelenöl.",
+      "factionId": "tinte",
+      "factionMinRep": "revered"
     }
   ]
 }
