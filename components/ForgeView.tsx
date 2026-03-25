@@ -493,18 +493,18 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
         </div>
       </div>
 
-      {/* ─── All Materials Grid ────────────────────────────────────────── */}
+      {/* ─── All Materials ────────────────────────────────────────────── */}
       {Object.keys(materials).length > 0 && (
-        <div className="rounded-xl p-4" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
-          <Tip k="materials" heading><p className="text-xs font-semibold uppercase tracking-widest mb-3" style={{ color: "rgba(255,255,255,0.25)" }}>Materials</p></Tip>
-          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-2">
+        <div className="rounded-xl p-3" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
+          <Tip k="materials" heading><p className="text-xs font-semibold uppercase tracking-widest mb-2" style={{ color: "rgba(255,255,255,0.25)" }}>Materials</p></Tip>
+          <div className="flex flex-wrap gap-1.5">
             {materialDefs.filter(m => materials[m.id]).map(m => {
               const rc = RARITY_COLORS[m.rarity] || "#888";
               return (
-                <div key={m.id} className="rounded-xl p-2.5 flex flex-col items-center gap-1.5 text-center" style={{ background: `${rc}08`, border: `1px solid ${rc}20`, boxShadow: `inset 0 1px 0 ${rc}08` }} title={m.desc}>
-                  <img src={m.icon} alt="" width={28} height={28} style={{ imageRendering: "auto" }} onError={hideOnError} />
-                  <span className="text-xs font-semibold leading-tight" style={{ color: rc, fontSize: 12 }}>{m.name}</span>
-                  <span className="text-sm font-mono font-bold" style={{ color: "rgba(255,255,255,0.7)" }}>×{materials[m.id]}</span>
+                <div key={m.id} className="flex items-center gap-1.5 rounded-lg px-2 py-1" style={{ background: `${rc}06`, border: `1px solid ${rc}18` }} title={m.desc}>
+                  {m.icon && <img src={m.icon} alt="" width={16} height={16} style={{ imageRendering: "auto" }} onError={hideOnError} />}
+                  <span className="text-xs" style={{ color: rc }}>{m.name}</span>
+                  <span className="text-xs font-mono font-bold" style={{ color: "rgba(255,255,255,0.5)" }}>×{materials[m.id]}</span>
                 </div>
               );
             })}
