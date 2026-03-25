@@ -384,8 +384,18 @@ router.post('/api/weekly-challenge/claim-milestone', requireAuth, (req, res) => 
   const milestone = STAR_MILESTONES.find(m => m.stars === targetStars);
   if (!milestone) return res.status(400).json({ error: 'Invalid milestone' });
 
-  // Calculate total stars earned
-  const totalStars = (u.weeklyChallenge.stars || []).reduce((s, v) => s + (v || 0), 0);
+  // Calculate total stars earned (live — includes current unclaimed stage, same as GET)
+  const modifier = getActiveModifier(challenge.weekId);
+  const stageStars = (challenge.template?.stages || []).map((s, i) => {
+    if ((u.weeklyChallenge.completedStages || []).includes(i + 1)) {
+      return (u.weeklyChallenge.stars || [])[i] || 0;
+    }
+    if (i === (u.weeklyChallenge.currentStage || 0)) {
+      return calculateStageStars(s, u.weeklyChallenge.progress || {}, u, (u.weeklyChallenge.stageStartedAt || [])[i], modifier);
+    }
+    return 0;
+  });
+  const totalStars = stageStars.reduce((s, v) => s + (v || 0), 0);
   if (totalStars < milestone.stars) {
     return res.status(400).json({ error: `Need ${milestone.stars} stars (have ${totalStars})` });
   }

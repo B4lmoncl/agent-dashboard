@@ -137,26 +137,32 @@ function SternenpfadView({
               const claimed = claimedMilestones.includes(ms.stars);
               const canClaim = reached && !claimed;
               return (
-                <div key={ms.stars} className="flex flex-col items-center gap-0.5">
-                  <button
-                    className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold transition-all"
-                    disabled={!canClaim || claimingMilestone !== null}
-                    onClick={() => canClaim && onClaimMilestone(ms.stars)}
-                    title={claimed ? "Already claimed" : claimingMilestone !== null ? "Claiming in progress..." : !reached ? `Earn ${ms.stars} stars to unlock` : "Claim milestone reward"}
+                <button
+                  key={ms.stars}
+                  className="flex flex-col items-center gap-0.5 rounded-lg px-2 py-1.5 transition-all"
+                  disabled={!canClaim || claimingMilestone !== null}
+                  onClick={() => canClaim && onClaimMilestone(ms.stars)}
+                  title={claimed ? "Already claimed" : claimingMilestone !== null ? "Claiming in progress..." : !reached ? `Earn ${ms.stars} stars to unlock` : "Claim milestone reward"}
+                  style={{
+                    background: canClaim ? "rgba(251,191,36,0.08)" : "transparent",
+                    cursor: canClaim && claimingMilestone === null ? "pointer" : claimed ? "default" : "not-allowed",
+                    animation: canClaim ? "pulse 2s infinite" : "none",
+                  }}
+                >
+                  <div
+                    className="w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold transition-all"
                     style={{
                       background: claimed ? "#fbbf24" : canClaim ? "rgba(251,191,36,0.25)" : "rgba(255,255,255,0.06)",
                       color: claimed ? "#000" : canClaim ? "#fbbf24" : "rgba(255,255,255,0.2)",
                       boxShadow: claimed ? "0 0 8px rgba(251,191,36,0.3)" : canClaim ? "0 0 12px rgba(251,191,36,0.2)" : "none",
-                      cursor: canClaim && claimingMilestone === null ? "pointer" : "not-allowed",
-                      animation: canClaim ? "pulse 2s infinite" : "none",
                     }}
                   >
                     {claimed ? "✓" : claimingMilestone === ms.stars ? "…" : ms.stars}
-                  </button>
+                  </div>
                   <span className="text-xs font-bold" style={{ color: reached ? "#fbbf24" : "rgba(255,255,255,0.2)" }}>{ms.label}</span>
                   <span className="text-xs" style={{ color: reached ? "rgba(251,191,36,0.6)" : "rgba(255,255,255,0.12)", fontSize: 12 }}>{ms.reward}</span>
                   {canClaim && <span className="text-xs font-semibold" style={{ color: "#fbbf24", fontSize: 12 }}>Claim!</span>}
-                </div>
+                </button>
               );
             })}
           </div>
