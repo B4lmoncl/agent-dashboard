@@ -110,7 +110,7 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
         setNextMythicLevel(data.nextMythicLevel || 1);
         setMythicLeaderboard(data.mythicLeaderboard || []);
       }
-    } catch { /* ignore */ }
+    } catch (e) { console.error("[rift]", e); }
     setLoading(false);
   }, [playerName]);
 

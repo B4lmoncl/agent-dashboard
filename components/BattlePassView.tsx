@@ -77,7 +77,7 @@ export default function BattlePassView({ onRewardCelebration, onNavigate }: { on
         setRewards(data.rewards || []);
         setPlayer(data.player);
       }
-    } catch { /* ignore */ }
+    } catch (e) { console.error("[battlepass]", e); }
     setLoading(false);
   }, []);
 
