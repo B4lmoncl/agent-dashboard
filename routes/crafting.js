@@ -202,7 +202,8 @@ router.get('/api/professions', (req, res) => {
     const pMaxSlots = u ? getMaxProfessionSlots(playerLevel) : 0;
     const canChoose = chosen || (u?.chosenProfessions || []).length < pMaxSlots;
     const rank = getProfRank(profProgress.skill);
-    const skillCap = u ? getSkillCap(playerLevel, profData?.trainedRanks) : 75;
+    const playerProfData = u ? (u.professions || {})[p.id] : null;
+    const skillCap = u ? getSkillCap(playerLevel, playerProfData?.trainedRanks) : 75;
     const masterySkill = PROFESSIONS_DATA.masteryConfig?.unlockSkill || 225;
     const masteryActive = profProgress.skill >= masterySkill;
     return {
@@ -481,7 +482,8 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
   const reqSkill = recipe.reqSkill || reqProfLevelToSkill(recipe.reqProfLevel);
   const currentSkill = u.professions[recipe.profession].skill || u.professions[recipe.profession].xp || 0;
   const playerLvl = getLevelInfo(u.xp || 0).level;
-  const skillCap = getSkillCap(playerLvl, profData?.trainedRanks);
+  const craftProfData = (u.professions || {})[recipe.profession];
+  const skillCap = getSkillCap(playerLvl, craftProfData?.trainedRanks);
   const skillUpColor = getSkillUpColor(currentSkill, reqSkill);
   const skillUpChance = getSkillUpChance(currentSkill, reqSkill);
   const { dailyBonusAvailable } = getDailyBonusInfo(u);
