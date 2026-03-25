@@ -344,19 +344,20 @@ Diese Entscheidungen sind verbindlich für alle zukünftigen Implementierungs-Se
 
 ## Implementation Order
 
-### Session 0: Clean Slate
-- Alle in Phase 2 erstellten Rezepte und generischen Gear-Templates löschen
-- Lederverarbeiter-Profession-Definition + Materialien behalten (sind korrekt)
-- Backend-Änderungen behalten (reqSkill-Support, meetsSkillReq(), leather_stat_boost)
-- ForgeView-Änderungen behalten (NPC_LOCATIONS, SYNERGY_HINTS)
+### Session 0: Clean Slate ✅
+- Keine Phase-2 Rezepte/Templates vorhanden (waren nie erstellt)
+- Lederverarbeiter-Profession-Definition + Materialien korrekt
+- Backend-Änderungen korrekt (reqSkill-Support, meetsSkillReq(), leather_stat_boost)
+- ForgeView-Änderungen korrekt (NPC_LOCATIONS, SYNERGY_HINTS)
 
-### Session 1: Schmied (~150 Rezepte + ~100 Gear-Templates)
-- ~100 unique benannte Heavy-Gear-Templates erstellen
-- ~15 Zwischenprodukt-Rezepte (Barren-Chain)
-- ~100 Gear-Rezepte (je eins pro Template)
-- ~20 Utility-Rezepte (Schärfsteine, Gewichtsteine etc.)
-- ~15 Service-Rezepte (Verstärken, Temperieren etc.)
-- Balance-Check: Skill-Lücken, Material-Kosten, CLAUDE.md Affix-Regeln
+### Session 1: Schmied ✅ (2026-03-25)
+- 100 unique benannte Heavy-Gear-Templates (T1:20, T2:25, T3:25, T4:30)
+- 10 Zwischenprodukt-Rezepte (Eisenbarren → Seelenstahl)
+- 100 Gear-Rezepte (1 pro Template, reqSkill 1-298)
+- 19 Utility-Rezepte (Schärfsteine 5T, Gewichtsteine 4T, Schilddornen 3T, Panzerverstärkungen 3T, Streak-Schilde 2T, Forge-Temp 2T)
+- 15 Service-Rezepte (Klinge schärfen 5T, Rüstung verstärken 4T, Schild polieren 3T, Amulett segnen 3T)
+- Source: 84 Trainer / 40 Drop / 21 Faction
+- 10 Intermediate Materials (eisenbarren bis seelenstahl)
 
 ### Session 2: Schneider (~150 Rezepte + ~100 Gear-Templates)
 - ~100 unique benannte Cloth-Gear-Templates erstellen
