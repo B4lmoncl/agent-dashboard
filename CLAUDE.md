@@ -4,6 +4,32 @@
 
 **Quest Hall / Agent Dashboard** (v1.5.3) — A real-time operations center and gamified quest management system for AI agents and players. Combines agent monitoring, RPG quest mechanics (classes, companions, gacha, leveling), a REST API, and an Electron desktop companion app (Quest Forge).
 
+## Game Design References (Primäre Vorbilder)
+
+Diese Spiele sind die **verbindlichen Referenzen** für alle Design-Entscheidungen. Bei Unsicherheit: "Wie macht WoW/Diablo das?" ist immer die erste Frage.
+
+### Hauptreferenzen (1:1 Vorbilder)
+
+| System | Referenz | Was genau |
+|--------|----------|-----------|
+| **Professions/Crafting** | **WoW Classic** | 1:1 Vorbild. 300 Max Skill, 4 Ränge, Orange/Yellow/Green/Gray Skill-Up, Trainer-Rezepte, Drop-Rezepte, Faction-Rezepte, Shared Transmute Cooldowns, 2 Profession Slots, Free Unlearn. Alles was Berufe betrifft → WoW Classic nachschlagen. |
+| **Grind & Progression** | **WoW Classic** | Langzeit-Motivation. Wochen für 1-300 Profession. Streaks, Daily Quests, Weekly Resets — alles soll sich verdient anfühlen, nicht geschenkt. |
+| **Item System** | **Diablo 3** | Loot 2.0 Philosophie. Primary/Secondary Affix Split, Rarity = Affix Count, Level = Stat Values. Legendary Effects als Gameplay-Changer. Reforge (Kanai's Cube), Enchanting (Mystic stat reroll). Set-Boni. Gear Score. |
+| **Item Transmog/Visuals** | **Diablo 3** | Rarity-Farben, Legendary-Glow, Item-Tooltips mit Stat-Breakdown. Collection Log für Unique Items. Salvage System. |
+
+### Sekundäre Referenzen
+
+| System | Referenz | Was genau |
+|--------|----------|-----------|
+| **Gamification Loop** | **Habitica** | Reale Aufgaben als Quests. XP/Gold für Alltags-Tasks. Streaks als Motivation. Companions als emotionale Bindung. |
+| **Gacha & Daily Login** | **Honkai Star Rail / Genshin Impact** | Pity-System (Soft/Hard Pity), Banner-Rotation, Daily Mission Checklist, Welkin-style Daily Bonus. |
+| **UI Feel & Polish** | **WoW Classic + Diablo 3** | Cast Bars, Progress Bars mit Tiefe (Diablo-Beveled), Skill-Up Celebrations, NPC Interaction Feel. Alles soll sich "gewichtig" anfühlen. |
+| **Navigation** | **Stormlight Archive (Urithiru)** | Die Quest Hall = ein uralter Turm mit Stockwerken. Jeder Floor hat eigene Räume und Atmosphäre. |
+| **Tone & Writing** | **Skulduggery Pleasant + Kingkiller Chronicle** | Siehe LYRA-PLAYBOOK.md Lore Bible. Trockener Humor + poetische Eleganz. |
+
+### Design-Prinzip
+Wenn ein Feature unklar ist: **Erst WoW Classic / Diablo 3 nachschlagen**, dann adaptieren für unser System. Nicht neu erfinden was schon perfekt designt wurde.
+
 ## Tech Stack
 
 - **Frontend:** Next.js 16.1.6, React 19, TypeScript 5, Tailwind CSS 4
