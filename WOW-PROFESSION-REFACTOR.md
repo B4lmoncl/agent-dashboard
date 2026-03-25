@@ -359,45 +359,29 @@ Diese Entscheidungen sind verbindlich für alle zukünftigen Implementierungs-Se
 - Source: 84 Trainer / 40 Drop / 21 Faction
 - 10 Intermediate Materials (eisenbarren bis seelenstahl)
 
-### Session 2: Schneider (~150 Rezepte + ~100 Gear-Templates)
-- ~100 unique benannte Cloth-Gear-Templates erstellen
-- ~12 Zwischenprodukte (Stoff-Ballen-Chain)
-- ~100 Gear-Rezepte
-- ~20 Utility-Rezepte (Zauberfäden, Glücksfäden etc.)
-- ~15 Service-Rezepte
-- Balance-Check
+### Session 2: Schneider ✅ (2026-03-25)
+- 100 cloth gear templates (gearTemplates-schneider.json, T1-T4)
+- 142 recipes (8 intermediates, 100 gear, 19 utility, 15 service)
 
-### Session 3: Lederverarbeiter (~150 Rezepte + ~100 Gear-Templates)
-- ~100 unique benannte Leather-Gear-Templates erstellen
-- ~12 Zwischenprodukte (Leder-Verarbeitungs-Chain)
-- ~100 Gear-Rezepte
-- ~20 Utility-Rezepte (Leder-Kits, Köcher, Gold-Beutel)
-- ~15 Service-Rezepte
-- Balance-Check
+### Session 3: Lederverarbeiter ✅ (2026-03-25)
+- 100 leather gear templates (gearTemplates-lederverarbeiter.json, T1-T4)
+- 142 recipes (8 intermediates, 100 gear, 19 utility, 15 service)
 
-### Session 4: Alchemist (~80-100 Rezepte)
-- ~30 Potions (6 Tiers × 5 Buff-Typen)
-- ~6 Flasks (Endgame Multi-Buffs)
-- ~12 Transmutes (Material-Upgrades + Cross-Profession)
-- ~15 Elixirs (Single-Stat Buffs)
-- ~15 Utility (Gegengifte, Öle, Streak-Schilde)
-- Balance-Check
+### Session 4: Alchemist ✅ (2026-03-25)
+- 76 recipes: 30 Potions, 6 Flasks, 12 Transmutes (with cooldowns), 15 Elixirs, 12 Utility
 
-### Session 5: Koch (~80-100 Rezepte)
-- ~40 Meals (6 Tiers × Buff-Typen)
-- ~15 Drinks (Tee, Wein, Met)
-- ~6 Feasts (Gruppen-Buffs)
-- ~10 Snacks (Sofort-Effekte)
-- ~8 Intermediate (Gewürze, Marinaden)
-- Balance-Check
+### Session 5: Koch ✅ (2026-03-25)
+- 62 recipes: 30 Meals, 12 Drinks, 6 Feasts, 8 Snacks, 6 Intermediates
 
-### Session 6: Verzauberer (~80-100 Rezepte)
-- ~25 Temporary Enchants
-- ~15 Permanent Enchants
-- ~15 Wards/Glyphs
-- ~15 Scrolls
-- ~10 Oils
-- Balance-Check
+### Session 6: Verzauberer ✅ (2026-03-25)
+- 68 recipes: 24 Temp Enchants, 12 Perm Enchants, 12 Scrolls, 10 Wards/Glyphs, 8 Oils
+
+### Structural: Gear Template Split ✅ (2026-03-25)
+- gearTemplates.json: 251 general items (unchanged)
+- gearTemplates-schmied.json: 100 heavy armor items
+- gearTemplates-schneider.json: 100 cloth items
+- gearTemplates-lederverarbeiter.json: 100 leather items
+- Server auto-discovers gearTemplates-*.json at boot and merges
 
 ### Session 7: Final Balance Pass + Frontend
 - Gesamter Balance-Audit über alle 6 Professions
