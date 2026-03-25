@@ -495,11 +495,16 @@ const TOOLTIP_REGISTRY: Record<string, TooltipEntry> = {
     accent: "#f59e0b",
     body: (
       <>
-        <p>Crafting hub with 4 profession NPCs. Collect materials from quests, craft recipes with <GTRef k="gold">Gold</GTRef> + materials.</p>
-        <div className="gt-stat-row"><span>Ranks</span><span>Apprentice → Master</span></div>
-        <div className="gt-stat-row"><span>Profession Slots</span><span>Lv5 / Lv15 / Lv20 / Lv25</span></div>
-        <div className="gt-stat-row"><span>Daily Bonus</span><span>First craft = 2× prof. <GTRef k="xp">XP</GTRef></span></div>
-        <p className="gt-source">Skill-up colors: orange / yellow / green / gray. Switching costs 200 <GTRef k="essenz">Essenz</GTRef>.</p>
+        <p>The crafting hub of the Guild. 6 profession NPCs, each with unique recipes, gear, and consumables. Choose 2 professions — choose wisely.</p>
+        <div className="gt-stat-row"><span>Profession Slots</span><span>2 (can unlearn + relearn)</span></div>
+        <div className="gt-stat-row"><span>Max Skill</span><span>300 (WoW Classic style)</span></div>
+        <div className="gt-stat-row"><span>Ranks</span><span>Apprentice (75) → Journeyman (150) → Expert (225) → Artisan (300)</span></div>
+        <div className="gt-stat-row"><span>Rank Training</span><span>500g / 2,000g / 5,000g at NPC</span></div>
+        <div className="gt-stat-row"><span>Daily Bonus</span><span>First craft = 2× skill XP</span></div>
+        <div className="gt-stat-row"><span>Skill-Up Colors</span><span>🟠 Orange (100%) → 🟡 Yellow → 🟢 Green → ⚪ Gray (0%)</span></div>
+        <div className="gt-stat-row"><span>Recipe Sources</span><span>40% Trainer · 30% Drop · 20% Faction · 10% Dungeon</span></div>
+        <div className="gt-stat-row"><span>Material Drops</span><span>Only with chosen professions (affinity materials)</span></div>
+        <p className="gt-source">635 recipes across 6 professions. 300 unique gear templates. Trainer recipes cost <GTRef k="gold">Gold</GTRef> to learn. All crafted items are tradeable (BoE).</p>
       </>
     ),
   },
@@ -623,12 +628,117 @@ const TOOLTIP_REGISTRY: Record<string, TooltipEntry> = {
     accent: "#f59e0b",
     body: (
       <>
-        <p>4 crafting disciplines, each with a unique NPC master. Choose up to 2 professions (more slots unlock at higher levels).</p>
-        <div className="gt-stat-row"><span>Blacksmith (Grimvar)</span><span>Gear rerolling + reinforcing</span></div>
-        <div className="gt-stat-row"><span>Alchemist (Ysolde)</span><span>Buff potions + flasks</span></div>
-        <div className="gt-stat-row"><span>Enchanter (Eldric)</span><span>Gear enchanting + infusions</span></div>
-        <div className="gt-stat-row"><span>Cook (Bruna)</span><span>Meals + consumables</span></div>
-        <p className="gt-source">10 levels per profession. Ranks: Novice → Apprentice → Journeyman → Expert → Artisan → Master.</p>
+        <p>6 crafting disciplines. Choose 2 — your choice determines which materials drop from quests and what you can craft.</p>
+        <div className="gt-stat-row" style={{ color: "#f59e0b" }}><span><GTRef k="prof_schmied">Blacksmith</GTRef> (Grimvar)</span><span>Heavy armor + weapons</span></div>
+        <div className="gt-stat-row" style={{ color: "#a855f7" }}><span><GTRef k="prof_schneider">Tailor</GTRef> (Selina)</span><span>Cloth armor + staves</span></div>
+        <div className="gt-stat-row" style={{ color: "#b45309" }}><span><GTRef k="prof_lederverarbeiter">Leatherworker</GTRef> (Roderic)</span><span>Leather armor</span></div>
+        <div className="gt-stat-row" style={{ color: "#22c55e" }}><span><GTRef k="prof_alchemist">Alchemist</GTRef> (Ysolde)</span><span>Potions, flasks, transmutes</span></div>
+        <div className="gt-stat-row" style={{ color: "#ef4444" }}><span><GTRef k="prof_koch">Cook</GTRef> (Bruna)</span><span>Meals, drinks, feasts</span></div>
+        <div className="gt-stat-row" style={{ color: "#6366f1" }}><span><GTRef k="prof_verzauberer">Enchanter</GTRef> (Eldric)</span><span>Enchants, scrolls, oils</span></div>
+        <p className="gt-source">Unlearn a profession anytime to free a slot (resets to skill 0). Recipes must be learned from trainers, drops, or factions.</p>
+      </>
+    ),
+  },
+  prof_schmied: {
+    title: "Blacksmith — Grimvar the Smith",
+    icon: "🔨",
+    accent: "#f59e0b",
+    body: (
+      <>
+        <p>Forges heavy plate armor and weapons from ore, crystal, and dragonscale. The backbone of any well-equipped adventurer.</p>
+        <div className="gt-stat-row"><span>Armor Type</span><span>Heavy (+1 <GTRef k="ausdauer">Ausdauer</GTRef> per piece)</span></div>
+        <div className="gt-stat-row"><span>Gear Templates</span><span>100 unique items (Eisern → Kristall → Drachen → Aether → Seelen)</span></div>
+        <div className="gt-stat-row"><span>Recipes</span><span>145 total (100 gear + 10 bars + 19 utility + 15 service)</span></div>
+        <div className="gt-stat-row"><span>Materials</span><span>Eisenerz, Kristallsplitter, Drachenschuppe</span></div>
+        <div className="gt-stat-row"><span>Key Utility</span><span>Schärfsteine (+Kraft), Gewichtsteine (+Ausdauer), Streak-Schilde</span></div>
+        <div className="gt-stat-row"><span>Key Service</span><span>Klinge schärfen, Rüstung verstärken, Schild polieren, Amulett segnen</span></div>
+        <div className="gt-stat-row"><span>Mastery (225+)</span><span>+10% gear stat rolls when crafting</span></div>
+        <p className="gt-source">Best paired with: Alchemist (transmute materials) or Verzauberer (enchant your gear).</p>
+      </>
+    ),
+  },
+  prof_schneider: {
+    title: "Tailor — Selina the Weaver",
+    icon: "🧵",
+    accent: "#a855f7",
+    body: (
+      <>
+        <p>Weaves cloth armor from linen, wool, silk, and arcane fabrics. Scholar-aesthetic — light, flowing, magical.</p>
+        <div className="gt-stat-row"><span>Armor Type</span><span>Cloth (+1% <GTRef k="xp">XP</GTRef> per piece)</span></div>
+        <div className="gt-stat-row"><span>Gear Templates</span><span>100 unique items (Leinen → Woll → Seiden → Magie → Runen)</span></div>
+        <div className="gt-stat-row"><span>Recipes</span><span>142 total (100 gear + 8 bolts + 19 utility + 15 service)</span></div>
+        <div className="gt-stat-row"><span>Materials</span><span>Leinenstoff, Wollstoff, Seidenstoff</span></div>
+        <div className="gt-stat-row"><span>Key Utility</span><span>Zauberfäden (+Weisheit), Glücksfäden (+Glück), XP-Gewänder</span></div>
+        <div className="gt-stat-row"><span>Mastery (225+)</span><span>+10% cloth armor stat rolls when crafting</span></div>
+        <p className="gt-source">Best paired with: Verzauberer (enchant cloth gear) or Alchemist (buff potions).</p>
+      </>
+    ),
+  },
+  prof_lederverarbeiter: {
+    title: "Leatherworker — Roderic the Tanner",
+    icon: "🦌",
+    accent: "#b45309",
+    body: (
+      <>
+        <p>Crafts leather armor from hides and pelts. Balanced between defense and agility — the hunter&apos;s choice.</p>
+        <div className="gt-stat-row"><span>Armor Type</span><span>Leather (+1% <GTRef k="gold">Gold</GTRef> per piece)</span></div>
+        <div className="gt-stat-row"><span>Gear Templates</span><span>100 unique items (Leichtleder → Mittleres → Schwer → Bestien → Urzeit)</span></div>
+        <div className="gt-stat-row"><span>Recipes</span><span>142 total (100 gear + 8 cured hides + 19 utility + 15 service)</span></div>
+        <div className="gt-stat-row"><span>Materials</span><span>Leichtes Leder, Mittleres Leder, Schweres Leder</span></div>
+        <div className="gt-stat-row"><span>Key Utility</span><span>Leder-Kits (+Ausdauer), Köcher (+Tempo), Gold-Beutel (+Gold%)</span></div>
+        <div className="gt-stat-row"><span>Mastery (225+)</span><span>+10% leather armor stat rolls when crafting</span></div>
+        <p className="gt-source">Best paired with: Koch (shared meat/hide drops) or Schmied (trade metals for leather).</p>
+      </>
+    ),
+  },
+  prof_alchemist: {
+    title: "Alchemist — Ysolde the Alchemist",
+    icon: "⚗️",
+    accent: "#22c55e",
+    body: (
+      <>
+        <p>Brews potions, elixirs, and flasks from herbs and reagents. Also performs transmutations — turning base materials into rare ones.</p>
+        <div className="gt-stat-row"><span>Recipes</span><span>76 total (30 potions + 6 flasks + 12 transmutes + 15 elixirs + 12 utility)</span></div>
+        <div className="gt-stat-row"><span>Materials</span><span>Kräuterbündel, Mondblume, Phoenixfeder</span></div>
+        <div className="gt-stat-row"><span>Potions</span><span>6 tiers × 5 buff types (Kraft, Weisheit, Glück, Ausdauer, Tempo)</span></div>
+        <div className="gt-stat-row"><span>Flasks</span><span>Endgame multi-buffs (Ehrgeiz, Schicksal, Titanen, Sterne, Ewigkeit)</span></div>
+        <div className="gt-stat-row"><span>Transmutes</span><span>Upgrade materials cross-profession (Eisen→Kristall, Leinen→Wolle etc.)</span></div>
+        <div className="gt-stat-row"><span>Cooldowns</span><span>High-tier transmutes: 24-48h cooldown</span></div>
+        <p className="gt-source">The universal support profession. Every profession benefits from Alchemist transmutes and buff potions.</p>
+      </>
+    ),
+  },
+  prof_koch: {
+    title: "Cook — Bruna the Cook",
+    icon: "🍳",
+    accent: "#ef4444",
+    body: (
+      <>
+        <p>Prepares meals, drinks, and feasts that grant powerful stat buffs. The most social profession — feasts buff the entire guild.</p>
+        <div className="gt-stat-row"><span>Recipes</span><span>62 total (30 meals + 12 drinks + 6 feasts + 8 snacks + 6 intermediates)</span></div>
+        <div className="gt-stat-row"><span>Materials</span><span>Wildfleisch, Feuerwurz, Sternenfrucht</span></div>
+        <div className="gt-stat-row"><span>Meals</span><span>5 tiers × 6 buff types (all stats + Fokus)</span></div>
+        <div className="gt-stat-row"><span>Drinks</span><span>Tee (+Vitalität), Wein (+Charisma), Met (+Kraft)</span></div>
+        <div className="gt-stat-row"><span>Feasts</span><span>Guild-wide buffs (skill 200+) — the Sternenmahl doubles rewards</span></div>
+        <div className="gt-stat-row"><span>Snacks</span><span>Instant Forge Temperature + Streak-Schilde</span></div>
+        <p className="gt-source">Pairs well with any profession. Feasts are the ultimate guild support tool.</p>
+      </>
+    ),
+  },
+  prof_verzauberer: {
+    title: "Enchanter — Eldric the Enchanter",
+    icon: "✨",
+    accent: "#6366f1",
+    body: (
+      <>
+        <p>Enchants gear with temporary and permanent stat bonuses. Also crafts scrolls and oils — tradeable buff items for the whole guild.</p>
+        <div className="gt-stat-row"><span>Recipes</span><span>68 total (24 temp enchants + 12 perm enchants + 12 scrolls + 10 wards + 8 oils)</span></div>
+        <div className="gt-stat-row"><span>Materials</span><span>Magiestaub, Runenstein, Aetherkern</span></div>
+        <div className="gt-stat-row"><span>Temp Enchants</span><span>4 stats × 6 tiers (Kraft, Weisheit, Ausdauer, Glück)</span></div>
+        <div className="gt-stat-row"><span>Perm Enchants</span><span>+1/+2 stat permanently on each gear slot</span></div>
+        <div className="gt-stat-row"><span>Scrolls</span><span>Tradeable single-use buff items (6 stats × 2 tiers)</span></div>
+        <div className="gt-stat-row"><span>Oils</span><span>Weapon/armor coatings (Brillant +Weisheit, Wild +Kraft, Äther +XP)</span></div>
+        <p className="gt-source">Best paired with: Schmied or Schneider (enchant your own crafted gear for maximum stats).</p>
       </>
     ),
   },
