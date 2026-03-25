@@ -1783,7 +1783,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                                         </span>
                                       )}
                                     </div>
-                                    <p className="text-xs truncate" style={{ color: "rgba(255,255,255,0.3)", fontSize: 11 }}>
+                                    <p className="text-xs truncate" style={{ color: "rgba(255,255,255,0.3)" }}>
                                       {t.description || condLabel(t.condition)}
                                     </p>
                                   </div>
