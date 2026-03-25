@@ -692,8 +692,8 @@ export default function TodayDrawer({
         <FloatingMotes color={timeInfo.particleColor} />
         {isNight && <NightStars />}
 
-        {/* ─── Header ─────────────────────────────────────────────────── */}
-        <div className="relative px-5 pt-4 pb-3" style={{ borderBottom: "1px solid rgba(255,255,255,0.06)", zIndex: 1 }}>
+        {/* ─── Header + Task Arc ────────────────────────────────────── */}
+        <div className="relative px-5 pt-4 pb-2" style={{ borderBottom: "1px solid rgba(255,255,255,0.06)", zIndex: 1 }}>
           <div className="flex items-center justify-between mb-1">
             <div className="flex items-center gap-2.5">
               <span className="text-base">{timeInfo.icon}</span>
@@ -710,6 +710,41 @@ export default function TodayDrawer({
             </button>
           </div>
           <p className="text-xs" style={{ color: "rgba(255,255,255,0.25)", lineHeight: 1.4 }}>{timeInfo.flavor}</p>
+
+          {/* Task Arc — compact, centered in header */}
+          <div className="relative flex justify-center mt-1" style={{ marginBottom: -4 }}>
+            <TipCustom title="Tasks Today" accent="#818cf8" hoverDelay={500} align="center"
+              body={<>
+                <p className="text-xs" style={{ color: "rgba(255,255,255,0.5)" }}>Your daily checklist progress.</p>
+                {categories.map(cat => (
+                  <div key={cat.id} className="flex items-center justify-between mt-1 text-xs">
+                    <span style={{ color: "rgba(255,255,255,0.4)" }}>{cat.label}</span>
+                    <span className="font-mono" style={{ color: cat.items.every(i => i.done) ? "#4ade80" : "rgba(255,255,255,0.3)" }}>
+                      {cat.items.filter(i => i.done).length}/{cat.items.length}
+                    </span>
+                  </div>
+                ))}
+              </>}
+            >
+              <svg width="160" height="80" viewBox="0 0 160 80" className="cursor-help">
+                <path d="M 16 65 A 64 64 0 0 1 144 65" fill="none" stroke="rgba(255,255,255,0.05)" strokeWidth="5" strokeLinecap="round" />
+                <path d="M 16 65 A 64 64 0 0 1 144 65" fill="none" stroke={allDone ? "#4ade80" : "#818cf8"} strokeWidth="5" strokeLinecap="round"
+                  strokeDasharray="201" strokeDashoffset={201 * (1 - (totalCount > 0 ? doneCount / totalCount : 0))}
+                  style={{ transition: "stroke-dashoffset 0.8s ease-out", filter: `drop-shadow(0 0 3px ${allDone ? "rgba(74,222,128,0.4)" : "rgba(129,140,248,0.3)"})` }}
+                />
+                <text x="80" y="55" textAnchor="middle" fill={allDone ? "#4ade80" : "#e8e8e8"} fontSize="14" fontWeight="bold" fontFamily="monospace">{doneCount}/{totalCount}</text>
+                <text x="80" y="68" textAnchor="middle" fill="rgba(255,255,255,0.25)" fontSize="9">{allDone ? "ALL COMPLETE" : "tasks today"}</text>
+                {categories.map((cat, ci) => {
+                  const catDone = cat.items.filter(i => i.done).length === cat.items.length;
+                  const angle = -180 + ((ci + 0.5) / categories.length) * 180;
+                  const rad = (angle * Math.PI) / 180;
+                  const cx = 80 + 64 * Math.cos(rad);
+                  const cy = 65 + 64 * Math.sin(rad);
+                  return <circle key={cat.id} cx={cx} cy={cy} r="2.5" fill={catDone ? "#4ade80" : cat.id === "urgent" ? "#fbbf24" : "rgba(255,255,255,0.15)"} style={{ transition: "fill 0.3s", filter: catDone ? "drop-shadow(0 0 3px rgba(74,222,128,0.5))" : "none" }} />;
+                })}
+              </svg>
+            </TipCustom>
+          </div>
         </div>
 
         {/* ─── Hero Section: Horizontal layout ─────────────────────── */}
@@ -833,82 +868,6 @@ export default function TodayDrawer({
               </div>
             </div></Tip>
           </div>
-        </div>
-
-        {/* ─── Progress Arc ─────────────────────────────────────────── */}
-        <div className="relative flex justify-center py-2" style={{ zIndex: 1 }}>
-          {/* Invisible tooltip trigger centered over the arc */}
-          <div className="absolute left-1/2 top-1/2" style={{ transform: "translate(-50%, -50%)", width: 120, height: 100, zIndex: 2 }}>
-            <TipCustom
-              title="Tasks Today"
-              accent="#818cf8"
-              hoverDelay={500}
-              align="center"
-              body={<>
-                <p className="text-xs" style={{ color: "rgba(255,255,255,0.5)" }}>Your daily checklist: bonus, companion, rituals, missions, active content, and social tasks. Complete them all for the day!</p>
-                {categories.map(cat => (
-                  <div key={cat.id} className="flex items-center justify-between mt-1 text-xs">
-                    <span style={{ color: "rgba(255,255,255,0.4)" }}>{cat.label}</span>
-                    <span className="font-mono" style={{ color: cat.items.every(i => i.done) ? "#4ade80" : "rgba(255,255,255,0.3)" }}>
-                      {cat.items.filter(i => i.done).length}/{cat.items.length}
-                    </span>
-                  </div>
-                ))}
-              </>}
-            >
-              <div className="w-full h-full cursor-help" />
-            </TipCustom>
-          </div>
-          <svg width="200" height="110" viewBox="0 0 200 110">
-            {/* Background arc */}
-            <path
-              d="M 20 85 A 80 80 0 0 1 180 85"
-              fill="none"
-              stroke="rgba(255,255,255,0.05)"
-              strokeWidth="6"
-              strokeLinecap="round"
-            />
-            {/* Progress arc */}
-            <path
-              d="M 20 85 A 80 80 0 0 1 180 85"
-              fill="none"
-              stroke={allDone ? "#4ade80" : "#818cf8"}
-              strokeWidth="6"
-              strokeLinecap="round"
-              strokeDasharray="251"
-              strokeDashoffset={251 * (1 - (totalCount > 0 ? doneCount / totalCount : 0))}
-              style={{
-                transition: "stroke-dashoffset 0.8s ease-out",
-                filter: `drop-shadow(0 0 4px ${allDone ? "rgba(74,222,128,0.4)" : "rgba(129,140,248,0.3)"})`,
-              }}
-            />
-            {/* Center text */}
-            <text x="100" y="75" textAnchor="middle" fill={allDone ? "#4ade80" : "#e8e8e8"} fontSize="16" fontWeight="bold" fontFamily="monospace" style={{ pointerEvents: "none" }}>
-              {doneCount}/{totalCount}
-            </text>
-            <text x="100" y="88" textAnchor="middle" fill="rgba(255,255,255,0.25)" fontSize="10" style={{ pointerEvents: "none" }}>
-              {allDone ? "ALL COMPLETE" : "tasks today"}
-            </text>
-            {/* Segment dots for each category */}
-            {categories.map((cat, ci) => {
-              const catDone = cat.items.filter(i => i.done).length === cat.items.length;
-              const angle = -180 + ((ci + 0.5) / categories.length) * 180;
-              const rad = (angle * Math.PI) / 180;
-              const cx = 100 + 80 * Math.cos(rad);
-              const cy = 85 + 80 * Math.sin(rad);
-              return (
-                <circle
-                  key={cat.id}
-                  cx={cx} cy={cy} r="3"
-                  fill={catDone ? "#4ade80" : cat.id === "urgent" ? "#fbbf24" : "rgba(255,255,255,0.15)"}
-                  style={{
-                    filter: catDone ? "drop-shadow(0 0 3px rgba(74,222,128,0.5))" : "none",
-                    transition: "fill 0.3s, filter 0.3s",
-                  }}
-                />
-              );
-            })}
-          </svg>
         </div>
 
         {/* ─── Categorized Card Grid ──────────────────────────────────── */}
