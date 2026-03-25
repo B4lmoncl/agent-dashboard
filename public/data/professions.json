@@ -333,6 +333,76 @@
       "icon": "/images/icons/mat-rauesleder.png",
       "rarity": "legendary",
       "desc": "Primordial leather from creatures older than the world. Almost alive beneath the needle."
+    },
+    {
+      "id": "eisenbarren",
+      "name": "Iron Bar",
+      "icon": null,
+      "rarity": "common",
+      "desc": "Smelted iron, shaped into a sturdy bar. The backbone of every smith's work."
+    },
+    {
+      "id": "stahlbarren",
+      "name": "Hardened Steel Bar",
+      "icon": null,
+      "rarity": "uncommon",
+      "desc": "Iron tempered with crystal resonance. Harder than ordinary steel."
+    },
+    {
+      "id": "kristallbarren",
+      "name": "Crystal Bar",
+      "icon": null,
+      "rarity": "uncommon",
+      "desc": "A bar infused with crystalline energy. Hums faintly when struck."
+    },
+    {
+      "id": "verstaerkterstahl",
+      "name": "Reinforced Steel",
+      "icon": null,
+      "rarity": "rare",
+      "desc": "Steel reinforced with deep-earth crystals. Holds an edge like nothing else."
+    },
+    {
+      "id": "drachenstahl",
+      "name": "Dragonsteel",
+      "icon": null,
+      "rarity": "rare",
+      "desc": "An alloy forged with dragon scale. The heat alone would kill a lesser smith."
+    },
+    {
+      "id": "drachenkern",
+      "name": "Dragon Core",
+      "icon": null,
+      "rarity": "rare",
+      "desc": "The molten heart of dragon scale, compressed into solid form. Radiates warmth."
+    },
+    {
+      "id": "aetherlegierung",
+      "name": "Aether Alloy",
+      "icon": null,
+      "rarity": "epic",
+      "desc": "Dragon scale fused with aether energy. Shifts color in different light."
+    },
+    {
+      "id": "aetherbarren",
+      "name": "Aether Bar",
+      "icon": null,
+      "rarity": "epic",
+      "desc": "Pure aether condensed into metal. Weighs almost nothing."
+    },
+    {
+      "id": "seelenlegierung",
+      "name": "Soul Alloy",
+      "icon": null,
+      "rarity": "legendary",
+      "desc": "Aether and soul fragment merged at impossible temperatures. Whispers when cooling."
+    },
+    {
+      "id": "seelenstahl",
+      "name": "Soulsteel",
+      "icon": null,
+      "rarity": "legendary",
+      "desc": "The rarest alloy known to smiths. Said to remember every blow of the hammer."
     }
   ],
   "skillUpColors": {

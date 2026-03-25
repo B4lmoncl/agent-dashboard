@@ -13399,6 +13399,596 @@
       },
       "setId": "legendary",
       "flavorText": "Der Weg endet nie. Aber in diesen Stiefeln macht das nichts."
+    },
+    {
+      "id": "craft-schmied-eiserne-klinge",
+      "name": "Eiserne Klinge",
+      "slot": "weapon",
+      "tier": 1,
+      "reqLevel": 1,
+      "rarity": "common",
+      "price": 0,
+      "desc": "Eine einfache Klinge aus Eisen. Nicht schön, aber zweckmäßig.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "fixedStats": {
+        "kraft": 1,
+        "ausdauer": 1
+      },
+      "setId": "adventurer",
+      "flavorText": "Man sagt, der Schmied habe beim Härten geniest. Das erklärt die leichte Krümmung."
+    },
+    {
+      "id": "craft-schmied-grober-streitkolben",
+      "name": "Grober Streitkolben",
+      "slot": "weapon",
+      "tier": 1,
+      "reqLevel": 3,
+      "rarity": "common",
+      "price": 0,
+      "desc": "Ein klobiger Streitkolben. Was ihm an Eleganz fehlt, macht er durch Gewicht wett.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "fixedStats": {
+        "kraft": 2,
+        "ausdauer": 1
+      },
+      "setId": "adventurer",
+      "flavorText": "Die bevorzugte Waffe derer, die Türen für ein überflüssiges Konzept halten."
+    },
+    {
+      "id": "craft-schmied-geschliffenes-breitschwert",
+      "name": "Geschliffenes Breitschwert",
+      "slot": "weapon",
+      "tier": 1,
+      "reqLevel": 5,
+      "rarity": "uncommon",
+      "price": 0,
+      "desc": "Ein ordentlich geschliffenes Breitschwert. Der Schmied hat sich Mühe gegeben.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "fixedStats": {
+        "kraft": 2,
+        "ausdauer": 2
+      },
+      "setId": "adventurer",
+      "flavorText": "Scharf genug, um Butter zu schneiden. Auch härtere Butter."
+    },
+    {
+      "id": "craft-schmied-eiserner-kriegshammer",
+      "name": "Eiserner Kriegshammer",
+      "slot": "weapon",
+      "tier": 1,
+      "reqLevel": 8,
+      "rarity": "rare",
+      "price": 0,
+      "desc": "Ein schwerer Kriegshammer aus gehärtetem Eisen. Für jene, die Subtilität verachten.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 2
+            },
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "setId": "adventurer",
+      "flavorText": "Der letzte Besitzer nannte ihn 'Diskussionsende'. Aus nachvollziehbaren Gründen."
+    },
+    {
+      "id": "craft-schmied-grober-schild",
+      "name": "Grober Schild",
+      "slot": "shield",
+      "tier": 1,
+      "reqLevel": 1,
+      "rarity": "common",
+      "price": 0,
+      "desc": "Ein einfacher Schild aus zusammengenageltem Eisen. Hält mehr aus als erwartet.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "fixedStats": {
+        "ausdauer": 2
+      },
+      "setId": "adventurer",
+      "flavorText": "Die Dellen sind ein Qualitätsmerkmal, kein Mangel."
+    },
+    {
+      "id": "craft-schmied-eiserner-rundschild",
+      "name": "Eiserner Rundschild",
+      "slot": "shield",
+      "tier": 1,
+      "reqLevel": 4,
+      "rarity": "uncommon",
+      "price": 0,
+      "desc": "Ein runder Eisenschild mit verstärktem Rand. Solide Arbeit.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "fixedStats": {
+        "ausdauer": 2,
+        "kraft": 1
+      },
+      "setId": "adventurer",
+      "flavorText": "Rund, damit die Hiebe abrutschen. Die Theorie stimmt. Meistens."
+    },
+    {
+      "id": "craft-schmied-eiserner-turmschild",
+      "name": "Eiserner Turmschild",
+      "slot": "shield",
+      "tier": 1,
+      "reqLevel": 7,
+      "rarity": "rare",
+      "price": 0,
+      "desc": "Ein massiver Turmschild. Dahinter fühlt man sich fast unverwundbar.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 2
+            },
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "setId": "adventurer",
+      "flavorText": "Groß genug, um dahinter ein kleines Picknick zu veranstalten."
+    },
+    {
+      "id": "craft-schmied-eisenkappe",
+      "name": "Eisenkappe",
+      "slot": "helm",
+      "tier": 1,
+      "reqLevel": 1,
+      "rarity": "common",
+      "price": 0,
+      "desc": "Eine schlichte Eisenkappe. Schützt den Kopf, nicht die Frisur.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "fixedStats": {
+        "ausdauer": 1
+      },
+      "setId": "adventurer",
+      "flavorText": "Passt auf jeden Kopf. Sitzt auf keinem gut."
+    },
+    {
+      "id": "craft-schmied-eiserne-sturmhaube",
+      "name": "Eiserne Sturmhaube",
+      "slot": "helm",
+      "tier": 1,
+      "reqLevel": 4,
+      "rarity": "uncommon",
+      "price": 0,
+      "desc": "Eine robuste Sturmhaube mit Nasenschutz. Verhindert Nasenbrüche zuverlässig.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "fixedStats": {
+        "ausdauer": 2,
+        "kraft": 1
+      },
+      "setId": "adventurer",
+      "flavorText": "Der Nasenschutz wurde nach einem bedauerlichen Vorfall mit einer Türkante hinzugefügt."
+    },
+    {
+      "id": "craft-schmied-geschlossener-eisenhelm",
+      "name": "Geschlossener Eisenhelm",
+      "slot": "helm",
+      "tier": 1,
+      "reqLevel": 6,
+      "rarity": "uncommon",
+      "price": 0,
+      "desc": "Ein vollständig geschlossener Helm. Gute Sicht ist überbewertet.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "fixedStats": {
+        "ausdauer": 3
+      },
+      "setId": "adventurer",
+      "flavorText": "Das Visier klemmt gelegentlich. Der Schmied nennt das 'Sicherheitsverriegelung'."
+    },
+    {
+      "id": "craft-schmied-eiserne-panzerhaube",
+      "name": "Eiserne Panzerhaube",
+      "slot": "helm",
+      "tier": 1,
+      "reqLevel": 8,
+      "rarity": "rare",
+      "price": 0,
+      "desc": "Eine schwere Panzerhaube mit Wangenplatten. Für ernsthafte Auseinandersetzungen.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 2
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "setId": "adventurer",
+      "flavorText": "Der vorherige Träger behauptet, er habe freiwillig aufgehört. Die Beulen sagen etwas anderes."
+    },
+    {
+      "id": "craft-schmied-eiserne-brustplatte",
+      "name": "Eiserne Brustplatte",
+      "slot": "armor",
+      "tier": 1,
+      "reqLevel": 2,
+      "rarity": "common",
+      "price": 0,
+      "desc": "Eine einfache Brustplatte. Schützt die wichtigsten Organe. Meistens.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "fixedStats": {
+        "ausdauer": 1,
+        "kraft": 1
+      },
+      "setId": "adventurer",
+      "flavorText": "Das Herz sitzt links. Diese Information war dem Schmied offenbar neu."
+    },
+    {
+      "id": "craft-schmied-eiserner-brustpanzer",
+      "name": "Eiserner Brustpanzer",
+      "slot": "armor",
+      "tier": 1,
+      "reqLevel": 5,
+      "rarity": "uncommon",
+      "price": 0,
+      "desc": "Ein solider Brustpanzer mit Schulterplatten. Beeindruckend, wenn man aufrecht steht.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "fixedStats": {
+        "ausdauer": 2,
+        "kraft": 1
+      },
+      "setId": "adventurer",
+      "flavorText": "Wiegt nur halb so viel wie er aussieht. Der Schmied versichert, das sei Absicht."
+    },
+    {
+      "id": "craft-schmied-gehaerteter-plattenpanzer",
+      "name": "Gehärteter Plattenpanzer",
+      "slot": "armor",
+      "tier": 1,
+      "reqLevel": 8,
+      "rarity": "rare",
+      "price": 0,
+      "desc": "Ein gehärteter Plattenpanzer. Das Beste, was ein Lehrling zustande bringt.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 2
+            },
+            {
+              "stat": "charisma",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "setId": "adventurer",
+      "flavorText": "Der Schmied schwor, er habe ihn dreimal gehärtet. Man sieht es ihm an — im Guten wie im Schlechten."
+    },
+    {
+      "id": "craft-schmied-eiserner-anhaenger",
+      "name": "Eiserner Anhänger",
+      "slot": "amulet",
+      "tier": 1,
+      "reqLevel": 2,
+      "rarity": "common",
+      "price": 0,
+      "desc": "Ein schlichter Anhänger aus Eisen. Kein Schmuckstück, aber ein Anfang.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "fixedStats": {
+        "kraft": 1
+      },
+      "setId": "adventurer",
+      "flavorText": "Wer Schmuck vom Schmied kauft, hat entweder Mut oder keine Alternativen."
+    },
+    {
+      "id": "craft-schmied-eisernes-amulett",
+      "name": "Eisernes Amulett",
+      "slot": "amulet",
+      "tier": 1,
+      "reqLevel": 5,
+      "rarity": "uncommon",
+      "price": 0,
+      "desc": "Ein Amulett aus gehämmertem Eisen. Überraschend angenehm zu tragen.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "fixedStats": {
+        "kraft": 2,
+        "ausdauer": 1
+      },
+      "setId": "adventurer",
+      "flavorText": "Das Muster entstand durch einen umgefallenen Bierkrug auf dem noch heißen Metall. Der Schmied nennt es 'Inspiration'."
+    },
+    {
+      "id": "craft-schmied-eisenkragen",
+      "name": "Eisenkragen",
+      "slot": "amulet",
+      "tier": 1,
+      "reqLevel": 7,
+      "rarity": "rare",
+      "price": 0,
+      "desc": "Ein verstärkter Eisenkragen. Schützt den Hals und sieht dabei fast absichtlich gut aus.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "glueck",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "charisma",
+              "min": 1,
+              "max": 2
+            },
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "setId": "adventurer",
+      "flavorText": "Halsschutz ist keine Eitelkeit. Es ist gesunder Menschenverstand mit Metallverstärkung."
+    },
+    {
+      "id": "craft-schmied-eiserne-stiefel",
+      "name": "Eiserne Stiefel",
+      "slot": "boots",
+      "tier": 1,
+      "reqLevel": 1,
+      "rarity": "common",
+      "price": 0,
+      "desc": "Schwere Stiefel aus Eisenplatten. Leise Auftritte sind damit ausgeschlossen.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "fixedStats": {
+        "ausdauer": 1,
+        "kraft": 1
+      },
+      "setId": "adventurer",
+      "flavorText": "Jeder hört dich kommen. Überraschungsangriffe sind damit offiziell gestrichen."
+    },
+    {
+      "id": "craft-schmied-eiserne-beinschienen",
+      "name": "Eiserne Beinschienen",
+      "slot": "boots",
+      "tier": 1,
+      "reqLevel": 4,
+      "rarity": "uncommon",
+      "price": 0,
+      "desc": "Verstärkte Beinschienen mit Knöchelschutz. Tritte gegen Tischbeine sind nun schmerzfrei.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "fixedStats": {
+        "ausdauer": 2,
+        "kraft": 1
+      },
+      "setId": "adventurer",
+      "flavorText": "Der Schmied testete sie, indem er gegen einen Amboss trat. Er trug sie danach täglich."
+    },
+    {
+      "id": "craft-schmied-gehaertete-eisenstiefel",
+      "name": "Gehärtete Eisenstiefel",
+      "slot": "boots",
+      "tier": 1,
+      "reqLevel": 7,
+      "rarity": "rare",
+      "price": 0,
+      "desc": "Schwere, gehärtete Stiefel. Man steht fest im Leben — und auf dem Schlachtfeld.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 2
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "setId": "adventurer",
+      "flavorText": "Mit diesen Stiefeln übersteht man jeden Marsch. Die Blasen danach sind rein optional."
     }
   ],
   "setBonus": {
