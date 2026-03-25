@@ -781,6 +781,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
   const [collectionOpen, setCollectionOpen] = useState(false);
   const [collectionData, setCollectionData] = useState<{ items: { id: string; name: string; slot: string; rarity: string; stats?: Record<string, number>; source: string; obtained: boolean; desc?: string; flavorText?: string; legendaryEffect?: { type: string; label?: string } | null }[]; completion: number } | null>(null);
   const [collectionLoading, setCollectionLoading] = useState(false);
+  const [collectionFilter, setCollectionFilter] = useState<string>("all");
 
   useEffect(() => {
     if (!statTooltipOpen) return;
@@ -1914,28 +1915,36 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
       >
         <div
           className="rounded-2xl overflow-hidden"
-          style={{ width: "min(90vw, 560px)", maxHeight: "80vh", background: "#0f1117", border: "1px solid rgba(96,165,250,0.2)", boxShadow: "0 8px 32px rgba(0,0,0,0.6)" }}
+          style={{ width: "min(90vw, 620px)", maxHeight: "85vh", background: "#0f1117", border: "1px solid rgba(96,165,250,0.2)", boxShadow: "0 8px 32px rgba(0,0,0,0.6)" }}
         >
           {/* Header */}
-          <div className="flex items-center justify-between px-5 py-3" style={{ borderBottom: "1px solid rgba(255,255,255,0.08)", background: "rgba(96,165,250,0.04)" }}>
-            <div className="flex items-center gap-2">
-              <span className="text-lg">📖</span>
-              <div>
-                <p className="text-sm font-bold" style={{ color: "#60a5fa" }}>Collection Log</p>
-                {collectionData && (
-                  <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>
-                    {Math.round(collectionData.completion * 100)}% complete
-                  </p>
-                )}
+          <div className="px-5 py-3" style={{ borderBottom: "1px solid rgba(255,255,255,0.08)", background: "rgba(96,165,250,0.04)" }}>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <span className="text-lg">📖</span>
+                <div>
+                  <p className="text-sm font-bold" style={{ color: "#60a5fa" }}>Collection Log</p>
+                  {collectionData && (
+                    <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>
+                      {Math.round(collectionData.completion * 100)}% complete
+                    </p>
+                  )}
+                </div>
               </div>
+              <button
+                onClick={() => setCollectionOpen(false)}
+                className="text-sm px-2 py-1 rounded-lg"
+                style={{ color: "rgba(255,255,255,0.4)", cursor: "pointer", background: "rgba(255,255,255,0.04)" }}
+              >
+                ESC
+              </button>
             </div>
-            <button
-              onClick={() => setCollectionOpen(false)}
-              className="text-sm px-2 py-1 rounded-lg"
-              style={{ color: "rgba(255,255,255,0.4)", cursor: "pointer", background: "rgba(255,255,255,0.04)" }}
-            >
-              ESC
-            </button>
+            <p className="text-xs mt-2" style={{ color: "rgba(255,255,255,0.45)", lineHeight: 1.5 }}>
+              Handcrafted legendary artifacts from the most dangerous encounters in Aethermoor. Each one is unique — once obtained, it&apos;s yours forever.
+            </p>
+            <p className="text-xs italic mt-1" style={{ color: "rgba(255,255,255,0.25)" }}>
+              Some heroes collect stamps. You collect the impossible.
+            </p>
           </div>
 
           {/* Completion bar */}
@@ -1950,85 +1959,191 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
             </div>
           )}
 
-          {/* Items grid */}
-          <div className="p-5 overflow-y-auto" style={{ maxHeight: "calc(80vh - 120px)" }}>
+          {/* Source filter tabs */}
+          <div className="px-5 pt-3 flex gap-1.5 flex-wrap">
+            {(["all", "world_boss", "dungeon", "gacha"] as const).map(tab => {
+              const labels: Record<string, string> = { all: "All", world_boss: "World Boss", dungeon: "Dungeon", gacha: "Gacha" };
+              const isActive = collectionFilter === tab;
+              return (
+                <button
+                  key={tab}
+                  onClick={() => setCollectionFilter(tab)}
+                  className="text-xs px-3 py-1.5 rounded-full font-medium"
+                  style={{
+                    cursor: "pointer",
+                    background: isActive ? "rgba(96,165,250,0.2)" : "rgba(255,255,255,0.04)",
+                    color: isActive ? "#60a5fa" : "rgba(255,255,255,0.4)",
+                    border: `1px solid ${isActive ? "rgba(96,165,250,0.4)" : "rgba(255,255,255,0.06)"}`,
+                    transition: "all 0.15s ease",
+                  }}
+                >
+                  {labels[tab]}
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Items grouped by source */}
+          <div className="p-5 overflow-y-auto" style={{ maxHeight: "calc(85vh - 220px)" }}>
             {collectionLoading && <p className="text-xs text-center py-8" style={{ color: "rgba(255,255,255,0.3)" }}>Loading collection...</p>}
             {!collectionLoading && !collectionData && <p className="text-xs text-center py-8" style={{ color: "rgba(255,255,255,0.3)" }}>Could not load collection data.</p>}
-            {collectionData && (
-              <div className="grid grid-cols-3 gap-2">
-                {collectionData.items.map(item => {
-                  const rarityColors: Record<string, string> = { common: "#9ca3af", uncommon: "#22c55e", rare: "#60a5fa", epic: "#a855f7", legendary: "#f97316" };
-                  const color = rarityColors[item.rarity] || "#9ca3af";
-                  // Parse source into readable label
-                  const sourceLabel = (() => {
-                    const [type, id] = item.source.split(":");
-                    const name = (id || "").split("-").map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
-                    if (type === "world_boss") return `World Boss: ${name}`;
-                    if (type === "dungeon") return `Dungeon: ${name}`;
-                    if (type === "gacha") return `Gacha: ${name}`;
-                    if (type === "rift") return `Rift: ${name}`;
-                    return item.source;
-                  })();
-                  return (
-                    <TipCustom
-                      key={item.id}
-                      title={item.obtained ? item.name : "???"}
-                      accent={item.obtained ? color : "rgba(255,255,255,0.3)"}
-                      hoverDelay={300}
-                      body={<>
-                        {item.obtained ? (
-                          <>
-                            <p className="text-xs capitalize" style={{ color }}>Legendary {item.slot}</p>
-                            {item.desc && <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.5)" }}>{item.desc}</p>}
-                            {item.flavorText && <p className="text-xs italic mt-1" style={{ color: "rgba(255,255,255,0.3)" }}>&ldquo;{item.flavorText}&rdquo;</p>}
-                            {item.legendaryEffect?.label && <p className="text-xs mt-1 font-semibold" style={{ color: "#f59e0b" }}>{formatLegendaryLabel(item.legendaryEffect)}</p>}
-                            {item.stats && Object.keys(item.stats).length > 0 && (
-                              <div className="mt-1 space-y-0.5" style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: 4 }}>
-                                {Object.entries(item.stats).map(([k, v]) => (
-                                  <div key={k} className="flex justify-between text-xs">
-                                    <span style={{ color: "rgba(255,255,255,0.5)" }}>{k}</span>
-                                    <span className="font-mono" style={{ color: "#4ade80" }}>+{v}</span>
-                                  </div>
-                                ))}
+            {collectionData && (() => {
+              const sourceDisplayNames: Record<string, string> = {
+                "world_boss:procrastination-wyrm": "\ud83d\udc09 The Procrastination Wyrm",
+                "world_boss:burnout-colossus": "\ud83d\udd25 Burnout Colossus",
+                "world_boss:chaos-hydra": "\ud83d\udc32 Chaos Hydra",
+                "world_boss:doubt-phantom": "\ud83d\udc7b Doubt Phantom",
+                "world_boss:entropy-weaver": "\ud83d\udd78\ufe0f Entropy Weaver",
+                "world_boss:stagnation-golem": "\ud83d\uddff Stagnation Golem",
+                "world_boss:perfection-seraph": "\ud83d\udc7c Perfection Seraph",
+                "world_boss:isolation-leviathan": "\ud83c\udf0a Isolation Leviathan",
+                "world_boss:apathy-sovereign": "\ud83d\udc51 Apathy Sovereign",
+                "dungeon:sunken-archive": "\ud83d\udcda Sunken Archive (Normal)",
+                "dungeon:shattered-spire": "\u26a1 Shattered Spire (Hard)",
+                "dungeon:hollow-core": "\ud83d\udd73\ufe0f Hollow Core (Legendary)",
+                "gacha:astral-radiance": "\u2728 Astral Radiance Banner",
+                "gacha:wheel-of-stars": "\ud83c\udfb0 Wheel of Stars Banner",
+              };
+
+              const getSourceType = (source: string) => source.split(":")[0];
+              const getSourceDisplayName = (source: string) => {
+                if (sourceDisplayNames[source]) return sourceDisplayNames[source];
+                const [type, id] = source.split(":");
+                const name = (id || "").split("-").map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
+                if (type === "world_boss") return `\ud83d\udc09 ${name}`;
+                if (type === "dungeon") return `\ud83c\udff0 ${name}`;
+                if (type === "gacha") return `\u2728 ${name}`;
+                if (type === "rift") return `\ud83c\udf00 ${name}`;
+                return source;
+              };
+              const getSourceLabel = (source: string) => {
+                const [type, id] = source.split(":");
+                const name = (id || "").split("-").map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
+                if (type === "world_boss") return `World Boss: ${name}`;
+                if (type === "dungeon") return `Dungeon: ${name}`;
+                if (type === "gacha") return `Gacha: ${name}`;
+                if (type === "rift") return `Rift: ${name}`;
+                return source;
+              };
+
+              // Filter items by selected tab
+              const filteredItems = collectionFilter === "all"
+                ? collectionData.items
+                : collectionData.items.filter(i => getSourceType(i.source) === collectionFilter);
+
+              // Group by source
+              const groups: Record<string, typeof collectionData.items> = {};
+              for (const item of filteredItems) {
+                if (!groups[item.source]) groups[item.source] = [];
+                groups[item.source].push(item);
+              }
+
+              // Sort groups: world_boss first, then dungeon, then gacha, then rest
+              const typeOrder: Record<string, number> = { world_boss: 0, dungeon: 1, gacha: 2, rift: 3 };
+              const sortedSources = Object.keys(groups).sort((a, b) => {
+                const ta = typeOrder[getSourceType(a)] ?? 99;
+                const tb = typeOrder[getSourceType(b)] ?? 99;
+                return ta - tb || a.localeCompare(b);
+              });
+
+              const rarityColors: Record<string, string> = { common: "#9ca3af", uncommon: "#22c55e", rare: "#60a5fa", epic: "#a855f7", legendary: "#f97316" };
+
+              if (sortedSources.length === 0) {
+                return <p className="text-xs text-center py-8" style={{ color: "rgba(255,255,255,0.3)" }}>No items in this category.</p>;
+              }
+
+              return (
+                <div className="space-y-5 tab-content-enter" key={collectionFilter}>
+                  {sortedSources.map(source => {
+                    const items = groups[source];
+                    const obtained = items.filter(i => i.obtained).length;
+                    return (
+                      <div key={source}>
+                        {/* Section header */}
+                        <div className="flex items-center justify-between mb-2 pb-1.5" style={{ borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+                          <p className="text-xs font-bold" style={{ color: "rgba(255,255,255,0.7)" }}>
+                            {getSourceDisplayName(source)}
+                          </p>
+                          <p className="text-xs font-mono" style={{ color: obtained === items.length ? "#4ade80" : "rgba(255,255,255,0.3)" }}>
+                            {obtained}/{items.length}
+                          </p>
+                        </div>
+                        {/* Items grid */}
+                        <div className="grid grid-cols-3 gap-2">
+                          {items.map(item => {
+                            const color = rarityColors[item.rarity] || "#9ca3af";
+                            const sourceLabel = getSourceLabel(item.source);
+                            return (
+                              <TipCustom
+                                key={item.id}
+                                title={item.obtained ? item.name : "???"}
+                                accent={item.obtained ? color : "rgba(255,255,255,0.3)"}
+                                hoverDelay={300}
+                                body={<>
+                                  {item.obtained ? (
+                                    <>
+                                      <p className="text-xs capitalize" style={{ color }}>Legendary {item.slot}</p>
+                                      {item.desc && <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.5)" }}>{item.desc}</p>}
+                                      {item.flavorText && <p className="text-xs italic mt-1" style={{ color: "rgba(255,255,255,0.3)" }}>&ldquo;{item.flavorText}&rdquo;</p>}
+                                      {item.legendaryEffect?.label && <p className="text-xs mt-1 font-semibold" style={{ color: "#f59e0b" }}>{formatLegendaryLabel(item.legendaryEffect)}</p>}
+                                      {item.stats && Object.keys(item.stats).length > 0 && (
+                                        <div className="mt-1 space-y-0.5" style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: 4 }}>
+                                          {Object.entries(item.stats).map(([k, v]) => (
+                                            <div key={k} className="flex justify-between text-xs">
+                                              <span style={{ color: "rgba(255,255,255,0.5)" }}>{k}</span>
+                                              <span className="font-mono" style={{ color: "#4ade80" }}>+{v}</span>
+                                            </div>
+                                          ))}
+                                        </div>
+                                      )}
+                                      <div className="mt-1.5 pt-1.5" style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}>
+                                        <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>Drops from: {sourceLabel}</p>
+                                        <p className="text-xs font-semibold mt-0.5" style={{ color: "#4ade80" }}>Obtained ✓</p>
+                                      </div>
+                                    </>
+                                  ) : (
+                                    <>
+                                      <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>Not yet discovered.</p>
+                                      <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.3)" }}>Drops from: {sourceLabel}</p>
+                                    </>
+                                  )}
+                                </>}
+                              >
+                              <div
+                                className="rounded-lg p-2.5 cursor-help"
+                                style={{
+                                  background: item.obtained ? "rgba(255,255,255,0.03)" : "rgba(255,255,255,0.01)",
+                                  border: `1px solid ${item.obtained ? `${color}30` : "rgba(255,255,255,0.04)"}`,
+                                  borderTop: item.obtained ? `2px solid ${color}` : undefined,
+                                  opacity: item.obtained ? 1 : 0.45,
+                                  filter: item.obtained ? "none" : "grayscale(1)",
+                                }}
+                              >
+                                {item.obtained ? (
+                                  <>
+                                    <p className="text-xs font-semibold truncate" style={{ color }}>{item.name}</p>
+                                    <p className="text-xs text-w20 truncate capitalize">{item.slot}</p>
+                                    {item.legendaryEffect?.label && (
+                                      <p className="text-xs mt-1 truncate" style={{ color: "#f59e0b", fontSize: 12 }}>{formatLegendaryLabel(item.legendaryEffect)}</p>
+                                    )}
+                                  </>
+                                ) : (
+                                  <>
+                                    <p className="text-xs font-semibold" style={{ color: "rgba(255,255,255,0.25)" }}>???</p>
+                                    <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.15)", fontSize: 12 }}>{item.slot}</p>
+                                  </>
+                                )}
                               </div>
-                            )}
-                          </>
-                        ) : (
-                          <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>Not yet discovered. Drops from: {sourceLabel}</p>
-                        )}
-                      </>}
-                    >
-                    <div
-                      className="rounded-lg p-2.5 cursor-help"
-                      style={{
-                        background: item.obtained ? "rgba(255,255,255,0.03)" : "rgba(255,255,255,0.01)",
-                        border: `1px solid ${item.obtained ? `${color}30` : "rgba(255,255,255,0.04)"}`,
-                        borderTop: item.obtained ? `2px solid ${color}` : undefined,
-                        opacity: item.obtained ? 1 : 0.45,
-                        filter: item.obtained ? "none" : "grayscale(1)",
-                      }}
-                    >
-                      {item.obtained ? (
-                        <>
-                          <p className="text-xs font-semibold truncate" style={{ color }}>{item.name}</p>
-                          <p className="text-xs text-w20 truncate capitalize">{item.slot}</p>
-                          {item.legendaryEffect?.label && (
-                            <p className="text-xs mt-1 truncate" style={{ color: "#f59e0b", fontSize: 12 }}>{formatLegendaryLabel(item.legendaryEffect)}</p>
-                          )}
-                          <p className="text-xs mt-1 truncate" style={{ color: "rgba(255,255,255,0.2)", fontSize: 12 }}>{sourceLabel}</p>
-                        </>
-                      ) : (
-                        <>
-                          <p className="text-xs font-semibold" style={{ color: "rgba(255,255,255,0.25)" }}>???</p>
-                          <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.15)", fontSize: 12 }}>{sourceLabel}</p>
-                        </>
-                      )}
-                    </div>
-                    </TipCustom>
-                  );
-                })}
-              </div>
-            )}
+                              </TipCustom>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              );
+            })()}
           </div>
         </div>
       </div>,
