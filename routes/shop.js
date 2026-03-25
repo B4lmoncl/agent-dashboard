@@ -339,6 +339,88 @@ router.post('/api/shop/buy', requireApiKey, (req, res) => {
   res.json({ ok: true, item, finalCost, discount, remainingGold: u.gold, effectApplied: effectMsg });
 });
 
+// ─── Currency Shop (Sternentaler, Gildentaler, Mondstaub) ────────────────────
+// POST /api/shop/currency-buy — purchase items with non-gold currencies
+router.post('/api/shop/currency-buy', requireApiKey, (req, res) => {
+  const { userId, itemId, shopType } = req.body;
+  if (!userId || !itemId || !shopType) return res.status(400).json({ error: 'userId, itemId, and shopType required' });
+  const uid = userId.toLowerCase();
+  if (!req.auth?.isAdmin) {
+    const authId = (req.auth?.userId || req.auth?.userName || '').toLowerCase();
+    if (!authId || authId !== uid) return res.status(403).json({ error: 'Cannot buy items for another user' });
+  }
+  const u = state.users[uid];
+  if (!u) return res.status(404).json({ error: 'User not found' });
+  ensureUserCurrencies(u);
+
+  // Resolve shop pool
+  const shopData = state.store.shopData || {};
+  const poolMap = { sternentaler: shopData.sternentalerItems, gildentaler: shopData.gildentalerItems, mondstaub: shopData.mondstaubItems };
+  const pool = poolMap[shopType];
+  if (!pool) return res.status(400).json({ error: `Unknown shop type: ${shopType}` });
+
+  const item = pool.find(i => i.id === itemId);
+  if (!item) return res.status(404).json({ error: 'Item not found in this shop' });
+
+  const currency = item.currency || shopType;
+  const cost = item.cost || 0;
+  if ((u.currencies[currency] || 0) < cost) {
+    return res.status(400).json({ error: `Not enough ${currency}. Need ${cost}, have ${u.currencies[currency] || 0}` });
+  }
+
+  // Deduct currency
+  u.currencies[currency] -= cost;
+
+  // Apply item based on type
+  let resultMsg = 'Purchased!';
+  if (item.type === 'frame') {
+    u.unlockedFrames = u.unlockedFrames || [];
+    if (u.unlockedFrames.some(f => f.id === item.frameId)) {
+      // Refund — already owned
+      u.currencies[currency] += cost;
+      return res.status(409).json({ error: 'You already own this frame' });
+    }
+    u.unlockedFrames.push({ id: item.frameId, name: item.frameName, color: item.frameColor, glow: item.frameGlow || false, unlockedAt: now() });
+    resultMsg = `Frame "${item.frameName}" unlocked!`;
+  } else if (item.type === 'title') {
+    u.earnedTitles = u.earnedTitles || [];
+    if (u.earnedTitles.some(t => t.id === item.titleId)) {
+      u.currencies[currency] += cost;
+      return res.status(409).json({ error: 'You already own this title' });
+    }
+    u.earnedTitles.push({ id: item.titleId, name: item.titleName, rarity: item.titleRarity || 'epic', earnedAt: now() });
+    resultMsg = `Title "${item.titleName}" earned!`;
+  } else if (item.type === 'boost' && item.effect) {
+    u.activeBuffs = u.activeBuffs || [];
+    u.activeBuffs.push({ ...item.effect, activatedAt: now() });
+    resultMsg = applyShopEffect(u, item) || 'Boost activated!';
+  } else if (item.type === 'cosmetic') {
+    u.cosmetics = u.cosmetics || [];
+    if (u.cosmetics.includes(item.id)) {
+      u.currencies[currency] += cost;
+      return res.status(409).json({ error: 'You already own this cosmetic' });
+    }
+    u.cosmetics.push(item.id);
+    resultMsg = `Cosmetic "${item.name}" acquired!`;
+  }
+
+  u.purchases = u.purchases || [];
+  u.purchases.push({ itemId: item.id, name: item.name, cost, currency, at: now() });
+  saveUsers();
+  console.log(`[shop] ${uid} bought "${item.name}" for ${cost} ${currency}`);
+  res.json({ ok: true, item, cost, currency, remaining: u.currencies[currency], resultMsg });
+});
+
+// GET /api/shop/currency-items — list all currency shop items
+router.get('/api/shop/currency-items', (req, res) => {
+  const shopData = state.store.shopData || {};
+  res.json({
+    sternentaler: shopData.sternentalerItems || [],
+    gildentaler: shopData.gildentalerItems || [],
+    mondstaub: shopData.mondstaubItems || [],
+  });
+});
+
 // GET /api/personal-templates — list personal life quest templates
 router.get('/api/personal-templates', (req, res) => {
   res.json(PERSONAL_QUEST_TEMPLATES);

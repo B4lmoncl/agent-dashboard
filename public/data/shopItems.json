@@ -28,6 +28,27 @@
     { "id": "legendary",  "name": "Legendary Tools",  "cost": 2000, "tier": 3, "xpBonus": 7, "icon": "/images/icons/tools-legendary.png", "desc": "+7% XP on all quests" },
     { "id": "mythic",     "name": "Mythic Forge",     "cost": 5000, "tier": 4, "xpBonus": 10, "icon": "/images/icons/tools-mythic.png", "desc": "+10% XP on all quests" }
   ],
+  "sternentalerItems": [
+    { "id": "st_frame_starweaver", "name": "Starweaver Frame", "cost": 15, "currency": "sternentaler", "type": "frame", "frameId": "starweaver-frame", "frameName": "Starweaver", "frameColor": "#c4b5fd", "frameGlow": true, "icon": "/images/icons/shop-frame-star.png", "desc": "A frame woven from starlight. Reserved for those who walk the Star Path." },
+    { "id": "st_frame_eclipse", "name": "Eclipse Frame", "cost": 25, "currency": "sternentaler", "type": "frame", "frameId": "eclipse-frame", "frameName": "Eclipse", "frameColor": "#1e1b4b", "frameGlow": true, "icon": "/images/icons/shop-frame-eclipse.png", "desc": "Darkness that outshines the light. Earned, not given." },
+    { "id": "st_title_sternkind", "name": "Title: Sternkind", "cost": 10, "currency": "sternentaler", "type": "title", "titleId": "sternkind", "titleName": "Sternkind", "titleRarity": "epic", "icon": "/images/icons/shop-title-star.png", "desc": "A title for those born under the Star Path." },
+    { "id": "st_title_sternjager", "name": "Title: Sternjäger", "cost": 20, "currency": "sternentaler", "type": "title", "titleId": "sternjager", "titleName": "Sternjäger", "titleRarity": "legendary", "icon": "/images/icons/shop-title-star.png", "desc": "Hunter of stars. Collector of impossible things." },
+    { "id": "st_xp_scroll_15", "name": "Star Scroll", "cost": 8, "currency": "sternentaler", "type": "boost", "icon": "/images/icons/shop-xp-scroll.png", "desc": "+15% XP for the next 5 quests. Stronger than the Gold variant.", "effect": { "type": "xp_boost_15", "questsRemaining": 5 } },
+    { "id": "st_companion_glow", "name": "Companion Starlight Aura", "cost": 30, "currency": "sternentaler", "type": "cosmetic", "icon": "/images/icons/shop-companion-glow.png", "desc": "Your companion glows with soft starlight. Purely cosmetic, entirely majestic." }
+  ],
+  "gildentalerItems": [
+    { "id": "gt_frame_guildmaster", "name": "Guildmaster Frame", "cost": 30, "currency": "gildentaler", "type": "frame", "frameId": "guildmaster-frame", "frameName": "Guildmaster", "frameColor": "#10b981", "frameGlow": true, "icon": "/images/icons/shop-frame-guild.png", "desc": "The mark of one who builds bonds stronger than steel." },
+    { "id": "gt_frame_diplomat", "name": "Diplomat Frame", "cost": 20, "currency": "gildentaler", "type": "frame", "frameId": "diplomat-frame", "frameName": "Diplomat", "frameColor": "#60a5fa", "frameGlow": false, "icon": "/images/icons/shop-frame-diplomat.png", "desc": "For those who solve problems with words, not swords. Usually." },
+    { "id": "gt_title_gildenherz", "name": "Title: Gildenherz", "cost": 15, "currency": "gildentaler", "type": "title", "titleId": "gildenherz", "titleName": "Gildenherz", "titleRarity": "epic", "icon": "/images/icons/shop-title-guild.png", "desc": "Heart of the guild. The one everyone counts on." },
+    { "id": "gt_title_botschafter", "name": "Title: Botschafter", "cost": 25, "currency": "gildentaler", "type": "title", "titleId": "botschafter", "titleName": "Botschafter", "titleRarity": "legendary", "icon": "/images/icons/shop-title-guild.png", "desc": "Ambassador of the Hall. Your reputation precedes you — and it's impeccable." },
+    { "id": "gt_trade_boost", "name": "Trade Charm", "cost": 10, "currency": "gildentaler", "type": "boost", "icon": "/images/icons/shop-social.png", "desc": "+15% Gold on your next 5 quests. Community commerce at its finest.", "effect": { "type": "gold_boost_15", "questsRemaining": 5 } }
+  ],
+  "mondstaubItems": [
+    { "id": "md_boss_boost", "name": "Colosseum War Cry", "cost": 50, "currency": "mondstaub", "type": "boost", "icon": "/images/icons/shop-boss-boost.png", "desc": "+25% World Boss damage for 10 quests. The arena roars louder when you enter.", "effect": { "type": "world_boss_damage_boost", "value": 25, "questsRemaining": 10 } },
+    { "id": "md_rift_extend", "name": "Temporal Anchor", "cost": 30, "currency": "mondstaub", "type": "boost", "icon": "/images/icons/shop-rift-extend.png", "desc": "Extends your active Rift timer by 6 hours. Time bends for those who know where to pull.", "effect": { "type": "rift_time_extension", "hours": 6 } },
+    { "id": "md_frame_moonlit", "name": "Moonlit Frame", "cost": 40, "currency": "mondstaub", "type": "frame", "frameId": "moonlit-frame", "frameName": "Moonlit", "frameColor": "#a78bfa", "frameGlow": true, "icon": "/images/icons/shop-frame-moon.png", "desc": "Bathed in moonlight that doesn't come from any moon. Don't ask." },
+    { "id": "md_title_mondwandler", "name": "Title: Mondwandler", "cost": 20, "currency": "mondstaub", "type": "title", "titleId": "mondwandler", "titleName": "Mondwandler", "titleRarity": "legendary", "icon": "/images/icons/shop-title-moon.png", "desc": "Walker of moons. Which moons? All of them, presumably." }
+  ],
   "workshopUpgrades": [
     {
       "id": "gold_tools",
