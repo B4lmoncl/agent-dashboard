@@ -5,21 +5,22 @@
       "name": "Wyrm-Scale Aegis",
       "slot": "shield",
       "rarity": "legendary",
-      "tier": 5,
+      "tier": 4,
+      "reqLevel": 35,
       "desc": "Forged from the scales of the Procrastination Wyrm. Its bearer never delays.",
       "flavorText": "Every task you postpone feeds the wyrm.",
       "icon": null,
       "affixes": {
         "primary": { "pool": [
-          { "stat": "ausdauer", "min": 14, "max": 22 },
-          { "stat": "kraft", "min": 6, "max": 12 }
+          { "stat": "ausdauer", "min": 4, "max": 7 },
+          { "stat": "kraft", "min": 4, "max": 7 }
         ], "count": [2, 2] },
         "minor": { "pool": [
-          { "stat": "vitalitaet", "min": 8, "max": 16 },
-          { "stat": "tempo", "min": 4, "max": 10 }
+          { "stat": "vitalitaet", "min": 3, "max": 5 },
+          { "stat": "tempo", "min": 3, "max": 5 }
         ], "count": [1, 2] }
       },
-      "legendaryEffect": { "type": "decay_reduction", "min": 18, "max": 28, "label": "Wyrm's Resolve: -{value}% forge decay" },
+      "legendaryEffect": { "type": "decay_reduction", "min": 3, "max": 8, "label": "Wyrm's Resolve: -{value}% forge decay" },
       "source": "world_boss:procrastination-wyrm",
       "dropChance": 0.10,
       "isUnique": true
@@ -29,21 +30,22 @@
       "name": "Ember of the Colossus",
       "slot": "amulet",
       "rarity": "legendary",
-      "tier": 5,
+      "tier": 4,
+      "reqLevel": 35,
       "desc": "A shard of living flame from the heart of the Burnout Colossus.",
       "flavorText": "Rest is not weakness. It is the fuel for greater fire.",
       "icon": null,
       "affixes": {
         "primary": { "pool": [
-          { "stat": "kraft", "min": 10, "max": 18 },
-          { "stat": "weisheit", "min": 10, "max": 18 }
+          { "stat": "kraft", "min": 4, "max": 7 },
+          { "stat": "weisheit", "min": 4, "max": 7 }
         ], "count": [2, 2] },
         "minor": { "pool": [
-          { "stat": "vitalitaet", "min": 8, "max": 16 },
-          { "stat": "tempo", "min": 6, "max": 14 }
+          { "stat": "vitalitaet", "min": 3, "max": 5 },
+          { "stat": "tempo", "min": 3, "max": 5 }
         ], "count": [1, 2] }
       },
-      "legendaryEffect": { "type": "xp_bonus", "min": 8, "max": 15, "label": "Colossus Heart: +{value}% XP" },
+      "legendaryEffect": { "type": "xp_bonus", "min": 3, "max": 8, "label": "Colossus Heart: +{value}% XP" },
       "source": "world_boss:burnout-colossus",
       "dropChance": 0.10,
       "isUnique": true
@@ -53,21 +55,22 @@
       "name": "Crown of Clarity",
       "slot": "helm",
       "rarity": "legendary",
-      "tier": 5,
+      "tier": 4,
+      "reqLevel": 35,
       "desc": "Worn by those who silenced the Chaos Hydra's many voices.",
       "flavorText": "Focus is the blade that cuts through chaos.",
       "icon": null,
       "affixes": {
         "primary": { "pool": [
-          { "stat": "weisheit", "min": 12, "max": 20 },
-          { "stat": "glueck", "min": 8, "max": 14 }
+          { "stat": "weisheit", "min": 4, "max": 7 },
+          { "stat": "glueck", "min": 4, "max": 7 }
         ], "count": [2, 2] },
         "minor": { "pool": [
-          { "stat": "fokus", "min": 10, "max": 22 },
-          { "stat": "charisma", "min": 4, "max": 10 }
+          { "stat": "fokus", "min": 3, "max": 5 },
+          { "stat": "charisma", "min": 3, "max": 5 }
         ], "count": [1, 2] }
       },
-      "legendaryEffect": { "type": "variety_bonus", "min": 5, "max": 10, "label": "Hydra's Focus: +{value}% variety XP bonus" },
+      "legendaryEffect": { "type": "variety_bonus", "min": 3, "max": 8, "label": "Hydra's Focus: +{value}% variety XP bonus" },
       "source": "world_boss:chaos-hydra",
       "dropChance": 0.10,
       "isUnique": true
@@ -77,21 +80,22 @@
       "name": "Codex of the Deep",
       "slot": "armor",
       "rarity": "legendary",
-      "tier": 5,
+      "tier": 2,
+      "reqLevel": 15,
       "desc": "Bound in waterlogged leather, this tome-armor hums with preserved knowledge.",
       "flavorText": "The archive remembers what the world has forgotten.",
       "icon": null,
       "affixes": {
         "primary": { "pool": [
-          { "stat": "ausdauer", "min": 16, "max": 26 },
-          { "stat": "weisheit", "min": 8, "max": 14 }
+          { "stat": "ausdauer", "min": 2, "max": 4 },
+          { "stat": "weisheit", "min": 2, "max": 4 }
         ], "count": [2, 2] },
         "minor": { "pool": [
-          { "stat": "vitalitaet", "min": 10, "max": 18 },
-          { "stat": "fokus", "min": 6, "max": 12 }
+          { "stat": "vitalitaet", "min": 1, "max": 3 },
+          { "stat": "fokus", "min": 1, "max": 3 }
         ], "count": [1, 2] }
       },
-      "legendaryEffect": { "type": "decay_reduction", "min": 15, "max": 24, "label": "Preserved Knowledge: -{value}% forge decay" },
+      "legendaryEffect": { "type": "decay_reduction", "min": 1, "max": 3, "label": "Preserved Knowledge: -{value}% forge decay" },
       "source": "dungeon:sunken-archive",
       "dropChance": 0.08,
       "isUnique": true
@@ -101,21 +105,22 @@
       "name": "Spire's Edge",
       "slot": "weapon",
       "rarity": "legendary",
-      "tier": 5,
+      "tier": 3,
+      "reqLevel": 25,
       "desc": "A blade pulled from the rubble of the collapsed spire. Still crackling with residual energy.",
       "flavorText": "What was broken can still cut deep.",
       "icon": null,
       "affixes": {
         "primary": { "pool": [
-          { "stat": "kraft", "min": 18, "max": 28 },
-          { "stat": "glueck", "min": 6, "max": 12 }
+          { "stat": "kraft", "min": 3, "max": 6 },
+          { "stat": "glueck", "min": 3, "max": 6 }
         ], "count": [2, 2] },
         "minor": { "pool": [
-          { "stat": "fokus", "min": 8, "max": 16 },
-          { "stat": "tempo", "min": 8, "max": 16 }
+          { "stat": "fokus", "min": 2, "max": 4 },
+          { "stat": "tempo", "min": 2, "max": 4 }
         ], "count": [1, 2] }
       },
-      "legendaryEffect": { "type": "xp_bonus", "min": 10, "max": 18, "label": "Spire Charge: +{value}% XP" },
+      "legendaryEffect": { "type": "xp_bonus", "min": 2, "max": 5, "label": "Spire Charge: +{value}% XP" },
       "source": "dungeon:shattered-spire",
       "dropChance": 0.06,
       "isUnique": true
@@ -126,20 +131,21 @@
       "slot": "amulet",
       "rarity": "legendary",
       "tier": 5,
+      "reqLevel": 40,
       "desc": "A dark stone pendant that seems to absorb light. Found at the tower's deepest point.",
       "flavorText": "Stare into the hollow and it stares back.",
       "icon": null,
       "affixes": {
         "primary": { "pool": [
-          { "stat": "glueck", "min": 14, "max": 24 },
-          { "stat": "weisheit", "min": 10, "max": 18 }
+          { "stat": "glueck", "min": 5, "max": 8 },
+          { "stat": "weisheit", "min": 5, "max": 8 }
         ], "count": [2, 2] },
         "minor": { "pool": [
-          { "stat": "charisma", "min": 10, "max": 20 },
-          { "stat": "fokus", "min": 6, "max": 14 }
+          { "stat": "charisma", "min": 3, "max": 6 },
+          { "stat": "fokus", "min": 3, "max": 6 }
         ], "count": [1, 2] }
       },
-      "legendaryEffect": { "type": "gold_bonus", "min": 12, "max": 22, "label": "Void's Bargain: +{value}% Gold" },
+      "legendaryEffect": { "type": "gold_bonus", "min": 5, "max": 20, "label": "Void's Bargain: +{value}% Gold" },
       "source": "dungeon:hollow-core",
       "dropChance": 0.04,
       "isUnique": true
@@ -149,18 +155,19 @@
       "name": "Schritte des Zweifels",
       "slot": "boots",
       "rarity": "legendary",
-      "tier": 5,
+      "tier": 3,
+      "reqLevel": 20,
       "desc": "Stiefel gewoben aus den Schatten des Doubt Phantom. Wer sie trägt, hört das Flüstern — und ignoriert es.",
       "flavorText": "Der Zweifel ging mit dir. Jetzt gehst du schneller.",
       "icon": null,
       "affixes": {
         "primary": { "pool": [
-          { "stat": "glueck", "min": 12, "max": 20 },
-          { "stat": "ausdauer", "min": 10, "max": 16 }
+          { "stat": "glueck", "min": 3, "max": 6 },
+          { "stat": "ausdauer", "min": 3, "max": 6 }
         ], "count": [2, 2] },
         "minor": { "pool": [
-          { "stat": "tempo", "min": 10, "max": 18 },
-          { "stat": "vitalitaet", "min": 6, "max": 12 }
+          { "stat": "tempo", "min": 2, "max": 4 },
+          { "stat": "vitalitaet", "min": 2, "max": 4 }
         ], "count": [1, 2] }
       },
       "legendaryEffect": { "type": "streak_protection", "value": 1, "label": "Phantom's Whisper: Streak-Schild 1×/Woche" },
@@ -173,21 +180,22 @@
       "name": "Netz der Entropie",
       "slot": "armor",
       "rarity": "legendary",
-      "tier": 5,
+      "tier": 3,
+      "reqLevel": 20,
       "desc": "Rüstung aus dem kristallisierten Netz des Entropy Weaver. Jeder Faden hält eine zerbrochene Gewohnheit zusammen.",
       "flavorText": "Was zerfällt, kann neu verwoben werden.",
       "icon": null,
       "affixes": {
         "primary": { "pool": [
-          { "stat": "ausdauer", "min": 16, "max": 24 },
-          { "stat": "kraft", "min": 8, "max": 14 }
+          { "stat": "ausdauer", "min": 3, "max": 6 },
+          { "stat": "kraft", "min": 3, "max": 6 }
         ], "count": [2, 2] },
         "minor": { "pool": [
-          { "stat": "vitalitaet", "min": 8, "max": 16 },
-          { "stat": "fokus", "min": 6, "max": 12 }
+          { "stat": "vitalitaet", "min": 2, "max": 4 },
+          { "stat": "fokus", "min": 2, "max": 4 }
         ], "count": [1, 2] }
       },
-      "legendaryEffect": { "type": "decay_reduction", "min": 14, "max": 22, "label": "Entropieschild: -{value}% Forge-Decay" },
+      "legendaryEffect": { "type": "decay_reduction", "min": 2, "max": 5, "label": "Entropieschild: -{value}% Forge-Decay" },
       "source": "world_boss:entropy-weaver",
       "dropChance": 0.12,
       "isUnique": true
@@ -197,21 +205,22 @@
       "name": "Krone der Stille",
       "slot": "helm",
       "rarity": "legendary",
-      "tier": 5,
+      "tier": 4,
+      "reqLevel": 35,
       "desc": "Ein Helm aus dem steinernen Herz des Stagnation Golem. Schwer, aber unerschütterlich.",
       "flavorText": "Stillstand ist eine Wahl. Nicht deine.",
       "icon": null,
       "affixes": {
         "primary": { "pool": [
-          { "stat": "ausdauer", "min": 18, "max": 28 },
-          { "stat": "weisheit", "min": 8, "max": 14 }
+          { "stat": "ausdauer", "min": 4, "max": 7 },
+          { "stat": "weisheit", "min": 4, "max": 7 }
         ], "count": [2, 2] },
         "minor": { "pool": [
-          { "stat": "vitalitaet", "min": 12, "max": 20 },
-          { "stat": "tempo", "min": 4, "max": 10 }
+          { "stat": "vitalitaet", "min": 3, "max": 5 },
+          { "stat": "tempo", "min": 3, "max": 5 }
         ], "count": [1, 2] }
       },
-      "legendaryEffect": { "type": "xp_bonus", "min": 6, "max": 12, "label": "Unbewegliches Fundament: +{value}% Quest-XP" },
+      "legendaryEffect": { "type": "xp_bonus", "min": 3, "max": 8, "label": "Unbewegliches Fundament: +{value}% Quest-XP" },
       "source": "world_boss:stagnation-golem",
       "dropChance": 0.08,
       "isUnique": true
@@ -221,21 +230,22 @@
       "name": "Schwingen der Perfektion",
       "slot": "amulet",
       "rarity": "legendary",
-      "tier": 5,
+      "tier": 4,
+      "reqLevel": 35,
       "desc": "Eine blendende Feder des Perfection Seraph. Sie erinnert dich daran, dass 'gut genug' manchmal perfekt ist.",
       "flavorText": "Perfektion ist ein Gefängnis. Exzellenz ist ein Pfad.",
       "icon": null,
       "affixes": {
         "primary": { "pool": [
-          { "stat": "weisheit", "min": 14, "max": 22 },
-          { "stat": "kraft", "min": 10, "max": 18 }
+          { "stat": "weisheit", "min": 4, "max": 7 },
+          { "stat": "kraft", "min": 4, "max": 7 }
         ], "count": [2, 2] },
         "minor": { "pool": [
-          { "stat": "charisma", "min": 10, "max": 18 },
-          { "stat": "fokus", "min": 8, "max": 14 }
+          { "stat": "charisma", "min": 3, "max": 5 },
+          { "stat": "fokus", "min": 3, "max": 5 }
         ], "count": [1, 2] }
       },
-      "legendaryEffect": { "type": "gold_bonus", "min": 8, "max": 16, "label": "Blendender Glanz: +{value}% Gold" },
+      "legendaryEffect": { "type": "gold_bonus", "min": 3, "max": 8, "label": "Blendender Glanz: +{value}% Gold" },
       "source": "world_boss:perfection-seraph",
       "dropChance": 0.08,
       "isUnique": true
@@ -246,20 +256,21 @@
       "slot": "weapon",
       "rarity": "legendary",
       "tier": 5,
+      "reqLevel": 45,
       "desc": "Die Waffe des Isolation Leviathan. Sie durchschneidet nicht Fleisch, sondern die Mauern die man um sich baut.",
       "flavorText": "Allein bist du nichts. Zusammen — unaufhaltbar.",
       "icon": null,
       "affixes": {
         "primary": { "pool": [
-          { "stat": "kraft", "min": 20, "max": 30 },
-          { "stat": "charisma", "min": 8, "max": 14 }
+          { "stat": "kraft", "min": 5, "max": 8 },
+          { "stat": "glueck", "min": 5, "max": 8 }
         ], "count": [2, 2] },
         "minor": { "pool": [
-          { "stat": "tempo", "min": 10, "max": 18 },
-          { "stat": "fokus", "min": 8, "max": 14 }
+          { "stat": "tempo", "min": 3, "max": 6 },
+          { "stat": "fokus", "min": 3, "max": 6 }
         ], "count": [1, 2] }
       },
-      "legendaryEffect": { "type": "xp_bonus", "min": 10, "max": 18, "label": "Leerenschnitt: +{value}% Quest-XP" },
+      "legendaryEffect": { "type": "xp_bonus", "min": 5, "max": 20, "label": "Leerenschnitt: +{value}% Quest-XP" },
       "source": "world_boss:isolation-leviathan",
       "dropChance": 0.05,
       "isUnique": true
@@ -270,20 +281,21 @@
       "slot": "helm",
       "rarity": "legendary",
       "tier": 5,
+      "reqLevel": 45,
       "desc": "Die Krone des Apathy Sovereign — eines gefallenen Helden, der aufgehört hat zu kämpfen. Wer sie trägt, schwört nie aufzuhören.",
       "flavorText": "Der Thron steht leer. Du nicht.",
       "icon": null,
       "affixes": {
         "primary": { "pool": [
-          { "stat": "kraft", "min": 16, "max": 26 },
-          { "stat": "weisheit", "min": 14, "max": 22 }
+          { "stat": "kraft", "min": 5, "max": 8 },
+          { "stat": "weisheit", "min": 5, "max": 8 }
         ], "count": [2, 2] },
         "minor": { "pool": [
-          { "stat": "vitalitaet", "min": 12, "max": 20 },
-          { "stat": "charisma", "min": 8, "max": 16 }
+          { "stat": "vitalitaet", "min": 3, "max": 6 },
+          { "stat": "charisma", "min": 3, "max": 6 }
         ], "count": [1, 2] }
       },
-      "legendaryEffect": { "type": "drop_bonus", "min": 4, "max": 8, "label": "Leere Krone: +{value}% Drop-Chance" },
+      "legendaryEffect": { "type": "drop_bonus", "min": 5, "max": 20, "label": "Leere Krone: +{value}% Drop-Chance" },
       "source": "world_boss:apathy-sovereign",
       "dropChance": 0.04,
       "isUnique": true
