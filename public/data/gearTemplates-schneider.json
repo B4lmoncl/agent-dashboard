@@ -1,0 +1,3357 @@
+{
+  "items": [
+    {
+      "id": "craft-schneider-leinenhut",
+      "name": "Leinenhut",
+      "slot": "helm",
+      "tier": 1,
+      "reqLevel": 4,
+      "setId": "adventurer",
+      "rarity": "uncommon",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "fixedStats": {
+        "fokus": 3,
+        "weisheit": 2
+      },
+      "flavorText": "Leinen. Einfach, ehrlich, kratzt nur ein bisschen."
+    },
+    {
+      "id": "craft-schneider-leinenkappe",
+      "name": "Leinenkappe",
+      "slot": "helm",
+      "tier": 1,
+      "reqLevel": 4,
+      "setId": "adventurer",
+      "rarity": "uncommon",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "fixedStats": {
+        "fokus": 1,
+        "weisheit": 1
+      },
+      "flavorText": "Der Stoff riecht nach Neuanfang und billigem Garn."
+    },
+    {
+      "id": "craft-schneider-leinenhaube",
+      "name": "Leinenhaube",
+      "slot": "helm",
+      "tier": 1,
+      "reqLevel": 5,
+      "setId": "adventurer",
+      "rarity": "uncommon",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "fixedStats": {
+        "fokus": 1,
+        "weisheit": 1
+      },
+      "flavorText": "Leinen. Einfach, ehrlich, kratzt nur ein bisschen."
+    },
+    {
+      "id": "craft-schneider-leinenrobe",
+      "name": "Leinenrobe",
+      "slot": "armor",
+      "tier": 1,
+      "reqLevel": 5,
+      "setId": "adventurer",
+      "rarity": "uncommon",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "fixedStats": {
+        "weisheit": 2
+      },
+      "flavorText": "Schützt vor dem Wetter. Nicht vor schlechten Entscheidungen."
+    },
+    {
+      "id": "craft-schneider-leinengewand",
+      "name": "Leinengewand",
+      "slot": "armor",
+      "tier": 1,
+      "reqLevel": 5,
+      "setId": "adventurer",
+      "rarity": "uncommon",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "fixedStats": {
+        "weisheit": 2
+      },
+      "flavorText": "Nicht elegant, aber zweckmäßig. Wie die meisten guten Dinge."
+    },
+    {
+      "id": "craft-schneider-leinentunika",
+      "name": "Leinentunika",
+      "slot": "armor",
+      "tier": 1,
+      "reqLevel": 6,
+      "setId": "adventurer",
+      "rarity": "uncommon",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "fixedStats": {
+        "weisheit": 2
+      },
+      "flavorText": "Schützt vor dem Wetter. Nicht vor schlechten Entscheidungen."
+    },
+    {
+      "id": "craft-schneider-leinenkette",
+      "name": "Leinenkette",
+      "slot": "amulet",
+      "tier": 1,
+      "reqLevel": 6,
+      "setId": "adventurer",
+      "rarity": "rare",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "glueck",
+              "min": 1,
+              "max": 3
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 2
+            },
+            {
+              "stat": "charisma",
+              "min": 1,
+              "max": 2
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Der Stoff riecht nach Neuanfang und billigem Garn."
+    },
+    {
+      "id": "craft-schneider-leinenanhaenger",
+      "name": "Leinenanhänger",
+      "slot": "amulet",
+      "tier": 1,
+      "reqLevel": 7,
+      "setId": "adventurer",
+      "rarity": "rare",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "glueck",
+              "min": 1,
+              "max": 3
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 2
+            },
+            {
+              "stat": "charisma",
+              "min": 1,
+              "max": 2
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Leinen. Einfach, ehrlich, kratzt nur ein bisschen."
+    },
+    {
+      "id": "craft-schneider-leinenmedaillon",
+      "name": "Leinenmedaillon",
+      "slot": "amulet",
+      "tier": 1,
+      "reqLevel": 7,
+      "setId": "adventurer",
+      "rarity": "rare",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "glueck",
+              "min": 1,
+              "max": 3
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 2
+            },
+            {
+              "stat": "charisma",
+              "min": 1,
+              "max": 2
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Der Stoff riecht nach Neuanfang und billigem Garn."
+    },
+    {
+      "id": "craft-schneider-leinenschuhe",
+      "name": "Leinenschuhe",
+      "slot": "boots",
+      "tier": 1,
+      "reqLevel": 7,
+      "setId": "adventurer",
+      "rarity": "rare",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "glueck",
+              "min": 1,
+              "max": 3
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 2
+            },
+            {
+              "stat": "charisma",
+              "min": 1,
+              "max": 2
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Nicht elegant, aber zweckmäßig. Wie die meisten guten Dinge."
+    },
+    {
+      "id": "craft-schneider-leinensandalen",
+      "name": "Leinensandalen",
+      "slot": "boots",
+      "tier": 1,
+      "reqLevel": 8,
+      "setId": "adventurer",
+      "rarity": "rare",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "glueck",
+              "min": 1,
+              "max": 3
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 2
+            },
+            {
+              "stat": "charisma",
+              "min": 1,
+              "max": 2
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Schützt vor dem Wetter. Nicht vor schlechten Entscheidungen."
+    },
+    {
+      "id": "craft-schneider-leinenpantoffeln",
+      "name": "Leinenpantoffeln",
+      "slot": "boots",
+      "tier": 1,
+      "reqLevel": 8,
+      "setId": "adventurer",
+      "rarity": "rare",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "glueck",
+              "min": 1,
+              "max": 3
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 2
+            },
+            {
+              "stat": "charisma",
+              "min": 1,
+              "max": 2
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Nicht elegant, aber zweckmäßig. Wie die meisten guten Dinge."
+    },
+    {
+      "id": "craft-schneider-wollhut",
+      "name": "Wollhut",
+      "slot": "helm",
+      "tier": 2,
+      "reqLevel": 12,
+      "setId": "veteran",
+      "rarity": "uncommon",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "fixedStats": {
+        "fokus": 4,
+        "weisheit": 3
+      },
+      "flavorText": "Gewobene Wolle. Dichter als sie aussieht, klüger als sie wirkt."
+    },
+    {
+      "id": "craft-schneider-gewobene-kappe",
+      "name": "Gewobene Kappe",
+      "slot": "helm",
+      "tier": 2,
+      "reqLevel": 12,
+      "setId": "veteran",
+      "rarity": "uncommon",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "fixedStats": {
+        "fokus": 3,
+        "weisheit": 3
+      },
+      "flavorText": "Man sagt, gute Wolle denkt mit. Diese hier murmelt zumindest."
+    },
+    {
+      "id": "craft-schneider-wollkapuze",
+      "name": "Wollkapuze",
+      "slot": "helm",
+      "tier": 2,
+      "reqLevel": 12,
+      "setId": "veteran",
+      "rarity": "uncommon",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "fixedStats": {
+        "fokus": 4,
+        "weisheit": 2
+      },
+      "flavorText": "Gewobene Wolle. Dichter als sie aussieht, klüger als sie wirkt."
+    },
+    {
+      "id": "craft-schneider-wollschleier",
+      "name": "Wollschleier",
+      "slot": "helm",
+      "tier": 2,
+      "reqLevel": 13,
+      "setId": "veteran",
+      "rarity": "uncommon",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "fixedStats": {
+        "fokus": 3
+      },
+      "flavorText": "Man sagt, gute Wolle denkt mit. Diese hier murmelt zumindest."
+    },
+    {
+      "id": "craft-schneider-wollrobe",
+      "name": "Wollrobe",
+      "slot": "armor",
+      "tier": 2,
+      "reqLevel": 13,
+      "setId": "veteran",
+      "rarity": "uncommon",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "fixedStats": {
+        "weisheit": 3
+      },
+      "flavorText": "Gewobene Wolle. Dichter als sie aussieht, klüger als sie wirkt."
+    },
+    {
+      "id": "craft-schneider-gewobene-kutte",
+      "name": "Gewobene Kutte",
+      "slot": "armor",
+      "tier": 2,
+      "reqLevel": 13,
+      "setId": "veteran",
+      "rarity": "uncommon",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "fixedStats": {
+        "weisheit": 3
+      },
+      "flavorText": "Man sagt, gute Wolle denkt mit. Diese hier murmelt zumindest."
+    },
+    {
+      "id": "craft-schneider-wollmantel",
+      "name": "Wollmantel",
+      "slot": "armor",
+      "tier": 2,
+      "reqLevel": 13,
+      "setId": "veteran",
+      "rarity": "uncommon",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "fixedStats": {
+        "weisheit": 3
+      },
+      "flavorText": "Gewobene Wolle. Dichter als sie aussieht, klüger als sie wirkt."
+    },
+    {
+      "id": "craft-schneider-wollgewand",
+      "name": "Wollgewand",
+      "slot": "armor",
+      "tier": 2,
+      "reqLevel": 14,
+      "setId": "veteran",
+      "rarity": "uncommon",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "fixedStats": {
+        "weisheit": 3
+      },
+      "flavorText": "Man sagt, gute Wolle denkt mit. Diese hier murmelt zumindest."
+    },
+    {
+      "id": "craft-schneider-wollkette",
+      "name": "Wollkette",
+      "slot": "amulet",
+      "tier": 2,
+      "reqLevel": 14,
+      "setId": "veteran",
+      "rarity": "rare",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "glueck",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "charisma",
+              "min": 1,
+              "max": 3
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Gewobene Wolle. Dichter als sie aussieht, klüger als sie wirkt."
+    },
+    {
+      "id": "craft-schneider-gewobener-anhaenger",
+      "name": "Gewobener Anhänger",
+      "slot": "amulet",
+      "tier": 2,
+      "reqLevel": 14,
+      "setId": "veteran",
+      "rarity": "rare",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "glueck",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "charisma",
+              "min": 1,
+              "max": 3
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Man sagt, gute Wolle denkt mit. Diese hier murmelt zumindest."
+    },
+    {
+      "id": "craft-schneider-wollmedaillon",
+      "name": "Wollmedaillon",
+      "slot": "amulet",
+      "tier": 2,
+      "reqLevel": 15,
+      "setId": "veteran",
+      "rarity": "rare",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "glueck",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "charisma",
+              "min": 1,
+              "max": 3
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Gewobene Wolle. Dichter als sie aussieht, klüger als sie wirkt."
+    },
+    {
+      "id": "craft-schneider-gewobenes-amulett",
+      "name": "Gewobenes Amulett",
+      "slot": "amulet",
+      "tier": 2,
+      "reqLevel": 15,
+      "setId": "veteran",
+      "rarity": "rare",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "glueck",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "charisma",
+              "min": 1,
+              "max": 3
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Man sagt, gute Wolle denkt mit. Diese hier murmelt zumindest."
+    },
+    {
+      "id": "craft-schneider-wollstiefel",
+      "name": "Wollstiefel",
+      "slot": "boots",
+      "tier": 2,
+      "reqLevel": 15,
+      "setId": "veteran",
+      "rarity": "rare",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "glueck",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "charisma",
+              "min": 1,
+              "max": 3
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Gewobene Wolle. Dichter als sie aussieht, klüger als sie wirkt."
+    },
+    {
+      "id": "craft-schneider-gewobene-schuhe",
+      "name": "Gewobene Schuhe",
+      "slot": "boots",
+      "tier": 2,
+      "reqLevel": 15,
+      "setId": "veteran",
+      "rarity": "rare",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "glueck",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "charisma",
+              "min": 1,
+              "max": 3
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Man sagt, gute Wolle denkt mit. Diese hier murmelt zumindest."
+    },
+    {
+      "id": "craft-schneider-wollsandalen",
+      "name": "Wollsandalen",
+      "slot": "boots",
+      "tier": 2,
+      "reqLevel": 16,
+      "setId": "veteran",
+      "rarity": "rare",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "glueck",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "charisma",
+              "min": 1,
+              "max": 3
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Gewobene Wolle. Dichter als sie aussieht, klüger als sie wirkt."
+    },
+    {
+      "id": "craft-schneider-gewobene-treter",
+      "name": "Gewobene Treter",
+      "slot": "boots",
+      "tier": 2,
+      "reqLevel": 16,
+      "setId": "veteran",
+      "rarity": "rare",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "glueck",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "charisma",
+              "min": 1,
+              "max": 3
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Man sagt, gute Wolle denkt mit. Diese hier murmelt zumindest."
+    },
+    {
+      "id": "craft-schneider-seidenschleier",
+      "name": "Seidenschleier",
+      "slot": "helm",
+      "tier": 3,
+      "reqLevel": 20,
+      "setId": "master",
+      "rarity": "uncommon",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "fixedStats": {
+        "fokus": 3,
+        "weisheit": 4
+      },
+      "flavorText": "Die Seide flüstert beim Gehen. Nicht laut genug um zu stören, aber deutlich genug um aufzufallen."
+    },
+    {
+      "id": "craft-schneider-mondschein-tiara",
+      "name": "Mondschein-Tiara",
+      "slot": "helm",
+      "tier": 3,
+      "reqLevel": 20,
+      "setId": "master",
+      "rarity": "uncommon",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "fixedStats": {
+        "fokus": 3,
+        "weisheit": 3
+      },
+      "flavorText": "Im Mondlicht schimmert der Stoff in Farben, die tagsüber nicht existieren."
+    },
+    {
+      "id": "craft-schneider-seidenkappe",
+      "name": "Seidenkappe",
+      "slot": "helm",
+      "tier": 3,
+      "reqLevel": 20,
+      "setId": "master",
+      "rarity": "uncommon",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "fixedStats": {
+        "fokus": 4,
+        "weisheit": 3
+      },
+      "flavorText": "Die Seide flüstert beim Gehen. Nicht laut genug um zu stören, aber deutlich genug um aufzufallen."
+    },
+    {
+      "id": "craft-schneider-mondschein-haube",
+      "name": "Mondschein-Haube",
+      "slot": "helm",
+      "tier": 3,
+      "reqLevel": 21,
+      "setId": "master",
+      "rarity": "uncommon",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "fixedStats": {
+        "fokus": 5,
+        "weisheit": 3
+      },
+      "flavorText": "Im Mondlicht schimmert der Stoff in Farben, die tagsüber nicht existieren."
+    },
+    {
+      "id": "craft-schneider-seidenrobe",
+      "name": "Seidenrobe",
+      "slot": "armor",
+      "tier": 3,
+      "reqLevel": 21,
+      "setId": "master",
+      "rarity": "uncommon",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "fixedStats": {
+        "weisheit": 4
+      },
+      "flavorText": "Die Seide flüstert beim Gehen. Nicht laut genug um zu stören, aber deutlich genug um aufzufallen."
+    },
+    {
+      "id": "craft-schneider-mondschein-gewand",
+      "name": "Mondschein-Gewand",
+      "slot": "armor",
+      "tier": 3,
+      "reqLevel": 21,
+      "setId": "master",
+      "rarity": "uncommon",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "fixedStats": {
+        "weisheit": 3
+      },
+      "flavorText": "Im Mondlicht schimmert der Stoff in Farben, die tagsüber nicht existieren."
+    },
+    {
+      "id": "craft-schneider-seidenmantel",
+      "name": "Seidenmantel",
+      "slot": "armor",
+      "tier": 3,
+      "reqLevel": 21,
+      "setId": "master",
+      "rarity": "rare",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "glueck",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "charisma",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Die Seide flüstert beim Gehen. Nicht laut genug um zu stören, aber deutlich genug um aufzufallen."
+    },
+    {
+      "id": "craft-schneider-mondschein-kutte",
+      "name": "Mondschein-Kutte",
+      "slot": "armor",
+      "tier": 3,
+      "reqLevel": 22,
+      "setId": "master",
+      "rarity": "rare",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "glueck",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "charisma",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Im Mondlicht schimmert der Stoff in Farben, die tagsüber nicht existieren."
+    },
+    {
+      "id": "craft-schneider-seidenkette",
+      "name": "Seidenkette",
+      "slot": "amulet",
+      "tier": 3,
+      "reqLevel": 22,
+      "setId": "master",
+      "rarity": "rare",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "glueck",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "charisma",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Die Seide flüstert beim Gehen. Nicht laut genug um zu stören, aber deutlich genug um aufzufallen."
+    },
+    {
+      "id": "craft-schneider-mondschein-amulett",
+      "name": "Mondschein-Amulett",
+      "slot": "amulet",
+      "tier": 3,
+      "reqLevel": 22,
+      "setId": "master",
+      "rarity": "rare",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "glueck",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "charisma",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Im Mondlicht schimmert der Stoff in Farben, die tagsüber nicht existieren."
+    },
+    {
+      "id": "craft-schneider-seidenreif",
+      "name": "Seidenreif",
+      "slot": "amulet",
+      "tier": 3,
+      "reqLevel": 23,
+      "setId": "master",
+      "rarity": "rare",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "glueck",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "charisma",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Die Seide flüstert beim Gehen. Nicht laut genug um zu stören, aber deutlich genug um aufzufallen."
+    },
+    {
+      "id": "craft-schneider-seidenkette-i",
+      "name": "Seidenkette I",
+      "slot": "amulet",
+      "tier": 3,
+      "reqLevel": 23,
+      "setId": "master",
+      "rarity": "rare",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "glueck",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "charisma",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Im Mondlicht schimmert der Stoff in Farben, die tagsüber nicht existieren."
+    },
+    {
+      "id": "craft-schneider-seidenschuhe",
+      "name": "Seidenschuhe",
+      "slot": "boots",
+      "tier": 3,
+      "reqLevel": 23,
+      "setId": "master",
+      "rarity": "epic",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "glueck",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "charisma",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Die Seide flüstert beim Gehen. Nicht laut genug um zu stören, aber deutlich genug um aufzufallen."
+    },
+    {
+      "id": "craft-schneider-mondschein-pantoffeln",
+      "name": "Mondschein-Pantoffeln",
+      "slot": "boots",
+      "tier": 3,
+      "reqLevel": 23,
+      "setId": "master",
+      "rarity": "epic",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "glueck",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "charisma",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Im Mondlicht schimmert der Stoff in Farben, die tagsüber nicht existieren."
+    },
+    {
+      "id": "craft-schneider-seidensandalen",
+      "name": "Seidensandalen",
+      "slot": "boots",
+      "tier": 3,
+      "reqLevel": 24,
+      "setId": "master",
+      "rarity": "epic",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "glueck",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "charisma",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Die Seide flüstert beim Gehen. Nicht laut genug um zu stören, aber deutlich genug um aufzufallen."
+    },
+    {
+      "id": "craft-schneider-mondschein-treter",
+      "name": "Mondschein-Treter",
+      "slot": "boots",
+      "tier": 3,
+      "reqLevel": 24,
+      "setId": "master",
+      "rarity": "epic",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "glueck",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "charisma",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Im Mondlicht schimmert der Stoff in Farben, die tagsüber nicht existieren."
+    },
+    {
+      "id": "craft-schneider-arkane-krone",
+      "name": "Arkane Krone",
+      "slot": "helm",
+      "tier": 4,
+      "reqLevel": 34,
+      "setId": "legendary",
+      "rarity": "uncommon",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "fixedStats": {
+        "fokus": 4
+      },
+      "flavorText": "Arkaner Stoff. Er leuchtet dezent — gerade genug um in dunklen Bibliotheken lesen zu können."
+    },
+    {
+      "id": "craft-schneider-runenschleier",
+      "name": "Runenschleier",
+      "slot": "helm",
+      "tier": 4,
+      "reqLevel": 34,
+      "setId": "legendary",
+      "rarity": "uncommon",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "fixedStats": {
+        "fokus": 5,
+        "weisheit": 4
+      },
+      "flavorText": "Sternenstoff. Wer ihn trägt, wird von Astronomen und Motten gleichermaßen bewundert."
+    },
+    {
+      "id": "craft-schneider-aetherkrone",
+      "name": "Ätherkrone",
+      "slot": "helm",
+      "tier": 4,
+      "reqLevel": 35,
+      "setId": "legendary",
+      "rarity": "uncommon",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "fixedStats": {
+        "fokus": 6
+      },
+      "flavorText": "Der Stoff flüstert arkane Formeln. Die meisten sind nützlich. Manche sind Kochrezepte."
+    },
+    {
+      "id": "craft-schneider-sternenhaube",
+      "name": "Sternenhaube",
+      "slot": "helm",
+      "tier": 4,
+      "reqLevel": 36,
+      "setId": "legendary",
+      "rarity": "uncommon",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "fixedStats": {
+        "fokus": 5,
+        "weisheit": 4
+      },
+      "flavorText": "Runenstoff webt sich selbst, wenn man nicht hinschaut. Das ist entweder beruhigend oder beunruhigend."
+    },
+    {
+      "id": "craft-schneider-seelenkappe",
+      "name": "Seelenkappe",
+      "slot": "helm",
+      "tier": 4,
+      "reqLevel": 37,
+      "setId": "legendary",
+      "rarity": "uncommon",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "fixedStats": {
+        "fokus": 4
+      },
+      "flavorText": "Seelenstoff. Jeder Faden trägt eine Erinnerung. Trag ihn mit Respekt — und guter Haltung."
+    },
+    {
+      "id": "craft-schneider-arkane-robe",
+      "name": "Arkane Robe",
+      "slot": "armor",
+      "tier": 4,
+      "reqLevel": 38,
+      "setId": "legendary",
+      "rarity": "rare",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "charisma",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Arkaner Stoff. Er leuchtet dezent — gerade genug um in dunklen Bibliotheken lesen zu können."
+    },
+    {
+      "id": "craft-schneider-runengewand",
+      "name": "Runengewand",
+      "slot": "armor",
+      "tier": 4,
+      "reqLevel": 39,
+      "setId": "legendary",
+      "rarity": "rare",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "charisma",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Sternenstoff. Wer ihn trägt, wird von Astronomen und Motten gleichermaßen bewundert."
+    },
+    {
+      "id": "craft-schneider-aethergewand",
+      "name": "Äthergewand",
+      "slot": "armor",
+      "tier": 4,
+      "reqLevel": 40,
+      "setId": "legendary",
+      "rarity": "rare",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "charisma",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Der Stoff flüstert arkane Formeln. Die meisten sind nützlich. Manche sind Kochrezepte."
+    },
+    {
+      "id": "craft-schneider-sternenrobe",
+      "name": "Sternenrobe",
+      "slot": "armor",
+      "tier": 4,
+      "reqLevel": 41,
+      "setId": "legendary",
+      "rarity": "rare",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "charisma",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Runenstoff webt sich selbst, wenn man nicht hinschaut. Das ist entweder beruhigend oder beunruhigend."
+    },
+    {
+      "id": "craft-schneider-seelenrobe",
+      "name": "Seelenrobe",
+      "slot": "armor",
+      "tier": 4,
+      "reqLevel": 41,
+      "setId": "legendary",
+      "rarity": "rare",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "charisma",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Seelenstoff. Jeder Faden trägt eine Erinnerung. Trag ihn mit Respekt — und guter Haltung."
+    },
+    {
+      "id": "craft-schneider-arkanes-amulett",
+      "name": "Arkanes Amulett",
+      "slot": "amulet",
+      "tier": 4,
+      "reqLevel": 42,
+      "setId": "legendary",
+      "rarity": "rare",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "charisma",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Arkaner Stoff. Er leuchtet dezent — gerade genug um in dunklen Bibliotheken lesen zu können."
+    },
+    {
+      "id": "craft-schneider-runenkette",
+      "name": "Runenkette",
+      "slot": "amulet",
+      "tier": 4,
+      "reqLevel": 43,
+      "setId": "legendary",
+      "rarity": "rare",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "charisma",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Sternenstoff. Wer ihn trägt, wird von Astronomen und Motten gleichermaßen bewundert."
+    },
+    {
+      "id": "craft-schneider-seelenamulett",
+      "name": "Seelenamulett",
+      "slot": "amulet",
+      "tier": 4,
+      "reqLevel": 44,
+      "setId": "legendary",
+      "rarity": "rare",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "charisma",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Der Stoff flüstert arkane Formeln. Die meisten sind nützlich. Manche sind Kochrezepte."
+    },
+    {
+      "id": "craft-schneider-sternenkette",
+      "name": "Sternenkette",
+      "slot": "amulet",
+      "tier": 4,
+      "reqLevel": 45,
+      "setId": "legendary",
+      "rarity": "epic",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "charisma",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Runenstoff webt sich selbst, wenn man nicht hinschaut. Das ist entweder beruhigend oder beunruhigend."
+    },
+    {
+      "id": "craft-schneider-arkanes-amulett-i",
+      "name": "Arkanes Amulett I",
+      "slot": "amulet",
+      "tier": 4,
+      "reqLevel": 46,
+      "setId": "legendary",
+      "rarity": "epic",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "charisma",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Seelenstoff. Jeder Faden trägt eine Erinnerung. Trag ihn mit Respekt — und guter Haltung."
+    },
+    {
+      "id": "craft-schneider-arkane-schuhe",
+      "name": "Arkane Schuhe",
+      "slot": "boots",
+      "tier": 4,
+      "reqLevel": 47,
+      "setId": "legendary",
+      "rarity": "legendary",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            3,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "charisma",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "xp_bonus",
+        "min": 3,
+        "max": 6,
+        "label": "Arkane Resonanz: +{value}% Quest-XP"
+      },
+      "flavorText": "Arkaner Stoff. Er leuchtet dezent — gerade genug um in dunklen Bibliotheken lesen zu können."
+    },
+    {
+      "id": "craft-schneider-runensandalen",
+      "name": "Runensandalen",
+      "slot": "boots",
+      "tier": 4,
+      "reqLevel": 47,
+      "setId": "legendary",
+      "rarity": "legendary",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            3,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "charisma",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "cooldown_reduction",
+        "min": 3,
+        "max": 6,
+        "label": "Zeitweberei: -{value}% Craft-Cooldown"
+      },
+      "flavorText": "Sternenstoff. Wer ihn trägt, wird von Astronomen und Motten gleichermaßen bewundert."
+    },
+    {
+      "id": "craft-schneider-aetherschuhe",
+      "name": "Ätherschuhe",
+      "slot": "boots",
+      "tier": 4,
+      "reqLevel": 48,
+      "setId": "legendary",
+      "rarity": "legendary",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            3,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "charisma",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "ritual_streak_bonus",
+        "min": 3,
+        "max": 6,
+        "label": "Gewobene Disziplin: +{value}% Ritual-XP pro Streak-Tag"
+      },
+      "flavorText": "Der Stoff flüstert arkane Formeln. Die meisten sind nützlich. Manche sind Kochrezepte."
+    },
+    {
+      "id": "craft-schneider-seelenstiefel",
+      "name": "Seelenstiefel",
+      "slot": "boots",
+      "tier": 4,
+      "reqLevel": 49,
+      "setId": "legendary",
+      "rarity": "legendary",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            3,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "charisma",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "gold_bonus",
+        "min": 3,
+        "max": 6,
+        "label": "Seidener Glanz: +{value}% Gold"
+      },
+      "flavorText": "Runenstoff webt sich selbst, wenn man nicht hinschaut. Das ist entweder beruhigend oder beunruhigend."
+    },
+    {
+      "id": "craft-schneider-seelenwandler-schuhe",
+      "name": "Seelenwandler-Schuhe",
+      "slot": "boots",
+      "tier": 4,
+      "reqLevel": 50,
+      "setId": "legendary",
+      "rarity": "legendary",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            3,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "charisma",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "decay_reduction",
+        "min": 3,
+        "max": 6,
+        "label": "Zeitlose Fäden: -{value}% Forge-Decay"
+      },
+      "flavorText": "Seelenstoff. Jeder Faden trägt eine Erinnerung. Trag ihn mit Respekt — und guter Haltung."
+    },
+    {
+      "id": "craft-schneider-leinenschleier-des-gelehrten",
+      "name": "Leinenschleier des Gelehrten",
+      "slot": "helm",
+      "tier": 1,
+      "reqLevel": 2,
+      "setId": "adventurer",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "weisheit": 1
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schneider-wollkappe-des-forschers",
+      "name": "Wollkappe des Forschers",
+      "slot": "helm",
+      "tier": 2,
+      "reqLevel": 9,
+      "setId": "veteran",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "weisheit": 2,
+        "kraft": 3
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schneider-seidenschleier-des-weisen",
+      "name": "Seidenschleier des Weisen",
+      "slot": "helm",
+      "tier": 3,
+      "reqLevel": 18,
+      "setId": "master",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "rare",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schneider-arkane-weisenkrone",
+      "name": "Arkane Weisenkrone",
+      "slot": "helm",
+      "tier": 4,
+      "reqLevel": 47,
+      "setId": "legendary",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "weisheit": 7,
+        "kraft": 6
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schneider-einfache-leinenkappe",
+      "name": "Einfache Leinenkappe",
+      "slot": "helm",
+      "tier": 1,
+      "reqLevel": 8,
+      "setId": "adventurer",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "weisheit": 2,
+        "kraft": 1
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schneider-gewobener-wollschleier",
+      "name": "Gewobener Wollschleier",
+      "slot": "helm",
+      "tier": 2,
+      "reqLevel": 11,
+      "setId": "veteran",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "weisheit": 4,
+        "kraft": 3
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schneider-mondschein-gelehrtenkappe",
+      "name": "Mondschein-Gelehrtenkappe",
+      "slot": "helm",
+      "tier": 3,
+      "reqLevel": 21,
+      "setId": "master",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "weisheit": 3,
+        "kraft": 3
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schneider-sternenmantel",
+      "name": "Sternenmantel",
+      "slot": "armor",
+      "tier": 4,
+      "reqLevel": 38,
+      "setId": "legendary",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "epic",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schneider-leinengewand-des-wanderers",
+      "name": "Leinengewand des Wanderers",
+      "slot": "armor",
+      "tier": 1,
+      "reqLevel": 4,
+      "setId": "adventurer",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "weisheit": 1,
+        "kraft": 1
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schneider-wollrobe-des-wanderers",
+      "name": "Wollrobe des Wanderers",
+      "slot": "armor",
+      "tier": 2,
+      "reqLevel": 12,
+      "setId": "veteran",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "weisheit": 3,
+        "kraft": 2
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schneider-seidenrobe-der-erleuchtung",
+      "name": "Seidenrobe der Erleuchtung",
+      "slot": "armor",
+      "tier": 3,
+      "reqLevel": 18,
+      "setId": "master",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "weisheit": 3
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schneider-arkane-meisterrobe",
+      "name": "Arkane Meisterrobe",
+      "slot": "armor",
+      "tier": 4,
+      "reqLevel": 36,
+      "setId": "legendary",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "weisheit": 6
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schneider-leinenpantoffeln-des-lesers",
+      "name": "Leinenpantoffeln des Lesers",
+      "slot": "boots",
+      "tier": 1,
+      "reqLevel": 7,
+      "setId": "adventurer",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "rare",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 2
+            },
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 2
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schneider-wollstiefel-des-reisenden",
+      "name": "Wollstiefel des Reisenden",
+      "slot": "boots",
+      "tier": 2,
+      "reqLevel": 10,
+      "setId": "veteran",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "weisheit": 3,
+        "kraft": 3
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schneider-seidenpantoffeln-des-meisters",
+      "name": "Seidenpantoffeln des Meisters",
+      "slot": "boots",
+      "tier": 3,
+      "reqLevel": 19,
+      "setId": "master",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "rare",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schneider-arkane-meisterschuhe",
+      "name": "Arkane Meisterschuhe",
+      "slot": "boots",
+      "tier": 4,
+      "reqLevel": 42,
+      "setId": "legendary",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "weisheit": 4
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schneider-einfache-leinenschuhe",
+      "name": "Einfache Leinenschuhe",
+      "slot": "boots",
+      "tier": 1,
+      "reqLevel": 8,
+      "setId": "adventurer",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "rare",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 2
+            },
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 2
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schneider-gewobene-wollschuhe",
+      "name": "Gewobene Wollschuhe",
+      "slot": "boots",
+      "tier": 2,
+      "reqLevel": 11,
+      "setId": "veteran",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "weisheit": 4,
+        "kraft": 2
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schneider-mondschein-schritte",
+      "name": "Mondschein-Schritte",
+      "slot": "boots",
+      "tier": 3,
+      "reqLevel": 23,
+      "setId": "master",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "weisheit": 3
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schneider-sternentalisman",
+      "name": "Sternentalisman",
+      "slot": "amulet",
+      "tier": 4,
+      "reqLevel": 34,
+      "setId": "legendary",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "epic",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schneider-leinenkette-des-wissens",
+      "name": "Leinenkette des Wissens",
+      "slot": "amulet",
+      "tier": 1,
+      "reqLevel": 2,
+      "setId": "adventurer",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "rare",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 2
+            },
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 2
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schneider-wollkette-des-gelehrten",
+      "name": "Wollkette des Gelehrten",
+      "slot": "amulet",
+      "tier": 2,
+      "reqLevel": 13,
+      "setId": "veteran",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "weisheit": 3
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schneider-seidenkette-der-sterne",
+      "name": "Seidenkette der Sterne",
+      "slot": "amulet",
+      "tier": 3,
+      "reqLevel": 23,
+      "setId": "master",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "weisheit": 4,
+        "kraft": 3
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-schneider-arkanes-meisteramulett",
+      "name": "Arkanes Meisteramulett",
+      "slot": "amulet",
+      "tier": 4,
+      "reqLevel": 39,
+      "setId": "legendary",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "weisheit": 4
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+    }
+  ]
+}

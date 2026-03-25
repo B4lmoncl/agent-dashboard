@@ -1,0 +1,3622 @@
+{
+  "items": [
+    {
+      "id": "craft-leder-leichtleder-kappe",
+      "name": "Leichtleder-Kappe",
+      "slot": "helm",
+      "tier": 1,
+      "reqLevel": 4,
+      "setId": "adventurer",
+      "rarity": "uncommon",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "flavorText": "Leichtleder. Riecht nach Abenteuer und leicht nach Ziege.",
+      "fixedStats": {
+        "glueck": 2
+      }
+    },
+    {
+      "id": "craft-leder-leichtleder-haube",
+      "name": "Leichtleder-Haube",
+      "slot": "helm",
+      "tier": 1,
+      "reqLevel": 4,
+      "setId": "adventurer",
+      "rarity": "uncommon",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "flavorText": "Der Gerber hat gelächelt, als er es fertig hatte. Das ist entweder gut oder beunruhigend.",
+      "fixedStats": {
+        "glueck": 1
+      }
+    },
+    {
+      "id": "craft-leder-leichtleder-stirnband",
+      "name": "Leichtleder-Stirnband",
+      "slot": "helm",
+      "tier": 1,
+      "reqLevel": 5,
+      "setId": "adventurer",
+      "rarity": "uncommon",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "flavorText": "Leichtleder. Riecht nach Abenteuer und leicht nach Ziege.",
+      "fixedStats": {
+        "glueck": 1,
+        "kraft": 1
+      }
+    },
+    {
+      "id": "craft-leder-leichtleder-wams",
+      "name": "Leichtleder-Wams",
+      "slot": "armor",
+      "tier": 1,
+      "reqLevel": 5,
+      "setId": "adventurer",
+      "rarity": "uncommon",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "flavorText": "Schützt vor Kratzern. Nicht vor Kritik.",
+      "fixedStats": {
+        "ausdauer": 3,
+        "kraft": 2
+      }
+    },
+    {
+      "id": "craft-leder-leichtleder-jacke",
+      "name": "Leichtleder-Jacke",
+      "slot": "armor",
+      "tier": 1,
+      "reqLevel": 5,
+      "setId": "adventurer",
+      "rarity": "uncommon",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "flavorText": "Einfach, aber ehrlich. Wie die meisten Anfänge.",
+      "fixedStats": {
+        "ausdauer": 1
+      }
+    },
+    {
+      "id": "craft-leder-leichtleder-tunika",
+      "name": "Leichtleder-Tunika",
+      "slot": "armor",
+      "tier": 1,
+      "reqLevel": 6,
+      "setId": "adventurer",
+      "rarity": "uncommon",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "flavorText": "Schützt vor Kratzern. Nicht vor Kritik.",
+      "fixedStats": {
+        "ausdauer": 1,
+        "kraft": 2
+      }
+    },
+    {
+      "id": "craft-leder-leichtleder-band",
+      "name": "Leichtleder-Band",
+      "slot": "amulet",
+      "tier": 1,
+      "reqLevel": 6,
+      "setId": "adventurer",
+      "rarity": "rare",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "flavorText": "Der Gerber hat gelächelt, als er es fertig hatte. Das ist entweder gut oder beunruhigend.",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "glueck",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 2
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 2
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "id": "craft-leder-leichtleder-kette",
+      "name": "Leichtleder-Kette",
+      "slot": "amulet",
+      "tier": 1,
+      "reqLevel": 7,
+      "setId": "adventurer",
+      "rarity": "rare",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "flavorText": "Leichtleder. Riecht nach Abenteuer und leicht nach Ziege.",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "glueck",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 2
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 2
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "id": "craft-leder-leichtleder-anhaenger",
+      "name": "Leichtleder-Anhänger",
+      "slot": "amulet",
+      "tier": 1,
+      "reqLevel": 7,
+      "setId": "adventurer",
+      "rarity": "rare",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "flavorText": "Der Gerber hat gelächelt, als er es fertig hatte. Das ist entweder gut oder beunruhigend.",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "glueck",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 2
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 2
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "id": "craft-leder-leichtleder-stiefel",
+      "name": "Leichtleder-Stiefel",
+      "slot": "boots",
+      "tier": 1,
+      "reqLevel": 7,
+      "setId": "adventurer",
+      "rarity": "rare",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "flavorText": "Einfach, aber ehrlich. Wie die meisten Anfänge.",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "glueck",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 2
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 2
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "id": "craft-leder-leichtleder-treter",
+      "name": "Leichtleder-Treter",
+      "slot": "boots",
+      "tier": 1,
+      "reqLevel": 8,
+      "setId": "adventurer",
+      "rarity": "rare",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "flavorText": "Schützt vor Kratzern. Nicht vor Kritik.",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "glueck",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 2
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 2
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "id": "craft-leder-leichtleder-sandalen",
+      "name": "Leichtleder-Sandalen",
+      "slot": "boots",
+      "tier": 1,
+      "reqLevel": 8,
+      "setId": "adventurer",
+      "rarity": "rare",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "flavorText": "Einfach, aber ehrlich. Wie die meisten Anfänge.",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "glueck",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 2
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 2
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "id": "craft-leder-jaeger-kappe",
+      "name": "Jäger-Kappe",
+      "slot": "helm",
+      "tier": 2,
+      "reqLevel": 12,
+      "setId": "veteran",
+      "rarity": "uncommon",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "flavorText": "Jäger-Qualität. Riecht nach Kiefern und Entschlossenheit.",
+      "fixedStats": {
+        "glueck": 2,
+        "kraft": 3
+      }
+    },
+    {
+      "id": "craft-leder-mittelleder-kapuze",
+      "name": "Mittelleder-Kapuze",
+      "slot": "helm",
+      "tier": 2,
+      "reqLevel": 12,
+      "setId": "veteran",
+      "rarity": "uncommon",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "flavorText": "Wildnis-getestet. Von wem? Frag nicht.",
+      "fixedStats": {
+        "glueck": 2,
+        "kraft": 2
+      }
+    },
+    {
+      "id": "craft-leder-jagd-maske",
+      "name": "Jagd-Maske",
+      "slot": "helm",
+      "tier": 2,
+      "reqLevel": 12,
+      "setId": "veteran",
+      "rarity": "uncommon",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "flavorText": "Jäger-Qualität. Riecht nach Kiefern und Entschlossenheit.",
+      "fixedStats": {
+        "glueck": 4
+      }
+    },
+    {
+      "id": "craft-leder-wildnis-haube",
+      "name": "Wildnis-Haube",
+      "slot": "helm",
+      "tier": 2,
+      "reqLevel": 13,
+      "setId": "veteran",
+      "rarity": "uncommon",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "flavorText": "Wildnis-getestet. Von wem? Frag nicht.",
+      "fixedStats": {
+        "glueck": 4,
+        "kraft": 3
+      }
+    },
+    {
+      "id": "craft-leder-jaeger-wams",
+      "name": "Jäger-Wams",
+      "slot": "armor",
+      "tier": 2,
+      "reqLevel": 13,
+      "setId": "veteran",
+      "rarity": "uncommon",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "flavorText": "Jäger-Qualität. Riecht nach Kiefern und Entschlossenheit.",
+      "fixedStats": {
+        "ausdauer": 4
+      }
+    },
+    {
+      "id": "craft-leder-mittelleder-harnisch",
+      "name": "Mittelleder-Harnisch",
+      "slot": "armor",
+      "tier": 2,
+      "reqLevel": 13,
+      "setId": "veteran",
+      "rarity": "uncommon",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "flavorText": "Wildnis-getestet. Von wem? Frag nicht.",
+      "fixedStats": {
+        "ausdauer": 4,
+        "kraft": 3
+      }
+    },
+    {
+      "id": "craft-leder-jagd-jacke",
+      "name": "Jagd-Jacke",
+      "slot": "armor",
+      "tier": 2,
+      "reqLevel": 13,
+      "setId": "veteran",
+      "rarity": "uncommon",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "flavorText": "Jäger-Qualität. Riecht nach Kiefern und Entschlossenheit.",
+      "fixedStats": {
+        "ausdauer": 3
+      }
+    },
+    {
+      "id": "craft-leder-wildnis-weste",
+      "name": "Wildnis-Weste",
+      "slot": "armor",
+      "tier": 2,
+      "reqLevel": 14,
+      "setId": "veteran",
+      "rarity": "uncommon",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "flavorText": "Wildnis-getestet. Von wem? Frag nicht.",
+      "fixedStats": {
+        "ausdauer": 4,
+        "kraft": 2
+      }
+    },
+    {
+      "id": "craft-leder-jaeger-amulett",
+      "name": "Jäger-Amulett",
+      "slot": "amulet",
+      "tier": 2,
+      "reqLevel": 14,
+      "setId": "veteran",
+      "rarity": "rare",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "flavorText": "Jäger-Qualität. Riecht nach Kiefern und Entschlossenheit.",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "glueck",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "id": "craft-leder-mittelleder-kette",
+      "name": "Mittelleder-Kette",
+      "slot": "amulet",
+      "tier": 2,
+      "reqLevel": 14,
+      "setId": "veteran",
+      "rarity": "rare",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "flavorText": "Wildnis-getestet. Von wem? Frag nicht.",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "glueck",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "id": "craft-leder-jagd-talisman",
+      "name": "Jagd-Talisman",
+      "slot": "amulet",
+      "tier": 2,
+      "reqLevel": 15,
+      "setId": "veteran",
+      "rarity": "rare",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "flavorText": "Jäger-Qualität. Riecht nach Kiefern und Entschlossenheit.",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "glueck",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "id": "craft-leder-wildnis-anhaenger",
+      "name": "Wildnis-Anhänger",
+      "slot": "amulet",
+      "tier": 2,
+      "reqLevel": 15,
+      "setId": "veteran",
+      "rarity": "rare",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "flavorText": "Wildnis-getestet. Von wem? Frag nicht.",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "glueck",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "id": "craft-leder-jaeger-stiefel",
+      "name": "Jäger-Stiefel",
+      "slot": "boots",
+      "tier": 2,
+      "reqLevel": 15,
+      "setId": "veteran",
+      "rarity": "rare",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "flavorText": "Jäger-Qualität. Riecht nach Kiefern und Entschlossenheit.",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "glueck",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "id": "craft-leder-mittelleder-treter",
+      "name": "Mittelleder-Treter",
+      "slot": "boots",
+      "tier": 2,
+      "reqLevel": 15,
+      "setId": "veteran",
+      "rarity": "rare",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "flavorText": "Wildnis-getestet. Von wem? Frag nicht.",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "glueck",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "id": "craft-leder-jagd-schuhe",
+      "name": "Jagd-Schuhe",
+      "slot": "boots",
+      "tier": 2,
+      "reqLevel": 16,
+      "setId": "veteran",
+      "rarity": "rare",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "flavorText": "Jäger-Qualität. Riecht nach Kiefern und Entschlossenheit.",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "glueck",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "id": "craft-leder-wildnis-stiefel",
+      "name": "Wildnis-Stiefel",
+      "slot": "boots",
+      "tier": 2,
+      "reqLevel": 16,
+      "setId": "veteran",
+      "rarity": "rare",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "flavorText": "Wildnis-getestet. Von wem? Frag nicht.",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "glueck",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "id": "craft-leder-schwerleder-helm",
+      "name": "Schwerleder-Helm",
+      "slot": "helm",
+      "tier": 3,
+      "reqLevel": 20,
+      "setId": "master",
+      "rarity": "uncommon",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "flavorText": "Bestien-Leder. Jede Narbe im Material ist ein Kapitel.",
+      "fixedStats": {
+        "glueck": 5,
+        "kraft": 3
+      }
+    },
+    {
+      "id": "craft-leder-bestien-kappe",
+      "name": "Bestien-Kappe",
+      "slot": "helm",
+      "tier": 3,
+      "reqLevel": 20,
+      "setId": "master",
+      "rarity": "uncommon",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "flavorText": "Im Mondlicht schimmert es. Nicht hübsch — bedrohlich.",
+      "fixedStats": {
+        "glueck": 3,
+        "kraft": 4
+      }
+    },
+    {
+      "id": "craft-leder-schwerleder-maske",
+      "name": "Schwerleder-Maske",
+      "slot": "helm",
+      "tier": 3,
+      "reqLevel": 20,
+      "setId": "master",
+      "rarity": "uncommon",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "flavorText": "Bestien-Leder. Jede Narbe im Material ist ein Kapitel.",
+      "fixedStats": {
+        "glueck": 3,
+        "kraft": 3
+      }
+    },
+    {
+      "id": "craft-leder-bestien-kapuze",
+      "name": "Bestien-Kapuze",
+      "slot": "helm",
+      "tier": 3,
+      "reqLevel": 21,
+      "setId": "master",
+      "rarity": "uncommon",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "flavorText": "Im Mondlicht schimmert es. Nicht hübsch — bedrohlich.",
+      "fixedStats": {
+        "glueck": 4
+      }
+    },
+    {
+      "id": "craft-leder-schwerleder-harnisch",
+      "name": "Schwerleder-Harnisch",
+      "slot": "armor",
+      "tier": 3,
+      "reqLevel": 21,
+      "setId": "master",
+      "rarity": "uncommon",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "flavorText": "Bestien-Leder. Jede Narbe im Material ist ein Kapitel.",
+      "fixedStats": {
+        "ausdauer": 3,
+        "kraft": 4
+      }
+    },
+    {
+      "id": "craft-leder-bestien-wams",
+      "name": "Bestien-Wams",
+      "slot": "armor",
+      "tier": 3,
+      "reqLevel": 21,
+      "setId": "master",
+      "rarity": "uncommon",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "flavorText": "Im Mondlicht schimmert es. Nicht hübsch — bedrohlich.",
+      "fixedStats": {
+        "ausdauer": 5,
+        "kraft": 3
+      }
+    },
+    {
+      "id": "craft-leder-schwerleder-ruestung",
+      "name": "Schwerleder-Rüstung",
+      "slot": "armor",
+      "tier": 3,
+      "reqLevel": 21,
+      "setId": "master",
+      "rarity": "rare",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "flavorText": "Bestien-Leder. Jede Narbe im Material ist ein Kapitel.",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "glueck",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "id": "craft-leder-bestien-jacke",
+      "name": "Bestien-Jacke",
+      "slot": "armor",
+      "tier": 3,
+      "reqLevel": 22,
+      "setId": "master",
+      "rarity": "rare",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "flavorText": "Im Mondlicht schimmert es. Nicht hübsch — bedrohlich.",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "glueck",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "id": "craft-leder-schwerleder-talisman",
+      "name": "Schwerleder-Talisman",
+      "slot": "amulet",
+      "tier": 3,
+      "reqLevel": 22,
+      "setId": "master",
+      "rarity": "rare",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "flavorText": "Bestien-Leder. Jede Narbe im Material ist ein Kapitel.",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "glueck",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "id": "craft-leder-bestien-amulett",
+      "name": "Bestien-Amulett",
+      "slot": "amulet",
+      "tier": 3,
+      "reqLevel": 22,
+      "setId": "master",
+      "rarity": "rare",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "flavorText": "Im Mondlicht schimmert es. Nicht hübsch — bedrohlich.",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "glueck",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "id": "craft-leder-schwerleder-reif",
+      "name": "Schwerleder-Reif",
+      "slot": "amulet",
+      "tier": 3,
+      "reqLevel": 23,
+      "setId": "master",
+      "rarity": "rare",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "flavorText": "Bestien-Leder. Jede Narbe im Material ist ein Kapitel.",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "glueck",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "id": "craft-leder-schwerleder-talisman-ii",
+      "name": "Schwerleder-Talisman II",
+      "slot": "amulet",
+      "tier": 3,
+      "reqLevel": 23,
+      "setId": "master",
+      "rarity": "rare",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "flavorText": "Im Mondlicht schimmert es. Nicht hübsch — bedrohlich.",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "glueck",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "id": "craft-leder-schwerleder-stiefel",
+      "name": "Schwerleder-Stiefel",
+      "slot": "boots",
+      "tier": 3,
+      "reqLevel": 23,
+      "setId": "master",
+      "rarity": "epic",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "flavorText": "Bestien-Leder. Jede Narbe im Material ist ein Kapitel.",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "glueck",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      }
+    },
+    {
+      "id": "craft-leder-bestien-treter",
+      "name": "Bestien-Treter",
+      "slot": "boots",
+      "tier": 3,
+      "reqLevel": 23,
+      "setId": "master",
+      "rarity": "epic",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "flavorText": "Im Mondlicht schimmert es. Nicht hübsch — bedrohlich.",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "glueck",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      }
+    },
+    {
+      "id": "craft-leder-schwerleder-tritte",
+      "name": "Schwerleder-Tritte",
+      "slot": "boots",
+      "tier": 3,
+      "reqLevel": 24,
+      "setId": "master",
+      "rarity": "epic",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "flavorText": "Bestien-Leder. Jede Narbe im Material ist ein Kapitel.",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "glueck",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      }
+    },
+    {
+      "id": "craft-leder-bestien-schuhe",
+      "name": "Bestien-Schuhe",
+      "slot": "boots",
+      "tier": 3,
+      "reqLevel": 24,
+      "setId": "master",
+      "rarity": "epic",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "flavorText": "Im Mondlicht schimmert es. Nicht hübsch — bedrohlich.",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "glueck",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      }
+    },
+    {
+      "id": "craft-leder-urzeit-kappe",
+      "name": "Urzeit-Kappe",
+      "slot": "helm",
+      "tier": 4,
+      "reqLevel": 34,
+      "setId": "legendary",
+      "rarity": "uncommon",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "flavorText": "Urzeit-Leder. Älter als die meisten Zivilisationen. Haltbarer auch.",
+      "fixedStats": {
+        "glueck": 5
+      }
+    },
+    {
+      "id": "craft-leder-bestien-krone",
+      "name": "Bestien-Krone",
+      "slot": "helm",
+      "tier": 4,
+      "reqLevel": 34,
+      "setId": "legendary",
+      "rarity": "uncommon",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "flavorText": "Das Leder flüstert. Nicht laut genug um zu stören, aber deutlich genug um Respekt einzuflößen.",
+      "fixedStats": {
+        "glueck": 4,
+        "kraft": 6
+      }
+    },
+    {
+      "id": "craft-leder-urzeit-visier",
+      "name": "Urzeit-Visier",
+      "slot": "helm",
+      "tier": 4,
+      "reqLevel": 35,
+      "setId": "legendary",
+      "rarity": "uncommon",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "flavorText": "Urzeit-Material. Es erinnert sich an Zeiten, in denen Helden noch keine Titel brauchten.",
+      "fixedStats": {
+        "glueck": 7
+      }
+    },
+    {
+      "id": "craft-leder-seelenjaeger-haube",
+      "name": "Seelenjäger-Haube",
+      "slot": "helm",
+      "tier": 4,
+      "reqLevel": 36,
+      "setId": "legendary",
+      "rarity": "uncommon",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "flavorText": "Seelenjäger-Qualität. Wer es trägt, wird von Beute zu Jäger.",
+      "fixedStats": {
+        "glueck": 5,
+        "kraft": 6
+      }
+    },
+    {
+      "id": "craft-leder-urzeit-helm",
+      "name": "Urzeit-Helm",
+      "slot": "helm",
+      "tier": 4,
+      "reqLevel": 37,
+      "setId": "legendary",
+      "rarity": "uncommon",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "flavorText": "Bestien-Meisterwerk. Der Gerber hat danach eine Woche Urlaub genommen.",
+      "fixedStats": {
+        "glueck": 7,
+        "kraft": 5
+      }
+    },
+    {
+      "id": "craft-leder-urzeit-harnisch",
+      "name": "Urzeit-Harnisch",
+      "slot": "armor",
+      "tier": 4,
+      "reqLevel": 38,
+      "setId": "legendary",
+      "rarity": "rare",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "flavorText": "Urzeit-Leder. Älter als die meisten Zivilisationen. Haltbarer auch.",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "id": "craft-leder-bestien-ruestung",
+      "name": "Bestien-Rüstung",
+      "slot": "armor",
+      "tier": 4,
+      "reqLevel": 39,
+      "setId": "legendary",
+      "rarity": "rare",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "flavorText": "Das Leder flüstert. Nicht laut genug um zu stören, aber deutlich genug um Respekt einzuflößen.",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "id": "craft-leder-urzeit-mantel",
+      "name": "Urzeit-Mantel",
+      "slot": "armor",
+      "tier": 4,
+      "reqLevel": 40,
+      "setId": "legendary",
+      "rarity": "rare",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "flavorText": "Urzeit-Material. Es erinnert sich an Zeiten, in denen Helden noch keine Titel brauchten.",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "id": "craft-leder-seelenjaeger-wams",
+      "name": "Seelenjäger-Wams",
+      "slot": "armor",
+      "tier": 4,
+      "reqLevel": 41,
+      "setId": "legendary",
+      "rarity": "rare",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "flavorText": "Seelenjäger-Qualität. Wer es trägt, wird von Beute zu Jäger.",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "id": "craft-leder-urzeit-jacke",
+      "name": "Urzeit-Jacke",
+      "slot": "armor",
+      "tier": 4,
+      "reqLevel": 41,
+      "setId": "legendary",
+      "rarity": "rare",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "flavorText": "Bestien-Meisterwerk. Der Gerber hat danach eine Woche Urlaub genommen.",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "id": "craft-leder-urzeit-talisman",
+      "name": "Urzeit-Talisman",
+      "slot": "amulet",
+      "tier": 4,
+      "reqLevel": 42,
+      "setId": "legendary",
+      "rarity": "rare",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "flavorText": "Urzeit-Leder. Älter als die meisten Zivilisationen. Haltbarer auch.",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "id": "craft-leder-bestien-anhaenger",
+      "name": "Bestien-Anhänger",
+      "slot": "amulet",
+      "tier": 4,
+      "reqLevel": 43,
+      "setId": "legendary",
+      "rarity": "rare",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "flavorText": "Das Leder flüstert. Nicht laut genug um zu stören, aber deutlich genug um Respekt einzuflößen.",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "id": "craft-leder-seelenjaeger-amulett",
+      "name": "Seelenjäger-Amulett",
+      "slot": "amulet",
+      "tier": 4,
+      "reqLevel": 44,
+      "setId": "legendary",
+      "rarity": "rare",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "flavorText": "Urzeit-Material. Es erinnert sich an Zeiten, in denen Helden noch keine Titel brauchten.",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "id": "craft-leder-urzeit-kette",
+      "name": "Urzeit-Kette",
+      "slot": "amulet",
+      "tier": 4,
+      "reqLevel": 45,
+      "setId": "legendary",
+      "rarity": "epic",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "flavorText": "Seelenjäger-Qualität. Wer es trägt, wird von Beute zu Jäger.",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      }
+    },
+    {
+      "id": "craft-leder-urzeit-talisman-ii",
+      "name": "Urzeit-Talisman II",
+      "slot": "amulet",
+      "tier": 4,
+      "reqLevel": 46,
+      "setId": "legendary",
+      "rarity": "epic",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "flavorText": "Bestien-Meisterwerk. Der Gerber hat danach eine Woche Urlaub genommen.",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      }
+    },
+    {
+      "id": "craft-leder-urzeit-stiefel",
+      "name": "Urzeit-Stiefel",
+      "slot": "boots",
+      "tier": 4,
+      "reqLevel": 47,
+      "setId": "legendary",
+      "rarity": "legendary",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "flavorText": "Urzeit-Leder. Älter als die meisten Zivilisationen. Haltbarer auch.",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            3,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "gold_bonus",
+        "min": 3,
+        "max": 6,
+        "label": "Geschmeidige Beute: +{value}% Gold"
+      }
+    },
+    {
+      "id": "craft-leder-bestien-treter-fxf",
+      "name": "Bestien-Treter",
+      "slot": "boots",
+      "tier": 4,
+      "reqLevel": 47,
+      "setId": "legendary",
+      "rarity": "legendary",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "flavorText": "Das Leder flüstert. Nicht laut genug um zu stören, aber deutlich genug um Respekt einzuflößen.",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            3,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "xp_bonus",
+        "min": 3,
+        "max": 6,
+        "label": "Jägerinstinkt: +{value}% Quest-XP"
+      }
+    },
+    {
+      "id": "craft-leder-seelenjaeger-schuhe",
+      "name": "Seelenjäger-Schuhe",
+      "slot": "boots",
+      "tier": 4,
+      "reqLevel": 48,
+      "setId": "legendary",
+      "rarity": "legendary",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "flavorText": "Urzeit-Material. Es erinnert sich an Zeiten, in denen Helden noch keine Titel brauchten.",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            3,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "salvage_bonus",
+        "min": 3,
+        "max": 6,
+        "label": "Effiziente Verwertung: +{value}% Salvage-Materials"
+      }
+    },
+    {
+      "id": "craft-leder-urzeit-tritte",
+      "name": "Urzeit-Tritte",
+      "slot": "boots",
+      "tier": 4,
+      "reqLevel": 49,
+      "setId": "legendary",
+      "rarity": "legendary",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "flavorText": "Seelenjäger-Qualität. Wer es trägt, wird von Beute zu Jäger.",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            3,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "companion_bond_boost",
+        "min": 3,
+        "max": 6,
+        "label": "Wildnisbund: +{value}% Companion-Bond-XP"
+      }
+    },
+    {
+      "id": "craft-leder-seelenjaeger-stiefel",
+      "name": "Seelenjäger-Stiefel",
+      "slot": "boots",
+      "tier": 4,
+      "reqLevel": 50,
+      "setId": "legendary",
+      "rarity": "legendary",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "flavorText": "Bestien-Meisterwerk. Der Gerber hat danach eine Woche Urlaub genommen.",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            3,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "decay_reduction",
+        "min": 3,
+        "max": 6,
+        "label": "Gehärtetes Leder: -{value}% Forge-Decay"
+      }
+    },
+    {
+      "id": "craft-lederverarbeiter-leichtleder-jaegerkappe",
+      "name": "Leichtleder-Jägerkappe",
+      "slot": "helm",
+      "tier": 1,
+      "reqLevel": 7,
+      "setId": "adventurer",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "glueck": 3,
+        "kraft": 1
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-lederverarbeiter-mittlere-leder-jaegerkappe",
+      "name": "Mittlere Leder-Jägerkappe",
+      "slot": "helm",
+      "tier": 2,
+      "reqLevel": 13,
+      "setId": "veteran",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "glueck": 4
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-lederverarbeiter-schwerleder-jaegerkrone",
+      "name": "Schwerleder-Jägerkrone",
+      "slot": "helm",
+      "tier": 3,
+      "reqLevel": 18,
+      "setId": "master",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "rare",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "glueck",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-lederverarbeiter-urzeitleder-krone",
+      "name": "Urzeitleder-Krone",
+      "slot": "helm",
+      "tier": 4,
+      "reqLevel": 25,
+      "setId": "legendary",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "epic",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-lederverarbeiter-einfache-lederkappe",
+      "name": "Einfache Lederkappe",
+      "slot": "helm",
+      "tier": 1,
+      "reqLevel": 5,
+      "setId": "adventurer",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "glueck": 3
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-lederverarbeiter-gehaertete-lederkappe",
+      "name": "Gehärtete Lederkappe",
+      "slot": "helm",
+      "tier": 2,
+      "reqLevel": 15,
+      "setId": "veteran",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "rare",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "glueck",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 3
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-lederverarbeiter-bestien-lederkappe",
+      "name": "Bestien-Lederkappe",
+      "slot": "helm",
+      "tier": 3,
+      "reqLevel": 17,
+      "setId": "master",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "glueck": 5,
+        "kraft": 4
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-lederverarbeiter-bestien-meisterwams",
+      "name": "Bestien-Meisterwams",
+      "slot": "armor",
+      "tier": 4,
+      "reqLevel": 31,
+      "setId": "legendary",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "glueck": 7,
+        "kraft": 6
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-lederverarbeiter-einfacher-lederpanzer",
+      "name": "Einfacher Lederpanzer",
+      "slot": "armor",
+      "tier": 1,
+      "reqLevel": 4,
+      "setId": "adventurer",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "rare",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "glueck",
+              "min": 1,
+              "max": 3
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 2
+            },
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 2
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-lederverarbeiter-gehaerteter-lederpanzer",
+      "name": "Gehärteter Lederpanzer",
+      "slot": "armor",
+      "tier": 2,
+      "reqLevel": 9,
+      "setId": "veteran",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "glueck": 2,
+        "kraft": 3
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-lederverarbeiter-bestien-lederwams",
+      "name": "Bestien-Lederwams",
+      "slot": "armor",
+      "tier": 3,
+      "reqLevel": 23,
+      "setId": "master",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "glueck": 3
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-lederverarbeiter-urzeitleder-panzer",
+      "name": "Urzeitleder-Panzer",
+      "slot": "armor",
+      "tier": 4,
+      "reqLevel": 34,
+      "setId": "legendary",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "epic",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-lederverarbeiter-leichtleder-wams",
+      "name": "Leichtleder-Wams",
+      "slot": "armor",
+      "tier": 1,
+      "reqLevel": 3,
+      "setId": "adventurer",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "glueck": 2,
+        "kraft": 2
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-lederverarbeiter-mittleres-leder-wams",
+      "name": "Mittleres Leder-Wams",
+      "slot": "armor",
+      "tier": 2,
+      "reqLevel": 13,
+      "setId": "veteran",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "rare",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "glueck",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 3
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-lederverarbeiter-schwerleder-jagdpanzer",
+      "name": "Schwerleder-Jagdpanzer",
+      "slot": "armor",
+      "tier": 3,
+      "reqLevel": 21,
+      "setId": "master",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "rare",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "glueck",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-lederverarbeiter-urzeitleder-stiefel",
+      "name": "Urzeitleder-Stiefel",
+      "slot": "boots",
+      "tier": 4,
+      "reqLevel": 35,
+      "setId": "legendary",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "epic",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-lederverarbeiter-einfache-lederschuhe",
+      "name": "Einfache Lederschuhe",
+      "slot": "boots",
+      "tier": 1,
+      "reqLevel": 2,
+      "setId": "adventurer",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "glueck": 2
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-lederverarbeiter-gehaertete-lederschuhe",
+      "name": "Gehärtete Lederschuhe",
+      "slot": "boots",
+      "tier": 2,
+      "reqLevel": 12,
+      "setId": "veteran",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "glueck": 3
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-lederverarbeiter-bestien-treter",
+      "name": "Bestien-Treter",
+      "slot": "boots",
+      "tier": 3,
+      "reqLevel": 21,
+      "setId": "master",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "glueck": 5,
+        "kraft": 4
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-lederverarbeiter-raues-leder-marsch",
+      "name": "Raues Leder-Marsch",
+      "slot": "boots",
+      "tier": 4,
+      "reqLevel": 26,
+      "setId": "legendary",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "epic",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-lederverarbeiter-leichtleder-stiefel",
+      "name": "Leichtleder-Stiefel",
+      "slot": "boots",
+      "tier": 1,
+      "reqLevel": 8,
+      "setId": "adventurer",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "glueck": 1,
+        "kraft": 1
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-lederverarbeiter-mittlere-leder-stiefel",
+      "name": "Mittlere Leder-Stiefel",
+      "slot": "boots",
+      "tier": 2,
+      "reqLevel": 11,
+      "setId": "veteran",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "glueck": 3,
+        "kraft": 2
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-lederverarbeiter-schwerleder-jagdstiefel",
+      "name": "Schwerleder-Jagdstiefel",
+      "slot": "boots",
+      "tier": 3,
+      "reqLevel": 23,
+      "setId": "master",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "glueck": 5,
+        "kraft": 4
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-lederverarbeiter-raues-leder-amulett",
+      "name": "Raues Leder-Amulett",
+      "slot": "amulet",
+      "tier": 4,
+      "reqLevel": 27,
+      "setId": "legendary",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "epic",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-lederverarbeiter-einfaches-lederband",
+      "name": "Einfaches Lederband",
+      "slot": "amulet",
+      "tier": 1,
+      "reqLevel": 2,
+      "setId": "adventurer",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "rare",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "glueck",
+              "min": 1,
+              "max": 3
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 2
+            },
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 2
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-lederverarbeiter-gehaertetes-lederband",
+      "name": "Gehärtetes Lederband",
+      "slot": "amulet",
+      "tier": 2,
+      "reqLevel": 12,
+      "setId": "veteran",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "glueck": 2
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-lederverarbeiter-bestien-talisman",
+      "name": "Bestien-Talisman",
+      "slot": "amulet",
+      "tier": 3,
+      "reqLevel": 23,
+      "setId": "master",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "rare",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "glueck",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-lederverarbeiter-urzeitleder-kette",
+      "name": "Urzeitleder-Kette",
+      "slot": "amulet",
+      "tier": 4,
+      "reqLevel": 37,
+      "setId": "legendary",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "glueck": 4,
+        "kraft": 5
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+    },
+    {
+      "id": "craft-lederverarbeiter-leichtleder-kette",
+      "name": "Leichtleder-Kette",
+      "slot": "amulet",
+      "tier": 1,
+      "reqLevel": 4,
+      "setId": "adventurer",
+      "armorType": "leather",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "glueck": 1,
+        "kraft": 2
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+    }
+  ]
+}

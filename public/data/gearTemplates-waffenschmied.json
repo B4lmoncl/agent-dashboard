@@ -1,0 +1,3334 @@
+{
+  "items": [
+    {
+      "id": "craft-waffenschmied-eiserne-klinge",
+      "name": "Eiserne Klinge",
+      "slot": "weapon",
+      "tier": 1,
+      "reqLevel": 1,
+      "setId": "adventurer",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "kraft": 2,
+        "ausdauer": 2
+      },
+      "flavorText": "Scharf genug für den Anfang. Stumpf genug für einen zweiten Versuch."
+    },
+    {
+      "id": "craft-waffenschmied-grober-streitkolben",
+      "name": "Grober Streitkolben",
+      "slot": "weapon",
+      "tier": 1,
+      "reqLevel": 1,
+      "setId": "adventurer",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "kraft": 1
+      },
+      "flavorText": "Schwer, ehrlich, und ohne Überraschungen. Wie ein guter Handschlag."
+    },
+    {
+      "id": "craft-waffenschmied-eisernes-beil",
+      "name": "Eisernes Beil",
+      "slot": "weapon",
+      "tier": 1,
+      "reqLevel": 2,
+      "setId": "adventurer",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "kraft": 3
+      },
+      "flavorText": "Die Klinge erinnert sich an jeden Schlag. Nicht nachtragend — aber aufmerksam."
+    },
+    {
+      "id": "craft-waffenschmied-rostiger-dolch",
+      "name": "Rostiger Dolch",
+      "slot": "weapon",
+      "tier": 1,
+      "reqLevel": 2,
+      "setId": "adventurer",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "kraft": 3,
+        "ausdauer": 2
+      },
+      "flavorText": "Ein Schild sagt: Ich bin noch nicht fertig."
+    },
+    {
+      "id": "craft-waffenschmied-eisenstab",
+      "name": "Eisenstab",
+      "slot": "weapon",
+      "tier": 1,
+      "reqLevel": 2,
+      "setId": "adventurer",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "kraft": 1,
+        "ausdauer": 2
+      },
+      "flavorText": "Scharf genug für den Anfang. Stumpf genug für einen zweiten Versuch."
+    },
+    {
+      "id": "craft-waffenschmied-einfacher-zauberstab",
+      "name": "Einfacher Zauberstab",
+      "slot": "weapon",
+      "tier": 1,
+      "reqLevel": 3,
+      "setId": "adventurer",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "kraft": 2,
+        "ausdauer": 1
+      },
+      "flavorText": "Schwer, ehrlich, und ohne Überraschungen. Wie ein guter Handschlag."
+    },
+    {
+      "id": "craft-waffenschmied-eisernes-kurzschwert",
+      "name": "Eisernes Kurzschwert",
+      "slot": "weapon",
+      "tier": 1,
+      "reqLevel": 3,
+      "setId": "adventurer",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "kraft": 3,
+        "ausdauer": 1
+      },
+      "flavorText": "Die Klinge erinnert sich an jeden Schlag. Nicht nachtragend — aber aufmerksam."
+    },
+    {
+      "id": "craft-waffenschmied-grober-kriegshammer",
+      "name": "Grober Kriegshammer",
+      "slot": "weapon",
+      "tier": 1,
+      "reqLevel": 4,
+      "setId": "adventurer",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "kraft": 2,
+        "ausdauer": 1
+      },
+      "flavorText": "Ein Schild sagt: Ich bin noch nicht fertig."
+    },
+    {
+      "id": "craft-waffenschmied-eiserne-streitaxt",
+      "name": "Eiserne Streitaxt",
+      "slot": "weapon",
+      "tier": 1,
+      "reqLevel": 4,
+      "setId": "adventurer",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "kraft": 1,
+        "ausdauer": 2
+      },
+      "flavorText": "Scharf genug für den Anfang. Stumpf genug für einen zweiten Versuch."
+    },
+    {
+      "id": "craft-waffenschmied-schlichter-wanderstab",
+      "name": "Schlichter Wanderstab",
+      "slot": "weapon",
+      "tier": 1,
+      "reqLevel": 4,
+      "setId": "adventurer",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "kraft": 1
+      },
+      "flavorText": "Schwer, ehrlich, und ohne Überraschungen. Wie ein guter Handschlag."
+    },
+    {
+      "id": "craft-waffenschmied-grober-schild",
+      "name": "Grober Schild",
+      "slot": "weapon",
+      "tier": 1,
+      "reqLevel": 5,
+      "setId": "adventurer",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "kraft": 1
+      },
+      "flavorText": "Die Klinge erinnert sich an jeden Schlag. Nicht nachtragend — aber aufmerksam."
+    },
+    {
+      "id": "craft-waffenschmied-eiserner-rundschild",
+      "name": "Eiserner Rundschild",
+      "slot": "weapon",
+      "tier": 1,
+      "reqLevel": 5,
+      "setId": "adventurer",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "kraft": 2,
+        "ausdauer": 1
+      },
+      "flavorText": "Ein Schild sagt: Ich bin noch nicht fertig."
+    },
+    {
+      "id": "craft-waffenschmied-eiserner-buckler",
+      "name": "Eiserner Buckler",
+      "slot": "shield",
+      "tier": 1,
+      "reqLevel": 5,
+      "setId": "adventurer",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "ausdauer": 1,
+        "weisheit": 2
+      },
+      "flavorText": "Scharf genug für den Anfang. Stumpf genug für einen zweiten Versuch."
+    },
+    {
+      "id": "craft-waffenschmied-eiserner-turmschild",
+      "name": "Eiserner Turmschild",
+      "slot": "shield",
+      "tier": 1,
+      "reqLevel": 6,
+      "setId": "adventurer",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "ausdauer": 3,
+        "weisheit": 1
+      },
+      "flavorText": "Schwer, ehrlich, und ohne Überraschungen. Wie ein guter Handschlag."
+    },
+    {
+      "id": "craft-waffenschmied-einfacher-fokus",
+      "name": "Einfacher Fokus",
+      "slot": "shield",
+      "tier": 1,
+      "reqLevel": 6,
+      "setId": "adventurer",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "rare",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 2
+            },
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 2
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Die Klinge erinnert sich an jeden Schlag. Nicht nachtragend — aber aufmerksam."
+    },
+    {
+      "id": "craft-waffenschmied-grobes-foliant",
+      "name": "Grobes Foliant",
+      "slot": "shield",
+      "tier": 1,
+      "reqLevel": 7,
+      "setId": "adventurer",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "rare",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 2
+            },
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 2
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Ein Schild sagt: Ich bin noch nicht fertig."
+    },
+    {
+      "id": "craft-waffenschmied-eiserner-langschild",
+      "name": "Eiserner Langschild",
+      "slot": "shield",
+      "tier": 1,
+      "reqLevel": 7,
+      "setId": "adventurer",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "rare",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 2
+            },
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 2
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Scharf genug für den Anfang. Stumpf genug für einen zweiten Versuch."
+    },
+    {
+      "id": "craft-waffenschmied-geschmiedeter-buckler",
+      "name": "Geschmiedeter Buckler",
+      "slot": "shield",
+      "tier": 1,
+      "reqLevel": 7,
+      "setId": "adventurer",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "rare",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 2
+            },
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 2
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Schwer, ehrlich, und ohne Überraschungen. Wie ein guter Handschlag."
+    },
+    {
+      "id": "craft-waffenschmied-eiserne-tartsche",
+      "name": "Eiserne Tartsche",
+      "slot": "shield",
+      "tier": 1,
+      "reqLevel": 8,
+      "setId": "adventurer",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "rare",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 2
+            },
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 2
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Die Klinge erinnert sich an jeden Schlag. Nicht nachtragend — aber aufmerksam."
+    },
+    {
+      "id": "craft-waffenschmied-einfaches-schutzbuch",
+      "name": "Einfaches Schutzbuch",
+      "slot": "shield",
+      "tier": 1,
+      "reqLevel": 8,
+      "setId": "adventurer",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "rare",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 2
+            },
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 2
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Ein Schild sagt: Ich bin noch nicht fertig."
+    },
+    {
+      "id": "craft-waffenschmied-kristallklinge",
+      "name": "Kristallklinge",
+      "slot": "weapon",
+      "tier": 2,
+      "reqLevel": 9,
+      "setId": "veteran",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "kraft": 3,
+        "ausdauer": 2
+      },
+      "flavorText": "Kristall verstärkt Stahl — und Stahl verstärkt die Entschlossenheit des Trägers."
+    },
+    {
+      "id": "craft-waffenschmied-staehlernes-breitschwert",
+      "name": "Stählernes Breitschwert",
+      "slot": "weapon",
+      "tier": 2,
+      "reqLevel": 9,
+      "setId": "veteran",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "kraft": 4
+      },
+      "flavorText": "Die Klinge summt leise. Nicht bedrohlich — eher neugierig."
+    },
+    {
+      "id": "craft-waffenschmied-kristall-streitaxt",
+      "name": "Kristall-Streitaxt",
+      "slot": "weapon",
+      "tier": 2,
+      "reqLevel": 10,
+      "setId": "veteran",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "kraft": 4,
+        "ausdauer": 3
+      },
+      "flavorText": "Wer diesen Schild trägt, steht fester. Nicht wegen dem Gewicht — wegen der Haltung."
+    },
+    {
+      "id": "craft-waffenschmied-staehlerner-kriegshammer",
+      "name": "Stählerner Kriegshammer",
+      "slot": "weapon",
+      "tier": 2,
+      "reqLevel": 10,
+      "setId": "veteran",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "kraft": 4,
+        "ausdauer": 3
+      },
+      "flavorText": "Stahl und Kristall. Eine Verbindung, die sich beide Materialien verdient haben."
+    },
+    {
+      "id": "craft-waffenschmied-kristallstab",
+      "name": "Kristallstab",
+      "slot": "weapon",
+      "tier": 2,
+      "reqLevel": 10,
+      "setId": "veteran",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "kraft": 2,
+        "ausdauer": 2
+      },
+      "flavorText": "Kristall verstärkt Stahl — und Stahl verstärkt die Entschlossenheit des Trägers."
+    },
+    {
+      "id": "craft-waffenschmied-staehlerner-zauberstab",
+      "name": "Stählerner Zauberstab",
+      "slot": "weapon",
+      "tier": 2,
+      "reqLevel": 10,
+      "setId": "veteran",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "kraft": 3,
+        "ausdauer": 3
+      },
+      "flavorText": "Die Klinge summt leise. Nicht bedrohlich — eher neugierig."
+    },
+    {
+      "id": "craft-waffenschmied-kristalldolch",
+      "name": "Kristalldolch",
+      "slot": "weapon",
+      "tier": 2,
+      "reqLevel": 11,
+      "setId": "veteran",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "kraft": 3,
+        "ausdauer": 3
+      },
+      "flavorText": "Wer diesen Schild trägt, steht fester. Nicht wegen dem Gewicht — wegen der Haltung."
+    },
+    {
+      "id": "craft-waffenschmied-staehlernes-langschwert",
+      "name": "Stählernes Langschwert",
+      "slot": "weapon",
+      "tier": 2,
+      "reqLevel": 11,
+      "setId": "veteran",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "kraft": 2
+      },
+      "flavorText": "Stahl und Kristall. Eine Verbindung, die sich beide Materialien verdient haben."
+    },
+    {
+      "id": "craft-waffenschmied-kristall-kriegsbeil",
+      "name": "Kristall-Kriegsbeil",
+      "slot": "weapon",
+      "tier": 2,
+      "reqLevel": 11,
+      "setId": "veteran",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "kraft": 3
+      },
+      "flavorText": "Kristall verstärkt Stahl — und Stahl verstärkt die Entschlossenheit des Trägers."
+    },
+    {
+      "id": "craft-waffenschmied-staehlerner-wanderstab",
+      "name": "Stählerner Wanderstab",
+      "slot": "weapon",
+      "tier": 2,
+      "reqLevel": 12,
+      "setId": "veteran",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "kraft": 2,
+        "ausdauer": 3
+      },
+      "flavorText": "Die Klinge summt leise. Nicht bedrohlich — eher neugierig."
+    },
+    {
+      "id": "craft-waffenschmied-kristall-buckler",
+      "name": "Kristall-Buckler",
+      "slot": "weapon",
+      "tier": 2,
+      "reqLevel": 12,
+      "setId": "veteran",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "kraft": 4,
+        "ausdauer": 2
+      },
+      "flavorText": "Wer diesen Schild trägt, steht fester. Nicht wegen dem Gewicht — wegen der Haltung."
+    },
+    {
+      "id": "craft-waffenschmied-staehlerner-turmschild",
+      "name": "Stählerner Turmschild",
+      "slot": "weapon",
+      "tier": 2,
+      "reqLevel": 12,
+      "setId": "veteran",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "kraft": 2,
+        "ausdauer": 2
+      },
+      "flavorText": "Stahl und Kristall. Eine Verbindung, die sich beide Materialien verdient haben."
+    },
+    {
+      "id": "craft-waffenschmied-kristall-rundschild",
+      "name": "Kristall-Rundschild",
+      "slot": "weapon",
+      "tier": 2,
+      "reqLevel": 13,
+      "setId": "veteran",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "kraft": 2
+      },
+      "flavorText": "Kristall verstärkt Stahl — und Stahl verstärkt die Entschlossenheit des Trägers."
+    },
+    {
+      "id": "craft-waffenschmied-staehlerner-wappenschild",
+      "name": "Stählerner Wappenschild",
+      "slot": "weapon",
+      "tier": 2,
+      "reqLevel": 13,
+      "setId": "veteran",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "kraft": 2,
+        "ausdauer": 3
+      },
+      "flavorText": "Die Klinge summt leise. Nicht bedrohlich — eher neugierig."
+    },
+    {
+      "id": "craft-waffenschmied-kristall-fokus",
+      "name": "Kristall-Fokus",
+      "slot": "weapon",
+      "tier": 2,
+      "reqLevel": 13,
+      "setId": "veteran",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "kraft": 4
+      },
+      "flavorText": "Wer diesen Schild trägt, steht fester. Nicht wegen dem Gewicht — wegen der Haltung."
+    },
+    {
+      "id": "craft-waffenschmied-staehlernes-foliant",
+      "name": "Stählernes Foliant",
+      "slot": "shield",
+      "tier": 2,
+      "reqLevel": 13,
+      "setId": "veteran",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "ausdauer": 2,
+        "weisheit": 3
+      },
+      "flavorText": "Stahl und Kristall. Eine Verbindung, die sich beide Materialien verdient haben."
+    },
+    {
+      "id": "craft-waffenschmied-kristall-tartsche",
+      "name": "Kristall-Tartsche",
+      "slot": "shield",
+      "tier": 2,
+      "reqLevel": 14,
+      "setId": "veteran",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "ausdauer": 3
+      },
+      "flavorText": "Kristall verstärkt Stahl — und Stahl verstärkt die Entschlossenheit des Trägers."
+    },
+    {
+      "id": "craft-waffenschmied-staehlerner-schutzschild",
+      "name": "Stählerner Schutzschild",
+      "slot": "shield",
+      "tier": 2,
+      "reqLevel": 14,
+      "setId": "veteran",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "rare",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Die Klinge summt leise. Nicht bedrohlich — eher neugierig."
+    },
+    {
+      "id": "craft-waffenschmied-kristall-schutzfolio",
+      "name": "Kristall-Schutzfolio",
+      "slot": "shield",
+      "tier": 2,
+      "reqLevel": 14,
+      "setId": "veteran",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "rare",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Wer diesen Schild trägt, steht fester. Nicht wegen dem Gewicht — wegen der Haltung."
+    },
+    {
+      "id": "craft-waffenschmied-gewobener-fokuskristall",
+      "name": "Gewobener Fokuskristall",
+      "slot": "shield",
+      "tier": 2,
+      "reqLevel": 15,
+      "setId": "veteran",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "rare",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Stahl und Kristall. Eine Verbindung, die sich beide Materialien verdient haben."
+    },
+    {
+      "id": "craft-waffenschmied-kristall-kampfstab",
+      "name": "Kristall-Kampfstab",
+      "slot": "shield",
+      "tier": 2,
+      "reqLevel": 15,
+      "setId": "veteran",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "rare",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Kristall verstärkt Stahl — und Stahl verstärkt die Entschlossenheit des Trägers."
+    },
+    {
+      "id": "craft-waffenschmied-staehlerne-streitaxt",
+      "name": "Stählerne Streitaxt",
+      "slot": "shield",
+      "tier": 2,
+      "reqLevel": 15,
+      "setId": "veteran",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "rare",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Die Klinge summt leise. Nicht bedrohlich — eher neugierig."
+    },
+    {
+      "id": "craft-waffenschmied-kristall-ritualklinge",
+      "name": "Kristall-Ritualklinge",
+      "slot": "shield",
+      "tier": 2,
+      "reqLevel": 15,
+      "setId": "veteran",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "rare",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Wer diesen Schild trägt, steht fester. Nicht wegen dem Gewicht — wegen der Haltung."
+    },
+    {
+      "id": "craft-waffenschmied-staehlerner-zeremonialstab",
+      "name": "Stählerner Zeremonialstab",
+      "slot": "shield",
+      "tier": 2,
+      "reqLevel": 16,
+      "setId": "veteran",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "rare",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Stahl und Kristall. Eine Verbindung, die sich beide Materialien verdient haben."
+    },
+    {
+      "id": "craft-waffenschmied-kristall-prunkschild",
+      "name": "Kristall-Prunkschild",
+      "slot": "shield",
+      "tier": 2,
+      "reqLevel": 16,
+      "setId": "veteran",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "rare",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Kristall verstärkt Stahl — und Stahl verstärkt die Entschlossenheit des Trägers."
+    },
+    {
+      "id": "craft-waffenschmied-drachenzahn-schwert",
+      "name": "Drachenzahn-Schwert",
+      "slot": "weapon",
+      "tier": 3,
+      "reqLevel": 17,
+      "setId": "master",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "kraft": 4,
+        "ausdauer": 3
+      },
+      "flavorText": "Drachenstahl vergisst nie. Weder den Hammer noch die Hand die ihn führte."
+    },
+    {
+      "id": "craft-waffenschmied-drachenstahl-axt",
+      "name": "Drachenstahl-Axt",
+      "slot": "weapon",
+      "tier": 3,
+      "reqLevel": 17,
+      "setId": "master",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "kraft": 5,
+        "ausdauer": 4
+      },
+      "flavorText": "Diese Waffe hat Feuer gesehen und es für unzureichend befunden."
+    },
+    {
+      "id": "craft-waffenschmied-drachenschuppen-hammer",
+      "name": "Drachenschuppen-Hammer",
+      "slot": "weapon",
+      "tier": 3,
+      "reqLevel": 18,
+      "setId": "master",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "kraft": 5
+      },
+      "flavorText": "Ein Schild aus Drachenschuppen. Die Ironie, sich mit dem zu schützen was einen töten wollte, ist nicht verloren."
+    },
+    {
+      "id": "craft-waffenschmied-drachenzahn-dolch",
+      "name": "Drachenzahn-Dolch",
+      "slot": "weapon",
+      "tier": 3,
+      "reqLevel": 18,
+      "setId": "master",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "kraft": 5,
+        "ausdauer": 4
+      },
+      "flavorText": "Drachenzahn-Stahl. Schärfer als nötig. Genau richtig."
+    },
+    {
+      "id": "craft-waffenschmied-drachenstahl-stab",
+      "name": "Drachenstahl-Stab",
+      "slot": "weapon",
+      "tier": 3,
+      "reqLevel": 18,
+      "setId": "master",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "kraft": 5,
+        "ausdauer": 3
+      },
+      "flavorText": "Drachenstahl vergisst nie. Weder den Hammer noch die Hand die ihn führte."
+    },
+    {
+      "id": "craft-waffenschmied-drachenschuppen-zauberstab",
+      "name": "Drachenschuppen-Zauberstab",
+      "slot": "weapon",
+      "tier": 3,
+      "reqLevel": 18,
+      "setId": "master",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "kraft": 4
+      },
+      "flavorText": "Diese Waffe hat Feuer gesehen und es für unzureichend befunden."
+    },
+    {
+      "id": "craft-waffenschmied-drachenstahl-breitschwert",
+      "name": "Drachenstahl-Breitschwert",
+      "slot": "weapon",
+      "tier": 3,
+      "reqLevel": 19,
+      "setId": "master",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "kraft": 4,
+        "ausdauer": 3
+      },
+      "flavorText": "Ein Schild aus Drachenschuppen. Die Ironie, sich mit dem zu schützen was einen töten wollte, ist nicht verloren."
+    },
+    {
+      "id": "craft-waffenschmied-drachenzahn-kriegsbeil",
+      "name": "Drachenzahn-Kriegsbeil",
+      "slot": "weapon",
+      "tier": 3,
+      "reqLevel": 19,
+      "setId": "master",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "kraft": 5
+      },
+      "flavorText": "Drachenzahn-Stahl. Schärfer als nötig. Genau richtig."
+    },
+    {
+      "id": "craft-waffenschmied-drachenschuppen-streitkolben",
+      "name": "Drachenschuppen-Streitkolben",
+      "slot": "weapon",
+      "tier": 3,
+      "reqLevel": 19,
+      "setId": "master",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "kraft": 3,
+        "ausdauer": 3
+      },
+      "flavorText": "Drachenstahl vergisst nie. Weder den Hammer noch die Hand die ihn führte."
+    },
+    {
+      "id": "craft-waffenschmied-drachenstahl-ritualstab",
+      "name": "Drachenstahl-Ritualstab",
+      "slot": "weapon",
+      "tier": 3,
+      "reqLevel": 20,
+      "setId": "master",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "kraft": 5
+      },
+      "flavorText": "Diese Waffe hat Feuer gesehen und es für unzureichend befunden."
+    },
+    {
+      "id": "craft-waffenschmied-drachenstahl-buckler",
+      "name": "Drachenstahl-Buckler",
+      "slot": "weapon",
+      "tier": 3,
+      "reqLevel": 20,
+      "setId": "master",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "kraft": 3,
+        "ausdauer": 3
+      },
+      "flavorText": "Ein Schild aus Drachenschuppen. Die Ironie, sich mit dem zu schützen was einen töten wollte, ist nicht verloren."
+    },
+    {
+      "id": "craft-waffenschmied-drachenschuppen-turmschild",
+      "name": "Drachenschuppen-Turmschild",
+      "slot": "weapon",
+      "tier": 3,
+      "reqLevel": 20,
+      "setId": "master",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "kraft": 5,
+        "ausdauer": 4
+      },
+      "flavorText": "Drachenzahn-Stahl. Schärfer als nötig. Genau richtig."
+    },
+    {
+      "id": "craft-waffenschmied-drachenzahn-rundschild",
+      "name": "Drachenzahn-Rundschild",
+      "slot": "weapon",
+      "tier": 3,
+      "reqLevel": 21,
+      "setId": "master",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "kraft": 3,
+        "ausdauer": 4
+      },
+      "flavorText": "Drachenstahl vergisst nie. Weder den Hammer noch die Hand die ihn führte."
+    },
+    {
+      "id": "craft-waffenschmied-drachenstahl-wappenschild",
+      "name": "Drachenstahl-Wappenschild",
+      "slot": "weapon",
+      "tier": 3,
+      "reqLevel": 21,
+      "setId": "master",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "kraft": 4
+      },
+      "flavorText": "Diese Waffe hat Feuer gesehen und es für unzureichend befunden."
+    },
+    {
+      "id": "craft-waffenschmied-drachenschuppen-fokus",
+      "name": "Drachenschuppen-Fokus",
+      "slot": "weapon",
+      "tier": 3,
+      "reqLevel": 21,
+      "setId": "master",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "kraft": 5,
+        "ausdauer": 3
+      },
+      "flavorText": "Ein Schild aus Drachenschuppen. Die Ironie, sich mit dem zu schützen was einen töten wollte, ist nicht verloren."
+    },
+    {
+      "id": "craft-waffenschmied-drachenzahn-foliant",
+      "name": "Drachenzahn-Foliant",
+      "slot": "shield",
+      "tier": 3,
+      "reqLevel": 21,
+      "setId": "master",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "rare",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Drachenzahn-Stahl. Schärfer als nötig. Genau richtig."
+    },
+    {
+      "id": "craft-waffenschmied-drachenstahl-kampfschild",
+      "name": "Drachenstahl-Kampfschild",
+      "slot": "shield",
+      "tier": 3,
+      "reqLevel": 22,
+      "setId": "master",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "rare",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Drachenstahl vergisst nie. Weder den Hammer noch die Hand die ihn führte."
+    },
+    {
+      "id": "craft-waffenschmied-drachenschuppen-aegis",
+      "name": "Drachenschuppen-Aegis",
+      "slot": "shield",
+      "tier": 3,
+      "reqLevel": 22,
+      "setId": "master",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "rare",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Diese Waffe hat Feuer gesehen und es für unzureichend befunden."
+    },
+    {
+      "id": "craft-waffenschmied-drachenzahn-tartsche",
+      "name": "Drachenzahn-Tartsche",
+      "slot": "shield",
+      "tier": 3,
+      "reqLevel": 22,
+      "setId": "master",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "rare",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Ein Schild aus Drachenschuppen. Die Ironie, sich mit dem zu schützen was einen töten wollte, ist nicht verloren."
+    },
+    {
+      "id": "craft-waffenschmied-drachenstahl-prunkfokus",
+      "name": "Drachenstahl-Prunkfokus",
+      "slot": "shield",
+      "tier": 3,
+      "reqLevel": 23,
+      "setId": "master",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "rare",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Drachenzahn-Stahl. Schärfer als nötig. Genau richtig."
+    },
+    {
+      "id": "craft-waffenschmied-drachenschuppen-schlachtbeil",
+      "name": "Drachenschuppen-Schlachtbeil",
+      "slot": "shield",
+      "tier": 3,
+      "reqLevel": 23,
+      "setId": "master",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "rare",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Drachenstahl vergisst nie. Weder den Hammer noch die Hand die ihn führte."
+    },
+    {
+      "id": "craft-waffenschmied-drachenzahn-meisterschwert",
+      "name": "Drachenzahn-Meisterschwert",
+      "slot": "shield",
+      "tier": 3,
+      "reqLevel": 23,
+      "setId": "master",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "epic",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Diese Waffe hat Feuer gesehen und es für unzureichend befunden."
+    },
+    {
+      "id": "craft-waffenschmied-drachenstahl-zeremonialstab",
+      "name": "Drachenstahl-Zeremonialstab",
+      "slot": "shield",
+      "tier": 3,
+      "reqLevel": 23,
+      "setId": "master",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "epic",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Ein Schild aus Drachenschuppen. Die Ironie, sich mit dem zu schützen was einen töten wollte, ist nicht verloren."
+    },
+    {
+      "id": "craft-waffenschmied-drachenschuppen-klingenbrecher",
+      "name": "Drachenschuppen-Klingenbrecher",
+      "slot": "shield",
+      "tier": 3,
+      "reqLevel": 24,
+      "setId": "master",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "epic",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Drachenzahn-Stahl. Schärfer als nötig. Genau richtig."
+    },
+    {
+      "id": "craft-waffenschmied-drachenzahn-schattenklinge",
+      "name": "Drachenzahn-Schattenklinge",
+      "slot": "shield",
+      "tier": 3,
+      "reqLevel": 24,
+      "setId": "master",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "epic",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Drachenstahl vergisst nie. Weder den Hammer noch die Hand die ihn führte."
+    },
+    {
+      "id": "craft-waffenschmied-aether-schwert",
+      "name": "Aether-Schwert",
+      "slot": "weapon",
+      "tier": 4,
+      "reqLevel": 25,
+      "setId": "legendary",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "kraft": 6
+      },
+      "flavorText": "Aetherstahl flüstert Formeln beim Schwingen. Die meisten sind hilfreich."
+    },
+    {
+      "id": "craft-waffenschmied-aetherkern-axt",
+      "name": "Aetherkern-Axt",
+      "slot": "weapon",
+      "tier": 4,
+      "reqLevel": 26,
+      "setId": "legendary",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "kraft": 4,
+        "ausdauer": 4
+      },
+      "flavorText": "Seelengeschmiedet. Jeder Schlag trägt das Gewicht einer Erinnerung."
+    },
+    {
+      "id": "craft-waffenschmied-aether-hammer",
+      "name": "Aether-Hammer",
+      "slot": "weapon",
+      "tier": 4,
+      "reqLevel": 27,
+      "setId": "legendary",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "kraft": 6
+      },
+      "flavorText": "Diese Klinge schneidet nicht nur Stahl — sie schneidet Zweifel."
+    },
+    {
+      "id": "craft-waffenschmied-aetherkern-dolch",
+      "name": "Aetherkern-Dolch",
+      "slot": "weapon",
+      "tier": 4,
+      "reqLevel": 28,
+      "setId": "legendary",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "kraft": 5
+      },
+      "flavorText": "Der Schild leuchtet im Dunkeln. Nicht hell genug zum Lesen, aber hell genug zum Überleben."
+    },
+    {
+      "id": "craft-waffenschmied-aether-stab",
+      "name": "Aether-Stab",
+      "slot": "weapon",
+      "tier": 4,
+      "reqLevel": 28,
+      "setId": "legendary",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "kraft": 4
+      },
+      "flavorText": "Seelenstahl erkennt seinen Träger. Ob das beruhigend ist, hängt vom Träger ab."
+    },
+    {
+      "id": "craft-waffenschmied-aetherkern-zauberstab",
+      "name": "Aetherkern-Zauberstab",
+      "slot": "weapon",
+      "tier": 4,
+      "reqLevel": 29,
+      "setId": "legendary",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "kraft": 6
+      },
+      "flavorText": "Aetherstahl flüstert Formeln beim Schwingen. Die meisten sind hilfreich."
+    },
+    {
+      "id": "craft-waffenschmied-aether-kriegsklinge",
+      "name": "Aether-Kriegsklinge",
+      "slot": "weapon",
+      "tier": 4,
+      "reqLevel": 30,
+      "setId": "legendary",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "kraft": 6,
+        "ausdauer": 5
+      },
+      "flavorText": "Seelengeschmiedet. Jeder Schlag trägt das Gewicht einer Erinnerung."
+    },
+    {
+      "id": "craft-waffenschmied-aetherkern-schlachtbeil",
+      "name": "Aetherkern-Schlachtbeil",
+      "slot": "weapon",
+      "tier": 4,
+      "reqLevel": 31,
+      "setId": "legendary",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "kraft": 7
+      },
+      "flavorText": "Diese Klinge schneidet nicht nur Stahl — sie schneidet Zweifel."
+    },
+    {
+      "id": "craft-waffenschmied-aether-zeremonialstab",
+      "name": "Aether-Zeremonialstab",
+      "slot": "weapon",
+      "tier": 4,
+      "reqLevel": 32,
+      "setId": "legendary",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "kraft": 4,
+        "ausdauer": 4
+      },
+      "flavorText": "Der Schild leuchtet im Dunkeln. Nicht hell genug zum Lesen, aber hell genug zum Überleben."
+    },
+    {
+      "id": "craft-waffenschmied-aetherkern-ritualklinge",
+      "name": "Aetherkern-Ritualklinge",
+      "slot": "weapon",
+      "tier": 4,
+      "reqLevel": 33,
+      "setId": "legendary",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "kraft": 4,
+        "ausdauer": 6
+      },
+      "flavorText": "Seelenstahl erkennt seinen Träger. Ob das beruhigend ist, hängt vom Träger ab."
+    },
+    {
+      "id": "craft-waffenschmied-aether-buckler",
+      "name": "Aether-Buckler",
+      "slot": "weapon",
+      "tier": 4,
+      "reqLevel": 34,
+      "setId": "legendary",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "kraft": 4,
+        "ausdauer": 4
+      },
+      "flavorText": "Aetherstahl flüstert Formeln beim Schwingen. Die meisten sind hilfreich."
+    },
+    {
+      "id": "craft-waffenschmied-aetherkern-turmschild",
+      "name": "Aetherkern-Turmschild",
+      "slot": "weapon",
+      "tier": 4,
+      "reqLevel": 34,
+      "setId": "legendary",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "kraft": 4,
+        "ausdauer": 4
+      },
+      "flavorText": "Seelengeschmiedet. Jeder Schlag trägt das Gewicht einer Erinnerung."
+    },
+    {
+      "id": "craft-waffenschmied-aether-wappenschild",
+      "name": "Aether-Wappenschild",
+      "slot": "weapon",
+      "tier": 4,
+      "reqLevel": 35,
+      "setId": "legendary",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "kraft": 6,
+        "ausdauer": 5
+      },
+      "flavorText": "Diese Klinge schneidet nicht nur Stahl — sie schneidet Zweifel."
+    },
+    {
+      "id": "craft-waffenschmied-aetherkern-fokus",
+      "name": "Aetherkern-Fokus",
+      "slot": "weapon",
+      "tier": 4,
+      "reqLevel": 36,
+      "setId": "legendary",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "kraft": 5,
+        "ausdauer": 6
+      },
+      "flavorText": "Der Schild leuchtet im Dunkeln. Nicht hell genug zum Lesen, aber hell genug zum Überleben."
+    },
+    {
+      "id": "craft-waffenschmied-aether-foliant",
+      "name": "Aether-Foliant",
+      "slot": "weapon",
+      "tier": 4,
+      "reqLevel": 37,
+      "setId": "legendary",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "kraft": 6,
+        "ausdauer": 4
+      },
+      "flavorText": "Seelenstahl erkennt seinen Träger. Ob das beruhigend ist, hängt vom Träger ab."
+    },
+    {
+      "id": "craft-waffenschmied-seelen-richtschwert",
+      "name": "Seelen-Richtschwert",
+      "slot": "weapon",
+      "tier": 4,
+      "reqLevel": 38,
+      "setId": "legendary",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "rare",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Aetherstahl flüstert Formeln beim Schwingen. Die meisten sind hilfreich."
+    },
+    {
+      "id": "craft-waffenschmied-seelen-kriegsaxt",
+      "name": "Seelen-Kriegsaxt",
+      "slot": "weapon",
+      "tier": 4,
+      "reqLevel": 39,
+      "setId": "legendary",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "rare",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Seelengeschmiedet. Jeder Schlag trägt das Gewicht einer Erinnerung."
+    },
+    {
+      "id": "craft-waffenschmied-seelen-donnerhammer",
+      "name": "Seelen-Donnerhammer",
+      "slot": "weapon",
+      "tier": 4,
+      "reqLevel": 40,
+      "setId": "legendary",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "rare",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Diese Klinge schneidet nicht nur Stahl — sie schneidet Zweifel."
+    },
+    {
+      "id": "craft-waffenschmied-seelen-schattenklinge",
+      "name": "Seelen-Schattenklinge",
+      "slot": "shield",
+      "tier": 4,
+      "reqLevel": 41,
+      "setId": "legendary",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "rare",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Der Schild leuchtet im Dunkeln. Nicht hell genug zum Lesen, aber hell genug zum Überleben."
+    },
+    {
+      "id": "craft-waffenschmied-seelen-sternenstab",
+      "name": "Seelen-Sternenstab",
+      "slot": "shield",
+      "tier": 4,
+      "reqLevel": 41,
+      "setId": "legendary",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "rare",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Seelenstahl erkennt seinen Träger. Ob das beruhigend ist, hängt vom Träger ab."
+    },
+    {
+      "id": "craft-waffenschmied-seelen-aegis",
+      "name": "Seelen-Aegis",
+      "slot": "shield",
+      "tier": 4,
+      "reqLevel": 42,
+      "setId": "legendary",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "rare",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Aetherstahl flüstert Formeln beim Schwingen. Die meisten sind hilfreich."
+    },
+    {
+      "id": "craft-waffenschmied-seelen-bollwerk",
+      "name": "Seelen-Bollwerk",
+      "slot": "shield",
+      "tier": 4,
+      "reqLevel": 43,
+      "setId": "legendary",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "rare",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Seelengeschmiedet. Jeder Schlag trägt das Gewicht einer Erinnerung."
+    },
+    {
+      "id": "craft-waffenschmied-seelen-fokuskristall",
+      "name": "Seelen-Fokuskristall",
+      "slot": "shield",
+      "tier": 4,
+      "reqLevel": 44,
+      "setId": "legendary",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "rare",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Diese Klinge schneidet nicht nur Stahl — sie schneidet Zweifel."
+    },
+    {
+      "id": "craft-waffenschmied-seelen-kodex",
+      "name": "Seelen-Kodex",
+      "slot": "shield",
+      "tier": 4,
+      "reqLevel": 45,
+      "setId": "legendary",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "epic",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Der Schild leuchtet im Dunkeln. Nicht hell genug zum Lesen, aber hell genug zum Überleben."
+    },
+    {
+      "id": "craft-waffenschmied-seelen-prunkschild",
+      "name": "Seelen-Prunkschild",
+      "slot": "shield",
+      "tier": 4,
+      "reqLevel": 46,
+      "setId": "legendary",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "epic",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Seelenstahl erkennt seinen Träger. Ob das beruhigend ist, hängt vom Träger ab."
+    },
+    {
+      "id": "craft-waffenschmied-seelenklinge-des-meisters",
+      "name": "Seelenklinge des Meisters",
+      "slot": "shield",
+      "tier": 4,
+      "reqLevel": 47,
+      "setId": "legendary",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "legendary",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            3,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "crit_chance",
+        "min": 3,
+        "max": 6,
+        "label": "Seelenklinge: +{value}% Crit Chance"
+      },
+      "flavorText": "Aetherstahl flüstert Formeln beim Schwingen. Die meisten sind hilfreich."
+    },
+    {
+      "id": "craft-waffenschmied-seelenbrecher-axt",
+      "name": "Seelenbrecher-Axt",
+      "slot": "shield",
+      "tier": 4,
+      "reqLevel": 47,
+      "setId": "legendary",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "legendary",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            3,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "xp_bonus",
+        "min": 3,
+        "max": 6,
+        "label": "Aetherschärfe: +{value}% Quest-XP"
+      },
+      "flavorText": "Seelengeschmiedet. Jeder Schlag trägt das Gewicht einer Erinnerung."
+    },
+    {
+      "id": "craft-waffenschmied-seelengeschmiedeter-stab",
+      "name": "Seelengeschmiedeter Stab",
+      "slot": "shield",
+      "tier": 4,
+      "reqLevel": 48,
+      "setId": "legendary",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "legendary",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            3,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "gold_bonus",
+        "min": 3,
+        "max": 6,
+        "label": "Goldene Klinge: +{value}% Gold"
+      },
+      "flavorText": "Diese Klinge schneidet nicht nur Stahl — sie schneidet Zweifel."
+    },
+    {
+      "id": "craft-waffenschmied-seelenwaechter-schild",
+      "name": "Seelenwächter-Schild",
+      "slot": "shield",
+      "tier": 4,
+      "reqLevel": 49,
+      "setId": "legendary",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "legendary",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            3,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "drop_bonus",
+        "min": 3,
+        "max": 6,
+        "label": "Glücksklinge: +{value}% Drop-Chance"
+      },
+      "flavorText": "Der Schild leuchtet im Dunkeln. Nicht hell genug zum Lesen, aber hell genug zum Überleben."
+    },
+    {
+      "id": "craft-waffenschmied-seelensiegel-fokus",
+      "name": "Seelensiegel-Fokus",
+      "slot": "shield",
+      "tier": 4,
+      "reqLevel": 50,
+      "setId": "legendary",
+      "armorType": null,
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "legendary",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            3,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "forge_temp_flat",
+        "min": 2,
+        "max": 5,
+        "label": "Schmiedemeister: +{value} Forge Temp pro Quest"
+      },
+      "flavorText": "Seelenstahl erkennt seinen Träger. Ob das beruhigend ist, hängt vom Träger ab."
+    }
+  ]
+}
