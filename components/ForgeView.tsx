@@ -167,6 +167,11 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
   const [slotAffixRanges, setSlotAffixRanges] = useState<Record<string, { primary: { stat: string; min: number; max: number }[]; minor: { stat: string; min: number; max: number }[]; currentStats: Record<string, number>; itemName: string; rarity: string }>>({});
   const [workshopUpgrades, setWorkshopUpgrades] = useState<{ id: string; name: string; desc: string; icon: string; category: string; currentTier: number; maxTier: number; currentValue: number; nextTier: { tier: number; cost: number; currency: string; value: number; label: string } | null }[]>([]);
   const [buyingUpgrade, setBuyingUpgrade] = useState<string | null>(null);
+  // Recipe search & filter state
+  const [recipeSearch, setRecipeSearch] = useState("");
+  const [showCraftableOnly, setShowCraftableOnly] = useState(false);
+  // Cast bar countdown state
+  const [castCountdown, setCastCountdown] = useState<string | null>(null);
   // Enchanting (D3-style reroll) state
   const [enchantSlot, setEnchantSlot] = useState<string>("weapon");
   const [enchantStat, setEnchantStat] = useState<string | null>(null);
@@ -256,6 +261,20 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
     };
     window.addEventListener("keydown", handler);
     return () => window.removeEventListener("keydown", handler);
+  }, [craftProgress]);
+
+  // Cast bar countdown timer (Feature #4)
+  useEffect(() => {
+    if (!craftProgress) { setCastCountdown(null); return; }
+    let rafId: number;
+    const tick = () => {
+      const elapsed = Date.now() - craftProgress.startTime;
+      const remaining = Math.max(0, CRAFT_CAST_MS - elapsed) / 1000;
+      setCastCountdown(remaining.toFixed(1));
+      if (remaining > 0) rafId = requestAnimationFrame(tick);
+    };
+    rafId = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(rafId);
   }, [craftProgress]);
 
   const handleCraft = async (recipeId: string, count = 1) => {
@@ -355,7 +374,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
       setTimeout(() => setDismantleResult(null), 5000);
       fetchData();
       onRefresh?.();
-    } catch { setDismantleResult({ message: "Network error" }); }
+    } catch (err) { console.error('[forge] dismantle error:', err); setDismantleResult({ message: "Network error" }); }
   };
 
   const handleDismantleAll = async (rarity: string, count?: number) => {
@@ -389,7 +408,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
       setTimeout(() => setDismantleResult(null), 6000);
       fetchData();
       onRefresh?.();
-    } catch { setDismantleResult({ message: "Network error" }); }
+    } catch (err) { console.error('[forge] dismantle_all error:', err); setDismantleResult({ message: "Network error" }); }
   };
 
   const handleTransmute = async () => {
@@ -413,7 +432,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
       setTimeout(() => setTransmuteResult(null), 5000);
       fetchData();
       onRefresh?.();
-    } catch { setTransmuteResult("Network error"); }
+    } catch (err) { console.error('[forge] transmute error:', err); setTransmuteResult("Network error"); }
   };
 
   const handleChooseProfession = async (profId: string) => {
@@ -433,7 +452,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
       } else {
         setCraftResult(data.error || "Error");
       }
-    } catch { setCraftResult("Network error"); }
+    } catch (err) { console.error('[forge] choose_profession error:', err); setCraftResult("Network error"); }
     setChoosingProf(false);
   };
 
@@ -457,7 +476,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
           } else {
             setCraftResult(data.error || "Failed to drop profession");
           }
-        } catch { setCraftResult("Network error"); }
+        } catch (err) { console.error('[forge] drop_profession error:', err); setCraftResult("Network error"); }
       },
     });
   };
@@ -721,7 +740,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                             });
                             if (r.ok) { onRefresh?.(); fetchData(); setCraftResult("Tool purchased!"); }
                             else { const d = await r.json().catch(() => ({})); setCraftResult(d.error || "Purchase failed"); }
-                          } catch { setCraftResult("Network error"); }
+                          } catch (err) { console.error('[forge] buy_tool error:', err); setCraftResult("Network error"); }
                           setBuyingTool(null);
                         }}
                         disabled={!canBuy || buyingTool === gear.id}
@@ -966,7 +985,65 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                       ))}
                     </div>
                   </div>
-                  {recipes.filter(r => r.profession === selectedNpc.id).map(recipe => {
+                  {/* Recipe search + craftable filter (Features #1 & #2) */}
+                  <div className="flex items-center gap-2 mb-2">
+                    <div className="relative flex-1">
+                      <input
+                        type="text"
+                        value={recipeSearch}
+                        onChange={e => setRecipeSearch(e.target.value)}
+                        placeholder="Search recipes..."
+                        className="input-dark w-full text-xs px-3 py-1.5 rounded-lg pr-7"
+                        style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.7)", border: "1px solid rgba(255,255,255,0.08)" }}
+                      />
+                      {recipeSearch && (
+                        <button
+                          onClick={() => setRecipeSearch("")}
+                          className="absolute right-1.5 top-1/2 -translate-y-1/2 w-5 h-5 flex items-center justify-center rounded text-xs"
+                          style={{ color: "rgba(255,255,255,0.3)", cursor: "pointer" }}
+                          title="Clear search"
+                        >
+                          &#10005;
+                        </button>
+                      )}
+                    </div>
+                    <button
+                      onClick={() => setShowCraftableOnly(v => !v)}
+                      className="text-xs px-3 py-1.5 rounded-lg font-semibold whitespace-nowrap"
+                      style={{
+                        background: showCraftableOnly ? `${selectedNpc.color}18` : "rgba(255,255,255,0.04)",
+                        color: showCraftableOnly ? selectedNpc.color : "rgba(255,255,255,0.3)",
+                        border: `1px solid ${showCraftableOnly ? `${selectedNpc.color}40` : "rgba(255,255,255,0.08)"}`,
+                        boxShadow: showCraftableOnly ? `0 0 8px ${selectedNpc.color}20` : "none",
+                        cursor: "pointer",
+                      }}
+                      title="Show only recipes you can craft right now"
+                    >
+                      Show Craftable
+                    </button>
+                  </div>
+                  {recipes.filter(r => r.profession === selectedNpc.id).filter(recipe => {
+                    // Search filter
+                    if (recipeSearch && !recipe.name.toLowerCase().includes(recipeSearch.toLowerCase())) return false;
+                    // Craftable-only filter
+                    if (showCraftableOnly) {
+                      const isLearned = recipe.learned !== false;
+                      const meetsLevel = recipe.canCraft;
+                      const onCooldown = (recipe.cooldownRemaining ?? 0) > 0;
+                      const isBatchable = recipe.result?.type === "buff" || recipe.result?.type === "streak_shield" || recipe.result?.type === "forge_temp";
+                      const effectiveCount = isBatchable ? craftCount : 1;
+                      const canAffordCheck = (() => {
+                        const g = currencies.gold ?? loggedInUser?.currencies?.gold ?? loggedInUser?.gold ?? 0;
+                        if (recipe.cost?.gold && g < recipe.cost.gold * effectiveCount) return false;
+                        for (const [matId, amt] of Object.entries(recipe.materials || {})) {
+                          if ((materials[matId] || 0) < (amt as number) * effectiveCount) return false;
+                        }
+                        return true;
+                      })();
+                      if (!canAffordCheck || !meetsLevel || onCooldown || !isLearned) return false;
+                    }
+                    return true;
+                  }).map(recipe => {
                     const isLearned = recipe.learned !== false;
                     const needsLearn = !isLearned && recipe.source === "trainer" && (recipe.trainerCost ?? 0) > 0;
                     const meetsLevel = recipe.canCraft;
@@ -1019,16 +1096,16 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                             )}
                           </div>
                           <div className="flex items-center gap-1.5 flex-shrink-0">
-                            {isBatchable && canDo && (
-                              <select
-                                value={craftCount}
-                                onChange={e => setCraftCount(parseInt(e.target.value, 10))}
-                                className="text-xs rounded-lg px-1 py-1 font-mono"
-                                style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.5)", border: "1px solid rgba(255,255,255,0.1)", width: 38 }}
-                              >
-                                {[1, 2, 3, 5, 10].map(n => <option key={n} value={n}>x{n}</option>)}
-                              </select>
-                            )}
+                            <select
+                              value={craftCount}
+                              onChange={e => setCraftCount(parseInt(e.target.value, 10))}
+                              disabled={!isBatchable}
+                              title={!isBatchable ? "Only buff/consumable recipes support batch crafting" : `Craft x${craftCount}`}
+                              className="text-xs rounded-lg px-1 py-1 font-mono"
+                              style={{ background: "rgba(255,255,255,0.06)", color: isBatchable ? "rgba(255,255,255,0.5)" : "rgba(255,255,255,0.2)", border: "1px solid rgba(255,255,255,0.1)", width: 38, cursor: isBatchable ? "pointer" : "not-allowed", opacity: isBatchable ? 1 : 0.4 }}
+                            >
+                              {[1, 2, 3, 5, 10].map(n => <option key={n} value={n}>x{n}</option>)}
+                            </select>
                             {needsLearn ? (() => {
                               const playerGold = currencies.gold ?? loggedInUser?.currencies?.gold ?? loggedInUser?.gold ?? 0;
                               const canAfford = playerGold >= (recipe.trainerCost ?? 0);
@@ -1074,7 +1151,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                                   </div>
                                 )}
                                 <span className="relative" style={{ zIndex: 1 }}>
-                                  {craftProgress && craftProgress.recipeId === recipe.id ? "Crafting\u2026" : crafting ? "Crafting\u2026" : onCooldown ? "On Cooldown" : "Craft"}
+                                  {craftProgress && craftProgress.recipeId === recipe.id ? `Crafting\u2026 ${castCountdown ?? ""}s` : crafting ? "Crafting\u2026" : onCooldown ? "On Cooldown" : "Craft"}
                                 </span>
                               </button>
                             )}
@@ -1093,7 +1170,8 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                             const needed = (amt as number) * effectiveCount;
                             const has = (materials[matId] || 0) >= needed;
                             return (
-                              <span key={matId} className="text-sm flex items-center gap-1" style={{ color: has ? RARITY_COLORS[mat?.rarity || "common"] : "#f44" }}>
+                              <span key={matId} className="text-sm flex items-center gap-1" style={{ color: has ? RARITY_COLORS[mat?.rarity || "common"] : "#f44", fontWeight: has ? "normal" : "bold" }}>
+                                {!has && <span style={{ color: "#f44", fontSize: 10, lineHeight: 1 }}>●</span>}
                                 <img src={mat?.icon || ""} alt="" width={16} height={16} style={{ imageRendering: "auto" }} onError={hideOnError} />
                                 {materials[matId] || 0}/{needed} {mat?.name || matId}
                               </span>
@@ -1107,8 +1185,13 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                             const chance = recipe.skillUpChance ?? (recipe.skillUpColor === "gray" ? 0 : recipe.skillUpColor === "green" ? 25 : recipe.skillUpColor === "yellow" ? 75 : 100);
                             const xpColor = recipe.skillUpColor === "gray" ? "#6b7280" : dailyBonusAvailable ? "#facc15" : skillUp?.color || "rgba(255,255,255,0.25)";
                             return (
-                              <span className="text-sm font-mono" style={{ color: xpColor }} title={`${skillUp?.label}: ${chance}% skill-up chance${dailyBonusAvailable ? " (2x daily)" : ""}`}>
+                              <span className="text-sm font-mono flex items-center gap-1.5" style={{ color: xpColor }} title={`${skillUp?.label}: ${chance}% skill-up chance${dailyBonusAvailable ? " (2x daily)" : ""}`}>
                                 {chance === 0 ? "—" : `${chance}%`}
+                                {chance > 0 && (
+                                  <span className="inline-block rounded-full overflow-hidden" style={{ width: 40, height: 2, background: "rgba(255,255,255,0.08)" }}>
+                                    <span className="block h-full rounded-full" style={{ width: `${chance}%`, background: chance === 100 ? "#f97316" : chance >= 75 ? "#eab308" : chance >= 25 ? "#22c55e" : "#6b7280" }} />
+                                  </span>
+                                )}
                               </span>
                             );
                           })()}
