@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback, useMemo } from "react";
+import { useState, useEffect, useCallback, useMemo, useRef } from "react";
 import { createPortal } from "react-dom";
 import { useDashboard } from "@/app/DashboardContext";
 
@@ -151,6 +151,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
   const [selectedNpc, setSelectedNpc] = useState<ProfessionDef | null>(null);
   const [craftResult, setCraftResult] = useState<string | null>(null);
   const [crafting, setCrafting] = useState(false);
+  const [craftProgress, setCraftProgress] = useState<{ recipeId: string; current: number; total: number; startTime: number } | null>(null);
   const [selectedSlot, setSelectedSlot] = useState<string>("weapon");
   const [dismantleResult, setDismantleResult] = useState<{ message: string; essenz?: number; materials?: { id: string; name: string; amount: number }[] } | null>(null);
   const [transmuteResult, setTransmuteResult] = useState<string | null>(null);
@@ -229,6 +230,33 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
 
   // Reset craft count when switching NPC, tab, or slot
   useEffect(() => { setCraftCount(1); }, [selectedNpc, npcModalTab, selectedSlot]);
+
+  // WoW-style craft with cast bar (2s per craft)
+  const CRAFT_CAST_MS = 2000;
+  const craftTimerRef = useRef<number | null>(null);
+
+  const startCraftCast = (recipeId: string, count = 1) => {
+    if (crafting || craftProgress || !reviewApiKey) return;
+    setCraftProgress({ recipeId, current: 0, total: count, startTime: Date.now() });
+    // After cast time, execute the actual craft
+    craftTimerRef.current = window.setTimeout(() => {
+      setCraftProgress(null);
+      handleCraft(recipeId, count);
+    }, CRAFT_CAST_MS);
+  };
+
+  // Cancel cast on ESC
+  useEffect(() => {
+    if (!craftProgress) return;
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && craftTimerRef.current) {
+        clearTimeout(craftTimerRef.current);
+        setCraftProgress(null);
+      }
+    };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, [craftProgress]);
 
   const handleCraft = async (recipeId: string, count = 1) => {
     if (crafting || !reviewApiKey) return;
@@ -1022,18 +1050,32 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                               );
                             })() : (
                               <button
-                                onClick={() => canDo && handleCraft(recipe.id, effectiveCount)}
-                                disabled={!canDo || crafting}
-                                className="forge-btn text-sm px-4 py-2 rounded-lg font-semibold"
+                                onClick={() => canDo && !craftProgress && startCraftCast(recipe.id, effectiveCount)}
+                                disabled={!canDo || crafting || !!craftProgress}
+                                className="forge-btn text-sm px-4 py-2 rounded-lg font-semibold relative overflow-hidden"
                                 style={{
                                   background: canDo ? `${selectedNpc.color}20` : "rgba(255,255,255,0.03)",
                                   color: canDo ? selectedNpc.color : "rgba(255,255,255,0.2)",
                                   border: `1px solid ${canDo ? `${selectedNpc.color}40` : "rgba(255,255,255,0.06)"}`,
-                                  cursor: canDo && !crafting ? "pointer" : "not-allowed",
+                                  cursor: canDo && !crafting && !craftProgress ? "pointer" : "not-allowed",
                                 }}
-                                title={!canDo ? (!isLearned ? "Recipe not learned" : !meetsLevel ? "Profession level too low" : onCooldown ? `On cooldown (${Math.ceil((recipe.cooldownRemaining ?? 0) / 60)}min left)` : !hasSlotItem ? "No gear equipped in this slot" : !canAfford ? "Not enough materials or gold" : "") : `Craft ${recipe.name}`}
+                                title={!canDo ? (!isLearned ? "Recipe not learned" : !meetsLevel ? "Profession level too low" : onCooldown ? `On cooldown (${Math.ceil((recipe.cooldownRemaining ?? 0) / 60)}min left)` : !hasSlotItem ? "No gear equipped in this slot" : !canAfford ? "Not enough materials or gold" : "") : craftProgress ? "Press ESC to cancel" : `Craft ${recipe.name}`}
                               >
-                                {crafting ? "Crafting\u2026" : onCooldown ? "On Cooldown" : "Craft"}
+                                {/* WoW-style cast bar overlay */}
+                                {craftProgress && craftProgress.recipeId === recipe.id && (
+                                  <div className="absolute inset-0 rounded-lg overflow-hidden" style={{ zIndex: 0 }}>
+                                    <div
+                                      className="h-full"
+                                      style={{
+                                        background: `linear-gradient(90deg, ${selectedNpc.color}50, ${selectedNpc.color}30)`,
+                                        animation: `craft-cast-fill ${CRAFT_CAST_MS}ms linear forwards`,
+                                      }}
+                                    />
+                                  </div>
+                                )}
+                                <span className="relative" style={{ zIndex: 1 }}>
+                                  {craftProgress && craftProgress.recipeId === recipe.id ? "Crafting\u2026" : crafting ? "Crafting\u2026" : onCooldown ? "On Cooldown" : "Craft"}
+                                </span>
                               </button>
                             )}
                           </div>

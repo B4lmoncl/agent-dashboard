@@ -288,6 +288,12 @@ button[disabled] {
   opacity: 0.45;
 }
 
+/* WoW-style craft cast bar — fills left to right */
+@keyframes craft-cast-fill {
+  0% { width: 0%; }
+  100% { width: 100%; }
+}
+
 /* NPC card hover in Artisan's Quarter */
 .npc-card-hover {
   transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
