@@ -2644,8 +2644,8 @@
       },
       "legendaryEffect": {
         "type": "night_double_gold",
-        "min": 10,
-        "max": 25,
+        "min": 3,
+        "max": 6,
         "label": "Nachtschatten: +{value}% Gold bei Nacht-Quests (23-5 Uhr)"
       },
       "flavorText": "Zwischen Mitternacht und Morgen, wenn die Welt schläft, wacht diese Klinge. Und sie belohnt, wer mit ihr wacht."
@@ -2705,8 +2705,8 @@
       },
       "legendaryEffect": {
         "type": "every_nth_bonus",
-        "min": 10,
-        "max": 25,
+        "min": 3,
+        "max": 6,
         "label": "Rhythmus: Jede 5. Quest gibt +{value}% Bonus-XP"
       },
       "flavorText": "Eins. Zwei. Drei. Vier. Der fünfte Schlag trifft anders. Frag nicht warum. Frag nur: bist du bereit?"
