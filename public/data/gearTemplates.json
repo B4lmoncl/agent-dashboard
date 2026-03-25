@@ -15671,6 +15671,1186 @@
       },
       "setId": "master",
       "flavorText": "Der Boden zittert. Nicht vor Angst — vor Vorfreude."
+    },
+    {
+      "id": "craft-schmied-aetherkern-klinge",
+      "name": "Aetherkern-Klinge",
+      "slot": "weapon",
+      "tier": 4,
+      "reqLevel": 32,
+      "rarity": "rare",
+      "price": 0,
+      "desc": "Eine Klinge, deren Kern aus verdichtetem Aether geschmiedet wurde.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "fixedStats": {
+        "kraft": 6,
+        "ausdauer": 5
+      },
+      "setId": "legendary"
+    },
+    {
+      "id": "craft-schmied-aether-bollwerk",
+      "name": "Aether-Bollwerk",
+      "slot": "shield",
+      "tier": 4,
+      "reqLevel": 33,
+      "rarity": "rare",
+      "price": 0,
+      "desc": "Ein Schild, so dicht wie gefrorener Nebel. Schläge prallen ab wie Regentropfen.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "fixedStats": {
+        "ausdauer": 7,
+        "kraft": 4
+      },
+      "setId": "legendary"
+    },
+    {
+      "id": "craft-schmied-aetherkern-visier",
+      "name": "Aetherkern-Visier",
+      "slot": "helm",
+      "tier": 4,
+      "reqLevel": 31,
+      "rarity": "rare",
+      "price": 0,
+      "desc": "Der Helm summt leise, als atme der Aether selbst darin.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "fixedStats": {
+        "weisheit": 5,
+        "ausdauer": 6
+      },
+      "setId": "legendary"
+    },
+    {
+      "id": "craft-schmied-aether-brustplatte",
+      "name": "Aether-Brustplatte",
+      "slot": "armor",
+      "tier": 4,
+      "reqLevel": 34,
+      "rarity": "rare",
+      "price": 0,
+      "desc": "Unter den Platten schimmert bläuliches Licht — der Aether hält zusammen, was Stahl allein nicht könnte.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "fixedStats": {
+        "ausdauer": 7,
+        "kraft": 5
+      },
+      "setId": "legendary"
+    },
+    {
+      "id": "craft-schmied-aetherkern-medaillon",
+      "name": "Aetherkern-Medaillon",
+      "slot": "amulet",
+      "tier": 4,
+      "reqLevel": 30,
+      "rarity": "rare",
+      "price": 0,
+      "desc": "Ein Medaillon, in dem ein Splitter reinen Aethers pulsiert.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "fixedStats": {
+        "weisheit": 6,
+        "glueck": 5
+      },
+      "setId": "legendary"
+    },
+    {
+      "id": "craft-schmied-aether-schreitstiefel",
+      "name": "Aether-Schreitstiefel",
+      "slot": "boots",
+      "tier": 4,
+      "reqLevel": 31,
+      "rarity": "rare",
+      "price": 0,
+      "desc": "Jeder Schritt hinterlässt für einen Moment ein schwaches Leuchten auf dem Boden.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "fixedStats": {
+        "ausdauer": 5,
+        "glueck": 6
+      },
+      "setId": "legendary"
+    },
+    {
+      "id": "craft-schmied-aetherkern-kriegsschwert",
+      "name": "Aetherkern-Kriegsschwert",
+      "slot": "weapon",
+      "tier": 4,
+      "reqLevel": 35,
+      "rarity": "rare",
+      "price": 0,
+      "desc": "Schwer wie Pflicht, scharf wie Überzeugung.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "fixedStats": {
+        "kraft": 7,
+        "ausdauer": 4
+      },
+      "setId": "legendary"
+    },
+    {
+      "id": "craft-schmied-aether-turmschild",
+      "name": "Aether-Turmschild",
+      "slot": "shield",
+      "tier": 4,
+      "reqLevel": 36,
+      "rarity": "rare",
+      "price": 0,
+      "desc": "Hinter diesem Schild ist man unerreichbar — zumindest fühlt es sich so an.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "fixedStats": {
+        "ausdauer": 6,
+        "weisheit": 5
+      },
+      "setId": "legendary"
+    },
+    {
+      "id": "craft-schmied-aetherkern-sturmkappe",
+      "name": "Aetherkern-Sturmkappe",
+      "slot": "helm",
+      "tier": 4,
+      "reqLevel": 34,
+      "rarity": "rare",
+      "price": 0,
+      "desc": "Die Kappe vibriert bei Gewitter. Manche sagen, sie ruft den Sturm.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "fixedStats": {
+        "kraft": 5,
+        "weisheit": 6
+      },
+      "setId": "legendary"
+    },
+    {
+      "id": "craft-schmied-aether-kettenhemd",
+      "name": "Aether-Kettenhemd",
+      "slot": "armor",
+      "tier": 4,
+      "reqLevel": 32,
+      "rarity": "rare",
+      "price": 0,
+      "desc": "Jedes Kettenglied wurde einzeln in Aether getaucht. Zweihundert Stunden Arbeit.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "fixedStats": {
+        "ausdauer": 6,
+        "glueck": 5
+      },
+      "setId": "legendary"
+    },
+    {
+      "id": "craft-schmied-aetherkern-reif",
+      "name": "Aetherkern-Reif",
+      "slot": "amulet",
+      "tier": 4,
+      "reqLevel": 33,
+      "rarity": "rare",
+      "price": 0,
+      "desc": "Ein schlichter Reif. Wer ihn anlegt, spürt ein Flüstern am Rand der Wahrnehmung.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "fixedStats": {
+        "glueck": 7,
+        "weisheit": 4
+      },
+      "setId": "legendary"
+    },
+    {
+      "id": "craft-schmied-aether-marschtritt",
+      "name": "Aether-Marschtritt",
+      "slot": "boots",
+      "tier": 4,
+      "reqLevel": 35,
+      "rarity": "rare",
+      "price": 0,
+      "desc": "Für den langen Marsch. Der Aether trägt, wo die Beine versagen.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "fixedStats": {
+        "ausdauer": 5,
+        "kraft": 6
+      },
+      "setId": "legendary"
+    },
+    {
+      "id": "craft-schmied-aetherkern-wachtschwert",
+      "name": "Aetherkern-Wachtschwert",
+      "slot": "weapon",
+      "tier": 4,
+      "reqLevel": 37,
+      "rarity": "rare",
+      "price": 0,
+      "desc": "Die Nachtwache schwört auf diese Klinge. Sie leuchtet schwach im Dunkeln.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "fixedStats": {
+        "kraft": 6,
+        "glueck": 5
+      },
+      "setId": "legendary"
+    },
+    {
+      "id": "craft-schmied-aether-schildwall",
+      "name": "Aether-Schildwall",
+      "slot": "shield",
+      "tier": 4,
+      "reqLevel": 38,
+      "rarity": "rare",
+      "price": 0,
+      "desc": "Drei Schichten Stahl, durchzogen von Aether. Unnachgiebig.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "fixedStats": {
+        "ausdauer": 7,
+        "weisheit": 5
+      },
+      "setId": "legendary"
+    },
+    {
+      "id": "craft-schmied-aetherkern-panzer",
+      "name": "Aetherkern-Panzer",
+      "slot": "armor",
+      "tier": 4,
+      "reqLevel": 36,
+      "rarity": "rare",
+      "price": 0,
+      "desc": "Ein Meisterwerk der Schmiedekunst. Der Aether verstärkt jeden Niet.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "fixedStats": {
+        "ausdauer": 6,
+        "kraft": 6
+      },
+      "setId": "legendary"
+    },
+    {
+      "id": "craft-schmied-seelen-richtschwert",
+      "name": "Seelengeschmiedetes Richtschwert",
+      "slot": "weapon",
+      "tier": 4,
+      "reqLevel": 42,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Die Klinge wurde in der Essenz einer sterbenden Flamme gehärtet.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "glueck",
+              "min": 5,
+              "max": 8
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary",
+      "flavorText": "Wer sie zieht, hört das Rauschen einer Welt, die nicht mehr ist."
+    },
+    {
+      "id": "craft-schmied-seelen-aegis",
+      "name": "Seelen-Aegis",
+      "slot": "shield",
+      "tier": 4,
+      "reqLevel": 43,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Ein Schild, geschmiedet aus dem Willen derer, die nicht aufgaben.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 8
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "charisma",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary",
+      "flavorText": "Hinter dem Schild liegt Stille. Eine Stille, die selbst den Sturm überdauert."
+    },
+    {
+      "id": "craft-schmied-seelen-krone",
+      "name": "Seelen-Krone",
+      "slot": "helm",
+      "tier": 4,
+      "reqLevel": 44,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Keine Krone der Macht — eine Krone der Erinnerung.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "glueck",
+              "min": 5,
+              "max": 8
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "charisma",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary",
+      "flavorText": "Sie flüstert von vergangenen Trägern. Keiner hat sie freiwillig abgelegt."
+    },
+    {
+      "id": "craft-schmied-seelengeschmiedete-platte",
+      "name": "Seelengeschmiedete Platte",
+      "slot": "armor",
+      "tier": 4,
+      "reqLevel": 45,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Jede Platte enthält einen Funken dessen, der sie schmiedete.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 8
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary",
+      "flavorText": "Wer sie trägt, spürt ein zweites Herz schlagen — das des Schmieds."
+    },
+    {
+      "id": "craft-schmied-seelen-talisman",
+      "name": "Seelen-Talisman",
+      "slot": "amulet",
+      "tier": 4,
+      "reqLevel": 41,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Ein Amulett, das schwerer wiegt als sein Material vermuten lässt.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "glueck",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 8
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "charisma",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary",
+      "flavorText": "Es zieht nach Norden. Immer nach Norden. Niemand weiß, warum."
+    },
+    {
+      "id": "craft-schmied-seelen-wanderstiefel",
+      "name": "Seelengeschmiedete Wanderstiefel",
+      "slot": "boots",
+      "tier": 4,
+      "reqLevel": 42,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Diese Stiefel kennen den Weg. Man muss ihnen nur vertrauen.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "glueck",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 8
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary",
+      "flavorText": "Tausend Meilen. Kein Schritt davon vergessen."
+    },
+    {
+      "id": "craft-schmied-seelen-siegel",
+      "name": "Seelen-Siegel",
+      "slot": "amulet",
+      "tier": 4,
+      "reqLevel": 44,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Ein Siegel, das seinen Träger als Meister der Seelenschmiede ausweist.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "glueck",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 5,
+              "max": 8
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary",
+      "flavorText": "Das Siegel brennt nicht. Es erinnert. An jeden Hammerschlag, jede durchwachte Nacht."
+    },
+    {
+      "id": "craft-schmied-seelen-breitschwert",
+      "name": "Seelen-Breitschwert",
+      "slot": "weapon",
+      "tier": 4,
+      "reqLevel": 38,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Breit genug für zwei Hände, leicht genug für eine — wenn man würdig ist.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary",
+      "flavorText": "Die Klinge singt. Nicht laut — nur für den, der zuhört."
+    },
+    {
+      "id": "craft-schmied-seelen-schulterwacht",
+      "name": "Seelen-Schulterwacht",
+      "slot": "helm",
+      "tier": 4,
+      "reqLevel": 39,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Ein Helm, der den Geist schärft, während er den Schädel schützt.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary",
+      "flavorText": "Er wurde Schulterwacht getauft, denn er wacht auch, wenn sein Träger schläft."
+    },
+    {
+      "id": "craft-schmied-seelen-kettenruestung",
+      "name": "Seelen-Kettenrüstung",
+      "slot": "armor",
+      "tier": 4,
+      "reqLevel": 40,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Kettenglieder aus Seelenmetall. Leichter als Stahl, härter als Diamant.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "charisma",
+              "min": 3,
+              "max": 5
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary",
+      "flavorText": "Man sagt, die Ketten klirrten im Rhythmus des Herzschlags ihres Trägers."
+    },
+    {
+      "id": "craft-schmied-seelenklinge",
+      "name": "Seelenklinge des Schmieds",
+      "slot": "weapon",
+      "tier": 4,
+      "reqLevel": 47,
+      "rarity": "legendary",
+      "price": 0,
+      "desc": "Das Meisterwerk eines Lebens. In der Klinge brennt das Feuer des Schmieds selbst.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "affixes": {
+        "primary": {
+          "count": [
+            3,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "glueck",
+              "min": 5,
+              "max": 8
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "crit_chance",
+        "min": 3,
+        "max": 6,
+        "label": "Seelenschnitt: +{value}% Chance auf doppelte Quest-Belohnungen"
+      },
+      "setId": "legendary",
+      "flavorText": "Grimvar weigerte sich, sie zu bewerten. Er sagte nur: 'Endlich.'"
+    },
+    {
+      "id": "craft-schmied-seelenbollwerk",
+      "name": "Seelen-Bollwerk des Wächters",
+      "slot": "shield",
+      "tier": 4,
+      "reqLevel": 48,
+      "rarity": "legendary",
+      "price": 0,
+      "desc": "Geschmiedet aus dem letzten Erz einer vergessenen Mine. Unzerstörbar.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "affixes": {
+        "primary": {
+          "count": [
+            3,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 8
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "charisma",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "decay_reduction",
+        "min": 3,
+        "max": 6,
+        "label": "Ewige Wacht: -{value}% Streak-Verfall"
+      },
+      "setId": "legendary",
+      "flavorText": "Es heißt, der Wächter von Tor Sidan trug diesen Schild, als die Dunkelheit kam. Er stand noch, als sie ging."
+    },
+    {
+      "id": "craft-schmied-seelenkrone-des-meisters",
+      "name": "Seelenkrone des Meisters",
+      "slot": "helm",
+      "tier": 4,
+      "reqLevel": 49,
+      "rarity": "legendary",
+      "price": 0,
+      "desc": "Nur ein Meisterschmied kann diese Krone vollenden. Der letzte Hammerschlag kostet mehr als Gold.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "affixes": {
+        "primary": {
+          "count": [
+            3,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "glueck",
+              "min": 5,
+              "max": 8
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "charisma",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "xp_bonus",
+        "min": 3,
+        "max": 6,
+        "label": "Meisterwissen: +{value}% XP aus allen Quellen"
+      },
+      "setId": "legendary",
+      "flavorText": "Die Krone erkennt ihren Träger. Nicht jeder Kopf ist ihrer würdig."
+    },
+    {
+      "id": "craft-schmied-seelengeschmiedeter-panzer",
+      "name": "Seelengeschmiedeter Panzer",
+      "slot": "armor",
+      "tier": 4,
+      "reqLevel": 50,
+      "rarity": "legendary",
+      "price": 0,
+      "desc": "Der ultimative Schutz. In jeder Platte steckt ein Versprechen.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "affixes": {
+        "primary": {
+          "count": [
+            3,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 8
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "gold_bonus",
+        "min": 3,
+        "max": 6,
+        "label": "Seelenreichtum: +{value}% Gold aus Quests"
+      },
+      "setId": "legendary",
+      "flavorText": "Der Schmied weinte, als er den letzten Niet setzte. Nicht vor Trauer — vor Vollendung."
+    },
+    {
+      "id": "craft-schmied-seelenstiefel-des-wanderers",
+      "name": "Seelenstiefel des Wanderers",
+      "slot": "boots",
+      "tier": 4,
+      "reqLevel": 48,
+      "rarity": "legendary",
+      "price": 0,
+      "desc": "Stiefel für die letzte Reise — und jede danach.",
+      "icon": null,
+      "shopHidden": true,
+      "armorType": "heavy",
+      "affixes": {
+        "primary": {
+          "count": [
+            3,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "glueck",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 8
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "forge_temp_flat",
+        "min": 3,
+        "max": 6,
+        "label": "Wanderglut: +{value} Schmiede-Temperatur pro Quest"
+      },
+      "setId": "legendary",
+      "flavorText": "Die alten Wanderer sagten: Der Weg formt den Wanderer, nicht umgekehrt. Diese Stiefel wissen es besser."
     }
   ],
   "setBonus": {
