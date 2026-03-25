@@ -2488,7 +2488,7 @@ Lyra ist die permanente NPC-Präsenz in der Quest Hall. Sie ist alt — älter a
 
 ### Checkliste: Bevor Content generiert wird
 
-1. Passt der Tone? (Kingkiller, nicht Herr der Ringe)
+1. Passt der Tone? (Skulduggery-trocken + Kingkiller-poetisch, nicht Herr der Ringe)
 2. Ist es deutsch? (außer Raumnamen)
 3. Referenziert es die Welt? (Aethermoor, Aetherstrom, die Halle)
 4. Kein Spoiler für zukünftige Lore?
@@ -2505,7 +2505,13 @@ Lyra ist die permanente NPC-Präsenz in der Quest Hall. Sie ist alt — älter a
 
 **Quellen & Anspielungen:**
 
-- **Skulduggery Pleasant** — Trockener Humor in Kampfsituationen. Eleganz als Waffe. NPCs die absurd selbstsicher sind und es irgendwie rechtfertigen. "Manche Helden tragen ihr Grinsen als Maske. Andere haben keine andere Wahl." Items wie "Mantel der Eleganz" (erhöht Charisma: "Sieht gut aus. Selbst auf Knochen."). "Die beste Verteidigung ist ein gut sitzender Anzug und eine schnelle Zunge." Ein Skelett in feiner Kleidung als NPC-Gerücht — nie bestätigt.
+- **Skulduggery Pleasant (KERN-REFERENZ für Humor & Charakter-Stimme)** — Die Art wie Derek Landy Charaktere schreibt ist DAS Vorbild für Quest Hall. Konkret:
+  - **Humor in JEDER Situation.** Skulduggery kommentiert einen Kampf auf Leben und Tod genauso trocken wie ein Gespräch über Wetter. Diese Gelassenheit angesichts von Gefahr ist der Kern. NPCs sollen klingen, als hätten sie zu viel erlebt um sich aufzuregen — aber genug Stolz um trotzdem eine gute Figur zu machen.
+  - **Eleganz als Persönlichkeitsmerkmal.** Skulduggery trägt einen Maßanzug in den Kampf. Diese Haltung — Stil über Substanz, aber die Substanz ist auch da — soll sich in Item-Beschreibungen, NPC-Dialogen und Flavor-Text widerspiegeln. "Er sah aus, als hätte er gerade in einem Fünf-Sterne-Restaurant gespeist und nicht in einer Höhle voller Spinnen."
+  - **Dialog-Timing.** Landys Dialoge funktionieren durch Timing und Understatement. Der Witz sitzt NACH dem Punkt, nicht davor. Nicht: "Oh nein, das ist gefährlich!" Sondern: "Das war unerwartet." Pause. "Und unangenehm." Pause. "Überwiegend unangenehm."
+  - **Absurdes Selbstbewusstsein das charmt statt nervt.** Skulduggery sagt "Ich bin sehr gut in dem was ich tue" und man glaubt es ihm, weil er es mit einem Grinsen sagt das man nicht sehen kann (weil Skelett). NPCs dürfen arrogant sein — wenn die Arroganz mit Kompetenz und Humor unterfüttert ist.
+  - **Emotionale Tiefe UNTER dem Humor.** Das ist das Wichtigste: Skulduggery ist lustig WEIL er Dinge erlebt hat die nicht lustig waren. Der Humor ist die Verarbeitung, nicht die Vermeidung. Quest-Texte die ernst sind, dürfen ernst sein — aber der Weg dorthin führt immer durch einen trockenen Kommentar.
+  - **Konkrete Anwendung:** "Manche Helden tragen ihr Grinsen als Maske. Andere haben keine andere Wahl." Items wie "Mantel der Eleganz" (erhöht Charisma: "Sieht gut aus. Selbst auf Knochen."). "Die beste Verteidigung ist ein gut sitzender Anzug und eine schnelle Zunge." Ein Skelett in feiner Kleidung als NPC-Gerücht — nie bestätigt.
 - **Cosmere / Brandon Sanderson** — Ehrensprüche als Quest-Titel. "Der wichtigste Schritt ist immer der nächste."
 - **Königsmörder-Chronik (Patrick Rothfuss)** — Der GESAMTE Tone ist von Kvothe inspiriert. Musik/Geschichten als Machtsystem.
 - **Frieren** — Leise, melancholische Quest-Texte über Vergänglichkeit. Lyra selbst hat Frieren-Vibes (unsterblich, Schwierigkeiten mit der Kürze sterblicher Leben).
