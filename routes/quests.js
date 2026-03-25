@@ -631,22 +631,22 @@ router.get('/api/quests', (req, res) => {
       }
     }
 
-    // Per-player pool: only show quests from this player's generated pool
-    // If pool is empty, auto-populate from open quests (max 10, shuffled)
-    let poolIds = (pp.activeQuestPool && pp.activeQuestPool.length > 0)
+    // Per-player pool: limit visible open quests to max 10
+    // If activeQuestPool exists and is reasonable, use it as filter
+    // Otherwise, auto-build a pool of 10 random quests from openPlayer
+    let poolIds = (pp.activeQuestPool && pp.activeQuestPool.length > 0 && pp.activeQuestPool.length <= 15)
       ? pp.activeQuestPool
-      : (pp.generatedQuests || []).slice(0, 11);
-    // Auto-init: if no pool exists, build one from open player quests
-    if (!poolIds.length && openPlayer.length > 0) {
+      : null;
+    if (!poolIds) {
+      // Build fresh pool: shuffle open quests, pick 10
       const shuffled = [...openPlayer].sort(() => Math.random() - 0.5);
       poolIds = shuffled.slice(0, 10).map(q => q.id);
       pp.activeQuestPool = poolIds;
       savePlayerProgress();
     }
+    // Filter: only keep quests that are in the pool AND still open
     const visibleIds = new Set(poolIds);
-    const poolFilteredOpen = visibleIds.size > 0
-      ? openPlayer.filter(q => visibleIds.has(q.id))
-      : [];
+    const poolFilteredOpen = openPlayer.filter(q => visibleIds.has(q.id));
 
     return res.json({
       open:       enrichEpics(poolFilteredOpen).map(ensureRewards),
