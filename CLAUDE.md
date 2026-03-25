@@ -324,6 +324,12 @@ These rules ensure visual consistency across all features. Follow them for EVERY
 - **Hover effects:** Subtle `translateY(-2px)` lift + enhanced `boxShadow` on cards
 - **No jarring layout shifts:** Use fixed dimensions or min-height on containers that load async data
 
+### Icons & Emojis
+- **NO EMOJIS on the site.** Use custom SVG symbols or PNG icons instead. Emojis look inconsistent across platforms and cheapen the aesthetic.
+- **Very rare exceptions:** The streak flame (🔥) works because it's thematically perfect. Default to custom icons for everything else.
+- **Tooltip icons** in GameTooltip registry entries are the ONLY place where emoji-style symbols are acceptable (they render inside controlled tooltip containers, not in the main UI).
+- **When in doubt:** Generate a custom icon or use a Unicode symbol (◆, ★, ●) over an emoji.
+
 ### Images
 - **Rendering:** `image-rendering: smooth` everywhere (class `img-render-auto`)
 - **Fallback:** Always add `onError` handler to hide broken images gracefully
