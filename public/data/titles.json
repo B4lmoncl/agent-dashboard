@@ -1,40 +1,394 @@
 {
   "titles": [
-    { "id": "newcomer", "name": "Neuling", "description": "Willkommen in der Gilde!", "rarity": "common", "condition": { "type": "level", "value": 1 } },
-    { "id": "questrunner", "name": "Questläufer", "description": "10 Quests abgeschlossen.", "rarity": "common", "condition": { "type": "quests_completed", "value": 10 } },
-    { "id": "dedicated", "name": "der Beständige", "description": "50 Quests abgeschlossen.", "rarity": "uncommon", "condition": { "type": "quests_completed", "value": 50 } },
-    { "id": "centurion", "name": "Zenturio", "description": "100 Quests abgeschlossen.", "rarity": "rare", "condition": { "type": "quests_completed", "value": 100 } },
-    { "id": "legend", "name": "die Legende", "description": "250 Quests abgeschlossen.", "rarity": "legendary", "condition": { "type": "quests_completed", "value": 250 } },
-    { "id": "streak5", "name": "Flammenträger", "description": "5-Tage-Streak erreicht.", "rarity": "common", "condition": { "type": "streak", "value": 5 } },
-    { "id": "streak15", "name": "Unaufhaltsam", "description": "15-Tage-Streak erreicht.", "rarity": "uncommon", "condition": { "type": "streak", "value": 15 } },
-    { "id": "streak30", "name": "der Ewige", "description": "30-Tage-Streak erreicht.", "rarity": "rare", "condition": { "type": "streak", "value": 30 } },
-    { "id": "streak60", "name": "Eiserner Wille", "description": "60-Tage-Streak erreicht.", "rarity": "epic", "condition": { "type": "streak", "value": 60 } },
-    { "id": "collector10", "name": "Sammler", "description": "10 Items im Inventar.", "rarity": "common", "condition": { "type": "inventory_count", "value": 10 } },
-    { "id": "collector50", "name": "Hoarder", "description": "50 Items im Inventar.", "rarity": "rare", "condition": { "type": "inventory_count", "value": 50 } },
-    { "id": "rich", "name": "Krösus", "description": "1000 Gold gesammelt.", "rarity": "uncommon", "condition": { "type": "gold", "value": 1000 } },
-    { "id": "wealthy", "name": "Golddrache", "description": "10000 Gold gesammelt.", "rarity": "epic", "condition": { "type": "gold", "value": 10000 } },
-    { "id": "level10", "name": "Veteran", "description": "Level 10 erreicht.", "rarity": "uncommon", "condition": { "type": "level", "value": 10 } },
-    { "id": "level20", "name": "Meister", "description": "Level 20 erreicht.", "rarity": "rare", "condition": { "type": "level", "value": 20 } },
-    { "id": "level30", "name": "Großmeister", "description": "Level 30 erreicht.", "rarity": "legendary", "condition": { "type": "level", "value": 30 } },
-    { "id": "npc_friend", "name": "Volksfreund", "description": "5 NPC-Questketten abgeschlossen.", "rarity": "uncommon", "condition": { "type": "npc_chains", "value": 5 } },
-    { "id": "forgemaster", "name": "Schmiedemeister", "description": "Forge-Temperatur 100% erreicht.", "rarity": "rare", "condition": { "type": "forge_temp", "value": 100 } },
-    { "id": "lucky", "name": "Glückskind", "description": "Einen legendären Gacha-Pull gelandet.", "rarity": "epic", "condition": { "type": "gacha_legendary", "value": 1 } },
-    { "id": "completionist", "name": "Perfektionist", "description": "Alle 6 Ausrüstungsslots gefüllt.", "rarity": "uncommon", "condition": { "type": "full_equipment", "value": 1 } },
-    { "id": "overachiever", "name": "Übererfüller", "description": "100 Achievement-Punkte gesammelt.", "rarity": "uncommon", "condition": { "type": "achievement_points", "value": 100 } },
-    { "id": "legend_collector", "name": "Legendensammler", "description": "1500 Achievement-Punkte gesammelt.", "rarity": "legendary", "condition": { "type": "achievement_points", "value": 1500 } },
-    { "id": "bp_s1_10", "name": "Erwachter", "description": "Season Pass Level 10 erreicht — Season 1: Awakening.", "rarity": "uncommon", "condition": { "type": "battlepass_level", "value": 10 } },
-    { "id": "bp_s1_25", "name": "Saisonveteran", "description": "Season Pass Level 25 erreicht — Season 1: Awakening.", "rarity": "rare", "condition": { "type": "battlepass_level", "value": 25 } },
-    { "id": "bp_s1_40", "name": "Erbe der Saison", "description": "Season Pass Level 40 erreicht — Season 1: Awakening. Du hast alles gesehen.", "rarity": "legendary", "condition": { "type": "battlepass_level", "value": 40 } },
-    { "id": "bp_s2_10", "name": "Aschenträger", "description": "Season Pass Level 10 — Season 2: Aschenstrom.", "rarity": "uncommon", "condition": { "type": "battlepass_level", "value": 10 } },
-    { "id": "bp_s2_25", "name": "Flammenläufer", "description": "Season Pass Level 25 — Season 2: Aschenstrom.", "rarity": "rare", "condition": { "type": "battlepass_level", "value": 25 } },
-    { "id": "bp_s2_40", "name": "Herz der Asche", "description": "Season Pass Level 40 — Season 2: Aschenstrom. Die Flammen haben dich geformt.", "rarity": "epic", "condition": { "type": "battlepass_level", "value": 40 } },
-    { "id": "bp_s3_10", "name": "Sternenrufer", "description": "Season Pass Level 10 — Season 3: Sternensturm.", "rarity": "uncommon", "condition": { "type": "battlepass_level", "value": 10 } },
-    { "id": "bp_s3_25", "name": "Sturmwandler", "description": "Season Pass Level 25 — Season 3: Sternensturm.", "rarity": "rare", "condition": { "type": "battlepass_level", "value": 25 } },
-    { "id": "bp_s3_40", "name": "Auge des Sturms", "description": "Season Pass Level 40 — Season 3: Sternensturm. Der Sturm beugt sich deinem Willen.", "rarity": "epic", "condition": { "type": "battlepass_level", "value": 40 } },
-    { "id": "sternkind", "name": "Sternkind", "description": "Erworben im Sternentaler-Shop. Die Sterne haben dich als eines der Ihren erkannt.", "rarity": "epic", "condition": { "type": "shop_purchase", "value": 1 } },
-    { "id": "sternjager", "name": "Sternjäger", "description": "Erworben im Sternentaler-Shop. Du jagst Sterne. Manche jagen zurück.", "rarity": "legendary", "condition": { "type": "shop_purchase", "value": 1 } },
-    { "id": "gildenherz", "name": "Gildenherz", "description": "Erworben im Gildentaler-Shop. Das Herz der Gilde schlägt in dir.", "rarity": "epic", "condition": { "type": "shop_purchase", "value": 1 } },
-    { "id": "botschafter", "name": "Botschafter", "description": "Erworben im Gildentaler-Shop. Dein Ruf eilt dir voraus — und er ist makellos.", "rarity": "legendary", "condition": { "type": "shop_purchase", "value": 1 } },
-    { "id": "mondwandler", "name": "Mondwandler", "description": "Erworben im Mondstaub-Shop. Du wandelst auf Monden. Welchen? Allen, vermutlich.", "rarity": "legendary", "condition": { "type": "shop_purchase", "value": 1 } }
+    {
+      "id": "newcomer",
+      "name": "Neuling",
+      "description": "Willkommen in der Gilde!",
+      "rarity": "common",
+      "condition": {
+        "type": "level",
+        "value": 1
+      }
+    },
+    {
+      "id": "questrunner",
+      "name": "Questläufer",
+      "description": "10 Quests abgeschlossen.",
+      "rarity": "common",
+      "condition": {
+        "type": "quests_completed",
+        "value": 10
+      }
+    },
+    {
+      "id": "dedicated",
+      "name": "der Beständige",
+      "description": "50 Quests abgeschlossen.",
+      "rarity": "uncommon",
+      "condition": {
+        "type": "quests_completed",
+        "value": 50
+      }
+    },
+    {
+      "id": "centurion",
+      "name": "Zenturio",
+      "description": "100 Quests abgeschlossen.",
+      "rarity": "rare",
+      "condition": {
+        "type": "quests_completed",
+        "value": 100
+      }
+    },
+    {
+      "id": "legend",
+      "name": "die Legende",
+      "description": "250 Quests abgeschlossen.",
+      "rarity": "legendary",
+      "condition": {
+        "type": "quests_completed",
+        "value": 250
+      }
+    },
+    {
+      "id": "streak5",
+      "name": "Flammenträger",
+      "description": "5-Tage-Streak erreicht.",
+      "rarity": "common",
+      "condition": {
+        "type": "streak",
+        "value": 5
+      }
+    },
+    {
+      "id": "streak15",
+      "name": "Unaufhaltsam",
+      "description": "15-Tage-Streak erreicht.",
+      "rarity": "uncommon",
+      "condition": {
+        "type": "streak",
+        "value": 15
+      }
+    },
+    {
+      "id": "streak30",
+      "name": "der Ewige",
+      "description": "30-Tage-Streak erreicht.",
+      "rarity": "rare",
+      "condition": {
+        "type": "streak",
+        "value": 30
+      }
+    },
+    {
+      "id": "streak60",
+      "name": "Eiserner Wille",
+      "description": "60-Tage-Streak erreicht.",
+      "rarity": "epic",
+      "condition": {
+        "type": "streak",
+        "value": 60
+      }
+    },
+    {
+      "id": "collector10",
+      "name": "Sammler",
+      "description": "10 Items im Inventar.",
+      "rarity": "common",
+      "condition": {
+        "type": "inventory_count",
+        "value": 10
+      }
+    },
+    {
+      "id": "collector50",
+      "name": "Hoarder",
+      "description": "50 Items im Inventar.",
+      "rarity": "rare",
+      "condition": {
+        "type": "inventory_count",
+        "value": 50
+      }
+    },
+    {
+      "id": "rich",
+      "name": "Krösus",
+      "description": "1000 Gold gesammelt.",
+      "rarity": "uncommon",
+      "condition": {
+        "type": "gold",
+        "value": 1000
+      }
+    },
+    {
+      "id": "wealthy",
+      "name": "Golddrache",
+      "description": "10000 Gold gesammelt.",
+      "rarity": "epic",
+      "condition": {
+        "type": "gold",
+        "value": 10000
+      }
+    },
+    {
+      "id": "level10",
+      "name": "Veteran",
+      "description": "Level 10 erreicht.",
+      "rarity": "uncommon",
+      "condition": {
+        "type": "level",
+        "value": 10
+      }
+    },
+    {
+      "id": "level20",
+      "name": "Meister",
+      "description": "Level 20 erreicht.",
+      "rarity": "rare",
+      "condition": {
+        "type": "level",
+        "value": 20
+      }
+    },
+    {
+      "id": "level30",
+      "name": "Großmeister",
+      "description": "Level 30 erreicht.",
+      "rarity": "legendary",
+      "condition": {
+        "type": "level",
+        "value": 30
+      }
+    },
+    {
+      "id": "npc_friend",
+      "name": "Volksfreund",
+      "description": "5 NPC-Questketten abgeschlossen.",
+      "rarity": "uncommon",
+      "condition": {
+        "type": "npc_chains",
+        "value": 5
+      }
+    },
+    {
+      "id": "forgemaster",
+      "name": "Schmiedemeister",
+      "description": "Forge-Temperatur 100% erreicht.",
+      "rarity": "rare",
+      "condition": {
+        "type": "forge_temp",
+        "value": 100
+      }
+    },
+    {
+      "id": "lucky",
+      "name": "Glückskind",
+      "description": "Einen legendären Gacha-Pull gelandet.",
+      "rarity": "epic",
+      "condition": {
+        "type": "gacha_legendary",
+        "value": 1
+      }
+    },
+    {
+      "id": "completionist",
+      "name": "Perfektionist",
+      "description": "Alle 6 Ausrüstungsslots gefüllt.",
+      "rarity": "uncommon",
+      "condition": {
+        "type": "full_equipment",
+        "value": 1
+      }
+    },
+    {
+      "id": "overachiever",
+      "name": "Übererfüller",
+      "description": "100 Achievement-Punkte gesammelt.",
+      "rarity": "uncommon",
+      "condition": {
+        "type": "achievement_points",
+        "value": 100
+      }
+    },
+    {
+      "id": "legend_collector",
+      "name": "Legendensammler",
+      "description": "1500 Achievement-Punkte gesammelt.",
+      "rarity": "legendary",
+      "condition": {
+        "type": "achievement_points",
+        "value": 1500
+      }
+    },
+    {
+      "id": "bp_s1_10",
+      "name": "Erwachter",
+      "description": "Season Pass Level 10 erreicht — Season 1: Awakening.",
+      "rarity": "uncommon",
+      "condition": {
+        "type": "battlepass_level",
+        "value": 10
+      }
+    },
+    {
+      "id": "bp_s1_25",
+      "name": "Saisonveteran",
+      "description": "Season Pass Level 25 erreicht — Season 1: Awakening.",
+      "rarity": "rare",
+      "condition": {
+        "type": "battlepass_level",
+        "value": 25
+      }
+    },
+    {
+      "id": "bp_s1_40",
+      "name": "Erbe der Saison",
+      "description": "Season Pass Level 40 erreicht — Season 1: Awakening. Du hast alles gesehen.",
+      "rarity": "legendary",
+      "condition": {
+        "type": "battlepass_level",
+        "value": 40
+      }
+    },
+    {
+      "id": "bp_s2_10",
+      "name": "Aschenträger",
+      "description": "Season Pass Level 10 — Season 2: Aschenstrom.",
+      "rarity": "uncommon",
+      "condition": {
+        "type": "battlepass_level",
+        "value": 10
+      }
+    },
+    {
+      "id": "bp_s2_25",
+      "name": "Flammenläufer",
+      "description": "Season Pass Level 25 — Season 2: Aschenstrom.",
+      "rarity": "rare",
+      "condition": {
+        "type": "battlepass_level",
+        "value": 25
+      }
+    },
+    {
+      "id": "bp_s2_40",
+      "name": "Herz der Asche",
+      "description": "Season Pass Level 40 — Season 2: Aschenstrom. Die Flammen haben dich geformt.",
+      "rarity": "epic",
+      "condition": {
+        "type": "battlepass_level",
+        "value": 40
+      }
+    },
+    {
+      "id": "bp_s3_10",
+      "name": "Sternenrufer",
+      "description": "Season Pass Level 10 — Season 3: Sternensturm.",
+      "rarity": "uncommon",
+      "condition": {
+        "type": "battlepass_level",
+        "value": 10
+      }
+    },
+    {
+      "id": "bp_s3_25",
+      "name": "Sturmwandler",
+      "description": "Season Pass Level 25 — Season 3: Sternensturm.",
+      "rarity": "rare",
+      "condition": {
+        "type": "battlepass_level",
+        "value": 25
+      }
+    },
+    {
+      "id": "bp_s3_40",
+      "name": "Auge des Sturms",
+      "description": "Season Pass Level 40 — Season 3: Sternensturm. Der Sturm beugt sich deinem Willen.",
+      "rarity": "epic",
+      "condition": {
+        "type": "battlepass_level",
+        "value": 40
+      }
+    },
+    {
+      "id": "sternkind",
+      "name": "Sternkind",
+      "description": "Erworben im Sternentaler-Shop. Die Sterne haben dich als eines der Ihren erkannt.",
+      "rarity": "epic",
+      "condition": {
+        "type": "shop_purchase",
+        "value": 1
+      }
+    },
+    {
+      "id": "sternjager",
+      "name": "Sternjäger",
+      "description": "Erworben im Sternentaler-Shop. Du jagst Sterne. Manche jagen zurück.",
+      "rarity": "legendary",
+      "condition": {
+        "type": "shop_purchase",
+        "value": 1
+      }
+    },
+    {
+      "id": "gildenherz",
+      "name": "Gildenherz",
+      "description": "Erworben im Gildentaler-Shop. Das Herz der Gilde schlägt in dir.",
+      "rarity": "epic",
+      "condition": {
+        "type": "shop_purchase",
+        "value": 1
+      }
+    },
+    {
+      "id": "botschafter",
+      "name": "Botschafter",
+      "description": "Erworben im Gildentaler-Shop. Dein Ruf eilt dir voraus — und er ist makellos.",
+      "rarity": "legendary",
+      "condition": {
+        "type": "shop_purchase",
+        "value": 1
+      }
+    },
+    {
+      "id": "mondwandler",
+      "name": "Mondwandler",
+      "description": "Erworben im Mondstaub-Shop. Du wandelst auf Monden. Welchen? Allen, vermutlich.",
+      "rarity": "legendary",
+      "condition": {
+        "type": "shop_purchase",
+        "value": 1
+      }
+    },
+    {
+      "id": "archive-delver",
+      "name": "Archivtaucher",
+      "description": "Erste Durchquerung des Versunkenen Archivs. Du hast gelesen, was die Welt vergessen hat.",
+      "rarity": "rare",
+      "condition": {
+        "type": "shop_purchase",
+        "value": 1
+      }
+    },
+    {
+      "id": "spire-breaker",
+      "name": "Turmbrecher",
+      "description": "Erste Durchquerung des Zerbrochenen Turms. Was gebrochen war, hast du bezwungen.",
+      "rarity": "epic",
+      "condition": {
+        "type": "shop_purchase",
+        "value": 1
+      }
+    },
+    {
+      "id": "voidwalker",
+      "name": "Leerenwandler",
+      "description": "Erste Durchquerung des Hohlen Kerns. Du bist in die Leere gegangen — und zurückgekommen.",
+      "rarity": "legendary",
+      "condition": {
+        "type": "shop_purchase",
+        "value": 1
+      }
+    }
   ]
 }

@@ -11,19 +11,56 @@
       "flavorText": "Every task you postpone feeds the wyrm.",
       "icon": null,
       "affixes": {
-        "primary": { "pool": [
-          { "stat": "ausdauer", "min": 4, "max": 7 },
-          { "stat": "kraft", "min": 4, "max": 7 },
-          { "stat": "weisheit", "min": 4, "max": 7 }
-        ], "count": [3, 3] },
-        "minor": { "pool": [
-          { "stat": "vitalitaet", "min": 3, "max": 5 },
-          { "stat": "tempo", "min": 3, "max": 5 }
-        ], "count": [2, 2] }
+        "primary": {
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            3,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        }
       },
-      "legendaryEffect": { "type": "decay_reduction", "min": 3, "max": 8, "label": "Wyrm's Resolve: -{value}% forge decay" },
+      "legendaryEffect": {
+        "type": "decay_reduction",
+        "min": 3,
+        "max": 8,
+        "label": "Wyrm's Resolve: -{value}% forge decay"
+      },
       "source": "world_boss:procrastination-wyrm",
-      "dropChance": 0.10,
+      "dropChance": 0.1,
       "isUnique": true
     },
     {
@@ -37,19 +74,56 @@
       "flavorText": "Rest is not weakness. It is the fuel for greater fire.",
       "icon": null,
       "affixes": {
-        "primary": { "pool": [
-          { "stat": "kraft", "min": 4, "max": 7 },
-          { "stat": "weisheit", "min": 4, "max": 7 },
-          { "stat": "ausdauer", "min": 4, "max": 7 }
-        ], "count": [3, 3] },
-        "minor": { "pool": [
-          { "stat": "vitalitaet", "min": 3, "max": 5 },
-          { "stat": "tempo", "min": 3, "max": 5 }
-        ], "count": [2, 2] }
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            3,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        }
       },
-      "legendaryEffect": { "type": "xp_bonus", "min": 3, "max": 8, "label": "Colossus Heart: +{value}% XP" },
+      "legendaryEffect": {
+        "type": "xp_bonus",
+        "min": 3,
+        "max": 8,
+        "label": "Colossus Heart: +{value}% XP"
+      },
       "source": "world_boss:burnout-colossus",
-      "dropChance": 0.10,
+      "dropChance": 0.1,
       "isUnique": true
     },
     {
@@ -63,19 +137,56 @@
       "flavorText": "Focus is the blade that cuts through chaos.",
       "icon": null,
       "affixes": {
-        "primary": { "pool": [
-          { "stat": "weisheit", "min": 4, "max": 7 },
-          { "stat": "glueck", "min": 4, "max": 7 },
-          { "stat": "kraft", "min": 4, "max": 7 }
-        ], "count": [3, 3] },
-        "minor": { "pool": [
-          { "stat": "fokus", "min": 3, "max": 5 },
-          { "stat": "charisma", "min": 3, "max": 5 }
-        ], "count": [2, 2] }
+        "primary": {
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            3,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "charisma",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        }
       },
-      "legendaryEffect": { "type": "variety_bonus", "min": 3, "max": 8, "label": "Hydra's Focus: +{value}% variety XP bonus" },
+      "legendaryEffect": {
+        "type": "variety_bonus",
+        "min": 3,
+        "max": 8,
+        "label": "Hydra's Focus: +{value}% variety XP bonus"
+      },
       "source": "world_boss:chaos-hydra",
-      "dropChance": 0.10,
+      "dropChance": 0.1,
       "isUnique": true
     },
     {
@@ -89,17 +200,54 @@
       "flavorText": "The archive remembers what the world has forgotten.",
       "icon": null,
       "affixes": {
-        "primary": { "pool": [
-          { "stat": "ausdauer", "min": 2, "max": 4 },
-          { "stat": "weisheit", "min": 2, "max": 4 },
-          { "stat": "kraft", "min": 2, "max": 4 }
-        ], "count": [3, 3] },
-        "minor": { "pool": [
-          { "stat": "vitalitaet", "min": 1, "max": 3 },
-          { "stat": "fokus", "min": 1, "max": 3 }
-        ], "count": [2, 2] }
+        "primary": {
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            3,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        }
       },
-      "legendaryEffect": { "type": "decay_reduction", "min": 1, "max": 3, "label": "Preserved Knowledge: -{value}% forge decay" },
+      "legendaryEffect": {
+        "type": "decay_reduction",
+        "min": 1,
+        "max": 3,
+        "label": "Preserved Knowledge: -{value}% forge decay"
+      },
       "source": "dungeon:sunken-archive",
       "dropChance": 0.08,
       "isUnique": true
@@ -115,17 +263,54 @@
       "flavorText": "What was broken can still cut deep.",
       "icon": null,
       "affixes": {
-        "primary": { "pool": [
-          { "stat": "kraft", "min": 3, "max": 6 },
-          { "stat": "glueck", "min": 3, "max": 6 },
-          { "stat": "ausdauer", "min": 3, "max": 6 }
-        ], "count": [3, 3] },
-        "minor": { "pool": [
-          { "stat": "fokus", "min": 2, "max": 4 },
-          { "stat": "tempo", "min": 2, "max": 4 }
-        ], "count": [2, 2] }
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "glueck",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            3,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        }
       },
-      "legendaryEffect": { "type": "xp_bonus", "min": 2, "max": 5, "label": "Spire Charge: +{value}% XP" },
+      "legendaryEffect": {
+        "type": "xp_bonus",
+        "min": 2,
+        "max": 5,
+        "label": "Spire Charge: +{value}% XP"
+      },
       "source": "dungeon:shattered-spire",
       "dropChance": 0.06,
       "isUnique": true
@@ -141,17 +326,54 @@
       "flavorText": "Stare into the hollow and it stares back.",
       "icon": null,
       "affixes": {
-        "primary": { "pool": [
-          { "stat": "glueck", "min": 5, "max": 8 },
-          { "stat": "weisheit", "min": 5, "max": 8 },
-          { "stat": "kraft", "min": 5, "max": 8 }
-        ], "count": [3, 3] },
-        "minor": { "pool": [
-          { "stat": "charisma", "min": 3, "max": 5 },
-          { "stat": "fokus", "min": 3, "max": 5 }
-        ], "count": [2, 2] }
+        "primary": {
+          "pool": [
+            {
+              "stat": "glueck",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 8
+            }
+          ],
+          "count": [
+            3,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "charisma",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        }
       },
-      "legendaryEffect": { "type": "gold_bonus", "min": 5, "max": 20, "label": "Void's Bargain: +{value}% Gold" },
+      "legendaryEffect": {
+        "type": "gold_bonus",
+        "min": 5,
+        "max": 12,
+        "label": "Void's Bargain: +{value}% Gold"
+      },
       "source": "dungeon:hollow-core",
       "dropChance": 0.04,
       "isUnique": true
@@ -167,17 +389,53 @@
       "flavorText": "Der Zweifel ging mit dir. Jetzt gehst du schneller.",
       "icon": null,
       "affixes": {
-        "primary": { "pool": [
-          { "stat": "glueck", "min": 2, "max": 4 },
-          { "stat": "ausdauer", "min": 2, "max": 4 },
-          { "stat": "kraft", "min": 2, "max": 4 }
-        ], "count": [3, 3] },
-        "minor": { "pool": [
-          { "stat": "tempo", "min": 1, "max": 3 },
-          { "stat": "vitalitaet", "min": 1, "max": 3 }
-        ], "count": [2, 2] }
+        "primary": {
+          "pool": [
+            {
+              "stat": "glueck",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            3,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        }
       },
-      "legendaryEffect": { "type": "streak_protection", "value": 1, "label": "Phantom's Whisper: Streak-Schild 1×/Woche" },
+      "legendaryEffect": {
+        "type": "streak_protection",
+        "value": 1,
+        "label": "Phantom's Whisper: Streak-Schild 1×/Woche"
+      },
       "source": "world_boss:doubt-phantom",
       "dropChance": 0.12,
       "isUnique": true
@@ -193,17 +451,54 @@
       "flavorText": "Was zerfällt, kann neu verwoben werden.",
       "icon": null,
       "affixes": {
-        "primary": { "pool": [
-          { "stat": "ausdauer", "min": 2, "max": 4 },
-          { "stat": "kraft", "min": 2, "max": 4 },
-          { "stat": "weisheit", "min": 2, "max": 4 }
-        ], "count": [3, 3] },
-        "minor": { "pool": [
-          { "stat": "vitalitaet", "min": 1, "max": 3 },
-          { "stat": "fokus", "min": 1, "max": 3 }
-        ], "count": [2, 2] }
+        "primary": {
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            3,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        }
       },
-      "legendaryEffect": { "type": "decay_reduction", "min": 2, "max": 5, "label": "Entropieschild: -{value}% Forge-Decay" },
+      "legendaryEffect": {
+        "type": "decay_reduction",
+        "min": 2,
+        "max": 5,
+        "label": "Entropieschild: -{value}% Forge-Decay"
+      },
       "source": "world_boss:entropy-weaver",
       "dropChance": 0.12,
       "isUnique": true
@@ -219,17 +514,54 @@
       "flavorText": "Stillstand ist eine Wahl. Nicht deine.",
       "icon": null,
       "affixes": {
-        "primary": { "pool": [
-          { "stat": "ausdauer", "min": 4, "max": 7 },
-          { "stat": "weisheit", "min": 4, "max": 7 },
-          { "stat": "kraft", "min": 4, "max": 7 }
-        ], "count": [3, 3] },
-        "minor": { "pool": [
-          { "stat": "vitalitaet", "min": 3, "max": 5 },
-          { "stat": "tempo", "min": 3, "max": 5 }
-        ], "count": [2, 2] }
+        "primary": {
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            3,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        }
       },
-      "legendaryEffect": { "type": "xp_bonus", "min": 3, "max": 8, "label": "Unbewegliches Fundament: +{value}% Quest-XP" },
+      "legendaryEffect": {
+        "type": "xp_bonus",
+        "min": 3,
+        "max": 8,
+        "label": "Unbewegliches Fundament: +{value}% Quest-XP"
+      },
       "source": "world_boss:stagnation-golem",
       "dropChance": 0.08,
       "isUnique": true
@@ -245,17 +577,54 @@
       "flavorText": "Perfektion ist ein Gefängnis. Exzellenz ist ein Pfad.",
       "icon": null,
       "affixes": {
-        "primary": { "pool": [
-          { "stat": "weisheit", "min": 4, "max": 7 },
-          { "stat": "kraft", "min": 4, "max": 7 },
-          { "stat": "glueck", "min": 4, "max": 7 }
-        ], "count": [3, 3] },
-        "minor": { "pool": [
-          { "stat": "charisma", "min": 3, "max": 5 },
-          { "stat": "fokus", "min": 3, "max": 5 }
-        ], "count": [2, 2] }
+        "primary": {
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            3,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "charisma",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        }
       },
-      "legendaryEffect": { "type": "gold_bonus", "min": 3, "max": 8, "label": "Blendender Glanz: +{value}% Gold" },
+      "legendaryEffect": {
+        "type": "gold_bonus",
+        "min": 3,
+        "max": 8,
+        "label": "Blendender Glanz: +{value}% Gold"
+      },
       "source": "world_boss:perfection-seraph",
       "dropChance": 0.08,
       "isUnique": true
@@ -271,17 +640,54 @@
       "flavorText": "Allein bist du nichts. Zusammen — unaufhaltbar.",
       "icon": null,
       "affixes": {
-        "primary": { "pool": [
-          { "stat": "kraft", "min": 5, "max": 8 },
-          { "stat": "glueck", "min": 5, "max": 8 },
-          { "stat": "ausdauer", "min": 5, "max": 8 }
-        ], "count": [3, 3] },
-        "minor": { "pool": [
-          { "stat": "tempo", "min": 3, "max": 6 },
-          { "stat": "fokus", "min": 3, "max": 6 }
-        ], "count": [2, 2] }
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "glueck",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 5,
+              "max": 8
+            }
+          ],
+          "count": [
+            3,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        }
       },
-      "legendaryEffect": { "type": "xp_bonus", "min": 5, "max": 20, "label": "Leerenschnitt: +{value}% Quest-XP" },
+      "legendaryEffect": {
+        "type": "xp_bonus",
+        "min": 5,
+        "max": 16,
+        "label": "Leerenschnitt: +{value}% Quest-XP"
+      },
       "source": "world_boss:isolation-leviathan",
       "dropChance": 0.05,
       "isUnique": true
@@ -297,17 +703,54 @@
       "flavorText": "Der Thron steht leer. Du nicht.",
       "icon": null,
       "affixes": {
-        "primary": { "pool": [
-          { "stat": "kraft", "min": 5, "max": 8 },
-          { "stat": "weisheit", "min": 5, "max": 8 },
-          { "stat": "glueck", "min": 5, "max": 8 }
-        ], "count": [3, 3] },
-        "minor": { "pool": [
-          { "stat": "vitalitaet", "min": 3, "max": 6 },
-          { "stat": "charisma", "min": 3, "max": 6 }
-        ], "count": [2, 2] }
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "glueck",
+              "min": 5,
+              "max": 8
+            }
+          ],
+          "count": [
+            3,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "charisma",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        }
       },
-      "legendaryEffect": { "type": "drop_bonus", "min": 5, "max": 20, "label": "Leere Krone: +{value}% Drop-Chance" },
+      "legendaryEffect": {
+        "type": "drop_bonus",
+        "min": 5,
+        "max": 16,
+        "label": "Leere Krone: +{value}% Drop-Chance"
+      },
       "source": "world_boss:apathy-sovereign",
       "dropChance": 0.04,
       "isUnique": true
@@ -323,17 +766,54 @@
       "flavorText": "Die Sterne sehen alles. Dieser Schleier lässt dich zurückblicken.",
       "icon": null,
       "affixes": {
-        "primary": { "pool": [
-          { "stat": "weisheit", "min": 4, "max": 7 },
-          { "stat": "glueck", "min": 4, "max": 7 },
-          { "stat": "ausdauer", "min": 4, "max": 7 }
-        ], "count": [3, 3] },
-        "minor": { "pool": [
-          { "stat": "fokus", "min": 3, "max": 5 },
-          { "stat": "charisma", "min": 3, "max": 5 }
-        ], "count": [2, 2] }
+        "primary": {
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            3,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "charisma",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        }
       },
-      "legendaryEffect": { "type": "xp_bonus", "min": 12, "max": 20, "label": "Sternenblick: +{value}% Quest-XP" },
+      "legendaryEffect": {
+        "type": "xp_bonus",
+        "min": 12,
+        "max": 12,
+        "label": "Sternenblick: +{value}% Quest-XP"
+      },
       "source": "gacha:astral-radiance",
       "dropChance": 0.005,
       "isUnique": true
@@ -349,17 +829,54 @@
       "flavorText": "Das Schicksal lässt sich nicht aufhalten. Aber umlenken.",
       "icon": null,
       "affixes": {
-        "primary": { "pool": [
-          { "stat": "ausdauer", "min": 4, "max": 7 },
-          { "stat": "glueck", "min": 4, "max": 7 },
-          { "stat": "kraft", "min": 4, "max": 7 }
-        ], "count": [3, 3] },
-        "minor": { "pool": [
-          { "stat": "vitalitaet", "min": 3, "max": 5 },
-          { "stat": "tempo", "min": 3, "max": 5 }
-        ], "count": [2, 2] }
+        "primary": {
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            3,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        }
       },
-      "legendaryEffect": { "type": "drop_bonus", "min": 5, "max": 10, "label": "Schicksalsrad: +{value}% Drop-Chance" },
+      "legendaryEffect": {
+        "type": "drop_bonus",
+        "min": 5,
+        "max": 10,
+        "label": "Schicksalsrad: +{value}% Drop-Chance"
+      },
       "source": "gacha:wheel-of-stars",
       "dropChance": 0.003,
       "isUnique": true
