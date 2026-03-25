@@ -2,12 +2,12 @@
   "uniques": [
     {
       "id": "wyrm-scale-shield",
-      "name": "Wyrm-Scale Aegis",
+      "name": "Wyrmschuppen-Aegis",
       "slot": "shield",
       "rarity": "legendary",
       "tier": 4,
       "reqLevel": 35,
-      "desc": "Forged from the scales of the Procrastination Wyrm. Its bearer never delays.",
+      "desc": "Geschmiedet aus den Schuppen des Prokrastinations-Wyrms. Wer sie trägt, zögert nie.",
       "flavorText": "Every task you postpone feeds the wyrm.",
       "icon": null,
       "affixes": {
@@ -65,12 +65,12 @@
     },
     {
       "id": "colossus-ember-amulet",
-      "name": "Ember of the Colossus",
+      "name": "Glutfunke des Kolosses",
       "slot": "amulet",
       "rarity": "legendary",
       "tier": 4,
       "reqLevel": 35,
-      "desc": "A shard of living flame from the heart of the Burnout Colossus.",
+      "desc": "Ein Splitter lebendiger Flamme aus dem Herzen des Burnout-Kolosses.",
       "flavorText": "Rest is not weakness. It is the fuel for greater fire.",
       "icon": null,
       "affixes": {
@@ -128,12 +128,12 @@
     },
     {
       "id": "hydra-focus-helm",
-      "name": "Crown of Clarity",
+      "name": "Krone der Klarheit",
       "slot": "helm",
       "rarity": "legendary",
       "tier": 4,
       "reqLevel": 35,
-      "desc": "Worn by those who silenced the Chaos Hydra's many voices.",
+      "desc": "Getragen von jenen, die die vielen Stimmen der Chaos-Hydra zum Schweigen brachten.",
       "flavorText": "Focus is the blade that cuts through chaos.",
       "icon": null,
       "affixes": {
@@ -191,12 +191,12 @@
     },
     {
       "id": "archive-codex",
-      "name": "Codex of the Deep",
+      "name": "Kodex der Tiefe",
       "slot": "armor",
       "rarity": "legendary",
       "tier": 2,
       "reqLevel": 15,
-      "desc": "Bound in waterlogged leather, this tome-armor hums with preserved knowledge.",
+      "desc": "Gebunden in wassergetränktes Leder, summt dieses Folianten-Rüstungsstück mit bewahrtem Wissen.",
       "flavorText": "The archive remembers what the world has forgotten.",
       "icon": null,
       "affixes": {
@@ -254,12 +254,12 @@
     },
     {
       "id": "spire-edge",
-      "name": "Spire's Edge",
+      "name": "Schneide des Turms",
       "slot": "weapon",
       "rarity": "legendary",
       "tier": 3,
       "reqLevel": 25,
-      "desc": "A blade pulled from the rubble of the collapsed spire. Still crackling with residual energy.",
+      "desc": "Eine Klinge aus den Trümmern des kollabierten Turms. Knistert noch immer vor Restenergie.",
       "flavorText": "What was broken can still cut deep.",
       "icon": null,
       "affixes": {
@@ -317,12 +317,12 @@
     },
     {
       "id": "void-pendant",
-      "name": "Pendant of the Hollow",
+      "name": "Anhänger der Leere",
       "slot": "amulet",
       "rarity": "legendary",
       "tier": 5,
       "reqLevel": 40,
-      "desc": "A dark stone pendant that seems to absorb light. Found at the tower's deepest point.",
+      "desc": "Ein dunkler Steinanhänger der Licht zu absorbieren scheint. Am tiefsten Punkt des Turms gefunden.",
       "flavorText": "Stare into the hollow and it stares back.",
       "icon": null,
       "affixes": {
