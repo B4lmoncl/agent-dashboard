@@ -180,6 +180,18 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
   const [enchantLoading, setEnchantLoading] = useState(false);
   const [enchantResult, setEnchantResult] = useState<string | null>(null);
   const [skillUpFlash, setSkillUpFlash] = useState(false);
+  // Kanai's Cube state
+  const [cubeData, setCubeData] = useState<{
+    offensive: { type: string; value: number; label: string } | null;
+    defensive: { type: string; value: number; label: string } | null;
+    utility: { type: string; value: number; label: string } | null;
+    library: { type: string; value: number; label: string; category: string; extractedFrom: string; extractedAt: string }[];
+    categories: Record<string, string>;
+  } | null>(null);
+  const [cubeOpen, setCubeOpen] = useState(false);
+  const [cubeLoading, setCubeLoading] = useState(false);
+  const [cubeExtractId, setCubeExtractId] = useState<string | null>(null);
+  const [cubeResult, setCubeResult] = useState<string | null>(null);
   // Auto-Salvage modal state
   const [autoSalvageOpen, setAutoSalvageOpen] = useState(false);
   const [autoSalvageRarity, setAutoSalvageRarity] = useState<string>("common");
@@ -195,12 +207,14 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
   const closeConfirmProf = useCallback(() => setConfirmProf(null), []);
   const closeConfirmAction = useCallback(() => setConfirmAction(null), []);
   const closeAutoSalvage = useCallback(() => { setAutoSalvageOpen(false); setAutoSalvagePreview(null); setAutoSalvageStep(0); }, []);
+  const closeCube = useCallback(() => { setCubeOpen(false); setCubeResult(null); setCubeExtractId(null); }, []);
 
   // Consistent modal behavior: ESC to close + body scroll lock
   useModalBehavior(!!selectedNpc, closeNpcModal);
   useModalBehavior(!!confirmProf, closeConfirmProf);
   useModalBehavior(!!confirmAction, closeConfirmAction);
   useModalBehavior(autoSalvageOpen, closeAutoSalvage);
+  useModalBehavior(cubeOpen, closeCube);
 
   const loggedIn = playerName && reviewApiKey;
 
@@ -464,6 +478,67 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
       }
     } catch (err) { console.error('[forge] auto-salvage error:', err); }
     setAutoSalvageLoading(false);
+  };
+
+  // ─── Kanai's Cube handlers ─────────────────────────────────────────────────
+  const fetchCubeData = async () => {
+    if (!reviewApiKey) return;
+    try {
+      const r = await fetch("/api/kanais-cube", { headers: getAuthHeaders(reviewApiKey) });
+      if (r.ok) setCubeData(await r.json());
+    } catch (err) { console.error('[cube] fetch error:', err); }
+  };
+  const handleCubeExtract = async (itemId: string) => {
+    if (!reviewApiKey) return;
+    setCubeLoading(true);
+    setCubeResult(null);
+    try {
+      const r = await fetch("/api/kanais-cube/extract", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", ...getAuthHeaders(reviewApiKey) },
+        body: JSON.stringify({ inventoryItemId: itemId }),
+      });
+      const data = await r.json();
+      if (r.ok) {
+        setCubeData(data.cube);
+        setCubeResult(`Extracted "${data.extracted.label}" from ${data.destroyed.name}`);
+        setCubeExtractId(null);
+        fetchData();
+        onRefresh?.();
+      } else {
+        setCubeResult(data.error || "Error");
+      }
+    } catch (err) { console.error('[cube] extract error:', err); setCubeResult("Network error"); }
+    setCubeLoading(false);
+  };
+  const handleCubeEquip = async (slot: string, effectType: string) => {
+    if (!reviewApiKey) return;
+    setCubeLoading(true);
+    try {
+      const r = await fetch("/api/kanais-cube/equip", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", ...getAuthHeaders(reviewApiKey) },
+        body: JSON.stringify({ slot, effectType }),
+      });
+      const data = await r.json();
+      if (r.ok) setCubeData(data.cube);
+      else setCubeResult(data.error || "Error");
+    } catch (err) { console.error('[cube] equip error:', err); }
+    setCubeLoading(false);
+  };
+  const handleCubeUnequip = async (slot: string) => {
+    if (!reviewApiKey) return;
+    setCubeLoading(true);
+    try {
+      const r = await fetch("/api/kanais-cube/unequip", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", ...getAuthHeaders(reviewApiKey) },
+        body: JSON.stringify({ slot }),
+      });
+      const data = await r.json();
+      if (r.ok) setCubeData(data.cube);
+    } catch (err) { console.error('[cube] unequip error:', err); }
+    setCubeLoading(false);
   };
 
   const handleTransmute = async () => {
@@ -732,6 +807,40 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
           </div>
         );
       })}
+
+      {/* ─── Kanai's Cube — Legendary Effect Extraction ─────────────────────── */}
+      <div className="space-y-2">
+        <div className="flex items-center justify-between">
+          <p className="text-sm font-semibold uppercase tracking-widest" style={{ color: "rgba(249,115,22,0.6)" }}>Kanai&apos;s Cube</p>
+          <button
+            onClick={() => { setCubeOpen(true); fetchCubeData(); }}
+            className="text-xs px-3 py-1.5 rounded-lg font-semibold"
+            style={{ background: "rgba(249,115,22,0.1)", color: "#f97316", border: "1px solid rgba(249,115,22,0.3)", cursor: "pointer" }}
+          >
+            Open Cube
+          </button>
+        </div>
+        <p className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>
+          Sacrifice legendary items to permanently learn their effects. Equip one effect per category without wearing the item.
+        </p>
+        {/* Quick preview of active cube effects */}
+        {cubeData && (
+          <div className="flex gap-2">
+            {(["offensive", "defensive", "utility"] as const).map(slot => {
+              const active = cubeData[slot];
+              const colors = { offensive: "#ef4444", defensive: "#3b82f6", utility: "#22c55e" };
+              return (
+                <div key={slot} className="flex-1 rounded-lg px-2 py-1.5 text-center" style={{ background: `${colors[slot]}08`, border: `1px solid ${colors[slot]}20` }}>
+                  <p className="text-xs uppercase font-semibold" style={{ color: `${colors[slot]}80` }}>{slot}</p>
+                  <p className="text-xs font-semibold truncate" style={{ color: active ? colors[slot] : "rgba(255,255,255,0.15)" }}>
+                    {active ? active.label : "Empty"}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+        )}
+      </div>
 
       {/* ─── Workshop Tools — permanent upgrades ────────────────────────────── */}
       {(() => {
@@ -1936,6 +2045,157 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                   <p className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>
                     No {autoSalvageRarity} items to salvage.
                   </p>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>,
+        document.body
+      )}
+
+      {/* ─── Kanai's Cube Modal ──────────────────────────────────────────── */}
+      {cubeOpen && createPortal(
+        <div className="fixed inset-0 z-[150] flex items-center justify-center modal-backdrop" onClick={closeCube}>
+          <div className="w-full max-w-xl rounded-xl overflow-hidden" style={{ background: "#12100a", border: "1px solid rgba(249,115,22,0.25)", boxShadow: "0 20px 60px rgba(0,0,0,0.8)" }} onClick={e => e.stopPropagation()}>
+            {/* Header */}
+            <div className="flex items-center justify-between px-5 py-3" style={{ background: "rgba(249,115,22,0.06)", borderBottom: "1px solid rgba(249,115,22,0.15)" }}>
+              <p className="text-sm font-bold" style={{ color: "#f97316" }}>Kanai&apos;s Cube</p>
+              <button onClick={closeCube} className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.4)", cursor: "pointer" }}>x</button>
+            </div>
+
+            <div className="px-5 py-4 space-y-4">
+              {/* 3 Hex Slots */}
+              <div className="grid grid-cols-3 gap-3">
+                {(["offensive", "defensive", "utility"] as const).map(slot => {
+                  const active = cubeData?.[slot];
+                  const colors = { offensive: "#ef4444", defensive: "#3b82f6", utility: "#22c55e" };
+                  const c = colors[slot];
+                  const slotEffects = cubeData?.library.filter(e => e.category === slot) || [];
+                  return (
+                    <div key={slot} className="rounded-xl p-3 text-center space-y-2" style={{ background: `${c}06`, border: `1px solid ${c}25` }}>
+                      <p className="text-xs uppercase font-bold tracking-wider" style={{ color: `${c}90` }}>{slot}</p>
+                      {active ? (
+                        <>
+                          <p className="text-xs font-semibold" style={{ color: c }}>{active.label}</p>
+                          <p className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.3)" }}>{active.value}%</p>
+                          <button onClick={() => handleCubeUnequip(slot)} disabled={cubeLoading} className="text-xs px-2 py-0.5 rounded" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.3)", border: "1px solid rgba(255,255,255,0.08)", cursor: cubeLoading ? "not-allowed" : "pointer" }}>Remove</button>
+                        </>
+                      ) : (
+                        <p className="text-xs" style={{ color: "rgba(255,255,255,0.15)" }}>Empty</p>
+                      )}
+                      {/* Dropdown to equip from library */}
+                      {slotEffects.length > 0 && (
+                        <select
+                          value={active?.type || ""}
+                          onChange={e => { if (e.target.value) handleCubeEquip(slot, e.target.value); }}
+                          className="w-full text-xs rounded px-1 py-1 mt-1"
+                          style={{ background: "rgba(0,0,0,0.4)", color: c, border: `1px solid ${c}30`, cursor: "pointer" }}
+                        >
+                          <option value="">Select effect...</option>
+                          {slotEffects.map(e => (
+                            <option key={e.type} value={e.type}>{e.label} ({e.value}%)</option>
+                          ))}
+                        </select>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* Result message */}
+              {cubeResult && (
+                <div className="rounded-lg px-3 py-2 text-xs" style={{ background: "rgba(249,115,22,0.08)", border: "1px solid rgba(249,115,22,0.2)", color: "#f97316" }}>
+                  {cubeResult}
+                </div>
+              )}
+
+              {/* Extract section: show legendary items in inventory */}
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: "rgba(255,255,255,0.35)" }}>Extract Effect (destroys item, costs 500 Essenz)</p>
+                {(() => {
+                  const cubeInv = getUserInventory(loggedInUser);
+                  const legendaryInv = cubeInv.filter(
+                    (i: InventoryItem) => i.legendaryEffect && i.legendaryEffect.type && i.rarity === "legendary"
+                  );
+                  const alreadyExtracted = new Set((cubeData?.library || []).map(e => e.type));
+                  if (legendaryInv.length === 0) return <p className="text-xs" style={{ color: "rgba(255,255,255,0.15)" }}>No legendary items with effects in inventory.</p>;
+                  return (
+                    <div className="grid gap-1.5" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(52px, 1fr))" }}>
+                      {legendaryInv.map(item => {
+                        const extracted = alreadyExtracted.has(item.legendaryEffect!.type);
+                        const id = item.instanceId || item.id;
+                        return (
+                          <button
+                            key={id}
+                            onClick={() => { if (!extracted) setCubeExtractId(cubeExtractId === id ? null : id); }}
+                            disabled={extracted}
+                            title={extracted ? `${item.name} — already extracted` : `${item.name} — ${item.legendaryEffect?.label || item.legendaryEffect?.type}`}
+                            className="relative flex items-center justify-center rounded-lg aspect-square"
+                            style={{
+                              background: cubeExtractId === id ? "rgba(249,115,22,0.15)" : "rgba(249,115,22,0.04)",
+                              border: `2px solid ${cubeExtractId === id ? "#f97316" : extracted ? "rgba(255,255,255,0.06)" : "rgba(249,115,22,0.2)"}`,
+                              opacity: extracted ? 0.3 : 1,
+                              cursor: extracted ? "not-allowed" : "pointer",
+                            }}
+                          >
+                            {item.icon
+                              ? <img src={item.icon} alt={item.name} style={{ width: 36, height: 36, imageRendering: "auto", objectFit: "contain" }} onError={e => { e.currentTarget.style.display = "none"; }} />
+                              : <span style={{ fontSize: 18, color: "#f97316" }}>{"\u25C6"}</span>
+                            }
+                          </button>
+                        );
+                      })}
+                    </div>
+                  );
+                })()}
+                {cubeExtractId && (() => {
+                  const item = getUserInventory(loggedInUser).find((i: InventoryItem) => (i.instanceId || i.id) === cubeExtractId);
+                  if (!item) return null;
+                  return (
+                    <div className="mt-3 rounded-lg px-3 py-2 space-y-2" style={{ background: "rgba(249,115,22,0.06)", border: "1px solid rgba(249,115,22,0.2)" }}>
+                      <p className="text-xs" style={{ color: "rgba(255,255,255,0.5)" }}>
+                        Destroy <strong style={{ color: "#f97316" }}>{item.name}</strong> to extract:
+                      </p>
+                      <p className="text-xs font-semibold" style={{ color: "#f59e0b" }}>
+                        {item.legendaryEffect?.label || item.legendaryEffect?.type} (at minimum value)
+                      </p>
+                      <div className="flex gap-2">
+                        <button onClick={() => setCubeExtractId(null)} className="flex-1 text-xs py-2 rounded-lg" style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.4)", border: "1px solid rgba(255,255,255,0.1)", cursor: "pointer" }}>Cancel</button>
+                        <button
+                          onClick={() => handleCubeExtract(cubeExtractId)}
+                          disabled={cubeLoading}
+                          className="flex-1 text-xs py-2 rounded-lg font-semibold"
+                          style={{ background: "rgba(239,68,68,0.15)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.4)", cursor: cubeLoading ? "not-allowed" : "pointer" }}
+                        >
+                          {cubeLoading ? "Extracting..." : "Extract (500 Essenz)"}
+                        </button>
+                      </div>
+                    </div>
+                  );
+                })()}
+              </div>
+
+              {/* Library — all extracted effects */}
+              {cubeData && cubeData.library.length > 0 && (
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: "rgba(255,255,255,0.35)" }}>
+                    Effect Library ({cubeData.library.length})
+                  </p>
+                  <div className="space-y-1 max-h-[200px] overflow-y-auto" style={{ scrollbarWidth: "thin" }}>
+                    {cubeData.library.map(e => {
+                      const colors = { offensive: "#ef4444", defensive: "#3b82f6", utility: "#22c55e" };
+                      const c = colors[e.category as keyof typeof colors] || "#888";
+                      return (
+                        <div key={e.type} className="flex items-center justify-between px-2 py-1.5 rounded-lg" style={{ background: `${c}06`, border: `1px solid ${c}12` }}>
+                          <div className="min-w-0">
+                            <p className="text-xs font-semibold" style={{ color: c }}>{e.label}</p>
+                            <p className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>from {e.extractedFrom} · {e.value}%</p>
+                          </div>
+                          <span className="text-xs uppercase font-semibold flex-shrink-0" style={{ color: `${c}60` }}>{e.category}</span>
+                        </div>
+                      );
+                    })}
+                  </div>
                 </div>
               )}
             </div>
