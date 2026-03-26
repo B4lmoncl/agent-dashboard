@@ -180,6 +180,12 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
   const [enchantLoading, setEnchantLoading] = useState(false);
   const [enchantResult, setEnchantResult] = useState<string | null>(null);
   const [skillUpFlash, setSkillUpFlash] = useState(false);
+  // Auto-Salvage modal state
+  const [autoSalvageOpen, setAutoSalvageOpen] = useState(false);
+  const [autoSalvageRarity, setAutoSalvageRarity] = useState<string>("common");
+  const [autoSalvagePreview, setAutoSalvagePreview] = useState<{ items: { id: string; name: string; rarity: string; slot: string | null; icon: string | null }[]; count: number; estimatedEssenz: number; estimatedMaterials: Record<string, { name: string; amount: number }> } | null>(null);
+  const [autoSalvageLoading, setAutoSalvageLoading] = useState(false);
+  const [autoSalvageStep, setAutoSalvageStep] = useState<0 | 1 | 2>(0); // 0=preview, 1=confirm, 2=done
 
   // Close callbacks for modal behavior hooks
   const closeNpcModal = useCallback(() => {
@@ -188,11 +194,13 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
   }, []);
   const closeConfirmProf = useCallback(() => setConfirmProf(null), []);
   const closeConfirmAction = useCallback(() => setConfirmAction(null), []);
+  const closeAutoSalvage = useCallback(() => { setAutoSalvageOpen(false); setAutoSalvagePreview(null); setAutoSalvageStep(0); }, []);
 
   // Consistent modal behavior: ESC to close + body scroll lock
   useModalBehavior(!!selectedNpc, closeNpcModal);
   useModalBehavior(!!confirmProf, closeConfirmProf);
   useModalBehavior(!!confirmAction, closeConfirmAction);
+  useModalBehavior(autoSalvageOpen, closeAutoSalvage);
 
   const loggedIn = playerName && reviewApiKey;
 
@@ -411,6 +419,51 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
       fetchData();
       onRefresh?.();
     } catch (err) { console.error('[forge] dismantle_all error:', err); setDismantleResult({ message: "Network error" }); }
+  };
+
+  // ─── Auto-Salvage Preview+Execute ─────────────────────────────────────────
+  const fetchSalvagePreview = async (rarity: string) => {
+    if (!reviewApiKey) return;
+    setAutoSalvageLoading(true);
+    try {
+      const r = await fetch("/api/schmiedekunst/dismantle-preview", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", ...getAuthHeaders(reviewApiKey) },
+        body: JSON.stringify({ rarity }),
+      });
+      const data = await r.json();
+      if (r.ok) {
+        setAutoSalvagePreview(data);
+        setAutoSalvageStep(0);
+      }
+    } catch (err) { console.error('[forge] preview error:', err); }
+    setAutoSalvageLoading(false);
+  };
+  const executeAutoSalvage = async () => {
+    if (!reviewApiKey || !autoSalvagePreview) return;
+    setAutoSalvageLoading(true);
+    try {
+      const r = await fetch("/api/schmiedekunst/dismantle-all", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", ...getAuthHeaders(reviewApiKey) },
+        body: JSON.stringify({ rarity: autoSalvageRarity }),
+      });
+      const data = await r.json();
+      if (r.ok) {
+        setAutoSalvageStep(2);
+        setDismantleResult({
+          message: data.message,
+          essenz: data.totalEssenz,
+          materials: Object.entries(data.materialsGained || {}).map(([id, amt]) => {
+            const def = materialDefs.find(m => m.id === id);
+            return { id, name: def?.name || id, amount: amt as number };
+          }),
+        });
+        fetchData();
+        onRefresh?.();
+      }
+    } catch (err) { console.error('[forge] auto-salvage error:', err); }
+    setAutoSalvageLoading(false);
   };
 
   const handleTransmute = async () => {
@@ -1434,9 +1487,18 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
               }
               return (
                 <div className="tab-content-enter px-5 py-4 space-y-3" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
-                  <p className="text-sm" style={{ color: "rgba(255,255,255,0.35)" }}>
-                    Dismantle gear into <strong style={{ color: "#ff8c00" }}>Essenz</strong> + <strong style={{ color: "#22c55e" }}>Materials</strong>. Essenz is used for recipes and profession switching.
-                  </p>
+                  <div className="flex items-center justify-between">
+                    <p className="text-sm" style={{ color: "rgba(255,255,255,0.35)" }}>
+                      Dismantle gear into <strong style={{ color: "#ff8c00" }}>Essenz</strong> + <strong style={{ color: "#22c55e" }}>Materials</strong>.
+                    </p>
+                    <button
+                      onClick={() => { setAutoSalvageOpen(true); setAutoSalvageRarity("common"); fetchSalvagePreview("common"); }}
+                      className="text-xs px-3 py-1.5 rounded-lg font-semibold"
+                      style={{ background: "rgba(255,140,0,0.12)", color: "#ff8c00", border: "1px solid rgba(255,140,0,0.3)", cursor: "pointer" }}
+                    >
+                      Auto-Salvage
+                    </button>
+                  </div>
 
                   {dismantleResult && (
                     <div className="rounded-lg px-3 py-2 text-xs space-y-1" style={{ background: "rgba(255,140,0,0.08)", border: "1px solid rgba(255,140,0,0.2)" }}>
@@ -1755,6 +1817,127 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
             <div className="flex gap-2">
               <button onClick={() => setConfirmAction(null)} className="flex-1 text-xs py-2 rounded-lg" style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.4)", border: "1px solid rgba(255,255,255,0.1)", cursor: "pointer" }}>Cancel</button>
               <button onClick={confirmAction.onConfirm} className="flex-1 text-xs py-2 rounded-lg font-semibold" style={{ background: "rgba(239,68,68,0.15)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.4)", cursor: "pointer" }}>Confirm</button>
+            </div>
+          </div>
+        </div>,
+        document.body
+      )}
+
+      {/* ─── Auto-Salvage Modal ──────────────────────────────────────────── */}
+      {autoSalvageOpen && createPortal(
+        <div className="fixed inset-0 z-[150] flex items-center justify-center modal-backdrop" onClick={closeAutoSalvage}>
+          <div className="w-full max-w-lg rounded-xl overflow-hidden" style={{ background: "#141209", border: "1px solid rgba(255,140,0,0.25)", boxShadow: "0 20px 60px rgba(0,0,0,0.8)" }} onClick={e => e.stopPropagation()}>
+            {/* Header */}
+            <div className="flex items-center justify-between px-5 py-3" style={{ background: "rgba(255,140,0,0.06)", borderBottom: "1px solid rgba(255,140,0,0.15)" }}>
+              <p className="text-sm font-bold" style={{ color: "#ff8c00" }}>Auto-Salvage</p>
+              <button onClick={closeAutoSalvage} className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.4)", cursor: "pointer" }}>x</button>
+            </div>
+
+            {/* Rarity tabs */}
+            <div className="flex gap-1 px-5 pt-3">
+              {(["common", "uncommon", "rare", "epic"] as const).map(r => (
+                <button
+                  key={r}
+                  onClick={() => { setAutoSalvageRarity(r); setAutoSalvageStep(0); fetchSalvagePreview(r); }}
+                  className="text-xs px-3 py-1.5 rounded-lg font-semibold capitalize"
+                  style={{
+                    background: autoSalvageRarity === r ? `${RARITY_COLORS[r]}18` : "rgba(255,255,255,0.03)",
+                    color: autoSalvageRarity === r ? RARITY_COLORS[r] : "rgba(255,255,255,0.3)",
+                    border: `1px solid ${autoSalvageRarity === r ? `${RARITY_COLORS[r]}40` : "rgba(255,255,255,0.06)"}`,
+                    cursor: "pointer",
+                  }}
+                >
+                  {r}
+                </button>
+              ))}
+            </div>
+
+            {/* Content */}
+            <div className="px-5 py-3 space-y-3">
+              {autoSalvageLoading ? (
+                <div className="flex items-center justify-center py-8">
+                  <span className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>Loading...</span>
+                </div>
+              ) : autoSalvagePreview && autoSalvagePreview.count > 0 ? (
+                <>
+                  {/* Item grid */}
+                  <div className="rounded-lg p-2 max-h-[240px] overflow-y-auto" style={{ background: "rgba(0,0,0,0.25)", border: "1px solid rgba(255,255,255,0.06)", scrollbarWidth: "thin" }}>
+                    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, 52px)", gap: 3 }}>
+                      {autoSalvagePreview.items.map(item => {
+                        const rc = RARITY_COLORS[item.rarity] || "#888";
+                        return (
+                          <div
+                            key={item.id}
+                            className="relative flex items-center justify-center rounded-lg"
+                            title={item.name}
+                            style={{ width: 52, height: 52, background: `${rc}08`, border: `1px solid ${rc}30` }}
+                          >
+                            {item.icon
+                              ? <img src={item.icon} alt={item.name} width={36} height={36} style={{ imageRendering: "auto", objectFit: "contain" }} onError={e => { e.currentTarget.style.display = "none"; }} />
+                              : <span style={{ color: rc, fontSize: 18 }}>{"\u25C6"}</span>
+                            }
+                            <span className="absolute top-0.5 right-0.5 w-2 h-2 rounded-full" style={{ background: rc }} />
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  {/* Estimated rewards */}
+                  <div className="rounded-lg px-3 py-2" style={{ background: "rgba(255,140,0,0.06)", border: "1px solid rgba(255,140,0,0.15)" }}>
+                    <p className="text-xs font-semibold mb-1" style={{ color: "rgba(255,255,255,0.5)" }}>Estimated Rewards</p>
+                    <div className="flex items-center gap-3 flex-wrap">
+                      <span className="text-xs font-bold" style={{ color: "#ff8c00" }}>~{autoSalvagePreview.estimatedEssenz} Essenz</span>
+                      {Object.values(autoSalvagePreview.estimatedMaterials).map(m => (
+                        <span key={m.name} className="text-xs font-semibold" style={{ color: "#22c55e" }}>~{m.amount} {m.name}</span>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Action buttons — 2-step confirmation */}
+                  {autoSalvageStep === 0 && (
+                    <button
+                      onClick={() => setAutoSalvageStep(1)}
+                      className="w-full text-xs py-2.5 rounded-lg font-semibold"
+                      style={{ background: "rgba(239,68,68,0.1)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.3)", cursor: "pointer" }}
+                    >
+                      Salvage {autoSalvagePreview.count} Items
+                    </button>
+                  )}
+                  {autoSalvageStep === 1 && (
+                    <div className="space-y-2">
+                      <p className="text-xs font-semibold text-center" style={{ color: "#ef4444" }}>
+                        This will destroy {autoSalvagePreview.count} items. This cannot be undone.
+                      </p>
+                      <div className="flex gap-2">
+                        <button onClick={() => setAutoSalvageStep(0)} className="flex-1 text-xs py-2 rounded-lg" style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.4)", border: "1px solid rgba(255,255,255,0.1)", cursor: "pointer" }}>
+                          Cancel
+                        </button>
+                        <button
+                          onClick={executeAutoSalvage}
+                          disabled={autoSalvageLoading}
+                          className="flex-1 text-xs py-2 rounded-lg font-semibold"
+                          style={{ background: "rgba(239,68,68,0.2)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.5)", cursor: autoSalvageLoading ? "not-allowed" : "pointer" }}
+                        >
+                          {autoSalvageLoading ? "Salvaging..." : "Confirm Salvage"}
+                        </button>
+                      </div>
+                    </div>
+                  )}
+                  {autoSalvageStep === 2 && (
+                    <div className="text-center py-2">
+                      <p className="text-xs font-semibold" style={{ color: "#4ade80" }}>Salvage complete!</p>
+                      <button onClick={closeAutoSalvage} className="text-xs mt-2 px-4 py-1.5 rounded-lg" style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.5)", border: "1px solid rgba(255,255,255,0.1)", cursor: "pointer" }}>Close</button>
+                    </div>
+                  )}
+                </>
+              ) : (
+                <div className="text-center py-8">
+                  <p className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>
+                    No {autoSalvageRarity} items to salvage.
+                  </p>
+                </div>
+              )}
             </div>
           </div>
         </div>,

@@ -1021,6 +1021,53 @@ router.post('/api/schmiedekunst/dismantle', requireAuth, (req, res) => {
   });
 });
 
+// POST /api/schmiedekunst/dismantle-preview — preview salvage results without destroying items
+router.post('/api/schmiedekunst/dismantle-preview', requireAuth, (req, res) => {
+  const uid = req.auth?.userId;
+  const u = state.users[uid];
+  if (!u) return res.status(404).json({ error: 'User not found' });
+  const { rarity } = req.body;
+  if (!rarity || !DISMANTLE_ESSENZ[rarity]) {
+    return res.status(400).json({ error: 'Valid rarity required (common/uncommon/rare/epic/legendary)' });
+  }
+  if (rarity === 'legendary') {
+    return res.status(400).json({ error: 'Legendary items must be dismantled individually' });
+  }
+
+  const inv = u.inventory || [];
+  const equippedIds = getEquippedIds(u);
+
+  const candidates = inv.filter(i =>
+    (i.rarity || 'common') === rarity && i.name && !equippedIds.has(i.instanceId || i.id)
+  );
+
+  const totalEssenz = candidates.length * (DISMANTLE_ESSENZ[rarity] || 2);
+  // Estimate materials based on expected value (chance × count)
+  const matDrops = DISMANTLE_MATERIALS[rarity] || DISMANTLE_MATERIALS.common;
+  const estimatedMaterials = {};
+  for (const mat of matDrops) {
+    const expected = Math.round(candidates.length * mat.chance);
+    if (expected > 0) {
+      const def = PROFESSIONS_DATA.materials?.find(m => m.id === mat.id);
+      estimatedMaterials[mat.id] = { name: def?.name || mat.id, amount: expected };
+    }
+  }
+
+  res.json({
+    items: candidates.map(i => ({
+      id: i.instanceId || i.id,
+      name: i.name,
+      rarity: i.rarity || 'common',
+      slot: i.slot || null,
+      icon: i.icon || null,
+      binding: i.binding || null,
+    })),
+    count: candidates.length,
+    estimatedEssenz: totalEssenz,
+    estimatedMaterials,
+  });
+});
+
 // POST /api/schmiedekunst/dismantle-all — bulk dismantle by rarity (Salvage All)
 router.post('/api/schmiedekunst/dismantle-all', requireAuth, (req, res) => {
   const uid = req.auth?.userId;
