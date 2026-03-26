@@ -93,7 +93,7 @@ export default function ShopView({ onBuy, onGearBuy, onNavigate }: {
                       cursor: canAfford ? "pointer" : "not-allowed",
                     }}
                   >
-                    <img src="/images/icons/currency-gold.png" alt="" width={20} height={20} style={{ imageRendering: "auto", display: "inline", verticalAlign: "middle", marginRight: 2 }} onError={e => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} /> {item.cost}
+                    <img src="/images/icons/currency-gold.png" alt="" width={20} height={20} style={{ imageRendering: "auto", display: "inline", verticalAlign: "middle", marginRight: 2 }} onError={e => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} /> {item.cost.toLocaleString()}
                   </button>
                 </div>
               );
@@ -131,7 +131,7 @@ export default function ShopView({ onBuy, onGearBuy, onNavigate }: {
                     cursor: canAfford ? "pointer" : "not-allowed",
                   }}
                 >
-                  <img src="/images/icons/currency-gold.png" alt="" width={20} height={20} style={{ imageRendering: "auto", display: "inline", verticalAlign: "middle", marginRight: 2 }} onError={e => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} /> {item.cost}
+                  <img src="/images/icons/currency-gold.png" alt="" width={20} height={20} style={{ imageRendering: "auto", display: "inline", verticalAlign: "middle", marginRight: 2 }} onError={e => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} /> {item.cost.toLocaleString()}
                 </button>
               </div>
             );

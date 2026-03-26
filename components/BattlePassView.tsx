@@ -66,6 +66,7 @@ export default function BattlePassView({ onRewardCelebration, onNavigate }: { on
   const [player, setPlayer] = useState<BPPlayer | null>(null);
   const [loading, setLoading] = useState(true);
   const [claiming, setClaiming] = useState<number | null>(null);
+  const [claimingAll, setClaimingAll] = useState(false);
   const [message, setMessage] = useState<{ text: string; type: "success" | "error" } | null>(null);
 
   const fetchBP = useCallback(async () => {
@@ -188,7 +189,9 @@ export default function BattlePassView({ onRewardCelebration, onNavigate }: { on
         </p>
         {unclaimedCount >= 2 && (
           <button
+            disabled={claimingAll}
             onClick={async () => {
+              setClaimingAll(true);
               try {
                 const r = await fetch("/api/battlepass/claim-all", { method: "POST", headers: getAuthHeaders() });
                 const data = await r.json();
@@ -201,11 +204,13 @@ export default function BattlePassView({ onRewardCelebration, onNavigate }: { on
                 }
                 setTimeout(() => setMessage(null), 5000);
               } catch { setMessage({ type: "error", text: "Network error" }); }
+              setClaimingAll(false);
             }}
             className="text-xs px-3 py-1.5 rounded-lg font-semibold mt-2"
-            style={{ background: "rgba(34,197,94,0.1)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.25)", cursor: "pointer" }}
+            style={{ background: claimingAll ? "rgba(255,255,255,0.03)" : "rgba(34,197,94,0.1)", color: claimingAll ? "rgba(255,255,255,0.2)" : "#22c55e", border: `1px solid ${claimingAll ? "rgba(255,255,255,0.06)" : "rgba(34,197,94,0.25)"}`, cursor: claimingAll ? "not-allowed" : "pointer" }}
+            title={claimingAll ? "Claiming..." : `Claim all ${unclaimedCount} unclaimed rewards`}
           >
-            Claim All ({unclaimedCount})
+            {claimingAll ? "Claiming..." : `Claim All (${unclaimedCount})`}
           </button>
         )}
       </div>

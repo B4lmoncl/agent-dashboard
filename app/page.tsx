@@ -1124,7 +1124,8 @@ export default function Dashboard() {
                     )}
                   </div>
 
-                  {/* Navigate to forge */}
+                  {/* Navigate to forge (Lv5+ only) */}
+                  {(currentPlayerLevel ?? 1) >= 5 && (
                   <button
                     onClick={() => { setProfessionsInfoOpen(false); setDashView("forge"); }}
                     className="w-full mt-3 px-3 py-2 rounded-lg text-xs font-semibold transition-colors"
@@ -1132,6 +1133,7 @@ export default function Dashboard() {
                   >
                     Open Artisan&apos;s Quarter
                   </button>
+                  )}
                 </div>
               </div>
             </ModalPortal>

@@ -60,7 +60,7 @@ export function ShopModal({ userId, userName, gold, currentGear, onClose, onBuy,
                 }}
                 title={gold < item.cost ? `Need ${item.cost - gold} more gold` : undefined}
               >
-                <img src="/images/icons/currency-gold.png" alt="" width={20} height={20} style={{ imageRendering: "auto", display: "inline", verticalAlign: "middle", marginRight: 2 }} onError={e => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} /> {item.cost}
+                <img src="/images/icons/currency-gold.png" alt="" width={20} height={20} style={{ imageRendering: "auto", display: "inline", verticalAlign: "middle", marginRight: 2 }} onError={e => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} /> {item.cost.toLocaleString()}
               </button>
             </div>
           ))}
@@ -105,7 +105,7 @@ export function ShopModal({ userId, userName, gold, currentGear, onClose, onBuy,
                         }}
                         title={owned ? "Already owned" : gold < gear.cost ? `Need ${gear.cost - gold} more gold` : gear.tier > currentTier + 1 ? "Unlock previous tier first" : undefined}
                       >
-                        <img src="/images/icons/currency-gold.png" alt="" width={20} height={20} style={{ imageRendering: "auto", display: "inline", verticalAlign: "middle", marginRight: 2 }} onError={e => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} /> {gear.cost}
+                        <img src="/images/icons/currency-gold.png" alt="" width={20} height={20} style={{ imageRendering: "auto", display: "inline", verticalAlign: "middle", marginRight: 2 }} onError={e => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} /> {gear.cost.toLocaleString()}
                       </button>
                     )}
                   </div>
