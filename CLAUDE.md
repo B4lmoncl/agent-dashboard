@@ -4,6 +4,32 @@
 
 **Quest Hall / Agent Dashboard** (v1.5.3) — A real-time operations center and gamified quest management system for AI agents and players. Combines agent monitoring, RPG quest mechanics (classes, companions, gacha, leveling), a REST API, and an Electron desktop companion app (Quest Forge).
 
+## Game Design References (Primäre Vorbilder)
+
+Diese Spiele sind die **verbindlichen Referenzen** für alle Design-Entscheidungen. Bei Unsicherheit: "Wie macht WoW/Diablo das?" ist immer die erste Frage.
+
+### Hauptreferenzen (1:1 Vorbilder)
+
+| System | Referenz | Was genau |
+|--------|----------|-----------|
+| **Professions/Crafting** | **WoW Classic** | 1:1 Vorbild. 300 Max Skill, 4 Ränge, Orange/Yellow/Green/Gray Skill-Up, Trainer-Rezepte, Drop-Rezepte, Faction-Rezepte, Shared Transmute Cooldowns, 2 Profession Slots, Free Unlearn. Alles was Berufe betrifft → WoW Classic nachschlagen. |
+| **Grind & Progression** | **WoW Classic** | Langzeit-Motivation. Wochen für 1-300 Profession. Streaks, Daily Quests, Weekly Resets — alles soll sich verdient anfühlen, nicht geschenkt. |
+| **Item System** | **Diablo 3** | Loot 2.0 Philosophie. Primary/Secondary Affix Split, Rarity = Affix Count, Level = Stat Values. Legendary Effects als Gameplay-Changer. Reforge (Kanai's Cube), Enchanting (Mystic stat reroll). Set-Boni. Gear Score. |
+| **Item Transmog/Visuals** | **Diablo 3** | Rarity-Farben, Legendary-Glow, Item-Tooltips mit Stat-Breakdown. Collection Log für Unique Items. Salvage System. |
+
+### Sekundäre Referenzen
+
+| System | Referenz | Was genau |
+|--------|----------|-----------|
+| **Gamification Loop** | **Habitica** | Reale Aufgaben als Quests. XP/Gold für Alltags-Tasks. Streaks als Motivation. Companions als emotionale Bindung. |
+| **Gacha & Daily Login** | **Honkai Star Rail / Genshin Impact** | Pity-System (Soft/Hard Pity), Banner-Rotation, Daily Mission Checklist, Welkin-style Daily Bonus. |
+| **UI Feel & Polish** | **WoW Classic + Diablo 3** | Cast Bars, Progress Bars mit Tiefe (Diablo-Beveled), Skill-Up Celebrations, NPC Interaction Feel. Alles soll sich "gewichtig" anfühlen. |
+| **Navigation** | **Stormlight Archive (Urithiru)** | Die Quest Hall = ein uralter Turm mit Stockwerken. Jeder Floor hat eigene Räume und Atmosphäre. |
+| **Tone & Writing** | **Skulduggery Pleasant + Kingkiller Chronicle** | Siehe LYRA-PLAYBOOK.md Lore Bible. Trockener Humor + poetische Eleganz. |
+
+### Design-Prinzip
+Wenn ein Feature unklar ist: **Erst WoW Classic / Diablo 3 nachschlagen**, dann adaptieren für unser System. Nicht neu erfinden was schon perfekt designt wurde.
+
 ## Tech Stack
 
 - **Frontend:** Next.js 16.1.6, React 19, TypeScript 5, Tailwind CSS 4
@@ -228,7 +254,7 @@ Items should feel **earned from their source**. Use `shopHidden: true, price: 0`
 
 ### Named Set Design Rules
 
-- **3–4 pieces per set** (not 6 — our 6-slot system makes full sets too dominant)
+- **3–4 pieces per set** (not 7 — our 7-slot system makes full sets too dominant)
 - **Partial bonus at 2 pieces**, full bonus at 3–4 pieces
 - Set bonuses: flat stat bonuses (+3–8 per stat) or small % multipliers (5–10%)
 - Never stack with tier-based set bonuses (named sets override generic setId)
@@ -239,7 +265,7 @@ Items should feel **earned from their source**. Use `shopHidden: true, price: 0`
 {
   "id": "prefix-unique-name",
   "name": "German Name",
-  "slot": "weapon|shield|helm|armor|amulet|boots",
+  "slot": "weapon|shield|helm|armor|amulet|ring|boots",
   "tier": 1-4,
   "reqLevel": 1-50,
   "rarity": "common|uncommon|rare|epic|legendary",
@@ -263,7 +289,7 @@ Items should feel **earned from their source**. Use `shopHidden: true, price: 0`
 3. Is the legendary effect value within the level-appropriate range?
 4. Does the affix pool have 2–3 primary and 1–3 minor options (variety for rolling)?
 5. Is the item source-appropriate (no legendaries in general pool, no commons in raids)?
-6. Does the total stat ceiling stay below the kraft/weisheit cap of 30 for a full 6-slot build?
+6. Does the total stat ceiling stay below the kraft/weisheit cap of 30 for a full 7-slot build?
 
 ## UI Design Guidelines
 
@@ -323,6 +349,12 @@ These rules ensure visual consistency across all features. Follow them for EVERY
 - **Skeleton loading:** `skeleton-pulse` animation for placeholder cards during data fetch
 - **Hover effects:** Subtle `translateY(-2px)` lift + enhanced `boxShadow` on cards
 - **No jarring layout shifts:** Use fixed dimensions or min-height on containers that load async data
+
+### Icons & Emojis
+- **NO EMOJIS on the site.** Use custom SVG symbols or PNG icons instead. Emojis look inconsistent across platforms and cheapen the aesthetic.
+- **Very rare exceptions:** The streak flame (🔥) works because it's thematically perfect. Default to custom icons for everything else.
+- **Tooltip icons** in GameTooltip registry entries are the ONLY place where emoji-style symbols are acceptable (they render inside controlled tooltip containers, not in the main UI).
+- **When in doubt:** Generate a custom icon or use a Unicode symbol (◆, ★, ●) over an emoji.
 
 ### Images
 - **Rendering:** `image-rendering: smooth` everywhere (class `img-render-auto`)

@@ -111,7 +111,7 @@ export default function PlayerProfileModal({ playerId, onClose, onAddFriend, onM
         setFriendRequestSent(true);
         onAddFriend?.(playerId);
       }
-    } catch { /* ignore */ }
+    } catch (e) { console.error("[profile]", e); }
   };
 
   const handleRemoveFriend = async () => {
@@ -126,7 +126,7 @@ export default function PlayerProfileModal({ playerId, onClose, onAddFriend, onM
         fetchProfile(); // Refresh to update friendshipStatus
         setConfirmRemove(false);
       }
-    } catch { /* ignore */ }
+    } catch (e) { console.error("[profile]", e); }
     setRemovingFriend(false);
   };
 

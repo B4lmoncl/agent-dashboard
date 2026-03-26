@@ -7,7 +7,7 @@ const router = require('express').Router();
 const { state, saveUsers, saveUsersSync, ensureUserCurrencies } = require('../lib/state');
 const { now, getLevelInfo, PRIMARY_STATS, MINOR_STATS, createGearInstance, getLegendaryModifiers, rollAffixStats, getArmorTraitBonus, INVENTORY_CAP } = require('../lib/helpers');
 
-const VALID_SLOTS = ['weapon', 'shield', 'helm', 'armor', 'amulet', 'boots'];
+const VALID_SLOTS = ['weapon', 'shield', 'helm', 'armor', 'amulet', 'boots', 'ring'];
 const RARITY_ORDER = ['common', 'uncommon', 'rare', 'epic', 'legendary'];
 const SLOT_RECIPES = ['upgrade_rarity', 'permanent_enchant', 'reinforce_armor', 'enchant_socket', 'sharpen_blade'];
 const { requireAuth } = require('../lib/middleware');
@@ -219,7 +219,7 @@ router.get('/api/professions', (req, res) => {
       playerXp: profProgress.skill,
       nextLevelXp: skillCap,
       lastCraftAt: lastCraft,
-      rank: rank.name,
+      rank: chosen ? rank.name : null,
       rankColor: rank.color,
       masteryActive,
       masteryBonus: p.masteryBonus || null,
@@ -485,7 +485,9 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
   const craftProfData = (u.professions || {})[recipe.profession];
   const skillCap = getSkillCap(playerLvl, craftProfData?.trainedRanks);
   const skillUpColor = getSkillUpColor(currentSkill, reqSkill);
-  const skillUpChance = getSkillUpChance(currentSkill, reqSkill);
+  // Legendary: mentor — +X% skill-up chance
+  const mentorBonus = getLegendaryModifiers(uid).mentor || 0;
+  const skillUpChance = Math.min(1.0, getSkillUpChance(currentSkill, reqSkill) + mentorBonus);
   const { dailyBonusAvailable } = getDailyBonusInfo(u);
   const dailyMultiplier = dailyBonusAvailable ? 2 : 1;
   // Roll skill-up for each craft in the batch — WoW: exactly 1 point per success
@@ -797,6 +799,33 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
         result.updatedGear = eq;
         break;
       }
+      // Enchant Vellum handler (creates tradeable enchant scroll)
+      if (recipe.result?.type === 'vellum') {
+        const allStats = [...PRIMARY_STATS, ...MINOR_STATS];
+        const vStat = allStats[Math.floor(Math.random() * allStats.length)];
+        const enchBonus = masteryDef?.type === 'enchant_power' ? masteryDef.value : 0;
+        const vVal = (recipe.result.statBonus?.[0] || 2) + Math.floor(Math.random() * ((recipe.result.statBonus?.[1] || 4) - (recipe.result.statBonus?.[0] || 2) + 1)) + enchBonus;
+        const hours = recipe.result.durationHours || 24;
+        const vellumRarity = currentSkill >= 225 ? 'epic' : currentSkill >= 125 ? 'rare' : 'uncommon';
+        const vellumItem = {
+          id: `vellum-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
+          name: `Verzauberung: +${vVal} ${vStat.charAt(0).toUpperCase() + vStat.slice(1)}`,
+          type: 'consumable',
+          rarity: vellumRarity,
+          desc: `Kann gehandelt werden. Anwenden: Gibt +${vVal} ${vStat} als ${hours}h-Buff.`,
+          icon: null,
+          binding: 'boe',
+          effect: { type: 'vellum' },
+          vellumEffect: { stat: vStat, value: vVal, durationHours: hours },
+          craftedBy: uid,
+          craftedAt: now(),
+        };
+        u.inventory = u.inventory || [];
+        if (u.inventory.length >= INVENTORY_CAP) { result.message = 'Inventory full.'; result.success = false; break; }
+        u.inventory.push(vellumItem);
+        result.message = `Enchant Vellum: +${vVal} ${vStat} (${hours}h) — can be traded!${masteryDef ? ' (Mastery)' : ''}`;
+        break;
+      }
       // Transmute material handler (alchemist transmutes)
       if (recipe.result?.type === 'transmute_material') {
         u.craftingMaterials = u.craftingMaterials || {};
@@ -918,13 +947,7 @@ router.post('/api/professions/switch', requireAuth, (req, res) => {
     return res.status(400).json({ error: `${dropProfession} is not an active profession` });
   }
 
-  // Cost: 200 essenz to switch (lose all profession XP)
-  ensureUserCurrencies(u);
-  const switchCost = 200;
-  if ((u.currencies.essenz || 0) < switchCost) {
-    return res.status(400).json({ error: `Switching professions costs ${switchCost} Essenz (you have ${u.currencies.essenz || 0})` });
-  }
-  u.currencies.essenz -= switchCost;
+  // Free to drop (WoW Classic: no cost, just lose all progress)
 
   // Remove profession
   u.chosenProfessions = u.chosenProfessions.filter(p => p !== dropProfession);
@@ -977,6 +1000,9 @@ router.post('/api/schmiedekunst/dismantle', requireAuth, (req, res) => {
   if (getEquippedIds(u).has(inventoryItemId)) {
     return res.status(400).json({ error: 'Cannot dismantle equipped items' });
   }
+  if (item.locked) {
+    return res.status(400).json({ error: 'Item is locked — unlock it first' });
+  }
 
   const rarity = item.rarity || 'common';
   const essenzGained = DISMANTLE_ESSENZ[rarity] || 2;
@@ -1025,6 +1051,53 @@ router.post('/api/schmiedekunst/dismantle', requireAuth, (req, res) => {
   });
 });
 
+// POST /api/schmiedekunst/dismantle-preview — preview salvage results without destroying items
+router.post('/api/schmiedekunst/dismantle-preview', requireAuth, (req, res) => {
+  const uid = req.auth?.userId;
+  const u = state.users[uid];
+  if (!u) return res.status(404).json({ error: 'User not found' });
+  const { rarity } = req.body;
+  if (!rarity || !DISMANTLE_ESSENZ[rarity]) {
+    return res.status(400).json({ error: 'Valid rarity required (common/uncommon/rare/epic/legendary)' });
+  }
+  if (rarity === 'legendary') {
+    return res.status(400).json({ error: 'Legendary items must be dismantled individually' });
+  }
+
+  const inv = u.inventory || [];
+  const equippedIds = getEquippedIds(u);
+
+  const candidates = inv.filter(i =>
+    (i.rarity || 'common') === rarity && i.name && !equippedIds.has(i.instanceId || i.id) && !i.locked
+  );
+
+  const totalEssenz = candidates.length * (DISMANTLE_ESSENZ[rarity] || 2);
+  // Estimate materials based on expected value (chance × count)
+  const matDrops = DISMANTLE_MATERIALS[rarity] || DISMANTLE_MATERIALS.common;
+  const estimatedMaterials = {};
+  for (const mat of matDrops) {
+    const expected = Math.round(candidates.length * mat.chance);
+    if (expected > 0) {
+      const def = PROFESSIONS_DATA.materials?.find(m => m.id === mat.id);
+      estimatedMaterials[mat.id] = { name: def?.name || mat.id, amount: expected };
+    }
+  }
+
+  res.json({
+    items: candidates.map(i => ({
+      id: i.instanceId || i.id,
+      name: i.name,
+      rarity: i.rarity || 'common',
+      slot: i.slot || null,
+      icon: i.icon || null,
+      binding: i.binding || null,
+    })),
+    count: candidates.length,
+    estimatedEssenz: totalEssenz,
+    estimatedMaterials,
+  });
+});
+
 // POST /api/schmiedekunst/dismantle-all — bulk dismantle by rarity (Salvage All)
 router.post('/api/schmiedekunst/dismantle-all', requireAuth, (req, res) => {
   const uid = req.auth?.userId;
@@ -1042,7 +1115,7 @@ router.post('/api/schmiedekunst/dismantle-all', requireAuth, (req, res) => {
   const equippedIds = getEquippedIds(u);
 
   const toDismantle = u.inventory.filter(i =>
-    (i.rarity || 'common') === rarity && i.name && !equippedIds.has(i.instanceId || i.id)
+    (i.rarity || 'common') === rarity && i.name && !equippedIds.has(i.instanceId || i.id) && !i.locked
   );
   if (toDismantle.length === 0) return res.status(400).json({ error: `No ${rarity} items to dismantle` });
 
@@ -1179,9 +1252,9 @@ router.post('/api/schmiedekunst/transmute', requireAuth, (req, res) => {
 
 // ─── Rank Training (WoW-style: pay gold to unlock next skill cap) ────────────
 const RANK_TRAINING_COSTS = [
-  { rank: 'Journeyman', fromCap: 75, toCap: 150, cost: 500, reqPlayerLevel: 15 },
-  { rank: 'Expert', fromCap: 150, toCap: 225, cost: 2000, reqPlayerLevel: 25 },
-  { rank: 'Artisan', fromCap: 225, toCap: 300, cost: 5000, reqPlayerLevel: 40 },
+  { rank: 'Journeyman', fromCap: 75, toCap: 150, cost: 500, reqPlayerLevel: 15, reqSkill: 50 },
+  { rank: 'Expert', fromCap: 150, toCap: 225, cost: 2000, reqPlayerLevel: 25, reqSkill: 125 },
+  { rank: 'Artisan', fromCap: 225, toCap: 300, cost: 5000, reqPlayerLevel: 40, reqSkill: 200 },
 ];
 
 router.post('/api/crafting/train-rank', requireAuth, (req, res) => {
@@ -1202,6 +1275,7 @@ router.post('/api/crafting/train-rank', requireAuth, (req, res) => {
   const nextRank = RANK_TRAINING_COSTS.find(r => skill >= r.fromCap - 10 && (!profData.trainedRanks || !profData.trainedRanks.includes(r.rank)));
   if (!nextRank) return res.status(400).json({ error: 'No rank available to train' });
   if (playerLevel < nextRank.reqPlayerLevel) return res.status(400).json({ error: `Requires player level ${nextRank.reqPlayerLevel} (you are ${playerLevel})` });
+  if (nextRank.reqSkill && skill < nextRank.reqSkill) return res.status(400).json({ error: `Requires skill ${nextRank.reqSkill} (you have ${skill})` });
 
   ensureUserCurrencies(u);
   if (u.currencies.gold < nextRank.cost) return res.status(400).json({ error: `Not enough gold (need ${nextRank.cost}, have ${u.currencies.gold})` });

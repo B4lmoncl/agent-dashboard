@@ -1,0 +1,294 @@
+{
+  "suffixes": [
+    {
+      "id": "adler",
+      "name": "des Adlers",
+      "stats": {
+        "weisheit": true
+      },
+      "color": "#3b82f6",
+      "scaling": {
+        "10": {
+          "weisheit": 1
+        },
+        "20": {
+          "weisheit": 2
+        },
+        "30": {
+          "weisheit": 3
+        },
+        "40": {
+          "weisheit": 4
+        },
+        "50": {
+          "weisheit": 5
+        }
+      }
+    },
+    {
+      "id": "baer",
+      "name": "des Bären",
+      "stats": {
+        "ausdauer": true
+      },
+      "color": "#22c55e",
+      "scaling": {
+        "10": {
+          "ausdauer": 1
+        },
+        "20": {
+          "ausdauer": 2
+        },
+        "30": {
+          "ausdauer": 3
+        },
+        "40": {
+          "ausdauer": 4
+        },
+        "50": {
+          "ausdauer": 5
+        }
+      }
+    },
+    {
+      "id": "tiger",
+      "name": "des Tigers",
+      "stats": {
+        "kraft": true,
+        "tempo": true
+      },
+      "color": "#f97316",
+      "scaling": {
+        "10": {
+          "kraft": 1,
+          "tempo": 1
+        },
+        "20": {
+          "kraft": 1,
+          "tempo": 1
+        },
+        "30": {
+          "kraft": 2,
+          "tempo": 1
+        },
+        "40": {
+          "kraft": 2,
+          "tempo": 2
+        },
+        "50": {
+          "kraft": 3,
+          "tempo": 2
+        }
+      }
+    },
+    {
+      "id": "falke",
+      "name": "des Falken",
+      "stats": {
+        "glueck": true
+      },
+      "color": "#fbbf24",
+      "scaling": {
+        "10": {
+          "glueck": 1
+        },
+        "20": {
+          "glueck": 2
+        },
+        "30": {
+          "glueck": 3
+        },
+        "40": {
+          "glueck": 4
+        },
+        "50": {
+          "glueck": 5
+        }
+      }
+    },
+    {
+      "id": "eule",
+      "name": "der Eule",
+      "stats": {
+        "fokus": true
+      },
+      "color": "#a855f7",
+      "scaling": {
+        "10": {
+          "fokus": 1
+        },
+        "20": {
+          "fokus": 2
+        },
+        "30": {
+          "fokus": 3
+        },
+        "40": {
+          "fokus": 4
+        },
+        "50": {
+          "fokus": 5
+        }
+      }
+    },
+    {
+      "id": "gorilla",
+      "name": "des Gorillas",
+      "stats": {
+        "ausdauer": true,
+        "kraft": true
+      },
+      "color": "#ef4444",
+      "scaling": {
+        "10": {
+          "ausdauer": 1,
+          "kraft": 1
+        },
+        "20": {
+          "ausdauer": 1,
+          "kraft": 1
+        },
+        "30": {
+          "ausdauer": 2,
+          "kraft": 1
+        },
+        "40": {
+          "ausdauer": 2,
+          "kraft": 2
+        },
+        "50": {
+          "ausdauer": 3,
+          "kraft": 2
+        }
+      }
+    },
+    {
+      "id": "schlange",
+      "name": "der Schlange",
+      "stats": {
+        "charisma": true
+      },
+      "color": "#ec4899",
+      "scaling": {
+        "10": {
+          "charisma": 1
+        },
+        "20": {
+          "charisma": 2
+        },
+        "30": {
+          "charisma": 3
+        },
+        "40": {
+          "charisma": 4
+        },
+        "50": {
+          "charisma": 5
+        }
+      }
+    },
+    {
+      "id": "wolf",
+      "name": "des Wolfes",
+      "stats": {
+        "tempo": true,
+        "vitalitaet": true
+      },
+      "color": "#9ca3af",
+      "scaling": {
+        "10": {
+          "tempo": 1,
+          "vitalitaet": 1
+        },
+        "20": {
+          "tempo": 1,
+          "vitalitaet": 1
+        },
+        "30": {
+          "tempo": 2,
+          "vitalitaet": 1
+        },
+        "40": {
+          "tempo": 2,
+          "vitalitaet": 2
+        },
+        "50": {
+          "tempo": 3,
+          "vitalitaet": 2
+        }
+      }
+    },
+    {
+      "id": "affe",
+      "name": "des Affen",
+      "stats": {
+        "glueck": true,
+        "tempo": true
+      },
+      "color": "#facc15",
+      "scaling": {
+        "10": {
+          "glueck": 1,
+          "tempo": 1
+        },
+        "20": {
+          "glueck": 1,
+          "tempo": 1
+        },
+        "30": {
+          "glueck": 2,
+          "tempo": 1
+        },
+        "40": {
+          "glueck": 2,
+          "tempo": 2
+        },
+        "50": {
+          "glueck": 3,
+          "tempo": 2
+        }
+      }
+    },
+    {
+      "id": "wal",
+      "name": "des Wals",
+      "stats": {
+        "vitalitaet": true
+      },
+      "color": "#06b6d4",
+      "scaling": {
+        "10": {
+          "vitalitaet": 1
+        },
+        "20": {
+          "vitalitaet": 2
+        },
+        "30": {
+          "vitalitaet": 3
+        },
+        "40": {
+          "vitalitaet": 4
+        },
+        "50": {
+          "vitalitaet": 5
+        }
+      }
+    }
+  ],
+  "config": {
+    "dropChance": 0.3,
+    "appliesTo": [
+      "quest_drop",
+      "dungeon",
+      "rift",
+      "world_boss"
+    ],
+    "excludes": [
+      "crafted",
+      "gacha",
+      "shop",
+      "unique"
+    ],
+    "description": "30% Chance bei Quest/Dungeon/Rift/WB Drops. Suffix addiert Flat-Stats skaliert nach Item-Level. Crafted Items haben keine Suffixes."
+  }
+}

@@ -66,11 +66,12 @@
           "pool": []
         }
       },
-      "flavorText": "Jeder große Held hatte ein erstes Schwert. Die meisten haben es rechtzeitig ersetzt."
+      "flavorText": "Jeder große Held hatte ein erstes Schwert. Die meisten haben es rechtzeitig ersetzt.",
+      "binding": "boe"
     },
     {
       "id": "t1-dagger",
-      "name": "Rostiger Dolch",
+      "name": "Rostiger Dolch II",
       "slot": "weapon",
       "tier": 1,
       "reqLevel": 1,
@@ -104,7 +105,8 @@
           "pool": []
         }
       },
-      "flavorText": "Die Klinge ist stumpf, der Griff wackelt, und trotzdem hat er mehr Mut als mancher Ritter."
+      "flavorText": "Die Klinge ist stumpf, der Griff wackelt, und trotzdem hat er mehr Mut als mancher Ritter.",
+      "binding": "boe"
     },
     {
       "id": "t1-staff",
@@ -148,7 +150,8 @@
           ]
         }
       },
-      "flavorText": "Alte Wanderer sagen, er führe dich zum richtigen Weg. Junge Wanderer sagen, er sei ein Stock."
+      "flavorText": "Alte Wanderer sagen, er führe dich zum richtigen Weg. Junge Wanderer sagen, er sei ein Stock.",
+      "binding": "boe"
     },
     {
       "id": "t1-axe",
@@ -192,7 +195,8 @@
           ]
         }
       },
-      "flavorText": "Der Besitzer schwor, er sei Holzfäller. Die Kerben in der Klinge erzählen eine andere Geschichte."
+      "flavorText": "Der Besitzer schwor, er sei Holzfäller. Die Kerben in der Klinge erzählen eine andere Geschichte.",
+      "binding": "boe"
     },
     {
       "id": "t1-shield",
@@ -230,7 +234,8 @@
           "pool": []
         }
       },
-      "flavorText": "Drei Bretter und ein Gebet. In Aethermoor reicht das für den Anfang."
+      "flavorText": "Drei Bretter und ein Gebet. In Aethermoor reicht das für den Anfang.",
+      "binding": "boe"
     },
     {
       "id": "t1-buckler",
@@ -274,7 +279,8 @@
           ]
         }
       },
-      "flavorText": "Klein genug zum Vergessen, groß genug zum Überleben. Ein faires Tauschgeschäft."
+      "flavorText": "Klein genug zum Vergessen, groß genug zum Überleben. Ein faires Tauschgeschäft.",
+      "binding": "boe"
     },
     {
       "id": "t1-helm",
@@ -312,7 +318,9 @@
           "pool": []
         }
       },
-      "flavorText": "Schützt den Kopf. Nicht den Stolz."
+      "flavorText": "Schützt den Kopf. Nicht den Stolz.",
+      "armorType": "heavy",
+      "binding": "boe"
     },
     {
       "id": "t1-hood",
@@ -356,7 +364,9 @@
           ]
         }
       },
-      "flavorText": "Die Schatten mögen dich, wenn du sie trägst. Ob das gut ist, sei dahingestellt."
+      "flavorText": "Die Schatten mögen dich, wenn du sie trägst. Ob das gut ist, sei dahingestellt.",
+      "armorType": "cloth",
+      "binding": "boe"
     },
     {
       "id": "t1-armor",
@@ -394,7 +404,9 @@
           "pool": []
         }
       },
-      "flavorText": "Riecht nach drei Besitzern und keinem Gerber. Aber Leder zwischen dir und einer Klinge ist Leder."
+      "flavorText": "Riecht nach drei Besitzern und keinem Gerber. Aber Leder zwischen dir und einer Klinge ist Leder.",
+      "armorType": "leather",
+      "binding": "boe"
     },
     {
       "id": "t1-tunic",
@@ -438,11 +450,13 @@
           ]
         }
       },
-      "flavorText": "Die Metallplättchen klirren bei jedem Schritt. Leise Angriffe sind damit ausgeschlossen."
+      "flavorText": "Die Metallplättchen klirren bei jedem Schritt. Leise Angriffe sind damit ausgeschlossen.",
+      "armorType": "heavy",
+      "binding": "boe"
     },
     {
       "id": "t1-amulet",
-      "name": "Kupferkette",
+      "name": "Kupferkette II",
       "slot": "amulet",
       "tier": 1,
       "reqLevel": 1,
@@ -476,7 +490,8 @@
           "pool": []
         }
       },
-      "flavorText": "Grünspan hat mehr Charakter als Gold. Das sagen zumindest die, die sich Gold nicht leisten können."
+      "flavorText": "Grünspan hat mehr Charakter als Gold. Das sagen zumindest die, die sich Gold nicht leisten können.",
+      "binding": "boe"
     },
     {
       "id": "t1-charm",
@@ -520,7 +535,8 @@
           ]
         }
       },
-      "flavorText": "Der Hase hatte weniger Glück. Aber vielleicht war das der Punkt."
+      "flavorText": "Der Hase hatte weniger Glück. Aber vielleicht war das der Punkt.",
+      "binding": "boe"
     },
     {
       "id": "t1-boots",
@@ -558,7 +574,9 @@
           "pool": []
         }
       },
-      "flavorText": "Tausend Meilen beginnen mit einem Paar Stiefeln, das nicht bei hundert aufgibt."
+      "flavorText": "Tausend Meilen beginnen mit einem Paar Stiefeln, das nicht bei hundert aufgibt.",
+      "armorType": "cloth",
+      "binding": "boe"
     },
     {
       "id": "t1-sandals",
@@ -602,7 +620,9 @@
           ]
         }
       },
-      "flavorText": "Man hört sie nicht kommen. Man hört sie auch nicht gehen. Nur das leise Klatschen auf nassem Stein."
+      "flavorText": "Man hört sie nicht kommen. Man hört sie auch nicht gehen. Nur das leise Klatschen auf nassem Stein.",
+      "armorType": "leather",
+      "binding": "boe"
     },
     {
       "id": "t2-sword",
@@ -656,7 +676,8 @@
           ]
         }
       },
-      "flavorText": "Guter Stahl erkennt man daran, dass er sich nicht verbiegt, wenn die Welt es tut."
+      "flavorText": "Guter Stahl erkennt man daran, dass er sich nicht verbiegt, wenn die Welt es tut.",
+      "binding": "boe"
     },
     {
       "id": "t2-katana",
@@ -710,7 +731,8 @@
           ]
         }
       },
-      "flavorText": "Die Schmiede im Osten sagen: Eine Klinge, die schneller ist als der Gedanke, braucht keinen zweiten Hieb."
+      "flavorText": "Die Schmiede im Osten sagen: Eine Klinge, die schneller ist als der Gedanke, braucht keinen zweiten Hieb.",
+      "binding": "boe"
     },
     {
       "id": "t2-hammer",
@@ -754,7 +776,8 @@
           ]
         }
       },
-      "flavorText": "Diplomatie für Leute, die keine Geduld für Worte haben."
+      "flavorText": "Diplomatie für Leute, die keine Geduld für Worte haben.",
+      "binding": "boe"
     },
     {
       "id": "t2-shield",
@@ -803,7 +826,8 @@
           ]
         }
       },
-      "flavorText": "Dein Wille mag brechen. Dein Eisen nicht."
+      "flavorText": "Dein Wille mag brechen. Dein Eisen nicht.",
+      "binding": "boe"
     },
     {
       "id": "t2-tower",
@@ -852,7 +876,8 @@
           ]
         }
       },
-      "flavorText": "Hinter diesem Schild hat schon mancher eine ganze Schlacht verschlafen."
+      "flavorText": "Hinter diesem Schild hat schon mancher eine ganze Schlacht verschlafen.",
+      "binding": "boe"
     },
     {
       "id": "t2-helm",
@@ -906,7 +931,9 @@
           ]
         }
       },
-      "flavorText": "Wer Komfort will, soll einen Hut tragen. Wer überleben will, Ketten."
+      "flavorText": "Wer Komfort will, soll einen Hut tragen. Wer überleben will, Ketten.",
+      "armorType": "heavy",
+      "binding": "boe"
     },
     {
       "id": "t2-circlet",
@@ -960,7 +987,9 @@
           ]
         }
       },
-      "flavorText": "Drei Gelehrte trugen ihn vor dir. Alle wussten mehr als sie sollten."
+      "flavorText": "Drei Gelehrte trugen ihn vor dir. Alle wussten mehr als sie sollten.",
+      "armorType": "cloth",
+      "binding": "boe"
     },
     {
       "id": "t2-armor",
@@ -1014,7 +1043,9 @@
           ]
         }
       },
-      "flavorText": "Zehntausend Ringe, jeder einzeln geschmiedet. Kettenarbeit lehrt Geduld — oder Wahnsinn."
+      "flavorText": "Zehntausend Ringe, jeder einzeln geschmiedet. Kettenarbeit lehrt Geduld — oder Wahnsinn.",
+      "armorType": "leather",
+      "binding": "boe"
     },
     {
       "id": "t2-brigandine",
@@ -1068,7 +1099,9 @@
           ]
         }
       },
-      "flavorText": "Von außen Leder, von innen Stahl. Die beste Lüge ist die, die schützt."
+      "flavorText": "Von außen Leder, von innen Stahl. Die beste Lüge ist die, die schützt.",
+      "armorType": "heavy",
+      "binding": "boe"
     },
     {
       "id": "t2-amulet",
@@ -1117,7 +1150,8 @@
           ]
         }
       },
-      "flavorText": "Im Mondlicht schimmert es wie ein Versprechen. Ob es gehalten wird, hängt von dir ab."
+      "flavorText": "Im Mondlicht schimmert es wie ein Versprechen. Ob es gehalten wird, hängt von dir ab.",
+      "binding": "boe"
     },
     {
       "id": "t2-pendant",
@@ -1171,7 +1205,8 @@
           ]
         }
       },
-      "flavorText": "Die Runen flüstern in einer Sprache, die niemand mehr spricht. Das macht sie nicht leiser."
+      "flavorText": "Die Runen flüstern in einer Sprache, die niemand mehr spricht. Das macht sie nicht leiser.",
+      "binding": "boe"
     },
     {
       "id": "t2-boots",
@@ -1225,7 +1260,9 @@
           ]
         }
       },
-      "flavorText": "Auf Klingen zu treten ist unangenehm. Diese Stiefel machen es weniger unangenehm."
+      "flavorText": "Auf Klingen zu treten ist unangenehm. Diese Stiefel machen es weniger unangenehm.",
+      "armorType": "cloth",
+      "binding": "boe"
     },
     {
       "id": "t2-strider",
@@ -1279,7 +1316,9 @@
           ]
         }
       },
-      "flavorText": "Die Waldläufer von Aethermoor hinterlassen keine Spuren. Nur Geschichten."
+      "flavorText": "Die Waldläufer von Aethermoor hinterlassen keine Spuren. Nur Geschichten.",
+      "armorType": "leather",
+      "binding": "boe"
     },
     {
       "id": "t3-sword",
@@ -1333,7 +1372,8 @@
           ]
         }
       },
-      "flavorText": "Die Runen glühen rot bei Gefahr. Leider glühen sie auch rot bei schlechtem Wetter."
+      "flavorText": "Die Runen glühen rot bei Gefahr. Leider glühen sie auch rot bei schlechtem Wetter.",
+      "binding": "boe"
     },
     {
       "id": "t3-lance",
@@ -1387,7 +1427,8 @@
           ]
         }
       },
-      "flavorText": "Für Drachen geschmiedet, gegen Drachen ungetestet. Der Schmied nannte das optimistisch."
+      "flavorText": "Für Drachen geschmiedet, gegen Drachen ungetestet. Der Schmied nannte das optimistisch.",
+      "binding": "boe"
     },
     {
       "id": "t3-wand",
@@ -1441,7 +1482,8 @@
           ]
         }
       },
-      "flavorText": "Der Aetherstrom pulsiert so dicht durch diesen Fokus, dass selbst die Luft zittert."
+      "flavorText": "Der Aetherstrom pulsiert so dicht durch diesen Fokus, dass selbst die Luft zittert.",
+      "binding": "boe"
     },
     {
       "id": "t3-shield",
@@ -1495,7 +1537,8 @@
           ]
         }
       },
-      "flavorText": "Von einer Drachenschuppe geformt. Der Drache hat das letzte Wort verloren."
+      "flavorText": "Von einer Drachenschuppe geformt. Der Drache hat das letzte Wort verloren.",
+      "binding": "boe"
     },
     {
       "id": "t3-barrier",
@@ -1549,7 +1592,8 @@
           ]
         }
       },
-      "flavorText": "Keine Masse, kein Gewicht, keine Schwäche. Nur der reine, sture Wille, nicht getroffen zu werden."
+      "flavorText": "Keine Masse, kein Gewicht, keine Schwäche. Nur der reine, sture Wille, nicht getroffen zu werden.",
+      "binding": "boe"
     },
     {
       "id": "t3-helm",
@@ -1603,7 +1647,9 @@
           ]
         }
       },
-      "flavorText": "Wissen ist kein Schild, sagen die Krieger. Die Arkanisten lächeln und sagen nichts."
+      "flavorText": "Wissen ist kein Schild, sagen die Krieger. Die Arkanisten lächeln und sagen nichts.",
+      "armorType": "heavy",
+      "binding": "boe"
     },
     {
       "id": "t3-crown",
@@ -1657,7 +1703,9 @@
           ]
         }
       },
-      "flavorText": "Wer drei Züge voraussieht, gewinnt das Spiel. Wer vier sieht, spielt ein anderes."
+      "flavorText": "Wer drei Züge voraussieht, gewinnt das Spiel. Wer vier sieht, spielt ein anderes.",
+      "armorType": "cloth",
+      "binding": "boe"
     },
     {
       "id": "t3-armor",
@@ -1711,7 +1759,9 @@
           ]
         }
       },
-      "flavorText": "Leicht wie ein Atemzug, hart wie ein Grundsatz. Die alten Minen gaben solches Erz nur einmal her."
+      "flavorText": "Leicht wie ein Atemzug, hart wie ein Grundsatz. Die alten Minen gaben solches Erz nur einmal her.",
+      "armorType": "leather",
+      "binding": "boe"
     },
     {
       "id": "t3-plate",
@@ -1765,7 +1815,9 @@
           ]
         }
       },
-      "flavorText": "Jede Rune ein Schwur. Jede Platte ein Versprechen. Zusammen eine Festung aus Willen und Stahl."
+      "flavorText": "Jede Rune ein Schwur. Jede Platte ein Versprechen. Zusammen eine Festung aus Willen und Stahl.",
+      "armorType": "heavy",
+      "binding": "boe"
     },
     {
       "id": "t3-amulet",
@@ -1819,7 +1871,8 @@
           ]
         }
       },
-      "flavorText": "Das Gesicht im Medaillon lächelt. Niemand weiß, warum. Niemand fragt."
+      "flavorText": "Das Gesicht im Medaillon lächelt. Niemand weiß, warum. Niemand fragt.",
+      "binding": "boe"
     },
     {
       "id": "t3-eye",
@@ -1873,7 +1926,8 @@
           ]
         }
       },
-      "flavorText": "Es sieht, was du nicht sehen kannst. Manchmal ist das ein Segen. Manchmal wünschst du dir Blindheit."
+      "flavorText": "Es sieht, was du nicht sehen kannst. Manchmal ist das ein Segen. Manchmal wünschst du dir Blindheit.",
+      "binding": "boe"
     },
     {
       "id": "t3-boots",
@@ -1927,7 +1981,9 @@
           ]
         }
       },
-      "flavorText": "Der Wind hat keinen Herrn, sagen die Dichter. Diese Stiefel kommen dem am nächsten."
+      "flavorText": "Der Wind hat keinen Herrn, sagen die Dichter. Diese Stiefel kommen dem am nächsten.",
+      "armorType": "cloth",
+      "binding": "boe"
     },
     {
       "id": "t3-shadow",
@@ -1981,7 +2037,9 @@
           ]
         }
       },
-      "flavorText": "Der Schatten ist keine Abwesenheit von Licht. Er ist ein Ort, an dem man sich verstecken kann."
+      "flavorText": "Der Schatten ist keine Abwesenheit von Licht. Er ist ein Ort, an dem man sich verstecken kann.",
+      "armorType": "leather",
+      "binding": "boe"
     },
     {
       "id": "t4-dawn",
@@ -2041,7 +2099,8 @@
         "max": 3,
         "label": "Morgenglut: +{value}% Quest-XP"
       },
-      "flavorText": "Im allerersten Morgen der Welt, als das Licht noch jung war, küsste es eine Klinge. Diese Klinge."
+      "flavorText": "Im allerersten Morgen der Welt, als das Licht noch jung war, küsste es eine Klinge. Diese Klinge.",
+      "binding": "boe"
     },
     {
       "id": "t4-void",
@@ -2101,7 +2160,8 @@
         "max": 3,
         "label": "Verschlingen: +{value}% Gold"
       },
-      "flavorText": "Sie verschluckt das Licht. Sie verschluckt den Mut. Was übrig bleibt, ist Stille und der Geschmack von Eisen."
+      "flavorText": "Sie verschluckt das Licht. Sie verschluckt den Mut. Was übrig bleibt, ist Stille und der Geschmack von Eisen.",
+      "binding": "boe"
     },
     {
       "id": "t4-aegis",
@@ -2161,7 +2221,8 @@
         "max": 3,
         "label": "Unbeugsam: -{value}% Forge-Decay"
       },
-      "flavorText": "Es gibt Geschichten von Schwertern, die daran zerbrachen. Es gibt keine Geschichten von dem, der dahinter stand."
+      "flavorText": "Es gibt Geschichten von Schwertern, die daran zerbrachen. Es gibt keine Geschichten von dem, der dahinter stand.",
+      "binding": "boe"
     },
     {
       "id": "t4-crown",
@@ -2221,7 +2282,9 @@
         "max": 3,
         "label": "Erleuchtung: +{value}% Quest-XP"
       },
-      "flavorText": "Die Weisen trugen sie nicht, um klüger zu sein. Sie trugen sie, um die Dummheit der Welt zu ertragen."
+      "flavorText": "Die Weisen trugen sie nicht, um klüger zu sein. Sie trugen sie, um die Dummheit der Welt zu ertragen.",
+      "armorType": "heavy",
+      "binding": "boe"
     },
     {
       "id": "t4-armor",
@@ -2280,7 +2343,9 @@
         "value": 1,
         "label": "Drachenblut: Hält 1 Streak-Schild aktiv"
       },
-      "flavorText": "Das Blut des Drachen trocknet nie. Wer den Panzer trägt, spürt noch immer die Hitze seines letzten Atems."
+      "flavorText": "Das Blut des Drachen trocknet nie. Wer den Panzer trägt, spürt noch immer die Hitze seines letzten Atems.",
+      "armorType": "cloth",
+      "binding": "boe"
     },
     {
       "id": "t4-heart",
@@ -2340,7 +2405,8 @@
         "max": 3,
         "label": "Schicksalsgunst: +{value}% Drop-Chance"
       },
-      "flavorText": "Es schlägt. Nicht wie ein Herz aus Fleisch — wie das Herz einer Geschichte, die gut ausgeht."
+      "flavorText": "Es schlägt. Nicht wie ein Herz aus Fleisch — wie das Herz einer Geschichte, die gut ausgeht.",
+      "binding": "boe"
     },
     {
       "id": "t4-boots",
@@ -2400,7 +2466,9 @@
         "max": 3,
         "label": "Fernhandel: +{value}% Gold"
       },
-      "flavorText": "Jede Dimension, jeder Kontinent, jeder Pfad. Die Sohlen sind dünn, aber die Erinnerungen sind tief."
+      "flavorText": "Jede Dimension, jeder Kontinent, jeder Pfad. Die Sohlen sind dünn, aber die Erinnerungen sind tief.",
+      "armorType": "leather",
+      "binding": "boe"
     },
     {
       "id": "t4-excalibur",
@@ -2466,7 +2534,8 @@
         "max": 3,
         "label": "Legende: +{value}% Quest-XP"
       },
-      "flavorText": "Es gibt eine Klinge, die nicht gezogen, sondern verdient wird. Du weißt bereits, welche."
+      "flavorText": "Es gibt eine Klinge, die nicht gezogen, sondern verdient wird. Du weißt bereits, welche.",
+      "binding": "boe"
     },
     {
       "id": "t4-phoenix",
@@ -2526,7 +2595,9 @@
         "value": 1,
         "label": "Wiedergeburt: Hält 1 Streak-Schild aktiv"
       },
-      "flavorText": "Der Phoenix stirbt nicht. Er vergisst nur kurz, dass er lebt."
+      "flavorText": "Der Phoenix stirbt nicht. Er vergisst nur kurz, dass er lebt.",
+      "armorType": "heavy",
+      "binding": "boe"
     },
     {
       "id": "t4-oracle",
@@ -2587,7 +2658,8 @@
         "max": 3,
         "label": "Vorsehung: +{value}% Drop-Chance"
       },
-      "flavorText": "Du wirst sehen, was kommt. Du wirst es nicht ändern können. Du wirst es trotzdem versuchen."
+      "flavorText": "Du wirst sehen, was kommt. Du wirst es nicht ändern können. Du wirst es trotzdem versuchen.",
+      "binding": "boe"
     },
     {
       "id": "t4-nightfall",
@@ -2645,10 +2717,11 @@
       "legendaryEffect": {
         "type": "night_double_gold",
         "min": 3,
-        "max": 6,
+        "max": 5,
         "label": "Nachtschatten: +{value}% Gold bei Nacht-Quests (23-5 Uhr)"
       },
-      "flavorText": "Zwischen Mitternacht und Morgen, wenn die Welt schläft, wacht diese Klinge. Und sie belohnt, wer mit ihr wacht."
+      "flavorText": "Zwischen Mitternacht und Morgen, wenn die Welt schläft, wacht diese Klinge. Und sie belohnt, wer mit ihr wacht.",
+      "binding": "boe"
     },
     {
       "id": "t4-rhythm",
@@ -2706,10 +2779,11 @@
       "legendaryEffect": {
         "type": "every_nth_bonus",
         "min": 3,
-        "max": 6,
+        "max": 5,
         "label": "Rhythmus: Jede 5. Quest gibt +{value}% Bonus-XP"
       },
-      "flavorText": "Eins. Zwei. Drei. Vier. Der fünfte Schlag trifft anders. Frag nicht warum. Frag nur: bist du bereit?"
+      "flavorText": "Eins. Zwei. Drei. Vier. Der fünfte Schlag trifft anders. Frag nicht warum. Frag nur: bist du bereit?",
+      "binding": "boe"
     },
     {
       "id": "t4-sentinel",
@@ -2770,7 +2844,9 @@
         "max": 30,
         "label": "Ewige Wacht: Streak-Shield aktiviert sich automatisch ab {value}+ Tagen"
       },
-      "flavorText": "Der letzte Wächter von Aethermoor hat nie geschlafen. Seine Rüstung auch nicht."
+      "flavorText": "Der letzte Wächter von Aethermoor hat nie geschlafen. Seine Rüstung auch nicht.",
+      "armorType": "cloth",
+      "binding": "boe"
     },
     {
       "id": "t4-midas",
@@ -2831,7 +2907,8 @@
         "max": 3,
         "label": "Midas-Griff: +{value}% Chance auf doppelte Materialien"
       },
-      "flavorText": "Alles wird zu Gold. Das ist der Segen. Alles wird zu Gold. Das ist der Fluch."
+      "flavorText": "Alles wird zu Gold. Das ist der Segen. Alles wird zu Gold. Das ist der Fluch.",
+      "binding": "boe"
     },
     {
       "id": "t4-scholar",
@@ -2892,7 +2969,9 @@
         "max": 3,
         "label": "Polyglott: +{value}% XP pro verschiedenem Quest-Typ heute"
       },
-      "flavorText": "Durch diese Gläser sieht die Welt aus wie ein Buch. Und jede Seite will gelesen werden."
+      "flavorText": "Durch diese Gläser sieht die Welt aus wie ein Buch. Und jede Seite will gelesen werden.",
+      "armorType": "leather",
+      "binding": "boe"
     },
     {
       "id": "gen-knochen-dolch",
@@ -2934,7 +3013,8 @@
       },
       "legendaryEffect": null,
       "setId": "adventurer",
-      "flavorText": "Aus welchem Knochen geschnitzt? Gute Frage. Falsche Frage."
+      "flavorText": "Aus welchem Knochen geschnitzt? Gute Frage. Falsche Frage.",
+      "binding": "boe"
     },
     {
       "id": "gen-reisigschild",
@@ -2976,7 +3056,8 @@
       },
       "legendaryEffect": null,
       "setId": "adventurer",
-      "flavorText": "Ein Bündel Äste, zusammengebunden mit Hoffnung und etwas Seil."
+      "flavorText": "Ein Bündel Äste, zusammengebunden mit Hoffnung und etwas Seil.",
+      "binding": "boe"
     },
     {
       "id": "gen-flickenhaube",
@@ -3018,7 +3099,9 @@
       },
       "legendaryEffect": null,
       "setId": "adventurer",
-      "flavorText": "Neun Flicken auf einem Stück Stoff, das einmal eine Haube war. Oder ein Handtuch. Schwer zu sagen."
+      "flavorText": "Neun Flicken auf einem Stück Stoff, das einmal eine Haube war. Oder ein Handtuch. Schwer zu sagen.",
+      "armorType": "heavy",
+      "binding": "boe"
     },
     {
       "id": "gen-sackleinen-wams",
@@ -3060,7 +3143,9 @@
       },
       "legendaryEffect": null,
       "setId": "adventurer",
-      "flavorText": "Es kratzt, es stinkt, und es hält den Wind ab. Zwei von drei Dingen davon sind nützlich."
+      "flavorText": "Es kratzt, es stinkt, und es hält den Wind ab. Zwei von drei Dingen davon sind nützlich.",
+      "armorType": "cloth",
+      "binding": "boe"
     },
     {
       "id": "gen-bindfaden-kette",
@@ -3102,7 +3187,8 @@
       },
       "legendaryEffect": null,
       "setId": "adventurer",
-      "flavorText": "Ein Stein an einem Faden. Jemand hat dir gesagt, es sei magisch. Du hast es geglaubt."
+      "flavorText": "Ein Stein an einem Faden. Jemand hat dir gesagt, es sei magisch. Du hast es geglaubt.",
+      "binding": "boe"
     },
     {
       "id": "gen-barfuss-wraps",
@@ -3144,7 +3230,9 @@
       },
       "legendaryEffect": null,
       "setId": "adventurer",
-      "flavorText": "Der dünne Unterschied zwischen Zivilisation und Barbarei sind zwei Streifen Leinen."
+      "flavorText": "Der dünne Unterschied zwischen Zivilisation und Barbarei sind zwei Streifen Leinen.",
+      "armorType": "leather",
+      "binding": "boe"
     },
     {
       "id": "gen-kupfer-saebel",
@@ -3186,7 +3274,8 @@
       },
       "legendaryEffect": null,
       "setId": "adventurer",
-      "flavorText": "Kupfer ist weich, sagen die Schmiede. Weich genug, sagt die Narbe."
+      "flavorText": "Kupfer ist weich, sagen die Schmiede. Weich genug, sagt die Narbe.",
+      "binding": "boe"
     },
     {
       "id": "gen-hirschhorn-bogen",
@@ -3234,7 +3323,8 @@
       },
       "legendaryEffect": null,
       "setId": "adventurer",
-      "flavorText": "Die Aetherhirsche tragen ihr Geweih wie Kronen. Dieser hier trägt es nicht mehr."
+      "flavorText": "Die Aetherhirsche tragen ihr Geweih wie Kronen. Dieser hier trägt es nicht mehr.",
+      "binding": "boe"
     },
     {
       "id": "gen-wachsschild",
@@ -3282,7 +3372,8 @@
       },
       "legendaryEffect": null,
       "setId": "adventurer",
-      "flavorText": "Regenfest, windbeständig, schwertdurchlässig. Zwei von drei ist akzeptabel."
+      "flavorText": "Regenfest, windbeständig, schwertdurchlässig. Zwei von drei ist akzeptabel.",
+      "binding": "boe"
     },
     {
       "id": "gen-kraehen-kappe",
@@ -3330,7 +3421,9 @@
       },
       "legendaryEffect": null,
       "setId": "adventurer",
-      "flavorText": "Die Krähen von Aethermoor vergessen kein Gesicht. In dieser Kappe vergessen sie deines."
+      "flavorText": "Die Krähen von Aethermoor vergessen kein Gesicht. In dieser Kappe vergessen sie deines.",
+      "armorType": "heavy",
+      "binding": "boe"
     },
     {
       "id": "gen-wanderer-mantel",
@@ -3378,7 +3471,9 @@
       },
       "legendaryEffect": null,
       "setId": "adventurer",
-      "flavorText": "Jede Naht ein anderer Weg. Keiner davon führte zurück."
+      "flavorText": "Jede Naht ein anderer Weg. Keiner davon führte zurück.",
+      "armorType": "cloth",
+      "binding": "boe"
     },
     {
       "id": "gen-bernstein-anhanger",
@@ -3426,7 +3521,8 @@
       },
       "legendaryEffect": null,
       "setId": "adventurer",
-      "flavorText": "Das Insekt im Bernstein hatte einen sehr schlechten Tag. Deiner wird besser."
+      "flavorText": "Das Insekt im Bernstein hatte einen sehr schlechten Tag. Deiner wird besser.",
+      "binding": "boe"
     },
     {
       "id": "gen-stroh-sandalen",
@@ -3468,7 +3564,9 @@
       },
       "legendaryEffect": null,
       "setId": "adventurer",
-      "flavorText": "Drei Tage Lebensdauer. Dann bist du entweder angekommen oder hast größere Probleme."
+      "flavorText": "Drei Tage Lebensdauer. Dann bist du entweder angekommen oder hast größere Probleme.",
+      "armorType": "leather",
+      "binding": "boe"
     },
     {
       "id": "gen-wildschwein-speer",
@@ -3521,7 +3619,8 @@
       },
       "legendaryEffect": null,
       "setId": "adventurer",
-      "flavorText": "Geschärft an einem Wildschwein, das davon nicht beeindruckt war. Die Narben am Schaft bestätigen das."
+      "flavorText": "Geschärft an einem Wildschwein, das davon nicht beeindruckt war. Die Narben am Schaft bestätigen das.",
+      "binding": "boe"
     },
     {
       "id": "gen-pelz-stiefel",
@@ -3569,7 +3668,9 @@
       },
       "legendaryEffect": null,
       "setId": "adventurer",
-      "flavorText": "Warm und weich. Der Fuchs war anderer Meinung, aber der wurde nicht gefragt."
+      "flavorText": "Warm und weich. Der Fuchs war anderer Meinung, aber der wurde nicht gefragt.",
+      "armorType": "heavy",
+      "binding": "boe"
     },
     {
       "id": "gen-nebel-klinge",
@@ -3617,11 +3718,12 @@
       },
       "legendaryEffect": null,
       "setId": "veteran",
-      "flavorText": "Bei klarem Wetter eine gewöhnliche Klinge. Bei Nebel — nun, dann sieht man ohnehin nichts."
+      "flavorText": "Bei klarem Wetter eine gewöhnliche Klinge. Bei Nebel — nun, dann sieht man ohnehin nichts.",
+      "binding": "boe"
     },
     {
       "id": "gen-eisen-streitaxt",
-      "name": "Eiserne Streitaxt",
+      "name": "Eiserne Streitaxt II",
       "slot": "weapon",
       "tier": 2,
       "reqLevel": 12,
@@ -3670,7 +3772,8 @@
       },
       "legendaryEffect": null,
       "setId": "veteran",
-      "flavorText": "Kein Zauber, kein Trick, keine Entschuldigung. Nur Eisen, das eine Meinung hat."
+      "flavorText": "Kein Zauber, kein Trick, keine Entschuldigung. Nur Eisen, das eine Meinung hat.",
+      "binding": "boe"
     },
     {
       "id": "gen-aether-stab",
@@ -3723,7 +3826,8 @@
       },
       "legendaryEffect": null,
       "setId": "veteran",
-      "flavorText": "Wo der Aetherstrom dicht fließt, summt das Holz. An manchen Tagen singt es."
+      "flavorText": "Wo der Aetherstrom dicht fließt, summt das Holz. An manchen Tagen singt es.",
+      "binding": "boe"
     },
     {
       "id": "gen-spiegel-schild",
@@ -3771,7 +3875,8 @@
       },
       "legendaryEffect": null,
       "setId": "veteran",
-      "flavorText": "Dein Feind sieht sein eigenes Gesicht, bevor er zuschlägt. Manche zögern. Das reicht."
+      "flavorText": "Dein Feind sieht sein eigenes Gesicht, bevor er zuschlägt. Manche zögern. Das reicht.",
+      "binding": "boe"
     },
     {
       "id": "gen-dorn-schild",
@@ -3824,7 +3929,8 @@
       },
       "legendaryEffect": null,
       "setId": "veteran",
-      "flavorText": "Eine Einladung und eine Warnung in einem. Die meisten verstehen die Warnung."
+      "flavorText": "Eine Einladung und eine Warnung in einem. Die meisten verstehen die Warnung.",
+      "binding": "boe"
     },
     {
       "id": "gen-gelehrten-hut",
@@ -3872,7 +3978,9 @@
       },
       "legendaryEffect": null,
       "setId": "veteran",
-      "flavorText": "Tintenflecke verraten mehr über einen Gelehrten als seine Bücher."
+      "flavorText": "Tintenflecke verraten mehr über einen Gelehrten als seine Bücher.",
+      "armorType": "cloth",
+      "binding": "boe"
     },
     {
       "id": "gen-stahl-visier",
@@ -3925,7 +4033,9 @@
       },
       "legendaryEffect": null,
       "setId": "veteran",
-      "flavorText": "Die Welt wird kleiner durch den Schlitz. Aber was du siehst, trifft nicht mehr dein Gesicht."
+      "flavorText": "Die Welt wird kleiner durch den Schlitz. Aber was du siehst, trifft nicht mehr dein Gesicht.",
+      "armorType": "leather",
+      "binding": "boe"
     },
     {
       "id": "gen-genietete-weste",
@@ -3973,7 +4083,9 @@
       },
       "legendaryEffect": null,
       "setId": "veteran",
-      "flavorText": "Handarbeit erkennt man an den Dellen. Und daran, dass sie trotzdem hält."
+      "flavorText": "Handarbeit erkennt man an den Dellen. Und daran, dass sie trotzdem hält.",
+      "armorType": "heavy",
+      "binding": "boe"
     },
     {
       "id": "gen-doppelring-kette",
@@ -4026,7 +4138,9 @@
       },
       "legendaryEffect": null,
       "setId": "veteran",
-      "flavorText": "Doppelt gekettet, doppelt geschützt, doppelt verschwitzt. Der Preis für Sicherheit."
+      "flavorText": "Doppelt gekettet, doppelt geschützt, doppelt verschwitzt. Der Preis für Sicherheit.",
+      "armorType": "cloth",
+      "binding": "boe"
     },
     {
       "id": "gen-windlaeufer-amulett",
@@ -4074,7 +4188,8 @@
       },
       "legendaryEffect": null,
       "setId": "veteran",
-      "flavorText": "Es riecht nach dem nächsten Sturm, noch bevor die ersten Wolken kommen."
+      "flavorText": "Es riecht nach dem nächsten Sturm, noch bevor die ersten Wolken kommen.",
+      "binding": "boe"
     },
     {
       "id": "gen-knorpel-amulett",
@@ -4127,7 +4242,8 @@
       },
       "legendaryEffect": null,
       "setId": "veteran",
-      "flavorText": "Still sein ist eine Fähigkeit. Das Amulett macht es zur Gewohnheit."
+      "flavorText": "Still sein ist eine Fähigkeit. Das Amulett macht es zur Gewohnheit.",
+      "binding": "boe"
     },
     {
       "id": "gen-ranger-stiefel",
@@ -4175,7 +4291,9 @@
       },
       "legendaryEffect": null,
       "setId": "veteran",
-      "flavorText": "Auf Laub: lautlos. Auf Kies: peinlich. Auf Marmor: eine Katastrophe."
+      "flavorText": "Auf Laub: lautlos. Auf Kies: peinlich. Auf Marmor: eine Katastrophe.",
+      "armorType": "leather",
+      "binding": "boe"
     },
     {
       "id": "gen-beschlagene-stiefel",
@@ -4228,7 +4346,9 @@
       },
       "legendaryEffect": null,
       "setId": "veteran",
-      "flavorText": "Die Beschläge hinterlassen Kratzer auf jedem Boden. Wirte lieben dich."
+      "flavorText": "Die Beschläge hinterlassen Kratzer auf jedem Boden. Wirte lieben dich.",
+      "armorType": "heavy",
+      "binding": "boe"
     },
     {
       "id": "gen-schuppenhemd",
@@ -4276,7 +4396,9 @@
       },
       "legendaryEffect": null,
       "setId": "veteran",
-      "flavorText": "Es klingt wie Regen auf einem Blechdach. Wenn Regen aus Metall wäre und das Dach du."
+      "flavorText": "Es klingt wie Regen auf einem Blechdach. Wenn Regen aus Metall wäre und das Dach du.",
+      "armorType": "cloth",
+      "binding": "boe"
     },
     {
       "id": "gen-messingkeule",
@@ -4318,7 +4440,8 @@
       },
       "legendaryEffect": null,
       "setId": "veteran",
-      "flavorText": "Kein Kunstwerk. Aber das muss sie auch nicht sein — frag den letzten, der gelacht hat."
+      "flavorText": "Kein Kunstwerk. Aber das muss sie auch nicht sein — frag den letzten, der gelacht hat.",
+      "binding": "boe"
     },
     {
       "id": "gen-flammen-hammer",
@@ -4371,7 +4494,8 @@
       },
       "legendaryEffect": null,
       "setId": "master",
-      "flavorText": "Die Schmiedin schwört, das Feuer sei erloschen. Der Hammer ist anderer Meinung."
+      "flavorText": "Die Schmiedin schwört, das Feuer sei erloschen. Der Hammer ist anderer Meinung.",
+      "binding": "boe"
     },
     {
       "id": "gen-mondsichel",
@@ -4429,7 +4553,8 @@
       },
       "legendaryEffect": null,
       "setId": "master",
-      "flavorText": "Es heißt, sie wurde in einer einzigen mondlosen Nacht geschmiedet. Manche Klingen brauchen Dunkelheit, um zu leuchten."
+      "flavorText": "Es heißt, sie wurde in einer einzigen mondlosen Nacht geschmiedet. Manche Klingen brauchen Dunkelheit, um zu leuchten.",
+      "binding": "boe"
     },
     {
       "id": "gen-schild-der-wacht",
@@ -4477,7 +4602,8 @@
       },
       "legendaryEffect": null,
       "setId": "master",
-      "flavorText": "Dreiundzwanzig Jahre Morgenwacht. Jede Delle hat einen Namen."
+      "flavorText": "Dreiundzwanzig Jahre Morgenwacht. Jede Delle hat einen Namen.",
+      "binding": "boe"
     },
     {
       "id": "gen-runen-pavise",
@@ -4535,7 +4661,8 @@
       },
       "legendaryEffect": null,
       "setId": "master",
-      "flavorText": "Die Runen warnen vor Gefahr. Sie haben seit drei Wochen nicht aufgehört zu leuchten."
+      "flavorText": "Die Runen warnen vor Gefahr. Sie haben seit drei Wochen nicht aufgehört zu leuchten.",
+      "binding": "boe"
     },
     {
       "id": "gen-falkner-haube",
@@ -4588,7 +4715,9 @@
       },
       "legendaryEffect": null,
       "setId": "master",
-      "flavorText": "Der Falkner auf dem Nordturm trug sie ein halbes Leben. Sein Falke trug die Narben der anderen Hälfte."
+      "flavorText": "Der Falkner auf dem Nordturm trug sie ein halbes Leben. Sein Falke trug die Narben der anderen Hälfte.",
+      "armorType": "leather",
+      "binding": "boe"
     },
     {
       "id": "gen-kriegs-helm",
@@ -4646,7 +4775,9 @@
       },
       "legendaryEffect": null,
       "setId": "master",
-      "flavorText": "Grimvar hat ihn dreimal repariert und jedes Mal leiser geflucht. Beim dritten Mal sagte er nur: Respekt."
+      "flavorText": "Grimvar hat ihn dreimal repariert und jedes Mal leiser geflucht. Beim dritten Mal sagte er nur: Respekt.",
+      "armorType": "heavy",
+      "binding": "boe"
     },
     {
       "id": "gen-geflochtene-ruestung",
@@ -4699,7 +4830,9 @@
       },
       "legendaryEffect": null,
       "setId": "master",
-      "flavorText": "Sechshundert Meter Draht. Zwölf Lagen Leder. Null Beschwerden von den Trägern, die noch leben."
+      "flavorText": "Sechshundert Meter Draht. Zwölf Lagen Leder. Null Beschwerden von den Trägern, die noch leben.",
+      "armorType": "cloth",
+      "binding": "boe"
     },
     {
       "id": "gen-aethermantel",
@@ -4757,7 +4890,9 @@
       },
       "legendaryEffect": null,
       "setId": "master",
-      "flavorText": "Der Stoff fühlt sich an wie stille Luft. Die Schneider sprechen nicht mehr über die Nacht, in der sie ihn webten."
+      "flavorText": "Der Stoff fühlt sich an wie stille Luft. Die Schneider sprechen nicht mehr über die Nacht, in der sie ihn webten.",
+      "armorType": "leather",
+      "binding": "boe"
     },
     {
       "id": "gen-silber-medaillon",
@@ -4805,7 +4940,8 @@
       },
       "legendaryEffect": null,
       "setId": "master",
-      "flavorText": "Wer es öffnet, sieht ein leeres Bild. Wer es lange genug anstarrt, sieht ein Gesicht — aber nie sein eigenes."
+      "flavorText": "Wer es öffnet, sieht ein leeres Bild. Wer es lange genug anstarrt, sieht ein Gesicht — aber nie sein eigenes.",
+      "binding": "boe"
     },
     {
       "id": "gen-auge-des-wanderers",
@@ -4863,7 +4999,8 @@
       },
       "legendaryEffect": null,
       "setId": "master",
-      "flavorText": "Der Stein wurde in einer Höhle gefunden, die auf keiner Karte verzeichnet ist. Die Höhle ist danach verschwunden."
+      "flavorText": "Der Stein wurde in einer Höhle gefunden, die auf keiner Karte verzeichnet ist. Die Höhle ist danach verschwunden.",
+      "binding": "boe"
     },
     {
       "id": "gen-waldschreiter",
@@ -4916,7 +5053,9 @@
       },
       "legendaryEffect": null,
       "setId": "master",
-      "flavorText": "Ein Förster aus den Splitterholz-Wäldern hat sein ganzes Leben in ihnen verbracht. Der Wald hat ihn behalten. Die Stiefel hat er zurückgegeben."
+      "flavorText": "Ein Förster aus den Splitterholz-Wäldern hat sein ganzes Leben in ihnen verbracht. Der Wald hat ihn behalten. Die Stiefel hat er zurückgegeben.",
+      "armorType": "heavy",
+      "binding": "boe"
     },
     {
       "id": "gen-wolkenschreiter",
@@ -4974,7 +5113,9 @@
       },
       "legendaryEffect": null,
       "setId": "master",
-      "flavorText": "Es gibt Gerüchte, dass der Träger einmal vom Nordturm gefallen ist. Gefallen ist das falsche Wort."
+      "flavorText": "Es gibt Gerüchte, dass der Träger einmal vom Nordturm gefallen ist. Gefallen ist das falsche Wort.",
+      "armorType": "cloth",
+      "binding": "boe"
     },
     {
       "id": "gen-zinn-keule",
@@ -5016,7 +5157,8 @@
       },
       "legendaryEffect": null,
       "setId": "master",
-      "flavorText": "Billig, biegsam und ehrlich. Mehr kann man von einer Waffe nicht verlangen."
+      "flavorText": "Billig, biegsam und ehrlich. Mehr kann man von einer Waffe nicht verlangen.",
+      "binding": "boe"
     },
     {
       "id": "gen-rost-brustplatte",
@@ -5058,7 +5200,9 @@
       },
       "legendaryEffect": null,
       "setId": "master",
-      "flavorText": "Unter genug Rost liegt immer Stahl. Man muss nur bereit sein, sich die Hände schmutzig zu machen."
+      "flavorText": "Unter genug Rost liegt immer Stahl. Man muss nur bereit sein, sich die Hände schmutzig zu machen.",
+      "armorType": "leather",
+      "binding": "boe"
     },
     {
       "id": "gen-bergarbeiter-helm",
@@ -5100,7 +5244,9 @@
       },
       "legendaryEffect": null,
       "setId": "master",
-      "flavorText": "Die Bergleute von Tiefengrund sagen: Ein guter Helm braucht keine Politur. Er braucht Dellen."
+      "flavorText": "Die Bergleute von Tiefengrund sagen: Ein guter Helm braucht keine Politur. Er braucht Dellen.",
+      "armorType": "heavy",
+      "binding": "boe"
     },
     {
       "id": "gen-sturm-hellebarde",
@@ -5153,7 +5299,8 @@
       },
       "legendaryEffect": null,
       "setId": "legendary",
-      "flavorText": "Bei der letzten Gewitternacht auf dem Turm hat sie einen Blitz angezogen. Oder abgefeuert. Die Zeugen sind sich uneinig."
+      "flavorText": "Bei der letzten Gewitternacht auf dem Turm hat sie einen Blitz angezogen. Oder abgefeuert. Die Zeugen sind sich uneinig.",
+      "binding": "boe"
     },
     {
       "id": "gen-seelenbrecher",
@@ -5216,7 +5363,8 @@
         "label": "Seelenriss: +{value}% Chance auf doppelte Quest-Belohnung"
       },
       "setId": "legendary",
-      "flavorText": "Drei Könige haben sie geführt. Keiner hat sie niedergelegt. Sie wurde ihnen genommen — von der Klinge selbst."
+      "flavorText": "Drei Könige haben sie geführt. Keiner hat sie niedergelegt. Sie wurde ihnen genommen — von der Klinge selbst.",
+      "binding": "boe"
     },
     {
       "id": "gen-titan-schild",
@@ -5274,7 +5422,8 @@
       },
       "legendaryEffect": null,
       "setId": "legendary",
-      "flavorText": "Wer ihn hebt, darf ihn tragen. Das klingt einfacher, als es ist."
+      "flavorText": "Wer ihn hebt, darf ihn tragen. Das klingt einfacher, als es ist.",
+      "binding": "boe"
     },
     {
       "id": "gen-aether-krone",
@@ -5332,7 +5481,9 @@
       },
       "legendaryEffect": null,
       "setId": "legendary",
-      "flavorText": "Der Aetherstrom erkennt wenige an. Dass er dir eine Krone formt, ist entweder eine Ehre oder eine Warnung."
+      "flavorText": "Der Aetherstrom erkennt wenige an. Dass er dir eine Krone formt, ist entweder eine Ehre oder eine Warnung.",
+      "armorType": "cloth",
+      "binding": "boe"
     },
     {
       "id": "gen-panzermantel",
@@ -5385,7 +5536,9 @@
       },
       "legendaryEffect": null,
       "setId": "legendary",
-      "flavorText": "Die Technik, ihn zu schmieden, ist verloren. Grimvar hat drei Nächte lang versucht, sie zu rekonstruieren."
+      "flavorText": "Die Technik, ihn zu schmieden, ist verloren. Grimvar hat drei Nächte lang versucht, sie zu rekonstruieren.",
+      "armorType": "leather",
+      "binding": "boe"
     },
     {
       "id": "gen-eid-amulett",
@@ -5438,7 +5591,8 @@
       },
       "legendaryEffect": null,
       "setId": "legendary",
-      "flavorText": "Es gibt Versprechen, die man bricht, und Versprechen, die einen brechen. Dieses Amulett kennt den Unterschied."
+      "flavorText": "Es gibt Versprechen, die man bricht, und Versprechen, die einen brechen. Dieses Amulett kennt den Unterschied.",
+      "binding": "boe"
     },
     {
       "id": "gen-eisenwurz-treter",
@@ -5491,7 +5645,9 @@
       },
       "legendaryEffect": null,
       "setId": "legendary",
-      "flavorText": "Eisenwurz wächst langsamer als Stein und ist härter als Stolz. Gute Sohlen für einen langen Weg."
+      "flavorText": "Eisenwurz wächst langsamer als Stein und ist härter als Stolz. Gute Sohlen für einen langen Weg.",
+      "armorType": "heavy",
+      "binding": "boe"
     },
     {
       "id": "gen-zerschmetterer",
@@ -5549,7 +5705,8 @@
       },
       "legendaryEffect": null,
       "setId": "legendary",
-      "flavorText": "Grimvar hat ihn geschmiedet und drei Ambossköpfe dabei verbraucht. Er sagt, es hat sich gelohnt."
+      "flavorText": "Grimvar hat ihn geschmiedet und drei Ambossköpfe dabei verbraucht. Er sagt, es hat sich gelohnt.",
+      "binding": "boe"
     },
     {
       "id": "gen-irrlichter-stab",
@@ -5612,7 +5769,8 @@
         "label": "Irrlichtertanz: +{value}% Gefährten-Bond-XP"
       },
       "setId": "legendary",
-      "flavorText": "Die Lichter flüstern Ratschläge. Meistens gute. Manchmal in Sprachen, die seit Jahrhunderten tot sind."
+      "flavorText": "Die Lichter flüstern Ratschläge. Meistens gute. Manchmal in Sprachen, die seit Jahrhunderten tot sind.",
+      "binding": "boe"
     },
     {
       "id": "gen-ewiger-schild",
@@ -5675,7 +5833,8 @@
         "label": "Ewige Wacht: -{value}% Forge-Decay"
       },
       "setId": "legendary",
-      "flavorText": "Eldric hat ihn untersucht und schweigt seitdem über die Ergebnisse. Das ist bei Eldric kein gutes Zeichen."
+      "flavorText": "Eldric hat ihn untersucht und schweigt seitdem über die Ergebnisse. Das ist bei Eldric kein gutes Zeichen.",
+      "binding": "boe"
     },
     {
       "id": "gen-sternstaub-krone",
@@ -5738,7 +5897,9 @@
         "label": "Sternenlicht: +{value}% Quest-XP"
       },
       "setId": "legendary",
-      "flavorText": "Jeder Stein darin fiel einst vom Himmel. Man sagt, die Nacht wird ein wenig dunkler, wenn jemand sie trägt."
+      "flavorText": "Jeder Stein darin fiel einst vom Himmel. Man sagt, die Nacht wird ein wenig dunkler, wenn jemand sie trägt.",
+      "armorType": "cloth",
+      "binding": "boe"
     },
     {
       "id": "gen-schattenweber-robe",
@@ -5801,7 +5962,9 @@
         "label": "Schattenhandel: +{value}% Gold"
       },
       "setId": "legendary",
-      "flavorText": "Wer sie trägt, wirft keinen Schatten mehr. Dafür wirft die Robe einen für zwei."
+      "flavorText": "Wer sie trägt, wirft keinen Schatten mehr. Dafür wirft die Robe einen für zwei.",
+      "armorType": "leather",
+      "binding": "boe"
     },
     {
       "id": "gen-seher-amulett",
@@ -5859,7 +6022,8 @@
       },
       "legendaryEffect": null,
       "setId": "legendary",
-      "flavorText": "Der letzte Seher von Aethermoor wusste, wie alles enden würde. Er lächelte trotzdem."
+      "flavorText": "Der letzte Seher von Aethermoor wusste, wie alles enden würde. Er lächelte trotzdem.",
+      "binding": "boe"
     },
     {
       "id": "gen-himmelsschreiter",
@@ -5917,7 +6081,9 @@
       },
       "legendaryEffect": null,
       "setId": "legendary",
-      "flavorText": "Die Schwerkraft ist eine Konvention. Diese Stiefel haben die Einladung höflich abgelehnt."
+      "flavorText": "Die Schwerkraft ist eine Konvention. Diese Stiefel haben die Einladung höflich abgelehnt.",
+      "armorType": "heavy",
+      "binding": "boe"
     },
     {
       "id": "gen-pilger-stiefel",
@@ -5965,7 +6131,9 @@
       },
       "legendaryEffect": null,
       "setId": "legendary",
-      "flavorText": "Eintausendsiebenhundert Meilen. Ein Paar Sohlen. Kein einziger Flicken."
+      "flavorText": "Eintausendsiebenhundert Meilen. Ein Paar Sohlen. Kein einziger Flicken.",
+      "armorType": "cloth",
+      "binding": "boe"
     },
     {
       "id": "gen-grenzgaenger-schwert",
@@ -6023,7 +6191,8 @@
       },
       "legendaryEffect": null,
       "setId": "legendary",
-      "flavorText": "Geschmiedet im Moment zwischen einem Atemzug und dem nächsten. Die Schmiede erinnert sich nicht daran. Das Schwert schon."
+      "flavorText": "Geschmiedet im Moment zwischen einem Atemzug und dem nächsten. Die Schmiede erinnert sich nicht daran. Das Schwert schon.",
+      "binding": "boe"
     },
     {
       "id": "gen-frostmantel",
@@ -6076,7 +6245,9 @@
       },
       "legendaryEffect": null,
       "setId": "legendary",
-      "flavorText": "Die Kälte kommt nicht von außen. Sie kommt von dem, was der Mantel gesehen hat."
+      "flavorText": "Die Kälte kommt nicht von außen. Sie kommt von dem, was der Mantel gesehen hat.",
+      "armorType": "leather",
+      "binding": "boe"
     },
     {
       "id": "gen-alchemisten-ring",
@@ -6124,7 +6295,8 @@
       },
       "legendaryEffect": null,
       "setId": "legendary",
-      "flavorText": "Ysolde behauptet, er sei ein Meisterwerk der Alchemie. Er riecht trotzdem nach Schwefel und gescheiterten Experimenten."
+      "flavorText": "Ysolde behauptet, er sei ein Meisterwerk der Alchemie. Er riecht trotzdem nach Schwefel und gescheiterten Experimenten.",
+      "binding": "boe"
     },
     {
       "id": "gen-kriegs-gamaschen",
@@ -6182,7 +6354,9 @@
       },
       "legendaryEffect": null,
       "setId": "legendary",
-      "flavorText": "Jede Platte erzählt von einem anderen Schlachtfeld. Zusammen erzählen sie von jemandem, der immer wieder aufgestanden ist."
+      "flavorText": "Jede Platte erzählt von einem anderen Schlachtfeld. Zusammen erzählen sie von jemandem, der immer wieder aufgestanden ist.",
+      "armorType": "heavy",
+      "binding": "boe"
     },
     {
       "id": "gen-nebel-helm",
@@ -6235,7 +6409,9 @@
       },
       "legendaryEffect": null,
       "setId": "legendary",
-      "flavorText": "Der Nebel ist nicht Dekoration. Er ist Tarnung. Oder eine Warnung."
+      "flavorText": "Der Nebel ist nicht Dekoration. Er ist Tarnung. Oder eine Warnung.",
+      "armorType": "cloth",
+      "binding": "boe"
     },
     {
       "id": "dun-archive-tinten-schwert",
@@ -6288,7 +6464,8 @@
       },
       "legendaryEffect": null,
       "setId": "veteran",
-      "flavorText": "Die Tinte auf der Klinge stammt aus dem Versunkenen Archiv. Die Worte darauf sind keine Verzierung — es sind Urteile."
+      "flavorText": "Die Tinte auf der Klinge stammt aus dem Versunkenen Archiv. Die Worte darauf sind keine Verzierung — es sind Urteile.",
+      "binding": "boe"
     },
     {
       "id": "dun-archive-pergament-schild",
@@ -6341,7 +6518,8 @@
       },
       "legendaryEffect": null,
       "setId": "veteran",
-      "flavorText": "Manche Geschichten schützen besser als Stahl. Diese hier wurden auf die harte Tour gebunden."
+      "flavorText": "Manche Geschichten schützen besser als Stahl. Diese hier wurden auf die harte Tour gebunden.",
+      "binding": "boe"
     },
     {
       "id": "dun-archive-bibliothekars-kappe",
@@ -6389,7 +6567,9 @@
       },
       "legendaryEffect": null,
       "setId": "veteran",
-      "flavorText": "Der letzte Bibliothekar des Archivs trug sie, als das Wasser kam. Er hat die Bücher gerettet. Sich selbst nicht."
+      "flavorText": "Der letzte Bibliothekar des Archivs trug sie, als das Wasser kam. Er hat die Bücher gerettet. Sich selbst nicht.",
+      "armorType": "leather",
+      "binding": "boe"
     },
     {
       "id": "dun-archive-nasse-robe",
@@ -6442,7 +6622,9 @@
       },
       "legendaryEffect": null,
       "setId": "veteran",
-      "flavorText": "Das Wasser trocknet nie. Nicht weil die Robe nass ist — das Archiv weint noch immer um sein verlorenes Wissen."
+      "flavorText": "Das Wasser trocknet nie. Nicht weil die Robe nass ist — das Archiv weint noch immer um sein verlorenes Wissen.",
+      "armorType": "heavy",
+      "binding": "boe"
     },
     {
       "id": "dun-archive-bernstein-amulett",
@@ -6490,7 +6672,8 @@
       },
       "legendaryEffect": null,
       "setId": "veteran",
-      "flavorText": "Der Buchstabe im Bernstein wechselt. Manche sagen, er buchstabiert langsam einen Namen."
+      "flavorText": "Der Buchstabe im Bernstein wechselt. Manche sagen, er buchstabiert langsam einen Namen.",
+      "binding": "boe"
     },
     {
       "id": "dun-archive-flut-stiefel",
@@ -6538,7 +6721,9 @@
       },
       "legendaryEffect": null,
       "setId": "veteran",
-      "flavorText": "Das Wasser des Archivs hat ein Gedächtnis. Es erkennt diese Stiefel und zögert — aber nur kurz."
+      "flavorText": "Das Wasser des Archivs hat ein Gedächtnis. Es erkennt diese Stiefel und zögert — aber nur kurz.",
+      "armorType": "cloth",
+      "binding": "boe"
     },
     {
       "id": "dun-archive-chronisten-feder",
@@ -6596,7 +6781,8 @@
       },
       "legendaryEffect": null,
       "setId": "veteran",
-      "flavorText": "Der Chronist schrieb die Geschichte des Archivs bis zum letzten Satz. Die Feder schrieb weiter."
+      "flavorText": "Der Chronist schrieb die Geschichte des Archivs bis zum letzten Satz. Die Feder schrieb weiter.",
+      "binding": "boe"
     },
     {
       "id": "dun-archive-tiefenhelm",
@@ -6654,7 +6840,9 @@
       },
       "legendaryEffect": null,
       "setId": "veteran",
-      "flavorText": "Die Korallen sind kein Zufall. Die Tiefe markiert, was ihr gehört. Und sie vergisst nie."
+      "flavorText": "Die Korallen sind kein Zufall. Die Tiefe markiert, was ihr gehört. Und sie vergisst nie.",
+      "armorType": "leather",
+      "binding": "boe"
     },
     {
       "id": "dun-archive-wissen-panzer",
@@ -6712,7 +6900,9 @@
       },
       "legendaryEffect": null,
       "setId": "veteran",
-      "flavorText": "Dreizehn Formeln. Sieben davon revolutionär. Zwei davon gefährlich. Und eine, die niemand laut vorlesen sollte."
+      "flavorText": "Dreizehn Formeln. Sieben davon revolutionär. Zwei davon gefährlich. Und eine, die niemand laut vorlesen sollte.",
+      "armorType": "heavy",
+      "binding": "boe"
     },
     {
       "id": "dun-archive-tidenring",
@@ -6770,7 +6960,8 @@
       },
       "legendaryEffect": null,
       "setId": "veteran",
-      "flavorText": "Das Wasser im Ring folgt keinem Mond. Es folgt etwas anderem. Etwas Tieferem."
+      "flavorText": "Das Wasser im Ring folgt keinem Mond. Es folgt etwas anderem. Etwas Tieferem.",
+      "binding": "boe"
     },
     {
       "id": "dun-archive-gezeitenstiefel",
@@ -6828,7 +7019,9 @@
       },
       "legendaryEffect": null,
       "setId": "veteran",
-      "flavorText": "Sie hinterlassen nasse Spuren auf trockenem Stein. Die Abdrücke verschwinden nicht. Sie verdunsten — nach Tagen."
+      "flavorText": "Sie hinterlassen nasse Spuren auf trockenem Stein. Die Abdrücke verschwinden nicht. Sie verdunsten — nach Tagen.",
+      "armorType": "cloth",
+      "binding": "boe"
     },
     {
       "id": "dun-archive-wellen-schild",
@@ -6886,7 +7079,8 @@
       },
       "legendaryEffect": null,
       "setId": "veteran",
-      "flavorText": "Das Schiff, aus dem er geschnitzt wurde, liegt tiefer als Licht reicht. Die Wellen erkennen das Holz trotzdem."
+      "flavorText": "Das Schiff, aus dem er geschnitzt wurde, liegt tiefer als Licht reicht. Die Wellen erkennen das Holz trotzdem.",
+      "binding": "boe"
     },
     {
       "id": "dun-spire-prisma-klinge",
@@ -6939,7 +7133,8 @@
       },
       "legendaryEffect": null,
       "setId": "master",
-      "flavorText": "Licht ist eine Waffe, wenn man weiß, wie man es bricht. Diese Klinge weiß es besser als die meisten Gelehrten."
+      "flavorText": "Licht ist eine Waffe, wenn man weiß, wie man es bricht. Diese Klinge weiß es besser als die meisten Gelehrten.",
+      "binding": "boe"
     },
     {
       "id": "dun-spire-kristall-schild",
@@ -6987,7 +7182,8 @@
       },
       "legendaryEffect": null,
       "setId": "master",
-      "flavorText": "Der Kristall wächst. Langsam, aber stetig. In hundert Jahren wird es eine Mauer sein."
+      "flavorText": "Der Kristall wächst. Langsam, aber stetig. In hundert Jahren wird es eine Mauer sein.",
+      "binding": "boe"
     },
     {
       "id": "dun-spire-splitter-helm",
@@ -7040,7 +7236,9 @@
       },
       "legendaryEffect": null,
       "setId": "master",
-      "flavorText": "Die Splitter wachsen nach, wenn man sie abbricht. Grimvar nennt es faszinierend. Alle anderen nennen es beunruhigend."
+      "flavorText": "Die Splitter wachsen nach, wenn man sie abbricht. Grimvar nennt es faszinierend. Alle anderen nennen es beunruhigend.",
+      "armorType": "leather",
+      "binding": "boe"
     },
     {
       "id": "dun-spire-resonanz-ruestung",
@@ -7088,7 +7286,9 @@
       },
       "legendaryEffect": null,
       "setId": "master",
-      "flavorText": "Der Spire singt auf einer Frequenz, die nur diese Rüstung hört. Wer sie trägt, summt manchmal mit."
+      "flavorText": "Der Spire singt auf einer Frequenz, die nur diese Rüstung hört. Wer sie trägt, summt manchmal mit.",
+      "armorType": "heavy",
+      "binding": "boe"
     },
     {
       "id": "dun-spire-funken-amulett",
@@ -7141,7 +7341,8 @@
       },
       "legendaryEffect": null,
       "setId": "master",
-      "flavorText": "Eldric wollte die Blitze studieren. Sie haben ihn zweimal durch den Raum geschleudert."
+      "flavorText": "Eldric wollte die Blitze studieren. Sie haben ihn zweimal durch den Raum geschleudert.",
+      "binding": "boe"
     },
     {
       "id": "dun-spire-ladungs-stiefel",
@@ -7189,7 +7390,9 @@
       },
       "legendaryEffect": null,
       "setId": "master",
-      "flavorText": "Drei Handschuhe verschlissen beim Ausziehen. Der vierte war aus Gummi. Den vierten hat Ysolde erfunden."
+      "flavorText": "Drei Handschuhe verschlissen beim Ausziehen. Der vierte war aus Gummi. Den vierten hat Ysolde erfunden.",
+      "armorType": "cloth",
+      "binding": "boe"
     },
     {
       "id": "dun-spire-energie-klinge",
@@ -7247,7 +7450,8 @@
       },
       "legendaryEffect": null,
       "setId": "master",
-      "flavorText": "Lass nicht los. Das steht auf dem Griff. Nicht als Warnung — als Anleitung."
+      "flavorText": "Lass nicht los. Das steht auf dem Griff. Nicht als Warnung — als Anleitung.",
+      "binding": "boe"
     },
     {
       "id": "dun-spire-arkaner-schild",
@@ -7305,7 +7509,8 @@
       },
       "legendaryEffect": null,
       "setId": "master",
-      "flavorText": "Geduld ist eine Tugend. Dieser Schild hat sie. Brich ihn, und er wächst zurück. Stärker."
+      "flavorText": "Geduld ist eine Tugend. Dieser Schild hat sie. Brich ihn, und er wächst zurück. Stärker.",
+      "binding": "boe"
     },
     {
       "id": "dun-spire-prismen-krone",
@@ -7363,7 +7568,9 @@
       },
       "legendaryEffect": null,
       "setId": "master",
-      "flavorText": "Jeder Gedanke wird in Spektren gebrochen. Die Welt wird klarer, wenn man aufhört, sie als Ganzes sehen zu wollen."
+      "flavorText": "Jeder Gedanke wird in Spektren gebrochen. Die Welt wird klarer, wenn man aufhört, sie als Ganzes sehen zu wollen.",
+      "armorType": "leather",
+      "binding": "boe"
     },
     {
       "id": "dun-spire-energiepanzer",
@@ -7421,7 +7628,9 @@
       },
       "legendaryEffect": null,
       "setId": "master",
-      "flavorText": "Der Puls des Spire fließt durch jede Platte. Manche sagen, es ist wie ein zweites Herz."
+      "flavorText": "Der Puls des Spire fließt durch jede Platte. Manche sagen, es ist wie ein zweites Herz.",
+      "armorType": "heavy",
+      "binding": "boe"
     },
     {
       "id": "dun-spire-blitz-amulett",
@@ -7479,7 +7688,8 @@
       },
       "legendaryEffect": null,
       "setId": "master",
-      "flavorText": "Nachtlager werden schwierig. Zudecken hilft nicht. Augenbinden helfen nicht. Akzeptanz hilft. Ein bisschen."
+      "flavorText": "Nachtlager werden schwierig. Zudecken hilft nicht. Augenbinden helfen nicht. Akzeptanz hilft. Ein bisschen.",
+      "binding": "boe"
     },
     {
       "id": "dun-spire-gleiter-stiefel",
@@ -7537,7 +7747,9 @@
       },
       "legendaryEffect": null,
       "setId": "master",
-      "flavorText": "Wer den Spire bestiegen hat, versteht Höhe anders. Treppen sind danach nur noch eine höfliche Erinnerung."
+      "flavorText": "Wer den Spire bestiegen hat, versteht Höhe anders. Treppen sind danach nur noch eine höfliche Erinnerung.",
+      "armorType": "cloth",
+      "binding": "boe"
     },
     {
       "id": "dun-core-leere-sense",
@@ -7595,7 +7807,8 @@
       },
       "legendaryEffect": null,
       "setId": "legendary",
-      "flavorText": "Man kann die Leere nicht schmieden. Man kann sie nur bitten. Wer auch immer gebeten hat — die Leere hat zugestimmt."
+      "flavorText": "Man kann die Leere nicht schmieden. Man kann sie nur bitten. Wer auch immer gebeten hat — die Leere hat zugestimmt.",
+      "binding": "boe"
     },
     {
       "id": "dun-core-nichts-schild",
@@ -7653,7 +7866,8 @@
       },
       "legendaryEffect": null,
       "setId": "legendary",
-      "flavorText": "Die beste Verteidigung ist Abwesenheit. Dieses Schild hat die Philosophie zu Ende gedacht."
+      "flavorText": "Die beste Verteidigung ist Abwesenheit. Dieses Schild hat die Philosophie zu Ende gedacht.",
+      "binding": "boe"
     },
     {
       "id": "dun-core-abgrund-haube",
@@ -7716,7 +7930,9 @@
         "label": "Abgrundblick: +{value}% Dungeon-Belohnungen"
       },
       "setId": "legendary",
-      "flavorText": "Der Abgrund hat Humor. Das ist die beunruhigendste Erkenntnis, die der Hohle Kern zu bieten hat."
+      "flavorText": "Der Abgrund hat Humor. Das ist die beunruhigendste Erkenntnis, die der Hohle Kern zu bieten hat.",
+      "armorType": "leather",
+      "binding": "boe"
     },
     {
       "id": "dun-core-schatten-ruestung",
@@ -7779,7 +7995,9 @@
         "label": "Schattenmantel: -{value}% Forge-Decay"
       },
       "setId": "legendary",
-      "flavorText": "Kein Licht. Kein Schwert. Kein Geräusch. Die Schatten schützen vollständig — und fordern nichts. Noch nicht."
+      "flavorText": "Kein Licht. Kein Schwert. Kein Geräusch. Die Schatten schützen vollständig — und fordern nichts. Noch nicht.",
+      "armorType": "heavy",
+      "binding": "boe"
     },
     {
       "id": "dun-core-leere-amulett",
@@ -7838,11 +8056,12 @@
       "legendaryEffect": {
         "type": "salvage_bonus",
         "min": 3,
-        "max": 6,
+        "max": 5,
         "label": "Leere Tiefe: +{value}% Materialien beim Zerlegen"
       },
       "setId": "legendary",
-      "flavorText": "Es ist kein Loch in einem Stein. Es ist Abwesenheit, die sich als Schmuck verkleidet."
+      "flavorText": "Es ist kein Loch in einem Stein. Es ist Abwesenheit, die sich als Schmuck verkleidet.",
+      "binding": "boe"
     },
     {
       "id": "dun-core-void-stiefel",
@@ -7901,11 +8120,13 @@
       "legendaryEffect": {
         "type": "gem_preserve",
         "min": 5,
-        "max": 10,
+        "max": 5,
         "label": "Voidschritt: +{value}% Chance, Edelstein beim Entfernen zu bewahren"
       },
       "setId": "legendary",
-      "flavorText": "Still. Nicht leise — still. Als hätte jemand dem Boden das Existieren verboten, wo du hintrittst."
+      "flavorText": "Still. Nicht leise — still. Als hätte jemand dem Boden das Existieren verboten, wo du hintrittst.",
+      "armorType": "cloth",
+      "binding": "boe"
     },
     {
       "id": "dun-core-abyssale-klinge",
@@ -7968,7 +8189,8 @@
         "label": "Abyssaler Schnitt: +{value}% Quest-XP"
       },
       "setId": "legendary",
-      "flavorText": "Ohne Hitze geschmiedet. Ohne Licht. Ohne Amboss. Grimvar weigert sich, darüber zu sprechen."
+      "flavorText": "Ohne Hitze geschmiedet. Ohne Licht. Ohne Amboss. Grimvar weigert sich, darüber zu sprechen.",
+      "binding": "boe"
     },
     {
       "id": "dun-core-kern-schild",
@@ -8031,7 +8253,8 @@
         "label": "Kernschutz: +{value}% Drop-Chance"
       },
       "setId": "legendary",
-      "flavorText": "Im Kern des Hohlen Kerns gibt es einen Punkt, an dem Schutz und Gefängnis dasselbe Wort sind."
+      "flavorText": "Im Kern des Hohlen Kerns gibt es einen Punkt, an dem Schutz und Gefängnis dasselbe Wort sind.",
+      "binding": "boe"
     },
     {
       "id": "dun-core-leere-robe",
@@ -8089,7 +8312,9 @@
       },
       "legendaryEffect": null,
       "setId": "legendary",
-      "flavorText": "Jemand trug sie. Jemand Wichtiges. Die Robe erinnert sich nicht, und das ist vielleicht das Traurigste."
+      "flavorText": "Jemand trug sie. Jemand Wichtiges. Die Robe erinnert sich nicht, und das ist vielleicht das Traurigste.",
+      "armorType": "leather",
+      "binding": "boe"
     },
     {
       "id": "dun-core-dunkelheit-helm",
@@ -8147,7 +8372,9 @@
       },
       "legendaryEffect": null,
       "setId": "legendary",
-      "flavorText": "Die Dunkelheit unter dem Helm ist nicht feindlich. Sie ist aufmerksam. Sie zeigt dir, was Licht versteckt."
+      "flavorText": "Die Dunkelheit unter dem Helm ist nicht feindlich. Sie ist aufmerksam. Sie zeigt dir, was Licht versteckt.",
+      "armorType": "heavy",
+      "binding": "boe"
     },
     {
       "id": "rift-normal-spalt-schwert",
@@ -8195,7 +8422,8 @@
       },
       "legendaryEffect": null,
       "setId": "veteran",
-      "flavorText": "Die Klinge existiert in einem Zustand höflicher Unentschlossenheit. Hier und dort. Meistens hier."
+      "flavorText": "Die Klinge existiert in einem Zustand höflicher Unentschlossenheit. Hier und dort. Meistens hier.",
+      "binding": "boe"
     },
     {
       "id": "rift-normal-verzerrte-ruestung",
@@ -8243,7 +8471,9 @@
       },
       "legendaryEffect": null,
       "setId": "veteran",
-      "flavorText": "Realität ist im Riss eine Frage des Standpunkts. Diese Rüstung hat aufgehört, sich festzulegen."
+      "flavorText": "Realität ist im Riss eine Frage des Standpunkts. Diese Rüstung hat aufgehört, sich festzulegen.",
+      "armorType": "cloth",
+      "binding": "boe"
     },
     {
       "id": "rift-normal-flicker-helm",
@@ -8291,7 +8521,9 @@
       },
       "legendaryEffect": null,
       "setId": "veteran",
-      "flavorText": "Er verschwindet alle paar Sekunden. Dein Kopf nicht. Das ist ein wichtiger Unterschied."
+      "flavorText": "Er verschwindet alle paar Sekunden. Dein Kopf nicht. Das ist ein wichtiger Unterschied.",
+      "armorType": "leather",
+      "binding": "boe"
     },
     {
       "id": "rift-normal-echo-stiefel",
@@ -8339,7 +8571,9 @@
       },
       "legendaryEffect": null,
       "setId": "veteran",
-      "flavorText": "Deine Schritte folgen dir. Nicht sofort. Aber sie folgen. Immer."
+      "flavorText": "Deine Schritte folgen dir. Nicht sofort. Aber sie folgen. Immer.",
+      "armorType": "heavy",
+      "binding": "boe"
     },
     {
       "id": "rift-hard-phasen-klinge",
@@ -8397,7 +8631,8 @@
       },
       "legendaryEffect": null,
       "setId": "master",
-      "flavorText": "Zwei Dimensionen. Eine Klinge. Null Ausreden für den Getroffenen."
+      "flavorText": "Zwei Dimensionen. Eine Klinge. Null Ausreden für den Getroffenen.",
+      "binding": "boe"
     },
     {
       "id": "rift-hard-dimensionsschild",
@@ -8455,7 +8690,8 @@
       },
       "legendaryEffect": null,
       "setId": "legendary",
-      "flavorText": "Er blockiert Angriffe, die noch nicht passiert sind. Die Zeitlinie beschwert sich, aber der Schild ignoriert sie."
+      "flavorText": "Er blockiert Angriffe, die noch nicht passiert sind. Die Zeitlinie beschwert sich, aber der Schild ignoriert sie.",
+      "binding": "boe"
     },
     {
       "id": "rift-hard-zerbrochene-krone",
@@ -8513,7 +8749,9 @@
       },
       "legendaryEffect": null,
       "setId": "legendary",
-      "flavorText": "Gebrochen und ganz zugleich. Wie die meisten Dinge, die den Riss überlebt haben."
+      "flavorText": "Gebrochen und ganz zugleich. Wie die meisten Dinge, die den Riss überlebt haben.",
+      "armorType": "cloth",
+      "binding": "boe"
     },
     {
       "id": "rift-hard-riss-amulett",
@@ -8561,7 +8799,8 @@
       },
       "legendaryEffect": null,
       "setId": "legendary",
-      "flavorText": "Der Riss im Kristall ist winzig. Was hindurchsickert, ist es nicht."
+      "flavorText": "Der Riss im Kristall ist winzig. Was hindurchsickert, ist es nicht.",
+      "binding": "boe"
     },
     {
       "id": "rift-hard-warp-stiefel",
@@ -8609,7 +8848,9 @@
       },
       "legendaryEffect": null,
       "setId": "legendary",
-      "flavorText": "Manchmal bist du schon da, bevor du losgelaufen bist. Die Kausalität hat aufgegeben, sich zu beschweren."
+      "flavorText": "Manchmal bist du schon da, bevor du losgelaufen bist. Die Kausalität hat aufgegeben, sich zu beschweren.",
+      "armorType": "leather",
+      "binding": "boe"
     },
     {
       "id": "rift-legend-weltenriss-schwert",
@@ -8667,7 +8908,8 @@
       },
       "legendaryEffect": null,
       "setId": "legendary",
-      "flavorText": "Am Riss zwischen den Welten gibt es keine Schmiede. Es gibt nur Willen und das, was übrig bleibt."
+      "flavorText": "Am Riss zwischen den Welten gibt es keine Schmiede. Es gibt nur Willen und das, was übrig bleibt.",
+      "binding": "boe"
     },
     {
       "id": "rift-legend-paradox-ruestung",
@@ -8725,7 +8967,9 @@
       },
       "legendaryEffect": null,
       "setId": "legendary",
-      "flavorText": "Sie wiegt alles und nichts. Ist überall und nirgends. Ein Rätsel in Metallform."
+      "flavorText": "Sie wiegt alles und nichts. Ist überall und nirgends. Ein Rätsel in Metallform.",
+      "armorType": "heavy",
+      "binding": "boe"
     },
     {
       "id": "rift-legend-null-amulett",
@@ -8783,7 +9027,8 @@
       },
       "legendaryEffect": null,
       "setId": "legendary",
-      "flavorText": "Am Nullpunkt ist alles gleich weit entfernt. Und alles gleich nah. Das Amulett zeigt dir den Unterschied. Es gibt keinen."
+      "flavorText": "Am Nullpunkt ist alles gleich weit entfernt. Und alles gleich nah. Das Amulett zeigt dir den Unterschied. Es gibt keinen.",
+      "binding": "boe"
     },
     {
       "id": "rift-legend-entropie-helm",
@@ -8841,7 +9086,9 @@
       },
       "legendaryEffect": null,
       "setId": "legendary",
-      "flavorText": "Unter diesem Helm ergibt das Chaos Muster und die Ordnung zerfällt in Musik. Beides gleichzeitig. Beides richtig."
+      "flavorText": "Unter diesem Helm ergibt das Chaos Muster und die Ordnung zerfällt in Musik. Beides gleichzeitig. Beides richtig.",
+      "armorType": "cloth",
+      "binding": "boe"
     },
     {
       "id": "rift-legend-zerriss-stiefel",
@@ -8899,7 +9146,9 @@
       },
       "legendaryEffect": null,
       "setId": "legendary",
-      "flavorText": "Durch die Risse im Leder sieht man Orte, die es nicht mehr gibt. Und manche, die es noch nicht gibt."
+      "flavorText": "Durch die Risse im Leder sieht man Orte, die es nicht mehr gibt. Und manche, die es noch nicht gibt.",
+      "armorType": "leather",
+      "binding": "boe"
     },
     {
       "id": "rift-mythic-unendlichkeits-klinge",
@@ -8962,7 +9211,8 @@
         "label": "Unendlichkeit: +{value}% Chance auf doppelte Quest-Belohnung"
       },
       "setId": "legendary",
-      "flavorText": "Man sagt, wer diese Klinge zieht, sieht das Ende aller Dinge. Man sagt auch, dass niemand je die Scheide wiedergefunden hat."
+      "flavorText": "Man sagt, wer diese Klinge zieht, sieht das Ende aller Dinge. Man sagt auch, dass niemand je die Scheide wiedergefunden hat.",
+      "binding": "boe"
     },
     {
       "id": "rift-mythic-ewigkeits-panzer",
@@ -9025,7 +9275,9 @@
         "label": "Zeitlose Ehre: +{value}% Fraktionsreputation"
       },
       "setId": "legendary",
-      "flavorText": "Generationen haben versucht, ihn einzuschmelzen. Der Panzer wartet einfach, bis der Ofen aufgibt."
+      "flavorText": "Generationen haben versucht, ihn einzuschmelzen. Der Panzer wartet einfach, bis der Ofen aufgibt.",
+      "armorType": "heavy",
+      "binding": "boe"
     },
     {
       "id": "rift-mythic-omega-helm",
@@ -9088,7 +9340,9 @@
         "label": "Omegasicht: +{value}% Herausforderungs-Score"
       },
       "setId": "legendary",
-      "flavorText": "Der letzte Buchstabe eines Alphabets, das die Welt beschreibt. Wer ihn trägt, liest die Sprache rückwärts."
+      "flavorText": "Der letzte Buchstabe eines Alphabets, das die Welt beschreibt. Wer ihn trägt, liest die Sprache rückwärts.",
+      "armorType": "cloth",
+      "binding": "boe"
     },
     {
       "id": "rift-mythic-horizont-amulett",
@@ -9147,11 +9401,12 @@
       "legendaryEffect": {
         "type": "expedition_speed",
         "min": 5,
-        "max": 10,
+        "max": 6,
         "label": "Horizontruf: -{value}% Expeditionsdauer"
       },
       "setId": "legendary",
-      "flavorText": "Die Gelehrten des Turms stritten dreißig Jahre darüber, ob der Horizont ein Ort ist oder ein Versprechen."
+      "flavorText": "Die Gelehrten des Turms stritten dreißig Jahre darüber, ob der Horizont ein Ort ist oder ein Versprechen.",
+      "binding": "boe"
     },
     {
       "id": "rift-mythic-singularitaet-stiefel",
@@ -9214,7 +9469,9 @@
         "label": "Singularität: +{value}% XP pro Ritual-Streak-Tag"
       },
       "setId": "legendary",
-      "flavorText": "Hinterlassen keine Spuren. Nicht weil sie leise sind — sondern weil der Boden sich nicht einigen kann, wo du warst."
+      "flavorText": "Hinterlassen keine Spuren. Nicht weil sie leise sind — sondern weil der Boden sich nicht einigen kann, wo du warst.",
+      "armorType": "leather",
+      "binding": "boe"
     },
     {
       "id": "fac-glut-weapon",
@@ -9262,7 +9519,8 @@
       },
       "legendaryEffect": null,
       "setId": "adventurer",
-      "flavorText": "Die Lehrlinge des Ordens schneiden damit Brot. Die Meister schneiden damit Argumente."
+      "flavorText": "Die Lehrlinge des Ordens schneiden damit Brot. Die Meister schneiden damit Argumente.",
+      "binding": "boe"
     },
     {
       "id": "fac-glut-shield",
@@ -9310,7 +9568,8 @@
       },
       "legendaryEffect": null,
       "setId": "veteran",
-      "flavorText": "Dreizehn Schichten Asche. Jemand im Zirkel hat mitgezählt."
+      "flavorText": "Dreizehn Schichten Asche. Jemand im Zirkel hat mitgezählt.",
+      "binding": "boe"
     },
     {
       "id": "fac-glut-helm",
@@ -9363,7 +9622,9 @@
       },
       "legendaryEffect": null,
       "setId": "master",
-      "flavorText": "Die Feuerprobe hinterlässt keine Narben am Helm. Am Träger schon."
+      "flavorText": "Die Feuerprobe hinterlässt keine Narben am Helm. Am Träger schon.",
+      "armorType": "heavy",
+      "binding": "boe"
     },
     {
       "id": "fac-glut-armor",
@@ -9411,7 +9672,9 @@
       },
       "legendaryEffect": null,
       "setId": "master",
-      "flavorText": "Grimvar persönlich hat an jeder dritten Platte gehämmert. An den anderen auch, aber da war er nüchtern."
+      "flavorText": "Grimvar persönlich hat an jeder dritten Platte gehämmert. An den anderen auch, aber da war er nüchtern.",
+      "armorType": "cloth",
+      "binding": "boe"
     },
     {
       "id": "fac-glut-amulet",
@@ -9469,7 +9732,8 @@
       },
       "legendaryEffect": null,
       "setId": "legendary",
-      "flavorText": "Die Flamme im Inneren flackert nie. Windstill oder Sturm — das Feuer der Geläuterten fragt nicht nach Wetter."
+      "flavorText": "Die Flamme im Inneren flackert nie. Windstill oder Sturm — das Feuer der Geläuterten fragt nicht nach Wetter.",
+      "binding": "boe"
     },
     {
       "id": "fac-glut-boots",
@@ -9527,7 +9791,9 @@
       },
       "legendaryEffect": null,
       "setId": "legendary",
-      "flavorText": "Der Feuerwandler geht nicht über Kohlen. Die Kohlen gehen unter dem Feuerwandler."
+      "flavorText": "Der Feuerwandler geht nicht über Kohlen. Die Kohlen gehen unter dem Feuerwandler.",
+      "armorType": "leather",
+      "binding": "boe"
     },
     {
       "id": "fac-tinte-weapon",
@@ -9575,7 +9841,8 @@
       },
       "legendaryEffect": null,
       "setId": "adventurer",
-      "flavorText": "Die Feder ist mächtiger als das Schwert. Also hat jemand eine Feder zum Schwert gemacht. Problem gelöst."
+      "flavorText": "Die Feder ist mächtiger als das Schwert. Also hat jemand eine Feder zum Schwert gemacht. Problem gelöst.",
+      "binding": "boe"
     },
     {
       "id": "fac-tinte-shield",
@@ -9623,7 +9890,8 @@
       },
       "legendaryEffect": null,
       "setId": "veteran",
-      "flavorText": "Seite 347 beißt besonders fest. Nicht nachschlagen."
+      "flavorText": "Seite 347 beißt besonders fest. Nicht nachschlagen.",
+      "binding": "boe"
     },
     {
       "id": "fac-tinte-helm",
@@ -9671,7 +9939,9 @@
       },
       "legendaryEffect": null,
       "setId": "master",
-      "flavorText": "Wer sie aufsetzt, hört ein leises Rascheln. Wie Seiten, die sich selbst umblättern."
+      "flavorText": "Wer sie aufsetzt, hört ein leises Rascheln. Wie Seiten, die sich selbst umblättern.",
+      "armorType": "heavy",
+      "binding": "boe"
     },
     {
       "id": "fac-tinte-armor",
@@ -9719,7 +9989,9 @@
       },
       "legendaryEffect": null,
       "setId": "master",
-      "flavorText": "Die Bibliothekare des Zirkels tragen sie bei Inventuren. Man weiß nie, was in den hinteren Regalen lauert."
+      "flavorText": "Die Bibliothekare des Zirkels tragen sie bei Inventuren. Man weiß nie, was in den hinteren Regalen lauert.",
+      "armorType": "cloth",
+      "binding": "boe"
     },
     {
       "id": "fac-tinte-amulet",
@@ -9777,7 +10049,8 @@
       },
       "legendaryEffect": null,
       "setId": "legendary",
-      "flavorText": "Geschrieben wird mit Tinte. Gesiegelt wird mit Überzeugung."
+      "flavorText": "Geschrieben wird mit Tinte. Gesiegelt wird mit Überzeugung.",
+      "binding": "boe"
     },
     {
       "id": "fac-tinte-boots",
@@ -9835,7 +10108,9 @@
       },
       "legendaryEffect": null,
       "setId": "legendary",
-      "flavorText": "In den Archiven von Aethermoor gibt es keinen Lärm. Der Archivar sorgt dafür. Persönlich."
+      "flavorText": "In den Archiven von Aethermoor gibt es keinen Lärm. Der Archivar sorgt dafür. Persönlich.",
+      "armorType": "leather",
+      "binding": "boe"
     },
     {
       "id": "fac-amboss-weapon",
@@ -9883,7 +10158,8 @@
       },
       "legendaryEffect": null,
       "setId": "adventurer",
-      "flavorText": "Noch warm von der letzten Hand, die ihn hielt. Oder von der Schmiede. Beides möglich."
+      "flavorText": "Noch warm von der letzten Hand, die ihn hielt. Oder von der Schmiede. Beides möglich.",
+      "binding": "boe"
     },
     {
       "id": "fac-amboss-shield",
@@ -9931,7 +10207,8 @@
       },
       "legendaryEffect": null,
       "setId": "veteran",
-      "flavorText": "Ein Stück vom Amboss zu tragen ist eine Ehre. Ein Stück vom Amboss abzubrechen war es nicht."
+      "flavorText": "Ein Stück vom Amboss zu tragen ist eine Ehre. Ein Stück vom Amboss abzubrechen war es nicht.",
+      "binding": "boe"
     },
     {
       "id": "fac-amboss-helm",
@@ -9979,7 +10256,9 @@
       },
       "legendaryEffect": null,
       "setId": "master",
-      "flavorText": "Funken prallen ab. Hitze verteilt sich. Dumme Fragen bleiben leider hängen."
+      "flavorText": "Funken prallen ab. Hitze verteilt sich. Dumme Fragen bleiben leider hängen.",
+      "armorType": "heavy",
+      "binding": "boe"
     },
     {
       "id": "fac-amboss-armor",
@@ -10027,7 +10306,9 @@
       },
       "legendaryEffect": null,
       "setId": "master",
-      "flavorText": "Grimvar sagt, die besten Lektionen hinterlassen Brandflecken. Grimvar hat verdächtig wenig Augenbrauen."
+      "flavorText": "Grimvar sagt, die besten Lektionen hinterlassen Brandflecken. Grimvar hat verdächtig wenig Augenbrauen.",
+      "armorType": "cloth",
+      "binding": "boe"
     },
     {
       "id": "fac-amboss-amulet",
@@ -10085,7 +10366,8 @@
       },
       "legendaryEffect": null,
       "setId": "legendary",
-      "flavorText": "Er vibriert in der Frequenz eines perfekten Hammerschlags. Manche hören ihn nachts."
+      "flavorText": "Er vibriert in der Frequenz eines perfekten Hammerschlags. Manche hören ihn nachts.",
+      "binding": "boe"
     },
     {
       "id": "fac-amboss-boots",
@@ -10143,7 +10425,9 @@
       },
       "legendaryEffect": null,
       "setId": "legendary",
-      "flavorText": "Der Meisterschmied steht zehn Stunden am Amboss. In diesen Stiefeln könnte er zwanzig."
+      "flavorText": "Der Meisterschmied steht zehn Stunden am Amboss. In diesen Stiefeln könnte er zwanzig.",
+      "armorType": "leather",
+      "binding": "boe"
     },
     {
       "id": "fac-echo-weapon",
@@ -10191,7 +10475,8 @@
       },
       "legendaryEffect": null,
       "setId": "adventurer",
-      "flavorText": "Die Melodie klingt anders, je nachdem wer zuhört. Feinde hören meistens Moll."
+      "flavorText": "Die Melodie klingt anders, je nachdem wer zuhört. Feinde hören meistens Moll.",
+      "binding": "boe"
     },
     {
       "id": "fac-echo-shield",
@@ -10239,7 +10524,8 @@
       },
       "legendaryEffect": null,
       "setId": "veteran",
-      "flavorText": "Reflektiert nicht Schläge, sondern Absichten. Ein subtiler Unterschied mit spürbaren Konsequenzen."
+      "flavorText": "Reflektiert nicht Schläge, sondern Absichten. Ein subtiler Unterschied mit spürbaren Konsequenzen.",
+      "binding": "boe"
     },
     {
       "id": "fac-echo-helm",
@@ -10292,7 +10578,9 @@
       },
       "legendaryEffect": null,
       "setId": "master",
-      "flavorText": "Unter dem Helm ist es nie still. Aber die Stimmen sind freundlich. Meistens."
+      "flavorText": "Unter dem Helm ist es nie still. Aber die Stimmen sind freundlich. Meistens.",
+      "armorType": "heavy",
+      "binding": "boe"
     },
     {
       "id": "fac-echo-armor",
@@ -10345,7 +10633,9 @@
       },
       "legendaryEffect": null,
       "setId": "master",
-      "flavorText": "Sanft wie ein Gespräch. Hart wie die Wahrheit dahinter."
+      "flavorText": "Sanft wie ein Gespräch. Hart wie die Wahrheit dahinter.",
+      "armorType": "cloth",
+      "binding": "boe"
     },
     {
       "id": "fac-echo-amulet",
@@ -10403,7 +10693,8 @@
       },
       "legendaryEffect": null,
       "setId": "legendary",
-      "flavorText": "Halte es ans Ohr und du hörst nicht das Meer. Du hörst alle, die je deinen Namen gerufen haben."
+      "flavorText": "Halte es ans Ohr und du hörst nicht das Meer. Du hörst alle, die je deinen Namen gerufen haben.",
+      "binding": "boe"
     },
     {
       "id": "fac-echo-boots",
@@ -10461,7 +10752,9 @@
       },
       "legendaryEffect": null,
       "setId": "legendary",
-      "flavorText": "In Aethermoor sagt man, der Wanderhall geht noch, wenn sein Träger längst steht."
+      "flavorText": "In Aethermoor sagt man, der Wanderhall geht noch, wenn sein Träger längst steht.",
+      "armorType": "leather",
+      "binding": "boe"
     },
     {
       "id": "ch-stern-3star-weapon",
@@ -10509,7 +10802,8 @@
       },
       "legendaryEffect": null,
       "setId": "veteran",
-      "flavorText": "Drei Sterne sind ein Anfang. Die Klinge erinnert dich daran, dass du angefangen hast."
+      "flavorText": "Drei Sterne sind ein Anfang. Die Klinge erinnert dich daran, dass du angefangen hast.",
+      "binding": "boe"
     },
     {
       "id": "ch-stern-3star-armor",
@@ -10557,7 +10851,9 @@
       },
       "legendaryEffect": null,
       "setId": "veteran",
-      "flavorText": "Sternenlicht ist ein schlechter Stoff für Rüstungen. Außer man weiß, wie man es webt."
+      "flavorText": "Sternenlicht ist ein schlechter Stoff für Rüstungen. Außer man weiß, wie man es webt.",
+      "armorType": "heavy",
+      "binding": "boe"
     },
     {
       "id": "ch-stern-3star-amulet",
@@ -10605,7 +10901,8 @@
       },
       "legendaryEffect": null,
       "setId": "veteran",
-      "flavorText": "Drei Sterne. Nicht genug für den Himmel. Genug für den Hals."
+      "flavorText": "Drei Sterne. Nicht genug für den Himmel. Genug für den Hals.",
+      "binding": "boe"
     },
     {
       "id": "ch-stern-6star-helm",
@@ -10653,7 +10950,9 @@
       },
       "legendaryEffect": null,
       "setId": "master",
-      "flavorText": "Sechs Sterne und ein Visier. Damit du nach vorn schaust statt nach oben."
+      "flavorText": "Sechs Sterne und ein Visier. Damit du nach vorn schaust statt nach oben.",
+      "armorType": "cloth",
+      "binding": "boe"
     },
     {
       "id": "ch-stern-6star-shield",
@@ -10701,7 +11000,8 @@
       },
       "legendaryEffect": null,
       "setId": "master",
-      "flavorText": "Sechs Sterne leuchten am Rand. Im Dunkeln nützlicher als jeder Schild es sein sollte."
+      "flavorText": "Sechs Sterne leuchten am Rand. Im Dunkeln nützlicher als jeder Schild es sein sollte.",
+      "binding": "boe"
     },
     {
       "id": "ch-stern-6star-boots",
@@ -10749,7 +11049,9 @@
       },
       "legendaryEffect": null,
       "setId": "master",
-      "flavorText": "Der Pfad vor dir leuchtet silbern. Der hinter dir auch — falls du zurück musst."
+      "flavorText": "Der Pfad vor dir leuchtet silbern. Der hinter dir auch — falls du zurück musst.",
+      "armorType": "leather",
+      "binding": "boe"
     },
     {
       "id": "ch-stern-9star-weapon",
@@ -10807,7 +11109,8 @@
       },
       "legendaryEffect": null,
       "setId": "legendary",
-      "flavorText": "Neun Sterne. Die Klinge hat aufgehört zu zählen. Du auch."
+      "flavorText": "Neun Sterne. Die Klinge hat aufgehört zu zählen. Du auch.",
+      "binding": "boe"
     },
     {
       "id": "ch-stern-9star-armor",
@@ -10865,7 +11168,9 @@
       },
       "legendaryEffect": null,
       "setId": "legendary",
-      "flavorText": "Perfektion ist unmöglich. Neun Sterne kommen nah genug."
+      "flavorText": "Perfektion ist unmöglich. Neun Sterne kommen nah genug.",
+      "armorType": "heavy",
+      "binding": "boe"
     },
     {
       "id": "ch-stern-9star-amulet",
@@ -10923,7 +11228,8 @@
       },
       "legendaryEffect": null,
       "setId": "legendary",
-      "flavorText": "Jeder Taler ein Triumph. Kein einziger geschenkt."
+      "flavorText": "Jeder Taler ein Triumph. Kein einziger geschenkt.",
+      "binding": "boe"
     },
     {
       "id": "ch-exped-cp1-helm",
@@ -10971,7 +11277,9 @@
       },
       "legendaryEffect": null,
       "setId": "veteran",
-      "flavorText": "Der erste Checkpoint fühlt sich leicht an. Das war Absicht."
+      "flavorText": "Der erste Checkpoint fühlt sich leicht an. Das war Absicht.",
+      "armorType": "cloth",
+      "binding": "boe"
     },
     {
       "id": "ch-exped-cp2-shield",
@@ -11019,7 +11327,8 @@
       },
       "legendaryEffect": null,
       "setId": "master",
-      "flavorText": "Die Mitte einer Expedition ist der einsamste Punkt. Gut, dass du nicht allein bist."
+      "flavorText": "Die Mitte einer Expedition ist der einsamste Punkt. Gut, dass du nicht allein bist.",
+      "binding": "boe"
     },
     {
       "id": "ch-exped-cp3-armor",
@@ -11077,7 +11386,9 @@
       },
       "legendaryEffect": null,
       "setId": "legendary",
-      "flavorText": "Wer Checkpoint drei erreicht, braucht keine Rüstung mehr. Aber sie steht dir trotzdem gut."
+      "flavorText": "Wer Checkpoint drei erreicht, braucht keine Rüstung mehr. Aber sie steht dir trotzdem gut.",
+      "armorType": "leather",
+      "binding": "boe"
     },
     {
       "id": "ch-exped-bonus-weapon",
@@ -11135,7 +11446,8 @@
       },
       "legendaryEffect": null,
       "setId": "legendary",
-      "flavorText": "Manche Wege enden am Ziel. Dieser hier ging weiter."
+      "flavorText": "Manche Wege enden am Ziel. Dieser hier ging weiter.",
+      "binding": "boe"
     },
     {
       "id": "ch-exped-boots",
@@ -11183,7 +11495,9 @@
       },
       "legendaryEffect": null,
       "setId": "master",
-      "flavorText": "Tausend gemeinsame Schritte hinterlassen einen Pfad. Auch dort, wo vorher keiner war."
+      "flavorText": "Tausend gemeinsame Schritte hinterlassen einen Pfad. Auch dort, wo vorher keiner war.",
+      "armorType": "heavy",
+      "binding": "boe"
     },
     {
       "id": "ch-exped-amulet",
@@ -11231,7 +11545,8 @@
       },
       "legendaryEffect": null,
       "setId": "master",
-      "flavorText": "Norden ist eine Richtung. Zusammen ist eine bessere."
+      "flavorText": "Norden ist eine Richtung. Zusammen ist eine bessere.",
+      "binding": "boe"
     },
     {
       "id": "bp-lv5-weapon",
@@ -11279,7 +11594,8 @@
       },
       "legendaryEffect": null,
       "setId": "adventurer",
-      "flavorText": "Frisch geschmiedet, frisch gewetzt. Die Saison riecht noch nach Möglichkeiten."
+      "flavorText": "Frisch geschmiedet, frisch gewetzt. Die Saison riecht noch nach Möglichkeiten.",
+      "binding": "boe"
     },
     {
       "id": "bp-lv5-helm",
@@ -11327,7 +11643,9 @@
       },
       "legendaryEffect": null,
       "setId": "adventurer",
-      "flavorText": "Die Farbe wechselt jede Saison. Dieses Mal: entschlossen."
+      "flavorText": "Die Farbe wechselt jede Saison. Dieses Mal: entschlossen.",
+      "armorType": "cloth",
+      "binding": "boe"
     },
     {
       "id": "bp-lv10-shield",
@@ -11375,7 +11693,8 @@
       },
       "legendaryEffect": null,
       "setId": "adventurer",
-      "flavorText": "Zehn Stufen und du hältst immer noch den Schild. Die meisten lassen ihn bei Stufe drei fallen."
+      "flavorText": "Zehn Stufen und du hältst immer noch den Schild. Die meisten lassen ihn bei Stufe drei fallen.",
+      "binding": "boe"
     },
     {
       "id": "bp-lv10-armor",
@@ -11423,7 +11742,9 @@
       },
       "legendaryEffect": null,
       "setId": "adventurer",
-      "flavorText": "Zehn Schritte. Du schwitzt nicht mal. Oder doch, aber stilvoll."
+      "flavorText": "Zehn Schritte. Du schwitzt nicht mal. Oder doch, aber stilvoll.",
+      "armorType": "leather",
+      "binding": "boe"
     },
     {
       "id": "bp-lv15-amulet",
@@ -11471,7 +11792,8 @@
       },
       "legendaryEffect": null,
       "setId": "veteran",
-      "flavorText": "Das Medaillon wird wärmer, je weiter du kommst. Bei Level 40 kocht es vermutlich."
+      "flavorText": "Das Medaillon wird wärmer, je weiter du kommst. Bei Level 40 kocht es vermutlich.",
+      "binding": "boe"
     },
     {
       "id": "bp-lv15-boots",
@@ -11519,7 +11841,9 @@
       },
       "legendaryEffect": null,
       "setId": "veteran",
-      "flavorText": "Halbzeit. Die Stiefel sagen, du sollst nicht langsamer werden."
+      "flavorText": "Halbzeit. Die Stiefel sagen, du sollst nicht langsamer werden.",
+      "armorType": "heavy",
+      "binding": "boe"
     },
     {
       "id": "bp-lv20-weapon",
@@ -11567,7 +11891,8 @@
       },
       "legendaryEffect": null,
       "setId": "master",
-      "flavorText": "Zwanzig Level schleifen eine Klinge besser als jeder Wetzstein."
+      "flavorText": "Zwanzig Level schleifen eine Klinge besser als jeder Wetzstein.",
+      "binding": "boe"
     },
     {
       "id": "bp-lv20-helm",
@@ -11615,7 +11940,9 @@
       },
       "legendaryEffect": null,
       "setId": "master",
-      "flavorText": "Von unten sah der Gipfel klein aus. Von der Mitte sieht er ehrlich aus."
+      "flavorText": "Von unten sah der Gipfel klein aus. Von der Mitte sieht er ehrlich aus.",
+      "armorType": "cloth",
+      "binding": "boe"
     },
     {
       "id": "bp-lv25-shield",
@@ -11663,7 +11990,8 @@
       },
       "legendaryEffect": null,
       "setId": "master",
-      "flavorText": "Veteranenstatus erreicht man nicht durch Talent. Sondern dadurch, dass man nicht aufhört."
+      "flavorText": "Veteranenstatus erreicht man nicht durch Talent. Sondern dadurch, dass man nicht aufhört.",
+      "binding": "boe"
     },
     {
       "id": "bp-lv25-armor",
@@ -11711,7 +12039,9 @@
       },
       "legendaryEffect": null,
       "setId": "master",
-      "flavorText": "Durchhaltevermögen ist kein Talent. Es ist eine Entscheidung. Fünfundzwanzig Mal getroffen."
+      "flavorText": "Durchhaltevermögen ist kein Talent. Es ist eine Entscheidung. Fünfundzwanzig Mal getroffen.",
+      "armorType": "leather",
+      "binding": "boe"
     },
     {
       "id": "bp-lv30-amulet",
@@ -11769,7 +12099,8 @@
       },
       "legendaryEffect": null,
       "setId": "legendary",
-      "flavorText": "Das Summen ist Respekt. Oder Resonanz. Die Gelehrten sind sich uneinig."
+      "flavorText": "Das Summen ist Respekt. Oder Resonanz. Die Gelehrten sind sich uneinig.",
+      "binding": "boe"
     },
     {
       "id": "bp-lv30-boots",
@@ -11827,7 +12158,9 @@
       },
       "legendaryEffect": null,
       "setId": "legendary",
-      "flavorText": "Dreißig Level unter den Sohlen und der Weg wird nicht leichter. Aber du wirst besser."
+      "flavorText": "Dreißig Level unter den Sohlen und der Weg wird nicht leichter. Aber du wirst besser.",
+      "armorType": "heavy",
+      "binding": "boe"
     },
     {
       "id": "bp-lv35-weapon",
@@ -11885,7 +12218,8 @@
       },
       "legendaryEffect": null,
       "setId": "legendary",
-      "flavorText": "Der Geschmack von Stahl und Entschlossenheit. Rein metaphorisch. Hoffentlich."
+      "flavorText": "Der Geschmack von Stahl und Entschlossenheit. Rein metaphorisch. Hoffentlich.",
+      "binding": "boe"
     },
     {
       "id": "bp-lv35-helm",
@@ -11943,7 +12277,9 @@
       },
       "legendaryEffect": null,
       "setId": "legendary",
-      "flavorText": "Fünf Stufen bis zur Krone. Der Helm weiß es und hält sich bereit."
+      "flavorText": "Fünf Stufen bis zur Krone. Der Helm weiß es und hält sich bereit.",
+      "armorType": "cloth",
+      "binding": "boe"
     },
     {
       "id": "bp-lv40-armor",
@@ -12001,7 +12337,9 @@
       },
       "legendaryEffect": null,
       "setId": "legendary",
-      "flavorText": "Das Meisterwerk einer Saison. Nächste Saison kommt ein neues. Aber dieses hier war deins."
+      "flavorText": "Das Meisterwerk einer Saison. Nächste Saison kommt ein neues. Aber dieses hier war deins.",
+      "armorType": "leather",
+      "binding": "boe"
     },
     {
       "id": "bp-lv40-amulet",
@@ -12059,7 +12397,8 @@
       },
       "legendaryEffect": null,
       "setId": "legendary",
-      "flavorText": "Vierzig Stufen, verdichtet in einem Stein. Er ist schwerer als er aussieht."
+      "flavorText": "Vierzig Stufen, verdichtet in einem Stein. Er ist schwerer als er aussieht.",
+      "binding": "boe"
     },
     {
       "id": "wb-wyrm-gauntlets",
@@ -12117,7 +12456,9 @@
       },
       "legendaryEffect": null,
       "setId": "legendary",
-      "flavorText": "Die Schuppen zucken noch manchmal. Muskelgedächtnis, sagt Ysolde. Niemand glaubt ihr."
+      "flavorText": "Die Schuppen zucken noch manchmal. Muskelgedächtnis, sagt Ysolde. Niemand glaubt ihr.",
+      "armorType": "heavy",
+      "binding": "boe"
     },
     {
       "id": "wb-colossus-brustplatte",
@@ -12175,7 +12516,9 @@
       },
       "legendaryEffect": null,
       "setId": "legendary",
-      "flavorText": "Die Hitze kommt von innen. Wie bei allen Dingen, die wirklich schützen."
+      "flavorText": "Die Hitze kommt von innen. Wie bei allen Dingen, die wirklich schützen.",
+      "armorType": "cloth",
+      "binding": "boe"
     },
     {
       "id": "wb-hydra-schild",
@@ -12233,7 +12576,8 @@
       },
       "legendaryEffect": null,
       "setId": "legendary",
-      "flavorText": "Neun Köpfe, neunhundert Schuppen. Eine Schuppe pro Schild."
+      "flavorText": "Neun Köpfe, neunhundert Schuppen. Eine Schuppe pro Schild.",
+      "binding": "boe"
     },
     {
       "id": "wb-phantom-amulet",
@@ -12291,7 +12635,8 @@
       },
       "legendaryEffect": null,
       "setId": "legendary",
-      "flavorText": "Das Flüstern hört nie auf. Aber jetzt flüstert es Koordinaten."
+      "flavorText": "Das Flüstern hört nie auf. Aber jetzt flüstert es Koordinaten.",
+      "binding": "boe"
     },
     {
       "id": "wb-golem-helm",
@@ -12349,7 +12694,9 @@
       },
       "legendaryEffect": null,
       "setId": "legendary",
-      "flavorText": "Er wiegt so viel wie dein Wille. An guten Tagen ist das leicht."
+      "flavorText": "Er wiegt so viel wie dein Wille. An guten Tagen ist das leicht.",
+      "armorType": "leather",
+      "binding": "boe"
     },
     {
       "id": "wb-seraph-robe",
@@ -12407,7 +12754,9 @@
       },
       "legendaryEffect": null,
       "setId": "legendary",
-      "flavorText": "Der Makel ist ein einzelner grauer Faden, eingenäht von einer Schneiderin, die an Perfektion nicht glaubte."
+      "flavorText": "Der Makel ist ein einzelner grauer Faden, eingenäht von einer Schneiderin, die an Perfektion nicht glaubte.",
+      "armorType": "heavy",
+      "binding": "boe"
     },
     {
       "id": "wb-leviathan-stiefel",
@@ -12465,7 +12814,9 @@
       },
       "legendaryEffect": null,
       "setId": "legendary",
-      "flavorText": "Aus einer Tiefe, in die kein Licht fällt. Und doch bringen sie dich zurück nach oben."
+      "flavorText": "Aus einer Tiefe, in die kein Licht fällt. Und doch bringen sie dich zurück nach oben.",
+      "armorType": "cloth",
+      "binding": "boe"
     },
     {
       "id": "wb-sovereign-waffe",
@@ -12523,7 +12874,8 @@
       },
       "legendaryEffect": null,
       "setId": "legendary",
-      "flavorText": "Der Souverän ließ alles fallen. Macht, Krone, Zepter. Du hebst auf, was er nicht mehr wollte."
+      "flavorText": "Der Souverän ließ alles fallen. Macht, Krone, Zepter. Du hebst auf, was er nicht mehr wollte.",
+      "binding": "boe"
     },
     {
       "id": "wb-weaver-shield",
@@ -12581,7 +12933,8 @@
       },
       "legendaryEffect": null,
       "setId": "legendary",
-      "flavorText": "Der Weber webt noch. Im Netz des Schildes zappelt manchmal die Zeit selbst."
+      "flavorText": "Der Weber webt noch. Im Netz des Schildes zappelt manchmal die Zeit selbst.",
+      "binding": "boe"
     },
     {
       "id": "gacha-astral-stab",
@@ -12639,7 +12992,8 @@
       },
       "legendaryEffect": null,
       "setId": "legendary",
-      "flavorText": "Lyra hat gelacht, als sie ihn weggab. Oder geweint. Bei Lyra weiß man das nie."
+      "flavorText": "Lyra hat gelacht, als sie ihn weggab. Oder geweint. Bei Lyra weiß man das nie.",
+      "binding": "boe"
     },
     {
       "id": "gacha-astral-helm",
@@ -12687,7 +13041,9 @@
       },
       "legendaryEffect": null,
       "setId": "legendary",
-      "flavorText": "Die Sterne sind echt. Sie schlafen tagsüber. Nachts blinzeln sie."
+      "flavorText": "Die Sterne sind echt. Sie schlafen tagsüber. Nachts blinzeln sie.",
+      "armorType": "leather",
+      "binding": "boe"
     },
     {
       "id": "gacha-astral-stiefel",
@@ -12745,7 +13101,9 @@
       },
       "legendaryEffect": null,
       "setId": "legendary",
-      "flavorText": "Die silbernen Spuren verblassen nach drei Schritten. Wie ein Geheimnis, das sich selbst vergisst."
+      "flavorText": "Die silbernen Spuren verblassen nach drei Schritten. Wie ein Geheimnis, das sich selbst vergisst.",
+      "armorType": "heavy",
+      "binding": "boe"
     },
     {
       "id": "gacha-wheel-amulet",
@@ -12793,7 +13151,8 @@
       },
       "legendaryEffect": null,
       "setId": "legendary",
-      "flavorText": "Das Rad kennt keine Richtung. Nur Bewegung. Wer stehenbleibt, wird überholt."
+      "flavorText": "Das Rad kennt keine Richtung. Nur Bewegung. Wer stehenbleibt, wird überholt.",
+      "binding": "boe"
     },
     {
       "id": "gacha-wheel-armor",
@@ -12851,7 +13210,9 @@
       },
       "legendaryEffect": null,
       "setId": "legendary",
-      "flavorText": "Fäden des Schicksals sind dünner als Seide und stärker als Stahl. Dieser Mantel beweist beides."
+      "flavorText": "Fäden des Schicksals sind dünner als Seide und stärker als Stahl. Dieser Mantel beweist beides.",
+      "armorType": "cloth",
+      "binding": "boe"
     },
     {
       "id": "gacha-wheel-waffe",
@@ -12909,7 +13270,8 @@
       },
       "legendaryEffect": null,
       "setId": "legendary",
-      "flavorText": "Fortuna lächelt selten. Wenn sie es tut, hat sie diese Klinge in der Hand."
+      "flavorText": "Fortuna lächelt selten. Wenn sie es tut, hat sie diese Klinge in der Hand.",
+      "binding": "boe"
     },
     {
       "id": "gacha-wheel-schild",
@@ -12957,7 +13319,8 @@
       },
       "legendaryEffect": null,
       "setId": "legendary",
-      "flavorText": "Blockt Angriffe, die noch nicht geworfen wurden. Irritierend für Feinde. Beruhigend für dich."
+      "flavorText": "Blockt Angriffe, die noch nicht geworfen wurden. Irritierend für Feinde. Beruhigend für dich.",
+      "binding": "boe"
     },
     {
       "id": "end-ewiger-bogen",
@@ -13015,12 +13378,13 @@
       },
       "legendaryEffect": {
         "type": "every_nth_bonus",
-        "min": 10,
-        "max": 20,
+        "min": 2,
+        "max": 6,
         "label": "Aetherstrom: Jede 5. Quest gibt +{value}% Bonus-XP"
       },
       "setId": "legendary",
-      "flavorText": "Der Aetherstrom hat viele Zuflüsse. Dieser Bogen trinkt aus allen gleichzeitig."
+      "flavorText": "Der Aetherstrom hat viele Zuflüsse. Dieser Bogen trinkt aus allen gleichzeitig.",
+      "binding": "boe"
     },
     {
       "id": "end-weltenbrecher",
@@ -13083,7 +13447,8 @@
         "label": "Weltenschlag: +{value}% Chance auf doppelte Quest-Belohnung"
       },
       "setId": "legendary",
-      "flavorText": "Es gibt ein Geräusch, das Welten machen, wenn sie brechen. Dieses Schwert kennt es auswendig."
+      "flavorText": "Es gibt ein Geräusch, das Welten machen, wenn sie brechen. Dieses Schwert kennt es auswendig.",
+      "binding": "boe"
     },
     {
       "id": "end-urschild",
@@ -13146,7 +13511,8 @@
         "label": "Urfundament: -{value}% Forge-Decay"
       },
       "setId": "legendary",
-      "flavorText": "Ob er wirklich der erste war, ist umstritten. Ob er der letzte sein wird, nicht."
+      "flavorText": "Ob er wirklich der erste war, ist umstritten. Ob er der letzte sein wird, nicht.",
+      "binding": "boe"
     },
     {
       "id": "end-aetherkrone",
@@ -13209,11 +13575,13 @@
         "label": "Aetherkrönung: +{value}% Quest-XP"
       },
       "setId": "legendary",
-      "flavorText": "Sie hat auf dich gewartet. In einem Raum ohne Türen, den du trotzdem gefunden hast."
+      "flavorText": "Sie hat auf dich gewartet. In einem Raum ohne Türen, den du trotzdem gefunden hast.",
+      "armorType": "leather",
+      "binding": "boe"
     },
     {
       "id": "end-sternenmantel",
-      "name": "Sternenmantel",
+      "name": "Sternenmantel II",
       "slot": "armor",
       "tier": 4,
       "reqLevel": 50,
@@ -13272,7 +13640,9 @@
         "label": "Sternenlicht: +{value}% Gold"
       },
       "setId": "legendary",
-      "flavorText": "Sternenlicht gewebt auf einem Webstuhl, der nur bei Neumond funktioniert."
+      "flavorText": "Sternenlicht gewebt auf einem Webstuhl, der nur bei Neumond funktioniert.",
+      "armorType": "heavy",
+      "binding": "boe"
     },
     {
       "id": "end-schicksals-amulett",
@@ -13335,7 +13705,8 @@
         "label": "Wiederkehr: +{value}% Drop-Chance"
       },
       "setId": "legendary",
-      "flavorText": "Die Wiederkehr ist kein Ende. Die Wiederkehr ist ein Versprechen."
+      "flavorText": "Die Wiederkehr ist kein Ende. Die Wiederkehr ist ein Versprechen.",
+      "binding": "boe"
     },
     {
       "id": "end-ewige-stiefel",
@@ -13394,11 +13765,364 @@
       "legendaryEffect": {
         "type": "cooldown_reduction",
         "min": 5,
-        "max": 10,
+        "max": 6,
         "label": "Letzte Reise: -{value}% Crafting-Cooldown"
       },
       "setId": "legendary",
-      "flavorText": "Der Weg endet nie. Aber in diesen Stiefeln macht das nichts."
+      "flavorText": "Der Weg endet nie. Aber in diesen Stiefeln macht das nichts.",
+      "armorType": "cloth",
+      "binding": "boe"
+    },
+    {
+      "id": "fac-schattenjaeger-helm",
+      "name": "Schattenjäger-Kappe",
+      "slot": "helm",
+      "rarity": "epic",
+      "tier": 3,
+      "reqLevel": 25,
+      "setId": "schattenjaeger-ausruestung",
+      "armorType": "leather",
+      "source": "faction:echo",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "glueck",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Die Schatten flüstern dem Träger zu. Meistens nützliche Dinge.",
+      "binding": "boe"
+    },
+    {
+      "id": "fac-schattenjaeger-stiefel",
+      "name": "Schattenjäger-Treter",
+      "slot": "boots",
+      "rarity": "epic",
+      "tier": 3,
+      "reqLevel": 25,
+      "setId": "schattenjaeger-ausruestung",
+      "armorType": "leather",
+      "source": "faction:echo",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "glueck",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Kein Geräusch. Kein Abdruck. Keine Entschuldigung.",
+      "binding": "boe"
+    },
+    {
+      "id": "fac-schattenjaeger-klinge",
+      "name": "Schattenjäger-Klinge",
+      "slot": "weapon",
+      "rarity": "epic",
+      "tier": 3,
+      "reqLevel": 25,
+      "setId": "schattenjaeger-ausruestung",
+      "source": "faction:echo",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "glueck",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Scharf genug für Schatten. Das sagt alles.",
+      "binding": "boe"
+    },
+    {
+      "id": "fac-flammenherz-panzer",
+      "name": "Flammenherz-Brustplatte",
+      "slot": "armor",
+      "rarity": "epic",
+      "tier": 3,
+      "reqLevel": 25,
+      "setId": "flammenherz-panzer",
+      "armorType": "heavy",
+      "source": "faction:glut",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Das Feuer prüft. Wer besteht, wird stärker. Wer nicht, wird wärmer.",
+      "binding": "boe"
+    },
+    {
+      "id": "fac-flammenherz-schild",
+      "name": "Flammenherz-Bollwerk",
+      "slot": "shield",
+      "rarity": "epic",
+      "tier": 3,
+      "reqLevel": 25,
+      "setId": "flammenherz-panzer",
+      "source": "faction:glut",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Ein Schild das brennt, aber nicht verbrennt. Wie Überzeugung.",
+      "binding": "boe"
+    },
+    {
+      "id": "fac-flammenherz-ring",
+      "name": "Flammenherz-Siegelring",
+      "slot": "ring",
+      "rarity": "epic",
+      "tier": 3,
+      "reqLevel": 25,
+      "setId": "flammenherz-panzer",
+      "source": "faction:glut",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "glueck",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "charisma",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Das Siegel der Klinge. Wer es trägt, hat das Feuer bestanden.",
+      "binding": "boe"
     }
   ],
   "setBonus": {
@@ -13571,6 +14295,175 @@
       "fullBonus": {
         "allStats": 5,
         "label": "Weltende: +5 alle Stats"
+      }
+    },
+    {
+      "id": "archivars-garnitur",
+      "name": "Archivars-Garnitur",
+      "rarity": "rare",
+      "pieces": [
+        "dun-sunken-archive-archiv-haube",
+        "dun-sunken-archive-archiv-mantel",
+        "dun-sunken-archive-archiv-marschtritt"
+      ],
+      "partialBonus": {
+        "2": {
+          "weisheit": 5,
+          "fokus": 5,
+          "label": "Archivars Wissen: +5 Weisheit, +5 Fokus"
+        }
+      },
+      "fullBonus": {
+        "allStats": 0,
+        "label": "Archivars Meisterschaft: +10% Quest-XP",
+        "xpBonus": 10
+      }
+    },
+    {
+      "id": "turmbrecher-ruestung",
+      "name": "Turmbrecher-Rüstung",
+      "rarity": "epic",
+      "pieces": [
+        "dun-shattered-spire-turm-klinge",
+        "dun-shattered-spire-turm-buckler",
+        "dun-shattered-spire-turm-haube"
+      ],
+      "partialBonus": {
+        "2": {
+          "kraft": 5,
+          "ausdauer": 5,
+          "label": "Turmbrecher-Stärke: +5 Kraft, +5 Ausdauer"
+        }
+      },
+      "fullBonus": {
+        "kraft": 5,
+        "label": "Turmbrecher-Macht: +15% Boss-Damage"
+      }
+    },
+    {
+      "id": "leerengewand",
+      "name": "Leerengewand",
+      "rarity": "legendary",
+      "pieces": [
+        "dun-hollow-core-kern-haube",
+        "dun-hollow-core-kern-mantel",
+        "dun-hollow-core-kern-marschtritt",
+        "dun-hollow-core-kern-kette"
+      ],
+      "partialBonus": {
+        "2": {
+          "glueck": 8,
+          "charisma": 5,
+          "label": "Leeren-Resonanz: +8 Glück, +5 Charisma"
+        }
+      },
+      "fullBonus": {
+        "glueck": 5,
+        "label": "Leeren-Meisterschaft: +20% Drop-Chance"
+      }
+    },
+    {
+      "id": "drachentoeter-arsenal",
+      "name": "Drachentöter-Arsenal",
+      "rarity": "epic",
+      "pieces": [
+        "world_boss-procrastination-wyrm-wyrm-mantel",
+        "world_boss-procrastination-wyrm-wyrm-reif",
+        "world_boss-procrastination-wyrm-wyrm-klinge"
+      ],
+      "partialBonus": {
+        "2": {
+          "kraft": 8,
+          "tempo": 3,
+          "label": "Drachentöter-Fokus: +8 Kraft, +3 Tempo"
+        }
+      },
+      "fullBonus": {
+        "kraft": 5,
+        "label": "Drachentöter-Furor: +25% World Boss Damage"
+      }
+    },
+    {
+      "id": "sternenwaechter-tracht",
+      "name": "Sternenwächter-Tracht",
+      "rarity": "legendary",
+      "pieces": [
+        "rift-legendary-abyss-krone",
+        "rift-legendary-abyss-wams",
+        "rift-legendary-abyss-schuhe",
+        "rift-legendary-abyss-schild"
+      ],
+      "partialBonus": {
+        "2": {
+          "allStats": 5,
+          "label": "Sternenwächter-Harmonie: +5 alle Primary Stats"
+        }
+      },
+      "fullBonus": {
+        "allStats": 3,
+        "label": "Sternenwächter-Meisterschaft: +15% XP + Gold"
+      }
+    },
+    {
+      "id": "aetherwandler-gewand",
+      "name": "Aetherwandler-Gewand",
+      "rarity": "legendary",
+      "pieces": [
+        "rift-mythic-jenseits-schwert-q4s",
+        "rift-mythic-jenseits-amulett-63b",
+        "rift-mythic-jenseits-siegelring-jx7"
+      ],
+      "partialBonus": {
+        "2": {
+          "weisheit": 10,
+          "label": "Aetherwandler-Einsicht: +10 Weisheit"
+        }
+      },
+      "fullBonus": {
+        "weisheit": 5,
+        "label": "Aetherwandler-Transzendenz: +20% XP"
+      }
+    },
+    {
+      "id": "schattenjaeger-ausruestung",
+      "name": "Schattenjäger-Ausrüstung",
+      "rarity": "epic",
+      "pieces": [
+        "fac-schattenjaeger-helm",
+        "fac-schattenjaeger-stiefel",
+        "fac-schattenjaeger-klinge"
+      ],
+      "partialBonus": {
+        "2": {
+          "glueck": 8,
+          "tempo": 5,
+          "label": "Schattenjäger-Gespür: +8 Glück, +5 Tempo"
+        }
+      },
+      "fullBonus": {
+        "glueck": 3,
+        "label": "Schattenjäger-Meisterschaft: +15% Craft CD Reduction"
+      }
+    },
+    {
+      "id": "flammenherz-panzer",
+      "name": "Flammenherz-Panzer",
+      "rarity": "epic",
+      "pieces": [
+        "fac-flammenherz-panzer",
+        "fac-flammenherz-schild",
+        "fac-flammenherz-ring"
+      ],
+      "partialBonus": {
+        "2": {
+          "ausdauer": 8,
+          "vitalitaet": 5,
+          "label": "Flammenherz-Schutz: +8 Ausdauer, +5 Vitalität"
+        }
+      },
+      "fullBonus": {
+        "ausdauer": 5,
+        "label": "Flammenherz-Bollwerk: +20% Streak Protection"
       }
     }
   ]

@@ -475,6 +475,24 @@ router.post('/api/player/:name/inventory/use/:itemId', requireAuth, requireSelf(
       message = `+${xp} XP, +${gold} Gold, +${essenz} Essenz!`;
       break;
     }
+    case 'vellum': {
+      // Enchant Vellum — apply stat buff from vellumEffect
+      const ve = invItem.vellumEffect;
+      if (!ve || !ve.stat || !ve.value) {
+        message = 'Invalid vellum — no effect data.';
+        break;
+      }
+      u.activeBuffs = u.activeBuffs || [];
+      u.activeBuffs.push({
+        type: `enchant_${ve.stat}`,
+        stat: ve.stat,
+        value: ve.value,
+        expiresAt: new Date(Date.now() + (ve.durationHours || 24) * 3600000).toISOString(),
+        activatedAt: now(),
+      });
+      message = `Enchant applied: +${ve.value} ${ve.stat} for ${ve.durationHours || 24}h!`;
+      break;
+    }
     default: {
       // Unknown effect — consume anyway but note it
       message = `Item consumed. (Effect "${effectType}" is not yet supported)`;
@@ -522,6 +540,18 @@ router.post('/api/player/:name/inventory/reorder', requireAuth, requireSelf('nam
 });
 
 // ─── Discard endpoint ──────────────────────────────────────────────────────
+// POST /api/player/:name/inventory/lock/:itemId — toggle item lock
+router.post('/api/player/:name/inventory/lock/:itemId', requireAuth, requireSelf('name'), (req, res) => {
+  const uid = req.params.name.toLowerCase();
+  const u = state.users[uid];
+  if (!u) return res.status(404).json({ error: 'Player not found' });
+  const item = (u.inventory || []).find(i => i.id === req.params.itemId);
+  if (!item) return res.status(404).json({ error: 'Item not found in inventory' });
+  item.locked = !item.locked;
+  saveUsers();
+  res.json({ ok: true, locked: item.locked, itemId: item.id });
+});
+
 router.post('/api/player/:name/inventory/discard/:itemId', requireAuth, requireSelf('name'), (req, res) => {
   const uid = req.params.name.toLowerCase();
   const u = state.users[uid];
@@ -529,6 +559,7 @@ router.post('/api/player/:name/inventory/discard/:itemId', requireAuth, requireS
 
   const idx = (u.inventory || []).findIndex(i => i.id === req.params.itemId);
   if (idx === -1) return res.status(404).json({ error: 'Item not found in inventory' });
+  if (u.inventory[idx].locked) return res.status(400).json({ error: 'Item is locked — unlock it first' });
 
   const discarded = u.inventory.splice(idx, 1)[0];
   saveUsers();
@@ -600,6 +631,8 @@ router.post('/api/player/:name/equip/:itemId', requireAuth, requireSelf('name'),
     u.currencies.gold = u.gold;
     // Roll stats for the new item
     const instance = createGearInstance(shopItem);
+    // BoE items become bound on equip
+    if (instance.binding === 'boe') instance.bound = true;
     u.equipment[shopItem.slot] = instance;
     if (!u.purchases) u.purchases = [];
     u.purchases.push({ type: 'equipment', item: shopItem.id, cost: shopItem.cost, at: now() });
@@ -663,8 +696,13 @@ router.post('/api/player/:name/equip/:itemId', requireAuth, requireSelf('name'),
     passiveEffect: invEntry.passiveEffect || template.passiveEffect || null,
     passiveDesc: invEntry.passiveDesc || template.passiveDesc || null,
     affixes: invEntry.affixes || template.affixes || null,
+    binding: invEntry.binding || template.binding || null,
+    bound: invEntry.bound || (invEntry.binding === 'bop') || false,
+    locked: invEntry.locked || false,
     rolledAt: invEntry.rolledAt || invEntry.obtainedAt || now(),
   };
+  // BoE items become bound on equip
+  if (instance.binding === 'boe') instance.bound = true;
   u.equipment[slot] = instance;
 
   const stats = getUserStats(uid);

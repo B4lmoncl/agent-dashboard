@@ -34,12 +34,13 @@ interface ItemActionPopupProps {
   onUnequip: (slot: string) => Promise<void>;
   onUse: (itemId: string) => Promise<void>;
   onDiscard: (itemId: string) => Promise<void>;
+  onLock?: (itemId: string) => Promise<void>;
   onClose: () => void;
 }
 
 export default function ItemActionPopup({
   item, anchorRect, playerLevel, isEquipped, equippedSlot,
-  onEquip, onUnequip, onUse, onDiscard, onClose,
+  onEquip, onUnequip, onUse, onDiscard, onLock, onClose,
 }: ItemActionPopupProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [confirmDiscard, setConfirmDiscard] = useState(false);
@@ -101,7 +102,10 @@ export default function ItemActionPopup({
               : <span className="text-2xl" style={{ color: rarityColor }}>◆</span>}
           </div>
           <div className="min-w-0 flex-1">
-            <p className="text-sm font-bold truncate" style={{ color: "#fff" }}>{item.name}</p>
+            <div className="flex items-center gap-1.5">
+              <p className="text-sm font-bold truncate" style={{ color: "#fff" }}>{item.name}</p>
+              {item.locked && <span title="Locked" style={{ color: "#fbbf24", fontSize: 12, flexShrink: 0 }}>{"\u29BF"}</span>}
+            </div>
             <p className="text-xs font-semibold" style={{ color: rarityColor }}>
               {item.rarity?.charAt(0).toUpperCase() + item.rarity?.slice(1)}
               {itemType === "equipment" && item.slot ? ` · ${item.slot}` : ""}
@@ -113,6 +117,15 @@ export default function ItemActionPopup({
             )}
           </div>
         </div>
+
+        {/* Binding badge */}
+        {item.bound ? (
+          <p className="text-xs font-semibold" style={{ color: "#ef4444" }}>Soulbound</p>
+        ) : item.binding === "boe" ? (
+          <p className="text-xs font-semibold" style={{ color: "#22c55e" }}>Bind on Equip</p>
+        ) : item.binding === "bop" ? (
+          <p className="text-xs font-semibold" style={{ color: "#f97316" }}>Bind on Pickup</p>
+        ) : null}
 
         {/* Description */}
         {item.desc && (
@@ -184,8 +197,24 @@ export default function ItemActionPopup({
             >{busy ? "…" : "Use"}</button>
           )}
 
+          {/* Lock toggle */}
+          {!isEquipped && onLock && (
+            <button
+              onClick={() => wrap(() => onLock(item.id))}
+              disabled={busy}
+              className="w-full py-1.5 rounded-lg text-xs font-semibold"
+              style={{
+                background: item.locked ? "rgba(250,204,21,0.12)" : "rgba(255,255,255,0.03)",
+                color: item.locked ? "#fbbf24" : "rgba(255,255,255,0.35)",
+                border: `1px solid ${item.locked ? "rgba(250,204,21,0.3)" : "rgba(255,255,255,0.06)"}`,
+                cursor: busy ? "not-allowed" : "pointer",
+              }}
+              title={item.locked ? "Unlock this item (allows discard/salvage/trade)" : "Lock this item (prevents discard/salvage/trade)"}
+            >{item.locked ? "Unlock" : "Lock"}</button>
+          )}
+
           {/* Discard */}
-          {!isEquipped && !confirmDiscard && (
+          {!isEquipped && !item.locked && !confirmDiscard && (
             <button
               onClick={() => setConfirmDiscard(true)}
               className="w-full py-1.5 rounded-lg text-xs"

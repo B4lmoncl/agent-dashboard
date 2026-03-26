@@ -318,7 +318,7 @@ router.post('/api/quest/:id/complete', requireApiKey, (req, res) => {
         const item = giver.finalReward.item;
         addLootToInventory(agentKey, item);
         npcFinalReward = item;
-        saveData();
+        saveUsers();
         console.log(`[npc] Final reward '${item.id}' granted to ${agentKey} for completing ${giver.name}'s chain`);
       }
     }
@@ -465,7 +465,7 @@ router.post('/api/quest/:id/unclaim', requireApiKey, (req, res) => {
   }
 
   // Dev quests / non-player users: global shared state
-  if (quest.claimedBy !== agentId) {
+  if ((quest.claimedBy || '').toLowerCase() !== agentKey) {
     return res.status(409).json({ error: `Quest not claimed by this agent` });
   }
   quest.status = 'open';
@@ -776,7 +776,7 @@ router.post('/api/quests/bulk-update', requireApiKey, (req, res) => {
     }
     updated.push(id);
   }
-  if (updated.length > 0) { saveQuests(); saveData(); }
+  if (updated.length > 0) { saveQuests(); }
   console.log(`[bulk-update] status=${status} updated=${updated.length} notFound=${notFound.length}`);
   res.json({ ok: true, updated, notFound });
 });

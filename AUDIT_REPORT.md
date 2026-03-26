@@ -1,6 +1,6 @@
 # Quest Hall — Codebase Audit Report
 
-> Last updated: 2026-03-23 · v1.5.3 · Sessions 1–29
+> Last updated: 2026-03-26 · v1.5.3 · Sessions 1–30
 
 ---
 
@@ -76,6 +76,14 @@ server.js             # Express entry point (~322 lines)
 | 21 | **Daily Missions** | `routes/config-admin.js`, `page.tsx` | 6 missions, 4 milestone tiers, HSR-inspired |
 | 22 | **Navigation** | `app/config.ts` | 5 floors (Urithiru-inspired), floor banners with particles |
 | 23 | **Tooltip System** | `GameTooltip.tsx` | 50+ registry entries, cross-references, heading/inline modes |
+| 24 | **BoP/BoE Binding** | `lib/helpers.js`, gear templates | 1088 items tagged, trade-blocked, badges on tooltips |
+| 25 | **Item Lock** | `routes/habits-inventory.js`, `ItemActionPopup.tsx` | Lock items from salvage/trade/discard, golden indicator |
+| 26 | **Auto-Salvage** | `routes/crafting.js`, `ForgeView.tsx` | Preview grid + 2-step confirm bulk salvage by rarity |
+| 27 | **Kanai's Cube** | `routes/kanais-cube.js`, `ForgeView.tsx` | D3-style legendary effect extraction, 3 category slots |
+| 28 | **Mythic+ Affixes** | `routes/rift.js`, `RiftView.tsx` | 10 weekly rotating affixes, activate M+2+, reward/time mods |
+| 29 | **Enchant Vellums** | `routes/crafting.js`, `professions.json` | Tradeable enchant scrolls, 3 tiers, BoE |
+| 30 | **Material Storage** | `ForgeView.tsx` | GW2-style dedicated tab, search, unlimited, sorted by rarity |
+| 31 | **Mail System** | `routes/mail.js`, `SocialView.tsx` | WoW-style async mailbox, gold+items, 5g postage, 30d expiry |
 
 ---
 
@@ -170,6 +178,17 @@ Quest completion, daily bonus, rituals, vows, battle pass, factions, world boss,
 | Commit | Date | Fix |
 |--------|------|-----|
 | Various | 03-20–22 | Trade field mapping, conversations sort, friend level shows XP, ForgeView modals missing useModalBehavior, NPC departures not processed, MASTER_KEY env never read, getBondLevel fallback wrong key, forge temp hardcoded decay, trade item dedup, gacha pity_minus_5 applied 10x in pull10, crafting reroll negative index |
+
+### Session 30 Audit Fixes
+
+| Severity | Fix |
+|----------|-----|
+| CRITICAL | `executeTrade()` in social.js: item lookup used only `i.id` but validated against `i.instanceId` — items with instanceId-only could fail to transfer |
+| HIGH | Mail collect silently dropped items when inventory full — now rejects with error message instead |
+| HIGH | Duplicate `salvage_bonus` key in kanais-cube.js EFFECT_CATEGORIES object |
+| MEDIUM | Locked field lost when equipping item from inventory — `locked` not mapped in instance creation |
+| MEDIUM | 8x `fontSize: 10` violations across CharacterView, ForgeView, SocialView — bumped to 12px minimum |
+| MEDIUM | Lock emoji (🔒) in main UI — replaced with Unicode ⦿ per no-emoji guideline |
 
 ### QoL Improvements (Sessions 1–24)
 

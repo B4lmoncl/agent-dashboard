@@ -16,7 +16,8 @@
         "kraft": 2,
         "ausdauer": 2
       },
-      "flavorText": "Scharf genug für den Anfang. Stumpf genug für einen zweiten Versuch."
+      "flavorText": "Scharf genug für den Anfang. Stumpf genug für einen zweiten Versuch.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-grober-streitkolben",
@@ -33,7 +34,8 @@
       "fixedStats": {
         "kraft": 1
       },
-      "flavorText": "Schwer, ehrlich, und ohne Überraschungen. Wie ein guter Handschlag."
+      "flavorText": "Schwer, ehrlich, und ohne Überraschungen. Wie ein guter Handschlag.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-eisernes-beil",
@@ -50,7 +52,8 @@
       "fixedStats": {
         "kraft": 3
       },
-      "flavorText": "Die Klinge erinnert sich an jeden Schlag. Nicht nachtragend — aber aufmerksam."
+      "flavorText": "Die Klinge erinnert sich an jeden Schlag. Nicht nachtragend — aber aufmerksam.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-rostiger-dolch",
@@ -68,7 +71,8 @@
         "kraft": 3,
         "ausdauer": 2
       },
-      "flavorText": "Ein Schild sagt: Ich bin noch nicht fertig."
+      "flavorText": "Ein Schild sagt: Ich bin noch nicht fertig.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-eisenstab",
@@ -86,7 +90,8 @@
         "kraft": 1,
         "ausdauer": 2
       },
-      "flavorText": "Scharf genug für den Anfang. Stumpf genug für einen zweiten Versuch."
+      "flavorText": "Scharf genug für den Anfang. Stumpf genug für einen zweiten Versuch.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-einfacher-zauberstab",
@@ -104,7 +109,8 @@
         "kraft": 2,
         "ausdauer": 1
       },
-      "flavorText": "Schwer, ehrlich, und ohne Überraschungen. Wie ein guter Handschlag."
+      "flavorText": "Schwer, ehrlich, und ohne Überraschungen. Wie ein guter Handschlag.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-eisernes-kurzschwert",
@@ -122,7 +128,8 @@
         "kraft": 3,
         "ausdauer": 1
       },
-      "flavorText": "Die Klinge erinnert sich an jeden Schlag. Nicht nachtragend — aber aufmerksam."
+      "flavorText": "Die Klinge erinnert sich an jeden Schlag. Nicht nachtragend — aber aufmerksam.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-grober-kriegshammer",
@@ -140,7 +147,8 @@
         "kraft": 2,
         "ausdauer": 1
       },
-      "flavorText": "Ein Schild sagt: Ich bin noch nicht fertig."
+      "flavorText": "Ein Schild sagt: Ich bin noch nicht fertig.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-eiserne-streitaxt",
@@ -158,7 +166,8 @@
         "kraft": 1,
         "ausdauer": 2
       },
-      "flavorText": "Scharf genug für den Anfang. Stumpf genug für einen zweiten Versuch."
+      "flavorText": "Scharf genug für den Anfang. Stumpf genug für einen zweiten Versuch.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-schlichter-wanderstab",
@@ -175,7 +184,8 @@
       "fixedStats": {
         "kraft": 1
       },
-      "flavorText": "Schwer, ehrlich, und ohne Überraschungen. Wie ein guter Handschlag."
+      "flavorText": "Schwer, ehrlich, und ohne Überraschungen. Wie ein guter Handschlag.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-grober-schild",
@@ -192,7 +202,8 @@
       "fixedStats": {
         "kraft": 1
       },
-      "flavorText": "Die Klinge erinnert sich an jeden Schlag. Nicht nachtragend — aber aufmerksam."
+      "flavorText": "Die Klinge erinnert sich an jeden Schlag. Nicht nachtragend — aber aufmerksam.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-eiserner-rundschild",
@@ -210,7 +221,8 @@
         "kraft": 2,
         "ausdauer": 1
       },
-      "flavorText": "Ein Schild sagt: Ich bin noch nicht fertig."
+      "flavorText": "Ein Schild sagt: Ich bin noch nicht fertig.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-eiserner-buckler",
@@ -228,7 +240,8 @@
         "ausdauer": 1,
         "weisheit": 2
       },
-      "flavorText": "Scharf genug für den Anfang. Stumpf genug für einen zweiten Versuch."
+      "flavorText": "Scharf genug für den Anfang. Stumpf genug für einen zweiten Versuch.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-eiserner-turmschild",
@@ -246,7 +259,8 @@
         "ausdauer": 3,
         "weisheit": 1
       },
-      "flavorText": "Schwer, ehrlich, und ohne Überraschungen. Wie ein guter Handschlag."
+      "flavorText": "Schwer, ehrlich, und ohne Überraschungen. Wie ein guter Handschlag.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-einfacher-fokus",
@@ -303,7 +317,8 @@
           ]
         }
       },
-      "flavorText": "Die Klinge erinnert sich an jeden Schlag. Nicht nachtragend — aber aufmerksam."
+      "flavorText": "Die Klinge erinnert sich an jeden Schlag. Nicht nachtragend — aber aufmerksam.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-grobes-foliant",
@@ -360,7 +375,8 @@
           ]
         }
       },
-      "flavorText": "Ein Schild sagt: Ich bin noch nicht fertig."
+      "flavorText": "Ein Schild sagt: Ich bin noch nicht fertig.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-eiserner-langschild",
@@ -417,7 +433,8 @@
           ]
         }
       },
-      "flavorText": "Scharf genug für den Anfang. Stumpf genug für einen zweiten Versuch."
+      "flavorText": "Scharf genug für den Anfang. Stumpf genug für einen zweiten Versuch.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-geschmiedeter-buckler",
@@ -474,7 +491,8 @@
           ]
         }
       },
-      "flavorText": "Schwer, ehrlich, und ohne Überraschungen. Wie ein guter Handschlag."
+      "flavorText": "Schwer, ehrlich, und ohne Überraschungen. Wie ein guter Handschlag.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-eiserne-tartsche",
@@ -531,7 +549,8 @@
           ]
         }
       },
-      "flavorText": "Die Klinge erinnert sich an jeden Schlag. Nicht nachtragend — aber aufmerksam."
+      "flavorText": "Die Klinge erinnert sich an jeden Schlag. Nicht nachtragend — aber aufmerksam.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-einfaches-schutzbuch",
@@ -588,7 +607,8 @@
           ]
         }
       },
-      "flavorText": "Ein Schild sagt: Ich bin noch nicht fertig."
+      "flavorText": "Ein Schild sagt: Ich bin noch nicht fertig.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-kristallklinge",
@@ -606,7 +626,8 @@
         "kraft": 3,
         "ausdauer": 2
       },
-      "flavorText": "Kristall verstärkt Stahl — und Stahl verstärkt die Entschlossenheit des Trägers."
+      "flavorText": "Kristall verstärkt Stahl — und Stahl verstärkt die Entschlossenheit des Trägers.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-staehlernes-breitschwert",
@@ -623,7 +644,8 @@
       "fixedStats": {
         "kraft": 4
       },
-      "flavorText": "Die Klinge summt leise. Nicht bedrohlich — eher neugierig."
+      "flavorText": "Die Klinge summt leise. Nicht bedrohlich — eher neugierig.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-kristall-streitaxt",
@@ -641,7 +663,8 @@
         "kraft": 4,
         "ausdauer": 3
       },
-      "flavorText": "Wer diesen Schild trägt, steht fester. Nicht wegen dem Gewicht — wegen der Haltung."
+      "flavorText": "Wer diesen Schild trägt, steht fester. Nicht wegen dem Gewicht — wegen der Haltung.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-staehlerner-kriegshammer",
@@ -659,7 +682,8 @@
         "kraft": 4,
         "ausdauer": 3
       },
-      "flavorText": "Stahl und Kristall. Eine Verbindung, die sich beide Materialien verdient haben."
+      "flavorText": "Stahl und Kristall. Eine Verbindung, die sich beide Materialien verdient haben.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-kristallstab",
@@ -677,7 +701,8 @@
         "kraft": 2,
         "ausdauer": 2
       },
-      "flavorText": "Kristall verstärkt Stahl — und Stahl verstärkt die Entschlossenheit des Trägers."
+      "flavorText": "Kristall verstärkt Stahl — und Stahl verstärkt die Entschlossenheit des Trägers.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-staehlerner-zauberstab",
@@ -695,7 +720,8 @@
         "kraft": 3,
         "ausdauer": 3
       },
-      "flavorText": "Die Klinge summt leise. Nicht bedrohlich — eher neugierig."
+      "flavorText": "Die Klinge summt leise. Nicht bedrohlich — eher neugierig.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-kristalldolch",
@@ -713,7 +739,8 @@
         "kraft": 3,
         "ausdauer": 3
       },
-      "flavorText": "Wer diesen Schild trägt, steht fester. Nicht wegen dem Gewicht — wegen der Haltung."
+      "flavorText": "Wer diesen Schild trägt, steht fester. Nicht wegen dem Gewicht — wegen der Haltung.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-staehlernes-langschwert",
@@ -730,7 +757,8 @@
       "fixedStats": {
         "kraft": 2
       },
-      "flavorText": "Stahl und Kristall. Eine Verbindung, die sich beide Materialien verdient haben."
+      "flavorText": "Stahl und Kristall. Eine Verbindung, die sich beide Materialien verdient haben.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-kristall-kriegsbeil",
@@ -747,7 +775,8 @@
       "fixedStats": {
         "kraft": 3
       },
-      "flavorText": "Kristall verstärkt Stahl — und Stahl verstärkt die Entschlossenheit des Trägers."
+      "flavorText": "Kristall verstärkt Stahl — und Stahl verstärkt die Entschlossenheit des Trägers.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-staehlerner-wanderstab",
@@ -765,7 +794,8 @@
         "kraft": 2,
         "ausdauer": 3
       },
-      "flavorText": "Die Klinge summt leise. Nicht bedrohlich — eher neugierig."
+      "flavorText": "Die Klinge summt leise. Nicht bedrohlich — eher neugierig.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-kristall-buckler",
@@ -783,7 +813,8 @@
         "kraft": 4,
         "ausdauer": 2
       },
-      "flavorText": "Wer diesen Schild trägt, steht fester. Nicht wegen dem Gewicht — wegen der Haltung."
+      "flavorText": "Wer diesen Schild trägt, steht fester. Nicht wegen dem Gewicht — wegen der Haltung.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-staehlerner-turmschild",
@@ -801,7 +832,8 @@
         "kraft": 2,
         "ausdauer": 2
       },
-      "flavorText": "Stahl und Kristall. Eine Verbindung, die sich beide Materialien verdient haben."
+      "flavorText": "Stahl und Kristall. Eine Verbindung, die sich beide Materialien verdient haben.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-kristall-rundschild",
@@ -818,7 +850,8 @@
       "fixedStats": {
         "kraft": 2
       },
-      "flavorText": "Kristall verstärkt Stahl — und Stahl verstärkt die Entschlossenheit des Trägers."
+      "flavorText": "Kristall verstärkt Stahl — und Stahl verstärkt die Entschlossenheit des Trägers.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-staehlerner-wappenschild",
@@ -836,7 +869,8 @@
         "kraft": 2,
         "ausdauer": 3
       },
-      "flavorText": "Die Klinge summt leise. Nicht bedrohlich — eher neugierig."
+      "flavorText": "Die Klinge summt leise. Nicht bedrohlich — eher neugierig.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-kristall-fokus",
@@ -853,7 +887,8 @@
       "fixedStats": {
         "kraft": 4
       },
-      "flavorText": "Wer diesen Schild trägt, steht fester. Nicht wegen dem Gewicht — wegen der Haltung."
+      "flavorText": "Wer diesen Schild trägt, steht fester. Nicht wegen dem Gewicht — wegen der Haltung.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-staehlernes-foliant",
@@ -871,7 +906,8 @@
         "ausdauer": 2,
         "weisheit": 3
       },
-      "flavorText": "Stahl und Kristall. Eine Verbindung, die sich beide Materialien verdient haben."
+      "flavorText": "Stahl und Kristall. Eine Verbindung, die sich beide Materialien verdient haben.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-kristall-tartsche",
@@ -888,7 +924,8 @@
       "fixedStats": {
         "ausdauer": 3
       },
-      "flavorText": "Kristall verstärkt Stahl — und Stahl verstärkt die Entschlossenheit des Trägers."
+      "flavorText": "Kristall verstärkt Stahl — und Stahl verstärkt die Entschlossenheit des Trägers.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-staehlerner-schutzschild",
@@ -945,7 +982,8 @@
           ]
         }
       },
-      "flavorText": "Die Klinge summt leise. Nicht bedrohlich — eher neugierig."
+      "flavorText": "Die Klinge summt leise. Nicht bedrohlich — eher neugierig.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-kristall-schutzfolio",
@@ -1002,7 +1040,8 @@
           ]
         }
       },
-      "flavorText": "Wer diesen Schild trägt, steht fester. Nicht wegen dem Gewicht — wegen der Haltung."
+      "flavorText": "Wer diesen Schild trägt, steht fester. Nicht wegen dem Gewicht — wegen der Haltung.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-gewobener-fokuskristall",
@@ -1059,7 +1098,8 @@
           ]
         }
       },
-      "flavorText": "Stahl und Kristall. Eine Verbindung, die sich beide Materialien verdient haben."
+      "flavorText": "Stahl und Kristall. Eine Verbindung, die sich beide Materialien verdient haben.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-kristall-kampfstab",
@@ -1116,7 +1156,8 @@
           ]
         }
       },
-      "flavorText": "Kristall verstärkt Stahl — und Stahl verstärkt die Entschlossenheit des Trägers."
+      "flavorText": "Kristall verstärkt Stahl — und Stahl verstärkt die Entschlossenheit des Trägers.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-staehlerne-streitaxt",
@@ -1173,7 +1214,8 @@
           ]
         }
       },
-      "flavorText": "Die Klinge summt leise. Nicht bedrohlich — eher neugierig."
+      "flavorText": "Die Klinge summt leise. Nicht bedrohlich — eher neugierig.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-kristall-ritualklinge",
@@ -1230,7 +1272,8 @@
           ]
         }
       },
-      "flavorText": "Wer diesen Schild trägt, steht fester. Nicht wegen dem Gewicht — wegen der Haltung."
+      "flavorText": "Wer diesen Schild trägt, steht fester. Nicht wegen dem Gewicht — wegen der Haltung.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-staehlerner-zeremonialstab",
@@ -1287,7 +1330,8 @@
           ]
         }
       },
-      "flavorText": "Stahl und Kristall. Eine Verbindung, die sich beide Materialien verdient haben."
+      "flavorText": "Stahl und Kristall. Eine Verbindung, die sich beide Materialien verdient haben.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-kristall-prunkschild",
@@ -1344,7 +1388,8 @@
           ]
         }
       },
-      "flavorText": "Kristall verstärkt Stahl — und Stahl verstärkt die Entschlossenheit des Trägers."
+      "flavorText": "Kristall verstärkt Stahl — und Stahl verstärkt die Entschlossenheit des Trägers.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-drachenzahn-schwert",
@@ -1362,7 +1407,8 @@
         "kraft": 4,
         "ausdauer": 3
       },
-      "flavorText": "Drachenstahl vergisst nie. Weder den Hammer noch die Hand die ihn führte."
+      "flavorText": "Drachenstahl vergisst nie. Weder den Hammer noch die Hand die ihn führte.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-drachenstahl-axt",
@@ -1380,7 +1426,8 @@
         "kraft": 5,
         "ausdauer": 4
       },
-      "flavorText": "Diese Waffe hat Feuer gesehen und es für unzureichend befunden."
+      "flavorText": "Diese Waffe hat Feuer gesehen und es für unzureichend befunden.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-drachenschuppen-hammer",
@@ -1397,7 +1444,8 @@
       "fixedStats": {
         "kraft": 5
       },
-      "flavorText": "Ein Schild aus Drachenschuppen. Die Ironie, sich mit dem zu schützen was einen töten wollte, ist nicht verloren."
+      "flavorText": "Ein Schild aus Drachenschuppen. Die Ironie, sich mit dem zu schützen was einen töten wollte, ist nicht verloren.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-drachenzahn-dolch",
@@ -1415,7 +1463,8 @@
         "kraft": 5,
         "ausdauer": 4
       },
-      "flavorText": "Drachenzahn-Stahl. Schärfer als nötig. Genau richtig."
+      "flavorText": "Drachenzahn-Stahl. Schärfer als nötig. Genau richtig.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-drachenstahl-stab",
@@ -1433,7 +1482,8 @@
         "kraft": 5,
         "ausdauer": 3
       },
-      "flavorText": "Drachenstahl vergisst nie. Weder den Hammer noch die Hand die ihn führte."
+      "flavorText": "Drachenstahl vergisst nie. Weder den Hammer noch die Hand die ihn führte.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-drachenschuppen-zauberstab",
@@ -1450,7 +1500,8 @@
       "fixedStats": {
         "kraft": 4
       },
-      "flavorText": "Diese Waffe hat Feuer gesehen und es für unzureichend befunden."
+      "flavorText": "Diese Waffe hat Feuer gesehen und es für unzureichend befunden.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-drachenstahl-breitschwert",
@@ -1468,7 +1519,8 @@
         "kraft": 4,
         "ausdauer": 3
       },
-      "flavorText": "Ein Schild aus Drachenschuppen. Die Ironie, sich mit dem zu schützen was einen töten wollte, ist nicht verloren."
+      "flavorText": "Ein Schild aus Drachenschuppen. Die Ironie, sich mit dem zu schützen was einen töten wollte, ist nicht verloren.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-drachenzahn-kriegsbeil",
@@ -1485,7 +1537,8 @@
       "fixedStats": {
         "kraft": 5
       },
-      "flavorText": "Drachenzahn-Stahl. Schärfer als nötig. Genau richtig."
+      "flavorText": "Drachenzahn-Stahl. Schärfer als nötig. Genau richtig.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-drachenschuppen-streitkolben",
@@ -1503,7 +1556,8 @@
         "kraft": 3,
         "ausdauer": 3
       },
-      "flavorText": "Drachenstahl vergisst nie. Weder den Hammer noch die Hand die ihn führte."
+      "flavorText": "Drachenstahl vergisst nie. Weder den Hammer noch die Hand die ihn führte.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-drachenstahl-ritualstab",
@@ -1520,7 +1574,8 @@
       "fixedStats": {
         "kraft": 5
       },
-      "flavorText": "Diese Waffe hat Feuer gesehen und es für unzureichend befunden."
+      "flavorText": "Diese Waffe hat Feuer gesehen und es für unzureichend befunden.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-drachenstahl-buckler",
@@ -1538,7 +1593,8 @@
         "kraft": 3,
         "ausdauer": 3
       },
-      "flavorText": "Ein Schild aus Drachenschuppen. Die Ironie, sich mit dem zu schützen was einen töten wollte, ist nicht verloren."
+      "flavorText": "Ein Schild aus Drachenschuppen. Die Ironie, sich mit dem zu schützen was einen töten wollte, ist nicht verloren.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-drachenschuppen-turmschild",
@@ -1556,7 +1612,8 @@
         "kraft": 5,
         "ausdauer": 4
       },
-      "flavorText": "Drachenzahn-Stahl. Schärfer als nötig. Genau richtig."
+      "flavorText": "Drachenzahn-Stahl. Schärfer als nötig. Genau richtig.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-drachenzahn-rundschild",
@@ -1574,7 +1631,8 @@
         "kraft": 3,
         "ausdauer": 4
       },
-      "flavorText": "Drachenstahl vergisst nie. Weder den Hammer noch die Hand die ihn führte."
+      "flavorText": "Drachenstahl vergisst nie. Weder den Hammer noch die Hand die ihn führte.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-drachenstahl-wappenschild",
@@ -1591,7 +1649,8 @@
       "fixedStats": {
         "kraft": 4
       },
-      "flavorText": "Diese Waffe hat Feuer gesehen und es für unzureichend befunden."
+      "flavorText": "Diese Waffe hat Feuer gesehen und es für unzureichend befunden.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-drachenschuppen-fokus",
@@ -1609,7 +1668,8 @@
         "kraft": 5,
         "ausdauer": 3
       },
-      "flavorText": "Ein Schild aus Drachenschuppen. Die Ironie, sich mit dem zu schützen was einen töten wollte, ist nicht verloren."
+      "flavorText": "Ein Schild aus Drachenschuppen. Die Ironie, sich mit dem zu schützen was einen töten wollte, ist nicht verloren.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-drachenzahn-foliant",
@@ -1666,7 +1726,8 @@
           ]
         }
       },
-      "flavorText": "Drachenzahn-Stahl. Schärfer als nötig. Genau richtig."
+      "flavorText": "Drachenzahn-Stahl. Schärfer als nötig. Genau richtig.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-drachenstahl-kampfschild",
@@ -1723,7 +1784,8 @@
           ]
         }
       },
-      "flavorText": "Drachenstahl vergisst nie. Weder den Hammer noch die Hand die ihn führte."
+      "flavorText": "Drachenstahl vergisst nie. Weder den Hammer noch die Hand die ihn führte.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-drachenschuppen-aegis",
@@ -1780,7 +1842,8 @@
           ]
         }
       },
-      "flavorText": "Diese Waffe hat Feuer gesehen und es für unzureichend befunden."
+      "flavorText": "Diese Waffe hat Feuer gesehen und es für unzureichend befunden.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-drachenzahn-tartsche",
@@ -1837,7 +1900,8 @@
           ]
         }
       },
-      "flavorText": "Ein Schild aus Drachenschuppen. Die Ironie, sich mit dem zu schützen was einen töten wollte, ist nicht verloren."
+      "flavorText": "Ein Schild aus Drachenschuppen. Die Ironie, sich mit dem zu schützen was einen töten wollte, ist nicht verloren.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-drachenstahl-prunkfokus",
@@ -1894,7 +1958,8 @@
           ]
         }
       },
-      "flavorText": "Drachenzahn-Stahl. Schärfer als nötig. Genau richtig."
+      "flavorText": "Drachenzahn-Stahl. Schärfer als nötig. Genau richtig.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-drachenschuppen-schlachtbeil",
@@ -1951,7 +2016,8 @@
           ]
         }
       },
-      "flavorText": "Drachenstahl vergisst nie. Weder den Hammer noch die Hand die ihn führte."
+      "flavorText": "Drachenstahl vergisst nie. Weder den Hammer noch die Hand die ihn führte.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-drachenzahn-meisterschwert",
@@ -2008,7 +2074,8 @@
           ]
         }
       },
-      "flavorText": "Diese Waffe hat Feuer gesehen und es für unzureichend befunden."
+      "flavorText": "Diese Waffe hat Feuer gesehen und es für unzureichend befunden.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-drachenstahl-zeremonialstab",
@@ -2065,7 +2132,8 @@
           ]
         }
       },
-      "flavorText": "Ein Schild aus Drachenschuppen. Die Ironie, sich mit dem zu schützen was einen töten wollte, ist nicht verloren."
+      "flavorText": "Ein Schild aus Drachenschuppen. Die Ironie, sich mit dem zu schützen was einen töten wollte, ist nicht verloren.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-drachenschuppen-klingenbrecher",
@@ -2122,7 +2190,8 @@
           ]
         }
       },
-      "flavorText": "Drachenzahn-Stahl. Schärfer als nötig. Genau richtig."
+      "flavorText": "Drachenzahn-Stahl. Schärfer als nötig. Genau richtig.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-drachenzahn-schattenklinge",
@@ -2179,7 +2248,8 @@
           ]
         }
       },
-      "flavorText": "Drachenstahl vergisst nie. Weder den Hammer noch die Hand die ihn führte."
+      "flavorText": "Drachenstahl vergisst nie. Weder den Hammer noch die Hand die ihn führte.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-aether-schwert",
@@ -2196,7 +2266,8 @@
       "fixedStats": {
         "kraft": 6
       },
-      "flavorText": "Aetherstahl flüstert Formeln beim Schwingen. Die meisten sind hilfreich."
+      "flavorText": "Aetherstahl flüstert Formeln beim Schwingen. Die meisten sind hilfreich.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-aetherkern-axt",
@@ -2214,7 +2285,8 @@
         "kraft": 4,
         "ausdauer": 4
       },
-      "flavorText": "Seelengeschmiedet. Jeder Schlag trägt das Gewicht einer Erinnerung."
+      "flavorText": "Seelengeschmiedet. Jeder Schlag trägt das Gewicht einer Erinnerung.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-aether-hammer",
@@ -2231,7 +2303,8 @@
       "fixedStats": {
         "kraft": 6
       },
-      "flavorText": "Diese Klinge schneidet nicht nur Stahl — sie schneidet Zweifel."
+      "flavorText": "Diese Klinge schneidet nicht nur Stahl — sie schneidet Zweifel.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-aetherkern-dolch",
@@ -2248,7 +2321,8 @@
       "fixedStats": {
         "kraft": 5
       },
-      "flavorText": "Der Schild leuchtet im Dunkeln. Nicht hell genug zum Lesen, aber hell genug zum Überleben."
+      "flavorText": "Der Schild leuchtet im Dunkeln. Nicht hell genug zum Lesen, aber hell genug zum Überleben.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-aether-stab",
@@ -2265,7 +2339,8 @@
       "fixedStats": {
         "kraft": 4
       },
-      "flavorText": "Seelenstahl erkennt seinen Träger. Ob das beruhigend ist, hängt vom Träger ab."
+      "flavorText": "Seelenstahl erkennt seinen Träger. Ob das beruhigend ist, hängt vom Träger ab.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-aetherkern-zauberstab",
@@ -2282,7 +2357,8 @@
       "fixedStats": {
         "kraft": 6
       },
-      "flavorText": "Aetherstahl flüstert Formeln beim Schwingen. Die meisten sind hilfreich."
+      "flavorText": "Aetherstahl flüstert Formeln beim Schwingen. Die meisten sind hilfreich.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-aether-kriegsklinge",
@@ -2300,7 +2376,8 @@
         "kraft": 6,
         "ausdauer": 5
       },
-      "flavorText": "Seelengeschmiedet. Jeder Schlag trägt das Gewicht einer Erinnerung."
+      "flavorText": "Seelengeschmiedet. Jeder Schlag trägt das Gewicht einer Erinnerung.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-aetherkern-schlachtbeil",
@@ -2317,7 +2394,8 @@
       "fixedStats": {
         "kraft": 7
       },
-      "flavorText": "Diese Klinge schneidet nicht nur Stahl — sie schneidet Zweifel."
+      "flavorText": "Diese Klinge schneidet nicht nur Stahl — sie schneidet Zweifel.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-aether-zeremonialstab",
@@ -2335,7 +2413,8 @@
         "kraft": 4,
         "ausdauer": 4
       },
-      "flavorText": "Der Schild leuchtet im Dunkeln. Nicht hell genug zum Lesen, aber hell genug zum Überleben."
+      "flavorText": "Der Schild leuchtet im Dunkeln. Nicht hell genug zum Lesen, aber hell genug zum Überleben.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-aetherkern-ritualklinge",
@@ -2353,7 +2432,8 @@
         "kraft": 4,
         "ausdauer": 6
       },
-      "flavorText": "Seelenstahl erkennt seinen Träger. Ob das beruhigend ist, hängt vom Träger ab."
+      "flavorText": "Seelenstahl erkennt seinen Träger. Ob das beruhigend ist, hängt vom Träger ab.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-aether-buckler",
@@ -2371,7 +2451,8 @@
         "kraft": 4,
         "ausdauer": 4
       },
-      "flavorText": "Aetherstahl flüstert Formeln beim Schwingen. Die meisten sind hilfreich."
+      "flavorText": "Aetherstahl flüstert Formeln beim Schwingen. Die meisten sind hilfreich.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-aetherkern-turmschild",
@@ -2389,7 +2470,8 @@
         "kraft": 4,
         "ausdauer": 4
       },
-      "flavorText": "Seelengeschmiedet. Jeder Schlag trägt das Gewicht einer Erinnerung."
+      "flavorText": "Seelengeschmiedet. Jeder Schlag trägt das Gewicht einer Erinnerung.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-aether-wappenschild",
@@ -2407,7 +2489,8 @@
         "kraft": 6,
         "ausdauer": 5
       },
-      "flavorText": "Diese Klinge schneidet nicht nur Stahl — sie schneidet Zweifel."
+      "flavorText": "Diese Klinge schneidet nicht nur Stahl — sie schneidet Zweifel.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-aetherkern-fokus",
@@ -2425,7 +2508,8 @@
         "kraft": 5,
         "ausdauer": 6
       },
-      "flavorText": "Der Schild leuchtet im Dunkeln. Nicht hell genug zum Lesen, aber hell genug zum Überleben."
+      "flavorText": "Der Schild leuchtet im Dunkeln. Nicht hell genug zum Lesen, aber hell genug zum Überleben.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-aether-foliant",
@@ -2443,7 +2527,8 @@
         "kraft": 6,
         "ausdauer": 4
       },
-      "flavorText": "Seelenstahl erkennt seinen Träger. Ob das beruhigend ist, hängt vom Träger ab."
+      "flavorText": "Seelenstahl erkennt seinen Träger. Ob das beruhigend ist, hängt vom Träger ab.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-seelen-richtschwert",
@@ -2500,7 +2585,8 @@
           ]
         }
       },
-      "flavorText": "Aetherstahl flüstert Formeln beim Schwingen. Die meisten sind hilfreich."
+      "flavorText": "Aetherstahl flüstert Formeln beim Schwingen. Die meisten sind hilfreich.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-seelen-kriegsaxt",
@@ -2557,7 +2643,8 @@
           ]
         }
       },
-      "flavorText": "Seelengeschmiedet. Jeder Schlag trägt das Gewicht einer Erinnerung."
+      "flavorText": "Seelengeschmiedet. Jeder Schlag trägt das Gewicht einer Erinnerung.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-seelen-donnerhammer",
@@ -2614,7 +2701,8 @@
           ]
         }
       },
-      "flavorText": "Diese Klinge schneidet nicht nur Stahl — sie schneidet Zweifel."
+      "flavorText": "Diese Klinge schneidet nicht nur Stahl — sie schneidet Zweifel.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-seelen-schattenklinge",
@@ -2633,17 +2721,17 @@
           "pool": [
             {
               "stat": "ausdauer",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "kraft",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "weisheit",
-              "min": 4,
+              "min": 5,
               "max": 7
             }
           ],
@@ -2671,7 +2759,8 @@
           ]
         }
       },
-      "flavorText": "Der Schild leuchtet im Dunkeln. Nicht hell genug zum Lesen, aber hell genug zum Überleben."
+      "flavorText": "Der Schild leuchtet im Dunkeln. Nicht hell genug zum Lesen, aber hell genug zum Überleben.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-seelen-sternenstab",
@@ -2690,17 +2779,17 @@
           "pool": [
             {
               "stat": "ausdauer",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "kraft",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "weisheit",
-              "min": 4,
+              "min": 5,
               "max": 7
             }
           ],
@@ -2728,7 +2817,8 @@
           ]
         }
       },
-      "flavorText": "Seelenstahl erkennt seinen Träger. Ob das beruhigend ist, hängt vom Träger ab."
+      "flavorText": "Seelenstahl erkennt seinen Träger. Ob das beruhigend ist, hängt vom Träger ab.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-seelen-aegis",
@@ -2747,17 +2837,17 @@
           "pool": [
             {
               "stat": "ausdauer",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "kraft",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "weisheit",
-              "min": 4,
+              "min": 5,
               "max": 7
             }
           ],
@@ -2785,7 +2875,8 @@
           ]
         }
       },
-      "flavorText": "Aetherstahl flüstert Formeln beim Schwingen. Die meisten sind hilfreich."
+      "flavorText": "Aetherstahl flüstert Formeln beim Schwingen. Die meisten sind hilfreich.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-seelen-bollwerk",
@@ -2804,17 +2895,17 @@
           "pool": [
             {
               "stat": "ausdauer",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "kraft",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "weisheit",
-              "min": 4,
+              "min": 5,
               "max": 7
             }
           ],
@@ -2842,7 +2933,8 @@
           ]
         }
       },
-      "flavorText": "Seelengeschmiedet. Jeder Schlag trägt das Gewicht einer Erinnerung."
+      "flavorText": "Seelengeschmiedet. Jeder Schlag trägt das Gewicht einer Erinnerung.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-seelen-fokuskristall",
@@ -2861,17 +2953,17 @@
           "pool": [
             {
               "stat": "ausdauer",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "kraft",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "weisheit",
-              "min": 4,
+              "min": 5,
               "max": 7
             }
           ],
@@ -2899,7 +2991,8 @@
           ]
         }
       },
-      "flavorText": "Diese Klinge schneidet nicht nur Stahl — sie schneidet Zweifel."
+      "flavorText": "Diese Klinge schneidet nicht nur Stahl — sie schneidet Zweifel.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-seelen-kodex",
@@ -2918,17 +3011,17 @@
           "pool": [
             {
               "stat": "ausdauer",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "kraft",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "weisheit",
-              "min": 4,
+              "min": 5,
               "max": 7
             }
           ],
@@ -2956,7 +3049,8 @@
           ]
         }
       },
-      "flavorText": "Der Schild leuchtet im Dunkeln. Nicht hell genug zum Lesen, aber hell genug zum Überleben."
+      "flavorText": "Der Schild leuchtet im Dunkeln. Nicht hell genug zum Lesen, aber hell genug zum Überleben.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-seelen-prunkschild",
@@ -2975,17 +3069,17 @@
           "pool": [
             {
               "stat": "ausdauer",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "kraft",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "weisheit",
-              "min": 4,
+              "min": 5,
               "max": 7
             }
           ],
@@ -3013,7 +3107,8 @@
           ]
         }
       },
-      "flavorText": "Seelenstahl erkennt seinen Träger. Ob das beruhigend ist, hängt vom Träger ab."
+      "flavorText": "Seelenstahl erkennt seinen Träger. Ob das beruhigend ist, hängt vom Träger ab.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-seelenklinge-des-meisters",
@@ -3032,17 +3127,17 @@
           "pool": [
             {
               "stat": "ausdauer",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "kraft",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "weisheit",
-              "min": 4,
+              "min": 5,
               "max": 7
             }
           ],
@@ -3076,7 +3171,8 @@
         "max": 6,
         "label": "Seelenklinge: +{value}% Crit Chance"
       },
-      "flavorText": "Aetherstahl flüstert Formeln beim Schwingen. Die meisten sind hilfreich."
+      "flavorText": "Aetherstahl flüstert Formeln beim Schwingen. Die meisten sind hilfreich.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-seelenbrecher-axt",
@@ -3095,17 +3191,17 @@
           "pool": [
             {
               "stat": "ausdauer",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "kraft",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "weisheit",
-              "min": 4,
+              "min": 5,
               "max": 7
             }
           ],
@@ -3139,7 +3235,8 @@
         "max": 6,
         "label": "Aetherschärfe: +{value}% Quest-XP"
       },
-      "flavorText": "Seelengeschmiedet. Jeder Schlag trägt das Gewicht einer Erinnerung."
+      "flavorText": "Seelengeschmiedet. Jeder Schlag trägt das Gewicht einer Erinnerung.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-seelengeschmiedeter-stab",
@@ -3158,17 +3255,17 @@
           "pool": [
             {
               "stat": "ausdauer",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "kraft",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "weisheit",
-              "min": 4,
+              "min": 5,
               "max": 7
             }
           ],
@@ -3202,7 +3299,8 @@
         "max": 6,
         "label": "Goldene Klinge: +{value}% Gold"
       },
-      "flavorText": "Diese Klinge schneidet nicht nur Stahl — sie schneidet Zweifel."
+      "flavorText": "Diese Klinge schneidet nicht nur Stahl — sie schneidet Zweifel.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-seelenwaechter-schild",
@@ -3221,17 +3319,17 @@
           "pool": [
             {
               "stat": "ausdauer",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "kraft",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "weisheit",
-              "min": 4,
+              "min": 5,
               "max": 7
             }
           ],
@@ -3265,7 +3363,8 @@
         "max": 6,
         "label": "Glücksklinge: +{value}% Drop-Chance"
       },
-      "flavorText": "Der Schild leuchtet im Dunkeln. Nicht hell genug zum Lesen, aber hell genug zum Überleben."
+      "flavorText": "Der Schild leuchtet im Dunkeln. Nicht hell genug zum Lesen, aber hell genug zum Überleben.",
+      "binding": "boe"
     },
     {
       "id": "craft-waffenschmied-seelensiegel-fokus",
@@ -3284,17 +3383,17 @@
           "pool": [
             {
               "stat": "ausdauer",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "kraft",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "weisheit",
-              "min": 4,
+              "min": 5,
               "max": 7
             }
           ],
@@ -3328,7 +3427,8 @@
         "max": 5,
         "label": "Schmiedemeister: +{value} Forge Temp pro Quest"
       },
-      "flavorText": "Seelenstahl erkennt seinen Träger. Ob das beruhigend ist, hängt vom Träger ab."
+      "flavorText": "Seelenstahl erkennt seinen Träger. Ob das beruhigend ist, hängt vom Träger ab.",
+      "binding": "boe"
     }
   ]
 }

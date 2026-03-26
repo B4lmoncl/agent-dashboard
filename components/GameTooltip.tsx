@@ -795,8 +795,8 @@ const TOOLTIP_REGISTRY: Record<string, TooltipEntry> = {
     accent: "#3b82f6",
     body: (
       <>
-        <p>Equip items in 6 slots: Helm, Chest, Gloves, Boots, Weapon, Amulet. Each item has primary + minor stat <GTRef k="affixes">affixes</GTRef>.</p>
-        <div className="gt-stat-row"><span><GTRef k="set_bonus">Set Bonuses</GTRef></span><span>3/6 or 6/6 tier match</span></div>
+        <p>Equip items in 7 slots: Helm, Armor, Boots, Weapon, Shield, Amulet, Ring. Each item has primary + minor stat <GTRef k="affixes">affixes</GTRef>.</p>
+        <div className="gt-stat-row"><span><GTRef k="set_bonus">Set Bonuses</GTRef></span><span>4/7 or 7/7 tier match</span></div>
         <div className="gt-stat-row"><span><GTRef k="legendary_effects">Legendary Effects</GTRef></span><span>Unique passives on gold items</span></div>
         <p className="gt-source">Gear drops from quest completions. <GTRef k="glueck">Glück</GTRef> stat increases drop chance.</p>
       </>

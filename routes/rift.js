@@ -94,6 +94,37 @@ const RIFT_TIERS = {
 // Difficulty labels per quest position
 const DIFFICULTY_NAMES = ['Entrance', 'Corridor', 'Chamber', 'Sanctum', 'Abyss', 'Throne', 'Core'];
 
+// ─── Mythic+ Affixes (weekly rotating, D3/WoW M+ style) ─────────────────────
+const MYTHIC_AFFIXES = [
+  { id: 'tyrannical', name: 'Tyrannisch', desc: 'Final stage difficulty +50%', effect: { type: 'boss_difficulty', value: 1.5 }, minLevel: 2, color: '#ef4444' },
+  { id: 'fortified', name: 'Verstärkt', desc: 'All non-final stages difficulty +30%', effect: { type: 'trash_difficulty', value: 1.3 }, minLevel: 2, color: '#f97316' },
+  { id: 'bolstering', name: 'Anspornend', desc: 'Each completed stage reduces remaining time by 1h', effect: { type: 'time_penalty', value: 1 }, minLevel: 4, color: '#a855f7' },
+  { id: 'raging', name: 'Rasend', desc: 'Must complete 2 quests of same type in a row', effect: { type: 'type_constraint', value: 2 }, minLevel: 7, color: '#dc2626' },
+  { id: 'sanguine', name: 'Blutrünstig', desc: '+25% rewards but time limit reduced by 20%', effect: { type: 'risk_reward', value: 0.25 }, minLevel: 4, color: '#22c55e' },
+  { id: 'volcanic', name: 'Vulkanisch', desc: 'Every 3rd quest must be fitness category', effect: { type: 'forced_type', value: 'fitness' }, minLevel: 2, color: '#f59e0b' },
+  { id: 'necrotic', name: 'Nekrotisch', desc: 'Streak freeze disabled during rift', effect: { type: 'no_freeze', value: 1 }, minLevel: 7, color: '#6b7280' },
+  { id: 'explosive', name: 'Explosiv', desc: '+40% XP but 5h less time', effect: { type: 'xp_time_trade', value: 0.4 }, minLevel: 4, color: '#fbbf24' },
+  { id: 'inspiring', name: 'Inspirierend', desc: 'Social/creative quests count double for rift progress', effect: { type: 'double_type', value: 'social' }, minLevel: 2, color: '#3b82f6' },
+  { id: 'quaking', name: 'Bebend', desc: 'Quest order is fixed — must follow exact stage sequence', effect: { type: 'strict_order', value: 1 }, minLevel: 7, color: '#7c3aed' },
+];
+
+function getWeeklyAffixes() {
+  // Deterministic weekly rotation based on ISO week number
+  const d = new Date();
+  const jan1 = new Date(d.getFullYear(), 0, 1);
+  const weekNum = Math.ceil(((d - jan1) / 86400000 + jan1.getDay() + 1) / 7);
+  const seed = d.getFullYear() * 100 + weekNum;
+
+  // Select 2 affixes: 1 from first 5 (minor), 1 from last 5 (major)
+  const minor = MYTHIC_AFFIXES.slice(0, 5);
+  const major = MYTHIC_AFFIXES.slice(5);
+  return [
+    minor[seed % minor.length],
+    major[(seed * 7) % major.length],
+  ];
+}
+
+
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 
 function generateRiftQuests(tier, questCount, mythicLevel = 0) {
@@ -192,8 +223,12 @@ router.get('/api/rift', (req, res) => {
   // Compute effective time limit for active rift (accounts for mythic scaling)
   const effectiveTimeLimit = rift?.timeLimitHours || RIFT_TIERS[rift?.tier]?.timeLimitHours || 72;
 
+  // Current weekly affixes for Mythic+ display
+  const weeklyAffixes = getWeeklyAffixes().map(a => ({ id: a.id, name: a.name, desc: a.desc, color: a.color, minLevel: a.minLevel }));
+
   res.json({
     tiers,
+    weeklyAffixes,
     activeRift: rift?.active ? {
       tier: rift.tier,
       tierName: rift.mythicLevel ? `${RIFT_TIERS[rift.tier]?.name || 'Mythic Rift'} +${rift.mythicLevel}` : (RIFT_TIERS[rift.tier]?.name || rift.tier),
@@ -206,6 +241,7 @@ router.get('/api/rift', (req, res) => {
       totalStages: rift.quests.length,
       completed: rift.completed || false,
       ...(rift.mythicLevel && { mythicLevel: rift.mythicLevel }),
+      affixes: rift.affixes || [],
     } : rift?.failed ? {
       tier: rift.tier,
       failed: true,
@@ -268,9 +304,22 @@ router.post('/api/rift/enter', requireAuth, (req, res) => {
   }
 
   // Generate rift (mythic gets scaled time limit)
-  const timeLimitHours = tierId === 'mythic'
+  let timeLimitHours = tierId === 'mythic'
     ? Math.max(18, 30 - mythicLevel * 1.5)
     : tier.timeLimitHours;
+
+  // Apply Mythic+ weekly affixes (M+2 and above)
+  let activeAffixes = [];
+  if (tierId === 'mythic' && mythicLevel >= 2) {
+    const weeklyAffixes = getWeeklyAffixes();
+    activeAffixes = weeklyAffixes.filter(a => mythicLevel >= a.minLevel);
+    // Apply time-modifying affixes
+    for (const affix of activeAffixes) {
+      if (affix.effect.type === 'risk_reward') timeLimitHours = Math.round(timeLimitHours * 0.8);
+      if (affix.effect.type === 'xp_time_trade') timeLimitHours = Math.max(12, timeLimitHours - 5);
+    }
+  }
+
   const quests = generateRiftQuests(tier, tier.questCount, mythicLevel);
 
   u.activeRift = {
@@ -281,6 +330,7 @@ router.post('/api/rift/enter', requireAuth, (req, res) => {
     completed: false,
     failed: false,
     ...(mythicLevel > 0 && { mythicLevel, timeLimitHours }),
+    ...(activeAffixes.length > 0 && { affixes: activeAffixes.map(a => ({ id: a.id, name: a.name, desc: a.desc, color: a.color, effect: a.effect })) }),
   };
 
   saveUsers();
@@ -325,6 +375,27 @@ router.post('/api/rift/complete-stage', requireAuth, (req, res) => {
   };
   onQuestCompletedByUser(uid, syntheticQuest);
 
+  // ── Rift-exclusive gear drop (from gearTemplates-rift.json pool) ──
+  const riftSource = rift.mythicLevel ? 'rift:mythic' : `rift:${rift.tier}`;
+  const RARITY_ORDER_RIFT = ['common', 'uncommon', 'rare', 'epic', 'legendary'];
+  const riftMinRarity = rift.tier === 'legendary' || rift.mythicLevel ? 'rare' : rift.tier === 'hard' ? 'uncommon' : 'common';
+  const riftMinIdx = RARITY_ORDER_RIFT.indexOf(riftMinRarity);
+  const riftPlayerLevel = getLevelInfo(u.xp || 0).level;
+  const riftItems = state.FULL_GEAR_ITEMS.filter(gi =>
+    gi.source === riftSource &&
+    (gi.minLevel || gi.reqLevel || 1) <= riftPlayerLevel &&
+    RARITY_ORDER_RIFT.indexOf(gi.rarity || 'common') >= riftMinIdx
+  );
+  let riftGearDrop = null;
+  if (riftItems.length > 0 && Math.random() < 0.35) {
+    const { createGearInstance, rollSuffix } = require('../lib/helpers');
+    const template = riftItems[Math.floor(Math.random() * riftItems.length)];
+    const instance = rollSuffix(createGearInstance(template));
+    if (!u.inventory) u.inventory = [];
+    u.inventory.push(instance);
+    riftGearDrop = { name: instance.name, rarity: instance.rarity, slot: instance.slot };
+  }
+
   // Check if rift is fully completed
   const allDone = rift.quests.every(q => q.completed);
   if (allDone) {
@@ -334,6 +405,10 @@ router.post('/api/rift/complete-stage', requireAuth, (req, res) => {
     // Award completion bonus currencies (raw — these are bonus on top of quest rewards)
     const tier = RIFT_TIERS[rift.tier];
     const mythicLvl = rift.mythicLevel || 0;
+    // Calculate affix reward multiplier (sanguine +25%, explosive +40% XP)
+    const affixes = rift.affixes || [];
+    const rewardMulti = 1 + affixes.reduce((sum, a) => sum + (a.effect?.type === 'risk_reward' ? a.effect.value : 0), 0);
+    const xpMulti = 1 + affixes.reduce((sum, a) => sum + (a.effect?.type === 'xp_time_trade' ? a.effect.value : 0), 0);
     if (tier?.completionBonus) {
       for (const [currency, amount] of Object.entries(tier.completionBonus)) {
         // Scale mythic completion bonuses
@@ -344,6 +419,8 @@ router.post('/api/rift/complete-stage', requireAuth, (req, res) => {
           else if (currency === 'essenz') scaled = amount + cappedLvl * 5;
           else scaled = amount;
         }
+        // Apply affix reward multipliers
+        scaled = Math.round(scaled * rewardMulti);
         awardCurrency(uid, currency, scaled);
       }
     }

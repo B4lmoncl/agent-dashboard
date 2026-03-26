@@ -483,6 +483,15 @@ function InventoryTooltip({ item, mousePosRef, equippedItem, playerLevel }: { it
           </div>
         </div>
 
+        {/* Binding badge */}
+        {item.bound ? (
+          <p className="text-xs font-semibold" style={{ color: "#ef4444" }}>Soulbound</p>
+        ) : item.binding === "boe" ? (
+          <p className="text-xs font-semibold" style={{ color: "#22c55e" }}>Bind on Equip</p>
+        ) : item.binding === "bop" ? (
+          <p className="text-xs font-semibold" style={{ color: "#f97316" }}>Bind on Pickup</p>
+        ) : null}
+
         {/* Flavor text */}
         {item.flavorText && (
           <p className="text-xs italic leading-relaxed" style={{ color: "rgba(255,255,255,0.35)" }}>&ldquo;{item.flavorText}&rdquo;</p>
@@ -686,6 +695,10 @@ function InventorySlot({ item, level, idx, onItemClick, onDragStart, onDragOver,
             Lv{item.minLevel}
           </span>
         )}
+        {/* Lock indicator */}
+        {item.locked && (
+          <span style={{ position: "absolute", top: 1, left: 1, fontSize: 12, color: "#fbbf24", background: "rgba(0,0,0,0.7)", borderRadius: 2, padding: "0 2px", lineHeight: 1.4 }} title="Locked">{"\u29BF"}</span>
+        )}
       </button>
       {hovered && createPortal(<InventoryTooltip item={item} mousePosRef={mousePosRef} equippedItem={equippedForSlot} playerLevel={level} />, document.body)}
     </>
@@ -698,6 +711,7 @@ const EQUIP_SLOT_LABELS: { slot: string; emoji: string; label: string; iconSrc?:
   { slot: "shield", emoji: "", iconSrc: "/images/icons/equip-shield.png", label: "Shield" },
   { slot: "armor", emoji: "", iconSrc: "/images/icons/equip-armor.png", label: "Armor" },
   { slot: "amulet", emoji: "", iconSrc: "/images/icons/equip-amulet.png", label: "Amulet" },
+  { slot: "ring", emoji: "", iconSrc: "/images/icons/equip-ring.png", label: "Ring" },
   { slot: "boots", emoji: "", iconSrc: "/images/icons/equip-boots.png", label: "Boots" },
 ];
 
@@ -849,7 +863,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
           addToast({ type: "item", itemName: item.name, message: `${item.name} equipped!`, icon: item.icon, rarity: displayRarity(item) });
         }
       } else {
-        const data = await r.json().catch(() => null);
+        const data = await r.json().catch(e => { console.error('[character-view]', e); return null; });
         if (addToast) addToast({ type: "error", message: data?.error || "Failed to equip item" });
       }
       await fetchChar();
@@ -866,7 +880,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
         headers: { ...getAuthHeaders(apiKey) },
       });
       if (!r.ok && addToast) {
-        const data = await r.json().catch(() => null);
+        const data = await r.json().catch(e => { console.error('[character-view]', e); return null; });
         addToast({ type: "error", message: data?.error || "Failed to unequip" });
       }
       await fetchChar();
@@ -890,12 +904,30 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
           addToast({ type: "item", itemName: item.name, message: data.message || "Item used!", icon: item.icon, rarity: displayRarity(item) });
         }
       } else if (addToast) {
-        const data = await r.json().catch(() => null);
+        const data = await r.json().catch(e => { console.error('[character-view]', e); return null; });
         addToast({ type: "error", message: data?.error || "Item could not be used" });
       }
       await fetchChar();
     } catch {
       if (addToast) addToast({ type: "error", message: "Network error while using item" });
+    }
+  };
+
+  const handleLockItem = async (itemId: string) => {
+    if (!apiKey) return;
+    try {
+      const r = await fetch(`/api/player/${encodeURIComponent(playerName)}/inventory/lock/${itemId}`, {
+        method: "POST",
+        headers: { ...getAuthHeaders(apiKey) },
+      });
+      if (r.ok) {
+        const data = await r.json();
+        const lockedItem = charData?.inventory.find(i => i.id === itemId);
+        if (addToast) addToast({ type: "item", message: data.locked ? "Item locked" : "Item unlocked", itemName: lockedItem?.name || "Item", rarity: lockedItem?.rarity || "common" });
+      }
+      await fetchChar();
+    } catch {
+      if (addToast) addToast({ type: "error", message: "Network error" });
     }
   };
 
@@ -911,7 +943,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
         const item = charData?.inventory.find(i => i.id === itemId);
         if (addToast && item) addToast({ type: "item", itemName: item.name, message: `${item.name} discarded`, icon: item.icon, rarity: displayRarity(item) });
       } else if (addToast) {
-        const data = await r.json().catch(() => null);
+        const data = await r.json().catch(e => { console.error('[character-view]', e); return null; });
         addToast({ type: "error", message: data?.error || "Discard failed" });
       }
       await fetchChar();
@@ -1008,7 +1040,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                 }}
               >
                 <span>{INV_SORTS.find(s => s.key === invSort)?.label ?? "Default"}</span>
-                <span style={{ fontSize: 10, opacity: 0.5 }}>{sortDropdownOpen ? "▲" : "▼"}</span>
+                <span style={{ fontSize: 12, opacity: 0.5 }}>{sortDropdownOpen ? "▲" : "▼"}</span>
               </button>
               {sortDropdownOpen && (
                 <div
@@ -1276,7 +1308,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                     fetch("/api/gems", { headers: apiKey ? getAuthHeaders(apiKey) : {} })
                       .then(r => r.ok ? r.json() : null)
                       .then(d => { if (d) setGemData(d); })
-                      .catch(() => {})
+                      .catch(e => console.error('[character-view]', e))
                       .finally(() => setGemsLoading(false));
                   }
                 }}
@@ -1303,7 +1335,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                 const equippedItemId = gi ? (gi.instanceId || gi.templateId) : eqRaw;
                 // For instance objects, build item directly from equipment data
                 const item = gi
-                  ? { id: gi.instanceId || gi.templateId, name: gi.name, slot: gi.slot, rarity: gi.rarity || 'common', stats: gi.stats || {}, icon: gi.icon || undefined, tier: gi.tier || 0, minLevel: gi.reqLevel || 0, desc: gi.desc, legendaryEffect: gi.legendaryEffect, affixes: gi.affixRolls }
+                  ? { id: gi.instanceId || gi.templateId, name: gi.name, slot: gi.slot, rarity: gi.rarity || 'common', stats: gi.stats || {}, icon: gi.icon || undefined, tier: gi.tier || 0, minLevel: gi.reqLevel || 0, desc: gi.desc, legendaryEffect: gi.legendaryEffect, affixes: gi.affixRolls, binding: gi.binding, bound: gi.bound }
                   : equippedItemId ? charData?.inventory.find(i => i.id === equippedItemId) ?? null : null;
                 return (
                   <GearSlotRow
@@ -1776,13 +1808,13 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                                       {isEquipped && (
                                         <span
                                           className="text-xs px-1.5 py-0 rounded-full font-medium flex-shrink-0"
-                                          style={{ background: `${c}20`, color: c, fontSize: 10, lineHeight: "16px" }}
+                                          style={{ background: `${c}20`, color: c, fontSize: 12, lineHeight: "16px" }}
                                         >
                                           Equipped
                                         </span>
                                       )}
                                     </div>
-                                    <p className="text-xs truncate" style={{ color: "rgba(255,255,255,0.3)", fontSize: 11 }}>
+                                    <p className="text-xs truncate" style={{ color: "rgba(255,255,255,0.3)" }}>
                                       {t.description || condLabel(t.condition)}
                                     </p>
                                   </div>
@@ -1792,7 +1824,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                                     {isEarned ? (
                                       <div className="flex flex-col items-end">
                                         <span style={{ color: "#22c55e", fontSize: 12 }}>✓</span>
-                                        {earnedDate && <span className="text-xs" style={{ color: "rgba(255,255,255,0.2)", fontSize: 10 }}>{earnedDate}</span>}
+                                        {earnedDate && <span className="text-xs" style={{ color: "rgba(255,255,255,0.2)", fontSize: 12 }}>{earnedDate}</span>}
                                       </div>
                                     ) : (
                                       <span style={{ color: "rgba(255,255,255,0.2)", fontSize: 12 }}>🔒</span>
@@ -1928,7 +1960,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                                 {socket ? (
                                   <span className="w-2 h-2 rounded-full" style={{ background: GEM_COLORS[socket.gemType] || "#9ca3af" }} />
                                 ) : (
-                                  <span style={{ color: "rgba(255,255,255,0.15)", fontSize: 10 }}>+</span>
+                                  <span style={{ color: "rgba(255,255,255,0.15)", fontSize: 12 }}>+</span>
                                 )}
                               </div>
                               <div className="flex gap-0.5">
@@ -2013,6 +2045,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
             onUnequip={handleUnequip}
             onUse={handleUseItem}
             onDiscard={handleDiscardItem}
+            onLock={handleLockItem}
             onClose={() => setSelectedItem(null)}
           />
         );

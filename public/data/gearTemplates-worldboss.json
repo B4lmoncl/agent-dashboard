@@ -1,0 +1,4744 @@
+{
+  "items": [
+    {
+      "id": "world_boss-procrastination-wyrm-wyrm-klinge",
+      "name": "Wyrm-Klinge",
+      "slot": "weapon",
+      "reqLevel": 30,
+      "rarity": "rare",
+      "armorType": null,
+      "tier": 3,
+      "setId": "drachentoeter-arsenal",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "world_boss:procrastination-wyrm",
+      "fixedStats": {
+        "kraft": 5
+      },
+      "flavorText": "Der Wyrm nährt sich von Aufschub. Dieses Stück erinnert daran, nicht zu zögern.",
+      "binding": "bop"
+    },
+    {
+      "id": "world_boss-procrastination-wyrm-wyrm-buckler",
+      "name": "Wyrm-Buckler",
+      "slot": "shield",
+      "reqLevel": 31,
+      "rarity": "rare",
+      "armorType": null,
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "world_boss:procrastination-wyrm",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Es riecht nach verpassten Deadlines und zweiten Chancen.",
+      "binding": "bop"
+    },
+    {
+      "id": "world_boss-procrastination-wyrm-wyrm-haube",
+      "name": "Wyrm-Haube",
+      "slot": "helm",
+      "reqLevel": 33,
+      "rarity": "rare",
+      "armorType": "leather",
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "world_boss:procrastination-wyrm",
+      "fixedStats": {
+        "weisheit": 7,
+        "kraft": 4
+      },
+      "flavorText": "Der Wyrm nährt sich von Aufschub. Dieses Stück erinnert daran, nicht zu zögern.",
+      "binding": "bop"
+    },
+    {
+      "id": "world_boss-procrastination-wyrm-wyrm-mantel",
+      "name": "Wyrm-Mantel",
+      "slot": "armor",
+      "reqLevel": 34,
+      "rarity": "epic",
+      "armorType": "heavy",
+      "tier": 4,
+      "setId": "drachentoeter-arsenal",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "world_boss:procrastination-wyrm",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Es riecht nach verpassten Deadlines und zweiten Chancen.",
+      "binding": "bop"
+    },
+    {
+      "id": "world_boss-procrastination-wyrm-wyrm-stiefel",
+      "name": "Wyrm-Stiefel",
+      "slot": "boots",
+      "reqLevel": 35,
+      "rarity": "epic",
+      "armorType": "cloth",
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "world_boss:procrastination-wyrm",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Der Wyrm nährt sich von Aufschub. Dieses Stück erinnert daran, nicht zu zögern.",
+      "binding": "bop"
+    },
+    {
+      "id": "world_boss-procrastination-wyrm-wyrm-reif",
+      "name": "Wyrm-Reif",
+      "slot": "ring",
+      "reqLevel": 36,
+      "rarity": "epic",
+      "armorType": null,
+      "tier": 4,
+      "setId": "drachentoeter-arsenal",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "world_boss:procrastination-wyrm",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Es riecht nach verpassten Deadlines und zweiten Chancen.",
+      "binding": "bop"
+    },
+    {
+      "id": "world_boss-procrastination-wyrm-wyrm-medaillon",
+      "name": "Wyrm-Medaillon",
+      "slot": "amulet",
+      "reqLevel": 38,
+      "rarity": "epic",
+      "armorType": null,
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "world_boss:procrastination-wyrm",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Der Wyrm nährt sich von Aufschub. Dieses Stück erinnert daran, nicht zu zögern.",
+      "binding": "bop"
+    },
+    {
+      "id": "world_boss-procrastination-wyrm-wyrm-schwert",
+      "name": "Wyrm-Schwert",
+      "slot": "weapon",
+      "reqLevel": 39,
+      "rarity": "legendary",
+      "armorType": null,
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "world_boss:procrastination-wyrm",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            3,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "drop_bonus",
+        "min": 3,
+        "max": 5,
+        "label": "Bestien-Instinkt: +{value}% Drop-Chance"
+      },
+      "flavorText": "Es riecht nach verpassten Deadlines und zweiten Chancen.",
+      "binding": "bop"
+    },
+    {
+      "id": "world_boss-procrastination-wyrm-wyrm-tartsche",
+      "name": "Wyrm-Tartsche",
+      "slot": "shield",
+      "reqLevel": 40,
+      "rarity": "legendary",
+      "armorType": null,
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "world_boss:procrastination-wyrm",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            3,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "crit_chance",
+        "min": 3,
+        "max": 5,
+        "label": "Bestien-Präzision: +{value}% Crit"
+      },
+      "flavorText": "Der Wyrm nährt sich von Aufschub. Dieses Stück erinnert daran, nicht zu zögern.",
+      "binding": "bop"
+    },
+    {
+      "id": "world_boss-burnout-colossus-koloss-klinge",
+      "name": "Koloss-Klinge",
+      "slot": "weapon",
+      "reqLevel": 30,
+      "rarity": "rare",
+      "armorType": null,
+      "tier": 3,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "world_boss:burnout-colossus",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Geschmiedet in der Glut des Kolosses. Ruhe ist keine Schwäche.",
+      "binding": "bop"
+    },
+    {
+      "id": "world_boss-burnout-colossus-koloss-buckler",
+      "name": "Koloss-Buckler",
+      "slot": "shield",
+      "reqLevel": 31,
+      "rarity": "rare",
+      "armorType": null,
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "world_boss:burnout-colossus",
+      "fixedStats": {
+        "ausdauer": 7,
+        "kraft": 4
+      },
+      "flavorText": "Es strahlt Wärme aus — nicht genug zum Verbrennen, genug zum Erinnern.",
+      "binding": "bop"
+    },
+    {
+      "id": "world_boss-burnout-colossus-koloss-haube",
+      "name": "Koloss-Haube",
+      "slot": "helm",
+      "reqLevel": 33,
+      "rarity": "rare",
+      "armorType": "leather",
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "world_boss:burnout-colossus",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Geschmiedet in der Glut des Kolosses. Ruhe ist keine Schwäche.",
+      "binding": "bop"
+    },
+    {
+      "id": "world_boss-burnout-colossus-koloss-mantel",
+      "name": "Koloss-Mantel",
+      "slot": "armor",
+      "reqLevel": 34,
+      "rarity": "epic",
+      "armorType": "heavy",
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "world_boss:burnout-colossus",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Es strahlt Wärme aus — nicht genug zum Verbrennen, genug zum Erinnern.",
+      "binding": "bop"
+    },
+    {
+      "id": "world_boss-burnout-colossus-koloss-stiefel",
+      "name": "Koloss-Stiefel",
+      "slot": "boots",
+      "reqLevel": 35,
+      "rarity": "epic",
+      "armorType": "cloth",
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "world_boss:burnout-colossus",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Geschmiedet in der Glut des Kolosses. Ruhe ist keine Schwäche.",
+      "binding": "bop"
+    },
+    {
+      "id": "world_boss-burnout-colossus-koloss-reif",
+      "name": "Koloss-Reif",
+      "slot": "ring",
+      "reqLevel": 36,
+      "rarity": "epic",
+      "armorType": null,
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "world_boss:burnout-colossus",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Es strahlt Wärme aus — nicht genug zum Verbrennen, genug zum Erinnern.",
+      "binding": "bop"
+    },
+    {
+      "id": "world_boss-burnout-colossus-koloss-medaillon",
+      "name": "Koloss-Medaillon",
+      "slot": "amulet",
+      "reqLevel": 38,
+      "rarity": "epic",
+      "armorType": null,
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "world_boss:burnout-colossus",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Geschmiedet in der Glut des Kolosses. Ruhe ist keine Schwäche.",
+      "binding": "bop"
+    },
+    {
+      "id": "world_boss-burnout-colossus-koloss-schwert",
+      "name": "Koloss-Schwert",
+      "slot": "weapon",
+      "reqLevel": 39,
+      "rarity": "legendary",
+      "armorType": null,
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "world_boss:burnout-colossus",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            3,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "drop_bonus",
+        "min": 3,
+        "max": 5,
+        "label": "Bestien-Instinkt: +{value}% Drop-Chance"
+      },
+      "flavorText": "Es strahlt Wärme aus — nicht genug zum Verbrennen, genug zum Erinnern.",
+      "binding": "bop"
+    },
+    {
+      "id": "world_boss-burnout-colossus-koloss-tartsche",
+      "name": "Koloss-Tartsche",
+      "slot": "shield",
+      "reqLevel": 40,
+      "rarity": "legendary",
+      "armorType": null,
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "world_boss:burnout-colossus",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            3,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "crit_chance",
+        "min": 3,
+        "max": 5,
+        "label": "Bestien-Präzision: +{value}% Crit"
+      },
+      "flavorText": "Geschmiedet in der Glut des Kolosses. Ruhe ist keine Schwäche.",
+      "binding": "bop"
+    },
+    {
+      "id": "world_boss-chaos-hydra-hydra-klinge",
+      "name": "Hydra-Klinge",
+      "slot": "weapon",
+      "reqLevel": 30,
+      "rarity": "rare",
+      "armorType": null,
+      "tier": 3,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "world_boss:chaos-hydra",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Jeder Kopf der Hydra flüsterte etwas anderes. Dieses Stück hat nur einem zugehört.",
+      "binding": "bop"
+    },
+    {
+      "id": "world_boss-chaos-hydra-hydra-buckler",
+      "name": "Hydra-Buckler",
+      "slot": "shield",
+      "reqLevel": 31,
+      "rarity": "rare",
+      "armorType": null,
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "world_boss:chaos-hydra",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Chaos ist kein Feind. Es ist ein Material.",
+      "binding": "bop"
+    },
+    {
+      "id": "world_boss-chaos-hydra-hydra-haube",
+      "name": "Hydra-Haube",
+      "slot": "helm",
+      "reqLevel": 33,
+      "rarity": "rare",
+      "armorType": "leather",
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "world_boss:chaos-hydra",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Jeder Kopf der Hydra flüsterte etwas anderes. Dieses Stück hat nur einem zugehört.",
+      "binding": "bop"
+    },
+    {
+      "id": "world_boss-chaos-hydra-hydra-mantel",
+      "name": "Hydra-Mantel",
+      "slot": "armor",
+      "reqLevel": 34,
+      "rarity": "epic",
+      "armorType": "heavy",
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "world_boss:chaos-hydra",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Chaos ist kein Feind. Es ist ein Material.",
+      "binding": "bop"
+    },
+    {
+      "id": "world_boss-chaos-hydra-hydra-stiefel",
+      "name": "Hydra-Stiefel",
+      "slot": "boots",
+      "reqLevel": 35,
+      "rarity": "epic",
+      "armorType": "cloth",
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "world_boss:chaos-hydra",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Jeder Kopf der Hydra flüsterte etwas anderes. Dieses Stück hat nur einem zugehört.",
+      "binding": "bop"
+    },
+    {
+      "id": "world_boss-chaos-hydra-hydra-reif",
+      "name": "Hydra-Reif",
+      "slot": "ring",
+      "reqLevel": 36,
+      "rarity": "epic",
+      "armorType": null,
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "world_boss:chaos-hydra",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Chaos ist kein Feind. Es ist ein Material.",
+      "binding": "bop"
+    },
+    {
+      "id": "world_boss-chaos-hydra-hydra-medaillon",
+      "name": "Hydra-Medaillon",
+      "slot": "amulet",
+      "reqLevel": 38,
+      "rarity": "epic",
+      "armorType": null,
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "world_boss:chaos-hydra",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Jeder Kopf der Hydra flüsterte etwas anderes. Dieses Stück hat nur einem zugehört.",
+      "binding": "bop"
+    },
+    {
+      "id": "world_boss-chaos-hydra-hydra-schwert",
+      "name": "Hydra-Schwert",
+      "slot": "weapon",
+      "reqLevel": 39,
+      "rarity": "legendary",
+      "armorType": null,
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "world_boss:chaos-hydra",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            3,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "drop_bonus",
+        "min": 3,
+        "max": 5,
+        "label": "Bestien-Instinkt: +{value}% Drop-Chance"
+      },
+      "flavorText": "Chaos ist kein Feind. Es ist ein Material.",
+      "binding": "bop"
+    },
+    {
+      "id": "world_boss-chaos-hydra-hydra-tartsche",
+      "name": "Hydra-Tartsche",
+      "slot": "shield",
+      "reqLevel": 40,
+      "rarity": "legendary",
+      "armorType": null,
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "world_boss:chaos-hydra",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            3,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "crit_chance",
+        "min": 3,
+        "max": 5,
+        "label": "Bestien-Präzision: +{value}% Crit"
+      },
+      "flavorText": "Jeder Kopf der Hydra flüsterte etwas anderes. Dieses Stück hat nur einem zugehört.",
+      "binding": "bop"
+    },
+    {
+      "id": "world_boss-doubt-phantom-phantom-klinge",
+      "name": "Phantom-Klinge",
+      "slot": "weapon",
+      "reqLevel": 15,
+      "rarity": "uncommon",
+      "armorType": null,
+      "tier": 2,
+      "setId": "veteran",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "world_boss:doubt-phantom",
+      "fixedStats": {
+        "kraft": 3
+      },
+      "flavorText": "Der Zweifel hatte Krallen. Dieses Stück hat sie abgefeilt.",
+      "binding": "bop"
+    },
+    {
+      "id": "world_boss-doubt-phantom-phantom-buckler",
+      "name": "Phantom-Buckler",
+      "slot": "shield",
+      "reqLevel": 16,
+      "rarity": "uncommon",
+      "armorType": null,
+      "tier": 2,
+      "setId": "veteran",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "world_boss:doubt-phantom",
+      "fixedStats": {
+        "ausdauer": 4
+      },
+      "flavorText": "Es flüstert Selbstvertrauen. Leise, aber beharrlich.",
+      "binding": "bop"
+    },
+    {
+      "id": "world_boss-doubt-phantom-phantom-haube",
+      "name": "Phantom-Haube",
+      "slot": "helm",
+      "reqLevel": 17,
+      "rarity": "rare",
+      "armorType": "leather",
+      "tier": 2,
+      "setId": "master",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "world_boss:doubt-phantom",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 3
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Der Zweifel hatte Krallen. Dieses Stück hat sie abgefeilt.",
+      "binding": "bop"
+    },
+    {
+      "id": "world_boss-doubt-phantom-phantom-mantel",
+      "name": "Phantom-Mantel",
+      "slot": "armor",
+      "reqLevel": 18,
+      "rarity": "rare",
+      "armorType": "heavy",
+      "tier": 2,
+      "setId": "master",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "world_boss:doubt-phantom",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 3
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Es flüstert Selbstvertrauen. Leise, aber beharrlich.",
+      "binding": "bop"
+    },
+    {
+      "id": "world_boss-doubt-phantom-phantom-stiefel",
+      "name": "Phantom-Stiefel",
+      "slot": "boots",
+      "reqLevel": 19,
+      "rarity": "rare",
+      "armorType": "cloth",
+      "tier": 2,
+      "setId": "master",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "world_boss:doubt-phantom",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 3
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Der Zweifel hatte Krallen. Dieses Stück hat sie abgefeilt.",
+      "binding": "bop"
+    },
+    {
+      "id": "world_boss-doubt-phantom-phantom-reif",
+      "name": "Phantom-Reif",
+      "slot": "ring",
+      "reqLevel": 20,
+      "rarity": "rare",
+      "armorType": null,
+      "tier": 2,
+      "setId": "master",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "world_boss:doubt-phantom",
+      "fixedStats": {
+        "glueck": 4,
+        "kraft": 2
+      },
+      "flavorText": "Es flüstert Selbstvertrauen. Leise, aber beharrlich.",
+      "binding": "bop"
+    },
+    {
+      "id": "world_boss-doubt-phantom-phantom-medaillon",
+      "name": "Phantom-Medaillon",
+      "slot": "amulet",
+      "reqLevel": 21,
+      "rarity": "epic",
+      "armorType": null,
+      "tier": 3,
+      "setId": "master",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "world_boss:doubt-phantom",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Der Zweifel hatte Krallen. Dieses Stück hat sie abgefeilt.",
+      "binding": "bop"
+    },
+    {
+      "id": "world_boss-doubt-phantom-phantom-schwert",
+      "name": "Phantom-Schwert",
+      "slot": "weapon",
+      "reqLevel": 22,
+      "rarity": "legendary",
+      "armorType": null,
+      "tier": 3,
+      "setId": "master",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "world_boss:doubt-phantom",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            3,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "drop_bonus",
+        "min": 2,
+        "max": 5,
+        "label": "Bestien-Instinkt: +{value}% Drop-Chance"
+      },
+      "flavorText": "Es flüstert Selbstvertrauen. Leise, aber beharrlich.",
+      "binding": "bop"
+    },
+    {
+      "id": "world_boss-entropy-weaver-entropie-klinge",
+      "name": "Entropie-Klinge",
+      "slot": "weapon",
+      "reqLevel": 18,
+      "rarity": "uncommon",
+      "armorType": null,
+      "tier": 2,
+      "setId": "master",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "world_boss:entropy-weaver",
+      "fixedStats": {
+        "kraft": 3
+      },
+      "flavorText": "Aus dem Netz der Entropie gerissen. Es hält zusammen, was zerfallen will.",
+      "binding": "bop"
+    },
+    {
+      "id": "world_boss-entropy-weaver-entropie-buckler",
+      "name": "Entropie-Buckler",
+      "slot": "shield",
+      "reqLevel": 19,
+      "rarity": "uncommon",
+      "armorType": null,
+      "tier": 2,
+      "setId": "master",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "world_boss:entropy-weaver",
+      "fixedStats": {
+        "ausdauer": 3,
+        "kraft": 3
+      },
+      "flavorText": "Entropie ist unvermeidlich. Widerstand auch.",
+      "binding": "bop"
+    },
+    {
+      "id": "world_boss-entropy-weaver-entropie-haube",
+      "name": "Entropie-Haube",
+      "slot": "helm",
+      "reqLevel": 20,
+      "rarity": "rare",
+      "armorType": "leather",
+      "tier": 2,
+      "setId": "master",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "world_boss:entropy-weaver",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 3
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Aus dem Netz der Entropie gerissen. Es hält zusammen, was zerfallen will.",
+      "binding": "bop"
+    },
+    {
+      "id": "world_boss-entropy-weaver-entropie-mantel",
+      "name": "Entropie-Mantel",
+      "slot": "armor",
+      "reqLevel": 21,
+      "rarity": "rare",
+      "armorType": "heavy",
+      "tier": 3,
+      "setId": "master",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "world_boss:entropy-weaver",
+      "fixedStats": {
+        "ausdauer": 3,
+        "kraft": 4
+      },
+      "flavorText": "Entropie ist unvermeidlich. Widerstand auch.",
+      "binding": "bop"
+    },
+    {
+      "id": "world_boss-entropy-weaver-entropie-stiefel",
+      "name": "Entropie-Stiefel",
+      "slot": "boots",
+      "reqLevel": 22,
+      "rarity": "rare",
+      "armorType": "cloth",
+      "tier": 3,
+      "setId": "master",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "world_boss:entropy-weaver",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Aus dem Netz der Entropie gerissen. Es hält zusammen, was zerfallen will.",
+      "binding": "bop"
+    },
+    {
+      "id": "world_boss-entropy-weaver-entropie-reif",
+      "name": "Entropie-Reif",
+      "slot": "ring",
+      "reqLevel": 23,
+      "rarity": "rare",
+      "armorType": null,
+      "tier": 3,
+      "setId": "master",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "world_boss:entropy-weaver",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Entropie ist unvermeidlich. Widerstand auch.",
+      "binding": "bop"
+    },
+    {
+      "id": "world_boss-entropy-weaver-entropie-medaillon",
+      "name": "Entropie-Medaillon",
+      "slot": "amulet",
+      "reqLevel": 24,
+      "rarity": "epic",
+      "armorType": null,
+      "tier": 3,
+      "setId": "master",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "world_boss:entropy-weaver",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Aus dem Netz der Entropie gerissen. Es hält zusammen, was zerfallen will.",
+      "binding": "bop"
+    },
+    {
+      "id": "world_boss-entropy-weaver-entropie-schwert",
+      "name": "Entropie-Schwert",
+      "slot": "weapon",
+      "reqLevel": 25,
+      "rarity": "legendary",
+      "armorType": null,
+      "tier": 3,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "world_boss:entropy-weaver",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            3,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "drop_bonus",
+        "min": 2,
+        "max": 5,
+        "label": "Bestien-Instinkt: +{value}% Drop-Chance"
+      },
+      "flavorText": "Entropie ist unvermeidlich. Widerstand auch.",
+      "binding": "bop"
+    },
+    {
+      "id": "world_boss-stagnation-golem-golem-klinge",
+      "name": "Golem-Klinge",
+      "slot": "weapon",
+      "reqLevel": 25,
+      "rarity": "rare",
+      "armorType": null,
+      "tier": 3,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "world_boss:stagnation-golem",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Aus dem steinernen Herz des Golems. Stillstand war nie eine Option.",
+      "binding": "bop"
+    },
+    {
+      "id": "world_boss-stagnation-golem-golem-buckler",
+      "name": "Golem-Buckler",
+      "slot": "shield",
+      "reqLevel": 26,
+      "rarity": "rare",
+      "armorType": null,
+      "tier": 3,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "world_boss:stagnation-golem",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Es wiegt schwer — aber wer es trägt, bewegt sich leichter.",
+      "binding": "bop"
+    },
+    {
+      "id": "world_boss-stagnation-golem-golem-haube",
+      "name": "Golem-Haube",
+      "slot": "helm",
+      "reqLevel": 28,
+      "rarity": "rare",
+      "armorType": "leather",
+      "tier": 3,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "world_boss:stagnation-golem",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Aus dem steinernen Herz des Golems. Stillstand war nie eine Option.",
+      "binding": "bop"
+    },
+    {
+      "id": "world_boss-stagnation-golem-golem-mantel",
+      "name": "Golem-Mantel",
+      "slot": "armor",
+      "reqLevel": 29,
+      "rarity": "epic",
+      "armorType": "heavy",
+      "tier": 3,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "world_boss:stagnation-golem",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Es wiegt schwer — aber wer es trägt, bewegt sich leichter.",
+      "binding": "bop"
+    },
+    {
+      "id": "world_boss-stagnation-golem-golem-stiefel",
+      "name": "Golem-Stiefel",
+      "slot": "boots",
+      "reqLevel": 30,
+      "rarity": "epic",
+      "armorType": "cloth",
+      "tier": 3,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "world_boss:stagnation-golem",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Aus dem steinernen Herz des Golems. Stillstand war nie eine Option.",
+      "binding": "bop"
+    },
+    {
+      "id": "world_boss-stagnation-golem-golem-reif",
+      "name": "Golem-Reif",
+      "slot": "ring",
+      "reqLevel": 31,
+      "rarity": "epic",
+      "armorType": null,
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "world_boss:stagnation-golem",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Es wiegt schwer — aber wer es trägt, bewegt sich leichter.",
+      "binding": "bop"
+    },
+    {
+      "id": "world_boss-stagnation-golem-golem-medaillon",
+      "name": "Golem-Medaillon",
+      "slot": "amulet",
+      "reqLevel": 33,
+      "rarity": "epic",
+      "armorType": null,
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "world_boss:stagnation-golem",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Aus dem steinernen Herz des Golems. Stillstand war nie eine Option.",
+      "binding": "bop"
+    },
+    {
+      "id": "world_boss-stagnation-golem-golem-schwert",
+      "name": "Golem-Schwert",
+      "slot": "weapon",
+      "reqLevel": 34,
+      "rarity": "legendary",
+      "armorType": null,
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "world_boss:stagnation-golem",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            3,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "drop_bonus",
+        "min": 3,
+        "max": 5,
+        "label": "Bestien-Instinkt: +{value}% Drop-Chance"
+      },
+      "flavorText": "Es wiegt schwer — aber wer es trägt, bewegt sich leichter.",
+      "binding": "bop"
+    },
+    {
+      "id": "world_boss-stagnation-golem-golem-tartsche",
+      "name": "Golem-Tartsche",
+      "slot": "shield",
+      "reqLevel": 35,
+      "rarity": "legendary",
+      "armorType": null,
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "world_boss:stagnation-golem",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            3,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "crit_chance",
+        "min": 3,
+        "max": 5,
+        "label": "Bestien-Präzision: +{value}% Crit"
+      },
+      "flavorText": "Aus dem steinernen Herz des Golems. Stillstand war nie eine Option.",
+      "binding": "bop"
+    },
+    {
+      "id": "world_boss-perfection-seraph-seraph-klinge",
+      "name": "Seraph-Klinge",
+      "slot": "weapon",
+      "reqLevel": 28,
+      "rarity": "rare",
+      "armorType": null,
+      "tier": 3,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "world_boss:perfection-seraph",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Perfektion ist ein Gefängnis. Dieses Stück ist der Schlüssel.",
+      "binding": "bop"
+    },
+    {
+      "id": "world_boss-perfection-seraph-seraph-buckler",
+      "name": "Seraph-Buckler",
+      "slot": "shield",
+      "reqLevel": 29,
+      "rarity": "rare",
+      "armorType": null,
+      "tier": 3,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "world_boss:perfection-seraph",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Es leuchtet makellos. Fast irritierend makellos.",
+      "binding": "bop"
+    },
+    {
+      "id": "world_boss-perfection-seraph-seraph-haube",
+      "name": "Seraph-Haube",
+      "slot": "helm",
+      "reqLevel": 31,
+      "rarity": "rare",
+      "armorType": "leather",
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "world_boss:perfection-seraph",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Perfektion ist ein Gefängnis. Dieses Stück ist der Schlüssel.",
+      "binding": "bop"
+    },
+    {
+      "id": "world_boss-perfection-seraph-seraph-mantel",
+      "name": "Seraph-Mantel",
+      "slot": "armor",
+      "reqLevel": 32,
+      "rarity": "epic",
+      "armorType": "heavy",
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "world_boss:perfection-seraph",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Es leuchtet makellos. Fast irritierend makellos.",
+      "binding": "bop"
+    },
+    {
+      "id": "world_boss-perfection-seraph-seraph-stiefel",
+      "name": "Seraph-Stiefel",
+      "slot": "boots",
+      "reqLevel": 33,
+      "rarity": "epic",
+      "armorType": "cloth",
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "world_boss:perfection-seraph",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Perfektion ist ein Gefängnis. Dieses Stück ist der Schlüssel.",
+      "binding": "bop"
+    },
+    {
+      "id": "world_boss-perfection-seraph-seraph-reif",
+      "name": "Seraph-Reif",
+      "slot": "ring",
+      "reqLevel": 34,
+      "rarity": "epic",
+      "armorType": null,
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "world_boss:perfection-seraph",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Es leuchtet makellos. Fast irritierend makellos.",
+      "binding": "bop"
+    },
+    {
+      "id": "world_boss-perfection-seraph-seraph-medaillon",
+      "name": "Seraph-Medaillon",
+      "slot": "amulet",
+      "reqLevel": 36,
+      "rarity": "epic",
+      "armorType": null,
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "world_boss:perfection-seraph",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Perfektion ist ein Gefängnis. Dieses Stück ist der Schlüssel.",
+      "binding": "bop"
+    },
+    {
+      "id": "world_boss-perfection-seraph-seraph-schwert",
+      "name": "Seraph-Schwert",
+      "slot": "weapon",
+      "reqLevel": 37,
+      "rarity": "legendary",
+      "armorType": null,
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "world_boss:perfection-seraph",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            3,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "drop_bonus",
+        "min": 3,
+        "max": 5,
+        "label": "Bestien-Instinkt: +{value}% Drop-Chance"
+      },
+      "flavorText": "Es leuchtet makellos. Fast irritierend makellos.",
+      "binding": "bop"
+    },
+    {
+      "id": "world_boss-perfection-seraph-seraph-tartsche",
+      "name": "Seraph-Tartsche",
+      "slot": "shield",
+      "reqLevel": 38,
+      "rarity": "legendary",
+      "armorType": null,
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "world_boss:perfection-seraph",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            3,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "crit_chance",
+        "min": 3,
+        "max": 5,
+        "label": "Bestien-Präzision: +{value}% Crit"
+      },
+      "flavorText": "Perfektion ist ein Gefängnis. Dieses Stück ist der Schlüssel.",
+      "binding": "bop"
+    },
+    {
+      "id": "world_boss-isolation-leviathan-leviathan-klinge",
+      "name": "Leviathan-Klinge",
+      "slot": "weapon",
+      "reqLevel": 35,
+      "rarity": "rare",
+      "armorType": null,
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "world_boss:isolation-leviathan",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Der Leviathan schwamm allein. Dieses Stück verbindet.",
+      "binding": "bop"
+    },
+    {
+      "id": "world_boss-isolation-leviathan-leviathan-buckler",
+      "name": "Leviathan-Buckler",
+      "slot": "shield",
+      "reqLevel": 36,
+      "rarity": "rare",
+      "armorType": null,
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "world_boss:isolation-leviathan",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Allein ist man nichts. Zusammen — zumindest etwas.",
+      "binding": "bop"
+    },
+    {
+      "id": "world_boss-isolation-leviathan-leviathan-haube",
+      "name": "Leviathan-Haube",
+      "slot": "helm",
+      "reqLevel": 38,
+      "rarity": "rare",
+      "armorType": "leather",
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "world_boss:isolation-leviathan",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Der Leviathan schwamm allein. Dieses Stück verbindet.",
+      "binding": "bop"
+    },
+    {
+      "id": "world_boss-isolation-leviathan-leviathan-mantel",
+      "name": "Leviathan-Mantel",
+      "slot": "armor",
+      "reqLevel": 39,
+      "rarity": "epic",
+      "armorType": "heavy",
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "world_boss:isolation-leviathan",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Allein ist man nichts. Zusammen — zumindest etwas.",
+      "binding": "bop"
+    },
+    {
+      "id": "world_boss-isolation-leviathan-leviathan-stiefel",
+      "name": "Leviathan-Stiefel",
+      "slot": "boots",
+      "reqLevel": 40,
+      "rarity": "epic",
+      "armorType": "cloth",
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "world_boss:isolation-leviathan",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Der Leviathan schwamm allein. Dieses Stück verbindet.",
+      "binding": "bop"
+    },
+    {
+      "id": "world_boss-isolation-leviathan-leviathan-reif",
+      "name": "Leviathan-Reif",
+      "slot": "ring",
+      "reqLevel": 41,
+      "rarity": "epic",
+      "armorType": null,
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "world_boss:isolation-leviathan",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 5,
+              "max": 8
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Allein ist man nichts. Zusammen — zumindest etwas.",
+      "binding": "bop"
+    },
+    {
+      "id": "world_boss-isolation-leviathan-leviathan-medaillon",
+      "name": "Leviathan-Medaillon",
+      "slot": "amulet",
+      "reqLevel": 43,
+      "rarity": "legendary",
+      "armorType": null,
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "world_boss:isolation-leviathan",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 5,
+              "max": 8
+            }
+          ],
+          "count": [
+            3,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "gold_bonus",
+        "min": 4,
+        "max": 6,
+        "label": "Bestien-Glanz: +{value}% Gold"
+      },
+      "flavorText": "Der Leviathan schwamm allein. Dieses Stück verbindet.",
+      "binding": "bop"
+    },
+    {
+      "id": "world_boss-isolation-leviathan-leviathan-schwert",
+      "name": "Leviathan-Schwert",
+      "slot": "weapon",
+      "reqLevel": 44,
+      "rarity": "legendary",
+      "armorType": null,
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "world_boss:isolation-leviathan",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 5,
+              "max": 8
+            }
+          ],
+          "count": [
+            3,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "drop_bonus",
+        "min": 4,
+        "max": 6,
+        "label": "Bestien-Instinkt: +{value}% Drop-Chance"
+      },
+      "flavorText": "Allein ist man nichts. Zusammen — zumindest etwas.",
+      "binding": "bop"
+    },
+    {
+      "id": "world_boss-isolation-leviathan-leviathan-tartsche",
+      "name": "Leviathan-Tartsche",
+      "slot": "shield",
+      "reqLevel": 45,
+      "rarity": "legendary",
+      "armorType": null,
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "world_boss:isolation-leviathan",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 5,
+              "max": 8
+            }
+          ],
+          "count": [
+            3,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "crit_chance",
+        "min": 4,
+        "max": 6,
+        "label": "Bestien-Präzision: +{value}% Crit"
+      },
+      "flavorText": "Der Leviathan schwamm allein. Dieses Stück verbindet.",
+      "binding": "bop"
+    },
+    {
+      "id": "world_boss-apathy-sovereign-souveraen-klinge",
+      "name": "Souverän-Klinge",
+      "slot": "weapon",
+      "reqLevel": 38,
+      "rarity": "rare",
+      "armorType": null,
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "world_boss:apathy-sovereign",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Der Thron der Apathie steht leer. Wer das hier trägt, steht auf.",
+      "binding": "bop"
+    },
+    {
+      "id": "world_boss-apathy-sovereign-souveraen-buckler",
+      "name": "Souverän-Buckler",
+      "slot": "shield",
+      "reqLevel": 39,
+      "rarity": "rare",
+      "armorType": null,
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "world_boss:apathy-sovereign",
+      "fixedStats": {
+        "ausdauer": 5,
+        "kraft": 5
+      },
+      "flavorText": "Es erinnert daran, dass Aufgeben eine Wahl ist. Nicht deine.",
+      "binding": "bop"
+    },
+    {
+      "id": "world_boss-apathy-sovereign-souveraen-haube",
+      "name": "Souverän-Haube",
+      "slot": "helm",
+      "reqLevel": 40,
+      "rarity": "rare",
+      "armorType": "leather",
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "world_boss:apathy-sovereign",
+      "fixedStats": {
+        "weisheit": 4,
+        "kraft": 6
+      },
+      "flavorText": "Der Thron der Apathie steht leer. Wer das hier trägt, steht auf.",
+      "binding": "bop"
+    },
+    {
+      "id": "world_boss-apathy-sovereign-souveraen-mantel",
+      "name": "Souverän-Mantel",
+      "slot": "armor",
+      "reqLevel": 41,
+      "rarity": "epic",
+      "armorType": "heavy",
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "world_boss:apathy-sovereign",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 5,
+              "max": 8
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Es erinnert daran, dass Aufgeben eine Wahl ist. Nicht deine.",
+      "binding": "bop"
+    },
+    {
+      "id": "world_boss-apathy-sovereign-souveraen-stiefel",
+      "name": "Souverän-Stiefel",
+      "slot": "boots",
+      "reqLevel": 42,
+      "rarity": "epic",
+      "armorType": "cloth",
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "world_boss:apathy-sovereign",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 5,
+              "max": 8
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Der Thron der Apathie steht leer. Wer das hier trägt, steht auf.",
+      "binding": "bop"
+    },
+    {
+      "id": "world_boss-apathy-sovereign-souveraen-reif",
+      "name": "Souverän-Reif",
+      "slot": "ring",
+      "reqLevel": 44,
+      "rarity": "epic",
+      "armorType": null,
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "world_boss:apathy-sovereign",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 5,
+              "max": 8
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Es erinnert daran, dass Aufgeben eine Wahl ist. Nicht deine.",
+      "binding": "bop"
+    },
+    {
+      "id": "world_boss-apathy-sovereign-souveraen-medaillon",
+      "name": "Souverän-Medaillon",
+      "slot": "amulet",
+      "reqLevel": 45,
+      "rarity": "epic",
+      "armorType": null,
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "world_boss:apathy-sovereign",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 5,
+              "max": 8
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Der Thron der Apathie steht leer. Wer das hier trägt, steht auf.",
+      "binding": "bop"
+    },
+    {
+      "id": "world_boss-apathy-sovereign-souveraen-schwert",
+      "name": "Souverän-Schwert",
+      "slot": "weapon",
+      "reqLevel": 46,
+      "rarity": "legendary",
+      "armorType": null,
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "world_boss:apathy-sovereign",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 5,
+              "max": 8
+            }
+          ],
+          "count": [
+            3,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "drop_bonus",
+        "min": 4,
+        "max": 6,
+        "label": "Bestien-Instinkt: +{value}% Drop-Chance"
+      },
+      "flavorText": "Es erinnert daran, dass Aufgeben eine Wahl ist. Nicht deine.",
+      "binding": "bop"
+    },
+    {
+      "id": "world_boss-apathy-sovereign-souveraen-tartsche",
+      "name": "Souverän-Tartsche",
+      "slot": "shield",
+      "reqLevel": 47,
+      "rarity": "legendary",
+      "armorType": null,
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "world_boss:apathy-sovereign",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 5,
+              "max": 8
+            }
+          ],
+          "count": [
+            3,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "crit_chance",
+        "min": 4,
+        "max": 6,
+        "label": "Bestien-Präzision: +{value}% Crit"
+      },
+      "flavorText": "Der Thron der Apathie steht leer. Wer das hier trägt, steht auf.",
+      "binding": "bop"
+    },
+    {
+      "id": "world_boss-apathy-sovereign-souveraen-kappe",
+      "name": "Souverän-Kappe",
+      "slot": "helm",
+      "reqLevel": 48,
+      "rarity": "legendary",
+      "armorType": "heavy",
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "world_boss:apathy-sovereign",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 5,
+              "max": 8
+            }
+          ],
+          "count": [
+            3,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "decay_reduction",
+        "min": 4,
+        "max": 6,
+        "label": "Bestien-Beständigkeit: -{value}% Forge Decay"
+      },
+      "flavorText": "Es erinnert daran, dass Aufgeben eine Wahl ist. Nicht deine.",
+      "binding": "bop"
+    }
+  ]
+}

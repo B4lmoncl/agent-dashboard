@@ -22,7 +22,7 @@ export function GuideSection({ title, icon, children, accent }: { title: string;
 function GuideTip({ children }: { children: React.ReactNode }) {
   return (
     <div className="rounded-lg px-3 py-2 mt-2 flex items-start gap-2" style={{ background: "rgba(251,191,36,0.06)", border: "1px solid rgba(251,191,36,0.2)" }}>
-      <span className="text-xs flex-shrink-0" style={{ color: "#fbbf24" }}>💡</span>
+      <span className="text-xs flex-shrink-0" style={{ color: "#fbbf24" }}>●</span>
       <p className="text-xs italic" style={{ color: "rgba(251,191,36,0.8)" }}>{children}</p>
     </div>
   );
@@ -90,7 +90,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
       <div className="p-5 space-y-4 text-xs" style={{ color: "rgba(255,255,255,0.7)", lineHeight: 1.7 }}>
           {tab === "start" && (
             <>
-              <GuideSection title="Registrierung" icon="📜" accent="rgba(255,140,68,0.4)">
+              <GuideSection title="Registrierung" icon="▣" accent="rgba(255,140,68,0.4)">
                 Klicke auf <strong>Login → Register</strong> in der Kopfleiste. Der Charakter-Creator führt dich in 6 Schritten:
                 <ol className="space-y-1.5 mt-2 ml-3" style={{ listStyleType: "decimal" }}>
                   <li><Stat color="#f0f0f0">Name &amp; Passwort</Stat> — Wähle deinen Heldennamen (min. 6 Zeichen Passwort).</li>
@@ -102,7 +102,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                 </ol>
               </GuideSection>
 
-              <GuideSection title="Die 6 Stockwerke von Urithiru" icon="🏰" accent="rgba(251,191,36,0.3)">
+              <GuideSection title="Die 5 Stockwerke von Urithiru" icon="◆" accent="rgba(251,191,36,0.3)">
                 Die Quest Hall ist wie der Turm Urithiru in Stockwerke gegliedert:
                 <div className="grid gap-1.5 mt-2">
                   <div className="rounded-lg px-2.5 py-1.5 flex items-center gap-2" style={{ background: "rgba(251,191,36,0.06)" }}>
@@ -123,11 +123,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                   </div>
                   <div className="rounded-lg px-2.5 py-1.5 flex items-center gap-2" style={{ background: "rgba(236,72,153,0.06)" }}>
                     <span style={{ color: "#ec4899", fontWeight: 800, fontSize: 12, width: 14, textAlign: "center" }}>⬡</span>
-                    <div><Stat color="#ec4899">The Breakaway</Stat> — Freunde, Nachrichten, Handel</div>
-                  </div>
-                  <div className="rounded-lg px-2.5 py-1.5 flex items-center gap-2" style={{ background: "rgba(217,119,6,0.06)" }}>
-                    <span style={{ fontSize: 12, width: 14, textAlign: "center" }}>🔥</span>
-                    <div><Stat color="#d97706">The Hearth</Stat> — Ruhemodus, Streak-Freeze, Regeneration</div>
+                    <div><Stat color="#ec4899">The Breakaway</Stat> — Freunde, Nachrichten, Handel, The Hearth</div>
                   </div>
                 </div>
               </GuideSection>
@@ -144,12 +140,12 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
               <GuideSection title="Begleiter (Companions)" icon="🐾" accent="rgba(249,115,22,0.3)">
                 Dein Begleiter erscheint auf deiner Spielerkarte, gibt dir Quests und motiviert dich:
                 <div className="grid grid-cols-2 gap-1.5 mt-2">
-                  <div className="rounded-lg px-2 py-1" style={{ background: "rgba(255,255,255,0.03)" }}>🐱 <Stat color="#f0f0f0">Echtes Haustier</Stat> — Pflege-Quests</div>
-                  <div className="rounded-lg px-2 py-1" style={{ background: "rgba(255,255,255,0.03)" }}>🐉 <Stat color="#f97316">Drache</Stat> — Fordernd</div>
-                  <div className="rounded-lg px-2 py-1" style={{ background: "rgba(255,255,255,0.03)" }}>🦉 <Stat color="#a78bfa">Eule</Stat> — Weise</div>
+                  <div className="rounded-lg px-2 py-1" style={{ background: "rgba(255,255,255,0.03)" }}>● <Stat color="#f0f0f0">Echtes Haustier</Stat> — Pflege-Quests</div>
+                  <div className="rounded-lg px-2 py-1" style={{ background: "rgba(255,255,255,0.03)" }}>● <Stat color="#f97316">Drache</Stat> — Fordernd</div>
+                  <div className="rounded-lg px-2 py-1" style={{ background: "rgba(255,255,255,0.03)" }}>● <Stat color="#a78bfa">Eule</Stat> — Weise</div>
                   <div className="rounded-lg px-2 py-1" style={{ background: "rgba(255,255,255,0.03)" }}>🔥 <Stat color="#ef4444">Phoenix</Stat> — Resilient</div>
-                  <div className="rounded-lg px-2 py-1" style={{ background: "rgba(255,255,255,0.03)" }}>🐺 <Stat color="#6b7280">Wolf</Stat> — Loyal</div>
-                  <div className="rounded-lg px-2 py-1" style={{ background: "rgba(255,255,255,0.03)" }}>🦊 <Stat color="#f59e0b">Fuchs</Stat> — Clever</div>
+                  <div className="rounded-lg px-2 py-1" style={{ background: "rgba(255,255,255,0.03)" }}>● <Stat color="#6b7280">Wolf</Stat> — Loyal</div>
+                  <div className="rounded-lg px-2 py-1" style={{ background: "rgba(255,255,255,0.03)" }}>● <Stat color="#f59e0b">Fuchs</Stat> — Clever</div>
                 </div>
                 <GuideTip>Ab Bond Lv. 5 schaltest du Ultimate-Fähigkeiten frei: Sofort-Abschluss, 2× Loot oder +3 Streak-Tage (7d Cooldown).</GuideTip>
               </GuideSection>
@@ -157,7 +153,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
           )}
           {tab === "quests" && (
             <>
-              <GuideSection title="Quest Board (The Great Hall)" icon="📋" accent="rgba(249,115,22,0.4)">
+              <GuideSection title="Quest Board (The Great Hall)" icon="▣" accent="rgba(249,115,22,0.4)">
                 Dein Auftragsboard. Drei Bereiche:
                 <ul className="space-y-1 mt-2">
                   <li>• <Stat color="#22c55e">Aufträge</Stat> — Offene Quests zum Annehmen (~10 im täglichen Pool).</li>
@@ -167,7 +163,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                 <GuideTip>Klicke das Scroll-Icon um deinen Quest-Pool manuell aufzufüllen (6h Cooldown). Automatische Auffüllung um Mitternacht.</GuideTip>
               </GuideSection>
 
-              <GuideSection title="Quest-Typen" icon="🏷️">
+              <GuideSection title="Quest-Typen" icon="◆">
                 <div className="grid grid-cols-2 gap-1 mt-2">
                   <div className="rounded px-2 py-1" style={{ background: "rgba(34,197,94,0.06)" }}><Stat color="#22c55e">Personal</Stat> — Alltag, Haushalt</div>
                   <div className="rounded px-2 py-1" style={{ background: "rgba(59,130,246,0.06)" }}><Stat color="#3b82f6">Learning</Stat> — Lernen, Lesen</div>
@@ -193,7 +189,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                 <p className="mt-1.5" style={{ color: "rgba(255,255,255,0.35)" }}>+ 25% Basis-Chance auf Loot-Drops und Crafting-Materialien bei jeder Quest.</p>
               </GuideSection>
 
-              <GuideSection title="Quest-Mechaniken" icon="🔗">
+              <GuideSection title="Quest-Mechaniken" icon="◆">
                 <ul className="space-y-1 mt-2">
                   <li>• <Stat color="#f43f5e">Coop-Quests</Stat> — Beide Partner müssen ihren Teil abschließen.</li>
                   <li>• <Stat color="#a78bfa">Quest-Ketten</Stat> — Sequenziell: nächste Quest erst nach Abschluss der vorherigen.</li>
@@ -201,7 +197,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                 </ul>
               </GuideSection>
 
-              <GuideSection title="Hoarding-Malus" icon="⚠️" accent="rgba(239,68,68,0.3)">
+              <GuideSection title="Hoarding-Malus" icon="▲" accent="rgba(239,68,68,0.3)">
                 Zu viele aktive Quests? Ab <strong style={{ color: "#ef4444" }}>20 Quests</strong> sinkt dein XP-Ertrag:
                 <ul className="space-y-0.5 mt-2">
                   <li>• 1-20 Quests: <Stat color="#22c55e">Kein Malus</Stat></li>
@@ -211,7 +207,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                 <GuideTip>Schließe Quests ab oder gib sie zurück bevor du neue annimmst!</GuideTip>
               </GuideSection>
 
-              <GuideSection title="Kampagnen & Arcanum" icon="🔭">
+              <GuideSection title="Kampagnen & Arcanum" icon="◆">
                 <ul className="space-y-1 mt-2">
                   <li>• <Stat color="#fbbf24">Observatory</Stat> (The Pinnacle) — Erstelle Kampagnen: zusammenhängende Quest-Ketten mit Story und Boss.</li>
                   <li>• <Stat color="#a78bfa">Arcanum</Stat> (Inner Sanctum) — Klassenquests, Feature-Roadmap, CV Builder.</li>
@@ -221,11 +217,11 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
           )}
           {tab === "npcs" && (
             <>
-              <GuideSection title="Wanderer's Rest" icon="🏕️" accent="rgba(249,115,22,0.4)">
+              <GuideSection title="Wanderer's Rest" icon="◆" accent="rgba(249,115,22,0.4)">
                 Im Wanderer&apos;s Rest tauchen reisende NPCs auf — jeder mit eigenen Quest-Ketten und Persönlichkeit. Bis zu <strong>7 NPCs</strong> gleichzeitig aktiv.
               </GuideSection>
 
-              <GuideSection title="So funktioniert es" icon="🔄">
+              <GuideSection title="So funktioniert es" icon="◆">
                 <ul className="space-y-1.5 mt-2">
                   <li>• NPCs bleiben <Stat color="#f59e0b">2-4 Tage</Stat>, dann ziehen sie weiter.</li>
                   <li>• Jeder NPC hat <Stat color="#a78bfa">Quest-Ketten</Stat> — sequenziell abschließen.</li>
@@ -248,20 +244,20 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
           )}
           {tab === "character" && (
             <>
-              <GuideSection title="Character Screen" icon="🛡️" accent="rgba(59,130,246,0.4)">
+              <GuideSection title="Character Screen" icon="◆" accent="rgba(59,130,246,0.4)">
                 Dein Inventar, Ausrüstung, Stats und Begleiter auf einen Blick. Erreichbar über <Stat color="#3b82f6">Character</Stat> im Inner Sanctum (nur eingeloggt).
               </GuideSection>
 
-              <GuideSection title="Ausrüstung (6 Slots)" icon="⚔️">
+              <GuideSection title="Ausrüstung (7 Slots)" icon="⚔️">
                 Rüste Items aus dem Inventar aus. Stats werden beim Drop zufällig gewürfelt:
-                <div className="grid grid-cols-3 gap-1 mt-2 text-center text-xs">
-                  {(["Helm", "Weapon", "Shield", "Armor", "Amulet", "Boots"] as const).map(s => (
+                <div className="grid grid-cols-4 gap-1 mt-2 text-center text-xs">
+                  {(["Helm", "Weapon", "Shield", "Armor", "Amulet", "Ring", "Boots"] as const).map(s => (
                     <div key={s} className="rounded px-1 py-1" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>{s}</div>
                   ))}
                 </div>
               </GuideSection>
 
-              <GuideSection title="Stats & Effekte" icon="📊" accent="rgba(168,85,247,0.3)">
+              <GuideSection title="Stats & Effekte" icon="◆" accent="rgba(168,85,247,0.3)">
                 <p className="mb-1.5 font-semibold" style={{ color: "rgba(255,255,255,0.4)", fontSize: 12 }}>PRIMARY STATS</p>
                 <div className="space-y-1">
                   <div className="flex justify-between"><Stat color="#ef4444">Kraft</Stat> <span>+0.5% XP/Punkt (max +30%)</span></div>
@@ -278,7 +274,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                 </div>
               </GuideSection>
 
-              <GuideSection title="Set-Boni & Legendary Effects" icon="💎" accent="rgba(255,215,0,0.3)">
+              <GuideSection title="Set-Boni & Legendary Effects" icon="◇" accent="rgba(255,215,0,0.3)">
                 <ul className="space-y-1 mt-2">
                   <li>• <Stat color="#f0f0f0">Tier-Set</Stat>: 3/6 Teile = +5%, 6/6 = +10% Primary Stats</li>
                   <li>• <Rarity r="legendary">Legendary Effects</Rarity> (15 Typen):</li>
@@ -301,14 +297,14 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                   <li>• Ab <Stat color="#ec4899">Bond Lv. 5</Stat> → <strong>Ultimates</strong> (7d Cooldown):</li>
                 </ul>
                 <div className="grid grid-cols-3 gap-1 mt-1.5 text-center text-xs">
-                  <div className="rounded px-1 py-1.5" style={{ background: "rgba(168,85,247,0.08)", border: "1px solid rgba(168,85,247,0.2)" }}>⚡ Sofort-Abschluss</div>
+                  <div className="rounded px-1 py-1.5" style={{ background: "rgba(168,85,247,0.08)", border: "1px solid rgba(168,85,247,0.2)" }}>◆ Sofort-Abschluss</div>
                   <div className="rounded px-1 py-1.5" style={{ background: "rgba(251,191,36,0.08)", border: "1px solid rgba(251,191,36,0.2)" }}>✨ 2× Loot</div>
                   <div className="rounded px-1 py-1.5" style={{ background: "rgba(239,68,68,0.08)", border: "1px solid rgba(239,68,68,0.2)" }}>🔥 +3 Streak-Tage</div>
                 </div>
                 <p className="mt-1.5" style={{ color: "rgba(255,255,255,0.3)", fontSize: 12 }}>Stranger → Acquaintance → Friend → Close Friend → Best Friend → Soulmate → Legendary I-IV</p>
               </GuideSection>
 
-              <GuideSection title="Inventar & Titel" icon="🎒">
+              <GuideSection title="Inventar & Titel" icon="◆">
                 <ul className="space-y-1 mt-2">
                   <li>• <Stat color="#22c55e">Ausrüsten</Stat> — Gear in Slots anlegen</li>
                   <li>• <Stat color="#3b82f6">Benutzen</Stat> — Tränke, Streak-Shields, XP-Boosts</li>
@@ -321,7 +317,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
           )}
           {tab === "gacha" && (
             <>
-              <GuideSection title="Vault of Fate" icon="🎰" accent="rgba(167,139,250,0.4)">
+              <GuideSection title="Vault of Fate" icon="◇" accent="rgba(167,139,250,0.4)">
                 Ziehe Items — Ausrüstung, Tränke und seltene Artefakte. Zwei Banner:
                 <div className="grid grid-cols-2 gap-2 mt-2">
                   <div className="rounded-lg p-2 text-center" style={{ background: "rgba(167,139,250,0.08)", border: "1px solid rgba(167,139,250,0.2)" }}>
@@ -337,7 +333,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                 </div>
               </GuideSection>
 
-              <GuideSection title="Drop Rates" icon="📊">
+              <GuideSection title="Drop Rates" icon="◆">
                 <div className="mt-2 space-y-0.5">
                   {([["legendary","Legendary","0.8%","#FFD700"],["epic","Epic","13%","#a855f7"],["rare","Rare","35%","#3b82f6"],["uncommon","Uncommon","40%","#22c55e"],["common","Common","~11%","#9ca3af"]] as const).map(([,name,rate,color]) => (
                     <div key={name} className="flex items-center gap-2">
@@ -349,7 +345,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                 </div>
               </GuideSection>
 
-              <GuideSection title="Pity-System" icon="🎯" accent="rgba(251,191,36,0.3)">
+              <GuideSection title="Pity-System" icon="◆" accent="rgba(251,191,36,0.3)">
                 <ul className="space-y-1 mt-2">
                   <li>• <Stat color="#f59e0b">Soft Pity</Stat> ab Pull 55 → Legendary-Chance steigt +2.5%/Pull</li>
                   <li>• <Stat color="#ef4444">Hard Pity</Stat> bei Pull 75 → <strong>Garantiertes Legendary</strong></li>
@@ -357,7 +353,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                 </ul>
               </GuideSection>
 
-              <GuideSection title="50/50 & Duplikate" icon="🔀">
+              <GuideSection title="50/50 & Duplikate" icon="◆">
                 <ul className="space-y-1 mt-2">
                   <li>• <Stat color="#818cf8">Featured Banner</Stat>: 50% auf Featured-Item. Verloren? Nächstes Legendary = garantiert Featured.</li>
                   <li>• <Stat color="#a78bfa">Duplikate</Stat> → Runensplitter-Refund: Common 1, Uncommon 3, Rare 8, Epic 20, Legendary 50.</li>
@@ -367,73 +363,92 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
           )}
           {tab === "crafting" && (
             <>
-              <GuideSection title="Artisan's Quarter" icon="🔨" accent="rgba(168,85,247,0.4)">
-                Crafting-Hub im Trading District mit 4 Berufs-NPCs (nur eingeloggt):
+              <GuideSection title="Artisan's Quarter" icon="▪" accent="rgba(168,85,247,0.4)">
+                Crafting-Hub im Trading District mit 8 Berufen — wähle 2 (nur eingeloggt):
                 <div className="grid grid-cols-2 gap-1.5 mt-2">
                   <div className="rounded-lg p-2" style={{ background: "rgba(245,158,11,0.06)", border: "1px solid rgba(245,158,11,0.15)" }}>
-                    <p className="font-bold text-xs" style={{ color: "#f59e0b" }}>⚒ Grimvar (Schmied)</p>
-                    <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>Gear Reroll, Rarity Up · Lv5+</p>
+                    <p className="font-bold text-xs" style={{ color: "#f59e0b" }}>▪ Grimvar (Schmied)</p>
+                    <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>Heavy Armor</p>
+                  </div>
+                  <div className="rounded-lg p-2" style={{ background: "rgba(168,85,247,0.06)", border: "1px solid rgba(168,85,247,0.15)" }}>
+                    <p className="font-bold text-xs" style={{ color: "#a855f7" }}>▪ Selina (Schneider)</p>
+                    <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>Cloth Armor</p>
+                  </div>
+                  <div className="rounded-lg p-2" style={{ background: "rgba(180,83,9,0.06)", border: "1px solid rgba(180,83,9,0.15)" }}>
+                    <p className="font-bold text-xs" style={{ color: "#b45309" }}>▪ Roderic (Lederverarbeiter)</p>
+                    <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>Leather Armor</p>
+                  </div>
+                  <div className="rounded-lg p-2" style={{ background: "rgba(220,38,38,0.06)", border: "1px solid rgba(220,38,38,0.15)" }}>
+                    <p className="font-bold text-xs" style={{ color: "#dc2626" }}>▪ Varn (Waffenschmied)</p>
+                    <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>Weapons + Shields</p>
+                  </div>
+                  <div className="rounded-lg p-2" style={{ background: "rgba(236,72,153,0.06)", border: "1px solid rgba(236,72,153,0.15)" }}>
+                    <p className="font-bold text-xs" style={{ color: "#ec4899" }}>◈ Mirael (Juwelier)</p>
+                    <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>Rings + Amulets + Gems</p>
                   </div>
                   <div className="rounded-lg p-2" style={{ background: "rgba(34,197,94,0.06)", border: "1px solid rgba(34,197,94,0.15)" }}>
-                    <p className="font-bold text-xs" style={{ color: "#22c55e" }}>🧪 Ysolde (Alchemist)</p>
-                    <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>Tränke, Buffs · Lv5+</p>
-                  </div>
-                  <div className="rounded-lg p-2" style={{ background: "rgba(167,139,250,0.06)", border: "1px solid rgba(167,139,250,0.15)" }}>
-                    <p className="font-bold text-xs" style={{ color: "#a78bfa" }}>✨ Eldric (Verzauberer)</p>
-                    <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>Enchants, Infusions · Lv8+</p>
+                    <p className="font-bold text-xs" style={{ color: "#22c55e" }}>◈ Ysolde (Alchemist)</p>
+                    <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>Potions + Transmutes</p>
                   </div>
                   <div className="rounded-lg p-2" style={{ background: "rgba(232,123,53,0.06)", border: "1px solid rgba(232,123,53,0.15)" }}>
-                    <p className="font-bold text-xs" style={{ color: "#e87b35" }}>🍖 Bruna (Koch)</p>
-                    <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>Mahlzeiten, Buffs · Lv3+</p>
+                    <p className="font-bold text-xs" style={{ color: "#e87b35" }}>● Bruna (Koch)</p>
+                    <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>Meals + Feasts</p>
+                  </div>
+                  <div className="rounded-lg p-2" style={{ background: "rgba(99,102,241,0.06)", border: "1px solid rgba(99,102,241,0.15)" }}>
+                    <p className="font-bold text-xs" style={{ color: "#6366f1" }}>✨ Eldric (Verzauberer)</p>
+                    <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>Enchants + Scrolls</p>
                   </div>
                 </div>
               </GuideSection>
 
-              <GuideSection title="Berufs-Slots & Ränge" icon="📈">
+              <GuideSection title="Berufs-Slots & Ränge" icon="▲">
                 <ul className="space-y-1 mt-2">
-                  <li>• Slots: <strong>1</strong> ab Lv5, <strong>2</strong> ab Lv15, <strong>3</strong> ab Lv20, <strong>4</strong> ab Lv25</li>
-                  <li>• 10 Level pro Beruf: <Stat color="#6b7280">Novice</Stat> → <Stat color="#22c55e">Apprentice</Stat> → <Stat color="#3b82f6">Journeyman</Stat> → <Stat color="#a855f7">Expert</Stat> → <Stat color="#f59e0b">Artisan</Stat> → <Stat color="#ef4444">Master</Stat></li>
-                  <li>• <Stat color="#ef4444">Wechsel</Stat>: 200 Essenz, Fortschritt geht verloren!</li>
+                  <li>• <strong>2 Berufs-Slots</strong> — immer verfügbar, kostenlos wechselbar</li>
+                  <li>• 300 Max Skill. 4 Ränge: <Stat color="#22c55e">Apprentice</Stat> (75) → <Stat color="#3b82f6">Journeyman</Stat> (150) → <Stat color="#a855f7">Expert</Stat> (225) → <Stat color="#f59e0b">Artisan</Stat> (300)</li>
+                  <li>• <Stat color="#ef4444">Wechsel</Stat>: Kostenlos — aber Skill + Rezepte gehen verloren</li>
                   <li>• <Stat color="#facc15">Daily Bonus</Stat>: Erstes Crafting/Tag = 2× Berufs-XP</li>
                 </ul>
               </GuideSection>
 
-              <GuideSection title="Skill-Up Farben" icon="🎨">
-                <div className="flex gap-3 mt-2">
-                  <div className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-full" style={{ background: "#f97316" }} /> <span>100%</span></div>
-                  <div className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-full" style={{ background: "#eab308" }} /> <span>75%</span></div>
-                  <div className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-full" style={{ background: "#22c55e" }} /> <span>25%</span></div>
-                  <div className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-full" style={{ background: "#6b7280" }} /> <span>0%</span></div>
+              <GuideSection title="Skill-Up Farben" icon="◆">
+                <div className="flex gap-3 mt-2 flex-wrap">
+                  <div className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-full" style={{ background: "#f97316" }} /> <span>garantiert</span></div>
+                  <div className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-full" style={{ background: "#eab308" }} /> <span>wahrscheinlich</span></div>
+                  <div className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-full" style={{ background: "#22c55e" }} /> <span>selten</span></div>
+                  <div className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-full" style={{ background: "#6b7280" }} /> <span>unmöglich</span></div>
                 </div>
               </GuideSection>
 
-              <GuideSection title="Schmiedekunst & Transmutation" icon="⚗️" accent="rgba(245,158,11,0.3)">
+              <GuideSection title="Schmiedekunst & Transmutation" icon="◈" accent="rgba(245,158,11,0.3)">
                 <ul className="space-y-1 mt-2">
                   <li>• <Stat color="#f59e0b">Salvage</Stat> — Items zerlegen → Essenz + Materialien. &quot;Salvage All&quot; per Seltenheit. Legendary nur einzeln.</li>
                   <li>• <Stat color="#a78bfa">Transmute</Stat> — 3 Epic-Items (gleicher Slot) + 500g → 1 Legendary (Slot-gesperrt).</li>
                 </ul>
               </GuideSection>
 
-              <GuideSection title="Materialien & Rezepte" icon="📦">
+              <GuideSection title="Materialien & Rezepte" icon="◆">
                 5 Seltenheitsstufen: <Rarity r="common">Common</Rarity> bis <Rarity r="legendary">Legendary</Rarity>. Quellen: Quest-Drops + Zerlegung.
                 <ul className="space-y-1 mt-2">
+                  <li>• <Stat color="#f59e0b">Affinity-System</Stat> — Materialien droppen NUR wenn du einen Beruf gewählt hast</li>
                   <li>• <Stat color="#f0f0f0">Trainer-Rezepte</Stat> — Beim NPC kaufen (Gold). Basis gratis.</li>
                   <li>• <Stat color="#a78bfa">Drop-Rezepte</Stat> — Seltene Quest-Drops, abhängig von Quest-Seltenheit.</li>
+                  <li>• <Stat color="#3b82f6">Faction-Rezepte</Stat> — Freigeschaltet durch Fraktions-Reputation.</li>
+                  <li>• <Stat color="#ef4444">Dungeon-Rezepte</Stat> — Seltene Drops aus The Undercroft.</li>
                 </ul>
               </GuideSection>
 
-              <GuideSection title="Upgrades & Mastery" icon="🏆" accent="rgba(251,191,36,0.3)">
+              <GuideSection title="Upgrades & Mastery" icon="◆" accent="rgba(251,191,36,0.3)">
                 <ul className="space-y-1 mt-2">
                   <li>• <Stat color="#f0f0f0">Workshop Tools</Stat>: <Stat color="#9ca3af">Sturdy +2%</Stat> → <Stat color="#3b82f6">Masterwork +4%</Stat> → <Rarity r="legendary">Legendary +7%</Rarity> → <Stat color="#a855f7">Mythic +10%</Stat> permanenter XP-Bonus</li>
-                  <li>• <Stat color="#facc15">Passive Gathering</Stat>: Aktive Berufe sammeln Materialien bei Quests (5% bis 35%)</li>
-                  <li>• <Stat color="#facc15">Mastery (Lv8+)</Stat>: Schmied +10% Stats, Alchemist/Koch +2 Ladungen, Verzauberer +2 Stat-Range</li>
+                  <li>• <Stat color="#facc15">Gathering</Stat>: Nur für gewählte Berufe — Affinity-Materialien droppen bei Quests</li>
+                  <li>• <Stat color="#facc15">Mastery (Skill 225+)</Stat>: +10% Stat-Rolls beim Craften</li>
                 </ul>
               </GuideSection>
             </>
           )}
           {tab === "rituals" && (
             <>
-              <GuideSection title="Tägliche Rituale" icon="🔮" accent="rgba(168,85,247,0.4)">
+              <GuideSection title="Tägliche Rituale" icon="◆" accent="rgba(168,85,247,0.4)">
                 Wiederkehrende Aufgaben die Streaks aufbauen. Erreichbar über <Stat color="#a855f7">Ritual Chamber</Stat> im Inner Sanctum.
                 <ul className="space-y-1 mt-2">
                   <li>• Erstelle Rituale mit Name, Schwierigkeit und optionaler Beschreibung.</li>
@@ -452,7 +467,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                 </div>
               </GuideSection>
 
-              <GuideSection title="Aetherbond & Blood Pact" icon="⚡">
+              <GuideSection title="Aetherbond & Blood Pact" icon="◆">
                 <Stat color="#f0f0f0">Aetherbond</Stat> — Commitment-Stufen für Bonus-Gold/XP:
                 <div className="flex gap-1 mt-1 text-xs">
                   <Stat color="#9ca3af">Spark</Stat><span>→</span><Stat color="#22c55e">Flame</Stat><span>→</span><Stat color="#f59e0b">Ember</Stat><span>→</span><Stat color="#ef4444">Crucible</Stat><span>→</span><Stat color="#a855f7">Eternity</Stat>
@@ -463,14 +478,14 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                 <GuideTip>Blood Oaths können nicht verlängert werden. Payout nur wenn Streak ≥ Commitment-Tage.</GuideTip>
               </GuideSection>
 
-              <GuideSection title="Vow Shrine (Gelübde)" icon="🗡️">
+              <GuideSection title="Vow Shrine (Gelübde)" icon="⚔️">
                 Langfristige Versprechen, Dinge <strong>nicht</strong> zu tun. Jeder Tag ohne Verstoß = &quot;Clean Day&quot;. Verstoß = Reset.
               </GuideSection>
             </>
           )}
           {tab === "challenges" && (
             <>
-              <GuideSection title="Wöchentliche Challenges" icon="🌟" accent="rgba(251,191,36,0.4)">
+              <GuideSection title="Wöchentliche Challenges" icon="⭐" accent="rgba(251,191,36,0.4)">
                 Zwei wöchentliche Herausforderungen in den <Stat color="#f97316">Great Halls</Stat>. Reset jeden Montag.
               </GuideSection>
 
@@ -485,7 +500,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                 <GuideTip>Weekly Modifier: Ein Quest-Typ gibt +50% Fortschritt, andere -25%. Passe deine Strategie an!</GuideTip>
               </GuideSection>
 
-              <GuideSection title="Expedition (Kooperativ)" icon="🏔️" accent="rgba(34,197,94,0.3)">
+              <GuideSection title="Expedition (Kooperativ)" icon="▲" accent="rgba(34,197,94,0.3)">
                 Gildenweite Herausforderung — alle Spieler arbeiten am gemeinsamen Fortschritt:
                 <ul className="space-y-1 mt-2">
                   <li>• <strong>4 Checkpoints</strong> (3 regulär + 1 Bonus)</li>
@@ -495,7 +510,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                 </ul>
               </GuideSection>
 
-              <GuideSection title="The Rift (Dungeons)" icon="🌀" accent="rgba(168,85,247,0.4)">
+              <GuideSection title="The Rift (Dungeons)" icon="◆" accent="rgba(168,85,247,0.4)">
                 Zeitlich begrenzte Quest-Ketten mit eskalierender Schwierigkeit:
                 <div className="mt-2 rounded-lg overflow-hidden" style={{ border: "1px solid rgba(255,255,255,0.06)" }}>
                   <div className="grid grid-cols-5 text-center text-xs font-bold py-1" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.4)" }}>
@@ -515,7 +530,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                 <GuideTip>Rift-Stages geben volle Belohnungen: XP-Multiplikatoren, Loot-Drops, Materialien, Streak + Forge-Temp!</GuideTip>
               </GuideSection>
 
-              <GuideSection title="Challenge-Belohnungen" icon="🎁">
+              <GuideSection title="Challenge-Belohnungen" icon="◇">
                 <ul className="space-y-1 mt-2">
                   <li>• <Stat color="#f59e0b">Gold</Stat>, <Stat color="#a78bfa">Runensplitter</Stat>, <Stat color="#ef4444">Essenz</Stat> pro Stufe/Checkpoint</li>
                   <li>• <Stat color="#fbbf24">Sternentaler</Stat> — exklusive Währung nur aus Weekly Challenges</li>
@@ -526,11 +541,11 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
           )}
           {tab === "social" && (
             <>
-              <GuideSection title="The Breakaway" icon="💬" accent="rgba(236,72,153,0.4)">
+              <GuideSection title="The Breakaway" icon="◆" accent="rgba(236,72,153,0.4)">
                 Sozialer Hub im 5. Stock. Freunde, Nachrichten, Handel und Activity Feed — nur eingeloggt.
               </GuideSection>
 
-              <GuideSection title="Spieler suchen & Profile" icon="🔍">
+              <GuideSection title="Spieler suchen & Profile" icon="◆">
                 <ul className="space-y-1 mt-2">
                   <li>• <Stat color="#f0f0f0">Suche</Stat> — Autocomplete-Spielersuche nach Name.</li>
                   <li>• <Stat color="#a855f7">Profil</Stat> — Klicke auf Spieler (Leaderboard, Freundesliste, Suche) → Profil: Gear, Achievements, Berufe, Companion.</li>
@@ -538,7 +553,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                 </ul>
               </GuideSection>
 
-              <GuideSection title="Freunde & Online-Status" icon="👥">
+              <GuideSection title="Freunde & Online-Status" icon="◆">
                 <ul className="space-y-1 mt-2">
                   <li>• Freund hinzufügen via Suche oder direkter Namenseingabe.</li>
                   <li>• <Stat color="#22c55e">●</Stat> Online · <Stat color="#eab308">●</Stat> Idle · <Stat color="#6b7280">●</Stat> Offline</li>
@@ -546,7 +561,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                 </ul>
               </GuideSection>
 
-              <GuideSection title="Nachrichten & Handel" icon="🤝">
+              <GuideSection title="Nachrichten & Handel" icon="◈">
                 <ul className="space-y-1 mt-2">
                   <li>• <Stat color="#3b82f6">Nachrichten</Stat> — DM an Freunde (500 Zeichen). Read-Receipts (✓✓).</li>
                   <li>• <Stat color="#fbbf24">Trading</Stat> — Gold + Items handeln. Mehrere Verhandlungsrunden möglich.</li>
@@ -554,15 +569,15 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                 </ul>
               </GuideSection>
 
-              <GuideSection title="Activity Feed" icon="📰" accent="rgba(129,140,248,0.3)">
+              <GuideSection title="Activity Feed" icon="◆" accent="rgba(129,140,248,0.3)">
                 Feed mit Aktivitäten deiner Freunde:
                 <div className="flex flex-wrap gap-1.5 mt-2 text-xs">
                   <span className="rounded px-1.5 py-0.5" style={{ background: "rgba(255,255,255,0.04)" }}>⚔️ Quests</span>
-                  <span className="rounded px-1.5 py-0.5" style={{ background: "rgba(255,255,255,0.04)" }}>⬆️ Level-Ups</span>
-                  <span className="rounded px-1.5 py-0.5" style={{ background: "rgba(255,255,255,0.04)" }}>🏆 Achievements</span>
+                  <span className="rounded px-1.5 py-0.5" style={{ background: "rgba(255,255,255,0.04)" }}>▲ Level-Ups</span>
+                  <span className="rounded px-1.5 py-0.5" style={{ background: "rgba(255,255,255,0.04)" }}>◆ Achievements</span>
                   <span className="rounded px-1.5 py-0.5" style={{ background: "rgba(255,255,255,0.04)" }}>✨ Gacha (Epic+)</span>
-                  <span className="rounded px-1.5 py-0.5" style={{ background: "rgba(255,255,255,0.04)" }}>💎 Rare Drops</span>
-                  <span className="rounded px-1.5 py-0.5" style={{ background: "rgba(255,255,255,0.04)" }}>🤝 Trades</span>
+                  <span className="rounded px-1.5 py-0.5" style={{ background: "rgba(255,255,255,0.04)" }}>◇ Rare Drops</span>
+                  <span className="rounded px-1.5 py-0.5" style={{ background: "rgba(255,255,255,0.04)" }}>◈ Trades</span>
                 </div>
                 <p className="mt-1.5" style={{ color: "rgba(255,255,255,0.35)" }}><Rarity r="legendary">Legendary</Rarity>-Events leuchten golden, <Rarity r="epic">Epic</Rarity> lila. Umschaltbar: Kompakt/Detailliert.</p>
               </GuideSection>
@@ -570,7 +585,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
           )}
           {tab === "progression" && (
             <>
-              <GuideSection title="XP & Level (Max 30)" icon="📈" accent="rgba(168,85,247,0.4)">
+              <GuideSection title="XP & Level (Max 30)" icon="▲" accent="rgba(168,85,247,0.4)">
                 Jede Quest gibt XP, beeinflusst von: Forge-Temp, Kraft-Stat, Gear, Companion-Bond, Streaks, Buffs.
                 <p className="mt-1">Bei Level-Up: <Stat color="#818cf8">5 + Level Stardust</Stat>.</p>
               </GuideSection>
@@ -588,7 +603,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                 <p className="mt-1.5" style={{ color: "rgba(255,255,255,0.3)" }}>Verfall: 2%/h (Ausdauer verlangsamt). Jede Quest: +10 Temp.</p>
               </GuideSection>
 
-              <GuideSection title="Streaks & Gold" icon="🔗">
+              <GuideSection title="Streaks & Gold" icon="◆">
                 Täglich mindestens 1 Quest oder Ritual = Streak halten.
                 <ul className="space-y-1 mt-2">
                   <li>• Gold-Multi: bis <Stat color="#fbbf24">+45%</Stat> bei 30+ Tagen</li>
@@ -597,7 +612,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                 </ul>
               </GuideSection>
 
-              <GuideSection title="Währungen (7)" icon="💰">
+              <GuideSection title="Währungen (7)" icon="◆">
                 <div className="grid grid-cols-2 gap-1 mt-2 text-xs">
                   <div><Stat color="#f59e0b">Gold</Stat> — Hauptwährung</div>
                   <div><Stat color="#818cf8">Stardust</Stat> — Featured Gacha</div>
@@ -609,7 +624,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                 </div>
               </GuideSection>
 
-              <GuideSection title="Daily Missions" icon="✅" accent="rgba(34,197,94,0.3)">
+              <GuideSection title="Daily Missions" icon="✓" accent="rgba(34,197,94,0.3)">
                 6 tägliche Aufgaben mit Belohnungstrack auf dem Quest Board:
                 <div className="grid grid-cols-3 gap-1 mt-2 text-center text-xs">
                   <div className="rounded px-1 py-1" style={{ background: "rgba(255,255,255,0.03)" }}>Login +100</div>
@@ -622,7 +637,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                 <p className="mt-1" style={{ color: "rgba(255,255,255,0.35)" }}>4 Meilensteine bei 100/300/500/750 Punkten → Gold, Essenz, Runensplitter, Sternentaler.</p>
               </GuideSection>
 
-              <GuideSection title="Bazaar & Shop" icon="🏪">
+              <GuideSection title="Bazaar & Shop" icon="◆">
                 <ul className="space-y-1 mt-2">
                   <li>• <Stat color="#f0f0f0">Self-Care</Stat> — Echte Belohnungen: Gaming, Movie Night, Spa-Tag</li>
                   <li>• <Stat color="#a855f7">Boosts</Stat> — XP-Scrolls, Luck Coins, Streak-Shields, Stardust-Phiolen</li>
@@ -643,7 +658,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
           )}
           {tab === "honors" && (
             <>
-              <GuideSection title="Hall of Honors" icon="🏆" accent="rgba(251,191,36,0.4)">
+              <GuideSection title="Hall of Honors" icon="◆" accent="rgba(251,191,36,0.4)">
                 55+ Achievements — automatisch freigeschaltet bei Meilensteinen.
               </GuideSection>
 
@@ -658,18 +673,18 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                 </div>
               </GuideSection>
 
-              <GuideSection title="Kategorien" icon="📂">
+              <GuideSection title="Kategorien" icon="◆">
                 <div className="grid grid-cols-2 gap-1 mt-2 text-xs">
-                  <span>📋 Quest-Meilensteine (1-500)</span>
+                  <span>▣ Quest-Meilensteine (1-500)</span>
                   <span>🔥 Streak (7-365 Tage)</span>
-                  <span>🎯 Quest-Typ-Spezialisierungen</span>
-                  <span>🌙 Speed & Nachteulen</span>
-                  <span>🤝 Coop & Quest-Ketten</span>
-                  <span>🔒 Versteckte Easter Eggs</span>
+                  <span>◆ Quest-Typ-Spezialisierungen</span>
+                  <span>● Speed & Nachteulen</span>
+                  <span>◈ Coop & Quest-Ketten</span>
+                  <span>● Versteckte Easter Eggs</span>
                 </div>
               </GuideSection>
 
-              <GuideSection title="Portrait-Rahmen (Punkte-Meilensteine)" icon="🖼️" accent="rgba(167,139,250,0.3)">
+              <GuideSection title="Portrait-Rahmen (Punkte-Meilensteine)" icon="▣" accent="rgba(167,139,250,0.3)">
                 <div className="space-y-0.5 mt-2 text-xs">
                   <div className="flex justify-between"><Stat color="#cd7f32">50 Pkt</Stat><span>Bronzener Rahmen</span></div>
                   <div className="flex justify-between"><Stat color="#c0c0c0">200 Pkt</Stat><span>Silberner Rahmen</span></div>
@@ -680,7 +695,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                 </div>
               </GuideSection>
 
-              <GuideSection title="Proving Grounds & Forge Companions" icon="🏅">
+              <GuideSection title="Proving Grounds & Forge Companions" icon="◆">
                 <ul className="space-y-1 mt-2">
                   <li>• <Stat color="#fbbf24">Leaderboard</Stat> — Rangliste nach XP. Top 3: Gold/Silber/Bronze-Podium.</li>
                   <li>• <Stat color="#f97316">Forge Companions</Stat> — Achievement-Unlocks: Ember Sprite, Lore Owl, Gear Golem → je +2% XP (bis +6%).</li>
@@ -830,7 +845,7 @@ export const TUTORIAL_STEPS = [
   {
     key: "done",
     title: "Bereit, Wanderer!",
-    desc: "Die Halle wartet. Nimm deine erste Quest an, halte deinen Streak und schmiedet deinen Weg nach oben. Öffne den Guide (ℹ️) jederzeit für Details!",
+    desc: "Die Halle wartet. Nimm deine erste Quest an, halte deinen Streak und schmiedet deinen Weg nach oben. Öffne den Guide jederzeit für Details!",
     target: null,
     position: "center" as const,
     navigateTo: null,

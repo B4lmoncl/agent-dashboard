@@ -137,14 +137,27 @@ export default function Dashboard() {
   });
   // selectedIds, bulkLoading, reviewComments moved to useQuestActions hook
   const [typeFilter, setTypeFilter] = useState<string>("all");
-  const [dashViewRaw, setDashViewRaw] = useState<"questBoard" | "npcBoard" | "klassenquests" | "character" | "campaign" | "leaderboard" | "honors" | "season" | "shop" | "forge" | "gacha" | "roadmap" | "changelog" | "challenges" | "rituals" | "vows" | "social" | "tavern" | "rift" | "factions" | "worldboss" | "dungeons">("questBoard");
-  const [activeFloor, setActiveFloor] = useState("haupthalle");
-  // Wrap setDashView to auto-sync the active floor
+  const [dashViewRaw, setDashViewRaw] = useState<"questBoard" | "npcBoard" | "klassenquests" | "character" | "campaign" | "leaderboard" | "honors" | "season" | "shop" | "forge" | "gacha" | "roadmap" | "changelog" | "challenges" | "rituals" | "vows" | "social" | "tavern" | "rift" | "factions" | "worldboss" | "dungeons">(() => {
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("dash_view");
+      if (saved) return saved as "questBoard" | "npcBoard" | "klassenquests" | "character" | "campaign" | "leaderboard" | "honors" | "season" | "shop" | "forge" | "gacha" | "roadmap" | "changelog" | "challenges" | "rituals" | "vows" | "social" | "tavern" | "rift" | "factions" | "worldboss" | "dungeons";
+    }
+    return "questBoard";
+  });
+  const [activeFloor, setActiveFloor] = useState(() => {
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("dash_view");
+      if (saved) { const f = getFloorForRoom(saved); if (f) return f.id; }
+    }
+    return "haupthalle";
+  });
+  // Wrap setDashView to auto-sync the active floor + persist
   const dashView = dashViewRaw;
   const setDashView = useCallback((view: typeof dashViewRaw) => {
     setDashViewRaw(view);
     const floor = getFloorForRoom(view);
     if (floor) setActiveFloor(floor.id);
+    try { localStorage.setItem("dash_view", view); } catch { /* private browsing */ }
   }, []);
   // Track seen content for notification dots (persists across renders via ref)
   const seenQuestIdsRef = useRef<Set<string>>(new Set());
@@ -496,7 +509,7 @@ export default function Dashboard() {
     fetch("/api/classes")
       .then(r => r.ok ? r.json() : [])
       .then(setClassesList)
-      .catch(() => {});
+      .catch(e => console.error('[page]', e));
   }, []);
 
   useEffect(() => {
@@ -1278,7 +1291,8 @@ export default function Dashboard() {
             </div>
             <div className="rounded-xl px-6 py-16 text-center border-w6" style={{ background: "rgba(255,255,255,0.02)" }}>
               <p className="text-lg font-bold mb-2 text-w25">Coming Soon</p>
-              <p className="text-xs" style={{ color: "rgba(255,255,255,0.15)" }}>The Observatory will open soon. Watch for the stars.</p>
+              <p className="text-xs mb-4" style={{ color: "rgba(255,255,255,0.15)" }}>The Observatory will open soon. Watch for the stars.</p>
+              <button onClick={() => setDashView("questBoard")} className="text-xs px-4 py-2 rounded-lg" style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.4)", border: "1px solid rgba(255,255,255,0.1)", cursor: "pointer" }}>Back to Quest Board</button>
             </div>
           </div>
         )}
@@ -1729,7 +1743,8 @@ export default function Dashboard() {
             </div>
             <div className="rounded-xl px-6 py-16 text-center border-w6" style={{ background: "rgba(255,255,255,0.02)" }}>
               <p className="text-lg font-bold mb-2 text-w25">Coming Soon</p>
-              <p className="text-xs" style={{ color: "rgba(255,255,255,0.15)" }}>The Arcanum gathers its scrolls. Class quests and skill trees coming soon.</p>
+              <p className="text-xs mb-4" style={{ color: "rgba(255,255,255,0.15)" }}>The Arcanum gathers its scrolls. Class quests and skill trees coming soon.</p>
+              <button onClick={() => setDashView("questBoard")} className="text-xs px-4 py-2 rounded-lg" style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.4)", border: "1px solid rgba(255,255,255,0.1)", cursor: "pointer" }}>Back to Quest Board</button>
             </div>
           </div>
         )}

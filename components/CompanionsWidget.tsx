@@ -390,7 +390,7 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
                       {/* Floating hearts animation */}
                       {heartAnim && (
                         <div className="absolute pointer-events-none" style={{ bottom: "100%", left: "50%", transform: "translateX(-50%)" }}>
-                          {["❤️","💕","❤️"].map((h, i) => (
+                          {["♥","♥","♥"].map((h, i) => (
                             <span key={i} style={{
                               position: "absolute",
                               left: `${(i - 1) * 14}px`,
@@ -471,7 +471,7 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
                 )}
                 <div className="flex gap-1.5 flex-wrap">
                   {[
-                    { id: "instant_complete", label: "Instant", desc: `${companionName} completes a quest`, icon: "⚡", needsQuest: true },
+                    { id: "instant_complete", label: "Instant", desc: `${companionName} completes a quest`, icon: "◆", needsQuest: true },
                     { id: "double_reward", label: "2x Loot", desc: "Next quest doubled", icon: "✨", needsQuest: false },
                     { id: "streak_extend", label: "+3 Streak", desc: "Extend streak", icon: "🔥", needsQuest: false },
                   ].map(ult => (

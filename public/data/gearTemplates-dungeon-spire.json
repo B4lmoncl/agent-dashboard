@@ -1,0 +1,1868 @@
+{
+  "items": [
+    {
+      "id": "dun-shattered-spire-turm-klinge",
+      "name": "Turm-Klinge",
+      "slot": "weapon",
+      "reqLevel": 16,
+      "rarity": "uncommon",
+      "armorType": null,
+      "tier": 2,
+      "setId": "turmbrecher-ruestung",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:shattered-spire",
+      "fixedStats": {
+        "kraft": 3,
+        "ausdauer": 3
+      },
+      "flavorText": "Aus den Trümmern geborgen. Noch immer knistert es vor statischer Energie.",
+      "binding": "bop"
+    },
+    {
+      "id": "dun-shattered-spire-turm-buckler",
+      "name": "Turm-Buckler",
+      "slot": "shield",
+      "reqLevel": 16,
+      "rarity": "uncommon",
+      "armorType": null,
+      "tier": 2,
+      "setId": "turmbrecher-ruestung",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:shattered-spire",
+      "fixedStats": {
+        "charisma": 6,
+        "ausdauer": 4
+      },
+      "flavorText": "Wer es trägt, spürt ein leichtes Summen — wie die Erinnerung an Höhe.",
+      "binding": "bop"
+    },
+    {
+      "id": "dun-shattered-spire-turm-haube",
+      "name": "Turm-Haube",
+      "slot": "helm",
+      "reqLevel": 16,
+      "rarity": "uncommon",
+      "armorType": "leather",
+      "tier": 2,
+      "setId": "turmbrecher-ruestung",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:shattered-spire",
+      "fixedStats": {
+        "weisheit": 4,
+        "ausdauer": 5
+      },
+      "flavorText": "Blitznarben zieren die Oberfläche. Nicht dekorativ — funktional.",
+      "binding": "bop"
+    },
+    {
+      "id": "dun-shattered-spire-turm-mantel",
+      "name": "Turm-Mantel",
+      "slot": "armor",
+      "reqLevel": 17,
+      "rarity": "uncommon",
+      "armorType": "heavy",
+      "tier": 2,
+      "setId": "master",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:shattered-spire",
+      "fixedStats": {
+        "ausdauer": 3
+      },
+      "flavorText": "Aus den Trümmern geborgen. Noch immer knistert es vor statischer Energie.",
+      "binding": "bop"
+    },
+    {
+      "id": "dun-shattered-spire-turm-marschtritt",
+      "name": "Turm-Marschtritt",
+      "slot": "boots",
+      "reqLevel": 17,
+      "rarity": "uncommon",
+      "armorType": "cloth",
+      "tier": 2,
+      "setId": "master",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:shattered-spire",
+      "fixedStats": {
+        "charisma": 4,
+        "ausdauer": 3
+      },
+      "flavorText": "Wer es trägt, spürt ein leichtes Summen — wie die Erinnerung an Höhe.",
+      "binding": "bop"
+    },
+    {
+      "id": "dun-shattered-spire-turm-reif",
+      "name": "Turm-Reif",
+      "slot": "ring",
+      "reqLevel": 17,
+      "rarity": "uncommon",
+      "armorType": null,
+      "tier": 2,
+      "setId": "master",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:shattered-spire",
+      "fixedStats": {
+        "glueck": 3,
+        "ausdauer": 3
+      },
+      "flavorText": "Blitznarben zieren die Oberfläche. Nicht dekorativ — funktional.",
+      "binding": "bop"
+    },
+    {
+      "id": "dun-shattered-spire-turm-kette",
+      "name": "Turm-Kette",
+      "slot": "amulet",
+      "reqLevel": 17,
+      "rarity": "uncommon",
+      "armorType": null,
+      "tier": 2,
+      "setId": "master",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:shattered-spire",
+      "fixedStats": {
+        "charisma": 4,
+        "ausdauer": 4
+      },
+      "flavorText": "Aus den Trümmern geborgen. Noch immer knistert es vor statischer Energie.",
+      "binding": "bop"
+    },
+    {
+      "id": "dun-shattered-spire-turm-klinge-4tv",
+      "name": "Turm-Klinge II",
+      "slot": "weapon",
+      "reqLevel": 17,
+      "rarity": "uncommon",
+      "armorType": null,
+      "tier": 2,
+      "setId": "master",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:shattered-spire",
+      "fixedStats": {
+        "kraft": 5,
+        "ausdauer": 3
+      },
+      "flavorText": "Wer es trägt, spürt ein leichtes Summen — wie die Erinnerung an Höhe.",
+      "binding": "bop"
+    },
+    {
+      "id": "dun-shattered-spire-turm-tartsche",
+      "name": "Turm-Tartsche",
+      "slot": "shield",
+      "reqLevel": 18,
+      "rarity": "uncommon",
+      "armorType": null,
+      "tier": 2,
+      "setId": "master",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:shattered-spire",
+      "fixedStats": {
+        "charisma": 5,
+        "ausdauer": 4
+      },
+      "flavorText": "Blitznarben zieren die Oberfläche. Nicht dekorativ — funktional.",
+      "binding": "bop"
+    },
+    {
+      "id": "dun-shattered-spire-turm-visier",
+      "name": "Turm-Visier",
+      "slot": "helm",
+      "reqLevel": 18,
+      "rarity": "uncommon",
+      "armorType": "heavy",
+      "tier": 2,
+      "setId": "master",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:shattered-spire",
+      "fixedStats": {
+        "weisheit": 3,
+        "ausdauer": 3
+      },
+      "flavorText": "Aus den Trümmern geborgen. Noch immer knistert es vor statischer Energie.",
+      "binding": "bop"
+    },
+    {
+      "id": "dun-shattered-spire-turm-brustplatte",
+      "name": "Turm-Brustplatte",
+      "slot": "armor",
+      "reqLevel": 18,
+      "rarity": "rare",
+      "armorType": "cloth",
+      "tier": 2,
+      "setId": "master",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:shattered-spire",
+      "fixedStats": {
+        "ausdauer": 4
+      },
+      "flavorText": "Wer es trägt, spürt ein leichtes Summen — wie die Erinnerung an Höhe.",
+      "binding": "bop"
+    },
+    {
+      "id": "dun-shattered-spire-turm-treter",
+      "name": "Turm-Treter",
+      "slot": "boots",
+      "reqLevel": 18,
+      "rarity": "rare",
+      "armorType": "leather",
+      "tier": 2,
+      "setId": "master",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:shattered-spire",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 4
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 4
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 4
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 3
+            },
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 3
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Blitznarben zieren die Oberfläche. Nicht dekorativ — funktional.",
+      "binding": "bop"
+    },
+    {
+      "id": "dun-shattered-spire-turm-ring",
+      "name": "Turm-Ring",
+      "slot": "ring",
+      "reqLevel": 18,
+      "rarity": "rare",
+      "armorType": null,
+      "tier": 2,
+      "setId": "master",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:shattered-spire",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 4
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 4
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 4
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 3
+            },
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 3
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Aus den Trümmern geborgen. Noch immer knistert es vor statischer Energie.",
+      "binding": "bop"
+    },
+    {
+      "id": "dun-shattered-spire-turm-anhaenger",
+      "name": "Turm-Anhänger",
+      "slot": "amulet",
+      "reqLevel": 19,
+      "rarity": "rare",
+      "armorType": null,
+      "tier": 2,
+      "setId": "master",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:shattered-spire",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 4
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 4
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 4
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 3
+            },
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 3
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Wer es trägt, spürt ein leichtes Summen — wie die Erinnerung an Höhe.",
+      "binding": "bop"
+    },
+    {
+      "id": "dun-shattered-spire-turm-klinge-mkd",
+      "name": "Turm-Klinge III",
+      "slot": "weapon",
+      "reqLevel": 19,
+      "rarity": "rare",
+      "armorType": null,
+      "tier": 2,
+      "setId": "master",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:shattered-spire",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 4
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 4
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 4
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 3
+            },
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 3
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Blitznarben zieren die Oberfläche. Nicht dekorativ — funktional.",
+      "binding": "bop"
+    },
+    {
+      "id": "dun-shattered-spire-turm-schild",
+      "name": "Turm-Schild",
+      "slot": "shield",
+      "reqLevel": 19,
+      "rarity": "rare",
+      "armorType": null,
+      "tier": 2,
+      "setId": "master",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:shattered-spire",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 4
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 4
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 4
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 3
+            },
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 3
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Aus den Trümmern geborgen. Noch immer knistert es vor statischer Energie.",
+      "binding": "bop"
+    },
+    {
+      "id": "dun-shattered-spire-turm-schleier",
+      "name": "Turm-Schleier",
+      "slot": "helm",
+      "reqLevel": 19,
+      "rarity": "rare",
+      "armorType": "cloth",
+      "tier": 2,
+      "setId": "master",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:shattered-spire",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 4
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 4
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 4
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 3
+            },
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 3
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Wer es trägt, spürt ein leichtes Summen — wie die Erinnerung an Höhe.",
+      "binding": "bop"
+    },
+    {
+      "id": "dun-shattered-spire-turm-gewand",
+      "name": "Turm-Gewand",
+      "slot": "armor",
+      "reqLevel": 19,
+      "rarity": "rare",
+      "armorType": "leather",
+      "tier": 2,
+      "setId": "master",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:shattered-spire",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 4
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 4
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 4
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 3
+            },
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 3
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Blitznarben zieren die Oberfläche. Nicht dekorativ — funktional.",
+      "binding": "bop"
+    },
+    {
+      "id": "dun-shattered-spire-turm-sandalen",
+      "name": "Turm-Sandalen",
+      "slot": "boots",
+      "reqLevel": 20,
+      "rarity": "rare",
+      "armorType": "heavy",
+      "tier": 2,
+      "setId": "master",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:shattered-spire",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 4
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 4
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 4
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 3
+            },
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 3
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Aus den Trümmern geborgen. Noch immer knistert es vor statischer Energie.",
+      "binding": "bop"
+    },
+    {
+      "id": "dun-shattered-spire-turm-siegelring",
+      "name": "Turm-Siegelring",
+      "slot": "ring",
+      "reqLevel": 20,
+      "rarity": "rare",
+      "armorType": null,
+      "tier": 2,
+      "setId": "master",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:shattered-spire",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 4
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 4
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 4
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 3
+            },
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 3
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Wer es trägt, spürt ein leichtes Summen — wie die Erinnerung an Höhe.",
+      "binding": "bop"
+    },
+    {
+      "id": "dun-shattered-spire-turm-amulett",
+      "name": "Turm-Amulett",
+      "slot": "amulet",
+      "reqLevel": 20,
+      "rarity": "rare",
+      "armorType": null,
+      "tier": 2,
+      "setId": "master",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:shattered-spire",
+      "fixedStats": {
+        "charisma": 5
+      },
+      "flavorText": "Blitznarben zieren die Oberfläche. Nicht dekorativ — funktional.",
+      "binding": "bop"
+    },
+    {
+      "id": "dun-shattered-spire-turm-klinge-5go",
+      "name": "Turm-Klinge IV",
+      "slot": "weapon",
+      "reqLevel": 20,
+      "rarity": "rare",
+      "armorType": null,
+      "tier": 2,
+      "setId": "master",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:shattered-spire",
+      "fixedStats": {
+        "kraft": 4,
+        "ausdauer": 3
+      },
+      "flavorText": "Aus den Trümmern geborgen. Noch immer knistert es vor statischer Energie.",
+      "binding": "bop"
+    },
+    {
+      "id": "dun-shattered-spire-turm-bollwerk",
+      "name": "Turm-Bollwerk",
+      "slot": "shield",
+      "reqLevel": 21,
+      "rarity": "rare",
+      "armorType": null,
+      "tier": 3,
+      "setId": "master",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:shattered-spire",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Wer es trägt, spürt ein leichtes Summen — wie die Erinnerung an Höhe.",
+      "binding": "bop"
+    },
+    {
+      "id": "dun-shattered-spire-turm-kappe",
+      "name": "Turm-Kappe",
+      "slot": "helm",
+      "reqLevel": 21,
+      "rarity": "rare",
+      "armorType": "leather",
+      "tier": 3,
+      "setId": "master",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:shattered-spire",
+      "fixedStats": {
+        "weisheit": 5,
+        "ausdauer": 5
+      },
+      "flavorText": "Blitznarben zieren die Oberfläche. Nicht dekorativ — funktional.",
+      "binding": "bop"
+    },
+    {
+      "id": "dun-shattered-spire-turm-panzer",
+      "name": "Turm-Panzer",
+      "slot": "armor",
+      "reqLevel": 21,
+      "rarity": "rare",
+      "armorType": "heavy",
+      "tier": 3,
+      "setId": "master",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:shattered-spire",
+      "fixedStats": {
+        "ausdauer": 5
+      },
+      "flavorText": "Aus den Trümmern geborgen. Noch immer knistert es vor statischer Energie.",
+      "binding": "bop"
+    },
+    {
+      "id": "dun-shattered-spire-turm-stiefel",
+      "name": "Turm-Stiefel",
+      "slot": "boots",
+      "reqLevel": 21,
+      "rarity": "rare",
+      "armorType": "cloth",
+      "tier": 3,
+      "setId": "master",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:shattered-spire",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Wer es trägt, spürt ein leichtes Summen — wie die Erinnerung an Höhe.",
+      "binding": "bop"
+    },
+    {
+      "id": "dun-shattered-spire-turm-band",
+      "name": "Turm-Band",
+      "slot": "ring",
+      "reqLevel": 21,
+      "rarity": "rare",
+      "armorType": null,
+      "tier": 3,
+      "setId": "master",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:shattered-spire",
+      "fixedStats": {
+        "glueck": 4,
+        "ausdauer": 5
+      },
+      "flavorText": "Blitznarben zieren die Oberfläche. Nicht dekorativ — funktional.",
+      "binding": "bop"
+    },
+    {
+      "id": "dun-shattered-spire-turm-medaillon",
+      "name": "Turm-Medaillon",
+      "slot": "amulet",
+      "reqLevel": 22,
+      "rarity": "rare",
+      "armorType": null,
+      "tier": 3,
+      "setId": "master",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:shattered-spire",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Aus den Trümmern geborgen. Noch immer knistert es vor statischer Energie.",
+      "binding": "bop"
+    },
+    {
+      "id": "dun-shattered-spire-turm-klinge-chk",
+      "name": "Turm-Klinge V",
+      "slot": "weapon",
+      "reqLevel": 22,
+      "rarity": "epic",
+      "armorType": null,
+      "tier": 3,
+      "setId": "master",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:shattered-spire",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Wer es trägt, spürt ein leichtes Summen — wie die Erinnerung an Höhe.",
+      "binding": "bop"
+    },
+    {
+      "id": "dun-shattered-spire-turm-fokus",
+      "name": "Turm-Fokus",
+      "slot": "shield",
+      "reqLevel": 22,
+      "rarity": "epic",
+      "armorType": null,
+      "tier": 3,
+      "setId": "master",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:shattered-spire",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Blitznarben zieren die Oberfläche. Nicht dekorativ — funktional.",
+      "binding": "bop"
+    },
+    {
+      "id": "dun-shattered-spire-turm-helm",
+      "name": "Turm-Helm",
+      "slot": "helm",
+      "reqLevel": 22,
+      "rarity": "epic",
+      "armorType": "heavy",
+      "tier": 3,
+      "setId": "master",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:shattered-spire",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Aus den Trümmern geborgen. Noch immer knistert es vor statischer Energie.",
+      "binding": "bop"
+    },
+    {
+      "id": "dun-shattered-spire-turm-ruestung",
+      "name": "Turm-Rüstung",
+      "slot": "armor",
+      "reqLevel": 22,
+      "rarity": "epic",
+      "armorType": "cloth",
+      "tier": 3,
+      "setId": "master",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:shattered-spire",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Wer es trägt, spürt ein leichtes Summen — wie die Erinnerung an Höhe.",
+      "binding": "bop"
+    },
+    {
+      "id": "dun-shattered-spire-turm-schuhe",
+      "name": "Turm-Schuhe",
+      "slot": "boots",
+      "reqLevel": 23,
+      "rarity": "epic",
+      "armorType": "leather",
+      "tier": 3,
+      "setId": "master",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:shattered-spire",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Blitznarben zieren die Oberfläche. Nicht dekorativ — funktional.",
+      "binding": "bop"
+    },
+    {
+      "id": "dun-shattered-spire-turm-reif-1hy",
+      "name": "Turm-Reif II",
+      "slot": "ring",
+      "reqLevel": 23,
+      "rarity": "epic",
+      "armorType": null,
+      "tier": 3,
+      "setId": "master",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:shattered-spire",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Aus den Trümmern geborgen. Noch immer knistert es vor statischer Energie.",
+      "binding": "bop"
+    },
+    {
+      "id": "dun-shattered-spire-turm-talisman",
+      "name": "Turm-Talisman",
+      "slot": "amulet",
+      "reqLevel": 23,
+      "rarity": "epic",
+      "armorType": null,
+      "tier": 3,
+      "setId": "master",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:shattered-spire",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Wer es trägt, spürt ein leichtes Summen — wie die Erinnerung an Höhe.",
+      "binding": "bop"
+    },
+    {
+      "id": "dun-shattered-spire-turm-klinge-a4y",
+      "name": "Turm-Klinge VI",
+      "slot": "weapon",
+      "reqLevel": 23,
+      "rarity": "epic",
+      "armorType": null,
+      "tier": 3,
+      "setId": "master",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:shattered-spire",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Blitznarben zieren die Oberfläche. Nicht dekorativ — funktional.",
+      "binding": "bop"
+    },
+    {
+      "id": "dun-shattered-spire-turm-buckler-jof",
+      "name": "Turm-Buckler II",
+      "slot": "shield",
+      "reqLevel": 23,
+      "rarity": "epic",
+      "armorType": null,
+      "tier": 3,
+      "setId": "master",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:shattered-spire",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Aus den Trümmern geborgen. Noch immer knistert es vor statischer Energie.",
+      "binding": "bop"
+    },
+    {
+      "id": "dun-shattered-spire-turm-krone",
+      "name": "Turm-Krone",
+      "slot": "helm",
+      "reqLevel": 24,
+      "rarity": "epic",
+      "armorType": "cloth",
+      "tier": 3,
+      "setId": "master",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:shattered-spire",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Wer es trägt, spürt ein leichtes Summen — wie die Erinnerung an Höhe.",
+      "binding": "bop"
+    },
+    {
+      "id": "dun-shattered-spire-turm-wams",
+      "name": "Turm-Wams",
+      "slot": "armor",
+      "reqLevel": 24,
+      "rarity": "legendary",
+      "armorType": "leather",
+      "tier": 3,
+      "setId": "master",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:shattered-spire",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            3,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "crit_chance",
+        "min": 2,
+        "max": 5,
+        "label": "Tödliche Präzision: +{value}% Crit Chance"
+      },
+      "flavorText": "Blitznarben zieren die Oberfläche. Nicht dekorativ — funktional.",
+      "binding": "bop"
+    },
+    {
+      "id": "dun-shattered-spire-turm-marschtritt-28i",
+      "name": "Turm-Marschtritt II",
+      "slot": "boots",
+      "reqLevel": 24,
+      "rarity": "legendary",
+      "armorType": "heavy",
+      "tier": 3,
+      "setId": "master",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:shattered-spire",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            3,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "decay_reduction",
+        "min": 2,
+        "max": 5,
+        "label": "Tiefenschutz: -{value}% Forge Decay"
+      },
+      "flavorText": "Aus den Trümmern geborgen. Noch immer knistert es vor statischer Energie.",
+      "binding": "bop"
+    }
+  ]
+}

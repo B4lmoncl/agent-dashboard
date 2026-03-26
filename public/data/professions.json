@@ -16,7 +16,7 @@
       "name": "Blacksmith",
       "npcName": "Grimvar the Smith",
       "npcPortrait": "/images/npcs/grimvar-schmied.png",
-      "npcGreeting": "The iron calls, adventurer. Place your piece on the anvil — I'll make something of it.",
+      "npcGreeting": "Das Eisen ruft, Wanderer. Leg dein Stück auf den Amboss — ich mach was draus.",
       "description": "Forges heavy armor from ore and crystal. Also hosts the Salvage station for dismantling gear.",
       "color": "#f59e0b",
       "icon": "/images/icons/prof-schmied.png",
@@ -41,7 +41,7 @@
       "name": "Alchemist",
       "npcName": "Ysolde the Alchemist",
       "npcPortrait": "/images/npcs/ysolde-alchemist.png",
-      "npcGreeting": "Every drop counts, every herb has its purpose. What shall I brew for you?",
+      "npcGreeting": "Jeder Tropfen zählt, jedes Kraut hat seinen Zweck. Was soll es sein?",
       "description": "Brews potions and elixirs from gathered materials. Also hosts the Transmutation station for upgrading gear.",
       "color": "#22c55e",
       "icon": "/images/icons/prof-alchemist.png",
@@ -66,7 +66,7 @@
       "name": "Enchanter",
       "npcName": "Eldric the Enchanter",
       "npcPortrait": "/images/npcs/eldric-verzauberer.png",
-      "npcGreeting": "Show me your gear... I can awaken the hidden magic within.",
+      "npcGreeting": "Zeig mir deine Ausrüstung... ich kann die verborgene Magie darin erwecken.",
       "description": "Enchants gear with bonus stats and hosts the Enchanting station for targeted stat rerolling.",
       "color": "#a78bfa",
       "icon": "/images/icons/prof-verzauberer.png",
@@ -91,7 +91,7 @@
       "name": "Tailor",
       "npcName": "Selina the Weaver",
       "npcPortrait": null,
-      "npcGreeting": "Every thread tells a story. Let me see which one becomes yours.",
+      "npcGreeting": "Jeder Faden erzählt eine Geschichte. Mal sehen, welche zu dir passt.",
       "description": "Crafts cloth armor imbued with arcane resonance. Cloth pieces boost XP per slot equipped.",
       "color": "#c084fc",
       "icon": "/images/icons/prof-schneider.png",
@@ -116,7 +116,7 @@
       "name": "Cook",
       "npcName": "Bruna the Cook",
       "npcPortrait": "/images/npcs/bruna-koch.png",
-      "npcGreeting": "Hungry? Sit down! My stew heals body and soul.",
+      "npcGreeting": "Hungrig? Setz dich! Mein Eintopf heilt Leib und Seele.",
       "description": "Cooks meals from gathered herbs and materials. Meals grant temporary buffs.",
       "color": "#e87b35",
       "icon": "/images/icons/prof-koch.png",
@@ -141,7 +141,7 @@
       "name": "Leatherworker",
       "npcName": "Roderic the Tanner",
       "npcPortrait": "/images/npcs/roderic-lederverarbeiter.png",
-      "npcGreeting": "Good leather tells a story, friend. Let me see what hide you've brought — I'll shape it into something worth wearing.",
+      "npcGreeting": "Gutes Leder erzählt eine Geschichte, Freund. Zeig mir, was du hast.",
       "description": "Tans and shapes leather into flexible armor. Specializes in balanced gear with gold-finding properties.",
       "color": "#b45309",
       "icon": "/images/icons/prof-lederverarbeiter.png",
@@ -166,7 +166,7 @@
       "name": "Weaponsmith",
       "npcName": "Varn the Blademaster",
       "npcPortrait": "/images/npcs/varn-waffenschmied.png",
-      "npcGreeting": "A weapon is an extension of will. Show me yours — and I will make it sharper.",
+      "npcGreeting": "Eine Waffe ist eine Verlängerung des Willens. Zeig mir deinen — und ich mach ihn schärfer.",
       "description": "Forges weapons and shields from ore and dragonscale. The offensive counterpart to the armor professions.",
       "color": "#dc2626",
       "icon": "/images/icons/prof-waffenschmied.png",
@@ -191,7 +191,7 @@
       "name": "Jewelcrafter",
       "npcName": "Mirael the Gem Sage",
       "npcPortrait": "/images/npcs/mirael-juwelier.png",
-      "npcGreeting": "Every gem holds a secret. Let me show you how to listen.",
+      "npcGreeting": "Jeder Edelstein birgt ein Geheimnis. Lass mich dir zeigen, wie man zuhört.",
       "description": "Crafts rings, amulets, and cut gems. The only profession that works with the Gem socket system.",
       "color": "#ec4899",
       "icon": "/images/icons/prof-juwelier.png",
@@ -225,234 +225,234 @@
   "materials": [
     {
       "id": "eisenerz",
-      "name": "Iron Ore",
+      "name": "Eisenerz",
       "icon": "/images/icons/mat-eisenerz.png",
       "rarity": "common",
-      "desc": "Base material for smithing."
+      "desc": "Rohes Erz aus den Tiefen der Minen. Klingt nicht nach viel — ist aber der Anfang von allem."
     },
     {
       "id": "magiestaub",
-      "name": "Arcane Dust",
+      "name": "Magiestaub",
       "icon": "/images/icons/mat-magiestaub.png",
       "rarity": "common",
-      "desc": "Fine dust with magical resonance."
+      "desc": "Feiner Staub aus zerfallener Magie. Rieselt durch die Finger, aber hinterlässt Spuren."
     },
     {
       "id": "kristallsplitter",
-      "name": "Crystal Shard",
+      "name": "Kristallsplitter",
       "icon": "/images/icons/mat-kristallsplitter.png",
       "rarity": "uncommon",
-      "desc": "A shimmering shard from the depths."
+      "desc": "Ein Splitter aus den Kristallhöhlen. Scharf, schimmernd, und leicht unberechenbar."
     },
     {
       "id": "drachenschuppe",
-      "name": "Dragon Scale",
+      "name": "Drachenschuppe",
       "icon": "/images/icons/mat-drachenschuppe.png",
       "rarity": "rare",
-      "desc": "A rare scale infused with primal magic."
+      "desc": "Eine Schuppe, die Feuer gesehen hat und es langweilig fand."
     },
     {
       "id": "aetherkern",
-      "name": "Aether Core",
+      "name": "Ätherkern",
       "icon": "/images/icons/mat-aetherkern.png",
       "rarity": "epic",
-      "desc": "A pulsing core of pure energy."
+      "desc": "Ein Kern aus kondensiertem Aetherstrom. Summt leise. Nicht fallen lassen."
     },
     {
       "id": "kraeuterbuendel",
-      "name": "Herb Bundle",
+      "name": "Kräuterbündel",
       "icon": "/images/icons/mat-kraeuter.png",
       "rarity": "common",
-      "desc": "Freshly gathered herbs for potions."
+      "desc": "Ein Bündel wilder Kräuter. Riecht nach Möglichkeiten und ein bisschen nach Salbei."
     },
     {
       "id": "mondblume",
-      "name": "Moonpetal",
+      "name": "Mondblume",
       "icon": "/images/icons/mat-mondblume.png",
       "rarity": "uncommon",
-      "desc": "Blooms only under moonlight."
+      "desc": "Eine Blume die nur bei Mondlicht blüht. Oder wenn niemand hinschaut. Schwer zu sagen."
     },
     {
       "id": "phoenixfeder",
-      "name": "Phoenix Feather",
+      "name": "Phoenixfeder",
       "icon": "/images/icons/mat-phoenixfeder.png",
       "rarity": "epic",
-      "desc": "A glowing feather full of life force."
+      "desc": "Eine Feder die niemals verbrennt. Der Phoenix will sie trotzdem zurück."
     },
     {
       "id": "runenstein",
-      "name": "Runestone",
+      "name": "Runenstein",
       "icon": "/images/icons/mat-runenstein.png",
       "rarity": "uncommon",
-      "desc": "A stone engraved with ancient runes."
+      "desc": "Ein Stein mit eingravierten Runen. Lesen kann sie niemand — aber alle spüren ihre Wirkung."
     },
     {
       "id": "seelensplitter",
-      "name": "Soul Fragment",
+      "name": "Seelensplitter",
       "icon": "/images/icons/mat-seelensplitter.png",
       "rarity": "legendary",
-      "desc": "A fragment of an ancient soul. Extremely rare."
+      "desc": "Ein Fragment reiner Seelenenergie. Flüstert. Hör nicht zu."
     },
     {
       "id": "leinenstoff",
       "name": "Leinenstoff",
       "icon": "/images/icons/mat-leinenstoff.png",
       "rarity": "common",
-      "desc": "Grobes Leinen, gewebt aus Pflanzenfasern. Grundlage jeder Schneiderarbeit."
+      "desc": "Einfacher Leinenstoff. Nicht elegant, aber ehrlich. Wie die meisten guten Dinge."
     },
     {
       "id": "wollstoff",
       "name": "Wollstoff",
       "icon": "/images/icons/mat-wollstoff.png",
       "rarity": "uncommon",
-      "desc": "Weiches Gewebe aus Bergwolle. Warm und widerstandsfähig."
+      "desc": "Dichte Wolle. Wärmt und schützt — beides unterschätzt."
     },
     {
       "id": "seidenstoff",
       "name": "Seidenstoff",
       "icon": "/images/icons/mat-seidenstoff.png",
       "rarity": "rare",
-      "desc": "Schimmerndes Tuch, durchzogen von arkaner Resonanz."
+      "desc": "Mondschein-Seide. So fein, dass man vergisst, dass sie aus Fäden besteht."
     },
     {
       "id": "magiestoff",
       "name": "Magiestoff",
       "icon": "/images/icons/mat-magiestoff.png",
       "rarity": "epic",
-      "desc": "Mit reiner Magie durchwirktes Gewebe. Vibriert bei Berührung."
+      "desc": "Stoff durchwoben mit arkaner Energie. Leuchtet dezent. Nicht anfassen ohne Handschuhe."
     },
     {
       "id": "runenstoff",
       "name": "Runenstoff",
       "icon": "/images/icons/mat-runenstoff.png",
       "rarity": "legendary",
-      "desc": "Legendärer Stoff, in den uralte Runen eingewebt sind. Flüstert vergessene Worte."
+      "desc": "Das edelste Gewebe der Gilde. Jeder Faden trägt eine Erinnerung."
     },
     {
       "id": "wildfleisch",
-      "name": "Wild Game",
+      "name": "Wildfleisch",
       "icon": "/images/icons/mat-wildfleisch.png",
       "rarity": "common",
-      "desc": "Fresh meat from the wilderness."
+      "desc": "Frisches Fleisch aus der Wildnis. Enthält Protein und Geschichten."
     },
     {
       "id": "feuerwurz",
-      "name": "Fireroot",
+      "name": "Feuerwurz",
       "icon": "/images/icons/mat-feuerwurz.png",
       "rarity": "uncommon",
-      "desc": "A spicy root that warms from within."
+      "desc": "Eine scharfe Wurzel die von innen wärmt. Vorsicht: die Schärfe ist keine Metapher."
     },
     {
       "id": "sternenfrucht",
-      "name": "Starfruit",
+      "name": "Sternenfrucht",
       "icon": "/images/icons/mat-sternenfrucht.png",
       "rarity": "rare",
-      "desc": "A luminous fruit from the celestial gardens."
+      "desc": "Eine leuchtende Frucht aus den Himmelsgärten. Schmeckt wie ein Sonnenaufgang."
     },
     {
       "id": "leichtesleder",
       "name": "Leichtes Leder",
       "icon": "/images/icons/mat-leichtesleder.png",
       "rarity": "common",
-      "desc": "Supple hide from common beasts. The foundation of any tanner's craft."
+      "desc": "Weiches Leder von kleineren Tieren. Riecht nach Abenteuer und Anfang."
     },
     {
       "id": "mittleresleder",
       "name": "Mittleres Leder",
       "icon": "/images/icons/mat-mittleresleder.png",
       "rarity": "uncommon",
-      "desc": "Thicker leather with a natural sheen. Takes well to tooling and dyeing."
+      "desc": "Festes Leder. Hält einiges aus — wie sein Träger."
     },
     {
       "id": "schweresleder",
       "name": "Schweres Leder",
       "icon": "/images/icons/mat-schweresleder.png",
       "rarity": "rare",
-      "desc": "Dense, weather-hardened hide. Nearly as tough as chain when properly treated."
+      "desc": "Dickes, widerstandsfähiges Leder. Die Bestie die es trug, hatte Besseres vor."
     },
     {
       "id": "dickesleder",
       "name": "Dickes Leder",
       "icon": "/images/icons/mat-dickesleder.png",
       "rarity": "epic",
-      "desc": "Exceptionally thick hide from apex predators. Each piece tells of a dangerous hunt."
+      "desc": "Leder so dick, dass es fast von allein steht. Beeindruckend und leicht beunruhigend."
     },
     {
       "id": "rauesleder",
       "name": "Raues Leder",
       "icon": "/images/icons/mat-rauesleder.png",
       "rarity": "legendary",
-      "desc": "Primordial leather from creatures older than the world. Almost alive beneath the needle."
+      "desc": "Das härteste Leder der Wildnis. Wer es trägt, wird respektiert. Oder gefürchtet."
     },
     {
       "id": "eisenbarren",
-      "name": "Iron Bar",
+      "name": "Eisenbarren",
       "icon": null,
       "rarity": "common",
-      "desc": "Smelted iron, shaped into a sturdy bar. The backbone of every smith's work."
+      "desc": "Geschmolzenes Eisen in Barrenform. Das Rückgrat jeder Schmiede."
     },
     {
       "id": "stahlbarren",
-      "name": "Hardened Steel Bar",
+      "name": "Gehärteter Stahl",
       "icon": null,
       "rarity": "uncommon",
-      "desc": "Iron tempered with crystal resonance. Harder than ordinary steel."
+      "desc": "Stahl, gehärtet mit Kristall. Stärker als er aussieht — und er sieht schon stark aus."
     },
     {
       "id": "kristallbarren",
-      "name": "Crystal Bar",
+      "name": "Kristallbarren",
       "icon": null,
       "rarity": "uncommon",
-      "desc": "A bar infused with crystalline energy. Hums faintly when struck."
+      "desc": "Eine Verschmelzung von Kristall und Eisen. Schimmert bei Temperaturwechsel."
     },
     {
       "id": "verstaerkterstahl",
-      "name": "Reinforced Steel",
+      "name": "Verstärkter Stahl",
       "icon": null,
       "rarity": "rare",
-      "desc": "Steel reinforced with deep-earth crystals. Holds an edge like nothing else."
+      "desc": "Dreifach kristallverstärkter Stahl. Übertrieben? Vielleicht. Effektiv? Definitiv."
     },
     {
       "id": "drachenstahl",
-      "name": "Dragonsteel",
+      "name": "Drachenstahl",
       "icon": null,
       "rarity": "rare",
-      "desc": "An alloy forged with dragon scale. The heat alone would kill a lesser smith."
+      "desc": "Stahl geschmiedet mit Drachenschuppen. Feuerfest und leicht dramatisch."
     },
     {
       "id": "drachenkern",
-      "name": "Dragon Core",
+      "name": "Drachenkern",
       "icon": null,
       "rarity": "rare",
-      "desc": "The molten heart of dragon scale, compressed into solid form. Radiates warmth."
+      "desc": "Ein Kern aus reinem Drachenfeuer. Warm in der Hand, heiß im Kampf."
     },
     {
       "id": "aetherlegierung",
-      "name": "Aether Alloy",
+      "name": "Ätherlegierung",
       "icon": null,
       "rarity": "epic",
-      "desc": "Dragon scale fused with aether energy. Shifts color in different light."
+      "desc": "Aether und Drache verschmolzen. Die Legierung summt wie ein zufriedenes Tier."
     },
     {
       "id": "aetherbarren",
-      "name": "Aether Bar",
+      "name": "Ätherbarren",
       "icon": null,
       "rarity": "epic",
-      "desc": "Pure aether condensed into metal. Weighs almost nothing."
+      "desc": "Reiner Aether in Barrenform. Wiegt weniger als erwartet — und mehr als man denkt."
     },
     {
       "id": "seelenlegierung",
-      "name": "Soul Alloy",
+      "name": "Seelenlegierung",
       "icon": null,
       "rarity": "legendary",
-      "desc": "Aether and soul fragment merged at impossible temperatures. Whispers when cooling."
+      "desc": "Seele trifft Aether. Das Ergebnis flüstert. Manchmal hilfreich."
     },
     {
       "id": "seelenstahl",
-      "name": "Soulsteel",
+      "name": "Seelenstahl",
       "icon": null,
       "rarity": "legendary",
-      "desc": "The rarest alloy known to smiths. Said to remember every blow of the hammer."
+      "desc": "Das edelste Metall der Gilde. Es erinnert sich an jeden Hammerschlag."
     },
     {
       "id": "leinenballen",
@@ -694,7 +694,7 @@
   "recipes": [
     {
       "id": "flask_of_embers",
-      "name": "Flask of Embers",
+      "name": "Flakon der Glut",
       "profession": "alchemist",
       "source": "faction",
       "reqSkill": 50,
@@ -708,11 +708,11 @@
         "amount": 15
       },
       "xp": 15,
-      "description": "Recovers 15% Forge Temperature."
+      "description": "Stellt 15% Schmiedetemperatur wieder her."
     },
     {
       "id": "scholars_ink",
-      "name": "Scholar's Ink",
+      "name": "Gelehrtentinte",
       "profession": "verzauberer",
       "source": "faction",
       "reqSkill": 50,
@@ -727,11 +727,11 @@
         "duration": "3_quests"
       },
       "xp": 15,
-      "description": "+10% bonus XP for 3 quests."
+      "description": "Verzaubert: +2 Weisheit für 3 Quests."
     },
     {
       "id": "artisans_whetstone",
-      "name": "Artisan's Whetstone",
+      "name": "Meister-Wetzstein",
       "profession": "schmied",
       "source": "faction",
       "reqSkill": 50,
@@ -746,11 +746,11 @@
         "duration": "3_quests"
       },
       "xp": 15,
-      "description": "+1 profession XP per craft for 3 quests."
+      "description": "+1 Berufs-XP pro Craft für 3 Quests."
     },
     {
       "id": "resonance_charm",
-      "name": "Resonance Charm",
+      "name": "Resonanz-Amulett",
       "profession": "verzauberer",
       "source": "faction",
       "reqSkill": 50,
@@ -765,7 +765,7 @@
         "duration": "3_quests"
       },
       "xp": 15,
-      "description": "+5% Bond XP for companions for 3 quests."
+      "description": "Verzaubert: +2 Fokus für 3 Quests."
     },
     {
       "id": "recipe-schmied-eisenbarren",
@@ -9924,6 +9924,63 @@
       "factionMinRep": "revered"
     },
     {
+      "id": "recipe-verz-vellum-schwach",
+      "name": "Schwaches Verzauberungspergament",
+      "profession": "verzauberer",
+      "source": "trainer",
+      "reqSkill": 50,
+      "materials": {
+        "magiestaub": 3,
+        "kristallsplitter": 1
+      },
+      "result": {
+        "type": "vellum",
+        "statBonus": [2, 3],
+        "durationHours": 24
+      },
+      "xp": 12,
+      "description": "Schreibt eine handelbare Verzauberung auf Pergament.",
+      "trainerCost": 50
+    },
+    {
+      "id": "recipe-verz-vellum-mittel",
+      "name": "Mittleres Verzauberungspergament",
+      "profession": "verzauberer",
+      "source": "trainer",
+      "reqSkill": 125,
+      "materials": {
+        "kristallsplitter": 3,
+        "runenstein": 1
+      },
+      "result": {
+        "type": "vellum",
+        "statBonus": [3, 5],
+        "durationHours": 24
+      },
+      "xp": 22,
+      "description": "Schreibt eine stärkere handelbare Verzauberung auf Pergament.",
+      "trainerCost": 150
+    },
+    {
+      "id": "recipe-verz-vellum-stark",
+      "name": "Starkes Verzauberungspergament",
+      "profession": "verzauberer",
+      "source": "trainer",
+      "reqSkill": 225,
+      "materials": {
+        "runenstein": 2,
+        "aetherkern": 1
+      },
+      "result": {
+        "type": "vellum",
+        "statBonus": [4, 7],
+        "durationHours": 48
+      },
+      "xp": 35,
+      "description": "Schreibt eine mächtige handelbare Verzauberung auf Pergament.",
+      "trainerCost": 400
+    },
+    {
       "id": "recipe-waffenschmied-eiserner-rundschild",
       "name": "Eiserner Rundschild",
       "profession": "waffenschmied",
@@ -14988,6 +15045,1317 @@
       "xp": 38,
       "trainerCost": 600,
       "description": "Amulett verzieren III."
+    },
+    {
+      "id": "recipe-schmied-eisernes-ruestungskit",
+      "name": "Eisernes Rüstungskit",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 20,
+      "materials": {
+        "eisenerz": 3
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "ausdauer_boost",
+        "amount": 2,
+        "questsRemaining": 3
+      },
+      "xp": 8,
+      "trainerCost": 12,
+      "description": "Eisernes Rüstungskit."
+    },
+    {
+      "id": "recipe-schmied-kristall-ruestungskit",
+      "name": "Kristall-Rüstungskit",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 110,
+      "materials": {
+        "kristallsplitter": 2,
+        "kristallbarren": 1
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "ausdauer_boost",
+        "amount": 5,
+        "questsRemaining": 3
+      },
+      "xp": 18,
+      "trainerCost": 64,
+      "description": "Kristall-Rüstungskit."
+    },
+    {
+      "id": "recipe-schmied-eiserner-temperbarren",
+      "name": "Eiserner Temperbarren",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 40,
+      "materials": {
+        "eisenerz": 3
+      },
+      "result": {
+        "type": "forge_temp",
+        "amount": 5
+      },
+      "xp": 10,
+      "trainerCost": 20,
+      "description": "Eiserner Temperbarren."
+    },
+    {
+      "id": "recipe-schmied-kristall-temperbarren",
+      "name": "Kristall-Temperbarren",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 160,
+      "materials": {
+        "kristallbarren": 2,
+        "drachenschuppe": 1
+      },
+      "result": {
+        "type": "forge_temp",
+        "amount": 15
+      },
+      "xp": 22,
+      "trainerCost": 120,
+      "description": "Kristall-Temperbarren."
+    },
+    {
+      "id": "recipe-schmied-platte-haerten-1",
+      "name": "Platte härten I",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 60,
+      "materials": {
+        "eisenbarren": 2
+      },
+      "result": {
+        "type": "gear_enhance",
+        "stat": "kraft",
+        "amount": 1
+      },
+      "xp": 12,
+      "trainerCost": 32,
+      "description": "Platte härten I."
+    },
+    {
+      "id": "recipe-schmied-platte-haerten-2",
+      "name": "Platte härten II",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 140,
+      "materials": {
+        "kristallbarren": 2
+      },
+      "result": {
+        "type": "gear_enhance",
+        "stat": "kraft",
+        "amount": 1
+      },
+      "xp": 20,
+      "trainerCost": 96,
+      "description": "Platte härten II."
+    },
+    {
+      "id": "recipe-schmied-platte-haerten-3",
+      "name": "Platte härten III",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 230,
+      "materials": {
+        "aetherlegierung": 1
+      },
+      "result": {
+        "type": "gear_enhance",
+        "stat": "kraft",
+        "amount": 2
+      },
+      "xp": 32,
+      "trainerCost": 280,
+      "description": "Platte härten III."
+    },
+    {
+      "id": "recipe-schmied-vitalitaet-tempern-1",
+      "name": "Rüstung tempern I",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 45,
+      "materials": {
+        "eisenerz": 3,
+        "eisenbarren": 1
+      },
+      "result": {
+        "type": "gear_enhance",
+        "stat": "vitalitaet",
+        "amount": 1
+      },
+      "xp": 10,
+      "trainerCost": 24,
+      "description": "Rüstung tempern I."
+    },
+    {
+      "id": "recipe-schmied-vitalitaet-tempern-2",
+      "name": "Rüstung tempern II",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 130,
+      "materials": {
+        "kristallsplitter": 3
+      },
+      "result": {
+        "type": "gear_enhance",
+        "stat": "vitalitaet",
+        "amount": 1
+      },
+      "xp": 18,
+      "trainerCost": 80,
+      "description": "Rüstung tempern II."
+    },
+    {
+      "id": "recipe-schmied-vitalitaet-tempern-3",
+      "name": "Rüstung tempern III",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 240,
+      "materials": {
+        "aetherbarren": 1,
+        "drachenkern": 1
+      },
+      "result": {
+        "type": "gear_enhance",
+        "stat": "vitalitaet",
+        "amount": 2
+      },
+      "xp": 35,
+      "trainerCost": 320,
+      "description": "Rüstung tempern III."
+    },
+    {
+      "id": "recipe-schmied-fokus-einarbeiten-1",
+      "name": "Fokus einarbeiten I",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 90,
+      "materials": {
+        "kristallsplitter": 2,
+        "eisenbarren": 1
+      },
+      "result": {
+        "type": "gear_enhance",
+        "stat": "fokus",
+        "amount": 1
+      },
+      "xp": 15,
+      "trainerCost": 48,
+      "description": "Fokus einarbeiten I."
+    },
+    {
+      "id": "recipe-schmied-fokus-einarbeiten-2",
+      "name": "Fokus einarbeiten II",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 190,
+      "materials": {
+        "drachenstahl": 1,
+        "drachenkern": 1
+      },
+      "result": {
+        "type": "gear_enhance",
+        "stat": "fokus",
+        "amount": 2
+      },
+      "xp": 25,
+      "trainerCost": 160,
+      "description": "Fokus einarbeiten II."
+    },
+    {
+      "id": "recipe-schmied-fokus-einarbeiten-3",
+      "name": "Fokus einarbeiten III",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 270,
+      "materials": {
+        "seelenlegierung": 1
+      },
+      "result": {
+        "type": "gear_enhance",
+        "stat": "fokus",
+        "amount": 2
+      },
+      "xp": 40,
+      "trainerCost": 480,
+      "description": "Fokus einarbeiten III."
+    },
+    {
+      "id": "recipe-schmied-eisern-kappe-ii",
+      "name": "Eisern Kappe II",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 31,
+      "materials": {
+        "eisenerz": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-eisern-kappe-ii"
+      },
+      "xp": 8,
+      "trainerCost": 20,
+      "description": "Stellt her: Eisern Kappe II."
+    },
+    {
+      "id": "recipe-schmied-staehlern-robe-ii",
+      "name": "Stählern Robe II",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 116,
+      "materials": {
+        "kristallsplitter": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-staehlern-robe-ii"
+      },
+      "xp": 16,
+      "trainerCost": 80,
+      "description": "Stellt her: Stählern Robe II."
+    },
+    {
+      "id": "recipe-schmied-drachen-marschtritt-ii",
+      "name": "Drachen Marschtritt II",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 155,
+      "materials": {
+        "drachenschuppe": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-drachen-marschtritt-ii"
+      },
+      "xp": 24,
+      "trainerCost": 250,
+      "description": "Stellt her: Drachen Marschtritt II."
+    },
+    {
+      "id": "recipe-schmied-aether-haube-ii",
+      "name": "Aether Haube II",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 268,
+      "materials": {
+        "aetherlegierung": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-aether-haube-ii"
+      },
+      "xp": 32,
+      "trainerCost": 600,
+      "description": "Stellt her: Aether Haube II."
+    },
+    {
+      "id": "recipe-schmied-eisern-mantel-ii",
+      "name": "Eisern Mantel II",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 47,
+      "materials": {
+        "eisenerz": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-eisern-mantel-ii"
+      },
+      "xp": 8,
+      "trainerCost": 20,
+      "description": "Stellt her: Eisern Mantel II."
+    },
+    {
+      "id": "recipe-schmied-staehlern-stiefel-ii",
+      "name": "Stählern Stiefel II",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 90,
+      "materials": {
+        "kristallsplitter": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-staehlern-stiefel-ii"
+      },
+      "xp": 16,
+      "trainerCost": 80,
+      "description": "Stellt her: Stählern Stiefel II."
+    },
+    {
+      "id": "recipe-schmied-drachen-helm-ii",
+      "name": "Drachen Helm II",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 164,
+      "materials": {
+        "drachenschuppe": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-drachen-helm-ii"
+      },
+      "xp": 24,
+      "trainerCost": 250,
+      "description": "Stellt her: Drachen Helm II."
+    },
+    {
+      "id": "recipe-schmied-aether-platte-ii",
+      "name": "Aether Platte II",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 245,
+      "materials": {
+        "aetherlegierung": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-aether-platte-ii"
+      },
+      "xp": 32,
+      "trainerCost": 600,
+      "description": "Stellt her: Aether Platte II."
+    },
+    {
+      "id": "recipe-schmied-eisern-treter-ii",
+      "name": "Eisern Treter II",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 22,
+      "materials": {
+        "eisenerz": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-eisern-treter-ii"
+      },
+      "xp": 8,
+      "trainerCost": 20,
+      "description": "Stellt her: Eisern Treter II."
+    },
+    {
+      "id": "recipe-schmied-staehlern-visier-ii",
+      "name": "Stählern Visier II",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 127,
+      "materials": {
+        "kristallsplitter": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-staehlern-visier-ii"
+      },
+      "xp": 16,
+      "trainerCost": 80,
+      "description": "Stellt her: Stählern Visier II."
+    },
+    {
+      "id": "recipe-schmied-drachen-panzer-ii",
+      "name": "Drachen Panzer II",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 190,
+      "materials": {
+        "drachenschuppe": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-drachen-panzer-ii"
+      },
+      "xp": 24,
+      "trainerCost": 250,
+      "description": "Stellt her: Drachen Panzer II."
+    },
+    {
+      "id": "recipe-schmied-aether-schuhe-ii",
+      "name": "Aether Schuhe II",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 270,
+      "materials": {
+        "aetherlegierung": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-aether-schuhe-ii"
+      },
+      "xp": 32,
+      "trainerCost": 600,
+      "description": "Stellt her: Aether Schuhe II."
+    },
+    {
+      "id": "recipe-schmied-eisern-schleier-iii",
+      "name": "Eisern Schleier III",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 53,
+      "materials": {
+        "eisenerz": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-eisern-schleier-iii"
+      },
+      "xp": 8,
+      "trainerCost": 20,
+      "description": "Stellt her: Eisern Schleier III."
+    },
+    {
+      "id": "recipe-schmied-staehlern-wams-iii",
+      "name": "Stählern Wams III",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 81,
+      "materials": {
+        "kristallsplitter": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-staehlern-wams-iii"
+      },
+      "xp": 16,
+      "trainerCost": 80,
+      "description": "Stellt her: Stählern Wams III."
+    },
+    {
+      "id": "recipe-schmied-drachen-sandalen-iii",
+      "name": "Drachen Sandalen III",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 199,
+      "materials": {
+        "drachenschuppe": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-drachen-sandalen-iii"
+      },
+      "xp": 24,
+      "trainerCost": 250,
+      "description": "Stellt her: Drachen Sandalen III."
+    },
+    {
+      "id": "recipe-schmied-aether-kappe-iii",
+      "name": "Aether Kappe III",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 261,
+      "materials": {
+        "aetherlegierung": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-aether-kappe-iii"
+      },
+      "xp": 32,
+      "trainerCost": 600,
+      "description": "Stellt her: Aether Kappe III."
+    },
+    {
+      "id": "recipe-schmied-eisern-robe-iii",
+      "name": "Eisern Robe III",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 54,
+      "materials": {
+        "eisenerz": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-eisern-robe-iii"
+      },
+      "xp": 8,
+      "trainerCost": 20,
+      "description": "Stellt her: Eisern Robe III."
+    },
+    {
+      "id": "recipe-schmied-staehlern-marschtritt-iii",
+      "name": "Stählern Marschtritt III",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 140,
+      "materials": {
+        "kristallsplitter": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-staehlern-marschtritt-iii"
+      },
+      "xp": 16,
+      "trainerCost": 80,
+      "description": "Stellt her: Stählern Marschtritt III."
+    },
+    {
+      "id": "recipe-schmied-drachen-haube-iii",
+      "name": "Drachen Haube III",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 175,
+      "materials": {
+        "drachenschuppe": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-drachen-haube-iii"
+      },
+      "xp": 24,
+      "trainerCost": 250,
+      "description": "Stellt her: Drachen Haube III."
+    },
+    {
+      "id": "recipe-schmied-aether-mantel-iii",
+      "name": "Aether Mantel III",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 241,
+      "materials": {
+        "aetherlegierung": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-aether-mantel-iii"
+      },
+      "xp": 32,
+      "trainerCost": 600,
+      "description": "Stellt her: Aether Mantel III."
+    },
+    {
+      "id": "recipe-schmied-eisern-stiefel-iii",
+      "name": "Eisern Stiefel III",
+      "profession": "schmied",
+      "source": "trainer",
+      "reqSkill": 9,
+      "materials": {
+        "eisenerz": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-eisern-stiefel-iii"
+      },
+      "xp": 8,
+      "trainerCost": 20,
+      "description": "Stellt her: Eisern Stiefel III."
+    },
+    {
+      "id": "recipe-schneider-leinen-kappe-ii",
+      "name": "Leinen Kappe II",
+      "profession": "schneider",
+      "source": "trainer",
+      "reqSkill": 25,
+      "materials": {
+        "leinenstoff": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schneider-leinen-kappe-ii"
+      },
+      "xp": 8,
+      "trainerCost": 20,
+      "description": "Stellt her: Leinen Kappe II."
+    },
+    {
+      "id": "recipe-schneider-woll-robe-ii",
+      "name": "Woll Robe II",
+      "profession": "schneider",
+      "source": "trainer",
+      "reqSkill": 112,
+      "materials": {
+        "wollstoff": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schneider-woll-robe-ii"
+      },
+      "xp": 16,
+      "trainerCost": 80,
+      "description": "Stellt her: Woll Robe II."
+    },
+    {
+      "id": "recipe-schneider-seiden-marschtritt-ii",
+      "name": "Seiden Marschtritt II",
+      "profession": "schneider",
+      "source": "trainer",
+      "reqSkill": 165,
+      "materials": {
+        "seidenstoff": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schneider-seiden-marschtritt-ii"
+      },
+      "xp": 24,
+      "trainerCost": 250,
+      "description": "Stellt her: Seiden Marschtritt II."
+    },
+    {
+      "id": "recipe-schneider-arkan-haube-ii",
+      "name": "Arkan Haube II",
+      "profession": "schneider",
+      "source": "trainer",
+      "reqSkill": 255,
+      "materials": {
+        "magiestoff": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schneider-arkan-haube-ii"
+      },
+      "xp": 32,
+      "trainerCost": 600,
+      "description": "Stellt her: Arkan Haube II."
+    },
+    {
+      "id": "recipe-schneider-leinen-mantel-ii",
+      "name": "Leinen Mantel II",
+      "profession": "schneider",
+      "source": "trainer",
+      "reqSkill": 54,
+      "materials": {
+        "leinenstoff": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schneider-leinen-mantel-ii"
+      },
+      "xp": 8,
+      "trainerCost": 20,
+      "description": "Stellt her: Leinen Mantel II."
+    },
+    {
+      "id": "recipe-schneider-woll-stiefel-ii",
+      "name": "Woll Stiefel II",
+      "profession": "schneider",
+      "source": "trainer",
+      "reqSkill": 81,
+      "materials": {
+        "wollstoff": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schneider-woll-stiefel-ii"
+      },
+      "xp": 16,
+      "trainerCost": 80,
+      "description": "Stellt her: Woll Stiefel II."
+    },
+    {
+      "id": "recipe-schneider-seiden-helm-ii",
+      "name": "Seiden Helm II",
+      "profession": "schneider",
+      "source": "trainer",
+      "reqSkill": 168,
+      "materials": {
+        "seidenstoff": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schneider-seiden-helm-ii"
+      },
+      "xp": 24,
+      "trainerCost": 250,
+      "description": "Stellt her: Seiden Helm II."
+    },
+    {
+      "id": "recipe-schneider-arkan-platte-ii",
+      "name": "Arkan Platte II",
+      "profession": "schneider",
+      "source": "trainer",
+      "reqSkill": 269,
+      "materials": {
+        "magiestoff": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schneider-arkan-platte-ii"
+      },
+      "xp": 32,
+      "trainerCost": 600,
+      "description": "Stellt her: Arkan Platte II."
+    },
+    {
+      "id": "recipe-schneider-leinen-treter-ii",
+      "name": "Leinen Treter II",
+      "profession": "schneider",
+      "source": "trainer",
+      "reqSkill": 20,
+      "materials": {
+        "leinenstoff": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schneider-leinen-treter-ii"
+      },
+      "xp": 8,
+      "trainerCost": 20,
+      "description": "Stellt her: Leinen Treter II."
+    },
+    {
+      "id": "recipe-schneider-woll-visier-ii",
+      "name": "Woll Visier II",
+      "profession": "schneider",
+      "source": "trainer",
+      "reqSkill": 127,
+      "materials": {
+        "wollstoff": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schneider-woll-visier-ii"
+      },
+      "xp": 16,
+      "trainerCost": 80,
+      "description": "Stellt her: Woll Visier II."
+    },
+    {
+      "id": "recipe-schneider-seiden-panzer-ii",
+      "name": "Seiden Panzer II",
+      "profession": "schneider",
+      "source": "trainer",
+      "reqSkill": 198,
+      "materials": {
+        "seidenstoff": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schneider-seiden-panzer-ii"
+      },
+      "xp": 24,
+      "trainerCost": 250,
+      "description": "Stellt her: Seiden Panzer II."
+    },
+    {
+      "id": "recipe-schneider-arkan-schuhe-ii",
+      "name": "Arkan Schuhe II",
+      "profession": "schneider",
+      "source": "trainer",
+      "reqSkill": 247,
+      "materials": {
+        "magiestoff": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schneider-arkan-schuhe-ii"
+      },
+      "xp": 32,
+      "trainerCost": 600,
+      "description": "Stellt her: Arkan Schuhe II."
+    },
+    {
+      "id": "recipe-schneider-leinen-schleier-iii",
+      "name": "Leinen Schleier III",
+      "profession": "schneider",
+      "source": "trainer",
+      "reqSkill": 16,
+      "materials": {
+        "leinenstoff": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schneider-leinen-schleier-iii"
+      },
+      "xp": 8,
+      "trainerCost": 20,
+      "description": "Stellt her: Leinen Schleier III."
+    },
+    {
+      "id": "recipe-schneider-woll-wams-iii",
+      "name": "Woll Wams III",
+      "profession": "schneider",
+      "source": "trainer",
+      "reqSkill": 126,
+      "materials": {
+        "wollstoff": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schneider-woll-wams-iii"
+      },
+      "xp": 16,
+      "trainerCost": 80,
+      "description": "Stellt her: Woll Wams III."
+    },
+    {
+      "id": "recipe-schneider-seiden-sandalen-iii",
+      "name": "Seiden Sandalen III",
+      "profession": "schneider",
+      "source": "trainer",
+      "reqSkill": 198,
+      "materials": {
+        "seidenstoff": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schneider-seiden-sandalen-iii"
+      },
+      "xp": 24,
+      "trainerCost": 250,
+      "description": "Stellt her: Seiden Sandalen III."
+    },
+    {
+      "id": "recipe-schneider-arkan-kappe-iii",
+      "name": "Arkan Kappe III",
+      "profession": "schneider",
+      "source": "trainer",
+      "reqSkill": 242,
+      "materials": {
+        "magiestoff": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schneider-arkan-kappe-iii"
+      },
+      "xp": 32,
+      "trainerCost": 600,
+      "description": "Stellt her: Arkan Kappe III."
+    },
+    {
+      "id": "recipe-schneider-leinen-robe-iii",
+      "name": "Leinen Robe III",
+      "profession": "schneider",
+      "source": "trainer",
+      "reqSkill": 55,
+      "materials": {
+        "leinenstoff": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schneider-leinen-robe-iii"
+      },
+      "xp": 8,
+      "trainerCost": 20,
+      "description": "Stellt her: Leinen Robe III."
+    },
+    {
+      "id": "recipe-schneider-woll-marschtritt-iii",
+      "name": "Woll Marschtritt III",
+      "profession": "schneider",
+      "source": "trainer",
+      "reqSkill": 133,
+      "materials": {
+        "wollstoff": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schneider-woll-marschtritt-iii"
+      },
+      "xp": 16,
+      "trainerCost": 80,
+      "description": "Stellt her: Woll Marschtritt III."
+    },
+    {
+      "id": "recipe-schneider-seiden-haube-iii",
+      "name": "Seiden Haube III",
+      "profession": "schneider",
+      "source": "trainer",
+      "reqSkill": 217,
+      "materials": {
+        "seidenstoff": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schneider-seiden-haube-iii"
+      },
+      "xp": 24,
+      "trainerCost": 250,
+      "description": "Stellt her: Seiden Haube III."
+    },
+    {
+      "id": "recipe-schneider-arkan-mantel-iii",
+      "name": "Arkan Mantel III",
+      "profession": "schneider",
+      "source": "trainer",
+      "reqSkill": 254,
+      "materials": {
+        "magiestoff": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schneider-arkan-mantel-iii"
+      },
+      "xp": 32,
+      "trainerCost": 600,
+      "description": "Stellt her: Arkan Mantel III."
+    },
+    {
+      "id": "recipe-schneider-leinen-stiefel-iii",
+      "name": "Leinen Stiefel III",
+      "profession": "schneider",
+      "source": "trainer",
+      "reqSkill": 63,
+      "materials": {
+        "leinenstoff": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schneider-leinen-stiefel-iii"
+      },
+      "xp": 8,
+      "trainerCost": 20,
+      "description": "Stellt her: Leinen Stiefel III."
+    },
+    {
+      "id": "recipe-lederverarbeiter-leichtleder-kappe-ii",
+      "name": "Leichtleder Kappe II",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 58,
+      "materials": {
+        "leichtesleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-lederverarbeiter-leichtleder-kappe-ii"
+      },
+      "xp": 8,
+      "trainerCost": 20,
+      "description": "Stellt her: Leichtleder Kappe II."
+    },
+    {
+      "id": "recipe-lederverarbeiter-mittelleder-robe-ii",
+      "name": "Mittelleder Robe II",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 91,
+      "materials": {
+        "mittleresleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-lederverarbeiter-mittelleder-robe-ii"
+      },
+      "xp": 16,
+      "trainerCost": 80,
+      "description": "Stellt her: Mittelleder Robe II."
+    },
+    {
+      "id": "recipe-lederverarbeiter-schwerleder-marschtritt-ii",
+      "name": "Schwerleder Marschtritt II",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 197,
+      "materials": {
+        "schweresleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-lederverarbeiter-schwerleder-marschtritt-ii"
+      },
+      "xp": 24,
+      "trainerCost": 250,
+      "description": "Stellt her: Schwerleder Marschtritt II."
+    },
+    {
+      "id": "recipe-lederverarbeiter-bestien-haube-ii",
+      "name": "Bestien Haube II",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 277,
+      "materials": {
+        "dickesleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-lederverarbeiter-bestien-haube-ii"
+      },
+      "xp": 32,
+      "trainerCost": 600,
+      "description": "Stellt her: Bestien Haube II."
+    },
+    {
+      "id": "recipe-lederverarbeiter-leichtleder-mantel-ii",
+      "name": "Leichtleder Mantel II",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 43,
+      "materials": {
+        "leichtesleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-lederverarbeiter-leichtleder-mantel-ii"
+      },
+      "xp": 8,
+      "trainerCost": 20,
+      "description": "Stellt her: Leichtleder Mantel II."
+    },
+    {
+      "id": "recipe-lederverarbeiter-mittelleder-stiefel-ii",
+      "name": "Mittelleder Stiefel II",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 129,
+      "materials": {
+        "mittleresleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-lederverarbeiter-mittelleder-stiefel-ii"
+      },
+      "xp": 16,
+      "trainerCost": 80,
+      "description": "Stellt her: Mittelleder Stiefel II."
+    },
+    {
+      "id": "recipe-lederverarbeiter-schwerleder-helm-ii",
+      "name": "Schwerleder Helm II",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 197,
+      "materials": {
+        "schweresleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-lederverarbeiter-schwerleder-helm-ii"
+      },
+      "xp": 24,
+      "trainerCost": 250,
+      "description": "Stellt her: Schwerleder Helm II."
+    },
+    {
+      "id": "recipe-lederverarbeiter-bestien-platte-ii",
+      "name": "Bestien Platte II",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 238,
+      "materials": {
+        "dickesleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-lederverarbeiter-bestien-platte-ii"
+      },
+      "xp": 32,
+      "trainerCost": 600,
+      "description": "Stellt her: Bestien Platte II."
+    },
+    {
+      "id": "recipe-lederverarbeiter-leichtleder-treter-ii",
+      "name": "Leichtleder Treter II",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 47,
+      "materials": {
+        "leichtesleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-lederverarbeiter-leichtleder-treter-ii"
+      },
+      "xp": 8,
+      "trainerCost": 20,
+      "description": "Stellt her: Leichtleder Treter II."
+    },
+    {
+      "id": "recipe-lederverarbeiter-mittelleder-visier-ii",
+      "name": "Mittelleder Visier II",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 100,
+      "materials": {
+        "mittleresleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-lederverarbeiter-mittelleder-visier-ii"
+      },
+      "xp": 16,
+      "trainerCost": 80,
+      "description": "Stellt her: Mittelleder Visier II."
+    },
+    {
+      "id": "recipe-lederverarbeiter-schwerleder-panzer-ii",
+      "name": "Schwerleder Panzer II",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 179,
+      "materials": {
+        "schweresleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-lederverarbeiter-schwerleder-panzer-ii"
+      },
+      "xp": 24,
+      "trainerCost": 250,
+      "description": "Stellt her: Schwerleder Panzer II."
+    },
+    {
+      "id": "recipe-lederverarbeiter-bestien-schuhe-ii",
+      "name": "Bestien Schuhe II",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 286,
+      "materials": {
+        "dickesleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-lederverarbeiter-bestien-schuhe-ii"
+      },
+      "xp": 32,
+      "trainerCost": 600,
+      "description": "Stellt her: Bestien Schuhe II."
+    },
+    {
+      "id": "recipe-lederverarbeiter-leichtleder-schleier-iii",
+      "name": "Leichtleder Schleier III",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 62,
+      "materials": {
+        "leichtesleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-lederverarbeiter-leichtleder-schleier-iii"
+      },
+      "xp": 8,
+      "trainerCost": 20,
+      "description": "Stellt her: Leichtleder Schleier III."
+    },
+    {
+      "id": "recipe-lederverarbeiter-mittelleder-wams-iii",
+      "name": "Mittelleder Wams III",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 87,
+      "materials": {
+        "mittleresleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-lederverarbeiter-mittelleder-wams-iii"
+      },
+      "xp": 16,
+      "trainerCost": 80,
+      "description": "Stellt her: Mittelleder Wams III."
+    },
+    {
+      "id": "recipe-lederverarbeiter-schwerleder-sandalen-iii",
+      "name": "Schwerleder Sandalen III",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 172,
+      "materials": {
+        "schweresleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-lederverarbeiter-schwerleder-sandalen-iii"
+      },
+      "xp": 24,
+      "trainerCost": 250,
+      "description": "Stellt her: Schwerleder Sandalen III."
+    },
+    {
+      "id": "recipe-lederverarbeiter-bestien-kappe-iii",
+      "name": "Bestien Kappe III",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 251,
+      "materials": {
+        "dickesleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-lederverarbeiter-bestien-kappe-iii"
+      },
+      "xp": 32,
+      "trainerCost": 600,
+      "description": "Stellt her: Bestien Kappe III."
+    },
+    {
+      "id": "recipe-lederverarbeiter-leichtleder-robe-iii",
+      "name": "Leichtleder Robe III",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 40,
+      "materials": {
+        "leichtesleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-lederverarbeiter-leichtleder-robe-iii"
+      },
+      "xp": 8,
+      "trainerCost": 20,
+      "description": "Stellt her: Leichtleder Robe III."
+    },
+    {
+      "id": "recipe-lederverarbeiter-mittelleder-marschtritt-iii",
+      "name": "Mittelleder Marschtritt III",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 84,
+      "materials": {
+        "mittleresleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-lederverarbeiter-mittelleder-marschtritt-iii"
+      },
+      "xp": 16,
+      "trainerCost": 80,
+      "description": "Stellt her: Mittelleder Marschtritt III."
+    },
+    {
+      "id": "recipe-lederverarbeiter-schwerleder-haube-iii",
+      "name": "Schwerleder Haube III",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 177,
+      "materials": {
+        "schweresleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-lederverarbeiter-schwerleder-haube-iii"
+      },
+      "xp": 24,
+      "trainerCost": 250,
+      "description": "Stellt her: Schwerleder Haube III."
+    },
+    {
+      "id": "recipe-lederverarbeiter-bestien-mantel-iii",
+      "name": "Bestien Mantel III",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 273,
+      "materials": {
+        "dickesleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-lederverarbeiter-bestien-mantel-iii"
+      },
+      "xp": 32,
+      "trainerCost": 600,
+      "description": "Stellt her: Bestien Mantel III."
+    },
+    {
+      "id": "recipe-lederverarbeiter-leichtleder-stiefel-iii",
+      "name": "Leichtleder Stiefel III",
+      "profession": "lederverarbeiter",
+      "source": "trainer",
+      "reqSkill": 64,
+      "materials": {
+        "leichtesleder": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-lederverarbeiter-leichtleder-stiefel-iii"
+      },
+      "xp": 8,
+      "trainerCost": 20,
+      "description": "Stellt her: Leichtleder Stiefel III."
     }
   ]
 }

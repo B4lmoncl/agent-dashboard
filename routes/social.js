@@ -84,6 +84,13 @@ function validateTradeItems(u, uid, itemInstanceIds) {
     if (isItemEquipped(u, item.id || item.instanceId || instanceId)) {
       return { ok: false, error: `Item ${instanceId} is currently equipped and cannot be traded` };
     }
+    // BoP items can never be traded; BoE items that have been equipped (bound) can't be traded
+    if (item.binding === 'bop' || item.bound === true) {
+      return { ok: false, error: `${item.name || instanceId} is soulbound and cannot be traded` };
+    }
+    if (item.locked) {
+      return { ok: false, error: `${item.name || instanceId} is locked — unlock it first` };
+    }
     resolved.push(item);
   }
   return { ok: true, items: resolved };
@@ -460,6 +467,8 @@ function enrichOffer(offer, ownerId) {
       stats: invItem?.stats || null,
       setName: invItem?.setName || invItem?.setId || null,
       legendaryEffect: invItem?.legendaryEffect || null,
+      binding: invItem?.binding || null,
+      bound: invItem?.bound || false,
     };
   });
   return { gold, items };
@@ -798,7 +807,7 @@ function executeTrade(trade) {
 
   // Transfer items: initiator → recipient
   for (const instanceId of items1) {
-    const idx = (u1.inventory || []).findIndex(i => i.id === instanceId);
+    const idx = (u1.inventory || []).findIndex(i => i.id === instanceId || i.instanceId === instanceId);
     if (idx !== -1) {
       const item = u1.inventory.splice(idx, 1)[0];
       item.obtainedAt = now();
@@ -810,7 +819,7 @@ function executeTrade(trade) {
 
   // Transfer items: recipient → initiator
   for (const instanceId of items2) {
-    const idx = (u2.inventory || []).findIndex(i => i.id === instanceId);
+    const idx = (u2.inventory || []).findIndex(i => i.id === instanceId || i.instanceId === instanceId);
     if (idx !== -1) {
       const item = u2.inventory.splice(idx, 1)[0];
       item.obtainedAt = now();

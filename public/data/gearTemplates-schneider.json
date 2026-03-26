@@ -16,7 +16,8 @@
         "fokus": 3,
         "weisheit": 2
       },
-      "flavorText": "Leinen. Einfach, ehrlich, kratzt nur ein bisschen."
+      "flavorText": "Leinen. Einfach, ehrlich, kratzt nur ein bisschen.",
+      "binding": "boe"
     },
     {
       "id": "craft-schneider-leinenkappe",
@@ -34,7 +35,8 @@
         "fokus": 1,
         "weisheit": 1
       },
-      "flavorText": "Der Stoff riecht nach Neuanfang und billigem Garn."
+      "flavorText": "Der Stoff riecht nach Neuanfang und billigem Garn.",
+      "binding": "boe"
     },
     {
       "id": "craft-schneider-leinenhaube",
@@ -52,7 +54,8 @@
         "fokus": 1,
         "weisheit": 1
       },
-      "flavorText": "Leinen. Einfach, ehrlich, kratzt nur ein bisschen."
+      "flavorText": "Leinen. Einfach, ehrlich, kratzt nur ein bisschen.",
+      "binding": "boe"
     },
     {
       "id": "craft-schneider-leinenrobe",
@@ -69,7 +72,8 @@
       "fixedStats": {
         "weisheit": 2
       },
-      "flavorText": "Schützt vor dem Wetter. Nicht vor schlechten Entscheidungen."
+      "flavorText": "Schützt vor dem Wetter. Nicht vor schlechten Entscheidungen.",
+      "binding": "boe"
     },
     {
       "id": "craft-schneider-leinengewand",
@@ -86,7 +90,8 @@
       "fixedStats": {
         "weisheit": 2
       },
-      "flavorText": "Nicht elegant, aber zweckmäßig. Wie die meisten guten Dinge."
+      "flavorText": "Nicht elegant, aber zweckmäßig. Wie die meisten guten Dinge.",
+      "binding": "boe"
     },
     {
       "id": "craft-schneider-leinentunika",
@@ -103,7 +108,8 @@
       "fixedStats": {
         "weisheit": 2
       },
-      "flavorText": "Schützt vor dem Wetter. Nicht vor schlechten Entscheidungen."
+      "flavorText": "Schützt vor dem Wetter. Nicht vor schlechten Entscheidungen.",
+      "binding": "boe"
     },
     {
       "id": "craft-schneider-leinenschuhe",
@@ -160,7 +166,8 @@
           ]
         }
       },
-      "flavorText": "Nicht elegant, aber zweckmäßig. Wie die meisten guten Dinge."
+      "flavorText": "Nicht elegant, aber zweckmäßig. Wie die meisten guten Dinge.",
+      "binding": "boe"
     },
     {
       "id": "craft-schneider-leinensandalen",
@@ -217,7 +224,8 @@
           ]
         }
       },
-      "flavorText": "Schützt vor dem Wetter. Nicht vor schlechten Entscheidungen."
+      "flavorText": "Schützt vor dem Wetter. Nicht vor schlechten Entscheidungen.",
+      "binding": "boe"
     },
     {
       "id": "craft-schneider-leinenpantoffeln",
@@ -274,7 +282,8 @@
           ]
         }
       },
-      "flavorText": "Nicht elegant, aber zweckmäßig. Wie die meisten guten Dinge."
+      "flavorText": "Nicht elegant, aber zweckmäßig. Wie die meisten guten Dinge.",
+      "binding": "boe"
     },
     {
       "id": "craft-schneider-wollhut",
@@ -292,7 +301,8 @@
         "fokus": 4,
         "weisheit": 3
       },
-      "flavorText": "Gewobene Wolle. Dichter als sie aussieht, klüger als sie wirkt."
+      "flavorText": "Gewobene Wolle. Dichter als sie aussieht, klüger als sie wirkt.",
+      "binding": "boe"
     },
     {
       "id": "craft-schneider-gewobene-kappe",
@@ -310,7 +320,8 @@
         "fokus": 3,
         "weisheit": 3
       },
-      "flavorText": "Man sagt, gute Wolle denkt mit. Diese hier murmelt zumindest."
+      "flavorText": "Man sagt, gute Wolle denkt mit. Diese hier murmelt zumindest.",
+      "binding": "boe"
     },
     {
       "id": "craft-schneider-wollkapuze",
@@ -328,7 +339,8 @@
         "fokus": 4,
         "weisheit": 2
       },
-      "flavorText": "Gewobene Wolle. Dichter als sie aussieht, klüger als sie wirkt."
+      "flavorText": "Gewobene Wolle. Dichter als sie aussieht, klüger als sie wirkt.",
+      "binding": "boe"
     },
     {
       "id": "craft-schneider-wollschleier",
@@ -345,7 +357,8 @@
       "fixedStats": {
         "fokus": 3
       },
-      "flavorText": "Man sagt, gute Wolle denkt mit. Diese hier murmelt zumindest."
+      "flavorText": "Man sagt, gute Wolle denkt mit. Diese hier murmelt zumindest.",
+      "binding": "boe"
     },
     {
       "id": "craft-schneider-wollrobe",
@@ -362,7 +375,8 @@
       "fixedStats": {
         "weisheit": 3
       },
-      "flavorText": "Gewobene Wolle. Dichter als sie aussieht, klüger als sie wirkt."
+      "flavorText": "Gewobene Wolle. Dichter als sie aussieht, klüger als sie wirkt.",
+      "binding": "boe"
     },
     {
       "id": "craft-schneider-gewobene-kutte",
@@ -379,7 +393,8 @@
       "fixedStats": {
         "weisheit": 3
       },
-      "flavorText": "Man sagt, gute Wolle denkt mit. Diese hier murmelt zumindest."
+      "flavorText": "Man sagt, gute Wolle denkt mit. Diese hier murmelt zumindest.",
+      "binding": "boe"
     },
     {
       "id": "craft-schneider-wollmantel",
@@ -396,7 +411,8 @@
       "fixedStats": {
         "weisheit": 3
       },
-      "flavorText": "Gewobene Wolle. Dichter als sie aussieht, klüger als sie wirkt."
+      "flavorText": "Gewobene Wolle. Dichter als sie aussieht, klüger als sie wirkt.",
+      "binding": "boe"
     },
     {
       "id": "craft-schneider-wollgewand",
@@ -413,7 +429,8 @@
       "fixedStats": {
         "weisheit": 3
       },
-      "flavorText": "Man sagt, gute Wolle denkt mit. Diese hier murmelt zumindest."
+      "flavorText": "Man sagt, gute Wolle denkt mit. Diese hier murmelt zumindest.",
+      "binding": "boe"
     },
     {
       "id": "craft-schneider-wollstiefel",
@@ -470,7 +487,8 @@
           ]
         }
       },
-      "flavorText": "Gewobene Wolle. Dichter als sie aussieht, klüger als sie wirkt."
+      "flavorText": "Gewobene Wolle. Dichter als sie aussieht, klüger als sie wirkt.",
+      "binding": "boe"
     },
     {
       "id": "craft-schneider-gewobene-schuhe",
@@ -527,7 +545,8 @@
           ]
         }
       },
-      "flavorText": "Man sagt, gute Wolle denkt mit. Diese hier murmelt zumindest."
+      "flavorText": "Man sagt, gute Wolle denkt mit. Diese hier murmelt zumindest.",
+      "binding": "boe"
     },
     {
       "id": "craft-schneider-wollsandalen",
@@ -584,7 +603,8 @@
           ]
         }
       },
-      "flavorText": "Gewobene Wolle. Dichter als sie aussieht, klüger als sie wirkt."
+      "flavorText": "Gewobene Wolle. Dichter als sie aussieht, klüger als sie wirkt.",
+      "binding": "boe"
     },
     {
       "id": "craft-schneider-gewobene-treter",
@@ -641,7 +661,8 @@
           ]
         }
       },
-      "flavorText": "Man sagt, gute Wolle denkt mit. Diese hier murmelt zumindest."
+      "flavorText": "Man sagt, gute Wolle denkt mit. Diese hier murmelt zumindest.",
+      "binding": "boe"
     },
     {
       "id": "craft-schneider-seidenschleier",
@@ -659,7 +680,8 @@
         "fokus": 3,
         "weisheit": 4
       },
-      "flavorText": "Die Seide flüstert beim Gehen. Nicht laut genug um zu stören, aber deutlich genug um aufzufallen."
+      "flavorText": "Die Seide flüstert beim Gehen. Nicht laut genug um zu stören, aber deutlich genug um aufzufallen.",
+      "binding": "boe"
     },
     {
       "id": "craft-schneider-mondschein-tiara",
@@ -677,7 +699,8 @@
         "fokus": 3,
         "weisheit": 3
       },
-      "flavorText": "Im Mondlicht schimmert der Stoff in Farben, die tagsüber nicht existieren."
+      "flavorText": "Im Mondlicht schimmert der Stoff in Farben, die tagsüber nicht existieren.",
+      "binding": "boe"
     },
     {
       "id": "craft-schneider-seidenkappe",
@@ -695,7 +718,8 @@
         "fokus": 4,
         "weisheit": 3
       },
-      "flavorText": "Die Seide flüstert beim Gehen. Nicht laut genug um zu stören, aber deutlich genug um aufzufallen."
+      "flavorText": "Die Seide flüstert beim Gehen. Nicht laut genug um zu stören, aber deutlich genug um aufzufallen.",
+      "binding": "boe"
     },
     {
       "id": "craft-schneider-mondschein-haube",
@@ -713,7 +737,8 @@
         "fokus": 5,
         "weisheit": 3
       },
-      "flavorText": "Im Mondlicht schimmert der Stoff in Farben, die tagsüber nicht existieren."
+      "flavorText": "Im Mondlicht schimmert der Stoff in Farben, die tagsüber nicht existieren.",
+      "binding": "boe"
     },
     {
       "id": "craft-schneider-seidenrobe",
@@ -730,7 +755,8 @@
       "fixedStats": {
         "weisheit": 4
       },
-      "flavorText": "Die Seide flüstert beim Gehen. Nicht laut genug um zu stören, aber deutlich genug um aufzufallen."
+      "flavorText": "Die Seide flüstert beim Gehen. Nicht laut genug um zu stören, aber deutlich genug um aufzufallen.",
+      "binding": "boe"
     },
     {
       "id": "craft-schneider-mondschein-gewand",
@@ -747,7 +773,8 @@
       "fixedStats": {
         "weisheit": 3
       },
-      "flavorText": "Im Mondlicht schimmert der Stoff in Farben, die tagsüber nicht existieren."
+      "flavorText": "Im Mondlicht schimmert der Stoff in Farben, die tagsüber nicht existieren.",
+      "binding": "boe"
     },
     {
       "id": "craft-schneider-seidenmantel",
@@ -804,7 +831,8 @@
           ]
         }
       },
-      "flavorText": "Die Seide flüstert beim Gehen. Nicht laut genug um zu stören, aber deutlich genug um aufzufallen."
+      "flavorText": "Die Seide flüstert beim Gehen. Nicht laut genug um zu stören, aber deutlich genug um aufzufallen.",
+      "binding": "boe"
     },
     {
       "id": "craft-schneider-mondschein-kutte",
@@ -861,7 +889,8 @@
           ]
         }
       },
-      "flavorText": "Im Mondlicht schimmert der Stoff in Farben, die tagsüber nicht existieren."
+      "flavorText": "Im Mondlicht schimmert der Stoff in Farben, die tagsüber nicht existieren.",
+      "binding": "boe"
     },
     {
       "id": "craft-schneider-seidenschuhe",
@@ -918,7 +947,8 @@
           ]
         }
       },
-      "flavorText": "Die Seide flüstert beim Gehen. Nicht laut genug um zu stören, aber deutlich genug um aufzufallen."
+      "flavorText": "Die Seide flüstert beim Gehen. Nicht laut genug um zu stören, aber deutlich genug um aufzufallen.",
+      "binding": "boe"
     },
     {
       "id": "craft-schneider-mondschein-pantoffeln",
@@ -975,7 +1005,8 @@
           ]
         }
       },
-      "flavorText": "Im Mondlicht schimmert der Stoff in Farben, die tagsüber nicht existieren."
+      "flavorText": "Im Mondlicht schimmert der Stoff in Farben, die tagsüber nicht existieren.",
+      "binding": "boe"
     },
     {
       "id": "craft-schneider-seidensandalen",
@@ -1032,7 +1063,8 @@
           ]
         }
       },
-      "flavorText": "Die Seide flüstert beim Gehen. Nicht laut genug um zu stören, aber deutlich genug um aufzufallen."
+      "flavorText": "Die Seide flüstert beim Gehen. Nicht laut genug um zu stören, aber deutlich genug um aufzufallen.",
+      "binding": "boe"
     },
     {
       "id": "craft-schneider-mondschein-treter",
@@ -1089,7 +1121,8 @@
           ]
         }
       },
-      "flavorText": "Im Mondlicht schimmert der Stoff in Farben, die tagsüber nicht existieren."
+      "flavorText": "Im Mondlicht schimmert der Stoff in Farben, die tagsüber nicht existieren.",
+      "binding": "boe"
     },
     {
       "id": "craft-schneider-arkane-krone",
@@ -1106,7 +1139,8 @@
       "fixedStats": {
         "fokus": 4
       },
-      "flavorText": "Arkaner Stoff. Er leuchtet dezent — gerade genug um in dunklen Bibliotheken lesen zu können."
+      "flavorText": "Arkaner Stoff. Er leuchtet dezent — gerade genug um in dunklen Bibliotheken lesen zu können.",
+      "binding": "boe"
     },
     {
       "id": "craft-schneider-runenschleier",
@@ -1124,7 +1158,8 @@
         "fokus": 5,
         "weisheit": 4
       },
-      "flavorText": "Sternenstoff. Wer ihn trägt, wird von Astronomen und Motten gleichermaßen bewundert."
+      "flavorText": "Sternenstoff. Wer ihn trägt, wird von Astronomen und Motten gleichermaßen bewundert.",
+      "binding": "boe"
     },
     {
       "id": "craft-schneider-aetherkrone",
@@ -1141,7 +1176,8 @@
       "fixedStats": {
         "fokus": 6
       },
-      "flavorText": "Der Stoff flüstert arkane Formeln. Die meisten sind nützlich. Manche sind Kochrezepte."
+      "flavorText": "Der Stoff flüstert arkane Formeln. Die meisten sind nützlich. Manche sind Kochrezepte.",
+      "binding": "boe"
     },
     {
       "id": "craft-schneider-sternenhaube",
@@ -1159,7 +1195,8 @@
         "fokus": 5,
         "weisheit": 4
       },
-      "flavorText": "Runenstoff webt sich selbst, wenn man nicht hinschaut. Das ist entweder beruhigend oder beunruhigend."
+      "flavorText": "Runenstoff webt sich selbst, wenn man nicht hinschaut. Das ist entweder beruhigend oder beunruhigend.",
+      "binding": "boe"
     },
     {
       "id": "craft-schneider-seelenkappe",
@@ -1176,7 +1213,8 @@
       "fixedStats": {
         "fokus": 4
       },
-      "flavorText": "Seelenstoff. Jeder Faden trägt eine Erinnerung. Trag ihn mit Respekt — und guter Haltung."
+      "flavorText": "Seelenstoff. Jeder Faden trägt eine Erinnerung. Trag ihn mit Respekt — und guter Haltung.",
+      "binding": "boe"
     },
     {
       "id": "craft-schneider-arkane-robe",
@@ -1233,7 +1271,8 @@
           ]
         }
       },
-      "flavorText": "Arkaner Stoff. Er leuchtet dezent — gerade genug um in dunklen Bibliotheken lesen zu können."
+      "flavorText": "Arkaner Stoff. Er leuchtet dezent — gerade genug um in dunklen Bibliotheken lesen zu können.",
+      "binding": "boe"
     },
     {
       "id": "craft-schneider-runengewand",
@@ -1290,7 +1329,8 @@
           ]
         }
       },
-      "flavorText": "Sternenstoff. Wer ihn trägt, wird von Astronomen und Motten gleichermaßen bewundert."
+      "flavorText": "Sternenstoff. Wer ihn trägt, wird von Astronomen und Motten gleichermaßen bewundert.",
+      "binding": "boe"
     },
     {
       "id": "craft-schneider-aethergewand",
@@ -1347,7 +1387,8 @@
           ]
         }
       },
-      "flavorText": "Der Stoff flüstert arkane Formeln. Die meisten sind nützlich. Manche sind Kochrezepte."
+      "flavorText": "Der Stoff flüstert arkane Formeln. Die meisten sind nützlich. Manche sind Kochrezepte.",
+      "binding": "boe"
     },
     {
       "id": "craft-schneider-sternenrobe",
@@ -1366,17 +1407,17 @@
           "pool": [
             {
               "stat": "weisheit",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "kraft",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "glueck",
-              "min": 4,
+              "min": 5,
               "max": 7
             }
           ],
@@ -1404,7 +1445,8 @@
           ]
         }
       },
-      "flavorText": "Runenstoff webt sich selbst, wenn man nicht hinschaut. Das ist entweder beruhigend oder beunruhigend."
+      "flavorText": "Runenstoff webt sich selbst, wenn man nicht hinschaut. Das ist entweder beruhigend oder beunruhigend.",
+      "binding": "boe"
     },
     {
       "id": "craft-schneider-seelenrobe",
@@ -1423,17 +1465,17 @@
           "pool": [
             {
               "stat": "weisheit",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "kraft",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "glueck",
-              "min": 4,
+              "min": 5,
               "max": 7
             }
           ],
@@ -1461,7 +1503,8 @@
           ]
         }
       },
-      "flavorText": "Seelenstoff. Jeder Faden trägt eine Erinnerung. Trag ihn mit Respekt — und guter Haltung."
+      "flavorText": "Seelenstoff. Jeder Faden trägt eine Erinnerung. Trag ihn mit Respekt — und guter Haltung.",
+      "binding": "boe"
     },
     {
       "id": "craft-schneider-arkane-schuhe",
@@ -1480,17 +1523,17 @@
           "pool": [
             {
               "stat": "weisheit",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "kraft",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "glueck",
-              "min": 4,
+              "min": 5,
               "max": 7
             }
           ],
@@ -1524,7 +1567,8 @@
         "max": 6,
         "label": "Arkane Resonanz: +{value}% Quest-XP"
       },
-      "flavorText": "Arkaner Stoff. Er leuchtet dezent — gerade genug um in dunklen Bibliotheken lesen zu können."
+      "flavorText": "Arkaner Stoff. Er leuchtet dezent — gerade genug um in dunklen Bibliotheken lesen zu können.",
+      "binding": "boe"
     },
     {
       "id": "craft-schneider-runensandalen",
@@ -1543,17 +1587,17 @@
           "pool": [
             {
               "stat": "weisheit",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "kraft",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "glueck",
-              "min": 4,
+              "min": 5,
               "max": 7
             }
           ],
@@ -1587,7 +1631,8 @@
         "max": 6,
         "label": "Zeitweberei: -{value}% Craft-Cooldown"
       },
-      "flavorText": "Sternenstoff. Wer ihn trägt, wird von Astronomen und Motten gleichermaßen bewundert."
+      "flavorText": "Sternenstoff. Wer ihn trägt, wird von Astronomen und Motten gleichermaßen bewundert.",
+      "binding": "boe"
     },
     {
       "id": "craft-schneider-aetherschuhe",
@@ -1606,17 +1651,17 @@
           "pool": [
             {
               "stat": "weisheit",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "kraft",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "glueck",
-              "min": 4,
+              "min": 5,
               "max": 7
             }
           ],
@@ -1650,7 +1695,8 @@
         "max": 6,
         "label": "Gewobene Disziplin: +{value}% Ritual-XP pro Streak-Tag"
       },
-      "flavorText": "Der Stoff flüstert arkane Formeln. Die meisten sind nützlich. Manche sind Kochrezepte."
+      "flavorText": "Der Stoff flüstert arkane Formeln. Die meisten sind nützlich. Manche sind Kochrezepte.",
+      "binding": "boe"
     },
     {
       "id": "craft-schneider-seelenstiefel",
@@ -1669,17 +1715,17 @@
           "pool": [
             {
               "stat": "weisheit",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "kraft",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "glueck",
-              "min": 4,
+              "min": 5,
               "max": 7
             }
           ],
@@ -1713,7 +1759,8 @@
         "max": 6,
         "label": "Seidener Glanz: +{value}% Gold"
       },
-      "flavorText": "Runenstoff webt sich selbst, wenn man nicht hinschaut. Das ist entweder beruhigend oder beunruhigend."
+      "flavorText": "Runenstoff webt sich selbst, wenn man nicht hinschaut. Das ist entweder beruhigend oder beunruhigend.",
+      "binding": "boe"
     },
     {
       "id": "craft-schneider-seelenwandler-schuhe",
@@ -1732,17 +1779,17 @@
           "pool": [
             {
               "stat": "weisheit",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "kraft",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "glueck",
-              "min": 4,
+              "min": 5,
               "max": 7
             }
           ],
@@ -1776,7 +1823,8 @@
         "max": 6,
         "label": "Zeitlose Fäden: -{value}% Forge-Decay"
       },
-      "flavorText": "Seelenstoff. Jeder Faden trägt eine Erinnerung. Trag ihn mit Respekt — und guter Haltung."
+      "flavorText": "Seelenstoff. Jeder Faden trägt eine Erinnerung. Trag ihn mit Respekt — und guter Haltung.",
+      "binding": "boe"
     },
     {
       "id": "craft-schneider-leinenschleier-des-gelehrten",
@@ -1793,7 +1841,8 @@
       "fixedStats": {
         "weisheit": 1
       },
-      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
     },
     {
       "id": "craft-schneider-wollkappe-des-forschers",
@@ -1811,7 +1860,8 @@
         "weisheit": 2,
         "kraft": 3
       },
-      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
     },
     {
       "id": "craft-schneider-seidenschleier-des-weisen",
@@ -1863,7 +1913,8 @@
           ]
         }
       },
-      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
     },
     {
       "id": "craft-schneider-arkane-weisenkrone",
@@ -1881,7 +1932,8 @@
         "weisheit": 7,
         "kraft": 6
       },
-      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
     },
     {
       "id": "craft-schneider-einfache-leinenkappe",
@@ -1899,7 +1951,8 @@
         "weisheit": 2,
         "kraft": 1
       },
-      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
     },
     {
       "id": "craft-schneider-gewobener-wollschleier",
@@ -1917,7 +1970,8 @@
         "weisheit": 4,
         "kraft": 3
       },
-      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
     },
     {
       "id": "craft-schneider-mondschein-gelehrtenkappe",
@@ -1935,7 +1989,8 @@
         "weisheit": 3,
         "kraft": 3
       },
-      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
     },
     {
       "id": "craft-schneider-sternenmantel",
@@ -1987,7 +2042,8 @@
           ]
         }
       },
-      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
     },
     {
       "id": "craft-schneider-leinengewand-des-wanderers",
@@ -2005,7 +2061,8 @@
         "weisheit": 1,
         "kraft": 1
       },
-      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
     },
     {
       "id": "craft-schneider-wollrobe-des-wanderers",
@@ -2023,7 +2080,8 @@
         "weisheit": 3,
         "kraft": 2
       },
-      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
     },
     {
       "id": "craft-schneider-seidenrobe-der-erleuchtung",
@@ -2040,7 +2098,8 @@
       "fixedStats": {
         "weisheit": 3
       },
-      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
     },
     {
       "id": "craft-schneider-arkane-meisterrobe",
@@ -2057,7 +2116,8 @@
       "fixedStats": {
         "weisheit": 6
       },
-      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
     },
     {
       "id": "craft-schneider-leinenpantoffeln-des-lesers",
@@ -2109,7 +2169,8 @@
           ]
         }
       },
-      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
     },
     {
       "id": "craft-schneider-wollstiefel-des-reisenden",
@@ -2127,7 +2188,8 @@
         "weisheit": 3,
         "kraft": 3
       },
-      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
     },
     {
       "id": "craft-schneider-seidenpantoffeln-des-meisters",
@@ -2179,7 +2241,8 @@
           ]
         }
       },
-      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
     },
     {
       "id": "craft-schneider-arkane-meisterschuhe",
@@ -2196,7 +2259,8 @@
       "fixedStats": {
         "weisheit": 4
       },
-      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
     },
     {
       "id": "craft-schneider-einfache-leinenschuhe",
@@ -2248,7 +2312,8 @@
           ]
         }
       },
-      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
     },
     {
       "id": "craft-schneider-gewobene-wollschuhe",
@@ -2266,7 +2331,8 @@
         "weisheit": 4,
         "kraft": 2
       },
-      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
     },
     {
       "id": "craft-schneider-mondschein-schritte",
@@ -2283,7 +2349,723 @@
       "fixedStats": {
         "weisheit": 3
       },
-      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
+    },
+    {
+      "id": "craft-schneider-einfache-leinentunika",
+      "name": "Einfache Leinentunika",
+      "slot": "armor",
+      "tier": 1,
+      "reqLevel": 8,
+      "setId": "adventurer",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "weisheit": 3
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
+    },
+    {
+      "id": "craft-schneider-gewobene-wolltunika",
+      "name": "Gewobene Wolltunika",
+      "slot": "armor",
+      "tier": 2,
+      "reqLevel": 15,
+      "setId": "veteran",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "weisheit": 4,
+        "kraft": 2
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
+    },
+    {
+      "id": "craft-schneider-mondschein-wandergewand",
+      "name": "Mondschein-Wandergewand",
+      "slot": "armor",
+      "tier": 3,
+      "reqLevel": 24,
+      "setId": "master",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "weisheit": 3,
+        "kraft": 3
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
+    },
+    {
+      "id": "craft-schneider-runenschritte",
+      "name": "Runenschritte",
+      "slot": "boots",
+      "tier": 4,
+      "reqLevel": 25,
+      "setId": "legendary",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "weisheit": 4,
+        "kraft": 5
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
+    },
+    {
+      "id": "craft-schneider-leinenkette-des-wissens",
+      "name": "Leinenkette des Wissens",
+      "slot": "amulet",
+      "tier": 1,
+      "reqLevel": 4,
+      "setId": "adventurer",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "weisheit": 3
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
+    },
+    {
+      "id": "craft-schneider-wollkette-des-gelehrten",
+      "name": "Wollkette des Gelehrten",
+      "slot": "amulet",
+      "tier": 2,
+      "reqLevel": 13,
+      "setId": "veteran",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "weisheit": 2,
+        "kraft": 3
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
+    },
+    {
+      "id": "craft-schneider-seidenkette-der-sterne",
+      "name": "Seidenkette der Sterne",
+      "slot": "amulet",
+      "tier": 3,
+      "reqLevel": 23,
+      "setId": "master",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "weisheit": 5,
+        "kraft": 4
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
+    },
+    {
+      "id": "craft-schneider-runenkette",
+      "name": "Runenkette",
+      "slot": "amulet",
+      "tier": 4,
+      "reqLevel": 48,
+      "setId": "legendary",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "epic",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 7
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
+    },
+    {
+      "id": "craft-schneider-einfaches-leinenband",
+      "name": "Einfaches Leinenband",
+      "slot": "amulet",
+      "tier": 1,
+      "reqLevel": 5,
+      "setId": "adventurer",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "weisheit": 3,
+        "kraft": 1
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
+    },
+    {
+      "id": "craft-schneider-gewobenes-wollband",
+      "name": "Gewobenes Wollband",
+      "slot": "amulet",
+      "tier": 2,
+      "reqLevel": 13,
+      "setId": "veteran",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "rare",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 3
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
+    },
+    {
+      "id": "craft-schneider-mondschein-amulett",
+      "name": "Mondschein-Amulett II",
+      "slot": "amulet",
+      "tier": 3,
+      "reqLevel": 19,
+      "setId": "master",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "weisheit": 3
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
+    },
+    {
+      "id": "craft-schneider-sternentalisman",
+      "name": "Sternentalisman",
+      "slot": "amulet",
+      "tier": 4,
+      "reqLevel": 39,
+      "setId": "legendary",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "epic",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
+    },
+    {
+      "id": "craft-schneider-leinen-kappe-ii",
+      "name": "Leinen Kappe II",
+      "slot": "helm",
+      "tier": 1,
+      "reqLevel": 3,
+      "setId": "adventurer",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "rare",
+      "fixedStats": {
+        "weisheit": 3,
+        "kraft": 2
+      },
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
+    },
+    {
+      "id": "craft-schneider-woll-robe-ii",
+      "name": "Woll Robe II",
+      "slot": "armor",
+      "tier": 2,
+      "reqLevel": 14,
+      "setId": "veteran",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "rare",
+      "fixedStats": {
+        "weisheit": 2
+      },
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
+    },
+    {
+      "id": "craft-schneider-seiden-marschtritt-ii",
+      "name": "Seiden Marschtritt II",
+      "slot": "boots",
+      "tier": 3,
+      "reqLevel": 18,
+      "setId": "master",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "weisheit": 3
+      },
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
+    },
+    {
+      "id": "craft-schneider-arkan-haube-ii",
+      "name": "Arkan Haube II",
+      "slot": "helm",
+      "tier": 4,
+      "reqLevel": 30,
+      "setId": "legendary",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "weisheit": 6,
+        "kraft": 5
+      },
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
+    },
+    {
+      "id": "craft-schneider-leinen-mantel-ii",
+      "name": "Leinen Mantel II",
+      "slot": "armor",
+      "tier": 1,
+      "reqLevel": 2,
+      "setId": "adventurer",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "weisheit": 3,
+        "kraft": 1
+      },
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
+    },
+    {
+      "id": "craft-schneider-woll-stiefel-ii",
+      "name": "Woll Stiefel II",
+      "slot": "boots",
+      "tier": 2,
+      "reqLevel": 13,
+      "setId": "veteran",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "rare",
+      "fixedStats": {
+        "weisheit": 4
+      },
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
+    },
+    {
+      "id": "craft-schneider-seiden-helm-ii",
+      "name": "Seiden Helm II",
+      "slot": "helm",
+      "tier": 3,
+      "reqLevel": 18,
+      "setId": "master",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "weisheit": 4,
+        "kraft": 4
+      },
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
+    },
+    {
+      "id": "craft-schneider-arkan-platte-ii",
+      "name": "Arkan Platte II",
+      "slot": "armor",
+      "tier": 4,
+      "reqLevel": 30,
+      "setId": "legendary",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "rare",
+      "fixedStats": {
+        "weisheit": 5,
+        "kraft": 4
+      },
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
+    },
+    {
+      "id": "craft-schneider-leinen-treter-ii",
+      "name": "Leinen Treter II",
+      "slot": "boots",
+      "tier": 1,
+      "reqLevel": 3,
+      "setId": "adventurer",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "weisheit": 1
+      },
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
+    },
+    {
+      "id": "craft-schneider-woll-visier-ii",
+      "name": "Woll Visier II",
+      "slot": "helm",
+      "tier": 2,
+      "reqLevel": 15,
+      "setId": "veteran",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "rare",
+      "fixedStats": {
+        "weisheit": 4
+      },
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
+    },
+    {
+      "id": "craft-schneider-seiden-panzer-ii",
+      "name": "Seiden Panzer II",
+      "slot": "armor",
+      "tier": 3,
+      "reqLevel": 23,
+      "setId": "master",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "weisheit": 4
+      },
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
+    },
+    {
+      "id": "craft-schneider-arkan-schuhe-ii",
+      "name": "Arkan Schuhe II",
+      "slot": "boots",
+      "tier": 4,
+      "reqLevel": 42,
+      "setId": "legendary",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "rare",
+      "fixedStats": {
+        "weisheit": 4,
+        "kraft": 5
+      },
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
+    },
+    {
+      "id": "craft-schneider-leinen-schleier-iii",
+      "name": "Leinen Schleier III",
+      "slot": "helm",
+      "tier": 1,
+      "reqLevel": 4,
+      "setId": "adventurer",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "rare",
+      "fixedStats": {
+        "weisheit": 1,
+        "kraft": 2
+      },
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
+    },
+    {
+      "id": "craft-schneider-woll-wams-iii",
+      "name": "Woll Wams III",
+      "slot": "armor",
+      "tier": 2,
+      "reqLevel": 15,
+      "setId": "veteran",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "weisheit": 4
+      },
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
+    },
+    {
+      "id": "craft-schneider-seiden-sandalen-iii",
+      "name": "Seiden Sandalen III",
+      "slot": "boots",
+      "tier": 3,
+      "reqLevel": 22,
+      "setId": "master",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "rare",
+      "fixedStats": {
+        "weisheit": 4,
+        "kraft": 4
+      },
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
+    },
+    {
+      "id": "craft-schneider-arkan-kappe-iii",
+      "name": "Arkan Kappe III",
+      "slot": "helm",
+      "tier": 4,
+      "reqLevel": 39,
+      "setId": "legendary",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "weisheit": 4,
+        "kraft": 4
+      },
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
+    },
+    {
+      "id": "craft-schneider-leinen-robe-iii",
+      "name": "Leinen Robe III",
+      "slot": "armor",
+      "tier": 1,
+      "reqLevel": 3,
+      "setId": "adventurer",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "weisheit": 1
+      },
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
+    },
+    {
+      "id": "craft-schneider-woll-marschtritt-iii",
+      "name": "Woll Marschtritt III",
+      "slot": "boots",
+      "tier": 2,
+      "reqLevel": 15,
+      "setId": "veteran",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "weisheit": 2
+      },
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
+    },
+    {
+      "id": "craft-schneider-seiden-haube-iii",
+      "name": "Seiden Haube III",
+      "slot": "helm",
+      "tier": 3,
+      "reqLevel": 18,
+      "setId": "master",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "common",
+      "fixedStats": {
+        "weisheit": 4,
+        "kraft": 3
+      },
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
+    },
+    {
+      "id": "craft-schneider-arkan-mantel-iii",
+      "name": "Arkan Mantel III",
+      "slot": "armor",
+      "tier": 4,
+      "reqLevel": 29,
+      "setId": "legendary",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "uncommon",
+      "fixedStats": {
+        "weisheit": 7
+      },
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
+    },
+    {
+      "id": "craft-schneider-leinen-stiefel-iii",
+      "name": "Leinen Stiefel III",
+      "slot": "boots",
+      "tier": 1,
+      "reqLevel": 2,
+      "setId": "adventurer",
+      "armorType": "cloth",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "rarity": "rare",
+      "fixedStats": {
+        "weisheit": 2
+      },
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
     }
   ]
 }

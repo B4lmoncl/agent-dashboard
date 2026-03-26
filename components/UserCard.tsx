@@ -248,7 +248,7 @@ export function UserCard({ user, classes = [], onClick, onNavigate }: { user: Us
                   title={onNavigate ? "View companion details" : undefined}
                 >
                   {companionSrc ? (
-                    <img src={companionSrc} alt={comp.name} width={18} height={18} className="rounded" style={{ imageRendering: "auto" }} />
+                    <img src={companionSrc} alt={comp.name} width={18} height={18} className="rounded" style={{ imageRendering: "auto" }} onError={e => { e.currentTarget.style.display = "none"; }} />
                   ) : comp.emoji && comp.emoji !== "x" ? (
                     <span style={{ fontSize: 14 }}>{comp.emoji}</span>
                   ) : null}

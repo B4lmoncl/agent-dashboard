@@ -649,7 +649,7 @@ export default function GachaView({ onRefresh, onPullComplete, onNavigate }: {
   useEffect(() => {
     fetch("/api/gacha/banners").then(r => { if (!r.ok) throw new Error(); return r.json(); }).then(data => {
       if (Array.isArray(data)) setBanners(data);
-    }).catch(() => {});
+    }).catch(e => console.error('[gacha-view]', e));
   }, []);
 
   // Load pity
@@ -657,14 +657,14 @@ export default function GachaView({ onRefresh, onPullComplete, onNavigate }: {
     if (!user?.id) return;
     fetch(`/api/gacha/pity/${user.id}`).then(r => { if (!r.ok) throw new Error(); return r.json(); }).then(data => {
       if (data.pityCounter !== undefined) setPity(data);
-    }).catch(() => {});
+    }).catch(e => console.error('[gacha-view]', e));
   }, [user?.id, pullResults]);
 
   // Pre-load pool for item name resolution
   useEffect(() => {
     fetch("/api/gacha/pool").then(r => { if (!r.ok) throw new Error(); return r.json(); }).then(data => {
       if (data.pool) setPoolInfo(data.pool);
-    }).catch(() => {});
+    }).catch(e => console.error('[gacha-view]', e));
   }, []);
 
   const doPull = useCallback(async (bannerId: string, count: 1 | 10) => {
@@ -698,7 +698,7 @@ export default function GachaView({ onRefresh, onPullComplete, onNavigate }: {
     if (!user) return;
     fetch(`/api/gacha/history/${user.id}`).then(r => r.json()).then(data => {
       if (data.history) setHistory(data.history);
-    }).catch(() => {});
+    }).catch(e => console.error('[gacha-view]', e));
     setHistoryOpen(true);
   }, [user]);
 
