@@ -9924,6 +9924,63 @@
       "factionMinRep": "revered"
     },
     {
+      "id": "recipe-verz-vellum-schwach",
+      "name": "Schwaches Verzauberungspergament",
+      "profession": "verzauberer",
+      "source": "trainer",
+      "reqSkill": 50,
+      "materials": {
+        "magiestaub": 3,
+        "kristallsplitter": 1
+      },
+      "result": {
+        "type": "vellum",
+        "statBonus": [2, 3],
+        "durationHours": 24
+      },
+      "xp": 12,
+      "description": "Schreibt eine handelbare Verzauberung auf Pergament.",
+      "trainerCost": 50
+    },
+    {
+      "id": "recipe-verz-vellum-mittel",
+      "name": "Mittleres Verzauberungspergament",
+      "profession": "verzauberer",
+      "source": "trainer",
+      "reqSkill": 125,
+      "materials": {
+        "kristallsplitter": 3,
+        "runenstein": 1
+      },
+      "result": {
+        "type": "vellum",
+        "statBonus": [3, 5],
+        "durationHours": 24
+      },
+      "xp": 22,
+      "description": "Schreibt eine stärkere handelbare Verzauberung auf Pergament.",
+      "trainerCost": 150
+    },
+    {
+      "id": "recipe-verz-vellum-stark",
+      "name": "Starkes Verzauberungspergament",
+      "profession": "verzauberer",
+      "source": "trainer",
+      "reqSkill": 225,
+      "materials": {
+        "runenstein": 2,
+        "aetherkern": 1
+      },
+      "result": {
+        "type": "vellum",
+        "statBonus": [4, 7],
+        "durationHours": 48
+      },
+      "xp": 35,
+      "description": "Schreibt eine mächtige handelbare Verzauberung auf Pergament.",
+      "trainerCost": 400
+    },
+    {
       "id": "recipe-waffenschmied-eiserner-rundschild",
       "name": "Eiserner Rundschild",
       "profession": "waffenschmied",

@@ -799,6 +799,33 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
         result.updatedGear = eq;
         break;
       }
+      // Enchant Vellum handler (creates tradeable enchant scroll)
+      if (recipe.result?.type === 'vellum') {
+        const allStats = [...PRIMARY_STATS, ...MINOR_STATS];
+        const vStat = allStats[Math.floor(Math.random() * allStats.length)];
+        const enchBonus = masteryDef?.type === 'enchant_power' ? masteryDef.value : 0;
+        const vVal = (recipe.result.statBonus?.[0] || 2) + Math.floor(Math.random() * ((recipe.result.statBonus?.[1] || 4) - (recipe.result.statBonus?.[0] || 2) + 1)) + enchBonus;
+        const hours = recipe.result.durationHours || 24;
+        const vellumRarity = currentSkill >= 225 ? 'epic' : currentSkill >= 125 ? 'rare' : 'uncommon';
+        const vellumItem = {
+          id: `vellum-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
+          name: `Verzauberung: +${vVal} ${vStat.charAt(0).toUpperCase() + vStat.slice(1)}`,
+          type: 'consumable',
+          rarity: vellumRarity,
+          desc: `Kann gehandelt werden. Anwenden: Gibt +${vVal} ${vStat} als ${hours}h-Buff.`,
+          icon: null,
+          binding: 'boe',
+          effect: { type: 'vellum' },
+          vellumEffect: { stat: vStat, value: vVal, durationHours: hours },
+          craftedBy: uid,
+          craftedAt: now(),
+        };
+        u.inventory = u.inventory || [];
+        if (u.inventory.length >= INVENTORY_CAP) { result.message = 'Inventory full.'; result.success = false; break; }
+        u.inventory.push(vellumItem);
+        result.message = `Enchant Vellum: +${vVal} ${vStat} (${hours}h) — can be traded!${masteryDef ? ' (Mastery)' : ''}`;
+        break;
+      }
       // Transmute material handler (alchemist transmutes)
       if (recipe.result?.type === 'transmute_material') {
         u.craftingMaterials = u.craftingMaterials || {};

@@ -475,6 +475,24 @@ router.post('/api/player/:name/inventory/use/:itemId', requireAuth, requireSelf(
       message = `+${xp} XP, +${gold} Gold, +${essenz} Essenz!`;
       break;
     }
+    case 'vellum': {
+      // Enchant Vellum — apply stat buff from vellumEffect
+      const ve = invItem.vellumEffect;
+      if (!ve || !ve.stat || !ve.value) {
+        message = 'Invalid vellum — no effect data.';
+        break;
+      }
+      u.activeBuffs = u.activeBuffs || [];
+      u.activeBuffs.push({
+        type: `enchant_${ve.stat}`,
+        stat: ve.stat,
+        value: ve.value,
+        expiresAt: new Date(Date.now() + (ve.durationHours || 24) * 3600000).toISOString(),
+        activatedAt: now(),
+      });
+      message = `Enchant applied: +${ve.value} ${ve.stat} for ${ve.durationHours || 24}h!`;
+      break;
+    }
     default: {
       // Unknown effect — consume anyway but note it
       message = `Item consumed. (Effect "${effectType}" is not yet supported)`;
