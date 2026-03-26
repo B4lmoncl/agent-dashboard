@@ -8,7 +8,7 @@ const router = require('express').Router();
 const fs = require('fs');
 const path = require('path');
 const { state, saveUsers, saveSocial, ensureUserCurrencies, RUNTIME_DIR, logActivity } = require('../lib/state');
-const { now, getLevelInfo, awardCurrency, getGearScore, getBondLevel, rollLoot, addLootToInventory, createUniqueInstance, trackUniqueInCollection, getLegendaryModifiers } = require('../lib/helpers');
+const { now, getLevelInfo, awardCurrency, getGearScore, getBondLevel, rollLoot, addLootToInventory, createGearInstance, createUniqueInstance, trackUniqueInCollection, getLegendaryModifiers } = require('../lib/helpers');
 const { requireAuth } = require('../lib/middleware');
 
 // ─── Dungeon Templates ──────────────────────────────────────────────────────
@@ -515,25 +515,41 @@ router.post('/api/dungeons/:runId/collect', requireAuth, (req, res) => {
     rewards.essenz = Math.round((rewards.essenz || 0) * lootMulti);
   }
 
-  // ── Actual gear drop: roll a real item via rollLoot ──
+  // ── Actual gear drop: roll from dungeon-specific loot pool ──
   if (isSuccess && rewards.gearDrop) {
     const playerLevel = getLevelInfo(u.xp || 0).level;
-    // Enforce minimum rarity: re-roll up to 5 times if below dungeon minimum
     const RARITY_ORDER = ['common', 'uncommon', 'rare', 'epic', 'legendary'];
     const minIdx = RARITY_ORDER.indexOf(rewards.gearMinRarity || 'rare');
+
+    // Try dungeon-specific pool first (source-exclusive items)
+    const dungeonItems = state.FULL_GEAR_ITEMS.filter(gi =>
+      gi.source === `dungeon:${dungeon.id}` &&
+      (gi.minLevel || gi.reqLevel || 1) <= playerLevel &&
+      RARITY_ORDER.indexOf(gi.rarity || 'common') >= minIdx
+    );
+
     let gearItem = null;
-    for (let attempt = 0; attempt < 5; attempt++) {
-      gearItem = rollLoot(1.0, playerLevel);
-      if (!gearItem) break;
-      if (RARITY_ORDER.indexOf(gearItem.rarity || 'common') >= minIdx) break;
-    }
-    // Final fallback: force rarity if still too low (keeps stats from last roll)
-    if (gearItem && RARITY_ORDER.indexOf(gearItem.rarity || 'common') < minIdx) {
-      gearItem.rarity = rewards.gearMinRarity || 'rare';
-    }
-    if (gearItem) {
-      addLootToInventory(uid, gearItem);
-      rewards.gearDropItem = { name: gearItem.name, rarity: gearItem.rarity, slot: gearItem.slot };
+    if (dungeonItems.length > 0) {
+      // Pick random from dungeon pool + create instance
+      const template = dungeonItems[Math.floor(Math.random() * dungeonItems.length)];
+      const instance = createGearInstance(template);
+      if (!u.inventory) u.inventory = [];
+      u.inventory.push(instance);
+      rewards.gearDropItem = { name: instance.name, rarity: instance.rarity, slot: instance.slot, instanceId: instance.instanceId };
+    } else {
+      // Fallback: generic loot pool (for dungeons without specific items)
+      for (let attempt = 0; attempt < 5; attempt++) {
+        gearItem = rollLoot(1.0, playerLevel);
+        if (!gearItem) break;
+        if (RARITY_ORDER.indexOf(gearItem.rarity || 'common') >= minIdx) break;
+      }
+      if (gearItem && RARITY_ORDER.indexOf(gearItem.rarity || 'common') < minIdx) {
+        gearItem.rarity = rewards.gearMinRarity || 'rare';
+      }
+      if (gearItem) {
+        addLootToInventory(uid, gearItem);
+        rewards.gearDropItem = { name: gearItem.name, rarity: gearItem.rarity, slot: gearItem.slot };
+      }
     }
     delete rewards.gearDrop;
     delete rewards.gearMinRarity;
