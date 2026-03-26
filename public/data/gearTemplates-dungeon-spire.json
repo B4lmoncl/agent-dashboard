@@ -17,7 +17,8 @@
         "kraft": 3,
         "ausdauer": 3
       },
-      "flavorText": "Aus den Trümmern geborgen. Noch immer knistert es vor statischer Energie."
+      "flavorText": "Aus den Trümmern geborgen. Noch immer knistert es vor statischer Energie.",
+      "binding": "bop"
     },
     {
       "id": "dun-shattered-spire-turm-buckler",
@@ -36,7 +37,8 @@
         "charisma": 6,
         "ausdauer": 4
       },
-      "flavorText": "Wer es trägt, spürt ein leichtes Summen — wie die Erinnerung an Höhe."
+      "flavorText": "Wer es trägt, spürt ein leichtes Summen — wie die Erinnerung an Höhe.",
+      "binding": "bop"
     },
     {
       "id": "dun-shattered-spire-turm-haube",
@@ -55,7 +57,8 @@
         "weisheit": 4,
         "ausdauer": 5
       },
-      "flavorText": "Blitznarben zieren die Oberfläche. Nicht dekorativ — funktional."
+      "flavorText": "Blitznarben zieren die Oberfläche. Nicht dekorativ — funktional.",
+      "binding": "bop"
     },
     {
       "id": "dun-shattered-spire-turm-mantel",
@@ -73,7 +76,8 @@
       "fixedStats": {
         "ausdauer": 3
       },
-      "flavorText": "Aus den Trümmern geborgen. Noch immer knistert es vor statischer Energie."
+      "flavorText": "Aus den Trümmern geborgen. Noch immer knistert es vor statischer Energie.",
+      "binding": "bop"
     },
     {
       "id": "dun-shattered-spire-turm-marschtritt",
@@ -92,7 +96,8 @@
         "charisma": 4,
         "ausdauer": 3
       },
-      "flavorText": "Wer es trägt, spürt ein leichtes Summen — wie die Erinnerung an Höhe."
+      "flavorText": "Wer es trägt, spürt ein leichtes Summen — wie die Erinnerung an Höhe.",
+      "binding": "bop"
     },
     {
       "id": "dun-shattered-spire-turm-reif",
@@ -111,7 +116,8 @@
         "glueck": 3,
         "ausdauer": 3
       },
-      "flavorText": "Blitznarben zieren die Oberfläche. Nicht dekorativ — funktional."
+      "flavorText": "Blitznarben zieren die Oberfläche. Nicht dekorativ — funktional.",
+      "binding": "bop"
     },
     {
       "id": "dun-shattered-spire-turm-kette",
@@ -130,7 +136,8 @@
         "charisma": 4,
         "ausdauer": 4
       },
-      "flavorText": "Aus den Trümmern geborgen. Noch immer knistert es vor statischer Energie."
+      "flavorText": "Aus den Trümmern geborgen. Noch immer knistert es vor statischer Energie.",
+      "binding": "bop"
     },
     {
       "id": "dun-shattered-spire-turm-klinge-4tv",
@@ -149,7 +156,8 @@
         "kraft": 5,
         "ausdauer": 3
       },
-      "flavorText": "Wer es trägt, spürt ein leichtes Summen — wie die Erinnerung an Höhe."
+      "flavorText": "Wer es trägt, spürt ein leichtes Summen — wie die Erinnerung an Höhe.",
+      "binding": "bop"
     },
     {
       "id": "dun-shattered-spire-turm-tartsche",
@@ -168,7 +176,8 @@
         "charisma": 5,
         "ausdauer": 4
       },
-      "flavorText": "Blitznarben zieren die Oberfläche. Nicht dekorativ — funktional."
+      "flavorText": "Blitznarben zieren die Oberfläche. Nicht dekorativ — funktional.",
+      "binding": "bop"
     },
     {
       "id": "dun-shattered-spire-turm-visier",
@@ -187,7 +196,8 @@
         "weisheit": 3,
         "ausdauer": 3
       },
-      "flavorText": "Aus den Trümmern geborgen. Noch immer knistert es vor statischer Energie."
+      "flavorText": "Aus den Trümmern geborgen. Noch immer knistert es vor statischer Energie.",
+      "binding": "bop"
     },
     {
       "id": "dun-shattered-spire-turm-brustplatte",
@@ -205,7 +215,8 @@
       "fixedStats": {
         "ausdauer": 4
       },
-      "flavorText": "Wer es trägt, spürt ein leichtes Summen — wie die Erinnerung an Höhe."
+      "flavorText": "Wer es trägt, spürt ein leichtes Summen — wie die Erinnerung an Höhe.",
+      "binding": "bop"
     },
     {
       "id": "dun-shattered-spire-turm-treter",
@@ -268,7 +279,8 @@
           ]
         }
       },
-      "flavorText": "Blitznarben zieren die Oberfläche. Nicht dekorativ — funktional."
+      "flavorText": "Blitznarben zieren die Oberfläche. Nicht dekorativ — funktional.",
+      "binding": "bop"
     },
     {
       "id": "dun-shattered-spire-turm-ring",
@@ -331,7 +343,8 @@
           ]
         }
       },
-      "flavorText": "Aus den Trümmern geborgen. Noch immer knistert es vor statischer Energie."
+      "flavorText": "Aus den Trümmern geborgen. Noch immer knistert es vor statischer Energie.",
+      "binding": "bop"
     },
     {
       "id": "dun-shattered-spire-turm-anhaenger",
@@ -394,7 +407,8 @@
           ]
         }
       },
-      "flavorText": "Wer es trägt, spürt ein leichtes Summen — wie die Erinnerung an Höhe."
+      "flavorText": "Wer es trägt, spürt ein leichtes Summen — wie die Erinnerung an Höhe.",
+      "binding": "bop"
     },
     {
       "id": "dun-shattered-spire-turm-klinge-mkd",
@@ -457,7 +471,8 @@
           ]
         }
       },
-      "flavorText": "Blitznarben zieren die Oberfläche. Nicht dekorativ — funktional."
+      "flavorText": "Blitznarben zieren die Oberfläche. Nicht dekorativ — funktional.",
+      "binding": "bop"
     },
     {
       "id": "dun-shattered-spire-turm-schild",
@@ -520,7 +535,8 @@
           ]
         }
       },
-      "flavorText": "Aus den Trümmern geborgen. Noch immer knistert es vor statischer Energie."
+      "flavorText": "Aus den Trümmern geborgen. Noch immer knistert es vor statischer Energie.",
+      "binding": "bop"
     },
     {
       "id": "dun-shattered-spire-turm-schleier",
@@ -583,7 +599,8 @@
           ]
         }
       },
-      "flavorText": "Wer es trägt, spürt ein leichtes Summen — wie die Erinnerung an Höhe."
+      "flavorText": "Wer es trägt, spürt ein leichtes Summen — wie die Erinnerung an Höhe.",
+      "binding": "bop"
     },
     {
       "id": "dun-shattered-spire-turm-gewand",
@@ -646,7 +663,8 @@
           ]
         }
       },
-      "flavorText": "Blitznarben zieren die Oberfläche. Nicht dekorativ — funktional."
+      "flavorText": "Blitznarben zieren die Oberfläche. Nicht dekorativ — funktional.",
+      "binding": "bop"
     },
     {
       "id": "dun-shattered-spire-turm-sandalen",
@@ -709,7 +727,8 @@
           ]
         }
       },
-      "flavorText": "Aus den Trümmern geborgen. Noch immer knistert es vor statischer Energie."
+      "flavorText": "Aus den Trümmern geborgen. Noch immer knistert es vor statischer Energie.",
+      "binding": "bop"
     },
     {
       "id": "dun-shattered-spire-turm-siegelring",
@@ -772,7 +791,8 @@
           ]
         }
       },
-      "flavorText": "Wer es trägt, spürt ein leichtes Summen — wie die Erinnerung an Höhe."
+      "flavorText": "Wer es trägt, spürt ein leichtes Summen — wie die Erinnerung an Höhe.",
+      "binding": "bop"
     },
     {
       "id": "dun-shattered-spire-turm-amulett",
@@ -790,7 +810,8 @@
       "fixedStats": {
         "charisma": 5
       },
-      "flavorText": "Blitznarben zieren die Oberfläche. Nicht dekorativ — funktional."
+      "flavorText": "Blitznarben zieren die Oberfläche. Nicht dekorativ — funktional.",
+      "binding": "bop"
     },
     {
       "id": "dun-shattered-spire-turm-klinge-5go",
@@ -809,7 +830,8 @@
         "kraft": 4,
         "ausdauer": 3
       },
-      "flavorText": "Aus den Trümmern geborgen. Noch immer knistert es vor statischer Energie."
+      "flavorText": "Aus den Trümmern geborgen. Noch immer knistert es vor statischer Energie.",
+      "binding": "bop"
     },
     {
       "id": "dun-shattered-spire-turm-bollwerk",
@@ -872,7 +894,8 @@
           ]
         }
       },
-      "flavorText": "Wer es trägt, spürt ein leichtes Summen — wie die Erinnerung an Höhe."
+      "flavorText": "Wer es trägt, spürt ein leichtes Summen — wie die Erinnerung an Höhe.",
+      "binding": "bop"
     },
     {
       "id": "dun-shattered-spire-turm-kappe",
@@ -891,7 +914,8 @@
         "weisheit": 5,
         "ausdauer": 5
       },
-      "flavorText": "Blitznarben zieren die Oberfläche. Nicht dekorativ — funktional."
+      "flavorText": "Blitznarben zieren die Oberfläche. Nicht dekorativ — funktional.",
+      "binding": "bop"
     },
     {
       "id": "dun-shattered-spire-turm-panzer",
@@ -909,7 +933,8 @@
       "fixedStats": {
         "ausdauer": 5
       },
-      "flavorText": "Aus den Trümmern geborgen. Noch immer knistert es vor statischer Energie."
+      "flavorText": "Aus den Trümmern geborgen. Noch immer knistert es vor statischer Energie.",
+      "binding": "bop"
     },
     {
       "id": "dun-shattered-spire-turm-stiefel",
@@ -972,7 +997,8 @@
           ]
         }
       },
-      "flavorText": "Wer es trägt, spürt ein leichtes Summen — wie die Erinnerung an Höhe."
+      "flavorText": "Wer es trägt, spürt ein leichtes Summen — wie die Erinnerung an Höhe.",
+      "binding": "bop"
     },
     {
       "id": "dun-shattered-spire-turm-band",
@@ -991,7 +1017,8 @@
         "glueck": 4,
         "ausdauer": 5
       },
-      "flavorText": "Blitznarben zieren die Oberfläche. Nicht dekorativ — funktional."
+      "flavorText": "Blitznarben zieren die Oberfläche. Nicht dekorativ — funktional.",
+      "binding": "bop"
     },
     {
       "id": "dun-shattered-spire-turm-medaillon",
@@ -1054,7 +1081,8 @@
           ]
         }
       },
-      "flavorText": "Aus den Trümmern geborgen. Noch immer knistert es vor statischer Energie."
+      "flavorText": "Aus den Trümmern geborgen. Noch immer knistert es vor statischer Energie.",
+      "binding": "bop"
     },
     {
       "id": "dun-shattered-spire-turm-klinge-chk",
@@ -1117,7 +1145,8 @@
           ]
         }
       },
-      "flavorText": "Wer es trägt, spürt ein leichtes Summen — wie die Erinnerung an Höhe."
+      "flavorText": "Wer es trägt, spürt ein leichtes Summen — wie die Erinnerung an Höhe.",
+      "binding": "bop"
     },
     {
       "id": "dun-shattered-spire-turm-fokus",
@@ -1180,7 +1209,8 @@
           ]
         }
       },
-      "flavorText": "Blitznarben zieren die Oberfläche. Nicht dekorativ — funktional."
+      "flavorText": "Blitznarben zieren die Oberfläche. Nicht dekorativ — funktional.",
+      "binding": "bop"
     },
     {
       "id": "dun-shattered-spire-turm-helm",
@@ -1243,7 +1273,8 @@
           ]
         }
       },
-      "flavorText": "Aus den Trümmern geborgen. Noch immer knistert es vor statischer Energie."
+      "flavorText": "Aus den Trümmern geborgen. Noch immer knistert es vor statischer Energie.",
+      "binding": "bop"
     },
     {
       "id": "dun-shattered-spire-turm-ruestung",
@@ -1306,7 +1337,8 @@
           ]
         }
       },
-      "flavorText": "Wer es trägt, spürt ein leichtes Summen — wie die Erinnerung an Höhe."
+      "flavorText": "Wer es trägt, spürt ein leichtes Summen — wie die Erinnerung an Höhe.",
+      "binding": "bop"
     },
     {
       "id": "dun-shattered-spire-turm-schuhe",
@@ -1369,7 +1401,8 @@
           ]
         }
       },
-      "flavorText": "Blitznarben zieren die Oberfläche. Nicht dekorativ — funktional."
+      "flavorText": "Blitznarben zieren die Oberfläche. Nicht dekorativ — funktional.",
+      "binding": "bop"
     },
     {
       "id": "dun-shattered-spire-turm-reif-1hy",
@@ -1432,7 +1465,8 @@
           ]
         }
       },
-      "flavorText": "Aus den Trümmern geborgen. Noch immer knistert es vor statischer Energie."
+      "flavorText": "Aus den Trümmern geborgen. Noch immer knistert es vor statischer Energie.",
+      "binding": "bop"
     },
     {
       "id": "dun-shattered-spire-turm-talisman",
@@ -1495,7 +1529,8 @@
           ]
         }
       },
-      "flavorText": "Wer es trägt, spürt ein leichtes Summen — wie die Erinnerung an Höhe."
+      "flavorText": "Wer es trägt, spürt ein leichtes Summen — wie die Erinnerung an Höhe.",
+      "binding": "bop"
     },
     {
       "id": "dun-shattered-spire-turm-klinge-a4y",
@@ -1558,7 +1593,8 @@
           ]
         }
       },
-      "flavorText": "Blitznarben zieren die Oberfläche. Nicht dekorativ — funktional."
+      "flavorText": "Blitznarben zieren die Oberfläche. Nicht dekorativ — funktional.",
+      "binding": "bop"
     },
     {
       "id": "dun-shattered-spire-turm-buckler-jof",
@@ -1621,7 +1657,8 @@
           ]
         }
       },
-      "flavorText": "Aus den Trümmern geborgen. Noch immer knistert es vor statischer Energie."
+      "flavorText": "Aus den Trümmern geborgen. Noch immer knistert es vor statischer Energie.",
+      "binding": "bop"
     },
     {
       "id": "dun-shattered-spire-turm-krone",
@@ -1684,7 +1721,8 @@
           ]
         }
       },
-      "flavorText": "Wer es trägt, spürt ein leichtes Summen — wie die Erinnerung an Höhe."
+      "flavorText": "Wer es trägt, spürt ein leichtes Summen — wie die Erinnerung an Höhe.",
+      "binding": "bop"
     },
     {
       "id": "dun-shattered-spire-turm-wams",
@@ -1753,7 +1791,8 @@
         "max": 5,
         "label": "Tödliche Präzision: +{value}% Crit Chance"
       },
-      "flavorText": "Blitznarben zieren die Oberfläche. Nicht dekorativ — funktional."
+      "flavorText": "Blitznarben zieren die Oberfläche. Nicht dekorativ — funktional.",
+      "binding": "bop"
     },
     {
       "id": "dun-shattered-spire-turm-marschtritt-28i",
@@ -1822,7 +1861,8 @@
         "max": 5,
         "label": "Tiefenschutz: -{value}% Forge Decay"
       },
-      "flavorText": "Aus den Trümmern geborgen. Noch immer knistert es vor statischer Energie."
+      "flavorText": "Aus den Trümmern geborgen. Noch immer knistert es vor statischer Energie.",
+      "binding": "bop"
     }
   ]
 }

@@ -16,7 +16,8 @@
         "glueck": 2,
         "charisma": 1
       },
-      "flavorText": "Ein Ring ist ein Versprechen. Dieser hier verspricht bessere Stats."
+      "flavorText": "Ein Ring ist ein Versprechen. Dieser hier verspricht bessere Stats.",
+      "binding": "boe"
     },
     {
       "id": "craft-juwelier-schlichter-kupferring",
@@ -34,7 +35,8 @@
         "glueck": 1,
         "charisma": 1
       },
-      "flavorText": "Jeder Stein hat eine Geschichte. Dieser hier schweigt beharrlich."
+      "flavorText": "Jeder Stein hat eine Geschichte. Dieser hier schweigt beharrlich.",
+      "binding": "boe"
     },
     {
       "id": "craft-juwelier-grober-siegelring",
@@ -51,7 +53,8 @@
       "fixedStats": {
         "glueck": 3
       },
-      "flavorText": "Schmuck mit Funktion. Eleganz optional, aber empfohlen."
+      "flavorText": "Schmuck mit Funktion. Eleganz optional, aber empfohlen.",
+      "binding": "boe"
     },
     {
       "id": "craft-juwelier-eisenband",
@@ -69,7 +72,8 @@
         "glueck": 3,
         "charisma": 1
       },
-      "flavorText": "Die Fassung hält den Stein. Der Stein hält die Kraft. Du hältst den Ring. Alle zufrieden."
+      "flavorText": "Die Fassung hält den Stein. Der Stein hält die Kraft. Du hältst den Ring. Alle zufrieden.",
+      "binding": "boe"
     },
     {
       "id": "craft-juwelier-einfacher-steinring",
@@ -86,7 +90,8 @@
       "fixedStats": {
         "glueck": 1
       },
-      "flavorText": "Mondschein gefangen in Metall. Klingt poetisch, ist aber hauptsächlich nützlich."
+      "flavorText": "Mondschein gefangen in Metall. Klingt poetisch, ist aber hauptsächlich nützlich.",
+      "binding": "boe"
     },
     {
       "id": "craft-juwelier-ring-des-lehrlings",
@@ -104,7 +109,8 @@
         "glueck": 2,
         "charisma": 1
       },
-      "flavorText": "Seelenstein. Er kennt deinen Namen. Ob das gut ist, hängt von deinem Namen ab."
+      "flavorText": "Seelenstein. Er kennt deinen Namen. Ob das gut ist, hängt von deinem Namen ab.",
+      "binding": "boe"
     },
     {
       "id": "craft-juwelier-kupferreif",
@@ -121,7 +127,8 @@
       "fixedStats": {
         "glueck": 3
       },
-      "flavorText": "Ein Ring ist ein Versprechen. Dieser hier verspricht bessere Stats."
+      "flavorText": "Ein Ring ist ein Versprechen. Dieser hier verspricht bessere Stats.",
+      "binding": "boe"
     },
     {
       "id": "craft-juwelier-eisenring-des-wanderers",
@@ -139,7 +146,8 @@
         "glueck": 1,
         "charisma": 1
       },
-      "flavorText": "Jeder Stein hat eine Geschichte. Dieser hier schweigt beharrlich."
+      "flavorText": "Jeder Stein hat eine Geschichte. Dieser hier schweigt beharrlich.",
+      "binding": "boe"
     },
     {
       "id": "craft-juwelier-kupferkette",
@@ -156,7 +164,8 @@
       "fixedStats": {
         "weisheit": 2
       },
-      "flavorText": "Schmuck mit Funktion. Eleganz optional, aber empfohlen."
+      "flavorText": "Schmuck mit Funktion. Eleganz optional, aber empfohlen.",
+      "binding": "boe"
     },
     {
       "id": "craft-juwelier-eisernes-medaillon",
@@ -174,7 +183,8 @@
         "weisheit": 1,
         "charisma": 1
       },
-      "flavorText": "Die Fassung hält den Stein. Der Stein hält die Kraft. Du hältst den Ring. Alle zufrieden."
+      "flavorText": "Die Fassung hält den Stein. Der Stein hält die Kraft. Du hältst den Ring. Alle zufrieden.",
+      "binding": "boe"
     },
     {
       "id": "craft-juwelier-schlichter-anhaenger",
@@ -231,7 +241,8 @@
           ]
         }
       },
-      "flavorText": "Mondschein gefangen in Metall. Klingt poetisch, ist aber hauptsächlich nützlich."
+      "flavorText": "Mondschein gefangen in Metall. Klingt poetisch, ist aber hauptsächlich nützlich.",
+      "binding": "boe"
     },
     {
       "id": "craft-juwelier-steinamulett",
@@ -288,7 +299,8 @@
           ]
         }
       },
-      "flavorText": "Seelenstein. Er kennt deinen Namen. Ob das gut ist, hängt von deinem Namen ab."
+      "flavorText": "Seelenstein. Er kennt deinen Namen. Ob das gut ist, hängt von deinem Namen ab.",
+      "binding": "boe"
     },
     {
       "id": "craft-juwelier-einfache-kette",
@@ -345,7 +357,8 @@
           ]
         }
       },
-      "flavorText": "Ein Ring ist ein Versprechen. Dieser hier verspricht bessere Stats."
+      "flavorText": "Ein Ring ist ein Versprechen. Dieser hier verspricht bessere Stats.",
+      "binding": "boe"
     },
     {
       "id": "craft-juwelier-kristallring",
@@ -362,7 +375,8 @@
       "fixedStats": {
         "glueck": 2
       },
-      "flavorText": "Ein Ring ist ein Versprechen. Dieser hier verspricht bessere Stats."
+      "flavorText": "Ein Ring ist ein Versprechen. Dieser hier verspricht bessere Stats.",
+      "binding": "boe"
     },
     {
       "id": "craft-juwelier-staehlerner-siegelring",
@@ -380,7 +394,8 @@
         "glueck": 3,
         "charisma": 2
       },
-      "flavorText": "Jeder Stein hat eine Geschichte. Dieser hier schweigt beharrlich."
+      "flavorText": "Jeder Stein hat eine Geschichte. Dieser hier schweigt beharrlich.",
+      "binding": "boe"
     },
     {
       "id": "craft-juwelier-kristallband",
@@ -398,7 +413,8 @@
         "glueck": 3,
         "charisma": 2
       },
-      "flavorText": "Schmuck mit Funktion. Eleganz optional, aber empfohlen."
+      "flavorText": "Schmuck mit Funktion. Eleganz optional, aber empfohlen.",
+      "binding": "boe"
     },
     {
       "id": "craft-juwelier-ring-des-forschers",
@@ -415,7 +431,8 @@
       "fixedStats": {
         "glueck": 4
       },
-      "flavorText": "Die Fassung hält den Stein. Der Stein hält die Kraft. Du hältst den Ring. Alle zufrieden."
+      "flavorText": "Die Fassung hält den Stein. Der Stein hält die Kraft. Du hältst den Ring. Alle zufrieden.",
+      "binding": "boe"
     },
     {
       "id": "craft-juwelier-staehlerner-reif",
@@ -433,7 +450,8 @@
         "glueck": 3,
         "charisma": 2
       },
-      "flavorText": "Mondschein gefangen in Metall. Klingt poetisch, ist aber hauptsächlich nützlich."
+      "flavorText": "Mondschein gefangen in Metall. Klingt poetisch, ist aber hauptsächlich nützlich.",
+      "binding": "boe"
     },
     {
       "id": "craft-juwelier-kristall-siegelring",
@@ -450,7 +468,8 @@
       "fixedStats": {
         "glueck": 3
       },
-      "flavorText": "Seelenstein. Er kennt deinen Namen. Ob das gut ist, hängt von deinem Namen ab."
+      "flavorText": "Seelenstein. Er kennt deinen Namen. Ob das gut ist, hängt von deinem Namen ab.",
+      "binding": "boe"
     },
     {
       "id": "craft-juwelier-mondsteinring",
@@ -467,7 +486,8 @@
       "fixedStats": {
         "glueck": 3
       },
-      "flavorText": "Ein Ring ist ein Versprechen. Dieser hier verspricht bessere Stats."
+      "flavorText": "Ein Ring ist ein Versprechen. Dieser hier verspricht bessere Stats.",
+      "binding": "boe"
     },
     {
       "id": "craft-juwelier-ring-der-erkenntnis",
@@ -484,7 +504,8 @@
       "fixedStats": {
         "glueck": 2
       },
-      "flavorText": "Jeder Stein hat eine Geschichte. Dieser hier schweigt beharrlich."
+      "flavorText": "Jeder Stein hat eine Geschichte. Dieser hier schweigt beharrlich.",
+      "binding": "boe"
     },
     {
       "id": "craft-juwelier-staehlerner-gelehrtenring",
@@ -502,7 +523,8 @@
         "glueck": 4,
         "charisma": 2
       },
-      "flavorText": "Schmuck mit Funktion. Eleganz optional, aber empfohlen."
+      "flavorText": "Schmuck mit Funktion. Eleganz optional, aber empfohlen.",
+      "binding": "boe"
     },
     {
       "id": "craft-juwelier-kristallreif-des-wanderers",
@@ -520,7 +542,8 @@
         "glueck": 3,
         "charisma": 2
       },
-      "flavorText": "Die Fassung hält den Stein. Der Stein hält die Kraft. Du hältst den Ring. Alle zufrieden."
+      "flavorText": "Die Fassung hält den Stein. Der Stein hält die Kraft. Du hältst den Ring. Alle zufrieden.",
+      "binding": "boe"
     },
     {
       "id": "craft-juwelier-kristallkette",
@@ -537,7 +560,8 @@
       "fixedStats": {
         "weisheit": 4
       },
-      "flavorText": "Mondschein gefangen in Metall. Klingt poetisch, ist aber hauptsächlich nützlich."
+      "flavorText": "Mondschein gefangen in Metall. Klingt poetisch, ist aber hauptsächlich nützlich.",
+      "binding": "boe"
     },
     {
       "id": "craft-juwelier-staehlernes-medaillon",
@@ -594,7 +618,8 @@
           ]
         }
       },
-      "flavorText": "Seelenstein. Er kennt deinen Namen. Ob das gut ist, hängt von deinem Namen ab."
+      "flavorText": "Seelenstein. Er kennt deinen Namen. Ob das gut ist, hängt von deinem Namen ab.",
+      "binding": "boe"
     },
     {
       "id": "craft-juwelier-mondstein-anhaenger",
@@ -651,7 +676,8 @@
           ]
         }
       },
-      "flavorText": "Ein Ring ist ein Versprechen. Dieser hier verspricht bessere Stats."
+      "flavorText": "Ein Ring ist ein Versprechen. Dieser hier verspricht bessere Stats.",
+      "binding": "boe"
     },
     {
       "id": "craft-juwelier-kristall-amulett",
@@ -708,7 +734,8 @@
           ]
         }
       },
-      "flavorText": "Jeder Stein hat eine Geschichte. Dieser hier schweigt beharrlich."
+      "flavorText": "Jeder Stein hat eine Geschichte. Dieser hier schweigt beharrlich.",
+      "binding": "boe"
     },
     {
       "id": "craft-juwelier-staehlerne-kette",
@@ -765,7 +792,8 @@
           ]
         }
       },
-      "flavorText": "Schmuck mit Funktion. Eleganz optional, aber empfohlen."
+      "flavorText": "Schmuck mit Funktion. Eleganz optional, aber empfohlen.",
+      "binding": "boe"
     },
     {
       "id": "craft-juwelier-kristall-medaillon",
@@ -822,7 +850,8 @@
           ]
         }
       },
-      "flavorText": "Die Fassung hält den Stein. Der Stein hält die Kraft. Du hältst den Ring. Alle zufrieden."
+      "flavorText": "Die Fassung hält den Stein. Der Stein hält die Kraft. Du hältst den Ring. Alle zufrieden.",
+      "binding": "boe"
     },
     {
       "id": "craft-juwelier-saphirring",
@@ -840,7 +869,8 @@
         "glueck": 4,
         "charisma": 3
       },
-      "flavorText": "Ein Ring ist ein Versprechen. Dieser hier verspricht bessere Stats."
+      "flavorText": "Ein Ring ist ein Versprechen. Dieser hier verspricht bessere Stats.",
+      "binding": "boe"
     },
     {
       "id": "craft-juwelier-drachenauge-ring",
@@ -858,7 +888,8 @@
         "glueck": 4,
         "charisma": 3
       },
-      "flavorText": "Jeder Stein hat eine Geschichte. Dieser hier schweigt beharrlich."
+      "flavorText": "Jeder Stein hat eine Geschichte. Dieser hier schweigt beharrlich.",
+      "binding": "boe"
     },
     {
       "id": "craft-juwelier-ring-des-meisters",
@@ -876,7 +907,8 @@
         "glueck": 5,
         "charisma": 3
       },
-      "flavorText": "Schmuck mit Funktion. Eleganz optional, aber empfohlen."
+      "flavorText": "Schmuck mit Funktion. Eleganz optional, aber empfohlen.",
+      "binding": "boe"
     },
     {
       "id": "craft-juwelier-smaragdband",
@@ -893,7 +925,8 @@
       "fixedStats": {
         "glueck": 4
       },
-      "flavorText": "Die Fassung hält den Stein. Der Stein hält die Kraft. Du hältst den Ring. Alle zufrieden."
+      "flavorText": "Die Fassung hält den Stein. Der Stein hält die Kraft. Du hältst den Ring. Alle zufrieden.",
+      "binding": "boe"
     },
     {
       "id": "craft-juwelier-mondschein-siegelring",
@@ -910,7 +943,8 @@
       "fixedStats": {
         "glueck": 3
       },
-      "flavorText": "Mondschein gefangen in Metall. Klingt poetisch, ist aber hauptsächlich nützlich."
+      "flavorText": "Mondschein gefangen in Metall. Klingt poetisch, ist aber hauptsächlich nützlich.",
+      "binding": "boe"
     },
     {
       "id": "craft-juwelier-ring-der-sterne",
@@ -928,7 +962,8 @@
         "glueck": 4,
         "charisma": 3
       },
-      "flavorText": "Seelenstein. Er kennt deinen Namen. Ob das gut ist, hängt von deinem Namen ab."
+      "flavorText": "Seelenstein. Er kennt deinen Namen. Ob das gut ist, hängt von deinem Namen ab.",
+      "binding": "boe"
     },
     {
       "id": "craft-juwelier-drachenschuppen-reif",
@@ -946,7 +981,8 @@
         "glueck": 4,
         "charisma": 3
       },
-      "flavorText": "Ein Ring ist ein Versprechen. Dieser hier verspricht bessere Stats."
+      "flavorText": "Ein Ring ist ein Versprechen. Dieser hier verspricht bessere Stats.",
+      "binding": "boe"
     },
     {
       "id": "craft-juwelier-saphir-gelehrtenring",
@@ -963,7 +999,8 @@
       "fixedStats": {
         "glueck": 5
       },
-      "flavorText": "Jeder Stein hat eine Geschichte. Dieser hier schweigt beharrlich."
+      "flavorText": "Jeder Stein hat eine Geschichte. Dieser hier schweigt beharrlich.",
+      "binding": "boe"
     },
     {
       "id": "craft-juwelier-ring-des-weisen",
@@ -980,7 +1017,8 @@
       "fixedStats": {
         "glueck": 5
       },
-      "flavorText": "Schmuck mit Funktion. Eleganz optional, aber empfohlen."
+      "flavorText": "Schmuck mit Funktion. Eleganz optional, aber empfohlen.",
+      "binding": "boe"
     },
     {
       "id": "craft-juwelier-smaragdreif",
@@ -998,7 +1036,8 @@
         "glueck": 4,
         "charisma": 3
       },
-      "flavorText": "Die Fassung hält den Stein. Der Stein hält die Kraft. Du hältst den Ring. Alle zufrieden."
+      "flavorText": "Die Fassung hält den Stein. Der Stein hält die Kraft. Du hältst den Ring. Alle zufrieden.",
+      "binding": "boe"
     },
     {
       "id": "craft-juwelier-saphir-kette",
@@ -1055,7 +1094,8 @@
           ]
         }
       },
-      "flavorText": "Mondschein gefangen in Metall. Klingt poetisch, ist aber hauptsächlich nützlich."
+      "flavorText": "Mondschein gefangen in Metall. Klingt poetisch, ist aber hauptsächlich nützlich.",
+      "binding": "boe"
     },
     {
       "id": "craft-juwelier-drachenzahn-medaillon",
@@ -1112,7 +1152,8 @@
           ]
         }
       },
-      "flavorText": "Seelenstein. Er kennt deinen Namen. Ob das gut ist, hängt von deinem Namen ab."
+      "flavorText": "Seelenstein. Er kennt deinen Namen. Ob das gut ist, hängt von deinem Namen ab.",
+      "binding": "boe"
     },
     {
       "id": "craft-juwelier-smaragd-anhaenger",
@@ -1169,7 +1210,8 @@
           ]
         }
       },
-      "flavorText": "Ein Ring ist ein Versprechen. Dieser hier verspricht bessere Stats."
+      "flavorText": "Ein Ring ist ein Versprechen. Dieser hier verspricht bessere Stats.",
+      "binding": "boe"
     },
     {
       "id": "craft-juwelier-mondschein-amulett",
@@ -1226,7 +1268,8 @@
           ]
         }
       },
-      "flavorText": "Jeder Stein hat eine Geschichte. Dieser hier schweigt beharrlich."
+      "flavorText": "Jeder Stein hat eine Geschichte. Dieser hier schweigt beharrlich.",
+      "binding": "boe"
     },
     {
       "id": "craft-juwelier-drachenschuppen-kette",
@@ -1283,7 +1326,8 @@
           ]
         }
       },
-      "flavorText": "Schmuck mit Funktion. Eleganz optional, aber empfohlen."
+      "flavorText": "Schmuck mit Funktion. Eleganz optional, aber empfohlen.",
+      "binding": "boe"
     },
     {
       "id": "craft-juwelier-saphir-medaillon",
@@ -1340,7 +1384,8 @@
           ]
         }
       },
-      "flavorText": "Die Fassung hält den Stein. Der Stein hält die Kraft. Du hältst den Ring. Alle zufrieden."
+      "flavorText": "Die Fassung hält den Stein. Der Stein hält die Kraft. Du hältst den Ring. Alle zufrieden.",
+      "binding": "boe"
     },
     {
       "id": "craft-juwelier-smaragd-amulett",
@@ -1397,7 +1442,8 @@
           ]
         }
       },
-      "flavorText": "Mondschein gefangen in Metall. Klingt poetisch, ist aber hauptsächlich nützlich."
+      "flavorText": "Mondschein gefangen in Metall. Klingt poetisch, ist aber hauptsächlich nützlich.",
+      "binding": "boe"
     },
     {
       "id": "craft-juwelier-aetherring",
@@ -1415,7 +1461,8 @@
         "glueck": 7,
         "charisma": 4
       },
-      "flavorText": "Ein Ring ist ein Versprechen. Dieser hier verspricht bessere Stats."
+      "flavorText": "Ein Ring ist ein Versprechen. Dieser hier verspricht bessere Stats.",
+      "binding": "boe"
     },
     {
       "id": "craft-juwelier-ring-der-leere",
@@ -1433,7 +1480,8 @@
         "glueck": 7,
         "charisma": 4
       },
-      "flavorText": "Jeder Stein hat eine Geschichte. Dieser hier schweigt beharrlich."
+      "flavorText": "Jeder Stein hat eine Geschichte. Dieser hier schweigt beharrlich.",
+      "binding": "boe"
     },
     {
       "id": "craft-juwelier-seelen-siegelring",
@@ -1451,7 +1499,8 @@
         "glueck": 4,
         "charisma": 4
       },
-      "flavorText": "Schmuck mit Funktion. Eleganz optional, aber empfohlen."
+      "flavorText": "Schmuck mit Funktion. Eleganz optional, aber empfohlen.",
+      "binding": "boe"
     },
     {
       "id": "craft-juwelier-runenring",
@@ -1469,7 +1518,8 @@
         "glueck": 7,
         "charisma": 4
       },
-      "flavorText": "Die Fassung hält den Stein. Der Stein hält die Kraft. Du hältst den Ring. Alle zufrieden."
+      "flavorText": "Die Fassung hält den Stein. Der Stein hält die Kraft. Du hältst den Ring. Alle zufrieden.",
+      "binding": "boe"
     },
     {
       "id": "craft-juwelier-sternenring",
@@ -1486,7 +1536,8 @@
       "fixedStats": {
         "glueck": 6
       },
-      "flavorText": "Mondschein gefangen in Metall. Klingt poetisch, ist aber hauptsächlich nützlich."
+      "flavorText": "Mondschein gefangen in Metall. Klingt poetisch, ist aber hauptsächlich nützlich.",
+      "binding": "boe"
     },
     {
       "id": "craft-juwelier-aetherkern-band",
@@ -1503,7 +1554,8 @@
       "fixedStats": {
         "glueck": 7
       },
-      "flavorText": "Seelenstein. Er kennt deinen Namen. Ob das gut ist, hängt von deinem Namen ab."
+      "flavorText": "Seelenstein. Er kennt deinen Namen. Ob das gut ist, hängt von deinem Namen ab.",
+      "binding": "boe"
     },
     {
       "id": "craft-juwelier-seelenreif",
@@ -1521,7 +1573,8 @@
         "glueck": 4,
         "charisma": 4
       },
-      "flavorText": "Ein Ring ist ein Versprechen. Dieser hier verspricht bessere Stats."
+      "flavorText": "Ein Ring ist ein Versprechen. Dieser hier verspricht bessere Stats.",
+      "binding": "boe"
     },
     {
       "id": "craft-juwelier-ring-des-schicksals",
@@ -1539,7 +1592,8 @@
         "glueck": 4,
         "charisma": 4
       },
-      "flavorText": "Jeder Stein hat eine Geschichte. Dieser hier schweigt beharrlich."
+      "flavorText": "Jeder Stein hat eine Geschichte. Dieser hier schweigt beharrlich.",
+      "binding": "boe"
     },
     {
       "id": "craft-juwelier-arkaner-siegelring",
@@ -1556,7 +1610,8 @@
       "fixedStats": {
         "glueck": 7
       },
-      "flavorText": "Schmuck mit Funktion. Eleganz optional, aber empfohlen."
+      "flavorText": "Schmuck mit Funktion. Eleganz optional, aber empfohlen.",
+      "binding": "boe"
     },
     {
       "id": "craft-juwelier-seelen-gelehrtenring",
@@ -1573,7 +1628,8 @@
       "fixedStats": {
         "glueck": 6
       },
-      "flavorText": "Die Fassung hält den Stein. Der Stein hält die Kraft. Du hältst den Ring. Alle zufrieden."
+      "flavorText": "Die Fassung hält den Stein. Der Stein hält die Kraft. Du hältst den Ring. Alle zufrieden.",
+      "binding": "boe"
     },
     {
       "id": "craft-juwelier-ring-der-ewigkeit",
@@ -1630,7 +1686,8 @@
           ]
         }
       },
-      "flavorText": "Mondschein gefangen in Metall. Klingt poetisch, ist aber hauptsächlich nützlich."
+      "flavorText": "Mondschein gefangen in Metall. Klingt poetisch, ist aber hauptsächlich nützlich.",
+      "binding": "boe"
     },
     {
       "id": "craft-juwelier-sternenband-des-webers",
@@ -1687,7 +1744,8 @@
           ]
         }
       },
-      "flavorText": "Seelenstein. Er kennt deinen Namen. Ob das gut ist, hängt von deinem Namen ab."
+      "flavorText": "Seelenstein. Er kennt deinen Namen. Ob das gut ist, hängt von deinem Namen ab.",
+      "binding": "boe"
     },
     {
       "id": "craft-juwelier-aether-kette",
@@ -1744,7 +1802,8 @@
           ]
         }
       },
-      "flavorText": "Ein Ring ist ein Versprechen. Dieser hier verspricht bessere Stats."
+      "flavorText": "Ein Ring ist ein Versprechen. Dieser hier verspricht bessere Stats.",
+      "binding": "boe"
     },
     {
       "id": "craft-juwelier-seelen-medaillon",
@@ -1801,7 +1860,8 @@
           ]
         }
       },
-      "flavorText": "Jeder Stein hat eine Geschichte. Dieser hier schweigt beharrlich."
+      "flavorText": "Jeder Stein hat eine Geschichte. Dieser hier schweigt beharrlich.",
+      "binding": "boe"
     },
     {
       "id": "craft-juwelier-sternen-anhaenger",
@@ -1858,7 +1918,8 @@
           ]
         }
       },
-      "flavorText": "Schmuck mit Funktion. Eleganz optional, aber empfohlen."
+      "flavorText": "Schmuck mit Funktion. Eleganz optional, aber empfohlen.",
+      "binding": "boe"
     },
     {
       "id": "craft-juwelier-runen-amulett",
@@ -1915,7 +1976,8 @@
           ]
         }
       },
-      "flavorText": "Die Fassung hält den Stein. Der Stein hält die Kraft. Du hältst den Ring. Alle zufrieden."
+      "flavorText": "Die Fassung hält den Stein. Der Stein hält die Kraft. Du hältst den Ring. Alle zufrieden.",
+      "binding": "boe"
     },
     {
       "id": "craft-juwelier-aetherkern-kette",
@@ -1972,7 +2034,8 @@
           ]
         }
       },
-      "flavorText": "Mondschein gefangen in Metall. Klingt poetisch, ist aber hauptsächlich nützlich."
+      "flavorText": "Mondschein gefangen in Metall. Klingt poetisch, ist aber hauptsächlich nützlich.",
+      "binding": "boe"
     },
     {
       "id": "craft-juwelier-seelen-amulett",
@@ -2029,7 +2092,8 @@
           ]
         }
       },
-      "flavorText": "Seelenstein. Er kennt deinen Namen. Ob das gut ist, hängt von deinem Namen ab."
+      "flavorText": "Seelenstein. Er kennt deinen Namen. Ob das gut ist, hängt von deinem Namen ab.",
+      "binding": "boe"
     },
     {
       "id": "craft-juwelier-sternen-medaillon",
@@ -2092,7 +2156,8 @@
         "max": 6,
         "label": "Juwelenauge: +{value}% Drop-Chance"
       },
-      "flavorText": "Ein Ring ist ein Versprechen. Dieser hier verspricht bessere Stats."
+      "flavorText": "Ein Ring ist ein Versprechen. Dieser hier verspricht bessere Stats.",
+      "binding": "boe"
     },
     {
       "id": "craft-juwelier-arkaner-anhaenger",
@@ -2155,7 +2220,8 @@
         "max": 6,
         "label": "Goldener Glanz: +{value}% Gold"
       },
-      "flavorText": "Jeder Stein hat eine Geschichte. Dieser hier schweigt beharrlich."
+      "flavorText": "Jeder Stein hat eine Geschichte. Dieser hier schweigt beharrlich.",
+      "binding": "boe"
     },
     {
       "id": "craft-juwelier-seelensiegel-kette",
@@ -2218,7 +2284,8 @@
         "max": 6,
         "label": "Funkelnder Schnitt: +{value}% Crit Chance"
       },
-      "flavorText": "Schmuck mit Funktion. Eleganz optional, aber empfohlen."
+      "flavorText": "Schmuck mit Funktion. Eleganz optional, aber empfohlen.",
+      "binding": "boe"
     }
   ]
 }

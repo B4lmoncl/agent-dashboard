@@ -483,6 +483,15 @@ function InventoryTooltip({ item, mousePosRef, equippedItem, playerLevel }: { it
           </div>
         </div>
 
+        {/* Binding badge */}
+        {item.bound ? (
+          <p className="text-xs font-semibold" style={{ color: "#ef4444" }}>Soulbound</p>
+        ) : item.binding === "boe" ? (
+          <p className="text-xs font-semibold" style={{ color: "#22c55e" }}>Bind on Equip</p>
+        ) : item.binding === "bop" ? (
+          <p className="text-xs font-semibold" style={{ color: "#f97316" }}>Bind on Pickup</p>
+        ) : null}
+
         {/* Flavor text */}
         {item.flavorText && (
           <p className="text-xs italic leading-relaxed" style={{ color: "rgba(255,255,255,0.35)" }}>&ldquo;{item.flavorText}&rdquo;</p>
@@ -1304,7 +1313,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                 const equippedItemId = gi ? (gi.instanceId || gi.templateId) : eqRaw;
                 // For instance objects, build item directly from equipment data
                 const item = gi
-                  ? { id: gi.instanceId || gi.templateId, name: gi.name, slot: gi.slot, rarity: gi.rarity || 'common', stats: gi.stats || {}, icon: gi.icon || undefined, tier: gi.tier || 0, minLevel: gi.reqLevel || 0, desc: gi.desc, legendaryEffect: gi.legendaryEffect, affixes: gi.affixRolls }
+                  ? { id: gi.instanceId || gi.templateId, name: gi.name, slot: gi.slot, rarity: gi.rarity || 'common', stats: gi.stats || {}, icon: gi.icon || undefined, tier: gi.tier || 0, minLevel: gi.reqLevel || 0, desc: gi.desc, legendaryEffect: gi.legendaryEffect, affixes: gi.affixRolls, binding: gi.binding, bound: gi.bound }
                   : equippedItemId ? charData?.inventory.find(i => i.id === equippedItemId) ?? null : null;
                 return (
                   <GearSlotRow

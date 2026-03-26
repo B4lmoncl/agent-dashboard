@@ -16,7 +16,8 @@
       "fixedStats": {
         "kraft": 5
       },
-      "flavorText": "Der Wyrm nährt sich von Aufschub. Dieses Stück erinnert daran, nicht zu zögern."
+      "flavorText": "Der Wyrm nährt sich von Aufschub. Dieses Stück erinnert daran, nicht zu zögern.",
+      "binding": "bop"
     },
     {
       "id": "world_boss-procrastination-wyrm-wyrm-buckler",
@@ -79,7 +80,8 @@
           ]
         }
       },
-      "flavorText": "Es riecht nach verpassten Deadlines und zweiten Chancen."
+      "flavorText": "Es riecht nach verpassten Deadlines und zweiten Chancen.",
+      "binding": "bop"
     },
     {
       "id": "world_boss-procrastination-wyrm-wyrm-haube",
@@ -98,7 +100,8 @@
         "weisheit": 7,
         "kraft": 4
       },
-      "flavorText": "Der Wyrm nährt sich von Aufschub. Dieses Stück erinnert daran, nicht zu zögern."
+      "flavorText": "Der Wyrm nährt sich von Aufschub. Dieses Stück erinnert daran, nicht zu zögern.",
+      "binding": "bop"
     },
     {
       "id": "world_boss-procrastination-wyrm-wyrm-mantel",
@@ -161,7 +164,8 @@
           ]
         }
       },
-      "flavorText": "Es riecht nach verpassten Deadlines und zweiten Chancen."
+      "flavorText": "Es riecht nach verpassten Deadlines und zweiten Chancen.",
+      "binding": "bop"
     },
     {
       "id": "world_boss-procrastination-wyrm-wyrm-stiefel",
@@ -224,7 +228,8 @@
           ]
         }
       },
-      "flavorText": "Der Wyrm nährt sich von Aufschub. Dieses Stück erinnert daran, nicht zu zögern."
+      "flavorText": "Der Wyrm nährt sich von Aufschub. Dieses Stück erinnert daran, nicht zu zögern.",
+      "binding": "bop"
     },
     {
       "id": "world_boss-procrastination-wyrm-wyrm-reif",
@@ -287,7 +292,8 @@
           ]
         }
       },
-      "flavorText": "Es riecht nach verpassten Deadlines und zweiten Chancen."
+      "flavorText": "Es riecht nach verpassten Deadlines und zweiten Chancen.",
+      "binding": "bop"
     },
     {
       "id": "world_boss-procrastination-wyrm-wyrm-medaillon",
@@ -350,7 +356,8 @@
           ]
         }
       },
-      "flavorText": "Der Wyrm nährt sich von Aufschub. Dieses Stück erinnert daran, nicht zu zögern."
+      "flavorText": "Der Wyrm nährt sich von Aufschub. Dieses Stück erinnert daran, nicht zu zögern.",
+      "binding": "bop"
     },
     {
       "id": "world_boss-procrastination-wyrm-wyrm-schwert",
@@ -419,7 +426,8 @@
         "max": 5,
         "label": "Bestien-Instinkt: +{value}% Drop-Chance"
       },
-      "flavorText": "Es riecht nach verpassten Deadlines und zweiten Chancen."
+      "flavorText": "Es riecht nach verpassten Deadlines und zweiten Chancen.",
+      "binding": "bop"
     },
     {
       "id": "world_boss-procrastination-wyrm-wyrm-tartsche",
@@ -488,7 +496,8 @@
         "max": 5,
         "label": "Bestien-Präzision: +{value}% Crit"
       },
-      "flavorText": "Der Wyrm nährt sich von Aufschub. Dieses Stück erinnert daran, nicht zu zögern."
+      "flavorText": "Der Wyrm nährt sich von Aufschub. Dieses Stück erinnert daran, nicht zu zögern.",
+      "binding": "bop"
     },
     {
       "id": "world_boss-burnout-colossus-koloss-klinge",
@@ -551,7 +560,8 @@
           ]
         }
       },
-      "flavorText": "Geschmiedet in der Glut des Kolosses. Ruhe ist keine Schwäche."
+      "flavorText": "Geschmiedet in der Glut des Kolosses. Ruhe ist keine Schwäche.",
+      "binding": "bop"
     },
     {
       "id": "world_boss-burnout-colossus-koloss-buckler",
@@ -570,7 +580,8 @@
         "ausdauer": 7,
         "kraft": 4
       },
-      "flavorText": "Es strahlt Wärme aus — nicht genug zum Verbrennen, genug zum Erinnern."
+      "flavorText": "Es strahlt Wärme aus — nicht genug zum Verbrennen, genug zum Erinnern.",
+      "binding": "bop"
     },
     {
       "id": "world_boss-burnout-colossus-koloss-haube",
@@ -633,7 +644,8 @@
           ]
         }
       },
-      "flavorText": "Geschmiedet in der Glut des Kolosses. Ruhe ist keine Schwäche."
+      "flavorText": "Geschmiedet in der Glut des Kolosses. Ruhe ist keine Schwäche.",
+      "binding": "bop"
     },
     {
       "id": "world_boss-burnout-colossus-koloss-mantel",
@@ -696,7 +708,8 @@
           ]
         }
       },
-      "flavorText": "Es strahlt Wärme aus — nicht genug zum Verbrennen, genug zum Erinnern."
+      "flavorText": "Es strahlt Wärme aus — nicht genug zum Verbrennen, genug zum Erinnern.",
+      "binding": "bop"
     },
     {
       "id": "world_boss-burnout-colossus-koloss-stiefel",
@@ -759,7 +772,8 @@
           ]
         }
       },
-      "flavorText": "Geschmiedet in der Glut des Kolosses. Ruhe ist keine Schwäche."
+      "flavorText": "Geschmiedet in der Glut des Kolosses. Ruhe ist keine Schwäche.",
+      "binding": "bop"
     },
     {
       "id": "world_boss-burnout-colossus-koloss-reif",
@@ -822,7 +836,8 @@
           ]
         }
       },
-      "flavorText": "Es strahlt Wärme aus — nicht genug zum Verbrennen, genug zum Erinnern."
+      "flavorText": "Es strahlt Wärme aus — nicht genug zum Verbrennen, genug zum Erinnern.",
+      "binding": "bop"
     },
     {
       "id": "world_boss-burnout-colossus-koloss-medaillon",
@@ -885,7 +900,8 @@
           ]
         }
       },
-      "flavorText": "Geschmiedet in der Glut des Kolosses. Ruhe ist keine Schwäche."
+      "flavorText": "Geschmiedet in der Glut des Kolosses. Ruhe ist keine Schwäche.",
+      "binding": "bop"
     },
     {
       "id": "world_boss-burnout-colossus-koloss-schwert",
@@ -954,7 +970,8 @@
         "max": 5,
         "label": "Bestien-Instinkt: +{value}% Drop-Chance"
       },
-      "flavorText": "Es strahlt Wärme aus — nicht genug zum Verbrennen, genug zum Erinnern."
+      "flavorText": "Es strahlt Wärme aus — nicht genug zum Verbrennen, genug zum Erinnern.",
+      "binding": "bop"
     },
     {
       "id": "world_boss-burnout-colossus-koloss-tartsche",
@@ -1023,7 +1040,8 @@
         "max": 5,
         "label": "Bestien-Präzision: +{value}% Crit"
       },
-      "flavorText": "Geschmiedet in der Glut des Kolosses. Ruhe ist keine Schwäche."
+      "flavorText": "Geschmiedet in der Glut des Kolosses. Ruhe ist keine Schwäche.",
+      "binding": "bop"
     },
     {
       "id": "world_boss-chaos-hydra-hydra-klinge",
@@ -1086,7 +1104,8 @@
           ]
         }
       },
-      "flavorText": "Jeder Kopf der Hydra flüsterte etwas anderes. Dieses Stück hat nur einem zugehört."
+      "flavorText": "Jeder Kopf der Hydra flüsterte etwas anderes. Dieses Stück hat nur einem zugehört.",
+      "binding": "bop"
     },
     {
       "id": "world_boss-chaos-hydra-hydra-buckler",
@@ -1149,7 +1168,8 @@
           ]
         }
       },
-      "flavorText": "Chaos ist kein Feind. Es ist ein Material."
+      "flavorText": "Chaos ist kein Feind. Es ist ein Material.",
+      "binding": "bop"
     },
     {
       "id": "world_boss-chaos-hydra-hydra-haube",
@@ -1212,7 +1232,8 @@
           ]
         }
       },
-      "flavorText": "Jeder Kopf der Hydra flüsterte etwas anderes. Dieses Stück hat nur einem zugehört."
+      "flavorText": "Jeder Kopf der Hydra flüsterte etwas anderes. Dieses Stück hat nur einem zugehört.",
+      "binding": "bop"
     },
     {
       "id": "world_boss-chaos-hydra-hydra-mantel",
@@ -1275,7 +1296,8 @@
           ]
         }
       },
-      "flavorText": "Chaos ist kein Feind. Es ist ein Material."
+      "flavorText": "Chaos ist kein Feind. Es ist ein Material.",
+      "binding": "bop"
     },
     {
       "id": "world_boss-chaos-hydra-hydra-stiefel",
@@ -1338,7 +1360,8 @@
           ]
         }
       },
-      "flavorText": "Jeder Kopf der Hydra flüsterte etwas anderes. Dieses Stück hat nur einem zugehört."
+      "flavorText": "Jeder Kopf der Hydra flüsterte etwas anderes. Dieses Stück hat nur einem zugehört.",
+      "binding": "bop"
     },
     {
       "id": "world_boss-chaos-hydra-hydra-reif",
@@ -1401,7 +1424,8 @@
           ]
         }
       },
-      "flavorText": "Chaos ist kein Feind. Es ist ein Material."
+      "flavorText": "Chaos ist kein Feind. Es ist ein Material.",
+      "binding": "bop"
     },
     {
       "id": "world_boss-chaos-hydra-hydra-medaillon",
@@ -1464,7 +1488,8 @@
           ]
         }
       },
-      "flavorText": "Jeder Kopf der Hydra flüsterte etwas anderes. Dieses Stück hat nur einem zugehört."
+      "flavorText": "Jeder Kopf der Hydra flüsterte etwas anderes. Dieses Stück hat nur einem zugehört.",
+      "binding": "bop"
     },
     {
       "id": "world_boss-chaos-hydra-hydra-schwert",
@@ -1533,7 +1558,8 @@
         "max": 5,
         "label": "Bestien-Instinkt: +{value}% Drop-Chance"
       },
-      "flavorText": "Chaos ist kein Feind. Es ist ein Material."
+      "flavorText": "Chaos ist kein Feind. Es ist ein Material.",
+      "binding": "bop"
     },
     {
       "id": "world_boss-chaos-hydra-hydra-tartsche",
@@ -1602,7 +1628,8 @@
         "max": 5,
         "label": "Bestien-Präzision: +{value}% Crit"
       },
-      "flavorText": "Jeder Kopf der Hydra flüsterte etwas anderes. Dieses Stück hat nur einem zugehört."
+      "flavorText": "Jeder Kopf der Hydra flüsterte etwas anderes. Dieses Stück hat nur einem zugehört.",
+      "binding": "bop"
     },
     {
       "id": "world_boss-doubt-phantom-phantom-klinge",
@@ -1620,7 +1647,8 @@
       "fixedStats": {
         "kraft": 3
       },
-      "flavorText": "Der Zweifel hatte Krallen. Dieses Stück hat sie abgefeilt."
+      "flavorText": "Der Zweifel hatte Krallen. Dieses Stück hat sie abgefeilt.",
+      "binding": "bop"
     },
     {
       "id": "world_boss-doubt-phantom-phantom-buckler",
@@ -1638,7 +1666,8 @@
       "fixedStats": {
         "ausdauer": 4
       },
-      "flavorText": "Es flüstert Selbstvertrauen. Leise, aber beharrlich."
+      "flavorText": "Es flüstert Selbstvertrauen. Leise, aber beharrlich.",
+      "binding": "bop"
     },
     {
       "id": "world_boss-doubt-phantom-phantom-haube",
@@ -1701,7 +1730,8 @@
           ]
         }
       },
-      "flavorText": "Der Zweifel hatte Krallen. Dieses Stück hat sie abgefeilt."
+      "flavorText": "Der Zweifel hatte Krallen. Dieses Stück hat sie abgefeilt.",
+      "binding": "bop"
     },
     {
       "id": "world_boss-doubt-phantom-phantom-mantel",
@@ -1764,7 +1794,8 @@
           ]
         }
       },
-      "flavorText": "Es flüstert Selbstvertrauen. Leise, aber beharrlich."
+      "flavorText": "Es flüstert Selbstvertrauen. Leise, aber beharrlich.",
+      "binding": "bop"
     },
     {
       "id": "world_boss-doubt-phantom-phantom-stiefel",
@@ -1827,7 +1858,8 @@
           ]
         }
       },
-      "flavorText": "Der Zweifel hatte Krallen. Dieses Stück hat sie abgefeilt."
+      "flavorText": "Der Zweifel hatte Krallen. Dieses Stück hat sie abgefeilt.",
+      "binding": "bop"
     },
     {
       "id": "world_boss-doubt-phantom-phantom-reif",
@@ -1846,7 +1878,8 @@
         "glueck": 4,
         "kraft": 2
       },
-      "flavorText": "Es flüstert Selbstvertrauen. Leise, aber beharrlich."
+      "flavorText": "Es flüstert Selbstvertrauen. Leise, aber beharrlich.",
+      "binding": "bop"
     },
     {
       "id": "world_boss-doubt-phantom-phantom-medaillon",
@@ -1909,7 +1942,8 @@
           ]
         }
       },
-      "flavorText": "Der Zweifel hatte Krallen. Dieses Stück hat sie abgefeilt."
+      "flavorText": "Der Zweifel hatte Krallen. Dieses Stück hat sie abgefeilt.",
+      "binding": "bop"
     },
     {
       "id": "world_boss-doubt-phantom-phantom-schwert",
@@ -1978,7 +2012,8 @@
         "max": 5,
         "label": "Bestien-Instinkt: +{value}% Drop-Chance"
       },
-      "flavorText": "Es flüstert Selbstvertrauen. Leise, aber beharrlich."
+      "flavorText": "Es flüstert Selbstvertrauen. Leise, aber beharrlich.",
+      "binding": "bop"
     },
     {
       "id": "world_boss-entropy-weaver-entropie-klinge",
@@ -1996,7 +2031,8 @@
       "fixedStats": {
         "kraft": 3
       },
-      "flavorText": "Aus dem Netz der Entropie gerissen. Es hält zusammen, was zerfallen will."
+      "flavorText": "Aus dem Netz der Entropie gerissen. Es hält zusammen, was zerfallen will.",
+      "binding": "bop"
     },
     {
       "id": "world_boss-entropy-weaver-entropie-buckler",
@@ -2015,7 +2051,8 @@
         "ausdauer": 3,
         "kraft": 3
       },
-      "flavorText": "Entropie ist unvermeidlich. Widerstand auch."
+      "flavorText": "Entropie ist unvermeidlich. Widerstand auch.",
+      "binding": "bop"
     },
     {
       "id": "world_boss-entropy-weaver-entropie-haube",
@@ -2078,7 +2115,8 @@
           ]
         }
       },
-      "flavorText": "Aus dem Netz der Entropie gerissen. Es hält zusammen, was zerfallen will."
+      "flavorText": "Aus dem Netz der Entropie gerissen. Es hält zusammen, was zerfallen will.",
+      "binding": "bop"
     },
     {
       "id": "world_boss-entropy-weaver-entropie-mantel",
@@ -2097,7 +2135,8 @@
         "ausdauer": 3,
         "kraft": 4
       },
-      "flavorText": "Entropie ist unvermeidlich. Widerstand auch."
+      "flavorText": "Entropie ist unvermeidlich. Widerstand auch.",
+      "binding": "bop"
     },
     {
       "id": "world_boss-entropy-weaver-entropie-stiefel",
@@ -2160,7 +2199,8 @@
           ]
         }
       },
-      "flavorText": "Aus dem Netz der Entropie gerissen. Es hält zusammen, was zerfallen will."
+      "flavorText": "Aus dem Netz der Entropie gerissen. Es hält zusammen, was zerfallen will.",
+      "binding": "bop"
     },
     {
       "id": "world_boss-entropy-weaver-entropie-reif",
@@ -2223,7 +2263,8 @@
           ]
         }
       },
-      "flavorText": "Entropie ist unvermeidlich. Widerstand auch."
+      "flavorText": "Entropie ist unvermeidlich. Widerstand auch.",
+      "binding": "bop"
     },
     {
       "id": "world_boss-entropy-weaver-entropie-medaillon",
@@ -2286,7 +2327,8 @@
           ]
         }
       },
-      "flavorText": "Aus dem Netz der Entropie gerissen. Es hält zusammen, was zerfallen will."
+      "flavorText": "Aus dem Netz der Entropie gerissen. Es hält zusammen, was zerfallen will.",
+      "binding": "bop"
     },
     {
       "id": "world_boss-entropy-weaver-entropie-schwert",
@@ -2355,7 +2397,8 @@
         "max": 5,
         "label": "Bestien-Instinkt: +{value}% Drop-Chance"
       },
-      "flavorText": "Entropie ist unvermeidlich. Widerstand auch."
+      "flavorText": "Entropie ist unvermeidlich. Widerstand auch.",
+      "binding": "bop"
     },
     {
       "id": "world_boss-stagnation-golem-golem-klinge",
@@ -2418,7 +2461,8 @@
           ]
         }
       },
-      "flavorText": "Aus dem steinernen Herz des Golems. Stillstand war nie eine Option."
+      "flavorText": "Aus dem steinernen Herz des Golems. Stillstand war nie eine Option.",
+      "binding": "bop"
     },
     {
       "id": "world_boss-stagnation-golem-golem-buckler",
@@ -2481,7 +2525,8 @@
           ]
         }
       },
-      "flavorText": "Es wiegt schwer — aber wer es trägt, bewegt sich leichter."
+      "flavorText": "Es wiegt schwer — aber wer es trägt, bewegt sich leichter.",
+      "binding": "bop"
     },
     {
       "id": "world_boss-stagnation-golem-golem-haube",
@@ -2544,7 +2589,8 @@
           ]
         }
       },
-      "flavorText": "Aus dem steinernen Herz des Golems. Stillstand war nie eine Option."
+      "flavorText": "Aus dem steinernen Herz des Golems. Stillstand war nie eine Option.",
+      "binding": "bop"
     },
     {
       "id": "world_boss-stagnation-golem-golem-mantel",
@@ -2607,7 +2653,8 @@
           ]
         }
       },
-      "flavorText": "Es wiegt schwer — aber wer es trägt, bewegt sich leichter."
+      "flavorText": "Es wiegt schwer — aber wer es trägt, bewegt sich leichter.",
+      "binding": "bop"
     },
     {
       "id": "world_boss-stagnation-golem-golem-stiefel",
@@ -2670,7 +2717,8 @@
           ]
         }
       },
-      "flavorText": "Aus dem steinernen Herz des Golems. Stillstand war nie eine Option."
+      "flavorText": "Aus dem steinernen Herz des Golems. Stillstand war nie eine Option.",
+      "binding": "bop"
     },
     {
       "id": "world_boss-stagnation-golem-golem-reif",
@@ -2733,7 +2781,8 @@
           ]
         }
       },
-      "flavorText": "Es wiegt schwer — aber wer es trägt, bewegt sich leichter."
+      "flavorText": "Es wiegt schwer — aber wer es trägt, bewegt sich leichter.",
+      "binding": "bop"
     },
     {
       "id": "world_boss-stagnation-golem-golem-medaillon",
@@ -2796,7 +2845,8 @@
           ]
         }
       },
-      "flavorText": "Aus dem steinernen Herz des Golems. Stillstand war nie eine Option."
+      "flavorText": "Aus dem steinernen Herz des Golems. Stillstand war nie eine Option.",
+      "binding": "bop"
     },
     {
       "id": "world_boss-stagnation-golem-golem-schwert",
@@ -2865,7 +2915,8 @@
         "max": 5,
         "label": "Bestien-Instinkt: +{value}% Drop-Chance"
       },
-      "flavorText": "Es wiegt schwer — aber wer es trägt, bewegt sich leichter."
+      "flavorText": "Es wiegt schwer — aber wer es trägt, bewegt sich leichter.",
+      "binding": "bop"
     },
     {
       "id": "world_boss-stagnation-golem-golem-tartsche",
@@ -2934,7 +2985,8 @@
         "max": 5,
         "label": "Bestien-Präzision: +{value}% Crit"
       },
-      "flavorText": "Aus dem steinernen Herz des Golems. Stillstand war nie eine Option."
+      "flavorText": "Aus dem steinernen Herz des Golems. Stillstand war nie eine Option.",
+      "binding": "bop"
     },
     {
       "id": "world_boss-perfection-seraph-seraph-klinge",
@@ -2997,7 +3049,8 @@
           ]
         }
       },
-      "flavorText": "Perfektion ist ein Gefängnis. Dieses Stück ist der Schlüssel."
+      "flavorText": "Perfektion ist ein Gefängnis. Dieses Stück ist der Schlüssel.",
+      "binding": "bop"
     },
     {
       "id": "world_boss-perfection-seraph-seraph-buckler",
@@ -3060,7 +3113,8 @@
           ]
         }
       },
-      "flavorText": "Es leuchtet makellos. Fast irritierend makellos."
+      "flavorText": "Es leuchtet makellos. Fast irritierend makellos.",
+      "binding": "bop"
     },
     {
       "id": "world_boss-perfection-seraph-seraph-haube",
@@ -3123,7 +3177,8 @@
           ]
         }
       },
-      "flavorText": "Perfektion ist ein Gefängnis. Dieses Stück ist der Schlüssel."
+      "flavorText": "Perfektion ist ein Gefängnis. Dieses Stück ist der Schlüssel.",
+      "binding": "bop"
     },
     {
       "id": "world_boss-perfection-seraph-seraph-mantel",
@@ -3186,7 +3241,8 @@
           ]
         }
       },
-      "flavorText": "Es leuchtet makellos. Fast irritierend makellos."
+      "flavorText": "Es leuchtet makellos. Fast irritierend makellos.",
+      "binding": "bop"
     },
     {
       "id": "world_boss-perfection-seraph-seraph-stiefel",
@@ -3249,7 +3305,8 @@
           ]
         }
       },
-      "flavorText": "Perfektion ist ein Gefängnis. Dieses Stück ist der Schlüssel."
+      "flavorText": "Perfektion ist ein Gefängnis. Dieses Stück ist der Schlüssel.",
+      "binding": "bop"
     },
     {
       "id": "world_boss-perfection-seraph-seraph-reif",
@@ -3312,7 +3369,8 @@
           ]
         }
       },
-      "flavorText": "Es leuchtet makellos. Fast irritierend makellos."
+      "flavorText": "Es leuchtet makellos. Fast irritierend makellos.",
+      "binding": "bop"
     },
     {
       "id": "world_boss-perfection-seraph-seraph-medaillon",
@@ -3375,7 +3433,8 @@
           ]
         }
       },
-      "flavorText": "Perfektion ist ein Gefängnis. Dieses Stück ist der Schlüssel."
+      "flavorText": "Perfektion ist ein Gefängnis. Dieses Stück ist der Schlüssel.",
+      "binding": "bop"
     },
     {
       "id": "world_boss-perfection-seraph-seraph-schwert",
@@ -3444,7 +3503,8 @@
         "max": 5,
         "label": "Bestien-Instinkt: +{value}% Drop-Chance"
       },
-      "flavorText": "Es leuchtet makellos. Fast irritierend makellos."
+      "flavorText": "Es leuchtet makellos. Fast irritierend makellos.",
+      "binding": "bop"
     },
     {
       "id": "world_boss-perfection-seraph-seraph-tartsche",
@@ -3513,7 +3573,8 @@
         "max": 5,
         "label": "Bestien-Präzision: +{value}% Crit"
       },
-      "flavorText": "Perfektion ist ein Gefängnis. Dieses Stück ist der Schlüssel."
+      "flavorText": "Perfektion ist ein Gefängnis. Dieses Stück ist der Schlüssel.",
+      "binding": "bop"
     },
     {
       "id": "world_boss-isolation-leviathan-leviathan-klinge",
@@ -3576,7 +3637,8 @@
           ]
         }
       },
-      "flavorText": "Der Leviathan schwamm allein. Dieses Stück verbindet."
+      "flavorText": "Der Leviathan schwamm allein. Dieses Stück verbindet.",
+      "binding": "bop"
     },
     {
       "id": "world_boss-isolation-leviathan-leviathan-buckler",
@@ -3639,7 +3701,8 @@
           ]
         }
       },
-      "flavorText": "Allein ist man nichts. Zusammen — zumindest etwas."
+      "flavorText": "Allein ist man nichts. Zusammen — zumindest etwas.",
+      "binding": "bop"
     },
     {
       "id": "world_boss-isolation-leviathan-leviathan-haube",
@@ -3702,7 +3765,8 @@
           ]
         }
       },
-      "flavorText": "Der Leviathan schwamm allein. Dieses Stück verbindet."
+      "flavorText": "Der Leviathan schwamm allein. Dieses Stück verbindet.",
+      "binding": "bop"
     },
     {
       "id": "world_boss-isolation-leviathan-leviathan-mantel",
@@ -3765,7 +3829,8 @@
           ]
         }
       },
-      "flavorText": "Allein ist man nichts. Zusammen — zumindest etwas."
+      "flavorText": "Allein ist man nichts. Zusammen — zumindest etwas.",
+      "binding": "bop"
     },
     {
       "id": "world_boss-isolation-leviathan-leviathan-stiefel",
@@ -3828,7 +3893,8 @@
           ]
         }
       },
-      "flavorText": "Der Leviathan schwamm allein. Dieses Stück verbindet."
+      "flavorText": "Der Leviathan schwamm allein. Dieses Stück verbindet.",
+      "binding": "bop"
     },
     {
       "id": "world_boss-isolation-leviathan-leviathan-reif",
@@ -3891,7 +3957,8 @@
           ]
         }
       },
-      "flavorText": "Allein ist man nichts. Zusammen — zumindest etwas."
+      "flavorText": "Allein ist man nichts. Zusammen — zumindest etwas.",
+      "binding": "bop"
     },
     {
       "id": "world_boss-isolation-leviathan-leviathan-medaillon",
@@ -3960,7 +4027,8 @@
         "max": 6,
         "label": "Bestien-Glanz: +{value}% Gold"
       },
-      "flavorText": "Der Leviathan schwamm allein. Dieses Stück verbindet."
+      "flavorText": "Der Leviathan schwamm allein. Dieses Stück verbindet.",
+      "binding": "bop"
     },
     {
       "id": "world_boss-isolation-leviathan-leviathan-schwert",
@@ -4029,7 +4097,8 @@
         "max": 6,
         "label": "Bestien-Instinkt: +{value}% Drop-Chance"
       },
-      "flavorText": "Allein ist man nichts. Zusammen — zumindest etwas."
+      "flavorText": "Allein ist man nichts. Zusammen — zumindest etwas.",
+      "binding": "bop"
     },
     {
       "id": "world_boss-isolation-leviathan-leviathan-tartsche",
@@ -4098,7 +4167,8 @@
         "max": 6,
         "label": "Bestien-Präzision: +{value}% Crit"
       },
-      "flavorText": "Der Leviathan schwamm allein. Dieses Stück verbindet."
+      "flavorText": "Der Leviathan schwamm allein. Dieses Stück verbindet.",
+      "binding": "bop"
     },
     {
       "id": "world_boss-apathy-sovereign-souveraen-klinge",
@@ -4161,7 +4231,8 @@
           ]
         }
       },
-      "flavorText": "Der Thron der Apathie steht leer. Wer das hier trägt, steht auf."
+      "flavorText": "Der Thron der Apathie steht leer. Wer das hier trägt, steht auf.",
+      "binding": "bop"
     },
     {
       "id": "world_boss-apathy-sovereign-souveraen-buckler",
@@ -4180,7 +4251,8 @@
         "ausdauer": 5,
         "kraft": 5
       },
-      "flavorText": "Es erinnert daran, dass Aufgeben eine Wahl ist. Nicht deine."
+      "flavorText": "Es erinnert daran, dass Aufgeben eine Wahl ist. Nicht deine.",
+      "binding": "bop"
     },
     {
       "id": "world_boss-apathy-sovereign-souveraen-haube",
@@ -4199,7 +4271,8 @@
         "weisheit": 4,
         "kraft": 6
       },
-      "flavorText": "Der Thron der Apathie steht leer. Wer das hier trägt, steht auf."
+      "flavorText": "Der Thron der Apathie steht leer. Wer das hier trägt, steht auf.",
+      "binding": "bop"
     },
     {
       "id": "world_boss-apathy-sovereign-souveraen-mantel",
@@ -4262,7 +4335,8 @@
           ]
         }
       },
-      "flavorText": "Es erinnert daran, dass Aufgeben eine Wahl ist. Nicht deine."
+      "flavorText": "Es erinnert daran, dass Aufgeben eine Wahl ist. Nicht deine.",
+      "binding": "bop"
     },
     {
       "id": "world_boss-apathy-sovereign-souveraen-stiefel",
@@ -4325,7 +4399,8 @@
           ]
         }
       },
-      "flavorText": "Der Thron der Apathie steht leer. Wer das hier trägt, steht auf."
+      "flavorText": "Der Thron der Apathie steht leer. Wer das hier trägt, steht auf.",
+      "binding": "bop"
     },
     {
       "id": "world_boss-apathy-sovereign-souveraen-reif",
@@ -4388,7 +4463,8 @@
           ]
         }
       },
-      "flavorText": "Es erinnert daran, dass Aufgeben eine Wahl ist. Nicht deine."
+      "flavorText": "Es erinnert daran, dass Aufgeben eine Wahl ist. Nicht deine.",
+      "binding": "bop"
     },
     {
       "id": "world_boss-apathy-sovereign-souveraen-medaillon",
@@ -4451,7 +4527,8 @@
           ]
         }
       },
-      "flavorText": "Der Thron der Apathie steht leer. Wer das hier trägt, steht auf."
+      "flavorText": "Der Thron der Apathie steht leer. Wer das hier trägt, steht auf.",
+      "binding": "bop"
     },
     {
       "id": "world_boss-apathy-sovereign-souveraen-schwert",
@@ -4520,7 +4597,8 @@
         "max": 6,
         "label": "Bestien-Instinkt: +{value}% Drop-Chance"
       },
-      "flavorText": "Es erinnert daran, dass Aufgeben eine Wahl ist. Nicht deine."
+      "flavorText": "Es erinnert daran, dass Aufgeben eine Wahl ist. Nicht deine.",
+      "binding": "bop"
     },
     {
       "id": "world_boss-apathy-sovereign-souveraen-tartsche",
@@ -4589,7 +4667,8 @@
         "max": 6,
         "label": "Bestien-Präzision: +{value}% Crit"
       },
-      "flavorText": "Der Thron der Apathie steht leer. Wer das hier trägt, steht auf."
+      "flavorText": "Der Thron der Apathie steht leer. Wer das hier trägt, steht auf.",
+      "binding": "bop"
     },
     {
       "id": "world_boss-apathy-sovereign-souveraen-kappe",
@@ -4658,7 +4737,8 @@
         "max": 6,
         "label": "Bestien-Beständigkeit: -{value}% Forge Decay"
       },
-      "flavorText": "Es erinnert daran, dass Aufgeben eine Wahl ist. Nicht deine."
+      "flavorText": "Es erinnert daran, dass Aufgeben eine Wahl ist. Nicht deine.",
+      "binding": "bop"
     }
   ]
 }

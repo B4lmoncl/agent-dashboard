@@ -600,6 +600,8 @@ router.post('/api/player/:name/equip/:itemId', requireAuth, requireSelf('name'),
     u.currencies.gold = u.gold;
     // Roll stats for the new item
     const instance = createGearInstance(shopItem);
+    // BoE items become bound on equip
+    if (instance.binding === 'boe') instance.bound = true;
     u.equipment[shopItem.slot] = instance;
     if (!u.purchases) u.purchases = [];
     u.purchases.push({ type: 'equipment', item: shopItem.id, cost: shopItem.cost, at: now() });
@@ -663,8 +665,12 @@ router.post('/api/player/:name/equip/:itemId', requireAuth, requireSelf('name'),
     passiveEffect: invEntry.passiveEffect || template.passiveEffect || null,
     passiveDesc: invEntry.passiveDesc || template.passiveDesc || null,
     affixes: invEntry.affixes || template.affixes || null,
+    binding: invEntry.binding || template.binding || null,
+    bound: invEntry.bound || (invEntry.binding === 'bop') || false,
     rolledAt: invEntry.rolledAt || invEntry.obtainedAt || now(),
   };
+  // BoE items become bound on equip
+  if (instance.binding === 'boe') instance.bound = true;
   u.equipment[slot] = instance;
 
   const stats = getUserStats(uid);

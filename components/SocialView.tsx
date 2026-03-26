@@ -557,6 +557,11 @@ function TradeOfferDisplay({ offer, label, color }: { offer: TradeOffer; label: 
                 hoverDelay={300}
                 body={<>
                   <p className="text-xs capitalize" style={{ color: rc }}>{item.rarity}{item.slot ? ` \u00b7 ${item.slot}` : ""}</p>
+                  {item.bound ? (
+                    <p className="text-xs font-semibold" style={{ color: "#ef4444" }}>Soulbound</p>
+                  ) : item.binding === "boe" ? (
+                    <p className="text-xs font-semibold" style={{ color: "#22c55e" }}>Bind on Equip</p>
+                  ) : null}
                   {item.legendaryEffect && <p className="text-xs mt-1 font-semibold" style={{ color: "#f59e0b" }}>{formatLegendaryLabel(item.legendaryEffect)}</p>}
                   {item.stats && Object.keys(item.stats).length > 0 && (
                     <div className="mt-1 space-y-0.5" style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: 4 }}>
@@ -592,7 +597,7 @@ function TradeOfferDisplay({ offer, label, color }: { offer: TradeOffer; label: 
 // ─── Trade Item Grid (inventory-style) ────────────────────────────────────────
 
 function TradeItemGrid({ items, selectedIds, onToggle, sortKey, onSortChange }: {
-  items: { id: string; name: string; rarity: string; slot?: string; icon?: string; emoji?: string; stats?: Record<string, number>; desc?: string; flavorText?: string; legendaryEffect?: { type: string; label?: string; value?: number } | null; setId?: string }[];
+  items: { id: string; name: string; rarity: string; slot?: string; icon?: string; emoji?: string; stats?: Record<string, number>; desc?: string; flavorText?: string; legendaryEffect?: { type: string; label?: string; value?: number } | null; setId?: string; binding?: "boe" | "bop" | null; bound?: boolean }[];
   selectedIds: string[];
   onToggle: (id: string) => void;
   sortKey?: TradeSortKey;
@@ -639,6 +644,13 @@ function TradeItemGrid({ items, selectedIds, onToggle, sortKey, onSortChange }: 
                 hoverDelay={300}
                 body={<>
                   <p className="text-xs capitalize" style={{ color: rc }}>{item.rarity}{item.slot ? ` \u00b7 ${item.slot}` : ""}</p>
+                  {item.bound ? (
+                    <p className="text-xs font-semibold" style={{ color: "#ef4444" }}>Soulbound — cannot be traded</p>
+                  ) : item.binding === "boe" ? (
+                    <p className="text-xs font-semibold" style={{ color: "#22c55e" }}>Bind on Equip</p>
+                  ) : item.binding === "bop" ? (
+                    <p className="text-xs font-semibold" style={{ color: "#f97316" }}>Bind on Pickup — cannot be traded</p>
+                  ) : null}
                   {item.desc && <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.4)" }}>{item.desc}</p>}
                   {item.flavorText && <p className="text-xs italic mt-1" style={{ color: "rgba(255,255,255,0.3)" }}>&ldquo;{item.flavorText}&rdquo;</p>}
                   {item.legendaryEffect && <p className="text-xs mt-1 font-semibold" style={{ color: "#f59e0b" }}>{formatLegendaryLabel(item.legendaryEffect)}</p>}
@@ -656,13 +668,15 @@ function TradeItemGrid({ items, selectedIds, onToggle, sortKey, onSortChange }: 
                 </>}
               >
                 <button
-                  onClick={() => onToggle(item.id)}
+                  onClick={() => { if (!item.bound && item.binding !== 'bop') onToggle(item.id); }}
                   className="relative flex items-center justify-center rounded-lg transition-all"
+                  title={(item.bound || item.binding === 'bop') ? "Soulbound — cannot be traded" : undefined}
                   style={{
                     width: 52, height: 52,
                     background: selected ? "rgba(168,85,247,0.15)" : "rgba(255,255,255,0.03)",
                     border: `2px solid ${selected ? "#a855f7" : `${rc}30`}`,
-                    cursor: "pointer",
+                    cursor: (item.bound || item.binding === 'bop') ? "not-allowed" : "pointer",
+                    opacity: (item.bound || item.binding === 'bop') ? 0.35 : 1,
                   }}
                 >
                   {item.icon ? (

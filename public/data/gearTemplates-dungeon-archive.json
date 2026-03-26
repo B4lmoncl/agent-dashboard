@@ -16,7 +16,8 @@
       "fixedStats": {
         "kraft": 2
       },
-      "flavorText": "Gefunden zwischen nassen Seiten und vergessenen Formeln. Das Wasser hat es konserviert — nicht beschädigt."
+      "flavorText": "Gefunden zwischen nassen Seiten und vergessenen Formeln. Das Wasser hat es konserviert — nicht beschädigt.",
+      "binding": "bop"
     },
     {
       "id": "dun-sunken-archive-archiv-buckler",
@@ -34,7 +35,8 @@
       "fixedStats": {
         "charisma": 3
       },
-      "flavorText": "Wer dieses Stück trägt, hört manchmal das Rauschen versunkener Bibliotheken."
+      "flavorText": "Wer dieses Stück trägt, hört manchmal das Rauschen versunkener Bibliotheken.",
+      "binding": "bop"
     },
     {
       "id": "dun-sunken-archive-archiv-haube",
@@ -52,7 +54,8 @@
       "fixedStats": {
         "weisheit": 2
       },
-      "flavorText": "Die Archivare trugen es mit Stolz. Die Archivare sind jetzt unter Wasser."
+      "flavorText": "Die Archivare trugen es mit Stolz. Die Archivare sind jetzt unter Wasser.",
+      "binding": "bop"
     },
     {
       "id": "dun-sunken-archive-archiv-mantel",
@@ -70,7 +73,8 @@
       "fixedStats": {
         "ausdauer": 3
       },
-      "flavorText": "Gefunden zwischen nassen Seiten und vergessenen Formeln. Das Wasser hat es konserviert — nicht beschädigt."
+      "flavorText": "Gefunden zwischen nassen Seiten und vergessenen Formeln. Das Wasser hat es konserviert — nicht beschädigt.",
+      "binding": "bop"
     },
     {
       "id": "dun-sunken-archive-archiv-marschtritt",
@@ -89,7 +93,8 @@
         "charisma": 3,
         "ausdauer": 2
       },
-      "flavorText": "Wer dieses Stück trägt, hört manchmal das Rauschen versunkener Bibliotheken."
+      "flavorText": "Wer dieses Stück trägt, hört manchmal das Rauschen versunkener Bibliotheken.",
+      "binding": "bop"
     },
     {
       "id": "dun-sunken-archive-archiv-reif",
@@ -108,7 +113,8 @@
         "glueck": 2,
         "ausdauer": 3
       },
-      "flavorText": "Die Archivare trugen es mit Stolz. Die Archivare sind jetzt unter Wasser."
+      "flavorText": "Die Archivare trugen es mit Stolz. Die Archivare sind jetzt unter Wasser.",
+      "binding": "bop"
     },
     {
       "id": "dun-sunken-archive-archiv-kette",
@@ -127,7 +133,8 @@
         "charisma": 2,
         "ausdauer": 2
       },
-      "flavorText": "Gefunden zwischen nassen Seiten und vergessenen Formeln. Das Wasser hat es konserviert — nicht beschädigt."
+      "flavorText": "Gefunden zwischen nassen Seiten und vergessenen Formeln. Das Wasser hat es konserviert — nicht beschädigt.",
+      "binding": "bop"
     },
     {
       "id": "dun-sunken-archive-archiv-klinge-yga",
@@ -146,7 +153,8 @@
         "kraft": 1,
         "ausdauer": 3
       },
-      "flavorText": "Wer dieses Stück trägt, hört manchmal das Rauschen versunkener Bibliotheken."
+      "flavorText": "Wer dieses Stück trägt, hört manchmal das Rauschen versunkener Bibliotheken.",
+      "binding": "bop"
     },
     {
       "id": "dun-sunken-archive-archiv-tartsche",
@@ -165,7 +173,8 @@
         "charisma": 2,
         "ausdauer": 2
       },
-      "flavorText": "Die Archivare trugen es mit Stolz. Die Archivare sind jetzt unter Wasser."
+      "flavorText": "Die Archivare trugen es mit Stolz. Die Archivare sind jetzt unter Wasser.",
+      "binding": "bop"
     },
     {
       "id": "dun-sunken-archive-archiv-visier",
@@ -184,7 +193,8 @@
         "weisheit": 1,
         "ausdauer": 3
       },
-      "flavorText": "Gefunden zwischen nassen Seiten und vergessenen Formeln. Das Wasser hat es konserviert — nicht beschädigt."
+      "flavorText": "Gefunden zwischen nassen Seiten und vergessenen Formeln. Das Wasser hat es konserviert — nicht beschädigt.",
+      "binding": "bop"
     },
     {
       "id": "dun-sunken-archive-archiv-brustplatte",
@@ -202,7 +212,8 @@
       "fixedStats": {
         "ausdauer": 3
       },
-      "flavorText": "Wer dieses Stück trägt, hört manchmal das Rauschen versunkener Bibliotheken."
+      "flavorText": "Wer dieses Stück trägt, hört manchmal das Rauschen versunkener Bibliotheken.",
+      "binding": "bop"
     },
     {
       "id": "dun-sunken-archive-archiv-treter",
@@ -220,7 +231,8 @@
       "fixedStats": {
         "charisma": 2
       },
-      "flavorText": "Die Archivare trugen es mit Stolz. Die Archivare sind jetzt unter Wasser."
+      "flavorText": "Die Archivare trugen es mit Stolz. Die Archivare sind jetzt unter Wasser.",
+      "binding": "bop"
     },
     {
       "id": "dun-sunken-archive-archiv-ring",
@@ -239,7 +251,8 @@
         "glueck": 2,
         "ausdauer": 1
       },
-      "flavorText": "Gefunden zwischen nassen Seiten und vergessenen Formeln. Das Wasser hat es konserviert — nicht beschädigt."
+      "flavorText": "Gefunden zwischen nassen Seiten und vergessenen Formeln. Das Wasser hat es konserviert — nicht beschädigt.",
+      "binding": "bop"
     },
     {
       "id": "dun-sunken-archive-archiv-anhaenger",
@@ -258,7 +271,8 @@
         "charisma": 4,
         "ausdauer": 1
       },
-      "flavorText": "Wer dieses Stück trägt, hört manchmal das Rauschen versunkener Bibliotheken."
+      "flavorText": "Wer dieses Stück trägt, hört manchmal das Rauschen versunkener Bibliotheken.",
+      "binding": "bop"
     },
     {
       "id": "dun-sunken-archive-archiv-klinge-vnz",
@@ -277,7 +291,8 @@
         "kraft": 1,
         "ausdauer": 2
       },
-      "flavorText": "Die Archivare trugen es mit Stolz. Die Archivare sind jetzt unter Wasser."
+      "flavorText": "Die Archivare trugen es mit Stolz. Die Archivare sind jetzt unter Wasser.",
+      "binding": "bop"
     },
     {
       "id": "dun-sunken-archive-archiv-schild",
@@ -340,7 +355,8 @@
           ]
         }
       },
-      "flavorText": "Gefunden zwischen nassen Seiten und vergessenen Formeln. Das Wasser hat es konserviert — nicht beschädigt."
+      "flavorText": "Gefunden zwischen nassen Seiten und vergessenen Formeln. Das Wasser hat es konserviert — nicht beschädigt.",
+      "binding": "bop"
     },
     {
       "id": "dun-sunken-archive-archiv-schleier",
@@ -403,7 +419,8 @@
           ]
         }
       },
-      "flavorText": "Wer dieses Stück trägt, hört manchmal das Rauschen versunkener Bibliotheken."
+      "flavorText": "Wer dieses Stück trägt, hört manchmal das Rauschen versunkener Bibliotheken.",
+      "binding": "bop"
     },
     {
       "id": "dun-sunken-archive-archiv-gewand",
@@ -421,7 +438,8 @@
       "fixedStats": {
         "ausdauer": 4
       },
-      "flavorText": "Die Archivare trugen es mit Stolz. Die Archivare sind jetzt unter Wasser."
+      "flavorText": "Die Archivare trugen es mit Stolz. Die Archivare sind jetzt unter Wasser.",
+      "binding": "bop"
     },
     {
       "id": "dun-sunken-archive-archiv-sandalen",
@@ -440,7 +458,8 @@
         "charisma": 3,
         "ausdauer": 2
       },
-      "flavorText": "Gefunden zwischen nassen Seiten und vergessenen Formeln. Das Wasser hat es konserviert — nicht beschädigt."
+      "flavorText": "Gefunden zwischen nassen Seiten und vergessenen Formeln. Das Wasser hat es konserviert — nicht beschädigt.",
+      "binding": "bop"
     },
     {
       "id": "dun-sunken-archive-archiv-siegelring",
@@ -459,7 +478,8 @@
         "glueck": 4,
         "ausdauer": 1
       },
-      "flavorText": "Wer dieses Stück trägt, hört manchmal das Rauschen versunkener Bibliotheken."
+      "flavorText": "Wer dieses Stück trägt, hört manchmal das Rauschen versunkener Bibliotheken.",
+      "binding": "bop"
     },
     {
       "id": "dun-sunken-archive-archiv-amulett",
@@ -522,7 +542,8 @@
           ]
         }
       },
-      "flavorText": "Die Archivare trugen es mit Stolz. Die Archivare sind jetzt unter Wasser."
+      "flavorText": "Die Archivare trugen es mit Stolz. Die Archivare sind jetzt unter Wasser.",
+      "binding": "bop"
     },
     {
       "id": "dun-sunken-archive-archiv-klinge-5dc",
@@ -585,7 +606,8 @@
           ]
         }
       },
-      "flavorText": "Gefunden zwischen nassen Seiten und vergessenen Formeln. Das Wasser hat es konserviert — nicht beschädigt."
+      "flavorText": "Gefunden zwischen nassen Seiten und vergessenen Formeln. Das Wasser hat es konserviert — nicht beschädigt.",
+      "binding": "bop"
     },
     {
       "id": "dun-sunken-archive-archiv-bollwerk",
@@ -648,7 +670,8 @@
           ]
         }
       },
-      "flavorText": "Wer dieses Stück trägt, hört manchmal das Rauschen versunkener Bibliotheken."
+      "flavorText": "Wer dieses Stück trägt, hört manchmal das Rauschen versunkener Bibliotheken.",
+      "binding": "bop"
     },
     {
       "id": "dun-sunken-archive-archiv-kappe",
@@ -711,7 +734,8 @@
           ]
         }
       },
-      "flavorText": "Die Archivare trugen es mit Stolz. Die Archivare sind jetzt unter Wasser."
+      "flavorText": "Die Archivare trugen es mit Stolz. Die Archivare sind jetzt unter Wasser.",
+      "binding": "bop"
     },
     {
       "id": "dun-sunken-archive-archiv-panzer",
@@ -729,7 +753,8 @@
       "fixedStats": {
         "ausdauer": 3
       },
-      "flavorText": "Gefunden zwischen nassen Seiten und vergessenen Formeln. Das Wasser hat es konserviert — nicht beschädigt."
+      "flavorText": "Gefunden zwischen nassen Seiten und vergessenen Formeln. Das Wasser hat es konserviert — nicht beschädigt.",
+      "binding": "bop"
     },
     {
       "id": "dun-sunken-archive-archiv-stiefel",
@@ -792,7 +817,8 @@
           ]
         }
       },
-      "flavorText": "Wer dieses Stück trägt, hört manchmal das Rauschen versunkener Bibliotheken."
+      "flavorText": "Wer dieses Stück trägt, hört manchmal das Rauschen versunkener Bibliotheken.",
+      "binding": "bop"
     },
     {
       "id": "dun-sunken-archive-archiv-band",
@@ -855,7 +881,8 @@
           ]
         }
       },
-      "flavorText": "Die Archivare trugen es mit Stolz. Die Archivare sind jetzt unter Wasser."
+      "flavorText": "Die Archivare trugen es mit Stolz. Die Archivare sind jetzt unter Wasser.",
+      "binding": "bop"
     },
     {
       "id": "dun-sunken-archive-archiv-medaillon",
@@ -918,7 +945,8 @@
           ]
         }
       },
-      "flavorText": "Gefunden zwischen nassen Seiten und vergessenen Formeln. Das Wasser hat es konserviert — nicht beschädigt."
+      "flavorText": "Gefunden zwischen nassen Seiten und vergessenen Formeln. Das Wasser hat es konserviert — nicht beschädigt.",
+      "binding": "bop"
     },
     {
       "id": "dun-sunken-archive-archiv-klinge-dw9",
@@ -981,7 +1009,8 @@
           ]
         }
       },
-      "flavorText": "Wer dieses Stück trägt, hört manchmal das Rauschen versunkener Bibliotheken."
+      "flavorText": "Wer dieses Stück trägt, hört manchmal das Rauschen versunkener Bibliotheken.",
+      "binding": "bop"
     },
     {
       "id": "dun-sunken-archive-archiv-fokus",
@@ -1044,7 +1073,8 @@
           ]
         }
       },
-      "flavorText": "Die Archivare trugen es mit Stolz. Die Archivare sind jetzt unter Wasser."
+      "flavorText": "Die Archivare trugen es mit Stolz. Die Archivare sind jetzt unter Wasser.",
+      "binding": "bop"
     }
   ]
 }

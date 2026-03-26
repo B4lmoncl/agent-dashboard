@@ -61,7 +61,8 @@
           ]
         }
       },
-      "flavorText": "Aus der Leere geschmiedet. Die Leere protestierte nicht — sie hat Geduld."
+      "flavorText": "Aus der Leere geschmiedet. Die Leere protestierte nicht — sie hat Geduld.",
+      "binding": "bop"
     },
     {
       "id": "dun-hollow-core-kern-buckler",
@@ -124,7 +125,8 @@
           ]
         }
       },
-      "flavorText": "Es absorbiert Licht. Nicht viel — gerade genug um aufzufallen."
+      "flavorText": "Es absorbiert Licht. Nicht viel — gerade genug um aufzufallen.",
+      "binding": "bop"
     },
     {
       "id": "dun-hollow-core-kern-haube",
@@ -187,7 +189,8 @@
           ]
         }
       },
-      "flavorText": "Geschmiedet in der Abwesenheit von allem. Erstaunlich solide für etwas aus dem Nichts."
+      "flavorText": "Geschmiedet in der Abwesenheit von allem. Erstaunlich solide für etwas aus dem Nichts.",
+      "binding": "bop"
     },
     {
       "id": "dun-hollow-core-kern-mantel",
@@ -250,7 +253,8 @@
           ]
         }
       },
-      "flavorText": "Aus dem Hohlen Kern. Hohl klingt negativ — aber was wenn die Leere der Punkt ist?"
+      "flavorText": "Aus dem Hohlen Kern. Hohl klingt negativ — aber was wenn die Leere der Punkt ist?",
+      "binding": "bop"
     },
     {
       "id": "dun-hollow-core-kern-marschtritt",
@@ -313,7 +317,8 @@
           ]
         }
       },
-      "flavorText": "Wer in den Kern blickt und zurückkommt, bringt etwas mit. Das hier zum Beispiel."
+      "flavorText": "Wer in den Kern blickt und zurückkommt, bringt etwas mit. Das hier zum Beispiel.",
+      "binding": "bop"
     },
     {
       "id": "dun-hollow-core-kern-reif",
@@ -376,7 +381,8 @@
           ]
         }
       },
-      "flavorText": "Die Dunkelheit des Kerns hat es berührt. Aber die Dunkelheit ist nicht böse. Nur... aufmerksam."
+      "flavorText": "Die Dunkelheit des Kerns hat es berührt. Aber die Dunkelheit ist nicht böse. Nur... aufmerksam.",
+      "binding": "bop"
     },
     {
       "id": "dun-hollow-core-kern-kette",
@@ -439,7 +445,8 @@
           ]
         }
       },
-      "flavorText": "Es flüstert. Nicht laut genug um zu verstehen, aber deutlich genug um nervös zu werden."
+      "flavorText": "Es flüstert. Nicht laut genug um zu verstehen, aber deutlich genug um nervös zu werden.",
+      "binding": "bop"
     },
     {
       "id": "dun-hollow-core-kern-klinge-cdv",
@@ -502,7 +509,8 @@
           ]
         }
       },
-      "flavorText": "Aus der Leere geschmiedet. Die Leere protestierte nicht — sie hat Geduld."
+      "flavorText": "Aus der Leere geschmiedet. Die Leere protestierte nicht — sie hat Geduld.",
+      "binding": "bop"
     },
     {
       "id": "dun-hollow-core-kern-tartsche",
@@ -565,7 +573,8 @@
           ]
         }
       },
-      "flavorText": "Es absorbiert Licht. Nicht viel — gerade genug um aufzufallen."
+      "flavorText": "Es absorbiert Licht. Nicht viel — gerade genug um aufzufallen.",
+      "binding": "bop"
     },
     {
       "id": "dun-hollow-core-kern-visier",
@@ -583,7 +592,8 @@
       "fixedStats": {
         "weisheit": 5
       },
-      "flavorText": "Geschmiedet in der Abwesenheit von allem. Erstaunlich solide für etwas aus dem Nichts."
+      "flavorText": "Geschmiedet in der Abwesenheit von allem. Erstaunlich solide für etwas aus dem Nichts.",
+      "binding": "bop"
     },
     {
       "id": "dun-hollow-core-kern-brustplatte",
@@ -601,7 +611,8 @@
       "fixedStats": {
         "ausdauer": 4
       },
-      "flavorText": "Aus dem Hohlen Kern. Hohl klingt negativ — aber was wenn die Leere der Punkt ist?"
+      "flavorText": "Aus dem Hohlen Kern. Hohl klingt negativ — aber was wenn die Leere der Punkt ist?",
+      "binding": "bop"
     },
     {
       "id": "dun-hollow-core-kern-treter",
@@ -620,7 +631,8 @@
         "charisma": 5,
         "ausdauer": 4
       },
-      "flavorText": "Wer in den Kern blickt und zurückkommt, bringt etwas mit. Das hier zum Beispiel."
+      "flavorText": "Wer in den Kern blickt und zurückkommt, bringt etwas mit. Das hier zum Beispiel.",
+      "binding": "bop"
     },
     {
       "id": "dun-hollow-core-kern-ring",
@@ -683,7 +695,8 @@
           ]
         }
       },
-      "flavorText": "Die Dunkelheit des Kerns hat es berührt. Aber die Dunkelheit ist nicht böse. Nur... aufmerksam."
+      "flavorText": "Die Dunkelheit des Kerns hat es berührt. Aber die Dunkelheit ist nicht böse. Nur... aufmerksam.",
+      "binding": "bop"
     },
     {
       "id": "dun-hollow-core-kern-anhaenger",
@@ -746,7 +759,8 @@
           ]
         }
       },
-      "flavorText": "Es flüstert. Nicht laut genug um zu verstehen, aber deutlich genug um nervös zu werden."
+      "flavorText": "Es flüstert. Nicht laut genug um zu verstehen, aber deutlich genug um nervös zu werden.",
+      "binding": "bop"
     },
     {
       "id": "dun-hollow-core-kern-klinge-r9h",
@@ -809,7 +823,8 @@
           ]
         }
       },
-      "flavorText": "Aus der Leere geschmiedet. Die Leere protestierte nicht — sie hat Geduld."
+      "flavorText": "Aus der Leere geschmiedet. Die Leere protestierte nicht — sie hat Geduld.",
+      "binding": "bop"
     },
     {
       "id": "dun-hollow-core-kern-schild",
@@ -872,7 +887,8 @@
           ]
         }
       },
-      "flavorText": "Es absorbiert Licht. Nicht viel — gerade genug um aufzufallen."
+      "flavorText": "Es absorbiert Licht. Nicht viel — gerade genug um aufzufallen.",
+      "binding": "bop"
     },
     {
       "id": "dun-hollow-core-kern-schleier",
@@ -935,7 +951,8 @@
           ]
         }
       },
-      "flavorText": "Geschmiedet in der Abwesenheit von allem. Erstaunlich solide für etwas aus dem Nichts."
+      "flavorText": "Geschmiedet in der Abwesenheit von allem. Erstaunlich solide für etwas aus dem Nichts.",
+      "binding": "bop"
     },
     {
       "id": "dun-hollow-core-kern-gewand",
@@ -998,7 +1015,8 @@
           ]
         }
       },
-      "flavorText": "Aus dem Hohlen Kern. Hohl klingt negativ — aber was wenn die Leere der Punkt ist?"
+      "flavorText": "Aus dem Hohlen Kern. Hohl klingt negativ — aber was wenn die Leere der Punkt ist?",
+      "binding": "bop"
     },
     {
       "id": "dun-hollow-core-kern-sandalen",
@@ -1061,7 +1079,8 @@
           ]
         }
       },
-      "flavorText": "Wer in den Kern blickt und zurückkommt, bringt etwas mit. Das hier zum Beispiel."
+      "flavorText": "Wer in den Kern blickt und zurückkommt, bringt etwas mit. Das hier zum Beispiel.",
+      "binding": "bop"
     },
     {
       "id": "dun-hollow-core-kern-siegelring",
@@ -1124,7 +1143,8 @@
           ]
         }
       },
-      "flavorText": "Die Dunkelheit des Kerns hat es berührt. Aber die Dunkelheit ist nicht böse. Nur... aufmerksam."
+      "flavorText": "Die Dunkelheit des Kerns hat es berührt. Aber die Dunkelheit ist nicht böse. Nur... aufmerksam.",
+      "binding": "bop"
     },
     {
       "id": "dun-hollow-core-kern-amulett",
@@ -1187,7 +1207,8 @@
           ]
         }
       },
-      "flavorText": "Es flüstert. Nicht laut genug um zu verstehen, aber deutlich genug um nervös zu werden."
+      "flavorText": "Es flüstert. Nicht laut genug um zu verstehen, aber deutlich genug um nervös zu werden.",
+      "binding": "bop"
     },
     {
       "id": "dun-hollow-core-kern-klinge-7xb",
@@ -1250,7 +1271,8 @@
           ]
         }
       },
-      "flavorText": "Aus der Leere geschmiedet. Die Leere protestierte nicht — sie hat Geduld."
+      "flavorText": "Aus der Leere geschmiedet. Die Leere protestierte nicht — sie hat Geduld.",
+      "binding": "bop"
     },
     {
       "id": "dun-hollow-core-kern-bollwerk",
@@ -1313,7 +1335,8 @@
           ]
         }
       },
-      "flavorText": "Es absorbiert Licht. Nicht viel — gerade genug um aufzufallen."
+      "flavorText": "Es absorbiert Licht. Nicht viel — gerade genug um aufzufallen.",
+      "binding": "bop"
     },
     {
       "id": "dun-hollow-core-kern-kappe",
@@ -1376,7 +1399,8 @@
           ]
         }
       },
-      "flavorText": "Geschmiedet in der Abwesenheit von allem. Erstaunlich solide für etwas aus dem Nichts."
+      "flavorText": "Geschmiedet in der Abwesenheit von allem. Erstaunlich solide für etwas aus dem Nichts.",
+      "binding": "bop"
     },
     {
       "id": "dun-hollow-core-kern-panzer",
@@ -1439,7 +1463,8 @@
           ]
         }
       },
-      "flavorText": "Aus dem Hohlen Kern. Hohl klingt negativ — aber was wenn die Leere der Punkt ist?"
+      "flavorText": "Aus dem Hohlen Kern. Hohl klingt negativ — aber was wenn die Leere der Punkt ist?",
+      "binding": "bop"
     },
     {
       "id": "dun-hollow-core-kern-stiefel",
@@ -1502,7 +1527,8 @@
           ]
         }
       },
-      "flavorText": "Wer in den Kern blickt und zurückkommt, bringt etwas mit. Das hier zum Beispiel."
+      "flavorText": "Wer in den Kern blickt und zurückkommt, bringt etwas mit. Das hier zum Beispiel.",
+      "binding": "bop"
     },
     {
       "id": "dun-hollow-core-kern-band",
@@ -1565,7 +1591,8 @@
           ]
         }
       },
-      "flavorText": "Die Dunkelheit des Kerns hat es berührt. Aber die Dunkelheit ist nicht böse. Nur... aufmerksam."
+      "flavorText": "Die Dunkelheit des Kerns hat es berührt. Aber die Dunkelheit ist nicht böse. Nur... aufmerksam.",
+      "binding": "bop"
     },
     {
       "id": "dun-hollow-core-kern-medaillon",
@@ -1628,7 +1655,8 @@
           ]
         }
       },
-      "flavorText": "Es flüstert. Nicht laut genug um zu verstehen, aber deutlich genug um nervös zu werden."
+      "flavorText": "Es flüstert. Nicht laut genug um zu verstehen, aber deutlich genug um nervös zu werden.",
+      "binding": "bop"
     },
     {
       "id": "dun-hollow-core-kern-klinge-u1j",
@@ -1691,7 +1719,8 @@
           ]
         }
       },
-      "flavorText": "Aus der Leere geschmiedet. Die Leere protestierte nicht — sie hat Geduld."
+      "flavorText": "Aus der Leere geschmiedet. Die Leere protestierte nicht — sie hat Geduld.",
+      "binding": "bop"
     },
     {
       "id": "dun-hollow-core-kern-fokus",
@@ -1754,7 +1783,8 @@
           ]
         }
       },
-      "flavorText": "Es absorbiert Licht. Nicht viel — gerade genug um aufzufallen."
+      "flavorText": "Es absorbiert Licht. Nicht viel — gerade genug um aufzufallen.",
+      "binding": "bop"
     },
     {
       "id": "dun-hollow-core-kern-helm",
@@ -1817,7 +1847,8 @@
           ]
         }
       },
-      "flavorText": "Geschmiedet in der Abwesenheit von allem. Erstaunlich solide für etwas aus dem Nichts."
+      "flavorText": "Geschmiedet in der Abwesenheit von allem. Erstaunlich solide für etwas aus dem Nichts.",
+      "binding": "bop"
     },
     {
       "id": "dun-hollow-core-kern-ruestung",
@@ -1880,7 +1911,8 @@
           ]
         }
       },
-      "flavorText": "Aus dem Hohlen Kern. Hohl klingt negativ — aber was wenn die Leere der Punkt ist?"
+      "flavorText": "Aus dem Hohlen Kern. Hohl klingt negativ — aber was wenn die Leere der Punkt ist?",
+      "binding": "bop"
     },
     {
       "id": "dun-hollow-core-kern-schuhe",
@@ -1943,7 +1975,8 @@
           ]
         }
       },
-      "flavorText": "Wer in den Kern blickt und zurückkommt, bringt etwas mit. Das hier zum Beispiel."
+      "flavorText": "Wer in den Kern blickt und zurückkommt, bringt etwas mit. Das hier zum Beispiel.",
+      "binding": "bop"
     },
     {
       "id": "dun-hollow-core-kern-reif-0yp",
@@ -2006,7 +2039,8 @@
           ]
         }
       },
-      "flavorText": "Die Dunkelheit des Kerns hat es berührt. Aber die Dunkelheit ist nicht böse. Nur... aufmerksam."
+      "flavorText": "Die Dunkelheit des Kerns hat es berührt. Aber die Dunkelheit ist nicht böse. Nur... aufmerksam.",
+      "binding": "bop"
     },
     {
       "id": "dun-hollow-core-kern-talisman",
@@ -2069,7 +2103,8 @@
           ]
         }
       },
-      "flavorText": "Es flüstert. Nicht laut genug um zu verstehen, aber deutlich genug um nervös zu werden."
+      "flavorText": "Es flüstert. Nicht laut genug um zu verstehen, aber deutlich genug um nervös zu werden.",
+      "binding": "bop"
     },
     {
       "id": "dun-hollow-core-kern-klinge-6l0",
@@ -2132,7 +2167,8 @@
           ]
         }
       },
-      "flavorText": "Aus der Leere geschmiedet. Die Leere protestierte nicht — sie hat Geduld."
+      "flavorText": "Aus der Leere geschmiedet. Die Leere protestierte nicht — sie hat Geduld.",
+      "binding": "bop"
     },
     {
       "id": "dun-hollow-core-kern-buckler-5g3",
@@ -2195,7 +2231,8 @@
           ]
         }
       },
-      "flavorText": "Es absorbiert Licht. Nicht viel — gerade genug um aufzufallen."
+      "flavorText": "Es absorbiert Licht. Nicht viel — gerade genug um aufzufallen.",
+      "binding": "bop"
     },
     {
       "id": "dun-hollow-core-kern-krone",
@@ -2258,7 +2295,8 @@
           ]
         }
       },
-      "flavorText": "Geschmiedet in der Abwesenheit von allem. Erstaunlich solide für etwas aus dem Nichts."
+      "flavorText": "Geschmiedet in der Abwesenheit von allem. Erstaunlich solide für etwas aus dem Nichts.",
+      "binding": "bop"
     },
     {
       "id": "dun-hollow-core-kern-wams",
@@ -2321,7 +2359,8 @@
           ]
         }
       },
-      "flavorText": "Aus dem Hohlen Kern. Hohl klingt negativ — aber was wenn die Leere der Punkt ist?"
+      "flavorText": "Aus dem Hohlen Kern. Hohl klingt negativ — aber was wenn die Leere der Punkt ist?",
+      "binding": "bop"
     },
     {
       "id": "dun-hollow-core-kern-marschtritt-9t2",
@@ -2384,7 +2423,8 @@
           ]
         }
       },
-      "flavorText": "Wer in den Kern blickt und zurückkommt, bringt etwas mit. Das hier zum Beispiel."
+      "flavorText": "Wer in den Kern blickt und zurückkommt, bringt etwas mit. Das hier zum Beispiel.",
+      "binding": "bop"
     },
     {
       "id": "dun-hollow-core-kern-ring-sqh",
@@ -2453,7 +2493,8 @@
         "max": 6,
         "label": "Dungeon-Resonanz: +{value}% Quest-XP"
       },
-      "flavorText": "Die Dunkelheit des Kerns hat es berührt. Aber die Dunkelheit ist nicht böse. Nur... aufmerksam."
+      "flavorText": "Die Dunkelheit des Kerns hat es berührt. Aber die Dunkelheit ist nicht böse. Nur... aufmerksam.",
+      "binding": "bop"
     },
     {
       "id": "dun-hollow-core-kern-kette-qk6",
@@ -2522,7 +2563,8 @@
         "max": 6,
         "label": "Vergrabener Schatz: +{value}% Gold"
       },
-      "flavorText": "Es flüstert. Nicht laut genug um zu verstehen, aber deutlich genug um nervös zu werden."
+      "flavorText": "Es flüstert. Nicht laut genug um zu verstehen, aber deutlich genug um nervös zu werden.",
+      "binding": "bop"
     },
     {
       "id": "dun-hollow-core-kern-klinge-22y",
@@ -2591,7 +2633,8 @@
         "max": 6,
         "label": "Plünderer-Instinkt: +{value}% Drop-Chance"
       },
-      "flavorText": "Aus der Leere geschmiedet. Die Leere protestierte nicht — sie hat Geduld."
+      "flavorText": "Aus der Leere geschmiedet. Die Leere protestierte nicht — sie hat Geduld.",
+      "binding": "bop"
     },
     {
       "id": "dun-hollow-core-kern-tartsche-5ga",
@@ -2660,7 +2703,8 @@
         "max": 6,
         "label": "Tödliche Präzision: +{value}% Crit Chance"
       },
-      "flavorText": "Es absorbiert Licht. Nicht viel — gerade genug um aufzufallen."
+      "flavorText": "Es absorbiert Licht. Nicht viel — gerade genug um aufzufallen.",
+      "binding": "bop"
     },
     {
       "id": "dun-hollow-core-kern-haube-gq1",
@@ -2729,7 +2773,8 @@
         "max": 6,
         "label": "Tiefenschutz: -{value}% Forge Decay"
       },
-      "flavorText": "Geschmiedet in der Abwesenheit von allem. Erstaunlich solide für etwas aus dem Nichts."
+      "flavorText": "Geschmiedet in der Abwesenheit von allem. Erstaunlich solide für etwas aus dem Nichts.",
+      "binding": "bop"
     },
     {
       "id": "dun-hollow-core-kern-mantel-ve0",
@@ -2798,7 +2843,8 @@
         "max": 6,
         "label": "Dungeon-Resonanz: +{value}% Quest-XP"
       },
-      "flavorText": "Aus dem Hohlen Kern. Hohl klingt negativ — aber was wenn die Leere der Punkt ist?"
+      "flavorText": "Aus dem Hohlen Kern. Hohl klingt negativ — aber was wenn die Leere der Punkt ist?",
+      "binding": "bop"
     },
     {
       "id": "dun-hollow-core-kern-treter-yyp",
@@ -2867,7 +2913,8 @@
         "max": 6,
         "label": "Vergrabener Schatz: +{value}% Gold"
       },
-      "flavorText": "Wer in den Kern blickt und zurückkommt, bringt etwas mit. Das hier zum Beispiel."
+      "flavorText": "Wer in den Kern blickt und zurückkommt, bringt etwas mit. Das hier zum Beispiel.",
+      "binding": "bop"
     },
     {
       "id": "dun-hollow-core-kern-siegelring-k0h",
@@ -2936,7 +2983,8 @@
         "max": 6,
         "label": "Plünderer-Instinkt: +{value}% Drop-Chance"
       },
-      "flavorText": "Die Dunkelheit des Kerns hat es berührt. Aber die Dunkelheit ist nicht böse. Nur... aufmerksam."
+      "flavorText": "Die Dunkelheit des Kerns hat es berührt. Aber die Dunkelheit ist nicht böse. Nur... aufmerksam.",
+      "binding": "bop"
     },
     {
       "id": "dun-hollow-core-kern-anhaenger-vfr",
@@ -3005,7 +3053,8 @@
         "max": 6,
         "label": "Tödliche Präzision: +{value}% Crit Chance"
       },
-      "flavorText": "Es flüstert. Nicht laut genug um zu verstehen, aber deutlich genug um nervös zu werden."
+      "flavorText": "Es flüstert. Nicht laut genug um zu verstehen, aber deutlich genug um nervös zu werden.",
+      "binding": "bop"
     },
     {
       "id": "dun-hollow-core-kern-klinge-s7h",
@@ -3074,7 +3123,8 @@
         "max": 6,
         "label": "Tiefenschutz: -{value}% Forge Decay"
       },
-      "flavorText": "Aus der Leere geschmiedet. Die Leere protestierte nicht — sie hat Geduld."
+      "flavorText": "Aus der Leere geschmiedet. Die Leere protestierte nicht — sie hat Geduld.",
+      "binding": "bop"
     }
   ]
 }

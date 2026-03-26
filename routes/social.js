@@ -84,6 +84,10 @@ function validateTradeItems(u, uid, itemInstanceIds) {
     if (isItemEquipped(u, item.id || item.instanceId || instanceId)) {
       return { ok: false, error: `Item ${instanceId} is currently equipped and cannot be traded` };
     }
+    // BoP items can never be traded; BoE items that have been equipped (bound) can't be traded
+    if (item.binding === 'bop' || item.bound === true) {
+      return { ok: false, error: `${item.name || instanceId} is soulbound and cannot be traded` };
+    }
     resolved.push(item);
   }
   return { ok: true, items: resolved };
@@ -460,6 +464,8 @@ function enrichOffer(offer, ownerId) {
       stats: invItem?.stats || null,
       setName: invItem?.setName || invItem?.setId || null,
       legendaryEffect: invItem?.legendaryEffect || null,
+      binding: invItem?.binding || null,
+      bound: invItem?.bound || false,
     };
   });
   return { gold, items };

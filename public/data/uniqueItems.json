@@ -61,7 +61,8 @@
       },
       "source": "world_boss:procrastination-wyrm",
       "dropChance": 0.1,
-      "isUnique": true
+      "isUnique": true,
+      "binding": "bop"
     },
     {
       "id": "colossus-ember-amulet",
@@ -124,7 +125,8 @@
       },
       "source": "world_boss:burnout-colossus",
       "dropChance": 0.1,
-      "isUnique": true
+      "isUnique": true,
+      "binding": "bop"
     },
     {
       "id": "hydra-focus-helm",
@@ -187,7 +189,8 @@
       },
       "source": "world_boss:chaos-hydra",
       "dropChance": 0.1,
-      "isUnique": true
+      "isUnique": true,
+      "binding": "bop"
     },
     {
       "id": "archive-codex",
@@ -250,7 +253,8 @@
       },
       "source": "dungeon:sunken-archive",
       "dropChance": 0.08,
-      "isUnique": true
+      "isUnique": true,
+      "binding": "bop"
     },
     {
       "id": "spire-edge",
@@ -313,7 +317,8 @@
       },
       "source": "dungeon:shattered-spire",
       "dropChance": 0.06,
-      "isUnique": true
+      "isUnique": true,
+      "binding": "bop"
     },
     {
       "id": "void-pendant",
@@ -376,7 +381,8 @@
       },
       "source": "dungeon:hollow-core",
       "dropChance": 0.04,
-      "isUnique": true
+      "isUnique": true,
+      "binding": "bop"
     },
     {
       "id": "doubt-whisper-boots",
@@ -438,7 +444,8 @@
       },
       "source": "world_boss:doubt-phantom",
       "dropChance": 0.12,
-      "isUnique": true
+      "isUnique": true,
+      "binding": "bop"
     },
     {
       "id": "entropy-web-armor",
@@ -501,7 +508,8 @@
       },
       "source": "world_boss:entropy-weaver",
       "dropChance": 0.12,
-      "isUnique": true
+      "isUnique": true,
+      "binding": "bop"
     },
     {
       "id": "stagnation-helm",
@@ -564,7 +572,8 @@
       },
       "source": "world_boss:stagnation-golem",
       "dropChance": 0.08,
-      "isUnique": true
+      "isUnique": true,
+      "binding": "bop"
     },
     {
       "id": "perfection-wings",
@@ -627,7 +636,8 @@
       },
       "source": "world_boss:perfection-seraph",
       "dropChance": 0.08,
-      "isUnique": true
+      "isUnique": true,
+      "binding": "bop"
     },
     {
       "id": "isolation-trident",
@@ -690,7 +700,8 @@
       },
       "source": "world_boss:isolation-leviathan",
       "dropChance": 0.05,
-      "isUnique": true
+      "isUnique": true,
+      "binding": "bop"
     },
     {
       "id": "apathy-crown",
@@ -753,7 +764,8 @@
       },
       "source": "world_boss:apathy-sovereign",
       "dropChance": 0.04,
-      "isUnique": true
+      "isUnique": true,
+      "binding": "bop"
     },
     {
       "id": "astral-veil",
@@ -816,7 +828,8 @@
       },
       "source": "gacha:astral-radiance",
       "dropChance": 0.005,
-      "isUnique": true
+      "isUnique": true,
+      "binding": "bop"
     },
     {
       "id": "wheel-of-fate-shield",
@@ -879,7 +892,8 @@
       },
       "source": "gacha:wheel-of-stars",
       "dropChance": 0.003,
-      "isUnique": true
+      "isUnique": true,
+      "binding": "bop"
     }
   ]
 }

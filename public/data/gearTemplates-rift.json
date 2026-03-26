@@ -16,7 +16,8 @@
       "fixedStats": {
         "kraft": 1
       },
-      "flavorText": "Der Riss öffnete sich. Dahinter lag etwas Unerwartetes — und Nützliches."
+      "flavorText": "Der Riss öffnete sich. Dahinter lag etwas Unerwartetes — und Nützliches.",
+      "binding": "bop"
     },
     {
       "id": "rift-normal-riss-buckler",
@@ -34,7 +35,8 @@
       "fixedStats": {
         "ausdauer": 3
       },
-      "flavorText": "Aus dem Riss geborgen. Noch immer vibriert es leicht."
+      "flavorText": "Aus dem Riss geborgen. Noch immer vibriert es leicht.",
+      "binding": "bop"
     },
     {
       "id": "rift-normal-riss-haube",
@@ -53,7 +55,8 @@
         "weisheit": 3,
         "kraft": 1
       },
-      "flavorText": "Der Riss öffnete sich. Dahinter lag etwas Unerwartetes — und Nützliches."
+      "flavorText": "Der Riss öffnete sich. Dahinter lag etwas Unerwartetes — und Nützliches.",
+      "binding": "bop"
     },
     {
       "id": "rift-normal-riss-mantel",
@@ -71,7 +74,8 @@
       "fixedStats": {
         "ausdauer": 2
       },
-      "flavorText": "Aus dem Riss geborgen. Noch immer vibriert es leicht."
+      "flavorText": "Aus dem Riss geborgen. Noch immer vibriert es leicht.",
+      "binding": "bop"
     },
     {
       "id": "rift-normal-riss-stiefel",
@@ -90,7 +94,8 @@
         "ausdauer": 1,
         "kraft": 2
       },
-      "flavorText": "Der Riss öffnete sich. Dahinter lag etwas Unerwartetes — und Nützliches."
+      "flavorText": "Der Riss öffnete sich. Dahinter lag etwas Unerwartetes — und Nützliches.",
+      "binding": "bop"
     },
     {
       "id": "rift-normal-riss-reif",
@@ -109,7 +114,8 @@
         "glueck": 1,
         "kraft": 2
       },
-      "flavorText": "Aus dem Riss geborgen. Noch immer vibriert es leicht."
+      "flavorText": "Aus dem Riss geborgen. Noch immer vibriert es leicht.",
+      "binding": "bop"
     },
     {
       "id": "rift-normal-riss-medaillon",
@@ -127,7 +133,8 @@
       "fixedStats": {
         "ausdauer": 2
       },
-      "flavorText": "Der Riss öffnete sich. Dahinter lag etwas Unerwartetes — und Nützliches."
+      "flavorText": "Der Riss öffnete sich. Dahinter lag etwas Unerwartetes — und Nützliches.",
+      "binding": "bop"
     },
     {
       "id": "rift-normal-riss-schwert",
@@ -145,7 +152,8 @@
       "fixedStats": {
         "kraft": 2
       },
-      "flavorText": "Aus dem Riss geborgen. Noch immer vibriert es leicht."
+      "flavorText": "Aus dem Riss geborgen. Noch immer vibriert es leicht.",
+      "binding": "bop"
     },
     {
       "id": "rift-normal-riss-tartsche",
@@ -164,7 +172,8 @@
         "ausdauer": 3,
         "kraft": 1
       },
-      "flavorText": "Der Riss öffnete sich. Dahinter lag etwas Unerwartetes — und Nützliches."
+      "flavorText": "Der Riss öffnete sich. Dahinter lag etwas Unerwartetes — und Nützliches.",
+      "binding": "bop"
     },
     {
       "id": "rift-normal-riss-kappe",
@@ -182,7 +191,8 @@
       "fixedStats": {
         "weisheit": 1
       },
-      "flavorText": "Aus dem Riss geborgen. Noch immer vibriert es leicht."
+      "flavorText": "Aus dem Riss geborgen. Noch immer vibriert es leicht.",
+      "binding": "bop"
     },
     {
       "id": "rift-normal-riss-panzer",
@@ -200,7 +210,8 @@
       "fixedStats": {
         "ausdauer": 1
       },
-      "flavorText": "Der Riss öffnete sich. Dahinter lag etwas Unerwartetes — und Nützliches."
+      "flavorText": "Der Riss öffnete sich. Dahinter lag etwas Unerwartetes — und Nützliches.",
+      "binding": "bop"
     },
     {
       "id": "rift-normal-riss-marschtritt",
@@ -219,7 +230,8 @@
         "ausdauer": 3,
         "kraft": 2
       },
-      "flavorText": "Aus dem Riss geborgen. Noch immer vibriert es leicht."
+      "flavorText": "Aus dem Riss geborgen. Noch immer vibriert es leicht.",
+      "binding": "bop"
     },
     {
       "id": "rift-normal-riss-ring",
@@ -237,7 +249,8 @@
       "fixedStats": {
         "glueck": 2
       },
-      "flavorText": "Der Riss öffnete sich. Dahinter lag etwas Unerwartetes — und Nützliches."
+      "flavorText": "Der Riss öffnete sich. Dahinter lag etwas Unerwartetes — und Nützliches.",
+      "binding": "bop"
     },
     {
       "id": "rift-normal-riss-kette",
@@ -300,7 +313,8 @@
           ]
         }
       },
-      "flavorText": "Aus dem Riss geborgen. Noch immer vibriert es leicht."
+      "flavorText": "Aus dem Riss geborgen. Noch immer vibriert es leicht.",
+      "binding": "bop"
     },
     {
       "id": "rift-normal-riss-axt",
@@ -363,7 +377,8 @@
           ]
         }
       },
-      "flavorText": "Der Riss öffnete sich. Dahinter lag etwas Unerwartetes — und Nützliches."
+      "flavorText": "Der Riss öffnete sich. Dahinter lag etwas Unerwartetes — und Nützliches.",
+      "binding": "bop"
     },
     {
       "id": "rift-normal-riss-schild",
@@ -426,7 +441,8 @@
           ]
         }
       },
-      "flavorText": "Aus dem Riss geborgen. Noch immer vibriert es leicht."
+      "flavorText": "Aus dem Riss geborgen. Noch immer vibriert es leicht.",
+      "binding": "bop"
     },
     {
       "id": "rift-normal-riss-krone",
@@ -489,7 +505,8 @@
           ]
         }
       },
-      "flavorText": "Der Riss öffnete sich. Dahinter lag etwas Unerwartetes — und Nützliches."
+      "flavorText": "Der Riss öffnete sich. Dahinter lag etwas Unerwartetes — und Nützliches.",
+      "binding": "bop"
     },
     {
       "id": "rift-normal-riss-wams",
@@ -508,7 +525,8 @@
         "ausdauer": 4,
         "kraft": 2
       },
-      "flavorText": "Aus dem Riss geborgen. Noch immer vibriert es leicht."
+      "flavorText": "Aus dem Riss geborgen. Noch immer vibriert es leicht.",
+      "binding": "bop"
     },
     {
       "id": "rift-normal-riss-schuhe",
@@ -571,7 +589,8 @@
           ]
         }
       },
-      "flavorText": "Der Riss öffnete sich. Dahinter lag etwas Unerwartetes — und Nützliches."
+      "flavorText": "Der Riss öffnete sich. Dahinter lag etwas Unerwartetes — und Nützliches.",
+      "binding": "bop"
     },
     {
       "id": "rift-normal-riss-siegelring",
@@ -634,7 +653,8 @@
           ]
         }
       },
-      "flavorText": "Aus dem Riss geborgen. Noch immer vibriert es leicht."
+      "flavorText": "Aus dem Riss geborgen. Noch immer vibriert es leicht.",
+      "binding": "bop"
     },
     {
       "id": "rift-hard-kluft-klinge",
@@ -652,7 +672,8 @@
       "fixedStats": {
         "kraft": 2
       },
-      "flavorText": "Die Kluft ist tiefer als sie aussieht. Wie die meisten gefährlichen Dinge."
+      "flavorText": "Die Kluft ist tiefer als sie aussieht. Wie die meisten gefährlichen Dinge.",
+      "binding": "bop"
     },
     {
       "id": "rift-hard-kluft-buckler",
@@ -670,7 +691,8 @@
       "fixedStats": {
         "ausdauer": 2
       },
-      "flavorText": "Zwischen den Rissen liegt Macht. Man muss nur wissen wo man greift."
+      "flavorText": "Zwischen den Rissen liegt Macht. Man muss nur wissen wo man greift.",
+      "binding": "bop"
     },
     {
       "id": "rift-hard-kluft-haube",
@@ -689,7 +711,8 @@
         "weisheit": 3,
         "kraft": 2
       },
-      "flavorText": "Die Kluft ist tiefer als sie aussieht. Wie die meisten gefährlichen Dinge."
+      "flavorText": "Die Kluft ist tiefer als sie aussieht. Wie die meisten gefährlichen Dinge.",
+      "binding": "bop"
     },
     {
       "id": "rift-hard-kluft-mantel",
@@ -707,7 +730,8 @@
       "fixedStats": {
         "ausdauer": 2
       },
-      "flavorText": "Zwischen den Rissen liegt Macht. Man muss nur wissen wo man greift."
+      "flavorText": "Zwischen den Rissen liegt Macht. Man muss nur wissen wo man greift.",
+      "binding": "bop"
     },
     {
       "id": "rift-hard-kluft-stiefel",
@@ -725,7 +749,8 @@
       "fixedStats": {
         "ausdauer": 4
       },
-      "flavorText": "Die Kluft ist tiefer als sie aussieht. Wie die meisten gefährlichen Dinge."
+      "flavorText": "Die Kluft ist tiefer als sie aussieht. Wie die meisten gefährlichen Dinge.",
+      "binding": "bop"
     },
     {
       "id": "rift-hard-kluft-reif",
@@ -744,7 +769,8 @@
         "glueck": 4,
         "kraft": 3
       },
-      "flavorText": "Zwischen den Rissen liegt Macht. Man muss nur wissen wo man greift."
+      "flavorText": "Zwischen den Rissen liegt Macht. Man muss nur wissen wo man greift.",
+      "binding": "bop"
     },
     {
       "id": "rift-hard-kluft-medaillon",
@@ -762,7 +788,8 @@
       "fixedStats": {
         "ausdauer": 2
       },
-      "flavorText": "Die Kluft ist tiefer als sie aussieht. Wie die meisten gefährlichen Dinge."
+      "flavorText": "Die Kluft ist tiefer als sie aussieht. Wie die meisten gefährlichen Dinge.",
+      "binding": "bop"
     },
     {
       "id": "rift-hard-kluft-schwert",
@@ -780,7 +807,8 @@
       "fixedStats": {
         "kraft": 4
       },
-      "flavorText": "Zwischen den Rissen liegt Macht. Man muss nur wissen wo man greift."
+      "flavorText": "Zwischen den Rissen liegt Macht. Man muss nur wissen wo man greift.",
+      "binding": "bop"
     },
     {
       "id": "rift-hard-kluft-tartsche",
@@ -843,7 +871,8 @@
           ]
         }
       },
-      "flavorText": "Die Kluft ist tiefer als sie aussieht. Wie die meisten gefährlichen Dinge."
+      "flavorText": "Die Kluft ist tiefer als sie aussieht. Wie die meisten gefährlichen Dinge.",
+      "binding": "bop"
     },
     {
       "id": "rift-hard-kluft-kappe",
@@ -906,7 +935,8 @@
           ]
         }
       },
-      "flavorText": "Zwischen den Rissen liegt Macht. Man muss nur wissen wo man greift."
+      "flavorText": "Zwischen den Rissen liegt Macht. Man muss nur wissen wo man greift.",
+      "binding": "bop"
     },
     {
       "id": "rift-hard-kluft-panzer",
@@ -924,7 +954,8 @@
       "fixedStats": {
         "ausdauer": 3
       },
-      "flavorText": "Die Kluft ist tiefer als sie aussieht. Wie die meisten gefährlichen Dinge."
+      "flavorText": "Die Kluft ist tiefer als sie aussieht. Wie die meisten gefährlichen Dinge.",
+      "binding": "bop"
     },
     {
       "id": "rift-hard-kluft-marschtritt",
@@ -987,7 +1018,8 @@
           ]
         }
       },
-      "flavorText": "Zwischen den Rissen liegt Macht. Man muss nur wissen wo man greift."
+      "flavorText": "Zwischen den Rissen liegt Macht. Man muss nur wissen wo man greift.",
+      "binding": "bop"
     },
     {
       "id": "rift-hard-kluft-ring",
@@ -1050,7 +1082,8 @@
           ]
         }
       },
-      "flavorText": "Die Kluft ist tiefer als sie aussieht. Wie die meisten gefährlichen Dinge."
+      "flavorText": "Die Kluft ist tiefer als sie aussieht. Wie die meisten gefährlichen Dinge.",
+      "binding": "bop"
     },
     {
       "id": "rift-hard-kluft-kette",
@@ -1069,7 +1102,8 @@
         "ausdauer": 3,
         "kraft": 2
       },
-      "flavorText": "Zwischen den Rissen liegt Macht. Man muss nur wissen wo man greift."
+      "flavorText": "Zwischen den Rissen liegt Macht. Man muss nur wissen wo man greift.",
+      "binding": "bop"
     },
     {
       "id": "rift-hard-kluft-axt",
@@ -1132,7 +1166,8 @@
           ]
         }
       },
-      "flavorText": "Die Kluft ist tiefer als sie aussieht. Wie die meisten gefährlichen Dinge."
+      "flavorText": "Die Kluft ist tiefer als sie aussieht. Wie die meisten gefährlichen Dinge.",
+      "binding": "bop"
     },
     {
       "id": "rift-hard-kluft-schild",
@@ -1151,7 +1186,8 @@
         "ausdauer": 4,
         "kraft": 2
       },
-      "flavorText": "Zwischen den Rissen liegt Macht. Man muss nur wissen wo man greift."
+      "flavorText": "Zwischen den Rissen liegt Macht. Man muss nur wissen wo man greift.",
+      "binding": "bop"
     },
     {
       "id": "rift-hard-kluft-krone",
@@ -1214,7 +1250,8 @@
           ]
         }
       },
-      "flavorText": "Die Kluft ist tiefer als sie aussieht. Wie die meisten gefährlichen Dinge."
+      "flavorText": "Die Kluft ist tiefer als sie aussieht. Wie die meisten gefährlichen Dinge.",
+      "binding": "bop"
     },
     {
       "id": "rift-hard-kluft-wams",
@@ -1233,7 +1270,8 @@
         "ausdauer": 5,
         "kraft": 3
       },
-      "flavorText": "Zwischen den Rissen liegt Macht. Man muss nur wissen wo man greift."
+      "flavorText": "Zwischen den Rissen liegt Macht. Man muss nur wissen wo man greift.",
+      "binding": "bop"
     },
     {
       "id": "rift-hard-kluft-schuhe",
@@ -1296,7 +1334,8 @@
           ]
         }
       },
-      "flavorText": "Die Kluft ist tiefer als sie aussieht. Wie die meisten gefährlichen Dinge."
+      "flavorText": "Die Kluft ist tiefer als sie aussieht. Wie die meisten gefährlichen Dinge.",
+      "binding": "bop"
     },
     {
       "id": "rift-hard-kluft-siegelring",
@@ -1359,7 +1398,8 @@
           ]
         }
       },
-      "flavorText": "Zwischen den Rissen liegt Macht. Man muss nur wissen wo man greift."
+      "flavorText": "Zwischen den Rissen liegt Macht. Man muss nur wissen wo man greift.",
+      "binding": "bop"
     },
     {
       "id": "rift-hard-kluft-amulett",
@@ -1422,7 +1462,8 @@
           ]
         }
       },
-      "flavorText": "Die Kluft ist tiefer als sie aussieht. Wie die meisten gefährlichen Dinge."
+      "flavorText": "Die Kluft ist tiefer als sie aussieht. Wie die meisten gefährlichen Dinge.",
+      "binding": "bop"
     },
     {
       "id": "rift-hard-kluft-hammer",
@@ -1485,7 +1526,8 @@
           ]
         }
       },
-      "flavorText": "Zwischen den Rissen liegt Macht. Man muss nur wissen wo man greift."
+      "flavorText": "Zwischen den Rissen liegt Macht. Man muss nur wissen wo man greift.",
+      "binding": "bop"
     },
     {
       "id": "rift-hard-kluft-bollwerk",
@@ -1548,7 +1590,8 @@
           ]
         }
       },
-      "flavorText": "Die Kluft ist tiefer als sie aussieht. Wie die meisten gefährlichen Dinge."
+      "flavorText": "Die Kluft ist tiefer als sie aussieht. Wie die meisten gefährlichen Dinge.",
+      "binding": "bop"
     },
     {
       "id": "rift-hard-kluft-visier",
@@ -1611,7 +1654,8 @@
           ]
         }
       },
-      "flavorText": "Zwischen den Rissen liegt Macht. Man muss nur wissen wo man greift."
+      "flavorText": "Zwischen den Rissen liegt Macht. Man muss nur wissen wo man greift.",
+      "binding": "bop"
     },
     {
       "id": "rift-hard-kluft-brustplatte",
@@ -1674,7 +1718,8 @@
           ]
         }
       },
-      "flavorText": "Die Kluft ist tiefer als sie aussieht. Wie die meisten gefährlichen Dinge."
+      "flavorText": "Die Kluft ist tiefer als sie aussieht. Wie die meisten gefährlichen Dinge.",
+      "binding": "bop"
     },
     {
       "id": "rift-hard-kluft-treter",
@@ -1737,7 +1782,8 @@
           ]
         }
       },
-      "flavorText": "Zwischen den Rissen liegt Macht. Man muss nur wissen wo man greift."
+      "flavorText": "Zwischen den Rissen liegt Macht. Man muss nur wissen wo man greift.",
+      "binding": "bop"
     },
     {
       "id": "rift-hard-kluft-band",
@@ -1800,7 +1846,8 @@
           ]
         }
       },
-      "flavorText": "Die Kluft ist tiefer als sie aussieht. Wie die meisten gefährlichen Dinge."
+      "flavorText": "Die Kluft ist tiefer als sie aussieht. Wie die meisten gefährlichen Dinge.",
+      "binding": "bop"
     },
     {
       "id": "rift-hard-kluft-anhaenger",
@@ -1863,7 +1910,8 @@
           ]
         }
       },
-      "flavorText": "Zwischen den Rissen liegt Macht. Man muss nur wissen wo man greift."
+      "flavorText": "Zwischen den Rissen liegt Macht. Man muss nur wissen wo man greift.",
+      "binding": "bop"
     },
     {
       "id": "rift-hard-kluft-stab",
@@ -1932,7 +1980,8 @@
         "max": 5,
         "label": "Riss-Präzision: +{value}% Crit"
       },
-      "flavorText": "Die Kluft ist tiefer als sie aussieht. Wie die meisten gefährlichen Dinge."
+      "flavorText": "Die Kluft ist tiefer als sie aussieht. Wie die meisten gefährlichen Dinge.",
+      "binding": "bop"
     },
     {
       "id": "rift-hard-kluft-fokus",
@@ -2001,7 +2050,8 @@
         "max": 5,
         "label": "Riss-Beständigkeit: -{value}% Forge Decay"
       },
-      "flavorText": "Zwischen den Rissen liegt Macht. Man muss nur wissen wo man greift."
+      "flavorText": "Zwischen den Rissen liegt Macht. Man muss nur wissen wo man greift.",
+      "binding": "bop"
     },
     {
       "id": "rift-legendary-abyss-klinge",
@@ -2064,7 +2114,8 @@
           ]
         }
       },
-      "flavorText": "Der Abgrund blickte zurück. Er blinzelte zuerst."
+      "flavorText": "Der Abgrund blickte zurück. Er blinzelte zuerst.",
+      "binding": "bop"
     },
     {
       "id": "rift-legendary-abyss-buckler",
@@ -2127,7 +2178,8 @@
           ]
         }
       },
-      "flavorText": "Aus der tiefsten Schicht des Rifts. Es summt mit einer Frequenz die kein Instrument kennt."
+      "flavorText": "Aus der tiefsten Schicht des Rifts. Es summt mit einer Frequenz die kein Instrument kennt.",
+      "binding": "bop"
     },
     {
       "id": "rift-legendary-abyss-haube",
@@ -2146,7 +2198,8 @@
         "weisheit": 3,
         "kraft": 3
       },
-      "flavorText": "Der Abgrund blickte zurück. Er blinzelte zuerst."
+      "flavorText": "Der Abgrund blickte zurück. Er blinzelte zuerst.",
+      "binding": "bop"
     },
     {
       "id": "rift-legendary-abyss-mantel",
@@ -2209,7 +2262,8 @@
           ]
         }
       },
-      "flavorText": "Aus der tiefsten Schicht des Rifts. Es summt mit einer Frequenz die kein Instrument kennt."
+      "flavorText": "Aus der tiefsten Schicht des Rifts. Es summt mit einer Frequenz die kein Instrument kennt.",
+      "binding": "bop"
     },
     {
       "id": "rift-legendary-abyss-stiefel",
@@ -2272,7 +2326,8 @@
           ]
         }
       },
-      "flavorText": "Der Abgrund blickte zurück. Er blinzelte zuerst."
+      "flavorText": "Der Abgrund blickte zurück. Er blinzelte zuerst.",
+      "binding": "bop"
     },
     {
       "id": "rift-legendary-abyss-reif",
@@ -2335,7 +2390,8 @@
           ]
         }
       },
-      "flavorText": "Aus der tiefsten Schicht des Rifts. Es summt mit einer Frequenz die kein Instrument kennt."
+      "flavorText": "Aus der tiefsten Schicht des Rifts. Es summt mit einer Frequenz die kein Instrument kennt.",
+      "binding": "bop"
     },
     {
       "id": "rift-legendary-abyss-medaillon",
@@ -2398,7 +2454,8 @@
           ]
         }
       },
-      "flavorText": "Der Abgrund blickte zurück. Er blinzelte zuerst."
+      "flavorText": "Der Abgrund blickte zurück. Er blinzelte zuerst.",
+      "binding": "bop"
     },
     {
       "id": "rift-legendary-abyss-schwert",
@@ -2461,7 +2518,8 @@
           ]
         }
       },
-      "flavorText": "Aus der tiefsten Schicht des Rifts. Es summt mit einer Frequenz die kein Instrument kennt."
+      "flavorText": "Aus der tiefsten Schicht des Rifts. Es summt mit einer Frequenz die kein Instrument kennt.",
+      "binding": "bop"
     },
     {
       "id": "rift-legendary-abyss-tartsche",
@@ -2524,7 +2582,8 @@
           ]
         }
       },
-      "flavorText": "Der Abgrund blickte zurück. Er blinzelte zuerst."
+      "flavorText": "Der Abgrund blickte zurück. Er blinzelte zuerst.",
+      "binding": "bop"
     },
     {
       "id": "rift-legendary-abyss-kappe",
@@ -2543,7 +2602,8 @@
         "weisheit": 3,
         "kraft": 5
       },
-      "flavorText": "Aus der tiefsten Schicht des Rifts. Es summt mit einer Frequenz die kein Instrument kennt."
+      "flavorText": "Aus der tiefsten Schicht des Rifts. Es summt mit einer Frequenz die kein Instrument kennt.",
+      "binding": "bop"
     },
     {
       "id": "rift-legendary-abyss-panzer",
@@ -2606,7 +2666,8 @@
           ]
         }
       },
-      "flavorText": "Der Abgrund blickte zurück. Er blinzelte zuerst."
+      "flavorText": "Der Abgrund blickte zurück. Er blinzelte zuerst.",
+      "binding": "bop"
     },
     {
       "id": "rift-legendary-abyss-marschtritt",
@@ -2669,7 +2730,8 @@
           ]
         }
       },
-      "flavorText": "Aus der tiefsten Schicht des Rifts. Es summt mit einer Frequenz die kein Instrument kennt."
+      "flavorText": "Aus der tiefsten Schicht des Rifts. Es summt mit einer Frequenz die kein Instrument kennt.",
+      "binding": "bop"
     },
     {
       "id": "rift-legendary-abyss-ring",
@@ -2687,7 +2749,8 @@
       "fixedStats": {
         "glueck": 5
       },
-      "flavorText": "Der Abgrund blickte zurück. Er blinzelte zuerst."
+      "flavorText": "Der Abgrund blickte zurück. Er blinzelte zuerst.",
+      "binding": "bop"
     },
     {
       "id": "rift-legendary-abyss-kette",
@@ -2750,7 +2813,8 @@
           ]
         }
       },
-      "flavorText": "Aus der tiefsten Schicht des Rifts. Es summt mit einer Frequenz die kein Instrument kennt."
+      "flavorText": "Aus der tiefsten Schicht des Rifts. Es summt mit einer Frequenz die kein Instrument kennt.",
+      "binding": "bop"
     },
     {
       "id": "rift-legendary-abyss-axt",
@@ -2813,7 +2877,8 @@
           ]
         }
       },
-      "flavorText": "Der Abgrund blickte zurück. Er blinzelte zuerst."
+      "flavorText": "Der Abgrund blickte zurück. Er blinzelte zuerst.",
+      "binding": "bop"
     },
     {
       "id": "rift-legendary-abyss-schild",
@@ -2876,7 +2941,8 @@
           ]
         }
       },
-      "flavorText": "Aus der tiefsten Schicht des Rifts. Es summt mit einer Frequenz die kein Instrument kennt."
+      "flavorText": "Aus der tiefsten Schicht des Rifts. Es summt mit einer Frequenz die kein Instrument kennt.",
+      "binding": "bop"
     },
     {
       "id": "rift-legendary-abyss-krone",
@@ -2939,7 +3005,8 @@
           ]
         }
       },
-      "flavorText": "Der Abgrund blickte zurück. Er blinzelte zuerst."
+      "flavorText": "Der Abgrund blickte zurück. Er blinzelte zuerst.",
+      "binding": "bop"
     },
     {
       "id": "rift-legendary-abyss-wams",
@@ -3002,7 +3069,8 @@
           ]
         }
       },
-      "flavorText": "Aus der tiefsten Schicht des Rifts. Es summt mit einer Frequenz die kein Instrument kennt."
+      "flavorText": "Aus der tiefsten Schicht des Rifts. Es summt mit einer Frequenz die kein Instrument kennt.",
+      "binding": "bop"
     },
     {
       "id": "rift-legendary-abyss-schuhe",
@@ -3065,7 +3133,8 @@
           ]
         }
       },
-      "flavorText": "Der Abgrund blickte zurück. Er blinzelte zuerst."
+      "flavorText": "Der Abgrund blickte zurück. Er blinzelte zuerst.",
+      "binding": "bop"
     },
     {
       "id": "rift-legendary-abyss-siegelring",
@@ -3128,7 +3197,8 @@
           ]
         }
       },
-      "flavorText": "Aus der tiefsten Schicht des Rifts. Es summt mit einer Frequenz die kein Instrument kennt."
+      "flavorText": "Aus der tiefsten Schicht des Rifts. Es summt mit einer Frequenz die kein Instrument kennt.",
+      "binding": "bop"
     },
     {
       "id": "rift-legendary-abyss-amulett",
@@ -3191,7 +3261,8 @@
           ]
         }
       },
-      "flavorText": "Der Abgrund blickte zurück. Er blinzelte zuerst."
+      "flavorText": "Der Abgrund blickte zurück. Er blinzelte zuerst.",
+      "binding": "bop"
     },
     {
       "id": "rift-legendary-abyss-hammer",
@@ -3254,7 +3325,8 @@
           ]
         }
       },
-      "flavorText": "Aus der tiefsten Schicht des Rifts. Es summt mit einer Frequenz die kein Instrument kennt."
+      "flavorText": "Aus der tiefsten Schicht des Rifts. Es summt mit einer Frequenz die kein Instrument kennt.",
+      "binding": "bop"
     },
     {
       "id": "rift-legendary-abyss-bollwerk",
@@ -3317,7 +3389,8 @@
           ]
         }
       },
-      "flavorText": "Der Abgrund blickte zurück. Er blinzelte zuerst."
+      "flavorText": "Der Abgrund blickte zurück. Er blinzelte zuerst.",
+      "binding": "bop"
     },
     {
       "id": "rift-legendary-abyss-visier",
@@ -3380,7 +3453,8 @@
           ]
         }
       },
-      "flavorText": "Aus der tiefsten Schicht des Rifts. Es summt mit einer Frequenz die kein Instrument kennt."
+      "flavorText": "Aus der tiefsten Schicht des Rifts. Es summt mit einer Frequenz die kein Instrument kennt.",
+      "binding": "bop"
     },
     {
       "id": "rift-legendary-abyss-brustplatte",
@@ -3443,7 +3517,8 @@
           ]
         }
       },
-      "flavorText": "Der Abgrund blickte zurück. Er blinzelte zuerst."
+      "flavorText": "Der Abgrund blickte zurück. Er blinzelte zuerst.",
+      "binding": "bop"
     },
     {
       "id": "rift-legendary-abyss-treter",
@@ -3506,7 +3581,8 @@
           ]
         }
       },
-      "flavorText": "Aus der tiefsten Schicht des Rifts. Es summt mit einer Frequenz die kein Instrument kennt."
+      "flavorText": "Aus der tiefsten Schicht des Rifts. Es summt mit einer Frequenz die kein Instrument kennt.",
+      "binding": "bop"
     },
     {
       "id": "rift-legendary-abyss-band",
@@ -3569,7 +3645,8 @@
           ]
         }
       },
-      "flavorText": "Der Abgrund blickte zurück. Er blinzelte zuerst."
+      "flavorText": "Der Abgrund blickte zurück. Er blinzelte zuerst.",
+      "binding": "bop"
     },
     {
       "id": "rift-legendary-abyss-anhaenger",
@@ -3632,7 +3709,8 @@
           ]
         }
       },
-      "flavorText": "Aus der tiefsten Schicht des Rifts. Es summt mit einer Frequenz die kein Instrument kennt."
+      "flavorText": "Aus der tiefsten Schicht des Rifts. Es summt mit einer Frequenz die kein Instrument kennt.",
+      "binding": "bop"
     },
     {
       "id": "rift-legendary-abyss-stab",
@@ -3695,7 +3773,8 @@
           ]
         }
       },
-      "flavorText": "Der Abgrund blickte zurück. Er blinzelte zuerst."
+      "flavorText": "Der Abgrund blickte zurück. Er blinzelte zuerst.",
+      "binding": "bop"
     },
     {
       "id": "rift-legendary-abyss-fokus",
@@ -3758,7 +3837,8 @@
           ]
         }
       },
-      "flavorText": "Aus der tiefsten Schicht des Rifts. Es summt mit einer Frequenz die kein Instrument kennt."
+      "flavorText": "Aus der tiefsten Schicht des Rifts. Es summt mit einer Frequenz die kein Instrument kennt.",
+      "binding": "bop"
     },
     {
       "id": "rift-legendary-abyss-helm",
@@ -3821,7 +3901,8 @@
           ]
         }
       },
-      "flavorText": "Der Abgrund blickte zurück. Er blinzelte zuerst."
+      "flavorText": "Der Abgrund blickte zurück. Er blinzelte zuerst.",
+      "binding": "bop"
     },
     {
       "id": "rift-legendary-abyss-ruestung",
@@ -3884,7 +3965,8 @@
           ]
         }
       },
-      "flavorText": "Aus der tiefsten Schicht des Rifts. Es summt mit einer Frequenz die kein Instrument kennt."
+      "flavorText": "Aus der tiefsten Schicht des Rifts. Es summt mit einer Frequenz die kein Instrument kennt.",
+      "binding": "bop"
     },
     {
       "id": "rift-legendary-abyss-stiefel-c47",
@@ -3947,7 +4029,8 @@
           ]
         }
       },
-      "flavorText": "Der Abgrund blickte zurück. Er blinzelte zuerst."
+      "flavorText": "Der Abgrund blickte zurück. Er blinzelte zuerst.",
+      "binding": "bop"
     },
     {
       "id": "rift-legendary-abyss-reif-2i3",
@@ -4010,7 +4093,8 @@
           ]
         }
       },
-      "flavorText": "Aus der tiefsten Schicht des Rifts. Es summt mit einer Frequenz die kein Instrument kennt."
+      "flavorText": "Aus der tiefsten Schicht des Rifts. Es summt mit einer Frequenz die kein Instrument kennt.",
+      "binding": "bop"
     },
     {
       "id": "rift-legendary-abyss-medaillon-q3m",
@@ -4073,7 +4157,8 @@
           ]
         }
       },
-      "flavorText": "Der Abgrund blickte zurück. Er blinzelte zuerst."
+      "flavorText": "Der Abgrund blickte zurück. Er blinzelte zuerst.",
+      "binding": "bop"
     },
     {
       "id": "rift-legendary-abyss-dolch",
@@ -4142,7 +4227,8 @@
         "max": 5,
         "label": "Riss-Resonanz: +{value}% Quest-XP"
       },
-      "flavorText": "Aus der tiefsten Schicht des Rifts. Es summt mit einer Frequenz die kein Instrument kennt."
+      "flavorText": "Aus der tiefsten Schicht des Rifts. Es summt mit einer Frequenz die kein Instrument kennt.",
+      "binding": "bop"
     },
     {
       "id": "rift-legendary-abyss-buckler-85y",
@@ -4211,7 +4297,8 @@
         "max": 5,
         "label": "Riss-Glanz: +{value}% Gold"
       },
-      "flavorText": "Der Abgrund blickte zurück. Er blinzelte zuerst."
+      "flavorText": "Der Abgrund blickte zurück. Er blinzelte zuerst.",
+      "binding": "bop"
     },
     {
       "id": "rift-legendary-abyss-haube-k01",
@@ -4280,7 +4367,8 @@
         "max": 5,
         "label": "Riss-Instinkt: +{value}% Drop-Chance"
       },
-      "flavorText": "Aus der tiefsten Schicht des Rifts. Es summt mit einer Frequenz die kein Instrument kennt."
+      "flavorText": "Aus der tiefsten Schicht des Rifts. Es summt mit einer Frequenz die kein Instrument kennt.",
+      "binding": "bop"
     },
     {
       "id": "rift-legendary-abyss-mantel-n7i",
@@ -4349,7 +4437,8 @@
         "max": 5,
         "label": "Riss-Präzision: +{value}% Crit"
       },
-      "flavorText": "Der Abgrund blickte zurück. Er blinzelte zuerst."
+      "flavorText": "Der Abgrund blickte zurück. Er blinzelte zuerst.",
+      "binding": "bop"
     },
     {
       "id": "rift-legendary-abyss-marschtritt-5lo",
@@ -4418,7 +4507,8 @@
         "max": 5,
         "label": "Riss-Beständigkeit: -{value}% Forge Decay"
       },
-      "flavorText": "Aus der tiefsten Schicht des Rifts. Es summt mit einer Frequenz die kein Instrument kennt."
+      "flavorText": "Aus der tiefsten Schicht des Rifts. Es summt mit einer Frequenz die kein Instrument kennt.",
+      "binding": "bop"
     },
     {
       "id": "rift-mythic-jenseits-klinge",
@@ -4481,7 +4571,8 @@
           ]
         }
       },
-      "flavorText": "Jenseits. Hinter dem Riss hinter dem Riss. Dort wo die Regeln aufhören."
+      "flavorText": "Jenseits. Hinter dem Riss hinter dem Riss. Dort wo die Regeln aufhören.",
+      "binding": "bop"
     },
     {
       "id": "rift-mythic-jenseits-buckler",
@@ -4544,7 +4635,8 @@
           ]
         }
       },
-      "flavorText": "Mythisch ist keine Übertreibung. Es ist eine Untertreibung."
+      "flavorText": "Mythisch ist keine Übertreibung. Es ist eine Untertreibung.",
+      "binding": "bop"
     },
     {
       "id": "rift-mythic-jenseits-haube",
@@ -4607,7 +4699,8 @@
           ]
         }
       },
-      "flavorText": "Die Realität biegt sich um dieses Stück. Nicht viel — aber spürbar."
+      "flavorText": "Die Realität biegt sich um dieses Stück. Nicht viel — aber spürbar.",
+      "binding": "bop"
     },
     {
       "id": "rift-mythic-jenseits-mantel",
@@ -4670,7 +4763,8 @@
           ]
         }
       },
-      "flavorText": "Jenseits. Hinter dem Riss hinter dem Riss. Dort wo die Regeln aufhören."
+      "flavorText": "Jenseits. Hinter dem Riss hinter dem Riss. Dort wo die Regeln aufhören.",
+      "binding": "bop"
     },
     {
       "id": "rift-mythic-jenseits-stiefel",
@@ -4733,7 +4827,8 @@
           ]
         }
       },
-      "flavorText": "Mythisch ist keine Übertreibung. Es ist eine Untertreibung."
+      "flavorText": "Mythisch ist keine Übertreibung. Es ist eine Untertreibung.",
+      "binding": "bop"
     },
     {
       "id": "rift-mythic-jenseits-reif",
@@ -4796,7 +4891,8 @@
           ]
         }
       },
-      "flavorText": "Die Realität biegt sich um dieses Stück. Nicht viel — aber spürbar."
+      "flavorText": "Die Realität biegt sich um dieses Stück. Nicht viel — aber spürbar.",
+      "binding": "bop"
     },
     {
       "id": "rift-mythic-jenseits-medaillon",
@@ -4859,7 +4955,8 @@
           ]
         }
       },
-      "flavorText": "Jenseits. Hinter dem Riss hinter dem Riss. Dort wo die Regeln aufhören."
+      "flavorText": "Jenseits. Hinter dem Riss hinter dem Riss. Dort wo die Regeln aufhören.",
+      "binding": "bop"
     },
     {
       "id": "rift-mythic-jenseits-schwert",
@@ -4922,7 +5019,8 @@
           ]
         }
       },
-      "flavorText": "Mythisch ist keine Übertreibung. Es ist eine Untertreibung."
+      "flavorText": "Mythisch ist keine Übertreibung. Es ist eine Untertreibung.",
+      "binding": "bop"
     },
     {
       "id": "rift-mythic-jenseits-tartsche",
@@ -4985,7 +5083,8 @@
           ]
         }
       },
-      "flavorText": "Die Realität biegt sich um dieses Stück. Nicht viel — aber spürbar."
+      "flavorText": "Die Realität biegt sich um dieses Stück. Nicht viel — aber spürbar.",
+      "binding": "bop"
     },
     {
       "id": "rift-mythic-jenseits-kappe",
@@ -5048,7 +5147,8 @@
           ]
         }
       },
-      "flavorText": "Jenseits. Hinter dem Riss hinter dem Riss. Dort wo die Regeln aufhören."
+      "flavorText": "Jenseits. Hinter dem Riss hinter dem Riss. Dort wo die Regeln aufhören.",
+      "binding": "bop"
     },
     {
       "id": "rift-mythic-jenseits-panzer",
@@ -5111,7 +5211,8 @@
           ]
         }
       },
-      "flavorText": "Mythisch ist keine Übertreibung. Es ist eine Untertreibung."
+      "flavorText": "Mythisch ist keine Übertreibung. Es ist eine Untertreibung.",
+      "binding": "bop"
     },
     {
       "id": "rift-mythic-jenseits-marschtritt",
@@ -5174,7 +5275,8 @@
           ]
         }
       },
-      "flavorText": "Die Realität biegt sich um dieses Stück. Nicht viel — aber spürbar."
+      "flavorText": "Die Realität biegt sich um dieses Stück. Nicht viel — aber spürbar.",
+      "binding": "bop"
     },
     {
       "id": "rift-mythic-jenseits-ring",
@@ -5237,7 +5339,8 @@
           ]
         }
       },
-      "flavorText": "Jenseits. Hinter dem Riss hinter dem Riss. Dort wo die Regeln aufhören."
+      "flavorText": "Jenseits. Hinter dem Riss hinter dem Riss. Dort wo die Regeln aufhören.",
+      "binding": "bop"
     },
     {
       "id": "rift-mythic-jenseits-kette",
@@ -5300,7 +5403,8 @@
           ]
         }
       },
-      "flavorText": "Mythisch ist keine Übertreibung. Es ist eine Untertreibung."
+      "flavorText": "Mythisch ist keine Übertreibung. Es ist eine Untertreibung.",
+      "binding": "bop"
     },
     {
       "id": "rift-mythic-jenseits-axt",
@@ -5363,7 +5467,8 @@
           ]
         }
       },
-      "flavorText": "Die Realität biegt sich um dieses Stück. Nicht viel — aber spürbar."
+      "flavorText": "Die Realität biegt sich um dieses Stück. Nicht viel — aber spürbar.",
+      "binding": "bop"
     },
     {
       "id": "rift-mythic-jenseits-schild",
@@ -5426,7 +5531,8 @@
           ]
         }
       },
-      "flavorText": "Jenseits. Hinter dem Riss hinter dem Riss. Dort wo die Regeln aufhören."
+      "flavorText": "Jenseits. Hinter dem Riss hinter dem Riss. Dort wo die Regeln aufhören.",
+      "binding": "bop"
     },
     {
       "id": "rift-mythic-jenseits-krone",
@@ -5489,7 +5595,8 @@
           ]
         }
       },
-      "flavorText": "Mythisch ist keine Übertreibung. Es ist eine Untertreibung."
+      "flavorText": "Mythisch ist keine Übertreibung. Es ist eine Untertreibung.",
+      "binding": "bop"
     },
     {
       "id": "rift-mythic-jenseits-wams",
@@ -5552,7 +5659,8 @@
           ]
         }
       },
-      "flavorText": "Die Realität biegt sich um dieses Stück. Nicht viel — aber spürbar."
+      "flavorText": "Die Realität biegt sich um dieses Stück. Nicht viel — aber spürbar.",
+      "binding": "bop"
     },
     {
       "id": "rift-mythic-jenseits-schuhe",
@@ -5615,7 +5723,8 @@
           ]
         }
       },
-      "flavorText": "Jenseits. Hinter dem Riss hinter dem Riss. Dort wo die Regeln aufhören."
+      "flavorText": "Jenseits. Hinter dem Riss hinter dem Riss. Dort wo die Regeln aufhören.",
+      "binding": "bop"
     },
     {
       "id": "rift-mythic-jenseits-siegelring",
@@ -5678,7 +5787,8 @@
           ]
         }
       },
-      "flavorText": "Mythisch ist keine Übertreibung. Es ist eine Untertreibung."
+      "flavorText": "Mythisch ist keine Übertreibung. Es ist eine Untertreibung.",
+      "binding": "bop"
     },
     {
       "id": "rift-mythic-jenseits-amulett",
@@ -5741,7 +5851,8 @@
           ]
         }
       },
-      "flavorText": "Die Realität biegt sich um dieses Stück. Nicht viel — aber spürbar."
+      "flavorText": "Die Realität biegt sich um dieses Stück. Nicht viel — aber spürbar.",
+      "binding": "bop"
     },
     {
       "id": "rift-mythic-jenseits-hammer",
@@ -5804,7 +5915,8 @@
           ]
         }
       },
-      "flavorText": "Jenseits. Hinter dem Riss hinter dem Riss. Dort wo die Regeln aufhören."
+      "flavorText": "Jenseits. Hinter dem Riss hinter dem Riss. Dort wo die Regeln aufhören.",
+      "binding": "bop"
     },
     {
       "id": "rift-mythic-jenseits-bollwerk",
@@ -5867,7 +5979,8 @@
           ]
         }
       },
-      "flavorText": "Mythisch ist keine Übertreibung. Es ist eine Untertreibung."
+      "flavorText": "Mythisch ist keine Übertreibung. Es ist eine Untertreibung.",
+      "binding": "bop"
     },
     {
       "id": "rift-mythic-jenseits-visier",
@@ -5930,7 +6043,8 @@
           ]
         }
       },
-      "flavorText": "Die Realität biegt sich um dieses Stück. Nicht viel — aber spürbar."
+      "flavorText": "Die Realität biegt sich um dieses Stück. Nicht viel — aber spürbar.",
+      "binding": "bop"
     },
     {
       "id": "rift-mythic-jenseits-brustplatte",
@@ -5993,7 +6107,8 @@
           ]
         }
       },
-      "flavorText": "Jenseits. Hinter dem Riss hinter dem Riss. Dort wo die Regeln aufhören."
+      "flavorText": "Jenseits. Hinter dem Riss hinter dem Riss. Dort wo die Regeln aufhören.",
+      "binding": "bop"
     },
     {
       "id": "rift-mythic-jenseits-treter",
@@ -6056,7 +6171,8 @@
           ]
         }
       },
-      "flavorText": "Mythisch ist keine Übertreibung. Es ist eine Untertreibung."
+      "flavorText": "Mythisch ist keine Übertreibung. Es ist eine Untertreibung.",
+      "binding": "bop"
     },
     {
       "id": "rift-mythic-jenseits-band",
@@ -6119,7 +6235,8 @@
           ]
         }
       },
-      "flavorText": "Die Realität biegt sich um dieses Stück. Nicht viel — aber spürbar."
+      "flavorText": "Die Realität biegt sich um dieses Stück. Nicht viel — aber spürbar.",
+      "binding": "bop"
     },
     {
       "id": "rift-mythic-jenseits-anhaenger",
@@ -6182,7 +6299,8 @@
           ]
         }
       },
-      "flavorText": "Jenseits. Hinter dem Riss hinter dem Riss. Dort wo die Regeln aufhören."
+      "flavorText": "Jenseits. Hinter dem Riss hinter dem Riss. Dort wo die Regeln aufhören.",
+      "binding": "bop"
     },
     {
       "id": "rift-mythic-jenseits-stab",
@@ -6245,7 +6363,8 @@
           ]
         }
       },
-      "flavorText": "Mythisch ist keine Übertreibung. Es ist eine Untertreibung."
+      "flavorText": "Mythisch ist keine Übertreibung. Es ist eine Untertreibung.",
+      "binding": "bop"
     },
     {
       "id": "rift-mythic-jenseits-fokus",
@@ -6308,7 +6427,8 @@
           ]
         }
       },
-      "flavorText": "Die Realität biegt sich um dieses Stück. Nicht viel — aber spürbar."
+      "flavorText": "Die Realität biegt sich um dieses Stück. Nicht viel — aber spürbar.",
+      "binding": "bop"
     },
     {
       "id": "rift-mythic-jenseits-helm",
@@ -6371,7 +6491,8 @@
           ]
         }
       },
-      "flavorText": "Jenseits. Hinter dem Riss hinter dem Riss. Dort wo die Regeln aufhören."
+      "flavorText": "Jenseits. Hinter dem Riss hinter dem Riss. Dort wo die Regeln aufhören.",
+      "binding": "bop"
     },
     {
       "id": "rift-mythic-jenseits-ruestung",
@@ -6434,7 +6555,8 @@
           ]
         }
       },
-      "flavorText": "Mythisch ist keine Übertreibung. Es ist eine Untertreibung."
+      "flavorText": "Mythisch ist keine Übertreibung. Es ist eine Untertreibung.",
+      "binding": "bop"
     },
     {
       "id": "rift-mythic-jenseits-stiefel-xkp",
@@ -6497,7 +6619,8 @@
           ]
         }
       },
-      "flavorText": "Die Realität biegt sich um dieses Stück. Nicht viel — aber spürbar."
+      "flavorText": "Die Realität biegt sich um dieses Stück. Nicht viel — aber spürbar.",
+      "binding": "bop"
     },
     {
       "id": "rift-mythic-jenseits-reif-p3f",
@@ -6560,7 +6683,8 @@
           ]
         }
       },
-      "flavorText": "Jenseits. Hinter dem Riss hinter dem Riss. Dort wo die Regeln aufhören."
+      "flavorText": "Jenseits. Hinter dem Riss hinter dem Riss. Dort wo die Regeln aufhören.",
+      "binding": "bop"
     },
     {
       "id": "rift-mythic-jenseits-medaillon-u2p",
@@ -6623,7 +6747,8 @@
           ]
         }
       },
-      "flavorText": "Mythisch ist keine Übertreibung. Es ist eine Untertreibung."
+      "flavorText": "Mythisch ist keine Übertreibung. Es ist eine Untertreibung.",
+      "binding": "bop"
     },
     {
       "id": "rift-mythic-jenseits-dolch",
@@ -6686,7 +6811,8 @@
           ]
         }
       },
-      "flavorText": "Die Realität biegt sich um dieses Stück. Nicht viel — aber spürbar."
+      "flavorText": "Die Realität biegt sich um dieses Stück. Nicht viel — aber spürbar.",
+      "binding": "bop"
     },
     {
       "id": "rift-mythic-jenseits-buckler-rah",
@@ -6749,7 +6875,8 @@
           ]
         }
       },
-      "flavorText": "Jenseits. Hinter dem Riss hinter dem Riss. Dort wo die Regeln aufhören."
+      "flavorText": "Jenseits. Hinter dem Riss hinter dem Riss. Dort wo die Regeln aufhören.",
+      "binding": "bop"
     },
     {
       "id": "rift-mythic-jenseits-haube-t82",
@@ -6812,7 +6939,8 @@
           ]
         }
       },
-      "flavorText": "Mythisch ist keine Übertreibung. Es ist eine Untertreibung."
+      "flavorText": "Mythisch ist keine Übertreibung. Es ist eine Untertreibung.",
+      "binding": "bop"
     },
     {
       "id": "rift-mythic-jenseits-mantel-ipt",
@@ -6875,7 +7003,8 @@
           ]
         }
       },
-      "flavorText": "Die Realität biegt sich um dieses Stück. Nicht viel — aber spürbar."
+      "flavorText": "Die Realität biegt sich um dieses Stück. Nicht viel — aber spürbar.",
+      "binding": "bop"
     },
     {
       "id": "rift-mythic-jenseits-marschtritt-sq2",
@@ -6938,7 +7067,8 @@
           ]
         }
       },
-      "flavorText": "Jenseits. Hinter dem Riss hinter dem Riss. Dort wo die Regeln aufhören."
+      "flavorText": "Jenseits. Hinter dem Riss hinter dem Riss. Dort wo die Regeln aufhören.",
+      "binding": "bop"
     },
     {
       "id": "rift-mythic-jenseits-ring-7o5",
@@ -7001,7 +7131,8 @@
           ]
         }
       },
-      "flavorText": "Mythisch ist keine Übertreibung. Es ist eine Untertreibung."
+      "flavorText": "Mythisch ist keine Übertreibung. Es ist eine Untertreibung.",
+      "binding": "bop"
     },
     {
       "id": "rift-mythic-jenseits-kette-0ed",
@@ -7064,7 +7195,8 @@
           ]
         }
       },
-      "flavorText": "Die Realität biegt sich um dieses Stück. Nicht viel — aber spürbar."
+      "flavorText": "Die Realität biegt sich um dieses Stück. Nicht viel — aber spürbar.",
+      "binding": "bop"
     },
     {
       "id": "rift-mythic-jenseits-klinge-zw2",
@@ -7127,7 +7259,8 @@
           ]
         }
       },
-      "flavorText": "Jenseits. Hinter dem Riss hinter dem Riss. Dort wo die Regeln aufhören."
+      "flavorText": "Jenseits. Hinter dem Riss hinter dem Riss. Dort wo die Regeln aufhören.",
+      "binding": "bop"
     },
     {
       "id": "rift-mythic-jenseits-tartsche-h1y",
@@ -7190,7 +7323,8 @@
           ]
         }
       },
-      "flavorText": "Mythisch ist keine Übertreibung. Es ist eine Untertreibung."
+      "flavorText": "Mythisch ist keine Übertreibung. Es ist eine Untertreibung.",
+      "binding": "bop"
     },
     {
       "id": "rift-mythic-jenseits-kappe-ee1",
@@ -7253,7 +7387,8 @@
           ]
         }
       },
-      "flavorText": "Die Realität biegt sich um dieses Stück. Nicht viel — aber spürbar."
+      "flavorText": "Die Realität biegt sich um dieses Stück. Nicht viel — aber spürbar.",
+      "binding": "bop"
     },
     {
       "id": "rift-mythic-jenseits-panzer-yvv",
@@ -7322,7 +7457,8 @@
         "max": 6,
         "label": "Riss-Resonanz: +{value}% Quest-XP"
       },
-      "flavorText": "Jenseits. Hinter dem Riss hinter dem Riss. Dort wo die Regeln aufhören."
+      "flavorText": "Jenseits. Hinter dem Riss hinter dem Riss. Dort wo die Regeln aufhören.",
+      "binding": "bop"
     },
     {
       "id": "rift-mythic-jenseits-schuhe-j1o",
@@ -7391,7 +7527,8 @@
         "max": 6,
         "label": "Riss-Glanz: +{value}% Gold"
       },
-      "flavorText": "Mythisch ist keine Übertreibung. Es ist eine Untertreibung."
+      "flavorText": "Mythisch ist keine Übertreibung. Es ist eine Untertreibung.",
+      "binding": "bop"
     },
     {
       "id": "rift-mythic-jenseits-siegelring-jx7",
@@ -7460,7 +7597,8 @@
         "max": 6,
         "label": "Riss-Instinkt: +{value}% Drop-Chance"
       },
-      "flavorText": "Die Realität biegt sich um dieses Stück. Nicht viel — aber spürbar."
+      "flavorText": "Die Realität biegt sich um dieses Stück. Nicht viel — aber spürbar.",
+      "binding": "bop"
     },
     {
       "id": "rift-mythic-jenseits-amulett-63b",
@@ -7529,7 +7667,8 @@
         "max": 6,
         "label": "Riss-Präzision: +{value}% Crit"
       },
-      "flavorText": "Jenseits. Hinter dem Riss hinter dem Riss. Dort wo die Regeln aufhören."
+      "flavorText": "Jenseits. Hinter dem Riss hinter dem Riss. Dort wo die Regeln aufhören.",
+      "binding": "bop"
     },
     {
       "id": "rift-mythic-jenseits-schwert-q4s",
@@ -7598,7 +7737,8 @@
         "max": 6,
         "label": "Riss-Beständigkeit: -{value}% Forge Decay"
       },
-      "flavorText": "Mythisch ist keine Übertreibung. Es ist eine Untertreibung."
+      "flavorText": "Mythisch ist keine Übertreibung. Es ist eine Untertreibung.",
+      "binding": "bop"
     },
     {
       "id": "rift-mythic-jenseits-schild-cqp",
@@ -7667,7 +7807,8 @@
         "max": 6,
         "label": "Riss-Resonanz: +{value}% Quest-XP"
       },
-      "flavorText": "Die Realität biegt sich um dieses Stück. Nicht viel — aber spürbar."
+      "flavorText": "Die Realität biegt sich um dieses Stück. Nicht viel — aber spürbar.",
+      "binding": "bop"
     },
     {
       "id": "rift-mythic-jenseits-krone-7qs",
@@ -7736,7 +7877,8 @@
         "max": 6,
         "label": "Riss-Glanz: +{value}% Gold"
       },
-      "flavorText": "Jenseits. Hinter dem Riss hinter dem Riss. Dort wo die Regeln aufhören."
+      "flavorText": "Jenseits. Hinter dem Riss hinter dem Riss. Dort wo die Regeln aufhören.",
+      "binding": "bop"
     },
     {
       "id": "rift-mythic-jenseits-wams-j7k",
@@ -7805,7 +7947,8 @@
         "max": 6,
         "label": "Riss-Instinkt: +{value}% Drop-Chance"
       },
-      "flavorText": "Mythisch ist keine Übertreibung. Es ist eine Untertreibung."
+      "flavorText": "Mythisch ist keine Übertreibung. Es ist eine Untertreibung.",
+      "binding": "bop"
     },
     {
       "id": "rift-mythic-jenseits-treter-cc1",
@@ -7874,7 +8017,8 @@
         "max": 6,
         "label": "Riss-Präzision: +{value}% Crit"
       },
-      "flavorText": "Die Realität biegt sich um dieses Stück. Nicht viel — aber spürbar."
+      "flavorText": "Die Realität biegt sich um dieses Stück. Nicht viel — aber spürbar.",
+      "binding": "bop"
     },
     {
       "id": "rift-mythic-jenseits-band-gyb",
@@ -7943,7 +8087,8 @@
         "max": 6,
         "label": "Riss-Beständigkeit: -{value}% Forge Decay"
       },
-      "flavorText": "Jenseits. Hinter dem Riss hinter dem Riss. Dort wo die Regeln aufhören."
+      "flavorText": "Jenseits. Hinter dem Riss hinter dem Riss. Dort wo die Regeln aufhören.",
+      "binding": "bop"
     },
     {
       "id": "rift-mythic-jenseits-anhaenger-3xg",
@@ -8012,7 +8157,8 @@
         "max": 6,
         "label": "Riss-Resonanz: +{value}% Quest-XP"
       },
-      "flavorText": "Mythisch ist keine Übertreibung. Es ist eine Untertreibung."
+      "flavorText": "Mythisch ist keine Übertreibung. Es ist eine Untertreibung.",
+      "binding": "bop"
     },
     {
       "id": "rift-mythic-jenseits-axt-rov",
@@ -8081,7 +8227,8 @@
         "max": 6,
         "label": "Riss-Glanz: +{value}% Gold"
       },
-      "flavorText": "Die Realität biegt sich um dieses Stück. Nicht viel — aber spürbar."
+      "flavorText": "Die Realität biegt sich um dieses Stück. Nicht viel — aber spürbar.",
+      "binding": "bop"
     },
     {
       "id": "rift-mythic-jenseits-bollwerk-7vx",
@@ -8150,7 +8297,8 @@
         "max": 6,
         "label": "Riss-Instinkt: +{value}% Drop-Chance"
       },
-      "flavorText": "Jenseits. Hinter dem Riss hinter dem Riss. Dort wo die Regeln aufhören."
+      "flavorText": "Jenseits. Hinter dem Riss hinter dem Riss. Dort wo die Regeln aufhören.",
+      "binding": "bop"
     },
     {
       "id": "rift-mythic-jenseits-visier-a77",
@@ -8219,7 +8367,8 @@
         "max": 6,
         "label": "Riss-Präzision: +{value}% Crit"
       },
-      "flavorText": "Mythisch ist keine Übertreibung. Es ist eine Untertreibung."
+      "flavorText": "Mythisch ist keine Übertreibung. Es ist eine Untertreibung.",
+      "binding": "bop"
     },
     {
       "id": "rift-mythic-jenseits-brustplatte-722",
@@ -8288,7 +8437,8 @@
         "max": 6,
         "label": "Riss-Beständigkeit: -{value}% Forge Decay"
       },
-      "flavorText": "Die Realität biegt sich um dieses Stück. Nicht viel — aber spürbar."
+      "flavorText": "Die Realität biegt sich um dieses Stück. Nicht viel — aber spürbar.",
+      "binding": "bop"
     }
   ]
 }

@@ -114,6 +114,15 @@ export default function ItemActionPopup({
           </div>
         </div>
 
+        {/* Binding badge */}
+        {item.bound ? (
+          <p className="text-xs font-semibold" style={{ color: "#ef4444" }}>Soulbound</p>
+        ) : item.binding === "boe" ? (
+          <p className="text-xs font-semibold" style={{ color: "#22c55e" }}>Bind on Equip</p>
+        ) : item.binding === "bop" ? (
+          <p className="text-xs font-semibold" style={{ color: "#f97316" }}>Bind on Pickup</p>
+        ) : null}
+
         {/* Description */}
         {item.desc && (
           <p className="text-xs leading-relaxed" style={{ color: "rgba(255,255,255,0.5)" }}>{item.desc}</p>

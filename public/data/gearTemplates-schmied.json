@@ -16,7 +16,8 @@
         "ausdauer": 1
       },
       "setId": "adventurer",
-      "flavorText": "Passt auf jeden Kopf. Sitzt auf keinem gut."
+      "flavorText": "Passt auf jeden Kopf. Sitzt auf keinem gut.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-eiserne-sturmhaube",
@@ -35,7 +36,8 @@
         "kraft": 1
       },
       "setId": "adventurer",
-      "flavorText": "Der Nasenschutz wurde nach einem bedauerlichen Vorfall mit einer Türkante hinzugefügt."
+      "flavorText": "Der Nasenschutz wurde nach einem bedauerlichen Vorfall mit einer Türkante hinzugefügt.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-geschlossener-eisenhelm",
@@ -53,7 +55,8 @@
         "ausdauer": 3
       },
       "setId": "adventurer",
-      "flavorText": "Das Visier klemmt gelegentlich. Der Schmied nennt das 'Sicherheitsverriegelung'."
+      "flavorText": "Das Visier klemmt gelegentlich. Der Schmied nennt das 'Sicherheitsverriegelung'.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-eiserne-panzerhaube",
@@ -111,7 +114,8 @@
         }
       },
       "setId": "adventurer",
-      "flavorText": "Der vorherige Träger behauptet, er habe freiwillig aufgehört. Die Beulen sagen etwas anderes."
+      "flavorText": "Der vorherige Träger behauptet, er habe freiwillig aufgehört. Die Beulen sagen etwas anderes.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-eiserne-brustplatte",
@@ -130,7 +134,8 @@
         "kraft": 1
       },
       "setId": "adventurer",
-      "flavorText": "Das Herz sitzt links. Diese Information war dem Schmied offenbar neu."
+      "flavorText": "Das Herz sitzt links. Diese Information war dem Schmied offenbar neu.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-eiserner-brustpanzer",
@@ -149,7 +154,8 @@
         "kraft": 1
       },
       "setId": "adventurer",
-      "flavorText": "Wiegt nur halb so viel wie er aussieht. Der Schmied versichert, das sei Absicht."
+      "flavorText": "Wiegt nur halb so viel wie er aussieht. Der Schmied versichert, das sei Absicht.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-gehaerteter-plattenpanzer",
@@ -202,7 +208,8 @@
         }
       },
       "setId": "adventurer",
-      "flavorText": "Der Schmied schwor, er habe ihn dreimal gehärtet. Man sieht es ihm an — im Guten wie im Schlechten."
+      "flavorText": "Der Schmied schwor, er habe ihn dreimal gehärtet. Man sieht es ihm an — im Guten wie im Schlechten.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-eiserne-stiefel",
@@ -221,7 +228,8 @@
         "kraft": 1
       },
       "setId": "adventurer",
-      "flavorText": "Jeder hört dich kommen. Überraschungsangriffe sind damit offiziell gestrichen."
+      "flavorText": "Jeder hört dich kommen. Überraschungsangriffe sind damit offiziell gestrichen.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-eiserne-beinschienen",
@@ -240,7 +248,8 @@
         "kraft": 1
       },
       "setId": "adventurer",
-      "flavorText": "Der Schmied testete sie, indem er gegen einen Amboss trat. Er trug sie danach täglich."
+      "flavorText": "Der Schmied testete sie, indem er gegen einen Amboss trat. Er trug sie danach täglich.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-gehaertete-eisenstiefel",
@@ -293,7 +302,8 @@
         }
       },
       "setId": "adventurer",
-      "flavorText": "Mit diesen Stiefeln übersteht man jeden Marsch. Die Blasen danach sind rein optional."
+      "flavorText": "Mit diesen Stiefeln übersteht man jeden Marsch. Die Blasen danach sind rein optional.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-kristall-visierhelm",
@@ -312,7 +322,8 @@
         "weisheit": 2
       },
       "setId": "veteran",
-      "flavorText": "Man sieht die Welt in einem leichten Blauton. Das ist entweder der Kristall oder der Sauerstoffmangel."
+      "flavorText": "Man sieht die Welt in einem leichten Blauton. Das ist entweder der Kristall oder der Sauerstoffmangel.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-staehlerne-sturmhaube",
@@ -331,7 +342,8 @@
         "kraft": 2
       },
       "setId": "veteran",
-      "flavorText": "Schützt den Kopf. Nicht vor dummen Entscheidungen, aber vor allem anderen."
+      "flavorText": "Schützt den Kopf. Nicht vor dummen Entscheidungen, aber vor allem anderen.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-kristall-spangenhelm",
@@ -350,7 +362,8 @@
         "ausdauer": 3
       },
       "setId": "veteran",
-      "flavorText": "Die Spangen klingen bei jedem Schritt. Man hört den Träger kommen. Und gehen. Meistens gehen."
+      "flavorText": "Die Spangen klingen bei jedem Schritt. Man hört den Träger kommen. Und gehen. Meistens gehen.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-staehlerner-drachenhelm",
@@ -408,7 +421,8 @@
         }
       },
       "setId": "veteran",
-      "flavorText": "Er sieht aus wie ein Drache. Leider kämpft er nicht wie einer."
+      "flavorText": "Er sieht aus wie ein Drache. Leider kämpft er nicht wie einer.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-kristall-kettenhemd",
@@ -427,7 +441,8 @@
         "kraft": 2
       },
       "setId": "veteran",
-      "flavorText": "Die Splitter piksen. Aber sie piksen den Feind mehr."
+      "flavorText": "Die Splitter piksen. Aber sie piksen den Feind mehr.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-staehlerne-bruenne",
@@ -446,7 +461,8 @@
         "weisheit": 2
       },
       "setId": "veteran",
-      "flavorText": "Fünftausend Ringe. Jeder einzeln geschmiedet. Man fragt sich, ob Grimvar je schläft."
+      "flavorText": "Fünftausend Ringe. Jeder einzeln geschmiedet. Man fragt sich, ob Grimvar je schläft.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-kristall-schuppenpanzer",
@@ -465,7 +481,8 @@
         "glueck": 2
       },
       "setId": "veteran",
-      "flavorText": "Klingt wie ein Windspiel im Kampf. Der Feind hält inne. Nicht aus Angst, aus Verwirrung."
+      "flavorText": "Klingt wie ein Windspiel im Kampf. Der Feind hält inne. Nicht aus Angst, aus Verwirrung.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-staehlerner-plattenpanzer",
@@ -523,7 +540,8 @@
         }
       },
       "setId": "veteran",
-      "flavorText": "Man bewegt sich darin wie ein Eisberg. Langsam, unaufhaltsam, und mit erschreckender Endgültigkeit."
+      "flavorText": "Man bewegt sich darin wie ein Eisberg. Langsam, unaufhaltsam, und mit erschreckender Endgültigkeit.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-kristall-koenigsruestung",
@@ -586,7 +604,8 @@
         }
       },
       "setId": "veteran",
-      "flavorText": "Für Könige entworfen. Von Schmieden getragen. Die Ironie entgeht niemandem."
+      "flavorText": "Für Könige entworfen. Von Schmieden getragen. Die Ironie entgeht niemandem.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-kristall-stiefel",
@@ -605,7 +624,8 @@
         "kraft": 2
       },
       "setId": "veteran",
-      "flavorText": "Man hinterlässt Kratzer im Steinboden. Die Gastwirte lieben das."
+      "flavorText": "Man hinterlässt Kratzer im Steinboden. Die Gastwirte lieben das.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-staehlerne-marschtreters",
@@ -624,7 +644,8 @@
         "glueck": 2
       },
       "setId": "veteran",
-      "flavorText": "Bequem ist relativ. Relativ zu barfuß auf Glasscherben sind sie ein Traum."
+      "flavorText": "Bequem ist relativ. Relativ zu barfuß auf Glasscherben sind sie ein Traum.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-kristall-beinschienen",
@@ -643,7 +664,8 @@
         "ausdauer": 3
       },
       "setId": "veteran",
-      "flavorText": "Die Fragmente leuchten bei Mondlicht. Perfekt für alle, die nachts auf Patrouille auffallen wollen."
+      "flavorText": "Die Fragmente leuchten bei Mondlicht. Perfekt für alle, die nachts auf Patrouille auffallen wollen.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-staehlerne-sturmstiefel",
@@ -701,7 +723,8 @@
         }
       },
       "setId": "veteran",
-      "flavorText": "Man rennt darin nicht. Man donnert. Der Unterschied ist subtil, aber der Boden spürt ihn."
+      "flavorText": "Man rennt darin nicht. Man donnert. Der Unterschied ist subtil, aber der Boden spürt ihn.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-drachenstahl-helm",
@@ -720,7 +743,8 @@
         "ausdauer": 3
       },
       "setId": "master",
-      "flavorText": "Er wiegt weniger als erwartet. Vielleicht liegt es am Stahl. Vielleicht an den Gedanken, die man darin denkt."
+      "flavorText": "Er wiegt weniger als erwartet. Vielleicht liegt es am Stahl. Vielleicht an den Gedanken, die man darin denkt.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-drachenzahn-sturmhaube",
@@ -739,7 +763,8 @@
         "ausdauer": 4
       },
       "setId": "master",
-      "flavorText": "Die Zähne am Kamm sind dekorativ. Meistens."
+      "flavorText": "Die Zähne am Kamm sind dekorativ. Meistens.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-drachenschuppen-kronenhelm",
@@ -758,7 +783,8 @@
         "ausdauer": 4
       },
       "setId": "master",
-      "flavorText": "Der Schmied wollte einen Helm machen. Das Feuer hatte andere Pläne. Beide hatten recht."
+      "flavorText": "Der Schmied wollte einen Helm machen. Das Feuer hatte andere Pläne. Beide hatten recht.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-drachenstahl-brustplatte",
@@ -777,7 +803,8 @@
         "kraft": 4
       },
       "setId": "master",
-      "flavorText": "Sie kühlt nie ganz ab. Im Winter ein Segen, im Sommer eine Prüfung."
+      "flavorText": "Sie kühlt nie ganz ab. Im Winter ein Segen, im Sommer eine Prüfung.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-drachenzahn-kettenhemd",
@@ -796,7 +823,8 @@
         "glueck": 3
       },
       "setId": "master",
-      "flavorText": "Viertausend Glieder. Der Lehrling hat jedes einzelne gezählt. Zweimal, weil er sich beim ersten Mal verzählt hat."
+      "flavorText": "Viertausend Glieder. Der Lehrling hat jedes einzelne gezählt. Zweimal, weil er sich beim ersten Mal verzählt hat.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-drachenschuppen-plattenpanzer",
@@ -815,7 +843,8 @@
         "kraft": 5
       },
       "setId": "master",
-      "flavorText": "Man sagt, der Schmied habe drei Wochen daran gearbeitet. Danach brauchte er drei Wochen Schlaf."
+      "flavorText": "Man sagt, der Schmied habe drei Wochen daran gearbeitet. Danach brauchte er drei Wochen Schlaf.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-drachenstahl-stiefel",
@@ -834,7 +863,8 @@
         "glueck": 3
       },
       "setId": "master",
-      "flavorText": "Man hört den Träger kommen. Man hört ihn auch gehen. Dazwischen liegt die interessante Geschichte."
+      "flavorText": "Man hört den Träger kommen. Man hört ihn auch gehen. Dazwischen liegt die interessante Geschichte.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-drachenschuppen-beinschienen",
@@ -853,7 +883,8 @@
         "glueck": 4
       },
       "setId": "master",
-      "flavorText": "Sie klirren beim Gehen wie leiser Applaus. Oder wie eine Warnung. Kommt auf die Perspektive an."
+      "flavorText": "Sie klirren beim Gehen wie leiser Applaus. Oder wie eine Warnung. Kommt auf die Perspektive an.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-drachenstahl-visierhelm",
@@ -911,7 +942,8 @@
         }
       },
       "setId": "master",
-      "flavorText": "Hinter dem Visier sieht man die Welt klarer. Vielleicht, weil man weniger davon sieht."
+      "flavorText": "Hinter dem Visier sieht man die Welt klarer. Vielleicht, weil man weniger davon sieht.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-drachenschuppen-drachenhelm",
@@ -974,7 +1006,8 @@
         }
       },
       "setId": "master",
-      "flavorText": "Wer ihn trägt, wird von Kindern angestarrt und von Hunden angebellt. Beides Zeichen von Respekt."
+      "flavorText": "Wer ihn trägt, wird von Kindern angestarrt und von Hunden angebellt. Beides Zeichen von Respekt.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-drachenstahl-kriegspanzer",
@@ -1032,7 +1065,8 @@
         }
       },
       "setId": "master",
-      "flavorText": "Zwölf Kilo Stahl zwischen dir und dem Rest der Welt. Manche nennen es Last. Andere nennen es Frieden."
+      "flavorText": "Zwölf Kilo Stahl zwischen dir und dem Rest der Welt. Manche nennen es Last. Andere nennen es Frieden.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-drachenzahn-koenigsruestung",
@@ -1095,7 +1129,8 @@
         }
       },
       "setId": "master",
-      "flavorText": "Der letzte König, der sie trug, dankte ab. Nicht wegen der Rüstung — wegen allem anderen."
+      "flavorText": "Der letzte König, der sie trug, dankte ab. Nicht wegen der Rüstung — wegen allem anderen.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-drachenzahn-kriegsstiefel",
@@ -1153,7 +1188,8 @@
         }
       },
       "setId": "master",
-      "flavorText": "Die Nieten stammen von einem Drachen, der es nicht mehr brauchte. Das Leder auch. Frag nicht weiter."
+      "flavorText": "Die Nieten stammen von einem Drachen, der es nicht mehr brauchte. Das Leder auch. Frag nicht weiter.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-drachenschuppen-panzerstiefel",
@@ -1216,7 +1252,8 @@
         }
       },
       "setId": "master",
-      "flavorText": "Der Boden zittert. Nicht vor Angst — vor Vorfreude."
+      "flavorText": "Der Boden zittert. Nicht vor Angst — vor Vorfreude.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-aetherkern-visier",
@@ -1235,7 +1272,8 @@
         "ausdauer": 6
       },
       "setId": "legendary",
-      "flavorText": "Ätherstahl summt leise. Nicht bedrohlich — eher nachdenklich."
+      "flavorText": "Ätherstahl summt leise. Nicht bedrohlich — eher nachdenklich.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-aether-brustplatte",
@@ -1254,7 +1292,8 @@
         "kraft": 5
       },
       "setId": "legendary",
-      "flavorText": "Geschmiedet in Äther. Der Helm erinnert sich an Frequenzen die kein Ohr hört."
+      "flavorText": "Geschmiedet in Äther. Der Helm erinnert sich an Frequenzen die kein Ohr hört.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-aether-schreitstiefel",
@@ -1273,7 +1312,8 @@
         "glueck": 6
       },
       "setId": "legendary",
-      "flavorText": "Äther-Platte. Schwer genug für Schutz, leicht genug für Überraschungen."
+      "flavorText": "Äther-Platte. Schwer genug für Schutz, leicht genug für Überraschungen.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-aetherkern-sturmkappe",
@@ -1292,7 +1332,8 @@
         "weisheit": 6
       },
       "setId": "legendary",
-      "flavorText": "Äthergeschmiedete Stiefel. Sie kennen den Weg — auch wenn du ihn nicht kennst."
+      "flavorText": "Äthergeschmiedete Stiefel. Sie kennen den Weg — auch wenn du ihn nicht kennst.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-aether-kettenhemd",
@@ -1311,7 +1352,8 @@
         "glueck": 5
       },
       "setId": "legendary",
-      "flavorText": "Kettenhemd aus Ätherstahl. Jedes Glied hält mehr als nur Schläge ab."
+      "flavorText": "Kettenhemd aus Ätherstahl. Jedes Glied hält mehr als nur Schläge ab.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-aether-marschtritt",
@@ -1330,7 +1372,8 @@
         "kraft": 6
       },
       "setId": "legendary",
-      "flavorText": "Marschtritt aus Äther. Leise, aber bestimmt. Wie die besten Argumente."
+      "flavorText": "Marschtritt aus Äther. Leise, aber bestimmt. Wie die besten Argumente.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-aetherkern-panzer",
@@ -1349,7 +1392,8 @@
         "kraft": 6
       },
       "setId": "legendary",
-      "flavorText": "Ätherischer Panzer. Er atmet mit seinem Träger. Das ist entweder beruhigend oder beunruhigend."
+      "flavorText": "Ätherischer Panzer. Er atmet mit seinem Träger. Das ist entweder beruhigend oder beunruhigend.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-seelen-krone",
@@ -1408,7 +1452,8 @@
       },
       "legendaryEffect": null,
       "setId": "legendary",
-      "flavorText": "Sie flüstert von vergangenen Trägern. Keiner hat sie freiwillig abgelegt."
+      "flavorText": "Sie flüstert von vergangenen Trägern. Keiner hat sie freiwillig abgelegt.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-seelengeschmiedete-platte",
@@ -1467,7 +1512,8 @@
       },
       "legendaryEffect": null,
       "setId": "legendary",
-      "flavorText": "Wer sie trägt, spürt ein zweites Herz schlagen — das des Schmieds."
+      "flavorText": "Wer sie trägt, spürt ein zweites Herz schlagen — das des Schmieds.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-seelen-wanderstiefel",
@@ -1526,7 +1572,8 @@
       },
       "legendaryEffect": null,
       "setId": "legendary",
-      "flavorText": "Tausend Meilen. Kein Schritt davon vergessen."
+      "flavorText": "Tausend Meilen. Kein Schritt davon vergessen.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-seelen-schulterwacht",
@@ -1585,7 +1632,8 @@
       },
       "legendaryEffect": null,
       "setId": "legendary",
-      "flavorText": "Er wurde Schulterwacht getauft, denn er wacht auch, wenn sein Träger schläft."
+      "flavorText": "Er wurde Schulterwacht getauft, denn er wacht auch, wenn sein Träger schläft.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-seelen-kettenruestung",
@@ -1644,7 +1692,8 @@
       },
       "legendaryEffect": null,
       "setId": "legendary",
-      "flavorText": "Man sagt, die Ketten klirrten im Rhythmus des Herzschlags ihres Trägers."
+      "flavorText": "Man sagt, die Ketten klirrten im Rhythmus des Herzschlags ihres Trägers.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-seelenkrone-des-meisters",
@@ -1708,7 +1757,8 @@
         "label": "Meisterwissen: +{value}% XP aus allen Quellen"
       },
       "setId": "legendary",
-      "flavorText": "Die Krone erkennt ihren Träger. Nicht jeder Kopf ist ihrer würdig."
+      "flavorText": "Die Krone erkennt ihren Träger. Nicht jeder Kopf ist ihrer würdig.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-seelengeschmiedeter-panzer",
@@ -1772,7 +1822,8 @@
         "label": "Seelenreichtum: +{value}% Gold aus Quests"
       },
       "setId": "legendary",
-      "flavorText": "Der Schmied weinte, als er den letzten Niet setzte. Nicht vor Trauer — vor Vollendung."
+      "flavorText": "Der Schmied weinte, als er den letzten Niet setzte. Nicht vor Trauer — vor Vollendung.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-seelenstiefel-des-wanderers",
@@ -1836,7 +1887,8 @@
         "label": "Wanderglut: +{value} Schmiede-Temperatur pro Quest"
       },
       "setId": "legendary",
-      "flavorText": "Die alten Wanderer sagten: Der Weg formt den Wanderer, nicht umgekehrt. Diese Stiefel wissen es besser."
+      "flavorText": "Die alten Wanderer sagten: Der Weg formt den Wanderer, nicht umgekehrt. Diese Stiefel wissen es besser.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-eisenkappe-des-waechters",
@@ -1854,7 +1906,8 @@
         "ausdauer": 2,
         "kraft": 1
       },
-      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-kristall-waechterhelm",
@@ -1871,7 +1924,8 @@
       "fixedStats": {
         "ausdauer": 2
       },
-      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-drachenstahl-waechterhelm",
@@ -1923,7 +1977,8 @@
           ]
         }
       },
-      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-aether-waechterhelm",
@@ -1941,7 +1996,8 @@
         "ausdauer": 5,
         "kraft": 4
       },
-      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-geschmiedete-schutzhaube",
@@ -1993,7 +2049,8 @@
           ]
         }
       },
-      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-staehlerne-schutzkappe",
@@ -2011,7 +2068,8 @@
         "ausdauer": 2,
         "kraft": 2
       },
-      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-drachenstahl-plattenpanzer",
@@ -2029,7 +2087,8 @@
         "ausdauer": 3,
         "kraft": 4
       },
-      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-aetherkern-ruestung",
@@ -2081,7 +2140,8 @@
           ]
         }
       },
-      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-eiserner-kettenpanzer",
@@ -2099,7 +2159,8 @@
         "ausdauer": 1,
         "kraft": 2
       },
-      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-kristall-kettenpanzer",
@@ -2117,7 +2178,8 @@
         "ausdauer": 4,
         "kraft": 3
       },
-      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-drachenschuppen-kettenhemd",
@@ -2135,7 +2197,8 @@
         "ausdauer": 4,
         "kraft": 3
       },
-      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-aetherkern-marschtritt",
@@ -2187,7 +2250,8 @@
           ]
         }
       },
-      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-geschmiedete-stiefel",
@@ -2204,7 +2268,8 @@
       "fixedStats": {
         "ausdauer": 1
       },
-      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-staehlerne-treter",
@@ -2222,7 +2287,8 @@
         "ausdauer": 2,
         "kraft": 2
       },
-      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-drachenschuppen-treter",
@@ -2240,7 +2306,8 @@
         "ausdauer": 4,
         "kraft": 4
       },
-      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-seelen-treter",
@@ -2257,7 +2324,8 @@
       "fixedStats": {
         "ausdauer": 6
       },
-      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-eiserne-marschtreters",
@@ -2275,7 +2343,8 @@
         "ausdauer": 1,
         "kraft": 1
       },
-      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-kristall-marschtreters",
@@ -2293,7 +2362,8 @@
         "ausdauer": 3,
         "kraft": 2
       },
-      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-drachenstahl-kriegstiefel",
@@ -2311,7 +2381,8 @@
         "ausdauer": 5,
         "kraft": 3
       },
-      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-eisernes-schutzamulett",
@@ -2363,7 +2434,8 @@
           ]
         }
       },
-      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-kristall-talisman",
@@ -2380,7 +2452,8 @@
       "fixedStats": {
         "ausdauer": 3
       },
-      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-drachenstahl-siegelamulett",
@@ -2397,7 +2470,8 @@
       "fixedStats": {
         "ausdauer": 4
       },
-      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-aether-siegelamulett",
@@ -2415,7 +2489,8 @@
         "ausdauer": 6,
         "kraft": 5
       },
-      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-geschmiedeter-talisman",
@@ -2433,7 +2508,8 @@
         "ausdauer": 2,
         "kraft": 2
       },
-      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-staehlernes-schutzamulett",
@@ -2451,7 +2527,8 @@
         "ausdauer": 2,
         "kraft": 2
       },
-      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-drachenschuppen-talisman",
@@ -2503,7 +2580,8 @@
           ]
         }
       },
-      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-seelen-talisman",
@@ -2555,7 +2633,8 @@
           ]
         }
       },
-      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger."
+      "flavorText": "Ein solides Stück Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-eisern-kappe-ii",
@@ -2573,7 +2652,8 @@
         "ausdauer": 3,
         "kraft": 1
       },
-      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger."
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-staehlern-robe-ii",
@@ -2591,7 +2671,8 @@
         "ausdauer": 4,
         "kraft": 3
       },
-      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger."
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-drachen-marschtritt-ii",
@@ -2609,7 +2690,8 @@
         "ausdauer": 4,
         "kraft": 4
       },
-      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger."
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-aether-haube-ii",
@@ -2626,7 +2708,8 @@
       "fixedStats": {
         "ausdauer": 4
       },
-      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger."
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-eisern-mantel-ii",
@@ -2643,7 +2726,8 @@
       "fixedStats": {
         "ausdauer": 1
       },
-      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger."
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-staehlern-stiefel-ii",
@@ -2661,7 +2745,8 @@
         "ausdauer": 2,
         "kraft": 3
       },
-      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger."
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-drachen-helm-ii",
@@ -2678,7 +2763,8 @@
       "fixedStats": {
         "ausdauer": 3
       },
-      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger."
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-aether-platte-ii",
@@ -2695,7 +2781,8 @@
       "fixedStats": {
         "ausdauer": 5
       },
-      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger."
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-eisern-treter-ii",
@@ -2713,7 +2800,8 @@
         "ausdauer": 1,
         "kraft": 1
       },
-      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger."
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-staehlern-visier-ii",
@@ -2731,7 +2819,8 @@
         "ausdauer": 2,
         "kraft": 3
       },
-      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger."
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-drachen-panzer-ii",
@@ -2749,7 +2838,8 @@
         "ausdauer": 4,
         "kraft": 3
       },
-      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger."
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-aether-schuhe-ii",
@@ -2766,7 +2856,8 @@
       "fixedStats": {
         "ausdauer": 5
       },
-      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger."
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-eisern-schleier-iii",
@@ -2784,7 +2875,8 @@
         "ausdauer": 3,
         "kraft": 2
       },
-      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger."
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-staehlern-wams-iii",
@@ -2802,7 +2894,8 @@
         "ausdauer": 4,
         "kraft": 2
       },
-      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger."
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-drachen-sandalen-iii",
@@ -2820,7 +2913,8 @@
         "ausdauer": 3,
         "kraft": 4
       },
-      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger."
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-aether-kappe-iii",
@@ -2838,7 +2932,8 @@
         "ausdauer": 4,
         "kraft": 6
       },
-      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger."
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-eisern-robe-iii",
@@ -2856,7 +2951,8 @@
         "ausdauer": 2,
         "kraft": 1
       },
-      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger."
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-staehlern-marschtritt-iii",
@@ -2874,7 +2970,8 @@
         "ausdauer": 2,
         "kraft": 3
       },
-      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger."
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-drachen-haube-iii",
@@ -2892,7 +2989,8 @@
         "ausdauer": 4,
         "kraft": 4
       },
-      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger."
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-aether-mantel-iii",
@@ -2910,7 +3008,8 @@
         "ausdauer": 7,
         "kraft": 4
       },
-      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger."
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
     },
     {
       "id": "craft-schmied-eisern-stiefel-iii",
@@ -2927,7 +3026,8 @@
       "fixedStats": {
         "ausdauer": 1
       },
-      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger."
+      "flavorText": "Solides Handwerk. Nicht mehr, nicht weniger.",
+      "binding": "boe"
     }
   ]
 }
