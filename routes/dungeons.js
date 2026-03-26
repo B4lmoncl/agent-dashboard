@@ -10,6 +10,8 @@ const path = require('path');
 const { state, saveUsers, saveSocial, ensureUserCurrencies, RUNTIME_DIR, logActivity } = require('../lib/state');
 const { now, getLevelInfo, awardCurrency, getGearScore, getBondLevel, rollLoot, addLootToInventory, createGearInstance, rollSuffix, createUniqueInstance, trackUniqueInCollection, getLegendaryModifiers } = require('../lib/helpers');
 const { requireAuth } = require('../lib/middleware');
+const { createPlayerLock } = require('../lib/helpers');
+const dungeonJoinLock = createPlayerLock('dungeon-join');
 
 // ─── Dungeon Templates ──────────────────────────────────────────────────────
 
@@ -382,6 +384,8 @@ router.post('/api/dungeons/create', requireAuth, (req, res) => {
 // POST /api/dungeons/:runId/join — accept dungeon invite
 router.post('/api/dungeons/:runId/join', requireAuth, (req, res) => {
   const uid = (req.auth?.userId || '').toLowerCase();
+  if (!dungeonJoinLock.acquire(uid)) return res.status(429).json({ error: 'Join in progress' });
+  try {
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'User not found' });
 
@@ -446,6 +450,7 @@ router.post('/api/dungeons/:runId/join', requireAuth, (req, res) => {
       : `Joined! Waiting for more players (${run.participants.length}/${dungeon.minPlayers} minimum).`,
     run,
   });
+  } finally { dungeonJoinLock.release(uid); }
 });
 
 // POST /api/dungeons/:runId/collect — collect rewards after dungeon completes

@@ -5,7 +5,8 @@
  */
 const router = require('express').Router();
 const { state, saveUsers, ensureUserCurrencies } = require('../lib/state');
-const { now, INVENTORY_CAP } = require('../lib/helpers');
+const { now, INVENTORY_CAP, createPlayerLock } = require('../lib/helpers');
+const mailSendLock = createPlayerLock('mail-send');
 const { requireAuth } = require('../lib/middleware');
 
 const MAIL_LIMIT = 50; // Max mails in inbox
@@ -69,6 +70,8 @@ router.get('/api/mail', requireAuth, (req, res) => {
 
 router.post('/api/mail/send', requireAuth, (req, res) => {
   const uid = req.auth?.userId;
+  if (!mailSendLock.acquire(uid)) return res.status(429).json({ error: 'Mail send in progress' });
+  try {
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'User not found' });
 
@@ -149,6 +152,7 @@ router.post('/api/mail/send', requireAuth, (req, res) => {
     goldDeducted: totalGoldNeeded,
     itemsSent: attachedItems.length,
   });
+  } finally { mailSendLock.release(uid); }
 });
 
 // ─── POST /api/mail/:mailId/collect — Collect attachments from mail ──────────

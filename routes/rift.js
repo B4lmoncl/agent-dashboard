@@ -7,7 +7,8 @@
  */
 const router = require('express').Router();
 const { state, saveUsers, ensureUserCurrencies } = require('../lib/state');
-const { now, getLevelInfo, awardCurrency, spendCurrency, onQuestCompletedByUser } = require('../lib/helpers');
+const { now, getLevelInfo, awardCurrency, spendCurrency, onQuestCompletedByUser, createPlayerLock } = require('../lib/helpers');
+const riftStageLock = createPlayerLock('rift-stage');
 const { requireAuth } = require('../lib/middleware');
 
 // ─── Mythic Leaderboard Cache (avoid O(n) user scan on every GET /api/rift) ──
@@ -342,6 +343,8 @@ router.post('/api/rift/enter', requireAuth, (req, res) => {
 // POST /api/rift/complete-stage — mark current stage as completed
 router.post('/api/rift/complete-stage', requireAuth, (req, res) => {
   const uid = req.auth?.userId;
+  if (!riftStageLock.acquire(uid)) return res.status(429).json({ error: 'Stage completion in progress' });
+  try {
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'User not found' });
 
@@ -476,6 +479,7 @@ router.post('/api/rift/complete-stage', requireAuth, (req, res) => {
       ? `Rift Complete! ${rift.mythicLevel ? `Mythic Rift +${rift.mythicLevel}` : RIFT_TIERS[rift.tier]?.name} conquered!`
       : `Stage ${stageNum} cleared! ${rift.quests.length - stageNum} remaining.`,
   });
+  } finally { riftStageLock.release(uid); }
 });
 
 // POST /api/rift/abandon — abandon current rift (counts as fail)

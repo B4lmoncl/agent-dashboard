@@ -7,7 +7,8 @@ const router = require('express').Router();
 const fs = require('fs');
 const path = require('path');
 const { state, saveUsers, ensureUserCurrencies, RUNTIME_DIR } = require('../lib/state');
-const { awardCurrency, spendCurrency, createUniqueInstance, trackUniqueInCollection } = require('../lib/helpers');
+const { awardCurrency, spendCurrency, createUniqueInstance, trackUniqueInCollection, createPlayerLock } = require('../lib/helpers');
+const wbClaimLock = createPlayerLock('wb-claim');
 const { requireAuth, requireMasterKey } = require('../lib/middleware');
 
 // ─── Data & Config ──────────────────────────────────────────────────────────
@@ -347,6 +348,8 @@ router.post('/api/world-boss/damage', requireAuth, (req, res) => {
 
 router.post('/api/world-boss/claim', requireAuth, (req, res) => {
   const uid = (req.auth?.userId || '').toLowerCase();
+  if (!wbClaimLock.acquire(uid)) return res.status(429).json({ error: 'Claim in progress' });
+  try {
   const user = uid ? state.users[uid] : null;
   if (!user) return res.status(404).json({ error: 'User not found' });
 
@@ -492,6 +495,7 @@ router.post('/api/world-boss/claim', requireAuth, (req, res) => {
     contribution,
     contributionPercent: Math.round(contributionPercent * 10000) / 100,
   });
+  } finally { wbClaimLock.release(uid); }
 });
 
 // ─── POST /api/world-boss/spawn — Admin: force spawn ───────────────────────

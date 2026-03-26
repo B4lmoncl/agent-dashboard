@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const { state, saveUsers } = require("../lib/state");
 const { requireAuth } = require("../lib/middleware");
+const { createPlayerLock } = require("../lib/helpers");
+const bpClaimLock = createPlayerLock('bp-claim');
 const bpData = require("../public/data/battlePass.json");
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
@@ -125,6 +127,8 @@ router.get("/", requireAuth, (req, res) => {
 
 router.post("/claim/:level", requireAuth, (req, res) => {
   const uid = req.auth?.userId;
+  if (!bpClaimLock.acquire(uid)) return res.status(429).json({ error: 'Claim in progress' });
+  try {
   const user = uid ? state.users[uid] : null;
   if (!user) return res.status(404).json({ error: "User not found" });
 
@@ -225,12 +229,15 @@ router.post("/claim/:level", requireAuth, (req, res) => {
   saveUsers();
 
   res.json({ ok: true, granted });
+  } finally { bpClaimLock.release(uid); }
 });
 
 // ─── POST /api/battlepass/claim-all — Claim all available unclaimed rewards ───
 
 router.post("/claim-all", requireAuth, (req, res) => {
   const uid = req.auth?.userId;
+  if (!bpClaimLock.acquire(uid)) return res.status(429).json({ error: 'Claim in progress' });
+  try {
   const user = uid ? state.users[uid] : null;
   if (!user) return res.status(404).json({ error: "User not found" });
 
@@ -294,6 +301,7 @@ router.post("/claim-all", requireAuth, (req, res) => {
   bp.level = currentLevel;
   saveUsers();
   res.json({ ok: true, count: granted.length, granted });
+  } finally { bpClaimLock.release(uid); }
 });
 
 // ─── Helper: Grant battle pass XP (called from various completion flows) ─────
