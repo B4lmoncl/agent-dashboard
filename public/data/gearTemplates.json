@@ -13399,6 +13399,351 @@
       },
       "setId": "legendary",
       "flavorText": "Der Weg endet nie. Aber in diesen Stiefeln macht das nichts."
+    },
+    {
+      "id": "fac-schattenjaeger-helm",
+      "name": "Schattenjäger-Kappe",
+      "slot": "helm",
+      "rarity": "epic",
+      "tier": 3,
+      "reqLevel": 25,
+      "setId": "schattenjaeger-ausruestung",
+      "armorType": "leather",
+      "source": "faction:echo",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "glueck",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Die Schatten flüstern dem Träger zu. Meistens nützliche Dinge."
+    },
+    {
+      "id": "fac-schattenjaeger-stiefel",
+      "name": "Schattenjäger-Treter",
+      "slot": "boots",
+      "rarity": "epic",
+      "tier": 3,
+      "reqLevel": 25,
+      "setId": "schattenjaeger-ausruestung",
+      "armorType": "leather",
+      "source": "faction:echo",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "glueck",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Kein Geräusch. Kein Abdruck. Keine Entschuldigung."
+    },
+    {
+      "id": "fac-schattenjaeger-klinge",
+      "name": "Schattenjäger-Klinge",
+      "slot": "weapon",
+      "rarity": "epic",
+      "tier": 3,
+      "reqLevel": 25,
+      "setId": "schattenjaeger-ausruestung",
+      "source": "faction:echo",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "glueck",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Scharf genug für Schatten. Das sagt alles."
+    },
+    {
+      "id": "fac-flammenherz-panzer",
+      "name": "Flammenherz-Brustplatte",
+      "slot": "armor",
+      "rarity": "epic",
+      "tier": 3,
+      "reqLevel": 25,
+      "setId": "flammenherz-panzer",
+      "armorType": "heavy",
+      "source": "faction:glut",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Das Feuer prüft. Wer besteht, wird stärker. Wer nicht, wird wärmer."
+    },
+    {
+      "id": "fac-flammenherz-schild",
+      "name": "Flammenherz-Bollwerk",
+      "slot": "shield",
+      "rarity": "epic",
+      "tier": 3,
+      "reqLevel": 25,
+      "setId": "flammenherz-panzer",
+      "source": "faction:glut",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Ein Schild das brennt, aber nicht verbrennt. Wie Überzeugung."
+    },
+    {
+      "id": "fac-flammenherz-ring",
+      "name": "Flammenherz-Siegelring",
+      "slot": "ring",
+      "rarity": "epic",
+      "tier": 3,
+      "reqLevel": 25,
+      "setId": "flammenherz-panzer",
+      "source": "faction:glut",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "glueck",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "charisma",
+              "min": 2,
+              "max": 4
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Das Siegel der Klinge. Wer es trägt, hat das Feuer bestanden."
     }
   ],
   "setBonus": {
@@ -13571,6 +13916,175 @@
       "fullBonus": {
         "allStats": 5,
         "label": "Weltende: +5 alle Stats"
+      }
+    },
+    {
+      "id": "archivars-garnitur",
+      "name": "Archivars-Garnitur",
+      "rarity": "rare",
+      "pieces": [
+        "dun-sunken-archive-archiv-haube",
+        "dun-sunken-archive-archiv-mantel",
+        "dun-sunken-archive-archiv-marschtritt"
+      ],
+      "partialBonus": {
+        "2": {
+          "weisheit": 5,
+          "fokus": 5,
+          "label": "Archivars Wissen: +5 Weisheit, +5 Fokus"
+        }
+      },
+      "fullBonus": {
+        "allStats": 0,
+        "label": "Archivars Meisterschaft: +10% Quest-XP",
+        "xpBonus": 10
+      }
+    },
+    {
+      "id": "turmbrecher-ruestung",
+      "name": "Turmbrecher-Rüstung",
+      "rarity": "epic",
+      "pieces": [
+        "dun-shattered-spire-turm-klinge",
+        "dun-shattered-spire-turm-buckler",
+        "dun-shattered-spire-turm-haube"
+      ],
+      "partialBonus": {
+        "2": {
+          "kraft": 5,
+          "ausdauer": 5,
+          "label": "Turmbrecher-Stärke: +5 Kraft, +5 Ausdauer"
+        }
+      },
+      "fullBonus": {
+        "kraft": 5,
+        "label": "Turmbrecher-Macht: +15% Boss-Damage"
+      }
+    },
+    {
+      "id": "leerengewand",
+      "name": "Leerengewand",
+      "rarity": "legendary",
+      "pieces": [
+        "dun-hollow-core-kern-haube",
+        "dun-hollow-core-kern-mantel",
+        "dun-hollow-core-kern-marschtritt",
+        "dun-hollow-core-kern-kette"
+      ],
+      "partialBonus": {
+        "2": {
+          "glueck": 8,
+          "charisma": 5,
+          "label": "Leeren-Resonanz: +8 Glück, +5 Charisma"
+        }
+      },
+      "fullBonus": {
+        "glueck": 5,
+        "label": "Leeren-Meisterschaft: +20% Drop-Chance"
+      }
+    },
+    {
+      "id": "drachentoeter-arsenal",
+      "name": "Drachentöter-Arsenal",
+      "rarity": "epic",
+      "pieces": [
+        "world_boss-procrastination-wyrm-wyrm-mantel",
+        "world_boss-procrastination-wyrm-wyrm-reif",
+        "world_boss-procrastination-wyrm-wyrm-klinge"
+      ],
+      "partialBonus": {
+        "2": {
+          "kraft": 8,
+          "tempo": 3,
+          "label": "Drachentöter-Fokus: +8 Kraft, +3 Tempo"
+        }
+      },
+      "fullBonus": {
+        "kraft": 5,
+        "label": "Drachentöter-Furor: +25% World Boss Damage"
+      }
+    },
+    {
+      "id": "sternenwaechter-tracht",
+      "name": "Sternenwächter-Tracht",
+      "rarity": "legendary",
+      "pieces": [
+        "rift-legendary-abyss-krone",
+        "rift-legendary-abyss-wams",
+        "rift-legendary-abyss-schuhe",
+        "rift-legendary-abyss-schild"
+      ],
+      "partialBonus": {
+        "2": {
+          "allStats": 5,
+          "label": "Sternenwächter-Harmonie: +5 alle Primary Stats"
+        }
+      },
+      "fullBonus": {
+        "allStats": 3,
+        "label": "Sternenwächter-Meisterschaft: +15% XP + Gold"
+      }
+    },
+    {
+      "id": "aetherwandler-gewand",
+      "name": "Aetherwandler-Gewand",
+      "rarity": "legendary",
+      "pieces": [
+        "rift-mythic-jenseits-schwert-q4s",
+        "rift-mythic-jenseits-amulett-63b",
+        "rift-mythic-jenseits-siegelring-jx7"
+      ],
+      "partialBonus": {
+        "2": {
+          "weisheit": 10,
+          "label": "Aetherwandler-Einsicht: +10 Weisheit"
+        }
+      },
+      "fullBonus": {
+        "weisheit": 5,
+        "label": "Aetherwandler-Transzendenz: +20% XP"
+      }
+    },
+    {
+      "id": "schattenjaeger-ausruestung",
+      "name": "Schattenjäger-Ausrüstung",
+      "rarity": "epic",
+      "pieces": [
+        "fac-schattenjaeger-helm",
+        "fac-schattenjaeger-stiefel",
+        "fac-schattenjaeger-klinge"
+      ],
+      "partialBonus": {
+        "2": {
+          "glueck": 8,
+          "tempo": 5,
+          "label": "Schattenjäger-Gespür: +8 Glück, +5 Tempo"
+        }
+      },
+      "fullBonus": {
+        "glueck": 3,
+        "label": "Schattenjäger-Meisterschaft: +15% Craft CD Reduction"
+      }
+    },
+    {
+      "id": "flammenherz-panzer",
+      "name": "Flammenherz-Panzer",
+      "rarity": "epic",
+      "pieces": [
+        "fac-flammenherz-panzer",
+        "fac-flammenherz-schild",
+        "fac-flammenherz-ring"
+      ],
+      "partialBonus": {
+        "2": {
+          "ausdauer": 8,
+          "vitalitaet": 5,
+          "label": "Flammenherz-Schutz: +8 Ausdauer, +5 Vitalität"
+        }
+      },
+      "fullBonus": {
+        "ausdauer": 5,
+        "label": "Flammenherz-Bollwerk: +20% Streak Protection"
       }
     }
   ]
