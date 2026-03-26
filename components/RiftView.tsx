@@ -49,6 +49,15 @@ interface ActiveRift {
   failedAt?: string;
   reachedStage?: number;
   mythicLevel?: number;
+  affixes?: { id: string; name: string; desc: string; color: string; effect: { type: string; value: number | string } }[];
+}
+
+interface RiftAffix {
+  id: string;
+  name: string;
+  desc: string;
+  color: string;
+  minLevel: number;
 }
 
 interface MythicLeaderboardEntry {
@@ -95,6 +104,7 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
   const [nextMythicLevel, setNextMythicLevel] = useState(1);
   const [mythicLeaderboard, setMythicLeaderboard] = useState<MythicLeaderboardEntry[]>([]);
   const [selectedMythicLevel, setSelectedMythicLevel] = useState(1);
+  const [weeklyAffixes, setWeeklyAffixes] = useState<RiftAffix[]>([]);
 
   const fetchRift = useCallback(async () => {
     if (!playerName) return;
@@ -109,6 +119,7 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
         setHighestMythicCleared(data.highestMythicCleared || 0);
         setNextMythicLevel(data.nextMythicLevel || 1);
         setMythicLeaderboard(data.mythicLeaderboard || []);
+        setWeeklyAffixes(data.weeklyAffixes || []);
       }
     } catch (e) { console.error("[rift]", e); }
     setLoading(false);
@@ -244,6 +255,19 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
               <p className="text-xs text-w20">{activeRift.completed ? "All stages cleared" : "Time remaining"}</p>
             </div>
           </div>
+
+          {/* Active affixes */}
+          {activeRift.affixes && activeRift.affixes.length > 0 && (
+            <div className="flex gap-2 flex-wrap">
+              {activeRift.affixes.map(a => (
+                <TipCustom key={a.id} title={a.name} accent={a.color} body={<p className="text-xs">{a.desc}</p>}>
+                  <span className="text-xs font-semibold px-2 py-1 rounded-lg cursor-help" style={{ background: `${a.color}12`, color: a.color, border: `1px solid ${a.color}30` }}>
+                    {a.name}
+                  </span>
+                </TipCustom>
+              ))}
+            </div>
+          )}
 
           {/* Quest chain visualization */}
           <div className="relative" style={{ paddingLeft: 20 }}>
@@ -479,6 +503,29 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
                 <div className="flex justify-between cursor-help"><span>Difficulty</span><span className="font-mono text-w50">{(1 + selectedMythicLevel * 0.3).toFixed(1)}× – {(1 + 6 * 0.5 + selectedMythicLevel * 0.3).toFixed(1)}×</span></div>
               </TipCustom>
               <div className="flex justify-between"><span>Fail Cooldown</span><span className="font-mono text-w50">None</span></div>
+            </div>
+          )}
+
+          {/* Weekly Affixes (M+2 and above) */}
+          {selectedMythicLevel >= 2 && weeklyAffixes.length > 0 && (
+            <div className="rounded-lg px-3 py-2 space-y-1.5" style={{ background: "rgba(255,68,68,0.04)", border: "1px solid rgba(255,68,68,0.12)" }}>
+              <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: "rgba(255,68,68,0.5)" }}>Weekly Affixes</p>
+              {weeklyAffixes.map(affix => (
+                <div key={affix.id} className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: affix.color }} />
+                  <div className="flex-1 min-w-0">
+                    <span className="text-xs font-semibold" style={{ color: affix.color }}>{affix.name}</span>
+                    {selectedMythicLevel >= affix.minLevel ? (
+                      <span className="text-xs ml-1.5" style={{ color: "rgba(255,255,255,0.35)" }}>{affix.desc}</span>
+                    ) : (
+                      <span className="text-xs ml-1.5" style={{ color: "rgba(255,255,255,0.15)" }}>Activates at M+{affix.minLevel}</span>
+                    )}
+                  </div>
+                  {selectedMythicLevel >= affix.minLevel && (
+                    <span className="text-xs font-semibold flex-shrink-0" style={{ color: "#ef4444" }}>Active</span>
+                  )}
+                </div>
+              ))}
             </div>
           )}
 
