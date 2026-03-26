@@ -254,7 +254,7 @@ Items should feel **earned from their source**. Use `shopHidden: true, price: 0`
 
 ### Named Set Design Rules
 
-- **3–4 pieces per set** (not 6 — our 6-slot system makes full sets too dominant)
+- **3–4 pieces per set** (not 7 — our 7-slot system makes full sets too dominant)
 - **Partial bonus at 2 pieces**, full bonus at 3–4 pieces
 - Set bonuses: flat stat bonuses (+3–8 per stat) or small % multipliers (5–10%)
 - Never stack with tier-based set bonuses (named sets override generic setId)
@@ -265,7 +265,7 @@ Items should feel **earned from their source**. Use `shopHidden: true, price: 0`
 {
   "id": "prefix-unique-name",
   "name": "German Name",
-  "slot": "weapon|shield|helm|armor|amulet|boots",
+  "slot": "weapon|shield|helm|armor|amulet|ring|boots",
   "tier": 1-4,
   "reqLevel": 1-50,
   "rarity": "common|uncommon|rare|epic|legendary",
@@ -289,7 +289,7 @@ Items should feel **earned from their source**. Use `shopHidden: true, price: 0`
 3. Is the legendary effect value within the level-appropriate range?
 4. Does the affix pool have 2–3 primary and 1–3 minor options (variety for rolling)?
 5. Is the item source-appropriate (no legendaries in general pool, no commons in raids)?
-6. Does the total stat ceiling stay below the kraft/weisheit cap of 30 for a full 6-slot build?
+6. Does the total stat ceiling stay below the kraft/weisheit cap of 30 for a full 7-slot build?
 
 ## UI Design Guidelines
 

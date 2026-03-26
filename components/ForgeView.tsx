@@ -515,7 +515,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
       <div className="flex items-center gap-4 flex-wrap">
         <div>
           <Tip k="artisans_quarter" heading><span className="text-base font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.4)" }}>{"Artisan's Quarter"}</span></Tip>
-          <p className="text-xs italic mt-0.5" style={{ color: "rgba(255,255,255,0.2)" }}>Vier Meister. Vier Disziplinen. Was du hier schmiedest, hallt in Ewigkeit wider.</p>
+          <p className="text-xs italic mt-0.5" style={{ color: "rgba(255,255,255,0.2)" }}>Acht Künste. Zwei Wege. Was du hier schmiedest, hallt in Ewigkeit wider.</p>
         </div>
         <div className="flex items-center gap-4 ml-auto text-sm">
           <Tip k="professions"><span className="font-mono font-medium" style={{ color: "rgba(255,255,255,0.35)" }}>{chosenCount}/{maxProfSlots} Professions</span></Tip>

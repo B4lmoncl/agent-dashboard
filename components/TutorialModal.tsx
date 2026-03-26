@@ -252,10 +252,10 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                 Dein Inventar, Ausrüstung, Stats und Begleiter auf einen Blick. Erreichbar über <Stat color="#3b82f6">Character</Stat> im Inner Sanctum (nur eingeloggt).
               </GuideSection>
 
-              <GuideSection title="Ausrüstung (6 Slots)" icon="⚔️">
+              <GuideSection title="Ausrüstung (7 Slots)" icon="⚔️">
                 Rüste Items aus dem Inventar aus. Stats werden beim Drop zufällig gewürfelt:
-                <div className="grid grid-cols-3 gap-1 mt-2 text-center text-xs">
-                  {(["Helm", "Weapon", "Shield", "Armor", "Amulet", "Boots"] as const).map(s => (
+                <div className="grid grid-cols-4 gap-1 mt-2 text-center text-xs">
+                  {(["Helm", "Weapon", "Shield", "Armor", "Amulet", "Ring", "Boots"] as const).map(s => (
                     <div key={s} className="rounded px-1 py-1" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>{s}</div>
                   ))}
                 </div>
@@ -368,7 +368,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
           {tab === "crafting" && (
             <>
               <GuideSection title="Artisan's Quarter" icon="▪" accent="rgba(168,85,247,0.4)">
-                Crafting-Hub im Trading District mit 4 Berufs-NPCs (nur eingeloggt):
+                Crafting-Hub im Trading District mit 8 Berufen — wähle 2 (nur eingeloggt):
                 <div className="grid grid-cols-2 gap-1.5 mt-2">
                   <div className="rounded-lg p-2" style={{ background: "rgba(245,158,11,0.06)", border: "1px solid rgba(245,158,11,0.15)" }}>
                     <p className="font-bold text-xs" style={{ color: "#f59e0b" }}>▪ Grimvar (Schmied)</p>
