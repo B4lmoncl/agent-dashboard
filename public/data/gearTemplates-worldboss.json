@@ -416,7 +416,7 @@
       "legendaryEffect": {
         "type": "drop_bonus",
         "min": 3,
-        "max": 6,
+        "max": 5,
         "label": "Bestien-Instinkt: +{value}% Drop-Chance"
       },
       "flavorText": "Es riecht nach verpassten Deadlines und zweiten Chancen."
@@ -485,7 +485,7 @@
       "legendaryEffect": {
         "type": "crit_chance",
         "min": 3,
-        "max": 6,
+        "max": 5,
         "label": "Bestien-Präzision: +{value}% Crit"
       },
       "flavorText": "Der Wyrm nährt sich von Aufschub. Dieses Stück erinnert daran, nicht zu zögern."
@@ -951,7 +951,7 @@
       "legendaryEffect": {
         "type": "drop_bonus",
         "min": 3,
-        "max": 6,
+        "max": 5,
         "label": "Bestien-Instinkt: +{value}% Drop-Chance"
       },
       "flavorText": "Es strahlt Wärme aus — nicht genug zum Verbrennen, genug zum Erinnern."
@@ -1020,7 +1020,7 @@
       "legendaryEffect": {
         "type": "crit_chance",
         "min": 3,
-        "max": 6,
+        "max": 5,
         "label": "Bestien-Präzision: +{value}% Crit"
       },
       "flavorText": "Geschmiedet in der Glut des Kolosses. Ruhe ist keine Schwäche."
@@ -1530,7 +1530,7 @@
       "legendaryEffect": {
         "type": "drop_bonus",
         "min": 3,
-        "max": 6,
+        "max": 5,
         "label": "Bestien-Instinkt: +{value}% Drop-Chance"
       },
       "flavorText": "Chaos ist kein Feind. Es ist ein Material."
@@ -1599,7 +1599,7 @@
       "legendaryEffect": {
         "type": "crit_chance",
         "min": 3,
-        "max": 6,
+        "max": 5,
         "label": "Bestien-Präzision: +{value}% Crit"
       },
       "flavorText": "Jeder Kopf der Hydra flüsterte etwas anderes. Dieses Stück hat nur einem zugehört."
@@ -2862,7 +2862,7 @@
       "legendaryEffect": {
         "type": "drop_bonus",
         "min": 3,
-        "max": 6,
+        "max": 5,
         "label": "Bestien-Instinkt: +{value}% Drop-Chance"
       },
       "flavorText": "Es wiegt schwer — aber wer es trägt, bewegt sich leichter."
@@ -2931,7 +2931,7 @@
       "legendaryEffect": {
         "type": "crit_chance",
         "min": 3,
-        "max": 6,
+        "max": 5,
         "label": "Bestien-Präzision: +{value}% Crit"
       },
       "flavorText": "Aus dem steinernen Herz des Golems. Stillstand war nie eine Option."
@@ -3441,7 +3441,7 @@
       "legendaryEffect": {
         "type": "drop_bonus",
         "min": 3,
-        "max": 6,
+        "max": 5,
         "label": "Bestien-Instinkt: +{value}% Drop-Chance"
       },
       "flavorText": "Es leuchtet makellos. Fast irritierend makellos."
@@ -3510,7 +3510,7 @@
       "legendaryEffect": {
         "type": "crit_chance",
         "min": 3,
-        "max": 6,
+        "max": 5,
         "label": "Bestien-Präzision: +{value}% Crit"
       },
       "flavorText": "Perfektion ist ein Gefängnis. Dieses Stück ist der Schlüssel."
@@ -3957,7 +3957,7 @@
       "legendaryEffect": {
         "type": "gold_bonus",
         "min": 4,
-        "max": 8,
+        "max": 6,
         "label": "Bestien-Glanz: +{value}% Gold"
       },
       "flavorText": "Der Leviathan schwamm allein. Dieses Stück verbindet."
@@ -4026,7 +4026,7 @@
       "legendaryEffect": {
         "type": "drop_bonus",
         "min": 4,
-        "max": 8,
+        "max": 6,
         "label": "Bestien-Instinkt: +{value}% Drop-Chance"
       },
       "flavorText": "Allein ist man nichts. Zusammen — zumindest etwas."
@@ -4095,7 +4095,7 @@
       "legendaryEffect": {
         "type": "crit_chance",
         "min": 4,
-        "max": 8,
+        "max": 6,
         "label": "Bestien-Präzision: +{value}% Crit"
       },
       "flavorText": "Der Leviathan schwamm allein. Dieses Stück verbindet."
@@ -4517,7 +4517,7 @@
       "legendaryEffect": {
         "type": "drop_bonus",
         "min": 4,
-        "max": 8,
+        "max": 6,
         "label": "Bestien-Instinkt: +{value}% Drop-Chance"
       },
       "flavorText": "Es erinnert daran, dass Aufgeben eine Wahl ist. Nicht deine."
@@ -4586,7 +4586,7 @@
       "legendaryEffect": {
         "type": "crit_chance",
         "min": 4,
-        "max": 8,
+        "max": 6,
         "label": "Bestien-Präzision: +{value}% Crit"
       },
       "flavorText": "Der Thron der Apathie steht leer. Wer das hier trägt, steht auf."
@@ -4655,7 +4655,7 @@
       "legendaryEffect": {
         "type": "decay_reduction",
         "min": 4,
-        "max": 8,
+        "max": 6,
         "label": "Bestien-Beständigkeit: -{value}% Forge Decay"
       },
       "flavorText": "Es erinnert daran, dass Aufgeben eine Wahl ist. Nicht deine."

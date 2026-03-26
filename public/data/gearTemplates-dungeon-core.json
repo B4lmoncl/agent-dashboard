@@ -2450,7 +2450,7 @@
       "legendaryEffect": {
         "type": "xp_bonus",
         "min": 3,
-        "max": 8,
+        "max": 6,
         "label": "Dungeon-Resonanz: +{value}% Quest-XP"
       },
       "flavorText": "Die Dunkelheit des Kerns hat es berührt. Aber die Dunkelheit ist nicht böse. Nur... aufmerksam."
@@ -2519,7 +2519,7 @@
       "legendaryEffect": {
         "type": "gold_bonus",
         "min": 3,
-        "max": 8,
+        "max": 6,
         "label": "Vergrabener Schatz: +{value}% Gold"
       },
       "flavorText": "Es flüstert. Nicht laut genug um zu verstehen, aber deutlich genug um nervös zu werden."
@@ -2588,7 +2588,7 @@
       "legendaryEffect": {
         "type": "drop_bonus",
         "min": 3,
-        "max": 8,
+        "max": 6,
         "label": "Plünderer-Instinkt: +{value}% Drop-Chance"
       },
       "flavorText": "Aus der Leere geschmiedet. Die Leere protestierte nicht — sie hat Geduld."
@@ -2657,7 +2657,7 @@
       "legendaryEffect": {
         "type": "crit_chance",
         "min": 3,
-        "max": 8,
+        "max": 6,
         "label": "Tödliche Präzision: +{value}% Crit Chance"
       },
       "flavorText": "Es absorbiert Licht. Nicht viel — gerade genug um aufzufallen."
@@ -2726,7 +2726,7 @@
       "legendaryEffect": {
         "type": "decay_reduction",
         "min": 3,
-        "max": 8,
+        "max": 6,
         "label": "Tiefenschutz: -{value}% Forge Decay"
       },
       "flavorText": "Geschmiedet in der Abwesenheit von allem. Erstaunlich solide für etwas aus dem Nichts."
@@ -2795,7 +2795,7 @@
       "legendaryEffect": {
         "type": "xp_bonus",
         "min": 3,
-        "max": 8,
+        "max": 6,
         "label": "Dungeon-Resonanz: +{value}% Quest-XP"
       },
       "flavorText": "Aus dem Hohlen Kern. Hohl klingt negativ — aber was wenn die Leere der Punkt ist?"
@@ -2864,7 +2864,7 @@
       "legendaryEffect": {
         "type": "gold_bonus",
         "min": 3,
-        "max": 8,
+        "max": 6,
         "label": "Vergrabener Schatz: +{value}% Gold"
       },
       "flavorText": "Wer in den Kern blickt und zurückkommt, bringt etwas mit. Das hier zum Beispiel."
@@ -2933,7 +2933,7 @@
       "legendaryEffect": {
         "type": "drop_bonus",
         "min": 3,
-        "max": 8,
+        "max": 6,
         "label": "Plünderer-Instinkt: +{value}% Drop-Chance"
       },
       "flavorText": "Die Dunkelheit des Kerns hat es berührt. Aber die Dunkelheit ist nicht böse. Nur... aufmerksam."
@@ -3002,7 +3002,7 @@
       "legendaryEffect": {
         "type": "crit_chance",
         "min": 3,
-        "max": 8,
+        "max": 6,
         "label": "Tödliche Präzision: +{value}% Crit Chance"
       },
       "flavorText": "Es flüstert. Nicht laut genug um zu verstehen, aber deutlich genug um nervös zu werden."
@@ -3071,7 +3071,7 @@
       "legendaryEffect": {
         "type": "decay_reduction",
         "min": 3,
-        "max": 8,
+        "max": 6,
         "label": "Tiefenschutz: -{value}% Forge Decay"
       },
       "flavorText": "Aus der Leere geschmiedet. Die Leere protestierte nicht — sie hat Geduld."

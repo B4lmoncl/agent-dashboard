@@ -4139,7 +4139,7 @@
       "legendaryEffect": {
         "type": "xp_bonus",
         "min": 3,
-        "max": 6,
+        "max": 5,
         "label": "Riss-Resonanz: +{value}% Quest-XP"
       },
       "flavorText": "Aus der tiefsten Schicht des Rifts. Es summt mit einer Frequenz die kein Instrument kennt."
@@ -4208,7 +4208,7 @@
       "legendaryEffect": {
         "type": "gold_bonus",
         "min": 3,
-        "max": 6,
+        "max": 5,
         "label": "Riss-Glanz: +{value}% Gold"
       },
       "flavorText": "Der Abgrund blickte zurück. Er blinzelte zuerst."
@@ -4277,7 +4277,7 @@
       "legendaryEffect": {
         "type": "drop_bonus",
         "min": 3,
-        "max": 6,
+        "max": 5,
         "label": "Riss-Instinkt: +{value}% Drop-Chance"
       },
       "flavorText": "Aus der tiefsten Schicht des Rifts. Es summt mit einer Frequenz die kein Instrument kennt."
@@ -4346,7 +4346,7 @@
       "legendaryEffect": {
         "type": "crit_chance",
         "min": 3,
-        "max": 6,
+        "max": 5,
         "label": "Riss-Präzision: +{value}% Crit"
       },
       "flavorText": "Der Abgrund blickte zurück. Er blinzelte zuerst."
@@ -4415,7 +4415,7 @@
       "legendaryEffect": {
         "type": "decay_reduction",
         "min": 3,
-        "max": 6,
+        "max": 5,
         "label": "Riss-Beständigkeit: -{value}% Forge Decay"
       },
       "flavorText": "Aus der tiefsten Schicht des Rifts. Es summt mit einer Frequenz die kein Instrument kennt."
@@ -7319,7 +7319,7 @@
       "legendaryEffect": {
         "type": "xp_bonus",
         "min": 4,
-        "max": 8,
+        "max": 6,
         "label": "Riss-Resonanz: +{value}% Quest-XP"
       },
       "flavorText": "Jenseits. Hinter dem Riss hinter dem Riss. Dort wo die Regeln aufhören."
@@ -7388,7 +7388,7 @@
       "legendaryEffect": {
         "type": "gold_bonus",
         "min": 4,
-        "max": 8,
+        "max": 6,
         "label": "Riss-Glanz: +{value}% Gold"
       },
       "flavorText": "Mythisch ist keine Übertreibung. Es ist eine Untertreibung."
@@ -7457,7 +7457,7 @@
       "legendaryEffect": {
         "type": "drop_bonus",
         "min": 4,
-        "max": 8,
+        "max": 6,
         "label": "Riss-Instinkt: +{value}% Drop-Chance"
       },
       "flavorText": "Die Realität biegt sich um dieses Stück. Nicht viel — aber spürbar."
@@ -7526,7 +7526,7 @@
       "legendaryEffect": {
         "type": "crit_chance",
         "min": 4,
-        "max": 8,
+        "max": 6,
         "label": "Riss-Präzision: +{value}% Crit"
       },
       "flavorText": "Jenseits. Hinter dem Riss hinter dem Riss. Dort wo die Regeln aufhören."
@@ -7595,7 +7595,7 @@
       "legendaryEffect": {
         "type": "decay_reduction",
         "min": 4,
-        "max": 8,
+        "max": 6,
         "label": "Riss-Beständigkeit: -{value}% Forge Decay"
       },
       "flavorText": "Mythisch ist keine Übertreibung. Es ist eine Untertreibung."
@@ -7664,7 +7664,7 @@
       "legendaryEffect": {
         "type": "xp_bonus",
         "min": 4,
-        "max": 8,
+        "max": 6,
         "label": "Riss-Resonanz: +{value}% Quest-XP"
       },
       "flavorText": "Die Realität biegt sich um dieses Stück. Nicht viel — aber spürbar."
@@ -7733,7 +7733,7 @@
       "legendaryEffect": {
         "type": "gold_bonus",
         "min": 4,
-        "max": 8,
+        "max": 6,
         "label": "Riss-Glanz: +{value}% Gold"
       },
       "flavorText": "Jenseits. Hinter dem Riss hinter dem Riss. Dort wo die Regeln aufhören."
@@ -7802,7 +7802,7 @@
       "legendaryEffect": {
         "type": "drop_bonus",
         "min": 4,
-        "max": 8,
+        "max": 6,
         "label": "Riss-Instinkt: +{value}% Drop-Chance"
       },
       "flavorText": "Mythisch ist keine Übertreibung. Es ist eine Untertreibung."
@@ -7871,7 +7871,7 @@
       "legendaryEffect": {
         "type": "crit_chance",
         "min": 4,
-        "max": 8,
+        "max": 6,
         "label": "Riss-Präzision: +{value}% Crit"
       },
       "flavorText": "Die Realität biegt sich um dieses Stück. Nicht viel — aber spürbar."
@@ -7940,7 +7940,7 @@
       "legendaryEffect": {
         "type": "decay_reduction",
         "min": 4,
-        "max": 8,
+        "max": 6,
         "label": "Riss-Beständigkeit: -{value}% Forge Decay"
       },
       "flavorText": "Jenseits. Hinter dem Riss hinter dem Riss. Dort wo die Regeln aufhören."
@@ -8009,7 +8009,7 @@
       "legendaryEffect": {
         "type": "xp_bonus",
         "min": 4,
-        "max": 8,
+        "max": 6,
         "label": "Riss-Resonanz: +{value}% Quest-XP"
       },
       "flavorText": "Mythisch ist keine Übertreibung. Es ist eine Untertreibung."
@@ -8078,7 +8078,7 @@
       "legendaryEffect": {
         "type": "gold_bonus",
         "min": 4,
-        "max": 8,
+        "max": 6,
         "label": "Riss-Glanz: +{value}% Gold"
       },
       "flavorText": "Die Realität biegt sich um dieses Stück. Nicht viel — aber spürbar."
@@ -8147,7 +8147,7 @@
       "legendaryEffect": {
         "type": "drop_bonus",
         "min": 4,
-        "max": 8,
+        "max": 6,
         "label": "Riss-Instinkt: +{value}% Drop-Chance"
       },
       "flavorText": "Jenseits. Hinter dem Riss hinter dem Riss. Dort wo die Regeln aufhören."
@@ -8216,7 +8216,7 @@
       "legendaryEffect": {
         "type": "crit_chance",
         "min": 4,
-        "max": 8,
+        "max": 6,
         "label": "Riss-Präzision: +{value}% Crit"
       },
       "flavorText": "Mythisch ist keine Übertreibung. Es ist eine Untertreibung."
@@ -8285,7 +8285,7 @@
       "legendaryEffect": {
         "type": "decay_reduction",
         "min": 4,
-        "max": 8,
+        "max": 6,
         "label": "Riss-Beständigkeit: -{value}% Forge Decay"
       },
       "flavorText": "Die Realität biegt sich um dieses Stück. Nicht viel — aber spürbar."

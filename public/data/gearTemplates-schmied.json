@@ -1234,7 +1234,8 @@
         "weisheit": 5,
         "ausdauer": 6
       },
-      "setId": "legendary"
+      "setId": "legendary",
+      "flavorText": "Ätherstahl summt leise. Nicht bedrohlich — eher nachdenklich."
     },
     {
       "id": "craft-schmied-aether-brustplatte",
@@ -1252,7 +1253,8 @@
         "ausdauer": 7,
         "kraft": 5
       },
-      "setId": "legendary"
+      "setId": "legendary",
+      "flavorText": "Geschmiedet in Äther. Der Helm erinnert sich an Frequenzen die kein Ohr hört."
     },
     {
       "id": "craft-schmied-aether-schreitstiefel",
@@ -1270,7 +1272,8 @@
         "ausdauer": 5,
         "glueck": 6
       },
-      "setId": "legendary"
+      "setId": "legendary",
+      "flavorText": "Äther-Platte. Schwer genug für Schutz, leicht genug für Überraschungen."
     },
     {
       "id": "craft-schmied-aetherkern-sturmkappe",
@@ -1288,7 +1291,8 @@
         "kraft": 5,
         "weisheit": 6
       },
-      "setId": "legendary"
+      "setId": "legendary",
+      "flavorText": "Äthergeschmiedete Stiefel. Sie kennen den Weg — auch wenn du ihn nicht kennst."
     },
     {
       "id": "craft-schmied-aether-kettenhemd",
@@ -1306,7 +1310,8 @@
         "ausdauer": 6,
         "glueck": 5
       },
-      "setId": "legendary"
+      "setId": "legendary",
+      "flavorText": "Kettenhemd aus Ätherstahl. Jedes Glied hält mehr als nur Schläge ab."
     },
     {
       "id": "craft-schmied-aether-marschtritt",
@@ -1324,7 +1329,8 @@
         "ausdauer": 5,
         "kraft": 6
       },
-      "setId": "legendary"
+      "setId": "legendary",
+      "flavorText": "Marschtritt aus Äther. Leise, aber bestimmt. Wie die besten Argumente."
     },
     {
       "id": "craft-schmied-aetherkern-panzer",
@@ -1342,7 +1348,8 @@
         "ausdauer": 6,
         "kraft": 6
       },
-      "setId": "legendary"
+      "setId": "legendary",
+      "flavorText": "Ätherischer Panzer. Er atmet mit seinem Träger. Das ist entweder beruhigend oder beunruhigend."
     },
     {
       "id": "craft-schmied-seelen-krone",

@@ -331,17 +331,17 @@
             {
               "stat": "glueck",
               "min": 5,
-              "max": 8
+              "max": 7
             },
             {
               "stat": "weisheit",
               "min": 5,
-              "max": 8
+              "max": 7
             },
             {
               "stat": "kraft",
               "min": 5,
-              "max": 8
+              "max": 7
             }
           ],
           "count": [
@@ -371,7 +371,7 @@
       "legendaryEffect": {
         "type": "gold_bonus",
         "min": 5,
-        "max": 12,
+        "max": 10,
         "label": "Void's Bargain: +{value}% Gold"
       },
       "source": "dungeon:hollow-core",
@@ -685,7 +685,7 @@
       "legendaryEffect": {
         "type": "xp_bonus",
         "min": 5,
-        "max": 16,
+        "max": 12,
         "label": "Leerenschnitt: +{value}% Quest-XP"
       },
       "source": "world_boss:isolation-leviathan",
@@ -748,7 +748,7 @@
       "legendaryEffect": {
         "type": "drop_bonus",
         "min": 5,
-        "max": 16,
+        "max": 12,
         "label": "Leere Krone: +{value}% Drop-Chance"
       },
       "source": "world_boss:apathy-sovereign",
@@ -810,8 +810,8 @@
       },
       "legendaryEffect": {
         "type": "xp_bonus",
-        "min": 12,
-        "max": 12,
+        "min": 4,
+        "max": 10,
         "label": "Sternenblick: +{value}% Quest-XP"
       },
       "source": "gacha:astral-radiance",

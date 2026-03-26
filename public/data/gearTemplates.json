@@ -2667,7 +2667,7 @@
       "legendaryEffect": {
         "type": "night_double_gold",
         "min": 3,
-        "max": 6,
+        "max": 5,
         "label": "Nachtschatten: +{value}% Gold bei Nacht-Quests (23-5 Uhr)"
       },
       "flavorText": "Zwischen Mitternacht und Morgen, wenn die Welt schläft, wacht diese Klinge. Und sie belohnt, wer mit ihr wacht."
@@ -2728,7 +2728,7 @@
       "legendaryEffect": {
         "type": "every_nth_bonus",
         "min": 3,
-        "max": 6,
+        "max": 5,
         "label": "Rhythmus: Jede 5. Quest gibt +{value}% Bonus-XP"
       },
       "flavorText": "Eins. Zwei. Drei. Vier. Der fünfte Schlag trifft anders. Frag nicht warum. Frag nur: bist du bereit?"
@@ -7908,7 +7908,7 @@
       "legendaryEffect": {
         "type": "salvage_bonus",
         "min": 3,
-        "max": 6,
+        "max": 5,
         "label": "Leere Tiefe: +{value}% Materialien beim Zerlegen"
       },
       "setId": "legendary",
@@ -7971,7 +7971,7 @@
       "legendaryEffect": {
         "type": "gem_preserve",
         "min": 5,
-        "max": 10,
+        "max": 5,
         "label": "Voidschritt: +{value}% Chance, Edelstein beim Entfernen zu bewahren"
       },
       "setId": "legendary",
@@ -9230,7 +9230,7 @@
       "legendaryEffect": {
         "type": "expedition_speed",
         "min": 5,
-        "max": 10,
+        "max": 6,
         "label": "Horizontruf: -{value}% Expeditionsdauer"
       },
       "setId": "legendary",
@@ -13134,8 +13134,8 @@
       },
       "legendaryEffect": {
         "type": "every_nth_bonus",
-        "min": 10,
-        "max": 20,
+        "min": 2,
+        "max": 6,
         "label": "Aetherstrom: Jede 5. Quest gibt +{value}% Bonus-XP"
       },
       "setId": "legendary",
@@ -13515,7 +13515,7 @@
       "legendaryEffect": {
         "type": "cooldown_reduction",
         "min": 5,
-        "max": 10,
+        "max": 6,
         "label": "Letzte Reise: -{value}% Crafting-Cooldown"
       },
       "setId": "legendary",
