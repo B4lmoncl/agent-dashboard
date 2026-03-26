@@ -485,7 +485,9 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
   const craftProfData = (u.professions || {})[recipe.profession];
   const skillCap = getSkillCap(playerLvl, craftProfData?.trainedRanks);
   const skillUpColor = getSkillUpColor(currentSkill, reqSkill);
-  const skillUpChance = getSkillUpChance(currentSkill, reqSkill);
+  // Legendary: mentor — +X% skill-up chance
+  const mentorBonus = getLegendaryModifiers(uid).mentor || 0;
+  const skillUpChance = Math.min(1.0, getSkillUpChance(currentSkill, reqSkill) + mentorBonus);
   const { dailyBonusAvailable } = getDailyBonusInfo(u);
   const dailyMultiplier = dailyBonusAvailable ? 2 : 1;
   // Roll skill-up for each craft in the batch — WoW: exactly 1 point per success
