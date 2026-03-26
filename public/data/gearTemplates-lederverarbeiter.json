@@ -1371,17 +1371,17 @@
           "pool": [
             {
               "stat": "kraft",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "glueck",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "ausdauer",
-              "min": 4,
+              "min": 5,
               "max": 7
             }
           ],
@@ -1428,17 +1428,17 @@
           "pool": [
             {
               "stat": "kraft",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "glueck",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "ausdauer",
-              "min": 4,
+              "min": 5,
               "max": 7
             }
           ],
@@ -1485,17 +1485,17 @@
           "pool": [
             {
               "stat": "kraft",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "glueck",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "ausdauer",
-              "min": 4,
+              "min": 5,
               "max": 7
             }
           ],
@@ -1548,17 +1548,17 @@
           "pool": [
             {
               "stat": "kraft",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "glueck",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "ausdauer",
-              "min": 4,
+              "min": 5,
               "max": 7
             }
           ],
@@ -1611,17 +1611,17 @@
           "pool": [
             {
               "stat": "kraft",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "glueck",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "ausdauer",
-              "min": 4,
+              "min": 5,
               "max": 7
             }
           ],
@@ -1674,17 +1674,17 @@
           "pool": [
             {
               "stat": "kraft",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "glueck",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "ausdauer",
-              "min": 4,
+              "min": 5,
               "max": 7
             }
           ],
@@ -1737,17 +1737,17 @@
           "pool": [
             {
               "stat": "kraft",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "glueck",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "ausdauer",
-              "min": 4,
+              "min": 5,
               "max": 7
             }
           ],
@@ -1887,12 +1887,12 @@
             {
               "stat": "kraft",
               "min": 4,
-              "max": 7
+              "max": 6
             },
             {
               "stat": "glueck",
               "min": 4,
-              "max": 7
+              "max": 6
             }
           ],
           "count": [
@@ -1905,12 +1905,12 @@
             {
               "stat": "vitalitaet",
               "min": 3,
-              "max": 5
+              "max": 4
             },
             {
               "stat": "tempo",
               "min": 3,
-              "max": 5
+              "max": 4
             }
           ],
           "count": [
@@ -2409,12 +2409,12 @@
             {
               "stat": "kraft",
               "min": 4,
-              "max": 7
+              "max": 6
             },
             {
               "stat": "glueck",
               "min": 4,
-              "max": 7
+              "max": 6
             }
           ],
           "count": [
@@ -2427,12 +2427,12 @@
             {
               "stat": "vitalitaet",
               "min": 3,
-              "max": 5
+              "max": 4
             },
             {
               "stat": "tempo",
               "min": 3,
-              "max": 5
+              "max": 4
             }
           ],
           "count": [

@@ -2633,17 +2633,17 @@
           "pool": [
             {
               "stat": "ausdauer",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "kraft",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "weisheit",
-              "min": 4,
+              "min": 5,
               "max": 7
             }
           ],
@@ -2690,17 +2690,17 @@
           "pool": [
             {
               "stat": "ausdauer",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "kraft",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "weisheit",
-              "min": 4,
+              "min": 5,
               "max": 7
             }
           ],
@@ -2747,17 +2747,17 @@
           "pool": [
             {
               "stat": "ausdauer",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "kraft",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "weisheit",
-              "min": 4,
+              "min": 5,
               "max": 7
             }
           ],
@@ -2804,17 +2804,17 @@
           "pool": [
             {
               "stat": "ausdauer",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "kraft",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "weisheit",
-              "min": 4,
+              "min": 5,
               "max": 7
             }
           ],
@@ -2861,17 +2861,17 @@
           "pool": [
             {
               "stat": "ausdauer",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "kraft",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "weisheit",
-              "min": 4,
+              "min": 5,
               "max": 7
             }
           ],
@@ -2918,17 +2918,17 @@
           "pool": [
             {
               "stat": "ausdauer",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "kraft",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "weisheit",
-              "min": 4,
+              "min": 5,
               "max": 7
             }
           ],
@@ -2975,17 +2975,17 @@
           "pool": [
             {
               "stat": "ausdauer",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "kraft",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "weisheit",
-              "min": 4,
+              "min": 5,
               "max": 7
             }
           ],
@@ -3032,17 +3032,17 @@
           "pool": [
             {
               "stat": "ausdauer",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "kraft",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "weisheit",
-              "min": 4,
+              "min": 5,
               "max": 7
             }
           ],
@@ -3095,17 +3095,17 @@
           "pool": [
             {
               "stat": "ausdauer",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "kraft",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "weisheit",
-              "min": 4,
+              "min": 5,
               "max": 7
             }
           ],
@@ -3158,17 +3158,17 @@
           "pool": [
             {
               "stat": "ausdauer",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "kraft",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "weisheit",
-              "min": 4,
+              "min": 5,
               "max": 7
             }
           ],
@@ -3221,17 +3221,17 @@
           "pool": [
             {
               "stat": "ausdauer",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "kraft",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "weisheit",
-              "min": 4,
+              "min": 5,
               "max": 7
             }
           ],
@@ -3284,17 +3284,17 @@
           "pool": [
             {
               "stat": "ausdauer",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "kraft",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "weisheit",
-              "min": 4,
+              "min": 5,
               "max": 7
             }
           ],

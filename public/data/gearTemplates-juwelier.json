@@ -1763,17 +1763,17 @@
           "pool": [
             {
               "stat": "glueck",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "weisheit",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "charisma",
-              "min": 4,
+              "min": 5,
               "max": 7
             }
           ],
@@ -1820,17 +1820,17 @@
           "pool": [
             {
               "stat": "glueck",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "weisheit",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "charisma",
-              "min": 4,
+              "min": 5,
               "max": 7
             }
           ],
@@ -1877,17 +1877,17 @@
           "pool": [
             {
               "stat": "glueck",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "weisheit",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "charisma",
-              "min": 4,
+              "min": 5,
               "max": 7
             }
           ],
@@ -1934,17 +1934,17 @@
           "pool": [
             {
               "stat": "glueck",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "weisheit",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "charisma",
-              "min": 4,
+              "min": 5,
               "max": 7
             }
           ],
@@ -1991,17 +1991,17 @@
           "pool": [
             {
               "stat": "glueck",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "weisheit",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "charisma",
-              "min": 4,
+              "min": 5,
               "max": 7
             }
           ],
@@ -2048,17 +2048,17 @@
           "pool": [
             {
               "stat": "glueck",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "weisheit",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "charisma",
-              "min": 4,
+              "min": 5,
               "max": 7
             }
           ],
@@ -2111,17 +2111,17 @@
           "pool": [
             {
               "stat": "glueck",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "weisheit",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "charisma",
-              "min": 4,
+              "min": 5,
               "max": 7
             }
           ],
@@ -2174,17 +2174,17 @@
           "pool": [
             {
               "stat": "glueck",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "weisheit",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "charisma",
-              "min": 4,
+              "min": 5,
               "max": 7
             }
           ],

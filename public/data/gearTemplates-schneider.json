@@ -1366,17 +1366,17 @@
           "pool": [
             {
               "stat": "weisheit",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "kraft",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "glueck",
-              "min": 4,
+              "min": 5,
               "max": 7
             }
           ],
@@ -1423,17 +1423,17 @@
           "pool": [
             {
               "stat": "weisheit",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "kraft",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "glueck",
-              "min": 4,
+              "min": 5,
               "max": 7
             }
           ],
@@ -1480,17 +1480,17 @@
           "pool": [
             {
               "stat": "weisheit",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "kraft",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "glueck",
-              "min": 4,
+              "min": 5,
               "max": 7
             }
           ],
@@ -1543,17 +1543,17 @@
           "pool": [
             {
               "stat": "weisheit",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "kraft",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "glueck",
-              "min": 4,
+              "min": 5,
               "max": 7
             }
           ],
@@ -1606,17 +1606,17 @@
           "pool": [
             {
               "stat": "weisheit",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "kraft",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "glueck",
-              "min": 4,
+              "min": 5,
               "max": 7
             }
           ],
@@ -1669,17 +1669,17 @@
           "pool": [
             {
               "stat": "weisheit",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "kraft",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "glueck",
-              "min": 4,
+              "min": 5,
               "max": 7
             }
           ],
@@ -1732,17 +1732,17 @@
           "pool": [
             {
               "stat": "weisheit",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "kraft",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "glueck",
-              "min": 4,
+              "min": 5,
               "max": 7
             }
           ],
@@ -2426,12 +2426,12 @@
           "pool": [
             {
               "stat": "kraft",
-              "min": 4,
+              "min": 5,
               "max": 7
             },
             {
               "stat": "weisheit",
-              "min": 4,
+              "min": 5,
               "max": 7
             }
           ],
