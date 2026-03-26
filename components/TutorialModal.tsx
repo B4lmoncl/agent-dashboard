@@ -30,7 +30,7 @@ function GuideTip({ children }: { children: React.ReactNode }) {
 
 /** rarity-colored inline label */
 function Rarity({ r, children }: { r: string; children: React.ReactNode }) {
-  const colors: Record<string, string> = { common: "#9ca3af", uncommon: "#22c55e", rare: "#3b82f6", epic: "#a855f7", legendary: "#FFD700", unique: "#e6cc80" };
+  const colors: Record<string, string> = { common: "#9ca3af", uncommon: "#22c55e", rare: "#3b82f6", epic: "#a855f7", legendary: "#f97316", unique: "#e6cc80" };
   return <span style={{ color: colors[r] || "#f0f0f0", fontWeight: 600 }}>{children}</span>;
 }
 
@@ -225,7 +225,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                 <ul className="space-y-1.5 mt-2">
                   <li>• NPCs bleiben <Stat color="#f59e0b">2-4 Tage</Stat>, dann ziehen sie weiter.</li>
                   <li>• Jeder NPC hat <Stat color="#a78bfa">Quest-Ketten</Stat> — sequenziell abschließen.</li>
-                  <li>• Letzte Quest einer Kette → <Stat color="#FFD700">einzigartiges Item</Stat>.</li>
+                  <li>• Letzte Quest einer Kette → <Stat color="#f97316">einzigartiges Item</Stat>.</li>
                   <li>• Abreise = laufende Quests <Stat color="#ef4444">gescheitert</Stat>.</li>
                   <li>• Nach Abreise: <Stat color="#9ca3af">Cooldown</Stat> (meist 48h) bevor Rückkehr möglich.</li>
                 </ul>
@@ -335,7 +335,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
 
               <GuideSection title="Drop Rates" icon="◆">
                 <div className="mt-2 space-y-0.5">
-                  {([["legendary","Legendary","0.8%","#FFD700"],["epic","Epic","13%","#a855f7"],["rare","Rare","35%","#3b82f6"],["uncommon","Uncommon","40%","#22c55e"],["common","Common","~11%","#9ca3af"]] as const).map(([,name,rate,color]) => (
+                  {([["legendary","Legendary","0.8%","#f97316"],["epic","Epic","13%","#a855f7"],["rare","Rare","35%","#3b82f6"],["uncommon","Uncommon","40%","#22c55e"],["common","Common","~11%","#9ca3af"]] as const).map(([,name,rate,color]) => (
                     <div key={name} className="flex items-center gap-2">
                       <div className="h-1.5 rounded-full" style={{ background: color, width: name === "Legendary" ? "8%" : name === "Epic" ? "26%" : name === "Rare" ? "70%" : name === "Uncommon" ? "80%" : "22%", minWidth: 6 }} />
                       <span className="flex-shrink-0 w-20" style={{ color, fontWeight: 600 }}>{name}</span>

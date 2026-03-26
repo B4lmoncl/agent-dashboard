@@ -37,7 +37,7 @@ function PlayerBadge({ name, avatar, color, size = 24 }: { name: string; avatar:
 
 const ONLINE_COLORS: Record<string, string> = { online: "#22c55e", idle: "#eab308", offline: "#555" };
 const ONLINE_LABELS: Record<string, string> = { online: "Online", idle: "Idle", offline: "Offline" };
-const RARITY_COLORS: Record<string, string> = { legendary: "#ff8c00", epic: "#a855f7", rare: "#3b82f6", uncommon: "#22c55e", common: "#888" };
+const RARITY_COLORS: Record<string, string> = { legendary: "#f97316", epic: "#a855f7", rare: "#3b82f6", uncommon: "#22c55e", common: "#9ca3af" };
 const RARITY_SORT: Record<string, number> = { legendary: 0, epic: 1, rare: 2, uncommon: 3, common: 4 };
 const SLOT_SORT: Record<string, number> = { weapon: 0, shield: 1, helm: 2, armor: 3, amulet: 4, boots: 5 };
 type TradeSortKey = "rarity" | "name" | "slot";

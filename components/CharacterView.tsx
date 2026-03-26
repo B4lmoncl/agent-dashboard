@@ -331,7 +331,7 @@ const RARITY_COLORS: Record<string, string> = {
   uncommon: "#22c55e",
   rare: "#3b82f6",
   epic: "#a855f7",
-  legendary: "#f59e0b",
+  legendary: "#f97316",
   unique: "#e6cc80",
 };
 
@@ -1540,7 +1540,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                 )}
                 {/* Named Set Bonuses */}
                 {(charData.namedSetBonuses ?? []).map(ns => {
-                  const rarityColors: Record<string, string> = { common: "#9ca3af", uncommon: "#22c55e", rare: "#60a5fa", epic: "#a78bfa", legendary: "#f59e0b" };
+                  const rarityColors: Record<string, string> = { common: "#9ca3af", uncommon: "#22c55e", rare: "#60a5fa", epic: "#a78bfa", legendary: "#f97316" };
                   const c = rarityColors[ns.rarity] ?? "#a78bfa";
                   return (
                     <div key={ns.id} className="mb-2 px-2 py-1.5 rounded-lg" style={{ background: `${c}10`, border: `1px solid ${c}30` }}>

@@ -95,7 +95,7 @@ const PROF_META: Record<string, { name: string; icon: string; color: string }> =
 const PLAYER_QUEST_TYPES: string[] = ["personal", "learning", "fitness", "social", "relationship-coop"];
 
 const MAT_RARITY_COLORS: Record<string, string> = {
-  common: "#9ca3af", uncommon: "#22c55e", rare: "#3b82f6", epic: "#a855f7", legendary: "#f59e0b", unique: "#e6cc80",
+  common: "#9ca3af", uncommon: "#22c55e", rare: "#3b82f6", epic: "#a855f7", legendary: "#f97316", unique: "#e6cc80",
 };
 
 const MAT_SOURCES: Record<string, string> = {
