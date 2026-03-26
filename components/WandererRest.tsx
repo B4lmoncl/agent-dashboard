@@ -452,7 +452,7 @@ export function WandererRest({
                     <h3 className="text-xs font-semibold uppercase tracking-widest" style={{ color: "#c084fc" }}>Starweaver&apos;s Quests</h3>
                     <span className="text-xs px-1.5 py-0.5 rounded font-mono" style={{ background: "rgba(192,132,252,0.1)", color: "#c084fc", border: "1px solid rgba(192,132,252,0.2)" }}>{lyraQuestsOpen.length + lyraQuestsInProgress.length}</span>
                   </div>
-                  <div className="space-y-2 max-h-72 overflow-y-auto pr-1">
+                  <div className="space-y-2 max-h-72 overflow-y-auto pr-1" style={{ scrollbarWidth: "thin" as const }}>
                     {lyraQuestsOpen.map(q =>
                       q.children && q.children.length > 0
                         ? <EpicQuestCard key={q.id} quest={q} selected={selectedIds.has(q.id)} onToggle={reviewApiKey ? toggleSelect : undefined} />

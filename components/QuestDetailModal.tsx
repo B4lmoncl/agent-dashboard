@@ -132,7 +132,7 @@ export default function QuestDetailModal({
           </div>
         </div>
         {/* Body */}
-        <div className="px-5 py-4 overflow-y-auto flex-1 space-y-3">
+        <div className="px-5 py-4 overflow-y-auto flex-1 space-y-3" style={{ scrollbarWidth: "thin" as const }}>
           {/* Flavor / Lore text */}
           {q.npcGiverId && (
             <p className="text-xs font-semibold mb-1" style={{ color: RARITY_COLORS[q.npcRarity ?? "common"] ?? "#9ca3af" }}>

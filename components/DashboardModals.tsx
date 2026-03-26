@@ -95,7 +95,7 @@ export default function DashboardModals({
                   <h3 className="text-sm font-semibold text-primary">Currencies</h3>
                   <button onClick={() => { setCurrenciesOpen(false); setCurrencyExpanded(null); }} className="btn-close">×</button>
                 </div>
-                <div className="space-y-2 overflow-y-auto flex-1">
+                <div className="space-y-2 overflow-y-auto flex-1" style={{ scrollbarWidth: "thin" as const }}>
                   {[
                     { name: "Gold", key: "gold" as const, value: loggedInUser?.currencies?.gold ?? animGold, color: "#f59e0b", desc: "The honest metal of the Hall.", iconSrc: "/images/icons/currency-gold.png" },
                     { name: "Stardust", key: "stardust" as const, value: loggedInUser?.currencies?.stardust ?? 0, color: "#a78bfa", desc: "Congealed starlight.", iconSrc: "/images/icons/currency-stardust.png" },
