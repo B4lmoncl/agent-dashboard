@@ -199,6 +199,7 @@ export default function Dashboard() {
   const [showTutorial, setShowTutorial] = useState(false);
   const [tutorialStep, setTutorialStep] = useState(0);
   const [onboardingOpen, setOnboardingOpen] = useState(false);
+  const [whatsNewOpen, setWhatsNewOpen] = useState(false);
   const [classesList, setClassesList] = useState<ClassDef[]>([]);
   const [classActivatedNotif, setClassActivatedNotif] = useState<{ className: string; classIcon: string; classDescription: string } | null>(null);
   const [rituals, setRituals] = useState<Ritual[]>([]);
@@ -528,6 +529,17 @@ export default function Dashboard() {
       }
     } catch { /* ignore */ }
   }, []);
+
+  // What's New splash — show once per version
+  useEffect(() => {
+    const CURRENT_VERSION = "1.5.3-s30";
+    try {
+      if (playerName && localStorage.getItem("whatsNewSeen") !== CURRENT_VERSION) {
+        const t = setTimeout(() => setWhatsNewOpen(true), 1500);
+        return () => clearTimeout(t);
+      }
+    } catch { /* ignore */ }
+  }, [playerName]);
 
   useEffect(() => {
     if (dashView === "changelog" && changelog.length === 0 && !changelogLoading) {
@@ -2366,6 +2378,30 @@ export default function Dashboard() {
             setTutorialStep(0);
           }}
         />
+      )}
+
+      {/* What's New Splash */}
+      {whatsNewOpen && (
+        <div className="fixed inset-0 z-[150] flex items-center justify-center modal-backdrop" onClick={() => { setWhatsNewOpen(false); try { localStorage.setItem("whatsNewSeen", "1.5.3-s30"); } catch { /* ignore */ } }}>
+          <div className="w-full max-w-md rounded-xl overflow-hidden tab-content-enter" style={{ background: "#111318", border: "1px solid rgba(129,140,248,0.25)", boxShadow: "0 20px 60px rgba(0,0,0,0.8)" }} onClick={e => e.stopPropagation()}>
+            <div className="px-5 py-3" style={{ background: "rgba(129,140,248,0.06)", borderBottom: "1px solid rgba(129,140,248,0.15)" }}>
+              <p className="text-sm font-bold" style={{ color: "#818cf8" }}>What&apos;s New</p>
+            </div>
+            <div className="px-5 py-4 space-y-2">
+              <div className="flex items-start gap-2"><span style={{ color: "#22c55e" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Bind on Equip / Bind on Pickup system on all 1,074 items</p></div>
+              <div className="flex items-start gap-2"><span style={{ color: "#22c55e" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Item Lock — protect items from salvage, trade, and discard</p></div>
+              <div className="flex items-start gap-2"><span style={{ color: "#22c55e" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Kanai&apos;s Cube — extract legendary effects permanently</p></div>
+              <div className="flex items-start gap-2"><span style={{ color: "#22c55e" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Mythic+ Affixes — 10 weekly rotating modifiers from M+2</p></div>
+              <div className="flex items-start gap-2"><span style={{ color: "#22c55e" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Mail System — send gold and items to other players</p></div>
+              <div className="flex items-start gap-2"><span style={{ color: "#22c55e" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Material Storage — dedicated tab with search and unlimited space</p></div>
+              <div className="flex items-start gap-2"><span style={{ color: "#22c55e" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Enchant Vellums — tradeable enchant scrolls from Verzauberer</p></div>
+              <div className="flex items-start gap-2"><span style={{ color: "#22c55e" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Auto-Salvage — preview grid with rarity tabs + bulk confirm</p></div>
+            </div>
+            <div className="px-5 pb-4">
+              <button onClick={() => { setWhatsNewOpen(false); try { localStorage.setItem("whatsNewSeen", "1.5.3-s30"); } catch { /* ignore */ } }} className="w-full text-xs py-2 rounded-lg font-semibold" style={{ background: "rgba(129,140,248,0.12)", color: "#818cf8", border: "1px solid rgba(129,140,248,0.3)", cursor: "pointer" }}>Got it</button>
+            </div>
+          </div>
+        </div>
       )}
 
       {/* Class Activation Notification */}

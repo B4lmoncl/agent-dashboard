@@ -608,7 +608,7 @@ const INV_SORTS: { key: InvSort; label: string }[] = [
   { key: "level", label: "Level" },
 ];
 
-function InventorySlot({ item, level, idx, onItemClick, onDragStart, onDragOver, onDrop, dragOverIdx, equippedForSlot }: {
+function InventorySlot({ item, level, idx, onItemClick, onDragStart, onDragOver, onDrop, dragOverIdx, equippedForSlot, isNew, onMarkSeen }: {
   item: InventoryItem | null;
   level: number;
   idx: number;
@@ -618,6 +618,8 @@ function InventorySlot({ item, level, idx, onItemClick, onDragStart, onDragOver,
   onDrop: () => void;
   dragOverIdx: number | null;
   equippedForSlot?: InventoryItem | null;
+  isNew?: boolean;
+  onMarkSeen?: () => void;
 }) {
   const [hovered, setHovered] = useState(false);
   const mousePosRef = useRef({ x: 0, y: 0 });
@@ -665,6 +667,7 @@ function InventorySlot({ item, level, idx, onItemClick, onDragStart, onDragOver,
           if (!el) return;
           const r = el.getBoundingClientRect();
           onItemClick(item, { x: r.left, y: r.top, width: r.width, height: r.height });
+          onMarkSeen?.();
         }}
         onMouseEnter={(e) => { mousePosRef.current = { x: e.clientX, y: e.clientY }; setHovered(true); }}
         onMouseMove={(e) => { mousePosRef.current = { x: e.clientX, y: e.clientY }; }}
@@ -698,6 +701,10 @@ function InventorySlot({ item, level, idx, onItemClick, onDragStart, onDragOver,
         {/* Lock indicator */}
         {item.locked && (
           <span style={{ position: "absolute", top: 1, left: 1, fontSize: 12, color: "#fbbf24", background: "rgba(0,0,0,0.7)", borderRadius: 2, padding: "0 2px", lineHeight: 1.4 }} title="Locked">{"\u29BF"}</span>
+        )}
+        {/* NEW badge */}
+        {isNew && !item.locked && (
+          <span className="badge-enter" style={{ position: "absolute", top: 1, left: 1, fontSize: 12, color: "#4ade80", background: "rgba(0,0,0,0.8)", borderRadius: 2, padding: "0 3px", lineHeight: 1.4, fontWeight: 700, animation: "pulse-online 2s ease-in-out infinite" }}>NEW</span>
         )}
       </button>
       {hovered && createPortal(<InventoryTooltip item={item} mousePosRef={mousePosRef} equippedItem={equippedForSlot} playerLevel={level} />, document.body)}
@@ -816,6 +823,24 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
     document.addEventListener("mousedown", close);
     return () => document.removeEventListener("mousedown", close);
   }, [sortDropdownOpen]);
+
+  // Track seen items for NEW badge
+  const [seenItemIds, setSeenItemIds] = useState<Set<string>>(new Set());
+  useEffect(() => {
+    if (!playerName) return;
+    try {
+      const saved = localStorage.getItem(`seen-items-${playerName}`);
+      if (saved) setSeenItemIds(new Set(JSON.parse(saved)));
+    } catch { /* ignore */ }
+  }, [playerName]);
+  const markItemSeen = useCallback((itemId: string) => {
+    setSeenItemIds(prev => {
+      const next = new Set(prev);
+      next.add(itemId);
+      try { localStorage.setItem(`seen-items-${playerName}`, JSON.stringify([...next])); } catch { /* ignore */ }
+      return next;
+    });
+  }, [playerName]);
 
   // Load inventory positions from localStorage
   useEffect(() => {
@@ -1271,6 +1296,8 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                         onDrop={handleDrop}
                         dragOverIdx={dragOverIdx}
                         equippedForSlot={equipped}
+                        isNew={item ? !seenItemIds.has(item.id) : false}
+                        onMarkSeen={item ? () => markItemSeen(item.id) : undefined}
                       />
                     );
                   });

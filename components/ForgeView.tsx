@@ -320,7 +320,23 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
         if (data.skillGained > 0) msg += ` (+${data.skillGained} Skill${data.dailyBonusUsed ? " \u2606 Daily Bonus!" : ""})`;
         else if (data.skillGained === 0 && data.skillUpColor !== "gray") msg += " (No skill-up)";
         if (data.newSkill) msg += ` [${data.newSkill}/300]`;
-        setCraftResult(msg);
+        // Batch craft: sequential tick animation
+        if (count > 1 && (data.craftCount || count) > 1) {
+          const total = data.craftCount || count;
+          setCraftResult(`Crafting 1/${total}...`);
+          let tick = 1;
+          const interval = setInterval(() => {
+            tick++;
+            if (tick >= total) {
+              clearInterval(interval);
+              setCraftResult(msg);
+            } else {
+              setCraftResult(`Crafting ${tick}/${total}...`);
+            }
+          }, 200);
+        } else {
+          setCraftResult(msg);
+        }
         if (data.skillGained > 0) { setSkillUpFlash(true); setTimeout(() => setSkillUpFlash(false), 1000); }
         setCraftCount(1);
         fetchData();
@@ -1289,6 +1305,12 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                         <div className="flex items-start justify-between gap-2">
                           <div>
                             <div className="flex items-center gap-2">
+                              {/* Craftability indicator */}
+                              {isLearned && (
+                                <span className="flex-shrink-0" style={{ fontSize: 12, color: !meetsLevel || onCooldown ? "rgba(255,255,255,0.15)" : canAfford ? "#22c55e" : "#f59e0b" }} title={!meetsLevel ? "Skill too low" : onCooldown ? "On cooldown" : canAfford ? "Ready to craft" : "Missing materials"}>
+                                  {!meetsLevel || onCooldown ? "○" : canAfford ? "●" : "◐"}
+                                </span>
+                              )}
                               <p className="text-sm font-semibold" style={{ color: meetsLevel ? "#e8e8e8" : "rgba(255,255,255,0.3)" }}>{recipe.name}</p>
                               {/* Skill-up indicator dot */}
                               <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: skillUp?.color || "#6b7280" }} title={skillUp?.label || ""} />
