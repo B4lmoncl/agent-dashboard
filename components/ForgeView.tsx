@@ -192,6 +192,9 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
   const [cubeLoading, setCubeLoading] = useState(false);
   const [cubeExtractId, setCubeExtractId] = useState<string | null>(null);
   const [cubeResult, setCubeResult] = useState<string | null>(null);
+  // Material Storage state
+  const [matStorageOpen, setMatStorageOpen] = useState(false);
+  const [matSearch, setMatSearch] = useState("");
   // Auto-Salvage modal state
   const [autoSalvageOpen, setAutoSalvageOpen] = useState(false);
   const [autoSalvageRarity, setAutoSalvageRarity] = useState<string>("common");
@@ -807,6 +810,75 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
           </div>
         );
       })}
+
+      {/* ─── Material Storage (GW2-style) ────────────────────────────────────── */}
+      <div className="space-y-2">
+        <div className="flex items-center justify-between">
+          <p className="text-sm font-semibold uppercase tracking-widest" style={{ color: "rgba(34,197,94,0.6)" }}>Material Storage</p>
+          <button
+            onClick={() => setMatStorageOpen(o => !o)}
+            className="text-xs px-3 py-1 rounded-lg"
+            style={{ background: "rgba(34,197,94,0.08)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.2)", cursor: "pointer" }}
+          >
+            {matStorageOpen ? "Collapse" : "Expand"}
+          </button>
+        </div>
+        <p className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>
+          Unlimited storage. Materials do not count against inventory cap ({Object.values(materials).reduce((s, v) => s + v, 0)} total).
+        </p>
+        {matStorageOpen && (
+          <div className="tab-content-enter space-y-2">
+            {/* Search */}
+            <input
+              type="text"
+              placeholder="Search materials..."
+              value={matSearch}
+              onChange={e => setMatSearch(e.target.value)}
+              className="w-full text-xs px-3 py-1.5 rounded-lg input-dark"
+              style={{ background: "rgba(0,0,0,0.3)", border: "1px solid rgba(255,255,255,0.08)", color: "#e8e8e8" }}
+            />
+            {/* Material grid */}
+            <div className="grid gap-2" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(140px, 1fr))" }}>
+              {materialDefs
+                .filter(m => {
+                  const count = materials[m.id] || 0;
+                  if (matSearch) return m.name.toLowerCase().includes(matSearch.toLowerCase()) || m.id.toLowerCase().includes(matSearch.toLowerCase());
+                  return count > 0;
+                })
+                .sort((a, b) => {
+                  const ra = ["common", "uncommon", "rare", "epic", "legendary"].indexOf(a.rarity);
+                  const rb = ["common", "uncommon", "rare", "epic", "legendary"].indexOf(b.rarity);
+                  return ra - rb || a.name.localeCompare(b.name);
+                })
+                .map(m => {
+                  const count = materials[m.id] || 0;
+                  const rc = RARITY_COLORS[m.rarity] || "#9ca3af";
+                  return (
+                    <div
+                      key={m.id}
+                      className="flex items-center gap-2 rounded-lg px-2.5 py-2"
+                      title={m.desc}
+                      style={{ background: `${rc}06`, border: `1px solid ${rc}15`, opacity: count > 0 ? 1 : 0.4 }}
+                    >
+                      {m.icon ? (
+                        <img src={m.icon} alt={m.name} width={28} height={28} style={{ imageRendering: "auto", flexShrink: 0 }} onError={hideOnError} />
+                      ) : (
+                        <span className="flex-shrink-0" style={{ width: 28, height: 28, display: "flex", alignItems: "center", justifyContent: "center", color: rc, fontSize: 14 }}>{"\u25C6"}</span>
+                      )}
+                      <div className="flex-1 min-w-0">
+                        <p className="text-xs font-semibold truncate" style={{ color: rc }}>{m.name}</p>
+                        <p className="text-xs font-mono" style={{ color: count > 0 ? "#e8e8e8" : "rgba(255,255,255,0.2)" }}>{count}</p>
+                      </div>
+                    </div>
+                  );
+                })}
+            </div>
+            {materialDefs.length === 0 && (
+              <p className="text-xs text-center py-4" style={{ color: "rgba(255,255,255,0.15)" }}>No materials data loaded.</p>
+            )}
+          </div>
+        )}
+      </div>
 
       {/* ─── Kanai's Cube — Legendary Effect Extraction ─────────────────────── */}
       <div className="space-y-2">

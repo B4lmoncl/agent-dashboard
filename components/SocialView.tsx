@@ -68,7 +68,7 @@ const EVENT_ICONS: Record<string, string> = {
 
 // ─── Sub-tab navigation ──────────────────────────────────────────────────────
 
-type SocialTab = "friends" | "messages" | "trades" | "activity";
+type SocialTab = "friends" | "messages" | "trades" | "activity" | "mail";
 
 // ─── Friends Tab ────────────────────────────────────────────────────────────
 
@@ -1246,6 +1246,250 @@ function ActivityFeedTab({ apiKey, playerName, onNavigate, onNavigateToAchieveme
   );
 }
 
+// ─── Mail Tab ───────────────────────────────────────────────────────────────
+
+interface MailItem {
+  id: string;
+  from: string;
+  subject: string;
+  body: string;
+  gold: number;
+  items: { id: string; name: string; rarity: string; icon?: string | null; slot?: string | null }[];
+  sentAt: string;
+  read: boolean;
+  collected: boolean;
+}
+
+function MailTab({ apiKey, playerName }: { apiKey: string; playerName: string }) {
+  const { users } = useDashboard();
+  const [inbox, setInbox] = useState<MailItem[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [selectedMail, setSelectedMail] = useState<MailItem | null>(null);
+  const [composing, setComposing] = useState(false);
+  const [sendTo, setSendTo] = useState("");
+  const [sendSubject, setSendSubject] = useState("");
+  const [sendBody, setSendBody] = useState("");
+  const [sendGold, setSendGold] = useState(0);
+  const [sending, setSending] = useState(false);
+  const [actionMsg, setActionMsg] = useState<string | null>(null);
+
+  const fetchMail = useCallback(async () => {
+    try {
+      const r = await fetch("/api/mail", { headers: getAuthHeaders(apiKey) });
+      if (r.ok) {
+        const data = await r.json();
+        setInbox(data.inbox || []);
+      }
+    } catch (e) { console.error("[mail]", e); }
+    setLoading(false);
+  }, [apiKey]);
+
+  useEffect(() => { fetchMail(); }, [fetchMail]);
+
+  const handleCollect = async (mailId: string) => {
+    try {
+      const r = await fetch(`/api/mail/${mailId}/collect`, {
+        method: "POST",
+        headers: getAuthHeaders(apiKey),
+      });
+      const data = await r.json();
+      setActionMsg(data.message || data.error || "Done");
+      setTimeout(() => setActionMsg(null), 4000);
+      fetchMail();
+    } catch { setActionMsg("Network error"); }
+  };
+
+  const handleDelete = async (mailId: string) => {
+    try {
+      await fetch(`/api/mail/${mailId}/delete`, {
+        method: "POST",
+        headers: getAuthHeaders(apiKey),
+      });
+      setSelectedMail(null);
+      fetchMail();
+    } catch { setActionMsg("Network error"); }
+  };
+
+  const handleSend = async () => {
+    if (!sendTo || !sendSubject) return;
+    setSending(true);
+    try {
+      const r = await fetch("/api/mail/send", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", ...getAuthHeaders(apiKey) },
+        body: JSON.stringify({ to: sendTo, subject: sendSubject, body: sendBody, gold: sendGold, items: [] }),
+      });
+      const data = await r.json();
+      if (r.ok) {
+        setActionMsg(data.message || "Sent!");
+        setComposing(false);
+        setSendTo(""); setSendSubject(""); setSendBody(""); setSendGold(0);
+        fetchMail();
+      } else {
+        setActionMsg(data.error || "Error");
+      }
+      setTimeout(() => setActionMsg(null), 4000);
+    } catch { setActionMsg("Network error"); }
+    setSending(false);
+  };
+
+  const unread = inbox.filter(m => !m.read).length;
+  const hasAttachments = inbox.filter(m => !m.collected && ((m.gold || 0) > 0 || m.items.length > 0)).length;
+
+  return (
+    <div className="space-y-3">
+      {/* Header + Compose */}
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <p className="text-sm font-semibold" style={{ color: "#e8e8e8" }}>Mailbox</p>
+          {unread > 0 && <span className="text-xs px-1.5 py-0.5 rounded-full font-bold" style={{ background: "rgba(239,68,68,0.2)", color: "#ef4444" }}>{unread}</span>}
+          {hasAttachments > 0 && <span className="text-xs px-1.5 py-0.5 rounded font-semibold" style={{ background: "rgba(245,158,11,0.12)", color: "#f59e0b" }}>{hasAttachments} uncollected</span>}
+        </div>
+        <button
+          onClick={() => setComposing(c => !c)}
+          className="text-xs px-3 py-1.5 rounded-lg font-semibold"
+          style={{ background: composing ? "rgba(168,85,247,0.15)" : "rgba(168,85,247,0.08)", color: "#a855f7", border: "1px solid rgba(168,85,247,0.25)", cursor: "pointer" }}
+        >
+          {composing ? "Cancel" : "New Mail"}
+        </button>
+      </div>
+
+      {/* Action message */}
+      {actionMsg && (
+        <div className="rounded-lg px-3 py-2 text-xs" style={{ background: "rgba(168,85,247,0.08)", border: "1px solid rgba(168,85,247,0.2)", color: "#a855f7" }}>
+          {actionMsg}
+        </div>
+      )}
+
+      {/* Compose form */}
+      {composing && (
+        <div className="rounded-xl p-4 space-y-2" style={{ background: "rgba(168,85,247,0.04)", border: "1px solid rgba(168,85,247,0.15)" }}>
+          <input
+            type="text"
+            placeholder="To (player name)"
+            value={sendTo}
+            onChange={e => setSendTo(e.target.value)}
+            className="w-full text-xs px-3 py-1.5 rounded-lg input-dark"
+            style={{ background: "rgba(0,0,0,0.3)", border: "1px solid rgba(255,255,255,0.08)", color: "#e8e8e8" }}
+          />
+          <input
+            type="text"
+            placeholder="Subject"
+            value={sendSubject}
+            onChange={e => setSendSubject(e.target.value)}
+            maxLength={100}
+            className="w-full text-xs px-3 py-1.5 rounded-lg input-dark"
+            style={{ background: "rgba(0,0,0,0.3)", border: "1px solid rgba(255,255,255,0.08)", color: "#e8e8e8" }}
+          />
+          <textarea
+            placeholder="Message (optional)"
+            value={sendBody}
+            onChange={e => setSendBody(e.target.value)}
+            maxLength={500}
+            rows={3}
+            className="w-full text-xs px-3 py-1.5 rounded-lg input-dark resize-none"
+            style={{ background: "rgba(0,0,0,0.3)", border: "1px solid rgba(255,255,255,0.08)", color: "#e8e8e8", scrollbarWidth: "thin" }}
+          />
+          <div className="flex items-center gap-3">
+            <label className="text-xs text-w40">Gold:</label>
+            <input
+              type="number"
+              min={0}
+              value={sendGold}
+              onChange={e => setSendGold(Math.max(0, parseInt(e.target.value) || 0))}
+              className="w-24 text-xs px-2 py-1 rounded-lg input-dark font-mono"
+              style={{ background: "rgba(0,0,0,0.3)", border: "1px solid rgba(255,255,255,0.08)", color: "#f59e0b" }}
+            />
+            <span className="text-xs text-w20">(+5g postage)</span>
+          </div>
+          <button
+            onClick={handleSend}
+            disabled={sending || !sendTo || !sendSubject}
+            className="w-full text-xs py-2 rounded-lg font-semibold"
+            style={{ background: "rgba(168,85,247,0.12)", color: "#a855f7", border: "1px solid rgba(168,85,247,0.3)", cursor: (sending || !sendTo || !sendSubject) ? "not-allowed" : "pointer", opacity: (sending || !sendTo || !sendSubject) ? 0.5 : 1 }}
+          >
+            {sending ? "Sending..." : "Send Mail"}
+          </button>
+        </div>
+      )}
+
+      {/* Inbox list */}
+      {loading ? (
+        <p className="text-xs text-center py-6 text-w20">Loading...</p>
+      ) : inbox.length === 0 ? (
+        <p className="text-xs text-center py-8 text-w15">No mail.</p>
+      ) : (
+        <div className="space-y-1.5">
+          {inbox.map(mail => {
+            const isSelected = selectedMail?.id === mail.id;
+            const hasLoot = !mail.collected && ((mail.gold || 0) > 0 || mail.items.length > 0);
+            return (
+              <div key={mail.id}>
+                <button
+                  onClick={() => setSelectedMail(isSelected ? null : mail)}
+                  className="w-full text-left flex items-center gap-2 px-3 py-2 rounded-lg"
+                  style={{
+                    background: isSelected ? "rgba(168,85,247,0.08)" : "rgba(255,255,255,0.02)",
+                    border: `1px solid ${isSelected ? "rgba(168,85,247,0.25)" : "rgba(255,255,255,0.05)"}`,
+                    cursor: "pointer",
+                  }}
+                >
+                  {/* Unread dot */}
+                  <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: !mail.read ? "#a855f7" : "transparent" }} />
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2">
+                      <span className="text-xs font-semibold truncate" style={{ color: !mail.read ? "#e8e8e8" : "rgba(255,255,255,0.4)" }}>{mail.subject}</span>
+                      {hasLoot && <span className="text-xs flex-shrink-0 px-1 rounded" style={{ background: "rgba(245,158,11,0.12)", color: "#f59e0b" }}>{mail.gold > 0 ? `${mail.gold}g` : ""}{mail.items.length > 0 ? ` +${mail.items.length}` : ""}</span>}
+                    </div>
+                    <p className="text-xs text-w20">from {mail.from} · {new Date(mail.sentAt).toLocaleDateString()}</p>
+                  </div>
+                </button>
+                {/* Expanded mail */}
+                {isSelected && (
+                  <div className="tab-content-enter rounded-lg p-3 mt-1 space-y-2" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
+                    {mail.body && <p className="text-xs" style={{ color: "rgba(255,255,255,0.5)" }}>{mail.body}</p>}
+                    {/* Attachments */}
+                    {(mail.gold > 0 || mail.items.length > 0) && (
+                      <div className="rounded-lg px-3 py-2" style={{ background: "rgba(245,158,11,0.06)", border: "1px solid rgba(245,158,11,0.15)" }}>
+                        <p className="text-xs font-semibold mb-1" style={{ color: "rgba(245,158,11,0.6)" }}>Attachments</p>
+                        <div className="flex items-center gap-2 flex-wrap">
+                          {mail.gold > 0 && <span className="text-xs font-semibold" style={{ color: "#f59e0b" }}>{mail.gold} Gold</span>}
+                          {mail.items.map(item => (
+                            <span key={item.id} className="text-xs font-semibold" style={{ color: RARITY_COLORS[item.rarity] || "#888" }}>{item.name}</span>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                    {/* Actions */}
+                    <div className="flex gap-2">
+                      {!mail.collected && (mail.gold > 0 || mail.items.length > 0) && (
+                        <button
+                          onClick={() => handleCollect(mail.id)}
+                          className="flex-1 text-xs py-1.5 rounded-lg font-semibold"
+                          style={{ background: "rgba(34,197,94,0.12)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.3)", cursor: "pointer" }}
+                        >
+                          Collect
+                        </button>
+                      )}
+                      <button
+                        onClick={() => handleDelete(mail.id)}
+                        className="text-xs py-1.5 px-3 rounded-lg"
+                        style={{ background: "rgba(239,68,68,0.08)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.2)", cursor: "pointer" }}
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+}
+
 // ─── Main SocialView ────────────────────────────────────────────────────────
 
 export default function SocialView({ onNavigate, onNavigateToAchievement }: { onNavigate?: (view: string) => void; onNavigateToAchievement?: (achievementId: string) => void } = {}) {
@@ -1275,7 +1519,7 @@ export default function SocialView({ onNavigate, onNavigateToAchievement }: { on
 
       {/* Tab navigation */}
       <div className="inline-flex rounded-lg p-0.5" style={{ background: "#111" }}>
-        {(["friends", "messages", "trades", "activity"] as SocialTab[]).map(tab => {
+        {(["friends", "messages", "trades", "mail", "activity"] as SocialTab[]).map(tab => {
           const tipKey = tab === "trades" ? "trading" : tab === "activity" ? "activity_feed" : tab;
           return (
             <Tip key={tab} k={tipKey}>
@@ -1300,6 +1544,7 @@ export default function SocialView({ onNavigate, onNavigateToAchievement }: { on
         {activeTab === "messages" && <MessagesTab apiKey={reviewApiKey} playerName={playerName} autoOpenWith={pendingMessageTarget} onAutoOpened={() => setPendingMessageTarget(null)} />}
         {activeTab === "trades" && <TradesTab apiKey={reviewApiKey} playerName={playerName} />}
         {activeTab === "activity" && <ActivityFeedTab apiKey={reviewApiKey} playerName={playerName} onNavigate={onNavigate} onNavigateToAchievement={onNavigateToAchievement} />}
+        {activeTab === "mail" && <MailTab apiKey={reviewApiKey} playerName={playerName} />}
       </div>
 
       {/* Player Profile Modal */}
