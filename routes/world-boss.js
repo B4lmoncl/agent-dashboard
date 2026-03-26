@@ -454,6 +454,27 @@ router.post('/api/world-boss/claim', requireAuth, (req, res) => {
     }
   }
 
+  // ── Boss-exclusive gear drop (from gearTemplates-worldboss.json pool) ──
+  {
+    const RARITY_ORDER = ['common', 'uncommon', 'rare', 'epic', 'legendary'];
+    const minRarity = rank <= 3 ? 'epic' : rank <= 10 ? 'rare' : 'uncommon';
+    const minIdx = RARITY_ORDER.indexOf(minRarity);
+    const playerLevel = getLevelInfo(user.xp || 0).level;
+    const bossItems = state.FULL_GEAR_ITEMS.filter(gi =>
+      gi.source === `world_boss:${boss.bossId}` &&
+      (gi.minLevel || gi.reqLevel || 1) <= playerLevel &&
+      RARITY_ORDER.indexOf(gi.rarity || 'common') >= minIdx
+    );
+    if (bossItems.length > 0 && Math.random() < 0.6) {
+      const template = bossItems[Math.floor(Math.random() * bossItems.length)];
+      const { createGearInstance } = require('../lib/helpers');
+      const instance = createGearInstance(template);
+      if (!user.inventory) user.inventory = [];
+      user.inventory.push(instance);
+      rewards.push({ type: 'gear-drop', name: instance.name, rarity: instance.rarity, slot: instance.slot });
+    }
+  }
+
   // ── Bonus stardust for high contributors ──
   if (contributionPercent >= 0.1) {
     const bonusStardust = Math.floor(contributionPercent * 50);

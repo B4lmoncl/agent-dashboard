@@ -325,6 +325,27 @@ router.post('/api/rift/complete-stage', requireAuth, (req, res) => {
   };
   onQuestCompletedByUser(uid, syntheticQuest);
 
+  // ── Rift-exclusive gear drop (from gearTemplates-rift.json pool) ──
+  const riftSource = rift.mythicLevel ? 'rift:mythic' : `rift:${rift.tier}`;
+  const RARITY_ORDER_RIFT = ['common', 'uncommon', 'rare', 'epic', 'legendary'];
+  const riftMinRarity = rift.tier === 'legendary' || rift.mythicLevel ? 'rare' : rift.tier === 'hard' ? 'uncommon' : 'common';
+  const riftMinIdx = RARITY_ORDER_RIFT.indexOf(riftMinRarity);
+  const riftPlayerLevel = getLevelInfo(u.xp || 0).level;
+  const riftItems = state.FULL_GEAR_ITEMS.filter(gi =>
+    gi.source === riftSource &&
+    (gi.minLevel || gi.reqLevel || 1) <= riftPlayerLevel &&
+    RARITY_ORDER_RIFT.indexOf(gi.rarity || 'common') >= riftMinIdx
+  );
+  let riftGearDrop = null;
+  if (riftItems.length > 0 && Math.random() < 0.35) {
+    const { createGearInstance } = require('../lib/helpers');
+    const template = riftItems[Math.floor(Math.random() * riftItems.length)];
+    const instance = createGearInstance(template);
+    if (!u.inventory) u.inventory = [];
+    u.inventory.push(instance);
+    riftGearDrop = { name: instance.name, rarity: instance.rarity, slot: instance.slot };
+  }
+
   // Check if rift is fully completed
   const allDone = rift.quests.every(q => q.completed);
   if (allDone) {
