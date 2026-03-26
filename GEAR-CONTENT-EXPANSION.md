@@ -32,15 +32,20 @@ Aber: xp_bonus (8%) × forge_temp_multi (1.25) × kraft_bonus (1.05) = multiplik
 ### Item Power Hierarchie (Linear, klar definiert)
 ```
 Quest Drops (common-rare)
-  < Crafted Gear (Skill 275+, Tier 4 Legendary)
-    < Dungeon Normal (uncommon-epic)
-      < Dungeon Hard (rare-legendary)
-        < World Boss Drops (epic-legendary)
-          < Rift Legendary (epic-legendary)
-            < Named Sets (vollständig, mit Set-Bonus)
-              < Mythic+ Drops (legendary only)
-                < Unique Named Items (Tier 5, handcrafted)
+  < Normal Rift (uncommon-rare) — solo, schnell
+    < Crafted Gear (Skill 275+, Tier 4 Legendary) — langer Grind, Pre-Content BiS
+      < Hard Rift (rare-epic) — solo, mittelschwer
+        < Dungeon Normal (uncommon-epic) — Gruppe, aufwendig
+          < Dungeon Hard (rare-legendary) — Gruppe, schwer
+            < Legendary Rift (epic-legendary) — solo, sehr schwer
+              < World Boss Drops (epic-legendary) — Community, Contribution-gated
+                < Dungeon Legendary (epic-legendary) — Gruppe, Endgame
+                  < Named Sets (vollständig, mit Set-Bonus)
+                    < Mythic+ Drops (legendary only) — endlos skalierend
+                      < Unique Named Items (Tier 5, handcrafted)
 ```
+
+**Prinzip:** Gruppeninhalt (Dungeons, WB) gibt IMMER besseres Gear als vergleichbarer Solo-Inhalt (Rifts). Nur Mythic+ (extrem schwer, endlos) übertrifft alles außer Uniques.
 
 **Crafted = Pre-Content BiS (WoW Classic Lionheart Helm Prinzip):**
 - Crafted Skill 275-300 Items sind BESSER als Normal-Dungeon-Drops
