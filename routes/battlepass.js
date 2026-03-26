@@ -227,6 +227,75 @@ router.post("/claim/:level", requireAuth, (req, res) => {
   res.json({ ok: true, granted });
 });
 
+// ─── POST /api/battlepass/claim-all — Claim all available unclaimed rewards ───
+
+router.post("/claim-all", requireAuth, (req, res) => {
+  const uid = req.auth?.userId;
+  const user = uid ? state.users[uid] : null;
+  if (!user) return res.status(404).json({ error: "User not found" });
+
+  ensureUserBP(user);
+  const config = getConfig();
+  const bp = user.battlePass;
+  const currentLevel = getBPLevel(bp.xp);
+  const rewards = getActiveRewards();
+  const granted = [];
+
+  for (let lvl = 1; lvl <= Math.min(currentLevel, config.levels); lvl++) {
+    if (bp.claimedLevels.includes(lvl)) continue;
+    const reward = rewards.find(r => r.level === lvl);
+    if (!reward) continue;
+
+    switch (reward.type) {
+      case "gold":
+        if (!user.currencies) user.currencies = {};
+        user.currencies.gold = (user.currencies.gold ?? user.gold ?? 0) + reward.amount;
+        if (user.gold !== undefined) user.gold = user.currencies.gold;
+        break;
+      case "essenz":
+        ensureUserCurrencies(user);
+        user.currencies.essenz = (user.currencies.essenz ?? 0) + reward.amount;
+        break;
+      case "runensplitter":
+        ensureUserCurrencies(user);
+        user.currencies.runensplitter = (user.currencies.runensplitter ?? 0) + reward.amount;
+        break;
+      case "sternentaler":
+        ensureUserCurrencies(user);
+        user.currencies.sternentaler = (user.currencies.sternentaler ?? 0) + reward.amount;
+        break;
+      case "stardust":
+        ensureUserCurrencies(user);
+        user.currencies.stardust = (user.currencies.stardust ?? 0) + reward.amount;
+        break;
+      case "material":
+        user.craftingMaterials = user.craftingMaterials || {};
+        user.craftingMaterials[reward.materialId] = (user.craftingMaterials[reward.materialId] ?? 0) + reward.amount;
+        break;
+      case "title":
+        if (!user.earnedTitles) user.earnedTitles = [];
+        if (!user.earnedTitles.some(t => t.id === reward.titleId)) {
+          user.earnedTitles.push({ id: reward.titleId, name: reward.titleName, rarity: reward.titleRarity || "uncommon", source: `${config.seasonName} — Level ${lvl}`, earnedAt: new Date().toISOString() });
+        }
+        break;
+      case "frame":
+        if (!user.unlockedFrames) user.unlockedFrames = [];
+        if (!user.unlockedFrames.some(f => f.id === reward.frameId)) {
+          user.unlockedFrames.push({ id: reward.frameId, name: reward.frameName, glow: true, source: `${config.seasonName} — Level ${lvl}` });
+        }
+        break;
+    }
+    bp.claimedLevels.push(lvl);
+    granted.push({ level: lvl, type: reward.type, name: reward.name || reward.titleName || reward.frameName || `${reward.amount} ${reward.type}` });
+  }
+
+  if (granted.length === 0) return res.status(400).json({ error: "Nothing to claim" });
+
+  bp.level = currentLevel;
+  saveUsers();
+  res.json({ ok: true, count: granted.length, granted });
+});
+
 // ─── Helper: Grant battle pass XP (called from various completion flows) ─────
 
 function grantBattlePassXP(user, source, detail) {

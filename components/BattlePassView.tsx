@@ -186,6 +186,28 @@ export default function BattlePassView({ onRewardCelebration, onNavigate }: { on
           Total: {player.xp} XP · {config.xpPerLevel} per level
           {unclaimedCount > 0 && <span style={{ color: "#22c55e", fontWeight: 600 }}> · {unclaimedCount} unclaimed</span>}
         </p>
+        {unclaimedCount >= 2 && (
+          <button
+            onClick={async () => {
+              try {
+                const r = await fetch("/api/battlepass/claim-all", { method: "POST", headers: getAuthHeaders() });
+                const data = await r.json();
+                if (r.ok) {
+                  setMessage({ type: "success", text: `Claimed ${data.count} rewards!` });
+                  if (onRewardCelebration) onRewardCelebration({ type: "battlepass", title: `${data.count} Rewards Claimed!`, xpEarned: 0, goldEarned: 0 });
+                  fetchBP();
+                } else {
+                  setMessage({ type: "error", text: data.error || "Claim failed" });
+                }
+                setTimeout(() => setMessage(null), 5000);
+              } catch { setMessage({ type: "error", text: "Network error" }); }
+            }}
+            className="text-xs px-3 py-1.5 rounded-lg font-semibold mt-2"
+            style={{ background: "rgba(34,197,94,0.1)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.25)", cursor: "pointer" }}
+          >
+            Claim All ({unclaimedCount})
+          </button>
+        )}
       </div>
 
       {/* Messages */}
