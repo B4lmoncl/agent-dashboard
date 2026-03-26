@@ -154,12 +154,20 @@ export default function Dashboard() {
     }
     return "haupthalle";
   });
-  // Wrap setDashView to auto-sync the active floor + persist
+  // Wrap setDashView to auto-sync the active floor + persist + enforce level gate
   const dashView = dashViewRaw;
+  const playerLevelRef = useRef<number>(1);
   const setDashView = useCallback((view: typeof dashViewRaw) => {
-    setDashViewRaw(view);
+    // Level gate check: prevent navigation to locked floors/rooms
     const floor = getFloorForRoom(view);
-    if (floor) setActiveFloor(floor.id);
+    if (floor) {
+      const lvl = playerLevelRef.current;
+      if (floor.minLevel && lvl < floor.minLevel) return;
+      const room = floor.rooms.find(r => r.key === view);
+      if (room?.minLevel && lvl < room.minLevel) return;
+      setActiveFloor(floor.id);
+    }
+    setDashViewRaw(view);
     try { localStorage.setItem("dash_view", view); } catch { /* private browsing */ }
   }, []);
   // Track seen content for notification dots (persists across renders via ref)
@@ -628,6 +636,24 @@ export default function Dashboard() {
   const playerNameLower = useMemo(() => (playerName || "").toLowerCase(), [playerName]);
   const loggedInUser = useMemo(() => playerName ? users.find(u => u.id.toLowerCase() === playerNameLower || u.name.toLowerCase() === playerNameLower) : null, [playerName, playerNameLower, users]);
   const currentPlayerLevel = useMemo(() => loggedInUser ? getUserLevel(loggedInUser.xp ?? 0).level : undefined, [loggedInUser]);
+  useEffect(() => { playerLevelRef.current = currentPlayerLevel ?? 1; }, [currentPlayerLevel]);
+
+  // Validate current view is accessible at player's level — fallback to questBoard if locked
+  useEffect(() => {
+    if (currentPlayerLevel === undefined) return;
+    const floor = getFloorForRoom(dashView);
+    if (!floor) return;
+    if (floor.minLevel && currentPlayerLevel < floor.minLevel) {
+      setDashViewRaw("questBoard");
+      setActiveFloor("haupthalle");
+      return;
+    }
+    const room = floor.rooms.find(r => r.key === dashView);
+    if (room?.minLevel && currentPlayerLevel < room.minLevel) {
+      setDashViewRaw("questBoard");
+      setActiveFloor("haupthalle");
+    }
+  }, [currentPlayerLevel, dashView]);
 
   const playerTypes = PLAYER_QUEST_TYPES;
   const playerActiveQuests = useMemo(() => quests.inProgress.filter(q => playerTypes.includes(q.type ?? "") && q.claimedBy?.toLowerCase() === playerNameLower), [quests.inProgress, playerTypes, playerNameLower]);
@@ -1120,6 +1146,11 @@ export default function Dashboard() {
           const socialTotal = socialBadge ? (socialBadge.pendingFriendRequests + socialBadge.unreadMessages + socialBadge.activeTrades) : 0;
           const getRoomNotif = (key: string): { color: string; count?: number } | null => {
             if (dashView === key) return null;
+            // Don't show notifications for level-locked rooms
+            const roomFloor = getFloorForRoom(key);
+            if (roomFloor?.minLevel && (currentPlayerLevel ?? 1) < roomFloor.minLevel) return null;
+            const roomDef = roomFloor?.rooms.find(r => r.key === key);
+            if (roomDef?.minLevel && (currentPlayerLevel ?? 1) < roomDef.minLevel) return null;
             if (key === "questBoard" && notifNewQuests) return { color: "#4ade80" };
             if (key === "npcBoard" && notifNewNpcs) return { color: "#f59e0b" };
             if (key === "social" && socialTotal > 0) return { color: "#a855f7", count: socialTotal };
@@ -2076,6 +2107,7 @@ export default function Dashboard() {
           socialBadge={socialBadge}
           expeditionActive={!!expedition}
           dungeonActive={dungeonActive}
+          playerLevel={currentPlayerLevel}
           onClaimMilestone={async (threshold) => {
             try {
               const { getAuthHeaders } = await import("@/lib/auth-client");

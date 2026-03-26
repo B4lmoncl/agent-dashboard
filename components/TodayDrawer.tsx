@@ -286,10 +286,12 @@ export default function TodayDrawer({
   expeditionActive,
   dungeonActive,
   onClaimMilestone,
+  playerLevel,
 }: {
   open: boolean;
   onClose: () => void;
   onNavigate: (view: string) => void;
+  playerLevel?: number;
   dailyBonusAvailable: boolean;
   dailyMissions: { missions: { id: string; label: string; points: number; done: boolean }[]; earned: number; total: number; milestones: { threshold: number; reward: Record<string, number>; claimed: boolean }[] } | null;
   rituals: Ritual[];
@@ -490,8 +492,8 @@ export default function TodayDrawer({
       });
     }
 
-    // World Boss
-    if (worldBossActive) {
+    // World Boss (Lv15+)
+    if (worldBossActive && (playerLevel ?? 1) >= 15) {
       urgent.push({
         id: "world-boss",
         icon: "/images/icons/ach-boss-slayer.png",
@@ -521,8 +523,8 @@ export default function TodayDrawer({
       });
     }
 
-    // Weekly challenge
-    if (weeklyChallenge) {
+    // Weekly challenge (Lv3+)
+    if (weeklyChallenge && (playerLevel ?? 1) >= 3) {
       const starsEarned = weeklyChallenge.stagesCompleted ?? 0;
       content.push({
         id: "weekly-challenge",
@@ -536,8 +538,8 @@ export default function TodayDrawer({
       });
     }
 
-    // Rift
-    if (riftActive) {
+    // Rift (Lv8+)
+    if (riftActive && (playerLevel ?? 1) >= 8) {
       content.push({
         id: "rift-active",
         icon: "/images/icons/currency-runensplitter.png",
@@ -550,8 +552,8 @@ export default function TodayDrawer({
       });
     }
 
-    // Expedition
-    if (expeditionActive) {
+    // Expedition (Lv3+ — same as Challenges)
+    if (expeditionActive && (playerLevel ?? 1) >= 3) {
       content.push({
         id: "expedition",
         icon: "/images/icons/ach-marathon-runner.png",
@@ -564,8 +566,8 @@ export default function TodayDrawer({
       });
     }
 
-    // Dungeon
-    if (dungeonActive) {
+    // Dungeon (Lv12+)
+    if (dungeonActive && (playerLevel ?? 1) >= 12) {
       content.push({
         id: "dungeon-active",
         icon: "/images/icons/ach-coop-hero.png",
@@ -655,18 +657,18 @@ export default function TodayDrawer({
     const bpRemaining = bpDuration - bpElapsed;
     const bpDays = Math.floor(bpRemaining / 86400000);
     timers.push({ id: "timer-bp", icon: "/images/icons/bp-icon.png", label: "Season Ends", done: false, sub: `${bpDays}d remaining` });
-    // World boss (from dashboard)
-    if (worldBossActive) {
+    // World boss (Lv15+)
+    if (worldBossActive && (playerLevel ?? 1) >= 15) {
       timers.push({ id: "timer-wb", icon: "/images/icons/wb-icon.png", label: "World Boss Active", done: false, sub: "Contribute now", urgent: true, onClick: () => { onNavigate("worldboss"); onClose(); } });
     }
-    // Active rift
-    if (riftActive) {
+    // Active rift (Lv8+)
+    if (riftActive && (playerLevel ?? 1) >= 8) {
       timers.push({ id: "timer-rift", icon: "/images/icons/rift-icon.png", label: "Rift Active", done: false, sub: "In progress", urgent: true, onClick: () => { onNavigate("rift"); onClose(); } });
     }
     if (timers.length > 0) cats.push({ id: "timers", label: "Timers", icon: "\u23F0", items: timers });
     return cats;
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dailyBonusAvailable, dailyMissions, rituals, activeNpcs, loggedInUser, inProgressCount, weeklyChallenge, worldBossActive, riftActive, vowCount, socialBadge, expeditionActive, dungeonActive, today]);
+  }, [dailyBonusAvailable, dailyMissions, rituals, activeNpcs, loggedInUser, inProgressCount, weeklyChallenge, worldBossActive, riftActive, vowCount, socialBadge, expeditionActive, dungeonActive, today, playerLevel]);
 
   const allItems = categories.flatMap(c => c.items);
   const doneCount = allItems.filter(i => i.done).length;
