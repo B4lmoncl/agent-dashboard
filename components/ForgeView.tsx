@@ -1493,7 +1493,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                                 title={`${item.name} — Dismantle → +${ESSENZ_TABLE[rarity] || 2} Essenz + Materials`}
                               >
                                 {item.icon
-                                  ? <img src={item.icon} alt={item.name} style={{ width: 40, height: 40, imageRendering: "auto", objectFit: "contain" }} />
+                                  ? <img src={item.icon} alt={item.name} style={{ width: 40, height: 40, imageRendering: "auto", objectFit: "contain" }} onError={e => { e.currentTarget.style.display = "none"; }} />
                                   : <span style={{ fontSize: 18, color: RARITY_COLORS[rarity] }}>◆</span>
                                 }
                               </button>
@@ -1546,7 +1546,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                               title={`${item.name} — Reforge (re-randomize stats)`}
                             >
                               {item.icon
-                                ? <img src={item.icon} alt={item.name} style={{ width: 40, height: 40, imageRendering: "auto", objectFit: "contain" }} />
+                                ? <img src={item.icon} alt={item.name} style={{ width: 40, height: 40, imageRendering: "auto", objectFit: "contain" }} onError={e => { e.currentTarget.style.display = "none"; }} />
                                 : <span style={{ fontSize: 18, color: "#f97316" }}>◆</span>
                               }
                             </button>
@@ -1630,7 +1630,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                                       opacity: disabled ? 0.3 : 1,
                                     }} title={item.name}>
                                       {item.icon
-                                        ? <img src={item.icon} alt={item.name} style={{ width: 40, height: 40, imageRendering: "auto", objectFit: "contain" }} />
+                                        ? <img src={item.icon} alt={item.name} style={{ width: 40, height: 40, imageRendering: "auto", objectFit: "contain" }} onError={e => { e.currentTarget.style.display = "none"; }} />
                                         : <span style={{ fontSize: 18, color: "#22c55e" }}>◆</span>
                                       }
                                       {sel && <span className="absolute top-0.5 right-0.5 text-xs font-bold" style={{ color: "#4ade80", textShadow: "0 0 4px rgba(0,0,0,0.8)" }}>✓</span>}
@@ -1678,7 +1678,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
           >
             <div className="flex items-center gap-3">
               {confirmProf.npcPortrait && (
-                <img src={confirmProf.npcPortrait} alt="" width={40} height={40} className="rounded-lg" style={{ imageRendering: "auto", border: `1px solid ${confirmProf.color}30` }} />
+                <img src={confirmProf.npcPortrait} alt="" width={40} height={40} className="rounded-lg" style={{ imageRendering: "auto", border: `1px solid ${confirmProf.color}30` }} onError={e => { e.currentTarget.style.display = "none"; }} />
               )}
               <div>
                 <h3 className="text-sm font-bold" style={{ color: confirmProf.color }}>Choose {confirmProf.name}</h3>
