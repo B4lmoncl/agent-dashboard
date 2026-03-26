@@ -465,7 +465,7 @@ router.post('/api/quest/:id/unclaim', requireApiKey, (req, res) => {
   }
 
   // Dev quests / non-player users: global shared state
-  if (quest.claimedBy !== agentId) {
+  if ((quest.claimedBy || '').toLowerCase() !== agentKey) {
     return res.status(409).json({ error: `Quest not claimed by this agent` });
   }
   quest.status = 'open';

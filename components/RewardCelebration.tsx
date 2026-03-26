@@ -59,7 +59,7 @@ const THEMES: Record<RewardType, ThemeConfig> = {
     accentRgb: "168,85,247",
     gradientTop: "#1a0d20",
     label: "Quest Complete!",
-    icon: "🗡️",
+    icon: "⚔️",
     flavorMessages: [
       "The quest giver nods with approval.",
       "A worthy adventurer indeed!",
@@ -87,7 +87,7 @@ const THEMES: Record<RewardType, ThemeConfig> = {
     accentRgb: "59,130,246",
     gradientTop: "#0d111a",
     label: "Vow Upheld!",
-    icon: "🛡️",
+    icon: "◆",
     flavorMessages: [
       "Your resolve is unshaken!",
       "Another clean day. Stay strong.",
@@ -115,7 +115,7 @@ const THEMES: Record<RewardType, ThemeConfig> = {
     accentRgb: "251,191,36",
     gradientTop: "#1a160d",
     label: "Daily Bonus!",
-    icon: "🌟",
+    icon: "⭐",
     flavorMessages: [
       "The Forge welcomes you!",
       "A new day, new possibilities!",
@@ -129,7 +129,7 @@ const THEMES: Record<RewardType, ThemeConfig> = {
     accentRgb: "74,222,128",
     gradientTop: "#0d1a12",
     label: "Expedition Reward!",
-    icon: "🏕️",
+    icon: "◆",
     flavorMessages: [
       "The guild marches onward!",
       "Teamwork makes the dream work!",
@@ -157,7 +157,7 @@ const THEMES: Record<RewardType, ThemeConfig> = {
     accentRgb: "244,114,182",
     gradientTop: "#1a0d15",
     label: "Season Pass Reward!",
-    icon: "🎖️",
+    icon: "◆",
     flavorMessages: [
       "Season progress rewarded!",
       "Another level conquered!",
@@ -185,7 +185,7 @@ const THEMES: Record<RewardType, ThemeConfig> = {
     accentRgb: "239,68,68",
     gradientTop: "#1a0d0d",
     label: "World Boss Vanquished!",
-    icon: "💀",
+    icon: "◆",
     flavorMessages: [
       "The beast has fallen!",
       "A mighty foe, defeated!",
@@ -199,7 +199,7 @@ const THEMES: Record<RewardType, ThemeConfig> = {
     accentRgb: "34,211,238",
     gradientTop: "#0d1518",
     label: "Dungeon Cleared!",
-    icon: "🏰",
+    icon: "◆",
     flavorMessages: [
       "The Undercroft yields its treasures!",
       "Darkness conquered!",
@@ -328,7 +328,7 @@ export function RewardCelebration({ data, onClose, onCollect, onAchievementClick
         )}
         {data.type === "vow" && data.streak && data.streak > 0 && (
           <div className="text-xs mb-3" style={{ color: `rgba(${accentRgb},0.7)` }}>
-            🛡️ Clean: {data.streak} {data.streak === 1 ? "Tag" : "Tage"}
+            ◆ Clean: {data.streak} {data.streak === 1 ? "Tag" : "Tage"}
           </div>
         )}
 
@@ -411,7 +411,7 @@ export function RewardCelebration({ data, onClose, onCollect, onAchievementClick
                 background: "rgba(239,68,68,0.1)",
                 border: "1px solid rgba(239,68,68,0.25)",
               }}>
-                <span className="text-sm font-semibold" style={{ color: "#ef4444" }}>🩸 Blood Pact: +{data.pactBonus.xp} XP, +{data.pactBonus.gold} Gold</span>
+                <span className="text-sm font-semibold" style={{ color: "#ef4444" }}>● Blood Pact: +{data.pactBonus.xp} XP, +{data.pactBonus.gold} Gold</span>
               </div>
             )}
           </div>
