@@ -338,9 +338,9 @@ router.post('/api/rift/complete-stage', requireAuth, (req, res) => {
   );
   let riftGearDrop = null;
   if (riftItems.length > 0 && Math.random() < 0.35) {
-    const { createGearInstance } = require('../lib/helpers');
+    const { createGearInstance, rollSuffix } = require('../lib/helpers');
     const template = riftItems[Math.floor(Math.random() * riftItems.length)];
-    const instance = createGearInstance(template);
+    const instance = rollSuffix(createGearInstance(template));
     if (!u.inventory) u.inventory = [];
     u.inventory.push(instance);
     riftGearDrop = { name: instance.name, rarity: instance.rarity, slot: instance.slot };

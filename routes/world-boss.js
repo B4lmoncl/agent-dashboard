@@ -467,8 +467,8 @@ router.post('/api/world-boss/claim', requireAuth, (req, res) => {
     );
     if (bossItems.length > 0 && Math.random() < 0.6) {
       const template = bossItems[Math.floor(Math.random() * bossItems.length)];
-      const { createGearInstance } = require('../lib/helpers');
-      const instance = createGearInstance(template);
+      const { createGearInstance, rollSuffix } = require('../lib/helpers');
+      const instance = rollSuffix(createGearInstance(template));
       if (!user.inventory) user.inventory = [];
       user.inventory.push(instance);
       rewards.push({ type: 'gear-drop', name: instance.name, rarity: instance.rarity, slot: instance.slot });
