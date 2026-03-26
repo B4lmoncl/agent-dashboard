@@ -1658,10 +1658,10 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                             {grouped[rarity].slice(0, 24).map(item => (
                               <button
                                 key={item.instanceId || item.id}
-                                onClick={() => handleDismantle(item.instanceId || item.id, item.name, rarity)}
+                                onClick={() => { if (!item.locked) handleDismantle(item.instanceId || item.id, item.name, rarity); }}
                                 className="forge-btn relative flex items-center justify-center rounded-lg aspect-square"
-                                style={{ background: `${RARITY_COLORS[rarity]}08`, border: `1px solid ${RARITY_COLORS[rarity]}30` }}
-                                title={`${item.name} — Dismantle → +${ESSENZ_TABLE[rarity] || 2} Essenz + Materials`}
+                                style={{ background: `${RARITY_COLORS[rarity]}08`, border: `1px solid ${item.locked ? "rgba(250,204,21,0.3)" : `${RARITY_COLORS[rarity]}30`}`, opacity: item.locked ? 0.4 : 1, cursor: item.locked ? "not-allowed" : "pointer" }}
+                                title={item.locked ? `${item.name} — Locked` : `${item.name} — Dismantle → +${ESSENZ_TABLE[rarity] || 2} Essenz + Materials`}
                               >
                                 {item.icon
                                   ? <img src={item.icon} alt={item.name} style={{ width: 40, height: 40, imageRendering: "auto", objectFit: "contain" }} onError={e => { e.currentTarget.style.display = "none"; }} />

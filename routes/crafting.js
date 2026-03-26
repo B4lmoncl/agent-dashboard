@@ -973,6 +973,9 @@ router.post('/api/schmiedekunst/dismantle', requireAuth, (req, res) => {
   if (getEquippedIds(u).has(inventoryItemId)) {
     return res.status(400).json({ error: 'Cannot dismantle equipped items' });
   }
+  if (item.locked) {
+    return res.status(400).json({ error: 'Item is locked — unlock it first' });
+  }
 
   const rarity = item.rarity || 'common';
   const essenzGained = DISMANTLE_ESSENZ[rarity] || 2;
@@ -1038,7 +1041,7 @@ router.post('/api/schmiedekunst/dismantle-preview', requireAuth, (req, res) => {
   const equippedIds = getEquippedIds(u);
 
   const candidates = inv.filter(i =>
-    (i.rarity || 'common') === rarity && i.name && !equippedIds.has(i.instanceId || i.id)
+    (i.rarity || 'common') === rarity && i.name && !equippedIds.has(i.instanceId || i.id) && !i.locked
   );
 
   const totalEssenz = candidates.length * (DISMANTLE_ESSENZ[rarity] || 2);
@@ -1085,7 +1088,7 @@ router.post('/api/schmiedekunst/dismantle-all', requireAuth, (req, res) => {
   const equippedIds = getEquippedIds(u);
 
   const toDismantle = u.inventory.filter(i =>
-    (i.rarity || 'common') === rarity && i.name && !equippedIds.has(i.instanceId || i.id)
+    (i.rarity || 'common') === rarity && i.name && !equippedIds.has(i.instanceId || i.id) && !i.locked
   );
   if (toDismantle.length === 0) return res.status(400).json({ error: `No ${rarity} items to dismantle` });
 

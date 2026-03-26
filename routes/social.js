@@ -88,6 +88,9 @@ function validateTradeItems(u, uid, itemInstanceIds) {
     if (item.binding === 'bop' || item.bound === true) {
       return { ok: false, error: `${item.name || instanceId} is soulbound and cannot be traded` };
     }
+    if (item.locked) {
+      return { ok: false, error: `${item.name || instanceId} is locked — unlock it first` };
+    }
     resolved.push(item);
   }
   return { ok: true, items: resolved };

@@ -695,6 +695,10 @@ function InventorySlot({ item, level, idx, onItemClick, onDragStart, onDragOver,
             Lv{item.minLevel}
           </span>
         )}
+        {/* Lock indicator */}
+        {item.locked && (
+          <span style={{ position: "absolute", top: 1, left: 1, fontSize: 10, color: "#fbbf24", background: "rgba(0,0,0,0.7)", borderRadius: 2, padding: "0 2px", lineHeight: 1.4 }} title="Locked">{"\u{1F512}"}</span>
+        )}
       </button>
       {hovered && createPortal(<InventoryTooltip item={item} mousePosRef={mousePosRef} equippedItem={equippedForSlot} playerLevel={level} />, document.body)}
     </>
@@ -906,6 +910,24 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
       await fetchChar();
     } catch {
       if (addToast) addToast({ type: "error", message: "Network error while using item" });
+    }
+  };
+
+  const handleLockItem = async (itemId: string) => {
+    if (!apiKey) return;
+    try {
+      const r = await fetch(`/api/player/${encodeURIComponent(playerName)}/inventory/lock/${itemId}`, {
+        method: "POST",
+        headers: { ...getAuthHeaders(apiKey) },
+      });
+      if (r.ok) {
+        const data = await r.json();
+        const lockedItem = charData?.inventory.find(i => i.id === itemId);
+        if (addToast) addToast({ type: "item", message: data.locked ? "Item locked" : "Item unlocked", itemName: lockedItem?.name || "Item", rarity: lockedItem?.rarity || "common" });
+      }
+      await fetchChar();
+    } catch {
+      if (addToast) addToast({ type: "error", message: "Network error" });
     }
   };
 
@@ -2023,6 +2045,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
             onUnequip={handleUnequip}
             onUse={handleUseItem}
             onDiscard={handleDiscardItem}
+            onLock={handleLockItem}
             onClose={() => setSelectedItem(null)}
           />
         );

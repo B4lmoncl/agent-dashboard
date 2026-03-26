@@ -522,6 +522,18 @@ router.post('/api/player/:name/inventory/reorder', requireAuth, requireSelf('nam
 });
 
 // ─── Discard endpoint ──────────────────────────────────────────────────────
+// POST /api/player/:name/inventory/lock/:itemId — toggle item lock
+router.post('/api/player/:name/inventory/lock/:itemId', requireAuth, requireSelf('name'), (req, res) => {
+  const uid = req.params.name.toLowerCase();
+  const u = state.users[uid];
+  if (!u) return res.status(404).json({ error: 'Player not found' });
+  const item = (u.inventory || []).find(i => i.id === req.params.itemId);
+  if (!item) return res.status(404).json({ error: 'Item not found in inventory' });
+  item.locked = !item.locked;
+  saveUsers();
+  res.json({ ok: true, locked: item.locked, itemId: item.id });
+});
+
 router.post('/api/player/:name/inventory/discard/:itemId', requireAuth, requireSelf('name'), (req, res) => {
   const uid = req.params.name.toLowerCase();
   const u = state.users[uid];
@@ -529,6 +541,7 @@ router.post('/api/player/:name/inventory/discard/:itemId', requireAuth, requireS
 
   const idx = (u.inventory || []).findIndex(i => i.id === req.params.itemId);
   if (idx === -1) return res.status(404).json({ error: 'Item not found in inventory' });
+  if (u.inventory[idx].locked) return res.status(400).json({ error: 'Item is locked — unlock it first' });
 
   const discarded = u.inventory.splice(idx, 1)[0];
   saveUsers();
