@@ -457,7 +457,7 @@ export default function TodayDrawer({
     // Crafting daily bonus
     const lastCraft = (loggedInUser as Record<string, unknown> | null)?.lastCraftDate as string | undefined;
     const craftedToday = lastCraft === today;
-    if (loggedInUser?.professions && Object.keys(loggedInUser.professions).length > 0) {
+    if (loggedInUser?.professions && Object.keys(loggedInUser.professions).length > 0 && (playerLevel ?? 1) >= 5) {
       daily.push({
         id: "crafting-bonus",
         icon: "/images/icons/equip-weapon.png",
@@ -803,7 +803,7 @@ export default function TodayDrawer({
                 <StreakFlame streak={streak} />
                 <div>
                   <span className="text-lg font-bold font-mono" style={{ color: streak > 0 ? "#f97316" : "rgba(255,255,255,0.2)" }}>{streak}</span>
-                  <span className="text-xs block" style={{ color: "rgba(255,255,255,0.25)", marginTop: -2 }}>Streak <span style={{ fontSize: 10, opacity: 0.5 }}>→</span></span>
+                  <span className="text-xs block" style={{ color: "rgba(255,255,255,0.25)", marginTop: -2 }}>Streak <span style={{ fontSize: 12, opacity: 0.5 }}>→</span></span>
                 </div>
               </div>
             </div></Tip>
@@ -839,7 +839,7 @@ export default function TodayDrawer({
                     )}
                     </span>
                     <span className="absolute -bottom-0.5 -right-0.5 text-xs rounded-full flex items-center justify-center"
-                      style={{ width: 16, height: 16, fontSize: 10, background: "rgba(251,191,36,0.9)", color: "#000", fontWeight: 800 }}>
+                      style={{ width: 16, height: 16, fontSize: 12, background: "rgba(251,191,36,0.9)", color: "#000", fontWeight: 800 }}>
                       {comp.bondLevel ?? 1}
                     </span>
                   </button>
@@ -866,7 +866,9 @@ export default function TodayDrawer({
               </div>
             </div>
 
-            {/* Forge Temp Card — right */}
+            {/* Forge Temp Card — right (Lv5+ only) */}
+            {(playerLevel ?? 1) >= 5 && (
+            <>
             <Tip k="forge_temp"><div
               className="today-stat-card rounded-xl px-4 py-2.5 relative overflow-hidden"
               role="button"
@@ -893,10 +895,12 @@ export default function TodayDrawer({
                       transition: "width 0.8s ease-out",
                     }} />
                   </div>
-                  <span className="text-xs block mt-0.5" style={{ color: "rgba(255,255,255,0.2)", fontSize: 12 }}>Forge <span style={{ fontSize: 10, opacity: 0.5 }}>→</span></span>
+                  <span className="text-xs block mt-0.5" style={{ color: "rgba(255,255,255,0.2)", fontSize: 12 }}>Forge <span style={{ fontSize: 12, opacity: 0.5 }}>→</span></span>
                 </div>
               </div>
             </div></Tip>
+            </>
+            )}
           </div>
         </div>
 
