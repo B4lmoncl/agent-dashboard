@@ -170,6 +170,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
   // Recipe search & filter state
   const [recipeSearch, setRecipeSearch] = useState("");
   const [showCraftableOnly, setShowCraftableOnly] = useState(false);
+  const [totalRecipesByProf, setTotalRecipesByProf] = useState<Record<string, number>>({});
   // Cast bar countdown state
   const [castCountdown, setCastCountdown] = useState<string | null>(null);
   // Enchanting (D3-style reroll) state
@@ -235,6 +236,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
         if (data.dailyBonus) setDailyBonusAvailable(data.dailyBonus.dailyBonusAvailable ?? false);
         if (data.maxProfSlots != null) setMaxProfSlots(data.maxProfSlots);
         if (data.slotAffixRanges) setSlotAffixRanges(data.slotAffixRanges);
+        if (data.totalRecipesByProf) setTotalRecipesByProf(data.totalRecipesByProf);
       }
     } catch (err) { console.error('Failed to fetch crafting data:', err); }
     // Fetch workshop upgrades
@@ -1176,6 +1178,20 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
             {/* ─── Tab: Recipes ──────────────────────────────────────────── */}
             {npcModalTab === "recipes" && (
               <div className="tab-content-enter">
+                {/* Recipe discovery counter */}
+                {(() => {
+                  const profRecipes = recipes.filter(r => r.profession === selectedNpc.id);
+                  const discovered = profRecipes.filter(r => !(r as unknown as Record<string, unknown>).hidden).length;
+                  const total = totalRecipesByProf[selectedNpc.id] || profRecipes.length;
+                  return (
+                    <div className="px-5 pt-3 flex items-center justify-between">
+                      <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.25)" }}>
+                        {discovered}/{total} recipes discovered
+                      </span>
+                      {discovered >= total && <span className="text-xs font-semibold" style={{ color: "#4ade80" }}>Complete</span>}
+                    </div>
+                  );
+                })()}
                 {/* Slot selector for Schmied/Verzauberer */}
                 {(selectedNpc.id === "schmied" || selectedNpc.id === "verzauberer") && (
                   <div className="px-5 py-3" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
@@ -1279,6 +1295,18 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                     }
                     return true;
                   }).map(recipe => {
+                    // Hidden/undiscovered recipes — show as "???" with source hint
+                    if ((recipe as unknown as Record<string, unknown>).hidden) {
+                      return (
+                        <div key={recipe.id} className="rounded-lg p-3" style={{ background: "rgba(255,255,255,0.015)", border: "1px solid rgba(255,255,255,0.04)", borderLeft: "3px solid rgba(255,255,255,0.06)" }}>
+                          <div className="flex items-center gap-2">
+                            <span style={{ fontSize: 12, color: "rgba(255,255,255,0.15)" }}>?</span>
+                            <p className="text-sm font-semibold" style={{ color: "rgba(255,255,255,0.15)" }}>???</p>
+                          </div>
+                          <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.1)" }}>{recipe.desc || "Unknown recipe"}</p>
+                        </div>
+                      );
+                    }
                     const isLearned = recipe.learned !== false;
                     const needsLearn = !isLearned && recipe.source === "trainer" && (recipe.trainerCost ?? 0) > 0;
                     const meetsLevel = recipe.canCraft;

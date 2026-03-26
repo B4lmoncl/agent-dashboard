@@ -63,6 +63,7 @@ const CATEGORY_TOOLTIPS: Record<string, { title: string; desc: string }> = {
   daily: { title: "Daily Tasks", desc: "Your core daily routine: claim your bonus, feed your companion, complete rituals, and check daily missions." },
   content: { title: "Active Content", desc: "Ongoing game systems with active progress: quests, challenges, rifts, world boss, dungeons, and NPC quest chains." },
   social: { title: "Social", desc: "Stay connected — pending friend requests, unread messages, and active trades with other players." },
+  timers: { title: "Timers", desc: "All active countdowns at a glance — weekly resets, season deadlines, active rifts, and world boss spawns." },
 };
 
 // ─── Time-of-day flavor ──────────────────────────────────────────────────────
@@ -636,6 +637,33 @@ export default function TodayDrawer({
     if (daily.length > 0) cats.push({ id: "daily", label: "Daily Tasks", icon: "\u2726", items: daily });
     if (content.length > 0) cats.push({ id: "content", label: "Active Content", icon: "\u2694", items: content });
     if (social.length > 0) cats.push({ id: "social", label: "Social", icon: "\u2606", items: social });
+
+    // ─── Timers category (Calendar/Reset Widget) ──────────────────────────────
+    const timers: TodayItem[] = [];
+    // Weekly reset (next Monday 00:00)
+    const nextMonday = new Date();
+    nextMonday.setDate(nextMonday.getDate() + ((1 + 7 - nextMonday.getDay()) % 7 || 7));
+    nextMonday.setHours(0, 0, 0, 0);
+    const weeklyMs = nextMonday.getTime() - Date.now();
+    const weeklyDays = Math.floor(weeklyMs / 86400000);
+    const weeklyHours = Math.floor((weeklyMs % 86400000) / 3600000);
+    timers.push({ id: "timer-weekly", icon: "/images/icons/wc-generic.png", label: "Weekly Reset", done: false, sub: `${weeklyDays}d ${weeklyHours}h` });
+    // Battle Pass season (estimate: 90-day seasons from March 1)
+    const bpEpoch = new Date("2026-03-01T00:00:00Z").getTime();
+    const bpDuration = 90 * 86400000;
+    const bpElapsed = (Date.now() - bpEpoch) % bpDuration;
+    const bpRemaining = bpDuration - bpElapsed;
+    const bpDays = Math.floor(bpRemaining / 86400000);
+    timers.push({ id: "timer-bp", icon: "/images/icons/bp-icon.png", label: "Season Ends", done: false, sub: `${bpDays}d remaining` });
+    // World boss (from dashboard)
+    if (worldBossActive) {
+      timers.push({ id: "timer-wb", icon: "/images/icons/wb-icon.png", label: "World Boss Active", done: false, sub: "Contribute now", urgent: true, onClick: () => { onNavigate("worldboss"); onClose(); } });
+    }
+    // Active rift
+    if (riftActive) {
+      timers.push({ id: "timer-rift", icon: "/images/icons/rift-icon.png", label: "Rift Active", done: false, sub: "In progress", urgent: true, onClick: () => { onNavigate("rift"); onClose(); } });
+    }
+    if (timers.length > 0) cats.push({ id: "timers", label: "Timers", icon: "\u23F0", items: timers });
     return cats;
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dailyBonusAvailable, dailyMissions, rituals, activeNpcs, loggedInUser, inProgressCount, weeklyChallenge, worldBossActive, riftActive, vowCount, socialBadge, expeditionActive, dungeonActive, today]);

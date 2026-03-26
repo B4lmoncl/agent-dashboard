@@ -226,13 +226,44 @@ router.get('/api/professions', (req, res) => {
       gatheringAffinity: p.gatheringAffinity || [],
     };
   });
-  // Filter recipes: show visible ones, mark learned/learnable status
+  // All recipes: visible ones get full data, hidden ones get masked "???" entries
+  const totalRecipesByProf = {};
+  for (const r of PROFESSIONS_DATA.recipes) {
+    totalRecipesByProf[r.profession] = (totalRecipesByProf[r.profession] || 0) + 1;
+  }
   const recipes = PROFESSIONS_DATA.recipes
     .filter(r => {
       const profProgress = u ? getProfLevel(u, r.profession) : { level: 0, xp: 0 };
-      return isRecipeVisible(r, profProgress, u);
+      // Show visible recipes normally; also include undiscovered drop/faction recipes as masked entries
+      if (isRecipeVisible(r, profProgress, u)) return true;
+      // Show masked "???" entries for drop/faction recipes the player hasn't found yet
+      if (r.source === 'drop' || r.source === 'faction') return true;
+      return false;
     })
     .map(r => {
+      const profProgress = u ? getProfLevel(u, r.profession) : { level: 0, xp: 0 };
+      const visible = isRecipeVisible(r, profProgress, u);
+      if (!visible) {
+        // Masked recipe: show source hint but hide name/details
+        const sourceHint = r.source === 'drop' ? 'Drops from world content' : r.source === 'faction' ? `Requires ${r.factionId || 'faction'} reputation` : 'Unknown source';
+        return {
+          id: r.id,
+          name: '???',
+          profession: r.profession,
+          source: r.source,
+          reqSkill: r.reqSkill || 0,
+          materials: {},
+          result: null,
+          xp: 0,
+          desc: sourceHint,
+          learned: false,
+          canCraft: false,
+          hidden: true,
+          skillUpColor: 'gray',
+          skillUpChance: 0,
+          cooldownRemaining: 0,
+        };
+      }
       const profProgress = u ? getProfLevel(u, r.profession) : { level: 0 };
       const learned = isRecipeDiscovered(r, profProgress, u);
       const recipeCooldowns = (u?.professions || {})[r.profession]?.recipeCooldowns || {};
@@ -284,7 +315,7 @@ router.get('/api/professions', (req, res) => {
       };
     }
   }
-  res.json({ professions, recipes, materials, materialDefs: PROFESSIONS_DATA.materials, proficiencyRanks: PROFICIENCY_RANKS, skillUpColors: PROFESSIONS_DATA.skillUpColors || {}, currencies, dailyBonus, maxProfSlots, chosenCount, professionSlots: PROFESSIONS_DATA.professionSlots || [], learnedRecipes, masteryConfig, gatheringConfig, slotAffixRanges });
+  res.json({ professions, recipes, materials, materialDefs: PROFESSIONS_DATA.materials, proficiencyRanks: PROFICIENCY_RANKS, skillUpColors: PROFESSIONS_DATA.skillUpColors || {}, currencies, dailyBonus, maxProfSlots, chosenCount, professionSlots: PROFESSIONS_DATA.professionSlots || [], learnedRecipes, masteryConfig, gatheringConfig, slotAffixRanges, totalRecipesByProf });
 });
 
 // ─── POST /api/professions/learn — buy a recipe from an NPC trainer ─────────
