@@ -86,7 +86,7 @@ export function PersonalQuestPanel({ reviewApiKey, onRefresh }: {
   const [collapsed, setCollapsed] = useState(false);
 
   useEffect(() => {
-    fetch("/api/personal-templates").then(r => r.ok ? r.json() : []).then(setTemplates).catch(() => {});
+    fetch("/api/personal-templates").then(r => r.ok ? r.json() : []).then(setTemplates).catch(e => console.error('[quest-modals]', e));
   }, []);
 
   const handleSpawn = async (templateId: string) => {
@@ -210,7 +210,7 @@ export function ForgeChallengesPanel({ users, reviewApiKey, onRefresh }: {
   const [joinUserId, setJoinUserId] = useState<string>(() => users[0]?.id ?? "");
 
   useEffect(() => {
-    fetch("/api/challenges").then(r => r.ok ? r.json() : []).then(setChallenges).catch(() => {});
+    fetch("/api/challenges").then(r => r.ok ? r.json() : []).then(setChallenges).catch(e => console.error('[quest-modals]', e));
   }, [users]);
 
   const handleJoin = async (challengeId: string) => {

@@ -144,7 +144,7 @@ export default function DashboardHeader({
 
   const handleLogout = () => {
     // Revoke refresh token on server + clear local state
-    fetch("/api/auth/logout", { method: "POST", credentials: "include" }).catch(() => {});
+    fetch("/api/auth/logout", { method: "POST", credentials: "include" }).catch(e => console.error('[dashboard-header]', e));
     clearAuth();
     setReviewApiKey("");
     setPlayerName("");

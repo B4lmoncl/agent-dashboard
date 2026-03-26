@@ -850,7 +850,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
           addToast({ type: "item", itemName: item.name, message: `${item.name} equipped!`, icon: item.icon, rarity: displayRarity(item) });
         }
       } else {
-        const data = await r.json().catch(() => null);
+        const data = await r.json().catch(e => { console.error('[character-view]', e); return null; });
         if (addToast) addToast({ type: "error", message: data?.error || "Failed to equip item" });
       }
       await fetchChar();
@@ -867,7 +867,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
         headers: { ...getAuthHeaders(apiKey) },
       });
       if (!r.ok && addToast) {
-        const data = await r.json().catch(() => null);
+        const data = await r.json().catch(e => { console.error('[character-view]', e); return null; });
         addToast({ type: "error", message: data?.error || "Failed to unequip" });
       }
       await fetchChar();
@@ -891,7 +891,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
           addToast({ type: "item", itemName: item.name, message: data.message || "Item used!", icon: item.icon, rarity: displayRarity(item) });
         }
       } else if (addToast) {
-        const data = await r.json().catch(() => null);
+        const data = await r.json().catch(e => { console.error('[character-view]', e); return null; });
         addToast({ type: "error", message: data?.error || "Item could not be used" });
       }
       await fetchChar();
@@ -912,7 +912,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
         const item = charData?.inventory.find(i => i.id === itemId);
         if (addToast && item) addToast({ type: "item", itemName: item.name, message: `${item.name} discarded`, icon: item.icon, rarity: displayRarity(item) });
       } else if (addToast) {
-        const data = await r.json().catch(() => null);
+        const data = await r.json().catch(e => { console.error('[character-view]', e); return null; });
         addToast({ type: "error", message: data?.error || "Discard failed" });
       }
       await fetchChar();
@@ -1277,7 +1277,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                     fetch("/api/gems", { headers: apiKey ? getAuthHeaders(apiKey) : {} })
                       .then(r => r.ok ? r.json() : null)
                       .then(d => { if (d) setGemData(d); })
-                      .catch(() => {})
+                      .catch(e => console.error('[character-view]', e))
                       .finally(() => setGemsLoading(false));
                   }
                 }}

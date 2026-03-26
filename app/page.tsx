@@ -509,7 +509,7 @@ export default function Dashboard() {
     fetch("/api/classes")
       .then(r => r.ok ? r.json() : [])
       .then(setClassesList)
-      .catch(() => {});
+      .catch(e => console.error('[page]', e));
   }, []);
 
   useEffect(() => {
