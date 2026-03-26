@@ -1272,6 +1272,7 @@ function MailTab({ apiKey, playerName }: { apiKey: string; playerName: string })
   const [sendGold, setSendGold] = useState(0);
   const [sending, setSending] = useState(false);
   const [actionMsg, setActionMsg] = useState<string | null>(null);
+  const [confirmDeleteId, setConfirmDeleteId] = useState<string | null>(null);
 
   const fetchMail = useCallback(async () => {
     try {
@@ -1490,13 +1491,32 @@ function MailTab({ apiKey, playerName }: { apiKey: string; playerName: string })
                           Collect
                         </button>
                       )}
-                      <button
-                        onClick={() => handleDelete(mail.id)}
-                        className="text-xs py-1.5 px-3 rounded-lg"
-                        style={{ background: "rgba(239,68,68,0.08)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.2)", cursor: "pointer" }}
-                      >
-                        Delete
-                      </button>
+                      {confirmDeleteId === mail.id ? (
+                        <div className="flex gap-1">
+                          <button
+                            onClick={() => { handleDelete(mail.id); setConfirmDeleteId(null); }}
+                            className="text-xs py-1.5 px-2 rounded-lg font-semibold"
+                            style={{ background: "rgba(239,68,68,0.2)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.4)", cursor: "pointer" }}
+                          >
+                            Confirm
+                          </button>
+                          <button
+                            onClick={() => setConfirmDeleteId(null)}
+                            className="text-xs py-1.5 px-2 rounded-lg"
+                            style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.4)", border: "1px solid rgba(255,255,255,0.08)", cursor: "pointer" }}
+                          >
+                            Cancel
+                          </button>
+                        </div>
+                      ) : (
+                        <button
+                          onClick={() => setConfirmDeleteId(mail.id)}
+                          className="text-xs py-1.5 px-3 rounded-lg"
+                          style={{ background: "rgba(239,68,68,0.08)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.2)", cursor: "pointer" }}
+                        >
+                          Delete
+                        </button>
+                      )}
                     </div>
                   </div>
                 )}

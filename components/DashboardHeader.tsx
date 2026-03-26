@@ -176,7 +176,7 @@ export default function DashboardHeader({
             onClick={() => { setDashView("questBoard"); window.scrollTo({ top: 0, behavior: "smooth" }); }}
             title="Home — Quest Hall"
           >
-            <img src="/guild-gate.png" alt="Quest Hall" className="h-20 w-20" style={{ imageRendering: "auto", display: "block", marginBottom: "-8px", marginTop: "4px" }} />
+            <img src="/guild-gate.png" alt="Quest Hall" className="h-20 w-20" style={{ imageRendering: "auto", display: "block", marginBottom: "-8px", marginTop: "4px" }} onError={e => { e.currentTarget.style.display = "none"; }} />
             <span className="font-semibold text-sm tracking-tight text-primary">
               Quest Hall
             </span>
