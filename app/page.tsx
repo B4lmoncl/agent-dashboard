@@ -1115,7 +1115,7 @@ export default function Dashboard() {
         {/* ── Stockwerk-Navigation (2-level: Floor tabs + Room tabs) ── */}
         {(() => {
           const currentFloor = FLOORS.find(f => f.id === activeFloor) || FLOORS[1];
-          const visibleRooms = currentFloor.rooms.filter(r => !r.requiresLogin || playerName);
+          const visibleRooms = currentFloor.rooms.filter(r => (!r.requiresLogin || playerName) && (!r.minLevel || (currentPlayerLevel ?? 1) >= r.minLevel));
           // Notification dots per room
           const socialTotal = socialBadge ? (socialBadge.pendingFriendRequests + socialBadge.unreadMessages + socialBadge.activeTrades) : 0;
           const getRoomNotif = (key: string): { color: string; count?: number } | null => {
@@ -1135,7 +1135,7 @@ export default function Dashboard() {
             <div data-tutorial="nav-bar" className="space-y-0">
               {/* Floor tabs */}
               <div className="flex gap-1" style={{ background: "#0d0d0d", borderRadius: "10px 10px 0 0", padding: "4px 4px 0 4px" }}>
-                {FLOORS.map(floor => {
+                {FLOORS.filter(f => !f.minLevel || (currentPlayerLevel ?? 1) >= f.minLevel).map(floor => {
                   const isActive = floor.id === activeFloor;
                   const hasNotif = !isActive && floorHasNotif(floor);
                   return (
@@ -1145,7 +1145,7 @@ export default function Dashboard() {
                       onClick={() => {
                         setActiveFloor(floor.id);
                         // Navigate to first visible room if current view isn't on this floor
-                        const floorRoomKeys = floor.rooms.filter(r => !r.requiresLogin || playerName).map(r => r.key);
+                        const floorRoomKeys = floor.rooms.filter(r => (!r.requiresLogin || playerName) && (!r.minLevel || (currentPlayerLevel ?? 1) >= r.minLevel)).map(r => r.key);
                         if (!floorRoomKeys.includes(dashView)) {
                           setDashView(floorRoomKeys[0] as typeof dashView);
                         }
