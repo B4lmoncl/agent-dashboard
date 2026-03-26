@@ -77,3 +77,30 @@ Dokumentiere alles in `AUDIT_REPORT.md`.
 - Achievement Fast-Fertig Section (>75% complete)
 - Watched Faction Rep (Pin im Header)
 - Failure Recap (Rift/Dungeon Post-Mortem)
+
+### Session 30 — Implementiert (NICHT erneut vorschlagen)
+- NEW Badge auf Inventar-Items ✓
+- Rezept-Craftability Icons (●/◐/○) ✓
+- What's New Splash Modal ✓
+- Batch Craft Sequential Animation ✓
+- Nav-Notification Badges (rote Zahlen auf Tabs) ✓
+- Calendar/Reset Widget (Timers im Today Drawer) ✓
+- Recipe Discovery Log (??? + Counter) ✓
+- Floor Level-Gating (streng, gear-hierarchy-aligned) ✓
+- Tab-Namen Cleanup (alle "The" entfernt) ✓
+- Mail "Collect All" Button ✓
+- Battle Pass "Claim All" Button ✓
+- Material Storage Tab ✓
+- Mail System (WoW-Mailbox) ✓
+- Enchant Vellums (handelbare Enchant Scrolls) ✓
+- Mythic+ Affixes (10 Weekly-Affixes) ✓
+- Item Lock System ✓
+- Auto-Salvage Preview Modal ✓
+- Kanai's Cube ✓
+- BoP/BoE Binding System ✓
+- 6 Race Condition Locks (Mail, Rift, BP, Factions, Dungeon, WB) ✓
+- 9 Empty Catch Blocks → Error Logging ✓
+- Rarity Color Standardisierung (#f97316 für Legendary) ✓
+- Gold-Formatierung mit toLocaleString() ✓
+- Scrollbar thin auf alle Container ✓
+- CSS craft-cast-fill → GPU-composited transform ✓
