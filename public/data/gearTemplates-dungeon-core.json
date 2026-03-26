@@ -1,0 +1,3080 @@
+{
+  "items": [
+    {
+      "id": "dun-hollow-core-kern-klinge",
+      "name": "Kern-Klinge",
+      "slot": "weapon",
+      "reqLevel": 28,
+      "rarity": "rare",
+      "armorType": null,
+      "tier": 3,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:hollow-core",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 8
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Aus der Leere geschmiedet. Die Leere protestierte nicht — sie hat Geduld."
+    },
+    {
+      "id": "dun-hollow-core-kern-buckler",
+      "name": "Kern-Buckler",
+      "slot": "shield",
+      "reqLevel": 28,
+      "rarity": "rare",
+      "armorType": null,
+      "tier": 3,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:hollow-core",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 8
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Es absorbiert Licht. Nicht viel — gerade genug um aufzufallen."
+    },
+    {
+      "id": "dun-hollow-core-kern-haube",
+      "name": "Kern-Haube",
+      "slot": "helm",
+      "reqLevel": 29,
+      "rarity": "rare",
+      "armorType": "leather",
+      "tier": 3,
+      "setId": "leerengewand",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:hollow-core",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 8
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Geschmiedet in der Abwesenheit von allem. Erstaunlich solide für etwas aus dem Nichts."
+    },
+    {
+      "id": "dun-hollow-core-kern-mantel",
+      "name": "Kern-Mantel",
+      "slot": "armor",
+      "reqLevel": 29,
+      "rarity": "rare",
+      "armorType": "heavy",
+      "tier": 3,
+      "setId": "leerengewand",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:hollow-core",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 8
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Aus dem Hohlen Kern. Hohl klingt negativ — aber was wenn die Leere der Punkt ist?"
+    },
+    {
+      "id": "dun-hollow-core-kern-marschtritt",
+      "name": "Kern-Marschtritt",
+      "slot": "boots",
+      "reqLevel": 29,
+      "rarity": "rare",
+      "armorType": "cloth",
+      "tier": 3,
+      "setId": "leerengewand",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:hollow-core",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 8
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Wer in den Kern blickt und zurückkommt, bringt etwas mit. Das hier zum Beispiel."
+    },
+    {
+      "id": "dun-hollow-core-kern-reif",
+      "name": "Kern-Reif",
+      "slot": "ring",
+      "reqLevel": 30,
+      "rarity": "rare",
+      "armorType": null,
+      "tier": 3,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:hollow-core",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 8
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Die Dunkelheit des Kerns hat es berührt. Aber die Dunkelheit ist nicht böse. Nur... aufmerksam."
+    },
+    {
+      "id": "dun-hollow-core-kern-kette",
+      "name": "Kern-Kette",
+      "slot": "amulet",
+      "reqLevel": 30,
+      "rarity": "rare",
+      "armorType": null,
+      "tier": 3,
+      "setId": "leerengewand",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:hollow-core",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 8
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Es flüstert. Nicht laut genug um zu verstehen, aber deutlich genug um nervös zu werden."
+    },
+    {
+      "id": "dun-hollow-core-kern-klinge-cdv",
+      "name": "Kern-Klinge",
+      "slot": "weapon",
+      "reqLevel": 30,
+      "rarity": "rare",
+      "armorType": null,
+      "tier": 3,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:hollow-core",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 8
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Aus der Leere geschmiedet. Die Leere protestierte nicht — sie hat Geduld."
+    },
+    {
+      "id": "dun-hollow-core-kern-tartsche",
+      "name": "Kern-Tartsche",
+      "slot": "shield",
+      "reqLevel": 31,
+      "rarity": "rare",
+      "armorType": null,
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:hollow-core",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 8
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Es absorbiert Licht. Nicht viel — gerade genug um aufzufallen."
+    },
+    {
+      "id": "dun-hollow-core-kern-visier",
+      "name": "Kern-Visier",
+      "slot": "helm",
+      "reqLevel": 31,
+      "rarity": "rare",
+      "armorType": "heavy",
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:hollow-core",
+      "fixedStats": {
+        "weisheit": 5
+      },
+      "flavorText": "Geschmiedet in der Abwesenheit von allem. Erstaunlich solide für etwas aus dem Nichts."
+    },
+    {
+      "id": "dun-hollow-core-kern-brustplatte",
+      "name": "Kern-Brustplatte",
+      "slot": "armor",
+      "reqLevel": 31,
+      "rarity": "rare",
+      "armorType": "cloth",
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:hollow-core",
+      "fixedStats": {
+        "ausdauer": 4
+      },
+      "flavorText": "Aus dem Hohlen Kern. Hohl klingt negativ — aber was wenn die Leere der Punkt ist?"
+    },
+    {
+      "id": "dun-hollow-core-kern-treter",
+      "name": "Kern-Treter",
+      "slot": "boots",
+      "reqLevel": 32,
+      "rarity": "rare",
+      "armorType": "leather",
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:hollow-core",
+      "fixedStats": {
+        "charisma": 5,
+        "ausdauer": 4
+      },
+      "flavorText": "Wer in den Kern blickt und zurückkommt, bringt etwas mit. Das hier zum Beispiel."
+    },
+    {
+      "id": "dun-hollow-core-kern-ring",
+      "name": "Kern-Ring",
+      "slot": "ring",
+      "reqLevel": 32,
+      "rarity": "rare",
+      "armorType": null,
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:hollow-core",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 8
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Die Dunkelheit des Kerns hat es berührt. Aber die Dunkelheit ist nicht böse. Nur... aufmerksam."
+    },
+    {
+      "id": "dun-hollow-core-kern-anhaenger",
+      "name": "Kern-Anhänger",
+      "slot": "amulet",
+      "reqLevel": 33,
+      "rarity": "rare",
+      "armorType": null,
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:hollow-core",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 8
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Es flüstert. Nicht laut genug um zu verstehen, aber deutlich genug um nervös zu werden."
+    },
+    {
+      "id": "dun-hollow-core-kern-klinge-r9h",
+      "name": "Kern-Klinge",
+      "slot": "weapon",
+      "reqLevel": 33,
+      "rarity": "rare",
+      "armorType": null,
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:hollow-core",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 8
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Aus der Leere geschmiedet. Die Leere protestierte nicht — sie hat Geduld."
+    },
+    {
+      "id": "dun-hollow-core-kern-schild",
+      "name": "Kern-Schild",
+      "slot": "shield",
+      "reqLevel": 33,
+      "rarity": "epic",
+      "armorType": null,
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:hollow-core",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 8
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Es absorbiert Licht. Nicht viel — gerade genug um aufzufallen."
+    },
+    {
+      "id": "dun-hollow-core-kern-schleier",
+      "name": "Kern-Schleier",
+      "slot": "helm",
+      "reqLevel": 34,
+      "rarity": "epic",
+      "armorType": "cloth",
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:hollow-core",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 8
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Geschmiedet in der Abwesenheit von allem. Erstaunlich solide für etwas aus dem Nichts."
+    },
+    {
+      "id": "dun-hollow-core-kern-gewand",
+      "name": "Kern-Gewand",
+      "slot": "armor",
+      "reqLevel": 34,
+      "rarity": "epic",
+      "armorType": "leather",
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:hollow-core",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 8
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Aus dem Hohlen Kern. Hohl klingt negativ — aber was wenn die Leere der Punkt ist?"
+    },
+    {
+      "id": "dun-hollow-core-kern-sandalen",
+      "name": "Kern-Sandalen",
+      "slot": "boots",
+      "reqLevel": 34,
+      "rarity": "epic",
+      "armorType": "heavy",
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:hollow-core",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 8
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Wer in den Kern blickt und zurückkommt, bringt etwas mit. Das hier zum Beispiel."
+    },
+    {
+      "id": "dun-hollow-core-kern-siegelring",
+      "name": "Kern-Siegelring",
+      "slot": "ring",
+      "reqLevel": 35,
+      "rarity": "epic",
+      "armorType": null,
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:hollow-core",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 8
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Die Dunkelheit des Kerns hat es berührt. Aber die Dunkelheit ist nicht böse. Nur... aufmerksam."
+    },
+    {
+      "id": "dun-hollow-core-kern-amulett",
+      "name": "Kern-Amulett",
+      "slot": "amulet",
+      "reqLevel": 35,
+      "rarity": "epic",
+      "armorType": null,
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:hollow-core",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 8
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Es flüstert. Nicht laut genug um zu verstehen, aber deutlich genug um nervös zu werden."
+    },
+    {
+      "id": "dun-hollow-core-kern-klinge-7xb",
+      "name": "Kern-Klinge",
+      "slot": "weapon",
+      "reqLevel": 35,
+      "rarity": "epic",
+      "armorType": null,
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:hollow-core",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 8
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Aus der Leere geschmiedet. Die Leere protestierte nicht — sie hat Geduld."
+    },
+    {
+      "id": "dun-hollow-core-kern-bollwerk",
+      "name": "Kern-Bollwerk",
+      "slot": "shield",
+      "reqLevel": 36,
+      "rarity": "epic",
+      "armorType": null,
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:hollow-core",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 8
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Es absorbiert Licht. Nicht viel — gerade genug um aufzufallen."
+    },
+    {
+      "id": "dun-hollow-core-kern-kappe",
+      "name": "Kern-Kappe",
+      "slot": "helm",
+      "reqLevel": 36,
+      "rarity": "epic",
+      "armorType": "leather",
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:hollow-core",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 8
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Geschmiedet in der Abwesenheit von allem. Erstaunlich solide für etwas aus dem Nichts."
+    },
+    {
+      "id": "dun-hollow-core-kern-panzer",
+      "name": "Kern-Panzer",
+      "slot": "armor",
+      "reqLevel": 36,
+      "rarity": "epic",
+      "armorType": "heavy",
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:hollow-core",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 8
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Aus dem Hohlen Kern. Hohl klingt negativ — aber was wenn die Leere der Punkt ist?"
+    },
+    {
+      "id": "dun-hollow-core-kern-stiefel",
+      "name": "Kern-Stiefel",
+      "slot": "boots",
+      "reqLevel": 37,
+      "rarity": "epic",
+      "armorType": "cloth",
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:hollow-core",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 8
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Wer in den Kern blickt und zurückkommt, bringt etwas mit. Das hier zum Beispiel."
+    },
+    {
+      "id": "dun-hollow-core-kern-band",
+      "name": "Kern-Band",
+      "slot": "ring",
+      "reqLevel": 37,
+      "rarity": "epic",
+      "armorType": null,
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:hollow-core",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 8
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Die Dunkelheit des Kerns hat es berührt. Aber die Dunkelheit ist nicht böse. Nur... aufmerksam."
+    },
+    {
+      "id": "dun-hollow-core-kern-medaillon",
+      "name": "Kern-Medaillon",
+      "slot": "amulet",
+      "reqLevel": 37,
+      "rarity": "epic",
+      "armorType": null,
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:hollow-core",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 8
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Es flüstert. Nicht laut genug um zu verstehen, aber deutlich genug um nervös zu werden."
+    },
+    {
+      "id": "dun-hollow-core-kern-klinge-u1j",
+      "name": "Kern-Klinge",
+      "slot": "weapon",
+      "reqLevel": 38,
+      "rarity": "epic",
+      "armorType": null,
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:hollow-core",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 8
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Aus der Leere geschmiedet. Die Leere protestierte nicht — sie hat Geduld."
+    },
+    {
+      "id": "dun-hollow-core-kern-fokus",
+      "name": "Kern-Fokus",
+      "slot": "shield",
+      "reqLevel": 38,
+      "rarity": "epic",
+      "armorType": null,
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:hollow-core",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 8
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Es absorbiert Licht. Nicht viel — gerade genug um aufzufallen."
+    },
+    {
+      "id": "dun-hollow-core-kern-helm",
+      "name": "Kern-Helm",
+      "slot": "helm",
+      "reqLevel": 38,
+      "rarity": "epic",
+      "armorType": "heavy",
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:hollow-core",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 8
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Geschmiedet in der Abwesenheit von allem. Erstaunlich solide für etwas aus dem Nichts."
+    },
+    {
+      "id": "dun-hollow-core-kern-ruestung",
+      "name": "Kern-Rüstung",
+      "slot": "armor",
+      "reqLevel": 39,
+      "rarity": "epic",
+      "armorType": "cloth",
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:hollow-core",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 8
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Aus dem Hohlen Kern. Hohl klingt negativ — aber was wenn die Leere der Punkt ist?"
+    },
+    {
+      "id": "dun-hollow-core-kern-schuhe",
+      "name": "Kern-Schuhe",
+      "slot": "boots",
+      "reqLevel": 39,
+      "rarity": "epic",
+      "armorType": "leather",
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:hollow-core",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 8
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Wer in den Kern blickt und zurückkommt, bringt etwas mit. Das hier zum Beispiel."
+    },
+    {
+      "id": "dun-hollow-core-kern-reif-0yp",
+      "name": "Kern-Reif",
+      "slot": "ring",
+      "reqLevel": 39,
+      "rarity": "epic",
+      "armorType": null,
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:hollow-core",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 8
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Die Dunkelheit des Kerns hat es berührt. Aber die Dunkelheit ist nicht böse. Nur... aufmerksam."
+    },
+    {
+      "id": "dun-hollow-core-kern-talisman",
+      "name": "Kern-Talisman",
+      "slot": "amulet",
+      "reqLevel": 40,
+      "rarity": "epic",
+      "armorType": null,
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:hollow-core",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 8
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Es flüstert. Nicht laut genug um zu verstehen, aber deutlich genug um nervös zu werden."
+    },
+    {
+      "id": "dun-hollow-core-kern-klinge-6l0",
+      "name": "Kern-Klinge",
+      "slot": "weapon",
+      "reqLevel": 40,
+      "rarity": "epic",
+      "armorType": null,
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:hollow-core",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 8
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Aus der Leere geschmiedet. Die Leere protestierte nicht — sie hat Geduld."
+    },
+    {
+      "id": "dun-hollow-core-kern-buckler-5g3",
+      "name": "Kern-Buckler",
+      "slot": "shield",
+      "reqLevel": 40,
+      "rarity": "epic",
+      "armorType": null,
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:hollow-core",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 8
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Es absorbiert Licht. Nicht viel — gerade genug um aufzufallen."
+    },
+    {
+      "id": "dun-hollow-core-kern-krone",
+      "name": "Kern-Krone",
+      "slot": "helm",
+      "reqLevel": 41,
+      "rarity": "epic",
+      "armorType": "cloth",
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:hollow-core",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 8
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Geschmiedet in der Abwesenheit von allem. Erstaunlich solide für etwas aus dem Nichts."
+    },
+    {
+      "id": "dun-hollow-core-kern-wams",
+      "name": "Kern-Wams",
+      "slot": "armor",
+      "reqLevel": 41,
+      "rarity": "epic",
+      "armorType": "leather",
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:hollow-core",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 8
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Aus dem Hohlen Kern. Hohl klingt negativ — aber was wenn die Leere der Punkt ist?"
+    },
+    {
+      "id": "dun-hollow-core-kern-marschtritt-9t2",
+      "name": "Kern-Marschtritt",
+      "slot": "boots",
+      "reqLevel": 42,
+      "rarity": "epic",
+      "armorType": "heavy",
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:hollow-core",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 8
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Wer in den Kern blickt und zurückkommt, bringt etwas mit. Das hier zum Beispiel."
+    },
+    {
+      "id": "dun-hollow-core-kern-ring-sqh",
+      "name": "Kern-Ring",
+      "slot": "ring",
+      "reqLevel": 42,
+      "rarity": "legendary",
+      "armorType": null,
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:hollow-core",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 8
+            }
+          ],
+          "count": [
+            3,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "xp_bonus",
+        "min": 3,
+        "max": 8,
+        "label": "Dungeon-Resonanz: +{value}% Quest-XP"
+      },
+      "flavorText": "Die Dunkelheit des Kerns hat es berührt. Aber die Dunkelheit ist nicht böse. Nur... aufmerksam."
+    },
+    {
+      "id": "dun-hollow-core-kern-kette-qk6",
+      "name": "Kern-Kette",
+      "slot": "amulet",
+      "reqLevel": 42,
+      "rarity": "legendary",
+      "armorType": null,
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:hollow-core",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 8
+            }
+          ],
+          "count": [
+            3,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "gold_bonus",
+        "min": 3,
+        "max": 8,
+        "label": "Vergrabener Schatz: +{value}% Gold"
+      },
+      "flavorText": "Es flüstert. Nicht laut genug um zu verstehen, aber deutlich genug um nervös zu werden."
+    },
+    {
+      "id": "dun-hollow-core-kern-klinge-22y",
+      "name": "Kern-Klinge",
+      "slot": "weapon",
+      "reqLevel": 43,
+      "rarity": "legendary",
+      "armorType": null,
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:hollow-core",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 8
+            }
+          ],
+          "count": [
+            3,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "drop_bonus",
+        "min": 3,
+        "max": 8,
+        "label": "Plünderer-Instinkt: +{value}% Drop-Chance"
+      },
+      "flavorText": "Aus der Leere geschmiedet. Die Leere protestierte nicht — sie hat Geduld."
+    },
+    {
+      "id": "dun-hollow-core-kern-tartsche-5ga",
+      "name": "Kern-Tartsche",
+      "slot": "shield",
+      "reqLevel": 43,
+      "rarity": "legendary",
+      "armorType": null,
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:hollow-core",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 8
+            }
+          ],
+          "count": [
+            3,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "crit_chance",
+        "min": 3,
+        "max": 8,
+        "label": "Tödliche Präzision: +{value}% Crit Chance"
+      },
+      "flavorText": "Es absorbiert Licht. Nicht viel — gerade genug um aufzufallen."
+    },
+    {
+      "id": "dun-hollow-core-kern-haube-gq1",
+      "name": "Kern-Haube",
+      "slot": "helm",
+      "reqLevel": 43,
+      "rarity": "legendary",
+      "armorType": "leather",
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:hollow-core",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 8
+            }
+          ],
+          "count": [
+            3,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "decay_reduction",
+        "min": 3,
+        "max": 8,
+        "label": "Tiefenschutz: -{value}% Forge Decay"
+      },
+      "flavorText": "Geschmiedet in der Abwesenheit von allem. Erstaunlich solide für etwas aus dem Nichts."
+    },
+    {
+      "id": "dun-hollow-core-kern-mantel-ve0",
+      "name": "Kern-Mantel",
+      "slot": "armor",
+      "reqLevel": 44,
+      "rarity": "legendary",
+      "armorType": "heavy",
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:hollow-core",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 8
+            }
+          ],
+          "count": [
+            3,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "xp_bonus",
+        "min": 3,
+        "max": 8,
+        "label": "Dungeon-Resonanz: +{value}% Quest-XP"
+      },
+      "flavorText": "Aus dem Hohlen Kern. Hohl klingt negativ — aber was wenn die Leere der Punkt ist?"
+    },
+    {
+      "id": "dun-hollow-core-kern-treter-yyp",
+      "name": "Kern-Treter",
+      "slot": "boots",
+      "reqLevel": 44,
+      "rarity": "legendary",
+      "armorType": "cloth",
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:hollow-core",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 8
+            }
+          ],
+          "count": [
+            3,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "gold_bonus",
+        "min": 3,
+        "max": 8,
+        "label": "Vergrabener Schatz: +{value}% Gold"
+      },
+      "flavorText": "Wer in den Kern blickt und zurückkommt, bringt etwas mit. Das hier zum Beispiel."
+    },
+    {
+      "id": "dun-hollow-core-kern-siegelring-k0h",
+      "name": "Kern-Siegelring",
+      "slot": "ring",
+      "reqLevel": 44,
+      "rarity": "legendary",
+      "armorType": null,
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:hollow-core",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 8
+            }
+          ],
+          "count": [
+            3,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "drop_bonus",
+        "min": 3,
+        "max": 8,
+        "label": "Plünderer-Instinkt: +{value}% Drop-Chance"
+      },
+      "flavorText": "Die Dunkelheit des Kerns hat es berührt. Aber die Dunkelheit ist nicht böse. Nur... aufmerksam."
+    },
+    {
+      "id": "dun-hollow-core-kern-anhaenger-vfr",
+      "name": "Kern-Anhänger",
+      "slot": "amulet",
+      "reqLevel": 45,
+      "rarity": "legendary",
+      "armorType": null,
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:hollow-core",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 8
+            }
+          ],
+          "count": [
+            3,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "crit_chance",
+        "min": 3,
+        "max": 8,
+        "label": "Tödliche Präzision: +{value}% Crit Chance"
+      },
+      "flavorText": "Es flüstert. Nicht laut genug um zu verstehen, aber deutlich genug um nervös zu werden."
+    },
+    {
+      "id": "dun-hollow-core-kern-klinge-s7h",
+      "name": "Kern-Klinge",
+      "slot": "weapon",
+      "reqLevel": 45,
+      "rarity": "legendary",
+      "armorType": null,
+      "tier": 4,
+      "setId": "legendary",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:hollow-core",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 8
+            }
+          ],
+          "count": [
+            3,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 6
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "decay_reduction",
+        "min": 3,
+        "max": 8,
+        "label": "Tiefenschutz: -{value}% Forge Decay"
+      },
+      "flavorText": "Aus der Leere geschmiedet. Die Leere protestierte nicht — sie hat Geduld."
+    }
+  ]
+}

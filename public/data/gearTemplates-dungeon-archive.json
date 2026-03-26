@@ -1,0 +1,1050 @@
+{
+  "items": [
+    {
+      "id": "dun-sunken-archive-archiv-klinge",
+      "name": "Archiv-Klinge",
+      "slot": "weapon",
+      "reqLevel": 8,
+      "rarity": "uncommon",
+      "armorType": null,
+      "tier": 1,
+      "setId": "adventurer",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:sunken-archive",
+      "fixedStats": {
+        "kraft": 2
+      },
+      "flavorText": "Gefunden zwischen nassen Seiten und vergessenen Formeln. Das Wasser hat es konserviert — nicht beschädigt."
+    },
+    {
+      "id": "dun-sunken-archive-archiv-buckler",
+      "name": "Archiv-Buckler",
+      "slot": "shield",
+      "reqLevel": 8,
+      "rarity": "uncommon",
+      "armorType": null,
+      "tier": 1,
+      "setId": "adventurer",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:sunken-archive",
+      "fixedStats": {
+        "charisma": 3
+      },
+      "flavorText": "Wer dieses Stück trägt, hört manchmal das Rauschen versunkener Bibliotheken."
+    },
+    {
+      "id": "dun-sunken-archive-archiv-haube",
+      "name": "Archiv-Haube",
+      "slot": "helm",
+      "reqLevel": 8,
+      "rarity": "uncommon",
+      "armorType": "leather",
+      "tier": 1,
+      "setId": "archivars-garnitur",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:sunken-archive",
+      "fixedStats": {
+        "weisheit": 2
+      },
+      "flavorText": "Die Archivare trugen es mit Stolz. Die Archivare sind jetzt unter Wasser."
+    },
+    {
+      "id": "dun-sunken-archive-archiv-mantel",
+      "name": "Archiv-Mantel",
+      "slot": "armor",
+      "reqLevel": 9,
+      "rarity": "uncommon",
+      "armorType": "heavy",
+      "tier": 1,
+      "setId": "archivars-garnitur",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:sunken-archive",
+      "fixedStats": {
+        "ausdauer": 3
+      },
+      "flavorText": "Gefunden zwischen nassen Seiten und vergessenen Formeln. Das Wasser hat es konserviert — nicht beschädigt."
+    },
+    {
+      "id": "dun-sunken-archive-archiv-marschtritt",
+      "name": "Archiv-Marschtritt",
+      "slot": "boots",
+      "reqLevel": 9,
+      "rarity": "uncommon",
+      "armorType": "cloth",
+      "tier": 1,
+      "setId": "archivars-garnitur",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:sunken-archive",
+      "fixedStats": {
+        "charisma": 3,
+        "ausdauer": 2
+      },
+      "flavorText": "Wer dieses Stück trägt, hört manchmal das Rauschen versunkener Bibliotheken."
+    },
+    {
+      "id": "dun-sunken-archive-archiv-reif",
+      "name": "Archiv-Reif",
+      "slot": "ring",
+      "reqLevel": 9,
+      "rarity": "uncommon",
+      "armorType": null,
+      "tier": 1,
+      "setId": "veteran",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:sunken-archive",
+      "fixedStats": {
+        "glueck": 2,
+        "ausdauer": 3
+      },
+      "flavorText": "Die Archivare trugen es mit Stolz. Die Archivare sind jetzt unter Wasser."
+    },
+    {
+      "id": "dun-sunken-archive-archiv-kette",
+      "name": "Archiv-Kette",
+      "slot": "amulet",
+      "reqLevel": 9,
+      "rarity": "uncommon",
+      "armorType": null,
+      "tier": 1,
+      "setId": "veteran",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:sunken-archive",
+      "fixedStats": {
+        "charisma": 2,
+        "ausdauer": 2
+      },
+      "flavorText": "Gefunden zwischen nassen Seiten und vergessenen Formeln. Das Wasser hat es konserviert — nicht beschädigt."
+    },
+    {
+      "id": "dun-sunken-archive-archiv-klinge-yga",
+      "name": "Archiv-Klinge",
+      "slot": "weapon",
+      "reqLevel": 9,
+      "rarity": "uncommon",
+      "armorType": null,
+      "tier": 1,
+      "setId": "veteran",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:sunken-archive",
+      "fixedStats": {
+        "kraft": 1,
+        "ausdauer": 3
+      },
+      "flavorText": "Wer dieses Stück trägt, hört manchmal das Rauschen versunkener Bibliotheken."
+    },
+    {
+      "id": "dun-sunken-archive-archiv-tartsche",
+      "name": "Archiv-Tartsche",
+      "slot": "shield",
+      "reqLevel": 10,
+      "rarity": "uncommon",
+      "armorType": null,
+      "tier": 1,
+      "setId": "veteran",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:sunken-archive",
+      "fixedStats": {
+        "charisma": 2,
+        "ausdauer": 2
+      },
+      "flavorText": "Die Archivare trugen es mit Stolz. Die Archivare sind jetzt unter Wasser."
+    },
+    {
+      "id": "dun-sunken-archive-archiv-visier",
+      "name": "Archiv-Visier",
+      "slot": "helm",
+      "reqLevel": 10,
+      "rarity": "uncommon",
+      "armorType": "heavy",
+      "tier": 1,
+      "setId": "veteran",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:sunken-archive",
+      "fixedStats": {
+        "weisheit": 1,
+        "ausdauer": 3
+      },
+      "flavorText": "Gefunden zwischen nassen Seiten und vergessenen Formeln. Das Wasser hat es konserviert — nicht beschädigt."
+    },
+    {
+      "id": "dun-sunken-archive-archiv-brustplatte",
+      "name": "Archiv-Brustplatte",
+      "slot": "armor",
+      "reqLevel": 10,
+      "rarity": "uncommon",
+      "armorType": "cloth",
+      "tier": 1,
+      "setId": "veteran",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:sunken-archive",
+      "fixedStats": {
+        "ausdauer": 3
+      },
+      "flavorText": "Wer dieses Stück trägt, hört manchmal das Rauschen versunkener Bibliotheken."
+    },
+    {
+      "id": "dun-sunken-archive-archiv-treter",
+      "name": "Archiv-Treter",
+      "slot": "boots",
+      "reqLevel": 10,
+      "rarity": "uncommon",
+      "armorType": "leather",
+      "tier": 1,
+      "setId": "veteran",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:sunken-archive",
+      "fixedStats": {
+        "charisma": 2
+      },
+      "flavorText": "Die Archivare trugen es mit Stolz. Die Archivare sind jetzt unter Wasser."
+    },
+    {
+      "id": "dun-sunken-archive-archiv-ring",
+      "name": "Archiv-Ring",
+      "slot": "ring",
+      "reqLevel": 10,
+      "rarity": "uncommon",
+      "armorType": null,
+      "tier": 1,
+      "setId": "veteran",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:sunken-archive",
+      "fixedStats": {
+        "glueck": 2,
+        "ausdauer": 1
+      },
+      "flavorText": "Gefunden zwischen nassen Seiten und vergessenen Formeln. Das Wasser hat es konserviert — nicht beschädigt."
+    },
+    {
+      "id": "dun-sunken-archive-archiv-anhaenger",
+      "name": "Archiv-Anhänger",
+      "slot": "amulet",
+      "reqLevel": 11,
+      "rarity": "uncommon",
+      "armorType": null,
+      "tier": 2,
+      "setId": "veteran",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:sunken-archive",
+      "fixedStats": {
+        "charisma": 4,
+        "ausdauer": 1
+      },
+      "flavorText": "Wer dieses Stück trägt, hört manchmal das Rauschen versunkener Bibliotheken."
+    },
+    {
+      "id": "dun-sunken-archive-archiv-klinge-vnz",
+      "name": "Archiv-Klinge",
+      "slot": "weapon",
+      "reqLevel": 11,
+      "rarity": "uncommon",
+      "armorType": null,
+      "tier": 2,
+      "setId": "veteran",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:sunken-archive",
+      "fixedStats": {
+        "kraft": 1,
+        "ausdauer": 2
+      },
+      "flavorText": "Die Archivare trugen es mit Stolz. Die Archivare sind jetzt unter Wasser."
+    },
+    {
+      "id": "dun-sunken-archive-archiv-schild",
+      "name": "Archiv-Schild",
+      "slot": "shield",
+      "reqLevel": 11,
+      "rarity": "rare",
+      "armorType": null,
+      "tier": 2,
+      "setId": "veteran",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:sunken-archive",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 4
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 4
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 4
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 3
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Gefunden zwischen nassen Seiten und vergessenen Formeln. Das Wasser hat es konserviert — nicht beschädigt."
+    },
+    {
+      "id": "dun-sunken-archive-archiv-schleier",
+      "name": "Archiv-Schleier",
+      "slot": "helm",
+      "reqLevel": 11,
+      "rarity": "rare",
+      "armorType": "cloth",
+      "tier": 2,
+      "setId": "veteran",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:sunken-archive",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 4
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 4
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 4
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 3
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Wer dieses Stück trägt, hört manchmal das Rauschen versunkener Bibliotheken."
+    },
+    {
+      "id": "dun-sunken-archive-archiv-gewand",
+      "name": "Archiv-Gewand",
+      "slot": "armor",
+      "reqLevel": 12,
+      "rarity": "rare",
+      "armorType": "leather",
+      "tier": 2,
+      "setId": "veteran",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:sunken-archive",
+      "fixedStats": {
+        "ausdauer": 4
+      },
+      "flavorText": "Die Archivare trugen es mit Stolz. Die Archivare sind jetzt unter Wasser."
+    },
+    {
+      "id": "dun-sunken-archive-archiv-sandalen",
+      "name": "Archiv-Sandalen",
+      "slot": "boots",
+      "reqLevel": 12,
+      "rarity": "rare",
+      "armorType": "heavy",
+      "tier": 2,
+      "setId": "veteran",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:sunken-archive",
+      "fixedStats": {
+        "charisma": 3,
+        "ausdauer": 2
+      },
+      "flavorText": "Gefunden zwischen nassen Seiten und vergessenen Formeln. Das Wasser hat es konserviert — nicht beschädigt."
+    },
+    {
+      "id": "dun-sunken-archive-archiv-siegelring",
+      "name": "Archiv-Siegelring",
+      "slot": "ring",
+      "reqLevel": 12,
+      "rarity": "rare",
+      "armorType": null,
+      "tier": 2,
+      "setId": "veteran",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:sunken-archive",
+      "fixedStats": {
+        "glueck": 4,
+        "ausdauer": 1
+      },
+      "flavorText": "Wer dieses Stück trägt, hört manchmal das Rauschen versunkener Bibliotheken."
+    },
+    {
+      "id": "dun-sunken-archive-archiv-amulett",
+      "name": "Archiv-Amulett",
+      "slot": "amulet",
+      "reqLevel": 12,
+      "rarity": "rare",
+      "armorType": null,
+      "tier": 2,
+      "setId": "veteran",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:sunken-archive",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 4
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 4
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 4
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 3
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Die Archivare trugen es mit Stolz. Die Archivare sind jetzt unter Wasser."
+    },
+    {
+      "id": "dun-sunken-archive-archiv-klinge-5dc",
+      "name": "Archiv-Klinge",
+      "slot": "weapon",
+      "reqLevel": 12,
+      "rarity": "rare",
+      "armorType": null,
+      "tier": 2,
+      "setId": "veteran",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:sunken-archive",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 4
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 4
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 4
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 3
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Gefunden zwischen nassen Seiten und vergessenen Formeln. Das Wasser hat es konserviert — nicht beschädigt."
+    },
+    {
+      "id": "dun-sunken-archive-archiv-bollwerk",
+      "name": "Archiv-Bollwerk",
+      "slot": "shield",
+      "reqLevel": 13,
+      "rarity": "rare",
+      "armorType": null,
+      "tier": 2,
+      "setId": "veteran",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:sunken-archive",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 4
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 4
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 4
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 3
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Wer dieses Stück trägt, hört manchmal das Rauschen versunkener Bibliotheken."
+    },
+    {
+      "id": "dun-sunken-archive-archiv-kappe",
+      "name": "Archiv-Kappe",
+      "slot": "helm",
+      "reqLevel": 13,
+      "rarity": "rare",
+      "armorType": "leather",
+      "tier": 2,
+      "setId": "veteran",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:sunken-archive",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 4
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 4
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 4
+            }
+          ],
+          "count": [
+            2,
+            2
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 3
+            }
+          ],
+          "count": [
+            1,
+            1
+          ]
+        }
+      },
+      "flavorText": "Die Archivare trugen es mit Stolz. Die Archivare sind jetzt unter Wasser."
+    },
+    {
+      "id": "dun-sunken-archive-archiv-panzer",
+      "name": "Archiv-Panzer",
+      "slot": "armor",
+      "reqLevel": 13,
+      "rarity": "rare",
+      "armorType": "heavy",
+      "tier": 2,
+      "setId": "veteran",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:sunken-archive",
+      "fixedStats": {
+        "ausdauer": 3
+      },
+      "flavorText": "Gefunden zwischen nassen Seiten und vergessenen Formeln. Das Wasser hat es konserviert — nicht beschädigt."
+    },
+    {
+      "id": "dun-sunken-archive-archiv-stiefel",
+      "name": "Archiv-Stiefel",
+      "slot": "boots",
+      "reqLevel": 13,
+      "rarity": "epic",
+      "armorType": "cloth",
+      "tier": 2,
+      "setId": "veteran",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:sunken-archive",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 4
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 4
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 4
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 3
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Wer dieses Stück trägt, hört manchmal das Rauschen versunkener Bibliotheken."
+    },
+    {
+      "id": "dun-sunken-archive-archiv-band",
+      "name": "Archiv-Band",
+      "slot": "ring",
+      "reqLevel": 13,
+      "rarity": "epic",
+      "armorType": null,
+      "tier": 2,
+      "setId": "veteran",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:sunken-archive",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 4
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 4
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 4
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 3
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Die Archivare trugen es mit Stolz. Die Archivare sind jetzt unter Wasser."
+    },
+    {
+      "id": "dun-sunken-archive-archiv-medaillon",
+      "name": "Archiv-Medaillon",
+      "slot": "amulet",
+      "reqLevel": 14,
+      "rarity": "epic",
+      "armorType": null,
+      "tier": 2,
+      "setId": "veteran",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:sunken-archive",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 4
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 4
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 4
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 3
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Gefunden zwischen nassen Seiten und vergessenen Formeln. Das Wasser hat es konserviert — nicht beschädigt."
+    },
+    {
+      "id": "dun-sunken-archive-archiv-klinge-dw9",
+      "name": "Archiv-Klinge",
+      "slot": "weapon",
+      "reqLevel": 14,
+      "rarity": "epic",
+      "armorType": null,
+      "tier": 2,
+      "setId": "veteran",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:sunken-archive",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 4
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 4
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 4
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 3
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Wer dieses Stück trägt, hört manchmal das Rauschen versunkener Bibliotheken."
+    },
+    {
+      "id": "dun-sunken-archive-archiv-fokus",
+      "name": "Archiv-Fokus",
+      "slot": "shield",
+      "reqLevel": 14,
+      "rarity": "epic",
+      "armorType": null,
+      "tier": 2,
+      "setId": "veteran",
+      "shopHidden": true,
+      "price": 0,
+      "icon": null,
+      "source": "dungeon:sunken-archive",
+      "affixes": {
+        "primary": {
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 4
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 4
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 4
+            }
+          ],
+          "count": [
+            2,
+            3
+          ]
+        },
+        "minor": {
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 3
+            }
+          ],
+          "count": [
+            1,
+            2
+          ]
+        }
+      },
+      "flavorText": "Die Archivare trugen es mit Stolz. Die Archivare sind jetzt unter Wasser."
+    }
+  ]
+}
