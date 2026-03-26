@@ -542,26 +542,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
         </div>
       </div>
 
-      {/* ─── All Materials ────────────────────────────────────────────── */}
-      {Object.keys(materials).length > 0 && (
-        <div className="rounded-xl p-3" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
-          <Tip k="materials" heading><p className="text-xs font-semibold uppercase tracking-widest mb-2" style={{ color: "rgba(255,255,255,0.25)" }}>Materials</p></Tip>
-          <div className="flex flex-wrap gap-1.5">
-            {materialDefs.filter(m => materials[m.id]).map(m => {
-              const rc = RARITY_COLORS[m.rarity] || "#888";
-              return (
-                <div key={m.id} className="flex items-center gap-1.5 rounded-lg px-2 py-1" style={{ background: `${rc}06`, border: `1px solid ${rc}18` }} title={m.desc}>
-                  {m.icon && <img src={m.icon} alt="" width={16} height={16} style={{ imageRendering: "auto" }} onError={hideOnError} />}
-                  <span className="text-xs" style={{ color: rc }}>{m.name}</span>
-                  <span className="text-xs font-mono font-bold" style={{ color: "rgba(255,255,255,0.5)" }}>×{materials[m.id]}</span>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      )}
-
-      {/* ─── NPC Grid (categorized) ─────────────────────────────────────── */}
+      {/* ─── NPC Grid (categorized) — materials shown per NPC card ────── */}
       {[
         { label: "Armor Professions", desc: "Helm, Armor, Boots", ids: ["schmied","schneider","lederverarbeiter"] },
         { label: "Weapon & Jewelry", desc: "Weapons, Shields, Rings, Amulets", ids: ["waffenschmied","juwelier"] },
