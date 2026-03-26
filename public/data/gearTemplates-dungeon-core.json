@@ -443,7 +443,7 @@
     },
     {
       "id": "dun-hollow-core-kern-klinge-cdv",
-      "name": "Kern-Klinge",
+      "name": "Kern-Klinge II",
       "slot": "weapon",
       "reqLevel": 30,
       "rarity": "rare",
@@ -750,7 +750,7 @@
     },
     {
       "id": "dun-hollow-core-kern-klinge-r9h",
-      "name": "Kern-Klinge",
+      "name": "Kern-Klinge III",
       "slot": "weapon",
       "reqLevel": 33,
       "rarity": "rare",
@@ -1191,7 +1191,7 @@
     },
     {
       "id": "dun-hollow-core-kern-klinge-7xb",
-      "name": "Kern-Klinge",
+      "name": "Kern-Klinge IV",
       "slot": "weapon",
       "reqLevel": 35,
       "rarity": "epic",
@@ -1632,7 +1632,7 @@
     },
     {
       "id": "dun-hollow-core-kern-klinge-u1j",
-      "name": "Kern-Klinge",
+      "name": "Kern-Klinge V",
       "slot": "weapon",
       "reqLevel": 38,
       "rarity": "epic",
@@ -1947,7 +1947,7 @@
     },
     {
       "id": "dun-hollow-core-kern-reif-0yp",
-      "name": "Kern-Reif",
+      "name": "Kern-Reif II",
       "slot": "ring",
       "reqLevel": 39,
       "rarity": "epic",
@@ -2073,7 +2073,7 @@
     },
     {
       "id": "dun-hollow-core-kern-klinge-6l0",
-      "name": "Kern-Klinge",
+      "name": "Kern-Klinge VI",
       "slot": "weapon",
       "reqLevel": 40,
       "rarity": "epic",
@@ -2136,7 +2136,7 @@
     },
     {
       "id": "dun-hollow-core-kern-buckler-5g3",
-      "name": "Kern-Buckler",
+      "name": "Kern-Buckler II",
       "slot": "shield",
       "reqLevel": 40,
       "rarity": "epic",
@@ -2325,7 +2325,7 @@
     },
     {
       "id": "dun-hollow-core-kern-marschtritt-9t2",
-      "name": "Kern-Marschtritt",
+      "name": "Kern-Marschtritt II",
       "slot": "boots",
       "reqLevel": 42,
       "rarity": "epic",
@@ -2388,7 +2388,7 @@
     },
     {
       "id": "dun-hollow-core-kern-ring-sqh",
-      "name": "Kern-Ring",
+      "name": "Kern-Ring II",
       "slot": "ring",
       "reqLevel": 42,
       "rarity": "legendary",
@@ -2457,7 +2457,7 @@
     },
     {
       "id": "dun-hollow-core-kern-kette-qk6",
-      "name": "Kern-Kette",
+      "name": "Kern-Kette II",
       "slot": "amulet",
       "reqLevel": 42,
       "rarity": "legendary",
@@ -2526,7 +2526,7 @@
     },
     {
       "id": "dun-hollow-core-kern-klinge-22y",
-      "name": "Kern-Klinge",
+      "name": "Kern-Klinge VII",
       "slot": "weapon",
       "reqLevel": 43,
       "rarity": "legendary",
@@ -2595,7 +2595,7 @@
     },
     {
       "id": "dun-hollow-core-kern-tartsche-5ga",
-      "name": "Kern-Tartsche",
+      "name": "Kern-Tartsche II",
       "slot": "shield",
       "reqLevel": 43,
       "rarity": "legendary",
@@ -2664,7 +2664,7 @@
     },
     {
       "id": "dun-hollow-core-kern-haube-gq1",
-      "name": "Kern-Haube",
+      "name": "Kern-Haube II",
       "slot": "helm",
       "reqLevel": 43,
       "rarity": "legendary",
@@ -2733,7 +2733,7 @@
     },
     {
       "id": "dun-hollow-core-kern-mantel-ve0",
-      "name": "Kern-Mantel",
+      "name": "Kern-Mantel II",
       "slot": "armor",
       "reqLevel": 44,
       "rarity": "legendary",
@@ -2802,7 +2802,7 @@
     },
     {
       "id": "dun-hollow-core-kern-treter-yyp",
-      "name": "Kern-Treter",
+      "name": "Kern-Treter II",
       "slot": "boots",
       "reqLevel": 44,
       "rarity": "legendary",
@@ -2871,7 +2871,7 @@
     },
     {
       "id": "dun-hollow-core-kern-siegelring-k0h",
-      "name": "Kern-Siegelring",
+      "name": "Kern-Siegelring II",
       "slot": "ring",
       "reqLevel": 44,
       "rarity": "legendary",
@@ -2940,7 +2940,7 @@
     },
     {
       "id": "dun-hollow-core-kern-anhaenger-vfr",
-      "name": "Kern-Anhänger",
+      "name": "Kern-Anhänger II",
       "slot": "amulet",
       "reqLevel": 45,
       "rarity": "legendary",
@@ -3009,7 +3009,7 @@
     },
     {
       "id": "dun-hollow-core-kern-klinge-s7h",
-      "name": "Kern-Klinge",
+      "name": "Kern-Klinge VIII",
       "slot": "weapon",
       "reqLevel": 45,
       "rarity": "legendary",

@@ -3888,7 +3888,7 @@
     },
     {
       "id": "rift-legendary-abyss-stiefel-c47",
-      "name": "Abyss-Stiefel",
+      "name": "Abyss-Stiefel II",
       "slot": "boots",
       "reqLevel": 37,
       "rarity": "epic",
@@ -3951,7 +3951,7 @@
     },
     {
       "id": "rift-legendary-abyss-reif-2i3",
-      "name": "Abyss-Reif",
+      "name": "Abyss-Reif II",
       "slot": "ring",
       "reqLevel": 38,
       "rarity": "epic",
@@ -4014,7 +4014,7 @@
     },
     {
       "id": "rift-legendary-abyss-medaillon-q3m",
-      "name": "Abyss-Medaillon",
+      "name": "Abyss-Medaillon II",
       "slot": "amulet",
       "reqLevel": 38,
       "rarity": "epic",
@@ -4146,7 +4146,7 @@
     },
     {
       "id": "rift-legendary-abyss-buckler-85y",
-      "name": "Abyss-Buckler",
+      "name": "Abyss-Buckler II",
       "slot": "shield",
       "reqLevel": 39,
       "rarity": "legendary",
@@ -4215,7 +4215,7 @@
     },
     {
       "id": "rift-legendary-abyss-haube-k01",
-      "name": "Abyss-Haube",
+      "name": "Abyss-Haube II",
       "slot": "helm",
       "reqLevel": 39,
       "rarity": "legendary",
@@ -4284,7 +4284,7 @@
     },
     {
       "id": "rift-legendary-abyss-mantel-n7i",
-      "name": "Abyss-Mantel",
+      "name": "Abyss-Mantel II",
       "slot": "armor",
       "reqLevel": 40,
       "rarity": "legendary",
@@ -4353,7 +4353,7 @@
     },
     {
       "id": "rift-legendary-abyss-marschtritt-5lo",
-      "name": "Abyss-Marschtritt",
+      "name": "Abyss-Marschtritt II",
       "slot": "boots",
       "reqLevel": 40,
       "rarity": "legendary",
@@ -6438,7 +6438,7 @@
     },
     {
       "id": "rift-mythic-jenseits-stiefel-xkp",
-      "name": "Jenseits-Stiefel",
+      "name": "Jenseits-Stiefel II",
       "slot": "boots",
       "reqLevel": 43,
       "rarity": "epic",
@@ -6501,7 +6501,7 @@
     },
     {
       "id": "rift-mythic-jenseits-reif-p3f",
-      "name": "Jenseits-Reif",
+      "name": "Jenseits-Reif II",
       "slot": "ring",
       "reqLevel": 43,
       "rarity": "epic",
@@ -6564,7 +6564,7 @@
     },
     {
       "id": "rift-mythic-jenseits-medaillon-u2p",
-      "name": "Jenseits-Medaillon",
+      "name": "Jenseits-Medaillon II",
       "slot": "amulet",
       "reqLevel": 44,
       "rarity": "epic",
@@ -6690,7 +6690,7 @@
     },
     {
       "id": "rift-mythic-jenseits-buckler-rah",
-      "name": "Jenseits-Buckler",
+      "name": "Jenseits-Buckler II",
       "slot": "shield",
       "reqLevel": 44,
       "rarity": "epic",
@@ -6753,7 +6753,7 @@
     },
     {
       "id": "rift-mythic-jenseits-haube-t82",
-      "name": "Jenseits-Haube",
+      "name": "Jenseits-Haube II",
       "slot": "helm",
       "reqLevel": 44,
       "rarity": "epic",
@@ -6816,7 +6816,7 @@
     },
     {
       "id": "rift-mythic-jenseits-mantel-ipt",
-      "name": "Jenseits-Mantel",
+      "name": "Jenseits-Mantel II",
       "slot": "armor",
       "reqLevel": 45,
       "rarity": "epic",
@@ -6879,7 +6879,7 @@
     },
     {
       "id": "rift-mythic-jenseits-marschtritt-sq2",
-      "name": "Jenseits-Marschtritt",
+      "name": "Jenseits-Marschtritt II",
       "slot": "boots",
       "reqLevel": 45,
       "rarity": "epic",
@@ -6942,7 +6942,7 @@
     },
     {
       "id": "rift-mythic-jenseits-ring-7o5",
-      "name": "Jenseits-Ring",
+      "name": "Jenseits-Ring II",
       "slot": "ring",
       "reqLevel": 45,
       "rarity": "epic",
@@ -7005,7 +7005,7 @@
     },
     {
       "id": "rift-mythic-jenseits-kette-0ed",
-      "name": "Jenseits-Kette",
+      "name": "Jenseits-Kette II",
       "slot": "amulet",
       "reqLevel": 45,
       "rarity": "epic",
@@ -7068,7 +7068,7 @@
     },
     {
       "id": "rift-mythic-jenseits-klinge-zw2",
-      "name": "Jenseits-Klinge",
+      "name": "Jenseits-Klinge II",
       "slot": "weapon",
       "reqLevel": 46,
       "rarity": "epic",
@@ -7131,7 +7131,7 @@
     },
     {
       "id": "rift-mythic-jenseits-tartsche-h1y",
-      "name": "Jenseits-Tartsche",
+      "name": "Jenseits-Tartsche II",
       "slot": "shield",
       "reqLevel": 46,
       "rarity": "epic",
@@ -7194,7 +7194,7 @@
     },
     {
       "id": "rift-mythic-jenseits-kappe-ee1",
-      "name": "Jenseits-Kappe",
+      "name": "Jenseits-Kappe II",
       "slot": "helm",
       "reqLevel": 46,
       "rarity": "epic",
@@ -7257,7 +7257,7 @@
     },
     {
       "id": "rift-mythic-jenseits-panzer-yvv",
-      "name": "Jenseits-Panzer",
+      "name": "Jenseits-Panzer II",
       "slot": "armor",
       "reqLevel": 46,
       "rarity": "legendary",
@@ -7326,7 +7326,7 @@
     },
     {
       "id": "rift-mythic-jenseits-schuhe-j1o",
-      "name": "Jenseits-Schuhe",
+      "name": "Jenseits-Schuhe II",
       "slot": "boots",
       "reqLevel": 47,
       "rarity": "legendary",
@@ -7395,7 +7395,7 @@
     },
     {
       "id": "rift-mythic-jenseits-siegelring-jx7",
-      "name": "Jenseits-Siegelring",
+      "name": "Jenseits-Siegelring II",
       "slot": "ring",
       "reqLevel": 47,
       "rarity": "legendary",
@@ -7464,7 +7464,7 @@
     },
     {
       "id": "rift-mythic-jenseits-amulett-63b",
-      "name": "Jenseits-Amulett",
+      "name": "Jenseits-Amulett II",
       "slot": "amulet",
       "reqLevel": 47,
       "rarity": "legendary",
@@ -7533,7 +7533,7 @@
     },
     {
       "id": "rift-mythic-jenseits-schwert-q4s",
-      "name": "Jenseits-Schwert",
+      "name": "Jenseits-Schwert II",
       "slot": "weapon",
       "reqLevel": 47,
       "rarity": "legendary",
@@ -7602,7 +7602,7 @@
     },
     {
       "id": "rift-mythic-jenseits-schild-cqp",
-      "name": "Jenseits-Schild",
+      "name": "Jenseits-Schild II",
       "slot": "shield",
       "reqLevel": 48,
       "rarity": "legendary",
@@ -7671,7 +7671,7 @@
     },
     {
       "id": "rift-mythic-jenseits-krone-7qs",
-      "name": "Jenseits-Krone",
+      "name": "Jenseits-Krone II",
       "slot": "helm",
       "reqLevel": 48,
       "rarity": "legendary",
@@ -7740,7 +7740,7 @@
     },
     {
       "id": "rift-mythic-jenseits-wams-j7k",
-      "name": "Jenseits-Wams",
+      "name": "Jenseits-Wams II",
       "slot": "armor",
       "reqLevel": 48,
       "rarity": "legendary",
@@ -7809,7 +7809,7 @@
     },
     {
       "id": "rift-mythic-jenseits-treter-cc1",
-      "name": "Jenseits-Treter",
+      "name": "Jenseits-Treter II",
       "slot": "boots",
       "reqLevel": 48,
       "rarity": "legendary",
@@ -7878,7 +7878,7 @@
     },
     {
       "id": "rift-mythic-jenseits-band-gyb",
-      "name": "Jenseits-Band",
+      "name": "Jenseits-Band II",
       "slot": "ring",
       "reqLevel": 49,
       "rarity": "legendary",
@@ -7947,7 +7947,7 @@
     },
     {
       "id": "rift-mythic-jenseits-anhaenger-3xg",
-      "name": "Jenseits-Anhänger",
+      "name": "Jenseits-Anhänger II",
       "slot": "amulet",
       "reqLevel": 49,
       "rarity": "legendary",
@@ -8016,7 +8016,7 @@
     },
     {
       "id": "rift-mythic-jenseits-axt-rov",
-      "name": "Jenseits-Axt",
+      "name": "Jenseits-Axt II",
       "slot": "weapon",
       "reqLevel": 49,
       "rarity": "legendary",
@@ -8085,7 +8085,7 @@
     },
     {
       "id": "rift-mythic-jenseits-bollwerk-7vx",
-      "name": "Jenseits-Bollwerk",
+      "name": "Jenseits-Bollwerk II",
       "slot": "shield",
       "reqLevel": 49,
       "rarity": "legendary",
@@ -8154,7 +8154,7 @@
     },
     {
       "id": "rift-mythic-jenseits-visier-a77",
-      "name": "Jenseits-Visier",
+      "name": "Jenseits-Visier II",
       "slot": "helm",
       "reqLevel": 50,
       "rarity": "legendary",
@@ -8223,7 +8223,7 @@
     },
     {
       "id": "rift-mythic-jenseits-brustplatte-722",
-      "name": "Jenseits-Brustplatte",
+      "name": "Jenseits-Brustplatte II",
       "slot": "armor",
       "reqLevel": 50,
       "rarity": "legendary",

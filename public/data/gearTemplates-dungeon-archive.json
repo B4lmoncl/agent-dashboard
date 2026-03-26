@@ -131,7 +131,7 @@
     },
     {
       "id": "dun-sunken-archive-archiv-klinge-yga",
-      "name": "Archiv-Klinge",
+      "name": "Archiv-Klinge II",
       "slot": "weapon",
       "reqLevel": 9,
       "rarity": "uncommon",
@@ -262,7 +262,7 @@
     },
     {
       "id": "dun-sunken-archive-archiv-klinge-vnz",
-      "name": "Archiv-Klinge",
+      "name": "Archiv-Klinge III",
       "slot": "weapon",
       "reqLevel": 11,
       "rarity": "uncommon",
@@ -526,7 +526,7 @@
     },
     {
       "id": "dun-sunken-archive-archiv-klinge-5dc",
-      "name": "Archiv-Klinge",
+      "name": "Archiv-Klinge IV",
       "slot": "weapon",
       "reqLevel": 12,
       "rarity": "rare",
@@ -922,7 +922,7 @@
     },
     {
       "id": "dun-sunken-archive-archiv-klinge-dw9",
-      "name": "Archiv-Klinge",
+      "name": "Archiv-Klinge V",
       "slot": "weapon",
       "reqLevel": 14,
       "rarity": "epic",

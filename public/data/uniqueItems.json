@@ -8,7 +8,7 @@
       "tier": 4,
       "reqLevel": 35,
       "desc": "Geschmiedet aus den Schuppen des Prokrastinations-Wyrms. Wer sie trägt, zögert nie.",
-      "flavorText": "Every task you postpone feeds the wyrm.",
+      "flavorText": "Jede Aufgabe die du aufschiebst, nährt den Wyrm. Diese Schuppe erinnert daran.",
       "icon": null,
       "affixes": {
         "primary": {
@@ -71,7 +71,7 @@
       "tier": 4,
       "reqLevel": 35,
       "desc": "Ein Splitter lebendiger Flamme aus dem Herzen des Burnout-Kolosses.",
-      "flavorText": "Rest is not weakness. It is the fuel for greater fire.",
+      "flavorText": "Ruhe ist keine Schwäche. Sie ist der Brennstoff für größeres Feuer.",
       "icon": null,
       "affixes": {
         "primary": {
@@ -134,7 +134,7 @@
       "tier": 4,
       "reqLevel": 35,
       "desc": "Getragen von jenen, die die vielen Stimmen der Chaos-Hydra zum Schweigen brachten.",
-      "flavorText": "Focus is the blade that cuts through chaos.",
+      "flavorText": "Fokus ist die Klinge die durch Chaos schneidet.",
       "icon": null,
       "affixes": {
         "primary": {
@@ -197,7 +197,7 @@
       "tier": 2,
       "reqLevel": 15,
       "desc": "Gebunden in wassergetränktes Leder, summt dieses Folianten-Rüstungsstück mit bewahrtem Wissen.",
-      "flavorText": "The archive remembers what the world has forgotten.",
+      "flavorText": "Das Archiv erinnert sich an das, was die Welt vergessen hat.",
       "icon": null,
       "affixes": {
         "primary": {
@@ -260,7 +260,7 @@
       "tier": 3,
       "reqLevel": 25,
       "desc": "Eine Klinge aus den Trümmern des kollabierten Turms. Knistert noch immer vor Restenergie.",
-      "flavorText": "What was broken can still cut deep.",
+      "flavorText": "Was zerbrochen war, kann immer noch tief schneiden.",
       "icon": null,
       "affixes": {
         "primary": {
@@ -323,7 +323,7 @@
       "tier": 5,
       "reqLevel": 40,
       "desc": "Ein dunkler Steinanhänger der Licht zu absorbieren scheint. Am tiefsten Punkt des Turms gefunden.",
-      "flavorText": "Stare into the hollow and it stares back.",
+      "flavorText": "Blicke in die Leere und sie blickt zurück.",
       "icon": null,
       "affixes": {
         "primary": {

@@ -134,7 +134,7 @@
     },
     {
       "id": "dun-shattered-spire-turm-klinge-4tv",
-      "name": "Turm-Klinge",
+      "name": "Turm-Klinge II",
       "slot": "weapon",
       "reqLevel": 17,
       "rarity": "uncommon",
@@ -398,7 +398,7 @@
     },
     {
       "id": "dun-shattered-spire-turm-klinge-mkd",
-      "name": "Turm-Klinge",
+      "name": "Turm-Klinge III",
       "slot": "weapon",
       "reqLevel": 19,
       "rarity": "rare",
@@ -794,7 +794,7 @@
     },
     {
       "id": "dun-shattered-spire-turm-klinge-5go",
-      "name": "Turm-Klinge",
+      "name": "Turm-Klinge IV",
       "slot": "weapon",
       "reqLevel": 20,
       "rarity": "rare",
@@ -1058,7 +1058,7 @@
     },
     {
       "id": "dun-shattered-spire-turm-klinge-chk",
-      "name": "Turm-Klinge",
+      "name": "Turm-Klinge V",
       "slot": "weapon",
       "reqLevel": 22,
       "rarity": "epic",
@@ -1373,7 +1373,7 @@
     },
     {
       "id": "dun-shattered-spire-turm-reif-1hy",
-      "name": "Turm-Reif",
+      "name": "Turm-Reif II",
       "slot": "ring",
       "reqLevel": 23,
       "rarity": "epic",
@@ -1499,7 +1499,7 @@
     },
     {
       "id": "dun-shattered-spire-turm-klinge-a4y",
-      "name": "Turm-Klinge",
+      "name": "Turm-Klinge VI",
       "slot": "weapon",
       "reqLevel": 23,
       "rarity": "epic",
@@ -1562,7 +1562,7 @@
     },
     {
       "id": "dun-shattered-spire-turm-buckler-jof",
-      "name": "Turm-Buckler",
+      "name": "Turm-Buckler II",
       "slot": "shield",
       "reqLevel": 23,
       "rarity": "epic",
@@ -1757,7 +1757,7 @@
     },
     {
       "id": "dun-shattered-spire-turm-marschtritt-28i",
-      "name": "Turm-Marschtritt",
+      "name": "Turm-Marschtritt II",
       "slot": "boots",
       "reqLevel": 24,
       "rarity": "legendary",

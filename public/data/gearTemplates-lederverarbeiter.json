@@ -1532,7 +1532,7 @@
     },
     {
       "id": "craft-leder-bestien-treter-fxf",
-      "name": "Bestien-Treter",
+      "name": "Bestien-Treter II",
       "slot": "boots",
       "tier": 4,
       "reqLevel": 47,
@@ -2167,7 +2167,7 @@
     },
     {
       "id": "craft-lederverarbeiter-leichtleder-wams",
-      "name": "Leichtleder-Wams",
+      "name": "Leichtleder-Wams II",
       "slot": "armor",
       "tier": 1,
       "reqLevel": 3,
@@ -2375,7 +2375,7 @@
     },
     {
       "id": "craft-lederverarbeiter-bestien-treter",
-      "name": "Bestien-Treter",
+      "name": "Bestien-Treter III",
       "slot": "boots",
       "tier": 3,
       "reqLevel": 21,
@@ -2445,7 +2445,7 @@
     },
     {
       "id": "craft-lederverarbeiter-leichtleder-stiefel",
-      "name": "Leichtleder-Stiefel",
+      "name": "Leichtleder-Stiefel II",
       "slot": "boots",
       "tier": 1,
       "reqLevel": 8,
