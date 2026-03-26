@@ -170,11 +170,14 @@ router.post('/api/mail/:mailId/collect', requireAuth, (req, res) => {
     u.gold = u.currencies.gold;
   }
 
-  // Collect items
+  // Collect items — reject if not enough inventory space
   u.inventory = u.inventory || [];
+  const mailItems = mail.items || [];
+  if (mailItems.length > 0 && u.inventory.length + mailItems.length > INVENTORY_CAP) {
+    return res.status(400).json({ error: `Not enough inventory space (need ${mailItems.length} slots, have ${INVENTORY_CAP - u.inventory.length})` });
+  }
   const collectedItems = [];
-  for (const item of (mail.items || [])) {
-    if (u.inventory.length >= INVENTORY_CAP) break;
+  for (const item of mailItems) {
     u.inventory.push(item);
     collectedItems.push(item.name || item.id);
   }

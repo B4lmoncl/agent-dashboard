@@ -48,7 +48,6 @@ const EFFECT_CATEGORIES = {
   night_double_gold: 'utility',
   every_nth_bonus: 'utility',
   variety_bonus: 'utility',
-  salvage_bonus: 'utility',
 };
 
 const EXTRACTION_COST = 500; // Essenz

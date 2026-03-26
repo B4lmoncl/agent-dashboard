@@ -688,7 +688,7 @@ function TradeItemGrid({ items, selectedIds, onToggle, sortKey, onSortChange }: 
                   <span className="absolute top-0.5 right-0.5 w-2 h-2 rounded-full" style={{ background: rc }} />
                   {/* Selection checkmark */}
                   {selected && (
-                    <span className="absolute bottom-0.5 right-0.5 w-4 h-4 rounded-full flex items-center justify-center" style={{ background: "#a855f7", fontSize: 10, color: "#fff", lineHeight: 1 }}>{"\u2713"}</span>
+                    <span className="absolute bottom-0.5 right-0.5 w-4 h-4 rounded-full flex items-center justify-center" style={{ background: "#a855f7", fontSize: 12, color: "#fff", lineHeight: 1 }}>{"\u2713"}</span>
                   )}
                 </button>
               </TipCustom>

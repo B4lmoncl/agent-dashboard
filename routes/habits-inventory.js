@@ -698,6 +698,7 @@ router.post('/api/player/:name/equip/:itemId', requireAuth, requireSelf('name'),
     affixes: invEntry.affixes || template.affixes || null,
     binding: invEntry.binding || template.binding || null,
     bound: invEntry.bound || (invEntry.binding === 'bop') || false,
+    locked: invEntry.locked || false,
     rolledAt: invEntry.rolledAt || invEntry.obtainedAt || now(),
   };
   // BoE items become bound on equip

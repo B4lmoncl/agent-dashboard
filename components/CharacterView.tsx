@@ -697,7 +697,7 @@ function InventorySlot({ item, level, idx, onItemClick, onDragStart, onDragOver,
         )}
         {/* Lock indicator */}
         {item.locked && (
-          <span style={{ position: "absolute", top: 1, left: 1, fontSize: 10, color: "#fbbf24", background: "rgba(0,0,0,0.7)", borderRadius: 2, padding: "0 2px", lineHeight: 1.4 }} title="Locked">{"\u{1F512}"}</span>
+          <span style={{ position: "absolute", top: 1, left: 1, fontSize: 12, color: "#fbbf24", background: "rgba(0,0,0,0.7)", borderRadius: 2, padding: "0 2px", lineHeight: 1.4 }} title="Locked">{"\u29BF"}</span>
         )}
       </button>
       {hovered && createPortal(<InventoryTooltip item={item} mousePosRef={mousePosRef} equippedItem={equippedForSlot} playerLevel={level} />, document.body)}
@@ -1040,7 +1040,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                 }}
               >
                 <span>{INV_SORTS.find(s => s.key === invSort)?.label ?? "Default"}</span>
-                <span style={{ fontSize: 10, opacity: 0.5 }}>{sortDropdownOpen ? "▲" : "▼"}</span>
+                <span style={{ fontSize: 12, opacity: 0.5 }}>{sortDropdownOpen ? "▲" : "▼"}</span>
               </button>
               {sortDropdownOpen && (
                 <div
@@ -1808,7 +1808,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                                       {isEquipped && (
                                         <span
                                           className="text-xs px-1.5 py-0 rounded-full font-medium flex-shrink-0"
-                                          style={{ background: `${c}20`, color: c, fontSize: 10, lineHeight: "16px" }}
+                                          style={{ background: `${c}20`, color: c, fontSize: 12, lineHeight: "16px" }}
                                         >
                                           Equipped
                                         </span>
@@ -1824,7 +1824,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                                     {isEarned ? (
                                       <div className="flex flex-col items-end">
                                         <span style={{ color: "#22c55e", fontSize: 12 }}>✓</span>
-                                        {earnedDate && <span className="text-xs" style={{ color: "rgba(255,255,255,0.2)", fontSize: 10 }}>{earnedDate}</span>}
+                                        {earnedDate && <span className="text-xs" style={{ color: "rgba(255,255,255,0.2)", fontSize: 12 }}>{earnedDate}</span>}
                                       </div>
                                     ) : (
                                       <span style={{ color: "rgba(255,255,255,0.2)", fontSize: 12 }}>🔒</span>
@@ -1960,7 +1960,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                                 {socket ? (
                                   <span className="w-2 h-2 rounded-full" style={{ background: GEM_COLORS[socket.gemType] || "#9ca3af" }} />
                                 ) : (
-                                  <span style={{ color: "rgba(255,255,255,0.15)", fontSize: 10 }}>+</span>
+                                  <span style={{ color: "rgba(255,255,255,0.15)", fontSize: 12 }}>+</span>
                                 )}
                               </div>
                               <div className="flex gap-0.5">

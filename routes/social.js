@@ -807,7 +807,7 @@ function executeTrade(trade) {
 
   // Transfer items: initiator → recipient
   for (const instanceId of items1) {
-    const idx = (u1.inventory || []).findIndex(i => i.id === instanceId);
+    const idx = (u1.inventory || []).findIndex(i => i.id === instanceId || i.instanceId === instanceId);
     if (idx !== -1) {
       const item = u1.inventory.splice(idx, 1)[0];
       item.obtainedAt = now();
@@ -819,7 +819,7 @@ function executeTrade(trade) {
 
   // Transfer items: recipient → initiator
   for (const instanceId of items2) {
-    const idx = (u2.inventory || []).findIndex(i => i.id === instanceId);
+    const idx = (u2.inventory || []).findIndex(i => i.id === instanceId || i.instanceId === instanceId);
     if (idx !== -1) {
       const item = u2.inventory.splice(idx, 1)[0];
       item.obtainedAt = now();

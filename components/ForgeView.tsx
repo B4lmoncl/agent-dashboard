@@ -1390,7 +1390,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                             const almostReady = !has && needed > 0 && owned >= needed * 0.6;
                             return (
                               <span key={matId} className={`text-sm flex items-center gap-1${almostReady ? " mat-almost-ready" : ""}`} style={{ color: has ? RARITY_COLORS[mat?.rarity || "common"] : "#f44", fontWeight: has ? "normal" : "bold" }}>
-                                {!has && <span style={{ color: "#f44", fontSize: 10, lineHeight: 1 }}>●</span>}
+                                {!has && <span style={{ color: "#f44", fontSize: 12, lineHeight: 1 }}>●</span>}
                                 <img src={mat?.icon || ""} alt="" width={16} height={16} style={{ imageRendering: "auto" }} onError={hideOnError} />
                                 {owned}/{needed} {mat?.name || matId}
                               </span>
