@@ -194,6 +194,52 @@ router.post('/api/mail/:mailId/collect', requireAuth, (req, res) => {
   });
 });
 
+// ─── POST /api/mail/collect-all — Collect all uncollected mail attachments ────
+
+router.post('/api/mail/collect-all', requireAuth, (req, res) => {
+  const uid = req.auth?.userId;
+  const u = state.users[uid];
+  if (!u) return res.status(404).json({ error: 'User not found' });
+
+  const mailbox = ensureMailbox(u);
+  const uncollected = mailbox.filter(m => !m.collected && ((m.gold || 0) > 0 || (m.items || []).length > 0));
+  if (uncollected.length === 0) return res.status(400).json({ error: 'Nothing to collect' });
+
+  // Check total inventory space needed
+  u.inventory = u.inventory || [];
+  const totalItems = uncollected.reduce((sum, m) => sum + (m.items || []).length, 0);
+  if (totalItems > 0 && u.inventory.length + totalItems > INVENTORY_CAP) {
+    return res.status(400).json({ error: `Not enough inventory space (need ${totalItems} slots, have ${INVENTORY_CAP - u.inventory.length})` });
+  }
+
+  ensureUserCurrencies(u);
+  let totalGold = 0;
+  let totalItemCount = 0;
+
+  for (const mail of uncollected) {
+    if (mail.gold > 0) {
+      u.currencies.gold = (u.currencies.gold || 0) + mail.gold;
+      totalGold += mail.gold;
+    }
+    for (const item of (mail.items || [])) {
+      u.inventory.push(item);
+      totalItemCount++;
+    }
+    mail.collected = true;
+    mail.read = true;
+  }
+  u.gold = u.currencies.gold;
+  saveUsers();
+
+  res.json({
+    ok: true,
+    mailsCollected: uncollected.length,
+    goldCollected: totalGold,
+    itemsCollected: totalItemCount,
+    message: `Collected ${uncollected.length} mails: ${totalGold > 0 ? `${totalGold} gold` : ''}${totalItemCount > 0 ? ` + ${totalItemCount} items` : ''}`,
+  });
+});
+
 // ─── POST /api/mail/:mailId/read — Mark mail as read ─────────────────────────
 
 router.post('/api/mail/:mailId/read', requireAuth, (req, res) => {

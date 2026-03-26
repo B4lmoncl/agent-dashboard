@@ -737,7 +737,9 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                       </span>
                     )}
                   </div>
-                  <p className="text-sm" style={{ color: "rgba(255,255,255,0.4)", lineHeight: 1.4 }}>{prof.description}</p>
+                  <p className="text-sm" style={{ color: "rgba(255,255,255,0.4)", lineHeight: 1.4 }}>{prof.description}
+                    <span className="text-xs ml-1" style={{ color: "rgba(255,255,255,0.2)" }}>· {recipes.filter(r => r.profession === prof.id).length} recipes</span>
+                  </p>
                   {synergy && (() => {
                     const partnerProf = professions.find(p => p.id === synergy.partner);
                     if (isChosen && synergyChosen) {

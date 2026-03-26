@@ -1291,7 +1291,8 @@ export default function Dashboard() {
             </div>
             <div className="rounded-xl px-6 py-16 text-center border-w6" style={{ background: "rgba(255,255,255,0.02)" }}>
               <p className="text-lg font-bold mb-2 text-w25">Coming Soon</p>
-              <p className="text-xs" style={{ color: "rgba(255,255,255,0.15)" }}>The Observatory will open soon. Watch for the stars.</p>
+              <p className="text-xs mb-4" style={{ color: "rgba(255,255,255,0.15)" }}>The Observatory will open soon. Watch for the stars.</p>
+              <button onClick={() => setDashView("questBoard")} className="text-xs px-4 py-2 rounded-lg" style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.4)", border: "1px solid rgba(255,255,255,0.1)", cursor: "pointer" }}>Back to Quest Board</button>
             </div>
           </div>
         )}
@@ -1742,7 +1743,8 @@ export default function Dashboard() {
             </div>
             <div className="rounded-xl px-6 py-16 text-center border-w6" style={{ background: "rgba(255,255,255,0.02)" }}>
               <p className="text-lg font-bold mb-2 text-w25">Coming Soon</p>
-              <p className="text-xs" style={{ color: "rgba(255,255,255,0.15)" }}>The Arcanum gathers its scrolls. Class quests and skill trees coming soon.</p>
+              <p className="text-xs mb-4" style={{ color: "rgba(255,255,255,0.15)" }}>The Arcanum gathers its scrolls. Class quests and skill trees coming soon.</p>
+              <button onClick={() => setDashView("questBoard")} className="text-xs px-4 py-2 rounded-lg" style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.4)", border: "1px solid rgba(255,255,255,0.1)", cursor: "pointer" }}>Back to Quest Board</button>
             </div>
           </div>
         )}

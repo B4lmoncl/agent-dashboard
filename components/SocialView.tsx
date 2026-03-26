@@ -1345,13 +1345,32 @@ function MailTab({ apiKey, playerName }: { apiKey: string; playerName: string })
           {unread > 0 && <span className="text-xs px-1.5 py-0.5 rounded-full font-bold" style={{ background: "rgba(239,68,68,0.2)", color: "#ef4444" }}>{unread}</span>}
           {hasAttachments > 0 && <span className="text-xs px-1.5 py-0.5 rounded font-semibold" style={{ background: "rgba(245,158,11,0.12)", color: "#f59e0b" }}>{hasAttachments} uncollected</span>}
         </div>
-        <button
-          onClick={() => setComposing(c => !c)}
+        <div className="flex items-center gap-2">
+          {hasAttachments > 0 && (
+            <button
+              onClick={async () => {
+                try {
+                  const r = await fetch("/api/mail/collect-all", { method: "POST", headers: getAuthHeaders(apiKey) });
+                  const data = await r.json();
+                  setActionMsg(data.message || data.error || "Done");
+                  setTimeout(() => setActionMsg(null), 4000);
+                  fetchMail();
+                } catch { setActionMsg("Network error"); }
+              }}
+              className="text-xs px-3 py-1.5 rounded-lg font-semibold"
+              style={{ background: "rgba(34,197,94,0.1)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.25)", cursor: "pointer" }}
+            >
+              Collect All
+            </button>
+          )}
+          <button
+            onClick={() => setComposing(c => !c)}
           className="text-xs px-3 py-1.5 rounded-lg font-semibold"
           style={{ background: composing ? "rgba(168,85,247,0.15)" : "rgba(168,85,247,0.08)", color: "#a855f7", border: "1px solid rgba(168,85,247,0.25)", cursor: "pointer" }}
         >
           {composing ? "Cancel" : "New Mail"}
         </button>
+        </div>
       </div>
 
       {/* Action message */}

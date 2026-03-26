@@ -354,7 +354,7 @@ export default function DashboardHeader({
           )}
           <div className="flex items-center gap-2 text-xs text-w30">
             <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: apiLive ? "#22c55e" : "rgba(255,255,255,0.15)", animation: apiLive ? "pulse-online 2s ease-in-out infinite" : "none" }} />
-            {apiLive ? "API Live" : "Static"}
+            {apiLive ? "Online" : "Offline"}
           </div>
           <div className="text-xs font-mono flex items-center gap-1.5 text-w25">
             <span className="w-1.5 h-1.5 rounded-full inline-block animate-pulse" style={{ background: "rgba(255,102,51,0.5)" }} />
