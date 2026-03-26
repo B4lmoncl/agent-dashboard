@@ -214,7 +214,7 @@ router.post('/api/player/:name/companion/pet', requireAuth, requireSelf('name'),
   }
   u.companion.lastPetted = now();
   // Battle Pass XP (only when bond XP was awarded)
-  if (!xpLimitReached && !onExpedition) { try { const { grantBattlePassXP } = require('./battlepass'); grantBattlePassXP(u, 'companion_pet'); } catch {} }
+  if (!xpLimitReached && !onExpedition) { try { const { grantBattlePassXP } = require('./battlepass'); grantBattlePassXP(u, 'companion_pet'); } catch (e) { console.warn('[bp-xp] companion_pet:', e.message); } }
   saveUsers();
   const bondInfo = getBondLevel(u.companion.bondXp || 0);
 
@@ -967,7 +967,7 @@ router.post('/api/player/:name/companion/expedition/collect', requireAuth, requi
   }
 
   // Grant Battle Pass XP (companion_pet source — companion activity)
-  try { const { grantBattlePassXP } = require('./battlepass'); grantBattlePassXP(u, 'companion_pet'); } catch {}
+  try { const { grantBattlePassXP } = require('./battlepass'); grantBattlePassXP(u, 'companion_pet'); } catch (e) { console.warn('[bp-xp] companion_pet:', e.message); }
 
   saveUsers();
   const companionName = u.companion.name || 'Your companion';

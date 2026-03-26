@@ -167,7 +167,7 @@ router.post('/api/daily-bonus/claim', requireApiKey, (req, res) => {
   }
 
   // Battle Pass XP
-  try { const { grantBattlePassXP } = require('./battlepass'); grantBattlePassXP(u, 'login'); } catch {}
+  try { const { grantBattlePassXP } = require('./battlepass'); grantBattlePassXP(u, 'login'); } catch (e) { console.warn('[bp-xp] login:', e.message); }
 
   saveUsers();
   res.json({

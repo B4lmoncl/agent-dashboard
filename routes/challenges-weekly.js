@@ -338,7 +338,7 @@ router.post('/api/weekly-challenge/claim', requireAuth, (req, res) => {
   }
 
   // Battle Pass XP — award per star earned
-  try { const { grantBattlePassXP } = require('./battlepass'); for (let s = 0; s < stageStars; s++) grantBattlePassXP(u, 'sternenpfad_star'); } catch {}
+  try { const { grantBattlePassXP } = require('./battlepass'); for (let s = 0; s < stageStars; s++) grantBattlePassXP(u, 'sternenpfad_star'); } catch (e) { console.warn('[bp-xp] sternenpfad_star:', e.message); }
 
   // Advance stage
   u.weeklyChallenge.completedStages.push(nextStage);

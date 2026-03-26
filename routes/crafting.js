@@ -264,7 +264,6 @@ router.get('/api/professions', (req, res) => {
           cooldownRemaining: 0,
         };
       }
-      const profProgress = u ? getProfLevel(u, r.profession) : { level: 0 };
       const learned = isRecipeDiscovered(r, profProgress, u);
       const recipeCooldowns = (u?.professions || {})[r.profession]?.recipeCooldowns || {};
       const lastRecipeCraft = recipeCooldowns[r.id] || null;
@@ -908,7 +907,7 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
   }
 
   // Battle Pass XP
-  try { const { grantBattlePassXP } = require('./battlepass'); grantBattlePassXP(u, 'crafting'); } catch {}
+  try { const { grantBattlePassXP } = require('./battlepass'); grantBattlePassXP(u, 'crafting'); } catch (e) { console.warn('[bp-xp] crafting:', e.message); }
 
   saveUsers();
   res.json({

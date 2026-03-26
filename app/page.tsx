@@ -92,6 +92,8 @@ const PROF_META: Record<string, { name: string; icon: string; color: string }> =
   verzauberer: { name: "Enchanter", icon: "/images/icons/prof-verzauberer.png", color: "#a78bfa" },
   koch: { name: "Cook", icon: "/images/icons/prof-koch.png", color: "#e87b35" },
 };
+const PLAYER_QUEST_TYPES: string[] = ["personal", "learning", "fitness", "social", "relationship-coop"];
+
 const MAT_RARITY_COLORS: Record<string, string> = {
   common: "#9ca3af", uncommon: "#22c55e", rare: "#3b82f6", epic: "#a855f7", legendary: "#f59e0b", unique: "#e6cc80",
 };
@@ -404,8 +406,8 @@ export default function Dashboard() {
       if (ac.achievements.length > 0) setAchievementCatalogue(ac.achievements);
       setCampaigns(camps);
       if (pName) {
-        fetchRituals(pName).then(setRituals);
-        fetchHabits(pName).then(setHabits);
+        fetchRituals(pName).then(setRituals).catch(() => {});
+        fetchHabits(pName).then(setHabits).catch(() => {});
       }
       try { const r = await fetch(`/api/health`, { signal: AbortSignal.timeout(1500) }); setApiLive(r.ok); } catch { setApiLive(false); }
       try {
@@ -627,7 +629,7 @@ export default function Dashboard() {
   const loggedInUser = useMemo(() => playerName ? users.find(u => u.id.toLowerCase() === playerNameLower || u.name.toLowerCase() === playerNameLower) : null, [playerName, playerNameLower, users]);
   const currentPlayerLevel = useMemo(() => loggedInUser ? getUserLevel(loggedInUser.xp ?? 0).level : undefined, [loggedInUser]);
 
-  const playerTypes = useMemo(() => ["personal", "learning", "fitness", "social", "relationship-coop"], []);
+  const playerTypes = PLAYER_QUEST_TYPES;
   const playerActiveQuests = useMemo(() => quests.inProgress.filter(q => playerTypes.includes(q.type ?? "") && q.claimedBy?.toLowerCase() === playerNameLower), [quests.inProgress, playerTypes, playerNameLower]);
   const playerCompletedQuests = useMemo(() => quests.completed.filter(q => playerTypes.includes(q.type ?? "") && q.completedBy?.toLowerCase() === playerNameLower), [quests.completed, playerTypes, playerNameLower]);
   // Use persistent counter from user record (survives rotation cleanup)

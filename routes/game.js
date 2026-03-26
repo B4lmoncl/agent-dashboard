@@ -311,9 +311,9 @@ router.post('/api/rituals/:id/complete', requireApiKey, (req, res) => {
     saveUsers();
 
     // Battle Pass XP
-    try { const { grantBattlePassXP } = require('./battlepass'); grantBattlePassXP(u, 'ritual_complete'); } catch {}
+    try { const { grantBattlePassXP } = require('./battlepass'); grantBattlePassXP(u, 'ritual_complete'); } catch (e) { console.warn('[bp-xp] ritual_complete:', e.message); }
     if (ritual.isAntiRitual) {
-      try { const { grantBattlePassXP } = require('./battlepass'); grantBattlePassXP(u, 'vow_clean_day'); } catch {}
+      try { const { grantBattlePassXP } = require('./battlepass'); grantBattlePassXP(u, 'vow_clean_day'); } catch (e) { console.warn('[bp-xp] vow_clean_day:', e.message); }
     }
   }
   saveRituals();

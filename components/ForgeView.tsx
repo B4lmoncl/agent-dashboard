@@ -1415,6 +1415,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                                       style={{
                                         background: `linear-gradient(90deg, ${selectedNpc.color}50, ${selectedNpc.color}30)`,
                                         animation: `craft-cast-fill ${CRAFT_CAST_MS}ms linear forwards`,
+                                        transformOrigin: "left",
                                       }}
                                     />
                                   </div>

@@ -275,7 +275,7 @@ router.post('/api/daily-missions/claim', requireAuth, (req, res) => {
   }
 
   // Battle Pass XP
-  try { const { grantBattlePassXP } = require('./battlepass'); grantBattlePassXP(u, 'daily_mission_milestone', { points: threshold }); } catch {}
+  try { const { grantBattlePassXP } = require('./battlepass'); grantBattlePassXP(u, 'daily_mission_milestone', { points: threshold }); } catch (e) { console.warn('[bp-xp] daily_mission_milestone:', e.message); }
 
   saveUsers();
   res.json({ success: true, reward, earned });

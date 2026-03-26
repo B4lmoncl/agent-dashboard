@@ -235,7 +235,7 @@ router.post('/api/expedition/claim', requireAuth, (req, res) => {
   }
 
   // Battle Pass XP
-  try { const { grantBattlePassXP } = require('./battlepass'); grantBattlePassXP(u, 'expedition_checkpoint'); } catch {}
+  try { const { grantBattlePassXP } = require('./battlepass'); grantBattlePassXP(u, 'expedition_checkpoint'); } catch (e) { console.warn('[bp-xp] expedition_checkpoint:', e.message); }
 
   exp.claimedRewards[uid].push(cpNum);
   saveExpeditionState();
