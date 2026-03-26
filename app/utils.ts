@@ -129,6 +129,7 @@ export async function fetchDashboard(playerName?: string): Promise<{
   worldBossActive?: boolean;
   riftActive?: boolean;
   dungeonActive?: boolean;
+  notifications?: Record<string, number> | null;
   apiLive: boolean;
 } | null> {
   try {

@@ -44,3 +44,36 @@ Dokumentiere alles in `AUDIT_REPORT.md`.
 - Guild Hall Referenz: Urithiru (Stormlight Archive, Brandon Sanderson)
 
 **Starte jetzt.**
+
+---
+
+## Bereits vorgeschlagen & abgelehnt (NICHT erneut vorschlagen)
+
+### Session 30 — Content/Economy Runde
+- Auction House (WoW AH)
+- Companion Equipment (D3 Follower Gear)
+- Primal / Ancient Items (D3 ultra-rare tier)
+- Great Vault (WoW Weekly Vault)
+- Caldesann's Despair (D3 gem augment)
+- Work Orders (WoW Dragonflight craft orders)
+
+### Session 30 — QoL/UI Runde 1
+- Gear Loadouts / Armory (D3 Armory)
+- Junk-Markierung + Salvage All Junk
+- Inventar Slot-Filter (nach Waffen/Rüstung etc.)
+- Stat-Aufschlüsselung (Klick auf Stat → Quellen)
+- Rift Timer Urgency + Post-Rift Summary
+- Nav-Notification Badges (rote Zahlen auf Tabs)
+- Pinned Objective Tracker (Floating Widget)
+- Activity Log / Event Feed
+- Weekly Statistics Page
+- Achievement Kategorien mit Sub-Tabs
+- Keyboard Shortcuts (I/C/P/R/M)
+- Companion Expedition History Log
+
+### Session 30 — QoL/UI Runde 2
+- Stat-Aufschlüsselung (Klick auf Stat → Quellen)
+- Gear Loadouts / Armory (D3 Armory)
+- Achievement Fast-Fertig Section (>75% complete)
+- Watched Faction Rep (Pin im Header)
+- Failure Recap (Rift/Dungeon Post-Mortem)

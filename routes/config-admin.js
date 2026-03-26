@@ -149,6 +149,53 @@ router.get('/api/dashboard', async (req, res) => {
     }
   }
 
+  // ─── Notification badge aggregation (lightweight state access) ────────────
+  let notifications = null;
+  if (playerLower) {
+    const u = state.users[playerLower];
+    if (u) {
+      // Unclaimed daily milestones
+      const today = new Date().toISOString().slice(0, 10);
+      const dm = dailyMissions;
+      const unclaimedMilestones = dm ? dm.milestones.filter(m => dm.earned >= m.threshold && !m.claimed).length : 0;
+
+      // Unread mail
+      const mailbox = u.mailbox || [];
+      const unreadMail = mailbox.filter(m => !m.read).length;
+      const uncollectedMail = mailbox.filter(m => !m.collected && ((m.gold || 0) > 0 || (m.items || []).length > 0)).length;
+
+      // Companion expedition completed
+      const compExp = u.companionExpedition;
+      const expeditionReady = compExp && !compExp.collected && compExp.completesAt && new Date(compExp.completesAt) <= new Date() ? 1 : 0;
+
+      // World boss claimable
+      const wbClaimable = (() => {
+        try {
+          const wbState = require('./world-boss').getWorldBossState?.();
+          if (!wbState?.boss?.defeated) return 0;
+          const claimed = wbState.boss.rewardsClaimed || [];
+          const contributed = (wbState.boss.contributions || []).some(c => c.playerId === playerLower);
+          return contributed && !claimed.includes(playerLower) ? 1 : 0;
+        } catch { return 0; }
+      })();
+
+      // Pending social (already computed above)
+      const social = socialSummary || { pendingFriendRequests: 0, unreadMessages: 0, activeTrades: 0 };
+
+      notifications = {
+        dailyBonus: dailyBonusAvailable ? 1 : 0,
+        unclaimedMilestones,
+        unreadMail,
+        uncollectedMail,
+        expeditionReady,
+        wbClaimable,
+        pendingFriendRequests: social.pendingFriendRequests,
+        unreadMessages: social.unreadMessages,
+        activeTrades: social.activeTrades,
+      };
+    }
+  }
+
   res.json({
     agents: agents || [],
     quests: quests || { open: [], inProgress: [], completed: [], suggested: [], rejected: [] },
@@ -172,6 +219,7 @@ router.get('/api/dashboard', async (req, res) => {
       return !!(u?.activeRift && !u.activeRift.completed && !u.activeRift.failed && new Date(u.activeRift.expiresAt) > new Date());
     })(),
     dungeonActive: isDungeonActiveForPlayer(playerLower),
+    notifications,
     apiLive: true,
   });
 });

@@ -119,6 +119,7 @@ export default function Dashboard() {
   const [weeklyChallenge, setWeeklyChallenge] = useState<import("@/app/types").WeeklyChallenge | null>(null);
   const [expedition, setExpedition] = useState<import("@/app/types").Expedition | null>(null);
   const [socialBadge, setSocialBadge] = useState<{ pendingFriendRequests: number; unreadMessages: number; activeTrades: number } | null>(null);
+  const [navNotifs, setNavNotifs] = useState<Record<string, number>>({});
   const [worldBossActive, setWorldBossActive] = useState(false);
   const [riftActive, setRiftActive] = useState(false);
   const [dungeonActive, setDungeonActive] = useState(false);
@@ -376,6 +377,20 @@ export default function Dashboard() {
       if (batch.expedition !== undefined) setExpedition(batch.expedition || null);
       if (batch.socialSummary) setSocialBadge(batch.socialSummary);
       if (batch.dailyMissions) setDailyMissions(batch.dailyMissions);
+      // Aggregate notification badges per room tab
+      if (batch.notifications) {
+        const n = batch.notifications;
+        const counts: Record<string, number> = {};
+        // Great Halls: daily bonus, world boss
+        counts.worldboss = n.wbClaimable || 0;
+        // Trading District: craft cooldowns ready (not tracked yet), milestones
+        counts.bazaar = n.unclaimedMilestones || 0;
+        // Breakaway: mail + trades + friends
+        counts.social = (n.unreadMail || 0) + (n.uncollectedMail || 0) + (n.activeTrades || 0) + (n.pendingFriendRequests || 0);
+        // Character: companion expedition
+        counts.character = n.expeditionReady || 0;
+        setNavNotifs(counts);
+      }
       if (batch.worldBossActive !== undefined) setWorldBossActive(!!batch.worldBossActive);
       if (batch.riftActive !== undefined) setRiftActive(!!batch.riftActive);
       if (batch.dungeonActive !== undefined) setDungeonActive(!!batch.dungeonActive);
@@ -1101,15 +1116,18 @@ export default function Dashboard() {
           const visibleRooms = currentFloor.rooms.filter(r => !r.requiresLogin || playerName);
           // Notification dots per room
           const socialTotal = socialBadge ? (socialBadge.pendingFriendRequests + socialBadge.unreadMessages + socialBadge.activeTrades) : 0;
-          const getRoomNotif = (key: string) => {
+          const getRoomNotif = (key: string): { color: string; count?: number } | null => {
             if (dashView === key) return null;
-            if (key === "questBoard" && notifNewQuests) return "#4ade80";
-            if (key === "npcBoard" && notifNewNpcs) return "#f59e0b";
-            if (key === "social" && socialTotal > 0) return "#a855f7";
+            if (key === "questBoard" && notifNewQuests) return { color: "#4ade80" };
+            if (key === "npcBoard" && notifNewNpcs) return { color: "#f59e0b" };
+            if (key === "social" && socialTotal > 0) return { color: "#a855f7", count: socialTotal };
+            const nc = navNotifs[key];
+            if (nc && nc > 0) return { color: "#ef4444", count: nc };
             return null;
           };
           // Check if a floor has any notification
           const floorHasNotif = (floor: Floor) => floor.rooms.some(r => getRoomNotif(r.key) !== null);
+          const floorNotifCount = (floor: Floor) => floor.rooms.reduce((sum, r) => sum + (getRoomNotif(r.key)?.count || 0), 0);
 
           return (
             <div data-tutorial="nav-bar" className="space-y-0">
@@ -1140,12 +1158,12 @@ export default function Dashboard() {
                     >
                       <span style={{ fontSize: 14 }}>{floor.icon}</span>
                       <span className="hidden sm:inline">{floor.name}</span>
-                      {hasNotif && <span className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full badge-enter" style={{ background: "#4ade80", boxShadow: "0 0 4px #4ade80" }} />}
-                      {floor.id === "breakaway" && socialTotal > 0 && !isActive && (
-                        <span className="absolute -top-1 -right-1 min-w-[16px] h-4 rounded-full flex items-center justify-center text-xs font-bold badge-enter" style={{ background: "#a855f7", color: "#fff", fontSize: 12, padding: "0 4px", boxShadow: "0 0 6px rgba(168,85,247,0.4)" }}>
-                          {socialTotal}
-                        </span>
-                      )}
+                      {(() => {
+                        const fc = !isActive ? floorNotifCount(floor) : 0;
+                        if (fc > 0) return <span className="absolute -top-1 -right-1 min-w-[16px] h-4 rounded-full flex items-center justify-center text-xs font-bold badge-enter" style={{ background: "#ef4444", color: "#fff", fontSize: 12, padding: "0 4px", boxShadow: "0 0 6px rgba(239,68,68,0.4)" }}>{fc}</span>;
+                        if (hasNotif) return <span className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full badge-enter" style={{ background: "#4ade80", boxShadow: "0 0 4px #4ade80" }} />;
+                        return null;
+                      })()}
                     </button>
                   );
                 })}
@@ -1262,7 +1280,10 @@ export default function Dashboard() {
                     >
                       {room.iconSrc && <img src={room.iconSrc} alt="" width={24} height={24} className={`${room.key === "gacha" ? "vault-nav-glow" : ""} img-render-auto`} style={{ opacity: isActive ? 1 : 0.5 }} onError={e => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} />}
                       {seasonLabel}
-                      {notifDot && <span className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full" style={{ background: notifDot, boxShadow: `0 0 4px ${notifDot}` }} />}
+                      {notifDot && (notifDot.count && notifDot.count > 0
+                        ? <span className="absolute -top-1 -right-1.5 min-w-[16px] h-4 rounded-full flex items-center justify-center text-xs font-bold" style={{ background: notifDot.color, color: "#000", fontSize: 12, lineHeight: 1, padding: "0 3px", boxShadow: `0 0 4px ${notifDot.color}` }}>{notifDot.count}</span>
+                        : <span className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full" style={{ background: notifDot.color, boxShadow: `0 0 4px ${notifDot.color}` }} />
+                      )}
                     </button>
                   );
                 })}
