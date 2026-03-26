@@ -14,16 +14,41 @@
       "cooldownDays": 7,
       "gearScoreThreshold": 100,
       "rewards": {
-        "gold": [200, 500],
-        "essenz": [5, 12],
-        "runensplitter": [2, 5],
-        "materials": { "count": [3, 6] },
-        "gems": { "chance": 0.4, "maxTier": 2 },
-        "gearDrop": { "chance": 0.3, "minRarity": "rare" }
+        "gold": [
+          200,
+          500
+        ],
+        "essenz": [
+          5,
+          12
+        ],
+        "runensplitter": [
+          2,
+          5
+        ],
+        "materials": {
+          "count": [
+            3,
+            6
+          ]
+        },
+        "gems": {
+          "chance": 0.4,
+          "maxTier": 2
+        },
+        "gearDrop": {
+          "chance": 0.3,
+          "minRarity": "rare"
+        }
       },
       "bonusRewards": {
-        "title": "Archive Delver",
-        "frame": { "id": "sunken-archive-frame", "name": "Archive Delver", "color": "#22c55e", "glow": false }
+        "title": "Archivtaucher",
+        "frame": {
+          "id": "sunken-archive-frame",
+          "name": "Archivtaucher",
+          "color": "#22c55e",
+          "glow": false
+        }
       }
     },
     {
@@ -40,17 +65,45 @@
       "cooldownDays": 7,
       "gearScoreThreshold": 250,
       "rewards": {
-        "gold": [500, 1200],
-        "essenz": [10, 25],
-        "runensplitter": [5, 12],
-        "sternentaler": [1, 3],
-        "materials": { "count": [5, 10] },
-        "gems": { "chance": 0.6, "maxTier": 3 },
-        "gearDrop": { "chance": 0.5, "minRarity": "epic" }
+        "gold": [
+          500,
+          1200
+        ],
+        "essenz": [
+          10,
+          25
+        ],
+        "runensplitter": [
+          5,
+          12
+        ],
+        "sternentaler": [
+          1,
+          3
+        ],
+        "materials": {
+          "count": [
+            5,
+            10
+          ]
+        },
+        "gems": {
+          "chance": 0.6,
+          "maxTier": 3
+        },
+        "gearDrop": {
+          "chance": 0.5,
+          "minRarity": "epic"
+        }
       },
       "bonusRewards": {
-        "title": "Spire Breaker",
-        "frame": { "id": "shattered-spire-frame", "name": "Spire Breaker", "color": "#3b82f6", "glow": true }
+        "title": "Turmbrecher",
+        "frame": {
+          "id": "shattered-spire-frame",
+          "name": "Turmbrecher",
+          "color": "#3b82f6",
+          "glow": true
+        }
       }
     },
     {
@@ -67,17 +120,45 @@
       "cooldownDays": 7,
       "gearScoreThreshold": 500,
       "rewards": {
-        "gold": [1000, 3000],
-        "essenz": [20, 50],
-        "runensplitter": [10, 25],
-        "sternentaler": [3, 8],
-        "materials": { "count": [8, 15] },
-        "gems": { "chance": 0.8, "maxTier": 5 },
-        "gearDrop": { "chance": 0.7, "minRarity": "legendary" }
+        "gold": [
+          1000,
+          3000
+        ],
+        "essenz": [
+          20,
+          50
+        ],
+        "runensplitter": [
+          10,
+          25
+        ],
+        "sternentaler": [
+          3,
+          8
+        ],
+        "materials": {
+          "count": [
+            8,
+            15
+          ]
+        },
+        "gems": {
+          "chance": 0.8,
+          "maxTier": 5
+        },
+        "gearDrop": {
+          "chance": 0.7,
+          "minRarity": "legendary"
+        }
       },
       "bonusRewards": {
-        "title": "Voidwalker",
-        "frame": { "id": "hollow-core-frame", "name": "Voidwalker", "color": "#ef4444", "glow": true }
+        "title": "Leerenwandler",
+        "frame": {
+          "id": "hollow-core-frame",
+          "name": "Leerenwandler",
+          "color": "#ef4444",
+          "glow": true
+        }
       }
     }
   ]
