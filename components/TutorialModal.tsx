@@ -102,7 +102,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                 </ol>
               </GuideSection>
 
-              <GuideSection title="Die 6 Stockwerke von Urithiru" icon="◆" accent="rgba(251,191,36,0.3)">
+              <GuideSection title="Die 5 Stockwerke von Urithiru" icon="◆" accent="rgba(251,191,36,0.3)">
                 Die Quest Hall ist wie der Turm Urithiru in Stockwerke gegliedert:
                 <div className="grid gap-1.5 mt-2">
                   <div className="rounded-lg px-2.5 py-1.5 flex items-center gap-2" style={{ background: "rgba(251,191,36,0.06)" }}>
@@ -123,11 +123,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                   </div>
                   <div className="rounded-lg px-2.5 py-1.5 flex items-center gap-2" style={{ background: "rgba(236,72,153,0.06)" }}>
                     <span style={{ color: "#ec4899", fontWeight: 800, fontSize: 12, width: 14, textAlign: "center" }}>⬡</span>
-                    <div><Stat color="#ec4899">The Breakaway</Stat> — Freunde, Nachrichten, Handel</div>
-                  </div>
-                  <div className="rounded-lg px-2.5 py-1.5 flex items-center gap-2" style={{ background: "rgba(217,119,6,0.06)" }}>
-                    <span style={{ fontSize: 12, width: 14, textAlign: "center" }}>🔥</span>
-                    <div><Stat color="#d97706">The Hearth</Stat> — Ruhemodus, Streak-Freeze, Regeneration</div>
+                    <div><Stat color="#ec4899">The Breakaway</Stat> — Freunde, Nachrichten, Handel, The Hearth</div>
                   </div>
                 </div>
               </GuideSection>
@@ -372,38 +368,54 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                 <div className="grid grid-cols-2 gap-1.5 mt-2">
                   <div className="rounded-lg p-2" style={{ background: "rgba(245,158,11,0.06)", border: "1px solid rgba(245,158,11,0.15)" }}>
                     <p className="font-bold text-xs" style={{ color: "#f59e0b" }}>▪ Grimvar (Schmied)</p>
-                    <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>Gear Reroll, Rarity Up · Lv5+</p>
+                    <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>Heavy Armor</p>
+                  </div>
+                  <div className="rounded-lg p-2" style={{ background: "rgba(168,85,247,0.06)", border: "1px solid rgba(168,85,247,0.15)" }}>
+                    <p className="font-bold text-xs" style={{ color: "#a855f7" }}>▪ Selina (Schneider)</p>
+                    <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>Cloth Armor</p>
+                  </div>
+                  <div className="rounded-lg p-2" style={{ background: "rgba(180,83,9,0.06)", border: "1px solid rgba(180,83,9,0.15)" }}>
+                    <p className="font-bold text-xs" style={{ color: "#b45309" }}>▪ Roderic (Lederverarbeiter)</p>
+                    <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>Leather Armor</p>
+                  </div>
+                  <div className="rounded-lg p-2" style={{ background: "rgba(220,38,38,0.06)", border: "1px solid rgba(220,38,38,0.15)" }}>
+                    <p className="font-bold text-xs" style={{ color: "#dc2626" }}>▪ Varn (Waffenschmied)</p>
+                    <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>Weapons + Shields</p>
+                  </div>
+                  <div className="rounded-lg p-2" style={{ background: "rgba(236,72,153,0.06)", border: "1px solid rgba(236,72,153,0.15)" }}>
+                    <p className="font-bold text-xs" style={{ color: "#ec4899" }}>◈ Mirael (Juwelier)</p>
+                    <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>Rings + Amulets + Gems</p>
                   </div>
                   <div className="rounded-lg p-2" style={{ background: "rgba(34,197,94,0.06)", border: "1px solid rgba(34,197,94,0.15)" }}>
                     <p className="font-bold text-xs" style={{ color: "#22c55e" }}>◈ Ysolde (Alchemist)</p>
-                    <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>Tränke, Buffs · Lv5+</p>
-                  </div>
-                  <div className="rounded-lg p-2" style={{ background: "rgba(167,139,250,0.06)", border: "1px solid rgba(167,139,250,0.15)" }}>
-                    <p className="font-bold text-xs" style={{ color: "#a78bfa" }}>✨ Eldric (Verzauberer)</p>
-                    <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>Enchants, Infusions · Lv8+</p>
+                    <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>Potions + Transmutes</p>
                   </div>
                   <div className="rounded-lg p-2" style={{ background: "rgba(232,123,53,0.06)", border: "1px solid rgba(232,123,53,0.15)" }}>
                     <p className="font-bold text-xs" style={{ color: "#e87b35" }}>● Bruna (Koch)</p>
-                    <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>Mahlzeiten, Buffs · Lv3+</p>
+                    <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>Meals + Feasts</p>
+                  </div>
+                  <div className="rounded-lg p-2" style={{ background: "rgba(99,102,241,0.06)", border: "1px solid rgba(99,102,241,0.15)" }}>
+                    <p className="font-bold text-xs" style={{ color: "#6366f1" }}>✨ Eldric (Verzauberer)</p>
+                    <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>Enchants + Scrolls</p>
                   </div>
                 </div>
               </GuideSection>
 
               <GuideSection title="Berufs-Slots & Ränge" icon="▲">
                 <ul className="space-y-1 mt-2">
-                  <li>• Slots: <strong>1</strong> ab Lv5, <strong>2</strong> ab Lv15, <strong>3</strong> ab Lv20, <strong>4</strong> ab Lv25</li>
-                  <li>• 10 Level pro Beruf: <Stat color="#6b7280">Novice</Stat> → <Stat color="#22c55e">Apprentice</Stat> → <Stat color="#3b82f6">Journeyman</Stat> → <Stat color="#a855f7">Expert</Stat> → <Stat color="#f59e0b">Artisan</Stat> → <Stat color="#ef4444">Master</Stat></li>
-                  <li>• <Stat color="#ef4444">Wechsel</Stat>: 200 Essenz, Fortschritt geht verloren!</li>
+                  <li>• <strong>2 Berufs-Slots</strong> — immer verfügbar, kostenlos wechselbar</li>
+                  <li>• 300 Max Skill. 4 Ränge: <Stat color="#22c55e">Apprentice</Stat> (75) → <Stat color="#3b82f6">Journeyman</Stat> (150) → <Stat color="#a855f7">Expert</Stat> (225) → <Stat color="#f59e0b">Artisan</Stat> (300)</li>
+                  <li>• <Stat color="#ef4444">Wechsel</Stat>: Kostenlos — aber Skill + Rezepte gehen verloren</li>
                   <li>• <Stat color="#facc15">Daily Bonus</Stat>: Erstes Crafting/Tag = 2× Berufs-XP</li>
                 </ul>
               </GuideSection>
 
               <GuideSection title="Skill-Up Farben" icon="◆">
-                <div className="flex gap-3 mt-2">
-                  <div className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-full" style={{ background: "#f97316" }} /> <span>100%</span></div>
-                  <div className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-full" style={{ background: "#eab308" }} /> <span>75%</span></div>
-                  <div className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-full" style={{ background: "#22c55e" }} /> <span>25%</span></div>
-                  <div className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-full" style={{ background: "#6b7280" }} /> <span>0%</span></div>
+                <div className="flex gap-3 mt-2 flex-wrap">
+                  <div className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-full" style={{ background: "#f97316" }} /> <span>garantiert</span></div>
+                  <div className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-full" style={{ background: "#eab308" }} /> <span>wahrscheinlich</span></div>
+                  <div className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-full" style={{ background: "#22c55e" }} /> <span>selten</span></div>
+                  <div className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-full" style={{ background: "#6b7280" }} /> <span>unmöglich</span></div>
                 </div>
               </GuideSection>
 
@@ -417,16 +429,19 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
               <GuideSection title="Materialien & Rezepte" icon="◆">
                 5 Seltenheitsstufen: <Rarity r="common">Common</Rarity> bis <Rarity r="legendary">Legendary</Rarity>. Quellen: Quest-Drops + Zerlegung.
                 <ul className="space-y-1 mt-2">
+                  <li>• <Stat color="#f59e0b">Affinity-System</Stat> — Materialien droppen NUR wenn du einen Beruf gewählt hast</li>
                   <li>• <Stat color="#f0f0f0">Trainer-Rezepte</Stat> — Beim NPC kaufen (Gold). Basis gratis.</li>
                   <li>• <Stat color="#a78bfa">Drop-Rezepte</Stat> — Seltene Quest-Drops, abhängig von Quest-Seltenheit.</li>
+                  <li>• <Stat color="#3b82f6">Faction-Rezepte</Stat> — Freigeschaltet durch Fraktions-Reputation.</li>
+                  <li>• <Stat color="#ef4444">Dungeon-Rezepte</Stat> — Seltene Drops aus The Undercroft.</li>
                 </ul>
               </GuideSection>
 
               <GuideSection title="Upgrades & Mastery" icon="◆" accent="rgba(251,191,36,0.3)">
                 <ul className="space-y-1 mt-2">
                   <li>• <Stat color="#f0f0f0">Workshop Tools</Stat>: <Stat color="#9ca3af">Sturdy +2%</Stat> → <Stat color="#3b82f6">Masterwork +4%</Stat> → <Rarity r="legendary">Legendary +7%</Rarity> → <Stat color="#a855f7">Mythic +10%</Stat> permanenter XP-Bonus</li>
-                  <li>• <Stat color="#facc15">Passive Gathering</Stat>: Aktive Berufe sammeln Materialien bei Quests (5% bis 35%)</li>
-                  <li>• <Stat color="#facc15">Mastery (Lv8+)</Stat>: Schmied +10% Stats, Alchemist/Koch +2 Ladungen, Verzauberer +2 Stat-Range</li>
+                  <li>• <Stat color="#facc15">Gathering</Stat>: Nur für gewählte Berufe — Affinity-Materialien droppen bei Quests</li>
+                  <li>• <Stat color="#facc15">Mastery (Skill 225+)</Stat>: +10% Stat-Rolls beim Craften</li>
                 </ul>
               </GuideSection>
             </>
