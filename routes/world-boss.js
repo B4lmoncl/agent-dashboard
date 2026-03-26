@@ -54,7 +54,7 @@ function getActiveBoss() {
   const ab = worldBossState.activeBoss;
   if (!ab) return null;
   // Check if expired
-  if (!ab.defeated && new Date(ab.expiresAt) < new Date()) {
+  if (!ab.defeated && new Date(ab.expiresAt).getTime() < Date.now()) {
     // Boss expired undefeated — move to history
     ab.expired = true;
     // Strip large contributions map before archiving to keep history lean
@@ -574,7 +574,7 @@ router.post('/api/world-boss/boost', requireAuth, (req, res) => {
 
 function isWorldBossActive() {
   const ab = worldBossState.activeBoss;
-  return !!(ab && !ab.defeated && new Date(ab.expiresAt) > new Date());
+  return !!(ab && !ab.defeated && new Date(ab.expiresAt).getTime() > Date.now());
 }
 
 module.exports = router;

@@ -166,7 +166,7 @@ router.get('/api/dashboard', async (req, res) => {
 
       // Companion expedition completed
       const compExp = u.companionExpedition;
-      const expeditionReady = compExp && !compExp.collected && compExp.completesAt && new Date(compExp.completesAt) <= new Date() ? 1 : 0;
+      const expeditionReady = compExp && !compExp.collected && compExp.completesAt && new Date(compExp.completesAt).getTime() <= Date.now() ? 1 : 0;
 
       // World boss claimable
       const wbClaimable = (() => {
@@ -216,7 +216,7 @@ router.get('/api/dashboard', async (req, res) => {
     riftActive: (() => {
       if (!playerLower) return false;
       const u = state.users[playerLower];
-      return !!(u?.activeRift && !u.activeRift.completed && !u.activeRift.failed && new Date(u.activeRift.expiresAt) > new Date());
+      return !!(u?.activeRift && !u.activeRift.completed && !u.activeRift.failed && new Date(u.activeRift.expiresAt).getTime() > Date.now());
     })(),
     dungeonActive: isDungeonActiveForPlayer(playerLower),
     notifications,
