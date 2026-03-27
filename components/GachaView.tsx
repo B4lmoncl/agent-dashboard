@@ -541,7 +541,26 @@ function BannerPullModal({
             </div>
           )}
 
-          {/* Pity info now in hover tooltip above */}
+          {/* Pity progress bar — always visible */}
+          {pity && (
+            <div className="rounded-lg px-3 py-2 mt-1" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
+              <div className="flex items-center justify-between text-xs mb-1">
+                <span style={{ color: inSoftPity ? "#f97316" : "rgba(255,255,255,0.3)" }}>
+                  {inSoftPity ? "Soft Pity Active" : "Pity Progress"}
+                </span>
+                <span className="font-mono font-semibold" style={{ color: inSoftPity ? "#f97316" : "rgba(255,255,255,0.5)" }}>
+                  {pity.pityCounter}/{pity.hardPity || 75}
+                </span>
+              </div>
+              <div className="h-1.5 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.06)" }}>
+                <div className="h-full rounded-full transition-all" style={{
+                  width: `${Math.min(100, (pity.pityCounter / (pity.hardPity || 75)) * 100)}%`,
+                  background: inSoftPity ? "linear-gradient(90deg, #f97316, #ef4444)" : "linear-gradient(90deg, rgba(255,255,255,0.15), rgba(255,255,255,0.25))",
+                }} />
+              </div>
+              {pullsTilLegendary <= 10 && <p className="text-xs mt-1 font-semibold" style={{ color: "#f97316" }}>{pullsTilLegendary} pulls until guaranteed Legendary</p>}
+            </div>
+          )}
 
           {/* Pull buttons with fog */}
           <div className="flex gap-3 items-stretch flex-wrap">
