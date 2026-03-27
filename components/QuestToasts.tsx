@@ -64,6 +64,11 @@ export function ChainQuestToast({ parentTitle, template, onAccept, onDismiss }: 
 
 // ─── Achievement Toast ────────────────────────────────────────────────────────
 export function AchievementToast({ achievement, onClose }: { achievement: EarnedAchievement; onClose: () => void }) {
+  // Scroll lock while toast is visible
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => { document.body.style.overflow = ""; };
+  }, []);
   useEffect(() => {
     const t = setTimeout(onClose, 5000);
     return () => clearTimeout(t);

@@ -62,6 +62,14 @@ export default function DashboardModals({
     return () => document.removeEventListener("keydown", h);
   }, [currenciesOpen, modifierOpen, streakInfoOpen, activeQuestsInfoOpen, xpInfoOpen]);
 
+  // Scroll lock for any open modal
+  useEffect(() => {
+    const anyOpen = currenciesOpen || modifierOpen || streakInfoOpen || activeQuestsInfoOpen || xpInfoOpen;
+    if (!anyOpen) return;
+    document.body.style.overflow = "hidden";
+    return () => { document.body.style.overflow = ""; };
+  }, [currenciesOpen, modifierOpen, streakInfoOpen, activeQuestsInfoOpen, xpInfoOpen]);
+
   const CURRENCY_SOURCE: Record<string, { view: string; label: string }> = {
     gold: { view: "questBoard", label: "Quest Board" },
     stardust: { view: "gacha", label: "Vault of Fate" },

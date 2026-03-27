@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useCallback } from "react";
+import { useModalBehavior } from "@/components/ModalPortal";
 import { Tip, TipCustom } from "@/components/GameTooltip";
 import type { User, Quest } from "@/app/types";
 import { RARITY_COLORS } from "@/components/QuestBoard";
@@ -99,6 +100,8 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
   const [rewardPopup, setRewardPopup] = useState<{ title: string; xp: number; gold: number; bondXp: number; loot: { name: string; emoji: string; rarity: string } | null } | null>(null);
   const [completingSuccessId, setCompletingSuccessId] = useState<string | null>(null);
   const [companionGlow, setCompanionGlow] = useState(false);
+  const closeRewardPopup = useCallback(() => setRewardPopup(null), []);
+  useModalBehavior(!!rewardPopup, closeRewardPopup);
 
   const handleCompleteQuest = async (questId: string, questTitle: string) => {
     if (!apiKey || completingId) return;

@@ -5,7 +5,7 @@ import type { User, GachaPullResult, GachaBanner, GachaPityInfo } from "@/app/ty
 import { useDashboard } from "@/app/DashboardContext";
 import { Tip, TipCustom } from "@/components/GameTooltip";
 import GachaPull, { RARITY_CONFIG } from "./GachaPull";
-import { ModalOverlay } from "./ModalPortal";
+import { ModalOverlay, useModalBehavior } from "./ModalPortal";
 import { getAuthHeaders } from "@/lib/auth-client";
 
 // ─── Currency helpers ────────────────────────────────────────────────────────
@@ -655,6 +655,8 @@ export default function GachaView({ onRefresh, onPullComplete, onNavigate }: {
   const [pullMode, setPullMode] = useState<"single" | "multi">("single");
   const [history, setHistory] = useState<Array<{ name: string; rarity: string; emoji: string; pulledAt: string; isDuplicate: boolean; icon?: string }>>([]);
   const [historyOpen, setHistoryOpen] = useState(false);
+  // Scroll lock during gacha pull animation
+  useModalBehavior(!!pullResults, useCallback(() => { if (pullResults && onPullComplete) onPullComplete(pullResults); setPullResults(null); }, [pullResults, onPullComplete]));
   const [poolInfo, setPoolInfo] = useState<Record<string, Array<{ id: string; name: string; emoji: string; type: string; desc: string; icon?: string }>> | null>(null);
   const [poolOpen, setPoolOpen] = useState(false);
   const [infoOpen, setInfoOpen] = useState(false);
