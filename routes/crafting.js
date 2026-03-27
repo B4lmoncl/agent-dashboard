@@ -883,7 +883,7 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
         const templateId = recipe.result.templateId;
         const template = state.gearById.get(templateId) || state.itemTemplates?.get(templateId);
         if (!template) {
-          return res.status(400).json({ error: `Gear template not found: ${templateId}` });
+          return res.status(400).json({ error: 'Item recipe not found. Please try again.' });
         }
         u.inventory = u.inventory || [];
         if (u.inventory.length >= (INVENTORY_CAP || 200)) {

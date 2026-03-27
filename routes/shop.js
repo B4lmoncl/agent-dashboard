@@ -429,9 +429,9 @@ router.get('/api/personal-templates', (req, res) => {
 // POST /api/personal-templates/spawn — create a quest from a personal template
 router.post('/api/personal-templates/spawn', requireApiKey, (req, res) => {
   const { templateId, createdBy, claimedBy } = req.body;
-  if (!templateId) return res.status(400).json({ error: 'templateId required' });
+  if (!templateId) return res.status(400).json({ error: 'Please select an item' });
   const template = PERSONAL_QUEST_TEMPLATES.find(t => t.id === templateId);
-  if (!template) return res.status(404).json({ error: `Template not found: ${templateId}` });
+  if (!template) return res.status(404).json({ error: 'Item not available' });
   const resolvedCreatedBy = createdBy || 'leon';
   const quest = {
     id: `quest-${Date.now()}`,

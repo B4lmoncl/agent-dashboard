@@ -414,7 +414,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
           }),
         });
       } else {
-        setDismantleResult({ message: data.error || "Error" });
+        setDismantleResult({ message: data.error || "Something went wrong. Try again." });
       }
       setTimeout(() => setDismantleResult(null), 5000);
       fetchData();
@@ -448,7 +448,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
           }),
         });
       } else {
-        setDismantleResult({ message: data.error || "Error" });
+        setDismantleResult({ message: data.error || "Something went wrong. Try again." });
       }
       setTimeout(() => setDismantleResult(null), 6000);
       fetchData();
@@ -527,7 +527,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
         fetchData();
         onRefresh?.();
       } else {
-        setCubeResult(data.error || "Error");
+        setCubeResult(data.error || "Something went wrong. Try again.");
       }
     } catch (err) { console.error('[cube] extract error:', err); setCubeResult("Network error"); }
     setCubeLoading(false);
@@ -543,7 +543,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
       });
       const data = await r.json();
       if (r.ok) setCubeData(data.cube);
-      else setCubeResult(data.error || "Error");
+      else setCubeResult(data.error || "Something went wrong. Try again.");
     } catch (err) { console.error('[cube] equip error:', err); }
     setCubeLoading(false);
   };
@@ -578,7 +578,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
         body: JSON.stringify({ itemIds: selectedTransmute }),
       });
       const data = await r.json();
-      setTransmuteResult(data.message || data.error || "Error");
+      setTransmuteResult(data.message || data.error || "Something went wrong. Try again.");
       setSelectedTransmute([]);
       setTimeout(() => setTransmuteResult(null), 5000);
       fetchData();
@@ -601,7 +601,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
         fetchData();
         onRefresh?.();
       } else {
-        setCraftResult(data.error || "Error");
+        setCraftResult(data.error || "Something went wrong. Try again.");
       }
     } catch (err) { console.error('[forge] choose_profession error:', err); setCraftResult("Network error"); }
     setChoosingProf(false);
@@ -1835,7 +1835,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                                         body: JSON.stringify({ inventoryItemId: item.instanceId || item.id }),
                                       });
                                       const data = await r.json();
-                                      setDismantleResult({ message: data.message || data.error || "Error" });
+                                      setDismantleResult({ message: data.message || data.error || "Something went wrong. Try again." });
                                       setTimeout(() => setDismantleResult(null), 5000);
                                       fetchData();
                                       onRefresh?.();
