@@ -326,7 +326,7 @@ export default function TodayDrawer({
     document.body.style.overflow = "hidden";
     const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
     window.addEventListener("keydown", onKey);
-    return () => { document.body.style.overflow = ""; window.removeEventListener("keydown", onKey); };
+    return () => { document.body.style.overflow = prev; window.removeEventListener("keydown", onKey); };
   }, [open, onClose]);
 
   // ─── Hero data ───────────────────────────────────────────────────────────
@@ -656,14 +656,14 @@ export default function TodayDrawer({
     const bpElapsed = (Date.now() - bpEpoch) % bpDuration;
     const bpRemaining = bpDuration - bpElapsed;
     const bpDays = Math.floor(bpRemaining / 86400000);
-    timers.push({ id: "timer-bp", icon: "/images/icons/bp-icon.png", label: "Season Ends", done: false, sub: `${bpDays}d remaining` });
+    timers.push({ id: "timer-bp", icon: "/images/icons/currency-stardust.png", label: "Season Ends", done: false, sub: `${bpDays}d remaining` });
     // World boss (Lv15+)
     if (worldBossActive && (playerLevel ?? 1) >= 15) {
-      timers.push({ id: "timer-wb", icon: "/images/icons/wb-icon.png", label: "World Boss Active", done: false, sub: "Contribute now", urgent: true, onClick: () => { onNavigate("worldboss"); onClose(); } });
+      timers.push({ id: "timer-wb", icon: "/images/icons/ach-boss-slayer.png", label: "World Boss Active", done: false, sub: "Contribute now", urgent: true, onClick: () => { onNavigate("worldboss"); onClose(); } });
     }
     // Active rift (Lv8+)
     if (riftActive && (playerLevel ?? 1) >= 8) {
-      timers.push({ id: "timer-rift", icon: "/images/icons/rift-icon.png", label: "Rift Active", done: false, sub: "In progress", urgent: true, onClick: () => { onNavigate("rift"); onClose(); } });
+      timers.push({ id: "timer-rift", icon: "/images/icons/currency-runensplitter.png", label: "Rift Active", done: false, sub: "In progress", urgent: true, onClick: () => { onNavigate("rift"); onClose(); } });
     }
     if (timers.length > 0) cats.push({ id: "timers", label: "Timers", icon: "\u23F0", items: timers });
     return cats;

@@ -66,8 +66,9 @@ export default function DashboardModals({
   useEffect(() => {
     const anyOpen = currenciesOpen || modifierOpen || streakInfoOpen || activeQuestsInfoOpen || xpInfoOpen;
     if (!anyOpen) return;
+    const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
-    return () => { document.body.style.overflow = ""; };
+    return () => { document.body.style.overflow = prev; };
   }, [currenciesOpen, modifierOpen, streakInfoOpen, activeQuestsInfoOpen, xpInfoOpen]);
 
   const CURRENCY_SOURCE: Record<string, { view: string; label: string }> = {
