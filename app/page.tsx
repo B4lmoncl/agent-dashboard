@@ -254,7 +254,7 @@ export default function Dashboard() {
   const [currencyExpanded, setCurrencyExpanded] = useState<string | null>(null);
   const [feedbackMode, setFeedbackMode] = useState(false);
   const [favorites, setFavorites] = useState<string[]>([]);
-  const [gameVersion, setGameVersion] = useState<string>("1.5.3");
+  const [gameVersion, setGameVersion] = useState<string>("1.6.0");
   const [versionPopupOpen, setVersionPopupOpen] = useState(false);
   const [changelogData, setChangelogData] = useState<{ version: string; date: string; title: string; changes: string[] }[]>([]);
   const [changelogExpanded, setChangelogExpanded] = useState<string | null>(null);
@@ -557,7 +557,7 @@ export default function Dashboard() {
 
   // What's New splash — show once per version
   useEffect(() => {
-    const CURRENT_VERSION = "1.5.3-s30";
+    const CURRENT_VERSION = "1.6.0";
     try {
       if (playerName && localStorage.getItem("whatsNewSeen") !== CURRENT_VERSION) {
         const t = setTimeout(() => setWhatsNewOpen(true), 1500);
@@ -2439,23 +2439,33 @@ export default function Dashboard() {
 
       {/* What's New Splash */}
       {whatsNewOpen && (
-        <div className="fixed inset-0 z-[150] flex items-center justify-center modal-backdrop" onClick={() => { setWhatsNewOpen(false); try { localStorage.setItem("whatsNewSeen", "1.5.3-s30"); } catch { /* ignore */ } }}>
+        <div className="fixed inset-0 z-[150] flex items-center justify-center modal-backdrop" onClick={() => { setWhatsNewOpen(false); try { localStorage.setItem("whatsNewSeen", "1.6.0"); } catch { /* ignore */ } }}>
           <div className="w-full max-w-md rounded-xl overflow-hidden tab-content-enter" style={{ background: "#111318", border: "1px solid rgba(129,140,248,0.25)", boxShadow: "0 20px 60px rgba(0,0,0,0.8)" }} onClick={e => e.stopPropagation()}>
             <div className="px-5 py-3" style={{ background: "rgba(129,140,248,0.06)", borderBottom: "1px solid rgba(129,140,248,0.15)" }}>
-              <p className="text-sm font-bold" style={{ color: "#818cf8" }}>What&apos;s New</p>
+              <p className="text-sm font-bold" style={{ color: "#818cf8" }}>v1.6.0 — The Artisan&apos;s Update</p>
             </div>
-            <div className="px-5 py-4 space-y-2">
-              <div className="flex items-start gap-2"><span style={{ color: "#22c55e" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Bind on Equip / Bind on Pickup system on all 1,074 items</p></div>
-              <div className="flex items-start gap-2"><span style={{ color: "#22c55e" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Item Lock — protect items from salvage, trade, and discard</p></div>
-              <div className="flex items-start gap-2"><span style={{ color: "#22c55e" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Kanai&apos;s Cube — extract legendary effects permanently</p></div>
-              <div className="flex items-start gap-2"><span style={{ color: "#22c55e" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Mythic+ Affixes — 10 weekly rotating modifiers from M+2</p></div>
-              <div className="flex items-start gap-2"><span style={{ color: "#22c55e" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Mail System — send gold and items to other players</p></div>
-              <div className="flex items-start gap-2"><span style={{ color: "#22c55e" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Material Storage — dedicated tab with search and unlimited space</p></div>
-              <div className="flex items-start gap-2"><span style={{ color: "#22c55e" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Enchant Vellums — tradeable enchant scrolls from Verzauberer</p></div>
-              <div className="flex items-start gap-2"><span style={{ color: "#22c55e" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Auto-Salvage — preview grid with rarity tabs + bulk confirm</p></div>
+            <div className="px-5 py-4 space-y-1.5 max-h-[60vh] overflow-y-auto" style={{ scrollbarWidth: "thin" }}>
+              <p className="text-xs font-semibold uppercase tracking-wider mb-1" style={{ color: "rgba(255,255,255,0.25)" }}>New Systems</p>
+              <div className="flex items-start gap-2"><span style={{ color: "#22c55e" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Mail System — send gold and items to other players (WoW-style Mailbox)</p></div>
+              <div className="flex items-start gap-2"><span style={{ color: "#22c55e" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Kanai&apos;s Cube — extract and equip legendary effects permanently</p></div>
+              <div className="flex items-start gap-2"><span style={{ color: "#22c55e" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Mythic+ Affixes — 10 weekly rotating modifiers starting at M+2</p></div>
+              <div className="flex items-start gap-2"><span style={{ color: "#22c55e" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>BoP/BoE Binding — Bind on Pickup and Bind on Equip across 1,074 items</p></div>
+              <div className="flex items-start gap-2"><span style={{ color: "#22c55e" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Enchant Vellums — tradeable enchant scrolls crafted by Verzauberer</p></div>
+              <p className="text-xs font-semibold uppercase tracking-wider mb-1 mt-2" style={{ color: "rgba(255,255,255,0.25)" }}>Quality of Life</p>
+              <div className="flex items-start gap-2"><span style={{ color: "#3b82f6" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Item Lock — protect items from accidental salvage, trade, or discard</p></div>
+              <div className="flex items-start gap-2"><span style={{ color: "#3b82f6" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Auto-Salvage — preview grid with rarity tabs and 2-step confirmation</p></div>
+              <div className="flex items-start gap-2"><span style={{ color: "#3b82f6" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Material Storage — dedicated tab with search (unlimited, no cap)</p></div>
+              <div className="flex items-start gap-2"><span style={{ color: "#3b82f6" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Recipe Discovery — undiscovered recipes shown as ??? with source hints</p></div>
+              <div className="flex items-start gap-2"><span style={{ color: "#3b82f6" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>NEW badges on inventory items, craftability icons on recipes</p></div>
+              <div className="flex items-start gap-2"><span style={{ color: "#3b82f6" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Notification badges on navigation tabs for pending actions</p></div>
+              <div className="flex items-start gap-2"><span style={{ color: "#3b82f6" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Timer overview in Today Drawer (weekly reset, season end, active content)</p></div>
+              <div className="flex items-start gap-2"><span style={{ color: "#3b82f6" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Collect All for mail and Battle Pass rewards</p></div>
+              <p className="text-xs font-semibold uppercase tracking-wider mb-1 mt-2" style={{ color: "rgba(255,255,255,0.25)" }}>Progression</p>
+              <div className="flex items-start gap-2"><span style={{ color: "#f97316" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Level-gated content: features unlock as you progress (aligned with gear hierarchy)</p></div>
+              <div className="flex items-start gap-2"><span style={{ color: "#f97316" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Batch craft animation with sequential reveal</p></div>
             </div>
             <div className="px-5 pb-4">
-              <button onClick={() => { setWhatsNewOpen(false); try { localStorage.setItem("whatsNewSeen", "1.5.3-s30"); } catch { /* ignore */ } }} className="w-full text-xs py-2 rounded-lg font-semibold" style={{ background: "rgba(129,140,248,0.12)", color: "#818cf8", border: "1px solid rgba(129,140,248,0.3)", cursor: "pointer" }}>Got it</button>
+              <button onClick={() => { setWhatsNewOpen(false); try { localStorage.setItem("whatsNewSeen", "1.6.0"); } catch { /* ignore */ } }} className="w-full text-xs py-2 rounded-lg font-semibold" style={{ background: "rgba(129,140,248,0.12)", color: "#818cf8", border: "1px solid rgba(129,140,248,0.3)", cursor: "pointer" }}>Got it</button>
             </div>
           </div>
         </div>

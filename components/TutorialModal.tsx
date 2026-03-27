@@ -313,6 +313,32 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                 </ul>
                 <GuideTip>Passive Items (Glücksklee etc.) wirken automatisch solange sie im Inventar sind. Titel werden durch Meilensteine freigeschaltet und auf Spielerkarte + Leaderboard angezeigt.</GuideTip>
               </GuideSection>
+
+              <GuideSection title="Gems & Sockets" icon="◆" accent="rgba(168,85,247,0.3)">
+                <ul className="space-y-1 mt-2">
+                  <li>• 6 Gem-Typen: Ruby (Kraft), Sapphire (Weisheit), Emerald (Glück), Topaz (Ausdauer), Amethyst (Vitalität), Diamond (Fokus)</li>
+                  <li>• 5 Tiers: Chipped → Flawed → Perfect → Flawless → Royal</li>
+                  <li>• Sockel abhängig von Item-Rarität (0 bei Common, bis 3 bei Legendary)</li>
+                  <li>• Gems upgraden: 3 gleiche → nächste Stufe</li>
+                </ul>
+              </GuideSection>
+
+              <GuideSection title="Item Binding & Lock" icon="⛓" accent="rgba(239,68,68,0.3)">
+                <ul className="space-y-1 mt-2">
+                  <li>• <Stat color="#22c55e">BoE (Bind on Equip)</Stat> — Frei handelbar bis zum Anlegen. Crafted + Shop Items.</li>
+                  <li>• <Stat color="#f97316">BoP (Bind on Pickup)</Stat> — Sofort gebunden. Dungeon, Rift, WB, Unique Drops.</li>
+                  <li>• <Stat color="#fbbf24">Item Lock</Stat> — Sperre Items gegen versehentliches Salvage/Trade/Discard. Goldenes ⦿ Symbol.</li>
+                </ul>
+              </GuideSection>
+
+              <GuideSection title="Kanai&apos;s Cube" icon="⬡" accent="rgba(249,115,22,0.3)">
+                Opfere Legendary Items um ihre Effekte dauerhaft zu extrahieren. Im Artisan&apos;s Quarter.
+                <ul className="space-y-1 mt-2">
+                  <li>• 3 Slots: <Stat color="#ef4444">Offensive</Stat>, <Stat color="#3b82f6">Defensive</Stat>, <Stat color="#22c55e">Utility</Stat></li>
+                  <li>• Kosten: 500 Essenz pro Extraktion</li>
+                  <li>• Effekte stacken additiv mit Gear-Effekten</li>
+                </ul>
+              </GuideSection>
             </>
           )}
           {tab === "gacha" && (
@@ -530,6 +556,36 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                 <GuideTip>Rift-Stages geben volle Belohnungen: XP-Multiplikatoren, Loot-Drops, Materialien, Streak + Forge-Temp!</GuideTip>
               </GuideSection>
 
+              <GuideSection title="Mythic+ Endless Rift" icon="☠" accent="rgba(255,68,68,0.3)">
+                Nach dem ersten Legendary-Rift-Clear: unendlich skalierende Mythic+ Stufen.
+                <ul className="space-y-1 mt-2">
+                  <li>• Schwierigkeit steigt pro Level (+0.3× pro M+ Stufe)</li>
+                  <li>• Ab <Stat color="#ff4444">M+2</Stat>: 2 wöchentlich rotierende <Stat color="#f97316">Affixe</Stat> (z.B. Tyrannisch, Nekrotisch, Rasend)</li>
+                  <li>• Kein Fail-Cooldown — sofort erneut versuchen</li>
+                  <li>• Leaderboard trackt deine höchste Stufe</li>
+                </ul>
+              </GuideSection>
+
+              <GuideSection title="World Boss (Kolosseum)" icon="◆" accent="rgba(239,68,68,0.3)">
+                Community-weite Bosskämpfe. Alle Spieler tragen per Quest-Completion zum Schaden bei.
+                <ul className="space-y-1 mt-2">
+                  <li>• 9 Bosse mit einzigartiger Lore und Unique Drops</li>
+                  <li>• Contribution-Ranking: Bronze, Silver, Gold, Legendary</li>
+                  <li>• Ab <Stat color="#22c55e">Level 15</Stat> verfügbar</li>
+                </ul>
+              </GuideSection>
+
+              <GuideSection title="The Undercroft (Dungeons)" icon="◆" accent="rgba(99,102,241,0.3)">
+                Kooperative Gruppen-Dungeons für 2-4 Spieler.
+                <ul className="space-y-1 mt-2">
+                  <li>• 3 Tiers: Sunken Archive (Lv10), Shattered Spire (Lv20), Hollow Core (Lv35)</li>
+                  <li>• Gear Score bestimmt Erfolgswahrscheinlichkeit</li>
+                  <li>• Einzigartiger Loot pro Dungeon (BoP-Items)</li>
+                  <li>• 7-Tage Cooldown pro Dungeon</li>
+                  <li>• Ab <Stat color="#22c55e">Level 12</Stat> verfügbar</li>
+                </ul>
+              </GuideSection>
+
               <GuideSection title="Challenge-Belohnungen" icon="◇">
                 <ul className="space-y-1 mt-2">
                   <li>• <Stat color="#f59e0b">Gold</Stat>, <Stat color="#a78bfa">Runensplitter</Stat>, <Stat color="#ef4444">Essenz</Stat> pro Stufe/Checkpoint</li>
@@ -561,11 +617,12 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                 </ul>
               </GuideSection>
 
-              <GuideSection title="Nachrichten & Handel" icon="◈">
+              <GuideSection title="Nachrichten, Handel & Mail" icon="◈">
                 <ul className="space-y-1 mt-2">
                   <li>• <Stat color="#3b82f6">Nachrichten</Stat> — DM an Freunde (500 Zeichen). Read-Receipts (✓✓).</li>
                   <li>• <Stat color="#fbbf24">Trading</Stat> — Gold + Items handeln. Mehrere Verhandlungsrunden möglich.</li>
-                  <li>• Beide müssen akzeptieren → atomarer Tausch. Ausgerüstete Items nicht handelbar.</li>
+                  <li>• Beide müssen akzeptieren → atomarer Tausch. Ausgerüstete/BoP/gesperrte Items nicht handelbar.</li>
+                  <li>• <Stat color="#a855f7">Mail</Stat> — Sende Gold + bis zu 6 Items an jeden Spieler. 5g Portogebühr. 30 Tage Ablauf. Collect All Button.</li>
                 </ul>
               </GuideSection>
 
@@ -645,7 +702,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
               </GuideSection>
 
               <GuideSection title="The Hearth (Ruhemodus)" icon="🔥" accent="rgba(217,119,6,0.3)">
-                Ruhemodus im 6. Stock — für Urlaub, Pausen, Mental Health:
+                Ruhemodus im Breakaway — für Urlaub, Pausen, Mental Health:
                 <ul className="space-y-1 mt-2">
                   <li>• Dauer wählen: <Stat color="#d97706">1-7 Tage</Stat></li>
                   <li>• <Stat color="#22c55e">Frozen</Stat>: Streaks + Forge-Temp eingefroren</li>
@@ -653,6 +710,30 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                   <li>• <Stat color="#ef4444">30-Tage-Cooldown</Stat> nach Ruhephase</li>
                 </ul>
                 <GuideTip>Jederzeit vorzeitig verlassen möglich — eingefrorene Werte werden wiederhergestellt.</GuideTip>
+              </GuideSection>
+
+              <GuideSection title="Season Pass" icon="◆" accent="rgba(167,139,250,0.3)">
+                Saisonaler Fortschrittstrack mit 40 Stufen. Verdiene Pass-XP durch Quests, Rituale, Rift, Crafting und Daily Missions.
+                <ul className="space-y-1 mt-2">
+                  <li>• 250 XP pro Level</li>
+                  <li>• Belohnungen: Gold, Essenz, Runensplitter, Sternentaler, Titel, Frames</li>
+                  <li>• 3 Seasons: Awakening, Aschenstrom, Sternensturm</li>
+                  <li>• Claim All Button für mehrere Stufen gleichzeitig</li>
+                  <li>• Ab <Stat color="#22c55e">Level 10</Stat> verfügbar</li>
+                </ul>
+              </GuideSection>
+
+              <GuideSection title="Die Vier Zirkel (Factions)" icon="◆" accent="rgba(129,140,248,0.3)">
+                4 Fraktionen mit Reputations-System. Auto-Rep durch Quest-Completion basierend auf Quest-Typ.
+                <ul className="space-y-1 mt-2">
+                  <li>• <Stat color="#ef4444">Orden der Klinge</Stat> — Fitness</li>
+                  <li>• <Stat color="#3b82f6">Zirkel der Sterne</Stat> — Learning</li>
+                  <li>• <Stat color="#22c55e">Pakt der Wildnis</Stat> — Personal/Creative</li>
+                  <li>• <Stat color="#a855f7">Bund der Schatten</Stat> — Social/Development</li>
+                  <li>• 6 Rep-Stufen: Neutral → Friendly → Honored → Revered → Exalted → Paragon</li>
+                  <li>• Belohnungen pro Stufe: Titel, Rezepte, Frames, Shop-Rabatte, Legendary-Effekte</li>
+                  <li>• Ab <Stat color="#22c55e">Level 10</Stat> verfügbar</li>
+                </ul>
               </GuideSection>
             </>
           )}
@@ -837,7 +918,7 @@ export const TUTORIAL_STEPS = [
   {
     key: "character",
     title: "Dein Charakter & Ausrüstung",
-    desc: "Im Inner Sanctum findest du deinen Character Screen mit 6 Equipment-Slots, Stats (Affix-Rolling), Rituale und Gelübde.",
+    desc: "Im Inner Sanctum findest du deinen Character Screen mit 7 Equipment-Slots, Stats (Affix-Rolling), Rituale und Gelübde.",
     target: null,
     position: "center" as const,
     navigateTo: null,

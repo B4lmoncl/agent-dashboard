@@ -1,5 +1,33 @@
 [
   {
+    "version": "1.6.0",
+    "date": "2026-03-27",
+    "title": "The Artisan's Update — Binding, Mail, Mythic+ Affixes & QoL",
+    "changes": [
+      "Mail System — WoW-style Mailbox: Gold + Items an andere Spieler schicken (5g Porto, 30 Tage Ablauf)",
+      "Kanai's Cube — Legendary-Effekte permanent extrahieren und in 3 Kategorie-Slots ausrüsten",
+      "Mythic+ Affixes — 10 wöchentlich rotierende Modifikatoren ab M+2 (Tyrannisch, Nekrotisch, Rasend...)",
+      "BoP/BoE Binding — 1.074 Items mit Bind on Equip oder Bind on Pickup getagged",
+      "Enchant Vellums — Handelbare Verzauberungs-Pergamente vom Verzauberer (3 Stufen)",
+      "Item Lock — Schütze Items vor versehentlichem Salvage, Trade oder Discard",
+      "Auto-Salvage — Preview-Grid mit Rarity-Tabs und 2-Schritt-Bestätigung",
+      "Material Storage — Eigener Tab im Artisan's Quarter mit Suchfunktion (kein Inventar-Cap)",
+      "Recipe Discovery — Unentdeckte Rezepte als ??? mit Source-Hints + Entdeckungs-Counter",
+      "Level-Gating — Features schalten sich progressiv frei (aligned mit Gear-Hierarchie)",
+      "Nav-Notification Badges — Rote Zahlen auf Tabs für ausstehende Aktionen",
+      "Timer-Übersicht im Today Drawer — Weekly Reset, Season Ende, aktive Inhalte",
+      "NEW Badges auf Inventar-Items + Craftability Icons auf Rezepten (●/◐/○)",
+      "Battle Pass Claim All + Mail Collect All — Bulk-Aktionen für weniger Klicks",
+      "Batch Craft Animation — Sequentielles Reveal statt Instant-Ergebnis",
+      "Tutorial erweitert — Gems, Binding, Cube, WB, Dungeons, Factions, BP, Mail hinzugefügt",
+      "8 Tooltip-Einträge hinzugefügt — Mail, Binding, Lock, Cube, Affixe, Salvage, Storage, Vellums",
+      "Rarity-Farben standardisiert — Legendary überall einheitlich #f97316",
+      "Gold-Formatierung mit Tausender-Trennung — 1500 → 1,500",
+      "6 Race Condition Locks + 9 leere Catch-Blocks gefixt",
+      "Performance: CSS GPU-Compositing, Date.now() statt new Date(), Code-Cleanup"
+    ]
+  },
+  {
     "version": "1.5.3",
     "date": "2026-03-17",
     "title": "Quality of Life — Tooltips, Flavor & Fixes",

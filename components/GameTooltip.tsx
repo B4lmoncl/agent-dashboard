@@ -1216,6 +1216,108 @@ const TOOLTIP_REGISTRY: Record<string, TooltipEntry> = {
       </>
     ),
   },
+  // ─── v1.6.0 Systems ────────────────────────────────────────────────────────
+  mail: {
+    title: "Mail",
+    icon: "✉",
+    accent: "#a855f7",
+    body: (
+      <>
+        <p>WoW-style Mailbox. Sende Gold und Items an andere Spieler. 5 Gold Portogebühr pro Mail.</p>
+        <div className="gt-stat-row"><span>Max Anhänge</span><span>6 Items pro Mail</span></div>
+        <div className="gt-stat-row"><span>Inbox-Limit</span><span>50 Mails</span></div>
+        <div className="gt-stat-row"><span>Ablaufzeit</span><span>30 Tage</span></div>
+        <p className="gt-source">Soulbound-Items (<GTRef k="binding">BoP</GTRef>) und gesperrte Items können nicht verschickt werden.</p>
+      </>
+    ),
+  },
+  binding: {
+    title: "Item Binding",
+    icon: "⛓",
+    accent: "#ef4444",
+    body: (
+      <>
+        <p>Items können gebunden sein — gebundene Items können nicht gehandelt oder verschickt werden.</p>
+        <div className="gt-stat-row" style={{ color: "#22c55e" }}><span>Bind on Equip (BoE)</span><span>Frei handelbar bis zum ersten Anlegen</span></div>
+        <div className="gt-stat-row" style={{ color: "#f97316" }}><span>Bind on Pickup (BoP)</span><span>Sofort gebunden beim Erhalt</span></div>
+        <div className="gt-stat-row" style={{ color: "#ef4444" }}><span>Soulbound</span><span>Bereits getragen — permanent gebunden</span></div>
+        <p className="gt-source">Crafted + General Pool Items sind BoE. Dungeon, Rift, World Boss und Unique Items sind BoP.</p>
+      </>
+    ),
+  },
+  item_lock: {
+    title: "Item Lock",
+    icon: "⦿",
+    accent: "#fbbf24",
+    body: (
+      <>
+        <p>Sperre Items um sie vor versehentlichem Salvage, Trade oder Discard zu schützen.</p>
+        <p className="gt-source">Klicke auf ein Item im Inventar, dann auf &quot;Lock&quot;. Gesperrte Items zeigen ein goldenes ⦿ Symbol.</p>
+      </>
+    ),
+  },
+  kanais_cube: {
+    title: "Kanai\u2019s Cube",
+    icon: "⬡",
+    accent: "#f97316",
+    body: (
+      <>
+        <p>Opfere ein Legendary-Item um seinen Effekt permanent zu extrahieren. Kosten: 500 <GTRef k="essenz">Essenz</GTRef>.</p>
+        <div className="gt-stat-row"><span>Offensive Slot</span><span>XP, Gold, Crit, Berserker</span></div>
+        <div className="gt-stat-row"><span>Defensive Slot</span><span>Streak, Decay, Shield, Fortify</span></div>
+        <div className="gt-stat-row"><span>Utility Slot</span><span>Drop, Material, Cooldown, Gem</span></div>
+        <p className="gt-source">Effekte werden zum Minimum-Wert extrahiert. Stackt additiv mit Gear-Effekten.</p>
+      </>
+    ),
+  },
+  mythic_affixes: {
+    title: "Mythic+ Affixes",
+    icon: "☠",
+    accent: "#ff4444",
+    body: (
+      <>
+        <p>Ab Mythic+2 werden wöchentlich 2 zufällige Affixe aktiv die den Rift verändern.</p>
+        <div className="gt-stat-row"><span>Minor (M+2)</span><span>Tyrannisch, Verstärkt, Blutrünstig, Vulkanisch, Explosiv</span></div>
+        <div className="gt-stat-row"><span>Major (M+4/7)</span><span>Anspornend, Rasend, Nekrotisch, Inspirierend, Bebend</span></div>
+        <p className="gt-source">Affixe rotieren jeden Montag. Reward-Multiplier kompensieren die Schwierigkeit.</p>
+      </>
+    ),
+  },
+  auto_salvage: {
+    title: "Auto-Salvage",
+    icon: "⚒",
+    accent: "#ff8c00",
+    body: (
+      <>
+        <p>Bulk-Salvage aller Items einer Rarität auf einen Klick. Vorschau zeigt betroffene Items + geschätzte Erträge.</p>
+        <p className="gt-source">Gesperrte Items werden automatisch übersprungen. 2-Schritt-Bestätigung verhindert Unfälle.</p>
+      </>
+    ),
+  },
+  material_storage: {
+    title: "Material Storage",
+    icon: "◇",
+    accent: "#22c55e",
+    body: (
+      <>
+        <p>Separater Materiallager-Tab im Artisan&apos;s Quarter. Materials zählen nicht gegen das Inventar-Cap von 100.</p>
+        <p className="gt-source">Suchfunktion und Sortierung nach Rarität. Automatisch gesammelt bei Quest-Completion und Salvage.</p>
+      </>
+    ),
+  },
+  enchant_vellum: {
+    title: "Enchant Vellum",
+    icon: "📜",
+    accent: "#a78bfa",
+    body: (
+      <>
+        <p>Handelbare Verzauberungs-Pergamente. Vom Verzauberer hergestellt, können als Buff angewendet oder an andere Spieler gehandelt/geschickt werden.</p>
+        <div className="gt-stat-row"><span>Schwach (Skill 50)</span><span>+2-3 Stat, 24h</span></div>
+        <div className="gt-stat-row"><span>Mittel (Skill 125)</span><span>+3-5 Stat, 24h</span></div>
+        <div className="gt-stat-row"><span>Stark (Skill 225)</span><span>+4-7 Stat, 48h</span></div>
+      </>
+    ),
+  },
 };
 
 // ─── Nested Tooltip Reference (clickable/hoverable keyword) ─────────────────
