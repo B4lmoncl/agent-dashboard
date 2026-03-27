@@ -649,7 +649,7 @@ export default function TodayDrawer({
     const weeklyMs = nextMonday.getTime() - Date.now();
     const weeklyDays = Math.floor(weeklyMs / 86400000);
     const weeklyHours = Math.floor((weeklyMs % 86400000) / 3600000);
-    timers.push({ id: "timer-weekly", icon: "/images/icons/wc-generic.png", label: "Weekly Reset", done: false, sub: `${weeklyDays}d ${weeklyHours}h` });
+    timers.push({ id: "timer-weekly", icon: "/images/icons/currency-runensplitter.png", label: "Weekly Reset", done: false, sub: `${weeklyDays}d ${weeklyHours}h` });
     // Battle Pass season (estimate: 90-day seasons from March 1)
     const bpEpoch = new Date("2026-03-01T00:00:00Z").getTime();
     const bpDuration = 90 * 86400000;
