@@ -450,7 +450,7 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
   if (isSlotRecipe) {
     if (!targetSlot) return res.status(400).json({ error: 'targetSlot required' });
     const eq = u.equipment?.[targetSlot];
-    if (!eq || typeof eq === 'string') return res.status(400).json({ error: 'No gear instance in slot' });
+    if (!eq || typeof eq === 'string') return res.status(400).json({ error: 'No gear equipped in this slot. Equip an item first.' });
     if (recipeId === 'upgrade_rarity') {
       if (RARITY_ORDER.indexOf(eq.rarity || 'common') >= RARITY_ORDER.length - 1) {
         return res.status(400).json({ error: 'Item is already legendary!' });

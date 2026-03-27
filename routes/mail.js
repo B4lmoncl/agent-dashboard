@@ -97,7 +97,7 @@ router.post('/api/mail/send', requireAuth, (req, res) => {
   ensureUserCurrencies(u);
   const totalGoldNeeded = goldAmount + SEND_COST;
   if ((u.currencies.gold || 0) < totalGoldNeeded) {
-    return res.status(400).json({ error: `Need ${totalGoldNeeded} gold (${goldAmount} + ${SEND_COST} postage). Have ${u.currencies.gold || 0}` });
+    return res.status(400).json({ error: `Not enough gold. Need ${totalGoldNeeded} (${goldAmount} + ${SEND_COST} postage), you have ${u.currencies.gold || 0}.` });
   }
 
   // Validate items
@@ -108,12 +108,12 @@ router.post('/api/mail/send', requireAuth, (req, res) => {
     const inv = u.inventory || [];
     for (const itemId of itemIds) {
       const item = inv.find(i => (i.instanceId || i.id) === itemId);
-      if (!item) return res.status(400).json({ error: `Item ${itemId} not in inventory` });
-      if (equippedIds.has(itemId)) return res.status(400).json({ error: `${item.name || itemId} is equipped` });
+      if (!item) return res.status(400).json({ error: `Item not found in your inventory` });
+      if (equippedIds.has(itemId)) return res.status(400).json({ error: `${item.name || 'Item'} is currently equipped — unequip it first` });
       if (item.binding === 'bop' || item.bound) {
-        return res.status(400).json({ error: `${item.name || itemId} is soulbound` });
+        return res.status(400).json({ error: `${item.name || 'Item'} is soulbound and cannot be sent` });
       }
-      if (item.locked) return res.status(400).json({ error: `${item.name || itemId} is locked` });
+      if (item.locked) return res.status(400).json({ error: `${item.name || 'Item'} is locked — unlock it first to send` });
       attachedItems.push(item);
     }
   }
