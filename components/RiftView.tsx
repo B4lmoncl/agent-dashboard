@@ -413,7 +413,7 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
                 )}
                 {onCd && tier.cooldownEndsAt && (
                   <p className="text-xs text-center" style={{ color: "#ef4444" }}>
-                    Cooldown until {new Date(tier.cooldownEndsAt).toLocaleDateString()}
+                    Cooldown: {timeLeft(new Date(tier.cooldownEndsAt).getTime() - Date.now())} remaining
                   </p>
                 )}
                 <button
@@ -546,7 +546,7 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
           </button>
           {tiers.mythic?.onCooldown && tiers.mythic.cooldownEndsAt && (
             <p className="text-xs text-center" style={{ color: "#ef4444" }}>
-              Cooldown until {new Date(tiers.mythic.cooldownEndsAt).toLocaleDateString()}
+              Cooldown: {timeLeft(new Date(tiers.mythic.cooldownEndsAt).getTime() - Date.now())} remaining
             </p>
           )}
 

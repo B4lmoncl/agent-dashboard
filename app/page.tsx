@@ -2431,6 +2431,7 @@ export default function Dashboard() {
             setIsAdmin(false);
             await createStarterQuestsIfNew(newName, apiKey);
             await refresh();
+            addToast({ type: "flavor", message: "Welcome to Quest Hall! Check the Guide for tips on getting started.", icon: "/images/icons/nav-great-hall.png" });
             setShowTutorial(true);
             setTutorialStep(0);
           }}

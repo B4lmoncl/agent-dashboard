@@ -40,10 +40,10 @@ function GachaInfoModal({ onClose }: { onClose: () => void }) {
             <div className="space-y-1">
               {[
                 { label: "Legendary", rate: "0.8%", color: "#f97316" },
-                { label: "Epic", rate: "13%", color: "#a855f7" },
-                { label: "Rare", rate: "35%", color: "#3b82f6" },
+                { label: "Epic", rate: "8%", color: "#a855f7" },
+                { label: "Rare", rate: "38%", color: "#3b82f6" },
                 { label: "Uncommon", rate: "40%", color: "#22c55e" },
-                { label: "Common", rate: "11.2%", color: "#9ca3af" },
+                { label: "Common", rate: "13.2%", color: "#9ca3af" },
               ].map(r => (
                 <div key={r.label} className="flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: r.color }} />

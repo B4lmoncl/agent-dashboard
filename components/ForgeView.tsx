@@ -105,10 +105,10 @@ const SYNERGY_HINTS: Record<string, { partner: string; label: string }> = {
 
 // ─── Skill-up color labels ──────────────────────────────────────────────────
 const SKILL_UP_COLORS: Record<string, { color: string; label: string }> = {
-  orange: { color: "#f97316", label: "Guaranteed XP" },
-  yellow: { color: "#eab308", label: "Likely XP" },
-  green: { color: "#22c55e", label: "Rare XP" },
-  gray: { color: "#6b7280", label: "No XP" },
+  orange: { color: "#f97316", label: "Guaranteed (100%)" },
+  yellow: { color: "#eab308", label: "Likely (~75%)" },
+  green: { color: "#22c55e", label: "Unlikely (~25%)" },
+  gray: { color: "#6b7280", label: "No skill-up (0%)" },
 };
 
 // ─── NPC location metadata ───────────────────────────────────────────────────
