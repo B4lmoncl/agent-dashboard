@@ -1854,7 +1854,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                                         {earnedDate && <span className="text-xs" style={{ color: "rgba(255,255,255,0.2)", fontSize: 12 }}>{earnedDate}</span>}
                                       </div>
                                     ) : (
-                                      <span style={{ color: "rgba(255,255,255,0.2)", fontSize: 12 }}>🔒</span>
+                                      <span style={{ color: "rgba(255,255,255,0.2)", fontSize: 12 }}>{"\u25CB"}</span>
                                     )}
                                   </div>
                                 </div>

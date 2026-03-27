@@ -352,7 +352,7 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
           border: `1px solid ${collectResult.success ? "rgba(34,197,94,0.25)" : "rgba(239,68,68,0.25)"}`,
         }}>
           <div className="flex items-center gap-2 mb-2">
-            <span className="text-xl">{collectResult.success ? "🏆" : "💨"}</span>
+            <span className="text-xl">{collectResult.success ? "★" : "—"}</span>
             <div>
               <p className="text-sm font-bold" style={{ color: collectResult.success ? "#22c55e" : "#ef4444" }}>
                 {collectResult.success ? "Dungeon Cleared!" : "Dungeon Failed"}
