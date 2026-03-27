@@ -1471,6 +1471,12 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                       </div>
                     );
                   })}
+                  {/* Empty state when filter shows no results */}
+                  {showCraftableOnly && recipes.filter(r => r.profession === selectedNpc.id).filter(r => !(r as unknown as Record<string, unknown>).hidden && r.learned !== false && r.canCraft && (r.cooldownRemaining ?? 0) <= 0).length === 0 && (
+                    <p className="text-xs text-center py-4" style={{ color: "rgba(255,255,255,0.2)" }}>
+                      No craftable recipes right now. Check material stock or raise your profession skill.
+                    </p>
+                  )}
                 </div>
 
                 {/* Craft result toast */}
