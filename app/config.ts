@@ -82,8 +82,8 @@ export const FLOORS: Floor[] = [
     rooms: [
       { key: "questBoard", label: "Quest Board",      iconSrc: "/images/icons/nav-great-hall.png",  tutorialKey: "quest-board-tab" },
       { key: "npcBoard",   label: "Wanderers Rest",   iconSrc: "/images/icons/nav-wanderer.png",    tutorialKey: "npc-board-tab" },
-      { key: "challenges", label: "Challenges",       iconSrc: "/images/icons/nav-challenges.png",  tutorialKey: null, minLevel: 3 },
-      { key: "rift",       label: "Rift",             iconSrc: "/images/icons/nav-rift.png",        requiresLogin: true, tutorialKey: null, minLevel: 8 },
+      { key: "challenges", label: "Challenges",       iconSrc: "",                                  tutorialKey: null, minLevel: 3 },
+      { key: "rift",       label: "Rift",             iconSrc: "",                                  requiresLogin: true, tutorialKey: null, minLevel: 8 },
       { key: "dungeons",   label: "Undercroft",       iconSrc: "",                                  requiresLogin: true, tutorialKey: null, minLevel: 12 },
       { key: "worldboss",  label: "Colosseum",        iconSrc: "",                                  requiresLogin: true, tutorialKey: null, minLevel: 15 },
     ],
@@ -116,8 +116,8 @@ export const FLOORS: Floor[] = [
     banner: "/images/banners/breakaway-banner.png",
     minLevel: 1,
     rooms: [
-      { key: "social", label: "Breakaway", iconSrc: "/images/icons/nav-breakaway.png", requiresLogin: true, tutorialKey: null },
-      { key: "tavern", label: "Hearth", iconSrc: "/images/icons/nav-tavern.png", requiresLogin: true, tutorialKey: null },
+      { key: "social", label: "Breakaway", iconSrc: "", requiresLogin: true, tutorialKey: null },
+      { key: "tavern", label: "Hearth", iconSrc: "", requiresLogin: true, tutorialKey: null },
     ],
   },
   // ─── Commerce (Lv3) ─────────────────────────────────────────────────────────
@@ -132,7 +132,7 @@ export const FLOORS: Floor[] = [
     minLevel: 3,
     rooms: [
       { key: "shop",   label: "Bazaar",              iconSrc: "/images/icons/nav-bazaar.png",       tutorialKey: "bazaar-tab" },
-      { key: "forge",  label: "Artisan's Quarter",   iconSrc: "/images/icons/prof-schmied.png",     requiresLogin: true, minLevel: 5 },
+      { key: "forge",  label: "Artisan's Quarter",   iconSrc: "",                                   requiresLogin: true, minLevel: 5 },
       { key: "gacha",  label: "Vault of Fate",       iconSrc: "/images/icons/vault-of-fate.png",    tutorialKey: "vault-tab", minLevel: 5 },
     ],
   },
