@@ -146,7 +146,7 @@ function FriendsTab({ apiKey, playerName, onOpenProfile }: { apiKey: string; pla
         body: JSON.stringify({ targetPlayer: name }),
       });
       const d = await r.json();
-      if (!r.ok) { setError(d.error || "Failed"); return; }
+      if (!r.ok) { setError(d.error || "Something went wrong. Please try again."); return; }
       setAddInput("");
       setSearchOpen(false);
       setSearchResults([]);
@@ -765,7 +765,7 @@ function TradesTab({ apiKey, playerName }: { apiKey: string; playerName: string 
         }),
       });
       const d = await r.json();
-      if (!r.ok) { setError(d.error || "Failed"); setActionLoading(false); return; }
+      if (!r.ok) { setError(d.error || "Something went wrong. Please try again."); setActionLoading(false); return; }
       setShowNewTrade(false);
       setNewTradeTarget("");
       setNewTradeGold(0);
@@ -785,7 +785,7 @@ function TradesTab({ apiKey, playerName }: { apiKey: string; playerName: string 
         headers: getAuthHeaders(apiKey),
       });
       const d = await r.json();
-      if (!r.ok) { setError(d.error || "Failed"); setActionLoading(false); return; }
+      if (!r.ok) { setError(d.error || "Something went wrong. Please try again."); setActionLoading(false); return; }
       fetchTrades();
       setSelectedTrade(null);
     } catch { setError("Network error"); }
@@ -805,7 +805,7 @@ function TradesTab({ apiKey, playerName }: { apiKey: string; playerName: string 
         }),
       });
       const d = await r.json();
-      if (!r.ok) { setError(d.error || "Failed"); setActionLoading(false); return; }
+      if (!r.ok) { setError(d.error || "Something went wrong. Please try again."); setActionLoading(false); return; }
       setCounterGold(0);
       setCounterMsg("");
       setCounterItems([]);

@@ -1923,7 +1923,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                   const gr = await fetch("/api/gems", { headers: getAuthHeaders(apiKey) });
                   if (gr.ok) setGemData(await gr.json());
                 } else {
-                  addToast?.({ type: "error", message: d.error || "Failed" });
+                  addToast?.({ type: "error", message: d.error || "Something went wrong. Please try again." });
                 }
               } catch { addToast?.({ type: "error", message: "Network error" }); }
               setGemAction(null);

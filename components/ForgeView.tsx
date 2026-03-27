@@ -1550,7 +1550,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                     fetchData();
                     onRefresh?.();
                   } else {
-                    setEnchantResult(data.error || "Failed");
+                    setEnchantResult(data.error || "Something went wrong. Please try again.");
                   }
                 } catch (err) { console.error('[forge] enchant_choose error:', err); setEnchantResult("Network error"); }
                 setEnchantLoading(false);

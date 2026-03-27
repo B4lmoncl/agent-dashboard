@@ -147,7 +147,7 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
         body: JSON.stringify(body),
       });
       const d = await r.json();
-      if (!r.ok) setMessage({ text: d.error || "Failed", type: "error" });
+      if (!r.ok) setMessage({ text: d.error || "Something went wrong. Please try again.", type: "error" });
       else { setMessage({ text: d.message, type: "success" }); fetchRift(); onRefresh?.(); }
     } catch { setMessage({ text: "Network error", type: "error" }); }
     setActionLoading(false);
@@ -163,7 +163,7 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
         headers: getAuthHeaders(reviewApiKey),
       });
       const d = await r.json();
-      if (!r.ok) setMessage({ text: d.error || "Failed", type: "error" });
+      if (!r.ok) setMessage({ text: d.error || "Something went wrong. Please try again.", type: "error" });
       else {
         setMessage({ text: d.message, type: "success" });
         if (onRewardCelebration && d.rewards) {
@@ -191,7 +191,7 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
         headers: getAuthHeaders(reviewApiKey),
       });
       const d = await r.json();
-      if (!r.ok) setMessage({ text: d.error || "Failed", type: "error" });
+      if (!r.ok) setMessage({ text: d.error || "Something went wrong. Please try again.", type: "error" });
       else { setMessage({ text: d.message, type: "success" }); fetchRift(); onRefresh?.(); }
     } catch { setMessage({ text: "Network error", type: "error" }); }
     setActionLoading(false);
