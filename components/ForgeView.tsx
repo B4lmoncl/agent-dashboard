@@ -156,7 +156,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
   const [dismantleResult, setDismantleResult] = useState<{ message: string; essenz?: number; materials?: { id: string; name: string; amount: number }[] } | null>(null);
   const [transmuteResult, setTransmuteResult] = useState<string | null>(null);
   const [selectedTransmute, setSelectedTransmute] = useState<string[]>([]);
-  const [npcModalTab, setNpcModalTab] = useState<"recipes" | "schmiedekunst" | "transmutation" | "enchanting">("recipes");
+  const [npcModalTab, setNpcModalTab] = useState<"recipes" | "trainer" | "schmiedekunst" | "transmutation" | "enchanting">("recipes");
   // infoOpen state removed — info now shown via hover tooltip on header
   const [choosingProf, setChoosingProf] = useState(false);
   const [confirmProf, setConfirmProf] = useState<ProfessionDef | null>(null);
@@ -171,6 +171,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
   // Recipe search & filter state
   const [recipeSearch, setRecipeSearch] = useState("");
   const [showCraftableOnly, setShowCraftableOnly] = useState(false);
+  const [recipeSlotFilter, setRecipeSlotFilter] = useState<string>("all");
   const [totalRecipesByProf, setTotalRecipesByProf] = useState<Record<string, number>>({});
   // Cast bar countdown state
   const [castCountdown, setCastCountdown] = useState<string | null>(null);
@@ -1139,6 +1140,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
             {(() => {
               const tabs: { key: typeof npcModalTab; label: string; color: string }[] = [
                 { key: "recipes", label: "Recipes", color: selectedNpc.color },
+                { key: "trainer", label: "Trainer", color: "#fbbf24" },
               ];
               if (selectedNpc.id === "schmied") {
                 tabs.push({ key: "schmiedekunst", label: "Salvage", color: "#ff8c00" });
@@ -1149,7 +1151,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
               if (selectedNpc.id === "alchemist") {
                 tabs.push({ key: "transmutation", label: "Transmutation", color: "#22c55e" });
               }
-              if (tabs.length <= 1) return null;
+              // Always show tabs (at least Recipes + Trainer)
               return (
                 <div className="flex gap-0.5 px-5 pt-2" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
                   {tabs.map(t => (
@@ -1269,7 +1271,26 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                       <span style={{ color: "rgba(255,255,255,0.15)" }}> ○</span> locked
                     </span>
                   </div>
+                  {/* Slot filter */}
+                  <div className="flex gap-1 flex-wrap mb-2">
+                    {["all", "weapon", "shield", "helm", "armor", "amulet", "ring", "boots", "consumable"].map(s => (
+                      <button key={s} onClick={() => setRecipeSlotFilter(s)} className="text-xs px-2 py-0.5 rounded" style={{ background: recipeSlotFilter === s ? "rgba(255,255,255,0.08)" : "rgba(255,255,255,0.02)", color: recipeSlotFilter === s ? "#e8e8e8" : "rgba(255,255,255,0.2)", border: `1px solid ${recipeSlotFilter === s ? "rgba(255,255,255,0.15)" : "rgba(255,255,255,0.04)"}`, cursor: "pointer" }}>{s === "all" ? "All" : s === "consumable" ? "Buffs" : s.charAt(0).toUpperCase() + s.slice(1)}</button>
+                    ))}
+                  </div>
                   {recipes.filter(r => r.profession === selectedNpc.id).filter(recipe => {
+                    // Slot filter
+                    if (recipeSlotFilter !== "all") {
+                      if (recipeSlotFilter === "consumable") {
+                        const isConsumable = ["buff", "temp_enchant", "streak_shield", "forge_temp", "vellum", "material", "transmute_material"].includes(recipe.result?.type || "");
+                        if (!isConsumable) return false;
+                      } else {
+                        // For gear recipes: check if recipe name contains the slot keyword
+                        const nameLower = (recipe.name || "").toLowerCase();
+                        const SLOT_KEYWORDS: Record<string, string[]> = { weapon: ["schwert", "klinge", "dolch", "axt", "waffe", "stab", "bogen"], shield: ["schild", "buckler"], helm: ["helm", "haube", "kappe", "krone"], armor: ["rüstung", "panzer", "wams", "robe", "tunika"], amulet: ["amulett", "kette", "anhänger", "medallion"], ring: ["ring", "reif", "band"], boots: ["stiefel", "schuhe", "sandalen"] };
+                        const keywords = SLOT_KEYWORDS[recipeSlotFilter] || [];
+                        if (!keywords.some(k => nameLower.includes(k))) return false;
+                      }
+                    }
                     // Search filter
                     if (recipeSearch && !recipe.name.toLowerCase().includes(recipeSearch.toLowerCase())) return false;
                     // Craftable-only filter
@@ -1696,6 +1717,85 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                     <div className="text-sm px-3 py-2 rounded-lg" style={{ background: "rgba(168,85,247,0.08)", color: "#c084fc", border: "1px solid rgba(168,85,247,0.2)" }}>
                       {enchantResult}
                     </div>
+                  )}
+                </div>
+              );
+            })()}
+
+            {/* ─── Tab: Trainer (Buy Recipes — all professions) ──────────── */}
+            {(npcModalTab as string) === "trainer" && (() => {
+              const trainerRecipes = recipes
+                .filter(r => r.profession === selectedNpc.id && r.source === "trainer" && (r.trainerCost ?? 0) > 0)
+                .sort((a, b) => (a.reqSkill || 0) - (b.reqSkill || 0));
+              const learnedSet = new Set(recipes.filter(r => r.learned !== false).map(r => r.id));
+              const playerSkill = selectedNpc.skill || 0;
+              const gold = currencies.gold ?? loggedInUser?.currencies?.gold ?? loggedInUser?.gold ?? 0;
+
+              // Group by skill range
+              const groups: Record<string, typeof trainerRecipes> = {};
+              for (const r of trainerRecipes) {
+                const sk = r.reqSkill || 0;
+                const bracket = sk < 75 ? "Apprentice (1-75)" : sk < 150 ? "Journeyman (75-150)" : sk < 225 ? "Expert (150-225)" : "Artisan (225-300)";
+                if (!groups[bracket]) groups[bracket] = [];
+                groups[bracket].push(r);
+              }
+
+              return (
+                <div className="tab-content-enter px-5 py-4 space-y-4" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
+                  <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>
+                    Buy recipes from {selectedNpc.npcName}. Learned recipes are marked with a checkmark.
+                  </p>
+                  {Object.entries(groups).map(([bracket, recs]) => (
+                    <div key={bracket}>
+                      <p className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: "rgba(255,255,255,0.25)" }}>{bracket}</p>
+                      <div className="space-y-1">
+                        {recs.map(r => {
+                          const learned = learnedSet.has(r.id);
+                          const canAfford = gold >= (r.trainerCost || 0);
+                          const meetsSkill = playerSkill >= (r.reqSkill || 0);
+                          return (
+                            <div key={r.id} className="flex items-center gap-2 px-3 py-2 rounded-lg" style={{ background: learned ? "rgba(34,197,94,0.04)" : "rgba(255,255,255,0.02)", border: `1px solid ${learned ? "rgba(34,197,94,0.15)" : "rgba(255,255,255,0.05)"}` }}>
+                              <span style={{ color: learned ? "#22c55e" : "rgba(255,255,255,0.15)", fontSize: 12 }}>{learned ? "✓" : "○"}</span>
+                              <div className="flex-1 min-w-0">
+                                <p className="text-xs font-semibold truncate" style={{ color: learned ? "rgba(255,255,255,0.4)" : meetsSkill ? "#e8e8e8" : "rgba(255,255,255,0.3)" }}>{r.name}</p>
+                                <p className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>Skill {r.reqSkill || 0}{r.desc ? ` — ${r.desc}` : ""}</p>
+                              </div>
+                              {!learned && (
+                                <button
+                                  onClick={async () => {
+                                    try {
+                                      const res = await fetch("/api/professions/learn", {
+                                        method: "POST",
+                                        headers: { "Content-Type": "application/json", ...getAuthHeaders(reviewApiKey) },
+                                        body: JSON.stringify({ recipeId: r.id }),
+                                      });
+                                      const data = await res.json();
+                                      if (res.ok) { setCraftResult(`Learned: ${r.name}`); fetchData(); }
+                                      else setCraftResult(data.error || "Failed");
+                                      setTimeout(() => setCraftResult(null), 3000);
+                                    } catch { setCraftResult("Network error"); }
+                                  }}
+                                  disabled={!canAfford || !meetsSkill || learned}
+                                  title={!meetsSkill ? `Requires Skill ${r.reqSkill}` : !canAfford ? `Need ${(r.trainerCost || 0) - gold} more gold` : `Learn for ${r.trainerCost}g`}
+                                  className="text-xs px-2 py-1 rounded font-semibold flex-shrink-0"
+                                  style={{
+                                    background: canAfford && meetsSkill ? "rgba(245,158,11,0.12)" : "rgba(255,255,255,0.03)",
+                                    color: canAfford && meetsSkill ? "#f59e0b" : "rgba(255,255,255,0.2)",
+                                    border: `1px solid ${canAfford && meetsSkill ? "rgba(245,158,11,0.3)" : "rgba(255,255,255,0.06)"}`,
+                                    cursor: canAfford && meetsSkill ? "pointer" : "not-allowed",
+                                  }}
+                                >
+                                  {(r.trainerCost || 0).toLocaleString()}g
+                                </button>
+                              )}
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  ))}
+                  {trainerRecipes.length === 0 && (
+                    <p className="text-xs text-center py-4" style={{ color: "rgba(255,255,255,0.15)" }}>No trainer recipes for this profession.</p>
                   )}
                 </div>
               );
