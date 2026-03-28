@@ -1,10 +1,83 @@
 const express = require("express");
 const router = express.Router();
-const { state, saveUsers } = require("../lib/state");
+const { state, saveUsers, ensureUserCurrencies } = require("../lib/state");
 const { requireAuth } = require("../lib/middleware");
-const { getLegendaryModifiers, createPlayerLock } = require("../lib/helpers");
+const { getLegendaryModifiers, createPlayerLock, getTodayBerlin } = require("../lib/helpers");
 const factionClaimLock = createPlayerLock('faction-claim');
 const factionsData = require("../public/data/factions.json");
+
+// ─── Faction Daily Quests ─────────────────────────────────────────────────────
+const FACTION_DAILY_TEMPLATES = {
+  glut: [
+    { id: "glut_d1", name: "Morgenfeuer", desc: "Complete 1 Fitness quest", req: { type: "quest_type_today", questType: "fitness", count: 1 }, repReward: 40, goldReward: 20 },
+    { id: "glut_d2", name: "Ausdauerprobe", desc: "Complete 3 quests today", req: { type: "quests_today", count: 3 }, repReward: 25, goldReward: 15 },
+    { id: "glut_d3", name: "Flamme halten", desc: "Complete at least 1 quest (maintain streak)", req: { type: "quests_today", count: 1 }, repReward: 15, goldReward: 10 },
+  ],
+  tinte: [
+    { id: "tinte_d1", name: "Wissensdurst", desc: "Complete 1 Learning quest", req: { type: "quest_type_today", questType: "learning", count: 1 }, repReward: 40, goldReward: 20 },
+    { id: "tinte_d2", name: "Tiefenrecherche", desc: "Complete 2 quests today", req: { type: "quests_today", count: 2 }, repReward: 25, goldReward: 15 },
+    { id: "tinte_d3", name: "Stille Lektüre", desc: "Complete 1 quest today", req: { type: "quests_today", count: 1 }, repReward: 15, goldReward: 10 },
+  ],
+  amboss: [
+    { id: "amboss_d1", name: "Tageswerk", desc: "Complete 1 Development or Personal quest", req: { type: "quest_type_today", questType: "development", count: 1 }, repReward: 40, goldReward: 20 },
+    { id: "amboss_d2", name: "Schaffenskraft", desc: "Complete 3 quests today", req: { type: "quests_today", count: 3 }, repReward: 25, goldReward: 15 },
+    { id: "amboss_d3", name: "Erster Hammerschlag", desc: "Complete 1 quest today", req: { type: "quests_today", count: 1 }, repReward: 15, goldReward: 10 },
+  ],
+  echo: [
+    { id: "echo_d1", name: "Gemeinschaftsband", desc: "Complete 1 Social quest", req: { type: "quest_type_today", questType: "social", count: 1 }, repReward: 40, goldReward: 20 },
+    { id: "echo_d2", name: "Verbindungen", desc: "Complete 2 quests today", req: { type: "quests_today", count: 2 }, repReward: 25, goldReward: 15 },
+    { id: "echo_d3", name: "Erstes Wort", desc: "Complete 1 quest today", req: { type: "quests_today", count: 1 }, repReward: 15, goldReward: 10 },
+  ],
+};
+
+function ensureFactionDailies(user) {
+  const today = getTodayBerlin();
+  if (!user.factionDailies || user.factionDailies.date !== today) {
+    user.factionDailies = { date: today, quests: {} };
+    for (const [fid, templates] of Object.entries(FACTION_DAILY_TEMPLATES)) {
+      for (const t of templates) {
+        user.factionDailies.quests[t.id] = { progress: 0, completed: false, claimed: false };
+      }
+    }
+  }
+  return user.factionDailies;
+}
+
+/**
+ * Progress faction dailies based on completed quest.
+ * Called from onQuestCompletedByUser in helpers.js.
+ */
+function progressFactionDailies(userId, quest) {
+  const u = state.users[userId];
+  if (!u) return;
+  const dailies = ensureFactionDailies(u);
+  const today = getTodayBerlin();
+
+  // Count today's completions
+  const pp = state.playerProgress?.[userId] || {};
+  const todayCompletions = Object.values(pp.completedQuests || {}).filter(cq => cq && cq.at && cq.at.startsWith(today)).length;
+  const questType = quest?.type || '';
+
+  for (const [fid, templates] of Object.entries(FACTION_DAILY_TEMPLATES)) {
+    for (const t of templates) {
+      const dq = dailies.quests[t.id];
+      if (!dq || dq.completed) continue;
+      let progress = 0;
+      if (t.req.type === 'quests_today') {
+        progress = todayCompletions;
+      } else if (t.req.type === 'quest_type_today') {
+        if (questType === t.req.questType || (t.req.questType === 'development' && questType === 'personal')) {
+          const typeCompletions = Object.values(pp.completedQuests || {}).filter(cq =>
+            cq && cq.at && cq.at.startsWith(today) && (cq.type === t.req.questType || (t.req.questType === 'development' && cq.type === 'personal'))
+          ).length;
+          progress = typeCompletions;
+        }
+      }
+      dq.progress = Math.min(progress, t.req.count);
+      if (dq.progress >= t.req.count) dq.completed = true;
+    }
+  }
+}
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 
@@ -103,6 +176,54 @@ router.get("/", requireAuth, (req, res) => {
     standings: factionsData.standings,
     repPerQuest: factionsData.repPerQuest,
     weeklyBonusMultiplier: factionsData.weeklyBonusMultiplier,
+    dailyQuests: (() => {
+      const dailies = ensureFactionDailies(user);
+      const result = {};
+      for (const [fid, templates] of Object.entries(FACTION_DAILY_TEMPLATES)) {
+        result[fid] = templates.map(t => ({
+          ...t,
+          ...(dailies.quests[t.id] || { progress: 0, completed: false, claimed: false }),
+        }));
+      }
+      return result;
+    })(),
+  });
+});
+
+// ─── POST /api/factions/:factionId/claim-daily — Claim daily quest reward ────
+router.post("/:factionId/claim-daily/:dailyId", requireAuth, (req, res) => {
+  const uid = req.auth?.userId;
+  const user = uid ? state.users[uid] : null;
+  if (!user) return res.status(404).json({ error: "User not found" });
+
+  const { factionId, dailyId } = req.params;
+  const dailies = ensureFactionDailies(user);
+  const dq = dailies.quests[dailyId];
+  if (!dq) return res.status(404).json({ error: "Daily quest not found" });
+  if (!dq.completed) return res.status(400).json({ error: "Quest not yet completed" });
+  if (dq.claimed) return res.status(400).json({ error: "Already claimed" });
+
+  // Find template
+  const templates = FACTION_DAILY_TEMPLATES[factionId];
+  if (!templates) return res.status(404).json({ error: "Faction not found" });
+  const template = templates.find(t => t.id === dailyId);
+  if (!template) return res.status(404).json({ error: "Daily template not found" });
+
+  // Award rep + gold
+  ensureUserFactions(user);
+  user.factions[factionId].rep = (user.factions[factionId].rep || 0) + template.repReward;
+  ensureUserCurrencies(user);
+  user.currencies.gold = (user.currencies.gold || 0) + template.goldReward;
+  if (user.gold !== undefined) user.gold = user.currencies.gold;
+
+  dq.claimed = true;
+  saveUsers();
+
+  res.json({
+    ok: true,
+    repGained: template.repReward,
+    goldGained: template.goldReward,
+    newRep: user.factions[factionId].rep,
   });
 });
 
@@ -243,3 +364,4 @@ function grantReputation(user, questType, questRarity) {
 module.exports = router;
 module.exports.grantReputation = grantReputation;
 module.exports.ensureUserFactions = ensureUserFactions;
+module.exports.progressFactionDailies = progressFactionDailies;
