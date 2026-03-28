@@ -331,7 +331,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                 </ul>
               </GuideSection>
 
-              <GuideSection title="Kanai&apos;s Cube" icon="⬡" accent="rgba(249,115,22,0.3)">
+              <GuideSection title="Ätherwürfel" icon="⬡" accent="rgba(249,115,22,0.3)">
                 Opfere Legendary Items um ihre Effekte dauerhaft zu extrahieren. Im Artisan&apos;s Quarter.
                 <ul className="space-y-1 mt-2">
                   <li>• 3 Slots: <Stat color="#ef4444">Offensive</Stat>, <Stat color="#3b82f6">Defensive</Stat>, <Stat color="#22c55e">Utility</Stat></li>

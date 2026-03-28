@@ -1257,7 +1257,7 @@ const TOOLTIP_REGISTRY: Record<string, TooltipEntry> = {
     ),
   },
   kanais_cube: {
-    title: "Kanai\u2019s Cube",
+    title: "Ätherwürfel",
     icon: "⬡",
     accent: "#f97316",
     body: (

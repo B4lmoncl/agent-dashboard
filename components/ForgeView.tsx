@@ -181,7 +181,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
   const [enchantLoading, setEnchantLoading] = useState(false);
   const [enchantResult, setEnchantResult] = useState<string | null>(null);
   const [skillUpFlash, setSkillUpFlash] = useState(false);
-  // Kanai's Cube state
+  // Ätherwürfel state
   const [cubeData, setCubeData] = useState<{
     offensive: { type: string; value: number; label: string } | null;
     defensive: { type: string; value: number; label: string } | null;
@@ -501,7 +501,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
     setAutoSalvageLoading(false);
   };
 
-  // ─── Kanai's Cube handlers ─────────────────────────────────────────────────
+  // ─── Ätherwürfel handlers ─────────────────────────────────────────────────
   const fetchCubeData = async () => {
     if (!reviewApiKey) return;
     try {
@@ -900,10 +900,10 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
         )}
       </div>
 
-      {/* ─── Kanai's Cube — Legendary Effect Extraction ─────────────────────── */}
+      {/* ─── Ätherwürfel — Legendary Effect Extraction ─────────────────────── */}
       <div className="space-y-2">
         <div className="flex items-center justify-between">
-          <p className="text-sm font-semibold uppercase tracking-widest" style={{ color: "rgba(249,115,22,0.6)" }}>Kanai&apos;s Cube</p>
+          <p className="text-sm font-semibold uppercase tracking-widest" style={{ color: "rgba(249,115,22,0.6)" }}>Ätherwürfel</p>
           <button
             onClick={() => { setCubeOpen(true); fetchCubeData(); }}
             className="text-xs px-3 py-1.5 rounded-lg font-semibold"
@@ -1809,7 +1809,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                     </div>
                   )}
 
-                  {/* ─── Reforge Legendary (D3 Kanai's Cube) ──────────────── */}
+                  {/* ─── Reforge Legendary (D3 Ätherwürfel) ──────────────── */}
                   {(() => {
                     const legendaryItems = dismantleItems.filter(i => i.rarity === "legendary");
                     if (legendaryItems.length === 0) return null;
@@ -2184,13 +2184,13 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
         document.body
       )}
 
-      {/* ─── Kanai's Cube Modal ──────────────────────────────────────────── */}
+      {/* ─── Ätherwürfel Modal ──────────────────────────────────────────── */}
       {cubeOpen && createPortal(
         <div className="fixed inset-0 z-[150] flex items-center justify-center modal-backdrop" onClick={closeCube}>
           <div className="w-full max-w-xl rounded-xl overflow-hidden" style={{ background: "#12100a", border: "1px solid rgba(249,115,22,0.25)", boxShadow: "0 20px 60px rgba(0,0,0,0.8)" }} onClick={e => e.stopPropagation()}>
             {/* Header */}
             <div className="flex items-center justify-between px-5 py-3" style={{ background: "rgba(249,115,22,0.06)", borderBottom: "1px solid rgba(249,115,22,0.15)" }}>
-              <p className="text-sm font-bold" style={{ color: "#f97316" }}>Kanai&apos;s Cube</p>
+              <p className="text-sm font-bold" style={{ color: "#f97316" }}>Ätherwürfel</p>
               <button onClick={closeCube} className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.4)", cursor: "pointer" }}>x</button>
             </div>
 
