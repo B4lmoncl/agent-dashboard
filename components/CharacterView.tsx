@@ -781,6 +781,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
   const [profileSettingsOpen, setProfileSettingsOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState<{ item: CharacterData["inventory"][number]; rect: { x: number; y: number; width: number; height: number } } | null>(null);
   const [statTooltipOpen, setStatTooltipOpen] = useState<string | null>(null);
+  const [expandedStat, setExpandedStat] = useState<string | null>(null);
   const [invFilter, setInvFilter] = useState<InvFilter>("all");
   const [invSort, setInvSort] = useState<InvSort>("none");
   const [invSearch, setInvSearch] = useState("");
@@ -1491,18 +1492,39 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                     const bonus = s.val - s.base;
                     const tipKey = s.label.toLowerCase().replace("ü", "ue") as string;
                     const registryKey = tipKey === "glueck" ? "glueck" : tipKey === "kraft" ? "kraft" : tipKey === "ausdauer" ? "ausdauer" : tipKey === "weisheit" ? "weisheit" : tipKey;
+                    const statKey = s.label.toLowerCase().replace("ü", "ue");
+                    const isExpanded = expandedStat === statKey;
+                    const sources = charData.statBreakdown?.[statKey] || [];
                     return (
                       <div key={s.label}>
                         <Tip k={registryKey}>
-                          <div className="flex items-center gap-2" style={{ cursor: "help" }}>
+                          <button
+                            onClick={() => setExpandedStat(isExpanded ? null : statKey)}
+                            className="w-full flex items-center gap-2"
+                            style={{ cursor: "pointer", background: "none", border: "none", padding: 0 }}
+                          >
                             <img src={s.iconSrc} alt={s.label} width={16} height={16} style={{ imageRendering: "auto" }} onError={e => { e.currentTarget.style.display = "none"; }} className="w-4 h-4" />
-                            <span className="text-xs flex-1" style={{ color: "rgba(255,255,255,0.65)" }}>{s.label}</span>
+                            <span className="text-xs flex-1 text-left" style={{ color: "rgba(255,255,255,0.65)" }}>{s.label}</span>
                             <span className="text-xs font-mono font-bold" style={{ color: "#e8e8e8" }}>{s.val}</span>
                             {bonus > 0 && (
                               <span className="text-xs font-mono" style={{ color: "#4ade80" }}>(+{bonus})</span>
                             )}
-                          </div>
+                            <span className="text-xs" style={{ color: "rgba(255,255,255,0.15)", fontSize: 12 }}>{isExpanded ? "▲" : "▼"}</span>
+                          </button>
                         </Tip>
+                        {isExpanded && sources.length > 0 && (
+                          <div className="tab-content-enter ml-5 mt-1 mb-2 space-y-0.5 pl-2" style={{ borderLeft: "2px solid rgba(255,255,255,0.06)" }}>
+                            {sources.map((src, i) => (
+                              <div key={i} className="flex items-center justify-between text-xs">
+                                <span style={{ color: src.type === "gem" ? "#a855f7" : src.type === "set" ? "#22c55e" : src.type === "trait" ? "#f59e0b" : "rgba(255,255,255,0.35)" }}>{src.source}</span>
+                                <span className="font-mono" style={{ color: "#4ade80" }}>+{src.value}</span>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                        {isExpanded && sources.length === 0 && (
+                          <p className="ml-5 mt-1 mb-2 text-xs" style={{ color: "rgba(255,255,255,0.15)" }}>No gear contributions</p>
+                        )}
                       </div>
                     );
                   })}

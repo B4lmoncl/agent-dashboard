@@ -7,7 +7,7 @@ const {
   saveUsers, saveHabits, resolveItem, getActiveBuffs, ensureUserCurrencies,
 } = require('../lib/state');
 const {
-  now, getLevelInfo, getUserStats, getUserEquipment, getUserDropBonus,
+  now, getLevelInfo, getUserStats, getUserEquipment, getUserDropBonus, getStatBreakdown,
   rollLoot, resetLootPity, addLootToInventory, calcDynamicForgeTemp,
   getBondLevel, getLegendaryEffects, createGearInstance, migrateUserEquipment, getGearScore,
   getTodayBerlin,
@@ -982,6 +982,7 @@ router.get('/api/player/:name/character', (req, res) => {
     gearScore: getGearScore(uid),
     equippedTitle: u.equippedTitle || null,
     earnedTitleCount: (u.earnedTitles || []).length,
+    statBreakdown: getStatBreakdown(uid),
   });
 });
 

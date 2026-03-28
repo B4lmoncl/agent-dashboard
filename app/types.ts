@@ -483,6 +483,7 @@ export interface CharacterData {
   gearScore?: { gearScore: number; itemLevels: Record<string, number> };
   equippedTitle?: { id: string; name: string; rarity: string; description?: string } | null;
   earnedTitleCount?: number;
+  statBreakdown?: Record<string, { source: string; value: number; type: string }[]>;
   relationshipStatus?: string;
   partnerName?: string | null;
 }
