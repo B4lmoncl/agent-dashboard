@@ -662,7 +662,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
   const chosenCount = professions.filter(p => p.chosen).length;
 
   return (
-    <div className="space-y-4 tab-content-enter">
+    <div className={`space-y-4 tab-content-enter${moonlightActive ? " mondlicht-bg" : ""}`}>
       {/* ─── Header with currencies + info ─────────────────────────────── */}
       <div className="flex items-center gap-4 flex-wrap">
         <div>
