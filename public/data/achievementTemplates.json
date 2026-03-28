@@ -1183,6 +1183,412 @@
       "category": "hidden",
       "hidden": true,
       "points": 100
+    },
+    {
+      "id": "chain_quest_bronze",
+      "name": "Quest Runner: Bronze",
+      "description": "25 Quests abgeschlossen",
+      "icon": null,
+      "condition": {
+        "type": "quests_completed",
+        "count": 25
+      },
+      "rewards": {
+        "xp": 30,
+        "gold": 20
+      },
+      "rarity": "common",
+      "category": "milestone",
+      "points": 5,
+      "chainId": "quest_runner",
+      "chainTier": 1,
+      "chainNext": "chain_quest_silver"
+    },
+    {
+      "id": "chain_quest_silver",
+      "name": "Quest Runner: Silver",
+      "description": "100 Quests abgeschlossen",
+      "icon": null,
+      "condition": {
+        "type": "quests_completed",
+        "count": 100
+      },
+      "rewards": {
+        "xp": 75,
+        "gold": 50
+      },
+      "rarity": "rare",
+      "category": "milestone",
+      "points": 25,
+      "chainId": "quest_runner",
+      "chainTier": 2,
+      "chainPrev": "chain_quest_bronze",
+      "chainNext": "chain_quest_gold"
+    },
+    {
+      "id": "chain_quest_gold",
+      "name": "Quest Runner: Gold",
+      "description": "300 Quests abgeschlossen",
+      "icon": null,
+      "condition": {
+        "type": "quests_completed",
+        "count": 300
+      },
+      "rewards": {
+        "xp": 150,
+        "gold": 100
+      },
+      "rarity": "epic",
+      "category": "milestone",
+      "points": 50,
+      "chainId": "quest_runner",
+      "chainTier": 3,
+      "chainPrev": "chain_quest_silver",
+      "chainNext": "chain_quest_legend"
+    },
+    {
+      "id": "chain_quest_legend",
+      "name": "Quest Runner: Legendary",
+      "description": "1000 Quests abgeschlossen",
+      "icon": null,
+      "condition": {
+        "type": "quests_completed",
+        "count": 1000
+      },
+      "rewards": {
+        "xp": 500,
+        "gold": 300
+      },
+      "rarity": "legendary",
+      "category": "milestone",
+      "points": 100,
+      "chainId": "quest_runner",
+      "chainTier": 4,
+      "chainPrev": "chain_quest_gold"
+    },
+    {
+      "id": "chain_streak_bronze",
+      "name": "Streak Keeper: Bronze",
+      "description": "7-Tage Streak",
+      "icon": null,
+      "condition": {
+        "type": "streak_days",
+        "count": 7
+      },
+      "rewards": {
+        "xp": 20,
+        "gold": 15
+      },
+      "rarity": "common",
+      "category": "milestone",
+      "points": 5,
+      "chainId": "streak_keeper",
+      "chainTier": 1,
+      "chainNext": "chain_streak_silver"
+    },
+    {
+      "id": "chain_streak_silver",
+      "name": "Streak Keeper: Silver",
+      "description": "30-Tage Streak",
+      "icon": null,
+      "condition": {
+        "type": "streak_days",
+        "count": 30
+      },
+      "rewards": {
+        "xp": 75,
+        "gold": 50
+      },
+      "rarity": "rare",
+      "category": "milestone",
+      "points": 25,
+      "chainId": "streak_keeper",
+      "chainTier": 2,
+      "chainPrev": "chain_streak_bronze",
+      "chainNext": "chain_streak_gold"
+    },
+    {
+      "id": "chain_streak_gold",
+      "name": "Streak Keeper: Gold",
+      "description": "90-Tage Streak",
+      "icon": null,
+      "condition": {
+        "type": "streak_days",
+        "count": 90
+      },
+      "rewards": {
+        "xp": 200,
+        "gold": 150
+      },
+      "rarity": "epic",
+      "category": "milestone",
+      "points": 50,
+      "chainId": "streak_keeper",
+      "chainTier": 3,
+      "chainPrev": "chain_streak_silver",
+      "chainNext": "chain_streak_legend"
+    },
+    {
+      "id": "chain_streak_legend",
+      "name": "Streak Keeper: Legendary",
+      "description": "365-Tage Streak",
+      "icon": null,
+      "condition": {
+        "type": "streak_days",
+        "count": 365
+      },
+      "rewards": {
+        "xp": 500,
+        "gold": 500
+      },
+      "rarity": "legendary",
+      "category": "milestone",
+      "points": 100,
+      "chainId": "streak_keeper",
+      "chainTier": 4,
+      "chainPrev": "chain_streak_gold"
+    },
+    {
+      "id": "chain_gold_bronze",
+      "name": "Gold Hoarder: Bronze",
+      "description": "500 Gold gesammelt",
+      "icon": null,
+      "condition": {
+        "type": "gold_threshold",
+        "count": 500
+      },
+      "rewards": {
+        "xp": 20
+      },
+      "rarity": "common",
+      "category": "milestone",
+      "points": 5,
+      "chainId": "gold_hoarder",
+      "chainTier": 1,
+      "chainNext": "chain_gold_silver"
+    },
+    {
+      "id": "chain_gold_silver",
+      "name": "Gold Hoarder: Silver",
+      "description": "5.000 Gold",
+      "icon": null,
+      "condition": {
+        "type": "gold_threshold",
+        "count": 5000
+      },
+      "rewards": {
+        "xp": 75
+      },
+      "rarity": "rare",
+      "category": "milestone",
+      "points": 25,
+      "chainId": "gold_hoarder",
+      "chainTier": 2,
+      "chainPrev": "chain_gold_bronze",
+      "chainNext": "chain_gold_gold"
+    },
+    {
+      "id": "chain_gold_gold",
+      "name": "Gold Hoarder: Gold",
+      "description": "25.000 Gold",
+      "icon": null,
+      "condition": {
+        "type": "gold_threshold",
+        "count": 25000
+      },
+      "rewards": {
+        "xp": 150
+      },
+      "rarity": "epic",
+      "category": "milestone",
+      "points": 50,
+      "chainId": "gold_hoarder",
+      "chainTier": 3,
+      "chainPrev": "chain_gold_silver",
+      "chainNext": "chain_gold_legend"
+    },
+    {
+      "id": "chain_gold_legend",
+      "name": "Gold Hoarder: Legendary",
+      "description": "100.000 Gold",
+      "icon": null,
+      "condition": {
+        "type": "gold_threshold",
+        "count": 100000
+      },
+      "rewards": {
+        "xp": 500
+      },
+      "rarity": "legendary",
+      "category": "milestone",
+      "points": 100,
+      "chainId": "gold_hoarder",
+      "chainTier": 4,
+      "chainPrev": "chain_gold_gold"
+    },
+    {
+      "id": "chain_boss_bronze",
+      "name": "Boss Slayer: Bronze",
+      "description": "1 World Boss besiegt",
+      "icon": null,
+      "condition": {
+        "type": "boss_defeated",
+        "count": 1
+      },
+      "rewards": {
+        "xp": 30,
+        "gold": 25
+      },
+      "rarity": "common",
+      "category": "milestone",
+      "points": 5,
+      "chainId": "boss_slayer",
+      "chainTier": 1,
+      "chainNext": "chain_boss_silver"
+    },
+    {
+      "id": "chain_boss_silver",
+      "name": "Boss Slayer: Silver",
+      "description": "5 World Bosses besiegt",
+      "icon": null,
+      "condition": {
+        "type": "boss_defeated",
+        "count": 5
+      },
+      "rewards": {
+        "xp": 100,
+        "gold": 75
+      },
+      "rarity": "rare",
+      "category": "milestone",
+      "points": 25,
+      "chainId": "boss_slayer",
+      "chainTier": 2,
+      "chainPrev": "chain_boss_bronze",
+      "chainNext": "chain_boss_gold"
+    },
+    {
+      "id": "chain_boss_gold",
+      "name": "Boss Slayer: Gold",
+      "description": "15 World Bosses besiegt",
+      "icon": null,
+      "condition": {
+        "type": "boss_defeated",
+        "count": 15
+      },
+      "rewards": {
+        "xp": 250,
+        "gold": 200
+      },
+      "rarity": "epic",
+      "category": "milestone",
+      "points": 50,
+      "chainId": "boss_slayer",
+      "chainTier": 3,
+      "chainPrev": "chain_boss_silver",
+      "chainNext": "chain_boss_legend"
+    },
+    {
+      "id": "chain_boss_legend",
+      "name": "Boss Slayer: Legendary",
+      "description": "50 World Bosses besiegt",
+      "icon": null,
+      "condition": {
+        "type": "boss_defeated",
+        "count": 50
+      },
+      "rewards": {
+        "xp": 500,
+        "gold": 500
+      },
+      "rarity": "legendary",
+      "category": "milestone",
+      "points": 100,
+      "chainId": "boss_slayer",
+      "chainTier": 4,
+      "chainPrev": "chain_boss_gold"
+    },
+    {
+      "id": "chain_craft_bronze",
+      "name": "Master Crafter: Bronze",
+      "description": "Profession Skill 50",
+      "icon": null,
+      "condition": {
+        "type": "profession_skill",
+        "count": 50
+      },
+      "rewards": {
+        "xp": 25,
+        "gold": 15
+      },
+      "rarity": "common",
+      "category": "milestone",
+      "points": 5,
+      "chainId": "crafter",
+      "chainTier": 1,
+      "chainNext": "chain_craft_silver"
+    },
+    {
+      "id": "chain_craft_silver",
+      "name": "Master Crafter: Silver",
+      "description": "Profession Skill 150",
+      "icon": null,
+      "condition": {
+        "type": "profession_skill",
+        "count": 150
+      },
+      "rewards": {
+        "xp": 100,
+        "gold": 75
+      },
+      "rarity": "rare",
+      "category": "milestone",
+      "points": 25,
+      "chainId": "crafter",
+      "chainTier": 2,
+      "chainPrev": "chain_craft_bronze",
+      "chainNext": "chain_craft_gold"
+    },
+    {
+      "id": "chain_craft_gold",
+      "name": "Master Crafter: Gold",
+      "description": "Profession Skill 250",
+      "icon": null,
+      "condition": {
+        "type": "profession_skill",
+        "count": 250
+      },
+      "rewards": {
+        "xp": 200,
+        "gold": 150
+      },
+      "rarity": "epic",
+      "category": "milestone",
+      "points": 50,
+      "chainId": "crafter",
+      "chainTier": 3,
+      "chainPrev": "chain_craft_silver",
+      "chainNext": "chain_craft_legend"
+    },
+    {
+      "id": "chain_craft_legend",
+      "name": "Master Crafter: Legendary",
+      "description": "Profession Skill 300",
+      "icon": null,
+      "condition": {
+        "type": "profession_skill",
+        "count": 300
+      },
+      "rewards": {
+        "xp": 500,
+        "gold": 300
+      },
+      "rarity": "legendary",
+      "category": "milestone",
+      "points": 100,
+      "chainId": "crafter",
+      "chainTier": 4,
+      "chainPrev": "chain_craft_gold"
     }
   ],
   "pointMilestones": [
@@ -1282,6 +1688,58 @@
         "desc": "Ein dunkler Rahmen aus der Leere selbst.",
         "glow": true
       }
+    }
+  ],
+  "chains": [
+    {
+      "id": "quest_runner",
+      "name": "Quest Runner",
+      "tiers": [
+        "chain_quest_bronze",
+        "chain_quest_silver",
+        "chain_quest_gold",
+        "chain_quest_legend"
+      ]
+    },
+    {
+      "id": "streak_keeper",
+      "name": "Streak Keeper",
+      "tiers": [
+        "chain_streak_bronze",
+        "chain_streak_silver",
+        "chain_streak_gold",
+        "chain_streak_legend"
+      ]
+    },
+    {
+      "id": "gold_hoarder",
+      "name": "Gold Hoarder",
+      "tiers": [
+        "chain_gold_bronze",
+        "chain_gold_silver",
+        "chain_gold_gold",
+        "chain_gold_legend"
+      ]
+    },
+    {
+      "id": "boss_slayer",
+      "name": "Boss Slayer",
+      "tiers": [
+        "chain_boss_bronze",
+        "chain_boss_silver",
+        "chain_boss_gold",
+        "chain_boss_legend"
+      ]
+    },
+    {
+      "id": "crafter",
+      "name": "Master Crafter",
+      "tiers": [
+        "chain_craft_bronze",
+        "chain_craft_silver",
+        "chain_craft_gold",
+        "chain_craft_legend"
+      ]
     }
   ]
 }
