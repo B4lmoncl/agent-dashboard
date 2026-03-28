@@ -211,6 +211,16 @@ export default function Dashboard() {
   const [tutorialStep, setTutorialStep] = useState(0);
   const [onboardingOpen, setOnboardingOpen] = useState(false);
   const [whatsNewOpen, setWhatsNewOpen] = useState(false);
+  const [emailMigrationOpen, setEmailMigrationOpen] = useState(false);
+  const [migEmail, setMigEmail] = useState("");
+  const [migMsg, setMigMsg] = useState("");
+  const [migLoading, setMigLoading] = useState(false);
+  const [resetPasswordOpen, setResetPasswordOpen] = useState(false);
+  const [resetToken, setResetToken] = useState<string | null>(null);
+  const [rpw, setRpw] = useState("");
+  const [rpwConfirm, setRpwConfirm] = useState("");
+  const [rpMsg, setRpMsg] = useState("");
+  const [rpLoading, setRpLoading] = useState(false);
   const [classesList, setClassesList] = useState<ClassDef[]>([]);
   const [classActivatedNotif, setClassActivatedNotif] = useState<{ className: string; classIcon: string; classDescription: string } | null>(null);
   const [rituals, setRituals] = useState<Ritual[]>([]);
@@ -555,6 +565,16 @@ export default function Dashboard() {
     } catch { /* ignore */ }
   }, []);
 
+  // Detect URL params for password reset and email verification
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const params = new URLSearchParams(window.location.search);
+    const rt = params.get("resetToken");
+    if (rt) { setResetToken(rt); setResetPasswordOpen(true); window.history.replaceState({}, "", "/"); }
+    const ev = params.get("emailVerified");
+    if (ev === "true") { addToast({ type: "flavor", message: "Email verified successfully!", icon: "/images/icons/nav-great-hall.png" }); window.history.replaceState({}, "", "/"); }
+  }, []);
+
   // What's New splash — show once per version
   useEffect(() => {
     const CURRENT_VERSION = "1.6.0";
@@ -767,6 +787,7 @@ export default function Dashboard() {
         setInfoOverlayOpen={setInfoOverlayOpen}
         setInfoOverlayTab={setInfoOverlayTab}
         onTodayOpen={() => setTodayOpen(true)}
+        onNeedsEmail={() => setEmailMigrationOpen(true)}
       />
 
       {!apiLive && !loading && (
@@ -2436,6 +2457,70 @@ export default function Dashboard() {
             setTutorialStep(0);
           }}
         />
+      )}
+
+      {/* Email Migration Modal (forced for existing users without email) */}
+      {emailMigrationOpen && (
+        <div className="fixed inset-0 z-[200] flex items-center justify-center modal-backdrop">
+          <div className="w-full max-w-sm rounded-xl overflow-hidden" style={{ background: "#111318", border: "1px solid rgba(59,130,246,0.3)", boxShadow: "0 20px 60px rgba(0,0,0,0.8)" }}>
+            <div className="px-5 py-3" style={{ background: "rgba(59,130,246,0.06)", borderBottom: "1px solid rgba(59,130,246,0.15)" }}>
+              <p className="text-sm font-bold" style={{ color: "#60a5fa" }}>Add Your Email</p>
+            </div>
+            <div className="px-5 py-4 space-y-3">
+              <p className="text-xs" style={{ color: "rgba(255,255,255,0.5)" }}>Email is now required for account recovery. Please add your email to continue.</p>
+              <input type="email" value={migEmail} onChange={e => setMigEmail(e.target.value)} placeholder="your@email.com" className="w-full text-xs px-3 py-2 rounded-lg input-dark" style={{ background: "rgba(0,0,0,0.3)", border: "1px solid rgba(255,255,255,0.1)", color: "#e8e8e8" }} />
+              {migMsg && <p className="text-xs" style={{ color: migMsg.includes("error") || migMsg.includes("already") ? "#ef4444" : "#22c55e" }}>{migMsg}</p>}
+              <button
+                onClick={async () => {
+                  setMigLoading(true);
+                  try {
+                    const { getAuthHeaders } = await import("@/lib/auth-client");
+                    const r = await fetch("/api/auth/add-email", { method: "POST", headers: { "Content-Type": "application/json", ...getAuthHeaders() }, body: JSON.stringify({ email: migEmail }) });
+                    const d = await r.json();
+                    if (r.ok) { setMigMsg(d.message || "Email added!"); setTimeout(() => setEmailMigrationOpen(false), 1500); }
+                    else setMigMsg(d.error || "Failed");
+                  } catch { setMigMsg("Network error"); }
+                  setMigLoading(false);
+                }}
+                disabled={migLoading || !migEmail.includes("@")}
+                className="w-full text-xs py-2 rounded-lg font-semibold"
+                style={{ background: "rgba(59,130,246,0.15)", color: "#60a5fa", border: "1px solid rgba(59,130,246,0.3)", cursor: migLoading || !migEmail.includes("@") ? "not-allowed" : "pointer", opacity: migLoading ? 0.5 : 1 }}
+              >{migLoading ? "Saving..." : "Save Email"}</button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Password Reset Modal (from URL token) */}
+      {resetPasswordOpen && resetToken && (
+        <div className="fixed inset-0 z-[200] flex items-center justify-center modal-backdrop">
+          <div className="w-full max-w-sm rounded-xl overflow-hidden" style={{ background: "#111318", border: "1px solid rgba(249,115,22,0.3)", boxShadow: "0 20px 60px rgba(0,0,0,0.8)" }}>
+            <div className="px-5 py-3" style={{ background: "rgba(249,115,22,0.06)", borderBottom: "1px solid rgba(249,115,22,0.15)" }}>
+              <p className="text-sm font-bold" style={{ color: "#f97316" }}>Reset Password</p>
+            </div>
+            <div className="px-5 py-4 space-y-3">
+              <input type="password" value={rpw} onChange={e => setRpw(e.target.value)} placeholder="New password (8+ chars, 1 uppercase, 1 number)" className="w-full text-xs px-3 py-2 rounded-lg input-dark" style={{ background: "rgba(0,0,0,0.3)", border: "1px solid rgba(255,255,255,0.1)", color: "#e8e8e8" }} />
+              <input type="password" value={rpwConfirm} onChange={e => setRpwConfirm(e.target.value)} placeholder="Confirm new password" className="w-full text-xs px-3 py-2 rounded-lg input-dark" style={{ background: "rgba(0,0,0,0.3)", border: "1px solid rgba(255,255,255,0.1)", color: "#e8e8e8" }} />
+              {rpw && rpwConfirm && rpw !== rpwConfirm && <p className="text-xs" style={{ color: "#ef4444" }}>Passwords don&apos;t match</p>}
+              {rpMsg && <p className="text-xs" style={{ color: rpMsg.includes("updated") ? "#22c55e" : "#ef4444" }}>{rpMsg}</p>}
+              <button
+                onClick={async () => {
+                  setRpLoading(true);
+                  try {
+                    const r = await fetch("/api/auth/reset-password", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ token: resetToken, password: rpw }) });
+                    const d = await r.json();
+                    setRpMsg(d.message || d.error || "Done");
+                    if (r.ok) setTimeout(() => { setResetPasswordOpen(false); setResetToken(null); }, 2000);
+                  } catch { setRpMsg("Network error"); }
+                  setRpLoading(false);
+                }}
+                disabled={rpLoading || !(rpw.length >= 8 && /[A-Z]/.test(rpw) && /[0-9]/.test(rpw) && rpw === rpwConfirm)}
+                className="w-full text-xs py-2 rounded-lg font-semibold"
+                style={{ background: "rgba(249,115,22,0.15)", color: "#f97316", border: "1px solid rgba(249,115,22,0.3)", cursor: rpLoading ? "not-allowed" : "pointer", opacity: rpLoading ? 0.5 : 1 }}
+              >{rpLoading ? "Resetting..." : "Reset Password"}</button>
+            </div>
+          </div>
+        </div>
       )}
 
       {/* What's New Splash */}

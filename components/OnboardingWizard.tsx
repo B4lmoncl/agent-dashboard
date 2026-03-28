@@ -57,6 +57,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
 
   // Step 0 fields
   const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
 
   // Step 1 fields
   const [age, setAge] = useState("");
@@ -101,7 +102,9 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
   }, []);
 
   const selectedClass = classes.find(c => c.id === selectedClassId);
-  const canProceedStep0 = name.trim().length >= 2 && password.length >= 6 && password === passwordConfirm;
+  const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
+  const pwValid = password.length >= 8 && /[A-Z]/.test(password) && /[0-9]/.test(password);
+  const canProceedStep0 = name.trim().length >= 2 && emailValid && pwValid && password === passwordConfirm;
   const canProceedStep2 = selectedClassId !== null || customClassSubmitted;
   const canProceedStep3 = hasRealPet === true
     ? petName.trim().length >= 1
@@ -173,6 +176,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name: name.trim(),
+          email: email.trim(),
           password,
           age: age ? parseInt(age, 10) : null,
           goals: goals.trim() || null,
@@ -301,13 +305,24 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
                 />
               </div>
               <div>
+                <label className="text-xs font-semibold mb-1.5 block" style={{ color: "rgba(255,255,255,0.5)" }}>Email</label>
+                <input
+                  type="email"
+                  style={inputStyle}
+                  value={email}
+                  onChange={e => setEmail(e.target.value)}
+                  placeholder="your@email.com"
+                />
+                <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.2)" }}>Required for password recovery</p>
+              </div>
+              <div>
                 <label className="text-xs font-semibold mb-1.5 block" style={{ color: "rgba(255,255,255,0.5)" }}>Password</label>
                 <input
                   type="password"
                   style={inputStyle}
                   value={password}
                   onChange={e => setPassword(e.target.value)}
-                  placeholder="Min. 6 characters"
+                  placeholder="Min. 8 characters, 1 uppercase, 1 number"
                 />
               </div>
               <div>

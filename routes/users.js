@@ -6,6 +6,7 @@ const { state, LEVELS, QUEST_FLAVOR, CAMPAIGN_NPCS, DEFAULT_CURRENCIES, ensureUs
 const { now, getLevelInfo, calcDynamicForgeTemp, onQuestCompletedByUser, createCompanionQuestsForUser, paginate } = require('../lib/helpers');
 const { requireAuth, requireMasterKey, getMasterKey } = require('../lib/middleware');
 const { generateTokenPair, setRefreshCookie, clearRefreshCookie, getRefreshTokenFromRequest, verifyRefreshToken, revokeRefreshToken, resolveAuth } = require('../lib/auth');
+const { isEmailConfigured, sendPasswordResetEmail, sendVerificationEmail } = require('../lib/email');
 
 const rateLimit = require('express-rate-limit');
 const router = require('express').Router();
@@ -23,6 +24,21 @@ const authLimiter = rateLimit({
 function isUserAdmin(user) {
   const master = getMasterKey();
   return !!(user.apiKey && user.apiKey === master);
+}
+
+// ─── Validation helpers ──────────────────────────────────────────────────────
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+function validatePassword(pw) {
+  if (!pw || pw.length < 8) return { valid: false, error: 'Password must be at least 8 characters' };
+  if (!/[A-Z]/.test(pw)) return { valid: false, error: 'Password must contain at least one uppercase letter' };
+  if (!/[0-9]/.test(pw)) return { valid: false, error: 'Password must contain at least one number' };
+  return { valid: true };
+}
+
+function validateEmailFormat(email) {
+  if (!email || !EMAIL_REGEX.test(String(email).trim())) return { valid: false, error: 'Please enter a valid email address' };
+  return { valid: true };
 }
 
 // GET /api/users
@@ -47,7 +63,7 @@ router.get('/api/users', (req, res) => {
     const hoardingMultiplier = hoarding.multiplier;
     const legendaryMods = getLegendaryModifiers(u.id);
     // Strip sensitive fields before exposing user data
-    const { passwordHash: _ph, apiKey: _ak, refreshTokens: _rt, spotify: _sp, ...safeUser } = u;
+    const { passwordHash: _ph, apiKey: _ak, refreshTokens: _rt, spotify: _sp, resetToken: _rst, resetTokenExpiry: _rste, emailVerifyToken: _evt, emailVerifyExpiry: _eve, ...safeUser } = u;
     // Enrich earned achievements with catalogue data (icon/desc may be missing on old entries)
     if (Array.isArray(safeUser.earnedAchievements)) {
       safeUser.earnedAchievements = safeUser.earnedAchievements.map(a => {
@@ -78,7 +94,7 @@ router.get('/api/users', (req, res) => {
 router.get('/api/users/:id', (req, res) => {
   const user = state.users[req.params.id.toLowerCase()];
   if (!user) return res.status(404).json({ error: 'User not found' });
-  const { passwordHash: _ph, apiKey: _ak, refreshTokens: _rt, spotify: _sp, ...safeUser } = user;
+  const { passwordHash: _ph, apiKey: _ak, refreshTokens: _rt, spotify: _sp, resetToken: _rst, resetTokenExpiry: _rste, emailVerifyToken: _evt, emailVerifyExpiry: _eve, ...safeUser } = user;
   res.json(safeUser);
 });
 
@@ -192,13 +208,16 @@ router.get('/api/auth/check', (req, res) => {
 router.post('/api/auth/login', authLimiter, async (req, res) => {
   try {
     const { name, password } = req.body;
-    if (!name || !password) return res.status(400).json({ error: 'Name and password required' });
+    if (!name || !password) return res.status(400).json({ error: 'Email/Username and password required' });
 
     const bcrypt = require('bcryptjs');
-    const nameLower = name.toLowerCase();
-    const user = state.usersByName.get(nameLower);
+    const identifier = String(name).trim().toLowerCase();
+    // Look up by email if input contains @, otherwise by username
+    const user = identifier.includes('@')
+      ? state.usersByEmail.get(identifier)
+      : state.usersByName.get(identifier);
 
-    if (!user) return res.status(401).json({ error: 'Invalid name or password' });
+    if (!user) return res.status(401).json({ error: 'Invalid credentials' });
 
     // Support both new password login and legacy API-key-as-password login
     if (user.passwordHash) {
@@ -224,6 +243,8 @@ router.post('/api/auth/login', authLimiter, async (req, res) => {
       userId: user.id,
       name: user.name,
       isAdmin: admin,
+      needsEmail: !user.email,
+      emailVerified: !!user.emailVerified,
     });
   } catch (err) {
     console.error('[login] Error:', err.message);
@@ -286,15 +307,22 @@ router.post('/api/auth/set-password', async (req, res) => {
 // POST /api/register — register a new player (returns JWT tokens)
 router.post('/api/register', authLimiter, async (req, res) => {
   try {
-  const { name, password, age, goals, pronouns, classId, companion, relationshipStatus, partnerName } = req.body;
-  if (!name || !String(name).trim()) return res.status(400).json({ error: 'name is required' });
-  if (!password) return res.status(400).json({ error: 'password is required' });
-  if (password.length < 6) return res.status(400).json({ error: 'Password must be at least 6 characters' });
+  const { name, password, email, age, goals, pronouns, classId, companion, relationshipStatus, partnerName } = req.body;
+  if (!name || !String(name).trim()) return res.status(400).json({ error: 'Name is required' });
+  if (!password) return res.status(400).json({ error: 'Password is required' });
+  const pwCheck = validatePassword(password);
+  if (!pwCheck.valid) return res.status(400).json({ error: pwCheck.error });
+  if (!email) return res.status(400).json({ error: 'Email is required' });
+  const emailCheck = validateEmailFormat(email);
+  if (!emailCheck.valid) return res.status(400).json({ error: emailCheck.error });
+  const trimmedEmail = String(email).trim().toLowerCase();
   const trimmedName = String(name).trim();
   const nameLower = trimmedName.toLowerCase();
   // Check if name already taken
   const existing = state.usersByName.get(nameLower);
   if (existing) return res.status(409).json({ error: 'Name already taken' });
+  // Check if email already taken
+  if (state.usersByEmail.get(trimmedEmail)) return res.status(409).json({ error: 'Email already registered' });
   // Generate API key (legacy compat) + hash password
   const bcrypt = require('bcryptjs');
   const apiKey = crypto.randomBytes(16).toString('hex');
@@ -331,6 +359,10 @@ router.post('/api/register', authLimiter, async (req, res) => {
     currencies: { ...DEFAULT_CURRENCIES },
     apiKey,
     passwordHash: hashedPassword,
+    email: trimmedEmail,
+    emailVerified: false,
+    emailVerifyToken: crypto.randomBytes(32).toString('hex'),
+    emailVerifyExpiry: Date.now() + 24 * 3600000, // 24 hours
     _allCompletedTypes: [],
     createdAt: now(),
     // Extended onboarding fields
@@ -355,6 +387,7 @@ router.post('/api/register', authLimiter, async (req, res) => {
   // Update user lookup indexes
   state.usersByName.set(trimmedName.toLowerCase(), state.users[finalId]);
   state.usersByApiKey.set(apiKey, state.users[finalId]);
+  state.usersByEmail.set(trimmedEmail, state.users[finalId]);
   // Add to managed keys (legacy compat for agents)
   const entry = { key: apiKey, label: `Player: ${trimmedName}`, created: now() };
   state.managedKeys.push(entry);
@@ -365,7 +398,9 @@ router.post('/api/register', authLimiter, async (req, res) => {
   if (companion) {
     createCompanionQuestsForUser(finalId);
   }
-  console.log(`[register] new player: ${trimmedName} (${finalId}) class=${resolvedClassId || 'none'} companion=${companion ? companion.name : 'none'}`);
+  console.log(`[register] new player: ${trimmedName} (${finalId}) email=${trimmedEmail} class=${resolvedClassId || 'none'} companion=${companion ? companion.name : 'none'}`);
+  // Send verification email (non-blocking)
+  sendVerificationEmail(trimmedEmail, state.users[finalId].emailVerifyToken, trimmedName).catch(() => {});
 
   // Generate JWT tokens for the new user
   const newUser = state.users[finalId];
@@ -378,6 +413,133 @@ router.post('/api/register', authLimiter, async (req, res) => {
     console.error('[register] Error:', err.message);
     return res.status(500).json({ error: 'Registration failed' });
   }
+});
+
+// ─── POST /api/auth/add-email — migrate existing user (forced modal) ─────────
+router.post('/api/auth/add-email', requireAuth, async (req, res) => {
+  const uid = req.auth?.userId;
+  const user = state.users[uid];
+  if (!user) return res.status(404).json({ error: 'User not found' });
+  const { email } = req.body;
+  const check = validateEmailFormat(email);
+  if (!check.valid) return res.status(400).json({ error: check.error });
+  const trimmed = String(email).trim().toLowerCase();
+  if (state.usersByEmail.get(trimmed)) return res.status(409).json({ error: 'Email already registered by another account' });
+  user.email = trimmed;
+  user.emailVerified = false;
+  user.emailVerifyToken = crypto.randomBytes(32).toString('hex');
+  user.emailVerifyExpiry = Date.now() + 24 * 3600000;
+  state.usersByEmail.set(trimmed, user);
+  saveUsers();
+  // Send verification email (non-blocking)
+  sendVerificationEmail(trimmed, user.emailVerifyToken, user.name).catch(() => {});
+  res.json({ success: true, message: 'Email added. Please check your inbox to verify.' });
+});
+
+// ─── GET /api/auth/verify-email — verify email via token ─────────────────────
+router.get('/api/auth/verify-email', (req, res) => {
+  const { token } = req.query;
+  if (!token) return res.status(400).json({ error: 'Token required' });
+  const user = Object.values(state.users).find(u => u.emailVerifyToken === token);
+  if (!user) return res.status(400).json({ error: 'Invalid or expired verification link' });
+  if (user.emailVerifyExpiry && Date.now() > user.emailVerifyExpiry) {
+    return res.status(400).json({ error: 'Verification link expired. Please request a new one from your settings.' });
+  }
+  user.emailVerified = true;
+  delete user.emailVerifyToken;
+  delete user.emailVerifyExpiry;
+  saveUsers();
+  console.log(`[auth] Email verified for ${user.name} (${user.email})`);
+  // Redirect to main page with success flag
+  res.redirect('/?emailVerified=true');
+});
+
+// ─── POST /api/auth/resend-verification — resend verification email ──────────
+router.post('/api/auth/resend-verification', requireAuth, authLimiter, async (req, res) => {
+  const uid = req.auth?.userId;
+  const user = state.users[uid];
+  if (!user) return res.status(404).json({ error: 'User not found' });
+  if (!user.email) return res.status(400).json({ error: 'No email set on this account' });
+  if (user.emailVerified) return res.status(400).json({ error: 'Email already verified' });
+  user.emailVerifyToken = crypto.randomBytes(32).toString('hex');
+  user.emailVerifyExpiry = Date.now() + 24 * 3600000;
+  saveUsers();
+  const result = await sendVerificationEmail(user.email, user.emailVerifyToken, user.name);
+  if (result.success) return res.json({ success: true, message: 'Verification email sent' });
+  return res.status(500).json({ error: result.error || 'Failed to send verification email' });
+});
+
+// ─── POST /api/auth/forgot-password — initiate password reset ────────────────
+router.post('/api/auth/forgot-password', authLimiter, async (req, res) => {
+  const { email } = req.body;
+  if (!email) return res.status(400).json({ error: 'Email required' });
+  const trimmed = String(email).trim().toLowerCase();
+  const user = state.usersByEmail.get(trimmed);
+  // Always return success to prevent email enumeration
+  if (!user || !user.emailVerified) {
+    return res.json({ success: true, message: 'If that email is registered and verified, a reset link was sent.' });
+  }
+  user.resetToken = crypto.randomBytes(32).toString('hex');
+  user.resetTokenExpiry = Date.now() + 3600000; // 1 hour
+  saveUsers();
+  await sendPasswordResetEmail(user.email, user.resetToken, user.name);
+  res.json({ success: true, message: 'If that email is registered and verified, a reset link was sent.' });
+});
+
+// ─── POST /api/auth/reset-password — complete password reset ─────────────────
+router.post('/api/auth/reset-password', authLimiter, async (req, res) => {
+  const { token, password } = req.body;
+  if (!token || !password) return res.status(400).json({ error: 'Token and new password required' });
+  const pwCheck = validatePassword(password);
+  if (!pwCheck.valid) return res.status(400).json({ error: pwCheck.error });
+  const user = Object.values(state.users).find(u => u.resetToken === token);
+  if (!user) return res.status(400).json({ error: 'Invalid or expired reset link' });
+  if (user.resetTokenExpiry && Date.now() > user.resetTokenExpiry) {
+    delete user.resetToken;
+    delete user.resetTokenExpiry;
+    saveUsers();
+    return res.status(400).json({ error: 'Reset link expired. Please request a new one.' });
+  }
+  const bcrypt = require('bcryptjs');
+  user.passwordHash = await bcrypt.hash(password, 10);
+  delete user.resetToken;
+  delete user.resetTokenExpiry;
+  saveUsers();
+  console.log(`[auth] Password reset for ${user.name}`);
+  res.json({ success: true, message: 'Password updated. You can now log in.' });
+});
+
+// ─── POST /api/auth/change-password — authenticated password change ──────────
+router.post('/api/auth/change-password', requireAuth, async (req, res) => {
+  const uid = req.auth?.userId;
+  const user = state.users[uid];
+  if (!user) return res.status(404).json({ error: 'User not found' });
+  const { currentPassword, newPassword } = req.body;
+  if (!currentPassword || !newPassword) return res.status(400).json({ error: 'Current and new password required' });
+  const pwCheck = validatePassword(newPassword);
+  if (!pwCheck.valid) return res.status(400).json({ error: pwCheck.error });
+  const bcrypt = require('bcryptjs');
+  if (user.passwordHash) {
+    const match = await bcrypt.compare(currentPassword, user.passwordHash);
+    if (!match) return res.status(401).json({ error: 'Current password is incorrect' });
+  }
+  user.passwordHash = await bcrypt.hash(newPassword, 10);
+  saveUsers();
+  console.log(`[auth] Password changed for ${user.name}`);
+  res.json({ success: true, message: 'Password updated' });
+});
+
+// ─── GET /api/auth/email-status — check email config status ──────────────────
+router.get('/api/auth/email-status', requireAuth, (req, res) => {
+  const uid = req.auth?.userId;
+  const user = state.users[uid];
+  if (!user) return res.status(404).json({ error: 'User not found' });
+  res.json({
+    hasEmail: !!user.email,
+    email: user.email || null,
+    emailVerified: !!user.emailVerified,
+    emailServiceConfigured: isEmailConfigured(),
+  });
 });
 
 module.exports = router;
