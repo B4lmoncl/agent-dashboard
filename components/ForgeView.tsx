@@ -638,6 +638,18 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
       setTransmuteResult(data.message || data.error || "Something went wrong. Try again.");
       setSelectedTransmute([]);
       setTimeout(() => setTransmuteResult(null), 5000);
+      if (data.created) {
+        setCraftedItemCelebration({
+          name: data.created.name,
+          rarity: data.created.rarity || "legendary",
+          slot: data.created.slot,
+          stats: data.created.stats,
+          sockets: data.created.sockets,
+          legendaryEffect: data.created.legendaryEffect,
+          setId: data.created.setId,
+        });
+        setTimeout(() => setCraftedItemCelebration(null), 4000);
+      }
       fetchData();
       onRefresh?.();
     } catch (err) { console.error('[forge] transmute error:', err); setTransmuteResult("Network error"); }
@@ -1039,7 +1051,19 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                               headers: { "Content-Type": "application/json", ...getAuthHeaders(reviewApiKey) },
                               body: JSON.stringify({ gearId: gear.id }),
                             });
-                            if (r.ok) { onRefresh?.(); fetchData(); setCraftResult("Tool purchased!"); }
+                            if (r.ok) {
+                              onRefresh?.(); fetchData();
+                              setCraftedItemCelebration({
+                                name: gear.name,
+                                rarity: "epic",
+                                slot: null,
+                                stats: {},
+                                sockets: null,
+                                legendaryEffect: null,
+                                setId: null,
+                              });
+                              setTimeout(() => setCraftedItemCelebration(null), 4000);
+                            }
                             else { const d = await r.json().catch(() => ({})); setCraftResult(d.error || "Purchase failed"); }
                           } catch (err) { console.error('[forge] buy_tool error:', err); setCraftResult("Network error"); }
                           setBuyingTool(null);
@@ -1106,7 +1130,19 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                             headers: { "Content-Type": "application/json", ...getAuthHeaders(reviewApiKey) },
                             body: JSON.stringify({ upgradeId: up.id }),
                           });
-                          if (r.ok) { onRefresh?.(); fetchData(); setCraftResult("Upgrade purchased!"); }
+                          if (r.ok) {
+                            onRefresh?.(); fetchData();
+                            setCraftedItemCelebration({
+                              name: `${up.name} — ${next.label || "Upgraded"}`,
+                              rarity: "epic",
+                              slot: null,
+                              stats: {},
+                              sockets: null,
+                              legendaryEffect: null,
+                              setId: null,
+                            });
+                            setTimeout(() => setCraftedItemCelebration(null), 4000);
+                          }
                           else { const d = await r.json().catch(() => ({})); setCraftResult(d.error || "Upgrade failed"); }
                         } catch (err) { console.error('[forge] buy_upgrade error:', err); setCraftResult("Network error"); }
                         setBuyingUpgrade(null);

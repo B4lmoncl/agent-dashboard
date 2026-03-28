@@ -386,7 +386,15 @@ export function useQuestActions({
       if (r.ok) {
         const data = await r.json();
         setShopUserId(null);
-        if (data.item?.name) addToast({ type: "purchase", message: `${data.item.name} acquired!` });
+        if (data.item?.name) {
+          setRewardCelebration({
+            type: "daily-bonus" as RewardCelebrationData["type"],
+            title: data.item.name || "Item Acquired",
+            xpEarned: 0,
+            goldEarned: 0,
+            loot: { name: data.item.name, emoji: "", rarity: data.item.rarity || "common", rarityColor: undefined },
+          });
+        }
         await refresh();
       } else {
         const d = await r.json().catch(() => ({}));
@@ -408,7 +416,15 @@ export function useQuestActions({
       if (r.ok) {
         const data = await r.json();
         setShopUserId(null);
-        if (data.gear?.name) addToast({ type: "purchase", message: `${data.gear.name} acquired!` });
+        if (data.gear?.name) {
+          setRewardCelebration({
+            type: "daily-bonus" as RewardCelebrationData["type"],
+            title: data.gear.name || "Gear Acquired",
+            xpEarned: 0,
+            goldEarned: 0,
+            loot: { name: data.gear.name, emoji: "", rarity: data.gear.rarity || "common", rarityColor: undefined },
+          });
+        }
         await refresh();
       } else {
         const d = await r.json().catch(() => ({}));

@@ -6,6 +6,7 @@ import { getAuthHeaders } from "@/lib/auth-client";
 import { Tip, TipCustom } from "@/components/GameTooltip";
 import { formatLegendaryLabel } from "@/app/utils";
 import PlayerProfileModal from "@/components/PlayerProfileModal";
+import type { RewardCelebrationData } from "@/components/RewardCelebration";
 import type {
   FriendInfo, FriendRequest, Conversation, SocialMessage,
   Trade, TradeOffer, ActivityEvent,
@@ -700,13 +701,14 @@ function TradeItemGrid({ items, selectedIds, onToggle, sortKey, onSortChange }: 
   );
 }
 
-function TradesTab({ apiKey, playerName }: { apiKey: string; playerName: string }) {
+function TradesTab({ apiKey, playerName, onRewardCelebration }: { apiKey: string; playerName: string; onRewardCelebration?: (data: RewardCelebrationData) => void }) {
   const { users, loggedInUser } = useDashboard();
   const [trades, setTrades] = useState<Trade[]>([]);
   const [selectedTrade, setSelectedTrade] = useState<Trade | null>(null);
   const [loading, setLoading] = useState(true);
   const [actionLoading, setActionLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [successMsg, setSuccessMsg] = useState<string | null>(null);
 
   // New trade form
   const [showNewTrade, setShowNewTrade] = useState(false);
@@ -786,6 +788,15 @@ function TradesTab({ apiKey, playerName }: { apiKey: string; playerName: string 
       });
       const d = await r.json();
       if (!r.ok) { setError(d.error || "Something went wrong. Please try again."); setActionLoading(false); return; }
+      if (action === "accept" && d.executed && onRewardCelebration) {
+        onRewardCelebration({
+          type: "daily-bonus" as const,
+          title: "Trade Complete",
+          xpEarned: 0,
+          goldEarned: d.trade?.recipientOffer?.gold || d.trade?.initiatorOffer?.gold || 0,
+          loot: d.summary ? { name: d.summary, emoji: "", rarity: "rare" } : null,
+        });
+      }
       fetchTrades();
       setSelectedTrade(null);
     } catch { setError("Network error"); }
@@ -1531,7 +1542,7 @@ function MailTab({ apiKey, playerName }: { apiKey: string; playerName: string })
 
 // ─── Main SocialView ────────────────────────────────────────────────────────
 
-export default function SocialView({ onNavigate, onNavigateToAchievement }: { onNavigate?: (view: string) => void; onNavigateToAchievement?: (achievementId: string) => void } = {}) {
+export default function SocialView({ onNavigate, onNavigateToAchievement, onRewardCelebration }: { onNavigate?: (view: string) => void; onNavigateToAchievement?: (achievementId: string) => void; onRewardCelebration?: (data: RewardCelebrationData) => void } = {}) {
   const { playerName, reviewApiKey } = useDashboard();
   const [activeTab, setActiveTab] = useState<SocialTab>("friends");
   const [profilePlayerId, setProfilePlayerId] = useState<string | null>(null);
@@ -1581,7 +1592,7 @@ export default function SocialView({ onNavigate, onNavigateToAchievement }: { on
       <div key={activeTab} className="tab-content-enter">
         {activeTab === "friends" && <FriendsTab apiKey={reviewApiKey} playerName={playerName} onOpenProfile={id => setProfilePlayerId(id)} />}
         {activeTab === "messages" && <MessagesTab apiKey={reviewApiKey} playerName={playerName} autoOpenWith={pendingMessageTarget} onAutoOpened={() => setPendingMessageTarget(null)} />}
-        {activeTab === "trades" && <TradesTab apiKey={reviewApiKey} playerName={playerName} />}
+        {activeTab === "trades" && <TradesTab apiKey={reviewApiKey} playerName={playerName} onRewardCelebration={onRewardCelebration} />}
         {activeTab === "activity" && <ActivityFeedTab apiKey={reviewApiKey} playerName={playerName} onNavigate={onNavigate} onNavigateToAchievement={onNavigateToAchievement} />}
         {activeTab === "mail" && <MailTab apiKey={reviewApiKey} playerName={playerName} />}
       </div>
