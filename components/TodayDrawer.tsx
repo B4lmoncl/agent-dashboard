@@ -649,23 +649,23 @@ export default function TodayDrawer({
     const weeklyMs = nextMonday.getTime() - Date.now();
     const weeklyDays = Math.floor(weeklyMs / 86400000);
     const weeklyHours = Math.floor((weeklyMs % 86400000) / 3600000);
-    timers.push({ id: "timer-weekly", icon: "/images/icons/currency-runensplitter.png", label: "Weekly Reset", done: false, sub: `${weeklyDays}d ${weeklyHours}h` });
+    timers.push({ id: "timer-weekly", icon: "/images/icons/currency-runensplitter.png", label: "Weekly Reset", done: false, sub: `${weeklyDays}d ${weeklyHours}h`, tooltipKey: "weekly_challenges" });
     // Battle Pass season (estimate: 90-day seasons from March 1)
     const bpEpoch = new Date("2026-03-01T00:00:00Z").getTime();
     const bpDuration = 90 * 86400000;
     const bpElapsed = (Date.now() - bpEpoch) % bpDuration;
     const bpRemaining = bpDuration - bpElapsed;
     const bpDays = Math.floor(bpRemaining / 86400000);
-    timers.push({ id: "timer-bp", icon: "/images/icons/currency-stardust.png", label: "Season Ends", done: false, sub: `${bpDays}d remaining` });
+    timers.push({ id: "timer-bp", icon: "/images/icons/currency-stardust.png", label: "Season Ends", done: false, sub: `${bpDays}d remaining`, tooltipKey: "battle_pass" });
     // World boss (Lv15+)
     if (worldBossActive && (playerLevel ?? 1) >= 15) {
-      timers.push({ id: "timer-wb", icon: "/images/icons/ach-boss-slayer.png", label: "World Boss Active", done: false, sub: "Contribute now", urgent: true, onClick: () => { onNavigate("worldboss"); onClose(); } });
+      timers.push({ id: "timer-wb", icon: "/images/icons/ach-boss-slayer.png", label: "World Boss Active", done: false, sub: "Contribute now", urgent: true, onClick: () => { onNavigate("worldboss"); onClose(); }, tooltipKey: "world_boss" });
     }
     // Active rift (Lv8+)
     if (riftActive && (playerLevel ?? 1) >= 8) {
-      timers.push({ id: "timer-rift", icon: "/images/icons/currency-runensplitter.png", label: "Rift Active", done: false, sub: "In progress", urgent: true, onClick: () => { onNavigate("rift"); onClose(); } });
+      timers.push({ id: "timer-rift", icon: "/images/icons/currency-runensplitter.png", label: "Rift Active", done: false, sub: "In progress", urgent: true, onClick: () => { onNavigate("rift"); onClose(); }, tooltipKey: "rift" });
     }
-    if (timers.length > 0) cats.push({ id: "timers", label: "Timers", icon: "\u23F0", items: timers });
+    if (timers.length > 0) cats.push({ id: "timers", label: "Timers", icon: "/images/icons/ui-ritual-rune.png", items: timers });
     return cats;
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dailyBonusAvailable, dailyMissions, rituals, activeNpcs, loggedInUser, inProgressCount, weeklyChallenge, worldBossActive, riftActive, vowCount, socialBadge, expeditionActive, dungeonActive, today, playerLevel]);
