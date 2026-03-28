@@ -1457,13 +1457,6 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                       }
                       return true;
                     });
-                    const toggleBracket = (name: string) => {
-                      setCollapsedBrackets(prev => {
-                        const next = new Set(prev);
-                        if (next.has(name)) next.delete(name); else next.add(name);
-                        return next;
-                      });
-                    };
                     return SKILL_BRACKETS.map(bracket => {
                       const bracketRecipes = filteredRecipes.filter(r => {
                         const skill = r.reqSkill || 0;
@@ -1475,8 +1468,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                       // if the bracket was never explicitly toggled by the user, apply the default.
                       const isPlayerBracket = playerSkill >= bracket.min && playerSkill < bracket.max;
                       const isBelowPlayer = bracket.max <= playerSkill && !isPlayerBracket;
-                      const hasLearnedAbove = !isBelowPlayer && !isPlayerBracket && bracketRecipes.some(r => r.learned !== false);
-                      // Default: collapse lower brackets, expand current + higher with learned recipes
+                      // Default: collapse lower brackets, expand current + higher brackets
                       const defaultCollapsed = isBelowPlayer && !isPlayerBracket;
                       const collapsed = collapsedBrackets.has(bracket.name) ? true : collapsedBrackets.has(`_expanded_${bracket.name}`) ? false : defaultCollapsed;
                       const handleToggle = () => {
