@@ -339,6 +339,28 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                   <li>• Effekte stacken additiv mit Gear-Effekten</li>
                 </ul>
               </GuideSection>
+
+              <GuideSection title="Hero Numbers & Roll Quality" icon="◆" accent="rgba(129,140,248,0.3)">
+                Im Stats-Tab siehst du drei abgeleitete Kampfwerte:
+                <ul className="space-y-1 mt-2">
+                  <li>• <Stat color="#ef4444">Offense</Stat> — Kraft + Gear Score + Fokus</li>
+                  <li>• <Stat color="#3b82f6">Defense</Stat> — Ausdauer + Vitalität + Gear Score</li>
+                  <li>• <Stat color="#22c55e">Utility</Stat> — Weisheit + Glück + Charisma + Tempo</li>
+                  <li>• <Stat color="#eab308">Roll Quality</Stat> — zeigt ob ein Item gute Stat-Rolls hat (Perfect 90%+, Good 70%+, Average 50%+, Low &lt;50%)</li>
+                  <li>• Klicke auf einen Stat → zeigt dir woher jeder Punkt kommt (Gear, Gems, Set Boni)</li>
+                  <li>• <Stat color="#60a5fa">Compare Mode</Stat> — pinne ein Item und vergleiche alle anderen dagegen</li>
+                </ul>
+              </GuideSection>
+
+              <GuideSection title="Companion Fähigkeiten" icon="◆" accent="rgba(245,158,11,0.3)">
+                <ul className="space-y-1 mt-2">
+                  <li>• Ab <Stat color="#f59e0b">Bond Level 5</Stat>: Ultimate Ability freigeschaltet</li>
+                  <li>• <Stat color="#f0f0f0">Instant Complete</Stat> — Schließt nächste Quest sofort ab</li>
+                  <li>• <Stat color="#f0f0f0">Double Reward</Stat> — 2x XP + Gold auf nächste Quest</li>
+                  <li>• <Stat color="#f0f0f0">Streak Extend</Stat> — +3 Tage auf deinen Streak</li>
+                  <li>• <Stat color="#22c55e">Expeditionen</Stat> — Schicke deinen Companion auf 4-24h Missionen für passive Rewards (Gold, Mats, Gems)</li>
+                </ul>
+              </GuideSection>
             </>
           )}
           {tab === "gacha" && (
