@@ -730,7 +730,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
         const synergyChosen = synergy ? professions.find(p => p.id === synergy.partner && p.chosen) : null;
 
         return (
-          <div key={prof.id} className={`rounded-xl overflow-hidden npc-rank-glow ${locked ? "" : "npc-card-hover"}`} data-rank={prof.rank || "Novice"} style={{ background: locked ? "rgba(255,255,255,0.02)" : `${prof.color}06`, border: `1px solid ${locked ? "rgba(255,255,255,0.05)" : `${prof.color}25`}`, opacity: locked ? 0.5 : 1, boxShadow: locked ? "none" : rankGlow }}>
+          <div key={prof.id} className={`rounded-xl overflow-hidden npc-rank-glow ${locked ? "" : "npc-card-hover"}${moonlightActive && !locked ? " mondlicht-glow" : ""}`} data-rank={prof.rank || "Novice"} style={{ background: locked ? "rgba(255,255,255,0.02)" : `${prof.color}06`, border: `1px solid ${locked ? "rgba(255,255,255,0.05)" : `${prof.color}25`}`, opacity: locked ? 0.5 : 1, boxShadow: locked ? "none" : rankGlow }}>
             {/* Location header */}
             <div className="px-4 pt-3 pb-1">
               <div className="flex items-center gap-2">
