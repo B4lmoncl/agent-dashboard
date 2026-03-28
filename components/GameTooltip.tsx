@@ -36,7 +36,7 @@ const TOOLTIP_REGISTRY: Record<string, TooltipEntry> = {
     body: (
       <>
         <p>Primary stat from equipped gear. Increases Quest <GTRef k="xp">XP</GTRef> earned.</p>
-        <div className="gt-stat-row"><span>Effect</span><span>+0.5% Quest <GTRef k="xp">XP</GTRef> per point</span></div>
+        <div className="gt-stat-row"><span>Effect</span><span>Quest <GTRef k="xp">XP</GTRef> bonus (diminishing returns, ~10% at 20)</span></div>
         <div className="gt-stat-row"><span>Cap</span><span>+30% (60 points)</span></div>
         <p className="gt-source">Sources: Gear affixes, set bonuses, enchantments</p>
       </>
@@ -62,7 +62,7 @@ const TOOLTIP_REGISTRY: Record<string, TooltipEntry> = {
     body: (
       <>
         <p>Primary stat. Increases <GTRef k="gold">Gold</GTRef> earned from quests.</p>
-        <div className="gt-stat-row"><span>Effect</span><span>+0.5% <GTRef k="gold">Gold</GTRef> per point</span></div>
+        <div className="gt-stat-row"><span>Effect</span><span><GTRef k="gold">Gold</GTRef> bonus (diminishing returns, ~7.5% at 20)</span></div>
         <div className="gt-stat-row"><span>Cap</span><span>+30% (60 points)</span></div>
         <p className="gt-source">Sources: Gear affixes (helm, amulet, weapon)</p>
       </>
@@ -75,7 +75,7 @@ const TOOLTIP_REGISTRY: Record<string, TooltipEntry> = {
     body: (
       <>
         <p>Primary stat. Increases loot drop chance from quests.</p>
-        <div className="gt-stat-row"><span>Effect</span><span>+0.5% drop chance per point</span></div>
+        <div className="gt-stat-row"><span>Effect</span><span>Drop chance bonus (diminishing returns, ~6% at 20)</span></div>
         <div className="gt-stat-row"><span>Cap</span><span>+20% (40 points)</span></div>
         <p className="gt-source">Sources: Gear affixes (boots, amulet, helm)</p>
       </>
@@ -152,7 +152,7 @@ const TOOLTIP_REGISTRY: Record<string, TooltipEntry> = {
     body: (
       <>
         <p>Complete at least 1 quest or ritual per day to maintain your streak. Longer streaks increase <GTRef k="gold">Gold</GTRef> earned (up to +45% at 30+ days).</p>
-        <div className="gt-stat-row"><span><GTRef k="gold">Gold</GTRef> bonus</span><span>+1.5% per day (cap 45%)</span></div>
+        <div className="gt-stat-row"><span><GTRef k="gold">Gold</GTRef> bonus</span><span>Gold bonus (diminishing, ~10% at 30 days)</span></div>
         <div className="gt-stat-row"><span>Protection</span><span><GTRef k="vitalitaet">Vitalität</GTRef> stat, Streak Shields, Legendary gear</span></div>
         <p className="gt-source">Milestones: Bronze (7d), Silver (21d), Gold (60d), Diamond (180d), Legend (365d)</p>
       </>
