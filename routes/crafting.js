@@ -930,6 +930,9 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
     skillUpColor,
     dailyBonusUsed: dailyBonusAvailable,
     craftCount: effectiveCount,
+    atSkillCap: newSkill >= skillCap,
+    skillCap,
+    nextRankNeeded: newSkill >= skillCap && skillCap < MAX_SKILL ? PROFICIENCY_RANKS.find(r => r.skillCap > skillCap)?.name || null : null,
   });
   } finally { releaseCraftLock(uid); }
 });

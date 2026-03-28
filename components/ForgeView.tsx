@@ -321,9 +321,10 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
       const data = await r.json();
       if (r.ok) {
         let msg = data.message || "Success!";
-        if (data.skillGained > 0) msg += ` (+${data.skillGained} Skill${data.dailyBonusUsed ? " \u2606 Daily Bonus!" : ""})`;
+        if (data.atSkillCap && data.nextRankNeeded) msg += ` — Skill Cap reached! Train ${data.nextRankNeeded} to continue.`;
+        else if (data.skillGained > 0) msg += ` (+${data.skillGained} Skill${data.dailyBonusUsed ? " \u2606 Daily Bonus!" : ""})`;
         else if (data.skillGained === 0 && data.skillUpColor !== "gray") msg += " (No skill-up)";
-        if (data.newSkill) msg += ` [${data.newSkill}/300]`;
+        if (data.newSkill) msg += ` [${data.newSkill}/${data.skillCap || 300}]`;
         // Batch craft: sequential tick animation
         if (count > 1 && (data.craftCount || count) > 1) {
           const total = data.craftCount || count;
