@@ -7,6 +7,14 @@ const router = require('express').Router();
 const { state, saveUsers, saveUsersSync, ensureUserCurrencies } = require('../lib/state');
 const { now, getLevelInfo, PRIMARY_STATS, MINOR_STATS, createGearInstance, getLegendaryModifiers, rollAffixStats, getArmorTraitBonus, INVENTORY_CAP } = require('../lib/helpers');
 
+// ─── Mondlicht-Schmiede: +20% better minimum rolls during night hours (22:00-06:00 Berlin) ───
+function isMoonlightActive() {
+  const berlinHour = new Date().toLocaleString('en-US', { timeZone: 'Europe/Berlin', hour: 'numeric', hour12: false });
+  const h = parseInt(berlinHour, 10);
+  return h >= 22 || h < 6;
+}
+const MOONLIGHT_BONUS = 0.20; // +20% minimum roll boost
+
 const VALID_SLOTS = ['weapon', 'shield', 'helm', 'armor', 'amulet', 'boots', 'ring'];
 const RARITY_ORDER = ['common', 'uncommon', 'rare', 'epic', 'legendary'];
 const SLOT_RECIPES = ['upgrade_rarity', 'permanent_enchant', 'reinforce_armor', 'enchant_socket', 'sharpen_blade'];
@@ -314,7 +322,7 @@ router.get('/api/professions', (req, res) => {
       };
     }
   }
-  res.json({ professions, recipes, materials, materialDefs: PROFESSIONS_DATA.materials, proficiencyRanks: PROFICIENCY_RANKS, skillUpColors: PROFESSIONS_DATA.skillUpColors || {}, currencies, dailyBonus, maxProfSlots, chosenCount, professionSlots: PROFESSIONS_DATA.professionSlots || [], learnedRecipes, masteryConfig, gatheringConfig, slotAffixRanges, totalRecipesByProf });
+  res.json({ professions, recipes, materials, materialDefs: PROFESSIONS_DATA.materials, proficiencyRanks: PROFICIENCY_RANKS, skillUpColors: PROFESSIONS_DATA.skillUpColors || {}, currencies, dailyBonus, maxProfSlots, chosenCount, professionSlots: PROFESSIONS_DATA.professionSlots || [], learnedRecipes, masteryConfig, gatheringConfig, slotAffixRanges, totalRecipesByProf, moonlightActive: isMoonlightActive() });
 });
 
 // ─── POST /api/professions/learn — buy a recipe from an NPC trainer ─────────
@@ -889,7 +897,7 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
         if (u.inventory.length >= (INVENTORY_CAP || 200)) {
           return res.status(400).json({ error: 'Inventory full' });
         }
-        const instance = createGearInstance(template);
+        const instance = createGearInstance(template, { moonlightBonus: isMoonlightActive() ? MOONLIGHT_BONUS : 0 });
         // Apply mastery bonus (cloth_stat_boost, gear_stat_boost, or leather_stat_boost)
         if (masteryDef && (masteryDef.type === 'cloth_stat_boost' || masteryDef.type === 'gear_stat_boost' || masteryDef.type === 'leather_stat_boost')) {
           const boost = 1 + (masteryDef.value || 10) / 100;
@@ -1266,7 +1274,7 @@ router.post('/api/schmiedekunst/transmute', requireAuth, (req, res) => {
 
   // Create legendary
   const template = legendaryPool[Math.floor(Math.random() * legendaryPool.length)];
-  const legendary = createGearInstance(template);
+  const legendary = createGearInstance(template, { moonlightBonus: isMoonlightActive() ? MOONLIGHT_BONUS : 0 });
   u.inventory.push(legendary);
 
   // Sync write — transmute destroys 3 items, must survive container restarts
@@ -1397,7 +1405,7 @@ router.post('/api/schmiedekunst/reforge', requireAuth, (req, res) => {
   }
 
   // Reforge: create new instance from same template, replace in inventory
-  const reforged = createGearInstance(template);
+  const reforged = createGearInstance(template, { moonlightBonus: isMoonlightActive() ? MOONLIGHT_BONUS : 0 });
   // Preserve instanceId for tracking
   reforged.instanceId = item.instanceId || reforged.instanceId;
   u.inventory[idx] = reforged;

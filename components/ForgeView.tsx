@@ -161,6 +161,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
   const [choosingProf, setChoosingProf] = useState(false);
   const [confirmProf, setConfirmProf] = useState<ProfessionDef | null>(null);
   const [dailyBonusAvailable, setDailyBonusAvailable] = useState(false);
+  const [moonlightActive, setMoonlightActive] = useState(false);
   const [craftCount, setCraftCount] = useState(1);
   const [confirmAction, setConfirmAction] = useState<{ message: string; onConfirm: () => void } | null>(null);
   const [buyingTool, setBuyingTool] = useState<string | null>(null);
@@ -234,6 +235,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
         setMaterialDefs(data.materialDefs || []);
         if (data.currencies) setCurrencies(data.currencies);
         if (data.dailyBonus) setDailyBonusAvailable(data.dailyBonus.dailyBonusAvailable ?? false);
+        if (data.moonlightActive !== undefined) setMoonlightActive(data.moonlightActive);
         if (data.maxProfSlots != null) setMaxProfSlots(data.maxProfSlots);
         if (data.slotAffixRanges) setSlotAffixRanges(data.slotAffixRanges);
         if (data.totalRecipesByProf) setTotalRecipesByProf(data.totalRecipesByProf);
@@ -666,6 +668,13 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
         <div>
           <Tip k="artisans_quarter" heading><span className="text-base font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.4)" }}>{"Artisan's Quarter"}</span></Tip>
           <p className="text-xs italic mt-0.5" style={{ color: "rgba(255,255,255,0.2)" }}>Acht Künste. Zwei Wege. Was du hier schmiedest, hallt in Ewigkeit wider.</p>
+          {moonlightActive && (
+            <TipCustom title="Mondlicht-Schmiede" accent="#818cf8" body={<p className="text-xs">Zwischen 22:00 und 06:00 Uhr (Berlin) sind die Sterne ausgerichtet. Items die jetzt gecraftet werden erhalten +20% bessere Minimum-Rolls auf alle Stats.</p>}>
+              <span className="text-xs font-semibold px-2 py-0.5 rounded-lg cursor-help" style={{ background: "rgba(129,140,248,0.12)", color: "#818cf8", border: "1px solid rgba(129,140,248,0.25)" }}>
+                Mondlicht aktiv
+              </span>
+            </TipCustom>
+          )}
         </div>
         <div className="flex items-center gap-4 ml-auto text-sm">
           <Tip k="professions"><span className="font-mono font-medium" style={{ color: "rgba(255,255,255,0.35)" }}>{chosenCount}/{maxProfSlots} Professions</span></Tip>
