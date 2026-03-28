@@ -69,7 +69,26 @@ export interface Floor {
 }
 
 export const FLOORS: Floor[] = [
-  // ─── Adventure (always visible) ──────────────────────────────────────────────
+  // ─── Turm-Reihenfolge: Spitze (links) → Erdgeschoss (rechts) ────────────────
+  // ─── Prestige — Die Turmspitze (Lv8) ────────────────────────────────────────
+  {
+    id: "turmspitze",
+    name: "Pinnacle",
+    subtitle: "Prestige & Glory",
+    icon: "▲",
+    color: "#fbbf24",
+    gradient: "linear-gradient(135deg, #fbbf24 0%, #1a1a3a 100%)",
+    banner: "/images/banners/turmspitze-banner.png",
+    minLevel: 8,
+    rooms: [
+      { key: "leaderboard", label: "Proving Grounds",    iconSrc: "/images/icons/nav-proving.png",     tutorialKey: "leaderboard-tab" },
+      { key: "honors",      label: "Hall of Honors",     iconSrc: "/images/icons/nav-honors.png",      tutorialKey: "honors-tab" },
+      { key: "factions",    label: "Four Circles",       iconSrc: "",                                  requiresLogin: true, tutorialKey: null, minLevel: 10 },
+      { key: "season",      label: "Season Pass",        iconSrc: "",                                  requiresLogin: true, tutorialKey: "season-tab", minLevel: 10 },
+      { key: "campaign",    label: "Observatory",        iconSrc: "/images/icons/nav-observatory.png", tutorialKey: "campaign-tab" },
+    ],
+  },
+  // ─── Adventure — Die Haupthalle (Lv1) ───────────────────────────────────────
   {
     id: "haupthalle",
     name: "Great Halls",
@@ -88,7 +107,23 @@ export const FLOORS: Floor[] = [
       { key: "worldboss",  label: "Colosseum",        iconSrc: "",                                  requiresLogin: true, tutorialKey: null, minLevel: 15 },
     ],
   },
-  // ─── Personal (always visible) ───────────────────────────────────────────────
+  // ─── Commerce — Das Gewerbeviertel (Lv3) ────────────────────────────────────
+  {
+    id: "gewerbeviertel",
+    name: "Trading District",
+    subtitle: "Commerce & Craft",
+    icon: "■",
+    color: "#a855f7",
+    gradient: "linear-gradient(135deg, #a855f7 0%, #1a0a2e 100%)",
+    banner: "/images/banners/gewerbeviertel-banner.png",
+    minLevel: 3,
+    rooms: [
+      { key: "shop",   label: "Bazaar",              iconSrc: "/images/icons/nav-bazaar.png",       tutorialKey: "bazaar-tab" },
+      { key: "forge",  label: "Artisan's Quarter",   iconSrc: "",                                   requiresLogin: true, minLevel: 5 },
+      { key: "gacha",  label: "Vault of Fate",       iconSrc: "/images/icons/vault-of-fate.png",    tutorialKey: "vault-tab", minLevel: 5 },
+    ],
+  },
+  // ─── Personal — Der Charakterturm (Lv1) ─────────────────────────────────────
   {
     id: "charakterturm",
     name: "Inner Sanctum",
@@ -105,7 +140,7 @@ export const FLOORS: Floor[] = [
       { key: "klassenquests", label: "Arcanum",        iconSrc: "/images/icons/nav-arcanum.png",      tutorialKey: null, minLevel: 10 },
     ],
   },
-  // ─── Social (always visible) ─────────────────────────────────────────────────
+  // ─── Social — Das Erdgeschoss (Lv1) ─────────────────────────────────────────
   {
     id: "breakaway",
     name: "Breakaway",
@@ -118,40 +153,6 @@ export const FLOORS: Floor[] = [
     rooms: [
       { key: "social", label: "Breakaway", iconSrc: "", requiresLogin: true, tutorialKey: null },
       { key: "tavern", label: "Hearth", iconSrc: "", requiresLogin: true, tutorialKey: null },
-    ],
-  },
-  // ─── Commerce (Lv3) ─────────────────────────────────────────────────────────
-  {
-    id: "gewerbeviertel",
-    name: "Trading District",
-    subtitle: "Commerce & Craft",
-    icon: "■",
-    color: "#a855f7",
-    gradient: "linear-gradient(135deg, #a855f7 0%, #1a0a2e 100%)",
-    banner: "/images/banners/gewerbeviertel-banner.png",
-    minLevel: 3,
-    rooms: [
-      { key: "shop",   label: "Bazaar",              iconSrc: "/images/icons/nav-bazaar.png",       tutorialKey: "bazaar-tab" },
-      { key: "forge",  label: "Artisan's Quarter",   iconSrc: "",                                   requiresLogin: true, minLevel: 5 },
-      { key: "gacha",  label: "Vault of Fate",       iconSrc: "/images/icons/vault-of-fate.png",    tutorialKey: "vault-tab", minLevel: 5 },
-    ],
-  },
-  // ─── Prestige (Lv8) ─────────────────────────────────────────────────────────
-  {
-    id: "turmspitze",
-    name: "Pinnacle",
-    subtitle: "Prestige & Glory",
-    icon: "▲",
-    color: "#fbbf24",
-    gradient: "linear-gradient(135deg, #fbbf24 0%, #1a1a3a 100%)",
-    banner: "/images/banners/turmspitze-banner.png",
-    minLevel: 8,
-    rooms: [
-      { key: "leaderboard", label: "Proving Grounds",    iconSrc: "/images/icons/nav-proving.png",     tutorialKey: "leaderboard-tab" },
-      { key: "honors",      label: "Hall of Honors",     iconSrc: "/images/icons/nav-honors.png",      tutorialKey: "honors-tab" },
-      { key: "factions",    label: "Four Circles",       iconSrc: "",                                  requiresLogin: true, tutorialKey: null, minLevel: 10 },
-      { key: "season",      label: "Season Pass",        iconSrc: "",                                  requiresLogin: true, tutorialKey: "season-tab", minLevel: 10 },
-      { key: "campaign",    label: "Observatory",        iconSrc: "/images/icons/nav-observatory.png", tutorialKey: "campaign-tab" },
     ],
   },
 ];
