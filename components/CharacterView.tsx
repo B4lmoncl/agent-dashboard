@@ -835,6 +835,8 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
   const [selectedItem, setSelectedItem] = useState<{ item: CharacterData["inventory"][number]; rect: { x: number; y: number; width: number; height: number } } | null>(null);
   const [statTooltipOpen, setStatTooltipOpen] = useState<string | null>(null);
   const [expandedStat, setExpandedStat] = useState<string | null>(null);
+  const [compareMode, setCompareMode] = useState(false);
+  const [pinnedItem, setPinnedItem] = useState<InventoryItem | null>(null);
   const [invFilter, setInvFilter] = useState<InvFilter>("all");
   const [invSort, setInvSort] = useState<InvSort>("none");
   const [invSearch, setInvSearch] = useState("");
@@ -1187,6 +1189,27 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
             )}
           </div>
 
+          {/* Compare Mode Toggle */}
+          <div className="flex items-center gap-2 mb-2">
+            <button
+              onClick={() => { setCompareMode(c => !c); if (compareMode) setPinnedItem(null); }}
+              className="text-xs px-2 py-1 rounded font-semibold"
+              style={{
+                background: compareMode ? "rgba(59,130,246,0.15)" : "rgba(255,255,255,0.03)",
+                color: compareMode ? "#60a5fa" : "rgba(255,255,255,0.25)",
+                border: `1px solid ${compareMode ? "rgba(59,130,246,0.3)" : "rgba(255,255,255,0.06)"}`,
+                cursor: "pointer",
+              }}
+              title={compareMode ? "Exit compare mode" : "Compare items side by side"}
+            >{compareMode ? "Exit Compare" : "Compare"}</button>
+            {pinnedItem && (
+              <div className="flex items-center gap-1 text-xs flex-1 min-w-0 px-2 py-0.5 rounded" style={{ background: "rgba(59,130,246,0.08)", border: "1px solid rgba(59,130,246,0.2)" }}>
+                <span className="font-semibold truncate" style={{ color: RARITY_COLORS[pinnedItem.rarity] || "#888" }}>{pinnedItem.name}</span>
+                <button onClick={() => setPinnedItem(null)} className="text-xs flex-shrink-0" style={{ color: "rgba(255,255,255,0.3)", cursor: "pointer", background: "none", border: "none" }}>clear</button>
+              </div>
+            )}
+          </div>
+
           {/* Filter Tabs */}
           <div className="flex gap-1 mb-2">
             {INV_FILTERS.map(f => (
@@ -1344,12 +1367,15 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                         item={item}
                         idx={idx}
                         level={charData.level}
-                        onItemClick={(itm, rect) => setSelectedItem({ item: itm, rect })}
+                        onItemClick={(itm, rect) => {
+                          if (compareMode) { setPinnedItem(pinnedItem?.id === itm.id ? null : itm); }
+                          else { setSelectedItem({ item: itm, rect }); }
+                        }}
                         onDragStart={handleDragStart}
                         onDragOver={handleDragOver}
                         onDrop={handleDrop}
                         dragOverIdx={dragOverIdx}
-                        equippedForSlot={equipped}
+                        equippedForSlot={compareMode && pinnedItem ? pinnedItem : equipped}
                         isNew={item ? !seenItemIds.has(item.id) : false}
                         onMarkSeen={item ? () => markItemSeen(item.id) : undefined}
                       />
