@@ -21,6 +21,7 @@ const FactionsView = lazy(() => import("@/components/FactionsView"));
 const BattlePassView = lazy(() => import("@/components/BattlePassView"));
 const WorldBossView = lazy(() => import("@/components/WorldBossView"));
 const DungeonView = lazy(() => import("@/components/DungeonView"));
+const CodexView = lazy(() => import("@/components/CodexView"));
 import TodayDrawer from "@/components/TodayDrawer";
 const PlayerProfileModal = lazy(() => import("@/components/PlayerProfileModal"));
 import { GuideModal, GuideContent, TutorialOverlay, TUTORIAL_STEPS } from "@/components/TutorialModal";
@@ -140,10 +141,10 @@ export default function Dashboard() {
   });
   // selectedIds, bulkLoading, reviewComments moved to useQuestActions hook
   const [typeFilter, setTypeFilter] = useState<string>("all");
-  const [dashViewRaw, setDashViewRaw] = useState<"questBoard" | "npcBoard" | "klassenquests" | "character" | "campaign" | "leaderboard" | "honors" | "season" | "shop" | "forge" | "gacha" | "roadmap" | "changelog" | "challenges" | "rituals" | "vows" | "social" | "tavern" | "rift" | "factions" | "worldboss" | "dungeons">(() => {
+  const [dashViewRaw, setDashViewRaw] = useState<"questBoard" | "npcBoard" | "klassenquests" | "character" | "campaign" | "leaderboard" | "honors" | "season" | "shop" | "forge" | "gacha" | "roadmap" | "changelog" | "challenges" | "rituals" | "vows" | "social" | "tavern" | "rift" | "factions" | "worldboss" | "dungeons" | "codex">(() => {
     if (typeof window !== "undefined") {
       const saved = localStorage.getItem("dash_view");
-      if (saved) return saved as "questBoard" | "npcBoard" | "klassenquests" | "character" | "campaign" | "leaderboard" | "honors" | "season" | "shop" | "forge" | "gacha" | "roadmap" | "changelog" | "challenges" | "rituals" | "vows" | "social" | "tavern" | "rift" | "factions" | "worldboss" | "dungeons";
+      if (saved) return saved as "questBoard" | "npcBoard" | "klassenquests" | "character" | "campaign" | "leaderboard" | "honors" | "season" | "shop" | "forge" | "gacha" | "roadmap" | "changelog" | "challenges" | "rituals" | "vows" | "social" | "tavern" | "rift" | "factions" | "worldboss" | "dungeons" | "codex";
     }
     return "questBoard";
   });
@@ -1826,6 +1827,11 @@ export default function Dashboard() {
         })()}
 
         {/* ── KLASSENQUESTS TAB ── */}
+        {/* ── CODEX TAB ── */}
+        {dashView === "codex" && playerName && (
+          <ErrorBoundary><Suspense fallback={<ViewFallback />}><CodexView /></Suspense></ErrorBoundary>
+        )}
+
         {dashView === "klassenquests" && (
           <div>
             <div className="flex items-center gap-2 mb-4">

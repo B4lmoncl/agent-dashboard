@@ -1,0 +1,292 @@
+{
+  "categories": [
+    { "id": "world", "name": "Die Welt", "icon": "/images/icons/nav-great-hall.png", "color": "#f97316" },
+    { "id": "tower", "name": "Der Turm", "icon": "/images/icons/nav-character.png", "color": "#3b82f6" },
+    { "id": "npcs", "name": "Wanderer", "icon": "/images/icons/nav-wanderer.png", "color": "#22c55e" },
+    { "id": "factions", "name": "Die Zirkel", "icon": "/images/icons/nav-proving.png", "color": "#a855f7" },
+    { "id": "creatures", "name": "Kreaturen", "icon": "/images/icons/ach-boss-slayer.png", "color": "#ef4444" },
+    { "id": "artifacts", "name": "Artefakte", "icon": "/images/icons/equip-weapon.png", "color": "#fbbf24" }
+  ],
+  "entries": [
+    {
+      "id": "aethermoor",
+      "category": "world",
+      "title": "Aethermoor",
+      "text": "Die Welt ist älter als die Sterne, die sie beleuchten. Aethermoor atmet durch den Aetherstrom — eine Kraft, die man nicht kontrolliert, sondern mit der man verhandelt. Wer das vergisst, den erinnert sie. Unsanft.",
+      "unlockedBy": { "type": "level_reached", "value": 1 }
+    },
+    {
+      "id": "aetherstrom",
+      "category": "world",
+      "title": "Der Aetherstrom",
+      "text": "Manche nennen es Magie. Die Gelehrten nennen es den Strom. Die Alten nannten es den Atem. Es ist keine Kraft die man sich nimmt — es ist eine, die man leiht. Und der Strom vergisst nie, wem er was geliehen hat.",
+      "unlockedBy": { "type": "level_reached", "value": 3 }
+    },
+    {
+      "id": "zeitalter-wiederkehr",
+      "category": "world",
+      "title": "Das Zeitalter der Wiederkehr",
+      "text": "Die Risse öffnen sich wieder. Dungeons, die seit Jahrhunderten schliefen, gähnen und strecken sich. Neue Helden werden gebraucht — nicht weil die alten versagt haben, sondern weil sie ihre Arbeit getan haben und es jetzt an anderen ist.",
+      "unlockedBy": { "type": "level_reached", "value": 5 }
+    },
+    {
+      "id": "quest-hall",
+      "category": "tower",
+      "title": "Die Quest Hall",
+      "text": "Ein Turm so alt, dass niemand sagen kann wer ihn gebaut hat. Jedes Stockwerk erzählt eine andere Geschichte, und die Treppenhäuser dazwischen erzählen Geschichten, die niemand hören will. Er lebt. Auf eine Art, die man erst versteht, wenn die Wände anfangen zurückzuflüstern.",
+      "unlockedBy": { "type": "level_reached", "value": 1 }
+    },
+    {
+      "id": "pinnacle",
+      "category": "tower",
+      "title": "Die Turmspitze",
+      "text": "Der höchste Punkt. Wo die Leaderboards hängen und die Luft nach Ehrgeiz schmeckt. Manche klettern hierher um zu beweisen, dass sie die Besten sind. Andere klettern hierher, weil die Aussicht es wert ist. Beide haben recht.",
+      "unlockedBy": { "type": "level_reached", "value": 8 }
+    },
+    {
+      "id": "great-halls",
+      "category": "tower",
+      "title": "Die Haupthallen",
+      "text": "Das Herz des Turms. Hier werden Quests verteilt, NPCs empfangen und Geschichten geboren. Die Hallen sind niemals leer — und niemals leise. Es sei denn, es ist etwas Schreckliches passiert. Dann sind sie sehr, sehr leise.",
+      "unlockedBy": { "type": "level_reached", "value": 1 }
+    },
+    {
+      "id": "breakaway",
+      "category": "tower",
+      "title": "The Breakaway",
+      "text": "Der Ort wo Helden ihre Rüstung ablegen und einfach nur Menschen sind. Nachrichten, Handel, Klatsch. Die Taverne ist warm, das Bier kalt, und niemand fragt woher die Narben kommen. Ein guter Ort.",
+      "unlockedBy": { "type": "level_reached", "value": 1 }
+    },
+    {
+      "id": "trading-district",
+      "category": "tower",
+      "title": "Das Gewerbeviertel",
+      "text": "Acht Handwerksmeister, jeder in seinem Element. Der Klang von Hämmern, das Zischen von Tränken, das leise Summen von Verzauberungen. Hier wird aus Rohstoff Kunst. Und aus Kunst manchmal Schrott. Aber das gehört dazu.",
+      "unlockedBy": { "type": "level_reached", "value": 3 }
+    },
+    {
+      "id": "inner-sanctum",
+      "category": "tower",
+      "title": "Das Innere Heiligtum",
+      "text": "Dein persönlicher Bereich im Turm. Inventar, Ausrüstung, Rituale. Die Wände erinnern sich an jeden Gegenstand, den du je getragen hast. Manche sagen, die Wände urteilen. Die Wände sagen nichts.",
+      "unlockedBy": { "type": "level_reached", "value": 1 }
+    },
+    {
+      "id": "hearth",
+      "category": "tower",
+      "title": "Die Taverne",
+      "text": "Manchmal muss man aufhören. Die Taverne friert deine Streaks ein und schützt dein Fortschritt, während du dich erholst. Kein Held brennt ewig — aber die klügsten wissen, wann sie ihre Flamme schützen müssen.",
+      "unlockedBy": { "type": "level_reached", "value": 1 }
+    },
+    {
+      "id": "the-rift",
+      "category": "world",
+      "title": "Der Riss",
+      "text": "Die Risse sind Narben in der Realität. Zeitlich begrenzte Passagen in Welten, die nicht ganz da sind und nicht ganz weg. Normal, Schwer, Legendär — und dann Mythisch, wo die Regeln aufhören sich an die Regeln zu halten.",
+      "unlockedBy": { "type": "level_reached", "value": 8 }
+    },
+    {
+      "id": "undercroft",
+      "category": "world",
+      "title": "Das Untergewölbe",
+      "text": "Unter dem Turm liegen Dungeons, die älter sind als der Turm selbst. Das versunkene Archiv. Die zerbrochene Spirale. Der hohle Kern. Drei Orte, drei Geschichten, keine davon mit einem glücklichen Ende. Zumindest nicht für die, die vor dir dort waren.",
+      "unlockedBy": { "type": "level_reached", "value": 12 }
+    },
+    {
+      "id": "colosseum",
+      "category": "world",
+      "title": "Das Kolosseum",
+      "text": "Die Arena, in der die Gemeinschaft gegen Titanen kämpft. Neun Bosse, jeder ein Spiegel menschlicher Schwächen: Prokrastination, Burnout, Zweifel, Chaos. Man besiegt sie nicht allein. Das ist der Punkt.",
+      "unlockedBy": { "type": "level_reached", "value": 15 }
+    },
+    {
+      "id": "grimvar",
+      "category": "npcs",
+      "title": "Grimvar der Schmied",
+      "text": "Er redet nicht viel. Sein Hammer spricht für ihn — laut und mit Nachdruck. Grimvar hat mehr Rüstungen repariert als die meisten Helden getragen haben. Sein Geheimnis? Er macht sie beim ersten Mal richtig.",
+      "unlockedBy": { "type": "profession_skill", "value": 10 }
+    },
+    {
+      "id": "ysolde",
+      "category": "npcs",
+      "title": "Ysolde die Alchemistin",
+      "text": "Ihre Tränke heilen. Meistens. Manchmal explodieren sie auch. Ysolde sieht beides als Erfolg — das eine heilt den Körper, das andere die Langeweile. Ihre Augenbrauen wachsen seit einem bestimmten Experiment nicht mehr nach.",
+      "unlockedBy": { "type": "profession_skill", "value": 10 }
+    },
+    {
+      "id": "eldric",
+      "category": "npcs",
+      "title": "Eldric der Verzauberer",
+      "text": "Er spricht in Gleichungen und denkt in Runen. Für Eldric ist jeder Gegenstand ein Rätsel und jede Verzauberung eine Konversation mit dem Aetherstrom. Ob der Strom antwortet oder nicht — er führt das Gespräch trotzdem weiter.",
+      "unlockedBy": { "type": "profession_skill", "value": 10 }
+    },
+    {
+      "id": "bruna",
+      "category": "npcs",
+      "title": "Bruna die Köchin",
+      "text": "Niemand weiß, woher Bruna ihre Rezepte hat. Manche vermuten, sie hat einen Deal mit einem kulinarischen Dämonen geschlossen. Ihre Suppe heilt Wunden, ihr Brot gibt Kraft, und ihr Blick sagt dir, dass du besser aufisst.",
+      "unlockedBy": { "type": "profession_skill", "value": 10 }
+    },
+    {
+      "id": "orden-der-klinge",
+      "category": "factions",
+      "title": "Orden der Klinge",
+      "text": "Stärke ist kein Zustand, sondern eine Entscheidung. Der Orden glaubt, dass der Körper das erste Werkzeug ist und das letzte, das einen im Stich lässt. Ihre Mitglieder trainieren, bis Schweiß zu Stahl wird.",
+      "unlockedBy": { "type": "level_reached", "value": 10 }
+    },
+    {
+      "id": "zirkel-der-sterne",
+      "category": "factions",
+      "title": "Zirkel der Sterne",
+      "text": "Wissen ist die einzige Währung, die beim Teilen mehr wird. Der Zirkel sammelt, ordnet, und bewahrt. Ihre Bibliothek ist endlos — nicht weil sie so viele Bücher haben, sondern weil die Bücher sich weigern, aufzuhören.",
+      "unlockedBy": { "type": "level_reached", "value": 10 }
+    },
+    {
+      "id": "pakt-der-wildnis",
+      "category": "factions",
+      "title": "Pakt der Wildnis",
+      "text": "Die Natur braucht keinen Grund. Sie wächst, weil Wachsen das ist, was sie tut. Der Pakt versteht das — und versucht, dasselbe mit sich selbst zu tun. Ihre Quests riechen nach Erde und schmecken nach Freiheit.",
+      "unlockedBy": { "type": "level_reached", "value": 10 }
+    },
+    {
+      "id": "bund-der-schatten",
+      "category": "factions",
+      "title": "Bund der Schatten",
+      "text": "Nicht jeder Held steht im Rampenlicht. Der Bund arbeitet im Stillen — Verbindungen knüpfen, Informationen handeln, Code schreiben der die Welt verändert ohne dass sie es merkt. Ihr Motto: 'Am effektivsten ist man, wenn niemand zuschaut.'",
+      "unlockedBy": { "type": "level_reached", "value": 10 }
+    },
+    {
+      "id": "prokrastinations-wyrm",
+      "category": "creatures",
+      "title": "Der Prokrastinations-Wyrm",
+      "text": "Er kommt nicht. Das ist sein Trick. Er wartet, bis du wartest. Und dann wartet ihr beide, bis es zu spät ist. Der Wyrm ist nicht gefährlich, weil er angreift — er ist gefährlich, weil er dir einredet, dass du morgen anfangen kannst.",
+      "unlockedBy": { "type": "level_reached", "value": 15 }
+    },
+    {
+      "id": "burnout-koloss",
+      "category": "creatures",
+      "title": "Der Burnout-Koloss",
+      "text": "Er war einmal ein Held. Der beste sogar. Er hat nie aufgehört, nie pausiert, nie 'nein' gesagt. Und jetzt steht er da, hohl und riesig, eine Warnung in Granitform. Die Taverne wurde erfunden, um Leute wie ihn zu verhindern.",
+      "unlockedBy": { "type": "level_reached", "value": 15 }
+    },
+    {
+      "id": "chaos-hydra",
+      "category": "creatures",
+      "title": "Die Chaos-Hydra",
+      "text": "Schneide einen Kopf ab, und drei neue wachsen nach. Jeder Kopf ist ein neues Projekt, eine neue Idee, ein neues 'das mache ich auch noch'. Die Hydra wird nicht besiegt indem man kämpft — sondern indem man priorisiert.",
+      "unlockedBy": { "type": "level_reached", "value": 15 }
+    },
+    {
+      "id": "zweifel-phantom",
+      "category": "creatures",
+      "title": "Das Zweifel-Phantom",
+      "text": "Es flüstert. Leise, aber ausdauernd. 'Bist du sicher?' 'Reicht das?' 'Was wenn du scheiterst?' Das Phantom hat keine Substanz — es existiert nur, solange du ihm zuhörst. Der Trick ist, laut genug zu sein um es zu übertönen.",
+      "unlockedBy": { "type": "level_reached", "value": 15 }
+    },
+    {
+      "id": "schmiede-geheimnis",
+      "category": "artifacts",
+      "title": "Die Tiefe Schmiede",
+      "text": "Im tiefsten Gewölbe der Schmiede hört man manchmal einen Hammerschlag. Niemand weiß, wer schmiedet. Niemand hat je nachgesehen. Nicht weil sie es nicht konnten — sondern weil das, was dort geschmiedet wird, nicht für sterbliche Augen bestimmt ist.",
+      "unlockedBy": { "type": "profession_skill", "value": 100 }
+    },
+    {
+      "id": "aetherwuerfel",
+      "category": "artifacts",
+      "title": "Der Ätherwürfel",
+      "text": "Ein Artefakt das Legendäres extrahiert und konserviert. Wer es benutzt, opfert einen Gegenstand — und behält seine Essenz. Elegant, wenn man darüber nachdenkt. Brutal, wenn man an den Gegenstand hing.",
+      "unlockedBy": { "type": "level_reached", "value": 5 }
+    },
+    {
+      "id": "forge-temp",
+      "category": "artifacts",
+      "title": "Die Schmiedetemperatur",
+      "text": "Der Turm hat einen Puls. Die Schmiedetemperatur misst, wie aktiv das Herz der Halle schlägt. Je heißer, desto großzügiger die Belohnungen. Inaktivität kühlt sie ab. Wie alles im Leben: wer aufhört sich zu bewegen, erkaltet.",
+      "unlockedBy": { "type": "level_reached", "value": 1 }
+    },
+    {
+      "id": "streaks",
+      "category": "artifacts",
+      "title": "Die Flamme des Streaks",
+      "text": "Jeder Tag zählt. Die Flamme wächst mit jedem ununterbrochenen Tag — und sie erlischt, wenn du aufhörst. Manche tragen sie wie eine Fackel. Andere wie eine Last. Die Weisen tragen sie wie eine Gewohnheit.",
+      "unlockedBy": { "type": "level_reached", "value": 1 }
+    },
+    {
+      "id": "gacha-vault",
+      "category": "artifacts",
+      "title": "Das Schicksalsgewölbe",
+      "text": "Das Rad dreht sich. Runensplitter fließen hinein, Schicksal fließt heraus. Manche nennen es Glücksspiel. Die Betreiber nennen es 'kontrollierte Wahrscheinlichkeitsmanipulation'. Das klingt besser auf Einladungskarten.",
+      "unlockedBy": { "type": "level_reached", "value": 5 }
+    },
+    {
+      "id": "sternenpfad",
+      "category": "world",
+      "title": "Der Sternenpfad",
+      "text": "Jede Woche eine neue Herausforderung. Drei Stufen, neun mögliche Sterne. Der Pfad führt nach oben — immer nach oben. Wer alle Sterne sammelt, hat nicht nur gewonnen. Er hat bewiesen, dass Konstanz eine Superkraft ist.",
+      "unlockedBy": { "type": "level_reached", "value": 3 }
+    },
+    {
+      "id": "mondlicht",
+      "category": "world",
+      "title": "Das Mondlicht",
+      "text": "Wenn die Sterne über Aethermoor aufgehen und die Nacht den Turm umhüllt, pulsiert der Aetherstrom anders. Ruhiger. Tiefer. Die alten Schmiede wussten: was im Mondlicht geschmiedet wird, trägt ein Stück Ewigkeit in sich.",
+      "unlockedBy": { "type": "level_reached", "value": 5 }
+    },
+    {
+      "id": "mythic-affixes",
+      "category": "world",
+      "title": "Die Wochenflüche",
+      "text": "Jeden Montag wählt der Riss seine eigenen Regeln. Tyrannisch. Nekrotisch. Rasend. Zehn Modifikatoren, die das Unmögliche noch unmöglicher machen. Oder, wenn man es richtig anstellt, profitabler. Der Riss hat Humor. Dunklen Humor.",
+      "unlockedBy": { "type": "mythic_cleared", "value": 2 }
+    },
+    {
+      "id": "binding-system",
+      "category": "artifacts",
+      "title": "Seelenbindung",
+      "text": "Manche Gegenstände binden sich an ihren Träger. Nicht aus Loyalität — aus Pragmatismus. Ein Schwert, das zu viele Hände kennt, vergisst welche es beschützen soll. Seelengebundene Items können nicht gehandelt werden. Das ist kein Bug. Das ist Absicht.",
+      "unlockedBy": { "type": "level_reached", "value": 1 }
+    },
+    {
+      "id": "companion-bond",
+      "category": "npcs",
+      "title": "Die Gefährtenbindung",
+      "text": "Ein Companion ist mehr als ein Haustier. Er ist ein Spiegel, ein Freund, und manchmal ein besserer Mensch als du. Die Bindung wächst mit der Zeit — und mit Bauchkraulen. Letzteres ist wissenschaftlich belegt.",
+      "unlockedBy": { "type": "bond_level", "value": 2 }
+    },
+    {
+      "id": "expedition-wilds",
+      "category": "world",
+      "title": "Die Wildnis um den Turm",
+      "text": "Jenseits der Mauern liegt eine Welt, die sich nicht darum kümmert ob du bereit bist. Wälder die flüstern. Berge die urteilen. Ruinen die sich erinnern. Dein Companion kennt den Weg — meistens.",
+      "unlockedBy": { "type": "level_reached", "value": 5 }
+    },
+    {
+      "id": "mail-system",
+      "category": "tower",
+      "title": "Die Turmpost",
+      "text": "Fünf Gold Porto. Nicht weil die Lieferung teuer ist — sondern weil der Postbote zu viel weiß und man ihn bei Laune halten muss. Briefe, Gold, Gegenstände: alles kann verschickt werden. Nur keine Geheimnisse. Die kosten extra.",
+      "unlockedBy": { "type": "level_reached", "value": 1 }
+    },
+    {
+      "id": "hidden-floor",
+      "category": "tower",
+      "title": "???",
+      "text": "Es gibt Gerüchte über ein Stockwerk, das auf keiner Karte verzeichnet ist. Manche sagen, es öffnet sich nur für die, die nicht danach suchen. Andere sagen, es existiert gar nicht. Die Wände sagen nichts. Wie immer.",
+      "unlockedBy": { "type": "hidden" }
+    },
+    {
+      "id": "hidden-truth",
+      "category": "world",
+      "title": "Die Wahrheit über den Turm",
+      "text": "Der Turm schläft nicht. Er beobachtet. Er erinnert sich an jeden Helden, der je seine Hallen betreten hat — und an jeden, der gegangen ist ohne sich umzudrehen. Manchmal, in stillen Nächten, seufzt er. Nicht aus Trauer. Aus Geduld.",
+      "unlockedBy": { "type": "hidden" }
+    },
+    {
+      "id": "hidden-name",
+      "category": "artifacts",
+      "title": "Der Namenlose Hammer",
+      "text": "Im tiefsten Keller der Schmiede liegt ein Hammer ohne Inschrift. Nicht weil sein Name vergessen wurde — sondern weil sein Name so mächtig ist, dass ihn auszusprechen die Realität in der näheren Umgebung leicht irritiert.",
+      "unlockedBy": { "type": "hidden" }
+    }
+  ]
+}
