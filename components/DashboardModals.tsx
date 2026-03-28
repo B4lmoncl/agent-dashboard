@@ -300,7 +300,7 @@ export default function DashboardModals({
                   { rarity: "Uncommon",  color: "#22c55e", xp: 18 },
                   { rarity: "Rare",      color: "#3b82f6", xp: 30 },
                   { rarity: "Epic",      color: "#a855f7", xp: 50 },
-                  { rarity: "Legendary", color: "#FFD700", xp: 80 },
+                  { rarity: "Legendary", color: "#f97316", xp: 80 },
                 ] as { rarity: string; color: string; xp: number }[]).map(({ rarity, color, xp }) => (
                   <div key={rarity} className="flex items-center justify-between px-2.5 py-1.5 rounded-lg bg-w3" style={{ border: `1px solid ${color}22` }}>
                     <span className="text-xs font-semibold" style={{ color }}>{rarity}</span>
