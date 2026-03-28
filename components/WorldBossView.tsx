@@ -444,6 +444,7 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
         {/* Defeated — Claim Rewards */}
         {boss.defeated && canClaim && !claimResult && (
           <div className="px-5 pb-4">
+            <Tip k="wb_claim_tiers"><p className="text-xs mb-2 cursor-help" style={{ color: "rgba(255,255,255,0.25)" }}>Rewards scale with your contribution rank</p></Tip>
             <button
               onClick={claimRewards}
               disabled={claiming}
