@@ -428,6 +428,12 @@ router.post('/api/rift/complete-stage', requireAuth, (req, res) => {
       }
     }
 
+    // ── Guaranteed Seelensplitter for Legendary (and Mythic) tier completion ──
+    if (rift.tier === 'legendary' || rift.tier === 'mythic') {
+      u.craftingMaterials = u.craftingMaterials || {};
+      u.craftingMaterials.seelensplitter = (u.craftingMaterials.seelensplitter || 0) + 1;
+    }
+
     // Clear cooldown for this tier (successful completion removes fail penalty)
     const cooldownKey = rift.tier === 'mythic' ? 'mythic' : rift.tier;
     if (u.riftCooldowns?.[cooldownKey]) delete u.riftCooldowns[cooldownKey];
@@ -475,6 +481,7 @@ router.post('/api/rift/complete-stage', requireAuth, (req, res) => {
       return { ...base, gold: base.gold + rift.mythicLevel * 200, essenz: base.essenz + rift.mythicLevel * 5 };
     })() : null,
     ...(rift.mythicLevel && { mythicLevel: rift.mythicLevel }),
+    ...(allDone && (rift.tier === 'legendary' || rift.tier === 'mythic') && { seelensplitter: 1 }),
     message: allDone
       ? `Rift Complete! ${rift.mythicLevel ? `Mythic Rift +${rift.mythicLevel}` : RIFT_TIERS[rift.tier]?.name} conquered!`
       : `Stage ${stageNum} cleared! ${rift.quests.length - stageNum} remaining.`,

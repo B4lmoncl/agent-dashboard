@@ -172,6 +172,8 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
   const [dailyBonusAvailable, setDailyBonusAvailable] = useState(false);
   const [moonlightActive, setMoonlightActive] = useState(false);
   const [craftCount, setCraftCount] = useState(1);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [craftedItemCelebration, setCraftedItemCelebration] = useState<any>(null);
   const [confirmAction, setConfirmAction] = useState<{ message: string; onConfirm: () => void } | null>(null);
   const [buyingTool, setBuyingTool] = useState<string | null>(null);
   const [slotAffixRanges, setSlotAffixRanges] = useState<Record<string, { primary: { stat: string; min: number; max: number }[]; minor: { stat: string; min: number; max: number }[]; currentStats: Record<string, number>; itemName: string; rarity: string }>>({});
@@ -218,6 +220,8 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
   const [autoSalvagePreview, setAutoSalvagePreview] = useState<{ items: { id: string; name: string; rarity: string; slot: string | null; icon: string | null }[]; count: number; estimatedEssenz: number; estimatedMaterials: Record<string, { name: string; amount: number }> } | null>(null);
   const [autoSalvageLoading, setAutoSalvageLoading] = useState(false);
   const [autoSalvageStep, setAutoSalvageStep] = useState<0 | 1 | 2>(0); // 0=preview, 1=confirm, 2=done
+  // Skill bracket collapse state for recipe list
+  const [collapsedBrackets, setCollapsedBrackets] = useState<Set<string>>(new Set());
 
   // Close callbacks for modal behavior hooks
   const closeNpcModal = useCallback(() => {
@@ -370,6 +374,11 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
               break;
             }
           }
+        }
+        // Epic+ gear craft celebration popup
+        if (data.craftedItem && (data.craftedItem.rarity === "epic" || data.craftedItem.rarity === "legendary")) {
+          setCraftedItemCelebration(data.craftedItem);
+          setTimeout(() => setCraftedItemCelebration(null), 4000);
         }
         setCraftCount(1);
         fetchData();
@@ -1152,6 +1161,61 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
               </div>
             )}
 
+            {/* Epic+ crafted item celebration overlay */}
+            {craftedItemCelebration && (() => {
+              const ci = craftedItemCelebration;
+              const rc = RARITY_COLORS[ci.rarity] || "#a855f7";
+              return (
+                <div
+                  className="absolute inset-0 z-30 flex items-center justify-center cursor-pointer"
+                  style={{ background: "rgba(0,0,0,0.65)" }}
+                  onClick={() => setCraftedItemCelebration(null)}
+                >
+                  <div className="reward-burst-enter px-6 py-5 rounded-xl text-center max-w-xs w-full" style={{
+                    background: `linear-gradient(135deg, ${rc}18, rgba(11,13,17,0.95))`,
+                    border: `2px solid ${rc}80`,
+                    boxShadow: `0 0 60px ${rc}30, 0 0 120px ${rc}15, inset 0 1px 0 rgba(255,255,255,0.05)`,
+                  }}>
+                    <p className="text-xs uppercase tracking-widest mb-2" style={{ color: "rgba(255,255,255,0.4)" }}>Masterwork Forged</p>
+                    <p className="text-lg font-bold mb-1" style={{ color: rc }}>{ci.name}</p>
+                    <p className="text-xs uppercase tracking-wider mb-3 font-semibold" style={{ color: `${rc}aa` }}>
+                      {RARITY_LABELS[ci.rarity] || ci.rarity} {ci.slot ? `\u00b7 ${ci.slot}` : ""}
+                    </p>
+                    {ci.stats && Object.keys(ci.stats).length > 0 && (
+                      <div className="flex flex-wrap justify-center gap-x-3 gap-y-1 mb-3">
+                        {Object.entries(ci.stats as Record<string, number>).map(([stat, val]) => (
+                          <span key={stat} className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.7)" }}>
+                            {stat} <span style={{ color: "#22c55e" }}>+{val}</span>
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                    {ci.sockets && ci.sockets.length > 0 && (
+                      <p className="text-xs mb-2" style={{ color: "rgba(255,255,255,0.5)" }}>
+                        ◇ {ci.sockets.length} Socket{ci.sockets.length > 1 ? "s" : ""}
+                      </p>
+                    )}
+                    {ci.legendaryEffect && (
+                      <p className="text-xs mb-2 italic" style={{ color: "#f97316" }}>
+                        ★ {ci.legendaryEffect.type?.replace(/_/g, " ")} +{ci.legendaryEffect.value ?? ci.legendaryEffect.min ?? "?"}%
+                      </p>
+                    )}
+                    {ci.setId && (
+                      <p className="text-xs mb-2" style={{ color: "#3b82f6" }}>
+                        Set: {ci.setId}
+                      </p>
+                    )}
+                    {moonlightActive && (
+                      <p className="text-xs" style={{ color: "#c4b5fd" }}>
+                        ☽ Mondlicht-Bonus
+                      </p>
+                    )}
+                    <p className="text-xs mt-3" style={{ color: "rgba(255,255,255,0.2)" }}>Click to dismiss</p>
+                  </div>
+                </div>
+              );
+            })()}
+
             {/* NPC Header */}
             <div className="p-5 pb-3" style={{ background: `linear-gradient(180deg, ${selectedNpc.color}12 0%, transparent 100%)` }}>
               <div className="flex items-center gap-4">
@@ -1348,47 +1412,105 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                       <button key={s} onClick={() => setRecipeSlotFilter(s)} className="text-xs px-2 py-0.5 rounded" style={{ background: recipeSlotFilter === s ? "rgba(255,255,255,0.08)" : "rgba(255,255,255,0.02)", color: recipeSlotFilter === s ? "#e8e8e8" : "rgba(255,255,255,0.2)", border: `1px solid ${recipeSlotFilter === s ? "rgba(255,255,255,0.15)" : "rgba(255,255,255,0.04)"}`, cursor: "pointer" }}>{s === "all" ? "All" : s === "consumable" ? "Buffs" : s.charAt(0).toUpperCase() + s.slice(1)}</button>
                     ))}
                   </div>
-                  {recipes.filter(r => r.profession === selectedNpc.id).filter(recipe => {
-                    // Slot filter
-                    if (recipeSlotFilter !== "all") {
-                      if (recipeSlotFilter === "consumable") {
-                        const isConsumable = ["buff", "temp_enchant", "streak_shield", "forge_temp", "vellum", "material", "transmute_material"].includes(recipe.result?.type || "");
-                        if (!isConsumable) return false;
-                      } else {
-                        // For gear recipes: check if recipe name contains the slot keyword
-                        const nameLower = (recipe.name || "").toLowerCase();
-                        const SLOT_KEYWORDS: Record<string, string[]> = { weapon: ["schwert", "klinge", "dolch", "axt", "waffe", "stab", "bogen"], shield: ["schild", "buckler"], helm: ["helm", "haube", "kappe", "krone"], armor: ["rüstung", "panzer", "wams", "robe", "tunika"], amulet: ["amulett", "kette", "anhänger", "medallion"], ring: ["ring", "reif", "band"], boots: ["stiefel", "schuhe", "sandalen"] };
-                        const keywords = SLOT_KEYWORDS[recipeSlotFilter] || [];
-                        if (!keywords.some(k => nameLower.includes(k))) return false;
-                      }
-                    }
-                    // Search filter
-                    if (recipeSearch && !recipe.name.toLowerCase().includes(recipeSearch.toLowerCase())) return false;
-                    // Craftable-only filter
-                    if (showCraftableOnly) {
-                      const isLearned = recipe.learned !== false;
-                      const meetsLevel = recipe.canCraft;
-                      const onCooldown = (recipe.cooldownRemaining ?? 0) > 0;
-                      const isBatchable = recipe.result?.type === "buff" || recipe.result?.type === "streak_shield" || recipe.result?.type === "forge_temp";
-                      const effectiveCount = isBatchable ? craftCount : 1;
-                      const canAffordCheck = (() => {
-                        const g = currencies.gold ?? loggedInUser?.currencies?.gold ?? loggedInUser?.gold ?? 0;
-                        if (recipe.cost?.gold && g < recipe.cost.gold * effectiveCount) return false;
-                        for (const [matId, amt] of Object.entries(recipe.materials || {})) {
-                          if ((materials[matId] || 0) < (amt as number) * effectiveCount) return false;
+                  {(() => {
+                    const SKILL_BRACKETS = [
+                      { name: "Apprentice", min: 0, max: 75, color: "#22c55e" },
+                      { name: "Journeyman", min: 75, max: 150, color: "#3b82f6" },
+                      { name: "Expert", min: 150, max: 225, color: "#a855f7" },
+                      { name: "Artisan", min: 225, max: 300, color: "#f59e0b" },
+                    ];
+                    const playerSkill = selectedNpc.skill || 0;
+                    const filteredRecipes = recipes.filter(r => r.profession === selectedNpc.id).filter(recipe => {
+                      // Slot filter
+                      if (recipeSlotFilter !== "all") {
+                        if (recipeSlotFilter === "consumable") {
+                          const isConsumable = ["buff", "temp_enchant", "streak_shield", "forge_temp", "vellum", "material", "transmute_material"].includes(recipe.result?.type || "");
+                          if (!isConsumable) return false;
+                        } else {
+                          const nameLower = (recipe.name || "").toLowerCase();
+                          const SLOT_KEYWORDS: Record<string, string[]> = { weapon: ["schwert", "klinge", "dolch", "axt", "waffe", "stab", "bogen"], shield: ["schild", "buckler"], helm: ["helm", "haube", "kappe", "krone"], armor: ["rüstung", "panzer", "wams", "robe", "tunika"], amulet: ["amulett", "kette", "anhänger", "medallion"], ring: ["ring", "reif", "band"], boots: ["stiefel", "schuhe", "sandalen"] };
+                          const keywords = SLOT_KEYWORDS[recipeSlotFilter] || [];
+                          if (!keywords.some(k => nameLower.includes(k))) return false;
                         }
-                        return true;
-                      })();
-                      if (!canAffordCheck || !meetsLevel || onCooldown || !isLearned) return false;
-                    }
-                    // Have-materials-only filter (ignores skill, cooldown, slot)
-                    if (showHaveMatsOnly) {
-                      const hasMats = Object.entries(recipe.materials || {}).every(([matId, amt]) => (materials[matId] || 0) >= (amt as number));
-                      const hasGold = (currencies.gold ?? loggedInUser?.currencies?.gold ?? loggedInUser?.gold ?? 0) >= (recipe.cost?.gold || 0);
-                      if (!hasMats || !hasGold) return false;
-                    }
-                    return true;
-                  }).map(recipe => {
+                      }
+                      if (recipeSearch && !recipe.name.toLowerCase().includes(recipeSearch.toLowerCase())) return false;
+                      if (showCraftableOnly) {
+                        const isLearned = recipe.learned !== false;
+                        const meetsLevel = recipe.canCraft;
+                        const onCooldown = (recipe.cooldownRemaining ?? 0) > 0;
+                        const isBatchable = recipe.result?.type === "buff" || recipe.result?.type === "streak_shield" || recipe.result?.type === "forge_temp";
+                        const effectiveCount = isBatchable ? craftCount : 1;
+                        const canAffordCheck = (() => {
+                          const g = currencies.gold ?? loggedInUser?.currencies?.gold ?? loggedInUser?.gold ?? 0;
+                          if (recipe.cost?.gold && g < recipe.cost.gold * effectiveCount) return false;
+                          for (const [matId, amt] of Object.entries(recipe.materials || {})) {
+                            if ((materials[matId] || 0) < (amt as number) * effectiveCount) return false;
+                          }
+                          return true;
+                        })();
+                        if (!canAffordCheck || !meetsLevel || onCooldown || !isLearned) return false;
+                      }
+                      if (showHaveMatsOnly) {
+                        const hasMats = Object.entries(recipe.materials || {}).every(([matId, amt]) => (materials[matId] || 0) >= (amt as number));
+                        const hasGold = (currencies.gold ?? loggedInUser?.currencies?.gold ?? loggedInUser?.gold ?? 0) >= (recipe.cost?.gold || 0);
+                        if (!hasMats || !hasGold) return false;
+                      }
+                      return true;
+                    });
+                    const toggleBracket = (name: string) => {
+                      setCollapsedBrackets(prev => {
+                        const next = new Set(prev);
+                        if (next.has(name)) next.delete(name); else next.add(name);
+                        return next;
+                      });
+                    };
+                    return SKILL_BRACKETS.map(bracket => {
+                      const bracketRecipes = filteredRecipes.filter(r => {
+                        const skill = r.reqSkill || 0;
+                        return skill >= bracket.min && skill < bracket.max;
+                      });
+                      if (bracketRecipes.length === 0) return null;
+                      // Determine default collapse: brackets below player's current bracket are collapsed,
+                      // the player's bracket and above are expanded. We use a lazy init pattern —
+                      // if the bracket was never explicitly toggled by the user, apply the default.
+                      const isPlayerBracket = playerSkill >= bracket.min && playerSkill < bracket.max;
+                      const isBelowPlayer = bracket.max <= playerSkill && !isPlayerBracket;
+                      const hasLearnedAbove = !isBelowPlayer && !isPlayerBracket && bracketRecipes.some(r => r.learned !== false);
+                      // Default: collapse lower brackets, expand current + higher with learned recipes
+                      const defaultCollapsed = isBelowPlayer && !isPlayerBracket;
+                      const collapsed = collapsedBrackets.has(bracket.name) ? true : collapsedBrackets.has(`_expanded_${bracket.name}`) ? false : defaultCollapsed;
+                      const handleToggle = () => {
+                        setCollapsedBrackets(prev => {
+                          const next = new Set(prev);
+                          if (collapsed) {
+                            // Expand: remove collapsed marker, add expanded marker
+                            next.delete(bracket.name);
+                            next.add(`_expanded_${bracket.name}`);
+                          } else {
+                            // Collapse: add collapsed marker, remove expanded marker
+                            next.add(bracket.name);
+                            next.delete(`_expanded_${bracket.name}`);
+                          }
+                          return next;
+                        });
+                      };
+                      return (
+                        <div key={bracket.name} className="mb-1">
+                          <button
+                            onClick={handleToggle}
+                            className="w-full flex items-center justify-between px-3 py-2 rounded-lg mb-1 transition-all"
+                            style={{ background: `${bracket.color}10`, border: `1px solid ${bracket.color}20`, cursor: "pointer" }}
+                          >
+                            <span className="flex items-center gap-2">
+                              <span className="text-sm font-bold" style={{ color: bracket.color }}>{bracket.name}</span>
+                              <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.2)" }}>({bracket.min}-{bracket.max})</span>
+                              {isPlayerBracket && <span className="text-xs px-1.5 py-0.5 rounded" style={{ background: `${bracket.color}15`, color: bracket.color, border: `1px solid ${bracket.color}30` }}>Current</span>}
+                            </span>
+                            <span className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>
+                              {bracketRecipes.length} recipe{bracketRecipes.length !== 1 ? "s" : ""} {collapsed ? "\u25B8" : "\u25BE"}
+                            </span>
+                          </button>
+                          {!collapsed && bracketRecipes.map(recipe => {
                     // Hidden/undiscovered recipes — show as "???" with source hint
                     if ((recipe as unknown as Record<string, unknown>).hidden) {
                       return (
@@ -1669,6 +1791,10 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                       </div>
                     );
                   })}
+                        </div>
+                      );
+                    });
+                  })()}
                   {/* Empty state when filter shows no results */}
                   {showCraftableOnly && recipes.filter(r => r.profession === selectedNpc.id).filter(r => !(r as unknown as Record<string, unknown>).hidden && r.learned !== false && r.canCraft && (r.cooldownRemaining ?? 0) <= 0).length === 0 && (
                     <p className="text-xs text-center py-4" style={{ color: "rgba(255,255,255,0.2)" }}>
@@ -1870,28 +1996,85 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                     </div>
                   )}
 
-                  {/* Enchant options (D3-style pick one of three) */}
-                  {enchantOptions && (
-                    <div className="rounded-lg p-3" style={{ background: "rgba(168,85,247,0.05)", border: "1px solid rgba(168,85,247,0.2)" }}>
-                      <p className="text-xs font-semibold uppercase tracking-widest mb-3" style={{ color: "#a855f7" }}>Choose a value for {enchantStat}</p>
-                      <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                        {enchantOptions.map(opt => (
-                          <button key={opt.index} onClick={() => handleEnchantChoose(opt.index)}
-                            disabled={enchantLoading}
-                            className="flex flex-col items-center gap-1 py-3 px-2 rounded-lg transition-all hover:brightness-125"
-                            style={{
-                              background: opt.index === 0 ? "rgba(255,255,255,0.04)" : "rgba(168,85,247,0.08)",
-                              border: `1px solid ${opt.index === 0 ? "rgba(255,255,255,0.08)" : "rgba(168,85,247,0.25)"}`,
-                              cursor: "pointer",
-                            }}
-                          >
-                            <span className="text-xs" style={{ color: opt.index === 0 ? "rgba(255,255,255,0.4)" : "#c084fc" }}>{opt.label}</span>
-                            <span className="text-xl font-bold font-mono" style={{ color: opt.index === 0 ? "rgba(255,255,255,0.6)" : "#a855f7" }}>+{opt.value}</span>
-                          </button>
-                        ))}
+                  {/* Enchant options (D3 Mystic-style: 3 comparison cards) */}
+                  {enchantOptions && (() => {
+                    const originalVal = enchantOptions.find(o => o.index === 0)?.value ?? 0;
+                    return (
+                      <div className="rounded-lg p-4" style={{ background: "rgba(168,85,247,0.05)", border: "1px solid rgba(168,85,247,0.2)", boxShadow: "0 0 20px rgba(168,85,247,0.08)" }}>
+                        <p className="text-xs font-semibold uppercase tracking-widest mb-1" style={{ color: "#a855f7" }}>Choose a value for <span className="font-bold">{enchantStat}</span></p>
+                        <p className="text-xs mb-4" style={{ color: "rgba(255,255,255,0.25)" }}>Select one option to apply. The other two will be lost.</p>
+                        <div className="grid grid-cols-3 gap-3">
+                          {enchantOptions.map(opt => {
+                            const isOriginal = opt.index === 0;
+                            const diff = opt.value - originalVal;
+                            const isBetter = diff > 0;
+                            const isWorse = diff < 0;
+                            const borderColor = isOriginal ? "rgba(255,255,255,0.12)" : isBetter ? "rgba(34,197,94,0.4)" : isWorse ? "rgba(239,68,68,0.4)" : "rgba(168,85,247,0.3)";
+                            const bgColor = isOriginal ? "rgba(255,255,255,0.03)" : isBetter ? "rgba(34,197,94,0.06)" : isWorse ? "rgba(239,68,68,0.04)" : "rgba(168,85,247,0.06)";
+                            const accentColor = isOriginal ? "rgba(255,255,255,0.5)" : isBetter ? "#22c55e" : isWorse ? "#ef4444" : "#a855f7";
+                            const glowColor = isOriginal ? "none" : isBetter ? "0 0 12px rgba(34,197,94,0.15)" : isWorse ? "0 0 12px rgba(239,68,68,0.1)" : "0 0 12px rgba(168,85,247,0.15)";
+                            return (
+                              <button
+                                key={opt.index}
+                                onClick={() => handleEnchantChoose(opt.index)}
+                                disabled={enchantLoading}
+                                className="relative flex flex-col items-center gap-2 py-4 px-3 rounded-xl transition-all"
+                                style={{
+                                  background: bgColor,
+                                  border: `1px solid ${borderColor}`,
+                                  boxShadow: glowColor,
+                                  cursor: enchantLoading ? "not-allowed" : "pointer",
+                                  opacity: enchantLoading ? 0.6 : 1,
+                                }}
+                                title={isOriginal ? "Keep the current value" : `Change ${enchantStat} from ${originalVal} to ${opt.value}`}
+                              >
+                                {/* Card header */}
+                                <span className="text-xs font-semibold uppercase tracking-wider" style={{ color: accentColor }}>
+                                  {opt.label}
+                                </span>
+                                {/* Stat name */}
+                                <span className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>{enchantStat}</span>
+                                {/* Value display */}
+                                <span className="text-2xl font-bold font-mono" style={{ color: isOriginal ? "rgba(255,255,255,0.6)" : accentColor }}>
+                                  +{opt.value}
+                                </span>
+                                {/* Diff indicator */}
+                                {!isOriginal && diff !== 0 && (
+                                  <span className="text-xs font-semibold font-mono px-2 py-0.5 rounded-full" style={{
+                                    background: isBetter ? "rgba(34,197,94,0.12)" : "rgba(239,68,68,0.1)",
+                                    color: isBetter ? "#4ade80" : "#f87171",
+                                    border: `1px solid ${isBetter ? "rgba(34,197,94,0.25)" : "rgba(239,68,68,0.2)"}`,
+                                  }}>
+                                    {isBetter ? "\u25B2" : "\u25BC"} {Math.abs(diff)}
+                                  </span>
+                                )}
+                                {!isOriginal && diff === 0 && (
+                                  <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.2)" }}>=</span>
+                                )}
+                                {isOriginal && (
+                                  <span className="text-xs" style={{ color: "rgba(255,255,255,0.15)" }}>no change</span>
+                                )}
+                                {/* Choose button */}
+                                <span className="mt-1 text-xs font-semibold px-4 py-1.5 rounded-lg" style={{
+                                  background: isOriginal ? "rgba(255,255,255,0.06)" : `${accentColor}18`,
+                                  color: isOriginal ? "rgba(255,255,255,0.4)" : accentColor,
+                                  border: `1px solid ${isOriginal ? "rgba(255,255,255,0.08)" : `${accentColor}35`}`,
+                                }}>
+                                  {enchantLoading ? "..." : "Choose"}
+                                </span>
+                              </button>
+                            );
+                          })}
+                        </div>
+                        {/* Cost reminder */}
+                        {enchantCost && (
+                          <div className="mt-3 text-center text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>
+                            Paid: <span style={{ color: "#f59e0b" }}>{enchantCost.gold}g</span> + <span style={{ color: "#ff8c00" }}>{enchantCost.essenz} Essenz</span>
+                          </div>
+                        )}
                       </div>
-                    </div>
-                  )}
+                    );
+                  })()}
 
                   {/* Result message */}
                   {enchantResult && (
