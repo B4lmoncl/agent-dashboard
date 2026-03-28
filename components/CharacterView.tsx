@@ -2148,7 +2148,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                               <button
                                 onClick={() => doGemAction("upgrade", { gemKey })}
                                 disabled={!!gemAction}
-                                title={gemAction ? "Action in progress…" : "Combine 3 gems to upgrade"}
+                                title={gemAction ? "Action in progress…" : "Combine 3 gems of the same type and tier → 1 gem of the next tier (Chipped→Flawed→Perfect→Flawless→Royal)"}
                                 className="text-xs px-1.5 py-0.5 rounded"
                                 style={{ background: "rgba(167,139,250,0.1)", color: "#a78bfa", border: "1px solid rgba(167,139,250,0.25)", cursor: gemAction ? "not-allowed" : "pointer", fontSize: 12 }}
                               >
