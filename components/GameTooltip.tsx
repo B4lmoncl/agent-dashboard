@@ -1474,7 +1474,11 @@ export function GameTooltip({ k, entry: directEntry, children, align: alignProp,
             {/* Header (conditional) */}
             {resolvedEntry.title && (
               <div className="gt-header">
-                {resolvedEntry.icon && <span className="gt-icon">{resolvedEntry.icon}</span>}
+                {resolvedEntry.icon && (
+                  resolvedEntry.icon.startsWith("/")
+                    ? <img src={resolvedEntry.icon} alt="" width={20} height={20} className="gt-icon" style={{ imageRendering: "auto", display: "inline" }} onError={e => { e.currentTarget.style.display = "none"; }} />
+                    : <span className="gt-icon">{resolvedEntry.icon}</span>
+                )}
                 <span className="gt-title" style={{ color: resolvedEntry.accent || "#f0f0f0" }}>{resolvedEntry.title}</span>
               </div>
             )}
