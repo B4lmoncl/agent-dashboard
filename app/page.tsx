@@ -1234,6 +1234,7 @@ export default function Dashboard() {
           // Check if a floor has any notification
           const floorHasNotif = (floor: Floor) => floor.rooms.some(r => getRoomNotif(r.key) !== null);
           const floorNotifCount = (floor: Floor) => floor.rooms.reduce((sum, r) => sum + (getRoomNotif(r.key)?.count || 0), 0);
+          const floorHasNew = (floor: Floor) => floor.rooms.some(r => { const n = getRoomNotif(r.key); return n && (n as { isNew?: boolean }).isNew; });
 
           return (
             <div data-tutorial="nav-bar" className="space-y-0">
@@ -1265,8 +1266,10 @@ export default function Dashboard() {
                       <span style={{ fontSize: 14 }}>{floor.icon}</span>
                       <span className="hidden sm:inline">{floor.name}</span>
                       {(() => {
-                        const fc = !isActive ? floorNotifCount(floor) : 0;
+                        if (isActive) return null;
+                        const fc = floorNotifCount(floor);
                         if (fc > 0) return <span className="absolute -top-1 -right-1 min-w-[16px] h-4 rounded-full flex items-center justify-center text-xs font-bold badge-enter" style={{ background: "#ef4444", color: "#fff", fontSize: 12, padding: "0 4px", boxShadow: "0 0 6px rgba(239,68,68,0.4)" }}>{fc}</span>;
+                        if (floorHasNew(floor)) return <span className="absolute -top-1.5 -right-2.5 new-unlock-badge badge-enter">NEW</span>;
                         if (hasNotif) return <span className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full badge-enter" style={{ background: "#4ade80", boxShadow: "0 0 4px #4ade80" }} />;
                         return null;
                       })()}
@@ -1387,7 +1390,7 @@ export default function Dashboard() {
                       {room.iconSrc && <img src={room.iconSrc} alt="" width={24} height={24} className={`${room.key === "gacha" ? "vault-nav-glow" : ""} img-render-auto`} style={{ opacity: isActive ? 1 : 0.5 }} onError={e => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} />}
                       {seasonLabel}
                       {notifDot && ((notifDot as { isNew?: boolean }).isNew
-                        ? <span className="absolute -top-1.5 -right-2 px-1 h-4 rounded-full flex items-center justify-center text-xs font-black milestone-pulse" style={{ background: "#fbbf24", color: "#000", fontSize: 10, lineHeight: 1, boxShadow: "0 0 6px #fbbf2480" }}>NEW</span>
+                        ? <span className="absolute -top-1.5 -right-2.5 new-unlock-badge badge-enter">NEW</span>
                         : notifDot.count && notifDot.count > 0
                         ? <span className="absolute -top-1 -right-1.5 min-w-[16px] h-4 rounded-full flex items-center justify-center text-xs font-bold" style={{ background: notifDot.color, color: "#000", fontSize: 12, lineHeight: 1, padding: "0 3px", boxShadow: `0 0 4px ${notifDot.color}` }}>{notifDot.count}</span>
                         : <span className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full" style={{ background: notifDot.color, boxShadow: `0 0 4px ${notifDot.color}` }} />
