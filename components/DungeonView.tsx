@@ -447,7 +447,7 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
             <div className="text-right">
               {activeRun.status === "active" && activeRun.completesAt && (
                 <>
-                  <p className="text-sm font-mono font-bold" style={{
+                  <p className={`text-sm font-mono font-bold${new Date(activeRun.completesAt).getTime() - Date.now() <= 0 ? " bar-pulse" : ""}`} style={{
                     color: new Date(activeRun.completesAt).getTime() - Date.now() <= 0 ? "#22c55e" : activeRun.dungeonAccent,
                   }}>
                     {timeLeft(new Date(activeRun.completesAt).getTime() - Date.now())}
@@ -650,10 +650,11 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
             const onCd = d.cooldown.onCooldown;
             const canEnter = !locked && !onCd;
             return (
-              <div key={d.id} className="rounded-xl p-4 space-y-3" style={{
+              <div key={d.id} className={`rounded-xl p-4 space-y-3${!locked ? " crystal-breathe" : ""}`} style={{
                 background: locked ? "rgba(255,255,255,0.02)" : `${d.accent}06`,
                 border: `1px solid ${locked ? "rgba(255,255,255,0.05)" : `${d.accent}25`}`,
                 opacity: locked ? 0.5 : 1,
+                ...(!locked ? { ["--glow-color" as string]: `${d.accent}25` } : {}),
               }}>
                 <div className="text-center">
                   <span className="text-2xl">{d.icon}</span>

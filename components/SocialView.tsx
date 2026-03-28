@@ -47,7 +47,7 @@ function OnlineDot({ status, lastActiveAt }: { status: string; lastActiveAt?: st
   const label = status === "offline" && lastActiveAt ? `${timeAgo(lastActiveAt)}` : ONLINE_LABELS[status] || "Offline";
   return (
     <span className="inline-flex items-center gap-1">
-      <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: ONLINE_COLORS[status] || "#555", boxShadow: status === "online" ? "0 0 6px #22c55e" : "none" }} />
+      <span className={`w-2 h-2 rounded-full flex-shrink-0${status === "online" ? " online-pulse" : ""}`} style={{ background: ONLINE_COLORS[status] || "#555", boxShadow: status === "online" ? "0 0 6px #22c55e" : "none" }} />
       <span className="text-xs" style={{ color: ONLINE_COLORS[status] || "#555" }}>{label}</span>
     </span>
   );

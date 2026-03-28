@@ -93,10 +93,11 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
     const flameColor = isBroken ? "#ef4444" : ritual.streak >= 30 ? "#f59e0b" : ritual.streak >= 14 ? "#f97316" : ritual.streak >= 7 ? "#ef4444" : "rgba(255,255,255,0.25)";
     const flameGlow = isBroken ? "0 0 8px rgba(239,68,68,0.3)" : ritual.streak >= 7 ? `0 0 8px ${flameColor}44` : "none";
     return (
-      <div key={ritual.id} className="rounded-xl p-3" style={{
+      <div key={ritual.id} className={`rounded-xl p-3${!isBroken && !doneToday && ritual.streak >= 7 ? " crystal-breathe" : ""}`} style={{
         background: isBroken ? "rgba(239,68,68,0.04)" : doneToday ? "rgba(34,197,94,0.06)" : "#252525",
         border: `1px solid ${isBroken ? "rgba(239,68,68,0.3)" : doneToday ? "rgba(34,197,94,0.2)" : "rgba(255,255,255,0.07)"}`,
         opacity: doneToday ? 0.8 : 1,
+        ...(!isBroken && !doneToday && ritual.streak >= 7 ? { ["--glow-color" as string]: ritual.streak >= 30 ? "rgba(245,158,11,0.15)" : "rgba(168,85,247,0.15)" } : {}),
       }}>
         <div className="flex items-start justify-between gap-2">
           <div className="flex-1 min-w-0">

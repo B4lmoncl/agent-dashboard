@@ -91,7 +91,7 @@ export default function HonorsView({ catalogue, highlightedAchievementId, onHigh
         {loggedInUser && catalogue.length > 0 && (
           <div className="mt-3">
             <div className="h-2 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.04)" }}>
-              <div className="h-full rounded-full transition-all duration-700" style={{ width: `${(playerEarnedIds.size / catalogue.length) * 100}%`, background: "linear-gradient(90deg, #a07020, #c49530)" }} />
+              <div className={`h-full rounded-full transition-all duration-700${playerEarnedIds.size / catalogue.length > 0.8 ? " bar-pulse" : ""}`} style={{ width: `${(playerEarnedIds.size / catalogue.length) * 100}%`, background: "linear-gradient(90deg, #a07020, #c49530)" }} />
             </div>
           </div>
         )}
@@ -176,13 +176,14 @@ export default function HonorsView({ catalogue, highlightedAchievementId, onHigh
                     <div
                       key={ach.id}
                       ref={isHighlighted ? highlightRef : undefined}
-                      className="rounded-xl overflow-hidden group"
+                      className={`rounded-xl overflow-hidden group${myEarned && (rarity.label === "Legendary" || rarity.label === "Rare") ? " crystal-breathe" : ""}`}
                       style={{
                         background: bgColor,
                         border: `2px solid ${isHighlighted ? "#f59e0b" : frameColor}`,
                         boxShadow: isHighlighted ? "0 0 24px rgba(245,158,11,0.4), 0 0 48px rgba(245,158,11,0.15)" : frameShadow,
                         opacity: highlight || (!playerName && anyEarned) || isHighlighted ? 1 : 0.4,
                         transition: "all 0.3s ease",
+                        ...(myEarned && (rarity.label === "Legendary" || rarity.label === "Rare") ? { ["--glow-color" as string]: rarity.label === "Legendary" ? "rgba(245,158,11,0.2)" : "rgba(167,139,250,0.2)" } : {}),
                       }}
                     >
                       {/* Golden top strip for earned */}

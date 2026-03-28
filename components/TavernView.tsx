@@ -128,7 +128,24 @@ export default function TavernView({ onRefresh }: { onRefresh?: () => void }) {
   );
 
   return (
-    <div className="space-y-5 tab-content-enter">
+    <div className="space-y-5 tab-content-enter relative">
+      {/* Ember particles — warm fireplace ambiance */}
+      {[0,1,2,3,4,5,6,7].map(i => (
+        <span
+          key={`ember-${i}`}
+          className="absolute pointer-events-none"
+          style={{
+            left: `${12 + i * 11}%`,
+            bottom: `${10 + (i % 3) * 8}%`,
+            width: `${2 + (i % 3)}px`,
+            height: `${2 + (i % 3)}px`,
+            borderRadius: "50%",
+            background: i % 2 === 0 ? "#d97706" : "#f59e0b",
+            opacity: 0,
+            animation: `ember-float ${3.5 + (i % 4) * 0.7}s ease-in-out ${i * 0.6}s infinite`,
+          }}
+        />
+      ))}
       {/* Header */}
       <div className="text-center space-y-2">
         <p className="text-3xl">🔥</p>

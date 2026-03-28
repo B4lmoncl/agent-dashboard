@@ -56,7 +56,7 @@ export default function LeaderboardView({ entries, agents, mode = "agents", onOp
   mode?: "agents" | "players";
   onOpenProfile?: (playerId: string) => void;
 }) {
-  const { users, classesList: classes } = useDashboard();
+  const { users, classesList: classes, playerName } = useDashboard();
   const classMap = new Map(classes.map(c => [c.id, c]));
   const agentIdSet = new Set(agents.map(a => a.id));
 
@@ -170,6 +170,7 @@ export default function LeaderboardView({ entries, agents, mode = "agents", onOp
           const color = entry.color ?? meta.color;
           const lvl = getLbLevel(entry.xp);
           const isTop = entry.rank <= 3;
+          const isMe = playerName && (entry.id?.toLowerCase() === playerName.toLowerCase() || entry.name?.toLowerCase() === playerName.toLowerCase());
           const maxXp = merged[0]?.xp ?? 1;
           const barPct = maxXp > 0 ? (entry.xp / maxXp) * 100 : 0;
 
@@ -181,7 +182,8 @@ export default function LeaderboardView({ entries, agents, mode = "agents", onOp
               style={{
                 gridTemplateColumns: "32px 1fr 60px 60px 60px",
                 borderBottom: "1px solid rgba(255,255,255,0.04)",
-                background: isTop ? `${color}08` : "transparent",
+                background: isMe ? "rgba(167,139,250,0.06)" : isTop ? `${color}08` : "transparent",
+                borderLeft: isMe ? "2px solid rgba(167,139,250,0.3)" : "2px solid transparent",
               }}
             >
               <span className="text-sm font-bold" style={{ color: entry.rank <= 3 ? ["#f59e0b", "#9ca3af", "#cd7f32"][entry.rank - 1] : "rgba(255,255,255,0.25)" }}>
