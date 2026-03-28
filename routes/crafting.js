@@ -1013,13 +1013,41 @@ router.post('/api/professions/switch', requireAuth, (req, res) => {
 // Dismantle items into Essenz, transmute 3 epics of same slot → 1 legendary
 
 const DISMANTLE_ESSENZ = { common: 2, uncommon: 5, rare: 15, epic: 40, legendary: 100 };
-const DISMANTLE_MATERIALS = {
-  common: [{ id: 'eisenerz', chance: 0.5 }, { id: 'magiestaub', chance: 0.3 }],
-  uncommon: [{ id: 'eisenerz', chance: 0.6 }, { id: 'kristallsplitter', chance: 0.3 }, { id: 'magiestaub', chance: 0.4 }],
-  rare: [{ id: 'kristallsplitter', chance: 0.5 }, { id: 'drachenschuppe', chance: 0.2 }, { id: 'runenstein', chance: 0.4 }],
-  epic: [{ id: 'drachenschuppe', chance: 0.5 }, { id: 'aetherkern', chance: 0.15 }, { id: 'runenstein', chance: 0.4 }],
-  legendary: [{ id: 'aetherkern', chance: 0.6 }, { id: 'seelensplitter', chance: 0.1 }, { id: 'phoenixfeder', chance: 0.3 }],
+// Materials from dismantling — based on player's chosen professions
+const DISMANTLE_MATERIALS_BY_PROF = {
+  schmied: { common: [{ id: 'eisenerz', chance: 0.6 }], uncommon: [{ id: 'eisenerz', chance: 0.7 }, { id: 'kristallsplitter', chance: 0.3 }], rare: [{ id: 'kristallsplitter', chance: 0.5 }, { id: 'drachenschuppe', chance: 0.3 }], epic: [{ id: 'drachenschuppe', chance: 0.5 }, { id: 'aetherkern', chance: 0.2 }], legendary: [{ id: 'aetherkern', chance: 0.6 }, { id: 'seelensplitter', chance: 0.1 }] },
+  waffenschmied: { common: [{ id: 'eisenerz', chance: 0.6 }], uncommon: [{ id: 'eisenerz', chance: 0.7 }, { id: 'kristallsplitter', chance: 0.3 }], rare: [{ id: 'kristallsplitter', chance: 0.5 }, { id: 'drachenschuppe', chance: 0.3 }], epic: [{ id: 'drachenschuppe', chance: 0.5 }, { id: 'aetherkern', chance: 0.2 }], legendary: [{ id: 'aetherkern', chance: 0.6 }, { id: 'seelensplitter', chance: 0.1 }] },
+  schneider: { common: [{ id: 'leinenstoff', chance: 0.6 }], uncommon: [{ id: 'wollstoff', chance: 0.5 }, { id: 'magiestaub', chance: 0.3 }], rare: [{ id: 'seidenstoff', chance: 0.4 }, { id: 'runenstein', chance: 0.3 }], epic: [{ id: 'magiestoff', chance: 0.5 }, { id: 'aetherkern', chance: 0.15 }], legendary: [{ id: 'runenstoff', chance: 0.5 }, { id: 'seelensplitter', chance: 0.1 }] },
+  lederverarbeiter: { common: [{ id: 'leichtesleder', chance: 0.6 }], uncommon: [{ id: 'mittleresleder', chance: 0.5 }, { id: 'klauenoel', chance: 0.3 }], rare: [{ id: 'schweresleder', chance: 0.4 }, { id: 'salzgerbung', chance: 0.3 }], epic: [{ id: 'dickesleder', chance: 0.5 }, { id: 'aetherkern', chance: 0.15 }], legendary: [{ id: 'rauesleder', chance: 0.5 }, { id: 'seelensplitter', chance: 0.1 }] },
+  juwelier: { common: [{ id: 'kristallsplitter', chance: 0.5 }], uncommon: [{ id: 'kristallsplitter', chance: 0.6 }, { id: 'magiestaub', chance: 0.3 }], rare: [{ id: 'runenstein', chance: 0.5 }, { id: 'drachenschuppe', chance: 0.2 }], epic: [{ id: 'aetherkern', chance: 0.4 }, { id: 'runenstein', chance: 0.3 }], legendary: [{ id: 'aetherkern', chance: 0.6 }, { id: 'seelensplitter', chance: 0.1 }] },
+  alchemist: { common: [{ id: 'kraeuterbuendel', chance: 0.6 }], uncommon: [{ id: 'mondblume', chance: 0.4 }, { id: 'kraeuterbuendel', chance: 0.4 }], rare: [{ id: 'mondblume', chance: 0.5 }, { id: 'drachenschuppe', chance: 0.2 }], epic: [{ id: 'aetherkern', chance: 0.3 }, { id: 'phoenixfeder', chance: 0.2 }], legendary: [{ id: 'phoenixfeder', chance: 0.5 }, { id: 'seelensplitter', chance: 0.1 }] },
+  koch: { common: [{ id: 'wildfleisch', chance: 0.6 }], uncommon: [{ id: 'feuerwurz', chance: 0.4 }, { id: 'gewuerzmischung', chance: 0.4 }], rare: [{ id: 'sternenfrucht', chance: 0.4 }, { id: 'phoenixgewuerz', chance: 0.3 }], epic: [{ id: 'phoenixgewuerz', chance: 0.5 }, { id: 'mondstaubsalz', chance: 0.3 }], legendary: [{ id: 'phoenixfeder', chance: 0.4 }, { id: 'seelensplitter', chance: 0.1 }] },
+  verzauberer: { common: [{ id: 'magiestaub', chance: 0.6 }], uncommon: [{ id: 'magiestaub', chance: 0.5 }, { id: 'runenstein', chance: 0.3 }], rare: [{ id: 'runenstein', chance: 0.5 }, { id: 'kristallsplitter', chance: 0.3 }], epic: [{ id: 'aetherkern', chance: 0.4 }, { id: 'runenstein', chance: 0.4 }], legendary: [{ id: 'aetherkern', chance: 0.6 }, { id: 'seelensplitter', chance: 0.1 }] },
 };
+// Fallback for players with no professions
+const DISMANTLE_MATERIALS_DEFAULT = {
+  common: [{ id: 'eisenerz', chance: 0.4 }, { id: 'magiestaub', chance: 0.3 }],
+  uncommon: [{ id: 'eisenerz', chance: 0.5 }, { id: 'kristallsplitter', chance: 0.3 }],
+  rare: [{ id: 'kristallsplitter', chance: 0.4 }, { id: 'drachenschuppe', chance: 0.2 }],
+  epic: [{ id: 'drachenschuppe', chance: 0.4 }, { id: 'aetherkern', chance: 0.15 }],
+  legendary: [{ id: 'aetherkern', chance: 0.5 }, { id: 'seelensplitter', chance: 0.1 }],
+};
+
+function getDismantleMaterials(userId, rarity) {
+  const u = state.users[userId];
+  const profs = u?.chosenProfessions || [];
+  if (profs.length === 0) return DISMANTLE_MATERIALS_DEFAULT[rarity] || DISMANTLE_MATERIALS_DEFAULT.common;
+  // Merge materials from all chosen professions
+  const merged = [];
+  const seen = new Set();
+  for (const prof of profs) {
+    const pool = DISMANTLE_MATERIALS_BY_PROF[prof]?.[rarity] || [];
+    for (const mat of pool) {
+      if (!seen.has(mat.id)) { merged.push(mat); seen.add(mat.id); }
+    }
+  }
+  return merged.length > 0 ? merged : DISMANTLE_MATERIALS_DEFAULT[rarity] || DISMANTLE_MATERIALS_DEFAULT.common;
+}
 
 // POST /api/schmiedekunst/dismantle — dismantle an inventory item into essenz + materials
 router.post('/api/schmiedekunst/dismantle', requireAuth, (req, res) => {
@@ -1044,7 +1072,7 @@ router.post('/api/schmiedekunst/dismantle', requireAuth, (req, res) => {
 
   const rarity = item.rarity || 'common';
   const essenzGained = DISMANTLE_ESSENZ[rarity] || 2;
-  const matDrops = DISMANTLE_MATERIALS[rarity] || DISMANTLE_MATERIALS.common;
+  const matDrops = getDismantleMaterials(uid, rarity);
 
   // Remove from inventory
   u.inventory.splice(idx, 1);
@@ -1111,7 +1139,7 @@ router.post('/api/schmiedekunst/dismantle-preview', requireAuth, (req, res) => {
 
   const totalEssenz = candidates.length * (DISMANTLE_ESSENZ[rarity] || 2);
   // Estimate materials based on expected value (chance × count)
-  const matDrops = DISMANTLE_MATERIALS[rarity] || DISMANTLE_MATERIALS.common;
+  const matDrops = getDismantleMaterials(uid, rarity);
   const estimatedMaterials = {};
   for (const mat of matDrops) {
     const expected = Math.round(candidates.length * mat.chance);
@@ -1168,7 +1196,7 @@ router.post('/api/schmiedekunst/dismantle-all', requireAuth, (req, res) => {
   const salvageBonusMult = salvageMods.salvageBonus || 0;
   for (const item of toDismantle) {
     totalEssenz += DISMANTLE_ESSENZ[rarity] || 2;
-    for (const mat of (DISMANTLE_MATERIALS[rarity] || DISMANTLE_MATERIALS.common)) {
+    for (const mat of (getDismantleMaterials(uid, rarity))) {
       if (Math.random() < mat.chance) {
         let amount = 1;
         if (salvageBonusMult > 0) amount += Math.round(salvageBonusMult);
