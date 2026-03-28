@@ -874,7 +874,17 @@ router.get('/api/player/:name/character', (req, res) => {
     if (ns.fullBonus) {
       bonuses.push({ threshold: ns.pieces.length, label: ns.fullBonus.label, active: isComplete });
     }
-    namedSetBonuses.push({ id: ns.id, name: ns.name, rarity: ns.rarity, count: ownedCount, total: ns.pieces.length, isComplete, activeLabel, bonuses });
+    // Per-piece details for set tracker
+    const pieceDetails = ns.pieces.map(pid => {
+      const tmpl = state.gearById.get(pid);
+      return {
+        id: pid,
+        name: tmpl?.name || pid,
+        slot: tmpl?.slot || "unknown",
+        equipped: equippedItemIds.has(pid),
+      };
+    });
+    namedSetBonuses.push({ id: ns.id, name: ns.name, rarity: ns.rarity, count: ownedCount, total: ns.pieces.length, isComplete, activeLabel, bonuses, pieces: pieceDetails });
   }
   let classTier = null;
   if (u.classId) {

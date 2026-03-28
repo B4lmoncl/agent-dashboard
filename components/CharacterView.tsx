@@ -1747,6 +1747,18 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                         </p>
                       </div>
                       {ns.activeLabel && <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.4)" }}>{ns.activeLabel}</p>}
+                      {/* Per-piece tracker */}
+                      {(ns as unknown as { pieces?: { id: string; name: string; slot: string; equipped: boolean }[] }).pieces && (
+                        <div className="mt-1.5 space-y-0.5">
+                          {((ns as unknown as { pieces: { id: string; name: string; slot: string; equipped: boolean }[] }).pieces).map(p => (
+                            <div key={p.id} className="flex items-center gap-1.5 text-xs">
+                              <span style={{ color: p.equipped ? "#22c55e" : "rgba(255,255,255,0.15)", fontSize: 12 }}>{p.equipped ? "●" : "○"}</span>
+                              <span className="flex-1 truncate" style={{ color: p.equipped ? "rgba(255,255,255,0.5)" : "rgba(255,255,255,0.2)" }}>{p.name}</span>
+                              <span style={{ color: "rgba(255,255,255,0.15)", fontSize: 12 }}>{p.slot}</span>
+                            </div>
+                          ))}
+                        </div>
+                      )}
                     </div>
                   );
                 })}
