@@ -1084,7 +1084,7 @@ const TOOLTIP_REGISTRY: Record<string, TooltipEntry> = {
     accent: "#10b981",
     body: (
       <>
-        <p>WoW Guild News-style feed showing your friends&apos; activities:</p>
+        <p>Activity feed showing your friends&apos; recent achievements and actions:</p>
         <div className="gt-stat-row"><span>Quest completions</span><span>All rarities</span></div>
         <div className="gt-stat-row"><span>Level-ups</span><span>Major milestones</span></div>
         <div className="gt-stat-row"><span><GTRef k="achievements">Achievements</GTRef></span><span>New unlocks</span></div>
@@ -1223,7 +1223,7 @@ const TOOLTIP_REGISTRY: Record<string, TooltipEntry> = {
     accent: "#a855f7",
     body: (
       <>
-        <p>WoW-style Mailbox. Sende Gold und Items an andere Spieler. 5 Gold Portogebühr pro Mail.</p>
+        <p>Sende Gold und Items an andere Spieler. 5 Gold Portogebühr pro Mail.</p>
         <div className="gt-stat-row"><span>Max Anhänge</span><span>6 Items pro Mail</span></div>
         <div className="gt-stat-row"><span>Inbox-Limit</span><span>50 Mails</span></div>
         <div className="gt-stat-row"><span>Ablaufzeit</span><span>30 Tage</span></div>

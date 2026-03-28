@@ -69,26 +69,41 @@ export interface Floor {
 }
 
 export const FLOORS: Floor[] = [
-  // ─── Adventure (always visible) ──────────────────────────────────────────────
+  // ─── Turm von oben nach unten (links → rechts) ──────────────────────────────
+  // ─── 5F: Pinnacle — Die Turmspitze (Lv8) ────────────────────────────────────
   {
-    id: "haupthalle",
-    name: "Great Halls",
-    subtitle: "Adventure",
-    icon: "●",
-    color: "#f97316",
-    gradient: "linear-gradient(135deg, #f97316 0%, #1a0f0a 100%)",
-    banner: "/images/banners/haupthalle-banner.png",
-    minLevel: 1,
+    id: "turmspitze",
+    name: "Pinnacle",
+    subtitle: "Prestige & Glory",
+    icon: "▲",
+    color: "#fbbf24",
+    gradient: "linear-gradient(135deg, #fbbf24 0%, #1a1a3a 100%)",
+    banner: "/images/banners/turmspitze-banner.png",
+    minLevel: 8,
     rooms: [
-      { key: "questBoard", label: "Quest Board",      iconSrc: "/images/icons/nav-great-hall.png",  tutorialKey: "quest-board-tab" },
-      { key: "npcBoard",   label: "Wanderers Rest",   iconSrc: "/images/icons/nav-wanderer.png",    tutorialKey: "npc-board-tab" },
-      { key: "challenges", label: "Challenges",       iconSrc: "",                                  tutorialKey: null, minLevel: 3 },
-      { key: "rift",       label: "Rift",             iconSrc: "",                                  requiresLogin: true, tutorialKey: null, minLevel: 8 },
-      { key: "dungeons",   label: "Undercroft",       iconSrc: "",                                  requiresLogin: true, tutorialKey: null, minLevel: 12 },
-      { key: "worldboss",  label: "Colosseum",        iconSrc: "",                                  requiresLogin: true, tutorialKey: null, minLevel: 15 },
+      { key: "leaderboard", label: "Proving Grounds",    iconSrc: "/images/icons/nav-proving.png",     tutorialKey: "leaderboard-tab" },
+      { key: "honors",      label: "Hall of Honors",     iconSrc: "/images/icons/nav-honors.png",      tutorialKey: "honors-tab" },
+      { key: "factions",    label: "Four Circles",       iconSrc: "",                                  requiresLogin: true, tutorialKey: null, minLevel: 10 },
+      { key: "season",      label: "Season Pass",        iconSrc: "",                                  requiresLogin: true, tutorialKey: "season-tab", minLevel: 10 },
+      { key: "campaign",    label: "Observatory",        iconSrc: "/images/icons/nav-observatory.png", tutorialKey: "campaign-tab" },
     ],
   },
-  // ─── Personal (always visible) ───────────────────────────────────────────────
+  // ─── 4F: Breakaway — Obere Etagen (Lv1) ─────────────────────────────────────
+  {
+    id: "breakaway",
+    name: "Breakaway",
+    subtitle: "Social & Rest",
+    icon: "⬡",
+    color: "#ec4899",
+    gradient: "linear-gradient(135deg, #ec4899 0%, #1a0a1e 100%)",
+    banner: "/images/banners/breakaway-banner.png",
+    minLevel: 1,
+    rooms: [
+      { key: "social", label: "Breakaway", iconSrc: "", requiresLogin: true, tutorialKey: null },
+      { key: "tavern", label: "Hearth", iconSrc: "", requiresLogin: true, tutorialKey: null },
+    ],
+  },
+  // ─── 3F: Inner Sanctum — Mitte des Turms (Lv1) ──────────────────────────────
   {
     id: "charakterturm",
     name: "Inner Sanctum",
@@ -105,22 +120,7 @@ export const FLOORS: Floor[] = [
       { key: "klassenquests", label: "Arcanum",        iconSrc: "/images/icons/nav-arcanum.png",      tutorialKey: null, minLevel: 10 },
     ],
   },
-  // ─── Social (always visible) ─────────────────────────────────────────────────
-  {
-    id: "breakaway",
-    name: "Breakaway",
-    subtitle: "Social & Rest",
-    icon: "⬡",
-    color: "#ec4899",
-    gradient: "linear-gradient(135deg, #ec4899 0%, #1a0a1e 100%)",
-    banner: "/images/banners/breakaway-banner.png",
-    minLevel: 1,
-    rooms: [
-      { key: "social", label: "Breakaway", iconSrc: "", requiresLogin: true, tutorialKey: null },
-      { key: "tavern", label: "Hearth", iconSrc: "", requiresLogin: true, tutorialKey: null },
-    ],
-  },
-  // ─── Commerce (Lv3) ─────────────────────────────────────────────────────────
+  // ─── 2F: Trading District — Untere Etagen (Lv3) ─────────────────────────────
   {
     id: "gewerbeviertel",
     name: "Trading District",
@@ -136,22 +136,23 @@ export const FLOORS: Floor[] = [
       { key: "gacha",  label: "Vault of Fate",       iconSrc: "/images/icons/vault-of-fate.png",    tutorialKey: "vault-tab", minLevel: 5 },
     ],
   },
-  // ─── Prestige (Lv8) ─────────────────────────────────────────────────────────
+  // ─── 1F: Great Halls — Erdgeschoss + Untergrund (Lv1) ───────────────────────
   {
-    id: "turmspitze",
-    name: "Pinnacle",
-    subtitle: "Prestige & Glory",
-    icon: "▲",
-    color: "#fbbf24",
-    gradient: "linear-gradient(135deg, #fbbf24 0%, #1a1a3a 100%)",
-    banner: "/images/banners/turmspitze-banner.png",
-    minLevel: 8,
+    id: "haupthalle",
+    name: "Great Halls",
+    subtitle: "Adventure",
+    icon: "●",
+    color: "#f97316",
+    gradient: "linear-gradient(135deg, #f97316 0%, #1a0f0a 100%)",
+    banner: "/images/banners/haupthalle-banner.png",
+    minLevel: 1,
     rooms: [
-      { key: "leaderboard", label: "Proving Grounds",    iconSrc: "/images/icons/nav-proving.png",     tutorialKey: "leaderboard-tab" },
-      { key: "honors",      label: "Hall of Honors",     iconSrc: "/images/icons/nav-honors.png",      tutorialKey: "honors-tab" },
-      { key: "factions",    label: "Four Circles",       iconSrc: "",                                  requiresLogin: true, tutorialKey: null, minLevel: 10 },
-      { key: "season",      label: "Season Pass",        iconSrc: "",                                  requiresLogin: true, tutorialKey: "season-tab", minLevel: 10 },
-      { key: "campaign",    label: "Observatory",        iconSrc: "/images/icons/nav-observatory.png", tutorialKey: "campaign-tab" },
+      { key: "questBoard", label: "Quest Board",      iconSrc: "/images/icons/nav-great-hall.png",  tutorialKey: "quest-board-tab" },
+      { key: "npcBoard",   label: "Wanderers Rest",   iconSrc: "/images/icons/nav-wanderer.png",    tutorialKey: "npc-board-tab" },
+      { key: "challenges", label: "Challenges",       iconSrc: "",                                  tutorialKey: null, minLevel: 3 },
+      { key: "rift",       label: "Rift",             iconSrc: "",                                  requiresLogin: true, tutorialKey: null, minLevel: 8 },
+      { key: "dungeons",   label: "Undercroft",       iconSrc: "",                                  requiresLogin: true, tutorialKey: null, minLevel: 12 },
+      { key: "worldboss",  label: "Colosseum",        iconSrc: "",                                  requiresLogin: true, tutorialKey: null, minLevel: 15 },
     ],
   },
 ];

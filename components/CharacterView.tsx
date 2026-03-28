@@ -1734,7 +1734,13 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                     const eqColor = equippedDef ? (RARITY_COLORS[equippedDef.rarity] || "#fbbf24") : "#fbbf24";
 
                     return (
-                      <div className="mt-2 tab-content-enter">
+                      <div className="fixed inset-0 z-[150] flex items-center justify-center" style={{ background: "rgba(0,0,0,0.7)" }} onClick={() => setTitlesOpen(false)}>
+                      <div className="w-full max-w-lg max-h-[80vh] rounded-xl overflow-hidden tab-content-enter" style={{ background: "#111318", border: "1px solid rgba(251,191,36,0.25)", boxShadow: "0 20px 60px rgba(0,0,0,0.8)" }} onClick={e => e.stopPropagation()}>
+                        <div className="flex items-center justify-between px-4 py-3" style={{ background: "rgba(251,191,36,0.06)", borderBottom: "1px solid rgba(251,191,36,0.15)" }}>
+                          <p className="text-sm font-bold" style={{ color: "#fbbf24" }}>Titles ({earnedTitles.length} earned)</p>
+                          <button onClick={() => setTitlesOpen(false)} className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.4)", cursor: "pointer" }}>x</button>
+                        </div>
+                        <div className="p-4 overflow-y-auto" style={{ maxHeight: "calc(80vh - 56px)", scrollbarWidth: "thin" }}>
                         {/* Equipped Title Display */}
                         {equippedDef && (
                           <div
@@ -1865,6 +1871,8 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                             <p className="text-xs text-center py-3" style={{ color: "rgba(255,255,255,0.25)" }}>No titles in this category</p>
                           )}
                         </div>
+                      </div>
+                      </div>
                       </div>
                     );
                   })()}

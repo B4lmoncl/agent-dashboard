@@ -329,7 +329,8 @@ export default function Dashboard() {
         if (r.ok) {
           const d = await r.json();
           if (d.lastSeenVersion !== gameVersion) {
-            setVersionPopupOpen(true);
+            // Don't show version popup if What's New popup already handled it
+            try { if (localStorage.getItem("whatsNewSeen") === "1.6.0") setVersionPopupOpen(true); } catch { setVersionPopupOpen(true); }
           }
         }
       } catch { /* ignore */ }
@@ -2532,7 +2533,7 @@ export default function Dashboard() {
             </div>
             <div className="px-5 py-4 space-y-1.5 max-h-[60vh] overflow-y-auto" style={{ scrollbarWidth: "thin" }}>
               <p className="text-xs font-semibold uppercase tracking-wider mb-1" style={{ color: "rgba(255,255,255,0.25)" }}>New Systems</p>
-              <div className="flex items-start gap-2"><span style={{ color: "#22c55e" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Mail System — send gold and items to other players (WoW-style Mailbox)</p></div>
+              <div className="flex items-start gap-2"><span style={{ color: "#22c55e" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Mail System — send gold and items to other players</p></div>
               <div className="flex items-start gap-2"><span style={{ color: "#22c55e" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Kanai&apos;s Cube — extract and equip legendary effects permanently</p></div>
               <div className="flex items-start gap-2"><span style={{ color: "#22c55e" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Mythic+ Affixes — 10 weekly rotating modifiers starting at M+2</p></div>
               <div className="flex items-start gap-2"><span style={{ color: "#22c55e" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>BoP/BoE Binding — Bind on Pickup and Bind on Equip across 1,074 items</p></div>
