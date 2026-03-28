@@ -101,6 +101,8 @@ const SYNERGY_HINTS: Record<string, { partner: string; label: string }> = {
   alchemist: { partner: "koch", label: "Sustenance" },
   koch: { partner: "alchemist", label: "Sustenance" },
   lederverarbeiter: { partner: "alchemist", label: "Wilderness" },
+  waffenschmied: { partner: "lederverarbeiter", label: "Grip Mastery" },
+  juwelier: { partner: "alchemist", label: "Transmutation" },
 };
 
 // ─── Skill-up color labels ──────────────────────────────────────────────────

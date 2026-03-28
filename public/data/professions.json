@@ -697,6 +697,7 @@
       "name": "Flakon der Glut",
       "profession": "alchemist",
       "source": "faction",
+      "factionId": "orden_der_klinge",
       "reqSkill": 50,
       "cooldownMinutes": 120,
       "materials": {
@@ -715,6 +716,7 @@
       "name": "Gelehrtentinte",
       "profession": "verzauberer",
       "source": "faction",
+      "factionId": "zirkel_der_sterne",
       "reqSkill": 50,
       "cooldownMinutes": 120,
       "materials": {
@@ -734,6 +736,7 @@
       "name": "Meister-Wetzstein",
       "profession": "schmied",
       "source": "faction",
+      "factionId": "bund_der_schatten",
       "reqSkill": 50,
       "cooldownMinutes": 120,
       "materials": {
@@ -753,6 +756,7 @@
       "name": "Resonanz-Amulett",
       "profession": "verzauberer",
       "source": "faction",
+      "factionId": "pakt_der_wildnis",
       "reqSkill": 50,
       "cooldownMinutes": 120,
       "materials": {
@@ -1638,7 +1642,8 @@
       "source": "trainer",
       "reqSkill": 225,
       "materials": {
-        "aetherlegierung": 2
+        "aetherlegierung": 2,
+        "seelensplitter": 1
       },
       "result": {
         "type": "craft_gear",
@@ -1834,7 +1839,8 @@
       "reqSkill": 263,
       "materials": {
         "aetherlegierung": 3,
-        "aetherbarren": 1
+        "aetherbarren": 1,
+        "seelensplitter": 1
       },
       "result": {
         "type": "craft_gear",
@@ -1852,7 +1858,8 @@
       "source": "faction",
       "reqSkill": 278,
       "materials": {
-        "seelenlegierung": 2
+        "seelenlegierung": 2,
+        "seelensplitter": 1
       },
       "result": {
         "type": "craft_gear",
@@ -3308,7 +3315,8 @@
       "materials": {
         "magiestoff": 2,
         "arkanerfaden": 1,
-        "magiestoffballen": 1
+        "magiestoffballen": 1,
+        "seelensplitter": 1
       },
       "result": {
         "type": "craft_gear",
@@ -3346,7 +3354,8 @@
       "materials": {
         "magiestoff": 2,
         "arkanerfaden": 1,
-        "magiestoffballen": 1
+        "magiestoffballen": 1,
+        "seelensplitter": 1
       },
       "result": {
         "type": "craft_gear",
@@ -3519,7 +3528,8 @@
       "materials": {
         "runenstoff": 3,
         "runenstoffballen": 1,
-        "runenfaden": 1
+        "runenfaden": 1,
+        "seelensplitter": 1
       },
       "result": {
         "type": "craft_gear",
@@ -3539,7 +3549,8 @@
       "materials": {
         "runenstoff": 3,
         "runenstoffballen": 1,
-        "runenfaden": 1
+        "runenfaden": 1,
+        "seelensplitter": 1
       },
       "result": {
         "type": "craft_gear",
@@ -3578,7 +3589,8 @@
       "materials": {
         "runenstoff": 3,
         "runenstoffballen": 1,
-        "runenfaden": 1
+        "runenfaden": 1,
+        "seelensplitter": 1
       },
       "result": {
         "type": "craft_gear",
@@ -5001,7 +5013,8 @@
       "materials": {
         "dickesleder": 2,
         "bestienlederballen": 1,
-        "klauenoel": 1
+        "klauenoel": 1,
+        "seelensplitter": 1
       },
       "result": {
         "type": "craft_gear",
@@ -5038,7 +5051,8 @@
       "materials": {
         "dickesleder": 2,
         "bestienlederballen": 1,
-        "klauenoel": 1
+        "klauenoel": 1,
+        "seelensplitter": 1
       },
       "result": {
         "type": "craft_gear",
@@ -5057,7 +5071,8 @@
       "materials": {
         "dickesleder": 2,
         "bestienlederballen": 1,
-        "klauenoel": 1
+        "klauenoel": 1,
+        "seelensplitter": 1
       },
       "result": {
         "type": "craft_gear",
@@ -5151,7 +5166,8 @@
       "materials": {
         "dickesleder": 3,
         "bestienlederballen": 1,
-        "klauenoel": 1
+        "klauenoel": 1,
+        "seelensplitter": 1
       },
       "result": {
         "type": "craft_gear",
@@ -5171,7 +5187,8 @@
       "materials": {
         "dickesleder": 3,
         "bestienlederballen": 1,
-        "klauenoel": 1
+        "klauenoel": 1,
+        "seelensplitter": 1
       },
       "result": {
         "type": "craft_gear",
@@ -6214,6 +6231,66 @@
       "xp": 15,
       "description": "Braut: Normaler Elixier der Eile.",
       "trainerCost": 73
+    },
+    {
+      "id": "recipe-alch-elixier-der-klarheit",
+      "name": "Elixier der Klarheit",
+      "profession": "alchemist",
+      "source": "trainer",
+      "reqSkill": 100,
+      "materials": {
+        "mondblume": 3,
+        "kraeuterbuendel": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "fokus_boost",
+        "amount": 4,
+        "questsRemaining": 3
+      },
+      "xp": 17,
+      "description": "Ein Gebräu, das den Geist schärft wie eine frisch geschliffene Klinge — wer davon trinkt, sieht die Welt mit unangenehmer Deutlichkeit.",
+      "trainerCost": 82
+    },
+    {
+      "id": "recipe-alch-tinktur-der-beharrlichkeit",
+      "name": "Tinktur der Beharrlichkeit",
+      "profession": "alchemist",
+      "source": "trainer",
+      "reqSkill": 107,
+      "materials": {
+        "mondblume": 3,
+        "kraeuterbuendel": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "ausdauer_boost",
+        "amount": 5,
+        "questsRemaining": 4
+      },
+      "xp": 17,
+      "description": "Beharrlichkeit in flüssiger Form — schmeckt nach bitteren Kräutern und dem leisen Versprechen, dass morgen einfacher wird als heute.",
+      "trainerCost": 89
+    },
+    {
+      "id": "recipe-alch-essenz-der-vitalitaet",
+      "name": "Essenz der Vitalität",
+      "profession": "alchemist",
+      "source": "trainer",
+      "reqSkill": 114,
+      "materials": {
+        "mondblume": 3,
+        "kraeuterbuendel": 3
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "vitalitaet_boost",
+        "amount": 4,
+        "questsRemaining": 3
+      },
+      "xp": 17,
+      "description": "Destillierte Lebenskraft, gewonnen aus Mondblumen, die nur in sternlosen Nächten geerntet werden. Ysolde schwört, man könne den Herzschlag darin hören.",
+      "trainerCost": 96
     },
     {
       "id": "recipe-alch-gro-er-trank-der-kraft",
@@ -9935,7 +10012,10 @@
       },
       "result": {
         "type": "vellum",
-        "statBonus": [2, 3],
+        "statBonus": [
+          2,
+          3
+        ],
         "durationHours": 24
       },
       "xp": 12,
@@ -9954,7 +10034,10 @@
       },
       "result": {
         "type": "vellum",
-        "statBonus": [3, 5],
+        "statBonus": [
+          3,
+          5
+        ],
         "durationHours": 24
       },
       "xp": 22,
@@ -9973,7 +10056,10 @@
       },
       "result": {
         "type": "vellum",
-        "statBonus": [4, 7],
+        "statBonus": [
+          4,
+          7
+        ],
         "durationHours": 48
       },
       "xp": 35,
@@ -11492,7 +11578,8 @@
       "reqSkill": 255,
       "materials": {
         "aetherlegierung": 2,
-        "aetherbarren": 1
+        "aetherbarren": 1,
+        "seelensplitter": 1
       },
       "result": {
         "type": "craft_gear",
@@ -11530,7 +11617,8 @@
       "reqSkill": 260,
       "materials": {
         "aetherlegierung": 2,
-        "aetherbarren": 1
+        "aetherbarren": 1,
+        "seelensplitter": 1
       },
       "result": {
         "type": "craft_gear",
@@ -11549,7 +11637,8 @@
       "reqSkill": 263,
       "materials": {
         "aetherlegierung": 2,
-        "aetherbarren": 1
+        "aetherbarren": 1,
+        "seelensplitter": 1
       },
       "result": {
         "type": "craft_gear",
@@ -11739,7 +11828,8 @@
       "reqSkill": 288,
       "materials": {
         "seelenlegierung": 2,
-        "seelenstahl": 1
+        "seelenstahl": 1,
+        "seelensplitter": 1
       },
       "result": {
         "type": "craft_gear",
@@ -11777,7 +11867,8 @@
       "reqSkill": 293,
       "materials": {
         "seelenlegierung": 2,
-        "seelenstahl": 1
+        "seelenstahl": 1,
+        "seelensplitter": 1
       },
       "result": {
         "type": "craft_gear",

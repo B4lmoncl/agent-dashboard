@@ -16,6 +16,7 @@ function isMoonlightActive() {
 const MOONLIGHT_BONUS = 0.20; // +20% minimum roll boost
 
 const VALID_SLOTS = ['weapon', 'shield', 'helm', 'armor', 'amulet', 'boots', 'ring'];
+const SECONDARY_PROFESSIONS = ['koch', 'verzauberer']; // Don't count against the 2 primary-slot limit
 const RARITY_ORDER = ['common', 'uncommon', 'rare', 'epic', 'legendary'];
 const SLOT_RECIPES = ['upgrade_rarity', 'permanent_enchant', 'reinforce_armor', 'enchant_socket', 'sharpen_blade'];
 const { requireAuth } = require('../lib/middleware');
@@ -126,9 +127,15 @@ function getSkillUpChance(playerSkill, reqSkill) {
   return (bp.gray - playerSkill) / (bp.gray - bp.yellow);
 }
 
-// Max profession slots — always 2 (no level gate)
+// Max PRIMARY profession slots — always 2 (no level gate)
+// Secondary professions (Koch, Verzauberer) don't consume a slot.
 function getMaxProfessionSlots(playerLevel) {
   return 2;
+}
+
+// Count only primary professions (exclude secondary like Koch, Verzauberer)
+function countPrimaryProfessions(chosenProfessions) {
+  return (chosenProfessions || []).filter(p => !SECONDARY_PROFESSIONS.includes(p)).length;
 }
 
 // Get player's profession skill (0-300)
@@ -208,7 +215,8 @@ router.get('/api/professions', (req, res) => {
     const lastCraft = (u?.professions || {})[p.id]?.lastCraftAt || null;
     const chosen = (u?.chosenProfessions || []).includes(p.id);
     const pMaxSlots = u ? getMaxProfessionSlots(playerLevel) : 0;
-    const canChoose = chosen || (u?.chosenProfessions || []).length < pMaxSlots;
+    const isSecondary = SECONDARY_PROFESSIONS.includes(p.id);
+    const canChoose = chosen || isSecondary || countPrimaryProfessions(u?.chosenProfessions) < pMaxSlots;
     const rank = getProfRank(profProgress.skill);
     const playerProfData = u ? (u.professions || {})[p.id] : null;
     const skillCap = u ? getSkillCap(playerLevel, playerProfData?.trainedRanks) : 75;
@@ -301,7 +309,7 @@ router.get('/api/professions', (req, res) => {
   const dailyBonus = u ? getDailyBonusInfo(u) : { dailyBonusAvailable: false };
   const playerLvl = u ? getLevelInfo(u.xp || 0).level : 0;
   const maxProfSlots = getMaxProfessionSlots(playerLvl);
-  const chosenCount = (u?.chosenProfessions || []).length;
+  const chosenCount = countPrimaryProfessions(u?.chosenProfessions);
   const learnedRecipes = u?.learnedRecipes || [];
   const masteryConfig = PROFESSIONS_DATA.masteryConfig || null;
   const gatheringConfig = PROFESSIONS_DATA.gatheringConfig || null;
@@ -407,11 +415,14 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
   }
 
   // Check profession slot limit based on player level
+  // Secondary professions (Koch, Verzauberer) don't consume primary slots
   u.chosenProfessions = u.chosenProfessions || [];
   const maxSlots = getMaxProfessionSlots(playerLevel);
   const needsEnrollment = !u.chosenProfessions.includes(recipe.profession);
-  if (needsEnrollment && u.chosenProfessions.length >= maxSlots) {
-    return res.status(400).json({ error: `You have ${u.chosenProfessions.length}/${maxSlots} profession slots (${u.chosenProfessions.join(', ')}). ${maxSlots < 4 ? 'Unlock more slots by leveling up, or d' : 'D'}rop one first.` });
+  const isSecondaryProf = SECONDARY_PROFESSIONS.includes(recipe.profession);
+  if (needsEnrollment && !isSecondaryProf && countPrimaryProfessions(u.chosenProfessions) >= maxSlots) {
+    const primaryProfs = u.chosenProfessions.filter(p => !SECONDARY_PROFESSIONS.includes(p));
+    return res.status(400).json({ error: `You have ${primaryProfs.length}/${maxSlots} primary profession slots (${primaryProfs.join(', ')}). Drop one first.` });
   }
 
   // Check recipe is learned (trainer+drop source system)
@@ -1108,8 +1119,10 @@ router.post('/api/professions/choose', requireAuth, (req, res) => {
   }
   const choosePLevel = getLevelInfo(u.xp || 0).level;
   const chooseMaxSlots = getMaxProfessionSlots(choosePLevel);
-  if (u.chosenProfessions.length >= chooseMaxSlots) {
-    return res.status(400).json({ error: `You have ${u.chosenProfessions.length}/${chooseMaxSlots} profession slots (${u.chosenProfessions.join(', ')}). ${chooseMaxSlots < 4 ? 'Unlock more slots by leveling up, or d' : 'D'}rop one first.` });
+  const isSecondaryChoice = SECONDARY_PROFESSIONS.includes(professionId);
+  if (!isSecondaryChoice && countPrimaryProfessions(u.chosenProfessions) >= chooseMaxSlots) {
+    const primaryProfs = u.chosenProfessions.filter(p => !SECONDARY_PROFESSIONS.includes(p));
+    return res.status(400).json({ error: `You have ${primaryProfs.length}/${chooseMaxSlots} primary profession slots (${primaryProfs.join(', ')}). Drop one first.` });
   }
 
   u.chosenProfessions.push(professionId);
@@ -1504,29 +1517,6 @@ router.post('/api/crafting/train-rank', requireAuth, (req, res) => {
   saveUsers();
   console.log(`[crafting] ${uid} trained ${professionId} rank: ${nextRank.rank} for ${nextRank.cost}g`);
   res.json({ ok: true, rank: nextRank.rank, cost: nextRank.cost, newCap: nextRank.toCap, remainingGold: u.currencies.gold });
-});
-
-// ─── Profession Unlearn (WoW-style: lose all progress, free up slot) ────────
-router.post('/api/crafting/unlearn', requireAuth, (req, res) => {
-  const uid = (req.auth?.userId || '').toLowerCase();
-  const u = state.users[uid];
-  if (!u) return res.status(404).json({ error: 'User not found' });
-  const { professionId } = req.body;
-  if (!professionId) return res.status(400).json({ error: 'professionId required' });
-  if (!(u.chosenProfessions || []).includes(professionId)) return res.status(400).json({ error: 'Not your profession' });
-
-  // Remove from chosen professions
-  u.chosenProfessions = (u.chosenProfessions || []).filter(p => p !== professionId);
-  // Reset profession data (skill, xp, learned recipes)
-  if (u.professions) delete u.professions[professionId];
-  // Remove all learned recipes for this profession
-  if (u.learnedRecipes) {
-    const profRecipeIds = new Set(PROFESSIONS_DATA.recipes.filter(r => r.profession === professionId).map(r => r.id));
-    u.learnedRecipes = u.learnedRecipes.filter(id => !profRecipeIds.has(id));
-  }
-  saveUsers();
-  console.log(`[crafting] ${uid} unlearned profession: ${professionId}`);
-  res.json({ ok: true, unlearned: professionId, chosenProfessions: u.chosenProfessions });
 });
 
 // ─── Reforge Legendary (D3 Kanai's Cube "Law of Kulle") ─────────────────────
