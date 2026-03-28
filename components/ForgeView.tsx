@@ -69,6 +69,13 @@ interface MaterialDef {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 interface InventoryItem { instanceId?: string; id: string; name: string; rarity: string; slot?: string; [key: string]: any; }
 
+// ─── WoW Classic rank training costs (mirrors backend RANK_TRAINING_COSTS) ──
+const RANK_TRAINING_COSTS = [
+  { rank: "Journeyman", fromCap: 75, toCap: 150, cost: 500, reqPlayerLevel: 15, reqSkill: 50 },
+  { rank: "Expert", fromCap: 150, toCap: 225, cost: 2000, reqPlayerLevel: 25, reqSkill: 125 },
+  { rank: "Artisan", fromCap: 225, toCap: 300, cost: 5000, reqPlayerLevel: 40, reqSkill: 200 },
+];
+
 const RARITY_COLORS: Record<string, string> = {
   common: "#9ca3af",
   uncommon: "#22c55e",
@@ -173,6 +180,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
   // Recipe search & filter state
   const [recipeSearch, setRecipeSearch] = useState("");
   const [showCraftableOnly, setShowCraftableOnly] = useState(false);
+  const [showHaveMatsOnly, setShowHaveMatsOnly] = useState(false);
   const [recipeSlotFilter, setRecipeSlotFilter] = useState<string>("all");
   const [totalRecipesByProf, setTotalRecipesByProf] = useState<Record<string, number>>({});
   // Cast bar countdown state
@@ -185,6 +193,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
   const [enchantLoading, setEnchantLoading] = useState(false);
   const [enchantResult, setEnchantResult] = useState<string | null>(null);
   const [skillUpFlash, setSkillUpFlash] = useState(false);
+  const [rankUpCelebration, setRankUpCelebration] = useState<string | null>(null);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [craftPreview, setCraftPreview] = useState<{ recipeId: string; data: any } | null>(null);
   const [previewLoading, setPreviewLoading] = useState<string | null>(null);
@@ -315,6 +324,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
 
   const handleCraft = async (recipeId: string, count = 1) => {
     if (crafting || !reviewApiKey) return;
+    const prevSkill = selectedNpc?.skill || selectedNpc?.playerXp || 0;
     setCrafting(true);
     setCraftResult(null);
     try {
@@ -349,6 +359,18 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
           setCraftResult(msg);
         }
         if (data.skillGained > 0) { setSkillUpFlash(true); setTimeout(() => setSkillUpFlash(false), 1000); }
+        // Rank milestone celebration
+        if (data.newSkill) {
+          const ns = data.newSkill;
+          const milestones: [number, string][] = [[300, "Artisan — Meisterrang!"], [225, "Expert erreicht!"], [150, "Journeyman erreicht!"], [75, "Apprentice gemeistert!"]];
+          for (const [threshold, label] of milestones) {
+            if (prevSkill < threshold && ns >= threshold) {
+              setRankUpCelebration(label);
+              setTimeout(() => setRankUpCelebration(null), 3000);
+              break;
+            }
+          }
+        }
         setCraftCount(1);
         fetchData();
         onRefresh?.();
@@ -1116,6 +1138,20 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
               <span className="text-white text-sm">&#10005;</span>
             </button>
 
+            {/* Rank milestone celebration overlay */}
+            {rankUpCelebration && (
+              <div className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none" style={{ background: "rgba(0,0,0,0.5)" }}>
+                <div className="rank-up-celebration px-8 py-5 rounded-xl text-center" style={{
+                  background: `linear-gradient(135deg, ${selectedNpc.color}30, ${selectedNpc.color}10)`,
+                  border: `2px solid ${selectedNpc.color}80`,
+                  boxShadow: `0 0 40px ${selectedNpc.color}40, 0 0 80px ${selectedNpc.color}20`,
+                }}>
+                  <p className="text-xs uppercase tracking-widest mb-1" style={{ color: "rgba(255,255,255,0.5)" }}>Rank Up</p>
+                  <p className="text-xl font-bold" style={{ color: selectedNpc.color }}>{rankUpCelebration}</p>
+                </div>
+              </div>
+            )}
+
             {/* NPC Header */}
             <div className="p-5 pb-3" style={{ background: `linear-gradient(180deg, ${selectedNpc.color}12 0%, transparent 100%)` }}>
               <div className="flex items-center gap-4">
@@ -1286,6 +1322,20 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                     >
                       Show Craftable
                     </button>
+                    <button
+                      onClick={() => setShowHaveMatsOnly(v => !v)}
+                      className="text-xs px-3 py-1.5 rounded-lg font-semibold whitespace-nowrap"
+                      style={{
+                        background: showHaveMatsOnly ? `${selectedNpc.color}18` : "rgba(255,255,255,0.04)",
+                        color: showHaveMatsOnly ? selectedNpc.color : "rgba(255,255,255,0.3)",
+                        border: `1px solid ${showHaveMatsOnly ? `${selectedNpc.color}40` : "rgba(255,255,255,0.08)"}`,
+                        boxShadow: showHaveMatsOnly ? `0 0 8px ${selectedNpc.color}20` : "none",
+                        cursor: "pointer",
+                      }}
+                      title="Show only recipes where you have all materials and gold (ignores skill, cooldowns, slot)"
+                    >
+                      Have Materials
+                    </button>
                     <span className="text-xs" style={{ color: "rgba(255,255,255,0.15)" }}>
                       <span style={{ color: "#22c55e" }}>●</span> ready
                       <span style={{ color: "#f59e0b" }}> ◐</span> mats
@@ -1330,6 +1380,12 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                         return true;
                       })();
                       if (!canAffordCheck || !meetsLevel || onCooldown || !isLearned) return false;
+                    }
+                    // Have-materials-only filter (ignores skill, cooldown, slot)
+                    if (showHaveMatsOnly) {
+                      const hasMats = Object.entries(recipe.materials || {}).every(([matId, amt]) => (materials[matId] || 0) >= (amt as number));
+                      const hasGold = (currencies.gold ?? loggedInUser?.currencies?.gold ?? loggedInUser?.gold ?? 0) >= (recipe.cost?.gold || 0);
+                      if (!hasMats || !hasGold) return false;
                     }
                     return true;
                   }).map(recipe => {
@@ -1377,7 +1433,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                                   {!meetsLevel || onCooldown ? "○" : canAfford ? "●" : "◐"}
                                 </span>
                               )}
-                              <p className="text-sm font-semibold" style={{ color: meetsLevel ? "#e8e8e8" : "rgba(255,255,255,0.3)" }}>{recipe.name}</p>
+                              <p className="text-sm font-semibold" style={{ color: !isLearned ? "rgba(255,255,255,0.3)" : !meetsLevel ? "rgba(255,255,255,0.3)" : recipe.skillUpColor === "gray" ? "#6b7280" : recipe.skillUpColor === "green" ? "#86efaccc" : recipe.skillUpColor === "yellow" ? "#eab308cc" : "#f97316cc" }}>{recipe.name}</p>
                               {/* Skill-up indicator dot */}
                               <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: skillUp?.color || "#6b7280" }} title={skillUp?.label || ""} />
                             </div>
@@ -1403,16 +1459,33 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                             )}
                           </div>
                           <div className="flex items-center gap-1.5 flex-shrink-0">
-                            <select
-                              value={craftCount}
-                              onChange={e => setCraftCount(parseInt(e.target.value, 10))}
-                              disabled={!isBatchable}
-                              title={!isBatchable ? "Only buff/consumable recipes support batch crafting" : `Craft x${craftCount}`}
-                              className="text-xs rounded-lg px-1 py-1 font-mono"
-                              style={{ background: "rgba(255,255,255,0.06)", color: isBatchable ? "rgba(255,255,255,0.5)" : "rgba(255,255,255,0.2)", border: "1px solid rgba(255,255,255,0.1)", width: 38, cursor: isBatchable ? "pointer" : "not-allowed", opacity: isBatchable ? 1 : 0.4 }}
-                            >
-                              {[1, 2, 3, 5, 10].map(n => <option key={n} value={n}>x{n}</option>)}
-                            </select>
+                            {(() => {
+                              // Calculate max craftable quantity for the "Max" option
+                              const playerGoldForMax = currencies.gold ?? loggedInUser?.currencies?.gold ?? loggedInUser?.gold ?? 0;
+                              const maxFromMats = Object.entries(recipe.materials || {}).map(([matId, amt]) => Math.floor((materials[matId] || 0) / (amt as number)));
+                              const maxFromGold = recipe.cost?.gold && recipe.cost.gold > 0 ? Math.floor(playerGoldForMax / recipe.cost.gold) : Infinity;
+                              const hasMaterials = Object.keys(recipe.materials || {}).length > 0;
+                              const batchCap = hasMaterials ? 50 : 10;
+                              const maxCraftable = Math.min(batchCap, maxFromGold, ...(maxFromMats.length > 0 ? maxFromMats : [batchCap]));
+                              const safeMax = Math.max(0, maxCraftable);
+                              return (
+                                <select
+                                  value={craftCount}
+                                  onChange={e => {
+                                    const val = e.target.value;
+                                    if (val === "max") setCraftCount(Math.max(1, safeMax));
+                                    else setCraftCount(parseInt(val, 10));
+                                  }}
+                                  disabled={!isBatchable}
+                                  title={!isBatchable ? "Only buff/consumable recipes support batch crafting" : `Craft x${craftCount}`}
+                                  className="text-xs rounded-lg px-1 py-1 font-mono"
+                                  style={{ background: "rgba(255,255,255,0.06)", color: isBatchable ? "rgba(255,255,255,0.5)" : "rgba(255,255,255,0.2)", border: "1px solid rgba(255,255,255,0.1)", width: 52, cursor: isBatchable ? "pointer" : "not-allowed", opacity: isBatchable ? 1 : 0.4 }}
+                                >
+                                  {[1, 2, 3, 5, 10].map(n => <option key={n} value={n}>x{n}</option>)}
+                                  {isBatchable && <option value="max">Max ({safeMax})</option>}
+                                </select>
+                              );
+                            })()}
                             {needsLearn ? (() => {
                               const playerGold = currencies.gold ?? loggedInUser?.currencies?.gold ?? loggedInUser?.gold ?? 0;
                               const canAfford = playerGold >= (recipe.trainerCost ?? 0);
@@ -1445,22 +1518,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                                 }}
                                 title={!canDo ? (!isLearned ? "Recipe not learned" : !meetsLevel ? "Profession level too low" : onCooldown ? `On cooldown (${Math.ceil((recipe.cooldownRemaining ?? 0) / 60)}min left)` : !hasSlotItem ? "No gear equipped in this slot" : !canAfford ? "Not enough materials or gold" : "") : craftProgress ? "Press ESC to cancel" : `Craft ${recipe.name}`}
                               >
-                                {/* WoW-style cast bar overlay */}
-                                {craftProgress && craftProgress.recipeId === recipe.id && (
-                                  <div className="absolute inset-0 rounded-lg overflow-hidden" style={{ zIndex: 0 }}>
-                                    <div
-                                      className="h-full"
-                                      style={{
-                                        background: `linear-gradient(90deg, ${selectedNpc.color}50, ${selectedNpc.color}30)`,
-                                        animation: `craft-cast-fill ${CRAFT_CAST_MS}ms linear forwards`,
-                                        transformOrigin: "left",
-                                      }}
-                                    />
-                                  </div>
-                                )}
-                                <span className="relative" style={{ zIndex: 1 }}>
-                                  {craftProgress && craftProgress.recipeId === recipe.id ? `Crafting\u2026 ${craftProgress.total > 1 ? `${Math.min(craftProgress.current + 1, craftProgress.total)}/${craftProgress.total} ` : ''}${castCountdown ?? ""}s` : crafting ? "Crafting\u2026" : onCooldown ? "On Cooldown" : "Craft"}
-                                </span>
+                                {craftProgress && craftProgress.recipeId === recipe.id ? `Crafting\u2026 ${craftProgress.total > 1 ? `${Math.min(craftProgress.current + 1, craftProgress.total)}/${craftProgress.total} ` : ''}` : crafting ? "Crafting\u2026" : onCooldown ? "On Cooldown" : "Craft"}
                               </button>
                             )}
                           </div>
@@ -1592,6 +1650,22 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                             </div>
                           );
                         })()}
+                        {/* Standalone cast bar below recipe card */}
+                        {craftProgress && craftProgress.recipeId === recipe.id && (
+                          <div className="mt-2 relative">
+                            <div className="text-xs text-center font-mono mb-1" style={{ color: selectedNpc.color }}>
+                              {castCountdown ?? "0.0"}s
+                            </div>
+                            <div className="w-full h-2 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.06)" }}>
+                              <div className="h-full rounded-full" style={{
+                                background: `linear-gradient(90deg, ${selectedNpc.color}80, ${selectedNpc.color})`,
+                                animation: `craft-cast-fill ${CRAFT_CAST_MS}ms linear forwards`,
+                                boxShadow: `0 0 8px ${selectedNpc.color}60, 0 0 2px ${selectedNpc.color}`,
+                              }} />
+                            </div>
+                            <p className="text-xs text-center mt-1" style={{ color: "rgba(255,255,255,0.3)" }}>ESC to cancel</p>
+                          </div>
+                        )}
                       </div>
                     );
                   })}
@@ -1847,8 +1921,88 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                 groups[bracket].push(r);
               }
 
+              // Determine if player is near skill cap and can train next rank
+              const currentSkillCap = selectedNpc.skillCap || 75;
+              const nearCap = playerSkill >= currentSkillCap - 10;
+              const nextRank = nearCap ? RANK_TRAINING_COSTS.find(r => r.fromCap === currentSkillCap) : null;
+              const playerLevelForRank = selectedNpc.playerLevel || 1;
+              const meetsRankLevel = nextRank ? playerLevelForRank >= nextRank.reqPlayerLevel : false;
+              const meetsRankSkill = nextRank ? playerSkill >= nextRank.reqSkill : false;
+              const canAffordRank = nextRank ? gold >= nextRank.cost : false;
+              const canTrainRank = nextRank && meetsRankLevel && meetsRankSkill && canAffordRank;
+
               return (
                 <div className="tab-content-enter px-5 py-4 space-y-4" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
+                  {/* ─── Train Rank Banner ──────────────────────────── */}
+                  {nearCap && nextRank && (
+                    <div className="rounded-lg p-4" style={{
+                      background: `linear-gradient(135deg, ${selectedNpc.color}18, ${selectedNpc.color}08)`,
+                      border: `1px solid ${selectedNpc.color}40`,
+                      boxShadow: `0 0 20px ${selectedNpc.color}15, inset 0 1px 0 rgba(255,255,255,0.05)`,
+                    }}>
+                      <div className="flex items-center justify-between gap-3 flex-wrap">
+                        <div className="min-w-0">
+                          <p className="text-sm font-bold" style={{ color: selectedNpc.color }}>
+                            {selectedNpc.rank || "Apprentice"} — {playerSkill}/{currentSkillCap}
+                          </p>
+                          <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.5)" }}>
+                            Next: <span className="font-semibold" style={{ color: "#e8e8e8" }}>{nextRank.rank}</span>
+                            {" "}&middot; Cap {nextRank.toCap}
+                            {" "}&middot; <span style={{ color: canAffordRank ? "#facc15" : "#f44" }}>{nextRank.cost.toLocaleString()}g</span>
+                            {" "}&middot; <span style={{ color: meetsRankLevel ? "rgba(255,255,255,0.4)" : "#f44" }}>Lv {nextRank.reqPlayerLevel}</span>
+                          </p>
+                          {!meetsRankLevel && (
+                            <p className="text-xs mt-1" style={{ color: "#f44" }}>Requires player level {nextRank.reqPlayerLevel} (you are {playerLevelForRank})</p>
+                          )}
+                          {!meetsRankSkill && meetsRankLevel && (
+                            <p className="text-xs mt-1" style={{ color: "#f44" }}>Requires skill {nextRank.reqSkill} (you have {playerSkill})</p>
+                          )}
+                        </div>
+                        <button
+                          onClick={async () => {
+                            try {
+                              const res = await fetch("/api/crafting/train-rank", {
+                                method: "POST",
+                                headers: { "Content-Type": "application/json", ...getAuthHeaders(reviewApiKey) },
+                                body: JSON.stringify({ professionId: selectedNpc.id }),
+                              });
+                              const data = await res.json();
+                              if (res.ok) {
+                                setCraftResult(`Rank Up! ${nextRank.rank} — Skill cap now ${data.newCap || nextRank.toCap}`);
+                                setRankUpCelebration(`${nextRank.rank}!`);
+                                setTimeout(() => setRankUpCelebration(null), 3000);
+                                fetchData();
+                              } else {
+                                setCraftResult(data.error || "Failed to train rank");
+                              }
+                              setTimeout(() => setCraftResult(null), 5000);
+                            } catch { setCraftResult("Network error"); setTimeout(() => setCraftResult(null), 5000); }
+                          }}
+                          disabled={!canTrainRank}
+                          title={!meetsRankLevel ? `Requires player level ${nextRank.reqPlayerLevel}` : !meetsRankSkill ? `Requires skill ${nextRank.reqSkill}` : !canAffordRank ? `Need ${nextRank.cost - gold} more gold` : `Train ${nextRank.rank} for ${nextRank.cost}g`}
+                          className="text-sm px-5 py-2.5 rounded-lg font-bold flex-shrink-0"
+                          style={{
+                            background: canTrainRank ? `${selectedNpc.color}25` : "rgba(255,255,255,0.03)",
+                            color: canTrainRank ? selectedNpc.color : "rgba(255,255,255,0.2)",
+                            border: `2px solid ${canTrainRank ? `${selectedNpc.color}60` : "rgba(255,255,255,0.08)"}`,
+                            cursor: canTrainRank ? "pointer" : "not-allowed",
+                            boxShadow: canTrainRank ? `0 0 12px ${selectedNpc.color}30` : "none",
+                          }}
+                        >
+                          Train {nextRank.rank}
+                        </button>
+                      </div>
+                    </div>
+                  )}
+                  {nearCap && !nextRank && currentSkillCap >= 300 && (
+                    <div className="rounded-lg p-3 text-center" style={{
+                      background: `linear-gradient(135deg, ${selectedNpc.color}12, ${selectedNpc.color}06)`,
+                      border: `1px solid ${selectedNpc.color}30`,
+                    }}>
+                      <p className="text-sm font-bold" style={{ color: selectedNpc.color }}>Grand Master — {playerSkill}/300</p>
+                      <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.3)" }}>Maximum rank reached</p>
+                    </div>
+                  )}
                   <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>
                     Buy recipes from {selectedNpc.npcName}. Learned recipes are marked with a checkmark.
                   </p>
