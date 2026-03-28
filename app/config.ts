@@ -69,8 +69,8 @@ export interface Floor {
 }
 
 export const FLOORS: Floor[] = [
-  // ─── Turm-Reihenfolge: Spitze (links) → Erdgeschoss (rechts) ────────────────
-  // ─── Prestige — Die Turmspitze (Lv8) ────────────────────────────────────────
+  // ─── Turm von oben nach unten (links → rechts) ──────────────────────────────
+  // ─── 5F: Pinnacle — Die Turmspitze (Lv8) ────────────────────────────────────
   {
     id: "turmspitze",
     name: "Pinnacle",
@@ -88,42 +88,22 @@ export const FLOORS: Floor[] = [
       { key: "campaign",    label: "Observatory",        iconSrc: "/images/icons/nav-observatory.png", tutorialKey: "campaign-tab" },
     ],
   },
-  // ─── Adventure — Die Haupthalle (Lv1) ───────────────────────────────────────
+  // ─── 4F: Breakaway — Obere Etagen (Lv1) ─────────────────────────────────────
   {
-    id: "haupthalle",
-    name: "Great Halls",
-    subtitle: "Adventure",
-    icon: "●",
-    color: "#f97316",
-    gradient: "linear-gradient(135deg, #f97316 0%, #1a0f0a 100%)",
-    banner: "/images/banners/haupthalle-banner.png",
+    id: "breakaway",
+    name: "Breakaway",
+    subtitle: "Social & Rest",
+    icon: "⬡",
+    color: "#ec4899",
+    gradient: "linear-gradient(135deg, #ec4899 0%, #1a0a1e 100%)",
+    banner: "/images/banners/breakaway-banner.png",
     minLevel: 1,
     rooms: [
-      { key: "questBoard", label: "Quest Board",      iconSrc: "/images/icons/nav-great-hall.png",  tutorialKey: "quest-board-tab" },
-      { key: "npcBoard",   label: "Wanderers Rest",   iconSrc: "/images/icons/nav-wanderer.png",    tutorialKey: "npc-board-tab" },
-      { key: "challenges", label: "Challenges",       iconSrc: "",                                  tutorialKey: null, minLevel: 3 },
-      { key: "rift",       label: "Rift",             iconSrc: "",                                  requiresLogin: true, tutorialKey: null, minLevel: 8 },
-      { key: "dungeons",   label: "Undercroft",       iconSrc: "",                                  requiresLogin: true, tutorialKey: null, minLevel: 12 },
-      { key: "worldboss",  label: "Colosseum",        iconSrc: "",                                  requiresLogin: true, tutorialKey: null, minLevel: 15 },
+      { key: "social", label: "Breakaway", iconSrc: "", requiresLogin: true, tutorialKey: null },
+      { key: "tavern", label: "Hearth", iconSrc: "", requiresLogin: true, tutorialKey: null },
     ],
   },
-  // ─── Commerce — Das Gewerbeviertel (Lv3) ────────────────────────────────────
-  {
-    id: "gewerbeviertel",
-    name: "Trading District",
-    subtitle: "Commerce & Craft",
-    icon: "■",
-    color: "#a855f7",
-    gradient: "linear-gradient(135deg, #a855f7 0%, #1a0a2e 100%)",
-    banner: "/images/banners/gewerbeviertel-banner.png",
-    minLevel: 3,
-    rooms: [
-      { key: "shop",   label: "Bazaar",              iconSrc: "/images/icons/nav-bazaar.png",       tutorialKey: "bazaar-tab" },
-      { key: "forge",  label: "Artisan's Quarter",   iconSrc: "",                                   requiresLogin: true, minLevel: 5 },
-      { key: "gacha",  label: "Vault of Fate",       iconSrc: "/images/icons/vault-of-fate.png",    tutorialKey: "vault-tab", minLevel: 5 },
-    ],
-  },
-  // ─── Personal — Der Charakterturm (Lv1) ─────────────────────────────────────
+  // ─── 3F: Inner Sanctum — Mitte des Turms (Lv1) ──────────────────────────────
   {
     id: "charakterturm",
     name: "Inner Sanctum",
@@ -140,19 +120,39 @@ export const FLOORS: Floor[] = [
       { key: "klassenquests", label: "Arcanum",        iconSrc: "/images/icons/nav-arcanum.png",      tutorialKey: null, minLevel: 10 },
     ],
   },
-  // ─── Social — Das Erdgeschoss (Lv1) ─────────────────────────────────────────
+  // ─── 2F: Trading District — Untere Etagen (Lv3) ─────────────────────────────
   {
-    id: "breakaway",
-    name: "Breakaway",
-    subtitle: "Social & Rest",
-    icon: "⬡",
-    color: "#ec4899",
-    gradient: "linear-gradient(135deg, #ec4899 0%, #1a0a1e 100%)",
-    banner: "/images/banners/breakaway-banner.png",
+    id: "gewerbeviertel",
+    name: "Trading District",
+    subtitle: "Commerce & Craft",
+    icon: "■",
+    color: "#a855f7",
+    gradient: "linear-gradient(135deg, #a855f7 0%, #1a0a2e 100%)",
+    banner: "/images/banners/gewerbeviertel-banner.png",
+    minLevel: 3,
+    rooms: [
+      { key: "shop",   label: "Bazaar",              iconSrc: "/images/icons/nav-bazaar.png",       tutorialKey: "bazaar-tab" },
+      { key: "forge",  label: "Artisan's Quarter",   iconSrc: "",                                   requiresLogin: true, minLevel: 5 },
+      { key: "gacha",  label: "Vault of Fate",       iconSrc: "/images/icons/vault-of-fate.png",    tutorialKey: "vault-tab", minLevel: 5 },
+    ],
+  },
+  // ─── 1F: Great Halls — Erdgeschoss + Untergrund (Lv1) ───────────────────────
+  {
+    id: "haupthalle",
+    name: "Great Halls",
+    subtitle: "Adventure",
+    icon: "●",
+    color: "#f97316",
+    gradient: "linear-gradient(135deg, #f97316 0%, #1a0f0a 100%)",
+    banner: "/images/banners/haupthalle-banner.png",
     minLevel: 1,
     rooms: [
-      { key: "social", label: "Breakaway", iconSrc: "", requiresLogin: true, tutorialKey: null },
-      { key: "tavern", label: "Hearth", iconSrc: "", requiresLogin: true, tutorialKey: null },
+      { key: "questBoard", label: "Quest Board",      iconSrc: "/images/icons/nav-great-hall.png",  tutorialKey: "quest-board-tab" },
+      { key: "npcBoard",   label: "Wanderers Rest",   iconSrc: "/images/icons/nav-wanderer.png",    tutorialKey: "npc-board-tab" },
+      { key: "challenges", label: "Challenges",       iconSrc: "",                                  tutorialKey: null, minLevel: 3 },
+      { key: "rift",       label: "Rift",             iconSrc: "",                                  requiresLogin: true, tutorialKey: null, minLevel: 8 },
+      { key: "dungeons",   label: "Undercroft",       iconSrc: "",                                  requiresLogin: true, tutorialKey: null, minLevel: 12 },
+      { key: "worldboss",  label: "Colosseum",        iconSrc: "",                                  requiresLogin: true, tutorialKey: null, minLevel: 15 },
     ],
   },
 ];
