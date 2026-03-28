@@ -352,7 +352,7 @@ const TOOLTIP_REGISTRY: Record<string, TooltipEntry> = {
   },
   dungeons: {
     title: "The Undercroft (Dungeons)",
-    icon: "🏰",
+    icon: "◆",
     accent: "#3b82f6",
     body: (
       <>

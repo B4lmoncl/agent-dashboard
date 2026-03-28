@@ -558,7 +558,8 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
       });
       const data = await r.json();
       if (r.ok) setCubeData(data.cube);
-    } catch (err) { console.error('[cube] unequip error:', err); }
+      else setCubeResult(data.error || "Unequip failed");
+    } catch (err) { console.error('[cube] unequip error:', err); setCubeResult("Network error"); }
     setCubeLoading(false);
   };
 

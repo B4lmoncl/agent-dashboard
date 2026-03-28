@@ -280,7 +280,7 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
           if (rw.runensplitter) currencies.push({ name: "Runensplitter", amount: rw.runensplitter, color: "#a78bfa" });
           if (rw.sternentaler) currencies.push({ name: "Sternentaler", amount: rw.sternentaler, color: "#fbbf24" });
           const loot = d.uniqueDrop
-            ? { name: d.uniqueDrop.name, emoji: "🏰", rarity: "legendary", rarityColor: "#ff8c00" }
+            ? { name: d.uniqueDrop.name, emoji: "◆", rarity: "legendary", rarityColor: "#ff8c00" }
             : rw.gearDropItem
               ? { name: rw.gearDropItem.name, emoji: "⚔️", rarity: rw.gearDropItem.rarity || "rare" }
               : undefined;
@@ -303,7 +303,7 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
   if (!playerName || !reviewApiKey) {
     return (
       <div className="rounded-xl px-6 py-12 text-center" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
-        <p className="text-2xl mb-2">🏰</p>
+        <p className="text-2xl mb-2">◆</p>
         <p className="text-sm font-bold mb-1 text-w25">The Undercroft</p>
         <p className="text-xs text-w15">Log in to enter the dungeons.</p>
       </div>
@@ -324,7 +324,7 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
     <div className="space-y-5 tab-content-enter">
       {/* Header */}
       <div className="flex items-center gap-3">
-        <span className="text-2xl">🏰</span>
+        <span className="text-2xl">◆</span>
         <div>
           <Tip k="dungeons" heading><h2 className="text-sm font-bold uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.5)", cursor: "help" }}>The Undercroft</h2></Tip>
           <p className="text-xs text-w25">Cooperative group dungeons. Invite friends, wait 8 hours, and collect rewards based on your combined power.</p>
