@@ -161,9 +161,11 @@ export default function BattlePassView({ onRewardCelebration, onNavigate }: { on
             <p className="text-sm font-mono font-bold crystal-breathe" style={{ color: config.seasonAccent, ["--glow-color" as string]: `${config.seasonAccent}30`, borderRadius: 6, padding: "2px 6px" }}>
               Level {player.level} / {config.levels}
             </p>
-            <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>
-              {daysLeft}d remaining
-            </p>
+            <TipCustom title="Saisonende" icon="◆" accent={config.seasonAccent} body={<p>Verbleibende Tage bis zum Ende der aktuellen Saison. Nicht beanspruchte Belohnungen verfallen.</p>}>
+              <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)", cursor: "help" }}>
+                {daysLeft}d remaining
+              </p>
+            </TipCustom>
           </div>
         </div>
 
@@ -270,7 +272,7 @@ export default function BattlePassView({ onRewardCelebration, onNavigate }: { on
                 )}
                 <div className="flex-1 min-w-0">
                   <p className="text-xs font-semibold" style={{ color: isReached ? rc.color : "rgba(255,255,255,0.3)" }}>
-                    {r.type === "title" ? r.titleName : r.type === "frame" ? r.frameName : (
+                    {r.type === "title" ? <TipCustom title={r.titleName || "Title"} icon="◆" accent={rc.color} body={<p>{r.titleRarity ? r.titleRarity.charAt(0).toUpperCase() + r.titleRarity.slice(1) : "Exklusiver"} Titel aus dem Season Pass.</p>}><span style={{ cursor: "help" }}>{r.titleName}</span></TipCustom> : r.type === "frame" ? <TipCustom title={r.frameName || "Frame"} icon="◆" accent={rc.color} body={<p>Kosmetischer Rahmen f&uuml;r dein Spielerprofil.</p>}><span style={{ cursor: "help" }}>{r.frameName}</span></TipCustom> : (
                       ["gold", "essenz", "runensplitter", "stardust", "sternentaler", "mondstaub"].includes(r.type)
                         ? <Tip k={r.type}><span style={{ cursor: "help" }}>{r.amount} {rc.label}</span></Tip>
                         : `${r.amount} ${rc.label}`

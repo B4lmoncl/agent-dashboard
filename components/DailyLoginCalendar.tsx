@@ -86,19 +86,21 @@ export default function DailyLoginCalendar({ onClose }: { onClose: () => void })
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
-            <h2 className="text-base font-bold" style={{ color: "#fbbf24" }}>Login Calendar</h2>
+            <Tip k="login_calendar" heading><h2 className="text-base font-bold" style={{ color: "#fbbf24" }}>Login Calendar</h2></Tip>
             <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>{monthNames[month]} {year}</p>
           </div>
           <div className="flex items-center gap-3">
             <div className="text-right">
               <Tip k="streak"><p className="text-sm font-bold" style={{ color: "#fbbf24", cursor: "help" }}>{streakDays} Day Streak</p></Tip>
-              <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>{claimedThisMonth}/{daysInMonth} this month</p>
+              <TipCustom title="Monatlicher Fortschritt" icon="◆" accent="#fbbf24" body={<p>Anzahl der beanspruchten Tagesbelohnungen in diesem Monat.</p>}>
+                <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)", cursor: "help" }}>{claimedThisMonth}/{daysInMonth} this month</p>
+              </TipCustom>
             </div>
             <button onClick={onClose} className="text-xs px-2 py-1 rounded-lg" style={{ color: "rgba(255,255,255,0.4)", cursor: "pointer", background: "rgba(255,255,255,0.04)" }}>ESC</button>
           </div>
         </div>
         <p className="text-xs mt-2" style={{ color: "rgba(255,255,255,0.25)" }}>
-          Log in daily to build your streak. Claim your daily bonus in the Great Hall to earn Runensplitter, Essenz, and streak milestone rewards.
+          Log in daily to build your streak. Claim your daily bonus in the Great Hall to earn <Tip k="runensplitter"><span style={{ cursor: "help" }}>Runensplitter</span></Tip>, <Tip k="essenz"><span style={{ cursor: "help" }}>Essenz</span></Tip>, and streak milestone rewards.
         </p>
 
         {loading ? (

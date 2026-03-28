@@ -138,6 +138,7 @@ export const QuestCard = memo(function QuestCard({ quest, selected, onToggle, on
   const rarity = getQuestRarity(quest);
   const rarityColor = RARITY_COLORS[rarity] ?? "#9ca3af";
   const isLegendary = rarity === "legendary";
+  const isEpicPlus = rarity === "epic" || rarity === "legendary";
   const hasMinLevel = quest.minLevel != null && quest.minLevel > 0;
   const meetsLevel = !hasMinLevel || (playerLevel != null && playerLevel >= quest.minLevel!);
 
@@ -170,7 +171,7 @@ export const QuestCard = memo(function QuestCard({ quest, selected, onToggle, on
         }}
       >
         {/* Rarity top strip */}
-        <div style={{ height: 4, background: `linear-gradient(90deg, transparent 5%, ${rarityColor}cc 30%, ${rarityColor}dd 50%, ${rarityColor}cc 70%, transparent 95%)`, borderRadius: "10px 10px 0 0", boxShadow: `0 2px 8px ${rarityColor}44`, position: "relative", zIndex: 1 }} />
+        <div className={isEpicPlus ? "crystal-breathe" : ""} style={{ height: 4, background: `linear-gradient(90deg, transparent 5%, ${rarityColor}cc 30%, ${rarityColor}dd 50%, ${rarityColor}cc 70%, transparent 95%)`, borderRadius: "10px 10px 0 0", boxShadow: `0 2px 8px ${rarityColor}44`, position: "relative", zIndex: 1, ...(isEpicPlus ? { "--glow-color": `${rarityColor}88` } as React.CSSProperties : {}) }} />
         {/* Rarity gem + Favorite star — top right, same horizontal line */}
         <div style={{ position: "absolute", top: 8, right: 6, display: "flex", alignItems: "center", gap: 4, zIndex: 2 }}>
           <div style={{ width: 8, height: 8, borderRadius: "50%", background: rarityColor, boxShadow: `0 0 7px ${rarityColor}`, opacity: 0.88, flexShrink: 0 }} />
@@ -257,7 +258,7 @@ export const QuestCard = memo(function QuestCard({ quest, selected, onToggle, on
       }}
     >
       {/* Rarity left accent line */}
-      <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: 3, background: `linear-gradient(180deg, ${rarityColor}cc, ${rarityColor}44)`, borderRadius: "8px 0 0 8px" }} />
+      <div className={isEpicPlus ? "crystal-breathe" : ""} style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: 3, background: `linear-gradient(180deg, ${rarityColor}cc, ${rarityColor}44)`, borderRadius: "8px 0 0 8px", ...(isEpicPlus ? { "--glow-color": `${rarityColor}88` } as React.CSSProperties : {}) }} />
       {/* Favorite star — top right */}
       {onToggleFavorite && (
         <button

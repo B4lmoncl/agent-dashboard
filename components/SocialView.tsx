@@ -541,9 +541,11 @@ function TradeOfferDisplay({ offer, label, color }: { offer: TradeOffer; label: 
       <p className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color }}>{label}</p>
       {offer.gold > 0 && (
         <div className="flex items-center gap-1.5 mb-1.5">
-          <span className="text-xs px-2 py-0.5 rounded" style={{ background: "rgba(245,158,11,0.12)", color: "#f59e0b" }}>
-            {offer.gold} Gold
-          </span>
+          <Tip k="gold">
+            <span className="text-xs px-2 py-0.5 rounded" style={{ background: "rgba(245,158,11,0.12)", color: "#f59e0b", cursor: "help" }}>
+              {offer.gold} Gold
+            </span>
+          </Tip>
         </div>
       )}
       {offer.items.length > 0 ? (
@@ -882,7 +884,7 @@ function TradesTab({ apiKey, playerName, onRewardCelebration }: { apiKey: string
               <p className="text-xs font-semibold uppercase tracking-wider text-w35 mb-3">Counter-Offer</p>
               <div className="flex gap-3 mb-3">
                 <div className="flex-1">
-                  <label className="text-xs text-w25 block mb-1">Your gold offer</label>
+                  <Tip k="gold"><label className="text-xs text-w25 block mb-1" style={{ cursor: "help" }}>Your gold offer</label></Tip>
                   <input
                     type="number"
                     min={0}
@@ -1000,7 +1002,9 @@ function TradesTab({ apiKey, playerName, onRewardCelebration }: { apiKey: string
         </button>
       ) : (
         <div className="rounded-xl p-4 space-y-3" style={{ background: "rgba(168,85,247,0.04)", border: "1px solid rgba(168,85,247,0.15)" }}>
-          <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: "#a855f7" }}>New Trade Proposal</p>
+          <TipCustom title="Handelsangebot" icon="◈" accent="#a855f7" body={<p>Biete Gold und Gegenst&auml;nde an. Der Handelspartner kann annehmen, ablehnen oder ein Gegenangebot machen.</p>}>
+            <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: "#a855f7", cursor: "help" }}>New Trade Proposal</p>
+          </TipCustom>
           <input
             value={newTradeTarget}
             onChange={e => setNewTradeTarget(e.target.value)}
@@ -1008,7 +1012,7 @@ function TradesTab({ apiKey, playerName, onRewardCelebration }: { apiKey: string
             className="input-dark w-full text-xs px-3 py-2 rounded-lg"
           />
           <div>
-            <label className="text-xs text-w25 block mb-1">Gold to offer</label>
+            <Tip k="gold"><label className="text-xs text-w25 block mb-1" style={{ cursor: "help" }}>Gold to offer</label></Tip>
             <input
               type="number"
               min={0}
@@ -1422,7 +1426,7 @@ function MailTab({ apiKey, playerName }: { apiKey: string; playerName: string })
             style={{ background: "rgba(0,0,0,0.3)", border: "1px solid rgba(255,255,255,0.08)", color: "#e8e8e8", scrollbarWidth: "thin" }}
           />
           <div className="flex items-center gap-3">
-            <label className="text-xs text-w40">Gold:</label>
+            <Tip k="gold"><label className="text-xs text-w40" style={{ cursor: "help" }}>Gold:</label></Tip>
             <input
               type="number"
               min={0}
@@ -1484,7 +1488,7 @@ function MailTab({ apiKey, playerName }: { apiKey: string; playerName: string })
                       <div className="rounded-lg px-3 py-2" style={{ background: "rgba(245,158,11,0.06)", border: "1px solid rgba(245,158,11,0.15)" }}>
                         <p className="text-xs font-semibold mb-1" style={{ color: "rgba(245,158,11,0.6)" }}>Attachments</p>
                         <div className="flex items-center gap-2 flex-wrap">
-                          {mail.gold > 0 && <span className="text-xs font-semibold" style={{ color: "#f59e0b" }}>{mail.gold} Gold</span>}
+                          {mail.gold > 0 && <Tip k="gold"><span className="text-xs font-semibold" style={{ color: "#f59e0b", cursor: "help" }}>{mail.gold} Gold</span></Tip>}
                           {mail.items.map(item => (
                             <span key={item.id} className="text-xs font-semibold" style={{ color: RARITY_COLORS[item.rarity] || "#888" }}>{item.name}</span>
                           ))}

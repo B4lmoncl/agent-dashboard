@@ -174,7 +174,9 @@ export default function FactionsView({ onRewardCelebration, onNavigate }: { onRe
                 <div className="flex items-center gap-3">
                   <span className="text-2xl">{f.icon}</span>
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-bold" style={{ color: f.accent }}>{f.name}</p>
+                    <TipCustom title={f.name} icon={f.icon} accent={f.accent} body={<p>{f.description}</p>}>
+                      <p className="text-sm font-bold" style={{ color: f.accent, cursor: "help" }}>{f.name}</p>
+                    </TipCustom>
                     <p className="text-xs italic" style={{ color: `${f.accent}80` }}>{f.motto}</p>
                   </div>
                   <div className="text-right">
@@ -209,11 +211,15 @@ export default function FactionsView({ onRewardCelebration, onNavigate }: { onRe
               {/* Progress bar */}
               <div className="px-4 pb-3">
                 <div className="flex items-center justify-between mb-1">
-                  <span className="text-xs" style={{ color: f.standingColor }}>{f.standingName}</span>
+                  <TipCustom title={f.standingName} icon="◆" accent={f.standingColor} body={<p>Aktuelle Rufstufe bei {f.name}. H&ouml;here Stufen schalten exklusive Belohnungen frei.</p>}>
+                    <span className="text-xs" style={{ color: f.standingColor, cursor: "help" }}>{f.standingName}</span>
+                  </TipCustom>
                   {f.nextStanding && (
-                    <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.3)" }}>
-                      {f.playerRep} / {f.nextStanding.minRep}
-                    </span>
+                    <TipCustom title="Rufpunkte" icon="◆" accent={f.accent} body={<p>Fortschritt zur n&auml;chsten Stufe. Ruf wird durch passende Quests verdient (+10-30 pro Quest).</p>}>
+                      <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.3)", cursor: "help" }}>
+                        {f.playerRep} / {f.nextStanding.minRep}
+                      </span>
+                    </TipCustom>
                   )}
                 </div>
                 <div className={`progress-bar-diablo${f.progress > 0.9 ? " progress-bar-nearly-full" : ""}`}>

@@ -55,9 +55,11 @@ export default function CodexView() {
         <TipCustom title="Living Codex" icon="📜" accent="#fbbf24" heading body={<p>Sammlung aller entdeckten Lore-Eintr&auml;ge. Neue Eintr&auml;ge werden durch Quests, Events und Erkundung freigeschaltet.</p>}>
           <h2 className="text-xs font-semibold uppercase tracking-widest" style={{ color: "#fbbf24" }}>Living Codex</h2>
         </TipCustom>
-        <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.25)" }}>
-          {discoveredCount}/{totalCount} discovered
-        </span>
+        <TipCustom title="Fortschritt" icon="◆" accent="#fbbf24" body={<p>Anteil der entdeckten Lore-Eintr&auml;ge. Neue Eintr&auml;ge werden durch Quests, NPCs und besondere Events freigeschaltet.</p>}>
+          <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.25)", cursor: "help" }}>
+            {discoveredCount}/{totalCount} discovered
+          </span>
+        </TipCustom>
       </div>
 
       {/* Progress bar */}
@@ -131,9 +133,11 @@ export default function CodexView() {
       {/* Undiscovered entries */}
       {undiscoveredFiltered.length > 0 && (
         <div className="space-y-1 pt-2" style={{ borderTop: "1px solid rgba(255,255,255,0.04)" }}>
-          <p className="text-xs font-semibold mb-2" style={{ color: "rgba(255,255,255,0.15)" }}>
-            Undiscovered ({undiscoveredFiltered.length})
-          </p>
+          <TipCustom title="Unentdeckt" icon="?" accent="#6b7280" body={<p>Noch nicht freigeschaltete Eintr&auml;ge. Schlie&szlig;e Quests ab und erkunde die Welt, um sie zu entdecken.</p>}>
+            <p className="text-xs font-semibold mb-2" style={{ color: "rgba(255,255,255,0.15)", cursor: "help" }}>
+              Undiscovered ({undiscoveredFiltered.length})
+            </p>
+          </TipCustom>
           <div className="grid gap-1" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(120px, 1fr))" }}>
             {undiscoveredFiltered.map(entry => (
               <div key={entry.id} className="rounded-lg px-3 py-2 text-center" style={{ background: "rgba(255,255,255,0.01)", border: "1px solid rgba(255,255,255,0.04)" }}>

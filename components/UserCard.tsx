@@ -83,11 +83,12 @@ export function UserCard({ user, classes = [], onClick, onNavigate }: { user: Us
 
   return (
     <div
-      className={`rounded-xl overflow-hidden transition-all duration-200${onClick ? " cursor-pointer" : ""}`}
+      className={`rounded-xl overflow-hidden transition-all duration-200${onClick ? " cursor-pointer" : ""}${frameColor ? " crystal-breathe" : ""}`}
       style={{
         background: "linear-gradient(180deg, #2a2a2e 0%, #1e1e22 100%)",
         border: frameBorder,
         boxShadow: frameShadow,
+        ...(frameColor ? { "--glow-color": `${frameColor}30` } as React.CSSProperties : {}),
       }}
       onClick={onClick}
       onMouseEnter={onClick ? (e) => { e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.boxShadow = `${frameShadow}, 0 8px 24px rgba(0,0,0,0.4)`; } : undefined}
