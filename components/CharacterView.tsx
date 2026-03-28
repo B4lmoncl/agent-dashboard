@@ -536,6 +536,35 @@ function InventoryTooltip({ item, mousePosRef, equippedItem, playerLevel }: { it
           </div>
         )}
 
+        {/* Affix Roll Quality */}
+        {(() => {
+          const itemAny = item as Record<string, unknown>;
+          if (!itemAny.affixes || typeof itemAny.affixes !== "object") return null;
+          const affixes = itemAny.affixes as { primary?: { pool: { stat: string; min: number; max: number }[] }; minor?: { pool: { stat: string; min: number; max: number }[] } };
+          const pool = [...(affixes.primary?.pool || []), ...(affixes.minor?.pool || [])];
+          if (pool.length === 0) return null;
+          let totalRolled = 0, totalMax = 0;
+          for (const affix of pool) {
+            const rolled = (item.stats?.[affix.stat] as number) || 0;
+            if (rolled > 0 && affix.max > 0) { totalRolled += rolled; totalMax += affix.max; }
+          }
+          if (totalMax === 0) return null;
+          const quality = Math.round((totalRolled / totalMax) * 100);
+          const qColor = quality >= 90 ? "#22c55e" : quality >= 70 ? "#eab308" : quality >= 50 ? "#f97316" : "#ef4444";
+          const qLabel = quality >= 90 ? "Perfect" : quality >= 70 ? "Good" : quality >= 50 ? "Average" : "Low";
+          return (
+            <div className="pt-1" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+              <div className="flex items-center justify-between text-xs">
+                <span style={{ color: "rgba(255,255,255,0.3)" }}>Roll Quality</span>
+                <span className="font-mono font-semibold" style={{ color: qColor }}>{quality}% {qLabel}</span>
+              </div>
+              <div className="mt-0.5 rounded-full overflow-hidden" style={{ height: 2, background: "rgba(255,255,255,0.06)" }}>
+                <div className="h-full rounded-full" style={{ width: `${quality}%`, background: qColor }} />
+              </div>
+            </div>
+          );
+        })()}
+
         {/* Comparison summary — equipped item info */}
         {equippedItem && equippedItem.id !== item.id && (() => {
           const totalDiff = [...allStatKeys].reduce((sum, stat) => {
@@ -1485,8 +1514,29 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
               { label: "Tempo", val: tempo || 0, tooltip: "TMP · +1% Forge Temp Recovery per point" },
             ];
             const hasMinorStats = minorStatRows.some(s => s.val > 0);
+            // Hero Numbers — 3 derived combat metrics
+            const heroOffense = Math.round(kraft * 2.5 + (charData.gearScore?.gearScore || 0) * 0.3 + (fokus || 0) * 1.5);
+            const heroDefense = Math.round(ausdauer * 3 + (vitalitaet || 0) * 2 + (charData.gearScore?.gearScore || 0) * 0.2);
+            const heroUtility = Math.round(weisheit * 2 + glueck * 2 + (charisma || 0) * 1.5 + (tempo || 0) * 1.5);
+
             return (
               <>
+                {/* Hero Numbers */}
+                <div className="grid grid-cols-3 gap-2 mb-4">
+                  <Tip k="kraft"><div className="rounded-lg px-2 py-2 text-center cursor-help" style={{ background: "rgba(239,68,68,0.06)", border: "1px solid rgba(239,68,68,0.15)" }}>
+                    <p className="text-lg font-bold font-mono" style={{ color: "#ef4444" }}>{heroOffense}</p>
+                    <p className="text-xs" style={{ color: "rgba(239,68,68,0.5)" }}>Offense</p>
+                  </div></Tip>
+                  <Tip k="ausdauer"><div className="rounded-lg px-2 py-2 text-center cursor-help" style={{ background: "rgba(59,130,246,0.06)", border: "1px solid rgba(59,130,246,0.15)" }}>
+                    <p className="text-lg font-bold font-mono" style={{ color: "#3b82f6" }}>{heroDefense}</p>
+                    <p className="text-xs" style={{ color: "rgba(59,130,246,0.5)" }}>Defense</p>
+                  </div></Tip>
+                  <Tip k="weisheit"><div className="rounded-lg px-2 py-2 text-center cursor-help" style={{ background: "rgba(34,197,94,0.06)", border: "1px solid rgba(34,197,94,0.15)" }}>
+                    <p className="text-lg font-bold font-mono" style={{ color: "#22c55e" }}>{heroUtility}</p>
+                    <p className="text-xs" style={{ color: "rgba(34,197,94,0.5)" }}>Utility</p>
+                  </div></Tip>
+                </div>
+
                 <div className="space-y-2 mb-4">
                   {statRows.map(s => {
                     const bonus = s.val - s.base;
