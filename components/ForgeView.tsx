@@ -613,7 +613,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
   const handleDropProfession = async (profId: string, profName: string) => {
     if (!reviewApiKey) return;
     setConfirmAction({
-      message: `Drop ${profName}?\n\nCosts 200 Essenz. All progress (level & XP) will be lost permanently.`,
+      message: `Drop ${profName}?\n\nAll progress (skill, recipes, rank) will be lost permanently. This cannot be undone.`,
       onConfirm: async () => {
         setConfirmAction(null);
         try {
@@ -1125,7 +1125,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                     onClick={() => handleDropProfession(selectedNpc.id, selectedNpc.name)}
                     className="forge-btn text-xs px-2.5 py-2 rounded-lg flex-shrink-0"
                     style={{ color: "rgba(255,68,68,0.5)", border: "1px solid rgba(255,68,68,0.15)" }}
-                    title={`Drop ${selectedNpc.name} (costs 200 Essenz, resets all progress)`}
+                    title={`Drop ${selectedNpc.name} (free, but resets all progress permanently)`}
                   >
                     Drop
                   </button>
@@ -1203,7 +1203,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                   );
                 })()}
                 {/* Slot selector for Schmied/Verzauberer */}
-                {(selectedNpc.id === "schmied" || selectedNpc.id === "verzauberer") && (
+                {selectedNpc.id === "verzauberer" && (
                   <div className="px-5 py-3" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
                     <p className="text-xs font-semibold uppercase tracking-widest mb-2" style={{ color: "rgba(255,255,255,0.25)" }}>Target Slot</p>
                     <div className="flex flex-wrap gap-1.5">
@@ -2022,7 +2022,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
               <div className="rounded-lg p-3 space-y-1.5" style={{ background: "rgba(255,68,68,0.03)", border: "1px solid rgba(255,68,68,0.08)" }}>
                 <p className="font-semibold" style={{ color: "rgba(255,255,255,0.7)" }}>Switching professions later:</p>
                 <ul className="space-y-1" style={{ color: "rgba(255,255,255,0.45)" }}>
-                  <li className="flex gap-2"><span style={{ color: "#f44" }}>&#10007;</span> Costs <strong style={{ color: "#ff8c00" }}>200 Essenz</strong></li>
+                  <li className="flex gap-2"><span style={{ color: "#22c55e" }}>&#10003;</span> Free to drop (no cost)</li>
                   <li className="flex gap-2"><span style={{ color: "#f44" }}>&#10007;</span> <strong>All progress</strong> in the dropped profession is lost</li>
                   <li className="flex gap-2"><span style={{ color: "#f44" }}>&#10007;</span> Level and XP are reset to 0</li>
                 </ul>

@@ -40,8 +40,8 @@ function GachaInfoModal({ onClose }: { onClose: () => void }) {
             <div className="space-y-1">
               {[
                 { label: "Legendary", rate: "0.8%", color: "#f97316" },
-                { label: "Epic", rate: "8%", color: "#a855f7" },
-                { label: "Rare", rate: "38%", color: "#3b82f6" },
+                { label: "Epic", rate: "3%", color: "#a855f7" },
+                { label: "Rare", rate: "25%", color: "#3b82f6" },
                 { label: "Uncommon", rate: "40%", color: "#22c55e" },
                 { label: "Common", rate: "13.2%", color: "#9ca3af" },
               ].map(r => (
@@ -520,7 +520,7 @@ function BannerPullModal({
                 <p>{(pity.hardPity || 75) - pity.pityCounter} pulls until guaranteed Legendary{pity.pityCounter >= (pity.softPityStart || 55) ? <span style={{ color: "#f97316" }}> — Soft Pity active!</span> : null}{pity.guaranteed5050 ? <span style={{ color: "#22c55e" }}> — Next = Featured!</span> : null}</p>
               </>) : <p>Pull to start tracking pity</p>}
               <div className="gt-stat-row" style={{ color: "#f97316" }}><span>Legendary rate</span><span>0.8%</span></div>
-              <div className="gt-stat-row" style={{ color: "#a855f7" }}><span>Epic rate</span><span>13%</span></div>
+              <div className="gt-stat-row" style={{ color: "#a855f7" }}><span>Epic rate</span><span>3%</span></div>
               <div className="gt-stat-row" style={{ color: "#3b82f6" }}><span>Rare rate</span><span>35%</span></div>
               <p className="gt-source">Soft pity at pull 55, hard pity at 75 guarantees legendary.</p>
             </>}>

@@ -176,8 +176,8 @@ function meetsSkillReq(recipe, profProgress) {
 
 // ─── Helper: check if recipe is visible (show in UI even if locked) ─────────
 function isRecipeVisible(recipe, profProgress, user) {
-  // Trainer recipes: always visible if skill/level is met (show as "learnable")
-  if (recipe.source === 'trainer') return meetsSkillReq(recipe, profProgress);
+  // Trainer recipes: always visible (like WoW Classic trainer — you see all recipes, buy when skill is met)
+  if (recipe.source === 'trainer') return true;
   // Drop recipes: only visible once learned
   if (recipe.source === 'drop') return (user?.learnedRecipes || []).includes(recipe.id);
   // Faction recipes: visible if skill/level met (show as locked until rep earned)

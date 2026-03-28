@@ -383,7 +383,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
 
               <GuideSection title="Drop Rates" icon="◆">
                 <div className="mt-2 space-y-0.5">
-                  {([["legendary","Legendary","0.8%","#f97316"],["epic","Epic","8%","#a855f7"],["rare","Rare","38%","#3b82f6"],["uncommon","Uncommon","40%","#22c55e"],["common","Common","~13%","#9ca3af"]] as const).map(([,name,rate,color]) => (
+                  {([["legendary","Legendary","0.8%","#f97316"],["epic","Epic","3%","#a855f7"],["rare","Rare","25%","#3b82f6"],["uncommon","Uncommon","45%","#22c55e"],["common","Common","~26%","#9ca3af"]] as const).map(([,name,rate,color]) => (
                     <div key={name} className="flex items-center gap-2">
                       <div className="h-1.5 rounded-full" style={{ background: color, width: name === "Legendary" ? "8%" : name === "Epic" ? "26%" : name === "Rare" ? "70%" : name === "Uncommon" ? "80%" : "22%", minWidth: 6 }} />
                       <span className="flex-shrink-0 w-20" style={{ color, fontWeight: 600 }}>{name}</span>

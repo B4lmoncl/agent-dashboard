@@ -189,7 +189,7 @@
     {
       "id": "juwelier",
       "name": "Jewelcrafter",
-      "npcName": "Mirael the Gem Sage",
+      "npcName": "Selindra the Gem Sage",
       "npcPortrait": "/images/npcs/mirael-juwelier.png",
       "npcGreeting": "Jeder Edelstein birgt ein Geheimnis. Lass mich dir zeigen, wie man zuhört.",
       "description": "Crafts rings, amulets, and cut gems. The only profession that works with the Gem socket system.",

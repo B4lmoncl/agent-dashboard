@@ -48,9 +48,9 @@ function rollRarity(pityCounter, epicPityCounter, hasRarityBoost = false) {
   const legendaryRate = getEffectiveLegendaryRate(pityCounter);
   // Passive: rarity_boost_15 adds +15% to rare+ rates
   const boostMult = hasRarityBoost ? 1.15 : 1.0;
-  const epicRate = 0.08 * boostMult;
-  const rareRate = 0.38 * boostMult;
-  const uncommonRate = 0.40;
+  const epicRate = 0.03 * boostMult;      // 3% (was 8% — WoW Classic aligned)
+  const rareRate = 0.25 * boostMult;      // 25% (was 38%)
+  const uncommonRate = 0.45;              // 45% (was 40%)
   // common fills the rest
 
   // Epic pity: guaranteed epic at 10 pulls

@@ -1421,6 +1421,31 @@ const TOOLTIP_REGISTRY: Record<string, TooltipEntry> = {
       </>
     ),
   },
+  mondlicht: {
+    title: "Mondlicht-Schmiede",
+    icon: "◆",
+    accent: "#818cf8",
+    body: (
+      <>
+        <p>Zwischen 22:00 und 06:00 Uhr (Berlin) ist der Aetherstrom ruhiger. Items die in dieser Zeit gecraftet werden erhalten +20% bessere Minimum-Rolls auf alle Stats.</p>
+        <p className="gt-source">Effektiv: Die unterste Grenze jedes Stat-Rolls wird angehoben. Maximum bleibt gleich — aber schlechte Rolls werden seltener.</p>
+      </>
+    ),
+  },
+  armor_types: {
+    title: "Rüstungstypen",
+    icon: "◆",
+    accent: "#f59e0b",
+    body: (
+      <>
+        <p>Drei Rüstungstypen mit unterschiedlichen Boni:</p>
+        <div className="gt-stat-row" style={{ color: "#3b82f6" }}><span>Stoff (Schneider)</span><span>+1% XP pro Stoffteil</span></div>
+        <div className="gt-stat-row" style={{ color: "#b45309" }}><span>Leder (Lederverarbeiter)</span><span>+1% Gold pro Lederteil</span></div>
+        <div className="gt-stat-row" style={{ color: "#9ca3af" }}><span>Schwer (Schmied)</span><span>+1 Ausdauer pro Schwerteil</span></div>
+        <p className="gt-source">Ein voller Satz (5+ Teile) eines Typs gibt spürbaren Bonus. Mische nur wenn du die Stats brauchst.</p>
+      </>
+    ),
+  },
 };
 
 // ─── Nested Tooltip Reference (clickable/hoverable keyword) ─────────────────
