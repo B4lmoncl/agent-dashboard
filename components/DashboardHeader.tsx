@@ -4,7 +4,7 @@ import { useRef, useEffect, useState } from "react";
 import type { User, Quest, QuestsData } from "@/app/types";
 import { createStarterQuestsIfNew, CURRENT_SEASON } from "@/app/utils";
 import { SFX } from "@/lib/sounds";
-import { setAccessToken, clearAuth } from "@/lib/auth-client";
+import { setAccessToken, clearAuth, getAuthHeaders } from "@/lib/auth-client";
 import { TipCustom } from "@/components/GameTooltip";
 
 interface DashboardHeaderProps {
@@ -60,6 +60,13 @@ export default function DashboardHeader({
   const [forgotOpen, setForgotOpen] = useState(false);
   const [forgotEmail, setForgotEmail] = useState("");
   const [forgotMsg, setForgotMsg] = useState("");
+  const [settingsModalOpen, setSettingsModalOpen] = useState(false);
+  const [emailStatus, setEmailStatus] = useState<{ hasEmail: boolean; email: string | null; emailVerified: boolean } | null>(null);
+  const [settingsMsg, setSettingsMsg] = useState("");
+  const [changePwCurrent, setChangePwCurrent] = useState("");
+  const [changePwNew, setChangePwNew] = useState("");
+  const [changePwConfirm, setChangePwConfirm] = useState("");
+  const [changePwLoading, setChangePwLoading] = useState(false);
   const [soundMuted, setSoundMuted] = useState(() => {
     try { return localStorage.getItem("qh_sound_muted") === "1"; } catch { return false; }
   });
@@ -162,6 +169,7 @@ export default function DashboardHeader({
   };
 
   return (
+    <>
     <header
       className="sticky top-0 z-40 backdrop-blur-xl"
       style={{
@@ -256,10 +264,21 @@ export default function DashboardHeader({
                       </div>
                     </div>
                     <button
-                      className="flex items-center gap-2 px-4 py-2.5 text-xs text-left text-w50"
-                      style={{ background: "none", border: "none", cursor: "not-allowed", opacity: 0.5 }}
+                      className="flex items-center gap-2 px-4 py-2.5 text-xs text-left text-w50 relative"
+                      style={{ background: "none", border: "none", cursor: "pointer" }}
+                      onMouseEnter={e => (e.currentTarget as HTMLButtonElement).style.background = "rgba(255,255,255,0.04)"}
+                      onMouseLeave={e => (e.currentTarget as HTMLButtonElement).style.background = "none"}
+                      onClick={async () => {
+                        setSettingsPopupOpen(false);
+                        setSettingsModalOpen(true);
+                        try {
+                          const r = await fetch("/api/auth/email-status", { headers: getAuthHeaders(reviewApiKey) });
+                          if (r.ok) setEmailStatus(await r.json());
+                        } catch { /* ignore */ }
+                      }}
                     >
-                      Settings <span className="text-w25">(coming soon)</span>
+                      Settings
+                      {emailStatus && !emailStatus.emailVerified && <span className="w-2 h-2 rounded-full" style={{ background: "#f59e0b", position: "absolute", top: 8, right: 12 }} />}
                     </button>
                     <div className="bg-w7" style={{ height: 1, margin: "0 12px" }} />
                     <button
@@ -392,5 +411,90 @@ export default function DashboardHeader({
         </div>
       </div>
     </header>
+
+    {/* Settings Modal */}
+    {settingsModalOpen && (
+      <div className="fixed inset-0 z-[150] flex items-center justify-center modal-backdrop" onClick={() => setSettingsModalOpen(false)}>
+        <div className="w-full max-w-md rounded-xl overflow-hidden" style={{ background: "#111318", border: "1px solid rgba(129,140,248,0.25)", boxShadow: "0 20px 60px rgba(0,0,0,0.8)" }} onClick={e => e.stopPropagation()}>
+          <div className="flex items-center justify-between px-5 py-3" style={{ background: "rgba(129,140,248,0.06)", borderBottom: "1px solid rgba(129,140,248,0.15)" }}>
+            <p className="text-sm font-bold" style={{ color: "#818cf8" }}>Settings</p>
+            <button onClick={() => setSettingsModalOpen(false)} className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.4)", cursor: "pointer" }}>x</button>
+          </div>
+          <div className="px-5 py-4 space-y-4 max-h-[70vh] overflow-y-auto" style={{ scrollbarWidth: "thin" }}>
+            {/* Email Section */}
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: "rgba(255,255,255,0.35)" }}>Email</p>
+              {emailStatus?.hasEmail ? (
+                <div className="rounded-lg px-3 py-2 space-y-1.5" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.5)" }}>{emailStatus.email}</span>
+                    {emailStatus.emailVerified
+                      ? <span className="text-xs font-semibold px-2 py-0.5 rounded" style={{ background: "rgba(34,197,94,0.1)", color: "#22c55e" }}>Verified</span>
+                      : <span className="text-xs font-semibold px-2 py-0.5 rounded" style={{ background: "rgba(245,158,11,0.1)", color: "#f59e0b" }}>Not verified</span>
+                    }
+                  </div>
+                  {!emailStatus.emailVerified && (
+                    <div className="space-y-1">
+                      <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>Password reset requires a verified email.</p>
+                      <button
+                        onClick={async () => {
+                          try {
+                            const r = await fetch("/api/auth/resend-verification", { method: "POST", headers: getAuthHeaders(reviewApiKey) });
+                            const d = await r.json();
+                            setSettingsMsg(d.message || d.error || "Done");
+                            setTimeout(() => setSettingsMsg(""), 5000);
+                          } catch { setSettingsMsg("Network error"); }
+                        }}
+                        className="text-xs px-3 py-1.5 rounded-lg font-semibold"
+                        style={{ background: "rgba(245,158,11,0.1)", color: "#f59e0b", border: "1px solid rgba(245,158,11,0.25)", cursor: "pointer" }}
+                      >Resend verification email</button>
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <p className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>No email set. Use the migration prompt to add one.</p>
+              )}
+            </div>
+
+            {/* Change Password Section */}
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: "rgba(255,255,255,0.35)" }}>Change Password</p>
+              <div className="space-y-2">
+                <input type="password" value={changePwCurrent} onChange={e => setChangePwCurrent(e.target.value)} placeholder="Current password" className="w-full text-xs px-3 py-2 rounded-lg input-dark" style={{ background: "rgba(0,0,0,0.3)", border: "1px solid rgba(255,255,255,0.1)", color: "#e8e8e8" }} />
+                <input type="password" value={changePwNew} onChange={e => setChangePwNew(e.target.value)} placeholder="New password (8+ chars, 1 uppercase, 1 number)" className="w-full text-xs px-3 py-2 rounded-lg input-dark" style={{ background: "rgba(0,0,0,0.3)", border: "1px solid rgba(255,255,255,0.1)", color: "#e8e8e8" }} />
+                <input type="password" value={changePwConfirm} onChange={e => setChangePwConfirm(e.target.value)} placeholder="Confirm new password" className="w-full text-xs px-3 py-2 rounded-lg input-dark" style={{ background: "rgba(0,0,0,0.3)", border: "1px solid rgba(255,255,255,0.1)", color: "#e8e8e8" }} />
+                {changePwNew && changePwConfirm && changePwNew !== changePwConfirm && (
+                  <p className="text-xs" style={{ color: "#ef4444" }}>Passwords don&apos;t match</p>
+                )}
+                <button
+                  onClick={async () => {
+                    setChangePwLoading(true);
+                    try {
+                      const r = await fetch("/api/auth/change-password", { method: "POST", headers: { "Content-Type": "application/json", ...getAuthHeaders(reviewApiKey) }, body: JSON.stringify({ currentPassword: changePwCurrent, newPassword: changePwNew }) });
+                      const d = await r.json();
+                      setSettingsMsg(d.message || d.error || "Done");
+                      if (r.ok) { setChangePwCurrent(""); setChangePwNew(""); setChangePwConfirm(""); }
+                      setTimeout(() => setSettingsMsg(""), 5000);
+                    } catch { setSettingsMsg("Network error"); }
+                    setChangePwLoading(false);
+                  }}
+                  disabled={changePwLoading || !changePwCurrent || !changePwNew || changePwNew !== changePwConfirm || changePwNew.length < 8}
+                  className="w-full text-xs py-2 rounded-lg font-semibold"
+                  style={{ background: "rgba(129,140,248,0.12)", color: "#818cf8", border: "1px solid rgba(129,140,248,0.3)", cursor: changePwLoading || !changePwCurrent || !changePwNew || changePwNew !== changePwConfirm ? "not-allowed" : "pointer", opacity: changePwLoading ? 0.5 : 1 }}
+                >{changePwLoading ? "Changing..." : "Change Password"}</button>
+              </div>
+            </div>
+
+            {/* Feedback */}
+            {settingsMsg && (
+              <div className="rounded-lg px-3 py-2 text-xs" style={{ background: settingsMsg.includes("error") || settingsMsg.includes("incorrect") ? "rgba(239,68,68,0.08)" : "rgba(34,197,94,0.08)", border: `1px solid ${settingsMsg.includes("error") || settingsMsg.includes("incorrect") ? "rgba(239,68,68,0.2)" : "rgba(34,197,94,0.2)"}`, color: settingsMsg.includes("error") || settingsMsg.includes("incorrect") ? "#ef4444" : "#22c55e" }}>
+                {settingsMsg}
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    )}
+    </>
   );
 }
