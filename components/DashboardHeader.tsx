@@ -27,6 +27,7 @@ interface DashboardHeaderProps {
   setInfoOverlayOpen: (v: boolean) => void;
   setInfoOverlayTab: (v: "roadmap" | "changelog" | "guide") => void;
   onTodayOpen?: () => void;
+  onNeedsEmail?: () => void;
 }
 
 export default function DashboardHeader({
@@ -41,6 +42,7 @@ export default function DashboardHeader({
   setOnboardingOpen,
   setInfoOverlayOpen, setInfoOverlayTab,
   onTodayOpen,
+  onNeedsEmail,
 }: DashboardHeaderProps) {
   const settingsPopupRef = useRef<HTMLDivElement>(null);
   const [settingsPopupOpen, setSettingsPopupOpen] = useState(false);
@@ -55,6 +57,9 @@ export default function DashboardHeader({
   const [registerError, setRegisterError] = useState("");
   const [registerSuccess, setRegisterSuccess] = useState(false);
   const [authLoading, setAuthLoading] = useState(false);
+  const [forgotOpen, setForgotOpen] = useState(false);
+  const [forgotEmail, setForgotEmail] = useState("");
+  const [forgotMsg, setForgotMsg] = useState("");
   const [soundMuted, setSoundMuted] = useState(() => {
     try { return localStorage.getItem("qh_sound_muted") === "1"; } catch { return false; }
   });
@@ -103,6 +108,10 @@ export default function DashboardHeader({
       setLoginOpen(false);
       setLoginError("");
       createStarterQuestsIfNew(data.name, data.apiKey).then(() => refresh());
+      // Trigger email migration modal for existing users without email
+      if (data.needsEmail && onNeedsEmail) {
+        setTimeout(() => onNeedsEmail(), 500);
+      }
     } else {
       setLoginError(data.error || "Invalid credentials");
     }
@@ -281,7 +290,7 @@ export default function DashboardHeader({
                           type="text"
                           value={playerNameInput}
                           onChange={e => setPlayerNameInput(e.target.value)}
-                          placeholder="Your name"
+                          placeholder="Email or Username"
                           className="text-xs px-2 py-1 rounded input-dark"
                         />
                         <input
@@ -311,6 +320,26 @@ export default function DashboardHeader({
                             Register
                           </button>
                         </div>
+                        {!forgotOpen ? (
+                          <button onClick={() => setForgotOpen(true)} className="text-xs" style={{ color: "rgba(255,255,255,0.25)", cursor: "pointer", background: "none", border: "none", padding: 0 }}>Forgot password?</button>
+                        ) : (
+                          <div className="space-y-1.5 pt-1" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+                            <input type="email" value={forgotEmail} onChange={e => setForgotEmail(e.target.value)} placeholder="Your email address" className="text-xs px-2 py-1 rounded input-dark w-full" />
+                            <button
+                              onClick={async () => {
+                                try {
+                                  const r = await fetch("/api/auth/forgot-password", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ email: forgotEmail }) });
+                                  const d = await r.json();
+                                  setForgotMsg(d.message || "Check your email.");
+                                } catch { setForgotMsg("Network error"); }
+                              }}
+                              disabled={!forgotEmail.includes("@")}
+                              className="text-xs px-3 py-1 rounded font-medium w-full"
+                              style={{ background: "rgba(59,130,246,0.15)", color: "#60a5fa", border: "1px solid rgba(59,130,246,0.3)", cursor: forgotEmail.includes("@") ? "pointer" : "not-allowed" }}
+                            >Send Reset Link</button>
+                            {forgotMsg && <p className="text-xs" style={{ color: "#22c55e" }}>{forgotMsg}</p>}
+                          </div>
+                        )}
                       </>
                     ) : registerSuccess ? (
                       <div className="flex flex-col gap-2">
