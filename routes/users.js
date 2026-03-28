@@ -119,7 +119,8 @@ router.post('/api/users/:id/register', requireAuth, (req, res) => {
     if (color) state.users[id].color = color;
   }
   saveUsers();
-  res.json({ ok: true, user: state.users[id] });
+  const { passwordHash: _ph, apiKey: _ak, refreshTokens: _rt, spotify: _sp, resetToken: _rst, resetTokenExpiry: _rste, emailVerifyToken: _evt, emailVerifyExpiry: _eve, ...safeUser } = state.users[id];
+  res.json({ ok: true, user: safeUser });
 });
 
 // POST /api/users/:id/award-xp — award XP to a user

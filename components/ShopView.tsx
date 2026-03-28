@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import type { User, ShopItem } from "@/app/types";
 import { useDashboard } from "@/app/DashboardContext";
 import { Tip } from "@/components/GameTooltip";

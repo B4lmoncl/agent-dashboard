@@ -24,8 +24,8 @@ export {
 } from "./QuestBadges";
 
 // ─── Quest Cards ─────────────────────────────────────────────────────────────
+export { RARITY_COLORS } from "@/app/constants";
 export {
-  RARITY_COLORS,
   CompletedQuestRow,
   QuestCard,
   EpicQuestCard,

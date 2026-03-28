@@ -1,13 +1,15 @@
 const router = require('express').Router();
 const crypto = require('crypto');
 const { state, XP_BY_PRIORITY, GOLD_BY_PRIORITY, TEMP_BY_PRIORITY, XP_BY_RARITY, GOLD_BY_RARITY, RUNENSPLITTER_BY_RARITY, STREAK_MILESTONES, RARITY_WEIGHTS, RARITY_COLORS, RARITY_ORDER, EQUIPMENT_SLOTS, LEVELS, PLAYER_QUEST_TYPES, saveQuests, saveUsers, savePlayerProgress, saveManagedKeys, rebuildQuestsById, ensureUserCurrencies } = require('../lib/state');
-const { now, getLevelInfo, getPlayerProgress, getTodayBerlin, awardCurrency } = require('../lib/helpers');
+const { now, getLevelInfo, getPlayerProgress, getTodayBerlin, awardCurrency, sanitizeAgent, calcDynamicForgeTemp, getXpMultiplier, getGoldMultiplier, getForgeXpBase, getForgeGoldBase, getKraftBonus, getWeisheitBonus, getUserGear, getQuestHoardingMalus, getLegendaryModifiers } = require('../lib/helpers');
 const { requireApiKey, requireAuth, requireMasterKey, getMasterKey } = require('../lib/middleware');
 const { assignRarity, selectDailyQuests } = require('../lib/rotation');
 const { resolveQuest } = require('../lib/quest-templates');
-const { POOL_TYPES, POOL_MIX } = require('./quests');
+const { POOL_TYPES, POOL_MIX, getQuestsData } = require('./quests');
 const { isWorldBossActive } = require('./world-boss');
 const { isDungeonActiveForPlayer } = require('./dungeons');
+const { getActiveChallenge, evaluateStageProgress, calculateStageStars, getActiveModifier, getWeeklyData } = require('./challenges-weekly');
+const { ensureExpedition, getExpeditionData } = require('./expedition');
 
 // GET /api/config — expose game constants to frontend (no auth required)
 router.get('/api/config', (req, res) => {
@@ -34,46 +36,257 @@ router.get('/api/config', (req, res) => {
 // GET /api/dashboard?player=X — batch endpoint: returns agents, quests, users,
 // leaderboard, achievements, campaigns, rituals, habits, npcs, favorites in one call.
 // Reduces 14 separate API calls to 1.
-router.get('/api/dashboard', async (req, res) => {
-  // Internally fetch from the real endpoints to reuse their full filtering logic.
-  // This avoids duplicating the complex player-specific quest overlay.
-  const http = require('http');
-  const baseUrl = `http://127.0.0.1:${process.env.PORT || 3001}`;
+// Uses direct function calls instead of internal HTTP requests for performance.
+router.get('/api/dashboard', (req, res) => {
   const playerName = req.query.player || null;
-  const playerParam = playerName ? `?player=${encodeURIComponent(playerName)}` : '';
   const playerLower = playerName ? playerName.toLowerCase() : null;
 
-  // Forward auth headers so internal requests pass middleware
-  const headers = {};
-  if (req.headers['x-api-key']) headers['x-api-key'] = req.headers['x-api-key'];
-  if (req.headers['authorization']) headers['authorization'] = req.headers['authorization'];
-  if (req.headers['cookie']) headers['cookie'] = req.headers['cookie'];
+  // ─── Agents (inline from GET /api/agents) ──────────────────────────────────
+  const STALE_MS = 30 * 60 * 1000;
+  const nowMs = Date.now();
+  const agents = Object.values(state.store.agents).map(agent => {
+    const copy = sanitizeAgent(agent);
+    if (agent.lastUpdate && (nowMs - new Date(agent.lastUpdate).getTime()) > STALE_MS) {
+      if (agent.health === 'ok') copy.health = 'stale';
+    }
+    return copy;
+  });
 
-  function internalGet(path) {
-    return new Promise((resolve) => {
-      const url = `${baseUrl}${path}`;
-      http.get(url, { headers, timeout: 3000 }, (resp) => {
-        let data = '';
-        resp.on('data', chunk => data += chunk);
-        resp.on('end', () => {
-          try { resolve(JSON.parse(data)); } catch { resolve(null); }
-        });
-      }).on('error', () => resolve(null));
+  // ─── Quests (direct call to getQuestsData) ────────────────────────────────
+  const quests = getQuestsData(playerLower, null);
+
+  // ─── Users (inline from GET /api/users — no pagination for dashboard) ─────
+  const companionIds = ['ember_sprite', 'lore_owl', 'gear_golem'];
+  const users = Object.values(state.users).map(u => {
+    const ft = calcDynamicForgeTemp(u.id);
+    const forgeXpPure = getForgeXpBase(u.id);
+    const kraftBonus = getKraftBonus(u.id);
+    const forgeXp = getXpMultiplier(u.id);
+    const forgeGoldPure = getForgeGoldBase(u.id);
+    const weisheitBonus = getWeisheitBonus(u.id);
+    const forgeGold = getGoldMultiplier(u.id);
+    const gear = getUserGear(u.id);
+    const gearBonus = 1 + (gear.xpBonus || 0) / 100;
+    const earnedIds = new Set((u.earnedAchievements || []).map(a => a.id));
+    const compBonus = 1 + 0.02 * companionIds.filter(id => earnedIds.has(id)).length;
+    const bondBonus = 1 + 0.01 * Math.max(0, (u.companion?.bondLevel ?? 1) - 1);
+    const streakGold = Math.min(1 + (u.streakDays || 0) * 0.015, 1.45);
+    const hoarding = getQuestHoardingMalus(u.id);
+    const hoardingMultiplier = hoarding.multiplier;
+    const legendaryMods = getLegendaryModifiers(u.id);
+    const { passwordHash: _ph, apiKey: _ak, refreshTokens: _rt, spotify: _sp, resetToken: _rst, resetTokenExpiry: _rste, emailVerifyToken: _evt, emailVerifyExpiry: _eve, ...safeUser } = u;
+    if (Array.isArray(safeUser.earnedAchievements)) {
+      safeUser.earnedAchievements = safeUser.earnedAchievements.map(a => {
+        const tpl = state.achievementCatalogueById?.get(a.id);
+        if (!tpl) return a;
+        return { ...a, icon: a.icon || tpl.icon, desc: a.desc || tpl.desc, rarity: a.rarity || tpl.rarity, category: a.category || tpl.category };
+      });
+    }
+    return {
+      ...safeUser,
+      forgeTemp: ft,
+      equippedTitle: u.equippedTitle || null,
+      modifiers: {
+        xp: { forge: forgeXpPure, kraft: kraftBonus, gear: gearBonus, companions: compBonus, bond: bondBonus, hoarding: hoardingMultiplier, hoardingCount: hoarding.count, hoardingPct: hoarding.malusPct, legendary: legendaryMods.xpBonus, total: +(forgeXp * gearBonus * compBonus * bondBonus * hoardingMultiplier * legendaryMods.xpBonus).toFixed(2) },
+        gold: { forge: forgeGoldPure, weisheit: weisheitBonus, streak: streakGold, legendary: legendaryMods.goldBonus, total: +(forgeGold * streakGold * legendaryMods.goldBonus).toFixed(2) },
+      },
+    };
+  });
+
+  // ─── Achievements (inline from GET /api/achievements) ─────────────────────
+  const achievements = {
+    achievements: state.ACHIEVEMENT_CATALOGUE.map(a => ({ id: a.id, name: a.name, icon: a.icon, desc: a.desc, category: a.category, rarity: a.rarity, points: a.points || 5, hidden: !!a.hidden, condition: a.condition || null, chainId: a.chainId || null, chainTier: a.chainTier || null })),
+    pointMilestones: state.achievementMilestones || [],
+  };
+
+  // ─── Campaigns (inline from GET /api/campaigns) ───────────────────────────
+  const campaigns = state.campaigns.map(c => {
+    const questDetails = c.questIds.map(id => {
+      const q = state.questsById.get(id);
+      if (!q) return { id, title: '(deleted)', status: 'deleted' };
+      return { id: q.id, title: q.title, status: q.status, priority: q.priority, type: q.type,
+               completedBy: q.completedBy, completedAt: q.completedAt, claimedBy: q.claimedBy,
+               lore: q.lore || null, description: q.description };
     });
+    const completed = questDetails.filter(q => q.status === 'completed').length;
+    return { ...c, quests: questDetails, progress: { completed, total: questDetails.length } };
+  });
+
+  // ─── NPCs/Active (inline from GET /api/npcs/active) ──────────────────────
+  const npcNow = new Date();
+  const playerNpcQuests = playerLower ? (getPlayerProgress(playerLower).npcQuests || {}) : null;
+  const activeNpcs = state.npcState.activeNpcs
+    .filter(a => {
+      const dep = a.departureTime || a.expiresAt;
+      return new Date(dep) > npcNow;
+    })
+    .map(active => {
+      const giver = state.npcGivers.givers.find(g => g.id === active.giverId);
+      if (!giver) return null;
+      const questIds = state.npcState.npcQuestIds[active.giverId] || [];
+      const npcQuests = state.quests.filter(q => questIds.includes(q.id));
+      const depTime = active.departureTime || active.expiresAt;
+      const msLeft = new Date(depTime) - npcNow;
+      return {
+        id: giver.id,
+        name: giver.name,
+        emoji: giver.emoji,
+        title: giver.title,
+        description: giver.description,
+        portrait: giver.portrait || null,
+        greeting: giver.greeting || null,
+        rarity: giver.rarity || 'common',
+        arrivedAt: active.arrivedAt,
+        departureTime: depTime,
+        expiresAt: active.expiresAt,
+        daysLeft: Math.max(0, Math.ceil(msLeft / 86400000)),
+        hoursLeft: Math.max(0, Math.ceil(msLeft / 3600000)),
+        finalReward: giver.finalReward,
+        questChain: questIds.map((qid, idx) => {
+          const q = npcQuests.find(x => x.id === qid);
+          if (!q) return null;
+          let status, claimedBy, completedBy;
+          if (playerNpcQuests) {
+            const playerStatus = playerNpcQuests[qid];
+            if (playerStatus) {
+              status = playerStatus.status;
+              claimedBy = playerStatus.status === 'in_progress' ? playerLower : (playerStatus.completedBy || null);
+              completedBy = playerStatus.completedBy || null;
+            } else {
+              if (idx > 0) {
+                const prevQid = questIds[idx - 1];
+                const prevStatus = playerNpcQuests[prevQid];
+                status = (prevStatus && prevStatus.status === 'completed') ? 'open' : 'locked';
+              } else {
+                status = 'open';
+              }
+              claimedBy = null;
+              completedBy = null;
+            }
+          } else {
+            status = idx === 0 ? 'open' : 'locked';
+            claimedBy = null;
+            completedBy = null;
+          }
+          return {
+            questId: q.id,
+            title: q.title,
+            description: q.description,
+            type: q.type,
+            priority: q.priority,
+            status,
+            claimedBy,
+            completedBy,
+            rewards: q.npcRewards,
+            position: idx + 1,
+            flavorText: q.flavorText || null,
+          };
+        }).filter(Boolean),
+      };
+    }).filter(Boolean);
+
+  // ─── Weekly Challenge (inline from GET /api/weekly-challenge) ──────────────
+  let weeklyChallenge = null;
+  if (playerLower) {
+    const u = playerLower ? state.usersByName.get(playerLower) : null;
+    if (u) {
+      const challenge = getActiveChallenge(u.id);
+      if (challenge && challenge.template) {
+        const WEEKLY_DATA = getWeeklyData();
+        const stageRewards = WEEKLY_DATA.weeklyChallenge?.stageRewards || {};
+        const modifier = getActiveModifier(challenge.weekId);
+        const canAdvance = evaluateStageProgress(u.id, challenge);
+        const stageStars = (challenge.template.stages || []).map((s, i) => {
+          if (challenge.completedStages.includes(i + 1)) {
+            return challenge.stars[i] || 0;
+          }
+          if (i === challenge.currentStage) {
+            return calculateStageStars(s, challenge.progress, u, challenge.stageStartedAt[i], modifier);
+          }
+          return 0;
+        });
+        const totalStars = stageStars.reduce((sum, s) => sum + s, 0);
+        weeklyChallenge = {
+          weekId: challenge.weekId,
+          templateId: challenge.templateId,
+          name: challenge.template.name,
+          icon: challenge.template.icon,
+          stages: (challenge.template.stages || []).map((s, i) => ({
+            ...s,
+            completed: challenge.completedStages.includes(i + 1),
+            current: i === challenge.currentStage,
+            rewards: stageRewards[String(i + 1)] || {},
+            earnedStars: stageStars[i],
+          })),
+          currentStage: challenge.currentStage,
+          progress: challenge.progress,
+          canAdvance,
+          startedAt: challenge.startedAt,
+          stageStartedAt: challenge.stageStartedAt,
+          stars: stageStars,
+          totalStars,
+          claimedMilestones: u.weeklyChallenge.claimedMilestones || [],
+          modifier,
+          speedBonusDays: WEEKLY_DATA.weeklyChallenge?.speedBonusDays || 2,
+          streakDays: u.streakDays || 0,
+        };
+      }
+    }
   }
 
-  // Parallel internal fetches — reuses full route logic including player filtering
-  const npcParam = playerLower ? `?player=${encodeURIComponent(playerLower)}` : '';
-  const [agents, quests, users, achievements, campaigns, npcsData, weeklyChallenge, expedition] = await Promise.all([
-    internalGet('/api/agents'),
-    internalGet(`/api/quests${playerParam}`),
-    internalGet('/api/users'),
-    internalGet('/api/achievements'),
-    internalGet('/api/campaigns'),
-    internalGet(`/api/npcs/active${npcParam}`),
-    playerLower ? internalGet(`/api/weekly-challenge${playerParam}`) : Promise.resolve(null),
-    internalGet(`/api/expedition${playerParam}`),
-  ]);
+  // ─── Expedition (inline from GET /api/expedition) ─────────────────────────
+  let expeditionResult = null;
+  {
+    const exp = ensureExpedition();
+    if (exp) {
+      const EXPEDITION_DATA = getExpeditionData();
+      const template = (EXPEDITION_DATA.expedition?.templates || []).find(t => t.id === exp.templateId);
+      if (template) {
+        const expUser = playerLower ? state.usersByName.get(playerLower) : null;
+        const rewards = EXPEDITION_DATA.expedition?.checkpointRewards || {};
+        const bonusTitles = EXPEDITION_DATA.expedition?.bonusTitles || [];
+        const weekSeed = parseInt(exp.weekId.replace(/\D/g, ''), 10);
+        const bonusTitle = bonusTitles.length > 0 ? bonusTitles[weekSeed % bonusTitles.length] : null;
+        const totalCheckpoints = exp.totalRequired.length;
+        const checkpoints = exp.totalRequired.map((required, i) => {
+          const cpNum = i + 1;
+          const isBonus = cpNum === totalCheckpoints;
+          const rewardKey = isBonus ? 'bonus' : String(cpNum);
+          return {
+            number: cpNum,
+            name: template.checkpointNames[i] || `Checkpoint ${cpNum}`,
+            flavor: (template.checkpointFlavor || [])[i] || null,
+            required,
+            reached: exp.checkpointsReached.includes(cpNum),
+            rewards: rewards[rewardKey] || {},
+            isBonus,
+            bonusTitle: isBonus ? bonusTitle : null,
+            claimedByPlayer: expUser ? (exp.claimedRewards[expUser.id] || []).includes(cpNum) : false,
+          };
+        });
+        const contributions = Object.entries(exp.contributions)
+          .map(([userId, count]) => {
+            const user = state.users[userId];
+            return { userId, name: user?.name || userId, avatar: user?.avatar || '??', color: user?.color || '#888', count };
+          })
+          .sort((a, b) => b.count - a.count);
+        expeditionResult = {
+          weekId: exp.weekId,
+          templateId: exp.templateId,
+          name: template.name,
+          description: template.description,
+          icon: template.icon,
+          progress: exp.progress,
+          playerCount: exp.playerCount,
+          checkpoints,
+          contributions,
+          playerContribution: expUser ? (exp.contributions[expUser.id] || 0) : 0,
+          startedAt: exp.startedAt,
+          progressMessages: template.progressMessages || null,
+        };
+      }
+    }
+  }
 
   // Player-specific lightweight data (direct state access — no complex logic)
   let rituals = [];
@@ -86,8 +299,6 @@ router.get('/api/dashboard', async (req, res) => {
     const pp = state.playerProgress[playerLower];
     favorites = pp?.favorites || [];
   }
-
-  const activeNpcs = (npcsData && npcsData.npcs) || [];
 
   // Daily bonus status (lightweight — direct state access)
   let dailyBonusAvailable = false;
@@ -197,18 +408,18 @@ router.get('/api/dashboard', async (req, res) => {
   }
 
   res.json({
-    agents: agents || [],
+    agents,
     quests: quests || { open: [], inProgress: [], completed: [], suggested: [], rejected: [] },
-    users: users || [],
-    achievements: achievements || [],
-    campaigns: campaigns || [],
+    users,
+    achievements,
+    campaigns,
     rituals,
     habits,
     favorites,
     activeNpcs,
     dailyBonusAvailable,
-    weeklyChallenge: weeklyChallenge?.challenge || null,
-    expedition: expedition?.expedition || null,
+    weeklyChallenge: weeklyChallenge || null,
+    expedition: expeditionResult || null,
     socialSummary,
     dailyMissions,
     // Lightweight active-content status for Today drawer (uses in-memory state, no FS I/O)
@@ -328,69 +539,6 @@ router.get('/api/leaderboard', (req, res) => {
   // Return combined list with agents first for backward compat (client separates via isAgent)
   res.json([...agentsRanked, ...playersRanked]);
 });
-
-// ─── Leaderboard Seasons (TODO: integrate into Season rework) ─────────────────
-// Monthly competitive seasons with bracket-based rankings.
-// Each season runs for one calendar month. At month end, top players earn
-// exclusive titles, currency caches, and cosmetic frames.
-//
-// Brackets: Lvl 1-10 (Bronze), 11-20 (Silver), 21-30 (Gold)
-// Rewards: Top 1 = "Season Champion" title + 1000 stardust + gold frame
-//          Top 3 = "Season Veteran" title + 500 stardust + silver frame
-//          Top 5 = "Season Contender" title + 250 stardust + bronze frame
-//
-// Data model:
-//   state.seasonLeaderboard = {
-//     currentSeason: "2026-03",       // YYYY-MM
-//     seasonName: "Frühlingssturm",   // thematic name
-//     startedAt: ISO,
-//     brackets: {
-//       bronze: [{ userId, xpEarned, questsCompleted, rank }],
-//       silver: [...],
-//       gold: [...]
-//     },
-//     archive: {
-//       "2026-02": { brackets, winners: [...] }
-//     }
-//   }
-//
-// Endpoints:
-// router.get('/api/season/leaderboard', (req, res) => {
-//   const sl = state.seasonLeaderboard || {};
-//   const currentSeason = sl.currentSeason || new Date().toISOString().slice(0, 7);
-//   const agentIds = new Set(Object.keys(state.store.agents));
-//   const players = Object.values(state.users).filter(u => !agentIds.has(u.id));
-//
-//   const brackets = { bronze: [], silver: [], gold: [] };
-//   for (const u of players) {
-//     const { level } = getLevelInfo(u.xp || 0);
-//     const bracket = level <= 10 ? 'bronze' : level <= 20 ? 'silver' : 'gold';
-//     const seasonXp = u.seasonXp?.[currentSeason] || 0;
-//     const seasonQuests = u.seasonQuests?.[currentSeason] || 0;
-//     brackets[bracket].push({
-//       userId: u.id, name: u.name, avatar: u.avatar, level,
-//       xpEarned: seasonXp, questsCompleted: seasonQuests,
-//     });
-//   }
-//   for (const b of Object.keys(brackets)) {
-//     brackets[b].sort((a, b) => b.xpEarned - a.xpEarned || b.questsCompleted - a.questsCompleted);
-//     brackets[b] = brackets[b].map((p, i) => ({ ...p, rank: i + 1 }));
-//   }
-//   res.json({ currentSeason, seasonName: sl.seasonName || 'Season', brackets, archive: sl.archive || {} });
-// });
-//
-// router.post('/api/season/end', requireAuth, (req, res) => {
-//   // Admin-only: archive current season, distribute rewards, reset
-//   // Award titles: season_champion_YYYY_MM, season_veteran_..., season_contender_...
-//   // Award stardust caches and cosmetic frames
-//   // Reset seasonXp / seasonQuests on all users
-// });
-//
-// In onQuestCompletedByUser: track per-season XP
-//   u.seasonXp = u.seasonXp || {};
-//   u.seasonXp[currentSeason] = (u.seasonXp[currentSeason] || 0) + xpEarned;
-//   u.seasonQuests = u.seasonQuests || {};
-//   u.seasonQuests[currentSeason] = (u.seasonQuests[currentSeason] || 0) + 1;
 
 // ─── Quest Pool System ─────────────────────────────────────────────────────────
 // Per-player quest pool. Refresh generates 18 NEW quests from templates (per player),

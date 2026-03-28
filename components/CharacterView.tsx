@@ -10,6 +10,7 @@ import type { User, CharacterData, ClassDef, PixelCharacterProps, GearInstance }
 import type { ToastInput } from "@/components/ToastStack";
 import { useDashboard } from "@/app/DashboardContext";
 import { getAuthHeaders } from "@/lib/auth-client";
+import { RARITY_COLORS, RARITY_LABELS } from "@/app/constants";
 
 // ─── PixelCharacter Canvas Component ─────────────────────────────────────────
 
@@ -326,23 +327,6 @@ const RARITY_BORDER: Record<number, string> = {
   5: "#f97316",  // orange
 };
 
-const RARITY_COLORS: Record<string, string> = {
-  common: "#9ca3af",
-  uncommon: "#22c55e",
-  rare: "#3b82f6",
-  epic: "#a855f7",
-  legendary: "#f97316",
-  unique: "#e6cc80",
-};
-
-const RARITY_LABELS: Record<string, string> = {
-  common: "Common",
-  uncommon: "Uncommon",
-  rare: "Rare",
-  epic: "Epic",
-  legendary: "Legendary",
-  unique: "Unique",
-};
 
 /** Resolve display rarity — unique items show as "unique" instead of "legendary" */
 function displayRarity(item: Record<string, unknown>): string {
@@ -1761,8 +1745,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                 )}
                 {/* Named Set Bonuses */}
                 {(charData.namedSetBonuses ?? []).map(ns => {
-                  const rarityColors: Record<string, string> = { common: "#9ca3af", uncommon: "#22c55e", rare: "#60a5fa", epic: "#a78bfa", legendary: "#f97316" };
-                  const c = rarityColors[ns.rarity] ?? "#a78bfa";
+                  const c = RARITY_COLORS[ns.rarity] ?? "#a78bfa";
                   return (
                     <div key={ns.id} className="mb-2 px-2 py-1.5 rounded-lg" style={{ background: `${c}10`, border: `1px solid ${c}30` }}>
                       <div className="flex items-center justify-between">
@@ -2526,7 +2509,6 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                 return ta - tb || a.localeCompare(b);
               });
 
-              const rarityColors: Record<string, string> = { common: "#9ca3af", uncommon: "#22c55e", rare: "#60a5fa", epic: "#a855f7", legendary: "#f97316" };
 
               if (sortedSources.length === 0) {
                 return <p className="text-xs text-center py-8" style={{ color: "rgba(255,255,255,0.3)" }}>No items in this category.</p>;
@@ -2551,7 +2533,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                         {/* Items grid */}
                         <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                           {items.map(item => {
-                            const color = rarityColors[item.rarity] || "#9ca3af";
+                            const color = RARITY_COLORS[item.rarity] || "#9ca3af";
                             const sourceLabel = getSourceLabel(item.source);
                             return (
                               <TipCustom

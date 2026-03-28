@@ -132,11 +132,4 @@ export function ClickablePriorityBadge({ priority, onClick }: { priority: Quest[
   );
 }
 
-export const RARITY_COLORS: Record<string, string> = {
-  common: "#9ca3af",
-  uncommon: "#22c55e",
-  rare: "#3b82f6",
-  epic: "#a855f7",
-  legendary: "#f97316",
-  companion: "#ff6b9d",
-};
+export { RARITY_COLORS } from "@/app/constants";

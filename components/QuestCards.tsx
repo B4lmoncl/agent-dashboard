@@ -8,6 +8,7 @@ import {
   CategoryBadge, ProductBadge, HumanInputBadge, TypeBadge,
   AgentBadge, RecurringBadge, PriorityBadge,
 } from "./QuestBadges";
+import { RARITY_COLORS } from "@/app/constants";
 
 const QUEST_BOARD_FLAVORS = [
   "Gefunden am schwarzen Brett",
@@ -17,15 +18,6 @@ const QUEST_BOARD_FLAVORS = [
   "Ein dringender Auftrag",
   "Vom Schicksal bestimmt",
 ];
-
-export const RARITY_COLORS: Record<string, string> = {
-  common: "#9ca3af",
-  uncommon: "#22c55e",
-  rare: "#3b82f6",
-  epic: "#a855f7",
-  legendary: "#f97316",
-  companion: "#ff6b9d",
-};
 
 function ChainDots({ chainIndex, chainTotal, color }: { chainIndex: number; chainTotal: number; color: string }) {
   if (chainTotal <= 1) return null;

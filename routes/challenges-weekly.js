@@ -432,3 +432,7 @@ module.exports = router;
 module.exports.loadWeeklyChallenges = loadWeeklyChallenges;
 module.exports.getWeekId = getWeekId;
 module.exports.getActiveModifier = getActiveModifier;
+module.exports.getActiveChallenge = getActiveChallenge;
+module.exports.evaluateStageProgress = evaluateStageProgress;
+module.exports.calculateStageStars = calculateStageStars;
+module.exports.getWeeklyData = () => WEEKLY_DATA;

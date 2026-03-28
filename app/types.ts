@@ -695,34 +695,6 @@ export interface DungeonTemplate {
   };
 }
 
-export interface DungeonParticipant {
-  name: string;
-  avatar: string;
-  color: string;
-  gearScore: number;
-  bondLevel: number;
-}
-
-export interface DungeonRun {
-  runId: string;
-  dungeonId: string;
-  dungeonName: string;
-  dungeonIcon: string;
-  dungeonAccent: string;
-  tier: string;
-  createdBy: string;
-  createdAt: string;
-  status: "forming" | "active";
-  participants: DungeonParticipant[];
-  invitedPlayers: { name: string; avatar: string; color: string }[];
-  startedAt: string | null;
-  completesAt: string | null;
-  collected: string[];
-  minPlayers: number;
-  maxPlayers: number;
-  gearScoreThreshold: number;
-}
-
 export interface DungeonHistory {
   runId: string;
   dungeonId: string;

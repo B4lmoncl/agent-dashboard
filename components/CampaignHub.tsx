@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useCallback } from "react";
 import { Campaign, CampaignQuest, Quest, QuestsData } from "@/app/types";
 import { timeAgo } from "@/app/utils";
 import { priorityConfig } from "@/app/config";

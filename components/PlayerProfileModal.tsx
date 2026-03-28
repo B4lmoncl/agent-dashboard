@@ -7,6 +7,7 @@ import { useDashboard } from "@/app/DashboardContext";
 import { getAuthHeaders } from "@/lib/auth-client";
 import { getUserLevel, formatLegendaryLabel } from "@/app/utils";
 import { Tip, TipCustom } from "@/components/GameTooltip";
+import { RARITY_COLORS } from "@/app/constants";
 
 // ─── Types ──────────────────────────────────────────────────────────────────
 
@@ -39,7 +40,6 @@ interface ProfileData {
 
 // ─── Constants ──────────────────────────────────────────────────────────────
 
-const RARITY_COLORS: Record<string, string> = { common: "#9ca3af", uncommon: "#22c55e", rare: "#3b82f6", epic: "#a855f7", legendary: "#f97316", unique: "#e6cc80" };
 const SLOT_LABELS: Record<string, string> = { weapon: "Weapon", shield: "Shield", helm: "Helm", armor: "Armor", amulet: "Amulet", boots: "Boots" };
 const PROF_META: Record<string, { name: string; color: string; icon: string }> = {
   schmied: { name: "Blacksmith", color: "#f59e0b", icon: "/images/icons/prof-schmied.png" },

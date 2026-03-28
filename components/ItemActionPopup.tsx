@@ -3,16 +3,9 @@
 import { useState, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import type { CharacterData } from "@/app/types";
+import { RARITY_COLORS, STAT_LABELS } from "@/app/constants";
 
 type InventoryItem = CharacterData["inventory"][number];
-
-const RARITY_COLORS: Record<string, string> = {
-  common: "#9ca3af",
-  uncommon: "#22c55e",
-  rare: "#3b82f6",
-  epic: "#a855f7",
-  legendary: "#f97316",
-};
 
 const RARITY_BG: Record<string, string> = {
   common: "rgba(156,163,175,0.08)",
@@ -21,8 +14,6 @@ const RARITY_BG: Record<string, string> = {
   epic: "rgba(168,85,247,0.15)",
   legendary: "rgba(249,115,22,0.18)",
 };
-
-const STAT_LABELS: Record<string, string> = { kraft: "Kraft", ausdauer: "Ausdauer", weisheit: "Weisheit", glueck: "Glück" };
 
 interface ItemActionPopupProps {
   item: InventoryItem;
