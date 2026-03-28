@@ -1636,7 +1636,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                     </div>
                     <span className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>{titlesOpen ? "▲" : "▼"}</span>
                   </button>
-                  {titlesOpen && (() => {
+                  {titlesOpen && createPortal((() => {
                     const earnedIds = new Set(earnedTitles.map(t => t.id));
                     const earnedMap = new Map(earnedTitles.map(t => [t.id, t]));
 
@@ -1875,7 +1875,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                       </div>
                       </div>
                     );
-                  })()}
+                  })(), document.body)}
                 </div>
 
                 {/* Gear Score (prominent, replaces Forge Temp which is shown elsewhere) */}
@@ -2043,7 +2043,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
       </div>
 
       {/* Profile Settings Modal */}
-      {profileSettingsOpen && (
+      {profileSettingsOpen && createPortal(
         <ProfileSettingsModal
           playerName={playerName}
           apiKey={apiKey}
@@ -2051,8 +2051,8 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
           initialPartnerName={charData?.partnerName ?? ""}
           onClose={() => setProfileSettingsOpen(false)}
           onSaved={fetchChar}
-        />
-      )}
+        />,
+      document.body)}
 
       {/* Item Action Popup */}
       {selectedItem && charData && (() => {

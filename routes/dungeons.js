@@ -340,7 +340,7 @@ router.post('/api/dungeons/create', requireAuth, (req, res) => {
     return res.status(400).json({ error: `Max ${dungeon.maxPlayers} players total (you + ${dungeon.maxPlayers - 1} friends)` });
   }
 
-  // Validate each invited player exists and is a friend
+  // Validate each invited player exists, is a friend, and meets level requirement
   for (const invName of invited) {
     const invUser = state.usersByName.get(invName);
     if (!invUser) {
@@ -348,6 +348,10 @@ router.post('/api/dungeons/create', requireAuth, (req, res) => {
     }
     if (!areFriends(uid, invUser.id || invName)) {
       return res.status(400).json({ error: `"${invName}" is not on your friends list` });
+    }
+    const invLevel = getLevelInfo(invUser.xp || 0).level;
+    if (invLevel < dungeon.minLevel) {
+      return res.status(400).json({ error: `${invUser.name || invName} is Level ${invLevel} — this dungeon requires Level ${dungeon.minLevel}` });
     }
   }
 
