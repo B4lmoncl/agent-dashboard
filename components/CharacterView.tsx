@@ -408,8 +408,8 @@ function getItemLevel(item: InventoryItem | GearInstance): number {
   let ilvl = Object.values(stats).reduce((sum, v) => sum + (typeof v === "number" ? v : 0), 0);
   ilvl += RARITY_ILVL_BONUS[("rarity" in item ? item.rarity : "") || "common"] || 0;
   if ("legendaryEffect" in item && item.legendaryEffect) ilvl += 20;
-  if ("sockets" in item && Array.isArray((item as Record<string, unknown>).sockets)) {
-    for (const s of (item as Record<string, unknown>).sockets as (string | null)[]) {
+  if ("sockets" in item && Array.isArray((item as unknown as Record<string, unknown>).sockets)) {
+    for (const s of (item as unknown as Record<string, unknown>).sockets as (string | null)[]) {
       if (s) ilvl += 5;
     }
   }
@@ -751,17 +751,41 @@ const EQUIP_SLOT_LABELS: { slot: string; emoji: string; label: string; iconSrc?:
   { slot: "boots", emoji: "", iconSrc: "/images/icons/equip-boots.png", label: "Boots" },
 ];
 
-function GearSlotRow({ slot, iconSrc, label, item, onUnequip, unequipping }: {
+function GearSlotRow({ slot, iconSrc, label, item, onUnequip, unequipping, compact }: {
   slot: string;
   iconSrc?: string;
   label: string;
   item: InventoryItem | null;
   onUnequip: (slot: string) => void;
   unequipping: string | null;
+  compact?: boolean;
 }) {
   const [hovered, setHovered] = useState(false);
   const mousePosRef = useRef({ x: 0, y: 0 });
   const borderColor = item ? (RARITY_COLORS[item.rarity] || "#9ca3af") : "rgba(255,255,255,0.1)";
+
+  if (compact) {
+    return (
+      <>
+        <div
+          className="flex items-center justify-center rounded-lg"
+          style={{ width: 56, height: 56, background: item ? `${borderColor}08` : "rgba(255,255,255,0.02)", border: `2px solid ${borderColor}`, cursor: item ? "help" : "default" }}
+          onMouseEnter={(e) => { mousePosRef.current = { x: e.clientX, y: e.clientY }; if (item) setHovered(true); }}
+          onMouseMove={(e) => { mousePosRef.current = { x: e.clientX, y: e.clientY }; }}
+          onMouseLeave={() => setHovered(false)}
+          title={item ? item.name : `${label} — Empty`}
+        >
+          {item?.icon
+            ? <img src={item.icon} alt={item.name} width={40} height={40} style={{ imageRendering: "auto" }} onError={e => { e.currentTarget.style.display = "none"; }} />
+            : iconSrc
+              ? <img src={iconSrc} alt={label} width={28} height={28} style={{ imageRendering: "auto", opacity: 0.2 }} onError={e => { e.currentTarget.style.display = "none"; }} />
+              : <span className="text-xs" style={{ color: "rgba(255,255,255,0.15)" }}>{label.slice(0, 3)}</span>
+          }
+        </div>
+        {hovered && item && createPortal(<InventoryTooltip item={item} mousePosRef={mousePosRef} />, document.body)}
+      </>
+    );
+  }
 
   return (
     <>
@@ -1382,15 +1406,74 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
             ))}
           </div>
 
-          {/* Gear tab */}
+          {/* Gear tab — Paper Doll Layout */}
           {rightTab === "equipment" && (
-            <div className="space-y-1.5">
+            <div>
+              {/* Paper Doll Grid */}
+              <div className="relative mx-auto" style={{ width: 240, height: 320 }}>
+                {/* Silhouette background */}
+                <div className="absolute inset-0 flex items-center justify-center" style={{ opacity: 0.03 }}>
+                  <span style={{ fontSize: 120 }}>{"\u2666"}</span>
+                </div>
+                {/* Positioned slots */}
+                {EQUIP_SLOT_LABELS.map(({ slot, iconSrc, label }) => {
+                  const eqRaw = charData?.equipment[slot];
+                  const isInstance = eqRaw && typeof eqRaw === 'object';
+                  const gi = isInstance ? eqRaw as GearInstance : null;
+                  const equippedItemId = gi ? (gi.instanceId || gi.templateId) : eqRaw;
+                  const item = gi
+                    ? { id: gi.instanceId || gi.templateId, name: gi.name, slot: gi.slot, rarity: gi.rarity || 'common', stats: gi.stats || {}, icon: gi.icon || undefined, tier: gi.tier || 0, minLevel: gi.reqLevel || 0, desc: gi.desc, legendaryEffect: gi.legendaryEffect, affixes: gi.affixRolls, binding: gi.binding, bound: gi.bound }
+                    : equippedItemId ? charData?.inventory.find(i => i.id === equippedItemId) ?? null : null;
+                  const rc = item ? (RARITY_COLORS[item.rarity] || "#9ca3af") : "rgba(255,255,255,0.08)";
+                  // Slot positions on the paper doll
+                  const positions: Record<string, { top: number; left: number }> = {
+                    helm:   { top: 0,   left: 88 },
+                    amulet: { top: 60,  left: 170 },
+                    weapon: { top: 110, left: 0 },
+                    armor:  { top: 110, left: 88 },
+                    shield: { top: 110, left: 176 },
+                    ring:   { top: 200, left: 0 },
+                    boots:  { top: 250, left: 88 },
+                  };
+                  const pos = positions[slot] || { top: 0, left: 0 };
+                  // Gem socket dots
+                  const sockets = gi?.sockets || [];
+                  const GEM_COLORS: Record<string, string> = { ruby: "#ef4444", sapphire: "#3b82f6", emerald: "#22c55e", topaz: "#f59e0b", amethyst: "#a855f7", diamond: "#e2e8f0" };
+
+                  return (
+                    <div key={slot} className="absolute" style={{ top: pos.top, left: pos.left }}>
+                      <GearSlotRow
+                        slot={slot}
+                        iconSrc={iconSrc}
+                        label={label}
+                        item={item}
+                        onUnequip={handleUnequip}
+                        unequipping={unequipping}
+                        compact
+                      />
+                      {/* Gem Quick-View dots */}
+                      {sockets.length > 0 && (
+                        <div className="flex gap-0.5 justify-center mt-0.5">
+                          {sockets.map((gemKey: string | null, i: number) => {
+                            if (!gemKey) return <span key={i} className="w-1.5 h-1.5 rounded-full" style={{ background: "rgba(255,255,255,0.1)" }} />;
+                            const gemType = gemKey.split("_").slice(0, -1).join("_");
+                            const color = GEM_COLORS[gemType] || "#888";
+                            return <span key={i} className="w-1.5 h-1.5 rounded-full" style={{ background: color, boxShadow: `0 0 3px ${color}` }} />;
+                          })}
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* Detailed list fallback below paper doll */}
+              <div className="space-y-1.5 mt-4 pt-3" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
               {EQUIP_SLOT_LABELS.map(({ slot, iconSrc, label }) => {
                 const eqRaw = charData?.equipment[slot];
                 const isInstance = eqRaw && typeof eqRaw === 'object';
                 const gi = isInstance ? eqRaw as GearInstance : null;
                 const equippedItemId = gi ? (gi.instanceId || gi.templateId) : eqRaw;
-                // For instance objects, build item directly from equipment data
                 const item = gi
                   ? { id: gi.instanceId || gi.templateId, name: gi.name, slot: gi.slot, rarity: gi.rarity || 'common', stats: gi.stats || {}, icon: gi.icon || undefined, tier: gi.tier || 0, minLevel: gi.reqLevel || 0, desc: gi.desc, legendaryEffect: gi.legendaryEffect, affixes: gi.affixRolls, binding: gi.binding, bound: gi.bound }
                   : equippedItemId ? charData?.inventory.find(i => i.id === equippedItemId) ?? null : null;
@@ -1406,8 +1489,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                   />
                 );
               })}
-
-
+              </div>
 
 
               {/* Passive Items */}

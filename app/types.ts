@@ -454,6 +454,7 @@ export interface GearInstance {
   affixRolls?: { primary: { stat: string; value: number }[]; minor: { stat: string; value: number }[] };
   binding?: "boe" | "bop" | null;
   bound?: boolean;
+  sockets?: (string | null)[];
 }
 
 export interface CharacterData {
