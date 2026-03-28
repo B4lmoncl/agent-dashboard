@@ -7,6 +7,11 @@ const fs = require('fs');
 const path = require('path');
 const router = require('express').Router();
 const { state, saveUsers, ensureUserCurrencies, RUNTIME_DIR, ensureRuntimeDir } = require('../lib/state');
+
+// ─── Player lock for expedition claims ──────────────────────────────────────
+const _expClaimLocks = new Map();
+function acquireExpClaimLock(uid) { if (_expClaimLocks.has(uid)) return false; _expClaimLocks.set(uid, true); return true; }
+function releaseExpClaimLock(uid) { _expClaimLocks.delete(uid); }
 const { now, awardCurrency } = require('../lib/helpers');
 const { requireAuth } = require('../lib/middleware');
 const { getWeekId } = require('./challenges-weekly');
@@ -181,6 +186,8 @@ router.get('/api/expedition', (req, res) => {
 // POST /api/expedition/claim — claim checkpoint reward
 router.post('/api/expedition/claim', requireAuth, (req, res) => {
   const uid = req.auth?.userId;
+  if (!acquireExpClaimLock(uid)) return res.status(429).json({ error: 'Claim in progress' });
+  try {
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'User not found' });
 
@@ -246,6 +253,7 @@ router.post('/api/expedition/claim', requireAuth, (req, res) => {
     checkpoint: cpNum,
     rewards,
   });
+  } finally { releaseExpClaimLock(uid); }
 });
 
 module.exports = router;
