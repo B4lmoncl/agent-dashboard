@@ -184,12 +184,13 @@ export function WandererRest({
                     style={{ background: "none", border: "none", cursor: "pointer", padding: 0 }}
                   >
                     <div
-                      className="relative rounded-lg overflow-hidden flex-shrink-0"
+                      className={`relative rounded-lg overflow-hidden flex-shrink-0${["rare", "epic", "legendary"].includes(npc.rarity) ? " crystal-breathe" : ""}`}
                       style={{
                         width: 148, height: 148,
                         border: `3px solid ${rc}60`,
                         boxShadow: `0 0 0 0 ${rc}`,
                         transition: "box-shadow 0.2s ease",
+                        ...(["rare", "epic", "legendary"].includes(npc.rarity) ? { "--glow-color": `${rc}40` } as React.CSSProperties : {}),
                       }}
                       onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.boxShadow = `0 0 18px 4px ${rc}55`; }}
                       onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.boxShadow = `0 0 0 0 ${rc}`; }}

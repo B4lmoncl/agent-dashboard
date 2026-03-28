@@ -1018,6 +1018,21 @@ button[disabled] {
 }
 .crystal-breathe { animation: crystal-breathe 4s ease-in-out infinite; }
 
+/* Section header crystal accent — used on <Tip heading> elements */
+.heading-crystal-glow {
+  position: relative;
+}
+.heading-crystal-glow::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--floor-color, rgba(255,255,255,0.15)), transparent);
+  animation: crystal-breathe 4s ease-in-out infinite;
+}
+
 /* HP/progress bar pulse — for boss HP, rep bars, BP XP bar */
 @keyframes bar-pulse {
   0%, 100% { filter: brightness(1); }
