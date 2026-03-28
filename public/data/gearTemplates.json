@@ -14123,6 +14123,351 @@
       },
       "flavorText": "Das Siegel der Klinge. Wer es trägt, hat das Feuer bestanden.",
       "binding": "boe"
+    },
+    {
+      "id": "craft-schmied-abgrundstahl-brustplatte",
+      "name": "Abgrundstahl-Brustplatte",
+      "slot": "armor",
+      "tier": 4,
+      "reqLevel": 35,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Geschmiedet aus dem Stahl, der nur in den tiefsten Grüften liegt — wo selbst das Licht sich weigert zu fallen.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [2, 3],
+          "pool": [
+            { "stat": "ausdauer", "min": 4, "max": 7 },
+            { "stat": "kraft", "min": 4, "max": 7 },
+            { "stat": "weisheit", "min": 4, "max": 7 }
+          ]
+        },
+        "minor": {
+          "count": [1, 2],
+          "pool": [
+            { "stat": "vitalitaet", "min": 3, "max": 5 },
+            { "stat": "fokus", "min": 3, "max": 5 }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary",
+      "flavorText": "Es gibt Stahl, der im Feuer härtet. Und es gibt Stahl, der im Abgrund erwacht.",
+      "binding": "boe"
+    },
+    {
+      "id": "craft-schmied-riss-geschmiedete-beinschienen",
+      "name": "Rissgeschmiedete Beinschienen",
+      "slot": "armor",
+      "tier": 4,
+      "reqLevel": 37,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Der Riss hinterlässt Spuren — in Metall wie in Erinnerung.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [2, 3],
+          "pool": [
+            { "stat": "ausdauer", "min": 4, "max": 7 },
+            { "stat": "kraft", "min": 4, "max": 7 },
+            { "stat": "glueck", "min": 4, "max": 7 }
+          ]
+        },
+        "minor": {
+          "count": [1, 2],
+          "pool": [
+            { "stat": "tempo", "min": 3, "max": 5 },
+            { "stat": "vitalitaet", "min": 3, "max": 5 }
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "cooldown_reduction",
+        "min": 2,
+        "max": 4,
+        "label": "Rissecho: -{value}% Abklingzeit auf Handwerksrezepte"
+      },
+      "setId": "legendary",
+      "flavorText": "Wer durch den Riss geht, kehrt verändert zurück. Das Metall versteht das besser als die meisten.",
+      "binding": "boe"
+    },
+    {
+      "id": "craft-schneider-schattengewebe-robe",
+      "name": "Schattengewebe-Robe",
+      "slot": "armor",
+      "tier": 4,
+      "reqLevel": 34,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Der Stoff flüstert, wenn man ihn berührt — und schweigt, wenn man zuhört.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [2, 3],
+          "pool": [
+            { "stat": "weisheit", "min": 4, "max": 7 },
+            { "stat": "ausdauer", "min": 4, "max": 7 },
+            { "stat": "glueck", "min": 4, "max": 7 }
+          ]
+        },
+        "minor": {
+          "count": [1, 2],
+          "pool": [
+            { "stat": "fokus", "min": 3, "max": 5 },
+            { "stat": "charisma", "min": 3, "max": 5 }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary",
+      "flavorText": "Gewebt aus der Stille zwischen zwei Atemzügen. Leichter als Luft, schwerer als Schuld.",
+      "binding": "boe"
+    },
+    {
+      "id": "craft-schneider-rissgewebte-kapuze",
+      "name": "Rissgewebte Kapuze",
+      "slot": "helm",
+      "tier": 4,
+      "reqLevel": 37,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Wer durch den Riss blickt, braucht etwas, das den Blick erwidert.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [2, 3],
+          "pool": [
+            { "stat": "weisheit", "min": 4, "max": 7 },
+            { "stat": "glueck", "min": 4, "max": 7 },
+            { "stat": "kraft", "min": 4, "max": 7 }
+          ]
+        },
+        "minor": {
+          "count": [1, 2],
+          "pool": [
+            { "stat": "fokus", "min": 3, "max": 5 },
+            { "stat": "tempo", "min": 3, "max": 5 }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary",
+      "flavorText": "Die Kapuze verbirgt nicht das Gesicht — sie verbirgt, was das Gesicht gesehen hat.",
+      "binding": "boe"
+    },
+    {
+      "id": "craft-leder-gruft-geschnittene-armschienen",
+      "name": "Gruftgeschnittene Armschienen",
+      "slot": "armor",
+      "tier": 4,
+      "reqLevel": 34,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Das Leder stammt von Kreaturen, die das Tageslicht vergessen haben.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [2, 3],
+          "pool": [
+            { "stat": "kraft", "min": 4, "max": 7 },
+            { "stat": "ausdauer", "min": 4, "max": 7 },
+            { "stat": "glueck", "min": 4, "max": 7 }
+          ]
+        },
+        "minor": {
+          "count": [1, 2],
+          "pool": [
+            { "stat": "tempo", "min": 3, "max": 5 },
+            { "stat": "vitalitaet", "min": 3, "max": 5 }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary",
+      "flavorText": "Manche Häute erzählen Geschichten. Diese hier erzählt nur eine — und die endet schlecht.",
+      "binding": "boe"
+    },
+    {
+      "id": "craft-leder-risslaeufer-stiefel",
+      "name": "Rissläufer-Stiefel",
+      "slot": "boots",
+      "tier": 4,
+      "reqLevel": 38,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Für jene, die durch den Riss gehen — und wiederkommen wollen.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [2, 3],
+          "pool": [
+            { "stat": "ausdauer", "min": 4, "max": 7 },
+            { "stat": "kraft", "min": 4, "max": 7 },
+            { "stat": "glueck", "min": 4, "max": 7 }
+          ]
+        },
+        "minor": {
+          "count": [1, 2],
+          "pool": [
+            { "stat": "tempo", "min": 3, "max": 5 },
+            { "stat": "fokus", "min": 3, "max": 5 }
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "dungeon_loot_bonus",
+        "min": 2,
+        "max": 5,
+        "label": "Rissschreiter: +{value}% Dungeon-Beute"
+      },
+      "setId": "legendary",
+      "flavorText": "Die Sohlen sind abgelaufen von Pfaden, die auf keiner Karte verzeichnet sind.",
+      "binding": "boe"
+    },
+    {
+      "id": "craft-waffenschmied-untiefen-klinge",
+      "name": "Untiefen-Klinge",
+      "slot": "weapon",
+      "tier": 4,
+      "reqLevel": 35,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Die Klinge summt ein Lied, das nur in der Dunkelheit Sinn ergibt.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [2, 3],
+          "pool": [
+            { "stat": "kraft", "min": 4, "max": 7 },
+            { "stat": "weisheit", "min": 4, "max": 7 },
+            { "stat": "glueck", "min": 4, "max": 7 }
+          ]
+        },
+        "minor": {
+          "count": [1, 2],
+          "pool": [
+            { "stat": "tempo", "min": 3, "max": 5 },
+            { "stat": "fokus", "min": 3, "max": 5 }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary",
+      "flavorText": "Sie singt nicht für den Träger. Sie singt für das, was kommt.",
+      "binding": "boe"
+    },
+    {
+      "id": "craft-waffenschmied-rissbrecher-schild",
+      "name": "Rissbrecher-Schild",
+      "slot": "shield",
+      "tier": 4,
+      "reqLevel": 36,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Manche Schilde schützen den Körper — dieser schützt die Realität.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [2, 3],
+          "pool": [
+            { "stat": "ausdauer", "min": 4, "max": 7 },
+            { "stat": "kraft", "min": 4, "max": 7 },
+            { "stat": "weisheit", "min": 4, "max": 7 }
+          ]
+        },
+        "minor": {
+          "count": [1, 2],
+          "pool": [
+            { "stat": "vitalitaet", "min": 3, "max": 5 },
+            { "stat": "charisma", "min": 3, "max": 5 }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary",
+      "flavorText": "Der Riss drückt dagegen. Der Schild hält. Noch.",
+      "binding": "boe"
+    },
+    {
+      "id": "craft-juwelier-abgrund-amulett",
+      "name": "Abgrund-Amulett",
+      "slot": "amulet",
+      "tier": 4,
+      "reqLevel": 33,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Der Stein darin leuchtet — aber nicht vom Licht.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [2, 3],
+          "pool": [
+            { "stat": "weisheit", "min": 4, "max": 7 },
+            { "stat": "glueck", "min": 4, "max": 7 },
+            { "stat": "kraft", "min": 4, "max": 7 }
+          ]
+        },
+        "minor": {
+          "count": [1, 2],
+          "pool": [
+            { "stat": "charisma", "min": 3, "max": 5 },
+            { "stat": "fokus", "min": 3, "max": 5 }
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "crit_chance",
+        "min": 2,
+        "max": 4,
+        "label": "Abgrundblick: +{value}% Chance auf doppelte Quest-Belohnungen"
+      },
+      "setId": "legendary",
+      "flavorText": "Wer lange genug in den Abgrund starrt, findet darin einen Spiegel.",
+      "binding": "boe"
+    },
+    {
+      "id": "craft-juwelier-riss-signet",
+      "name": "Riss-Signet",
+      "slot": "ring",
+      "tier": 4,
+      "reqLevel": 37,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Ein Ring, der den Riss nicht verschließt — sondern ihn versteht.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [2, 3],
+          "pool": [
+            { "stat": "glueck", "min": 4, "max": 7 },
+            { "stat": "weisheit", "min": 4, "max": 7 },
+            { "stat": "ausdauer", "min": 4, "max": 7 }
+          ]
+        },
+        "minor": {
+          "count": [1, 2],
+          "pool": [
+            { "stat": "fokus", "min": 3, "max": 5 },
+            { "stat": "tempo", "min": 3, "max": 5 }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary",
+      "flavorText": "Das Siegel trägt kein Wappen. Nur eine Narbe in der Form des Risses selbst.",
+      "binding": "boe"
     }
   ],
   "setBonus": {
