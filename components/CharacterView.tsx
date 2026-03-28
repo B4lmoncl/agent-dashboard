@@ -456,7 +456,7 @@ function InventoryTooltip({ item, mousePosRef, equippedItem, playerLevel }: { it
     <div
       ref={ref}
       className="fixed z-[200] pointer-events-none"
-      style={{ left: 0, top: 0, minWidth: 260, maxWidth: 340, willChange: "transform" }}
+      style={{ left: 0, top: 0, minWidth: "min(260px, 90vw)", maxWidth: 340, willChange: "transform" }}
     >
       <div
         className="rounded-lg p-3 space-y-2"
@@ -1096,12 +1096,12 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
       />
 
       {/* ── Main 3-column layout ── */}
-      <div className="relative flex gap-3 p-4" style={{ zIndex: 4, height: "calc(100% - 0px)", minHeight: 0 }}>
+      <div className="relative flex flex-col md:flex-row gap-3 p-4" style={{ zIndex: 4, height: "calc(100% - 0px)", minHeight: 0 }}>
 
         {/* LEFT: Inventory Panel */}
         <div
           className="flex-shrink-0 rounded-xl p-2 overflow-y-auto"
-          style={{ width: 310, maxHeight: "calc(100vh - 200px)", background: "rgba(0,0,0,0.75)", border: "1px solid rgba(255,255,255,0.1)", minHeight: 0, paddingRight: 12 }}
+          style={{ width: "100%", maxWidth: 310, maxHeight: "calc(100vh - 200px)", background: "rgba(0,0,0,0.75)", border: "1px solid rgba(255,255,255,0.1)", minHeight: 0, paddingRight: 12 }}
         >
           {/* Header + Sort */}
           <div className="flex items-center justify-between mb-2">
@@ -1401,7 +1401,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
         {/* RIGHT: Stats / Gear Panel */}
         <div
           className="flex-shrink-0 rounded-xl p-3 overflow-y-auto"
-          style={{ width: 250, maxHeight: 490, background: "rgba(0,0,0,0.75)", border: "1px solid rgba(255,255,255,0.1)", minHeight: 0 }}
+          style={{ width: "100%", maxWidth: 250, maxHeight: 490, background: "rgba(0,0,0,0.75)", border: "1px solid rgba(255,255,255,0.1)", minHeight: 0 }}
         >
           {/* Tab toggle */}
           <div className="flex gap-1 mb-3">
@@ -1538,7 +1538,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                           }
                           <div className="flex-1 min-w-0" title={item.desc || item.name}>
                             <p className="text-xs font-semibold" style={{ color: "#e0e0e0" }}>{item.name}</p>
-                            {item.desc && <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)", lineHeight: 1.3 }}>{item.desc}</p>}
+                            {item.desc && <p className="text-xs line-clamp-3 overflow-hidden" style={{ color: "rgba(255,255,255,0.35)", lineHeight: 1.3 }}>{item.desc}</p>}
                           </div>
                         </div>
                       ))}
@@ -1630,7 +1630,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
             return (
               <>
                 {/* Hero Numbers */}
-                <div className="grid grid-cols-3 gap-2 mb-4">
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mb-4">
                   <Tip k="hero_numbers"><div className="rounded-lg px-2 py-2 text-center cursor-help" style={{ background: "rgba(239,68,68,0.06)", border: "1px solid rgba(239,68,68,0.15)" }}>
                     <p className="text-lg font-bold font-mono" style={{ color: "#ef4444" }}>{heroOffense}</p>
                     <p className="text-xs" style={{ color: "rgba(239,68,68,0.5)" }}>Offense</p>
@@ -2525,7 +2525,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                           </p>
                         </div>
                         {/* Items grid */}
-                        <div className="grid grid-cols-3 gap-2">
+                        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                           {items.map(item => {
                             const color = rarityColors[item.rarity] || "#9ca3af";
                             const sourceLabel = getSourceLabel(item.source);

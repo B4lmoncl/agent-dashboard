@@ -26,7 +26,7 @@ function getCurrencyInfo(key: string) {
 function GachaInfoModal({ onClose }: { onClose: () => void }) {
   return (
     <ModalOverlay isOpen onClose={onClose} zIndex={60}>
-      <div data-feedback-id="gacha-view.info-modal" className="w-full max-w-lg max-h-[80vh] rounded-2xl p-6 overflow-y-auto" style={{ background: "linear-gradient(180deg, #1a1020 0%, #12121c 100%)", border: "1px solid rgba(167,139,250,0.25)", boxShadow: "0 0 60px rgba(167,139,250,0.1)", overscrollBehavior: "contain" }}>
+      <div data-feedback-id="gacha-view.info-modal" className="w-full max-w-[calc(100vw-2rem)] sm:max-w-lg max-h-[80vh] rounded-2xl p-6 overflow-y-auto" style={{ background: "linear-gradient(180deg, #1a1020 0%, #12121c 100%)", border: "1px solid rgba(167,139,250,0.25)", boxShadow: "0 0 60px rgba(167,139,250,0.1)", overscrollBehavior: "contain" }}>
         <div className="flex items-center justify-between mb-5">
           <h3 className="text-base font-bold flex items-center gap-2" style={{ color: "#e8e8e8" }}>
             <span style={{ fontSize: 20 }}>★</span> How the Wheel of Stars Works
@@ -119,7 +119,7 @@ function BannerPreviewCard({
     <button
       data-feedback-id={`gacha-view.banner.${banner.id}`}
       onClick={onClick}
-      className="flex-1 min-w-[280px] rounded-2xl p-6 text-left transition-all duration-300 group relative overflow-hidden active:scale-[0.97] active:brightness-125"
+      className="flex-1 min-w-[200px] sm:min-w-[280px] rounded-2xl p-6 text-left transition-all duration-300 group relative overflow-hidden active:scale-[0.97] active:brightness-125"
       style={{
         background: `linear-gradient(160deg, ${isFeatured ? "#1c1328" : "#16123a"} 0%, #0c0c18 70%, ${isFeatured ? "#120e1e" : "#0e0e2a"} 100%)`,
         border: `1px solid ${isFeatured ? "rgba(167,139,250,0.3)" : "rgba(129,140,248,0.35)"}`,
@@ -387,7 +387,7 @@ function BannerPullModal({
 
   return (
     <ModalOverlay isOpen onClose={onClose} zIndex={55}>
-      <div data-feedback-id="gacha-view.banner-modal" className="w-full max-w-lg rounded-2xl relative" style={{
+      <div data-feedback-id="gacha-view.banner-modal" className="w-full max-w-[calc(100vw-2rem)] sm:max-w-lg rounded-2xl relative" style={{
         overflow: "visible",
         background: `linear-gradient(160deg, ${isFeatured ? "#1c1328" : "#16123a"} 0%, #0f0f1a 100%)`,
         border: `1px solid ${isFeatured ? "rgba(167,139,250,0.2)" : "rgba(129,140,248,0.25)"}`,
@@ -831,7 +831,7 @@ export default function GachaView({ onRefresh, onPullComplete, onNavigate }: {
 
       {/* History modal */}
       <ModalOverlay isOpen={historyOpen} onClose={closeHistory}>
-        <div data-feedback-id="gacha-view.history-modal" className="w-full max-w-2xl max-h-[70vh] rounded-2xl p-5 overflow-y-auto" style={{ background: "#1a1a1a", border: "1px solid rgba(255,255,255,0.1)", overscrollBehavior: "contain" }}>
+        <div data-feedback-id="gacha-view.history-modal" className="w-full max-w-[calc(100vw-2rem)] sm:max-w-2xl max-h-[70vh] rounded-2xl p-5 overflow-y-auto" style={{ background: "#1a1a1a", border: "1px solid rgba(255,255,255,0.1)", overscrollBehavior: "contain" }}>
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-sm font-semibold" style={{ color: "#e8e8e8" }}>Pull History (last 50)</h3>
             <button onClick={closeHistory} style={{ color: "rgba(255,255,255,0.4)", background: "none", border: "none", cursor: "pointer", fontSize: 18 }}>✕</button>

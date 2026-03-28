@@ -450,7 +450,7 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
                 </div>
                 <div>
                   <label className="text-xs font-semibold mb-1.5 block" style={{ color: "rgba(165,180,252,0.55)" }}>Difficulty</label>
-                  <div className="grid grid-cols-4 gap-1.5">
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5">
                     {DIFFICULTY_TIERS_VOW.map(d => (
                       <button key={d.id} onClick={() => setNewVowDifficulty(d.id)} className="ritual-tier-btn text-center p-2 rounded-lg" style={{ background: newVowDifficulty === d.id ? `${d.color}22` : "rgba(0,0,0,0.2)", border: `1px solid ${newVowDifficulty === d.id ? d.color : "rgba(255,255,255,0.07)"}`, boxShadow: newVowDifficulty === d.id ? `0 0 12px ${d.color}44` : "none" }}>
                         <div className="text-xs font-bold" style={{ color: newVowDifficulty === d.id ? d.color : "rgba(255,255,255,0.55)" }}>{d.label}</div>
@@ -462,7 +462,7 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
                 </div>
                 <div>
                   <label className="text-xs font-semibold mb-2 block" style={{ color: "rgba(165,180,252,0.55)" }}><Tip k="aetherbond">Aetherbond</Tip></label>
-                  <div className="grid grid-cols-3 gap-1.5" style={vowCommitmentError ? { border: "1px solid #ef4444", borderRadius: 8, padding: 2 } : {}}>
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-1.5" style={vowCommitmentError ? { border: "1px solid #ef4444", borderRadius: 8, padding: 2 } : {}}>
                     {COMMITMENT_TIERS_VOW.map(tier => (
                       <button key={tier.id} onClick={() => { setNewVowCommitment(tier.id); if (vowCommitmentError) setVowCommitmentError(false); }} className="ritual-tier-btn text-left p-2 rounded-lg" style={{ background: newVowCommitment === tier.id ? `${tier.color}1a` : "rgba(0,0,0,0.2)", border: `1px solid ${newVowCommitment === tier.id ? tier.color : "rgba(255,255,255,0.07)"}`, boxShadow: newVowCommitment === tier.id ? `0 0 12px ${tier.color}55` : "none" }}>
                         <div className="text-xs font-bold" style={{ color: newVowCommitment === tier.id ? tier.color : "rgba(255,255,255,0.5)" }}>{tier.label}</div>
@@ -566,7 +566,7 @@ export function AntiRitualePanel({ onRewardCelebration }: { onRewardCelebration?
                 <div className="p-5 space-y-4">
                   <div>
                     <label className="text-xs font-semibold mb-2 block" style={{ color: "rgba(165,180,252,0.55)" }}>Neuer Ätherbund (muss länger sein)</label>
-                    <div className="grid grid-cols-3 gap-1.5">
+                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-1.5">
                       {COMMITMENT_TIERS_VOW.filter(tier => tier.days > currentDays).map(tier => (
                         <button key={tier.id} onClick={() => setExtendCommitment(tier.id)} className="text-left p-2 rounded-lg" style={{ background: extendCommitment === tier.id ? `${tier.color}1a` : "rgba(0,0,0,0.2)", border: `1px solid ${extendCommitment === tier.id ? tier.color : "rgba(255,255,255,0.07)"}`, boxShadow: extendCommitment === tier.id ? `0 0 12px ${tier.color}55` : "none" }}>
                           <div className="text-xs font-bold" style={{ color: extendCommitment === tier.id ? tier.color : "rgba(255,255,255,0.5)" }}>{tier.label}</div>

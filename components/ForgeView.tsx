@@ -788,7 +788,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                       </span>
                     )}
                   </div>
-                  <p className="text-sm" style={{ color: "rgba(255,255,255,0.4)", lineHeight: 1.4 }}>{prof.description}
+                  <p className="text-sm line-clamp-2 overflow-hidden" style={{ color: "rgba(255,255,255,0.4)", lineHeight: 1.4 }}>{prof.description}
                     <span className="text-xs ml-1" style={{ color: "rgba(255,255,255,0.2)" }}>· {recipes.filter(r => r.profession === prof.id).length} recipes</span>
                   </p>
                   {synergy && (() => {
@@ -995,7 +995,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                       <p className="text-sm font-semibold" style={{ color: owned ? "#818cf8" : "#e8e8e8" }}>
                         {gear.name} {owned && <span style={{ color: "rgba(129,140,248,0.5)" }}>✓</span>}
                       </p>
-                      <p className="text-sm" style={{ color: "rgba(255,255,255,0.3)" }}>{gear.desc}</p>
+                      <p className="text-sm line-clamp-2 overflow-hidden" style={{ color: "rgba(255,255,255,0.3)" }}>{gear.desc}</p>
                     </div>
                     {!owned && (
                       <button
@@ -1110,7 +1110,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
           style={{ background: "rgba(0,0,0,0.82)" }}
           onClick={e => { if (e.target === e.currentTarget) closeNpcModal(); }}
         >
-          <div className="relative w-full max-w-xl rounded-xl npc-modal-content" style={{ background: "#141418", border: `1px solid ${selectedNpc.color}30`, maxHeight: "85vh", overflowY: "auto", overflowX: "hidden" }}>
+          <div className="relative w-full max-w-[calc(100vw-2rem)] sm:max-w-xl rounded-xl npc-modal-content" style={{ background: "#141418", border: `1px solid ${selectedNpc.color}30`, maxHeight: "85vh", overflowY: "auto", overflowX: "hidden" }}>
             {/* Close */}
             <button onClick={closeNpcModal} className="forge-btn absolute top-3 right-3 z-10 w-8 h-8 rounded-full flex items-center justify-center" style={{ background: "rgba(255,255,255,0.08)" }}>
               <span className="text-white text-sm">&#10005;</span>
@@ -1124,7 +1124,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                 </div>
                 <div>
                   <div className="flex items-center gap-2">
-                    <p className="text-lg font-bold" style={{ color: selectedNpc.color }}>{selectedNpc.npcName}</p>
+                    <p className="text-lg font-bold truncate" style={{ color: selectedNpc.color }}>{selectedNpc.npcName}</p>
                     {selectedNpc.rank && selectedNpc.rank !== "Novice" && (
                       <span className="text-xs px-1.5 py-0.5 rounded font-semibold" style={{ background: `${selectedNpc.rankColor}15`, color: selectedNpc.rankColor, border: `1px solid ${selectedNpc.rankColor}30` }}>{selectedNpc.rank}</span>
                     )}
@@ -1341,7 +1341,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                             <span style={{ fontSize: 12, color: "rgba(255,255,255,0.15)" }}>?</span>
                             <p className="text-sm font-semibold" style={{ color: "rgba(255,255,255,0.15)" }}>???</p>
                           </div>
-                          <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.1)" }}>{recipe.desc || "Unknown recipe"}</p>
+                          <p className="text-xs mt-0.5 line-clamp-2" style={{ color: "rgba(255,255,255,0.1)" }}>{recipe.desc || "Unknown recipe"}</p>
                         </div>
                       );
                     }
@@ -1381,7 +1381,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                               {/* Skill-up indicator dot */}
                               <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: skillUp?.color || "#6b7280" }} title={skillUp?.label || ""} />
                             </div>
-                            <p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,0.4)" }}>{recipe.desc}</p>
+                            <p className="text-sm mt-0.5 line-clamp-2" style={{ color: "rgba(255,255,255,0.4)" }}>{recipe.desc}</p>
                             {/* Stat preview for slot-targeting recipes */}
                             {meetsLevel && (recipe.id === "reinforce_armor" || recipe.id === "enchant_socket" || recipe.id === "sharpen_blade" || recipe.id === "permanent_enchant") && equippedSlots[selectedSlot] && typeof equippedSlots[selectedSlot] === "object" && (() => {
                               const currentStats = (equippedSlots[selectedSlot] as Record<string, unknown>).stats as Record<string, number> || {};
@@ -1800,7 +1800,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                   {enchantOptions && (
                     <div className="rounded-lg p-3" style={{ background: "rgba(168,85,247,0.05)", border: "1px solid rgba(168,85,247,0.2)" }}>
                       <p className="text-xs font-semibold uppercase tracking-widest mb-3" style={{ color: "#a855f7" }}>Choose a value for {enchantStat}</p>
-                      <div className="grid grid-cols-3 gap-2">
+                      <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                         {enchantOptions.map(opt => (
                           <button key={opt.index} onClick={() => handleEnchantChoose(opt.index)}
                             disabled={enchantLoading}
@@ -2269,7 +2269,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
       {/* ─── Auto-Salvage Modal ──────────────────────────────────────────── */}
       {autoSalvageOpen && createPortal(
         <div className="fixed inset-0 z-[150] flex items-center justify-center modal-backdrop" onClick={closeAutoSalvage}>
-          <div className="w-full max-w-lg rounded-xl overflow-hidden" style={{ background: "#141209", border: "1px solid rgba(255,140,0,0.25)", boxShadow: "0 20px 60px rgba(0,0,0,0.8)" }} onClick={e => e.stopPropagation()}>
+          <div className="w-full max-w-[calc(100vw-2rem)] sm:max-w-lg rounded-xl overflow-hidden" style={{ background: "#141209", border: "1px solid rgba(255,140,0,0.25)", boxShadow: "0 20px 60px rgba(0,0,0,0.8)" }} onClick={e => e.stopPropagation()}>
             {/* Header */}
             <div className="flex items-center justify-between px-5 py-3" style={{ background: "rgba(255,140,0,0.06)", borderBottom: "1px solid rgba(255,140,0,0.15)" }}>
               <p className="text-sm font-bold" style={{ color: "#ff8c00" }}>Auto-Salvage</p>
@@ -2390,7 +2390,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
       {/* ─── Ätherwürfel Modal ──────────────────────────────────────────── */}
       {cubeOpen && createPortal(
         <div className="fixed inset-0 z-[150] flex items-center justify-center modal-backdrop" onClick={closeCube}>
-          <div className="w-full max-w-xl rounded-xl overflow-hidden" style={{ background: "#12100a", border: "1px solid rgba(249,115,22,0.25)", boxShadow: "0 20px 60px rgba(0,0,0,0.8)" }} onClick={e => e.stopPropagation()}>
+          <div className="w-full max-w-[calc(100vw-2rem)] sm:max-w-xl rounded-xl overflow-hidden" style={{ background: "#12100a", border: "1px solid rgba(249,115,22,0.25)", boxShadow: "0 20px 60px rgba(0,0,0,0.8)" }} onClick={e => e.stopPropagation()}>
             {/* Header */}
             <div className="flex items-center justify-between px-5 py-3" style={{ background: "rgba(249,115,22,0.06)", borderBottom: "1px solid rgba(249,115,22,0.15)" }}>
               <p className="text-sm font-bold" style={{ color: "#f97316" }}>Ätherwürfel</p>
@@ -2399,7 +2399,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
 
             <div className="px-5 py-4 space-y-4">
               {/* 3 Hex Slots */}
-              <div className="grid grid-cols-3 gap-3">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                 {(["offensive", "defensive", "utility"] as const).map(slot => {
                   const active = cubeData?.[slot];
                   const colors = { offensive: "#ef4444", defensive: "#3b82f6", utility: "#22c55e" };

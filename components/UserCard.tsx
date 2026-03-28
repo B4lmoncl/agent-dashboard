@@ -196,7 +196,7 @@ export function UserCard({ user, classes = [], onClick, onNavigate }: { user: Us
 
       {/* ── Stats Grid: Forge + Quests + Achievement Points ── */}
       <div className="px-3 pb-2.5">
-        <div className="grid grid-cols-3 gap-2">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
           {/* Forge Temp */}
           <Tip k="forge_temp">
             <div

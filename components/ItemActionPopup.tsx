@@ -64,7 +64,7 @@ export default function ItemActionPopup({
 
   // Position popup near the clicked item
   const popupStyle: React.CSSProperties = (() => {
-    const pw = 280;
+    const pw = Math.min(280, window.innerWidth - 40);
     const ph = 400;
     let left = anchorRect.x + anchorRect.width + 8;
     let top = anchorRect.y;
@@ -129,7 +129,7 @@ export default function ItemActionPopup({
 
         {/* Description */}
         {item.desc && (
-          <p className="text-xs leading-relaxed" style={{ color: "rgba(255,255,255,0.5)" }}>{item.desc}</p>
+          <p className="text-xs leading-relaxed break-words overflow-hidden" style={{ color: "rgba(255,255,255,0.5)" }}>{item.desc}</p>
         )}
 
         {/* Flavor text */}

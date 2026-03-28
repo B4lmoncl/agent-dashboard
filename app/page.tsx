@@ -801,7 +801,7 @@ export default function Dashboard() {
         </div>
       )}
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 py-8 space-y-8" style={{ position: "relative", zIndex: 2, background: "rgba(11,13,17,0.75)", borderRadius: 16, backdropFilter: "blur(8px)", marginTop: 8 }}>
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 py-4 sm:py-8 space-y-4 sm:space-y-8" style={{ position: "relative", zIndex: 2, background: "rgba(11,13,17,0.75)", borderRadius: 16, backdropFilter: "blur(8px)", marginTop: 8 }}>
         {/* Stats — Player-specific */}
         <div className="grid grid-cols-1 sm:grid-cols-4 gap-3" data-tutorial="stat-cards">
           {!playerName && !loading && (
@@ -1206,7 +1206,7 @@ export default function Dashboard() {
                           setDashView(floorRoomKeys[0] as typeof dashView);
                         }
                       }}
-                      className="btn-interactive text-sm font-bold px-4 py-2 rounded-t-lg transition-all inline-flex items-center gap-1.5 relative"
+                      className="btn-interactive text-sm font-bold px-2 sm:px-4 py-2 rounded-t-lg transition-all inline-flex items-center gap-1.5 relative"
                       style={{
                         background: isActive ? "#111" : "transparent",
                         color: isActive ? floor.color : "rgba(255,255,255,0.3)",
@@ -1329,7 +1329,7 @@ export default function Dashboard() {
                       key={room.key}
                       data-feedback-id={`nav.tab.${room.key}`}
                       onClick={() => setDashView(room.key as typeof dashView)}
-                      className="btn-interactive text-sm font-semibold px-3 py-1.5 rounded transition-all inline-flex items-center gap-1.5 relative"
+                      className="btn-interactive text-sm font-semibold px-2 sm:px-3 py-1.5 rounded transition-all inline-flex items-center gap-1.5 relative"
                       style={{
                         background: isActive ? "#252525" : "transparent",
                         color: isActive ? "#f0f0f0" : "rgba(255,255,255,0.3)",

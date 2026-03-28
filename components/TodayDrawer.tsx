@@ -940,7 +940,7 @@ export default function TodayDrawer({
                 </div>
 
                 {/* 2-Column Card Grid */}
-                <div className="grid grid-cols-3 gap-2 mb-1">
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mb-1">
                   {cat.items.map((item, itemIdx) => (
                     <button
                       key={item.id}

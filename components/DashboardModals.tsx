@@ -159,7 +159,7 @@ export default function DashboardModals({
           <div className="fixed inset-0 flex items-center justify-center" style={{ zIndex: 9999 }}
             onClick={() => setModifierOpen(false)}>
             <div className="absolute inset-0 modal-backdrop-blur" />
-            <div className="relative rounded-2xl p-5 bg-surface border-w12" style={{ boxShadow: "0 12px 48px rgba(0,0,0,0.7)", minWidth: 320, maxWidth: 400, maxHeight: "85vh", overflowY: "auto" }}
+            <div className="relative rounded-2xl p-5 bg-surface border-w12" style={{ boxShadow: "0 12px 48px rgba(0,0,0,0.7)", minWidth: "min(320px, calc(100vw - 2rem))", maxWidth: 400, maxHeight: "85vh", overflowY: "auto" }}
               onClick={e => e.stopPropagation()}>
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-sm font-bold text-bright">Modifier Breakdown</h3>
@@ -222,7 +222,7 @@ export default function DashboardModals({
         <ModalPortal>
           <div className="fixed inset-0 flex items-center justify-center" style={{ zIndex: 9999 }} onClick={() => setStreakInfoOpen(false)}>
             <div className="absolute inset-0 modal-backdrop-blur" />
-            <div className="relative rounded-2xl p-5 bg-surface border-w12" style={{ boxShadow: "0 12px 48px rgba(0,0,0,0.7)", minWidth: 300, maxWidth: 380, maxHeight: "85vh", overflowY: "auto" }} onClick={e => e.stopPropagation()}>
+            <div className="relative rounded-2xl p-5 bg-surface border-w12" style={{ boxShadow: "0 12px 48px rgba(0,0,0,0.7)", minWidth: "min(300px, calc(100vw - 2rem))", maxWidth: 380, maxHeight: "85vh", overflowY: "auto" }} onClick={e => e.stopPropagation()}>
               <div className="flex items-center justify-between mb-3">
                 <h3 className="text-sm font-bold" style={{ color: "#f97316" }}>Forge Streak</h3>
                 <button onClick={() => setStreakInfoOpen(false)} className="btn-close">×</button>
@@ -250,7 +250,7 @@ export default function DashboardModals({
         <ModalPortal>
           <div className="fixed inset-0 flex items-center justify-center" style={{ zIndex: 9999 }} onClick={() => setActiveQuestsInfoOpen(false)}>
             <div className="absolute inset-0 modal-backdrop-blur" />
-            <div className="relative rounded-2xl p-5 bg-surface border-w12" style={{ boxShadow: "0 12px 48px rgba(0,0,0,0.7)", minWidth: 300, maxWidth: 380, maxHeight: "85vh", overflowY: "auto" }} onClick={e => e.stopPropagation()}>
+            <div className="relative rounded-2xl p-5 bg-surface border-w12" style={{ boxShadow: "0 12px 48px rgba(0,0,0,0.7)", minWidth: "min(300px, calc(100vw - 2rem))", maxWidth: 380, maxHeight: "85vh", overflowY: "auto" }} onClick={e => e.stopPropagation()}>
               <div className="flex items-center justify-between mb-3">
                 <h3 className="text-sm font-bold" style={{ color: "#ef4444" }}>Quests</h3>
                 <button onClick={() => setActiveQuestsInfoOpen(false)} className="btn-close">×</button>
@@ -286,7 +286,7 @@ export default function DashboardModals({
         <ModalPortal>
           <div className="fixed inset-0 flex items-center justify-center" style={{ zIndex: 9999 }} onClick={() => setXpInfoOpen(false)}>
             <div className="absolute inset-0 modal-backdrop-blur" />
-            <div className="relative rounded-2xl p-5 bg-surface" style={{ border: "1px solid rgba(167,139,250,0.25)", boxShadow: "0 12px 48px rgba(0,0,0,0.7)", minWidth: 320, maxWidth: 400 }} onClick={e => e.stopPropagation()}>
+            <div className="relative rounded-2xl p-5 bg-surface" style={{ border: "1px solid rgba(167,139,250,0.25)", boxShadow: "0 12px 48px rgba(0,0,0,0.7)", minWidth: "min(320px, calc(100vw - 2rem))", maxWidth: 400 }} onClick={e => e.stopPropagation()}>
               <div className="flex items-center justify-between mb-3">
                 <h3 className="text-sm font-bold" style={{ color: "#a78bfa" }}>How XP Works</h3>
                 <button onClick={() => setXpInfoOpen(false)} className="btn-close">×</button>

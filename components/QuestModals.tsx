@@ -21,7 +21,7 @@ export function CreateQuestModal({ quests, users, reviewApiKey, onRefresh, onClo
   const [tab, setTab] = useState<"personal" | "learning" | "household" | "social" | "coop" | "challenges">("personal");
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: "rgba(0,0,0,0.75)" }} onClick={onClose}>
-      <div className="rounded-2xl w-full max-w-2xl overflow-hidden" style={{ background: "linear-gradient(160deg, #221c12 0%, #1a1509 60%, #1e190e 100%)", border: "1px solid rgba(180,140,70,0.35)", boxShadow: "0 0 60px rgba(139,92,246,0.12), 0 0 30px rgba(180,140,70,0.08)", maxHeight: "90vh", overflowY: "auto" }} onClick={e => e.stopPropagation()}>
+      <div className="rounded-2xl w-full max-w-[calc(100vw-2rem)] sm:max-w-2xl overflow-hidden" style={{ background: "linear-gradient(160deg, #221c12 0%, #1a1509 60%, #1e190e 100%)", border: "1px solid rgba(180,140,70,0.35)", boxShadow: "0 0 60px rgba(139,92,246,0.12), 0 0 30px rgba(180,140,70,0.08)", maxHeight: "90vh", overflowY: "auto" }} onClick={e => e.stopPropagation()}>
         <div className="flex items-center justify-between p-4 border-b" style={{ borderColor: "rgba(180,140,70,0.15)" }}>
           <div>
             <h2 className="text-sm font-bold" style={{ color: "#e8d5a3" }}>Quest Board</h2>

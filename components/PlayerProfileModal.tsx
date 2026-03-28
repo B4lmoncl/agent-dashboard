@@ -222,7 +222,7 @@ export default function PlayerProfileModal({ playerId, onClose, onAddFriend, onM
             </div>
 
             {/* Stats row */}
-            <div className="grid grid-cols-5 gap-px" style={{ background: "rgba(255,255,255,0.04)" }}>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-px" style={{ background: "rgba(255,255,255,0.04)" }}>
               {[
                 { label: "XP", value: profile.xp.toLocaleString(), color: "#a855f7", tip: "xp" as const },
                 { label: "Quests", value: profile.questsCompleted.toLocaleString(), color: "#8b5cf6", tip: "quest_board" as const },
@@ -243,7 +243,7 @@ export default function PlayerProfileModal({ playerId, onClose, onAddFriend, onM
             {profile.equipped && Object.keys(profile.equipped).length > 0 && (
               <div className="p-4" style={{ borderTop: "1px solid rgba(255,255,255,0.04)" }}>
                 <p className="text-xs font-bold uppercase tracking-wider mb-3 text-w35">Equipment</p>
-                <div className="grid grid-cols-3 gap-2">
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                   {(["weapon", "shield", "helm", "armor", "amulet", "boots"] as const).map(slot => {
                     const item = profile.equipped[slot];
                     if (!item) return (

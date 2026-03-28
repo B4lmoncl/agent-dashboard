@@ -80,7 +80,7 @@ function FlavorToastContent({ toast, onClose }: { toast: { message: string; icon
   return (
     <div
       className="rounded-xl px-4 py-3 flex items-center gap-3 shadow-2xl"
-      style={{ background: bg, border: `1px solid ${border}`, boxShadow: `0 8px 32px ${shadow}`, maxWidth: 320, width: "100%" }}
+      style={{ background: bg, border: `1px solid ${border}`, boxShadow: `0 8px 32px ${shadow}`, maxWidth: "min(320px, calc(100vw - 48px))", width: "100%" }}
     >
       {toast.icon && toast.icon.startsWith("/") ? <img src={toast.icon} alt="" width={28} height={28} style={{ imageRendering: "auto", flexShrink: 0 }} onError={e => { e.currentTarget.style.display = "none"; }} /> : <span className="text-2xl flex-shrink-0">{toast.icon}</span>}
       <div className="flex-1 min-w-0">
@@ -96,7 +96,7 @@ function AchievementToastContent({ achievement, onClose, onAchievementClick }: {
   return (
     <div
       className="rounded-xl px-5 py-4 flex items-center gap-4 shadow-2xl"
-      style={{ background: "#252525", border: "1px solid rgba(245,158,11,0.5)", boxShadow: "0 8px 48px rgba(245,158,11,0.3)", maxWidth: 360, width: "100%", cursor: onAchievementClick ? "pointer" : undefined }}
+      style={{ background: "#252525", border: "1px solid rgba(245,158,11,0.5)", boxShadow: "0 8px 48px rgba(245,158,11,0.3)", maxWidth: "min(360px, calc(100vw - 48px))", width: "100%", cursor: onAchievementClick ? "pointer" : undefined }}
       onClick={() => { if (onAchievementClick && achievement.id) { onAchievementClick(achievement.id); onClose(); } }}
     >
       {achievement.icon && achievement.icon.startsWith("/") ? <img src={achievement.icon} alt="" width={28} height={28} style={{ imageRendering: "auto", flexShrink: 0 }} onError={e => { e.currentTarget.style.display = "none"; }} /> : <span className="text-2xl flex-shrink-0">{achievement.icon}</span>}
@@ -120,7 +120,7 @@ function ChainToastContent({ parentTitle, template, onAccept, onClose }: {
   return (
     <div
       className="rounded-xl px-4 py-3 shadow-2xl"
-      style={{ background: "#252525", border: "1px solid rgba(139,92,246,0.5)", boxShadow: "0 8px 32px rgba(139,92,246,0.2)", maxWidth: 320, width: "100%" }}
+      style={{ background: "#252525", border: "1px solid rgba(139,92,246,0.5)", boxShadow: "0 8px 32px rgba(139,92,246,0.2)", maxWidth: "min(320px, calc(100vw - 48px))", width: "100%" }}
     >
       <div className="flex items-start gap-3">
         <span className="text-2xl flex-shrink-0">—</span>
@@ -168,7 +168,7 @@ function ItemToastContent({ toast, onClose }: { toast: { itemName: string; messa
   return (
     <div
       className="rounded-xl px-4 py-3 flex items-center gap-3 shadow-2xl"
-      style={{ background: rs.bg, border: `1px solid ${rs.border}`, boxShadow: `0 8px 32px ${rs.shadow}`, maxWidth: 340, width: "100%" }}
+      style={{ background: rs.bg, border: `1px solid ${rs.border}`, boxShadow: `0 8px 32px ${rs.shadow}`, maxWidth: "min(340px, calc(100vw - 48px))", width: "100%" }}
     >
       {toast.icon && toast.icon.startsWith("/")
         ? <img src={toast.icon} alt="" width={32} height={32} style={{ imageRendering: "auto", flexShrink: 0 }} onError={e => { e.currentTarget.style.display = "none"; }} />
@@ -186,7 +186,7 @@ function PurchaseToastContent({ message, onClose }: { message: string; onClose: 
   return (
     <div
       className="rounded-xl px-4 py-3 flex items-center gap-2 shadow-2xl"
-      style={{ background: "#1a1a1a", border: "1px solid rgba(245,158,11,0.5)", boxShadow: "0 8px 32px rgba(0,0,0,0.6)", maxWidth: 280, width: "100%" }}
+      style={{ background: "#1a1a1a", border: "1px solid rgba(245,158,11,0.5)", boxShadow: "0 8px 32px rgba(0,0,0,0.6)", maxWidth: "min(280px, calc(100vw - 48px))", width: "100%" }}
     >
       <span style={{ fontSize: "16px" }}>—</span>
       <span className="text-sm font-semibold" style={{ color: "#f0f0f0" }}>{message}</span>
@@ -199,7 +199,7 @@ function CompanionBondToastContent({ toast, onClose }: { toast: { companionName:
   return (
     <div
       className="rounded-xl px-4 py-3 flex items-center gap-3 shadow-2xl"
-      style={{ background: toast.bondLevelUp ? "#2a1e2e" : "#1e1a2e", border: `1px solid ${toast.bondLevelUp ? "rgba(255,107,157,0.5)" : "rgba(255,107,157,0.3)"}`, boxShadow: `0 8px 32px rgba(255,107,157,${toast.bondLevelUp ? "0.25" : "0.1"})`, maxWidth: 340, width: "100%" }}
+      style={{ background: toast.bondLevelUp ? "#2a1e2e" : "#1e1a2e", border: `1px solid ${toast.bondLevelUp ? "rgba(255,107,157,0.5)" : "rgba(255,107,157,0.3)"}`, boxShadow: `0 8px 32px rgba(255,107,157,${toast.bondLevelUp ? "0.25" : "0.1"})`, maxWidth: "min(340px, calc(100vw - 48px))", width: "100%" }}
     >
       <span className="text-2xl flex-shrink-0">{toast.companionEmoji}</span>
       <div className="flex-1 min-w-0">
@@ -219,7 +219,7 @@ function ErrorToastContent({ message, onClose }: { message: string; onClose: () 
   return (
     <div
       className="rounded-xl px-4 py-3 flex items-center gap-3 shadow-2xl"
-      style={{ background: "#2a1010", border: "1px solid rgba(239,68,68,0.5)", boxShadow: "0 8px 32px rgba(239,68,68,0.15)", maxWidth: 320, width: "100%" }}
+      style={{ background: "#2a1010", border: "1px solid rgba(239,68,68,0.5)", boxShadow: "0 8px 32px rgba(239,68,68,0.15)", maxWidth: "min(320px, calc(100vw - 48px))", width: "100%" }}
     >
       <span className="text-lg flex-shrink-0" style={{ color: "#ef4444" }}>!</span>
       <p className="text-sm font-medium flex-1" style={{ color: "#fca5a5" }}>{message}</p>
@@ -284,7 +284,7 @@ export function ToastStack({ toasts, onRemove, onAchievementClick }: { toasts: T
         bottom: 24,
         right: 24,
         pointerEvents: "none",
-        maxWidth: 380,
+        maxWidth: "min(380px, calc(100vw - 48px))",
       }}
     >
       {toasts.map((toast, i) => (

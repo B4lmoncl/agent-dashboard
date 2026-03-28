@@ -1492,7 +1492,7 @@ export function GameTooltip({ k, entry: directEntry, children, align: alignProp,
   const computePos = useCallback(() => {
     if (!triggerRef.current) return;
     const rect = triggerRef.current.getBoundingClientRect();
-    const tooltipWidth = 360;
+    const tooltipWidth = Math.min(360, window.innerWidth - 16);
 
     // getBoundingClientRect returns viewport-relative coords; add scroll offsets for absolute positioning
     let top = rect.bottom + TOOLTIP_GAP + window.scrollY;

@@ -279,7 +279,7 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
         <div className="rounded-xl p-8 text-center space-y-4" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
           <p className="text-4xl" style={{ opacity: 0.3 }}>🏔️</p>
           <p className="text-sm font-bold" style={{ color: "rgba(255,255,255,0.4)" }}>No World Boss Active</p>
-          <p className="text-xs" style={{ color: "rgba(255,255,255,0.2)", maxWidth: 360, margin: "0 auto" }}>
+          <p className="text-xs" style={{ color: "rgba(255,255,255,0.2)", maxWidth: "min(360px, 100%)", margin: "0 auto" }}>
             The land rests in uneasy peace. A new threat will emerge from the darkness when the time is right.
           </p>
           {inactive?.nextSpawnEstimate && (
@@ -314,10 +314,10 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
         <Tip k="world_boss" heading>
           <h2 className="text-lg font-bold" style={{ color: "#e8e8e8", cursor: "help" }}>World Boss</h2>
         </Tip>
-        <p className="text-xs text-w35" style={{ maxWidth: 440, margin: "0 auto" }}>
+        <p className="text-xs text-w35" style={{ maxWidth: "min(440px, 100%)", margin: "0 auto" }}>
           A community-wide threat. Deal damage by completing quests. Claim rewards when defeated.
         </p>
-        <p className="text-xs italic" style={{ color: "rgba(255,255,255,0.25)", maxWidth: 440, margin: "4px auto 0" }}>Der Turm bebt. Etwas Uraltes ist erwacht.</p>
+        <p className="text-xs italic" style={{ color: "rgba(255,255,255,0.25)", maxWidth: "min(440px, 100%)", margin: "4px auto 0" }}>Der Turm bebt. Etwas Uraltes ist erwacht.</p>
       </div>
 
       {/* Messages */}
@@ -499,7 +499,7 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
       {playerContribution && (
         <div className="rounded-xl p-4" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
           <p className="text-xs font-semibold uppercase tracking-wider text-w25 mb-3">Your Contribution</p>
-          <div className="grid grid-cols-3 gap-3 text-center">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 text-center">
             <div>
               <p className="text-lg font-bold font-mono" style={{ color: "#ef4444" }}>{formatNumber(playerContribution.damage)}</p>
               <TipCustom title="Damage Dealt" icon="⚔️" accent="#ef4444" body={<p>Damage is calculated from quest completions. Higher rarity quests deal more damage.</p>}>

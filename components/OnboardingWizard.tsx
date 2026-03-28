@@ -247,7 +247,7 @@ export default function OnboardingWizard({ onComplete, onClose }: OnboardingWiza
       onClick={onClose}
     >
       <div
-        className="w-full max-w-lg rounded-2xl overflow-hidden"
+        className="w-full max-w-[calc(100vw-2rem)] sm:max-w-lg rounded-2xl overflow-hidden"
         onClick={e => e.stopPropagation()}
         style={{
           background: "#1a1a1a",
