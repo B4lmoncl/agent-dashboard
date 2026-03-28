@@ -1318,6 +1318,109 @@ const TOOLTIP_REGISTRY: Record<string, TooltipEntry> = {
       </>
     ),
   },
+  // ─── v1.6.0 Character Screen Explanations ──────────────────────────────────
+  hero_numbers: {
+    title: "Combat Metrics",
+    icon: "◆",
+    accent: "#f0f0f0",
+    body: (
+      <>
+        <p>Drei abgeleitete Kampfwerte basierend auf deinen Stats und Gear Score:</p>
+        <div className="gt-stat-row" style={{ color: "#ef4444" }}><span>Offense</span><span>Kraft + Gear Score + Fokus</span></div>
+        <div className="gt-stat-row" style={{ color: "#3b82f6" }}><span>Defense</span><span>Ausdauer + Vitalität + Gear Score</span></div>
+        <div className="gt-stat-row" style={{ color: "#22c55e" }}><span>Utility</span><span>Weisheit + Glück + Charisma + Tempo</span></div>
+        <p className="gt-source">Höhere Werte = bessere Performance in Rifts, Dungeons und bei World Bosses.</p>
+      </>
+    ),
+  },
+  roll_quality: {
+    title: "Roll Quality",
+    icon: "◆",
+    accent: "#eab308",
+    body: (
+      <>
+        <p>Zeigt wie gut die zufällig gewürfelten Stats eines Items im Vergleich zum Maximum sind.</p>
+        <div className="gt-stat-row" style={{ color: "#22c55e" }}><span>Perfect (90%+)</span><span>Nahezu maximale Rolls</span></div>
+        <div className="gt-stat-row" style={{ color: "#eab308" }}><span>Good (70-89%)</span><span>Überdurchschnittlich</span></div>
+        <div className="gt-stat-row" style={{ color: "#f97316" }}><span>Average (50-69%)</span><span>Durchschnittlich</span></div>
+        <div className="gt-stat-row" style={{ color: "#ef4444" }}><span>Low (&lt;50%)</span><span>Unterdurchschnittlich — Reforge empfohlen</span></div>
+      </>
+    ),
+  },
+  companion_ultimate: {
+    title: "Companion Ultimate",
+    icon: "◆",
+    accent: "#f59e0b",
+    body: (
+      <>
+        <p>Ab Bond Level 5 schaltet dein Companion eine Ultimate-Fähigkeit frei:</p>
+        <div className="gt-stat-row"><span>Instant Complete</span><span>Schließt die nächste Solo-Quest sofort ab</span></div>
+        <div className="gt-stat-row"><span>Double Reward</span><span>Verdoppelt XP + Gold der nächsten Quest</span></div>
+        <div className="gt-stat-row"><span>Streak Extend</span><span>+3 Tage auf deinen aktuellen Streak</span></div>
+        <p className="gt-source">Cooldown: 7 Tage nach Verwendung. Welche Fähigkeit dein Companion hat hängt vom Typ ab.</p>
+      </>
+    ),
+  },
+  companion_expedition: {
+    title: "Companion Expedition",
+    icon: "◆",
+    accent: "#22c55e",
+    body: (
+      <>
+        <p>Schicke deinen Companion auf eine zeitbasierte Expedition für passive Belohnungen.</p>
+        <div className="gt-stat-row"><span>Quick Forage</span><span>4h — Gold + Materials</span></div>
+        <div className="gt-stat-row"><span>Deep Woods</span><span>8h — Bessere Belohnungen</span></div>
+        <div className="gt-stat-row"><span>Mountain Pass</span><span>12h — Seltene Materials</span></div>
+        <div className="gt-stat-row"><span>Ancient Ruins</span><span>24h — Beste Belohnungen inkl. Gems</span></div>
+        <p className="gt-source">Bond Level multipliziert Gold-Rewards. 1h Cooldown zwischen Expeditionen. Kein Bond XP während Expedition.</p>
+      </>
+    ),
+  },
+  bp_xp_sources: {
+    title: "Season Pass XP",
+    icon: "◆",
+    accent: "#a78bfa",
+    body: (
+      <>
+        <p>Diese Aktivitäten geben Season Pass XP:</p>
+        <div className="gt-stat-row"><span>Quests</span><span>10-60 XP nach Rarität</span></div>
+        <div className="gt-stat-row"><span>Rituale</span><span>8 XP</span></div>
+        <div className="gt-stat-row"><span>Rift Stufe</span><span>20 XP</span></div>
+        <div className="gt-stat-row"><span>Crafting</span><span>5 XP</span></div>
+        <div className="gt-stat-row"><span>Daily Missions</span><span>10-30 XP</span></div>
+        <p className="gt-source">250 XP pro Level. 40 Level pro Season.</p>
+      </>
+    ),
+  },
+  wb_claim_tiers: {
+    title: "World Boss Rewards",
+    icon: "◆",
+    accent: "#ef4444",
+    body: (
+      <>
+        <p>Belohnungen basieren auf deinem prozentualen Schadensanteil am Boss:</p>
+        <div className="gt-stat-row"><span>Legendary (Top 3)</span><span>Unique Items + maximale Rewards</span></div>
+        <div className="gt-stat-row"><span>Gold (Top 10)</span><span>Gear Drops + hohe Currency</span></div>
+        <div className="gt-stat-row"><span>Silver (Top 25%)</span><span>Moderate Rewards</span></div>
+        <div className="gt-stat-row"><span>Bronze (Rest)</span><span>Basis-Rewards für Teilnahme</span></div>
+        <p className="gt-source">Gear Score multipliziert deinen Schaden: +10% pro 50 GS, max +100%.</p>
+      </>
+    ),
+  },
+  compare_mode: {
+    title: "Compare Mode",
+    icon: "◆",
+    accent: "#60a5fa",
+    body: (
+      <>
+        <p>Vergleiche Items direkt gegeneinander:</p>
+        <p>1. Klicke &quot;Compare&quot; über dem Inventar</p>
+        <p>2. Klicke ein Item zum Anpinnen</p>
+        <p>3. Alle anderen Items zeigen jetzt Stat-Vergleiche (▲▼) gegen das angepinnte Item</p>
+        <p className="gt-source">Klicke das angepinnte Item erneut zum Lösen. &quot;Exit Compare&quot; beendet den Modus.</p>
+      </>
+    ),
+  },
 };
 
 // ─── Nested Tooltip Reference (clickable/hoverable keyword) ─────────────────

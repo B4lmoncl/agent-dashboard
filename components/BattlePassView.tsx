@@ -184,7 +184,7 @@ export default function BattlePassView({ onRewardCelebration, onNavigate }: { on
           />
         </div>
         <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.2)" }}>
-          Total: {player.xp} XP · {config.xpPerLevel} per level
+          <Tip k="bp_xp_sources"><span style={{ cursor: "help" }}>Total: {player.xp} XP · {config.xpPerLevel} per level</span></Tip>
           {unclaimedCount > 0 && <span style={{ color: "#22c55e", fontWeight: 600 }}> · {unclaimedCount} unclaimed</span>}
         </p>
         {unclaimedCount >= 2 && (

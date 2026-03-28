@@ -555,7 +555,7 @@ function InventoryTooltip({ item, mousePosRef, equippedItem, playerLevel }: { it
           return (
             <div className="pt-1" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
               <div className="flex items-center justify-between text-xs">
-                <span style={{ color: "rgba(255,255,255,0.3)" }}>Roll Quality</span>
+                <Tip k="roll_quality"><span style={{ color: "rgba(255,255,255,0.3)", cursor: "help" }}>Roll Quality</span></Tip>
                 <span className="font-mono font-semibold" style={{ color: qColor }}>{quality}% {qLabel}</span>
               </div>
               <div className="mt-0.5 rounded-full overflow-hidden" style={{ height: 2, background: "rgba(255,255,255,0.06)" }}>
@@ -1201,7 +1201,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                 cursor: "pointer",
               }}
               title={compareMode ? "Exit compare mode" : "Compare items side by side"}
-            >{compareMode ? "Exit Compare" : "Compare"}</button>
+            ><Tip k="compare_mode"><span>{compareMode ? "Exit Compare" : "Compare"}</span></Tip></button>
             {pinnedItem && (
               <div className="flex items-center gap-1 text-xs flex-1 min-w-0 px-2 py-0.5 rounded" style={{ background: "rgba(59,130,246,0.08)", border: "1px solid rgba(59,130,246,0.2)" }}>
                 <span className="font-semibold truncate" style={{ color: RARITY_COLORS[pinnedItem.rarity] || "#888" }}>{pinnedItem.name}</span>
@@ -1631,15 +1631,15 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
               <>
                 {/* Hero Numbers */}
                 <div className="grid grid-cols-3 gap-2 mb-4">
-                  <Tip k="kraft"><div className="rounded-lg px-2 py-2 text-center cursor-help" style={{ background: "rgba(239,68,68,0.06)", border: "1px solid rgba(239,68,68,0.15)" }}>
+                  <Tip k="hero_numbers"><div className="rounded-lg px-2 py-2 text-center cursor-help" style={{ background: "rgba(239,68,68,0.06)", border: "1px solid rgba(239,68,68,0.15)" }}>
                     <p className="text-lg font-bold font-mono" style={{ color: "#ef4444" }}>{heroOffense}</p>
                     <p className="text-xs" style={{ color: "rgba(239,68,68,0.5)" }}>Offense</p>
                   </div></Tip>
-                  <Tip k="ausdauer"><div className="rounded-lg px-2 py-2 text-center cursor-help" style={{ background: "rgba(59,130,246,0.06)", border: "1px solid rgba(59,130,246,0.15)" }}>
+                  <Tip k="hero_numbers"><div className="rounded-lg px-2 py-2 text-center cursor-help" style={{ background: "rgba(59,130,246,0.06)", border: "1px solid rgba(59,130,246,0.15)" }}>
                     <p className="text-lg font-bold font-mono" style={{ color: "#3b82f6" }}>{heroDefense}</p>
                     <p className="text-xs" style={{ color: "rgba(59,130,246,0.5)" }}>Defense</p>
                   </div></Tip>
-                  <Tip k="weisheit"><div className="rounded-lg px-2 py-2 text-center cursor-help" style={{ background: "rgba(34,197,94,0.06)", border: "1px solid rgba(34,197,94,0.15)" }}>
+                  <Tip k="hero_numbers"><div className="rounded-lg px-2 py-2 text-center cursor-help" style={{ background: "rgba(34,197,94,0.06)", border: "1px solid rgba(34,197,94,0.15)" }}>
                     <p className="text-lg font-bold font-mono" style={{ color: "#22c55e" }}>{heroUtility}</p>
                     <p className="text-xs" style={{ color: "rgba(34,197,94,0.5)" }}>Utility</p>
                   </div></Tip>
