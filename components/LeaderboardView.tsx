@@ -110,10 +110,25 @@ export default function LeaderboardView({ entries, agents, mode = "agents", onOp
   const isPlayerMode = mode === "players";
 
   return (
-    <div className="space-y-6 tab-content-enter">
+    <div className="space-y-6 tab-content-enter relative">
       <p className="text-xs italic text-center" style={{ color: "rgba(255,255,255,0.2)" }}>Die Prüfungsfelder. Wo Legenden in Licht und Entschlossenheit gemessen werden.</p>
       {/* ── Podium ── */}
-      <div className="flex items-end justify-center gap-4">
+      <div className="flex items-end justify-center gap-4 relative">
+        {/* Gold sparkles around top 3 podium */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          {Array.from({ length: 4 }, (_, i) => (
+            <div key={`gold-spark-${i}`} className="absolute rounded-full" style={{
+              width: 2,
+              height: 2,
+              left: `${20 + (i * 19) % 60}%`,
+              top: `${10 + (i * 23) % 50}%`,
+              background: "rgba(251,191,36,0.6)",
+              boxShadow: `0 0 ${3 + i % 2}px rgba(251,191,36,0.4)`,
+              animation: `ember-float ${3.5 + (i % 3) * 0.8}s ease-in-out ${i * 0.9}s infinite`,
+              opacity: 0,
+            }} />
+          ))}
+        </div>
         {[top3[1], top3[0], top3[2]].filter(Boolean).map((entry) => {
           const rank = entry.rank;
           const heights: Record<number, string> = { 1: "h-32", 2: "h-24", 3: "h-20" };

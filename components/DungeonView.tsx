@@ -321,7 +321,22 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
   const maxInvites = selectedDungeonData ? selectedDungeonData.maxPlayers - 1 : 3;
 
   return (
-    <div className="space-y-5 tab-content-enter">
+    <div className="space-y-5 tab-content-enter relative">
+      {/* Dust motes in torchlight */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {Array.from({ length: 5 }, (_, i) => (
+          <div key={`dust-mote-${i}`} className="absolute rounded-full" style={{
+            width: 2 + (i % 2),
+            height: 2 + (i % 2),
+            left: `${12 + (i * 18) % 70}%`,
+            top: `${20 + (i * 21) % 55}%`,
+            background: i % 2 === 0 ? "rgba(251,191,36,0.5)" : "rgba(217,170,78,0.45)",
+            boxShadow: `0 0 ${3 + i % 2}px ${i % 2 === 0 ? "rgba(251,191,36,0.35)" : "rgba(217,170,78,0.3)"}`,
+            animation: `ember-float ${4 + (i % 3) * 0.9}s ease-in-out ${i * 0.8}s infinite`,
+            opacity: 0,
+          }} />
+        ))}
+      </div>
       {/* Header */}
       <div className="flex items-center gap-3">
         <span className="text-2xl">◆</span>

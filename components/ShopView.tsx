@@ -9,6 +9,19 @@ import shopData from "../public/data/shopItems.json";
 const GEAR_TIERS_CLIENT = shopData.gearTiers;
 const SHOP_ITEMS_LIST: ShopItem[] = shopData.items as ShopItem[];
 
+const RARITY_GLOW: Record<string, string> = {
+  rare: "rgba(59,130,246,0.45)",
+  epic: "rgba(168,85,247,0.45)",
+  legendary: "rgba(249,115,22,0.45)",
+};
+function getItemGlowColor(item: ShopItem): string | null {
+  const r = (item as unknown as Record<string, unknown>).rarity as string | undefined;
+  if (r && RARITY_GLOW[r]) return RARITY_GLOW[r];
+  if (item.cost >= 500) return RARITY_GLOW.epic;
+  if (item.cost >= 200) return RARITY_GLOW.rare;
+  return null;
+}
+
 // ─── Main ShopView (no Gacha — moved to GachaView) ─────────────────────────
 // Boost → navigation hint mapping
 const BOOST_HINTS: Record<string, { label: string; view?: string }> = {
@@ -49,7 +62,7 @@ export default function ShopView({ onBuy, onGearBuy, onNavigate }: {
           <Tip k="bazaar" heading><span className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.35)" }}>The Bazaar</span></Tip>
           <p className="text-xs italic mt-0.5" style={{ color: "rgba(255,255,255,0.2)" }}>Handel und Komfort. Jeder Held braucht eine Pause zwischen den Quests.</p>
         </div>
-        <div className="flex items-center gap-2 ml-auto">
+        <div className="flex items-center gap-2 ml-auto" style={{ textShadow: "0 0 8px rgba(245,158,11,0.3)" }}>
           <img src="/images/icons/currency-gold.png" alt="" width={24} height={24} style={{ imageRendering: "auto" }} onError={e => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} />
           <span className="text-base font-mono font-bold" style={{ color: "#f59e0b" }}>{gold.toLocaleString()}</span>
         </div>
@@ -62,11 +75,12 @@ export default function ShopView({ onBuy, onGearBuy, onNavigate }: {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
             {SHOP_ITEMS_LIST.filter(i => i.category === "boost").map(item => {
               const canAfford = gold >= item.cost;
+              const glowColor = getItemGlowColor(item);
               return (
                 <div
                   key={item.id}
-                  className="flex items-center gap-3 p-3 rounded-xl"
-                  style={{ background: "rgba(139,92,246,0.06)", border: "1px solid rgba(139,92,246,0.15)" }}
+                  className={`flex items-center gap-3 p-3 rounded-xl${glowColor ? " crystal-breathe" : ""}`}
+                  style={{ background: "rgba(139,92,246,0.06)", border: "1px solid rgba(139,92,246,0.15)", ...(glowColor ? { ["--glow-color" as string]: glowColor } : {}) }}
                 >
                   {item.icon && item.icon.startsWith("/") ? <img src={item.icon} alt="" style={{ width: 40, height: 40, imageRendering: "auto" }} onError={e => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} /> : <span className="text-2xl flex-shrink-0">{item.icon}</span>}
                   <div className="flex-1 min-w-0">
@@ -108,11 +122,12 @@ export default function ShopView({ onBuy, onGearBuy, onNavigate }: {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
           {SHOP_ITEMS_LIST.filter(i => !i.category || i.category === "self-care").map(item => {
             const canAfford = gold >= item.cost;
+            const glowColor = getItemGlowColor(item);
             return (
               <div
                 key={item.id}
-                className="flex items-center gap-3 p-3 rounded-xl"
-                style={{ background: "#1e1e1e", border: "1px solid rgba(255,255,255,0.07)" }}
+                className={`flex items-center gap-3 p-3 rounded-xl${glowColor ? " crystal-breathe" : ""}`}
+                style={{ background: "#1e1e1e", border: "1px solid rgba(255,255,255,0.07)", ...(glowColor ? { ["--glow-color" as string]: glowColor } : {}) }}
               >
                 {item.icon && item.icon.startsWith("/") ? <img src={item.icon} alt="" style={{ width: 40, height: 40, imageRendering: "auto" }} onError={e => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} /> : <span className="text-2xl flex-shrink-0">{item.icon}</span>}
                 <div className="flex-1 min-w-0">

@@ -5,6 +5,7 @@ import { ModalPortal } from "@/components/ModalPortal";
 import { RARITY_COLORS } from "@/components/QuestBoard";
 import { getQuestRarity } from "@/app/utils";
 import { typeConfig } from "@/app/config";
+import { Tip, TipCustom } from "@/components/GameTooltip";
 import type { Quest } from "@/app/types";
 
 interface QuestDetailModalProps {
@@ -99,7 +100,9 @@ export default function QuestDetailModal({
             <div className="flex-1 min-w-0">
               <h3 className="text-base font-bold leading-snug text-bright">{q.title}</h3>
               <div className="flex items-center gap-2 mt-1 flex-wrap">
-                <span className="text-xs font-mono px-1.5 py-0.5 rounded" style={{ color: rarityColor, background: `${rarityColor}18`, border: `1px solid ${rarityColor}40` }}>{rarity}</span>
+                <TipCustom title={`${rarity.charAt(0).toUpperCase() + rarity.slice(1)} Quest`} accent={rarityColor} body={<p>Quest rarity determines base XP and Gold rewards. Higher rarity quests also deal more damage to World Bosses.</p>}>
+                  <span className="text-xs font-mono px-1.5 py-0.5 rounded cursor-help" style={{ color: rarityColor, background: `${rarityColor}18`, border: `1px solid ${rarityColor}40` }}>{rarity}</span>
+                </TipCustom>
                 {q.difficulty && q.difficulty !== "none" && (
                   <span className="text-xs font-mono px-1.5 py-0.5 rounded capitalize text-w50" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}>{q.difficulty}</span>
                 )}
@@ -167,14 +170,18 @@ export default function QuestDetailModal({
           <div>
             <p className="text-xs font-semibold uppercase tracking-widest mb-2 text-w25">Reward</p>
             <div className="flex items-center gap-3">
-              <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg" style={{ background: "rgba(251,191,36,0.08)", border: "1px solid rgba(251,191,36,0.2)" }}>
-                <img src="/images/icons/reward-gold.png" width={16} height={16} className="img-render-auto" style={{ verticalAlign: "middle" }} onError={e => { e.currentTarget.style.display = "none"; }} />
-                <span className="text-sm font-mono font-bold" style={{ color: "#fbbf24" }}>{displayGold} Gold</span>
-              </div>
-              <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg" style={{ background: "rgba(167,139,250,0.08)", border: "1px solid rgba(167,139,250,0.2)" }}>
-                <img src="/images/icons/reward-xp.png" width={16} height={16} className="img-render-auto" style={{ verticalAlign: "middle" }} onError={e => { e.currentTarget.style.display = "none"; }} />
-                <span className="text-sm font-mono font-bold" style={{ color: "#a78bfa" }}>{displayXp} XP</span>
-              </div>
+              <Tip k="gold">
+                <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg cursor-help" style={{ background: "rgba(251,191,36,0.08)", border: "1px solid rgba(251,191,36,0.2)" }}>
+                  <img src="/images/icons/reward-gold.png" width={16} height={16} className="img-render-auto" style={{ verticalAlign: "middle" }} onError={e => { e.currentTarget.style.display = "none"; }} />
+                  <span className="text-sm font-mono font-bold" style={{ color: "#fbbf24" }}>{displayGold} Gold</span>
+                </div>
+              </Tip>
+              <Tip k="xp">
+                <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg cursor-help" style={{ background: "rgba(167,139,250,0.08)", border: "1px solid rgba(167,139,250,0.2)" }}>
+                  <img src="/images/icons/reward-xp.png" width={16} height={16} className="img-render-auto" style={{ verticalAlign: "middle" }} onError={e => { e.currentTarget.style.display = "none"; }} />
+                  <span className="text-sm font-mono font-bold" style={{ color: "#a78bfa" }}>{displayXp} XP</span>
+                </div>
+              </Tip>
             </div>
           </div>
           {q.claimedBy && !isClaimedByMe && (

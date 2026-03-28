@@ -307,7 +307,24 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
     : 0;
 
   return (
-    <div className="space-y-5 tab-content-enter">
+    <div className="space-y-5 tab-content-enter relative">
+      {/* Red/orange chaos embers — only when boss is active */}
+      {!boss.defeated && (
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          {Array.from({ length: 7 }, (_, i) => (
+            <div key={`chaos-ember-${i}`} className="absolute rounded-full" style={{
+              width: 2 + (i % 2),
+              height: 2 + (i % 2),
+              left: `${8 + (i * 14) % 80}%`,
+              top: `${15 + (i * 19) % 65}%`,
+              background: i % 3 === 0 ? "rgba(239,68,68,0.6)" : i % 3 === 1 ? "rgba(234,88,12,0.55)" : "rgba(249,115,22,0.5)",
+              boxShadow: `0 0 ${3 + i % 2}px ${i % 3 === 0 ? "rgba(239,68,68,0.4)" : "rgba(234,88,12,0.35)"}`,
+              animation: `ember-float ${3.5 + (i % 3) * 0.8}s ease-in-out ${i * 0.6}s infinite`,
+              opacity: 0,
+            }} />
+          ))}
+        </div>
+      )}
       {/* Header */}
       <div className="text-center space-y-2">
         <p className="text-3xl">💀</p>

@@ -1437,6 +1437,30 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
             <div>
               {/* Paper Doll Grid */}
               <div className="relative mx-auto" style={{ width: 240, height: 320 }}>
+                {/* Legendary equipment shimmer particles */}
+                {(() => {
+                  const hasLegendary = charData && Object.values(charData.equipment).some(v => {
+                    if (!v || typeof v !== 'object') return false;
+                    return (v as GearInstance).rarity === 'legendary' || (v as unknown as Record<string, unknown>).isUnique;
+                  });
+                  if (!hasLegendary) return null;
+                  return (
+                    <div className="absolute inset-0 pointer-events-none overflow-hidden">
+                      {Array.from({ length: 3 }, (_, i) => (
+                        <div key={`legend-spark-${i}`} className="absolute rounded-full" style={{
+                          width: 2,
+                          height: 2,
+                          left: `${25 + (i * 22) % 50}%`,
+                          top: `${20 + (i * 28) % 60}%`,
+                          background: "rgba(249,115,22,0.55)",
+                          boxShadow: `0 0 ${3 + i % 2}px rgba(249,115,22,0.4)`,
+                          animation: `ember-float ${4 + (i % 3) * 0.9}s ease-in-out ${i * 1.1}s infinite`,
+                          opacity: 0,
+                        }} />
+                      ))}
+                    </div>
+                  );
+                })()}
                 {/* Silhouette background */}
                 <div className="absolute inset-0 flex items-center justify-center" style={{ opacity: 0.03 }}>
                   <span style={{ fontSize: 120 }}>{"\u2666"}</span>

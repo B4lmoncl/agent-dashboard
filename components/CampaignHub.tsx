@@ -235,8 +235,8 @@ export default function CampaignHub({ campaigns, quests, reviewApiKey, onRefresh
           return (
             <div
               key={c.id}
-              className="rounded-2xl p-4 cursor-pointer transition-all hover:scale-[1.01]"
-              style={{ background: "linear-gradient(135deg, rgba(26,13,46,0.8) 0%, rgba(13,16,23,0.8) 100%)", border: `1px solid ${isVictory ? "rgba(251,191,36,0.35)" : "rgba(139,92,246,0.25)"}`, boxShadow: isVictory ? "0 0 20px rgba(251,191,36,0.1)" : "0 0 20px rgba(139,92,246,0.05)" }}
+              className={`rounded-2xl p-4 cursor-pointer transition-all hover:scale-[1.01]${c.status === "active" ? " crystal-breathe" : ""}`}
+              style={{ background: "linear-gradient(135deg, rgba(26,13,46,0.8) 0%, rgba(13,16,23,0.8) 100%)", border: `1px solid ${isVictory ? "rgba(251,191,36,0.35)" : "rgba(139,92,246,0.25)"}`, boxShadow: isVictory ? "0 0 20px rgba(251,191,36,0.1)" : "0 0 20px rgba(139,92,246,0.05)", ...(c.status === "active" ? { ["--glow-color" as string]: isVictory ? "rgba(251,191,36,0.25)" : "rgba(139,92,246,0.25)" } : {}) }}
               onClick={() => setExpandedId(c.id)}
             >
               <div className="flex items-start gap-3 mb-3">

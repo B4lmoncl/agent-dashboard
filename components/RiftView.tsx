@@ -215,7 +215,22 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
   );
 
   return (
-    <div className="space-y-5 tab-content-enter">
+    <div className="space-y-5 tab-content-enter relative">
+      {/* Purple rift energy fragments */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {Array.from({ length: 6 }, (_, i) => (
+          <div key={`rift-frag-${i}`} className="absolute rounded-full" style={{
+            width: 2 + (i % 2),
+            height: 2 + (i % 2),
+            left: `${10 + (i * 17) % 75}%`,
+            top: `${18 + (i * 23) % 55}%`,
+            background: i % 3 === 0 ? "rgba(192,132,252,0.6)" : i % 3 === 1 ? "rgba(168,85,247,0.55)" : "rgba(139,92,246,0.5)",
+            boxShadow: `0 0 ${3 + i % 2}px ${i % 3 === 0 ? "rgba(192,132,252,0.4)" : "rgba(168,85,247,0.35)"}`,
+            animation: `ember-float ${3.5 + (i % 3) * 0.8}s ease-in-out ${i * 0.7}s infinite`,
+            opacity: 0,
+          }} />
+        ))}
+      </div>
       {/* Header */}
       <div className="flex items-center gap-3">
         <span className="text-2xl">🌀</span>
