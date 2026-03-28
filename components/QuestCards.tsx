@@ -30,7 +30,7 @@ export const RARITY_COLORS: Record<string, string> = {
 function ChainDots({ chainIndex, chainTotal, color }: { chainIndex: number; chainTotal: number; color: string }) {
   if (chainTotal <= 1) return null;
   return (
-    <span style={{ fontSize: 10, letterSpacing: "0.15em", marginLeft: 4 }}>
+    <span style={{ fontSize: 12, letterSpacing: "0.15em", marginLeft: 4 }}>
       {Array.from({ length: chainTotal }, (_, i) => (
         <span key={i} style={{ color, opacity: i < chainIndex ? 0.8 : i === chainIndex ? 1 : 0.3 }}>
           {i < chainIndex ? "●" : i === chainIndex ? "◐" : "○"}

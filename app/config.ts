@@ -50,6 +50,8 @@ export interface FloorRoom {
   iconSrc: string;
   requiresLogin?: boolean;
   tutorialKey?: string | null;
+  /** Minimum player level to see/access this room (defaults to floor's minLevel) */
+  minLevel?: number;
 }
 
 export interface Floor {
@@ -61,83 +63,95 @@ export interface Floor {
   gradient: string;
   /** Optional 792x200 banner image (right-aligned behind gradient overlay) */
   banner?: string;
+  /** Minimum player level to see this floor (default: 1) */
+  minLevel?: number;
   rooms: FloorRoom[];
 }
 
 export const FLOORS: Floor[] = [
-  {
-    id: "turmspitze",
-    name: "The Pinnacle",
-    subtitle: "Prestige & Glory",
-    icon: "▲",
-    color: "#fbbf24",
-    gradient: "linear-gradient(135deg, #fbbf24 0%, #1a1a3a 100%)",
-    banner: "/images/banners/turmspitze-banner.png",
-    rooms: [
-      { key: "campaign",    label: "The Observatory",      iconSrc: "/images/icons/nav-observatory.png", tutorialKey: "campaign-tab" },
-      { key: "leaderboard", label: "The Proving Grounds",  iconSrc: "/images/icons/nav-proving.png",     tutorialKey: "leaderboard-tab" },
-      { key: "honors",      label: "Hall of Honors",       iconSrc: "/images/icons/nav-honors.png",      tutorialKey: "honors-tab" },
-      { key: "factions",    label: "The Four Circles",     iconSrc: "",                                  requiresLogin: true, tutorialKey: null },
-      { key: "season",      label: "Season Pass",          iconSrc: "",                                  requiresLogin: true, tutorialKey: "season-tab" },
-    ],
-  },
+  // ─── Adventure (always visible) ──────────────────────────────────────────────
   {
     id: "haupthalle",
-    name: "The Great Halls",
+    name: "Great Halls",
     subtitle: "Adventure",
     icon: "●",
     color: "#f97316",
     gradient: "linear-gradient(135deg, #f97316 0%, #1a0f0a 100%)",
     banner: "/images/banners/haupthalle-banner.png",
+    minLevel: 1,
     rooms: [
-      { key: "questBoard", label: "The Great Hall",        iconSrc: "/images/icons/nav-great-hall.png",  tutorialKey: "quest-board-tab" },
-      { key: "npcBoard",   label: "The Wanderer's Rest",   iconSrc: "/images/icons/nav-wanderer.png",    tutorialKey: "npc-board-tab" },
-      { key: "challenges", label: "Challenges",            iconSrc: "/images/icons/nav-challenges.png",  tutorialKey: null },
-      { key: "rift",       label: "The Rift",              iconSrc: "/images/icons/nav-rift.png",        requiresLogin: true, tutorialKey: null },
-      { key: "worldboss",  label: "The Colosseum",         iconSrc: "",                                  requiresLogin: true, tutorialKey: null },
-      { key: "dungeons",   label: "The Undercroft",        iconSrc: "",                                  requiresLogin: true, tutorialKey: null },
+      { key: "questBoard", label: "Quest Board",      iconSrc: "/images/icons/nav-great-hall.png",  tutorialKey: "quest-board-tab" },
+      { key: "npcBoard",   label: "Wanderers Rest",   iconSrc: "/images/icons/nav-wanderer.png",    tutorialKey: "npc-board-tab" },
+      { key: "challenges", label: "Challenges",       iconSrc: "",                                  tutorialKey: null, minLevel: 3 },
+      { key: "rift",       label: "Rift",             iconSrc: "",                                  requiresLogin: true, tutorialKey: null, minLevel: 8 },
+      { key: "dungeons",   label: "Undercroft",       iconSrc: "",                                  requiresLogin: true, tutorialKey: null, minLevel: 12 },
+      { key: "worldboss",  label: "Colosseum",        iconSrc: "",                                  requiresLogin: true, tutorialKey: null, minLevel: 15 },
     ],
   },
-  {
-    id: "gewerbeviertel",
-    name: "The Trading District",
-    subtitle: "Commerce & Craft",
-    icon: "■",
-    color: "#a855f7",
-    gradient: "linear-gradient(135deg, #a855f7 0%, #1a0a2e 100%)",
-    banner: "/images/banners/gewerbeviertel-banner.png",
-    rooms: [
-      { key: "shop",   label: "The Bazaar",           iconSrc: "/images/icons/nav-bazaar.png",       tutorialKey: "bazaar-tab" },
-      { key: "forge",  label: "Artisan's Quarter",     iconSrc: "/images/icons/prof-schmied.png",     requiresLogin: true },
-      { key: "gacha",  label: "Vault of Fate",         iconSrc: "/images/icons/vault-of-fate.png",    tutorialKey: "vault-tab" },
-    ],
-  },
+  // ─── Personal (always visible) ───────────────────────────────────────────────
   {
     id: "charakterturm",
-    name: "The Inner Sanctum",
+    name: "Inner Sanctum",
     subtitle: "Personal",
     icon: "✦",
     color: "#3b82f6",
     gradient: "linear-gradient(135deg, #3b82f6 0%, #0a1a2e 100%)",
     banner: "/images/banners/charakterturm-banner.png",
+    minLevel: 1,
     rooms: [
-      { key: "character",     label: "Character",        iconSrc: "/images/icons/nav-character.png",    requiresLogin: true, tutorialKey: "character-tab" },
-      { key: "klassenquests", label: "The Arcanum",      iconSrc: "/images/icons/nav-arcanum.png",      tutorialKey: null },
-      { key: "rituals",       label: "Ritual Chamber",   iconSrc: "/images/icons/ui-ritual-rune.png",   requiresLogin: true, tutorialKey: "rituals-tab" },
-      { key: "vows",          label: "Vow Shrine",       iconSrc: "/images/icons/ui-vow-sword.png",     requiresLogin: true },
+      { key: "character",     label: "Character",      iconSrc: "/images/icons/nav-character.png",    requiresLogin: true, tutorialKey: "character-tab" },
+      { key: "rituals",       label: "Ritual Chamber", iconSrc: "/images/icons/ui-ritual-rune.png",   requiresLogin: true, tutorialKey: "rituals-tab" },
+      { key: "vows",          label: "Vow Shrine",     iconSrc: "/images/icons/ui-vow-sword.png",     requiresLogin: true },
+      { key: "klassenquests", label: "Arcanum",        iconSrc: "/images/icons/nav-arcanum.png",      tutorialKey: null, minLevel: 10 },
     ],
   },
+  // ─── Social (always visible) ─────────────────────────────────────────────────
   {
     id: "breakaway",
-    name: "The Breakaway",
+    name: "Breakaway",
     subtitle: "Social & Rest",
     icon: "⬡",
     color: "#ec4899",
     gradient: "linear-gradient(135deg, #ec4899 0%, #1a0a1e 100%)",
     banner: "/images/banners/breakaway-banner.png",
+    minLevel: 1,
     rooms: [
-      { key: "social", label: "The Breakaway", iconSrc: "/images/icons/nav-breakaway.png", requiresLogin: true, tutorialKey: null },
-      { key: "tavern", label: "The Hearth", iconSrc: "/images/icons/nav-tavern.png", requiresLogin: true, tutorialKey: null },
+      { key: "social", label: "Breakaway", iconSrc: "", requiresLogin: true, tutorialKey: null },
+      { key: "tavern", label: "Hearth", iconSrc: "", requiresLogin: true, tutorialKey: null },
+    ],
+  },
+  // ─── Commerce (Lv3) ─────────────────────────────────────────────────────────
+  {
+    id: "gewerbeviertel",
+    name: "Trading District",
+    subtitle: "Commerce & Craft",
+    icon: "■",
+    color: "#a855f7",
+    gradient: "linear-gradient(135deg, #a855f7 0%, #1a0a2e 100%)",
+    banner: "/images/banners/gewerbeviertel-banner.png",
+    minLevel: 3,
+    rooms: [
+      { key: "shop",   label: "Bazaar",              iconSrc: "/images/icons/nav-bazaar.png",       tutorialKey: "bazaar-tab" },
+      { key: "forge",  label: "Artisan's Quarter",   iconSrc: "",                                   requiresLogin: true, minLevel: 5 },
+      { key: "gacha",  label: "Vault of Fate",       iconSrc: "/images/icons/vault-of-fate.png",    tutorialKey: "vault-tab", minLevel: 5 },
+    ],
+  },
+  // ─── Prestige (Lv8) ─────────────────────────────────────────────────────────
+  {
+    id: "turmspitze",
+    name: "Pinnacle",
+    subtitle: "Prestige & Glory",
+    icon: "▲",
+    color: "#fbbf24",
+    gradient: "linear-gradient(135deg, #fbbf24 0%, #1a1a3a 100%)",
+    banner: "/images/banners/turmspitze-banner.png",
+    minLevel: 8,
+    rooms: [
+      { key: "leaderboard", label: "Proving Grounds",    iconSrc: "/images/icons/nav-proving.png",     tutorialKey: "leaderboard-tab" },
+      { key: "honors",      label: "Hall of Honors",     iconSrc: "/images/icons/nav-honors.png",      tutorialKey: "honors-tab" },
+      { key: "factions",    label: "Four Circles",       iconSrc: "",                                  requiresLogin: true, tutorialKey: null, minLevel: 10 },
+      { key: "season",      label: "Season Pass",        iconSrc: "",                                  requiresLogin: true, tutorialKey: "season-tab", minLevel: 10 },
+      { key: "campaign",    label: "Observatory",        iconSrc: "/images/icons/nav-observatory.png", tutorialKey: "campaign-tab" },
     ],
   },
 ];

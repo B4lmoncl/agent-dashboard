@@ -74,7 +74,7 @@ const RARITY_COLORS: Record<string, string> = {
   uncommon: "#22c55e",
   rare: "#3b82f6",
   epic: "#a855f7",
-  legendary: "#f59e0b",
+  legendary: "#f97316",
   unique: "#e6cc80",
 };
 
@@ -105,10 +105,10 @@ const SYNERGY_HINTS: Record<string, { partner: string; label: string }> = {
 
 // ─── Skill-up color labels ──────────────────────────────────────────────────
 const SKILL_UP_COLORS: Record<string, { color: string; label: string }> = {
-  orange: { color: "#f97316", label: "Guaranteed XP" },
-  yellow: { color: "#eab308", label: "Likely XP" },
-  green: { color: "#22c55e", label: "Rare XP" },
-  gray: { color: "#6b7280", label: "No XP" },
+  orange: { color: "#f97316", label: "Guaranteed (100%)" },
+  yellow: { color: "#eab308", label: "Likely (~75%)" },
+  green: { color: "#22c55e", label: "Unlikely (~25%)" },
+  gray: { color: "#6b7280", label: "No skill-up (0%)" },
 };
 
 // ─── NPC location metadata ───────────────────────────────────────────────────
@@ -170,6 +170,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
   // Recipe search & filter state
   const [recipeSearch, setRecipeSearch] = useState("");
   const [showCraftableOnly, setShowCraftableOnly] = useState(false);
+  const [totalRecipesByProf, setTotalRecipesByProf] = useState<Record<string, number>>({});
   // Cast bar countdown state
   const [castCountdown, setCastCountdown] = useState<string | null>(null);
   // Enchanting (D3-style reroll) state
@@ -235,6 +236,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
         if (data.dailyBonus) setDailyBonusAvailable(data.dailyBonus.dailyBonusAvailable ?? false);
         if (data.maxProfSlots != null) setMaxProfSlots(data.maxProfSlots);
         if (data.slotAffixRanges) setSlotAffixRanges(data.slotAffixRanges);
+        if (data.totalRecipesByProf) setTotalRecipesByProf(data.totalRecipesByProf);
       }
     } catch (err) { console.error('Failed to fetch crafting data:', err); }
     // Fetch workshop upgrades
@@ -320,7 +322,23 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
         if (data.skillGained > 0) msg += ` (+${data.skillGained} Skill${data.dailyBonusUsed ? " \u2606 Daily Bonus!" : ""})`;
         else if (data.skillGained === 0 && data.skillUpColor !== "gray") msg += " (No skill-up)";
         if (data.newSkill) msg += ` [${data.newSkill}/300]`;
-        setCraftResult(msg);
+        // Batch craft: sequential tick animation
+        if (count > 1 && (data.craftCount || count) > 1) {
+          const total = data.craftCount || count;
+          setCraftResult(`Crafting 1/${total}...`);
+          let tick = 1;
+          const interval = setInterval(() => {
+            tick++;
+            if (tick >= total) {
+              clearInterval(interval);
+              setCraftResult(msg);
+            } else {
+              setCraftResult(`Crafting ${tick}/${total}...`);
+            }
+          }, 200);
+        } else {
+          setCraftResult(msg);
+        }
         if (data.skillGained > 0) { setSkillUpFlash(true); setTimeout(() => setSkillUpFlash(false), 1000); }
         setCraftCount(1);
         fetchData();
@@ -396,7 +414,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
           }),
         });
       } else {
-        setDismantleResult({ message: data.error || "Error" });
+        setDismantleResult({ message: data.error || "Something went wrong. Try again." });
       }
       setTimeout(() => setDismantleResult(null), 5000);
       fetchData();
@@ -430,7 +448,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
           }),
         });
       } else {
-        setDismantleResult({ message: data.error || "Error" });
+        setDismantleResult({ message: data.error || "Something went wrong. Try again." });
       }
       setTimeout(() => setDismantleResult(null), 6000);
       fetchData();
@@ -509,7 +527,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
         fetchData();
         onRefresh?.();
       } else {
-        setCubeResult(data.error || "Error");
+        setCubeResult(data.error || "Something went wrong. Try again.");
       }
     } catch (err) { console.error('[cube] extract error:', err); setCubeResult("Network error"); }
     setCubeLoading(false);
@@ -525,7 +543,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
       });
       const data = await r.json();
       if (r.ok) setCubeData(data.cube);
-      else setCubeResult(data.error || "Error");
+      else setCubeResult(data.error || "Something went wrong. Try again.");
     } catch (err) { console.error('[cube] equip error:', err); }
     setCubeLoading(false);
   };
@@ -560,7 +578,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
         body: JSON.stringify({ itemIds: selectedTransmute }),
       });
       const data = await r.json();
-      setTransmuteResult(data.message || data.error || "Error");
+      setTransmuteResult(data.message || data.error || "Something went wrong. Try again.");
       setSelectedTransmute([]);
       setTimeout(() => setTransmuteResult(null), 5000);
       fetchData();
@@ -583,7 +601,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
         fetchData();
         onRefresh?.();
       } else {
-        setCraftResult(data.error || "Error");
+        setCraftResult(data.error || "Something went wrong. Try again.");
       }
     } catch (err) { console.error('[forge] choose_profession error:', err); setCraftResult("Network error"); }
     setChoosingProf(false);
@@ -1160,6 +1178,20 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
             {/* ─── Tab: Recipes ──────────────────────────────────────────── */}
             {npcModalTab === "recipes" && (
               <div className="tab-content-enter">
+                {/* Recipe discovery counter */}
+                {(() => {
+                  const profRecipes = recipes.filter(r => r.profession === selectedNpc.id);
+                  const discovered = profRecipes.filter(r => !(r as unknown as Record<string, unknown>).hidden).length;
+                  const total = totalRecipesByProf[selectedNpc.id] || profRecipes.length;
+                  return (
+                    <div className="px-5 pt-3 flex items-center justify-between">
+                      <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.25)" }}>
+                        {discovered}/{total} recipes discovered
+                      </span>
+                      {discovered >= total && <span className="text-xs font-semibold" style={{ color: "#4ade80" }}>Complete</span>}
+                    </div>
+                  );
+                })()}
                 {/* Slot selector for Schmied/Verzauberer */}
                 {(selectedNpc.id === "schmied" || selectedNpc.id === "verzauberer") && (
                   <div className="px-5 py-3" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
@@ -1263,6 +1295,18 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                     }
                     return true;
                   }).map(recipe => {
+                    // Hidden/undiscovered recipes — show as "???" with source hint
+                    if ((recipe as unknown as Record<string, unknown>).hidden) {
+                      return (
+                        <div key={recipe.id} className="rounded-lg p-3" style={{ background: "rgba(255,255,255,0.015)", border: "1px solid rgba(255,255,255,0.04)", borderLeft: "3px solid rgba(255,255,255,0.06)" }}>
+                          <div className="flex items-center gap-2">
+                            <span style={{ fontSize: 12, color: "rgba(255,255,255,0.15)" }}>?</span>
+                            <p className="text-sm font-semibold" style={{ color: "rgba(255,255,255,0.15)" }}>???</p>
+                          </div>
+                          <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.1)" }}>{recipe.desc || "Unknown recipe"}</p>
+                        </div>
+                      );
+                    }
                     const isLearned = recipe.learned !== false;
                     const needsLearn = !isLearned && recipe.source === "trainer" && (recipe.trainerCost ?? 0) > 0;
                     const meetsLevel = recipe.canCraft;
@@ -1289,6 +1333,12 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                         <div className="flex items-start justify-between gap-2">
                           <div>
                             <div className="flex items-center gap-2">
+                              {/* Craftability indicator */}
+                              {isLearned && (
+                                <span className="flex-shrink-0" style={{ fontSize: 12, color: !meetsLevel || onCooldown ? "rgba(255,255,255,0.15)" : canAfford ? "#22c55e" : "#f59e0b" }} title={!meetsLevel ? "Skill too low" : onCooldown ? "On cooldown" : canAfford ? "Ready to craft" : "Missing materials"}>
+                                  {!meetsLevel || onCooldown ? "○" : canAfford ? "●" : "◐"}
+                                </span>
+                              )}
                               <p className="text-sm font-semibold" style={{ color: meetsLevel ? "#e8e8e8" : "rgba(255,255,255,0.3)" }}>{recipe.name}</p>
                               {/* Skill-up indicator dot */}
                               <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: skillUp?.color || "#6b7280" }} title={skillUp?.label || ""} />
@@ -1365,6 +1415,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                                       style={{
                                         background: `linear-gradient(90deg, ${selectedNpc.color}50, ${selectedNpc.color}30)`,
                                         animation: `craft-cast-fill ${CRAFT_CAST_MS}ms linear forwards`,
+                                        transformOrigin: "left",
                                       }}
                                     />
                                   </div>
@@ -1420,6 +1471,12 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                       </div>
                     );
                   })}
+                  {/* Empty state when filter shows no results */}
+                  {showCraftableOnly && recipes.filter(r => r.profession === selectedNpc.id).filter(r => !(r as unknown as Record<string, unknown>).hidden && r.learned !== false && r.canCraft && (r.cooldownRemaining ?? 0) <= 0).length === 0 && (
+                    <p className="text-xs text-center py-4" style={{ color: "rgba(255,255,255,0.2)" }}>
+                      No craftable recipes right now. Check material stock or raise your profession skill.
+                    </p>
+                  )}
                 </div>
 
                 {/* Craft result toast */}
@@ -1493,7 +1550,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                     fetchData();
                     onRefresh?.();
                   } else {
-                    setEnchantResult(data.error || "Failed");
+                    setEnchantResult(data.error || "Something went wrong. Please try again.");
                   }
                 } catch (err) { console.error('[forge] enchant_choose error:', err); setEnchantResult("Network error"); }
                 setEnchantLoading(false);
@@ -1778,7 +1835,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                                         body: JSON.stringify({ inventoryItemId: item.instanceId || item.id }),
                                       });
                                       const data = await r.json();
-                                      setDismantleResult({ message: data.message || data.error || "Error" });
+                                      setDismantleResult({ message: data.message || data.error || "Something went wrong. Try again." });
                                       setTimeout(() => setDismantleResult(null), 5000);
                                       fetchData();
                                       onRefresh?.();
@@ -2152,7 +2209,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                         <>
                           <p className="text-xs font-semibold" style={{ color: c }}>{active.label}</p>
                           <p className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.3)" }}>{active.value}%</p>
-                          <button onClick={() => handleCubeUnequip(slot)} disabled={cubeLoading} className="text-xs px-2 py-0.5 rounded" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.3)", border: "1px solid rgba(255,255,255,0.08)", cursor: cubeLoading ? "not-allowed" : "pointer" }}>Remove</button>
+                          <button onClick={() => handleCubeUnequip(slot)} disabled={cubeLoading} className="text-xs px-2 py-1 rounded" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.3)", border: "1px solid rgba(255,255,255,0.08)", cursor: cubeLoading ? "not-allowed" : "pointer" }}>Remove</button>
                         </>
                       ) : (
                         <p className="text-xs" style={{ color: "rgba(255,255,255,0.15)" }}>Empty</p>

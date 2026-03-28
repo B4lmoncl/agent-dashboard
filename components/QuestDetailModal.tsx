@@ -132,12 +132,12 @@ export default function QuestDetailModal({
           </div>
         </div>
         {/* Body */}
-        <div className="px-5 py-4 overflow-y-auto flex-1 space-y-3">
+        <div className="px-5 py-4 overflow-y-auto flex-1 space-y-3" style={{ scrollbarWidth: "thin" as const }}>
           {/* Flavor / Lore text */}
           {q.npcGiverId && (
             <p className="text-xs font-semibold mb-1" style={{ color: RARITY_COLORS[q.npcRarity ?? "common"] ?? "#9ca3af" }}>
               {q.npcName}{(q.chainTotal ?? 1) > 1 && (
-                <span style={{ fontSize: 10, letterSpacing: "0.15em", marginLeft: 4 }}>
+                <span style={{ fontSize: 12, letterSpacing: "0.15em", marginLeft: 4 }}>
                   {Array.from({ length: q.chainTotal! }, (_, i) => (
                     <span key={i} style={{ color: RARITY_COLORS[q.npcRarity ?? "common"] ?? "#f59e0b", opacity: i < (q.chainIndex ?? 0) ? 0.8 : i === (q.chainIndex ?? 0) ? 1 : 0.3 }}>
                       {i < (q.chainIndex ?? 0) ? "●" : i === (q.chainIndex ?? 0) ? "◐" : "○"}

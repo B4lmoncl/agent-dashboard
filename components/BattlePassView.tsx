@@ -66,6 +66,7 @@ export default function BattlePassView({ onRewardCelebration, onNavigate }: { on
   const [player, setPlayer] = useState<BPPlayer | null>(null);
   const [loading, setLoading] = useState(true);
   const [claiming, setClaiming] = useState<number | null>(null);
+  const [claimingAll, setClaimingAll] = useState(false);
   const [message, setMessage] = useState<{ text: string; type: "success" | "error" } | null>(null);
 
   const fetchBP = useCallback(async () => {
@@ -186,6 +187,32 @@ export default function BattlePassView({ onRewardCelebration, onNavigate }: { on
           Total: {player.xp} XP · {config.xpPerLevel} per level
           {unclaimedCount > 0 && <span style={{ color: "#22c55e", fontWeight: 600 }}> · {unclaimedCount} unclaimed</span>}
         </p>
+        {unclaimedCount >= 2 && (
+          <button
+            disabled={claimingAll}
+            onClick={async () => {
+              setClaimingAll(true);
+              try {
+                const r = await fetch("/api/battlepass/claim-all", { method: "POST", headers: getAuthHeaders() });
+                const data = await r.json();
+                if (r.ok) {
+                  setMessage({ type: "success", text: `Claimed ${data.count} rewards!` });
+                  if (onRewardCelebration) onRewardCelebration({ type: "battlepass", title: `${data.count} Rewards Claimed!`, xpEarned: 0, goldEarned: 0 });
+                  fetchBP();
+                } else {
+                  setMessage({ type: "error", text: data.error || "Claim failed" });
+                }
+                setTimeout(() => setMessage(null), 5000);
+              } catch { setMessage({ type: "error", text: "Network error" }); }
+              setClaimingAll(false);
+            }}
+            className="text-xs px-3 py-1.5 rounded-lg font-semibold mt-2"
+            style={{ background: claimingAll ? "rgba(255,255,255,0.03)" : "rgba(34,197,94,0.1)", color: claimingAll ? "rgba(255,255,255,0.2)" : "#22c55e", border: `1px solid ${claimingAll ? "rgba(255,255,255,0.06)" : "rgba(34,197,94,0.25)"}`, cursor: claimingAll ? "not-allowed" : "pointer" }}
+            title={claimingAll ? "Claiming..." : `Claim all ${unclaimedCount} unclaimed rewards`}
+          >
+            {claimingAll ? "Claiming..." : `Claim All (${unclaimedCount})`}
+          </button>
+        )}
       </div>
 
       {/* Messages */}

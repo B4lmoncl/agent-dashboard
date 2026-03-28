@@ -178,7 +178,7 @@ router.post('/api/gems/socket', requireAuth, (req, res) => {
 
   const { gemKey: gKey, instanceId, socketIndex } = req.body;
   if (!gKey || !instanceId || socketIndex === undefined) {
-    return res.status(400).json({ error: 'Missing gemKey, instanceId, or socketIndex' });
+    return res.status(400).json({ error: 'Please select a gem and socket slot' });
   }
 
   // Validate gem
@@ -245,7 +245,7 @@ router.post('/api/gems/unsocket', requireAuth, (req, res) => {
 
   const { instanceId, socketIndex } = req.body;
   if (!instanceId || socketIndex === undefined) {
-    return res.status(400).json({ error: 'Missing instanceId or socketIndex' });
+    return res.status(400).json({ error: 'Please select a socket to unsocket' });
   }
 
   // Find gear item

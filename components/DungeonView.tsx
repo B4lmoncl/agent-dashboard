@@ -352,7 +352,7 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
           border: `1px solid ${collectResult.success ? "rgba(34,197,94,0.25)" : "rgba(239,68,68,0.25)"}`,
         }}>
           <div className="flex items-center gap-2 mb-2">
-            <span className="text-xl">{collectResult.success ? "🏆" : "💨"}</span>
+            <span className="text-xl">{collectResult.success ? "★" : "—"}</span>
             <div>
               <p className="text-sm font-bold" style={{ color: collectResult.success ? "#22c55e" : "#ef4444" }}>
                 {collectResult.success ? "Dungeon Cleared!" : "Dungeon Failed"}
@@ -488,17 +488,17 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
               ))}
               {/* Pending invites */}
               {activeRun.invitedPlayers.map(p => (
-                <div key={p.name} className="rounded-lg p-2.5 text-center opacity-40" style={{
-                  background: "rgba(255,255,255,0.02)",
-                  border: "1px dashed rgba(255,255,255,0.1)",
+                <div key={p.name} className="rounded-lg p-2.5 text-center" style={{
+                  background: "rgba(245,158,11,0.04)",
+                  border: "1px dashed rgba(245,158,11,0.2)",
                 }}>
                   <div className="w-8 h-8 rounded-full mx-auto mb-1 flex items-center justify-center text-sm" style={{
-                    background: "rgba(255,255,255,0.05)",
+                    background: "rgba(245,158,11,0.08)", color: "#f59e0b",
                   }}>
                     ?
                   </div>
-                  <p className="text-xs truncate text-w30">{p.name}</p>
-                  <p className="text-xs text-w15">Invited</p>
+                  <p className="text-xs truncate" style={{ color: "rgba(255,255,255,0.5)" }}>{p.name}</p>
+                  <p className="text-xs font-semibold" style={{ color: "#f59e0b" }}>Pending</p>
                 </div>
               ))}
             </div>

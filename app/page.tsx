@@ -92,8 +92,10 @@ const PROF_META: Record<string, { name: string; icon: string; color: string }> =
   verzauberer: { name: "Enchanter", icon: "/images/icons/prof-verzauberer.png", color: "#a78bfa" },
   koch: { name: "Cook", icon: "/images/icons/prof-koch.png", color: "#e87b35" },
 };
+const PLAYER_QUEST_TYPES: string[] = ["personal", "learning", "fitness", "social", "relationship-coop"];
+
 const MAT_RARITY_COLORS: Record<string, string> = {
-  common: "#9ca3af", uncommon: "#22c55e", rare: "#3b82f6", epic: "#a855f7", legendary: "#f59e0b", unique: "#e6cc80",
+  common: "#9ca3af", uncommon: "#22c55e", rare: "#3b82f6", epic: "#a855f7", legendary: "#f97316", unique: "#e6cc80",
 };
 
 const MAT_SOURCES: Record<string, string> = {
@@ -119,6 +121,7 @@ export default function Dashboard() {
   const [weeklyChallenge, setWeeklyChallenge] = useState<import("@/app/types").WeeklyChallenge | null>(null);
   const [expedition, setExpedition] = useState<import("@/app/types").Expedition | null>(null);
   const [socialBadge, setSocialBadge] = useState<{ pendingFriendRequests: number; unreadMessages: number; activeTrades: number } | null>(null);
+  const [navNotifs, setNavNotifs] = useState<Record<string, number>>({});
   const [worldBossActive, setWorldBossActive] = useState(false);
   const [riftActive, setRiftActive] = useState(false);
   const [dungeonActive, setDungeonActive] = useState(false);
@@ -151,12 +154,20 @@ export default function Dashboard() {
     }
     return "haupthalle";
   });
-  // Wrap setDashView to auto-sync the active floor + persist
+  // Wrap setDashView to auto-sync the active floor + persist + enforce level gate
   const dashView = dashViewRaw;
+  const playerLevelRef = useRef<number>(1);
   const setDashView = useCallback((view: typeof dashViewRaw) => {
-    setDashViewRaw(view);
+    // Level gate check: prevent navigation to locked floors/rooms
     const floor = getFloorForRoom(view);
-    if (floor) setActiveFloor(floor.id);
+    if (floor) {
+      const lvl = playerLevelRef.current;
+      if (floor.minLevel && lvl < floor.minLevel) return;
+      const room = floor.rooms.find(r => r.key === view);
+      if (room?.minLevel && lvl < room.minLevel) return;
+      setActiveFloor(floor.id);
+    }
+    setDashViewRaw(view);
     try { localStorage.setItem("dash_view", view); } catch { /* private browsing */ }
   }, []);
   // Track seen content for notification dots (persists across renders via ref)
@@ -199,6 +210,7 @@ export default function Dashboard() {
   const [showTutorial, setShowTutorial] = useState(false);
   const [tutorialStep, setTutorialStep] = useState(0);
   const [onboardingOpen, setOnboardingOpen] = useState(false);
+  const [whatsNewOpen, setWhatsNewOpen] = useState(false);
   const [classesList, setClassesList] = useState<ClassDef[]>([]);
   const [classActivatedNotif, setClassActivatedNotif] = useState<{ className: string; classIcon: string; classDescription: string } | null>(null);
   const [rituals, setRituals] = useState<Ritual[]>([]);
@@ -242,7 +254,7 @@ export default function Dashboard() {
   const [currencyExpanded, setCurrencyExpanded] = useState<string | null>(null);
   const [feedbackMode, setFeedbackMode] = useState(false);
   const [favorites, setFavorites] = useState<string[]>([]);
-  const [gameVersion, setGameVersion] = useState<string>("1.5.3");
+  const [gameVersion, setGameVersion] = useState<string>("1.6.0");
   const [versionPopupOpen, setVersionPopupOpen] = useState(false);
   const [changelogData, setChangelogData] = useState<{ version: string; date: string; title: string; changes: string[] }[]>([]);
   const [changelogExpanded, setChangelogExpanded] = useState<string | null>(null);
@@ -375,6 +387,20 @@ export default function Dashboard() {
       if (batch.expedition !== undefined) setExpedition(batch.expedition || null);
       if (batch.socialSummary) setSocialBadge(batch.socialSummary);
       if (batch.dailyMissions) setDailyMissions(batch.dailyMissions);
+      // Aggregate notification badges per room tab
+      if (batch.notifications) {
+        const n = batch.notifications;
+        const counts: Record<string, number> = {};
+        // Great Halls: daily bonus, world boss
+        counts.worldboss = n.wbClaimable || 0;
+        // Trading District: craft cooldowns ready (not tracked yet), milestones
+        counts.bazaar = n.unclaimedMilestones || 0;
+        // Breakaway: mail + trades + friends
+        counts.social = (n.unreadMail || 0) + (n.uncollectedMail || 0) + (n.activeTrades || 0) + (n.pendingFriendRequests || 0);
+        // Character: companion expedition
+        counts.character = n.expeditionReady || 0;
+        setNavNotifs(counts);
+      }
       if (batch.worldBossActive !== undefined) setWorldBossActive(!!batch.worldBossActive);
       if (batch.riftActive !== undefined) setRiftActive(!!batch.riftActive);
       if (batch.dungeonActive !== undefined) setDungeonActive(!!batch.dungeonActive);
@@ -388,8 +414,8 @@ export default function Dashboard() {
       if (ac.achievements.length > 0) setAchievementCatalogue(ac.achievements);
       setCampaigns(camps);
       if (pName) {
-        fetchRituals(pName).then(setRituals);
-        fetchHabits(pName).then(setHabits);
+        fetchRituals(pName).then(setRituals).catch(() => {});
+        fetchHabits(pName).then(setHabits).catch(() => {});
       }
       try { const r = await fetch(`/api/health`, { signal: AbortSignal.timeout(1500) }); setApiLive(r.ok); } catch { setApiLive(false); }
       try {
@@ -529,6 +555,17 @@ export default function Dashboard() {
     } catch { /* ignore */ }
   }, []);
 
+  // What's New splash — show once per version
+  useEffect(() => {
+    const CURRENT_VERSION = "1.6.0";
+    try {
+      if (playerName && localStorage.getItem("whatsNewSeen") !== CURRENT_VERSION) {
+        const t = setTimeout(() => setWhatsNewOpen(true), 1500);
+        return () => clearTimeout(t);
+      }
+    } catch { /* ignore */ }
+  }, [playerName]);
+
   useEffect(() => {
     if (dashView === "changelog" && changelog.length === 0 && !changelogLoading) {
       setChangelogLoading(true);
@@ -599,8 +636,26 @@ export default function Dashboard() {
   const playerNameLower = useMemo(() => (playerName || "").toLowerCase(), [playerName]);
   const loggedInUser = useMemo(() => playerName ? users.find(u => u.id.toLowerCase() === playerNameLower || u.name.toLowerCase() === playerNameLower) : null, [playerName, playerNameLower, users]);
   const currentPlayerLevel = useMemo(() => loggedInUser ? getUserLevel(loggedInUser.xp ?? 0).level : undefined, [loggedInUser]);
+  useEffect(() => { playerLevelRef.current = currentPlayerLevel ?? 1; }, [currentPlayerLevel]);
 
-  const playerTypes = useMemo(() => ["personal", "learning", "fitness", "social", "relationship-coop"], []);
+  // Validate current view is accessible at player's level — fallback to questBoard if locked
+  useEffect(() => {
+    if (currentPlayerLevel === undefined) return;
+    const floor = getFloorForRoom(dashView);
+    if (!floor) return;
+    if (floor.minLevel && currentPlayerLevel < floor.minLevel) {
+      setDashViewRaw("questBoard");
+      setActiveFloor("haupthalle");
+      return;
+    }
+    const room = floor.rooms.find(r => r.key === dashView);
+    if (room?.minLevel && currentPlayerLevel < room.minLevel) {
+      setDashViewRaw("questBoard");
+      setActiveFloor("haupthalle");
+    }
+  }, [currentPlayerLevel, dashView]);
+
+  const playerTypes = PLAYER_QUEST_TYPES;
   const playerActiveQuests = useMemo(() => quests.inProgress.filter(q => playerTypes.includes(q.type ?? "") && q.claimedBy?.toLowerCase() === playerNameLower), [quests.inProgress, playerTypes, playerNameLower]);
   const playerCompletedQuests = useMemo(() => quests.completed.filter(q => playerTypes.includes(q.type ?? "") && q.completedBy?.toLowerCase() === playerNameLower), [quests.completed, playerTypes, playerNameLower]);
   // Use persistent counter from user record (survives rotation cleanup)
@@ -1069,7 +1124,8 @@ export default function Dashboard() {
                     )}
                   </div>
 
-                  {/* Navigate to forge */}
+                  {/* Navigate to forge (Lv5+ only) */}
+                  {(currentPlayerLevel ?? 1) >= 5 && (
                   <button
                     onClick={() => { setProfessionsInfoOpen(false); setDashView("forge"); }}
                     className="w-full mt-3 px-3 py-2 rounded-lg text-xs font-semibold transition-colors"
@@ -1077,6 +1133,7 @@ export default function Dashboard() {
                   >
                     Open Artisan&apos;s Quarter
                   </button>
+                  )}
                 </div>
               </div>
             </ModalPortal>
@@ -1086,24 +1143,32 @@ export default function Dashboard() {
         {/* ── Stockwerk-Navigation (2-level: Floor tabs + Room tabs) ── */}
         {(() => {
           const currentFloor = FLOORS.find(f => f.id === activeFloor) || FLOORS[1];
-          const visibleRooms = currentFloor.rooms.filter(r => !r.requiresLogin || playerName);
+          const visibleRooms = currentFloor.rooms.filter(r => (!r.requiresLogin || playerName) && (!r.minLevel || (currentPlayerLevel ?? 1) >= r.minLevel));
           // Notification dots per room
           const socialTotal = socialBadge ? (socialBadge.pendingFriendRequests + socialBadge.unreadMessages + socialBadge.activeTrades) : 0;
-          const getRoomNotif = (key: string) => {
+          const getRoomNotif = (key: string): { color: string; count?: number } | null => {
             if (dashView === key) return null;
-            if (key === "questBoard" && notifNewQuests) return "#4ade80";
-            if (key === "npcBoard" && notifNewNpcs) return "#f59e0b";
-            if (key === "social" && socialTotal > 0) return "#a855f7";
+            // Don't show notifications for level-locked rooms
+            const roomFloor = getFloorForRoom(key);
+            if (roomFloor?.minLevel && (currentPlayerLevel ?? 1) < roomFloor.minLevel) return null;
+            const roomDef = roomFloor?.rooms.find(r => r.key === key);
+            if (roomDef?.minLevel && (currentPlayerLevel ?? 1) < roomDef.minLevel) return null;
+            if (key === "questBoard" && notifNewQuests) return { color: "#4ade80" };
+            if (key === "npcBoard" && notifNewNpcs) return { color: "#f59e0b" };
+            if (key === "social" && socialTotal > 0) return { color: "#a855f7", count: socialTotal };
+            const nc = navNotifs[key];
+            if (nc && nc > 0) return { color: "#ef4444", count: nc };
             return null;
           };
           // Check if a floor has any notification
           const floorHasNotif = (floor: Floor) => floor.rooms.some(r => getRoomNotif(r.key) !== null);
+          const floorNotifCount = (floor: Floor) => floor.rooms.reduce((sum, r) => sum + (getRoomNotif(r.key)?.count || 0), 0);
 
           return (
             <div data-tutorial="nav-bar" className="space-y-0">
               {/* Floor tabs */}
               <div className="flex gap-1" style={{ background: "#0d0d0d", borderRadius: "10px 10px 0 0", padding: "4px 4px 0 4px" }}>
-                {FLOORS.map(floor => {
+                {FLOORS.filter(f => !f.minLevel || (currentPlayerLevel ?? 1) >= f.minLevel).map(floor => {
                   const isActive = floor.id === activeFloor;
                   const hasNotif = !isActive && floorHasNotif(floor);
                   return (
@@ -1113,7 +1178,7 @@ export default function Dashboard() {
                       onClick={() => {
                         setActiveFloor(floor.id);
                         // Navigate to first visible room if current view isn't on this floor
-                        const floorRoomKeys = floor.rooms.filter(r => !r.requiresLogin || playerName).map(r => r.key);
+                        const floorRoomKeys = floor.rooms.filter(r => (!r.requiresLogin || playerName) && (!r.minLevel || (currentPlayerLevel ?? 1) >= r.minLevel)).map(r => r.key);
                         if (!floorRoomKeys.includes(dashView)) {
                           setDashView(floorRoomKeys[0] as typeof dashView);
                         }
@@ -1128,12 +1193,12 @@ export default function Dashboard() {
                     >
                       <span style={{ fontSize: 14 }}>{floor.icon}</span>
                       <span className="hidden sm:inline">{floor.name}</span>
-                      {hasNotif && <span className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full badge-enter" style={{ background: "#4ade80", boxShadow: "0 0 4px #4ade80" }} />}
-                      {floor.id === "breakaway" && socialTotal > 0 && !isActive && (
-                        <span className="absolute -top-1 -right-1 min-w-[16px] h-4 rounded-full flex items-center justify-center text-xs font-bold badge-enter" style={{ background: "#a855f7", color: "#fff", fontSize: 12, padding: "0 4px", boxShadow: "0 0 6px rgba(168,85,247,0.4)" }}>
-                          {socialTotal}
-                        </span>
-                      )}
+                      {(() => {
+                        const fc = !isActive ? floorNotifCount(floor) : 0;
+                        if (fc > 0) return <span className="absolute -top-1 -right-1 min-w-[16px] h-4 rounded-full flex items-center justify-center text-xs font-bold badge-enter" style={{ background: "#ef4444", color: "#fff", fontSize: 12, padding: "0 4px", boxShadow: "0 0 6px rgba(239,68,68,0.4)" }}>{fc}</span>;
+                        if (hasNotif) return <span className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full badge-enter" style={{ background: "#4ade80", boxShadow: "0 0 4px #4ade80" }} />;
+                        return null;
+                      })()}
                     </button>
                   );
                 })}
@@ -1250,7 +1315,10 @@ export default function Dashboard() {
                     >
                       {room.iconSrc && <img src={room.iconSrc} alt="" width={24} height={24} className={`${room.key === "gacha" ? "vault-nav-glow" : ""} img-render-auto`} style={{ opacity: isActive ? 1 : 0.5 }} onError={e => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} />}
                       {seasonLabel}
-                      {notifDot && <span className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full" style={{ background: notifDot, boxShadow: `0 0 4px ${notifDot}` }} />}
+                      {notifDot && (notifDot.count && notifDot.count > 0
+                        ? <span className="absolute -top-1 -right-1.5 min-w-[16px] h-4 rounded-full flex items-center justify-center text-xs font-bold" style={{ background: notifDot.color, color: "#000", fontSize: 12, lineHeight: 1, padding: "0 3px", boxShadow: `0 0 4px ${notifDot.color}` }}>{notifDot.count}</span>
+                        : <span className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full" style={{ background: notifDot.color, boxShadow: `0 0 4px ${notifDot.color}` }} />
+                      )}
                     </button>
                   );
                 })}
@@ -2041,6 +2109,7 @@ export default function Dashboard() {
           socialBadge={socialBadge}
           expeditionActive={!!expedition}
           dungeonActive={dungeonActive}
+          playerLevel={currentPlayerLevel}
           onClaimMilestone={async (threshold) => {
             try {
               const { getAuthHeaders } = await import("@/lib/auth-client");
@@ -2362,10 +2431,45 @@ export default function Dashboard() {
             setIsAdmin(false);
             await createStarterQuestsIfNew(newName, apiKey);
             await refresh();
+            addToast({ type: "flavor", message: "Welcome to Quest Hall! Check the Guide for tips on getting started.", icon: "/images/icons/nav-great-hall.png" });
             setShowTutorial(true);
             setTutorialStep(0);
           }}
         />
+      )}
+
+      {/* What's New Splash */}
+      {whatsNewOpen && (
+        <div className="fixed inset-0 z-[150] flex items-center justify-center modal-backdrop" onClick={() => { setWhatsNewOpen(false); try { localStorage.setItem("whatsNewSeen", "1.6.0"); } catch { /* ignore */ } }}>
+          <div className="w-full max-w-md rounded-xl overflow-hidden tab-content-enter" style={{ background: "#111318", border: "1px solid rgba(129,140,248,0.25)", boxShadow: "0 20px 60px rgba(0,0,0,0.8)" }} onClick={e => e.stopPropagation()}>
+            <div className="px-5 py-3" style={{ background: "rgba(129,140,248,0.06)", borderBottom: "1px solid rgba(129,140,248,0.15)" }}>
+              <p className="text-sm font-bold" style={{ color: "#818cf8" }}>v1.6.0 — The Artisan&apos;s Update</p>
+            </div>
+            <div className="px-5 py-4 space-y-1.5 max-h-[60vh] overflow-y-auto" style={{ scrollbarWidth: "thin" }}>
+              <p className="text-xs font-semibold uppercase tracking-wider mb-1" style={{ color: "rgba(255,255,255,0.25)" }}>New Systems</p>
+              <div className="flex items-start gap-2"><span style={{ color: "#22c55e" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Mail System — send gold and items to other players (WoW-style Mailbox)</p></div>
+              <div className="flex items-start gap-2"><span style={{ color: "#22c55e" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Kanai&apos;s Cube — extract and equip legendary effects permanently</p></div>
+              <div className="flex items-start gap-2"><span style={{ color: "#22c55e" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Mythic+ Affixes — 10 weekly rotating modifiers starting at M+2</p></div>
+              <div className="flex items-start gap-2"><span style={{ color: "#22c55e" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>BoP/BoE Binding — Bind on Pickup and Bind on Equip across 1,074 items</p></div>
+              <div className="flex items-start gap-2"><span style={{ color: "#22c55e" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Enchant Vellums — tradeable enchant scrolls crafted by Verzauberer</p></div>
+              <p className="text-xs font-semibold uppercase tracking-wider mb-1 mt-2" style={{ color: "rgba(255,255,255,0.25)" }}>Quality of Life</p>
+              <div className="flex items-start gap-2"><span style={{ color: "#3b82f6" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Item Lock — protect items from accidental salvage, trade, or discard</p></div>
+              <div className="flex items-start gap-2"><span style={{ color: "#3b82f6" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Auto-Salvage — preview grid with rarity tabs and 2-step confirmation</p></div>
+              <div className="flex items-start gap-2"><span style={{ color: "#3b82f6" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Material Storage — dedicated tab with search (unlimited, no cap)</p></div>
+              <div className="flex items-start gap-2"><span style={{ color: "#3b82f6" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Recipe Discovery — undiscovered recipes shown as ??? with source hints</p></div>
+              <div className="flex items-start gap-2"><span style={{ color: "#3b82f6" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>NEW badges on inventory items, craftability icons on recipes</p></div>
+              <div className="flex items-start gap-2"><span style={{ color: "#3b82f6" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Notification badges on navigation tabs for pending actions</p></div>
+              <div className="flex items-start gap-2"><span style={{ color: "#3b82f6" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Timer overview in Today Drawer (weekly reset, season end, active content)</p></div>
+              <div className="flex items-start gap-2"><span style={{ color: "#3b82f6" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Collect All for mail and Battle Pass rewards</p></div>
+              <p className="text-xs font-semibold uppercase tracking-wider mb-1 mt-2" style={{ color: "rgba(255,255,255,0.25)" }}>Progression</p>
+              <div className="flex items-start gap-2"><span style={{ color: "#f97316" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Level-gated progression: Lv1 Quests/Character/Social, Lv3 Challenges, Lv5 Forge/Gacha, Lv8 Rift/Leaderboard, Lv10 Factions/BP, Lv12 Dungeons, Lv15 World Boss</p></div>
+              <div className="flex items-start gap-2"><span style={{ color: "#f97316" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Batch craft animation with sequential reveal</p></div>
+            </div>
+            <div className="px-5 pb-4">
+              <button onClick={() => { setWhatsNewOpen(false); try { localStorage.setItem("whatsNewSeen", "1.6.0"); } catch { /* ignore */ } }} className="w-full text-xs py-2 rounded-lg font-semibold" style={{ background: "rgba(129,140,248,0.12)", color: "#818cf8", border: "1px solid rgba(129,140,248,0.3)", cursor: "pointer" }}>Got it</button>
+            </div>
+          </div>
+        </div>
       )}
 
       {/* Class Activation Notification */}

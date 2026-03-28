@@ -5,7 +5,7 @@ import type { User, GachaPullResult, GachaBanner, GachaPityInfo } from "@/app/ty
 import { useDashboard } from "@/app/DashboardContext";
 import { Tip, TipCustom } from "@/components/GameTooltip";
 import GachaPull, { RARITY_CONFIG } from "./GachaPull";
-import { ModalOverlay } from "./ModalPortal";
+import { ModalOverlay, useModalBehavior } from "./ModalPortal";
 import { getAuthHeaders } from "@/lib/auth-client";
 
 // ─── Currency helpers ────────────────────────────────────────────────────────
@@ -40,10 +40,10 @@ function GachaInfoModal({ onClose }: { onClose: () => void }) {
             <div className="space-y-1">
               {[
                 { label: "Legendary", rate: "0.8%", color: "#f97316" },
-                { label: "Epic", rate: "13%", color: "#a855f7" },
-                { label: "Rare", rate: "35%", color: "#3b82f6" },
+                { label: "Epic", rate: "8%", color: "#a855f7" },
+                { label: "Rare", rate: "38%", color: "#3b82f6" },
                 { label: "Uncommon", rate: "40%", color: "#22c55e" },
-                { label: "Common", rate: "11.2%", color: "#9ca3af" },
+                { label: "Common", rate: "13.2%", color: "#9ca3af" },
               ].map(r => (
                 <div key={r.label} className="flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: r.color }} />
@@ -541,7 +541,26 @@ function BannerPullModal({
             </div>
           )}
 
-          {/* Pity info now in hover tooltip above */}
+          {/* Pity progress bar — always visible */}
+          {pity && (
+            <div className="rounded-lg px-3 py-2 mt-1" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
+              <div className="flex items-center justify-between text-xs mb-1">
+                <span style={{ color: inSoftPity ? "#f97316" : "rgba(255,255,255,0.3)" }}>
+                  {inSoftPity ? "Soft Pity Active" : "Pity Progress"}
+                </span>
+                <span className="font-mono font-semibold" style={{ color: inSoftPity ? "#f97316" : "rgba(255,255,255,0.5)" }}>
+                  {pity.pityCounter}/{pity.hardPity || 75}
+                </span>
+              </div>
+              <div className="h-1.5 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.06)" }}>
+                <div className="h-full rounded-full transition-all" style={{
+                  width: `${Math.min(100, (pity.pityCounter / (pity.hardPity || 75)) * 100)}%`,
+                  background: inSoftPity ? "linear-gradient(90deg, #f97316, #ef4444)" : "linear-gradient(90deg, rgba(255,255,255,0.15), rgba(255,255,255,0.25))",
+                }} />
+              </div>
+              {pullsTilLegendary <= 10 && <p className="text-xs mt-1 font-semibold" style={{ color: "#f97316" }}>{pullsTilLegendary} pulls until guaranteed Legendary</p>}
+            </div>
+          )}
 
           {/* Pull buttons with fog */}
           <div className="flex gap-3 items-stretch flex-wrap">
@@ -636,6 +655,8 @@ export default function GachaView({ onRefresh, onPullComplete, onNavigate }: {
   const [pullMode, setPullMode] = useState<"single" | "multi">("single");
   const [history, setHistory] = useState<Array<{ name: string; rarity: string; emoji: string; pulledAt: string; isDuplicate: boolean; icon?: string }>>([]);
   const [historyOpen, setHistoryOpen] = useState(false);
+  // Scroll lock during gacha pull animation
+  useModalBehavior(!!pullResults, useCallback(() => { if (pullResults && onPullComplete) onPullComplete(pullResults); setPullResults(null); }, [pullResults, onPullComplete]));
   const [poolInfo, setPoolInfo] = useState<Record<string, Array<{ id: string; name: string; emoji: string; type: string; desc: string; icon?: string }>> | null>(null);
   const [poolOpen, setPoolOpen] = useState(false);
   const [infoOpen, setInfoOpen] = useState(false);

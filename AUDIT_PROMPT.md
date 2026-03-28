@@ -44,3 +44,63 @@ Dokumentiere alles in `AUDIT_REPORT.md`.
 - Guild Hall Referenz: Urithiru (Stormlight Archive, Brandon Sanderson)
 
 **Starte jetzt.**
+
+---
+
+## Bereits vorgeschlagen & abgelehnt (NICHT erneut vorschlagen)
+
+### Session 30 — Content/Economy Runde
+- Auction House (WoW AH)
+- Companion Equipment (D3 Follower Gear)
+- Primal / Ancient Items (D3 ultra-rare tier)
+- Great Vault (WoW Weekly Vault)
+- Caldesann's Despair (D3 gem augment)
+- Work Orders (WoW Dragonflight craft orders)
+
+### Session 30 — QoL/UI Runde 1
+- Gear Loadouts / Armory (D3 Armory)
+- Junk-Markierung + Salvage All Junk
+- Inventar Slot-Filter (nach Waffen/Rüstung etc.)
+- Stat-Aufschlüsselung (Klick auf Stat → Quellen)
+- Rift Timer Urgency + Post-Rift Summary
+- Nav-Notification Badges (rote Zahlen auf Tabs)
+- Pinned Objective Tracker (Floating Widget)
+- Activity Log / Event Feed
+- Weekly Statistics Page
+- Achievement Kategorien mit Sub-Tabs
+- Keyboard Shortcuts (I/C/P/R/M)
+- Companion Expedition History Log
+
+### Session 30 — QoL/UI Runde 2
+- Stat-Aufschlüsselung (Klick auf Stat → Quellen)
+- Gear Loadouts / Armory (D3 Armory)
+- Achievement Fast-Fertig Section (>75% complete)
+- Watched Faction Rep (Pin im Header)
+- Failure Recap (Rift/Dungeon Post-Mortem)
+
+### Session 30 — Implementiert (NICHT erneut vorschlagen)
+- NEW Badge auf Inventar-Items ✓
+- Rezept-Craftability Icons (●/◐/○) ✓
+- What's New Splash Modal ✓
+- Batch Craft Sequential Animation ✓
+- Nav-Notification Badges (rote Zahlen auf Tabs) ✓
+- Calendar/Reset Widget (Timers im Today Drawer) ✓
+- Recipe Discovery Log (??? + Counter) ✓
+- Floor Level-Gating (streng, gear-hierarchy-aligned) ✓
+- Tab-Namen Cleanup (alle "The" entfernt) ✓
+- Mail "Collect All" Button ✓
+- Battle Pass "Claim All" Button ✓
+- Material Storage Tab ✓
+- Mail System (WoW-Mailbox) ✓
+- Enchant Vellums (handelbare Enchant Scrolls) ✓
+- Mythic+ Affixes (10 Weekly-Affixes) ✓
+- Item Lock System ✓
+- Auto-Salvage Preview Modal ✓
+- Kanai's Cube ✓
+- BoP/BoE Binding System ✓
+- 6 Race Condition Locks (Mail, Rift, BP, Factions, Dungeon, WB) ✓
+- 9 Empty Catch Blocks → Error Logging ✓
+- Rarity Color Standardisierung (#f97316 für Legendary) ✓
+- Gold-Formatierung mit toLocaleString() ✓
+- Scrollbar thin auf alle Container ✓
+- CSS craft-cast-fill → GPU-composited transform ✓

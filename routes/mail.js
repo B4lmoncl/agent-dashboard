@@ -5,7 +5,8 @@
  */
 const router = require('express').Router();
 const { state, saveUsers, ensureUserCurrencies } = require('../lib/state');
-const { now, INVENTORY_CAP } = require('../lib/helpers');
+const { now, INVENTORY_CAP, createPlayerLock } = require('../lib/helpers');
+const mailSendLock = createPlayerLock('mail-send');
 const { requireAuth } = require('../lib/middleware');
 
 const MAIL_LIMIT = 50; // Max mails in inbox
@@ -69,6 +70,8 @@ router.get('/api/mail', requireAuth, (req, res) => {
 
 router.post('/api/mail/send', requireAuth, (req, res) => {
   const uid = req.auth?.userId;
+  if (!mailSendLock.acquire(uid)) return res.status(429).json({ error: 'Mail send in progress' });
+  try {
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'User not found' });
 
@@ -94,7 +97,7 @@ router.post('/api/mail/send', requireAuth, (req, res) => {
   ensureUserCurrencies(u);
   const totalGoldNeeded = goldAmount + SEND_COST;
   if ((u.currencies.gold || 0) < totalGoldNeeded) {
-    return res.status(400).json({ error: `Need ${totalGoldNeeded} gold (${goldAmount} + ${SEND_COST} postage). Have ${u.currencies.gold || 0}` });
+    return res.status(400).json({ error: `Not enough gold. Need ${totalGoldNeeded} (${goldAmount} + ${SEND_COST} postage), you have ${u.currencies.gold || 0}.` });
   }
 
   // Validate items
@@ -105,12 +108,12 @@ router.post('/api/mail/send', requireAuth, (req, res) => {
     const inv = u.inventory || [];
     for (const itemId of itemIds) {
       const item = inv.find(i => (i.instanceId || i.id) === itemId);
-      if (!item) return res.status(400).json({ error: `Item ${itemId} not in inventory` });
-      if (equippedIds.has(itemId)) return res.status(400).json({ error: `${item.name || itemId} is equipped` });
+      if (!item) return res.status(400).json({ error: `Item not found in your inventory` });
+      if (equippedIds.has(itemId)) return res.status(400).json({ error: `${item.name || 'Item'} is currently equipped — unequip it first` });
       if (item.binding === 'bop' || item.bound) {
-        return res.status(400).json({ error: `${item.name || itemId} is soulbound` });
+        return res.status(400).json({ error: `${item.name || 'Item'} is soulbound and cannot be sent` });
       }
-      if (item.locked) return res.status(400).json({ error: `${item.name || itemId} is locked` });
+      if (item.locked) return res.status(400).json({ error: `${item.name || 'Item'} is locked — unlock it first to send` });
       attachedItems.push(item);
     }
   }
@@ -149,6 +152,7 @@ router.post('/api/mail/send', requireAuth, (req, res) => {
     goldDeducted: totalGoldNeeded,
     itemsSent: attachedItems.length,
   });
+  } finally { mailSendLock.release(uid); }
 });
 
 // ─── POST /api/mail/:mailId/collect — Collect attachments from mail ──────────
@@ -163,19 +167,21 @@ router.post('/api/mail/:mailId/collect', requireAuth, (req, res) => {
   if (!mail) return res.status(404).json({ error: 'Mail not found' });
   if (mail.collected) return res.status(400).json({ error: 'Already collected' });
 
-  // Collect gold
+  // Validate inventory space BEFORE awarding anything
+  u.inventory = u.inventory || [];
+  const mailItems = mail.items || [];
+  if (mailItems.length > 0 && u.inventory.length + mailItems.length > INVENTORY_CAP) {
+    return res.status(400).json({ error: `Not enough inventory space (need ${mailItems.length} slots, have ${INVENTORY_CAP - u.inventory.length})` });
+  }
+
+  // Collect gold (safe — inventory check passed)
   ensureUserCurrencies(u);
   if (mail.gold > 0) {
     u.currencies.gold = (u.currencies.gold || 0) + mail.gold;
     u.gold = u.currencies.gold;
   }
 
-  // Collect items — reject if not enough inventory space
-  u.inventory = u.inventory || [];
-  const mailItems = mail.items || [];
-  if (mailItems.length > 0 && u.inventory.length + mailItems.length > INVENTORY_CAP) {
-    return res.status(400).json({ error: `Not enough inventory space (need ${mailItems.length} slots, have ${INVENTORY_CAP - u.inventory.length})` });
-  }
+  // Collect items
   const collectedItems = [];
   for (const item of mailItems) {
     u.inventory.push(item);

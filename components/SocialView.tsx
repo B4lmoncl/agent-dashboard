@@ -37,7 +37,7 @@ function PlayerBadge({ name, avatar, color, size = 24 }: { name: string; avatar:
 
 const ONLINE_COLORS: Record<string, string> = { online: "#22c55e", idle: "#eab308", offline: "#555" };
 const ONLINE_LABELS: Record<string, string> = { online: "Online", idle: "Idle", offline: "Offline" };
-const RARITY_COLORS: Record<string, string> = { legendary: "#ff8c00", epic: "#a855f7", rare: "#3b82f6", uncommon: "#22c55e", common: "#888" };
+const RARITY_COLORS: Record<string, string> = { legendary: "#f97316", epic: "#a855f7", rare: "#3b82f6", uncommon: "#22c55e", common: "#9ca3af" };
 const RARITY_SORT: Record<string, number> = { legendary: 0, epic: 1, rare: 2, uncommon: 3, common: 4 };
 const SLOT_SORT: Record<string, number> = { weapon: 0, shield: 1, helm: 2, armor: 3, amulet: 4, boots: 5 };
 type TradeSortKey = "rarity" | "name" | "slot";
@@ -146,7 +146,7 @@ function FriendsTab({ apiKey, playerName, onOpenProfile }: { apiKey: string; pla
         body: JSON.stringify({ targetPlayer: name }),
       });
       const d = await r.json();
-      if (!r.ok) { setError(d.error || "Failed"); return; }
+      if (!r.ok) { setError(d.error || "Something went wrong. Please try again."); return; }
       setAddInput("");
       setSearchOpen(false);
       setSearchResults([]);
@@ -293,7 +293,7 @@ function FriendsTab({ apiKey, playerName, onOpenProfile }: { apiKey: string; pla
                     <button onClick={() => setConfirmRemove(null)} className="btn-interactive text-xs px-2 py-1 rounded text-w30" style={{ fontSize: 12 }}>No</button>
                   </div>
                 ) : (
-                  <button onClick={() => setConfirmRemove(f.id)} className="btn-interactive absolute top-1.5 right-1.5 text-xs px-1 py-0.5 rounded text-w15 opacity-0 group-hover:opacity-100 transition-opacity" title="Remove friend">✕</button>
+                  <button onClick={() => setConfirmRemove(f.id)} className="btn-interactive absolute top-1.5 right-1.5 text-xs px-1.5 py-1 rounded text-w15 opacity-0 group-hover:opacity-100 transition-opacity" title="Remove friend">✕</button>
                 )}
                 <div className="relative mb-1.5">
                   <PlayerBadge name={f.name} avatar={f.avatar} color={f.color} size={36} />
@@ -765,7 +765,7 @@ function TradesTab({ apiKey, playerName }: { apiKey: string; playerName: string 
         }),
       });
       const d = await r.json();
-      if (!r.ok) { setError(d.error || "Failed"); setActionLoading(false); return; }
+      if (!r.ok) { setError(d.error || "Something went wrong. Please try again."); setActionLoading(false); return; }
       setShowNewTrade(false);
       setNewTradeTarget("");
       setNewTradeGold(0);
@@ -785,7 +785,7 @@ function TradesTab({ apiKey, playerName }: { apiKey: string; playerName: string 
         headers: getAuthHeaders(apiKey),
       });
       const d = await r.json();
-      if (!r.ok) { setError(d.error || "Failed"); setActionLoading(false); return; }
+      if (!r.ok) { setError(d.error || "Something went wrong. Please try again."); setActionLoading(false); return; }
       fetchTrades();
       setSelectedTrade(null);
     } catch { setError("Network error"); }
@@ -805,7 +805,7 @@ function TradesTab({ apiKey, playerName }: { apiKey: string; playerName: string 
         }),
       });
       const d = await r.json();
-      if (!r.ok) { setError(d.error || "Failed"); setActionLoading(false); return; }
+      if (!r.ok) { setError(d.error || "Something went wrong. Please try again."); setActionLoading(false); return; }
       setCounterGold(0);
       setCounterMsg("");
       setCounterItems([]);

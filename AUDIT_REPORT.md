@@ -1,6 +1,6 @@
 # Quest Hall — Codebase Audit Report
 
-> Last updated: 2026-03-26 · v1.5.3 · Sessions 1–30
+> Last updated: 2026-03-27 · v1.6.0 · Sessions 1–31
 
 ---
 

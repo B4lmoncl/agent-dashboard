@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-**Quest Hall / Agent Dashboard** (v1.5.3) — A real-time operations center and gamified quest management system for AI agents and players. Combines agent monitoring, RPG quest mechanics (classes, companions, gacha, leveling), a REST API, and an Electron desktop companion app (Quest Forge).
+**Quest Hall / Agent Dashboard** (v1.6.0) — A real-time operations center and gamified quest management system for AI agents and players. Combines agent monitoring, RPG quest mechanics (classes, companions, gacha, leveling), a REST API, and an Electron desktop companion app (Quest Forge).
 
 ## Game Design References (Primäre Vorbilder)
 

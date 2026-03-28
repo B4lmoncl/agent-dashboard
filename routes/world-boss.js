@@ -7,7 +7,8 @@ const router = require('express').Router();
 const fs = require('fs');
 const path = require('path');
 const { state, saveUsers, ensureUserCurrencies, RUNTIME_DIR } = require('../lib/state');
-const { awardCurrency, spendCurrency, createUniqueInstance, trackUniqueInCollection } = require('../lib/helpers');
+const { awardCurrency, spendCurrency, createUniqueInstance, trackUniqueInCollection, createPlayerLock } = require('../lib/helpers');
+const wbClaimLock = createPlayerLock('wb-claim');
 const { requireAuth, requireMasterKey } = require('../lib/middleware');
 
 // ─── Data & Config ──────────────────────────────────────────────────────────
@@ -54,7 +55,7 @@ function getActiveBoss() {
   const ab = worldBossState.activeBoss;
   if (!ab) return null;
   // Check if expired
-  if (!ab.defeated && new Date(ab.expiresAt) < new Date()) {
+  if (!ab.defeated && new Date(ab.expiresAt).getTime() < Date.now()) {
     // Boss expired undefeated — move to history
     ab.expired = true;
     // Strip large contributions map before archiving to keep history lean
@@ -347,6 +348,8 @@ router.post('/api/world-boss/damage', requireAuth, (req, res) => {
 
 router.post('/api/world-boss/claim', requireAuth, (req, res) => {
   const uid = (req.auth?.userId || '').toLowerCase();
+  if (!wbClaimLock.acquire(uid)) return res.status(429).json({ error: 'Claim in progress' });
+  try {
   const user = uid ? state.users[uid] : null;
   if (!user) return res.status(404).json({ error: 'User not found' });
 
@@ -359,12 +362,11 @@ router.post('/api/world-boss/claim', requireAuth, (req, res) => {
     return res.status(400).json({ error: 'You did not contribute to this boss fight' });
   }
 
-  // Double-claim guard: push FIRST, then check — truly atomic in single-threaded Node.js
-  boss.rewardsClaimed.push(uid);
-  if (boss.rewardsClaimed.filter(id => id === uid).length > 1) {
-    boss.rewardsClaimed.pop();
+  // Double-claim guard: check BEFORE push (safe in single-threaded Node.js)
+  if (boss.rewardsClaimed.includes(uid)) {
     return res.status(400).json({ error: 'Rewards already claimed' });
   }
+  boss.rewardsClaimed.push(uid);
 
   const template = getBossTemplate(boss.bossId);
   const leaderboard = getContributionLeaderboard(boss, 999);
@@ -492,6 +494,7 @@ router.post('/api/world-boss/claim', requireAuth, (req, res) => {
     contribution,
     contributionPercent: Math.round(contributionPercent * 10000) / 100,
   });
+  } finally { wbClaimLock.release(uid); }
 });
 
 // ─── POST /api/world-boss/spawn — Admin: force spawn ───────────────────────
@@ -574,7 +577,7 @@ router.post('/api/world-boss/boost', requireAuth, (req, res) => {
 
 function isWorldBossActive() {
   const ab = worldBossState.activeBoss;
-  return !!(ab && !ab.defeated && new Date(ab.expiresAt) > new Date());
+  return !!(ab && !ab.defeated && new Date(ab.expiresAt).getTime() > Date.now());
 }
 
 module.exports = router;

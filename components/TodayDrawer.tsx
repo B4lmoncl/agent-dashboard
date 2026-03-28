@@ -63,6 +63,7 @@ const CATEGORY_TOOLTIPS: Record<string, { title: string; desc: string }> = {
   daily: { title: "Daily Tasks", desc: "Your core daily routine: claim your bonus, feed your companion, complete rituals, and check daily missions." },
   content: { title: "Active Content", desc: "Ongoing game systems with active progress: quests, challenges, rifts, world boss, dungeons, and NPC quest chains." },
   social: { title: "Social", desc: "Stay connected — pending friend requests, unread messages, and active trades with other players." },
+  timers: { title: "Timers", desc: "All active countdowns at a glance — weekly resets, season deadlines, active rifts, and world boss spawns." },
 };
 
 // ─── Time-of-day flavor ──────────────────────────────────────────────────────
@@ -285,10 +286,12 @@ export default function TodayDrawer({
   expeditionActive,
   dungeonActive,
   onClaimMilestone,
+  playerLevel,
 }: {
   open: boolean;
   onClose: () => void;
   onNavigate: (view: string) => void;
+  playerLevel?: number;
   dailyBonusAvailable: boolean;
   dailyMissions: { missions: { id: string; label: string; points: number; done: boolean }[]; earned: number; total: number; milestones: { threshold: number; reward: Record<string, number>; claimed: boolean }[] } | null;
   rituals: Ritual[];
@@ -323,7 +326,7 @@ export default function TodayDrawer({
     document.body.style.overflow = "hidden";
     const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
     window.addEventListener("keydown", onKey);
-    return () => { document.body.style.overflow = ""; window.removeEventListener("keydown", onKey); };
+    return () => { document.body.style.overflow = prev; window.removeEventListener("keydown", onKey); };
   }, [open, onClose]);
 
   // ─── Hero data ───────────────────────────────────────────────────────────
@@ -454,7 +457,7 @@ export default function TodayDrawer({
     // Crafting daily bonus
     const lastCraft = (loggedInUser as Record<string, unknown> | null)?.lastCraftDate as string | undefined;
     const craftedToday = lastCraft === today;
-    if (loggedInUser?.professions && Object.keys(loggedInUser.professions).length > 0) {
+    if (loggedInUser?.professions && Object.keys(loggedInUser.professions).length > 0 && (playerLevel ?? 1) >= 5) {
       daily.push({
         id: "crafting-bonus",
         icon: "/images/icons/equip-weapon.png",
@@ -489,8 +492,8 @@ export default function TodayDrawer({
       });
     }
 
-    // World Boss
-    if (worldBossActive) {
+    // World Boss (Lv15+)
+    if (worldBossActive && (playerLevel ?? 1) >= 15) {
       urgent.push({
         id: "world-boss",
         icon: "/images/icons/ach-boss-slayer.png",
@@ -520,8 +523,8 @@ export default function TodayDrawer({
       });
     }
 
-    // Weekly challenge
-    if (weeklyChallenge) {
+    // Weekly challenge (Lv3+)
+    if (weeklyChallenge && (playerLevel ?? 1) >= 3) {
       const starsEarned = weeklyChallenge.stagesCompleted ?? 0;
       content.push({
         id: "weekly-challenge",
@@ -535,8 +538,8 @@ export default function TodayDrawer({
       });
     }
 
-    // Rift
-    if (riftActive) {
+    // Rift (Lv8+)
+    if (riftActive && (playerLevel ?? 1) >= 8) {
       content.push({
         id: "rift-active",
         icon: "/images/icons/currency-runensplitter.png",
@@ -549,8 +552,8 @@ export default function TodayDrawer({
       });
     }
 
-    // Expedition
-    if (expeditionActive) {
+    // Expedition (Lv3+ — same as Challenges)
+    if (expeditionActive && (playerLevel ?? 1) >= 3) {
       content.push({
         id: "expedition",
         icon: "/images/icons/ach-marathon-runner.png",
@@ -563,8 +566,8 @@ export default function TodayDrawer({
       });
     }
 
-    // Dungeon
-    if (dungeonActive) {
+    // Dungeon (Lv12+)
+    if (dungeonActive && (playerLevel ?? 1) >= 12) {
       content.push({
         id: "dungeon-active",
         icon: "/images/icons/ach-coop-hero.png",
@@ -636,9 +639,36 @@ export default function TodayDrawer({
     if (daily.length > 0) cats.push({ id: "daily", label: "Daily Tasks", icon: "\u2726", items: daily });
     if (content.length > 0) cats.push({ id: "content", label: "Active Content", icon: "\u2694", items: content });
     if (social.length > 0) cats.push({ id: "social", label: "Social", icon: "\u2606", items: social });
+
+    // ─── Timers category (Calendar/Reset Widget) ──────────────────────────────
+    const timers: TodayItem[] = [];
+    // Weekly reset (next Monday 00:00)
+    const nextMonday = new Date();
+    nextMonday.setDate(nextMonday.getDate() + ((1 + 7 - nextMonday.getDay()) % 7 || 7));
+    nextMonday.setHours(0, 0, 0, 0);
+    const weeklyMs = nextMonday.getTime() - Date.now();
+    const weeklyDays = Math.floor(weeklyMs / 86400000);
+    const weeklyHours = Math.floor((weeklyMs % 86400000) / 3600000);
+    timers.push({ id: "timer-weekly", icon: "/images/icons/currency-runensplitter.png", label: "Weekly Reset", done: false, sub: `${weeklyDays}d ${weeklyHours}h` });
+    // Battle Pass season (estimate: 90-day seasons from March 1)
+    const bpEpoch = new Date("2026-03-01T00:00:00Z").getTime();
+    const bpDuration = 90 * 86400000;
+    const bpElapsed = (Date.now() - bpEpoch) % bpDuration;
+    const bpRemaining = bpDuration - bpElapsed;
+    const bpDays = Math.floor(bpRemaining / 86400000);
+    timers.push({ id: "timer-bp", icon: "/images/icons/currency-stardust.png", label: "Season Ends", done: false, sub: `${bpDays}d remaining` });
+    // World boss (Lv15+)
+    if (worldBossActive && (playerLevel ?? 1) >= 15) {
+      timers.push({ id: "timer-wb", icon: "/images/icons/ach-boss-slayer.png", label: "World Boss Active", done: false, sub: "Contribute now", urgent: true, onClick: () => { onNavigate("worldboss"); onClose(); } });
+    }
+    // Active rift (Lv8+)
+    if (riftActive && (playerLevel ?? 1) >= 8) {
+      timers.push({ id: "timer-rift", icon: "/images/icons/currency-runensplitter.png", label: "Rift Active", done: false, sub: "In progress", urgent: true, onClick: () => { onNavigate("rift"); onClose(); } });
+    }
+    if (timers.length > 0) cats.push({ id: "timers", label: "Timers", icon: "\u23F0", items: timers });
     return cats;
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dailyBonusAvailable, dailyMissions, rituals, activeNpcs, loggedInUser, inProgressCount, weeklyChallenge, worldBossActive, riftActive, vowCount, socialBadge, expeditionActive, dungeonActive, today]);
+  }, [dailyBonusAvailable, dailyMissions, rituals, activeNpcs, loggedInUser, inProgressCount, weeklyChallenge, worldBossActive, riftActive, vowCount, socialBadge, expeditionActive, dungeonActive, today, playerLevel]);
 
   const allItems = categories.flatMap(c => c.items);
   const doneCount = allItems.filter(i => i.done).length;
@@ -773,7 +803,7 @@ export default function TodayDrawer({
                 <StreakFlame streak={streak} />
                 <div>
                   <span className="text-lg font-bold font-mono" style={{ color: streak > 0 ? "#f97316" : "rgba(255,255,255,0.2)" }}>{streak}</span>
-                  <span className="text-xs block" style={{ color: "rgba(255,255,255,0.25)", marginTop: -2 }}>Streak <span style={{ fontSize: 10, opacity: 0.5 }}>→</span></span>
+                  <span className="text-xs block" style={{ color: "rgba(255,255,255,0.25)", marginTop: -2 }}>Streak <span style={{ fontSize: 12, opacity: 0.5 }}>→</span></span>
                 </div>
               </div>
             </div></Tip>
@@ -809,7 +839,7 @@ export default function TodayDrawer({
                     )}
                     </span>
                     <span className="absolute -bottom-0.5 -right-0.5 text-xs rounded-full flex items-center justify-center"
-                      style={{ width: 16, height: 16, fontSize: 10, background: "rgba(251,191,36,0.9)", color: "#000", fontWeight: 800 }}>
+                      style={{ width: 16, height: 16, fontSize: 12, background: "rgba(251,191,36,0.9)", color: "#000", fontWeight: 800 }}>
                       {comp.bondLevel ?? 1}
                     </span>
                   </button>
@@ -836,7 +866,9 @@ export default function TodayDrawer({
               </div>
             </div>
 
-            {/* Forge Temp Card — right */}
+            {/* Forge Temp Card — right (Lv5+ only) */}
+            {(playerLevel ?? 1) >= 5 && (
+            <>
             <Tip k="forge_temp"><div
               className="today-stat-card rounded-xl px-4 py-2.5 relative overflow-hidden"
               role="button"
@@ -863,10 +895,12 @@ export default function TodayDrawer({
                       transition: "width 0.8s ease-out",
                     }} />
                   </div>
-                  <span className="text-xs block mt-0.5" style={{ color: "rgba(255,255,255,0.2)", fontSize: 12 }}>Forge <span style={{ fontSize: 10, opacity: 0.5 }}>→</span></span>
+                  <span className="text-xs block mt-0.5" style={{ color: "rgba(255,255,255,0.2)", fontSize: 12 }}>Forge <span style={{ fontSize: 12, opacity: 0.5 }}>→</span></span>
                 </div>
               </div>
             </div></Tip>
+            </>
+            )}
           </div>
         </div>
 

@@ -1771,8 +1771,8 @@ Flavor text snippets add atmosphere to generated quests.
 ```json
 [
   {
-    "version": "1.5.3",
-    "date": "2026-03-22",
+    "version": "1.6.0",
+    "date": "2026-03-27",
     "title": "The Undercroft Update",
     "highlights": [
       "New: Dungeon System — cooperative group dungeons",

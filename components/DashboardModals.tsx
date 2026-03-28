@@ -62,6 +62,15 @@ export default function DashboardModals({
     return () => document.removeEventListener("keydown", h);
   }, [currenciesOpen, modifierOpen, streakInfoOpen, activeQuestsInfoOpen, xpInfoOpen]);
 
+  // Scroll lock for any open modal
+  useEffect(() => {
+    const anyOpen = currenciesOpen || modifierOpen || streakInfoOpen || activeQuestsInfoOpen || xpInfoOpen;
+    if (!anyOpen) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => { document.body.style.overflow = prev; };
+  }, [currenciesOpen, modifierOpen, streakInfoOpen, activeQuestsInfoOpen, xpInfoOpen]);
+
   const CURRENCY_SOURCE: Record<string, { view: string; label: string }> = {
     gold: { view: "questBoard", label: "Quest Board" },
     stardust: { view: "gacha", label: "Vault of Fate" },
@@ -95,7 +104,7 @@ export default function DashboardModals({
                   <h3 className="text-sm font-semibold text-primary">Currencies</h3>
                   <button onClick={() => { setCurrenciesOpen(false); setCurrencyExpanded(null); }} className="btn-close">×</button>
                 </div>
-                <div className="space-y-2 overflow-y-auto flex-1">
+                <div className="space-y-2 overflow-y-auto flex-1" style={{ scrollbarWidth: "thin" as const }}>
                   {[
                     { name: "Gold", key: "gold" as const, value: loggedInUser?.currencies?.gold ?? animGold, color: "#f59e0b", desc: "The honest metal of the Hall.", iconSrc: "/images/icons/currency-gold.png" },
                     { name: "Stardust", key: "stardust" as const, value: loggedInUser?.currencies?.stardust ?? 0, color: "#a78bfa", desc: "Congealed starlight.", iconSrc: "/images/icons/currency-stardust.png" },

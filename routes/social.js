@@ -79,10 +79,10 @@ function validateTradeItems(u, uid, itemInstanceIds) {
   for (const instanceId of uniqueIds) {
     const item = inv.find(i => i.id === instanceId || i.instanceId === instanceId);
     if (!item) {
-      return { ok: false, error: `Item ${instanceId} not found in ${uid}'s inventory` };
+      return { ok: false, error: `Item not found in inventory` };
     }
     if (isItemEquipped(u, item.id || item.instanceId || instanceId)) {
-      return { ok: false, error: `Item ${instanceId} is currently equipped and cannot be traded` };
+      return { ok: false, error: `${item.name || 'Item'} is currently equipped — unequip it first` };
     }
     // BoP items can never be traded; BoE items that have been equipped (bound) can't be traded
     if (item.binding === 'bop' || item.bound === true) {

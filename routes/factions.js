@@ -2,7 +2,8 @@ const express = require("express");
 const router = express.Router();
 const { state, saveUsers } = require("../lib/state");
 const { requireAuth } = require("../lib/middleware");
-const { getLegendaryModifiers } = require("../lib/helpers");
+const { getLegendaryModifiers, createPlayerLock } = require("../lib/helpers");
+const factionClaimLock = createPlayerLock('faction-claim');
 const factionsData = require("../public/data/factions.json");
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
@@ -109,6 +110,8 @@ router.get("/", requireAuth, (req, res) => {
 
 router.post("/:factionId/claim", requireAuth, (req, res) => {
   const uid = req.auth?.userId;
+  if (!factionClaimLock.acquire(uid)) return res.status(429).json({ error: 'Claim in progress' });
+  try {
   const user = uid ? state.users[uid] : null;
   if (!user) return res.status(404).json({ error: "User not found" });
 
@@ -190,6 +193,7 @@ router.post("/:factionId/claim", requireAuth, (req, res) => {
   saveUsers();
 
   res.json({ ok: true, granted, standing: standing.id, factionId });
+  } finally { factionClaimLock.release(uid); }
 });
 
 // ─── Helper: Grant reputation (called from quest completion) ─────────────────
