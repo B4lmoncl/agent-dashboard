@@ -7,6 +7,11 @@
 const router = require('express').Router();
 const fs = require('fs');
 const path = require('path');
+
+// ─── Player lock for dungeon collect (prevents double-claim) ────────────────
+const _collectLocks = new Map();
+function acquireCollectLock(uid) { if (_collectLocks.has(uid)) return false; _collectLocks.set(uid, true); return true; }
+function releaseCollectLock(uid) { _collectLocks.delete(uid); }
 const { state, saveUsers, saveSocial, ensureUserCurrencies, RUNTIME_DIR, logActivity } = require('../lib/state');
 const { now, getLevelInfo, awardCurrency, getGearScore, getBondLevel, rollLoot, addLootToInventory, createGearInstance, rollSuffix, createUniqueInstance, trackUniqueInCollection, getLegendaryModifiers } = require('../lib/helpers');
 const { requireAuth } = require('../lib/middleware');
@@ -340,7 +345,7 @@ router.post('/api/dungeons/create', requireAuth, (req, res) => {
     return res.status(400).json({ error: `Max ${dungeon.maxPlayers} players total (you + ${dungeon.maxPlayers - 1} friends)` });
   }
 
-  // Validate each invited player exists and is a friend
+  // Validate each invited player exists, is a friend, and meets level requirement
   for (const invName of invited) {
     const invUser = state.usersByName.get(invName);
     if (!invUser) {
@@ -348,6 +353,10 @@ router.post('/api/dungeons/create', requireAuth, (req, res) => {
     }
     if (!areFriends(uid, invUser.id || invName)) {
       return res.status(400).json({ error: `"${invName}" is not on your friends list` });
+    }
+    const invLevel = getLevelInfo(invUser.xp || 0).level;
+    if (invLevel < dungeon.minLevel) {
+      return res.status(400).json({ error: `${invUser.name || invName} is Level ${invLevel} — this dungeon requires Level ${dungeon.minLevel}` });
     }
   }
 
@@ -456,6 +465,8 @@ router.post('/api/dungeons/:runId/join', requireAuth, (req, res) => {
 // POST /api/dungeons/:runId/collect — collect rewards after dungeon completes
 router.post('/api/dungeons/:runId/collect', requireAuth, (req, res) => {
   const uid = (req.auth?.userId || '').toLowerCase();
+  if (!acquireCollectLock(uid)) return res.status(429).json({ error: 'Collection in progress' });
+  try {
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'User not found' });
 
@@ -665,6 +676,7 @@ router.post('/api/dungeons/:runId/collect', requireAuth, (req, res) => {
       ? `Dungeon cleared! You conquered ${dungeon.name}!`
       : `The group barely escaped ${dungeon.name}. Consolation rewards received.`,
   });
+  } finally { releaseCollectLock(uid); }
 });
 
 // GET /api/dungeons/:runId — run details

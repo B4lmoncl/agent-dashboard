@@ -7,6 +7,11 @@ const fs = require('fs');
 const path = require('path');
 const router = require('express').Router();
 const { state, saveUsers, ensureUserCurrencies } = require('../lib/state');
+
+// ─── Player lock for challenge claims ──────────────────────────────────────
+const _claimLocks = new Map();
+function acquireClaimLock(uid) { if (_claimLocks.has(uid)) return false; _claimLocks.set(uid, true); return true; }
+function releaseClaimLock(uid) { _claimLocks.delete(uid); }
 const { now, getLevelInfo, awardCurrency, getLegendaryModifiers } = require('../lib/helpers');
 const { requireAuth } = require('../lib/middleware');
 
@@ -283,6 +288,8 @@ router.post('/api/weekly-challenge/progress', requireAuth, (req, res) => {
 // POST /api/weekly-challenge/claim — claim stage reward
 router.post('/api/weekly-challenge/claim', requireAuth, (req, res) => {
   const uid = req.auth?.userId;
+  if (!acquireClaimLock(uid)) return res.status(429).json({ error: 'Claim in progress' });
+  try {
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'User not found' });
 
@@ -361,6 +368,7 @@ router.post('/api/weekly-challenge/claim', requireAuth, (req, res) => {
       stars: u.weeklyChallenge.stars,
     },
   });
+  } finally { releaseClaimLock(uid); }
 });
 
 // ─── Cumulative Star Milestones ──────────────────────────────────────────────

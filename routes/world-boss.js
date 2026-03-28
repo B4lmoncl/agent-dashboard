@@ -76,10 +76,14 @@ function getBossTemplate(bossId) {
   return bossData.bosses.find(b => b.id === bossId) || null;
 }
 
+const WB_MIN_LEVEL = 15;
+
 function calcMaxHp(template) {
-  const playerCount = Object.keys(state.users).length;
-  const scaled = playerCount * bossData.config.hpPerPlayer;
-  // Use template HP if available (individual boss difficulty), scale up with player count
+  const { getLevelInfo } = require('../lib/helpers');
+  // Only count players who have reached the WB unlock level
+  const eligibleCount = Object.values(state.users).filter(u => getLevelInfo(u.xp || 0).level >= WB_MIN_LEVEL).length;
+  const scaled = Math.max(1, eligibleCount) * bossData.config.hpPerPlayer;
+  // Use template HP if available (individual boss difficulty), scale up with eligible player count
   const templateHp = template?.hp || 0;
   return Math.max(templateHp, scaled, bossData.config.minHp);
 }
@@ -133,9 +137,13 @@ function dealBossDamage(userId, questRarity) {
   const boss = getActiveBoss();
   if (!boss || boss.defeated) return null;
 
+  // Only players who reached WB unlock level can deal damage
+  const { getGearScore, getLevelInfo } = require('../lib/helpers');
+  const dmgUser = state.users[userId];
+  if (!dmgUser || getLevelInfo(dmgUser.xp || 0).level < WB_MIN_LEVEL) return null;
+
   const baseDmg = bossData.config.damagePerQuest[questRarity] || bossData.config.damagePerQuest.common;
   // Gear Score multiplier: every 50 GS = +10% damage (additive, cap +100%)
-  const { getGearScore } = require('../lib/helpers');
   const { gearScore } = getGearScore(userId);
   const gsMulti = Math.min(2.0, 1 + Math.floor(gearScore / 50) * 0.10);
   let dmg = Math.round(baseDmg * gsMulti);
@@ -352,6 +360,12 @@ router.post('/api/world-boss/claim', requireAuth, (req, res) => {
   try {
   const user = uid ? state.users[uid] : null;
   if (!user) return res.status(404).json({ error: 'User not found' });
+
+  const { getLevelInfo } = require('../lib/helpers');
+  const playerLevel = getLevelInfo(user.xp || 0).level;
+  if (playerLevel < WB_MIN_LEVEL) {
+    return res.status(403).json({ error: `World Boss requires Level ${WB_MIN_LEVEL} (you are Level ${playerLevel})` });
+  }
 
   const boss = worldBossState.activeBoss;
   if (!boss || !boss.defeated) {

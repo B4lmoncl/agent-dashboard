@@ -3,6 +3,11 @@
  */
 const router = require('express').Router();
 const { state, saveUsers, ensureUserCurrencies } = require('../lib/state');
+
+// ─── Player lock (prevents concurrent claims) ───────────────────────────────
+const _dailyLocks = new Map();
+function acquireDailyLock(uid) { if (_dailyLocks.has(uid)) return false; _dailyLocks.set(uid, true); return true; }
+function releaseDailyLock(uid) { _dailyLocks.delete(uid); }
 const { requireApiKey } = require('../lib/middleware');
 const { now, awardCurrency, getStreakMilestone, getTodayBerlin } = require('../lib/helpers');
 
@@ -127,6 +132,8 @@ router.post('/api/daily-bonus/claim', requireApiKey, (req, res) => {
   if (!req.auth?.isAdmin && callerId !== uid) {
     return res.status(403).json({ error: 'You can only claim your own daily bonus' });
   }
+  if (!acquireDailyLock(uid)) return res.status(429).json({ error: 'Claim in progress' });
+  try {
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'Player not found' });
   ensureUserCurrencies(u);
@@ -178,6 +185,7 @@ router.post('/api/daily-bonus/claim', requireApiKey, (req, res) => {
     currencies: u.currencies,
     claimedAt: now(),
   });
+  } finally { releaseDailyLock(uid); }
 });
 
 // GET /api/daily-bonus/status/:playerId — check if daily bonus is available

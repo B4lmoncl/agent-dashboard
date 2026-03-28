@@ -389,6 +389,976 @@
         "type": "shop_purchase",
         "value": 1
       }
+    },
+    {
+      "id": "level5",
+      "name": "Aufsteiger",
+      "description": "Level 5 erreicht.",
+      "rarity": "common",
+      "condition": {
+        "type": "level",
+        "value": 5
+      }
+    },
+    {
+      "id": "level15",
+      "name": "Turmkletterer",
+      "description": "Level 15 erreicht. Die Spitze rückt näher.",
+      "rarity": "uncommon",
+      "condition": {
+        "type": "level",
+        "value": 15
+      }
+    },
+    {
+      "id": "level25",
+      "name": "der Unermüdliche",
+      "description": "Level 25. Halbzeit war gestern.",
+      "rarity": "rare",
+      "condition": {
+        "type": "level",
+        "value": 25
+      }
+    },
+    {
+      "id": "level35",
+      "name": "Sternenbrecher",
+      "description": "Level 35. Die Luft wird dünn hier oben.",
+      "rarity": "epic",
+      "condition": {
+        "type": "level",
+        "value": 35
+      }
+    },
+    {
+      "id": "level40",
+      "name": "Horizontschreiter",
+      "description": "Level 40. Du siehst Dinge, die anderen verborgen bleiben.",
+      "rarity": "epic",
+      "condition": {
+        "type": "level",
+        "value": 40
+      }
+    },
+    {
+      "id": "level45",
+      "name": "Ätherwandler",
+      "description": "Level 45. Fast am Ziel — und das Ziel hat Angst vor dir.",
+      "rarity": "legendary",
+      "condition": {
+        "type": "level",
+        "value": 45
+      }
+    },
+    {
+      "id": "level50",
+      "name": "Windrunners Gleicher",
+      "description": "Level 50. Es gibt nichts mehr über dir außer Himmel.",
+      "rarity": "legendary",
+      "condition": {
+        "type": "level",
+        "value": 50
+      }
+    },
+    {
+      "id": "quest25",
+      "name": "Pfadfinder",
+      "description": "25 Quests abgeschlossen.",
+      "rarity": "common",
+      "condition": {
+        "type": "quests_completed",
+        "value": 25
+      }
+    },
+    {
+      "id": "quest75",
+      "name": "Auftragsexperte",
+      "description": "75 Quests. Du weißt, was du tust.",
+      "rarity": "uncommon",
+      "condition": {
+        "type": "quests_completed",
+        "value": 75
+      }
+    },
+    {
+      "id": "quest150",
+      "name": "Questbesessener",
+      "description": "150 Quests. Manche nennen es Hingabe. Andere Wahnsinn.",
+      "rarity": "rare",
+      "condition": {
+        "type": "quests_completed",
+        "value": 150
+      }
+    },
+    {
+      "id": "quest200",
+      "name": "der Unaufhaltsame",
+      "description": "200 Quests. Du bist eine Naturgewalt.",
+      "rarity": "rare",
+      "condition": {
+        "type": "quests_completed",
+        "value": 200
+      }
+    },
+    {
+      "id": "quest500",
+      "name": "Ewiger Wanderer",
+      "description": "500 Quests. Die Straßen kennen deinen Namen.",
+      "rarity": "epic",
+      "condition": {
+        "type": "quests_completed",
+        "value": 500
+      }
+    },
+    {
+      "id": "quest1000",
+      "name": "Tausendfache Klinge",
+      "description": "1000 Quests. Eine Legende in Questform.",
+      "rarity": "legendary",
+      "condition": {
+        "type": "quests_completed",
+        "value": 1000
+      }
+    },
+    {
+      "id": "streak7",
+      "name": "Wochenkrieger",
+      "description": "7 Tage Streak. Eine ganze Woche.",
+      "rarity": "common",
+      "condition": {
+        "type": "streak",
+        "value": 7
+      }
+    },
+    {
+      "id": "streak21",
+      "name": "Gewohnheitstier",
+      "description": "21 Tage Streak. Wissenschaftler sagen, jetzt ist es Routine.",
+      "rarity": "uncommon",
+      "condition": {
+        "type": "streak",
+        "value": 21
+      }
+    },
+    {
+      "id": "streak45",
+      "name": "Unbeugsam",
+      "description": "45 Tage ohne Unterbrechung.",
+      "rarity": "rare",
+      "condition": {
+        "type": "streak",
+        "value": 45
+      }
+    },
+    {
+      "id": "streak90",
+      "name": "Vierteljahresfeuer",
+      "description": "90 Tage Streak. Ein Quartal reiner Disziplin.",
+      "rarity": "epic",
+      "condition": {
+        "type": "streak",
+        "value": 90
+      }
+    },
+    {
+      "id": "streak180",
+      "name": "Halbjahreskönig",
+      "description": "180 Tage. Sechs Monate. Respekt.",
+      "rarity": "epic",
+      "condition": {
+        "type": "streak",
+        "value": 180
+      }
+    },
+    {
+      "id": "streak365",
+      "name": "Ewige Flamme",
+      "description": "365 Tage Streak. Ein ganzes Jahr. Unfassbar.",
+      "rarity": "legendary",
+      "condition": {
+        "type": "streak",
+        "value": 365
+      }
+    },
+    {
+      "id": "gold500",
+      "name": "Sparfuchs",
+      "description": "500 Gold angesammelt.",
+      "rarity": "common",
+      "condition": {
+        "type": "gold",
+        "value": 500
+      }
+    },
+    {
+      "id": "gold2000",
+      "name": "Wohlhabend",
+      "description": "2000 Gold. Nicht schlecht.",
+      "rarity": "uncommon",
+      "condition": {
+        "type": "gold",
+        "value": 2000
+      }
+    },
+    {
+      "id": "gold5000",
+      "name": "Golddrache",
+      "description": "5000 Gold. Du schläfst auf einem Haufen Münzen.",
+      "rarity": "rare",
+      "condition": {
+        "type": "gold",
+        "value": 5000
+      }
+    },
+    {
+      "id": "gold10000",
+      "name": "Münzmeister",
+      "description": "10.000 Gold. Die Bank wird nervös.",
+      "rarity": "epic",
+      "condition": {
+        "type": "gold",
+        "value": 10000
+      }
+    },
+    {
+      "id": "gold50000",
+      "name": "der Vergoldete",
+      "description": "50.000 Gold. Geld ist nur noch eine Abstraktion für dich.",
+      "rarity": "legendary",
+      "condition": {
+        "type": "gold",
+        "value": 50000
+      }
+    },
+    {
+      "id": "gs100",
+      "name": "Gerüstet",
+      "description": "Gear Score 100 erreicht.",
+      "rarity": "common",
+      "condition": {
+        "type": "gear_score",
+        "value": 100
+      }
+    },
+    {
+      "id": "gs250",
+      "name": "Stahlträger",
+      "description": "Gear Score 250. Du siehst gefährlich aus.",
+      "rarity": "uncommon",
+      "condition": {
+        "type": "gear_score",
+        "value": 250
+      }
+    },
+    {
+      "id": "gs500",
+      "name": "Waffenmeister",
+      "description": "Gear Score 500. Beeindruckend.",
+      "rarity": "rare",
+      "condition": {
+        "type": "gear_score",
+        "value": 500
+      }
+    },
+    {
+      "id": "gs750",
+      "name": "Festung auf Beinen",
+      "description": "Gear Score 750. Du BIST die Verteidigung.",
+      "rarity": "epic",
+      "condition": {
+        "type": "gear_score",
+        "value": 750
+      }
+    },
+    {
+      "id": "gs1000",
+      "name": "Lebende Legende",
+      "description": "Gear Score 1000. Die Items tragen dich, nicht umgekehrt.",
+      "rarity": "legendary",
+      "condition": {
+        "type": "gear_score",
+        "value": 1000
+      }
+    },
+    {
+      "id": "craft50",
+      "name": "Lehrling",
+      "description": "Profession Skill 50 in einem Beruf.",
+      "rarity": "common",
+      "condition": {
+        "type": "profession_skill",
+        "value": 50
+      }
+    },
+    {
+      "id": "craft125",
+      "name": "Geselle",
+      "description": "Profession Skill 125. Du beherrschst die Grundlagen.",
+      "rarity": "uncommon",
+      "condition": {
+        "type": "profession_skill",
+        "value": 125
+      }
+    },
+    {
+      "id": "craft200",
+      "name": "Meisterhand",
+      "description": "Profession Skill 200. Die Materialien gehorchen dir.",
+      "rarity": "rare",
+      "condition": {
+        "type": "profession_skill",
+        "value": 200
+      }
+    },
+    {
+      "id": "craft275",
+      "name": "Großmeister",
+      "description": "Profession Skill 275. Fast perfekt.",
+      "rarity": "epic",
+      "condition": {
+        "type": "profession_skill",
+        "value": 275
+      }
+    },
+    {
+      "id": "craft300",
+      "name": "der Vollendete",
+      "description": "Profession Skill 300. Meister eines Handwerks. Es gibt nichts mehr zu lernen.",
+      "rarity": "legendary",
+      "condition": {
+        "type": "profession_skill",
+        "value": 300
+      }
+    },
+    {
+      "id": "mythic1",
+      "name": "Riftläufer",
+      "description": "Mythic+1 abgeschlossen.",
+      "rarity": "uncommon",
+      "condition": {
+        "type": "mythic_cleared",
+        "value": 1
+      }
+    },
+    {
+      "id": "mythic5",
+      "name": "Rifttänzer",
+      "description": "Mythic+5 gemeistert.",
+      "rarity": "rare",
+      "condition": {
+        "type": "mythic_cleared",
+        "value": 5
+      }
+    },
+    {
+      "id": "mythic10",
+      "name": "Zehnfacher",
+      "description": "Mythic+10. Zweistellig.",
+      "rarity": "epic",
+      "condition": {
+        "type": "mythic_cleared",
+        "value": 10
+      }
+    },
+    {
+      "id": "mythic15",
+      "name": "Abgrundsblick",
+      "description": "Mythic+15. Du starrst in den Rift, und der Rift starrt zurück.",
+      "rarity": "epic",
+      "condition": {
+        "type": "mythic_cleared",
+        "value": 15
+      }
+    },
+    {
+      "id": "mythic20",
+      "name": "Riftbrecher",
+      "description": "Mythic+20. Die Dimensionsgrenzen biegen sich um dich herum.",
+      "rarity": "legendary",
+      "condition": {
+        "type": "mythic_cleared",
+        "value": 20
+      }
+    },
+    {
+      "id": "mythic30",
+      "name": "Jenseitsschreiter",
+      "description": "Mythic+30. Niemand hat jemals so tief geblickt.",
+      "rarity": "legendary",
+      "condition": {
+        "type": "mythic_cleared",
+        "value": 30
+      }
+    },
+    {
+      "id": "bond3",
+      "name": "Tierfreund",
+      "description": "Bond Level 3 mit deinem Companion.",
+      "rarity": "common",
+      "condition": {
+        "type": "bond_level",
+        "value": 3
+      }
+    },
+    {
+      "id": "bond5",
+      "name": "Seelenverwandter",
+      "description": "Bond Level 5. Beste Freunde.",
+      "rarity": "uncommon",
+      "condition": {
+        "type": "bond_level",
+        "value": 5
+      }
+    },
+    {
+      "id": "bond7",
+      "name": "Unzertrennlich",
+      "description": "Bond Level 7. Ihr seid eins.",
+      "rarity": "rare",
+      "condition": {
+        "type": "bond_level",
+        "value": 7
+      }
+    },
+    {
+      "id": "bond10",
+      "name": "Ewiger Bund",
+      "description": "Bond Level 10. Die ultimative Verbindung.",
+      "rarity": "epic",
+      "condition": {
+        "type": "bond_level",
+        "value": 10
+      }
+    },
+    {
+      "id": "achpts50",
+      "name": "Sammler",
+      "description": "50 Achievement-Punkte.",
+      "rarity": "common",
+      "condition": {
+        "type": "achievement_points",
+        "value": 50
+      }
+    },
+    {
+      "id": "achpts200",
+      "name": "Jäger",
+      "description": "200 Achievement-Punkte.",
+      "rarity": "uncommon",
+      "condition": {
+        "type": "achievement_points",
+        "value": 200
+      }
+    },
+    {
+      "id": "achpts500",
+      "name": "Trophäenträger",
+      "description": "500 Achievement-Punkte.",
+      "rarity": "rare",
+      "condition": {
+        "type": "achievement_points",
+        "value": 500
+      }
+    },
+    {
+      "id": "achpts1000",
+      "name": "Ruhmgekrönt",
+      "description": "1000 Achievement-Punkte. Du hast alles gesehen.",
+      "rarity": "epic",
+      "condition": {
+        "type": "achievement_points",
+        "value": 1000
+      }
+    },
+    {
+      "id": "achpts2000",
+      "name": "Ewiger Ruhm",
+      "description": "2000 Achievement-Punkte. Eine lebende Enzyklopädie.",
+      "rarity": "legendary",
+      "condition": {
+        "type": "achievement_points",
+        "value": 2000
+      }
+    },
+    {
+      "id": "npc3",
+      "name": "Geschichtensammler",
+      "description": "3 NPC-Questketten abgeschlossen.",
+      "rarity": "common",
+      "condition": {
+        "type": "npc_chains",
+        "value": 3
+      }
+    },
+    {
+      "id": "npc5",
+      "name": "Legendenkenner",
+      "description": "5 NPC-Questketten.",
+      "rarity": "uncommon",
+      "condition": {
+        "type": "npc_chains",
+        "value": 5
+      }
+    },
+    {
+      "id": "npc10",
+      "name": "Chronist",
+      "description": "10 NPC-Ketten. Du kennst jeden Wanderer persönlich.",
+      "rarity": "rare",
+      "condition": {
+        "type": "npc_chains",
+        "value": 10
+      }
+    },
+    {
+      "id": "npc20",
+      "name": "Erzähler der Halle",
+      "description": "20 NPC-Ketten. Die NPCs kommen wegen DIR.",
+      "rarity": "epic",
+      "condition": {
+        "type": "npc_chains",
+        "value": 20
+      }
+    },
+    {
+      "id": "forge60",
+      "name": "Heißblütig",
+      "description": "Forge Temp 60 erreicht.",
+      "rarity": "common",
+      "condition": {
+        "type": "forge_temp",
+        "value": 60
+      }
+    },
+    {
+      "id": "forge80",
+      "name": "Glutkern",
+      "description": "Forge Temp 80. Es brodelt.",
+      "rarity": "uncommon",
+      "condition": {
+        "type": "forge_temp",
+        "value": 80
+      }
+    },
+    {
+      "id": "forge100",
+      "name": "Weißglut",
+      "description": "Forge Temp 100. Maximale Hitze.",
+      "rarity": "rare",
+      "condition": {
+        "type": "forge_temp",
+        "value": 100
+      }
+    },
+    {
+      "id": "inv25",
+      "name": "Sammler",
+      "description": "25 Items im Inventar.",
+      "rarity": "common",
+      "condition": {
+        "type": "inventory_count",
+        "value": 25
+      }
+    },
+    {
+      "id": "inv75",
+      "name": "Hamsterer",
+      "description": "75 Items. Du brauchst einen größeren Beutel.",
+      "rarity": "rare",
+      "condition": {
+        "type": "inventory_count",
+        "value": 75
+      }
+    },
+    {
+      "id": "inv100",
+      "name": "Inventarmeister",
+      "description": "100 Items. Voll bis zum Rand.",
+      "rarity": "epic",
+      "condition": {
+        "type": "inventory_count",
+        "value": 100
+      }
+    },
+    {
+      "id": "gacha3",
+      "name": "Glückskind",
+      "description": "3 Legendary Gacha-Pulls.",
+      "rarity": "rare",
+      "condition": {
+        "type": "gacha_legendary",
+        "value": 3
+      }
+    },
+    {
+      "id": "gacha5",
+      "name": "Schicksalsgunst",
+      "description": "5 Legendary Pulls. Das Rad begünstigt dich.",
+      "rarity": "epic",
+      "condition": {
+        "type": "gacha_legendary",
+        "value": 5
+      }
+    },
+    {
+      "id": "gacha10",
+      "name": "Sternenbrecher",
+      "description": "10 Legendary Pulls. Du biegst die Wahrscheinlichkeit.",
+      "rarity": "legendary",
+      "condition": {
+        "type": "gacha_legendary",
+        "value": 10
+      }
+    },
+    {
+      "id": "ritual3",
+      "name": "Ritualist",
+      "description": "3 verschiedene Rituale eingehalten.",
+      "rarity": "common",
+      "condition": {
+        "type": "rituals_completed",
+        "value": 3
+      }
+    },
+    {
+      "id": "ritual5",
+      "name": "Zeremonienmeister",
+      "description": "5 Rituale. Disziplin ist deine Sprache.",
+      "rarity": "uncommon",
+      "condition": {
+        "type": "rituals_completed",
+        "value": 5
+      }
+    },
+    {
+      "id": "ritual10",
+      "name": "Ordensbruder",
+      "description": "10 Rituale. Die Halle erkennt deine Hingabe.",
+      "rarity": "rare",
+      "condition": {
+        "type": "rituals_completed",
+        "value": 10
+      }
+    },
+    {
+      "id": "hidden-first-blood",
+      "name": "First Blood",
+      "rarity": "uncommon",
+      "condition": {
+        "type": "hidden"
+      }
+    },
+    {
+      "id": "hidden-night-owl",
+      "name": "Nachteule",
+      "rarity": "uncommon",
+      "condition": {
+        "type": "hidden"
+      }
+    },
+    {
+      "id": "hidden-early-bird",
+      "name": "Frühaufsteher",
+      "rarity": "uncommon",
+      "condition": {
+        "type": "hidden"
+      }
+    },
+    {
+      "id": "hidden-speed-demon",
+      "name": "Geschwindigkeitsdämon",
+      "rarity": "rare",
+      "condition": {
+        "type": "hidden"
+      }
+    },
+    {
+      "id": "hidden-perfectionist",
+      "name": "Perfektionist",
+      "rarity": "rare",
+      "condition": {
+        "type": "hidden"
+      }
+    },
+    {
+      "id": "hidden-social-butterfly",
+      "name": "Sozialer Schmetterling",
+      "rarity": "rare",
+      "condition": {
+        "type": "hidden"
+      }
+    },
+    {
+      "id": "hidden-silent-grinder",
+      "name": "Stiller Schleifer",
+      "rarity": "rare",
+      "condition": {
+        "type": "hidden"
+      }
+    },
+    {
+      "id": "hidden-comeback-kid",
+      "name": "Comeback Kid",
+      "rarity": "epic",
+      "condition": {
+        "type": "hidden"
+      }
+    },
+    {
+      "id": "hidden-one-more-turn",
+      "name": "Nur noch eine Runde",
+      "rarity": "epic",
+      "condition": {
+        "type": "hidden"
+      }
+    },
+    {
+      "id": "hidden-fashionista",
+      "name": "Modefürst",
+      "rarity": "epic",
+      "condition": {
+        "type": "hidden"
+      }
+    },
+    {
+      "id": "hidden-lore-keeper",
+      "name": "Hüter der Geschichten",
+      "rarity": "epic",
+      "condition": {
+        "type": "hidden"
+      }
+    },
+    {
+      "id": "hidden-iron-will",
+      "name": "Eiserner Wille",
+      "rarity": "legendary",
+      "condition": {
+        "type": "hidden"
+      }
+    },
+    {
+      "id": "hidden-beyond-the-veil",
+      "name": "Jenseits des Schleiers",
+      "rarity": "legendary",
+      "condition": {
+        "type": "hidden"
+      }
+    },
+    {
+      "id": "hidden-threadbare",
+      "name": "Fadenriss",
+      "rarity": "legendary",
+      "condition": {
+        "type": "hidden"
+      }
+    },
+    {
+      "id": "hidden-true-name",
+      "name": "Der Wahre Name",
+      "rarity": "legendary",
+      "condition": {
+        "type": "hidden"
+      }
+    },
+    {
+      "id": "quest2000",
+      "name": "Zweitausendster",
+      "description": "2000 Quests. Du lebst, atmest, BIST Quests.",
+      "rarity": "legendary",
+      "condition": {
+        "type": "quests_completed",
+        "value": 2000
+      }
+    },
+    {
+      "id": "streak730",
+      "name": "Zwei-Jahres-Flamme",
+      "description": "730 Tage Streak. Zwei Jahre. Ununterbrochen.",
+      "rarity": "legendary",
+      "condition": {
+        "type": "streak",
+        "value": 730
+      }
+    },
+    {
+      "id": "gold100000",
+      "name": "Schatzkammer",
+      "description": "100.000 Gold. Du könntest den Turm kaufen.",
+      "rarity": "legendary",
+      "condition": {
+        "type": "gold",
+        "value": 100000
+      }
+    },
+    {
+      "id": "mythic50",
+      "name": "Realitätsbieger",
+      "description": "Mythic+50. Die Physik gibt auf.",
+      "rarity": "legendary",
+      "condition": {
+        "type": "mythic_cleared",
+        "value": 50
+      }
+    },
+    {
+      "id": "mythic100",
+      "name": "Dimensionsherrscher",
+      "description": "Mythic+100. Es gibt kein \"zu schwer\" mehr für dich.",
+      "rarity": "legendary",
+      "condition": {
+        "type": "mythic_cleared",
+        "value": 100
+      }
+    },
+    {
+      "id": "achpts5000",
+      "name": "der Unsterbliche",
+      "description": "5000 Achievement-Punkte. Dein Ruhm überdauert die Zeit.",
+      "rarity": "legendary",
+      "condition": {
+        "type": "achievement_points",
+        "value": 5000
+      }
+    },
+    {
+      "id": "npc50",
+      "name": "Allwissender",
+      "description": "50 NPC-Ketten. Jede Geschichte der Halle ist deine.",
+      "rarity": "legendary",
+      "condition": {
+        "type": "npc_chains",
+        "value": 50
+      }
+    },
+    {
+      "id": "quest300",
+      "name": "Marathonläufer",
+      "description": "300 Quests abgeschlossen.",
+      "rarity": "epic",
+      "condition": {
+        "type": "quests_completed",
+        "value": 300
+      }
+    },
+    {
+      "id": "streak120",
+      "name": "Viermonatig",
+      "description": "120 Tage Streak.",
+      "rarity": "rare",
+      "condition": {
+        "type": "streak",
+        "value": 120
+      }
+    },
+    {
+      "id": "streak250",
+      "name": "Jahreszeitenwandler",
+      "description": "250 Tage ununterbrochen.",
+      "rarity": "epic",
+      "condition": {
+        "type": "streak",
+        "value": 250
+      }
+    },
+    {
+      "id": "level8",
+      "name": "Türöffner",
+      "description": "Level 8. Die Turmspitze liegt vor dir.",
+      "rarity": "common",
+      "condition": {
+        "type": "level",
+        "value": 8
+      }
+    },
+    {
+      "id": "level12",
+      "name": "Tiefentaucher",
+      "description": "Level 12. Die Unterwelt ruft.",
+      "rarity": "uncommon",
+      "condition": {
+        "type": "level",
+        "value": 12
+      }
+    },
+    {
+      "id": "gold1000",
+      "name": "Schatzjäger",
+      "description": "1000 Gold gesammelt.",
+      "rarity": "common",
+      "condition": {
+        "type": "gold",
+        "value": 1000
+      }
+    },
+    {
+      "id": "gs50",
+      "name": "Angezogen",
+      "description": "Gear Score 50. Besser als nichts.",
+      "rarity": "common",
+      "condition": {
+        "type": "gear_score",
+        "value": 50
+      }
+    },
+    {
+      "id": "mythic3",
+      "name": "Dreifach",
+      "description": "Mythic+3 geschafft.",
+      "rarity": "uncommon",
+      "condition": {
+        "type": "mythic_cleared",
+        "value": 3
+      }
+    },
+    {
+      "id": "craft100",
+      "name": "Handwerker",
+      "description": "Profession Skill 100.",
+      "rarity": "uncommon",
+      "condition": {
+        "type": "profession_skill",
+        "value": 100
+      }
+    },
+    {
+      "id": "bond2",
+      "name": "Gefährte",
+      "description": "Bond Level 2. Ihr lernt euch kennen.",
+      "rarity": "common",
+      "condition": {
+        "type": "bond_level",
+        "value": 2
+      }
+    },
+    {
+      "id": "achpts100",
+      "name": "Ehrgeizig",
+      "description": "100 Achievement-Punkte.",
+      "rarity": "common",
+      "condition": {
+        "type": "achievement_points",
+        "value": 100
+      }
+    },
+    {
+      "id": "ritual1",
+      "name": "Eingeweiht",
+      "description": "Erstes Ritual eingehalten.",
+      "rarity": "common",
+      "condition": {
+        "type": "rituals_completed",
+        "value": 1
+      }
+    },
+    {
+      "id": "npc1",
+      "name": "Neugierig",
+      "description": "1 NPC-Questkette abgeschlossen.",
+      "rarity": "common",
+      "condition": {
+        "type": "npc_chains",
+        "value": 1
+      }
     }
   ]
 }

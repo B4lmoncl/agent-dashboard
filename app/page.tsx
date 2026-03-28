@@ -2230,6 +2230,24 @@ export default function Dashboard() {
             <div className="text-xs font-bold uppercase tracking-[0.3em] mb-2" style={{ color: "rgba(255,215,0,0.6)" }}>Level Up!</div>
             <div className="levelup-title text-3xl font-black mb-1" style={{ color: "#FFD700" }}>Level {levelUpCelebration.level}</div>
             <div className="text-sm font-semibold mb-5" style={{ color: "rgba(255,215,0,0.7)" }}>{levelUpCelebration.title}</div>
+            {/* Show newly unlocked content */}
+            {(() => {
+              const lvl = levelUpCelebration.level;
+              const unlocks: string[] = [];
+              if (lvl === 3) { unlocks.push("Challenges", "Bazaar"); }
+              if (lvl === 5) { unlocks.push("Artisan's Quarter", "Vault of Fate"); }
+              if (lvl === 8) { unlocks.push("The Pinnacle", "Rift", "Proving Grounds"); }
+              if (lvl === 10) { unlocks.push("Four Circles", "Season Pass", "Arcanum"); }
+              if (lvl === 12) { unlocks.push("The Undercroft (Dungeons)"); }
+              if (lvl === 15) { unlocks.push("Colosseum (World Boss)"); }
+              if (unlocks.length === 0) return null;
+              return (
+                <div className="rounded-lg px-3 py-2 mb-4" style={{ background: "rgba(34,197,94,0.08)", border: "1px solid rgba(34,197,94,0.2)" }}>
+                  <p className="text-xs font-semibold mb-1" style={{ color: "#22c55e" }}>New Content Unlocked</p>
+                  {unlocks.map(u => <p key={u} className="text-xs" style={{ color: "rgba(255,255,255,0.5)" }}>+ {u}</p>)}
+                </div>
+              );
+            })()}
             <div className="text-xs mb-6 text-w35">The Forge recognizes your dedication, adventurer.</div>
             <button
               onClick={() => setLevelUpCelebration(null)}

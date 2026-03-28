@@ -95,6 +95,13 @@ export default function DashboardHeader({
     return () => document.removeEventListener("mousedown", handler);
   }, [settingsPopupOpen]);
 
+  // Scroll lock for settings modal
+  useEffect(() => {
+    if (!settingsModalOpen) return;
+    document.body.style.overflow = "hidden";
+    return () => { document.body.style.overflow = ""; };
+  }, [settingsModalOpen]);
+
   const handleLogin = async () => {
     if (!reviewKeyInput || !playerNameInput || authLoading) return;
     setAuthLoading(true);
@@ -128,7 +135,9 @@ export default function DashboardHeader({
 
   const handleRegister = async () => {
     if (!registerName.trim() || authLoading) return;
-    if (registerPassword.length < 6) { setRegisterError("Password must be at least 6 characters"); return; }
+    if (registerPassword.length < 8) { setRegisterError("Password must be at least 8 characters"); return; }
+    if (!/[A-Z]/.test(registerPassword)) { setRegisterError("Password must contain at least one uppercase letter"); return; }
+    if (!/[0-9]/.test(registerPassword)) { setRegisterError("Password must contain at least one number"); return; }
     if (registerPassword !== registerPasswordConfirm) { setRegisterError("Passwords do not match"); return; }
     setAuthLoading(true);
     try {
@@ -376,7 +385,7 @@ export default function DashboardHeader({
                       <div className="flex flex-col gap-2">
                         <p className="text-xs font-semibold" style={{ color: "#22c55e" }}>Create Account</p>
                         <input type="text" value={registerName} onChange={e => setRegisterName(e.target.value)} placeholder="Choose a name" className="text-xs px-2 py-1 rounded input-dark" />
-                        <input type="password" value={registerPassword} onChange={e => setRegisterPassword(e.target.value)} placeholder="Password (min 6 chars)" className="text-xs px-2 py-1 rounded input-dark" />
+                        <input type="password" value={registerPassword} onChange={e => setRegisterPassword(e.target.value)} placeholder="Password (8+ chars, A-Z, 0-9)" className="text-xs px-2 py-1 rounded input-dark" />
                         <input type="password" value={registerPasswordConfirm} onChange={e => setRegisterPasswordConfirm(e.target.value)} placeholder="Confirm password" className="text-xs px-2 py-1 rounded input-dark" />
                         {registerError && <p role="alert" className="text-xs" style={{ color: "#ef4444" }}>{registerError}</p>}
                         <div className="flex gap-1">
