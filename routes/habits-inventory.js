@@ -716,7 +716,9 @@ router.get('/api/player/:name/stats', (req, res) => {
   if (!state.users[uid]) return res.status(404).json({ error: 'Player not found' });
   const stats = getUserStats(uid);
   const equipment = getUserEquipment(uid);
-  res.json({ stats, equipment });
+  const { getStatBreakdown } = require('../lib/helpers');
+  const breakdown = getStatBreakdown(uid);
+  res.json({ stats, equipment, breakdown });
 });
 
 router.get('/api/stats/content', (req, res) => {
