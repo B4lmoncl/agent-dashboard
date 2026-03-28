@@ -129,6 +129,7 @@ app.use(require('./routes/gems'));
 app.use(require('./routes/dungeons'));
 app.use(require('./routes/kanais-cube'));
 app.use(require('./routes/mail'));
+app.use(require('./routes/codex'));
 app.use(require('./routes/npcs-misc'));  // Must be last (has SPA fallback catch-all)
 
 // ─── Express error handler (catch-all for unhandled route errors) ────────────
@@ -205,6 +206,7 @@ require('./routes/gems').loadGems();
 require('./routes/players').loadCompanionExpeditions();
 require('./routes/dungeons').loadDungeonTemplates();
 require('./routes/dungeons').loadDungeonState();
+require('./routes/codex').loadCodex();
 
 // Migrate legacy equipment (string IDs → rolled instances) — only if needed
 {

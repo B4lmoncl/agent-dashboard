@@ -177,11 +177,11 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
               <GuideSection title="Seltenheit & Belohnungen" icon="✨" accent="rgba(168,85,247,0.3)">
                 Quests haben eine Seltenheitsstufe die Belohnungen bestimmt:
                 <div className="mt-2 rounded-lg overflow-hidden" style={{ border: "1px solid rgba(255,255,255,0.06)" }}>
-                  <div className="grid grid-cols-4 gap-0 text-center text-xs font-bold py-1" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.4)" }}>
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-0 text-center text-xs font-bold py-1" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.4)" }}>
                     <span>Rarity</span><span>XP</span><span>Gold</span><span>Runen</span>
                   </div>
                   {([["common","Common","10","5-10","1"],["uncommon","Uncommon","18","10-18","1"],["rare","Rare","30","18-30","2"],["epic","Epic","50","30-50","3"],["legendary","Legendary","80","50-80","5"]] as const).map(([r,name,xp,gold,rune]) => (
-                    <div key={r} className="grid grid-cols-4 gap-0 text-center text-xs py-0.5" style={{ borderTop: "1px solid rgba(255,255,255,0.04)" }}>
+                    <div key={r} className="grid grid-cols-2 sm:grid-cols-4 gap-0 text-center text-xs py-0.5" style={{ borderTop: "1px solid rgba(255,255,255,0.04)" }}>
                       <Rarity r={r}>{name}</Rarity><span>{xp}</span><span>{gold}</span><span>{rune}</span>
                     </div>
                   ))}
@@ -250,7 +250,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
 
               <GuideSection title="Ausrüstung (7 Slots)" icon="⚔️">
                 Rüste Items aus dem Inventar aus. Stats werden beim Drop zufällig gewürfelt:
-                <div className="grid grid-cols-4 gap-1 mt-2 text-center text-xs">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-1 mt-2 text-center text-xs">
                   {(["Helm", "Weapon", "Shield", "Armor", "Amulet", "Ring", "Boots"] as const).map(s => (
                     <div key={s} className="rounded px-1 py-1" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>{s}</div>
                   ))}
@@ -296,7 +296,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                   <li>• <Stat color="#f0f0f0">Companion-Quests</Stat> — Begleiter-Quests für Bond-XP</li>
                   <li>• Ab <Stat color="#ec4899">Bond Lv. 5</Stat> → <strong>Ultimates</strong> (7d Cooldown):</li>
                 </ul>
-                <div className="grid grid-cols-3 gap-1 mt-1.5 text-center text-xs">
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-1 mt-1.5 text-center text-xs">
                   <div className="rounded px-1 py-1.5" style={{ background: "rgba(168,85,247,0.08)", border: "1px solid rgba(168,85,247,0.2)" }}>◆ Sofort-Abschluss</div>
                   <div className="rounded px-1 py-1.5" style={{ background: "rgba(251,191,36,0.08)", border: "1px solid rgba(251,191,36,0.2)" }}>✨ 2× Loot</div>
                   <div className="rounded px-1 py-1.5" style={{ background: "rgba(239,68,68,0.08)", border: "1px solid rgba(239,68,68,0.2)" }}>🔥 +3 Streak-Tage</div>
@@ -331,12 +331,34 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
                 </ul>
               </GuideSection>
 
-              <GuideSection title="Kanai&apos;s Cube" icon="⬡" accent="rgba(249,115,22,0.3)">
+              <GuideSection title="Ätherwürfel" icon="⬡" accent="rgba(249,115,22,0.3)">
                 Opfere Legendary Items um ihre Effekte dauerhaft zu extrahieren. Im Artisan&apos;s Quarter.
                 <ul className="space-y-1 mt-2">
                   <li>• 3 Slots: <Stat color="#ef4444">Offensive</Stat>, <Stat color="#3b82f6">Defensive</Stat>, <Stat color="#22c55e">Utility</Stat></li>
                   <li>• Kosten: 500 Essenz pro Extraktion</li>
                   <li>• Effekte stacken additiv mit Gear-Effekten</li>
+                </ul>
+              </GuideSection>
+
+              <GuideSection title="Hero Numbers & Roll Quality" icon="◆" accent="rgba(129,140,248,0.3)">
+                Im Stats-Tab siehst du drei abgeleitete Kampfwerte:
+                <ul className="space-y-1 mt-2">
+                  <li>• <Stat color="#ef4444">Offense</Stat> — Kraft + Gear Score + Fokus</li>
+                  <li>• <Stat color="#3b82f6">Defense</Stat> — Ausdauer + Vitalität + Gear Score</li>
+                  <li>• <Stat color="#22c55e">Utility</Stat> — Weisheit + Glück + Charisma + Tempo</li>
+                  <li>• <Stat color="#eab308">Roll Quality</Stat> — zeigt ob ein Item gute Stat-Rolls hat (Perfect 90%+, Good 70%+, Average 50%+, Low &lt;50%)</li>
+                  <li>• Klicke auf einen Stat → zeigt dir woher jeder Punkt kommt (Gear, Gems, Set Boni)</li>
+                  <li>• <Stat color="#60a5fa">Compare Mode</Stat> — pinne ein Item und vergleiche alle anderen dagegen</li>
+                </ul>
+              </GuideSection>
+
+              <GuideSection title="Companion Fähigkeiten" icon="◆" accent="rgba(245,158,11,0.3)">
+                <ul className="space-y-1 mt-2">
+                  <li>• Ab <Stat color="#f59e0b">Bond Level 5</Stat>: Ultimate Ability freigeschaltet</li>
+                  <li>• <Stat color="#f0f0f0">Instant Complete</Stat> — Schließt nächste Quest sofort ab</li>
+                  <li>• <Stat color="#f0f0f0">Double Reward</Stat> — 2x XP + Gold auf nächste Quest</li>
+                  <li>• <Stat color="#f0f0f0">Streak Extend</Stat> — +3 Tage auf deinen Streak</li>
+                  <li>• <Stat color="#22c55e">Expeditionen</Stat> — Schicke deinen Companion auf 4-24h Missionen für passive Rewards (Gold, Mats, Gems)</li>
                 </ul>
               </GuideSection>
             </>
@@ -361,7 +383,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
 
               <GuideSection title="Drop Rates" icon="◆">
                 <div className="mt-2 space-y-0.5">
-                  {([["legendary","Legendary","0.8%","#f97316"],["epic","Epic","8%","#a855f7"],["rare","Rare","38%","#3b82f6"],["uncommon","Uncommon","40%","#22c55e"],["common","Common","~13%","#9ca3af"]] as const).map(([,name,rate,color]) => (
+                  {([["legendary","Legendary","0.8%","#f97316"],["epic","Epic","3%","#a855f7"],["rare","Rare","25%","#3b82f6"],["uncommon","Uncommon","45%","#22c55e"],["common","Common","~26%","#9ca3af"]] as const).map(([,name,rate,color]) => (
                     <div key={name} className="flex items-center gap-2">
                       <div className="h-1.5 rounded-full" style={{ background: color, width: name === "Legendary" ? "8%" : name === "Epic" ? "26%" : name === "Rare" ? "70%" : name === "Uncommon" ? "80%" : "22%", minWidth: 6 }} />
                       <span className="flex-shrink-0 w-20" style={{ color, fontWeight: 600 }}>{name}</span>
@@ -539,11 +561,11 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
               <GuideSection title="The Rift (Dungeons)" icon="◆" accent="rgba(168,85,247,0.4)">
                 Zeitlich begrenzte Quest-Ketten mit eskalierender Schwierigkeit:
                 <div className="mt-2 rounded-lg overflow-hidden" style={{ border: "1px solid rgba(255,255,255,0.06)" }}>
-                  <div className="grid grid-cols-5 text-center text-xs font-bold py-1" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.4)" }}>
+                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 text-center text-xs font-bold py-1" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.4)" }}>
                     <span>Tier</span><span>Stages</span><span>Zeit</span><span>Min Lv</span><span>Cooldown</span>
                   </div>
                   {([["Normal","3","72h","1","3d","#22c55e"],["Hard","5","48h","5","5d","#a855f7"],["Legendary","7","36h","10","7d","#f59e0b"]] as const).map(([name,stages,time,lv,cd,color]) => (
-                    <div key={name} className="grid grid-cols-5 text-center text-xs py-0.5" style={{ borderTop: "1px solid rgba(255,255,255,0.04)" }}>
+                    <div key={name} className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 text-center text-xs py-0.5" style={{ borderTop: "1px solid rgba(255,255,255,0.04)" }}>
                       <Stat color={color}>{name}</Stat><span>{stages}</span><span>{time}</span><span>Lv{lv}</span><span>{cd}</span>
                     </div>
                   ))}
@@ -683,7 +705,7 @@ export function GuideContent({ onRestartTutorial }: { onRestartTutorial?: () => 
 
               <GuideSection title="Daily Missions" icon="✓" accent="rgba(34,197,94,0.3)">
                 6 tägliche Aufgaben mit Belohnungstrack auf dem Quest Board:
-                <div className="grid grid-cols-3 gap-1 mt-2 text-center text-xs">
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-1 mt-2 text-center text-xs">
                   <div className="rounded px-1 py-1" style={{ background: "rgba(255,255,255,0.03)" }}>Login +100</div>
                   <div className="rounded px-1 py-1" style={{ background: "rgba(255,255,255,0.03)" }}>1 Quest +150</div>
                   <div className="rounded px-1 py-1" style={{ background: "rgba(255,255,255,0.03)" }}>3 Quests +250</div>

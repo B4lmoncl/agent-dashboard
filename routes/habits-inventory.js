@@ -7,7 +7,7 @@ const {
   saveUsers, saveHabits, resolveItem, getActiveBuffs, ensureUserCurrencies,
 } = require('../lib/state');
 const {
-  now, getLevelInfo, getUserStats, getUserEquipment, getUserDropBonus,
+  now, getLevelInfo, getUserStats, getUserEquipment, getUserDropBonus, getStatBreakdown,
   rollLoot, resetLootPity, addLootToInventory, calcDynamicForgeTemp,
   getBondLevel, getLegendaryEffects, createGearInstance, migrateUserEquipment, getGearScore,
   getTodayBerlin,
@@ -716,7 +716,9 @@ router.get('/api/player/:name/stats', (req, res) => {
   if (!state.users[uid]) return res.status(404).json({ error: 'Player not found' });
   const stats = getUserStats(uid);
   const equipment = getUserEquipment(uid);
-  res.json({ stats, equipment });
+  const { getStatBreakdown } = require('../lib/helpers');
+  const breakdown = getStatBreakdown(uid);
+  res.json({ stats, equipment, breakdown });
 });
 
 router.get('/api/stats/content', (req, res) => {
@@ -872,7 +874,17 @@ router.get('/api/player/:name/character', (req, res) => {
     if (ns.fullBonus) {
       bonuses.push({ threshold: ns.pieces.length, label: ns.fullBonus.label, active: isComplete });
     }
-    namedSetBonuses.push({ id: ns.id, name: ns.name, rarity: ns.rarity, count: ownedCount, total: ns.pieces.length, isComplete, activeLabel, bonuses });
+    // Per-piece details for set tracker
+    const pieceDetails = ns.pieces.map(pid => {
+      const tmpl = state.gearById.get(pid);
+      return {
+        id: pid,
+        name: tmpl?.name || pid,
+        slot: tmpl?.slot || "unknown",
+        equipped: equippedItemIds.has(pid),
+      };
+    });
+    namedSetBonuses.push({ id: ns.id, name: ns.name, rarity: ns.rarity, count: ownedCount, total: ns.pieces.length, isComplete, activeLabel, bonuses, pieces: pieceDetails });
   }
   let classTier = null;
   if (u.classId) {
@@ -980,6 +992,7 @@ router.get('/api/player/:name/character', (req, res) => {
     gearScore: getGearScore(uid),
     equippedTitle: u.equippedTitle || null,
     earnedTitleCount: (u.earnedTitles || []).length,
+    statBreakdown: getStatBreakdown(uid),
   });
 });
 

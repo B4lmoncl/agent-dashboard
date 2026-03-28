@@ -381,10 +381,6 @@ button[disabled] {
 .tutorial-popup {
   animation: tutorial-popup-in 0.4s cubic-bezier(0.34,1.56,0.64,1) forwards;
 }
-.tutorial-step-fade {
-  animation: tutorial-fade-step 0.6s ease-out forwards;
-}
-
 /* Approve / complete button glow */
 .btn-approve:hover:not(:disabled) {
   animation: btn-glow-green 1.2s ease infinite;
@@ -444,38 +440,6 @@ button[disabled] {
   100% { opacity: 1; transform: translateY(0); }
 }
 
-/* Speech bubbles that appear between portrait and modal */
-.npc-speech-bubble {
-  position: absolute;
-  padding: 8px 10px;
-  border-radius: 8px;
-  font-size: 0.65rem;
-  font-style: italic;
-  line-height: 1.6;
-  width: 160px;
-  pointer-events: none;
-  animation: npc-speech-in 0.5s ease forwards;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.5);
-  z-index: 12;
-}
-/* Gold (Seraine) — portrait on left, bubble to the right of portrait */
-.npc-speech-bubble-gold {
-  left: calc(100% - 16px);
-  top: 18%;
-  background: rgba(28,22,14,0.96);
-  border: 1px solid rgba(245,158,11,0.35);
-  color: #c9a46a;
-}
-/* Indigo (Vael) — portrait on right, bubble to the left of portrait */
-.npc-speech-bubble-indigo {
-  right: calc(100% - 16px);
-  top: 18%;
-  background: rgba(14,14,24,0.96);
-  border: 1px solid rgba(99,102,241,0.35);
-  color: #a5b4fc;
-  text-align: right;
-}
-
 /* ─── Ritual section + Vow section tinting ───────────────────────────────── */
 .section-ritual {
   background: rgba(245,158,11,0.06);
@@ -498,10 +462,6 @@ button[disabled] {
 @keyframes blood-pact-pulse-indigo {
   0%, 100% { box-shadow: 0 0 8px rgba(99,102,241,0.4), inset 0 0 8px rgba(99,102,241,0.08); }
   50%       { box-shadow: 0 0 28px rgba(99,102,241,0.9), inset 0 0 16px rgba(99,102,241,0.18); }
-}
-
-.npc-speech-text {
-  animation: npc-speech-in 0.5s ease forwards;
 }
 
 .blood-pact-active {
@@ -540,31 +500,6 @@ button[disabled] {
     transform: translateY(calc(100vh + 20px)) translateX(var(--drift)) rotate(720deg);
     opacity: 0;
   }
-}
-
-@keyframes heroFloat {
-  0%, 100% { transform: translateY(0px); }
-  50%       { transform: translateY(-6px); }
-}
-
-.hero-silhouette {
-  animation: heroFloat 3s ease-in-out infinite;
-}
-
-
-/* Content readability over background */
-.quest-panel, .stat-card-row, .player-card-section {
-  position: relative;
-  z-index: 1;
-}
-
-/* ─── Purchase / Loot Toast ──────────────────────────────────────────────── */
-@keyframes slideInFromRight {
-  0%   { opacity: 0; transform: translateX(40px); }
-  100% { opacity: 1; transform: translateX(0); }
-}
-.purchase-toast {
-  animation: slideInFromRight 0.28s cubic-bezier(0.34,1.56,0.64,1) forwards;
 }
 
 /* ─── Shop buy buttons ───────────────────────────────────────────────────── */
@@ -638,41 +573,6 @@ button[disabled] {
   70% { transform: scale(0.9); }
   100% { transform: scale(1); opacity: 1; }
 }
-@keyframes levelup-text-bounce {
-  0% { transform: scale(0.5) translateY(10px); opacity: 0; }
-  40% { transform: scale(1.3) translateY(-5px); opacity: 1; }
-  60% { transform: scale(0.95) translateY(2px); }
-  80% { transform: scale(1.08) translateY(-1px); }
-  100% { transform: scale(1) translateY(0); opacity: 1; }
-}
-.levelup-text-bounce {
-  animation: levelup-text-bounce 0.8s cubic-bezier(0.34,1.56,0.64,1) forwards;
-}
-
-/* Level Up auto-fade overlay */
-@keyframes levelup-overlay-fade {
-  0%, 70% { opacity: 1; }
-  100% { opacity: 0; }
-}
-.levelup-auto-fade {
-  animation: levelup-overlay-fade 3.5s ease-in-out forwards;
-}
-
-/* Pixel confetti particles */
-@keyframes levelup-confetti {
-  0% {
-    opacity: 1;
-    transform: translate(0, 0) rotate(0deg);
-  }
-  100% {
-    opacity: 0;
-    transform: translate(var(--cx), var(--cy)) rotate(var(--cr, 360deg));
-  }
-}
-.levelup-confetti-particle {
-  animation: levelup-confetti var(--cdur, 1.2s) ease-out var(--cdel, 0s) forwards;
-}
-
 /* ─── Reward Celebration (unified quest/ritual/vow/companion popup) ──── */
 @keyframes reward-modal-in {
   0% { opacity: 0; transform: scale(0.6) translateY(20px); }
@@ -783,43 +683,6 @@ button[disabled] {
   animation: bond-glow-pulse 2.5s ease-in-out infinite;
 }
 
-/* ─── Crafting Skill-Up Colors ────────────────────────────────────────── */
-.skillup-orange { color: #ff8000; text-shadow: 0 0 6px rgba(255, 128, 0, 0.3); }
-.skillup-yellow { color: #ffff00; }
-.skillup-green { color: #40c040; }
-.skillup-gray { color: rgba(255, 255, 255, 0.25); }
-
-@keyframes companion-bounce {
-  0%, 100% { transform: translateY(0); }
-  20% { transform: translateY(-8px); }
-  40% { transform: translateY(0); }
-  55% { transform: translateY(-5px); }
-  70% { transform: translateY(0); }
-  85% { transform: translateY(-2px); }
-}
-.companion-celebrate {
-  animation: companion-bounce 0.8s ease-out;
-}
-@keyframes companion-portrait-celebrate {
-  0%   { transform: translateY(0) scale(1); }
-  18%  { transform: translateY(-12px) scale(1.08); }
-  36%  { transform: translateY(0) scale(0.96); }
-  52%  { transform: translateY(-7px) scale(1.04); }
-  68%  { transform: translateY(0) scale(0.98); }
-  84%  { transform: translateY(-3px) scale(1.01); }
-  100% { transform: translateY(0) scale(1); }
-}
-.companion-portrait-celebrate {
-  animation: companion-portrait-celebrate 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-@keyframes companion-heart-float {
-  0% { opacity: 1; transform: translateY(0) scale(1); }
-  100% { opacity: 0; transform: translateY(-24px) scale(0.6); }
-}
-.companion-heart-particle {
-  animation: companion-heart-float 1.2s ease-out forwards;
-}
-
 /* ─── Quest Hall Design System — Utility Classes ─────────────────────────── */
 /* Text colors — white at various opacities (replaces inline rgba styles)    */
 .text-w20 { color: rgba(255,255,255,0.2); }
@@ -846,7 +709,6 @@ button[disabled] {
 .bg-surface      { background: #1e1e22; }
 .bg-surface-alt  { background: #222228; }
 .bg-card         { background: #2a2a30; }
-.bg-input        { background: #181820; }
 
 /* Borders — white at various opacities                                      */
 .border-w6  { border: 1px solid rgba(255,255,255,0.06); }
@@ -854,7 +716,6 @@ button[disabled] {
 .border-w8  { border: 1px solid rgba(255,255,255,0.08); }
 .border-w10 { border: 1px solid rgba(255,255,255,0.1); }
 .border-w12 { border: 1px solid rgba(255,255,255,0.12); }
-.border-w15 { border: 1px solid rgba(255,255,255,0.15); }
 
 /* Modal / Overlay backdrops                                                 */
 .modal-backdrop      { background: radial-gradient(circle at center, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.7) 50%, rgba(0,0,0,0.85) 100%); backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px); }
@@ -956,7 +817,6 @@ button[disabled] {
   animation: skeleton-pulse 1.5s ease-in-out infinite;
 }
 .skeleton-text { height: 10px; border-radius: 4px; }
-.skeleton-bar  { height: 3px; border-radius: 2px; }
 .skeleton-card {
   background: rgba(255,255,255,0.02);
   border: 1px solid rgba(255,255,255,0.04);
@@ -973,22 +833,106 @@ button[disabled] {
   animation: tab-fade-in 0.3s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* ─── Challenge Celebration ─────────────────────────────────────────────── */
-@keyframes stage-complete-glow {
-  0% { box-shadow: 0 0 0 rgba(34,197,94,0); }
-  50% { box-shadow: 0 0 24px rgba(34,197,94,0.3), 0 0 48px rgba(34,197,94,0.1); }
-  100% { box-shadow: 0 0 8px rgba(34,197,94,0.1); }
+/* Mondlicht-Schmiede breathing glow on NPC cards */
+/* Milestone claim pulse — gold breathing glow on unclaimed milestone buttons */
+@keyframes milestone-pulse {
+  0%, 100% { box-shadow: 0 0 4px rgba(251,191,36,0.25), inset 0 0 4px rgba(251,191,36,0.08); transform: scale(1); }
+  50% { box-shadow: 0 0 14px rgba(251,191,36,0.6), inset 0 0 8px rgba(251,191,36,0.2), 0 0 20px rgba(251,191,36,0.15); transform: scale(1.08); }
 }
-@keyframes stage-complete-check {
-  0% { transform: scale(0) rotate(-45deg); opacity: 0; }
-  60% { transform: scale(1.3) rotate(0deg); opacity: 1; }
-  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+.milestone-pulse {
+  animation: milestone-pulse 2s ease-in-out infinite;
 }
-.stage-just-completed {
-  animation: stage-complete-glow 1.2s ease-out;
+
+/* NEW unlock badge pulse on navigation tabs */
+@keyframes new-badge-pulse {
+  0%, 100% { opacity: 1; text-shadow: 0 0 4px rgba(251,191,36,0.4); }
+  50% { opacity: 0.7; text-shadow: 0 0 8px rgba(251,191,36,0.8); }
 }
-.stage-check-animate {
-  animation: stage-complete-check 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+.new-unlock-badge {
+  animation: new-badge-pulse 2s ease-in-out infinite;
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  color: #000;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  padding: 1px 4px;
+  border-radius: 3px;
+  line-height: 1;
+  box-shadow: 0 0 6px rgba(251,191,36,0.4);
+  pointer-events: none;
+}
+
+@keyframes mondlicht-breathe {
+  0%, 100% { box-shadow: inset 0 0 12px rgba(129,140,248,0.06), 0 0 8px rgba(129,140,248,0.04); }
+  50% { box-shadow: inset 0 0 20px rgba(129,140,248,0.12), 0 0 16px rgba(129,140,248,0.08); }
+}
+.mondlicht-glow {
+  animation: mondlicht-breathe 4s ease-in-out infinite;
+  border-color: rgba(129,140,248,0.2) !important;
+}
+
+/* Crystal vein breathing — generic ambient glow for cards and bars */
+@keyframes crystal-breathe {
+  0%, 100% { box-shadow: 0 0 4px var(--glow-color, rgba(255,255,255,0.05)), inset 0 0 4px var(--glow-color, rgba(255,255,255,0.02)); }
+  50% { box-shadow: 0 0 12px var(--glow-color, rgba(255,255,255,0.12)), inset 0 0 8px var(--glow-color, rgba(255,255,255,0.06)); }
+}
+.crystal-breathe { animation: crystal-breathe 4s ease-in-out infinite; }
+
+
+
+/* HP/progress bar pulse — for boss HP, rep bars, BP XP bar */
+@keyframes bar-pulse {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.3); }
+}
+.bar-pulse { animation: bar-pulse 3s ease-in-out infinite; }
+
+/* Ember drift — warm ambient particles for Hearth/Tavern */
+@keyframes ember-float {
+  0% { transform: translateY(0) translateX(0); opacity: 0; }
+  20% { opacity: 0.7; }
+  80% { opacity: 0.4; }
+  100% { transform: translateY(-60px) translateX(15px); opacity: 0; }
+}
+
+/* Rank glow — for top 3 leaderboard positions */
+@keyframes rank-glow {
+  0%, 100% { box-shadow: 0 0 6px var(--rank-color, #fbbf24); }
+  50% { box-shadow: 0 0 16px var(--rank-color, #fbbf24), 0 0 24px var(--rank-color, rgba(251,191,36,0.3)); }
+}
+.rank-glow { animation: rank-glow 3s ease-in-out infinite; }
+
+/* Claimable pulse — for any button/card that can be claimed */
+@keyframes claimable-breathe {
+  0%, 100% { box-shadow: 0 0 4px var(--claim-color, rgba(74,222,128,0.2)); transform: scale(1); }
+  50% { box-shadow: 0 0 14px var(--claim-color, rgba(74,222,128,0.5)); transform: scale(1.02); }
+}
+.claimable-breathe { animation: claimable-breathe 2.5s ease-in-out infinite; }
+
+/* Online status pulse */
+@keyframes online-pulse {
+  0%, 100% { box-shadow: 0 0 3px #22c55e; }
+  50% { box-shadow: 0 0 8px #22c55e, 0 0 12px rgba(34,197,94,0.3); }
+}
+.online-pulse { animation: online-pulse 2s ease-in-out infinite; }
+
+/* Mondlicht background — aether veins glowing through the tower walls */
+@keyframes mondlicht-bg-pulse {
+  0%, 100% { background-image: radial-gradient(ellipse at 30% 20%, rgba(129,140,248,0.03) 0%, transparent 60%), radial-gradient(ellipse at 70% 80%, rgba(99,102,241,0.02) 0%, transparent 50%); }
+  50% { background-image: radial-gradient(ellipse at 30% 20%, rgba(129,140,248,0.07) 0%, transparent 60%), radial-gradient(ellipse at 70% 80%, rgba(99,102,241,0.05) 0%, transparent 50%); }
+}
+.mondlicht-bg {
+  animation: mondlicht-bg-pulse 6s ease-in-out infinite;
+  position: relative;
+}
+.mondlicht-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background: linear-gradient(180deg, rgba(129,140,248,0.02) 0%, transparent 40%, transparent 60%, rgba(99,102,241,0.015) 100%);
+  z-index: 0;
 }
 
 /* ─── Activity Feed Enhancements ────────────────────────────────────────── */
@@ -1002,16 +946,6 @@ button[disabled] {
 }
 .feed-event-epic {
   border-color: rgba(168,85,247,0.15) !important;
-}
-
-/* ─── Online Status Transitions ─────────────────────────────────────────── */
-@keyframes status-come-online {
-  0% { transform: scale(0.5); opacity: 0; }
-  50% { transform: scale(1.5); }
-  100% { transform: scale(1); opacity: 1; }
-}
-.status-online-animate {
-  animation: status-come-online 0.4s ease-out;
 }
 
 /* ─── Notification Badge ────────────────────────────────────────────────── */
@@ -1357,22 +1291,6 @@ button[disabled] {
   pointer-events: none;
   border-radius: inherit;
   z-index: 0;
-}
-
-/* ─── Visual Overhaul: Atmospheric Modal Backdrop ──────────────────────── */
-.modal-backdrop-atmospheric {
-  background: radial-gradient(circle at center, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.65) 50%, rgba(0,0,0,0.82) 100%);
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
-}
-
-/* ─── Visual Overhaul: Floor Navigation Transitions ────────────────────── */
-@keyframes floor-view-enter {
-  0% { opacity: 0; transform: translateY(12px); }
-  100% { opacity: 1; transform: translateY(0); }
-}
-.floor-view-enter {
-  animation: floor-view-enter 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 /* ─── Visual Overhaul: Reward Particle Burst ───────────────────────────── */

@@ -324,7 +324,7 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
               </div>
             );
             return (
-              <div className={`bond-ring${isMaxBond ? " bond-max-glow" : ""}`} style={{ position: "relative", flexShrink: 0, width: ringSize.w + ringPad * 2, height: ringSize.h + ringPad * 2 }}>
+              <div className={`bond-ring${isMaxBond ? " bond-max-glow" : ""}${bondLevel >= 3 ? " crystal-breathe" : ""}`} style={{ position: "relative", flexShrink: 0, width: ringSize.w + ringPad * 2, height: ringSize.h + ringPad * 2, ...(bondLevel >= 3 ? { "--glow-color": bondLevel >= 5 ? "rgba(250,204,21,0.25)" : `rgba(${cColor.accentRgb},0.18)` } as React.CSSProperties : {}) }}>
                 {/* Bond progress ring */}
                 <svg className="bond-ring-svg" viewBox={`0 0 ${ringSize.w + ringPad * 2} ${ringSize.h + ringPad * 2}`} fill="none" style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }}>
                   <rect x="1.5" y="1.5" width={ringSize.w + ringPad * 2 - 3} height={ringSize.h + ringPad * 2 - 3} rx="6" ry="6"

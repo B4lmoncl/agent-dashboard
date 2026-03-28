@@ -491,6 +491,11 @@ router.post('/api/world-boss/claim', requireAuth, (req, res) => {
     }
   }
 
+  // ── Guaranteed Seelensplitter (all contributors) ──
+  user.craftingMaterials = user.craftingMaterials || {};
+  user.craftingMaterials.seelensplitter = (user.craftingMaterials.seelensplitter || 0) + 1;
+  rewards.push({ type: 'material', name: 'Seelensplitter', materialId: 'seelensplitter', amount: 1 });
+
   // ── Bonus stardust for high contributors ──
   if (contributionPercent >= 0.1) {
     const bonusStardust = Math.floor(contributionPercent * 50);

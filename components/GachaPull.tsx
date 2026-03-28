@@ -136,7 +136,7 @@ function ItemRevealCard({ result }: { result: GachaPullResult }) {
 
   return (
     <div
-      className={`relative rounded-2xl p-8 flex flex-col items-center gap-4 min-w-[260px] max-w-[340px] ${rarity === "legendary" ? "gacha-card-legendary" : rarity === "epic" ? "gacha-card-epic" : ""}`}
+      className={`relative rounded-2xl p-8 flex flex-col items-center gap-4 min-w-[220px] sm:min-w-[260px] max-w-[340px] ${rarity === "legendary" ? "gacha-card-legendary" : rarity === "epic" ? "gacha-card-epic" : ""}`}
       style={{
         background: `linear-gradient(135deg, #1a1a1a 0%, ${cfg.bg} 100%)`,
         border: `2px solid ${cfg.border}`,
@@ -450,7 +450,7 @@ function MultiPullReveal({ results, onDone, onNavigate }: { results: GachaPullRe
           </h2>
 
           {/* Card grid */}
-          <div className="grid grid-cols-5 gap-4 w-full max-w-3xl">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 sm:gap-4 w-full max-w-3xl">
             {shuffledResults.map((result, i) => {
               const cfg = RARITY_CONFIG[result.item.rarity] || RARITY_CONFIG.common;
               const isLeg = result.item.rarity === "legendary";

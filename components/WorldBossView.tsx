@@ -279,7 +279,7 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
         <div className="rounded-xl p-8 text-center space-y-4" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
           <p className="text-4xl" style={{ opacity: 0.3 }}>🏔️</p>
           <p className="text-sm font-bold" style={{ color: "rgba(255,255,255,0.4)" }}>No World Boss Active</p>
-          <p className="text-xs" style={{ color: "rgba(255,255,255,0.2)", maxWidth: 360, margin: "0 auto" }}>
+          <p className="text-xs" style={{ color: "rgba(255,255,255,0.2)", maxWidth: "min(360px, 100%)", margin: "0 auto" }}>
             The land rests in uneasy peace. A new threat will emerge from the darkness when the time is right.
           </p>
           {inactive?.nextSpawnEstimate && (
@@ -307,17 +307,34 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
     : 0;
 
   return (
-    <div className="space-y-5 tab-content-enter">
+    <div className="space-y-5 tab-content-enter relative">
+      {/* Red/orange chaos embers — only when boss is active */}
+      {!boss.defeated && (
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          {Array.from({ length: 7 }, (_, i) => (
+            <div key={`chaos-ember-${i}`} className="absolute rounded-full" style={{
+              width: 2 + (i % 2),
+              height: 2 + (i % 2),
+              left: `${8 + (i * 14) % 80}%`,
+              top: `${15 + (i * 19) % 65}%`,
+              background: i % 3 === 0 ? "rgba(239,68,68,0.6)" : i % 3 === 1 ? "rgba(234,88,12,0.55)" : "rgba(249,115,22,0.5)",
+              boxShadow: `0 0 ${3 + i % 2}px ${i % 3 === 0 ? "rgba(239,68,68,0.4)" : "rgba(234,88,12,0.35)"}`,
+              animation: `ember-float ${3.5 + (i % 3) * 0.8}s ease-in-out ${i * 0.6}s infinite`,
+              opacity: 0,
+            }} />
+          ))}
+        </div>
+      )}
       {/* Header */}
       <div className="text-center space-y-2">
         <p className="text-3xl">💀</p>
         <Tip k="world_boss" heading>
           <h2 className="text-lg font-bold" style={{ color: "#e8e8e8", cursor: "help" }}>World Boss</h2>
         </Tip>
-        <p className="text-xs text-w35" style={{ maxWidth: 440, margin: "0 auto" }}>
+        <p className="text-xs text-w35" style={{ maxWidth: "min(440px, 100%)", margin: "0 auto" }}>
           A community-wide threat. Deal damage by completing quests. Claim rewards when defeated.
         </p>
-        <p className="text-xs italic" style={{ color: "rgba(255,255,255,0.25)", maxWidth: 440, margin: "4px auto 0" }}>Der Turm bebt. Etwas Uraltes ist erwacht.</p>
+        <p className="text-xs italic" style={{ color: "rgba(255,255,255,0.25)", maxWidth: "min(440px, 100%)", margin: "4px auto 0" }}>Der Turm bebt. Etwas Uraltes ist erwacht.</p>
       </div>
 
       {/* Messages */}
@@ -332,9 +349,10 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
       )}
 
       {/* Boss Card */}
-      <div className="rounded-xl overflow-hidden" style={{
+      <div className="rounded-xl overflow-hidden crystal-breathe" style={{
         background: `linear-gradient(135deg, ${boss.accent}08 0%, rgba(14,14,18,0.95) 100%)`,
         border: `1px solid ${boss.accent}30`,
+        ["--glow-color" as string]: `${boss.accent}40`,
       }}>
         {/* Accent bar */}
         <div style={{ height: 3, background: `linear-gradient(90deg, transparent, ${boss.accent}aa, transparent)` }} />
@@ -387,7 +405,7 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
           </div>
           <div className="rounded-full overflow-hidden" style={{ height: 10, background: "rgba(255,255,255,0.06)" }}>
             <div
-              className="h-full rounded-full transition-all duration-700"
+              className={`h-full rounded-full transition-all duration-700${!boss.defeated ? " bar-pulse" : ""}`}
               style={{
                 width: `${Math.max(hpPercent * 100, boss.defeated ? 0 : 0.5)}%`,
                 background: boss.defeated
@@ -444,16 +462,18 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
         {/* Defeated — Claim Rewards */}
         {boss.defeated && canClaim && !claimResult && (
           <div className="px-5 pb-4">
+            <Tip k="wb_claim_tiers"><p className="text-xs mb-2 cursor-help" style={{ color: "rgba(255,255,255,0.25)" }}>Rewards scale with your contribution rank</p></Tip>
             <button
               onClick={claimRewards}
               disabled={claiming}
-              className="btn-interactive w-full text-sm font-bold py-3 rounded-lg"
+              className={`btn-interactive w-full text-sm font-bold py-3 rounded-lg${!claiming ? " claimable-breathe" : ""}`}
               style={{
                 background: `linear-gradient(135deg, ${boss.accent}, ${boss.accent}cc)`,
                 color: "#000",
                 opacity: claiming ? 0.5 : 1,
                 cursor: claiming ? "not-allowed" : "pointer",
                 boxShadow: `0 0 16px ${boss.accent}40`,
+                ["--claim-color" as string]: `${boss.accent}60`,
               }}
             >
               {claiming ? "Claiming..." : "Claim Rewards"}
@@ -498,7 +518,7 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
       {playerContribution && (
         <div className="rounded-xl p-4" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
           <p className="text-xs font-semibold uppercase tracking-wider text-w25 mb-3">Your Contribution</p>
-          <div className="grid grid-cols-3 gap-3 text-center">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 text-center">
             <div>
               <p className="text-lg font-bold font-mono" style={{ color: "#ef4444" }}>{formatNumber(playerContribution.damage)}</p>
               <TipCustom title="Damage Dealt" icon="⚔️" accent="#ef4444" body={<p>Damage is calculated from quest completions. Higher rarity quests deal more damage.</p>}>

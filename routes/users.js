@@ -119,7 +119,8 @@ router.post('/api/users/:id/register', requireAuth, (req, res) => {
     if (color) state.users[id].color = color;
   }
   saveUsers();
-  res.json({ ok: true, user: state.users[id] });
+  const { passwordHash: _ph, apiKey: _ak, refreshTokens: _rt, spotify: _sp, resetToken: _rst, resetTokenExpiry: _rste, emailVerifyToken: _evt, emailVerifyExpiry: _eve, ...safeUser } = state.users[id];
+  res.json({ ok: true, user: safeUser });
 });
 
 // POST /api/users/:id/award-xp — award XP to a user
@@ -154,7 +155,7 @@ router.get('/api/streaks', (req, res) => {
 // GET /api/achievements — list all achievement definitions + point milestones
 router.get('/api/achievements', (req, res) => {
   res.json({
-    achievements: state.ACHIEVEMENT_CATALOGUE.map(a => ({ id: a.id, name: a.name, icon: a.icon, desc: a.desc, category: a.category, rarity: a.rarity, points: a.points || 5, hidden: !!a.hidden, condition: a.condition || null })),
+    achievements: state.ACHIEVEMENT_CATALOGUE.map(a => ({ id: a.id, name: a.name, icon: a.icon, desc: a.desc, category: a.category, rarity: a.rarity, points: a.points || 5, hidden: !!a.hidden, condition: a.condition || null, chainId: a.chainId || null, chainTier: a.chainTier || null })),
     pointMilestones: state.achievementMilestones || [],
   });
 });

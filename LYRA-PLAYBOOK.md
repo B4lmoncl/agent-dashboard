@@ -30,11 +30,23 @@
 - Ein Item-Desc: Skulduggery-Eleganz + Kingkiller-Wortwahl
 - **Durchrotieren** — nie nur eine Quelle pro Text. Leon kennt alle Werke, also muss es clever sein.
 
+**Skulduggery-Humor — Vertiefung (PFLICHT für alle Flavor-Texte):**
+
+Der Humor in Quest Hall ist NICHT "lustige Einzeiler" — er ist **Charakter-Humor**. Er entsteht aus der Perspektive der Figuren, nicht aus Meta-Witzen. Orientierung:
+
+- **Skulduggery selbst:** Trockene Beobachtungen über absurde Situationen. Er kommentiert magische Artefakte wie ein Kunstkritiker auf einer mittelmäßigen Vernissage. Trauma wird nicht ignoriert, sondern mit einer Eleganz behandelt, die selbst das Trauma beeindruckt. *Beispiel: "Der Schmied hat sich geweigert, sie ein zweites Mal anzufassen. Das ist entweder ein schlechtes Zeichen oder exzellente Werbung."*
+- **Scapegrace-Energie:** Nicht jeder NPC ist kompetent. Manche sind grandios inkompetent und ahnen es nicht. Handwerker die ihre eigenen Kreationen nicht verstehen, Händler die ihre Ware fürchten, Wachen die das Wachen aufgegeben haben. *Beispiel: "Der Juwelier schwört, dass der Stein nicht zurückstarrt. Der Juwelier trinkt seitdem allerdings deutlich mehr."*
+- **Valkyrie-Pragmatismus:** Items und Systeme werden beschrieben wie von jemandem, der es wirklich benutzt hat und jetzt davon berichten muss. Keine Ehrfurcht — Erfahrung. *Beispiel: "Ausgezeichnete Traktion auf instabiler Realität. Auch gut auf nassem Kopfsteinpflaster, falls das relevanter sein sollte."*
+- **Pratchett-Fußnoten:** Die Welt kommentiert sich selbst. Offizielle Beschreibungen widersprechen der Realität. Kataloge lügen in Fußnoten. *Beispiel: "Im Katalog steht 'unzerstörbar'. In der Fußnote steht 'im Rahmen des Zumutbaren'. Die Fußnote ist verdächtig klein gedruckt."*
+
+**Das Prinzip:** Humor kommt aus der GAP zwischen dem, was ein Gegenstand/System BEHAUPTET zu sein, und dem, was er WIRKLICH ist. Nie aus dem Kontext gerissene Witze. Immer aus der Welt heraus.
+
 **Anti-Pattern:**
-- KEIN Herr-der-Ringe-Pathos (zu pompös)
+- KEIN Herr-der-Ringe-Pathos (zu pompös) — "Der Riss drückt dagegen. Der Schild hält. Noch." ist KEIN Skulduggery-Humor, das ist Pathos
 - KEIN Marvel-Quip-Humor (zu oberflächlich)
 - KEINE direkten Zitate (paraphrasieren/channeln)
 - NIEMALS spoilern (Easter Eggs soll der User selbst finden)
+- KEINE rein atmosphärischen Texte ohne Humor-Element — jeder Flavor-Text braucht mindestens einen trockenen Unterton
 
 ---
 

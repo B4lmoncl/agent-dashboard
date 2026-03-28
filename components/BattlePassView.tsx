@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { useDashboard } from "@/app/DashboardContext";
 import { getAuthHeaders } from "@/lib/auth-client";
-import { Tip } from "@/components/GameTooltip";
+import { Tip, TipCustom } from "@/components/GameTooltip";
 import type { RewardCelebrationData } from "@/components/RewardCelebration";
 
 // ─── Types ──────────────────────────────────────────────────────────────────
@@ -158,25 +158,27 @@ export default function BattlePassView({ onRewardCelebration, onNavigate }: { on
             </div>
           </div>
           <div className="text-right">
-            <p className="text-sm font-mono font-bold" style={{ color: config.seasonAccent }}>
+            <p className="text-sm font-mono font-bold crystal-breathe" style={{ color: config.seasonAccent, ["--glow-color" as string]: `${config.seasonAccent}30`, borderRadius: 6, padding: "2px 6px" }}>
               Level {player.level} / {config.levels}
             </p>
-            <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>
-              {daysLeft}d remaining
-            </p>
+            <TipCustom title="Saisonende" icon="◆" accent={config.seasonAccent} body={<p>Verbleibende Tage bis zum Ende der aktuellen Saison. Nicht beanspruchte Belohnungen verfallen.</p>}>
+              <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)", cursor: "help" }}>
+                {daysLeft}d remaining
+              </p>
+            </TipCustom>
           </div>
         </div>
 
         {/* XP progress */}
         <div className="flex items-center justify-between mb-1">
-          <span className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>Season XP</span>
+          <Tip k="bp_xp_sources"><span className="text-xs" style={{ color: "rgba(255,255,255,0.35)", cursor: "help" }}>Season XP</span></Tip>
           <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.4)" }}>
             {player.xpInLevel} / {player.xpPerLevel}
           </span>
         </div>
         <div className={`progress-bar-diablo${player.progress > 0.9 ? " progress-bar-nearly-full" : ""}`}>
           <div
-            className="progress-bar-diablo-fill"
+            className="progress-bar-diablo-fill bar-pulse"
             style={{
               width: `${Math.round(player.progress * 100)}%`,
               background: `linear-gradient(90deg, ${config.seasonAccent}88, ${config.seasonAccent}, ${config.seasonAccent}cc)`,
@@ -184,7 +186,7 @@ export default function BattlePassView({ onRewardCelebration, onNavigate }: { on
           />
         </div>
         <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.2)" }}>
-          Total: {player.xp} XP · {config.xpPerLevel} per level
+          <Tip k="bp_xp_sources"><span style={{ cursor: "help" }}>Total: {player.xp} XP · {config.xpPerLevel} per level</span></Tip>
           {unclaimedCount > 0 && <span style={{ color: "#22c55e", fontWeight: 600 }}> · {unclaimedCount} unclaimed</span>}
         </p>
         {unclaimedCount >= 2 && (
@@ -270,7 +272,11 @@ export default function BattlePassView({ onRewardCelebration, onNavigate }: { on
                 )}
                 <div className="flex-1 min-w-0">
                   <p className="text-xs font-semibold" style={{ color: isReached ? rc.color : "rgba(255,255,255,0.3)" }}>
-                    {r.type === "title" ? r.titleName : r.type === "frame" ? r.frameName : `${r.amount} ${rc.label}`}
+                    {r.type === "title" ? <TipCustom title={r.titleName || "Title"} icon="◆" accent={rc.color} body={<p>{r.titleRarity ? r.titleRarity.charAt(0).toUpperCase() + r.titleRarity.slice(1) : "Exklusiver"} Titel aus dem Season Pass.</p>}><span style={{ cursor: "help" }}>{r.titleName}</span></TipCustom> : r.type === "frame" ? <TipCustom title={r.frameName || "Frame"} icon="◆" accent={rc.color} body={<p>Kosmetischer Rahmen f&uuml;r dein Spielerprofil.</p>}><span style={{ cursor: "help" }}>{r.frameName}</span></TipCustom> : (
+                      ["gold", "essenz", "runensplitter", "stardust", "sternentaler", "mondstaub"].includes(r.type)
+                        ? <Tip k={r.type}><span style={{ cursor: "help" }}>{r.amount} {rc.label}</span></Tip>
+                        : `${r.amount} ${rc.label}`
+                    )}
                   </p>
                   {r.type === "title" && r.titleRarity && (
                     <p className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>
@@ -296,13 +302,14 @@ export default function BattlePassView({ onRewardCelebration, onNavigate }: { on
                   onClick={() => claimLevel(r.level)}
                   disabled={claiming === r.level}
                   title={claiming === r.level ? "Claiming reward..." : "Claim this reward"}
-                  className="btn-interactive text-xs font-bold px-3 py-1.5 rounded-lg flex-shrink-0"
+                  className={`btn-interactive text-xs font-bold px-3 py-1.5 rounded-lg flex-shrink-0${claiming !== r.level ? " claimable-breathe" : ""}`}
                   style={{
                     background: `${config.seasonAccent}20`,
                     color: config.seasonAccent,
                     border: `1px solid ${config.seasonAccent}40`,
                     opacity: claiming === r.level ? 0.5 : 1,
                     cursor: claiming === r.level ? "not-allowed" : "pointer",
+                    ["--claim-color" as string]: `${config.seasonAccent}50`,
                   }}
                 >
                   {claiming === r.level ? "..." : "Claim"}

@@ -56,7 +56,7 @@ export default function LeaderboardView({ entries, agents, mode = "agents", onOp
   mode?: "agents" | "players";
   onOpenProfile?: (playerId: string) => void;
 }) {
-  const { users, classesList: classes } = useDashboard();
+  const { users, classesList: classes, playerName } = useDashboard();
   const classMap = new Map(classes.map(c => [c.id, c]));
   const agentIdSet = new Set(agents.map(a => a.id));
 
@@ -110,10 +110,25 @@ export default function LeaderboardView({ entries, agents, mode = "agents", onOp
   const isPlayerMode = mode === "players";
 
   return (
-    <div className="space-y-6 tab-content-enter">
+    <div className="space-y-6 tab-content-enter relative">
       <p className="text-xs italic text-center" style={{ color: "rgba(255,255,255,0.2)" }}>Die Prüfungsfelder. Wo Legenden in Licht und Entschlossenheit gemessen werden.</p>
       {/* ── Podium ── */}
-      <div className="flex items-end justify-center gap-4">
+      <div className="flex items-end justify-center gap-4 relative">
+        {/* Gold sparkles around top 3 podium */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          {Array.from({ length: 4 }, (_, i) => (
+            <div key={`gold-spark-${i}`} className="absolute rounded-full" style={{
+              width: 2,
+              height: 2,
+              left: `${20 + (i * 19) % 60}%`,
+              top: `${10 + (i * 23) % 50}%`,
+              background: "rgba(251,191,36,0.6)",
+              boxShadow: `0 0 ${3 + i % 2}px rgba(251,191,36,0.4)`,
+              animation: `ember-float ${3.5 + (i % 3) * 0.8}s ease-in-out ${i * 0.9}s infinite`,
+              opacity: 0,
+            }} />
+          ))}
+        </div>
         {[top3[1], top3[0], top3[2]].filter(Boolean).map((entry) => {
           const rank = entry.rank;
           const heights: Record<number, string> = { 1: "h-32", 2: "h-24", 3: "h-20" };
@@ -132,8 +147,8 @@ export default function LeaderboardView({ entries, agents, mode = "agents", onOp
             >
               <div className="text-lg"><RankMedal rank={rank} /></div>
               <div
-                className="w-14 h-14 rounded-2xl flex items-center justify-center font-black text-white text-xl flex-shrink-0"
-                style={{ background: `linear-gradient(135deg, ${color}, ${color}99)`, boxShadow: `0 6px 20px ${color}60` }}
+                className="w-14 h-14 rounded-2xl flex items-center justify-center font-black text-white text-xl flex-shrink-0 rank-glow"
+                style={{ background: `linear-gradient(135deg, ${color}, ${color}99)`, boxShadow: `0 6px 20px ${color}60`, ["--rank-color" as string]: rank === 1 ? "#fbbf24" : rank === 2 ? "#c0c0c0" : "#cd7f32" }}
               >
                 {entry.avatar ?? meta.avatar}
               </div>
@@ -162,7 +177,7 @@ export default function LeaderboardView({ entries, agents, mode = "agents", onOp
 
       {/* ── Leaderboard Table ── */}
       <div className="rounded-xl overflow-hidden" style={{ background: "#1e1e1e", border: "1px solid rgba(255,255,255,0.07)" }}>
-        <div className="grid px-4 py-2" style={{ gridTemplateColumns: "40px 1fr 80px 80px 80px", color: "rgba(255,255,255,0.3)", fontSize: 12, borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+        <div className="grid px-4 py-2" style={{ gridTemplateColumns: "32px 1fr 60px 60px 60px", color: "rgba(255,255,255,0.3)", fontSize: 12, borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
           <span>#</span><span>{isPlayerMode ? "Adventurer" : "Agent"}</span><Tip k="player_level"><span className="text-right">Level</span></Tip><Tip k="xp"><span className="text-right">XP</span></Tip><Tip k="quest_board"><span className="text-right">Quests</span></Tip>
         </div>
         {merged.map((entry) => {
@@ -170,6 +185,7 @@ export default function LeaderboardView({ entries, agents, mode = "agents", onOp
           const color = entry.color ?? meta.color;
           const lvl = getLbLevel(entry.xp);
           const isTop = entry.rank <= 3;
+          const isMe = playerName && (entry.id?.toLowerCase() === playerName.toLowerCase() || entry.name?.toLowerCase() === playerName.toLowerCase());
           const maxXp = merged[0]?.xp ?? 1;
           const barPct = maxXp > 0 ? (entry.xp / maxXp) * 100 : 0;
 
@@ -179,9 +195,10 @@ export default function LeaderboardView({ entries, agents, mode = "agents", onOp
               className={`cv-auto grid px-4 py-3 items-center${isPlayerMode && onOpenProfile ? " cursor-pointer hover:bg-white/[0.03] transition-colors" : ""}`}
               onClick={isPlayerMode && onOpenProfile ? () => onOpenProfile(entry.id) : undefined}
               style={{
-                gridTemplateColumns: "40px 1fr 80px 80px 80px",
+                gridTemplateColumns: "32px 1fr 60px 60px 60px",
                 borderBottom: "1px solid rgba(255,255,255,0.04)",
-                background: isTop ? `${color}08` : "transparent",
+                background: isMe ? "rgba(167,139,250,0.06)" : isTop ? `${color}08` : "transparent",
+                borderLeft: isMe ? "2px solid rgba(167,139,250,0.3)" : "2px solid transparent",
               }}
             >
               <span className="text-sm font-bold" style={{ color: entry.rank <= 3 ? ["#f59e0b", "#9ca3af", "#cd7f32"][entry.rank - 1] : "rgba(255,255,255,0.25)" }}>

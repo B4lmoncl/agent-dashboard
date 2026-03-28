@@ -36,7 +36,7 @@ const TOOLTIP_REGISTRY: Record<string, TooltipEntry> = {
     body: (
       <>
         <p>Primary stat from equipped gear. Increases Quest <GTRef k="xp">XP</GTRef> earned.</p>
-        <div className="gt-stat-row"><span>Effect</span><span>+0.5% Quest <GTRef k="xp">XP</GTRef> per point</span></div>
+        <div className="gt-stat-row"><span>Effect</span><span>Quest <GTRef k="xp">XP</GTRef> bonus (diminishing returns, ~10% at 20)</span></div>
         <div className="gt-stat-row"><span>Cap</span><span>+30% (60 points)</span></div>
         <p className="gt-source">Sources: Gear affixes, set bonuses, enchantments</p>
       </>
@@ -62,7 +62,7 @@ const TOOLTIP_REGISTRY: Record<string, TooltipEntry> = {
     body: (
       <>
         <p>Primary stat. Increases <GTRef k="gold">Gold</GTRef> earned from quests.</p>
-        <div className="gt-stat-row"><span>Effect</span><span>+0.5% <GTRef k="gold">Gold</GTRef> per point</span></div>
+        <div className="gt-stat-row"><span>Effect</span><span><GTRef k="gold">Gold</GTRef> bonus (diminishing returns, ~7.5% at 20)</span></div>
         <div className="gt-stat-row"><span>Cap</span><span>+30% (60 points)</span></div>
         <p className="gt-source">Sources: Gear affixes (helm, amulet, weapon)</p>
       </>
@@ -75,7 +75,7 @@ const TOOLTIP_REGISTRY: Record<string, TooltipEntry> = {
     body: (
       <>
         <p>Primary stat. Increases loot drop chance from quests.</p>
-        <div className="gt-stat-row"><span>Effect</span><span>+0.5% drop chance per point</span></div>
+        <div className="gt-stat-row"><span>Effect</span><span>Drop chance bonus (diminishing returns, ~6% at 20)</span></div>
         <div className="gt-stat-row"><span>Cap</span><span>+20% (40 points)</span></div>
         <p className="gt-source">Sources: Gear affixes (boots, amulet, helm)</p>
       </>
@@ -152,7 +152,7 @@ const TOOLTIP_REGISTRY: Record<string, TooltipEntry> = {
     body: (
       <>
         <p>Complete at least 1 quest or ritual per day to maintain your streak. Longer streaks increase <GTRef k="gold">Gold</GTRef> earned (up to +45% at 30+ days).</p>
-        <div className="gt-stat-row"><span><GTRef k="gold">Gold</GTRef> bonus</span><span>+1.5% per day (cap 45%)</span></div>
+        <div className="gt-stat-row"><span><GTRef k="gold">Gold</GTRef> bonus</span><span>Gold bonus (diminishing, ~10% at 30 days)</span></div>
         <div className="gt-stat-row"><span>Protection</span><span><GTRef k="vitalitaet">Vitalität</GTRef> stat, Streak Shields, Legendary gear</span></div>
         <p className="gt-source">Milestones: Bronze (7d), Silver (21d), Gold (60d), Diamond (180d), Legend (365d)</p>
       </>
@@ -209,7 +209,7 @@ const TOOLTIP_REGISTRY: Record<string, TooltipEntry> = {
     title: "Essenz",
     icon: "🔴",
     accent: "#ef4444",
-    body: <p>Crafting currency. Earned from item dismantling and quest drops. Used for crafting recipes, profession switching (200 Essenz), and Workshop Tools.</p>,
+    body: <p>Crafting currency. Earned by <strong>dismantling gear</strong> at the Schmied (Salvage tab) and from daily login rewards. Used for enchanting rerolls, Ätherwürfel extraction, and recipe learning.</p>,
   },
   sternentaler: {
     title: "Sternentaler",
@@ -352,7 +352,7 @@ const TOOLTIP_REGISTRY: Record<string, TooltipEntry> = {
   },
   dungeons: {
     title: "The Undercroft (Dungeons)",
-    icon: "🏰",
+    icon: "◆",
     accent: "#3b82f6",
     body: (
       <>
@@ -1257,7 +1257,7 @@ const TOOLTIP_REGISTRY: Record<string, TooltipEntry> = {
     ),
   },
   kanais_cube: {
-    title: "Kanai\u2019s Cube",
+    title: "Ätherwürfel",
     icon: "⬡",
     accent: "#f97316",
     body: (
@@ -1318,6 +1318,134 @@ const TOOLTIP_REGISTRY: Record<string, TooltipEntry> = {
       </>
     ),
   },
+  // ─── v1.6.0 Character Screen Explanations ──────────────────────────────────
+  hero_numbers: {
+    title: "Combat Metrics",
+    icon: "◆",
+    accent: "#f0f0f0",
+    body: (
+      <>
+        <p>Drei abgeleitete Kampfwerte basierend auf deinen Stats und Gear Score:</p>
+        <div className="gt-stat-row" style={{ color: "#ef4444" }}><span>Offense</span><span>Kraft + Gear Score + Fokus</span></div>
+        <div className="gt-stat-row" style={{ color: "#3b82f6" }}><span>Defense</span><span>Ausdauer + Vitalität + Gear Score</span></div>
+        <div className="gt-stat-row" style={{ color: "#22c55e" }}><span>Utility</span><span>Weisheit + Glück + Charisma + Tempo</span></div>
+        <p className="gt-source">Höhere Werte = bessere Performance in Rifts, Dungeons und bei World Bosses.</p>
+      </>
+    ),
+  },
+  roll_quality: {
+    title: "Roll Quality",
+    icon: "◆",
+    accent: "#eab308",
+    body: (
+      <>
+        <p>Zeigt wie gut die zufällig gewürfelten Stats eines Items im Vergleich zum Maximum sind.</p>
+        <div className="gt-stat-row" style={{ color: "#22c55e" }}><span>Perfect (90%+)</span><span>Nahezu maximale Rolls</span></div>
+        <div className="gt-stat-row" style={{ color: "#eab308" }}><span>Good (70-89%)</span><span>Überdurchschnittlich</span></div>
+        <div className="gt-stat-row" style={{ color: "#f97316" }}><span>Average (50-69%)</span><span>Durchschnittlich</span></div>
+        <div className="gt-stat-row" style={{ color: "#ef4444" }}><span>Low (&lt;50%)</span><span>Unterdurchschnittlich — Reforge empfohlen</span></div>
+      </>
+    ),
+  },
+  companion_ultimate: {
+    title: "Companion Ultimate",
+    icon: "◆",
+    accent: "#f59e0b",
+    body: (
+      <>
+        <p>Ab Bond Level 5 schaltet dein Companion eine Ultimate-Fähigkeit frei:</p>
+        <div className="gt-stat-row"><span>Instant Complete</span><span>Schließt die nächste Solo-Quest sofort ab</span></div>
+        <div className="gt-stat-row"><span>Double Reward</span><span>Verdoppelt XP + Gold der nächsten Quest</span></div>
+        <div className="gt-stat-row"><span>Streak Extend</span><span>+3 Tage auf deinen aktuellen Streak</span></div>
+        <p className="gt-source">Cooldown: 7 Tage nach Verwendung. Welche Fähigkeit dein Companion hat hängt vom Typ ab.</p>
+      </>
+    ),
+  },
+  companion_expedition: {
+    title: "Companion Expedition",
+    icon: "◆",
+    accent: "#22c55e",
+    body: (
+      <>
+        <p>Schicke deinen Companion auf eine zeitbasierte Expedition für passive Belohnungen.</p>
+        <div className="gt-stat-row"><span>Quick Forage</span><span>4h — Gold + Materials</span></div>
+        <div className="gt-stat-row"><span>Deep Woods</span><span>8h — Bessere Belohnungen</span></div>
+        <div className="gt-stat-row"><span>Mountain Pass</span><span>12h — Seltene Materials</span></div>
+        <div className="gt-stat-row"><span>Ancient Ruins</span><span>24h — Beste Belohnungen inkl. Gems</span></div>
+        <p className="gt-source">Bond Level multipliziert Gold-Rewards. 1h Cooldown zwischen Expeditionen. Kein Bond XP während Expedition.</p>
+      </>
+    ),
+  },
+  bp_xp_sources: {
+    title: "Season Pass XP",
+    icon: "◆",
+    accent: "#a78bfa",
+    body: (
+      <>
+        <p>Diese Aktivitäten geben Season Pass XP:</p>
+        <div className="gt-stat-row"><span>Quests</span><span>10-60 XP nach Rarität</span></div>
+        <div className="gt-stat-row"><span>Rituale</span><span>8 XP</span></div>
+        <div className="gt-stat-row"><span>Rift Stufe</span><span>20 XP</span></div>
+        <div className="gt-stat-row"><span>Crafting</span><span>5 XP</span></div>
+        <div className="gt-stat-row"><span>Daily Missions</span><span>10-30 XP</span></div>
+        <p className="gt-source">250 XP pro Level. 40 Level pro Season.</p>
+      </>
+    ),
+  },
+  wb_claim_tiers: {
+    title: "World Boss Rewards",
+    icon: "◆",
+    accent: "#ef4444",
+    body: (
+      <>
+        <p>Belohnungen basieren auf deinem prozentualen Schadensanteil am Boss:</p>
+        <div className="gt-stat-row"><span>Legendary (Top 3)</span><span>Unique Items + maximale Rewards</span></div>
+        <div className="gt-stat-row"><span>Gold (Top 10)</span><span>Gear Drops + hohe Currency</span></div>
+        <div className="gt-stat-row"><span>Silver (Top 25%)</span><span>Moderate Rewards</span></div>
+        <div className="gt-stat-row"><span>Bronze (Rest)</span><span>Basis-Rewards für Teilnahme</span></div>
+        <p className="gt-source">Gear Score multipliziert deinen Schaden: +10% pro 50 GS, max +100%.</p>
+      </>
+    ),
+  },
+  compare_mode: {
+    title: "Compare Mode",
+    icon: "◆",
+    accent: "#60a5fa",
+    body: (
+      <>
+        <p>Vergleiche Items direkt gegeneinander:</p>
+        <p>1. Klicke &quot;Compare&quot; über dem Inventar</p>
+        <p>2. Klicke ein Item zum Anpinnen</p>
+        <p>3. Alle anderen Items zeigen jetzt Stat-Vergleiche (▲▼) gegen das angepinnte Item</p>
+        <p className="gt-source">Klicke das angepinnte Item erneut zum Lösen. &quot;Exit Compare&quot; beendet den Modus.</p>
+      </>
+    ),
+  },
+  mondlicht: {
+    title: "Mondlicht-Schmiede",
+    icon: "◆",
+    accent: "#818cf8",
+    body: (
+      <>
+        <p>Zwischen 22:00 und 06:00 Uhr (Berlin) ist der Aetherstrom ruhiger. Items die in dieser Zeit gecraftet werden erhalten +20% bessere Minimum-Rolls auf alle Stats.</p>
+        <p className="gt-source">Effektiv: Die unterste Grenze jedes Stat-Rolls wird angehoben. Maximum bleibt gleich — aber schlechte Rolls werden seltener.</p>
+      </>
+    ),
+  },
+  armor_types: {
+    title: "Rüstungstypen",
+    icon: "◆",
+    accent: "#f59e0b",
+    body: (
+      <>
+        <p>Drei Rüstungstypen mit unterschiedlichen Boni:</p>
+        <div className="gt-stat-row" style={{ color: "#3b82f6" }}><span>Stoff (Schneider)</span><span>+1% XP pro Stoffteil</span></div>
+        <div className="gt-stat-row" style={{ color: "#b45309" }}><span>Leder (Lederverarbeiter)</span><span>+1% Gold pro Lederteil</span></div>
+        <div className="gt-stat-row" style={{ color: "#9ca3af" }}><span>Schwer (Schmied)</span><span>+1 Ausdauer pro Schwerteil</span></div>
+        <p className="gt-source">Ein voller Satz (5+ Teile) eines Typs gibt spürbaren Bonus. Mische nur wenn du die Stats brauchst.</p>
+      </>
+    ),
+  },
 };
 
 // ─── Nested Tooltip Reference (clickable/hoverable keyword) ─────────────────
@@ -1364,7 +1492,7 @@ export function GameTooltip({ k, entry: directEntry, children, align: alignProp,
   const computePos = useCallback(() => {
     if (!triggerRef.current) return;
     const rect = triggerRef.current.getBoundingClientRect();
-    const tooltipWidth = 360;
+    const tooltipWidth = Math.min(360, window.innerWidth - 16);
 
     // getBoundingClientRect returns viewport-relative coords; add scroll offsets for absolute positioning
     let top = rect.bottom + TOOLTIP_GAP + window.scrollY;
@@ -1474,7 +1602,11 @@ export function GameTooltip({ k, entry: directEntry, children, align: alignProp,
             {/* Header (conditional) */}
             {resolvedEntry.title && (
               <div className="gt-header">
-                {resolvedEntry.icon && <span className="gt-icon">{resolvedEntry.icon}</span>}
+                {resolvedEntry.icon && (
+                  resolvedEntry.icon.startsWith("/")
+                    ? <img src={resolvedEntry.icon} alt="" width={20} height={20} className="gt-icon" style={{ imageRendering: "auto", display: "inline" }} onError={e => { e.currentTarget.style.display = "none"; }} />
+                    : <span className="gt-icon">{resolvedEntry.icon}</span>
+                )}
                 <span className="gt-title" style={{ color: resolvedEntry.accent || "#f0f0f0" }}>{resolvedEntry.title}</span>
               </div>
             )}

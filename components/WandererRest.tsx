@@ -8,6 +8,7 @@ import {
   ClickablePriorityBadge, CategoryBadge, ProductBadge, PriorityBadge,
 } from "@/components/QuestBoard";
 import { Tip } from "@/components/GameTooltip";
+import { RARITY_COLORS } from "@/app/constants";
 import { useDashboard } from "@/app/DashboardContext";
 import { getCompanionColor as getCC, getCompanionPortrait as getCompanionPortraitWR } from "@/lib/companion-config";
 interface WandererRestProps {
@@ -96,7 +97,6 @@ function CompanionHearthPanel({ petName, companionType, companionEmoji, reviewAp
   );
 }
 
-const rarityColors: Record<string, string> = { common: "#c4ccd8", uncommon: "#4ade80", rare: "#60a5fa", epic: "#c084fc", legendary: "#fbbf24" };
 const rarityRgb: Record<string, string> = { common: "196,204,216", uncommon: "74,222,128", rare: "96,165,250", epic: "192,132,252", legendary: "251,191,36" };
 const rarityStars: Record<string, string> = { common: "★", uncommon: "★★", rare: "★★★", epic: "★★★★", legendary: "★★★★★" };
 
@@ -172,7 +172,7 @@ export function WandererRest({
             <div className="flex flex-wrap justify-center gap-6 mb-2">
               {activeNpcs.map(npc => {
                 const urgent = npc.hoursLeft <= 24;
-                const rc = rarityColors[npc.rarity] ?? "#9ca3af";
+                const rc = RARITY_COLORS[npc.rarity] ?? "#9ca3af";
                 const allDone = npc.questChain.length > 0 && npc.questChain.every(q => q.status === "completed");
                 const hasOpenQuests = !allDone && npc.questChain.some(q => q.status === "open");
                 return (
@@ -184,12 +184,13 @@ export function WandererRest({
                     style={{ background: "none", border: "none", cursor: "pointer", padding: 0 }}
                   >
                     <div
-                      className="relative rounded-lg overflow-hidden flex-shrink-0"
+                      className={`relative rounded-lg overflow-hidden flex-shrink-0${["rare", "epic", "legendary"].includes(npc.rarity) ? " crystal-breathe" : ""}`}
                       style={{
                         width: 148, height: 148,
                         border: `3px solid ${rc}60`,
                         boxShadow: `0 0 0 0 ${rc}`,
                         transition: "box-shadow 0.2s ease",
+                        ...(["rare", "epic", "legendary"].includes(npc.rarity) ? { "--glow-color": `${rc}40` } as React.CSSProperties : {}),
                       }}
                       onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.boxShadow = `0 0 18px 4px ${rc}55`; }}
                       onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.boxShadow = `0 0 0 0 ${rc}`; }}
@@ -383,9 +384,8 @@ export function WandererRest({
       {/* ── NPC Speech Bubble Modal ── */}
       {selectedNpc && (() => {
         const npc = selectedNpc;
-        const rarityColorsModal: Record<string, string> = { common: "#c4ccd8", uncommon: "#4ade80", rare: "#60a5fa", epic: "#c084fc", legendary: "#fbbf24" };
         const rarityStarsModal: Record<string, string> = { common: "★ Common", uncommon: "★★ Uncommon", rare: "★★★ Rare", epic: "★★★★ Epic", legendary: "★★★★★ Legendary" };
-        const rc = rarityColorsModal[npc.rarity] ?? "#9ca3af";
+        const rc = RARITY_COLORS[npc.rarity] ?? "#9ca3af";
         const allDone = npc.questChain.length > 0 && npc.questChain.every(q => q.status === "completed");
         const currentQuest = npc.questChain.find(q => q.status === "open" || q.status === "in_progress" || q.status === "claimed") ?? null;
         const completedCount = npc.questChain.filter(q => q.status === "completed").length;

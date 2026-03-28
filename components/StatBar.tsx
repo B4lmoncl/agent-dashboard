@@ -13,8 +13,8 @@ interface StatBarProps {
 export default function StatBar({ label, value, value2, value2Color, sub, accent = "rgba(255,255,255,0.8)", subColor, onClick, inline }: StatBarProps) {
   return (
     <div
-      className="rounded-2xl px-5 py-4 flex flex-col gap-0.5 relative h-full stat-card-depth"
-      style={{ background: "#181818", border: "1px solid rgba(255,68,68,0.15)", cursor: onClick ? "pointer" : "default" }}
+      className="rounded-2xl px-5 py-4 flex flex-col gap-0.5 relative h-full stat-card-depth crystal-breathe"
+      style={{ background: "#181818", border: "1px solid rgba(255,68,68,0.15)", cursor: onClick ? "pointer" : "default", "--glow-color": `${accent}18` } as React.CSSProperties}
       onClick={onClick}
     >
       {inline ? (

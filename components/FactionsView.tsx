@@ -132,10 +132,10 @@ export default function FactionsView({ onRewardCelebration, onNavigate }: { onRe
         <Tip k="factions" heading>
           <h2 className="text-lg font-bold" style={{ color: "#e8e8e8" }}>The Four Circles</h2>
         </Tip>
-        <p className="text-xs text-w35" style={{ maxWidth: 440, margin: "0 auto" }}>
+        <p className="text-xs text-w35" style={{ maxWidth: "min(440px, 100%)", margin: "0 auto" }}>
           Secret orders of the tower. Earn reputation through quests and unlock exclusive rewards.
         </p>
-        <p className="text-xs italic" style={{ color: "rgba(255,255,255,0.25)", maxWidth: 440, margin: "4px auto 0" }}>Alte Orden, erwacht aus dem langen Schlaf des Turms. Vier Philosophien. Vier Aspekte des Aetherstroms.</p>
+        <p className="text-xs italic" style={{ color: "rgba(255,255,255,0.25)", maxWidth: "min(440px, 100%)", margin: "4px auto 0" }}>Alte Orden, erwacht aus dem langen Schlaf des Turms. Vier Philosophien. Vier Aspekte des Aetherstroms.</p>
       </div>
 
       {/* Messages */}
@@ -159,10 +159,11 @@ export default function FactionsView({ onRewardCelebration, onNavigate }: { onRe
           return (
             <div
               key={f.id}
-              className="rounded-xl overflow-hidden"
+              className="rounded-xl overflow-hidden crystal-breathe"
               style={{
                 background: `linear-gradient(135deg, ${f.accent}08 0%, rgba(14,14,18,0.95) 100%)`,
                 border: `1px solid ${f.accent}30`,
+                ["--glow-color" as string]: `${f.accent}25`,
               }}
             >
               {/* Accent bar */}
@@ -173,12 +174,16 @@ export default function FactionsView({ onRewardCelebration, onNavigate }: { onRe
                 <div className="flex items-center gap-3">
                   <span className="text-2xl">{f.icon}</span>
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-bold" style={{ color: f.accent }}>{f.name}</p>
+                    <TipCustom title={f.name} icon={f.icon} accent={f.accent} body={<p>{f.description}</p>}>
+                      <p className="text-sm font-bold" style={{ color: f.accent, cursor: "help" }}>{f.name}</p>
+                    </TipCustom>
                     <p className="text-xs italic" style={{ color: `${f.accent}80` }}>{f.motto}</p>
                   </div>
                   <div className="text-right">
                     <p className="text-xs font-bold" style={{ color: f.standingColor }}>{f.standingName}</p>
-                    <p className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.3)" }}>{f.playerRep} Rep</p>
+                    <TipCustom title="Reputation" icon="◆" accent={f.accent} body={<p>Ruf wird automatisch durch passende Quests verdient (+10-30 je nach Quest-Typ). Weekly Bonus verdoppelt den Ruf-Gewinn.</p>}>
+                      <p className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.3)", cursor: "help" }}>{f.playerRep} Rep</p>
+                    </TipCustom>
                   </div>
                 </div>
 
@@ -187,9 +192,11 @@ export default function FactionsView({ onRewardCelebration, onNavigate }: { onRe
                 {/* Quest types */}
                 <div className="flex gap-1.5 mt-2">
                   {f.questTypes.map(t => (
-                    <span key={t} className="text-xs px-1.5 py-0.5 rounded" style={{ background: `${f.accent}12`, color: `${f.accent}cc`, border: `1px solid ${f.accent}25` }}>
-                      {QUEST_TYPE_LABELS[t] || t}
-                    </span>
+                    <TipCustom key={t} title={QUEST_TYPE_LABELS[t] || t} icon="▣" accent={f.accent} body={<p>Quests vom Typ &quot;{QUEST_TYPE_LABELS[t] || t}&quot; geben Ruf bei {f.name}.</p>}>
+                      <span className="text-xs px-1.5 py-0.5 rounded" style={{ background: `${f.accent}12`, color: `${f.accent}cc`, border: `1px solid ${f.accent}25`, cursor: "help" }}>
+                        {QUEST_TYPE_LABELS[t] || t}
+                      </span>
+                    </TipCustom>
                   ))}
                   {weeklyBonusLeft > 0 && (
                     <TipCustom title="Weekly Bonus" icon="⚡" accent={f.accent} body={<p>Your next {weeklyBonusLeft} quest{weeklyBonusLeft > 1 ? "s" : ""} for this faction grant 2× reputation. Resets weekly.</p>}>
@@ -204,16 +211,20 @@ export default function FactionsView({ onRewardCelebration, onNavigate }: { onRe
               {/* Progress bar */}
               <div className="px-4 pb-3">
                 <div className="flex items-center justify-between mb-1">
-                  <span className="text-xs" style={{ color: f.standingColor }}>{f.standingName}</span>
+                  <TipCustom title={f.standingName} icon="◆" accent={f.standingColor} body={<p>Aktuelle Rufstufe bei {f.name}. H&ouml;here Stufen schalten exklusive Belohnungen frei.</p>}>
+                    <span className="text-xs" style={{ color: f.standingColor, cursor: "help" }}>{f.standingName}</span>
+                  </TipCustom>
                   {f.nextStanding && (
-                    <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.3)" }}>
-                      {f.playerRep} / {f.nextStanding.minRep}
-                    </span>
+                    <TipCustom title="Rufpunkte" icon="◆" accent={f.accent} body={<p>Fortschritt zur n&auml;chsten Stufe. Ruf wird durch passende Quests verdient (+10-30 pro Quest).</p>}>
+                      <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.3)", cursor: "help" }}>
+                        {f.playerRep} / {f.nextStanding.minRep}
+                      </span>
+                    </TipCustom>
                   )}
                 </div>
                 <div className={`progress-bar-diablo${f.progress > 0.9 ? " progress-bar-nearly-full" : ""}`}>
                   <div
-                    className="progress-bar-diablo-fill"
+                    className={`progress-bar-diablo-fill${f.progress > 0.8 ? " bar-pulse" : ""}`}
                     style={{
                       width: `${Math.round(f.progress * 100)}%`,
                       background: `linear-gradient(90deg, ${f.accent}88, ${f.accent}, ${f.accent}cc)`,
@@ -221,9 +232,11 @@ export default function FactionsView({ onRewardCelebration, onNavigate }: { onRe
                   />
                 </div>
                 {f.nextStanding && (
-                  <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.2)" }}>
-                    {f.nextStanding.minRep - f.playerRep} Rep until {f.nextStanding.name}
-                  </p>
+                  <TipCustom title={f.nextStanding.name} icon="▲" accent={f.nextStanding.color} body={<p>N&auml;chste Stufe bei {f.nextStanding.minRep} Rep. Schaltet neue Belohnungen frei.</p>}>
+                    <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.2)", cursor: "help" }}>
+                      {f.nextStanding.minRep - f.playerRep} Rep until {f.nextStanding.name}
+                    </p>
+                  </TipCustom>
                 )}
               </div>
 
@@ -278,13 +291,14 @@ export default function FactionsView({ onRewardCelebration, onNavigate }: { onRe
                     onClick={() => claimReward(f.id)}
                     disabled={claiming === f.id}
                     title={claiming === f.id ? "Claiming reward..." : "Claim faction reward"}
-                    className="btn-interactive w-full text-xs font-bold py-2 rounded-lg"
+                    className={`btn-interactive w-full text-xs font-bold py-2 rounded-lg${claiming !== f.id ? " claimable-breathe" : ""}`}
                     style={{
                       background: `${f.accent}15`,
                       color: f.accent,
                       border: `1px solid ${f.accent}40`,
                       opacity: claiming === f.id ? 0.5 : 1,
                       cursor: claiming === f.id ? "not-allowed" : "pointer",
+                      ["--claim-color" as string]: `${f.accent}40`,
                     }}
                   >
                     {claiming === f.id ? "..." : `Claim: ${reward.title || reward.recipeDesc || reward.frameDesc || reward.effectDesc || "Reward"}`}

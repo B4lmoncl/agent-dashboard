@@ -210,12 +210,27 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
   if (loading) return (
     <div className="space-y-3 tab-content-enter">
       <div className="skeleton-card h-20" />
-      <div className="grid grid-cols-3 gap-3">{[1,2,3].map(i => <div key={i} className="skeleton-card h-40" />)}</div>
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">{[1,2,3].map(i => <div key={i} className="skeleton-card h-40" />)}</div>
     </div>
   );
 
   return (
-    <div className="space-y-5 tab-content-enter">
+    <div className="space-y-5 tab-content-enter relative">
+      {/* Purple rift energy fragments */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {Array.from({ length: 6 }, (_, i) => (
+          <div key={`rift-frag-${i}`} className="absolute rounded-full" style={{
+            width: 2 + (i % 2),
+            height: 2 + (i % 2),
+            left: `${10 + (i * 17) % 75}%`,
+            top: `${18 + (i * 23) % 55}%`,
+            background: i % 3 === 0 ? "rgba(192,132,252,0.6)" : i % 3 === 1 ? "rgba(168,85,247,0.55)" : "rgba(139,92,246,0.5)",
+            boxShadow: `0 0 ${3 + i % 2}px ${i % 3 === 0 ? "rgba(192,132,252,0.4)" : "rgba(168,85,247,0.35)"}`,
+            animation: `ember-float ${3.5 + (i % 3) * 0.8}s ease-in-out ${i * 0.7}s infinite`,
+            opacity: 0,
+          }} />
+        ))}
+      </div>
       {/* Header */}
       <div className="flex items-center gap-3">
         <span className="text-2xl">🌀</span>
@@ -249,7 +264,7 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
               </div>
             </div>
             <div className="text-right">
-              <p className="text-sm font-mono font-bold" style={{ color: activeRift.completed ? "#22c55e" : new Date(activeRift.expiresAt).getTime() - Date.now() < 3600000 ? "#ef4444" : new Date(activeRift.expiresAt).getTime() - Date.now() < 24 * 3600000 ? "#eab308" : activeRift.tierColor }}>
+              <p className={`text-sm font-mono font-bold${!activeRift.completed && new Date(activeRift.expiresAt).getTime() - Date.now() < (new Date(activeRift.expiresAt).getTime() - new Date(activeRift.startedAt).getTime()) * 0.25 ? " bar-pulse" : ""}`} style={{ color: activeRift.completed ? "#22c55e" : new Date(activeRift.expiresAt).getTime() - Date.now() < 3600000 ? "#ef4444" : new Date(activeRift.expiresAt).getTime() - Date.now() < 24 * 3600000 ? "#eab308" : activeRift.tierColor }}>
                 {activeRift.completed ? "✓ Complete!" : timeLeft(new Date(activeRift.expiresAt).getTime() - Date.now())}
               </p>
               <p className="text-xs text-w20">{activeRift.completed ? "All stages cleared" : "Time remaining"}</p>
@@ -367,10 +382,11 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
             const onCd = tier.onCooldown;
             const canEnter = !locked && !onCd;
             return (
-              <div key={id} className="rounded-xl p-4 space-y-3" style={{
+              <div key={id} className={`rounded-xl p-4 space-y-3${!locked ? " crystal-breathe" : ""}`} style={{
                 background: locked ? "rgba(255,255,255,0.02)" : `${tier.color}06`,
                 border: `1px solid ${locked ? "rgba(255,255,255,0.05)" : `${tier.color}25`}`,
                 opacity: locked ? 0.5 : 1,
+                ...(!locked ? { ["--glow-color" as string]: `${tier.color}30` } : {}),
               }}>
                 <div className="text-center">
                   <span className="text-2xl">{tier.icon}</span>
@@ -471,7 +487,7 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
               >
                 −
               </button>
-              <span className="text-sm font-mono font-bold px-3 py-1 rounded-lg" style={{ background: "rgba(255,68,68,0.08)", color: "#ff4444", minWidth: 48, textAlign: "center", border: "1px solid rgba(255,68,68,0.15)" }}>
+              <span className="text-sm font-mono font-bold px-3 py-1 rounded-lg crystal-breathe" style={{ background: "rgba(255,68,68,0.08)", color: "#ff4444", minWidth: 48, textAlign: "center", border: "1px solid rgba(255,68,68,0.15)", ["--glow-color" as string]: "rgba(255,68,68,0.25)" }}>
                 +{selectedMythicLevel}
               </span>
               <button

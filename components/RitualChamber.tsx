@@ -93,10 +93,11 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
     const flameColor = isBroken ? "#ef4444" : ritual.streak >= 30 ? "#f59e0b" : ritual.streak >= 14 ? "#f97316" : ritual.streak >= 7 ? "#ef4444" : "rgba(255,255,255,0.25)";
     const flameGlow = isBroken ? "0 0 8px rgba(239,68,68,0.3)" : ritual.streak >= 7 ? `0 0 8px ${flameColor}44` : "none";
     return (
-      <div key={ritual.id} className="rounded-xl p-3" style={{
+      <div key={ritual.id} className={`rounded-xl p-3${!isBroken && !doneToday && ritual.streak >= 7 ? " crystal-breathe" : ""}`} style={{
         background: isBroken ? "rgba(239,68,68,0.04)" : doneToday ? "rgba(34,197,94,0.06)" : "#252525",
         border: `1px solid ${isBroken ? "rgba(239,68,68,0.3)" : doneToday ? "rgba(34,197,94,0.2)" : "rgba(255,255,255,0.07)"}`,
         opacity: doneToday ? 0.8 : 1,
+        ...(!isBroken && !doneToday && ritual.streak >= 7 ? { ["--glow-color" as string]: ritual.streak >= 30 ? "rgba(245,158,11,0.15)" : "rgba(168,85,247,0.15)" } : {}),
       }}>
         <div className="flex items-start justify-between gap-2">
           <div className="flex-1 min-w-0">
@@ -357,7 +358,7 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
                   </div>
                   <div>
                     <label className="text-xs font-semibold mb-1.5 block" style={{ color: "rgba(200,170,100,0.55)" }}>Difficulty</label>
-                    <div className="grid grid-cols-4 gap-1.5">
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5">
                       {DIFFICULTY_TIERS.map(d => (
                         <button key={d.id} onClick={() => setNewRitualDifficulty(d.id)} className="ritual-tier-btn text-center p-2 rounded-lg" style={{ background: newRitualDifficulty === d.id ? `${d.color}22` : "rgba(0,0,0,0.2)", border: `1px solid ${newRitualDifficulty === d.id ? d.color : "rgba(255,255,255,0.07)"}`, boxShadow: newRitualDifficulty === d.id ? `0 0 12px ${d.color}44` : "none" }}>
                           <div className="text-xs font-bold" style={{ color: newRitualDifficulty === d.id ? d.color : "rgba(255,255,255,0.55)" }}>{d.label}</div>
@@ -369,7 +370,7 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
                   </div>
                   <div>
                     <label className="text-xs font-semibold mb-2 block" style={{ color: "rgba(200,170,100,0.55)" }}><Tip k="aetherbond">Aetherbond</Tip></label>
-                    <div className="grid grid-cols-3 gap-1.5" style={ritualCommitmentError ? { border: "1px solid #ef4444", borderRadius: 8, padding: 2 } : {}}>
+                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-1.5" style={ritualCommitmentError ? { border: "1px solid #ef4444", borderRadius: 8, padding: 2 } : {}}>
                       {COMMITMENT_TIERS.map(tier => (
                         <button key={tier.id} onClick={() => { setNewRitualCommitment(tier.id); if (ritualCommitmentError) setRitualCommitmentError(false); }} className="ritual-tier-btn text-left p-2 rounded-lg" style={{ background: newRitualCommitment === tier.id ? `${tier.color}22` : "rgba(0,0,0,0.2)", border: `1px solid ${newRitualCommitment === tier.id ? tier.color : "rgba(255,255,255,0.07)"}`, boxShadow: newRitualCommitment === tier.id ? `0 0 12px ${tier.color}55` : "none" }}>
                           <div className="text-xs font-bold" style={{ color: newRitualCommitment === tier.id ? tier.color : "rgba(255,255,255,0.55)" }}>{tier.label}</div>
@@ -475,7 +476,7 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
                 <div className="p-5 space-y-4">
                   <div>
                     <label className="text-xs font-semibold mb-2 block" style={{ color: "rgba(200,170,100,0.55)" }}>Neuer Ätherbund (muss länger sein)</label>
-                    <div className="grid grid-cols-3 gap-1.5">
+                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-1.5">
                       {COMMITMENT_TIERS.filter(tier => tier.days > currentDays).map(tier => (
                         <button key={tier.id} onClick={() => setExtendRitualCommitment(tier.id)} className="text-left p-2 rounded-lg" style={{ background: extendRitualCommitment === tier.id ? `${tier.color}1a` : "rgba(0,0,0,0.2)", border: `1px solid ${extendRitualCommitment === tier.id ? tier.color : "rgba(255,255,255,0.07)"}`, boxShadow: extendRitualCommitment === tier.id ? `0 0 12px ${tier.color}55` : "none" }}>
                           <div className="text-xs font-bold" style={{ color: extendRitualCommitment === tier.id ? tier.color : "rgba(255,255,255,0.5)" }}>{tier.label}</div>

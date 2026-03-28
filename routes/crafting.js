@@ -7,7 +7,16 @@ const router = require('express').Router();
 const { state, saveUsers, saveUsersSync, ensureUserCurrencies } = require('../lib/state');
 const { now, getLevelInfo, PRIMARY_STATS, MINOR_STATS, createGearInstance, getLegendaryModifiers, rollAffixStats, getArmorTraitBonus, INVENTORY_CAP } = require('../lib/helpers');
 
+// ─── Mondlicht-Schmiede: +20% better minimum rolls during night hours (22:00-06:00 Berlin) ───
+function isMoonlightActive() {
+  const berlinHour = new Date().toLocaleString('en-US', { timeZone: 'Europe/Berlin', hour: 'numeric', hour12: false });
+  const h = parseInt(berlinHour, 10);
+  return h >= 22 || h < 6;
+}
+const MOONLIGHT_BONUS = 0.20; // +20% minimum roll boost
+
 const VALID_SLOTS = ['weapon', 'shield', 'helm', 'armor', 'amulet', 'boots', 'ring'];
+const SECONDARY_PROFESSIONS = ['koch', 'verzauberer']; // Don't count against the 2 primary-slot limit
 const RARITY_ORDER = ['common', 'uncommon', 'rare', 'epic', 'legendary'];
 const SLOT_RECIPES = ['upgrade_rarity', 'permanent_enchant', 'reinforce_armor', 'enchant_socket', 'sharpen_blade'];
 const { requireAuth } = require('../lib/middleware');
@@ -118,9 +127,15 @@ function getSkillUpChance(playerSkill, reqSkill) {
   return (bp.gray - playerSkill) / (bp.gray - bp.yellow);
 }
 
-// Max profession slots — always 2 (no level gate)
+// Max PRIMARY profession slots — always 2 (no level gate)
+// Secondary professions (Koch, Verzauberer) don't consume a slot.
 function getMaxProfessionSlots(playerLevel) {
   return 2;
+}
+
+// Count only primary professions (exclude secondary like Koch, Verzauberer)
+function countPrimaryProfessions(chosenProfessions) {
+  return (chosenProfessions || []).filter(p => !SECONDARY_PROFESSIONS.includes(p)).length;
 }
 
 // Get player's profession skill (0-300)
@@ -168,8 +183,8 @@ function meetsSkillReq(recipe, profProgress) {
 
 // ─── Helper: check if recipe is visible (show in UI even if locked) ─────────
 function isRecipeVisible(recipe, profProgress, user) {
-  // Trainer recipes: always visible if skill/level is met (show as "learnable")
-  if (recipe.source === 'trainer') return meetsSkillReq(recipe, profProgress);
+  // Trainer recipes: always visible (like WoW Classic trainer — you see all recipes, buy when skill is met)
+  if (recipe.source === 'trainer') return true;
   // Drop recipes: only visible once learned
   if (recipe.source === 'drop') return (user?.learnedRecipes || []).includes(recipe.id);
   // Faction recipes: visible if skill/level met (show as locked until rep earned)
@@ -200,7 +215,8 @@ router.get('/api/professions', (req, res) => {
     const lastCraft = (u?.professions || {})[p.id]?.lastCraftAt || null;
     const chosen = (u?.chosenProfessions || []).includes(p.id);
     const pMaxSlots = u ? getMaxProfessionSlots(playerLevel) : 0;
-    const canChoose = chosen || (u?.chosenProfessions || []).length < pMaxSlots;
+    const isSecondary = SECONDARY_PROFESSIONS.includes(p.id);
+    const canChoose = chosen || isSecondary || countPrimaryProfessions(u?.chosenProfessions) < pMaxSlots;
     const rank = getProfRank(profProgress.skill);
     const playerProfData = u ? (u.professions || {})[p.id] : null;
     const skillCap = u ? getSkillCap(playerLevel, playerProfData?.trainedRanks) : 75;
@@ -293,7 +309,7 @@ router.get('/api/professions', (req, res) => {
   const dailyBonus = u ? getDailyBonusInfo(u) : { dailyBonusAvailable: false };
   const playerLvl = u ? getLevelInfo(u.xp || 0).level : 0;
   const maxProfSlots = getMaxProfessionSlots(playerLvl);
-  const chosenCount = (u?.chosenProfessions || []).length;
+  const chosenCount = countPrimaryProfessions(u?.chosenProfessions);
   const learnedRecipes = u?.learnedRecipes || [];
   const masteryConfig = PROFESSIONS_DATA.masteryConfig || null;
   const gatheringConfig = PROFESSIONS_DATA.gatheringConfig || null;
@@ -314,7 +330,7 @@ router.get('/api/professions', (req, res) => {
       };
     }
   }
-  res.json({ professions, recipes, materials, materialDefs: PROFESSIONS_DATA.materials, proficiencyRanks: PROFICIENCY_RANKS, skillUpColors: PROFESSIONS_DATA.skillUpColors || {}, currencies, dailyBonus, maxProfSlots, chosenCount, professionSlots: PROFESSIONS_DATA.professionSlots || [], learnedRecipes, masteryConfig, gatheringConfig, slotAffixRanges, totalRecipesByProf });
+  res.json({ professions, recipes, materials, materialDefs: PROFESSIONS_DATA.materials, proficiencyRanks: PROFICIENCY_RANKS, skillUpColors: PROFESSIONS_DATA.skillUpColors || {}, currencies, dailyBonus, maxProfSlots, chosenCount, professionSlots: PROFESSIONS_DATA.professionSlots || [], learnedRecipes, masteryConfig, gatheringConfig, slotAffixRanges, totalRecipesByProf, moonlightActive: isMoonlightActive() });
 });
 
 // ─── POST /api/professions/learn — buy a recipe from an NPC trainer ─────────
@@ -372,7 +388,6 @@ router.post('/api/professions/learn', requireAuth, (req, res) => {
 // ─── POST /api/professions/craft — execute a recipe ─────────────────────────
 router.post('/api/professions/craft', requireAuth, (req, res) => {
   const { recipeId, targetSlot, count: rawCount } = req.body;
-  const count = Math.max(1, Math.min(10, parseInt(rawCount, 10) || 1)); // batch: 1-10
   if (!recipeId) return res.status(400).json({ error: 'recipeId required' });
 
   const uid = req.auth?.userId;
@@ -385,6 +400,11 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
   const recipe = PROFESSIONS_DATA.recipes.find(r => r.id === recipeId);
   if (!recipe) return res.status(404).json({ error: 'Recipe not found' });
 
+  // Material recipes (transmute_material, material) get higher batch limit (x50)
+  const isMaterialRecipe = recipe.result?.type === 'transmute_material' || recipe.result?.type === 'material';
+  const maxBatch = isMaterialRecipe ? 50 : 10;
+  const count = Math.max(1, Math.min(maxBatch, parseInt(rawCount, 10) || 1));
+
   // Check profession unlock
   const profDef = PROFESSIONS_DATA.professions.find(p => p.id === recipe.profession);
   if (!profDef) return res.status(500).json({ error: 'Profession not found' });
@@ -395,11 +415,14 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
   }
 
   // Check profession slot limit based on player level
+  // Secondary professions (Koch, Verzauberer) don't consume primary slots
   u.chosenProfessions = u.chosenProfessions || [];
   const maxSlots = getMaxProfessionSlots(playerLevel);
   const needsEnrollment = !u.chosenProfessions.includes(recipe.profession);
-  if (needsEnrollment && u.chosenProfessions.length >= maxSlots) {
-    return res.status(400).json({ error: `You have ${u.chosenProfessions.length}/${maxSlots} profession slots (${u.chosenProfessions.join(', ')}). ${maxSlots < 4 ? 'Unlock more slots by leveling up, or d' : 'D'}rop one first.` });
+  const isSecondaryProf = SECONDARY_PROFESSIONS.includes(recipe.profession);
+  if (needsEnrollment && !isSecondaryProf && countPrimaryProfessions(u.chosenProfessions) >= maxSlots) {
+    const primaryProfs = u.chosenProfessions.filter(p => !SECONDARY_PROFESSIONS.includes(p));
+    return res.status(400).json({ error: `You have ${primaryProfs.length}/${maxSlots} primary profession slots (${primaryProfs.join(', ')}). Drop one first.` });
   }
 
   // Check recipe is learned (trainer+drop source system)
@@ -889,7 +912,7 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
         if (u.inventory.length >= (INVENTORY_CAP || 200)) {
           return res.status(400).json({ error: 'Inventory full' });
         }
-        const instance = createGearInstance(template);
+        const instance = createGearInstance(template, { moonlightBonus: isMoonlightActive() ? MOONLIGHT_BONUS : 0 });
         // Apply mastery bonus (cloth_stat_boost, gear_stat_boost, or leather_stat_boost)
         if (masteryDef && (masteryDef.type === 'cloth_stat_boost' || masteryDef.type === 'gear_stat_boost' || masteryDef.type === 'leather_stat_boost')) {
           const boost = 1 + (masteryDef.value || 10) / 100;
@@ -922,8 +945,155 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
     skillUpColor,
     dailyBonusUsed: dailyBonusAvailable,
     craftCount: effectiveCount,
+    atSkillCap: newSkill >= skillCap,
+    skillCap,
+    nextRankNeeded: newSkill >= skillCap && skillCap < MAX_SKILL ? PROFICIENCY_RANKS.find(r => r.skillCap > skillCap)?.name || null : null,
   });
   } finally { releaseCraftLock(uid); }
+});
+
+// ─── POST /api/professions/craft-preview — preview recipe output ─────────────
+router.post('/api/professions/craft-preview', requireAuth, (req, res) => {
+  const { recipeId, targetSlot } = req.body;
+  if (!recipeId) return res.status(400).json({ error: 'recipeId required' });
+
+  const uid = req.auth?.userId;
+  const u = state.users[uid];
+  if (!u) return res.status(404).json({ error: 'User not found' });
+
+  const recipe = PROFESSIONS_DATA.recipes.find(r => r.id === recipeId);
+  if (!recipe) return res.status(404).json({ error: 'Recipe not found' });
+
+  const profDef = PROFESSIONS_DATA.professions.find(p => p.id === recipe.profession);
+  const moonlightActive = isMoonlightActive();
+  const profProgress = getProfLevel(u, recipe.profession);
+  const masterySkill = PROFESSIONS_DATA.masteryConfig?.unlockSkill || 225;
+  const hasMastery = (profProgress.skill || 0) >= masterySkill;
+  const masteryDef = hasMastery ? profDef?.masteryBonus : null;
+
+  const preview = {
+    recipeId,
+    recipeName: recipe.name,
+    profession: profDef?.name || recipe.profession,
+    moonlightActive,
+    moonlightBonus: moonlightActive ? MOONLIGHT_BONUS : 0,
+    mastery: hasMastery ? (masteryDef?.type || true) : false,
+    cost: { gold: recipe.cost?.gold || 0, materials: recipe.materials || {} },
+    cooldownMinutes: recipe.cooldownMinutes || 0,
+  };
+
+  // Determine output type
+  if (recipe.result?.type === 'craft_gear') {
+    const templateId = recipe.result.templateId;
+    const template = state.gearById.get(templateId) || state.itemTemplates?.get(templateId);
+    if (!template) return res.json({ ...preview, outputType: 'gear', error: 'Template not found' });
+
+    const gemsData = state.gemsData || require('../public/data/gems.json');
+    const socketRange = gemsData.socketsByRarity[template.rarity || 'common'] || [0, 0];
+
+    // Calculate stat ranges (with moonlight)
+    const statRanges = { primary: [], minor: [] };
+    const mlBonus = moonlightActive ? MOONLIGHT_BONUS : 0;
+    if (template.affixes?.primary?.pool) {
+      const [minC, maxC] = template.affixes.primary.count || [1, 1];
+      statRanges.primaryCount = [minC, maxC];
+      for (const affix of template.affixes.primary.pool) {
+        const effectiveMin = mlBonus > 0 ? Math.min(affix.max, affix.min + Math.floor((affix.max - affix.min) * mlBonus)) : affix.min;
+        statRanges.primary.push({ stat: affix.stat, min: effectiveMin, max: affix.max });
+      }
+    }
+    if (template.affixes?.minor?.pool) {
+      const [minC, maxC] = template.affixes.minor.count || [0, 0];
+      statRanges.minorCount = [minC, maxC];
+      for (const affix of template.affixes.minor.pool) {
+        const effectiveMin = mlBonus > 0 ? Math.min(affix.max, affix.min + Math.floor((affix.max - affix.min) * mlBonus)) : affix.min;
+        statRanges.minor.push({ stat: affix.stat, min: effectiveMin, max: affix.max });
+      }
+    }
+
+    preview.outputType = 'gear';
+    preview.gear = {
+      name: template.name,
+      slot: template.slot,
+      rarity: template.rarity || 'common',
+      tier: template.tier || 1,
+      setId: template.setId || null,
+      socketRange,
+      statRanges,
+      legendaryEffect: template.legendaryEffect ? {
+        type: template.legendaryEffect.type,
+        min: template.legendaryEffect.min,
+        max: template.legendaryEffect.max,
+        label: template.legendaryEffect.label || null,
+      } : null,
+      fixedStats: template.fixedStats || null,
+      icon: template.icon || null,
+      desc: template.desc || template.flavorText || '',
+    };
+  } else if (recipe.result?.type === 'transmute_material') {
+    const matDef = PROFESSIONS_DATA.materials?.find(m => m.id === recipe.result.outputMaterial);
+    preview.outputType = 'material';
+    preview.material = { id: recipe.result.outputMaterial, name: matDef?.name || recipe.result.outputMaterial, amount: recipe.result.outputAmount || 1 };
+  } else if (recipe.result?.type === 'buff' || ['potion_xp', 'potion_gold', 'potion_luck', 'potion_streak', 'potion_doubledown'].includes(recipeId)) {
+    const buffDuration = recipe.result?.duration ? parseInt(recipe.result.duration.replace('_quests', '')) : 3;
+    const masteryExtra = masteryDef?.type === 'potion_duration' ? masteryDef.value : 0;
+    preview.outputType = 'buff';
+    preview.buff = { type: recipe.result?.buffType || recipeId, duration: buffDuration + masteryExtra, mastery: masteryExtra > 0 };
+  } else if (recipe.result?.type === 'temp_enchant') {
+    preview.outputType = 'temp_enchant';
+    preview.enchant = {
+      statPool: [...PRIMARY_STATS, ...MINOR_STATS],
+      statRange: recipe.result.statBonus || [1, 2],
+      durationHours: recipe.result.durationHours || 24,
+      mastery: masteryDef?.type === 'enchant_power' ? masteryDef.value : 0,
+    };
+  } else if (recipe.result?.type === 'perm_enchant' || SLOT_RECIPES.includes(recipeId)) {
+    preview.outputType = 'slot_modify';
+    const slotInfo = {};
+    if (recipeId === 'upgrade_rarity') slotInfo.action = 'Rarity upgrade (50% success)';
+    else if (recipeId === 'reinforce_armor') slotInfo.action = 'Reinforce: +3-6 random primary stat';
+    else if (recipeId === 'sharpen_blade') slotInfo.action = 'Sharpen: +1-3 random primary stat';
+    else if (recipeId === 'permanent_enchant') slotInfo.action = 'Permanent enchant: +1-2 random minor stat';
+    else if (recipeId === 'enchant_socket') slotInfo.action = 'Arcane Infusion: +3-5 random primary stat';
+    else if (recipeId === 'enchant_reroll') slotInfo.action = 'Reroll one stat from affix pool';
+    else slotInfo.action = recipe.name;
+    if (targetSlot) {
+      const eq = u.equipment?.[targetSlot];
+      if (eq && typeof eq !== 'string') {
+        slotInfo.targetItem = { name: eq.name, rarity: eq.rarity, slot: targetSlot };
+      }
+    }
+    preview.slotModify = slotInfo;
+  } else if (recipe.result?.type === 'vellum') {
+    preview.outputType = 'vellum';
+    preview.vellum = {
+      statPool: [...PRIMARY_STATS, ...MINOR_STATS],
+      statRange: recipe.result.statBonus || [2, 4],
+      durationHours: recipe.result.durationHours || 24,
+      tradeable: true,
+    };
+  } else if (recipe.result?.type === 'forge_temp') {
+    preview.outputType = 'forge_temp';
+    preview.forgeTemp = { amount: recipe.result.amount || 15 };
+  } else if (recipe.result?.type === 'streak_shield') {
+    preview.outputType = 'streak_shield';
+  } else if (recipeId.startsWith('meal_')) {
+    const masteryExtra = masteryDef?.type === 'meal_duration' ? masteryDef.value : 0;
+    preview.outputType = 'meal';
+    preview.meal = { type: recipe.result?.buffType || recipeId, duration: (recipe.result?.duration || 5) + masteryExtra, mastery: masteryExtra > 0 };
+  } else {
+    preview.outputType = 'unknown';
+  }
+
+  // Enrich material names
+  const materialNames = {};
+  for (const matId of Object.keys(recipe.materials || {})) {
+    const matDef = PROFESSIONS_DATA.materials?.find(m => m.id === matId);
+    materialNames[matId] = matDef?.name || matId;
+  }
+  preview.materialNames = materialNames;
+
+  res.json(preview);
 });
 
 // ─── POST /api/professions/choose — explicitly enroll in a profession ────────
@@ -949,8 +1119,10 @@ router.post('/api/professions/choose', requireAuth, (req, res) => {
   }
   const choosePLevel = getLevelInfo(u.xp || 0).level;
   const chooseMaxSlots = getMaxProfessionSlots(choosePLevel);
-  if (u.chosenProfessions.length >= chooseMaxSlots) {
-    return res.status(400).json({ error: `You have ${u.chosenProfessions.length}/${chooseMaxSlots} profession slots (${u.chosenProfessions.join(', ')}). ${chooseMaxSlots < 4 ? 'Unlock more slots by leveling up, or d' : 'D'}rop one first.` });
+  const isSecondaryChoice = SECONDARY_PROFESSIONS.includes(professionId);
+  if (!isSecondaryChoice && countPrimaryProfessions(u.chosenProfessions) >= chooseMaxSlots) {
+    const primaryProfs = u.chosenProfessions.filter(p => !SECONDARY_PROFESSIONS.includes(p));
+    return res.status(400).json({ error: `You have ${primaryProfs.length}/${chooseMaxSlots} primary profession slots (${primaryProfs.join(', ')}). Drop one first.` });
   }
 
   u.chosenProfessions.push(professionId);
@@ -1005,13 +1177,41 @@ router.post('/api/professions/switch', requireAuth, (req, res) => {
 // Dismantle items into Essenz, transmute 3 epics of same slot → 1 legendary
 
 const DISMANTLE_ESSENZ = { common: 2, uncommon: 5, rare: 15, epic: 40, legendary: 100 };
-const DISMANTLE_MATERIALS = {
-  common: [{ id: 'eisenerz', chance: 0.5 }, { id: 'magiestaub', chance: 0.3 }],
-  uncommon: [{ id: 'eisenerz', chance: 0.6 }, { id: 'kristallsplitter', chance: 0.3 }, { id: 'magiestaub', chance: 0.4 }],
-  rare: [{ id: 'kristallsplitter', chance: 0.5 }, { id: 'drachenschuppe', chance: 0.2 }, { id: 'runenstein', chance: 0.4 }],
-  epic: [{ id: 'drachenschuppe', chance: 0.5 }, { id: 'aetherkern', chance: 0.15 }, { id: 'runenstein', chance: 0.4 }],
-  legendary: [{ id: 'aetherkern', chance: 0.6 }, { id: 'seelensplitter', chance: 0.1 }, { id: 'phoenixfeder', chance: 0.3 }],
+// Materials from dismantling — based on player's chosen professions
+const DISMANTLE_MATERIALS_BY_PROF = {
+  schmied: { common: [{ id: 'eisenerz', chance: 0.6 }], uncommon: [{ id: 'eisenerz', chance: 0.7 }, { id: 'kristallsplitter', chance: 0.3 }], rare: [{ id: 'kristallsplitter', chance: 0.5 }, { id: 'drachenschuppe', chance: 0.3 }], epic: [{ id: 'drachenschuppe', chance: 0.5 }, { id: 'aetherkern', chance: 0.2 }], legendary: [{ id: 'aetherkern', chance: 0.6 }, { id: 'seelensplitter', chance: 0.1 }] },
+  waffenschmied: { common: [{ id: 'eisenerz', chance: 0.6 }], uncommon: [{ id: 'eisenerz', chance: 0.7 }, { id: 'kristallsplitter', chance: 0.3 }], rare: [{ id: 'kristallsplitter', chance: 0.5 }, { id: 'drachenschuppe', chance: 0.3 }], epic: [{ id: 'drachenschuppe', chance: 0.5 }, { id: 'aetherkern', chance: 0.2 }], legendary: [{ id: 'aetherkern', chance: 0.6 }, { id: 'seelensplitter', chance: 0.1 }] },
+  schneider: { common: [{ id: 'leinenstoff', chance: 0.6 }], uncommon: [{ id: 'wollstoff', chance: 0.5 }, { id: 'magiestaub', chance: 0.3 }], rare: [{ id: 'seidenstoff', chance: 0.4 }, { id: 'runenstein', chance: 0.3 }], epic: [{ id: 'magiestoff', chance: 0.5 }, { id: 'aetherkern', chance: 0.15 }], legendary: [{ id: 'runenstoff', chance: 0.5 }, { id: 'seelensplitter', chance: 0.1 }] },
+  lederverarbeiter: { common: [{ id: 'leichtesleder', chance: 0.6 }], uncommon: [{ id: 'mittleresleder', chance: 0.5 }, { id: 'klauenoel', chance: 0.3 }], rare: [{ id: 'schweresleder', chance: 0.4 }, { id: 'salzgerbung', chance: 0.3 }], epic: [{ id: 'dickesleder', chance: 0.5 }, { id: 'aetherkern', chance: 0.15 }], legendary: [{ id: 'rauesleder', chance: 0.5 }, { id: 'seelensplitter', chance: 0.1 }] },
+  juwelier: { common: [{ id: 'kristallsplitter', chance: 0.5 }], uncommon: [{ id: 'kristallsplitter', chance: 0.6 }, { id: 'magiestaub', chance: 0.3 }], rare: [{ id: 'runenstein', chance: 0.5 }, { id: 'drachenschuppe', chance: 0.2 }], epic: [{ id: 'aetherkern', chance: 0.4 }, { id: 'runenstein', chance: 0.3 }], legendary: [{ id: 'aetherkern', chance: 0.6 }, { id: 'seelensplitter', chance: 0.1 }] },
+  alchemist: { common: [{ id: 'kraeuterbuendel', chance: 0.6 }], uncommon: [{ id: 'mondblume', chance: 0.4 }, { id: 'kraeuterbuendel', chance: 0.4 }], rare: [{ id: 'mondblume', chance: 0.5 }, { id: 'drachenschuppe', chance: 0.2 }], epic: [{ id: 'aetherkern', chance: 0.3 }, { id: 'phoenixfeder', chance: 0.2 }], legendary: [{ id: 'phoenixfeder', chance: 0.5 }, { id: 'seelensplitter', chance: 0.1 }] },
+  koch: { common: [{ id: 'wildfleisch', chance: 0.6 }], uncommon: [{ id: 'feuerwurz', chance: 0.4 }, { id: 'gewuerzmischung', chance: 0.4 }], rare: [{ id: 'sternenfrucht', chance: 0.4 }, { id: 'phoenixgewuerz', chance: 0.3 }], epic: [{ id: 'phoenixgewuerz', chance: 0.5 }, { id: 'mondstaubsalz', chance: 0.3 }], legendary: [{ id: 'phoenixfeder', chance: 0.4 }, { id: 'seelensplitter', chance: 0.1 }] },
+  verzauberer: { common: [{ id: 'magiestaub', chance: 0.6 }], uncommon: [{ id: 'magiestaub', chance: 0.5 }, { id: 'runenstein', chance: 0.3 }], rare: [{ id: 'runenstein', chance: 0.5 }, { id: 'kristallsplitter', chance: 0.3 }], epic: [{ id: 'aetherkern', chance: 0.4 }, { id: 'runenstein', chance: 0.4 }], legendary: [{ id: 'aetherkern', chance: 0.6 }, { id: 'seelensplitter', chance: 0.1 }] },
 };
+// Fallback for players with no professions
+const DISMANTLE_MATERIALS_DEFAULT = {
+  common: [{ id: 'eisenerz', chance: 0.4 }, { id: 'magiestaub', chance: 0.3 }],
+  uncommon: [{ id: 'eisenerz', chance: 0.5 }, { id: 'kristallsplitter', chance: 0.3 }],
+  rare: [{ id: 'kristallsplitter', chance: 0.4 }, { id: 'drachenschuppe', chance: 0.2 }],
+  epic: [{ id: 'drachenschuppe', chance: 0.4 }, { id: 'aetherkern', chance: 0.15 }],
+  legendary: [{ id: 'aetherkern', chance: 0.5 }, { id: 'seelensplitter', chance: 0.1 }],
+};
+
+function getDismantleMaterials(userId, rarity) {
+  const u = state.users[userId];
+  const profs = u?.chosenProfessions || [];
+  if (profs.length === 0) return DISMANTLE_MATERIALS_DEFAULT[rarity] || DISMANTLE_MATERIALS_DEFAULT.common;
+  // Merge materials from all chosen professions
+  const merged = [];
+  const seen = new Set();
+  for (const prof of profs) {
+    const pool = DISMANTLE_MATERIALS_BY_PROF[prof]?.[rarity] || [];
+    for (const mat of pool) {
+      if (!seen.has(mat.id)) { merged.push(mat); seen.add(mat.id); }
+    }
+  }
+  return merged.length > 0 ? merged : DISMANTLE_MATERIALS_DEFAULT[rarity] || DISMANTLE_MATERIALS_DEFAULT.common;
+}
 
 // POST /api/schmiedekunst/dismantle — dismantle an inventory item into essenz + materials
 router.post('/api/schmiedekunst/dismantle', requireAuth, (req, res) => {
@@ -1036,7 +1236,7 @@ router.post('/api/schmiedekunst/dismantle', requireAuth, (req, res) => {
 
   const rarity = item.rarity || 'common';
   const essenzGained = DISMANTLE_ESSENZ[rarity] || 2;
-  const matDrops = DISMANTLE_MATERIALS[rarity] || DISMANTLE_MATERIALS.common;
+  const matDrops = getDismantleMaterials(uid, rarity);
 
   // Remove from inventory
   u.inventory.splice(idx, 1);
@@ -1103,7 +1303,7 @@ router.post('/api/schmiedekunst/dismantle-preview', requireAuth, (req, res) => {
 
   const totalEssenz = candidates.length * (DISMANTLE_ESSENZ[rarity] || 2);
   // Estimate materials based on expected value (chance × count)
-  const matDrops = DISMANTLE_MATERIALS[rarity] || DISMANTLE_MATERIALS.common;
+  const matDrops = getDismantleMaterials(uid, rarity);
   const estimatedMaterials = {};
   for (const mat of matDrops) {
     const expected = Math.round(candidates.length * mat.chance);
@@ -1160,7 +1360,7 @@ router.post('/api/schmiedekunst/dismantle-all', requireAuth, (req, res) => {
   const salvageBonusMult = salvageMods.salvageBonus || 0;
   for (const item of toDismantle) {
     totalEssenz += DISMANTLE_ESSENZ[rarity] || 2;
-    for (const mat of (DISMANTLE_MATERIALS[rarity] || DISMANTLE_MATERIALS.common)) {
+    for (const mat of (getDismantleMaterials(uid, rarity))) {
       if (Math.random() < mat.chance) {
         let amount = 1;
         if (salvageBonusMult > 0) amount += Math.round(salvageBonusMult);
@@ -1266,7 +1466,7 @@ router.post('/api/schmiedekunst/transmute', requireAuth, (req, res) => {
 
   // Create legendary
   const template = legendaryPool[Math.floor(Math.random() * legendaryPool.length)];
-  const legendary = createGearInstance(template);
+  const legendary = createGearInstance(template, { moonlightBonus: isMoonlightActive() ? MOONLIGHT_BONUS : 0 });
   u.inventory.push(legendary);
 
   // Sync write — transmute destroys 3 items, must survive container restarts
@@ -1317,29 +1517,6 @@ router.post('/api/crafting/train-rank', requireAuth, (req, res) => {
   saveUsers();
   console.log(`[crafting] ${uid} trained ${professionId} rank: ${nextRank.rank} for ${nextRank.cost}g`);
   res.json({ ok: true, rank: nextRank.rank, cost: nextRank.cost, newCap: nextRank.toCap, remainingGold: u.currencies.gold });
-});
-
-// ─── Profession Unlearn (WoW-style: lose all progress, free up slot) ────────
-router.post('/api/crafting/unlearn', requireAuth, (req, res) => {
-  const uid = (req.auth?.userId || '').toLowerCase();
-  const u = state.users[uid];
-  if (!u) return res.status(404).json({ error: 'User not found' });
-  const { professionId } = req.body;
-  if (!professionId) return res.status(400).json({ error: 'professionId required' });
-  if (!(u.chosenProfessions || []).includes(professionId)) return res.status(400).json({ error: 'Not your profession' });
-
-  // Remove from chosen professions
-  u.chosenProfessions = (u.chosenProfessions || []).filter(p => p !== professionId);
-  // Reset profession data (skill, xp, learned recipes)
-  if (u.professions) delete u.professions[professionId];
-  // Remove all learned recipes for this profession
-  if (u.learnedRecipes) {
-    const profRecipeIds = new Set(PROFESSIONS_DATA.recipes.filter(r => r.profession === professionId).map(r => r.id));
-    u.learnedRecipes = u.learnedRecipes.filter(id => !profRecipeIds.has(id));
-  }
-  saveUsers();
-  console.log(`[crafting] ${uid} unlearned profession: ${professionId}`);
-  res.json({ ok: true, unlearned: professionId, chosenProfessions: u.chosenProfessions });
 });
 
 // ─── Reforge Legendary (D3 Kanai's Cube "Law of Kulle") ─────────────────────
@@ -1397,7 +1574,7 @@ router.post('/api/schmiedekunst/reforge', requireAuth, (req, res) => {
   }
 
   // Reforge: create new instance from same template, replace in inventory
-  const reforged = createGearInstance(template);
+  const reforged = createGearInstance(template, { moonlightBonus: isMoonlightActive() ? MOONLIGHT_BONUS : 0 });
   // Preserve instanceId for tracking
   reforged.instanceId = item.instanceId || reforged.instanceId;
   u.inventory[idx] = reforged;

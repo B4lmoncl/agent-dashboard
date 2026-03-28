@@ -535,24 +535,24 @@ router.post('/api/quest/:id/coop-complete', requireApiKey, (req, res) => {
 
 // GET /api/quests — list all quests grouped by status
 // ?player=X  → overlays per-player state for player quest types + applies minLevel filtering
-router.get('/api/quests', (req, res) => {
-  const RARITY_REWARDS = {
-    common:    { xp: 10, gold: 8  },
-    uncommon:  { xp: 18, gold: 14 },
-    rare:      { xp: 30, gold: 24 },
-    epic:      { xp: 50, gold: 40 },
-    legendary: { xp: 80, gold: 65 },
-  };
-  function ensureRewards(q) {
-    if (q.rewards && q.rewards.xp > 0) return q;
-    const fallback = RARITY_REWARDS[q.rarity] || RARITY_REWARDS.common;
-    return { ...q, rewards: fallback };
-  }
-  const typeFilter  = req.query.type;
-  const playerParam = req.query.player ? String(req.query.player).toLowerCase() : null;
+// ─── Shared quest data builder (used by GET /api/quests and /api/dashboard) ──
+const RARITY_REWARDS = {
+  common:    { xp: 10, gold: 8  },
+  uncommon:  { xp: 18, gold: 14 },
+  rare:      { xp: 30, gold: 24 },
+  epic:      { xp: 50, gold: 40 },
+  legendary: { xp: 80, gold: 65 },
+};
+function ensureRewards(q) {
+  if (q.rewards && q.rewards.xp > 0) return q;
+  const fallback = RARITY_REWARDS[q.rarity] || RARITY_REWARDS.common;
+  return { ...q, rewards: fallback };
+}
+
+function getQuestsData(playerParam, typeFilter) {
   const allCampaignQuestIds = new Set(state.campaigns.flatMap(c => c.questIds));
 
-  // Pre-build parent→children index once per request (O(n) instead of O(n²))
+  // Pre-build parent->children index once per request (O(n) instead of O(n^2))
   const _childrenByParent = new Map();
   for (const q of state.quests) {
     if (q.parentQuestId) {
@@ -644,7 +644,7 @@ router.get('/api/quests', (req, res) => {
       : openPlayer;
 
     // Dev quest types use global status as-is
-    return res.json({
+    return {
       open:       [...enrichEpics(poolFilteredOpen),  ...filterAndEnrich('open',        devTypeQuests)].map(ensureRewards),
       inProgress: [...enrichEpics(inProgressPlayer), ...filterAndEnrich('in_progress', devTypeQuests)].map(ensureRewards),
       completed:  [...enrichEpics(completedPlayer),  ...filterAndEnrich('completed',   devTypeQuests)].map(ensureRewards),
@@ -652,16 +652,22 @@ router.get('/api/quests', (req, res) => {
       rejected:   filterAndEnrich('rejected',  devTypeQuests).map(ensureRewards),
       // Show up to 3 locked quests as teaser, sorted by minLevel ascending
       locked: lockedPlayer.sort((a, b) => (a.minLevel || 1) - (b.minLevel || 1)).slice(0, 3).map(ensureRewards),
-    });
+    };
   }
 
-  res.json({
+  return {
     open:       filterAndEnrich('open').map(ensureRewards),
     inProgress: filterAndEnrich('in_progress').map(ensureRewards),
     completed:  filterAndEnrich('completed').map(ensureRewards),
     suggested:  filterAndEnrich('suggested').map(ensureRewards),
     rejected:   filterAndEnrich('rejected').map(ensureRewards),
-  });
+  };
+}
+
+router.get('/api/quests', (req, res) => {
+  const typeFilter  = req.query.type;
+  const playerParam = req.query.player ? String(req.query.player).toLowerCase() : null;
+  res.json(getQuestsData(playerParam, typeFilter));
 });
 
 // POST /api/quest/:id/approve — approve a suggested quest → open (admin only)
@@ -854,3 +860,4 @@ module.exports = router;
 module.exports.POOL_TYPES = POOL_TYPES;
 module.exports.POOL_MIX = POOL_MIX;
 module.exports.buildQuestPool = buildQuestPool;
+module.exports.getQuestsData = getQuestsData;

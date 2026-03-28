@@ -260,3 +260,5 @@ module.exports = router;
 module.exports.loadExpeditions = loadExpeditions;
 module.exports.loadExpeditionState = loadExpeditionState;
 module.exports.contributeQuest = contributeQuest;
+module.exports.ensureExpedition = ensureExpedition;
+module.exports.getExpeditionData = () => EXPEDITION_DATA;

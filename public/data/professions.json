@@ -189,7 +189,7 @@
     {
       "id": "juwelier",
       "name": "Jewelcrafter",
-      "npcName": "Mirael the Gem Sage",
+      "npcName": "Selindra the Gem Sage",
       "npcPortrait": "/images/npcs/mirael-juwelier.png",
       "npcGreeting": "Jeder Edelstein birgt ein Geheimnis. Lass mich dir zeigen, wie man zuhört.",
       "description": "Crafts rings, amulets, and cut gems. The only profession that works with the Gem socket system.",
@@ -697,6 +697,7 @@
       "name": "Flakon der Glut",
       "profession": "alchemist",
       "source": "faction",
+      "factionId": "orden_der_klinge",
       "reqSkill": 50,
       "cooldownMinutes": 120,
       "materials": {
@@ -715,6 +716,7 @@
       "name": "Gelehrtentinte",
       "profession": "verzauberer",
       "source": "faction",
+      "factionId": "zirkel_der_sterne",
       "reqSkill": 50,
       "cooldownMinutes": 120,
       "materials": {
@@ -734,6 +736,7 @@
       "name": "Meister-Wetzstein",
       "profession": "schmied",
       "source": "faction",
+      "factionId": "bund_der_schatten",
       "reqSkill": 50,
       "cooldownMinutes": 120,
       "materials": {
@@ -753,6 +756,7 @@
       "name": "Resonanz-Amulett",
       "profession": "verzauberer",
       "source": "faction",
+      "factionId": "pakt_der_wildnis",
       "reqSkill": 50,
       "cooldownMinutes": 120,
       "materials": {
@@ -1155,7 +1159,7 @@
       "id": "recipe-schmied-staehlerne-marschtreters",
       "name": "Stählerne Marschtreter",
       "profession": "schmied",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 81,
       "materials": {
         "kristallsplitter": 1,
@@ -1167,7 +1171,8 @@
       },
       "xp": 13,
       "description": "Schmiedet: Stählerne Marschtreter.",
-      "trainerCost": 58
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-schmied-staehlerne-sturmhaube",
@@ -1191,7 +1196,7 @@
       "id": "recipe-schmied-kristall-beinschienen",
       "name": "Kristall-Beinschienen",
       "profession": "schmied",
-      "source": "trainer",
+      "source": "faction",
       "reqSkill": 99,
       "materials": {
         "kristallsplitter": 1,
@@ -1203,13 +1208,13 @@
       },
       "xp": 15,
       "description": "Schmiedet: Kristall-Beinschienen.",
-      "trainerCost": 82
+      "factionId": "zirkel_der_sterne"
     },
     {
       "id": "recipe-schmied-staehlerne-bruenne",
       "name": "Stählerne Brünne",
       "profession": "schmied",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 102,
       "materials": {
         "kristallsplitter": 1,
@@ -1221,7 +1226,8 @@
       },
       "xp": 16,
       "description": "Schmiedet: Stählerne Brünne.",
-      "trainerCost": 86
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-schmied-kristall-koenigsruestung",
@@ -1397,7 +1403,7 @@
       "id": "recipe-schmied-drachenschuppen-kronenhelm",
       "name": "Drachenschuppen-Kronenhelm",
       "profession": "schmied",
-      "source": "trainer",
+      "source": "faction",
       "reqSkill": 156,
       "materials": {
         "drachenstahl": 2
@@ -1408,13 +1414,13 @@
       },
       "xp": 21,
       "description": "Schmiedet: Drachenschuppen-Kronenhelm.",
-      "trainerCost": 170
+      "factionId": "bund_der_schatten"
     },
     {
       "id": "recipe-schmied-drachenschuppen-panzerstiefel",
       "name": "Drachenschuppen-Panzerstiefel",
       "profession": "schmied",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 159,
       "materials": {
         "drachenstahl": 2
@@ -1425,7 +1431,8 @@
       },
       "xp": 21,
       "description": "Schmiedet: Drachenschuppen-Panzerstiefel.",
-      "trainerCost": 180
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-schmied-drachenschuppen-drachenhelm",
@@ -1466,7 +1473,7 @@
       "id": "recipe-schmied-drachenschuppen-plattenpanzer",
       "name": "Drachenschuppen-Plattenpanzer",
       "profession": "schmied",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 174,
       "materials": {
         "drachenstahl": 2
@@ -1477,7 +1484,8 @@
       },
       "xp": 23,
       "description": "Schmiedet: Drachenschuppen-Plattenpanzer.",
-      "trainerCost": 230
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-schmied-drachenstahl-helm",
@@ -1635,10 +1643,11 @@
       "id": "recipe-schmied-seelenkrone-des-meisters",
       "name": "Seelenkrone des Meisters",
       "profession": "schmied",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 225,
       "materials": {
-        "aetherlegierung": 2
+        "aetherlegierung": 2,
+        "seelensplitter": 1
       },
       "result": {
         "type": "craft_gear",
@@ -1646,7 +1655,8 @@
       },
       "xp": 28,
       "description": "Schmiedet: Seelenkrone des Meisters.",
-      "trainerCost": 400
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "rare"
     },
     {
       "id": "recipe-schmied-aether-kettenhemd",
@@ -1669,7 +1679,7 @@
       "id": "recipe-schmied-seelen-kettenruestung",
       "name": "Seelen-Kettenrüstung",
       "profession": "schmied",
-      "source": "trainer",
+      "source": "faction",
       "reqSkill": 233,
       "materials": {
         "aetherlegierung": 2
@@ -1680,13 +1690,13 @@
       },
       "xp": 30,
       "description": "Schmiedet: Seelen-Kettenrüstung.",
-      "trainerCost": 464
+      "factionId": "zirkel_der_sterne"
     },
     {
       "id": "recipe-schmied-seelen-krone",
       "name": "Seelen-Krone",
       "profession": "schmied",
-      "source": "trainer",
+      "source": "faction",
       "reqSkill": 238,
       "materials": {
         "aetherlegierung": 2
@@ -1697,13 +1707,13 @@
       },
       "xp": 32,
       "description": "Schmiedet: Seelen-Krone.",
-      "trainerCost": 504
+      "factionId": "orden_der_klinge"
     },
     {
       "id": "recipe-schmied-aetherkern-panzer",
       "name": "Aetherkern-Panzer",
       "profession": "schmied",
-      "source": "trainer",
+      "source": "faction",
       "reqSkill": 240,
       "materials": {
         "aetherlegierung": 2,
@@ -1715,13 +1725,13 @@
       },
       "xp": 33,
       "description": "Schmiedet: Aetherkern-Panzer.",
-      "trainerCost": 520
+      "factionId": "bund_der_schatten"
     },
     {
       "id": "recipe-schmied-seelengeschmiedete-platte",
       "name": "Seelengeschmiedete Platte",
       "profession": "schmied",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 243,
       "materials": {
         "aetherlegierung": 2,
@@ -1733,7 +1743,8 @@
       },
       "xp": 33,
       "description": "Schmiedet: Seelengeschmiedete Platte.",
-      "trainerCost": 544
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "rare"
     },
     {
       "id": "recipe-schmied-aether-brustplatte",
@@ -1757,7 +1768,7 @@
       "id": "recipe-schmied-aetherkern-sturmkappe",
       "name": "Aetherkern-Sturmkappe",
       "profession": "schmied",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 248,
       "materials": {
         "aetherlegierung": 3,
@@ -1769,7 +1780,8 @@
       },
       "xp": 35,
       "description": "Schmiedet: Aetherkern-Sturmkappe.",
-      "trainerCost": 584
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "rare"
     },
     {
       "id": "recipe-schmied-seelen-schulterwacht",
@@ -1793,7 +1805,7 @@
       "id": "recipe-schmied-seelen-wanderstiefel",
       "name": "Seelengeschmiedete Wanderstiefel",
       "profession": "schmied",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 253,
       "materials": {
         "aetherlegierung": 3,
@@ -1805,7 +1817,8 @@
       },
       "xp": 36,
       "description": "Schmiedet: Seelengeschmiedete Wanderstiefel.",
-      "trainerCost": 624
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "rare"
     },
     {
       "id": "recipe-schmied-aether-schreitstiefel",
@@ -1834,7 +1847,8 @@
       "reqSkill": 263,
       "materials": {
         "aetherlegierung": 3,
-        "aetherbarren": 1
+        "aetherbarren": 1,
+        "seelensplitter": 1
       },
       "result": {
         "type": "craft_gear",
@@ -1852,7 +1866,8 @@
       "source": "faction",
       "reqSkill": 278,
       "materials": {
-        "seelenlegierung": 2
+        "seelenlegierung": 2,
+        "seelensplitter": 1
       },
       "result": {
         "type": "craft_gear",
@@ -1924,7 +1939,7 @@
       "id": "recipe-schmied-rauer-schaerfstein",
       "name": "Rauer Schärfstein",
       "profession": "waffenschmied",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 50,
       "materials": {
         "eisenerz": 3,
@@ -1938,7 +1953,8 @@
       },
       "xp": 12,
       "description": "Stellt her: Rauer Schärfstein.",
-      "trainerCost": 33
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-schmied-schwerer-schaerfstein",
@@ -1964,7 +1980,7 @@
       "id": "recipe-schmied-dichter-schaerfstein",
       "name": "Dichter Schärfstein",
       "profession": "waffenschmied",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 175,
       "materials": {
         "drachenschuppe": 2,
@@ -1978,7 +1994,8 @@
       },
       "xp": 25,
       "description": "Stellt her: Dichter Schärfstein.",
-      "trainerCost": 233
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-schmied-elementar-schaerfstein",
@@ -2042,7 +2059,7 @@
       "id": "recipe-schmied-schwerer-gewichtstein",
       "name": "Schwerer Gewichtstein",
       "profession": "schmied",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 150,
       "materials": {
         "drachenschuppe": 2
@@ -2055,13 +2072,14 @@
       },
       "xp": 22,
       "description": "Stellt her: Schwerer Gewichtstein.",
-      "trainerCost": 150
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-schmied-titanischer-gewichtstein",
       "name": "Titanischer Gewichtstein",
       "profession": "schmied",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 225,
       "materials": {
         "aetherlegierung": 1,
@@ -2075,7 +2093,8 @@
       },
       "xp": 30,
       "description": "Stellt her: Titanischer Gewichtstein.",
-      "trainerCost": 400
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "rare"
     },
     {
       "id": "recipe-schmied-eiserne-schilddornen",
@@ -2121,7 +2140,7 @@
       "id": "recipe-schmied-aether-schilddornen",
       "name": "Aether-Schilddornen",
       "profession": "waffenschmied",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 250,
       "materials": {
         "aetherlegierung": 2
@@ -2134,13 +2153,14 @@
       },
       "xp": 35,
       "description": "Stellt her: Aether-Schilddornen.",
-      "trainerCost": 600
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "rare"
     },
     {
       "id": "recipe-schmied-leichte-panzerverstaerkung",
       "name": "Leichte Panzerverstärkung",
       "profession": "schmied",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 75,
       "materials": {
         "eisenbarren": 2,
@@ -2154,13 +2174,14 @@
       },
       "xp": 14,
       "description": "Stellt her: Leichte Panzerverstärkung.",
-      "trainerCost": 50
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-schmied-schwere-panzerverstaerkung",
       "name": "Schwere Panzerverstärkung",
       "profession": "schmied",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 175,
       "materials": {
         "drachenstahl": 2,
@@ -2174,7 +2195,8 @@
       },
       "xp": 25,
       "description": "Stellt her: Schwere Panzerverstärkung.",
-      "trainerCost": 233
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-schmied-aether-panzerverstaerkung",
@@ -2218,7 +2240,7 @@
       "id": "recipe-schmied-seelen-streakschild",
       "name": "Seelen-Streakschild",
       "profession": "schmied",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 225,
       "materials": {
         "aetherlegierung": 1,
@@ -2230,13 +2252,14 @@
       },
       "xp": 30,
       "description": "Stellt her: Seelen-Streakschild.",
-      "trainerCost": 400
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "rare"
     },
     {
       "id": "recipe-schmied-gluthammer",
       "name": "Gluthammer",
       "profession": "schmied",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 125,
       "materials": {
         "drachenschuppe": 1,
@@ -2248,13 +2271,14 @@
       },
       "xp": 20,
       "description": "Stellt her: Gluthammer.",
-      "trainerCost": 117
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-schmied-seelenglut",
       "name": "Seelenglut",
       "profession": "schmied",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 250,
       "materials": {
         "aetherbarren": 1,
@@ -2266,7 +2290,8 @@
       },
       "xp": 35,
       "description": "Stellt her: Seelenglut.",
-      "trainerCost": 600
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "rare"
     },
     {
       "id": "recipe-schmied-klinge-schaerfen-1",
@@ -2308,7 +2333,7 @@
       "id": "recipe-schmied-klinge-schaerfen-3",
       "name": "Klinge schärfen III",
       "profession": "waffenschmied",
-      "source": "trainer",
+      "source": "faction",
       "reqSkill": 150,
       "materials": {
         "drachenstahl": 1,
@@ -2321,13 +2346,13 @@
       },
       "xp": 22,
       "description": "Klinge schärfen III.",
-      "trainerCost": 150
+      "factionId": "orden_der_klinge"
     },
     {
       "id": "recipe-schmied-klinge-schaerfen-4",
       "name": "Klinge schärfen IV",
       "profession": "waffenschmied",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 225,
       "materials": {
         "aetherlegierung": 1,
@@ -2340,13 +2365,14 @@
       },
       "xp": 30,
       "description": "Klinge schärfen IV.",
-      "trainerCost": 400
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "rare"
     },
     {
       "id": "recipe-schmied-klinge-schaerfen-5",
       "name": "Klinge schärfen V",
       "profession": "waffenschmied",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 275,
       "materials": {
         "seelenlegierung": 1,
@@ -2359,7 +2385,8 @@
       },
       "xp": 40,
       "description": "Klinge schärfen V.",
-      "trainerCost": 800
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "rare"
     },
     {
       "id": "recipe-schmied-ruestung-verstaerken-1",
@@ -2420,7 +2447,7 @@
       "id": "recipe-schmied-ruestung-verstaerken-4",
       "name": "Rüstung verstärken IV",
       "profession": "schmied",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 250,
       "materials": {
         "aetherbarren": 2
@@ -2432,13 +2459,14 @@
       },
       "xp": 35,
       "description": "Rüstung verstärken IV.",
-      "trainerCost": 600
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "rare"
     },
     {
       "id": "recipe-schmied-schild-polieren-1",
       "name": "Schild polieren I",
       "profession": "waffenschmied",
-      "source": "trainer",
+      "source": "faction",
       "reqSkill": 50,
       "materials": {
         "eisenbarren": 2
@@ -2450,13 +2478,13 @@
       },
       "xp": 12,
       "description": "Schild polieren I.",
-      "trainerCost": 33
+      "factionId": "orden_der_klinge"
     },
     {
       "id": "recipe-schmied-schild-polieren-2",
       "name": "Schild polieren II",
       "profession": "waffenschmied",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 150,
       "materials": {
         "drachenstahl": 1
@@ -2468,13 +2496,14 @@
       },
       "xp": 22,
       "description": "Schild polieren II.",
-      "trainerCost": 150
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-schmied-schild-polieren-3",
       "name": "Schild polieren III",
       "profession": "waffenschmied",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 250,
       "materials": {
         "aetherlegierung": 2
@@ -2486,13 +2515,14 @@
       },
       "xp": 35,
       "description": "Schild polieren III.",
-      "trainerCost": 600
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "rare"
     },
     {
       "id": "recipe-schmied-amulett-segnen-1",
       "name": "Amulett segnen I",
       "profession": "schmied",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 75,
       "materials": {
         "kristallsplitter": 3
@@ -2504,13 +2534,14 @@
       },
       "xp": 14,
       "description": "Amulett segnen I.",
-      "trainerCost": 50
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-schmied-amulett-segnen-2",
       "name": "Amulett segnen II",
       "profession": "schmied",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 175,
       "materials": {
         "drachenkern": 2
@@ -2522,13 +2553,14 @@
       },
       "xp": 25,
       "description": "Amulett segnen II.",
-      "trainerCost": 233
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-schmied-amulett-segnen-3",
       "name": "Amulett segnen III",
       "profession": "schmied",
-      "source": "trainer",
+      "source": "faction",
       "reqSkill": 275,
       "materials": {
         "seelenlegierung": 1,
@@ -2541,7 +2573,7 @@
       },
       "xp": 40,
       "description": "Amulett segnen III.",
-      "trainerCost": 800
+      "factionId": "orden_der_klinge"
     },
     {
       "id": "recipe-schneider-leinenballen",
@@ -2870,7 +2902,7 @@
       "id": "recipe-schneider-wollsandalen",
       "name": "Wollsandalen",
       "profession": "schneider",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 81,
       "materials": {
         "wollstoff": 2
@@ -2881,7 +2913,8 @@
       },
       "xp": 13,
       "description": "Webt: Wollsandalen.",
-      "trainerCost": 58
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-schneider-wollgewand",
@@ -3094,7 +3127,7 @@
       "id": "recipe-schneider-mondschein-tiara",
       "name": "Mondschein-Tiara",
       "profession": "schneider",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 153,
       "materials": {
         "seidenstoff": 1,
@@ -3106,7 +3139,8 @@
       },
       "xp": 20,
       "description": "Webt: Mondschein-Tiara.",
-      "trainerCost": 160
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-schneider-mondschein-treter",
@@ -3150,7 +3184,7 @@
       "id": "recipe-schneider-seidenmantel",
       "name": "Seidenmantel",
       "profession": "schneider",
-      "source": "trainer",
+      "source": "faction",
       "reqSkill": 165,
       "materials": {
         "seidenstoff": 2,
@@ -3163,7 +3197,7 @@
       },
       "xp": 22,
       "description": "Webt: Seidenmantel.",
-      "trainerCost": 200
+      "factionId": "bund_der_schatten"
     },
     {
       "id": "recipe-schneider-seidensandalen",
@@ -3303,12 +3337,13 @@
       "id": "recipe-schneider-seelenstiefel",
       "name": "Seelenstiefel",
       "profession": "schneider",
-      "source": "trainer",
+      "source": "faction",
       "reqSkill": 228,
       "materials": {
         "magiestoff": 2,
         "arkanerfaden": 1,
-        "magiestoffballen": 1
+        "magiestoffballen": 1,
+        "seelensplitter": 1
       },
       "result": {
         "type": "craft_gear",
@@ -3316,13 +3351,13 @@
       },
       "xp": 29,
       "description": "Webt: Seelenstiefel.",
-      "trainerCost": 424
+      "factionId": "zirkel_der_sterne"
     },
     {
       "id": "recipe-schneider-seelenrobe",
       "name": "Seelenrobe",
       "profession": "schneider",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 230,
       "materials": {
         "magiestoff": 2,
@@ -3335,18 +3370,20 @@
       },
       "xp": 30,
       "description": "Webt: Seelenrobe.",
-      "trainerCost": 440
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "rare"
     },
     {
       "id": "recipe-schneider-runensandalen",
       "name": "Runensandalen",
       "profession": "schneider",
-      "source": "trainer",
+      "source": "faction",
       "reqSkill": 240,
       "materials": {
         "magiestoff": 2,
         "arkanerfaden": 1,
-        "magiestoffballen": 1
+        "magiestoffballen": 1,
+        "seelensplitter": 1
       },
       "result": {
         "type": "craft_gear",
@@ -3354,13 +3391,13 @@
       },
       "xp": 33,
       "description": "Webt: Runensandalen.",
-      "trainerCost": 520
+      "factionId": "bund_der_schatten"
     },
     {
       "id": "recipe-schneider-aethergewand",
       "name": "Äthergewand",
       "profession": "schneider",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 245,
       "materials": {
         "magiestoff": 3,
@@ -3373,13 +3410,14 @@
       },
       "xp": 34,
       "description": "Webt: Äthergewand.",
-      "trainerCost": 560
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "rare"
     },
     {
       "id": "recipe-schneider-runenschleier",
       "name": "Runenschleier",
       "profession": "schneider",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 253,
       "materials": {
         "magiestoff": 2,
@@ -3391,7 +3429,8 @@
       },
       "xp": 36,
       "description": "Webt: Runenschleier.",
-      "trainerCost": 624
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "rare"
     },
     {
       "id": "recipe-schneider-sternenhaube",
@@ -3519,7 +3558,8 @@
       "materials": {
         "runenstoff": 3,
         "runenstoffballen": 1,
-        "runenfaden": 1
+        "runenfaden": 1,
+        "seelensplitter": 1
       },
       "result": {
         "type": "craft_gear",
@@ -3539,7 +3579,8 @@
       "materials": {
         "runenstoff": 3,
         "runenstoffballen": 1,
-        "runenfaden": 1
+        "runenfaden": 1,
+        "seelensplitter": 1
       },
       "result": {
         "type": "craft_gear",
@@ -3578,7 +3619,8 @@
       "materials": {
         "runenstoff": 3,
         "runenstoffballen": 1,
-        "runenfaden": 1
+        "runenfaden": 1,
+        "seelensplitter": 1
       },
       "result": {
         "type": "craft_gear",
@@ -3612,7 +3654,7 @@
       "id": "recipe-schneider-wollener-zauberfaden",
       "name": "Wollener Zauberfaden",
       "profession": "schneider",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 60,
       "materials": {
         "wollstoff": 2,
@@ -3626,7 +3668,8 @@
       },
       "xp": 14,
       "description": "Stellt her: Wollener Zauberfaden.",
-      "trainerCost": 40
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-schneider-seidener-zauberfaden",
@@ -3652,7 +3695,7 @@
       "id": "recipe-schneider-arkaner-zauberfaden",
       "name": "Arkaner Zauberfaden",
       "profession": "schneider",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 200,
       "materials": {
         "magiestoff": 2,
@@ -3666,13 +3709,14 @@
       },
       "xp": 28,
       "description": "Stellt her: Arkaner Zauberfaden.",
-      "trainerCost": 317
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "rare"
     },
     {
       "id": "recipe-schneider-runen-zauberfaden",
       "name": "Runen-Zauberfaden",
       "profession": "schneider",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 270,
       "materials": {
         "runenstoff": 2,
@@ -3686,7 +3730,8 @@
       },
       "xp": 40,
       "description": "Stellt her: Runen-Zauberfaden.",
-      "trainerCost": 760
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "rare"
     },
     {
       "id": "recipe-schneider-einfacher-gluecksfaden",
@@ -3731,7 +3776,7 @@
       "id": "recipe-schneider-arkaner-gluecksfaden",
       "name": "Arkaner Glücksfaden",
       "profession": "schneider",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 250,
       "materials": {
         "arkanerfaden": 1,
@@ -3745,7 +3790,8 @@
       },
       "xp": 35,
       "description": "Stellt her: Arkaner Glücksfaden.",
-      "trainerCost": 600
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "rare"
     },
     {
       "id": "recipe-schneider-fokus-faden",
@@ -3771,7 +3817,7 @@
       "id": "recipe-schneider-seidener-fokusfaden",
       "name": "Seidener Konzentrationsfaden",
       "profession": "schneider",
-      "source": "trainer",
+      "source": "faction",
       "reqSkill": 175,
       "materials": {
         "seidenballen": 2
@@ -3784,7 +3830,7 @@
       },
       "xp": 25,
       "description": "Stellt her: Seidener Konzentrationsfaden.",
-      "trainerCost": 233
+      "factionId": "pakt_der_wildnis"
     },
     {
       "id": "recipe-schneider-arkaner-fokusfaden",
@@ -3830,7 +3876,7 @@
       "id": "recipe-schneider-seidener-charismafaden",
       "name": "Seidener Bezaubernder Faden",
       "profession": "schneider",
-      "source": "trainer",
+      "source": "faction",
       "reqSkill": 225,
       "materials": {
         "seidenballen": 1,
@@ -3844,7 +3890,7 @@
       },
       "xp": 30,
       "description": "Stellt her: Seidener Bezaubernder Faden.",
-      "trainerCost": 400
+      "factionId": "zirkel_der_sterne"
     },
     {
       "id": "recipe-schneider-leinener-streakschutz",
@@ -3868,7 +3914,7 @@
       "id": "recipe-schneider-arkaner-streakschutz",
       "name": "Arkaner Streakschutz",
       "profession": "schneider",
-      "source": "trainer",
+      "source": "faction",
       "reqSkill": 225,
       "materials": {
         "arkanerfaden": 1,
@@ -3880,7 +3926,7 @@
       },
       "xp": 30,
       "description": "Stellt her: Arkaner Streakschutz.",
-      "trainerCost": 400
+      "factionId": "pakt_der_wildnis"
     },
     {
       "id": "recipe-schneider-waermender-stoff",
@@ -3904,7 +3950,7 @@
       "id": "recipe-schneider-arkaner-waermestoff",
       "name": "Arkaner Wärmestoff",
       "profession": "schneider",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 240,
       "materials": {
         "magiestoffballen": 1,
@@ -3916,13 +3962,14 @@
       },
       "xp": 35,
       "description": "Stellt her: Arkaner Wärmestoff.",
-      "trainerCost": 520
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "rare"
     },
     {
       "id": "recipe-schneider-xp-gewand-1",
       "name": "Gewand der Erleuchtung I",
       "profession": "schneider",
-      "source": "trainer",
+      "source": "faction",
       "reqSkill": 150,
       "materials": {
         "seidenballen": 2,
@@ -3936,13 +3983,13 @@
       },
       "xp": 22,
       "description": "Stellt her: Gewand der Erleuchtung I.",
-      "trainerCost": 150
+      "factionId": "bund_der_schatten"
     },
     {
       "id": "recipe-schneider-xp-gewand-2",
       "name": "Gewand der Erleuchtung II",
       "profession": "schneider",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 260,
       "materials": {
         "runenstoffballen": 1,
@@ -3956,7 +4003,8 @@
       },
       "xp": 38,
       "description": "Stellt her: Gewand der Erleuchtung II.",
-      "trainerCost": 680
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "rare"
     },
     {
       "id": "recipe-schneider-stoff-veredeln-1",
@@ -4016,7 +4064,7 @@
       "id": "recipe-schneider-stoff-veredeln-4",
       "name": "Stoff veredeln IV",
       "profession": "schneider",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 225,
       "materials": {
         "arkanerfaden": 1
@@ -4028,13 +4076,14 @@
       },
       "xp": 30,
       "description": "Stoff veredeln IV.",
-      "trainerCost": 400
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "rare"
     },
     {
       "id": "recipe-schneider-stoff-veredeln-5",
       "name": "Stoff veredeln V",
       "profession": "schneider",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 275,
       "materials": {
         "runenfaden": 1,
@@ -4047,7 +4096,8 @@
       },
       "xp": 42,
       "description": "Stoff veredeln V.",
-      "trainerCost": 800
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "rare"
     },
     {
       "id": "recipe-schneider-fokus-weben-1",
@@ -4071,7 +4121,7 @@
       "id": "recipe-schneider-fokus-weben-2",
       "name": "Fokus weben II",
       "profession": "schneider",
-      "source": "trainer",
+      "source": "faction",
       "reqSkill": 100,
       "materials": {
         "wollballen": 1,
@@ -4084,7 +4134,7 @@
       },
       "xp": 18,
       "description": "Fokus weben II.",
-      "trainerCost": 83
+      "factionId": "zirkel_der_sterne"
     },
     {
       "id": "recipe-schneider-fokus-weben-3",
@@ -4109,7 +4159,7 @@
       "id": "recipe-schneider-fokus-weben-4",
       "name": "Fokus weben IV",
       "profession": "schneider",
-      "source": "trainer",
+      "source": "faction",
       "reqSkill": 250,
       "materials": {
         "arkanerfaden": 2
@@ -4121,13 +4171,13 @@
       },
       "xp": 35,
       "description": "Fokus weben IV.",
-      "trainerCost": 600
+      "factionId": "bund_der_schatten"
     },
     {
       "id": "recipe-schneider-charisma-sticken-1",
       "name": "Charisma sticken I",
       "profession": "schneider",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 50,
       "materials": {
         "leinenballen": 1,
@@ -4140,13 +4190,14 @@
       },
       "xp": 12,
       "description": "Charisma sticken I.",
-      "trainerCost": 33
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-schneider-charisma-sticken-2",
       "name": "Charisma sticken II",
       "profession": "schneider",
-      "source": "trainer",
+      "source": "faction",
       "reqSkill": 150,
       "materials": {
         "seidenballen": 1
@@ -4158,13 +4209,13 @@
       },
       "xp": 22,
       "description": "Charisma sticken II.",
-      "trainerCost": 150
+      "factionId": "zirkel_der_sterne"
     },
     {
       "id": "recipe-schneider-charisma-sticken-3",
       "name": "Charisma sticken III",
       "profession": "schneider",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 250,
       "materials": {
         "magiestoffballen": 1,
@@ -4177,13 +4228,14 @@
       },
       "xp": 35,
       "description": "Charisma sticken III.",
-      "trainerCost": 600
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "rare"
     },
     {
       "id": "recipe-schneider-glueck-weben-1",
       "name": "Glück weben I",
       "profession": "schneider",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 75,
       "materials": {
         "wollstoff": 3,
@@ -4196,13 +4248,14 @@
       },
       "xp": 14,
       "description": "Glück weben I.",
-      "trainerCost": 50
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-schneider-glueck-weben-2",
       "name": "Glück weben II",
       "profession": "schneider",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 175,
       "materials": {
         "seidenballen": 2
@@ -4214,13 +4267,14 @@
       },
       "xp": 25,
       "description": "Glück weben II.",
-      "trainerCost": 233
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-schneider-glueck-weben-3",
       "name": "Glück weben III",
       "profession": "schneider",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 275,
       "materials": {
         "runenfaden": 1,
@@ -4233,7 +4287,8 @@
       },
       "xp": 42,
       "description": "Glück weben III.",
-      "trainerCost": 800
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "rare"
     },
     {
       "id": "recipe-leder-geheiltes-leichtleder",
@@ -4563,7 +4618,7 @@
       "id": "recipe-leder-jaeger-kappe",
       "name": "Jäger-Kappe",
       "profession": "lederverarbeiter",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 81,
       "materials": {
         "mittleresleder": 1,
@@ -4575,13 +4630,14 @@
       },
       "xp": 13,
       "description": "Gerbt: Jäger-Kappe.",
-      "trainerCost": 58
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-leder-jagd-maske",
       "name": "Jagd-Maske",
       "profession": "lederverarbeiter",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 84,
       "materials": {
         "mittleresleder": 1,
@@ -4593,13 +4649,14 @@
       },
       "xp": 13,
       "description": "Gerbt: Jagd-Maske.",
-      "trainerCost": 62
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-leder-jaeger-stiefel",
       "name": "Jäger-Stiefel",
       "profession": "lederverarbeiter",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 90,
       "materials": {
         "mittleresleder": 2
@@ -4610,7 +4667,8 @@
       },
       "xp": 14,
       "description": "Gerbt: Jäger-Stiefel.",
-      "trainerCost": 70
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-leder-mittelleder-kapuze",
@@ -4784,7 +4842,7 @@
       "id": "recipe-leder-schwerleder-ruestung",
       "name": "Schwerleder-Rüstung",
       "profession": "lederverarbeiter",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 171,
       "materials": {
         "schweresleder": 2,
@@ -4797,7 +4855,8 @@
       },
       "xp": 23,
       "description": "Gerbt: Schwerleder-Rüstung.",
-      "trainerCost": 220
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-leder-schwerleder-harnisch",
@@ -5001,7 +5060,8 @@
       "materials": {
         "dickesleder": 2,
         "bestienlederballen": 1,
-        "klauenoel": 1
+        "klauenoel": 1,
+        "seelensplitter": 1
       },
       "result": {
         "type": "craft_gear",
@@ -5015,7 +5075,7 @@
       "id": "recipe-leder-urzeit-kappe",
       "name": "Urzeit-Kappe",
       "profession": "lederverarbeiter",
-      "source": "trainer",
+      "source": "faction",
       "reqSkill": 233,
       "materials": {
         "dickesleder": 1,
@@ -5027,18 +5087,19 @@
       },
       "xp": 30,
       "description": "Gerbt: Urzeit-Kappe.",
-      "trainerCost": 464
+      "factionId": "pakt_der_wildnis"
     },
     {
       "id": "recipe-leder-seelenjaeger-stiefel",
       "name": "Seelenjäger-Stiefel",
       "profession": "lederverarbeiter",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 235,
       "materials": {
         "dickesleder": 2,
         "bestienlederballen": 1,
-        "klauenoel": 1
+        "klauenoel": 1,
+        "seelensplitter": 1
       },
       "result": {
         "type": "craft_gear",
@@ -5046,18 +5107,20 @@
       },
       "xp": 31,
       "description": "Gerbt: Seelenjäger-Stiefel.",
-      "trainerCost": 480
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "rare"
     },
     {
       "id": "recipe-leder-urzeit-tritte",
       "name": "Urzeit-Tritte",
       "profession": "lederverarbeiter",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 238,
       "materials": {
         "dickesleder": 2,
         "bestienlederballen": 1,
-        "klauenoel": 1
+        "klauenoel": 1,
+        "seelensplitter": 1
       },
       "result": {
         "type": "craft_gear",
@@ -5065,13 +5128,14 @@
       },
       "xp": 32,
       "description": "Gerbt: Urzeit-Tritte.",
-      "trainerCost": 504
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "rare"
     },
     {
       "id": "recipe-leder-urzeit-helm",
       "name": "Urzeit-Helm",
       "profession": "lederverarbeiter",
-      "source": "trainer",
+      "source": "faction",
       "reqSkill": 243,
       "materials": {
         "dickesleder": 1,
@@ -5083,13 +5147,13 @@
       },
       "xp": 33,
       "description": "Gerbt: Urzeit-Helm.",
-      "trainerCost": 544
+      "factionId": "pakt_der_wildnis"
     },
     {
       "id": "recipe-leder-urzeit-harnisch",
       "name": "Urzeit-Harnisch",
       "profession": "lederverarbeiter",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 245,
       "materials": {
         "dickesleder": 3,
@@ -5102,13 +5166,14 @@
       },
       "xp": 34,
       "description": "Gerbt: Urzeit-Harnisch.",
-      "trainerCost": 560
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "rare"
     },
     {
       "id": "recipe-leder-seelenjaeger-haube",
       "name": "Seelenjäger-Haube",
       "profession": "lederverarbeiter",
-      "source": "trainer",
+      "source": "faction",
       "reqSkill": 250,
       "materials": {
         "dickesleder": 2,
@@ -5120,7 +5185,7 @@
       },
       "xp": 36,
       "description": "Gerbt: Seelenjäger-Haube.",
-      "trainerCost": 600
+      "factionId": "bund_der_schatten"
     },
     {
       "id": "recipe-leder-seelenjaeger-wams",
@@ -5151,7 +5216,8 @@
       "materials": {
         "dickesleder": 3,
         "bestienlederballen": 1,
-        "klauenoel": 1
+        "klauenoel": 1,
+        "seelensplitter": 1
       },
       "result": {
         "type": "craft_gear",
@@ -5171,7 +5237,8 @@
       "materials": {
         "dickesleder": 3,
         "bestienlederballen": 1,
-        "klauenoel": 1
+        "klauenoel": 1,
+        "seelensplitter": 1
       },
       "result": {
         "type": "craft_gear",
@@ -5303,7 +5370,7 @@
       "id": "recipe-leder-mittleres-lederkit",
       "name": "Mittleres Leder-Kit",
       "profession": "lederverarbeiter",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 60,
       "materials": {
         "mittleresleder": 2,
@@ -5317,7 +5384,8 @@
       },
       "xp": 14,
       "description": "Stellt her: Mittleres Leder-Kit.",
-      "trainerCost": 40
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-leder-schweres-lederkit",
@@ -5363,7 +5431,7 @@
       "id": "recipe-leder-urzeit-lederkit",
       "name": "Urzeit-Leder-Kit",
       "profession": "lederverarbeiter",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 270,
       "materials": {
         "rauesleder": 2,
@@ -5377,7 +5445,8 @@
       },
       "xp": 40,
       "description": "Stellt her: Urzeit-Leder-Kit.",
-      "trainerCost": 760
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "rare"
     },
     {
       "id": "recipe-leder-einfacher-gluecksflicken",
@@ -5422,7 +5491,7 @@
       "id": "recipe-leder-bestien-gluecksflicken",
       "name": "Bestien-Glücksflicken",
       "profession": "lederverarbeiter",
-      "source": "trainer",
+      "source": "faction",
       "reqSkill": 250,
       "materials": {
         "bestienlederballen": 1,
@@ -5436,7 +5505,7 @@
       },
       "xp": 35,
       "description": "Stellt her: Bestien-Glücksflicken.",
-      "trainerCost": 600
+      "factionId": "pakt_der_wildnis"
     },
     {
       "id": "recipe-leder-leichter-koecher",
@@ -5481,7 +5550,7 @@
       "id": "recipe-leder-bestien-koecher",
       "name": "Bestien-Köcher",
       "profession": "lederverarbeiter",
-      "source": "trainer",
+      "source": "faction",
       "reqSkill": 250,
       "materials": {
         "bestienlederballen": 2
@@ -5494,7 +5563,7 @@
       },
       "xp": 35,
       "description": "Stellt her: Bestien-Köcher.",
-      "trainerCost": 600
+      "factionId": "pakt_der_wildnis"
     },
     {
       "id": "recipe-leder-kleiner-goldbeutel",
@@ -5538,7 +5607,7 @@
       "id": "recipe-leder-grosser-goldbeutel",
       "name": "Großer Goldbeutel",
       "profession": "lederverarbeiter",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 200,
       "materials": {
         "bestienlederballen": 1,
@@ -5552,13 +5621,14 @@
       },
       "xp": 28,
       "description": "Stellt her: Großer Goldbeutel.",
-      "trainerCost": 317
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "rare"
     },
     {
       "id": "recipe-leder-urzeit-goldbeutel",
       "name": "Urzeit-Goldbeutel",
       "profession": "lederverarbeiter",
-      "source": "trainer",
+      "source": "faction",
       "reqSkill": 275,
       "materials": {
         "urzeitleder": 1,
@@ -5572,7 +5642,7 @@
       },
       "xp": 42,
       "description": "Stellt her: Urzeit-Goldbeutel.",
-      "trainerCost": 800
+      "factionId": "orden_der_klinge"
     },
     {
       "id": "recipe-leder-streakschutz",
@@ -5596,7 +5666,7 @@
       "id": "recipe-leder-bestien-streakschutz",
       "name": "Bestien-Streakschutz",
       "profession": "lederverarbeiter",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 225,
       "materials": {
         "bestienlederballen": 1,
@@ -5608,13 +5678,14 @@
       },
       "xp": 30,
       "description": "Stellt her: Bestien-Streakschutz.",
-      "trainerCost": 400
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "rare"
     },
     {
       "id": "recipe-leder-waermendes-fell",
       "name": "Wärmendes Fell",
       "profession": "lederverarbeiter",
-      "source": "trainer",
+      "source": "faction",
       "reqSkill": 100,
       "materials": {
         "geheiltesmittleresleder": 2,
@@ -5626,7 +5697,7 @@
       },
       "xp": 18,
       "description": "Stellt her: Wärmendes Fell.",
-      "trainerCost": 83
+      "factionId": "orden_der_klinge"
     },
     {
       "id": "recipe-leder-urzeit-waermefell",
@@ -5668,7 +5739,7 @@
       "id": "recipe-leder-verstaerken-2",
       "name": "Leder verstärken II",
       "profession": "lederverarbeiter",
-      "source": "trainer",
+      "source": "faction",
       "reqSkill": 75,
       "materials": {
         "mittleresleder": 3
@@ -5680,7 +5751,7 @@
       },
       "xp": 15,
       "description": "Leder verstärken II.",
-      "trainerCost": 50
+      "factionId": "pakt_der_wildnis"
     },
     {
       "id": "recipe-leder-verstaerken-3",
@@ -5722,7 +5793,7 @@
       "id": "recipe-leder-verstaerken-5",
       "name": "Leder verstärken V",
       "profession": "lederverarbeiter",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 275,
       "materials": {
         "urzeitleder": 1,
@@ -5735,7 +5806,8 @@
       },
       "xp": 42,
       "description": "Leder verstärken V.",
-      "trainerCost": 800
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "rare"
     },
     {
       "id": "recipe-leder-tempo-1",
@@ -5759,7 +5831,7 @@
       "id": "recipe-leder-tempo-2",
       "name": "Tempo einarbeiten II",
       "profession": "lederverarbeiter",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 100,
       "materials": {
         "geheiltesmittleresleder": 2
@@ -5771,13 +5843,14 @@
       },
       "xp": 18,
       "description": "Tempo einarbeiten II.",
-      "trainerCost": 83
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-leder-tempo-3",
       "name": "Tempo einarbeiten III",
       "profession": "lederverarbeiter",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 175,
       "materials": {
         "gehaertetesschwerleder": 1,
@@ -5790,13 +5863,14 @@
       },
       "xp": 25,
       "description": "Tempo einarbeiten III.",
-      "trainerCost": 233
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-leder-tempo-4",
       "name": "Tempo einarbeiten IV",
       "profession": "lederverarbeiter",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 250,
       "materials": {
         "bestienlederballen": 2
@@ -5808,7 +5882,8 @@
       },
       "xp": 35,
       "description": "Tempo einarbeiten IV.",
-      "trainerCost": 600
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "rare"
     },
     {
       "id": "recipe-leder-glueck-1",
@@ -5832,7 +5907,7 @@
       "id": "recipe-leder-glueck-2",
       "name": "Glück einarbeiten II",
       "profession": "lederverarbeiter",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 150,
       "materials": {
         "gehaertetesschwerleder": 1
@@ -5844,13 +5919,14 @@
       },
       "xp": 22,
       "description": "Glück einarbeiten II.",
-      "trainerCost": 150
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-leder-glueck-3",
       "name": "Glück einarbeiten III",
       "profession": "lederverarbeiter",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 250,
       "materials": {
         "bestienlederballen": 1,
@@ -5863,13 +5939,14 @@
       },
       "xp": 35,
       "description": "Glück einarbeiten III.",
-      "trainerCost": 600
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "rare"
     },
     {
       "id": "recipe-leder-kraft-1",
       "name": "Kraft einarbeiten I",
       "profession": "lederverarbeiter",
-      "source": "trainer",
+      "source": "faction",
       "reqSkill": 75,
       "materials": {
         "mittleresleder": 3
@@ -5881,7 +5958,7 @@
       },
       "xp": 14,
       "description": "Kraft einarbeiten I.",
-      "trainerCost": 50
+      "factionId": "bund_der_schatten"
     },
     {
       "id": "recipe-leder-kraft-2",
@@ -6119,7 +6196,7 @@
       "id": "recipe-alch-normaler-trank-der-kraft",
       "name": "Normaler Trank der Kraft",
       "profession": "alchemist",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 80,
       "materials": {
         "mondblume": 2,
@@ -6133,7 +6210,8 @@
       },
       "xp": 15,
       "description": "Braut: Normaler Trank der Kraft.",
-      "trainerCost": 57
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-alch-normaler-trank-der-weisheit",
@@ -6199,7 +6277,7 @@
       "id": "recipe-alch-normaler-elixier-der-eile",
       "name": "Normaler Elixier der Eile",
       "profession": "alchemist",
-      "source": "trainer",
+      "source": "faction",
       "reqSkill": 92,
       "materials": {
         "mondblume": 2,
@@ -6213,7 +6291,68 @@
       },
       "xp": 15,
       "description": "Braut: Normaler Elixier der Eile.",
-      "trainerCost": 73
+      "factionId": "zirkel_der_sterne"
+    },
+    {
+      "id": "recipe-alch-elixier-der-klarheit",
+      "name": "Elixier der Klarheit",
+      "profession": "alchemist",
+      "source": "trainer",
+      "reqSkill": 100,
+      "materials": {
+        "mondblume": 3,
+        "kraeuterbuendel": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "fokus_boost",
+        "amount": 4,
+        "questsRemaining": 3
+      },
+      "xp": 17,
+      "description": "Ein Gebräu, das den Geist schärft wie eine frisch geschliffene Klinge — wer davon trinkt, sieht die Welt mit unangenehmer Deutlichkeit.",
+      "trainerCost": 82
+    },
+    {
+      "id": "recipe-alch-tinktur-der-beharrlichkeit",
+      "name": "Tinktur der Beharrlichkeit",
+      "profession": "alchemist",
+      "source": "trainer",
+      "reqSkill": 107,
+      "materials": {
+        "mondblume": 3,
+        "kraeuterbuendel": 2
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "ausdauer_boost",
+        "amount": 5,
+        "questsRemaining": 4
+      },
+      "xp": 17,
+      "description": "Beharrlichkeit in flüssiger Form — schmeckt nach bitteren Kräutern und dem leisen Versprechen, dass morgen einfacher wird als heute.",
+      "trainerCost": 89
+    },
+    {
+      "id": "recipe-alch-essenz-der-vitalitaet",
+      "name": "Essenz der Vitalität",
+      "profession": "alchemist",
+      "source": "drop",
+      "reqSkill": 114,
+      "materials": {
+        "mondblume": 3,
+        "kraeuterbuendel": 3
+      },
+      "result": {
+        "type": "buff",
+        "buffType": "vitalitaet_boost",
+        "amount": 4,
+        "questsRemaining": 3
+      },
+      "xp": 17,
+      "description": "Destillierte Lebenskraft, gewonnen aus Mondblumen, die nur in sternlosen Nächten geerntet werden. Ysolde schwört, man könne den Herzschlag darin hören.",
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-alch-gro-er-trank-der-kraft",
@@ -6943,7 +7082,7 @@
       "id": "recipe-alch-elixier-des-fokus",
       "name": "Elixier des Fokus",
       "profession": "alchemist",
-      "source": "trainer",
+      "source": "faction",
       "reqSkill": 70,
       "materials": {},
       "result": {
@@ -6954,7 +7093,7 @@
       },
       "xp": 14,
       "description": "Braut: Elixier des Fokus.",
-      "trainerCost": 47
+      "factionId": "pakt_der_wildnis"
     },
     {
       "id": "recipe-alch-elixier-der-vitalitaet",
@@ -6977,7 +7116,7 @@
       "id": "recipe-alch-elixier-des-charisma",
       "name": "Elixier des Charisma",
       "profession": "alchemist",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 80,
       "materials": {},
       "result": {
@@ -6988,13 +7127,14 @@
       },
       "xp": 14,
       "description": "Braut: Elixier des Charisma.",
-      "trainerCost": 57
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-alch-starkes-elixier-des-fokus",
       "name": "Starkes Elixier des Fokus",
       "profession": "alchemist",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 140,
       "materials": {},
       "result": {
@@ -7005,13 +7145,14 @@
       },
       "xp": 20,
       "description": "Braut: Starkes Elixier des Fokus.",
-      "trainerCost": 136
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-alch-starkes-elixier-der-vitalitaet",
       "name": "Starkes Elixier der Vitalität",
       "profession": "alchemist",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 145,
       "materials": {},
       "result": {
@@ -7022,13 +7163,14 @@
       },
       "xp": 20,
       "description": "Braut: Starkes Elixier der Vitalität.",
-      "trainerCost": 143
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-alch-starkes-elixier-des-charisma",
       "name": "Starkes Elixier des Charisma",
       "profession": "alchemist",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 150,
       "materials": {},
       "result": {
@@ -7039,7 +7181,8 @@
       },
       "xp": 20,
       "description": "Braut: Starkes Elixier des Charisma.",
-      "trainerCost": 150
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-alch-ueberragendes-elixier-des-fokus",
@@ -7079,7 +7222,7 @@
       "id": "recipe-alch-ueberragendes-elixier-des-charisma",
       "name": "Überragendes Elixier des Charisma",
       "profession": "alchemist",
-      "source": "trainer",
+      "source": "faction",
       "reqSkill": 220,
       "materials": {},
       "result": {
@@ -7090,7 +7233,7 @@
       },
       "xp": 28,
       "description": "Braut: Überragendes Elixier des Charisma.",
-      "trainerCost": 383
+      "factionId": "zirkel_der_sterne"
     },
     {
       "id": "recipe-alch-legendaeres-elixier-des-fokus",
@@ -7113,7 +7256,7 @@
       "id": "recipe-alch-legendaeres-elixier-der-vitalitaet",
       "name": "Legendäres Elixier der Vitalität",
       "profession": "alchemist",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 275,
       "materials": {},
       "result": {
@@ -7124,13 +7267,14 @@
       },
       "xp": 40,
       "description": "Braut: Legendäres Elixier der Vitalität.",
-      "trainerCost": 800
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "rare"
     },
     {
       "id": "recipe-alch-legendaeres-elixier-des-charisma",
       "name": "Legendäres Elixier des Charisma",
       "profession": "alchemist",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 280,
       "materials": {},
       "result": {
@@ -7141,7 +7285,8 @@
       },
       "xp": 40,
       "description": "Braut: Legendäres Elixier des Charisma.",
-      "trainerCost": 900
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "rare"
     },
     {
       "id": "recipe-alch-gegengift-1",
@@ -7166,7 +7311,7 @@
       "id": "recipe-alch-gegengift-2",
       "name": "Starkes Gegengift",
       "profession": "alchemist",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 100,
       "materials": {
         "mondblume": 2,
@@ -7180,13 +7325,14 @@
       },
       "xp": 18,
       "description": "Braut: Starkes Gegengift.",
-      "trainerCost": 83
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-alch-gegengift-3",
       "name": "Meister-Gegengift",
       "profession": "alchemist",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 225,
       "materials": {
         "phoenixfeder": 1,
@@ -7200,7 +7346,8 @@
       },
       "xp": 30,
       "description": "Braut: Meister-Gegengift.",
-      "trainerCost": 400
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "rare"
     },
     {
       "id": "recipe-alch-schmiedekatalysator-1",
@@ -7224,7 +7371,7 @@
       "id": "recipe-alch-schmiedekatalysator-2",
       "name": "Starker Schmiedekatalysator",
       "profession": "alchemist",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 150,
       "materials": {
         "mondblume": 2,
@@ -7236,13 +7383,14 @@
       },
       "xp": 22,
       "description": "Braut: Starker Schmiedekatalysator.",
-      "trainerCost": 150
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-alch-schmiedekatalysator-3",
       "name": "Meister-Schmiedekatalysator",
       "profession": "alchemist",
-      "source": "trainer",
+      "source": "faction",
       "reqSkill": 250,
       "materials": {
         "phoenixfeder": 1,
@@ -7254,7 +7402,7 @@
       },
       "xp": 38,
       "description": "Braut: Meister-Schmiedekatalysator.",
-      "trainerCost": 600
+      "factionId": "pakt_der_wildnis"
     },
     {
       "id": "recipe-alch-streakschutz-1",
@@ -7278,7 +7426,7 @@
       "id": "recipe-alch-streakschutz-2",
       "name": "Verstärkter Streakschutz",
       "profession": "alchemist",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 200,
       "materials": {
         "phoenixfeder": 1,
@@ -7290,13 +7438,14 @@
       },
       "xp": 28,
       "description": "Braut: Verstärkter Streakschutz.",
-      "trainerCost": 317
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "rare"
     },
     {
       "id": "recipe-alch-manaoel",
       "name": "Brillantes Manaöl",
       "profession": "alchemist",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 160,
       "materials": {
         "mondblome": 3,
@@ -7310,7 +7459,8 @@
       },
       "xp": 22,
       "description": "Braut: Brillantes Manaöl.",
-      "trainerCost": 183
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-alch-schattenoel",
@@ -7336,7 +7486,7 @@
       "id": "recipe-alch-wildes-oel",
       "name": "Wildes Öl",
       "profession": "alchemist",
-      "source": "trainer",
+      "source": "faction",
       "reqSkill": 170,
       "materials": {
         "kraeuterbuendel": 4,
@@ -7350,13 +7500,13 @@
       },
       "xp": 24,
       "description": "Braut: Wildes Öl.",
-      "trainerCost": 217
+      "factionId": "orden_der_klinge"
     },
     {
       "id": "recipe-alch-luck-potion",
       "name": "Trank des Glücksregens",
       "profession": "alchemist",
-      "source": "trainer",
+      "source": "faction",
       "reqSkill": 230,
       "materials": {
         "phoenixfeder": 1,
@@ -7370,7 +7520,7 @@
       },
       "xp": 32,
       "description": "Braut: Trank des Glücksregens.",
-      "trainerCost": 440
+      "factionId": "bund_der_schatten"
     },
     {
       "id": "recipe-koch-einfachemahlzeit-der-staerke",
@@ -8001,7 +8151,7 @@
       "id": "recipe-koch-feuerwurz-tee",
       "name": "Feuerwurz-Tee",
       "profession": "koch",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 60,
       "materials": {
         "feuerwurz": 1,
@@ -8015,7 +8165,8 @@
       },
       "xp": 12,
       "description": "Braut: Feuerwurz-Tee.",
-      "trainerCost": 40
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-koch-sternen-tee",
@@ -8101,7 +8252,7 @@
       "id": "recipe-koch-einfacher-met",
       "name": "Einfacher Met",
       "profession": "koch",
-      "source": "trainer",
+      "source": "faction",
       "reqSkill": 50,
       "materials": {
         "wildfleisch": 2,
@@ -8115,7 +8266,7 @@
       },
       "xp": 10,
       "description": "Braut: Einfacher Met.",
-      "trainerCost": 33
+      "factionId": "pakt_der_wildnis"
     },
     {
       "id": "recipe-koch-starker-met",
@@ -8141,7 +8292,7 @@
       "id": "recipe-koch-drachenmet",
       "name": "Drachenmet",
       "profession": "koch",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 230,
       "materials": {
         "sternenfrucht": 2,
@@ -8155,13 +8306,14 @@
       },
       "xp": 32,
       "description": "Braut: Drachenmet.",
-      "trainerCost": 440
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "rare"
     },
     {
       "id": "recipe-koch-beruhigender-tee",
       "name": "Beruhigender Tee",
       "profession": "koch",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 80,
       "materials": {
         "kraeuterbuendel": 3,
@@ -8175,13 +8327,14 @@
       },
       "xp": 14,
       "description": "Braut: Beruhigender Tee.",
-      "trainerCost": 57
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-koch-mondblumen-tee",
       "name": "Mondblumen-Tee",
       "profession": "koch",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 170,
       "materials": {
         "mondblume": 2,
@@ -8195,13 +8348,14 @@
       },
       "xp": 24,
       "description": "Braut: Mondblumen-Tee.",
-      "trainerCost": 217
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-koch-lebenselixier",
       "name": "Lebenselixier",
       "profession": "koch",
-      "source": "trainer",
+      "source": "faction",
       "reqSkill": 260,
       "materials": {
         "sternenfrucht": 3,
@@ -8215,7 +8369,7 @@
       },
       "xp": 40,
       "description": "Braut: Lebenselixier.",
-      "trainerCost": 680
+      "factionId": "pakt_der_wildnis"
     },
     {
       "id": "recipe-koch-einfaches-festmahl",
@@ -8454,7 +8608,7 @@
       "id": "recipe-koch-meister-streakkeks",
       "name": "Meister-Streakkeks",
       "profession": "koch",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 225,
       "materials": {
         "sternenfrucht": 1,
@@ -8467,7 +8621,8 @@
       },
       "xp": 30,
       "description": "Kocht: Meister-Streakkeks.",
-      "trainerCost": 400
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "rare"
     },
     {
       "id": "recipe-koch-luck-cookie",
@@ -9131,7 +9286,7 @@
       "id": "recipe-verz-perm-boots-1",
       "name": "Permanente Verzauberung: Stiefel",
       "profession": "verzauberer",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 110,
       "materials": {
         "runenstein": 3,
@@ -9144,13 +9299,14 @@
       },
       "xp": 18,
       "description": "Verzaubert permanent: +1 tempo auf Stiefel.",
-      "trainerCost": 97
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-verz-perm-helm-1",
       "name": "Permanente Verzauberung: Helm",
       "profession": "verzauberer",
-      "source": "trainer",
+      "source": "faction",
       "reqSkill": 115,
       "materials": {
         "runenstein": 3,
@@ -9163,7 +9319,7 @@
       },
       "xp": 18,
       "description": "Verzaubert permanent: +1 weisheit auf Helm.",
-      "trainerCost": 103
+      "factionId": "zirkel_der_sterne"
     },
     {
       "id": "recipe-verz-perm-shield-1",
@@ -9188,7 +9344,7 @@
       "id": "recipe-verz-perm-amulet-1",
       "name": "Permanente Verzauberung: Amulett",
       "profession": "verzauberer",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 125,
       "materials": {
         "runenstein": 3,
@@ -9201,7 +9357,8 @@
       },
       "xp": 18,
       "description": "Verzaubert permanent: +1 glueck auf Amulett.",
-      "trainerCost": 117
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-verz-perm-weapon-2",
@@ -9393,7 +9550,7 @@
       "id": "recipe-verz-scroll-glueck-3",
       "name": "Schriftrolle des Glücks",
       "profession": "verzauberer",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 59,
       "materials": {
         "magiestaub": 3,
@@ -9407,7 +9564,8 @@
       },
       "xp": 12,
       "description": "Schreibt: Schriftrolle des Glücks.",
-      "trainerCost": 39
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-verz-scroll-fokus-3",
@@ -9433,7 +9591,7 @@
       "id": "recipe-verz-scroll-tempo-3",
       "name": "Schriftrolle der Eile",
       "profession": "verzauberer",
-      "source": "trainer",
+      "source": "faction",
       "reqSkill": 65,
       "materials": {
         "magiestaub": 3,
@@ -9447,7 +9605,7 @@
       },
       "xp": 12,
       "description": "Schreibt: Schriftrolle der Eile.",
-      "trainerCost": 43
+      "factionId": "pakt_der_wildnis"
     },
     {
       "id": "recipe-verz-scroll-kraft-6",
@@ -9473,7 +9631,7 @@
       "id": "recipe-verz-scroll-weisheit-6",
       "name": "Große Schriftrolle der Weisheit",
       "profession": "verzauberer",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 178,
       "materials": {
         "runenstein": 3,
@@ -9487,7 +9645,8 @@
       },
       "xp": 25,
       "description": "Schreibt: Große Schriftrolle der Weisheit.",
-      "trainerCost": 243
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-verz-scroll-ausdauer-6",
@@ -9612,7 +9771,7 @@
       "id": "recipe-verz-schutzglyphe-3",
       "name": "Schutzglyphe III",
       "profession": "verzauberer",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 240,
       "materials": {
         "aetherkern": 1,
@@ -9626,13 +9785,14 @@
       },
       "xp": 35,
       "description": "Erschafft: Schutzglyphe III.",
-      "trainerCost": 520
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "rare"
     },
     {
       "id": "recipe-verz-tempoward-1",
       "name": "Glyphe der Eile I",
       "profession": "verzauberer",
-      "source": "trainer",
+      "source": "faction",
       "reqSkill": 60,
       "materials": {
         "magiestaub": 4
@@ -9645,7 +9805,7 @@
       },
       "xp": 12,
       "description": "Erschafft: Glyphe der Eile I.",
-      "trainerCost": 40
+      "factionId": "bund_der_schatten"
     },
     {
       "id": "recipe-verz-tempoward-2",
@@ -9765,7 +9925,7 @@
       "id": "recipe-verz-brillantes-oel",
       "name": "Brillantes Öl",
       "profession": "verzauberer",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 70,
       "materials": {
         "magiestaub": 3,
@@ -9779,7 +9939,8 @@
       },
       "xp": 14,
       "description": "Braut: Brillantes Öl.",
-      "trainerCost": 47
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-verz-wildes-oel",
@@ -9825,7 +9986,7 @@
       "id": "recipe-verz-grosses-brillantes-oel",
       "name": "Großes Brillantes Öl",
       "profession": "verzauberer",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 200,
       "materials": {
         "kristallsplitter": 2,
@@ -9839,13 +10000,14 @@
       },
       "xp": 28,
       "description": "Braut: Großes Brillantes Öl.",
-      "trainerCost": 317
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "rare"
     },
     {
       "id": "recipe-verz-grosses-wildes-oel",
       "name": "Großes Wildes Öl",
       "profession": "verzauberer",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 200,
       "materials": {
         "kristallsplitter": 2,
@@ -9859,7 +10021,8 @@
       },
       "xp": 28,
       "description": "Braut: Großes Wildes Öl.",
-      "trainerCost": 317
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "rare"
     },
     {
       "id": "recipe-verz-grosses-gluecksoel",
@@ -9935,7 +10098,10 @@
       },
       "result": {
         "type": "vellum",
-        "statBonus": [2, 3],
+        "statBonus": [
+          2,
+          3
+        ],
         "durationHours": 24
       },
       "xp": 12,
@@ -9946,7 +10112,7 @@
       "id": "recipe-verz-vellum-mittel",
       "name": "Mittleres Verzauberungspergament",
       "profession": "verzauberer",
-      "source": "trainer",
+      "source": "faction",
       "reqSkill": 125,
       "materials": {
         "kristallsplitter": 3,
@@ -9954,12 +10120,15 @@
       },
       "result": {
         "type": "vellum",
-        "statBonus": [3, 5],
+        "statBonus": [
+          3,
+          5
+        ],
         "durationHours": 24
       },
       "xp": 22,
       "description": "Schreibt eine stärkere handelbare Verzauberung auf Pergament.",
-      "trainerCost": 150
+      "factionId": "zirkel_der_sterne"
     },
     {
       "id": "recipe-verz-vellum-stark",
@@ -9973,7 +10142,10 @@
       },
       "result": {
         "type": "vellum",
-        "statBonus": [4, 7],
+        "statBonus": [
+          4,
+          7
+        ],
         "durationHours": 48
       },
       "xp": 35,
@@ -10342,7 +10514,7 @@
       "id": "recipe-waffenschmied-kristall-tartsche",
       "name": "Kristall-Tartsche",
       "profession": "waffenschmied",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 75,
       "materials": {
         "kristallsplitter": 1,
@@ -10354,13 +10526,14 @@
       },
       "xp": 12,
       "description": "Schmiedet: Kristall-Tartsche.",
-      "trainerCost": 30
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-waffenschmied-kristall-buckler",
       "name": "Kristall-Buckler",
       "profession": "waffenschmied",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 78,
       "materials": {
         "kristallsplitter": 1,
@@ -10372,13 +10545,14 @@
       },
       "xp": 12,
       "description": "Schmiedet: Kristall-Buckler.",
-      "trainerCost": 100
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-waffenschmied-kristallklinge",
       "name": "Kristallklinge",
       "profession": "waffenschmied",
-      "source": "trainer",
+      "source": "faction",
       "reqSkill": 81,
       "materials": {
         "kristallsplitter": 1,
@@ -10390,7 +10564,7 @@
       },
       "xp": 13,
       "description": "Schmiedet: Kristallklinge.",
-      "trainerCost": 100
+      "factionId": "zirkel_der_sterne"
     },
     {
       "id": "recipe-waffenschmied-staehlernes-langschwert",
@@ -10432,7 +10606,7 @@
       "id": "recipe-waffenschmied-kristall-prunkschild",
       "name": "Kristall-Prunkschild",
       "profession": "waffenschmied",
-      "source": "trainer",
+      "source": "faction",
       "reqSkill": 90,
       "materials": {
         "kristallsplitter": 2,
@@ -10444,7 +10618,7 @@
       },
       "xp": 14,
       "description": "Schmiedet: Kristall-Prunkschild.",
-      "trainerCost": 100
+      "factionId": "bund_der_schatten"
     },
     {
       "id": "recipe-waffenschmied-kristall-kriegsbeil",
@@ -10468,7 +10642,7 @@
       "id": "recipe-waffenschmied-kristall-fokus",
       "name": "Kristall-Fokus",
       "profession": "waffenschmied",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 96,
       "materials": {
         "kristallsplitter": 1,
@@ -10480,7 +10654,8 @@
       },
       "xp": 15,
       "description": "Schmiedet: Kristall-Fokus.",
-      "trainerCost": 100
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-waffenschmied-staehlerner-turmschild",
@@ -10807,7 +10982,7 @@
       "id": "recipe-waffenschmied-drachenzahn-foliant",
       "name": "Drachenzahn-Foliant",
       "profession": "waffenschmied",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 150,
       "materials": {
         "drachenstahl": 2,
@@ -10819,7 +10994,8 @@
       },
       "xp": 20,
       "description": "Schmiedet: Drachenzahn-Foliant.",
-      "trainerCost": 100
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-waffenschmied-drachenstahl-breitschwert",
@@ -10951,7 +11127,7 @@
       "id": "recipe-waffenschmied-drachenzahn-meisterschwert",
       "name": "Drachenzahn-Meisterschwert",
       "profession": "waffenschmied",
-      "source": "trainer",
+      "source": "faction",
       "reqSkill": 174,
       "materials": {
         "drachenstahl": 2,
@@ -10963,13 +11139,13 @@
       },
       "xp": 23,
       "description": "Schmiedet: Drachenzahn-Meisterschwert.",
-      "trainerCost": 300
+      "factionId": "orden_der_klinge"
     },
     {
       "id": "recipe-waffenschmied-drachenstahl-kampfschild",
       "name": "Drachenstahl-Kampfschild",
       "profession": "waffenschmied",
-      "source": "trainer",
+      "source": "faction",
       "reqSkill": 177,
       "materials": {
         "drachenstahl": 2,
@@ -10981,7 +11157,7 @@
       },
       "xp": 24,
       "description": "Schmiedet: Drachenstahl-Kampfschild.",
-      "trainerCost": 300
+      "factionId": "orden_der_klinge"
     },
     {
       "id": "recipe-waffenschmied-drachenstahl-stab",
@@ -11290,7 +11466,7 @@
       "id": "recipe-waffenschmied-seelen-fokuskristall",
       "name": "Seelen-Fokuskristall",
       "profession": "waffenschmied",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 228,
       "materials": {
         "aetherlegierung": 2,
@@ -11302,13 +11478,14 @@
       },
       "xp": 29,
       "description": "Schmiedet: Seelen-Fokuskristall.",
-      "trainerCost": 800
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "rare"
     },
     {
       "id": "recipe-waffenschmied-aether-hammer",
       "name": "Aether-Hammer",
       "profession": "waffenschmied",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 230,
       "materials": {
         "aetherlegierung": 1,
@@ -11320,13 +11497,14 @@
       },
       "xp": 30,
       "description": "Schmiedet: Aether-Hammer.",
-      "trainerCost": 800
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "rare"
     },
     {
       "id": "recipe-waffenschmied-aether-buckler",
       "name": "Aether-Buckler",
       "profession": "waffenschmied",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 233,
       "materials": {
         "aetherlegierung": 1,
@@ -11338,13 +11516,14 @@
       },
       "xp": 30,
       "description": "Schmiedet: Aether-Buckler.",
-      "trainerCost": 800
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "rare"
     },
     {
       "id": "recipe-waffenschmied-aetherkern-axt",
       "name": "Aetherkern-Axt",
       "profession": "waffenschmied",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 235,
       "materials": {
         "aetherlegierung": 1,
@@ -11356,13 +11535,14 @@
       },
       "xp": 31,
       "description": "Schmiedet: Aetherkern-Axt.",
-      "trainerCost": 800
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "rare"
     },
     {
       "id": "recipe-waffenschmied-aether-zeremonialstab",
       "name": "Aether-Zeremonialstab",
       "profession": "waffenschmied",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 238,
       "materials": {
         "aetherlegierung": 1,
@@ -11374,13 +11554,14 @@
       },
       "xp": 32,
       "description": "Schmiedet: Aether-Zeremonialstab.",
-      "trainerCost": 800
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "rare"
     },
     {
       "id": "recipe-waffenschmied-seelen-sternenstab",
       "name": "Seelen-Sternenstab",
       "profession": "waffenschmied",
-      "source": "trainer",
+      "source": "faction",
       "reqSkill": 240,
       "materials": {
         "aetherlegierung": 2,
@@ -11392,13 +11573,13 @@
       },
       "xp": 33,
       "description": "Schmiedet: Seelen-Sternenstab.",
-      "trainerCost": 800
+      "factionId": "zirkel_der_sterne"
     },
     {
       "id": "recipe-waffenschmied-seelen-donnerhammer",
       "name": "Seelen-Donnerhammer",
       "profession": "waffenschmied",
-      "source": "trainer",
+      "source": "faction",
       "reqSkill": 243,
       "materials": {
         "aetherlegierung": 2,
@@ -11410,13 +11591,13 @@
       },
       "xp": 33,
       "description": "Schmiedet: Seelen-Donnerhammer.",
-      "trainerCost": 800
+      "factionId": "orden_der_klinge"
     },
     {
       "id": "recipe-waffenschmied-aether-kriegsklinge",
       "name": "Aether-Kriegsklinge",
       "profession": "waffenschmied",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 245,
       "materials": {
         "aetherlegierung": 1,
@@ -11428,13 +11609,14 @@
       },
       "xp": 34,
       "description": "Schmiedet: Aether-Kriegsklinge.",
-      "trainerCost": 800
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "rare"
     },
     {
       "id": "recipe-waffenschmied-aetherkern-turmschild",
       "name": "Aetherkern-Turmschild",
       "profession": "waffenschmied",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 248,
       "materials": {
         "aetherlegierung": 1,
@@ -11446,7 +11628,8 @@
       },
       "xp": 35,
       "description": "Schmiedet: Aetherkern-Turmschild.",
-      "trainerCost": 800
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "rare"
     },
     {
       "id": "recipe-waffenschmied-aetherkern-zauberstab",
@@ -11470,7 +11653,7 @@
       "id": "recipe-waffenschmied-seelen-aegis",
       "name": "Seelen-Aegis",
       "profession": "waffenschmied",
-      "source": "trainer",
+      "source": "faction",
       "reqSkill": 253,
       "materials": {
         "aetherlegierung": 2,
@@ -11482,7 +11665,7 @@
       },
       "xp": 36,
       "description": "Schmiedet: Seelen-Aegis.",
-      "trainerCost": 800
+      "factionId": "bund_der_schatten"
     },
     {
       "id": "recipe-waffenschmied-seelenwaechter-schild",
@@ -11492,7 +11675,8 @@
       "reqSkill": 255,
       "materials": {
         "aetherlegierung": 2,
-        "aetherbarren": 1
+        "aetherbarren": 1,
+        "seelensplitter": 1
       },
       "result": {
         "type": "craft_gear",
@@ -11530,7 +11714,8 @@
       "reqSkill": 260,
       "materials": {
         "aetherlegierung": 2,
-        "aetherbarren": 1
+        "aetherbarren": 1,
+        "seelensplitter": 1
       },
       "result": {
         "type": "craft_gear",
@@ -11549,7 +11734,8 @@
       "reqSkill": 263,
       "materials": {
         "aetherlegierung": 2,
-        "aetherbarren": 1
+        "aetherbarren": 1,
+        "seelensplitter": 1
       },
       "result": {
         "type": "craft_gear",
@@ -11739,7 +11925,8 @@
       "reqSkill": 288,
       "materials": {
         "seelenlegierung": 2,
-        "seelenstahl": 1
+        "seelenstahl": 1,
+        "seelensplitter": 1
       },
       "result": {
         "type": "craft_gear",
@@ -11777,7 +11964,8 @@
       "reqSkill": 293,
       "materials": {
         "seelenlegierung": 2,
-        "seelenstahl": 1
+        "seelenstahl": 1,
+        "seelensplitter": 1
       },
       "result": {
         "type": "craft_gear",
@@ -11830,7 +12018,7 @@
       "id": "recipe-schmied-eisenkappe-des-waechters",
       "name": "Eisenkappe des Wächters",
       "profession": "schmied",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 60,
       "materials": {
         "eisenerz": 2
@@ -11840,8 +12028,9 @@
         "templateId": "craft-schmied-eisenkappe-des-waechters"
       },
       "xp": 8,
-      "trainerCost": 21,
-      "description": "Stellt her: Eisenkappe des Wächters."
+      "description": "Stellt her: Eisenkappe des Wächters.",
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-schmied-kristall-waechterhelm",
@@ -11865,7 +12054,7 @@
       "id": "recipe-schmied-drachenstahl-waechterhelm",
       "name": "Drachenstahl-Wächterhelm",
       "profession": "schmied",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 219,
       "materials": {
         "drachenschuppe": 2,
@@ -11876,14 +12065,15 @@
         "templateId": "craft-schmied-drachenstahl-waechterhelm"
       },
       "xp": 24,
-      "trainerCost": 376,
-      "description": "Stellt her: Drachenstahl-Wächterhelm."
+      "description": "Stellt her: Drachenstahl-Wächterhelm.",
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "rare"
     },
     {
       "id": "recipe-schmied-aether-waechterhelm",
       "name": "Aether-Wächterhelm",
       "profession": "schmied",
-      "source": "trainer",
+      "source": "faction",
       "reqSkill": 247,
       "materials": {
         "aetherlegierung": 2,
@@ -11894,8 +12084,8 @@
         "templateId": "craft-schmied-aether-waechterhelm"
       },
       "xp": 35,
-      "trainerCost": 686,
-      "description": "Stellt her: Aether-Wächterhelm."
+      "description": "Stellt her: Aether-Wächterhelm.",
+      "factionId": "zirkel_der_sterne"
     },
     {
       "id": "recipe-schmied-geschmiedete-schutzhaube",
@@ -11918,7 +12108,7 @@
       "id": "recipe-schmied-staehlerne-schutzkappe",
       "name": "Stählerne Schutzkappe",
       "profession": "schmied",
-      "source": "trainer",
+      "source": "faction",
       "reqSkill": 115,
       "materials": {
         "kristallsplitter": 2,
@@ -11929,8 +12119,8 @@
         "templateId": "craft-schmied-staehlerne-schutzkappe"
       },
       "xp": 16,
-      "trainerCost": 138,
-      "description": "Stellt her: Stählerne Schutzkappe."
+      "description": "Stellt her: Stählerne Schutzkappe.",
+      "factionId": "bund_der_schatten"
     },
     {
       "id": "recipe-schmied-drachenstahl-plattenpanzer",
@@ -11954,7 +12144,7 @@
       "id": "recipe-schmied-aetherkern-ruestung",
       "name": "Aetherkern-Rüstung",
       "profession": "schmied",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 247,
       "materials": {
         "aetherlegierung": 2,
@@ -11965,8 +12155,9 @@
         "templateId": "craft-schmied-aetherkern-ruestung"
       },
       "xp": 35,
-      "trainerCost": 1054,
-      "description": "Stellt her: Aetherkern-Rüstung."
+      "description": "Stellt her: Aetherkern-Rüstung.",
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "rare"
     },
     {
       "id": "recipe-schmied-eiserner-kettenpanzer",
@@ -12007,7 +12198,7 @@
       "id": "recipe-schmied-drachenschuppen-kettenhemd",
       "name": "Drachenschuppen-Kettenhemd",
       "profession": "schmied",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 199,
       "materials": {
         "drachenschuppe": 2,
@@ -12018,8 +12209,9 @@
         "templateId": "craft-schmied-drachenschuppen-kettenhemd"
       },
       "xp": 24,
-      "trainerCost": 433,
-      "description": "Stellt her: Drachenschuppen-Kettenhemd."
+      "description": "Stellt her: Drachenschuppen-Kettenhemd.",
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-schmied-aetherkern-marschtritt",
@@ -12043,7 +12235,7 @@
       "id": "recipe-schmied-geschmiedete-stiefel",
       "name": "Geschmiedete Stiefel",
       "profession": "schmied",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 57,
       "materials": {
         "eisenerz": 2
@@ -12053,8 +12245,9 @@
         "templateId": "craft-schmied-geschmiedete-stiefel"
       },
       "xp": 8,
-      "trainerCost": 28,
-      "description": "Stellt her: Geschmiedete Stiefel."
+      "description": "Stellt her: Geschmiedete Stiefel.",
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-schmied-staehlerne-treter",
@@ -12078,7 +12271,7 @@
       "id": "recipe-schmied-drachenschuppen-treter",
       "name": "Drachenschuppen-Treter",
       "profession": "schmied",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 209,
       "materials": {
         "drachenschuppe": 2,
@@ -12089,14 +12282,15 @@
         "templateId": "craft-schmied-drachenschuppen-treter"
       },
       "xp": 24,
-      "trainerCost": 303,
-      "description": "Stellt her: Drachenschuppen-Treter."
+      "description": "Stellt her: Drachenschuppen-Treter.",
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "rare"
     },
     {
       "id": "recipe-schmied-seelen-treter",
       "name": "Seelen-Treter",
       "profession": "schmied",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 252,
       "materials": {
         "aetherlegierung": 2,
@@ -12107,8 +12301,9 @@
         "templateId": "craft-schmied-seelen-treter"
       },
       "xp": 35,
-      "trainerCost": 827,
-      "description": "Stellt her: Seelen-Treter."
+      "description": "Stellt her: Seelen-Treter.",
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "rare"
     },
     {
       "id": "recipe-schmied-eiserne-marschtreters",
@@ -12149,7 +12344,7 @@
       "id": "recipe-schmied-drachenstahl-kriegstiefel",
       "name": "Drachenstahl-Kriegstiefel",
       "profession": "schmied",
-      "source": "trainer",
+      "source": "faction",
       "reqSkill": 215,
       "materials": {
         "drachenschuppe": 2,
@@ -12160,8 +12355,8 @@
         "templateId": "craft-schmied-drachenstahl-kriegstiefel"
       },
       "xp": 24,
-      "trainerCost": 437,
-      "description": "Stellt her: Drachenstahl-Kriegstiefel."
+      "description": "Stellt her: Drachenstahl-Kriegstiefel.",
+      "factionId": "orden_der_klinge"
     },
     {
       "id": "recipe-schneider-leinenschleier-des-gelehrten",
@@ -12202,7 +12397,7 @@
       "id": "recipe-schneider-seidenschleier-des-weisen",
       "name": "Seidenschleier des Weisen",
       "profession": "schneider",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 181,
       "materials": {
         "seidenstoff": 2,
@@ -12213,14 +12408,15 @@
         "templateId": "craft-schneider-seidenschleier-des-weisen"
       },
       "xp": 24,
-      "trainerCost": 357,
-      "description": "Stellt her: Seidenschleier des Weisen."
+      "description": "Stellt her: Seidenschleier des Weisen.",
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-schneider-arkane-weisenkrone",
       "name": "Arkane Weisenkrone",
       "profession": "schneider",
-      "source": "trainer",
+      "source": "faction",
       "reqSkill": 241,
       "materials": {
         "magiestoff": 2,
@@ -12231,8 +12427,8 @@
         "templateId": "craft-schneider-arkane-weisenkrone"
       },
       "xp": 35,
-      "trainerCost": 1142,
-      "description": "Stellt her: Arkane Weisenkrone."
+      "description": "Stellt her: Arkane Weisenkrone.",
+      "factionId": "zirkel_der_sterne"
     },
     {
       "id": "recipe-schneider-einfache-leinenkappe",
@@ -12255,7 +12451,7 @@
       "id": "recipe-schneider-gewobener-wollschleier",
       "name": "Gewobener Wollschleier",
       "profession": "schneider",
-      "source": "trainer",
+      "source": "faction",
       "reqSkill": 107,
       "materials": {
         "wollstoff": 2,
@@ -12266,8 +12462,8 @@
         "templateId": "craft-schneider-gewobener-wollschleier"
       },
       "xp": 16,
-      "trainerCost": 127,
-      "description": "Stellt her: Gewobener Wollschleier."
+      "description": "Stellt her: Gewobener Wollschleier.",
+      "factionId": "pakt_der_wildnis"
     },
     {
       "id": "recipe-schneider-mondschein-gelehrtenkappe",
@@ -12291,7 +12487,7 @@
       "id": "recipe-schneider-sternenmantel",
       "name": "Sternenmantel",
       "profession": "schneider",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 245,
       "materials": {
         "magiestoff": 2,
@@ -12302,8 +12498,9 @@
         "templateId": "craft-schneider-sternenmantel"
       },
       "xp": 35,
-      "trainerCost": 911,
-      "description": "Stellt her: Sternenmantel."
+      "description": "Stellt her: Sternenmantel.",
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "rare"
     },
     {
       "id": "recipe-schneider-leinengewand-des-wanderers",
@@ -12362,7 +12559,7 @@
       "id": "recipe-schneider-arkane-meisterrobe",
       "name": "Arkane Meisterrobe",
       "profession": "schneider",
-      "source": "trainer",
+      "source": "faction",
       "reqSkill": 276,
       "materials": {
         "magiestoff": 2,
@@ -12373,8 +12570,8 @@
         "templateId": "craft-schneider-arkane-meisterrobe"
       },
       "xp": 35,
-      "trainerCost": 914,
-      "description": "Stellt her: Arkane Meisterrobe."
+      "description": "Stellt her: Arkane Meisterrobe.",
+      "factionId": "zirkel_der_sterne"
     },
     {
       "id": "recipe-schneider-leinenpantoffeln-des-lesers",
@@ -12397,7 +12594,7 @@
       "id": "recipe-schneider-wollstiefel-des-reisenden",
       "name": "Wollstiefel des Reisenden",
       "profession": "schneider",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 94,
       "materials": {
         "wollstoff": 2,
@@ -12408,8 +12605,9 @@
         "templateId": "craft-schneider-wollstiefel-des-reisenden"
       },
       "xp": 16,
-      "trainerCost": 106,
-      "description": "Stellt her: Wollstiefel des Reisenden."
+      "description": "Stellt her: Wollstiefel des Reisenden.",
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-schneider-seidenpantoffeln-des-meisters",
@@ -12433,7 +12631,7 @@
       "id": "recipe-schneider-arkane-meisterschuhe",
       "name": "Arkane Meisterschuhe",
       "profession": "schneider",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 237,
       "materials": {
         "magiestoff": 2,
@@ -12444,8 +12642,9 @@
         "templateId": "craft-schneider-arkane-meisterschuhe"
       },
       "xp": 35,
-      "trainerCost": 544,
-      "description": "Stellt her: Arkane Meisterschuhe."
+      "description": "Stellt her: Arkane Meisterschuhe.",
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "rare"
     },
     {
       "id": "recipe-schneider-einfache-leinenschuhe",
@@ -12468,7 +12667,7 @@
       "id": "recipe-schneider-gewobene-wollschuhe",
       "name": "Gewobene Wollschuhe",
       "profession": "schneider",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 111,
       "materials": {
         "wollstoff": 2,
@@ -12479,14 +12678,15 @@
         "templateId": "craft-schneider-gewobene-wollschuhe"
       },
       "xp": 16,
-      "trainerCost": 204,
-      "description": "Stellt her: Gewobene Wollschuhe."
+      "description": "Stellt her: Gewobene Wollschuhe.",
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-schneider-mondschein-schritte",
       "name": "Mondschein-Schritte",
       "profession": "schneider",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 168,
       "materials": {
         "seidenstoff": 2,
@@ -12497,8 +12697,9 @@
         "templateId": "craft-schneider-mondschein-schritte"
       },
       "xp": 24,
-      "trainerCost": 298,
-      "description": "Stellt her: Mondschein-Schritte."
+      "description": "Stellt her: Mondschein-Schritte.",
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-lederverarbeiter-leichtleder-jaegerkappe",
@@ -12557,7 +12758,7 @@
       "id": "recipe-lederverarbeiter-urzeitleder-krone",
       "name": "Urzeitleder-Krone",
       "profession": "lederverarbeiter",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 263,
       "materials": {
         "dickesleder": 2
@@ -12567,8 +12768,9 @@
         "templateId": "craft-lederverarbeiter-urzeitleder-krone"
       },
       "xp": 35,
-      "trainerCost": 741,
-      "description": "Stellt her: Urzeitleder-Krone."
+      "description": "Stellt her: Urzeitleder-Krone.",
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "rare"
     },
     {
       "id": "recipe-lederverarbeiter-einfache-lederkappe",
@@ -12609,7 +12811,7 @@
       "id": "recipe-lederverarbeiter-bestien-lederkappe",
       "name": "Bestien-Lederkappe",
       "profession": "lederverarbeiter",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 187,
       "materials": {
         "schweresleder": 2,
@@ -12620,14 +12822,15 @@
         "templateId": "craft-lederverarbeiter-bestien-lederkappe"
       },
       "xp": 24,
-      "trainerCost": 443,
-      "description": "Stellt her: Bestien-Lederkappe."
+      "description": "Stellt her: Bestien-Lederkappe.",
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-lederverarbeiter-bestien-meisterwams",
       "name": "Bestien-Meisterwams",
       "profession": "lederverarbeiter",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 245,
       "materials": {
         "dickesleder": 2
@@ -12637,8 +12840,9 @@
         "templateId": "craft-lederverarbeiter-bestien-meisterwams"
       },
       "xp": 35,
-      "trainerCost": 1192,
-      "description": "Stellt her: Bestien-Meisterwams."
+      "description": "Stellt her: Bestien-Meisterwams.",
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "rare"
     },
     {
       "id": "recipe-lederverarbeiter-einfacher-lederpanzer",
@@ -12661,7 +12865,7 @@
       "id": "recipe-lederverarbeiter-gehaerteter-lederpanzer",
       "name": "Gehärteter Lederpanzer",
       "profession": "lederverarbeiter",
-      "source": "trainer",
+      "source": "faction",
       "reqSkill": 125,
       "materials": {
         "mittleresleder": 2,
@@ -12672,14 +12876,14 @@
         "templateId": "craft-lederverarbeiter-gehaerteter-lederpanzer"
       },
       "xp": 16,
-      "trainerCost": 155,
-      "description": "Stellt her: Gehärteter Lederpanzer."
+      "description": "Stellt her: Gehärteter Lederpanzer.",
+      "factionId": "pakt_der_wildnis"
     },
     {
       "id": "recipe-lederverarbeiter-bestien-lederwams",
       "name": "Bestien-Lederwams",
       "profession": "lederverarbeiter",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 218,
       "materials": {
         "schweresleder": 2,
@@ -12690,14 +12894,15 @@
         "templateId": "craft-lederverarbeiter-bestien-lederwams"
       },
       "xp": 24,
-      "trainerCost": 223,
-      "description": "Stellt her: Bestien-Lederwams."
+      "description": "Stellt her: Bestien-Lederwams.",
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "rare"
     },
     {
       "id": "recipe-lederverarbeiter-urzeitleder-panzer",
       "name": "Urzeitleder-Panzer",
       "profession": "lederverarbeiter",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 245,
       "materials": {
         "dickesleder": 2
@@ -12707,8 +12912,9 @@
         "templateId": "craft-lederverarbeiter-urzeitleder-panzer"
       },
       "xp": 35,
-      "trainerCost": 613,
-      "description": "Stellt her: Urzeitleder-Panzer."
+      "description": "Stellt her: Urzeitleder-Panzer.",
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "rare"
     },
     {
       "id": "recipe-lederverarbeiter-leichtleder-wams",
@@ -12749,7 +12955,7 @@
       "id": "recipe-lederverarbeiter-schwerleder-jagdpanzer",
       "name": "Schwerleder-Jagdpanzer",
       "profession": "lederverarbeiter",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 218,
       "materials": {
         "schweresleder": 2,
@@ -12760,14 +12966,15 @@
         "templateId": "craft-lederverarbeiter-schwerleder-jagdpanzer"
       },
       "xp": 24,
-      "trainerCost": 355,
-      "description": "Stellt her: Schwerleder-Jagdpanzer."
+      "description": "Stellt her: Schwerleder-Jagdpanzer.",
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "rare"
     },
     {
       "id": "recipe-lederverarbeiter-urzeitleder-stiefel",
       "name": "Urzeitleder-Stiefel",
       "profession": "lederverarbeiter",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 236,
       "materials": {
         "dickesleder": 2
@@ -12777,8 +12984,9 @@
         "templateId": "craft-lederverarbeiter-urzeitleder-stiefel"
       },
       "xp": 35,
-      "trainerCost": 1143,
-      "description": "Stellt her: Urzeitleder-Stiefel."
+      "description": "Stellt her: Urzeitleder-Stiefel.",
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "rare"
     },
     {
       "id": "recipe-lederverarbeiter-einfache-lederschuhe",
@@ -12819,7 +13027,7 @@
       "id": "recipe-lederverarbeiter-bestien-treter",
       "name": "Bestien-Treter",
       "profession": "lederverarbeiter",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 215,
       "materials": {
         "schweresleder": 2,
@@ -12830,14 +13038,15 @@
         "templateId": "craft-lederverarbeiter-bestien-treter"
       },
       "xp": 24,
-      "trainerCost": 389,
-      "description": "Stellt her: Bestien-Treter."
+      "description": "Stellt her: Bestien-Treter.",
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "rare"
     },
     {
       "id": "recipe-lederverarbeiter-raues-leder-marsch",
       "name": "Raues Leder-Marsch",
       "profession": "lederverarbeiter",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 286,
       "materials": {
         "dickesleder": 2
@@ -12847,8 +13056,9 @@
         "templateId": "craft-lederverarbeiter-raues-leder-marsch"
       },
       "xp": 35,
-      "trainerCost": 1139,
-      "description": "Stellt her: Raues Leder-Marsch."
+      "description": "Stellt her: Raues Leder-Marsch.",
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "rare"
     },
     {
       "id": "recipe-lederverarbeiter-leichtleder-stiefel",
@@ -12871,7 +13081,7 @@
       "id": "recipe-lederverarbeiter-mittlere-leder-stiefel",
       "name": "Mittlere Leder-Stiefel",
       "profession": "lederverarbeiter",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 129,
       "materials": {
         "mittleresleder": 2,
@@ -12882,14 +13092,15 @@
         "templateId": "craft-lederverarbeiter-mittlere-leder-stiefel"
       },
       "xp": 16,
-      "trainerCost": 102,
-      "description": "Stellt her: Mittlere Leder-Stiefel."
+      "description": "Stellt her: Mittlere Leder-Stiefel.",
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-lederverarbeiter-schwerleder-jagdstiefel",
       "name": "Schwerleder-Jagdstiefel",
       "profession": "lederverarbeiter",
-      "source": "trainer",
+      "source": "faction",
       "reqSkill": 217,
       "materials": {
         "schweresleder": 2,
@@ -12900,8 +13111,8 @@
         "templateId": "craft-lederverarbeiter-schwerleder-jagdstiefel"
       },
       "xp": 24,
-      "trainerCost": 330,
-      "description": "Stellt her: Schwerleder-Jagdstiefel."
+      "description": "Stellt her: Schwerleder-Jagdstiefel.",
+      "factionId": "orden_der_klinge"
     },
     {
       "id": "recipe-juwelier-eiserner-ring",
@@ -13174,7 +13385,7 @@
       "id": "recipe-juwelier-kristallband",
       "name": "Kristallband",
       "profession": "juwelier",
-      "source": "trainer",
+      "source": "faction",
       "reqSkill": 85,
       "materials": {
         "runenstein": 1,
@@ -13186,13 +13397,13 @@
       },
       "xp": 13,
       "description": "Fasst: Kristallband.",
-      "trainerCost": 56
+      "factionId": "bund_der_schatten"
     },
     {
       "id": "recipe-juwelier-ring-des-forschers",
       "name": "Ring des Forschers",
       "profession": "juwelier",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 90,
       "materials": {
         "runenstein": 1,
@@ -13204,13 +13415,14 @@
       },
       "xp": 14,
       "description": "Fasst: Ring des Forschers.",
-      "trainerCost": 64
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-juwelier-staehlerner-reif",
       "name": "Stählerner Reif",
       "profession": "juwelier",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 94,
       "materials": {
         "runenstein": 1,
@@ -13222,13 +13434,14 @@
       },
       "xp": 15,
       "description": "Fasst: Stählerner Reif.",
-      "trainerCost": 72
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-juwelier-kristall-siegelring",
       "name": "Kristall-Siegelring",
       "profession": "juwelier",
-      "source": "trainer",
+      "source": "faction",
       "reqSkill": 99,
       "materials": {
         "runenstein": 1,
@@ -13240,7 +13453,7 @@
       },
       "xp": 15,
       "description": "Fasst: Kristall-Siegelring.",
-      "trainerCost": 80
+      "factionId": "pakt_der_wildnis"
     },
     {
       "id": "recipe-juwelier-mondsteinring",
@@ -13435,7 +13648,7 @@
       "id": "recipe-juwelier-saphirring",
       "name": "Saphirring",
       "profession": "juwelier",
-      "source": "trainer",
+      "source": "faction",
       "reqSkill": 150,
       "materials": {
         "runenstein": 2,
@@ -13447,13 +13660,13 @@
       },
       "xp": 20,
       "description": "Fasst: Saphirring.",
-      "trainerCost": 160
+      "factionId": "zirkel_der_sterne"
     },
     {
       "id": "recipe-juwelier-drachenauge-ring",
       "name": "Drachenauge-Ring",
       "profession": "juwelier",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 155,
       "materials": {
         "runenstein": 2,
@@ -13465,13 +13678,14 @@
       },
       "xp": 21,
       "description": "Fasst: Drachenauge-Ring.",
-      "trainerCost": 175
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-juwelier-ring-des-meisters",
       "name": "Ring des Meisters",
       "profession": "juwelier",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 159,
       "materials": {
         "runenstein": 2,
@@ -13483,13 +13697,14 @@
       },
       "xp": 21,
       "description": "Fasst: Ring des Meisters.",
-      "trainerCost": 190
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-juwelier-smaragdband",
       "name": "Smaragdband",
       "profession": "juwelier",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 164,
       "materials": {
         "runenstein": 2,
@@ -13501,7 +13716,8 @@
       },
       "xp": 22,
       "description": "Fasst: Smaragdband.",
-      "trainerCost": 205
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-juwelier-mondschein-siegelring",
@@ -13525,7 +13741,7 @@
       "id": "recipe-juwelier-ring-der-sterne",
       "name": "Ring der Sterne",
       "profession": "juwelier",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 173,
       "materials": {
         "runenstein": 2,
@@ -13537,13 +13753,14 @@
       },
       "xp": 23,
       "description": "Fasst: Ring der Sterne.",
-      "trainerCost": 235
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-juwelier-drachenschuppen-reif",
       "name": "Drachenschuppen-Reif",
       "profession": "juwelier",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 177,
       "materials": {
         "runenstein": 2,
@@ -13555,7 +13772,8 @@
       },
       "xp": 24,
       "description": "Fasst: Drachenschuppen-Reif.",
-      "trainerCost": 250
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-juwelier-saphir-gelehrtenring",
@@ -13769,7 +13987,7 @@
       "id": "recipe-juwelier-ring-der-leere",
       "name": "Ring der Leere",
       "profession": "juwelier",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 229,
       "materials": {
         "aetherkern": 2,
@@ -13781,13 +13999,14 @@
       },
       "xp": 29,
       "description": "Fasst: Ring der Leere.",
-      "trainerCost": 364
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "rare"
     },
     {
       "id": "recipe-juwelier-seelen-siegelring",
       "name": "Seelen-Siegelring",
       "profession": "juwelier",
-      "source": "trainer",
+      "source": "faction",
       "reqSkill": 232,
       "materials": {
         "aetherkern": 2,
@@ -13799,13 +14018,13 @@
       },
       "xp": 30,
       "description": "Fasst: Seelen-Siegelring.",
-      "trainerCost": 408
+      "factionId": "pakt_der_wildnis"
     },
     {
       "id": "recipe-juwelier-runenring",
       "name": "Runenring",
       "profession": "juwelier",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 236,
       "materials": {
         "aetherkern": 2,
@@ -13817,7 +14036,8 @@
       },
       "xp": 31,
       "description": "Fasst: Runenring.",
-      "trainerCost": 452
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "rare"
     },
     {
       "id": "recipe-juwelier-sternenring",
@@ -13841,7 +14061,7 @@
       "id": "recipe-juwelier-aetherkern-band",
       "name": "Aetherkern-Band",
       "profession": "juwelier",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 243,
       "materials": {
         "aetherkern": 2,
@@ -13853,13 +14073,14 @@
       },
       "xp": 34,
       "description": "Fasst: Aetherkern-Band.",
-      "trainerCost": 540
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "rare"
     },
     {
       "id": "recipe-juwelier-seelenreif",
       "name": "Seelenreif",
       "profession": "juwelier",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 247,
       "materials": {
         "aetherkern": 2,
@@ -13871,13 +14092,14 @@
       },
       "xp": 35,
       "description": "Fasst: Seelenreif.",
-      "trainerCost": 584
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "rare"
     },
     {
       "id": "recipe-juwelier-ring-des-schicksals",
       "name": "Ring des Schicksals",
       "profession": "juwelier",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 251,
       "materials": {
         "aetherkern": 2,
@@ -13889,7 +14111,8 @@
       },
       "xp": 36,
       "description": "Fasst: Ring des Schicksals.",
-      "trainerCost": 628
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "rare"
     },
     {
       "id": "recipe-juwelier-arkaner-siegelring",
@@ -14159,7 +14382,7 @@
       "id": "recipe-juwelier-gem-ruby-2",
       "name": "Fehlerhafter Rubin",
       "profession": "juwelier",
-      "source": "trainer",
+      "source": "faction",
       "reqSkill": 60,
       "materials": {
         "kristallsplitter": 2
@@ -14171,13 +14394,13 @@
       },
       "xp": 21,
       "description": "Schleift: Fehlerhafter Rubin.",
-      "trainerCost": 200
+      "factionId": "zirkel_der_sterne"
     },
     {
       "id": "recipe-juwelier-gem-ruby-3",
       "name": "Geschliffener Rubin",
       "profession": "juwelier",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 120,
       "materials": {
         "kristallsplitter": 3,
@@ -14190,7 +14413,8 @@
       },
       "xp": 29,
       "description": "Schleift: Geschliffener Rubin.",
-      "trainerCost": 300
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-juwelier-gem-ruby-4",
@@ -14349,7 +14573,7 @@
       "id": "recipe-juwelier-gem-emerald-2",
       "name": "Fehlerhafter Smaragd",
       "profession": "juwelier",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 70,
       "materials": {
         "kristallsplitter": 2
@@ -14361,7 +14585,8 @@
       },
       "xp": 21,
       "description": "Schleift: Fehlerhafter Smaragd.",
-      "trainerCost": 200
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-juwelier-gem-emerald-3",
@@ -14557,7 +14782,7 @@
       "id": "recipe-juwelier-gem-amethyst-3",
       "name": "Geschliffener Amethyst",
       "profession": "juwelier",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 140,
       "materials": {
         "kristallsplitter": 3,
@@ -14570,7 +14795,8 @@
       },
       "xp": 29,
       "description": "Schleift: Geschliffener Amethyst.",
-      "trainerCost": 300
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-juwelier-gem-amethyst-4",
@@ -14652,7 +14878,7 @@
       "id": "recipe-juwelier-gem-diamond-3",
       "name": "Geschliffener Diamant",
       "profession": "juwelier",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 145,
       "materials": {
         "kristallsplitter": 3,
@@ -14665,7 +14891,8 @@
       },
       "xp": 29,
       "description": "Schleift: Geschliffener Diamant.",
-      "trainerCost": 300
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-juwelier-gem-diamond-4",
@@ -14711,7 +14938,7 @@
       "id": "recipe-juwelier-gem-merge-1",
       "name": "Gem-Verschmelzung Stufe 1",
       "profession": "juwelier",
-      "source": "trainer",
+      "source": "faction",
       "reqSkill": 50,
       "materials": {},
       "result": {
@@ -14720,8 +14947,8 @@
         "toTier": 2
       },
       "xp": 20,
-      "trainerCost": 150,
-      "description": "Verschmelzt 3 Gems der Stufe 1 zu einem Gem der Stufe 2."
+      "description": "Verschmelzt 3 Gems der Stufe 1 zu einem Gem der Stufe 2.",
+      "factionId": "zirkel_der_sterne"
     },
     {
       "id": "recipe-juwelier-gem-merge-2",
@@ -14743,7 +14970,7 @@
       "id": "recipe-juwelier-gem-merge-3",
       "name": "Gem-Verschmelzung Stufe 3",
       "profession": "juwelier",
-      "source": "trainer",
+      "source": "faction",
       "reqSkill": 150,
       "materials": {},
       "result": {
@@ -14752,14 +14979,14 @@
         "toTier": 4
       },
       "xp": 40,
-      "trainerCost": 450,
-      "description": "Verschmelzt 3 Gems der Stufe 3 zu einem Gem der Stufe 4."
+      "description": "Verschmelzt 3 Gems der Stufe 3 zu einem Gem der Stufe 4.",
+      "factionId": "zirkel_der_sterne"
     },
     {
       "id": "recipe-juwelier-gem-merge-4",
       "name": "Gem-Verschmelzung Stufe 4",
       "profession": "juwelier",
-      "source": "trainer",
+      "source": "faction",
       "reqSkill": 200,
       "materials": {},
       "result": {
@@ -14768,8 +14995,8 @@
         "toTier": 5
       },
       "xp": 50,
-      "trainerCost": 600,
-      "description": "Verschmelzt 3 Gems der Stufe 4 zu einem Gem der Stufe 5."
+      "description": "Verschmelzt 3 Gems der Stufe 4 zu einem Gem der Stufe 5.",
+      "factionId": "zirkel_der_sterne"
     },
     {
       "id": "recipe-juwelier-poliertuch-1",
@@ -14813,7 +15040,7 @@
       "id": "recipe-juwelier-poliertuch-3",
       "name": "Arkanes Poliertuch",
       "profession": "juwelier",
-      "source": "trainer",
+      "source": "faction",
       "reqSkill": 225,
       "materials": {
         "aetherkern": 1,
@@ -14826,8 +15053,8 @@
         "questsRemaining": 4
       },
       "xp": 32,
-      "trainerCost": 350,
-      "description": "Stellt her: Arkanes Poliertuch."
+      "description": "Stellt her: Arkanes Poliertuch.",
+      "factionId": "bund_der_schatten"
     },
     {
       "id": "recipe-juwelier-charisma-ring-buff-1",
@@ -14852,7 +15079,7 @@
       "id": "recipe-juwelier-charisma-ring-buff-2",
       "name": "Ring der Majestät",
       "profession": "juwelier",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 200,
       "materials": {
         "aetherkern": 1,
@@ -14865,8 +15092,9 @@
         "questsRemaining": 4
       },
       "xp": 28,
-      "trainerCost": 300,
-      "description": "Stellt her: Ring der Majestät."
+      "description": "Stellt her: Ring der Majestät.",
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "rare"
     },
     {
       "id": "recipe-juwelier-streakschutz",
@@ -14890,7 +15118,7 @@
       "id": "recipe-juwelier-meister-streakschutz",
       "name": "Meister-Juwelen-Streakschutz",
       "profession": "juwelier",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 260,
       "materials": {
         "aetherkern": 2,
@@ -14901,8 +15129,9 @@
         "amount": 1
       },
       "xp": 38,
-      "trainerCost": 500,
-      "description": "Stellt her: Meister-Juwelen-Streakschutz."
+      "description": "Stellt her: Meister-Juwelen-Streakschutz.",
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "rare"
     },
     {
       "id": "recipe-juwelier-forge-temp-1",
@@ -14960,7 +15189,7 @@
       "id": "recipe-juwelier-ring-segnen-2",
       "name": "Ring segnen II",
       "profession": "juwelier",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 125,
       "materials": {
         "runenstein": 2
@@ -14971,14 +15200,15 @@
         "amount": 1
       },
       "xp": 18,
-      "trainerCost": 120,
-      "description": "Ring segnen II."
+      "description": "Ring segnen II.",
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-juwelier-ring-segnen-3",
       "name": "Ring segnen III",
       "profession": "juwelier",
-      "source": "trainer",
+      "source": "faction",
       "reqSkill": 225,
       "materials": {
         "aetherkern": 1
@@ -14989,14 +15219,14 @@
         "amount": 2
       },
       "xp": 30,
-      "trainerCost": 400,
-      "description": "Ring segnen III."
+      "description": "Ring segnen III.",
+      "factionId": "zirkel_der_sterne"
     },
     {
       "id": "recipe-juwelier-amulett-segnen-1",
       "name": "Amulett verzieren I",
       "profession": "juwelier",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 60,
       "materials": {
         "kristallsplitter": 3
@@ -15007,8 +15237,9 @@
         "amount": 1
       },
       "xp": 12,
-      "trainerCost": 40,
-      "description": "Amulett verzieren I."
+      "description": "Amulett verzieren I.",
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-juwelier-amulett-segnen-2",
@@ -15032,7 +15263,7 @@
       "id": "recipe-juwelier-amulett-segnen-3",
       "name": "Amulett verzieren III",
       "profession": "juwelier",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 260,
       "materials": {
         "aetherkern": 2
@@ -15043,8 +15274,9 @@
         "amount": 2
       },
       "xp": 38,
-      "trainerCost": 600,
-      "description": "Amulett verzieren III."
+      "description": "Amulett verzieren III.",
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "rare"
     },
     {
       "id": "recipe-schmied-eisernes-ruestungskit",
@@ -15142,7 +15374,7 @@
       "id": "recipe-schmied-platte-haerten-2",
       "name": "Platte härten II",
       "profession": "schmied",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 140,
       "materials": {
         "kristallbarren": 2
@@ -15153,14 +15385,15 @@
         "amount": 1
       },
       "xp": 20,
-      "trainerCost": 96,
-      "description": "Platte härten II."
+      "description": "Platte härten II.",
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-schmied-platte-haerten-3",
       "name": "Platte härten III",
       "profession": "schmied",
-      "source": "trainer",
+      "source": "faction",
       "reqSkill": 230,
       "materials": {
         "aetherlegierung": 1
@@ -15171,8 +15404,8 @@
         "amount": 2
       },
       "xp": 32,
-      "trainerCost": 280,
-      "description": "Platte härten III."
+      "description": "Platte härten III.",
+      "factionId": "orden_der_klinge"
     },
     {
       "id": "recipe-schmied-vitalitaet-tempern-1",
@@ -15197,7 +15430,7 @@
       "id": "recipe-schmied-vitalitaet-tempern-2",
       "name": "Rüstung tempern II",
       "profession": "schmied",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 130,
       "materials": {
         "kristallsplitter": 3
@@ -15208,14 +15441,15 @@
         "amount": 1
       },
       "xp": 18,
-      "trainerCost": 80,
-      "description": "Rüstung tempern II."
+      "description": "Rüstung tempern II.",
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-schmied-vitalitaet-tempern-3",
       "name": "Rüstung tempern III",
       "profession": "schmied",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 240,
       "materials": {
         "aetherbarren": 1,
@@ -15227,8 +15461,9 @@
         "amount": 2
       },
       "xp": 35,
-      "trainerCost": 320,
-      "description": "Rüstung tempern III."
+      "description": "Rüstung tempern III.",
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "rare"
     },
     {
       "id": "recipe-schmied-fokus-einarbeiten-1",
@@ -15253,7 +15488,7 @@
       "id": "recipe-schmied-fokus-einarbeiten-2",
       "name": "Fokus einarbeiten II",
       "profession": "schmied",
-      "source": "trainer",
+      "source": "faction",
       "reqSkill": 190,
       "materials": {
         "drachenstahl": 1,
@@ -15265,14 +15500,14 @@
         "amount": 2
       },
       "xp": 25,
-      "trainerCost": 160,
-      "description": "Fokus einarbeiten II."
+      "description": "Fokus einarbeiten II.",
+      "factionId": "bund_der_schatten"
     },
     {
       "id": "recipe-schmied-fokus-einarbeiten-3",
       "name": "Fokus einarbeiten III",
       "profession": "schmied",
-      "source": "trainer",
+      "source": "faction",
       "reqSkill": 270,
       "materials": {
         "seelenlegierung": 1
@@ -15283,8 +15518,8 @@
         "amount": 2
       },
       "xp": 40,
-      "trainerCost": 480,
-      "description": "Fokus einarbeiten III."
+      "description": "Fokus einarbeiten III.",
+      "factionId": "orden_der_klinge"
     },
     {
       "id": "recipe-schmied-eisern-kappe-ii",
@@ -15307,7 +15542,7 @@
       "id": "recipe-schmied-staehlern-robe-ii",
       "name": "Stählern Robe II",
       "profession": "schmied",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 116,
       "materials": {
         "kristallsplitter": 2
@@ -15317,14 +15552,15 @@
         "templateId": "craft-schmied-staehlern-robe-ii"
       },
       "xp": 16,
-      "trainerCost": 80,
-      "description": "Stellt her: Stählern Robe II."
+      "description": "Stellt her: Stählern Robe II.",
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-schmied-drachen-marschtritt-ii",
       "name": "Drachen Marschtritt II",
       "profession": "schmied",
-      "source": "trainer",
+      "source": "faction",
       "reqSkill": 155,
       "materials": {
         "drachenschuppe": 2
@@ -15334,14 +15570,14 @@
         "templateId": "craft-schmied-drachen-marschtritt-ii"
       },
       "xp": 24,
-      "trainerCost": 250,
-      "description": "Stellt her: Drachen Marschtritt II."
+      "description": "Stellt her: Drachen Marschtritt II.",
+      "factionId": "orden_der_klinge"
     },
     {
       "id": "recipe-schmied-aether-haube-ii",
       "name": "Aether Haube II",
       "profession": "schmied",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 268,
       "materials": {
         "aetherlegierung": 2
@@ -15351,8 +15587,9 @@
         "templateId": "craft-schmied-aether-haube-ii"
       },
       "xp": 32,
-      "trainerCost": 600,
-      "description": "Stellt her: Aether Haube II."
+      "description": "Stellt her: Aether Haube II.",
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "rare"
     },
     {
       "id": "recipe-schmied-eisern-mantel-ii",
@@ -15409,7 +15646,7 @@
       "id": "recipe-schmied-aether-platte-ii",
       "name": "Aether Platte II",
       "profession": "schmied",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 245,
       "materials": {
         "aetherlegierung": 2
@@ -15419,8 +15656,9 @@
         "templateId": "craft-schmied-aether-platte-ii"
       },
       "xp": 32,
-      "trainerCost": 600,
-      "description": "Stellt her: Aether Platte II."
+      "description": "Stellt her: Aether Platte II.",
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "rare"
     },
     {
       "id": "recipe-schmied-eisern-treter-ii",
@@ -15443,7 +15681,7 @@
       "id": "recipe-schmied-staehlern-visier-ii",
       "name": "Stählern Visier II",
       "profession": "schmied",
-      "source": "trainer",
+      "source": "faction",
       "reqSkill": 127,
       "materials": {
         "kristallsplitter": 2
@@ -15453,8 +15691,8 @@
         "templateId": "craft-schmied-staehlern-visier-ii"
       },
       "xp": 16,
-      "trainerCost": 80,
-      "description": "Stellt her: Stählern Visier II."
+      "description": "Stellt her: Stählern Visier II.",
+      "factionId": "zirkel_der_sterne"
     },
     {
       "id": "recipe-schmied-drachen-panzer-ii",
@@ -15477,7 +15715,7 @@
       "id": "recipe-schmied-aether-schuhe-ii",
       "name": "Aether Schuhe II",
       "profession": "schmied",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 270,
       "materials": {
         "aetherlegierung": 2
@@ -15487,8 +15725,9 @@
         "templateId": "craft-schmied-aether-schuhe-ii"
       },
       "xp": 32,
-      "trainerCost": 600,
-      "description": "Stellt her: Aether Schuhe II."
+      "description": "Stellt her: Aether Schuhe II.",
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "rare"
     },
     {
       "id": "recipe-schmied-eisern-schleier-iii",
@@ -15511,7 +15750,7 @@
       "id": "recipe-schmied-staehlern-wams-iii",
       "name": "Stählern Wams III",
       "profession": "schmied",
-      "source": "trainer",
+      "source": "faction",
       "reqSkill": 81,
       "materials": {
         "kristallsplitter": 2
@@ -15521,14 +15760,14 @@
         "templateId": "craft-schmied-staehlern-wams-iii"
       },
       "xp": 16,
-      "trainerCost": 80,
-      "description": "Stellt her: Stählern Wams III."
+      "description": "Stellt her: Stählern Wams III.",
+      "factionId": "orden_der_klinge"
     },
     {
       "id": "recipe-schmied-drachen-sandalen-iii",
       "name": "Drachen Sandalen III",
       "profession": "schmied",
-      "source": "trainer",
+      "source": "faction",
       "reqSkill": 199,
       "materials": {
         "drachenschuppe": 2
@@ -15538,8 +15777,8 @@
         "templateId": "craft-schmied-drachen-sandalen-iii"
       },
       "xp": 24,
-      "trainerCost": 250,
-      "description": "Stellt her: Drachen Sandalen III."
+      "description": "Stellt her: Drachen Sandalen III.",
+      "factionId": "orden_der_klinge"
     },
     {
       "id": "recipe-schmied-aether-kappe-iii",
@@ -15596,7 +15835,7 @@
       "id": "recipe-schmied-drachen-haube-iii",
       "name": "Drachen Haube III",
       "profession": "schmied",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 175,
       "materials": {
         "drachenschuppe": 2
@@ -15606,8 +15845,9 @@
         "templateId": "craft-schmied-drachen-haube-iii"
       },
       "xp": 24,
-      "trainerCost": 250,
-      "description": "Stellt her: Drachen Haube III."
+      "description": "Stellt her: Drachen Haube III.",
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-schmied-aether-mantel-iii",
@@ -15664,7 +15904,7 @@
       "id": "recipe-schneider-woll-robe-ii",
       "name": "Woll Robe II",
       "profession": "schneider",
-      "source": "trainer",
+      "source": "faction",
       "reqSkill": 112,
       "materials": {
         "wollstoff": 2
@@ -15674,8 +15914,8 @@
         "templateId": "craft-schneider-woll-robe-ii"
       },
       "xp": 16,
-      "trainerCost": 80,
-      "description": "Stellt her: Woll Robe II."
+      "description": "Stellt her: Woll Robe II.",
+      "factionId": "pakt_der_wildnis"
     },
     {
       "id": "recipe-schneider-seiden-marschtritt-ii",
@@ -15732,7 +15972,7 @@
       "id": "recipe-schneider-woll-stiefel-ii",
       "name": "Woll Stiefel II",
       "profession": "schneider",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 81,
       "materials": {
         "wollstoff": 2
@@ -15742,14 +15982,15 @@
         "templateId": "craft-schneider-woll-stiefel-ii"
       },
       "xp": 16,
-      "trainerCost": 80,
-      "description": "Stellt her: Woll Stiefel II."
+      "description": "Stellt her: Woll Stiefel II.",
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-schneider-seiden-helm-ii",
       "name": "Seiden Helm II",
       "profession": "schneider",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 168,
       "materials": {
         "seidenstoff": 2
@@ -15759,14 +16000,15 @@
         "templateId": "craft-schneider-seiden-helm-ii"
       },
       "xp": 24,
-      "trainerCost": 250,
-      "description": "Stellt her: Seiden Helm II."
+      "description": "Stellt her: Seiden Helm II.",
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-schneider-arkan-platte-ii",
       "name": "Arkan Platte II",
       "profession": "schneider",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 269,
       "materials": {
         "magiestoff": 2
@@ -15776,8 +16018,9 @@
         "templateId": "craft-schneider-arkan-platte-ii"
       },
       "xp": 32,
-      "trainerCost": 600,
-      "description": "Stellt her: Arkan Platte II."
+      "description": "Stellt her: Arkan Platte II.",
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "rare"
     },
     {
       "id": "recipe-schneider-leinen-treter-ii",
@@ -15800,7 +16043,7 @@
       "id": "recipe-schneider-woll-visier-ii",
       "name": "Woll Visier II",
       "profession": "schneider",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 127,
       "materials": {
         "wollstoff": 2
@@ -15810,8 +16053,9 @@
         "templateId": "craft-schneider-woll-visier-ii"
       },
       "xp": 16,
-      "trainerCost": 80,
-      "description": "Stellt her: Woll Visier II."
+      "description": "Stellt her: Woll Visier II.",
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-schneider-seiden-panzer-ii",
@@ -15902,7 +16146,7 @@
       "id": "recipe-schneider-arkan-kappe-iii",
       "name": "Arkan Kappe III",
       "profession": "schneider",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 242,
       "materials": {
         "magiestoff": 2
@@ -15912,14 +16156,15 @@
         "templateId": "craft-schneider-arkan-kappe-iii"
       },
       "xp": 32,
-      "trainerCost": 600,
-      "description": "Stellt her: Arkan Kappe III."
+      "description": "Stellt her: Arkan Kappe III.",
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "rare"
     },
     {
       "id": "recipe-schneider-leinen-robe-iii",
       "name": "Leinen Robe III",
       "profession": "schneider",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 55,
       "materials": {
         "leinenstoff": 2
@@ -15929,8 +16174,9 @@
         "templateId": "craft-schneider-leinen-robe-iii"
       },
       "xp": 8,
-      "trainerCost": 20,
-      "description": "Stellt her: Leinen Robe III."
+      "description": "Stellt her: Leinen Robe III.",
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-schneider-woll-marschtritt-iii",
@@ -15953,7 +16199,7 @@
       "id": "recipe-schneider-seiden-haube-iii",
       "name": "Seiden Haube III",
       "profession": "schneider",
-      "source": "trainer",
+      "source": "faction",
       "reqSkill": 217,
       "materials": {
         "seidenstoff": 2
@@ -15963,14 +16209,14 @@
         "templateId": "craft-schneider-seiden-haube-iii"
       },
       "xp": 24,
-      "trainerCost": 250,
-      "description": "Stellt her: Seiden Haube III."
+      "description": "Stellt her: Seiden Haube III.",
+      "factionId": "zirkel_der_sterne"
     },
     {
       "id": "recipe-schneider-arkan-mantel-iii",
       "name": "Arkan Mantel III",
       "profession": "schneider",
-      "source": "trainer",
+      "source": "faction",
       "reqSkill": 254,
       "materials": {
         "magiestoff": 2
@@ -15980,14 +16226,14 @@
         "templateId": "craft-schneider-arkan-mantel-iii"
       },
       "xp": 32,
-      "trainerCost": 600,
-      "description": "Stellt her: Arkan Mantel III."
+      "description": "Stellt her: Arkan Mantel III.",
+      "factionId": "zirkel_der_sterne"
     },
     {
       "id": "recipe-schneider-leinen-stiefel-iii",
       "name": "Leinen Stiefel III",
       "profession": "schneider",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 63,
       "materials": {
         "leinenstoff": 2
@@ -15997,8 +16243,9 @@
         "templateId": "craft-schneider-leinen-stiefel-iii"
       },
       "xp": 8,
-      "trainerCost": 20,
-      "description": "Stellt her: Leinen Stiefel III."
+      "description": "Stellt her: Leinen Stiefel III.",
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-lederverarbeiter-leichtleder-kappe-ii",
@@ -16038,7 +16285,7 @@
       "id": "recipe-lederverarbeiter-schwerleder-marschtritt-ii",
       "name": "Schwerleder Marschtritt II",
       "profession": "lederverarbeiter",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 197,
       "materials": {
         "schweresleder": 2
@@ -16048,8 +16295,9 @@
         "templateId": "craft-lederverarbeiter-schwerleder-marschtritt-ii"
       },
       "xp": 24,
-      "trainerCost": 250,
-      "description": "Stellt her: Schwerleder Marschtritt II."
+      "description": "Stellt her: Schwerleder Marschtritt II.",
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-lederverarbeiter-bestien-haube-ii",
@@ -16089,7 +16337,7 @@
       "id": "recipe-lederverarbeiter-mittelleder-stiefel-ii",
       "name": "Mittelleder Stiefel II",
       "profession": "lederverarbeiter",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 129,
       "materials": {
         "mittleresleder": 2
@@ -16099,14 +16347,15 @@
         "templateId": "craft-lederverarbeiter-mittelleder-stiefel-ii"
       },
       "xp": 16,
-      "trainerCost": 80,
-      "description": "Stellt her: Mittelleder Stiefel II."
+      "description": "Stellt her: Mittelleder Stiefel II.",
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-lederverarbeiter-schwerleder-helm-ii",
       "name": "Schwerleder Helm II",
       "profession": "lederverarbeiter",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 197,
       "materials": {
         "schweresleder": 2
@@ -16116,14 +16365,15 @@
         "templateId": "craft-lederverarbeiter-schwerleder-helm-ii"
       },
       "xp": 24,
-      "trainerCost": 250,
-      "description": "Stellt her: Schwerleder Helm II."
+      "description": "Stellt her: Schwerleder Helm II.",
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-lederverarbeiter-bestien-platte-ii",
       "name": "Bestien Platte II",
       "profession": "lederverarbeiter",
-      "source": "trainer",
+      "source": "faction",
       "reqSkill": 238,
       "materials": {
         "dickesleder": 2
@@ -16133,8 +16383,8 @@
         "templateId": "craft-lederverarbeiter-bestien-platte-ii"
       },
       "xp": 32,
-      "trainerCost": 600,
-      "description": "Stellt her: Bestien Platte II."
+      "description": "Stellt her: Bestien Platte II.",
+      "factionId": "pakt_der_wildnis"
     },
     {
       "id": "recipe-lederverarbeiter-leichtleder-treter-ii",
@@ -16174,7 +16424,7 @@
       "id": "recipe-lederverarbeiter-schwerleder-panzer-ii",
       "name": "Schwerleder Panzer II",
       "profession": "lederverarbeiter",
-      "source": "trainer",
+      "source": "faction",
       "reqSkill": 179,
       "materials": {
         "schweresleder": 2
@@ -16184,14 +16434,14 @@
         "templateId": "craft-lederverarbeiter-schwerleder-panzer-ii"
       },
       "xp": 24,
-      "trainerCost": 250,
-      "description": "Stellt her: Schwerleder Panzer II."
+      "description": "Stellt her: Schwerleder Panzer II.",
+      "factionId": "pakt_der_wildnis"
     },
     {
       "id": "recipe-lederverarbeiter-bestien-schuhe-ii",
       "name": "Bestien Schuhe II",
       "profession": "lederverarbeiter",
-      "source": "trainer",
+      "source": "faction",
       "reqSkill": 286,
       "materials": {
         "dickesleder": 2
@@ -16201,14 +16451,14 @@
         "templateId": "craft-lederverarbeiter-bestien-schuhe-ii"
       },
       "xp": 32,
-      "trainerCost": 600,
-      "description": "Stellt her: Bestien Schuhe II."
+      "description": "Stellt her: Bestien Schuhe II.",
+      "factionId": "bund_der_schatten"
     },
     {
       "id": "recipe-lederverarbeiter-leichtleder-schleier-iii",
       "name": "Leichtleder Schleier III",
       "profession": "lederverarbeiter",
-      "source": "trainer",
+      "source": "faction",
       "reqSkill": 62,
       "materials": {
         "leichtesleder": 2
@@ -16218,14 +16468,14 @@
         "templateId": "craft-lederverarbeiter-leichtleder-schleier-iii"
       },
       "xp": 8,
-      "trainerCost": 20,
-      "description": "Stellt her: Leichtleder Schleier III."
+      "description": "Stellt her: Leichtleder Schleier III.",
+      "factionId": "bund_der_schatten"
     },
     {
       "id": "recipe-lederverarbeiter-mittelleder-wams-iii",
       "name": "Mittelleder Wams III",
       "profession": "lederverarbeiter",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 87,
       "materials": {
         "mittleresleder": 2
@@ -16235,8 +16485,9 @@
         "templateId": "craft-lederverarbeiter-mittelleder-wams-iii"
       },
       "xp": 16,
-      "trainerCost": 80,
-      "description": "Stellt her: Mittelleder Wams III."
+      "description": "Stellt her: Mittelleder Wams III.",
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
     },
     {
       "id": "recipe-lederverarbeiter-schwerleder-sandalen-iii",
@@ -16259,7 +16510,7 @@
       "id": "recipe-lederverarbeiter-bestien-kappe-iii",
       "name": "Bestien Kappe III",
       "profession": "lederverarbeiter",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 251,
       "materials": {
         "dickesleder": 2
@@ -16269,8 +16520,9 @@
         "templateId": "craft-lederverarbeiter-bestien-kappe-iii"
       },
       "xp": 32,
-      "trainerCost": 600,
-      "description": "Stellt her: Bestien Kappe III."
+      "description": "Stellt her: Bestien Kappe III.",
+      "dropChance": 0.08,
+      "dropMinQuestRarity": "rare"
     },
     {
       "id": "recipe-lederverarbeiter-leichtleder-robe-iii",
@@ -16293,7 +16545,7 @@
       "id": "recipe-lederverarbeiter-mittelleder-marschtritt-iii",
       "name": "Mittelleder Marschtritt III",
       "profession": "lederverarbeiter",
-      "source": "trainer",
+      "source": "faction",
       "reqSkill": 84,
       "materials": {
         "mittleresleder": 2
@@ -16303,8 +16555,8 @@
         "templateId": "craft-lederverarbeiter-mittelleder-marschtritt-iii"
       },
       "xp": 16,
-      "trainerCost": 80,
-      "description": "Stellt her: Mittelleder Marschtritt III."
+      "description": "Stellt her: Mittelleder Marschtritt III.",
+      "factionId": "orden_der_klinge"
     },
     {
       "id": "recipe-lederverarbeiter-schwerleder-haube-iii",
@@ -16344,7 +16596,7 @@
       "id": "recipe-lederverarbeiter-leichtleder-stiefel-iii",
       "name": "Leichtleder Stiefel III",
       "profession": "lederverarbeiter",
-      "source": "trainer",
+      "source": "drop",
       "reqSkill": 64,
       "materials": {
         "leichtesleder": 2
@@ -16354,8 +16606,219 @@
         "templateId": "craft-lederverarbeiter-leichtleder-stiefel-iii"
       },
       "xp": 8,
-      "trainerCost": 20,
-      "description": "Stellt her: Leichtleder Stiefel III."
+      "description": "Stellt her: Leichtleder Stiefel III.",
+      "dropChance": 0.1,
+      "dropMinQuestRarity": "uncommon"
+    },
+    {
+      "id": "recipe-schmied-abgrundstahl-brustplatte",
+      "name": "Abgrundstahl-Brustplatte",
+      "profession": "schmied",
+      "source": "drop",
+      "dropSource": "dungeon",
+      "reqSkill": 240,
+      "materials": {
+        "drachenstahl": 4,
+        "drachenkern": 2,
+        "aetherkern": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-abgrundstahl-brustplatte"
+      },
+      "xp": 32,
+      "description": "Schmiedet: Abgrundstahl-Brustplatte. Technisch gesehen unhöflich, praktisch gesehen unaufhaltsam.",
+      "dropChance": 0.06,
+      "dropMinQuestRarity": "epic"
+    },
+    {
+      "id": "recipe-schmied-riss-geschmiedete-beinschienen",
+      "name": "Rissgeschmiedete Beinschienen",
+      "profession": "schmied",
+      "source": "drop",
+      "dropSource": "rift",
+      "reqSkill": 265,
+      "materials": {
+        "drachenstahl": 5,
+        "aetherkern": 2,
+        "drachenkern": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schmied-riss-geschmiedete-beinschienen"
+      },
+      "xp": 38,
+      "description": "Schmiedet: Rissgeschmiedete Beinschienen. Knarzen diskret bei jedem Schritt. Streng genommen ein Feature.",
+      "dropChance": 0.04,
+      "dropMinQuestRarity": "epic"
+    },
+    {
+      "id": "recipe-schneider-schattengewebe-robe",
+      "name": "Schattengewebe-Robe",
+      "profession": "schneider",
+      "source": "drop",
+      "dropSource": "dungeon",
+      "reqSkill": 235,
+      "materials": {
+        "seidenstoff": 5,
+        "mondblume": 2,
+        "aetherkern": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schneider-schattengewebe-robe"
+      },
+      "xp": 30,
+      "description": "Webt: Schattengewebe-Robe. Der Stoff hat sich freiwillig gemeldet. Angeblich.",
+      "dropChance": 0.06,
+      "dropMinQuestRarity": "epic"
+    },
+    {
+      "id": "recipe-schneider-rissgewebte-kapuze",
+      "name": "Rissgewebte Kapuze",
+      "profession": "schneider",
+      "source": "drop",
+      "dropSource": "rift",
+      "reqSkill": 260,
+      "materials": {
+        "seidenstoff": 4,
+        "aetherkern": 2,
+        "runenstein": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-schneider-rissgewebte-kapuze"
+      },
+      "xp": 36,
+      "description": "Webt: Rissgewebte Kapuze. Vibriert leicht. Vor Aufregung, sagt der Schneider. Er lügt.",
+      "dropChance": 0.04,
+      "dropMinQuestRarity": "epic"
+    },
+    {
+      "id": "recipe-leder-gruft-geschnittene-armschienen",
+      "name": "Gruftgeschnittene Armschienen",
+      "profession": "lederverarbeiter",
+      "source": "drop",
+      "dropSource": "dungeon",
+      "reqSkill": 230,
+      "materials": {
+        "gehaertetesleder": 4,
+        "drachenschuppe": 2,
+        "kristallsplitter": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-gruft-geschnittene-armschienen"
+      },
+      "xp": 30,
+      "description": "Gerbt: Gruftgeschnittene Armschienen. Die Gerber schweigen über die Herkunft. Die Armschienen auch.",
+      "dropChance": 0.06,
+      "dropMinQuestRarity": "epic"
+    },
+    {
+      "id": "recipe-leder-risslaeufer-stiefel",
+      "name": "Rissläufer-Stiefel",
+      "profession": "lederverarbeiter",
+      "source": "drop",
+      "dropSource": "rift",
+      "reqSkill": 270,
+      "materials": {
+        "gehaertetesleder": 5,
+        "aetherkern": 2,
+        "drachenkern": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-leder-risslaeufer-stiefel"
+      },
+      "xp": 38,
+      "description": "Gerbt: Rissläufer-Stiefel. Hervorragende Traktion auf instabiler Realität. Auch gut auf Kopfsteinpflaster.",
+      "dropChance": 0.04,
+      "dropMinQuestRarity": "epic"
+    },
+    {
+      "id": "recipe-waffenschmied-untiefen-klinge",
+      "name": "Untiefen-Klinge",
+      "profession": "waffenschmied",
+      "source": "drop",
+      "dropSource": "dungeon",
+      "reqSkill": 245,
+      "materials": {
+        "drachenstahl": 4,
+        "drachenkern": 2,
+        "kristallsplitter": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-untiefen-klinge"
+      },
+      "xp": 33,
+      "description": "Schmiedet: Untiefen-Klinge. Summt leise vor sich hin. Ob das charmant oder besorgniserregend ist, hängt vom Kontext ab.",
+      "dropChance": 0.06,
+      "dropMinQuestRarity": "epic"
+    },
+    {
+      "id": "recipe-waffenschmied-rissbrecher-schild",
+      "name": "Rissbrecher-Schild",
+      "profession": "waffenschmied",
+      "source": "drop",
+      "dropSource": "rift",
+      "reqSkill": 255,
+      "materials": {
+        "drachenstahl": 5,
+        "aetherkern": 2,
+        "drachenschuppe": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-waffenschmied-rissbrecher-schild"
+      },
+      "xp": 36,
+      "description": "Schmiedet: Rissbrecher-Schild. Schützt vor den meisten Dingen. Auch vor einigen, von denen man nichts wusste.",
+      "dropChance": 0.04,
+      "dropMinQuestRarity": "epic"
+    },
+    {
+      "id": "recipe-juwelier-abgrund-amulett",
+      "name": "Abgrund-Amulett",
+      "profession": "juwelier",
+      "source": "drop",
+      "dropSource": "dungeon",
+      "reqSkill": 225,
+      "materials": {
+        "runenstein": 3,
+        "kristallsplitter": 3,
+        "aetherkern": 1
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-juwelier-abgrund-amulett"
+      },
+      "xp": 30,
+      "description": "Fasst: Abgrund-Amulett. Leuchtet ständig. Im Dunkeln, im Hellen, beim Schlafen. Der Juwelier trinkt seitdem mehr.",
+      "dropChance": 0.06,
+      "dropMinQuestRarity": "epic"
+    },
+    {
+      "id": "recipe-juwelier-riss-signet",
+      "name": "Riss-Signet",
+      "profession": "juwelier",
+      "source": "drop",
+      "dropSource": "rift",
+      "reqSkill": 260,
+      "materials": {
+        "runenstein": 4,
+        "aetherkern": 2,
+        "kristallsplitter": 2
+      },
+      "result": {
+        "type": "craft_gear",
+        "templateId": "craft-juwelier-riss-signet"
+      },
+      "xp": 36,
+      "description": "Fasst: Riss-Signet. Passt an jeden Finger. Entscheidet aber selbst, an welchen.",
+      "dropChance": 0.04,
+      "dropMinQuestRarity": "epic"
     }
   ]
 }

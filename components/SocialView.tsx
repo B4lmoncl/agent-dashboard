@@ -5,7 +5,9 @@ import { useDashboard } from "@/app/DashboardContext";
 import { getAuthHeaders } from "@/lib/auth-client";
 import { Tip, TipCustom } from "@/components/GameTooltip";
 import { formatLegendaryLabel } from "@/app/utils";
+import { RARITY_COLORS } from "@/app/constants";
 import PlayerProfileModal from "@/components/PlayerProfileModal";
+import type { RewardCelebrationData } from "@/components/RewardCelebration";
 import type {
   FriendInfo, FriendRequest, Conversation, SocialMessage,
   Trade, TradeOffer, ActivityEvent,
@@ -37,7 +39,6 @@ function PlayerBadge({ name, avatar, color, size = 24 }: { name: string; avatar:
 
 const ONLINE_COLORS: Record<string, string> = { online: "#22c55e", idle: "#eab308", offline: "#555" };
 const ONLINE_LABELS: Record<string, string> = { online: "Online", idle: "Idle", offline: "Offline" };
-const RARITY_COLORS: Record<string, string> = { legendary: "#f97316", epic: "#a855f7", rare: "#3b82f6", uncommon: "#22c55e", common: "#9ca3af" };
 const RARITY_SORT: Record<string, number> = { legendary: 0, epic: 1, rare: 2, uncommon: 3, common: 4 };
 const SLOT_SORT: Record<string, number> = { weapon: 0, shield: 1, helm: 2, armor: 3, amulet: 4, boots: 5 };
 type TradeSortKey = "rarity" | "name" | "slot";
@@ -46,7 +47,7 @@ function OnlineDot({ status, lastActiveAt }: { status: string; lastActiveAt?: st
   const label = status === "offline" && lastActiveAt ? `${timeAgo(lastActiveAt)}` : ONLINE_LABELS[status] || "Offline";
   return (
     <span className="inline-flex items-center gap-1">
-      <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: ONLINE_COLORS[status] || "#555", boxShadow: status === "online" ? "0 0 6px #22c55e" : "none" }} />
+      <span className={`w-2 h-2 rounded-full flex-shrink-0${status === "online" ? " online-pulse" : ""}`} style={{ background: ONLINE_COLORS[status] || "#555", boxShadow: status === "online" ? "0 0 6px #22c55e" : "none" }} />
       <span className="text-xs" style={{ color: ONLINE_COLORS[status] || "#555" }}>{label}</span>
     </span>
   );
@@ -540,9 +541,11 @@ function TradeOfferDisplay({ offer, label, color }: { offer: TradeOffer; label: 
       <p className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color }}>{label}</p>
       {offer.gold > 0 && (
         <div className="flex items-center gap-1.5 mb-1.5">
-          <span className="text-xs px-2 py-0.5 rounded" style={{ background: "rgba(245,158,11,0.12)", color: "#f59e0b" }}>
-            {offer.gold} Gold
-          </span>
+          <Tip k="gold">
+            <span className="text-xs px-2 py-0.5 rounded" style={{ background: "rgba(245,158,11,0.12)", color: "#f59e0b", cursor: "help" }}>
+              {offer.gold} Gold
+            </span>
+          </Tip>
         </div>
       )}
       {offer.items.length > 0 ? (
@@ -700,13 +703,14 @@ function TradeItemGrid({ items, selectedIds, onToggle, sortKey, onSortChange }: 
   );
 }
 
-function TradesTab({ apiKey, playerName }: { apiKey: string; playerName: string }) {
+function TradesTab({ apiKey, playerName, onRewardCelebration }: { apiKey: string; playerName: string; onRewardCelebration?: (data: RewardCelebrationData) => void }) {
   const { users, loggedInUser } = useDashboard();
   const [trades, setTrades] = useState<Trade[]>([]);
   const [selectedTrade, setSelectedTrade] = useState<Trade | null>(null);
   const [loading, setLoading] = useState(true);
   const [actionLoading, setActionLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [successMsg, setSuccessMsg] = useState<string | null>(null);
 
   // New trade form
   const [showNewTrade, setShowNewTrade] = useState(false);
@@ -786,6 +790,15 @@ function TradesTab({ apiKey, playerName }: { apiKey: string; playerName: string 
       });
       const d = await r.json();
       if (!r.ok) { setError(d.error || "Something went wrong. Please try again."); setActionLoading(false); return; }
+      if (action === "accept" && d.executed && onRewardCelebration) {
+        onRewardCelebration({
+          type: "daily-bonus" as const,
+          title: "Trade Complete",
+          xpEarned: 0,
+          goldEarned: d.trade?.recipientOffer?.gold || d.trade?.initiatorOffer?.gold || 0,
+          loot: d.summary ? { name: d.summary, emoji: "", rarity: "rare" } : null,
+        });
+      }
       fetchTrades();
       setSelectedTrade(null);
     } catch { setError("Network error"); }
@@ -871,7 +884,7 @@ function TradesTab({ apiKey, playerName }: { apiKey: string; playerName: string 
               <p className="text-xs font-semibold uppercase tracking-wider text-w35 mb-3">Counter-Offer</p>
               <div className="flex gap-3 mb-3">
                 <div className="flex-1">
-                  <label className="text-xs text-w25 block mb-1">Your gold offer</label>
+                  <Tip k="gold"><label className="text-xs text-w25 block mb-1" style={{ cursor: "help" }}>Your gold offer</label></Tip>
                   <input
                     type="number"
                     min={0}
@@ -989,7 +1002,9 @@ function TradesTab({ apiKey, playerName }: { apiKey: string; playerName: string 
         </button>
       ) : (
         <div className="rounded-xl p-4 space-y-3" style={{ background: "rgba(168,85,247,0.04)", border: "1px solid rgba(168,85,247,0.15)" }}>
-          <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: "#a855f7" }}>New Trade Proposal</p>
+          <TipCustom title="Handelsangebot" icon="◈" accent="#a855f7" body={<p>Biete Gold und Gegenst&auml;nde an. Der Handelspartner kann annehmen, ablehnen oder ein Gegenangebot machen.</p>}>
+            <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: "#a855f7", cursor: "help" }}>New Trade Proposal</p>
+          </TipCustom>
           <input
             value={newTradeTarget}
             onChange={e => setNewTradeTarget(e.target.value)}
@@ -997,7 +1012,7 @@ function TradesTab({ apiKey, playerName }: { apiKey: string; playerName: string 
             className="input-dark w-full text-xs px-3 py-2 rounded-lg"
           />
           <div>
-            <label className="text-xs text-w25 block mb-1">Gold to offer</label>
+            <Tip k="gold"><label className="text-xs text-w25 block mb-1" style={{ cursor: "help" }}>Gold to offer</label></Tip>
             <input
               type="number"
               min={0}
@@ -1411,7 +1426,7 @@ function MailTab({ apiKey, playerName }: { apiKey: string; playerName: string })
             style={{ background: "rgba(0,0,0,0.3)", border: "1px solid rgba(255,255,255,0.08)", color: "#e8e8e8", scrollbarWidth: "thin" }}
           />
           <div className="flex items-center gap-3">
-            <label className="text-xs text-w40">Gold:</label>
+            <Tip k="gold"><label className="text-xs text-w40" style={{ cursor: "help" }}>Gold:</label></Tip>
             <input
               type="number"
               min={0}
@@ -1473,7 +1488,7 @@ function MailTab({ apiKey, playerName }: { apiKey: string; playerName: string })
                       <div className="rounded-lg px-3 py-2" style={{ background: "rgba(245,158,11,0.06)", border: "1px solid rgba(245,158,11,0.15)" }}>
                         <p className="text-xs font-semibold mb-1" style={{ color: "rgba(245,158,11,0.6)" }}>Attachments</p>
                         <div className="flex items-center gap-2 flex-wrap">
-                          {mail.gold > 0 && <span className="text-xs font-semibold" style={{ color: "#f59e0b" }}>{mail.gold} Gold</span>}
+                          {mail.gold > 0 && <Tip k="gold"><span className="text-xs font-semibold" style={{ color: "#f59e0b", cursor: "help" }}>{mail.gold} Gold</span></Tip>}
                           {mail.items.map(item => (
                             <span key={item.id} className="text-xs font-semibold" style={{ color: RARITY_COLORS[item.rarity] || "#888" }}>{item.name}</span>
                           ))}
@@ -1531,7 +1546,7 @@ function MailTab({ apiKey, playerName }: { apiKey: string; playerName: string })
 
 // ─── Main SocialView ────────────────────────────────────────────────────────
 
-export default function SocialView({ onNavigate, onNavigateToAchievement }: { onNavigate?: (view: string) => void; onNavigateToAchievement?: (achievementId: string) => void } = {}) {
+export default function SocialView({ onNavigate, onNavigateToAchievement, onRewardCelebration }: { onNavigate?: (view: string) => void; onNavigateToAchievement?: (achievementId: string) => void; onRewardCelebration?: (data: RewardCelebrationData) => void } = {}) {
   const { playerName, reviewApiKey } = useDashboard();
   const [activeTab, setActiveTab] = useState<SocialTab>("friends");
   const [profilePlayerId, setProfilePlayerId] = useState<string | null>(null);
@@ -1581,7 +1596,7 @@ export default function SocialView({ onNavigate, onNavigateToAchievement }: { on
       <div key={activeTab} className="tab-content-enter">
         {activeTab === "friends" && <FriendsTab apiKey={reviewApiKey} playerName={playerName} onOpenProfile={id => setProfilePlayerId(id)} />}
         {activeTab === "messages" && <MessagesTab apiKey={reviewApiKey} playerName={playerName} autoOpenWith={pendingMessageTarget} onAutoOpened={() => setPendingMessageTarget(null)} />}
-        {activeTab === "trades" && <TradesTab apiKey={reviewApiKey} playerName={playerName} />}
+        {activeTab === "trades" && <TradesTab apiKey={reviewApiKey} playerName={playerName} onRewardCelebration={onRewardCelebration} />}
         {activeTab === "activity" && <ActivityFeedTab apiKey={reviewApiKey} playerName={playerName} onNavigate={onNavigate} onNavigateToAchievement={onNavigateToAchievement} />}
         {activeTab === "mail" && <MailTab apiKey={reviewApiKey} playerName={playerName} />}
       </div>

@@ -454,6 +454,7 @@ export interface GearInstance {
   affixRolls?: { primary: { stat: string; value: number }[]; minor: { stat: string; value: number }[] };
   binding?: "boe" | "bop" | null;
   bound?: boolean;
+  sockets?: (string | null)[];
 }
 
 export interface CharacterData {
@@ -483,6 +484,7 @@ export interface CharacterData {
   gearScore?: { gearScore: number; itemLevels: Record<string, number> };
   equippedTitle?: { id: string; name: string; rarity: string; description?: string } | null;
   earnedTitleCount?: number;
+  statBreakdown?: Record<string, { source: string; value: number; type: string }[]>;
   relationshipStatus?: string;
   partnerName?: string | null;
 }
@@ -691,34 +693,6 @@ export interface DungeonTemplate {
     title: string;
     frame: { id: string; name: string; color: string; glow: boolean };
   };
-}
-
-export interface DungeonParticipant {
-  name: string;
-  avatar: string;
-  color: string;
-  gearScore: number;
-  bondLevel: number;
-}
-
-export interface DungeonRun {
-  runId: string;
-  dungeonId: string;
-  dungeonName: string;
-  dungeonIcon: string;
-  dungeonAccent: string;
-  tier: string;
-  createdBy: string;
-  createdAt: string;
-  status: "forming" | "active";
-  participants: DungeonParticipant[];
-  invitedPlayers: { name: string; avatar: string; color: string }[];
-  startedAt: string | null;
-  completesAt: string | null;
-  collected: string[];
-  minPlayers: number;
-  maxPlayers: number;
-  gearScoreThreshold: number;
 }
 
 export interface DungeonHistory {

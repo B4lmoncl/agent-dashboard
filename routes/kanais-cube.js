@@ -1,5 +1,5 @@
 /**
- * Kanai's Cube Routes — Legendary Effect Extraction (Diablo 3 Style)
+ * Ätherwürfel Routes — Legendary Effect Extraction (Legendary Effect Extraction)
  * Extract legendary effects from items, store in library, equip 1 per slot category.
  */
 const router = require('express').Router();

@@ -280,7 +280,7 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
           if (rw.runensplitter) currencies.push({ name: "Runensplitter", amount: rw.runensplitter, color: "#a78bfa" });
           if (rw.sternentaler) currencies.push({ name: "Sternentaler", amount: rw.sternentaler, color: "#fbbf24" });
           const loot = d.uniqueDrop
-            ? { name: d.uniqueDrop.name, emoji: "🏰", rarity: "legendary", rarityColor: "#ff8c00" }
+            ? { name: d.uniqueDrop.name, emoji: "◆", rarity: "legendary", rarityColor: "#ff8c00" }
             : rw.gearDropItem
               ? { name: rw.gearDropItem.name, emoji: "⚔️", rarity: rw.gearDropItem.rarity || "rare" }
               : undefined;
@@ -303,7 +303,7 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
   if (!playerName || !reviewApiKey) {
     return (
       <div className="rounded-xl px-6 py-12 text-center" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
-        <p className="text-2xl mb-2">🏰</p>
+        <p className="text-2xl mb-2">◆</p>
         <p className="text-sm font-bold mb-1 text-w25">The Undercroft</p>
         <p className="text-xs text-w15">Log in to enter the dungeons.</p>
       </div>
@@ -313,7 +313,7 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
   if (loading) return (
     <div className="space-y-3 tab-content-enter" style={{ minHeight: 400 }}>
       <div className="skeleton-card h-20" />
-      <div className="grid grid-cols-3 gap-3">{[1,2,3].map(i => <div key={i} className="skeleton-card h-48" />)}</div>
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">{[1,2,3].map(i => <div key={i} className="skeleton-card h-48" />)}</div>
     </div>
   );
 
@@ -321,10 +321,25 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
   const maxInvites = selectedDungeonData ? selectedDungeonData.maxPlayers - 1 : 3;
 
   return (
-    <div className="space-y-5 tab-content-enter">
+    <div className="space-y-5 tab-content-enter relative">
+      {/* Dust motes in torchlight */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {Array.from({ length: 5 }, (_, i) => (
+          <div key={`dust-mote-${i}`} className="absolute rounded-full" style={{
+            width: 2 + (i % 2),
+            height: 2 + (i % 2),
+            left: `${12 + (i * 18) % 70}%`,
+            top: `${20 + (i * 21) % 55}%`,
+            background: i % 2 === 0 ? "rgba(251,191,36,0.5)" : "rgba(217,170,78,0.45)",
+            boxShadow: `0 0 ${3 + i % 2}px ${i % 2 === 0 ? "rgba(251,191,36,0.35)" : "rgba(217,170,78,0.3)"}`,
+            animation: `ember-float ${4 + (i % 3) * 0.9}s ease-in-out ${i * 0.8}s infinite`,
+            opacity: 0,
+          }} />
+        ))}
+      </div>
       {/* Header */}
       <div className="flex items-center gap-3">
-        <span className="text-2xl">🏰</span>
+        <span className="text-2xl">◆</span>
         <div>
           <Tip k="dungeons" heading><h2 className="text-sm font-bold uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.5)", cursor: "help" }}>The Undercroft</h2></Tip>
           <p className="text-xs text-w25">Cooperative group dungeons. Invite friends, wait 8 hours, and collect rewards based on your combined power.</p>
@@ -447,7 +462,7 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
             <div className="text-right">
               {activeRun.status === "active" && activeRun.completesAt && (
                 <>
-                  <p className="text-sm font-mono font-bold" style={{
+                  <p className={`text-sm font-mono font-bold${new Date(activeRun.completesAt).getTime() - Date.now() <= 0 ? " bar-pulse" : ""}`} style={{
                     color: new Date(activeRun.completesAt).getTime() - Date.now() <= 0 ? "#22c55e" : activeRun.dungeonAccent,
                   }}>
                     {timeLeft(new Date(activeRun.completesAt).getTime() - Date.now())}
@@ -650,10 +665,11 @@ export default function DungeonView({ onRefresh, onRewardCelebration, onNavigate
             const onCd = d.cooldown.onCooldown;
             const canEnter = !locked && !onCd;
             return (
-              <div key={d.id} className="rounded-xl p-4 space-y-3" style={{
+              <div key={d.id} className={`rounded-xl p-4 space-y-3${!locked ? " crystal-breathe" : ""}`} style={{
                 background: locked ? "rgba(255,255,255,0.02)" : `${d.accent}06`,
                 border: `1px solid ${locked ? "rgba(255,255,255,0.05)" : `${d.accent}25`}`,
                 opacity: locked ? 0.5 : 1,
+                ...(!locked ? { ["--glow-color" as string]: `${d.accent}25` } : {}),
               }}>
                 <div className="text-center">
                   <span className="text-2xl">{d.icon}</span>

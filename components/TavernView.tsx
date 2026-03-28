@@ -128,15 +128,32 @@ export default function TavernView({ onRefresh }: { onRefresh?: () => void }) {
   );
 
   return (
-    <div className="space-y-5 tab-content-enter">
+    <div className="space-y-5 tab-content-enter relative">
+      {/* Ember particles — warm fireplace ambiance */}
+      {[0,1,2,3,4,5,6,7].map(i => (
+        <span
+          key={`ember-${i}`}
+          className="absolute pointer-events-none"
+          style={{
+            left: `${12 + i * 11}%`,
+            bottom: `${10 + (i % 3) * 8}%`,
+            width: `${2 + (i % 3)}px`,
+            height: `${2 + (i % 3)}px`,
+            borderRadius: "50%",
+            background: i % 2 === 0 ? "#d97706" : "#f59e0b",
+            opacity: 0,
+            animation: `ember-float ${3.5 + (i % 4) * 0.7}s ease-in-out ${i * 0.6}s infinite`,
+          }}
+        />
+      ))}
       {/* Header */}
       <div className="text-center space-y-2">
         <p className="text-3xl">🔥</p>
         <Tip k="hearth" heading><h2 className="text-lg font-bold" style={{ color: "#d97706", cursor: "help" }}>The Hearth</h2></Tip>
-        <p className="text-xs text-w35" style={{ maxWidth: 400, margin: "0 auto" }}>
+        <p className="text-xs text-w35" style={{ maxWidth: "min(400px, 100%)", margin: "0 auto" }}>
           A place of rest within the tower. Here, weary adventurers can pause their journey without losing their progress. Your streaks and forge temperature will be frozen while you rest.
         </p>
-        <p className="text-xs italic" style={{ color: "rgba(217,119,6,0.35)", maxWidth: 400, margin: "4px auto 0" }}>Selbst Helden brauchen eine Pause. Die Halle versteht das.</p>
+        <p className="text-xs italic" style={{ color: "rgba(217,119,6,0.35)", maxWidth: "min(400px, 100%)", margin: "4px auto 0" }}>Selbst Helden brauchen eine Pause. Die Halle versteht das.</p>
       </div>
 
       {/* Status messages */}

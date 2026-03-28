@@ -1,0 +1,168 @@
+"use client";
+
+import { useState, useEffect, useCallback } from "react";
+import { getAuthHeaders } from "@/lib/auth-client";
+import { TipCustom } from "@/components/GameTooltip";
+
+interface CodexEntry {
+  id: string;
+  category: string;
+  title: string;
+  text: string | null;
+  discovered: boolean;
+}
+
+interface CodexCategory {
+  id: string;
+  name: string;
+  color: string;
+}
+
+export default function CodexView() {
+  const [categories, setCategories] = useState<CodexCategory[]>([]);
+  const [entries, setEntries] = useState<CodexEntry[]>([]);
+  const [discoveredCount, setDiscoveredCount] = useState(0);
+  const [totalCount, setTotalCount] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [activeCat, setActiveCat] = useState("all");
+
+  const fetchCodex = useCallback(async () => {
+    try {
+      const r = await fetch("/api/codex", { headers: getAuthHeaders() });
+      if (r.ok) {
+        const data = await r.json();
+        setCategories(data.categories || []);
+        setEntries(data.entries || []);
+        setDiscoveredCount(data.discoveredCount || 0);
+        setTotalCount(data.totalCount || 0);
+      }
+    } catch { /* ignore */ }
+    setLoading(false);
+  }, []);
+
+  useEffect(() => { fetchCodex(); }, [fetchCodex]);
+
+  const filtered = activeCat === "all" ? entries : entries.filter(e => e.category === activeCat);
+  const discoveredFiltered = filtered.filter(e => e.discovered);
+  const undiscoveredFiltered = filtered.filter(e => !e.discovered);
+
+  if (loading) return <div className="text-xs text-center py-16 text-w20">Loading codex...</div>;
+
+  return (
+    <div className="tab-content-enter space-y-4 relative">
+      {/* Ambient lore dust particles */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {Array.from({ length: 5 }, (_, i) => (
+          <div key={`lore-dust-${i}`} className="absolute rounded-full" style={{
+            width: 2 + (i % 2),
+            height: 2 + (i % 2),
+            left: `${12 + (i * 19) % 70}%`,
+            top: `${15 + (i * 23) % 60}%`,
+            background: i % 2 === 0 ? "rgba(147,197,253,0.6)" : "rgba(196,181,253,0.5)",
+            boxShadow: `0 0 ${3 + i % 2}px ${i % 2 === 0 ? "rgba(147,197,253,0.4)" : "rgba(196,181,253,0.35)"}`,
+            animation: `ember-float ${3.5 + (i % 3) * 0.8}s ease-in-out ${i * 0.7}s infinite`,
+            opacity: 0,
+          }} />
+        ))}
+      </div>
+      {/* Header */}
+      <div className="flex items-center justify-between">
+        <TipCustom title="Living Codex" icon="📜" accent="#fbbf24" heading body={<p>Sammlung aller entdeckten Lore-Eintr&auml;ge. Neue Eintr&auml;ge werden durch Quests, Events und Erkundung freigeschaltet.</p>}>
+          <h2 className="text-xs font-semibold uppercase tracking-widest" style={{ color: "#fbbf24" }}>Living Codex</h2>
+        </TipCustom>
+        <TipCustom title="Fortschritt" icon="◆" accent="#fbbf24" body={<p>Anteil der entdeckten Lore-Eintr&auml;ge. Neue Eintr&auml;ge werden durch Quests, NPCs und besondere Events freigeschaltet.</p>}>
+          <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.25)", cursor: "help" }}>
+            {discoveredCount}/{totalCount} discovered
+          </span>
+        </TipCustom>
+      </div>
+
+      {/* Progress bar */}
+      <div className="rounded-full overflow-hidden" style={{ height: 3, background: "rgba(255,255,255,0.06)" }}>
+        <div className="h-full rounded-full" style={{ width: `${totalCount > 0 ? (discoveredCount / totalCount) * 100 : 0}%`, background: "linear-gradient(90deg, #ca8a04, #fbbf24)", transition: "width 0.5s" }} />
+      </div>
+
+      {/* Category filter */}
+      <div className="flex gap-1 flex-wrap">
+        <button
+          onClick={() => setActiveCat("all")}
+          className="text-xs px-2.5 py-1 rounded-lg"
+          style={{
+            background: activeCat === "all" ? "rgba(251,191,36,0.15)" : "rgba(255,255,255,0.03)",
+            color: activeCat === "all" ? "#fbbf24" : "rgba(255,255,255,0.3)",
+            border: `1px solid ${activeCat === "all" ? "rgba(251,191,36,0.3)" : "rgba(255,255,255,0.06)"}`,
+            cursor: "pointer",
+          }}
+        >All ({entries.filter(e => e.discovered).length})</button>
+        {categories.map(cat => {
+          const catCount = entries.filter(e => e.category === cat.id && e.discovered).length;
+          const catTotal = entries.filter(e => e.category === cat.id).length;
+          return (
+            <button
+              key={cat.id}
+              onClick={() => setActiveCat(cat.id)}
+              className="text-xs px-2.5 py-1 rounded-lg"
+              style={{
+                background: activeCat === cat.id ? `${cat.color}15` : "rgba(255,255,255,0.03)",
+                color: activeCat === cat.id ? cat.color : "rgba(255,255,255,0.3)",
+                border: `1px solid ${activeCat === cat.id ? `${cat.color}30` : "rgba(255,255,255,0.06)"}`,
+                cursor: "pointer",
+              }}
+            >
+              <TipCustom title={cat.name} icon="◆" accent={cat.color} body={<p>Lore-Kategorie mit {catTotal} Eintr&auml;gen. {catCount} davon entdeckt.</p>}>
+                <span>{cat.name} ({catCount}/{catTotal})</span>
+              </TipCustom>
+            </button>
+          );
+        })}
+      </div>
+
+      {/* Discovered entries */}
+      <div className="space-y-2">
+        {discoveredFiltered.map(entry => {
+          const cat = categories.find(c => c.id === entry.category);
+          return (
+            <div
+              key={entry.id}
+              className="rounded-lg px-4 py-3 crystal-breathe"
+              style={{
+                background: "rgba(255,255,255,0.03)",
+                border: `1px solid ${cat ? `${cat.color}15` : "rgba(251,191,36,0.12)"}`,
+                borderLeft: `3px solid ${cat?.color || "#fbbf24"}`,
+                ["--glow-color" as string]: `${cat?.color || "#818cf8"}40`,
+              }}
+            >
+              <div className="flex items-center gap-2 mb-1">
+                <p className="text-sm font-semibold" style={{ color: cat?.color || "#fbbf24" }}>{entry.title}</p>
+                {cat && <span className="text-xs" style={{ color: "rgba(255,255,255,0.15)" }}>{cat.name}</span>}
+              </div>
+              {entry.text && (
+                <p className="text-xs leading-relaxed italic" style={{ color: "rgba(255,255,255,0.45)" }}>
+                  &ldquo;{entry.text}&rdquo;
+                </p>
+              )}
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Undiscovered entries */}
+      {undiscoveredFiltered.length > 0 && (
+        <div className="space-y-1 pt-2" style={{ borderTop: "1px solid rgba(255,255,255,0.04)" }}>
+          <TipCustom title="Unentdeckt" icon="?" accent="#6b7280" body={<p>Noch nicht freigeschaltete Eintr&auml;ge. Schlie&szlig;e Quests ab und erkunde die Welt, um sie zu entdecken.</p>}>
+            <p className="text-xs font-semibold mb-2" style={{ color: "rgba(255,255,255,0.15)", cursor: "help" }}>
+              Undiscovered ({undiscoveredFiltered.length})
+            </p>
+          </TipCustom>
+          <div className="grid gap-1" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(120px, 1fr))" }}>
+            {undiscoveredFiltered.map(entry => (
+              <div key={entry.id} className="rounded-lg px-3 py-2 text-center crystal-breathe" style={{ background: "rgba(255,255,255,0.01)", border: "1px solid rgba(255,255,255,0.04)", ["--glow-color" as string]: "rgba(107,114,128,0.15)" }}>
+                <p className="text-xs" style={{ color: "rgba(255,255,255,0.12)" }}>???</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}

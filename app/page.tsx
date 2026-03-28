@@ -21,6 +21,7 @@ const FactionsView = lazy(() => import("@/components/FactionsView"));
 const BattlePassView = lazy(() => import("@/components/BattlePassView"));
 const WorldBossView = lazy(() => import("@/components/WorldBossView"));
 const DungeonView = lazy(() => import("@/components/DungeonView"));
+const CodexView = lazy(() => import("@/components/CodexView"));
 import TodayDrawer from "@/components/TodayDrawer";
 const PlayerProfileModal = lazy(() => import("@/components/PlayerProfileModal"));
 import { GuideModal, GuideContent, TutorialOverlay, TUTORIAL_STEPS } from "@/components/TutorialModal";
@@ -140,10 +141,10 @@ export default function Dashboard() {
   });
   // selectedIds, bulkLoading, reviewComments moved to useQuestActions hook
   const [typeFilter, setTypeFilter] = useState<string>("all");
-  const [dashViewRaw, setDashViewRaw] = useState<"questBoard" | "npcBoard" | "klassenquests" | "character" | "campaign" | "leaderboard" | "honors" | "season" | "shop" | "forge" | "gacha" | "roadmap" | "changelog" | "challenges" | "rituals" | "vows" | "social" | "tavern" | "rift" | "factions" | "worldboss" | "dungeons">(() => {
+  const [dashViewRaw, setDashViewRaw] = useState<"questBoard" | "npcBoard" | "klassenquests" | "character" | "campaign" | "leaderboard" | "honors" | "season" | "shop" | "forge" | "gacha" | "roadmap" | "changelog" | "challenges" | "rituals" | "vows" | "social" | "tavern" | "rift" | "factions" | "worldboss" | "dungeons" | "codex">(() => {
     if (typeof window !== "undefined") {
       const saved = localStorage.getItem("dash_view");
-      if (saved) return saved as "questBoard" | "npcBoard" | "klassenquests" | "character" | "campaign" | "leaderboard" | "honors" | "season" | "shop" | "forge" | "gacha" | "roadmap" | "changelog" | "challenges" | "rituals" | "vows" | "social" | "tavern" | "rift" | "factions" | "worldboss" | "dungeons";
+      if (saved) return saved as "questBoard" | "npcBoard" | "klassenquests" | "character" | "campaign" | "leaderboard" | "honors" | "season" | "shop" | "forge" | "gacha" | "roadmap" | "changelog" | "challenges" | "rituals" | "vows" | "social" | "tavern" | "rift" | "factions" | "worldboss" | "dungeons" | "codex";
     }
     return "questBoard";
   });
@@ -245,6 +246,47 @@ export default function Dashboard() {
     }
   }, []);
   useModalBehavior(!!rewardCelebration, closeRewardCelebration);
+
+  // ─── Universal level-up trigger: fires for ANY XP source (quests, sternenpfad, BP, rituals, etc.) ───
+  // NOTE: loggedInUser is defined later (line ~714) so we use users + playerName directly here
+  const prevLevelRef = useRef<number>(0);
+  const playerXpForLevelWatch = useMemo(() => {
+    if (!playerName) return 0;
+    const pn = (playerName || "").toLowerCase();
+    const u = users.find(usr => usr.id.toLowerCase() === pn || usr.name.toLowerCase() === pn);
+    return u?.xp ?? 0;
+  }, [users, playerName]);
+  useEffect(() => {
+    if (!playerXpForLevelWatch) return;
+    const lvlInfo = getUserLevel(playerXpForLevelWatch);
+    const currentLevel = lvlInfo.level;
+    const currentTitle = lvlInfo.title;
+    if (prevLevelRef.current > 0 && currentLevel > prevLevelRef.current) {
+      const lu = pendingLevelUpRef.current || { level: currentLevel, title: currentTitle };
+      pendingLevelUpRef.current = null;
+      if (rewardCelebration) {
+        pendingLevelUpRef.current = lu;
+      } else if (!levelUpCelebration) {
+        setTimeout(() => { setLevelUpCelebration(lu); SFX.levelUp(); }, 300);
+      }
+    }
+    prevLevelRef.current = currentLevel;
+  }, [playerXpForLevelWatch]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // ─── Backup trigger #2: force-show level-up if pending > 10s (user didn't close reward popup) ───
+  useEffect(() => {
+    if (!pendingLevelUpRef.current) return;
+    const timer = setTimeout(() => {
+      if (pendingLevelUpRef.current && !levelUpCelebration) {
+        const lu = pendingLevelUpRef.current;
+        pendingLevelUpRef.current = null;
+        setRewardCelebration(null); // close reward popup if still open
+        setTimeout(() => { setLevelUpCelebration(lu); SFX.levelUp(); }, 100);
+      }
+    }, 10000);
+    return () => clearTimeout(timer);
+  }, [rewardCelebration]); // eslint-disable-line react-hooks/exhaustive-deps
+
   const [changelog, setChangelog] = useState<ChangelogEntry[]>([]);
   const [changelogLoading, setChangelogLoading] = useState(false);
   // poolRefreshing moved to useQuestActions hook
@@ -657,6 +699,7 @@ export default function Dashboard() {
   const playerNameLower = useMemo(() => (playerName || "").toLowerCase(), [playerName]);
   const loggedInUser = useMemo(() => playerName ? users.find(u => u.id.toLowerCase() === playerNameLower || u.name.toLowerCase() === playerNameLower) : null, [playerName, playerNameLower, users]);
   const currentPlayerLevel = useMemo(() => loggedInUser ? getUserLevel(loggedInUser.xp ?? 0).level : undefined, [loggedInUser]);
+  const currentFloorColor = useMemo(() => (FLOORS.find(f => f.id === activeFloor) || FLOORS[1]).color, [activeFloor]);
   useEffect(() => { playerLevelRef.current = currentPlayerLevel ?? 1; }, [currentPlayerLevel]);
 
   // Validate current view is accessible at player's level — fallback to questBoard if locked
@@ -800,7 +843,7 @@ export default function Dashboard() {
         </div>
       )}
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 py-8 space-y-8" style={{ position: "relative", zIndex: 2, background: "rgba(11,13,17,0.75)", borderRadius: 16, backdropFilter: "blur(8px)", marginTop: 8 }}>
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 py-4 sm:py-8 space-y-4 sm:space-y-8" style={{ position: "relative", zIndex: 2, background: "rgba(11,13,17,0.75)", borderRadius: 16, backdropFilter: "blur(8px)", marginTop: 8, "--floor-color": `${currentFloorColor}30` } as React.CSSProperties}>
         {/* Stats — Player-specific */}
         <div className="grid grid-cols-1 sm:grid-cols-4 gap-3" data-tutorial="stat-cards">
           {!playerName && !loading && (
@@ -1166,15 +1209,22 @@ export default function Dashboard() {
         {(() => {
           const currentFloor = FLOORS.find(f => f.id === activeFloor) || FLOORS[1];
           const visibleRooms = currentFloor.rooms.filter(r => (!r.requiresLogin || playerName) && (!r.minLevel || (currentPlayerLevel ?? 1) >= r.minLevel));
+          // Track which rooms the player has visited (for "NEW" unlock badges)
+          const seenRoomsKey = `qh_seen_rooms_${playerName}`;
+          const getSeenRooms = (): Set<string> => { try { return new Set(JSON.parse(localStorage.getItem(seenRoomsKey) || "[]")); } catch { return new Set(); } };
+          const markRoomSeen = (key: string) => { try { const s = getSeenRooms(); s.add(key); localStorage.setItem(seenRoomsKey, JSON.stringify([...s])); } catch { /* ignore */ } };
+          const seenRooms = getSeenRooms();
           // Notification dots per room
           const socialTotal = socialBadge ? (socialBadge.pendingFriendRequests + socialBadge.unreadMessages + socialBadge.activeTrades) : 0;
-          const getRoomNotif = (key: string): { color: string; count?: number } | null => {
-            if (dashView === key) return null;
+          const getRoomNotif = (key: string): { color: string; count?: number; isNew?: boolean } | null => {
+            if (dashView === key) { markRoomSeen(key); return null; }
             // Don't show notifications for level-locked rooms
             const roomFloor = getFloorForRoom(key);
             if (roomFloor?.minLevel && (currentPlayerLevel ?? 1) < roomFloor.minLevel) return null;
             const roomDef = roomFloor?.rooms.find(r => r.key === key);
             if (roomDef?.minLevel && (currentPlayerLevel ?? 1) < roomDef.minLevel) return null;
+            // "NEW" badge for recently unlocked rooms the player hasn't visited yet
+            if (roomDef?.minLevel && roomDef.minLevel > 1 && !seenRooms.has(key)) return { color: "#fbbf24", isNew: true };
             if (key === "questBoard" && notifNewQuests) return { color: "#4ade80" };
             if (key === "npcBoard" && notifNewNpcs) return { color: "#f59e0b" };
             if (key === "social" && socialTotal > 0) return { color: "#a855f7", count: socialTotal };
@@ -1185,6 +1235,7 @@ export default function Dashboard() {
           // Check if a floor has any notification
           const floorHasNotif = (floor: Floor) => floor.rooms.some(r => getRoomNotif(r.key) !== null);
           const floorNotifCount = (floor: Floor) => floor.rooms.reduce((sum, r) => sum + (getRoomNotif(r.key)?.count || 0), 0);
+          const floorHasNew = (floor: Floor) => floor.rooms.some(r => { const n = getRoomNotif(r.key); return n && (n as { isNew?: boolean }).isNew; });
 
           return (
             <div data-tutorial="nav-bar" className="space-y-0">
@@ -1205,7 +1256,7 @@ export default function Dashboard() {
                           setDashView(floorRoomKeys[0] as typeof dashView);
                         }
                       }}
-                      className="btn-interactive text-sm font-bold px-4 py-2 rounded-t-lg transition-all inline-flex items-center gap-1.5 relative"
+                      className="btn-interactive text-sm font-bold px-2 sm:px-4 py-2 rounded-t-lg transition-all inline-flex items-center gap-1.5 relative"
                       style={{
                         background: isActive ? "#111" : "transparent",
                         color: isActive ? floor.color : "rgba(255,255,255,0.3)",
@@ -1216,8 +1267,10 @@ export default function Dashboard() {
                       <span style={{ fontSize: 14 }}>{floor.icon}</span>
                       <span className="hidden sm:inline">{floor.name}</span>
                       {(() => {
-                        const fc = !isActive ? floorNotifCount(floor) : 0;
+                        if (isActive) return null;
+                        const fc = floorNotifCount(floor);
                         if (fc > 0) return <span className="absolute -top-1 -right-1 min-w-[16px] h-4 rounded-full flex items-center justify-center text-xs font-bold badge-enter" style={{ background: "#ef4444", color: "#fff", fontSize: 12, padding: "0 4px", boxShadow: "0 0 6px rgba(239,68,68,0.4)" }}>{fc}</span>;
+                        if (floorHasNew(floor)) return <span className="absolute -top-1.5 -right-2.5 new-unlock-badge badge-enter">NEW</span>;
                         if (hasNotif) return <span className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full badge-enter" style={{ background: "#4ade80", boxShadow: "0 0 4px #4ade80" }} />;
                         return null;
                       })()}
@@ -1328,7 +1381,7 @@ export default function Dashboard() {
                       key={room.key}
                       data-feedback-id={`nav.tab.${room.key}`}
                       onClick={() => setDashView(room.key as typeof dashView)}
-                      className="btn-interactive text-sm font-semibold px-3 py-1.5 rounded transition-all inline-flex items-center gap-1.5 relative"
+                      className="btn-interactive text-sm font-semibold px-2 sm:px-3 py-1.5 rounded transition-all inline-flex items-center gap-1.5 relative"
                       style={{
                         background: isActive ? "#252525" : "transparent",
                         color: isActive ? "#f0f0f0" : "rgba(255,255,255,0.3)",
@@ -1337,7 +1390,9 @@ export default function Dashboard() {
                     >
                       {room.iconSrc && <img src={room.iconSrc} alt="" width={24} height={24} className={`${room.key === "gacha" ? "vault-nav-glow" : ""} img-render-auto`} style={{ opacity: isActive ? 1 : 0.5 }} onError={e => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} />}
                       {seasonLabel}
-                      {notifDot && (notifDot.count && notifDot.count > 0
+                      {notifDot && ((notifDot as { isNew?: boolean }).isNew
+                        ? <span className="absolute -top-1.5 -right-2.5 new-unlock-badge badge-enter">NEW</span>
+                        : notifDot.count && notifDot.count > 0
                         ? <span className="absolute -top-1 -right-1.5 min-w-[16px] h-4 rounded-full flex items-center justify-center text-xs font-bold" style={{ background: notifDot.color, color: "#000", fontSize: 12, lineHeight: 1, padding: "0 3px", boxShadow: `0 0 4px ${notifDot.color}` }}>{notifDot.count}</span>
                         : <span className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full" style={{ background: notifDot.color, boxShadow: `0 0 4px ${notifDot.color}` }} />
                       )}
@@ -1626,14 +1681,25 @@ export default function Dashboard() {
                                         });
                                         if (r.ok) {
                                           const data = await r.json();
-                                          const rewardText = Object.entries(data.reward || ms.reward).map(([k, v]) => `+${v} ${k[0].toUpperCase() + k.slice(1)}`).join(", ");
-                                          addToast({ type: "flavor", message: `Milestone ${ms.threshold} claimed! ${rewardText}`, icon: "/images/icons/currency-gold.png" });
+                                          const reward = data.reward || ms.reward;
+                                          const currencies: { name: string; amount: number; color: string }[] = [];
+                                          if (reward.gold) currencies.push({ name: "Gold", amount: reward.gold, color: "#fbbf24" });
+                                          if (reward.essenz) currencies.push({ name: "Essenz", amount: reward.essenz, color: "#ef4444" });
+                                          if (reward.runensplitter) currencies.push({ name: "Runensplitter", amount: reward.runensplitter, color: "#818cf8" });
+                                          if (reward.sternentaler) currencies.push({ name: "Sternentaler", amount: reward.sternentaler, color: "#fbbf24" });
+                                          setRewardCelebration({
+                                            type: "daily-bonus",
+                                            title: `${ms.threshold} Milestone Claimed!`,
+                                            xpEarned: 0,
+                                            goldEarned: 0,
+                                            currencies,
+                                          });
                                           refresh();
                                         }
                                       } catch { /* ignore */ }
                                     }}
-                                    className="btn-interactive text-xs px-1.5 py-0.5 rounded font-bold badge-enter"
-                                    style={{ background: "rgba(74,222,128,0.15)", color: "#4ade80", border: "1px solid rgba(74,222,128,0.3)" }}
+                                    className="btn-interactive text-xs px-1.5 py-0.5 rounded font-bold milestone-pulse"
+                                    style={{ background: "rgba(251,191,36,0.15)", color: "#fbbf24", border: "1px solid rgba(251,191,36,0.4)" }}
                                     title={Object.entries(ms.reward).map(([k, v]) => `+${v} ${k}`).join(", ")}
                                   >
                                     {ms.threshold}
@@ -1826,6 +1892,11 @@ export default function Dashboard() {
         })()}
 
         {/* ── KLASSENQUESTS TAB ── */}
+        {/* ── CODEX TAB ── */}
+        {dashView === "codex" && playerName && (
+          <ErrorBoundary><Suspense fallback={<ViewFallback />}><CodexView /></Suspense></ErrorBoundary>
+        )}
+
         {dashView === "klassenquests" && (
           <div>
             <div className="flex items-center gap-2 mb-4">
@@ -1858,7 +1929,7 @@ export default function Dashboard() {
 
         {/* ── THE BREAKAWAY (Social & Trade) ── */}
         {dashView === "social" && (
-          <ErrorBoundary><Suspense fallback={<ViewFallback />}><SocialView onNavigate={(v) => setDashView(v as typeof dashView)} onNavigateToAchievement={navigateToAchievement} /></Suspense></ErrorBoundary>
+          <ErrorBoundary><Suspense fallback={<ViewFallback />}><SocialView onNavigate={(v) => setDashView(v as typeof dashView)} onNavigateToAchievement={navigateToAchievement} onRewardCelebration={setRewardCelebration} /></Suspense></ErrorBoundary>
         )}
 
         {/* ── THE HEARTH (Tavern / Rest Mode) ── */}
@@ -2552,7 +2623,7 @@ export default function Dashboard() {
             <div className="px-5 py-4 space-y-1.5 max-h-[60vh] overflow-y-auto" style={{ scrollbarWidth: "thin" }}>
               <p className="text-xs font-semibold uppercase tracking-wider mb-1" style={{ color: "rgba(255,255,255,0.25)" }}>New Systems</p>
               <div className="flex items-start gap-2"><span style={{ color: "#22c55e" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Mail System — send gold and items to other players</p></div>
-              <div className="flex items-start gap-2"><span style={{ color: "#22c55e" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Kanai&apos;s Cube — extract and equip legendary effects permanently</p></div>
+              <div className="flex items-start gap-2"><span style={{ color: "#22c55e" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Ätherwürfel — extract and equip legendary effects permanently</p></div>
               <div className="flex items-start gap-2"><span style={{ color: "#22c55e" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Mythic+ Affixes — 10 weekly rotating modifiers starting at M+2</p></div>
               <div className="flex items-start gap-2"><span style={{ color: "#22c55e" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>BoP/BoE Binding — Bind on Pickup and Bind on Equip across 1,074 items</p></div>
               <div className="flex items-start gap-2"><span style={{ color: "#22c55e" }}>+</span><p className="text-xs" style={{ color: "rgba(255,255,255,0.6)" }}>Enchant Vellums — tradeable enchant scrolls crafted by Verzauberer</p></div>
