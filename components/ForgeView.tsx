@@ -300,7 +300,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
     const tick = () => {
       const elapsed = Date.now() - craftProgress.startTime;
       const remaining = Math.max(0, CRAFT_CAST_MS - elapsed) / 1000;
-      setCastCountdown(remaining.toFixed(1));
+      setCastCountdown(remaining > 0.05 ? remaining.toFixed(1) : null);
       if (remaining > 0) rafId = requestAnimationFrame(tick);
     };
     rafId = requestAnimationFrame(tick);
@@ -1128,31 +1128,11 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                     style={{ color: "rgba(255,68,68,0.5)", border: "1px solid rgba(255,68,68,0.15)" }}
                     title={`Drop ${selectedNpc.name} (free, but resets all progress permanently)`}
                   >
-                    Drop
+                    Unlearn
                   </button>
                 )}
               </div>
-              {/* Materials available for this profession */}
-              {(() => {
-                const profMats = profMaterialIds[selectedNpc.id];
-                const mats = profMats ? materialDefs.filter(m => profMats.has(m.id)) : [];
-                if (mats.length === 0) return null;
-                return (
-                  <div className="mt-3">
-                    <p className="text-xs mb-1.5" style={{ color: "rgba(255,255,255,0.25)" }}>Your materials <span style={{ color: "rgba(255,255,255,0.15)" }}>(earned from quest completions)</span></p>
-                    <div className="flex flex-wrap gap-2">
-                      {mats.map(m => (
-                        <TipCustom key={m.id} title={m.name} icon="🧱" accent={RARITY_COLORS[m.rarity] || "#888"} body={<><p>{m.desc || m.name}</p><p style={{ marginTop: 4, opacity: 0.7 }}>{RARITY_LABELS[m.rarity] || m.rarity} material — drops from {m.rarity} quests</p></>}>
-                        <span className="text-sm flex items-center gap-1.5 px-2 py-1 rounded cursor-help" style={{ background: "rgba(255,255,255,0.04)", color: materials[m.id] ? RARITY_COLORS[m.rarity] : "rgba(255,255,255,0.15)" }}>
-                          <img src={m.icon} alt="" width={16} height={16} style={{ imageRendering: "auto" }} onError={hideOnError} />
-                          {m.name} <strong className="font-mono">x{materials[m.id] || 0}</strong>
-                        </span>
-                        </TipCustom>
-                      ))}
-                    </div>
-                  </div>
-                );
-              })()}
+              {/* Materials moved to Material Storage section — no longer duplicated here */}
             </div>
 
             {/* Tab bar */}
@@ -1204,9 +1184,9 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                   );
                 })()}
                 {/* Slot selector for Schmied/Verzauberer */}
-                {selectedNpc.id === "verzauberer" && (
+                {selectedNpc.id === "verzauberer" && (npcModalTab as string) === "enchanting" && (
                   <div className="px-5 py-3" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
-                    <p className="text-xs font-semibold uppercase tracking-widest mb-2" style={{ color: "rgba(255,255,255,0.25)" }}>Target Slot</p>
+                    <p className="text-xs font-semibold uppercase tracking-widest mb-2" style={{ color: "rgba(255,255,255,0.25)" }}>Enchantment Target</p>
                     <div className="flex flex-wrap gap-1.5">
                       {Object.entries(SLOT_LABELS).map(([slot, label]) => {
                         const hasGear = !!(equippedSlots[slot] && typeof equippedSlots[slot] === "object");
@@ -1283,6 +1263,11 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                     >
                       Show Craftable
                     </button>
+                    <span className="text-xs" style={{ color: "rgba(255,255,255,0.15)" }}>
+                      <span style={{ color: "#22c55e" }}>●</span> ready
+                      <span style={{ color: "#f59e0b" }}> ◐</span> mats
+                      <span style={{ color: "rgba(255,255,255,0.15)" }}> ○</span> locked
+                    </span>
                   </div>
                   {recipes.filter(r => r.profession === selectedNpc.id).filter(recipe => {
                     // Search filter
@@ -1485,7 +1470,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                   {/* Empty state when filter shows no results */}
                   {showCraftableOnly && recipes.filter(r => r.profession === selectedNpc.id).filter(r => !(r as unknown as Record<string, unknown>).hidden && r.learned !== false && r.canCraft && (r.cooldownRemaining ?? 0) <= 0).length === 0 && (
                     <p className="text-xs text-center py-4" style={{ color: "rgba(255,255,255,0.2)" }}>
-                      No craftable recipes right now. Check material stock or raise your profession skill.
+                      No craftable recipes. Possible reasons: not enough materials, skill too low, recipes on cooldown, or no gear equipped for slot-targeted recipes. Try dismantling gear for materials or completing quests.
                     </p>
                   )}
                 </div>

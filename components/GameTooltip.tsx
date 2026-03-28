@@ -209,7 +209,7 @@ const TOOLTIP_REGISTRY: Record<string, TooltipEntry> = {
     title: "Essenz",
     icon: "🔴",
     accent: "#ef4444",
-    body: <p>Crafting currency. Earned from item dismantling and quest drops. Used for crafting recipes, profession switching (200 Essenz), and Workshop Tools.</p>,
+    body: <p>Crafting currency. Earned by <strong>dismantling gear</strong> at the Schmied (Salvage tab) and from daily login rewards. Used for enchanting rerolls, Ätherwürfel extraction, and recipe learning.</p>,
   },
   sternentaler: {
     title: "Sternentaler",
