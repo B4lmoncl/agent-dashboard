@@ -1472,10 +1472,10 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
             const { kraft, ausdauer, weisheit, glueck, fokus, vitalitaet, charisma, tempo } = charData.stats;
             const base = charData.baseStats;
             const statRows = [
-              { icon: "/images/icons/stat-kraft.png", label: "Kraft", iconSrc: "/images/icons/stat-kraft.png",    val: kraft,    base: base.kraft,    tooltip: "KRA · +0.5% Quest XP per point (max +30%)" },
-              { icon: "/images/icons/stat-ausdauer.png", label: "Ausdauer", iconSrc: "/images/icons/stat-ausdauer.png", val: ausdauer, base: base.ausdauer, tooltip: "AUS · -0.5% Forge Decay per point" },
-              { icon: "/images/icons/stat-weisheit.png", label: "Weisheit", iconSrc: "/images/icons/stat-weisheit.png", val: weisheit, base: base.weisheit, tooltip: "WEI · +0.5% Gold per point (max +30%)" },
-              { icon: "/images/icons/stat-glueck.png", label: "Glück", iconSrc: "/images/icons/stat-glueck.png",    val: glueck,   base: base.glueck,   tooltip: "GLÜ · +0.5% Drop Chance per point (max 20%)" },
+              { icon: "/images/icons/stat-kraft.png", label: "Kraft", iconSrc: "/images/icons/stat-kraft.png",    val: kraft,    base: base.kraft,    tooltip: "KRA · Quest XP bonus (diminishing returns)" },
+              { icon: "/images/icons/stat-ausdauer.png", label: "Ausdauer", iconSrc: "/images/icons/stat-ausdauer.png", val: ausdauer, base: base.ausdauer, tooltip: "AUS · Forge Decay reduction (diminishing)" },
+              { icon: "/images/icons/stat-weisheit.png", label: "Weisheit", iconSrc: "/images/icons/stat-weisheit.png", val: weisheit, base: base.weisheit, tooltip: "WEI · Gold bonus (diminishing returns)" },
+              { icon: "/images/icons/stat-glueck.png", label: "Glück", iconSrc: "/images/icons/stat-glueck.png",    val: glueck,   base: base.glueck,   tooltip: "GLÜ · Drop Chance bonus (diminishing returns)" },
             ];
             const minorStatRows = [
               { label: "Fokus", val: fokus || 0, tooltip: "FOK · +1 Flat Bonus XP per point (max +50)" },
@@ -1527,6 +1527,23 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                       );
                     })}
                   </div>
+                )}
+
+                {/* Gear Score — prominent, right after stats */}
+                {charData.gearScore && charData.gearScore.gearScore > 0 && (
+                  <Tip k="gear_score">
+                  <div className="cursor-help mb-3 px-2 py-2 rounded-lg" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
+                    <div className="flex items-center justify-between mb-1">
+                      <span className="text-xs font-semibold" style={{ color: "rgba(255,255,255,0.4)" }}>Gear Score</span>
+                      <span className="text-sm font-mono font-bold" style={{ color: charData.gearScore.gearScore >= 400 ? "#f97316" : charData.gearScore.gearScore >= 200 ? "#fbbf24" : charData.gearScore.gearScore >= 100 ? "#22c55e" : "#9ca3af" }}>
+                        {charData.gearScore.gearScore}
+                      </span>
+                    </div>
+                    <div className="rounded-full overflow-hidden" style={{ height: 3, background: "rgba(255,255,255,0.07)" }}>
+                      <div className="h-full rounded-full" style={{ width: `${Math.min(100, (charData.gearScore.gearScore / 600) * 100)}%`, background: charData.gearScore.gearScore >= 400 ? "linear-gradient(90deg, #ea580c, #f97316)" : charData.gearScore.gearScore >= 200 ? "linear-gradient(90deg, #ca8a04, #fbbf24)" : "linear-gradient(90deg, #166534, #22c55e)" }} />
+                    </div>
+                  </div>
+                  </Tip>
                 )}
 
                 {/* Set Bonus */}
@@ -1878,28 +1895,7 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
                   })(), document.body)}
                 </div>
 
-                {/* Gear Score (prominent, replaces Forge Temp which is shown elsewhere) */}
-                {charData.gearScore && charData.gearScore.gearScore > 0 && (
-                  <Tip k="gear_score">
-                  <div className="cursor-help">
-                    <div className="flex items-center justify-between mb-1">
-                      <span className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>Gear Score</span>
-                      <span className="text-sm font-mono font-bold" style={{ color: charData.gearScore.gearScore >= 400 ? "#f97316" : charData.gearScore.gearScore >= 200 ? "#fbbf24" : charData.gearScore.gearScore >= 100 ? "#22c55e" : "#9ca3af" }}>
-                        {charData.gearScore.gearScore}
-                      </span>
-                    </div>
-                    <div className="rounded-full overflow-hidden" style={{ height: 3, background: "rgba(255,255,255,0.07)" }}>
-                      <div
-                        className="h-full rounded-full"
-                        style={{
-                          width: `${Math.min(100, (charData.gearScore.gearScore / 600) * 100)}%`,
-                          background: charData.gearScore.gearScore >= 400 ? "linear-gradient(90deg, #ea580c, #f97316)" : charData.gearScore.gearScore >= 200 ? "linear-gradient(90deg, #ca8a04, #fbbf24)" : "linear-gradient(90deg, #166534, #22c55e)",
-                        }}
-                      />
-                    </div>
-                  </div>
-                  </Tip>
-                )}
+                {/* Gear Score moved to stats tab — above set bonuses */}
               </>
             );
           })()}
