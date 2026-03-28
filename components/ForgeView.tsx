@@ -183,6 +183,9 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
   const [enchantLoading, setEnchantLoading] = useState(false);
   const [enchantResult, setEnchantResult] = useState<string | null>(null);
   const [skillUpFlash, setSkillUpFlash] = useState(false);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [craftPreview, setCraftPreview] = useState<{ recipeId: string; data: any } | null>(null);
+  const [previewLoading, setPreviewLoading] = useState<string | null>(null);
   // Ätherwürfel state
   const [cubeData, setCubeData] = useState<{
     offensive: { type: string; value: number; label: string } | null;
@@ -360,6 +363,22 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
       document.getElementById("forge-craft-result")?.scrollIntoView({ behavior: "smooth", block: "nearest" });
     });
     setTimeout(() => setCraftResult(null), 5000);
+  };
+
+  const toggleCraftPreview = async (recipeId: string) => {
+    if (craftPreview?.recipeId === recipeId) { setCraftPreview(null); return; }
+    if (previewLoading) return;
+    setPreviewLoading(recipeId);
+    try {
+      const r = await fetch("/api/professions/craft-preview", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", ...getAuthHeaders(reviewApiKey) },
+        body: JSON.stringify({ recipeId, targetSlot: selectedSlot }),
+      });
+      const data = await r.json();
+      if (r.ok) setCraftPreview({ recipeId, data });
+    } catch { /* ignore */ }
+    setPreviewLoading(null);
   };
 
   const handleLearnRecipe = async (recipeId: string) => {
@@ -1484,7 +1503,93 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                               </span>
                             );
                           })()}
+                          {/* Preview toggle for gear craft recipes */}
+                          {recipe.result?.type === "craft_gear" && isLearned && (
+                            <button
+                              onClick={() => toggleCraftPreview(recipe.id)}
+                              className="text-xs px-1.5 py-0.5 rounded"
+                              style={{ color: craftPreview?.recipeId === recipe.id ? selectedNpc.color : "rgba(255,255,255,0.3)", background: craftPreview?.recipeId === recipe.id ? `${selectedNpc.color}15` : "rgba(255,255,255,0.04)", border: `1px solid ${craftPreview?.recipeId === recipe.id ? `${selectedNpc.color}30` : "rgba(255,255,255,0.06)"}`, cursor: "pointer" }}
+                              title="Preview possible craft result"
+                            >
+                              {previewLoading === recipe.id ? "..." : craftPreview?.recipeId === recipe.id ? "Hide" : "Preview"}
+                            </button>
+                          )}
                         </div>
+                        {/* Craft preview panel */}
+                        {craftPreview?.recipeId === recipe.id && craftPreview.data?.gear && (() => {
+                          const g = craftPreview.data.gear;
+                          const sr = g.statRanges;
+                          return (
+                            <div className="mt-2 rounded-lg p-2.5" style={{ background: "rgba(255,255,255,0.02)", border: `1px solid ${(RARITY_COLORS[g.rarity] || "#9ca3af")}25` }}>
+                              <div className="flex items-center gap-2 mb-1.5">
+                                <span className="text-sm font-semibold" style={{ color: RARITY_COLORS[g.rarity] || "#9ca3af" }}>{g.name}</span>
+                                <span className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>{SLOT_LABELS[g.slot] || g.slot}</span>
+                                {g.setId && <span className="text-xs" style={{ color: "#22c55e" }}>Set: {g.setId}</span>}
+                              </div>
+                              {/* Primary stats */}
+                              {sr.primary?.length > 0 && (
+                                <div className="mb-1">
+                                  <span className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>Primary ({sr.primaryCount?.[0]}–{sr.primaryCount?.[1]} stats):</span>
+                                  <div className="flex flex-wrap gap-x-3 gap-y-0.5 mt-0.5">
+                                    {sr.primary.map((a: { stat: string; min: number; max: number }) => (
+                                      <span key={a.stat} className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.5)" }}>
+                                        {a.stat} <span style={{ color: "#e8e8e8" }}>{a.min}–{a.max}</span>
+                                      </span>
+                                    ))}
+                                  </div>
+                                </div>
+                              )}
+                              {/* Minor stats */}
+                              {sr.minor?.length > 0 && (
+                                <div className="mb-1">
+                                  <span className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>Minor ({sr.minorCount?.[0]}–{sr.minorCount?.[1]} stats):</span>
+                                  <div className="flex flex-wrap gap-x-3 gap-y-0.5 mt-0.5">
+                                    {sr.minor.map((a: { stat: string; min: number; max: number }) => (
+                                      <span key={a.stat} className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.5)" }}>
+                                        {a.stat} <span style={{ color: "#e8e8e8" }}>{a.min}–{a.max}</span>
+                                      </span>
+                                    ))}
+                                  </div>
+                                </div>
+                              )}
+                              {/* Fixed stats */}
+                              {g.fixedStats && (
+                                <div className="mb-1">
+                                  <span className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>Fixed stats:</span>
+                                  <div className="flex flex-wrap gap-x-3 gap-y-0.5 mt-0.5">
+                                    {Object.entries(g.fixedStats).map(([stat, val]) => (
+                                      <span key={stat} className="text-xs font-mono" style={{ color: "#e8e8e8" }}>{stat} +{String(val)}</span>
+                                    ))}
+                                  </div>
+                                </div>
+                              )}
+                              {/* Sockets & Legendary */}
+                              <div className="flex flex-wrap gap-3 mt-1">
+                                {g.socketRange && (g.socketRange[0] > 0 || g.socketRange[1] > 0) && (
+                                  <span className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>Sockets: {g.socketRange[0]}–{g.socketRange[1]}</span>
+                                )}
+                                {g.legendaryEffect && (
+                                  <span className="text-xs" style={{ color: "#f97316" }}>
+                                    Legendary: {g.legendaryEffect.type} ({g.legendaryEffect.min}–{g.legendaryEffect.max}%)
+                                  </span>
+                                )}
+                              </div>
+                              {/* Moonlight bonus indicator */}
+                              {craftPreview.data.moonlightActive && (
+                                <div className="mt-1.5 flex items-center gap-1.5">
+                                  <span className="w-1.5 h-1.5 rounded-full" style={{ background: "#93c5fd", boxShadow: "0 0 4px #93c5fd" }} />
+                                  <span className="text-xs" style={{ color: "#93c5fd" }}>Mondlicht-Schmiede active: +{Math.round((craftPreview.data.moonlightBonus || 0) * 100)}% minimum rolls</span>
+                                </div>
+                              )}
+                              {craftPreview.data.mastery && (
+                                <div className="mt-0.5 flex items-center gap-1.5">
+                                  <span className="w-1.5 h-1.5 rounded-full" style={{ background: "#facc15" }} />
+                                  <span className="text-xs" style={{ color: "#facc15" }}>Mastery bonus active</span>
+                                </div>
+                              )}
+                            </div>
+                          );
+                        })()}
                       </div>
                     );
                   })}

@@ -380,7 +380,6 @@ router.post('/api/professions/learn', requireAuth, (req, res) => {
 // ─── POST /api/professions/craft — execute a recipe ─────────────────────────
 router.post('/api/professions/craft', requireAuth, (req, res) => {
   const { recipeId, targetSlot, count: rawCount } = req.body;
-  const count = Math.max(1, Math.min(10, parseInt(rawCount, 10) || 1)); // batch: 1-10
   if (!recipeId) return res.status(400).json({ error: 'recipeId required' });
 
   const uid = req.auth?.userId;
@@ -392,6 +391,11 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
 
   const recipe = PROFESSIONS_DATA.recipes.find(r => r.id === recipeId);
   if (!recipe) return res.status(404).json({ error: 'Recipe not found' });
+
+  // Material recipes (transmute_material, material) get higher batch limit (x50)
+  const isMaterialRecipe = recipe.result?.type === 'transmute_material' || recipe.result?.type === 'material';
+  const maxBatch = isMaterialRecipe ? 50 : 10;
+  const count = Math.max(1, Math.min(maxBatch, parseInt(rawCount, 10) || 1));
 
   // Check profession unlock
   const profDef = PROFESSIONS_DATA.professions.find(p => p.id === recipe.profession);
@@ -935,6 +939,150 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
     nextRankNeeded: newSkill >= skillCap && skillCap < MAX_SKILL ? PROFICIENCY_RANKS.find(r => r.skillCap > skillCap)?.name || null : null,
   });
   } finally { releaseCraftLock(uid); }
+});
+
+// ─── POST /api/professions/craft-preview — preview recipe output ─────────────
+router.post('/api/professions/craft-preview', requireAuth, (req, res) => {
+  const { recipeId, targetSlot } = req.body;
+  if (!recipeId) return res.status(400).json({ error: 'recipeId required' });
+
+  const uid = req.auth?.userId;
+  const u = state.users[uid];
+  if (!u) return res.status(404).json({ error: 'User not found' });
+
+  const recipe = PROFESSIONS_DATA.recipes.find(r => r.id === recipeId);
+  if (!recipe) return res.status(404).json({ error: 'Recipe not found' });
+
+  const profDef = PROFESSIONS_DATA.professions.find(p => p.id === recipe.profession);
+  const moonlightActive = isMoonlightActive();
+  const profProgress = getProfLevel(u, recipe.profession);
+  const masterySkill = PROFESSIONS_DATA.masteryConfig?.unlockSkill || 225;
+  const hasMastery = (profProgress.skill || 0) >= masterySkill;
+  const masteryDef = hasMastery ? profDef?.masteryBonus : null;
+
+  const preview = {
+    recipeId,
+    recipeName: recipe.name,
+    profession: profDef?.name || recipe.profession,
+    moonlightActive,
+    moonlightBonus: moonlightActive ? MOONLIGHT_BONUS : 0,
+    mastery: hasMastery ? (masteryDef?.type || true) : false,
+    cost: { gold: recipe.cost?.gold || 0, materials: recipe.materials || {} },
+    cooldownMinutes: recipe.cooldownMinutes || 0,
+  };
+
+  // Determine output type
+  if (recipe.result?.type === 'craft_gear') {
+    const templateId = recipe.result.templateId;
+    const template = state.gearById.get(templateId) || state.itemTemplates?.get(templateId);
+    if (!template) return res.json({ ...preview, outputType: 'gear', error: 'Template not found' });
+
+    const gemsData = state.gemsData || require('../public/data/gems.json');
+    const socketRange = gemsData.socketsByRarity[template.rarity || 'common'] || [0, 0];
+
+    // Calculate stat ranges (with moonlight)
+    const statRanges = { primary: [], minor: [] };
+    const mlBonus = moonlightActive ? MOONLIGHT_BONUS : 0;
+    if (template.affixes?.primary?.pool) {
+      const [minC, maxC] = template.affixes.primary.count || [1, 1];
+      statRanges.primaryCount = [minC, maxC];
+      for (const affix of template.affixes.primary.pool) {
+        const effectiveMin = mlBonus > 0 ? Math.min(affix.max, affix.min + Math.floor((affix.max - affix.min) * mlBonus)) : affix.min;
+        statRanges.primary.push({ stat: affix.stat, min: effectiveMin, max: affix.max });
+      }
+    }
+    if (template.affixes?.minor?.pool) {
+      const [minC, maxC] = template.affixes.minor.count || [0, 0];
+      statRanges.minorCount = [minC, maxC];
+      for (const affix of template.affixes.minor.pool) {
+        const effectiveMin = mlBonus > 0 ? Math.min(affix.max, affix.min + Math.floor((affix.max - affix.min) * mlBonus)) : affix.min;
+        statRanges.minor.push({ stat: affix.stat, min: effectiveMin, max: affix.max });
+      }
+    }
+
+    preview.outputType = 'gear';
+    preview.gear = {
+      name: template.name,
+      slot: template.slot,
+      rarity: template.rarity || 'common',
+      tier: template.tier || 1,
+      setId: template.setId || null,
+      socketRange,
+      statRanges,
+      legendaryEffect: template.legendaryEffect ? {
+        type: template.legendaryEffect.type,
+        min: template.legendaryEffect.min,
+        max: template.legendaryEffect.max,
+        label: template.legendaryEffect.label || null,
+      } : null,
+      fixedStats: template.fixedStats || null,
+      icon: template.icon || null,
+      desc: template.desc || template.flavorText || '',
+    };
+  } else if (recipe.result?.type === 'transmute_material') {
+    const matDef = PROFESSIONS_DATA.materials?.find(m => m.id === recipe.result.outputMaterial);
+    preview.outputType = 'material';
+    preview.material = { id: recipe.result.outputMaterial, name: matDef?.name || recipe.result.outputMaterial, amount: recipe.result.outputAmount || 1 };
+  } else if (recipe.result?.type === 'buff' || ['potion_xp', 'potion_gold', 'potion_luck', 'potion_streak', 'potion_doubledown'].includes(recipeId)) {
+    const buffDuration = recipe.result?.duration ? parseInt(recipe.result.duration.replace('_quests', '')) : 3;
+    const masteryExtra = masteryDef?.type === 'potion_duration' ? masteryDef.value : 0;
+    preview.outputType = 'buff';
+    preview.buff = { type: recipe.result?.buffType || recipeId, duration: buffDuration + masteryExtra, mastery: masteryExtra > 0 };
+  } else if (recipe.result?.type === 'temp_enchant') {
+    preview.outputType = 'temp_enchant';
+    preview.enchant = {
+      statPool: [...PRIMARY_STATS, ...MINOR_STATS],
+      statRange: recipe.result.statBonus || [1, 2],
+      durationHours: recipe.result.durationHours || 24,
+      mastery: masteryDef?.type === 'enchant_power' ? masteryDef.value : 0,
+    };
+  } else if (recipe.result?.type === 'perm_enchant' || SLOT_RECIPES.includes(recipeId)) {
+    preview.outputType = 'slot_modify';
+    const slotInfo = {};
+    if (recipeId === 'upgrade_rarity') slotInfo.action = 'Rarity upgrade (50% success)';
+    else if (recipeId === 'reinforce_armor') slotInfo.action = 'Reinforce: +3-6 random primary stat';
+    else if (recipeId === 'sharpen_blade') slotInfo.action = 'Sharpen: +1-3 random primary stat';
+    else if (recipeId === 'permanent_enchant') slotInfo.action = 'Permanent enchant: +1-2 random minor stat';
+    else if (recipeId === 'enchant_socket') slotInfo.action = 'Arcane Infusion: +3-5 random primary stat';
+    else if (recipeId === 'enchant_reroll') slotInfo.action = 'Reroll one stat from affix pool';
+    else slotInfo.action = recipe.name;
+    if (targetSlot) {
+      const eq = u.equipment?.[targetSlot];
+      if (eq && typeof eq !== 'string') {
+        slotInfo.targetItem = { name: eq.name, rarity: eq.rarity, slot: targetSlot };
+      }
+    }
+    preview.slotModify = slotInfo;
+  } else if (recipe.result?.type === 'vellum') {
+    preview.outputType = 'vellum';
+    preview.vellum = {
+      statPool: [...PRIMARY_STATS, ...MINOR_STATS],
+      statRange: recipe.result.statBonus || [2, 4],
+      durationHours: recipe.result.durationHours || 24,
+      tradeable: true,
+    };
+  } else if (recipe.result?.type === 'forge_temp') {
+    preview.outputType = 'forge_temp';
+    preview.forgeTemp = { amount: recipe.result.amount || 15 };
+  } else if (recipe.result?.type === 'streak_shield') {
+    preview.outputType = 'streak_shield';
+  } else if (recipeId.startsWith('meal_')) {
+    const masteryExtra = masteryDef?.type === 'meal_duration' ? masteryDef.value : 0;
+    preview.outputType = 'meal';
+    preview.meal = { type: recipe.result?.buffType || recipeId, duration: (recipe.result?.duration || 5) + masteryExtra, mastery: masteryExtra > 0 };
+  } else {
+    preview.outputType = 'unknown';
+  }
+
+  // Enrich material names
+  const materialNames = {};
+  for (const matId of Object.keys(recipe.materials || {})) {
+    const matDef = PROFESSIONS_DATA.materials?.find(m => m.id === matId);
+    materialNames[matId] = matDef?.name || matId;
+  }
+  preview.materialNames = materialNames;
+
+  res.json(preview);
 });
 
 // ─── POST /api/professions/choose — explicitly enroll in a profession ────────
