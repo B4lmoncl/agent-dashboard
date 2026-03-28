@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { getAuthHeaders } from "@/lib/auth-client";
+import { TipCustom } from "@/components/GameTooltip";
 
 interface CodexEntry {
   id: string;
@@ -51,7 +52,9 @@ export default function CodexView() {
     <div className="tab-content-enter space-y-4">
       {/* Header */}
       <div className="flex items-center justify-between">
-        <h2 className="text-xs font-semibold uppercase tracking-widest" style={{ color: "#fbbf24" }}>Living Codex</h2>
+        <TipCustom title="Living Codex" icon="📜" accent="#fbbf24" heading body={<p>Sammlung aller entdeckten Lore-Eintr&auml;ge. Neue Eintr&auml;ge werden durch Quests, Events und Erkundung freigeschaltet.</p>}>
+          <h2 className="text-xs font-semibold uppercase tracking-widest" style={{ color: "#fbbf24" }}>Living Codex</h2>
+        </TipCustom>
         <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.25)" }}>
           {discoveredCount}/{totalCount} discovered
         </span>
@@ -89,7 +92,9 @@ export default function CodexView() {
                 cursor: "pointer",
               }}
             >
-              {cat.name} ({catCount}/{catTotal})
+              <TipCustom title={cat.name} icon="◆" accent={cat.color} body={<p>Lore-Kategorie mit {catTotal} Eintr&auml;gen. {catCount} davon entdeckt.</p>}>
+                <span>{cat.name} ({catCount}/{catTotal})</span>
+              </TipCustom>
             </button>
           );
         })}

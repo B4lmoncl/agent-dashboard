@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { useDashboard } from "@/app/DashboardContext";
 import { getAuthHeaders } from "@/lib/auth-client";
-import { Tip } from "@/components/GameTooltip";
+import { Tip, TipCustom } from "@/components/GameTooltip";
 import type { RewardCelebrationData } from "@/components/RewardCelebration";
 
 // ─── Types ──────────────────────────────────────────────────────────────────
@@ -169,7 +169,7 @@ export default function BattlePassView({ onRewardCelebration, onNavigate }: { on
 
         {/* XP progress */}
         <div className="flex items-center justify-between mb-1">
-          <span className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>Season XP</span>
+          <Tip k="bp_xp_sources"><span className="text-xs" style={{ color: "rgba(255,255,255,0.35)", cursor: "help" }}>Season XP</span></Tip>
           <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.4)" }}>
             {player.xpInLevel} / {player.xpPerLevel}
           </span>
@@ -270,7 +270,11 @@ export default function BattlePassView({ onRewardCelebration, onNavigate }: { on
                 )}
                 <div className="flex-1 min-w-0">
                   <p className="text-xs font-semibold" style={{ color: isReached ? rc.color : "rgba(255,255,255,0.3)" }}>
-                    {r.type === "title" ? r.titleName : r.type === "frame" ? r.frameName : `${r.amount} ${rc.label}`}
+                    {r.type === "title" ? r.titleName : r.type === "frame" ? r.frameName : (
+                      ["gold", "essenz", "runensplitter", "stardust", "sternentaler", "mondstaub"].includes(r.type)
+                        ? <Tip k={r.type}><span style={{ cursor: "help" }}>{r.amount} {rc.label}</span></Tip>
+                        : `${r.amount} ${rc.label}`
+                    )}
                   </p>
                   {r.type === "title" && r.titleRarity && (
                     <p className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>

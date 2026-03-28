@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from "react";
 import { useDashboard } from "@/app/DashboardContext";
 import { getAuthHeaders } from "@/lib/auth-client";
 import { useModalBehavior } from "@/components/ModalPortal";
+import { Tip, TipCustom } from "@/components/GameTooltip";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
@@ -90,7 +91,7 @@ export default function DailyLoginCalendar({ onClose }: { onClose: () => void })
           </div>
           <div className="flex items-center gap-3">
             <div className="text-right">
-              <p className="text-sm font-bold" style={{ color: "#fbbf24" }}>{streakDays} Day Streak</p>
+              <Tip k="streak"><p className="text-sm font-bold" style={{ color: "#fbbf24", cursor: "help" }}>{streakDays} Day Streak</p></Tip>
               <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>{claimedThisMonth}/{daysInMonth} this month</p>
             </div>
             <button onClick={onClose} className="text-xs px-2 py-1 rounded-lg" style={{ color: "rgba(255,255,255,0.4)", cursor: "pointer", background: "rgba(255,255,255,0.04)" }}>ESC</button>
@@ -167,7 +168,9 @@ export default function DailyLoginCalendar({ onClose }: { onClose: () => void })
 
             {/* Milestone Progress */}
             <div className="space-y-1.5 pt-2" style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}>
-              <p className="text-xs font-semibold" style={{ color: "rgba(255,255,255,0.5)" }}>Streak-Meilensteine</p>
+              <TipCustom title="Streak-Meilensteine" icon="🔗" accent="#fbbf24" body={<p>Belohnungen f&uuml;r ununterbrochene Login-Streaks. Je l&auml;nger der Streak, desto besser die Boni.</p>}>
+                <p className="text-xs font-semibold" style={{ color: "rgba(255,255,255,0.5)", cursor: "help" }}>Streak-Meilensteine</p>
+              </TipCustom>
               {MILESTONES.map(m => {
                 const reached = streakDays >= m.days;
                 return (
@@ -178,7 +181,12 @@ export default function DailyLoginCalendar({ onClose }: { onClose: () => void })
                     <span style={{ color: reached ? "#fbbf24" : "rgba(255,255,255,0.3)" }}>
                       {reached ? "✓ " : ""}{m.label}
                     </span>
-                    <span style={{ color: reached ? "#fbbf24" : "rgba(255,255,255,0.2)" }}>{m.reward}</span>
+                    <span style={{ color: reached ? "#fbbf24" : "rgba(255,255,255,0.2)" }}>
+                      {m.reward.split(", ").map((part, i) => {
+                        const tipKey = part.includes("Runensplitter") ? "runensplitter" : part.includes("Essenz") ? "essenz" : null;
+                        return <span key={i}>{i > 0 ? ", " : ""}{tipKey ? <Tip k={tipKey}><span style={{ cursor: "help" }}>{part}</span></Tip> : part}</span>;
+                      })}
+                    </span>
                   </div>
                 );
               })}

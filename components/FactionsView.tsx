@@ -179,7 +179,9 @@ export default function FactionsView({ onRewardCelebration, onNavigate }: { onRe
                   </div>
                   <div className="text-right">
                     <p className="text-xs font-bold" style={{ color: f.standingColor }}>{f.standingName}</p>
-                    <p className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.3)" }}>{f.playerRep} Rep</p>
+                    <TipCustom title="Reputation" icon="◆" accent={f.accent} body={<p>Ruf wird automatisch durch passende Quests verdient (+10-30 je nach Quest-Typ). Weekly Bonus verdoppelt den Ruf-Gewinn.</p>}>
+                      <p className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.3)", cursor: "help" }}>{f.playerRep} Rep</p>
+                    </TipCustom>
                   </div>
                 </div>
 
@@ -188,9 +190,11 @@ export default function FactionsView({ onRewardCelebration, onNavigate }: { onRe
                 {/* Quest types */}
                 <div className="flex gap-1.5 mt-2">
                   {f.questTypes.map(t => (
-                    <span key={t} className="text-xs px-1.5 py-0.5 rounded" style={{ background: `${f.accent}12`, color: `${f.accent}cc`, border: `1px solid ${f.accent}25` }}>
-                      {QUEST_TYPE_LABELS[t] || t}
-                    </span>
+                    <TipCustom key={t} title={QUEST_TYPE_LABELS[t] || t} icon="▣" accent={f.accent} body={<p>Quests vom Typ &quot;{QUEST_TYPE_LABELS[t] || t}&quot; geben Ruf bei {f.name}.</p>}>
+                      <span className="text-xs px-1.5 py-0.5 rounded" style={{ background: `${f.accent}12`, color: `${f.accent}cc`, border: `1px solid ${f.accent}25`, cursor: "help" }}>
+                        {QUEST_TYPE_LABELS[t] || t}
+                      </span>
+                    </TipCustom>
                   ))}
                   {weeklyBonusLeft > 0 && (
                     <TipCustom title="Weekly Bonus" icon="⚡" accent={f.accent} body={<p>Your next {weeklyBonusLeft} quest{weeklyBonusLeft > 1 ? "s" : ""} for this faction grant 2× reputation. Resets weekly.</p>}>
@@ -222,9 +226,11 @@ export default function FactionsView({ onRewardCelebration, onNavigate }: { onRe
                   />
                 </div>
                 {f.nextStanding && (
-                  <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.2)" }}>
-                    {f.nextStanding.minRep - f.playerRep} Rep until {f.nextStanding.name}
-                  </p>
+                  <TipCustom title={f.nextStanding.name} icon="▲" accent={f.nextStanding.color} body={<p>N&auml;chste Stufe bei {f.nextStanding.minRep} Rep. Schaltet neue Belohnungen frei.</p>}>
+                    <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.2)", cursor: "help" }}>
+                      {f.nextStanding.minRep - f.playerRep} Rep until {f.nextStanding.name}
+                    </p>
+                  </TipCustom>
                 )}
               </div>
 
