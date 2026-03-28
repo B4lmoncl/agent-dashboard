@@ -16627,7 +16627,7 @@
         "templateId": "craft-schmied-abgrundstahl-brustplatte"
       },
       "xp": 32,
-      "description": "Schmiedet: Abgrundstahl-Brustplatte. Geschmiedet aus dem Stahl, der nur in den tiefsten Grüften liegt.",
+      "description": "Schmiedet: Abgrundstahl-Brustplatte. Technisch gesehen unhöflich, praktisch gesehen unaufhaltsam.",
       "dropChance": 0.06,
       "dropMinQuestRarity": "epic"
     },
@@ -16648,7 +16648,7 @@
         "templateId": "craft-schmied-riss-geschmiedete-beinschienen"
       },
       "xp": 38,
-      "description": "Schmiedet: Rissgeschmiedete Beinschienen. Der Riss hinterlässt Spuren — in Metall wie in Erinnerung.",
+      "description": "Schmiedet: Rissgeschmiedete Beinschienen. Knarzen diskret bei jedem Schritt. Streng genommen ein Feature.",
       "dropChance": 0.04,
       "dropMinQuestRarity": "epic"
     },
@@ -16669,7 +16669,7 @@
         "templateId": "craft-schneider-schattengewebe-robe"
       },
       "xp": 30,
-      "description": "Webt: Schattengewebe-Robe. Der Stoff flüstert, wenn man ihn berührt — und schweigt, wenn man zuhört.",
+      "description": "Webt: Schattengewebe-Robe. Der Stoff hat sich freiwillig gemeldet. Angeblich.",
       "dropChance": 0.06,
       "dropMinQuestRarity": "epic"
     },
@@ -16690,7 +16690,7 @@
         "templateId": "craft-schneider-rissgewebte-kapuze"
       },
       "xp": 36,
-      "description": "Webt: Rissgewebte Kapuze. Wer durch den Riss blickt, braucht etwas, das den Blick erwidert.",
+      "description": "Webt: Rissgewebte Kapuze. Vibriert leicht. Vor Aufregung, sagt der Schneider. Er lügt.",
       "dropChance": 0.04,
       "dropMinQuestRarity": "epic"
     },
@@ -16711,7 +16711,7 @@
         "templateId": "craft-leder-gruft-geschnittene-armschienen"
       },
       "xp": 30,
-      "description": "Gerbt: Gruftgeschnittene Armschienen. Das Leder stammt von Kreaturen, die das Tageslicht vergessen haben.",
+      "description": "Gerbt: Gruftgeschnittene Armschienen. Die Gerber schweigen über die Herkunft. Die Armschienen auch.",
       "dropChance": 0.06,
       "dropMinQuestRarity": "epic"
     },
@@ -16732,7 +16732,7 @@
         "templateId": "craft-leder-risslaeufer-stiefel"
       },
       "xp": 38,
-      "description": "Gerbt: Rissläufer-Stiefel. Für jene, die durch den Riss gehen — und wiederkommen wollen.",
+      "description": "Gerbt: Rissläufer-Stiefel. Hervorragende Traktion auf instabiler Realität. Auch gut auf Kopfsteinpflaster.",
       "dropChance": 0.04,
       "dropMinQuestRarity": "epic"
     },
@@ -16753,7 +16753,7 @@
         "templateId": "craft-waffenschmied-untiefen-klinge"
       },
       "xp": 33,
-      "description": "Schmiedet: Untiefen-Klinge. Die Klinge summt ein Lied, das nur in der Dunkelheit Sinn ergibt.",
+      "description": "Schmiedet: Untiefen-Klinge. Summt leise vor sich hin. Ob das charmant oder besorgniserregend ist, hängt vom Kontext ab.",
       "dropChance": 0.06,
       "dropMinQuestRarity": "epic"
     },
@@ -16774,7 +16774,7 @@
         "templateId": "craft-waffenschmied-rissbrecher-schild"
       },
       "xp": 36,
-      "description": "Schmiedet: Rissbrecher-Schild. Manche Schilde schützen den Körper. Dieser schützt die Realität.",
+      "description": "Schmiedet: Rissbrecher-Schild. Schützt vor den meisten Dingen. Auch vor einigen, von denen man nichts wusste.",
       "dropChance": 0.04,
       "dropMinQuestRarity": "epic"
     },
@@ -16795,7 +16795,7 @@
         "templateId": "craft-juwelier-abgrund-amulett"
       },
       "xp": 30,
-      "description": "Fasst: Abgrund-Amulett. Der Stein darin leuchtet — aber nicht vom Licht.",
+      "description": "Fasst: Abgrund-Amulett. Leuchtet ständig. Im Dunkeln, im Hellen, beim Schlafen. Der Juwelier trinkt seitdem mehr.",
       "dropChance": 0.06,
       "dropMinQuestRarity": "epic"
     },
@@ -16816,7 +16816,7 @@
         "templateId": "craft-juwelier-riss-signet"
       },
       "xp": 36,
-      "description": "Fasst: Riss-Signet. Ein Ring, der den Riss nicht verschließt — sondern ihn versteht.",
+      "description": "Fasst: Riss-Signet. Passt an jeden Finger. Entscheidet aber selbst, an welchen.",
       "dropChance": 0.04,
       "dropMinQuestRarity": "epic"
     }

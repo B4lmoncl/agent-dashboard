@@ -14132,7 +14132,7 @@
       "reqLevel": 35,
       "rarity": "epic",
       "price": 0,
-      "desc": "Geschmiedet aus dem Stahl, der nur in den tiefsten Grüften liegt — wo selbst das Licht sich weigert zu fallen.",
+      "desc": "Technisch gesehen ist es unhöflich, jemanden mit Abgrundstahl zu schlagen. Aber technisch gesehen ist es auch unhöflich, in Grüften zu wohnen.",
       "icon": null,
       "shopHidden": true,
       "affixes": {
@@ -14154,7 +14154,7 @@
       },
       "legendaryEffect": null,
       "setId": "legendary",
-      "flavorText": "Es gibt Stahl, der im Feuer härtet. Und es gibt Stahl, der im Abgrund erwacht.",
+      "flavorText": "Der Schmied hat sich geweigert, sie ein zweites Mal anzufassen. Das ist entweder ein schlechtes Zeichen oder exzellente Werbung.",
       "binding": "boe"
     },
     {
@@ -14165,7 +14165,7 @@
       "reqLevel": 37,
       "rarity": "epic",
       "price": 0,
-      "desc": "Der Riss hinterlässt Spuren — in Metall wie in Erinnerung.",
+      "desc": "Man erkennt Rissgeschmiedetes am leichten Summen. Und daran, dass der vorherige Besitzer aufgehört hat, Fragen zu stellen.",
       "icon": null,
       "shopHidden": true,
       "affixes": {
@@ -14192,7 +14192,7 @@
         "label": "Rissecho: -{value}% Abklingzeit auf Handwerksrezepte"
       },
       "setId": "legendary",
-      "flavorText": "Wer durch den Riss geht, kehrt verändert zurück. Das Metall versteht das besser als die meisten.",
+      "flavorText": "Die Beinschienen knarzen bei jedem Schritt. Nicht weil sie schlecht sitzen — sie diskutieren nur ungern mit der Schwerkraft.",
       "binding": "boe"
     },
     {
@@ -14203,7 +14203,7 @@
       "reqLevel": 34,
       "rarity": "epic",
       "price": 0,
-      "desc": "Der Stoff flüstert, wenn man ihn berührt — und schweigt, wenn man zuhört.",
+      "desc": "Der Schneider behauptet, der Stoff habe sich freiwillig gemeldet. Der Stoff behauptet gar nichts, was irgendwie verdächtiger ist.",
       "icon": null,
       "shopHidden": true,
       "affixes": {
@@ -14225,7 +14225,7 @@
       },
       "legendaryEffect": null,
       "setId": "legendary",
-      "flavorText": "Gewebt aus der Stille zwischen zwei Atemzügen. Leichter als Luft, schwerer als Schuld.",
+      "flavorText": "Verleiht dem Träger eine gewisse Eleganz. Und Schatten. Hauptsächlich Schatten, wenn man ehrlich ist.",
       "binding": "boe"
     },
     {
@@ -14236,7 +14236,7 @@
       "reqLevel": 37,
       "rarity": "epic",
       "price": 0,
-      "desc": "Wer durch den Riss blickt, braucht etwas, das den Blick erwidert.",
+      "desc": "Die Kapuze sieht aus, als hätte jemand den Riss selbst zu Stoff gefaltet. Was natürlich Unsinn ist. Vermutlich.",
       "icon": null,
       "shopHidden": true,
       "affixes": {
@@ -14258,7 +14258,7 @@
       },
       "legendaryEffect": null,
       "setId": "legendary",
-      "flavorText": "Die Kapuze verbirgt nicht das Gesicht — sie verbirgt, was das Gesicht gesehen hat.",
+      "flavorText": "Auf die Frage, warum die Kapuze leicht vibriert, antwortete der Schneider: 'Aufregung.' Er log.",
       "binding": "boe"
     },
     {
@@ -14269,7 +14269,7 @@
       "reqLevel": 34,
       "rarity": "epic",
       "price": 0,
-      "desc": "Das Leder stammt von Kreaturen, die das Tageslicht vergessen haben.",
+      "desc": "Die Gerber weigern sich zu erzählen, woher das Leder stammt. Die Armschienen weigern sich ebenfalls, was beunruhigender ist.",
       "icon": null,
       "shopHidden": true,
       "affixes": {
@@ -14291,7 +14291,7 @@
       },
       "legendaryEffect": null,
       "setId": "legendary",
-      "flavorText": "Manche Häute erzählen Geschichten. Diese hier erzählt nur eine — und die endet schlecht.",
+      "flavorText": "Ungewöhnlich warm für totes Leder. Der Gerber nennt das 'Restenergie'. Alle anderen nennen es 'einen guten Grund, Handschuhe zu tragen'.",
       "binding": "boe"
     },
     {
@@ -14302,7 +14302,7 @@
       "reqLevel": 38,
       "rarity": "epic",
       "price": 0,
-      "desc": "Für jene, die durch den Riss gehen — und wiederkommen wollen.",
+      "desc": "Ausgezeichnete Traktion auf instabiler Realität. Auch gut auf nassem Kopfsteinpflaster, falls das relevanter sein sollte.",
       "icon": null,
       "shopHidden": true,
       "affixes": {
@@ -14329,7 +14329,7 @@
         "label": "Rissschreiter: +{value}% Dungeon-Beute"
       },
       "setId": "legendary",
-      "flavorText": "Die Sohlen sind abgelaufen von Pfaden, die auf keiner Karte verzeichnet sind.",
+      "flavorText": "Der letzte Besitzer lief so schnell, dass er seine Stiefel überholte. Die Stiefel kamen trotzdem an. Er nicht.",
       "binding": "boe"
     },
     {
@@ -14340,7 +14340,7 @@
       "reqLevel": 35,
       "rarity": "epic",
       "price": 0,
-      "desc": "Die Klinge summt ein Lied, das nur in der Dunkelheit Sinn ergibt.",
+      "desc": "Summt leise vor sich hin. Die meisten Waffen tun das nicht, was entweder besorgniserregend oder charmant ist — je nach Perspektive.",
       "icon": null,
       "shopHidden": true,
       "affixes": {
@@ -14362,7 +14362,7 @@
       },
       "legendaryEffect": null,
       "setId": "legendary",
-      "flavorText": "Sie singt nicht für den Träger. Sie singt für das, was kommt.",
+      "flavorText": "Die Klinge wurde dreimal zurückgegeben. Nicht wegen Mängeln — die Besitzer fanden es 'unangenehm, dass sie Erwartungen hat'.",
       "binding": "boe"
     },
     {
@@ -14373,7 +14373,7 @@
       "reqLevel": 36,
       "rarity": "epic",
       "price": 0,
-      "desc": "Manche Schilde schützen den Körper — dieser schützt die Realität.",
+      "desc": "Schützt zuverlässig vor den meisten Dingen. Auch vor einigen Dingen, von denen man nicht wusste, dass man Schutz braucht.",
       "icon": null,
       "shopHidden": true,
       "affixes": {
@@ -14395,7 +14395,7 @@
       },
       "legendaryEffect": null,
       "setId": "legendary",
-      "flavorText": "Der Riss drückt dagegen. Der Schild hält. Noch.",
+      "flavorText": "Im Katalog steht 'unzerstörbar'. In der Fußnote steht 'im Rahmen des Zumutbaren'. Die Fußnote ist verdächtig klein gedruckt.",
       "binding": "boe"
     },
     {
@@ -14406,7 +14406,7 @@
       "reqLevel": 33,
       "rarity": "epic",
       "price": 0,
-      "desc": "Der Stein darin leuchtet — aber nicht vom Licht.",
+      "desc": "Leuchtet im Dunkeln. Was praktisch wäre, wenn es nicht auch im Hellen leuchten würde. Und beim Schlafen. Ständig, eigentlich.",
       "icon": null,
       "shopHidden": true,
       "affixes": {
@@ -14433,7 +14433,7 @@
         "label": "Abgrundblick: +{value}% Chance auf doppelte Quest-Belohnungen"
       },
       "setId": "legendary",
-      "flavorText": "Wer lange genug in den Abgrund starrt, findet darin einen Spiegel.",
+      "flavorText": "Der Juwelier schwört, dass der Stein nicht zurückstarrt. Der Juwelier trinkt seitdem allerdings deutlich mehr.",
       "binding": "boe"
     },
     {
@@ -14444,7 +14444,7 @@
       "reqLevel": 37,
       "rarity": "epic",
       "price": 0,
-      "desc": "Ein Ring, der den Riss nicht verschließt — sondern ihn versteht.",
+      "desc": "Passt an jeden Finger. Entscheidet aber selbst, an welchen. Das ist entweder Magie oder schlechte Handwerkskunst.",
       "icon": null,
       "shopHidden": true,
       "affixes": {
@@ -14466,7 +14466,7 @@
       },
       "legendaryEffect": null,
       "setId": "legendary",
-      "flavorText": "Das Siegel trägt kein Wappen. Nur eine Narbe in der Form des Risses selbst.",
+      "flavorText": "Trägt man ihn lang genug, fängt man an, den Riss persönlich zu nehmen. Ob das am Ring liegt oder an einem selbst, ist Gegenstand akademischer Debatte.",
       "binding": "boe"
     }
   ],
