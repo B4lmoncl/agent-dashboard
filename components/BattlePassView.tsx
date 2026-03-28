@@ -158,7 +158,7 @@ export default function BattlePassView({ onRewardCelebration, onNavigate }: { on
             </div>
           </div>
           <div className="text-right">
-            <p className="text-sm font-mono font-bold" style={{ color: config.seasonAccent }}>
+            <p className="text-sm font-mono font-bold crystal-breathe" style={{ color: config.seasonAccent, ["--glow-color" as string]: `${config.seasonAccent}30`, borderRadius: 6, padding: "2px 6px" }}>
               Level {player.level} / {config.levels}
             </p>
             <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>
@@ -176,7 +176,7 @@ export default function BattlePassView({ onRewardCelebration, onNavigate }: { on
         </div>
         <div className={`progress-bar-diablo${player.progress > 0.9 ? " progress-bar-nearly-full" : ""}`}>
           <div
-            className="progress-bar-diablo-fill"
+            className="progress-bar-diablo-fill bar-pulse"
             style={{
               width: `${Math.round(player.progress * 100)}%`,
               background: `linear-gradient(90deg, ${config.seasonAccent}88, ${config.seasonAccent}, ${config.seasonAccent}cc)`,
@@ -296,13 +296,14 @@ export default function BattlePassView({ onRewardCelebration, onNavigate }: { on
                   onClick={() => claimLevel(r.level)}
                   disabled={claiming === r.level}
                   title={claiming === r.level ? "Claiming reward..." : "Claim this reward"}
-                  className="btn-interactive text-xs font-bold px-3 py-1.5 rounded-lg flex-shrink-0"
+                  className={`btn-interactive text-xs font-bold px-3 py-1.5 rounded-lg flex-shrink-0${claiming !== r.level ? " claimable-breathe" : ""}`}
                   style={{
                     background: `${config.seasonAccent}20`,
                     color: config.seasonAccent,
                     border: `1px solid ${config.seasonAccent}40`,
                     opacity: claiming === r.level ? 0.5 : 1,
                     cursor: claiming === r.level ? "not-allowed" : "pointer",
+                    ["--claim-color" as string]: `${config.seasonAccent}50`,
                   }}
                 >
                   {claiming === r.level ? "..." : "Claim"}

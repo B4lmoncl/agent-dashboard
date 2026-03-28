@@ -332,9 +332,10 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
       )}
 
       {/* Boss Card */}
-      <div className="rounded-xl overflow-hidden" style={{
+      <div className="rounded-xl overflow-hidden crystal-breathe" style={{
         background: `linear-gradient(135deg, ${boss.accent}08 0%, rgba(14,14,18,0.95) 100%)`,
         border: `1px solid ${boss.accent}30`,
+        ["--glow-color" as string]: `${boss.accent}40`,
       }}>
         {/* Accent bar */}
         <div style={{ height: 3, background: `linear-gradient(90deg, transparent, ${boss.accent}aa, transparent)` }} />
@@ -387,7 +388,7 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
           </div>
           <div className="rounded-full overflow-hidden" style={{ height: 10, background: "rgba(255,255,255,0.06)" }}>
             <div
-              className="h-full rounded-full transition-all duration-700"
+              className={`h-full rounded-full transition-all duration-700${!boss.defeated ? " bar-pulse" : ""}`}
               style={{
                 width: `${Math.max(hpPercent * 100, boss.defeated ? 0 : 0.5)}%`,
                 background: boss.defeated
@@ -448,13 +449,14 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
             <button
               onClick={claimRewards}
               disabled={claiming}
-              className="btn-interactive w-full text-sm font-bold py-3 rounded-lg"
+              className={`btn-interactive w-full text-sm font-bold py-3 rounded-lg${!claiming ? " claimable-breathe" : ""}`}
               style={{
                 background: `linear-gradient(135deg, ${boss.accent}, ${boss.accent}cc)`,
                 color: "#000",
                 opacity: claiming ? 0.5 : 1,
                 cursor: claiming ? "not-allowed" : "pointer",
                 boxShadow: `0 0 16px ${boss.accent}40`,
+                ["--claim-color" as string]: `${boss.accent}60`,
               }}
             >
               {claiming ? "Claiming..." : "Claim Rewards"}

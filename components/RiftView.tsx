@@ -249,7 +249,7 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
               </div>
             </div>
             <div className="text-right">
-              <p className="text-sm font-mono font-bold" style={{ color: activeRift.completed ? "#22c55e" : new Date(activeRift.expiresAt).getTime() - Date.now() < 3600000 ? "#ef4444" : new Date(activeRift.expiresAt).getTime() - Date.now() < 24 * 3600000 ? "#eab308" : activeRift.tierColor }}>
+              <p className={`text-sm font-mono font-bold${!activeRift.completed && new Date(activeRift.expiresAt).getTime() - Date.now() < (new Date(activeRift.expiresAt).getTime() - new Date(activeRift.startedAt).getTime()) * 0.25 ? " bar-pulse" : ""}`} style={{ color: activeRift.completed ? "#22c55e" : new Date(activeRift.expiresAt).getTime() - Date.now() < 3600000 ? "#ef4444" : new Date(activeRift.expiresAt).getTime() - Date.now() < 24 * 3600000 ? "#eab308" : activeRift.tierColor }}>
                 {activeRift.completed ? "✓ Complete!" : timeLeft(new Date(activeRift.expiresAt).getTime() - Date.now())}
               </p>
               <p className="text-xs text-w20">{activeRift.completed ? "All stages cleared" : "Time remaining"}</p>
@@ -367,10 +367,11 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
             const onCd = tier.onCooldown;
             const canEnter = !locked && !onCd;
             return (
-              <div key={id} className="rounded-xl p-4 space-y-3" style={{
+              <div key={id} className={`rounded-xl p-4 space-y-3${!locked ? " crystal-breathe" : ""}`} style={{
                 background: locked ? "rgba(255,255,255,0.02)" : `${tier.color}06`,
                 border: `1px solid ${locked ? "rgba(255,255,255,0.05)" : `${tier.color}25`}`,
                 opacity: locked ? 0.5 : 1,
+                ...(!locked ? { ["--glow-color" as string]: `${tier.color}30` } : {}),
               }}>
                 <div className="text-center">
                   <span className="text-2xl">{tier.icon}</span>
@@ -471,7 +472,7 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
               >
                 −
               </button>
-              <span className="text-sm font-mono font-bold px-3 py-1 rounded-lg" style={{ background: "rgba(255,68,68,0.08)", color: "#ff4444", minWidth: 48, textAlign: "center", border: "1px solid rgba(255,68,68,0.15)" }}>
+              <span className="text-sm font-mono font-bold px-3 py-1 rounded-lg crystal-breathe" style={{ background: "rgba(255,68,68,0.08)", color: "#ff4444", minWidth: 48, textAlign: "center", border: "1px solid rgba(255,68,68,0.15)", ["--glow-color" as string]: "rgba(255,68,68,0.25)" }}>
                 +{selectedMythicLevel}
               </span>
               <button

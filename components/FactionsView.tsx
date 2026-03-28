@@ -159,10 +159,11 @@ export default function FactionsView({ onRewardCelebration, onNavigate }: { onRe
           return (
             <div
               key={f.id}
-              className="rounded-xl overflow-hidden"
+              className="rounded-xl overflow-hidden crystal-breathe"
               style={{
                 background: `linear-gradient(135deg, ${f.accent}08 0%, rgba(14,14,18,0.95) 100%)`,
                 border: `1px solid ${f.accent}30`,
+                ["--glow-color" as string]: `${f.accent}25`,
               }}
             >
               {/* Accent bar */}
@@ -213,7 +214,7 @@ export default function FactionsView({ onRewardCelebration, onNavigate }: { onRe
                 </div>
                 <div className={`progress-bar-diablo${f.progress > 0.9 ? " progress-bar-nearly-full" : ""}`}>
                   <div
-                    className="progress-bar-diablo-fill"
+                    className={`progress-bar-diablo-fill${f.progress > 0.8 ? " bar-pulse" : ""}`}
                     style={{
                       width: `${Math.round(f.progress * 100)}%`,
                       background: `linear-gradient(90deg, ${f.accent}88, ${f.accent}, ${f.accent}cc)`,
@@ -278,13 +279,14 @@ export default function FactionsView({ onRewardCelebration, onNavigate }: { onRe
                     onClick={() => claimReward(f.id)}
                     disabled={claiming === f.id}
                     title={claiming === f.id ? "Claiming reward..." : "Claim faction reward"}
-                    className="btn-interactive w-full text-xs font-bold py-2 rounded-lg"
+                    className={`btn-interactive w-full text-xs font-bold py-2 rounded-lg${claiming !== f.id ? " claimable-breathe" : ""}`}
                     style={{
                       background: `${f.accent}15`,
                       color: f.accent,
                       border: `1px solid ${f.accent}40`,
                       opacity: claiming === f.id ? 0.5 : 1,
                       cursor: claiming === f.id ? "not-allowed" : "pointer",
+                      ["--claim-color" as string]: `${f.accent}40`,
                     }}
                   >
                     {claiming === f.id ? "..." : `Claim: ${reward.title || reward.recipeDesc || reward.frameDesc || reward.effectDesc || "Reward"}`}
