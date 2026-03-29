@@ -1997,12 +1997,17 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
 
               return (
                 <div className="tab-content-enter px-5 py-4 space-y-4" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
-                  {/* Intro */}
-                  <div>
-                    <p className="text-sm font-bold" style={{ color: "#a855f7" }}>Stat Enchanting</p>
-                    <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.35)" }}>
-                      Pick one stat to reroll. Once chosen, that stat is locked — only it can be rerolled on this item. Cost escalates with each reroll.
+                  {/* Intro — D3 Mystic style explanation */}
+                  <div className="rounded-lg p-3" style={{ background: "rgba(168,85,247,0.04)", border: "1px solid rgba(168,85,247,0.12)" }}>
+                    <p className="text-xs font-bold mb-1" style={{ color: "#a855f7" }}>Eldrics Verzauberung — Stat Reroll</p>
+                    <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>
+                      Wähle einen Stat auf deinem ausgerüsteten Item. Eldric zeigt dir zwei neue Optionen — du wählst, ob du den alten Wert behältst oder einen neuen nimmst.
                     </p>
+                    <div className="mt-2 space-y-0.5">
+                      <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>◆ Einmal gewählt, ist der Stat <strong className="text-w50">permanent gesperrt</strong> — nur er kann rerolled werden</p>
+                      <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>◆ Kosten steigen mit jedem Reroll (Gold + Essenz)</p>
+                      <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>◆ Alle anderen Stats bleiben unberührt</p>
+                    </div>
                   </div>
 
                   {/* Slot selector */}
