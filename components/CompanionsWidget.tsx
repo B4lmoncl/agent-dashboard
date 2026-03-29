@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { useModalBehavior } from "@/components/ModalPortal";
 import { Tip, TipCustom } from "@/components/GameTooltip";
 import type { User, Quest } from "@/app/types";
@@ -102,6 +102,137 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
   const [companionGlow, setCompanionGlow] = useState(false);
   const closeRewardPopup = useCallback(() => setRewardPopup(null), []);
   useModalBehavior(!!rewardPopup, closeRewardPopup);
+
+  // ─── Companion Expedition State ───────────────────────────────────────────
+  const [expeditionData, setExpeditionData] = useState<{
+    active: { expeditionId: string; name: string; icon: string; sentAt: string; completesAt: string; remainingMs: number; completed: boolean } | null;
+    available: { id: string; name: string; description: string; durationHours: number; icon: string; rewards: { gold?: number[]; essenz?: number[]; runensplitter?: number[]; materials?: { chance: number; count: number[] }; gems?: { chance: number; maxTier: number }; rareItem?: { chance: number } } }[];
+    cooldownRemainingMs: number;
+    bondLevel: number;
+    bondMultiplier: number;
+  } | null>(null);
+  const [expeditionLoading, setExpeditionLoading] = useState(false);
+  const [expeditionTimer, setExpeditionTimer] = useState<string | null>(null);
+  const [expeditionTimerProgress, setExpeditionTimerProgress] = useState(0);
+  const [expeditionSending, setExpeditionSending] = useState<string | null>(null);
+  const [expeditionCollecting, setExpeditionCollecting] = useState(false);
+  const [expeditionError, setExpeditionError] = useState<string | null>(null);
+  const [expeditionConfirm, setExpeditionConfirm] = useState<{ id: string; name: string; hours: number } | null>(null);
+
+  const fetchExpeditions = useCallback(async () => {
+    if (!playerName || !apiKey || !user?.companion) return;
+    try {
+      const r = await fetch(`/api/player/${encodeURIComponent(playerName.toLowerCase())}/companion/expeditions`, {
+        headers: { ...getAuthHeaders(apiKey) },
+      });
+      if (r.ok) {
+        const data = await r.json();
+        setExpeditionData(data);
+      }
+    } catch { /* silent */ }
+  }, [playerName, apiKey, user?.companion]);
+
+  // Fetch expedition data on mount and when companion changes
+  useEffect(() => {
+    fetchExpeditions();
+  }, [fetchExpeditions]);
+
+  // Expedition countdown timer
+  useEffect(() => {
+    if (!expeditionData?.active) { setExpeditionTimer(null); setExpeditionTimerProgress(0); return; }
+    const endTime = new Date(expeditionData.active.completesAt).getTime();
+    const startTime = new Date(expeditionData.active.sentAt).getTime();
+    const totalDuration = endTime - startTime;
+    const tick = () => {
+      const remaining = endTime - Date.now();
+      if (remaining <= 0) {
+        setExpeditionTimer("Ready!");
+        setExpeditionTimerProgress(1);
+        return;
+      }
+      const elapsed = Date.now() - startTime;
+      setExpeditionTimerProgress(Math.min(1, elapsed / totalDuration));
+      const h = Math.floor(remaining / 3600000);
+      const m = Math.floor((remaining % 3600000) / 60000);
+      const s = Math.floor((remaining % 60000) / 1000);
+      setExpeditionTimer(h > 0 ? `${h}h ${m}m` : `${m}m ${s}s`);
+    };
+    tick();
+    const interval = setInterval(tick, 1000);
+    return () => clearInterval(interval);
+  }, [expeditionData?.active]);
+
+  const handleExpeditionSend = async (expeditionId: string) => {
+    if (!playerName || !apiKey || expeditionSending) return;
+    setExpeditionSending(expeditionId);
+    setExpeditionError(null);
+    setExpeditionConfirm(null);
+    try {
+      const r = await fetch(`/api/player/${encodeURIComponent(playerName.toLowerCase())}/companion/expedition/send`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", ...getAuthHeaders(apiKey) },
+        body: JSON.stringify({ expeditionId }),
+      });
+      const d = await r.json();
+      if (r.ok) {
+        await fetchExpeditions();
+        if (onUserRefresh) onUserRefresh();
+      } else {
+        setExpeditionError(d.error || "Failed to send companion");
+        setTimeout(() => setExpeditionError(null), 5000);
+      }
+    } catch {
+      setExpeditionError("Network error");
+      setTimeout(() => setExpeditionError(null), 5000);
+    }
+    setExpeditionSending(null);
+  };
+
+  const handleExpeditionCollect = async () => {
+    if (!playerName || !apiKey || expeditionCollecting) return;
+    setExpeditionCollecting(true);
+    setExpeditionError(null);
+    try {
+      const r = await fetch(`/api/player/${encodeURIComponent(playerName.toLowerCase())}/companion/expedition/collect`, {
+        method: "POST",
+        headers: { ...getAuthHeaders(apiKey) },
+      });
+      const d = await r.json();
+      if (r.ok) {
+        // Show reward celebration
+        if (onRewardCelebration && d.rewards) {
+          const cCol = getCompanionColor(user?.companion?.type || user?.companion?.species);
+          const rewardLines: string[] = [];
+          if (d.rewards.gold) rewardLines.push(`+${d.rewards.gold} Gold`);
+          if (d.rewards.essenz) rewardLines.push(`+${d.rewards.essenz} Essenz`);
+          if (d.rewards.runensplitter) rewardLines.push(`+${d.rewards.runensplitter} Runensplitter`);
+          onRewardCelebration({
+            type: "companion",
+            title: `${d.expedition || "Expedition"} Complete!`,
+            xpEarned: 0,
+            goldEarned: d.rewards.gold || 0,
+            bondXp: 0,
+            loot: d.rewards.rareItem ? { name: d.rewards.rareItem.name, emoji: "◆", rarity: d.rewards.rareItem.rarity } :
+                  d.rewards.gem ? { name: `${d.rewards.gem.name} (T${d.rewards.gem.tier})`, emoji: "◆", rarity: "rare" } :
+                  d.rewards.materials?.length ? { name: `${d.rewards.materials.length} Materials`, emoji: "◆", rarity: "uncommon" } : null,
+            companionAccent: cCol.accent,
+            companionEmoji: user?.companion?.emoji || "◆",
+          });
+        }
+        setCompanionGlow(true);
+        setTimeout(() => setCompanionGlow(false), 2000);
+        await fetchExpeditions();
+        if (onUserRefresh) onUserRefresh();
+      } else {
+        setExpeditionError(d.error || "Failed to collect");
+        setTimeout(() => setExpeditionError(null), 5000);
+      }
+    } catch {
+      setExpeditionError("Network error");
+      setTimeout(() => setExpeditionError(null), 5000);
+    }
+    setExpeditionCollecting(false);
+  };
 
   const handleCompleteQuest = async (questId: string, questTitle: string) => {
     if (!apiKey || completingId) return;
@@ -621,6 +752,198 @@ export function CompanionsWidget({ user, streak, playerName, apiKey, onDobbieCli
               <p className="text-xs mt-1 italic" style={{ color: "rgba(220,185,120,0.25)" }}>
                 Complete achievements to unlock more companions!
               </p>
+            )}
+
+            {/* ─── Companion Expeditions ─── */}
+            {user?.companion && playerName && apiKey && expeditionData && (
+              <div className="tab-content-enter" style={{
+                background: "#0e1018",
+                border: "1px solid #1a1c28",
+                borderTop: `1px solid rgba(${cColor.accentRgb},0.25)`,
+                borderRadius: 2,
+                padding: "8px 10px",
+                marginTop: 10,
+              }}>
+                <div className="flex items-center justify-between mb-2">
+                  <Tip k="companion_expedition">
+                    <span className="text-xs font-bold uppercase tracking-widest" style={{ color: `rgba(${cColor.accentRgb},0.6)` }}>
+                      Companion Expeditions
+                    </span>
+                  </Tip>
+                  {expeditionData.bondMultiplier > 1 && (
+                    <span className="text-xs font-mono" style={{ color: "rgba(255,255,255,0.2)" }}>
+                      Bond x{expeditionData.bondMultiplier.toFixed(1)}
+                    </span>
+                  )}
+                </div>
+
+                {/* Error display */}
+                {expeditionError && (
+                  <div className="rounded px-2.5 py-1.5 text-xs font-semibold mb-2" style={{
+                    background: "rgba(239,68,68,0.08)",
+                    border: "1px solid rgba(239,68,68,0.25)",
+                    color: "#ef4444",
+                  }}>
+                    {expeditionError}
+                  </div>
+                )}
+
+                {/* Active expedition */}
+                {expeditionData.active && (
+                  <div style={{
+                    background: "rgba(255,255,255,0.02)",
+                    border: "1px solid rgba(255,255,255,0.06)",
+                    borderRadius: 2,
+                    padding: "8px 10px",
+                  }}>
+                    <div className="flex items-center justify-between mb-1.5">
+                      <span className="text-xs font-semibold" style={{ color: "#f0e0d0" }}>
+                        {expeditionData.active.name}
+                      </span>
+                      <span className="text-xs font-mono" style={{
+                        color: expeditionTimer === "Ready!" ? "#4ade80" : "rgba(255,255,255,0.4)",
+                        fontWeight: expeditionTimer === "Ready!" ? 700 : 400,
+                      }}>
+                        {expeditionTimer || "..."}
+                      </span>
+                    </div>
+                    {/* Progress bar */}
+                    <div className="progress-bar-diablo mb-2" style={{ height: 7 }}>
+                      <div style={{
+                        height: "100%",
+                        width: `${expeditionTimerProgress * 100}%`,
+                        background: expeditionTimer === "Ready!"
+                          ? "linear-gradient(90deg, #22c55e, #4ade80)"
+                          : `linear-gradient(90deg, ${cColor.accent}, ${cColor.accent}99)`,
+                        borderRadius: "inherit",
+                        transition: "width 1s linear",
+                      }} />
+                    </div>
+                    {/* Collect button when ready */}
+                    {expeditionTimer === "Ready!" && (
+                      <button
+                        onClick={handleExpeditionCollect}
+                        disabled={expeditionCollecting}
+                        className={`w-full text-xs px-3 py-2 rounded font-semibold transition-all${!expeditionCollecting ? " claimable-breathe" : ""}`}
+                        title={expeditionCollecting ? "Collecting rewards..." : "Collect expedition rewards"}
+                        style={{
+                          background: expeditionCollecting ? "rgba(34,197,94,0.08)" : "linear-gradient(135deg, rgba(34,197,94,0.15), rgba(34,197,94,0.08))",
+                          color: "#4ade80",
+                          border: "1px solid rgba(34,197,94,0.35)",
+                          cursor: expeditionCollecting ? "not-allowed" : "pointer",
+                          boxShadow: "0 0 12px rgba(34,197,94,0.15)",
+                        }}
+                      >
+                        {expeditionCollecting ? "Collecting..." : "Collect Rewards"}
+                      </button>
+                    )}
+                  </div>
+                )}
+
+                {/* Cooldown display */}
+                {!expeditionData.active && expeditionData.cooldownRemainingMs > 0 && (
+                  <div className="text-xs text-center py-3" style={{ color: "rgba(255,255,255,0.3)" }}>
+                    Your companion is resting. Available in {Math.ceil(expeditionData.cooldownRemainingMs / 60000)} minutes.
+                  </div>
+                )}
+
+                {/* Confirm dialog */}
+                {expeditionConfirm && (
+                  <div className="rounded p-3 mb-2" style={{
+                    background: "rgba(255,255,255,0.03)",
+                    border: "1px solid rgba(255,255,255,0.08)",
+                  }}>
+                    <p className="text-xs mb-2" style={{ color: "rgba(255,255,255,0.5)" }}>
+                      Your companion won&apos;t earn bond XP while away. Send for {expeditionConfirm.hours}h?
+                    </p>
+                    <div className="flex gap-2">
+                      <button
+                        onClick={() => handleExpeditionSend(expeditionConfirm.id)}
+                        disabled={!!expeditionSending}
+                        className="flex-1 text-xs px-2 py-1.5 rounded font-semibold"
+                        style={{
+                          background: `rgba(${cColor.accentRgb},0.12)`,
+                          color: cColor.accent,
+                          border: `1px solid rgba(${cColor.accentRgb},0.3)`,
+                          cursor: expeditionSending ? "not-allowed" : "pointer",
+                        }}
+                        title={expeditionSending ? "Sending..." : undefined}
+                      >
+                        {expeditionSending ? "Sending..." : "Confirm"}
+                      </button>
+                      <button
+                        onClick={() => setExpeditionConfirm(null)}
+                        className="flex-1 text-xs px-2 py-1.5 rounded font-semibold"
+                        style={{
+                          background: "rgba(255,255,255,0.03)",
+                          color: "rgba(255,255,255,0.4)",
+                          border: "1px solid rgba(255,255,255,0.06)",
+                          cursor: "pointer",
+                        }}
+                      >
+                        Cancel
+                      </button>
+                    </div>
+                  </div>
+                )}
+
+                {/* Expedition tier selection */}
+                {!expeditionData.active && expeditionData.cooldownRemainingMs <= 0 && !expeditionConfirm && (
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                    {expeditionData.available.map((exp) => {
+                      const tierColors: Record<string, { accent: string; bg: string; border: string }> = {
+                        "quick-forage":   { accent: "#22c55e", bg: "rgba(34,197,94,0.06)",  border: "rgba(34,197,94,0.2)" },
+                        "deep-woods":     { accent: "#3b82f6", bg: "rgba(59,130,246,0.06)", border: "rgba(59,130,246,0.2)" },
+                        "mountain-pass":  { accent: "#a855f7", bg: "rgba(168,85,247,0.06)", border: "rgba(168,85,247,0.2)" },
+                        "ancient-ruins":  { accent: "#f97316", bg: "rgba(249,115,22,0.06)", border: "rgba(249,115,22,0.2)" },
+                      };
+                      const tc = tierColors[exp.id] || tierColors["quick-forage"];
+                      const isSending = expeditionSending === exp.id;
+                      return (
+                        <div
+                          key={exp.id}
+                          className="crystal-breathe flex flex-col rounded"
+                          style={{
+                            background: tc.bg,
+                            border: `1px solid ${tc.border}`,
+                            borderTop: `2px solid ${tc.accent}`,
+                            padding: "8px 8px 6px",
+                            minHeight: 70,
+                            "--glow-color": `${tc.accent}33`,
+                          } as React.CSSProperties}
+                        >
+                          <span className="text-xs font-bold mb-0.5" style={{ color: tc.accent, lineHeight: 1.2 }}>
+                            {exp.name}
+                          </span>
+                          <span className="text-xs font-mono mb-1" style={{ color: "rgba(255,255,255,0.25)" }}>
+                            {exp.durationHours}h
+                          </span>
+                          {exp.rewards.gold && (
+                            <span className="text-xs mb-1.5" style={{ color: "rgba(251,191,36,0.55)" }}>
+                              {exp.rewards.gold[0]}-{exp.rewards.gold[1]}g
+                            </span>
+                          )}
+                          <button
+                            onClick={() => setExpeditionConfirm({ id: exp.id, name: exp.name, hours: exp.durationHours })}
+                            disabled={isSending || !!expeditionSending}
+                            className="text-xs px-2 py-1.5 rounded font-semibold mt-auto transition-all"
+                            title={isSending ? "Sending..." : expeditionSending ? "Another expedition is being sent..." : `Send companion on ${exp.name} (${exp.durationHours}h)`}
+                            style={{
+                              background: `${tc.accent}18`,
+                              color: tc.accent,
+                              border: `1px solid ${tc.accent}40`,
+                              cursor: (isSending || !!expeditionSending) ? "not-allowed" : "pointer",
+                              opacity: (!!expeditionSending && !isSending) ? 0.5 : 1,
+                            }}
+                          >
+                            {isSending ? "Sending..." : "Send"}
+                          </button>
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
             )}
           </div>
         </div>
