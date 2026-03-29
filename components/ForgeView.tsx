@@ -753,8 +753,8 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
       {[0,1,2].map(i => (
         <div key={`spark-${i}`} className="absolute pointer-events-none" style={{
           width: 2, height: 2, borderRadius: "50%",
-          background: moonlightActive ? "#818cf8" : "#f59e0b",
-          boxShadow: `0 0 4px ${moonlightActive ? "#818cf880" : "#f59e0b80"}`,
+          background: moonlightActive ? "#60a5fa" : "#f59e0b",
+          boxShadow: `0 0 6px ${moonlightActive ? "#60a5fa80" : "#f59e0b80"}`,
           right: `${20 + i * 30}px`, top: `${8 + i * 12}px`,
           animation: `ambient-spark ${moonlightActive ? 1.5 + i * 0.5 : 2 + i * 0.7}s ease-in-out ${i * 0.8}s infinite`,
         }} />
@@ -1357,8 +1357,8 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
               {moonlightActive && [0,1,2,3,4].map(i => (
                 <div key={`mstar-${i}`} className="absolute pointer-events-none" style={{
                   width: 2, height: 2, borderRadius: "50%",
-                  background: "rgba(196,181,253,0.5)",
-                  boxShadow: "0 0 4px rgba(196,181,253,0.4)",
+                  background: "rgba(96,165,250,0.6)",
+                  boxShadow: "0 0 6px rgba(96,165,250,0.5)",
                   left: `${10 + i * 20}%`, top: `${8 + (i % 3) * 12}px`,
                   animation: `ambient-spark ${2.5 + i * 0.6}s ease-in-out ${i * 0.5}s infinite`,
                 }} />
