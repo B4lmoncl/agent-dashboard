@@ -314,6 +314,14 @@ export function useQuestActions({
         if (data.recipeDrop) {
           addToast({ type: "item", itemName: data.recipeDrop.name, message: "Recipe discovered!", rarity: "epic" });
         }
+        // Toast for faction rep level-ups
+        if (data.repGains) {
+          for (const rg of data.repGains) {
+            if (rg.leveledUp) {
+              addToast({ type: "flavor", message: `${rg.factionName}: ${rg.standingName}!`, icon: rg.factionIcon || "◆", sub: `+${rg.gained} Rep` });
+            }
+          }
+        }
         // Optimistically update NPC quest chain
         setActiveNpcs(prev => prev.map(npc => {
           if (!npc.questChain.some(q => q.questId === questId)) return npc;
