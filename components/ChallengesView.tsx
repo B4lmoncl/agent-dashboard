@@ -296,12 +296,12 @@ function SternenpfadView({
                     </span>
                     <span className="text-w20">{progressPct}%</span>
                   </div>
-                  <div className="h-1.5 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.06)" }}>
+                  <div className={`progress-bar-diablo${progressPct > 90 ? " progress-bar-nearly-full" : ""}`}>
                     <div
-                      className="h-full rounded-full transition-all"
+                      className="progress-bar-diablo-fill"
                       style={{
                         width: `${progressPct}%`,
-                        background: isCompleted ? "#22c55e" : `linear-gradient(90deg, ${stageColor}, ${stageColor}80)`,
+                        background: isCompleted ? "#22c55e" : `linear-gradient(90deg, ${stageColor}88, ${stageColor}, ${stageColor}cc)`,
                       }}
                     />
                   </div>
