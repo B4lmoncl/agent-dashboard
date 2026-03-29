@@ -7,9 +7,21 @@
       "durationHours": 4,
       "icon": "🌿",
       "rewards": {
-        "gold": [20, 50],
-        "materials": { "chance": 0.6, "count": [1, 2] },
-        "gems": { "chance": 0.1, "maxTier": 1 }
+        "gold": [
+          10,
+          25
+        ],
+        "materials": {
+          "chance": 0.6,
+          "count": [
+            1,
+            2
+          ]
+        },
+        "gems": {
+          "chance": 0.1,
+          "maxTier": 1
+        }
       }
     },
     {
@@ -19,10 +31,25 @@
       "durationHours": 8,
       "icon": "🌲",
       "rewards": {
-        "gold": [50, 120],
-        "materials": { "chance": 0.8, "count": [1, 3] },
-        "gems": { "chance": 0.2, "maxTier": 2 },
-        "essenz": [1, 3]
+        "gold": [
+          25,
+          60
+        ],
+        "materials": {
+          "chance": 0.8,
+          "count": [
+            1,
+            3
+          ]
+        },
+        "gems": {
+          "chance": 0.2,
+          "maxTier": 2
+        },
+        "essenz": [
+          1,
+          3
+        ]
       }
     },
     {
@@ -32,11 +59,29 @@
       "durationHours": 12,
       "icon": "⛰️",
       "rewards": {
-        "gold": [100, 250],
-        "materials": { "chance": 0.9, "count": [2, 4] },
-        "gems": { "chance": 0.35, "maxTier": 3 },
-        "essenz": [2, 5],
-        "runensplitter": [0, 2]
+        "gold": [
+          50,
+          125
+        ],
+        "materials": {
+          "chance": 0.9,
+          "count": [
+            2,
+            4
+          ]
+        },
+        "gems": {
+          "chance": 0.35,
+          "maxTier": 3
+        },
+        "essenz": [
+          2,
+          5
+        ],
+        "runensplitter": [
+          0,
+          2
+        ]
       }
     },
     {
@@ -46,12 +91,32 @@
       "durationHours": 24,
       "icon": "🏛️",
       "rewards": {
-        "gold": [200, 500],
-        "materials": { "chance": 1.0, "count": [3, 6] },
-        "gems": { "chance": 0.5, "maxTier": 4 },
-        "essenz": [3, 8],
-        "runensplitter": [1, 3],
-        "rareItem": { "chance": 0.05 }
+        "gold": [
+          100,
+          250
+        ],
+        "materials": {
+          "chance": 1,
+          "count": [
+            3,
+            6
+          ]
+        },
+        "gems": {
+          "chance": 0.5,
+          "maxTier": 4
+        },
+        "essenz": [
+          3,
+          8
+        ],
+        "runensplitter": [
+          1,
+          3
+        ],
+        "rareItem": {
+          "chance": 0.05
+        }
       }
     }
   ],
