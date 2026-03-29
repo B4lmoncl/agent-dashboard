@@ -12,9 +12,9 @@ const GEAR_TIERS_CLIENT = shopData.gearTiers;
 const SHOP_ITEMS_LIST: ShopItem[] = shopData.items as ShopItem[];
 
 const RARITY_GLOW: Record<string, string> = {
-  rare: "rgba(59,130,246,0.45)",
-  epic: "rgba(168,85,247,0.45)",
-  legendary: "rgba(249,115,22,0.45)",
+  rare: "rgba(59,130,246,0.12)",
+  epic: "rgba(168,85,247,0.15)",
+  legendary: "rgba(249,115,22,0.15)",
 };
 function getItemGlowColor(item: ShopItem): string | null {
   const r = (item as unknown as Record<string, unknown>).rarity as string | undefined;
