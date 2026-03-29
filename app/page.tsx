@@ -151,6 +151,7 @@ export default function Dashboard() {
     return "questBoard";
   });
   const [towerMapOpen, setTowerMapOpen] = useState(false);
+  useModalBehavior(towerMapOpen, useCallback(() => setTowerMapOpen(false), []));
   const [activeFloor, setActiveFloor] = useState(() => {
     if (typeof window !== "undefined") {
       const saved = localStorage.getItem("dash_view");
