@@ -974,7 +974,7 @@
         "value": 4,
         "label": "+4% Quest XP"
       },
-      "source": "rift"
+      "source": "rift:legendary"
     },
     {
       "id": "rift-nullpunkt-stiefel",
@@ -997,7 +997,7 @@
         "value": 8,
         "label": "+8% Streak Protection"
       },
-      "source": "rift"
+      "source": "rift:legendary"
     },
     {
       "id": "rift-zeitriss-helm",
@@ -1020,7 +1020,7 @@
         "value": 5,
         "label": "-5% Craft Cooldown"
       },
-      "source": "rift"
+      "source": "rift:legendary"
     },
     {
       "id": "dun-archiv-schild",
@@ -1043,7 +1043,7 @@
         "value": 4,
         "label": "-4% Forge Decay"
       },
-      "source": "dungeon"
+      "source": "dungeon:sunken-archive"
     },
     {
       "id": "dun-spire-ruestung",
@@ -1066,7 +1066,7 @@
         "value": 5,
         "label": "+5% Salvage Materials"
       },
-      "source": "dungeon"
+      "source": "dungeon:shattered-spire"
     },
     {
       "id": "wb-wyrm-fang",
