@@ -894,6 +894,166 @@
       "dropChance": 0.003,
       "isUnique": true,
       "binding": "bop"
+    },
+    {
+      "id": "wb-glutfaust",
+      "name": "Glutfaust des Wyrms",
+      "slot": "weapon",
+      "rarity": "legendary",
+      "tier": 4,
+      "reqLevel": 30,
+      "desc": "Die rechte Klaue des Prokrastinations-Wyrms, umgeschmiedet zu einer Waffe. Grimvar brauchte drei Tage. Der Wyrm brauchte drei Äonen, um sie zu züchten.",
+      "flavorText": "Manche Waffen haben eine Geschichte. Diese hier hat eine Entschuldigung.",
+      "icon": null,
+      "fixedStats": true,
+      "stats": {
+        "kraft": 7,
+        "ausdauer": 6
+      },
+      "legendaryEffect": {
+        "type": "forge_temp_flat",
+        "value": 3,
+        "label": "+3 Forge Temperature per quest"
+      },
+      "source": "world-boss"
+    },
+    {
+      "id": "wb-entropie-kette",
+      "name": "Kette der Entropie",
+      "slot": "amulet",
+      "rarity": "legendary",
+      "tier": 4,
+      "reqLevel": 35,
+      "desc": "Gewoben aus den Fäden des Entropy Weavers. Jeder Faden war einmal ein aufgegebener Plan.",
+      "flavorText": "Sie flüstert vergessene Deadlines. Charmant, auf eine verstörende Art.",
+      "icon": null,
+      "fixedStats": true,
+      "stats": {
+        "weisheit": 7,
+        "glueck": 5,
+        "fokus": 4
+      },
+      "legendaryEffect": {
+        "type": "variety_bonus",
+        "value": 5,
+        "label": "+5% XP for completing different quest types"
+      },
+      "source": "world-boss"
+    },
+    {
+      "id": "rift-aetherklinge",
+      "name": "Aetherklinge",
+      "slot": "weapon",
+      "rarity": "legendary",
+      "tier": 4,
+      "reqLevel": 35,
+      "desc": "Die Klinge existiert gleichzeitig in drei Realitäten. Das macht das Aufhängen schwierig und das Kämpfen... interessant.",
+      "flavorText": "Der Rift hat sie nicht erschaffen. Er hat sie nur freigegeben.",
+      "icon": null,
+      "fixedStats": true,
+      "stats": {
+        "kraft": 8,
+        "weisheit": 5,
+        "tempo": 4
+      },
+      "legendaryEffect": {
+        "type": "xp_bonus",
+        "value": 4,
+        "label": "+4% Quest XP"
+      },
+      "source": "rift"
+    },
+    {
+      "id": "rift-nullpunkt-stiefel",
+      "name": "Nullpunkt-Stiefel",
+      "slot": "boots",
+      "rarity": "legendary",
+      "tier": 4,
+      "reqLevel": 32,
+      "desc": "Am absoluten Nullpunkt des Rifts gefunden. Die Temperatur um sie schwankt. Socken empfohlen. Doppelte Socken.",
+      "flavorText": "Wer den Boden des Abgrunds erreicht, findet keine Wahrheit. Nur sehr kalte Schuhe.",
+      "icon": null,
+      "fixedStats": true,
+      "stats": {
+        "glueck": 7,
+        "ausdauer": 5,
+        "vitalitaet": 4
+      },
+      "legendaryEffect": {
+        "type": "streak_protection",
+        "value": 8,
+        "label": "+8% Streak Protection"
+      },
+      "source": "rift"
+    },
+    {
+      "id": "rift-zeitriss-helm",
+      "name": "Helm des Zeitrisses",
+      "slot": "helm",
+      "rarity": "legendary",
+      "tier": 4,
+      "reqLevel": 38,
+      "desc": "Zeigt Dinge die noch nicht passiert sind. Meistens Deadlines. Gelegentlich Mittagessen.",
+      "flavorText": "Prophezeiung ist überbewertet. Terminkalender sind nützlicher.",
+      "icon": null,
+      "fixedStats": true,
+      "stats": {
+        "weisheit": 8,
+        "fokus": 5,
+        "charisma": 3
+      },
+      "legendaryEffect": {
+        "type": "cooldown_reduction",
+        "value": 5,
+        "label": "-5% Craft Cooldown"
+      },
+      "source": "rift"
+    },
+    {
+      "id": "dun-archiv-schild",
+      "name": "Schild des Versunkenen Archivs",
+      "slot": "shield",
+      "rarity": "legendary",
+      "tier": 4,
+      "reqLevel": 28,
+      "desc": "Ein Schild aus den versiegelten Regalen des Sunken Archive. Die Bücher darauf sind lesbar. Sie handeln von Buchhaltung. Entmutigend effektiv.",
+      "flavorText": "Nichts hält Feinde so fern wie eine detaillierte Steuererklärung.",
+      "icon": null,
+      "fixedStats": true,
+      "stats": {
+        "ausdauer": 7,
+        "weisheit": 5,
+        "vitalitaet": 4
+      },
+      "legendaryEffect": {
+        "type": "decay_reduction",
+        "value": 4,
+        "label": "-4% Forge Decay"
+      },
+      "source": "dungeon"
+    },
+    {
+      "id": "dun-spire-ruestung",
+      "name": "Rüstung des Zerschmetterten Turms",
+      "slot": "armor",
+      "rarity": "legendary",
+      "tier": 4,
+      "reqLevel": 33,
+      "desc": "Zusammengesetzt aus den Trümmern des Shattered Spire. Jedes Fragment erinnert sich an seinen Fall. Die Rüstung knirscht bei Regen. Und bei Sonnenschein. Und bei Stille.",
+      "flavorText": "Manche Rüstungen schützen den Körper. Diese schützt die Erinnerung.",
+      "icon": null,
+      "fixedStats": true,
+      "stats": {
+        "ausdauer": 8,
+        "kraft": 6,
+        "vitalitaet": 3
+      },
+      "legendaryEffect": {
+        "type": "salvage_bonus",
+        "value": 5,
+        "label": "+5% Salvage Materials"
+      },
+      "source": "dungeon"
     }
   ]
 }
