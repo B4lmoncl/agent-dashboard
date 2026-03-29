@@ -848,9 +848,9 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
 
       {/* ─── NPC Grid (categorized) — materials shown per NPC card ────── */}
       {[
-        { label: "Armor Professions", desc: "Helm, Armor, Boots", ids: ["schmied","schneider","lederverarbeiter"] },
-        { label: "Weapon & Jewelry", desc: "Weapons, Shields, Rings, Amulets", ids: ["waffenschmied","juwelier"] },
-        { label: "Consumables", desc: "Potions, Meals, Enchants", ids: ["alchemist","koch","verzauberer"] },
+        { label: "Rüstungsberufe", desc: "Helm, Rüstung, Stiefel", ids: ["schmied","schneider","lederverarbeiter"] },
+        { label: "Waffen & Schmuck", desc: "Waffen, Schilde, Ringe, Amulette", ids: ["waffenschmied","juwelier"] },
+        { label: "Verbrauchsgüter", desc: "Tränke, Mahlzeiten, Verzauberungen", ids: ["alchemist","koch","verzauberer"] },
       ].map(cat => {
         const catProfs = professions.filter(p => cat.ids.includes(p.id));
         if (catProfs.length === 0) return null;
@@ -886,7 +886,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                     const craftableCount = recipes.filter(r => r.profession === prof.id && r.canCraft && r.learned && (r.cooldownRemaining ?? 0) <= 0).length;
                     return <>
                       {craftableCount > 0 && <span className="text-xs px-1.5 py-0.5 rounded font-mono font-bold" style={{ background: "rgba(34,197,94,0.12)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.2)" }}>{craftableCount}</span>}
-                      <span className="text-xs px-2 py-0.5 rounded font-semibold" style={{ background: `${prof.color}18`, color: prof.color }}>Active</span>
+                      <span className="text-xs px-2 py-0.5 rounded font-semibold" style={{ background: `${prof.color}18`, color: prof.color }}>Aktiv</span>
                     </>;
                   })()}
                   {!isChosen && !prof.canChoose && !locked && <span className="text-xs px-2 py-0.5 rounded font-semibold" style={{ background: "rgba(255,68,68,0.1)", color: "#f44" }}>{chosenCount}/{maxProfSlots}</span>}
