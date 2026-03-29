@@ -882,6 +882,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
             {/* Location header */}
             <div className="px-4 pt-3 pb-1">
               <div className="flex items-center gap-2">
+                {prof.icon && <img src={prof.icon} alt="" width={18} height={18} className="img-render-auto flex-shrink-0" style={{ opacity: 0.6 }} onError={e => { e.currentTarget.style.display = "none"; }} />}
                 <Tip k={`prof_${prof.id}`} heading><span className="text-sm font-semibold uppercase tracking-widest" style={{ color: `${loc.color}70` }}>{loc.label}</span></Tip>
                 <span className="text-sm" style={{ color: "rgba(255,255,255,0.25)" }}>{loc.desc}</span>
                 <div className="ml-auto flex items-center gap-1.5">
