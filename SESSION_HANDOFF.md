@@ -134,6 +134,25 @@ Key new/modified files:
 ## Current Branch
 `claude/run-audit-prompt-pEUOH`
 
+## Final Audit Results (for reference)
+
+### Code Quality (from final audit — all clean)
+- **0 Critical issues**
+- **TypeScript**: `tsc --noEmit` passes with zero errors
+- **Data integrity**: `verify-items.js` passes, all 1084 gear template IDs valid
+- **Auth**: All POST/PUT/DELETE have auth middleware (except intentional: /api/feedback)
+- **Error format**: Consistently `{ error: "..." }` across all 24 route files
+- **Null safety**: No unsafe `.find().property` chains found
+- **No double saveUsers() bugs**
+
+### Remaining Low-Priority Issues (not fixed, acceptable)
+- LOW-001: 37 unused variable/import lint warnings across components
+- LOW-002: 13 unnecessarily exported functions in helpers.js (used internally only)
+- LOW-003: `skeleton-pulse` CSS class defined but unused
+- LOW-004: 2x `Object.values(state.users).find()` for token lookups (no Map exists for tokens)
+- LOW-005: 2x `state.quests.find()` for chain/dedup lookups (no Map for these queries)
+- MED-001: `POST /api/auth/set-password` lacks rate limiter (requires auth, low risk)
+
 ## Key Design Rules (from user feedback this session)
 - **NO emojis** (only streak flame 🔥 exception)
 - **NO direct game references** ("WoW-style", "Diablo", "D3" etc.) in player-facing text
@@ -145,3 +164,19 @@ Key new/modified files:
 - **Multiple choice for uncertainty** — always ask, never assume
 - **Fix ALL issues, not just important ones**
 - **Read REJECTED.md before proposing** any new feature
+- **User speaks German** — communicate in German when they do, English is also fine
+- **Ask per multiple choice tool** (AskUserQuestion) — not as text output
+- **Gacha banners are PERFECT** — do NOT touch GachaView/GachaPull
+- **helpers.js stays monolithic** — split was attempted and abandoned (circular deps)
+- **ForgeView stays monolithic** — split was attempted and timed out, works fine as-is
+- **Bazaar self-care items** now have gameplay effects (forge temp + streak shields) — this was a user complaint that was fixed
+
+## How To Start The Next Session
+
+Say to Claude Code:
+```
+Lies SESSION_HANDOFF.md und AUDIT_PROMPT.md. Dann lies REJECTED.md.
+Mach weiter wo die letzte Session aufgehört hat.
+Starte mit den fehlenden Frontends (Faction Dailies, Currency Shop,
+Currency Conversion, Frame Selection, Gem Polish/Socket Unlock).
+```
