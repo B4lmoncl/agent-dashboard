@@ -169,13 +169,13 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
       if (!r.ok) setMessage({ text: d.error || "Something went wrong. Please try again.", type: "error" });
       else {
         setMessage({ text: d.message, type: "success" });
-        if (onRewardCelebration && d.rewards) {
+        if (onRewardCelebration) {
           onRewardCelebration({
             type: "rift",
             title: d.riftCompleted ? "Rift Complete!" : "Stage Complete!",
-            xpEarned: d.rewards.xp || 0,
-            goldEarned: d.rewards.gold || 0,
-            loot: d.rewards.loot ? { name: d.rewards.loot.name, emoji: "◆", rarity: d.rewards.loot.rarity || "rare" } : null,
+            xpEarned: d.xpEarned || 0,
+            goldEarned: d.goldEarned || 0,
+            loot: d.loot ? { name: d.loot.name, emoji: "◆", rarity: d.loot.rarity || "rare" } : undefined,
           });
         }
         fetchRift(); onRefresh?.();
