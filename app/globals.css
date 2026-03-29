@@ -995,7 +995,7 @@ body.night-mode .crystal-breathe {
 /* ─── Weekend Aura ─── */
 body.weekend-aura::before {
   content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
-  background: radial-gradient(ellipse at 50% 30%, rgba(251,191,36,0.02) 0%, transparent 60%);
+  background: radial-gradient(ellipse at 50% 30%, rgba(251,191,36,0.04) 0%, transparent 60%);
 }
 
 /* ─── Moon Phase Glow (intensity class set via JS) ─── */

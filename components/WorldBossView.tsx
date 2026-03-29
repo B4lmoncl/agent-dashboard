@@ -416,17 +416,19 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
               {formatNumber(boss.currentHp)} / {formatNumber(boss.maxHp)}
             </span>
           </div>
-          <div className="relative rounded-full overflow-hidden" style={{ height: 10, background: "rgba(255,255,255,0.06)" }}>
-            {/* Damage burst particles */}
+          {/* Damage burst particles (outside overflow-hidden bar) */}
+          <div className="relative" style={{ height: 0 }}>
             {damageBurst && Array.from({ length: 6 }).map((_, i) => (
               <div key={i} className="absolute pointer-events-none" style={{
                 width: 3, height: 6, borderRadius: 1,
                 background: `linear-gradient(180deg, ${hpColor}, transparent)`,
-                bottom: "100%", left: `${15 + i * 13}%`,
+                bottom: 4, left: `${15 + i * 13}%`,
                 animation: `crystal-particle-rise 0.6s ease-out ${i * 0.05}s forwards`,
                 boxShadow: `0 0 4px ${hpColor}80`,
               }} />
             ))}
+          </div>
+          <div className="rounded-full overflow-hidden" style={{ height: 10, background: "rgba(255,255,255,0.06)" }}>
             <div
               className={`h-full rounded-full transition-all duration-700${!boss.defeated ? " bar-pulse" : ""}`}
               style={{
