@@ -45,7 +45,7 @@ const THEMES: Record<RewardType, ThemeConfig> = {
     accentRgb: "34,197,94",
     gradientTop: "#0d1a0f",
     label: "Quest Complete!",
-    icon: "⚔️",
+    icon: "◆",
     flavorMessages: [
       "The Forge burns bright!",
       "Another quest conquered!",
@@ -59,7 +59,7 @@ const THEMES: Record<RewardType, ThemeConfig> = {
     accentRgb: "168,85,247",
     gradientTop: "#1a0d20",
     label: "Quest Complete!",
-    icon: "⚔️",
+    icon: "◆",
     flavorMessages: [
       "The quest giver nods with approval.",
       "A worthy adventurer indeed!",
@@ -73,7 +73,7 @@ const THEMES: Record<RewardType, ThemeConfig> = {
     accentRgb: "99,102,241",
     gradientTop: "#0d0d1a",
     label: "Ritual Fulfilled!",
-    icon: "🔥",
+    icon: "◆",
     flavorMessages: [
       "The flame endures!",
       "Discipline forged in fire.",
@@ -101,7 +101,7 @@ const THEMES: Record<RewardType, ThemeConfig> = {
     accentRgb: "255,107,157",
     gradientTop: "#1a0d1e",
     label: "Quest Complete!",
-    icon: "🐾",
+    icon: "◆",
     flavorMessages: [
       "Your companion is happy!",
       "A bond strengthened!",
@@ -115,7 +115,7 @@ const THEMES: Record<RewardType, ThemeConfig> = {
     accentRgb: "251,191,36",
     gradientTop: "#1a160d",
     label: "Daily Bonus!",
-    icon: "⭐",
+    icon: "★",
     flavorMessages: [
       "The Forge welcomes you!",
       "A new day, new possibilities!",
