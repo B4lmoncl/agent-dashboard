@@ -14365,7 +14365,7 @@
       "name": "Gesplitterter Rubin",
       "profession": "juwelier",
       "source": "trainer",
-      "reqSkill": 0,
+      "reqSkill": 1,
       "materials": {
         "kristallsplitter": 1
       },
