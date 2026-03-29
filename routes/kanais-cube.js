@@ -4,8 +4,9 @@
  */
 const router = require('express').Router();
 const { state, saveUsers, ensureUserCurrencies } = require('../lib/state');
-const { now } = require('../lib/helpers');
+const { now, createPlayerLock } = require('../lib/helpers');
 const { requireAuth } = require('../lib/middleware');
+const cubeExtractLock = createPlayerLock('cube-extract');
 
 // ─── Effect Category Mapping (D3 style: Offensive / Defensive / Utility) ────
 
@@ -86,6 +87,8 @@ router.get('/api/kanais-cube', requireAuth, (req, res) => {
 
 router.post('/api/kanais-cube/extract', requireAuth, (req, res) => {
   const uid = req.auth?.userId;
+  if (!cubeExtractLock.acquire(uid)) return res.status(429).json({ error: 'Extraction in progress' });
+  try {
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'User not found' });
   const { inventoryItemId } = req.body;
@@ -96,6 +99,7 @@ router.post('/api/kanais-cube/extract', requireAuth, (req, res) => {
   if (idx === -1) return res.status(404).json({ error: 'Item not in inventory' });
 
   const item = inv[idx];
+  if (item.locked) return res.status(400).json({ error: 'Item is locked — unlock it first' });
   if (!item.legendaryEffect || !item.legendaryEffect.type) {
     return res.status(400).json({ error: 'Item has no legendary effect to extract' });
   }
@@ -160,6 +164,7 @@ router.post('/api/kanais-cube/extract', requireAuth, (req, res) => {
     cube: { offensive: cube.offensive, defensive: cube.defensive, utility: cube.utility, library: cube.library },
     currencies: u.currencies,
   });
+  } finally { cubeExtractLock.release(uid); }
 });
 
 // ─── POST /api/kanais-cube/equip — Set active effect for a slot ──────────────
