@@ -63,8 +63,8 @@ function ReadCheck({ read }: { read: boolean }) {
 
 // Activity event icons
 const EVENT_ICONS: Record<string, string> = {
-  quest_complete: "⚔️", level_up: "▲", achievement: "◆",
-  gacha_pull: "✨", rare_drop: "◇", trade_complete: "◈", streak_milestone: "🔥",
+  quest_complete: "◆", level_up: "▲", achievement: "★",
+  gacha_pull: "◇", rare_drop: "◈", trade_complete: "●", streak_milestone: "🔥",
 };
 
 // ─── Sub-tab navigation ──────────────────────────────────────────────────────
@@ -327,7 +327,7 @@ function FriendsTab({ apiKey, playerName, onOpenProfile }: { apiKey: string; pla
                     })();
                   }}
                   className="text-xs px-2 py-0.5 rounded mt-1 opacity-0 group-hover:opacity-100 transition-opacity"
-                  style={{ background: "rgba(251,191,36,0.1)", color: "#fbbf24", border: "1px solid rgba(251,191,36,0.2)", cursor: "pointer", fontSize: 11 }}
+                  style={{ background: "rgba(251,191,36,0.1)", color: "#fbbf24", border: "1px solid rgba(251,191,36,0.2)", cursor: "pointer", fontSize: 12 }}
                   title="Challenge this friend — who completes more quests this week? 100g wager"
                 >
                   Challenge
@@ -1238,7 +1238,7 @@ function ActivityFeedTab({ apiKey, playerName, onNavigate, onNavigateToAchieveme
             descriptionNode = <>unlocked <TipCustom title={d.name || "Achievement"} icon="◆" accent={rarityColor} body={<><p className="text-xs" style={{ color: "rgba(255,255,255,0.5)" }}>{d.rarity || "common"} achievement</p>{d.points && <p className="text-xs" style={{ color: "#fbbf24" }}>+{d.points} AP</p>}</>}><span className="gt-ref" style={{ color: rarityColor }}>{d.name || "an achievement"}</span></TipCustom></>;
             break;
           case "gacha_pull":
-            descriptionNode = <>pulled <TipCustom title={d.item || "Item"} icon="✨" accent={rarityColor} body={<><p className="text-xs" style={{ color: rarityColor }}>{d.rarity || "common"}</p>{d.banner && <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>from {d.banner}</p>}</>}><span className="gt-ref" style={{ color: rarityColor }}>{d.item || "an item"}</span></TipCustom></>;
+            descriptionNode = <>pulled <TipCustom title={d.item || "Item"} icon="◇" accent={rarityColor} body={<><p className="text-xs" style={{ color: rarityColor }}>{d.rarity || "common"}</p>{d.banner && <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>from {d.banner}</p>}</>}><span className="gt-ref" style={{ color: rarityColor }}>{d.item || "an item"}</span></TipCustom></>;
             break;
           case "rare_drop":
             descriptionNode = <>found <TipCustom title={d.item || "Item"} icon="◇" accent={rarityColor} body={<p className="text-xs" style={{ color: rarityColor }}>{d.rarity || "rare"} drop</p>}><span className="gt-ref" style={{ color: rarityColor }}>{d.item || "an item"}</span></TipCustom></>;
