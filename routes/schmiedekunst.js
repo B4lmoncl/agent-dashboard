@@ -35,7 +35,7 @@ const DISMANTLE_MATERIALS_DEFAULT = {
 function getDismantleMaterials(userId, rarity) {
   const u = state.users[userId];
   const profs = u?.chosenProfessions || [];
-  if (profs.length === 0) return DISMANTLE_MATERIALS_DEFAULT[rarity] || DISMANTLE_MATERIALS_DEFAULT.common;
+  if (profs.length === 0) return []; // No professions = essenz only, no materials
   // Merge materials from all chosen professions
   const merged = [];
   const seen = new Set();
@@ -45,7 +45,7 @@ function getDismantleMaterials(userId, rarity) {
       if (!seen.has(mat.id)) { merged.push(mat); seen.add(mat.id); }
     }
   }
-  return merged.length > 0 ? merged : DISMANTLE_MATERIALS_DEFAULT[rarity] || DISMANTLE_MATERIALS_DEFAULT.common;
+  return merged;
 }
 
 // POST /api/schmiedekunst/dismantle — dismantle an inventory item into essenz + materials

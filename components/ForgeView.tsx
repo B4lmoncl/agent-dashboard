@@ -1318,6 +1318,21 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
             {/* ─── Tab: Recipes ──────────────────────────────────────────── */}
             {npcModalTab === "recipes" && (
               <div className="tab-content-enter">
+                {/* Not enrolled gate */}
+                {!selectedNpc.chosen && (
+                  <div className="px-5 py-4 text-center" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
+                    <p className="text-sm font-semibold mb-2" style={{ color: "rgba(255,255,255,0.5)" }}>You haven&apos;t learned this profession yet.</p>
+                    <button
+                      onClick={() => setConfirmProf(selectedNpc)}
+                      disabled={choosingProf || professions.filter(p => p.chosen && !["koch", "verzauberer"].includes(p.id)).length >= maxProfSlots}
+                      className="text-sm px-5 py-2.5 rounded-lg font-semibold"
+                      style={{ background: `${selectedNpc.color}20`, color: selectedNpc.color, border: `1px solid ${selectedNpc.color}40`, cursor: "pointer" }}
+                    >
+                      Choose {selectedNpc.name}
+                    </button>
+                    <p className="text-xs mt-2" style={{ color: "rgba(255,255,255,0.2)" }}>Browse recipes below to see what this profession offers.</p>
+                  </div>
+                )}
                 {/* Recipe discovery counter */}
                 {(() => {
                   const profRecipes = recipes.filter(r => r.profession === selectedNpc.id);
@@ -1363,76 +1378,30 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
 
                 {/* Recipes list */}
                 <div className="px-5 py-3 space-y-2" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
-                  <div className="flex items-center justify-between mb-1">
-                    <Tip k="recipes" heading><p className="text-xs font-semibold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.25)" }}>Recipes</p></Tip>
-                    <div className="flex items-center gap-3">
-                      {Object.entries(SKILL_UP_COLORS).map(([key, sc]) => (
-                        <TipCustom key={key} title={`${sc.label} Skill-Up`} icon="📊" accent={sc.color} body={<p>{key === "orange" ? "100% chance to gain XP" : key === "yellow" ? "75% chance to gain XP" : key === "green" ? "25% chance to gain XP" : "0% XP — level up to unlock XP from higher recipes"}</p>}>
-                        <span className="flex items-center gap-1 text-xs cursor-help" style={{ color: "rgba(255,255,255,0.3)" }}>
-                          <span className="w-2 h-2 rounded-full" style={{ background: sc.color }} />
-                          {sc.label}
-                        </span>
-                        </TipCustom>
-                      ))}
-                    </div>
-                  </div>
-                  {/* Recipe search + craftable filter (Features #1 & #2) */}
-                  <div className="flex items-center gap-2 mb-2">
-                    <div className="relative flex-1">
+                  {/* Compact filter bar: search + toggles on one row */}
+                  <div className="flex items-center gap-1.5 mb-2">
+                    <div className="relative flex-1 min-w-0">
                       <input
                         type="text"
                         value={recipeSearch}
                         onChange={e => setRecipeSearch(e.target.value)}
-                        placeholder="Search recipes..."
-                        className="input-dark w-full text-xs px-3 py-1.5 rounded-lg pr-7"
+                        placeholder="Search..."
+                        className="input-dark w-full text-xs px-2.5 py-1.5 rounded-lg pr-6"
                         style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.7)", border: "1px solid rgba(255,255,255,0.08)" }}
                       />
                       {recipeSearch && (
-                        <button
-                          onClick={() => setRecipeSearch("")}
-                          className="absolute right-1.5 top-1/2 -translate-y-1/2 w-5 h-5 flex items-center justify-center rounded text-xs"
-                          style={{ color: "rgba(255,255,255,0.3)", cursor: "pointer" }}
-                          title="Clear search"
-                        >
-                          &#10005;
-                        </button>
+                        <button onClick={() => setRecipeSearch("")} className="absolute right-1.5 top-1/2 -translate-y-1/2 w-4 h-4 flex items-center justify-center rounded text-xs" style={{ color: "rgba(255,255,255,0.3)", cursor: "pointer" }}>&#10005;</button>
                       )}
                     </div>
-                    <button
-                      onClick={() => setShowCraftableOnly(v => !v)}
-                      className="text-xs px-3 py-1.5 rounded-lg font-semibold whitespace-nowrap"
-                      style={{
-                        background: showCraftableOnly ? `${selectedNpc.color}18` : "rgba(255,255,255,0.04)",
-                        color: showCraftableOnly ? selectedNpc.color : "rgba(255,255,255,0.3)",
-                        border: `1px solid ${showCraftableOnly ? `${selectedNpc.color}40` : "rgba(255,255,255,0.08)"}`,
-                        boxShadow: showCraftableOnly ? `0 0 8px ${selectedNpc.color}20` : "none",
-                        cursor: "pointer",
-                      }}
-                      title="Show only recipes you can craft right now"
-                    >
-                      Show Craftable
-                    </button>
-                    <button
-                      onClick={() => setShowHaveMatsOnly(v => !v)}
-                      className="text-xs px-3 py-1.5 rounded-lg font-semibold whitespace-nowrap"
-                      style={{
-                        background: showHaveMatsOnly ? `${selectedNpc.color}18` : "rgba(255,255,255,0.04)",
-                        color: showHaveMatsOnly ? selectedNpc.color : "rgba(255,255,255,0.3)",
-                        border: `1px solid ${showHaveMatsOnly ? `${selectedNpc.color}40` : "rgba(255,255,255,0.08)"}`,
-                        boxShadow: showHaveMatsOnly ? `0 0 8px ${selectedNpc.color}20` : "none",
-                        cursor: "pointer",
-                      }}
-                      title="Show only recipes where you have all materials and gold (ignores skill, cooldowns, slot)"
-                    >
-                      Have Materials
-                    </button>
-                    <span className="text-xs" style={{ color: "rgba(255,255,255,0.15)" }}>
-                      <span style={{ color: "#22c55e" }}>●</span> ready
-                      <span style={{ color: "#f59e0b" }}> ◐</span> mats
-                      <span style={{ color: "rgba(255,255,255,0.15)" }}> ○</span> locked
-                    </span>
+                    <button onClick={() => setShowCraftableOnly(v => !v)} className="text-xs px-2 py-1.5 rounded-lg font-medium whitespace-nowrap" style={{ background: showCraftableOnly ? `${selectedNpc.color}18` : "rgba(255,255,255,0.04)", color: showCraftableOnly ? selectedNpc.color : "rgba(255,255,255,0.25)", border: `1px solid ${showCraftableOnly ? `${selectedNpc.color}30` : "rgba(255,255,255,0.06)"}`, cursor: "pointer" }} title="Show only recipes you can craft right now">Craftable</button>
+                    <button onClick={() => setShowHaveMatsOnly(v => !v)} className="text-xs px-2 py-1.5 rounded-lg font-medium whitespace-nowrap" style={{ background: showHaveMatsOnly ? `${selectedNpc.color}18` : "rgba(255,255,255,0.04)", color: showHaveMatsOnly ? selectedNpc.color : "rgba(255,255,255,0.25)", border: `1px solid ${showHaveMatsOnly ? `${selectedNpc.color}30` : "rgba(255,255,255,0.06)"}`, cursor: "pointer" }} title="Show only recipes where you have all materials">Materials</button>
+                    <TipCustom title="Skill-Up Colors" icon="◆" accent={selectedNpc.color} body={<div className="space-y-1">{Object.entries(SKILL_UP_COLORS).map(([k, sc]) => <p key={k} style={{ color: sc.color }}>{sc.label}: {k === "orange" ? "100%" : k === "yellow" ? "~75%" : k === "green" ? "~25%" : "0%"} skill-up</p>)}</div>}>
+                      <span className="flex items-center gap-0.5 cursor-help" style={{ color: "rgba(255,255,255,0.2)" }}>
+                        {Object.values(SKILL_UP_COLORS).map((sc, i) => <span key={i} className="w-1.5 h-1.5 rounded-full" style={{ background: sc.color }} />)}
+                      </span>
+                    </TipCustom>
                   </div>
-                  {/* Slot filter */}
+                  {/* Slot filter — compact pills */}
                   <div className="flex gap-1 flex-wrap mb-2">
                     {["all", "weapon", "shield", "helm", "armor", "amulet", "ring", "boots", "consumable"].map(s => (
                       <button key={s} onClick={() => setRecipeSlotFilter(s)} className="text-xs px-2 py-0.5 rounded" style={{ background: recipeSlotFilter === s ? "rgba(255,255,255,0.08)" : "rgba(255,255,255,0.02)", color: recipeSlotFilter === s ? "#e8e8e8" : "rgba(255,255,255,0.2)", border: `1px solid ${recipeSlotFilter === s ? "rgba(255,255,255,0.15)" : "rgba(255,255,255,0.04)"}`, cursor: "pointer" }}>{s === "all" ? "All" : s === "consumable" ? "Buffs" : s.charAt(0).toUpperCase() + s.slice(1)}</button>
@@ -1632,17 +1601,17 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                               return (
                               <button
                                 onClick={() => handleLearnRecipe(recipe.id)}
-                                disabled={crafting || !canAfford}
+                                disabled={crafting || !canAfford || !selectedNpc.chosen}
                                 className="forge-btn text-sm px-4 py-2 rounded-lg font-semibold"
                                 style={{
-                                  background: canAfford ? `${selectedNpc.color}15` : "rgba(255,255,255,0.03)",
-                                  color: canAfford ? "#facc15" : "rgba(255,255,255,0.2)",
-                                  border: canAfford ? "1px solid rgba(250,204,21,0.3)" : "1px solid rgba(255,255,255,0.06)",
-                                  cursor: canAfford && !crafting ? "pointer" : "not-allowed",
+                                  background: !selectedNpc.chosen ? "rgba(255,255,255,0.03)" : canAfford ? `${selectedNpc.color}15` : "rgba(255,255,255,0.03)",
+                                  color: !selectedNpc.chosen ? "rgba(255,255,255,0.2)" : canAfford ? "#facc15" : "rgba(255,255,255,0.2)",
+                                  border: !selectedNpc.chosen ? "1px solid rgba(255,255,255,0.06)" : canAfford ? "1px solid rgba(250,204,21,0.3)" : "1px solid rgba(255,255,255,0.06)",
+                                  cursor: canAfford && !crafting && selectedNpc.chosen ? "pointer" : "not-allowed",
                                 }}
-                                title={!canAfford ? `Need ${(recipe.trainerCost ?? 0) - playerGold} more gold` : `Learn from ${selectedNpc.npcName} for ${recipe.trainerCost}g`}
+                                title={!selectedNpc.chosen ? "Choose this profession first" : !canAfford ? `Need ${(recipe.trainerCost ?? 0) - playerGold} more gold` : `Learn from ${selectedNpc.npcName} for ${recipe.trainerCost}g`}
                               >
-                                {crafting ? "..." : `Learn (${recipe.trainerCost}g)`}
+                                {!selectedNpc.chosen ? "Choose First" : crafting ? "..." : `Learn (${recipe.trainerCost}g)`}
                               </button>
                               );
                             })() : (
@@ -2105,7 +2074,20 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
             })()}
 
             {/* ─── Tab: Trainer (Buy Recipes — all professions) ──────────── */}
-            {(npcModalTab as string) === "trainer" && (() => {
+            {(npcModalTab as string) === "trainer" && !selectedNpc.chosen && (
+              <div className="tab-content-enter px-5 py-8 text-center" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
+                <p className="text-sm font-semibold mb-2" style={{ color: "rgba(255,255,255,0.5)" }}>Choose this profession to learn recipes from {selectedNpc.npcName}.</p>
+                <button
+                  onClick={() => setConfirmProf(selectedNpc)}
+                  disabled={choosingProf || professions.filter(p => p.chosen && !["koch", "verzauberer"].includes(p.id)).length >= maxProfSlots}
+                  className="text-sm px-5 py-2.5 rounded-lg font-semibold"
+                  style={{ background: `${selectedNpc.color}20`, color: selectedNpc.color, border: `1px solid ${selectedNpc.color}40`, cursor: "pointer" }}
+                >
+                  Choose {selectedNpc.name}
+                </button>
+              </div>
+            )}
+            {(npcModalTab as string) === "trainer" && selectedNpc.chosen && (() => {
               const trainerRecipes = recipes
                 .filter(r => r.profession === selectedNpc.id && r.source === "trainer" && (r.trainerCost ?? 0) > 0)
                 .sort((a, b) => (a.reqSkill || 0) - (b.reqSkill || 0));

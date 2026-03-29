@@ -90,7 +90,7 @@
       "id": "schneider",
       "name": "Tailor",
       "npcName": "Selina the Weaver",
-      "npcPortrait": null,
+      "npcPortrait": "/images/npcs/selina-schneider.png",
       "npcGreeting": "Jeder Faden erzählt eine Geschichte. Mal sehen, welche zu dir passt.",
       "description": "Crafts cloth armor imbued with arcane resonance. Cloth pieces boost XP per slot equipped.",
       "color": "#c084fc",
