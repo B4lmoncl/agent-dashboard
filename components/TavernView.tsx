@@ -113,7 +113,7 @@ export default function TavernView({ onRefresh }: { onRefresh?: () => void }) {
   if (!playerName || !reviewApiKey) {
     return (
       <div className="rounded-xl px-6 py-12 text-center" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
-        <p className="text-2xl mb-2">🔥</p>
+        <img src="/images/icons/nav-hearth.png" alt="" width={40} height={40} className="mx-auto mb-2 img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} />
         <p className="text-sm font-bold mb-1 text-w25">The Hearth</p>
         <p className="text-xs text-w15">Log in to rest at the Hearth.</p>
       </div>
@@ -149,7 +149,7 @@ export default function TavernView({ onRefresh }: { onRefresh?: () => void }) {
       {/* Header */}
       <div className="text-center space-y-2">
         <div className="relative inline-block">
-          <p className="text-3xl">🔥</p>
+          <img src="/images/icons/nav-hearth.png" alt="" width={48} height={48} className="img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} />
           {/* Heat wave lines */}
           {[0,1,2].map(i => (
             <div key={`wave-${i}`} className="absolute pointer-events-none" style={{
@@ -223,7 +223,7 @@ export default function TavernView({ onRefresh }: { onRefresh?: () => void }) {
             disabled={actionLoading}
             className="btn-interactive w-full text-xs font-bold py-2.5 rounded-lg"
             style={{ background: "rgba(34,197,94,0.15)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.3)", opacity: actionLoading ? 0.5 : 1, cursor: actionLoading ? "not-allowed" : "pointer" }}
-            title={actionLoading ? "Action in progress..." : undefined}
+            title={actionLoading ? "Action in progress..." : "Leave rest mode — your streaks and forge temp will be restored"}
           >
             {actionLoading ? "..." : "Leave the Hearth — Return to Adventure"}
           </button>
@@ -249,6 +249,7 @@ export default function TavernView({ onRefresh }: { onRefresh?: () => void }) {
                     background: selectedDays === d ? "rgba(217,119,6,0.15)" : "rgba(255,255,255,0.03)",
                     color: selectedDays === d ? "#d97706" : "rgba(255,255,255,0.3)",
                     border: `1px solid ${selectedDays === d ? "rgba(217,119,6,0.4)" : "rgba(255,255,255,0.06)"}`,
+                    cursor: "pointer",
                   }}
                 >
                   {d}d
