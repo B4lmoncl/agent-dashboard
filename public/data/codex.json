@@ -5,7 +5,9 @@
     { "id": "npcs", "name": "Wanderer", "icon": "/images/icons/nav-wanderer.png", "color": "#22c55e" },
     { "id": "factions", "name": "Die Zirkel", "icon": "/images/icons/nav-proving.png", "color": "#a855f7" },
     { "id": "creatures", "name": "Kreaturen", "icon": "/images/icons/ach-boss-slayer.png", "color": "#ef4444" },
-    { "id": "artifacts", "name": "Artefakte", "icon": "/images/icons/equip-weapon.png", "color": "#fbbf24" }
+    { "id": "artifacts", "name": "Artefakte", "icon": "/images/icons/equip-weapon.png", "color": "#fbbf24" },
+    { "id": "systems", "name": "Mechaniken", "icon": "/images/icons/nav-bazaar.png", "color": "#60a5fa" },
+    { "id": "history", "name": "Chroniken", "icon": "/images/icons/nav-observatory.png", "color": "#f59e0b" }
   ],
   "entries": [
     {
@@ -286,6 +288,321 @@
       "category": "artifacts",
       "title": "Der Namenlose Hammer",
       "text": "Im tiefsten Keller der Schmiede liegt ein Hammer ohne Inschrift. Nicht weil sein Name vergessen wurde — sondern weil sein Name so mächtig ist, dass ihn auszusprechen die Realität in der näheren Umgebung leicht irritiert.",
+      "unlockedBy": { "type": "hidden" }
+    },
+    {
+      "id": "kristalladern",
+      "category": "tower",
+      "title": "Die Kristalladern",
+      "text": "Sie pulsieren durch den gesamten Turm wie leuchtende Venen. Niemand hat sie gelegt. Sie waren schon da, bevor der erste Stein gesetzt wurde. Die Gelehrten streiten darüber, ob der Turm um die Adern herum gebaut wurde — oder ob die Adern dem Turm gefolgt sind. Die Adern selbst schweigen diplomatisch.",
+      "unlockedBy": { "type": "level_reached", "value": 2 }
+    },
+    {
+      "id": "season-pass",
+      "category": "systems",
+      "title": "Die Saisonuhr",
+      "text": "Alle neunzig Tage dreht sich das Rad. Neue Belohnungen, neue Ziele, neue Gründe morgens aufzustehen. Die Uhr tickt — nicht als Drohung, sondern als Einladung. Wer rechtzeitig fertig wird, hat gewonnen. Wer nicht, hat trotzdem vierzig Level Erfahrung gesammelt.",
+      "unlockedBy": { "type": "level_reached", "value": 10 }
+    },
+    {
+      "id": "gem-system",
+      "category": "systems",
+      "title": "Die Kunst des Fassens",
+      "text": "Sechs Edelsteintypen, fünf Qualitätsstufen, und eine unbegrenzte Anzahl an Möglichkeiten sich zu vertun. Das Sockeln eines Juwels ist einfach. Das Entfernen weniger. Die Juweliere empfehlen, vorher nachzudenken. Die meisten Helden empfehlen, hinterher zu fluchen.",
+      "unlockedBy": { "type": "level_reached", "value": 10 }
+    },
+    {
+      "id": "pity-system",
+      "category": "systems",
+      "title": "Das Mitleid der Sterne",
+      "text": "Das Schicksalsgewölbe führt Buch. Jeder erfolglose Versuch bringt dich näher an die Garantie. Bei fünfundfünfzig wird das Schicksal ungeduldig. Bei fünfundsiebzig gibt es auf und gibt dir was du willst. Das System heißt offiziell 'Progressives Wahrscheinlichkeitsmanagement'. Inoffiziell heißt es 'Mitleid'.",
+      "unlockedBy": { "type": "level_reached", "value": 5 }
+    },
+    {
+      "id": "enchanting-reroll",
+      "category": "systems",
+      "title": "Eldrics Reroll-Methode",
+      "text": "Man wählt eine Eigenschaft. Eldric rollt zwei Alternativen. Man wählt. Die Kosten steigen mit jedem Versuch — nicht weil das Material teurer wird, sondern weil Eldric nach dem achten Reroll anfängt, persönliche Fragen zu stellen. 'Weißt du eigentlich, was du willst?' ist seine Lieblingsfrage.",
+      "unlockedBy": { "type": "level_reached", "value": 8 }
+    },
+    {
+      "id": "daily-missions",
+      "category": "systems",
+      "title": "Die Tagesordnung",
+      "text": "Sechs Aufgaben. Vier Meilensteine. Ein Tag. Die Tagesordnung wurde von jemandem erfunden, der glaubte, dass Struktur und Belohnungen zusammengehören wie Hammer und Amboss. Er hatte recht. Am siebenhundertfünfzigsten Punkt gibt es sogar einen Bonus, der 'Perfekter Tag' heißt. Ehrgeiz, verpackt in Zahlen.",
+      "unlockedBy": { "type": "level_reached", "value": 1 }
+    },
+    {
+      "id": "trading-system",
+      "category": "systems",
+      "title": "Der Handel im Breakaway",
+      "text": "Angebot. Gegenangebot. Nochmal Gegenangebot. Akzeptieren. Der Handel im Breakaway funktioniert wie in jedem guten Basar: Niemand bezahlt den ersten Preis, und am Ende sind beide Seiten überzeugt, den besseren Deal gemacht zu haben. Seelengebundene Gegenstände sind ausgenommen. Der Markt hat Grenzen. Wenige, aber sie existieren.",
+      "unlockedBy": { "type": "level_reached", "value": 3 }
+    },
+    {
+      "id": "stagnations-golem",
+      "category": "creatures",
+      "title": "Der Stagnations-Golem",
+      "text": "Er bewegt sich nicht. Das ist seine Stärke und sein Statement. Der Golem steht seit Äonen an derselben Stelle und wartet darauf, dass etwas passiert, ohne selbst etwas zu tun. Manche Helden erkennen sich in ihm wieder. Die klugen erschrecken dabei.",
+      "unlockedBy": { "type": "level_reached", "value": 20 }
+    },
+    {
+      "id": "perfektions-seraph",
+      "category": "creatures",
+      "title": "Der Perfektions-Seraph",
+      "text": "Sechs Flügel, jeder makellos. Jede Feder symmetrisch. Jede Bewegung berechnet. Der Seraph hat nie einen Fehler gemacht. Er hat auch nie etwas erschaffen, weil das Risiko eines Fehlers inakzeptabel war. Er schwebt dort oben. Perfekt. Nutzlos. Wunderschön.",
+      "unlockedBy": { "type": "level_reached", "value": 25 }
+    },
+    {
+      "id": "isolations-leviathan",
+      "category": "creatures",
+      "title": "Der Isolations-Leviathan",
+      "text": "Er schwimmt allein in Gewässern, die er selbst geschaffen hat. Nicht weil er keine Gesellschaft finden konnte — sondern weil er aufgehört hat zu suchen. Der Leviathan ist eine Erinnerung daran, dass die Breakaway nicht nur ein Stockwerk ist. Sie ist ein Gegenargument.",
+      "unlockedBy": { "type": "level_reached", "value": 25 }
+    },
+    {
+      "id": "apathie-souveraen",
+      "category": "creatures",
+      "title": "Der Apathie-Souverän",
+      "text": "Er saß auf einem Thron aus Gleichgültigkeit und regierte ein Königreich aus Achselzucken. Sein Volk war weder glücklich noch unglücklich — sie waren nichts. Der Souverän wurde nicht besiegt. Er wurde ignoriert. Das war schlimmer.",
+      "unlockedBy": { "type": "level_reached", "value": 30 }
+    },
+    {
+      "id": "entropie-weber",
+      "category": "creatures",
+      "title": "Die Entropie-Weberin",
+      "text": "Sie webt Fäden aus Unordnung in die Realität. Jeder Faden ein kleines Chaos: ein verlegter Schlüssel, ein vergessener Termin, ein Plan der nicht aufgeht. Einzeln harmlos. Zusammen? Ein Netz, in dem selbst die organisiertesten Helden hängenbleiben.",
+      "unlockedBy": { "type": "level_reached", "value": 30 }
+    },
+    {
+      "id": "erste-helden",
+      "category": "history",
+      "title": "Die Ersten Helden",
+      "text": "Bevor es den Turm gab, gab es die, die ihn nötig machten. Namenlose Wanderer, die erkannten, dass Disziplin keine Strafe ist sondern ein Geschenk. Sie bauten nichts. Sie lebten nur so, dass andere anfingen, ihnen nachzueifern. Der Turm wuchs um ihre Gewohnheiten herum.",
+      "unlockedBy": { "type": "level_reached", "value": 5 }
+    },
+    {
+      "id": "grosse-stille",
+      "category": "history",
+      "title": "Die Große Stille",
+      "text": "Es gab eine Zeit, in der der Turm leer stand. Keine Quests, keine Helden, keine Geschichten. Die Gelehrten nennen sie die Große Stille. Sie dauerte nicht lang — irgendwann kam jemand vorbei, der eine Liste hatte und etwas erledigen wollte. Der Rest ist Geschichte.",
+      "unlockedBy": { "type": "level_reached", "value": 10 }
+    },
+    {
+      "id": "aethersturm",
+      "category": "history",
+      "title": "Der Aethersturm",
+      "text": "Einmal, vor langer Zeit, hat der Aetherstrom getobt. Drei Tage lang floss er rückwärts. Tränke wurden zu Gift, Schwerter zu Butter, und ein Handwerker namens Thoran schmiedete versehentlich ein Meisterwerk, das er nie reproduzieren konnte. Thoran trinkt seitdem nur noch Tee.",
+      "unlockedBy": { "type": "level_reached", "value": 15 }
+    },
+    {
+      "id": "gildengold",
+      "category": "systems",
+      "title": "Das Gildengold",
+      "text": "Gold fließt. Immer. Rein und raus. Quests bringen es, der Basar nimmt es, und die Schmiede verschlingt es mit der Begeisterung eines Kindes in einer Süßwarenabteilung. Die Ökonomen des Turms haben einmal versucht, den Goldfluss zu kartografieren. Sie haben aufgegeben und stattdessen einen Trank bestellt.",
+      "unlockedBy": { "type": "level_reached", "value": 1 }
+    },
+    {
+      "id": "runensplitter-geheimnis",
+      "category": "artifacts",
+      "title": "Runensplitter",
+      "text": "Kristallisierte Fragmente des Aetherstroms. Sie klingen beim Berühren — ein Ton, der nicht ganz in diese Realität gehört. Man kann sie ins Schicksalsgewölbe werfen und hoffen. Oder man kann sie sammeln, bis man genug hat um nicht mehr hoffen zu müssen.",
+      "unlockedBy": { "type": "level_reached", "value": 3 }
+    },
+    {
+      "id": "essenz-natur",
+      "category": "artifacts",
+      "title": "Essenz",
+      "text": "Was übrig bleibt, wenn man einen Gegenstand bis auf seine Grundsubstanz zerlegt. Essenz ist konzentriertes 'Gewesen-Sein'. Die Handwerker verwenden sie als Grundzutat für alles, was kompliziert und teuer ist. Also für alles.",
+      "unlockedBy": { "type": "level_reached", "value": 3 }
+    },
+    {
+      "id": "mondstaub-essenz",
+      "category": "artifacts",
+      "title": "Mondstaub",
+      "text": "Extrem selten. Extrem begehrt. Extrem schwer zu erklären. Mondstaub entsteht, wenn Konsistenz auf Hingabe trifft — und selbst dann nur in homöopathischen Dosen. Wer genug davon hat, kann die Zeit selbst verlangsamen. Oder zumindest einen Rift-Timer verlängern.",
+      "unlockedBy": { "type": "level_reached", "value": 15 }
+    },
+    {
+      "id": "sternentaler-muenze",
+      "category": "artifacts",
+      "title": "Sternentaler",
+      "text": "Münzen, die nur der Sternenpfad prägt. Sie tragen das Licht bestandener Herausforderungen in sich — buchstäblich. Im Dunkeln leuchten sie schwach. Im Mondlicht leuchten sie stark. In der Tasche klimpern sie wie ganz normales Geld. Der Alltag hat keinen Sinn für Dramatik.",
+      "unlockedBy": { "type": "level_reached", "value": 5 }
+    },
+    {
+      "id": "versunkenes-archiv",
+      "category": "world",
+      "title": "Das Versunkene Archiv",
+      "text": "Der erste Dungeon. Manche sagen, er war einmal eine Bibliothek. Die Bücher sind noch da — aber die Wörter haben sich neu arrangiert. Was einmal Rezepte waren, sind jetzt Warnungen. Was einmal Warnungen waren, sind jetzt Witze. Der Humor des Archivs ist... speziell.",
+      "unlockedBy": { "type": "level_reached", "value": 10 }
+    },
+    {
+      "id": "zerbrochene-spirale",
+      "category": "world",
+      "title": "Die Zerbrochene Spirale",
+      "text": "Ein Turm im Turm. Einmal aufrecht, jetzt horizontal, durchbrochen von Rissen im Raum. Die Schwerkraft hier ist eine Suggestion, kein Gesetz. Wer die Spirale betritt, sollte sich merken wo oben ist. Die meisten vergessen es. Die Spirale hilft nicht beim Erinnern.",
+      "unlockedBy": { "type": "level_reached", "value": 20 }
+    },
+    {
+      "id": "hohler-kern",
+      "category": "world",
+      "title": "Der Hohle Kern",
+      "text": "Ganz unten. Unter allem. Der Kern ist nicht leer — er ist voll mit Nichts, und das ist ein wichtiger Unterschied. Wer den Kern betritt, hört auf zu denken und fängt an zu verstehen. Oder andersherum. Die Überlebenden sind sich uneinig.",
+      "unlockedBy": { "type": "level_reached", "value": 35 }
+    },
+    {
+      "id": "kristallvenen-netz",
+      "category": "tower",
+      "title": "Das Venennetz",
+      "text": "Die Kristalladern bilden ein Netzwerk, das den gesamten Turm durchzieht. Nachts pulsieren sie stärker — als würde der Turm im Schlaf atmen. Die Farbe der Adern ändert sich je nach Stockwerk. Die Handwerker sagen, die Farbe zeigt die Stimmung des Turms. Bisher hat sich niemand getraut zu fragen, was Rot bedeutet.",
+      "unlockedBy": { "type": "level_reached", "value": 8 }
+    },
+    {
+      "id": "wanderer-kodex",
+      "category": "npcs",
+      "title": "Der Wanderer-Kodex",
+      "text": "Jeder NPC, der den Turm betritt, folgt unausgesprochenen Regeln. Komm mit einer Quest. Geh mit einer Geschichte. Nimm nichts mit, was dir nicht gehört. Lass nichts zurück, das jemanden verfolgen könnte. Die meisten halten sich daran. Die interessanten nicht.",
+      "unlockedBy": { "type": "level_reached", "value": 5 }
+    },
+    {
+      "id": "rituale-bedeutung",
+      "category": "systems",
+      "title": "Die Macht der Rituale",
+      "text": "Ein Ritual ist eine Vereinbarung mit dir selbst. Tägliche Wiederholung, steigende Streaks, wachsende Belohnungen. Die Magie liegt nicht im einzelnen Tag — sie liegt in der Kette. Ein Glied ist nichts. Hundert Glieder sind unzerstörbar. Dreihundert Glieder sind eine Legende.",
+      "unlockedBy": { "type": "level_reached", "value": 3 }
+    },
+    {
+      "id": "blutpakt",
+      "category": "systems",
+      "title": "Der Blutpakt",
+      "text": "Für die, denen ein normales Ritual nicht reicht. Der Blutpakt bindet dich an ein Versprechen mit Konsequenzen. Brichst du ihn, verlierst du alles Aufgebaute. Hältst du durch, sind die Belohnungen... beachtlich. Die Entscheidung liegt bei dir. Die Verantwortung auch.",
+      "unlockedBy": { "type": "level_reached", "value": 10 }
+    },
+    {
+      "id": "turmerbauer",
+      "category": "history",
+      "title": "Die Turmerbauer",
+      "text": "Niemand weiß, wer den Turm gebaut hat. Die offiziellen Aufzeichnungen widersprechen sich — in drei verschiedenen Sprachen, von denen eine nicht von Menschen stammt. Was sicher ist: Wer auch immer es war, hatte keinen Architekten. Der Turm folgt keinem Plan. Er folgt einer Idee.",
+      "unlockedBy": { "type": "level_reached", "value": 20 }
+    },
+    {
+      "id": "vergessene-guild",
+      "category": "history",
+      "title": "Die Vergessene Gilde",
+      "text": "Vor den Vier Zirkeln gab es eine fünfte Fraktion. Niemand erinnert sich an ihren Namen. Das ist nicht Zufall — es ist ihr letzter Akt. Sie haben sich aus der Geschichte gelöscht, wie man eine Kerze ausbläst. Warum? Das steht in den Aufzeichnungen, die sie mitgenommen haben.",
+      "unlockedBy": { "type": "level_reached", "value": 25 }
+    },
+    {
+      "id": "erster-riss",
+      "category": "history",
+      "title": "Der Erste Riss",
+      "text": "Bevor es 'Rifts' gab, gab es den Ersten Riss. Er öffnete sich ohne Vorwarnung, mitten im Hauptsaal, während der damalige Gildenmeister gerade eine sehr langweilige Rede hielt. Im Nachhinein betrachtet war der Riss das Aufregendste, was ihm je passiert ist.",
+      "unlockedBy": { "type": "level_reached", "value": 15 }
+    },
+    {
+      "id": "schicksal-rad",
+      "category": "history",
+      "title": "Die Entdeckung des Gacha",
+      "text": "Ein Wanderer brachte das Rad mit. Niemand fragte woher. Niemand fragte warum. Als die ersten Runensplitter flossen und die ersten Legendaries fielen, hörten die Fragen auf. Die Antworten wurden irrelevant. Das Rad dreht sich. Das reicht.",
+      "unlockedBy": { "type": "level_reached", "value": 8 }
+    },
+    {
+      "id": "set-bonus",
+      "category": "systems",
+      "title": "Die Resonanz der Sets",
+      "text": "Manche Rüstungsteile sind füreinander gemacht. Drei Teile desselben Sets und die Statistiken beginnen zu harmonieren — ein leises Summen, das stärker wird je vollständiger die Sammlung. Die Handwerker nennen es 'Resonanz'. Die Helden nennen es 'den Grund warum ich nichts wegwerfen kann'.",
+      "unlockedBy": { "type": "level_reached", "value": 10 }
+    },
+    {
+      "id": "legendary-effects",
+      "category": "systems",
+      "title": "Legendäre Effekte",
+      "text": "Ein Gegenstand ist selten, weil er stark ist. Er ist legendär, weil er die Regeln ändert. Doppelte Beute bei Nacht. Automatischer Streak-Schutz. Zusätzliche Materialien beim Zerlegen. Jeder Effekt ist ein kleiner Cheatcode — legal, verdient, und oft der Grund für hitzige Debatten im Breakaway darüber, was 'fair' bedeutet.",
+      "unlockedBy": { "type": "level_reached", "value": 15 }
+    },
+    {
+      "id": "hidden-recipe",
+      "category": "systems",
+      "title": "Verlorene Rezepte",
+      "text": "Manche Rezepte stehen in keinem Lehrbuch. Sie fallen aus Monstern. Sie liegen in vergessenen Truhen. Sie kleben unter Tischen in der Taverne. Die Handwerker, die sie finden, sprechen davon wie von einer religiösen Erfahrung. Die Handwerker, die sie nicht finden, sprechen nicht darüber.",
+      "unlockedBy": { "type": "level_reached", "value": 12 }
+    },
+    {
+      "id": "hidden-companion-secret",
+      "category": "npcs",
+      "title": "Das Geheimnis der Gefährten",
+      "text": "Auf Bondstufe fünf passiert etwas. Der Companion hört auf, ein Begleiter zu sein, und wird ein Partner. Eine Fähigkeit erwacht — einzigartig, mächtig, und mit einem siebentägigen Cooldown der sich anfühlt wie eine Ewigkeit. Wer es einmal erlebt hat, versteht warum Geduld eine Tugend ist.",
+      "unlockedBy": { "type": "bond_level", "value": 5 }
+    },
+    {
+      "id": "hidden-mythic-truth",
+      "category": "world",
+      "title": "Jenseits des Legendären",
+      "text": "Mythisch+1. Dann +2. Dann +5. Irgendwann hören die Zahlen auf, etwas zu bedeuten, und die Herausforderung wird zur Meditation. Der Riss skaliert endlos. Die Belohnungen auch. Die Frage ist nicht, ob du es schaffst — die Frage ist, wann du aufhörst. Die richtige Antwort ist: nie.",
+      "unlockedBy": { "type": "mythic_cleared", "value": 5 }
+    },
+    {
+      "id": "hidden-artisan-mastery",
+      "category": "npcs",
+      "title": "Meisterschaft",
+      "text": "Dreihundert Punkte. Das Maximum. Die Grenze, an der ein Handwerker aufhört, ein Handwerker zu sein, und anfängt, ein Künstler zu sein. Der Unterschied? Ein Handwerker folgt dem Rezept. Ein Künstler verbessert es. Grimvar hat einmal gelacht, als jemand diese Schwelle erreicht hat. Es war beunruhigend.",
+      "unlockedBy": { "type": "profession_skill", "value": 280 }
+    },
+    {
+      "id": "hidden-streak-legend",
+      "category": "history",
+      "title": "Die Ewige Flamme",
+      "text": "Es gibt eine Legende von einem Helden, dessen Streak niemals erlosch. Dreihundertfünfundsechzig Tage. Dann nochmal. Und nochmal. Irgendwann hörte man auf zu zählen. Die Flamme brannte weiter. Manche sagen, sie brennt noch heute — irgendwo in den Tiefen des Turms, als Erinnerung daran, dass Konstanz die mächtigste aller Magien ist.",
+      "unlockedBy": { "type": "streak", "value": 90 }
+    },
+    {
+      "id": "hidden-collection",
+      "category": "artifacts",
+      "title": "Die Einzigartigen",
+      "text": "Handgefertigte Gegenstände mit Geschichte. Jedes Unikat hat einen Namen, eine Vergangenheit, und einen Grund warum es existiert. Man findet sie nicht — sie finden einen. In Dungeons, im Riss, beim Weltenboss. Der Sammlungskatalog führt Buch. Die Lücken darin sind Einladungen.",
+      "unlockedBy": { "type": "quests_completed", "value": 50 }
+    },
+    {
+      "id": "hidden-world-boss-origin",
+      "category": "history",
+      "title": "Die Geburt der Titanen",
+      "text": "Die Weltenboss sind keine Monster. Sie sind Manifestationen. Der Prokrastinations-Wyrm wurde nicht geboren — er wurde herbeigewartet. Der Burnout-Koloss wurde nicht erschaffen — er entstand aus einem Helden, der vergaß aufzuhören. Jeder Boss ist ein Spiegel. Die meisten Helden mögen nicht, was sie darin sehen.",
+      "unlockedBy": { "type": "level_reached", "value": 20 }
+    },
+    {
+      "id": "turm-jahreszeiten",
+      "category": "tower",
+      "title": "Die Jahreszeiten des Turms",
+      "text": "Der Turm kennt Frühling, Sommer, Herbst und Winter — aber auf seine eigene Art. Im Frühling sprießen neue Quests. Im Sommer brennt die Schmiede heißer. Im Herbst fallen die Blätter und die Preise. Im Winter wird alles stiller, und die Kristalladern glühen wärmer, als wollte der Turm seine Bewohner trösten.",
+      "unlockedBy": { "type": "level_reached", "value": 5 }
+    },
+    {
+      "id": "expedition-geschichten",
+      "category": "world",
+      "title": "Die Expeditions-Routen",
+      "text": "Vier Pfade führen vom Turm in die Wildnis. Schnelles Sammeln: vier Stunden, wenig Risiko, Taschen voll mit Kräutern. Tiefer Wald: acht Stunden, in denen dein Companion Dinge sieht, über die er nicht sprechen möchte. Bergpass: zwölf Stunden vertikaler Wahnsinn. Und die Alten Ruinen: ein ganzer Tag in Relikten, die älter sind als die Erinnerung.",
+      "unlockedBy": { "type": "level_reached", "value": 8 }
+    },
+    {
+      "id": "faction-daily",
+      "category": "factions",
+      "title": "Die Täglichen Aufträge",
+      "text": "Jeden Tag drei Aufgaben pro Zirkel. Nicht weil die Zirkel es verlangen — sondern weil sie es anbieten. Gold und Ruf für Arbeit, die du sowieso tun würdest. Die Zirkel verstehen, dass die beste Motivation die ist, die man nicht als Motivation erkennt.",
+      "unlockedBy": { "type": "level_reached", "value": 10 }
+    },
+    {
+      "id": "faction-paragon",
+      "category": "factions",
+      "title": "Paragon — Die Höchste Stufe",
+      "text": "Fünfzehntausend Rufpunkte. Wer das erreicht, hat nicht nur bewiesen, dass er dem Zirkel treu ist — er hat bewiesen, dass er einer Sache treu sein kann. Paragon ist kein Rang. Es ist ein Charakter-Zeugnis. Mit besseren Rabatten.",
+      "unlockedBy": { "type": "level_reached", "value": 30 }
+    },
+    {
+      "id": "hidden-turm-bewusstsein",
+      "category": "tower",
+      "title": "Das Bewusstsein des Turms",
+      "text": "Er denkt nicht. Nicht so wie wir. Aber er... bemerkt. Wenn ein Held einen Streak von hundert Tagen erreicht, vibrieren die Wände leicht. Wenn ein Unikat gefunden wird, summen die Kristalladern kurz auf. Und wenn ein Spieler nach langer Abwesenheit zurückkehrt, öffnet sich die Tür ein wenig leichter als sonst.",
       "unlockedBy": { "type": "hidden" }
     }
   ]
