@@ -928,7 +928,7 @@
         "value": 3,
         "label": "+3 Forge Temperature per quest"
       },
-      "source": "world-boss"
+      "source": "world_boss:procrastination-wyrm"
     },
     {
       "id": "wb-entropie-kette",
@@ -951,7 +951,7 @@
         "value": 5,
         "label": "+5% XP for completing different quest types"
       },
-      "source": "world-boss"
+      "source": "world_boss:entropy-weaver"
     },
     {
       "id": "rift-aetherklinge",
@@ -1089,7 +1089,7 @@
         "value": 4,
         "label": "+4% Quest XP"
       },
-      "source": "world-boss"
+      "source": "world_boss:procrastination-wyrm"
     },
     {
       "id": "wb-wyrm-schuppen-stiefel",
@@ -1112,7 +1112,7 @@
         "value": 5,
         "label": "Every 5th quest: bonus rewards"
       },
-      "source": "world-boss"
+      "source": "world_boss:procrastination-wyrm"
     },
     {
       "id": "wb-colossus-helm",
@@ -1135,7 +1135,7 @@
         "value": 5,
         "label": "-5% Forge Decay"
       },
-      "source": "world-boss"
+      "source": "world_boss:burnout-colossus"
     },
     {
       "id": "wb-hydra-ruestung",
@@ -1158,7 +1158,7 @@
         "value": 6,
         "label": "+6% Streak Protection"
       },
-      "source": "world-boss"
+      "source": "world_boss:chaos-hydra"
     },
     {
       "id": "wb-phantom-amulett",
@@ -1181,7 +1181,7 @@
         "value": 4,
         "label": "+4% Companion Bond XP"
       },
-      "source": "world-boss"
+      "source": "world_boss:doubt-phantom"
     },
     {
       "id": "wb-entropie-stab",
@@ -1204,7 +1204,7 @@
         "value": 4,
         "label": "-4% Craft Cooldown"
       },
-      "source": "world-boss"
+      "source": "world_boss:entropy-weaver"
     },
     {
       "id": "wb-golem-schild",
@@ -1227,7 +1227,7 @@
         "value": 2,
         "label": "+2 Forge Temperature per quest"
       },
-      "source": "world-boss"
+      "source": "world_boss:stagnation-golem"
     },
     {
       "id": "wb-seraph-ring",
@@ -1250,7 +1250,7 @@
         "value": 4,
         "label": "+4% Gold"
       },
-      "source": "world-boss"
+      "source": "world_boss:perfection-seraph"
     },
     {
       "id": "wb-leviathan-panzer",
@@ -1273,7 +1273,7 @@
         "value": 4,
         "label": "+4% Faction Rep"
       },
-      "source": "world-boss"
+      "source": "world_boss:isolation-leviathan"
     },
     {
       "id": "wb-apathie-klinge",
@@ -1296,7 +1296,7 @@
         "value": 5,
         "label": "+5% Quest XP"
       },
-      "source": "world-boss"
+      "source": "world_boss:apathy-sovereign"
     }
   ]
 }
