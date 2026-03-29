@@ -58,23 +58,30 @@ export default function TowerMap({ activeFloor, activeRoom, playerLevel, onNavig
           </button>
         </div>
 
-        {/* Ambient crystal particles */}
+        {/* Ambient crystal particles — floor-colored */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          {[0,1,2,3,4].map(i => (
+          {[
+            { x: 8, y: 12, color: "rgba(251,191,36,0.4)", dur: 3 },
+            { x: 88, y: 25, color: "rgba(236,72,153,0.35)", dur: 3.8 },
+            { x: 15, y: 42, color: "rgba(59,130,246,0.4)", dur: 4.2 },
+            { x: 82, y: 58, color: "rgba(168,85,247,0.35)", dur: 3.5 },
+            { x: 25, y: 72, color: "rgba(249,115,22,0.4)", dur: 4 },
+            { x: 70, y: 85, color: "rgba(129,140,248,0.3)", dur: 3.3 },
+          ].map((p, i) => (
             <div key={`tp-${i}`} className="absolute rounded-full" style={{
               width: 2, height: 2,
-              left: `${8 + i * 20}%`,
-              top: `${15 + (i * 23) % 65}%`,
-              background: i % 2 === 0 ? "rgba(129,140,248,0.5)" : "rgba(251,191,36,0.4)",
-              boxShadow: `0 0 4px ${i % 2 === 0 ? "rgba(129,140,248,0.3)" : "rgba(251,191,36,0.25)"}`,
-              animation: `ambient-spark ${3 + i * 0.8}s ease-in-out ${i * 0.6}s infinite`,
+              left: `${p.x}%`,
+              top: `${p.y}%`,
+              background: p.color,
+              boxShadow: `0 0 4px ${p.color}`,
+              animation: `ambient-spark ${p.dur}s ease-in-out ${i * 0.5}s infinite`,
               opacity: 0,
             }} />
           ))}
         </div>
 
         {/* Tower cross-section — top to bottom */}
-        <div className="relative px-3 pb-4 space-y-0.5">
+        <div className="relative px-3 pb-4 space-y-1">
           {/* Central crystal vein running through the tower */}
           <div className="absolute left-6 top-12 bottom-8 pointer-events-none" style={{ width: 1 }}>
             <div className="w-full h-full" style={{
@@ -119,8 +126,8 @@ export default function TowerMap({ activeFloor, activeRoom, playerLevel, onNavig
                   <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: `url(${floor.banner})`, backgroundSize: "cover", backgroundPosition: "center right", opacity: isActiveFloor ? 0.07 : 0.03, filter: "blur(1px)" }} />
                 )}
                 {/* Floor accent bar */}
-                {isActiveFloor && (
-                  <div className="relative" style={{ height: 2, background: `linear-gradient(90deg, transparent, ${floor.color}80, transparent)` }} />
+                {!floorLocked && (
+                  <div className="relative" style={{ height: isActiveFloor ? 2 : 1, background: `linear-gradient(90deg, transparent, ${floor.color}${isActiveFloor ? "80" : "30"}, transparent)` }} />
                 )}
 
                 {/* Floor header — click to navigate to first available room */}
