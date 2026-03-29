@@ -879,3 +879,94 @@ router.get('/api/social/:playerId/activity-feed', requireAuth, requireSelf('play
 });
 
 module.exports = router;
+
+// ─── Player Challenges ─────────────────────────────────────────────────────
+
+// POST /api/social/challenge — create a challenge between two players
+router.post('/api/social/challenge', requireAuth, (req, res) => {
+  const uid = req.auth?.userId;
+  const u = state.users[uid];
+  if (!u) return res.status(404).json({ error: 'User not found' });
+  const { targetId, type, duration, wager } = req.body;
+  if (!targetId || !type) return res.status(400).json({ error: 'targetId and type required' });
+  const target = state.usersByName.get(targetId.toLowerCase()) || state.users[targetId.toLowerCase()];
+  if (!target) return res.status(404).json({ error: 'Target player not found' });
+  if (uid === (target.id || targetId).toLowerCase()) return res.status(400).json({ error: 'Cannot challenge yourself' });
+
+  const validTypes = ['quests_week', 'xp_week', 'streak_week'];
+  if (!validTypes.includes(type)) return res.status(400).json({ error: 'Invalid challenge type' });
+
+  // Max 3 active/pending challenges per player
+  const activeCount = (u.challenges || []).filter(c => c.status === 'pending' || c.status === 'active').length;
+  if (activeCount >= 3) return res.status(400).json({ error: 'Too many active challenges (max 3)' });
+
+  // No duplicate challenge with same target
+  const existingWithTarget = (u.challenges || []).find(c =>
+    (c.targetId === (target.id || targetId).toLowerCase() || c.challengerId === (target.id || targetId).toLowerCase()) &&
+    (c.status === 'pending' || c.status === 'active')
+  );
+  if (existingWithTarget) return res.status(400).json({ error: 'Already have an active challenge with this player' });
+
+  const challengeId = `challenge-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`;
+  const challenge = {
+    id: challengeId,
+    challengerId: uid,
+    challengerName: u.name,
+    targetId: (target.id || targetId).toLowerCase(),
+    targetName: target.name,
+    type,
+    wager: Math.min(Math.max(0, parseInt(wager) || 100), 500),
+    duration: duration || '7d',
+    status: 'pending', // pending → accepted → active → completed
+    createdAt: new Date().toISOString(),
+    startedAt: null,
+    expiresAt: null,
+    challengerScore: 0,
+    targetScore: 0,
+    winner: null,
+  };
+
+  // Store in both players
+  u.challenges = u.challenges || [];
+  u.challenges.push(challenge);
+  target.challenges = target.challenges || [];
+  target.challenges.push(challenge);
+
+  saveUsers();
+  res.json({ ok: true, challenge });
+});
+
+// POST /api/social/challenge/:id/accept — accept a pending challenge
+router.post('/api/social/challenge/:id/accept', requireAuth, (req, res) => {
+  const uid = req.auth?.userId;
+  const u = state.users[uid];
+  if (!u) return res.status(404).json({ error: 'User not found' });
+
+  const challenge = (u.challenges || []).find(c => c.id === req.params.id);
+  if (!challenge) return res.status(404).json({ error: 'Challenge not found' });
+  if (challenge.targetId !== uid) return res.status(403).json({ error: 'Only the challenged player can accept' });
+  if (challenge.status !== 'pending') return res.status(400).json({ error: 'Challenge is not pending' });
+
+  challenge.status = 'active';
+  challenge.startedAt = new Date().toISOString();
+  challenge.expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString();
+
+  // Sync to challenger
+  const challenger = state.users[challenge.challengerId];
+  if (challenger) {
+    const cc = (challenger.challenges || []).find(c => c.id === challenge.id);
+    if (cc) { cc.status = 'active'; cc.startedAt = challenge.startedAt; cc.expiresAt = challenge.expiresAt; }
+  }
+
+  saveUsers();
+  res.json({ ok: true, challenge });
+});
+
+// GET /api/social/challenges — list my challenges
+router.get('/api/social/challenges', requireAuth, (req, res) => {
+  const uid = req.auth?.userId;
+  const u = state.users[uid];
+  if (!u) return res.status(404).json({ error: 'User not found' });
+  res.json({ challenges: u.challenges || [] });
+});
+

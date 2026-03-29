@@ -289,7 +289,7 @@ router.post('/api/auth/logout', (req, res) => {
 });
 
 // POST /api/auth/set-password — migration: set password for existing user
-router.post('/api/auth/set-password', async (req, res) => {
+router.post('/api/auth/set-password', authLimiter, async (req, res) => {
   try {
     const auth = resolveAuth(req);
     if (!auth || !auth.userId) return res.status(401).json({ error: 'Unauthorized' });

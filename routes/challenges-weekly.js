@@ -382,6 +382,8 @@ const STAR_MILESTONES = [
 // POST /api/weekly-challenge/claim-milestone — claim cumulative star milestone
 router.post('/api/weekly-challenge/claim-milestone', requireAuth, (req, res) => {
   const uid = req.auth?.userId;
+  if (!acquireClaimLock(uid)) return res.status(429).json({ error: 'Claim in progress' });
+  try {
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'User not found' });
 
@@ -426,6 +428,7 @@ router.post('/api/weekly-challenge/claim-milestone', requireAuth, (req, res) => 
   saveUsers();
   console.log(`[weekly] ${uid} claimed ${milestone.stars}★ milestone`);
   res.json({ ok: true, stars: milestone.stars, rewards, claimedMilestones: u.weeklyChallenge.claimedMilestones });
+  } finally { releaseClaimLock(uid); }
 });
 
 module.exports = router;

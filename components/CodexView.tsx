@@ -163,8 +163,46 @@ export default function CodexView() {
           </div>
         </div>
       )}
+      {/* ─── Companion Gallery ─── */}
+      <CompanionGallery />
+
       {/* ─── World Stats ─── */}
       <WorldStats />
+    </div>
+  );
+}
+
+function CompanionGallery() {
+  const [open, setOpen] = useState(false);
+  const companions = [
+    { id: "dragon", emoji: "🐉", name: "Ember", personality: "Fierce", desc: "Ein feuriger Drache der dich antreibt. Bevorzugt Fitness-Quests.", color: "#ef4444", ultimate: "Instant Complete — sofort eine Quest abschließen" },
+    { id: "owl", emoji: "🦉", name: "Sage", personality: "Wise", desc: "Eine weise Eule die dich beim Lernen begleitet. Bevorzugt Learning-Quests.", color: "#3b82f6", ultimate: "Double Reward — doppelte Belohnung auf nächste Quest" },
+    { id: "phoenix", emoji: "🔥", name: "Blaze", personality: "Resilient", desc: "Ein Phoenix der aus jeder Niederlage stärker aufsteht. Schützt Streaks.", color: "#f97316", ultimate: "Streak Shield — Streak 1x vor Verlust schützen" },
+    { id: "wolf", emoji: "🐺", name: "Shadow", personality: "Loyal", desc: "Ein treuer Wolf der immer an deiner Seite steht. Bonus auf Social-Quests.", color: "#6b7280", ultimate: "Pack Hunt — +50% XP für 3 Quests" },
+    { id: "fox", emoji: "🦊", name: "Trick", personality: "Clever", desc: "Ein schlauer Fuchs der kreative Lösungen findet. Bonus auf Development-Quests.", color: "#f59e0b", ultimate: "Lucky Find — garantierter Item-Drop" },
+    { id: "bear", emoji: "🐻", name: "Bjorn", personality: "Strong", desc: "Ein starker Bär der dich durch harte Zeiten trägt. Bonus auf Personal-Quests.", color: "#92400e", ultimate: "Fortify — Forge Temp kann 24h nicht fallen" },
+  ];
+
+  return (
+    <div className="mt-6 pt-4" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+      <button onClick={() => setOpen(!open)} className="flex items-center justify-between w-full" style={{ cursor: "pointer" }}>
+        <span className="text-xs font-bold uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.25)" }}>Companion Gallery</span>
+        <span className="text-xs" style={{ color: "rgba(255,255,255,0.15)" }}>{open ? "▲" : "▼"}</span>
+      </button>
+      {open && (
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mt-3 tab-content-enter">
+          {companions.map(c => (
+            <div key={c.id} className="rounded-xl p-3 text-center crystal-breathe" style={{ background: `${c.color}08`, border: `1px solid ${c.color}20`, ["--glow-color" as string]: `${c.color}15` }}>
+              <span className="text-3xl block mb-1">{c.emoji}</span>
+              <p className="text-sm font-bold" style={{ color: c.color }}>{c.name}</p>
+              <p className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>{c.personality}</p>
+              <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.2)" }}>{c.desc}</p>
+              <p className="text-xs mt-2 font-semibold" style={{ color: `${c.color}aa` }}>Ultimate (Bond 5):</p>
+              <p className="text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>{c.ultimate}</p>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

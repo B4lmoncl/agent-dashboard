@@ -4,6 +4,7 @@ const { state, saveUsers, ensureUserCurrencies } = require("../lib/state");
 const { requireAuth } = require("../lib/middleware");
 const { getLegendaryModifiers, createPlayerLock, getTodayBerlin } = require("../lib/helpers");
 const factionClaimLock = createPlayerLock('faction-claim');
+const factionDailyLock = createPlayerLock('faction-daily');
 const factionsData = require("../public/data/factions.json");
 
 // ─── Faction Daily Quests ─────────────────────────────────────────────────────
@@ -193,6 +194,8 @@ router.get("/", requireAuth, (req, res) => {
 // ─── POST /api/factions/:factionId/claim-daily — Claim daily quest reward ────
 router.post("/:factionId/claim-daily/:dailyId", requireAuth, (req, res) => {
   const uid = req.auth?.userId;
+  if (!factionDailyLock.acquire(uid)) return res.status(429).json({ error: 'Claim in progress' });
+  try {
   const user = uid ? state.users[uid] : null;
   if (!user) return res.status(404).json({ error: "User not found" });
 
@@ -225,6 +228,7 @@ router.post("/:factionId/claim-daily/:dailyId", requireAuth, (req, res) => {
     goldGained: template.goldReward,
     newRep: user.factions[factionId].rep,
   });
+  } finally { factionDailyLock.release(uid); }
 });
 
 // ─── POST /api/factions/:factionId/claim — Claim standing reward ─────────────

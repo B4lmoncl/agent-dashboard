@@ -6,9 +6,10 @@
 const router = require('express').Router();
 const fs = require('fs');
 const path = require('path');
-const { state, saveUsers, ensureUserCurrencies, RUNTIME_DIR } = require('../lib/state');
+const { state, saveUsers, ensureUserCurrencies, RUNTIME_DIR, ensureRuntimeDir } = require('../lib/state');
 const { awardCurrency, spendCurrency, createUniqueInstance, trackUniqueInCollection, createPlayerLock } = require('../lib/helpers');
 const wbClaimLock = createPlayerLock('wb-claim');
+const wbBoostLock = createPlayerLock('wb-boost');
 const { requireAuth, requireMasterKey } = require('../lib/middleware');
 
 // ─── Data & Config ──────────────────────────────────────────────────────────
@@ -43,6 +44,7 @@ function loadWorldBossState() {
 
 function saveWorldBossState() {
   try {
+    ensureRuntimeDir();
     fs.writeFileSync(BOSS_FILE, JSON.stringify(worldBossState, null, 2));
   } catch (e) {
     console.error('[world-boss] Failed to save state:', e.message);
@@ -407,6 +409,7 @@ router.post('/api/world-boss/claim', requireAuth, (req, res) => {
       user.earnedTitles.push({
         id: titleId,
         name: template.titleReward,
+        rarity: 'legendary',
         source: 'world-boss',
         earnedAt: new Date().toISOString(),
       });
@@ -503,6 +506,9 @@ router.post('/api/world-boss/claim', requireAuth, (req, res) => {
     rewards.push({ type: 'stardust', amount: bonusStardust });
   }
 
+  // Battle Pass XP for world boss kill
+  try { const { grantBattlePassXP } = require('./battlepass'); grantBattlePassXP(user, 'quest_complete', { rarity: 'legendary' }); } catch (e) { console.warn('[bp-xp] world-boss:', e.message); }
+
   // rewardsClaimed already pushed at top of endpoint (race condition guard)
   saveWorldBossState();
   saveUsers();
@@ -544,6 +550,8 @@ router.post('/api/world-boss/spawn', requireMasterKey, (req, res) => {
 
 router.post('/api/world-boss/boost', requireAuth, (req, res) => {
   const uid = (req.auth?.userId || '').toLowerCase();
+  if (!wbBoostLock.acquire(uid)) return res.status(429).json({ error: 'Boost in progress' });
+  try {
   const u = uid ? state.users[uid] : null;
   if (!u) return res.status(404).json({ error: 'User not found' });
 
@@ -590,6 +598,7 @@ router.post('/api/world-boss/boost', requireAuth, (req, res) => {
     mondstaubRemaining: u.currencies?.mondstaub ?? 0,
   });
   console.log(`[world-boss] ${uid} activated mondstaub boost (+25% dmg, 10 quests)`);
+  } finally { wbBoostLock.release(uid); }
 });
 
 // ─── Exports ────────────────────────────────────────────────────────────────

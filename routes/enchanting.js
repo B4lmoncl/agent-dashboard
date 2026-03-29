@@ -4,8 +4,9 @@
  */
 const router = require('express').Router();
 const { state, saveUsers, ensureUserCurrencies } = require('../lib/state');
-const { PRIMARY_STATS, MINOR_STATS, rollAffixStats } = require('../lib/helpers');
+const { PRIMARY_STATS, MINOR_STATS, rollAffixStats, createPlayerLock } = require('../lib/helpers');
 const { requireAuth } = require('../lib/middleware');
+const enchantLock = createPlayerLock('enchant-reroll');
 const { VALID_SLOTS } = require('./crafting');
 
 // ─── D3-Style Stat Reroll ("Enchanting") — standalone, no profession needed ─
@@ -60,6 +61,8 @@ router.post('/api/reroll/preview', requireAuth, (req, res) => {
 
 router.post('/api/reroll/enchant', requireAuth, (req, res) => {
   const uid = (req.auth?.userId || '').toLowerCase();
+  if (!enchantLock.acquire(uid)) return res.status(429).json({ error: 'Enchant in progress' });
+  try {
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'User not found' });
   const { slot, statToLock, chosenOption } = req.body;
@@ -167,6 +170,7 @@ router.post('/api/reroll/enchant', requireAuth, (req, res) => {
     updatedGear: eq,
     rerollCount: eq.rerollCount,
   });
+  } finally { enchantLock.release(uid); }
 });
 
 module.exports = router;

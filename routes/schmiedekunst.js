@@ -53,6 +53,8 @@ function getDismantleMaterials(userId, rarity) {
 // POST /api/schmiedekunst/dismantle — dismantle an inventory item into essenz + materials
 router.post('/api/schmiedekunst/dismantle', requireAuth, (req, res) => {
   const uid = req.auth?.userId;
+  if (!schmiedeLock.acquire(uid)) return res.status(429).json({ error: 'Dismantle in progress' });
+  try {
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'User not found' });
   const { inventoryItemId } = req.body;
@@ -116,6 +118,7 @@ router.post('/api/schmiedekunst/dismantle', requireAuth, (req, res) => {
     currencies: u.currencies,
     craftingMaterials: u.craftingMaterials,
   });
+  } finally { schmiedeLock.release(uid); }
 });
 
 // POST /api/schmiedekunst/dismantle-preview — preview salvage results without destroying items
@@ -168,6 +171,8 @@ router.post('/api/schmiedekunst/dismantle-preview', requireAuth, (req, res) => {
 // POST /api/schmiedekunst/dismantle-all — bulk dismantle by rarity (Salvage All)
 router.post('/api/schmiedekunst/dismantle-all', requireAuth, (req, res) => {
   const uid = req.auth?.userId;
+  if (!schmiedeLock.acquire(uid)) return res.status(429).json({ error: 'Dismantle in progress' });
+  try {
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'User not found' });
   const { rarity } = req.body;
@@ -225,11 +230,14 @@ router.post('/api/schmiedekunst/dismantle-all', requireAuth, (req, res) => {
     currencies: u.currencies,
     craftingMaterials: u.craftingMaterials,
   });
+  } finally { schmiedeLock.release(uid); }
 });
 
 // POST /api/schmiedekunst/transmute — combine 3 epics of same slot → 1 legendary
 router.post('/api/schmiedekunst/transmute', requireAuth, (req, res) => {
   const uid = req.auth?.userId;
+  if (!schmiedeLock.acquire(uid)) return res.status(429).json({ error: 'Transmute in progress' });
+  try {
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'User not found' });
   const { itemIds } = req.body; // array of 3 inventory instanceIds
@@ -249,11 +257,14 @@ router.post('/api/schmiedekunst/transmute', requireAuth, (req, res) => {
     items.push(item);
   }
 
-  // Validate: none can be equipped
+  // Validate: none can be equipped or locked
   const equippedIds = getEquippedIds(u);
   for (const item of items) {
     if (equippedIds.has(item.instanceId || item.id)) {
       return res.status(400).json({ error: `"${item.name}" is equipped — unequip first` });
+    }
+    if (item.locked) {
+      return res.status(400).json({ error: `"${item.name}" is locked — unlock it first` });
     }
   }
 
@@ -315,6 +326,7 @@ router.post('/api/schmiedekunst/transmute', requireAuth, (req, res) => {
     goldSpent: transmuteCost,
     gold: u.currencies?.gold ?? u.gold ?? 0,
   });
+  } finally { schmiedeLock.release(uid); }
 });
 
 // ─── Reforge Legendary (D3 Kanai's Cube "Law of Kulle") ─────────────────────

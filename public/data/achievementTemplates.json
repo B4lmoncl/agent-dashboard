@@ -2389,6 +2389,61 @@
         "type": "quests_today",
         "value": 10
       }
+    },
+    {
+      "id": "codex-initiate",
+      "name": "Neugieriger Geist",
+      "icon": "/images/icons/nav-observatory.png",
+      "desc": "Discover 10 codex entries.",
+      "category": "exploration",
+      "rarity": "common",
+      "points": 5,
+      "condition": { "type": "codex_discovered", "value": 10 }
+    },
+    {
+      "id": "codex-scholar",
+      "name": "Gelehrter",
+      "icon": "/images/icons/nav-observatory.png",
+      "desc": "Discover 25 codex entries.",
+      "category": "exploration",
+      "rarity": "uncommon",
+      "points": 10,
+      "condition": { "type": "codex_discovered", "value": 25 },
+      "chainPrev": "codex-initiate"
+    },
+    {
+      "id": "codex-archivist",
+      "name": "Archivar",
+      "icon": "/images/icons/nav-observatory.png",
+      "desc": "Discover 50 codex entries.",
+      "category": "exploration",
+      "rarity": "rare",
+      "points": 25,
+      "condition": { "type": "codex_discovered", "value": 50 },
+      "chainPrev": "codex-scholar"
+    },
+    {
+      "id": "codex-lorekeeper",
+      "name": "Hüter der Chroniken",
+      "icon": "/images/icons/nav-observatory.png",
+      "desc": "Discover 75 codex entries. The tower reveals its deepest secrets.",
+      "category": "exploration",
+      "rarity": "epic",
+      "points": 50,
+      "condition": { "type": "codex_discovered", "value": 75 },
+      "chainPrev": "codex-archivist"
+    },
+    {
+      "id": "codex-omniscient",
+      "name": "Allwissend",
+      "icon": "/images/icons/nav-observatory.png",
+      "desc": "Discover all codex entries. You know everything the tower knows.",
+      "category": "exploration",
+      "rarity": "legendary",
+      "points": 100,
+      "condition": { "type": "codex_discovered", "value": 85 },
+      "chainPrev": "codex-lorekeeper",
+      "hidden": true
     }
   ],
   "pointMilestones": [

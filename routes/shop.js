@@ -3,8 +3,9 @@
  */
 const router = require('express').Router();
 const { state, saveUsers, saveQuests, SHOP_ITEMS, GEAR_TIERS, ensureUserCurrencies } = require('../lib/state');
-const { now, getUserGear, getLevelInfo } = require('../lib/helpers');
+const { now, getUserGear, getLevelInfo, createPlayerLock } = require('../lib/helpers');
 const { requireApiKey } = require('../lib/middleware');
+const shopBuyLock = createPlayerLock('shop-buy');
 
 // ─── Apply shop item effects (buffs, instant currency) ──────────────────────
 function applyShopEffect(u, item) {
@@ -330,6 +331,8 @@ router.post('/api/shop/buy', requireApiKey, (req, res) => {
   const { userId, itemId } = req.body;
   if (!userId || !itemId) return res.status(400).json({ error: 'userId and itemId are required' });
   const uid = userId.toLowerCase();
+  if (!shopBuyLock.acquire(uid)) return res.status(429).json({ error: 'Purchase in progress' });
+  try {
   // Self-check: only allow buying for own account (admins bypass)
   if (!req.auth?.isAdmin) {
     const authId = (req.auth?.userId || req.auth?.userName || '').toLowerCase();
@@ -361,6 +364,7 @@ router.post('/api/shop/buy', requireApiKey, (req, res) => {
   saveUsers();
   console.log(`[shop] ${uid} bought "${item.name}" for ${finalCost}g${discount ? ` (${discount}% faction discount)` : ''}${effectMsg ? ` — ${effectMsg}` : ''}`);
   res.json({ ok: true, item, finalCost, discount, remainingGold: u.gold, effectApplied: effectMsg });
+  } finally { shopBuyLock.release(uid); }
 });
 
 // ─── Currency Shop (Sternentaler, Gildentaler, Mondstaub) ────────────────────
@@ -369,6 +373,8 @@ router.post('/api/shop/currency-buy', requireApiKey, (req, res) => {
   const { userId, itemId, shopType } = req.body;
   if (!userId || !itemId || !shopType) return res.status(400).json({ error: 'userId, itemId, and shopType required' });
   const uid = userId.toLowerCase();
+  if (!shopBuyLock.acquire(uid)) return res.status(429).json({ error: 'Purchase in progress' });
+  try {
   if (!req.auth?.isAdmin) {
     const authId = (req.auth?.userId || req.auth?.userName || '').toLowerCase();
     if (!authId || authId !== uid) return res.status(403).json({ error: 'Cannot buy items for another user' });
@@ -415,8 +421,6 @@ router.post('/api/shop/currency-buy', requireApiKey, (req, res) => {
     u.earnedTitles.push({ id: item.titleId, name: item.titleName, rarity: item.titleRarity || 'epic', earnedAt: now() });
     resultMsg = `Title "${item.titleName}" earned!`;
   } else if (item.type === 'boost' && item.effect) {
-    u.activeBuffs = u.activeBuffs || [];
-    u.activeBuffs.push({ ...item.effect, activatedAt: now() });
     resultMsg = applyShopEffect(u, item) || 'Boost activated!';
   } else if (item.type === 'cosmetic') {
     u.cosmetics = u.cosmetics || [];
@@ -433,6 +437,7 @@ router.post('/api/shop/currency-buy', requireApiKey, (req, res) => {
   saveUsers();
   console.log(`[shop] ${uid} bought "${item.name}" for ${cost} ${currency}`);
   res.json({ ok: true, item, cost, currency, remaining: u.currencies[currency], resultMsg });
+  } finally { shopBuyLock.release(uid); }
 });
 
 // GET /api/shop/currency-items — list all currency shop items

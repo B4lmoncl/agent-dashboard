@@ -306,7 +306,12 @@ router.post('/api/quest/:id/complete', requireApiKey, (req, res) => {
     const companionReward = u?._lastCompanionReward || null;
     const xpEarned = u?._lastXpEarned || 0;
     const goldEarned = u?._lastGoldEarned || 0;
-    if (u) { delete u._lastLoot; delete u._lastCompanionReward; delete u._lastXpEarned; delete u._lastGoldEarned; }
+    const runensplitterEarned = u?._lastRunensplitterEarned || 0;
+    const gildentalerEarned = u?._lastGildentalerEarned || 0;
+    const gemDrop = u?._lastGemDrop || null;
+    const recipeDrop = u?._lastRecipeDrop || null;
+    const repGains = u?._lastRepGains || null;
+    if (u) { delete u._lastLoot; delete u._lastCompanionReward; delete u._lastXpEarned; delete u._lastGoldEarned; delete u._lastRunensplitterEarned; delete u._lastGildentalerEarned; delete u._lastGemDrop; delete u._lastRecipeDrop; delete u._lastRepGains; delete u._lastCodexDiscovery; }
     // Grant NPC's final reward item when the last quest in the chain is completed
     let npcFinalReward = null;
     if (quest.chainIndex != null && quest.chainTotal && quest.chainIndex === quest.chainTotal - 1) {
@@ -336,6 +341,11 @@ router.post('/api/quest/:id/complete', requireApiKey, (req, res) => {
       companionReward,
       xpEarned,
       goldEarned,
+      runensplitterEarned,
+      gildentalerEarned,
+      gemDrop,
+      recipeDrop,
+      repGains,
       chainQuestTemplate: quest.nextQuestTemplate || null,
       levelUp: newLevelInfo.level > prevLevel ? { level: newLevelInfo.level, title: newLevelInfo.title } : null,
     });
@@ -365,7 +375,12 @@ router.post('/api/quest/:id/complete', requireApiKey, (req, res) => {
     const companionReward = u2?._lastCompanionReward || null;
     const xpEarned = u2?._lastXpEarned || 0;
     const goldEarned = u2?._lastGoldEarned || 0;
-    if (u2) { delete u2._lastLoot; delete u2._lastCompanionReward; delete u2._lastXpEarned; delete u2._lastGoldEarned; }
+    const runensplitterEarned2 = u2?._lastRunensplitterEarned || 0;
+    const gildentalerEarned2 = u2?._lastGildentalerEarned || 0;
+    const gemDrop2 = u2?._lastGemDrop || null;
+    const recipeDrop2 = u2?._lastRecipeDrop || null;
+    const repGains2 = u2?._lastRepGains || null;
+    if (u2) { delete u2._lastLoot; delete u2._lastCompanionReward; delete u2._lastXpEarned; delete u2._lastGoldEarned; delete u2._lastRunensplitterEarned; delete u2._lastGildentalerEarned; delete u2._lastGemDrop; delete u2._lastRecipeDrop; delete u2._lastRepGains; delete u2._lastCodexDiscovery; }
     // Activity feed
     logActivity(agentKey, 'quest_complete', { quest: quest.title || quest.id, rarity: quest.rarity || 'common', xp: xpEarned, gold: goldEarned });
     if (u2 && newLevelInfo2.level > prevLevel2) logActivity(agentKey, 'level_up', { level: newLevelInfo2.level, title: newLevelInfo2.title });
@@ -379,6 +394,11 @@ router.post('/api/quest/:id/complete', requireApiKey, (req, res) => {
       companionReward,
       xpEarned,
       goldEarned,
+      runensplitterEarned: runensplitterEarned2,
+      gildentalerEarned: gildentalerEarned2,
+      gemDrop: gemDrop2,
+      recipeDrop: recipeDrop2,
+      repGains: repGains2,
       chainQuestTemplate: quest.nextQuestTemplate || null,
       levelUp: newLevelInfo2.level > prevLevel2 ? { level: newLevelInfo2.level, title: newLevelInfo2.title } : null,
     });

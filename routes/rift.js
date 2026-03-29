@@ -9,6 +9,8 @@ const router = require('express').Router();
 const { state, saveUsers, ensureUserCurrencies } = require('../lib/state');
 const { now, getLevelInfo, awardCurrency, spendCurrency, onQuestCompletedByUser, createPlayerLock } = require('../lib/helpers');
 const riftStageLock = createPlayerLock('rift-stage');
+const riftEnterLock = createPlayerLock('rift-enter');
+const riftAbandonLock = createPlayerLock('rift-abandon');
 const { requireAuth } = require('../lib/middleware');
 
 // ─── Mythic Leaderboard Cache (avoid O(n) user scan on every GET /api/rift) ──
@@ -168,8 +170,11 @@ function getRiftStatus(u) {
     rift.active = false;
     rift.failed = true;
     rift.failedAt = now();
-    u.riftCooldowns = u.riftCooldowns || {};
-    u.riftCooldowns[rift.tier] = { failedAt: rift.failedAt, cooldownDays: tier.failCooldownDays };
+    // Mythic+ has no fail cooldown per spec — retry immediately
+    if (!tier.isMythic) {
+      u.riftCooldowns = u.riftCooldowns || {};
+      u.riftCooldowns[rift.tier] = { failedAt: rift.failedAt, cooldownDays: tier.failCooldownDays };
+    }
     saveUsers();
   }
 
@@ -271,6 +276,8 @@ router.get('/api/rift', (req, res) => {
 // POST /api/rift/enter — start a new rift
 router.post('/api/rift/enter', requireAuth, (req, res) => {
   const uid = req.auth?.userId;
+  if (!riftEnterLock.acquire(uid)) return res.status(429).json({ error: 'Enter in progress' });
+  try {
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'User not found' });
 
@@ -347,6 +354,7 @@ router.post('/api/rift/enter', requireAuth, (req, res) => {
   const displayName = mythicLevel > 0 ? `${tier.name} +${mythicLevel}` : tier.name;
   console.log(`[rift] ${uid} entered ${displayName}`);
   res.json({ ok: true, rift: u.activeRift, message: `Entered ${displayName}! Complete ${tier.questCount} quests in ${timeLimitHours}h.` });
+  } finally { riftEnterLock.release(uid); }
 });
 
 // POST /api/rift/complete-stage — mark current stage as completed
@@ -487,8 +495,20 @@ router.post('/api/rift/complete-stage', requireAuth, (req, res) => {
     riftCompleted: allDone,
     completionBonus: allDone ? (() => {
       const base = RIFT_TIERS[rift.tier]?.completionBonus;
-      if (!base || !rift.mythicLevel) return base;
-      return { ...base, gold: base.gold + Math.min(rift.mythicLevel * 200, 2000), essenz: base.essenz + rift.mythicLevel * 5 };
+      if (!base) return null;
+      const affixes = rift.affixes || [];
+      const rewardMulti = 1 + affixes.reduce((sum, a) => sum + (a.effect?.type === 'risk_reward' ? a.effect.value : 0), 0);
+      const result = {};
+      for (const [k, v] of Object.entries(base)) {
+        let scaled = v;
+        if (rift.mythicLevel) {
+          const cappedLvl = Math.min(rift.mythicLevel, 100);
+          if (k === 'gold') scaled = v + Math.min(cappedLvl * 200, 2000);
+          else if (k === 'essenz') scaled = v + cappedLvl * 5;
+        }
+        result[k] = Math.round(scaled * rewardMulti);
+      }
+      return result;
     })() : null,
     ...(rift.mythicLevel && { mythicLevel: rift.mythicLevel }),
     ...(allDone && (rift.tier === 'legendary' || rift.tier === 'mythic') && { seelensplitter: 1 }),
@@ -502,6 +522,8 @@ router.post('/api/rift/complete-stage', requireAuth, (req, res) => {
 // POST /api/rift/abandon — abandon current rift (counts as fail)
 router.post('/api/rift/abandon', requireAuth, (req, res) => {
   const uid = req.auth?.userId;
+  if (!riftAbandonLock.acquire(uid)) return res.status(429).json({ error: 'Abandon in progress' });
+  try {
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'User not found' });
 
@@ -514,10 +536,13 @@ router.post('/api/rift/abandon', requireAuth, (req, res) => {
   rift.failed = true;
   rift.failedAt = now();
 
-  // Apply cooldown
-  u.riftCooldowns = u.riftCooldowns || {};
-  const cooldownKey = rift.tier === 'mythic' ? 'mythic' : rift.tier;
-  u.riftCooldowns[cooldownKey] = { failedAt: rift.failedAt, cooldownDays: tier?.failCooldownDays || 3 };
+  // Apply cooldown — Mythic+ has no fail cooldown (retry immediately per spec)
+  const isMythic = tier?.isMythic;
+  if (!isMythic) {
+    u.riftCooldowns = u.riftCooldowns || {};
+    const cooldownKey = rift.tier;
+    u.riftCooldowns[cooldownKey] = { failedAt: rift.failedAt, cooldownDays: tier?.failCooldownDays || 3 };
+  }
 
   // Add to history
   u.riftHistory = u.riftHistory || [];
@@ -535,7 +560,8 @@ router.post('/api/rift/abandon', requireAuth, (req, res) => {
   saveUsers();
   const displayName = mythicLvl > 0 ? `${tier?.name || 'Mythic Rift'} +${mythicLvl}` : (tier?.name || rift.tier);
   console.log(`[rift] ${uid} abandoned ${displayName} rift`);
-  res.json({ ok: true, message: `Rift abandoned. ${tier?.failCooldownDays || 3}-day cooldown applied.` });
+  res.json({ ok: true, message: isMythic ? 'Mythic Rift abandoned. No cooldown — retry anytime.' : `Rift abandoned. ${tier?.failCooldownDays || 3}-day cooldown applied.` });
+  } finally { riftAbandonLock.release(uid); }
 });
 
 // ─── POST /api/rift/extend — Extend rift timer with Mondstaub ───────────────
