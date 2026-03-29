@@ -86,14 +86,18 @@ export default function TowerMap({ activeFloor, activeRoom, playerLevel, onNavig
             const hasNotification = notif && notif.count > 0;
 
             return (
-              <div key={floor.id} className="rounded-xl overflow-hidden" style={{ background: isActiveFloor ? (FLOOR_BG[floor.id] || "rgba(255,255,255,0.02)") : "rgba(255,255,255,0.015)", border: `1px solid ${isActiveFloor ? `${floor.color}25` : "rgba(255,255,255,0.03)"}`, opacity: floorLocked ? 0.35 : 1, transition: "all 0.2s ease" }}>
+              <div key={floor.id} className="rounded-xl overflow-hidden relative" style={{ background: isActiveFloor ? (FLOOR_BG[floor.id] || "rgba(255,255,255,0.02)") : "rgba(255,255,255,0.015)", border: `1px solid ${isActiveFloor ? `${floor.color}25` : "rgba(255,255,255,0.03)"}`, opacity: floorLocked ? 0.35 : 1, transition: "all 0.2s ease" }}>
+                {/* Background banner image (active floor only) */}
+                {isActiveFloor && floor.banner && (
+                  <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: `url(${floor.banner})`, backgroundSize: "cover", backgroundPosition: "center right", opacity: 0.06, filter: "blur(1px)" }} />
+                )}
                 {/* Floor accent bar */}
                 {isActiveFloor && (
-                  <div style={{ height: 2, background: `linear-gradient(90deg, transparent, ${floor.color}80, transparent)` }} />
+                  <div className="relative" style={{ height: 2, background: `linear-gradient(90deg, transparent, ${floor.color}80, transparent)` }} />
                 )}
 
                 {/* Floor header */}
-                <div className="flex items-center gap-3 px-4 py-2.5">
+                <div className="relative flex items-center gap-3 px-4 py-2.5">
                   {/* Floor icon */}
                   <div className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0" style={{
                     background: isActiveFloor ? `${floor.color}18` : `${floor.color}08`,
