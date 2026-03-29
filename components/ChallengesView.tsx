@@ -413,7 +413,9 @@ function ExpeditionView({
       {/* Header */}
       <div className="flex items-start gap-3">
         {expedition.icon && (
-          <img src={expedition.icon} alt="" width={40} height={40} className="img-render-auto rounded-lg mt-0.5" onError={e => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} />
+          <div className="w-14 h-14 rounded-lg overflow-hidden flex-shrink-0 mt-0.5" style={{ border: "1px solid rgba(255,255,255,0.1)" }}>
+            <img src={expedition.icon} alt="" className="w-full h-full object-cover img-render-auto" onError={e => { (e.currentTarget.parentElement as HTMLElement).style.display = "none"; }} />
+          </div>
         )}
         <div className="flex-1">
           <h3 className="text-sm font-bold" style={{ color: "#e8e8e8" }}>{expedition.name}</h3>
