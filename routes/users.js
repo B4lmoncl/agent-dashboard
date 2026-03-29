@@ -231,8 +231,11 @@ router.post('/api/auth/login', authLimiter, async (req, res) => {
       const match = await bcrypt.compare(password, user.passwordHash);
       if (!match) return res.status(401).json({ error: 'Invalid name or password' });
     } else {
-      // Legacy: user has no password yet, check if password matches apiKey
-      if (password !== user.apiKey) return res.status(401).json({ error: 'Invalid name or password' });
+      // Legacy: user has no password yet, check if password matches apiKey (timing-safe)
+      const crypto = require('crypto');
+      const a = Buffer.from(String(password));
+      const b = Buffer.from(String(user.apiKey || ''));
+      if (a.length !== b.length || !crypto.timingSafeEqual(a, b)) return res.status(401).json({ error: 'Invalid name or password' });
     }
 
     const admin = isUserAdmin(user);
