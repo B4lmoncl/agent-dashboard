@@ -105,7 +105,9 @@ function SternenpfadView({
       <div className="flex items-center justify-between flex-wrap gap-2">
         <div className="flex items-center gap-3">
           {challenge.icon && (
-            <img src={challenge.icon} alt="" width={32} height={32} className="img-render-auto" onError={e => { const t = e.currentTarget; t.style.opacity = "0"; t.style.width = "0"; t.style.overflow = "hidden"; }} />
+            <div className="w-12 h-12 rounded-lg overflow-hidden flex-shrink-0" style={{ border: "1px solid rgba(255,255,255,0.1)" }}>
+              <img src={challenge.icon} alt="" className="w-full h-full object-cover img-render-auto" onError={e => { (e.currentTarget.parentElement as HTMLElement).style.display = "none"; }} />
+            </div>
           )}
           <div>
             <h3 className="text-sm font-bold" style={{ color: "#e8e8e8" }}>{challenge.name}</h3>
