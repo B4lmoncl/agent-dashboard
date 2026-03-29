@@ -32,8 +32,8 @@ export default function TowerMap({ activeFloor, activeRoom, playerLevel, onNavig
   return (
     <div className="fixed inset-0 z-[120] flex items-center justify-center p-4 modal-backdrop" onClick={onClose}>
       <div
-        className="w-full max-w-sm rounded-2xl overflow-hidden tab-content-enter"
-        style={{ background: "#0d0e12", border: "1px solid rgba(255,255,255,0.08)", boxShadow: "0 20px 80px rgba(0,0,0,0.9), 0 0 40px rgba(0,0,0,0.5)", maxHeight: "88vh", overflowY: "auto", overscrollBehavior: "contain" }}
+        className="w-full max-w-sm sm:max-w-md rounded-2xl overflow-hidden tab-content-enter"
+        style={{ background: "#0d0e12", border: "1px solid rgba(255,255,255,0.08)", boxShadow: "0 25px 100px rgba(0,0,0,0.9), 0 0 60px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.03)", maxHeight: "88vh", overflowY: "auto", overscrollBehavior: "contain" }}
         onClick={e => e.stopPropagation()}
       >
         {/* Header */}
