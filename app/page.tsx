@@ -5,6 +5,7 @@ import StatBar from "@/components/StatBar";
 import OnboardingWizard from "@/components/OnboardingWizard";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import CrystalVeins from "@/components/CrystalVeins";
+import TowerMap from "@/components/TowerMap";
 // Lazy-loaded views — only loaded when the tab is active (code splitting)
 const ForgeView = lazy(() => import("@/components/ForgeView"));
 const LeaderboardView = lazy(() => import("@/components/LeaderboardView"));
@@ -149,6 +150,7 @@ export default function Dashboard() {
     }
     return "questBoard";
   });
+  const [towerMapOpen, setTowerMapOpen] = useState(false);
   const [activeFloor, setActiveFloor] = useState(() => {
     if (typeof window !== "undefined") {
       const saved = localStorage.getItem("dash_view");
@@ -1293,6 +1295,17 @@ export default function Dashboard() {
             <div data-tutorial="nav-bar" className="space-y-0">
               {/* Floor tabs */}
               <div className="flex gap-1" style={{ background: "#0d0d0d", borderRadius: "10px 10px 0 0", padding: "4px 4px 0 4px" }}>
+                {/* Tower Map button */}
+                <button
+                  onClick={() => setTowerMapOpen(true)}
+                  className="px-2 py-1.5 rounded-t-lg text-xs"
+                  style={{ background: "rgba(255,255,255,0.03)", color: "rgba(255,255,255,0.2)", cursor: "pointer", border: "1px solid rgba(255,255,255,0.05)", borderBottom: "none" }}
+                  title="Tower Map — Navigate all floors and rooms"
+                >
+                  ◈
+                </button>
+              </div>
+              <div className="flex gap-1" style={{ background: "#0d0d0d", padding: "0 4px" }}>
                 {FLOORS.filter(f => !f.minLevel || (currentPlayerLevel ?? 1) >= f.minLevel).map(floor => {
                   const isActive = floor.id === activeFloor;
                   const hasNotif = !isActive && floorHasNotif(floor);
@@ -2798,6 +2811,16 @@ export default function Dashboard() {
       <Suspense fallback={null}>
         <PlayerProfileModal playerId={profilePlayerId} onClose={() => setProfilePlayerId(null)} onMessage={(id) => { setProfilePlayerId(null); setDashView("social"); }} />
       </Suspense>
+    )}
+    {/* Tower Map Overlay */}
+    {towerMapOpen && (
+      <TowerMap
+        activeFloor={activeFloor}
+        activeRoom={dashView}
+        playerLevel={currentPlayerLevel ?? 1}
+        onNavigate={(room) => setDashView(room as typeof dashView)}
+        onClose={() => setTowerMapOpen(false)}
+      />
     )}
     </DashboardProvider>
   );
