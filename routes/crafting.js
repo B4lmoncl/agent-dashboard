@@ -553,7 +553,7 @@ router.post('/api/professions/craft', requireAuth, (req, res) => {
   // Update profession XP & timestamp — WoW-style: fixed XP per craft, probabilistic skill-up
   // ─── WoW Classic skill-up: 1 point per craft, sliding probability ──────────
   u.professions = u.professions || {};
-  u.professions[recipe.profession] = u.professions[recipe.profession] || { skill: 0 };
+  u.professions[recipe.profession] = u.professions[recipe.profession] || { skill: 1 };
   const reqSkill = recipe.reqSkill || reqProfLevelToSkill(recipe.reqProfLevel);
   const currentSkill = u.professions[recipe.profession].skill || u.professions[recipe.profession].xp || 0;
   const playerLvl = getLevelInfo(u.xp || 0).level;
@@ -1149,7 +1149,7 @@ router.post('/api/professions/choose', requireAuth, (req, res) => {
 
   u.chosenProfessions.push(professionId);
   u.professions = u.professions || {};
-  if (!u.professions[professionId]) u.professions[professionId] = { xp: 0, lastCraftAt: null };
+  if (!u.professions[professionId]) u.professions[professionId] = { skill: 1, xp: 1, lastCraftAt: null, trainedRanks: ['Apprentice'] };
   saveUsers();
 
   res.json({
