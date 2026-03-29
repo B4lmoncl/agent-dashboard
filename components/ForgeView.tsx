@@ -2379,12 +2379,12 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                         {recs.map(r => {
                           const learned = learnedSet.has(r.id);
                           const canAfford = gold >= (r.trainerCost || 0);
-                          const meetsSkill = playerSkill >= (r.reqSkill || 0);
+                          // Trainer: you can LEARN any recipe you can afford (skill req only matters for crafting, not learning)
                           return (
                             <div key={r.id} className="flex items-center gap-2 px-3 py-2 rounded-lg" style={{ background: learned ? "rgba(34,197,94,0.04)" : "rgba(255,255,255,0.02)", border: `1px solid ${learned ? "rgba(34,197,94,0.15)" : "rgba(255,255,255,0.05)"}` }}>
                               <span style={{ color: learned ? "#22c55e" : "rgba(255,255,255,0.15)", fontSize: 12 }}>{learned ? "✓" : "○"}</span>
                               <div className="flex-1 min-w-0">
-                                <p className="text-xs font-semibold truncate" style={{ color: learned ? "rgba(255,255,255,0.4)" : meetsSkill ? "#e8e8e8" : "rgba(255,255,255,0.3)" }}>{r.name}</p>
+                                <p className="text-xs font-semibold truncate" style={{ color: learned ? "rgba(255,255,255,0.4)" : "#e8e8e8" }}>{r.name}</p>
                                 <p className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>Skill {r.reqSkill || 0}{r.desc ? ` — ${r.desc}` : ""}</p>
                               </div>
                               {!learned && (
@@ -2402,17 +2402,17 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                                       setTimeout(() => setCraftResult(null), 3000);
                                     } catch { setCraftResult("Network error"); }
                                   }}
-                                  disabled={!canAfford || !meetsSkill || learned}
-                                  title={!meetsSkill ? `Requires Skill ${r.reqSkill}` : !canAfford ? `Need ${(r.trainerCost || 0) - gold} more gold` : `Learn for ${r.trainerCost}g`}
-                                  className="text-xs px-2 py-1 rounded font-semibold flex-shrink-0"
+                                  disabled={!canAfford || learned}
+                                  title={!canAfford ? `Need ${(r.trainerCost || 0) - gold} more gold` : `Learn for ${r.trainerCost}g`}
+                                  className="text-xs px-3 py-1.5 rounded-lg font-semibold flex-shrink-0"
                                   style={{
-                                    background: canAfford && meetsSkill ? "rgba(245,158,11,0.12)" : "rgba(255,255,255,0.03)",
-                                    color: canAfford && meetsSkill ? "#f59e0b" : "rgba(255,255,255,0.2)",
-                                    border: `1px solid ${canAfford && meetsSkill ? "rgba(245,158,11,0.3)" : "rgba(255,255,255,0.06)"}`,
-                                    cursor: canAfford && meetsSkill ? "pointer" : "not-allowed",
+                                    background: canAfford ? "rgba(245,158,11,0.15)" : "rgba(255,255,255,0.03)",
+                                    color: canAfford ? "#f59e0b" : "rgba(255,255,255,0.2)",
+                                    border: `1px solid ${canAfford ? "rgba(245,158,11,0.35)" : "rgba(255,255,255,0.06)"}`,
+                                    cursor: canAfford ? "pointer" : "not-allowed",
                                   }}
                                 >
-                                  {(r.trainerCost || 0).toLocaleString()}g
+                                  Learn ({(r.trainerCost || 0).toLocaleString()}g)
                                 </button>
                               )}
                             </div>
