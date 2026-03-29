@@ -83,8 +83,8 @@ export const FLOORS: Floor[] = [
     rooms: [
       { key: "leaderboard", label: "Proving Grounds",    iconSrc: "/images/icons/nav-proving.png",     tutorialKey: "leaderboard-tab" },
       { key: "honors",      label: "Hall of Honors",     iconSrc: "/images/icons/nav-honors.png",      tutorialKey: "honors-tab" },
-      { key: "factions",    label: "Four Circles",       iconSrc: "",                                  requiresLogin: true, tutorialKey: null, minLevel: 10 },
-      { key: "season",      label: "Season Pass",        iconSrc: "",                                  requiresLogin: true, tutorialKey: "season-tab", minLevel: 10 },
+      { key: "factions",    label: "Four Circles",       iconSrc: "/images/icons/nav-factions.png",    requiresLogin: true, tutorialKey: null, minLevel: 10 },
+      { key: "season",      label: "Season Pass",        iconSrc: "/images/icons/nav-season.png",      requiresLogin: true, tutorialKey: "season-tab", minLevel: 10 },
       { key: "campaign",    label: "Observatory",        iconSrc: "/images/icons/nav-observatory.png", tutorialKey: "campaign-tab" },
     ],
   },
@@ -99,8 +99,8 @@ export const FLOORS: Floor[] = [
     banner: "/images/banners/breakaway-banner.png",
     minLevel: 1,
     rooms: [
-      { key: "social", label: "Breakaway", iconSrc: "", requiresLogin: true, tutorialKey: null },
-      { key: "tavern", label: "Hearth", iconSrc: "", requiresLogin: true, tutorialKey: null },
+      { key: "social", label: "Breakaway", iconSrc: "/images/icons/nav-breakaway.png", requiresLogin: true, tutorialKey: null },
+      { key: "tavern", label: "Hearth", iconSrc: "/images/icons/nav-hearth.png", requiresLogin: true, tutorialKey: null },
     ],
   },
   // ─── 3F: Inner Sanctum — Mitte des Turms (Lv1) ──────────────────────────────
@@ -117,7 +117,7 @@ export const FLOORS: Floor[] = [
       { key: "character",     label: "Character",      iconSrc: "/images/icons/nav-character.png",    requiresLogin: true, tutorialKey: "character-tab" },
       { key: "rituals",       label: "Ritual Chamber", iconSrc: "/images/icons/ui-ritual-rune.png",   requiresLogin: true, tutorialKey: "rituals-tab" },
       { key: "vows",          label: "Vow Shrine",     iconSrc: "/images/icons/ui-vow-sword.png",     requiresLogin: true },
-      { key: "codex",          label: "Codex",          iconSrc: "",                                   requiresLogin: true, tutorialKey: null },
+      { key: "codex",          label: "Codex",          iconSrc: "/images/icons/nav-codex.png",        requiresLogin: true, tutorialKey: null },
       { key: "klassenquests", label: "Arcanum",        iconSrc: "/images/icons/nav-arcanum.png",      tutorialKey: null, minLevel: 10 },
     ],
   },
@@ -133,7 +133,7 @@ export const FLOORS: Floor[] = [
     minLevel: 3,
     rooms: [
       { key: "shop",   label: "Bazaar",              iconSrc: "/images/icons/nav-bazaar.png",       tutorialKey: "bazaar-tab" },
-      { key: "forge",  label: "Artisan's Quarter",   iconSrc: "",                                   requiresLogin: true, minLevel: 5 },
+      { key: "forge",  label: "Artisan's Quarter",   iconSrc: "/images/icons/nav-forge.png",        requiresLogin: true, minLevel: 5 },
       { key: "gacha",  label: "Vault of Fate",       iconSrc: "/images/icons/vault-of-fate.png",    tutorialKey: "vault-tab", minLevel: 5 },
     ],
   },
@@ -150,10 +150,10 @@ export const FLOORS: Floor[] = [
     rooms: [
       { key: "questBoard", label: "Quest Board",      iconSrc: "/images/icons/nav-great-hall.png",  tutorialKey: "quest-board-tab" },
       { key: "npcBoard",   label: "Wanderers Rest",   iconSrc: "/images/icons/nav-wanderer.png",    tutorialKey: "npc-board-tab" },
-      { key: "challenges", label: "Challenges",       iconSrc: "",                                  tutorialKey: null, minLevel: 3 },
-      { key: "rift",       label: "Rift",             iconSrc: "",                                  requiresLogin: true, tutorialKey: null, minLevel: 8 },
-      { key: "dungeons",   label: "Undercroft",       iconSrc: "",                                  requiresLogin: true, tutorialKey: null, minLevel: 12 },
-      { key: "worldboss",  label: "Colosseum",        iconSrc: "",                                  requiresLogin: true, tutorialKey: null, minLevel: 15 },
+      { key: "challenges", label: "Challenges",       iconSrc: "/images/icons/nav-challenges.png",  tutorialKey: null, minLevel: 3 },
+      { key: "rift",       label: "Rift",             iconSrc: "/images/icons/nav-rift.png",        requiresLogin: true, tutorialKey: null, minLevel: 8 },
+      { key: "dungeons",   label: "Undercroft",       iconSrc: "/images/icons/nav-dungeons.png",    requiresLogin: true, tutorialKey: null, minLevel: 12 },
+      { key: "worldboss",  label: "Colosseum",        iconSrc: "/images/icons/nav-worldboss.png",   requiresLogin: true, tutorialKey: null, minLevel: 15 },
     ],
   },
 ];
