@@ -138,7 +138,11 @@ export default function TowerMap({ activeFloor, activeRoom, playerLevel, onNavig
                     </div>
                   )}
 
-                  {floorLocked && <span className="text-xs flex-shrink-0" style={{ color: "rgba(255,255,255,0.15)" }}>Lv.{floor.minLevel}</span>}
+                  {floorLocked && (
+                    <span className="text-xs flex-shrink-0 px-2 py-0.5 rounded" style={{ color: "rgba(255,255,255,0.2)", background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.05)" }}>
+                      Lv.{floor.minLevel}
+                    </span>
+                  )}
                 </div>
 
                 {/* Rooms */}
