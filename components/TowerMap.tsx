@@ -2,64 +2,117 @@
 
 import { FLOORS } from "@/app/config";
 
+interface FloorNotification {
+  /** Number of actionable items on this floor (0 = no dot) */
+  count: number;
+  /** Accent color override (optional, defaults to floor color) */
+  color?: string;
+}
+
 interface TowerMapProps {
   activeFloor: string;
   activeRoom: string;
   playerLevel: number;
   onNavigate: (room: string) => void;
   onClose: () => void;
+  /** Per-floor notification dots: { floorId: { count, color? } } */
+  notifications?: Record<string, FloorNotification>;
 }
 
-export default function TowerMap({ activeFloor, activeRoom, playerLevel, onNavigate, onClose }: TowerMapProps) {
+// Floor accent gradients for the tower cross-section visual
+const FLOOR_BG: Record<string, string> = {
+  turmspitze: "linear-gradient(135deg, #1a1505 0%, #111318 100%)",
+  breakaway: "linear-gradient(135deg, #1a0a14 0%, #111318 100%)",
+  charakterturm: "linear-gradient(135deg, #0a1220 0%, #111318 100%)",
+  gewerbeviertel: "linear-gradient(135deg, #140a1e 0%, #111318 100%)",
+  haupthalle: "linear-gradient(135deg, #1a0f08 0%, #111318 100%)",
+};
+
+export default function TowerMap({ activeFloor, activeRoom, playerLevel, onNavigate, onClose, notifications = {} }: TowerMapProps) {
   return (
     <div className="fixed inset-0 z-[120] flex items-center justify-center p-4 modal-backdrop" onClick={onClose}>
       <div
-        className="w-full max-w-xs rounded-2xl overflow-hidden tab-content-enter"
-        style={{ background: "#111318", border: "1px solid rgba(255,255,255,0.1)", boxShadow: "0 20px 60px rgba(0,0,0,0.8)", maxHeight: "85vh", overflowY: "auto" }}
+        className="w-full max-w-sm rounded-2xl overflow-hidden tab-content-enter"
+        style={{ background: "#0d0e12", border: "1px solid rgba(255,255,255,0.08)", boxShadow: "0 20px 80px rgba(0,0,0,0.9), 0 0 40px rgba(0,0,0,0.5)", maxHeight: "88vh", overflowY: "auto", overscrollBehavior: "contain" }}
         onClick={e => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="px-4 py-3 flex items-center justify-between" style={{ background: "rgba(255,255,255,0.03)", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+        <div className="sticky top-0 z-10 px-5 py-4 flex items-center justify-between" style={{ background: "linear-gradient(180deg, #0d0e12 60%, transparent)", borderBottom: "1px solid rgba(255,255,255,0.04)" }}>
           <div>
-            <p className="text-sm font-bold" style={{ color: "#e8e8e8" }}>Tower Map</p>
-            <p className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>Navigate Urithiru</p>
+            <p className="text-base font-bold tracking-wide" style={{ color: "#e8e8e8" }}>Quest Hall</p>
+            <p className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>Tower of Urithiru</p>
           </div>
-          <button onClick={onClose} className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.4)", cursor: "pointer" }}>x</button>
+          <button onClick={onClose} className="w-8 h-8 flex items-center justify-center rounded-lg" style={{ background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.3)", cursor: "pointer", border: "1px solid rgba(255,255,255,0.06)" }}>
+            <span className="text-xs font-mono">ESC</span>
+          </button>
         </div>
 
-        {/* Tower — top to bottom */}
-        <div className="p-3 space-y-1">
-          {/* Decorative tower top */}
-          <div className="text-center mb-2">
-            <div style={{ width: 0, height: 0, borderLeft: "40px solid transparent", borderRight: "40px solid transparent", borderBottom: "20px solid rgba(251,191,36,0.15)", margin: "0 auto" }} />
+        {/* Tower cross-section — top to bottom */}
+        <div className="px-3 pb-4 space-y-0.5">
+          {/* Tower spire decoration */}
+          <div className="flex justify-center pb-2">
+            <div style={{
+              width: 0, height: 0,
+              borderLeft: "30px solid transparent", borderRight: "30px solid transparent",
+              borderBottom: "16px solid rgba(251,191,36,0.12)",
+              filter: "drop-shadow(0 0 8px rgba(251,191,36,0.1))",
+            }} />
           </div>
 
           {FLOORS.map((floor, fi) => {
             const floorLocked = playerLevel < (floor.minLevel || 1);
             const isActiveFloor = floor.id === activeFloor;
+            const notif = notifications[floor.id];
+            const hasNotification = notif && notif.count > 0;
 
             return (
-              <div key={floor.id}>
+              <div key={floor.id} className="rounded-xl overflow-hidden" style={{ background: isActiveFloor ? (FLOOR_BG[floor.id] || "rgba(255,255,255,0.02)") : "rgba(255,255,255,0.015)", border: `1px solid ${isActiveFloor ? `${floor.color}25` : "rgba(255,255,255,0.03)"}`, opacity: floorLocked ? 0.35 : 1, transition: "all 0.2s ease" }}>
+                {/* Floor accent bar */}
+                {isActiveFloor && (
+                  <div style={{ height: 2, background: `linear-gradient(90deg, transparent, ${floor.color}80, transparent)` }} />
+                )}
+
                 {/* Floor header */}
-                <div
-                  className="flex items-center gap-2 px-2 py-1.5 rounded-t-lg"
-                  style={{
-                    background: isActiveFloor ? `${floor.color}12` : "rgba(255,255,255,0.02)",
-                    borderLeft: `3px solid ${floorLocked ? "rgba(255,255,255,0.06)" : floor.color}`,
-                    opacity: floorLocked ? 0.4 : 1,
-                  }}
-                >
-                  <span style={{ color: floor.color, fontSize: 14 }}>{floor.icon}</span>
-                  <div className="flex-1">
-                    <p className="text-xs font-bold" style={{ color: floorLocked ? "rgba(255,255,255,0.3)" : floor.color }}>{floor.name}</p>
+                <div className="flex items-center gap-3 px-4 py-2.5">
+                  {/* Floor icon */}
+                  <div className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: `${floor.color}10`, border: `1px solid ${floor.color}20` }}>
+                    <span style={{ color: floor.color, fontSize: 16 }}>{floor.icon}</span>
+                  </div>
+
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2">
+                      <p className="text-sm font-bold" style={{ color: floorLocked ? "rgba(255,255,255,0.25)" : isActiveFloor ? floor.color : "rgba(255,255,255,0.7)" }}>
+                        {floor.name}
+                      </p>
+                      {isActiveFloor && (
+                        <span className="text-xs px-1.5 py-0.5 rounded font-semibold" style={{ background: `${floor.color}18`, color: floor.color, fontSize: 10 }}>
+                          HERE
+                        </span>
+                      )}
+                    </div>
                     <p style={{ color: "rgba(255,255,255,0.15)", fontSize: 10 }}>{floor.subtitle}</p>
                   </div>
-                  {floorLocked && <span className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>Lv.{floor.minLevel}</span>}
-                  {isActiveFloor && <span className="w-1.5 h-1.5 rounded-full" style={{ background: floor.color, boxShadow: `0 0 6px ${floor.color}` }} />}
+
+                  {/* Notification dot */}
+                  {hasNotification && !floorLocked && (
+                    <div className="relative flex-shrink-0">
+                      <span className="flex h-5 w-5 items-center justify-center rounded-full text-xs font-bold" style={{
+                        background: (notif.color || floor.color) + "25",
+                        color: notif.color || floor.color,
+                        border: `1px solid ${(notif.color || floor.color)}40`,
+                        fontSize: 10,
+                        minWidth: 20,
+                      }}>
+                        {notif.count > 9 ? "9+" : notif.count}
+                      </span>
+                    </div>
+                  )}
+
+                  {floorLocked && <span className="text-xs flex-shrink-0" style={{ color: "rgba(255,255,255,0.15)" }}>Lv.{floor.minLevel}</span>}
                 </div>
 
                 {/* Rooms */}
-                <div className="flex flex-wrap gap-1 px-2 pb-2 pt-1 rounded-b-lg" style={{ background: "rgba(255,255,255,0.01)", borderLeft: `3px solid ${floorLocked ? "rgba(255,255,255,0.03)" : `${floor.color}30`}` }}>
+                <div className="flex flex-wrap gap-1.5 px-4 pb-3">
                   {floor.rooms.map(room => {
                     const roomLocked = floorLocked || !!(room.minLevel && playerLevel < room.minLevel);
                     const isActive = activeRoom === room.key;
@@ -69,36 +122,34 @@ export default function TowerMap({ activeFloor, activeRoom, playerLevel, onNavig
                         onClick={() => { if (!roomLocked) { onNavigate(room.key); onClose(); } }}
                         disabled={roomLocked}
                         title={roomLocked ? `Requires Level ${room.minLevel || floor.minLevel}` : room.label}
-                        className="text-xs px-2 py-1 rounded transition-all"
+                        className="text-xs px-2.5 py-1.5 rounded-lg transition-all"
                         style={{
-                          background: isActive ? `${floor.color}20` : roomLocked ? "rgba(255,255,255,0.02)" : "rgba(255,255,255,0.04)",
-                          color: isActive ? floor.color : roomLocked ? "rgba(255,255,255,0.15)" : "rgba(255,255,255,0.4)",
-                          border: `1px solid ${isActive ? `${floor.color}50` : "rgba(255,255,255,0.05)"}`,
+                          background: isActive ? `${floor.color}20` : roomLocked ? "rgba(255,255,255,0.015)" : "rgba(255,255,255,0.035)",
+                          color: isActive ? floor.color : roomLocked ? "rgba(255,255,255,0.12)" : "rgba(255,255,255,0.45)",
+                          border: `1px solid ${isActive ? `${floor.color}50` : "rgba(255,255,255,0.04)"}`,
                           cursor: roomLocked ? "not-allowed" : "pointer",
                           fontWeight: isActive ? 700 : 400,
+                          boxShadow: isActive ? `0 0 8px ${floor.color}15` : "none",
                         }}
                       >
-                        {isActive && <span style={{ marginRight: 3 }}>●</span>}
+                        {isActive && <span style={{ marginRight: 4, fontSize: 8 }}>◆</span>}
                         {room.label}
-                        {roomLocked && <span style={{ marginLeft: 3, opacity: 0.5 }}>🔒</span>}
                       </button>
                     );
                   })}
                 </div>
 
-                {/* Floor connector line */}
-                {fi < FLOORS.length - 1 && (
-                  <div className="flex justify-center py-0.5">
-                    <div style={{ width: 1, height: 8, background: "rgba(255,255,255,0.06)" }} />
-                  </div>
+                {/* Floor connector */}
+                {fi < FLOORS.length - 1 && !isActiveFloor && (
+                  <div style={{ height: 1, background: "rgba(255,255,255,0.02)" }} />
                 )}
               </div>
             );
           })}
 
-          {/* Decorative tower base */}
-          <div className="text-center mt-1">
-            <div style={{ width: 100, height: 3, background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent)", margin: "0 auto" }} />
+          {/* Tower base decoration */}
+          <div className="flex justify-center pt-2">
+            <div style={{ width: 120, height: 3, background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent)", borderRadius: 2 }} />
           </div>
         </div>
       </div>
