@@ -4469,6 +4469,495 @@
           }
         ]
       ]
+    },
+    {
+      "id": "bauer-ernst",
+      "portrait": null,
+      "rarity": "common",
+      "spawnWeight": 50,
+      "cooldownHours": 48,
+      "departureDurationHours": 72,
+      "maxChainsPerVisit": 1,
+      "greeting": "Die Ernte wartet nicht. Du auch nicht. Also los.",
+      "name": "Bauer Ernst",
+      "emoji": null,
+      "title": "Der Erdverbundene",
+      "description": "Spricht wenig. Arbeitet viel. Sein Rat ist wie sein Boden: nährhaft aber erdig.",
+      "stayDays": 3,
+      "cooldownDays": 8,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Ernsts Tageswerk",
+            "type": "personal",
+            "priority": "low",
+            "lore": "Quest von Bauer Ernst · 1/1 · 1/1",
+            "rewards": {
+              "xp": 15,
+              "gold": 10
+            },
+            "vars": {
+              "quote": "Manche Arbeit sieht man nicht. Das macht sie nicht weniger wichtig.",
+              "task": "Ernst braucht fleißige Hände.",
+              "realWorldTask": "Erledige 3 kleine Haushaltsaufgaben die du sonst ignorierst — Müll, Geschirr, Wäsche",
+              "difficulty": "starter"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "tanzlehrerin-vivienne",
+      "portrait": null,
+      "rarity": "uncommon",
+      "spawnWeight": 28,
+      "cooldownHours": 72,
+      "departureDurationHours": 72,
+      "maxChainsPerVisit": 1,
+      "greeting": "Steh auf. Beweg dich. Nein, nicht so — mit Gefühl!",
+      "name": "Tanzlehrerin Vivienne",
+      "emoji": null,
+      "title": "Die Rhythmusfinderin",
+      "description": "Tanzt zu Musik die nur sie hört. Erstaunlicherweise im Takt.",
+      "stayDays": 3,
+      "cooldownDays": 14,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Viviennes Rhythmus",
+            "type": "fitness",
+            "priority": "low",
+            "lore": "Quest von Vivienne · 1/1 · 1/2",
+            "rewards": {
+              "xp": 18,
+              "gold": 10
+            },
+            "vars": {
+              "quote": "Du bewegst dich wie jemand der vergessen hat dass er einen Körper hat. Erinnern wir dich.",
+              "task": "Vivienne will Bewegung. Nicht Sport — Bewegung. Der Unterschied ist Freude.",
+              "realWorldTask": "Hör dein Lieblingslied und tanz 5 Minuten dazu. Allein. Niemand schaut. Versprochen.",
+              "difficulty": "starter"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Der Flow",
+            "type": "fitness",
+            "priority": "medium",
+            "lore": "Quest von Vivienne · 1/1 · 2/2",
+            "rewards": {
+              "xp": 28,
+              "gold": 16
+            },
+            "vars": {
+              "quote": "Wenn der Körper sich bewegt, hört der Kopf auf zu reden. Das ist therapeutischer als jede Therapie. Sag das aber keinem Therapeuten.",
+              "task": "Vivienne fordert eine längere Session.",
+              "realWorldTask": "30 Minuten Bewegung die Spaß macht — Tanzen, Yoga, Schwimmen, Radfahren — kein 'Muss', nur 'Will'",
+              "difficulty": "intermediate"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "detektiv-ash",
+      "portrait": null,
+      "rarity": "rare",
+      "spawnWeight": 15,
+      "cooldownHours": 120,
+      "departureDurationHours": 48,
+      "maxChainsPerVisit": 1,
+      "greeting": "Drei Hinweise. Zwei Lügen. Eine Wahrheit. Finden wir sie.",
+      "name": "Detektiv Ash",
+      "emoji": null,
+      "title": "Der Wahrheitsfinder",
+      "description": "Findet immer die Wahrheit. Ob sie gefunden werden will oder nicht. Meistens nicht.",
+      "stayDays": 2,
+      "cooldownDays": 20,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Ashs Ermittlung",
+            "type": "learning",
+            "priority": "high",
+            "lore": "Quest von Detektiv Ash · 1/1 · 1/2",
+            "rewards": {
+              "xp": 35,
+              "gold": 22
+            },
+            "vars": {
+              "quote": "Die Antwort ist immer da. Du stellst nur die falschen Fragen.",
+              "task": "Ash hat einen Fall. Du bist der Ermittler.",
+              "realWorldTask": "Recherchiere ein Problem das du hast — wirklich recherchieren, nicht googlen und aufgeben. 45 Minuten deep dive.",
+              "difficulty": "advanced"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Der Beweis",
+            "type": "personal",
+            "priority": "high",
+            "lore": "Quest von Detektiv Ash · 1/1 · 2/2",
+            "rewards": {
+              "xp": 42,
+              "gold": 28
+            },
+            "vars": {
+              "quote": "Theorien sind schön. Beweise sind besser. Zeig mir Ergebnisse.",
+              "task": "Ash will keine Vermutungen — Ash will Fakten.",
+              "realWorldTask": "Setze um was du recherchiert hast. Konkretes Ergebnis, nicht nur Wissen.",
+              "difficulty": "advanced"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "philosophin-helen",
+      "portrait": null,
+      "rarity": "uncommon",
+      "spawnWeight": 25,
+      "cooldownHours": 72,
+      "departureDurationHours": 72,
+      "maxChainsPerVisit": 1,
+      "greeting": "Was ist Produktivität? Nein, wirklich — was IST es? Setz dich. Das dauert.",
+      "name": "Philosophin Helen",
+      "emoji": null,
+      "title": "Die Fragensteller",
+      "description": "Beantwortet keine Fragen. Stellt bessere. Das ist frustrierender als es klingt.",
+      "stayDays": 3,
+      "cooldownDays": 14,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Helens Paradox",
+            "type": "personal",
+            "priority": "medium",
+            "lore": "Quest von Philosophin Helen · 1/1 · 1/1",
+            "rewards": {
+              "xp": 25,
+              "gold": 15
+            },
+            "vars": {
+              "quote": "Die unbeantwortete Frage ist wertvoller als die bequeme Antwort. Lebt mit der Unsicherheit.",
+              "task": "Helen stellt eine Frage. Die Antwort findest du nicht im Internet.",
+              "realWorldTask": "Frage dich: Was würdest du tun wenn du wüsstest dass du nicht scheitern kannst? Schreib 3 Antworten auf.",
+              "difficulty": "intermediate"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "tierpfleger-finn",
+      "portrait": null,
+      "rarity": "common",
+      "spawnWeight": 45,
+      "cooldownHours": 48,
+      "departureDurationHours": 72,
+      "maxChainsPerVisit": 1,
+      "greeting": "Die Tiere mögen dich. Oder sie haben Hunger. Beides ist gut für mich.",
+      "name": "Tierpfleger Finn",
+      "emoji": null,
+      "title": "Der Tierflüsterer",
+      "description": "Versteht jedes Tier. Wird von keinem verstanden. Findet die Asymmetrie beruhigend.",
+      "stayDays": 3,
+      "cooldownDays": 8,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Finns Fütterung",
+            "type": "personal",
+            "priority": "low",
+            "lore": "Quest von Tierpfleger Finn · 1/1 · 1/1",
+            "rewards": {
+              "xp": 12,
+              "gold": 8
+            },
+            "vars": {
+              "quote": "Haustiere sind wie Pflanzen die dich anstarren wenn du sie vergisst. Vergiss sie nicht.",
+              "task": "Finn erinnert dich an deine Verantwortung. Die mit den Augen.",
+              "realWorldTask": "Kümmere dich um dein Haustier: Extra-Spielzeit, Fellpflege, neues Spielzeug. Kein Haustier? Geh Tiere im Tierheim besuchen.",
+              "difficulty": "starter"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "maler-claude",
+      "portrait": null,
+      "rarity": "uncommon",
+      "spawnWeight": 25,
+      "cooldownHours": 72,
+      "departureDurationHours": 72,
+      "maxChainsPerVisit": 1,
+      "greeting": "Ich sehe Farben wo andere Grau sehen. Das ist entweder Talent oder eine Erkrankung.",
+      "name": "Maler Claude",
+      "emoji": null,
+      "title": "Der Farbenseher",
+      "description": "Malt ausschließlich Dinge die nicht existieren. Seine Bilder sind trotzdem erschreckend akkurat.",
+      "stayDays": 3,
+      "cooldownDays": 14,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Claudes Skizze",
+            "type": "personal",
+            "priority": "medium",
+            "lore": "Quest von Maler Claude · 1/1 · 1/2",
+            "rewards": {
+              "xp": 22,
+              "gold": 14
+            },
+            "vars": {
+              "quote": "Jeder kann zeichnen. Die meisten haben nur vergessen dass sie es können. Erinnere dich.",
+              "task": "Claude will dass du etwas erschaffst. Qualität ist irrelevant. Mut ist alles.",
+              "realWorldTask": "Zeichne, male oder kritzle 20 Minuten. Egal was. Egal wie. Zeig es niemandem wenn du willst.",
+              "difficulty": "intermediate"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Die Ausstellung",
+            "type": "social",
+            "priority": "medium",
+            "lore": "Quest von Maler Claude · 1/1 · 2/2",
+            "rewards": {
+              "xp": 30,
+              "gold": 18
+            },
+            "vars": {
+              "quote": "Kunst die niemand sieht, ist ein Gespräch mit dir selbst. Manchmal braucht das Gespräch einen zweiten Stuhl.",
+              "task": "Claude will dass du deine Kreation zeigst.",
+              "realWorldTask": "Teile etwas Kreatives das du gemacht hast mit jemandem — ein Bild, einen Text, eine Idee",
+              "difficulty": "intermediate"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "spion-echo",
+      "portrait": null,
+      "rarity": "rare",
+      "spawnWeight": 14,
+      "cooldownHours": 144,
+      "departureDurationHours": 48,
+      "maxChainsPerVisit": 1,
+      "greeting": "Ich weiß wer du bist. Die Frage ist ob DU es weißt.",
+      "name": "Agent Echo",
+      "emoji": null,
+      "title": "Der Schattenbeobachter",
+      "description": "Weiß alles über jeden. Sagt nie wie. Trägt Sonnenbrillen in geschlossenen Räumen. Niemand fragt warum.",
+      "stayDays": 2,
+      "cooldownDays": 22,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Echos Briefing",
+            "type": "learning",
+            "priority": "high",
+            "lore": "Quest von Agent Echo · 1/1 · 1/2",
+            "rewards": {
+              "xp": 35,
+              "gold": 20
+            },
+            "vars": {
+              "quote": "Information ist die wahre Währung. Gold ist nur das was Leute sehen.",
+              "task": "Echo will dass du dich informierst. Über etwas das dich direkt betrifft.",
+              "realWorldTask": "Informiere dich gründlich über ein Thema das deine Karriere oder Finanzen direkt betrifft — 45min Recherche",
+              "difficulty": "advanced"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Die Aktion",
+            "type": "personal",
+            "priority": "high",
+            "lore": "Quest von Agent Echo · 1/1 · 2/2",
+            "rewards": {
+              "xp": 42,
+              "gold": 28
+            },
+            "vars": {
+              "quote": "Wissen ohne Aktion ist Unterhaltung. Aktion ohne Wissen ist Chaos. Du hast jetzt beides. Benutze es.",
+              "task": "Echo erwartet Ergebnisse. Keine Berichte — Ergebnisse.",
+              "realWorldTask": "Handle basierend auf deiner Recherche: Mach einen Termin, bewirb dich, kündige etwas, ändere etwas",
+              "difficulty": "advanced"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "musikerin-aria",
+      "portrait": null,
+      "rarity": "rare",
+      "spawnWeight": 16,
+      "cooldownHours": 96,
+      "departureDurationHours": 72,
+      "maxChainsPerVisit": 1,
+      "greeting": "Hörst du das? Die Stille zwischen den Noten — da lebt die Musik. Und gelegentlich eine Spinne.",
+      "name": "Musikerin Aria",
+      "emoji": null,
+      "title": "Die Klangweberin",
+      "description": "Spielt Instrumente die noch nicht erfunden sind. Der Klang ist wunderschön. Die Physik ist unmöglich.",
+      "stayDays": 3,
+      "cooldownDays": 18,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Arias Melodie",
+            "type": "personal",
+            "priority": "medium",
+            "lore": "Quest von Musikerin Aria · 1/1 · 1/2",
+            "rewards": {
+              "xp": 25,
+              "gold": 15
+            },
+            "vars": {
+              "quote": "Musik ist die Sprache die dein Gehirn versteht wenn Worte versagen. Lass sie sprechen.",
+              "task": "Aria will dass du Musik nicht nur hörst — sondern fühlst.",
+              "realWorldTask": "Hör dir ein Musikalbum komplett durch — von Anfang bis Ende, ohne Unterbrechung, ohne Multitasking",
+              "difficulty": "intermediate"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Dein Lied",
+            "type": "personal",
+            "priority": "medium",
+            "lore": "Quest von Musikerin Aria · 1/1 · 2/2",
+            "rewards": {
+              "xp": 32,
+              "gold": 20
+            },
+            "vars": {
+              "quote": "Jeder hat ein Lied. Manche summen es. Manche verstecken es. Finde deins.",
+              "task": "Aria sucht dein persönliches Lied — nicht zum Singen, zum Leben.",
+              "realWorldTask": "Erstelle eine Playlist mit 10 Songs die dein aktuelles Lebensgefühl beschreiben. Teile sie mit jemandem.",
+              "difficulty": "intermediate"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "handwerkerin-petra",
+      "portrait": null,
+      "rarity": "common",
+      "spawnWeight": 45,
+      "cooldownHours": 48,
+      "departureDurationHours": 72,
+      "maxChainsPerVisit": 1,
+      "greeting": "Kaputt? Zeig her. Ich mach das. Nein, NICHT so — GIB her.",
+      "name": "Handwerkerin Petra",
+      "emoji": null,
+      "title": "Die Macherin",
+      "description": "Repariert alles. Baut alles. Fragt nie warum. Fragt nur: 'Welches Werkzeug?'",
+      "stayDays": 3,
+      "cooldownDays": 9,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Petras Werkstatt",
+            "type": "personal",
+            "priority": "medium",
+            "lore": "Quest von Handwerkerin Petra · 1/1 · 1/2",
+            "rewards": {
+              "xp": 20,
+              "gold": 12
+            },
+            "vars": {
+              "quote": "Alles was mit den Händen gemacht wird, ist ehrliche Arbeit. Auch wenn man sich dabei den Daumen haut.",
+              "task": "Petra braucht handwerkliche Hilfe.",
+              "realWorldTask": "Mach etwas Handwerkliches: Regal montieren, Bild aufhängen, Fahrrad reparieren, Möbel zusammenbauen",
+              "difficulty": "intermediate"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Das eigene Projekt",
+            "type": "personal",
+            "priority": "medium",
+            "lore": "Quest von Handwerkerin Petra · 1/1 · 2/2",
+            "rewards": {
+              "xp": 28,
+              "gold": 18
+            },
+            "vars": {
+              "quote": "Fertigstellen. Nicht perfektionieren. Fertigstellen. Das ist der schwierige Teil.",
+              "task": "Petra will dass du etwas FERTIG machst. Nicht anfängst — FERTIG.",
+              "realWorldTask": "Beende ein Projekt das du angefangen aber nie abgeschlossen hast — egal wie klein",
+              "difficulty": "intermediate"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "coach-dominik",
+      "portrait": null,
+      "rarity": "uncommon",
+      "spawnWeight": 30,
+      "cooldownHours": 72,
+      "departureDurationHours": 72,
+      "maxChainsPerVisit": 1,
+      "greeting": "Was ist dein Ziel? Nein, nicht das Ziel das du SAGST. Das ECHTE.",
+      "name": "Coach Dominik",
+      "emoji": null,
+      "title": "Der Klardenker",
+      "description": "Stellt die Fragen die Therapeuten 200 Euro pro Stunde kosten. Kostenlos. Aber unbequemer.",
+      "stayDays": 3,
+      "cooldownDays": 14,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Dominiks Spiegel",
+            "type": "personal",
+            "priority": "medium",
+            "lore": "Quest von Coach Dominik · 1/1 · 1/2",
+            "rewards": {
+              "xp": 25,
+              "gold": 15
+            },
+            "vars": {
+              "quote": "Ich sage dir nicht was du tun sollst. Ich sage dir was du bereits weißt aber ignorierst.",
+              "task": "Dominik hält dir den Spiegel vor. Ist nicht immer angenehm.",
+              "realWorldTask": "Schreibe 5 Dinge auf die du verbessern KÖNNTEST aber bewusst nicht tust. Warum nicht? Ehrlich sein.",
+              "difficulty": "intermediate"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Der Erste Schritt",
+            "type": "personal",
+            "priority": "high",
+            "lore": "Quest von Coach Dominik · 1/1 · 2/2",
+            "rewards": {
+              "xp": 35,
+              "gold": 22
+            },
+            "vars": {
+              "quote": "Die Entfernung zwischen 'wollen' und 'tun' beträgt genau einen Schritt. Er fühlt sich an wie tausend. Ist er aber nicht.",
+              "task": "Dominik hat genug geredet. Jetzt wird gemacht.",
+              "realWorldTask": "Nimm eine Sache von gestern und mach den ersten konkreten Schritt. Nicht planen — MACHEN.",
+              "difficulty": "advanced"
+            }
+          }
+        ]
+      ]
     }
   ],
   "specialNpcs": {
