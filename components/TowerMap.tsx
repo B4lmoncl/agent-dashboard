@@ -128,7 +128,15 @@ export default function TowerMap({ activeFloor, activeRoom, playerLevel, onNavig
                         </span>
                       )}
                     </div>
-                    <p style={{ color: "rgba(255,255,255,0.15)", fontSize: 10 }}>{floor.subtitle}</p>
+                    <p style={{ color: "rgba(255,255,255,0.15)", fontSize: 10 }}>
+                      {floor.subtitle}
+                      {!floorLocked && (() => {
+                        const unlockedRooms = floor.rooms.filter(r => !r.minLevel || playerLevel >= r.minLevel).length;
+                        return unlockedRooms < floor.rooms.length ? (
+                          <span style={{ marginLeft: 6, color: "rgba(255,255,255,0.1)" }}>{unlockedRooms}/{floor.rooms.length}</span>
+                        ) : null;
+                      })()}
+                    </p>
                   </div>
 
                   {/* Notification dot */}
