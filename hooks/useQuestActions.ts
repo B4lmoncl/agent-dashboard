@@ -271,12 +271,13 @@ export function useQuestActions({
         if (data.gildentalerEarned > 0) currencies.push({ name: "Gildentaler", amount: data.gildentalerEarned, color: "#10b981" });
         setRewardCelebration({
           type: isNpcQuest ? "npc-quest" : data.companionReward ? "companion" : "quest",
-          title: questTitle,
+          title: data.npcFinalReward ? `${questTitle} — Chain Complete!` : questTitle,
           xpEarned: data.xpEarned || 0,
           goldEarned: data.goldEarned || 0,
-          loot: data.lootDrop || null,
+          loot: data.npcFinalReward ? { name: data.npcFinalReward.name, emoji: "◆", rarity: data.npcFinalReward.rarity || "epic", rarityColor: data.npcFinalReward.rarity === "legendary" ? "#f97316" : data.npcFinalReward.rarity === "epic" ? "#a855f7" : "#3b82f6" } : data.lootDrop || null,
           achievement: data.newAchievements?.length > 0 ? data.newAchievements[0] : null,
           ...(currencies.length > 0 ? { currencies } : {}),
+          ...(data.npcFinalReward ? { flavor: `${data.npcFinalReward.name} — ${data.npcFinalReward.desc || "A unique reward for completing this chain."}` } : {}),
           ...(data.companionReward ? {
             bondXp: data.companionReward.bondXpGained || 0,
             companionEmoji: data.companionReward.companionType === "ember_sprite" ? "🔥" : data.companionReward.companionType === "lore_owl" ? "🦉" : data.companionReward.companionType === "gear_golem" ? "⚙️" : "🐾",

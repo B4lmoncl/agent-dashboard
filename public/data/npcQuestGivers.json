@@ -128,7 +128,8 @@
           "desc": "Von Oma Ilse persönlich gestrickt. Riecht nach Keksen und Nostalgie.",
           "passiveEffect": "streak_shield_passive",
           "passiveDesc": "Omas Wärme: 25% Chance Streak-Verlust zu verhindern",
-          "icon": "/images/icons/npc-ilse-scarf.png"
+          "icon": "/images/icons/npc-ilse-scarf.png",
+          "reqLevel": 3
         }
       }
     },
@@ -302,7 +303,8 @@
           "desc": "Zeigt immer in die richtige Richtung. Meistens.",
           "passiveEffect": "gold_boost_10",
           "passiveDesc": "Händlerinstinkt: +10% Gold aus allen Quellen",
-          "icon": "/images/icons/npc-karim-compass.png"
+          "icon": "/images/icons/npc-karim-compass.png",
+          "reqLevel": 15
         }
       }
     },
@@ -472,7 +474,8 @@
           "desc": "Getragen von Generationen von Meisterschülern. Es flüstert: 'Du kannst mehr.'",
           "passiveEffect": "xp_boost_5",
           "passiveDesc": "Disziplin des Meisters: +5% XP permanent",
-          "icon": "/images/icons/npc-tanaka-headband.png"
+          "icon": "/images/icons/npc-tanaka-headband.png",
+          "reqLevel": 22
         }
       }
     },
@@ -610,7 +613,8 @@
           "desc": "Pulsiert sanft im Rhythmus des Waldes. Beruhigt den Geist.",
           "passiveEffect": "forge_decay_reduction_20",
           "passiveDesc": "Naturverbundenheit: -20% Forge-Decay",
-          "icon": "/images/icons/npc-mirael-pendant.png"
+          "icon": "/images/icons/npc-mirael-pendant.png",
+          "reqLevel": 15
         }
       }
     },
@@ -768,7 +772,8 @@
           "desc": "Klingt wie ein Sommertag. Wer sie hört, fühlt sich tapferer.",
           "passiveEffect": "loot_rarity_boost_10",
           "passiveDesc": "Glücksmelodie: +10% Chance auf seltenen Loot",
-          "icon": "/images/icons/npc-finnegan-lute.png"
+          "icon": "/images/icons/npc-finnegan-lute.png",
+          "reqLevel": 3
         }
       }
     },
@@ -924,7 +929,8 @@
           "desc": "Jede Perle trägt ein Gebet. Beruhigt den Geist in stürmischen Zeiten.",
           "passiveEffect": "bond_boost_25",
           "passiveDesc": "Innerer Frieden: +25% Bond-XP beim Streicheln",
-          "icon": "/images/icons/npc-tomas-rosary.png"
+          "icon": "/images/icons/npc-tomas-rosary.png",
+          "reqLevel": 15
         }
       }
     },
@@ -1114,7 +1120,8 @@
           "desc": "Brodelt in allen Farben. Manchmal explodiert er. Meistens absichtlich.",
           "passiveEffect": "essenz_boost_15",
           "passiveDesc": "Funkenwissen: +15% Essenz aus allen Quellen",
-          "icon": "/images/icons/npc-zara-flask.png"
+          "icon": "/images/icons/npc-zara-flask.png",
+          "reqLevel": 22
         }
       }
     },
@@ -1270,7 +1277,8 @@
           "desc": "Knorrig und zuverlässig, wie sein Besitzer. Hat mehr Wälder gesehen als du je wirst.",
           "passiveEffect": "quest_timer_extend_2h",
           "passiveDesc": "Geduld des Wanderers: +2h auf alle Quest-Timer",
-          "icon": "/images/icons/npc-henrik-staff.png"
+          "icon": "/images/icons/npc-henrik-staff.png",
+          "reqLevel": 15
         }
       }
     },
@@ -1495,7 +1503,8 @@
           "desc": "Leuchtet sanft in der Dunkelheit. Die Glühwürmchen darin sind erstaunlich loyal.",
           "passiveEffect": "companion_bond_boost_50",
           "passiveDesc": "Glühwürmchenlicht: +50% Bond-XP",
-          "icon": "/images/icons/npc-lumi-lantern.png"
+          "icon": "/images/icons/npc-lumi-lantern.png",
+          "reqLevel": 30
         }
       }
     },
@@ -1685,7 +1694,8 @@
           "desc": "Geschmiedet im Herzen eines Vulkans. Oder so sagt Rogar zumindest.",
           "passiveEffect": "forge_temp_boost_10",
           "passiveDesc": "Meisterschmied: +10 Forge-Temp bei Quest-Abschluss",
-          "icon": "/images/icons/npc-rogar-hammer.png"
+          "icon": "/images/icons/npc-rogar-hammer.png",
+          "reqLevel": 22
         }
       }
     },
@@ -1776,7 +1786,8 @@
           "passiveDesc": "Unwiderstehliche Eleganz: +15% Gold bei NPC-Quests",
           "rarity": "epic",
           "desc": "Ein perfekt sitzender Mantel. Sieht gut aus. Selbst auf Knochen.",
-          "icon": "/images/icons/npc-gentleman-coat.png"
+          "icon": "/images/icons/npc-gentleman-coat.png",
+          "reqLevel": 30
         }
       },
       "stats": {
@@ -1867,7 +1878,8 @@
           "passiveDesc": "Tieferes Verständnis: +8% XP aus Learning-Quests",
           "rarity": "rare",
           "desc": "Eine Brille die mehr zeigt als nur Buchstaben. Manche Träger behaupten, sie könnten damit die Wahrheit lesen. Zwischen den Zeilen.",
-          "icon": "/images/icons/npc-vex-glasses.png"
+          "icon": "/images/icons/npc-vex-glasses.png",
+          "reqLevel": 15
         }
       }
     },
@@ -1969,7 +1981,8 @@
           "passiveDesc": "Nebelnavigation: +20% Chance auf seltene Quest-Drops",
           "rarity": "epic",
           "desc": "Zeigt nicht nach Norden. Zeigt dorthin wo du hin musst. Nicht immer dasselbe.",
-          "icon": "/images/icons/npc-flint-compass.png"
+          "icon": "/images/icons/npc-flint-compass.png",
+          "reqLevel": 22
         }
       }
     },
