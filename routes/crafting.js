@@ -372,12 +372,16 @@ router.post('/api/professions/learn', requireAuth, (req, res) => {
     return res.status(400).json({ error: 'You must choose this profession first.' });
   }
 
-  // Check profession skill/level
+  // WoW Classic style: trainer recipes can be LEARNED at any skill level
+  // (you just need the right rank/cap trained — the reqSkill only gates CRAFTING, not learning)
+  // Only check: does the player's trained rank allow recipes at this skill level?
   const profProgress = getProfLevel(u, recipe.profession);
-  if (!meetsSkillReq(recipe, profProgress)) {
-    const profDef = PROFESSIONS_DATA.professions.find(p => p.id === recipe.profession);
-    const reqLabel = recipe.reqSkill != null ? `skill ${recipe.reqSkill}` : `level ${recipe.reqProfLevel}`;
-    return res.status(400).json({ error: `Requires ${profDef?.name || recipe.profession} ${reqLabel}` });
+  const playerLvl = getLevelInfo(u.xp || 0).level;
+  const profData = (u.professions || {})[recipe.profession];
+  const skillCap = getSkillCap(playerLvl, profData?.trainedRanks);
+  const recipeSkill = recipe.reqSkill || reqProfLevelToSkill(recipe.reqProfLevel);
+  if (recipeSkill > skillCap) {
+    return res.status(400).json({ error: `Train a higher rank first — this recipe requires Skill Cap ${recipeSkill}+ (your cap: ${skillCap})` });
   }
 
   // Already learned?

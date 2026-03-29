@@ -158,20 +158,24 @@ export default function CrystalVeins({ floorColor = "#818cf8", moonIntensity = 1
         }
       };
 
-      // Multi-pass glow (3 layers — performance optimized)
+      // Multi-pass glow — skip outer pass for thin branches (performance)
       ctx.lineCap = "round";
       ctx.lineJoin = "round";
-      const glowPasses = [
-        { widthMult: 8,  opacityMult: 0.04 },
-        { widthMult: 4,  opacityMult: 0.12 },
-        { widthMult: 1.8, opacityMult: 0.30 },
-      ];
-      for (const pass of glowPasses) {
+      const isThick = vein.width >= 1.2;
+      if (isThick) {
         drawPath();
-        ctx.strokeStyle = `rgba(${r},${g},${b},${baseOpacity * pass.opacityMult})`;
-        ctx.lineWidth = vein.width * pass.widthMult * glowScale;
+        ctx.strokeStyle = `rgba(${r},${g},${b},${baseOpacity * 0.04})`;
+        ctx.lineWidth = vein.width * 8 * glowScale;
         ctx.stroke();
       }
+      drawPath();
+      ctx.strokeStyle = `rgba(${r},${g},${b},${baseOpacity * 0.12})`;
+      ctx.lineWidth = vein.width * 4 * glowScale;
+      ctx.stroke();
+      drawPath();
+      ctx.strokeStyle = `rgba(${r},${g},${b},${baseOpacity * 0.30})`;
+      ctx.lineWidth = vein.width * 1.8 * glowScale;
+      ctx.stroke();
 
       // Core line (bright, thin — constant width for stability)
       drawPath();
