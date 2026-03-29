@@ -166,6 +166,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
   // infoOpen state removed — info now shown via hover tooltip on header
   const [choosingProf, setChoosingProf] = useState(false);
   const [confirmProf, setConfirmProf] = useState<ProfessionDef | null>(null);
+  const [profCelebration, setProfCelebration] = useState<ProfessionDef | null>(null);
   const [dailyBonusAvailable, setDailyBonusAvailable] = useState(false);
   const [moonlightActive, setMoonlightActive] = useState(false);
   const [craftCount, setCraftCount] = useState(1);
@@ -677,7 +678,9 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
       });
       const data = await r.json();
       if (r.ok) {
-        setCraftResult(data.message || "Profession chosen!");
+        const chosenProf = professions.find(p => p.id === profId);
+        if (chosenProf) setProfCelebration(chosenProf);
+        else setCraftResult(data.message || "Profession chosen!");
         fetchData();
         onRefresh?.();
       } else {
@@ -2737,6 +2740,48 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
             <div className="flex gap-2">
               <button onClick={() => setConfirmAction(null)} className="flex-1 text-xs py-2 rounded-lg" style={{ background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.4)", border: "1px solid rgba(255,255,255,0.1)", cursor: "pointer" }}>Cancel</button>
               <button onClick={confirmAction.onConfirm} className="flex-1 text-xs py-2 rounded-lg font-semibold" style={{ background: "rgba(239,68,68,0.15)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.4)", cursor: "pointer" }}>Confirm</button>
+            </div>
+          </div>
+        </div>,
+        document.body
+      )}
+
+      {/* ─── Profession Celebration Modal ─────────────────────────────────── */}
+      {profCelebration && createPortal(
+        <div className="fixed inset-0 z-[160] flex items-center justify-center modal-backdrop" onClick={() => setProfCelebration(null)}>
+          <div className="w-full max-w-sm rounded-2xl overflow-hidden reward-burst-enter" style={{ background: `linear-gradient(180deg, ${profCelebration.color}10 0%, #111318 100%)`, border: `1px solid ${profCelebration.color}40`, boxShadow: `0 0 60px ${profCelebration.color}15` }} onClick={e => e.stopPropagation()}>
+            {/* Accent bar */}
+            <div style={{ height: 3, background: `linear-gradient(90deg, transparent, ${profCelebration.color}, transparent)` }} />
+            <div className="p-6 text-center space-y-4">
+              {/* NPC portrait */}
+              {profCelebration.npcPortrait && (
+                <div className="w-16 h-16 mx-auto rounded-xl overflow-hidden" style={{ border: `2px solid ${profCelebration.color}60` }}>
+                  <img src={profCelebration.npcPortrait} alt="" className="w-full h-full object-cover img-render-auto" onError={e => { e.currentTarget.style.display = "none"; }} />
+                </div>
+              )}
+              <div>
+                <p className="text-lg font-bold" style={{ color: profCelebration.color }}>{profCelebration.npcName || profCelebration.name}</p>
+                <p className="text-xs text-w30 mt-1">hat dich als Lehrling akzeptiert!</p>
+              </div>
+              <div className="rounded-xl p-4" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
+                <p className="text-sm font-bold mb-2" style={{ color: "#e8e8e8" }}>Dein neuer Beruf: {profCelebration.name}</p>
+                <p className="text-xs mb-3" style={{ color: "rgba(255,255,255,0.5)" }}>{profCelebration.description || ""}</p>
+                <div className="space-y-1.5 text-left">
+                  <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>◆ Lerne Rezepte bei deinem Meister (Gold-Kosten)</p>
+                  <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>◆ Crafte Items um Skill zu gewinnen (0-300)</p>
+                  <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>◆ Skill-Up Farben: <span style={{ color: "#f97316" }}>Orange</span> = sicher, <span style={{ color: "#eab308" }}>Gelb</span> = wahrscheinlich, <span style={{ color: "#22c55e" }}>Grün</span> = selten, <span style={{ color: "#6b7280" }}>Grau</span> = kein XP</p>
+                  <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>◆ Trainiere Ränge beim Meister um dein Skill-Cap zu erhöhen</p>
+                  <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>◆ Seltene Rezepte droppen aus Quests oder von Fraktionen</p>
+                  <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>◆ Erster Craft des Tages gibt doppeltes Skill-XP!</p>
+                </div>
+              </div>
+              <button
+                onClick={() => setProfCelebration(null)}
+                className="btn-interactive w-full text-sm font-bold py-3 rounded-lg"
+                style={{ background: `${profCelebration.color}20`, color: profCelebration.color, border: `1px solid ${profCelebration.color}40`, cursor: "pointer" }}
+              >
+                Los geht&apos;s!
+              </button>
             </div>
           </div>
         </div>,
