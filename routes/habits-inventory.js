@@ -10,8 +10,9 @@ const {
   now, getLevelInfo, getUserStats, getUserEquipment, getUserDropBonus, getStatBreakdown,
   rollLoot, resetLootPity, addLootToInventory, calcDynamicForgeTemp,
   getBondLevel, getLegendaryEffects, createGearInstance, migrateUserEquipment, getGearScore,
-  getTodayBerlin,
+  getTodayBerlin, createPlayerLock, INVENTORY_CAP,
 } = require('../lib/helpers');
+const inventoryLock = createPlayerLock('inventory');
 const { requireAuth, requireSelf } = require('../lib/middleware');
 const { rebuildCatalogMeta } = require('../lib/quest-catalog');
 
@@ -63,7 +64,7 @@ router.post('/api/habits/:id/score', requireAuth, (req, res) => {
   else if (s <= 8) habit.color = 'green';
   else habit.color = 'blue';
   let lootDrop = null;
-  const uid = (playerId || '').toLowerCase();
+  const uid = authId; // Use authenticated user ID, not body param (prevents XP injection)
   const u = state.users[uid];
   if (u && direction === 'up') {
     // Daily gate: XP + loot only on first completion per habit per day
@@ -113,6 +114,8 @@ router.get('/api/player/:name/inventory', (req, res) => {
 
 router.post('/api/player/:name/inventory/use/:itemId', requireAuth, requireSelf('name'), (req, res) => {
   const uid = req.params.name.toLowerCase();
+  if (!inventoryLock.acquire(uid)) return res.status(429).json({ error: 'Action in progress' });
+  try {
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'Player not found' });
 
@@ -510,6 +513,7 @@ router.post('/api/player/:name/inventory/use/:itemId', requireAuth, requireSelf(
   }
 
   res.json({ ok: true, effect: effect || null, message, updatedValues });
+  } finally { inventoryLock.release(uid); }
 });
 
 // ─── Reorder inventory ────────────────────────────────────────────────────
@@ -554,6 +558,8 @@ router.post('/api/player/:name/inventory/lock/:itemId', requireAuth, requireSelf
 
 router.post('/api/player/:name/inventory/discard/:itemId', requireAuth, requireSelf('name'), (req, res) => {
   const uid = req.params.name.toLowerCase();
+  if (!inventoryLock.acquire(uid)) return res.status(429).json({ error: 'Action in progress' });
+  try {
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'Player not found' });
 
@@ -565,6 +571,7 @@ router.post('/api/player/:name/inventory/discard/:itemId', requireAuth, requireS
   saveUsers();
 
   res.json({ ok: true, discarded });
+  } finally { inventoryLock.release(uid); }
 });
 
 router.get('/api/shop/equipment', (req, res) => {
@@ -596,6 +603,8 @@ router.get('/api/gear-templates', (req, res) => {
 
 router.post('/api/player/:name/equip/:itemId', requireAuth, requireSelf('name'), (req, res) => {
   const uid = req.params.name.toLowerCase();
+  if (!inventoryLock.acquire(uid)) return res.status(429).json({ error: 'Action in progress' });
+  try {
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'Player not found' });
   if (!u.equipment) u.equipment = {};
@@ -709,6 +718,7 @@ router.post('/api/player/:name/equip/:itemId', requireAuth, requireSelf('name'),
   const legendaryEffects = getLegendaryEffects(uid);
   saveUsers();
   res.json({ ok: true, equipment: u.equipment, stats, legendaryEffects, gold: u.gold || 0, fromInventory: true });
+  } finally { inventoryLock.release(uid); }
 });
 
 router.get('/api/player/:name/stats', (req, res) => {
@@ -998,6 +1008,8 @@ router.get('/api/player/:name/character', (req, res) => {
 
 router.post('/api/player/:name/unequip/:slot', requireAuth, requireSelf('name'), (req, res) => {
   const uid = req.params.name.toLowerCase();
+  if (!inventoryLock.acquire(uid)) return res.status(429).json({ error: 'Action in progress' });
+  try {
   const u = state.users[uid];
   if (!u) return res.status(404).json({ error: 'Player not found' });
   const slot = req.params.slot;
@@ -1031,6 +1043,7 @@ router.post('/api/player/:name/unequip/:slot', requireAuth, requireSelf('name'),
   const stats = getUserStats(uid);
   const legendaryEffects = getLegendaryEffects(uid);
   res.json({ ok: true, equipment: u.equipment, stats, legendaryEffects });
+  } finally { inventoryLock.release(uid); }
 });
 
 module.exports = router;
