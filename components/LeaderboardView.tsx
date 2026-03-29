@@ -1,5 +1,6 @@
 "use client";
 
+import { useRef } from "react";
 import type { LeaderboardEntry, Agent, User } from "@/app/types";
 import { useDashboard } from "@/app/DashboardContext";
 import { getLbLevel } from "@/app/utils";
@@ -59,6 +60,7 @@ export default function LeaderboardView({ entries, agents, mode = "agents", onOp
   const { users, classesList: classes, playerName } = useDashboard();
   const classMap = new Map(classes.map(c => [c.id, c]));
   const agentIdSet = new Set(agents.map(a => a.id));
+  const prevRankRef = useRef<number | null>(null);
 
   // Build user lookup for player mode (to get extra fields not on LeaderboardEntry)
   const userMap = new Map(users.map(u => [u.id, u]));
@@ -186,6 +188,12 @@ export default function LeaderboardView({ entries, agents, mode = "agents", onOp
           const lvl = getLbLevel(entry.xp);
           const isTop = entry.rank <= 3;
           const isMe = playerName && (entry.id?.toLowerCase() === playerName.toLowerCase() || entry.name?.toLowerCase() === playerName.toLowerCase());
+          // Track rank-up for player
+          let rankImproved = false;
+          if (isMe) {
+            if (prevRankRef.current !== null && entry.rank < prevRankRef.current) rankImproved = true;
+            prevRankRef.current = entry.rank;
+          }
           const maxXp = merged[0]?.xp ?? 1;
           const barPct = maxXp > 0 ? (entry.xp / maxXp) * 100 : 0;
 
@@ -197,12 +205,14 @@ export default function LeaderboardView({ entries, agents, mode = "agents", onOp
               style={{
                 gridTemplateColumns: "32px 1fr 60px 60px 60px",
                 borderBottom: "1px solid rgba(255,255,255,0.04)",
-                background: isMe ? "rgba(167,139,250,0.06)" : isTop ? `${color}08` : "transparent",
-                borderLeft: isMe ? "2px solid rgba(167,139,250,0.3)" : "2px solid transparent",
+                background: isMe ? (rankImproved ? "rgba(34,197,94,0.08)" : "rgba(167,139,250,0.06)") : isTop ? `${color}08` : "transparent",
+                borderLeft: isMe ? `2px solid ${rankImproved ? "rgba(34,197,94,0.5)" : "rgba(167,139,250,0.3)"}` : "2px solid transparent",
+                boxShadow: rankImproved ? "inset 0 0 16px rgba(34,197,94,0.06)" : "none",
               }}
             >
               <span className="text-sm font-bold" style={{ color: entry.rank <= 3 ? ["#f59e0b", "#9ca3af", "#cd7f32"][entry.rank - 1] : "rgba(255,255,255,0.25)" }}>
                 <RankMedal rank={entry.rank} />
+                {isMe && rankImproved && <span className="stat-flash-up" style={{ fontSize: 10, marginLeft: 2 }}>{"\u25B2"}</span>}
               </span>
               <div className="flex items-center gap-2 min-w-0">
                 <div

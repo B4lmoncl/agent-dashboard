@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { useDashboard } from "@/app/DashboardContext";
 import { getAuthHeaders } from "@/lib/auth-client";
 import { Tip, TipCustom } from "@/components/GameTooltip";
@@ -165,6 +165,8 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
   const [historyOpen, setHistoryOpen] = useState(false);
   const [bossHistory, setBossHistory] = useState<HistoryEntry[]>([]);
   const [now, setNow] = useState(() => Date.now());
+  const [damageBurst, setDamageBurst] = useState(false);
+  const prevHpRef = useRef<number | null>(null);
 
   const fetchBoss = useCallback(async () => {
     try {
@@ -181,6 +183,17 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
   }, [playerName]);
 
   useEffect(() => { fetchBoss(); }, [fetchBoss]);
+
+  // Detect HP changes for damage burst effect
+  useEffect(() => {
+    if (!data || !("boss" in data) || !data.boss) return;
+    const currentHp = data.boss.currentHp;
+    if (prevHpRef.current !== null && currentHp < prevHpRef.current) {
+      setDamageBurst(true);
+      setTimeout(() => setDamageBurst(false), 600);
+    }
+    prevHpRef.current = currentHp;
+  }, [data]);
 
   // Fetch boss history when section is opened
   const fetchHistory = useCallback(async () => {
@@ -403,7 +416,17 @@ export default function WorldBossView({ onRefresh, onRewardCelebration, onNaviga
               {formatNumber(boss.currentHp)} / {formatNumber(boss.maxHp)}
             </span>
           </div>
-          <div className="rounded-full overflow-hidden" style={{ height: 10, background: "rgba(255,255,255,0.06)" }}>
+          <div className="relative rounded-full overflow-hidden" style={{ height: 10, background: "rgba(255,255,255,0.06)" }}>
+            {/* Damage burst particles */}
+            {damageBurst && Array.from({ length: 6 }).map((_, i) => (
+              <div key={i} className="absolute pointer-events-none" style={{
+                width: 3, height: 6, borderRadius: 1,
+                background: `linear-gradient(180deg, ${hpColor}, transparent)`,
+                bottom: "100%", left: `${15 + i * 13}%`,
+                animation: `crystal-particle-rise 0.6s ease-out ${i * 0.05}s forwards`,
+                boxShadow: `0 0 4px ${hpColor}80`,
+              }} />
+            ))}
             <div
               className={`h-full rounded-full transition-all duration-700${!boss.defeated ? " bar-pulse" : ""}`}
               style={{
