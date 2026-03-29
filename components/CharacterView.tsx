@@ -267,7 +267,7 @@ function ProfileSettingsModal({ playerName, apiKey, initialStatus, initialPartne
       if (r.ok) {
         setEquippedFrameId(frameId);
       }
-    } catch { /* ignore */ }
+    } catch { /* network error — frame stays unchanged */ }
     setFrameLoading(null);
   };
 
@@ -936,6 +936,10 @@ export default function CharacterView({ addToast, onNavigate }: { addToast?: (t:
   const [collectionData, setCollectionData] = useState<{ items: { id: string; name: string; slot: string; rarity: string; stats?: Record<string, number>; source: string; obtained: boolean; desc?: string; flavorText?: string; legendaryEffect?: { type: string; label?: string } | null }[]; completion: number } | null>(null);
   const [collectionLoading, setCollectionLoading] = useState(false);
   const [collectionFilter, setCollectionFilter] = useState<string>("all");
+
+  // Scroll lock + ESC for title and collection modals
+  useModalBehavior(titlesOpen, useCallback(() => setTitlesOpen(false), []));
+  useModalBehavior(collectionOpen, useCallback(() => setCollectionOpen(false), []));
 
   useEffect(() => {
     if (!statTooltipOpen) return;

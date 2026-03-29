@@ -220,12 +220,14 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
   const [autoSalvageStep, setAutoSalvageStep] = useState<0 | 1 | 2>(0); // 0=preview, 1=confirm, 2=done
   // Skill bracket collapse state for recipe list
   const [collapsedBrackets, setCollapsedBrackets] = useState<Set<string>>(new Set());
+  // Track which recipes were newly learned (for NEW badge — clears on NPC modal close)
+  const [newlyLearned, setNewlyLearned] = useState<Set<string>>(new Set());
 
   // Close callbacks for modal behavior hooks
   const closeNpcModal = useCallback(() => {
     setSelectedNpc(null); setCraftResult(null); setDismantleResult(null); setTransmuteResult(null); setSelectedTransmute([]);
     setEnchantSlot("weapon"); setEnchantStat(null); setEnchantOptions(null); setEnchantCost(null); setEnchantResult(null);
-    setCraftProgress(null);
+    setCraftProgress(null); setNewlyLearned(new Set());
   }, []);
   const closeConfirmProf = useCallback(() => setConfirmProf(null), []);
   const closeConfirmAction = useCallback(() => setConfirmAction(null), []);
@@ -434,6 +436,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
       const data = await r.json();
       if (r.ok) {
         setCraftResult(`Learned: ${data.recipe} (${data.profession}) — ${data.goldSpent}g`);
+        setNewlyLearned(prev => new Set([...prev, recipeId]));
         fetchData();
         onRefresh?.();
       } else {
@@ -685,8 +688,12 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
 
   const handleDropProfession = async (profId: string, profName: string) => {
     if (!reviewApiKey) return;
+    const prof = professions.find(p => p.id === profId);
+    const profSkill = prof?.skill || prof?.playerXp || 0;
+    const profRank = prof?.rank || "Novice";
+    const learnedCount = recipes.filter(r => r.profession === profId && r.learned).length;
     setConfirmAction({
-      message: `Drop ${profName}?\n\nAll progress (skill, recipes, rank) will be lost permanently. This cannot be undone.`,
+      message: `Drop ${profName}?\n\nYou will lose:\n• Skill: ${profSkill} → 0\n• Rank: ${profRank} → Novice\n• ${learnedCount} learned recipe${learnedCount !== 1 ? "s" : ""}\n\nThis cannot be undone.`,
       onConfirm: async () => {
         setConfirmAction(null);
         try {
@@ -786,6 +793,9 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
             <img src="/images/icons/currency-essenz.png" alt="" width={24} height={24} style={{ imageRendering: "auto" }} onError={hideOnError} />
             <span className="font-mono font-bold">{currencies.essenz ?? loggedInUser.currencies?.essenz ?? 0}</span>
           </span></Tip>
+          <button onClick={() => { setMatStorageOpen(true); setTimeout(() => document.getElementById("mat-storage-section")?.scrollIntoView({ behavior: "smooth" }), 100); }} className="text-xs px-2 py-1 rounded" style={{ color: "rgba(255,255,255,0.3)", border: "1px solid rgba(255,255,255,0.08)", cursor: "pointer" }} title="View material storage">
+            Materials
+          </button>
           {onNavigate && (
             <button onClick={() => onNavigate("character")} className="cross-nav-link text-sm px-3 py-1 rounded" style={{ color: "rgba(255,255,255,0.3)", border: "1px solid rgba(255,255,255,0.1)" }}>
               Character &rarr;
@@ -830,7 +840,13 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                 <Tip k={`prof_${prof.id}`} heading><span className="text-sm font-semibold uppercase tracking-widest" style={{ color: `${loc.color}70` }}>{loc.label}</span></Tip>
                 <span className="text-sm" style={{ color: "rgba(255,255,255,0.25)" }}>{loc.desc}</span>
                 <div className="ml-auto flex items-center gap-1.5">
-                  {isChosen && <span className="text-xs px-2 py-0.5 rounded font-semibold" style={{ background: `${prof.color}18`, color: prof.color }}>Active</span>}
+                  {isChosen && (() => {
+                    const craftableCount = recipes.filter(r => r.profession === prof.id && r.canCraft && r.learned && (r.cooldownRemaining ?? 0) <= 0).length;
+                    return <>
+                      {craftableCount > 0 && <span className="text-xs px-1.5 py-0.5 rounded font-mono font-bold" style={{ background: "rgba(34,197,94,0.12)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.2)" }}>{craftableCount}</span>}
+                      <span className="text-xs px-2 py-0.5 rounded font-semibold" style={{ background: `${prof.color}18`, color: prof.color }}>Active</span>
+                    </>;
+                  })()}
                   {!isChosen && !prof.canChoose && !locked && <span className="text-xs px-2 py-0.5 rounded font-semibold" style={{ background: "rgba(255,68,68,0.1)", color: "#f44" }}>{chosenCount}/{maxProfSlots}</span>}
                 </div>
               </div>
@@ -882,7 +898,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                   <div className="flex-1 progress-bar-diablo" style={{ height: 7 }}>
                     <div className="h-full rounded-full transition-all" style={{ background: `linear-gradient(90deg, ${prof.color}cc, ${prof.color})`, width: `${(prof.skill || prof.playerXp || 0) / (prof.skillCap || prof.nextLevelXp || 300) * 100}%`, boxShadow: `0 0 6px ${prof.color}40` }} />
                   </div>
-                  <span className="text-sm font-mono font-semibold" style={{ color: prof.rankColor || prof.color }}>{prof.skill || prof.playerXp || 0}/{prof.skillCap || 300}</span>
+                  <span className="text-sm font-mono font-semibold" style={{ color: prof.rankColor || prof.color }}>{prof.skill || prof.playerXp || 0}/{prof.skillCap || 300} <span className="text-xs font-sans font-normal" style={{ opacity: 0.6 }}>{prof.rank || "Novice"}</span></span>
                 </div>
               )}
               {prof.masteryBonus && (prof.masteryActive ? (
@@ -935,7 +951,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
       })}
 
       {/* ─── Material Storage (GW2-style) ────────────────────────────────────── */}
-      <div className="space-y-2">
+      <div id="mat-storage-section" className="space-y-2">
         <div className="flex items-center justify-between">
           <p className="text-sm font-semibold uppercase tracking-widest" style={{ color: "rgba(34,197,94,0.6)" }}>Material Storage</p>
           <button
@@ -1240,7 +1256,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                     boxShadow: `0 0 60px ${rc}30, 0 0 120px ${rc}15, inset 0 1px 0 rgba(255,255,255,0.05)`,
                   }}>
                     <p className="text-xs uppercase tracking-widest mb-2" style={{ color: "rgba(255,255,255,0.4)" }}>Masterwork Forged</p>
-                    <p className="text-lg font-bold mb-1" style={{ color: rc }}>{ci.name}</p>
+                    <p className="text-lg font-bold mb-1 item-drop-in" style={{ color: rc, filter: `drop-shadow(0 0 8px ${rc}60)` }}>{ci.name}</p>
                     <p className="text-xs uppercase tracking-wider mb-3 font-semibold" style={{ color: `${rc}aa` }}>
                       {RARITY_LABELS[ci.rarity] || ci.rarity} {ci.slot ? `\u00b7 ${ci.slot}` : ""}
                     </p>
@@ -1279,11 +1295,21 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
               );
             })()}
 
-            {/* NPC Header */}
-            <div className="p-5 pb-3" style={{ background: `linear-gradient(180deg, ${selectedNpc.color}12 0%, transparent 100%)` }}>
-              <div className="flex items-center gap-4">
-                <div className="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0" style={{ border: `2px solid ${selectedNpc.color}50` }}>
-                  <img src={selectedNpc.npcPortrait} alt="" width={64} height={64} style={{ imageRendering: "auto", width: "100%", height: "100%", objectFit: "cover" }} onError={hideOnError} />
+            {/* NPC Header — profession-colored */}
+            <div className="p-5 pb-3 relative overflow-hidden" style={{ background: `linear-gradient(180deg, ${selectedNpc.color}18 0%, ${selectedNpc.color}06 60%, transparent 100%)`, borderBottom: `1px solid ${selectedNpc.color}15` }}>
+              {/* Moonlight stars in modal background */}
+              {moonlightActive && [0,1,2,3,4].map(i => (
+                <div key={`mstar-${i}`} className="absolute pointer-events-none" style={{
+                  width: 2, height: 2, borderRadius: "50%",
+                  background: "rgba(196,181,253,0.5)",
+                  boxShadow: "0 0 4px rgba(196,181,253,0.4)",
+                  left: `${10 + i * 20}%`, top: `${8 + (i % 3) * 12}px`,
+                  animation: `ambient-spark ${2.5 + i * 0.6}s ease-in-out ${i * 0.5}s infinite`,
+                }} />
+              ))}
+              <div className="flex items-center gap-4 relative">
+                <div className="w-20 h-20 rounded-xl overflow-hidden flex-shrink-0" style={{ border: `2px solid ${selectedNpc.color}60`, boxShadow: `0 0 16px ${selectedNpc.color}20` }}>
+                  <img src={selectedNpc.npcPortrait} alt="" width={80} height={80} style={{ imageRendering: "auto", width: "100%", height: "100%", objectFit: "cover" }} onError={hideOnError} />
                 </div>
                 <div>
                   <div className="flex items-center gap-2">
@@ -1511,7 +1537,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                       const bracketRecipes = filteredRecipes.filter(r => {
                         const skill = r.reqSkill || 0;
                         return skill >= bracket.min && skill < bracket.max;
-                      });
+                      }).sort((a, b) => (a.reqSkill || 0) - (b.reqSkill || 0));
                       if (bracketRecipes.length === 0) return null;
                       // Determine default collapse: brackets below player's current bracket are collapsed,
                       // the player's bracket and above are expanded. We use a lazy init pattern —
@@ -1600,6 +1626,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                               <p className="text-sm font-semibold" style={{ color: !isLearned ? "rgba(255,255,255,0.3)" : !meetsLevel ? "rgba(255,255,255,0.3)" : recipe.skillUpColor === "gray" ? "#6b7280" : recipe.skillUpColor === "green" ? "#86efaccc" : recipe.skillUpColor === "yellow" ? "#eab308cc" : "#f97316cc" }}>
                                 {selectedNpc && RECIPE_TYPE_NAME[selectedNpc.id] && <span className="text-xs font-normal mr-1" style={{ color: "rgba(255,255,255,0.2)" }}>{RECIPE_TYPE_NAME[selectedNpc.id]}:</span>}
                                 {recipe.name}
+                                {newlyLearned.has(recipe.id) && <span className="new-badge-pulse text-xs font-bold ml-1.5 px-1 py-0.5 rounded" style={{ background: "rgba(34,197,94,0.15)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.3)", fontSize: 10 }}>NEW</span>}
                               </p>
                               {/* Skill-up indicator dot */}
                               <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: skillUp?.color || "#6b7280" }} title={skillUp?.label || ""} />
@@ -1821,6 +1848,7 @@ export default function ForgeView({ onRefresh, onNavigate }: { onRefresh?: () =>
                         {craftProgress && craftProgress.recipeId === recipe.id && (
                           <div className="mt-2 relative">
                             <div className="text-xs text-center font-mono mb-1" style={{ color: selectedNpc.color }}>
+                              {craftProgress.total > 1 && <span style={{ color: "rgba(255,255,255,0.3)", marginRight: 4 }}>{Math.min(craftProgress.current + 1, craftProgress.total)}/{craftProgress.total}</span>}
                               {castCountdown ?? "0.0"}s
                             </div>
                             <div className="w-full h-2 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.06)" }}>

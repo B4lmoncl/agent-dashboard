@@ -319,14 +319,19 @@ export default function TodayDrawer({
     setEntered(false);
   }, [open]);
 
-  // ESC to close + body scroll lock
+  // ESC to close + body scroll lock (ref-counted)
   useEffect(() => {
     if (!open) return;
-    const prev = document.body.style.overflow;
+    const w = window as unknown as { _modalLockCount?: number };
+    w._modalLockCount = (w._modalLockCount || 0) + 1;
     document.body.style.overflow = "hidden";
     const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
     window.addEventListener("keydown", onKey);
-    return () => { document.body.style.overflow = prev; window.removeEventListener("keydown", onKey); };
+    return () => {
+      w._modalLockCount = Math.max(0, (w._modalLockCount || 1) - 1);
+      if (w._modalLockCount === 0) document.body.style.overflow = "";
+      window.removeEventListener("keydown", onKey);
+    };
   }, [open, onClose]);
 
   // ─── Hero data ───────────────────────────────────────────────────────────

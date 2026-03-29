@@ -86,7 +86,7 @@ export default function RitualChamber({ rituals, setRituals, setRewardCelebratio
         body: JSON.stringify({ title: newHabitTitle.trim(), positive: true, negative: true, playerId: playerName }),
       });
       if (r.ok) { setNewHabitTitle(""); fetchHabits(); }
-    } catch { /* ignore */ }
+    } catch { /* network error — habit not created */ }
   };
 
   const [habitFlash, setHabitFlash] = useState<{ id: string; dir: "up" | "down" } | null>(null);

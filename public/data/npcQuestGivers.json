@@ -128,7 +128,8 @@
           "desc": "Von Oma Ilse persönlich gestrickt. Riecht nach Keksen und Nostalgie.",
           "passiveEffect": "streak_shield_passive",
           "passiveDesc": "Omas Wärme: 25% Chance Streak-Verlust zu verhindern",
-          "icon": "/images/icons/npc-ilse-scarf.png"
+          "icon": "/images/icons/npc-ilse-scarf.png",
+          "reqLevel": 3
         }
       }
     },
@@ -302,7 +303,8 @@
           "desc": "Zeigt immer in die richtige Richtung. Meistens.",
           "passiveEffect": "gold_boost_10",
           "passiveDesc": "Händlerinstinkt: +10% Gold aus allen Quellen",
-          "icon": "/images/icons/npc-karim-compass.png"
+          "icon": "/images/icons/npc-karim-compass.png",
+          "reqLevel": 15
         }
       }
     },
@@ -472,7 +474,8 @@
           "desc": "Getragen von Generationen von Meisterschülern. Es flüstert: 'Du kannst mehr.'",
           "passiveEffect": "xp_boost_5",
           "passiveDesc": "Disziplin des Meisters: +5% XP permanent",
-          "icon": "/images/icons/npc-tanaka-headband.png"
+          "icon": "/images/icons/npc-tanaka-headband.png",
+          "reqLevel": 22
         }
       }
     },
@@ -610,7 +613,8 @@
           "desc": "Pulsiert sanft im Rhythmus des Waldes. Beruhigt den Geist.",
           "passiveEffect": "forge_decay_reduction_20",
           "passiveDesc": "Naturverbundenheit: -20% Forge-Decay",
-          "icon": "/images/icons/npc-mirael-pendant.png"
+          "icon": "/images/icons/npc-mirael-pendant.png",
+          "reqLevel": 15
         }
       }
     },
@@ -768,7 +772,8 @@
           "desc": "Klingt wie ein Sommertag. Wer sie hört, fühlt sich tapferer.",
           "passiveEffect": "loot_rarity_boost_10",
           "passiveDesc": "Glücksmelodie: +10% Chance auf seltenen Loot",
-          "icon": "/images/icons/npc-finnegan-lute.png"
+          "icon": "/images/icons/npc-finnegan-lute.png",
+          "reqLevel": 3
         }
       }
     },
@@ -924,7 +929,8 @@
           "desc": "Jede Perle trägt ein Gebet. Beruhigt den Geist in stürmischen Zeiten.",
           "passiveEffect": "bond_boost_25",
           "passiveDesc": "Innerer Frieden: +25% Bond-XP beim Streicheln",
-          "icon": "/images/icons/npc-tomas-rosary.png"
+          "icon": "/images/icons/npc-tomas-rosary.png",
+          "reqLevel": 15
         }
       }
     },
@@ -1114,7 +1120,8 @@
           "desc": "Brodelt in allen Farben. Manchmal explodiert er. Meistens absichtlich.",
           "passiveEffect": "essenz_boost_15",
           "passiveDesc": "Funkenwissen: +15% Essenz aus allen Quellen",
-          "icon": "/images/icons/npc-zara-flask.png"
+          "icon": "/images/icons/npc-zara-flask.png",
+          "reqLevel": 22
         }
       }
     },
@@ -1270,7 +1277,8 @@
           "desc": "Knorrig und zuverlässig, wie sein Besitzer. Hat mehr Wälder gesehen als du je wirst.",
           "passiveEffect": "quest_timer_extend_2h",
           "passiveDesc": "Geduld des Wanderers: +2h auf alle Quest-Timer",
-          "icon": "/images/icons/npc-henrik-staff.png"
+          "icon": "/images/icons/npc-henrik-staff.png",
+          "reqLevel": 15
         }
       }
     },
@@ -1495,7 +1503,8 @@
           "desc": "Leuchtet sanft in der Dunkelheit. Die Glühwürmchen darin sind erstaunlich loyal.",
           "passiveEffect": "companion_bond_boost_50",
           "passiveDesc": "Glühwürmchenlicht: +50% Bond-XP",
-          "icon": "/images/icons/npc-lumi-lantern.png"
+          "icon": "/images/icons/npc-lumi-lantern.png",
+          "reqLevel": 30
         }
       }
     },
@@ -1685,7 +1694,8 @@
           "desc": "Geschmiedet im Herzen eines Vulkans. Oder so sagt Rogar zumindest.",
           "passiveEffect": "forge_temp_boost_10",
           "passiveDesc": "Meisterschmied: +10 Forge-Temp bei Quest-Abschluss",
-          "icon": "/images/icons/npc-rogar-hammer.png"
+          "icon": "/images/icons/npc-rogar-hammer.png",
+          "reqLevel": 22
         }
       }
     },
@@ -1710,7 +1720,10 @@
             "description": "Zieh dich heute besonders gut an. Erste Eindrücke sind alles. Besonders wenn man keinen zweiten machen kann.",
             "lore": "Die beste Verteidigung ist ein gut sitzender Anzug und eine schnelle Zunge.",
             "priority": "medium",
-            "rewards": { "xp": 20, "gold": 15 }
+            "rewards": {
+              "xp": 20,
+              "gold": 15
+            }
           },
           {
             "title": "Scharfes Auge",
@@ -1718,7 +1731,10 @@
             "description": "Beobachte heute bewusst Details die du sonst übersiehst. Schreib 5 Dinge auf die dir auffallen.",
             "lore": "Jeder sieht. Wenige beobachten. Und noch weniger ziehen die richtigen Schlüsse.",
             "priority": "medium",
-            "rewards": { "xp": 25, "gold": 20 }
+            "rewards": {
+              "xp": 25,
+              "gold": 20
+            }
           },
           {
             "title": "Das Rätsel der drei Schlüssel",
@@ -1726,7 +1742,10 @@
             "description": "Löse drei Rätsel oder Puzzles. Sudoku, Kreuzworträtsel, Programm-Bug — alles zählt.",
             "lore": "Rätsel sind wie Schlösser. Man braucht entweder den richtigen Schlüssel oder genug Dynamit.",
             "priority": "medium",
-            "rewards": { "xp": 25, "gold": 20 }
+            "rewards": {
+              "xp": 25,
+              "gold": 20
+            }
           },
           {
             "title": "Verbündete sammeln",
@@ -1734,7 +1753,10 @@
             "description": "Überzeug heute drei verschiedene Leute von etwas. Restaurantwahl, Filmabend, egal was.",
             "lore": "Die besten Detektive arbeiten nicht allein. Sie lassen nur alle glauben, sie würden es tun.",
             "priority": "high",
-            "rewards": { "xp": 30, "gold": 25 }
+            "rewards": {
+              "xp": 30,
+              "gold": 25
+            }
           },
           {
             "title": "Der letzte Vorhang",
@@ -1742,7 +1764,10 @@
             "description": "Schließ eine Sache ab die du angefangen aber nie beendet hast. Der elegante Herr duldet keine losen Enden.",
             "lore": "Jede Geschichte verdient ein Ende. Auch die mittelmäßigen.",
             "priority": "high",
-            "rewards": { "xp": 40, "gold": 30 }
+            "rewards": {
+              "xp": 40,
+              "gold": 30
+            }
           }
         ]
       ],
@@ -1761,7 +1786,8 @@
           "passiveDesc": "Unwiderstehliche Eleganz: +15% Gold bei NPC-Quests",
           "rarity": "epic",
           "desc": "Ein perfekt sitzender Mantel. Sieht gut aus. Selbst auf Knochen.",
-          "icon": "/images/icons/npc-gentleman-coat.png"
+          "icon": "/images/icons/npc-gentleman-coat.png",
+          "reqLevel": 30
         }
       },
       "stats": {
@@ -1797,7 +1823,10 @@
             "description": "Räum etwas auf das schon zu lange liegen geblieben ist. Wäsche, Papierkram, Downloads-Ordner.",
             "lore": "Wissen Sie wie lange das letzte überfällige Buch war? 340 Jahre.",
             "priority": "medium",
-            "rewards": { "xp": 20, "gold": 15 }
+            "rewards": {
+              "xp": 20,
+              "gold": 15
+            }
           },
           {
             "title": "Stille Lektüre",
@@ -1805,7 +1834,10 @@
             "description": "Lies 30 Minuten ohne Unterbrechung. Kein Handy, keine Musik, nur du und der Text.",
             "lore": "Die Bücher rascheln nachts. Nicht weil sie lebendig sind — sie wollen gelesen werden.",
             "priority": "medium",
-            "rewards": { "xp": 25, "gold": 20 }
+            "rewards": {
+              "xp": 25,
+              "gold": 20
+            }
           },
           {
             "title": "Katalogisierung",
@@ -1813,7 +1845,10 @@
             "description": "Organisiere einen Teil deines digitalen Lebens. Bookmarks, Dateien, Notizen — strukturiere es.",
             "lore": "Ohne System ist Wissen nur Lärm. Und Lärm ist in meiner Bibliothek tödlich.",
             "priority": "medium",
-            "rewards": { "xp": 25, "gold": 20 }
+            "rewards": {
+              "xp": 25,
+              "gold": 20
+            }
           },
           {
             "title": "Wissensaustausch",
@@ -1821,7 +1856,10 @@
             "description": "Teile etwas Interessantes das du gelesen/gelernt hast mit jemandem.",
             "lore": "Bücher die nicht geteilt werden, verstauben. Und verstaubte Bücher werden schwierig.",
             "priority": "medium",
-            "rewards": { "xp": 20, "gold": 15 }
+            "rewards": {
+              "xp": 20,
+              "gold": 15
+            }
           }
         ]
       ],
@@ -1840,7 +1878,8 @@
           "passiveDesc": "Tieferes Verständnis: +8% XP aus Learning-Quests",
           "rarity": "rare",
           "desc": "Eine Brille die mehr zeigt als nur Buchstaben. Manche Träger behaupten, sie könnten damit die Wahrheit lesen. Zwischen den Zeilen.",
-          "icon": "/images/icons/npc-vex-glasses.png"
+          "icon": "/images/icons/npc-vex-glasses.png",
+          "reqLevel": 15
         }
       }
     },
@@ -1865,7 +1904,10 @@
             "description": "Lerne etwas Neues über ein Thema das dich schon immer interessiert hat. Tiefer eintauchen als üblich.",
             "lore": "Die besten Seekarten zeigen was hinter dem Rand liegt.",
             "priority": "medium",
-            "rewards": { "xp": 25, "gold": 20 }
+            "rewards": {
+              "xp": 25,
+              "gold": 20
+            }
           },
           {
             "title": "Sturm im Wasserglas",
@@ -1873,7 +1915,10 @@
             "description": "Mach ein intensives 20-Minuten Workout. Schnell, hart, fertig.",
             "lore": "Auf See hat man zwanzig Minuten zwischen zwei Wellen — die muss man nutzen.",
             "priority": "medium",
-            "rewards": { "xp": 25, "gold": 20 }
+            "rewards": {
+              "xp": 25,
+              "gold": 20
+            }
           },
           {
             "title": "Proviant beschaffen",
@@ -1881,7 +1926,10 @@
             "description": "Kauf gesunde Lebensmittel ein und meal-prep für mindestens 3 Tage.",
             "lore": "Eine Crew ohne Proviant ist keine Crew — sie ist eine Versammlung zukünftiger Kannibalen.",
             "priority": "high",
-            "rewards": { "xp": 30, "gold": 25 }
+            "rewards": {
+              "xp": 30,
+              "gold": 25
+            }
           },
           {
             "title": "Die singende See",
@@ -1889,7 +1937,10 @@
             "description": "Hör ein komplett neues Album das du normalerweise nicht hören würdest.",
             "lore": "Das Meer singt in Frequenzen die die meisten nicht hören wollen.",
             "priority": "low",
-            "rewards": { "xp": 15, "gold": 10 }
+            "rewards": {
+              "xp": 15,
+              "gold": 10
+            }
           },
           {
             "title": "Anker lichten",
@@ -1897,7 +1948,10 @@
             "description": "Triff eine Entscheidung die du seit langem vor dir herschiebst. Einfach entscheiden.",
             "lore": "Der schwierigste Moment ist wenn man den Anker lichtet und weiß: kein Zurück.",
             "priority": "high",
-            "rewards": { "xp": 35, "gold": 30 }
+            "rewards": {
+              "xp": 35,
+              "gold": 30
+            }
           },
           {
             "title": "Neue Koordinaten",
@@ -1905,7 +1959,10 @@
             "description": "Plane etwas Neues mit jemandem. Trip, Projekt, Event — etwas das ihr noch nie gemacht habt.",
             "lore": "Die aufregendsten Reisen beginnen mit 'Ich hab da eine Idee.'",
             "priority": "medium",
-            "rewards": { "xp": 25, "gold": 20 }
+            "rewards": {
+              "xp": 25,
+              "gold": 20
+            }
           }
         ]
       ],
@@ -1924,9 +1981,4561 @@
           "passiveDesc": "Nebelnavigation: +20% Chance auf seltene Quest-Drops",
           "rarity": "epic",
           "desc": "Zeigt nicht nach Norden. Zeigt dorthin wo du hin musst. Nicht immer dasselbe.",
-          "icon": "/images/icons/npc-flint-compass.png"
+          "icon": "/images/icons/npc-flint-compass.png",
+          "reqLevel": 22
         }
       }
+    },
+    {
+      "id": "sable-nachtwind",
+      "portrait": null,
+      "rarity": "rare",
+      "spawnWeight": 25,
+      "cooldownHours": 96,
+      "departureDurationHours": 48,
+      "maxChainsPerVisit": 1,
+      "greeting": "Du siehst aus wie jemand mit Geheimnissen. Gut. Ich handle mit Geheimnissen.",
+      "name": "Sable Nachtwind",
+      "emoji": null,
+      "title": "Die Schattenhändlerin",
+      "description": "Niemand weiß woher sie kommt. Alle wissen, dass man ihre Angebote nicht ablehnt.",
+      "stayDays": 2,
+      "cooldownDays": 21,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Der stille Tausch",
+            "type": "personal",
+            "priority": "medium",
+            "lore": "Quest von Sable Nachtwind · Kette 1/1 · 1/2",
+            "rewards": {
+              "xp": 30,
+              "gold": 20
+            },
+            "vars": {
+              "quote": "Vertrauen ist eine Währung. Und du bist gerade ins Minus gerutscht.",
+              "task": "Sable will einen Beweis deiner Diskretion. Erledige etwas Unangenehmes ohne darüber zu reden.",
+              "realWorldTask": "Erledige eine unangenehme Aufgabe die du aufschiebst — ohne dich zu beschweren",
+              "difficulty": "medium"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Schatten tragen",
+            "type": "personal",
+            "priority": "high",
+            "lore": "Quest von Sable Nachtwind · Kette 1/1 · 2/2",
+            "rewards": {
+              "xp": 45,
+              "gold": 30
+            },
+            "vars": {
+              "quote": "Die besten Deals passieren in der Stille. Die schlechtesten auch. Der Unterschied? Timing.",
+              "task": "Sable hat einen Auftrag. Details unnötig. Ergebnis: alles.",
+              "realWorldTask": "Plane und organisiere deinen nächsten Tag komplett durch — ohne Lücken",
+              "difficulty": "advanced"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "professor-quill",
+      "portrait": null,
+      "rarity": "uncommon",
+      "spawnWeight": 40,
+      "cooldownHours": 72,
+      "departureDurationHours": 72,
+      "maxChainsPerVisit": 2,
+      "greeting": "Ah, ein neuer Geist! Wie erfrischend. Die letzten drei waren... enttäuschend.",
+      "name": "Professor Quill",
+      "emoji": null,
+      "title": "Der Zerstreute Gelehrte",
+      "description": "Vergisst ständig wo er seinen Hut hingelegt hat. Vergisst nie ein Faktum.",
+      "stayDays": 3,
+      "cooldownDays": 14,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Die vergessene Lektion",
+            "type": "learning",
+            "priority": "medium",
+            "lore": "Quest von Professor Quill · Kette 1/2 · 1/2",
+            "rewards": {
+              "xp": 25,
+              "gold": 15
+            },
+            "vars": {
+              "quote": "Ich habe letzte Woche etwas Faszinierendes entdeckt. Oder war es letztes Jahr? Egal — es war faszinierend.",
+              "task": "Der Professor braucht Hilfe bei seiner Recherche. Lerne etwas Neues und berichte ihm.",
+              "realWorldTask": "Lerne 30 Minuten über ein Thema das dich schon immer interessiert hat",
+              "difficulty": "medium"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Quills Quizz",
+            "type": "learning",
+            "priority": "medium",
+            "lore": "Quest von Professor Quill · Kette 1/2 · 2/2",
+            "rewards": {
+              "xp": 35,
+              "gold": 20
+            },
+            "vars": {
+              "quote": "Prüfungen sind unangenehm. Aber weniger unangenehm als Unwissenheit. Marginal.",
+              "task": "Teste dein Wissen. Der Professor stellt Fragen. Du versuchst, nicht zu versagen.",
+              "realWorldTask": "Mach ein Quiz oder einen Übungstest zu einem Thema das du lernst",
+              "difficulty": "intermediate"
+            }
+          }
+        ],
+        [
+          {
+            "template": "npc-quest",
+            "title": "Das verlorene Notizbuch",
+            "type": "personal",
+            "priority": "low",
+            "lore": "Quest von Professor Quill · Kette 2/2 · 1/2",
+            "rewards": {
+              "xp": 15,
+              "gold": 10
+            },
+            "vars": {
+              "quote": "Mein Notizbuch! Es war hier! Oder dort. Oder in einer anderen Dimension.",
+              "task": "Hilf dem Professor sein Notizbuch zu finden. Spoiler: Es ist in seiner Tasche.",
+              "realWorldTask": "Räume deinen Schreibtisch auf und organisiere deine Notizen",
+              "difficulty": "starter"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Dokumentation des Chaos",
+            "type": "learning",
+            "priority": "medium",
+            "lore": "Quest von Professor Quill · Kette 2/2 · 2/2",
+            "rewards": {
+              "xp": 30,
+              "gold": 18
+            },
+            "vars": {
+              "quote": "Ordnung ist eine Illusion. Aber eine sehr nützliche Illusion.",
+              "task": "Dokumentiere etwas das du gelernt hast. Der Professor verspricht es zu lesen. Irgendwann.",
+              "realWorldTask": "Schreib eine kurze Zusammenfassung oder Notiz zu etwas das du diese Woche gelernt hast",
+              "difficulty": "intermediate"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "eiserne-mara",
+      "portrait": null,
+      "rarity": "uncommon",
+      "spawnWeight": 35,
+      "cooldownHours": 72,
+      "departureDurationHours": 72,
+      "maxChainsPerVisit": 1,
+      "greeting": "Steh gerade. Schultern zurück. Gut. Jetzt lass uns arbeiten.",
+      "name": "Eiserne Mara",
+      "emoji": null,
+      "title": "Die Drill-Meisterin",
+      "description": "Ex-Brückenmannschaftsführerin. Hart aber fair. Meistens hart.",
+      "stayDays": 3,
+      "cooldownDays": 14,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Maras Morgenappell",
+            "type": "fitness",
+            "priority": "medium",
+            "lore": "Quest von Eiserne Mara · Kette 1/1 · 1/3",
+            "rewards": {
+              "xp": 25,
+              "gold": 12
+            },
+            "vars": {
+              "quote": "Schweiß ist nur Fett das weint. Und heute soll es viel weinen.",
+              "task": "Mara verlangt eine Trainingseinheit. Keine Ausreden.",
+              "realWorldTask": "30 Minuten Workout deiner Wahl — kein halbes, ein ganzes",
+              "difficulty": "intermediate"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Die Brücke tragen",
+            "type": "fitness",
+            "priority": "high",
+            "lore": "Quest von Eiserne Mara · Kette 1/1 · 2/3",
+            "rewards": {
+              "xp": 40,
+              "gold": 20
+            },
+            "vars": {
+              "quote": "Die Brücke ist schwer. Das Leben auch. Der Unterschied: die Brücke beklagt sich nicht.",
+              "task": "Eine härtere Übung. Mara beobachtet. Mara urteilt. Mara nickt am Ende.",
+              "realWorldTask": "Ein intensives Workout: HIIT, schweres Krafttraining, oder ein langer Lauf (45min+)",
+              "difficulty": "advanced"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Der nächste Schritt",
+            "type": "fitness",
+            "priority": "high",
+            "lore": "Quest von Eiserne Mara · Kette 1/1 · 3/3",
+            "rewards": {
+              "xp": 50,
+              "gold": 30
+            },
+            "vars": {
+              "quote": "Du bist nicht bereit. Niemand ist bereit. Mach es trotzdem.",
+              "task": "Maras letzte Prüfung. Der wichtigste Schritt ist immer der nächste.",
+              "realWorldTask": "Setze dir ein neues Fitness-Ziel für die nächste Woche und starte heute damit",
+              "difficulty": "advanced"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "koch-giovanni",
+      "portrait": null,
+      "rarity": "common",
+      "spawnWeight": 45,
+      "cooldownHours": 48,
+      "departureDurationHours": 72,
+      "maxChainsPerVisit": 1,
+      "greeting": "Buongiorno! Die Küche ist leer? Inakzeptabel. Wir kochen.",
+      "name": "Giovanni Salzkruste",
+      "emoji": null,
+      "title": "Der Wanderkoch",
+      "description": "Reist von Turm zu Turm. Seine Pasta ist legendär. Sein Temperament auch.",
+      "stayDays": 3,
+      "cooldownDays": 10,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Giovannis Grundlagen",
+            "type": "personal",
+            "priority": "low",
+            "lore": "Quest von Giovanni · Kette 1/1 · 1/2",
+            "rewards": {
+              "xp": 15,
+              "gold": 10
+            },
+            "vars": {
+              "quote": "Wer nicht kochen kann, kann nicht leben. Ich sage nicht, dass das stimmt. Ich sage, dass es stimmt.",
+              "task": "Giovanni braucht einen Sous-Chef. Du bist es. Ob du willst oder nicht.",
+              "realWorldTask": "Koche eine Mahlzeit von Grund auf — kein Fertiggericht, kein Lieferdienst",
+              "difficulty": "starter"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Das perfekte Gericht",
+            "type": "personal",
+            "priority": "medium",
+            "lore": "Quest von Giovanni · Kette 1/1 · 2/2",
+            "rewards": {
+              "xp": 30,
+              "gold": 18
+            },
+            "vars": {
+              "quote": "Perfektion existiert nicht. Aber wir können verdammt nah rankommen. Probier mal.",
+              "task": "Giovanni will dass du ein neues Rezept ausprobierst. Kreativität zählt mehr als Können.",
+              "realWorldTask": "Probiere ein neues Rezept aus das du noch nie gekocht hast",
+              "difficulty": "intermediate"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "meisterin-sera",
+      "portrait": null,
+      "rarity": "epic",
+      "spawnWeight": 15,
+      "cooldownHours": 168,
+      "departureDurationHours": 48,
+      "maxChainsPerVisit": 1,
+      "greeting": "Dreihundert Jahre und du bist das Beste was der Turm zu bieten hat? Na gut. Arbeiten wir damit.",
+      "name": "Meisterin Sera",
+      "emoji": null,
+      "title": "Die Zeitlose",
+      "description": "Niemand weiß wie alt sie ist. Sie vergisst manchmal die Namen der Sterblichen. Nicht aus Respektlosigkeit — es sind einfach zu viele.",
+      "stayDays": 2,
+      "cooldownDays": 30,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Seras Maßstab",
+            "type": "learning",
+            "priority": "high",
+            "lore": "Quest von Meisterin Sera · Kette 1/1 · 1/2",
+            "rewards": {
+              "xp": 45,
+              "gold": 25
+            },
+            "vars": {
+              "quote": "Dreißig Jahre sind ein Wimpernschlag. Für manche.",
+              "task": "Sera stellt eine Frage. Die Antwort braucht Recherche, Nachdenken, und Demut.",
+              "realWorldTask": "Vertiefe dich 1 Stunde in ein komplexes Thema. Mach dir strukturierte Notizen.",
+              "difficulty": "advanced"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Das Geschenk der Perspektive",
+            "type": "personal",
+            "priority": "high",
+            "lore": "Quest von Meisterin Sera · Kette 1/1 · 2/2",
+            "rewards": {
+              "xp": 55,
+              "gold": 35
+            },
+            "vars": {
+              "quote": "Ihr Sterblichen habt so wenig Zeit. Verschwendet sie nicht mit Dingen die in hundert Jahren niemanden interessieren.",
+              "task": "Sera will dass du über deine Prioritäten nachdenkst. Ernsthaft, diesmal.",
+              "realWorldTask": "Schreibe deine Top-3 Prioritäten für die nächsten 6 Monate auf. Dann streiche alles was nicht dazugehört.",
+              "difficulty": "advanced"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "pip-zahnrad",
+      "portrait": null,
+      "rarity": "common",
+      "spawnWeight": 50,
+      "cooldownHours": 48,
+      "departureDurationHours": 72,
+      "maxChainsPerVisit": 2,
+      "greeting": "Oh! Ein Mensch! Perfektes Timing — ich brauche Hände die größer sind als meine!",
+      "name": "Pip Zahnrad",
+      "emoji": null,
+      "title": "Der Tüftler",
+      "description": "Klein, laut, begeistert. Baut Dinge die manchmal funktionieren. Meistens explodieren sie nur ein bisschen.",
+      "stayDays": 3,
+      "cooldownDays": 10,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Pips Prototyp",
+            "type": "development",
+            "priority": "medium",
+            "lore": "Quest von Pip Zahnrad · Kette 1/2 · 1/2",
+            "rewards": {
+              "xp": 25,
+              "gold": 15
+            },
+            "vars": {
+              "quote": "Es funktioniert! Also... es hat funktioniert. Für ungefähr drei Sekunden. Das zählt!",
+              "task": "Pip braucht Hilfe mit einem Projekt. Es wird chaotisch. Es wird Spaß machen.",
+              "realWorldTask": "Arbeite 45 Minuten an einem persönlichen Projekt oder Side-Hustle",
+              "difficulty": "intermediate"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Iteration Sieben",
+            "type": "development",
+            "priority": "medium",
+            "lore": "Quest von Pip Zahnrad · Kette 1/2 · 2/2",
+            "rewards": {
+              "xp": 35,
+              "gold": 20
+            },
+            "vars": {
+              "quote": "Die ersten sechs Versuche waren Lernerfahrungen. Dieser hier ist auch eine. Aber eine bessere!",
+              "task": "Verbesserung. Pip will dass du etwas optimierst das du bereits gebaut hast.",
+              "realWorldTask": "Überarbeite oder verbessere etwas an dem du bereits gearbeitet hast — Code, Text, Prozess",
+              "difficulty": "intermediate"
+            }
+          }
+        ],
+        [
+          {
+            "template": "npc-quest",
+            "title": "Das Gadget",
+            "type": "learning",
+            "priority": "low",
+            "lore": "Quest von Pip Zahnrad · Kette 2/2 · 1/1",
+            "rewards": {
+              "xp": 20,
+              "gold": 12
+            },
+            "vars": {
+              "quote": "Jedes Tool hat einen Zweck! Und manchmal finde ich den Zweck sogar VOR dem Verkauf heraus!",
+              "task": "Pip hat ein neues Tool entdeckt und will dass du es testest.",
+              "realWorldTask": "Teste ein neues Tool, eine App oder ein Framework das du noch nie benutzt hast (30min)",
+              "difficulty": "starter"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "alte-martha",
+      "portrait": null,
+      "rarity": "common",
+      "spawnWeight": 45,
+      "cooldownHours": 48,
+      "departureDurationHours": 72,
+      "maxChainsPerVisit": 1,
+      "greeting": "Setz dich. Trink Tee. Dann reden wir.",
+      "name": "Alte Martha",
+      "emoji": null,
+      "title": "Die Kräutersammlerin",
+      "description": "Kennt jede Pflanze im Umkreis von drei Tagesreisen. Vertraut keiner davon.",
+      "stayDays": 3,
+      "cooldownDays": 10,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Kräuter für den Winter",
+            "type": "personal",
+            "priority": "low",
+            "lore": "Quest von Alte Martha · Kette 1/1 · 1/2",
+            "rewards": {
+              "xp": 15,
+              "gold": 8
+            },
+            "vars": {
+              "quote": "Die Natur gibt. Man muss nur wissen wo man nimmt. Und wann man aufhört.",
+              "task": "Martha braucht Hilfe beim Sammeln.",
+              "realWorldTask": "Geh 20 Minuten spazieren und achte bewusst auf die Natur um dich herum",
+              "difficulty": "starter"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Marthas Tinktur",
+            "type": "personal",
+            "priority": "medium",
+            "lore": "Quest von Alte Martha · Kette 1/1 · 2/2",
+            "rewards": {
+              "xp": 25,
+              "gold": 15
+            },
+            "vars": {
+              "quote": "Geduld ist die wichtigste Zutat. Die zweitwichtigste ist, nicht alles gleichzeitig umzurühren.",
+              "task": "Hilf Martha die Tinktur herzustellen.",
+              "realWorldTask": "Bereite einen gesunden Tee oder Smoothie zu und genieße ihn bewusst",
+              "difficulty": "intermediate"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "hans-holzfuss",
+      "portrait": null,
+      "rarity": "common",
+      "spawnWeight": 50,
+      "cooldownHours": 48,
+      "departureDurationHours": 72,
+      "maxChainsPerVisit": 1,
+      "greeting": "Der Turm knarzt wieder. Lass uns das fixen bevor er einstürzt. Wäre nicht das erste Mal.",
+      "name": "Hans Holzfuß",
+      "emoji": null,
+      "title": "Der Hausmeister",
+      "description": "Repariert alles. Beschwert sich dabei. Beides mit beeindruckender Ausdauer.",
+      "stayDays": 3,
+      "cooldownDays": 8,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Reparaturdienst",
+            "type": "personal",
+            "priority": "low",
+            "lore": "Quest von Hans Holzfuß · Kette 1/1 · 1/2",
+            "rewards": {
+              "xp": 15,
+              "gold": 10
+            },
+            "vars": {
+              "quote": "Alles geht kaputt. Das ist keine Philosophie, das ist Physik.",
+              "task": "Hans hat eine Liste. Die Liste ist lang. Fang oben an.",
+              "realWorldTask": "Repariere oder fixe etwas Kleines in deiner Wohnung das schon lange kaputt ist",
+              "difficulty": "starter"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Inspektion",
+            "type": "personal",
+            "priority": "medium",
+            "lore": "Quest von Hans Holzfuß · Kette 1/1 · 2/2",
+            "rewards": {
+              "xp": 25,
+              "gold": 15
+            },
+            "vars": {
+              "quote": "Vorsorge ist besser als Nachsorge. Und billiger. Deutlich billiger.",
+              "task": "Hans will eine vollständige Inspektion. Gründlich.",
+              "realWorldTask": "Mach einen Check deiner Wohnung: Rauchmelder, Glühbirnen, tropfende Hähne, quietschende Türen",
+              "difficulty": "intermediate"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "brieftraeger-emil",
+      "portrait": null,
+      "rarity": "common",
+      "spawnWeight": 50,
+      "cooldownHours": 48,
+      "departureDurationHours": 72,
+      "maxChainsPerVisit": 1,
+      "greeting": "Post! Und nein, es ist keine Rechnung. Diesmal.",
+      "name": "Briefträger Emil",
+      "emoji": null,
+      "title": "Der Nachrichtenbote",
+      "description": "Bringt Nachrichten aus allen Ecken des Turms. Liest sie grundsätzlich nicht. Meistens.",
+      "stayDays": 2,
+      "cooldownDays": 8,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Ungelesene Post",
+            "type": "personal",
+            "priority": "low",
+            "lore": "Quest von Briefträger Emil · Kette 1/1 · 1/1",
+            "rewards": {
+              "xp": 12,
+              "gold": 8
+            },
+            "vars": {
+              "quote": "Zwölf ungelesene Nachrichten. Drei davon sind wichtig. Rate welche.",
+              "task": "Emil erinnert dich daran, deine Nachrichten zu lesen. Alle.",
+              "realWorldTask": "Bearbeite alle ungelesenen E-Mails und Nachrichten — Inbox Zero Versuch",
+              "difficulty": "starter"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "gaertnerin-rose",
+      "portrait": null,
+      "rarity": "common",
+      "spawnWeight": 45,
+      "cooldownHours": 48,
+      "departureDurationHours": 72,
+      "maxChainsPerVisit": 1,
+      "greeting": "Die Pflanzen flüstern heute. Entweder brauchen sie Wasser oder sie planen etwas.",
+      "name": "Gärtnerin Rose",
+      "emoji": null,
+      "title": "Die Pflanzenhüterin",
+      "description": "Spricht mit Pflanzen. Die Pflanzen antworten nicht. Rose behauptet das Gegenteil.",
+      "stayDays": 3,
+      "cooldownDays": 10,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Grüne Pflicht",
+            "type": "personal",
+            "priority": "low",
+            "lore": "Quest von Gärtnerin Rose · Kette 1/1 · 1/2",
+            "rewards": {
+              "xp": 12,
+              "gold": 8
+            },
+            "vars": {
+              "quote": "Pflanzen beurteilen dich nicht. Sie sterben einfach still wenn du sie vernachlässigst. Was irgendwie schlimmer ist.",
+              "task": "Rose will dass du dich um etwas Lebendes kümmerst.",
+              "realWorldTask": "Gieße alle Pflanzen in deiner Wohnung. Keine Pflanzen? Kauf eine.",
+              "difficulty": "starter"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Gartenarbeit",
+            "type": "personal",
+            "priority": "medium",
+            "lore": "Quest von Gärtnerin Rose · Kette 1/1 · 2/2",
+            "rewards": {
+              "xp": 22,
+              "gold": 12
+            },
+            "vars": {
+              "quote": "Unkraut ist nur eine Pflanze deren Lebenslauf du noch nicht gelesen hast.",
+              "task": "Rose braucht Hilfe im Garten des Turms. Oder in deinem.",
+              "realWorldTask": "Räume deinen Balkon/Garten/Fensterbrett auf oder pflanze etwas Neues",
+              "difficulty": "intermediate"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "schneider-lin",
+      "portrait": null,
+      "rarity": "common",
+      "spawnWeight": 45,
+      "cooldownHours": 48,
+      "departureDurationHours": 72,
+      "maxChainsPerVisit": 1,
+      "greeting": "Dein Outfit sagt mir alles was ich wissen muss. Und es sagt nicht viel Gutes.",
+      "name": "Schneider Lin",
+      "emoji": null,
+      "title": "Der Stoffmeister",
+      "description": "Beurteilt jeden nach seiner Kleidung. Hat damit meistens recht. Leider.",
+      "stayDays": 2,
+      "cooldownDays": 9,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Garderobencheck",
+            "type": "personal",
+            "priority": "low",
+            "lore": "Quest von Schneider Lin · Kette 1/1 · 1/2",
+            "rewards": {
+              "xp": 12,
+              "gold": 8
+            },
+            "vars": {
+              "quote": "Mode ist vergänglich. Stil ist ewig. Dein Kleiderschrank ist... eine Herausforderung.",
+              "task": "Lin will deinen Kleiderschrank inspizieren.",
+              "realWorldTask": "Geh deinen Kleiderschrank durch. Sortiere aus was du seit 6+ Monaten nicht getragen hast",
+              "difficulty": "starter"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Neuanfang",
+            "type": "personal",
+            "priority": "medium",
+            "lore": "Quest von Schneider Lin · Kette 1/1 · 2/2",
+            "rewards": {
+              "xp": 22,
+              "gold": 14
+            },
+            "vars": {
+              "quote": "Spende die Sachen. Jemand anderes kann damit glücklich werden. Oder zumindest weniger unglücklich.",
+              "task": "Lin besteht darauf dass du die aussortierten Sachen loswerden.",
+              "realWorldTask": "Bringe ausgemistete Kleidung zur Spende oder zum Recycling",
+              "difficulty": "intermediate"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "wachmann-kurt",
+      "portrait": null,
+      "rarity": "common",
+      "spawnWeight": 50,
+      "cooldownHours": 48,
+      "departureDurationHours": 72,
+      "maxChainsPerVisit": 1,
+      "greeting": "Halt! Wer da? Ach, du bist es. Trotzdem: Halt.",
+      "name": "Wachmann Kurt",
+      "emoji": null,
+      "title": "Der Torwächter",
+      "description": "Bewacht das Tor. Hat seit drei Jahren niemanden aufgehalten. Sieht das als Erfolg.",
+      "stayDays": 3,
+      "cooldownDays": 8,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Sicherheitsrunde",
+            "type": "personal",
+            "priority": "low",
+            "lore": "Quest von Wachmann Kurt · Kette 1/1 · 1/1",
+            "rewards": {
+              "xp": 15,
+              "gold": 10
+            },
+            "vars": {
+              "quote": "Sicherheit ist kein Zustand, sondern eine Gewohnheit. Wie schlechter Kaffee trinken. Ich mache beides.",
+              "task": "Kurt will einen Sicherheitscheck. Gründlich. Mit Checkliste.",
+              "realWorldTask": "Überprüfe: Türen abgeschlossen? Passwörter aktuell? Backup gemacht? Rauchmelder funktioniert?",
+              "difficulty": "starter"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "putzfrau-helga",
+      "portrait": null,
+      "rarity": "common",
+      "spawnWeight": 45,
+      "cooldownHours": 48,
+      "departureDurationHours": 72,
+      "maxChainsPerVisit": 1,
+      "greeting": "Ich habe den Staub gezählt. Er gewinnt. Hilf mir.",
+      "name": "Helga Saubermann",
+      "emoji": null,
+      "title": "Die Reinigungsmeisterin",
+      "description": "Sauberkeit ist für Helga keine Tugend, sondern eine Religion. Staubkörner sind Ketzer.",
+      "stayDays": 2,
+      "cooldownDays": 8,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Großreinemachen",
+            "type": "personal",
+            "priority": "medium",
+            "lore": "Quest von Helga Saubermann · Kette 1/1 · 1/2",
+            "rewards": {
+              "xp": 20,
+              "gold": 12
+            },
+            "vars": {
+              "quote": "Ordnung ist das halbe Leben. Die andere Hälfte ist Putzen.",
+              "task": "Helga duldet keinen Staub. Nirgendwo. Jemals.",
+              "realWorldTask": "Putze ein Zimmer gründlich das du lange vernachlässigt hast — Boden, Oberflächen, Fenster",
+              "difficulty": "intermediate"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Der letzte Winkel",
+            "type": "personal",
+            "priority": "medium",
+            "lore": "Quest von Helga Saubermann · Kette 1/1 · 2/2",
+            "rewards": {
+              "xp": 28,
+              "gold": 18
+            },
+            "vars": {
+              "quote": "Hinter dem Kühlschrank. Unter dem Bett. Ja, DA. Du weißt genau wo.",
+              "task": "Helga kennt die Stellen die du ignorierst. Heute nicht mehr.",
+              "realWorldTask": "Reinige die Stellen die du normalerweise übergehst: hinter Möbeln, unter dem Bett, Ofenrost",
+              "difficulty": "intermediate"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "geschichtenerzaehlerin-nadia",
+      "portrait": null,
+      "rarity": "common",
+      "spawnWeight": 40,
+      "cooldownHours": 48,
+      "departureDurationHours": 72,
+      "maxChainsPerVisit": 1,
+      "greeting": "Jeder Mensch ist eine Geschichte. Manche Geschichten sind nur besser erzählt als andere.",
+      "name": "Nadia Silberzunge",
+      "emoji": null,
+      "title": "Die Geschichtenerzählerin",
+      "description": "Sammelt Geschichten wie andere Leute Briefmarken sammeln. Nur dass ihre Geschichten manchmal zurückbeißen.",
+      "stayDays": 3,
+      "cooldownDays": 10,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Deine Geschichte",
+            "type": "personal",
+            "priority": "low",
+            "lore": "Quest von Nadia Silberzunge · Kette 1/1 · 1/2",
+            "rewards": {
+              "xp": 15,
+              "gold": 8
+            },
+            "vars": {
+              "quote": "Erzähl mir etwas. Nicht was passiert ist — was es bedeutet hat.",
+              "task": "Nadia will eine Geschichte von dir. Eine echte.",
+              "realWorldTask": "Schreibe eine kurze persönliche Erinnerung auf die dir wichtig ist (10-15 Min Journaling)",
+              "difficulty": "starter"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Die unerzählte Geschichte",
+            "type": "social",
+            "priority": "medium",
+            "lore": "Quest von Nadia Silberzunge · Kette 1/1 · 2/2",
+            "rewards": {
+              "xp": 25,
+              "gold": 15
+            },
+            "vars": {
+              "quote": "Die besten Geschichten sind die, die man jemandem erzählt der sie hören will.",
+              "task": "Nadia will dass du deine Geschichte teilst. Mit jemandem echtem.",
+              "realWorldTask": "Erzähle einem Freund oder Familienmitglied eine persönliche Geschichte die du noch nie geteilt hast",
+              "difficulty": "intermediate"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "zahlmeister-otto",
+      "portrait": null,
+      "rarity": "common",
+      "spawnWeight": 40,
+      "cooldownHours": 48,
+      "departureDurationHours": 72,
+      "maxChainsPerVisit": 1,
+      "greeting": "Deine Finanzen. Wir müssen reden. Setz dich. Nein, nicht auf den Goldstapel.",
+      "name": "Zahlmeister Otto",
+      "emoji": null,
+      "title": "Der Schatzmeister",
+      "description": "Zählt jeden Kupfer dreimal. Hat noch nie einen verloren. Ist aber auch noch nie glücklich gewesen.",
+      "stayDays": 2,
+      "cooldownDays": 10,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Bestandsaufnahme",
+            "type": "personal",
+            "priority": "medium",
+            "lore": "Quest von Zahlmeister Otto · Kette 1/1 · 1/2",
+            "rewards": {
+              "xp": 20,
+              "gold": 12
+            },
+            "vars": {
+              "quote": "Wer sein Gold nicht kennt, hat keins. Das ist mathematisch erwiesen. Von mir.",
+              "task": "Otto will wissen wo dein Geld hingeht. Du auch, eigentlich.",
+              "realWorldTask": "Mache eine Übersicht deiner monatlichen Ausgaben — was kommt rein, was geht raus",
+              "difficulty": "intermediate"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Sparplan",
+            "type": "personal",
+            "priority": "medium",
+            "lore": "Quest von Zahlmeister Otto · Kette 1/1 · 2/2",
+            "rewards": {
+              "xp": 30,
+              "gold": 18
+            },
+            "vars": {
+              "quote": "Sparen ist kein Verzicht. Es ist eine Investition in ein zukünftiges Ich das dir dankbar sein wird. Oder zumindest weniger wütend.",
+              "task": "Otto erstellt einen Plan. Du befolgst ihn. So einfach ist das. Theoretisch.",
+              "realWorldTask": "Richte einen automatischen Sparplan ein oder überprüfe deinen bestehenden",
+              "difficulty": "intermediate"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "laufbursche-felix",
+      "portrait": null,
+      "rarity": "common",
+      "spawnWeight": 50,
+      "cooldownHours": 48,
+      "departureDurationHours": 72,
+      "maxChainsPerVisit": 1,
+      "greeting": "Schnell! Es gibt was zu tun! Was genau? Keine Ahnung! Aber schnell!",
+      "name": "Laufbursche Felix",
+      "emoji": null,
+      "title": "Der Eilbote",
+      "description": "Rennt überall hin. Weiß selten warum. Kommt trotzdem immer pünktlich an.",
+      "stayDays": 2,
+      "cooldownDays": 7,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Schnellauftrag",
+            "type": "fitness",
+            "priority": "low",
+            "lore": "Quest von Laufbursche Felix · Kette 1/1 · 1/1",
+            "rewards": {
+              "xp": 15,
+              "gold": 10
+            },
+            "vars": {
+              "quote": "Geschwindigkeit ist relativ. Relativ zu wie spät ich bin, meistens.",
+              "task": "Felix braucht jemanden der mithalten kann. Kurz. Intensiv. Fertig.",
+              "realWorldTask": "20 Minuten zügiges Gehen oder leichtes Joggen — keine Ausreden, jetzt sofort",
+              "difficulty": "starter"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "bibliothekarin-ada",
+      "portrait": null,
+      "rarity": "uncommon",
+      "spawnWeight": 30,
+      "cooldownHours": 72,
+      "departureDurationHours": 72,
+      "maxChainsPerVisit": 1,
+      "greeting": "Leise! Die Bücher schlafen. Manche jedenfalls. Die im dritten Regal schnarchen.",
+      "name": "Bibliothekarin Ada",
+      "emoji": null,
+      "title": "Die Hüterin der Worte",
+      "description": "Organisiert Bücher nach einem System das nur sie versteht. Und gelegentlich auch sie nicht.",
+      "stayDays": 3,
+      "cooldownDays": 14,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Archivarbeit",
+            "type": "learning",
+            "priority": "medium",
+            "lore": "Quest von Bibliothekarin Ada · Kette 1/1 · 1/2",
+            "rewards": {
+              "xp": 25,
+              "gold": 15
+            },
+            "vars": {
+              "quote": "Wissen das nicht aufgeschrieben ist, existiert nur bis zum nächsten Kopfschmerz.",
+              "task": "Ada braucht Hilfe beim Katalogisieren. Bring Ordnung ins Chaos.",
+              "realWorldTask": "Organisiere deine digitalen Notizen, Bookmarks oder Leseliste — alles in Ordner/Kategorien",
+              "difficulty": "intermediate"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Das vergessene Kapitel",
+            "type": "learning",
+            "priority": "medium",
+            "lore": "Quest von Bibliothekarin Ada · Kette 1/1 · 2/2",
+            "rewards": {
+              "xp": 30,
+              "gold": 18
+            },
+            "vars": {
+              "quote": "Jedes ungelesene Buch ist eine verpasste Gelegenheit. Und ich sehe mindestens dreißig auf deiner Liste.",
+              "task": "Ada vergibt Lesehausaufgaben. Widerspruch zwecklos.",
+              "realWorldTask": "Lies 30 Minuten in einem Buch das schon lange auf deiner Liste steht",
+              "difficulty": "intermediate"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "trainer-rex",
+      "portrait": null,
+      "rarity": "uncommon",
+      "spawnWeight": 30,
+      "cooldownHours": 72,
+      "departureDurationHours": 72,
+      "maxChainsPerVisit": 1,
+      "greeting": "Wärm dich auf. Jetzt. Nein, nicht mit dem Tee. Mit deinem Körper.",
+      "name": "Trainer Rex",
+      "emoji": null,
+      "title": "Der Athletenflüsterer",
+      "description": "Glaubt dass jeder Mensch mindestens einen Pullup in sich hat. Liegt damit erstaunlich oft richtig.",
+      "stayDays": 3,
+      "cooldownDays": 12,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Grundlagentraining",
+            "type": "fitness",
+            "priority": "medium",
+            "lore": "Quest von Trainer Rex · Kette 1/1 · 1/3",
+            "rewards": {
+              "xp": 22,
+              "gold": 12
+            },
+            "vars": {
+              "quote": "Bevor du fliegst, musst du stehen können. Bevor du stehst, musst du aufstehen. Fang damit an.",
+              "task": "Rex verlangt Grundlagen. Keine Abkürzungen.",
+              "realWorldTask": "Mache ein 20-minütiges Ganzkörper-Workout: Liegestützen, Squats, Planks",
+              "difficulty": "intermediate"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Steigerung",
+            "type": "fitness",
+            "priority": "high",
+            "lore": "Quest von Trainer Rex · Kette 1/1 · 2/3",
+            "rewards": {
+              "xp": 35,
+              "gold": 20
+            },
+            "vars": {
+              "quote": "Gestern war gut. Heute muss besser sein. Nicht viel besser. Einen Hauch.",
+              "task": "Rex erhöht die Intensität. Progressiv. Unerbittlich.",
+              "realWorldTask": "Das gleiche Workout wie gestern — aber 10% mehr Wiederholungen oder Dauer",
+              "difficulty": "advanced"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Der Test",
+            "type": "fitness",
+            "priority": "high",
+            "lore": "Quest von Trainer Rex · Kette 1/1 · 3/3",
+            "rewards": {
+              "xp": 45,
+              "gold": 28
+            },
+            "vars": {
+              "quote": "Du bist nicht bereit. Aber du bist bereiter als gestern. Das reicht.",
+              "task": "Rex will Ergebnisse sehen. Konkret. Messbar. Ehrlich.",
+              "realWorldTask": "Setze dir ein konkretes Fitness-Ziel und teste ob du es erreichst (z.B. 5km unter 30min, 20 Pullups, etc.)",
+              "difficulty": "advanced"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "apothekerin-yara",
+      "portrait": null,
+      "rarity": "uncommon",
+      "spawnWeight": 28,
+      "cooldownHours": 72,
+      "departureDurationHours": 72,
+      "maxChainsPerVisit": 1,
+      "greeting": "Du siehst müde aus. Trink das. Frag nicht was drin ist.",
+      "name": "Apothekerin Yara",
+      "emoji": null,
+      "title": "Die Kräutermischerin",
+      "description": "Ihre Tränke wirken immer. Die Nebenwirkungen variieren. Kreativ.",
+      "stayDays": 3,
+      "cooldownDays": 14,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Yaras Rezeptur",
+            "type": "personal",
+            "priority": "medium",
+            "lore": "Quest von Apothekerin Yara · Kette 1/1 · 1/2",
+            "rewards": {
+              "xp": 22,
+              "gold": 14
+            },
+            "vars": {
+              "quote": "Gesundheit ist kein Zustand. Es ist ein Verhandlungsergebnis zwischen dir und deinem Körper.",
+              "task": "Yara will dass du auf deinen Körper hörst. Wirklich hörst.",
+              "realWorldTask": "Trinke heute mindestens 2 Liter Wasser und iss bewusst — kein Fast Food, kein Zucker",
+              "difficulty": "intermediate"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Vorsorge",
+            "type": "personal",
+            "priority": "medium",
+            "lore": "Quest von Apothekerin Yara · Kette 1/1 · 2/2",
+            "rewards": {
+              "xp": 30,
+              "gold": 18
+            },
+            "vars": {
+              "quote": "Der beste Zeitpunkt zum Arzt zu gehen war vor drei Monaten. Der zweitbeste ist jetzt.",
+              "task": "Yara erinnert dich an Dinge die du aufschiebst.",
+              "realWorldTask": "Mache einen Termin beim Arzt/Zahnarzt den du vor dir herschiebst",
+              "difficulty": "intermediate"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "kartograph-werner",
+      "portrait": null,
+      "rarity": "uncommon",
+      "spawnWeight": 25,
+      "cooldownHours": 72,
+      "departureDurationHours": 72,
+      "maxChainsPerVisit": 1,
+      "greeting": "Ich habe eine Karte. Sie zeigt nicht wo du bist — sie zeigt wo du hin solltest.",
+      "name": "Kartograph Werner",
+      "emoji": null,
+      "title": "Der Wegebauer",
+      "description": "Zeichnet Karten von Orten die er nie besucht hat. Erstaunlich genau trotzdem.",
+      "stayDays": 2,
+      "cooldownDays": 14,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Die Bestandsaufnahme",
+            "type": "personal",
+            "priority": "medium",
+            "lore": "Quest von Kartograph Werner · Kette 1/1 · 1/2",
+            "rewards": {
+              "xp": 25,
+              "gold": 15
+            },
+            "vars": {
+              "quote": "Man kann nicht navigieren ohne zu wissen wo man steht. Das ist keine Metapher. Oder vielleicht doch.",
+              "task": "Werner will eine Karte deines Lebens. Wo stehst du? Wo willst du hin?",
+              "realWorldTask": "Schreibe deine aktuelle Situation in 3 Bereichen auf: Karriere, Gesundheit, Beziehungen. Wo stehst du wirklich?",
+              "difficulty": "intermediate"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Die Route",
+            "type": "personal",
+            "priority": "high",
+            "lore": "Quest von Kartograph Werner · Kette 1/1 · 2/2",
+            "rewards": {
+              "xp": 35,
+              "gold": 22
+            },
+            "vars": {
+              "quote": "Eine Karte ohne Route ist nur ein hübsches Bild. Zeichne den Weg.",
+              "task": "Werner braucht eine Route — vom Ist zum Soll.",
+              "realWorldTask": "Erstelle einen konkreten Plan für ein Ziel: Meilensteine, Deadlines, erste Schritte",
+              "difficulty": "advanced"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "uhrmacher-tick",
+      "portrait": null,
+      "rarity": "uncommon",
+      "spawnWeight": 28,
+      "cooldownHours": 72,
+      "departureDurationHours": 72,
+      "maxChainsPerVisit": 1,
+      "greeting": "Tick. Tack. Tick. Tack. Das ist keine Uhr. Das ist dein Leben. Nutze es.",
+      "name": "Uhrmacher Tick",
+      "emoji": null,
+      "title": "Der Zeitwächter",
+      "description": "Besessen von Zeit. Trägt sieben Uhren. Keine zeigt die gleiche Zeit.",
+      "stayDays": 2,
+      "cooldownDays": 12,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Zeitinventur",
+            "type": "personal",
+            "priority": "medium",
+            "lore": "Quest von Uhrmacher Tick · Kette 1/1 · 1/2",
+            "rewards": {
+              "xp": 22,
+              "gold": 14
+            },
+            "vars": {
+              "quote": "Du hast 168 Stunden pro Woche. Zeig mir wo sie hingehen. Dann zeige ich dir wo sie hingehen sollten.",
+              "task": "Tick will wissen wohin deine Zeit fließt. Die Wahrheit. Nicht die schöne Version.",
+              "realWorldTask": "Tracke heute jeden Zeitblock (30min) — was hast du wirklich gemacht?",
+              "difficulty": "intermediate"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Zeitoptimierung",
+            "type": "personal",
+            "priority": "high",
+            "lore": "Quest von Uhrmacher Tick · Kette 1/1 · 2/2",
+            "rewards": {
+              "xp": 35,
+              "gold": 20
+            },
+            "vars": {
+              "quote": "Jede Minute die du sparst, ist eine Minute die du investieren kannst. In was, das ist deine Sache.",
+              "task": "Tick hat dein Zeitprotokoll analysiert. Jetzt wird optimiert.",
+              "realWorldTask": "Identifiziere 1 Stunde Zeitverschwendung pro Tag und plane eine produktive Alternative",
+              "difficulty": "advanced"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "netzwerkerin-luna",
+      "portrait": null,
+      "rarity": "uncommon",
+      "spawnWeight": 30,
+      "cooldownHours": 72,
+      "departureDurationHours": 72,
+      "maxChainsPerVisit": 1,
+      "greeting": "Ich kenne jemanden der jemanden kennt. Das ist mein ganzer Lebenslauf.",
+      "name": "Netzwerkerin Luna",
+      "emoji": null,
+      "title": "Die Verbinderin",
+      "description": "Hat mehr Kontakte als Finger. Beide Hände. Und ein paar Zehen.",
+      "stayDays": 3,
+      "cooldownDays": 14,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Kontaktpflege",
+            "type": "social",
+            "priority": "medium",
+            "lore": "Quest von Netzwerkerin Luna · Kette 1/1 · 1/2",
+            "rewards": {
+              "xp": 25,
+              "gold": 15
+            },
+            "vars": {
+              "quote": "Ein Netzwerk ist wie ein Garten. Gieß es oder es stirbt. Leise. Ohne Vorwarnung.",
+              "task": "Luna sagt es ist Zeit sich bei jemandem zu melden.",
+              "realWorldTask": "Schreibe 3 Leuten die du lange nicht kontaktiert hast — echter Kontakt, kein 'Hey'",
+              "difficulty": "intermediate"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Neue Verbindungen",
+            "type": "social",
+            "priority": "medium",
+            "lore": "Quest von Netzwerkerin Luna · Kette 1/1 · 2/2",
+            "rewards": {
+              "xp": 30,
+              "gold": 18
+            },
+            "vars": {
+              "quote": "Die interessantesten Menschen triffst du an den unwahrscheinlichsten Orten. Oder bei LinkedIn. Leider meistens LinkedIn.",
+              "task": "Luna will dass du deinen Horizont erweiterst.",
+              "realWorldTask": "Tritt einer neuen Community bei, besuche ein Meetup, oder connecte dich mit jemandem Neuem",
+              "difficulty": "intermediate"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "imker-boris",
+      "portrait": null,
+      "rarity": "uncommon",
+      "spawnWeight": 25,
+      "cooldownHours": 72,
+      "departureDurationHours": 72,
+      "maxChainsPerVisit": 1,
+      "greeting": "Die Bienen summen unruhig. Das heißt entweder Regen oder dass du gestresst bist. Meistens beides.",
+      "name": "Imker Boris",
+      "emoji": null,
+      "title": "Der Bienenflüsterer",
+      "description": "Versteht Bienen besser als Menschen. Findet das völlig akzeptabel.",
+      "stayDays": 3,
+      "cooldownDays": 14,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Süße Pflicht",
+            "type": "personal",
+            "priority": "low",
+            "lore": "Quest von Imker Boris · Kette 1/1 · 1/1",
+            "rewards": {
+              "xp": 15,
+              "gold": 10
+            },
+            "vars": {
+              "quote": "Bienen arbeiten 12 Stunden am Tag. Ohne Beschwerden. Ohne Meeting. Ohne Slack. Sei wie die Bienen.",
+              "task": "Boris will dass du fokussiert arbeitest. Wie eine Biene. Ohne das Stechen.",
+              "realWorldTask": "Arbeite 45 Minuten fokussiert an einer einzigen Aufgabe — kein Multitasking, kein Handy",
+              "difficulty": "starter"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "schreiberin-mei",
+      "portrait": null,
+      "rarity": "uncommon",
+      "spawnWeight": 28,
+      "cooldownHours": 72,
+      "departureDurationHours": 72,
+      "maxChainsPerVisit": 1,
+      "greeting": "Worte haben Macht. Deine Worte sind gerade... energiesparend.",
+      "name": "Schreiberin Mei",
+      "emoji": null,
+      "title": "Die Chronistin",
+      "description": "Dokumentiert alles. Selbst Dinge die nicht dokumentiert werden sollten. Besonders die.",
+      "stayDays": 2,
+      "cooldownDays": 12,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Meis Schreibstunde",
+            "type": "learning",
+            "priority": "medium",
+            "lore": "Quest von Schreiberin Mei · Kette 1/1 · 1/2",
+            "rewards": {
+              "xp": 25,
+              "gold": 14
+            },
+            "vars": {
+              "quote": "Schreiben ist Denken auf Papier. Oder auf einem Bildschirm. Oder auf einer Serviette. Hauptsache, es ist draußen.",
+              "task": "Mei verlangt geschriebene Worte. Qualität optional. Quantität auch. Aber irgendwas.",
+              "realWorldTask": "Schreibe 500 Worte — Blog-Post, Journal-Eintrag, Dokumentation, egal was",
+              "difficulty": "intermediate"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Revision",
+            "type": "learning",
+            "priority": "medium",
+            "lore": "Quest von Schreiberin Mei · Kette 1/1 · 2/2",
+            "rewards": {
+              "xp": 30,
+              "gold": 18
+            },
+            "vars": {
+              "quote": "Der erste Entwurf ist immer Müll. Das ist keine Kritik. Das ist ein Naturgesetz.",
+              "task": "Mei will dass du überarbeitest was du geschrieben hast. Besser. Schärfer. Kürzer.",
+              "realWorldTask": "Überarbeite einen Text den du kürzlich geschrieben hast — kürze 20%, verbessere den Anfang",
+              "difficulty": "intermediate"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "schlosser-grim",
+      "portrait": null,
+      "rarity": "uncommon",
+      "spawnWeight": 25,
+      "cooldownHours": 72,
+      "departureDurationHours": 72,
+      "maxChainsPerVisit": 2,
+      "greeting": "Jedes Schloss hat einen Schlüssel. Manche Schlüssel sind Wissen. Andere sind ein großer Hammer.",
+      "name": "Schlosser Grim",
+      "emoji": null,
+      "title": "Der Schlüsselmeister",
+      "description": "Öffnet Türen. Physische und metaphorische. Bevorzugt physische — weniger Therapie nötig.",
+      "stayDays": 2,
+      "cooldownDays": 14,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Passwortschloss",
+            "type": "personal",
+            "priority": "medium",
+            "lore": "Quest von Schlosser Grim · Kette 1/2 · 1/1",
+            "rewards": {
+              "xp": 22,
+              "gold": 14
+            },
+            "vars": {
+              "quote": "Dein Passwort ist '12345'? Ich habe Schlösser gesehen die sich geschämt hätten.",
+              "task": "Grim sagt deine digitale Sicherheit ist ein Witz. Er lacht nicht.",
+              "realWorldTask": "Ändere mindestens 5 wichtige Passwörter zu sicheren, einzigartigen Passwörtern",
+              "difficulty": "intermediate"
+            }
+          }
+        ],
+        [
+          {
+            "template": "npc-quest",
+            "title": "Der sichere Hafen",
+            "type": "personal",
+            "priority": "medium",
+            "lore": "Quest von Schlosser Grim · Kette 2/2 · 1/1",
+            "rewards": {
+              "xp": 25,
+              "gold": 15
+            },
+            "vars": {
+              "quote": "Zwei-Faktor-Authentifizierung ist kein Vorschlag. Es ist eine Lebensversicherung.",
+              "task": "Grim besteht auf maximale Sicherheit.",
+              "realWorldTask": "Aktiviere 2FA auf allen wichtigen Accounts (E-Mail, Bank, Social Media)",
+              "difficulty": "intermediate"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "astrologe-celes",
+      "portrait": null,
+      "rarity": "uncommon",
+      "spawnWeight": 22,
+      "cooldownHours": 96,
+      "departureDurationHours": 72,
+      "maxChainsPerVisit": 1,
+      "greeting": "Die Sterne sagen heute... ich solle einen Tee trinken. Die Sterne haben manchmal einfache Ratschläge.",
+      "name": "Astrologe Celes",
+      "emoji": null,
+      "title": "Der Sternendeuter",
+      "description": "Liest die Sterne. Die Sterne lesen ihn auch. Es ist eine ungesunde Beziehung.",
+      "stayDays": 3,
+      "cooldownDays": 16,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Sternenbeobachtung",
+            "type": "personal",
+            "priority": "low",
+            "lore": "Quest von Astrologe Celes · Kette 1/1 · 1/2",
+            "rewards": {
+              "xp": 15,
+              "gold": 10
+            },
+            "vars": {
+              "quote": "Man braucht kein Teleskop um die Sterne zu sehen. Man braucht nur Dunkelheit und den Willen nach oben zu schauen.",
+              "task": "Celes will dass du den Himmel beobachtest. Nicht metaphorisch.",
+              "realWorldTask": "Geh abends raus und schau 10 Minuten in den Nachthimmel — ohne Handy, nur beobachten",
+              "difficulty": "starter"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Reflexion der Sterne",
+            "type": "personal",
+            "priority": "medium",
+            "lore": "Quest von Astrologe Celes · Kette 1/1 · 2/2",
+            "rewards": {
+              "xp": 25,
+              "gold": 15
+            },
+            "vars": {
+              "quote": "Die Sterne erinnern uns daran wie klein wir sind. Das ist nicht deprimierend — das ist befreiend.",
+              "task": "Celes möchte dass du reflektierst. Über das Große und das Kleine.",
+              "realWorldTask": "Schreibe 3 Dinge auf die dich diese Woche dankbar gemacht haben und 3 Ziele für die nächste",
+              "difficulty": "intermediate"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "schmuggler-dante",
+      "portrait": null,
+      "rarity": "rare",
+      "spawnWeight": 18,
+      "cooldownHours": 96,
+      "departureDurationHours": 48,
+      "maxChainsPerVisit": 1,
+      "greeting": "Ich habe etwas das du brauchst. Du hast etwas das ich brauche. Nämlich Diskretion.",
+      "name": "Schmuggler Dante",
+      "emoji": null,
+      "title": "Der Grenzgänger",
+      "description": "Handelt mit allem was zwischen den Ritzen der Gesetze passt. Die Ritzen sind erstaunlich breit.",
+      "stayDays": 2,
+      "cooldownDays": 18,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Dantes Gefallen",
+            "type": "personal",
+            "priority": "medium",
+            "lore": "Quest von Schmuggler Dante · Kette 1/1 · 1/3",
+            "rewards": {
+              "xp": 30,
+              "gold": 18
+            },
+            "vars": {
+              "quote": "Vertrauen ist teuer. Ich biete Ratenzahlung.",
+              "task": "Dante braucht einen Beweis deiner Zuverlässigkeit.",
+              "realWorldTask": "Erledige 3 Aufgaben die du seit über einer Woche aufschiebst — heute, keine Ausreden",
+              "difficulty": "intermediate"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Der Transport",
+            "type": "fitness",
+            "priority": "high",
+            "lore": "Quest von Schmuggler Dante · Kette 1/1 · 2/3",
+            "rewards": {
+              "xp": 40,
+              "gold": 25
+            },
+            "vars": {
+              "quote": "Schnell sein ist gut. Unauffällig sein ist besser. Beides gleichzeitig? Kunst.",
+              "task": "Dante hat einen eiligen Auftrag. Geschwindigkeit und Ausdauer gefragt.",
+              "realWorldTask": "45 Minuten Cardio — Laufen, Radfahren oder schnelles Gehen. Tempo zählt.",
+              "difficulty": "advanced"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Der Deal",
+            "type": "social",
+            "priority": "high",
+            "lore": "Quest von Schmuggler Dante · Kette 1/1 · 3/3",
+            "rewards": {
+              "xp": 45,
+              "gold": 30
+            },
+            "vars": {
+              "quote": "Der beste Deal ist einer bei dem beide Seiten denken sie hätten gewonnen. Das ist mein Spezialgebiet.",
+              "task": "Dante schließt seinen Handel ab. Du verhandelst.",
+              "realWorldTask": "Verhandle etwas in deinem Leben: Preis, Gehalt, Aufgabenverteilung, oder einen Kompromiss mit jemandem",
+              "difficulty": "advanced"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "astronomin-stella",
+      "portrait": null,
+      "rarity": "rare",
+      "spawnWeight": 15,
+      "cooldownHours": 120,
+      "departureDurationHours": 48,
+      "maxChainsPerVisit": 1,
+      "greeting": "Die Sternenwächterin und ich sind... Kolleginnen. Sie beobachtet die Sterne. Ich berechne sie.",
+      "name": "Astronomin Stella",
+      "emoji": null,
+      "title": "Die Sternenrechnerin",
+      "description": "Berechnet Umlaufbahnen im Kopf. Hat einmal eine Sonnenfinsternis vorhergesagt. Auf die Minute genau. Dann vergaß sie das Mittagessen.",
+      "stayDays": 2,
+      "cooldownDays": 20,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Stellas Hypothese",
+            "type": "learning",
+            "priority": "high",
+            "lore": "Quest von Astronomin Stella · Kette 1/1 · 1/2",
+            "rewards": {
+              "xp": 35,
+              "gold": 20
+            },
+            "vars": {
+              "quote": "Das Universum ist nicht kompliziert. Es ist nur sehr, sehr groß. Das verwirrt die Leute.",
+              "task": "Stella hat eine Theorie. Sie braucht Daten. Du bist die Daten.",
+              "realWorldTask": "Recherchiere 45 Minuten ein wissenschaftliches Thema das dich fasziniert und mache strukturierte Notizen",
+              "difficulty": "advanced"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Die Präsentation",
+            "type": "learning",
+            "priority": "high",
+            "lore": "Quest von Astronomin Stella · Kette 1/1 · 2/2",
+            "rewards": {
+              "xp": 42,
+              "gold": 28
+            },
+            "vars": {
+              "quote": "Wissen das man nicht erklären kann, hat man nicht verstanden. Erkläre es. Mir. Jetzt.",
+              "task": "Stella will dass du erklärst was du gelernt hast. Verständlich. Für jemanden der es nicht kennt.",
+              "realWorldTask": "Erkläre jemandem ein komplexes Thema in einfachen Worten — oder schreib einen Erklärungstext",
+              "difficulty": "advanced"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "tavernenbesitzer-gus",
+      "portrait": null,
+      "rarity": "rare",
+      "spawnWeight": 18,
+      "cooldownHours": 96,
+      "departureDurationHours": 72,
+      "maxChainsPerVisit": 1,
+      "greeting": "Willkommen in... ach, das hier ist nicht meine Taverne. Egal. Willkommen trotzdem.",
+      "name": "Wirt Gus",
+      "emoji": null,
+      "title": "Der Reisende Wirt",
+      "description": "Betreibt eine Taverne die nie am gleichen Ort ist. Die Gäste finden ihn trotzdem. Die Miete auch.",
+      "stayDays": 3,
+      "cooldownDays": 16,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Gus' Gastmahl",
+            "type": "social",
+            "priority": "medium",
+            "lore": "Quest von Wirt Gus · Kette 1/1 · 1/2",
+            "rewards": {
+              "xp": 28,
+              "gold": 18
+            },
+            "vars": {
+              "quote": "Ein Tisch für zwei ist nett. Ein Tisch für sechs ist eine Geschichte. Lad jemanden ein.",
+              "task": "Gus will dass sein Tisch voll ist. Sorg dafür.",
+              "realWorldTask": "Organisiere ein gemeinsames Essen — koche für jemanden oder lade Freunde/Familie ein",
+              "difficulty": "intermediate"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Die beste Zutat",
+            "type": "social",
+            "priority": "high",
+            "lore": "Quest von Wirt Gus · Kette 1/1 · 2/2",
+            "rewards": {
+              "xp": 38,
+              "gold": 25
+            },
+            "vars": {
+              "quote": "Das Geheimnis guten Essens ist nicht das Rezept. Es ist die Gesellschaft. Und Salz. Viel Salz.",
+              "task": "Gus will dass du nicht nur kochst, sondern die Zeit genießt.",
+              "realWorldTask": "Verbring einen Abend mit jemandem Wichtigem — handyfrei, bewusst, mit gutem Essen",
+              "difficulty": "advanced"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "bergsteigerin-kaya",
+      "portrait": null,
+      "rarity": "rare",
+      "spawnWeight": 15,
+      "cooldownHours": 120,
+      "departureDurationHours": 48,
+      "maxChainsPerVisit": 1,
+      "greeting": "Der Gipfel ist nicht das Ziel. Der Weg ist das Ziel. Der Gipfel ist nur der Beweis.",
+      "name": "Bergsteigerin Kaya",
+      "emoji": null,
+      "title": "Die Gipfelstürmerin",
+      "description": "Hat jeden Berg im Umkreis von hundert Meilen bestiegen. Jetzt besteigt sie metaphorische Berge. Sind steiler.",
+      "stayDays": 2,
+      "cooldownDays": 20,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Basislager",
+            "type": "fitness",
+            "priority": "medium",
+            "lore": "Quest von Bergsteigerin Kaya · Kette 1/1 · 1/3",
+            "rewards": {
+              "xp": 28,
+              "gold": 15
+            },
+            "vars": {
+              "quote": "Bevor du den Berg angehst, stell sicher dass du den Hügel schaffst.",
+              "task": "Kaya beginnt langsam. Fundament zuerst.",
+              "realWorldTask": "30 Minuten Outdoor-Aktivität: Wandern, Treppensteigen, bergauf Joggen",
+              "difficulty": "intermediate"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Der Aufstieg",
+            "type": "fitness",
+            "priority": "high",
+            "lore": "Quest von Bergsteigerin Kaya · Kette 1/1 · 2/3",
+            "rewards": {
+              "xp": 40,
+              "gold": 25
+            },
+            "vars": {
+              "quote": "Der schwierigste Teil ist nicht der steilste Abschnitt. Es ist der Moment davor.",
+              "task": "Kaya erhöht die Anforderung. Der Berg wird steiler.",
+              "realWorldTask": "Ein hartes Workout: 60 Minuten Cardio, Treppenlauf, oder eine echte Wanderung mit Höhenmetern",
+              "difficulty": "advanced"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Gipfelblick",
+            "type": "personal",
+            "priority": "high",
+            "lore": "Quest von Bergsteigerin Kaya · Kette 1/1 · 3/3",
+            "rewards": {
+              "xp": 45,
+              "gold": 30
+            },
+            "vars": {
+              "quote": "Oben ist es still. Nicht weil es leise ist — weil du endlich aufhörst zu reden und anfängst zu sehen.",
+              "task": "Der Gipfel. Der Moment der Ruhe danach. Kayas eigentliche Lektion.",
+              "realWorldTask": "Geh an einen ruhigen Ort in der Natur. Sitz 15 Minuten still. Denk nach über was du erreicht hast.",
+              "difficulty": "advanced"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "antiquar-simon",
+      "portrait": null,
+      "rarity": "rare",
+      "spawnWeight": 15,
+      "cooldownHours": 120,
+      "departureDurationHours": 48,
+      "maxChainsPerVisit": 1,
+      "greeting": "Alles was alt ist, war einmal neu. Alles was neu ist, wird einmal alt. Ich handle mit dem Dazwischen.",
+      "name": "Antiquar Simon",
+      "emoji": null,
+      "title": "Der Zeitsammler",
+      "description": "Sammelt Dinge die andere wegwerfen. Findet Schätze wo andere Müll sehen. Umgekehrt leider auch.",
+      "stayDays": 2,
+      "cooldownDays": 18,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Simons Fundstück",
+            "type": "personal",
+            "priority": "medium",
+            "lore": "Quest von Antiquar Simon · Kette 1/1 · 1/2",
+            "rewards": {
+              "xp": 30,
+              "gold": 18
+            },
+            "vars": {
+              "quote": "Erinnerungen sind die wertvollsten Antiquitäten. Und die einzigen die man nicht verkaufen sollte.",
+              "task": "Simon will dass du etwas Altes hervorholst — Fotos, Briefe, Erinnerungen.",
+              "realWorldTask": "Geh durch alte Fotos, Briefe oder Erinnerungsstücke. Ordne sie. Genieß die Nostalgie.",
+              "difficulty": "intermediate"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Das Album",
+            "type": "social",
+            "priority": "medium",
+            "lore": "Quest von Antiquar Simon · Kette 1/1 · 2/2",
+            "rewards": {
+              "xp": 35,
+              "gold": 22
+            },
+            "vars": {
+              "quote": "Die besten Geschichten sind die, die man teilt. Auch die peinlichen. Besonders die peinlichen.",
+              "task": "Simon sagt: Erinnerungen sind zum Teilen da.",
+              "realWorldTask": "Teile ein altes Foto oder eine Erinnerung mit jemandem der dabei war. Lacht zusammen.",
+              "difficulty": "intermediate"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "fechtmeisterin-ines",
+      "portrait": null,
+      "rarity": "rare",
+      "spawnWeight": 16,
+      "cooldownHours": 120,
+      "departureDurationHours": 48,
+      "maxChainsPerVisit": 1,
+      "greeting": "En garde. Nein, nicht mit dem Schwert. Mit dem Verstand. Das Schwert kommt später.",
+      "name": "Fechtmeisterin Ines",
+      "emoji": null,
+      "title": "Die Klingenmeisterin",
+      "description": "Unterrichtet Fechten als Metapher für alles. Manchmal auch tatsächliches Fechten.",
+      "stayDays": 2,
+      "cooldownDays": 20,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Parade",
+            "type": "learning",
+            "priority": "medium",
+            "lore": "Quest von Fechtmeisterin Ines · Kette 1/1 · 1/2",
+            "rewards": {
+              "xp": 30,
+              "gold": 18
+            },
+            "vars": {
+              "quote": "Verteidigung ist nicht Schwäche. Verteidigung ist das Versprechen dass du noch da sein wirst wenn der Gegner müde wird.",
+              "task": "Ines lehrt Verteidigung. Im Leben wie im Kampf: Grenzen setzen.",
+              "realWorldTask": "Sage heute zu mindestens einer Sache bewusst 'Nein' die du normalerweise akzeptieren würdest",
+              "difficulty": "intermediate"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Riposte",
+            "type": "personal",
+            "priority": "high",
+            "lore": "Quest von Fechtmeisterin Ines · Kette 1/1 · 2/2",
+            "rewards": {
+              "xp": 40,
+              "gold": 25
+            },
+            "vars": {
+              "quote": "Die Riposte ist der Moment nach dem Nein. Wenn du sagst was du stattdessen willst.",
+              "task": "Ines' zweite Lektion: Nach dem Nein kommt das Ja zu etwas Besserem.",
+              "realWorldTask": "Nachdem du gestern Nein gesagt hast — nutze die gewonnene Zeit für etwas das DIR wichtig ist",
+              "difficulty": "advanced"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "heiler-kaspar",
+      "portrait": null,
+      "rarity": "rare",
+      "spawnWeight": 16,
+      "cooldownHours": 120,
+      "departureDurationHours": 48,
+      "maxChainsPerVisit": 1,
+      "greeting": "Du bist nicht krank. Du bist... optimierungsfähig. Lass mich mal schauen.",
+      "name": "Heiler Kaspar",
+      "emoji": null,
+      "title": "Der Körperleser",
+      "description": "Diagnostiziert Probleme die man noch gar nicht hat. Liegt damit erschreckend oft richtig.",
+      "stayDays": 2,
+      "cooldownDays": 18,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Kaspars Diagnose",
+            "type": "fitness",
+            "priority": "medium",
+            "lore": "Quest von Heiler Kaspar · Kette 1/1 · 1/2",
+            "rewards": {
+              "xp": 28,
+              "gold": 16
+            },
+            "vars": {
+              "quote": "Dein Rücken sagt mir dass du zu viel sitzt. Deine Augen sagen mir dass du zu viel auf Bildschirme starrst. Dein Körper ist nicht subtil.",
+              "task": "Kaspar hat dich untersucht. Die Ergebnisse sind... voraussehbar.",
+              "realWorldTask": "20 Minuten Mobility/Stretching-Routine — Fokus auf Nacken, Schultern, Hüfte, unterer Rücken",
+              "difficulty": "intermediate"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Die Kur",
+            "type": "fitness",
+            "priority": "high",
+            "lore": "Quest von Heiler Kaspar · Kette 1/1 · 2/2",
+            "rewards": {
+              "xp": 38,
+              "gold": 22
+            },
+            "vars": {
+              "quote": "Prävention ist unsichtbare Arbeit. Niemand applaudiert dir dafür dass du NICHT krank wirst. Ich schon.",
+              "task": "Kaspar verschreibt eine Kur. Ganzkörperlich. Ganzheitlich.",
+              "realWorldTask": "Heute: 30min Bewegung + 2L Wasser + kein Zucker + 7h Schlaf. Das volle Programm.",
+              "difficulty": "advanced"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "puppenspieler-marco",
+      "portrait": null,
+      "rarity": "rare",
+      "spawnWeight": 14,
+      "cooldownHours": 144,
+      "departureDurationHours": 48,
+      "maxChainsPerVisit": 1,
+      "greeting": "Jeder spielt eine Rolle. Ich spiele sie nur besser. Und bewusster.",
+      "name": "Puppenspieler Marco",
+      "emoji": null,
+      "title": "Der Maskenmacher",
+      "description": "Zeigt Menschen ihre eigenen Masken. Die meisten wollen sie dann zurück.",
+      "stayDays": 2,
+      "cooldownDays": 22,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Die Rolle",
+            "type": "personal",
+            "priority": "high",
+            "lore": "Quest von Puppenspieler Marco · Kette 1/1 · 1/2",
+            "rewards": {
+              "xp": 35,
+              "gold": 22
+            },
+            "vars": {
+              "quote": "Du spielst mindestens drei Rollen pro Tag. Chef, Freund, Kind. Welche davon bist wirklich du?",
+              "task": "Marco stellt unbequeme Fragen. Du findest unbequeme Antworten.",
+              "realWorldTask": "Reflektiere ehrlich: In welchen Situationen 'spielst' du eine Rolle? Schreib es auf.",
+              "difficulty": "advanced"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Ohne Maske",
+            "type": "social",
+            "priority": "high",
+            "lore": "Quest von Puppenspieler Marco · Kette 1/1 · 2/2",
+            "rewards": {
+              "xp": 42,
+              "gold": 28
+            },
+            "vars": {
+              "quote": "Authentizität ist der teuerste Luxus. Die meisten können ihn sich nicht leisten. Versuch es trotzdem.",
+              "task": "Marco's letzte Lektion: Sei ehrlich. Mit jemandem der es verdient.",
+              "realWorldTask": "Führe ein ehrliches Gespräch mit jemandem über etwas das du normalerweise vermeidest",
+              "difficulty": "advanced"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "navigatorin-compass",
+      "portrait": null,
+      "rarity": "rare",
+      "spawnWeight": 15,
+      "cooldownHours": 120,
+      "departureDurationHours": 48,
+      "maxChainsPerVisit": 1,
+      "greeting": "Ich finde immer den Weg. Manchmal den richtigen. Meistens einen interessanten.",
+      "name": "Navigatorin Compass",
+      "emoji": null,
+      "title": "Die Wegfinderin",
+      "description": "Hat sich in jeder bekannten Wildnis verlaufen und in jeder wieder herausgefunden. Ihr Geheimnis: konsequent geradeaus.",
+      "stayDays": 2,
+      "cooldownDays": 20,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Der erste Schritt",
+            "type": "fitness",
+            "priority": "medium",
+            "lore": "Quest von Navigatorin Compass · Kette 1/1 · 1/2",
+            "rewards": {
+              "xp": 28,
+              "gold": 16
+            },
+            "vars": {
+              "quote": "Der wichtigste Schritt ist nicht der erste. Es ist der nächste. Immer der nächste.",
+              "task": "Compass sagt: Beweg dich. Wohin ist zweitrangig.",
+              "realWorldTask": "Geh 30 Minuten spazieren — ohne Ziel, ohne Podcast, ohne Handy. Nur gehen und denken.",
+              "difficulty": "intermediate"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Neue Wege",
+            "type": "personal",
+            "priority": "medium",
+            "lore": "Quest von Navigatorin Compass · Kette 1/1 · 2/2",
+            "rewards": {
+              "xp": 35,
+              "gold": 20
+            },
+            "vars": {
+              "quote": "Routine ist der sicherste Weg. Aber nicht der interessanteste. Nimm heute die Abzweigung.",
+              "task": "Compass will dass du einen neuen Weg findest. Buchstäblich oder metaphorisch.",
+              "realWorldTask": "Ändere eine Routine: anderer Arbeitsweg, anderer Laden, anderer Tagesablauf — irgendwas Neues",
+              "difficulty": "intermediate"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "spieleerfinderin-nora",
+      "portrait": null,
+      "rarity": "rare",
+      "spawnWeight": 16,
+      "cooldownHours": 96,
+      "departureDurationHours": 72,
+      "maxChainsPerVisit": 1,
+      "greeting": "Das Leben ist ein Spiel. Nur die Regeln sind schlecht dokumentiert. Daran arbeite ich.",
+      "name": "Spieleerfinderin Nora",
+      "emoji": null,
+      "title": "Die Regelschreiberin",
+      "description": "Erfindet Spiele für jede Situation. Die Regeln ändern sich. Oft. Mitten im Spiel.",
+      "stayDays": 3,
+      "cooldownDays": 16,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Noras Challenge",
+            "type": "personal",
+            "priority": "medium",
+            "lore": "Quest von Spieleerfinderin Nora · Kette 1/1 · 1/2",
+            "rewards": {
+              "xp": 25,
+              "gold": 15
+            },
+            "vars": {
+              "quote": "Gamification ist nur ein Wort dafür, langweilige Dinge interessant zu machen. Und ich bin sehr gut in langweiligen Dingen.",
+              "task": "Nora hat eine Challenge. Die Regeln sind einfach. Das Durchhalten weniger.",
+              "realWorldTask": "Mach eine langweilige Aufgabe (Putzen, Papierkram, Sortieren) — aber mit einem Timer und dem Ziel es in Rekordzeit zu schaffen",
+              "difficulty": "intermediate"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Game Night",
+            "type": "social",
+            "priority": "medium",
+            "lore": "Quest von Spieleerfinderin Nora · Kette 1/1 · 2/2",
+            "rewards": {
+              "xp": 32,
+              "gold": 20
+            },
+            "vars": {
+              "quote": "Spiele verbinden Menschen. Außer Monopoly. Monopoly zerstört Familien.",
+              "task": "Nora verlangt: Spiel mit anderen. Brett, Karten, digital — egal. Zusammen.",
+              "realWorldTask": "Organisiere einen Spieleabend mit Freunden, Familie oder online — mindestens 1 Stunde",
+              "difficulty": "intermediate"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "kriegsmeisterin-valka",
+      "portrait": null,
+      "rarity": "epic",
+      "spawnWeight": 8,
+      "cooldownHours": 168,
+      "departureDurationHours": 48,
+      "maxChainsPerVisit": 1,
+      "greeting": "Ich habe hundert Schlachten überlebt. Nicht durch Stärke — durch Vorbereitung. Bist du vorbereitet?",
+      "name": "Kriegsmeisterin Valka",
+      "emoji": null,
+      "title": "Die Veteranin",
+      "description": "Narben erzählen ihre Geschichte besser als Worte. Valka hat viele Narben. Und wenig Worte.",
+      "stayDays": 2,
+      "cooldownDays": 28,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Valkas Disziplin",
+            "type": "fitness",
+            "priority": "high",
+            "lore": "Quest von Kriegsmeisterin Valka · Kette 1/1 · 1/3",
+            "rewards": {
+              "xp": 40,
+              "gold": 25
+            },
+            "vars": {
+              "quote": "Talent ist überbewertet. Disziplin ist unterschätzt. Rate mal was gewinnt.",
+              "task": "Valka beginnt mit Disziplin. Nicht mit Motivation — Motivation ist unzuverlässig.",
+              "realWorldTask": "Steh morgen 30 Minuten früher auf als gewohnt und nutze die Zeit für Bewegung oder Planung",
+              "difficulty": "advanced"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Kampfplan",
+            "type": "personal",
+            "priority": "high",
+            "lore": "Quest von Kriegsmeisterin Valka · Kette 1/1 · 2/3",
+            "rewards": {
+              "xp": 48,
+              "gold": 30
+            },
+            "vars": {
+              "quote": "Kein Plan überlebt den Kontakt mit der Realität. Deshalb brauchst du drei.",
+              "task": "Valka plant nicht nur — sie plant für das Scheitern des Plans.",
+              "realWorldTask": "Plane deine gesamte nächste Woche: Hauptziele, Backup-Plan, und was du tust wenn alles schiefgeht",
+              "difficulty": "advanced"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Der Feldtest",
+            "type": "boss",
+            "priority": "high",
+            "lore": "Quest von Kriegsmeisterin Valka · Kette 1/1 · 3/3",
+            "rewards": {
+              "xp": 60,
+              "gold": 40
+            },
+            "vars": {
+              "quote": "Theorie ist wertlos ohne Praxis. Heute wird getestet. Nicht bestanden? Morgen nochmal.",
+              "task": "Valkas letzte Prüfung. Alles was du geplant hast — jetzt durchziehen.",
+              "realWorldTask": "Zieh deinen Wochenplan durch — den ganzen Tag, Punkt für Punkt. Kein Abweichen.",
+              "difficulty": "expert"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "alchemist-faye",
+      "portrait": null,
+      "rarity": "epic",
+      "spawnWeight": 10,
+      "cooldownHours": 168,
+      "departureDurationHours": 48,
+      "maxChainsPerVisit": 1,
+      "greeting": "Mein letztes Experiment hat nur teilweise das Labor zerstört. Fortschritt!",
+      "name": "Alchemistin Faye",
+      "emoji": null,
+      "title": "Die Experimentierfreudige",
+      "description": "Ihre Experimente scheitern spektakulär. Ihre Erkenntnisse daraus sind brillant. Die Reihenfolge ist leider nicht verhandelbar.",
+      "stayDays": 2,
+      "cooldownDays": 25,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Fayes Hypothese",
+            "type": "learning",
+            "priority": "high",
+            "lore": "Quest von Alchemistin Faye · Kette 1/1 · 1/2",
+            "rewards": {
+              "xp": 42,
+              "gold": 28
+            },
+            "vars": {
+              "quote": "Scheitern ist keine Option. Es ist eine Voraussetzung. Frag jeden Wissenschaftler.",
+              "task": "Faye hat eine Idee. Ob sie funktioniert? Nur ein Weg das herauszufinden.",
+              "realWorldTask": "Probiere etwas Neues aus bei dem du wahrscheinlich scheiterst — neue Programmiersprache, Technik, Rezept. Das Scheitern IST der Erfolg.",
+              "difficulty": "advanced"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Iteration",
+            "type": "learning",
+            "priority": "high",
+            "lore": "Quest von Alchemistin Faye · Kette 1/1 · 2/2",
+            "rewards": {
+              "xp": 50,
+              "gold": 35
+            },
+            "vars": {
+              "quote": "Version 1 ist immer Müll. Version 2 ist weniger Müll. Version 7 ist... akzeptabel.",
+              "task": "Faye will dass du es nochmal versuchst. Besser. Anders. Mutiger.",
+              "realWorldTask": "Nimm das Gescheiterte von gestern und verbesser es. Analysiere was schiefging und mach es neu.",
+              "difficulty": "advanced"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "diplomat-aurelius",
+      "portrait": null,
+      "rarity": "epic",
+      "spawnWeight": 8,
+      "cooldownHours": 168,
+      "departureDurationHours": 48,
+      "maxChainsPerVisit": 1,
+      "greeting": "In einer Verhandlung gibt es keine Gegner. Nur zukünftige Verbündete die es noch nicht wissen.",
+      "name": "Diplomat Aurelius",
+      "emoji": null,
+      "title": "Der Goldene Vermittler",
+      "description": "Hat Kriege mit einem einzigen Abendessen beendet. Das Dessert war entscheidend.",
+      "stayDays": 2,
+      "cooldownDays": 30,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Die Kunst des Zuhörens",
+            "type": "social",
+            "priority": "high",
+            "lore": "Quest von Diplomat Aurelius · Kette 1/1 · 1/2",
+            "rewards": {
+              "xp": 40,
+              "gold": 25
+            },
+            "vars": {
+              "quote": "Die mächtigste Waffe in jeder Verhandlung ist Stille. Die zweitmächtigste ist ein gutes Gedächtnis.",
+              "task": "Aurelius lehrt Diplomatie. Lektion 1: Zuhören. Wirklich zuhören.",
+              "realWorldTask": "Führe ein Gespräch in dem du nur Fragen stellst und zuhörst. Kein Ratschlag, kein 'bei mir auch'. Nur Zuhören.",
+              "difficulty": "advanced"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Die Brücke",
+            "type": "social",
+            "priority": "high",
+            "lore": "Quest von Diplomat Aurelius · Kette 1/1 · 2/2",
+            "rewards": {
+              "xp": 55,
+              "gold": 35
+            },
+            "vars": {
+              "quote": "Brücken zu bauen ist teuer. Aber billiger als Mauern. Das rechnet sich langfristig.",
+              "task": "Aurelius' Meisterstück: Eine Brücke bauen wo vorher keine war.",
+              "realWorldTask": "Löse einen Konflikt oder ein Missverständnis mit jemandem. Geh auf die Person zu, nicht weg.",
+              "difficulty": "expert"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "schmiedin-ignis",
+      "portrait": null,
+      "rarity": "epic",
+      "spawnWeight": 9,
+      "cooldownHours": 168,
+      "departureDurationHours": 48,
+      "maxChainsPerVisit": 1,
+      "greeting": "Das Feuer fragt nicht ob du bereit bist. Es brennt einfach. Sei wie das Feuer.",
+      "name": "Schmiedin Ignis",
+      "emoji": null,
+      "title": "Die Flammengeborene",
+      "description": "Schmiedet bei Temperaturen die andere für unmöglich halten. Grimvar nennt sie 'die Einzige die besser ist als ich'. Leise. Wenn sie nicht da ist.",
+      "stayDays": 2,
+      "cooldownDays": 25,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Feuerprobe",
+            "type": "boss",
+            "priority": "high",
+            "lore": "Quest von Schmiedin Ignis · Kette 1/1 · 1/2",
+            "rewards": {
+              "xp": 50,
+              "gold": 30
+            },
+            "vars": {
+              "quote": "Stahl wird im Feuer gehärtet. Du auch. Der Unterschied: Stahl beschwert sich nicht.",
+              "task": "Ignis fordert dich. Nicht physisch — mental. Der härteste Kampf ist gegen dich selbst.",
+              "realWorldTask": "Mache die schwierigste Aufgabe auf deiner Liste — die die du am meisten fürchtest. Heute.",
+              "difficulty": "expert"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Meisterwerk",
+            "type": "boss",
+            "priority": "high",
+            "lore": "Quest von Schmiedin Ignis · Kette 1/1 · 2/2",
+            "rewards": {
+              "xp": 60,
+              "gold": 40
+            },
+            "vars": {
+              "quote": "Jeder hat ein Meisterwerk in sich. Die meisten sterben bevor sie es finden. Stirb nicht vorher.",
+              "task": "Ignis' finale Aufgabe: Erschaffe etwas auf das du stolz bist.",
+              "realWorldTask": "Widme einen halben Tag (4+ Stunden) deinem wichtigsten kreativen oder beruflichen Projekt. Kein Multitasking.",
+              "difficulty": "expert"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "geisterjagerin-raven",
+      "portrait": null,
+      "rarity": "epic",
+      "spawnWeight": 7,
+      "cooldownHours": 168,
+      "departureDurationHours": 48,
+      "maxChainsPerVisit": 1,
+      "greeting": "Die Vergangenheit holt uns alle ein. Ich helfe ihr dabei — professionell.",
+      "name": "Geisterjägerin Raven",
+      "emoji": null,
+      "title": "Die Schattensammlerin",
+      "description": "Jagt keine Geister. Jagt die Dinge die wir verdrängen. Das ist schlimmer.",
+      "stayDays": 2,
+      "cooldownDays": 28,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Ravens Inventur",
+            "type": "personal",
+            "priority": "high",
+            "lore": "Quest von Geisterjägerin Raven · Kette 1/1 · 1/2",
+            "rewards": {
+              "xp": 45,
+              "gold": 28
+            },
+            "vars": {
+              "quote": "Jeder hat Geister. Die Frage ist nicht ob, sondern ob du mit ihnen redest oder vor ihnen davonläufst.",
+              "task": "Raven konfrontiert dich mit dem was du vermeidest.",
+              "realWorldTask": "Schreibe 3 Dinge auf die du verdängst oder vor dir herschiebst — und warum. Ehrlich.",
+              "difficulty": "advanced"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Exorzismus",
+            "type": "personal",
+            "priority": "high",
+            "lore": "Quest von Geisterjägerin Raven · Kette 1/1 · 2/2",
+            "rewards": {
+              "xp": 55,
+              "gold": 35
+            },
+            "vars": {
+              "quote": "Den Geist vertreiben heißt nicht vergessen. Es heißt aufhören davon kontrolliert zu werden.",
+              "task": "Raven will Taten sehen. Die Geister vertreiben heißt sich ihnen stellen.",
+              "realWorldTask": "Erledige eine der Sachen von gestern. Die schlimmste. Heute. Keine Ausreden.",
+              "difficulty": "expert"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "chronist-aeon",
+      "portrait": null,
+      "rarity": "legendary",
+      "spawnWeight": 2,
+      "cooldownHours": 720,
+      "departureDurationHours": 36,
+      "maxChainsPerVisit": 1,
+      "greeting": "Tausend Jahre. So lange warte ich schon auf jemanden der diese Frage richtig beantwortet. Bist du es?",
+      "name": "Chronist Aeon",
+      "emoji": null,
+      "title": "Der Zeitlose Archivar",
+      "description": "Existiert außerhalb der normalen Zeitrechnung. Hat die Gründung des Turms miterlebt. Vergisst manchmal in welchem Jahrhundert er gerade ist. Findet es unerheblich.",
+      "stayDays": 1,
+      "cooldownDays": 45,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Aeons Frage",
+            "type": "learning",
+            "priority": "high",
+            "lore": "Quest von Chronist Aeon · Kette 1/1 · 1/3",
+            "rewards": {
+              "xp": 55,
+              "gold": 35
+            },
+            "vars": {
+              "quote": "Was weißt du wirklich? Nicht was du glaubst zu wissen. Was weißt du?",
+              "task": "Aeon stellt eine Frage die kein Buch beantworten kann.",
+              "realWorldTask": "Setz dich 30 Minuten hin und schreibe: Was sind deine 5 tiefsten Überzeugungen? Warum glaubst du sie? Stimmen sie noch?",
+              "difficulty": "expert"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Die Lektion der Ewigkeit",
+            "type": "personal",
+            "priority": "high",
+            "lore": "Quest von Chronist Aeon · Kette 1/1 · 2/3",
+            "rewards": {
+              "xp": 65,
+              "gold": 42
+            },
+            "vars": {
+              "quote": "Dreißig Jahre sind ein Wimpernschlag. Für manche. Für dich sind sie alles. Nutze sie.",
+              "task": "Aeons Perspektive: Du hast nicht ewig. Handle danach.",
+              "realWorldTask": "Wenn du nur noch 5 Jahre hättest — was würdest du ändern? Schreib es auf. Ändere EINE Sache davon heute.",
+              "difficulty": "expert"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Das Vermächtnis",
+            "type": "boss",
+            "priority": "high",
+            "lore": "Quest von Chronist Aeon · Kette 1/1 · 3/3",
+            "rewards": {
+              "xp": 80,
+              "gold": 55
+            },
+            "vars": {
+              "quote": "Jeder Wanderer hinterlässt eine Spur. Manche in Sand. Manche in Stein. Was wird deine sein?",
+              "task": "Aeons letzte Aufgabe: Hinterlasse etwas das bleibt.",
+              "realWorldTask": "Erstelle etwas Bleibendes: Schreib einen Artikel, lehre jemanden eine Fähigkeit, starte ein Projekt das anderen hilft",
+              "difficulty": "expert"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "tod-der-hoefliche",
+      "portrait": null,
+      "rarity": "legendary",
+      "spawnWeight": 1,
+      "cooldownHours": 1080,
+      "departureDurationHours": 24,
+      "maxChainsPerVisit": 1,
+      "greeting": "ICH BIN NICHT HIER UM DICH ZU HOLEN. NUR UM ZU FRAGEN WIE ES DIR GEHT. DAS IST HÖFLICH, ODER?",
+      "name": "Der Höfliche Besucher",
+      "emoji": null,
+      "title": "Der Unvermeidliche",
+      "description": "Spricht in Großbuchstaben. Interessiert sich aufrichtig für Katzen. Niemand weiß warum er kommt. Alle sind froh wenn er wieder geht.",
+      "stayDays": 1,
+      "cooldownDays": 60,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Eine höfliche Frage",
+            "type": "personal",
+            "priority": "high",
+            "lore": "Quest vom Höflichen Besucher · Kette 1/1 · 1/2",
+            "rewards": {
+              "xp": 60,
+              "gold": 40
+            },
+            "vars": {
+              "quote": "ICH FRAGE JEDEN DEN ICH TREFFE: WAS HAST DU HEUTE GETAN DAS SICH GELOHNT HAT? DIE MEISTEN MÜSSEN NACHDENKEN. DAS IST BEDENKLICH.",
+              "task": "Der Besucher stellt eine einfache Frage. Die Antwort ist es nicht.",
+              "realWorldTask": "Tue heute etwas das sich wirklich lohnt. Nicht produktiv — lohnenswert. Es gibt einen Unterschied.",
+              "difficulty": "expert"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Das Versprechen",
+            "type": "personal",
+            "priority": "high",
+            "lore": "Quest vom Höflichen Besucher · Kette 1/1 · 2/2",
+            "rewards": {
+              "xp": 75,
+              "gold": 50
+            },
+            "vars": {
+              "quote": "ICH KOMME IRGENDWANN WIEDER. DAS IST KEINE DROHUNG. DAS IST EINE ZUSICHERUNG. MACH IN DER ZWISCHENZEIT ETWAS DARAUS.",
+              "task": "Der Besucher geht. Aber die Frage bleibt.",
+              "realWorldTask": "Mach einen Plan für die nächsten 3 Monate. Was willst du erreicht haben wenn er wiederkommt? Schreib es auf.",
+              "difficulty": "expert"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "meisterin-der-stille",
+      "portrait": null,
+      "rarity": "legendary",
+      "spawnWeight": 2,
+      "cooldownHours": 720,
+      "departureDurationHours": 36,
+      "maxChainsPerVisit": 1,
+      "greeting": "...",
+      "name": "Die Stille",
+      "emoji": null,
+      "title": "Meisterin der drei Schweigen",
+      "description": "Spricht nicht. Braucht sie nicht. Ihre Gegenwart allein verändert die Luft im Raum. Manche sagen sie kommuniziert durch die Stille zwischen den Worten.",
+      "stayDays": 1,
+      "cooldownDays": 50,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Die erste Stille",
+            "type": "personal",
+            "priority": "medium",
+            "lore": "Quest der Stillen · Kette 1/1 · 1/3",
+            "rewards": {
+              "xp": 50,
+              "gold": 30
+            },
+            "vars": {
+              "quote": "...",
+              "task": "Die Stille sagt nichts. Aber der Raum um sie herum sagt alles. Hör zu.",
+              "realWorldTask": "10 Minuten absolute Stille. Kein Handy, keine Musik, keine Gespräche. Nur sitzen und da sein.",
+              "difficulty": "intermediate"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Die zweite Stille",
+            "type": "personal",
+            "priority": "high",
+            "lore": "Quest der Stillen · Kette 1/1 · 2/3",
+            "rewards": {
+              "xp": 60,
+              "gold": 38
+            },
+            "vars": {
+              "quote": "...",
+              "task": "Die Stille wird tiefer. In ihr findest du was du suchst. Oder was dich sucht.",
+              "realWorldTask": "30 Minuten Meditation oder Achtsamkeit. Keine geführte — nur du und die Stille. Was kommt hoch?",
+              "difficulty": "advanced"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Die dritte Stille",
+            "type": "personal",
+            "priority": "high",
+            "lore": "Quest der Stillen · Kette 1/1 · 3/3",
+            "rewards": {
+              "xp": 75,
+              "gold": 50
+            },
+            "vars": {
+              "quote": "...",
+              "task": "Die dritte Stille ist die Stille des Verstehens. Man findet sie nur wenn man aufhört zu suchen.",
+              "realWorldTask": "Verbring 1 Stunde allein in der Natur. Kein Ziel, kein Tempo, kein Plan. Nur sein.",
+              "difficulty": "expert"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "bauer-ernst",
+      "portrait": null,
+      "rarity": "common",
+      "spawnWeight": 50,
+      "cooldownHours": 48,
+      "departureDurationHours": 72,
+      "maxChainsPerVisit": 1,
+      "greeting": "Die Ernte wartet nicht. Du auch nicht. Also los.",
+      "name": "Bauer Ernst",
+      "emoji": null,
+      "title": "Der Erdverbundene",
+      "description": "Spricht wenig. Arbeitet viel. Sein Rat ist wie sein Boden: nährhaft aber erdig.",
+      "stayDays": 3,
+      "cooldownDays": 8,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Ernsts Tageswerk",
+            "type": "personal",
+            "priority": "low",
+            "lore": "Quest von Bauer Ernst · 1/1 · 1/1",
+            "rewards": {
+              "xp": 15,
+              "gold": 10
+            },
+            "vars": {
+              "quote": "Manche Arbeit sieht man nicht. Das macht sie nicht weniger wichtig.",
+              "task": "Ernst braucht fleißige Hände.",
+              "realWorldTask": "Erledige 3 kleine Haushaltsaufgaben die du sonst ignorierst — Müll, Geschirr, Wäsche",
+              "difficulty": "starter"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "tanzlehrerin-vivienne",
+      "portrait": null,
+      "rarity": "uncommon",
+      "spawnWeight": 28,
+      "cooldownHours": 72,
+      "departureDurationHours": 72,
+      "maxChainsPerVisit": 1,
+      "greeting": "Steh auf. Beweg dich. Nein, nicht so — mit Gefühl!",
+      "name": "Tanzlehrerin Vivienne",
+      "emoji": null,
+      "title": "Die Rhythmusfinderin",
+      "description": "Tanzt zu Musik die nur sie hört. Erstaunlicherweise im Takt.",
+      "stayDays": 3,
+      "cooldownDays": 14,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Viviennes Rhythmus",
+            "type": "fitness",
+            "priority": "low",
+            "lore": "Quest von Vivienne · 1/1 · 1/2",
+            "rewards": {
+              "xp": 18,
+              "gold": 10
+            },
+            "vars": {
+              "quote": "Du bewegst dich wie jemand der vergessen hat dass er einen Körper hat. Erinnern wir dich.",
+              "task": "Vivienne will Bewegung. Nicht Sport — Bewegung. Der Unterschied ist Freude.",
+              "realWorldTask": "Hör dein Lieblingslied und tanz 5 Minuten dazu. Allein. Niemand schaut. Versprochen.",
+              "difficulty": "starter"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Der Flow",
+            "type": "fitness",
+            "priority": "medium",
+            "lore": "Quest von Vivienne · 1/1 · 2/2",
+            "rewards": {
+              "xp": 28,
+              "gold": 16
+            },
+            "vars": {
+              "quote": "Wenn der Körper sich bewegt, hört der Kopf auf zu reden. Das ist therapeutischer als jede Therapie. Sag das aber keinem Therapeuten.",
+              "task": "Vivienne fordert eine längere Session.",
+              "realWorldTask": "30 Minuten Bewegung die Spaß macht — Tanzen, Yoga, Schwimmen, Radfahren — kein 'Muss', nur 'Will'",
+              "difficulty": "intermediate"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "detektiv-ash",
+      "portrait": null,
+      "rarity": "rare",
+      "spawnWeight": 15,
+      "cooldownHours": 120,
+      "departureDurationHours": 48,
+      "maxChainsPerVisit": 1,
+      "greeting": "Drei Hinweise. Zwei Lügen. Eine Wahrheit. Finden wir sie.",
+      "name": "Detektiv Ash",
+      "emoji": null,
+      "title": "Der Wahrheitsfinder",
+      "description": "Findet immer die Wahrheit. Ob sie gefunden werden will oder nicht. Meistens nicht.",
+      "stayDays": 2,
+      "cooldownDays": 20,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Ashs Ermittlung",
+            "type": "learning",
+            "priority": "high",
+            "lore": "Quest von Detektiv Ash · 1/1 · 1/2",
+            "rewards": {
+              "xp": 35,
+              "gold": 22
+            },
+            "vars": {
+              "quote": "Die Antwort ist immer da. Du stellst nur die falschen Fragen.",
+              "task": "Ash hat einen Fall. Du bist der Ermittler.",
+              "realWorldTask": "Recherchiere ein Problem das du hast — wirklich recherchieren, nicht googlen und aufgeben. 45 Minuten deep dive.",
+              "difficulty": "advanced"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Der Beweis",
+            "type": "personal",
+            "priority": "high",
+            "lore": "Quest von Detektiv Ash · 1/1 · 2/2",
+            "rewards": {
+              "xp": 42,
+              "gold": 28
+            },
+            "vars": {
+              "quote": "Theorien sind schön. Beweise sind besser. Zeig mir Ergebnisse.",
+              "task": "Ash will keine Vermutungen — Ash will Fakten.",
+              "realWorldTask": "Setze um was du recherchiert hast. Konkretes Ergebnis, nicht nur Wissen.",
+              "difficulty": "advanced"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "philosophin-helen",
+      "portrait": null,
+      "rarity": "uncommon",
+      "spawnWeight": 25,
+      "cooldownHours": 72,
+      "departureDurationHours": 72,
+      "maxChainsPerVisit": 1,
+      "greeting": "Was ist Produktivität? Nein, wirklich — was IST es? Setz dich. Das dauert.",
+      "name": "Philosophin Helen",
+      "emoji": null,
+      "title": "Die Fragensteller",
+      "description": "Beantwortet keine Fragen. Stellt bessere. Das ist frustrierender als es klingt.",
+      "stayDays": 3,
+      "cooldownDays": 14,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Helens Paradox",
+            "type": "personal",
+            "priority": "medium",
+            "lore": "Quest von Philosophin Helen · 1/1 · 1/1",
+            "rewards": {
+              "xp": 25,
+              "gold": 15
+            },
+            "vars": {
+              "quote": "Die unbeantwortete Frage ist wertvoller als die bequeme Antwort. Lebt mit der Unsicherheit.",
+              "task": "Helen stellt eine Frage. Die Antwort findest du nicht im Internet.",
+              "realWorldTask": "Frage dich: Was würdest du tun wenn du wüsstest dass du nicht scheitern kannst? Schreib 3 Antworten auf.",
+              "difficulty": "intermediate"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "tierpfleger-finn",
+      "portrait": null,
+      "rarity": "common",
+      "spawnWeight": 45,
+      "cooldownHours": 48,
+      "departureDurationHours": 72,
+      "maxChainsPerVisit": 1,
+      "greeting": "Die Tiere mögen dich. Oder sie haben Hunger. Beides ist gut für mich.",
+      "name": "Tierpfleger Finn",
+      "emoji": null,
+      "title": "Der Tierflüsterer",
+      "description": "Versteht jedes Tier. Wird von keinem verstanden. Findet die Asymmetrie beruhigend.",
+      "stayDays": 3,
+      "cooldownDays": 8,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Finns Fütterung",
+            "type": "personal",
+            "priority": "low",
+            "lore": "Quest von Tierpfleger Finn · 1/1 · 1/1",
+            "rewards": {
+              "xp": 12,
+              "gold": 8
+            },
+            "vars": {
+              "quote": "Haustiere sind wie Pflanzen die dich anstarren wenn du sie vergisst. Vergiss sie nicht.",
+              "task": "Finn erinnert dich an deine Verantwortung. Die mit den Augen.",
+              "realWorldTask": "Kümmere dich um dein Haustier: Extra-Spielzeit, Fellpflege, neues Spielzeug. Kein Haustier? Geh Tiere im Tierheim besuchen.",
+              "difficulty": "starter"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "maler-claude",
+      "portrait": null,
+      "rarity": "uncommon",
+      "spawnWeight": 25,
+      "cooldownHours": 72,
+      "departureDurationHours": 72,
+      "maxChainsPerVisit": 1,
+      "greeting": "Ich sehe Farben wo andere Grau sehen. Das ist entweder Talent oder eine Erkrankung.",
+      "name": "Maler Claude",
+      "emoji": null,
+      "title": "Der Farbenseher",
+      "description": "Malt ausschließlich Dinge die nicht existieren. Seine Bilder sind trotzdem erschreckend akkurat.",
+      "stayDays": 3,
+      "cooldownDays": 14,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Claudes Skizze",
+            "type": "personal",
+            "priority": "medium",
+            "lore": "Quest von Maler Claude · 1/1 · 1/2",
+            "rewards": {
+              "xp": 22,
+              "gold": 14
+            },
+            "vars": {
+              "quote": "Jeder kann zeichnen. Die meisten haben nur vergessen dass sie es können. Erinnere dich.",
+              "task": "Claude will dass du etwas erschaffst. Qualität ist irrelevant. Mut ist alles.",
+              "realWorldTask": "Zeichne, male oder kritzle 20 Minuten. Egal was. Egal wie. Zeig es niemandem wenn du willst.",
+              "difficulty": "intermediate"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Die Ausstellung",
+            "type": "social",
+            "priority": "medium",
+            "lore": "Quest von Maler Claude · 1/1 · 2/2",
+            "rewards": {
+              "xp": 30,
+              "gold": 18
+            },
+            "vars": {
+              "quote": "Kunst die niemand sieht, ist ein Gespräch mit dir selbst. Manchmal braucht das Gespräch einen zweiten Stuhl.",
+              "task": "Claude will dass du deine Kreation zeigst.",
+              "realWorldTask": "Teile etwas Kreatives das du gemacht hast mit jemandem — ein Bild, einen Text, eine Idee",
+              "difficulty": "intermediate"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "spion-echo",
+      "portrait": null,
+      "rarity": "rare",
+      "spawnWeight": 14,
+      "cooldownHours": 144,
+      "departureDurationHours": 48,
+      "maxChainsPerVisit": 1,
+      "greeting": "Ich weiß wer du bist. Die Frage ist ob DU es weißt.",
+      "name": "Agent Echo",
+      "emoji": null,
+      "title": "Der Schattenbeobachter",
+      "description": "Weiß alles über jeden. Sagt nie wie. Trägt Sonnenbrillen in geschlossenen Räumen. Niemand fragt warum.",
+      "stayDays": 2,
+      "cooldownDays": 22,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Echos Briefing",
+            "type": "learning",
+            "priority": "high",
+            "lore": "Quest von Agent Echo · 1/1 · 1/2",
+            "rewards": {
+              "xp": 35,
+              "gold": 20
+            },
+            "vars": {
+              "quote": "Information ist die wahre Währung. Gold ist nur das was Leute sehen.",
+              "task": "Echo will dass du dich informierst. Über etwas das dich direkt betrifft.",
+              "realWorldTask": "Informiere dich gründlich über ein Thema das deine Karriere oder Finanzen direkt betrifft — 45min Recherche",
+              "difficulty": "advanced"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Die Aktion",
+            "type": "personal",
+            "priority": "high",
+            "lore": "Quest von Agent Echo · 1/1 · 2/2",
+            "rewards": {
+              "xp": 42,
+              "gold": 28
+            },
+            "vars": {
+              "quote": "Wissen ohne Aktion ist Unterhaltung. Aktion ohne Wissen ist Chaos. Du hast jetzt beides. Benutze es.",
+              "task": "Echo erwartet Ergebnisse. Keine Berichte — Ergebnisse.",
+              "realWorldTask": "Handle basierend auf deiner Recherche: Mach einen Termin, bewirb dich, kündige etwas, ändere etwas",
+              "difficulty": "advanced"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "musikerin-aria",
+      "portrait": null,
+      "rarity": "rare",
+      "spawnWeight": 16,
+      "cooldownHours": 96,
+      "departureDurationHours": 72,
+      "maxChainsPerVisit": 1,
+      "greeting": "Hörst du das? Die Stille zwischen den Noten — da lebt die Musik. Und gelegentlich eine Spinne.",
+      "name": "Musikerin Aria",
+      "emoji": null,
+      "title": "Die Klangweberin",
+      "description": "Spielt Instrumente die noch nicht erfunden sind. Der Klang ist wunderschön. Die Physik ist unmöglich.",
+      "stayDays": 3,
+      "cooldownDays": 18,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Arias Melodie",
+            "type": "personal",
+            "priority": "medium",
+            "lore": "Quest von Musikerin Aria · 1/1 · 1/2",
+            "rewards": {
+              "xp": 25,
+              "gold": 15
+            },
+            "vars": {
+              "quote": "Musik ist die Sprache die dein Gehirn versteht wenn Worte versagen. Lass sie sprechen.",
+              "task": "Aria will dass du Musik nicht nur hörst — sondern fühlst.",
+              "realWorldTask": "Hör dir ein Musikalbum komplett durch — von Anfang bis Ende, ohne Unterbrechung, ohne Multitasking",
+              "difficulty": "intermediate"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Dein Lied",
+            "type": "personal",
+            "priority": "medium",
+            "lore": "Quest von Musikerin Aria · 1/1 · 2/2",
+            "rewards": {
+              "xp": 32,
+              "gold": 20
+            },
+            "vars": {
+              "quote": "Jeder hat ein Lied. Manche summen es. Manche verstecken es. Finde deins.",
+              "task": "Aria sucht dein persönliches Lied — nicht zum Singen, zum Leben.",
+              "realWorldTask": "Erstelle eine Playlist mit 10 Songs die dein aktuelles Lebensgefühl beschreiben. Teile sie mit jemandem.",
+              "difficulty": "intermediate"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "handwerkerin-petra",
+      "portrait": null,
+      "rarity": "common",
+      "spawnWeight": 45,
+      "cooldownHours": 48,
+      "departureDurationHours": 72,
+      "maxChainsPerVisit": 1,
+      "greeting": "Kaputt? Zeig her. Ich mach das. Nein, NICHT so — GIB her.",
+      "name": "Handwerkerin Petra",
+      "emoji": null,
+      "title": "Die Macherin",
+      "description": "Repariert alles. Baut alles. Fragt nie warum. Fragt nur: 'Welches Werkzeug?'",
+      "stayDays": 3,
+      "cooldownDays": 9,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Petras Werkstatt",
+            "type": "personal",
+            "priority": "medium",
+            "lore": "Quest von Handwerkerin Petra · 1/1 · 1/2",
+            "rewards": {
+              "xp": 20,
+              "gold": 12
+            },
+            "vars": {
+              "quote": "Alles was mit den Händen gemacht wird, ist ehrliche Arbeit. Auch wenn man sich dabei den Daumen haut.",
+              "task": "Petra braucht handwerkliche Hilfe.",
+              "realWorldTask": "Mach etwas Handwerkliches: Regal montieren, Bild aufhängen, Fahrrad reparieren, Möbel zusammenbauen",
+              "difficulty": "intermediate"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Das eigene Projekt",
+            "type": "personal",
+            "priority": "medium",
+            "lore": "Quest von Handwerkerin Petra · 1/1 · 2/2",
+            "rewards": {
+              "xp": 28,
+              "gold": 18
+            },
+            "vars": {
+              "quote": "Fertigstellen. Nicht perfektionieren. Fertigstellen. Das ist der schwierige Teil.",
+              "task": "Petra will dass du etwas FERTIG machst. Nicht anfängst — FERTIG.",
+              "realWorldTask": "Beende ein Projekt das du angefangen aber nie abgeschlossen hast — egal wie klein",
+              "difficulty": "intermediate"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "coach-dominik",
+      "portrait": null,
+      "rarity": "uncommon",
+      "spawnWeight": 30,
+      "cooldownHours": 72,
+      "departureDurationHours": 72,
+      "maxChainsPerVisit": 1,
+      "greeting": "Was ist dein Ziel? Nein, nicht das Ziel das du SAGST. Das ECHTE.",
+      "name": "Coach Dominik",
+      "emoji": null,
+      "title": "Der Klardenker",
+      "description": "Stellt die Fragen die Therapeuten 200 Euro pro Stunde kosten. Kostenlos. Aber unbequemer.",
+      "stayDays": 3,
+      "cooldownDays": 14,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Dominiks Spiegel",
+            "type": "personal",
+            "priority": "medium",
+            "lore": "Quest von Coach Dominik · 1/1 · 1/2",
+            "rewards": {
+              "xp": 25,
+              "gold": 15
+            },
+            "vars": {
+              "quote": "Ich sage dir nicht was du tun sollst. Ich sage dir was du bereits weißt aber ignorierst.",
+              "task": "Dominik hält dir den Spiegel vor. Ist nicht immer angenehm.",
+              "realWorldTask": "Schreibe 5 Dinge auf die du verbessern KÖNNTEST aber bewusst nicht tust. Warum nicht? Ehrlich sein.",
+              "difficulty": "intermediate"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Der Erste Schritt",
+            "type": "personal",
+            "priority": "high",
+            "lore": "Quest von Coach Dominik · 1/1 · 2/2",
+            "rewards": {
+              "xp": 35,
+              "gold": 22
+            },
+            "vars": {
+              "quote": "Die Entfernung zwischen 'wollen' und 'tun' beträgt genau einen Schritt. Er fühlt sich an wie tausend. Ist er aber nicht.",
+              "task": "Dominik hat genug geredet. Jetzt wird gemacht.",
+              "realWorldTask": "Nimm eine Sache von gestern und mach den ersten konkreten Schritt. Nicht planen — MACHEN.",
+              "difficulty": "advanced"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "braumeister-bjorn",
+      "portrait": null,
+      "rarity": "common",
+      "spawnWeight": 45,
+      "cooldownHours": 48,
+      "departureDurationHours": 72,
+      "maxChainsPerVisit": 1,
+      "greeting": "Ein Bier? Nein? Dann arbeiten wir. Danach Bier.",
+      "name": "Braumeister Björn",
+      "emoji": null,
+      "title": "Der Hopfenphilosoph",
+      "description": "Braut Bier und Weisheiten. Beides braucht Geduld. Beides schmeckt besser mit der Zeit.",
+      "stayDays": 3,
+      "cooldownDays": 8,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Björns Braukunst",
+            "type": "personal",
+            "priority": "low",
+            "lore": "Quest von Björn · 1/1 · 1/1",
+            "rewards": {
+              "xp": 15,
+              "gold": 10
+            },
+            "vars": {
+              "quote": "Geduld ist die Hauptzutat. In allem. Außer bei Deadlines.",
+              "task": "Björn braucht Hilfe beim Brauen. Oder beim Trinken. Meist beides.",
+              "realWorldTask": "Nimm dir 30 Minuten für etwas das Geduld erfordert — langsam kochen, Handarbeit, oder einfach warten ohne Handy",
+              "difficulty": "starter"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "postmeisterin-clara",
+      "portrait": null,
+      "rarity": "common",
+      "spawnWeight": 50,
+      "cooldownHours": 48,
+      "departureDurationHours": 72,
+      "maxChainsPerVisit": 1,
+      "greeting": "Drei Briefe. Zwei überfällig. Einer peinlich. Wähle weise.",
+      "name": "Postmeisterin Clara",
+      "emoji": null,
+      "title": "Die Nachrichtenwächterin",
+      "description": "Sortiert Post seit 40 Jahren. Hat noch nie einen Brief geöffnet. Professionelle Neugierresistenz.",
+      "stayDays": 2,
+      "cooldownDays": 8,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Claras Mahnungen",
+            "type": "social",
+            "priority": "low",
+            "lore": "Quest von Clara · 1/1 · 1/1",
+            "rewards": {
+              "xp": 15,
+              "gold": 8
+            },
+            "vars": {
+              "quote": "Ungesendete Nachrichten sind wie unausgesprochene Gefühle. Beide machen Magengeschwüre.",
+              "task": "Clara hat Post für dich. Antworten ist Pflicht.",
+              "realWorldTask": "Beantworte 3 Nachrichten die du schuldig bist — E-Mails, Texte, Briefe",
+              "difficulty": "starter"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "gaertner-thorn",
+      "portrait": null,
+      "rarity": "common",
+      "spawnWeight": 40,
+      "cooldownHours": 48,
+      "departureDurationHours": 72,
+      "maxChainsPerVisit": 1,
+      "greeting": "Jeder Garten braucht Pflege. Auch der in deinem Kopf.",
+      "name": "Gärtner Thorn",
+      "emoji": null,
+      "title": "Der Wurzelmeister",
+      "description": "Gräbt. Immer. Überall. Die Pflanzen wachsen. Niemand weiß warum — er auch nicht.",
+      "stayDays": 3,
+      "cooldownDays": 9,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Thorns Unkraut",
+            "type": "personal",
+            "priority": "medium",
+            "lore": "Quest von Thorn · 1/1 · 1/1",
+            "rewards": {
+              "xp": 20,
+              "gold": 12
+            },
+            "vars": {
+              "quote": "Unkraut ist hartnäckig. Schlechte Gewohnheiten auch. Beide muss man an der Wurzel packen.",
+              "task": "Thorn jätet Unkraut. Heute jätest du.",
+              "realWorldTask": "Identifiziere eine schlechte Gewohnheit und ersetze sie heute bewusst durch eine bessere",
+              "difficulty": "intermediate"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "bote-swift",
+      "portrait": null,
+      "rarity": "common",
+      "spawnWeight": 50,
+      "cooldownHours": 48,
+      "departureDurationHours": 72,
+      "maxChainsPerVisit": 1,
+      "greeting": "Keine Zeit! Muss weiter! Hier — nimm das — mach das — tschüss!",
+      "name": "Bote Swift",
+      "emoji": null,
+      "title": "Der Windläufer",
+      "description": "Schnellster Bote des Turms. Hat noch nie eine vollständige Konversation geführt.",
+      "stayDays": 1,
+      "cooldownDays": 7,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Swifts Sprint",
+            "type": "fitness",
+            "priority": "low",
+            "lore": "Quest von Swift · 1/1 · 1/1",
+            "rewards": {
+              "xp": 15,
+              "gold": 8
+            },
+            "vars": {
+              "quote": "Schnell ist gut! Schneller ist besser! Am schnellsten ist... wahrscheinlich gefährlich!",
+              "task": "Swift will dass du dich bewegst. Sofort. Jetzt. LOS.",
+              "realWorldTask": "10 Minuten HIIT oder Sprint-Intervalle — 30 Sek schnell, 30 Sek Pause, repeat",
+              "difficulty": "starter"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "waescherin-agnes",
+      "portrait": null,
+      "rarity": "common",
+      "spawnWeight": 40,
+      "cooldownHours": 48,
+      "departureDurationHours": 72,
+      "maxChainsPerVisit": 1,
+      "greeting": "Schmutzige Wäsche? Schmutzige Geheimnisse? Ich wasche beides. Diskret.",
+      "name": "Wäscherin Agnes",
+      "emoji": null,
+      "title": "Die Reinliche",
+      "description": "Wäscht Wäsche und Reputationen. Beides braucht heißes Wasser.",
+      "stayDays": 2,
+      "cooldownDays": 9,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Agnes' Waschtag",
+            "type": "personal",
+            "priority": "low",
+            "lore": "Quest von Agnes · 1/1 · 1/1",
+            "rewards": {
+              "xp": 12,
+              "gold": 8
+            },
+            "vars": {
+              "quote": "Saubere Kleidung ist keine Option. Es ist Zivilisation.",
+              "task": "Agnes duldet keine Schmutzwäsche. Weder echte noch metaphorische.",
+              "realWorldTask": "Wäsche waschen, zusammenlegen UND wegräumen. Ja, auch wegräumen. Der schwierigste Teil.",
+              "difficulty": "starter"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "schmied-vulkan",
+      "portrait": null,
+      "rarity": "uncommon",
+      "spawnWeight": 28,
+      "cooldownHours": 72,
+      "departureDurationHours": 72,
+      "maxChainsPerVisit": 1,
+      "greeting": "Feuer formt Stahl. Herausforderung formt Charakter. Beides tut weh. Beides lohnt sich.",
+      "name": "Schmied Vulkan",
+      "emoji": null,
+      "title": "Der Flammenträger",
+      "description": "Schmiedet nicht nur Metall, sondern auch Willenskraft. Grimvar respektiert ihn. Das sagt alles.",
+      "stayDays": 3,
+      "cooldownDays": 14,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Vulkans Esse",
+            "type": "fitness",
+            "priority": "medium",
+            "lore": "Quest von Vulkan · 1/1 · 1/2",
+            "rewards": {
+              "xp": 25,
+              "gold": 14
+            },
+            "vars": {
+              "quote": "Der Amboss fragt nicht ob du bereit bist. Er wartet einfach bis du zuschlagen.",
+              "task": "Vulkan fordert Kraft. Nicht die physische — die andere. Die die zählt.",
+              "realWorldTask": "Krafttraining: 3 Sätze Liegestützen, Squats, und Planks — bis zum Muskelversagen",
+              "difficulty": "intermediate"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Gehärteter Stahl",
+            "type": "personal",
+            "priority": "high",
+            "lore": "Quest von Vulkan · 1/1 · 2/2",
+            "rewards": {
+              "xp": 35,
+              "gold": 22
+            },
+            "vars": {
+              "quote": "Stahl der nie im Feuer war, bricht beim ersten Schlag. Bist du Stahl oder Glas?",
+              "task": "Vulkan testet deine Belastbarkeit. Nicht physisch — mental.",
+              "realWorldTask": "Tu etwas Unbequemes das dich langfristig stärker macht: schwieriges Gespräch, Bewerbung, Grenze setzen",
+              "difficulty": "advanced"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "sterndeuterin-nova",
+      "portrait": null,
+      "rarity": "uncommon",
+      "spawnWeight": 25,
+      "cooldownHours": 72,
+      "departureDurationHours": 72,
+      "maxChainsPerVisit": 1,
+      "greeting": "Dein Horoskop ist irrelevant. Deine Entscheidungen nicht. Lass uns über Letzteres reden.",
+      "name": "Sterndeuterin Nova",
+      "emoji": null,
+      "title": "Die Anti-Astrologin",
+      "description": "Kennt jedes Sternbild. Glaubt an keins. Sagt Zukunft vorher basierend auf Verhalten, nicht Planeten.",
+      "stayDays": 2,
+      "cooldownDays": 14,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Novas Vorhersage",
+            "type": "personal",
+            "priority": "medium",
+            "lore": "Quest von Nova · 1/1 · 1/1",
+            "rewards": {
+              "xp": 25,
+              "gold": 15
+            },
+            "vars": {
+              "quote": "Die beste Vorhersage für morgen ist was du heute tust. Keine Sterne nötig.",
+              "task": "Nova sagt dir was passiert wenn du so weitermachst wie bisher. Keine Sterne. Nur Logik.",
+              "realWorldTask": "Projiziere: Wenn du die nächsten 90 Tage genau so weitermachst wie jetzt — wo stehst du dann? Schreib es auf.",
+              "difficulty": "intermediate"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "sammler-magpie",
+      "portrait": null,
+      "rarity": "uncommon",
+      "spawnWeight": 28,
+      "cooldownHours": 72,
+      "departureDurationHours": 72,
+      "maxChainsPerVisit": 1,
+      "greeting": "Ooh! Glänzend! Ist das deins? War das deins? Es ist meins jetzt. Nein, Spaß. Vielleicht.",
+      "name": "Sammler Magpie",
+      "emoji": null,
+      "title": "Der Kuriositätenjäger",
+      "description": "Sammelt alles was glänzt, klingt oder interessant riecht. Sein Rucksack widerspricht der Physik.",
+      "stayDays": 3,
+      "cooldownDays": 12,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Magpies Fundgrube",
+            "type": "personal",
+            "priority": "low",
+            "lore": "Quest von Magpie · 1/1 · 1/1",
+            "rewards": {
+              "xp": 18,
+              "gold": 10
+            },
+            "vars": {
+              "quote": "Manche nennen es Chaos. Ich nenne es eine Sammlung ohne Index.",
+              "task": "Magpie will dass du dein eigenes Chaos ordnest.",
+              "realWorldTask": "Räume eine Schublade, einen Schrank oder einen digitalen Ordner komplett aus und organisiere ihn neu",
+              "difficulty": "starter"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "botanikerin-fern",
+      "portrait": null,
+      "rarity": "rare",
+      "spawnWeight": 16,
+      "cooldownHours": 120,
+      "departureDurationHours": 48,
+      "maxChainsPerVisit": 1,
+      "greeting": "Pflanzen lehren uns alles was wir wissen müssen. Wir hören nur zu schlecht hin.",
+      "name": "Botanikerin Fern",
+      "emoji": null,
+      "title": "Die Grüne Weisheit",
+      "description": "Studiert Pflanzen seit 30 Jahren. Die Pflanzen haben sie zurückstudiert. Es herrscht gegenseitiger Respekt.",
+      "stayDays": 2,
+      "cooldownDays": 18,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Ferns Lektion",
+            "type": "learning",
+            "priority": "medium",
+            "lore": "Quest von Fern · 1/1 · 1/2",
+            "rewards": {
+              "xp": 30,
+              "gold": 18
+            },
+            "vars": {
+              "quote": "Bäume wachsen langsam und leben Jahrhunderte. Menschen wachsen schnell und vergessen es sofort. Sei mehr Baum.",
+              "task": "Fern lehrt Geduld durch Beobachtung.",
+              "realWorldTask": "Geh raus und beobachte die Natur 20 Minuten — beschreibe 5 Dinge die dir zum ersten Mal auffallen",
+              "difficulty": "intermediate"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Die Wurzeln",
+            "type": "personal",
+            "priority": "high",
+            "lore": "Quest von Fern · 1/1 · 2/2",
+            "rewards": {
+              "xp": 40,
+              "gold": 25
+            },
+            "vars": {
+              "quote": "Ein Baum ohne Wurzeln fällt beim ersten Wind. Was sind deine Wurzeln?",
+              "task": "Fern stellt die tiefere Frage.",
+              "realWorldTask": "Reflektiere: Was gibt dir Halt? Wer sind die Menschen die dich tragen? Melde dich bei einem davon.",
+              "difficulty": "advanced"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "erfinder-tesla",
+      "portrait": null,
+      "rarity": "rare",
+      "spawnWeight": 15,
+      "cooldownHours": 120,
+      "departureDurationHours": 48,
+      "maxChainsPerVisit": 1,
+      "greeting": "Meine neueste Erfindung funktioniert! Größtenteils. Der Teil der nicht funktioniert ist... aufregend.",
+      "name": "Erfinder Tesla",
+      "emoji": null,
+      "title": "Der Visionär",
+      "description": "Hat 47 Patente. 45 davon funktionieren. Die anderen zwei sind 'konzeptionell herausfordernd'.",
+      "stayDays": 2,
+      "cooldownDays": 20,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Teslas Prototyp",
+            "type": "learning",
+            "priority": "high",
+            "lore": "Quest von Tesla · 1/1 · 1/2",
+            "rewards": {
+              "xp": 35,
+              "gold": 22
+            },
+            "vars": {
+              "quote": "Innovation ist nicht 'etwas Neues machen'. Es ist 'etwas Bestehendes besser verstehen'. Dann mach es trotzdem neu.",
+              "task": "Tesla hat eine Idee. Du bist der Prototyp.",
+              "realWorldTask": "Lerne ein neues Tool oder eine Technologie und bau damit etwas Kleines in 1 Stunde",
+              "difficulty": "advanced"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Version 2.0",
+            "type": "learning",
+            "priority": "high",
+            "lore": "Quest von Tesla · 1/1 · 2/2",
+            "rewards": {
+              "xp": 42,
+              "gold": 28
+            },
+            "vars": {
+              "quote": "Version 1 war Forschung. Version 2 ist Absicht. Großer Unterschied.",
+              "task": "Tesla will Iteration. Nicht neu anfangen — verbessern.",
+              "realWorldTask": "Nimm was du gestern gebaut hast und verbessere es. Dokumentiere was du geändert hast und warum.",
+              "difficulty": "advanced"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "richterin-justina",
+      "portrait": null,
+      "rarity": "rare",
+      "spawnWeight": 14,
+      "cooldownHours": 144,
+      "departureDurationHours": 48,
+      "maxChainsPerVisit": 1,
+      "greeting": "Gerechtigkeit ist blind. Ich bin es nicht. Das ist effizienter.",
+      "name": "Richterin Justina",
+      "emoji": null,
+      "title": "Die Waagschale",
+      "description": "Urteilt fair. Urteilt hart. Urteilt immer. Auch beim Frühstück.",
+      "stayDays": 2,
+      "cooldownDays": 22,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Justinas Urteil",
+            "type": "personal",
+            "priority": "high",
+            "lore": "Quest von Justina · 1/1 · 1/2",
+            "rewards": {
+              "xp": 35,
+              "gold": 22
+            },
+            "vars": {
+              "quote": "Sei ehrlich zu dir selbst. Wenn du es nicht bist — wer dann?",
+              "task": "Justina will Rechenschaft. Von dir. Über dich.",
+              "realWorldTask": "Mache eine ehrliche Selbstbewertung: Was läuft gut? Was nicht? Was lügst du dir vor?",
+              "difficulty": "advanced"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Das Urteil",
+            "type": "personal",
+            "priority": "high",
+            "lore": "Quest von Justina · 1/1 · 2/2",
+            "rewards": {
+              "xp": 42,
+              "gold": 28
+            },
+            "vars": {
+              "quote": "Erkenntnis ohne Konsequenz ist Feigheit. Zieh Konsequenzen.",
+              "task": "Justina duldet keine Ausreden. Nur Taten.",
+              "realWorldTask": "Ändere EINE Sache die du bei der Selbstbewertung gefunden hast. Nicht planen — ändern. Heute.",
+              "difficulty": "advanced"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "leuchtturmwaerter-sol",
+      "portrait": null,
+      "rarity": "epic",
+      "spawnWeight": 8,
+      "cooldownHours": 168,
+      "departureDurationHours": 48,
+      "maxChainsPerVisit": 1,
+      "greeting": "Ich habe dreitausend Nächte das Licht am Brennen gehalten. Manche Dinge lernt man nur in der Dunkelheit.",
+      "name": "Leuchtturmwärter Sol",
+      "emoji": null,
+      "title": "Der Lichtbewahrer",
+      "description": "Wacht allein. Seit Jahren. Nicht einsam — er hat die Sterne. Und eine sehr meinungsstarke Möwe.",
+      "stayDays": 2,
+      "cooldownDays": 28,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Sols Wache",
+            "type": "personal",
+            "priority": "high",
+            "lore": "Quest von Sol · 1/1 · 1/3",
+            "rewards": {
+              "xp": 42,
+              "gold": 25
+            },
+            "vars": {
+              "quote": "Die Dunkelheit ist nicht der Feind. Die Dunkelheit zeigt dir wo das Licht fehlt.",
+              "task": "Sol lehrt Ausdauer. Die stille Art.",
+              "realWorldTask": "Mache etwas allein das du normalerweise vermeidest — allein essen gehen, allein spazieren, allein ins Kino",
+              "difficulty": "advanced"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Das Signal",
+            "type": "social",
+            "priority": "high",
+            "lore": "Quest von Sol · 1/1 · 2/3",
+            "rewards": {
+              "xp": 50,
+              "gold": 32
+            },
+            "vars": {
+              "quote": "Ein Leuchtturm leuchtet nicht für sich selbst. Er leuchtet für andere. Was ist dein Licht?",
+              "task": "Sol zeigt dass Alleinsein und Einsamsein verschiedene Dinge sind.",
+              "realWorldTask": "Hilf jemandem der gerade eine schwere Zeit hat — aktiv, nicht nur 'Meld dich wenn du was brauchst'",
+              "difficulty": "advanced"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Morgengrauen",
+            "type": "personal",
+            "priority": "high",
+            "lore": "Quest von Sol · 1/1 · 3/3",
+            "rewards": {
+              "xp": 58,
+              "gold": 38
+            },
+            "vars": {
+              "quote": "Die längste Nacht endet. Immer. Aber jemand muss das Licht am Brennen halten bis es soweit ist.",
+              "task": "Sols letzte Lektion: Durchhalten. Nicht weil es leicht ist.",
+              "realWorldTask": "Steh bei Sonnenaufgang auf. Sieh zu wie es hell wird. Dann leg los mit dem wichtigsten Tag dieser Woche.",
+              "difficulty": "expert"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "puppenmacherin-elara",
+      "portrait": null,
+      "rarity": "epic",
+      "spawnWeight": 7,
+      "cooldownHours": 168,
+      "departureDurationHours": 48,
+      "maxChainsPerVisit": 1,
+      "greeting": "Jeder Mensch ist eine Marionette. Der Unterschied ist ob du deine eigenen Fäden hältst.",
+      "name": "Puppenmacherin Elara",
+      "emoji": null,
+      "title": "Die Fadenzieherin",
+      "description": "Baut Puppen die lebensechter sind als manche Menschen. Unheimlich. Aber die Puppen sind freundlich. Meistens.",
+      "stayDays": 2,
+      "cooldownDays": 30,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Elaras Fäden",
+            "type": "personal",
+            "priority": "high",
+            "lore": "Quest von Elara · 1/1 · 1/2",
+            "rewards": {
+              "xp": 45,
+              "gold": 28
+            },
+            "vars": {
+              "quote": "Wer zieht deine Fäden? Gewohnheit? Angst? Erwartung? Finde es heraus.",
+              "task": "Elara zeigt dir deine unsichtbaren Fäden.",
+              "realWorldTask": "Identifiziere 3 Gewohnheiten oder Verhaltensweisen die du tust weil du 'musst' — nicht weil du willst. Hinterfrage jede.",
+              "difficulty": "advanced"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Die eigenen Fäden",
+            "type": "boss",
+            "priority": "high",
+            "lore": "Quest von Elara · 1/1 · 2/2",
+            "rewards": {
+              "xp": 60,
+              "gold": 40
+            },
+            "vars": {
+              "quote": "Einen Faden durchschneiden ist leicht. Sich danach nicht fallen lassen — das ist die Kunst.",
+              "task": "Elara gibt dir die Schere. Was du damit machst ist deine Entscheidung.",
+              "realWorldTask": "Ändere oder beende eine Sache in deinem Leben die du nur aus Gewohnheit oder Pflichtgefühl machst — nicht mehr",
+              "difficulty": "expert"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "wanderer-nobody",
+      "portrait": null,
+      "rarity": "legendary",
+      "spawnWeight": 2,
+      "cooldownHours": 720,
+      "departureDurationHours": 36,
+      "maxChainsPerVisit": 1,
+      "greeting": "Mein Name? Unwichtig. Dein Name? Auch. Was wir TUN — das zählt.",
+      "name": "Der Namenlose",
+      "emoji": null,
+      "title": "Der Wanderer ohne Geschichte",
+      "description": "Niemand weiß woher er kommt. Niemand weiß wohin er geht. Er hinterlässt keine Spuren. Nur veränderte Menschen.",
+      "stayDays": 1,
+      "cooldownDays": 50,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Die erste Wahrheit",
+            "type": "personal",
+            "priority": "high",
+            "lore": "Quest des Namenlosen · 1/1 · 1/3",
+            "rewards": {
+              "xp": 55,
+              "gold": 35
+            },
+            "vars": {
+              "quote": "Du trägst mehr als du zeigst. Leg etwas ab.",
+              "task": "Der Namenlose sagt drei Worte. Sie treffen.",
+              "realWorldTask": "Schreibe die eine Sache auf die dich am meisten belastet. Sag sie laut. Dann entscheide was du damit tust.",
+              "difficulty": "expert"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Der Weg",
+            "type": "fitness",
+            "priority": "high",
+            "lore": "Quest des Namenlosen · 1/1 · 2/3",
+            "rewards": {
+              "xp": 65,
+              "gold": 42
+            },
+            "vars": {
+              "quote": "Geh. Nicht weil du musst. Nicht weil du willst. Weil dein Körper es braucht und dein Kopf es verdient.",
+              "task": "Der Namenlose geht. Du gehst mit. Schweigend.",
+              "realWorldTask": "60 Minuten gehen. Kein Ziel. Kein Podcast. Kein Telefon. Nur du und der Weg.",
+              "difficulty": "expert"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Das Geschenk",
+            "type": "social",
+            "priority": "high",
+            "lore": "Quest des Namenlosen · 1/1 · 3/3",
+            "rewards": {
+              "xp": 80,
+              "gold": 55
+            },
+            "vars": {
+              "quote": "Das wertvollste was du jemandem geben kannst ist deine Zeit. Nicht dein Geld. Nicht deinen Rat. Deine Zeit.",
+              "task": "Der Namenlose verschwindet wie er kam. Aber seine letzte Aufgabe bleibt.",
+              "realWorldTask": "Schenke jemandem 2 Stunden deiner ungeteilten Aufmerksamkeit. Kein Handy. Kein Nebenbei. Nur für diese Person da sein.",
+              "difficulty": "expert"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "baecker-fritz",
+      "portrait": null,
+      "rarity": "common",
+      "spawnWeight": 50,
+      "cooldownHours": 48,
+      "departureDurationHours": 72,
+      "maxChainsPerVisit": 1,
+      "greeting": "Frisches Brot! Na gut, halbfrisch. Aber der Rat ist frisch!",
+      "name": "Bäcker Fritz",
+      "emoji": null,
+      "title": "Der Teigmeister",
+      "description": "Bäckt seit 25 Jahren. Sein Sauerteig ist älter als die meisten Wanderer.",
+      "stayDays": 3,
+      "cooldownDays": 8,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Frühaufsteher",
+            "type": "personal",
+            "priority": "low",
+            "lore": "Quest von Fritz · 1/1 · 1/1",
+            "rewards": {
+              "xp": 15,
+              "gold": 10
+            },
+            "vars": {
+              "quote": "Der Teig wartet nicht. Das Leben auch nicht. Steh auf.",
+              "task": "Fritz beginnt seine Arbeit um 4 Uhr. Du fängst etwas bescheidener an.",
+              "realWorldTask": "Steh morgen 30 Minuten früher auf als normal und nutze die extra Zeit produktiv",
+              "difficulty": "starter"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "haushalterin-magda",
+      "portrait": null,
+      "rarity": "common",
+      "spawnWeight": 45,
+      "cooldownHours": 48,
+      "departureDurationHours": 72,
+      "maxChainsPerVisit": 1,
+      "greeting": "Chaos. Überall Chaos. Das ändert sich. Jetzt.",
+      "name": "Haushälterin Magda",
+      "emoji": null,
+      "title": "Die Ordnungsgeberin",
+      "description": "Ihr Haus ist makellos. Ihre Erwartungen auch. Enttäusch sie nicht.",
+      "stayDays": 2,
+      "cooldownDays": 9,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Magdas Inspektion",
+            "type": "personal",
+            "priority": "medium",
+            "lore": "Quest von Magda · 1/1 · 1/1",
+            "rewards": {
+              "xp": 20,
+              "gold": 12
+            },
+            "vars": {
+              "quote": "Ein sauberes Zuhause ist ein sauberer Geist. Deiner hat... Potenzial.",
+              "task": "Magda inspiziert. Magda urteilt. Magda hat immer recht.",
+              "realWorldTask": "Kompletter Deep-Clean einer Zone: Küche ODER Bad ODER Schlafzimmer — richtig gründlich",
+              "difficulty": "intermediate"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "laternenanzuender-pip",
+      "portrait": null,
+      "rarity": "common",
+      "spawnWeight": 45,
+      "cooldownHours": 48,
+      "departureDurationHours": 72,
+      "maxChainsPerVisit": 1,
+      "greeting": "Jede Laterne die ich anzünde macht die Welt ein bisschen heller. Manchmal reicht ein bisschen.",
+      "name": "Laternenanzünder Pip",
+      "emoji": null,
+      "title": "Der kleine Lichtbringer",
+      "description": "Klein. Jung. Unerschütterlich optimistisch. Das letzte davon ist am bemerkenswertesten.",
+      "stayDays": 3,
+      "cooldownDays": 8,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Ein Licht für jemanden",
+            "type": "social",
+            "priority": "low",
+            "lore": "Quest von Pip · 1/1 · 1/1",
+            "rewards": {
+              "xp": 15,
+              "gold": 8
+            },
+            "vars": {
+              "quote": "Du musst nicht die Sonne sein. Eine Kerze reicht. Manchmal reicht ein Streichholz.",
+              "task": "Pip will dass du jemandem den Tag erhellst.",
+              "realWorldTask": "Mach jemandem eine kleine Freude: Kompliment, Kaffee ausgeben, Tür aufhalten, Nachricht schreiben",
+              "difficulty": "starter"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "architektin-iris",
+      "portrait": null,
+      "rarity": "uncommon",
+      "spawnWeight": 28,
+      "cooldownHours": 72,
+      "departureDurationHours": 72,
+      "maxChainsPerVisit": 1,
+      "greeting": "Struktur ist Freiheit. Klingt paradox? Bau ein Haus ohne Fundament und du verstehst.",
+      "name": "Architektin Iris",
+      "emoji": null,
+      "title": "Die Strukturgeberin",
+      "description": "Plant alles. Baut wenig. Aber was sie baut, steht für immer.",
+      "stayDays": 3,
+      "cooldownDays": 14,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Das Fundament",
+            "type": "personal",
+            "priority": "medium",
+            "lore": "Quest von Iris · 1/1 · 1/2",
+            "rewards": {
+              "xp": 22,
+              "gold": 14
+            },
+            "vars": {
+              "quote": "Bevor du baust, planst du. Bevor du planst, denkst du. Die meisten überspringen Schritt zwei.",
+              "task": "Iris will einen Bauplan. Nicht für ein Haus — für deine Woche.",
+              "realWorldTask": "Plane deine nächste Woche strukturiert: Zeitblöcke, Prioritäten, Puffer für Unerwartetes",
+              "difficulty": "intermediate"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Der Grundriss",
+            "type": "personal",
+            "priority": "high",
+            "lore": "Quest von Iris · 1/1 · 2/2",
+            "rewards": {
+              "xp": 32,
+              "gold": 20
+            },
+            "vars": {
+              "quote": "Ein guter Plan überlebt die Realität. Ein großartiger Plan passt sich ihr an.",
+              "task": "Iris will sehen ob dein Plan funktioniert hat. Und was du gelernt hast wenn nicht.",
+              "realWorldTask": "Review deiner Wochenplanung: Was hat funktioniert? Was nicht? Passe den Plan für nächste Woche an.",
+              "difficulty": "advanced"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "gaukler-jest",
+      "portrait": null,
+      "rarity": "uncommon",
+      "spawnWeight": 30,
+      "cooldownHours": 72,
+      "departureDurationHours": 72,
+      "maxChainsPerVisit": 1,
+      "greeting": "Lachen ist die beste Medizin! Außer bei Knochenbrüchen. Da empfehle ich einen Heiler.",
+      "name": "Gaukler Jest",
+      "emoji": null,
+      "title": "Der Spaßmacher",
+      "description": "Bringt jeden zum Lachen. Sogar die Stille. Was bemerkenswert ist, denn die Stille lacht nie.",
+      "stayDays": 3,
+      "cooldownDays": 12,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Jests Auftrag",
+            "type": "social",
+            "priority": "low",
+            "lore": "Quest von Jest · 1/1 · 1/1",
+            "rewards": {
+              "xp": 18,
+              "gold": 12
+            },
+            "vars": {
+              "quote": "Das Leben ist zu kurz für schlechte Laune. Und zu lang um sie nicht gelegentlich zu haben. Der Trick: Timing.",
+              "task": "Jest will dass du jemanden zum Lachen bringst. Echt lachen. Nicht höflich.",
+              "realWorldTask": "Bring heute mindestens eine Person zum ehrlichen Lachen — Witz, lustige Geschichte, albernes Meme",
+              "difficulty": "starter"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "mentor-grau",
+      "portrait": null,
+      "rarity": "uncommon",
+      "spawnWeight": 25,
+      "cooldownHours": 72,
+      "departureDurationHours": 72,
+      "maxChainsPerVisit": 1,
+      "greeting": "Ich war mal wo du jetzt bist. Deshalb bin ich hier. Nicht um zu predigen — um zuzuhören.",
+      "name": "Mentor Grau",
+      "emoji": null,
+      "title": "Der Erfahrene",
+      "description": "Hat alle Fehler schon gemacht. Zweimal. Spart dir die Hälfte.",
+      "stayDays": 3,
+      "cooldownDays": 14,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Graus Rat",
+            "type": "personal",
+            "priority": "medium",
+            "lore": "Quest von Grau · 1/1 · 1/2",
+            "rewards": {
+              "xp": 25,
+              "gold": 15
+            },
+            "vars": {
+              "quote": "Der beste Rat kommt von Leuten die die gleichen Fehler gemacht haben. Nur halt früher.",
+              "task": "Grau teilt eine Lektion. Du entscheidest ob du sie annimmst.",
+              "realWorldTask": "Sprich mit jemandem der mehr Erfahrung hat als du in einem Bereich der dir wichtig ist. Hör zu.",
+              "difficulty": "intermediate"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Weitergeben",
+            "type": "social",
+            "priority": "medium",
+            "lore": "Quest von Grau · 1/1 · 2/2",
+            "rewards": {
+              "xp": 30,
+              "gold": 18
+            },
+            "vars": {
+              "quote": "Wissen das du behältst, stirbt mit dir. Wissen das du teilst, lebt weiter.",
+              "task": "Grau will dass du weitergibst was du gelernt hast.",
+              "realWorldTask": "Hilf jemandem der weniger Erfahrung hat als du — erkläre, zeige, teile dein Wissen",
+              "difficulty": "intermediate"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "jongleurin-luna",
+      "portrait": null,
+      "rarity": "uncommon",
+      "spawnWeight": 28,
+      "cooldownHours": 72,
+      "departureDurationHours": 72,
+      "maxChainsPerVisit": 1,
+      "greeting": "Balance ist alles. Im Leben wie beim Jonglieren. Und wie beim Jonglieren: manchmal fällt was runter.",
+      "name": "Jongleurin Luna",
+      "emoji": null,
+      "title": "Die Gleichgewichtskünstlerin",
+      "description": "Jongliert mit allem. Bällen, Aufgaben, Erwartungen. Lässt selten etwas fallen. Wenn doch — mit Anmut.",
+      "stayDays": 3,
+      "cooldownDays": 12,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Lunas Balance",
+            "type": "personal",
+            "priority": "medium",
+            "lore": "Quest von Luna · 1/1 · 1/1",
+            "rewards": {
+              "xp": 22,
+              "gold": 14
+            },
+            "vars": {
+              "quote": "Du kannst nicht alles gleichzeitig halten. Du kannst nur entscheiden was zuerst fällt.",
+              "task": "Luna lehrt Priorisierung. Die schmerzhafte Art.",
+              "realWorldTask": "Liste alle deine aktuellen Verpflichtungen auf. Streiche eine. Ja, eine muss weg.",
+              "difficulty": "intermediate"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "alchemist-gold",
+      "portrait": null,
+      "rarity": "rare",
+      "spawnWeight": 15,
+      "cooldownHours": 120,
+      "departureDurationHours": 48,
+      "maxChainsPerVisit": 1,
+      "greeting": "Gold aus Blei? Kinderspiel. Wachstum aus Stagnation? DAS ist echte Alchemie.",
+      "name": "Alchemist Gold",
+      "emoji": null,
+      "title": "Der Wandlungskünstler",
+      "description": "Verwandelt alles. Außer sich selbst. Daran arbeitet er noch.",
+      "stayDays": 2,
+      "cooldownDays": 18,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Golds Transmutation",
+            "type": "personal",
+            "priority": "high",
+            "lore": "Quest von Gold · 1/1 · 1/2",
+            "rewards": {
+              "xp": 35,
+              "gold": 22
+            },
+            "vars": {
+              "quote": "Veränderung beginnt nicht mit Motivation. Sie beginnt mit Unzufriedenheit. Bist du unzufrieden genug?",
+              "task": "Gold zeigt dir was sich ändern muss.",
+              "realWorldTask": "Identifiziere einen Bereich deines Lebens der stagniert. Schreibe 3 konkrete Schritte auf um ihn zu verändern.",
+              "difficulty": "advanced"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Das neue Element",
+            "type": "personal",
+            "priority": "high",
+            "lore": "Quest von Gold · 1/1 · 2/2",
+            "rewards": {
+              "xp": 42,
+              "gold": 28
+            },
+            "vars": {
+              "quote": "Transmutation braucht Energie. Die Energie ist da. Du musst sie nur umlenken.",
+              "task": "Gold will Ergebnisse. Konkret. Messbar. Jetzt.",
+              "realWorldTask": "Mache den ersten Schritt deines Plans von gestern. Nicht den leichtesten — den wichtigsten.",
+              "difficulty": "advanced"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "traumdeuterin-morphea",
+      "portrait": null,
+      "rarity": "rare",
+      "spawnWeight": 14,
+      "cooldownHours": 144,
+      "departureDurationHours": 48,
+      "maxChainsPerVisit": 1,
+      "greeting": "Du hast letzte Nacht geträumt. Ja, ich weiß wovon. Nein, ich sage es nicht. Noch nicht.",
+      "name": "Traumdeuterin Morphea",
+      "emoji": null,
+      "title": "Die Nachtwandlerin",
+      "description": "Liest Träume. Schreibt sie um. Hat einmal einen Albtraum in einen angenehmen Tagtraum verwandelt. Der Patient war... dankbar. Meistens.",
+      "stayDays": 2,
+      "cooldownDays": 20,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Morpheas Vision",
+            "type": "personal",
+            "priority": "medium",
+            "lore": "Quest von Morphea · 1/1 · 1/2",
+            "rewards": {
+              "xp": 30,
+              "gold": 18
+            },
+            "vars": {
+              "quote": "Träume sind Nachrichten die du dir selbst schickst. Meistens in einer Sprache die du vergessen hast.",
+              "task": "Morphea will dass du zuhörst. Nicht anderen — dir selbst.",
+              "realWorldTask": "Schreibe morgen direkt nach dem Aufwachen auf woran du dich erinnerst — Träume, Gedanken, Gefühle. 10 Minuten.",
+              "difficulty": "intermediate"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Der wache Traum",
+            "type": "personal",
+            "priority": "high",
+            "lore": "Quest von Morphea · 1/1 · 2/2",
+            "rewards": {
+              "xp": 38,
+              "gold": 25
+            },
+            "vars": {
+              "quote": "Die mutigsten Dinge passieren nicht im Schlaf. Aber die Ideen dafür — die schon.",
+              "task": "Morphea gibt dir einen wachen Traum. Eine Vision davon was sein könnte.",
+              "realWorldTask": "Schreibe in 20 Minuten dein ideales Leben in 5 Jahren auf. Detailliert. Wo, was, mit wem, wie.",
+              "difficulty": "advanced"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "steinmetz-granite",
+      "portrait": null,
+      "rarity": "rare",
+      "spawnWeight": 16,
+      "cooldownHours": 96,
+      "departureDurationHours": 72,
+      "maxChainsPerVisit": 1,
+      "greeting": "Stein ist geduldig. Ich bin es nicht. Fang an.",
+      "name": "Steinmetz Granite",
+      "emoji": null,
+      "title": "Der Formgeber",
+      "description": "Meißelt Stein wie andere Butter schneiden. Seine Skulpturen sind bekannt. Sein Temperament gefürchtet.",
+      "stayDays": 2,
+      "cooldownDays": 18,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Granites Aufgabe",
+            "type": "personal",
+            "priority": "medium",
+            "lore": "Quest von Granite · 1/1 · 1/2",
+            "rewards": {
+              "xp": 28,
+              "gold": 16
+            },
+            "vars": {
+              "quote": "Jeder Stein hat eine Skulptur in sich. Du musst nur alles entfernen was nicht dazugehört.",
+              "task": "Granite lehrt Reduktion. Weniger ist mehr. Viel weniger ist viel mehr.",
+              "realWorldTask": "Lösche 20 Apps von deinem Handy die du im letzten Monat nicht benutzt hast",
+              "difficulty": "intermediate"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Die Form",
+            "type": "personal",
+            "priority": "high",
+            "lore": "Quest von Granite · 1/1 · 2/2",
+            "rewards": {
+              "xp": 38,
+              "gold": 22
+            },
+            "vars": {
+              "quote": "Was übrig bleibt wenn du alles Unnötige entfernst — das bist du.",
+              "task": "Granite meißelt weiter. Diesmal an deinem Zeitplan.",
+              "realWorldTask": "Streiche 3 regelmäßige Verpflichtungen die dir nichts geben. Sag ab. Befreie Zeit.",
+              "difficulty": "advanced"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "kartografin-mappe",
+      "portrait": null,
+      "rarity": "rare",
+      "spawnWeight": 15,
+      "cooldownHours": 120,
+      "departureDurationHours": 48,
+      "maxChainsPerVisit": 1,
+      "greeting": "Ich zeichne Karten von Orten die es noch nicht gibt. Manche nennen es Wahnsinn. Ich nenne es Planung.",
+      "name": "Kartografin Mappe",
+      "emoji": null,
+      "title": "Die Zukunftszeichnerin",
+      "description": "Ihre Karten zeigen nicht wo du warst. Sie zeigen wo du hin könntest. Meistens in die richtige Richtung.",
+      "stayDays": 2,
+      "cooldownDays": 20,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Mappes Zukunft",
+            "type": "personal",
+            "priority": "high",
+            "lore": "Quest von Mappe · 1/1 · 1/1",
+            "rewards": {
+              "xp": 35,
+              "gold": 22
+            },
+            "vars": {
+              "quote": "Die Zukunft ist kein Ort an dem du ankommst. Sie ist ein Ort den du baust. Fang an zu bauen.",
+              "task": "Mappe zeichnet deine Zukunftskarte. Du entscheidest die Route.",
+              "realWorldTask": "Erstelle eine Roadmap für ein persönliches Ziel: 30-60-90 Tage Meilensteine",
+              "difficulty": "advanced"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "strategin-athena",
+      "portrait": null,
+      "rarity": "epic",
+      "spawnWeight": 8,
+      "cooldownHours": 168,
+      "departureDurationHours": 48,
+      "maxChainsPerVisit": 1,
+      "greeting": "Strategie ist nicht Planung. Planung ist was du tust BEVOR der Plan scheitert. Strategie ist danach.",
+      "name": "Strategin Athena",
+      "emoji": null,
+      "title": "Die Schlachtenkdenkerin",
+      "description": "Hat nie eine Schlacht verloren. Hat auch nie eine gewonnen. Sie beendet Konflikte bevor sie beginnen.",
+      "stayDays": 2,
+      "cooldownDays": 25,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Athenas Schachzug",
+            "type": "learning",
+            "priority": "high",
+            "lore": "Quest von Athena · 1/1 · 1/2",
+            "rewards": {
+              "xp": 45,
+              "gold": 28
+            },
+            "vars": {
+              "quote": "Denke drei Schritte voraus. Dann vergiss die drei Schritte und reagiere auf das was wirklich passiert.",
+              "task": "Athena lehrt strategisches Denken. Nicht theoretisch — praktisch.",
+              "realWorldTask": "Analysiere ein Problem das du hast aus 3 verschiedenen Perspektiven. Schreibe für jede einen Lösungsansatz.",
+              "difficulty": "advanced"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Der Gegenzug",
+            "type": "boss",
+            "priority": "high",
+            "lore": "Quest von Athena · 1/1 · 2/2",
+            "rewards": {
+              "xp": 58,
+              "gold": 38
+            },
+            "vars": {
+              "quote": "Der beste Zug ist der, den dein Gegner nicht erwartet. Dein Gegner bist meistens du selbst.",
+              "task": "Athena fordert den entscheidenden Zug.",
+              "realWorldTask": "Mache heute die eine Sache die du seit Wochen vor dir herschiebst. Die große. Die unbequeme. Jetzt.",
+              "difficulty": "expert"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "geschichtsschreiber-chronos",
+      "portrait": null,
+      "rarity": "epic",
+      "spawnWeight": 7,
+      "cooldownHours": 168,
+      "departureDurationHours": 48,
+      "maxChainsPerVisit": 1,
+      "greeting": "Geschichte wiederholt sich nicht. Aber sie reimt sich. Und dein Reim klingt vertraut.",
+      "name": "Geschichtsschreiber Chronos",
+      "emoji": null,
+      "title": "Der Musterseher",
+      "description": "Sieht Muster in allem. In der Geschichte, in Menschen, in Wetterdaten. Letzteres ist weniger nützlich.",
+      "stayDays": 2,
+      "cooldownDays": 28,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Chronos' Muster",
+            "type": "personal",
+            "priority": "high",
+            "lore": "Quest von Chronos · 1/1 · 1/2",
+            "rewards": {
+              "xp": 42,
+              "gold": 28
+            },
+            "vars": {
+              "quote": "Du wiederholst die gleichen Fehler. Das ist nicht dumm — das ist menschlich. Aufhören damit ist göttlich.",
+              "task": "Chronos zeigt dir deine Muster. Die bequemen und die zerstörerischen.",
+              "realWorldTask": "Identifiziere ein sich wiederholendes Problem in deinem Leben. Wann passiert es? Was triggert es? Schreib das Muster auf.",
+              "difficulty": "advanced"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Neues Kapitel",
+            "type": "personal",
+            "priority": "high",
+            "lore": "Quest von Chronos · 1/1 · 2/2",
+            "rewards": {
+              "xp": 55,
+              "gold": 35
+            },
+            "vars": {
+              "quote": "Das Muster zu kennen ist Schritt eins. Es zu brechen ist Schritt zwei. Schritt drei ist: nicht zurückzufallen.",
+              "task": "Chronos will dass du das Muster brichst. Einmal. Bewusst. Heute.",
+              "realWorldTask": "Wenn dein Trigger-Moment heute kommt: reagiere ANDERS als sonst. Bewusst. Dokumentiere was passiert.",
+              "difficulty": "expert"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "heilerin-grace",
+      "portrait": null,
+      "rarity": "epic",
+      "spawnWeight": 9,
+      "cooldownHours": 168,
+      "departureDurationHours": 48,
+      "maxChainsPerVisit": 1,
+      "greeting": "Heilen beginnt nicht mit Medizin. Es beginnt mit Ehrlichkeit.",
+      "name": "Heilerin Grace",
+      "emoji": null,
+      "title": "Die Sanfte Kraft",
+      "description": "Heilt nicht den Körper — heilt die Dinge die den Körper krank machen. Stress, Schuld, Vernachlässigung.",
+      "stayDays": 2,
+      "cooldownDays": 25,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Graces Diagnose",
+            "type": "personal",
+            "priority": "high",
+            "lore": "Quest von Grace · 1/1 · 1/2",
+            "rewards": {
+              "xp": 40,
+              "gold": 25
+            },
+            "vars": {
+              "quote": "Du vernachlässigst dich nicht aus Zeitgmangel. Du vernachlässigst dich weil du es dir nicht wert bist. Das ändert sich. Jetzt.",
+              "task": "Grace diagnostiziert. Nicht den Körper — die Gewohnheiten.",
+              "realWorldTask": "Sei heute gut zu dir: Gesund essen, genug trinken, früh schlafen, 30min Bewegung. Alles davon.",
+              "difficulty": "advanced"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Die Heilung",
+            "type": "personal",
+            "priority": "high",
+            "lore": "Quest von Grace · 1/1 · 2/2",
+            "rewards": {
+              "xp": 55,
+              "gold": 35
+            },
+            "vars": {
+              "quote": "Heilung ist kein Event. Es ist ein Prozess. Und der Prozess beginnt mit der Entscheidung dass du es verdienst.",
+              "task": "Grace will Kontinuität. Nicht einen guten Tag — eine gute Woche.",
+              "realWorldTask": "Wiederhole den gesunden Tag von gestern. 5 Tage in Folge. Grace kontrolliert.",
+              "difficulty": "expert"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "zeitungsjunge-max",
+      "portrait": null,
+      "rarity": "common",
+      "spawnWeight": 50,
+      "cooldownHours": 48,
+      "departureDurationHours": 72,
+      "maxChainsPerVisit": 1,
+      "greeting": "Extra! Extra! Du hast Quests zu erledigen! Steht zwar nicht in der Zeitung, aber es stimmt trotzdem!",
+      "name": "Zeitungsjunge Max",
+      "emoji": null,
+      "title": "Der Nachrichtenträger",
+      "description": "Informiert über alles. Versteht die Hälfte. Das reicht meistens.",
+      "stayDays": 2,
+      "cooldownDays": 7,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Informiert bleiben",
+            "type": "learning",
+            "priority": "low",
+            "lore": "Quest von Max · 1/1 · 1/1",
+            "rewards": {
+              "xp": 12,
+              "gold": 8
+            },
+            "vars": {
+              "quote": "Wer nichts liest, weiß nichts. Wer zu viel liest, macht nichts. Finde die Mitte.",
+              "task": "Max will dass du dich informierst. Aber richtig — nicht scrollen.",
+              "realWorldTask": "Lies 15 Minuten echte Nachrichten oder einen Fachartikel — kein Social Media Feed",
+              "difficulty": "starter"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "mutter-erde",
+      "portrait": null,
+      "rarity": "legendary",
+      "spawnWeight": 2,
+      "cooldownHours": 720,
+      "departureDurationHours": 36,
+      "maxChainsPerVisit": 1,
+      "greeting": "Du hast vergessen mich anzurufen. Drei Wochen. Ich hab gezählt.",
+      "name": "Mutter Erde",
+      "emoji": null,
+      "title": "Die Urmutter",
+      "description": "Nicht DIE Mutter Erde. Aber nah dran. Hat diese gewisse 'Warum rufst du nie an'-Energie die nur Mütter perfekt beherrschen.",
+      "stayDays": 1,
+      "cooldownDays": 50,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Der Anruf",
+            "type": "social",
+            "priority": "high",
+            "lore": "Quest von Mutter Erde · 1/1 · 1/3",
+            "rewards": {
+              "xp": 55,
+              "gold": 35
+            },
+            "vars": {
+              "quote": "Ich mache mir Sorgen. Nein, nicht wegen dir — wegen der Welt. Doch, auch wegen dir.",
+              "task": "Mutter Erde will einen Anruf. Nicht morgen. Jetzt.",
+              "realWorldTask": "Ruf deine Mutter an. Oder deinen Vater. Oder die Person die für dich 'Mutter Erde' ist. Mindestens 15 Minuten.",
+              "difficulty": "advanced"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Das Familienessen",
+            "type": "social",
+            "priority": "high",
+            "lore": "Quest von Mutter Erde · 1/1 · 2/3",
+            "rewards": {
+              "xp": 65,
+              "gold": 42
+            },
+            "vars": {
+              "quote": "Am Tisch passiert alles Wichtige. Krisen, Versöhnungen, und das Geheimrezept deiner Oma.",
+              "task": "Mutter Erde will ein Familienessen. Kein Fast Food. Kein Handy. Nur Familie.",
+              "realWorldTask": "Organisiere ein Essen mit deiner Familie. Koche selbst oder geht zusammen essen. Quality Time.",
+              "difficulty": "expert"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Das Erbe",
+            "type": "personal",
+            "priority": "high",
+            "lore": "Quest von Mutter Erde · 1/1 · 3/3",
+            "rewards": {
+              "xp": 80,
+              "gold": 55
+            },
+            "vars": {
+              "quote": "Irgendwann wirst du die Geschichten erzählen. Sammle sie jetzt — solange jemand da ist der sie kennt.",
+              "task": "Mutter Erdes letzte Bitte: Bewahre die Geschichten.",
+              "realWorldTask": "Frag ein älteres Familienmitglied nach einer Geschichte aus der Vergangenheit. Schreib sie auf. Wirklich auf.",
+              "difficulty": "expert"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "meisterkoch-umami",
+      "portrait": null,
+      "rarity": "uncommon",
+      "spawnWeight": 28,
+      "cooldownHours": 72,
+      "departureDurationHours": 72,
+      "maxChainsPerVisit": 1,
+      "greeting": "Dein Gaumen ist wie dein Charakter: ungeschult aber formbar. Lass uns arbeiten.",
+      "name": "Meisterkoch Umami",
+      "emoji": null,
+      "title": "Der Geschmackskünstler",
+      "description": "Kocht mit geschlossenen Augen. Schmeckt Zutaten die es nicht gibt. Sein Essen ist trotzdem hervorragend.",
+      "stayDays": 3,
+      "cooldownDays": 14,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Umamis Lehre",
+            "type": "personal",
+            "priority": "medium",
+            "lore": "Quest von Umami · 1/1 · 1/2",
+            "rewards": {
+              "xp": 22,
+              "gold": 14
+            },
+            "vars": {
+              "quote": "Kochen ist die einzige Kunst die alle Sinne braucht. Und Salz. Immer Salz.",
+              "task": "Umami will dass du kochst. Richtig. Von Grund auf.",
+              "realWorldTask": "Koche ein Gericht das du noch nie gemacht hast. Neues Rezept, neue Zutaten, neues Abenteuer.",
+              "difficulty": "intermediate"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Das Menü",
+            "type": "social",
+            "priority": "medium",
+            "lore": "Quest von Umami · 1/1 · 2/2",
+            "rewards": {
+              "xp": 30,
+              "gold": 18
+            },
+            "vars": {
+              "quote": "Essen allein ist Nahrung. Essen mit anderen ist Kultur. Koch für jemanden.",
+              "task": "Umami will dass du teilst.",
+              "realWorldTask": "Bekoche jemanden — Partner, Freund, Familie, Nachbar. Das Essen ist das Geschenk.",
+              "difficulty": "intermediate"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "bergmann-gruber",
+      "portrait": null,
+      "rarity": "common",
+      "spawnWeight": 45,
+      "cooldownHours": 48,
+      "departureDurationHours": 72,
+      "maxChainsPerVisit": 1,
+      "greeting": "Tief graben. Schätze finden. Nicht aufhören. Das ist mein Job. Und deiner.",
+      "name": "Bergmann Gruber",
+      "emoji": null,
+      "title": "Der Tiefgräber",
+      "description": "Gräbt seit 30 Jahren. Hat noch keinen Schatz gefunden. Findet trotzdem jeden Tag etwas Wertvolles.",
+      "stayDays": 3,
+      "cooldownDays": 8,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Grubers Mine",
+            "type": "learning",
+            "priority": "medium",
+            "lore": "Quest von Gruber · 1/1 · 1/1",
+            "rewards": {
+              "xp": 22,
+              "gold": 12
+            },
+            "vars": {
+              "quote": "An der Oberfläche findest du nur Dreck. Die Schätze liegen tiefer. Immer tiefer.",
+              "task": "Gruber will Tiefgang. Nicht oberflächlich lernen — richtig.",
+              "realWorldTask": "Vertiefe dich 1 Stunde in ein Thema. Nicht googeln-und-weiter — wirklich verstehen, Notizen machen, Zusammenhänge finden.",
+              "difficulty": "intermediate"
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "id": "geschuetzt-erin",
+      "portrait": null,
+      "rarity": "epic",
+      "spawnWeight": 8,
+      "cooldownHours": 168,
+      "departureDurationHours": 48,
+      "maxChainsPerVisit": 1,
+      "greeting": "Grenzen sind keine Mauern. Grenzen sind Türen die DU kontrollierst.",
+      "name": "Grenzwächterin Erin",
+      "emoji": null,
+      "title": "Die Hüterin der Grenzen",
+      "description": "Schützt nicht Territorien — schützt Menschen vor sich selbst. Und vor anderen die zu viel verlangen.",
+      "stayDays": 2,
+      "cooldownDays": 25,
+      "questChains": [
+        [
+          {
+            "template": "npc-quest",
+            "title": "Erins Grenze",
+            "type": "personal",
+            "priority": "high",
+            "lore": "Quest von Erin · 1/1 · 1/2",
+            "rewards": {
+              "xp": 42,
+              "gold": 28
+            },
+            "vars": {
+              "quote": "Nein sagen ist kein Egoismus. Es ist Selbsterhaltung. Und manchmal die netteste Sache die du tun kannst.",
+              "task": "Erin stellt die wichtigste Frage: Wo sind deine Grenzen?",
+              "realWorldTask": "Sage heute zu einer Sache Nein die du normalerweise aus Pflichtgefühl zusagst. Ohne Entschuldigung.",
+              "difficulty": "advanced"
+            }
+          },
+          {
+            "template": "npc-quest",
+            "title": "Der geschützte Raum",
+            "type": "personal",
+            "priority": "high",
+            "lore": "Quest von Erin · 1/1 · 2/2",
+            "rewards": {
+              "xp": 55,
+              "gold": 35
+            },
+            "vars": {
+              "quote": "Jeder verdient einen Raum in dem niemand etwas von ihm will. Schaff dir diesen Raum.",
+              "task": "Erin will dass du dir Zeit nimmst. Nur für dich. Ohne Schuldgefühle.",
+              "realWorldTask": "Blockiere 2 Stunden in deinem Kalender nur für dich. Keine Arbeit, keine Pflichten. Was du willst.",
+              "difficulty": "expert"
+            }
+          }
+        ]
+      ]
     }
   ],
   "specialNpcs": {

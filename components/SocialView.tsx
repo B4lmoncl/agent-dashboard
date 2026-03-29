@@ -1466,7 +1466,7 @@ function MailTab({ apiKey, playerName }: { apiKey: string; playerName: string })
                     setSelectedMail(mail);
                     if (!mail.read) {
                       fetch(`/api/mail/${mail.id}/read`, { method: "POST", headers: getAuthHeaders(apiKey) })
-                        .then(() => { mail.read = true; fetchMail(); })
+                        .then(() => fetchMail())
                         .catch(() => {});
                     }
                   }}

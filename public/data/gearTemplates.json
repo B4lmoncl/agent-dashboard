@@ -14137,18 +14137,44 @@
       "shopHidden": true,
       "affixes": {
         "primary": {
-          "count": [2, 3],
+          "count": [
+            2,
+            3
+          ],
           "pool": [
-            { "stat": "ausdauer", "min": 4, "max": 7 },
-            { "stat": "kraft", "min": 4, "max": 7 },
-            { "stat": "weisheit", "min": 4, "max": 7 }
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            }
           ]
         },
         "minor": {
-          "count": [1, 2],
+          "count": [
+            1,
+            2
+          ],
           "pool": [
-            { "stat": "vitalitaet", "min": 3, "max": 5 },
-            { "stat": "fokus", "min": 3, "max": 5 }
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            }
           ]
         }
       },
@@ -14170,18 +14196,44 @@
       "shopHidden": true,
       "affixes": {
         "primary": {
-          "count": [2, 3],
+          "count": [
+            2,
+            3
+          ],
           "pool": [
-            { "stat": "ausdauer", "min": 4, "max": 7 },
-            { "stat": "kraft", "min": 4, "max": 7 },
-            { "stat": "glueck", "min": 4, "max": 7 }
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 7
+            }
           ]
         },
         "minor": {
-          "count": [1, 2],
+          "count": [
+            1,
+            2
+          ],
           "pool": [
-            { "stat": "tempo", "min": 3, "max": 5 },
-            { "stat": "vitalitaet", "min": 3, "max": 5 }
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            }
           ]
         }
       },
@@ -14208,18 +14260,44 @@
       "shopHidden": true,
       "affixes": {
         "primary": {
-          "count": [2, 3],
+          "count": [
+            2,
+            3
+          ],
           "pool": [
-            { "stat": "weisheit", "min": 4, "max": 7 },
-            { "stat": "ausdauer", "min": 4, "max": 7 },
-            { "stat": "glueck", "min": 4, "max": 7 }
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 7
+            }
           ]
         },
         "minor": {
-          "count": [1, 2],
+          "count": [
+            1,
+            2
+          ],
           "pool": [
-            { "stat": "fokus", "min": 3, "max": 5 },
-            { "stat": "charisma", "min": 3, "max": 5 }
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "charisma",
+              "min": 3,
+              "max": 5
+            }
           ]
         }
       },
@@ -14241,18 +14319,44 @@
       "shopHidden": true,
       "affixes": {
         "primary": {
-          "count": [2, 3],
+          "count": [
+            2,
+            3
+          ],
           "pool": [
-            { "stat": "weisheit", "min": 4, "max": 7 },
-            { "stat": "glueck", "min": 4, "max": 7 },
-            { "stat": "kraft", "min": 4, "max": 7 }
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            }
           ]
         },
         "minor": {
-          "count": [1, 2],
+          "count": [
+            1,
+            2
+          ],
           "pool": [
-            { "stat": "fokus", "min": 3, "max": 5 },
-            { "stat": "tempo", "min": 3, "max": 5 }
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            }
           ]
         }
       },
@@ -14274,18 +14378,44 @@
       "shopHidden": true,
       "affixes": {
         "primary": {
-          "count": [2, 3],
+          "count": [
+            2,
+            3
+          ],
           "pool": [
-            { "stat": "kraft", "min": 4, "max": 7 },
-            { "stat": "ausdauer", "min": 4, "max": 7 },
-            { "stat": "glueck", "min": 4, "max": 7 }
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 7
+            }
           ]
         },
         "minor": {
-          "count": [1, 2],
+          "count": [
+            1,
+            2
+          ],
           "pool": [
-            { "stat": "tempo", "min": 3, "max": 5 },
-            { "stat": "vitalitaet", "min": 3, "max": 5 }
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            }
           ]
         }
       },
@@ -14307,18 +14437,44 @@
       "shopHidden": true,
       "affixes": {
         "primary": {
-          "count": [2, 3],
+          "count": [
+            2,
+            3
+          ],
           "pool": [
-            { "stat": "ausdauer", "min": 4, "max": 7 },
-            { "stat": "kraft", "min": 4, "max": 7 },
-            { "stat": "glueck", "min": 4, "max": 7 }
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 7
+            }
           ]
         },
         "minor": {
-          "count": [1, 2],
+          "count": [
+            1,
+            2
+          ],
           "pool": [
-            { "stat": "tempo", "min": 3, "max": 5 },
-            { "stat": "fokus", "min": 3, "max": 5 }
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            }
           ]
         }
       },
@@ -14345,18 +14501,44 @@
       "shopHidden": true,
       "affixes": {
         "primary": {
-          "count": [2, 3],
+          "count": [
+            2,
+            3
+          ],
           "pool": [
-            { "stat": "kraft", "min": 4, "max": 7 },
-            { "stat": "weisheit", "min": 4, "max": 7 },
-            { "stat": "glueck", "min": 4, "max": 7 }
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 7
+            }
           ]
         },
         "minor": {
-          "count": [1, 2],
+          "count": [
+            1,
+            2
+          ],
           "pool": [
-            { "stat": "tempo", "min": 3, "max": 5 },
-            { "stat": "fokus", "min": 3, "max": 5 }
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            }
           ]
         }
       },
@@ -14378,18 +14560,44 @@
       "shopHidden": true,
       "affixes": {
         "primary": {
-          "count": [2, 3],
+          "count": [
+            2,
+            3
+          ],
           "pool": [
-            { "stat": "ausdauer", "min": 4, "max": 7 },
-            { "stat": "kraft", "min": 4, "max": 7 },
-            { "stat": "weisheit", "min": 4, "max": 7 }
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            }
           ]
         },
         "minor": {
-          "count": [1, 2],
+          "count": [
+            1,
+            2
+          ],
           "pool": [
-            { "stat": "vitalitaet", "min": 3, "max": 5 },
-            { "stat": "charisma", "min": 3, "max": 5 }
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "charisma",
+              "min": 3,
+              "max": 5
+            }
           ]
         }
       },
@@ -14411,18 +14619,44 @@
       "shopHidden": true,
       "affixes": {
         "primary": {
-          "count": [2, 3],
+          "count": [
+            2,
+            3
+          ],
           "pool": [
-            { "stat": "weisheit", "min": 4, "max": 7 },
-            { "stat": "glueck", "min": 4, "max": 7 },
-            { "stat": "kraft", "min": 4, "max": 7 }
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "kraft",
+              "min": 4,
+              "max": 7
+            }
           ]
         },
         "minor": {
-          "count": [1, 2],
+          "count": [
+            1,
+            2
+          ],
           "pool": [
-            { "stat": "charisma", "min": 3, "max": 5 },
-            { "stat": "fokus", "min": 3, "max": 5 }
+            {
+              "stat": "charisma",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            }
           ]
         }
       },
@@ -14449,18 +14683,44 @@
       "shopHidden": true,
       "affixes": {
         "primary": {
-          "count": [2, 3],
+          "count": [
+            2,
+            3
+          ],
           "pool": [
-            { "stat": "glueck", "min": 4, "max": 7 },
-            { "stat": "weisheit", "min": 4, "max": 7 },
-            { "stat": "ausdauer", "min": 4, "max": 7 }
+            {
+              "stat": "glueck",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "weisheit",
+              "min": 4,
+              "max": 7
+            },
+            {
+              "stat": "ausdauer",
+              "min": 4,
+              "max": 7
+            }
           ]
         },
         "minor": {
-          "count": [1, 2],
+          "count": [
+            1,
+            2
+          ],
           "pool": [
-            { "stat": "fokus", "min": 3, "max": 5 },
-            { "stat": "tempo", "min": 3, "max": 5 }
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 5
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 5
+            }
           ]
         }
       },
@@ -14468,6 +14728,786 @@
       "setId": "legendary",
       "flavorText": "Trägt man ihn lang genug, fängt man an, den Riss persönlich zu nehmen. Ob das am Ring liegt oder an einem selbst, ist Gegenstand akademischer Debatte.",
       "binding": "boe"
+    },
+    {
+      "id": "gen-kupferband",
+      "name": "Kupferband",
+      "slot": "ring",
+      "tier": 1,
+      "reqLevel": 1,
+      "rarity": "common",
+      "price": 15,
+      "desc": "Ein schlichter Kupferring. Tut was er soll. Mehr nicht.",
+      "icon": null,
+      "shopHidden": false,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "glueck",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            0
+          ],
+          "pool": []
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "gen-eisenreif",
+      "name": "Eisenreif",
+      "slot": "ring",
+      "tier": 1,
+      "reqLevel": 3,
+      "rarity": "uncommon",
+      "price": 35,
+      "desc": "Etwas schwerer als nötig. Grimvar sagt, das baut Charakter.",
+      "icon": null,
+      "shopHidden": false,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "ausdauer",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "gen-glimmring",
+      "name": "Glimmring",
+      "slot": "ring",
+      "tier": 1,
+      "reqLevel": 5,
+      "rarity": "rare",
+      "price": 80,
+      "desc": "Leuchtet schwach im Dunkeln. Die Feuerwache behauptet, das sei normal. Die Feuerwache lügt.",
+      "icon": null,
+      "shopHidden": false,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "glueck",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "weisheit",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "kraft",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "charisma",
+              "min": 1,
+              "max": 2
+            },
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 2
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "adventurer"
+    },
+    {
+      "id": "gen-mondsilberring",
+      "name": "Mondsilberring",
+      "slot": "ring",
+      "tier": 2,
+      "reqLevel": 9,
+      "rarity": "uncommon",
+      "price": 60,
+      "desc": "Geschmiedet bei Mondlicht. Ob das einen Unterschied macht? Ysolde sagt ja. Grimvar rollt mit den Augen.",
+      "icon": null,
+      "shopHidden": false,
+      "affixes": {
+        "primary": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "glueck",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            0,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "charisma",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "gen-aethersplitterring",
+      "name": "Aethersplitterring",
+      "slot": "ring",
+      "tier": 2,
+      "reqLevel": 11,
+      "rarity": "rare",
+      "price": 150,
+      "desc": "Ein Splitter des Aetherstroms, eingefasst in Stahl. Summt leise. Nervt nach einer Weile.",
+      "icon": null,
+      "shopHidden": false,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "ausdauer",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "tempo",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "dun-schattenband",
+      "name": "Schattenband",
+      "slot": "ring",
+      "tier": 2,
+      "reqLevel": 14,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Gefunden im Sunken Archive. Absorbiert Licht. Und gelegentlich gute Laune.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "glueck",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "kraft",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "weisheit",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 1,
+              "max": 3
+            },
+            {
+              "stat": "charisma",
+              "min": 1,
+              "max": 3
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "veteran"
+    },
+    {
+      "id": "gen-runenring",
+      "name": "Runengravierter Ring",
+      "slot": "ring",
+      "tier": 3,
+      "reqLevel": 17,
+      "rarity": "rare",
+      "price": 250,
+      "desc": "Die Runen bedeuten etwas. Niemand weiß was. Eldric behauptet, es sei eine Einkaufsliste. In einer toten Sprache.",
+      "icon": null,
+      "shopHidden": false,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "glueck",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "ausdauer",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            1
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "charisma",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "rift-echoband",
+      "name": "Echoband des Rifts",
+      "slot": "ring",
+      "tier": 3,
+      "reqLevel": 20,
+      "rarity": "epic",
+      "price": 0,
+      "desc": "Flüstert Dinge die noch nicht passiert sind. Meistens Wettervorhersagen. Gelegentlich Katastrophen.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "glueck",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "tempo",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "gen-sternensiegelring",
+      "name": "Sternensiegelring",
+      "slot": "ring",
+      "tier": 3,
+      "reqLevel": 22,
+      "rarity": "epic",
+      "price": 400,
+      "desc": "Das Siegel der Sternenwächterin. Oder eine sehr gute Fälschung. Lyra lächelt nur wenn man fragt.",
+      "icon": null,
+      "shopHidden": false,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "weisheit",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "glueck",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "kraft",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "charisma",
+              "min": 2,
+              "max": 4
+            },
+            {
+              "stat": "fokus",
+              "min": 2,
+              "max": 4
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "master"
+    },
+    {
+      "id": "gen-aetherkernring",
+      "name": "Aetherkernring",
+      "slot": "ring",
+      "tier": 4,
+      "reqLevel": 25,
+      "rarity": "epic",
+      "price": 600,
+      "desc": "Ein Ring aus reinem Aetherkern. Die Luft um ihn vibriert. Handschuhpflicht empfohlen.",
+      "icon": null,
+      "shopHidden": false,
+      "affixes": {
+        "primary": {
+          "count": [
+            2,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "glueck",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 5,
+              "max": 8
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            1,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "charisma",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        }
+      },
+      "legendaryEffect": null,
+      "setId": "legendary"
+    },
+    {
+      "id": "wb-kolossring",
+      "name": "Kolossring des Erwachens",
+      "slot": "ring",
+      "tier": 4,
+      "reqLevel": 30,
+      "rarity": "legendary",
+      "price": 0,
+      "desc": "Geschmiedet aus dem letzten Atemzug eines Kolosses. Pulsiert mit einer Kraft die älter ist als der Turm. Grimvar hat sich geweigert, ihn ein zweites Mal anzufassen. Das ist entweder ein schlechtes Zeichen oder exzellente Werbung.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            3,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "glueck",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 5,
+              "max": 8
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "charisma",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "crit_chance",
+        "min": 3,
+        "max": 5,
+        "label": "+X% Chance auf doppelte Quest-Rewards"
+      },
+      "setId": "legendary"
+    },
+    {
+      "id": "rift-schicksalsring",
+      "name": "Schicksalsring",
+      "slot": "ring",
+      "tier": 4,
+      "reqLevel": 35,
+      "rarity": "legendary",
+      "price": 0,
+      "desc": "Der Ring wählt seinen Träger, nicht umgekehrt. Er hat schlechten Geschmack, aber exzellentes Timing.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            3,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "glueck",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 8
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "charisma",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "drop_bonus",
+        "min": 3,
+        "max": 6,
+        "label": "+X% Loot Drop Chance"
+      },
+      "setId": "legendary"
+    },
+    {
+      "id": "gen-seelenbandring",
+      "name": "Seelenband",
+      "slot": "ring",
+      "tier": 4,
+      "reqLevel": 40,
+      "rarity": "legendary",
+      "price": 0,
+      "desc": "Bindet die Seele an den Turm. Klingt dramatisch. Ist es auch. Der Juwelier hat zwei Tage lang gezittert nachdem er ihn gefertigt hat. Seitdem trinkt er Tee statt Kaffee. Niemand weiß warum.",
+      "icon": null,
+      "shopHidden": true,
+      "affixes": {
+        "primary": {
+          "count": [
+            3,
+            3
+          ],
+          "pool": [
+            {
+              "stat": "kraft",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "weisheit",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "ausdauer",
+              "min": 5,
+              "max": 8
+            },
+            {
+              "stat": "glueck",
+              "min": 5,
+              "max": 8
+            }
+          ]
+        },
+        "minor": {
+          "count": [
+            2,
+            2
+          ],
+          "pool": [
+            {
+              "stat": "vitalitaet",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "fokus",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "charisma",
+              "min": 3,
+              "max": 6
+            },
+            {
+              "stat": "tempo",
+              "min": 3,
+              "max": 6
+            }
+          ]
+        }
+      },
+      "legendaryEffect": {
+        "type": "companion_bond_boost",
+        "min": 3,
+        "max": 6,
+        "label": "+X% Companion Bond XP"
+      },
+      "setId": "legendary"
     }
   ],
   "setBonus": {

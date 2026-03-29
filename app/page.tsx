@@ -368,6 +368,9 @@ export default function Dashboard() {
   const closeQuestDetailModal = useCallback(() => setQuestDetailModal(null), []);
   useModalBehavior(!!questDetailModal, closeQuestDetailModal);
 
+  // NPC modal (WandererRest) — ESC to close + scroll lock
+  const closeSelectedNpc = useCallback(() => setSelectedNpc(null), []);
+  useModalBehavior(!!selectedNpc, closeSelectedNpc);
 
   // ─── Notification dot logic: mark content as seen per tab visit ─────────
   // Compute "has new" before marking seen (so dots show on first render)

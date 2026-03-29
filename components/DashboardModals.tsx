@@ -63,14 +63,7 @@ export default function DashboardModals({
     return () => document.removeEventListener("keydown", h);
   }, [currenciesOpen, modifierOpen, streakInfoOpen, activeQuestsInfoOpen, xpInfoOpen]);
 
-  // Scroll lock for any open modal
-  useEffect(() => {
-    const anyOpen = currenciesOpen || modifierOpen || streakInfoOpen || activeQuestsInfoOpen || xpInfoOpen;
-    if (!anyOpen) return;
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => { document.body.style.overflow = prev; };
-  }, [currenciesOpen, modifierOpen, streakInfoOpen, activeQuestsInfoOpen, xpInfoOpen]);
+  // Scroll lock handled by useModalBehavior in page.tsx (lines 357-365)
 
   // Currency conversion state
   const [conversionOpen, setConversionOpen] = useState(false);
@@ -107,6 +100,12 @@ export default function DashboardModals({
       if (r.ok) {
         setConvResult({ text: `Converted ${d.spent} ${convFrom} → ${d.received} ${convTo}`, type: "success" });
         setConvAmount("");
+        // Sync displayed balances from backend response (mutation is intentional —
+        // loggedInUser.currencies is the live object from state.users, and we
+        // update it to reflect the conversion immediately without full refresh)
+        if (d.currencies && loggedInUser?.currencies) {
+          Object.assign(loggedInUser.currencies, d.currencies);
+        }
       } else {
         setConvResult({ text: d.error || "Conversion failed", type: "error" });
       }
@@ -123,7 +122,8 @@ export default function DashboardModals({
     if (validTo.length > 0 && !validTo.find(p => p.to === convTo)) {
       setConvTo(validTo[0].to);
     }
-  }, [convFrom]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [convFrom]); // convTo intentionally excluded — we WANT to reset it when convFrom changes
 
   const CURRENCY_SOURCE: Record<string, { view: string; label: string }> = {
     gold: { view: "questBoard", label: "Quest Board" },

@@ -1589,6 +1589,331 @@
       "chainId": "crafter",
       "chainTier": 4,
       "chainPrev": "chain_craft_gold"
+    },
+    {
+      "id": "dual_profession",
+      "name": "Doppelmeister",
+      "icon": "/images/icons/ach-dual-prof.png",
+      "desc": "Reach Skill 150+ in two primary professions simultaneously.",
+      "category": "milestone",
+      "rarity": "epic",
+      "points": 50,
+      "condition": {
+        "type": "dual_profession_skill",
+        "value": 150
+      }
+    },
+    {
+      "id": "artisan_rank",
+      "name": "Grand Artisan",
+      "icon": "/images/icons/ach-artisan.png",
+      "desc": "Reach Artisan rank (Skill 300) in any profession.",
+      "category": "milestone",
+      "rarity": "legendary",
+      "points": 100,
+      "condition": {
+        "type": "profession_skill",
+        "value": 300
+      }
+    },
+    {
+      "id": "recipe_collector",
+      "name": "Rezeptsammler",
+      "icon": "/images/icons/ach-recipes.png",
+      "desc": "Learn 100 recipes across all professions.",
+      "category": "milestone",
+      "rarity": "epic",
+      "points": 50,
+      "condition": {
+        "type": "learned_recipes",
+        "value": 100
+      }
+    },
+    {
+      "id": "moonlight_crafter",
+      "name": "Mondlichtschmied",
+      "icon": "/images/icons/ach-moonlight.png",
+      "desc": "Craft 10 items during Mondlicht-Schmiede hours (22:00-06:00).",
+      "category": "hidden",
+      "rarity": "rare",
+      "points": 25,
+      "condition": {
+        "type": "moonlight_crafts",
+        "value": 10
+      }
+    },
+    {
+      "id": "faction_friendly",
+      "name": "Erster Freund",
+      "icon": "/images/icons/ach-faction.png",
+      "desc": "Reach Friendly standing with any faction.",
+      "category": "milestone",
+      "rarity": "uncommon",
+      "points": 10,
+      "condition": {
+        "type": "faction_standing",
+        "value": 500
+      }
+    },
+    {
+      "id": "faction_exalted",
+      "name": "Verehrt",
+      "icon": "/images/icons/ach-faction-exalted.png",
+      "desc": "Reach Exalted standing with any faction.",
+      "category": "milestone",
+      "rarity": "epic",
+      "points": 50,
+      "condition": {
+        "type": "faction_standing",
+        "value": 8000
+      }
+    },
+    {
+      "id": "faction_all_friendly",
+      "name": "Diplomat der Halle",
+      "icon": "/images/icons/ach-diplomat.png",
+      "desc": "Reach Friendly standing with all four factions.",
+      "category": "milestone",
+      "rarity": "rare",
+      "points": 25,
+      "condition": {
+        "type": "all_factions_standing",
+        "value": 500
+      }
+    },
+    {
+      "id": "daily_faction_sweep",
+      "name": "Tagwerk",
+      "icon": "/images/icons/ach-daily-sweep.png",
+      "desc": "Complete all faction daily quests in a single day.",
+      "category": "hidden",
+      "rarity": "rare",
+      "points": 25,
+      "condition": {
+        "type": "faction_dailies_complete",
+        "value": 12
+      }
+    },
+    {
+      "id": "rift_first_clear",
+      "name": "Rissbrecher",
+      "icon": "/images/icons/ach-rift.png",
+      "desc": "Complete your first Rift run.",
+      "category": "milestone",
+      "rarity": "uncommon",
+      "points": 10,
+      "condition": {
+        "type": "rift_completions",
+        "value": 1
+      }
+    },
+    {
+      "id": "rift_legendary",
+      "name": "Legendenbrecher",
+      "icon": "/images/icons/ach-rift-legend.png",
+      "desc": "Complete a Legendary Rift.",
+      "category": "milestone",
+      "rarity": "epic",
+      "points": 50,
+      "condition": {
+        "type": "rift_legendary_completions",
+        "value": 1
+      }
+    },
+    {
+      "id": "mythic_plus_5",
+      "name": "Mythisch+5",
+      "icon": "/images/icons/ach-mythic.png",
+      "desc": "Reach Mythic+5 in the Endless Rift.",
+      "category": "milestone",
+      "rarity": "legendary",
+      "points": 100,
+      "condition": {
+        "type": "mythic_level",
+        "value": 5
+      }
+    },
+    {
+      "id": "dungeon_first",
+      "name": "Tiefenläufer",
+      "icon": "/images/icons/ach-dungeon.png",
+      "desc": "Complete your first dungeon run with friends.",
+      "category": "milestone",
+      "rarity": "uncommon",
+      "points": 10,
+      "condition": {
+        "type": "dungeon_completions",
+        "value": 1
+      }
+    },
+    {
+      "id": "dungeon_all_tiers",
+      "name": "Unterweltkenner",
+      "icon": "/images/icons/ach-dungeon-all.png",
+      "desc": "Complete all three dungeon tiers.",
+      "category": "milestone",
+      "rarity": "epic",
+      "points": 50,
+      "condition": {
+        "type": "dungeon_tiers_complete",
+        "value": 3
+      }
+    },
+    {
+      "id": "wb_contributor",
+      "name": "Kolosseumsbesucher",
+      "icon": "/images/icons/ach-wb.png",
+      "desc": "Contribute to defeating a World Boss.",
+      "category": "milestone",
+      "rarity": "uncommon",
+      "points": 10,
+      "condition": {
+        "type": "world_boss_contributions",
+        "value": 1
+      }
+    },
+    {
+      "id": "wb_top_contributor",
+      "name": "Kolosseumschampion",
+      "icon": "/images/icons/ach-wb-champ.png",
+      "desc": "Finish in the top 3 contributors for a World Boss.",
+      "category": "milestone",
+      "rarity": "legendary",
+      "points": 100,
+      "condition": {
+        "type": "world_boss_top3",
+        "value": 1
+      }
+    },
+    {
+      "id": "bond_soulmate",
+      "name": "Seelenverwandte",
+      "icon": "/images/icons/ach-bond.png",
+      "desc": "Reach Bond Level 5 (Soulmate) with your companion.",
+      "category": "companion",
+      "rarity": "epic",
+      "points": 50,
+      "condition": {
+        "type": "bond_level",
+        "value": 5
+      }
+    },
+    {
+      "id": "bond_legendary",
+      "name": "Legendäre Bindung",
+      "icon": "/images/icons/ach-bond-legend.png",
+      "desc": "Reach Bond Level 10 with your companion.",
+      "category": "companion",
+      "rarity": "legendary",
+      "points": 100,
+      "condition": {
+        "type": "bond_level",
+        "value": 10
+      }
+    },
+    {
+      "id": "expedition_collector",
+      "name": "Schatzjäger",
+      "icon": "/images/icons/ach-expedition.png",
+      "desc": "Complete 20 companion expeditions.",
+      "category": "companion",
+      "rarity": "rare",
+      "points": 25,
+      "condition": {
+        "type": "expedition_completions",
+        "value": 20
+      }
+    },
+    {
+      "id": "bp_level_40",
+      "name": "Saisonmeister",
+      "icon": "/images/icons/ach-bp.png",
+      "desc": "Reach level 40 in the Season Pass.",
+      "category": "milestone",
+      "rarity": "legendary",
+      "points": 100,
+      "condition": {
+        "type": "battlepass_level",
+        "value": 40
+      }
+    },
+    {
+      "id": "gem_royal",
+      "name": "Kronjuwel",
+      "icon": "/images/icons/ach-gem.png",
+      "desc": "Upgrade a gem to Royal tier (Tier 5).",
+      "category": "milestone",
+      "rarity": "epic",
+      "points": 50,
+      "condition": {
+        "type": "gem_tier",
+        "value": 5
+      }
+    },
+    {
+      "id": "gacha_pity",
+      "name": "Beharrlichkeit",
+      "icon": "/images/icons/ach-gacha.png",
+      "desc": "Hit hard pity on a gacha banner.",
+      "category": "hidden",
+      "rarity": "rare",
+      "points": 25,
+      "condition": {
+        "type": "gacha_hard_pity",
+        "value": 1
+      }
+    },
+    {
+      "id": "gold_converter",
+      "name": "Geldwechsler",
+      "icon": "/images/icons/ach-convert.png",
+      "desc": "Convert currencies 10 times.",
+      "category": "hidden",
+      "rarity": "uncommon",
+      "points": 10,
+      "condition": {
+        "type": "currency_conversions",
+        "value": 10
+      }
+    },
+    {
+      "id": "quest_variety_all",
+      "name": "Renaissance-Wanderer",
+      "icon": "/images/icons/ach-variety.png",
+      "desc": "Complete at least one quest of every type (personal, fitness, learning, social, boss).",
+      "category": "variety",
+      "rarity": "rare",
+      "points": 25,
+      "condition": {
+        "type": "quest_type_variety",
+        "value": 5
+      }
+    },
+    {
+      "id": "quest_500",
+      "name": "Halbzeitpause",
+      "icon": "/images/icons/ach-500.png",
+      "desc": "Complete 500 quests.",
+      "category": "milestone",
+      "rarity": "legendary",
+      "points": 100,
+      "condition": {
+        "type": "quests_completed",
+        "value": 500
+      }
+    },
+    {
+      "id": "quest_1000",
+      "name": "Tausendkämpfer",
+      "icon": "/images/icons/ach-1000.png",
+      "desc": "Complete 1,000 quests. The Hall remembers every single one.",
+      "category": "milestone",
+      "rarity": "legendary",
+      "points": 100,
+      "condition": {
+        "type": "quests_completed",
+        "value": 1000
+      }
     }
   ],
   "pointMilestones": [

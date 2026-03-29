@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { createPortal } from "react-dom";
+import { useModalBehavior } from "@/components/ModalPortal";
 import type { Quest, ActiveNpc, QuestsData } from "@/app/types";
 import {
   EpicQuestCard, QuestCard, DobbieQuestPanel,
@@ -132,13 +133,9 @@ export function WandererRest({
 
   const [npcInfoOpen, setNpcInfoOpen] = useState(false);
 
-  // ESC key closes NPC popup
-  useEffect(() => {
-    if (!selectedNpc) return;
-    const handler = (e: KeyboardEvent) => { if (e.key === "Escape") setSelectedNpc(null); };
-    window.addEventListener("keydown", handler);
-    return () => window.removeEventListener("keydown", handler);
-  }, [selectedNpc, setSelectedNpc]);
+  // ESC + scroll lock for NPC popup handled by useModalBehavior in page.tsx
+  // ESC + scroll lock for NPC info popup
+  useModalBehavior(npcInfoOpen, useCallback(() => setNpcInfoOpen(false), []));
 
   return (
     <div className="space-y-6 tab-content-enter">
