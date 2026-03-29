@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from "react";
 import { useDashboard } from "@/app/DashboardContext";
 import { getAuthHeaders } from "@/lib/auth-client";
 import { Tip, TipCustom } from "@/components/GameTooltip";
+import type { RewardCelebrationData } from "@/components/RewardCelebration";
 
 // ─── Types ──────────────────────────────────────────────────────────────────
 
@@ -174,7 +175,7 @@ export default function RiftView({ onRefresh, onRewardCelebration }: { onRefresh
             title: d.riftCompleted ? "Rift Complete!" : "Stage Complete!",
             xpEarned: d.rewards.xp || 0,
             goldEarned: d.rewards.gold || 0,
-            loot: d.rewards.loot ? { name: d.rewards.loot.name, emoji: "⚔️", rarity: d.rewards.loot.rarity || "rare" } : null,
+            loot: d.rewards.loot ? { name: d.rewards.loot.name, emoji: "◆", rarity: d.rewards.loot.rarity || "rare" } : null,
           });
         }
         fetchRift(); onRefresh?.();
